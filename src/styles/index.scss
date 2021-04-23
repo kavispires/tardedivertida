@@ -1,0 +1,16 @@
+// Basic
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import '~antd/dist/antd.css';
+
+// Utils
+@import './functions';
+@import './constants';
+// @import './animations';
+// @import './mixins';
+
+// Global
+@import './reset';
+@import './app';
+
+// Pages
+@import '../components/Home.scss';
