@@ -11,6 +11,7 @@
     ],
     "playerCount": "Para 3-8 jogadores. Recomendado: 4-6",
     "image": "arte-ruim",
+    "tags": ["competitive", "real-time", "drawing", "guessing", "timed"],
     "available": true
   },
   "B": {
@@ -27,6 +28,7 @@
     ],
     "playerCount": "Para 6-8 jogadores. Recomendado: 6",
     "image": "bomba-relogio",
+    "tags": ["cooperative", "turn-based", "traitor", "discussion"],
     "available": false
   },
   "C": {
@@ -36,6 +38,7 @@
     "rules": [],
     "playerCount": "Para 3-8 jogadores. Recomendado: 4-6",
     "image": "contadores-historias",
+    "tags": ["competitive", "turn-based", "guessing", "images"],
     "available": false
   },
   "D": {
@@ -44,7 +47,9 @@
     "summary": "Existe um impostor entre nós, mas será que ele tem boa lábia para se safar?",
     "rules": [],
     "playerCount": "Para ? jogadores. Recomendado: ?",
-    "image": "clube-detetives"
+    "image": "clube-detetives",
+    "tags": ["competitive", "turn-based", "traitor", "discussion", "images"],
+    "available": false
   },
   "M": {
     "id": "M",
@@ -53,6 +58,7 @@
     "rules": [],
     "playerCount": "Para 3-12 jogadores. Recomendado: 4+",
     "image": "mente-coletiva",
+    "tags": ["competitive", "real-time", "writing"],
     "available": false
   },
   "P": {
@@ -62,6 +68,7 @@
     "rules": [],
     "playerCount": "Para 4-8 jogadores. Recomendado: 6",
     "image": "polemica-vez",
+    "tags": ["competitive", "guessing"],
     "available": false
   },
   "S": {
@@ -71,6 +78,7 @@
     "rules": [],
     "playerCount": "Para 2+ jogadores. Recomendado: 2+",
     "image": "suspeitos",
+    "tags": ["competitive", "turn-based", "guessing"],
     "available": false
   },
   "T": {
@@ -79,7 +87,9 @@
     "summary": "Só existe uma resposta e o grupo tem que fazer as sugestões corretas para desvendá-la",
     "rules": [],
     "playerCount": "Para ? jogadores. Recomendado: ?",
-    "image": "toro-palpite"
+    "image": "toro-palpite",
+    "tags": ["cooperative", "real-time", "writing"],
+    "available": false
   },
   "U": {
     "id": "U",
@@ -88,6 +98,7 @@
     "rules": [],
     "playerCount": "Para 4-8 jogadores. Recomendado: 6-8",
     "image": "um-so",
+    "tags": ["cooperative", "guessing", "writing"],
     "available": false
   }
 }
