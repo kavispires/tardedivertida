@@ -7,9 +7,9 @@ function Home() {
   return (
     <Layout className="home">
       <div className="home__logo-container">
-        <Image src={logo} className="home__logo" />
+        <Image src={logo} className="home__logo" preview={false} alt="Tarde Divertida logo" />
       </div>
-      <div class="home__background">
+      <div className="home__background">
         <span></span>
         <span></span>
         <span></span>
