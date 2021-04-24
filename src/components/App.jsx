@@ -52,7 +52,7 @@ function App() {
         setIsAuthenticated(false);
       }
     });
-  }, []);
+  }, []); // eslint-disable-line
 
   return (
     <Layout className="app">

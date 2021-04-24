@@ -1,0 +1,93 @@
+{
+  "A": {
+    "id": "A",
+    "title": "Arte Ruim Pra Dedéu",
+    "summary": "Tende idenficar as obras-primas criadas por seus oponentes!",
+    "rules": [
+      "Cada rodada, jogadores recebem uma carta com uma expressão e tem 10 segundos para desenhá-la.",
+      "Após todos jogadores terminarem suas obras de arte, embaralha-se todas as cartas e todos os desenhos e todos tem que identificar qual desenho corresconde a cada expressão.",
+      "Respostas corretas ganham 2 pontos, mas cada voto que seu desenho recebe também te dá 1 ponto.",
+      "O primeiro jogador a cruzar a marca 30 pontos, sinaliza o fim do jogo, e o jogador com mais pontos é o vencedor!"
+    ],
+    "playerCount": "Para 3-8 jogadores. Recomendado: 4-6",
+    "image": "arte-ruim",
+    "available": true
+  },
+  "B": {
+    "id": "B",
+    "title": "Bomba Relógio",
+    "summary": "Uns são agentes, outros terroristas. Você será capaz de parar a bomba antes que ela detone?",
+    "rules": [
+      "Jogadores são agentes tentando desarmar uma bomba e pra isso têm que cortar todos os fios coloridos. Mas entre os agentes, pode haver um ou mais terroristas que querem que a bomba exploda.",
+      "Cada rodada os jogadores recebem cartas que podem conter um fio colorido a ser cortado ou um fio cinza que não serve pra nada. Eles examinam suas cartas e colocam-as a sua frente embaralhadas. Você sabe todas as cartas que você tem, mas não exatamente qual é qual.",
+      "Jogadores, então, declaram o que vieram. \"Eu tenho um fio colorido\", ou \"Eu não tenho nada\", ou até mesmo \"Eu tenho a bomba!\" (sim, existe uma bomba). Essa é a hora de tentar descobrir quem pode estar mentindo. O número de fios coloridos é igual ao número de jogadores, será que a quantidade declarada pelos jogadores corresponde mesmo a esse número?",
+      "Agora, uma pessoa se torna o investigador e tem que escolher outro jogador e virar uma de duas cartas. Se for um fio comum, nada acontece. Se for um fio colorído, maravilha, estamos mais próximos de desarmar a bomba. Se for a bomba, CABUM!!! - Os terroristas ganham... Após virar uma cara, o jogador selecionado se torna o investigador e escolhe outro jogador e repete o mesmo processo.",
+      "Mas como ganha ou perde? Se os agentes encontram todos os fios coloridos, eles ganham! Os terroristas ganham se a qualquer momento a bomba é revelada, ou se, ao final de 4 rodadas, os não conseguiram encontrar todos os fios coloridos",
+      "Uma rodada termina qdo as cartas reveladas são iguais ao número de jogadores, a partir dai, todas as cartas são embaralhadas novamente e os jogadores recebem uma nova mão, agora com uma carta a menos que a rodada anterior e por ai vai."
+    ],
+    "playerCount": "Para 6-8 jogadores. Recomendado: 6",
+    "image": "bomba-relogio",
+    "available": false
+  },
+  "C": {
+    "id": "C",
+    "title": "Contadores de Histórias",
+    "summary": "Uma imagem vale mesmo mais que mil palavras? Tente descobrir de qual imagem o contador de histórias está falando",
+    "rules": [],
+    "playerCount": "Para 3-8 jogadores. Recomendado: 4-6",
+    "image": "contadores-historias",
+    "available": false
+  },
+  "D": {
+    "id": "D",
+    "title": "Clube dos Detetives",
+    "summary": "Existe um impostor entre nós, mas será que ele tem boa lábia para se safar?",
+    "rules": [],
+    "playerCount": "Para ? jogadores. Recomendado: ?",
+    "image": "clube-detetives"
+  },
+  "M": {
+    "id": "M",
+    "title": "Mente Coletiva",
+    "summary": "Você é capaz de pensar como o grupo para não correr o risco de ser expulso?",
+    "rules": [],
+    "playerCount": "Para 3-12 jogadores. Recomendado: 4+",
+    "image": "mente-coletiva",
+    "available": false
+  },
+  "P": {
+    "id": "P",
+    "title": "Polêmica da Vez",
+    "summary": "Um tópico... Polêmico. Você sabe a sua opinião, mas consegue descobrir a dos seus oponentes?",
+    "rules": [],
+    "playerCount": "Para 4-8 jogadores. Recomendado: 6",
+    "image": "polemica-vez",
+    "available": false
+  },
+  "S": {
+    "id": "S",
+    "title": "Suspeitos Fora do Comum",
+    "summary": "Um crime. Uma testemunha. Desde quando julgando por aparência não se desvenda um crime?",
+    "rules": [],
+    "playerCount": "Para 2+ jogadores. Recomendado: 2+",
+    "image": "suspeitos",
+    "available": false
+  },
+  "T": {
+    "id": "T",
+    "title": "Toró de Palpite",
+    "summary": "Só existe uma resposta e o grupo tem que fazer as sugestões corretas para desvendá-la",
+    "rules": [],
+    "playerCount": "Para ? jogadores. Recomendado: ?",
+    "image": "toro-palpite"
+  },
+  "U": {
+    "id": "U",
+    "title": "Um Só",
+    "summary": "Tente adivinhar a palavra secreta com as dicas de seus amigos, mas se repetir, ferrou!",
+    "rules": [],
+    "playerCount": "Para 4-8 jogadores. Recomendado: 6-8",
+    "image": "um-so",
+    "available": false
+  }
+}
