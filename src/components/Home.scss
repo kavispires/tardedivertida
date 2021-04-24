@@ -1,19 +1,17 @@
 $particleSize: 20vmin;
 $animationDuration: 6s;
 $amount: 20;
+$colors: (#44bba4, #3a7ca5, #f2e863, #f45b69);
 
 .home {
-  background: red;
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-
   position: relative;
 
   &__logo-container {
     width: 100vw;
     height: 100vh;
-    // background: green;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,9 +21,6 @@ $amount: 20;
   &__logo {
     max-width: 75vw;
     min-width: 300px;
-    path {
-      fill: rgba(get-color(white), 0.8);
-    }
   }
 
   &__background {
@@ -45,8 +40,7 @@ $amount: 20;
       animation-duration: $animationDuration;
       animation-timing-function: linear;
       animation-iteration-count: infinite;
-      // $colors: (#583c87, #e45a84, #ffacac);
-      $colors: (#44bba4, #3a7ca5, #f2e863, #f45b69);
+
       @for $i from 1 through $amount {
         &:nth-child(#{$i}) {
           color: nth($colors, random(length($colors)));

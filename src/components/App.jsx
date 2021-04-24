@@ -2,7 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { HashRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 
 // Design Resources
-import { Layout } from 'antd';
+import { Layout, Spin } from 'antd';
+// Firebase
+import { auth } from '../services/firebase';
+// State
+import useGlobalState from '../states/useGlobalState';
 // Pages
 import Home from './Home';
 import Admin from './Admin';
@@ -36,17 +40,33 @@ function PublicRoute({ component: Component, authenticated, ...rest }) {
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useGlobalState('isAuthenticated');
+
+  useEffect(() => {
+    auth().onAuthStateChanged((user) => {
+      if (user) {
+        setIsLoading(false);
+        setIsAuthenticated(true);
+      } else {
+        setIsLoading(false);
+        setIsAuthenticated(false);
+      }
+    });
+  }, []);
 
   return (
     <Layout className="app">
       <Router>
-        <Switch>
-          <Route exact path="/" component={Home}></Route>
-          <PrivateRoute path="/admin" authenticated={isAuthenticated} component={Admin} />
-          <PublicRoute path="/login" authenticated={isAuthenticated} component={Login}></PublicRoute>
-          <PublicRoute path="*" authenticated={isAuthenticated} component={Game}></PublicRoute>
-        </Switch>
+        {isLoading ? (
+          <Spin />
+        ) : (
+          <Switch>
+            <Route exact path="/" component={Home}></Route>
+            <PrivateRoute path="/admin" authenticated={isAuthenticated} component={Admin} />
+            <PublicRoute path="/login" authenticated={isAuthenticated} component={Login}></PublicRoute>
+            <PublicRoute path="*" authenticated={isAuthenticated} component={Game}></PublicRoute>
+          </Switch>
+        )}
       </Router>
     </Layout>
   );

@@ -1,0 +1,30 @@
+.login {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__content {
+    width: 50%;
+    max-width: 500px;
+    min-width: 300px;
+    background: rgba(white, 0.2);
+    border-radius: get-unit(1);
+    padding: get-unit(3);
+  }
+
+  &__logo {
+    display: flex;
+    justify-content: center;
+    margin: get-unit(2 0 4 0);
+  }
+
+  &__form-action {
+    text-align: center;
+  }
+
+  &__error-alert {
+    margin: get-unit(4 0);
+  }
+}

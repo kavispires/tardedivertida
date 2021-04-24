@@ -10,7 +10,9 @@
 
 // Global
 @import './reset';
-@import './app';
+@import './global';
 
 // Pages
+@import '../components/App.scss';
 @import '../components/Home.scss';
+@import '../components/Login.scss';
