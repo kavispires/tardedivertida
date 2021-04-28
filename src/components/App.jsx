@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { HashRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 
 // Design Resources
-import { Layout, Spin } from 'antd';
+import { Layout, message, Spin } from 'antd';
 // Firebase
 import { auth } from '../services/firebase';
 // State
@@ -43,10 +43,11 @@ function App() {
   const [isAuthenticated, setIsAuthenticated] = useGlobalState('isAuthenticated');
 
   useEffect(() => {
-    auth().onAuthStateChanged((user) => {
+    auth.onAuthStateChanged((user) => {
       if (user) {
         setIsLoading(false);
         setIsAuthenticated(true);
+        message.info('Você foi logado de volta automaticamente.');
       } else {
         setIsLoading(false);
         setIsAuthenticated(false);
@@ -64,7 +65,7 @@ function App() {
             <Route exact path="/" component={Home}></Route>
             <PrivateRoute path="/admin" authenticated={isAuthenticated} component={Admin} />
             <PublicRoute path="/login" authenticated={isAuthenticated} component={Login}></PublicRoute>
-            <PublicRoute path="*" authenticated={isAuthenticated} component={Game}></PublicRoute>
+            <Route path="*" component={Game} />
           </Switch>
         )}
       </Router>
