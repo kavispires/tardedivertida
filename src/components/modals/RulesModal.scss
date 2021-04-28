@@ -1,0 +1,10 @@
+.rules-modal {
+  width: 500px;
+
+  &__rules {
+    background: #a8aaae;
+  }
+  &__rule {
+    padding: get-unit(2);
+  }
+}
