@@ -1,0 +1,9 @@
+.loading {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  &--margin {
+    margin: get-unit(4 0);
+  }
+}
