@@ -7,7 +7,7 @@ import { auth } from '../services/firebase';
  * @returns {Promise}
  */
 export function signUp(email, password) {
-  return auth().createUserWithEmailAndPassword(email, password);
+  return auth.createUserWithEmailAndPassword(email, password);
 }
 
 /**
@@ -17,7 +17,7 @@ export function signUp(email, password) {
  * @returns {Promise}
  */
 export function signIn(email, password) {
-  return auth().signInWithEmailAndPassword(email, password);
+  return auth.signInWithEmailAndPassword(email, password);
 }
 
 /**
@@ -25,9 +25,7 @@ export function signIn(email, password) {
  * @returns {Promise}
  */
 export async function signOut() {
-  return auth()
-    .signOut()
-    .then(() => {
-      alert(`You've been signed out`);
-    });
+  return auth.signOut().then(() => {
+    alert(`You've been signed out`);
+  });
 }
