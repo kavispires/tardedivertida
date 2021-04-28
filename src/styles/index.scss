@@ -12,6 +12,9 @@
 @import './reset';
 @import './global';
 
+// Components
+@import '../components/modals/RulesModal.scss';
+
 // Pages
 @import '../components/App.scss';
 @import '../components/Home.scss';
