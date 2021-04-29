@@ -1,29 +1,41 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-
-import { Typography, Image, Modal, Spin, message } from 'antd';
-
+import PropTypes from 'prop-types';
+// Design Resources
+import { Typography, Image, Modal, message, Button } from 'antd';
+// Adapters
 import { GAME_API } from '../../adapters';
+// Constants
 import { PUBLIC_URL } from '../../utils/constants';
+// Components
+import Loading from '../loaders/Loading';
 
-function CreateGameModal({ gameInfo, isVisible, onCloseModal }) {
+function CreateGameModal({ game }) {
   const history = useHistory();
+  const [isVisible, setVisibility] = useState(false);
   const [isLoading, setLoading] = useState(true);
   const [gameId, setGameId] = useState(null);
+
+  const onCloseModal = () => {
+    setVisibility(false);
+  };
 
   useEffect(() => {
     try {
       async function createGame() {
-        const response = await GAME_API.initializeGame({ gameCode: gameInfo.id });
+        const response = await GAME_API.initializeGame({ gameCode: game.id });
         if (response.data.id) {
           setGameId(response.data.id);
           setLoading(false);
         }
       }
 
-      createGame();
+      if (isVisible) {
+        createGame();
+      }
     } catch (e) {
       console.error(e);
+      message.error(e);
     }
   }, []); // eslint-disable-line
 
@@ -36,30 +48,50 @@ function CreateGameModal({ gameInfo, isVisible, onCloseModal }) {
   };
 
   return (
-    <Modal
-      title={`Criando jogo: ${gameInfo.title}`}
-      visible={isVisible}
-      onCancel={onCloseModal}
-      onOk={onConfirmGame}
-    >
-      <Image
-        alt={gameInfo.title}
-        src={`${PUBLIC_URL.BANNERS}game-image-${gameInfo.image}.jpg`}
-        fallback={`${PUBLIC_URL.BANNERS}/game-image-em-breve.jpg`}
-      />
-      {isLoading ? (
-        <Fragment>
-          <Typography.Paragraph>O jogo está sendo criado...</Typography.Paragraph>
-          <Spin />
-        </Fragment>
-      ) : (
-        <div>
-          <Typography.Title>Jogo inicializado: {gameId}</Typography.Title>
-          <Typography.Paragraph>Pressione OK para ser redirecionado a página do jogo.</Typography.Paragraph>
-        </div>
+    <Fragment>
+      <Button type="primary" onClick={() => setVisibility(true)}>
+        Criar Jogo
+      </Button>
+      {isVisible && (
+        <Modal
+          title={`Criando jogo: ${game.title}`}
+          visible={isVisible}
+          onCancel={onCloseModal}
+          onOk={onConfirmGame}
+        >
+          <Fragment>
+            <Image
+              alt={game.title}
+              src={`${PUBLIC_URL.BANNERS}game-image-${game.image}.jpg`}
+              fallback={`${PUBLIC_URL.BANNERS}/game-image-em-breve.jpg`}
+            />
+
+            {isLoading ? (
+              <Fragment>
+                <Typography.Paragraph className="center">O jogo está sendo criado...</Typography.Paragraph>
+                <Loading message="Gerando..." margin />
+              </Fragment>
+            ) : (
+              <div>
+                <Typography.Title className="center">Jogo inicializado: {gameId}</Typography.Title>
+                <Typography.Paragraph>
+                  Pressione OK para ser redirecionadx à página do jogo.
+                </Typography.Paragraph>
+              </div>
+            )}
+          </Fragment>
+        </Modal>
       )}
-    </Modal>
+    </Fragment>
   );
 }
+
+CreateGameModal.propTypes = {
+  game: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string,
+    image: PropTypes.string,
+  }),
+};
 
 export default CreateGameModal;
