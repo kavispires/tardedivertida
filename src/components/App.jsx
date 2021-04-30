@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { HashRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 
 // Design Resources
-import { Layout, message, Spin } from 'antd';
+import { Layout, message } from 'antd';
 // Firebase
 import { auth } from '../services/firebase';
 // State

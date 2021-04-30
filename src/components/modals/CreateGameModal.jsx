@@ -1,10 +1,12 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useCallback, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 // Design Resources
-import { Typography, Image, Modal, message, Button } from 'antd';
+import { Typography, Image, Modal, message, Button, notification } from 'antd';
 // Adapters
 import { GAME_API } from '../../adapters';
+// Hooks
+import { useLoading } from '../../hooks';
 // Constants
 import { PUBLIC_URL } from '../../utils/constants';
 // Components
@@ -12,32 +14,40 @@ import Loading from '../loaders/Loading';
 
 function CreateGameModal({ game }) {
   const history = useHistory();
+  const [, setLoader] = useLoading();
   const [isVisible, setVisibility] = useState(false);
   const [isLoading, setLoading] = useState(true);
   const [gameId, setGameId] = useState(null);
 
-  const onCloseModal = () => {
+  const onCloseModal = useCallback(() => {
     setVisibility(false);
-  };
+  }, []);
 
   useEffect(() => {
-    try {
-      async function createGame() {
+    async function createGame() {
+      try {
+        setLoader('create', true);
         const response = await GAME_API.initializeGame({ gameCode: game.id });
         if (response.data.id) {
           setGameId(response.data.id);
-          setLoading(false);
         }
+      } catch (e) {
+        console.error(e);
+        notification.error({
+          message: 'Applicativo encontrou um erro ao tentar criar o jogo',
+          description: JSON.stringify(e),
+          placement: 'bottomLeft',
+        });
+      } finally {
+        setLoading(false);
+        setLoader('create', false);
       }
-
-      if (isVisible) {
-        createGame();
-      }
-    } catch (e) {
-      console.error(e);
-      message.error(e);
     }
-  }, []); // eslint-disable-line
+
+    if (isVisible) {
+      createGame();
+    }
+  }, [isVisible]); // eslint-disable-line
 
   const onConfirmGame = () => {
     if (gameId) {
