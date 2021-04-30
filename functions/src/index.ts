@@ -125,43 +125,82 @@ exports.loadGame = functions.https.onCall(async (data) => {
   return gameMeta.data();
 });
 
-// exports.addPlayer = functions.https.onCall(async (data, context) => {
-//   const { gameId, game: collectionName, playerName } = data;
+exports.addPlayer = functions.https.onCall(async (data, context) => {
+  const { gameId, gameName: collectionName, playerName, playerAvatarId } = data;
 
-//   // Get 'info' from given game session
-//   const gameInfoRef = await admin
-//     .firestore()
-//     .collection(collectionName)
-//     .doc(gameId)
-//     .collection('session')
-//     .doc('info');
+  if (!gameId || !collectionName || !playerName) {
+    throw new functions.https.HttpsError(
+      'internal',
+      `Failed to add player: payload is missing ${!gameId && 'gameId'} ${
+        !collectionName && 'collectionName'
+      } ${!playerName}`
+    );
+  }
 
-//   const gameInfo = await gameInfoRef.get();
+  // Get 'info' from given game session
+  const gameStateRef = admin
+    .firestore()
+    .collection(collectionName)
+    .doc(gameId)
+    .collection('session')
+    .doc('state');
 
-//   if (!gameInfo.exists) {
-//     throw new functions.https.HttpsError(
-//       'internal',
-//       `Failed to add player: game '${collectionName}/${gameId}' does not exist`
-//     );
-//   }
+  const gameState = await gameStateRef.get();
 
-//   const gameInfoData = gameInfo.data();
-//   console.log({ gameInfoData });
-//   if (gameInfoData.players[playerName]) {
-//     console.log('Player exists!');
-//     return players[playerName];
-//   }
+  if (!gameState.exists) {
+    throw new functions.https.HttpsError(
+      'internal',
+      `Failed to add player: game '${collectionName}/${gameId}' does not exist`
+    );
+  }
 
-//   console.log('Creating player');
-//   const methods = utils.getGameMethodsByCollection(collectionName);
-//   players[playerName] = methods.createPlayer(playerName, players);
-//   gameInfoRef.update({
-//     ...gameInfoData,
-//     players,
-//   });
+  const gameStateData = gameState.data();
+  const players = gameStateData?.players;
 
-//   return players[playerName];
-// });
+  console.log({ gameStateData });
+  if (players[playerName]) {
+    console.log('Player exists!');
+    return players[playerName];
+  }
+
+  console.log('Creating player');
+  const methods = utils.getGameMethodsByCollection(collectionName);
+  players[playerName] = methods.createPlayer(playerName, playerAvatarId, players);
+  gameStateRef.update({
+    ...gameStateData,
+    players,
+  });
+
+  return players[playerName];
+});
+
+exports.lockGame = functions.https.onCall(async (data, context) => {
+  const { gameId, game: collectionName } = data;
+
+  if (!gameId || !collectionName) {
+    throw new functions.https.HttpsError(
+      'internal',
+      `Failed to lock game: payload is missing ${!gameId && 'gameId'} ${!collectionName && 'collectionName'}`
+    );
+  }
+
+  // Verify auth
+  const uid = context?.auth?.uid;
+  if (!uid) {
+    throw new functions.https.HttpsError(
+      'internal',
+      'Failed to lock game: you must be logged in to lock a game'
+    );
+  }
+
+  // Find game state and get all players
+
+  // Parse players into two objects: info with static information, state with variable information (score, etc)
+
+  // Set info with players object and isLocked
+
+  // Set meta with players variable info and new phase Rules
+});
 
 // exports.arteRuimAPI = functions.https.onRequest((request, response) => {
 //   switch (request.action) {
