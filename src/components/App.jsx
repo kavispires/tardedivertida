@@ -12,6 +12,8 @@ import Home from './Home';
 import Admin from './Admin';
 import Login from './Login';
 import Game from './Game';
+import LoadingPage from './loaders/LoadingPage';
+import LoadingBar from './loaders/LoadingBar';
 
 function PrivateRoute({ component: Component, authenticated, ...rest }) {
   return (
@@ -57,9 +59,10 @@ function App() {
 
   return (
     <Layout className="app">
+      <LoadingBar />
       <Router>
         {isLoading ? (
-          <Spin />
+          <LoadingPage />
         ) : (
           <Switch>
             <Route exact path="/" component={Home}></Route>
