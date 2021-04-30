@@ -17,6 +17,7 @@ import { getRandomItem } from '../../utils/index';
 import { useLoading } from '../../hooks';
 
 function Join({ players, gameDescription }) {
+  const [isLoading, setLoader] = useLoading();
   const [gameId] = useGlobalState('gameId');
   const [gameName] = useGlobalState('gameName');
   const [, setMe] = useGlobalState('me');
@@ -26,13 +27,7 @@ function Join({ players, gameDescription }) {
   const [tempAvatar, setTempAvatar] = useState(getRandomItem(AVATAR_IDS));
   const [tempMe, setTempMe] = useState('');
 
-  const [isLoading, setLoader] = useLoading();
-
-  // Load name and avatarId from localStorage
-  useEffect(() => {
-    setTempAvatar(localStorage.get('avatarId') ?? tempAvatar);
-    setTempMe(localStorage.get('me') ?? '');
-  }, []); // eslint-disable-line
+  const [localStorageAvatar, setLocalStorageAvatar] = useState(null);
 
   // Calculate available avatars and monitor if user chose a non-available one
   useEffect(() => {
@@ -43,12 +38,24 @@ function Join({ players, gameDescription }) {
 
     const newAvailableAvatars = AVATAR_IDS.filter((avatarId) => usedAvatars[avatarId] === undefined);
 
-    if (newAvailableAvatars.includes(tempAvatar)) {
+    if (newAvailableAvatars.includes(tempAvatar) && !localStorageAvatar) {
       setTempAvatar(getRandomItem(newAvailableAvatars));
     }
 
     setAvailableAvatars(newAvailableAvatars);
   }, [players]); // eslint-disable-line
+
+  // Load name and avatarId from localStorage
+  useEffect(() => {
+    const lsAvatarId = localStorage.get('avatarId');
+    const lsMe = localStorage.get('me');
+
+    if (lsAvatarId && lsMe) {
+      setTempAvatar(localStorage.get('avatarId'));
+      setTempMe(localStorage.get('me') ?? '');
+      setLocalStorageAvatar(lsAvatarId);
+    }
+  }, []); // eslint-disable-line
 
   const onPreviousAvatar = useCallback(() => {
     const index = availableAvatars.indexOf(tempAvatar);
@@ -97,7 +104,9 @@ function Join({ players, gameDescription }) {
         src={`${PUBLIC_URL.BANNERS}game-image-${gameDescription?.image}.jpg`}
         fallback={`${PUBLIC_URL.BANNERS}/game-image-em-breve.jpg`}
       />
-      <h1 className="lobby-join__title">Selecione seu avatar</h1>
+      <h1 className="lobby-join__title">
+        {Boolean(localStorageAvatar) ? 'Bem-vindo de volta!' : 'Selecione seu avatar'}
+      </h1>
       <div className="lobby-join__avatar-selection">
         <Button type="dashed" onClick={onPreviousAvatar} className="lobby-join__avatar-nav-button">
           <CaretLeftOutlined />
@@ -109,11 +118,20 @@ function Join({ players, gameDescription }) {
           <CaretRightOutlined />
         </Button>
       </div>
-      <Alert
-        className="lobby-join__avatar-alert"
-        type="warning"
-        message="Se alguém escolher o mesmo avatar que você, um avatar aleatório será escolhido pra você."
-      />
+
+      {Boolean(localStorageAvatar) ? (
+        <Alert
+          className="lobby-join__avatar-alert"
+          type="error"
+          message="Você está de volta! Lembramos seu nome e avatar. Se você está retornando para o mesmo jogo de antes, NÃO mude seu apelido! Se o nome estiver diferente você é adicionado como um novo jogador e pode bugar o jogo"
+        />
+      ) : (
+        <Alert
+          className="lobby-join__avatar-alert"
+          type="warning"
+          message="Se alguém escolher o mesmo avatar que você, um avatar aleatório será escolhido pra você."
+        />
+      )}
       <Input
         className="lobby-join__name-input"
         onChange={(e) => setTempMe(e.target.value)}
