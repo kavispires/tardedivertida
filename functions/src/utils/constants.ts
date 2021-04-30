@@ -7,7 +7,7 @@ export const GAME_COLLECTIONS = {
 };
 
 export const ARTE_RUIM_PHASES = {
-  WAITING_ROOM: 'WAITING_ROOM',
+  LOBBY: 'LOBBY',
   RULES: 'RULES',
   DRAW: 'DRAW',
   EVALUATION: 'EVALUATION',
