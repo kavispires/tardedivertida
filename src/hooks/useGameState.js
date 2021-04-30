@@ -1,21 +1,12 @@
 import { notification } from 'antd';
-import { useEffect } from 'react';
 import { useDocument } from 'react-firebase-hooks/firestore';
 // Services
 import { firestore } from '../services/firebase';
-// Hooks
-import { useLoading } from './useLoading';
 
 export function useGameState(gameId, gameName) {
   const [snapshot, loading, error] = useDocument(firestore.doc(`${gameName}/${gameId}/session/state`), {
     snapshotListenOptions: { includeMetadataChanges: true },
   });
-  const [, setLoader] = useLoading();
-
-  useEffect(() => {
-    setLoader('state', loading);
-    if (loading) console.log(`Loading state for ${gameName}...`);
-  }, [loading, setLoader, gameName]);
 
   if (error) {
     notification.error({
@@ -25,7 +16,9 @@ export function useGameState(gameId, gameName) {
     });
   }
 
-  console.log({ snapshot });
+  if (loading) {
+    console.log('%cRefreshing state...', 'color:tomato');
+  }
 
-  return snapshot.data();
+  return snapshot?.data() ?? {};
 }

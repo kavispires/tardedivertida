@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import useGlobalState from '../states/useGlobalState';
+import { useGlobalState } from './index';
 
 /**
  * Aggregate loading states into a single object, and single isLoading state
