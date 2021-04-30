@@ -14,6 +14,17 @@ body {
   &--white {
     background: white;
   }
+
+  &--transparent {
+    border: 1px solid white;
+    background: transparent;
+  }
+
+  &--center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .center {
