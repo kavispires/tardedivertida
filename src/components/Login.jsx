@@ -6,7 +6,7 @@ import { Layout, Button, Form, Input, Alert, Image } from 'antd';
 // API
 import { signIn } from '../adapters/auth';
 // State
-import useGlobalState from '../states/useGlobalState';
+import { useGlobalState } from '../hooks';
 // Image
 import logo from '../images/tarde-divertida-logo.svg';
 

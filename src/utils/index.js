@@ -16,3 +16,12 @@ export const getGameIdFromURL = (history) => {
 export const isValidGameId = (gameId) => {
   return gameId && gameId.length === 4;
 };
+
+/**
+ * Get random element/item from a list
+ * @param {array} list
+ * @returns one random item
+ */
+export const getRandomItem = (list) => {
+  return list[Math.floor(Math.random() * list.length)];
+};

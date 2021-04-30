@@ -6,7 +6,7 @@ import { Layout, message } from 'antd';
 // Firebase
 import { auth } from '../services/firebase';
 // State
-import useGlobalState from '../states/useGlobalState';
+import { useGlobalState } from '../hooks';
 // Pages
 import Home from './Home';
 import Admin from './Admin';

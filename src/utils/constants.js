@@ -55,3 +55,28 @@ export const TAG_DICT = {
     color: 'geekblue',
   },
 };
+
+/**
+ * List of avatar ids
+ */
+export const AVATAR_IDS = new Array(25).fill(0).map((i, index) => i + index);
+
+/**
+ * Enum of available games
+ */
+export const GAME_COLLECTION = {
+  ARTE_RUIM: 'arte-ruim',
+};
+
+/**
+ * Enum of Arte Ruim phases
+ */
+export const ARTE_RUIM_PHASES = {
+  LOBBY: 'LOBBY',
+  RULES: 'RULES',
+  DRAW: 'DRAW',
+  EVALUATION: 'EVALUATION',
+  GALLERY: 'GALLERY',
+  RANKING: 'RANKING',
+  GAME_OVER: 'GAME_OVER',
+};

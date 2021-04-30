@@ -16,7 +16,12 @@
 @import '../components/loaders/Loading.scss';
 @import '../components/loaders/LoadingBar.scss';
 @import '../components/loaders/LoadingPage.scss';
+@import '../components/lobby/Lobby.scss';
+@import '../components/lobby/Join.scss';
+@import '../components/lobby/Waiting.scss';
 @import '../components/modals/RulesModal.scss';
+
+@import '../components/AvatarEntry.scss';
 
 // Pages
 @import '../components/App.scss';
