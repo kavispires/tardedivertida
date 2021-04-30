@@ -1,19 +1,29 @@
 import React from 'react';
-// Design Resources
-import { Layout } from 'antd';
 // Hooks
-// import { useGameInfo, useGameState } from '../../hooks';
-import { GAME_COLLECTION } from '../../utils/constants';
+import { useGameInfo, useGameState } from '../../hooks';
+import { GAME_COLLECTION, ARTE_RUIM_PHASES } from '../../utils/constants';
+// Components
+import Lobby from '../lobby/Lobby';
+import PageError from '../errors/PageError';
+
+function getActiveComponent(phase) {
+  switch (phase) {
+    case ARTE_RUIM_PHASES.LOBBY:
+      return Lobby;
+    default:
+      return PageError;
+  }
+}
 
 function SessionArteRuim({ gameId }) {
-  // const info = useGameInfo(gameId, GAME_COLLECTION.ARTE_RUIM);
-  // const state = useGameState(gameId, GAME_COLLECTION.ARTE_RUIM);
+  const info = useGameInfo(gameId, GAME_COLLECTION.ARTE_RUIM);
+  const state = useGameState(gameId, GAME_COLLECTION.ARTE_RUIM);
+  console.log({ info });
+  console.log({ state });
 
-  return (
-    <Layout.Content className="game game--arte-ruim">
-      <h1>Hi</h1>
-    </Layout.Content>
-  );
+  const ActiveComponent = getActiveComponent(state.phase);
+
+  return <ActiveComponent info={info} state={state} />;
 }
 
 export default SessionArteRuim;

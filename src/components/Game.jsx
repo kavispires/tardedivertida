@@ -1,21 +1,28 @@
-import { message } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+// Design Resources
+import { message, notification } from 'antd';
+// Adapters
 import { GAME_API } from '../adapters';
-
-import useGameState from '../states/useGameState';
+// Hooks
+import { useIsGameStale, useLoading, useGlobalState } from '../hooks';
+// Utils
 import { getGameIdFromURL, isValidGameId } from '../utils';
+// Components
 import LoadingPage from './loaders/LoadingPage';
+import PageError from './errors/PageError';
+import SessionArteRuim from './arte-ruim/SessionArteRuim';
+import { GAME_COLLECTION } from '../utils/constants';
 
 function Game() {
   const history = useHistory();
-  const [isPageLoading, setPageLoading] = useState(true);
-  // const [isLoading, setLoading] = useState(true);
-  const [isGameStale, setGameStale] = useState(false);
+  const [, setLoader] = useLoading();
+  const [gameId, setGameId] = useGlobalState('gameId');
+  const [gameName, setGameName] = useGlobalState('gameName');
+  const [gameCreatedAt, setGameCreatedAt] = useGlobalState('createdAt');
 
-  const [gameId, setGameId] = useGameState('gameId');
-  const [gameName, setGameName] = useGameState('gameName');
-  const [gameCreatedAt, setGameCreatedAt] = useGameState('createdAt');
+  const [isPageLoading, setPageLoading] = useState(true);
+  const isGameStale = useIsGameStale(gameCreatedAt);
 
   // Verify url game code
   useEffect(() => {
@@ -32,39 +39,50 @@ function Game() {
   useEffect(() => {
     setPageLoading(true);
     async function loadGameSession() {
-      console.log('Loading game...');
-      const meta = await GAME_API.loadGame({ gameId });
-      console.log({ meta });
-      setGameName(meta.data.name);
-      setGameCreatedAt(meta.data.createdAt);
-      setPageLoading(false);
+      try {
+        setLoader('load', true);
+        const meta = await GAME_API.loadGame({ gameId });
+        setGameName(meta.data.game);
+        setGameCreatedAt(meta.data.createdAt);
+      } catch (e) {
+        console.error(e);
+        notification.error({
+          message: 'Erro ao carregar o jogo',
+          description: JSON.stringify(e),
+        });
+      } finally {
+        setPageLoading(false);
+        setLoader('load', false);
+      }
     }
 
     if (gameId) {
       loadGameSession();
     }
-  }, [gameId, setGameName, setGameCreatedAt]);
-
-  // Verify if game is stale/older than one day
-  useEffect(() => {
-    setGameStale(Date.now() - 24 * 60 * 60 * 1000 < gameCreatedAt);
-  }, [gameCreatedAt, setGameStale]);
+  }, [gameId]); // eslint-disable-line
 
   // Deffer to load screen if any major API call is running
   if (isPageLoading) {
     return <LoadingPage />;
   }
-  console.log({ isGameStale });
-  if (gameId && gameName && !isGameStale) {
-    console.log('should show lobby');
-  }
-  // Redirect to Lobby screen
 
-  return (
-    <div className="">
-      <h1>Game</h1>
-    </div>
-  );
+  if (isGameStale) {
+    return (
+      <PageError message="Jogo expirado" description="Esse jogo é muito antigo e não pode ser usado mais" />
+    );
+  }
+
+  if (gameId && gameName) {
+    switch (gameName) {
+      case GAME_COLLECTION.ARTE_RUIM:
+        return <SessionArteRuim gameId={gameId} />;
+      default:
+        console.warn('Wrong game library provided');
+    }
+  }
+
+  // If switch fails, it's an error
+  return <PageError />;
 }
 
 export default Game;

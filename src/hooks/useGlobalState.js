@@ -1,6 +1,10 @@
 import { createGlobalState } from 'react-hooks-global-state';
 
 const initialState = {
+  isLoading: false,
+  loaders: false,
+  isAuthenticated: false,
+  appStartedAt: Date.now(),
   gameId: null,
   gameName: null,
   createdAt: null,
@@ -11,6 +15,6 @@ const initialState = {
 
 const { useGlobalState, setGlobalState, getGlobalState } = createGlobalState(initialState);
 
-export { setGlobalState as setGameGlobalState, getGlobalState as getGameGlobalState };
+export { setGlobalState, getGlobalState, useGlobalState };
 
 export default useGlobalState;
