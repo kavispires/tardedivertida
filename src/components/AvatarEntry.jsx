@@ -5,7 +5,7 @@ import { Avatar } from 'antd';
 // Images
 import avatars from '../images/avatars.svg';
 
-function AvatarEntry({ id = 0, name = 'Fulano', animate = false, className = '' }) {
+function AvatarEntry({ id = 25, name = 'Fulano', animate = false, className = '' }) {
   return (
     <div className={clsx('avatar-entry', animate && 'avatar-entry--floating', className)}>
       <Avatar
