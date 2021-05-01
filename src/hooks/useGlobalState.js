@@ -5,9 +5,10 @@ const initialState = {
   loaders: false,
   isAuthenticated: false,
   appStartedAt: Date.now(),
+  // Meta
   gameId: null,
   gameName: null,
-  createdAt: null,
+  gameMeta: {},
   me: '',
   myAvatar: '',
   isAdmin: false,
