@@ -4,6 +4,7 @@
   grid-column: col 4;
   grid-row: row -7 / row 6;
   justify-self: center;
+  position: relative;
 
   width: 300px;
   display: flex;
@@ -16,5 +17,11 @@
     width: 50%;
     min-width: 100px;
     margin: get-unit(2 auto);
+  }
+
+  &__lock-button {
+    width: calc(100% - #{get-unit(6)});
+    position: absolute;
+    bottom: get-unit(3);
   }
 }

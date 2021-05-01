@@ -74,7 +74,7 @@ function Join({ players, gameDescription }) {
       setLoader('add-player', true);
       const payload = {
         gameId,
-        game: gameName,
+        gameName,
         playerName: tempMe,
         playerAvatarId: tempAvatar,
       };
@@ -92,6 +92,7 @@ function Join({ players, gameDescription }) {
         description: JSON.stringify(e),
         placement: 'bottomLeft',
       });
+      console.error(e);
     } finally {
       setLoader('add-player', false);
     }

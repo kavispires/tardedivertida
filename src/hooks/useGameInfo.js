@@ -14,6 +14,7 @@ export function useGameInfo(gameId, gameName) {
       description: JSON.stringify(error),
       placement: 'bottomLeft',
     });
+    console.error(error);
   }
 
   if (loading) {

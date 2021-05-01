@@ -32,12 +32,12 @@ function CreateGameModal({ game }) {
           setGameId(response.data.id);
         }
       } catch (e) {
-        console.error(e);
         notification.error({
           message: 'Applicativo encontrou um erro ao tentar criar o jogo',
           description: JSON.stringify(e),
           placement: 'bottomLeft',
         });
+        console.error(e);
       } finally {
         setLoading(false);
         setLoader('create', false);
