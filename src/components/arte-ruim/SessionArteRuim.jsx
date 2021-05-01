@@ -1,6 +1,6 @@
 import React from 'react';
 // Hooks
-import { useGameInfo, useGameState } from '../../hooks';
+import { useGameInfo, useGameState, useGlobalState } from '../../hooks';
 import { GAME_COLLECTION, ARTE_RUIM_PHASES } from '../../utils/constants';
 // Components
 import Lobby from '../lobby/Lobby';
@@ -18,8 +18,13 @@ function getActiveComponent(phase) {
 function SessionArteRuim({ gameId }) {
   const info = useGameInfo(gameId, GAME_COLLECTION.ARTE_RUIM);
   const state = useGameState(gameId, GAME_COLLECTION.ARTE_RUIM);
+  const [me] = useGlobalState('me');
   console.log({ info });
   console.log({ state });
+
+  if (!me) {
+    return <Lobby info={info} state={state} />;
+  }
 
   const ActiveComponent = getActiveComponent(state.phase);
 

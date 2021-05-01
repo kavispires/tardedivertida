@@ -50,6 +50,7 @@ function Game() {
           message: 'Erro ao carregar o jogo',
           description: JSON.stringify(e),
         });
+        console.error(e);
       } finally {
         setPageLoading(false);
         setLoader('load', false);

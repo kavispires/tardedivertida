@@ -43,16 +43,19 @@ function PublicRoute({ component: Component, authenticated, ...rest }) {
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useGlobalState('isAuthenticated');
+  const [, setIsAdmin] = useGlobalState('isAdmin');
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
         setIsLoading(false);
         setIsAuthenticated(true);
+        setIsAdmin(true);
         message.info('Você foi logado de volta automaticamente.');
       } else {
         setIsLoading(false);
         setIsAuthenticated(false);
+        setIsAdmin(false);
       }
     });
   }, []); // eslint-disable-line

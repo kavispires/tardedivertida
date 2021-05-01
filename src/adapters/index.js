@@ -5,4 +5,5 @@ export const GAME_API = {
   initializeGame: functions.httpsCallable('initializeGame'),
   loadGame: functions.httpsCallable('loadGame'),
   addPlayer: functions.httpsCallable('addPlayer'),
+  lockGame: functions.httpsCallable('lockGame'),
 };
