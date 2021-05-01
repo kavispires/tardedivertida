@@ -24,7 +24,7 @@ function Avatar({ id = 25, size = 'large', shape = 'circle', alt = 'Fulano', cla
 }
 
 Avatar.propTypes = {
-  id: PropTypes.string,
+  id: PropTypes.number,
   className: PropTypes.string,
   size: PropTypes.string,
   shape: PropTypes.string,

@@ -17,7 +17,7 @@ function AvatarRank({ id = 25, name = 'Fulano', score = 0, ready = false, classN
 }
 
 Avatar.propTypes = {
-  id: PropTypes.string,
+  id: PropTypes.number,
   name: PropTypes.string,
   score: PropTypes.number,
   ready: PropTypes.boolean,

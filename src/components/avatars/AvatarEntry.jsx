@@ -14,9 +14,9 @@ function AvatarEntry({ id = 25, name = 'Fulano', animate = false, className = ''
 }
 
 Avatar.propTypes = {
-  id: PropTypes.string,
+  id: PropTypes.number,
   name: PropTypes.string,
-  animate: PropTypes.boolean,
+  animate: PropTypes.bool,
   className: PropTypes.string,
 };
 
