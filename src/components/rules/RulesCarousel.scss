@@ -1,0 +1,21 @@
+.rules-carousel {
+  background: #a8aaae;
+  display: flex;
+  justify-content: center;
+  border-radius: get-unit(1);
+
+  &__rule {
+    padding: get-unit(2);
+    text-align: center;
+  }
+
+  &__rule-text {
+    text-align: center;
+    padding-top: get-unit(3);
+  }
+
+  &__image {
+    border-radius: get-unit(1);
+    box-shadow: 2px 2px 5px rgba($color: #000000, $alpha: 0.3);
+  }
+}

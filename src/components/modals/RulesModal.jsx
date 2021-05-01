@@ -2,9 +2,9 @@ import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 
 // Design Resources
-import { Typography, Image, Button, Modal, Carousel } from 'antd';
-// Constants
-import { PUBLIC_URL } from '../../utils/constants';
+import { Button, Modal } from 'antd';
+// Components
+import RulesCarousel from '../rules/RulesCarousel';
 
 function RulesModal({ game }) {
   const [isVisible, setVisibility] = useState(false);
@@ -30,19 +30,7 @@ function RulesModal({ game }) {
             </Button>,
           ]}
         >
-          <Carousel className="rules-modal__rules">
-            {game.rules.map((rule, index) => (
-              <div className="rules-modal__rule" key={rule}>
-                <Image
-                  src={`${PUBLIC_URL.RULES}${game.image}-${index}.jpg`}
-                  fallback={`${PUBLIC_URL.RULES}game-rule-not-found.jpg`}
-                  alt={rule}
-                  preview={false}
-                />
-                <Typography.Paragraph>{rule}</Typography.Paragraph>
-              </div>
-            ))}
-          </Carousel>
+          <RulesCarousel game={game} />
         </Modal>
       )}
     </Fragment>
