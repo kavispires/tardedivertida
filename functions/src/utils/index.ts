@@ -45,6 +45,33 @@ export function getSessionRef(
 }
 
 /**
+ * Get firebase doc verifying its existense
+ * @param collectionName
+ * @param gameId
+ * @param doc
+ * @param actionText
+ * @returns
+ */
+export async function getSessionDoc(
+  collectionName: string,
+  gameId: string,
+  doc: string,
+  actionText: string
+): Promise<FirebaseFirestore.DocumentSnapshot<FirebaseFirestore.DocumentData>> {
+  const sessionRef = getSessionRef(collectionName, gameId);
+  const gameDoc = await sessionRef.doc(doc).get();
+
+  if (!gameDoc.exists) {
+    throw new functions.https.HttpsError(
+      'internal',
+      `Failed to ${actionText}: game ${collectionName}/${gameId}/${doc} does not exist`
+    );
+  }
+
+  return gameDoc;
+}
+
+/**
  * Throws an exception. It should be used only inside a catch
  * @param error
  * @param action

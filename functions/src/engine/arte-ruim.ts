@@ -1,16 +1,6 @@
 import { GAME_COLLECTIONS, ARTE_RUIM_PHASES, AVATAR_IDS } from '../utils/constants';
 import { getRandomUniqueItem } from '../utils/game-utils';
-import {
-  ArteRuimInitialState,
-  Players,
-  Player,
-  ArteRuimInfo,
-  ArteRuimState,
-  InfoPlayer,
-  InfoPlayers,
-  StatePlayer,
-  StatePlayers,
-} from '../utils/interfaces';
+import { ArteRuimInitialState, Players, Player, ArteRuimState, StatePlayers } from '../utils/interfaces';
 
 export const arteRuim = {
   /**
@@ -58,39 +48,15 @@ export const arteRuim = {
       lasUpdatedAt: Date.now(),
     };
   },
-  lockGame: (players: Players): { info: ArteRuimInfo; state: ArteRuimState } => {
-    const playersArray = Object.entries(players);
-
-    const infoPlayers = playersArray.reduce((acc, [key, player]) => {
-      const infoPlayer: InfoPlayer = {
-        name: player.name,
-        avatarId: player.avatarId,
-      };
-      acc[key] = infoPlayer;
-      return acc;
-    }, <InfoPlayers>{});
-
-    const statePlayers = playersArray.reduce((acc, [key, player]) => {
-      const statePlayer: StatePlayer = {
-        name: player.name,
-        ready: false,
-        score: 0,
-      };
-      acc[key] = statePlayer;
-      return acc;
-    }, <StatePlayers>{});
-
+  /**
+   * Locks game adding isLock to meta and moving to the RULES phase
+   * @param players
+   * @returns
+   */
+  lockGame: (): ArteRuimState => {
     return {
-      info: {
-        players: infoPlayers,
-        isLocked: true,
-        round: 0,
-      },
-      state: {
-        phase: ARTE_RUIM_PHASES.RULES,
-        round: 0,
-        players: statePlayers,
-      },
+      phase: ARTE_RUIM_PHASES.RULES,
+      round: 0,
     };
   },
 };
