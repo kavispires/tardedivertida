@@ -217,7 +217,7 @@ exports.arteRuimMakeMeReady = functions.https.onCall(async (data) => {
   console.log('all players are ready!');
 
   // If all players are ready, trigger next phase
-  return arteRuimEngine.nextArteRuimPhase(collectionName, gameId, playerName);
+  return arteRuimEngine.nextArteRuimPhase(collectionName, gameId, playerName, players);
 });
 
 exports.arteRuimSubmitDrawing = functions.https.onCall(async (data) => {
