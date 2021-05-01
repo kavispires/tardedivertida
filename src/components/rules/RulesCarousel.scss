@@ -1,5 +1,5 @@
 .rules-carousel {
-  background: #a8aaae;
+  background: get-color(gray);
   display: flex;
   justify-content: center;
   border-radius: get-unit(1);
@@ -16,6 +16,6 @@
 
   &__image {
     border-radius: get-unit(1);
-    box-shadow: 2px 2px 5px rgba($color: #000000, $alpha: 0.3);
+    box-shadow: 2px 2px 5px rgba($color: get-color(black), $alpha: 0.3);
   }
 }
