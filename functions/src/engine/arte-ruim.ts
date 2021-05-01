@@ -2,6 +2,10 @@ import { GAME_COLLECTIONS, ARTE_RUIM_PHASES, AVATAR_IDS } from '../utils/constan
 import { getRandomUniqueItem } from '../utils/game-utils';
 // import { ArteRuimInitialState, Players, Player } from '../utils/interfaces';
 
+export interface BasicObject {
+  [key: string]: any;
+}
+
 export interface Meta {
   id: string;
   game: string;
@@ -9,6 +13,19 @@ export interface Meta {
   createdBy: string;
   min: number;
   max: number;
+}
+
+export interface InfoPlayer {
+  avatarId: string;
+  name: string;
+  [key: string]: any;
+}
+
+export interface StatePlayer {
+  name: string;
+  ready: boolean;
+  score: number;
+  [key: string]: any;
 }
 
 export interface Player {
@@ -22,13 +39,24 @@ export interface Players {
   [key: string]: Player;
 }
 
+export interface InfoPlayers {
+  [key: string]: InfoPlayer;
+}
+
+export interface StatePlayers {
+  [key: string]: StatePlayer;
+}
+
 export interface ArteRuimInfo {
-  players: Players;
+  players: InfoPlayers;
+  isLocked: boolean;
+  [key: string]: any;
 }
 
 export interface ArteRuimStore {
   usedCards: string[];
-  previousDrawings: unknown;
+  previousDrawings: any;
+  [key: string]: any;
 }
 
 export interface ArteRuimState {
@@ -61,6 +89,7 @@ export const arteRuim = {
     },
     info: {
       players: {},
+      isLocked: false,
     },
     store: {
       usedCards: [],
@@ -87,6 +116,39 @@ export const arteRuim = {
       avatarId,
       ready: true,
       score: 0,
+    };
+  },
+  lockGame: (players: Players): { info: ArteRuimInfo; state: ArteRuimState } => {
+    const playersArray = Object.entries(players);
+
+    const infoPlayers = playersArray.reduce((acc, [key, player]) => {
+      const infoPlayer: InfoPlayer = {
+        name: player.name,
+        avatarId: player.avatarId,
+      };
+      acc[key] = infoPlayer;
+      return acc;
+    }, <InfoPlayers>{});
+
+    const statePlayers = playersArray.reduce((acc, [key, player]) => {
+      const statePlayer: StatePlayer = {
+        name: player.name,
+        ready: false,
+        score: 0,
+      };
+      acc[key] = statePlayer;
+      return acc;
+    }, <StatePlayers>{});
+
+    return {
+      info: {
+        players: infoPlayers,
+        isLocked: true,
+      },
+      state: {
+        phase: ARTE_RUIM_PHASES.RULES,
+        players: statePlayers,
+      },
     };
   },
 };
