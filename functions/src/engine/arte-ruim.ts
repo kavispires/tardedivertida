@@ -43,7 +43,7 @@ export const arteRuim = {
     return {
       name,
       avatarId,
-      ready: true,
+      ready: false,
       score: 0,
       lasUpdatedAt: Date.now(),
     };
