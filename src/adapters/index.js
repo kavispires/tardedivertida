@@ -7,3 +7,12 @@ export const GAME_API = {
   addPlayer: functions.httpsCallable('addPlayer'),
   lockGame: functions.httpsCallable('lockGame'),
 };
+
+export const ARTE_RUIM_API = {
+  makeMeReady: functions.httpsCallable('arteRuimMakeMeReady'),
+  submitDrawing: functions.httpsCallable('arteRuimSubmitDrawing'),
+  submitVoting: functions.httpsCallable('arteRuimSubmitVoting'),
+  submitRating: functions.httpsCallable('arteRuimSubmitRating'),
+  goToGalleryItem: functions.httpsCallable('arteRuimGoToGalleryItem'),
+  forceEverybodyReady: functions.httpsCallable('arteRuimForceEverybodyReady'),
+};
