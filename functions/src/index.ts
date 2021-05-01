@@ -12,6 +12,20 @@ admin.initializeApp();
 //   response.send("Hello from Firebase!");
 // });
 
+function verifyPayload(property?: string, propertyName = 'unknown property', action = 'function') {
+  if (!property) {
+    throw new functions.https.HttpsError('internal', `Failed to ${action}: a ${propertyName} is required`);
+  }
+}
+
+function verifyAuth(context: any, action = 'perform function') {
+  // Verify auth
+  const uid = context?.auth?.uid;
+  if (!uid) {
+    throw new functions.https.HttpsError('internal', `Failed to ${action}: you must be logged in`);
+  }
+}
+
 export const helloWorld = functions.https.onCall(async () => {
   return 'hello world';
 });
@@ -96,9 +110,7 @@ exports.loadGame = functions.https.onCall(async (data) => {
   // Extract gameCode to figure out
   const { gameId } = data;
 
-  if (!gameId) {
-    throw new functions.https.HttpsError('internal', 'Failed to load game: a gameId is required');
-  }
+  verifyPayload(gameId, 'gameId', 'load game');
 
   const collectionName = utils.getCollectionNameByGameId(gameId);
 
@@ -128,14 +140,9 @@ exports.loadGame = functions.https.onCall(async (data) => {
 exports.addPlayer = functions.https.onCall(async (data) => {
   const { gameId, gameName: collectionName, playerName, playerAvatarId } = data;
 
-  if (!gameId || !collectionName || !playerName) {
-    throw new functions.https.HttpsError(
-      'internal',
-      `Failed to add player: payload is missing ${!gameId ? 'gameId' : ''} ${
-        !collectionName ? 'collectionName' : ''
-      } ${!playerName ? 'a playerName' : ''}`
-    );
-  }
+  verifyPayload(gameId, 'gameId', 'add player');
+  verifyPayload(collectionName, 'collectionName', 'add player');
+  verifyPayload(playerName, 'playerName', 'add player');
 
   // Get 'state' from given game session
   const gameStateRef = admin
@@ -176,23 +183,9 @@ exports.addPlayer = functions.https.onCall(async (data) => {
 exports.lockGame = functions.https.onCall(async (data, context) => {
   const { gameId, gameName: collectionName } = data;
 
-  if (!gameId || !collectionName) {
-    throw new functions.https.HttpsError(
-      'internal',
-      `Failed to lock game: payload is missing ${!gameId ? 'gameId' : ''} ${
-        !collectionName ? 'collectionName' : ''
-      }`
-    );
-  }
-
-  // Verify auth
-  const uid = context?.auth?.uid;
-  if (!uid) {
-    throw new functions.https.HttpsError(
-      'internal',
-      'Failed to lock game: you must be logged in to lock a game'
-    );
-  }
+  verifyPayload(gameId, 'gameId', 'add player');
+  verifyPayload(collectionName, 'collectionName', 'add player');
+  verifyAuth(context, 'lock game');
 
   // Find game state and get all players
   // Get 'state' from given game session
