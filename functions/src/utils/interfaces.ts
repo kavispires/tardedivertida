@@ -1,4 +1,4 @@
-export interface BasicObject {
+export interface PlainObject {
   [key: string]: any;
 }
 
@@ -17,7 +17,7 @@ export interface Player {
   name: string;
   ready: boolean;
   score: number;
-  lasUpdatedAt?: number;
+  updatedAt?: number;
   [key: string]: any;
 }
 
