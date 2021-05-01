@@ -21,12 +21,13 @@ export const arteRuim = {
    */
   getInitialSession: (gameId: string, uid: string): ArteRuimInitialState => ({
     meta: {
-      id: gameId,
-      game: GAME_COLLECTIONS.ARTE_RUIM,
+      gameId,
+      gameName: GAME_COLLECTIONS.ARTE_RUIM,
       createdAt: Date.now(),
       createdBy: uid,
       min: 3,
       max: 8,
+      isLocked: false,
     },
     info: {
       players: {},
@@ -39,6 +40,7 @@ export const arteRuim = {
     },
     state: {
       phase: ARTE_RUIM_PHASES.LOBBY,
+      round: 0,
       players: {},
     },
   }),
@@ -90,6 +92,7 @@ export const arteRuim = {
       },
       state: {
         phase: ARTE_RUIM_PHASES.RULES,
+        round: 0,
         players: statePlayers,
       },
     };

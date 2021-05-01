@@ -18,32 +18,33 @@ function Admin() {
       <Space size={[8, 16]} wrap align="start">
         {Object.values(gameList).map((game) => (
           <Card
-            key={game.title}
+            key={game.gameName}
             hoverable
             style={{ width: 240 }}
             cover={
               <Image
                 alt={game.title}
-                src={`${PUBLIC_URL.BANNERS}game-image-${game.image}.jpg`}
+                src={`${PUBLIC_URL.BANNERS}game-image-${game.gameName}.jpg`}
                 fallback={`${PUBLIC_URL.BANNERS}/game-image-em-breve.jpg`}
               />
             }
           >
             <Card.Meta title={game.title} description={game.summary} />
             <Divider />
-            <Card.Meta description={game.playerCount} />
+            <Card.Meta description={`Para ${game.min}-${game.max} jogadores`} />
+            <Card.Meta description={`Recomendado jogar com ${game.recommended}`} />
             <Divider />
             <Space wrap size={[1, 6]}>
               {game.tags.map((tag) => (
-                <Tag key={`${game.id}-${tag}`} color={TAG_DICT[tag]?.color}>
+                <Tag key={`${game.gameCode}-${tag}`} color={TAG_DICT[tag]?.color}>
                   {TAG_DICT[tag]?.label}
                 </Tag>
               ))}
             </Space>
             <Divider />
             <Space>
-              <RulesModal game={game} />
-              {Boolean(game.available) && <CreateGameModal game={game} />}
+              <RulesModal gameInfo={game} />
+              {Boolean(game.available) && <CreateGameModal gameInfo={game} />}
             </Space>
           </Card>
         ))}

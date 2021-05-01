@@ -12,7 +12,7 @@ import { PUBLIC_URL } from '../../utils/constants';
 // Components
 import Loading from '../loaders/Loading';
 
-function CreateGameModal({ game }) {
+function CreateGameModal({ gameInfo }) {
   const history = useHistory();
   const [, setLoader] = useLoading();
   const [isVisible, setVisibility] = useState(false);
@@ -27,9 +27,9 @@ function CreateGameModal({ game }) {
     async function createGame() {
       try {
         setLoader('create', true);
-        const response = await GAME_API.initializeGame({ gameCode: game.id });
-        if (response.data.id) {
-          setGameId(response.data.id);
+        const response = await GAME_API.initializeGame({ gameCode: gameInfo.gameCode });
+        if (response.data.gameId) {
+          setGameId(response.data.gameId);
         }
       } catch (e) {
         notification.error({
@@ -38,6 +38,7 @@ function CreateGameModal({ game }) {
           placement: 'bottomLeft',
         });
         console.error(e);
+        setVisibility(false);
       } finally {
         setLoading(false);
         setLoader('create', false);
@@ -64,15 +65,15 @@ function CreateGameModal({ game }) {
       </Button>
       {isVisible && (
         <Modal
-          title={`Criando jogo: ${game.title}`}
+          title={`Criando jogo: ${gameInfo.title}`}
           visible={isVisible}
           onCancel={onCloseModal}
           onOk={onConfirmGame}
         >
           <Fragment>
             <Image
-              alt={game.title}
-              src={`${PUBLIC_URL.BANNERS}game-image-${game.image}.jpg`}
+              alt={gameInfo.title}
+              src={`${PUBLIC_URL.BANNERS}game-image-${gameInfo.gameName}.jpg`}
               fallback={`${PUBLIC_URL.BANNERS}/game-image-em-breve.jpg`}
             />
 
@@ -97,10 +98,10 @@ function CreateGameModal({ game }) {
 }
 
 CreateGameModal.propTypes = {
-  game: PropTypes.shape({
-    id: PropTypes.string.isRequired,
+  gameInfo: PropTypes.shape({
+    gameCode: PropTypes.string.isRequired,
+    gameName: PropTypes.string,
     title: PropTypes.string,
-    image: PropTypes.string,
   }),
 };
 
