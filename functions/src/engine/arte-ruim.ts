@@ -1,75 +1,16 @@
 import { GAME_COLLECTIONS, ARTE_RUIM_PHASES, AVATAR_IDS } from '../utils/constants';
 import { getRandomUniqueItem } from '../utils/game-utils';
-// import { ArteRuimInitialState, Players, Player } from '../utils/interfaces';
-
-export interface BasicObject {
-  [key: string]: any;
-}
-
-export interface Meta {
-  id: string;
-  game: string;
-  createdAt: number;
-  createdBy: string;
-  min: number;
-  max: number;
-}
-
-export interface InfoPlayer {
-  avatarId: string;
-  name: string;
-  [key: string]: any;
-}
-
-export interface StatePlayer {
-  name: string;
-  ready: boolean;
-  score: number;
-  [key: string]: any;
-}
-
-export interface Player {
-  avatarId: string;
-  name: string;
-  ready: boolean;
-  score: number;
-}
-
-export interface Players {
-  [key: string]: Player;
-}
-
-export interface InfoPlayers {
-  [key: string]: InfoPlayer;
-}
-
-export interface StatePlayers {
-  [key: string]: StatePlayer;
-}
-
-export interface ArteRuimInfo {
-  players: InfoPlayers;
-  isLocked: boolean;
-  [key: string]: any;
-}
-
-export interface ArteRuimStore {
-  usedCards: string[];
-  previousDrawings: any;
-  [key: string]: any;
-}
-
-export interface ArteRuimState {
-  phase: string;
-  [key: string]: any;
-}
-
-export interface ArteRuimInitialState {
-  meta: Meta;
-  info: ArteRuimInfo;
-  store: ArteRuimStore;
-  state: ArteRuimState;
-}
+import {
+  ArteRuimInitialState,
+  Players,
+  Player,
+  ArteRuimInfo,
+  ArteRuimState,
+  InfoPlayer,
+  InfoPlayers,
+  StatePlayer,
+  StatePlayers,
+} from '../utils/interfaces';
 
 export const arteRuim = {
   /**
@@ -90,6 +31,7 @@ export const arteRuim = {
     info: {
       players: {},
       isLocked: false,
+      round: 0,
     },
     store: {
       usedCards: [],
@@ -144,6 +86,7 @@ export const arteRuim = {
       info: {
         players: infoPlayers,
         isLocked: true,
+        round: 0,
       },
       state: {
         phase: ARTE_RUIM_PHASES.RULES,
@@ -151,4 +94,28 @@ export const arteRuim = {
       },
     };
   },
+};
+
+export const readyPlayer = (players: StatePlayers, playerName: string): StatePlayers => {
+  players[playerName].ready = true;
+  return players;
+};
+
+export const unReadyPlayers = (players: StatePlayers): StatePlayers => {
+  for (const player in players) {
+    players[player].ready = false;
+  }
+  return players;
+};
+
+export const isEverybodyReady = (players: StatePlayers): boolean => {
+  return Object.values(players).every((player) => player.ready);
+};
+
+export const getPointsToVictory = (players: StatePlayers, victory = 30): number => {
+  const max = Object.values(players).reduce((acc, player) => {
+    return Math.max(acc, player.score);
+  }, 0);
+
+  return max < victory ? victory - max : 0;
 };
