@@ -4,13 +4,12 @@ import * as utils from './utils/index';
 
 admin.initializeApp();
 
-// // Start writing Firebase Functions
-// // https://firebase.google.com/docs/functions/typescript
-//
-// export const helloWorld = functions.https.onRequest((request, response) => {
-//   functions.logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+// Start writing Firebase Functions
+// https://firebase.google.com/docs/functions/typescript
+
+export interface BasicObject {
+  [key: string]: any;
+}
 
 function verifyPayload(property?: string, propertyName = 'unknown property', action = 'function') {
   if (!property) {
@@ -31,6 +30,10 @@ function getSessionRef(
   gameId: string
 ): FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData> {
   return admin.firestore().collection(collectionName).doc(gameId).collection('session');
+}
+
+function isEverybodyReady(players: BasicObject): boolean {
+  return Object.values(players).every((player) => player.ready);
 }
 
 export const helloWorld = functions.https.onCall(async () => {
@@ -207,4 +210,175 @@ exports.lockGame = functions.https.onCall(async (data, context) => {
   await sessionRef.doc('state').set(state);
 
   return info;
+});
+
+exports.arteRuimMakeMeReady = functions.https.onCall(async (data) => {
+  const { gameId, gameName: collectionName, playerName } = data;
+
+  const actionText = 'make you ready';
+  verifyPayload(gameId, 'gameId', actionText);
+  verifyPayload(collectionName, 'collectionName', actionText);
+  verifyPayload(playerName, 'playerName', actionText);
+
+  const sessionRef = getSessionRef(collectionName, gameId);
+  const gameState = await sessionRef.doc('state').get();
+
+  if (!gameState.exists) {
+    throw new functions.https.HttpsError(
+      'internal',
+      `Failed to ${actionText}: game '${collectionName}/${gameId}' does not exist`
+    );
+  }
+
+  // Make player ready
+  const gameStateData = gameState.data();
+  const players = gameStateData?.players ?? {};
+  players[playerName].ready = true;
+
+  if (!isEverybodyReady) {
+    await sessionRef.doc('state').set({
+      ...gameStateData,
+      players,
+    });
+
+    return true;
+  }
+
+  // If all players are now ready, check the next phase then prepare it and go to it
+  // From RULES to ROUND 1/DRAW
+
+  return true;
+});
+
+exports.arteRuimSubmitDrawing = functions.https.onCall(async (data) => {
+  const { gameId, gameName: collectionName, playerName } = data;
+
+  const actionText = 'submit your drawing';
+  verifyPayload(gameId, 'gameId', actionText);
+  verifyPayload(collectionName, 'collectionName', actionText);
+  verifyPayload(playerName, 'playerName', actionText);
+
+  const sessionRef = getSessionRef(collectionName, gameId);
+  const gameState = await sessionRef.doc('state').get();
+
+  if (!gameState.exists) {
+    throw new functions.https.HttpsError(
+      'internal',
+      `Failed to ${actionText}: game '${collectionName}/${gameId}' does not exist`
+    );
+  }
+
+  // TODO
+
+  // Save drawing
+
+  // Make player ready
+
+  // If all players are now ready, check phase then prepare and go to next phase
+
+  return {};
+});
+
+exports.arteRuimSubmitVoting = functions.https.onCall(async (data) => {
+  const { gameId, gameName: collectionName, playerName } = data;
+
+  const actionText = 'submit your votes';
+  verifyPayload(gameId, 'gameId', actionText);
+  verifyPayload(collectionName, 'collectionName', actionText);
+  verifyPayload(playerName, 'playerName', actionText);
+
+  const sessionRef = getSessionRef(collectionName, gameId);
+  const gameState = await sessionRef.doc('state').get();
+
+  if (!gameState.exists) {
+    throw new functions.https.HttpsError(
+      'internal',
+      `Failed to ${actionText}: game '${collectionName}/${gameId}' does not exist`
+    );
+  }
+
+  // TODO
+
+  // Save votes
+
+  // Make player ready
+
+  // If all players are now ready, check phase then prepare and go to next phase
+
+  return {};
+});
+
+exports.arteRuimSubmitRating = functions.https.onCall(async (data) => {
+  const { gameId, gameName: collectionName, playerName } = data;
+
+  const actionText = 'rate a drawing';
+  verifyPayload(gameId, 'gameId', actionText);
+  verifyPayload(collectionName, 'collectionName', actionText);
+  verifyPayload(playerName, 'playerName', actionText);
+
+  const sessionRef = getSessionRef(collectionName, gameId);
+  const gameState = await sessionRef.doc('state').get();
+
+  if (!gameState.exists) {
+    throw new functions.https.HttpsError(
+      'internal',
+      `Failed to ${actionText}: game '${collectionName}/${gameId}' does not exist`
+    );
+  }
+
+  // TODO
+
+  // Save rating for drawing
+
+  return true;
+});
+
+exports.arteRuimGoToGalleryItem = functions.https.onCall(async (data, context) => {
+  const { gameId, gameName: collectionName } = data;
+
+  const actionText = 'go to gallery item';
+  verifyPayload(gameId, 'gameId', actionText);
+  verifyPayload(collectionName, 'collectionName', actionText);
+  verifyAuth(context, actionText);
+
+  const sessionRef = getSessionRef(collectionName, gameId);
+  const gameState = await sessionRef.doc('state').get();
+
+  if (!gameState.exists) {
+    throw new functions.https.HttpsError(
+      'internal',
+      `Failed to ${actionText}: game '${collectionName}/${gameId}' does not exist`
+    );
+  }
+
+  // TODO
+
+  // Navigate through gallery
+
+  return {};
+});
+
+exports.arteRuimForceEverybodyReady = functions.https.onCall(async (data, context) => {
+  const { gameId, gameName: collectionName } = data;
+
+  const actionText = 'force to make everybody ready';
+  verifyPayload(gameId, 'gameId', actionText);
+  verifyPayload(collectionName, 'collectionName', actionText);
+  verifyAuth(context, actionText);
+
+  const sessionRef = getSessionRef(collectionName, gameId);
+  const gameState = await sessionRef.doc('state').get();
+
+  if (!gameState.exists) {
+    throw new functions.https.HttpsError(
+      'internal',
+      `Failed to ${actionText}: game '${collectionName}/${gameId}' does not exist`
+    );
+  }
+
+  // TODO
+
+  // Force all players to be ready and perform a next phase
+
+  return {};
 });
