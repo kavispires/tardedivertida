@@ -1,15 +1,15 @@
 .rules {
-  border: 1px solid white;
+  border: 1px solid get-color(white);
   border-radius: get-unit(1);
   margin: get-unit(4);
   padding: get-unit(4);
 
   &__carousel {
-    background: rgba($color: #000000, $alpha: 0.2);
+    background: rgba($color: get-color(black), $alpha: 0.2);
   }
 
   &__rule .rules-carousel__rule-text {
-    color: white;
+    color: get-color(white);
   }
 
   &__actions {
@@ -17,11 +17,11 @@
     justify-content: center;
     margin-top: get-unit(3);
     padding: get-unit(4);
-    background: rgba($color: #000000, $alpha: 0.2);
+    background: rgba($color: get-color(black), $alpha: 0.2);
   }
 
   &__rule-actions-ready {
-    background: green;
+    background: get-color(green);
     font-style: italic;
   }
 }

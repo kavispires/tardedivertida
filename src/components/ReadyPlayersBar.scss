@@ -6,10 +6,11 @@
 
   &__speech-bubble {
     position: relative;
-    background: white;
+    background: get-color(white);
     border-radius: 0.4em;
     padding: get-unit(2 4);
     margin-left: get-unit(3);
+    box-shadow: 0 5px 7px 0px rgba($color: get-color(black), $alpha: 0.1);
 
     &:after {
       content: '';
@@ -19,7 +20,7 @@
       width: 0;
       height: 0;
       border: get-unit(2) solid transparent;
-      border-right-color: white;
+      border-right-color: get-color(white);
       border-left: 0;
       margin-top: get-unit(-2);
       margin-left: get-unit(-2);
