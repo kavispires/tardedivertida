@@ -29,11 +29,7 @@ export const arteRuim = {
       max: 8,
       isLocked: false,
     },
-    info: {
-      players: {},
-      isLocked: false,
-      round: 0,
-    },
+    players: {},
     store: {
       usedCards: [],
       previousDrawings: {},
@@ -41,7 +37,6 @@ export const arteRuim = {
     state: {
       phase: ARTE_RUIM_PHASES.LOBBY,
       round: 0,
-      players: {},
     },
   }),
   /**
@@ -60,6 +55,7 @@ export const arteRuim = {
       avatarId,
       ready: true,
       score: 0,
+      lasUpdatedAt: Date.now(),
     };
   },
   lockGame: (players: Players): { info: ArteRuimInfo; state: ArteRuimState } => {

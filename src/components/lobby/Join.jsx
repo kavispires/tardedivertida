@@ -16,7 +16,7 @@ import { getRandomItem } from '../../utils/index';
 // Components
 import { useLoading } from '../../hooks';
 
-function Join({ players, gameDescription }) {
+function Join({ players, gameInfo }) {
   const [isLoading, setLoader] = useLoading();
   const [gameId] = useGlobalState('gameId');
   const [gameName] = useGlobalState('gameName');
@@ -101,8 +101,8 @@ function Join({ players, gameDescription }) {
   return (
     <div className="lobby-join">
       <Image
-        alt={gameDescription?.title}
-        src={`${PUBLIC_URL.BANNERS}game-image-${gameDescription?.gameName}.jpg`}
+        alt={gameInfo?.title}
+        src={`${PUBLIC_URL.BANNERS}game-image-${gameInfo?.gameName}.jpg`}
         fallback={`${PUBLIC_URL.BANNERS}/game-image-em-breve.jpg`}
       />
       <h1 className="lobby-join__title">

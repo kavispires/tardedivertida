@@ -12,6 +12,19 @@ export interface Meta {
   isLocked: boolean;
 }
 
+export interface Player {
+  avatarId: string;
+  name: string;
+  ready: boolean;
+  score: number;
+  lasUpdatedAt?: number;
+  [key: string]: any;
+}
+
+export interface Players {
+  [key: string]: Player;
+}
+
 export interface ArteRuimStore {
   usedCards: string[];
   previousDrawings: any;
@@ -24,6 +37,14 @@ export interface ArteRuimState {
   [key: string]: any;
 }
 
+export interface ArteRuimInitialState {
+  meta: Meta;
+  players: Players;
+  store: ArteRuimStore;
+  state: ArteRuimState;
+}
+
+// FROM THIS LINE DOWN I HAS TO BE REVIEWED
 export interface InfoPlayer {
   avatarId: string;
   name: string;
@@ -35,17 +56,6 @@ export interface StatePlayer {
   ready: boolean;
   score: number;
   [key: string]: any;
-}
-
-export interface Player {
-  avatarId: string;
-  name: string;
-  ready: boolean;
-  score: number;
-}
-
-export interface Players {
-  [key: string]: Player;
 }
 
 export interface InfoPlayers {
@@ -61,11 +71,4 @@ export interface ArteRuimInfo {
   isLocked: boolean;
   round: number;
   [key: string]: any;
-}
-
-export interface ArteRuimInitialState {
-  meta: Meta;
-  info: ArteRuimInfo;
-  store: ArteRuimStore;
-  state: ArteRuimState;
 }

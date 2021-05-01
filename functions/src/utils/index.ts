@@ -45,6 +45,15 @@ export function getSessionRef(
 }
 
 /**
+ * Throws an exception. It should be used only inside a catch
+ * @param error
+ * @param action
+ */
+export function throwException(error: any, action = 'function') {
+  throw new functions.https.HttpsError('internal', `Failed to ${action}: ${JSON.stringify(error)}`);
+}
+
+/**
  * Generates an unique game id starting with the gameCode character
  * @param gameCode a single capital letter
  * @param usedIds the list of used ids
