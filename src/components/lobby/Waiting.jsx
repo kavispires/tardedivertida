@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 // Design Resources
-import { Button, Image, message, notification } from 'antd';
+import { Button, Image, message, notification, Typography } from 'antd';
 // // Adapters
 import { GAME_API } from '../../adapters';
 // State
@@ -15,6 +15,8 @@ function Waiting({ gameDescription }) {
   const [isLoading, setLoader] = useLoading();
   const [gameId] = useGlobalState('gameId');
   const [gameName] = useGlobalState('gameName');
+  const [gameMeta] = useGlobalState('gameMeta');
+
   const [isAdmin] = useGlobalState('isAdmin');
   const [me] = useGlobalState('me');
   const [myAvatar] = useGlobalState('myAvatar');
@@ -55,14 +57,15 @@ function Waiting({ gameDescription }) {
       </svg>
       <h3 className="center">Aguarde os outros jogadores entrarem.</h3>
       {isAdmin && (
-        <Button
-          className="lobby-waiting__lock-button"
-          type="primary"
-          onClick={onLockGameAndStart}
-          disabled={isLoading}
-        >
-          Trancar e Iniciar Jogo
-        </Button>
+        <div className="lobby-waiting__lock-button">
+          <Typography.Text className="center padding">
+            {/* {TODO: Add players number } */}
+            Jogadores necessários: {0}/{gameMeta.min}
+          </Typography.Text>
+          <Button type="primary" onClick={onLockGameAndStart} disabled={isLoading}>
+            Trancar e Iniciar Jogo
+          </Button>
+        </div>
       )}
     </div>
   );

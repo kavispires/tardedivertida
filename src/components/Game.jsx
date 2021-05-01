@@ -19,10 +19,10 @@ function Game() {
   const [, setLoader] = useLoading();
   const [gameId, setGameId] = useGlobalState('gameId');
   const [gameName, setGameName] = useGlobalState('gameName');
-  const [gameCreatedAt, setGameCreatedAt] = useGlobalState('createdAt');
+  const [gameMeta, setGameMeta] = useGlobalState('gameMeta');
 
   const [isPageLoading, setPageLoading] = useState(true);
-  const isGameStale = useIsGameStale(gameCreatedAt);
+  const isGameStale = useIsGameStale(gameMeta?.createdAt);
 
   // Verify url game code
   useEffect(() => {
@@ -42,8 +42,8 @@ function Game() {
       try {
         setLoader('load', true);
         const meta = await GAME_API.loadGame({ gameId });
-        setGameName(meta.data.game);
-        setGameCreatedAt(meta.data.createdAt);
+        setGameName(meta.data.gameName);
+        setGameMeta(meta.data);
       } catch (e) {
         console.error(e);
         notification.error({
