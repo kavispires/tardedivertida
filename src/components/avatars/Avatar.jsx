@@ -1,0 +1,34 @@
+import React, { memo } from 'react';
+import PropTypes from 'prop-types';
+import clsx from 'clsx';
+// Design Resources
+import { Avatar as AntAvatar } from 'antd';
+// Images
+import avatars from '../../images/avatars.svg';
+
+function Avatar({ id = 25, size = 'large', shape = 'circle', alt = 'Fulano', className = '' }) {
+  console.log(`%c Re-rendered ${id}`, 'color:violet');
+  return (
+    <AntAvatar
+      className={clsx('avatar', className)}
+      size={size}
+      shape={shape}
+      alt={alt}
+      src={
+        <svg viewBox="0 0 100 100">
+          <use href={avatars + `#avatar-${id}`}></use>
+        </svg>
+      }
+    />
+  );
+}
+
+Avatar.propTypes = {
+  id: PropTypes.string,
+  className: PropTypes.string,
+  size: PropTypes.string,
+  shape: PropTypes.string,
+  alt: PropTypes.string,
+};
+
+export default memo(Avatar);

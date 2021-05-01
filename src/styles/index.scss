@@ -13,6 +13,7 @@
 @import './global';
 
 // Components
+@import '../components/avatars/AvatarEntry.scss';
 @import '../components/loaders/Loading.scss';
 @import '../components/loaders/LoadingBar.scss';
 @import '../components/loaders/LoadingPage.scss';
@@ -22,8 +23,7 @@
 @import '../components/modals/RulesModal.scss';
 @import '../components/rules/RulesCarousel.scss';
 @import '../components/rules/Rules.scss';
-
-@import '../components/AvatarEntry.scss';
+@import '../components/ReadyPlayersBar.scss';
 
 // Pages
 @import '../components/App.scss';

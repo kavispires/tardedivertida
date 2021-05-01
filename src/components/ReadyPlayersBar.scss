@@ -1,0 +1,32 @@
+.ready-player-bar {
+  display: flex;
+  margin: get-unit(3 auto);
+  justify-content: center;
+  align-items: center;
+
+  &__speech-bubble {
+    position: relative;
+    background: white;
+    border-radius: 0.4em;
+    padding: get-unit(2 4);
+    margin-left: get-unit(3);
+
+    &:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 0;
+      height: 0;
+      border: get-unit(2) solid transparent;
+      border-right-color: white;
+      border-left: 0;
+      margin-top: get-unit(-2);
+      margin-left: get-unit(-2);
+    }
+  }
+
+  &__speech-bubble-icon {
+    margin-left: get-unit(2);
+  }
+}

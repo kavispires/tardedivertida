@@ -9,6 +9,7 @@ import LoadingPage from '../loaders/LoadingPage';
 import { CheckCircleFilled, MehFilled, RobotFilled, SmileFilled } from '@ant-design/icons';
 import { useLoading } from '../../hooks';
 import { ARTE_RUIM_API } from '../../adapters';
+import ReadyPlayersBar from '../ReadyPlayersBar';
 
 function Rules({ players, info }) {
   const [isLoading, setLoader] = useLoading();
@@ -27,8 +28,6 @@ function Rules({ players, info }) {
       }
     }
   }, [players, me]); // eslint-disable-line
-
-  console.log({ pronto: players?.[me]?.ready });
 
   const onBeReady = useCallback(async () => {
     try {
@@ -95,6 +94,7 @@ function Rules({ players, info }) {
           Que?
         </Button>
       </Space>
+      <ReadyPlayersBar players={players} />
     </Layout.Content>
   );
 }
