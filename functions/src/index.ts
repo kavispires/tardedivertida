@@ -1,9 +1,7 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import * as utils from './utils/index';
-
-import { ARTE_RUIM_GOAL, ARTE_RUIM_PHASES } from './utils/constants';
-import { isEverybodyReady, readyPlayer, unReadyPlayers } from './engine/arte-ruim';
+import * as arteRuimEngine from './engine/arte-ruim';
 
 admin.initializeApp();
 
@@ -199,58 +197,27 @@ exports.arteRuimMakeMeReady = functions.https.onCall(async (data) => {
   utils.verifyPayload(collectionName, 'collectionName', actionText);
   utils.verifyPayload(playerName, 'playerName', actionText);
 
+  // Get 'players' from given game session
   const sessionRef = utils.getSessionRef(collectionName, gameId);
-  const gameState = await sessionRef.doc('state').get();
-
-  if (!gameState.exists) {
-    throw new functions.https.HttpsError(
-      'internal',
-      `Failed to ${actionText}: game '${collectionName}/${gameId}' does not exist`
-    );
-  }
+  const playersDoc = await utils.getSessionDoc(collectionName, gameId, 'players', actionText);
 
   // Make player ready
-  const gameStateData = gameState.data();
-  const players = readyPlayer(gameStateData?.players ?? {}, playerName);
+  const players = playersDoc.data() ?? {};
+  const updatedPlayers = arteRuimEngine.readyPlayer(players, playerName);
 
-  if (!isEverybodyReady(players)) {
-    await sessionRef.doc('state').set({
-      ...gameStateData,
-      players,
-    });
-
-    return true;
+  if (!arteRuimEngine.isEverybodyReady(updatedPlayers)) {
+    try {
+      await sessionRef.doc('players').update({ [playerName]: updatedPlayers[playerName] });
+      return true;
+    } catch (error) {
+      utils.throwException(error, actionText);
+    }
   }
 
-  // If all players are now ready, check the next phase then prepare it and go to it
-  // From RULES to ROUND 1/DRAW
-  const currentPhase = gameStateData?.phase;
+  console.log('all players are ready!');
 
-  // Unready players
-  const newPlayers = unReadyPlayers(players);
-  let newPhase = currentPhase;
-  let addInfo = {};
-
-  if (currentPhase === ARTE_RUIM_PHASES.RULES) {
-    newPhase = ARTE_RUIM_PHASES.DRAW;
-    addInfo = {
-      round: 1,
-      pointsToVictory: ARTE_RUIM_GOAL,
-    };
-  }
-
-  // Set info with players object and isLocked
-  if (Object.keys(addInfo).length) {
-    await sessionRef.doc('info').update(addInfo);
-  }
-
-  // Set state with players variable info and new phase Rules
-  await sessionRef.doc('state').update({
-    players,
-    newPlayers,
-    phase: newPhase,
-  });
-  return true;
+  // If all players are ready, trigger next phase
+  return arteRuimEngine.nextArteRuimPhase(collectionName, gameId, playerName);
 });
 
 exports.arteRuimSubmitDrawing = functions.https.onCall(async (data) => {
