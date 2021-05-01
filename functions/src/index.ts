@@ -26,25 +26,26 @@ function verifyAuth(context: any, action = 'perform function') {
   }
 }
 
+function getSessionRef(
+  collectionName: string,
+  gameId: string
+): FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData> {
+  return admin.firestore().collection(collectionName).doc(gameId).collection('session');
+}
+
 export const helloWorld = functions.https.onCall(async () => {
   return 'hello world';
 });
 
 export const initializeGame = functions.https.onCall(async (data, context) => {
-  // Verify auth
-  const uid = context?.auth?.uid;
-  if (!uid) {
-    throw new functions.https.HttpsError(
-      'internal',
-      'Failed to create new game: you must be logged in to create a game'
-    );
-  }
+  const actionText = 'create new game';
+  verifyAuth(context, actionText);
 
   // Get collection name by game code on request
   const { gameCode } = data;
 
   if (!gameCode) {
-    throw new functions.https.HttpsError('internal', 'Failed to create new game: a gameCode is required');
+    throw new functions.https.HttpsError('internal', `Failed to ${actionText}: a gameCode is required`);
   }
 
   const collectionName = utils.getCollectionNameByGameCode(gameCode);
@@ -52,7 +53,7 @@ export const initializeGame = functions.https.onCall(async (data, context) => {
   if (!collectionName) {
     throw new functions.https.HttpsError(
       'internal',
-      `Failed to create new game: provided gameCode is invalid ${gameCode}`
+      `Failed to ${actionText}: provided gameCode is invalid ${gameCode}`
     );
   }
 
@@ -74,30 +75,30 @@ export const initializeGame = functions.https.onCall(async (data, context) => {
   if (tempGame.exists) {
     throw new functions.https.HttpsError(
       'internal',
-      `Failed to create new game: the generated game id ${gameCode} belongs to an existing session`
+      `Failed to ${actionText}: the generated game id ${gameCode} belongs to an existing session`
     );
   }
 
   // Create game entry in database
   let response = {};
   try {
-    const session = collectionRef.doc(gameId).collection('session');
+    const sessionRef = getSessionRef(collectionName, gameId);
 
     const methods = utils.getGameMethodsByCollection(collectionName);
-
+    const uid = context?.auth?.uid ?? '';
     const { meta, info, state, store } = methods?.getInitialSession(gameId, uid);
 
-    await session.doc('meta').set(meta);
-    await session.doc('info').set(info);
-    await session.doc('state').set(state);
-    await session.doc('store').set(store);
+    await sessionRef.doc('meta').set(meta);
+    await sessionRef.doc('info').set(info);
+    await sessionRef.doc('state').set(state);
+    await sessionRef.doc('store').set(store);
 
     response = meta;
   } catch (e) {
     console.error(e);
     throw new functions.https.HttpsError(
       'internal',
-      `Failed to create new game in the firestore database: ${e}`
+      `Failed to ${actionText} in the firestore database: ${e}`
     );
   }
 
@@ -110,6 +111,7 @@ exports.loadGame = functions.https.onCall(async (data) => {
   // Extract gameCode to figure out
   const { gameId } = data;
 
+  const actionText = 'load game';
   verifyPayload(gameId, 'gameId', 'load game');
 
   const collectionName = utils.getCollectionNameByGameId(gameId);
@@ -117,21 +119,19 @@ exports.loadGame = functions.https.onCall(async (data) => {
   if (!collectionName) {
     throw new functions.https.HttpsError(
       'internal',
-      `Failed to load game: there is no game engine for the given id: ${gameId}`
+      `Failed to ${actionText}: there is no game engine for the given id: ${gameId}`
     );
   }
 
   // Get 'meta' from given game session
-  const gameMeta = await admin
-    .firestore()
-    .collection(collectionName)
-    .doc(gameId)
-    .collection('session')
-    .doc('meta')
-    .get();
+  const sessionRef = getSessionRef(collectionName, gameId);
+  const gameMeta = await sessionRef.doc('meta').get();
 
   if (!gameMeta.exists) {
-    throw new functions.https.HttpsError('internal', `Failed to load game: game ${gameId} does not exist`);
+    throw new functions.https.HttpsError(
+      'internal',
+      `Failed to ${actionText}: game ${gameId} does not exist`
+    );
   }
 
   return gameMeta.data();
@@ -140,24 +140,19 @@ exports.loadGame = functions.https.onCall(async (data) => {
 exports.addPlayer = functions.https.onCall(async (data) => {
   const { gameId, gameName: collectionName, playerName, playerAvatarId } = data;
 
-  verifyPayload(gameId, 'gameId', 'add player');
-  verifyPayload(collectionName, 'collectionName', 'add player');
-  verifyPayload(playerName, 'playerName', 'add player');
+  const actionText = 'add player';
+  verifyPayload(gameId, 'gameId', actionText);
+  verifyPayload(collectionName, 'collectionName', actionText);
+  verifyPayload(playerName, 'playerName', actionText);
 
   // Get 'state' from given game session
-  const gameStateRef = admin
-    .firestore()
-    .collection(collectionName)
-    .doc(gameId)
-    .collection('session')
-    .doc('state');
-
-  const gameState = await gameStateRef.get();
+  const sessionRef = getSessionRef(collectionName, gameId);
+  const gameState = await sessionRef.doc('state').get();
 
   if (!gameState.exists) {
     throw new functions.https.HttpsError(
       'internal',
-      `Failed to add player: game '${collectionName}/${gameId}' does not exist`
+      `Failed to ${actionText}: game '${collectionName}/${gameId}' does not exist`
     );
   }
 
@@ -172,7 +167,7 @@ exports.addPlayer = functions.https.onCall(async (data) => {
   console.log('Creating player');
   const methods = utils.getGameMethodsByCollection(collectionName);
   players[playerName] = methods.createPlayer(playerName, playerAvatarId, players);
-  await gameStateRef.update({
+  await sessionRef.doc('state').update({
     ...gameStateData,
     players,
   });
@@ -183,20 +178,20 @@ exports.addPlayer = functions.https.onCall(async (data) => {
 exports.lockGame = functions.https.onCall(async (data, context) => {
   const { gameId, gameName: collectionName } = data;
 
-  verifyPayload(gameId, 'gameId', 'add player');
-  verifyPayload(collectionName, 'collectionName', 'add player');
-  verifyAuth(context, 'lock game');
+  const actionText = 'lock game';
+  verifyPayload(gameId, 'gameId', actionText);
+  verifyPayload(collectionName, 'collectionName', actionText);
+  verifyAuth(context, actionText);
 
   // Find game state and get all players
   // Get 'state' from given game session
-  const gameSessionRef = admin.firestore().collection(collectionName).doc(gameId).collection('session');
-
-  const gameState = await gameSessionRef.doc('state').get();
+  const sessionRef = getSessionRef(collectionName, gameId);
+  const gameState = await sessionRef.doc('state').get();
 
   if (!gameState.exists) {
     throw new functions.https.HttpsError(
       'internal',
-      `Failed to add player: game '${collectionName}/${gameId}' does not exist`
+      `Failed to ${actionText}: game '${collectionName}/${gameId}' does not exist`
     );
   }
 
@@ -207,19 +202,9 @@ exports.lockGame = functions.https.onCall(async (data, context) => {
   const { state, info } = methods.lockGame(players);
 
   // Set info with players object and isLocked
-  await gameSessionRef.doc('info').set(info);
+  await sessionRef.doc('info').set(info);
   // Set state with players variable info and new phase Rules
-  await gameSessionRef.doc('state').set(state);
+  await sessionRef.doc('state').set(state);
 
   return info;
 });
-
-// exports.arteRuimAPI = functions.https.onRequest((request, response) => {
-//   switch (request.action) {
-//     case 'ACTION_1':
-//       response.send('arteRuimAPI ACTION 1');
-//       break;
-//     default:
-//       response.send('arteRuimAPI default');
-//   }
-// });
