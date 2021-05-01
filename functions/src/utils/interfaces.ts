@@ -3,12 +3,25 @@ export interface BasicObject {
 }
 
 export interface Meta {
-  id: string;
-  game: string;
+  gameId: string;
+  gameName: string;
   createdAt: number;
   createdBy: string;
   min: number;
   max: number;
+  isLocked: boolean;
+}
+
+export interface ArteRuimStore {
+  usedCards: string[];
+  previousDrawings: any;
+  [key: string]: any;
+}
+
+export interface ArteRuimState {
+  phase: string;
+  round: number;
+  [key: string]: any;
 }
 
 export interface InfoPlayer {
@@ -47,17 +60,6 @@ export interface ArteRuimInfo {
   players: InfoPlayers;
   isLocked: boolean;
   round: number;
-  [key: string]: any;
-}
-
-export interface ArteRuimStore {
-  usedCards: string[];
-  previousDrawings: any;
-  [key: string]: any;
-}
-
-export interface ArteRuimState {
-  phase: string;
   [key: string]: any;
 }
 

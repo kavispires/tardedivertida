@@ -280,7 +280,7 @@ exports.arteRuimMakeMeReady = functions.https.onCall(async (data) => {
   // Unready players
   const newPlayers = unReadyPlayers(players);
   let newPhase = currentPhase;
-  let addInfo = null;
+  let addInfo = {};
 
   if (currentPhase === ARTE_RUIM_PHASES.RULES) {
     newPhase = ARTE_RUIM_PHASES.DRAW;
@@ -291,7 +291,7 @@ exports.arteRuimMakeMeReady = functions.https.onCall(async (data) => {
   }
 
   // Set info with players object and isLocked
-  if (addInfo) {
+  if (Object.keys(addInfo).length) {
     await sessionRef.doc('info').update(addInfo);
   }
 

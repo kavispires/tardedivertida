@@ -6,7 +6,7 @@ import { Button, Modal } from 'antd';
 // Components
 import RulesCarousel from '../rules/RulesCarousel';
 
-function RulesModal({ game }) {
+function RulesModal({ gameInfo }) {
   const [isVisible, setVisibility] = useState(false);
 
   const onCloseModal = () => {
@@ -20,7 +20,7 @@ function RulesModal({ game }) {
       </Button>
       {isVisible && (
         <Modal
-          title={`Rules: ${game.title}`}
+          title={`Rules: ${gameInfo.title}`}
           visible={isVisible}
           onCancel={onCloseModal}
           className="rules-modal"
@@ -30,7 +30,7 @@ function RulesModal({ game }) {
             </Button>,
           ]}
         >
-          <RulesCarousel game={game} />
+          <RulesCarousel game={gameInfo} />
         </Modal>
       )}
     </Fragment>
@@ -38,8 +38,8 @@ function RulesModal({ game }) {
 }
 
 RulesModal.propTypes = {
-  game: PropTypes.shape({
-    image: PropTypes.string,
+  gameInfo: PropTypes.shape({
+    gameName: PropTypes.string,
     rules: PropTypes.arrayOf(PropTypes.string),
     title: PropTypes.string,
   }),
