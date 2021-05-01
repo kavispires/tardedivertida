@@ -10,21 +10,21 @@ import AvatarEntry from './../AvatarEntry';
 import Join from './Join';
 import Waiting from './Waiting';
 
-function Lobby({ state }) {
+function Lobby({ players }) {
   const [gameId] = useGlobalState('gameId');
   const [me] = useGlobalState('me');
   const [myAvatar] = useGlobalState('myAvatar');
-  const [gameDescription, setGameDescription] = useState({});
+  const [gameInfo, setGameInfo] = useState({});
 
   // Update game description as the gameId comes in
   useEffect(() => {
-    setGameDescription(gameId?.[0] ? gameList[gameId[0]] : {});
+    setGameInfo(gameId?.[0] ? gameList[gameId[0]] : {});
   }, [gameId]);
 
   return (
     <Layout.Content className="lobby">
       <div className="lobby__room">
-        {Object.values(state?.players ?? {}).map((player, index) => (
+        {Object.values(players).map((player, index) => (
           <AvatarEntry
             key={player.name}
             id={player.avatarId}
@@ -35,9 +35,9 @@ function Lobby({ state }) {
         ))}
 
         {me && myAvatar ? (
-          <Waiting players={state?.players ?? {}} gameDescription={gameDescription} />
+          <Waiting players={players} gameInfo={gameInfo} />
         ) : (
-          <Join players={state?.players ?? {}} gameDescription={gameDescription} />
+          <Join players={players} gameInfo={gameInfo} />
         )}
       </div>
     </Layout.Content>

@@ -69,10 +69,10 @@ export const initializeGame = functions.https.onCall(async (data, context) => {
 
     const methods = utils.getGameMethodsByCollection(collectionName);
     const uid = context?.auth?.uid ?? '';
-    const { meta, info, state, store } = methods?.getInitialSession(gameId, uid);
+    const { meta, players, state, store } = methods?.getInitialSession(gameId, uid);
 
     await sessionRef.doc('meta').set(meta);
-    await sessionRef.doc('info').set(info);
+    await sessionRef.doc('players').set(players);
     await sessionRef.doc('state').set(state);
     await sessionRef.doc('store').set(store);
 
@@ -136,32 +136,31 @@ exports.addPlayer = functions.https.onCall(async (data) => {
 
   // Get 'state' from given game session
   const sessionRef = utils.getSessionRef(collectionName, gameId);
-  const gameState = await sessionRef.doc('state').get();
+  const gamePlayers = await sessionRef.doc('players').get();
 
-  if (!gameState.exists) {
+  if (!gamePlayers.exists) {
     throw new functions.https.HttpsError(
       'internal',
       `Failed to ${actionText}: game '${collectionName}/${gameId}' does not exist`
     );
   }
 
-  const gameStateData = gameState.data();
-  const players = gameStateData?.players;
+  const players = gamePlayers.data() ?? {};
 
-  if (players[playerName]) {
-    console.log('Player exists!');
+  if (players?.[playerName]) {
     return players[playerName];
   }
 
-  console.log('Creating player');
-  const methods = utils.getGameMethodsByCollection(collectionName);
-  players[playerName] = methods.createPlayer(playerName, playerAvatarId, players);
-  await sessionRef.doc('state').update({
-    ...gameStateData,
-    players,
-  });
-
-  return players[playerName];
+  try {
+    const methods = utils.getGameMethodsByCollection(collectionName);
+    const newPlayer = methods.createPlayer(playerName, playerAvatarId, players);
+    await sessionRef.doc('players').update({
+      [playerName]: newPlayer,
+    });
+    return newPlayer;
+  } catch (e) {
+    utils.throwException(e, actionText);
+  }
 });
 
 /**

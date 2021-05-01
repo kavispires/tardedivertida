@@ -11,7 +11,7 @@ import avatars from '../../images/avatars.svg';
 import { PUBLIC_URL } from '../../utils/constants';
 import { useLoading } from '../../hooks';
 
-function Waiting({ gameDescription }) {
+function Waiting({ gameInfo, players }) {
   const [isLoading, setLoader] = useLoading();
   const [gameId] = useGlobalState('gameId');
   const [gameName] = useGlobalState('gameName');
@@ -43,11 +43,13 @@ function Waiting({ gameDescription }) {
     }
   }, [gameId, gameName, setLoader]);
 
+  const numPlayers = Object.keys(players).length;
+
   return (
     <div className="lobby-waiting">
       <Image
-        alt={gameDescription?.title}
-        src={`${PUBLIC_URL.BANNERS}game-image-${gameDescription?.image}.jpg`}
+        alt={gameInfo?.title}
+        src={`${PUBLIC_URL.BANNERS}game-image-${gameInfo?.image}.jpg`}
         fallback={`${PUBLIC_URL.BANNERS}/game-image-em-breve.jpg`}
       />
 
@@ -59,10 +61,13 @@ function Waiting({ gameDescription }) {
       {isAdmin && (
         <div className="lobby-waiting__lock-button">
           <Typography.Text className="center padding">
-            {/* {TODO: Add players number } */}
-            Jogadores necessários: {0}/{gameMeta.min}
+            Jogadores necessários: {numPlayers}/{gameMeta.min}
           </Typography.Text>
-          <Button type="primary" onClick={onLockGameAndStart} disabled={isLoading}>
+          <Button
+            type="primary"
+            onClick={onLockGameAndStart}
+            disabled={isLoading || numPlayers < gameMeta.min}
+          >
             Trancar e Iniciar Jogo
           </Button>
         </div>
