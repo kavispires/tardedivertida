@@ -134,18 +134,11 @@ exports.addPlayer = functions.https.onCall(async (data) => {
   utils.verifyPayload(collectionName, 'collectionName', actionText);
   utils.verifyPayload(playerName, 'playerName', actionText);
 
-  // Get 'state' from given game session
+  // Get 'players' from given game session
   const sessionRef = utils.getSessionRef(collectionName, gameId);
-  const gamePlayers = await sessionRef.doc('players').get();
+  const playersDoc = await utils.getSessionDoc(collectionName, gameId, 'players', actionText);
 
-  if (!gamePlayers.exists) {
-    throw new functions.https.HttpsError(
-      'internal',
-      `Failed to ${actionText}: game '${collectionName}/${gameId}' does not exist`
-    );
-  }
-
-  const players = gamePlayers.data() ?? {};
+  const players = playersDoc.data() ?? {};
 
   if (players?.[playerName]) {
     return players[playerName];
@@ -158,8 +151,8 @@ exports.addPlayer = functions.https.onCall(async (data) => {
       [playerName]: newPlayer,
     });
     return newPlayer;
-  } catch (e) {
-    utils.throwException(e, actionText);
+  } catch (error) {
+    utils.throwException(error, actionText);
   }
 });
 
@@ -174,30 +167,25 @@ exports.lockGame = functions.https.onCall(async (data, context) => {
   utils.verifyPayload(collectionName, 'collectionName', actionText);
   utils.verifyAuth(context, actionText);
 
-  // Find game state and get all players
-  // Get 'state' from given game session
   const sessionRef = utils.getSessionRef(collectionName, gameId);
-  const gameState = await sessionRef.doc('state').get();
+  await utils.getSessionDoc(collectionName, gameId, 'meta', actionText);
 
-  if (!gameState.exists) {
-    throw new functions.https.HttpsError(
-      'internal',
-      `Failed to ${actionText}: game '${collectionName}/${gameId}' does not exist`
-    );
+  try {
+    // Parse players into two objects: info with static information, state with variable information (score, etc)
+    const methods = utils.getGameMethodsByCollection(collectionName);
+    const newState = methods.lockGame();
+
+    // Set info with players object and isLocked
+    await sessionRef.doc('meta').update({ isLocked: true });
+    // Set state with new Phase: Rules
+    await sessionRef.doc('state').set(newState);
+
+    return true;
+  } catch (error) {
+    utils.throwException(error, actionText);
   }
 
-  // Parse players into two objects: info with static information, state with variable information (score, etc)
-  const gameStateData = gameState.data();
-  const players = gameStateData?.players;
-  const methods = utils.getGameMethodsByCollection(collectionName);
-  const { state, info } = methods.lockGame(players);
-
-  // Set info with players object and isLocked
-  await sessionRef.doc('info').set(info);
-  // Set state with players variable info and new phase Rules
-  await sessionRef.doc('state').set(state);
-
-  return info;
+  return false;
 });
 
 /**
