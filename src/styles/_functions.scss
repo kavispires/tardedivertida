@@ -1,9 +1,9 @@
 /*
- * Converts a value (or list of values) into a standard scale with base 3px
+ * Converts a value (or list of values) into a standard scale with base 4px
  * Example:
- * get-unit(1) -> 3px
- * get-unit(2 1) -> 3px 6px
- * get-unit(4 2 4 1) -> 12px 6px 12px 3px
+ * get-unit(1) -> 4px
+ * get-unit(2 1) -> 4px 8px
+ * get-unit(4 2 4 -1) -> 16px 8px 16px -4px
  */
 @function get-unit($value) {
   //  If value is a list
@@ -24,10 +24,6 @@
   }
 
   $base: 4px;
-
-  @if $value < 0 {
-    @return -1 * $value * $base;
-  }
 
   @return $value * $base;
 }

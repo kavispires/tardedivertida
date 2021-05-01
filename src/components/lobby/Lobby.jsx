@@ -5,7 +5,7 @@ import { Layout } from 'antd';
 import useGlobalState from '../../hooks/useGlobalState';
 
 // Components
-import AvatarEntry from './../AvatarEntry';
+import AvatarEntry from '../avatars/AvatarEntry';
 import Join from './Join';
 import Waiting from './Waiting';
 
