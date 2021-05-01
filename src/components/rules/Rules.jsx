@@ -8,7 +8,7 @@ import RulesCarousel from './RulesCarousel';
 import LoadingPage from '../loaders/LoadingPage';
 import { CheckCircleFilled, MehFilled, RobotFilled, SmileFilled } from '@ant-design/icons';
 import { useLoading } from '../../hooks';
-import { GAME_API } from '../../adapters';
+import { ARTE_RUIM_API } from '../../adapters';
 
 function Rules({ players, info }) {
   const [isLoading, setLoader] = useLoading();
@@ -33,15 +33,15 @@ function Rules({ players, info }) {
   const onBeReady = useCallback(async () => {
     try {
       setLoader('be-ready', true);
-      // const response = await GAME_API.makeMeReady({
-      //   gameId,
-      //   gameName,
-      //   playerName: me,
-      // });
-      // if (response.data) {
-      setImReady(true);
-      message.success('Pronto! Aguarde os outros jogadores estarem prontos');
-      // }
+      const response = await ARTE_RUIM_API.makeMeReady({
+        gameId,
+        gameName,
+        playerName: me,
+      });
+      if (response.data) {
+        setImReady(true);
+        message.success('Pronto! Aguarde os outros jogadores estarem prontos');
+      }
     } catch (e) {
       notification.error({
         message: 'Vixi, o aplicativo encontrou um erro ao tentar continuar',

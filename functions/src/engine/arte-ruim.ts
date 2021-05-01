@@ -61,19 +61,19 @@ export const arteRuim = {
   },
 };
 
-export const readyPlayer = (players: StatePlayers, playerName: string): StatePlayers => {
+export const readyPlayer = (players: Players, playerName: string): Players => {
   players[playerName].ready = true;
   return players;
 };
 
-export const unReadyPlayers = (players: StatePlayers): StatePlayers => {
+export const unReadyPlayers = (players: Players): Players => {
   for (const player in players) {
     players[player].ready = false;
   }
   return players;
 };
 
-export const isEverybodyReady = (players: StatePlayers): boolean => {
+export const isEverybodyReady = (players: Players): boolean => {
   return Object.values(players).every((player) => player.ready);
 };
 
@@ -83,4 +83,14 @@ export const getPointsToVictory = (players: StatePlayers, victory = 30): number 
   }, 0);
 
   return max < victory ? victory - max : 0;
+};
+
+export const nextArteRuimPhase = (collectionName: string, gameId: string, playerName: string): boolean => {
+  console.log(collectionName, gameId, playerName);
+
+  // Determine and prepare next phase
+
+  // RULES -> DRAW
+
+  return true;
 };
