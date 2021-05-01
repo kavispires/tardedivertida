@@ -2,21 +2,31 @@ import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import * as utils from './utils/index';
 
+import { ARTE_RUIM_GOAL, ARTE_RUIM_PHASES } from './utils/constants';
+import { isEverybodyReady, readyPlayer, unReadyPlayers } from './engine/arte-ruim';
+
 admin.initializeApp();
 
 // Start writing Firebase Functions
 // https://firebase.google.com/docs/functions/typescript
 
-export interface BasicObject {
-  [key: string]: any;
-}
-
+/**
+ * Validate if payload property exists
+ * @param property
+ * @param propertyName
+ * @param action
+ */
 function verifyPayload(property?: string, propertyName = 'unknown property', action = 'function') {
   if (!property) {
     throw new functions.https.HttpsError('internal', `Failed to ${action}: a ${propertyName} is required`);
   }
 }
 
+/**
+ * Validate if user is authenticated
+ * @param context
+ * @param action
+ */
 function verifyAuth(context: any, action = 'perform function') {
   // Verify auth
   const uid = context?.auth?.uid;
@@ -25,6 +35,12 @@ function verifyAuth(context: any, action = 'perform function') {
   }
 }
 
+/**
+ * Get Firebase session for gameId in collection
+ * @param collectionName
+ * @param gameId
+ * @returns firebase session reference
+ */
 function getSessionRef(
   collectionName: string,
   gameId: string
@@ -32,14 +48,16 @@ function getSessionRef(
   return admin.firestore().collection(collectionName).doc(gameId).collection('session');
 }
 
-function isEverybodyReady(players: BasicObject): boolean {
-  return Object.values(players).every((player) => player.ready);
-}
-
+/**
+ * Demo function
+ */
 export const helloWorld = functions.https.onCall(async () => {
   return 'hello world';
 });
 
+/**
+ * Create a new game instance returning its meta data with gameId
+ */
 export const initializeGame = functions.https.onCall(async (data, context) => {
   const actionText = 'create new game';
   verifyAuth(context, actionText);
@@ -110,6 +128,9 @@ export const initializeGame = functions.https.onCall(async (data, context) => {
   };
 });
 
+/**
+ * Load an existing game
+ */
 exports.loadGame = functions.https.onCall(async (data) => {
   // Extract gameCode to figure out
   const { gameId } = data;
@@ -140,6 +161,9 @@ exports.loadGame = functions.https.onCall(async (data) => {
   return gameMeta.data();
 });
 
+/**
+ * Add player to the game, if it's an existing player, only return its state
+ */
 exports.addPlayer = functions.https.onCall(async (data) => {
   const { gameId, gameName: collectionName, playerName, playerAvatarId } = data;
 
@@ -178,6 +202,9 @@ exports.addPlayer = functions.https.onCall(async (data) => {
   return players[playerName];
 });
 
+/**
+ * Locks game so new players cannot join
+ */
 exports.lockGame = functions.https.onCall(async (data, context) => {
   const { gameId, gameName: collectionName } = data;
 
@@ -212,6 +239,9 @@ exports.lockGame = functions.https.onCall(async (data, context) => {
   return info;
 });
 
+/**
+ * Make user ready, and if it's the last user, move the game to its next phase
+ */
 exports.arteRuimMakeMeReady = functions.https.onCall(async (data) => {
   const { gameId, gameName: collectionName, playerName } = data;
 
@@ -232,10 +262,9 @@ exports.arteRuimMakeMeReady = functions.https.onCall(async (data) => {
 
   // Make player ready
   const gameStateData = gameState.data();
-  const players = gameStateData?.players ?? {};
-  players[playerName].ready = true;
+  const players = readyPlayer(gameStateData?.players ?? {}, playerName);
 
-  if (!isEverybodyReady) {
+  if (!isEverybodyReady(players)) {
     await sessionRef.doc('state').set({
       ...gameStateData,
       players,
@@ -246,7 +275,32 @@ exports.arteRuimMakeMeReady = functions.https.onCall(async (data) => {
 
   // If all players are now ready, check the next phase then prepare it and go to it
   // From RULES to ROUND 1/DRAW
+  const currentPhase = gameStateData?.phase;
 
+  // Unready players
+  const newPlayers = unReadyPlayers(players);
+  let newPhase = currentPhase;
+  let addInfo = null;
+
+  if (currentPhase === ARTE_RUIM_PHASES.RULES) {
+    newPhase = ARTE_RUIM_PHASES.DRAW;
+    addInfo = {
+      round: 1,
+      pointsToVictory: ARTE_RUIM_GOAL,
+    };
+  }
+
+  // Set info with players object and isLocked
+  if (addInfo) {
+    await sessionRef.doc('info').update(addInfo);
+  }
+
+  // Set state with players variable info and new phase Rules
+  await sessionRef.doc('state').update({
+    players,
+    newPlayers,
+    phase: newPhase,
+  });
   return true;
 });
 
