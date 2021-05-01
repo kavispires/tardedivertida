@@ -30,7 +30,7 @@ function RulesModal({ gameInfo }) {
             </Button>,
           ]}
         >
-          <RulesCarousel game={gameInfo} />
+          <RulesCarousel info={gameInfo} />
         </Modal>
       )}
     </Fragment>

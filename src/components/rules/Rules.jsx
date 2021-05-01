@@ -12,31 +12,25 @@ import { CheckCircleFilled, MehFilled, RobotFilled, SmileFilled } from '@ant-des
 import { useLoading } from '../../hooks';
 import { GAME_API } from '../../adapters';
 
-function Rules({ state, info }) {
+function Rules({ players, info }) {
   const [isLoading, setLoader] = useLoading();
   const [gameId] = useGlobalState('gameId');
   const [gameName] = useGlobalState('gameName');
   const [me] = useGlobalState('me');
-  const [gameDescription, setGameDescription] = useState({});
   const [amIReady, setImReady] = useState(false);
-
-  // Update game description as the gameId comes in
-  useEffect(() => {
-    setGameDescription(gameId?.[0] ? gameList[gameId[0]] : {});
-  }, [gameId]);
 
   useEffect(() => {
     if (!amIReady) {
       console.log('changed amIready');
-      const ready = state?.players?.[me]?.ready;
+      const ready = players?.[me]?.ready;
       setImReady(ready);
       if (ready) {
         message.success('Pronto! Aguarde os outros jogadores estarem prontos');
       }
     }
-  }, [state?.players, me]);
+  }, [players, me]); // eslint-disable-line
 
-  console.log({ pronto: state?.players?.[me]?.ready });
+  console.log({ pronto: players?.[me]?.ready });
 
   const onBeReady = useCallback(async () => {
     try {
@@ -67,7 +61,7 @@ function Rules({ state, info }) {
     onBeReady();
   }, [onBeReady]);
 
-  if (!gameDescription?.id) {
+  if (!info?.gameName) {
     return <LoadingPage />;
   }
 
@@ -75,7 +69,7 @@ function Rules({ state, info }) {
     <Layout.Content className="rules">
       <Typography.Title className="center">Regras do Jogo</Typography.Title>
 
-      <RulesCarousel game={gameDescription} className="rules__carousel" ruleClass="rules__rule" />
+      <RulesCarousel info={info} className="rules__carousel" ruleClass="rules__rule" />
 
       <Space className="rules__actions">
         <Button

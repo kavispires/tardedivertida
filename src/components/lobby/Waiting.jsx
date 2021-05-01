@@ -11,7 +11,7 @@ import avatars from '../../images/avatars.svg';
 import { PUBLIC_URL } from '../../utils/constants';
 import { useLoading } from '../../hooks';
 
-function Waiting({ gameInfo, players }) {
+function Waiting({ info, players }) {
   const [isLoading, setLoader] = useLoading();
   const [gameId] = useGlobalState('gameId');
   const [gameName] = useGlobalState('gameName');
@@ -48,8 +48,8 @@ function Waiting({ gameInfo, players }) {
   return (
     <div className="lobby-waiting">
       <Image
-        alt={gameInfo?.title}
-        src={`${PUBLIC_URL.BANNERS}game-image-${gameInfo?.gameName}.jpg`}
+        alt={info?.title}
+        src={`${PUBLIC_URL.BANNERS}game-image-${info?.gameName}.jpg`}
         fallback={`${PUBLIC_URL.BANNERS}/game-image-em-breve.jpg`}
       />
 

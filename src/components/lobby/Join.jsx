@@ -16,7 +16,7 @@ import { getRandomItem } from '../../utils/index';
 // Components
 import { useLoading } from '../../hooks';
 
-function Join({ players, gameInfo }) {
+function Join({ players, info }) {
   const [isLoading, setLoader] = useLoading();
   const [gameId] = useGlobalState('gameId');
   const [gameName] = useGlobalState('gameName');
@@ -72,13 +72,12 @@ function Join({ players, gameInfo }) {
   const onAddPlayer = useCallback(async () => {
     try {
       setLoader('add-player', true);
-      const payload = {
+      const response = await GAME_API.addPlayer({
         gameId,
         gameName,
         playerName: tempMe,
         playerAvatarId: tempAvatar,
-      };
-      const response = await GAME_API.addPlayer(payload);
+      });
 
       setMe(response.data.name);
       setMyAvatar(response.data.avatarId);
@@ -101,8 +100,8 @@ function Join({ players, gameInfo }) {
   return (
     <div className="lobby-join">
       <Image
-        alt={gameInfo?.title}
-        src={`${PUBLIC_URL.BANNERS}game-image-${gameInfo?.gameName}.jpg`}
+        alt={info?.title}
+        src={`${PUBLIC_URL.BANNERS}game-image-${info?.gameName}.jpg`}
         fallback={`${PUBLIC_URL.BANNERS}/game-image-em-breve.jpg`}
       />
       <h1 className="lobby-join__title">
