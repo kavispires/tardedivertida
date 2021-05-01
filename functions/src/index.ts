@@ -11,44 +11,6 @@ admin.initializeApp();
 // https://firebase.google.com/docs/functions/typescript
 
 /**
- * Validate if payload property exists
- * @param property
- * @param propertyName
- * @param action
- */
-function verifyPayload(property?: string, propertyName = 'unknown property', action = 'function') {
-  if (!property) {
-    throw new functions.https.HttpsError('internal', `Failed to ${action}: a ${propertyName} is required`);
-  }
-}
-
-/**
- * Validate if user is authenticated
- * @param context
- * @param action
- */
-function verifyAuth(context: any, action = 'perform function') {
-  // Verify auth
-  const uid = context?.auth?.uid;
-  if (!uid) {
-    throw new functions.https.HttpsError('internal', `Failed to ${action}: you must be logged in`);
-  }
-}
-
-/**
- * Get Firebase session for gameId in collection
- * @param collectionName
- * @param gameId
- * @returns firebase session reference
- */
-function getSessionRef(
-  collectionName: string,
-  gameId: string
-): FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData> {
-  return admin.firestore().collection(collectionName).doc(gameId).collection('session');
-}
-
-/**
  * Demo function
  */
 export const helloWorld = functions.https.onCall(async () => {
@@ -60,7 +22,7 @@ export const helloWorld = functions.https.onCall(async () => {
  */
 export const initializeGame = functions.https.onCall(async (data, context) => {
   const actionText = 'create new game';
-  verifyAuth(context, actionText);
+  utils.verifyAuth(context, actionText);
 
   // Get collection name by game code on request
   const { gameCode } = data;
@@ -103,7 +65,7 @@ export const initializeGame = functions.https.onCall(async (data, context) => {
   // Create game entry in database
   let response = {};
   try {
-    const sessionRef = getSessionRef(collectionName, gameId);
+    const sessionRef = utils.getSessionRef(collectionName, gameId);
 
     const methods = utils.getGameMethodsByCollection(collectionName);
     const uid = context?.auth?.uid ?? '';
@@ -136,7 +98,7 @@ exports.loadGame = functions.https.onCall(async (data) => {
   const { gameId } = data;
 
   const actionText = 'load game';
-  verifyPayload(gameId, 'gameId', 'load game');
+  utils.verifyPayload(gameId, 'gameId', 'load game');
 
   const collectionName = utils.getCollectionNameByGameId(gameId);
 
@@ -148,7 +110,7 @@ exports.loadGame = functions.https.onCall(async (data) => {
   }
 
   // Get 'meta' from given game session
-  const sessionRef = getSessionRef(collectionName, gameId);
+  const sessionRef = utils.getSessionRef(collectionName, gameId);
   const gameMeta = await sessionRef.doc('meta').get();
 
   if (!gameMeta.exists) {
@@ -168,12 +130,12 @@ exports.addPlayer = functions.https.onCall(async (data) => {
   const { gameId, gameName: collectionName, playerName, playerAvatarId } = data;
 
   const actionText = 'add player';
-  verifyPayload(gameId, 'gameId', actionText);
-  verifyPayload(collectionName, 'collectionName', actionText);
-  verifyPayload(playerName, 'playerName', actionText);
+  utils.verifyPayload(gameId, 'gameId', actionText);
+  utils.verifyPayload(collectionName, 'collectionName', actionText);
+  utils.verifyPayload(playerName, 'playerName', actionText);
 
   // Get 'state' from given game session
-  const sessionRef = getSessionRef(collectionName, gameId);
+  const sessionRef = utils.getSessionRef(collectionName, gameId);
   const gameState = await sessionRef.doc('state').get();
 
   if (!gameState.exists) {
@@ -209,13 +171,13 @@ exports.lockGame = functions.https.onCall(async (data, context) => {
   const { gameId, gameName: collectionName } = data;
 
   const actionText = 'lock game';
-  verifyPayload(gameId, 'gameId', actionText);
-  verifyPayload(collectionName, 'collectionName', actionText);
-  verifyAuth(context, actionText);
+  utils.verifyPayload(gameId, 'gameId', actionText);
+  utils.verifyPayload(collectionName, 'collectionName', actionText);
+  utils.verifyAuth(context, actionText);
 
   // Find game state and get all players
   // Get 'state' from given game session
-  const sessionRef = getSessionRef(collectionName, gameId);
+  const sessionRef = utils.getSessionRef(collectionName, gameId);
   const gameState = await sessionRef.doc('state').get();
 
   if (!gameState.exists) {
@@ -246,11 +208,11 @@ exports.arteRuimMakeMeReady = functions.https.onCall(async (data) => {
   const { gameId, gameName: collectionName, playerName } = data;
 
   const actionText = 'make you ready';
-  verifyPayload(gameId, 'gameId', actionText);
-  verifyPayload(collectionName, 'collectionName', actionText);
-  verifyPayload(playerName, 'playerName', actionText);
+  utils.verifyPayload(gameId, 'gameId', actionText);
+  utils.verifyPayload(collectionName, 'collectionName', actionText);
+  utils.verifyPayload(playerName, 'playerName', actionText);
 
-  const sessionRef = getSessionRef(collectionName, gameId);
+  const sessionRef = utils.getSessionRef(collectionName, gameId);
   const gameState = await sessionRef.doc('state').get();
 
   if (!gameState.exists) {
@@ -308,11 +270,11 @@ exports.arteRuimSubmitDrawing = functions.https.onCall(async (data) => {
   const { gameId, gameName: collectionName, playerName } = data;
 
   const actionText = 'submit your drawing';
-  verifyPayload(gameId, 'gameId', actionText);
-  verifyPayload(collectionName, 'collectionName', actionText);
-  verifyPayload(playerName, 'playerName', actionText);
+  utils.verifyPayload(gameId, 'gameId', actionText);
+  utils.verifyPayload(collectionName, 'collectionName', actionText);
+  utils.verifyPayload(playerName, 'playerName', actionText);
 
-  const sessionRef = getSessionRef(collectionName, gameId);
+  const sessionRef = utils.getSessionRef(collectionName, gameId);
   const gameState = await sessionRef.doc('state').get();
 
   if (!gameState.exists) {
@@ -337,11 +299,11 @@ exports.arteRuimSubmitVoting = functions.https.onCall(async (data) => {
   const { gameId, gameName: collectionName, playerName } = data;
 
   const actionText = 'submit your votes';
-  verifyPayload(gameId, 'gameId', actionText);
-  verifyPayload(collectionName, 'collectionName', actionText);
-  verifyPayload(playerName, 'playerName', actionText);
+  utils.verifyPayload(gameId, 'gameId', actionText);
+  utils.verifyPayload(collectionName, 'collectionName', actionText);
+  utils.verifyPayload(playerName, 'playerName', actionText);
 
-  const sessionRef = getSessionRef(collectionName, gameId);
+  const sessionRef = utils.getSessionRef(collectionName, gameId);
   const gameState = await sessionRef.doc('state').get();
 
   if (!gameState.exists) {
@@ -366,11 +328,11 @@ exports.arteRuimSubmitRating = functions.https.onCall(async (data) => {
   const { gameId, gameName: collectionName, playerName } = data;
 
   const actionText = 'rate a drawing';
-  verifyPayload(gameId, 'gameId', actionText);
-  verifyPayload(collectionName, 'collectionName', actionText);
-  verifyPayload(playerName, 'playerName', actionText);
+  utils.verifyPayload(gameId, 'gameId', actionText);
+  utils.verifyPayload(collectionName, 'collectionName', actionText);
+  utils.verifyPayload(playerName, 'playerName', actionText);
 
-  const sessionRef = getSessionRef(collectionName, gameId);
+  const sessionRef = utils.getSessionRef(collectionName, gameId);
   const gameState = await sessionRef.doc('state').get();
 
   if (!gameState.exists) {
@@ -391,11 +353,11 @@ exports.arteRuimGoToGalleryItem = functions.https.onCall(async (data, context) =
   const { gameId, gameName: collectionName } = data;
 
   const actionText = 'go to gallery item';
-  verifyPayload(gameId, 'gameId', actionText);
-  verifyPayload(collectionName, 'collectionName', actionText);
-  verifyAuth(context, actionText);
+  utils.verifyPayload(gameId, 'gameId', actionText);
+  utils.verifyPayload(collectionName, 'collectionName', actionText);
+  utils.verifyAuth(context, actionText);
 
-  const sessionRef = getSessionRef(collectionName, gameId);
+  const sessionRef = utils.getSessionRef(collectionName, gameId);
   const gameState = await sessionRef.doc('state').get();
 
   if (!gameState.exists) {
@@ -416,11 +378,11 @@ exports.arteRuimForceEverybodyReady = functions.https.onCall(async (data, contex
   const { gameId, gameName: collectionName } = data;
 
   const actionText = 'force to make everybody ready';
-  verifyPayload(gameId, 'gameId', actionText);
-  verifyPayload(collectionName, 'collectionName', actionText);
-  verifyAuth(context, actionText);
+  utils.verifyPayload(gameId, 'gameId', actionText);
+  utils.verifyPayload(collectionName, 'collectionName', actionText);
+  utils.verifyAuth(context, actionText);
 
-  const sessionRef = getSessionRef(collectionName, gameId);
+  const sessionRef = utils.getSessionRef(collectionName, gameId);
   const gameState = await sessionRef.doc('state').get();
 
   if (!gameState.exists) {

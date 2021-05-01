@@ -1,7 +1,48 @@
+import * as functions from 'firebase-functions';
+import * as admin from 'firebase-admin';
+
 import * as constants from './constants';
 import { arteRuim } from '../engine/arte-ruim';
 
 const { GAME_CODES, GAME_COLLECTIONS } = constants;
+
+/**
+ * Validate if payload property exists
+ * @param property
+ * @param propertyName
+ * @param action
+ */
+export function verifyPayload(property?: string, propertyName = 'unknown property', action = 'function') {
+  if (!property) {
+    throw new functions.https.HttpsError('internal', `Failed to ${action}: a ${propertyName} is required`);
+  }
+}
+
+/**
+ * Validate if user is authenticated
+ * @param context
+ * @param action
+ */
+export function verifyAuth(context: any, action = 'perform function') {
+  // Verify auth
+  const uid = context?.auth?.uid;
+  if (!uid) {
+    throw new functions.https.HttpsError('internal', `Failed to ${action}: you must be logged in`);
+  }
+}
+
+/**
+ * Get Firebase session for gameId in collection
+ * @param collectionName
+ * @param gameId
+ * @returns firebase session reference
+ */
+export function getSessionRef(
+  collectionName: string,
+  gameId: string
+): FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData> {
+  return admin.firestore().collection(collectionName).doc(gameId).collection('session');
+}
 
 /**
  * Generates an unique game id starting with the gameCode character
