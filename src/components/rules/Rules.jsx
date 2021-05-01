@@ -3,8 +3,6 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { Button, Layout, message, notification, Space, Typography } from 'antd';
 // State
 import useGlobalState from '../../hooks/useGlobalState';
-// Utils
-import gameList from '../../resources/games.json';
 // Components
 import RulesCarousel from './RulesCarousel';
 import LoadingPage from '../loaders/LoadingPage';
