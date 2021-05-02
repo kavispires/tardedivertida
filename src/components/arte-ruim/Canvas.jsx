@@ -3,11 +3,13 @@ import { Stage, Layer, Line } from 'react-konva';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 
-const Canvas = ({ drawing = [], className = '' }) => {
+const Canvas = ({ drawing = '[]', className = '' }) => {
+  const lines = typeof drawing === 'string' ? JSON.parse(drawing) : drawing;
+
   return (
     <Stage width={500} height={500} className={clsx('canvas', className)}>
       <Layer>
-        {drawing.map((line, i) => (
+        {lines.map((line, i) => (
           <Line
             key={i}
             points={line}
@@ -24,8 +26,7 @@ const Canvas = ({ drawing = [], className = '' }) => {
 };
 
 Canvas.propTypes = {
-  lines: PropTypes.array.isRequired,
-  setLines: PropTypes.func.isRequired,
+  lines: PropTypes.oneOfType(PropTypes.array, PropTypes.string).isRequired,
   className: PropTypes.string,
 };
 

@@ -11,6 +11,7 @@ import Lobby from '../lobby/Lobby';
 import Rules from '../rules/Rules';
 import PageError from '../errors/PageError';
 import DrawPhase from './DrawPhase';
+import EvaluationPhase from './EvaluationPhase';
 
 function getActiveComponent(phase) {
   switch (phase) {
@@ -20,6 +21,8 @@ function getActiveComponent(phase) {
       return Rules;
     case ARTE_RUIM_PHASES.DRAW:
       return DrawPhase;
+    case ARTE_RUIM_PHASES.EVALUATION:
+      return EvaluationPhase;
     default:
       return PageError;
   }
