@@ -20,7 +20,6 @@ function Rules({ players, info }) {
 
   useEffect(() => {
     if (!amIReady) {
-      console.log('changed amIready');
       const ready = players?.[me]?.ready;
       setImReady(ready);
       if (ready) {
