@@ -29,7 +29,9 @@ export const arteRuim = {
     players: {},
     store: {
       usedCards: [],
-      previousDrawings: {},
+      previousDrawings: [],
+      currentCards: [],
+      currentDrawings: [],
     },
     state: {
       phase: ARTE_RUIM_PHASES.LOBBY,
@@ -185,15 +187,16 @@ export const nextArteRuimPhase = async (
       return {
         id: card,
         playerName: currentPlayer,
-        drawing: null,
-        upVotes: 0,
-        downVotes: 0,
+        // drawing: null,
+        // upVotes: 0,
+        // downVotes: 0,
       };
     });
 
     // Save used cards to store
     await sessionRef.doc('store').update({
       usedCards: [...usedCards, ...newUsedCards],
+      currentCards: newUsedCards,
     });
     // Save new state
     await sessionRef.doc('state').set({
@@ -202,6 +205,26 @@ export const nextArteRuimPhase = async (
       pointsToVictory,
       round: (state?.round ?? 0) + 1,
     });
+    // Unready players and return
+    await sessionRef.doc('players').set(unReadyPlayers(players));
+
+    return true;
+  }
+
+  // DRAW -> EVALUATION
+  if (nextPhase === ARTE_RUIM_PHASES.EVALUATION) {
+    const shuffledCards = gameUtils.shuffle(store.currentCards);
+    const shuffledDrawings = gameUtils.shuffle(store.currentDrawings);
+
+    // Save new state
+    await sessionRef.doc('state').set({
+      phase: nextPhase,
+      cards: shuffledCards,
+      drawings: shuffledDrawings,
+      pointsToVictory,
+      round: state?.round ?? 0,
+    });
+
     // Unready players and return
     await sessionRef.doc('players').set(unReadyPlayers(players));
 

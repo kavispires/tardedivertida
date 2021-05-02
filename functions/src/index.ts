@@ -214,39 +214,59 @@ exports.arteRuimMakeMeReady = functions.https.onCall(async (data) => {
     }
   }
 
-  console.log('all players are ready!');
+  console.log('All players are ready!');
 
   // If all players are ready, trigger next phase
   return arteRuimEngine.nextArteRuimPhase(collectionName, gameId, playerName, players);
 });
 
 exports.arteRuimSubmitDrawing = functions.https.onCall(async (data) => {
-  const { gameId, gameName: collectionName, playerName } = data;
+  const { gameId, gameName: collectionName, playerName, drawing, cardId } = data;
 
   const actionText = 'submit your drawing';
   utils.verifyPayload(gameId, 'gameId', actionText);
   utils.verifyPayload(collectionName, 'collectionName', actionText);
   utils.verifyPayload(playerName, 'playerName', actionText);
+  utils.verifyPayload(drawing, 'drawing', actionText);
+  utils.verifyPayload(cardId, 'cardId', actionText);
 
+  // Get 'players' from given game session
   const sessionRef = utils.getSessionRef(collectionName, gameId);
-  const gameState = await sessionRef.doc('state').get();
+  const playersDoc = await utils.getSessionDoc(collectionName, gameId, 'players', actionText);
+  const storeDoc = await utils.getSessionDoc(collectionName, gameId, 'store', actionText);
 
-  if (!gameState.exists) {
-    throw new functions.https.HttpsError(
-      'internal',
-      `Failed to ${actionText}: game '${collectionName}/${gameId}' does not exist`
-    );
+  // Submit drawing
+  const store = storeDoc.data();
+  try {
+    const newStore = { ...store };
+    newStore?.currentDrawings?.push({
+      drawing,
+      cardId,
+      playerName,
+    });
+
+    await sessionRef.doc('store').set({ ...newStore });
+  } catch (error) {
+    utils.throwException(error, actionText);
   }
 
-  // TODO
-
-  // Save drawing
-
   // Make player ready
+  const players = playersDoc.data() ?? {};
+  const updatedPlayers = arteRuimEngine.readyPlayer(players, playerName);
 
-  // If all players are now ready, check phase then prepare and go to next phase
+  if (!arteRuimEngine.isEverybodyReady(updatedPlayers)) {
+    try {
+      await sessionRef.doc('players').update({ [playerName]: updatedPlayers[playerName] });
+      return true;
+    } catch (error) {
+      utils.throwException(error, actionText);
+    }
+  }
 
-  return {};
+  console.log('All players are ready!');
+
+  // If all players are ready, trigger next phase
+  return arteRuimEngine.nextArteRuimPhase(collectionName, gameId, playerName, players);
 });
 
 exports.arteRuimSubmitVoting = functions.https.onCall(async (data) => {

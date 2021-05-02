@@ -27,7 +27,9 @@ export interface Players {
 
 export interface ArteRuimStore {
   usedCards: string[];
-  previousDrawings: any;
+  previousDrawings: any[];
+  currentCards: string[];
+  currentDrawings: any[];
   [key: string]: any;
 }
 
