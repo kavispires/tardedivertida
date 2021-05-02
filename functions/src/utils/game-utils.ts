@@ -5,7 +5,7 @@
  * @param list
  * @returns
  */
-export const shuffle = (list: unknown[]) => {
+export const shuffle = (list: any[]) => {
   const result = [...list];
   result.sort(() => Math.random() - 0.5);
   return result;
