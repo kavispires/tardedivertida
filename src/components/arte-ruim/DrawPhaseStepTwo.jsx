@@ -4,7 +4,7 @@ import { useTimer } from 'react-timer-hook';
 // Components
 import DrawingCanvas from './DrawingCanvas';
 
-function DrawPhaseStepTwo({ secretWord, onSubmitDrawing }) {
+function DrawPhaseStepTwo({ secretCard, onSubmitDrawing }) {
   const [lines, setLines] = useState([]);
 
   const { seconds } = useTimer({
@@ -13,13 +13,12 @@ function DrawPhaseStepTwo({ secretWord, onSubmitDrawing }) {
     onExpire: () => onSubmitDrawing(lines),
   });
 
-  console.log(secretWord);
   return (
     <div className="draw-phase-step-two">
       <div className="draw-phase-step-two__card">
         <span className="draw-phase-step-two__card-title">Desenhe</span>
-        <span className="draw-phase-step-two__card-text">{secretWord?.text}</span>
-        <span className="draw-phase-step-two__card-level">{Array(secretWord?.level).fill('•')}</span>
+        <span className="draw-phase-step-two__card-text">{secretCard?.text}</span>
+        <span className="draw-phase-step-two__card-level">{Array(secretCard?.level).fill('•')}</span>
         <span className="draw-phase-step-two__timer">{seconds}s</span>
       </div>
 
@@ -29,7 +28,7 @@ function DrawPhaseStepTwo({ secretWord, onSubmitDrawing }) {
 }
 
 DrawPhaseStepTwo.propTypes = {
-  secretWord: PropTypes.shape({
+  secretCard: PropTypes.shape({
     text: PropTypes.string,
     level: PropTypes.number,
   }).isRequired,
