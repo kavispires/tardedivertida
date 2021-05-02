@@ -5,6 +5,8 @@ import { Button, Layout, message, notification, Space, Typography } from 'antd';
 import useGlobalState from '../../hooks/useGlobalState';
 // Hooks
 import { useLoading } from '../../hooks';
+// Resources
+import allCards from '../../resources/arte-ruim-cards.json';
 // Components
 import LoadingPage from '../loaders/LoadingPage';
 import DrawPhaseStepOne from './DrawPhaseStepOne';
@@ -58,11 +60,16 @@ function DrawPhase({ players, state, info }) {
     return <LoadingPage />;
   }
 
+  const myCardId = state?.cards?.[me];
+  const secretWord = allCards?.[myCardId] ?? {};
+
   return (
     <Layout.Content className="draw-phase">
       {step === 1 && !amIReady && <DrawPhaseStepOne setStep={setStep} round={state?.round} />}
 
-      {step === 2 && !amIReady && <DrawPhaseStepTwo state={state} onSubmitDrawing={onSubmitDrawing} />}
+      {step === 2 && !amIReady && (
+        <DrawPhaseStepTwo secretWord={secretWord} onSubmitDrawing={onSubmitDrawing} />
+      )}
       {/**
        * User timer and let player draw for 10 seconds
        */}
