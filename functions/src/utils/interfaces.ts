@@ -29,7 +29,8 @@ export interface ArteRuimStore {
   usedCards: string[];
   previousDrawings: any[];
   currentCards: string[];
-  currentDrawings: any[];
+  currentDrawings: DrawingEntry[];
+  currentVoting: any;
   [key: string]: any;
 }
 
@@ -44,6 +45,12 @@ export interface ArteRuimInitialState {
   players: Players;
   store: ArteRuimStore;
   state: ArteRuimState;
+}
+
+export interface DrawingEntry {
+  cardId: string | number;
+  drawing: string;
+  playerName: string;
 }
 
 // FROM THIS LINE DOWN I HAS TO BE REVIEWED

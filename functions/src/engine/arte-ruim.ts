@@ -7,7 +7,14 @@ import {
 } from '../utils/constants';
 import * as gameUtils from '../utils/game-utils';
 import * as utils from '../utils/index';
-import { ArteRuimInitialState, Players, Player, ArteRuimState, StatePlayers } from '../utils/interfaces';
+import {
+  ArteRuimInitialState,
+  Players,
+  Player,
+  ArteRuimState,
+  StatePlayers,
+  PlainObject,
+} from '../utils/interfaces';
 
 export const arteRuim = {
   /**
@@ -32,6 +39,7 @@ export const arteRuim = {
       previousDrawings: [],
       currentCards: [],
       currentDrawings: [],
+      currentVoting: {},
     },
     state: {
       phase: ARTE_RUIM_PHASES.LOBBY,
@@ -227,6 +235,58 @@ export const nextArteRuimPhase = async (
 
     // Unready players and return
     await sessionRef.doc('players').set(unReadyPlayers(players));
+
+    return true;
+  }
+
+  if (nextPhase === ARTE_RUIM_PHASES.GALLERY) {
+    // Calculate everybody's points
+    const gallery = store.currentDrawings.map((drawingEntry) => {
+      const correctAnswer = `${drawingEntry.cardId}`;
+      const artist = drawingEntry.playerName;
+
+      const newEntry = {
+        drawing: drawingEntry.drawing,
+        artist,
+        correctAnswer,
+        playersSay: {},
+        playerPoints: {},
+      };
+
+      const playersSay = {};
+      const playerPoints = {};
+
+      Object.entries(<PlainObject>store.currentVoting).forEach(([pName, votes]) => {
+        // Calculate what players say
+        const currentVote = votes[correctAnswer];
+        if (playersSay[currentVote] === undefined) {
+          playersSay[currentVote] = [];
+        }
+        playersSay[currentVote].push(pName);
+        // Calculate player points
+        if (playerPoints[pName] === undefined) {
+          playerPoints[pName] = 0;
+        }
+        if (playerPoints[pName] === undefined) {
+          playerPoints[artist] = 0;
+        }
+
+        if (currentVote === correctAnswer) {
+          playerPoints[pName] += 2;
+          playerPoints[artist] += 1;
+        }
+      });
+      newEntry.playersSay = playersSay;
+      newEntry.playerPoints = playerPoints;
+      return newEntry;
+    });
+
+    await sessionRef.doc('state').set({
+      phase: nextPhase,
+      gallery,
+      pointsToVictory,
+      round: state?.round ?? 0,
+    });
 
     return true;
   }
