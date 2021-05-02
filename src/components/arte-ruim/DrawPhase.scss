@@ -1,0 +1,41 @@
+.draw-phase {
+  border: 1px solid get-color(white);
+  border-radius: get-unit(1);
+  margin: get-unit(4);
+  padding: get-unit(4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.draw-phase-step-one {
+  $self: &;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  h1#{$self}__title {
+    color: get-color(white);
+    text-align: center;
+  }
+
+  &__round {
+    background: rgba($color: get-color(white), $alpha: 0.3);
+    max-width: 350px;
+    font-size: 15em;
+    aspect-ratio: 1 / 1;
+    font-weight: bolder;
+    color: get-color(white);
+    border-radius: 50%;
+    border: get-unit(5) inset get-color(white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: get-unit(5 auto);
+  }
+
+  &__instructions {
+    margin: get-unit(5);
+    color: get-color(white);
+  }
+}

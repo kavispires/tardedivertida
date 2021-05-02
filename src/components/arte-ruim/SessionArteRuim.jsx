@@ -10,6 +10,7 @@ import gameList from '../../resources/games.json';
 import Lobby from '../lobby/Lobby';
 import Rules from '../rules/Rules';
 import PageError from '../errors/PageError';
+import DrawPhase from './DrawPhase';
 
 function getActiveComponent(phase) {
   switch (phase) {
@@ -17,6 +18,8 @@ function getActiveComponent(phase) {
       return Lobby;
     case ARTE_RUIM_PHASES.RULES:
       return Rules;
+    case ARTE_RUIM_PHASES.DRAW:
+      return DrawPhase;
     default:
       return PageError;
   }
