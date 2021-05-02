@@ -12,7 +12,7 @@ import LoadingPage from '../loaders/LoadingPage';
 import { ARTE_RUIM_API } from '../../adapters';
 import WaitingRoom from './WaitingRoom';
 import Card from './Card';
-import { LETTERS } from '../../utils/constants';
+import { ARTE_RUIM_PHASES, LETTERS } from '../../utils/constants';
 import CanvasSVG from './CanvasSVG';
 import Ribbon from './Ribbon';
 import { CloudUploadOutlined } from '@ant-design/icons';
@@ -28,8 +28,8 @@ function EvaluationPhase({ players, state, info }) {
   const [activeItem, setActiveItem] = useState(null);
 
   useEffect(() => {
-    if (!amIReady) {
-      const ready = players?.[me]?.ready;
+    if (state.phase === ARTE_RUIM_PHASES.EVALUATION) {
+      const ready = Boolean(players?.[me]?.ready);
       setImReady(ready);
       if (ready) {
         setStep(3);
@@ -64,8 +64,6 @@ function EvaluationPhase({ players, state, info }) {
     },
     [activeItem]
   );
-
-  // console.table(votes);
 
   const onSubmitVoting = useCallback(async () => {
     try {
