@@ -1,0 +1,7 @@
+.waiting-room {
+  width: 50%;
+  background: rgba($color: get-color(white), $alpha: 0.5);
+  border-radius: get-unit(1);
+  padding: get-unit(6 2);
+  text-align: center;
+}
