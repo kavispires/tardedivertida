@@ -31,7 +31,7 @@ function DrawPhaseStepTwo({ secretWord, onSubmitDrawing }) {
 DrawPhaseStepTwo.propTypes = {
   secretWord: PropTypes.shape({
     text: PropTypes.string,
-    level: PropTypes.string,
+    level: PropTypes.number,
   }).isRequired,
   onSubmitDrawing: PropTypes.func.isRequired,
 };
