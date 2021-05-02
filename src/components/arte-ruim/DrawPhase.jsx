@@ -11,9 +11,9 @@ import allCards from '../../resources/arte-ruim-cards.json';
 import LoadingPage from '../loaders/LoadingPage';
 import DrawPhaseStepOne from './DrawPhaseStepOne';
 import DrawPhaseStepTwo from './DrawPhaseStepTwo';
-
 import { ARTE_RUIM_API } from '../../adapters';
 import WaitingRoom from './WaitingRoom';
+import { ARTE_RUIM_PHASES } from '../../utils/constants';
 
 function DrawPhase({ players, state, info }) {
   const [, setLoader] = useLoading();
@@ -30,8 +30,8 @@ function DrawPhase({ players, state, info }) {
   }, [state?.cards, me]);
 
   useEffect(() => {
-    if (!amIReady) {
-      const ready = players?.[me]?.ready;
+    if (state.phase === ARTE_RUIM_PHASES.DRAW) {
+      const ready = Boolean(players?.[me]?.ready);
       setImReady(ready);
       if (ready) {
         setStep(3);
