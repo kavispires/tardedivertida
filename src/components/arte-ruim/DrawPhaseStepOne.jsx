@@ -18,4 +18,9 @@ function DrawPhaseStepOne({ setStep, round }) {
   );
 }
 
+DrawPhaseStepOne.propTypes = {
+  round: PropTypes.number,
+  setStep: PropTypes.func.isRequired,
+};
+
 export default DrawPhaseStepOne;
