@@ -61,7 +61,7 @@ function DrawPhase({ players, state, info }) {
           description: JSON.stringify(e),
           placement: 'bottomLeft',
         });
-        console.trace(e);
+        console.error(e);
       } finally {
         setLoader('submit-drawing', false);
       }

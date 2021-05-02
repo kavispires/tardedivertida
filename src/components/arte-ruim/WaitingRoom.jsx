@@ -5,7 +5,7 @@ import { Spin, Typography } from 'antd';
 // Components
 import ReadyPlayersBar from '../ReadyPlayersBar';
 
-const WaitingRoom = (players) => {
+const WaitingRoom = ({ players }) => {
   return (
     <div className="waiting-room">
       <Typography.Title className="waiting-room__title">Pronto!</Typography.Title>

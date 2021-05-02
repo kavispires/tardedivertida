@@ -26,8 +26,11 @@
 @import '../components/ReadyPlayersBar.scss';
 
 // ArteRuim Components
+@import '../components/arte-ruim/Card.scss';
 @import '../components/arte-ruim/DrawPhase.scss';
 @import '../components/arte-ruim/WaitingRoom.scss';
+@import '../components/arte-ruim/EvaluationPhase.scss';
+@import '../components/arte-ruim/Ribbon.scss';
 
 // Pages
 @import '../components/App.scss';
