@@ -97,12 +97,6 @@
     box-shadow: 0 5px 7px 0px rgba($color: get-color(black), $alpha: 0.5);
     animation: pulse 1s ease-in-out infinite;
   }
-
-  &__canvas {
-    width: 500px;
-    height: 500px;
-    background: get-color(white);
-  }
 }
 
 @keyframes pulse {
@@ -115,4 +109,10 @@
   100% {
     transform: translate(50%, -50%) rotate(35deg) scale(1.2);
   }
+}
+
+.canvas {
+  width: 500px;
+  height: 500px;
+  background: get-color(white);
 }

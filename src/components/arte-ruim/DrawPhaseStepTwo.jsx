@@ -1,13 +1,19 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { useTimer } from 'react-timer-hook';
-// Design Resources
+// Components
+import DrawingCanvas from './DrawingCanvas';
 
-function DrawPhaseStepOne({ setStep, secretWord, onSubmitDrawing }) {
-  const { seconds, minutes, hours, days, isRunning, start, pause, resume, restart } = useTimer({
+function DrawPhaseStepTwo({ secretWord, onSubmitDrawing }) {
+  const [lines, setLines] = useState([]);
+
+  const { seconds } = useTimer({
     expiryTimestamp: Date.now() + 10000,
     autoStart: true,
-    onExpire: () => alert('its over'),
+    onExpire: () => onSubmitDrawing(lines),
   });
+
+  console.log(secretWord);
   return (
     <div className="draw-phase-step-two">
       <div className="draw-phase-step-two__card">
@@ -17,9 +23,17 @@ function DrawPhaseStepOne({ setStep, secretWord, onSubmitDrawing }) {
         <span className="draw-phase-step-two__timer">{seconds}s</span>
       </div>
 
-      <div className="draw-phase-step-two__canvas"></div>
+      <DrawingCanvas lines={lines} setLines={setLines} />
     </div>
   );
 }
 
-export default DrawPhaseStepOne;
+DrawPhaseStepTwo.propTypes = {
+  secretWord: PropTypes.shape({
+    text: PropTypes.string,
+    level: PropTypes.string,
+  }).isRequired,
+  onSubmitDrawing: PropTypes.func.isRequired,
+};
+
+export default DrawPhaseStepTwo;
