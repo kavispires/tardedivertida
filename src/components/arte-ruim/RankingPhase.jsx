@@ -7,22 +7,19 @@ import useGlobalState from '../../hooks/useGlobalState';
 import { useLoading } from '../../hooks';
 // Components
 import LoadingPage from '../loaders/LoadingPage';
-
 import { ARTE_RUIM_API } from '../../adapters';
-import GalleryWindow from './GalleryWindow';
 import { RocketFilled } from '@ant-design/icons';
 
-function GalleryPhase({ players, state, info }) {
+function RankingPhase({ players, state, info }) {
   const [, setLoader] = useLoading();
   const [gameId] = useGlobalState('gameId');
   const [gameName] = useGlobalState('gameName');
   const [me] = useGlobalState('me');
-  const [activeIndex, setActiveIndex] = useState(0);
   const [isAdmin] = useGlobalState('isAdmin');
 
   const onGoToRankingPhase = useCallback(async () => {
     try {
-      setLoader('go-to-ranking', true);
+      setLoader('go-to-next-round', true);
 
       const response = await ARTE_RUIM_API.goToNextPhase({
         gameId,
@@ -34,13 +31,13 @@ function GalleryPhase({ players, state, info }) {
       }
     } catch (e) {
       notification.error({
-        message: 'Vixi, o aplicativo encontrou um erro ao tentar ir para o ranking',
+        message: 'Vixi, o aplicativo encontrou um erro ao tentar ir para a proxima rodada',
         description: JSON.stringify(e),
         placement: 'bottomLeft',
       });
       console.error(e);
     } finally {
-      setLoader('go-to-ranking', false);
+      setLoader('go-to-next-round', false);
     }
   }, [gameId, gameName, me, setLoader]);
 
@@ -49,24 +46,16 @@ function GalleryPhase({ players, state, info }) {
   }
 
   return (
-    <Layout.Content className="phase-container phase-container--vertical gallery-phase">
-      <Typography.Title className="center">Galeria de Arte</Typography.Title>
-      {state?.gallery && (
-        <GalleryWindow
-          window={state.gallery[activeIndex]}
-          galleryLength={state.gallery.length}
-          players={players}
-          activeIndex={activeIndex}
-          setActiveIndex={setActiveIndex}
-        />
-      )}
+    <Layout.Content className="phase-container phase-container--vertical ranking-phase">
+      <Typography.Title className="center">Ranking</Typography.Title>
+      div.
       {isAdmin && (
         <Button icon={<RocketFilled />} danger type="primary" onClick={onGoToRankingPhase}>
-          Ir para Ranking
+          Ir para o próximo jogo ou trancar esse se tiver acabado
         </Button>
       )}
     </Layout.Content>
   );
 }
 
-export default GalleryPhase;
+export default RankingPhase;

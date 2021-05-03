@@ -13,6 +13,7 @@ import PageError from '../errors/PageError';
 import DrawPhase from './DrawPhase';
 import EvaluationPhase from './EvaluationPhase';
 import GalleryPhase from './GalleryPhase';
+import RankingPhase from './RankingPhase';
 
 function getActiveComponent(phase) {
   switch (phase) {
@@ -26,6 +27,8 @@ function getActiveComponent(phase) {
       return EvaluationPhase;
     case ARTE_RUIM_PHASES.GALLERY:
       return GalleryPhase;
+    case ARTE_RUIM_PHASES.RANKING:
+      return RankingPhase;
     default:
       return PageError;
   }
