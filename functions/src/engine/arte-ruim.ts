@@ -202,7 +202,7 @@ export const nextArteRuimPhase = async (
 
     // Save used cards to store
     await sessionRef.doc('store').update({
-      usedCards: [...usedCards, ...newUsedCards],
+      usedCards: [...store.usedCards, ...newUsedCards],
       currentCards: newUsedCards,
     });
     // Save new state
@@ -331,11 +331,15 @@ export const nextArteRuimPhase = async (
     await sessionRef.doc('store').update({
       previousDrawings: [...store.previousDrawings, ...store.currentDrawings],
       currentDrawings: [],
+      currentCards: [],
+      currentVoting: {},
     });
+
+    const newPointsToVictory = getPointsToVictory(newPlayers, ARTE_RUIM_GOAL);
 
     await sessionRef.doc('state').set({
       phase: nextPhase,
-      pointsToVictory,
+      pointsToVictory: newPointsToVictory,
       ranking,
       round: state?.round ?? 0,
     });
