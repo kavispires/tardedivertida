@@ -24,7 +24,9 @@ function GalleryWindowResult({ artist, correctAnswer, playersPoints, playersSay,
           <div className="gallery-window__players">
             <AntAvatar.Group>
               {correctGuesses.map((playerName) => {
-                return <Avatar id={players[playerName].avatarId} />;
+                return (
+                  <Avatar key={`correct-guess-avatar-${playerName}`} id={players[playerName].avatarId} />
+                );
               })}
             </AntAvatar.Group>
             <StarPoints quantity={2} />
