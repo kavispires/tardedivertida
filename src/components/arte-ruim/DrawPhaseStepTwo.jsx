@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useTimer } from 'react-timer-hook';
+// Utils
+import { inNSeconds } from '../../utils';
 // Components
 import DrawingCanvas from './DrawingCanvas';
 
@@ -8,7 +10,7 @@ function DrawPhaseStepTwo({ secretCard, onSubmitDrawing }) {
   const [lines, setLines] = useState([]);
 
   const { seconds } = useTimer({
-    expiryTimestamp: Date.now() + 10000,
+    expiryTimestamp: inNSeconds(10),
     autoStart: true,
     onExpire: () => onSubmitDrawing(lines),
   });

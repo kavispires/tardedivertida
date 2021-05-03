@@ -2,20 +2,20 @@ import React, { useCallback, useEffect, useState } from 'react';
 import clsx from 'clsx';
 // Design Resources
 import { Button, Layout, message, notification, Space, Typography } from 'antd';
+import { CloudUploadOutlined } from '@ant-design/icons';
 // State
 import useGlobalState from '../../hooks/useGlobalState';
 // Hooks
 import { useLoading } from '../../hooks';
+// Utils
+import { ARTE_RUIM_API } from '../../adapters';
+import { LETTERS } from '../../utils/constants';
 // Components
 import LoadingPage from '../loaders/LoadingPage';
-
-import { ARTE_RUIM_API } from '../../adapters';
 import WaitingRoom from './WaitingRoom';
 import Card from './Card';
-import { ARTE_RUIM_PHASES, LETTERS } from '../../utils/constants';
 import CanvasSVG from './CanvasSVG';
 import Ribbon from './Ribbon';
-import { CloudUploadOutlined } from '@ant-design/icons';
 
 function EvaluationPhase({ players, state, info }) {
   const [, setLoader] = useLoading();
@@ -26,16 +26,6 @@ function EvaluationPhase({ players, state, info }) {
   const [step, setStep] = useState(1);
   const [votes, setVotes] = useState({});
   const [activeItem, setActiveItem] = useState(null);
-
-  useEffect(() => {
-    if (state.phase === ARTE_RUIM_PHASES.EVALUATION) {
-      const ready = Boolean(players?.[me]?.ready);
-      setImReady(ready);
-      if (ready) {
-        setStep(3);
-      }
-    }
-  }, [players, me]); // eslint-disable-line
 
   const onActivateItem = useCallback(
     (entryId) => {
@@ -110,7 +100,8 @@ function EvaluationPhase({ players, state, info }) {
           <Typography.Title className="center">Adivinhação</Typography.Title>
           <Typography.Paragraph className="center">
             Ache os pares de desenho e carta clicando em uma carta ou desenho e em seguida clicando em seu
-            par. Quando encontrar todos os pares, envie sua avaliação
+            par. Uma bandeirinha aparecerá no topo de cada desenho com a cor e letra da carta que você
+            selecionou. Quando encontrar todos os pares, envie sua avaliação!
           </Typography.Paragraph>
           <ul className="evaluation-phase__all-drawings">
             {state?.drawings?.map((drawingEntry) => {

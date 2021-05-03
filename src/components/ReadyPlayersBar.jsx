@@ -6,14 +6,18 @@ import { LikeFilled } from '@ant-design/icons';
 import Avatar from './avatars/Avatar';
 
 function ReadyPlayersBar({ players }) {
+  const readyPlayers = Object.values(players).filter((player) => player.ready);
+
+  if (readyPlayers.length === 0) {
+    return <span></span>;
+  }
+
   return (
     <div className="ready-player-bar">
       <AntAvatar.Group size="small">
-        {Object.values(players)
-          .filter((player) => player.ready)
-          .map((player) => (
-            <Avatar key={player.name} id={player.avatarId} />
-          ))}
+        {readyPlayers.map((player) => (
+          <Avatar key={player.name} id={player.avatarId} />
+        ))}
       </AntAvatar.Group>
       <span className="ready-player-bar__speech-bubble">
         <Typography.Text>Estamos prontos!</Typography.Text>

@@ -7,13 +7,13 @@ import useGlobalState from '../../hooks/useGlobalState';
 import { useLoading } from '../../hooks';
 // Resources
 import allCards from '../../resources/arte-ruim-cards.json';
+// Utils
+import { ARTE_RUIM_API } from '../../adapters';
 // Components
 import LoadingPage from '../loaders/LoadingPage';
 import DrawPhaseStepOne from './DrawPhaseStepOne';
 import DrawPhaseStepTwo from './DrawPhaseStepTwo';
-import { ARTE_RUIM_API } from '../../adapters';
 import WaitingRoom from './WaitingRoom';
-import { ARTE_RUIM_PHASES } from '../../utils/constants';
 
 function DrawPhase({ players, state, info }) {
   const [, setLoader] = useLoading();
@@ -29,15 +29,16 @@ function DrawPhase({ players, state, info }) {
     setSecretCard(allCards?.[myCardId] ?? {});
   }, [state?.cards, me]);
 
-  useEffect(() => {
-    if (state.phase === ARTE_RUIM_PHASES.DRAW) {
-      const ready = Boolean(players?.[me]?.ready);
-      setImReady(ready);
-      if (ready) {
-        setStep(3);
-      }
-    }
-  }, [players, me]); // eslint-disable-line
+  // useEffect(() => {
+  //   if (state.phase === ARTE_RUIM_PHASES.DRAW) {
+  //     const ready = Boolean(players?.[me]?.ready);
+  //     setImReady(ready);
+  //     if (ready) {
+  //       alert('forçou o true aqui');
+  //       setStep(3);
+  //     }
+  //   }
+  // }, [players, me]); // eslint-disable-line
 
   const onSubmitDrawing = useCallback(
     async (lines) => {

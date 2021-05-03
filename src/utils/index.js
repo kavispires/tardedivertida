@@ -25,3 +25,7 @@ export const isValidGameId = (gameId) => {
 export const getRandomItem = (list) => {
   return list[Math.floor(Math.random() * list.length)];
 };
+
+export const inNSeconds = (seconds) => {
+  return Date.now() + seconds * 1000;
+};

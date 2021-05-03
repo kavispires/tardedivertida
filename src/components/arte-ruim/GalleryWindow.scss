@@ -1,0 +1,130 @@
+.gallery-window {
+  display: grid;
+  width: calc(100% - #{get-unit(4)});
+  gap: get-unit(4);
+  padding: get-unit(2);
+  border-radius: get-unit(1);
+
+  grid-template-columns: [first] 50% [second] 1fr [end];
+  grid-template-rows: [first] 1fr [second] 4fr [third] 2fr [fourth] auto [end];
+
+  &__drawing {
+    grid-column: first / second;
+    grid-row: first / fourth;
+    background: get-color(white);
+    border-radius: get-unit(1);
+
+    border: 8px inset get-color(brown);
+  }
+
+  &__credits {
+    grid-column: second / end;
+    grid-row: first / second;
+    background: get-color(white);
+    border-radius: get-unit(1);
+    padding: get-unit(2 3);
+  }
+
+  &__label {
+    font-size: 1.25em;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: get-unit(1);
+  }
+
+  &__artist-name {
+    text-transform: uppercase;
+  }
+
+  &__guesses {
+    grid-column: second / end;
+    grid-row: second / third;
+    background: get-color(white);
+    border-radius: get-unit(1);
+    padding: get-unit(2 3);
+  }
+
+  &__guess {
+    margin-top: get-unit(1);
+  }
+
+  &__speech-bubble {
+    background: get-color(white);
+    box-shadow: 0 3px 5px 2px rgba($color: get-color(black), $alpha: 0.5);
+    padding: get-unit(2 4);
+    text-transform: uppercase;
+    border-radius: 1.5em;
+  }
+
+  &__speech-bubble-icon {
+    margin-right: get-unit(2);
+    color: get-color(gray);
+  }
+
+  &__players {
+    transform: translateY(get-unit(-1));
+    display: flex;
+    align-items: center;
+  }
+
+  &__players-names {
+    margin-left: get-unit(2);
+    color: get-color(gray);
+  }
+
+  &__result {
+    grid-column: second / end;
+    grid-row: third / fourth;
+    background: get-color(white);
+    border-radius: get-unit(1);
+    padding: get-unit(2 3);
+  }
+
+  &__artist-points {
+    display: flex;
+    align-items: center;
+  }
+
+  &__no-wins {
+    color: get-color(red);
+    font-size: 1.2em;
+    padding-top: get-unit(2);
+    display: block;
+  }
+
+  &__controls {
+    grid-column: first / end;
+    grid-row: fourth / end;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  &__timer-bar {
+    width: 100%;
+    height: get-unit(2);
+    margin: get-unit(0 0 4 0);
+    background: get-color(white);
+    border-radius: get-unit(2);
+    flex-grow: 1;
+
+    & > span {
+      height: get-unit(2);
+      border-radius: get-unit(2);
+      background: get-color(purple);
+      display: block;
+      transition: width 1s;
+    }
+  }
+}
+
+.star-points {
+  display: flex;
+  align-items: center;
+  color: get-color(yellow, 6);
+  margin: get-unit(0 1);
+
+  &__stars {
+    margin: get-unit(0 1);
+  }
+}
