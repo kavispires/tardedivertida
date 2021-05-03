@@ -7,7 +7,6 @@ import { Avatar as AntAvatar } from 'antd';
 import avatars from '../../images/avatars.svg';
 
 function Avatar({ id = 25, size = 'large', shape = 'circle', alt = 'Fulano', className = '' }) {
-  console.log(`%c Re-rendered ${id}`, 'color:violet');
   return (
     <AntAvatar
       className={clsx('avatar', className)}

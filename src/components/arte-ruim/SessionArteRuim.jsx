@@ -45,8 +45,10 @@ function SessionArteRuim({ gameId }) {
     setInfo(gameId?.[0] ? gameList[gameId[0]] : {});
   }, [gameId]);
 
-  console.table(players);
-  console.log({ state });
+  if (process.env.NODE_ENV !== 'development') {
+    console.table(players);
+    console.log({ state });
+  }
 
   if (!me) {
     return <Lobby players={players} state={state} info={info} />;
