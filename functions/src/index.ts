@@ -316,54 +316,52 @@ exports.arteRuimSubmitVoting = functions.https.onCall(async (data) => {
   return arteRuimEngine.nextArteRuimPhase(collectionName, gameId, playerName, players);
 });
 
-exports.arteRuimSubmitRating = functions.https.onCall(async (data) => {
-  const { gameId, gameName: collectionName, playerName } = data;
+// exports.arteRuimSubmitRating = functions.https.onCall(async (data) => {
+//   const { gameId, gameName: collectionName, playerName } = data;
 
-  const actionText = 'rate a drawing';
-  utils.verifyPayload(gameId, 'gameId', actionText);
-  utils.verifyPayload(collectionName, 'collectionName', actionText);
-  utils.verifyPayload(playerName, 'playerName', actionText);
+//   const actionText = 'rate a drawing';
+//   utils.verifyPayload(gameId, 'gameId', actionText);
+//   utils.verifyPayload(collectionName, 'collectionName', actionText);
+//   utils.verifyPayload(playerName, 'playerName', actionText);
 
-  const sessionRef = utils.getSessionRef(collectionName, gameId);
-  const gameState = await sessionRef.doc('state').get();
+//   const sessionRef = utils.getSessionRef(collectionName, gameId);
+//   const playersDoc = await utils.getSessionDoc(collectionName, gameId, 'players', actionText);
+//   const storeDoc = await utils.getSessionDoc(collectionName, gameId, 'store', actionText);
 
-  if (!gameState.exists) {
-    throw new functions.https.HttpsError(
-      'internal',
-      `Failed to ${actionText}: game '${collectionName}/${gameId}' does not exist`
-    );
-  }
+//   // Submit drawing
+//   const store = storeDoc.data();
+//   try {
+//     const newStore = { ...store };
+//     newStore.currentVoting = {
+//       [playerName]: votes,
+//       ...newStore?.currentVoting,
+//     };
 
-  // TODO
+//     await sessionRef.doc('store').set({ ...newStore });
+//   } catch (error) {
+//     utils.throwException(error, actionText);
+//   }
 
-  // Save rating for drawing
+//   // Make player ready
+//   const players = playersDoc.data() ?? {};
+//   const updatedPlayers = arteRuimEngine.readyPlayer(players, playerName);
 
-  return true;
-});
+//   return arteRuimEngine.nextArteRuimPhase(collectionName, gameId, playerName, players);
+// });
 
-exports.arteRuimGoToGalleryItem = functions.https.onCall(async (data, context) => {
+exports.arteRuimGoToNextPhase = functions.https.onCall(async (data, context) => {
   const { gameId, gameName: collectionName } = data;
 
-  const actionText = 'go to gallery item';
+  const actionText = 'go to ranking | go to new round';
   utils.verifyPayload(gameId, 'gameId', actionText);
   utils.verifyPayload(collectionName, 'collectionName', actionText);
   utils.verifyAuth(context, actionText);
 
-  const sessionRef = utils.getSessionRef(collectionName, gameId);
-  const gameState = await sessionRef.doc('state').get();
+  const playersDoc = await utils.getSessionDoc(collectionName, gameId, 'players', actionText);
 
-  if (!gameState.exists) {
-    throw new functions.https.HttpsError(
-      'internal',
-      `Failed to ${actionText}: game '${collectionName}/${gameId}' does not exist`
-    );
-  }
+  const players = playersDoc.data() ?? {};
 
-  // TODO
-
-  // Navigate through gallery
-
-  return {};
+  return arteRuimEngine.nextArteRuimPhase(collectionName, gameId, 'admin', players);
 });
 
 exports.arteRuimForceEverybodyReady = functions.https.onCall(async (data, context) => {

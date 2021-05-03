@@ -32,6 +32,7 @@ export const arteRuim = {
       min: 3,
       max: 8,
       isLocked: false,
+      isComplete: false,
     },
     players: {},
     store: {
@@ -250,13 +251,15 @@ export const nextArteRuimPhase = async (
         artist,
         correctAnswer,
         playersSay: {},
-        playerPoints: {},
+        playersPoints: {},
       };
 
       const playersSay = {};
-      const playerPoints = {};
+      const playersPoints = {};
 
       Object.entries(<PlainObject>store.currentVoting).forEach(([pName, votes]) => {
+        if (artist !== pName) return;
+
         // Calculate what players say
         const currentVote = votes[correctAnswer];
         if (playersSay[currentVote] === undefined) {
@@ -264,20 +267,20 @@ export const nextArteRuimPhase = async (
         }
         playersSay[currentVote].push(pName);
         // Calculate player points
-        if (playerPoints[pName] === undefined) {
-          playerPoints[pName] = 0;
+        if (playersPoints[pName] === undefined) {
+          playersPoints[pName] = 0;
         }
-        if (playerPoints[pName] === undefined) {
-          playerPoints[artist] = 0;
+        if (playersPoints[pName] === undefined) {
+          playersPoints[artist] = 0;
         }
 
         if (currentVote === correctAnswer) {
-          playerPoints[pName] += 2;
-          playerPoints[artist] += 1;
+          playersPoints[pName] += 2;
+          playersPoints[artist] += 1;
         }
       });
       newEntry.playersSay = playersSay;
-      newEntry.playerPoints = playerPoints;
+      newEntry.playersPoints = playersPoints;
       return newEntry;
     });
 
@@ -286,6 +289,68 @@ export const nextArteRuimPhase = async (
       gallery,
       pointsToVictory,
       round: state?.round ?? 0,
+    });
+
+    return true;
+  }
+
+  if (nextPhase === ARTE_RUIM_PHASES.RANKING) {
+    // Loop state gallery and gather points
+    const newPlayers = unReadyPlayers(players);
+
+    // Format <player>: [<old score>, <addition points>, <new score>]
+    const newScores: PlainObject = {};
+
+    // Build score object
+    Object.values(newPlayers).forEach((player) => {
+      newScores[player.name] = [player.score, 0, 0];
+    });
+
+    state.gallery.forEach((window) => {
+      Object.entries(window.playerPoints).forEach(([pName, value]) => {
+        const points = Number(value ?? 0);
+        newScores[pName][1] = points;
+        newScores[pName][2] = newScores[pName][0] + points;
+
+        newPlayers[pName].score += Number(points ?? 0);
+      });
+    });
+
+    const ranking = Object.entries(newScores).map(([pName, scores]) => {
+      return {
+        playerName: pName,
+        previousScore: scores[0],
+        gainedPoints: scores[1],
+        newScore: scores[2],
+      };
+    });
+
+    // clear store
+    await sessionRef.doc('store').update({
+      previousDrawings: [...store.previousDrawings, ...store.currentDrawings],
+      currentDrawings: [],
+    });
+
+    await sessionRef.doc('state').set({
+      phase: nextPhase,
+      pointsToVictory,
+      ranking,
+      round: state?.round ?? 0,
+    });
+
+    // Unready players and return
+    await sessionRef.doc('players').set(newPlayers);
+
+    return true;
+  }
+
+  if (nextPhase === ARTE_RUIM_PHASES.GAME_OVER) {
+    await sessionRef.doc('state').set({
+      phase: nextPhase,
+    });
+
+    await sessionRef.doc('meta').update({
+      isComplete: true,
     });
 
     return true;
