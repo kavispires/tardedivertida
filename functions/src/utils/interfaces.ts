@@ -10,6 +10,7 @@ export interface Meta {
   min: number;
   max: number;
   isLocked: boolean;
+  isComplete: boolean;
 }
 
 export interface Player {
