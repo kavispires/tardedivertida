@@ -94,7 +94,7 @@ function EvaluationPhase({ players, state, info }) {
   }
 
   return (
-    <Layout.Content className="evaluation-phase">
+    <Layout.Content className="phase-container phase-container--vertical evaluation-phase">
       {step === 1 && !amIReady && (
         <div className="evaluation-phase__step-one">
           <Typography.Title className="center">Adivinhação</Typography.Title>

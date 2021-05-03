@@ -75,7 +75,7 @@ function DrawPhase({ players, state, info }) {
   }
 
   return (
-    <Layout.Content className="draw-phase">
+    <Layout.Content className="phase-container draw-phase">
       {step === 1 && !amIReady && <DrawPhaseStepOne setStep={setStep} round={state?.round} />}
 
       {step === 2 && !amIReady && (

@@ -1,13 +1,4 @@
 .evaluation-phase {
-  border: 1px solid get-color(white);
-  border-radius: get-unit(1);
-  margin: get-unit(4);
-  padding: get-unit(4);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-
   &__step-one {
     background: get-color(yellow, 2);
     padding: get-unit(4);
@@ -25,7 +16,7 @@
     box-sizing: border-box;
     cursor: pointer;
     border-radius: get-unit(2);
-    transition: background-color 500ms, transform 500ms;
+    transition: background-color 250ms, transform 250ms;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -71,7 +62,7 @@
     border-radius: get-unit(2);
     border: 2px solid transparent;
 
-    transition: background-color 500ms, transform 500ms;
+    transition: background-color 250ms, transform 250ms;
     &:hover {
       transform: scale(0.95);
       background-color: get-color(red);
