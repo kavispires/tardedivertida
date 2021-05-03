@@ -63,7 +63,7 @@ function App() {
   return (
     <Layout className="app">
       <LoadingBar />
-      <Router>
+      <Router basename={process.env.PUBLIC_URL}>
         {isLoading ? (
           <LoadingPage />
         ) : (
