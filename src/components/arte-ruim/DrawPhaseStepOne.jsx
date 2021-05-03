@@ -1,9 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import useSound from 'use-sound';
 // Design Resources
 import { Button, Typography } from 'antd';
+// Sounds
+import arteRuimTimer from '../../sounds/arte-ruim-timer.mp3';
 
 function DrawPhaseStepOne({ setStep, round }) {
+  const [play] = useSound(arteRuimTimer, { volume: 0.4 });
+
   return (
     <div className="draw-phase-step-one">
       <Typography.Title className="draw-phase-step-one__title">RODADA</Typography.Title>
@@ -12,7 +17,14 @@ function DrawPhaseStepOne({ setStep, round }) {
         Você terá 10 segundos para ler a sua carta e desenhá-la. Aperte o botão quando estiver pronto! Fique
         esperto porque começa assim quando você apertar. Não 'seje' lerdo.
       </Typography.Text>
-      <Button type="primary" onClick={() => setStep(2)} className="draw-phase-step-one__go-button">
+      <Button
+        type="primary"
+        onClick={() => {
+          play();
+          setStep(2);
+        }}
+        className="draw-phase-step-one__go-button"
+      >
         Um dó, lá, si... vamos ir... JÁ!
       </Button>
     </div>
