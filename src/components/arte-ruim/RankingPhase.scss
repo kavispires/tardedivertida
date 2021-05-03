@@ -1,0 +1,71 @@
+.ranking-board {
+  display: flex;
+  flex-direction: column;
+  padding: get-unit(4);
+  border-radius: get-unit(1);
+  width: 50vw;
+  min-width: 500px;
+
+  &__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 50px;
+    background: get-color(white);
+    border-radius: get-unit(1);
+    margin: get-unit(2 0);
+    padding: get-unit(2);
+    text-align: center;
+  }
+
+  &__cell-crown {
+    min-width: 50px;
+    text-align: center;
+  }
+
+  &__crown-icon {
+    font-size: 3em;
+    color: get-color(yellow);
+  }
+
+  &__cell-position {
+    font-size: 2em;
+    padding: get-unit(0 3);
+  }
+
+  &__cell-player {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+  }
+
+  &__name {
+    font-size: 1.5em;
+    text-transform: uppercase;
+    margin: get-unit(0 3);
+  }
+
+  &__cell-points {
+    font-size: 1.5em;
+    min-width: 30px;
+  }
+
+  &__cell-points-plus {
+    font-size: 1.5em;
+    min-width: 2em;
+    border-radius: get-unit(8);
+    background: get-color(yellow, 3);
+    padding: get-unit(1);
+    align-self: flex-end;
+    margin: get-unit(0 2);
+  }
+
+  &__cell-points-total {
+    font-size: 1.5em;
+    min-width: 50px;
+    padding: get-unit(0 3);
+    // background: cyan;
+    font-weight: bolder;
+    transform: scale(1.5);
+  }
+}
