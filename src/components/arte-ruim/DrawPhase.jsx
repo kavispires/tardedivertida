@@ -29,17 +29,6 @@ function DrawPhase({ players, state, info }) {
     setSecretCard(allCards?.[myCardId] ?? {});
   }, [state?.cards, me]);
 
-  // useEffect(() => {
-  //   if (state.phase === ARTE_RUIM_PHASES.DRAW) {
-  //     const ready = Boolean(players?.[me]?.ready);
-  //     setImReady(ready);
-  //     if (ready) {
-  //       alert('forçou o true aqui');
-  //       setStep(3);
-  //     }
-  //   }
-  // }, [players, me]); // eslint-disable-line
-
   const onSubmitDrawing = useCallback(
     async (lines) => {
       try {

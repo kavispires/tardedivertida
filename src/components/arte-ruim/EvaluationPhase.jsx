@@ -1,5 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import clsx from 'clsx';
+import React, { useCallback, useState } from 'react';
 // Design Resources
 import { Button, Layout, message, notification, Space, Typography } from 'antd';
 import { CloudUploadOutlined } from '@ant-design/icons';
@@ -9,13 +8,11 @@ import useGlobalState from '../../hooks/useGlobalState';
 import { useLoading } from '../../hooks';
 // Utils
 import { ARTE_RUIM_API } from '../../adapters';
-import { LETTERS } from '../../utils/constants';
 // Components
 import LoadingPage from '../loaders/LoadingPage';
 import WaitingRoom from './WaitingRoom';
-import Card from './Card';
-import CanvasSVG from './CanvasSVG';
-import Ribbon from './Ribbon';
+import EvaluationAllDrawings from './EvaluationAllDrawings';
+import EvaluationAllCards from './EvaluationAllCards';
 
 function EvaluationPhase({ players, state, info }) {
   const [, setLoader] = useLoading();
@@ -41,7 +38,6 @@ function EvaluationPhase({ players, state, info }) {
             };
           });
         } else {
-          //
           setVotes((prevVotes) => {
             return {
               ...prevVotes,
@@ -103,55 +99,29 @@ function EvaluationPhase({ players, state, info }) {
             par. Uma bandeirinha aparecerá no topo de cada desenho com a cor e letra da carta que você
             selecionou. Quando encontrar todos os pares, envie sua avaliação!
           </Typography.Paragraph>
-          <ul className="evaluation-phase__all-drawings">
-            {state?.drawings?.map((drawingEntry) => {
-              const canvasEntryId = `drawing-${drawingEntry.cardId}`;
-              return (
-                <li
-                  key={drawingEntry.id}
-                  className={clsx(
-                    'evaluation-phase__li-drawing-button',
-                    activeItem === canvasEntryId && 'evaluation-phase__li-drawing-button--active'
-                  )}
-                  onClick={() => onActivateItem(canvasEntryId)}
-                >
-                  {votes?.[canvasEntryId] && <Ribbon cardEntryId={votes[canvasEntryId]} />}
-                  <CanvasSVG
-                    key={drawingEntry.cardId}
-                    drawing={drawingEntry.drawing}
-                    className="evaluation-phase__drawing"
-                  />
-                </li>
-              );
-            })}
-          </ul>
 
-          <ul className="evaluation-phase__all-cards">
-            {state?.cards?.map((cardEntry, index) => {
-              const letter = LETTERS[index];
-              const cardEntryId = `card-${cardEntry.id}-${letter}`;
-              return (
-                <li
-                  key={cardEntry.id}
-                  className={clsx(
-                    'evaluation-phase__li-card-button',
-                    activeItem === cardEntryId && 'evaluation-phase__li-card-button--active',
-                    Object.values(votes).includes(cardEntryId) && 'evaluation-phase__li-card-button--used'
-                  )}
-                  onClick={() => onActivateItem(cardEntryId)}
-                >
-                  <Card id={cardEntry.id} title={letter} />
-                </li>
-              );
-            })}
-          </ul>
+          <EvaluationAllDrawings
+            drawings={state?.drawings ?? []}
+            activeItem={activeItem}
+            onActivateItem={onActivateItem}
+            votes={votes}
+          />
+
+          <EvaluationAllCards
+            cards={state?.cards ?? []}
+            activeItem={activeItem}
+            onActivateItem={onActivateItem}
+            votes={votes}
+          />
+
           <Space className="evaluation-phase__action-button">
             <Button
               type="primary"
               onClick={onSubmitVoting}
               disabled={Object.values(votes).length < state.drawings.length}
+              icon={<CloudUploadOutlined />}
             >
-              <CloudUploadOutlined /> Enviar sua avaliação
+              Enviar sua avaliação
             </Button>
           </Space>
         </div>

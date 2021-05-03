@@ -23,8 +23,9 @@ function CanvasSVG({ drawing = '', className = '' }) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" overflow="hidden" className={className}>
       <defs />
-      {paths.map((path) => (
+      {paths.map((path, index) => (
         <path
+          key={`${drawing}-${index}`}
           d={path}
           fill="none"
           stroke="#000"
