@@ -9,6 +9,7 @@ import { useLoading } from '../../hooks';
 import LoadingPage from '../loaders/LoadingPage';
 import { ARTE_RUIM_API } from '../../adapters';
 import { RocketFilled } from '@ant-design/icons';
+import RankingBoard from './RankingBoard';
 
 function RankingPhase({ players, state, info }) {
   const [, setLoader] = useLoading();
@@ -48,7 +49,7 @@ function RankingPhase({ players, state, info }) {
   return (
     <Layout.Content className="phase-container phase-container--vertical ranking-phase">
       <Typography.Title className="center">Ranking</Typography.Title>
-      div.
+      <RankingBoard players={players} ranking={state.ranking} />
       {isAdmin && (
         <Button icon={<RocketFilled />} danger type="primary" onClick={onGoToRankingPhase}>
           Ir para o próximo jogo ou trancar esse se tiver acabado

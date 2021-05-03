@@ -61,7 +61,7 @@ function GalleryWindows({ window, galleryLength, players, activeIndex, setActive
           return (
             <div key={`${cardId}-${index}`} className="gallery-window__guess">
               <div className="gallery-window__speech-bubble">
-                <MessageFilled className="gallery-window__speech-bubble-icon" /> {allCards[cardId].text}
+                <MessageFilled className="gallery-window__speech-bubble-icon" /> {allCards[cardId]?.text}
               </div>
               <div className="gallery-window__players">
                 <AntAvatar.Group>
