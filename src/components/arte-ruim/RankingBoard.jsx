@@ -5,14 +5,18 @@ import { CrownFilled } from '@ant-design/icons';
 import Avatar from '../avatars/Avatar';
 
 function RankingBoard({ players, ranking }) {
+  const maxPoints = ranking[0].newScore;
+
   return (
     <div className="ranking-board">
       {ranking.map((entry, index) => {
         const { playerName, newScore, previousScore, gainedPoints } = entry;
         return (
-          <div className="ranking-board__row">
+          <div className="ranking-board__row" key={`ranking-${playerName}`}>
             <div className="ranking-board__cell-crown">
-              {index === 0 && newScore > 0 && <CrownFilled className="ranking-board__crown-icon" />}
+              {newScore > 0 && maxPoints === newScore && (
+                <CrownFilled className="ranking-board__crown-icon" />
+              )}
             </div>
             <div className="ranking-board__cell-position">#{index + 1}</div>
             <div className="ranking-board__cell-player">

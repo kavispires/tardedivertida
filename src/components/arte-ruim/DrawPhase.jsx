@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import useSound from 'use-sound';
 // Design Resources
 import { Layout, message, notification } from 'antd';
 // State
@@ -14,6 +15,8 @@ import LoadingPage from '../loaders/LoadingPage';
 import DrawPhaseStepOne from './DrawPhaseStepOne';
 import DrawPhaseStepTwo from './DrawPhaseStepTwo';
 import WaitingRoom from './WaitingRoom';
+// Sounds
+import arteRuimTimer from '../../sounds/arte-ruim-timer.mp3';
 
 function DrawPhase({ players, state, info }) {
   const [, setLoader] = useLoading();
@@ -23,6 +26,7 @@ function DrawPhase({ players, state, info }) {
   const [amIReady, setImReady] = useState(false);
   const [step, setStep] = useState(1);
   const [secretCard, setSecretCard] = useState({});
+  const [play] = useSound(arteRuimTimer, { volume: 0.4 });
 
   useEffect(() => {
     const myCardId = state?.cards?.[me];
@@ -65,7 +69,7 @@ function DrawPhase({ players, state, info }) {
 
   return (
     <Layout.Content className="phase-container draw-phase">
-      {step === 1 && !amIReady && <DrawPhaseStepOne setStep={setStep} round={state?.round} />}
+      {step === 1 && !amIReady && <DrawPhaseStepOne setStep={setStep} round={state?.round} play={play} />}
 
       {step === 2 && !amIReady && (
         <DrawPhaseStepTwo secretCard={secretCard} onSubmitDrawing={onSubmitDrawing} />

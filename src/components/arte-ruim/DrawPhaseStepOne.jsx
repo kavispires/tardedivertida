@@ -1,14 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import useSound from 'use-sound';
 // Design Resources
 import { Button, Typography } from 'antd';
-// Sounds
-import arteRuimTimer from '../../sounds/arte-ruim-timer.mp3';
 
-function DrawPhaseStepOne({ setStep, round }) {
-  const [play] = useSound(arteRuimTimer, { volume: 0.4 });
-
+function DrawPhaseStepOne({ setStep, round, play }) {
   return (
     <div className="draw-phase-step-one">
       <Typography.Title className="draw-phase-step-one__title">RODADA</Typography.Title>
