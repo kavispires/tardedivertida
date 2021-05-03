@@ -10,7 +10,7 @@ function DrawPhaseStepTwo({ secretCard, onSubmitDrawing }) {
   const [lines, setLines] = useState([]);
 
   const { seconds } = useTimer({
-    expiryTimestamp: inNSeconds(10),
+    expiryTimestamp: inNSeconds(11),
     autoStart: true,
     onExpire: () => onSubmitDrawing(lines),
   });
@@ -21,9 +21,8 @@ function DrawPhaseStepTwo({ secretCard, onSubmitDrawing }) {
         <span className="draw-phase-step-two__card-title">Desenhe</span>
         <span className="draw-phase-step-two__card-text">{secretCard?.text}</span>
         <span className="draw-phase-step-two__card-level">{Array(secretCard?.level).fill('•')}</span>
-        <span className="draw-phase-step-two__timer">{seconds}s</span>
+        <span className="draw-phase-step-two__timer">{seconds - 1}s</span>
       </div>
-
       <DrawingCanvas lines={lines} setLines={setLines} />
     </div>
   );
