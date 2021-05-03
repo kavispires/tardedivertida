@@ -5,7 +5,9 @@ const getPathFromKonvaLines = (lines) => {
   const result = lines.map((lineArr) => {
     let path = '';
     for (let x = 0, y = 1; y < lineArr.length; x += 2, y += 2) {
-      path += `M${lineArr[x]},${lineArr[y]} L${lineArr[x + 2]},${lineArr[y + 2]}`;
+      if (lineArr[x + 2] && lineArr[y + 2]) {
+        path += `M${lineArr[x]},${lineArr[y]} L${lineArr[x + 2]},${lineArr[y + 2]}`;
+      }
     }
 
     return path;

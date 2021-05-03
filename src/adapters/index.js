@@ -13,6 +13,6 @@ export const ARTE_RUIM_API = {
   submitDrawing: functions.httpsCallable('arteRuimSubmitDrawing'),
   submitVoting: functions.httpsCallable('arteRuimSubmitVoting'),
   submitRating: functions.httpsCallable('arteRuimSubmitRating'),
-  goToGalleryItem: functions.httpsCallable('arteRuimGoToGalleryItem'),
+  goToNextPhase: functions.httpsCallable('arteRuimGoToNextPhase'),
   forceEverybodyReady: functions.httpsCallable('arteRuimForceEverybodyReady'),
 };
