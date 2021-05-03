@@ -303,16 +303,16 @@ export const nextArteRuimPhase = async (
 
     // Build score object
     Object.values(newPlayers).forEach((player) => {
-      newScores[player.name] = [player.score, 0, 0];
+      newScores[player.name] = [player.score, 0, player.score];
     });
 
     state.gallery.forEach((window) => {
       Object.entries(window.playersPoints).forEach(([pName, value]) => {
         const points = Number(value ?? 0);
-        newScores[pName][1] = points;
-        newScores[pName][2] = newScores[pName][0] + points;
+        newScores[pName][1] += points;
+        newScores[pName][2] += points;
 
-        newPlayers[pName].score += Number(points ?? 0);
+        newPlayers[pName].score += points;
       });
     });
 
