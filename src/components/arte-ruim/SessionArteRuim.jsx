@@ -14,6 +14,7 @@ import DrawPhase from './DrawPhase';
 import EvaluationPhase from './EvaluationPhase';
 import GalleryPhase from './GalleryPhase';
 import RankingPhase from './RankingPhase';
+import GameOverPhase from './GameOverPhase';
 
 function getActiveComponent(phase) {
   switch (phase) {
@@ -29,6 +30,8 @@ function getActiveComponent(phase) {
       return GalleryPhase;
     case ARTE_RUIM_PHASES.RANKING:
       return RankingPhase;
+    case ARTE_RUIM_PHASES.GAME_OVER:
+      return GameOverPhase;
     default:
       return PageError;
   }
@@ -45,7 +48,7 @@ function SessionArteRuim({ gameId }) {
     setInfo(gameId?.[0] ? gameList[gameId[0]] : {});
   }, [gameId]);
 
-  if (process.env.NODE_ENV !== 'development') {
+  if (process.env.NODE_ENV === 'development') {
     console.table(players);
     console.log({ state });
   }
