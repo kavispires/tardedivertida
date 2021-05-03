@@ -158,8 +158,6 @@ export const nextArteRuimPhase = async (
   playerName: string,
   players: Players
 ): Promise<boolean> => {
-  console.log(collectionName, gameId, playerName, players);
-
   const actionText = 'prepare next phase';
 
   // Determine and prepare next phase
@@ -240,6 +238,7 @@ export const nextArteRuimPhase = async (
     return true;
   }
 
+  // EVALUATION -> GALLERY
   if (nextPhase === ARTE_RUIM_PHASES.GALLERY) {
     // Calculate everybody's points
     const gallery = store.currentDrawings.map((drawingEntry) => {
@@ -258,7 +257,7 @@ export const nextArteRuimPhase = async (
       const playersPoints = {};
 
       Object.entries(<PlainObject>store.currentVoting).forEach(([pName, votes]) => {
-        if (artist !== pName) return;
+        if (artist === pName) return;
 
         // Calculate what players say
         const currentVote = votes[correctAnswer];
@@ -270,7 +269,7 @@ export const nextArteRuimPhase = async (
         if (playersPoints[pName] === undefined) {
           playersPoints[pName] = 0;
         }
-        if (playersPoints[pName] === undefined) {
+        if (playersPoints[artist] === undefined) {
           playersPoints[artist] = 0;
         }
 
@@ -294,6 +293,7 @@ export const nextArteRuimPhase = async (
     return true;
   }
 
+  // GALLERY -> RANKING
   if (nextPhase === ARTE_RUIM_PHASES.RANKING) {
     // Loop state gallery and gather points
     const newPlayers = unReadyPlayers(players);
@@ -307,7 +307,7 @@ export const nextArteRuimPhase = async (
     });
 
     state.gallery.forEach((window) => {
-      Object.entries(window.playerPoints).forEach(([pName, value]) => {
+      Object.entries(window.playersPoints).forEach(([pName, value]) => {
         const points = Number(value ?? 0);
         newScores[pName][1] = points;
         newScores[pName][2] = newScores[pName][0] + points;
@@ -316,14 +316,16 @@ export const nextArteRuimPhase = async (
       });
     });
 
-    const ranking = Object.entries(newScores).map(([pName, scores]) => {
-      return {
-        playerName: pName,
-        previousScore: scores[0],
-        gainedPoints: scores[1],
-        newScore: scores[2],
-      };
-    });
+    const ranking = Object.entries(newScores)
+      .map(([pName, scores]) => {
+        return {
+          playerName: pName,
+          previousScore: scores[0],
+          gainedPoints: scores[1],
+          newScore: scores[2],
+        };
+      })
+      .sort((a, b) => (a.newScore < b.newScore ? 1 : -1));
 
     // clear store
     await sessionRef.doc('store').update({
