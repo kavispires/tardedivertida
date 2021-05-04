@@ -11,7 +11,7 @@ import { ARTE_RUIM_PHASES } from '../../utils/constants';
 // Components
 import PhaseContainer from '../global/PhaseContainer';
 import AdminOnly from '../global/AdminOnly';
-import RankingBoard from './RankingBoard';
+import RankingBoard from '../global/RankingBoard';
 
 function RankingPhase({ players, state, info }) {
   const [, setLoader] = useLoading();

@@ -5,7 +5,7 @@
 // Utils
 @import './functions';
 @import './constants';
-// @import './animations';
+@import './animations';
 // @import './mixins';
 
 // Global
@@ -16,6 +16,7 @@
 @import '../components/avatars/AvatarEntry.scss';
 @import '../components/global/PhaseContainer.scss';
 @import '../components/global/AdminOnly.scss';
+@import '../components/global/RankingBoard.scss';
 @import '../components/loaders/Loading.scss';
 @import '../components/loaders/LoadingBar.scss';
 @import '../components/loaders/LoadingPage.scss';
@@ -36,7 +37,6 @@
 @import '../components/arte-ruim/EvaluationPhase.scss';
 @import '../components/arte-ruim/Ribbon.scss';
 @import '../components/arte-ruim/GalleryWindow.scss';
-@import '../components/arte-ruim/RankingPhase.scss';
 
 // Pages
 @import '../components/App.scss';
