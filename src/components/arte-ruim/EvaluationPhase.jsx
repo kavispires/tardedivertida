@@ -88,7 +88,7 @@ function EvaluationPhase({ players, state, info }) {
 
   return (
     <PhaseContainer
-      info={info?.gameName}
+      info={info}
       phase={state?.phase}
       allowedPhase={ARTE_RUIM_PHASES.EVALUATION}
       className="evaluation-phase"
@@ -97,7 +97,7 @@ function EvaluationPhase({ players, state, info }) {
         <div className="evaluation-phase__step-one">
           <Typography.Title className="center">Adivinhação</Typography.Title>
           <Typography.Paragraph className="center">
-            Ache os pares de desenho e carta clicando em uma carta ou desenho e em seguida clicando em seu
+            Encontre os pares de desenho e carta clicando em uma carta ou desenho e em seguida clicando em seu
             par. Uma bandeirinha aparecerá no topo de cada desenho com a cor e letra da carta que você
             selecionou. Quando encontrar todos os pares, envie sua avaliação!
           </Typography.Paragraph>

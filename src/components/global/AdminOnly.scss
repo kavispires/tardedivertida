@@ -1,0 +1,7 @@
+.admin-only-container {
+  width: 100%;
+  border: 1px solid get-color(red);
+  background: rgba(red, 0.2);
+  padding: get-unit(2);
+  margin: get-unit(2 0);
+}

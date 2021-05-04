@@ -3,12 +3,11 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 // Design Resources
 import { Layout } from 'antd';
-
 // Components
 import LoadingPage from '../loaders/LoadingPage';
 
 function PhaseContainer({ info, phase = '', allowedPhase = '', children, className }) {
-  if (!info?.gameName || allowedPhase === phase) {
+  if (!info?.gameName || allowedPhase !== phase) {
     return <LoadingPage />;
   }
 

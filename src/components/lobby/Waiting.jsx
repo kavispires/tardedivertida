@@ -1,15 +1,15 @@
 import React, { useCallback } from 'react';
 // Design Resources
 import { Button, Image, message, notification, Typography } from 'antd';
-// // Adapters
-import { GAME_API } from '../../adapters';
 // State
 import useGlobalState from '../../hooks/useGlobalState';
-// Images
+// Utils and Resources
+import { GAME_API } from '../../adapters';
 import avatars from '../../images/avatars.svg';
-// Utils
 import { PUBLIC_URL } from '../../utils/constants';
 import { useLoading } from '../../hooks';
+// Components
+import AdminOnly from '../global/AdminOnly';
 
 function Waiting({ info, players }) {
   const [isLoading, setLoader] = useLoading();
@@ -17,7 +17,6 @@ function Waiting({ info, players }) {
   const [gameName] = useGlobalState('gameName');
   const [gameMeta] = useGlobalState('gameMeta');
 
-  const [isAdmin] = useGlobalState('isAdmin');
   const [me] = useGlobalState('me');
   const [myAvatar] = useGlobalState('myAvatar');
 
@@ -58,20 +57,19 @@ function Waiting({ info, players }) {
         <use href={avatars + `#avatar-${myAvatar}`}></use>
       </svg>
       <h3 className="center">Aguarde os outros jogadores entrarem.</h3>
-      {isAdmin && (
-        <div className="lobby-waiting__lock-button">
-          <Typography.Text className="center padding">
-            Jogadores necessários: {numPlayers}/{gameMeta.min}
-          </Typography.Text>
-          <Button
-            type="primary"
-            onClick={onLockGameAndStart}
-            disabled={isLoading || numPlayers < gameMeta.min}
-          >
-            Trancar e Iniciar Jogo
-          </Button>
-        </div>
-      )}
+      <AdminOnly className="lobby-waiting__lock-button">
+        <Typography.Text className="center padding">
+          Jogadores necessários: {numPlayers}/{gameMeta.min}
+        </Typography.Text>
+        <Button
+          type="primary"
+          danger
+          onClick={onLockGameAndStart}
+          disabled={isLoading || numPlayers < gameMeta.min}
+        >
+          Trancar e Iniciar Jogo
+        </Button>
+      </AdminOnly>
     </div>
   );
 }
