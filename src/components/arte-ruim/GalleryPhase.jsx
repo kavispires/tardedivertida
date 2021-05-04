@@ -1,16 +1,18 @@
 import React, { useCallback, useState } from 'react';
 // Design Resources
-import { Button, Layout, message, notification, Typography } from 'antd';
+import { Button, message, notification, Typography } from 'antd';
+import { RocketFilled } from '@ant-design/icons';
 // State
 import useGlobalState from '../../hooks/useGlobalState';
 // Hooks
 import { useLoading } from '../../hooks';
-// Components
-import LoadingPage from '../loaders/LoadingPage';
-
+// Adapters
 import { ARTE_RUIM_API } from '../../adapters';
+// Utils
+import { ARTE_RUIM_PHASES } from '../../utils/constants';
+// Components
 import GalleryWindow from './GalleryWindow';
-import { RocketFilled } from '@ant-design/icons';
+import PhaseContainer from '../global/PhaseContainer';
 
 function GalleryPhase({ players, state, info }) {
   const [, setLoader] = useLoading();
@@ -44,12 +46,13 @@ function GalleryPhase({ players, state, info }) {
     }
   }, [gameId, gameName, me, setLoader]);
 
-  if (!info?.gameName || !state?.phase) {
-    return <LoadingPage />;
-  }
-
   return (
-    <Layout.Content className="phase-container phase-container--vertical gallery-phase">
+    <PhaseContainer
+      info={info?.gameName}
+      phase={state?.phase}
+      allowedPhase={ARTE_RUIM_PHASES.GALLERY}
+      className="gallery-phase"
+    >
       <Typography.Title className="center">Galeria de Arte</Typography.Title>
       {state?.gallery && (
         <GalleryWindow
@@ -65,7 +68,7 @@ function GalleryPhase({ players, state, info }) {
           Ir para Ranking
         </Button>
       )}
-    </Layout.Content>
+    </PhaseContainer>
   );
 }
 

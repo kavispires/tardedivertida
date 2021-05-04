@@ -10,6 +10,8 @@ import LoadingPage from '../loaders/LoadingPage';
 import { ARTE_RUIM_API } from '../../adapters';
 import { RocketFilled } from '@ant-design/icons';
 import RankingBoard from './RankingBoard';
+import { ARTE_RUIM_PHASES } from '../../utils/constants';
+import PhaseContainer from '../global/PhaseContainer';
 
 function RankingPhase({ players, state, info }) {
   const [, setLoader] = useLoading();
@@ -42,12 +44,13 @@ function RankingPhase({ players, state, info }) {
     }
   }, [gameId, gameName, me, setLoader]);
 
-  if (!info?.gameName || !state?.phase) {
-    return <LoadingPage />;
-  }
-
   return (
-    <Layout.Content className="phase-container phase-container--vertical ranking-phase">
+    <PhaseContainer
+      info={info?.gameName}
+      phase={state?.phase}
+      allowedPhase={ARTE_RUIM_PHASES.RANKING}
+      className="ranking-phase"
+    >
       <Typography.Title className="center">Ranking</Typography.Title>
       <RankingBoard players={players} ranking={state.ranking} />
       {isAdmin && (
@@ -55,7 +58,7 @@ function RankingPhase({ players, state, info }) {
           Ir para o próximo jogo ou trancar esse se tiver acabado
         </Button>
       )}
-    </Layout.Content>
+    </PhaseContainer>
   );
 }
 

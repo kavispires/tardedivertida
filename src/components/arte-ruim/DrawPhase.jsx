@@ -1,22 +1,20 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import useSound from 'use-sound';
 // Design Resources
-import { Layout, message, notification } from 'antd';
-// State
+import { message, notification } from 'antd';
+// State & Hooks
 import useGlobalState from '../../hooks/useGlobalState';
-// Hooks
 import { useLoading } from '../../hooks';
-// Resources
-import allCards from '../../resources/arte-ruim-cards.json';
-// Utils
+// Resources & Utils
 import { ARTE_RUIM_API } from '../../adapters';
+import { ARTE_RUIM_PHASES } from '../../utils/constants';
+import allCards from '../../resources/arte-ruim-cards.json';
+import arteRuimTimer from '../../sounds/arte-ruim-timer.mp3';
 // Components
-import LoadingPage from '../loaders/LoadingPage';
+import PhaseContainer from '../global/PhaseContainer';
 import DrawPhaseStepOne from './DrawPhaseStepOne';
 import DrawPhaseStepTwo from './DrawPhaseStepTwo';
 import WaitingRoom from './WaitingRoom';
-// Sounds
-import arteRuimTimer from '../../sounds/arte-ruim-timer.mp3';
 
 function DrawPhase({ players, state, info }) {
   const [, setLoader] = useLoading();
@@ -63,12 +61,13 @@ function DrawPhase({ players, state, info }) {
     [gameId, gameName, setLoader, me, secretCard.id]
   );
 
-  if (!info?.gameName) {
-    return <LoadingPage />;
-  }
-
   return (
-    <Layout.Content className="phase-container draw-phase">
+    <PhaseContainer
+      info={info?.gameName}
+      phase={state?.phase}
+      allowedPhase={ARTE_RUIM_PHASES.DRAW}
+      className="draw-phase"
+    >
       {step === 1 && !amIReady && <DrawPhaseStepOne setStep={setStep} round={state?.round} play={play} />}
 
       {step === 2 && !amIReady && (
@@ -76,7 +75,7 @@ function DrawPhase({ players, state, info }) {
       )}
 
       {step === 3 && <WaitingRoom players={players} />}
-    </Layout.Content>
+    </PhaseContainer>
   );
 }
 
