@@ -2,17 +2,16 @@ import React, { useCallback, useState } from 'react';
 // Design Resources
 import { Button, message, notification, Typography } from 'antd';
 import { RocketFilled } from '@ant-design/icons';
-// State
+// State & Hooks
 import useGlobalState from '../../hooks/useGlobalState';
-// Hooks
 import { useLoading } from '../../hooks';
-// Adapters
+// Resources and Utils
 import { ARTE_RUIM_API } from '../../adapters';
-// Utils
 import { ARTE_RUIM_PHASES } from '../../utils/constants';
 // Components
 import GalleryWindow from './GalleryWindow';
 import PhaseContainer from '../global/PhaseContainer';
+import AdminOnly from '../global/AdminOnly';
 
 function GalleryPhase({ players, state, info }) {
   const [, setLoader] = useLoading();
@@ -20,7 +19,6 @@ function GalleryPhase({ players, state, info }) {
   const [gameName] = useGlobalState('gameName');
   const [me] = useGlobalState('me');
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isAdmin] = useGlobalState('isAdmin');
 
   const onGoToRankingPhase = useCallback(async () => {
     try {
@@ -48,7 +46,7 @@ function GalleryPhase({ players, state, info }) {
 
   return (
     <PhaseContainer
-      info={info?.gameName}
+      info={info}
       phase={state?.phase}
       allowedPhase={ARTE_RUIM_PHASES.GALLERY}
       className="gallery-phase"
@@ -63,11 +61,11 @@ function GalleryPhase({ players, state, info }) {
           setActiveIndex={setActiveIndex}
         />
       )}
-      {isAdmin && (
+      <AdminOnly>
         <Button icon={<RocketFilled />} danger type="primary" onClick={onGoToRankingPhase}>
           Ir para Ranking
         </Button>
-      )}
+      </AdminOnly>
     </PhaseContainer>
   );
 }

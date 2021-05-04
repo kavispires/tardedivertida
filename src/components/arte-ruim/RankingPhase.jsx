@@ -1,24 +1,23 @@
 import React, { useCallback } from 'react';
 // Design Resources
-import { Button, Layout, message, notification, Typography } from 'antd';
-// State
-import useGlobalState from '../../hooks/useGlobalState';
-// Hooks
-import { useLoading } from '../../hooks';
-// Components
-import LoadingPage from '../loaders/LoadingPage';
-import { ARTE_RUIM_API } from '../../adapters';
+import { Button, message, notification, Typography } from 'antd';
 import { RocketFilled } from '@ant-design/icons';
-import RankingBoard from './RankingBoard';
+// State & Hooks
+import useGlobalState from '../../hooks/useGlobalState';
+import { useLoading } from '../../hooks';
+// Resources and Utils
+import { ARTE_RUIM_API } from '../../adapters';
 import { ARTE_RUIM_PHASES } from '../../utils/constants';
+// Components
 import PhaseContainer from '../global/PhaseContainer';
+import AdminOnly from '../global/AdminOnly';
+import RankingBoard from './RankingBoard';
 
 function RankingPhase({ players, state, info }) {
   const [, setLoader] = useLoading();
   const [gameId] = useGlobalState('gameId');
   const [gameName] = useGlobalState('gameName');
   const [me] = useGlobalState('me');
-  const [isAdmin] = useGlobalState('isAdmin');
 
   const onGoToRankingPhase = useCallback(async () => {
     try {
@@ -46,18 +45,18 @@ function RankingPhase({ players, state, info }) {
 
   return (
     <PhaseContainer
-      info={info?.gameName}
+      info={info}
       phase={state?.phase}
       allowedPhase={ARTE_RUIM_PHASES.RANKING}
       className="ranking-phase"
     >
       <Typography.Title className="center">Ranking</Typography.Title>
       <RankingBoard players={players} ranking={state.ranking} />
-      {isAdmin && (
+      <AdminOnly>
         <Button icon={<RocketFilled />} danger type="primary" onClick={onGoToRankingPhase}>
           Ir para o próximo jogo ou trancar esse se tiver acabado
         </Button>
-      )}
+      </AdminOnly>
     </PhaseContainer>
   );
 }

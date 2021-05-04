@@ -63,7 +63,7 @@ function DrawPhase({ players, state, info }) {
 
   return (
     <PhaseContainer
-      info={info?.gameName}
+      info={info}
       phase={state?.phase}
       allowedPhase={ARTE_RUIM_PHASES.DRAW}
       className="draw-phase"
