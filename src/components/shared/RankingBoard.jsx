@@ -11,6 +11,7 @@ import Avatar from '../avatars/Avatar';
 function RankingBoard({ players, ranking }) {
   const [displayStep, setDisplayStep] = useState(0);
   const [sortedRanking, setSortedRanking] = useState([]);
+  const [positions, setPositions] = useState([]);
 
   const maxPoints = ranking[0].newScore;
 
@@ -39,6 +40,24 @@ function RankingBoard({ players, ranking }) {
     }
   }, [seconds]);
 
+  // Determine position number in rank
+  useEffect(() => {
+    const property = displayStep < 3 ? 'previousScore' : 'newScore';
+
+    let lastPosition = 1;
+    let lastPoints = sortedRanking?.[0]?.[property] ?? 0;
+    setPositions(
+      sortedRanking.map((entry) => {
+        if (entry[property] < lastPoints) {
+          lastPoints = entry[property];
+          lastPosition += 1;
+        }
+
+        return lastPosition;
+      })
+    );
+  }, [sortedRanking, displayStep]);
+
   return (
     <div className="ranking-board">
       {sortedRanking.map((entry, index) => {
@@ -50,7 +69,7 @@ function RankingBoard({ players, ranking }) {
                 <CrownFilled className="ranking-board__crown-icon" />
               )}
             </div>
-            <div className="ranking-board__cell-position">#{index + 1}</div>
+            <div className="ranking-board__cell-position">#{positions?.[index] ?? ''}</div>
             <div className="ranking-board__cell-player">
               <div className="ranking-board__avatar">
                 <Avatar id={players[playerName].avatarId} />
