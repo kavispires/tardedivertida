@@ -18,7 +18,7 @@ export const ARTE_RUIM_PHASES = {
 
 export const AVATAR_IDS = new Array(25).fill(0).map((i, index) => i + index);
 
-export const ARTE_RUIM_GOAL = 30;
+export const ARTE_RUIM_GOAL = 50;
 
 export const ARTE_RUIM_CARDS_BY_LEVEL = {
   1: new Array(200).fill(1).map((i, index) => `${i + index}`),

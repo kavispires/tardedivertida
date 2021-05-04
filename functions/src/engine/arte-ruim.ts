@@ -114,7 +114,13 @@ export const isEverybodyReady = (players: Players): boolean => {
   return Object.values(players).every((player) => player.ready);
 };
 
-export const getPointsToVictory = (players: StatePlayers, victory = 30): number => {
+/**
+ * Calculates how many points remain to call the end of the game
+ * @param players
+ * @param victory
+ * @returns
+ */
+export const getPointsToVictory = (players: StatePlayers, victory = 50): number => {
   const max = Object.values(players).reduce((acc, player) => {
     return Math.max(acc, player.score);
   }, 0);
@@ -122,14 +128,30 @@ export const getPointsToVictory = (players: StatePlayers, victory = 30): number 
   return max < victory ? victory - max : 0;
 };
 
+/**
+ * Calculate what level of cards it should be gotten
+ * @param pointsToVictory
+ * @param goal
+ * @returns
+ */
 const getLevel = (pointsToVictory: number, goal: number): number => {
   return pointsToVictory <= goal / 3 ? 3 : pointsToVictory <= (goal * 2) / 3 ? 2 : 1;
 };
 
+/**
+ * Get the group of cards according to the given level
+ * @param level
+ * @returns
+ */
 const getCardsForLevel = (level: number): string[] => {
   return ARTE_RUIM_CARDS_BY_LEVEL[level];
 };
 
+/**
+ * Determine the number of cards in a round
+ * @param players
+ * @returns
+ */
 const determineNumberOfCards = (players: Players): number => {
   const playerCount = Object.keys(players).length;
   if (playerCount < 5) {

@@ -5,11 +5,12 @@
     "title": "Arte Ruim Pra Dedéu",
     "summary": "Tende idenficar as obras-primas criadas por seus oponentes!",
     "rules": [
-      "Arte Ruim Pra Dedéu é um jogo competitivo que os jogadores tentam adivinhar o maior numero de desenhos possíveis",
-      "Cada rodada, jogadores recebem uma carta com uma expressão e tem 10 segundos para desenhá-la.",
-      "Após todos jogadores terminarem suas obras de arte, embaralha-se todas as cartas e todos os desenhos e todos tem que identificar qual desenho corresconde a cada expressão.",
+      "Arte Ruim Pra Dedéu é um jogo competitivo que os jogadores tentam adivinhar o maior número de desenhos possíveis",
+      "Em cada rodada, jogadores recebem uma carta com uma expressão e tem 10 segundos para desenhá-la.",
+      "Após todos jogadores terminarem suas obras de arte, embaralha-se as cartas e os desenhos e todos tem que identificar qual desenho corresconde a cada expressão.",
       "Respostas corretas ganham 2 pontos, mas cada voto que seu desenho recebe também te dá 1 ponto.",
-      "O primeiro jogador a cruzar a marca 30 pontos, sinaliza o fim do jogo, e o jogador com mais pontos é o vencedor!"
+      "Quanto mais próximo do final do jogo, mais difíceis as expressões ficam! Fique esperto!",
+      "O primeiro jogador a cruzar a marca de 50 pontos sinaliza o fim do jogo e, então, o jogador com mais pontos é o vencedor!"
     ],
     "recommended": "4-6",
     "min": 3,
