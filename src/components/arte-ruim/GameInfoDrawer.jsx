@@ -5,10 +5,14 @@ import { InfoCircleOutlined } from '@ant-design/icons';
 // Components
 import Avatar from '../avatars/Avatar';
 import { Affix, Badge, Button, Divider, Drawer } from 'antd';
-import { AVATAR_DESCRIPTIONS_BR } from '../../utils/constants';
+import { ARTE_RUIM_PHASES, AVATAR_DESCRIPTIONS_BR } from '../../utils/constants';
 
 function GameInfoDrawer({ players, state, info, me }) {
   const [visible, setVisible] = useState(false);
+
+  if (state.phase === ARTE_RUIM_PHASES.LOBBY) {
+    return <span></span>;
+  }
 
   const showDrawer = () => {
     setVisible(true);
@@ -17,7 +21,7 @@ function GameInfoDrawer({ players, state, info, me }) {
     setVisible(false);
   };
 
-  const completeMe = players[me];
+  const completeMe = players?.[me];
   const rankedPlayers = Object.values(players).sort((a, b) => (a.score < b.score ? 1 : -1));
   console.table(players);
   return (
@@ -33,13 +37,17 @@ function GameInfoDrawer({ players, state, info, me }) {
         />
       </Affix>
       <Drawer title={info.title} placement="right" closable={false} onClose={onClose} visible={visible}>
-        <div className="game-info-drawer__label">Você é</div>
-        <div className="game-info-drawer__me">
-          <Badge count={completeMe.score} className="game-info-drawer__avatar-with-badge">
-            <Avatar id={completeMe.avatarId} shape="square" />
-          </Badge>
-          {completeMe.name}, {AVATAR_DESCRIPTIONS_BR[completeMe.avatarId]}
-        </div>
+        {completeMe && (
+          <Fragment>
+            <div className="game-info-drawer__label">Você é</div>
+            <div className="game-info-drawer__me">
+              <Badge count={completeMe.score} className="game-info-drawer__avatar-with-badge">
+                <Avatar id={completeMe.avatarId} shape="square" />
+              </Badge>
+              {completeMe.name}, {AVATAR_DESCRIPTIONS_BR[completeMe.avatarId]}
+            </div>
+          </Fragment>
+        )}
         <Divider />
         <div>
           <div className="game-info-drawer__label-inline">Rodada:</div>

@@ -123,13 +123,13 @@ function Join({ players, info }) {
         <Alert
           className="lobby-join__avatar-alert"
           type="error"
-          message="Você está de volta! Lembramos seu nome e avatar. Se você está retornando para o mesmo jogo de antes, NÃO mude seu apelido! Se o nome estiver diferente você é adicionado como um novo jogador e pode bugar o jogo"
+          message="Você está de volta! Lembramos seu nome e avatar. Se você está retornando para o mesmo jogo de antes, NÃO mude seu apelido! Se o nome estiver diferente você é adicionado como um novo jogador e pode bugar o jogo."
         />
       ) : (
         <Alert
           className="lobby-join__avatar-alert"
           type="warning"
-          message="Se alguém escolher o mesmo avatar que você, um avatar aleatório será escolhido pra você."
+          message="Se alguém escolher o mesmo avatar que você, um avatar aleatório será escolhido."
         />
       )}
       <Input
