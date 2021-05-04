@@ -50,7 +50,9 @@ function RankingPhase({ players, state, info }) {
       allowedPhase={ARTE_RUIM_PHASES.RANKING}
       className="ranking-phase"
     >
-      <Typography.Title className="center">Ranking</Typography.Title>
+      <Typography.Title className="center">
+        {state.pointsToVictory >= 0 ? 'Ranking' : 'Game Over'}
+      </Typography.Title>
       <RankingBoard players={players} ranking={state.ranking} />
       <AdminOnly>
         <Button icon={<RocketFilled />} danger type="primary" onClick={onGoToRankingPhase}>
