@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 // Design Resources
-import { Button, Layout, message, notification, Space, Typography } from 'antd';
+import { Button, message, notification, Space, Typography } from 'antd';
 import { CloudUploadOutlined } from '@ant-design/icons';
 // State
 import useGlobalState from '../../hooks/useGlobalState';
@@ -8,11 +8,12 @@ import useGlobalState from '../../hooks/useGlobalState';
 import { useLoading } from '../../hooks';
 // Utils
 import { ARTE_RUIM_API } from '../../adapters';
+import { ARTE_RUIM_PHASES } from '../../utils/constants';
 // Components
-import LoadingPage from '../loaders/LoadingPage';
 import WaitingRoom from './WaitingRoom';
 import EvaluationAllDrawings from './EvaluationAllDrawings';
 import EvaluationAllCards from './EvaluationAllCards';
+import PhaseContainer from '../global/PhaseContainer';
 
 function EvaluationPhase({ players, state, info }) {
   const [, setLoader] = useLoading();
@@ -85,12 +86,13 @@ function EvaluationPhase({ players, state, info }) {
     }
   }, [gameId, gameName, setLoader, me, votes]);
 
-  if (!info?.gameName || !state?.phase) {
-    return <LoadingPage />;
-  }
-
   return (
-    <Layout.Content className="phase-container phase-container--vertical evaluation-phase">
+    <PhaseContainer
+      info={info?.gameName}
+      phase={state?.phase}
+      allowedPhase={ARTE_RUIM_PHASES.EVALUATION}
+      className="evaluation-phase"
+    >
       {step === 1 && !amIReady && (
         <div className="evaluation-phase__step-one">
           <Typography.Title className="center">Adivinhação</Typography.Title>
@@ -128,7 +130,7 @@ function EvaluationPhase({ players, state, info }) {
       )}
 
       {step === 2 && <WaitingRoom players={players} />}
-    </Layout.Content>
+    </PhaseContainer>
   );
 }
 
