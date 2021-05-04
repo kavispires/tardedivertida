@@ -1,6 +1,4 @@
 .evaluation-phase {
-  justify-content: flex-start;
-
   &__step-one {
     background: get-color(yellow, 2);
     padding: get-unit(4);
@@ -98,6 +96,7 @@
   position: absolute;
   background: rgba(black, 0.1);
   padding: get-unit(1 2);
+  border-radius: get-unit(1);
 
   &__label {
     font-size: 90%;
