@@ -1,11 +1,12 @@
 import React, { Fragment, useState } from 'react';
 // Design Resources
-import { Avatar as AntAvatar } from 'antd';
+import { Affix, Avatar as AntAvatar, Badge, Button, Divider, Drawer } from 'antd';
 import { InfoCircleOutlined } from '@ant-design/icons';
+// Utils
+import { ARTE_RUIM_PHASES, AVATAR_DESCRIPTIONS_BR } from '../../utils/constants';
 // Components
 import Avatar from '../avatars/Avatar';
-import { Affix, Badge, Button, Divider, Drawer } from 'antd';
-import { ARTE_RUIM_PHASES, AVATAR_DESCRIPTIONS_BR } from '../../utils/constants';
+import RulesModal from '../modals/RulesModal';
 
 function GameInfoDrawer({ players, state, info, me }) {
   const [visible, setVisible] = useState(false);
@@ -48,6 +49,8 @@ function GameInfoDrawer({ players, state, info, me }) {
             </div>
           </Fragment>
         )}
+        <Divider />
+        <RulesModal gameInfo={info} />
         <Divider />
         <div>
           <div className="game-info-drawer__label-inline">Rodada:</div>
