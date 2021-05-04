@@ -24,7 +24,7 @@ function GameInfoDrawer({ players, state, info, me }) {
 
   const completeMe = players?.[me];
   const rankedPlayers = Object.values(players).sort((a, b) => (a.score < b.score ? 1 : -1));
-  console.table(players);
+
   return (
     <Fragment>
       <Affix offsetTop={10} className="game-info-drawer__affix-button">

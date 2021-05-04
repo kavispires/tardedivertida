@@ -26,6 +26,7 @@
   &__crown-icon {
     font-size: 3em;
     color: get-color(yellow);
+    animation: fade-in 500ms;
   }
 
   &__cell-position {
@@ -59,14 +60,15 @@
     padding: get-unit(1);
     align-self: flex-end;
     margin: get-unit(0 2);
+    animation: fade-in 500ms;
   }
 
   &__cell-points-total {
     font-size: 1.5em;
     min-width: 50px;
     padding: get-unit(0 3);
-    // background: cyan;
     font-weight: bolder;
     transform: scale(1.5);
+    animation: fade-in 500ms;
   }
 }
