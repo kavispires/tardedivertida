@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import CanvasSVG from './CanvasSVG';
 import Ribbon from './Ribbon';
 
-function EvaluationAllDrawings({ drawings, activeItem, onActivateItem, votes }) {
+function EvaluationAllDrawings({ drawings, activeItem, onActivateItem, votes, canvasSize }) {
   return (
     <ul className="evaluation-phase__all-drawings">
       {drawings?.map((drawingEntry) => {
@@ -20,7 +20,11 @@ function EvaluationAllDrawings({ drawings, activeItem, onActivateItem, votes }) 
             onClick={() => onActivateItem(canvasEntryId)}
           >
             {votes?.[canvasEntryId] && <Ribbon cardEntryId={votes[canvasEntryId]} />}
-            <CanvasSVG drawing={drawingEntry.drawing} className="evaluation-phase__drawing" />
+            <CanvasSVG
+              drawing={drawingEntry.drawing}
+              className="evaluation-phase__drawing"
+              size={canvasSize}
+            />
           </li>
         );
       })}
@@ -38,6 +42,7 @@ EvaluationAllDrawings.propTypes = {
   ),
   onActiveItem: PropTypes.func,
   votes: PropTypes.object,
+  canvasSize: PropTypes.number,
 };
 
 export default EvaluationAllDrawings;

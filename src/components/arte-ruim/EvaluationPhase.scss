@@ -1,7 +1,10 @@
 .evaluation-phase {
+  justify-content: flex-start;
+
   &__step-one {
     background: get-color(yellow, 2);
     padding: get-unit(4);
+    flex: 1;
   }
 
   &__all-drawings {
@@ -87,5 +90,21 @@
     margin-top: get-unit(4);
     display: flex;
     justify-content: center;
+  }
+}
+
+.canvas-resizer {
+  width: 160px;
+  position: absolute;
+  background: rgba(black, 0.1);
+  padding: get-unit(1 2);
+
+  &__label {
+    font-size: 90%;
+    text-transform: uppercase;
+  }
+
+  &__slider {
+    display: block;
   }
 }
