@@ -7,7 +7,7 @@ import { CrownFilled, DeleteFilled } from '@ant-design/icons';
 import allCards from '../../resources/arte-ruim-cards.json';
 // Components
 import Avatar from '../avatars/Avatar';
-import StarPoints from './StarPoints';
+import StarPoints from '../shared/StarPoints';
 
 function GalleryWindowResult({ artist, correctAnswer, playersPoints, playersSay, players }) {
   const correctGuesses = Object.values(playersSay?.[correctAnswer] ?? {});

@@ -121,14 +121,3 @@
     }
   }
 }
-
-.star-points {
-  display: flex;
-  align-items: center;
-  color: get-color(yellow, 6);
-  margin: get-unit(0 1);
-
-  &__stars {
-    margin: get-unit(0 1);
-  }
-}

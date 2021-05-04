@@ -10,10 +10,10 @@ import { useLoading } from '../../hooks';
 import { ARTE_RUIM_API } from '../../adapters';
 import { ARTE_RUIM_PHASES } from '../../utils/constants';
 // Components
-import WaitingRoom from './WaitingRoom';
+import WaitingRoom from '../shared/WaitingRoom';
 import EvaluationAllDrawings from './EvaluationAllDrawings';
 import EvaluationAllCards from './EvaluationAllCards';
-import PhaseContainer from '../global/PhaseContainer';
+import PhaseContainer from '../shared/PhaseContainer';
 import CanvasResizer from './CanvasResizer';
 
 function EvaluationPhase({ players, state, info }) {

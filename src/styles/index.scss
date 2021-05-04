@@ -14,9 +14,6 @@
 
 // Components
 @import '../components/avatars/AvatarEntry.scss';
-@import '../components/global/PhaseContainer.scss';
-@import '../components/global/AdminOnly.scss';
-@import '../components/global/RankingBoard.scss';
 @import '../components/loaders/Loading.scss';
 @import '../components/loaders/LoadingBar.scss';
 @import '../components/loaders/LoadingPage.scss';
@@ -26,14 +23,19 @@
 @import '../components/modals/RulesModal.scss';
 @import '../components/rules/RulesCarousel.scss';
 @import '../components/rules/Rules.scss';
-@import '../components/ReadyPlayersBar.scss';
+@import '../components/shared/PhaseContainer.scss';
+@import '../components/shared/AdminOnly.scss';
+@import '../components/shared/RankingBoard.scss';
+@import '../components/shared/StarPoints.scss';
+@import '../components/shared/WaitingRoom.scss';
+@import '../components/shared/ReadyPlayersBar.scss';
 
 // ArteRuim Components
 @import '../components/arte-ruim/SessionArteRuim.scss';
 @import '../components/arte-ruim/GameInfoDrawer.scss';
 @import '../components/arte-ruim/Card.scss';
 @import '../components/arte-ruim/DrawPhase.scss';
-@import '../components/arte-ruim/WaitingRoom.scss';
+
 @import '../components/arte-ruim/EvaluationPhase.scss';
 @import '../components/arte-ruim/Ribbon.scss';
 @import '../components/arte-ruim/GalleryWindow.scss';

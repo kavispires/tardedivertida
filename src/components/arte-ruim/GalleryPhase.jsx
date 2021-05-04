@@ -10,8 +10,8 @@ import { ARTE_RUIM_API } from '../../adapters';
 import { ARTE_RUIM_PHASES } from '../../utils/constants';
 // Components
 import GalleryWindow from './GalleryWindow';
-import PhaseContainer from '../global/PhaseContainer';
-import AdminOnly from '../global/AdminOnly';
+import PhaseContainer from '../shared/PhaseContainer';
+import AdminOnly from '../shared/AdminOnly';
 
 function GalleryPhase({ players, state, info }) {
   const [, setLoader] = useLoading();

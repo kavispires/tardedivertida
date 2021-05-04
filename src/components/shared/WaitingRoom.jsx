@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 // Design Resources
 import { Spin, Typography } from 'antd';
 // Components
-import ReadyPlayersBar from '../ReadyPlayersBar';
+import ReadyPlayersBar from './ReadyPlayersBar';
 
 const WaitingRoom = ({ players }) => {
   return (
