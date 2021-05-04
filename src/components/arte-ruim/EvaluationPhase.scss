@@ -10,6 +10,9 @@
     justify-content: center;
     overflow-x: auto;
     padding: get-unit(4 0);
+    flex-wrap: wrap;
+
+    max-width: 90vw;
   }
 
   &__li-drawing-button {
@@ -52,6 +55,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    max-width: 90vw;
     overflow-x: auto;
   }
 
