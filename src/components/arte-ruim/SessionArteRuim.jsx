@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 // Hooks
 import { useGameState, useGlobalState } from '../../hooks';
 import { GAME_COLLECTION, ARTE_RUIM_PHASES } from '../../utils/constants';
@@ -15,6 +15,7 @@ import EvaluationPhase from './EvaluationPhase';
 import GalleryPhase from './GalleryPhase';
 import RankingPhase from './RankingPhase';
 import GameOverPhase from './GameOverPhase';
+import GameInfoDrawer from './GameInfoDrawer';
 
 function getActiveComponent(phase) {
   switch (phase) {
@@ -59,7 +60,12 @@ function SessionArteRuim({ gameId }) {
 
   const ActiveComponent = getActiveComponent(state.phase);
 
-  return <ActiveComponent players={players} state={state} info={info} />;
+  return (
+    <Fragment>
+      <GameInfoDrawer players={players} state={state} info={info} me={me} />
+      <ActiveComponent players={players} state={state} info={info} />
+    </Fragment>
+  );
 }
 
 export default SessionArteRuim;

@@ -82,3 +82,31 @@ export const ARTE_RUIM_PHASES = {
 };
 
 export const LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+export const AVATAR_DESCRIPTIONS_BR = {
+  0: 'o axolote',
+  1: 'a tartaruga',
+  2: 'a raposa',
+  3: 'o sapo',
+  4: 'a salamandra',
+  5: 'a toupeira',
+  6: 'o esquilo',
+  7: 'o corvo',
+  8: 'a lontra',
+  9: 'o camundongo',
+  10: 'o sabiá',
+  11: 'a cojura',
+  12: 'o porco-espinho',
+  13: 'o ornitorrinco',
+  14: 'o rato',
+  15: 'a rã',
+  16: 'o caramujo',
+  17: 'a abelha',
+  18: 'o morcego',
+  19: 'o gato',
+  20: 'o coelho',
+  21: 'a aranha',
+  22: 'a borboleta',
+  23: 'o arminho',
+  24: 'o porco',
+};
