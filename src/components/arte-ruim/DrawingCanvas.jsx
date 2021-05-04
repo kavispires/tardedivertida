@@ -3,7 +3,7 @@ import { Stage, Layer, Line } from 'react-konva';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 
-const DrawingCanvas = ({ lines, setLines, className }) => {
+const DrawingCanvas = ({ lines, setLines, className = '' }) => {
   const isDrawing = useRef(false);
 
   const handleMouseDown = (e) => {

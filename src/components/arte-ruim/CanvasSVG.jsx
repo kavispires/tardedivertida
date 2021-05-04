@@ -16,12 +16,18 @@ const getPathFromKonvaLines = (lines) => {
   return result;
 };
 
-function CanvasSVG({ drawing = '', className = '' }) {
+function CanvasSVG({ drawing = '', className = '', size = 250 }) {
   const konvaLines = JSON.parse(drawing);
   const paths = getPathFromKonvaLines(konvaLines);
 
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" overflow="hidden" className={className}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 500 500"
+      overflow="hidden"
+      className={className}
+      style={{ width: `${size}px` }}
+    >
       <defs />
       {paths.map((path, index) => (
         <path

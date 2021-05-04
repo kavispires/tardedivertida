@@ -12,6 +12,8 @@ const initialState = {
   me: '',
   myAvatar: '',
   isAdmin: false,
+  // Arte-Ruim
+  canvasSize: 250,
 };
 
 const { useGlobalState, setGlobalState, getGlobalState } = createGlobalState(initialState);

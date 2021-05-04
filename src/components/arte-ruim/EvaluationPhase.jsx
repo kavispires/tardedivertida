@@ -14,12 +14,14 @@ import WaitingRoom from './WaitingRoom';
 import EvaluationAllDrawings from './EvaluationAllDrawings';
 import EvaluationAllCards from './EvaluationAllCards';
 import PhaseContainer from '../global/PhaseContainer';
+import CanvasResizer from './CanvasResizer';
 
 function EvaluationPhase({ players, state, info }) {
   const [, setLoader] = useLoading();
   const [gameId] = useGlobalState('gameId');
   const [gameName] = useGlobalState('gameName');
   const [me] = useGlobalState('me');
+  const [canvasSize] = useGlobalState('canvasSize');
   const [amIReady, setImReady] = useState(false);
   const [step, setStep] = useState(1);
   const [votes, setVotes] = useState({});
@@ -95,6 +97,7 @@ function EvaluationPhase({ players, state, info }) {
     >
       {step === 1 && !amIReady && (
         <div className="evaluation-phase__step-one">
+          <CanvasResizer />
           <Typography.Title className="center">Adivinhação</Typography.Title>
           <Typography.Paragraph className="center">
             Encontre os pares de desenho e carta clicando em uma carta ou desenho e em seguida clicando em seu
@@ -107,6 +110,7 @@ function EvaluationPhase({ players, state, info }) {
             activeItem={activeItem}
             onActivateItem={onActivateItem}
             votes={votes}
+            canvasSize={canvasSize}
           />
 
           <EvaluationAllCards
