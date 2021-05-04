@@ -13,8 +13,8 @@ const CanvasResizer = () => {
       <Slider
         className="canvas-resizer__slider"
         defaultValue={canvasSize}
-        min={150}
-        max={350}
+        min={100}
+        max={500}
         step={50}
         onChange={setCanvasSize}
       />

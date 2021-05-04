@@ -106,20 +106,3 @@
   height: 500px;
   background: get-color(white);
 }
-
-.canvas-resizer {
-  width: 150px;
-  // display: flex;
-  // justify-content: center;
-  // align-items: center;
-  // flex-wrap: wrap;
-  // flex-direction: column;
-  &__label {
-    font-size: 90%;
-    text-transform: uppercase;
-  }
-
-  &__slider {
-    display: block;
-  }
-}

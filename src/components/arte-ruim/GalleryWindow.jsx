@@ -1,18 +1,31 @@
 import React, { memo } from 'react';
 
+// Hooks
+import { useGlobalState } from '../../hooks';
 // Components
 import CanvasSVG from './CanvasSVG';
 import GalleryWindowCredits from './GalleryWindowCredits';
 import GalleryWindowGuesses from './GalleryWindowGuesses';
 import GalleryWindowControls from './GalleryWindowControls';
 import GalleryWindowResult from './GalleryWindowResult';
+import CanvasResizer from './CanvasResizer';
 
 function GalleryWindow({ window, galleryLength, players, activeIndex, setActiveIndex }) {
+  const [canvasSize] = useGlobalState('canvasSize');
+
   const { drawing, artist, correctAnswer, playersPoints, playersSay } = window;
 
   return (
     <div className="gallery-window">
-      <CanvasSVG key={window.correctAnswer} drawing={drawing} className="gallery-window__drawing" />
+      <CanvasResizer />
+      <div className="gallery-window__drawing-container">
+        <CanvasSVG
+          key={window.correctAnswer}
+          drawing={drawing}
+          size={canvasSize}
+          className="gallery-window__drawing"
+        />
+      </div>
 
       <GalleryWindowCredits artist={artist} artistAvatarId={players[artist].avatarId} />
 
