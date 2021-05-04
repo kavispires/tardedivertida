@@ -11,10 +11,10 @@ import { ARTE_RUIM_PHASES } from '../../utils/constants';
 import allCards from '../../resources/arte-ruim-cards.json';
 import arteRuimTimer from '../../sounds/arte-ruim-timer.mp3';
 // Components
-import PhaseContainer from '../global/PhaseContainer';
+import PhaseContainer from '../shared/PhaseContainer';
 import DrawPhaseStepOne from './DrawPhaseStepOne';
 import DrawPhaseStepTwo from './DrawPhaseStepTwo';
-import WaitingRoom from './WaitingRoom';
+import WaitingRoom from '../shared/WaitingRoom';
 
 function DrawPhase({ players, state, info }) {
   const [, setLoader] = useLoading();

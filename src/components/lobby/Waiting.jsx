@@ -9,7 +9,7 @@ import avatars from '../../images/avatars.svg';
 import { PUBLIC_URL } from '../../utils/constants';
 import { useLoading } from '../../hooks';
 // Components
-import AdminOnly from '../global/AdminOnly';
+import AdminOnly from '../shared/AdminOnly';
 
 function Waiting({ info, players }) {
   const [isLoading, setLoader] = useLoading();

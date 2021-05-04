@@ -9,9 +9,9 @@ import { useLoading } from '../../hooks';
 import { ARTE_RUIM_API } from '../../adapters';
 import { ARTE_RUIM_PHASES } from '../../utils/constants';
 // Components
-import PhaseContainer from '../global/PhaseContainer';
-import AdminOnly from '../global/AdminOnly';
-import RankingBoard from '../global/RankingBoard';
+import PhaseContainer from '../shared/PhaseContainer';
+import AdminOnly from '../shared/AdminOnly';
+import RankingBoard from '../shared/RankingBoard';
 
 function RankingPhase({ players, state, info }) {
   const [, setLoader] = useLoading();

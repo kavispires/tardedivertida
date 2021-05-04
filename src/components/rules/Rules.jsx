@@ -9,7 +9,7 @@ import LoadingPage from '../loaders/LoadingPage';
 import { CheckCircleFilled, MehFilled, RobotFilled, SmileFilled } from '@ant-design/icons';
 import { useLoading } from '../../hooks';
 import { ARTE_RUIM_API } from '../../adapters';
-import ReadyPlayersBar from '../ReadyPlayersBar';
+import ReadyPlayersBar from '../shared/ReadyPlayersBar';
 
 function Rules({ players, info }) {
   const [isLoading, setLoader] = useLoading();

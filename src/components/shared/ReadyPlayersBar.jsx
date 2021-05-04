@@ -3,7 +3,7 @@ import React from 'react';
 import { Avatar as AntAvatar, Typography } from 'antd';
 import { LikeFilled } from '@ant-design/icons';
 // Components
-import Avatar from './avatars/Avatar';
+import Avatar from '../avatars/Avatar';
 
 function ReadyPlayersBar({ players }) {
   const readyPlayers = Object.values(players).filter((player) => player.ready);
