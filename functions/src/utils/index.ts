@@ -2,7 +2,7 @@ import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 
 import * as constants from './constants';
-import { Players } from '../utils/interfaces';
+import { FirebaseContext, GameCode, GameId, PlayerName, Players } from '../utils/interfaces';
 import { arteRuim } from '../engine/arte-ruim';
 
 const { GAME_CODES, GAME_COLLECTIONS } = constants;
@@ -13,7 +13,7 @@ const { GAME_CODES, GAME_COLLECTIONS } = constants;
  * @param propertyName
  * @param action
  */
-export function verifyPayload(property?: string, propertyName = 'unknown property', action = 'function') {
+export function verifyPayload(property?: any, propertyName = 'unknown property', action = 'function') {
   if (!property) {
     throw new functions.https.HttpsError('internal', `Failed to ${action}: a ${propertyName} is required`);
   }
@@ -24,7 +24,7 @@ export function verifyPayload(property?: string, propertyName = 'unknown propert
  * @param context
  * @param action
  */
-export function verifyAuth(context: any, action = 'perform function') {
+export function verifyAuth(context: FirebaseContext, action = 'perform function') {
   // Verify auth
   const uid = context?.auth?.uid;
   if (!uid) {
@@ -46,7 +46,7 @@ export function getSessionRef(
 }
 
 /**
- * Get firebase doc verifying its existense
+ * Get firebase doc verifying its existence
  * @param collectionName
  * @param gameId
  * @param doc
@@ -88,7 +88,7 @@ export function throwException(error: any, action = 'function') {
  * @param length the length of the game id
  * @returns
  */
-export const generateGameId = (gameCode: string, usedIds: string[] = [], length = 4): string => {
+export const generateGameId = (gameCode: GameCode, usedIds: string[] = [], length = 4): string => {
   if (!gameCode) throw Error('Missing game code');
 
   /**
@@ -97,7 +97,7 @@ export const generateGameId = (gameCode: string, usedIds: string[] = [], length 
    * @param length
    * @returns
    */
-  function generateId(gameCode: string, length: number) {
+  function generateId(gameCode: GameCode, length: number) {
     let id = `${gameCode}`;
     const LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     while (id.length < length) {
@@ -119,7 +119,7 @@ export const generateGameId = (gameCode: string, usedIds: string[] = [], length 
  * @param gameCode
  * @returns
  */
-export const getCollectionNameByGameCode = (gameCode: string): string | null => {
+export const getCollectionNameByGameCode = (gameCode: GameCode): string | null => {
   switch (gameCode) {
     case GAME_CODES.A:
       return GAME_COLLECTIONS.ARTE_RUIM;
@@ -132,7 +132,7 @@ export const getCollectionNameByGameCode = (gameCode: string): string | null => 
  * Get collection name by extracting the first letter of a game id
  * @param {string} gameId
  */
-export const getCollectionNameByGameId = (gameId: string): string | null => {
+export const getCollectionNameByGameId = (gameId: GameId): string | null => {
   return getCollectionNameByGameCode(gameId[0]);
 };
 
@@ -156,7 +156,7 @@ export const getGameMethodsByCollection = (collectionName: string) => {
  * @param playerName
  * @returns
  */
-export const readyPlayer = (players: Players, playerName: string): Players => {
+export const readyPlayer = (players: Players, playerName: PlayerName): Players => {
   players[playerName].ready = true;
   players[playerName].updatedAt = Date.now();
   return players;
@@ -189,7 +189,7 @@ export const isEverybodyReady = (players: Players): boolean => {
  * @param victory
  * @returns
  */
-export const getPointsToVictory = (players: Players, victory = 50): number => {
+export const getPointsToVictory = (players: Players, victory: number): number => {
   const max = Object.values(players).reduce((acc, player) => {
     return Math.max(acc, player.score);
   }, 0);

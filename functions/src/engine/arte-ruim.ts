@@ -7,7 +7,21 @@ import {
 } from '../utils/constants';
 import * as gameUtils from '../utils/game-utils';
 import * as utils from '../utils/index';
-import { ArteRuimInitialState, Players, Player, ArteRuimState, PlainObject } from '../utils/interfaces';
+import {
+  ArteRuimInitialState,
+  Players,
+  Player,
+  ArteRuimState,
+  BasicGamePayload,
+  PlainObject,
+  GameId,
+  PlayerName,
+  DrawingEntry,
+  MakeMeReadyPayload,
+  SubmitDrawingPayload,
+  SubmitVotingPayload,
+  FirebaseContext,
+} from '../utils/interfaces';
 
 export const arteRuim = {
   /**
@@ -16,7 +30,7 @@ export const arteRuim = {
    * @param uid
    * @returns
    */
-  getInitialSession: (gameId: string, uid: string): ArteRuimInitialState => ({
+  getInitialSession: (gameId: GameId, uid: string): ArteRuimInitialState => ({
     meta: {
       gameId,
       gameName: GAME_COLLECTIONS.ARTE_RUIM,
@@ -46,7 +60,7 @@ export const arteRuim = {
    * @param players
    * @returns
    */
-  createPlayer: (name: string, avatarId: string, players: Players = {}): Player => {
+  createPlayer: (name: PlayerName, avatarId: string, players: Players = {}): Player => {
     const playerList = Object.values(players);
     const usedAvatars = playerList.map((player) => player.avatarId);
     avatarId = usedAvatars.includes(avatarId)
@@ -106,24 +120,242 @@ const determineNumberOfCards = (players: Players): number => {
   return playerCount + 2;
 };
 
+/**
+ * Determine the next phase based on the current one
+ * @param currentPhase
+ * @param pointsToVictory
+ * @returns
+ */
 const determineNextPhase = (currentPhase: string, pointsToVictory: number): string => {
   const { RULES, DRAW, EVALUATION, GALLERY, GAME_OVER, RANKING } = ARTE_RUIM_PHASES;
-  if (currentPhase === RULES) return DRAW;
-  if (currentPhase === DRAW) return EVALUATION;
-  if (currentPhase === EVALUATION) return GALLERY;
-  if (currentPhase === GALLERY) return RANKING;
+  const order = [RULES, DRAW, EVALUATION, GALLERY, RANKING];
+
   if (currentPhase === RANKING) {
-    if (pointsToVictory <= 0) return GAME_OVER;
-    return DRAW;
+    return pointsToVictory <= 0 ? GAME_OVER : DRAW;
+  }
+
+  const currentPhaseIndex = order.indexOf(currentPhase);
+
+  if (currentPhaseIndex > -1) {
+    return order[currentPhaseIndex + 1];
   }
   console.warn('Missing phase check');
   return DRAW;
 };
 
-export const nextArteRuimPhase = async (
+const prepareDrawPhase = async (
+  sessionRef: FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData>,
+  store: FirebaseFirestore.DocumentData,
+  state: FirebaseFirestore.DocumentData,
+  players: Players,
+  pointsToVictory: number
+) => {
+  const level = getLevel(pointsToVictory, ARTE_RUIM_GOAL);
+  // Get random cards
+  const numberOfCards = determineNumberOfCards(players);
+  const allCards = getCardsForLevel(level);
+  const usedCards = (store?.usedCards ?? []).map((usedCard) => usedCard.id);
+  const cards = gameUtils.getRandomUniqueItems(allCards, usedCards, numberOfCards);
+  // Assign one card per player
+  const playersNames = Object.keys(players);
+  const cardsState = {};
+  const newUsedCards = cards.map((card, index) => {
+    const currentPlayer = playersNames?.[index] ?? null;
+
+    if (currentPlayer) {
+      cardsState[currentPlayer] = card;
+    }
+
+    return {
+      id: card,
+      playerName: currentPlayer,
+      // drawing: null,
+      // upVotes: 0,
+      // downVotes: 0,
+    };
+  });
+
+  // Save used cards to store
+  await sessionRef.doc('store').update({
+    usedCards: [...store.usedCards, ...newUsedCards],
+    currentCards: newUsedCards,
+  });
+  // Save new state
+  await sessionRef.doc('state').set({
+    phase: ARTE_RUIM_PHASES.DRAW,
+    cards: cardsState,
+    pointsToVictory,
+    round: (state?.round ?? 0) + 1,
+  });
+  // Unready players and return
+  await sessionRef.doc('players').set(utils.unReadyPlayers(players));
+
+  return true;
+};
+
+const prepareEvaluationPhase = async (
+  sessionRef: FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData>,
+  store: FirebaseFirestore.DocumentData,
+  state: FirebaseFirestore.DocumentData,
+  players: Players,
+  pointsToVictory: number
+) => {
+  const shuffledCards = gameUtils.shuffle(store.currentCards);
+  const shuffledDrawings = gameUtils.shuffle(store.currentDrawings);
+
+  // Save new state
+  await sessionRef.doc('state').set({
+    phase: ARTE_RUIM_PHASES.EVALUATION,
+    cards: shuffledCards,
+    drawings: shuffledDrawings,
+    pointsToVictory,
+    round: state?.round ?? 0,
+  });
+
+  // Unready players and return
+  await sessionRef.doc('players').set(utils.unReadyPlayers(players));
+
+  return true;
+};
+
+const prepareGalleryPhase = async (
+  sessionRef: FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData>,
+  store: FirebaseFirestore.DocumentData,
+  state: FirebaseFirestore.DocumentData,
+  players: Players,
+  pointsToVictory: number
+) => {
+  // Calculate everybody's points
+  const gallery = store.currentDrawings.map((drawingEntry) => {
+    const correctAnswer = `${drawingEntry.cardId}`;
+    const artist = drawingEntry.playerName;
+
+    const newEntry = {
+      drawing: drawingEntry.drawing,
+      artist,
+      correctAnswer,
+      playersSay: {},
+      playersPoints: {},
+    };
+
+    const playersSay = {};
+    const playersPoints = {};
+
+    Object.entries(<PlainObject>store.currentVoting).forEach(([pName, votes]) => {
+      if (artist === pName) return;
+
+      // Calculate what players say
+      const currentVote = votes[correctAnswer];
+      if (playersSay[currentVote] === undefined) {
+        playersSay[currentVote] = [];
+      }
+      playersSay[currentVote].push(pName);
+      // Calculate player points
+      if (playersPoints[pName] === undefined) {
+        playersPoints[pName] = 0;
+      }
+      if (playersPoints[artist] === undefined) {
+        playersPoints[artist] = 0;
+      }
+
+      if (currentVote === correctAnswer) {
+        playersPoints[pName] += 2;
+        playersPoints[artist] += 1;
+      }
+    });
+    newEntry.playersSay = playersSay;
+    newEntry.playersPoints = playersPoints;
+    return newEntry;
+  });
+
+  await sessionRef.doc('state').set({
+    phase: ARTE_RUIM_PHASES.GALLERY,
+    gallery,
+    pointsToVictory,
+    round: state?.round ?? 0,
+  });
+
+  return true;
+};
+
+const prepareRankingPhase = async (
+  sessionRef: FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData>,
+  store: FirebaseFirestore.DocumentData,
+  state: FirebaseFirestore.DocumentData,
+  players: Players
+) => {
+  // Loop state gallery and gather points
+  const newPlayers = utils.unReadyPlayers(players);
+
+  // Format <player>: [<old score>, <addition points>, <new score>]
+  const newScores: PlainObject = {};
+
+  // Build score object
+  Object.values(newPlayers).forEach((player) => {
+    newScores[player.name] = [player.score, 0, player.score];
+  });
+
+  state.gallery.forEach((window) => {
+    Object.entries(window.playersPoints).forEach(([pName, value]) => {
+      const points = Number(value ?? 0);
+      newScores[pName][1] += points;
+      newScores[pName][2] += points;
+
+      newPlayers[pName].score += points;
+    });
+  });
+
+  const ranking = Object.entries(newScores)
+    .map(([pName, scores]) => {
+      return {
+        playerName: pName,
+        previousScore: scores[0],
+        gainedPoints: scores[1],
+        newScore: scores[2],
+      };
+    })
+    .sort((a, b) => (a.newScore < b.newScore ? 1 : -1));
+
+  // clear store
+  await sessionRef.doc('store').update({
+    previousDrawings: [...store.previousDrawings, ...store.currentDrawings],
+    currentDrawings: [],
+    currentCards: [],
+    currentVoting: {},
+  });
+
+  const newPointsToVictory = utils.getPointsToVictory(newPlayers, ARTE_RUIM_GOAL);
+
+  await sessionRef.doc('state').set({
+    phase: ARTE_RUIM_PHASES.RANKING,
+    pointsToVictory: newPointsToVictory,
+    ranking,
+    round: state?.round ?? 0,
+  });
+
+  // Unready players and return
+  await sessionRef.doc('players').set(newPlayers);
+
+  return true;
+};
+
+const prepareGameOverPhase = async (
+  sessionRef: FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData>
+) => {
+  await sessionRef.doc('state').set({
+    phase: ARTE_RUIM_PHASES.GAME_OVER,
+  });
+
+  await sessionRef.doc('meta').update({
+    isComplete: true,
+  });
+
+  return true;
+};
+
+const nextArteRuimPhase = async (
   collectionName: string,
   gameId: string,
-  playerName: string,
   players: Players
 ): Promise<boolean> => {
   const actionText = 'prepare next phase';
@@ -143,192 +375,162 @@ export const nextArteRuimPhase = async (
 
   // RULES -> DRAW
   if (nextPhase === ARTE_RUIM_PHASES.DRAW) {
-    const level = getLevel(pointsToVictory, ARTE_RUIM_GOAL);
-    // Get random cards
-    const numberOfCards = determineNumberOfCards(players);
-    const allCards = getCardsForLevel(level);
-    const usedCards = (store?.usedCards ?? []).map((usedCard) => usedCard.id);
-    const cards = gameUtils.getRandomUniqueItems(allCards, usedCards, numberOfCards);
-    // Assign one card per player
-    const playersNames = Object.keys(players);
-    const cardsState = {};
-    const newUsedCards = cards.map((card, index) => {
-      const currentPlayer = playersNames?.[index] ?? null;
-
-      if (currentPlayer) {
-        cardsState[currentPlayer] = card;
-      }
-
-      return {
-        id: card,
-        playerName: currentPlayer,
-        // drawing: null,
-        // upVotes: 0,
-        // downVotes: 0,
-      };
-    });
-
-    // Save used cards to store
-    await sessionRef.doc('store').update({
-      usedCards: [...store.usedCards, ...newUsedCards],
-      currentCards: newUsedCards,
-    });
-    // Save new state
-    await sessionRef.doc('state').set({
-      phase: nextPhase,
-      cards: cardsState,
-      pointsToVictory,
-      round: (state?.round ?? 0) + 1,
-    });
-    // Unready players and return
-    await sessionRef.doc('players').set(utils.unReadyPlayers(players));
-
-    return true;
+    return prepareDrawPhase(sessionRef, store, state, players, pointsToVictory);
   }
 
   // DRAW -> EVALUATION
   if (nextPhase === ARTE_RUIM_PHASES.EVALUATION) {
-    const shuffledCards = gameUtils.shuffle(store.currentCards);
-    const shuffledDrawings = gameUtils.shuffle(store.currentDrawings);
-
-    // Save new state
-    await sessionRef.doc('state').set({
-      phase: nextPhase,
-      cards: shuffledCards,
-      drawings: shuffledDrawings,
-      pointsToVictory,
-      round: state?.round ?? 0,
-    });
-
-    // Unready players and return
-    await sessionRef.doc('players').set(utils.unReadyPlayers(players));
-
-    return true;
+    return prepareEvaluationPhase(sessionRef, store, state, players, pointsToVictory);
   }
 
   // EVALUATION -> GALLERY
   if (nextPhase === ARTE_RUIM_PHASES.GALLERY) {
-    // Calculate everybody's points
-    const gallery = store.currentDrawings.map((drawingEntry) => {
-      const correctAnswer = `${drawingEntry.cardId}`;
-      const artist = drawingEntry.playerName;
-
-      const newEntry = {
-        drawing: drawingEntry.drawing,
-        artist,
-        correctAnswer,
-        playersSay: {},
-        playersPoints: {},
-      };
-
-      const playersSay = {};
-      const playersPoints = {};
-
-      Object.entries(<PlainObject>store.currentVoting).forEach(([pName, votes]) => {
-        if (artist === pName) return;
-
-        // Calculate what players say
-        const currentVote = votes[correctAnswer];
-        if (playersSay[currentVote] === undefined) {
-          playersSay[currentVote] = [];
-        }
-        playersSay[currentVote].push(pName);
-        // Calculate player points
-        if (playersPoints[pName] === undefined) {
-          playersPoints[pName] = 0;
-        }
-        if (playersPoints[artist] === undefined) {
-          playersPoints[artist] = 0;
-        }
-
-        if (currentVote === correctAnswer) {
-          playersPoints[pName] += 2;
-          playersPoints[artist] += 1;
-        }
-      });
-      newEntry.playersSay = playersSay;
-      newEntry.playersPoints = playersPoints;
-      return newEntry;
-    });
-
-    await sessionRef.doc('state').set({
-      phase: nextPhase,
-      gallery,
-      pointsToVictory,
-      round: state?.round ?? 0,
-    });
-
-    return true;
+    return prepareGalleryPhase(sessionRef, store, state, players, pointsToVictory);
   }
 
   // GALLERY -> RANKING
   if (nextPhase === ARTE_RUIM_PHASES.RANKING) {
-    // Loop state gallery and gather points
-    const newPlayers = utils.unReadyPlayers(players);
-
-    // Format <player>: [<old score>, <addition points>, <new score>]
-    const newScores: PlainObject = {};
-
-    // Build score object
-    Object.values(newPlayers).forEach((player) => {
-      newScores[player.name] = [player.score, 0, player.score];
-    });
-
-    state.gallery.forEach((window) => {
-      Object.entries(window.playersPoints).forEach(([pName, value]) => {
-        const points = Number(value ?? 0);
-        newScores[pName][1] += points;
-        newScores[pName][2] += points;
-
-        newPlayers[pName].score += points;
-      });
-    });
-
-    const ranking = Object.entries(newScores)
-      .map(([pName, scores]) => {
-        return {
-          playerName: pName,
-          previousScore: scores[0],
-          gainedPoints: scores[1],
-          newScore: scores[2],
-        };
-      })
-      .sort((a, b) => (a.newScore < b.newScore ? 1 : -1));
-
-    // clear store
-    await sessionRef.doc('store').update({
-      previousDrawings: [...store.previousDrawings, ...store.currentDrawings],
-      currentDrawings: [],
-      currentCards: [],
-      currentVoting: {},
-    });
-
-    const newPointsToVictory = utils.getPointsToVictory(newPlayers, ARTE_RUIM_GOAL);
-
-    await sessionRef.doc('state').set({
-      phase: nextPhase,
-      pointsToVictory: newPointsToVictory,
-      ranking,
-      round: state?.round ?? 0,
-    });
-
-    // Unready players and return
-    await sessionRef.doc('players').set(newPlayers);
-
-    return true;
+    return prepareRankingPhase(sessionRef, store, state, players);
   }
 
   if (nextPhase === ARTE_RUIM_PHASES.GAME_OVER) {
-    await sessionRef.doc('state').set({
-      phase: nextPhase,
-    });
-
-    await sessionRef.doc('meta').update({
-      isComplete: true,
-    });
-
-    return true;
+    return prepareGameOverPhase(sessionRef);
   }
 
   return true;
+};
+
+export const makeMeReady = async (data: MakeMeReadyPayload) => {
+  const { gameId, gameName: collectionName, playerName } = data;
+
+  const actionText = 'make you ready';
+  utils.verifyPayload(gameId, 'gameId', actionText);
+  utils.verifyPayload(collectionName, 'collectionName', actionText);
+  utils.verifyPayload(playerName, 'playerName', actionText);
+
+  // Get 'players' from given game session
+  const sessionRef = utils.getSessionRef(collectionName, gameId);
+  const playersDoc = await utils.getSessionDoc(collectionName, gameId, 'players', actionText);
+
+  // Make player ready
+  const players = playersDoc.data() ?? {};
+  const updatedPlayers = utils.readyPlayer(players, playerName);
+
+  if (!utils.isEverybodyReady(updatedPlayers)) {
+    try {
+      await sessionRef.doc('players').update({ [playerName]: updatedPlayers[playerName] });
+      return true;
+    } catch (error) {
+      utils.throwException(error, actionText);
+    }
+  }
+
+  // If all players are ready, trigger next phase
+  return nextArteRuimPhase(collectionName, gameId, players);
+};
+
+export const submitDrawing = async (data: SubmitDrawingPayload) => {
+  const { gameId, gameName: collectionName, playerName, drawing, cardId } = data;
+
+  const actionText = 'submit your drawing';
+  utils.verifyPayload(gameId, 'gameId', actionText);
+  utils.verifyPayload(collectionName, 'collectionName', actionText);
+  utils.verifyPayload(playerName, 'playerName', actionText);
+  utils.verifyPayload(drawing, 'drawing', actionText);
+  utils.verifyPayload(cardId, 'cardId', actionText);
+
+  // Get 'players' from given game session
+  const sessionRef = utils.getSessionRef(collectionName, gameId);
+  const playersDoc = await utils.getSessionDoc(collectionName, gameId, 'players', actionText);
+  const storeDoc = await utils.getSessionDoc(collectionName, gameId, 'store', actionText);
+
+  // Submit drawing
+  const store = storeDoc.data();
+  try {
+    const newStore = { ...store };
+    newStore?.currentDrawings?.push(<DrawingEntry>{
+      drawing,
+      cardId: `${cardId}`,
+      playerName,
+    });
+
+    await sessionRef.doc('store').set({ ...newStore });
+  } catch (error) {
+    utils.throwException(error, actionText);
+  }
+
+  // Make player ready
+  const players = playersDoc.data() ?? {};
+  const updatedPlayers = utils.readyPlayer(players, playerName);
+
+  if (!utils.isEverybodyReady(updatedPlayers)) {
+    try {
+      await sessionRef.doc('players').update({ [playerName]: updatedPlayers[playerName] });
+      return true;
+    } catch (error) {
+      utils.throwException(error, actionText);
+    }
+  }
+
+  // If all players are ready, trigger next phase
+  return nextArteRuimPhase(collectionName, gameId, players);
+};
+
+export const submitVoting = async (data: SubmitVotingPayload) => {
+  const { gameId, gameName: collectionName, playerName, votes } = data;
+
+  const actionText = 'submit your votes';
+  utils.verifyPayload(gameId, 'gameId', actionText);
+  utils.verifyPayload(collectionName, 'collectionName', actionText);
+  utils.verifyPayload(playerName, 'playerName', actionText);
+  utils.verifyPayload(votes, 'votes', actionText);
+
+  const sessionRef = utils.getSessionRef(collectionName, gameId);
+  const playersDoc = await utils.getSessionDoc(collectionName, gameId, 'players', actionText);
+  const storeDoc = await utils.getSessionDoc(collectionName, gameId, 'store', actionText);
+
+  // Submit drawing
+  const store = storeDoc.data();
+  try {
+    const newStore = { ...store };
+    newStore.currentVoting = {
+      [playerName]: votes,
+      ...newStore?.currentVoting,
+    };
+
+    await sessionRef.doc('store').set({ ...newStore });
+  } catch (error) {
+    utils.throwException(error, actionText);
+  }
+
+  // Make player ready
+  const players = playersDoc.data() ?? {};
+  const updatedPlayers = utils.readyPlayer(players, playerName);
+
+  if (!utils.isEverybodyReady(updatedPlayers)) {
+    try {
+      await sessionRef.doc('players').update({ [playerName]: updatedPlayers[playerName] });
+      return true;
+    } catch (error) {
+      utils.throwException(error, actionText);
+    }
+  }
+
+  // If all players are ready, trigger next phase
+  return nextArteRuimPhase(collectionName, gameId, players);
+};
+
+export const goToNextPhase = async (data: BasicGamePayload, context: FirebaseContext) => {
+  const { gameId, gameName: collectionName } = data;
+
+  const actionText = 'go to ranking | go to new round';
+  utils.verifyPayload(gameId, 'gameId', actionText);
+  utils.verifyPayload(collectionName, 'collectionName', actionText);
+  utils.verifyAuth(context, actionText);
+
+  const playersDoc = await utils.getSessionDoc(collectionName, gameId, 'players', actionText);
+
+  const players = playersDoc.data() ?? {};
+
+  return nextArteRuimPhase(collectionName, gameId, players);
 };

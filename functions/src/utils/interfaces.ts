@@ -4,6 +4,8 @@ export type GameCode = string;
 export type DateMilliseconds = number;
 export type PlayerName = string;
 
+// COMMON INTERFACES
+
 export interface PlainObject {
   [key: string]: any;
 }
@@ -27,7 +29,7 @@ export interface AddPlayerPayload {
   playerAvatarId: string;
 }
 
-export interface LockGamePayload {
+export interface BasicGamePayload {
   gameId: GameId;
   gameName: GameName;
 }
@@ -56,6 +58,14 @@ export interface Players {
   [key: string]: Player;
 }
 
+export interface MakeMeReadyPayload {
+  gameId: GameId;
+  gameName: GameName;
+  playerName: PlayerName;
+}
+
+// ARTE RUIM INTERFACES
+
 export interface ArteRuimStore {
   usedCards: string[];
   previousDrawings: any[];
@@ -82,4 +92,19 @@ export interface DrawingEntry {
   cardId: string | number;
   drawing: string;
   playerName: string;
+}
+
+export interface SubmitDrawingPayload {
+  gameId: GameId;
+  gameName: GameName;
+  playerName: PlayerName;
+  drawing: string;
+  cardId: string;
+}
+
+export interface SubmitVotingPayload {
+  gameId: GameId;
+  gameName: GameName;
+  playerName: PlayerName;
+  votes: PlainObject;
 }

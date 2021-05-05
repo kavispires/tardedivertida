@@ -7,7 +7,7 @@ import {
   CreateGamePayload,
   FirebaseContext,
   LoadGamePayload,
-  LockGamePayload,
+  BasicGamePayload,
   Players,
 } from '../utils/interfaces';
 
@@ -161,7 +161,7 @@ export const addPlayer = async (data: AddPlayerPayload) => {
  * @param context
  * @returns
  */
-export const lockGame = async (data: LockGamePayload, context: FirebaseContext) => {
+export const lockGame = async (data: BasicGamePayload, context: FirebaseContext) => {
   const { gameId, gameName: collectionName } = data;
 
   const actionText = 'lock game';
