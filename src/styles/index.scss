@@ -12,7 +12,7 @@
 @import './reset';
 @import './global';
 
-// Components
+// Shared Components
 @import '../components/avatars/AvatarEntry.scss';
 @import '../components/loaders/Loading.scss';
 @import '../components/loaders/LoadingBar.scss';
@@ -20,6 +20,7 @@
 @import '../components/lobby/Lobby.scss';
 @import '../components/lobby/Join.scss';
 @import '../components/lobby/Waiting.scss';
+@import '../components/shared/RoundAnnouncement.scss';
 @import '../components/modals/RulesModal.scss';
 @import '../components/rules/RulesCarousel.scss';
 @import '../components/rules/Rules.scss';
