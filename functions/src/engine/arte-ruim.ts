@@ -43,8 +43,7 @@ export const arteRuim = {
     },
     players: {},
     store: {
-      usedCards: [],
-      previousDrawings: [],
+      usedCards: {},
       currentCards: [],
       currentDrawings: [],
       currentVoting: {},
@@ -154,11 +153,12 @@ const prepareDrawPhase = async (
   // Get random cards
   const numberOfCards = determineNumberOfCards(players);
   const allCards = getCardsForLevel(level);
-  const usedCards = (store?.usedCards ?? []).map((usedCard) => usedCard.id);
+  const usedCards = Object.keys(store?.usedCards);
   const cards = gameUtils.getRandomUniqueItems(allCards, usedCards, numberOfCards);
   // Assign one card per player
   const playersNames = Object.keys(players);
   const cardsState = {};
+  const newUsedCardsObj = {};
   const newUsedCards = cards.map((card, index) => {
     const currentPlayer = playersNames?.[index] ?? null;
 
@@ -166,18 +166,25 @@ const prepareDrawPhase = async (
       cardsState[currentPlayer] = card;
     }
 
-    return {
+    const newCard = {
       id: card,
       playerName: currentPlayer,
       drawing: null,
       upVotes: 0,
       downVotes: 0,
     };
+
+    newUsedCardsObj[card] = newCard;
+
+    return newCard;
   });
 
   // Save used cards to store
   await sessionRef.doc('store').update({
-    usedCards: [...store.usedCards, ...newUsedCards],
+    usedCards: {
+      ...store.usedCards,
+      ...newUsedCardsObj,
+    },
     currentCards: newUsedCards,
   });
   // Save new state
@@ -300,9 +307,15 @@ const prepareGalleryPhase = async (
     })
     .sort((a, b) => (a.newScore < b.newScore ? 1 : -1));
 
+  // Merge currentDrawings into used cards
+  const extendedUsedCards = { ...store.usedCards };
+  store.currentDrawings.map((currentDrawing) => {
+    extendedUsedCards[currentDrawing.cardId].drawing = currentDrawing.drawing;
+  });
+
   // clear store
   await sessionRef.doc('store').update({
-    previousDrawings: [...store.previousDrawings, ...store.currentDrawings], // TODO delete pd merge with uc
+    usedCards: extendedUsedCards,
     currentDrawings: [],
     currentCards: [],
     currentVoting: {},

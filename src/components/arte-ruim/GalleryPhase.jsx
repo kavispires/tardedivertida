@@ -21,12 +21,18 @@ function GalleryPhase({ players, state, info }) {
   const [me] = useGlobalState('me');
   const [activeIndex, setActiveIndex] = useState(0);
   const [step, setStep] = useState(0);
-  const [, setCanvasSize] = useGlobalState('canvasSize');
+  const [canvasSize, setCanvasSize] = useGlobalState('canvasSize');
+  const [cachedCanvasSize, setCachedCanvasSize] = useState(canvasSize);
 
   // The gallery needs a bigger image, its annoying that we are changing the users settings but whatever
   useEffect(() => {
-    setCanvasSize(500);
-  }, []); // eslint-disable-line
+    if (step === 0) {
+      setCachedCanvasSize(canvasSize);
+      setCanvasSize(500);
+    } else {
+      setCanvasSize(cachedCanvasSize);
+    }
+  }, [step]); // eslint-disable-line
 
   const onGoToNextRound = useCallback(async () => {
     try {
