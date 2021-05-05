@@ -10,7 +10,7 @@ import GalleryWindowControls from './GalleryWindowControls';
 import GalleryWindowResult from './GalleryWindowResult';
 import CanvasResizer from './CanvasResizer';
 
-function GalleryWindow({ window, galleryLength, players, activeIndex, setActiveIndex }) {
+function GalleryWindow({ window, galleryLength, players, activeIndex, setActiveIndex, setStep }) {
   const [canvasSize] = useGlobalState('canvasSize');
 
   const { drawing, artist, correctAnswer, playersPoints, playersSay } = window;
@@ -43,6 +43,7 @@ function GalleryWindow({ window, galleryLength, players, activeIndex, setActiveI
         galleryLength={galleryLength}
         activeIndex={activeIndex}
         setActiveIndex={setActiveIndex}
+        setStep={setStep}
       />
     </div>
   );

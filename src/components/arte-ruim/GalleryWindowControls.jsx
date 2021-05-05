@@ -8,14 +8,16 @@ import {
   PlayCircleOutlined,
   StepBackwardOutlined,
   StepForwardOutlined,
+  TrophyOutlined,
 } from '@ant-design/icons';
 // Utils
 import { inNSeconds } from '../../utils';
 
-function GalleryWindowControls({ galleryLength, activeIndex, setActiveIndex }) {
+function GalleryWindowControls({ galleryLength, activeIndex, setActiveIndex, setStep }) {
   const { seconds, isRunning, pause, resume } = useTimer({
     expiryTimestamp: inNSeconds(10 * galleryLength),
     autoStart: true,
+    onExpire: () => setStep(1),
   });
 
   // Automatically go to the next window every 10 seconds
@@ -40,24 +42,28 @@ function GalleryWindowControls({ galleryLength, activeIndex, setActiveIndex }) {
       </div>
       <Button
         size="large"
-        shape="circle"
         icon={<StepBackwardOutlined />}
         onClick={previousStep}
         disabled={activeIndex === 0}
-      />
+      >
+        Desenho Anterior
+      </Button>
       <Button
         size="large"
-        shape="circle"
         icon={isRunning ? <PauseOutlined /> : <PlayCircleOutlined />}
         onClick={isRunning ? pause : resume}
       />
+      <Button size="large" onClick={nextStep} disabled={activeIndex === galleryLength - 1}>
+        Próximo Desenho <StepForwardOutlined />
+      </Button>
       <Button
+        className="gallery-window__go-to-ranking"
         size="large"
-        shape="circle"
-        icon={<StepForwardOutlined />}
-        onClick={nextStep}
-        disabled={activeIndex === galleryLength - 1}
-      />
+        onClick={() => setStep(1)}
+        icon={<TrophyOutlined />}
+      >
+        Ver Ranking
+      </Button>
     </div>
   );
 }
@@ -66,6 +72,7 @@ GalleryWindowControls.propTypes = {
   galleryLength: PropTypes.number,
   activeIndex: PropTypes.number,
   setActiveIndex: PropTypes.func,
+  setStep: PropTypes.func,
 };
 
 export default GalleryWindowControls;

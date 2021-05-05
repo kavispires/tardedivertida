@@ -16,10 +16,7 @@ function PhaseContainer({ info, phase = '', allowedPhase = '', children, classNa
 
 PhaseContainer.propTypes = {
   allowedPhase: PropTypes.string,
-  children: PropTypes.oneOfType(
-    PropTypes.element.isRequired,
-    PropTypes.arrayOf(PropTypes.element.isRequired)
-  ),
+  children: PropTypes.any,
   className: PropTypes.string,
   info: PropTypes.object,
   phase: PropTypes.string,

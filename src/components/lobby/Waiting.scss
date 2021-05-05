@@ -23,7 +23,6 @@
     width: calc(100% - #{get-unit(6)});
     position: absolute;
     bottom: get-unit(3);
-    display: flex;
     flex-direction: column;
   }
 }
