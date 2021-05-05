@@ -66,9 +66,20 @@ export interface MakeMeReadyPayload {
 
 // ARTE RUIM INTERFACES
 
+export interface UsedCard {
+  id: string;
+  playerName: PlayerName | null;
+  drawing: string | null;
+  upVotes: 0;
+  downVotes: 0;
+}
+
+export interface UsedCards {
+  [key: string]: UsedCard;
+}
+
 export interface ArteRuimStore {
-  usedCards: string[];
-  previousDrawings: any[];
+  usedCards: UsedCards;
   currentCards: string[];
   currentDrawings: DrawingEntry[];
   currentVoting: any;

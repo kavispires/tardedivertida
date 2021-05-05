@@ -14,5 +14,4 @@ export const ARTE_RUIM_API = {
   submitVoting: functions.httpsCallable('arteRuimSubmitVoting'),
   submitRating: functions.httpsCallable('arteRuimSubmitRating'),
   goToNextPhase: functions.httpsCallable('arteRuimGoToNextPhase'),
-  forceEverybodyReady: functions.httpsCallable('arteRuimForceEverybodyReady'),
 };
