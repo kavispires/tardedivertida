@@ -39,7 +39,7 @@ const DrawingCanvas = ({ lines, setLines, className = '' }) => {
       onMouseDown={handleMouseDown}
       onMousemove={handleMouseMove}
       onMouseup={handleMouseUp}
-      className={clsx('canvas', className)}
+      className={clsx('drawing-canvas', className)}
     >
       <Layer>
         {lines.map((line, i) => (
