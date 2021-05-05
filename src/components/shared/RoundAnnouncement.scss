@@ -1,0 +1,74 @@
+.round-announcement {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__title {
+    width: 150px;
+  }
+
+  $roundSize: 350px;
+
+  &__round-wrapper {
+    position: relative;
+    width: $roundSize;
+    height: $roundSize;
+    margin: get-unit(3);
+  }
+
+  &__circle {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    padding: 2.5px;
+    background-clip: content-box;
+    animation: spin 10s linear infinite;
+    background-color: rgba($color: #fff, $alpha: 0.5);
+    border: 4px dashed get-color(yellow);
+  }
+
+  &__number {
+    position: absolute;
+    width: $roundSize;
+    height: $roundSize;
+    color: get-color(white);
+    font-weight: bolder;
+    top: 0;
+    left: 0;
+    font-size: 15em;
+    text-align: center;
+  }
+
+  &__round {
+    background: rgba($color: #fff, $alpha: 0.3);
+    width: 350px;
+    height: 350px;
+    font-size: 15em;
+    aspect-ratio: 1 / 1;
+    font-weight: bolder;
+    color: get-color(white);
+    border-radius: 50%;
+    border: get-unit(5) inset get-color(white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: get-unit(5 auto);
+  }
+
+  &__instructions {
+    margin: get-unit(5);
+    color: get-color(white);
+    text-align: center;
+  }
+}
+
+// background-clip: content-box;
+// animation: spin 10s linear infinite;
+
+@keyframes spin {
+  100% {
+    transform: rotateZ(360deg);
+  }
+}

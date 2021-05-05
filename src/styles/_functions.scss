@@ -34,8 +34,6 @@
 */
 @function get-color($color-name, $shade: 5) {
   $colors: (
-    primary: #222222,
-    negative: #ffffff,
     blue: #598ffd,
     gray: #6f7273,
     green: #49d156,
@@ -48,7 +46,6 @@
     white: #ffffff,
     black: #222222,
     brown: #875131,
-    test: #6b7273,
   );
 
   $shade-levels: (
