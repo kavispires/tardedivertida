@@ -2,6 +2,7 @@ import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 
 import * as constants from './constants';
+import { Players } from '../utils/interfaces';
 import { arteRuim } from '../engine/arte-ruim';
 
 const { GAME_CODES, GAME_COLLECTIONS } = constants;
@@ -55,16 +56,16 @@ export function getSessionRef(
 export async function getSessionDoc(
   collectionName: string,
   gameId: string,
-  doc: string,
+  docName: string,
   actionText: string
 ): Promise<FirebaseFirestore.DocumentSnapshot<FirebaseFirestore.DocumentData>> {
   const sessionRef = getSessionRef(collectionName, gameId);
-  const gameDoc = await sessionRef.doc(doc).get();
+  const gameDoc = await sessionRef.doc(docName).get();
 
   if (!gameDoc.exists) {
     throw new functions.https.HttpsError(
       'internal',
-      `Failed to ${actionText}: game ${collectionName}/${gameId}/${doc} does not exist`
+      `Failed to ${actionText}: game ${collectionName}/${gameId}/${docName} does not exist`
     );
   }
 
@@ -147,4 +148,51 @@ export const getGameMethodsByCollection = (collectionName: string) => {
     default:
       throw new Error(`Collection '${collectionName}' does not exist`);
   }
+};
+
+/**
+ * Set given player as ready in the players object
+ * @param players
+ * @param playerName
+ * @returns
+ */
+export const readyPlayer = (players: Players, playerName: string): Players => {
+  players[playerName].ready = true;
+  players[playerName].updatedAt = Date.now();
+  return players;
+};
+
+/**
+ * Set all players as not ready
+ * @param players
+ * @returns
+ */
+export const unReadyPlayers = (players: Players): Players => {
+  for (const player in players) {
+    players[player].ready = false;
+  }
+  return players;
+};
+
+/**
+ * Verify if all players are ready
+ * @param players
+ * @returns
+ */
+export const isEverybodyReady = (players: Players): boolean => {
+  return Object.values(players).every((player) => player.ready);
+};
+
+/**
+ * Calculates how many points remain to call the end of the game
+ * @param players
+ * @param victory
+ * @returns
+ */
+export const getPointsToVictory = (players: Players, victory = 50): number => {
+  const max = Object.values(players).reduce((acc, player) => {
+    return Math.max(acc, player.score);
+  }, 0);
+
+  return max < victory ? victory - max : 0;
 };

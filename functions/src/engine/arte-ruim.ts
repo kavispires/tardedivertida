@@ -7,14 +7,7 @@ import {
 } from '../utils/constants';
 import * as gameUtils from '../utils/game-utils';
 import * as utils from '../utils/index';
-import {
-  ArteRuimInitialState,
-  Players,
-  Player,
-  ArteRuimState,
-  StatePlayers,
-  PlainObject,
-} from '../utils/interfaces';
+import { ArteRuimInitialState, Players, Player, ArteRuimState, PlainObject } from '../utils/interfaces';
 
 export const arteRuim = {
   /**
@@ -82,53 +75,6 @@ export const arteRuim = {
 };
 
 /**
- * Set given player as ready in the players object
- * @param players
- * @param playerName
- * @returns
- */
-export const readyPlayer = (players: Players, playerName: string): Players => {
-  players[playerName].ready = true;
-  players[playerName].updatedAt = Date.now();
-  return players;
-};
-
-/**
- * Set all players as not ready
- * @param players
- * @returns
- */
-export const unReadyPlayers = (players: Players): Players => {
-  for (const player in players) {
-    players[player].ready = false;
-  }
-  return players;
-};
-
-/**
- * Verify if all players are ready
- * @param players
- * @returns
- */
-export const isEverybodyReady = (players: Players): boolean => {
-  return Object.values(players).every((player) => player.ready);
-};
-
-/**
- * Calculates how many points remain to call the end of the game
- * @param players
- * @param victory
- * @returns
- */
-export const getPointsToVictory = (players: StatePlayers, victory = 50): number => {
-  const max = Object.values(players).reduce((acc, player) => {
-    return Math.max(acc, player.score);
-  }, 0);
-
-  return max < victory ? victory - max : 0;
-};
-
-/**
  * Calculate what level of cards it should be gotten
  * @param pointsToVictory
  * @param goal
@@ -191,7 +137,7 @@ export const nextArteRuimPhase = async (
   const store = storeDoc.data() ?? {};
 
   // Calculate points to victory
-  const pointsToVictory = getPointsToVictory(players, ARTE_RUIM_GOAL);
+  const pointsToVictory = utils.getPointsToVictory(players, ARTE_RUIM_GOAL);
   // Determine next phase
   const nextPhase = determineNextPhase(state?.phase, pointsToVictory);
 
@@ -235,7 +181,7 @@ export const nextArteRuimPhase = async (
       round: (state?.round ?? 0) + 1,
     });
     // Unready players and return
-    await sessionRef.doc('players').set(unReadyPlayers(players));
+    await sessionRef.doc('players').set(utils.unReadyPlayers(players));
 
     return true;
   }
@@ -255,7 +201,7 @@ export const nextArteRuimPhase = async (
     });
 
     // Unready players and return
-    await sessionRef.doc('players').set(unReadyPlayers(players));
+    await sessionRef.doc('players').set(utils.unReadyPlayers(players));
 
     return true;
   }
@@ -318,7 +264,7 @@ export const nextArteRuimPhase = async (
   // GALLERY -> RANKING
   if (nextPhase === ARTE_RUIM_PHASES.RANKING) {
     // Loop state gallery and gather points
-    const newPlayers = unReadyPlayers(players);
+    const newPlayers = utils.unReadyPlayers(players);
 
     // Format <player>: [<old score>, <addition points>, <new score>]
     const newScores: PlainObject = {};
@@ -357,7 +303,7 @@ export const nextArteRuimPhase = async (
       currentVoting: {},
     });
 
-    const newPointsToVictory = getPointsToVictory(newPlayers, ARTE_RUIM_GOAL);
+    const newPointsToVictory = utils.getPointsToVictory(newPlayers, ARTE_RUIM_GOAL);
 
     await sessionRef.doc('state').set({
       phase: nextPhase,

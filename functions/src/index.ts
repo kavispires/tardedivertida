@@ -1,6 +1,7 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import * as utils from './utils/index';
+import * as commonEngine from './engine/common';
 import * as arteRuimEngine from './engine/arte-ruim';
 import { DrawingEntry } from './utils/interfaces';
 
@@ -12,180 +13,29 @@ admin.initializeApp();
 /**
  * Demo function
  */
-export const helloWorld = functions.https.onCall(async () => {
+exports.test = functions.https.onCall(async () => {
   return 'hello world';
 });
 
 /**
  * Create a new game instance returning its meta data with gameId
  */
-export const initializeGame = functions.https.onCall(async (data, context) => {
-  const actionText = 'create new game';
-  utils.verifyAuth(context, actionText);
-
-  // Get collection name by game code on request
-  const { gameCode } = data;
-
-  if (!gameCode) {
-    throw new functions.https.HttpsError('internal', `Failed to ${actionText}: a gameCode is required`);
-  }
-
-  const collectionName = utils.getCollectionNameByGameCode(gameCode);
-
-  if (!collectionName) {
-    throw new functions.https.HttpsError(
-      'internal',
-      `Failed to ${actionText}: provided gameCode is invalid ${gameCode}`
-    );
-  }
-
-  // Get list of code ids present in database
-  const collectionRef = admin.firestore().collection(collectionName);
-
-  // Generate unique 4 digit code starting with game code letter
-  let gameId: string | null = null;
-  while (!gameId) {
-    const tempId = utils.generateGameId(gameCode);
-    const tempDoc = await collectionRef.doc(tempId).get();
-    if (!tempDoc.exists) {
-      gameId = tempId;
-    }
-  }
-
-  // Make sure the game does not exist, I do not trust that while loop
-  const tempGame = await collectionRef.doc(gameId).get();
-  if (tempGame.exists) {
-    throw new functions.https.HttpsError(
-      'internal',
-      `Failed to ${actionText}: the generated game id ${gameCode} belongs to an existing session`
-    );
-  }
-
-  // Create game entry in database
-  let response = {};
-  try {
-    const sessionRef = utils.getSessionRef(collectionName, gameId);
-
-    const methods = utils.getGameMethodsByCollection(collectionName);
-    const uid = context?.auth?.uid ?? '';
-    const { meta, players, state, store } = methods?.getInitialSession(gameId, uid);
-
-    await sessionRef.doc('meta').set(meta);
-    await sessionRef.doc('players').set(players);
-    await sessionRef.doc('state').set(state);
-    await sessionRef.doc('store').set(store);
-
-    response = meta;
-  } catch (e) {
-    console.error(e);
-    throw new functions.https.HttpsError(
-      'internal',
-      `Failed to ${actionText} in the firestore database: ${e}`
-    );
-  }
-
-  return {
-    ...response,
-  };
-});
+exports.initializeGame = functions.https.onCall(commonEngine.createGame);
 
 /**
  * Load an existing game
  */
-exports.loadGame = functions.https.onCall(async (data) => {
-  // Extract gameCode to figure out
-  const { gameId } = data;
-
-  const actionText = 'load game';
-  utils.verifyPayload(gameId, 'gameId', 'load game');
-
-  const collectionName = utils.getCollectionNameByGameId(gameId);
-
-  if (!collectionName) {
-    throw new functions.https.HttpsError(
-      'internal',
-      `Failed to ${actionText}: there is no game engine for the given id: ${gameId}`
-    );
-  }
-
-  // Get 'meta' from given game session
-  const sessionRef = utils.getSessionRef(collectionName, gameId);
-  const gameMeta = await sessionRef.doc('meta').get();
-
-  if (!gameMeta.exists) {
-    throw new functions.https.HttpsError(
-      'internal',
-      `Failed to ${actionText}: game ${gameId} does not exist`
-    );
-  }
-
-  return gameMeta.data();
-});
+exports.loadGame = functions.https.onCall(commonEngine.loadGame);
 
 /**
  * Add player to the game, if it's an existing player, only return its state
  */
-exports.addPlayer = functions.https.onCall(async (data) => {
-  const { gameId, gameName: collectionName, playerName, playerAvatarId } = data;
-
-  const actionText = 'add player';
-  utils.verifyPayload(gameId, 'gameId', actionText);
-  utils.verifyPayload(collectionName, 'collectionName', actionText);
-  utils.verifyPayload(playerName, 'playerName', actionText);
-
-  // Get 'players' from given game session
-  const sessionRef = utils.getSessionRef(collectionName, gameId);
-  const playersDoc = await utils.getSessionDoc(collectionName, gameId, 'players', actionText);
-
-  const players = playersDoc.data() ?? {};
-
-  if (players?.[playerName]) {
-    return players[playerName];
-  }
-
-  try {
-    const methods = utils.getGameMethodsByCollection(collectionName);
-    const newPlayer = methods.createPlayer(playerName, playerAvatarId, players);
-    await sessionRef.doc('players').update({
-      [playerName]: newPlayer,
-    });
-    return newPlayer;
-  } catch (error) {
-    utils.throwException(error, actionText);
-  }
-});
+exports.addPlayer = functions.https.onCall(commonEngine.addPlayer);
 
 /**
- * Locks game so new players cannot join
+ * Lock game so new players cannot join
  */
-exports.lockGame = functions.https.onCall(async (data, context) => {
-  const { gameId, gameName: collectionName } = data;
-
-  const actionText = 'lock game';
-  utils.verifyPayload(gameId, 'gameId', actionText);
-  utils.verifyPayload(collectionName, 'collectionName', actionText);
-  utils.verifyAuth(context, actionText);
-
-  const sessionRef = utils.getSessionRef(collectionName, gameId);
-  await utils.getSessionDoc(collectionName, gameId, 'meta', actionText);
-
-  try {
-    // Parse players into two objects: info with static information, state with variable information (score, etc)
-    const methods = utils.getGameMethodsByCollection(collectionName);
-    const newState = methods.lockGame();
-
-    // Set info with players object and isLocked
-    await sessionRef.doc('meta').update({ isLocked: true });
-    // Set state with new Phase: Rules
-    await sessionRef.doc('state').set(newState);
-
-    return true;
-  } catch (error) {
-    utils.throwException(error, actionText);
-  }
-
-  return false;
-});
+exports.lockGame = functions.https.onCall(commonEngine.lockGame);
 
 /**
  * Make user ready, and if it's the last user, move the game to its next phase
@@ -204,9 +54,9 @@ exports.arteRuimMakeMeReady = functions.https.onCall(async (data) => {
 
   // Make player ready
   const players = playersDoc.data() ?? {};
-  const updatedPlayers = arteRuimEngine.readyPlayer(players, playerName);
+  const updatedPlayers = utils.readyPlayer(players, playerName);
 
-  if (!arteRuimEngine.isEverybodyReady(updatedPlayers)) {
+  if (!utils.isEverybodyReady(updatedPlayers)) {
     try {
       await sessionRef.doc('players').update({ [playerName]: updatedPlayers[playerName] });
       return true;
@@ -253,9 +103,9 @@ exports.arteRuimSubmitDrawing = functions.https.onCall(async (data) => {
 
   // Make player ready
   const players = playersDoc.data() ?? {};
-  const updatedPlayers = arteRuimEngine.readyPlayer(players, playerName);
+  const updatedPlayers = utils.readyPlayer(players, playerName);
 
-  if (!arteRuimEngine.isEverybodyReady(updatedPlayers)) {
+  if (!utils.isEverybodyReady(updatedPlayers)) {
     try {
       await sessionRef.doc('players').update({ [playerName]: updatedPlayers[playerName] });
       return true;
@@ -299,9 +149,9 @@ exports.arteRuimSubmitVoting = functions.https.onCall(async (data) => {
 
   // Make player ready
   const players = playersDoc.data() ?? {};
-  const updatedPlayers = arteRuimEngine.readyPlayer(players, playerName);
+  const updatedPlayers = utils.readyPlayer(players, playerName);
 
-  if (!arteRuimEngine.isEverybodyReady(updatedPlayers)) {
+  if (!utils.isEverybodyReady(updatedPlayers)) {
     try {
       await sessionRef.doc('players').update({ [playerName]: updatedPlayers[playerName] });
       return true;

@@ -1,11 +1,41 @@
+export type GameId = string;
+export type GameName = string;
+export type GameCode = string;
+export type DateMilliseconds = number;
+export type PlayerName = string;
+
 export interface PlainObject {
   [key: string]: any;
 }
 
+export interface FirebaseContext {
+  [key: string]: any;
+}
+
+export interface CreateGamePayload {
+  gameCode: GameCode;
+}
+
+export interface LoadGamePayload {
+  gameId: GameId;
+}
+
+export interface AddPlayerPayload {
+  gameId: GameId;
+  gameName: GameName;
+  playerName: PlayerName;
+  playerAvatarId: string;
+}
+
+export interface LockGamePayload {
+  gameId: GameId;
+  gameName: GameName;
+}
+
 export interface Meta {
-  gameId: string;
-  gameName: string;
-  createdAt: number;
+  gameId: GameId;
+  gameName: GameName;
+  createdAt: DateMilliseconds;
   createdBy: string;
   min: number;
   max: number;
@@ -15,10 +45,10 @@ export interface Meta {
 
 export interface Player {
   avatarId: string;
-  name: string;
+  name: PlayerName;
   ready: boolean;
   score: number;
-  updatedAt?: number;
+  updatedAt?: DateMilliseconds;
   [key: string]: any;
 }
 
@@ -52,33 +82,4 @@ export interface DrawingEntry {
   cardId: string | number;
   drawing: string;
   playerName: string;
-}
-
-// FROM THIS LINE DOWN I HAS TO BE REVIEWED
-export interface InfoPlayer {
-  avatarId: string;
-  name: string;
-  [key: string]: any;
-}
-
-export interface StatePlayer {
-  name: string;
-  ready: boolean;
-  score: number;
-  [key: string]: any;
-}
-
-export interface InfoPlayers {
-  [key: string]: InfoPlayer;
-}
-
-export interface StatePlayers {
-  [key: string]: StatePlayer;
-}
-
-export interface ArteRuimInfo {
-  players: InfoPlayers;
-  isLocked: boolean;
-  round: number;
-  [key: string]: any;
 }
