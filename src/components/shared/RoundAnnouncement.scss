@@ -26,7 +26,7 @@
     background-clip: content-box;
     animation: spin 10s linear infinite;
     background-color: rgba($color: #fff, $alpha: 0.5);
-    border: 4px dashed get-color(yellow);
+    border: get-unit(5) dashed get-color(yellow);
   }
 
   &__number {
