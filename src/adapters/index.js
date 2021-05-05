@@ -25,6 +25,11 @@ export const UM_SO_API = {
   goToNextPhase: functions.httpsCallable('umSoGoToNextPhase'),
 };
 
+/**
+ * Gets the game specific API http functions
+ * @param {string} gameName
+ * @returns
+ */
 export const getAPI = (gameName) => {
   switch (gameName) {
     case GAME_COLLECTION.ARTE_RUIM:
