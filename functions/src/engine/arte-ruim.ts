@@ -127,10 +127,10 @@ const determineNumberOfCards = (players: Players): number => {
  * @returns
  */
 const determineNextPhase = (currentPhase: string, pointsToVictory: number): string => {
-  const { RULES, DRAW, EVALUATION, GALLERY, GAME_OVER, RANKING } = ARTE_RUIM_PHASES;
-  const order = [RULES, DRAW, EVALUATION, GALLERY, RANKING];
+  const { RULES, DRAW, EVALUATION, GALLERY, GAME_OVER } = ARTE_RUIM_PHASES;
+  const order = [RULES, DRAW, EVALUATION, GALLERY];
 
-  if (currentPhase === RANKING) {
+  if (currentPhase === GALLERY) {
     return pointsToVictory <= 0 ? GAME_OVER : DRAW;
   }
 
@@ -169,9 +169,9 @@ const prepareDrawPhase = async (
     return {
       id: card,
       playerName: currentPlayer,
-      // drawing: null,
-      // upVotes: 0,
-      // downVotes: 0,
+      drawing: null,
+      upVotes: 0,
+      downVotes: 0,
     };
   });
 
@@ -222,8 +222,7 @@ const prepareGalleryPhase = async (
   sessionRef: FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData>,
   store: FirebaseFirestore.DocumentData,
   state: FirebaseFirestore.DocumentData,
-  players: Players,
-  pointsToVictory: number
+  players: Players
 ) => {
   // Calculate everybody's points
   const gallery = store.currentDrawings.map((drawingEntry) => {
@@ -268,22 +267,7 @@ const prepareGalleryPhase = async (
     return newEntry;
   });
 
-  await sessionRef.doc('state').set({
-    phase: ARTE_RUIM_PHASES.GALLERY,
-    gallery,
-    pointsToVictory,
-    round: state?.round ?? 0,
-  });
-
-  return true;
-};
-
-const prepareRankingPhase = async (
-  sessionRef: FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData>,
-  store: FirebaseFirestore.DocumentData,
-  state: FirebaseFirestore.DocumentData,
-  players: Players
-) => {
+  // -- Ranking Stuff Start
   // Loop state gallery and gather points
   const newPlayers = utils.unReadyPlayers(players);
 
@@ -295,7 +279,7 @@ const prepareRankingPhase = async (
     newScores[player.name] = [player.score, 0, player.score];
   });
 
-  state.gallery.forEach((window) => {
+  gallery.forEach((window) => {
     Object.entries(window.playersPoints).forEach(([pName, value]) => {
       const points = Number(value ?? 0);
       newScores[pName][1] += points;
@@ -318,7 +302,7 @@ const prepareRankingPhase = async (
 
   // clear store
   await sessionRef.doc('store').update({
-    previousDrawings: [...store.previousDrawings, ...store.currentDrawings],
+    previousDrawings: [...store.previousDrawings, ...store.currentDrawings], // TODO delete pd merge with uc
     currentDrawings: [],
     currentCards: [],
     currentVoting: {},
@@ -327,9 +311,10 @@ const prepareRankingPhase = async (
   const newPointsToVictory = utils.getPointsToVictory(newPlayers, ARTE_RUIM_GOAL);
 
   await sessionRef.doc('state').set({
-    phase: ARTE_RUIM_PHASES.RANKING,
-    pointsToVictory: newPointsToVictory,
+    phase: ARTE_RUIM_PHASES.GALLERY,
+    gallery,
     ranking,
+    pointsToVictory: newPointsToVictory,
     round: state?.round ?? 0,
   });
 
@@ -385,12 +370,7 @@ const nextArteRuimPhase = async (
 
   // EVALUATION -> GALLERY
   if (nextPhase === ARTE_RUIM_PHASES.GALLERY) {
-    return prepareGalleryPhase(sessionRef, store, state, players, pointsToVictory);
-  }
-
-  // GALLERY -> RANKING
-  if (nextPhase === ARTE_RUIM_PHASES.RANKING) {
-    return prepareRankingPhase(sessionRef, store, state, players);
+    return prepareGalleryPhase(sessionRef, store, state, players);
   }
 
   if (nextPhase === ARTE_RUIM_PHASES.GAME_OVER) {
@@ -523,7 +503,7 @@ export const submitVoting = async (data: SubmitVotingPayload) => {
 export const goToNextPhase = async (data: BasicGamePayload, context: FirebaseContext) => {
   const { gameId, gameName: collectionName } = data;
 
-  const actionText = 'go to ranking | go to new round';
+  const actionText = 'go to new round';
   utils.verifyPayload(gameId, 'gameId', actionText);
   utils.verifyPayload(collectionName, 'collectionName', actionText);
   utils.verifyAuth(context, actionText);
