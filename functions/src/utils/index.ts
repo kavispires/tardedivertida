@@ -4,6 +4,7 @@ import * as admin from 'firebase-admin';
 import * as constants from './constants';
 import { FirebaseContext, GameCode, GameId, PlayerName, Players } from '../utils/interfaces';
 import { arteRuim } from '../engine/arte-ruim';
+import { umSo } from '../engine/um-so';
 
 const { GAME_CODES, GAME_COLLECTIONS } = constants;
 
@@ -123,6 +124,8 @@ export const getCollectionNameByGameCode = (gameCode: GameCode): string | null =
   switch (gameCode) {
     case GAME_CODES.A:
       return GAME_COLLECTIONS.ARTE_RUIM;
+    case GAME_CODES.U:
+      return GAME_COLLECTIONS.UM_SO;
     default:
       return null;
   }
@@ -145,6 +148,8 @@ export const getGameMethodsByCollection = (collectionName: string) => {
   switch (collectionName) {
     case GAME_COLLECTIONS.ARTE_RUIM:
       return arteRuim;
+    case GAME_COLLECTIONS.UM_SO:
+      return umSo;
     default:
       throw new Error(`Collection '${collectionName}' does not exist`);
   }

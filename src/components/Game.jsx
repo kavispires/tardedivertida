@@ -8,11 +8,12 @@ import { GAME_API } from '../adapters';
 import { useIsGameStale, useLoading, useGlobalState } from '../hooks';
 // Utils
 import { getGameIdFromURL, isValidGameId } from '../utils';
+import { GAME_COLLECTION } from '../utils/constants';
 // Components
 import LoadingPage from './loaders/LoadingPage';
 import PageError from './errors/PageError';
 import SessionArteRuim from './arte-ruim/SessionArteRuim';
-import { GAME_COLLECTION } from '../utils/constants';
+import SessionUmSo from './um-so/SessionUmSo';
 
 function Game() {
   const history = useHistory();
@@ -77,6 +78,8 @@ function Game() {
     switch (gameName) {
       case GAME_COLLECTION.ARTE_RUIM:
         return <SessionArteRuim gameId={gameId} />;
+      case GAME_COLLECTION.UM_SO:
+        return <SessionUmSo gameId={gameId} />;
       default:
         console.warn('Wrong game library provided');
     }
