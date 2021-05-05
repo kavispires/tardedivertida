@@ -17,7 +17,7 @@ function RoundAnnouncement({ round, instructions, onPressButton, buttonText }) {
       </div>
       <Typography.Text className="round-announcement__instructions">{instructions}</Typography.Text>
       <Button type="primary" onClick={onPressButton} className="round-announcement__go-button">
-        {buttonText ?? 'Um dó, lá, si... vamos ir... JÁ!'}
+        {buttonText ?? 'Prosseguir'}
       </Button>
     </div>
   );

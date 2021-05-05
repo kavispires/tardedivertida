@@ -12,9 +12,9 @@ import allCards from '../../resources/arte-ruim-cards.json';
 import arteRuimTimer from '../../sounds/arte-ruim-timer.mp3';
 // Components
 import PhaseContainer from '../shared/PhaseContainer';
-import DrawPhaseStepOne from './DrawPhaseStepOne';
 import DrawPhaseStepTwo from './DrawPhaseStepTwo';
 import WaitingRoom from '../shared/WaitingRoom';
+import RoundAnnouncement from '../shared/RoundAnnouncement';
 
 function DrawPhase({ players, state, info }) {
   const [, setLoader] = useLoading();
@@ -61,6 +61,11 @@ function DrawPhase({ players, state, info }) {
     [gameId, gameName, setLoader, me, secretCard.id]
   );
 
+  const onStartDrawing = () => {
+    play();
+    setStep(2);
+  };
+
   return (
     <PhaseContainer
       info={info}
@@ -68,7 +73,14 @@ function DrawPhase({ players, state, info }) {
       allowedPhase={ARTE_RUIM_PHASES.DRAW}
       className="draw-phase"
     >
-      {step === 1 && !amIReady && <DrawPhaseStepOne setStep={setStep} round={state?.round} play={play} />}
+      {step === 1 && !amIReady && (
+        <RoundAnnouncement
+          round={state?.round}
+          instructions="Você terá 10 segundos para ler a sua carta e desenhá-la. Aperte o botão quando estiver pronto! Fique esperto porque começa assim quando você apertar. Não 'seje' lerdo."
+          onPressButton={onStartDrawing}
+          buttonText="Um dó, lá, si... vamos ir... JÁ!"
+        />
+      )}
 
       {step === 2 && !amIReady && (
         <DrawPhaseStepTwo secretCard={secretCard} onSubmitDrawing={onSubmitDrawing} />
