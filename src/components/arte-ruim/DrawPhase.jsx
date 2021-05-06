@@ -15,6 +15,7 @@ import PhaseContainer from '../shared/PhaseContainer';
 import DrawPhaseStepTwo from './DrawPhaseStepTwo';
 import WaitingRoom from '../shared/WaitingRoom';
 import RoundAnnouncement from '../shared/RoundAnnouncement';
+import Instruction from '../shared/Instruction';
 
 function DrawPhase({ players, state, info }) {
   const [, setLoader] = useLoading();
@@ -76,10 +77,14 @@ function DrawPhase({ players, state, info }) {
       {step === 1 && !amIReady && (
         <RoundAnnouncement
           round={state?.round}
-          instructions="Você terá 10 segundos para ler a sua carta e desenhá-la. Aperte o botão quando estiver pronto! Fique esperto porque começa assim quando você apertar. Não 'seje' lerdo."
           onPressButton={onStartDrawing}
           buttonText="Um dó, lá, si... vamos ir... JÁ!"
-        />
+        >
+          <Instruction>
+            Você terá 10 segundos para ler a sua carta e desenhá-la. Aperte o botão quando estiver pronto!
+            Fique esperto porque começa assim quando você apertar. Não 'seje' lerdo.
+          </Instruction>
+        </RoundAnnouncement>
       )}
 
       {step === 2 && !amIReady && (

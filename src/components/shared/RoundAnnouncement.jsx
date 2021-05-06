@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
-import { Button, Typography } from 'antd';
+import { Button } from 'antd';
 // Images
 import rodadaTitle from '../../images/rodada-title.svg';
 
-function RoundAnnouncement({ round, instructions, onPressButton, buttonText }) {
+function RoundAnnouncement({ round, onPressButton, buttonText, children }) {
   return (
     <div className="round-announcement">
       <div className="round-announcement__title">
@@ -15,18 +15,21 @@ function RoundAnnouncement({ round, instructions, onPressButton, buttonText }) {
         <div className="round-announcement__circle"></div>
         <div className="round-announcement__number">{round ?? 0}</div>
       </div>
-      <Typography.Text className="round-announcement__instructions">{instructions}</Typography.Text>
-      <Button type="primary" onClick={onPressButton} className="round-announcement__go-button">
-        {buttonText ?? 'Prosseguir'}
-      </Button>
+
+      {children}
+
+      {Boolean(onPressButton) && (
+        <Button type="primary" onClick={onPressButton} className="round-announcement__go-button">
+          {buttonText ?? 'Prosseguir'}
+        </Button>
+      )}
     </div>
   );
 }
 
 RoundAnnouncement.propTypes = {
   round: PropTypes.number,
-  instructions: PropTypes.string.isRequired,
-  onPressButton: PropTypes.func.isRequired,
+  onPressButton: PropTypes.func,
   buttonText: PropTypes.string,
 };
 
