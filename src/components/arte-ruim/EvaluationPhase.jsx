@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 // Design Resources
-import { Button, message, notification, Space, Typography } from 'antd';
+import { Button, message, notification, Space } from 'antd';
 import { CloudUploadOutlined } from '@ant-design/icons';
 // State
 import useGlobalState from '../../hooks/useGlobalState';
@@ -15,6 +15,8 @@ import EvaluationAllDrawings from './EvaluationAllDrawings';
 import EvaluationAllCards from './EvaluationAllCards';
 import PhaseContainer from '../shared/PhaseContainer';
 import CanvasResizer from './CanvasResizer';
+import Title from '../shared/Title';
+import Instruction from '../shared/Instruction';
 
 function EvaluationPhase({ players, state, info }) {
   const [, setLoader] = useLoading();
@@ -98,12 +100,12 @@ function EvaluationPhase({ players, state, info }) {
       {step === 1 && !amIReady && (
         <div className="evaluation-phase__step-one">
           <CanvasResizer />
-          <Typography.Title className="center">Adivinhação</Typography.Title>
-          <Typography.Paragraph className="center">
+          <Title>Adivinhação</Title>
+          <Instruction>
             Encontre os pares de desenho e carta clicando em uma carta ou desenho e em seguida clicando em seu
             par. Uma bandeirinha aparecerá no topo de cada desenho com a cor e letra da carta que você
             selecionou. Quando encontrar todos os pares, envie sua avaliação!
-          </Typography.Paragraph>
+          </Instruction>
 
           <EvaluationAllDrawings
             drawings={state?.drawings ?? []}
