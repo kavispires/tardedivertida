@@ -133,6 +133,7 @@ export interface UsedWords {
 }
 
 export interface UmSoStore {
+  turnOrder: string[];
   usedWords: UsedWords;
   currentWords: string[];
   currentSuggestions: PlainObject[];

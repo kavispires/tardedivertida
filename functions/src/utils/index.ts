@@ -170,11 +170,12 @@ export const readyPlayer = (players: Players, playerName: PlayerName): Players =
 /**
  * Set all players as not ready
  * @param players
+ * @param butThisOne
  * @returns
  */
-export const unReadyPlayers = (players: Players): Players => {
+export const unReadyPlayers = (players: Players, butThisOne = ''): Players => {
   for (const player in players) {
-    players[player].ready = false;
+    players[player].ready = player === butThisOne ? true : false;
   }
   return players;
 };
@@ -200,4 +201,14 @@ export const getPointsToVictory = (players: Players, victory: number): number =>
   }, 0);
 
   return max < victory ? victory - max : 0;
+};
+
+/**
+ * Calculates how many rounds remain to call the end of the game
+ * @param round
+ * @param totalRounds
+ * @returns
+ */
+export const getRoundsToEndGame = (round: number, totalRounds: number): number => {
+  return totalRounds - round;
 };
