@@ -20,7 +20,7 @@ function ReadyPlayersBar({ players }) {
         ))}
       </AntAvatar.Group>
       <span className="ready-player-bar__speech-bubble">
-        <Typography.Text>Estamos prontos!</Typography.Text>
+        <Typography.Text>{readyPlayers.length > 1 ? 'Estamos prontos!' : 'Estou pronto!'}</Typography.Text>
         <LikeFilled className="ready-player-bar__speech-bubble-icon" />
       </span>
     </div>

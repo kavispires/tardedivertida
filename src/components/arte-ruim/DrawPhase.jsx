@@ -91,7 +91,13 @@ function DrawPhase({ players, state, info }) {
         <DrawPhaseStepTwo secretCard={secretCard} onSubmitDrawing={onSubmitDrawing} />
       )}
 
-      {step === 3 && <WaitingRoom players={players} />}
+      {step === 3 && (
+        <WaitingRoom
+          players={players}
+          title="Pronto!"
+          instruction="Vamos aguardar enquanto os outros jogadores terminam seus desenhos!"
+        />
+      )}
     </PhaseContainer>
   );
 }
