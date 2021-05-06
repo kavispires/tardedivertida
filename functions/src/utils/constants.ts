@@ -40,3 +40,5 @@ export const UM_SO_PHASES = {
   GUESS: 'GUESS',
   GAME_OVER: 'GAME_OVER',
 };
+
+export const UM_SO_WORDS = new Array(550).fill(1).map((i, index) => `${i + index}`);

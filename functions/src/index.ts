@@ -2,6 +2,7 @@ import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import * as commonEngine from './engine/common';
 import * as arteRuimEngine from './engine/arte-ruim';
+import * as umSoEngine from './engine/um-so';
 
 admin.initializeApp();
 
@@ -37,7 +38,7 @@ exports.addPlayer = functions.https.onCall(commonEngine.addPlayer);
  */
 exports.lockGame = functions.https.onCall(commonEngine.lockGame);
 
-// ARTE RUIM HTTP CALLS
+// ARTE_RUIM HTTP CALLS
 
 /**
  * Make player ready, if it's the last player to be ready, move to the next phase
@@ -59,35 +60,9 @@ exports.arteRuimSubmitVoting = functions.https.onCall(arteRuimEngine.submitVotin
  */
 exports.arteRuimGoToNextPhase = functions.https.onCall(arteRuimEngine.goToNextPhase);
 
-// exports.arteRuimSubmitRating = functions.https.onCall(async (data) => {
-//   const { gameId, gameName: collectionName, playerName } = data;
+// UM_SO HTTP CALLS
 
-//   const actionText = 'rate a drawing';
-//   utils.verifyPayload(gameId, 'gameId', actionText);
-//   utils.verifyPayload(collectionName, 'collectionName', actionText);
-//   utils.verifyPayload(playerName, 'playerName', actionText);
-
-//   const sessionRef = utils.getSessionRef(collectionName, gameId);
-//   const playersDoc = await utils.getSessionDoc(collectionName, gameId, 'players', actionText);
-//   const storeDoc = await utils.getSessionDoc(collectionName, gameId, 'store', actionText);
-
-//   // Submit drawing
-//   const store = storeDoc.data();
-//   try {
-//     const newStore = { ...store };
-//     newStore.currentVoting = {
-//       [playerName]: votes,
-//       ...newStore?.currentVoting,
-//     };
-
-//     await sessionRef.doc('store').set({ ...newStore });
-//   } catch (error) {
-//     utils.throwException(error, actionText);
-//   }
-
-//   // Make player ready
-//   const players = playersDoc.data() ?? {};
-//   const updatedPlayers = arteRuimEngine.readyPlayer(players, playerName);
-
-//   return arteRuimEngine.nextArteRuimPhase(collectionName, gameId, playerName, players);
-// });
+/**
+ * Make player ready, if it's the last player to be ready, move to the next phase
+ */
+exports.umSoMakeMeReady = functions.https.onCall(umSoEngine.makeMeReady);
