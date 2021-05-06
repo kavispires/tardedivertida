@@ -1,0 +1,10 @@
+.title {
+  $self: &;
+
+  text-align: center;
+  color: get-color(black);
+
+  &#{$self}--white {
+    color: white;
+  }
+}
