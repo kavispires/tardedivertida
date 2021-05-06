@@ -80,8 +80,9 @@ function DrawPhase({ players, state, info }) {
           onPressButton={onStartDrawing}
           buttonText="Um dó, lá, si... vamos ir... JÁ!"
         >
-          <Instruction>
+          <Instruction white>
             Você terá 10 segundos para ler a sua carta e desenhá-la. Aperte o botão quando estiver pronto!
+            <br />
             Fique esperto porque começa assim quando você apertar. Não 'seje' lerdo.
           </Instruction>
         </RoundAnnouncement>
