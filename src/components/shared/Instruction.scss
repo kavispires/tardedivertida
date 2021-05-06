@@ -2,5 +2,10 @@
   margin: get-unit(5);
   text-align: center;
   font-size: 1em;
-  color: get-color(white);
+  color: get-color(black);
+  display: block;
+
+  &--white {
+    color: white;
+  }
 }

@@ -4,18 +4,20 @@ import PropTypes from 'prop-types';
 import { Typography } from 'antd';
 import clsx from 'clsx';
 
-function Instruction({ children, white, className }) {
+function Title({ children, white, icon, className }) {
   return (
-    <Typography.Text className={clsx('instruction', white && 'instruction--white', className)}>
+    <Typography.Title className={clsx('title', white && 'title--white', className)}>
+      {Boolean(icon) && icon}
       {children}
-    </Typography.Text>
+    </Typography.Title>
   );
 }
 
-Instruction.propTypes = {
+Title.propTypes = {
   children: PropTypes.any.isRequired,
   white: PropTypes.bool,
+  icon: PropTypes.element,
   className: PropTypes.string,
 };
 
-export default Instruction;
+export default Title;
