@@ -64,9 +64,6 @@
   }
 }
 
-// background-clip: content-box;
-// animation: spin 10s linear infinite;
-
 @keyframes spin {
   100% {
     transform: rotateZ(360deg);

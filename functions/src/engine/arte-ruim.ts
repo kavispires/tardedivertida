@@ -338,10 +338,32 @@ const prepareGalleryPhase = async (
 };
 
 const prepareGameOverPhase = async (
-  sessionRef: FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData>
+  sessionRef: FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData>,
+  players: Players
 ) => {
+  const winner = Object.values(players).reduce(
+    (result, player) => {
+      if (player.store > result.score) {
+        result = {
+          name: player.name,
+          avatarId: player.avatarId,
+          score: player.score,
+        };
+      }
+
+      return result;
+    },
+    {
+      name: '',
+      avatarId: '',
+      score: 0,
+    }
+  );
+
   await sessionRef.doc('state').set({
     phase: ARTE_RUIM_PHASES.GAME_OVER,
+    winner,
+    gameEndedAt: Date.now(),
   });
 
   await sessionRef.doc('meta').update({
@@ -387,7 +409,7 @@ const nextArteRuimPhase = async (
   }
 
   if (nextPhase === ARTE_RUIM_PHASES.GAME_OVER) {
-    return prepareGameOverPhase(sessionRef);
+    return prepareGameOverPhase(sessionRef, players);
   }
 
   return true;
