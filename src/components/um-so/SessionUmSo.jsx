@@ -10,6 +10,10 @@ import gameList from '../../resources/games.json';
 import Lobby from '../lobby/Lobby';
 import Rules from '../rules/Rules';
 import PageError from '../errors/PageError';
+import WordSelectionPhase from './WordSelectionPhase';
+import SuggestPhase from './SuggestPhase';
+import ComparePhase from './ComparePhase';
+import GuessPhase from './GuessPhase';
 
 function getActiveComponent(phase) {
   switch (phase) {
@@ -18,13 +22,13 @@ function getActiveComponent(phase) {
     case UM_SO_PHASES.RULES:
       return Rules;
     case UM_SO_PHASES.WORD_SELECTION:
-      return <span>TODO</span>;
+      return WordSelectionPhase;
     case UM_SO_PHASES.SUGGEST:
-      return <span>TODO</span>;
+      return SuggestPhase;
     case UM_SO_PHASES.COMPARE:
-      return <span>TODO</span>;
+      return ComparePhase;
     case UM_SO_PHASES.GUESS:
-      return <span>TODO</span>;
+      return GuessPhase;
     case UM_SO_PHASES.GAME_OVER:
       return <span>TODO</span>;
     default:
