@@ -40,28 +40,6 @@
     font-size: 15em;
     text-align: center;
   }
-
-  &__round {
-    background: rgba($color: #fff, $alpha: 0.3);
-    width: 350px;
-    height: 350px;
-    font-size: 15em;
-    aspect-ratio: 1 / 1;
-    font-weight: bolder;
-    color: get-color(white);
-    border-radius: 50%;
-    border: get-unit(5) inset get-color(white);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: get-unit(5 auto);
-  }
-
-  &__instructions {
-    margin: get-unit(5);
-    color: get-color(white);
-    text-align: center;
-  }
 }
 
 @keyframes spin {
