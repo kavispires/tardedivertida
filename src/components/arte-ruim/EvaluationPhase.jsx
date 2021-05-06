@@ -133,7 +133,13 @@ function EvaluationPhase({ players, state, info }) {
         </div>
       )}
 
-      {step === 2 && <WaitingRoom players={players} />}
+      {step === 2 && (
+        <WaitingRoom
+          players={players}
+          title="Pronto!"
+          instruction="Vamos aguardar enquanto os outros jogadores terminam de avaliar!"
+        />
+      )}
     </PhaseContainer>
   );
 }
