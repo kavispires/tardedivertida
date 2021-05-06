@@ -15,6 +15,7 @@ import AdminOnly from '../shared/AdminOnly';
 import RankingBoard from '../shared/RankingBoard';
 import Title from '../shared/Title';
 import Instruction from '../shared/Instruction';
+import StepSwitcher from '../shared/StepSwitcher';
 
 function GalleryPhase({ players, state, info }) {
   const [, setLoader] = useLoading();
@@ -67,10 +68,10 @@ function GalleryPhase({ players, state, info }) {
       allowedPhase={ARTE_RUIM_PHASES.GALLERY}
       className="gallery-phase"
     >
-      {step === 0 && (
-        <Fragment>
+      <StepSwitcher step={step}>
+        {/* Step 0 */}
+        <div className="gallery-phase__windows">
           <Title white>Galeria de Arte</Title>
-
           {state?.gallery && (
             <GalleryWindow
               window={state.gallery[activeIndex]}
@@ -81,10 +82,9 @@ function GalleryPhase({ players, state, info }) {
               setStep={setStep}
             />
           )}
-        </Fragment>
-      )}
+        </div>
 
-      {step === 1 && (
+        {/* Step 1 */}
         <Fragment>
           <Title>{state.pointsToVictory >= 0 ? 'Ranking' : 'Game Over'}</Title>
           <RankingBoard players={players} ranking={state.ranking} />
@@ -108,7 +108,7 @@ function GalleryPhase({ players, state, info }) {
             </Button>
           </AdminOnly>
         </Fragment>
-      )}
+      </StepSwitcher>
     </PhaseContainer>
   );
 }
