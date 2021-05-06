@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
 import { Typography } from 'antd';
@@ -18,4 +18,4 @@ Instruction.propTypes = {
   className: PropTypes.string,
 };
 
-export default Instruction;
+export default memo(Instruction);
