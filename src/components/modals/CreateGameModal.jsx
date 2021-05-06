@@ -11,6 +11,8 @@ import { useLoading } from '../../hooks';
 import { PUBLIC_URL } from '../../utils/constants';
 // Components
 import Loading from '../loaders/Loading';
+import Instruction from '../shared/Instruction';
+import Title from '../shared/Title';
 
 function CreateGameModal({ gameInfo }) {
   const history = useHistory();
@@ -79,15 +81,13 @@ function CreateGameModal({ gameInfo }) {
 
             {isLoading ? (
               <Fragment>
-                <Typography.Paragraph className="center">O jogo está sendo criado...</Typography.Paragraph>
+                <Instruction>O jogo está sendo criado...</Instruction>
                 <Loading message="Gerando..." margin />
               </Fragment>
             ) : (
               <div>
-                <Typography.Title className="center">Jogo inicializado: {gameId}</Typography.Title>
-                <Typography.Paragraph>
-                  Pressione OK para ser redirecionadx à página do jogo.
-                </Typography.Paragraph>
+                <Title className="center">Jogo inicializado: {gameId}</Title>
+                <Instruction>Pressione OK para ser redirecionadx à página do jogo.</Instruction>
               </div>
             )}
           </Fragment>
