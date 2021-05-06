@@ -17,6 +17,7 @@ import PhaseContainer from '../shared/PhaseContainer';
 import CanvasResizer from './CanvasResizer';
 import Title from '../shared/Title';
 import Instruction from '../shared/Instruction';
+import StepSwitcher from '../shared/StepSwitcher';
 
 function EvaluationPhase({ players, state, info }) {
   const [, setLoader] = useLoading();
@@ -25,7 +26,7 @@ function EvaluationPhase({ players, state, info }) {
   const [me] = useGlobalState('me');
   const [canvasSize] = useGlobalState('canvasSize');
   const [amIReady, setImReady] = useState(false);
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(0);
   const [votes, setVotes] = useState({});
   const [activeItem, setActiveItem] = useState(null);
 
@@ -66,7 +67,7 @@ function EvaluationPhase({ players, state, info }) {
         return acc;
       }, {});
 
-      setStep(2);
+      setStep(1);
 
       const response = await ARTE_RUIM_API.submitVoting({
         gameId,
@@ -97,7 +98,8 @@ function EvaluationPhase({ players, state, info }) {
       allowedPhase={ARTE_RUIM_PHASES.EVALUATION}
       className="evaluation-phase"
     >
-      {step === 1 && !amIReady && (
+      <StepSwitcher step={step} conditions={[!amIReady]}>
+        {/*Step 0 */}
         <div className="evaluation-phase__step-one">
           <CanvasResizer />
           <Title>Adivinhação</Title>
@@ -133,15 +135,14 @@ function EvaluationPhase({ players, state, info }) {
             </Button>
           </Space>
         </div>
-      )}
 
-      {step === 2 && (
+        {/*Step 1 */}
         <WaitingRoom
           players={players}
           title="Pronto!"
           instruction="Vamos aguardar enquanto os outros jogadores terminam de avaliar!"
         />
-      )}
+      </StepSwitcher>
     </PhaseContainer>
   );
 }
