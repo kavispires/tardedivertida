@@ -124,8 +124,10 @@ export interface SubmitVotingPayload {
 
 export interface UsedWord {
   id: string;
-  playerName: PlayerName | null;
-  suggestions: string[] | [];
+  playerName?: PlayerName | null;
+  uniqueSuggestions?: string[] | [];
+  commonSuggestions?: string[] | [];
+  votes: 0;
 }
 
 export interface UsedWords {
