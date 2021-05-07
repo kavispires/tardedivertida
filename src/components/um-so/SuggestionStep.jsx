@@ -27,17 +27,21 @@ function SuggestionStep({ onSendSuggestions, secretWordId, suggestionsNumber = 1
 
   return (
     <div className="u-word-suggestion-step">
-      <Title white>Escreva uma dica</Title>
+      <Title>Escreva uma dica</Title>
 
-      <Instruction white>
+      <Instruction contained>
         A dica tem que ser uma palavra única que ajude o adivinhador... adivinhar.
-        <br />E não seja tão óbvio, já que dicas similares são eliminadas.
+        <br />
+        É proibido usar derivados, partes da palavra ou traduções em outras linguas.
+        <br />
+        E não seja tão óbvio, já que dicas similares são eliminadas.
+        <br />
       </Instruction>
 
-      <Card id={secretWordId} title="Palavra Secreta" />
+      <Card id={secretWordId} header="Palavra Secreta" />
 
       {suggestionsNumber > 1 && (
-        <Instruction white>
+        <Instruction contained>
           Já que esse jogo tem menos jogadores, você tem que escrever {suggestionsNumber} sugestões
         </Instruction>
       )}
@@ -49,7 +53,7 @@ function SuggestionStep({ onSendSuggestions, secretWordId, suggestionsNumber = 1
             const id = `suggestion-${entry + index}`;
             return (
               <Input
-                placeholder="Escreva sua dica aqui..."
+                placeholder="Escreva dica"
                 key={id}
                 id={id}
                 onChange={onChangeInput}

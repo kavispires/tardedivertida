@@ -5,6 +5,14 @@
     text-transform: uppercase;
     font-size: 1.5em;
   }
+
+  &__team-points {
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    color: get-color(white);
+    margin-bottom: get-unit(2);
+  }
 }
 
 .u-word-selection-step {

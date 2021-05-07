@@ -12,6 +12,9 @@ import allWords from '../resources/um-so-words.json';
 import { CheckCircleFilled, CheckCircleOutlined } from '@ant-design/icons';
 import { Button, Input } from 'antd';
 import Title from './shared/Title';
+import { LETTERS } from '../utils/constants';
+import Card from './cards/Card';
+import { getColorFromLetter } from '../utils';
 
 function TestingZone() {
   const info = gameList['U'];
@@ -79,7 +82,13 @@ function TestingZone() {
           A palavra secreta com mais votos será escolhida para essa rodada. Você pode selecionar quantas
           quiser!
         </Instruction>
-
+        {LETTERS.split('').map((letter) => {
+          return (
+            <Card color={getColorFromLetter(letter)} header={letter}>
+              LETTER {letter}
+            </Card>
+          );
+        })}
         <ul className="u-word-card">
           {state.words.map((word) => {
             return (
