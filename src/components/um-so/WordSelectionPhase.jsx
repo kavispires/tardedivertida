@@ -1,7 +1,7 @@
 import React, { Fragment, useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
-import { message, notification } from 'antd';
+import { message, notification, Progress } from 'antd';
 // Hooks
 import { useGlobalState } from '../../hooks';
 import { useLoading } from '../../hooks';
@@ -72,7 +72,7 @@ function WordSelectionPhase({ state, players, info }) {
       <StepSwitcher step={step} conditions={[!amIReady]}>
         {/* Step 0 */}
         <RoundAnnouncement round={state.round} onPressButton={() => setStep(1)}>
-          <Instruction>
+          <Instruction contained>
             Para essa rodada,
             <span className="u-word-selection-phase__guesser-name-announcement">
               {amItheGuesser ? (
@@ -86,6 +86,19 @@ function WordSelectionPhase({ state, players, info }) {
             será o(a) adivinhador(a) <br />
             {state?.nextGuesser ? `Próximo adivinhador(a): ${state.nextGuesser}` : 'Essa é a última rodada'}
           </Instruction>
+          <div className="u-word-selection-phase__team-points">
+            Pontos do Grupo:
+            <br />
+            <Progress
+              percent={state.teamScore ?? 0}
+              status="active"
+              strokeColor={{
+                '0%': '#ff0000',
+                '70%': '#ff0000',
+                '100%': '#87d068',
+              }}
+            />
+          </div>
         </RoundAnnouncement>
 
         {/* Step 1 */}

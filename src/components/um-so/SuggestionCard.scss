@@ -1,0 +1,13 @@
+.u-suggestion-card {
+  &__suggestion-avatar {
+    margin-right: get-unit(3);
+    background-color: get-color(red);
+  }
+
+  &__invalid {
+    border-color: get-color(red, 6);
+    color: get-color(red, 6);
+    text-decoration: line-through;
+    background: get-color(red, 4);
+  }
+}

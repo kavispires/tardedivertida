@@ -14,6 +14,7 @@ import WordSelectionPhase from './WordSelectionPhase';
 import SuggestPhase from './SuggestPhase';
 import ComparePhase from './ComparePhase';
 import GuessPhase from './GuessPhase';
+import GameOver from '../shared/GameOver';
 
 function getActiveComponent(phase) {
   switch (phase) {
@@ -30,7 +31,7 @@ function getActiveComponent(phase) {
     case UM_SO_PHASES.GUESS:
       return GuessPhase;
     case UM_SO_PHASES.GAME_OVER:
-      return <span>TODO</span>;
+      return GameOver;
     default:
       return PageError;
   }

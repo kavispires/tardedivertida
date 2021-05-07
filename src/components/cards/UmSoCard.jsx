@@ -7,7 +7,7 @@ import allWords from '../../resources/um-so-words.json';
 // Components
 import Card from './Card';
 
-function UmSoCard({ id, header = 'Carta' }) {
+function UmSoCard({ id, header = 'Palavra Secreta' }) {
   const word = allWords[id];
 
   return (

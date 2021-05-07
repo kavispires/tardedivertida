@@ -22,7 +22,7 @@ function SuggestPhase({ state, players, info }) {
   const [step, setStep] = useState(0);
   const [amIReady, setImReady] = useState(false);
   const [guesser, setGuesser] = useState(players[state.guesser]);
-  const [amItheGuesser, setAmITheGuesser] = useState(false);
+  const [amITheGuesser, setAmITheGuesser] = useState(false);
 
   // Determine if user is the guesser
   useEffect(() => {
@@ -35,8 +35,7 @@ function SuggestPhase({ state, players, info }) {
       try {
         setLoader('submit-suggestion', true);
         setStep(1);
-        const response = {};
-        await UM_SO_API.submitSuggestions({
+        const response = await UM_SO_API.submitSuggestions({
           gameId,
           gameName,
           playerName: me,
@@ -45,7 +44,9 @@ function SuggestPhase({ state, players, info }) {
 
         if (response.data) {
           setImReady(true);
-          message.success('Acabou o tempo! Aguarde enquanto os outros participantes escrevem suas dicas');
+          message.success(
+            'Sugestão enviada com successo! Aguarde enquanto os outros participantes escrevem suas dicas'
+          );
         }
       } catch (e) {
         notification.error({
@@ -54,6 +55,7 @@ function SuggestPhase({ state, players, info }) {
           placement: 'bottomLeft',
         });
         console.error(e);
+        setStep(0);
       } finally {
         setLoader('submit-suggestion', false);
       }
@@ -71,7 +73,7 @@ function SuggestPhase({ state, players, info }) {
       <StepSwitcher step={step} conditions={[!amIReady]}>
         {/* Step 0 */}
         <Fragment>
-          {amItheGuesser ? (
+          {amITheGuesser ? (
             <WaitingRoom
               players={players}
               title="Você é o(a) adivinhador(a)"

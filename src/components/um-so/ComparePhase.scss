@@ -1,0 +1,34 @@
+.u-compare-phase {
+  &__step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+}
+
+.u-word-compare-suggestions-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    margin: get-unit(10);
+  }
+
+  &__suggestion-button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: transform 250ms;
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    & > .card {
+      margin: 0;
+    }
+  }
+}
