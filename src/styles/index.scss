@@ -48,9 +48,14 @@
 // UmSo Components
 @import '../components/um-so/WordSelectionPhase.scss';
 @import '../components/um-so/SuggestPhase.scss';
+@import '../components/um-so/ComparePhase.scss';
+@import '../components/um-so/GuessPhase.scss';
 
 // Pages
 @import '../components/App.scss';
 @import '../components/Home.scss';
 @import '../components/Login.scss';
 @import '../components/TestingZone.scss';
+
+// Overridden colors
+@import './colors';

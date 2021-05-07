@@ -1,23 +1,32 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
-// Resources
+// Design Resources
+import { WarningOutlined } from '@ant-design/icons';
+// Resources and Utils
 import allCards from '../../resources/arte-ruim-cards.json';
+import { getColorFromLetter } from '../../utils';
+// Components
+import Card from './Card';
 
-function ArteRuimCard({ id, title = 'Carta' }) {
+function ArteRuimCard({ id, header = 'X' }) {
   const card = allCards[id];
 
   return (
-    <div className="secret-word-card">
-      <span className={`secret-word-card__title color-background--${title}`}>{title}</span>
-      <span className="secret-word-card__text">{card?.text}</span>
-      <span className="secret-word-card__level">{Array(card?.level).fill('•')}</span>
-    </div>
+    <Card
+      color={getColorFromLetter(header)}
+      header={header}
+      size="large"
+      footer={Array(card?.level).fill('•').join('')}
+    >
+      {card?.text ?? <WarningOutlined />}
+    </Card>
   );
 }
 
 ArteRuimCard.propTypes = {
   id: PropTypes.string.isRequired,
-  title: PropTypes.string,
+  header: PropTypes.string,
+  level: PropTypes.number,
 };
 
 export default memo(ArteRuimCard);
