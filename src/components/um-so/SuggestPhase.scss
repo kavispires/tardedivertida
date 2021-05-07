@@ -1,0 +1,17 @@
+.u-word-suggestion-step {
+  &__inputs {
+    display: flex;
+    margin-bottom: get-unit(12);
+  }
+
+  &__input {
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  &__submit {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+}

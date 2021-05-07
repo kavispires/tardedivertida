@@ -6,6 +6,7 @@ import { message, notification } from 'antd';
 import { useGlobalState } from '../../hooks';
 import { useLoading } from '../../hooks';
 // Resources & Utils
+import { UM_SO_API } from '../../adapters';
 import { UM_SO_PHASES } from '../../utils/constants';
 // Components
 import Avatar from '../avatars/Avatar';
@@ -15,7 +16,6 @@ import Instruction from '../shared/Instruction';
 import WaitingRoom from '../shared/WaitingRoom';
 import StepSwitcher from '../shared/StepSwitcher';
 import WordSelectionStep from './WordSelectionStep';
-import { UM_SO_API } from '../../adapters';
 
 function WordSelectionPhase({ state, players, info }) {
   const [, setLoader] = useLoading();
@@ -27,6 +27,7 @@ function WordSelectionPhase({ state, players, info }) {
   const [guesser, setGuesser] = useState(players[state.guesser]);
   const [amItheGuesser, setAmITheGuesser] = useState(false);
 
+  // Determine if user is the guesser
   useEffect(() => {
     setGuesser(players[state.guesser]);
     setAmITheGuesser(state.guesser === me);
@@ -35,7 +36,7 @@ function WordSelectionPhase({ state, players, info }) {
   const onSendSelectedWords = useCallback(
     async (selectedWords) => {
       try {
-        setLoader('submit-drawing', true);
+        setLoader('submit-votes', true);
         setStep(2);
         const response = await UM_SO_API.submitWordSelectionVotes({
           gameId,
@@ -55,7 +56,7 @@ function WordSelectionPhase({ state, players, info }) {
         });
         console.error(e);
       } finally {
-        setLoader('submit-drawing', false);
+        setLoader('submit-votes', false);
       }
     },
     [gameId, gameName, me, setLoader]

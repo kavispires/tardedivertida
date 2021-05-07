@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 // Resources
 import allCards from '../../resources/arte-ruim-cards.json';
 
-function Card({ id, title = 'Título' }) {
+function ArteRuimCard({ id, title = 'Carta' }) {
   const card = allCards[id];
 
   return (
@@ -15,9 +15,9 @@ function Card({ id, title = 'Título' }) {
   );
 }
 
-Card.propTypes = {
+ArteRuimCard.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string,
 };
 
-export default memo(Card);
+export default memo(ArteRuimCard);

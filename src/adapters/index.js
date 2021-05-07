@@ -20,9 +20,9 @@ export const ARTE_RUIM_API = {
 export const UM_SO_API = {
   makeMeReady: functions.httpsCallable('umSoMakeMeReady'),
   submitWordSelectionVotes: functions.httpsCallable('umSoSubmitWordSelectionVotes'),
-  // submitVoting: functions.httpsCallable('arteRuimSubmitVoting'),
+  submitSuggestions: functions.httpsCallable('umSoSubmitSuggestions'),
   // submitRating: functions.httpsCallable('arteRuimSubmitRating'),
-  goToNextPhase: functions.httpsCallable('umSoGoToNextPhase'),
+  // goToNextPhase: functions.httpsCallable('umSoGoToNextPhase'),
 };
 
 /**
