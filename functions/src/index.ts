@@ -76,3 +76,13 @@ exports.umSoSubmitWordSelectionVotes = functions.https.onCall(umSoEngine.submitW
  * Submit user suggestions, if it's the last player to be ready, move to the next phase
  */
 exports.umSoSubmitSuggestions = functions.https.onCall(umSoEngine.submitSuggestions);
+
+/**
+ * Submit user validation and move to the next phase
+ */
+exports.umSoSubmitValidation = functions.https.onCall(umSoEngine.submitValidation);
+
+/**
+ * Submit guesser guess and move to the next phase
+ */
+exports.umSoConfirmGuess = functions.https.onCall(umSoEngine.confirmGuess);

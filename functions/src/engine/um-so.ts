@@ -12,6 +12,8 @@ import {
   SubmitVotingPayload,
   SubmitSuggestionsPayload,
   CurrentSuggestions,
+  SubmitSuggestionsValidationPayload,
+  ConfirmGuessPayload,
 } from '../utils/interfaces';
 
 export const umSo = {
@@ -109,6 +111,22 @@ const getSuggestionsNumber = (players: Players) => {
   return 1;
 };
 
+const determineScore = (guess: string): number => {
+  if (guess === 'CORRECT') return 3;
+  if (guess === 'WRONG') return -1;
+  return 0;
+};
+
+const determineTeamScore = (players: Players, totalRounds: number): number => {
+  const expectedPoints = totalRounds * 3;
+  const totalPoints = Object.values(players).reduce((acc: number, player: Player) => {
+    acc += player.score;
+    return acc;
+  }, 0);
+
+  return Math.round((100 * totalPoints) / expectedPoints);
+};
+
 const nextUmSoPhase = async (collectionName: string, gameId: string, players: Players): Promise<boolean> => {
   const actionText = 'prepare next phase';
 
@@ -149,9 +167,14 @@ const nextUmSoPhase = async (collectionName: string, gameId: string, players: Pl
   }
 
   // COMPARE -> GUESS
-  // if (nextPhase === ARTE_RUIM_PHASES.GAME_OVER) {
-  //   return prepareGameOverPhase(sessionRef, players);
-  // }
+  if (nextPhase === UM_SO_PHASES.GUESS) {
+    return prepareGuessPhase(sessionRef, store, state, roundsToEndGame);
+  }
+
+  // GUESS -> GAME_OVER
+  if (nextPhase === UM_SO_PHASES.GAME_OVER) {
+    return prepareGameOverPhase(sessionRef, store, state, players);
+  }
 
   return true;
 };
@@ -163,6 +186,13 @@ const prepareWordSelectionPhase = async (
   players: Players,
   roundsToEndGame: number
 ) => {
+  // Count points if any:
+  if (state.guesser && store.guess) {
+    players[state.guesser].score += determineScore(store.guess);
+    state.guesser = null;
+    store.guess = null;
+  }
+
   const newRound = state.round + 1;
   // Determine guesser based on round and turnOrder
   const guesser = store.turnOrder[newRound - 1];
@@ -184,14 +214,19 @@ const prepareWordSelectionPhase = async (
   // Save used cards to store
   await sessionRef.doc('store').update({
     currentWords: newWords,
+    turnOrder: store.turnOrder,
+    currentSuggestions: {},
+    validSuggestions: [],
+    guess: null,
   });
 
   // Save new state
   await sessionRef.doc('state').set({
     phase: UM_SO_PHASES.WORD_SELECTION,
+    teamScore: determineTeamScore(players, store.turnOrder.length),
     round: newRound,
     guesser,
-    nextGuesser: store.turnOrder?.[newRound],
+    nextGuesser: store.turnOrder?.[newRound] ?? store.turnOrder?.[0],
     roundsToEndGame,
     words: Object.keys(newWords),
   });
@@ -217,13 +252,15 @@ const prepareSuggestPhase = async (
       return;
     }
 
-    if (mostVotes[0]?.votes ?? 1 === wordObject.votes) {
-      mostVotes.push(wordObject);
+    const votesFromMost = mostVotes?.[0]?.votes ?? 1;
+
+    if (votesFromMost < wordObject.votes) {
+      mostVotes = [wordObject];
       return;
     }
 
-    if (mostVotes[0]?.votes ?? 1 < wordObject.votes) {
-      mostVotes = [wordObject];
+    if (votesFromMost === wordObject.votes) {
+      mostVotes.push(wordObject);
       return;
     }
   });
@@ -248,6 +285,7 @@ const prepareSuggestPhase = async (
   // Save new state
   await sessionRef.doc('state').set({
     phase: UM_SO_PHASES.SUGGEST,
+    teamScore: state.teamScore,
     round: state.round,
     guesser: state.guesser,
     nextGuesser: state.nextGuesser,
@@ -299,12 +337,66 @@ const prepareComparePhase = async (
   // Save new state
   await sessionRef.doc('state').set({
     phase: UM_SO_PHASES.COMPARE,
+    teamScore: state.teamScore,
     round: state.round,
     guesser: state.guesser,
     nextGuesser: state.nextGuesser,
     roundsToEndGame,
     secretWordId: state.secretWordId,
     suggestions: gameUtils.shuffle(suggestionsArray),
+  });
+
+  return true;
+};
+
+const prepareGuessPhase = async (
+  sessionRef: FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData>,
+  store: FirebaseFirestore.DocumentData,
+  state: FirebaseFirestore.DocumentData,
+  roundsToEndGame: number
+) => {
+  // Save new state
+  await sessionRef.doc('state').set({
+    phase: UM_SO_PHASES.GUESS,
+    round: state.round,
+    teamScore: state.teamScore,
+    guesser: state.guesser,
+    nextGuesser: state.nextGuesser,
+    roundsToEndGame,
+    secretWordId: state.secretWordId,
+    validSuggestions: store.validSuggestions,
+  });
+
+  return true;
+};
+
+const prepareGameOverPhase = async (
+  sessionRef: FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData>,
+  store: FirebaseFirestore.DocumentData,
+  state: FirebaseFirestore.DocumentData,
+  players: Players
+) => {
+  // Count points if any:
+  if (state.guesser && store.guess) {
+    players[state.guesser].score += determineScore(store.guess);
+    state.guesser = null;
+    store.guess = null;
+  }
+
+  const teamScore = determineTeamScore(players, store.turnOrder.length);
+
+  await sessionRef.doc('state').set({
+    phase: UM_SO_PHASES.GAME_OVER,
+    round: state.round,
+    team: {
+      score: teamScore,
+      victory: teamScore > 70,
+    },
+    gameEndedAt: Date.now(),
+  });
+
+  await sessionRef.doc('meta').update({
+    isComplete: true,
   });
 
   return true;
@@ -427,6 +519,58 @@ export const submitSuggestions = async (data: SubmitSuggestionsPayload) => {
       utils.throwException(error, actionText);
     }
   }
+
+  // If all players are ready, trigger next phase
+  return nextUmSoPhase(collectionName, gameId, players);
+};
+
+export const submitValidation = async (data: SubmitSuggestionsValidationPayload) => {
+  const { gameId, gameName: collectionName, playerName, validSuggestions } = data;
+
+  const actionText = 'submit the suggestions validation';
+  utils.verifyPayload(gameId, 'gameId', actionText);
+  utils.verifyPayload(collectionName, 'collectionName', actionText);
+  utils.verifyPayload(playerName, 'playerName', actionText);
+  utils.verifyPayload(validSuggestions, 'validSuggestions', actionText);
+
+  // Get 'players' from given game session
+  const sessionRef = utils.getSessionRef(collectionName, gameId);
+  const playersDoc = await utils.getSessionDoc(collectionName, gameId, 'players', actionText);
+
+  // Submit suggestions
+  try {
+    await sessionRef.doc('store').update({ validSuggestions });
+  } catch (error) {
+    utils.throwException(error, actionText);
+  }
+
+  const players = playersDoc.data() ?? {};
+
+  // If all players are ready, trigger next phase
+  return nextUmSoPhase(collectionName, gameId, players);
+};
+
+export const confirmGuess = async (data: ConfirmGuessPayload) => {
+  const { gameId, gameName: collectionName, playerName, guess } = data;
+
+  const actionText = 'submit the guess';
+  utils.verifyPayload(gameId, 'gameId', actionText);
+  utils.verifyPayload(collectionName, 'collectionName', actionText);
+  utils.verifyPayload(playerName, 'playerName', actionText);
+  utils.verifyPayload(guess, 'guess', actionText);
+
+  // Get 'players' from given game session
+  const sessionRef = utils.getSessionRef(collectionName, gameId);
+  const playersDoc = await utils.getSessionDoc(collectionName, gameId, 'players', actionText);
+
+  // Submit suggestions
+  try {
+    await sessionRef.doc('store').update({ guess });
+  } catch (error) {
+    utils.throwException(error, actionText);
+  }
+
+  const players = playersDoc.data() ?? {};
 
   // If all players are ready, trigger next phase
   return nextUmSoPhase(collectionName, gameId, players);
