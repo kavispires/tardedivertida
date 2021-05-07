@@ -19,7 +19,7 @@ export const ARTE_RUIM_API = {
 
 export const UM_SO_API = {
   makeMeReady: functions.httpsCallable('umSoMakeMeReady'),
-  // submitDrawing: functions.httpsCallable('arteRuimSubmitDrawing'),
+  submitWordSelectionVotes: functions.httpsCallable('umSoSubmitWordSelectionVotes'),
   // submitVoting: functions.httpsCallable('arteRuimSubmitVoting'),
   // submitRating: functions.httpsCallable('arteRuimSubmitRating'),
   goToNextPhase: functions.httpsCallable('umSoGoToNextPhase'),

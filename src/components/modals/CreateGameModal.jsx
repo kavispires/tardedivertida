@@ -2,7 +2,7 @@ import React, { Fragment, useCallback, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 // Design Resources
-import { Typography, Image, Modal, message, Button, notification } from 'antd';
+import { Image, Modal, message, Button, notification } from 'antd';
 // Adapters
 import { GAME_API } from '../../adapters';
 // Hooks

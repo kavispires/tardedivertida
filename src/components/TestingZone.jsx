@@ -1,9 +1,17 @@
 import React from 'react';
 // import { Image, Layout } from 'antd';
 import gameList from '../resources/games.json';
+import Avatar from './avatars/Avatar';
+import AvatarEntry from './avatars/AvatarEntry';
 import GameOver from './shared/GameOver';
+import Instruction from './shared/Instruction';
 import PhaseContainer from './shared/PhaseContainer';
 import RoundAnnouncement from './shared/RoundAnnouncement';
+// Resources
+import allWords from '../resources/um-so-words.json';
+import { CheckCircleFilled, CheckCircleOutlined } from '@ant-design/icons';
+import { Button, Input } from 'antd';
+import Title from './shared/Title';
 
 function TestingZone() {
   const info = gameList['U'];
@@ -34,15 +42,17 @@ function TestingZone() {
 
   // Mock State
   const state = {
-    // phase: 'WORD_SELECTION',
-    // round: 1,
-    // words: [1, 2, 3, 4, 5],
-    phase: 'GAME_OVER',
-    winner: {
-      name: 'Flaviane',
-      avatarId: 15,
-      score: 35,
-    },
+    phase: 'WORD_SELECTION',
+    guesser: 'Kavis',
+    playerOrder: ['Flaviane', 'Stephanie', 'Kavis', 'Flaviane', 'Stephanie', 'Kavis'],
+    round: 3,
+    words: [1, 2, 3, 4, 5],
+    // phase: 'GAME_OVER',
+    // winner: {
+    //   name: 'Flaviane',
+    //   avatarId: 15,
+    //   score: 35,
+    // },
   };
 
   console.log('==========');
@@ -51,17 +61,43 @@ function TestingZone() {
   console.log({ state });
   console.log('==========');
 
-  return <GameOver info={info} state={state} players={players} />;
-  // return (
-  //   <PhaseContainer info={info} phase={state.phase} allowedPhase="WORD_SELECTION" className="testing-zone">
-  //     <RoundAnnouncement
-  //       round={state.round}
-  //       instructions={Array(10).fill('do this and that and that more and whatever, ').join(' ')}
-  //       onPressButton={() => console.log('A')}
-  //       buttonText="Click me"
-  //     />
-  //   </PhaseContainer>
-  // );
+  const guesser = players[state.guesser];
+  console.log(guesser);
+
+  // return <GameOver info={info} state={state} players={players} />;
+  return (
+    <PhaseContainer
+      info={info}
+      phase={state.phase}
+      allowedPhase="WORD_SELECTION"
+      className="u-word-selection-phase"
+    >
+      <div className="u-word-selection">
+        <Title white>Selecione a Palavra-Secreta</Title>
+
+        <Instruction white>
+          A palavra secreta com mais votos será escolhida para essa rodada. Você pode selecionar quantas
+          quiser!
+        </Instruction>
+
+        <ul className="u-word-card">
+          {state.words.map((word) => {
+            return (
+              <li className="u-word-card__word">
+                <button className="u-word-card__button">
+                  <span className="u-word-card__text">{allWords[word]}</span>
+                  <span className="u-word-card__icon">
+                    <CheckCircleFilled />
+                  </span>
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+        <Button type="primary">Enviar votos</Button>
+      </div>
+    </PhaseContainer>
+  );
 }
 
 export default TestingZone;
