@@ -15,7 +15,7 @@ function ArteRuimCard({ id, header = 'X' }) {
     <Card
       color={getColorFromLetter(header)}
       header={header}
-      size="large"
+      size="medium"
       footer={Array(card?.level).fill('•').join('')}
     >
       {card?.text ?? <WarningOutlined />}

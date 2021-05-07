@@ -4,9 +4,18 @@ import PropTypes from 'prop-types';
 import { Typography } from 'antd';
 import clsx from 'clsx';
 
-function Instruction({ children, white, className }) {
+function Instruction({ children, white, className, contained }) {
+  const baseClass = 'instruction';
+
   return (
-    <Typography.Text className={clsx('instruction', white && 'instruction--white', className)}>
+    <Typography.Text
+      className={clsx(
+        baseClass,
+        contained && `${baseClass}--contained`,
+        white && `${baseClass}--white`,
+        className
+      )}
+    >
       {children}
     </Typography.Text>
   );

@@ -5,6 +5,7 @@ import { useTimer } from 'react-timer-hook';
 import { inNSeconds } from '../../utils';
 // Components
 import DrawingCanvas from './DrawingCanvas';
+import Card from '../cards/Card';
 
 function DrawPhaseStepTwo({ secretCard, onSubmitDrawing }) {
   const [lines, setLines] = useState([]);
@@ -17,12 +18,16 @@ function DrawPhaseStepTwo({ secretCard, onSubmitDrawing }) {
 
   return (
     <div className="draw-phase-step-two">
-      <div className="draw-phase-step-two__card">
-        <span className="draw-phase-step-two__card-title">Desenhe</span>
-        <span className="draw-phase-step-two__card-text">{secretCard?.text}</span>
-        <span className="draw-phase-step-two__card-level">{Array(secretCard?.level).fill('•')}</span>
+      <Card
+        size="large"
+        header="Desenhe"
+        footer={Array(secretCard?.level).fill('•').join('')}
+        className="draw-phase-step-two__card"
+        color="yellow"
+      >
+        {secretCard?.text}
         <span className="draw-phase-step-two__timer">{seconds - 1}s</span>
-      </div>
+      </Card>
       <DrawingCanvas lines={lines} setLines={setLines} />
     </div>
   );

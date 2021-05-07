@@ -305,7 +305,7 @@ const prepareGalleryPhase = async (
         newScore: scores[2],
       };
     })
-    .sort((a, b) => (a.newScore < b.newScore ? 1 : -1));
+    .sort((a, b) => (a.newScore > b.newScore ? 1 : -1));
 
   // Merge currentDrawings into used cards
   const extendedUsedCards = { ...store.usedCards };
