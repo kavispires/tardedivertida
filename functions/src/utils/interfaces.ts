@@ -166,3 +166,17 @@ export interface SubmitSuggestionsPayload {
 export interface CurrentSuggestions {
   [key: string]: string[];
 }
+
+export interface SubmitSuggestionsValidationPayload {
+  gameId: GameId;
+  gameName: GameName;
+  playerName: PlayerName;
+  validSuggestions: PlainObject[];
+}
+
+export interface ConfirmGuessPayload {
+  gameId: GameId;
+  gameName: GameName;
+  playerName: PlayerName;
+  guess: string;
+}
