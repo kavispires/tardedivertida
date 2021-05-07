@@ -155,3 +155,14 @@ export interface UmSoInitialState {
   store: UmSoStore;
   state: UmSoState;
 }
+
+export interface SubmitSuggestionsPayload {
+  gameId: GameId;
+  gameName: GameName;
+  playerName: PlayerName;
+  suggestions: string[];
+}
+
+export interface CurrentSuggestions {
+  [key: string]: string[];
+}
