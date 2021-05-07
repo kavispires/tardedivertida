@@ -71,3 +71,8 @@ exports.umSoMakeMeReady = functions.https.onCall(umSoEngine.makeMeReady);
  * Submit word selection votes, if it's the last player to be ready, move to the next phase
  */
 exports.umSoSubmitWordSelectionVotes = functions.https.onCall(umSoEngine.submitWordSelectionVotes);
+
+/**
+ * Submit user suggestions, if it's the last player to be ready, move to the next phase
+ */
+exports.umSoSubmitSuggestions = functions.https.onCall(umSoEngine.submitSuggestions);
