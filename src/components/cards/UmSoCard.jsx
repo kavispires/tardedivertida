@@ -1,16 +1,19 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
+// Design Resources
+import { WarningOutlined } from '@ant-design/icons';
 // Resources
 import allWords from '../../resources/um-so-words.json';
+// Components
+import Card from './Card';
 
-function UmSoCard({ id, title = 'Carta', colorCode }) {
+function UmSoCard({ id, header = 'Carta' }) {
   const word = allWords[id];
 
   return (
-    <div className="secret-word-card secret-word-card--large">
-      <span className={`secret-word-card__title color-background--F`}>{title}</span>
-      <span className="secret-word-card__text">{word}</span>
-    </div>
+    <Card color="purple" header={header} size="large">
+      {word ?? <WarningOutlined />}
+    </Card>
   );
 }
 

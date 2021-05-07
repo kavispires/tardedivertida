@@ -22,7 +22,7 @@ function EvaluationAllCards({ cards, activeItem, onActivateItem, votes }) {
             )}
             onClick={() => onActivateItem(cardEntryId)}
           >
-            <Card id={cardEntry.id} title={letter} />
+            <Card id={cardEntry.id} header={letter} />
           </li>
         );
       })}
