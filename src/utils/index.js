@@ -26,6 +26,69 @@ export const getRandomItem = (list) => {
   return list[Math.floor(Math.random() * list.length)];
 };
 
+/**
+ * Get date from now within the given seconds
+ * @param {number} seconds
+ * @returns
+ */
 export const inNSeconds = (seconds) => {
   return Date.now() + seconds * 1000;
+};
+
+/**
+ * Get color name from letter
+ * @param {string} letter
+ * @returns
+ */
+export const getColorFromLetter = (letter) => {
+  return (
+    {
+      A: 'red',
+      B: 'blue',
+      C: 'green',
+      D: 'yellow',
+      E: 'pink',
+      F: 'purple',
+      G: 'teal',
+      H: 'orange',
+      I: 'coffee',
+      J: 'navy',
+      K: 'light-green',
+      L: 'brown',
+      M: 'hot-pink',
+      N: 'violet',
+      O: 'forest',
+      P: 'cream',
+
+      X: 'none',
+    }[letter] ?? 'none'
+  );
+};
+
+/**
+ * Gets color name from index
+ * @param {number} letter
+ * @returns
+ */
+export const getColorFromIndex = (letter) => {
+  return (
+    [
+      'red',
+      'blue',
+      'green',
+      'yellow',
+      'pink',
+      'purple',
+      'teal',
+      'orange',
+      'coffee',
+      'navy',
+      'light-green',
+      'brown',
+      'hot-pink',
+      'violet',
+      'forest',
+      'cream',
+    ][letter] ?? 'none'
+  );
 };

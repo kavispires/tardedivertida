@@ -90,7 +90,8 @@ function GalleryPhase({ players, state, info }) {
           <RankingBoard players={players} ranking={state.ranking} />
           {state.pointsToVictory >= 0 && (
             <Instruction white>
-              Faltam <strong>{state.pointsToVictory}</strong> para alguém ganhar...
+              Faltam <strong>{state.pointsToVictory}</strong> pontos para{' '}
+              {state?.ranking?.[0]?.playerName ?? 'alguém'} ganhar...
             </Instruction>
           )}
 
