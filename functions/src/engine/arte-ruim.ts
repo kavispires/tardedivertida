@@ -504,7 +504,7 @@ export const submitVoting = async (data: SubmitVotingPayload) => {
   const playersDoc = await utils.getSessionDoc(collectionName, gameId, 'players', actionText);
   const storeDoc = await utils.getSessionDoc(collectionName, gameId, 'store', actionText);
 
-  // Submit drawing
+  // Submit votes
   const store = storeDoc.data();
   try {
     const newStore = { ...store };

@@ -66,3 +66,8 @@ exports.arteRuimGoToNextPhase = functions.https.onCall(arteRuimEngine.goToNextPh
  * Make player ready, if it's the last player to be ready, move to the next phase
  */
 exports.umSoMakeMeReady = functions.https.onCall(umSoEngine.makeMeReady);
+
+/**
+ * Submit word selection votes, if it's the last player to be ready, move to the next phase
+ */
+exports.umSoSubmitWordSelectionVotes = functions.https.onCall(umSoEngine.submitWordSelectionVotes);
