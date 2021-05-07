@@ -21,8 +21,8 @@ export const UM_SO_API = {
   makeMeReady: functions.httpsCallable('umSoMakeMeReady'),
   submitWordSelectionVotes: functions.httpsCallable('umSoSubmitWordSelectionVotes'),
   submitSuggestions: functions.httpsCallable('umSoSubmitSuggestions'),
-  // submitRating: functions.httpsCallable('arteRuimSubmitRating'),
-  // goToNextPhase: functions.httpsCallable('umSoGoToNextPhase'),
+  submitValidation: functions.httpsCallable('umSoSubmitValidation'),
+  confirmGuess: functions.httpsCallable('umSoConfirmGuess'),
 };
 
 /**
