@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 // Utils
 import { LETTERS } from '../../utils/constants';
 // Components
-import Card from './Card';
+import Card from '../cards/ArteRuimCard';
 
 function EvaluationAllCards({ cards, activeItem, onActivateItem, votes }) {
   return (

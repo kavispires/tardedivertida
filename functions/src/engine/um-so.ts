@@ -342,7 +342,7 @@ export const makeMeReady = async (data: MakeMeReadyPayload) => {
 export const submitWordSelectionVotes = async (data: SubmitVotingPayload) => {
   const { gameId, gameName: collectionName, playerName, votes } = data;
 
-  const actionText = 'submit your drawing';
+  const actionText = 'submit your word selection votes';
   utils.verifyPayload(gameId, 'gameId', actionText);
   utils.verifyPayload(collectionName, 'collectionName', actionText);
   utils.verifyPayload(playerName, 'playerName', actionText);
@@ -387,7 +387,7 @@ export const submitWordSelectionVotes = async (data: SubmitVotingPayload) => {
 export const submitSuggestions = async (data: SubmitSuggestionsPayload) => {
   const { gameId, gameName: collectionName, playerName, suggestions } = data;
 
-  const actionText = 'submit your drawing';
+  const actionText = 'submit your suggestions';
   utils.verifyPayload(gameId, 'gameId', actionText);
   utils.verifyPayload(collectionName, 'collectionName', actionText);
   utils.verifyPayload(playerName, 'playerName', actionText);
