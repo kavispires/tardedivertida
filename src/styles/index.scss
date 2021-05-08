@@ -38,23 +38,23 @@
 @import '../components/cards/Card.scss';
 
 // ArteRuim Components
-@import '../components/arte-ruim/DrawPhaseDrawStep.scss';
-@import '../components/arte-ruim/DrawingCanvas.scss';
-@import '../components/arte-ruim/Canvas.scss';
-@import '../components/arte-ruim/CanvasResizer.scss';
-@import '../components/arte-ruim/EvaluationPhase.scss';
-@import '../components/arte-ruim/EvaluationAllDrawings.scss';
-@import '../components/arte-ruim/EvaluationAllCards.scss';
-@import '../components/arte-ruim/GalleryPhase.scss';
-@import '../components/arte-ruim/Ribbon.scss';
-@import '../components/arte-ruim/GalleryWindow.scss';
+@import '../components/games/arte-ruim/DrawPhaseDrawStep.scss';
+@import '../components/games/arte-ruim/DrawingCanvas.scss';
+@import '../components/games/arte-ruim/Canvas.scss';
+@import '../components/games/arte-ruim/CanvasResizer.scss';
+@import '../components/games/arte-ruim/EvaluationPhase.scss';
+@import '../components/games/arte-ruim/EvaluationAllDrawings.scss';
+@import '../components/games/arte-ruim/EvaluationAllCards.scss';
+@import '../components/games/arte-ruim/GalleryPhase.scss';
+@import '../components/games/arte-ruim/Ribbon.scss';
+@import '../components/games/arte-ruim/GalleryWindow.scss';
 
 // UmSo Components
-@import '../components/um-so/WordSelectionPhase.scss';
-@import '../components/um-so/SuggestPhase.scss';
-@import '../components/um-so/ComparePhase.scss';
-@import '../components/um-so/GuessPhase.scss';
-@import '../components/um-so/SuggestionCard.scss';
+@import '../components/games/um-so/WordSelectionPhase.scss';
+@import '../components/games/um-so/SuggestPhase.scss';
+@import '../components/games/um-so/ComparePhase.scss';
+@import '../components/games/um-so/GuessPhase.scss';
+@import '../components/games/um-so/SuggestionCard.scss';
 
 // Pages
 @import '../components/App.scss';

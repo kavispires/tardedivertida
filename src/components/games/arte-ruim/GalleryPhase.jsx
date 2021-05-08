@@ -3,19 +3,19 @@ import React, { Fragment, useCallback, useEffect, useState } from 'react';
 import { Button, message, notification } from 'antd';
 import { PictureOutlined, RocketFilled } from '@ant-design/icons';
 // State & Hooks
-import useGlobalState from '../../hooks/useGlobalState';
-import { useLoading } from '../../hooks';
+import useGlobalState from '../../../hooks/useGlobalState';
+import { useLoading } from '../../../hooks';
 // Resources and Utils
-import { ARTE_RUIM_API } from '../../adapters';
-import { ARTE_RUIM_PHASES } from '../../utils/constants';
+import { ARTE_RUIM_API } from '../../../adapters';
+import { ARTE_RUIM_PHASES } from '../../../utils/constants';
 // Components
 import GalleryWindow from './GalleryWindow';
-import PhaseContainer from '../shared/PhaseContainer';
-import AdminOnly from '../shared/AdminOnly';
-import RankingBoard from '../shared/RankingBoard';
-import Title from '../shared/Title';
-import Instruction from '../shared/Instruction';
-import StepSwitcher from '../shared/StepSwitcher';
+import PhaseContainer from '../../shared/PhaseContainer';
+import AdminOnly from '../../shared/AdminOnly';
+import RankingBoard from '../../shared/RankingBoard';
+import Title from '../../shared/Title';
+import Instruction from '../../shared/Instruction';
+import StepSwitcher from '../../shared/StepSwitcher';
 
 function GalleryPhase({ players, state, info }) {
   const [, setLoader] = useLoading();

@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import { Avatar as AntAvatar } from 'antd';
 import { MessageFilled } from '@ant-design/icons';
 // Resources
-import allCards from '../../resources/arte-ruim-cards.json';
+import allCards from '../../../resources/arte-ruim-cards.json';
 // Components
-import Avatar from '../avatars/Avatar';
+import Avatar from '../../avatars/Avatar';
 
 function GalleryWindowGuesses({ playersSay, players }) {
   return (

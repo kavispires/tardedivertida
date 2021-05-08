@@ -3,20 +3,20 @@ import useSound from 'use-sound';
 // Design Resources
 import { message, notification } from 'antd';
 // State & Hooks
-import useGlobalState from '../../hooks/useGlobalState';
-import { useLoading } from '../../hooks';
+import useGlobalState from '../../../hooks/useGlobalState';
+import { useLoading } from '../../../hooks';
 // Resources & Utils
-import { ARTE_RUIM_API } from '../../adapters';
-import { ARTE_RUIM_PHASES } from '../../utils/constants';
-import allCards from '../../resources/arte-ruim-cards.json';
-import arteRuimTimer from '../../sounds/arte-ruim-timer.mp3';
+import { ARTE_RUIM_API } from '../../../adapters';
+import { ARTE_RUIM_PHASES } from '../../../utils/constants';
+import allCards from '../../../resources/arte-ruim-cards.json';
+import arteRuimTimer from '../../../sounds/arte-ruim-timer.mp3';
 // Components
-import PhaseContainer from '../shared/PhaseContainer';
+import PhaseContainer from '../../shared/PhaseContainer';
 import DrawPhaseDrawStep from './DrawPhaseDrawStep';
-import WaitingRoom from '../shared/WaitingRoom';
-import RoundAnnouncement from '../shared/RoundAnnouncement';
-import Instruction from '../shared/Instruction';
-import StepSwitcher from '../shared/StepSwitcher';
+import WaitingRoom from '../../shared/WaitingRoom';
+import RoundAnnouncement from '../../shared/RoundAnnouncement';
+import Instruction from '../../shared/Instruction';
+import StepSwitcher from '../../shared/StepSwitcher';
 
 function DrawPhase({ players, state, info }) {
   const [, setLoader] = useLoading();

@@ -3,15 +3,15 @@ import PropTypes from 'prop-types';
 // Design Resources
 import { message, notification } from 'antd';
 // Hooks
-import { useGlobalState } from '../../hooks';
-import { useLoading } from '../../hooks';
+import { useGlobalState } from '../../../hooks';
+import { useLoading } from '../../../hooks';
 // Resources & Utils
-import { UM_SO_API } from '../../adapters';
-import { UM_SO_PHASES } from '../../utils/constants';
+import { UM_SO_API } from '../../../adapters';
+import { UM_SO_PHASES } from '../../../utils/constants';
 // Components
-import PhaseContainer from '../shared/PhaseContainer';
-import WaitingRoom from '../shared/WaitingRoom';
-import StepSwitcher from '../shared/StepSwitcher';
+import PhaseContainer from '../../shared/PhaseContainer';
+import WaitingRoom from '../../shared/WaitingRoom';
+import StepSwitcher from '../../shared/StepSwitcher';
 import CompareSuggestionsStep from './CompareSuggestionsStep';
 
 function ComparePhase({ state, players, info }) {

@@ -3,12 +3,12 @@ import React, { useState } from 'react';
 import { Button, Space } from 'antd';
 import { CloudUploadOutlined, ExclamationCircleOutlined, FireFilled } from '@ant-design/icons';
 // State
-import { useGlobalState } from '../../hooks';
+import { useGlobalState } from '../../../hooks';
 // Components
-import Title from '../shared/Title';
-import Instruction from '../shared/Instruction';
-import AdminOnly from '../shared/AdminOnly';
-import Card from '../cards/UmSoCard';
+import Title from '../../shared/Title';
+import Instruction from '../../shared/Instruction';
+import AdminOnly from '../../shared/AdminOnly';
+import Card from '../../cards/UmSoCard';
 import SuggestionCard from './SuggestionCard';
 
 function CompareSuggestionsStep({

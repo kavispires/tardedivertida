@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 
 // Hooks
-import { useGlobalState } from '../../hooks';
+import { useGlobalState } from '../../../hooks';
 // Components
 import CanvasSVG from './CanvasSVG';
 import GalleryWindowCredits from './GalleryWindowCredits';

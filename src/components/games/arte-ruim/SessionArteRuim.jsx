@@ -1,20 +1,20 @@
 import React, { Fragment, useEffect, useState } from 'react';
 // Hooks
-import { useGameState, useGlobalState } from '../../hooks';
-import { GAME_COLLECTION, ARTE_RUIM_PHASES } from '../../utils/constants';
+import { useGameState, useGlobalState } from '../../../hooks';
+import { GAME_COLLECTION, ARTE_RUIM_PHASES } from '../../../utils/constants';
 // Hooks
-import { useGamePlayers } from '../../hooks/useGamePlayers';
+import { useGamePlayers } from '../../../hooks/useGamePlayers';
 // Utils
-import gameList from '../../resources/games.json';
+import gameList from '../../../resources/games.json';
 // Components
-import Lobby from '../lobby/Lobby';
-import Rules from '../rules/Rules';
-import PageError from '../errors/PageError';
+import Lobby from '../../lobby/Lobby';
+import Rules from '../../rules/Rules';
+import PageError from '../../errors/PageError';
 import DrawPhase from './DrawPhase';
 import EvaluationPhase from './EvaluationPhase';
 import GalleryPhase from './GalleryPhase';
-import GameInfoDrawer from '../shared/GameInfoDrawer';
-import GameOver from '../shared/GameOver';
+import GameInfoDrawer from '../../shared/GameInfoDrawer';
+import GameOver from '../../shared/GameOver';
 
 function getActiveComponent(phase) {
   switch (phase) {

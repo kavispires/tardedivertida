@@ -3,9 +3,9 @@ import React, { useState } from 'react';
 import { Button, Input, Space } from 'antd';
 import { CloudUploadOutlined } from '@ant-design/icons';
 // Components
-import Title from '../shared/Title';
-import Instruction from '../shared/Instruction';
-import Card from '../cards/UmSoCard';
+import Title from '../../shared/Title';
+import Instruction from '../../shared/Instruction';
+import Card from '../../cards/UmSoCard';
 
 function SuggestionStep({ onSendSuggestions, secretWordId, suggestionsNumber = 1 }) {
   const [suggestions, setSuggestions] = useState([]);

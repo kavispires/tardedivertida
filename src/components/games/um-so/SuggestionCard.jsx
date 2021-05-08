@@ -3,11 +3,11 @@ import React, { memo } from 'react';
 import { Avatar as AntAvatar } from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
 // Components
-import BasicCard from '../cards/Card';
+import BasicCard from '../../cards/Card';
 import clsx from 'clsx';
-import Avatar from '../avatars/Avatar';
-import { getColorFromIndex } from '../../utils';
-import { LETTERS } from '../../utils/constants';
+import Avatar from '../../avatars/Avatar';
+import { getColorFromIndex } from '../../../utils';
+import { LETTERS } from '../../../utils/constants';
 
 function SuggestionCard({ suggestion, invalid, avatarId, index }) {
   return (
