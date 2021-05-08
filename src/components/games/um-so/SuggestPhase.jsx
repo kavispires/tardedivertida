@@ -7,7 +7,7 @@ import { useGlobalState } from '../../../hooks';
 import { useLoading } from '../../../hooks';
 // Resources & Utils
 import { UM_SO_API } from '../../../adapters';
-import { UM_SO_PHASES } from '../../../utils/constants';
+import { PHASES } from '../../../utils/constants';
 // Components
 import PhaseContainer from '../../shared/PhaseContainer';
 import WaitingRoom from '../../shared/WaitingRoom';
@@ -67,7 +67,7 @@ function SuggestPhase({ state, players, info }) {
     <PhaseContainer
       info={info}
       phase={state?.phase}
-      allowedPhase={UM_SO_PHASES.SUGGEST}
+      allowedPhase={PHASES.UM_SO.SUGGEST}
       className="word-selection-phase"
     >
       <StepSwitcher step={step} conditions={[!amIReady]}>

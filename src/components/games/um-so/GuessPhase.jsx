@@ -8,7 +8,7 @@ import { useGlobalState } from '../../../hooks';
 import { useLoading } from '../../../hooks';
 // Resources & Utils
 import { UM_SO_API } from '../../../adapters';
-import { UM_SO_PHASES } from '../../../utils/constants';
+import { PHASES } from '../../../utils/constants';
 // Components
 import PhaseContainer from '../../shared/PhaseContainer';
 import WaitingRoom from '../../shared/WaitingRoom';
@@ -72,7 +72,7 @@ function GuessPhase({ state, players, info }) {
     <PhaseContainer
       info={info}
       phase={state?.phase}
-      allowedPhase={UM_SO_PHASES.GUESS}
+      allowedPhase={PHASES.UM_SO.GUESS}
       className="u-word-guess-phase"
     >
       <StepSwitcher step={step}>

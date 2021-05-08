@@ -1,4 +1,4 @@
-import { GAME_COLLECTIONS, AVATAR_IDS, UM_SO_PHASES, UM_SO_WORDS } from '../utils/constants';
+import { GAME_COLLECTIONS, AVATAR_IDS, PHASES, UM_SO_WORDS } from '../utils/constants';
 import * as gameUtils from '../utils/game-utils';
 import * as utils from '../utils/index';
 import {
@@ -42,7 +42,7 @@ export const umSo = {
       currentSuggestions: [],
     },
     state: {
-      phase: UM_SO_PHASES.LOBBY,
+      phase: PHASES.UM_SO.LOBBY,
       round: 0,
     },
   }),
@@ -74,7 +74,7 @@ export const umSo = {
    */
   lockGame: (): ArteRuimState => {
     return {
-      phase: UM_SO_PHASES.RULES,
+      phase: PHASES.UM_SO.RULES,
       round: 0,
     };
   },
@@ -87,7 +87,7 @@ export const umSo = {
  * @returns
  */
 const determineNextPhase = (currentPhase: string, roundsToEndGame: number): string => {
-  const { RULES, WORD_SELECTION, SUGGEST, COMPARE, GUESS, GAME_OVER } = UM_SO_PHASES;
+  const { RULES, WORD_SELECTION, SUGGEST, COMPARE, GUESS, GAME_OVER } = PHASES.UM_SO;
   const order = [RULES, WORD_SELECTION, SUGGEST, COMPARE, GUESS, GAME_OVER];
 
   if (currentPhase === GUESS) {
@@ -152,27 +152,27 @@ const nextUmSoPhase = async (collectionName: string, gameId: string, players: Pl
   const nextPhase = determineNextPhase(state?.phase, roundsToEndGame);
 
   // * -> DRAW
-  if (nextPhase === UM_SO_PHASES.WORD_SELECTION) {
+  if (nextPhase === PHASES.UM_SO.WORD_SELECTION) {
     return prepareWordSelectionPhase(sessionRef, store, state, players, roundsToEndGame);
   }
 
   // WORD_SELECTION -> SUGGEST
-  if (nextPhase === UM_SO_PHASES.SUGGEST) {
+  if (nextPhase === PHASES.UM_SO.SUGGEST) {
     return prepareSuggestPhase(sessionRef, store, state, players, roundsToEndGame);
   }
 
   // SUGGEST -> COMPARE
-  if (nextPhase === UM_SO_PHASES.COMPARE) {
+  if (nextPhase === PHASES.UM_SO.COMPARE) {
     return prepareComparePhase(sessionRef, store, state, players, roundsToEndGame);
   }
 
   // COMPARE -> GUESS
-  if (nextPhase === UM_SO_PHASES.GUESS) {
+  if (nextPhase === PHASES.UM_SO.GUESS) {
     return prepareGuessPhase(sessionRef, store, state, roundsToEndGame);
   }
 
   // GUESS -> GAME_OVER
-  if (nextPhase === UM_SO_PHASES.GAME_OVER) {
+  if (nextPhase === PHASES.UM_SO.GAME_OVER) {
     return prepareGameOverPhase(sessionRef, store, state, players);
   }
 
@@ -222,7 +222,7 @@ const prepareWordSelectionPhase = async (
 
   // Save new state
   await sessionRef.doc('state').set({
-    phase: UM_SO_PHASES.WORD_SELECTION,
+    phase: PHASES.UM_SO.WORD_SELECTION,
     teamScore: determineTeamScore(players, store.turnOrder.length),
     round: newRound,
     guesser,
@@ -285,7 +285,7 @@ const prepareSuggestPhase = async (
 
   // Save new state
   await sessionRef.doc('state').set({
-    phase: UM_SO_PHASES.SUGGEST,
+    phase: PHASES.UM_SO.SUGGEST,
     teamScore: state.teamScore,
     round: state.round,
     guesser: state.guesser,
@@ -337,7 +337,7 @@ const prepareComparePhase = async (
 
   // Save new state
   await sessionRef.doc('state').set({
-    phase: UM_SO_PHASES.COMPARE,
+    phase: PHASES.UM_SO.COMPARE,
     teamScore: state.teamScore,
     round: state.round,
     guesser: state.guesser,
@@ -358,7 +358,7 @@ const prepareGuessPhase = async (
 ) => {
   // Save new state
   await sessionRef.doc('state').set({
-    phase: UM_SO_PHASES.GUESS,
+    phase: PHASES.UM_SO.GUESS,
     round: state.round,
     teamScore: state.teamScore,
     guesser: state.guesser,
@@ -387,7 +387,7 @@ const prepareGameOverPhase = async (
   const teamScore = determineTeamScore(players, store.turnOrder.length);
 
   await sessionRef.doc('state').set({
-    phase: UM_SO_PHASES.GAME_OVER,
+    phase: PHASES.UM_SO.GAME_OVER,
     round: state.round,
     team: {
       score: teamScore,

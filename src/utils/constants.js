@@ -100,26 +100,24 @@ export const GAME_COLLECTION = {
 };
 
 /**
- * Enum of Arte Ruim phases
+ * Enum of Game Phases
  */
-export const ARTE_RUIM_PHASES = {
-  LOBBY: 'LOBBY',
-  RULES: 'RULES',
-  DRAW: 'DRAW',
-  EVALUATION: 'EVALUATION',
-  GALLERY: 'GALLERY',
-  GAME_OVER: 'GAME_OVER',
-};
-
-/**
- * Enum of Um Só phases
- */
-export const UM_SO_PHASES = {
-  LOBBY: 'LOBBY',
-  RULES: 'RULES',
-  WORD_SELECTION: 'WORD_SELECTION',
-  SUGGEST: 'SUGGEST',
-  COMPARE: 'COMPARE',
-  GUESS: 'GUESS',
-  GAME_OVER: 'GAME_OVER',
+export const PHASES = {
+  ARTE_RUIM: {
+    LOBBY: 'LOBBY',
+    RULES: 'RULES',
+    DRAW: 'DRAW',
+    EVALUATION: 'EVALUATION',
+    GALLERY: 'GALLERY',
+    GAME_OVER: 'GAME_OVER',
+  },
+  UM_SO: {
+    LOBBY: 'LOBBY',
+    RULES: 'RULES',
+    WORD_SELECTION: 'WORD_SELECTION',
+    SUGGEST: 'SUGGEST',
+    COMPARE: 'COMPARE',
+    GUESS: 'GUESS',
+    GAME_OVER: 'GAME_OVER',
+  },
 };

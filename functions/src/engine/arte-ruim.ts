@@ -1,6 +1,6 @@
 import {
   GAME_COLLECTIONS,
-  ARTE_RUIM_PHASES,
+  PHASES,
   AVATAR_IDS,
   ARTE_RUIM_GOAL,
   ARTE_RUIM_CARDS_BY_LEVEL,
@@ -49,7 +49,7 @@ export const arteRuim = {
       currentVoting: {},
     },
     state: {
-      phase: ARTE_RUIM_PHASES.LOBBY,
+      phase: PHASES.ARTE_RUIM.LOBBY,
       round: 0,
     },
   }),
@@ -81,7 +81,7 @@ export const arteRuim = {
    */
   lockGame: (): ArteRuimState => {
     return {
-      phase: ARTE_RUIM_PHASES.RULES,
+      phase: PHASES.ARTE_RUIM.RULES,
       round: 0,
     };
   },
@@ -126,7 +126,7 @@ const determineNumberOfCards = (players: Players): number => {
  * @returns
  */
 const determineNextPhase = (currentPhase: string, pointsToVictory: number): string => {
-  const { RULES, DRAW, EVALUATION, GALLERY, GAME_OVER } = ARTE_RUIM_PHASES;
+  const { RULES, DRAW, EVALUATION, GALLERY, GAME_OVER } = PHASES.ARTE_RUIM;
   const order = [RULES, DRAW, EVALUATION, GALLERY];
 
   if (currentPhase === GALLERY) {
@@ -189,7 +189,7 @@ const prepareDrawPhase = async (
   });
   // Save new state
   await sessionRef.doc('state').set({
-    phase: ARTE_RUIM_PHASES.DRAW,
+    phase: PHASES.ARTE_RUIM.DRAW,
     cards: cardsState,
     pointsToVictory,
     round: (state?.round ?? 0) + 1,
@@ -212,7 +212,7 @@ const prepareEvaluationPhase = async (
 
   // Save new state
   await sessionRef.doc('state').set({
-    phase: ARTE_RUIM_PHASES.EVALUATION,
+    phase: PHASES.ARTE_RUIM.EVALUATION,
     cards: shuffledCards,
     drawings: shuffledDrawings,
     pointsToVictory,
@@ -324,7 +324,7 @@ const prepareGalleryPhase = async (
   const newPointsToVictory = utils.getPointsToVictory(newPlayers, ARTE_RUIM_GOAL);
 
   await sessionRef.doc('state').set({
-    phase: ARTE_RUIM_PHASES.GALLERY,
+    phase: PHASES.ARTE_RUIM.GALLERY,
     gallery,
     ranking,
     pointsToVictory: newPointsToVictory,
@@ -361,7 +361,7 @@ const prepareGameOverPhase = async (
   );
 
   await sessionRef.doc('state').set({
-    phase: ARTE_RUIM_PHASES.GAME_OVER,
+    phase: PHASES.ARTE_RUIM.GAME_OVER,
     winner,
     gameEndedAt: Date.now(),
   });
@@ -394,21 +394,21 @@ const nextArteRuimPhase = async (
   const nextPhase = determineNextPhase(state?.phase, pointsToVictory);
 
   // RULES -> DRAW
-  if (nextPhase === ARTE_RUIM_PHASES.DRAW) {
+  if (nextPhase === PHASES.ARTE_RUIM.DRAW) {
     return prepareDrawPhase(sessionRef, store, state, players, pointsToVictory);
   }
 
   // DRAW -> EVALUATION
-  if (nextPhase === ARTE_RUIM_PHASES.EVALUATION) {
+  if (nextPhase === PHASES.ARTE_RUIM.EVALUATION) {
     return prepareEvaluationPhase(sessionRef, store, state, players, pointsToVictory);
   }
 
   // EVALUATION -> GALLERY
-  if (nextPhase === ARTE_RUIM_PHASES.GALLERY) {
+  if (nextPhase === PHASES.ARTE_RUIM.GALLERY) {
     return prepareGalleryPhase(sessionRef, store, state, players);
   }
 
-  if (nextPhase === ARTE_RUIM_PHASES.GAME_OVER) {
+  if (nextPhase === PHASES.ARTE_RUIM.GAME_OVER) {
     return prepareGameOverPhase(sessionRef, players);
   }
 
