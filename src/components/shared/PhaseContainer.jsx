@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 // Design Resources
@@ -6,20 +6,39 @@ import { Layout } from 'antd';
 // Components
 import LoadingPage from '../loaders/LoadingPage';
 
-function PhaseContainer({ info, phase = '', allowedPhase = '', children, className }) {
+/**
+ * Wrapping container around a game screen
+ * @param {*} props
+ * @returns
+ */
+function PhaseContainer({ info, phase = '', allowedPhase = '', children, className, fullScreen = false }) {
   if (!info?.gameName || allowedPhase !== phase) {
     return <LoadingPage />;
   }
 
-  return <Layout.Content className={clsx('phase-container', className)}>{children}</Layout.Content>;
+  const baseClass = 'phase-container';
+
+  return (
+    <Layout.Content className={clsx(baseClass, fullScreen && `${baseClass}--full-screen`, className)}>
+      {children}
+    </Layout.Content>
+  );
 }
 
 PhaseContainer.propTypes = {
+  children: PropTypes.any.isRequired,
   allowedPhase: PropTypes.string,
-  children: PropTypes.any,
   className: PropTypes.string,
+  fullScreen: PropTypes.bool,
   info: PropTypes.object,
   phase: PropTypes.string,
 };
 
-export default PhaseContainer;
+PhaseContainer.defaultProps = {
+  allowedPhase: '',
+  className: '',
+  fullScreen: false,
+  phase: '',
+};
+
+export default memo(PhaseContainer);

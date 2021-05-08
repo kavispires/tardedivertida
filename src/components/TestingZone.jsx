@@ -69,14 +69,9 @@ function TestingZone() {
 
   // return <GameOver info={info} state={state} players={players} />;
   return (
-    <PhaseContainer
-      info={info}
-      phase={state.phase}
-      allowedPhase="WORD_SELECTION"
-      className="u-word-selection-phase"
-    >
+    <PhaseContainer info={info} phase={state.phase} allowedPhase="WORD_SELECTION" className="" fullScreen>
       <div className="u-word-selection">
-        <Title white>Selecione a Palavra-Secreta</Title>
+        {/* <Title white>Selecione a Palavra-Secreta</Title>
 
         <Instruction white>
           A palavra secreta com mais votos será escolhida para essa rodada. Você pode selecionar quantas
@@ -103,7 +98,7 @@ function TestingZone() {
             );
           })}
         </ul>
-        <Button type="primary">Enviar votos</Button>
+        <Button type="primary">Enviar votos</Button> */}
       </div>
     </PhaseContainer>
   );
