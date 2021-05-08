@@ -29,10 +29,13 @@ function GalleryWindowResult({ artist, correctAnswer, playersPoints, playersSay,
                 );
               })}
             </AntAvatar.Group>
-            <StarPoints quantity={2} />
+            <StarPoints quantity={2} keyPrefix={`guessers-points-${artist}`} />
+            <span className="a-gallery-window__players-names">{correctGuesses.join(', ')}</span>
           </div>
           <div className="a-gallery-window__artist-points">
-            <Avatar id={players[artist].avatarId} /> <StarPoints quantity={playersPoints?.[artist]} />
+            <Avatar id={players[artist].avatarId} />{' '}
+            <StarPoints quantity={playersPoints?.[artist]} keyPrefix={`artist-points-${artist}`} />{' '}
+            <span className="a-gallery-window__players-names">{artist}</span>
           </div>
         </Fragment>
       ) : (

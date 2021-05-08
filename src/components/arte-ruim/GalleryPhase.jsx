@@ -71,7 +71,7 @@ function GalleryPhase({ players, state, info }) {
       <StepSwitcher step={step}>
         {/* Step 0 */}
         <div className="a-gallery-phase__windows">
-          <Title white>Galeria de Arte</Title>
+          <Title>Galeria de Arte</Title>
           {state?.gallery && (
             <GalleryWindow
               window={state.gallery[activeIndex]}
@@ -89,9 +89,9 @@ function GalleryPhase({ players, state, info }) {
           <Title>{state.pointsToVictory >= 0 ? 'Ranking' : 'Game Over'}</Title>
           <RankingBoard players={players} ranking={state.ranking} />
           {state.pointsToVictory >= 0 && (
-            <Instruction white>
+            <Instruction contained>
               Faltam <strong>{state.pointsToVictory}</strong> pontos para{' '}
-              {state?.ranking?.[0]?.playerName ?? 'alguém'} ganhar...
+              <strong>{state?.ranking?.[0]?.playerName ?? 'alguém'}</strong> ganhar...
             </Instruction>
           )}
 
