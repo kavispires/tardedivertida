@@ -3,21 +3,21 @@ import React, { useCallback, useState } from 'react';
 import { Button, message, notification, Space } from 'antd';
 import { CloudUploadOutlined } from '@ant-design/icons';
 // State
-import useGlobalState from '../../hooks/useGlobalState';
+import useGlobalState from '../../../hooks/useGlobalState';
 // Hooks
-import { useLoading } from '../../hooks';
+import { useLoading } from '../../../hooks';
 // Utils
-import { ARTE_RUIM_API } from '../../adapters';
-import { ARTE_RUIM_PHASES } from '../../utils/constants';
+import { ARTE_RUIM_API } from '../../../adapters';
+import { ARTE_RUIM_PHASES } from '../../../utils/constants';
 // Components
-import WaitingRoom from '../shared/WaitingRoom';
+import WaitingRoom from '../../shared/WaitingRoom';
 import EvaluationAllDrawings from './EvaluationAllDrawings';
 import EvaluationAllCards from './EvaluationAllCards';
-import PhaseContainer from '../shared/PhaseContainer';
+import PhaseContainer from '../../shared/PhaseContainer';
 import CanvasResizer from './CanvasResizer';
-import Title from '../shared/Title';
-import Instruction from '../shared/Instruction';
-import StepSwitcher from '../shared/StepSwitcher';
+import Title from '../../shared/Title';
+import Instruction from '../../shared/Instruction';
+import StepSwitcher from '../../shared/StepSwitcher';
 
 function EvaluationPhase({ players, state, info }) {
   const [, setLoader] = useLoading();

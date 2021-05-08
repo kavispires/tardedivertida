@@ -3,18 +3,18 @@ import PropTypes from 'prop-types';
 // Design Resources
 import { message, notification, Progress } from 'antd';
 // Hooks
-import { useGlobalState } from '../../hooks';
-import { useLoading } from '../../hooks';
+import { useGlobalState } from '../../../hooks';
+import { useLoading } from '../../../hooks';
 // Resources & Utils
-import { UM_SO_API } from '../../adapters';
-import { UM_SO_PHASES } from '../../utils/constants';
+import { UM_SO_API } from '../../../adapters';
+import { UM_SO_PHASES } from '../../../utils/constants';
 // Components
-import Avatar from '../avatars/Avatar';
-import PhaseContainer from '../shared/PhaseContainer';
-import RoundAnnouncement from '../shared/RoundAnnouncement';
-import Instruction from '../shared/Instruction';
-import WaitingRoom from '../shared/WaitingRoom';
-import StepSwitcher from '../shared/StepSwitcher';
+import Avatar from '../../avatars/Avatar';
+import PhaseContainer from '../../shared/PhaseContainer';
+import RoundAnnouncement from '../../shared/RoundAnnouncement';
+import Instruction from '../../shared/Instruction';
+import WaitingRoom from '../../shared/WaitingRoom';
+import StepSwitcher from '../../shared/StepSwitcher';
 import WordSelectionStep from './WordSelectionStep';
 
 function WordSelectionPhase({ state, players, info }) {

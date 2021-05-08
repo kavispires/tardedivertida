@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 // Design Resources
 import { Slider } from 'antd';
 // State & Hooks
-import { useGlobalState } from '../../hooks';
+import { useGlobalState } from '../../../hooks';
 
 const CanvasResizer = () => {
   const [canvasSize, setCanvasSize] = useGlobalState('canvasSize');

@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 // Components
-import AvatarEntry from '../avatars/AvatarEntry';
+import AvatarEntry from '../../avatars/AvatarEntry';
 
 function GalleryWindowCredits({ artist, artistAvatarId }) {
   return (

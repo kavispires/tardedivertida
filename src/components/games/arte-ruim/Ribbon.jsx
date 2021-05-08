@@ -1,5 +1,5 @@
 import React from 'react';
-import { getColorFromLetter } from '../../utils';
+import { getColorFromLetter } from '../../../utils';
 
 function Ribbon({ cardEntryId }) {
   const [, , letter] = cardEntryId.split('-');

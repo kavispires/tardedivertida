@@ -3,10 +3,10 @@ import React, { useState } from 'react';
 import { Button } from 'antd';
 import { CheckCircleFilled, CloudUploadOutlined } from '@ant-design/icons';
 // Resources
-import allWords from '../../resources/um-so-words.json';
+import allWords from '../../../resources/um-so-words.json';
 // Components
-import Title from '../shared/Title';
-import Instruction from '../shared/Instruction';
+import Title from '../../shared/Title';
+import Instruction from '../../shared/Instruction';
 
 function WordSelectionStep({ words = [], onSendSelectedWords }) {
   const [selectedWords, setSelectedWords] = useState({});

@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useTimer } from 'react-timer-hook';
 // Utils
-import { inNSeconds } from '../../utils';
+import { inNSeconds } from '../../../utils';
 // Components
 import DrawingCanvas from './DrawingCanvas';
-import Card from '../cards/Card';
+import Card from '../../cards/Card';
 
 function DrawPhaseDrawStep({ secretCard, onSubmitDrawing }) {
   const [lines, setLines] = useState([]);

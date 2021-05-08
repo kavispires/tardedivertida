@@ -2,9 +2,9 @@ import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 // Utils
-import { LETTERS } from '../../utils/constants';
+import { LETTERS } from '../../../utils/constants';
 // Components
-import Card from '../cards/ArteRuimCard';
+import Card from '../../cards/ArteRuimCard';
 
 function EvaluationAllCards({ cards, activeItem, onActivateItem, votes }) {
   const liButtonBaseClass = 'a-evaluation-all-cards__li-card-button';

@@ -11,7 +11,7 @@ import {
   TrophyOutlined,
 } from '@ant-design/icons';
 // Utils
-import { inNSeconds } from '../../utils';
+import { inNSeconds } from '../../../utils';
 
 function GalleryWindowControls({ galleryLength, activeIndex, setActiveIndex, setStep }) {
   const { seconds, isRunning, pause, resume } = useTimer({

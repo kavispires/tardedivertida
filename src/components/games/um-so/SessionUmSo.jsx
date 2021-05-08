@@ -1,21 +1,21 @@
 import React, { Fragment, useEffect, useState } from 'react';
 // Hooks
-import { useGameState, useGlobalState } from '../../hooks';
-import { GAME_COLLECTION, UM_SO_PHASES } from '../../utils/constants';
+import { useGameState, useGlobalState } from '../../../hooks';
+import { GAME_COLLECTION, UM_SO_PHASES } from '../../../utils/constants';
 // Hooks
-import { useGamePlayers } from '../../hooks/useGamePlayers';
+import { useGamePlayers } from '../../../hooks/useGamePlayers';
 // Utils
-import gameList from '../../resources/games.json';
+import gameList from '../../../resources/games.json';
 // Components
-import Lobby from '../lobby/Lobby';
-import Rules from '../rules/Rules';
-import PageError from '../errors/PageError';
+import Lobby from '../../lobby/Lobby';
+import Rules from '../../rules/Rules';
+import PageError from '../../errors/PageError';
 import WordSelectionPhase from './WordSelectionPhase';
 import SuggestPhase from './SuggestPhase';
 import ComparePhase from './ComparePhase';
 import GuessPhase from './GuessPhase';
-import GameOver from '../shared/GameOver';
-import GameInfoDrawer from '../shared/GameInfoDrawer';
+import GameOver from '../../shared/GameOver';
+import GameInfoDrawer from '../../shared/GameInfoDrawer';
 
 function getActiveComponent(phase) {
   switch (phase) {
