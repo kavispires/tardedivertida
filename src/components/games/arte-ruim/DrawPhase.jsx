@@ -86,7 +86,7 @@ function DrawPhase({ players, state, info }) {
           <Instruction white>
             Você terá 10 segundos para ler a sua carta e desenhá-la. Aperte o botão quando estiver pronto!
             <br />
-            Fique esperto porque começa assim quando você apertar. Não 'seje' lerdo.
+            Fique esperto porque começa assim que você apertar. Não 'seje' lerdo.
           </Instruction>
         </RoundAnnouncement>
 

@@ -7,7 +7,7 @@ import { GAME_API } from '../adapters';
 // Hooks
 import { useIsGameStale, useLoading, useGlobalState } from '../hooks';
 // Utils
-import { getGameIdFromURL, isValidGameId } from '../utils';
+import { getGameIdFromURL, getGameIdFromLocation, isValidGameId } from '../utils';
 import { GAME_COLLECTION } from '../utils/constants';
 // Components
 import LoadingPage from './loaders/LoadingPage';
@@ -30,9 +30,24 @@ function Game() {
     if (isValidGameId(urlGameId)) {
       setGameId(urlGameId);
     } else {
-      message.error('Vixi, the provided game id does not look right');
+      message.error('Vixi, a id do jogo na barra de endereços tá errada');
       history.push('/');
     }
+  }, [history, setGameId]);
+
+  // Keeps track of url changes
+  useEffect(() => {
+    return history.listen((location) => {
+      const urlGameId = getGameIdFromLocation(location);
+      console.log({ urlGameId });
+      if (isValidGameId(urlGameId)) {
+        setGameId(urlGameId);
+        message.info('Uma nova id de jogo foi provida');
+      } else {
+        message.error('Vixi, a id do jogo na barra de endereços tá errada');
+        history.push('/');
+      }
+    });
   }, [history, setGameId]);
 
   // Load game
