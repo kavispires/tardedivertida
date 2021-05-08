@@ -6,12 +6,14 @@
   justify-self: center;
 
   @include vertical-centered-container;
+  @include box-shadow;
 
   width: 260px;
   justify-content: flex-start;
 
   padding: get-unit(3);
   margin: get-unit(8 0);
+  border-radius: get-unit(1);
 
   &__avatar {
     border-radius: 50%;
