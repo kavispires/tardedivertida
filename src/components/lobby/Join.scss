@@ -6,6 +6,7 @@
 
   width: 300px;
   @include vertical-centered-container;
+  @include box-shadow;
 
   padding: get-unit(3);
   margin: get-unit(8 0);

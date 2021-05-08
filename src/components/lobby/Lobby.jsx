@@ -6,6 +6,7 @@ import PhaseContainer from '../shared/PhaseContainer';
 import AvatarEntry from '../avatars/AvatarEntry';
 import Join from './Join';
 import Waiting from './Waiting';
+import CloudBackground from './CloudBackground';
 
 function Lobby({ players, info }) {
   const [me] = useGlobalState('me');
@@ -26,6 +27,8 @@ function Lobby({ players, info }) {
 
         {me && myAvatar ? <Waiting players={players} info={info} /> : <Join players={players} info={info} />}
       </div>
+
+      <CloudBackground />
     </PhaseContainer>
   );
 }
