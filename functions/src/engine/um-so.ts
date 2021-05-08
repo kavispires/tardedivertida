@@ -229,6 +229,7 @@ const prepareWordSelectionPhase = async (
     nextGuesser: store.turnOrder?.[newRound] ?? store.turnOrder?.[0],
     roundsToEndGame,
     words: Object.keys(newWords),
+    previousSecretWordId: state?.secretWordId ?? '',
   });
   // Unready players and return
   await sessionRef.doc('players').set(utils.unReadyPlayers(players, guesser));

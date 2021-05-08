@@ -8,6 +8,8 @@ import { useLoading } from '../../../hooks';
 // Resources & Utils
 import { UM_SO_API } from '../../../adapters';
 import { UM_SO_PHASES } from '../../../utils/constants';
+// Resources
+import allWords from '../../../resources/um-so-words.json';
 // Components
 import Avatar from '../../avatars/Avatar';
 import PhaseContainer from '../../shared/PhaseContainer';
@@ -33,6 +35,12 @@ function WordSelectionPhase({ state, players, info }) {
     setAmITheGuesser(state.guesser === me);
   }, [state.guesser, me, players]);
 
+  useEffect(() => {
+    if (step === 0 && state.previousSecretWordId) {
+      message.info(`A palavra secreta anterior era: ${allWords[state.previousSecretWordId]}`);
+    }
+  }, [step, state?.previousSecretWordId]);
+
   const onSendSelectedWords = useCallback(
     async (selectedWords) => {
       try {
@@ -55,6 +63,7 @@ function WordSelectionPhase({ state, players, info }) {
           placement: 'bottomLeft',
         });
         console.error(e);
+        setStep(0);
       } finally {
         setLoader('submit-votes', false);
       }
