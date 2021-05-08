@@ -96,11 +96,11 @@ function EvaluationPhase({ players, state, info }) {
       info={info}
       phase={state?.phase}
       allowedPhase={ARTE_RUIM_PHASES.EVALUATION}
-      className="evaluation-phase"
+      className="a-evaluation-phase"
     >
       <StepSwitcher step={step} conditions={[!amIReady]}>
         {/*Step 0 */}
-        <div className="evaluation-phase__step-one">
+        <div className="a-evaluation-phase__step-one">
           <CanvasResizer />
           <Title>Adivinhação</Title>
           <Instruction>
@@ -124,7 +124,7 @@ function EvaluationPhase({ players, state, info }) {
             votes={votes}
           />
 
-          <Space className="evaluation-phase__action-button">
+          <Space className="a-evaluation-phase__action-button">
             <Button
               type="primary"
               onClick={onSubmitVoting}

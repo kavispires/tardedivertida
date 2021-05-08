@@ -7,18 +7,24 @@ import { LETTERS } from '../../utils/constants';
 import Card from '../cards/ArteRuimCard';
 
 function EvaluationAllCards({ cards, activeItem, onActivateItem, votes }) {
+  const liButtonBaseClass = 'a-evaluation-all-cards__li-card-button';
+
   return (
-    <ul className="evaluation-phase__all-cards">
+    <ul className="a-evaluation-all-cards">
       {cards.map((cardEntry, index) => {
         const letter = LETTERS[index];
         const cardEntryId = `card-${cardEntry.id}-${letter}`;
+        const isActive = activeItem === cardEntryId;
+        const isUsed = Object.values(votes).includes(cardEntryId);
+
         return (
           <li
+            role="button"
             key={cardEntryId}
             className={clsx(
-              'evaluation-phase__li-card-button',
-              activeItem === cardEntryId && 'evaluation-phase__li-card-button--active',
-              Object.values(votes).includes(cardEntryId) && 'evaluation-phase__li-card-button--used'
+              liButtonBaseClass,
+              isActive && `${liButtonBaseClass}--active`,
+              isUsed && `${liButtonBaseClass}--used`
             )}
             onClick={() => onActivateItem(cardEntryId)}
           >

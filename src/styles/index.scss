@@ -6,7 +6,7 @@
 @import './functions';
 @import './constants';
 @import './animations';
-// @import './mixins';
+@import './mixins';
 
 // Global
 @import './reset';
@@ -20,6 +20,7 @@
 @import '../components/lobby/Lobby.scss';
 @import '../components/lobby/Join.scss';
 @import '../components/lobby/Waiting.scss';
+@import '../components/lobby/CloudBackground.scss';
 @import '../components/modals/RulesModal.scss';
 @import '../components/rules/RulesCarousel.scss';
 @import '../components/rules/Rules.scss';
@@ -33,14 +34,17 @@
 @import '../components/shared/GameOver.scss';
 @import '../components/shared/Instruction.scss';
 @import '../components/shared/Title.scss';
+@import '../components/shared/GameInfoDrawer.scss';
 @import '../components/cards/Card.scss';
 
 // ArteRuim Components
-@import '../components/arte-ruim/SessionArteRuim.scss';
-@import '../components/arte-ruim/GameInfoDrawer.scss';
-@import '../components/arte-ruim/DrawPhase.scss';
+@import '../components/arte-ruim/DrawPhaseDrawStep.scss';
 @import '../components/arte-ruim/DrawingCanvas.scss';
+@import '../components/arte-ruim/Canvas.scss';
+@import '../components/arte-ruim/CanvasResizer.scss';
 @import '../components/arte-ruim/EvaluationPhase.scss';
+@import '../components/arte-ruim/EvaluationAllDrawings.scss';
+@import '../components/arte-ruim/EvaluationAllCards.scss';
 @import '../components/arte-ruim/GalleryPhase.scss';
 @import '../components/arte-ruim/Ribbon.scss';
 @import '../components/arte-ruim/GalleryWindow.scss';

@@ -36,8 +36,8 @@ function GalleryWindowControls({ galleryLength, activeIndex, setActiveIndex, set
   };
 
   return (
-    <div className="gallery-window__controls">
-      <div className="gallery-window__timer-bar">
+    <div className="a-gallery-window__controls">
+      <div className="a-gallery-window__timer-bar">
         <span style={{ width: `${Math.abs((10 * seconds) / galleryLength - 100)}%` }}></span>
       </div>
       <Button
@@ -56,12 +56,7 @@ function GalleryWindowControls({ galleryLength, activeIndex, setActiveIndex, set
       <Button size="large" onClick={nextStep} disabled={activeIndex === galleryLength - 1}>
         Próximo Desenho <StepForwardOutlined />
       </Button>
-      <Button
-        className="gallery-window__go-to-ranking"
-        size="large"
-        onClick={() => setStep(1)}
-        icon={<TrophyOutlined />}
-      >
+      <Button size="large" onClick={() => setStep(1)} icon={<TrophyOutlined />}>
         Ver Ranking
       </Button>
     </div>

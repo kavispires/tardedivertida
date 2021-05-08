@@ -8,10 +8,16 @@
   align-items: center;
   flex-direction: column;
   min-height: 90vh;
+  box-sizing: border-box;
 
   &--full-screen {
     width: calc(100vw - #{get-unit(8)});
     height: calc(100vh - #{get-unit(8)});
-    overflow-x: hidden;
+    // overflow-x: hidden;
+    overflow: hidden;
+  }
+
+  &--white {
+    background: rgba($color: #ffffff, $alpha: 0.7);
   }
 }

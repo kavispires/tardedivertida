@@ -58,12 +58,24 @@ function GameInfoDrawer({ players, state, info, me }) {
             {state?.round ?? '?'}
           </AntAvatar>
         </div>
-        <div>
-          <div className="game-info-drawer__label-inline">Pontos restantes para alguém ganhar:</div>
-          <AntAvatar className="game-info-drawer__round" size="small">
-            {state?.pointsToVictory ?? '?'}
-          </AntAvatar>
-        </div>
+        {Boolean(state?.teamScore) && (
+          <div>
+            <div className="game-info-drawer__label-inline">Pontos:</div>
+            <AntAvatar className="game-info-drawer__round" size="small">
+              {state?.teamScore ?? '?'}
+            </AntAvatar>
+          </div>
+        )}
+
+        {Boolean(state?.pointsToVictory) && (
+          <div>
+            <div className="game-info-drawer__label-inline">Pontos restantes para alguém ganhar:</div>
+            <AntAvatar className="game-info-drawer__round" size="small">
+              {state?.pointsToVictory ?? '?'}
+            </AntAvatar>
+          </div>
+        )}
+
         <Divider />
         <ul>
           {rankedPlayers.map((player, index) => {

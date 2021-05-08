@@ -7,7 +7,7 @@ import { inNSeconds } from '../../utils';
 import DrawingCanvas from './DrawingCanvas';
 import Card from '../cards/Card';
 
-function DrawPhaseStepTwo({ secretCard, onSubmitDrawing }) {
+function DrawPhaseDrawStep({ secretCard, onSubmitDrawing }) {
   const [lines, setLines] = useState([]);
 
   const { seconds } = useTimer({
@@ -17,23 +17,23 @@ function DrawPhaseStepTwo({ secretCard, onSubmitDrawing }) {
   });
 
   return (
-    <div className="draw-phase-step-two">
+    <div className="a-draw-phase-draw-step">
       <Card
         size="large"
         header="Desenhe"
         footer={Array(secretCard?.level).fill('•').join('')}
-        className="draw-phase-step-two__card"
+        className="a-draw-phase-draw-step__card"
         color="yellow"
       >
         {secretCard?.text}
-        <span className="draw-phase-step-two__timer">{seconds - 1}s</span>
+        <span className="a-draw-phase-draw-step__timer">{seconds - 1}</span>
       </Card>
       <DrawingCanvas lines={lines} setLines={setLines} />
     </div>
   );
 }
 
-DrawPhaseStepTwo.propTypes = {
+DrawPhaseDrawStep.propTypes = {
   secretCard: PropTypes.shape({
     text: PropTypes.string,
     level: PropTypes.number,
@@ -41,4 +41,4 @@ DrawPhaseStepTwo.propTypes = {
   onSubmitDrawing: PropTypes.func.isRequired,
 };
 
-export default DrawPhaseStepTwo;
+export default DrawPhaseDrawStep;

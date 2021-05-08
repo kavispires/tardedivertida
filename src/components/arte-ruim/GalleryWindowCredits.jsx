@@ -5,9 +5,9 @@ import AvatarEntry from '../avatars/AvatarEntry';
 
 function GalleryWindowCredits({ artist, artistAvatarId }) {
   return (
-    <div className="gallery-window__credits">
-      <div className="gallery-window__label">Artista</div>
-      <span className="gallery-window__artist-name">
+    <div className="a-gallery-window__credits">
+      <div className="a-gallery-window__label">Artista</div>
+      <span className="a-gallery-window__artist-name">
         <AvatarEntry id={artistAvatarId} name={artist} />
       </span>
     </div>
