@@ -7,7 +7,7 @@ import { useGlobalState } from '../../../hooks';
 import { useLoading } from '../../../hooks';
 // Resources & Utils
 import { UM_SO_API } from '../../../adapters';
-import { UM_SO_PHASES } from '../../../utils/constants';
+import { PHASES } from '../../../utils/constants';
 // Resources
 import allWords from '../../../resources/um-so-words.json';
 // Components
@@ -75,7 +75,7 @@ function WordSelectionPhase({ state, players, info }) {
     <PhaseContainer
       info={info}
       phase={state?.phase}
-      allowedPhase={UM_SO_PHASES.WORD_SELECTION}
+      allowedPhase={PHASES.UM_SO.WORD_SELECTION}
       className="u-word-selection-phase"
     >
       <StepSwitcher step={step} conditions={[!amIReady]}>

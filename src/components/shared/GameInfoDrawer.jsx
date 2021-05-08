@@ -3,7 +3,7 @@ import React, { Fragment, useState } from 'react';
 import { Affix, Avatar as AntAvatar, Badge, Button, Divider, Drawer } from 'antd';
 import { InfoCircleOutlined } from '@ant-design/icons';
 // Utils
-import { ARTE_RUIM_PHASES, AVATAR_DESCRIPTIONS_BR } from '../../utils/constants';
+import { AVATAR_DESCRIPTIONS_BR } from '../../utils/constants';
 // Components
 import Avatar from '../avatars/Avatar';
 import RulesModal from '../modals/RulesModal';
@@ -11,7 +11,7 @@ import RulesModal from '../modals/RulesModal';
 function GameInfoDrawer({ players, state, info, me }) {
   const [visible, setVisible] = useState(false);
 
-  if (state.phase === ARTE_RUIM_PHASES.LOBBY) {
+  if (state.phase === 'LOBBY') {
     return <span></span>;
   }
 

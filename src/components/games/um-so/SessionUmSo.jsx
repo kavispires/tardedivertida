@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react';
 // Hooks
 import { useGameState, useGlobalState } from '../../../hooks';
-import { GAME_COLLECTION, UM_SO_PHASES } from '../../../utils/constants';
+import { GAME_COLLECTION, PHASES } from '../../../utils/constants';
 // Hooks
 import { useGamePlayers } from '../../../hooks/useGamePlayers';
 // Utils
@@ -19,19 +19,19 @@ import GameInfoDrawer from '../../shared/GameInfoDrawer';
 
 function getActiveComponent(phase) {
   switch (phase) {
-    case UM_SO_PHASES.LOBBY:
+    case PHASES.UM_SO.LOBBY:
       return Lobby;
-    case UM_SO_PHASES.RULES:
+    case PHASES.UM_SO.RULES:
       return Rules;
-    case UM_SO_PHASES.WORD_SELECTION:
+    case PHASES.UM_SO.WORD_SELECTION:
       return WordSelectionPhase;
-    case UM_SO_PHASES.SUGGEST:
+    case PHASES.UM_SO.SUGGEST:
       return SuggestPhase;
-    case UM_SO_PHASES.COMPARE:
+    case PHASES.UM_SO.COMPARE:
       return ComparePhase;
-    case UM_SO_PHASES.GUESS:
+    case PHASES.UM_SO.GUESS:
       return GuessPhase;
-    case UM_SO_PHASES.GAME_OVER:
+    case PHASES.UM_SO.GAME_OVER:
       return GameOver;
     default:
       return PageError;

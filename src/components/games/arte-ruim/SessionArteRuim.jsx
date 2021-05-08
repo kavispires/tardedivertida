@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react';
 // Hooks
 import { useGameState, useGlobalState } from '../../../hooks';
-import { GAME_COLLECTION, ARTE_RUIM_PHASES } from '../../../utils/constants';
+import { GAME_COLLECTION, PHASES } from '../../../utils/constants';
 // Hooks
 import { useGamePlayers } from '../../../hooks/useGamePlayers';
 // Utils
@@ -18,17 +18,17 @@ import GameOver from '../../shared/GameOver';
 
 function getActiveComponent(phase) {
   switch (phase) {
-    case ARTE_RUIM_PHASES.LOBBY:
+    case PHASES.ARTE_RUIM.LOBBY:
       return Lobby;
-    case ARTE_RUIM_PHASES.RULES:
+    case PHASES.ARTE_RUIM.RULES:
       return Rules;
-    case ARTE_RUIM_PHASES.DRAW:
+    case PHASES.ARTE_RUIM.DRAW:
       return DrawPhase;
-    case ARTE_RUIM_PHASES.EVALUATION:
+    case PHASES.ARTE_RUIM.EVALUATION:
       return EvaluationPhase;
-    case ARTE_RUIM_PHASES.GALLERY:
+    case PHASES.ARTE_RUIM.GALLERY:
       return GalleryPhase;
-    case ARTE_RUIM_PHASES.GAME_OVER:
+    case PHASES.ARTE_RUIM.GAME_OVER:
       return GameOver;
     default:
       return PageError;

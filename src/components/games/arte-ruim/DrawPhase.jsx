@@ -7,7 +7,7 @@ import useGlobalState from '../../../hooks/useGlobalState';
 import { useLoading } from '../../../hooks';
 // Resources & Utils
 import { ARTE_RUIM_API } from '../../../adapters';
-import { ARTE_RUIM_PHASES } from '../../../utils/constants';
+import { PHASES } from '../../../utils/constants';
 import allCards from '../../../resources/arte-ruim-cards.json';
 import arteRuimTimer from '../../../sounds/arte-ruim-timer.mp3';
 // Components
@@ -73,7 +73,7 @@ function DrawPhase({ players, state, info }) {
     <PhaseContainer
       info={info}
       phase={state?.phase}
-      allowedPhase={ARTE_RUIM_PHASES.DRAW}
+      allowedPhase={PHASES.ARTE_RUIM.DRAW}
       className="draw-phase"
     >
       <StepSwitcher step={step} conditions={[!amIReady, !amIReady]}>

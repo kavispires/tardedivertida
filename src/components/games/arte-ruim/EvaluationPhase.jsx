@@ -8,7 +8,7 @@ import useGlobalState from '../../../hooks/useGlobalState';
 import { useLoading } from '../../../hooks';
 // Utils
 import { ARTE_RUIM_API } from '../../../adapters';
-import { ARTE_RUIM_PHASES } from '../../../utils/constants';
+import { PHASES } from '../../../utils/constants';
 // Components
 import WaitingRoom from '../../shared/WaitingRoom';
 import EvaluationAllDrawings from './EvaluationAllDrawings';
@@ -95,7 +95,7 @@ function EvaluationPhase({ players, state, info }) {
     <PhaseContainer
       info={info}
       phase={state?.phase}
-      allowedPhase={ARTE_RUIM_PHASES.EVALUATION}
+      allowedPhase={PHASES.ARTE_RUIM.EVALUATION}
       className="a-evaluation-phase"
     >
       <StepSwitcher step={step} conditions={[!amIReady]}>

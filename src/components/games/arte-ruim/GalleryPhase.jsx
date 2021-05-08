@@ -7,7 +7,7 @@ import useGlobalState from '../../../hooks/useGlobalState';
 import { useLoading } from '../../../hooks';
 // Resources and Utils
 import { ARTE_RUIM_API } from '../../../adapters';
-import { ARTE_RUIM_PHASES } from '../../../utils/constants';
+import { PHASES } from '../../../utils/constants';
 // Components
 import GalleryWindow from './GalleryWindow';
 import PhaseContainer from '../../shared/PhaseContainer';
@@ -65,7 +65,7 @@ function GalleryPhase({ players, state, info }) {
     <PhaseContainer
       info={info}
       phase={state?.phase}
-      allowedPhase={ARTE_RUIM_PHASES.GALLERY}
+      allowedPhase={PHASES.ARTE_RUIM.GALLERY}
       className="a-gallery-phase"
     >
       <StepSwitcher step={step}>
