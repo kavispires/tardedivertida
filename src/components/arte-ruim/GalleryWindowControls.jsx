@@ -36,8 +36,8 @@ function GalleryWindowControls({ galleryLength, activeIndex, setActiveIndex, set
   };
 
   return (
-    <div className="gallery-window__controls">
-      <div className="gallery-window__timer-bar">
+    <div className="a-gallery-window__controls">
+      <div className="a-gallery-window__timer-bar">
         <span style={{ width: `${Math.abs((10 * seconds) / galleryLength - 100)}%` }}></span>
       </div>
       <Button
