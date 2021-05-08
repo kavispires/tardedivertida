@@ -6,7 +6,7 @@
   border-radius: get-unit(1);
 
   grid-template-columns: [first] 50% [second] 1fr [end];
-  grid-template-rows: [first] 90px [second] 4fr [third] 2fr [fourth] auto [end];
+  grid-template-rows: [first] 90px [second] auto [third] auto [fourth] auto [end];
 
   &__drawing-container {
     grid-column: first / second;
