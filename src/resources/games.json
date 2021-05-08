@@ -114,11 +114,19 @@
     "gameName": "um-so",
     "title": "Um Só",
     "summary": "Tente adivinhar a palavra secreta com as dicas de seus amigos, mas se repetir, ferrou!",
-    "rules": [],
+    "rules": [
+      "Um Só é um jogo cooperativo em que cada rodadas (duas por jogador) um jogador tenta adivinhar a palavra secreta usando as dicas que os outros jogadores sugeriram, mas existe um porém: dicas repetidas ou similares são desclassificadas!",
+      "Cada rodada todos os jogadores menos o Adivinhar votam em qual palavra secreta usar.",
+      "Então, em segredo e sem conversar, cada um deles escreve uma dica. Importante: Esta dica DEVE ser uma palavra única!",
+      "Quando todas as dicas forem enviadas, todas as iguais são automaticamente desclassificadas, porém os jogadores devem decidir entre eles quais dicas adicionais também devem ser desclassificadas",
+      "São consideradas dicas iguais palavras derividadas, conjugações: piloto = pilotar = pilotando. Variações como pluralidade, gênero e erros ortograficos: príncipe = princesa = principes = pryncipe. Então, tente não ser muito óbvio ao escrever sua dica.",
+      "Após as dicas terem sido selecionadas, o Adivinhador tem uma única change de adivinhar (ou passar, se for um covarde).",
+      "Se a palavra estiver correta, ganha-se 1 ponto, se estiver errada perde-se 1 ponto. Mas se tiver passado a vez, nada acontece. Ganha-se o jogo se os jogadores acertarem 70+% das Palavras Secretas!"
+    ],
     "recommended": "6-8",
     "min": 4,
     "max": 8,
     "tags": ["cooperative", "guessing", "writing"],
-    "available": false
+    "available": true
   }
 }

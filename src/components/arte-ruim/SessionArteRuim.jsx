@@ -13,8 +13,8 @@ import PageError from '../errors/PageError';
 import DrawPhase from './DrawPhase';
 import EvaluationPhase from './EvaluationPhase';
 import GalleryPhase from './GalleryPhase';
-import GameOverPhase from './GameOverPhase';
 import GameInfoDrawer from './GameInfoDrawer';
+import GameOver from '../shared/GameOver';
 
 function getActiveComponent(phase) {
   switch (phase) {
@@ -29,7 +29,7 @@ function getActiveComponent(phase) {
     case ARTE_RUIM_PHASES.GALLERY:
       return GalleryPhase;
     case ARTE_RUIM_PHASES.GAME_OVER:
-      return GameOverPhase;
+      return GameOver;
     default:
       return PageError;
   }

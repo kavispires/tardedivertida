@@ -10,7 +10,7 @@ export function useGameState(gameId, gameName) {
 
   if (error) {
     notification.error({
-      message: 'Aplicativo encontrou um erro ao tentar atualizar o estado',
+      message: 'Aplicativo encontrou um erro ao tentar atualizar o estado do jogo',
       description: JSON.stringify(error),
       placement: 'bottomLeft',
     });

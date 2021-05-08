@@ -12,6 +12,7 @@ import Home from './Home';
 import Admin from './Admin';
 import Login from './Login';
 import Game from './Game';
+import TestingZone from './TestingZone';
 import LoadingPage from './loaders/LoadingPage';
 import LoadingBar from './loaders/LoadingBar';
 
@@ -70,7 +71,8 @@ function App() {
           <Switch>
             <Route exact path="/" component={Home}></Route>
             <PrivateRoute path="/admin" authenticated={isAuthenticated} component={Admin} />
-            <PublicRoute path="/login" authenticated={isAuthenticated} component={Login}></PublicRoute>
+            <PublicRoute path="/login" authenticated={isAuthenticated} component={Login} />
+            <PrivateRoute path="/testing-zone" authenticated={isAuthenticated} component={TestingZone} />
             <Route path="*" component={Game} />
           </Switch>
         )}

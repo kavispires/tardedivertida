@@ -8,7 +8,7 @@ import RulesCarousel from './RulesCarousel';
 import LoadingPage from '../loaders/LoadingPage';
 import { CheckCircleFilled, MehFilled, RobotFilled, SmileFilled } from '@ant-design/icons';
 import { useLoading } from '../../hooks';
-import { ARTE_RUIM_API } from '../../adapters';
+import { getAPI } from '../../adapters';
 import ReadyPlayersBar from '../shared/ReadyPlayersBar';
 
 function Rules({ players, info }) {
@@ -31,7 +31,7 @@ function Rules({ players, info }) {
   const onBeReady = useCallback(async () => {
     try {
       setLoader('be-ready', true);
-      const response = await ARTE_RUIM_API.makeMeReady({
+      const response = await getAPI(gameName).makeMeReady({
         gameId,
         gameName,
         playerName: me,

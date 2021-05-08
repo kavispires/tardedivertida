@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 // Utils
 import { LETTERS } from '../../utils/constants';
 // Components
-import Card from './Card';
+import Card from '../cards/ArteRuimCard';
 
 function EvaluationAllCards({ cards, activeItem, onActivateItem, votes }) {
   return (
@@ -22,7 +22,7 @@ function EvaluationAllCards({ cards, activeItem, onActivateItem, votes }) {
             )}
             onClick={() => onActivateItem(cardEntryId)}
           >
-            <Card id={cardEntry.id} title={letter} />
+            <Card id={cardEntry.id} header={letter} />
           </li>
         );
       })}

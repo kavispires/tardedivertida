@@ -1,0 +1,81 @@
+.u-word-selection-phase {
+  &__guesser-name-announcement {
+    padding: get-unit(0 2);
+    font-weight: bolder;
+    text-transform: uppercase;
+    font-size: 1.5em;
+  }
+
+  &__team-points {
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    color: get-color(white);
+    margin-bottom: get-unit(2);
+  }
+}
+
+.u-word-selection-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.u-word-card {
+  background: get-color(white);
+  font-size: 1.5em;
+  min-width: 200px;
+  width: 250px;
+  border-radius: get-unit(1);
+  padding: get-unit(1 3);
+  margin: get-unit(2);
+
+  &__word {
+    display: flex;
+    margin: get-unit(2 0);
+    border: get-unit(1) solid;
+    border-radius: get-unit(1);
+
+    &:nth-child(1) {
+      border-color: get-color(pink);
+    }
+
+    &:nth-child(2) {
+      border-color: get-color(blue, 4);
+    }
+
+    &:nth-child(3) {
+      border-color: get-color(orange, 4);
+    }
+
+    &:nth-child(4) {
+      border-color: get-color(teal, 4);
+    }
+
+    &:nth-child(5) {
+      border-color: get-color(purple);
+    }
+  }
+
+  &__button {
+    width: 100%;
+    border: none;
+    background: 0;
+    display: flex;
+    padding-left: 1.5em;
+    cursor: pointer;
+
+    &:hover {
+      background: get-color(green, 3);
+    }
+  }
+
+  &__text {
+    flex-grow: 1;
+  }
+
+  &__icon {
+    min-width: 1.5em;
+    color: get-color(green);
+  }
+}

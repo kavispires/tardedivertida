@@ -1,0 +1,70 @@
+.color-background {
+  $self: &;
+  &--red {
+    background: get-color(red);
+  }
+
+  &--blue {
+    background: get-color(blue);
+  }
+
+  &--green {
+    background: get-color(green);
+  }
+
+  &--yellow {
+    background: get-color(yellow);
+  }
+
+  &--pink {
+    background: get-color(pink);
+  }
+
+  &--purple {
+    background: get-color(purple);
+  }
+
+  &--teal {
+    background: get-color(teal);
+  }
+
+  &--orange {
+    background: get-color(orange);
+  }
+
+  &--fur {
+    background: get-color(red, 4);
+  }
+
+  &--navy {
+    background: get-color(blue, 8);
+  }
+
+  &--light-green {
+    background: get-color(green, 4);
+  }
+
+  &--hot-pink {
+    background: get-color(pink, 6);
+  }
+
+  &--brown {
+    background: get-color(orange, 7);
+  }
+
+  &--forest {
+    background: get-color(teal, 6);
+  }
+
+  &--violet {
+    background: get-color(purple, 7);
+  }
+
+  &--cream {
+    background: get-color(orange, 4);
+  }
+
+  &--none {
+    background: get-color(gray);
+  }
+}

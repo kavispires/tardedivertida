@@ -1,4 +1,5 @@
 import { functions } from '../services/firebase';
+import { GAME_COLLECTION } from '../utils/constants';
 
 export const GAME_API = {
   helloWorld: functions.httpsCallable('helloWorld'),
@@ -14,4 +15,28 @@ export const ARTE_RUIM_API = {
   submitVoting: functions.httpsCallable('arteRuimSubmitVoting'),
   submitRating: functions.httpsCallable('arteRuimSubmitRating'),
   goToNextPhase: functions.httpsCallable('arteRuimGoToNextPhase'),
+};
+
+export const UM_SO_API = {
+  makeMeReady: functions.httpsCallable('umSoMakeMeReady'),
+  submitWordSelectionVotes: functions.httpsCallable('umSoSubmitWordSelectionVotes'),
+  submitSuggestions: functions.httpsCallable('umSoSubmitSuggestions'),
+  submitValidation: functions.httpsCallable('umSoSubmitValidation'),
+  confirmGuess: functions.httpsCallable('umSoConfirmGuess'),
+};
+
+/**
+ * Gets the game specific API http functions
+ * @param {string} gameName
+ * @returns
+ */
+export const getAPI = (gameName) => {
+  switch (gameName) {
+    case GAME_COLLECTION.ARTE_RUIM:
+      return ARTE_RUIM_API;
+    case GAME_COLLECTION.UM_SO:
+      return UM_SO_API;
+    default:
+      throw Error(`Adapter for ${gameName} does not exist`);
+  }
 };
