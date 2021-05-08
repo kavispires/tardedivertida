@@ -69,7 +69,14 @@ function TestingZone() {
 
   // return <GameOver info={info} state={state} players={players} />;
   return (
-    <PhaseContainer info={info} phase={state.phase} allowedPhase="WORD_SELECTION" className="" fullScreen>
+    <PhaseContainer
+      info={info}
+      phase={state.phase}
+      allowedPhase="WORD_SELECTION"
+      className=""
+      fullScreen
+      white
+    >
       <div className="u-word-selection">
         {/* <Title white>Selecione a Palavra-Secreta</Title>
 

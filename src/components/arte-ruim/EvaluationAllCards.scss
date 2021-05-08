@@ -1,0 +1,32 @@
+.a-evaluation-all-cards {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  overflow-x: auto;
+
+  &__li-card-button {
+    box-sizing: border-box;
+    cursor: pointer;
+    background-color: transparent;
+    border-radius: get-unit(2);
+    border: 2px solid transparent;
+
+    transition: background-color 250ms, transform 250ms;
+
+    &:hover {
+      transform: scale(0.95);
+      background-color: get-color(red);
+    }
+
+    &--active {
+      transform: scale(0.9);
+      background-color: get-color(orange);
+      border: 2px solid get-color(white);
+    }
+
+    &--used {
+      opacity: 0.5;
+    }
+  }
+}

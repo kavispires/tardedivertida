@@ -6,23 +6,23 @@ import CanvasSVG from './CanvasSVG';
 import Ribbon from './Ribbon';
 
 function EvaluationAllDrawings({ drawings, activeItem, onActivateItem, votes, canvasSize }) {
+  const liButtonBaseClass = 'a-evaluation-all-drawings__li-drawing-button';
+
   return (
-    <ul className="evaluation-phase__all-drawings">
+    <ul className="a-evaluation-all-drawings">
       {drawings?.map((drawingEntry) => {
         const canvasEntryId = `drawing-${drawingEntry.cardId}`;
+        const isActive = activeItem === canvasEntryId;
         return (
           <li
             key={canvasEntryId}
-            className={clsx(
-              'evaluation-phase__li-drawing-button',
-              activeItem === canvasEntryId && 'evaluation-phase__li-drawing-button--active'
-            )}
+            className={clsx(liButtonBaseClass, isActive && `${liButtonBaseClass}--active`)}
             onClick={() => onActivateItem(canvasEntryId)}
           >
             {votes?.[canvasEntryId] && <Ribbon cardEntryId={votes[canvasEntryId]} />}
             <CanvasSVG
               drawing={drawingEntry.drawing}
-              className="evaluation-phase__drawing"
+              className="a-evaluation-all-drawings__drawing"
               size={canvasSize}
             />
           </li>
