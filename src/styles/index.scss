@@ -34,10 +34,10 @@
 @import '../components/shared/GameOver.scss';
 @import '../components/shared/Instruction.scss';
 @import '../components/shared/Title.scss';
+@import '../components/shared/GameInfoDrawer.scss';
 @import '../components/cards/Card.scss';
 
 // ArteRuim Components
-@import '../components/arte-ruim/SessionArteRuim.scss';
 @import '../components/arte-ruim/DrawPhaseDrawStep.scss';
 @import '../components/arte-ruim/DrawingCanvas.scss';
 @import '../components/arte-ruim/Canvas.scss';
@@ -45,8 +45,6 @@
 @import '../components/arte-ruim/EvaluationPhase.scss';
 @import '../components/arte-ruim/EvaluationAllDrawings.scss';
 @import '../components/arte-ruim/EvaluationAllCards.scss';
-@import '../components/arte-ruim/GameInfoDrawer.scss';
-
 @import '../components/arte-ruim/GalleryPhase.scss';
 @import '../components/arte-ruim/Ribbon.scss';
 @import '../components/arte-ruim/GalleryWindow.scss';

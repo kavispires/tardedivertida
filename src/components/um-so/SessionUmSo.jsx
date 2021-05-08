@@ -15,6 +15,7 @@ import SuggestPhase from './SuggestPhase';
 import ComparePhase from './ComparePhase';
 import GuessPhase from './GuessPhase';
 import GameOver from '../shared/GameOver';
+import GameInfoDrawer from '../shared/GameInfoDrawer';
 
 function getActiveComponent(phase) {
   switch (phase) {
@@ -61,7 +62,7 @@ function SessionUmSo({ gameId }) {
 
   return (
     <Fragment>
-      {/* <GameInfoDrawer players={players} state={state} info={info} me={me} /> */}
+      <GameInfoDrawer players={players} state={state} info={info} me={me} />
       <ActiveComponent players={players} state={state} info={info} />
     </Fragment>
   );

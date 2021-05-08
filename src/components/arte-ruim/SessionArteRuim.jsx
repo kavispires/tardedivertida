@@ -13,7 +13,7 @@ import PageError from '../errors/PageError';
 import DrawPhase from './DrawPhase';
 import EvaluationPhase from './EvaluationPhase';
 import GalleryPhase from './GalleryPhase';
-import GameInfoDrawer from './GameInfoDrawer';
+import GameInfoDrawer from '../shared/GameInfoDrawer';
 import GameOver from '../shared/GameOver';
 
 function getActiveComponent(phase) {
