@@ -56,12 +56,7 @@ function GalleryWindowControls({ galleryLength, activeIndex, setActiveIndex, set
       <Button size="large" onClick={nextStep} disabled={activeIndex === galleryLength - 1}>
         Próximo Desenho <StepForwardOutlined />
       </Button>
-      <Button
-        className="gallery-window__go-to-ranking"
-        size="large"
-        onClick={() => setStep(1)}
-        icon={<TrophyOutlined />}
-      >
+      <Button size="large" onClick={() => setStep(1)} icon={<TrophyOutlined />}>
         Ver Ranking
       </Button>
     </div>

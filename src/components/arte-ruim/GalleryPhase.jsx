@@ -95,12 +95,7 @@ function GalleryPhase({ players, state, info }) {
             </Instruction>
           )}
 
-          <Button
-            className="gallery-window__go-to-ranking"
-            size="large"
-            onClick={() => setStep(0)}
-            icon={<PictureOutlined />}
-          >
+          <Button size="large" onClick={() => setStep(0)} icon={<PictureOutlined />}>
             Ver Galeria
           </Button>
           <AdminOnly>

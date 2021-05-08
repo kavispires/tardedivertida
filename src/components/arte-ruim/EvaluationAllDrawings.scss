@@ -1,0 +1,45 @@
+.a-evaluation-all-drawings {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+  padding: get-unit(4 0);
+  flex-wrap: wrap;
+
+  max-width: 90vw;
+
+  &__li-drawing-button {
+    box-sizing: border-box;
+    cursor: pointer;
+    border-radius: get-unit(2);
+    transition: background-color 250ms, transform 250ms;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid transparent;
+    position: relative;
+
+    &:hover {
+      transform: scale(0.95);
+      background: get-color(red);
+    }
+
+    &--active {
+      transform: scale(0.95);
+      background: get-color(orange);
+      border: 2px solid get-color(white);
+
+      svg {
+        transform: scale(0.9);
+      }
+    }
+  }
+
+  &__drawing {
+    width: 300px;
+    background: get-color(white);
+    border: 8px inset get-color(brown);
+    margin: get-unit(1);
+    border-radius: get-unit(1);
+  }
+}

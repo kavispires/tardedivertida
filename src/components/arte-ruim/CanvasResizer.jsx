@@ -8,10 +8,10 @@ const CanvasResizer = () => {
   const [canvasSize, setCanvasSize] = useGlobalState('canvasSize');
 
   return (
-    <div className="canvas-resizer">
-      <div className="canvas-resizer__label">Tamanho das Images</div>
+    <div className="a-canvas-resizer">
+      <div className="a-canvas-resizer__label">Tamanho das Images</div>
       <Slider
-        className="canvas-resizer__slider"
+        className="a-canvas-resizer__slider"
         defaultValue={canvasSize}
         min={100}
         max={500}

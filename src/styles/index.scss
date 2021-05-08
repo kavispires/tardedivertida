@@ -38,13 +38,15 @@
 
 // ArteRuim Components
 @import '../components/arte-ruim/SessionArteRuim.scss';
-@import '../components/arte-ruim/DrawPhase.scss';
-// @import '../components/arte-ruim/Canvas.scss';
-// @import '../components/arte-ruim/CanvasResizer.scss';
+@import '../components/arte-ruim/DrawPhaseDrawStep.scss';
+@import '../components/arte-ruim/DrawingCanvas.scss';
+@import '../components/arte-ruim/Canvas.scss';
+@import '../components/arte-ruim/CanvasResizer.scss';
+@import '../components/arte-ruim/EvaluationPhase.scss';
+@import '../components/arte-ruim/EvaluationAllDrawings.scss';
+@import '../components/arte-ruim/EvaluationAllCards.scss';
 @import '../components/arte-ruim/GameInfoDrawer.scss';
 
-@import '../components/arte-ruim/DrawingCanvas.scss';
-@import '../components/arte-ruim/EvaluationPhase.scss';
 @import '../components/arte-ruim/GalleryPhase.scss';
 @import '../components/arte-ruim/Ribbon.scss';
 @import '../components/arte-ruim/GalleryWindow.scss';
