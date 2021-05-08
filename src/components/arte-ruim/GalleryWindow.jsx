@@ -16,14 +16,14 @@ function GalleryWindow({ window, galleryLength, players, activeIndex, setActiveI
   const { drawing, artist, correctAnswer, playersPoints, playersSay } = window;
 
   return (
-    <div className="gallery-window">
+    <div className="a-gallery-window">
       <CanvasResizer />
-      <div className="gallery-window__drawing-container">
+      <div className="a-gallery-window__drawing-container">
         <CanvasSVG
           key={window.correctAnswer}
           drawing={drawing}
           size={canvasSize}
-          className="gallery-window__drawing"
+          className="a-gallery-window__drawing"
         />
       </div>
 

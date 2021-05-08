@@ -66,11 +66,11 @@ function GalleryPhase({ players, state, info }) {
       info={info}
       phase={state?.phase}
       allowedPhase={ARTE_RUIM_PHASES.GALLERY}
-      className="gallery-phase"
+      className="a-gallery-phase"
     >
       <StepSwitcher step={step}>
         {/* Step 0 */}
-        <div className="gallery-phase__windows">
+        <div className="a-gallery-phase__windows">
           <Title white>Galeria de Arte</Title>
           {state?.gallery && (
             <GalleryWindow
