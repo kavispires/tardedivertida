@@ -61,25 +61,6 @@ export const TAG_DICT = {
  */
 export const AVATAR_IDS = new Array(25).fill(0).map((i, index) => i + index);
 
-/**
- * Enum of available games
- */
-export const GAME_COLLECTION = {
-  ARTE_RUIM: 'arte-ruim',
-};
-
-/**
- * Enum of Arte Ruim phases
- */
-export const ARTE_RUIM_PHASES = {
-  LOBBY: 'LOBBY',
-  RULES: 'RULES',
-  DRAW: 'DRAW',
-  EVALUATION: 'EVALUATION',
-  GALLERY: 'GALLERY',
-  GAME_OVER: 'GAME_OVER',
-};
-
 export const LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
 export const AVATAR_DESCRIPTIONS_BR = {
@@ -108,4 +89,37 @@ export const AVATAR_DESCRIPTIONS_BR = {
   22: 'a borboleta',
   23: 'o arminho',
   24: 'o porco',
+};
+
+/**
+ * Enum of available games
+ */
+export const GAME_COLLECTION = {
+  ARTE_RUIM: 'arte-ruim',
+  UM_SO: 'um-so',
+};
+
+/**
+ * Enum of Arte Ruim phases
+ */
+export const ARTE_RUIM_PHASES = {
+  LOBBY: 'LOBBY',
+  RULES: 'RULES',
+  DRAW: 'DRAW',
+  EVALUATION: 'EVALUATION',
+  GALLERY: 'GALLERY',
+  GAME_OVER: 'GAME_OVER',
+};
+
+/**
+ * Enum of Um Só phases
+ */
+export const UM_SO_PHASES = {
+  LOBBY: 'LOBBY',
+  RULES: 'RULES',
+  WORD_SELECTION: 'WORD_SELECTION',
+  SUGGEST: 'SUGGEST',
+  COMPARE: 'COMPARE',
+  GUESS: 'GUESS',
+  GAME_OVER: 'GAME_OVER',
 };

@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 // Design Resources
-import { Button, message, notification, Space, Typography } from 'antd';
+import { Button, message, notification, Space } from 'antd';
 import { CloudUploadOutlined } from '@ant-design/icons';
 // State
 import useGlobalState from '../../hooks/useGlobalState';
@@ -15,6 +15,9 @@ import EvaluationAllDrawings from './EvaluationAllDrawings';
 import EvaluationAllCards from './EvaluationAllCards';
 import PhaseContainer from '../shared/PhaseContainer';
 import CanvasResizer from './CanvasResizer';
+import Title from '../shared/Title';
+import Instruction from '../shared/Instruction';
+import StepSwitcher from '../shared/StepSwitcher';
 
 function EvaluationPhase({ players, state, info }) {
   const [, setLoader] = useLoading();
@@ -23,7 +26,7 @@ function EvaluationPhase({ players, state, info }) {
   const [me] = useGlobalState('me');
   const [canvasSize] = useGlobalState('canvasSize');
   const [amIReady, setImReady] = useState(false);
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(0);
   const [votes, setVotes] = useState({});
   const [activeItem, setActiveItem] = useState(null);
 
@@ -64,7 +67,7 @@ function EvaluationPhase({ players, state, info }) {
         return acc;
       }, {});
 
-      setStep(2);
+      setStep(1);
 
       const response = await ARTE_RUIM_API.submitVoting({
         gameId,
@@ -95,15 +98,16 @@ function EvaluationPhase({ players, state, info }) {
       allowedPhase={ARTE_RUIM_PHASES.EVALUATION}
       className="evaluation-phase"
     >
-      {step === 1 && !amIReady && (
+      <StepSwitcher step={step} conditions={[!amIReady]}>
+        {/*Step 0 */}
         <div className="evaluation-phase__step-one">
           <CanvasResizer />
-          <Typography.Title className="center">Adivinhação</Typography.Title>
-          <Typography.Paragraph className="center">
+          <Title>Adivinhação</Title>
+          <Instruction>
             Encontre os pares de desenho e carta clicando em uma carta ou desenho e em seguida clicando em seu
             par. Uma bandeirinha aparecerá no topo de cada desenho com a cor e letra da carta que você
             selecionou. Quando encontrar todos os pares, envie sua avaliação!
-          </Typography.Paragraph>
+          </Instruction>
 
           <EvaluationAllDrawings
             drawings={state?.drawings ?? []}
@@ -131,9 +135,14 @@ function EvaluationPhase({ players, state, info }) {
             </Button>
           </Space>
         </div>
-      )}
 
-      {step === 2 && <WaitingRoom players={players} />}
+        {/*Step 1 */}
+        <WaitingRoom
+          players={players}
+          title="Pronto!"
+          instruction="Vamos aguardar enquanto os outros jogadores terminam de avaliar!"
+        />
+      </StepSwitcher>
     </PhaseContainer>
   );
 }

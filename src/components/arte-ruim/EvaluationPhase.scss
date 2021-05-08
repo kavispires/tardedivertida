@@ -97,10 +97,13 @@
   background: rgba(black, 0.1);
   padding: get-unit(1 2);
   border-radius: get-unit(1);
+  top: get-unit(1);
+  left: get-unit(1);
 
   &__label {
     font-size: 90%;
     text-transform: uppercase;
+    text-align: center;
   }
 
   &__slider {

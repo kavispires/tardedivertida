@@ -1,6 +1,6 @@
 import React, { Fragment, useCallback, useEffect, useState } from 'react';
 // Design Resources
-import { Button, message, notification, Typography } from 'antd';
+import { Button, message, notification } from 'antd';
 import { PictureOutlined, RocketFilled } from '@ant-design/icons';
 // State & Hooks
 import useGlobalState from '../../hooks/useGlobalState';
@@ -13,6 +13,9 @@ import GalleryWindow from './GalleryWindow';
 import PhaseContainer from '../shared/PhaseContainer';
 import AdminOnly from '../shared/AdminOnly';
 import RankingBoard from '../shared/RankingBoard';
+import Title from '../shared/Title';
+import Instruction from '../shared/Instruction';
+import StepSwitcher from '../shared/StepSwitcher';
 
 function GalleryPhase({ players, state, info }) {
   const [, setLoader] = useLoading();
@@ -65,9 +68,10 @@ function GalleryPhase({ players, state, info }) {
       allowedPhase={ARTE_RUIM_PHASES.GALLERY}
       className="gallery-phase"
     >
-      {step === 0 && (
-        <Fragment>
-          <Typography.Title className="center">Galeria de Arte</Typography.Title>
+      <StepSwitcher step={step}>
+        {/* Step 0 */}
+        <div className="gallery-phase__windows">
+          <Title white>Galeria de Arte</Title>
           {state?.gallery && (
             <GalleryWindow
               window={state.gallery[activeIndex]}
@@ -78,15 +82,19 @@ function GalleryPhase({ players, state, info }) {
               setStep={setStep}
             />
           )}
-        </Fragment>
-      )}
+        </div>
 
-      {step === 1 && (
+        {/* Step 1 */}
         <Fragment>
-          <Typography.Title className="center">
-            {state.pointsToVictory >= 0 ? 'Ranking' : 'Game Over'}
-          </Typography.Title>
+          <Title>{state.pointsToVictory >= 0 ? 'Ranking' : 'Game Over'}</Title>
           <RankingBoard players={players} ranking={state.ranking} />
+          {state.pointsToVictory >= 0 && (
+            <Instruction white>
+              Faltam <strong>{state.pointsToVictory}</strong> pontos para{' '}
+              {state?.ranking?.[0]?.playerName ?? 'alguém'} ganhar...
+            </Instruction>
+          )}
+
           <Button
             className="gallery-window__go-to-ranking"
             size="large"
@@ -101,7 +109,7 @@ function GalleryPhase({ players, state, info }) {
             </Button>
           </AdminOnly>
         </Fragment>
-      )}
+      </StepSwitcher>
     </PhaseContainer>
   );
 }

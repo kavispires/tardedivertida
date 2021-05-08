@@ -1,18 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
-import { Spin, Typography } from 'antd';
+import { Spin } from 'antd';
 // Components
 import ReadyPlayersBar from './ReadyPlayersBar';
+import Title from './Title';
+import Instruction from './Instruction';
 
-const WaitingRoom = ({ players }) => {
+const WaitingRoom = ({ players, title, instruction }) => {
   return (
     <div className="waiting-room">
-      <Typography.Title className="waiting-room__title">Pronto!</Typography.Title>
+      <Title>{title}</Title>
       <Spin />
-      <Typography.Paragraph className="waiting-room__paragraph">
-        Vamos aguardar enquanto os outros jogadores terminam!
-      </Typography.Paragraph>
+      <Instruction>{instruction}</Instruction>
       <ReadyPlayersBar players={players} />
     </div>
   );
@@ -20,6 +20,8 @@ const WaitingRoom = ({ players }) => {
 
 WaitingRoom.propTypes = {
   players: PropTypes.object.isRequired,
+  title: PropTypes.string.isRequired,
+  instruction: PropTypes.string.isRequired,
 };
 
 export default WaitingRoom;

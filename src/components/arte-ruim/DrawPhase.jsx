@@ -12,9 +12,11 @@ import allCards from '../../resources/arte-ruim-cards.json';
 import arteRuimTimer from '../../sounds/arte-ruim-timer.mp3';
 // Components
 import PhaseContainer from '../shared/PhaseContainer';
-import DrawPhaseStepOne from './DrawPhaseStepOne';
 import DrawPhaseStepTwo from './DrawPhaseStepTwo';
 import WaitingRoom from '../shared/WaitingRoom';
+import RoundAnnouncement from '../shared/RoundAnnouncement';
+import Instruction from '../shared/Instruction';
+import StepSwitcher from '../shared/StepSwitcher';
 
 function DrawPhase({ players, state, info }) {
   const [, setLoader] = useLoading();
@@ -22,7 +24,7 @@ function DrawPhase({ players, state, info }) {
   const [gameName] = useGlobalState('gameName');
   const [me] = useGlobalState('me');
   const [amIReady, setImReady] = useState(false);
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(0);
   const [secretCard, setSecretCard] = useState({});
   const [play] = useSound(arteRuimTimer, { volume: 0.4 });
 
@@ -35,7 +37,7 @@ function DrawPhase({ players, state, info }) {
     async (lines) => {
       try {
         setLoader('submit-drawing', true);
-        setStep(3);
+        setStep(2);
         const response = await ARTE_RUIM_API.submitDrawing({
           gameId,
           gameName,
@@ -61,6 +63,11 @@ function DrawPhase({ players, state, info }) {
     [gameId, gameName, setLoader, me, secretCard.id]
   );
 
+  const onStartDrawing = () => {
+    play();
+    setStep(1);
+  };
+
   return (
     <PhaseContainer
       info={info}
@@ -68,13 +75,30 @@ function DrawPhase({ players, state, info }) {
       allowedPhase={ARTE_RUIM_PHASES.DRAW}
       className="draw-phase"
     >
-      {step === 1 && !amIReady && <DrawPhaseStepOne setStep={setStep} round={state?.round} play={play} />}
+      <StepSwitcher step={step} conditions={[!amIReady, !amIReady]}>
+        {/* Step 0 */}
+        <RoundAnnouncement
+          round={state?.round}
+          onPressButton={onStartDrawing}
+          buttonText="Um dó, lá, si... vamos ir... JÁ!"
+        >
+          <Instruction white>
+            Você terá 10 segundos para ler a sua carta e desenhá-la. Aperte o botão quando estiver pronto!
+            <br />
+            Fique esperto porque começa assim quando você apertar. Não 'seje' lerdo.
+          </Instruction>
+        </RoundAnnouncement>
 
-      {step === 2 && !amIReady && (
+        {/* Step 1 */}
         <DrawPhaseStepTwo secretCard={secretCard} onSubmitDrawing={onSubmitDrawing} />
-      )}
 
-      {step === 3 && <WaitingRoom players={players} />}
+        {/* Step 2 */}
+        <WaitingRoom
+          players={players}
+          title="Pronto!"
+          instruction="Vamos aguardar enquanto os outros jogadores terminam seus desenhos!"
+        />
+      </StepSwitcher>
     </PhaseContainer>
   );
 }

@@ -119,3 +119,64 @@ export interface SubmitVotingPayload {
   playerName: PlayerName;
   votes: PlainObject;
 }
+
+// UM SO
+
+export interface UsedWord {
+  id: string;
+  playerName?: PlayerName | null;
+  uniqueSuggestions?: string[] | [];
+  commonSuggestions?: string[] | [];
+  votes: 0;
+}
+
+export interface UsedWords {
+  [key: string]: UsedWord;
+}
+
+export interface UmSoStore {
+  turnOrder: string[];
+  usedWords: UsedWords;
+  currentWords: string[];
+  currentSuggestions: PlainObject[];
+  [key: string]: any;
+}
+
+export interface UmSoState {
+  phase: string;
+  round: number;
+  guesser?: PlayerName;
+  [key: string]: any;
+}
+
+export interface UmSoInitialState {
+  meta: Meta;
+  players: Players;
+  store: UmSoStore;
+  state: UmSoState;
+}
+
+export interface SubmitSuggestionsPayload {
+  gameId: GameId;
+  gameName: GameName;
+  playerName: PlayerName;
+  suggestions: string[];
+}
+
+export interface CurrentSuggestions {
+  [key: string]: string[];
+}
+
+export interface SubmitSuggestionsValidationPayload {
+  gameId: GameId;
+  gameName: GameName;
+  playerName: PlayerName;
+  validSuggestions: PlainObject[];
+}
+
+export interface ConfirmGuessPayload {
+  gameId: GameId;
+  gameName: GameName;
+  playerName: PlayerName;
+  guess: string;
+}
