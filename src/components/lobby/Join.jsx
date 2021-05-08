@@ -2,9 +2,9 @@ import React, { useCallback, useEffect, useState } from 'react';
 // Design Resources
 import { Alert, Button, Image, Input, notification, Spin, Tooltip } from 'antd';
 import { CaretLeftOutlined, CaretRightOutlined, InfoCircleOutlined } from '@ant-design/icons';
-// Adapters
+// API & Hooks
 import { GAME_API } from '../../adapters';
-// State
+import { useLoading } from '../../hooks';
 import useGlobalState from '../../hooks/useGlobalState';
 // Images
 import avatars from '../../images/avatars.svg';
@@ -13,8 +13,6 @@ import localStorage from '../../services/localStorage';
 // Utils
 import { AVATAR_IDS, PUBLIC_URL } from '../../utils/constants';
 import { getRandomItem } from '../../utils/index';
-// Components
-import { useLoading } from '../../hooks';
 
 function Join({ players, info }) {
   const [isLoading, setLoader] = useLoading();
@@ -26,6 +24,7 @@ function Join({ players, info }) {
   const [availableAvatars, setAvailableAvatars] = useState(AVATAR_IDS);
   const [tempAvatar, setTempAvatar] = useState(getRandomItem(AVATAR_IDS));
   const [tempMe, setTempMe] = useState('');
+  const [sameGameId, setSameGameId] = useState(false);
 
   const [localStorageAvatar, setLocalStorageAvatar] = useState(null);
 
@@ -49,11 +48,16 @@ function Join({ players, info }) {
   useEffect(() => {
     const lsAvatarId = localStorage.get('avatarId');
     const lsMe = localStorage.get('me');
+    const lsGameId = localStorage.get('gameId');
 
     if (lsAvatarId && lsMe) {
       setTempAvatar(localStorage.get('avatarId'));
       setTempMe(localStorage.get('me') ?? '');
       setLocalStorageAvatar(lsAvatarId);
+
+      if (lsGameId === gameId) {
+        setSameGameId(true);
+      }
     }
   }, []); // eslint-disable-line
 
@@ -84,10 +88,11 @@ function Join({ players, info }) {
       localStorage.set({
         me: response.data.name,
         avatarId: response.data.avatarId,
+        gameId,
       });
     } catch (e) {
       notification.error({
-        message: 'Vixi, o aplicativo encontrou um erro ao tentar adicionar você como jogador',
+        message: 'Vixi, o aplicativo encontrou um erro ao tentar te adicionar como jogador',
         description: JSON.stringify(e),
         placement: 'bottomLeft',
       });
@@ -103,6 +108,7 @@ function Join({ players, info }) {
         alt={info?.title}
         src={`${PUBLIC_URL.BANNERS}game-image-${info?.gameName}.jpg`}
         fallback={`${PUBLIC_URL.BANNERS}/game-image-em-breve.jpg`}
+        className="lobby-join__game-image"
       />
       <h1 className="lobby-join__title">
         {Boolean(localStorageAvatar) ? 'Bem-vindo de volta!' : 'Selecione seu avatar'}
@@ -122,16 +128,25 @@ function Join({ players, info }) {
       {Boolean(localStorageAvatar) ? (
         <Alert
           className="lobby-join__avatar-alert"
-          type="error"
-          message="Você está de volta! Lembramos seu nome e avatar. Se você está retornando para o mesmo jogo de antes, NÃO mude seu apelido! Se o nome estiver diferente você é adicionado como um novo jogador e pode bugar o jogo."
+          type="success"
+          message="Você está de volta! Lembramos seu nome e avatar!"
         />
       ) : (
         <Alert
           className="lobby-join__avatar-alert"
           type="warning"
-          message="Se alguém escolher o mesmo avatar que você, um avatar aleatório será escolhido."
+          message="Se alguém selecionar um mesmo avatar, um avatar aleatório será atribuido à você."
         />
       )}
+
+      {Boolean(sameGameId) && (
+        <Alert
+          className="lobby-join__avatar-alert"
+          type="error"
+          message="Se você está retornando a um jogo, NÃO mude seu apelido! Se o apelido for modificado, você será adicionado como um novo jogador e tudo pode bugar."
+        />
+      )}
+
       <Input
         className="lobby-join__name-input"
         onChange={(e) => setTempMe(e.target.value)}
@@ -145,7 +160,7 @@ function Join({ players, info }) {
         }
       />
       <Button
-        className="lobby__join-button"
+        className="lobby-join__join-button"
         type="primary"
         disabled={!Boolean(tempMe) || isLoading}
         onClick={onAddPlayer}

@@ -1,13 +1,14 @@
 import React, { useCallback } from 'react';
 // Design Resources
 import { Button, Image, message, notification, Typography } from 'antd';
-// State
-import useGlobalState from '../../hooks/useGlobalState';
-// Utils and Resources
+// API & Hooks
 import { GAME_API } from '../../adapters';
-import avatars from '../../images/avatars.svg';
-import { PUBLIC_URL } from '../../utils/constants';
+import useGlobalState from '../../hooks/useGlobalState';
 import { useLoading } from '../../hooks';
+// Images
+import avatars from '../../images/avatars.svg';
+// Utils and Resources
+import { PUBLIC_URL } from '../../utils/constants';
 // Components
 import AdminOnly from '../shared/AdminOnly';
 

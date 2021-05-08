@@ -6,7 +6,7 @@
 @import './functions';
 @import './constants';
 @import './animations';
-// @import './mixins';
+@import './mixins';
 
 // Global
 @import './reset';
@@ -37,8 +37,11 @@
 
 // ArteRuim Components
 @import '../components/arte-ruim/SessionArteRuim.scss';
-@import '../components/arte-ruim/GameInfoDrawer.scss';
 @import '../components/arte-ruim/DrawPhase.scss';
+// @import '../components/arte-ruim/Canvas.scss';
+// @import '../components/arte-ruim/CanvasResizer.scss';
+@import '../components/arte-ruim/GameInfoDrawer.scss';
+
 @import '../components/arte-ruim/DrawingCanvas.scss';
 @import '../components/arte-ruim/EvaluationPhase.scss';
 @import '../components/arte-ruim/GalleryPhase.scss';

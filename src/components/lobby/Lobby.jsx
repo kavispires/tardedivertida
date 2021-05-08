@@ -1,10 +1,8 @@
 import React from 'react';
-// Design Resources
-import { Layout } from 'antd';
-// State
+// Hooks
 import useGlobalState from '../../hooks/useGlobalState';
-
 // Components
+import PhaseContainer from '../shared/PhaseContainer';
 import AvatarEntry from '../avatars/AvatarEntry';
 import Join from './Join';
 import Waiting from './Waiting';
@@ -14,7 +12,7 @@ function Lobby({ players, info }) {
   const [myAvatar] = useGlobalState('myAvatar');
 
   return (
-    <Layout.Content className="lobby">
+    <PhaseContainer phase="LOBBY" allowedPhase="LOBBY" info={info}>
       <div className="lobby__room">
         {Object.values(players).map((player, index) => (
           <AvatarEntry
@@ -28,7 +26,7 @@ function Lobby({ players, info }) {
 
         {me && myAvatar ? <Waiting players={players} info={info} /> : <Join players={players} info={info} />}
       </div>
-    </Layout.Content>
+    </PhaseContainer>
   );
 }
 

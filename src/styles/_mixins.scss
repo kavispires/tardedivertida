@@ -1,0 +1,19 @@
+@mixin centered-container {
+  display: flex;
+  justify-content: center;
+}
+
+@mixin vertical-centered-container {
+  @include centered-container;
+  flex-direction: column;
+  align-items: center;
+}
+
+@mixin drop-shadow {
+}
+
+@mixin box-shadow {
+}
+
+@mixin box-glow {
+}
