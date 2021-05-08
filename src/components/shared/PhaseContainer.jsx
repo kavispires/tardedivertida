@@ -11,7 +11,7 @@ import LoadingPage from '../loaders/LoadingPage';
  * @param {*} props
  * @returns
  */
-function PhaseContainer({ info, phase = '', allowedPhase = '', children, className, fullScreen = false }) {
+function PhaseContainer({ info, phase, allowedPhase, children, className, fullScreen, white }) {
   if (!info?.gameName || allowedPhase !== phase) {
     return <LoadingPage />;
   }
@@ -19,7 +19,14 @@ function PhaseContainer({ info, phase = '', allowedPhase = '', children, classNa
   const baseClass = 'phase-container';
 
   return (
-    <Layout.Content className={clsx(baseClass, fullScreen && `${baseClass}--full-screen`, className)}>
+    <Layout.Content
+      className={clsx(
+        baseClass,
+        fullScreen && `${baseClass}--full-screen`,
+        white && `${baseClass}--white`,
+        className
+      )}
+    >
       {children}
     </Layout.Content>
   );
@@ -32,6 +39,7 @@ PhaseContainer.propTypes = {
   fullScreen: PropTypes.bool,
   info: PropTypes.object,
   phase: PropTypes.string,
+  white: PropTypes.bool,
 };
 
 PhaseContainer.defaultProps = {
@@ -39,6 +47,7 @@ PhaseContainer.defaultProps = {
   className: '',
   fullScreen: false,
   phase: '',
+  white: false,
 };
 
 export default memo(PhaseContainer);

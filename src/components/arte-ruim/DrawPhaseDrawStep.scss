@@ -1,7 +1,6 @@
-.draw-phase-step-two {
+.a-draw-phase-draw-step {
   display: flex;
   flex-direction: column;
-  // justify-content: center;
   align-items: center;
 
   &__card {
@@ -17,7 +16,7 @@
     width: 2em;
     background: get-color(white);
     border-radius: 50%;
-    border: 5px solid get-color(orange);
+    border: 10px solid get-color(orange);
     aspect-ratio: 1 / 1;
     display: flex;
     justify-content: center;

@@ -13,15 +13,15 @@ function GalleryWindowResult({ artist, correctAnswer, playersPoints, playersSay,
   const correctGuesses = Object.values(playersSay?.[correctAnswer] ?? {});
 
   return (
-    <div className="gallery-window__result">
-      <div className="gallery-window__label">E a carta correta é</div>
-      <div className="gallery-window__speech-bubble">
-        <CrownFilled className="gallery-window__speech-bubble-icon" />
+    <div className="a-gallery-window__result">
+      <div className="a-gallery-window__label">E a carta correta é</div>
+      <div className="a-gallery-window__speech-bubble">
+        <CrownFilled className="a-gallery-window__speech-bubble-icon" />
         {allCards[correctAnswer].text}
       </div>
       {correctGuesses.length ? (
         <Fragment>
-          <div className="gallery-window__players">
+          <div className="a-gallery-window__players">
             <AntAvatar.Group>
               {correctGuesses.map((playerName) => {
                 return (
@@ -29,15 +29,18 @@ function GalleryWindowResult({ artist, correctAnswer, playersPoints, playersSay,
                 );
               })}
             </AntAvatar.Group>
-            <StarPoints quantity={2} />
+            <StarPoints quantity={2} keyPrefix={`guessers-points-${artist}`} />
+            <span className="a-gallery-window__players-names">{correctGuesses.join(', ')}</span>
           </div>
-          <div className="gallery-window__artist-points">
-            <Avatar id={players[artist].avatarId} /> <StarPoints quantity={playersPoints?.[artist]} />
+          <div className="a-gallery-window__artist-points">
+            <Avatar id={players[artist].avatarId} />{' '}
+            <StarPoints quantity={playersPoints?.[artist]} keyPrefix={`artist-points-${artist}`} />{' '}
+            <span className="a-gallery-window__players-names">{artist}</span>
           </div>
         </Fragment>
       ) : (
-        <Typography.Text className="gallery-window__no-wins">
-          <DeleteFilled /> Nossa, ninguém acertou. Seu desenho deve ter sido muito ruim.
+        <Typography.Text className="a-gallery-window__no-wins">
+          <DeleteFilled /> Nossa, ninguém acertou. Esse desenho deve ter sido muito ruim.
         </Typography.Text>
       )}
     </div>

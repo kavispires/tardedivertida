@@ -5,6 +5,7 @@
   background-size: 1000% 1000%;
   animation: gradient 60s ease infinite;
   display: flex;
+  overflow-y: auto;
 }
 
 @keyframes gradient {

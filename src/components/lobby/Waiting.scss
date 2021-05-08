@@ -4,13 +4,16 @@
   grid-column: col 4;
   grid-row: row -7 / row 6;
   justify-self: center;
-  position: relative;
 
-  width: 300px;
-  display: flex;
-  flex-direction: column;
+  @include vertical-centered-container;
+  @include box-shadow;
+
+  width: 260px;
+  justify-content: flex-start;
+
   padding: get-unit(3);
   margin: get-unit(8 0);
+  border-radius: get-unit(1);
 
   &__avatar {
     border-radius: 50%;
@@ -21,7 +24,6 @@
 
   &__lock-button {
     width: calc(100% - #{get-unit(6)});
-    position: absolute;
     bottom: get-unit(3);
     flex-direction: column;
   }

@@ -12,7 +12,7 @@ import allCards from '../../resources/arte-ruim-cards.json';
 import arteRuimTimer from '../../sounds/arte-ruim-timer.mp3';
 // Components
 import PhaseContainer from '../shared/PhaseContainer';
-import DrawPhaseStepTwo from './DrawPhaseStepTwo';
+import DrawPhaseDrawStep from './DrawPhaseDrawStep';
 import WaitingRoom from '../shared/WaitingRoom';
 import RoundAnnouncement from '../shared/RoundAnnouncement';
 import Instruction from '../shared/Instruction';
@@ -56,6 +56,7 @@ function DrawPhase({ players, state, info }) {
           placement: 'bottomLeft',
         });
         console.error(e);
+        setStep(0);
       } finally {
         setLoader('submit-drawing', false);
       }
@@ -90,7 +91,7 @@ function DrawPhase({ players, state, info }) {
         </RoundAnnouncement>
 
         {/* Step 1 */}
-        <DrawPhaseStepTwo secretCard={secretCard} onSubmitDrawing={onSubmitDrawing} />
+        <DrawPhaseDrawStep secretCard={secretCard} onSubmitDrawing={onSubmitDrawing} />
 
         {/* Step 2 */}
         <WaitingRoom

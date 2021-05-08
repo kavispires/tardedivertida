@@ -1,17 +1,20 @@
 .lobby-join {
   background: white;
-
   grid-column: col 4;
   grid-row: row -7 / row 6;
   justify-self: center;
 
   width: 300px;
-  display: flex;
-  flex-direction: column;
+  @include vertical-centered-container;
+  @include box-shadow;
+
   padding: get-unit(3);
   margin: get-unit(8 0);
   border-radius: get-unit(1);
-  justify-content: center;
+
+  &__game-image {
+    max-width: 360px;
+  }
 
   &__title {
     text-align: center;
@@ -20,6 +23,8 @@
   &__avatar-selection {
     display: flex;
     align-items: center;
+    max-width: 250px;
+    justify-content: center;
   }
 
   &__avatar-nav-button {
@@ -39,5 +44,9 @@
 
   &__name-input {
     margin-bottom: get-unit(2);
+  }
+
+  &__join-button {
+    width: 100%;
   }
 }

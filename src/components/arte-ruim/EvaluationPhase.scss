@@ -1,112 +1,14 @@
-.evaluation-phase {
+.a-evaluation-phase {
   &__step-one {
     background: get-color(yellow, 2);
     padding: get-unit(4);
     flex: 1;
-  }
-
-  &__all-drawings {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    overflow-x: auto;
-    padding: get-unit(4 0);
-    flex-wrap: wrap;
-
-    max-width: 90vw;
-  }
-
-  &__li-drawing-button {
-    box-sizing: border-box;
-    cursor: pointer;
-    border-radius: get-unit(2);
-    transition: background-color 250ms, transform 250ms;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 2px solid transparent;
     position: relative;
-
-    &:hover {
-      transform: scale(0.95);
-      background: get-color(red);
-    }
-
-    &--active {
-      transform: scale(0.95);
-      background: get-color(orange);
-      border: 2px solid get-color(white);
-
-      svg {
-        transform: scale(0.9);
-      }
-    }
-  }
-
-  &__drawing {
-    width: 300px;
-    background: get-color(white);
-    border: 8px inset get-color(brown);
-    margin: get-unit(1);
-    border-radius: get-unit(1);
-  }
-
-  &__all-cards {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    max-width: 90vw;
-    overflow-x: auto;
-  }
-
-  &__li-card-button {
-    box-sizing: border-box;
-    cursor: pointer;
-    background-color: transparent;
-    border-radius: get-unit(2);
-    border: 2px solid transparent;
-
-    transition: background-color 250ms, transform 250ms;
-    &:hover {
-      transform: scale(0.95);
-      background-color: get-color(red);
-    }
-
-    &--active {
-      transform: scale(0.9);
-      background-color: get-color(orange);
-      border: 2px solid get-color(white);
-    }
-
-    &--used {
-      opacity: 0.5;
-    }
   }
 
   &__action-button {
     margin-top: get-unit(4);
     display: flex;
     justify-content: center;
-  }
-}
-
-.canvas-resizer {
-  width: 160px;
-  position: absolute;
-  background: rgba(black, 0.1);
-  padding: get-unit(1 2);
-  border-radius: get-unit(1);
-  top: get-unit(1);
-  left: get-unit(1);
-
-  &__label {
-    font-size: 90%;
-    text-transform: uppercase;
-    text-align: center;
-  }
-
-  &__slider {
-    display: block;
   }
 }

@@ -10,15 +10,15 @@ import Avatar from '../avatars/Avatar';
 
 function GalleryWindowGuesses({ playersSay, players }) {
   return (
-    <div className="gallery-window__guesses">
-      <div className="gallery-window__label">Participantes votaram</div>
+    <div className="a-gallery-window__guesses">
+      <div className="a-gallery-window__label">Participantes votaram</div>
       {Object.entries(playersSay).map(([cardId, playersNames], index) => {
         return (
-          <div key={`guess-${cardId}-${index}`} className="gallery-window__guess">
-            <div className="gallery-window__speech-bubble">
-              <MessageFilled className="gallery-window__speech-bubble-icon" /> {allCards[cardId]?.text}
+          <div key={`guess-${cardId}-${index}`} className="a-gallery-window__guess">
+            <div className="a-gallery-window__speech-bubble">
+              <MessageFilled className="a-gallery-window__speech-bubble-icon" /> {allCards[cardId]?.text}
             </div>
-            <div className="gallery-window__players">
+            <div className="a-gallery-window__players">
               <AntAvatar.Group>
                 {playersNames.map((playerName) => (
                   <Avatar
@@ -27,7 +27,7 @@ function GalleryWindowGuesses({ playersSay, players }) {
                   />
                 ))}
               </AntAvatar.Group>
-              <span className="gallery-window__players-names">{playersNames.join(', ')}</span>
+              <span className="a-gallery-window__players-names">{playersNames.join(', ')}</span>
             </div>
           </div>
         );

@@ -10,10 +10,9 @@
     flex: 1;
     display: grid;
     gap: get-unit(1);
-    min-height: 80vh;
-    margin: get-unit(5);
     grid-template-columns: repeat(9, 1fr [col]);
     grid-template-rows: repeat(6, 1fr [row]);
+    z-index: 3;
   }
 
   &__seat {
