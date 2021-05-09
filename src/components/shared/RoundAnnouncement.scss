@@ -40,6 +40,15 @@
     font-size: 15em;
     text-align: center;
   }
+
+  &__in-timed {
+    margin-left: get-unit(1);
+    font-size: 0.8em;
+    background: white;
+    border-radius: 50%;
+    width: 1.6em;
+    color: get-color(blue);
+  }
 }
 
 @keyframes spin {
