@@ -80,7 +80,7 @@ function WordSelectionPhase({ state, players, info }) {
     >
       <StepSwitcher step={step} conditions={[!amIReady]}>
         {/* Step 0 */}
-        <RoundAnnouncement round={state.round} onPressButton={() => setStep(1)}>
+        <RoundAnnouncement round={state.round} onPressButton={() => setStep(1)} time={7}>
           <Instruction contained>
             Para essa rodada,
             <span className="u-word-selection-phase__guesser-name-announcement">
