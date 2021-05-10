@@ -72,19 +72,14 @@ export interface UsedCard {
   id: string;
   playerName: PlayerName | null;
   drawing: string | null;
-  upVotes: 0;
-  downVotes: 0;
-}
-
-export interface UsedCards {
-  [key: string]: UsedCard;
+  successRate: number;
+  [key: string]: any;
 }
 
 export interface ArteRuimStore {
-  usedCards: UsedCards;
+  usedCards: UsedCard[];
   currentCards: string[];
-  currentDrawings: DrawingEntry[];
-  currentVoting: any;
+  pastDrawings: UsedCard[];
   [key: string]: any;
 }
 

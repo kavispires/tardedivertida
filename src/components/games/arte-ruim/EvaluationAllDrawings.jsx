@@ -25,6 +25,7 @@ function EvaluationAllDrawings({ drawings, activeItem, onActivateItem, votes, ca
               className="a-evaluation-all-drawings__drawing"
               size={canvasSize}
             />
+            <span className="a-evaluation-all-drawings__artist">{drawingEntry.playerName}</span>
           </li>
         );
       })}
