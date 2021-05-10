@@ -23,7 +23,7 @@ export const umSo = {
    * @param uid
    * @returns
    */
-  getInitialSession: (gameId: GameId, uid: string): UmSoInitialState => ({
+  getInitialSession: (gameId: GameId, uid: string, language: string): UmSoInitialState => ({
     meta: {
       gameId,
       gameName: GAME_COLLECTIONS.UM_SO,
@@ -33,6 +33,7 @@ export const umSo = {
       max: 8,
       isLocked: false,
       isComplete: false,
+      language,
     },
     players: {},
     store: {

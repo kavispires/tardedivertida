@@ -4,10 +4,12 @@ import PropTypes from 'prop-types';
 import { Avatar as AntAvatar, Typography } from 'antd';
 import { CrownFilled, DeleteFilled } from '@ant-design/icons';
 // Resources
-import allCards from '../../../resources/arte-ruim-cards.json';
+// import allCards from '../../../resources/arte-ruim-cards.json';
 // Components
 import Avatar from '../../avatars/Avatar';
 import StarPoints from '../../shared/StarPoints';
+
+const allCards = {};
 
 function GalleryWindowResult({ artist, correctAnswer, playersPoints, playersSay, players }) {
   const correctGuesses = Object.values(playersSay?.[correctAnswer] ?? {});

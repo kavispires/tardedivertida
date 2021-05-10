@@ -105,8 +105,11 @@ function EvaluationPhase({ players, state, info }) {
           <Title>Adivinhação</Title>
           <Instruction>
             Encontre os pares de desenho e carta clicando em uma carta ou desenho e em seguida clicando em seu
-            par. Uma bandeirinha aparecerá no topo de cada desenho com a cor e letra da carta que você
-            selecionou. Quando encontrar todos os pares, envie sua avaliação!
+            par.
+          </Instruction>
+          <Instruction>
+            Uma bandeirinha aparecerá no topo de cada desenho com a cor e letra da carta que você selecionou.
+            Quando encontrar todos os pares, envie sua avaliação!
           </Instruction>
 
           <EvaluationAllDrawings
