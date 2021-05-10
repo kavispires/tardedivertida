@@ -45,10 +45,9 @@ export const arteRuim = {
     },
     players: {},
     store: {
-      usedCards: {},
+      usedCards: [],
       currentCards: [],
-      currentDrawings: [],
-      currentVoting: {},
+      pastDrawings: [],
     },
     state: {
       phase: PHASES.ARTE_RUIM.LOBBY,
@@ -156,7 +155,7 @@ const prepareDrawPhase = async (
   // Get random cards
   const numberOfCards = determineNumberOfCards(players);
   const allCards = getCardsForLevel(level);
-  const usedCards = Object.keys(store?.usedCards);
+  const usedCards = store?.usedCards ?? [];
   const cards = gameUtils.getRandomUniqueItems(allCards, usedCards, numberOfCards);
 
   // Unready players
@@ -164,8 +163,8 @@ const prepareDrawPhase = async (
 
   // Assign one card per player
   const playersNames = Object.keys(players);
-  const newUsedCardsObj = {};
-  const newUsedCards = cards.map((cardId, index) => {
+  const newUsedCards: string[] = [];
+  const currentCards = cards.map((cardId, index) => {
     const currentPlayer = playersNames?.[index] ?? null;
 
     const card = allCardsBR[cardId];
@@ -180,20 +179,18 @@ const prepareDrawPhase = async (
 
     if (currentPlayer) {
       newPlayers[currentPlayer].currentCard = newCard;
+      delete newPlayers[currentPlayer].votes;
     }
 
-    newUsedCardsObj[cardId] = newCard;
+    newUsedCards.push(cardId);
 
     return newCard;
   });
 
   // Save used cards to store
   await sessionRef.doc('store').update({
-    usedCards: {
-      ...store.usedCards,
-      ...newUsedCardsObj,
-    },
-    currentCards: newUsedCards,
+    usedCards: [...usedCards, ...newUsedCards],
+    currentCards,
   });
 
   // Save new state
@@ -227,9 +224,9 @@ const prepareEvaluationPhase = async (
     phase: PHASES.ARTE_RUIM.EVALUATION,
     updatedAt: Date.now(),
     round: state?.round ?? 0,
+    pointsToVictory,
     cards: shuffledCards,
     drawings: shuffledDrawings,
-    pointsToVictory,
   });
 
   // Unready players and return
@@ -246,13 +243,15 @@ const prepareGalleryPhase = async (
 ) => {
   // Calculate everybody's points
   const gallery = state.drawings.map((drawingEntry) => {
-    const correctAnswer = `${drawingEntry.cardId}`;
+    const correctAnswer = `${drawingEntry.id}`;
     const artist = drawingEntry.playerName;
 
-    const newEntry = {
+    const newGalleryEntry = {
+      id: drawingEntry.id,
       drawing: drawingEntry.drawing,
-      artist,
-      correctAnswer,
+      artist: drawingEntry.playerName,
+      level: drawingEntry.level,
+      text: drawingEntry.text,
       playersSay: {},
       playersPoints: {},
     };
@@ -260,11 +259,11 @@ const prepareGalleryPhase = async (
     const playersSay = {};
     const playersPoints = {};
 
-    Object.entries(<PlainObject>store.currentVoting).forEach(([pName, votes]) => {
+    Object.entries(<PlainObject>players).forEach(([pName, pObject]) => {
       if (artist === pName) return;
 
       // Calculate what players say
-      const currentVote = votes[correctAnswer];
+      const currentVote = pObject.votes[correctAnswer];
       if (playersSay[currentVote] === undefined) {
         playersSay[currentVote] = [];
       }
@@ -282,9 +281,9 @@ const prepareGalleryPhase = async (
         playersPoints[artist] += 1;
       }
     });
-    newEntry.playersSay = playersSay;
-    newEntry.playersPoints = playersPoints;
-    return newEntry;
+    newGalleryEntry.playersSay = playersSay;
+    newGalleryEntry.playersPoints = playersPoints;
+    return newGalleryEntry;
   });
 
   // -- Ranking Stuff Start
@@ -320,18 +319,22 @@ const prepareGalleryPhase = async (
     })
     .sort((a, b) => (a.newScore > b.newScore ? 1 : -1));
 
-  // Merge currentDrawings into used cards
-  const extendedUsedCards = { ...store.usedCards };
-  store.currentDrawings.map((currentDrawing) => {
-    extendedUsedCards[currentDrawing.cardId].drawing = currentDrawing.drawing;
+  const numPlayers = Object.keys(newPlayers).length;
+  // Remove currentCard from players and add it to past drawings in the store
+  const pastDrawings = Object.values(newPlayers).map((playerData) => {
+    const card = playerData.currentCard;
+    // Get playersSay from gallery and calculate success rate
+    const galleryEntry = gallery.find((e) => e.id === card.id);
+    const correctAnswers = galleryEntry.playersSay?.[card.id]?.length ?? 0;
+
+    card.successRate = Math.round(correctAnswers / numPlayers);
+    return card;
   });
 
   // clear store
   await sessionRef.doc('store').update({
-    usedCards: extendedUsedCards,
-    currentDrawings: [],
+    pastDrawings,
     currentCards: [],
-    currentVoting: {},
   });
 
   const newPointsToVictory = utils.getPointsToVictory(newPlayers, ARTE_RUIM_GOAL);
@@ -501,33 +504,20 @@ export const submitVoting = async (data: SubmitVotingPayload) => {
 
   const sessionRef = utils.getSessionRef(collectionName, gameId);
   const playersDoc = await utils.getSessionDoc(collectionName, gameId, 'players', actionText);
-  const storeDoc = await utils.getSessionDoc(collectionName, gameId, 'store', actionText);
 
-  // Submit votes
-  const store = storeDoc.data();
+  // Make player ready and attach drawing
+  const players = playersDoc.data() ?? {};
+  const updatedPlayers = utils.readyPlayer(players, playerName);
+  updatedPlayers[playerName].votes = votes;
+
   try {
-    const newStore = { ...store };
-    newStore.currentVoting = {
-      [playerName]: votes,
-      ...newStore?.currentVoting,
-    };
-
-    await sessionRef.doc('store').set({ ...newStore });
+    await sessionRef.doc('players').update({ [playerName]: updatedPlayers[playerName] });
   } catch (error) {
     utils.throwException(error, actionText);
   }
 
-  // Make player ready
-  const players = playersDoc.data() ?? {};
-  const updatedPlayers = utils.readyPlayer(players, playerName);
-
   if (!utils.isEverybodyReady(updatedPlayers)) {
-    try {
-      await sessionRef.doc('players').update({ [playerName]: updatedPlayers[playerName] });
-      return true;
-    } catch (error) {
-      utils.throwException(error, actionText);
-    }
+    return true;
   }
 
   // If all players are ready, trigger next phase
