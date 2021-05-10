@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { Fragment, useCallback, useState } from 'react';
 // Design Resources
 import { Button, message, notification, Space } from 'antd';
 import { CloudUploadOutlined } from '@ant-design/icons';
@@ -18,6 +18,7 @@ import CanvasResizer from './CanvasResizer';
 import Title from '../../shared/Title';
 import Instruction from '../../shared/Instruction';
 import StepSwitcher from '../../shared/StepSwitcher';
+import AdminForceNextPhase from '../../shared/AdminForceNextPhase';
 
 function EvaluationPhase({ players, state, info }) {
   const [, setLoader] = useLoading();
@@ -140,11 +141,14 @@ function EvaluationPhase({ players, state, info }) {
         </div>
 
         {/*Step 1 */}
-        <WaitingRoom
-          players={players}
-          title="Pronto!"
-          instruction="Vamos aguardar enquanto os outros jogadores terminam de avaliar!"
-        />
+        <Fragment>
+          <WaitingRoom
+            players={players}
+            title="Pronto!"
+            instruction="Vamos aguardar enquanto os outros jogadores terminam de avaliar!"
+          />
+          <AdminForceNextPhase goToNextPhase={ARTE_RUIM_API.goToNextPhase} />
+        </Fragment>
       </StepSwitcher>
     </PhaseContainer>
   );
