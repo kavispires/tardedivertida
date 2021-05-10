@@ -1,12 +1,32 @@
 .game-over {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
   &__title {
     width: 350px;
+  }
+
+  &__winner-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__winners {
+    display: flex;
+    justify-content: center;
   }
 
   &__winner {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: get-unit(1 3);
   }
 
   &__text {
@@ -15,11 +35,11 @@
   }
 
   &__avatar {
-    width: 100px;
-    height: 100px;
+    width: 50px;
+    height: 50px;
   }
 
   &__winner-name {
-    font-size: 2em;
+    font-size: 1.25em;
   }
 }

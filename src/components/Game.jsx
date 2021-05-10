@@ -39,7 +39,6 @@ function Game() {
   useEffect(() => {
     return history.listen((location) => {
       const urlGameId = getGameIdFromLocation(location);
-      console.log({ urlGameId });
       if (isValidGameId(urlGameId)) {
         setGameId(urlGameId);
         message.info('Uma nova id de jogo foi provida');

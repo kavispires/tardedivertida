@@ -327,14 +327,13 @@ const prepareGalleryPhase = async (
     const galleryEntry = gallery.find((e) => e.id === card.id);
     const correctAnswers = galleryEntry.playersSay?.[card.id]?.length ?? 0;
 
-    card.successRate = Math.round(correctAnswers / numPlayers);
+    card.successRate = Math.round((100 * correctAnswers) / numPlayers) / 100;
     return card;
   });
 
   // clear store
   await sessionRef.doc('store').update({
     pastDrawings,
-    currentCards: [],
   });
 
   const newPointsToVictory = utils.getPointsToVictory(newPlayers, ARTE_RUIM_GOAL);
@@ -343,6 +342,7 @@ const prepareGalleryPhase = async (
     phase: PHASES.ARTE_RUIM.GALLERY,
     gallery,
     ranking,
+    cards: store.currentCards,
     pointsToVictory: newPointsToVictory,
     round: state?.round ?? 0,
   });
@@ -355,31 +355,19 @@ const prepareGalleryPhase = async (
 
 const prepareGameOverPhase = async (
   sessionRef: FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData>,
+  store: FirebaseFirestore.DocumentData,
   players: Players
 ) => {
-  const winner = Object.values(players).reduce(
-    (result, player) => {
-      if (player.store > result.score) {
-        result = {
-          name: player.name,
-          avatarId: player.avatarId,
-          score: player.score,
-        };
-      }
-
-      return result;
-    },
-    {
-      name: '',
-      avatarId: '',
-      score: 0,
-    }
-  );
+  const maxScore = Math.max(...Object.values(players).map((player) => player.score));
+  const winners = Object.values(players).filter((player) => {
+    return player.score === maxScore;
+  });
 
   await sessionRef.doc('state').set({
     phase: PHASES.ARTE_RUIM.GAME_OVER,
-    winner,
+    winners,
     gameEndedAt: Date.now(),
+    drawings: store.pastDrawings.sort((a, b) => (a.successRate < b.successRate ? 1 : -1)),
   });
 
   await sessionRef.doc('meta').update({
@@ -425,7 +413,7 @@ const nextArteRuimPhase = async (
   }
 
   if (nextPhase === PHASES.ARTE_RUIM.GAME_OVER) {
-    return prepareGameOverPhase(sessionRef, players);
+    return prepareGameOverPhase(sessionRef, store, players);
   }
 
   return true;
