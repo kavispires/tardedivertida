@@ -16,12 +16,13 @@ import {
   PlainObject,
   GameId,
   PlayerName,
-  DrawingEntry,
   MakeMeReadyPayload,
   SubmitDrawingPayload,
   SubmitVotingPayload,
   FirebaseContext,
 } from '../utils/interfaces';
+// Resources
+import { allCardsBR } from '../resources/arte-ruim-cards.js';
 
 export const arteRuim = {
   /**
@@ -30,7 +31,7 @@ export const arteRuim = {
    * @param uid
    * @returns
    */
-  getInitialSession: (gameId: GameId, uid: string): ArteRuimInitialState => ({
+  getInitialSession: (gameId: GameId, uid: string, language: string): ArteRuimInitialState => ({
     meta: {
       gameId,
       gameName: GAME_COLLECTIONS.ARTE_RUIM,
@@ -40,6 +41,7 @@ export const arteRuim = {
       max: 8,
       isLocked: false,
       isComplete: false,
+      language,
     },
     players: {},
     store: {
@@ -51,6 +53,7 @@ export const arteRuim = {
     state: {
       phase: PHASES.ARTE_RUIM.LOBBY,
       round: 0,
+      updatedAt: Date.now(),
     },
   }),
   /**
@@ -155,26 +158,31 @@ const prepareDrawPhase = async (
   const allCards = getCardsForLevel(level);
   const usedCards = Object.keys(store?.usedCards);
   const cards = gameUtils.getRandomUniqueItems(allCards, usedCards, numberOfCards);
+
+  // Unready players
+  const newPlayers = utils.unReadyPlayers(players);
+
   // Assign one card per player
   const playersNames = Object.keys(players);
-  const cardsState = {};
   const newUsedCardsObj = {};
-  const newUsedCards = cards.map((card, index) => {
+  const newUsedCards = cards.map((cardId, index) => {
     const currentPlayer = playersNames?.[index] ?? null;
 
-    if (currentPlayer) {
-      cardsState[currentPlayer] = card;
-    }
-
+    const card = allCardsBR[cardId];
     const newCard = {
-      id: card,
+      id: cardId,
+      level: card.level,
+      text: card.text,
       playerName: currentPlayer,
       drawing: null,
-      upVotes: 0,
-      downVotes: 0,
+      successRate: 0,
     };
 
-    newUsedCardsObj[card] = newCard;
+    if (currentPlayer) {
+      newPlayers[currentPlayer].currentCard = newCard;
+    }
+
+    newUsedCardsObj[cardId] = newCard;
 
     return newCard;
   });
@@ -187,15 +195,16 @@ const prepareDrawPhase = async (
     },
     currentCards: newUsedCards,
   });
+
   // Save new state
   await sessionRef.doc('state').set({
     phase: PHASES.ARTE_RUIM.DRAW,
-    cards: cardsState,
+    updatedAt: Date.now(),
     pointsToVictory,
     round: (state?.round ?? 0) + 1,
   });
   // Unready players and return
-  await sessionRef.doc('players').set(utils.unReadyPlayers(players));
+  await sessionRef.doc('players').set(players);
 
   return true;
 };
@@ -208,15 +217,19 @@ const prepareEvaluationPhase = async (
   pointsToVictory: number
 ) => {
   const shuffledCards = gameUtils.shuffle(store.currentCards);
-  const shuffledDrawings = gameUtils.shuffle(store.currentDrawings);
+
+  const allDrawings = Object.values(players).map((player) => player.currentCard);
+
+  const shuffledDrawings = gameUtils.shuffle(allDrawings);
 
   // Save new state
   await sessionRef.doc('state').set({
     phase: PHASES.ARTE_RUIM.EVALUATION,
+    updatedAt: Date.now(),
+    round: state?.round ?? 0,
     cards: shuffledCards,
     drawings: shuffledDrawings,
     pointsToVictory,
-    round: state?.round ?? 0,
   });
 
   // Unready players and return
@@ -232,7 +245,7 @@ const prepareGalleryPhase = async (
   players: Players
 ) => {
   // Calculate everybody's points
-  const gallery = store.currentDrawings.map((drawingEntry) => {
+  const gallery = state.drawings.map((drawingEntry) => {
     const correctAnswer = `${drawingEntry.cardId}`;
     const artist = drawingEntry.playerName;
 
@@ -457,34 +470,20 @@ export const submitDrawing = async (data: SubmitDrawingPayload) => {
   // Get 'players' from given game session
   const sessionRef = utils.getSessionRef(collectionName, gameId);
   const playersDoc = await utils.getSessionDoc(collectionName, gameId, 'players', actionText);
-  const storeDoc = await utils.getSessionDoc(collectionName, gameId, 'store', actionText);
 
-  // Submit drawing
-  const store = storeDoc.data();
+  // Make player ready and attach drawing
+  const players = playersDoc.data() ?? {};
+  const updatedPlayers = utils.readyPlayer(players, playerName);
+  updatedPlayers[playerName].currentCard.drawing = drawing;
+
   try {
-    const newStore = { ...store };
-    newStore?.currentDrawings?.push(<DrawingEntry>{
-      drawing,
-      cardId: `${cardId}`,
-      playerName,
-    });
-
-    await sessionRef.doc('store').set({ ...newStore });
+    await sessionRef.doc('players').update({ [playerName]: updatedPlayers[playerName] });
   } catch (error) {
     utils.throwException(error, actionText);
   }
 
-  // Make player ready
-  const players = playersDoc.data() ?? {};
-  const updatedPlayers = utils.readyPlayer(players, playerName);
-
   if (!utils.isEverybodyReady(updatedPlayers)) {
-    try {
-      await sessionRef.doc('players').update({ [playerName]: updatedPlayers[playerName] });
-      return true;
-    } catch (error) {
-      utils.throwException(error, actionText);
-    }
+    return true;
   }
 
   // If all players are ready, trigger next phase

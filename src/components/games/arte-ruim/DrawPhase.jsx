@@ -8,7 +8,6 @@ import { useLoading } from '../../../hooks';
 // Resources & Utils
 import { ARTE_RUIM_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
-import allCards from '../../../resources/arte-ruim-cards.json';
 import arteRuimTimer from '../../../sounds/arte-ruim-timer.mp3';
 // Components
 import PhaseContainer from '../../shared/PhaseContainer';
@@ -29,9 +28,8 @@ function DrawPhase({ players, state, info }) {
   const [play] = useSound(arteRuimTimer, { volume: 0.4 });
 
   useEffect(() => {
-    const myCardId = state?.cards?.[me];
-    setSecretCard(allCards?.[myCardId] ?? {});
-  }, [state?.cards, me]);
+    setSecretCard(players[me].currentCard ?? {});
+  }, [players, me]);
 
   const onSubmitDrawing = useCallback(
     async (lines) => {

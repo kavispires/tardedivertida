@@ -28,7 +28,7 @@ function EvaluationAllCards({ cards, activeItem, onActivateItem, votes }) {
             )}
             onClick={() => onActivateItem(cardEntryId)}
           >
-            <Card id={cardEntry.id} header={letter} />
+            <Card text={cardEntry.text} level={cardEntry.level} header={letter} />
           </li>
         );
       })}

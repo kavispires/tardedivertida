@@ -16,6 +16,7 @@ export interface FirebaseContext {
 
 export interface CreateGamePayload {
   gameCode: GameCode;
+  language: string;
 }
 
 export interface LoadGamePayload {
@@ -43,6 +44,7 @@ export interface Meta {
   max: number;
   isLocked: boolean;
   isComplete: boolean;
+  language: string;
 }
 
 export interface Player {
