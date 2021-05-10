@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { Fragment, useCallback, useEffect, useState } from 'react';
 import useSound from 'use-sound';
 // Design Resources
 import { message, notification } from 'antd';
@@ -16,6 +16,7 @@ import WaitingRoom from '../../shared/WaitingRoom';
 import RoundAnnouncement from '../../shared/RoundAnnouncement';
 import Instruction from '../../shared/Instruction';
 import StepSwitcher from '../../shared/StepSwitcher';
+import AdminForceNextPhase from '../../shared/AdminForceNextPhase';
 
 function DrawPhase({ players, state, info }) {
   const [, setLoader] = useLoading();
@@ -92,11 +93,14 @@ function DrawPhase({ players, state, info }) {
         <DrawPhaseDrawStep secretCard={secretCard} onSubmitDrawing={onSubmitDrawing} />
 
         {/* Step 2 */}
-        <WaitingRoom
-          players={players}
-          title="Pronto!"
-          instruction="Vamos aguardar enquanto os outros jogadores terminam seus desenhos!"
-        />
+        <Fragment>
+          <WaitingRoom
+            players={players}
+            title="Pronto!"
+            instruction="Vamos aguardar enquanto os outros jogadores terminam seus desenhos!"
+          />
+          <AdminForceNextPhase goToNextPhase={ARTE_RUIM_API.goToNextPhase} />
+        </Fragment>
       </StepSwitcher>
     </PhaseContainer>
   );
