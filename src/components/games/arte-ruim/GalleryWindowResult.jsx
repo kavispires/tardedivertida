@@ -3,23 +3,26 @@ import PropTypes from 'prop-types';
 // Design Resources
 import { Avatar as AntAvatar, Typography } from 'antd';
 import { CrownFilled, DeleteFilled } from '@ant-design/icons';
-// Resources
-// import allCards from '../../../resources/arte-ruim-cards.json';
 // Components
 import Avatar from '../../avatars/Avatar';
 import StarPoints from '../../shared/StarPoints';
 
-const allCards = {};
-
-function GalleryWindowResult({ artist, correctAnswer, playersPoints, playersSay, players }) {
-  const correctGuesses = Object.values(playersSay?.[correctAnswer] ?? {});
+function GalleryWindowResult({
+  artist,
+  correctAnswerId,
+  correctAnswerText,
+  playersPoints,
+  playersSay,
+  players,
+}) {
+  const correctGuesses = Object.values(playersSay?.[correctAnswerId] ?? {});
 
   return (
     <div className="a-gallery-window__result">
       <div className="a-gallery-window__label">E a carta correta é</div>
       <div className="a-gallery-window__speech-bubble">
         <CrownFilled className="a-gallery-window__speech-bubble-icon" />
-        {allCards[correctAnswer].text}
+        {correctAnswerText}
       </div>
       {correctGuesses.length ? (
         <Fragment>

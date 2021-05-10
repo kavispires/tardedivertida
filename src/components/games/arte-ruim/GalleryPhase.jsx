@@ -76,6 +76,7 @@ function GalleryPhase({ players, state, info }) {
             <GalleryWindow
               window={state.gallery[activeIndex]}
               galleryLength={state.gallery.length}
+              cards={state.cards}
               players={players}
               activeIndex={activeIndex}
               setActiveIndex={setActiveIndex}
@@ -90,8 +91,7 @@ function GalleryPhase({ players, state, info }) {
           <RankingBoard players={players} ranking={state.ranking} />
           {state.pointsToVictory >= 0 && (
             <Instruction contained>
-              Faltam <strong>{state.pointsToVictory}</strong> pontos para{' '}
-              <strong>{state?.ranking?.[0]?.playerName ?? 'alguém'}</strong> ganhar...
+              Faltam <strong>{state.pointsToVictory}</strong> pontos para o jogo acabar...
             </Instruction>
           )}
 
