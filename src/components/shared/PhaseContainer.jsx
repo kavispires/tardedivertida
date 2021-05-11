@@ -27,6 +27,7 @@ function PhaseContainer({ info, phase, allowedPhase, children, className, fullSc
         className
       )}
     >
+      <span className={`${baseClass}__title`}>{info.title}</span>
       {children}
     </Layout.Content>
   );
