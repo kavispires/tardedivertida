@@ -6,8 +6,8 @@ import { message, notification, Progress } from 'antd';
 import { useGlobalState } from '../../../hooks';
 import { useLoading } from '../../../hooks';
 // Resources & Utils
-import { UM_SO_API } from '../../../adapters';
-import { UM_SO_PHASES } from '../../../utils/constants';
+import { UE_SO_ISSO_API } from '../../../adapters';
+import { PHASES } from '../../../utils/constants';
 // Components
 import Avatar from '../../avatars/Avatar';
 import PhaseContainer from '../../shared/PhaseContainer';
@@ -33,12 +33,18 @@ function WordSelectionPhase({ state, players, info }) {
     setAmITheGuesser(state.guesser === me);
   }, [state.guesser, me, players]);
 
+  useEffect(() => {
+    if (step === 0 && state.previousSecretWord?.text) {
+      message.info(`A palavra secreta anterior era: ${state.previousSecretWord.text}`);
+    }
+  }, [step, state?.previousSecretWord.text]);
+
   const onSendSelectedWords = useCallback(
     async (selectedWords) => {
       try {
         setLoader('submit-votes', true);
         setStep(2);
-        const response = await UM_SO_API.submitWordSelectionVotes({
+        const response = await UE_SO_ISSO_API.submitWordSelectionVotes({
           gameId,
           gameName,
           playerName: me,
@@ -51,27 +57,27 @@ function WordSelectionPhase({ state, players, info }) {
       } catch (e) {
         notification.error({
           message: 'Vixi, o aplicativo encontrou um erro ao tentar enviar seus votos',
-          description: JSON.stringify(e),
+          description: JSON.stringify(e?.message),
           placement: 'bottomLeft',
         });
         console.error(e);
+        setStep(0);
       } finally {
         setLoader('submit-votes', false);
       }
     },
     [gameId, gameName, me, setLoader]
   );
-
   return (
     <PhaseContainer
       info={info}
       phase={state?.phase}
-      allowedPhase={UM_SO_PHASES.WORD_SELECTION}
+      allowedPhase={PHASES.UE_SO_ISSO.WORD_SELECTION}
       className="u-word-selection-phase"
     >
       <StepSwitcher step={step} conditions={[!amIReady]}>
         {/* Step 0 */}
-        <RoundAnnouncement round={state.round} onPressButton={() => setStep(1)}>
+        <RoundAnnouncement round={state.round} onPressButton={() => setStep(1)} time={7}>
           <Instruction contained>
             Para essa rodada,
             <span className="u-word-selection-phase__guesser-name-announcement">
@@ -110,7 +116,11 @@ function WordSelectionPhase({ state, players, info }) {
               instruction="Aguarde os outros jogadores decidirem a palavra secreta."
             />
           ) : (
-            <WordSelectionStep words={state?.words} onSendSelectedWords={onSendSelectedWords} />
+            <WordSelectionStep
+              words={state?.words}
+              onSendSelectedWords={onSendSelectedWords}
+              guesser={guesser}
+            />
           )}
         </Fragment>
 

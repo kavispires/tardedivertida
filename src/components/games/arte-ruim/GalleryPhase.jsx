@@ -7,7 +7,7 @@ import useGlobalState from '../../../hooks/useGlobalState';
 import { useLoading } from '../../../hooks';
 // Resources and Utils
 import { ARTE_RUIM_API } from '../../../adapters';
-import { ARTE_RUIM_PHASES } from '../../../utils/constants';
+import { PHASES } from '../../../utils/constants';
 // Components
 import GalleryWindow from './GalleryWindow';
 import PhaseContainer from '../../shared/PhaseContainer';
@@ -65,7 +65,7 @@ function GalleryPhase({ players, state, info }) {
     <PhaseContainer
       info={info}
       phase={state?.phase}
-      allowedPhase={ARTE_RUIM_PHASES.GALLERY}
+      allowedPhase={PHASES.ARTE_RUIM.GALLERY}
       className="a-gallery-phase"
     >
       <StepSwitcher step={step}>
@@ -76,6 +76,7 @@ function GalleryPhase({ players, state, info }) {
             <GalleryWindow
               window={state.gallery[activeIndex]}
               galleryLength={state.gallery.length}
+              cards={state.cards}
               players={players}
               activeIndex={activeIndex}
               setActiveIndex={setActiveIndex}
@@ -90,8 +91,7 @@ function GalleryPhase({ players, state, info }) {
           <RankingBoard players={players} ranking={state.ranking} />
           {state.pointsToVictory >= 0 && (
             <Instruction contained>
-              Faltam <strong>{state.pointsToVictory}</strong> pontos para{' '}
-              <strong>{state?.ranking?.[0]?.playerName ?? 'alguém'}</strong> ganhar...
+              Faltam <strong>{state.pointsToVictory}</strong> pontos para o jogo acabar...
             </Instruction>
           )}
 

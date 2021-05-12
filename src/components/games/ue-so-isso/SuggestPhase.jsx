@@ -6,8 +6,8 @@ import { message, notification } from 'antd';
 import { useGlobalState } from '../../../hooks';
 import { useLoading } from '../../../hooks';
 // Resources & Utils
-import { UM_SO_API } from '../../../adapters';
-import { UM_SO_PHASES } from '../../../utils/constants';
+import { UE_SO_ISSO_API } from '../../../adapters';
+import { PHASES } from '../../../utils/constants';
 // Components
 import PhaseContainer from '../../shared/PhaseContainer';
 import WaitingRoom from '../../shared/WaitingRoom';
@@ -35,7 +35,7 @@ function SuggestPhase({ state, players, info }) {
       try {
         setLoader('submit-suggestion', true);
         setStep(1);
-        const response = await UM_SO_API.submitSuggestions({
+        const response = await UE_SO_ISSO_API.submitSuggestions({
           gameId,
           gameName,
           playerName: me,
@@ -67,7 +67,7 @@ function SuggestPhase({ state, players, info }) {
     <PhaseContainer
       info={info}
       phase={state?.phase}
-      allowedPhase={UM_SO_PHASES.SUGGEST}
+      allowedPhase={PHASES.UE_SO_ISSO.SUGGEST}
       className="word-selection-phase"
     >
       <StepSwitcher step={step} conditions={[!amIReady]}>
@@ -83,7 +83,7 @@ function SuggestPhase({ state, players, info }) {
             <SuggestionStep
               guesser={guesser}
               onSendSuggestions={onSendSuggestions}
-              secretWordId={state.secretWordId}
+              secretWord={state.secretWord}
               suggestionsNumber={state.suggestionsNumber}
             />
           )}

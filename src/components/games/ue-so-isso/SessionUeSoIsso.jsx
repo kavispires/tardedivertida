@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react';
 // Hooks
 import { useGameState, useGlobalState } from '../../../hooks';
-import { GAME_COLLECTION, UM_SO_PHASES } from '../../../utils/constants';
+import { GAME_COLLECTION, PHASES } from '../../../utils/constants';
 // Hooks
 import { useGamePlayers } from '../../../hooks/useGamePlayers';
 // Utils
@@ -19,28 +19,28 @@ import GameInfoDrawer from '../../shared/GameInfoDrawer';
 
 function getActiveComponent(phase) {
   switch (phase) {
-    case UM_SO_PHASES.LOBBY:
+    case PHASES.UE_SO_ISSO.LOBBY:
       return Lobby;
-    case UM_SO_PHASES.RULES:
+    case PHASES.UE_SO_ISSO.RULES:
       return Rules;
-    case UM_SO_PHASES.WORD_SELECTION:
+    case PHASES.UE_SO_ISSO.WORD_SELECTION:
       return WordSelectionPhase;
-    case UM_SO_PHASES.SUGGEST:
+    case PHASES.UE_SO_ISSO.SUGGEST:
       return SuggestPhase;
-    case UM_SO_PHASES.COMPARE:
+    case PHASES.UE_SO_ISSO.COMPARE:
       return ComparePhase;
-    case UM_SO_PHASES.GUESS:
+    case PHASES.UE_SO_ISSO.GUESS:
       return GuessPhase;
-    case UM_SO_PHASES.GAME_OVER:
+    case PHASES.UE_SO_ISSO.GAME_OVER:
       return GameOver;
     default:
       return PageError;
   }
 }
 
-function SessionUmSo({ gameId }) {
-  const players = useGamePlayers(gameId, GAME_COLLECTION.UM_SO);
-  const state = useGameState(gameId, GAME_COLLECTION.UM_SO);
+function SessionUeSoIsso({ gameId }) {
+  const players = useGamePlayers(gameId, GAME_COLLECTION.UE_SO_ISSO);
+  const state = useGameState(gameId, GAME_COLLECTION.UE_SO_ISSO);
   const [me] = useGlobalState('me');
   const [info, setInfo] = useState({});
 
@@ -68,4 +68,4 @@ function SessionUmSo({ gameId }) {
   );
 }
 
-export default SessionUmSo;
+export default SessionUeSoIsso;

@@ -9,6 +9,16 @@ export const getGameIdFromURL = (history) => {
 };
 
 /**
+ * Extract the gameId from react history.location
+ * @param {object} history
+ * @returns {string}
+ */
+export const getGameIdFromLocation = (location) => {
+  const { pathname = '/' } = location ?? {};
+  return pathname.substring(1);
+};
+
+/**
  * Verify if the game id exists and has the correct length
  * @param {string} gameId
  * @returns

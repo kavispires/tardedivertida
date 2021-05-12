@@ -3,20 +3,19 @@ import PropTypes from 'prop-types';
 // Design Resources
 import { Avatar as AntAvatar } from 'antd';
 import { MessageFilled } from '@ant-design/icons';
-// Resources
-import allCards from '../../../resources/arte-ruim-cards.json';
 // Components
 import Avatar from '../../avatars/Avatar';
 
-function GalleryWindowGuesses({ playersSay, players }) {
+function GalleryWindowGuesses({ playersSay, players, cards }) {
   return (
     <div className="a-gallery-window__guesses">
       <div className="a-gallery-window__label">Participantes votaram</div>
       {Object.entries(playersSay).map(([cardId, playersNames], index) => {
+        const card = cards.find((i) => i.id === cardId);
         return (
           <div key={`guess-${cardId}-${index}`} className="a-gallery-window__guess">
             <div className="a-gallery-window__speech-bubble">
-              <MessageFilled className="a-gallery-window__speech-bubble-icon" /> {allCards[cardId]?.text}
+              <MessageFilled className="a-gallery-window__speech-bubble-icon" /> {card.text}
             </div>
             <div className="a-gallery-window__players">
               <AntAvatar.Group>

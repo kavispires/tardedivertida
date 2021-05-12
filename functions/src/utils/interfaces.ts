@@ -16,6 +16,7 @@ export interface FirebaseContext {
 
 export interface CreateGamePayload {
   gameCode: GameCode;
+  language: string;
 }
 
 export interface LoadGamePayload {
@@ -43,6 +44,7 @@ export interface Meta {
   max: number;
   isLocked: boolean;
   isComplete: boolean;
+  language: string;
 }
 
 export interface Player {
@@ -70,19 +72,14 @@ export interface UsedCard {
   id: string;
   playerName: PlayerName | null;
   drawing: string | null;
-  upVotes: 0;
-  downVotes: 0;
-}
-
-export interface UsedCards {
-  [key: string]: UsedCard;
+  successRate: number;
+  [key: string]: any;
 }
 
 export interface ArteRuimStore {
-  usedCards: UsedCards;
+  usedCards: UsedCard[];
   currentCards: string[];
-  currentDrawings: DrawingEntry[];
-  currentVoting: any;
+  pastDrawings: UsedCard[];
   [key: string]: any;
 }
 
@@ -120,7 +117,7 @@ export interface SubmitVotingPayload {
   votes: PlainObject;
 }
 
-// UM SO
+// UE SO ISSO
 
 export interface UsedWord {
   id: string;
@@ -134,7 +131,7 @@ export interface UsedWords {
   [key: string]: UsedWord;
 }
 
-export interface UmSoStore {
+export interface UeSoIssoStore {
   turnOrder: string[];
   usedWords: UsedWords;
   currentWords: string[];
@@ -142,18 +139,18 @@ export interface UmSoStore {
   [key: string]: any;
 }
 
-export interface UmSoState {
+export interface UeSoIssoState {
   phase: string;
   round: number;
   guesser?: PlayerName;
   [key: string]: any;
 }
 
-export interface UmSoInitialState {
+export interface UeSoIssoInitialState {
   meta: Meta;
   players: Players;
-  store: UmSoStore;
-  state: UmSoState;
+  store: UeSoIssoStore;
+  state: UeSoIssoState;
 }
 
 export interface SubmitSuggestionsPayload {

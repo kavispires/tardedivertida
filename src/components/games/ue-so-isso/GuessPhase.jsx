@@ -2,13 +2,13 @@ import React, { useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
 import { Button, message, notification, Space } from 'antd';
-import { CheckOutlined, CloseOutlined, MinusOutlined } from '@ant-design/icons';
+import { CheckOutlined, CloseOutlined, MinusOutlined, QuestionCircleOutlined } from '@ant-design/icons';
 // Hooks
 import { useGlobalState } from '../../../hooks';
 import { useLoading } from '../../../hooks';
 // Resources & Utils
-import { UM_SO_API } from '../../../adapters';
-import { UM_SO_PHASES } from '../../../utils/constants';
+import { UE_SO_ISSO_API } from '../../../adapters';
+import { PHASES } from '../../../utils/constants';
 // Components
 import PhaseContainer from '../../shared/PhaseContainer';
 import WaitingRoom from '../../shared/WaitingRoom';
@@ -16,7 +16,7 @@ import StepSwitcher from '../../shared/StepSwitcher';
 import Title from '../../shared/Title';
 import Avatar from '../../avatars/Avatar';
 import Instruction from '../../shared/Instruction';
-import UmSoCard from '../../cards/UmSoCard';
+import UeSoIssoCard from '../../cards/UeSoIssoCard';
 import SuggestionCard from './SuggestionCard';
 
 function GuessPhase({ state, players, info }) {
@@ -43,7 +43,7 @@ function GuessPhase({ state, players, info }) {
       try {
         setLoader('guess', true);
         setStep(1);
-        const response = await UM_SO_API.confirmGuess({
+        const response = await UE_SO_ISSO_API.confirmGuess({
           gameId,
           gameName,
           playerName: me,
@@ -72,7 +72,7 @@ function GuessPhase({ state, players, info }) {
     <PhaseContainer
       info={info}
       phase={state?.phase}
-      allowedPhase={UM_SO_PHASES.GUESS}
+      allowedPhase={PHASES.UE_SO_ISSO.GUESS}
       className="u-word-guess-phase"
     >
       <StepSwitcher step={step}>
@@ -82,7 +82,7 @@ function GuessPhase({ state, players, info }) {
             Hora de brilhar <Avatar id={guesser.avatarId} /> {guesser.name}!
           </Title>
           <Instruction contained>Você tem uma única change de adivinhar a palavra secreta!</Instruction>
-          <UmSoCard id={''} />
+          <UeSoIssoCard word={<QuestionCircleOutlined />} header="A Palavra Secreta é" />
           <Instruction contained>
             {state.nextGuesser} está encarregado(a) de apertar os botões se você acertou ou não. <br />
             São 3 pontos se você acertar, -1 se errar, mas você pode passar e não tentar, covarde!.. <br />

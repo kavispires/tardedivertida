@@ -11,7 +11,7 @@ function EvaluationAllDrawings({ drawings, activeItem, onActivateItem, votes, ca
   return (
     <ul className="a-evaluation-all-drawings">
       {drawings?.map((drawingEntry) => {
-        const canvasEntryId = `drawing-${drawingEntry.cardId}`;
+        const canvasEntryId = `drawing-${drawingEntry.id}`;
         const isActive = activeItem === canvasEntryId;
         return (
           <li
@@ -25,6 +25,7 @@ function EvaluationAllDrawings({ drawings, activeItem, onActivateItem, votes, ca
               className="a-evaluation-all-drawings__drawing"
               size={canvasSize}
             />
+            <span className="a-evaluation-all-drawings__artist">{drawingEntry.playerName}</span>
           </li>
         );
       })}
@@ -36,7 +37,7 @@ EvaluationAllDrawings.propTypes = {
   activeItem: PropTypes.string,
   drawings: PropTypes.arrayOf(
     PropTypes.shape({
-      cardId: PropTypes.string,
+      id: PropTypes.string,
       drawing: PropTypes.string,
     })
   ),

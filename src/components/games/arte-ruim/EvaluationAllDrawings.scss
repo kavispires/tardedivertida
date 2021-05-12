@@ -42,4 +42,14 @@
     margin: get-unit(1);
     border-radius: get-unit(1);
   }
+
+  &__artist {
+    background: get-color(white);
+    padding: get-unit(0 1);
+    position: absolute;
+    top: get-unit(-3);
+    font-size: 0.9em;
+    transform: perspective(30px);
+    @include box-shadow;
+  }
 }

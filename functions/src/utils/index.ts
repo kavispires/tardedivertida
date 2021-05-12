@@ -4,7 +4,7 @@ import * as admin from 'firebase-admin';
 import * as constants from './constants';
 import { FirebaseContext, GameCode, GameId, PlayerName, Players } from '../utils/interfaces';
 import { arteRuim } from '../engine/arte-ruim';
-import { umSo } from '../engine/um-so';
+import { ueSoIsso } from '../engine/ue-so-isso';
 
 const { GAME_CODES, GAME_COLLECTIONS } = constants;
 
@@ -125,7 +125,7 @@ export const getCollectionNameByGameCode = (gameCode: GameCode): string | null =
     case GAME_CODES.A:
       return GAME_COLLECTIONS.ARTE_RUIM;
     case GAME_CODES.U:
-      return GAME_COLLECTIONS.UM_SO;
+      return GAME_COLLECTIONS.UE_SO_ISSO;
     default:
       return null;
   }
@@ -148,8 +148,8 @@ export const getGameMethodsByCollection = (collectionName: string) => {
   switch (collectionName) {
     case GAME_COLLECTIONS.ARTE_RUIM:
       return arteRuim;
-    case GAME_COLLECTIONS.UM_SO:
-      return umSo;
+    case GAME_COLLECTIONS.UE_SO_ISSO:
+      return ueSoIsso;
     default:
       throw new Error(`Collection '${collectionName}' does not exist`);
   }
@@ -174,8 +174,23 @@ export const readyPlayer = (players: Players, playerName: PlayerName): Players =
  * @returns
  */
 export const unReadyPlayers = (players: Players, butThisOne = ''): Players => {
-  for (const player in players) {
-    players[player].ready = player === butThisOne ? true : false;
+  for (const playerKey in players) {
+    players[playerKey].ready = playerKey === butThisOne ? true : false;
+  }
+  return players;
+};
+
+/**
+ * Set all players as not ready
+ * @param players
+ * @param butThisOne
+ * @returns
+ */
+export const removePropertiesFromPlayers = (players: Players, properties: string[]): Players => {
+  for (const playerKey in players) {
+    properties.forEach((property) => {
+      delete players[playerKey]?.[property];
+    });
   }
   return players;
 };
