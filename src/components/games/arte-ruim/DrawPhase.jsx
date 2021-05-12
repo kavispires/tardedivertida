@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { Fragment, useCallback, useEffect, useState } from 'react';
 import useSound from 'use-sound';
 // Design Resources
 import { message, notification } from 'antd';
@@ -7,8 +7,7 @@ import useGlobalState from '../../../hooks/useGlobalState';
 import { useLoading } from '../../../hooks';
 // Resources & Utils
 import { ARTE_RUIM_API } from '../../../adapters';
-import { ARTE_RUIM_PHASES } from '../../../utils/constants';
-import allCards from '../../../resources/arte-ruim-cards.json';
+import { PHASES } from '../../../utils/constants';
 import arteRuimTimer from '../../../sounds/arte-ruim-timer.mp3';
 // Components
 import PhaseContainer from '../../shared/PhaseContainer';
@@ -17,6 +16,7 @@ import WaitingRoom from '../../shared/WaitingRoom';
 import RoundAnnouncement from '../../shared/RoundAnnouncement';
 import Instruction from '../../shared/Instruction';
 import StepSwitcher from '../../shared/StepSwitcher';
+import AdminForceNextPhase from '../../shared/AdminForceNextPhase';
 
 function DrawPhase({ players, state, info }) {
   const [, setLoader] = useLoading();
@@ -29,9 +29,8 @@ function DrawPhase({ players, state, info }) {
   const [play] = useSound(arteRuimTimer, { volume: 0.4 });
 
   useEffect(() => {
-    const myCardId = state?.cards?.[me];
-    setSecretCard(allCards?.[myCardId] ?? {});
-  }, [state?.cards, me]);
+    setSecretCard(players[me].currentCard ?? {});
+  }, [players, me]);
 
   const onSubmitDrawing = useCallback(
     async (lines) => {
@@ -73,7 +72,7 @@ function DrawPhase({ players, state, info }) {
     <PhaseContainer
       info={info}
       phase={state?.phase}
-      allowedPhase={ARTE_RUIM_PHASES.DRAW}
+      allowedPhase={PHASES.ARTE_RUIM.DRAW}
       className="draw-phase"
     >
       <StepSwitcher step={step} conditions={[!amIReady, !amIReady]}>
@@ -86,7 +85,7 @@ function DrawPhase({ players, state, info }) {
           <Instruction white>
             Você terá 10 segundos para ler a sua carta e desenhá-la. Aperte o botão quando estiver pronto!
             <br />
-            Fique esperto porque começa assim quando você apertar. Não 'seje' lerdo.
+            Fique esperto porque começa assim que você apertar. Não 'seje' lerdo.
           </Instruction>
         </RoundAnnouncement>
 
@@ -94,11 +93,14 @@ function DrawPhase({ players, state, info }) {
         <DrawPhaseDrawStep secretCard={secretCard} onSubmitDrawing={onSubmitDrawing} />
 
         {/* Step 2 */}
-        <WaitingRoom
-          players={players}
-          title="Pronto!"
-          instruction="Vamos aguardar enquanto os outros jogadores terminam seus desenhos!"
-        />
+        <Fragment>
+          <WaitingRoom
+            players={players}
+            title="Pronto!"
+            instruction="Vamos aguardar enquanto os outros jogadores terminam seus desenhos!"
+          />
+          <AdminForceNextPhase goToNextPhase={ARTE_RUIM_API.goToNextPhase} />
+        </Fragment>
       </StepSwitcher>
     </PhaseContainer>
   );

@@ -8,13 +8,13 @@ import { useGlobalState } from '../../../hooks';
 import Title from '../../shared/Title';
 import Instruction from '../../shared/Instruction';
 import AdminOnly from '../../shared/AdminOnly';
-import Card from '../../cards/UmSoCard';
+import Card from '../../cards/UeSoIssoCard';
 import SuggestionCard from './SuggestionCard';
 
 function CompareSuggestionsStep({
   nextGuesser,
   me,
-  secretWordId,
+  secretWord,
   suggestions,
   onValidateSuggestions,
   players,
@@ -45,7 +45,7 @@ function CompareSuggestionsStep({
   return (
     <div className="u-word-compare-suggestions-step">
       <Title white>Comparem as sugestões</Title>
-      <Card id={secretWordId} header="Palavra Secreta" />
+      <Card word={secretWord.text} header="Palavra Secreta" />
       <Instruction contained>
         Já eliminamos todas as palavras iguais, agora, elimine palavras inválidas ou similares.
         <br />

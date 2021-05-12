@@ -8,7 +8,6 @@ import Instruction from './shared/Instruction';
 import PhaseContainer from './shared/PhaseContainer';
 import RoundAnnouncement from './shared/RoundAnnouncement';
 // Resources
-import allWords from '../resources/um-so-words.json';
 import { CheckCircleFilled, CheckCircleOutlined } from '@ant-design/icons';
 import { Button, Input } from 'antd';
 import Title from './shared/Title';

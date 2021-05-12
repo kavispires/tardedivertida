@@ -2,14 +2,10 @@ import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
 import { WarningOutlined } from '@ant-design/icons';
-// Resources
-import allWords from '../../resources/um-so-words.json';
 // Components
 import Card from './Card';
 
-function UmSoCard({ id, header = 'Palavra Secreta' }) {
-  const word = allWords[id];
-
+function UeSoIssoCard({ word, header = 'Palavra Secreta' }) {
   return (
     <Card color="purple" header={header} size="large">
       {word ?? <WarningOutlined />}
@@ -17,9 +13,9 @@ function UmSoCard({ id, header = 'Palavra Secreta' }) {
   );
 }
 
-UmSoCard.propTypes = {
-  id: PropTypes.string.isRequired,
+UeSoIssoCard.propTypes = {
+  word: PropTypes.any.isRequired,
   title: PropTypes.string,
 };
 
-export default memo(UmSoCard);
+export default memo(UeSoIssoCard);

@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { Fragment, useCallback, useState } from 'react';
 // Design Resources
 import { Button, message, notification, Space } from 'antd';
 import { CloudUploadOutlined } from '@ant-design/icons';
@@ -8,7 +8,7 @@ import useGlobalState from '../../../hooks/useGlobalState';
 import { useLoading } from '../../../hooks';
 // Utils
 import { ARTE_RUIM_API } from '../../../adapters';
-import { ARTE_RUIM_PHASES } from '../../../utils/constants';
+import { PHASES } from '../../../utils/constants';
 // Components
 import WaitingRoom from '../../shared/WaitingRoom';
 import EvaluationAllDrawings from './EvaluationAllDrawings';
@@ -18,6 +18,7 @@ import CanvasResizer from './CanvasResizer';
 import Title from '../../shared/Title';
 import Instruction from '../../shared/Instruction';
 import StepSwitcher from '../../shared/StepSwitcher';
+import AdminForceNextPhase from '../../shared/AdminForceNextPhase';
 
 function EvaluationPhase({ players, state, info }) {
   const [, setLoader] = useLoading();
@@ -95,7 +96,7 @@ function EvaluationPhase({ players, state, info }) {
     <PhaseContainer
       info={info}
       phase={state?.phase}
-      allowedPhase={ARTE_RUIM_PHASES.EVALUATION}
+      allowedPhase={PHASES.ARTE_RUIM.EVALUATION}
       className="a-evaluation-phase"
     >
       <StepSwitcher step={step} conditions={[!amIReady]}>
@@ -105,8 +106,11 @@ function EvaluationPhase({ players, state, info }) {
           <Title>Adivinhação</Title>
           <Instruction>
             Encontre os pares de desenho e carta clicando em uma carta ou desenho e em seguida clicando em seu
-            par. Uma bandeirinha aparecerá no topo de cada desenho com a cor e letra da carta que você
-            selecionou. Quando encontrar todos os pares, envie sua avaliação!
+            par.
+          </Instruction>
+          <Instruction>
+            Uma bandeirinha aparecerá no topo de cada desenho com a cor e letra da carta que você selecionou.
+            Quando encontrar todos os pares, envie sua avaliação!
           </Instruction>
 
           <EvaluationAllDrawings
@@ -137,11 +141,14 @@ function EvaluationPhase({ players, state, info }) {
         </div>
 
         {/*Step 1 */}
-        <WaitingRoom
-          players={players}
-          title="Pronto!"
-          instruction="Vamos aguardar enquanto os outros jogadores terminam de avaliar!"
-        />
+        <Fragment>
+          <WaitingRoom
+            players={players}
+            title="Pronto!"
+            instruction="Vamos aguardar enquanto os outros jogadores terminam de avaliar!"
+          />
+          <AdminForceNextPhase goToNextPhase={ARTE_RUIM_API.goToNextPhase} />
+        </Fragment>
       </StepSwitcher>
     </PhaseContainer>
   );
