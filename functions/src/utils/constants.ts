@@ -2,12 +2,12 @@ export const AVATAR_IDS = new Array(25).fill(0).map((i, index) => i + index);
 
 export const GAME_CODES = {
   A: 'A', // arte-ruim
-  U: 'U', // um-so
+  U: 'U', // ue-so-isso
 };
 
 export const GAME_COLLECTIONS = {
   ARTE_RUIM: 'arte-ruim',
-  UM_SO: 'um-so',
+  UE_SO_ISSO: 'ue-so-isso',
 };
 
 /**
@@ -22,7 +22,7 @@ export const PHASES = {
     GALLERY: 'GALLERY',
     GAME_OVER: 'GAME_OVER',
   },
-  UM_SO: {
+  UE_SO_ISSO: {
     LOBBY: 'LOBBY',
     RULES: 'RULES',
     WORD_SELECTION: 'WORD_SELECTION',
@@ -45,4 +45,4 @@ export const ARTE_RUIM_CARDS_BY_LEVEL = {
 
 // UM SO
 
-export const UM_SO_WORDS = new Array(600).fill(1).map((i, index) => `${i + index}`);
+export const UE_SO_ISSO_WORDS = new Array(600).fill(1).map((i, index) => `${i + index}`);

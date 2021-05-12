@@ -117,7 +117,7 @@ export interface SubmitVotingPayload {
   votes: PlainObject;
 }
 
-// UM SO
+// UE SO ISSO
 
 export interface UsedWord {
   id: string;
@@ -131,7 +131,7 @@ export interface UsedWords {
   [key: string]: UsedWord;
 }
 
-export interface UmSoStore {
+export interface UeSoIssoStore {
   turnOrder: string[];
   usedWords: UsedWords;
   currentWords: string[];
@@ -139,18 +139,18 @@ export interface UmSoStore {
   [key: string]: any;
 }
 
-export interface UmSoState {
+export interface UeSoIssoState {
   phase: string;
   round: number;
   guesser?: PlayerName;
   [key: string]: any;
 }
 
-export interface UmSoInitialState {
+export interface UeSoIssoInitialState {
   meta: Meta;
   players: Players;
-  store: UmSoStore;
-  state: UmSoState;
+  store: UeSoIssoStore;
+  state: UeSoIssoState;
 }
 
 export interface SubmitSuggestionsPayload {

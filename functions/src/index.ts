@@ -2,7 +2,7 @@ import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import * as commonEngine from './engine/common';
 import * as arteRuimEngine from './engine/arte-ruim';
-import * as umSoEngine from './engine/um-so';
+import * as ueSoIssoEngine from './engine/ue-so-isso';
 
 admin.initializeApp();
 
@@ -60,29 +60,29 @@ exports.arteRuimSubmitVoting = functions.https.onCall(arteRuimEngine.submitVotin
  */
 exports.arteRuimGoToNextPhase = functions.https.onCall(arteRuimEngine.goToNextPhase);
 
-// UM_SO HTTP CALLS
+// UE_SO_ISSO HTTP CALLS
 
 /**
  * Make player ready, if it's the last player to be ready, move to the next phase
  */
-exports.umSoMakeMeReady = functions.https.onCall(umSoEngine.makeMeReady);
+exports.ueSoIssoMakeMeReady = functions.https.onCall(ueSoIssoEngine.makeMeReady);
 
 /**
  * Submit word selection votes, if it's the last player to be ready, move to the next phase
  */
-exports.umSoSubmitWordSelectionVotes = functions.https.onCall(umSoEngine.submitWordSelectionVotes);
+exports.ueSoIssoSubmitWordSelectionVotes = functions.https.onCall(ueSoIssoEngine.submitWordSelectionVotes);
 
 /**
  * Submit user suggestions, if it's the last player to be ready, move to the next phase
  */
-exports.umSoSubmitSuggestions = functions.https.onCall(umSoEngine.submitSuggestions);
+exports.ueSoIssoSubmitSuggestions = functions.https.onCall(ueSoIssoEngine.submitSuggestions);
 
 /**
  * Submit user validation and move to the next phase
  */
-exports.umSoSubmitValidation = functions.https.onCall(umSoEngine.submitValidation);
+exports.ueSoIssoSubmitValidation = functions.https.onCall(ueSoIssoEngine.submitValidation);
 
 /**
  * Submit guesser guess and move to the next phase
  */
-exports.umSoConfirmGuess = functions.https.onCall(umSoEngine.confirmGuess);
+exports.ueSoIssoConfirmGuess = functions.https.onCall(ueSoIssoEngine.confirmGuess);
