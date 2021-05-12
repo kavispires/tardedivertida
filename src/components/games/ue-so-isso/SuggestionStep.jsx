@@ -5,7 +5,7 @@ import { CloudUploadOutlined } from '@ant-design/icons';
 // Components
 import Title from '../../shared/Title';
 import Instruction from '../../shared/Instruction';
-import Card from '../../cards/UmSoCard';
+import Card from '../../cards/UeSoIssoCard';
 
 function SuggestionStep({ onSendSuggestions, secretWord, suggestionsNumber = 1, guesser }) {
   const [suggestions, setSuggestions] = useState([]);

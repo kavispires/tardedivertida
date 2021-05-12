@@ -38,7 +38,7 @@ function getActiveComponent(phase) {
   }
 }
 
-function SessionUmSo({ gameId }) {
+function SessionUeSoIsso({ gameId }) {
   const players = useGamePlayers(gameId, GAME_COLLECTION.UE_SO_ISSO);
   const state = useGameState(gameId, GAME_COLLECTION.UE_SO_ISSO);
   const [me] = useGlobalState('me');
@@ -68,4 +68,4 @@ function SessionUmSo({ gameId }) {
   );
 }
 
-export default SessionUmSo;
+export default SessionUeSoIsso;
