@@ -19,19 +19,19 @@ import GameInfoDrawer from '../../shared/GameInfoDrawer';
 
 function getActiveComponent(phase) {
   switch (phase) {
-    case PHASES.UM_SO.LOBBY:
+    case PHASES.UE_SO_ISSO.LOBBY:
       return Lobby;
-    case PHASES.UM_SO.RULES:
+    case PHASES.UE_SO_ISSO.RULES:
       return Rules;
-    case PHASES.UM_SO.WORD_SELECTION:
+    case PHASES.UE_SO_ISSO.WORD_SELECTION:
       return WordSelectionPhase;
-    case PHASES.UM_SO.SUGGEST:
+    case PHASES.UE_SO_ISSO.SUGGEST:
       return SuggestPhase;
-    case PHASES.UM_SO.COMPARE:
+    case PHASES.UE_SO_ISSO.COMPARE:
       return ComparePhase;
-    case PHASES.UM_SO.GUESS:
+    case PHASES.UE_SO_ISSO.GUESS:
       return GuessPhase;
-    case PHASES.UM_SO.GAME_OVER:
+    case PHASES.UE_SO_ISSO.GAME_OVER:
       return GameOver;
     default:
       return PageError;
@@ -39,8 +39,8 @@ function getActiveComponent(phase) {
 }
 
 function SessionUmSo({ gameId }) {
-  const players = useGamePlayers(gameId, GAME_COLLECTION.UM_SO);
-  const state = useGameState(gameId, GAME_COLLECTION.UM_SO);
+  const players = useGamePlayers(gameId, GAME_COLLECTION.UE_SO_ISSO);
+  const state = useGameState(gameId, GAME_COLLECTION.UE_SO_ISSO);
   const [me] = useGlobalState('me');
   const [info, setInfo] = useState({});
 

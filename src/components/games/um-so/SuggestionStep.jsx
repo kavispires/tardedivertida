@@ -7,7 +7,7 @@ import Title from '../../shared/Title';
 import Instruction from '../../shared/Instruction';
 import Card from '../../cards/UmSoCard';
 
-function SuggestionStep({ onSendSuggestions, secretWordId, suggestionsNumber = 1 }) {
+function SuggestionStep({ onSendSuggestions, secretWord, suggestionsNumber = 1, guesser }) {
   const [suggestions, setSuggestions] = useState([]);
 
   const onChangeInput = (e) => {
@@ -27,7 +27,7 @@ function SuggestionStep({ onSendSuggestions, secretWordId, suggestionsNumber = 1
 
   return (
     <div className="u-word-suggestion-step">
-      <Title>Escreva uma dica</Title>
+      <Title>Escreva uma dica para {guesser.name}</Title>
 
       <Instruction contained>
         A dica tem que ser uma palavra única que ajude o adivinhador... adivinhar.
@@ -38,7 +38,7 @@ function SuggestionStep({ onSendSuggestions, secretWordId, suggestionsNumber = 1
         <br />
       </Instruction>
 
-      <Card id={secretWordId} header="Palavra Secreta" />
+      <Card word={secretWord.text} header="Palavra Secreta" />
 
       {suggestionsNumber > 1 && (
         <Instruction contained>

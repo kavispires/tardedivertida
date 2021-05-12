@@ -14,7 +14,7 @@ import SuggestionCard from './SuggestionCard';
 function CompareSuggestionsStep({
   nextGuesser,
   me,
-  secretWordId,
+  secretWord,
   suggestions,
   onValidateSuggestions,
   players,
@@ -45,7 +45,7 @@ function CompareSuggestionsStep({
   return (
     <div className="u-word-compare-suggestions-step">
       <Title white>Comparem as sugestões</Title>
-      <Card id={secretWordId} header="Palavra Secreta" />
+      <Card word={secretWord.text} header="Palavra Secreta" />
       <Instruction contained>
         Já eliminamos todas as palavras iguais, agora, elimine palavras inválidas ou similares.
         <br />

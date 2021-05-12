@@ -6,10 +6,8 @@ import { message, notification, Progress } from 'antd';
 import { useGlobalState } from '../../../hooks';
 import { useLoading } from '../../../hooks';
 // Resources & Utils
-import { UM_SO_API } from '../../../adapters';
+import { UE_SO_ISSO_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
-// Resources
-import allWords from '../../../resources/um-so-words.json';
 // Components
 import Avatar from '../../avatars/Avatar';
 import PhaseContainer from '../../shared/PhaseContainer';
@@ -36,17 +34,17 @@ function WordSelectionPhase({ state, players, info }) {
   }, [state.guesser, me, players]);
 
   useEffect(() => {
-    if (step === 0 && state.previousSecretWordId) {
-      message.info(`A palavra secreta anterior era: ${allWords[state.previousSecretWordId]}`);
+    if (step === 0 && state.previousSecretWord?.text) {
+      message.info(`A palavra secreta anterior era: ${state.previousSecretWord.text}`);
     }
-  }, [step, state?.previousSecretWordId]);
+  }, [step, state?.previousSecretWord.text]);
 
   const onSendSelectedWords = useCallback(
     async (selectedWords) => {
       try {
         setLoader('submit-votes', true);
         setStep(2);
-        const response = await UM_SO_API.submitWordSelectionVotes({
+        const response = await UE_SO_ISSO_API.submitWordSelectionVotes({
           gameId,
           gameName,
           playerName: me,
@@ -59,7 +57,7 @@ function WordSelectionPhase({ state, players, info }) {
       } catch (e) {
         notification.error({
           message: 'Vixi, o aplicativo encontrou um erro ao tentar enviar seus votos',
-          description: JSON.stringify(e),
+          description: JSON.stringify(e?.message),
           placement: 'bottomLeft',
         });
         console.error(e);
@@ -70,12 +68,11 @@ function WordSelectionPhase({ state, players, info }) {
     },
     [gameId, gameName, me, setLoader]
   );
-
   return (
     <PhaseContainer
       info={info}
       phase={state?.phase}
-      allowedPhase={PHASES.UM_SO.WORD_SELECTION}
+      allowedPhase={PHASES.UE_SO_ISSO.WORD_SELECTION}
       className="u-word-selection-phase"
     >
       <StepSwitcher step={step} conditions={[!amIReady]}>
@@ -119,7 +116,11 @@ function WordSelectionPhase({ state, players, info }) {
               instruction="Aguarde os outros jogadores decidirem a palavra secreta."
             />
           ) : (
-            <WordSelectionStep words={state?.words} onSendSelectedWords={onSendSelectedWords} />
+            <WordSelectionStep
+              words={state?.words}
+              onSendSelectedWords={onSendSelectedWords}
+              guesser={guesser}
+            />
           )}
         </Fragment>
 

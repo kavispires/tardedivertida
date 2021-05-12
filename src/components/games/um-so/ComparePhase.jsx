@@ -6,7 +6,7 @@ import { message, notification } from 'antd';
 import { useGlobalState } from '../../../hooks';
 import { useLoading } from '../../../hooks';
 // Resources & Utils
-import { UM_SO_API } from '../../../adapters';
+import { UE_SO_ISSO_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
 // Components
 import PhaseContainer from '../../shared/PhaseContainer';
@@ -32,7 +32,7 @@ function ComparePhase({ state, players, info }) {
       try {
         setLoader('validate-suggestions', true);
         setStep(1);
-        const response = await UM_SO_API.submitValidation({
+        const response = await UE_SO_ISSO_API.submitValidation({
           gameId,
           gameName,
           playerName: me,
@@ -61,7 +61,7 @@ function ComparePhase({ state, players, info }) {
     <PhaseContainer
       info={info}
       phase={state?.phase}
-      allowedPhase={PHASES.UM_SO.COMPARE}
+      allowedPhase={PHASES.UE_SO_ISSO.COMPARE}
       className="u-compare-phase"
     >
       <StepSwitcher step={step}>
@@ -76,7 +76,7 @@ function ComparePhase({ state, players, info }) {
           ) : (
             <CompareSuggestionsStep
               nextGuesser={state.nextGuesser}
-              secretWordId={state.secretWordId}
+              secretWord={state.secretWord}
               suggestions={state.suggestions}
               me={me}
               players={players}
