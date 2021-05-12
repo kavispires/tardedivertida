@@ -1,9 +1,9 @@
 import SessionArteRuim from './arte-ruim/SessionArteRuim';
-import SessionUmSo from './um-so/SessionUmSo';
+import SessionUeSoIsso from './ue-so-isso/SessionUeSoIsso';
 
 const games = {
   SessionArteRuim,
-  SessionUmSo,
+  SessionUeSoIsso,
 };
 
 export default games;

@@ -130,7 +130,11 @@ const determineTeamScore = (players: Players, totalRounds: number): number => {
   return Math.round((100 * totalPoints) / expectedPoints);
 };
 
-const nextUmSoPhase = async (collectionName: string, gameId: string, players: Players): Promise<boolean> => {
+const nextUeSoIssoPhase = async (
+  collectionName: string,
+  gameId: string,
+  players: Players
+): Promise<boolean> => {
   const actionText = 'prepare next phase';
 
   // Determine and prepare next phase
@@ -456,7 +460,7 @@ export const makeMeReady = async (data: MakeMeReadyPayload) => {
   }
 
   // If all players are ready, trigger next phase
-  return nextUmSoPhase(collectionName, gameId, players);
+  return nextUeSoIssoPhase(collectionName, gameId, players);
 };
 
 export const submitWordSelectionVotes = async (data: SubmitVotingPayload) => {
@@ -488,7 +492,7 @@ export const submitWordSelectionVotes = async (data: SubmitVotingPayload) => {
   }
 
   // If all players are ready, trigger next phase
-  return nextUmSoPhase(collectionName, gameId, players);
+  return nextUeSoIssoPhase(collectionName, gameId, players);
 };
 
 export const submitSuggestions = async (data: SubmitSuggestionsPayload) => {
@@ -519,7 +523,7 @@ export const submitSuggestions = async (data: SubmitSuggestionsPayload) => {
     return true;
   }
   // If all players are ready, trigger next phase
-  return nextUmSoPhase(collectionName, gameId, players);
+  return nextUeSoIssoPhase(collectionName, gameId, players);
 };
 
 export const submitValidation = async (data: SubmitSuggestionsValidationPayload) => {
@@ -545,7 +549,7 @@ export const submitValidation = async (data: SubmitSuggestionsValidationPayload)
   const players = playersDoc.data() ?? {};
 
   // If all players are ready, trigger next phase
-  return nextUmSoPhase(collectionName, gameId, players);
+  return nextUeSoIssoPhase(collectionName, gameId, players);
 };
 
 export const confirmGuess = async (data: ConfirmGuessPayload) => {
@@ -571,5 +575,5 @@ export const confirmGuess = async (data: ConfirmGuessPayload) => {
   const players = playersDoc.data() ?? {};
 
   // If all players are ready, trigger next phase
-  return nextUmSoPhase(collectionName, gameId, players);
+  return nextUeSoIssoPhase(collectionName, gameId, players);
 };

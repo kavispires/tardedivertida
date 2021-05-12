@@ -16,7 +16,7 @@ import StepSwitcher from '../../shared/StepSwitcher';
 import Title from '../../shared/Title';
 import Avatar from '../../avatars/Avatar';
 import Instruction from '../../shared/Instruction';
-import UmSoCard from '../../cards/UmSoCard';
+import UeSoIssoCard from '../../cards/UeSoIssoCard';
 import SuggestionCard from './SuggestionCard';
 
 function GuessPhase({ state, players, info }) {
@@ -82,7 +82,7 @@ function GuessPhase({ state, players, info }) {
             Hora de brilhar <Avatar id={guesser.avatarId} /> {guesser.name}!
           </Title>
           <Instruction contained>Você tem uma única change de adivinhar a palavra secreta!</Instruction>
-          <UmSoCard word={<QuestionCircleOutlined />} header="A Palavra Secreta é" />
+          <UeSoIssoCard word={<QuestionCircleOutlined />} header="A Palavra Secreta é" />
           <Instruction contained>
             {state.nextGuesser} está encarregado(a) de apertar os botões se você acertou ou não. <br />
             São 3 pontos se você acertar, -1 se errar, mas você pode passar e não tentar, covarde!.. <br />

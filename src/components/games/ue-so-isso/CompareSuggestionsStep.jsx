@@ -8,7 +8,7 @@ import { useGlobalState } from '../../../hooks';
 import Title from '../../shared/Title';
 import Instruction from '../../shared/Instruction';
 import AdminOnly from '../../shared/AdminOnly';
-import Card from '../../cards/UmSoCard';
+import Card from '../../cards/UeSoIssoCard';
 import SuggestionCard from './SuggestionCard';
 
 function CompareSuggestionsStep({
