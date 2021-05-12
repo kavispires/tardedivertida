@@ -111,11 +111,11 @@
   },
   "U": {
     "gameCode": "U",
-    "gameName": "um-so",
-    "title": "Um Só",
+    "gameName": "ue-so-isso",
+    "title": "Ué Só Isso",
     "summary": "Tente adivinhar a palavra secreta com as dicas de seus amigos, mas se repetir, ferrou!",
     "rules": [
-      "Um Só é um jogo cooperativo em que cada rodadas (duas por jogador) um jogador tenta adivinhar a palavra secreta usando as dicas que os outros jogadores sugeriram, mas existe um porém: dicas repetidas ou similares são desclassificadas!",
+      "Ué Só Isso é um jogo cooperativo em que cada rodadas (duas por jogador) um jogador tenta adivinhar a palavra secreta usando as dicas que os outros jogadores sugeriram, mas existe um porém: dicas repetidas ou similares são desclassificadas!",
       "Cada rodada todos os jogadores menos o Adivinhar votam em qual palavra secreta usar.",
       "Então, em segredo e sem conversar, cada um deles escreve uma dica. Importante: Esta dica DEVE ser uma palavra única!",
       "Quando todas as dicas forem enviadas, todas as iguais são automaticamente desclassificadas, porém os jogadores devem decidir entre eles quais dicas adicionais também devem ser desclassificadas",

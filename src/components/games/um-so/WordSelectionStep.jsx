@@ -2,13 +2,11 @@ import React, { useState } from 'react';
 // Design Resources
 import { Button } from 'antd';
 import { CheckCircleFilled, CloudUploadOutlined } from '@ant-design/icons';
-// Resources
-import allWords from '../../../resources/um-so-words.json';
 // Components
 import Title from '../../shared/Title';
 import Instruction from '../../shared/Instruction';
 
-function WordSelectionStep({ words = [], onSendSelectedWords }) {
+function WordSelectionStep({ words = [], onSendSelectedWords, guesser }) {
   const [selectedWords, setSelectedWords] = useState({});
 
   const onSelectWord = (wordId) => {
@@ -24,22 +22,22 @@ function WordSelectionStep({ words = [], onSendSelectedWords }) {
   };
 
   const selectedWordsArray = Object.keys(selectedWords);
-
+  console.log({ words });
   return (
     <div className="u-word-selection-step">
-      <Title white>Selecione a Palavra-Secreta</Title>
+      <Title white>Selecione a Palavra-Secreta para {guesser.name}</Title>
 
       <Instruction white>
         A palavra secreta com mais votos será escolhida para essa rodada. Você pode selecionar quantas quiser!
       </Instruction>
 
       <ul className="u-word-card">
-        {words.map((wordId) => {
+        {words.map((word) => {
           return (
-            <li className="u-word-card__word" key={wordId}>
-              <button className="u-word-card__button" onClick={() => onSelectWord(wordId)}>
-                <span className="u-word-card__text">{allWords[wordId]}</span>
-                <span className="u-word-card__icon">{selectedWords[wordId] && <CheckCircleFilled />}</span>
+            <li className="u-word-card__word" key={word.id}>
+              <button className="u-word-card__button" onClick={() => onSelectWord(word.id)}>
+                <span className="u-word-card__text">{word.text}</span>
+                <span className="u-word-card__icon">{selectedWords[word.id] && <CheckCircleFilled />}</span>
               </button>
             </li>
           );

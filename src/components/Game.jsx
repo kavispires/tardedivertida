@@ -91,7 +91,7 @@ function Game() {
     switch (gameName) {
       case GAME_COLLECTION.ARTE_RUIM:
         return <GameSessions.SessionArteRuim gameId={gameId} />;
-      case GAME_COLLECTION.UM_SO:
+      case GAME_COLLECTION.UE_SO_ISSO:
         return <GameSessions.SessionUmSo gameId={gameId} />;
       default:
         console.warn('Wrong game library provided');

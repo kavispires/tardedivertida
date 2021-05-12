@@ -96,7 +96,7 @@ export const AVATAR_DESCRIPTIONS_BR = {
  */
 export const GAME_COLLECTION = {
   ARTE_RUIM: 'arte-ruim',
-  UM_SO: 'um-so',
+  UE_SO_ISSO: 'ue-so-isso',
 };
 
 /**
@@ -111,7 +111,7 @@ export const PHASES = {
     GALLERY: 'GALLERY',
     GAME_OVER: 'GAME_OVER',
   },
-  UM_SO: {
+  UE_SO_ISSO: {
     LOBBY: 'LOBBY',
     RULES: 'RULES',
     WORD_SELECTION: 'WORD_SELECTION',
