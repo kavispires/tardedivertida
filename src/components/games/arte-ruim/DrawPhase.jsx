@@ -3,8 +3,7 @@ import useSound from 'use-sound';
 // Design Resources
 import { message, notification } from 'antd';
 // State & Hooks
-import useGlobalState from '../../../hooks/useGlobalState';
-import { useLoading } from '../../../hooks';
+import { useLoading, useGlobalState, useAmIReady } from '../../../hooks';
 // Resources & Utils
 import { ARTE_RUIM_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
@@ -20,10 +19,10 @@ import AdminForceNextPhase from '../../shared/AdminForceNextPhase';
 
 function DrawPhase({ players, state, info }) {
   const [, setLoader] = useLoading();
+  const amIReady = useAmIReady(players, state);
   const [gameId] = useGlobalState('gameId');
   const [gameName] = useGlobalState('gameName');
   const [me] = useGlobalState('me');
-  const [amIReady, setImReady] = useState(false);
   const [step, setStep] = useState(0);
   const [secretCard, setSecretCard] = useState({});
   const [play] = useSound(arteRuimTimer, { volume: 0.4 });
@@ -45,7 +44,6 @@ function DrawPhase({ players, state, info }) {
           cardId: secretCard.id,
         });
         if (response.data) {
-          setImReady(true);
           message.success('Acabou o tempo! Aguarde enquanto os outros participantes desenham');
         }
       } catch (e) {
