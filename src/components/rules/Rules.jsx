@@ -1,8 +1,8 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback } from 'react';
 // Design Resources
 import { Button, Layout, message, notification, Space, Typography } from 'antd';
 // State
-import useGlobalState from '../../hooks/useGlobalState';
+import { useGlobalState, useAmIReady } from '../../hooks';
 // Components
 import RulesCarousel from './RulesCarousel';
 import LoadingPage from '../loaders/LoadingPage';
@@ -16,17 +16,7 @@ function Rules({ players, info }) {
   const [gameId] = useGlobalState('gameId');
   const [gameName] = useGlobalState('gameName');
   const [me] = useGlobalState('me');
-  const [amIReady, setImReady] = useState(false);
-
-  useEffect(() => {
-    if (!amIReady) {
-      const ready = players?.[me]?.ready;
-      setImReady(ready);
-      if (ready) {
-        message.success('Pronto! Aguarde os outros jogadores estarem prontos');
-      }
-    }
-  }, [players, me]); // eslint-disable-line
+  const amIReady = useAmIReady(players);
 
   const onBeReady = useCallback(async () => {
     try {
@@ -37,7 +27,6 @@ function Rules({ players, info }) {
         playerName: me,
       });
       if (response.data) {
-        setImReady(true);
         message.success('Pronto! Aguarde os outros jogadores estarem prontos');
       }
     } catch (e) {

@@ -340,6 +340,7 @@ const prepareGalleryPhase = async (
 
   await sessionRef.doc('state').set({
     phase: PHASES.ARTE_RUIM.GALLERY,
+    updatedAt: Date.now(),
     gallery,
     ranking,
     cards: store.currentCards,

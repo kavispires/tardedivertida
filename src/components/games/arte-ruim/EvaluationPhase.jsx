@@ -2,10 +2,8 @@ import React, { Fragment, useCallback, useState } from 'react';
 // Design Resources
 import { Button, message, notification, Space } from 'antd';
 import { CloudUploadOutlined } from '@ant-design/icons';
-// State
-import useGlobalState from '../../../hooks/useGlobalState';
 // Hooks
-import { useLoading } from '../../../hooks';
+import { useLoading, useAmIReady, useGlobalState } from '../../../hooks';
 // Utils
 import { ARTE_RUIM_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
@@ -22,11 +20,11 @@ import AdminForceNextPhase from '../../shared/AdminForceNextPhase';
 
 function EvaluationPhase({ players, state, info }) {
   const [, setLoader] = useLoading();
+  const amIReady = useAmIReady(players, state);
   const [gameId] = useGlobalState('gameId');
   const [gameName] = useGlobalState('gameName');
   const [me] = useGlobalState('me');
   const [canvasSize] = useGlobalState('canvasSize');
-  const [amIReady, setImReady] = useState(false);
   const [step, setStep] = useState(0);
   const [votes, setVotes] = useState({});
   const [activeItem, setActiveItem] = useState(null);
@@ -77,7 +75,6 @@ function EvaluationPhase({ players, state, info }) {
         votes: preparedVotes,
       });
       if (response.data) {
-        setImReady(true);
         message.success('Avaliação enviada! Agora aguarde os outros jogadores');
       }
     } catch (e) {
