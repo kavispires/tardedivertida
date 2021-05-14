@@ -231,6 +231,7 @@ const prepareWordSelectionPhase = async (
   // Save new state
   await sessionRef.doc('state').set({
     phase: PHASES.UE_SO_ISSO.WORD_SELECTION,
+    updatedAt: Date.now(),
     teamScore: determineTeamScore(players, store.turnOrder.length),
     round: newRound,
     guesser,
@@ -305,6 +306,7 @@ const prepareSuggestPhase = async (
   // Save new state
   await sessionRef.doc('state').set({
     phase: PHASES.UE_SO_ISSO.SUGGEST,
+    updatedAt: Date.now(),
     teamScore: state.teamScore,
     round: state.round,
     guesser: state.guesser,
@@ -369,6 +371,7 @@ const prepareComparePhase = async (
   // Save new state
   await sessionRef.doc('state').set({
     phase: PHASES.UE_SO_ISSO.COMPARE,
+    updatedAt: Date.now(),
     teamScore: state.teamScore,
     round: state.round,
     guesser: state.guesser,
@@ -390,6 +393,7 @@ const prepareGuessPhase = async (
   // Save new state
   await sessionRef.doc('state').set({
     phase: PHASES.UE_SO_ISSO.GUESS,
+    updatedAt: Date.now(),
     round: state.round,
     teamScore: state.teamScore,
     guesser: state.guesser,

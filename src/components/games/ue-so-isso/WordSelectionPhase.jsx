@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 // Design Resources
 import { message, notification, Progress } from 'antd';
 // Hooks
-import { useGlobalState } from '../../../hooks';
-import { useLoading } from '../../../hooks';
+import { useGlobalState, useLoading, useAmIReady } from '../../../hooks';
 // Resources & Utils
 import { UE_SO_ISSO_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
@@ -19,11 +18,11 @@ import WordSelectionStep from './WordSelectionStep';
 
 function WordSelectionPhase({ state, players, info }) {
   const [, setLoader] = useLoading();
+  const amIReady = useAmIReady(players, state);
   const [gameId] = useGlobalState('gameId');
   const [gameName] = useGlobalState('gameName');
   const [me] = useGlobalState('me');
   const [step, setStep] = useState(0);
-  const [amIReady, setImReady] = useState(false);
   const [guesser, setGuesser] = useState(players[state.guesser]);
   const [amItheGuesser, setAmITheGuesser] = useState(false);
 
@@ -51,7 +50,6 @@ function WordSelectionPhase({ state, players, info }) {
           votes: selectedWords,
         });
         if (response.data) {
-          setImReady(true);
           message.success('Acabou o tempo! Aguarde enquanto os outros participantes decidem');
         }
       } catch (e) {
