@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 // Design Resources
 import { message, notification, Progress } from 'antd';
 // Hooks
-import { useGlobalState, useLoading, useAmIReady } from '../../../hooks';
+import { useGlobalState, useLoading, useAmIReady, useAmIActive, useActivePlayer } from '../../../hooks';
 // Resources & Utils
 import { UE_SO_ISSO_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
@@ -22,15 +22,9 @@ function WordSelectionPhase({ state, players, info }) {
   const [gameId] = useGlobalState('gameId');
   const [gameName] = useGlobalState('gameName');
   const [me] = useGlobalState('me');
+  const guesser = useActivePlayer(state, players, 'guesser');
+  const amITheGuesser = useAmIActive(state, 'guesser');
   const [step, setStep] = useState(0);
-  const [guesser, setGuesser] = useState(players[state.guesser]);
-  const [amItheGuesser, setAmITheGuesser] = useState(false);
-
-  // Determine if user is the guesser
-  useEffect(() => {
-    setGuesser(players[state.guesser]);
-    setAmITheGuesser(state.guesser === me);
-  }, [state.guesser, me, players]);
 
   useEffect(() => {
     if (step === 0 && state.previousSecretWord?.text) {
@@ -79,7 +73,7 @@ function WordSelectionPhase({ state, players, info }) {
           <Instruction contained>
             Para essa rodada,
             <span className="u-word-selection-phase__guesser-name-announcement">
-              {amItheGuesser ? (
+              {amITheGuesser ? (
                 'VOCÊ'
               ) : (
                 <>
@@ -107,7 +101,7 @@ function WordSelectionPhase({ state, players, info }) {
 
         {/* Step 1 */}
         <Fragment>
-          {amItheGuesser ? (
+          {amITheGuesser ? (
             <WaitingRoom
               players={players}
               title="Você é o(a) adivinhador(a)"
