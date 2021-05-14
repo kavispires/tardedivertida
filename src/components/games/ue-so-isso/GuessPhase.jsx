@@ -1,11 +1,10 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
 import { Button, message, notification, Space } from 'antd';
 import { CheckOutlined, CloseOutlined, MinusOutlined, QuestionCircleOutlined } from '@ant-design/icons';
 // Hooks
-import { useGlobalState } from '../../../hooks';
-import { useLoading } from '../../../hooks';
+import { useGlobalState, useLoading, useActivePlayer, useAmIActive } from '../../../hooks';
 // Resources & Utils
 import { UE_SO_ISSO_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
@@ -26,17 +25,8 @@ function GuessPhase({ state, players, info }) {
   const [me] = useGlobalState('me');
   const [isAdmin] = useGlobalState('isAdmin');
   const [step, setStep] = useState(0);
-  const [guesser, setGuesser] = useState(players[state.guesser]);
-  const [amITheNextGuesser, setAmITheNextGuesser] = useState(false);
-
-  // Determine if user is the guesser
-  useEffect(() => {
-    setGuesser(players[state.guesser]);
-  }, [state.guesser, me, players]);
-
-  useEffect(() => {
-    setAmITheNextGuesser(state.nextGuesser === me);
-  }, [state.nextGuesser, me]);
+  const guesser = useActivePlayer(state, players, 'guesser');
+  const amITheNextGuesser = useAmIActive(state, 'nextGuesser');
 
   const onSubmitGuess = useCallback(
     async (result) => {

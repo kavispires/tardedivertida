@@ -1,3 +1,4 @@
+export * from './useActivePlayer';
 export * from './useAmIActive';
 export * from './useAmIReady';
 export * from './useGamePlayers';

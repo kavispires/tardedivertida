@@ -1,9 +1,9 @@
-import React, { Fragment, useCallback, useEffect, useState } from 'react';
+import React, { Fragment, useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
 import { message, notification } from 'antd';
 // Hooks
-import { useGlobalState, useLoading, useAmIReady } from '../../../hooks';
+import { useGlobalState, useLoading, useAmIReady, useActivePlayer, useAmIActive } from '../../../hooks';
 // Resources & Utils
 import { UE_SO_ISSO_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
@@ -20,14 +20,8 @@ function SuggestPhase({ state, players, info }) {
   const [gameName] = useGlobalState('gameName');
   const [me] = useGlobalState('me');
   const [step, setStep] = useState(0);
-  const [guesser, setGuesser] = useState(players[state.guesser]);
-  const [amITheGuesser, setAmITheGuesser] = useState(false);
-
-  // Determine if user is the guesser
-  useEffect(() => {
-    setGuesser(players[state.guesser]);
-    setAmITheGuesser(state.guesser === me);
-  }, [state.guesser, me, players]);
+  const guesser = useActivePlayer(state, players, 'guesser');
+  const amITheGuesser = useAmIActive(state, 'guesser');
 
   const onSendSuggestions = useCallback(
     async (suggestions) => {

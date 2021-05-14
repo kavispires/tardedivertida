@@ -1,10 +1,9 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
 import { message, notification } from 'antd';
 // Hooks
-import { useGlobalState } from '../../../hooks';
-import { useLoading } from '../../../hooks';
+import { useGlobalState, useLoading, useAmIActive } from '../../../hooks';
 // Resources & Utils
 import { UE_SO_ISSO_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
@@ -20,12 +19,7 @@ function ComparePhase({ state, players, info }) {
   const [gameName] = useGlobalState('gameName');
   const [me] = useGlobalState('me');
   const [step, setStep] = useState(0);
-  const [amITheGuesser, setAmITheGuesser] = useState(false);
-
-  // Determine if user is the guesser
-  useEffect(() => {
-    setAmITheGuesser(state.guesser === me);
-  }, [state.guesser, me, players]);
+  const amITheGuesser = useAmIActive(state, 'guesser');
 
   const onValidateSuggestions = useCallback(
     async (validationArray) => {
