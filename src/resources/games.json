@@ -61,6 +61,18 @@
     "tags": ["competitive", "turn-based", "traitor", "discussion", "images"],
     "available": false
   },
+  "E": {
+    "gameCode": "E",
+    "gameName": "espiao-entre-nos",
+    "title": "Espião Entre Nós",
+    "summary": "Todos nós, agentes de bem, estamos num mesmo local, mas um de nós é um espião! Será que conseguimos descobrir quem é o impostor antes dele descobrir que local estamos?",
+    "rules": [],
+    "recommended": "6",
+    "min": 4,
+    "max": 8,
+    "tags": ["competitive", "real-time", "traitor", "discussion"],
+    "available": false
+  },
   "M": {
     "gameCode": "M",
     "gameName": "mente-coletiva",
@@ -71,6 +83,18 @@
     "min": 3,
     "max": 12,
     "tags": ["competitive", "real-time", "writing"],
+    "available": false
+  },
+  "O": {
+    "gameCode": "O",
+    "gameName": "onda-telepatica",
+    "title": "Onda Telepática",
+    "summary": "Em times jogadores tentam comunicar através de ondas telepáricas",
+    "rules": [],
+    "recommended": "4+",
+    "min": 4,
+    "max": 12,
+    "tags": ["competitive", "real-time", "guessing"],
     "available": false
   },
   "P": {
