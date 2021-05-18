@@ -96,6 +96,7 @@ export const AVATAR_DESCRIPTIONS_BR = {
  */
 export const GAME_COLLECTION = {
   ARTE_RUIM: 'arte-ruim',
+  ONDA_TELEPATICA: 'onda-telepatica',
   UE_SO_ISSO: 'ue-so-isso',
 };
 
@@ -109,6 +110,16 @@ export const PHASES = {
     DRAW: 'DRAW',
     EVALUATION: 'EVALUATION',
     GALLERY: 'GALLERY',
+    GAME_OVER: 'GAME_OVER',
+  },
+  ONDA_TELEPATICA: {
+    LOBBY: 'LOBBY',
+    RULES: 'RULES',
+    DIAL_SIDES: 'DIAL_SIDES',
+    DIAL_CLUE: 'DIAL_CLUE',
+    GUESS: 'GUESS',
+    RIVAL_GUESS: 'RIVAL_GUESS',
+    REVEAL: 'REVEAL',
     GAME_OVER: 'GAME_OVER',
   },
   UE_SO_ISSO: {

@@ -90,12 +90,21 @@
     "gameName": "onda-telepatica",
     "title": "Onda Telepática",
     "summary": "Em times jogadores tentam comunicar através de ondas telepáricas",
-    "rules": [],
+    "rules": [
+      "Em Ondas Telepáticas, jogadores, em dois times, tentam alinhar o ponteiro o mais próximo do objectivo no espectro, mas é claro ninguém sabe a direção correta do alvo",
+      "Em cada rodada, um jogador será o Psíquico e ele(a) sim saberá a resposta correta e tentará ajudar o seu time a escolher a direção corretamente",
+      "O Psíquico primeiro escolhe uma card que contém dois conceitos opostos. Por exemplo: \"Quente vs Frio\", \"Seco vs Molhado\".",
+      "Daí, o Psíquico sugere uma dica que ajude os jogadores a desvendarem onde no espectro o valor com mais pontos está: \"Café\".",
+      "Baseado na dica, o time tenta descobrir onde o ponteiro deve estar e um dos jogadores deve selecionar qual o número no espectro é a resposta final do time",
+      "O time oposto que prestou atenção na discussão, agora tem a chance de chutar se eles acham que a solução está mais pra esquerda ou mais pra direita do que outro time escolheu.",
+      "Então, a resposta é revelada e o time principal ganha pontos de acordo com o ponteiro no espectro. Se o time rival chutou a direção correta, eles ganham 1 ponto.",
+      "O jogo continua até um time conseguir 10 pontos"
+    ],
     "recommended": "4+",
     "min": 4,
     "max": 12,
     "tags": ["competitive", "real-time", "guessing"],
-    "available": false
+    "available": true
   },
   "P": {
     "gameCode": "P",
