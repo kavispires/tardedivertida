@@ -1,8 +1,17 @@
 .round-announcement {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr 350px 1fr;
+  grid-template-rows: auto;
+  grid-template-areas: 'team-a main team-b';
+
+  &__main {
+    grid-area: main;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 
   &__title {
     width: 150px;
@@ -48,6 +57,26 @@
     border-radius: 50%;
     width: 1.6em;
     color: get-color(blue);
+  }
+
+  &__team-left {
+    grid-area: team-a;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__team-right {
+    grid-area: team-b;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__team-member {
+    margin-bottom: get-unit(1);
   }
 }
 
