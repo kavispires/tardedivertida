@@ -1,7 +1,7 @@
 .round-announcement {
   display: grid;
   width: 100%;
-  grid-template-columns: 1fr 350px 1fr;
+  grid-template-columns: 1fr 450px 1fr;
   grid-template-rows: auto;
   grid-template-areas: 'team-a main team-b';
 
@@ -77,6 +77,10 @@
 
   &__team-member {
     margin-bottom: get-unit(1);
+  }
+
+  &__points {
+    margin-top: get-unit(2);
   }
 }
 

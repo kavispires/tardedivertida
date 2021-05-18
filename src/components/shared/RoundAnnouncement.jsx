@@ -2,11 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useTimer } from 'react-timer-hook';
 // Design Resources
-import { Button } from 'antd';
+import { Button, Tag } from 'antd';
 // Images
 import rodadaTitle from '../../images/rodada-title.svg';
 // Utils
 import { inNSeconds } from '../../utils';
+// Components
 import AvatarName from '../avatars/AvatarName';
 
 function Team({ team, players, className }) {
@@ -20,7 +21,9 @@ function Team({ team, players, className }) {
           </li>
         ))}
       </ul>
-      <p>{team.score} pontos</p>
+      <Tag className="round-announcement__points" color="blue">
+        {team.score} {team.score > 1 ? 'pontos' : 'ponto'}
+      </Tag>
     </div>
   );
 }
