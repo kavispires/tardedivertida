@@ -90,9 +90,11 @@ function Game() {
   if (gameId && gameName) {
     switch (gameName) {
       case GAME_COLLECTION.ARTE_RUIM:
-        return <GameSessions.SessionArteRuim gameId={gameId} />;
+        return <GameSessions.ArteRuim gameId={gameId} />;
+      case GAME_COLLECTION.ONDA_TELEPATICA:
+        return <GameSessions.OndaTelepatica gameId={gameId} />;
       case GAME_COLLECTION.UE_SO_ISSO:
-        return <GameSessions.SessionUeSoIsso gameId={gameId} />;
+        return <GameSessions.UeSoIsso gameId={gameId} />;
       default:
         console.warn('Wrong game library provided');
     }
