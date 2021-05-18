@@ -1,0 +1,29 @@
+.avatar-name {
+  display: inline-block;
+  padding: get-unit(0 2);
+  font-weight: bolder;
+
+  &--uppercase {
+    text-transform: uppercase;
+  }
+
+  &--small {
+    font-size: 0.75em;
+  }
+
+  &--default {
+    font-size: 1em;
+  }
+
+  &--large {
+    font-size: 1.5em;
+  }
+
+  &__avatar {
+    margin-right: get-unit(1);
+  }
+
+  &__name {
+    display: inline-block;
+  }
+}
