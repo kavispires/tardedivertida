@@ -24,6 +24,7 @@ function GameInfoDrawer({ players, state, info, me }) {
 
   const completeMe = players?.[me];
   const rankedPlayers = Object.values(players).sort((a, b) => (a.score < b.score ? 1 : -1));
+  const isTeamGame = Boolean(completeMe.team);
 
   return (
     <Fragment>
@@ -40,7 +41,7 @@ function GameInfoDrawer({ players, state, info, me }) {
       <Drawer title={info.title} placement="right" closable={false} onClose={onClose} visible={visible}>
         {completeMe && (
           <Fragment>
-            <div className="game-info-drawer__label">Você é</div>
+            <div className="game-info-drawer__label">Você é{isTeamGame && ` do time ${completeMe.team}`}</div>
             <div className="game-info-drawer__me">
               <Badge count={completeMe.score} className="game-info-drawer__avatar-with-badge">
                 <Avatar id={completeMe.avatarId} shape="square" />
@@ -69,7 +70,9 @@ function GameInfoDrawer({ players, state, info, me }) {
 
         {Boolean(state?.pointsToVictory) && (
           <div>
-            <div className="game-info-drawer__label-inline">Pontos restantes para alguém ganhar:</div>
+            <div className="game-info-drawer__label-inline">
+              Pontos restantes para {isTeamGame ? 'alguém' : 'um time'} ganhar:
+            </div>
             <AntAvatar className="game-info-drawer__round" size="small">
               {state?.pointsToVictory ?? '?'}
             </AntAvatar>

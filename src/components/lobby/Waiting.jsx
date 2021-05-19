@@ -34,7 +34,7 @@ function Waiting({ info, players }) {
     } catch (e) {
       notification.error({
         message: 'Vixi, o aplicativo encontrou um erro ao tentar trancar e iniciar o jogo',
-        description: JSON.stringify(e),
+        description: JSON.stringify(e.message),
         placement: 'bottomLeft',
       });
       console.error(e);

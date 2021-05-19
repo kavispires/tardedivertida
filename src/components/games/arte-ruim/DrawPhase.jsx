@@ -1,9 +1,8 @@
-import React, { Fragment, useCallback, useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import useSound from 'use-sound';
-// Design Resources
-import { message, notification } from 'antd';
+
 // State & Hooks
-import { useLoading, useGlobalState, useAmIReady } from '../../../hooks';
+import { useGlobalState, useAmIReady, useAPICall } from '../../../hooks';
 // Resources & Utils
 import { ARTE_RUIM_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
@@ -18,10 +17,7 @@ import StepSwitcher from '../../shared/StepSwitcher';
 import AdminForceNextPhase from '../../shared/AdminForceNextPhase';
 
 function DrawPhase({ players, state, info }) {
-  const [, setLoader] = useLoading();
   const amIReady = useAmIReady(players, state);
-  const [gameId] = useGlobalState('gameId');
-  const [gameName] = useGlobalState('gameName');
   const [me] = useGlobalState('me');
   const [step, setStep] = useState(0);
   const [secretCard, setSecretCard] = useState({});
@@ -31,35 +27,14 @@ function DrawPhase({ players, state, info }) {
     setSecretCard(players[me].currentCard ?? {});
   }, [players, me]);
 
-  const onSubmitDrawing = useCallback(
-    async (lines) => {
-      try {
-        setLoader('submit-drawing', true);
-        setStep(2);
-        const response = await ARTE_RUIM_API.submitDrawing({
-          gameId,
-          gameName,
-          playerName: me,
-          drawing: JSON.stringify(lines),
-          cardId: secretCard.id,
-        });
-        if (response.data) {
-          message.success('Acabou o tempo! Aguarde enquanto os outros participantes desenham');
-        }
-      } catch (e) {
-        notification.error({
-          message: 'Vixi, o aplicativo encontrou um erro ao tentar enviar o desenho',
-          description: JSON.stringify(e),
-          placement: 'bottomLeft',
-        });
-        console.error(e);
-        setStep(0);
-      } finally {
-        setLoader('submit-drawing', false);
-      }
-    },
-    [gameId, gameName, setLoader, me, secretCard.id]
-  );
+  const onSubmitDrawing = useAPICall({
+    apiFunction: ARTE_RUIM_API.submitDrawing,
+    actionName: 'submit-drawing',
+    onBeforeCall: () => setStep(2),
+    onError: () => setStep(0),
+    successMessage: 'Acabou o tempo! Aguarde enquanto os outros participantes desenham',
+    errorMessage: 'Vixi, o aplicativo encontrou um erro ao tentar enviar o desenho',
+  });
 
   const onStartDrawing = () => {
     play();
@@ -78,7 +53,7 @@ function DrawPhase({ players, state, info }) {
         <RoundAnnouncement
           round={state?.round}
           onPressButton={onStartDrawing}
-          buttonText="Um dó, lá, si... vamos ir... JÁ!"
+          buttonText="Um dó, lá, si... vamos ir... já!"
         >
           <Instruction white>
             Você terá 10 segundos para ler a sua carta e desenhá-la. Aperte o botão quando estiver pronto!

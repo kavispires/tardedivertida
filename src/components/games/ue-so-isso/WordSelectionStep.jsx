@@ -46,7 +46,7 @@ function WordSelectionStep({ words = [], onSendSelectedWords, guesser }) {
       <Button
         icon={<CloudUploadOutlined />}
         type="primary"
-        onClick={() => onSendSelectedWords(selectedWordsArray)}
+        onClick={() => onSendSelectedWords({ votes: selectedWordsArray })}
         disabled={selectedWordsArray.length === 0}
       >
         Enviar votos

@@ -43,7 +43,7 @@ function SuggestPhase({ state, players, info }) {
       } catch (e) {
         notification.error({
           message: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua(s) dica(s)',
-          description: JSON.stringify(e),
+          description: JSON.stringify(e.message),
           placement: 'bottomLeft',
         });
         console.error(e);
