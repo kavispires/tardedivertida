@@ -9,7 +9,7 @@ import Dial from './Dial';
 
 function DialClueWriting({ onSendClue, card }) {
   const [clue, setClue] = useState('');
-  console.log({ clue });
+
   return (
     <div className="o-dial-clue-writing">
       <Title>Escreva uma dica!</Title>

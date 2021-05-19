@@ -22,7 +22,7 @@ function WordSelectionStep({ words = [], onSendSelectedWords, guesser }) {
   };
 
   const selectedWordsArray = Object.keys(selectedWords);
-  console.log({ words });
+
   return (
     <div className="u-word-selection-step">
       <Title white>Selecione a Palavra-Secreta para {guesser.name}</Title>

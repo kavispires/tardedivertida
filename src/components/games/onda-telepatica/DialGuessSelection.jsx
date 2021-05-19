@@ -18,7 +18,6 @@ function DialGuessSelection({
 }) {
   const [needle, setNeedle] = useState(0);
 
-  console.log({ needle });
   return (
     <div className="o-dial-guess-selection">
       <Title>Time {activeTeam}, hora de brilhar!</Title>

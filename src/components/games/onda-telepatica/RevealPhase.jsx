@@ -15,7 +15,6 @@ import { Button } from 'antd';
 import { RocketFilled } from '@ant-design/icons';
 
 function getResultInstructionLine(pointsBreakdown, team, catchup = false) {
-  console.log({ pointsBreakdown, team });
   const { had, got, now } = pointsBreakdown;
 
   if (got === 0) {
@@ -62,7 +61,7 @@ function RevealPhase({ state, players, info }) {
   });
 
   const rivalTeam = state.activeTeam === 'A' ? 'B' : 'A';
-  console.log({ rivalTeam });
+
   return (
     <PhaseContainer
       info={info}
