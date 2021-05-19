@@ -23,9 +23,8 @@ function DialSidesPhase({ state, players, info }) {
   const onSendChosenSide = useAPICall({
     apiFunction: ONDA_TELEPATICA.submitSides,
     actionName: 'submit-side',
-    setStep,
-    currentStep: 1,
-    successStep: 2,
+    onBeforeCall: () => setStep(2),
+    onError: () => setStep(1),
     successMessage: 'Carta selecionada com sucesso',
     errorMessage: 'Vixi, ocorreu um erro ao tentar enviar a carta',
   });

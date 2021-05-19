@@ -22,9 +22,8 @@ function RivalPhase({ state, players, info }) {
   const onSendRivalGuess = useAPICall({
     apiFunction: ONDA_TELEPATICA.submitRivalGuess,
     actionName: 'submit-rival-guess',
-    setStep,
-    currentStep: 0,
-    successStep: 1,
+    onBeforeCall: () => setStep(1),
+    onError: () => setStep(0),
     successMessage: 'Chute submetido com sucesso',
     errorMessage: 'Vixi, ocorreu um erro ao tentar enviar seu chute',
   });

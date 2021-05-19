@@ -55,9 +55,8 @@ function RevealPhase({ state, players, info }) {
   const onGoToNextRound = useAPICall({
     apiFunction: ONDA_TELEPATICA.goToNextPhase,
     actionName: 'next-phase',
-    setStep,
-    currentStep: 0,
-    successStep: 1,
+    onBeforeCall: () => setStep(1),
+    onError: () => setStep(0),
     successMessage: 'Próxima fase ativada com success',
     errorMessage: 'Vixi, ocorreu um erro ao tentar ir pra próxima fase',
   });

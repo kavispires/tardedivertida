@@ -6,10 +6,10 @@ import { useGlobalState, useLoading } from './index';
  * Wrapper around common firebase http call
  * @param {object} data
  * @param {Function} data.apiFunction
+ * @param {Function} [data.onBeforeCall]
+ * @param {Function} [data.onAfterCall]
+ * @param {Function} [data.onError]
  * @param {string} [data.actionName] the name used in the loader hook
- * @param {Function} [data.setStep]
- * @param {number} [data.currentStep]
- * @param {number} [data.successStep]
  * @param {string} [data.successMessage]
  * @param {string} [data.errorMessage]
  * @returns
@@ -17,9 +17,9 @@ import { useGlobalState, useLoading } from './index';
 export function useAPICall({
   apiFunction,
   actionName = 'api-action',
-  setStep = () => {},
-  currentStep = 0,
-  successStep = 1,
+  onBeforeCall = () => {},
+  onAfterCall = () => {},
+  onError = () => {},
   successMessage = 'API call was successful',
   errorMessage = 'API call has failed',
 }) {
@@ -32,7 +32,7 @@ export function useAPICall({
     async (payload) => {
       try {
         setLoader(actionName, true);
-        setStep(successStep);
+        await onBeforeCall();
         const response = await apiFunction({
           gameId,
           gameName,
@@ -46,27 +46,28 @@ export function useAPICall({
       } catch (e) {
         notification.error({
           message: errorMessage,
-          description: JSON.stringify(e),
+          description: JSON.stringify(e.message),
           placement: 'bottomLeft',
         });
         console.error(e);
-        setStep(currentStep);
+        onError();
       } finally {
+        await onAfterCall();
         setLoader(actionName, false);
       }
     },
     [
       actionName,
       apiFunction,
-      currentStep,
       errorMessage,
       gameId,
       gameName,
       me,
       setLoader,
-      setStep,
       successMessage,
-      successStep,
+      onBeforeCall,
+      onAfterCall,
+      onError,
     ]
   );
 
