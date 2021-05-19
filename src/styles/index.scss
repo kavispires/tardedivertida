@@ -14,6 +14,7 @@
 
 // Shared Components
 @import '../components/avatars/AvatarEntry.scss';
+@import '../components/avatars/AvatarName.scss';
 @import '../components/loaders/Loading.scss';
 @import '../components/loaders/LoadingBar.scss';
 @import '../components/loaders/LoadingPage.scss';
@@ -56,6 +57,12 @@
 @import '../components/games/ue-so-isso/ComparePhase.scss';
 @import '../components/games/ue-so-isso/GuessPhase.scss';
 @import '../components/games/ue-so-isso/SuggestionCard.scss';
+
+// OndaTelepatica Components
+@import '../components/games/onda-telepatica/Card.scss';
+@import '../components/games/onda-telepatica/CardSelection.scss';
+@import '../components/games/onda-telepatica/Dial.scss';
+@import '../components/games/onda-telepatica/DialGuessSelection.scss';
 
 // Pages
 @import '../components/App.scss';

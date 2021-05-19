@@ -13,7 +13,11 @@ function DrawPhaseDrawStep({ secretCard, onSubmitDrawing }) {
   const { seconds } = useTimer({
     expiryTimestamp: inNSeconds(11),
     autoStart: true,
-    onExpire: () => onSubmitDrawing(lines),
+    onExpire: () =>
+      onSubmitDrawing({
+        drawing: JSON.stringify(lines),
+        cardId: secretCard.id,
+      }),
   });
 
   return (

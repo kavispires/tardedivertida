@@ -22,7 +22,7 @@ function WordSelectionStep({ words = [], onSendSelectedWords, guesser }) {
   };
 
   const selectedWordsArray = Object.keys(selectedWords);
-  console.log({ words });
+
   return (
     <div className="u-word-selection-step">
       <Title white>Selecione a Palavra-Secreta para {guesser.name}</Title>
@@ -46,7 +46,7 @@ function WordSelectionStep({ words = [], onSendSelectedWords, guesser }) {
       <Button
         icon={<CloudUploadOutlined />}
         type="primary"
-        onClick={() => onSendSelectedWords(selectedWordsArray)}
+        onClick={() => onSendSelectedWords({ votes: selectedWordsArray })}
         disabled={selectedWordsArray.length === 0}
       >
         Enviar votos

@@ -1,0 +1,96 @@
+.o-dial {
+  width: 60vw;
+  position: relative;
+  margin: get-unit(2 auto);
+
+  &__needle {
+    fill: #e22929;
+    transform-origin: bottom center;
+  }
+
+  &__card {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.o-dial-numbers {
+  .o-dial--animated & > path {
+    animation: fan-out 2s;
+    background: green;
+  }
+
+  &--odd {
+    fill: #e6e6e6;
+    transform-origin: bottom center;
+  }
+
+  &--even {
+    fill: #f2f2f2;
+    transform-origin: bottom center;
+  }
+
+  &--active {
+    fill: #e22929;
+  }
+}
+
+$base-angle: 8deg;
+
+@for $i from 1 through 10 {
+  #bracket-number-#{$i}-r {
+    transform: rotate($i * $base-angle);
+  }
+
+  #bracket-number-#{$i}-l {
+    transform: rotate($i * $base-angle * -1);
+  }
+}
+
+.o-dial-points {
+  transform-origin: bottom center;
+  &__number {
+    fill: #ffffff;
+  }
+
+  &__2 {
+    fill: #e2dc29;
+  }
+
+  &__3 {
+    fill: #29e257;
+  }
+
+  &__4 {
+    fill: #29abe2;
+  }
+
+  &--animated {
+    opacity: 0;
+    animation: fade-in 4s;
+    animation-delay: 1.5s;
+    animation-fill-mode: forwards;
+  }
+}
+
+@keyframes fan-out {
+  from {
+    opacity: 0;
+    transform: rotate(0);
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: rotate(0) scale(1.1);
+  }
+  to {
+    opacity: 1;
+  }
+}

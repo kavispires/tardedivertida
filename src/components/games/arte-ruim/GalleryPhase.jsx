@@ -1,10 +1,10 @@
-import React, { Fragment, useCallback, useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 // Design Resources
-import { Button, message, notification } from 'antd';
+import { Button } from 'antd';
 import { PictureOutlined, RocketFilled } from '@ant-design/icons';
 // State & Hooks
 import useGlobalState from '../../../hooks/useGlobalState';
-import { useLoading } from '../../../hooks';
+import { useAPICall, useLoading } from '../../../hooks';
 // Resources and Utils
 import { ARTE_RUIM_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
@@ -18,10 +18,7 @@ import Instruction from '../../shared/Instruction';
 import StepSwitcher from '../../shared/StepSwitcher';
 
 function GalleryPhase({ players, state, info }) {
-  const [, setLoader] = useLoading();
-  const [gameId] = useGlobalState('gameId');
-  const [gameName] = useGlobalState('gameName');
-  const [me] = useGlobalState('me');
+  const [isLoading] = useLoading();
   const [activeIndex, setActiveIndex] = useState(0);
   const [step, setStep] = useState(0);
   const [canvasSize, setCanvasSize] = useGlobalState('canvasSize');
@@ -37,29 +34,12 @@ function GalleryPhase({ players, state, info }) {
     }
   }, [step]); // eslint-disable-line
 
-  const onGoToNextRound = useCallback(async () => {
-    try {
-      setLoader('go-to-next-round', true);
-
-      const response = await ARTE_RUIM_API.goToNextPhase({
-        gameId,
-        gameName,
-        playerName: me,
-      });
-      if (response.data) {
-        message.success('Ranking!');
-      }
-    } catch (e) {
-      notification.error({
-        message: 'Vixi, o aplicativo encontrou um erro ao tentar ir para a proxima rodada',
-        description: JSON.stringify(e),
-        placement: 'bottomLeft',
-      });
-      console.error(e);
-    } finally {
-      setLoader('go-to-next-round', false);
-    }
-  }, [gameId, gameName, me, setLoader]);
+  const onGoToNextRound = useAPICall({
+    apiFunction: ARTE_RUIM_API.goToNextPhase,
+    actionName: 'go-to-next-phase',
+    successMessage: 'Ranking!',
+    errorMessage: 'Vixi, o aplicativo encontrou um erro ao tentar ir para a próxima fase',
+  });
 
   return (
     <PhaseContainer
@@ -99,7 +79,13 @@ function GalleryPhase({ players, state, info }) {
             Ver Galeria
           </Button>
           <AdminOnly>
-            <Button icon={<RocketFilled />} danger type="primary" onClick={onGoToNextRound}>
+            <Button
+              icon={<RocketFilled />}
+              danger
+              type="primary"
+              onClick={() => onGoToNextRound({})}
+              disabled={isLoading}
+            >
               Ir para próxima rodada ou game over
             </Button>
           </AdminOnly>

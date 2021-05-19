@@ -1,9 +1,11 @@
-import SessionArteRuim from './arte-ruim/SessionArteRuim';
-import SessionUeSoIsso from './ue-so-isso/SessionUeSoIsso';
+import ArteRuim from './arte-ruim/SessionArteRuim';
+import OndaTelepatica from './onda-telepatica/SessionOndaTelepatica';
+import UeSoIsso from './ue-so-isso/SessionUeSoIsso';
 
 const games = {
-  SessionArteRuim,
-  SessionUeSoIsso,
+  ArteRuim,
+  OndaTelepatica,
+  UeSoIsso,
 };
 
 export default games;
