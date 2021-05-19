@@ -1,9 +1,9 @@
-import React, { Fragment, useCallback, useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
-import { message, notification, Progress } from 'antd';
+import { message, Progress } from 'antd';
 // Hooks
-import { useGlobalState, useLoading, useAmIReady, useAmIActive, useActivePlayer } from '../../../hooks';
+import { useAmIReady, useAmIActive, useActivePlayer, useAPICall } from '../../../hooks';
 // Resources & Utils
 import { UE_SO_ISSO_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
@@ -17,49 +17,26 @@ import StepSwitcher from '../../shared/StepSwitcher';
 import WordSelectionStep from './WordSelectionStep';
 
 function WordSelectionPhase({ state, players, info }) {
-  const [, setLoader] = useLoading();
   const amIReady = useAmIReady(players, state);
-  const [gameId] = useGlobalState('gameId');
-  const [gameName] = useGlobalState('gameName');
-  const [me] = useGlobalState('me');
   const guesser = useActivePlayer(state, players, 'guesser');
   const amITheGuesser = useAmIActive(state, 'guesser');
   const [step, setStep] = useState(0);
 
   useEffect(() => {
     if (step === 0 && state.previousSecretWord?.text) {
-      message.info(`A palavra secreta anterior era: ${state.previousSecretWord.text}`);
+      message.info(`A palavra secreta anterior era: ${state.previousSecretWord.text}`, 5);
     }
   }, [step, state?.previousSecretWord.text]);
 
-  const onSendSelectedWords = useCallback(
-    async (selectedWords) => {
-      try {
-        setLoader('submit-votes', true);
-        setStep(2);
-        const response = await UE_SO_ISSO_API.submitWordSelectionVotes({
-          gameId,
-          gameName,
-          playerName: me,
-          votes: selectedWords,
-        });
-        if (response.data) {
-          message.success('Acabou o tempo! Aguarde enquanto os outros participantes decidem');
-        }
-      } catch (e) {
-        notification.error({
-          message: 'Vixi, o aplicativo encontrou um erro ao tentar enviar seus votos',
-          description: JSON.stringify(e?.message),
-          placement: 'bottomLeft',
-        });
-        console.error(e);
-        setStep(0);
-      } finally {
-        setLoader('submit-votes', false);
-      }
-    },
-    [gameId, gameName, me, setLoader]
-  );
+  const onSendSelectedWords = useAPICall({
+    apiFunction: UE_SO_ISSO_API.submitWordSelectionVotes,
+    actionName: 'submit-votes',
+    onBeforeCall: () => setStep(2),
+    onError: () => setStep(0),
+    successMessage: 'Acabou o tempo! Aguarde enquanto os outros participantes votam',
+    errorMessage: 'Vixi, o aplicativo encontrou um erro ao tentar enviar seus votos',
+  });
+
   return (
     <PhaseContainer
       info={info}

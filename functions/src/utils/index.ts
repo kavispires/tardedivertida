@@ -2,9 +2,19 @@ import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 
 import * as constants from './constants';
-import { FirebaseContext, GameCode, GameId, PlayerName, Players } from '../utils/interfaces';
+import {
+  FirebaseContext,
+  GameCode,
+  GameId,
+  PlainObject,
+  PlayerName,
+  Players,
+  Teams,
+} from '../utils/interfaces';
 import { arteRuim } from '../engine/arte-ruim';
+import { ondaTelepatica } from '../engine/onda-telepatica';
 import { ueSoIsso } from '../engine/ue-so-isso';
+import { shuffle } from './game-utils';
 
 const { GAME_CODES, GAME_COLLECTIONS } = constants;
 
@@ -15,7 +25,7 @@ const { GAME_CODES, GAME_COLLECTIONS } = constants;
  * @param action
  */
 export function verifyPayload(property?: any, propertyName = 'unknown property', action = 'function') {
-  if (!property) {
+  if (property === undefined || property === null) {
     throw new functions.https.HttpsError('internal', `Failed to ${action}: a ${propertyName} is required`);
   }
 }
@@ -44,6 +54,14 @@ export function getSessionRef(
   gameId: string
 ): FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData> {
   return admin.firestore().collection(collectionName).doc(gameId).collection('session');
+}
+
+/**
+ * Aids deleting a value of a document on an update
+ * @returns
+ */
+export function deleteValue() {
+  return admin.firestore.FieldValue.delete();
 }
 
 /**
@@ -124,6 +142,8 @@ export const getCollectionNameByGameCode = (gameCode: GameCode): string | null =
   switch (gameCode) {
     case GAME_CODES.A:
       return GAME_COLLECTIONS.ARTE_RUIM;
+    case GAME_CODES.O:
+      return GAME_COLLECTIONS.ONDA_TELEPATICA;
     case GAME_CODES.U:
       return GAME_COLLECTIONS.UE_SO_ISSO;
     default:
@@ -148,6 +168,8 @@ export const getGameMethodsByCollection = (collectionName: string) => {
   switch (collectionName) {
     case GAME_COLLECTIONS.ARTE_RUIM:
       return arteRuim;
+    case GAME_COLLECTIONS.ONDA_TELEPATICA:
+      return ondaTelepatica;
     case GAME_COLLECTIONS.UE_SO_ISSO:
       return ueSoIsso;
     default:
@@ -164,6 +186,19 @@ export const getGameMethodsByCollection = (collectionName: string) => {
 export const readyPlayer = (players: Players, playerName: PlayerName): Players => {
   players[playerName].ready = true;
   players[playerName].updatedAt = Date.now();
+  return players;
+};
+
+/**
+ * Set all players as ready
+ * @param players
+ * @param butThisOne
+ * @returns
+ */
+export const readyPlayers = (players: Players, butThisOne = ''): Players => {
+  for (const playerKey in players) {
+    players[playerKey].ready = playerKey === butThisOne ? false : true;
+  }
   return players;
 };
 
@@ -210,7 +245,7 @@ export const isEverybodyReady = (players: Players): boolean => {
  * @param victory
  * @returns
  */
-export const getPointsToVictory = (players: Players, victory: number): number => {
+export const getPointsToVictory = (players: Players | Teams, victory: number): number => {
   const max = Object.values(players).reduce((acc, player) => {
     return Math.max(acc, player.score);
   }, 0);
@@ -226,4 +261,42 @@ export const getPointsToVictory = (players: Players, victory: number): number =>
  */
 export const getRoundsToEndGame = (round: number, totalRounds: number): number => {
   return totalRounds - round;
+};
+
+/**
+ * Determine each players teams
+ * @param players
+ * @param numberOfTeams
+ * @returns an object with the teams (the players are modified by reference adding their team Letter)
+ */
+export const determineTeams = (players: Players, numberOfTeams: number): PlainObject => {
+  const teams = {};
+  const playerNames = shuffle(Object.keys(players));
+  const playersPerTeam = Math.ceil(playerNames.length / numberOfTeams);
+  const shuffledPlayerNames = shuffle(playerNames);
+
+  let currentTeamIndex = 0;
+  let currentTeamCount = 0;
+  shuffledPlayerNames.forEach((playerName) => {
+    if (currentTeamCount >= playersPerTeam) {
+      currentTeamCount = 0;
+      currentTeamIndex += 1;
+    }
+
+    const teamLetter = constants.LETTERS[currentTeamIndex];
+
+    if (teams[teamLetter] === undefined) {
+      teams[teamLetter] = {
+        members: [],
+        name: teamLetter,
+        score: 0,
+      };
+    }
+    teams[teamLetter].members.push(playerName);
+    players[playerName].team = teamLetter;
+
+    currentTeamCount += 1;
+  });
+
+  return teams;
 };

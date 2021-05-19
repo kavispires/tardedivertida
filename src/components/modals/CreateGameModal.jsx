@@ -36,7 +36,7 @@ function CreateGameModal({ gameInfo }) {
       } catch (e) {
         notification.error({
           message: 'Applicativo encontrou um erro ao tentar criar o jogo',
-          description: JSON.stringify(e),
+          description: JSON.stringify(e.message),
           placement: 'bottomLeft',
         });
         console.error(e);

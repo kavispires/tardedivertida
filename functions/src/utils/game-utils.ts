@@ -15,11 +15,11 @@ export const shuffle = (list: any[]) => {
 
 /**
  * Get random number
- * @param [min]
- * @param [max]
+ * @param [min] inclusive
+ * @param [max] inclusive
  * @returns a random number
  */
-export const getRandomNumber = (min = 0, max = 100) => Math.floor(Math.random() * (max - min) + min);
+export const getRandomNumber = (min = 0, max = 100) => Math.floor(Math.random() * (max - min + 1) + min);
 
 /**
  * Get random element/item from a list
@@ -66,4 +66,42 @@ export const getRandomUniqueItem = (list: string[], used: string[]) => {
 export const getRandomUniqueItems = (list: string[], used: string[] = [], quantity = 1) => {
   const availableList = list.filter((i) => !used.includes(i));
   return getRandomItems(availableList, quantity);
+};
+
+/**
+ * Gets the next item in a array
+ * @param list
+ * @param currentItem
+ * @param wrap determine if the result should wrap to the beginning of the array
+ * @returns
+ */
+export const getNextItem = (list: any[], currentItem: any, wrap = true) => {
+  const currentIndex = list.findIndex((i) => i === currentItem);
+
+  if (currentItem === -1) return null;
+
+  if (currentIndex === list.length - 1) {
+    return wrap ? list[0] : null;
+  }
+
+  return list[currentIndex + 1];
+};
+
+/**
+ * Gets the previous item in a array
+ * @param list
+ * @param currentItem
+ * @param wrap determine if the result should wrap to the end of the array
+ * @returns
+ */
+export const getPreviousItem = (list: any[], currentItem: any, wrap = true) => {
+  const currentIndex = list.findIndex((i) => i === currentItem);
+
+  if (currentItem === -1) return null;
+
+  if (currentIndex === 0) {
+    return wrap ? list[list.length - 1] : null;
+  }
+
+  return list[currentIndex - 1];
 };

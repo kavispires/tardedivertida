@@ -93,7 +93,7 @@ function Join({ players, info }) {
     } catch (e) {
       notification.error({
         message: 'Vixi, o aplicativo encontrou um erro ao tentar te adicionar como jogador',
-        description: JSON.stringify(e),
+        description: JSON.stringify(e.message),
         placement: 'bottomLeft',
       });
       console.error(e);

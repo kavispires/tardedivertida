@@ -1,6 +1,7 @@
 export * from './useActivePlayer';
 export * from './useAmIActive';
 export * from './useAmIReady';
+export * from './useAPICall';
 export * from './useGamePlayers';
 export * from './useGameState';
 export * from './useGlobalState';

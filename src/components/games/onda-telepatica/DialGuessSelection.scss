@@ -1,0 +1,10 @@
+.o-dial-guess-selection {
+  &__clue {
+    background: get-color(white);
+    font-weight: bolder;
+    padding: get-unit(1);
+    margin: get-unit(0 1);
+    border-radius: get-unit(1);
+    text-transform: uppercase;
+  }
+}
