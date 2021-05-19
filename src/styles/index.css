@@ -62,6 +62,9 @@ body {
 .padding {
   padding: 8px; }
 
+.uppercase-input {
+  text-transform: uppercase; }
+
 .avatar-entry {
   position: relative; }
   .avatar-entry--floating {
@@ -1076,6 +1079,187 @@ body {
   text-decoration: line-through;
   background: #e08686; }
 
+.o-card {
+  width: 300px;
+  height: 100px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 8px 5px rgba(0, 0, 0, 0.1);
+  display: flex; }
+  .o-card__side {
+    width: 150px;
+    flex: 1;
+    padding: 8px; }
+    .o-card__side--left {
+      border-radius: 8px 0 0 8px; }
+    .o-card__side--right {
+      border-radius: 0 8px 8px 0; }
+    .o-card__side--L0 {
+      background: #2cbb95; }
+    .o-card__side--L1 {
+      background: #efc783; }
+    .o-card__side--L2 {
+      background: #f55e3d; }
+    .o-card__side--L3 {
+      background: #797484; }
+    .o-card__side--L4 {
+      background: #dbe0d0; }
+    .o-card__side--R0 {
+      background: #c2e7ce; }
+    .o-card__side--R1 {
+      background: #ebc4c2; }
+    .o-card__side--R2 {
+      background: #009fdb; }
+    .o-card__side--R3 {
+      background: #7fc4cd; }
+    .o-card__side--R4 {
+      background: #e9b700; }
+  .o-card__arrow {
+    font-size: 0.8em;
+    display: block; }
+  .o-card__text {
+    display: block;
+    margin-top: 8px; }
+
+.o-card-selection__container {
+  width: 100%;
+  display: flex;
+  justify-content: center; }
+
+.o-card-selection__button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 250ms; }
+  .o-card-selection__button:hover {
+    transform: scale(1.1); }
+
+.o-dial {
+  width: 60vw;
+  position: relative;
+  margin: 8px auto; }
+  .o-dial__needle {
+    fill: #e22929;
+    transform-origin: bottom center; }
+  .o-dial__card {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%); }
+
+.o-dial--animated .o-dial-numbers > path {
+  animation: fan-out 2s;
+  background: green; }
+
+.o-dial-numbers--odd {
+  fill: #e6e6e6;
+  transform-origin: bottom center; }
+
+.o-dial-numbers--even {
+  fill: #f2f2f2;
+  transform-origin: bottom center; }
+
+.o-dial-numbers--active {
+  fill: #e22929; }
+
+#bracket-number-1-r {
+  transform: rotate(8deg); }
+
+#bracket-number-1-l {
+  transform: rotate(-8deg); }
+
+#bracket-number-2-r {
+  transform: rotate(16deg); }
+
+#bracket-number-2-l {
+  transform: rotate(-16deg); }
+
+#bracket-number-3-r {
+  transform: rotate(24deg); }
+
+#bracket-number-3-l {
+  transform: rotate(-24deg); }
+
+#bracket-number-4-r {
+  transform: rotate(32deg); }
+
+#bracket-number-4-l {
+  transform: rotate(-32deg); }
+
+#bracket-number-5-r {
+  transform: rotate(40deg); }
+
+#bracket-number-5-l {
+  transform: rotate(-40deg); }
+
+#bracket-number-6-r {
+  transform: rotate(48deg); }
+
+#bracket-number-6-l {
+  transform: rotate(-48deg); }
+
+#bracket-number-7-r {
+  transform: rotate(56deg); }
+
+#bracket-number-7-l {
+  transform: rotate(-56deg); }
+
+#bracket-number-8-r {
+  transform: rotate(64deg); }
+
+#bracket-number-8-l {
+  transform: rotate(-64deg); }
+
+#bracket-number-9-r {
+  transform: rotate(72deg); }
+
+#bracket-number-9-l {
+  transform: rotate(-72deg); }
+
+#bracket-number-10-r {
+  transform: rotate(80deg); }
+
+#bracket-number-10-l {
+  transform: rotate(-80deg); }
+
+.o-dial-points {
+  transform-origin: bottom center; }
+  .o-dial-points__number {
+    fill: #ffffff; }
+  .o-dial-points__2 {
+    fill: #e2dc29; }
+  .o-dial-points__3 {
+    fill: #29e257; }
+  .o-dial-points__4 {
+    fill: #29abe2; }
+  .o-dial-points--animated {
+    opacity: 0;
+    animation: fade-in 4s;
+    animation-delay: 1.5s;
+    animation-fill-mode: forwards; }
+
+@keyframes fan-out {
+  from {
+    opacity: 0;
+    transform: rotate(0); }
+  to {
+    opacity: 1; } }
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: rotate(0) scale(1.1); }
+  to {
+    opacity: 1; } }
+
+.o-dial-guess-selection__clue {
+  background: white;
+  font-weight: bolder;
+  padding: 4px;
+  margin: 0 4px;
+  border-radius: 4px;
+  text-transform: uppercase; }
+
 .app {
   width: 100%;
   min-height: 100vh !important;
@@ -1125,165 +1309,165 @@ body {
       animation-timing-function: linear;
       animation-iteration-count: infinite; }
       .home__background span:nth-child(1) {
-        color: #44bba4;
-        top: 78%;
-        left: 50%;
-        animation-duration: 11.4s;
-        animation-delay: -1.2s;
-        transform-origin: -4vw -13vh;
-        box-shadow: -40vmin 0 14.5082vmin currentColor; }
+        color: #3a7ca5;
+        top: 57%;
+        left: 91%;
+        animation-duration: 13s;
+        animation-delay: -8.5s;
+        transform-origin: 13vw -2vh;
+        box-shadow: -40vmin 0 6.73288vmin currentColor; }
       .home__background span:nth-child(2) {
         color: #3a7ca5;
-        top: 13%;
-        left: 15%;
-        animation-duration: 14.3s;
-        animation-delay: -10.6s;
-        transform-origin: 6vw -13vh;
-        box-shadow: -40vmin 0 6.53795vmin currentColor; }
+        top: 22%;
+        left: 62%;
+        animation-duration: 13.1s;
+        animation-delay: -7.2s;
+        transform-origin: -10vw -24vh;
+        box-shadow: 40vmin 0 11.74861vmin currentColor; }
       .home__background span:nth-child(3) {
         color: #f2e863;
-        top: 61%;
-        left: 96%;
-        animation-duration: 14.2s;
-        animation-delay: -1.7s;
-        transform-origin: -20vw 10vh;
-        box-shadow: -40vmin 0 9.51626vmin currentColor; }
+        top: 19%;
+        left: 81%;
+        animation-duration: 12.7s;
+        animation-delay: -12.9s;
+        transform-origin: -14vw 0vh;
+        box-shadow: -40vmin 0 13.91548vmin currentColor; }
       .home__background span:nth-child(4) {
-        color: #3a7ca5;
-        top: 38%;
-        left: 49%;
-        animation-duration: 11.6s;
-        animation-delay: -2.9s;
-        transform-origin: 0vw -24vh;
-        box-shadow: -40vmin 0 12.39635vmin currentColor; }
+        color: #f2e863;
+        top: 49%;
+        left: 99%;
+        animation-duration: 13.5s;
+        animation-delay: -6s;
+        transform-origin: 6vw -20vh;
+        box-shadow: -40vmin 0 9.67053vmin currentColor; }
       .home__background span:nth-child(5) {
         color: #44bba4;
-        top: 62%;
-        left: 74%;
-        animation-duration: 15.8s;
-        animation-delay: -6.7s;
-        transform-origin: 5vw -7vh;
-        box-shadow: -40vmin 0 12.41859vmin currentColor; }
+        top: 50%;
+        left: 63%;
+        animation-duration: 11s;
+        animation-delay: -7.6s;
+        transform-origin: 17vw 12vh;
+        box-shadow: 40vmin 0 12.19107vmin currentColor; }
       .home__background span:nth-child(6) {
-        color: #3a7ca5;
-        top: 48%;
-        left: 45%;
-        animation-duration: 10.3s;
-        animation-delay: -10.5s;
-        transform-origin: 2vw 4vh;
-        box-shadow: 40vmin 0 7.76555vmin currentColor; }
+        color: #44bba4;
+        top: 39%;
+        left: 19%;
+        animation-duration: 12.2s;
+        animation-delay: -0.8s;
+        transform-origin: 21vw -13vh;
+        box-shadow: -40vmin 0 13.4277vmin currentColor; }
       .home__background span:nth-child(7) {
-        color: #f45b69;
-        top: 43%;
-        left: 32%;
-        animation-duration: 13.5s;
-        animation-delay: -8.1s;
-        transform-origin: -16vw -10vh;
-        box-shadow: 40vmin 0 8.04607vmin currentColor; }
+        color: #f2e863;
+        top: 63%;
+        left: 34%;
+        animation-duration: 15.1s;
+        animation-delay: -6.6s;
+        transform-origin: -6vw 13vh;
+        box-shadow: -40vmin 0 12.47321vmin currentColor; }
       .home__background span:nth-child(8) {
         color: #44bba4;
-        top: 43%;
-        left: 6%;
-        animation-duration: 15.3s;
-        animation-delay: -9.8s;
-        transform-origin: -2vw 18vh;
-        box-shadow: 40vmin 0 11.65714vmin currentColor; }
+        top: 68%;
+        left: 2%;
+        animation-duration: 14.6s;
+        animation-delay: -9s;
+        transform-origin: -5vw -1vh;
+        box-shadow: 40vmin 0 12.14803vmin currentColor; }
       .home__background span:nth-child(9) {
         color: #f2e863;
-        top: 94%;
-        left: 52%;
-        animation-duration: 15.8s;
-        animation-delay: -8.8s;
-        transform-origin: -8vw -17vh;
-        box-shadow: 40vmin 0 10.61269vmin currentColor; }
+        top: 20%;
+        left: 82%;
+        animation-duration: 11s;
+        animation-delay: -0.1s;
+        transform-origin: 6vw -11vh;
+        box-shadow: 40vmin 0 7.24864vmin currentColor; }
       .home__background span:nth-child(10) {
-        color: #f45b69;
-        top: 61%;
-        left: 97%;
-        animation-duration: 12.8s;
-        animation-delay: -14.5s;
-        transform-origin: -7vw -9vh;
-        box-shadow: -40vmin 0 9.08159vmin currentColor; }
-      .home__background span:nth-child(11) {
         color: #f2e863;
-        top: 56%;
-        left: 76%;
-        animation-duration: 14.9s;
-        animation-delay: -8.9s;
-        transform-origin: -8vw 24vh;
-        box-shadow: 40vmin 0 8.26423vmin currentColor; }
+        top: 36%;
+        left: 13%;
+        animation-duration: 13.2s;
+        animation-delay: -3.1s;
+        transform-origin: -24vw 6vh;
+        box-shadow: 40vmin 0 5.53861vmin currentColor; }
+      .home__background span:nth-child(11) {
+        color: #44bba4;
+        top: 88%;
+        left: 72%;
+        animation-duration: 14.7s;
+        animation-delay: -7.8s;
+        transform-origin: -17vw 6vh;
+        box-shadow: 40vmin 0 7.34351vmin currentColor; }
       .home__background span:nth-child(12) {
         color: #3a7ca5;
-        top: 26%;
-        left: 12%;
-        animation-duration: 13s;
-        animation-delay: -14.7s;
-        transform-origin: -14vw -20vh;
-        box-shadow: 40vmin 0 8.19379vmin currentColor; }
+        top: 94%;
+        left: 52%;
+        animation-duration: 10.8s;
+        animation-delay: -5.1s;
+        transform-origin: 18vw 3vh;
+        box-shadow: 40vmin 0 6.70516vmin currentColor; }
       .home__background span:nth-child(13) {
-        color: #f2e863;
-        top: 42%;
-        left: 55%;
-        animation-duration: 12.2s;
-        animation-delay: -7.2s;
-        transform-origin: 21vw -7vh;
-        box-shadow: 40vmin 0 9.63431vmin currentColor; }
+        color: #3a7ca5;
+        top: 23%;
+        left: 59%;
+        animation-duration: 13.4s;
+        animation-delay: -8.7s;
+        transform-origin: -17vw 6vh;
+        box-shadow: -40vmin 0 11.6007vmin currentColor; }
       .home__background span:nth-child(14) {
         color: #3a7ca5;
-        top: 82%;
-        left: 2%;
-        animation-duration: 14.7s;
-        animation-delay: -6.7s;
-        transform-origin: -4vw 21vh;
-        box-shadow: -40vmin 0 8.7701vmin currentColor; }
+        top: 69%;
+        left: 25%;
+        animation-duration: 12.3s;
+        animation-delay: -0.8s;
+        transform-origin: 10vw -4vh;
+        box-shadow: 40vmin 0 5.05411vmin currentColor; }
       .home__background span:nth-child(15) {
-        color: #44bba4;
-        top: 10%;
-        left: 23%;
-        animation-duration: 10.6s;
-        animation-delay: -7.7s;
-        transform-origin: -2vw 24vh;
-        box-shadow: -40vmin 0 6.47947vmin currentColor; }
-      .home__background span:nth-child(16) {
-        color: #3a7ca5;
-        top: 28%;
-        left: 10%;
-        animation-duration: 10.1s;
-        animation-delay: -7.8s;
-        transform-origin: -16vw 16vh;
-        box-shadow: -40vmin 0 10.11782vmin currentColor; }
-      .home__background span:nth-child(17) {
         color: #f45b69;
-        top: 26%;
-        left: 54%;
-        animation-duration: 13.1s;
-        animation-delay: -15.5s;
-        transform-origin: 14vw 13vh;
-        box-shadow: 40vmin 0 12.08191vmin currentColor; }
-      .home__background span:nth-child(18) {
+        top: 22%;
+        left: 6%;
+        animation-duration: 13.5s;
+        animation-delay: -13.2s;
+        transform-origin: 3vw -2vh;
+        box-shadow: -40vmin 0 14.5591vmin currentColor; }
+      .home__background span:nth-child(16) {
         color: #f2e863;
-        top: 87%;
-        left: 87%;
-        animation-duration: 11.4s;
-        animation-delay: -8.4s;
-        transform-origin: -2vw 18vh;
-        box-shadow: 40vmin 0 13.15196vmin currentColor; }
+        top: 20%;
+        left: 68%;
+        animation-duration: 12.7s;
+        animation-delay: -0.6s;
+        transform-origin: 8vw -14vh;
+        box-shadow: -40vmin 0 7.20456vmin currentColor; }
+      .home__background span:nth-child(17) {
+        color: #3a7ca5;
+        top: 22%;
+        left: 13%;
+        animation-duration: 12.1s;
+        animation-delay: -2.5s;
+        transform-origin: -12vw -21vh;
+        box-shadow: 40vmin 0 11.40528vmin currentColor; }
+      .home__background span:nth-child(18) {
+        color: #f45b69;
+        top: 12%;
+        left: 66%;
+        animation-duration: 12.9s;
+        animation-delay: -0.2s;
+        transform-origin: 1vw 7vh;
+        box-shadow: -40vmin 0 9.14592vmin currentColor; }
       .home__background span:nth-child(19) {
         color: #f45b69;
-        top: 59%;
-        left: 32%;
-        animation-duration: 13.9s;
-        animation-delay: -6.4s;
-        transform-origin: -17vw 23vh;
-        box-shadow: -40vmin 0 9.86351vmin currentColor; }
-      .home__background span:nth-child(20) {
-        color: #f2e863;
-        top: 39%;
+        top: 65%;
         left: 58%;
-        animation-duration: 10.9s;
-        animation-delay: -10.1s;
-        transform-origin: -21vw -4vh;
-        box-shadow: 40vmin 0 5.27992vmin currentColor; }
+        animation-duration: 14.2s;
+        animation-delay: -1.3s;
+        transform-origin: -24vw -11vh;
+        box-shadow: 40vmin 0 11.03073vmin currentColor; }
+      .home__background span:nth-child(20) {
+        color: #f45b69;
+        top: 21%;
+        left: 95%;
+        animation-duration: 13.2s;
+        animation-delay: -11.8s;
+        transform-origin: 19vw 15vh;
+        box-shadow: 40vmin 0 5.30094vmin currentColor; }
 
 @keyframes move {
   100% {
