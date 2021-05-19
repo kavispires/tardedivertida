@@ -2,6 +2,7 @@ import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import * as commonEngine from './engine/common';
 import * as arteRuimEngine from './engine/arte-ruim';
+import * as ondaTelepaticaEngine from './engine/onda-telepatica';
 import * as ueSoIssoEngine from './engine/ue-so-isso';
 
 admin.initializeApp();
@@ -59,6 +60,38 @@ exports.arteRuimSubmitVoting = functions.https.onCall(arteRuimEngine.submitVotin
  * Admin action to force game to go to its next phase
  */
 exports.arteRuimGoToNextPhase = functions.https.onCall(arteRuimEngine.goToNextPhase);
+
+// ONDA_TELEPATICA HTTP CALLS
+
+/**
+ * Make player ready, if it's the last player to be ready, move to the next phase
+ */
+exports.ondaTelepaticaMakeMeReady = functions.https.onCall(ondaTelepaticaEngine.makeMeReady);
+
+/**
+ * Submit dial sides and final clue and move to the next phase
+ */
+exports.ondaTelepaticaSubmitSides = functions.https.onCall(ondaTelepaticaEngine.submitSides);
+
+/**
+ * Submit dial sides and final clue and move to the next phase
+ */
+exports.ondaTelepaticaSubmitClue = functions.https.onCall(ondaTelepaticaEngine.submitClue);
+
+/**
+ * Submit team guess and move to the next phase
+ */
+exports.ondaTelepaticaSubmitGuess = functions.https.onCall(ondaTelepaticaEngine.submitGuess);
+
+/**
+ * Submit rival team guess and move to the next phase
+ */
+exports.ondaTelepaticaSubmitRivalGuess = functions.https.onCall(ondaTelepaticaEngine.submitRivalGuess);
+
+/**
+ * Just goes to next phase (admin action)
+ */
+exports.ondaTelepaticaGoToNextPhase = functions.https.onCall(ondaTelepaticaEngine.goToNextPhase);
 
 // UE_SO_ISSO HTTP CALLS
 

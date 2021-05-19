@@ -4,7 +4,6 @@ import * as utils from '../utils/index';
 import {
   Players,
   Player,
-  ArteRuimState,
   GameId,
   PlayerName,
   UeSoIssoInitialState,
@@ -14,6 +13,7 @@ import {
   CurrentSuggestions,
   SubmitSuggestionsValidationPayload,
   ConfirmGuessPayload,
+  UeSoIssoState,
 } from '../utils/interfaces';
 // Resources
 import { allWordsBR } from '../resources/ue-so-isso-words';
@@ -75,7 +75,7 @@ export const ueSoIsso = {
    * @param players
    * @returns
    */
-  lockGame: (): ArteRuimState => {
+  lockGame: (): UeSoIssoState => {
     return {
       phase: PHASES.UE_SO_ISSO.RULES,
       round: 0,
