@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 // import { Image, Layout } from 'antd';
 import gameList from '../resources/games.json';
@@ -68,44 +69,8 @@ function TestingZone() {
 
   // return <GameOver info={info} state={state} players={players} />;
   return (
-    <PhaseContainer
-      info={info}
-      phase={state.phase}
-      allowedPhase="WORD_SELECTION"
-      className=""
-      fullScreen
-      white
-    >
-      <div className="u-word-selection">
-        {/* <Title white>Selecione a Palavra-Secreta</Title>
-
-        <Instruction white>
-          A palavra secreta com mais votos será escolhida para essa rodada. Você pode selecionar quantas
-          quiser!
-        </Instruction>
-        {LETTERS.split('').map((letter) => {
-          return (
-            <Card color={getColorFromLetter(letter)} header={letter}>
-              LETTER {letter}
-            </Card>
-          );
-        })}
-        <ul className="u-word-card">
-          {state.words.map((word) => {
-            return (
-              <li className="u-word-card__word">
-                <button className="u-word-card__button">
-                  <span className="u-word-card__text">{allWords[word]}</span>
-                  <span className="u-word-card__icon">
-                    <CheckCircleFilled />
-                  </span>
-                </button>
-              </li>
-            );
-          })}
-        </ul>
-        <Button type="primary">Enviar votos</Button> */}
-      </div>
+    <PhaseContainer info={info} phase={state.phase} allowedPhase="WORD_SELECTION" className="" fullScreen>
+      <div className="u-word-selection"></div>
     </PhaseContainer>
   );
 }
