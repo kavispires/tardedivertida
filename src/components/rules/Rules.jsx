@@ -1,8 +1,8 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 // Design Resources
-import { Button, Layout, message, notification, Space, Typography } from 'antd';
+import { Button, Layout, Space, Typography } from 'antd';
 // State
-import { useGlobalState, useAmIReady } from '../../hooks';
+import { useGlobalState, useAmIReady, useAPICall } from '../../hooks';
 // Components
 import RulesCarousel from './RulesCarousel';
 import LoadingPage from '../loaders/LoadingPage';
@@ -12,39 +12,23 @@ import { getAPI } from '../../adapters';
 import ReadyPlayersBar from '../shared/ReadyPlayersBar';
 
 function Rules({ players, info }) {
-  const [isLoading, setLoader] = useLoading();
-  const [gameId] = useGlobalState('gameId');
+  const [isLoading] = useLoading();
   const [gameName] = useGlobalState('gameName');
-  const [me] = useGlobalState('me');
   const amIReady = useAmIReady(players);
 
-  const onBeReady = useCallback(async () => {
-    try {
-      setLoader('be-ready', true);
-      const response = await getAPI(gameName).makeMeReady({
-        gameId,
-        gameName,
-        playerName: me,
-      });
-      if (response.data) {
-        message.success('Pronto! Aguarde os outros jogadores estarem prontos');
-      }
-    } catch (e) {
-      notification.error({
-        message: 'Vixi, o aplicativo encontrou um erro ao tentar continuar',
-        description: JSON.stringify(e),
-        placement: 'bottomLeft',
-      });
-      console.error(e);
-    } finally {
-      setLoader('be-ready', false);
-    }
-  }, [gameId, gameName, setLoader, me]);
+  const onBeReady = useAPICall({
+    apiFunction: getAPI(gameName).makeMeReady,
+    actionName: 'be-ready',
+    successMessage: 'Pronto! Aguarde os outros jogadores estarem prontos',
+    errorMessage: 'Vixi, o aplicativo encontrou um erro ao tentar continuar',
+  });
 
-  const onBeReadyQue = useCallback(() => {
-    message.warning('Vixi, se fudeu então, pq o jogo vai começar!');
-    onBeReady();
-  }, [onBeReady]);
+  const onBeReadyQue = useAPICall({
+    apiFunction: getAPI(gameName).makeMeReady,
+    actionName: 'be-ready',
+    successMessage: 'Vixi, se fudeu então, pq o jogo vai começar!',
+    errorMessage: 'Vixi, o aplicativo encontrou um erro ao tentar continuar',
+  });
 
   if (!info?.gameName) {
     return <LoadingPage />;
@@ -61,14 +45,14 @@ function Rules({ players, info }) {
           type="primary"
           icon={amIReady ? <CheckCircleFilled /> : <SmileFilled />}
           disabled={isLoading || amIReady}
-          onClick={onBeReady}
+          onClick={() => onBeReady({})}
         >
           Entendi tudo e estou pronto para jogar!
         </Button>
         <Button
           icon={amIReady ? <CheckCircleFilled /> : <MehFilled />}
           disabled={isLoading || amIReady}
-          onClick={onBeReady}
+          onClick={() => onBeReady({})}
         >
           Não entendi nada, mas vamos lá
         </Button>
@@ -77,7 +61,7 @@ function Rules({ players, info }) {
           danger
           icon={amIReady ? <CheckCircleFilled /> : <RobotFilled />}
           disabled={isLoading || amIReady}
-          onClick={onBeReadyQue}
+          onClick={() => onBeReadyQue({})}
         >
           Que?
         </Button>

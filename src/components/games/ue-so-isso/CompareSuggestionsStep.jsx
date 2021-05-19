@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Button, Space } from 'antd';
 import { CloudUploadOutlined, ExclamationCircleOutlined, FireFilled } from '@ant-design/icons';
 // State
-import { useGlobalState } from '../../../hooks';
+import { useGlobalState, useLoading } from '../../../hooks';
 // Components
 import Title from '../../shared/Title';
 import Instruction from '../../shared/Instruction';
@@ -19,6 +19,7 @@ function CompareSuggestionsStep({
   onValidateSuggestions,
   players,
 }) {
+  const [isLoading] = useLoading();
   const [myRecommendation, setMyRecommendation] = useState(suggestions);
   const [isAdmin] = useGlobalState('isAdmin');
 
@@ -98,8 +99,12 @@ function CompareSuggestionsStep({
           <Button
             icon={<CloudUploadOutlined />}
             type="primary"
-            onClick={() => onValidateSuggestions(suggestionsValues)}
-            disabled={false}
+            onClick={() =>
+              onValidateSuggestions({
+                validSuggestions: suggestionsValues.filter((suggestion) => !suggestion.invalid),
+              })
+            }
+            disabled={isLoading}
           >
             Confirmar dicas válidas
           </Button>
@@ -111,8 +116,12 @@ function CompareSuggestionsStep({
           icon={<FireFilled />}
           type="primary"
           danger
-          onClick={() => onValidateSuggestions(suggestionsValues)}
-          disabled={false}
+          onClick={() =>
+            onValidateSuggestions({
+              validSuggestions: suggestionsValues.filter((suggestion) => !suggestion.invalid),
+            })
+          }
+          disabled={isLoading}
         >
           Confirmar dicas válidas como Admin
         </Button>

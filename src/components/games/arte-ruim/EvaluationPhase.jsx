@@ -1,9 +1,9 @@
 import React, { Fragment, useCallback, useState } from 'react';
 // Design Resources
-import { Button, message, notification, Space } from 'antd';
+import { Button, Space } from 'antd';
 import { CloudUploadOutlined } from '@ant-design/icons';
 // Hooks
-import { useLoading, useAmIReady, useGlobalState } from '../../../hooks';
+import { useAmIReady, useGlobalState, useAPICall } from '../../../hooks';
 // Utils
 import { ARTE_RUIM_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
@@ -18,16 +18,30 @@ import Instruction from '../../shared/Instruction';
 import StepSwitcher from '../../shared/StepSwitcher';
 import AdminForceNextPhase from '../../shared/AdminForceNextPhase';
 
+function prepareVotes(votes) {
+  return Object.entries(votes).reduce((acc, [drawingEntryId, cardEntryId]) => {
+    const [, drawingId] = drawingEntryId.split('-');
+    const [, cardId] = cardEntryId.split('-');
+    acc[drawingId] = cardId;
+    return acc;
+  }, {});
+}
+
 function EvaluationPhase({ players, state, info }) {
-  const [, setLoader] = useLoading();
   const amIReady = useAmIReady(players, state);
-  const [gameId] = useGlobalState('gameId');
-  const [gameName] = useGlobalState('gameName');
-  const [me] = useGlobalState('me');
   const [canvasSize] = useGlobalState('canvasSize');
   const [step, setStep] = useState(0);
   const [votes, setVotes] = useState({});
   const [activeItem, setActiveItem] = useState(null);
+
+  const onSubmitVoting = useAPICall({
+    apiFunction: ARTE_RUIM_API.submitVoting,
+    actionName: 'submit-drawing',
+    onBeforeCall: () => setStep(1),
+    onError: () => setStep(0),
+    successMessage: 'Avaliação enviada! Agora aguarde os outros jogadores',
+    errorMessage: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua avaliação',
+  });
 
   const onActivateItem = useCallback(
     (entryId) => {
@@ -55,39 +69,6 @@ function EvaluationPhase({ players, state, info }) {
     },
     [activeItem]
   );
-
-  const onSubmitVoting = useCallback(async () => {
-    try {
-      setLoader('submit-drawing', true);
-      const preparedVotes = Object.entries(votes).reduce((acc, [drawingEntryId, cardEntryId]) => {
-        const [, drawingId] = drawingEntryId.split('-');
-        const [, cardId] = cardEntryId.split('-');
-        acc[drawingId] = cardId;
-        return acc;
-      }, {});
-
-      setStep(1);
-
-      const response = await ARTE_RUIM_API.submitVoting({
-        gameId,
-        gameName,
-        playerName: me,
-        votes: preparedVotes,
-      });
-      if (response.data) {
-        message.success('Avaliação enviada! Agora aguarde os outros jogadores');
-      }
-    } catch (e) {
-      notification.error({
-        message: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua avaliação',
-        description: JSON.stringify(e),
-        placement: 'bottomLeft',
-      });
-      console.error(e);
-    } finally {
-      setLoader('submit-drawing', false);
-    }
-  }, [gameId, gameName, setLoader, me, votes]);
 
   return (
     <PhaseContainer
@@ -128,7 +109,7 @@ function EvaluationPhase({ players, state, info }) {
           <Space className="a-evaluation-phase__action-button">
             <Button
               type="primary"
-              onClick={onSubmitVoting}
+              onClick={() => onSubmitVoting({ votes: prepareVotes(votes) })}
               disabled={Object.values(votes).length < state.drawings.length}
               icon={<CloudUploadOutlined />}
             >

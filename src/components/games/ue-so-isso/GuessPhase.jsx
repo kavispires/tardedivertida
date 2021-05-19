@@ -1,10 +1,10 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
-import { Button, message, notification, Space } from 'antd';
+import { Button, Space } from 'antd';
 import { CheckOutlined, CloseOutlined, MinusOutlined, QuestionCircleOutlined } from '@ant-design/icons';
 // Hooks
-import { useGlobalState, useLoading, useActivePlayer, useAmIActive } from '../../../hooks';
+import { useGlobalState, useLoading, useActivePlayer, useAmIActive, useAPICall } from '../../../hooks';
 // Resources & Utils
 import { UE_SO_ISSO_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
@@ -19,44 +19,20 @@ import UeSoIssoCard from '../../cards/UeSoIssoCard';
 import SuggestionCard from './SuggestionCard';
 
 function GuessPhase({ state, players, info }) {
-  const [, setLoader] = useLoading();
-  const [gameId] = useGlobalState('gameId');
-  const [gameName] = useGlobalState('gameName');
-  const [me] = useGlobalState('me');
+  const [isLoading] = useLoading();
   const [isAdmin] = useGlobalState('isAdmin');
   const [step, setStep] = useState(0);
   const guesser = useActivePlayer(state, players, 'guesser');
   const amITheNextGuesser = useAmIActive(state, 'nextGuesser');
 
-  const onSubmitGuess = useCallback(
-    async (result) => {
-      try {
-        setLoader('guess', true);
-        setStep(1);
-        const response = await UE_SO_ISSO_API.confirmGuess({
-          gameId,
-          gameName,
-          playerName: me,
-          guess: result,
-        });
-
-        if (response.data) {
-          message.success('Resultado enviado com sucesso!');
-        }
-      } catch (e) {
-        notification.error({
-          message: 'Vixi, o aplicativo encontrou um erro ao tentar enviar o resultado',
-          description: JSON.stringify(e),
-          placement: 'bottomLeft',
-        });
-        console.error(e);
-        setStep(0);
-      } finally {
-        setLoader('guess', false);
-      }
-    },
-    [gameId, gameName, me, setLoader]
-  );
+  const onSubmitGuess = useAPICall({
+    apiFunction: UE_SO_ISSO_API.confirmGuess,
+    actionName: 'guess',
+    onBeforeCall: () => setStep(1),
+    onError: () => setStep(0),
+    successMessage: 'Resultado enviado com sucesso!',
+    errorMessage: 'Vixi, o aplicativo encontrou um erro ao tentar enviar o resultado',
+  });
 
   return (
     <PhaseContainer
@@ -100,8 +76,8 @@ function GuessPhase({ state, players, info }) {
                 icon={<CheckOutlined />}
                 type="primary"
                 style={{ backgroundColor: 'green' }}
-                onClick={() => onSubmitGuess('CORRECT')}
-                disabled={false}
+                onClick={() => onSubmitGuess({ guess: 'CORRECT' })}
+                disabled={isLoading}
               >
                 Acertou
               </Button>
@@ -109,16 +85,16 @@ function GuessPhase({ state, players, info }) {
                 icon={<CloseOutlined />}
                 type="primary"
                 danger
-                onClick={() => onSubmitGuess('WRONG')}
-                disabled={false}
+                onClick={() => onSubmitGuess({ guess: 'WRONG' })}
+                disabled={isLoading}
               >
                 Errou
               </Button>
               <Button
                 icon={<MinusOutlined />}
                 type="default"
-                onClick={() => onSubmitGuess('PASS')}
-                disabled={false}
+                onClick={() => onSubmitGuess({ guess: 'PASS' })}
+                disabled={isLoading}
               >
                 Passou a vez
               </Button>
