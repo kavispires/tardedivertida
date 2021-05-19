@@ -53,6 +53,7 @@ export interface Player {
   ready: boolean;
   score: number;
   updatedAt?: DateMilliseconds;
+  team?: string;
   [key: string]: any;
 }
 
@@ -61,6 +62,22 @@ export interface Players {
 }
 
 export interface MakeMeReadyPayload {
+  gameId: GameId;
+  gameName: GameName;
+  playerName: PlayerName;
+}
+
+export interface Team {
+  members: PlayerName[];
+  name: string;
+  score: number;
+}
+
+export interface Teams {
+  [key: string]: Team;
+}
+
+export interface Payload {
   gameId: GameId;
   gameName: GameName;
   playerName: PlayerName;
@@ -102,19 +119,67 @@ export interface DrawingEntry {
   playerName: string;
 }
 
-export interface SubmitDrawingPayload {
-  gameId: GameId;
-  gameName: GameName;
-  playerName: PlayerName;
+export interface SubmitDrawingPayload extends Payload {
   drawing: string;
   cardId: string;
 }
 
-export interface SubmitVotingPayload {
-  gameId: GameId;
-  gameName: GameName;
-  playerName: PlayerName;
+export interface SubmitVotingPayload extends Payload {
   votes: PlainObject;
+}
+
+// ONDA TELEPATICA
+export interface OndaTelepaticaCard {
+  id: string;
+  left: string;
+  right: string;
+  target: number;
+  needle: number;
+  clue: string;
+  rival: number;
+}
+
+export interface OndaTelepaticaCards {
+  [key: string]: UsedWord;
+}
+
+export interface OndaTelepaticaStore {
+  teams: PlainObject;
+  usedCards: OndaTelepaticaCards;
+  currentCard: string[];
+  [key: string]: any;
+}
+
+export interface OndaTelepaticaState {
+  phase: string;
+  round: number;
+  teams: PlainObject;
+  psychic?: PlayerName;
+  rivalPsychic?: PlayerName;
+  [key: string]: any;
+}
+
+export interface OndaTelepaticaInitialState {
+  meta: Meta;
+  players: Players;
+  store: OndaTelepaticaStore;
+  state: OndaTelepaticaState;
+}
+
+export interface OndaTelepaticaSubmitSidesPayload extends Payload {
+  cardId: string;
+}
+
+export interface OndaTelepaticaSubmitCluePayload extends Payload {
+  clue: string;
+}
+
+export interface OndaTelepaticaSubmitGuessPayload extends Payload {
+  guess: number;
+}
+
+export interface OndaTelepaticaSubmitRivalGuessPayload extends Payload {
+  rivalGuess: number;
 }
 
 // UE SO ISSO
@@ -153,10 +218,7 @@ export interface UeSoIssoInitialState {
   state: UeSoIssoState;
 }
 
-export interface SubmitSuggestionsPayload {
-  gameId: GameId;
-  gameName: GameName;
-  playerName: PlayerName;
+export interface SubmitSuggestionsPayload extends Payload {
   suggestions: string[];
 }
 
@@ -164,16 +226,10 @@ export interface CurrentSuggestions {
   [key: string]: string[];
 }
 
-export interface SubmitSuggestionsValidationPayload {
-  gameId: GameId;
-  gameName: GameName;
-  playerName: PlayerName;
+export interface SubmitSuggestionsValidationPayload extends Payload {
   validSuggestions: PlainObject[];
 }
 
-export interface ConfirmGuessPayload {
-  gameId: GameId;
-  gameName: GameName;
-  playerName: PlayerName;
+export interface ConfirmGuessPayload extends Payload {
   guess: string;
 }
