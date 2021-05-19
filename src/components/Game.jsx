@@ -62,7 +62,7 @@ function Game() {
         console.error(e);
         notification.error({
           message: 'Erro ao carregar o jogo',
-          description: JSON.stringify(e),
+          description: JSON.stringify(e.message),
         });
         console.error(e);
       } finally {
