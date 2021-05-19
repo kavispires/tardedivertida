@@ -77,6 +77,7 @@ function RevealPhase({ state, players, info }) {
         target={state.card.target}
         showNeedle
         needle={state.card.needle}
+        rivalGuess={state.card.rival}
         animate
       />
       <Instruction contained>

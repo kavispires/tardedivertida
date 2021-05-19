@@ -3,10 +3,19 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import Card from './Card';
 
-function Dial({ card, needle = 0, showNeedle = false, target = 0, showTarget = false, animate = false }) {
+function Dial({
+  card,
+  needle = 0,
+  showNeedle = false,
+  target = 0,
+  showTarget = false,
+  rivalGuess = 0,
+  animate = false,
+}) {
   const baseClass = 'o-dial';
   const baseBracketClass = 'o-dial-numbers';
   const basePointsClass = 'o-dial-points';
+  const baseRivalClass = 'o-dial-rival';
 
   return (
     <div className={clsx(`${baseClass}`, animate && `${baseClass}--animated`)}>
@@ -266,6 +275,32 @@ function Dial({ card, needle = 0, showNeedle = false, target = 0, showTarget = f
             )}
           </g>
         )}
+
+        {rivalGuess === -1 && (
+          <g className={clsx(`${baseRivalClass} ${baseRivalClass}---1`)}>
+            <path
+              fill="#FFFFFF"
+              d="M64.6 14.1c-23.9 0-43.3 14.4-43.3 32.1 0 8.8 4.8 16.8 12.6 22.6-5.3 4.6-12.3 7-19.4 6.6 1.8 1.5 3.7 2.7 5.9 3.7 9 4 19.1 2.2 26.2-3.6 5.5 1.9 11.6 2.9 18 2.9 23.9 0 43.3-14.4 43.3-32.1S88.5 14.1 64.6 14.1z"
+            />
+            <path
+              fill="#f7931e"
+              d="M45.4 49.1c-2.3-1.3-2.3-4.6 0-5.9l13.1-7.6L71.6 28c2.3-1.3 5.1.3 5.1 2.9v30.2c0 2.6-2.8 4.2-5.1 2.9l-13.1-7.6-13.1-7.3z"
+            />
+          </g>
+        )}
+
+        {rivalGuess === 1 && (
+          <g className={clsx(`${baseRivalClass} ${baseRivalClass}---1`)}>
+            <path
+              fill="#FFFFFF"
+              d="M605.4 14.1c23.9 0 43.3 14.4 43.3 32.1 0 8.8-4.8 16.8-12.6 22.6 5.3 4.6 12.3 7 19.4 6.6-1.8 1.5-3.7 2.7-5.9 3.7-9 4-19.1 2.2-26.2-3.6-5.5 1.9-11.6 2.9-18 2.9-23.9 0-43.3-14.4-43.3-32.1s19.4-32.2 43.3-32.2z"
+            />
+            <path
+              fill="#f7931e"
+              d="M624.6 49.1c2.3-1.3 2.3-4.6 0-5.9l-13.1-7.6-13.1-7.6c-2.3-1.3-5.1.3-5.1 2.9v30.2c0 2.6 2.8 4.2 5.1 2.9l13.1-7.6 13.1-7.3z"
+            />
+          </g>
+        )}
       </svg>
       <Card left={card.left} right={card.right} className="o-dial__card" />
     </div>
@@ -283,6 +318,7 @@ Dial.propTypes = {
   target: PropTypes.number,
   showTarget: PropTypes.bool,
   animate: PropTypes.bool,
+  rivalGuess: PropTypes.number,
 };
 
 export default memo(Dial);
