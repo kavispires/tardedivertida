@@ -1,0 +1,75 @@
+$o-card-width: 300px;
+
+.o-card {
+  width: $o-card-width;
+  height: $o-card-width / 3;
+  border-radius: get-unit(2);
+  text-align: center;
+  @include box-shadow;
+
+  display: flex;
+
+  &__side {
+    width: $o-card-width / 2;
+    flex: 1;
+    padding: get-unit(2);
+
+    &--left {
+      border-radius: get-unit(2 0 0 2);
+    }
+
+    &--right {
+      border-radius: get-unit(0 2 2 0);
+    }
+
+    &--L0 {
+      background: #2cbb95;
+    }
+
+    &--L1 {
+      background: #efc783;
+    }
+
+    &--L2 {
+      background: #f55e3d;
+    }
+
+    &--L3 {
+      background: #797484;
+    }
+
+    &--L4 {
+      background: #dbe0d0;
+    }
+
+    &--R0 {
+      background: #c2e7ce;
+    }
+
+    &--R1 {
+      background: #ebc4c2;
+    }
+
+    &--R2 {
+      background: #009fdb;
+    }
+
+    &--R3 {
+      background: #7fc4cd;
+    }
+
+    &--R4 {
+      background: #e9b700;
+    }
+  }
+
+  &__arrow {
+    font-size: 0.8em;
+    display: block;
+  }
+
+  &__text {
+    display: block;
+    margin-top: get-unit(2);
+  }
+}

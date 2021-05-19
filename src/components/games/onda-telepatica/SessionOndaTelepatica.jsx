@@ -10,9 +10,13 @@ import gameList from '../../../resources/games.json';
 import Lobby from '../../lobby/Lobby';
 import Rules from '../../rules/Rules';
 import PageError from '../../errors/PageError';
-import PhasePlaceholder from '../../shared/PhasePlaceholder';
 import GameOver from '../../shared/GameOver';
 import GameInfoDrawer from '../../shared/GameInfoDrawer';
+import DialSidesPhase from './DialSidesPhase';
+import DialCluePhase from './DialCluePhase';
+import GuessPhase from './GuessPhase';
+import RivalPhase from './RivalPhase';
+import RevealPhase from './RevealPhase';
 
 function getActiveComponent(phase) {
   switch (phase) {
@@ -21,15 +25,15 @@ function getActiveComponent(phase) {
     case PHASES.ONDA_TELEPATICA.RULES:
       return Rules;
     case PHASES.ONDA_TELEPATICA.DIAL_SIDES:
-      return PhasePlaceholder;
+      return DialSidesPhase;
     case PHASES.ONDA_TELEPATICA.DIAL_CLUE:
-      return PhasePlaceholder;
+      return DialCluePhase;
     case PHASES.ONDA_TELEPATICA.GUESS:
-      return PhasePlaceholder;
+      return GuessPhase;
     case PHASES.ONDA_TELEPATICA.RIVAL_GUESS:
-      return PhasePlaceholder;
+      return RivalPhase;
     case PHASES.ONDA_TELEPATICA.REVEAL:
-      return PhasePlaceholder;
+      return RevealPhase;
     case PHASES.ONDA_TELEPATICA.GAME_OVER:
       return GameOver;
     default:
