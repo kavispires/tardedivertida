@@ -22,9 +22,8 @@ function GuessPhase({ state, players, info }) {
   const onSendGuess = useAPICall({
     apiFunction: ONDA_TELEPATICA.submitGuess,
     actionName: 'submit-guess',
-    setStep,
-    currentStep: 0,
-    successStep: 1,
+    onBeforeCall: () => setStep(1),
+    onError: () => setStep(0),
     successMessage: 'Chute submetido com sucesso',
     errorMessage: 'Vixi, ocorreu um erro ao tentar enviar seu chute',
   });

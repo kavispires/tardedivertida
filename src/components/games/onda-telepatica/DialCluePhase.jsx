@@ -21,9 +21,8 @@ function DialCluePhase({ state, players, info }) {
   const onSendClue = useAPICall({
     apiFunction: ONDA_TELEPATICA.submitClue,
     actionName: 'submit-clue',
-    setStep,
-    currentStep: 0,
-    successStep: 1,
+    onBeforeCall: () => setStep(1),
+    onError: () => setStep(0),
     successMessage: 'Dica submetida com sucesso',
     errorMessage: 'Vixi, ocorreu um erro ao tentar enviar a dica',
   });
