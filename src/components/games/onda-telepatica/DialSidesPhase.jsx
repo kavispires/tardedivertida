@@ -28,7 +28,6 @@ function DialSidesPhase({ state, players, info }) {
     successMessage: 'Carta selecionada com sucesso',
     errorMessage: 'Vixi, ocorreu um erro ao tentar enviar a carta',
   });
-  console.log({ psychic });
 
   return (
     <PhaseContainer
