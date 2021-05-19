@@ -247,10 +247,10 @@ const prepareDialSidesPhase = async (
   }, {});
 
   const lastPsychicUpdate: PlainObject = {};
-  if (state.activeTeam === 'A') {
+  if (activeTeam === 'A') {
     lastPsychicUpdate.lastPsychicA = newPsychic;
   }
-  if (state.activeTeam === 'B') {
+  if (activeTeam === 'B') {
     lastPsychicUpdate.lastPsychicB = newPsychic;
   }
 
