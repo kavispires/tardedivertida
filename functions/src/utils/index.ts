@@ -12,9 +12,9 @@ import {
   Players,
   Teams,
 } from '../utils/interfaces';
-import { arteRuim } from '../engine/arte-ruim';
-import { ondaTelepatica } from '../engine/onda-telepatica';
-import { ueSoIsso } from '../engine/ue-so-isso';
+import { arteRuim, getInitialState as arteRuimGetInitialState } from '../engine/arte-ruim';
+import { ondaTelepatica, getInitialState as ondaTelepaticaGetInitialState } from '../engine/onda-telepatica';
+import { ueSoIsso, getInitialState as ueSoIssoGetInitialState } from '../engine/ue-so-isso';
 import { shuffle, getRandomUniqueItem } from './game-utils';
 
 const { GAME_CODES, GAME_COLLECTIONS } = constants;
@@ -173,6 +173,24 @@ export const getGameMethodsByCollection = (collectionName: string) => {
       return ondaTelepatica;
     case GAME_COLLECTIONS.UE_SO_ISSO:
       return ueSoIsso;
+    default:
+      throw new Error(`Collection '${collectionName}' does not exist`);
+  }
+};
+
+/**
+ * Get all methods from game collection
+ * @param collectionName
+ * @returns
+ */
+export const getInitialStateForCollection = (collectionName: string) => {
+  switch (collectionName) {
+    case GAME_COLLECTIONS.ARTE_RUIM:
+      return arteRuimGetInitialState;
+    case GAME_COLLECTIONS.ONDA_TELEPATICA:
+      return ondaTelepaticaGetInitialState;
+    case GAME_COLLECTIONS.UE_SO_ISSO:
+      return ueSoIssoGetInitialState;
     default:
       throw new Error(`Collection '${collectionName}' does not exist`);
   }

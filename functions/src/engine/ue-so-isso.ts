@@ -17,37 +17,39 @@ import {
 // Resources
 import { allWordsBR } from '../resources/ue-so-isso-words';
 
+/**
+ * Get Initial Game State
+ * @param gameId
+ * @param uid
+ * @param language
+ * @returns
+ */
+export const getInitialState = (gameId: GameId, uid: string, language: string): UeSoIssoInitialState => ({
+  meta: {
+    gameId,
+    gameName: GAME_COLLECTIONS.UE_SO_ISSO,
+    createdAt: Date.now(),
+    createdBy: uid,
+    min: 3,
+    max: 8,
+    isLocked: false,
+    isComplete: false,
+    language,
+  },
+  players: {},
+  store: {
+    turnOrder: [],
+    usedWords: {},
+    currentWords: [],
+    currentSuggestions: [],
+  },
+  state: {
+    phase: PHASES.UE_SO_ISSO.LOBBY,
+    round: 0,
+  },
+});
+
 export const ueSoIsso = {
-  /**
-   * Get initial session
-   * @param gameId
-   * @param uid
-   * @returns
-   */
-  getInitialSession: (gameId: GameId, uid: string, language: string): UeSoIssoInitialState => ({
-    meta: {
-      gameId,
-      gameName: GAME_COLLECTIONS.UE_SO_ISSO,
-      createdAt: Date.now(),
-      createdBy: uid,
-      min: 3,
-      max: 8,
-      isLocked: false,
-      isComplete: false,
-      language,
-    },
-    players: {},
-    store: {
-      turnOrder: [],
-      usedWords: {},
-      currentWords: [],
-      currentSuggestions: [],
-    },
-    state: {
-      phase: PHASES.UE_SO_ISSO.LOBBY,
-      round: 0,
-    },
-  }),
   /**
    * Locks game adding isLock to meta and moving to the RULES phase
    * @param players
