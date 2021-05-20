@@ -1,21 +1,13 @@
-import {
-  GAME_COLLECTIONS,
-  PHASES,
-  AVATAR_IDS,
-  ARTE_RUIM_GOAL,
-  ARTE_RUIM_CARDS_BY_LEVEL,
-} from '../utils/constants';
+import { GAME_COLLECTIONS, PHASES, ARTE_RUIM_GOAL, ARTE_RUIM_CARDS_BY_LEVEL } from '../utils/constants';
 import * as gameUtils from '../utils/game-utils';
 import * as utils from '../utils/index';
 import {
   ArteRuimInitialState,
   Players,
-  Player,
   ArteRuimState,
   BasicGamePayload,
   PlainObject,
   GameId,
-  PlayerName,
   MakeMeReadyPayload,
   SubmitDrawingPayload,
   SubmitVotingPayload,
@@ -55,27 +47,6 @@ export const arteRuim = {
       updatedAt: Date.now(),
     },
   }),
-  /**
-   * Creates new player object
-   * @param name
-   * @param players
-   * @returns
-   */
-  createPlayer: (name: PlayerName, avatarId: string, players: Players = {}): Player => {
-    const playerList = Object.values(players);
-    const usedAvatars = playerList.map((player) => player.avatarId);
-    avatarId = usedAvatars.includes(avatarId)
-      ? gameUtils.getRandomUniqueItem(AVATAR_IDS, usedAvatars)
-      : avatarId;
-
-    return {
-      name,
-      avatarId,
-      ready: false,
-      score: 0,
-      updatedAt: Date.now(),
-    };
-  },
   /**
    * Locks game adding isLock to meta and moving to the RULES phase
    * @param players

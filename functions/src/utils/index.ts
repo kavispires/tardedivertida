@@ -7,6 +7,7 @@ import {
   GameCode,
   GameId,
   PlainObject,
+  Player,
   PlayerName,
   Players,
   Teams,
@@ -14,7 +15,7 @@ import {
 import { arteRuim } from '../engine/arte-ruim';
 import { ondaTelepatica } from '../engine/onda-telepatica';
 import { ueSoIsso } from '../engine/ue-so-isso';
-import { shuffle } from './game-utils';
+import { shuffle, getRandomUniqueItem } from './game-utils';
 
 const { GAME_CODES, GAME_COLLECTIONS } = constants;
 
@@ -175,6 +176,29 @@ export const getGameMethodsByCollection = (collectionName: string) => {
     default:
       throw new Error(`Collection '${collectionName}' does not exist`);
   }
+};
+
+/**
+ * Creates new player object
+ * @param name
+ * @param avatarId the player's chosen avatar
+ * @param players
+ * @returns
+ */
+export const createPlayer = (name: PlayerName, avatarId: string, players: Players = {}): Player => {
+  const playerList = Object.values(players);
+  const usedAvatars = playerList.map((player) => player.avatarId);
+  avatarId = usedAvatars.includes(avatarId)
+    ? getRandomUniqueItem(constants.AVATAR_IDS, usedAvatars)
+    : avatarId;
+
+  return {
+    name,
+    avatarId,
+    ready: false,
+    score: 0,
+    updatedAt: Date.now(),
+  };
 };
 
 /**
