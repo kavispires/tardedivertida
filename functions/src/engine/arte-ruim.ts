@@ -1,4 +1,10 @@
-import { GAME_COLLECTIONS, PHASES, ARTE_RUIM_GOAL, ARTE_RUIM_CARDS_BY_LEVEL } from '../utils/constants';
+import {
+  GAME_COLLECTIONS,
+  PHASES,
+  ARTE_RUIM_GOAL,
+  ARTE_RUIM_CARDS_BY_LEVEL,
+  GAME_PLAYERS_LIMIT,
+} from '../utils/constants';
 import * as gameUtils from '../utils/game-utils';
 import * as utils from '../utils/index';
 import {
@@ -28,8 +34,8 @@ export const getInitialState = (gameId: GameId, uid: string, language: string): 
     gameName: GAME_COLLECTIONS.ARTE_RUIM,
     createdAt: Date.now(),
     createdBy: uid,
-    min: 3,
-    max: 8,
+    min: GAME_PLAYERS_LIMIT.ARTE_RUIM.min,
+    max: GAME_PLAYERS_LIMIT.ARTE_RUIM.max,
     isLocked: false,
     isComplete: false,
     language,

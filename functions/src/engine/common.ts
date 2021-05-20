@@ -1,7 +1,6 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import * as utils from '../utils/index';
-// import * as arteRuimEngine from './arte-ruim';
 import {
   AddPlayerPayload,
   CreateGamePayload,
@@ -10,6 +9,7 @@ import {
   BasicGamePayload,
   Players,
 } from '../utils/interfaces';
+import { GAME_PLAYERS_LIMIT } from '../utils/constants';
 
 /**
  * Creates a new game instance
@@ -136,11 +136,29 @@ export const addPlayer = async (data: AddPlayerPayload) => {
   // Get 'players' from given game session
   const sessionRef = utils.getSessionRef(collectionName, gameId);
   const playersDoc = await utils.getSessionDoc(collectionName, gameId, 'players', actionText);
-
   const players: Players = playersDoc.data() ?? {};
 
   if (players?.[playerName]) {
     return players[playerName];
+  }
+
+  // Verify maximum number of players
+  const collectionKey = utils.getCollectionKeyByGameCode(gameId[0]) ?? '';
+  const numPlayers = Object.keys(players).length;
+  const maximum = GAME_PLAYERS_LIMIT[collectionKey].max;
+  if (numPlayers === maximum) {
+    utils.throwException(
+      `Sorry, you can't join. Game ${gameId} already has the maximum number of players: ${maximum}`,
+      actionText
+    );
+  }
+
+  // Verify if game is locked
+  const metaDoc = await utils.getSessionDoc(collectionName, gameId, 'meta', actionText);
+  const meta = metaDoc.data() ?? {};
+
+  if (meta?.isLocked) {
+    utils.throwException(`This game ${gameId} is locked and cannot accept new players`, actionText);
   }
 
   try {
@@ -169,7 +187,19 @@ export const lockGame = async (data: BasicGamePayload, context: FirebaseContext)
   utils.verifyAuth(context, actionText);
 
   const sessionRef = utils.getSessionRef(collectionName, gameId);
-  await utils.getSessionDoc(collectionName, gameId, 'meta', actionText);
+  const playersDoc = await utils.getSessionDoc(collectionName, gameId, 'players', actionText);
+  const players: Players = playersDoc.data() ?? {};
+
+  // Verify minimum number of players
+  const collectionKey = utils.getCollectionKeyByGameCode(gameId[0]) ?? '';
+  const numPlayers = Object.keys(players).length;
+  const minimum = GAME_PLAYERS_LIMIT[collectionKey].min;
+  if (numPlayers < minimum) {
+    utils.throwException(
+      `Game ${gameId} has an insufficient number of players: Minimum ${minimum} players, has ${numPlayers}`,
+      actionText
+    );
+  }
 
   try {
     // Set info with players object and isLocked

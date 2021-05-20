@@ -1,4 +1,4 @@
-import { GAME_COLLECTIONS, PHASES, ONDA_TELEPATICA_GOAL } from '../utils/constants';
+import { GAME_COLLECTIONS, PHASES, ONDA_TELEPATICA_GOAL, GAME_PLAYERS_LIMIT } from '../utils/constants';
 import * as gameUtils from '../utils/game-utils';
 import * as utils from '../utils/index';
 import {
@@ -35,8 +35,8 @@ export const getInitialState = (
     gameName: GAME_COLLECTIONS.ONDA_TELEPATICA,
     createdAt: Date.now(),
     createdBy: uid,
-    min: 4,
-    max: 8,
+    min: GAME_PLAYERS_LIMIT.ONDA_TELEPATICA.min,
+    max: GAME_PLAYERS_LIMIT.ONDA_TELEPATICA.max,
     isLocked: false,
     isComplete: false,
     language,
