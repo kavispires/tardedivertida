@@ -256,6 +256,24 @@ export const unReadyPlayers = (players: Players, butThisOne = ''): Players => {
 /**
  * Set all players as not ready
  * @param players
+ * @returns
+ */
+export const resetPlayers = (players: Players): Players => {
+  for (const playerKey in players) {
+    players[playerKey] = {
+      avatarId: players[playerKey].avatarId,
+      name: players[playerKey].name,
+      ready: false,
+      score: 0,
+      updatedAt: Date.now(),
+    };
+  }
+  return players;
+};
+
+/**
+ * Set all players as not ready
+ * @param players
  * @param butThisOne
  * @returns
  */

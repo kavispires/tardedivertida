@@ -40,6 +40,7 @@ export const getInitialState = (
     isLocked: false,
     isComplete: false,
     language,
+    replay: 0,
   },
   players: {},
   store: {
@@ -119,12 +120,16 @@ const nextOndaTelepaticaPhase = async (
   const state = stateDoc.data() ?? {};
   const store = { ...(storeDoc.data() ?? {}) };
 
-  // Perform setup
+  // Perform setup and reset any previous session stuff
   if (state?.phase === 'RULES') {
     const teams = utils.determineTeams(players, 2);
     store.teams = teams;
     await sessionRef.doc('players').set(players);
-    await sessionRef.doc('store').update({ teams });
+    await sessionRef.doc('store').update({
+      teams,
+      lastPsychicA: utils.deleteValue(),
+      lastPsychicB: utils.deleteValue(),
+    });
     // Note: turn order is dynamically determined in the dial sides phase preparation
   }
 

@@ -7,6 +7,7 @@ export const GAME_API = {
   loadGame: functions.httpsCallable('loadGame'),
   addPlayer: functions.httpsCallable('addPlayer'),
   lockGame: functions.httpsCallable('lockGame'),
+  playAgain: functions.httpsCallable('playAgain'),
 };
 
 export const ARTE_RUIM_API = {

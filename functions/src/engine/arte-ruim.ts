@@ -39,6 +39,7 @@ export const getInitialState = (gameId: GameId, uid: string, language: string): 
     isLocked: false,
     isComplete: false,
     language,
+    replay: 0,
   },
   players: {},
   store: {
@@ -356,6 +357,13 @@ const nextArteRuimPhase = async (
 
   const state = stateDoc.data() ?? {};
   const store = storeDoc.data() ?? {};
+
+  // Perform setup and reset any previous session stuff
+  if (state?.phase === 'RULES') {
+    await sessionRef.doc('store').update({
+      currentCards: [],
+    });
+  }
 
   // Calculate points to victory
   const pointsToVictory = utils.getPointsToVictory(players, ARTE_RUIM_GOAL);
