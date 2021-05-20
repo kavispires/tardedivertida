@@ -144,8 +144,7 @@ export const addPlayer = async (data: AddPlayerPayload) => {
   }
 
   try {
-    const methods = utils.getGameMethodsByCollection(collectionName);
-    const newPlayer = methods.createPlayer(playerName, playerAvatarId, players);
+    const newPlayer = utils.createPlayer(playerName, playerAvatarId, players);
     await sessionRef.doc('players').update({
       [playerName]: newPlayer,
     });

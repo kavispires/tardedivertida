@@ -1,12 +1,10 @@
-import { GAME_COLLECTIONS, AVATAR_IDS, PHASES, ONDA_TELEPATICA_GOAL } from '../utils/constants';
+import { GAME_COLLECTIONS, PHASES, ONDA_TELEPATICA_GOAL } from '../utils/constants';
 import * as gameUtils from '../utils/game-utils';
 import * as utils from '../utils/index';
 import {
   Players,
-  Player,
   ArteRuimState,
   GameId,
-  PlayerName,
   MakeMeReadyPayload,
   OndaTelepaticaInitialState,
   BasicGamePayload,
@@ -52,28 +50,6 @@ export const ondaTelepatica = {
       teams: {},
     },
   }),
-  /**
-   * Creates new player object
-   * @param name
-   * @param players
-   * @returns
-   */
-  createPlayer: (name: PlayerName, avatarId: string, players: Players = {}): Player => {
-    const playerList = Object.values(players);
-    const usedAvatars = playerList.map((player) => player.avatarId);
-    avatarId = usedAvatars.includes(avatarId)
-      ? gameUtils.getRandomUniqueItem(AVATAR_IDS, usedAvatars)
-      : avatarId;
-
-    return {
-      name,
-      avatarId,
-      ready: false,
-      team: '',
-      score: 0,
-      updatedAt: Date.now(),
-    };
-  },
   /**
    * Locks game adding isLock to meta and moving to the RULES phase
    * @param players
