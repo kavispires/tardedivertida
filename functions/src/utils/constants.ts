@@ -8,10 +8,31 @@ export const GAME_CODES = {
   U: 'U', // ue-so-isso
 };
 
+export const GAME_KEYS = {
+  ARTE_RUIM: 'ARTE_RUIM',
+  ONDA_TELEPATICA: 'ONDA_TELEPATICA',
+  UE_SO_ISSO: 'UE_SO_ISSO',
+};
+
 export const GAME_COLLECTIONS = {
   ARTE_RUIM: 'arte-ruim',
   ONDA_TELEPATICA: 'onda-telepatica',
   UE_SO_ISSO: 'ue-so-isso',
+};
+
+export const GAME_PLAYERS_LIMIT = {
+  ARTE_RUIM: {
+    min: 3,
+    max: 8,
+  },
+  ONDA_TELEPATICA: {
+    min: 4,
+    max: 8,
+  },
+  UE_SO_ISSO: {
+    min: 3,
+    max: 8,
+  },
 };
 
 /**

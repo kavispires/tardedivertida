@@ -1,4 +1,4 @@
-import { GAME_COLLECTIONS, PHASES } from '../utils/constants';
+import { GAME_COLLECTIONS, GAME_PLAYERS_LIMIT, PHASES } from '../utils/constants';
 import * as gameUtils from '../utils/game-utils';
 import * as utils from '../utils/index';
 import {
@@ -29,8 +29,8 @@ export const getInitialState = (gameId: GameId, uid: string, language: string): 
     gameName: GAME_COLLECTIONS.UE_SO_ISSO,
     createdAt: Date.now(),
     createdBy: uid,
-    min: 3,
-    max: 8,
+    min: GAME_PLAYERS_LIMIT.UE_SO_ISSO.min,
+    max: GAME_PLAYERS_LIMIT.UE_SO_ISSO.max,
     isLocked: false,
     isComplete: false,
     language,

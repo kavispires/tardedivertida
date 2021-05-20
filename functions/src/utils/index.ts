@@ -1,7 +1,7 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 
-import * as constants from './constants';
+import { AVATAR_IDS, GAME_CODES, GAME_COLLECTIONS, GAME_KEYS, LETTERS } from './constants';
 import {
   FirebaseContext,
   GameCode,
@@ -16,8 +16,6 @@ import { getInitialState as arteRuimGetInitialState } from '../engine/arte-ruim'
 import { getInitialState as ondaTelepaticaGetInitialState } from '../engine/onda-telepatica';
 import { getInitialState as ueSoIssoGetInitialState } from '../engine/ue-so-isso';
 import { shuffle, getRandomUniqueItem } from './game-utils';
-
-const { GAME_CODES, GAME_COLLECTIONS } = constants;
 
 /**
  * Validate if payload property exists
@@ -153,6 +151,24 @@ export const getCollectionNameByGameCode = (gameCode: GameCode): string | null =
 };
 
 /**
+ * Get collection internal key by single letter game code
+ * @param gameCode
+ * @returns
+ */
+export const getCollectionKeyByGameCode = (gameCode: GameCode): string | null => {
+  switch (gameCode) {
+    case GAME_CODES.A:
+      return GAME_KEYS.ARTE_RUIM;
+    case GAME_CODES.O:
+      return GAME_KEYS.ONDA_TELEPATICA;
+    case GAME_CODES.U:
+      return GAME_KEYS.UE_SO_ISSO;
+    default:
+      return null;
+  }
+};
+
+/**
  * Get collection name by extracting the first letter of a game id
  * @param {string} gameId
  */
@@ -188,9 +204,7 @@ export const getInitialStateForCollection = (collectionName: string) => {
 export const createPlayer = (name: PlayerName, avatarId: string, players: Players = {}): Player => {
   const playerList = Object.values(players);
   const usedAvatars = playerList.map((player) => player.avatarId);
-  avatarId = usedAvatars.includes(avatarId)
-    ? getRandomUniqueItem(constants.AVATAR_IDS, usedAvatars)
-    : avatarId;
+  avatarId = usedAvatars.includes(avatarId) ? getRandomUniqueItem(AVATAR_IDS, usedAvatars) : avatarId;
 
   return {
     name,
@@ -307,7 +321,7 @@ export const determineTeams = (players: Players, numberOfTeams: number): PlainOb
       currentTeamIndex += 1;
     }
 
-    const teamLetter = constants.LETTERS[currentTeamIndex];
+    const teamLetter = LETTERS[currentTeamIndex];
 
     if (teams[teamLetter] === undefined) {
       teams[teamLetter] = {
