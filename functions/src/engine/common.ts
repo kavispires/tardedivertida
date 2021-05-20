@@ -172,14 +172,13 @@ export const lockGame = async (data: BasicGamePayload, context: FirebaseContext)
   await utils.getSessionDoc(collectionName, gameId, 'meta', actionText);
 
   try {
-    // Parse players into two objects: info with static information, state with variable information (score, etc)
-    const methods = utils.getGameMethodsByCollection(collectionName);
-    const newState = methods.lockGame();
-
     // Set info with players object and isLocked
     await sessionRef.doc('meta').update({ isLocked: true });
     // Set state with new Phase: Rules
-    await sessionRef.doc('state').set(newState);
+    await sessionRef.doc('state').set({
+      phase: 'RULES',
+      round: 0,
+    });
 
     return true;
   } catch (error) {

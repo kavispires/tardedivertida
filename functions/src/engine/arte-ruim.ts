@@ -4,7 +4,6 @@ import * as utils from '../utils/index';
 import {
   ArteRuimInitialState,
   Players,
-  ArteRuimState,
   BasicGamePayload,
   PlainObject,
   GameId,
@@ -47,20 +46,6 @@ export const getInitialState = (gameId: GameId, uid: string, language: string): 
     updatedAt: Date.now(),
   },
 });
-
-export const arteRuim = {
-  /**
-   * Locks game adding isLock to meta and moving to the RULES phase
-   * @param players
-   * @returns
-   */
-  lockGame: (): ArteRuimState => {
-    return {
-      phase: PHASES.ARTE_RUIM.RULES,
-      round: 0,
-    };
-  },
-};
 
 /**
  * Calculate what level of cards it should be gotten
