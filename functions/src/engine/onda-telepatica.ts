@@ -3,7 +3,6 @@ import * as gameUtils from '../utils/game-utils';
 import * as utils from '../utils/index';
 import {
   Players,
-  ArteRuimState,
   GameId,
   MakeMeReadyPayload,
   OndaTelepaticaInitialState,
@@ -54,20 +53,6 @@ export const getInitialState = (
     teams: {},
   },
 });
-
-export const ondaTelepatica = {
-  /**
-   * Locks game adding isLock to meta and moving to the RULES phase
-   * @param players
-   * @returns
-   */
-  lockGame: (): ArteRuimState => {
-    return {
-      phase: PHASES.ONDA_TELEPATICA.RULES,
-      round: 0,
-    };
-  },
-};
 
 /**
  * Determine the next phase based on the current one

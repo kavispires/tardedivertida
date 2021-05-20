@@ -12,7 +12,6 @@ import {
   CurrentSuggestions,
   SubmitSuggestionsValidationPayload,
   ConfirmGuessPayload,
-  UeSoIssoState,
 } from '../utils/interfaces';
 // Resources
 import { allWordsBR } from '../resources/ue-so-isso-words';
@@ -48,20 +47,6 @@ export const getInitialState = (gameId: GameId, uid: string, language: string): 
     round: 0,
   },
 });
-
-export const ueSoIsso = {
-  /**
-   * Locks game adding isLock to meta and moving to the RULES phase
-   * @param players
-   * @returns
-   */
-  lockGame: (): UeSoIssoState => {
-    return {
-      phase: PHASES.UE_SO_ISSO.RULES,
-      round: 0,
-    };
-  },
-};
 
 /**
  * Determine the next phase based on the current one
