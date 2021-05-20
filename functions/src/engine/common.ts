@@ -217,3 +217,49 @@ export const lockGame = async (data: BasicGamePayload, context: FirebaseContext)
 
   return false;
 };
+
+/**
+ * Play game again within the same session (keeping used cards and same players)
+ * @param data
+ * @param context
+ * @returns
+ */
+export const playAgain = async (data: BasicGamePayload, context: FirebaseContext) => {
+  const { gameId, gameName: collectionName } = data;
+
+  const actionText = 'play game again';
+  utils.verifyPayload(gameId, 'gameId', actionText);
+  utils.verifyPayload(collectionName, 'collectionName', actionText);
+  utils.verifyAuth(context, actionText);
+
+  const sessionRef = utils.getSessionRef(collectionName, gameId);
+  // Reset players
+  const playersDoc = await utils.getSessionDoc(collectionName, gameId, 'players', actionText);
+  const players: Players = playersDoc.data() ?? {};
+  const newPlayers = utils.resetPlayers(players);
+
+  // Update meta
+  const metaDoc = await utils.getSessionDoc(collectionName, gameId, 'meta', actionText);
+  const meta = metaDoc.data() ?? {};
+
+  try {
+    // Set info with players object and isLocked
+    await sessionRef.doc('meta').update({
+      isComplete: false,
+      replay: meta.replay + 1,
+    });
+    // Update players
+    await sessionRef.doc('players').set(newPlayers);
+    // Force rules phase which will trigger new setup
+    await sessionRef.doc('state').set({
+      phase: 'RULES',
+      round: 0,
+    });
+
+    return true;
+  } catch (error) {
+    utils.throwException(error, actionText);
+  }
+
+  return false;
+};

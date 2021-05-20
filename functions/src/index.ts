@@ -39,6 +39,11 @@ exports.addPlayer = functions.https.onCall(commonEngine.addPlayer);
  */
 exports.lockGame = functions.https.onCall(commonEngine.lockGame);
 
+/**
+ * Play game again within the same session
+ */
+exports.playAgain = functions.https.onCall(commonEngine.playAgain);
+
 // ARTE_RUIM HTTP CALLS
 
 /**

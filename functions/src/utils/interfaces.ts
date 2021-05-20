@@ -45,6 +45,7 @@ export interface Meta {
   isLocked: boolean;
   isComplete: boolean;
   language: string;
+  replay: number;
 }
 
 export interface Player {
@@ -199,7 +200,7 @@ export interface UsedWords {
 export interface UeSoIssoStore {
   turnOrder: string[];
   usedWords: UsedWords;
-  currentWords: string[];
+  currentWords: PlainObject[];
   currentSuggestions: PlainObject[];
   [key: string]: any;
 }

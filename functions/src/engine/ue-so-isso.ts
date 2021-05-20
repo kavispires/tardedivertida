@@ -34,6 +34,7 @@ export const getInitialState = (gameId: GameId, uid: string, language: string): 
     isLocked: false,
     isComplete: false,
     language,
+    replay: 0,
   },
   players: {},
   store: {
@@ -110,11 +111,18 @@ const nextUeSoIssoPhase = async (
   const state = stateDoc.data() ?? {};
   const store = { ...(storeDoc.data() ?? {}) };
 
-  // Perform setup
+  // Perform setup and reset any previous session stuff
   if (state?.phase === 'RULES') {
     // Determine player order
     const playersNames = gameUtils.shuffle(Object.keys(players));
     store.turnOrder = playersNames.length <= 6 ? [...playersNames, ...playersNames] : playersNames;
+    await sessionRef.doc('store').update({
+      turnOrder: store.turnOrder,
+      currentWord: utils.deleteValue(),
+      currentWords: {},
+      guess: utils.deleteValue(),
+      validSuggestions: {},
+    });
   }
 
   // // Calculate remaining rounds to end game

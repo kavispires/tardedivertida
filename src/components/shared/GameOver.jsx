@@ -1,16 +1,30 @@
 import React from 'react';
+// Design Resources
+import { Button, Popconfirm, Progress } from 'antd';
+import { RocketFilled } from '@ant-design/icons';
 // Images
 import gameOverTitle from '../../images/game-over-title.svg';
+// Utils
+import { useAPICall, useLoading } from '../../hooks';
+import { GAME_API } from '../../adapters';
+import { AVATAR_DESCRIPTIONS_BR } from '../../utils/constants';
 // Components
 import PhaseContainer from './PhaseContainer';
 import Avatar from '../avatars/Avatar';
-import { AVATAR_DESCRIPTIONS_BR } from '../../utils/constants';
-import { Progress } from 'antd';
+import AdminOnly from './AdminOnly';
 
 function GameOver({ info, state, children }) {
+  const [isLoading] = useLoading();
+
+  const onPlayAgain = useAPICall({
+    apiFunction: GAME_API.playAgain,
+    actionName: 'play-=again',
+    successMessage: 'Jogando novamente o mesmo jogo!',
+    errorMessage: 'Vixi, ocorreu um erro ao tentar ir reiniciar o jogo',
+  });
+
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase="GAME_OVER" className="game-over">
-      {/* <div className="game-over__container"> */}
       <div className="game-over__title">
         <img src={gameOverTitle} alt="Game Over" />
       </div>
@@ -56,9 +70,27 @@ function GameOver({ info, state, children }) {
       {!Boolean(state.winners) && !Boolean(state.team) && (
         <div className="game-over__text">Jogo concluido.</div>
       )}
-      {/* </div> */}
 
       {children}
+
+      <AdminOnly>
+        <Popconfirm
+          title="Tem certeza que que jogar este jogo novamente??"
+          onConfirm={() => onPlayAgain({})}
+          okText="Sim"
+          cancelText="Não"
+        >
+          <Button
+            icon={<RocketFilled />}
+            danger
+            type="primary"
+            // onClick={() => onPlayAgain({})}
+            disabled={isLoading}
+          >
+            Jogar novamente
+          </Button>
+        </Popconfirm>
+      </AdminOnly>
     </PhaseContainer>
   );
 }
