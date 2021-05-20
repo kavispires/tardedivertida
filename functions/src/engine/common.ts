@@ -64,9 +64,9 @@ export const createGame = async (data: CreateGamePayload, context: FirebaseConte
   try {
     const sessionRef = utils.getSessionRef(collectionName, gameId);
 
-    const methods = utils.getGameMethodsByCollection(collectionName);
+    const getInitialState = utils.getInitialStateForCollection(collectionName);
     const uid = context?.auth?.uid ?? '';
-    const { meta, players, state, store } = methods?.getInitialSession(gameId, uid, data.language ?? 'BR');
+    const { meta, players, state, store } = getInitialState(gameId, uid, data.language ?? 'BR');
 
     await sessionRef.doc('meta').set(meta);
     await sessionRef.doc('players').set(players);

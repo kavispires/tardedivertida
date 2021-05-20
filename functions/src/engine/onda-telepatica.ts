@@ -19,37 +19,43 @@ import {
 // Resources
 import { allCardsBR } from '../resources/onda-telepatica-cards';
 
+/**
+ * Get Initial Game State
+ * @param gameId
+ * @param uid
+ * @param language
+ * @returns
+ */
+export const getInitialState = (
+  gameId: GameId,
+  uid: string,
+  language: string
+): OndaTelepaticaInitialState => ({
+  meta: {
+    gameId,
+    gameName: GAME_COLLECTIONS.ONDA_TELEPATICA,
+    createdAt: Date.now(),
+    createdBy: uid,
+    min: 4,
+    max: 8,
+    isLocked: false,
+    isComplete: false,
+    language,
+  },
+  players: {},
+  store: {
+    teams: {},
+    usedCards: {},
+    currentCard: [],
+  },
+  state: {
+    phase: PHASES.ONDA_TELEPATICA.LOBBY,
+    round: 0,
+    teams: {},
+  },
+});
+
 export const ondaTelepatica = {
-  /**
-   * Get initial session
-   * @param gameId
-   * @param uid
-   * @returns
-   */
-  getInitialSession: (gameId: GameId, uid: string, language: string): OndaTelepaticaInitialState => ({
-    meta: {
-      gameId,
-      gameName: GAME_COLLECTIONS.ONDA_TELEPATICA,
-      createdAt: Date.now(),
-      createdBy: uid,
-      min: 4,
-      max: 8,
-      isLocked: false,
-      isComplete: false,
-      language,
-    },
-    players: {},
-    store: {
-      teams: {},
-      usedCards: {},
-      currentCard: [],
-    },
-    state: {
-      phase: PHASES.ONDA_TELEPATICA.LOBBY,
-      round: 0,
-      teams: {},
-    },
-  }),
   /**
    * Locks game adding isLock to meta and moving to the RULES phase
    * @param players

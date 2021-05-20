@@ -16,37 +16,39 @@ import {
 // Resources
 import { allCardsBR } from '../resources/arte-ruim-cards.js';
 
+/**
+ * Get Initial Game State
+ * @param gameId
+ * @param uid
+ * @param language
+ * @returns
+ */
+export const getInitialState = (gameId: GameId, uid: string, language: string): ArteRuimInitialState => ({
+  meta: {
+    gameId,
+    gameName: GAME_COLLECTIONS.ARTE_RUIM,
+    createdAt: Date.now(),
+    createdBy: uid,
+    min: 3,
+    max: 8,
+    isLocked: false,
+    isComplete: false,
+    language,
+  },
+  players: {},
+  store: {
+    usedCards: [],
+    currentCards: [],
+    pastDrawings: [],
+  },
+  state: {
+    phase: PHASES.ARTE_RUIM.LOBBY,
+    round: 0,
+    updatedAt: Date.now(),
+  },
+});
+
 export const arteRuim = {
-  /**
-   * Get initial session
-   * @param gameId
-   * @param uid
-   * @returns
-   */
-  getInitialSession: (gameId: GameId, uid: string, language: string): ArteRuimInitialState => ({
-    meta: {
-      gameId,
-      gameName: GAME_COLLECTIONS.ARTE_RUIM,
-      createdAt: Date.now(),
-      createdBy: uid,
-      min: 3,
-      max: 8,
-      isLocked: false,
-      isComplete: false,
-      language,
-    },
-    players: {},
-    store: {
-      usedCards: [],
-      currentCards: [],
-      pastDrawings: [],
-    },
-    state: {
-      phase: PHASES.ARTE_RUIM.LOBBY,
-      round: 0,
-      updatedAt: Date.now(),
-    },
-  }),
   /**
    * Locks game adding isLock to meta and moving to the RULES phase
    * @param players
