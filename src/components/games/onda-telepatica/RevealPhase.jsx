@@ -95,6 +95,7 @@ function RevealPhase({ state, players, info }) {
         showPoints={seconds < 2}
         points={state?.pointsBreakdown?.[state?.activeTeam].got}
         rivalGuess={state.card.rival}
+        rivalTeam={rivalTeam}
         animate
       />
       <Instruction contained>
