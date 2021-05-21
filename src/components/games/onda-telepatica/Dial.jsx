@@ -264,12 +264,25 @@ Dial.propTypes = {
     left: PropTypes.string,
     right: PropTypes.string,
   }).isRequired,
-  needlePosition: PropTypes.number,
+  needle: PropTypes.number,
   showNeedle: PropTypes.bool,
   target: PropTypes.number,
   showTarget: PropTypes.bool,
-  animate: PropTypes.bool,
+  showPoints: PropTypes.bool,
   rivalGuess: PropTypes.number,
+  rivalTeam: PropTypes.string,
+  animate: PropTypes.bool,
+};
+
+Dial.defaultProps = {
+  needle: 0,
+  showNeedle: false,
+  target: 0,
+  showTarget: false,
+  showPoints: false,
+  rivalGuess: 0,
+  rivalTeam: 'rival',
+  animate: false,
 };
 
 export default memo(Dial);
