@@ -1,14 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useTimer } from 'react-timer-hook';
 // Design Resources
 import { Button, Tag } from 'antd';
 // Images
 import rodadaTitle from '../../images/rodada-title.svg';
-// Utils
-import { inNSeconds } from '../../utils';
 // Components
 import AvatarName from '../avatars/AvatarName';
+import TimedButton from './TimedButton';
 
 function Team({ team, players, className }) {
   return (
@@ -29,12 +27,6 @@ function Team({ team, players, className }) {
 }
 
 function RoundAnnouncement({ round, onPressButton, buttonText, time, teams, players, children }) {
-  const { seconds } = useTimer({
-    expiryTimestamp: inNSeconds(time),
-    autoStart: true,
-    onExpire: Boolean(time) ? onPressButton : undefined,
-  });
-
   return (
     <div className="round-announcement">
       {Boolean(teams?.A) && (
@@ -52,10 +44,21 @@ function RoundAnnouncement({ round, onPressButton, buttonText, time, teams, play
 
         {children}
 
-        {Boolean(onPressButton) && (
+        {Boolean(onPressButton) && !Boolean(time) && (
           <Button type="primary" onClick={onPressButton} className="round-announcement__go-button">
-            {buttonText} {Boolean(time) && <span className="round-announcement__in-timed">{seconds}</span>}
+            {buttonText}
           </Button>
+        )}
+
+        {Boolean(onPressButton) && Boolean(time) && (
+          <TimedButton
+            label={buttonText}
+            type="primary"
+            onClick={onPressButton}
+            onExpire={onPressButton}
+            duration={time}
+            showTimer
+          />
         )}
       </div>
 

@@ -1,0 +1,28 @@
+.timed-button {
+  $self: &;
+
+  &__time {
+    margin-left: get-unit(1);
+    font-size: 0.8em;
+    border-radius: 50%;
+    width: 1.6em;
+    background: white;
+    color: get-color(black);
+
+    &--primary {
+      background: white;
+      color: get-color(blue);
+    }
+
+    &--ghost {
+      background: transparent;
+      border: 1px dashed get-color(black);
+      color: get-color(black);
+    }
+
+    &--dashed {
+      border: 1px dashed get-color(blue);
+      color: get-color(blue);
+    }
+  }
+}
