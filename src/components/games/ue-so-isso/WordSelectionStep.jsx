@@ -1,13 +1,21 @@
 import React, { useState } from 'react';
 // Design Resources
-import { Button } from 'antd';
 import { CheckCircleFilled, CloudUploadOutlined } from '@ant-design/icons';
 // Components
 import Title from '../../shared/Title';
 import Instruction from '../../shared/Instruction';
+import TimedButton from '../../shared/TimedButton';
 
 function WordSelectionStep({ words = [], onSendSelectedWords, guesser }) {
   const [selectedWords, setSelectedWords] = useState({});
+
+  const selectedWordsArray = Object.keys(selectedWords);
+  const noSelection = selectedWordsArray.length === 0;
+
+  const autoSelectRandomWord = () => {
+    const randomSelection = words[0].id;
+    onSendSelectedWords({ votes: [randomSelection] });
+  };
 
   const onSelectWord = (wordId) => {
     setSelectedWords((s) => {
@@ -20,8 +28,6 @@ function WordSelectionStep({ words = [], onSendSelectedWords, guesser }) {
       return newState;
     });
   };
-
-  const selectedWordsArray = Object.keys(selectedWords);
 
   return (
     <div className="u-word-selection-step">
@@ -43,14 +49,17 @@ function WordSelectionStep({ words = [], onSendSelectedWords, guesser }) {
           );
         })}
       </ul>
-      <Button
+
+      <TimedButton
+        label="Enviar fotos"
         icon={<CloudUploadOutlined />}
         type="primary"
         onClick={() => onSendSelectedWords({ votes: selectedWordsArray })}
-        disabled={selectedWordsArray.length === 0}
-      >
-        Enviar votos
-      </Button>
+        disabled={noSelection}
+        onExpire={autoSelectRandomWord}
+        duration={10}
+        showTimer={noSelection}
+      />
     </div>
   );
 }
