@@ -8,12 +8,16 @@ import { PUBLIC_URL } from '../../utils/constants';
 
 function RulesCarousel({ info, className, ruleClass }) {
   return (
-    <Carousel className={clsx('rules-carousel', className)} autoplay autoplaySpeed={10000}>
+    <Carousel className={clsx('rules-carousel', className)} autoplay autoplaySpeed={15000}>
       {info.rules.map((rule, index) => (
         <div className={clsx('rules-carousel__rule', ruleClass)} key={rule}>
           <Image
             className="rules-carousel__image"
-            src={`${PUBLIC_URL.RULES}${info.gameName}-${index}.jpg`}
+            src={
+              index === 0
+                ? `${PUBLIC_URL.BANNERS}game-image-${info.gameName}.jpg`
+                : `${PUBLIC_URL.RULES}game-rule-${info.gameName}-${index}.jpg`
+            }
             fallback={`${PUBLIC_URL.RULES}game-rule-not-found.jpg`}
             alt={rule}
           />
