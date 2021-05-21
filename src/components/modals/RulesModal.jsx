@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 // Design Resources
 import { Button, Modal } from 'antd';
+import { ReadOutlined } from '@ant-design/icons';
 // Components
 import RulesCarousel from '../rules/RulesCarousel';
 
@@ -15,7 +16,7 @@ function RulesModal({ gameInfo }) {
 
   return (
     <Fragment>
-      <Button type="default" onClick={() => setVisibility(true)}>
+      <Button type="default" onClick={() => setVisibility(true)} icon={<ReadOutlined />}>
         Regras
       </Button>
       {isVisible && (

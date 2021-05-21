@@ -65,7 +65,7 @@ function WordSelectionPhase({ state, players, info }) {
             Pontos do Grupo:
             <br />
             <Progress
-              percent={state.teamScore ?? 0}
+              percent={state.groupScore ?? 0}
               status="active"
               strokeColor={{
                 '0%': '#ff0000',

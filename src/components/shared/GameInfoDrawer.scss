@@ -8,11 +8,19 @@
 
   &__button {
     background: rgba(white, 0.8);
-    border: 1px solid white;
-    color: black;
+    border: 1px solid get-color(white);
+    color: get-color(black);
     &:hover {
       transform: scale(1.2);
     }
+  }
+
+  &__inline-separator {
+    margin-left: get-unit(2);
+  }
+
+  &__meta-item {
+    margin: get-unit(1 0);
   }
 
   &__label {
