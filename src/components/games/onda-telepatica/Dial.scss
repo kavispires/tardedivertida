@@ -6,6 +6,12 @@
   &__needle {
     fill: #e22929;
     transform-origin: bottom center;
+    transition: transform 1250ms ease-in-out;
+  }
+
+  &__target {
+    fill: #29abe2;
+    transform-origin: bottom center;
   }
 
   &__card {
@@ -14,12 +20,19 @@
     left: 50%;
     transform: translateX(-50%);
   }
+
+  &__points {
+    animation: bounce 1.5s infinite ease;
+  }
 }
 
 .o-dial-numbers {
+  transition: all 5s ease;
+
   .o-dial--animated & > path {
     animation: fan-out 2s;
     background: green;
+    transition: all 5s ease;
   }
 
   &--odd {
@@ -33,7 +46,11 @@
   }
 
   &--active {
-    fill: #e22929;
+    fill: #e7c3c3;
+  }
+
+  &--target {
+    fill: #29abe2;
   }
 }
 
@@ -50,27 +67,24 @@ $base-angle: 8deg;
 }
 
 .o-dial-points {
-  transform-origin: bottom center;
-  &__number {
-    fill: #ffffff;
-  }
-
-  &__2 {
-    fill: #e2dc29;
-  }
-
-  &__3 {
-    fill: #29e257;
-  }
-
-  &__4 {
-    fill: #29abe2;
-  }
-
   &--animated {
     opacity: 0;
     animation: fade-in 4s;
-    animation-delay: 1.5s;
+    // animation-delay: 1.5s;
+    animation-fill-mode: forwards;
+  }
+
+  &--animated-1 {
+    opacity: 0;
+    animation: fade-in 4s;
+    // animation-delay: 0.5s;
+    animation-fill-mode: forwards;
+  }
+
+  &--animated-2 {
+    opacity: 0;
+    animation: fade-in 4s;
+    // animation-delay: 2.5s;
     animation-fill-mode: forwards;
   }
 }
@@ -88,9 +102,21 @@ $base-angle: 8deg;
 @keyframes fade-in {
   from {
     opacity: 0;
-    transform: rotate(0) scale(1.1);
+    transform: rotate(0);
   }
   to {
     opacity: 1;
+  }
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(0);
   }
 }

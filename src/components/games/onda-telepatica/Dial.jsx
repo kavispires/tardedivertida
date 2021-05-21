@@ -3,6 +3,17 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import Card from './Card';
 
+const getBracketClass = (number, showNeedle, needle, showTarget, target) => {
+  const baseBracketClass = 'o-dial-numbers';
+  const modifier = number % 2 === 0 ? 'even' : 'odd';
+  return clsx(
+    baseBracketClass,
+    `${baseBracketClass}--${modifier}`,
+    showNeedle && needle === number && `${baseBracketClass}--active`,
+    showTarget && target === number && `${baseBracketClass}--target`
+  );
+};
+
 function Dial({
   card,
   needle = 0,
@@ -12,11 +23,12 @@ function Dial({
   rivalGuess = 0,
   rivalTeam = 'rival',
   animate = false,
+  showPoints,
 }) {
   const baseClass = 'o-dial';
-  const baseBracketClass = 'o-dial-numbers';
   const basePointsClass = 'o-dial-points';
   const baseRivalClass = 'o-dial-rival';
+  const points = Math.abs(needle - target);
 
   return (
     <div className={clsx(`${baseClass}`, animate && `${baseClass}--animated`)}>
@@ -33,245 +45,176 @@ function Dial({
           fill="#181d44"
         />
 
-        {showNeedle && (
+        {showTarget && (
           <path
-            id="needle"
-            className={clsx(`${baseClass}__needle`)}
-            style={{ transform: `rotate(${needle * 8}deg)` }}
-            d="M335 35.2L316.1 2.6h37.8z"
+            id="target"
+            className={clsx(`${baseClass}__target`, animate && `${basePointsClass}--animated-2`)}
+            style={{ transform: `rotate(${target * 8}deg)` }}
+            d="M335.2 0l7.1 11.4 13 3.2-8.6 10.3.9 13.4-12.4-5.1-12.5 5.1 1-13.4-8.6-10.3 13-3.2z"
           />
         )}
 
         <g class="o-dial-numbers">
           <path
             id="bracket-number-10-r"
-            className={clsx(
-              `${baseBracketClass}--odd`,
-              showNeedle && needle === 10 && `${baseBracketClass}--active`
-            )}
+            className={getBracketClass(10, showNeedle, needle, showTarget, target)}
             d="M341.2 51.9l-3 5.4v-5.1c0-.4.1-.8.4-1.1.3-.3.6-.4 1.1-.4.8 0 1.3.4 1.5 1.2zm-2.5 9c.2.2.6.3 1 .3s.8-.1 1.1-.5c.3-.3.4-.7.4-1.1v-5.1l-3 5.3c.1.6.2.9.5 1.1zm16.8-20.2L335 340 314.5 40.7h41zm-23.8 8.5h-1.5l-3 1.5v1.5h1.5v10.5h3V49.2zm12.5 10.5v-7.5c0-.8-.3-1.5-.9-2.1-.6-.6-1.3-.9-2.1-.9h-3c-.8 0-1.5.3-2.1.9-.6.6-.9 1.3-.9 2.1v7.5c0 .8.3 1.5.9 2.1.6.6 1.3.9 2.1.9h3c.8 0 1.5-.3 2.1-.9.6-.6.9-1.3.9-2.1z"
           />
           <path
             id="bracket-number-9-r"
-            className={clsx(
-              `${baseBracketClass}--even`,
-              showNeedle && needle === 9 && `${baseBracketClass}--active`
-            )}
+            className={getBracketClass(9, showNeedle, needle, showTarget, target)}
             d="M336 51.1c.3.3.4.7.4 1.1v3c0 .4-.1.8-.4 1.1-.3.3-.7.5-1.1.5-.4 0-.8-.1-1.1-.5-.3-.3-.4-.7-.4-1.1v-3c0-.4.1-.8.4-1.1s.6-.5 1.1-.5c.5.1.8.2 1.1.5zm19.5-10.4L335 340 314.5 40.7h41zm-16.1 16.7v-5.2c0-.8-.3-1.5-.9-2.1-.6-.6-1.3-.9-2.1-.9h-3c-.8 0-1.5.3-2.1.9-.6.6-.9 1.3-.9 2.1v3c0 .8.3 1.5.9 2.1.6.6 1.3.9 2.1.9h1.5c.9 0 1.4-.5 1.5-1.5v1.5c0 .8-.3 1.5-.9 2.1s-1.3.9-2.1.9h-1.5v1.5h2.2c1.4 0 2.7-.5 3.7-1.5s1.6-2.3 1.6-3.8z"
           />
           <path
             id="bracket-number-8-r"
-            className={clsx(
-              `${baseBracketClass}--odd`,
-              showNeedle && needle === 8 && `${baseBracketClass}--active`
-            )}
+            className={getBracketClass(8, showNeedle, needle, showTarget, target)}
             d="M336.4 58.2v1.5c0 .4-.1.8-.4 1.1s-.7.4-1.1.4c-.4 0-.8-.1-1.1-.4s-.4-.7-.4-1.1v-1.5c0-1 .5-1.5 1.5-1.5s1.5.5 1.5 1.5zm-1.5-7.5c-.4 0-.8.1-1.1.4-.3.3-.4.7-.4 1.1v1.5c0 .4.1.8.4 1.1.3.3.6.4 1.1.4.4 0 .8-.1 1.1-.4.3-.3.4-.6.4-1.1v-1.5c0-.4-.1-.8-.4-1.1-.3-.3-.6-.4-1.1-.4zm20.6-10L335 340 314.5 40.7h41zm-19.1 15.2c1-.1 1.7-.4 2.2-.9.5-.5.7-1.2.7-2.1v-.7c0-.8-.3-1.5-.9-2.1-.6-.6-1.3-.9-2.1-.9h-3c-.8 0-1.5.3-2.1.9-.6.6-.9 1.3-.9 2.1v.7c0 .9.3 1.6.8 2.1s1.3.8 2.2.9c-1 0-1.7.3-2.2 1-.5.6-.8 1.3-.8 2v.7c0 .7.3 1.3.9 2 .6.7 1.3 1 2.1 1h3c.8 0 1.5-.3 2.1-1 .6-.7.9-1.3.9-2V59c0-.7-.2-1.4-.7-2-.4-.7-1.2-1.1-2.2-1.1z"
           />
           <path
             id="bracket-number-7-r"
-            className={clsx(
-              `${baseBracketClass}--even`,
-              showNeedle && needle === 7 && `${baseBracketClass}--active`
-            )}
+            className={getBracketClass(7, showNeedle, needle, showTarget, target)}
             d="M314.5 40.7L335 340l20.5-299.3h-41zm24.2 13l-.8 1.5c-1 2.1-1.5 3.6-1.5 4.5v3h-3v-3c0-1 .5-2.5 1.5-4.5l1.5-3v-1.5h-6v-1.5h9v3l-.7 1.5z"
           />
 
           <path
             id="bracket-number-6-r"
-            className={clsx(
-              `${baseBracketClass}--odd`,
-              showNeedle && needle === 6 && `${baseBracketClass}--active`
-            )}
+            className={getBracketClass(6, showNeedle, needle, showTarget, target)}
             d="M336 55.6c.3.3.4.7.4 1.1v3c0 .4-.1.8-.4 1.1-.3.3-.7.5-1.1.5-.4 0-.8-.1-1.1-.5-.3-.3-.4-.7-.4-1.1v-3c0-.4.1-.8.4-1.1.3-.3.6-.4 1.1-.4.5 0 .8.1 1.1.4zm19.5-14.9L335 340 314.5 40.7h41zm-16.1 19v-3c0-.8-.3-1.5-.9-2.1s-1.3-.9-2.1-.9h-1.5c-.4 0-.8.1-1 .4-.3.3-.4.6-.5 1.1v-1.5c0-.8.3-1.5.9-2.1s1.3-.9 2.1-.9h1.5v-1.5h-2.2c-1.4 0-2.7.5-3.7 1.5s-1.6 2.3-1.6 3.7v5.2c0 .8.3 1.5.9 2.1.6.6 1.3.9 2.1.9h3c.8 0 1.5-.3 2.1-.9.6-.5.9-1.2.9-2z"
           />
 
           <path
             id="bracket-number-5-r"
-            className={clsx(
-              `${baseBracketClass}--even`,
-              showNeedle && needle === 5 && `${baseBracketClass}--active`
-            )}
+            className={getBracketClass(5, showNeedle, needle, showTarget, target)}
             d="M314.5 40.7L335 340l20.5-299.3h-41zm21.9 13c.8 0 1.5.3 2.1.9s.9 1.3.9 2.1v3c0 .8-.3 1.5-.9 2.1s-1.3.9-2.1.9h-3c-1.8 0-2.8-1-3-3h1.5c.1 1 .6 1.5 1.5 1.5h1.5c.4 0 .8-.1 1.1-.4s.4-.7.4-1.1v-3c0-.4-.1-.8-.4-1.1-.3-.3-.7-.4-1.1-.4h-4.5v-6h9v1.5h-6v3h3z"
           />
 
           <path
             id="bracket-number-4-r"
-            className={clsx(
-              `${baseBracketClass}--odd`,
-              showNeedle && needle === 4 && `${baseBracketClass}--active`
-            )}
+            className={getBracketClass(4, showNeedle, needle, showTarget, target)}
             d="M330.4 56.7l4.5-5.6v5.6h-4.5zm25.1-16L335 340 314.5 40.7h41zm-16.1 17.5v-1.5h-1.5v-7.5h-3l-6 7.5v1.5h6v4.5h3v-4.5h1.5z"
           />
 
           <path
             id="bracket-number-3-r"
-            className={clsx(
-              `${baseBracketClass}--even`,
-              showNeedle && needle === 3 && `${baseBracketClass}--active`
-            )}
+            className={getBracketClass(3, showNeedle, needle, showTarget, target)}
             d="M314.5 40.7L335 340l20.5-299.3h-41zm21.9 13c.9 0 1.6.3 2.1 1s.8 1.3.8 2v3c0 .8-.3 1.5-.9 2.1s-1.3.9-2.1.9h-3c-1.8 0-2.8-1-3-3h1.5c.1 1 .6 1.5 1.5 1.5h1.5c.4 0 .8-.1 1.1-.4s.4-.7.4-1.1v-3c0-.2-.1-.6-.4-.9s-.6-.6-1.1-.6h-3v-1.5l4.5-3h-6v-1.5h9v1.5l-4.5 3h1.6z"
           />
 
           <path
             id="bracket-number-2-r"
-            className={clsx(
-              `${baseBracketClass}--odd`,
-              showNeedle && needle === 2 && `${baseBracketClass}--active`
-            )}
+            className={getBracketClass(2, showNeedle, needle, showTarget, target)}
             d="M314.5 40.7L335 340l20.5-299.3h-41zm24.9 20.5v1.5h-9v-1.5c0-1 1-2.4 2.9-4l.2-.2c1.9-1.7 2.9-3 2.9-4v-.7c0-.4-.1-.8-.4-1.1-.3-.3-.7-.4-1.1-.4h-1.5c-.9 0-1.4.5-1.5 1.5h-1.5c.2-2 1.2-3 3-3h3c.8 0 1.5.3 2.1.9.6.6.9 1.3.9 2.1v.7c0 1-1 2.4-2.9 4l-.2.2c-1.9 1.7-2.9 3-2.9 3.9v.1h6z"
           />
           <path
             id="bracket-number-1-r"
-            className={clsx(
-              `${baseBracketClass}--even`,
-              showNeedle && needle === 1 && `${baseBracketClass}--active`
-            )}
+            className={getBracketClass(1, showNeedle, needle, showTarget, target)}
             d="M314.5 40.7L335 340l20.5-299.3h-41zm18.9 22V52.2h-1.5v-1.5l3-1.5h1.5v13.5h-3z"
           />
 
           <path
             id="bracket-number-10-l"
-            className={clsx(
-              `${baseBracketClass}--odd`,
-              showNeedle && needle === -10 && `${baseBracketClass}--active`
-            )}
+            className={getBracketClass(-10, showNeedle, needle, showTarget, target)}
             d="M341.2 51.9l-3 5.4v-5.1c0-.4.1-.8.4-1.1.3-.3.6-.4 1.1-.4.8 0 1.3.4 1.5 1.2zm-2.5 9c.2.2.6.3 1 .3s.8-.1 1.1-.5c.3-.3.4-.7.4-1.1v-5.1l-3 5.3c.1.6.2.9.5 1.1zm16.8-20.2L335 340 314.5 40.7h41zm-23.8 8.5h-1.5l-3 1.5v1.5h1.5v10.5h3V49.2zm12.5 10.5v-7.5c0-.8-.3-1.5-.9-2.1-.6-.6-1.3-.9-2.1-.9h-3c-.8 0-1.5.3-2.1.9-.6.6-.9 1.3-.9 2.1v7.5c0 .8.3 1.5.9 2.1.6.6 1.3.9 2.1.9h3c.8 0 1.5-.3 2.1-.9.6-.6.9-1.3.9-2.1z"
           />
           <path
             id="bracket-number-9-l"
-            className={clsx(
-              `${baseBracketClass}--even`,
-              showNeedle && needle === -9 && `${baseBracketClass}--active`
-            )}
+            className={getBracketClass(-9, showNeedle, needle, showTarget, target)}
             d="M336 51.1c.3.3.4.7.4 1.1v3c0 .4-.1.8-.4 1.1-.3.3-.7.5-1.1.5-.4 0-.8-.1-1.1-.5-.3-.3-.4-.7-.4-1.1v-3c0-.4.1-.8.4-1.1s.6-.5 1.1-.5c.5.1.8.2 1.1.5zm19.5-10.4L335 340 314.5 40.7h41zm-16.1 16.7v-5.2c0-.8-.3-1.5-.9-2.1-.6-.6-1.3-.9-2.1-.9h-3c-.8 0-1.5.3-2.1.9-.6.6-.9 1.3-.9 2.1v3c0 .8.3 1.5.9 2.1.6.6 1.3.9 2.1.9h1.5c.9 0 1.4-.5 1.5-1.5v1.5c0 .8-.3 1.5-.9 2.1s-1.3.9-2.1.9h-1.5v1.5h2.2c1.4 0 2.7-.5 3.7-1.5s1.6-2.3 1.6-3.8z"
           />
           <path
             id="bracket-number-8-l"
-            className={clsx(
-              `${baseBracketClass}--odd`,
-              showNeedle && needle === -8 && `${baseBracketClass}--active`
-            )}
+            className={getBracketClass(-8, showNeedle, needle, showTarget, target)}
             d="M336.4 58.2v1.5c0 .4-.1.8-.4 1.1s-.7.4-1.1.4c-.4 0-.8-.1-1.1-.4s-.4-.7-.4-1.1v-1.5c0-1 .5-1.5 1.5-1.5s1.5.5 1.5 1.5zm-1.5-7.5c-.4 0-.8.1-1.1.4-.3.3-.4.7-.4 1.1v1.5c0 .4.1.8.4 1.1.3.3.6.4 1.1.4.4 0 .8-.1 1.1-.4.3-.3.4-.6.4-1.1v-1.5c0-.4-.1-.8-.4-1.1-.3-.3-.6-.4-1.1-.4zm20.6-10L335 340 314.5 40.7h41zm-19.1 15.2c1-.1 1.7-.4 2.2-.9.5-.5.7-1.2.7-2.1v-.7c0-.8-.3-1.5-.9-2.1-.6-.6-1.3-.9-2.1-.9h-3c-.8 0-1.5.3-2.1.9-.6.6-.9 1.3-.9 2.1v.7c0 .9.3 1.6.8 2.1s1.3.8 2.2.9c-1 0-1.7.3-2.2 1-.5.6-.8 1.3-.8 2v.7c0 .7.3 1.3.9 2 .6.7 1.3 1 2.1 1h3c.8 0 1.5-.3 2.1-1 .6-.7.9-1.3.9-2V59c0-.7-.2-1.4-.7-2-.4-.7-1.2-1.1-2.2-1.1z"
           />
           <path
             id="bracket-number-7-l"
-            className={clsx(
-              `${baseBracketClass}--even`,
-              showNeedle && needle === -7 && `${baseBracketClass}--active`
-            )}
+            className={getBracketClass(-7, showNeedle, needle, showTarget, target)}
             d="M314.5 40.7L335 340l20.5-299.3h-41zm24.2 13l-.8 1.5c-1 2.1-1.5 3.6-1.5 4.5v3h-3v-3c0-1 .5-2.5 1.5-4.5l1.5-3v-1.5h-6v-1.5h9v3l-.7 1.5z"
           />
           <path
             id="bracket-number-6-l"
-            className={clsx(
-              `${baseBracketClass}--odd`,
-              showNeedle && needle === -6 && `${baseBracketClass}--active`
-            )}
+            className={getBracketClass(-6, showNeedle, needle, showTarget, target)}
             d="M336 55.6c.3.3.4.7.4 1.1v3c0 .4-.1.8-.4 1.1-.3.3-.7.5-1.1.5-.4 0-.8-.1-1.1-.5-.3-.3-.4-.7-.4-1.1v-3c0-.4.1-.8.4-1.1.3-.3.6-.4 1.1-.4.5 0 .8.1 1.1.4zm19.5-14.9L335 340 314.5 40.7h41zm-16.1 19v-3c0-.8-.3-1.5-.9-2.1s-1.3-.9-2.1-.9h-1.5c-.4 0-.8.1-1 .4-.3.3-.4.6-.5 1.1v-1.5c0-.8.3-1.5.9-2.1s1.3-.9 2.1-.9h1.5v-1.5h-2.2c-1.4 0-2.7.5-3.7 1.5s-1.6 2.3-1.6 3.7v5.2c0 .8.3 1.5.9 2.1.6.6 1.3.9 2.1.9h3c.8 0 1.5-.3 2.1-.9.6-.5.9-1.2.9-2z"
           />
           <path
             id="bracket-number-5-l"
-            className={clsx(
-              `${baseBracketClass}--even`,
-              showNeedle && needle === -5 && `${baseBracketClass}--active`
-            )}
+            className={getBracketClass(-5, showNeedle, needle, showTarget, target)}
             d="M314.5 40.7L335 340l20.5-299.3h-41zm21.9 13c.8 0 1.5.3 2.1.9s.9 1.3.9 2.1v3c0 .8-.3 1.5-.9 2.1s-1.3.9-2.1.9h-3c-1.8 0-2.8-1-3-3h1.5c.1 1 .6 1.5 1.5 1.5h1.5c.4 0 .8-.1 1.1-.4s.4-.7.4-1.1v-3c0-.4-.1-.8-.4-1.1-.3-.3-.7-.4-1.1-.4h-4.5v-6h9v1.5h-6v3h3z"
           />
           <path
             id="bracket-number-4-l"
-            className={clsx(
-              `${baseBracketClass}--odd`,
-              showNeedle && needle === -4 && `${baseBracketClass}--active`
-            )}
+            className={getBracketClass(-4, showNeedle, needle, showTarget, target)}
             d="M330.4 56.7l4.5-5.6v5.6h-4.5zm25.1-16L335 340 314.5 40.7h41zm-16.1 17.5v-1.5h-1.5v-7.5h-3l-6 7.5v1.5h6v4.5h3v-4.5h1.5z"
           />
           <path
             id="bracket-number-3-l"
-            className={clsx(
-              `${baseBracketClass}--even`,
-              showNeedle && needle === -3 && `${baseBracketClass}--active`
-            )}
+            className={getBracketClass(-3, showNeedle, needle, showTarget, target)}
             d="M314.5 40.7L335 340l20.5-299.3h-41zm21.9 13c.9 0 1.6.3 2.1 1s.8 1.3.8 2v3c0 .8-.3 1.5-.9 2.1s-1.3.9-2.1.9h-3c-1.8 0-2.8-1-3-3h1.5c.1 1 .6 1.5 1.5 1.5h1.5c.4 0 .8-.1 1.1-.4s.4-.7.4-1.1v-3c0-.2-.1-.6-.4-.9s-.6-.6-1.1-.6h-3v-1.5l4.5-3h-6v-1.5h9v1.5l-4.5 3h1.6z"
           />
           <path
             id="bracket-number-2-l"
-            className={clsx(
-              `${baseBracketClass}--odd`,
-              showNeedle && needle === -2 && `${baseBracketClass}--active`
-            )}
+            className={getBracketClass(-2, showNeedle, needle, showTarget, target)}
             d="M314.5 40.7L335 340l20.5-299.3h-41zm24.9 20.5v1.5h-9v-1.5c0-1 1-2.4 2.9-4l.2-.2c1.9-1.7 2.9-3 2.9-4v-.7c0-.4-.1-.8-.4-1.1-.3-.3-.7-.4-1.1-.4h-1.5c-.9 0-1.4.5-1.5 1.5h-1.5c.2-2 1.2-3 3-3h3c.8 0 1.5.3 2.1.9.6.6.9 1.3.9 2.1v.7c0 1-1 2.4-2.9 4l-.2.2c-1.9 1.7-2.9 3-2.9 3.9v.1h6z"
           />
           <path
             id="bracket-number-1-l"
-            className={clsx(
-              `${baseBracketClass}--even`,
-              showNeedle && needle === -1 && `${baseBracketClass}--active`
-            )}
+            className={getBracketClass(-1, showNeedle, needle, showTarget, target)}
             d="M314.5 40.7L335 340l20.5-299.3h-41zm18.9 22V52.2h-1.5v-1.5l3-1.5h1.5v13.5h-3z"
           />
 
           <path
             id="bracket-number-0"
-            className={clsx(
-              `${baseBracketClass}--odd`,
-              showNeedle && needle === 0 && `${baseBracketClass}--active`
-            )}
+            className={getBracketClass(0, showNeedle, needle, showTarget, target)}
             d="M333.5 59.9l3-5.3v5.1c0 .4-.1.8-.4 1.1-.3.3-.7.5-1.1.5-.4 0-.7-.1-1-.3-.3-.3-.5-.6-.5-1.1zm1.4-9.2c-.4 0-.8.1-1.1.4-.3.3-.4.7-.4 1.1v5.1l3-5.4c-.2-.8-.7-1.2-1.5-1.2zm20.6-10L335 340 314.5 40.7h41zm-16.1 19v-7.5c0-.8-.3-1.5-.9-2.1-.6-.6-1.3-.9-2.1-.9h-3c-.8 0-1.5.3-2.1.9-.6.6-.9 1.3-.9 2.1v7.5c0 .8.3 1.5.9 2.1.6.6 1.3.9 2.1.9h3c.8 0 1.5-.3 2.1-.9.6-.6.9-1.3.9-2.1z"
           />
         </g>
 
-        {showTarget && (
-          <g
-            id="points"
-            className={clsx(`${basePointsClass}`, animate && `${basePointsClass}--animated`)}
-            style={{ transform: `rotate(${target * 8}deg)` }}
-          >
-            <g id="points-4">
-              <path
-                className={clsx(`${basePointsClass}__4`)}
-                d="M351.2 83.2h-32.6l-1.2.2L335 340l17.5-256.5z"
-              />
-              <path
-                className={clsx(`${basePointsClass}__number`)}
-                d="M335.4 113.6c7.5 0 13.6-6.1 13.6-13.6s-6.1-13.6-13.6-13.6-13.6 6.1-13.6 13.6 6 13.6 13.6 13.6zm-6.3-12.1l6-7.5h3v7.5h1.5v1.5h-1.5v4.5h-3V103h-6v-1.5zm5.6 0h-4.5l4.5-5.6v5.6z"
-              />
-            </g>
-            {target > -10 && (
+        {showNeedle && (
+          <path
+            id="needle"
+            className={clsx(`${baseClass}__needle`, animate && `${basePointsClass}--animated-1`)}
+            style={{ transform: `rotate(${needle * 8}deg)` }}
+            d="M335 340c-.9 0-3.7-.8-3.7-1.8l2-260.6c0-1 .8-1.8 1.7-1.8.9 0 1.7.8 1.7 1.8l2 260.6c0 1-2.8 1.8-3.7 1.8z"
+          />
+        )}
+
+        {showPoints && (
+          <g className={clsx(`${baseClass}__points`)}>
+            {points === 0 && (
               <g>
-                <path className={clsx(`${basePointsClass}__3`)} d="M282.6 87.8L335 340 317.4 83.4z" />
                 <path
-                  className={clsx(`${basePointsClass}__number`)}
-                  d="M304.4 114.8c7.4-1.2 12.5-8.1 11.3-15.6s-8.1-12.5-15.6-11.3c-7.4 1.2-12.5 8.1-11.3 15.6 1.2 7.3 8.1 12.4 15.6 11.3zm1.5-20.6l.2 1.5-4 3.7 1.5-.2c.9-.1 1.6.1 2.3.6.7.6 1 1.2 1.1 1.9l.5 3c.1.8-.1 1.6-.5 2.2-.5.7-1.1 1.1-1.9 1.2l-3 .5c-1.7.3-2.9-.6-3.4-2.5l1.5-.2c.2 1 .8 1.4 1.7 1.3l1.5-.2c.4-.1.7-.3 1-.6.2-.3.3-.7.3-1.1l-.5-3c0-.2-.2-.5-.5-.9-.3-.3-.7-.5-1.2-.4l-3 .5-.2-1.5 4-3.7-5.9.9-.2-1.5 8.7-1.5z"
+                  fill="#29abe2"
+                  d="M335.2 102.7l14 22.5 25.8 6.4-17.1 20.3 1.9 26.5-24.6-10-24.6 10 1.9-26.5-17.1-20.3 25.7-6.4z"
+                />
+                <path
+                  d="M334.9 158.7v-10.1h-13.5v-3.4l13.5-16.9h6.8v16.9h3.4v3.4h-3.4v10.1h-6.8zm0-13.4v-12.7l-10.1 12.7h10.1z"
+                  fill="#fff"
                 />
               </g>
             )}
-            {target > -9 && (
+
+            {points === 1 && (
               <g>
-                <path className={clsx(`${basePointsClass}__2`)} d="M249.1 98.4L335 340 282.6 87.8z" />
                 <path
-                  className={clsx(`${basePointsClass}__number`)}
-                  d="M267.5 95.6c-7.2 2-11.5 9.5-9.4 16.8 2 7.2 9.5 11.5 16.8 9.4 7.2-2 11.5-9.5 9.4-16.8-2-7.2-9.6-11.5-16.8-9.4zm.8 20.4l-.4-1.4c-.3-1 .3-2.6 1.7-4.7l.1-.2c1.4-2.1 2-3.7 1.7-4.7l-.2-.7c-.1-.4-.4-.7-.7-.9s-.7-.2-1.1-.1l-1.4.4c-.9.2-1.2.9-1 1.9l-1.5.4c-.3-2 .4-3.2 2.1-3.7l2.9-.8c.8-.2 1.5-.1 2.3.3.7.4 1.2 1 1.4 1.8l.2.7c.3 1-.3 2.6-1.7 4.7l-.1.2c-1.4 2.1-2 3.6-1.7 4.5v.1l5.8-1.6.4 1.4-8.8 2.4z"
+                  fill="#a45467"
+                  d="M335.2 102.7l14 22.5 25.8 6.4-17.1 20.3 1.9 26.5-24.6-10-24.6 10 1.9-26.5-17.1-20.3 25.7-6.4z"
+                />
+                <path
+                  d="M324.8 130.4H345v3.4l-10.1 6.8h3.4c1.9 0 3.6.7 4.8 2.2 1.3 1.5 1.9 3 1.9 4.5v6.7c0 1.9-.7 3.5-2 4.8-1.3 1.3-2.9 2-4.7 2h-6.8c-4 0-6.2-2.3-6.8-6.8h3.4c.2 2.3 1.3 3.4 3.4 3.4h3.4c.9 0 1.7-.3 2.4-1s1-1.5 1-2.4v-6.7c0-.5-.3-1.2-.9-2.1-.6-.9-1.4-1.3-2.6-1.3h-6.7v-3.4l10.1-6.8h-13.5v-3.3z"
+                  fill="#fff"
                 />
               </g>
             )}
-            {target < 10 && (
-              <g>
-                <path className={clsx(`${basePointsClass}__3`)} d="M352.5 83.5L335 340l52.2-251.1z" />
+
+            {points === 2 && (
+              <g className={clsx(`${baseClass}__points`)}>
                 <path
-                  className={clsx(`${basePointsClass}__number`)}
-                  d="M365.5 114.8c7.4 1.1 14.3-4.1 15.4-11.5 1.1-7.4-4.1-14.3-11.5-15.4-7.4-1.1-14.3 4.1-15.4 11.5-1.1 7.4 4.1 14.3 11.5 15.4zm2.9-13.3c-.2-.4-.5-.7-1-.7l-3-.4.2-1.5 4.9-2.3-6-.9.2-1.5 8.9 1.3-.2 1.5-4.9 2.3 1.5.2c.9.1 1.5.6 2 1.3.5.7.6 1.4.5 2.1l-.4 3c-.1.8-.5 1.5-1.2 2s-1.4.7-2.2.6l-3-.4c-1.7-.3-2.6-1.4-2.5-3.4l1.5.2c-.1 1 .3 1.6 1.3 1.7l1.5.2c.4.1.8 0 1.1-.3s.5-.6.6-1l.4-3c.1-.3 0-.6-.2-1z"
-                />
-              </g>
-            )}
-            {target < 9 && (
-              <g>
-                <path
-                  className={clsx(`${basePointsClass}__2`)}
-                  d="M387.2 88.9L335 340l85.9-241.7-33.7-9.4z"
+                  fill="#a45467"
+                  d="M335.2 102.7l14 22.5 25.8 6.4-17.1 20.3 1.9 26.5-24.6-10-24.6 10 1.9-26.5-17.1-20.3 25.7-6.4z"
                 />
                 <path
-                  className={clsx(`${basePointsClass}__number`)}
-                  d="M403.6 95.7c-7.2-2.2-14.8 1.8-17.1 8.9-2.2 7.2 1.8 14.8 8.9 17.1 7.2 2.2 14.8-1.8 17.1-8.9 2.3-7.2-1.7-14.9-8.9-17.1zm1.7 10.4l-.2.7c-.3 1-1.6 2-4 3l-.2.1c-2.3 1-3.6 2-3.9 2.9v.1l5.7 1.8-.4 1.4-8.6-2.7.4-1.4c.3-1 1.6-2 4-3l.2-.1c2.3-1 3.7-2 4-3l.2-.7c.1-.4.1-.8-.1-1.2-.2-.4-.5-.6-.9-.7l-1.4-.4c-.9-.3-1.5.1-1.9 1l-1.4-.5c.8-1.8 2.1-2.5 3.8-2l2.9.9c.8.2 1.4.7 1.7 1.5.3.7.4 1.5.1 2.3z"
+                  d="M328.2 136.1h-3.4c.5-4.5 2.8-6.8 6.8-6.8h6.8c1.8 0 3.4.7 4.7 2 1.3 1.3 2 2.9 2 4.8v1.7c0 2.3-2.2 5.4-6.5 9.1l-.4.4c-4.3 3.7-6.5 6.7-6.5 8.8v.3H345v3.4h-20.3v-3.4c0-2.4 2.2-5.4 6.6-9.1l.4-.4c4.3-3.7 6.5-6.8 6.5-9.1v-1.7c0-.9-.3-1.7-1-2.4s-1.5-1-2.4-1h-3.4c-1.9 0-3.1 1.2-3.2 3.4z"
+                  fill="#fff"
                 />
               </g>
             )}
