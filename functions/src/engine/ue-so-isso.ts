@@ -86,7 +86,7 @@ const determineScore = (guess: string): number => {
   return 0;
 };
 
-const determineTeamScore = (players: Players, totalRounds: number): number => {
+const determineGroupScore = (players: Players, totalRounds: number): number => {
   const expectedPoints = totalRounds * 3;
   const totalPoints = Object.values(players).reduce((acc: number, player: Player) => {
     acc += player.score;
@@ -205,7 +205,7 @@ const prepareWordSelectionPhase = async (
   await sessionRef.doc('state').set({
     phase: PHASES.UE_SO_ISSO.WORD_SELECTION,
     updatedAt: Date.now(),
-    teamScore: determineTeamScore(players, store.turnOrder.length),
+    groupScore: determineGroupScore(players, store.turnOrder.length),
     round: newRound,
     guesser,
     nextGuesser: store.turnOrder?.[newRound] ?? store.turnOrder?.[0],
@@ -280,7 +280,7 @@ const prepareSuggestPhase = async (
   await sessionRef.doc('state').set({
     phase: PHASES.UE_SO_ISSO.SUGGEST,
     updatedAt: Date.now(),
-    teamScore: state.teamScore,
+    groupScore: state.groupScore,
     round: state.round,
     guesser: state.guesser,
     nextGuesser: state.nextGuesser,
@@ -345,7 +345,7 @@ const prepareComparePhase = async (
   await sessionRef.doc('state').set({
     phase: PHASES.UE_SO_ISSO.COMPARE,
     updatedAt: Date.now(),
-    teamScore: state.teamScore,
+    groupScore: state.groupScore,
     round: state.round,
     guesser: state.guesser,
     nextGuesser: state.nextGuesser,
@@ -368,7 +368,7 @@ const prepareGuessPhase = async (
     phase: PHASES.UE_SO_ISSO.GUESS,
     updatedAt: Date.now(),
     round: state.round,
-    teamScore: state.teamScore,
+    groupScore: state.groupScore,
     guesser: state.guesser,
     nextGuesser: state.nextGuesser,
     roundsToEndGame,
@@ -392,14 +392,14 @@ const prepareGameOverPhase = async (
     store.guess = null;
   }
 
-  const teamScore = determineTeamScore(players, store.turnOrder.length);
+  const groupScore = determineGroupScore(players, store.turnOrder.length);
 
   await sessionRef.doc('state').set({
     phase: PHASES.UE_SO_ISSO.GAME_OVER,
     round: state.round,
-    team: {
-      score: teamScore,
-      victory: teamScore > 70,
+    group: {
+      score: groupScore,
+      victory: groupScore > 70,
     },
     gameEndedAt: Date.now(),
   });

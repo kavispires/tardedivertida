@@ -160,6 +160,7 @@
     "min": 4,
     "max": 8,
     "tags": ["cooperative", "guessing", "writing"],
+    "cooperative": true,
     "available": true
   }
 }
