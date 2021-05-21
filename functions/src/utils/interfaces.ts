@@ -84,7 +84,7 @@ export interface Payload {
   playerName: PlayerName;
 }
 
-// ARTE RUIM INTERFACES
+// ARTE_RUIM
 
 export interface UsedCard {
   id: string;
@@ -129,7 +129,40 @@ export interface SubmitVotingPayload extends Payload {
   votes: PlainObject;
 }
 
-// ONDA TELEPATICA
+// ESPIAO_ENTRE_NOS
+
+export type LocationId = string;
+
+export interface LocationCard {
+  id: LocationId;
+  name: string;
+  roles: string[];
+  spy: PlayerName | null;
+  [key: string]: any;
+}
+
+export interface EspiaoEntreStore {
+  usedLocations: LocationId[];
+  currentLocation?: LocationCard | PlainObject;
+  [key: string]: any;
+}
+
+export interface EspiaoEntreNosState {
+  phase: string;
+  round: number;
+  spy?: PlayerName;
+  location?: LocationCard;
+  [key: string]: any;
+}
+
+export interface EspiaoEntreNosInitialState {
+  meta: Meta;
+  players: Players;
+  store: EspiaoEntreStore;
+  state: EspiaoEntreNosState;
+}
+
+// ONDA_TELEPATICA
 export interface OndaTelepaticaCard {
   id: string;
   left: string;
@@ -183,7 +216,7 @@ export interface OndaTelepaticaSubmitRivalGuessPayload extends Payload {
   rivalGuess: number;
 }
 
-// UE SO ISSO
+// UE_SO_ISSO
 
 export interface UsedWord {
   id: string;

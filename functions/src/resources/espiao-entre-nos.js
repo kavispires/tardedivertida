@@ -7,7 +7,7 @@ export const allLocationsBR = {
       'Piloto',
       'Copiloto',
       'Passageiro',
-      'Comissãrio de Bordo',
+      'Comissário de Bordo',
       'Passageiro da Primeira Classe',
       'Mula',
     ],

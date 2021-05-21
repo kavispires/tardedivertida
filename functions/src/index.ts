@@ -2,6 +2,7 @@ import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import * as commonEngine from './engine/common';
 import * as arteRuimEngine from './engine/arte-ruim';
+import * as espiaoEntreNosEngine from './engine/espiao-entre-nos';
 import * as ondaTelepaticaEngine from './engine/onda-telepatica';
 import * as ueSoIssoEngine from './engine/ue-so-isso';
 
@@ -65,6 +66,13 @@ exports.arteRuimSubmitVoting = functions.https.onCall(arteRuimEngine.submitVotin
  * Admin action to force game to go to its next phase
  */
 exports.arteRuimGoToNextPhase = functions.https.onCall(arteRuimEngine.goToNextPhase);
+
+// ESPIAO_ENTRE_NOS HTTP CALLS
+
+/**
+ * Make player ready, if it's the last player to be ready, move to the next phase
+ */
+exports.espiaoEntreNosMakeMeReady = functions.https.onCall(espiaoEntreNosEngine.makeMeReady);
 
 // ONDA_TELEPATICA HTTP CALLS
 
