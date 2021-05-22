@@ -68,7 +68,6 @@ function RevealPhase({ state, players, info }) {
     expiryTimestamp: inNSeconds(7),
     autoStart: true,
   });
-  console.log({ seconds });
 
   const rivalTeam = state.activeTeam === 'A' ? 'B' : 'A';
 

@@ -91,6 +91,8 @@ function Game() {
     switch (gameName) {
       case GAME_COLLECTION.ARTE_RUIM:
         return <GameSessions.ArteRuim gameId={gameId} />;
+      case GAME_COLLECTION.ESPIAO_ENTRE_NOS:
+        return <GameSessions.EspiaoEntreNos gameId={gameId} />;
       case GAME_COLLECTION.ONDA_TELEPATICA:
         return <GameSessions.OndaTelepatica gameId={gameId} />;
       case GAME_COLLECTION.UE_SO_ISSO:
