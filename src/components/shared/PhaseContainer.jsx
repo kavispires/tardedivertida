@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { Layout } from 'antd';
 // Components
 import LoadingPage from '../loaders/LoadingPage';
+import PageError from '../errors/PageError';
 
 /**
  * Wrapping container around a game screen
@@ -14,6 +15,10 @@ import LoadingPage from '../loaders/LoadingPage';
 function PhaseContainer({ info, phase, allowedPhase, children, className, fullScreen, white }) {
   if (!info?.gameName || allowedPhase !== phase) {
     return <LoadingPage />;
+  }
+
+  if (!phase) {
+    return <PageError message="Algo errado não está certo" description="Estado do jogo não está correto" />;
   }
 
   const baseClass = 'phase-container';
