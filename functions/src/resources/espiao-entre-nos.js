@@ -268,7 +268,7 @@ export const allLocationsBR = {
   31: {
     id: '31',
     name: 'Presídio',
-    roles: ['Líder de gange', 'Cozinheiro', 'Advogado', 'Guarda', 'Administrador', 'Visitante', 'Preso'],
+    roles: ['Líder de gangue', 'Cozinheiro', 'Advogado', 'Guarda', 'Administrador', 'Visitante', 'Preso'],
   },
   32: {
     id: '32',

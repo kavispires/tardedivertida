@@ -51,7 +51,7 @@ function WordSelectionStep({ words = [], onSendSelectedWords, guesser }) {
       </ul>
 
       <TimedButton
-        label="Enviar fotos"
+        label="Enviar votos"
         icon={<CloudUploadOutlined />}
         type="primary"
         onClick={() => onSendSelectedWords({ votes: selectedWordsArray })}
