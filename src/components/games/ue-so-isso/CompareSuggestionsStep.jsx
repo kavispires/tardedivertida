@@ -51,7 +51,7 @@ function CompareSuggestionsStep({
         Já eliminamos todas as palavras iguais, agora, elimine palavras inválidas ou similares.
         <br />
         Lembre-se que são consideradas dicas iguais palavras derividadas, conjugações: piloto = pilotar =
-        pilotando. Variações como pluralidade, gênero e erros ortograficos também devem ser
+        pilotando. Variações como pluralidade, gênero e erros ortográficos também devem ser
         eliminadas: príncipe = princesa = principes = pryncip.
         <br />
         <ExclamationCircleOutlined /> Para não virar bagunça, somente{' '}

@@ -22,7 +22,7 @@ function ResolutionPhase({ state, players, info }) {
     errorMessage: 'Vixi, o aplicativo encontrou um erro ao tentar enviar ação',
   });
 
-  const missionOutcomeText = isSpy === state.spyWin ? 'Missão Sucedida!' : 'Missão Perdida!';
+  const missionOutcomeText = isSpy === state.spyWin ? 'Missão Cumprida!' : 'Missão Fracassada!';
 
   return (
     <PhaseContainer
