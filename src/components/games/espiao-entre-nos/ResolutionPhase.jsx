@@ -82,6 +82,15 @@ function ResolutionPhase({ state, players, info }) {
         </div>
       )}
 
+      <Instruction className="e-phase-instruction">
+        Papéis:
+        {Object.values(players).map((player) => (
+          <li>
+            {player.name} como {player.role}
+          </li>
+        ))}
+      </Instruction>
+
       <AdminOnly>
         <AdminButton action={() => onAdminControl({ action: 'round' })} label="Iniciar nova rodada" />
         <AdminButton action={() => onAdminControl({ action: 'end' })} label="Terminar o jogo" />
