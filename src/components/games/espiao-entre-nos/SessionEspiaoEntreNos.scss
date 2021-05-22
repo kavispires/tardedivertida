@@ -1,0 +1,104 @@
+.e-phase {
+  border: 1px solid get-color(lime);
+  background: rgba($color: black, $alpha: 0.9);
+  font-family: 'Courier New', monospace;
+  justify-content: flex-start;
+
+  &--center {
+    justify-content: center;
+  }
+}
+
+.e-phase-title.e-phase-title {
+  color: get-color(lime);
+}
+
+.e-phase-instruction.e-phase-instruction {
+  border: 1px solid get-color(lime);
+  border-radius: get-unit(1);
+  color: get-color(lime);
+  padding: get-unit(1 4);
+  margin: get-unit(2 5);
+}
+
+.e-phase-section {
+  width: 100%;
+}
+
+.e-phase-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.e-lists {
+  border: 1px solid get-color(lime);
+  border-radius: get-unit(1);
+  color: get-color(lime);
+  margin: get-unit(2);
+}
+
+.e-notes {
+  width: 100%;
+  resize: vertical;
+  border-radius: get-unit(1);
+  padding: get-unit(1);
+}
+
+.e-card {
+  border-color: get-color(lime);
+
+  @at-root #{&}__footer#{&}__footer {
+    font-size: 1.2em;
+    margin-bottom: get-unit(2);
+  }
+}
+
+.e-phase-step-header {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  &__center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__timer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.e-select-container {
+  margin-top: get-unit(2);
+
+  &--locations {
+    margin-bottom: get-unit(2);
+  }
+}
+
+.e-timer {
+  border: 2px solid lime;
+  color: lime;
+  width: 100px;
+  border-radius: get-unit(1);
+  font-family: monospace;
+  font-size: 2em;
+  text-align: center;
+
+  &--paused {
+    animation: blink-timer 1s infinite;
+  }
+}
+
+@keyframes blink-timer {
+  50% {
+    color: get-color(red);
+  }
+}
+
+.e-admin-final-assessment {
+  color: get-color(red);
+}

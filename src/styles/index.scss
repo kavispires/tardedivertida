@@ -52,18 +52,22 @@
 @import '../components/games/arte-ruim/GalleryWindow.scss';
 @import '../components/games/arte-ruim/GameOverPhase.scss';
 
-// UeSoIsso Components
-@import '../components/games/ue-so-isso/WordSelectionPhase.scss';
-@import '../components/games/ue-so-isso/SuggestPhase.scss';
-@import '../components/games/ue-so-isso/ComparePhase.scss';
-@import '../components/games/ue-so-isso/GuessPhase.scss';
-@import '../components/games/ue-so-isso/SuggestionCard.scss';
+// EspiaoEntreNos Components
+@import '../components/games/espiao-entre-nos/SessionEspiaoEntreNos.scss';
+@import '../components/games/espiao-entre-nos/List.scss';
 
 // OndaTelepatica Components
 @import '../components/games/onda-telepatica/Card.scss';
 @import '../components/games/onda-telepatica/CardSelection.scss';
 @import '../components/games/onda-telepatica/Dial.scss';
 @import '../components/games/onda-telepatica/DialGuessSelection.scss';
+
+// UeSoIsso Components
+@import '../components/games/ue-so-isso/WordSelectionPhase.scss';
+@import '../components/games/ue-so-isso/SuggestPhase.scss';
+@import '../components/games/ue-so-isso/ComparePhase.scss';
+@import '../components/games/ue-so-isso/GuessPhase.scss';
+@import '../components/games/ue-so-isso/SuggestionCard.scss';
 
 // Pages
 @import '../components/App.scss';

@@ -66,12 +66,20 @@
     "gameName": "espiao-entre-nos",
     "title": "Espião Entre Nós",
     "summary": "Todos nós, agentes de bem, estamos num mesmo local, mas um de nós é um espião! Será que conseguimos descobrir quem é o impostor antes dele descobrir que local estamos?",
-    "rules": [],
+    "rules": [
+      "Espião entre nós é um jogo competitivo jogado em uma ou mais rodadas. Cada rodada dura apenas 10 minutos",
+      "Somos todos agentes do departamento de segurança e inteligência do governo, vamos nos encontrar em um local secreto combinado e estaremos infiltrados como pessoas comuns",
+      "Mas existe um espião entre nós! O espião não sabe onde nos entraremos e, claro, nós não sabemos quem é o espião",
+      "Temos apenas 10 minutos para descobrir quem é o espião e, para isso, nos alternaremos fazendo perguntas uns aos outros. Mas não seja óbvio, se o espião descobre o local, a missão falha e todos perdemos",
+      "Se você acabou de responder uma pergunta é a sua vez de perguntar, mas você não pode perguntar quem acabou de ter fazer uma pergunta",
+      "A qualquer momento, mas uma única vez por rodada, você pode acusar alguém, daí todos tem que votar e se a votação for unânime, revelam-se os papeis e prendemos o espião! Ou será que não? Tenha certeza antes de acusar alguém!",
+      "O espião também pode parar o jogo e tentar adivinhar onde é o local! Se em 10 minutos, nada foi descoberto, temos uma última change, mas explicamos isso quando a hora chegar"
+    ],
     "recommended": "6",
     "min": 4,
     "max": 8,
     "tags": ["competitive", "real-time", "traitor", "discussion"],
-    "available": false
+    "available": true
   },
   "M": {
     "gameCode": "M",

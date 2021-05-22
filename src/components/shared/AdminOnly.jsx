@@ -22,13 +22,19 @@ AdminOnly.propTypes = {
 
 export default memo(AdminOnly);
 
+export function AdminButton({ action, label }) {
+  const [isLoading] = useLoading();
+  return (
+    <Button icon={<RocketFilled />} danger type="primary" onClick={action} disabled={isLoading}>
+      {label}
+    </Button>
+  );
+}
+
 export function AdminOnlyButton({ action, label }) {
-  const [isLoading] = useLoading('isAdmin');
   return (
     <AdminOnly>
-      <Button icon={<RocketFilled />} danger type="primary" onClick={action} disabled={isLoading}>
-        {label}
-      </Button>
+      <AdminButton action={action} label={label} />
     </AdminOnly>
   );
 }
