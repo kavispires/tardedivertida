@@ -20,6 +20,8 @@ function Game() {
   const [gameId, setGameId] = useGlobalState('gameId');
   const [gameName, setGameName] = useGlobalState('gameName');
   const [gameMeta, setGameMeta] = useGlobalState('gameMeta');
+  const [, setMe] = useGlobalState('me');
+  const [, setMyAvatar] = useGlobalState('myAvatar');
 
   const [isPageLoading, setPageLoading] = useState(true);
   const isGameStale = useIsGameStale(gameMeta?.createdAt);
@@ -29,11 +31,13 @@ function Game() {
     const urlGameId = getGameIdFromURL(history);
     if (isValidGameId(urlGameId)) {
       setGameId(urlGameId);
+      setMe('');
+      setMyAvatar('');
     } else {
       message.error('Vixi, a id do jogo na barra de endereços tá errada');
       history.push('/');
     }
-  }, [history, setGameId]);
+  }, [history, setGameId, setMe, setMyAvatar]);
 
   // Keeps track of url changes
   useEffect(() => {
@@ -41,6 +45,7 @@ function Game() {
       const urlGameId = getGameIdFromLocation(location);
       if (isValidGameId(urlGameId)) {
         setGameId(urlGameId);
+
         message.info('Uma nova id de jogo foi provida');
       } else {
         message.error('Vixi, a id do jogo na barra de endereços tá errada');
