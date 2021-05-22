@@ -74,6 +74,26 @@ exports.arteRuimGoToNextPhase = functions.https.onCall(arteRuimEngine.goToNextPh
  */
 exports.espiaoEntreNosMakeMeReady = functions.https.onCall(espiaoEntreNosEngine.makeMeReady);
 
+/**
+ * handles admin actions
+ */
+exports.espiaoEntreNosHandleAdminAction = functions.https.onCall(espiaoEntreNosEngine.handleAdminAction);
+
+/**
+ * Pause game and accuse someone
+ */
+exports.espiaoEntreNosMakeAccusation = functions.https.onCall(espiaoEntreNosEngine.makeAccusation);
+
+/**
+ * Pause game and guess location
+ */
+exports.espiaoEntreNosGuessLocation = functions.https.onCall(espiaoEntreNosEngine.guessLocation);
+
+/**
+ * Submit individual voting, if it's the last player to be ready, move to the next phase
+ */
+exports.espiaoEntreNosSubmitVoting = functions.https.onCall(espiaoEntreNosEngine.submitVoting);
+
 // ONDA_TELEPATICA HTTP CALLS
 
 /**

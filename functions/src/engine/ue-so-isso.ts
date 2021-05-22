@@ -7,7 +7,7 @@ import {
   GameId,
   UeSoIssoInitialState,
   MakeMeReadyPayload,
-  SubmitVotingPayload,
+  SubmitVotesPayload,
   SubmitSuggestionsPayload,
   CurrentSuggestions,
   SubmitSuggestionsValidationPayload,
@@ -440,7 +440,7 @@ export const makeMeReady = async (data: MakeMeReadyPayload) => {
   return nextUeSoIssoPhase(collectionName, gameId, players);
 };
 
-export const submitWordSelectionVotes = async (data: SubmitVotingPayload) => {
+export const submitWordSelectionVotes = async (data: SubmitVotesPayload) => {
   const { gameId, gameName: collectionName, playerName, votes } = data;
 
   const actionText = 'submit your word selection votes';

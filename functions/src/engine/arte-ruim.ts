@@ -15,7 +15,7 @@ import {
   GameId,
   MakeMeReadyPayload,
   SubmitDrawingPayload,
-  SubmitVotingPayload,
+  SubmitVotesPayload,
   FirebaseContext,
 } from '../utils/interfaces';
 // Resources
@@ -454,7 +454,7 @@ export const submitDrawing = async (data: SubmitDrawingPayload) => {
   return nextArteRuimPhase(collectionName, gameId, players);
 };
 
-export const submitVoting = async (data: SubmitVotingPayload) => {
+export const submitVoting = async (data: SubmitVotesPayload) => {
   const { gameId, gameName: collectionName, playerName, votes } = data;
 
   const actionText = 'submit your votes';
