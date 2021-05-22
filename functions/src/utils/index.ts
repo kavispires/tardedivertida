@@ -261,6 +261,19 @@ export const unReadyPlayers = (players: Players, butThisOne = ''): Players => {
 };
 
 /**
+ * Set a property in all players
+ * @param players
+ * @param butThisOne
+ * @returns
+ */
+export const modifyPlayers = (players: Players, property: string, value: any, butThisOne = ''): Players => {
+  for (const playerKey in players) {
+    players[playerKey][property] = playerKey === butThisOne ? value : value;
+  }
+  return players;
+};
+
+/**
  * Set all players as not ready
  * @param players
  * @returns

@@ -84,6 +84,18 @@ export interface Payload {
   playerName: PlayerName;
 }
 
+export interface SubmitVotesPayload extends Payload {
+  votes: PlainObject;
+}
+
+export interface SubmitVotePayload extends Payload {
+  vote: string;
+}
+
+export interface SubmitGuessPayload extends Payload {
+  guess: string | number;
+}
+
 // ARTE_RUIM
 
 export interface UsedCard {
@@ -125,10 +137,6 @@ export interface SubmitDrawingPayload extends Payload {
   cardId: string;
 }
 
-export interface SubmitVotingPayload extends Payload {
-  votes: PlainObject;
-}
-
 // ESPIAO_ENTRE_NOS
 
 export type LocationId = string;
@@ -160,6 +168,10 @@ export interface EspiaoEntreNosInitialState {
   players: Players;
   store: EspiaoEntreStore;
   state: EspiaoEntreNosState;
+}
+
+export interface EspiaoEntreNosAdminPayload extends Payload {
+  action: string | any;
 }
 
 // ONDA_TELEPATICA
