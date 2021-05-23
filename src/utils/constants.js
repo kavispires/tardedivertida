@@ -96,6 +96,7 @@ export const AVATAR_DESCRIPTIONS_BR = {
  */
 export const GAME_COLLECTION = {
   ARTE_RUIM: 'arte-ruim',
+  ESPIAO_ENTRE_NOS: 'espiao-entre-nos',
   ONDA_TELEPATICA: 'onda-telepatica',
   UE_SO_ISSO: 'ue-so-isso',
 };
@@ -110,6 +111,16 @@ export const PHASES = {
     DRAW: 'DRAW',
     EVALUATION: 'EVALUATION',
     GALLERY: 'GALLERY',
+    GAME_OVER: 'GAME_OVER',
+  },
+  ESPIAO_ENTRE_NOS: {
+    LOBBY: 'LOBBY',
+    RULES: 'RULES',
+    ASSIGNMENT: 'ASSIGNMENT',
+    INVESTIGATION: 'INVESTIGATION',
+    ASSESSMENT: 'ASSESSMENT',
+    FINAL_ASSESSMENT: 'FINAL_ASSESSMENT',
+    RESOLUTION: 'RESOLUTION',
     GAME_OVER: 'GAME_OVER',
   },
   ONDA_TELEPATICA: {

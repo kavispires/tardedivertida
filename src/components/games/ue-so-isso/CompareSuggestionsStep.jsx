@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 // Design Resources
 import { Button, Space } from 'antd';
-import { CloudUploadOutlined, ExclamationCircleOutlined, FireFilled } from '@ant-design/icons';
+import { CloudUploadOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
 // State
 import { useGlobalState, useLoading } from '../../../hooks';
 // Components
 import Title from '../../shared/Title';
 import Instruction from '../../shared/Instruction';
-import AdminOnly from '../../shared/AdminOnly';
+import { AdminOnlyButton } from '../../shared/AdminOnly';
 import Card from '../../cards/UeSoIssoCard';
 import SuggestionCard from './SuggestionCard';
 
@@ -51,7 +51,7 @@ function CompareSuggestionsStep({
         Já eliminamos todas as palavras iguais, agora, elimine palavras inválidas ou similares.
         <br />
         Lembre-se que são consideradas dicas iguais palavras derividadas, conjugações: piloto = pilotar =
-        pilotando. Variações como pluralidade, gênero e erros ortograficos também devem ser
+        pilotando. Variações como pluralidade, gênero e erros ortográficos também devem ser
         eliminadas: príncipe = princesa = principes = pryncip.
         <br />
         <ExclamationCircleOutlined /> Para não virar bagunça, somente{' '}
@@ -111,21 +111,14 @@ function CompareSuggestionsStep({
         </Space>
       )}
 
-      <AdminOnly>
-        <Button
-          icon={<FireFilled />}
-          type="primary"
-          danger
-          onClick={() =>
-            onValidateSuggestions({
-              validSuggestions: suggestionsValues.filter((suggestion) => !suggestion.invalid),
-            })
-          }
-          disabled={isLoading}
-        >
-          Confirmar dicas válidas como Admin
-        </Button>
-      </AdminOnly>
+      <AdminOnlyButton
+        action={() =>
+          onValidateSuggestions({
+            validSuggestions: suggestionsValues.filter((suggestion) => !suggestion.invalid),
+          })
+        }
+        label="Confirmar dicas válidas como Admin"
+      />
     </div>
   );
 }

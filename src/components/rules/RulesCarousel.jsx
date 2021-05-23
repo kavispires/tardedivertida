@@ -2,15 +2,37 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 // Design Resources
-import { Typography, Image, Carousel } from 'antd';
+import { Typography, Image, Carousel, Button } from 'antd';
 // Constants
 import { PUBLIC_URL } from '../../utils/constants';
+import { DoubleLeftOutlined, DoubleRightOutlined } from '@ant-design/icons';
 
 function RulesCarousel({ info, className, ruleClass }) {
+  const settings = {
+    prevArrow: (
+      <Button>
+        <DoubleLeftOutlined className="rules-carousel__nav rules-carousel__nav--left" />
+      </Button>
+    ),
+    nextArrow: (
+      <Button>
+        <DoubleRightOutlined className="rules-carousel__nav rules-carousel__nav--right" />
+      </Button>
+    ),
+  };
+
   return (
-    <Carousel className={clsx('rules-carousel', className)} autoplay autoplaySpeed={15000}>
+    <Carousel
+      className={clsx('rules-carousel', className)}
+      autoplay
+      autoplaySpeed={15000}
+      arrows
+      {...settings}
+    >
       {info.rules.map((rule, index) => (
         <div className={clsx('rules-carousel__rule', ruleClass)} key={rule}>
+          <span className="rules-carousel__rule-number">{index + 1}</span>
+
           <Image
             className="rules-carousel__image"
             src={

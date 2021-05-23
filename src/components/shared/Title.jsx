@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import { Typography } from 'antd';
 import clsx from 'clsx';
 
-function Title({ children, white, icon, className }) {
+function Title({ children, white, icon, className, level }) {
   return (
-    <Typography.Title className={clsx('title', white && 'title--white', className)}>
+    <Typography.Title level={level} className={clsx('title', white && 'title--white', className)}>
       {Boolean(icon) && icon}
       {children}
     </Typography.Title>
@@ -18,6 +18,12 @@ Title.propTypes = {
   white: PropTypes.bool,
   icon: PropTypes.element,
   className: PropTypes.string,
+  level: PropTypes.number,
+};
+
+Title.defaultProps = {
+  className: '',
+  level: 1,
 };
 
 export default memo(Title);

@@ -17,6 +17,7 @@ function GuessPhase({ state, players, info }) {
   const psychic = useActivePlayer(state, players, 'psychic');
   const controller = useActivePlayer(state, players, 'teamController');
   const amITheController = useAmIActive(state, 'teamController');
+  const amIThePsychic = useAmIActive(state, 'psychic');
   const isMyTeamActive = useIsMyTeamActive(state, players);
 
   const onSendGuess = useAPICall({
@@ -45,6 +46,7 @@ function GuessPhase({ state, players, info }) {
           onSendGuess={onSendGuess}
           isMyTeamActive={isMyTeamActive}
           card={state.card}
+          amIThePsychic={amIThePsychic}
         />
 
         {/* Step 1 */}

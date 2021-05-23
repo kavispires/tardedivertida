@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { memo } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 // Design Resources
-import { Space } from 'antd';
+import { Button, Space } from 'antd';
+import { RocketFilled } from '@ant-design/icons';
 // State
-import useGlobalState from '../../hooks/useGlobalState';
+import { useLoading, useGlobalState } from '../../hooks';
 
 function AdminOnly({ children, className = '' }) {
   const [isAdmin] = useGlobalState('isAdmin');
@@ -19,4 +20,21 @@ AdminOnly.propTypes = {
   className: PropTypes.string,
 };
 
-export default AdminOnly;
+export default memo(AdminOnly);
+
+export function AdminButton({ action, label }) {
+  const [isLoading] = useLoading();
+  return (
+    <Button icon={<RocketFilled />} danger type="primary" onClick={action} disabled={isLoading}>
+      {label}
+    </Button>
+  );
+}
+
+export function AdminOnlyButton({ action, label }) {
+  return (
+    <AdminOnly>
+      <AdminButton action={action} label={label} />
+    </AdminOnly>
+  );
+}

@@ -13,6 +13,7 @@ import {
   Teams,
 } from '../utils/interfaces';
 import { getInitialState as arteRuimGetInitialState } from '../engine/arte-ruim';
+import { getInitialState as espiaoEntreNosGetInitialState } from '../engine/espiao-entre-nos';
 import { getInitialState as ondaTelepaticaGetInitialState } from '../engine/onda-telepatica';
 import { getInitialState as ueSoIssoGetInitialState } from '../engine/ue-so-isso';
 import { shuffle, getRandomUniqueItem } from './game-utils';
@@ -141,6 +142,8 @@ export const getCollectionNameByGameCode = (gameCode: GameCode): string | null =
   switch (gameCode) {
     case GAME_CODES.A:
       return GAME_COLLECTIONS.ARTE_RUIM;
+    case GAME_CODES.E:
+      return GAME_COLLECTIONS.ESPIAO_ENTRE_NOS;
     case GAME_CODES.O:
       return GAME_COLLECTIONS.ONDA_TELEPATICA;
     case GAME_CODES.U:
@@ -159,6 +162,8 @@ export const getCollectionKeyByGameCode = (gameCode: GameCode): string | null =>
   switch (gameCode) {
     case GAME_CODES.A:
       return GAME_KEYS.ARTE_RUIM;
+    case GAME_CODES.E:
+      return GAME_KEYS.ESPIAO_ENTRE_NOS;
     case GAME_CODES.O:
       return GAME_KEYS.ONDA_TELEPATICA;
     case GAME_CODES.U:
@@ -185,6 +190,8 @@ export const getInitialStateForCollection = (collectionName: string) => {
   switch (collectionName) {
     case GAME_COLLECTIONS.ARTE_RUIM:
       return arteRuimGetInitialState;
+    case GAME_COLLECTIONS.ESPIAO_ENTRE_NOS:
+      return espiaoEntreNosGetInitialState;
     case GAME_COLLECTIONS.ONDA_TELEPATICA:
       return ondaTelepaticaGetInitialState;
     case GAME_COLLECTIONS.UE_SO_ISSO:
@@ -249,6 +256,19 @@ export const readyPlayers = (players: Players, butThisOne = ''): Players => {
 export const unReadyPlayers = (players: Players, butThisOne = ''): Players => {
   for (const playerKey in players) {
     players[playerKey].ready = playerKey === butThisOne ? true : false;
+  }
+  return players;
+};
+
+/**
+ * Set a property in all players
+ * @param players
+ * @param butThisOne
+ * @returns
+ */
+export const modifyPlayers = (players: Players, property: string, value: any, butThisOne = ''): Players => {
+  for (const playerKey in players) {
+    players[playerKey][property] = playerKey === butThisOne ? value : value;
   }
   return players;
 };

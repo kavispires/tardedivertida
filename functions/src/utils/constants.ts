@@ -4,18 +4,21 @@ export const LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
 export const GAME_CODES = {
   A: 'A', // arte-ruim
+  E: 'E', // espiao-entre-nos
   O: 'O', // onda-telepatica
   U: 'U', // ue-so-isso
 };
 
 export const GAME_KEYS = {
   ARTE_RUIM: 'ARTE_RUIM',
+  ESPIAO_ENTRE_NOS: 'ESPIAO_ENTRE_NOS',
   ONDA_TELEPATICA: 'ONDA_TELEPATICA',
   UE_SO_ISSO: 'UE_SO_ISSO',
 };
 
 export const GAME_COLLECTIONS = {
   ARTE_RUIM: 'arte-ruim',
+  ESPIAO_ENTRE_NOS: 'espiao-entre-nos',
   ONDA_TELEPATICA: 'onda-telepatica',
   UE_SO_ISSO: 'ue-so-isso',
 };
@@ -23,6 +26,10 @@ export const GAME_COLLECTIONS = {
 export const GAME_PLAYERS_LIMIT = {
   ARTE_RUIM: {
     min: 3,
+    max: 8,
+  },
+  ESPIAO_ENTRE_NOS: {
+    min: 4,
     max: 8,
   },
   ONDA_TELEPATICA: {
@@ -45,6 +52,16 @@ export const PHASES = {
     DRAW: 'DRAW',
     EVALUATION: 'EVALUATION',
     GALLERY: 'GALLERY',
+    GAME_OVER: 'GAME_OVER',
+  },
+  ESPIAO_ENTRE_NOS: {
+    LOBBY: 'LOBBY',
+    RULES: 'RULES',
+    ASSIGNMENT: 'ASSIGNMENT',
+    INVESTIGATION: 'INVESTIGATION',
+    ASSESSMENT: 'ASSESSMENT',
+    FINAL_ASSESSMENT: 'FINAL_ASSESSMENT',
+    RESOLUTION: 'RESOLUTION',
     GAME_OVER: 'GAME_OVER',
   },
   ONDA_TELEPATICA: {
@@ -76,6 +93,27 @@ export const ARTE_RUIM_CARDS_BY_LEVEL = {
   1: new Array(200).fill(1).map((i, index) => `${i + index}`),
   2: new Array(200).fill(201).map((i, index) => `${i + index}`),
   3: new Array(200).fill(401).map((i, index) => `${i + index}`),
+};
+
+// ESPIAO_ENTRE_NOS
+
+export const ESPIAO_ENTRE_NOS_CONSTANTS = {
+  SPY: 'SPY',
+  GAME_TIME: 10 * 60 * 1000,
+  TIMER_STATUS: {
+    RUNNING: 'RUNNING',
+    STOPPED: 'STOPPED',
+    PAUSED: 'PAUSED',
+  },
+  OUTCOME: {
+    VOTE_SUCCESS: 'VOTE_SUCCESS',
+    VOTE_FAIL: 'VOTE_FAIL',
+    CONTINUE: 'CONTINUE',
+  },
+  RESOLUTION: {
+    SPY_GUESS: 'SPY_GUESS',
+    SPY_FOUND: 'SPY_FOUND',
+  },
 };
 
 // ONDA_TELEPATICA

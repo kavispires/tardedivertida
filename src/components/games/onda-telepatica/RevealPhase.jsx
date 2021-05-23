@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 // Hooks
 import { useAPICall } from '../../../hooks';
@@ -10,9 +10,7 @@ import PhaseContainer from '../../shared/PhaseContainer';
 import Title from '../../shared/Title';
 import Dial from './Dial';
 import Instruction from '../../shared/Instruction';
-import AdminOnly from '../../shared/AdminOnly';
-import { Button } from 'antd';
-import { RocketFilled } from '@ant-design/icons';
+import { AdminOnlyButton } from '../../shared/AdminOnly';
 import { useTimer } from 'react-timer-hook';
 import { inNSeconds } from '../../../utils';
 
@@ -59,13 +57,9 @@ function getRivalResultInstructionLine(pointsBreakdown, team) {
 }
 
 function RevealPhase({ state, players, info }) {
-  const [step, setStep] = useState(0);
-
   const onGoToNextRound = useAPICall({
     apiFunction: ONDA_TELEPATICA.goToNextPhase,
     actionName: 'next-phase',
-    onBeforeCall: () => setStep(1),
-    onError: () => setStep(0),
     successMessage: 'Próxima fase ativada com success',
     errorMessage: 'Vixi, ocorreu um erro ao tentar ir pra próxima fase',
   });
@@ -74,7 +68,6 @@ function RevealPhase({ state, players, info }) {
     expiryTimestamp: inNSeconds(7),
     autoStart: true,
   });
-  console.log({ seconds });
 
   const rivalTeam = state.activeTeam === 'A' ? 'B' : 'A';
 
@@ -108,17 +101,7 @@ function RevealPhase({ state, players, info }) {
         {getRivalResultInstructionLine(state.pointsBreakdown[rivalTeam], rivalTeam)}
       </Instruction>
 
-      <AdminOnly>
-        <Button
-          icon={<RocketFilled />}
-          danger
-          type="primary"
-          onClick={() => onGoToNextRound({})}
-          disabled={step === 1}
-        >
-          Ir para próxima rodada ou game over
-        </Button>
-      </AdminOnly>
+      <AdminOnlyButton action={() => onGoToNextRound({})} label="Ir para próxima rodada ou game over" />
     </PhaseContainer>
   );
 }

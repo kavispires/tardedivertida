@@ -7,7 +7,7 @@ import {
   GameId,
   UeSoIssoInitialState,
   MakeMeReadyPayload,
-  SubmitVotingPayload,
+  SubmitVotesPayload,
   SubmitSuggestionsPayload,
   CurrentSuggestions,
   SubmitSuggestionsValidationPayload,
@@ -440,7 +440,7 @@ export const makeMeReady = async (data: MakeMeReadyPayload) => {
   return nextUeSoIssoPhase(collectionName, gameId, players);
 };
 
-export const submitWordSelectionVotes = async (data: SubmitVotingPayload) => {
+export const submitWordSelectionVotes = async (data: SubmitVotesPayload) => {
   const { gameId, gameName: collectionName, playerName, votes } = data;
 
   const actionText = 'submit your word selection votes';
@@ -527,6 +527,28 @@ export const submitValidation = async (data: SubmitSuggestionsValidationPayload)
 
   // If all players are ready, trigger next phase
   return nextUeSoIssoPhase(collectionName, gameId, players);
+};
+
+export const sendGuess = async (data: ConfirmGuessPayload) => {
+  const { gameId, gameName: collectionName, playerName, guess } = data;
+
+  const actionText = 'submit the guess';
+  utils.verifyPayload(gameId, 'gameId', actionText);
+  utils.verifyPayload(collectionName, 'collectionName', actionText);
+  utils.verifyPayload(playerName, 'playerName', actionText);
+  utils.verifyPayload(guess, 'guess', actionText);
+
+  // Get 'players' from given game session
+  const sessionRef = utils.getSessionRef(collectionName, gameId);
+
+  // Submit suggestions
+  try {
+    await sessionRef.doc('state').update({ guess });
+  } catch (error) {
+    utils.throwException(error, actionText);
+  }
+
+  return true;
 };
 
 export const confirmGuess = async (data: ConfirmGuessPayload) => {
