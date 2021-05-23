@@ -41,6 +41,7 @@ export const UE_SO_ISSO_API = {
   submitSuggestions: functions.httpsCallable('ueSoIssoSubmitSuggestions'),
   submitValidation: functions.httpsCallable('ueSoIssoSubmitValidation'),
   confirmGuess: functions.httpsCallable('ueSoIssoConfirmGuess'),
+  sendGuess: functions.httpsCallable('ueSoIssoSendGuess'),
 };
 
 /**

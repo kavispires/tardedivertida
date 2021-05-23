@@ -48,3 +48,10 @@ body {
 .uppercase-input {
   text-transform: uppercase;
 }
+
+.admin-container {
+  background: rgba($color: red, $alpha: 0.5);
+  padding: get-unit(2);
+  border: 1px solid get-color(red);
+  border-radius: get-unit(1);
+}

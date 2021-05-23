@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
 import { Button, Space } from 'antd';
-import { CheckOutlined, CloseOutlined, MinusOutlined, QuestionCircleOutlined } from '@ant-design/icons';
+import { CheckOutlined, CloseOutlined, QuestionCircleOutlined } from '@ant-design/icons';
 // Hooks
 import { useGlobalState, useLoading, useActivePlayer, useAmIActive, useAPICall } from '../../../hooks';
 // Resources & Utils
@@ -17,6 +17,8 @@ import Avatar from '../../avatars/Avatar';
 import Instruction from '../../shared/Instruction';
 import UeSoIssoCard from '../../cards/UeSoIssoCard';
 import SuggestionCard from './SuggestionCard';
+import clsx from 'clsx';
+import Guess from './Guess';
 
 function GuessPhase({ state, players, info }) {
   const [isLoading] = useLoading();
@@ -24,6 +26,7 @@ function GuessPhase({ state, players, info }) {
   const [step, setStep] = useState(0);
   const guesser = useActivePlayer(state, players, 'guesser');
   const amITheNextGuesser = useAmIActive(state, 'nextGuesser');
+  const amITheGuesser = useAmIActive(state, 'guesser');
 
   const onSubmitGuess = useAPICall({
     apiFunction: UE_SO_ISSO_API.confirmGuess,
@@ -45,15 +48,39 @@ function GuessPhase({ state, players, info }) {
         {/* Step 0 */}
         <div className="u-word-guess-phase__step">
           <Title>
-            Hora de brilhar <Avatar id={guesser.avatarId} /> {guesser.name}!
+            {state.guess ? (
+              <span>
+                <Avatar id={guesser.avatarId} /> {guesser.name} disse "{state.guess}"
+              </span>
+            ) : (
+              <span>
+                Hora de brilhar <Avatar id={guesser.avatarId} /> {guesser.name}!
+              </span>
+            )}
           </Title>
-          <Instruction contained>Você tem uma única change de adivinhar a palavra secreta!</Instruction>
-          <UeSoIssoCard word={<QuestionCircleOutlined />} header="A Palavra Secreta é" />
           <Instruction contained>
-            {state.nextGuesser} está encarregado(a) de apertar os botões se você acertou ou não. <br />
-            São 3 pontos se você acertar, -1 se errar, mas você pode passar e não tentar, covarde!.. <br />
-            As dicas são:
+            {amITheGuesser ? 'Você' : guesser.name} tem uma única change de adivinhar a palavra secreta!
           </Instruction>
+          <UeSoIssoCard
+            word={amITheGuesser ? <QuestionCircleOutlined /> : state.secretWord.text}
+            header="A Palavra Secreta é"
+          />
+
+          {state.guess ? (
+            <Instruction contained>
+              {state.nextGuesser} está encarregado(a) de apertar os botões se você acertou ou não. <br />
+              São 3 pontos se você acertar, -1 se errar, mas você pode passar e não tentar, covarde!.. <br />
+              As dicas são:
+            </Instruction>
+          ) : (
+            <Instruction contained>
+              {amITheGuesser ? (
+                <span>Escreva seu chute no campo abaixo</span>
+              ) : (
+                <span>{guesser.name} está pensando...</span>
+              )}
+            </Instruction>
+          )}
 
           <Space className="u-word-guess-phase__suggestions">
             {state.validSuggestions.map((suggestionEntry, index) => {
@@ -70,8 +97,10 @@ function GuessPhase({ state, players, info }) {
             })}
           </Space>
 
-          {(amITheNextGuesser || isAdmin) && (
-            <Space className="u-word-guess-phase__guess-submit">
+          {amITheGuesser && !state.guess && <Guess onSubmitGuess={onSubmitGuess} />}
+
+          {state.guess && (amITheNextGuesser || isAdmin) && (
+            <Space className={clsx('u-word-guess-phase__guess-submit', isAdmin && 'admin-container')}>
               <Button
                 icon={<CheckOutlined />}
                 type="primary"
@@ -89,14 +118,6 @@ function GuessPhase({ state, players, info }) {
                 disabled={isLoading}
               >
                 Errou
-              </Button>
-              <Button
-                icon={<MinusOutlined />}
-                type="default"
-                onClick={() => onSubmitGuess({ guess: 'PASS' })}
-                disabled={isLoading}
-              >
-                Passou a vez
               </Button>
             </Space>
           )}
