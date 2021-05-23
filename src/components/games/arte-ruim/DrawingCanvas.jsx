@@ -10,6 +10,7 @@ const DrawingCanvas = ({ lines, setLines, className = '' }) => {
     isDrawing.current = true;
     const pos = e.target.getStage().getPointerPosition();
     setLines([...lines, [pos.x, pos.y]]);
+    // return false;
   };
 
   const handleMouseMove = (e) => {
@@ -39,6 +40,9 @@ const DrawingCanvas = ({ lines, setLines, className = '' }) => {
       onMouseDown={handleMouseDown}
       onMousemove={handleMouseMove}
       onMouseup={handleMouseUp}
+      onTouchStart={handleMouseDown}
+      onTouchMove={handleMouseMove}
+      onTouchEnd={handleMouseUp}
       className={clsx('a-drawing-canvas', className)}
     >
       <Layer>
