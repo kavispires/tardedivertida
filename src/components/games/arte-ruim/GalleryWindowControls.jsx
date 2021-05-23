@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useTimer } from 'react-timer-hook';
 // Design Resources
-import { Button } from 'antd';
+import { Button, Space } from 'antd';
 import {
   PauseOutlined,
   PlayCircleOutlined,
@@ -40,25 +40,27 @@ function GalleryWindowControls({ galleryLength, activeIndex, setActiveIndex, set
       <div className="a-gallery-window__timer-bar">
         <span style={{ width: `${Math.abs((10 * seconds) / galleryLength - 100)}%` }}></span>
       </div>
-      <Button
-        size="large"
-        icon={<StepBackwardOutlined />}
-        onClick={previousStep}
-        disabled={activeIndex === 0}
-      >
-        Desenho Anterior
-      </Button>
-      <Button
-        size="large"
-        icon={isRunning ? <PauseOutlined /> : <PlayCircleOutlined />}
-        onClick={isRunning ? pause : resume}
-      />
-      <Button size="large" onClick={nextStep} disabled={activeIndex === galleryLength - 1}>
-        Próximo Desenho <StepForwardOutlined />
-      </Button>
-      <Button size="large" onClick={() => setStep(1)} icon={<TrophyOutlined />}>
-        Ver Ranking
-      </Button>
+      <Space>
+        <Button
+          size="large"
+          icon={<StepBackwardOutlined />}
+          onClick={previousStep}
+          disabled={activeIndex === 0}
+        >
+          Desenho Anterior
+        </Button>
+        <Button
+          size="large"
+          icon={isRunning ? <PauseOutlined /> : <PlayCircleOutlined />}
+          onClick={isRunning ? pause : resume}
+        />
+        <Button size="large" onClick={nextStep} disabled={activeIndex === galleryLength - 1}>
+          Próximo Desenho <StepForwardOutlined />
+        </Button>
+        <Button size="large" onClick={() => setStep(1)} icon={<TrophyOutlined />}>
+          Ver Ranking
+        </Button>
+      </Space>
     </div>
   );
 }
