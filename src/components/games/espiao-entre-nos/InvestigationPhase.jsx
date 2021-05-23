@@ -43,6 +43,10 @@ function InvestigationPhase({ state, players, info }) {
       message.warning(`A votação não foi unânime`, 4);
       message.info(state?.votedYes ? `Votaram sim: ${state?.votedYes}` : 'Ninguém votou sim', 6);
     }
+
+    if (state.timeRemaining > 590000) {
+      message.info(`${Object.keys(players)[0]} começa perguntando!`, 3);
+    }
   }, []); // eslint-disable-line
 
   return (
