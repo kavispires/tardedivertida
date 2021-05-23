@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+// Design Resources
+import { message } from 'antd';
 // Hooks
 import { useMe, useAPICall, useAmIActive } from '../../../hooks';
 // Resources & Utils
@@ -23,6 +25,16 @@ function ResolutionPhase({ state, players, info }) {
   });
 
   const missionOutcomeText = isSpy === state.spyWin ? 'Missão Cumprida!' : 'Missão Fracassada!';
+
+  useEffect(() => {
+    if (state?.resolutionType === 'SPY_GUESS') {
+      if (state.spyWin) {
+        message.warning(`${state.currentSpy} chutou ${state.guess} e acertou`, 6);
+      } else {
+        message.warning(`${state.currentSpy} chutou ${state.guess} e error feio`, 6);
+      }
+    }
+  }, []); // eslint-disable-line
 
   return (
     <PhaseContainer
@@ -74,7 +86,7 @@ function ResolutionPhase({ state, players, info }) {
                 {missionOutcomeText}
               </Title>
               <Instruction className="e-phase-instruction">
-                O espião {state.currentSpy} não descobriu a tempo que estamos no(a) {state.currentLocation}!
+                O espião {state.currentSpy} não descobriu a tempo que estamos no(a) {state.currentLocation}!{' '}
                 {isSpy ? `Não foi dessa vez, ${user.name}.` : 'O mundo está salvo graças a você!'}
               </Instruction>
             </div>
@@ -83,7 +95,7 @@ function ResolutionPhase({ state, players, info }) {
       )}
 
       <Instruction className="e-phase-instruction">
-        Papéis:
+        Desfarces dos infiltrados:
         {Object.values(players).map((player) => (
           <li>
             {player.name} como {player.role}

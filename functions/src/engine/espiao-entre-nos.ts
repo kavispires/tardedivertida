@@ -126,7 +126,7 @@ const checkResolution = (state: FirebaseFirestore.DocumentData, players: Players
 
     return {
       outcome: E_CONSTANTS.OUTCOME.VOTE_FAIL,
-      votedYes: Object.keys(playersWhoVotedYes),
+      votedYes: playersWhoVotedYes.map((player) => player.name).join(', '),
     };
   }
 
@@ -292,7 +292,7 @@ const prepareInvestigationPhase = async (
   const additionalUpdate: PlainObject = {};
   if (resolution.outcome === E_CONSTANTS.OUTCOME.VOTE_FAIL) {
     additionalUpdate.outcome = E_CONSTANTS.OUTCOME.VOTE_FAIL;
-    additionalUpdate.votedYes = resolution.votedYes ?? [];
+    additionalUpdate.votedYes = resolution.votedYes ?? '';
   }
 
   const timeRemaining = calculateTimeRemaining(state.timeRemaining, state.timerUpdatedAt);
