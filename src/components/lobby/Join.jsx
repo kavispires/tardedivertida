@@ -149,7 +149,7 @@ function Join({ players, info }) {
 
       <Input
         className="lobby-join__name-input"
-        onChange={(e) => setTempMe(e.target.value)}
+        onChange={(e) => setTempMe(e.target.value.trim())}
         placeholder="Insira seu nome"
         value={tempMe}
         maxLength={10}
