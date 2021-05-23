@@ -3,10 +3,9 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { Button } from 'antd';
 import { PictureOutlined } from '@ant-design/icons';
 // State & Hooks
-import useGlobalState from '../../../hooks/useGlobalState';
-import { useAPICall } from '../../../hooks';
+import { useAPICall, useGlobalState } from '../../../hooks';
 // Resources and Utils
-import { ARTE_RUIM_API } from '../../../adapters';
+import { GAME_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
 // Components
 import GalleryWindow from './GalleryWindow';
@@ -21,20 +20,20 @@ function GalleryPhase({ players, state, info }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [step, setStep] = useState(0);
   const [canvasSize, setCanvasSize] = useGlobalState('canvasSize');
-  const [cachedCanvasSize, setCachedCanvasSize] = useState(canvasSize);
+  const [cachedCanvasSize, setCachedCanvasSize] = useGlobalState('cachedCanvasSize');
 
   // The gallery needs a bigger image, its annoying that we are changing the users settings but whatever
   useEffect(() => {
     if (step === 0) {
       setCachedCanvasSize(canvasSize);
-      setCanvasSize(500);
+      setCanvasSize(Math.min(window.innerWidth / 2 - 100, 500));
     } else {
       setCanvasSize(cachedCanvasSize);
     }
   }, [step]); // eslint-disable-line
 
   const onGoToNextRound = useAPICall({
-    apiFunction: ARTE_RUIM_API.goToNextPhase,
+    apiFunction: GAME_API.goToNextPhase,
     actionName: 'go-to-next-phase',
     successMessage: 'Ranking!',
     errorMessage: 'Vixi, o aplicativo encontrou um erro ao tentar ir para a próxima fase',

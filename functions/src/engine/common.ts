@@ -8,6 +8,7 @@ import {
   LoadGamePayload,
   BasicGamePayload,
   Players,
+  MakeMeReadyPayload,
 } from '../utils/interfaces';
 import { GAME_PLAYERS_LIMIT } from '../utils/constants';
 
@@ -66,6 +67,7 @@ export const createGame = async (data: CreateGamePayload, context: FirebaseConte
 
     const getInitialState = utils.getInitialStateForCollection(collectionName);
     const uid = context?.auth?.uid ?? '';
+
     const { meta, players, state, store } = getInitialState(gameId, uid, data.language ?? 'BR');
 
     await sessionRef.doc('meta').set(meta);
@@ -216,6 +218,58 @@ export const lockGame = async (data: BasicGamePayload, context: FirebaseContext)
   }
 
   return false;
+};
+
+// Make me ready
+export const makeMeReady = async (data: MakeMeReadyPayload) => {
+  const { gameId, gameName: collectionName, playerName } = data;
+
+  const actionText = 'make you ready';
+  utils.verifyPayload(gameId, 'gameId', actionText);
+  utils.verifyPayload(collectionName, 'collectionName', actionText);
+  utils.verifyPayload(playerName, 'playerName', actionText);
+
+  // Get 'players' from given game session
+  const sessionRef = utils.getSessionRef(collectionName, gameId);
+  const playersDoc = await utils.getSessionDoc(collectionName, gameId, 'players', actionText);
+
+  // Make player ready
+  const players = playersDoc.data() ?? {};
+  const updatedPlayers = utils.readyPlayer(players, playerName);
+
+  if (!utils.isEverybodyReady(updatedPlayers)) {
+    try {
+      await sessionRef.doc('players').update({ [playerName]: updatedPlayers[playerName] });
+      return true;
+    } catch (error) {
+      utils.throwException(error, actionText);
+    }
+  }
+
+  const collectionKey = utils.getCollectionKeyByGameCode(gameId[0]) ?? '';
+  const nextPhaseDelegator = utils.getNextPhaseForCollection(collectionKey);
+
+  // If all players are ready, trigger next phase
+  return nextPhaseDelegator(collectionName, gameId, players);
+};
+
+// Next phase
+export const goToNextPhase = async (data: BasicGamePayload, context: FirebaseContext) => {
+  const { gameId, gameName: collectionName } = data;
+
+  const actionText = 'go to the next phase';
+  utils.verifyPayload(gameId, 'gameId', actionText);
+  utils.verifyPayload(collectionName, 'collectionName', actionText);
+  utils.verifyAuth(context, actionText);
+
+  const playersDoc = await utils.getSessionDoc(collectionName, gameId, 'players', actionText);
+
+  const players = playersDoc.data() ?? {};
+
+  const collectionKey = utils.getCollectionKeyByGameCode(gameId[0]) ?? '';
+  const nextPhaseDelegator = utils.getNextPhaseForCollection(collectionKey);
+
+  return nextPhaseDelegator(collectionName, gameId, players);
 };
 
 /**

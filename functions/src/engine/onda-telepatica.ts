@@ -105,7 +105,7 @@ const getRivalTeam = (activeTeam: string): string => {
   return activeTeam === 'A' ? 'B' : 'A';
 };
 
-const nextOndaTelepaticaPhase = async (
+export const nextOndaTelepaticaPhase = async (
   collectionName: string,
   gameId: string,
   players: Players
@@ -122,7 +122,7 @@ const nextOndaTelepaticaPhase = async (
 
   // Perform setup and reset any previous session stuff
   if (state?.phase === 'RULES') {
-    const teams = utils.determineTeams(players, 2);
+    const teams = utils.determineTeams(players, 2, [0, 1]);
     store.teams = teams;
     await sessionRef.doc('players').set(players);
     await sessionRef.doc('store').update({

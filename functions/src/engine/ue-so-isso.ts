@@ -96,7 +96,7 @@ const determineGroupScore = (players: Players, totalRounds: number): number => {
   return Math.round((100 * totalPoints) / expectedPoints);
 };
 
-const nextUeSoIssoPhase = async (
+export const nextUeSoIssoPhase = async (
   collectionName: string,
   gameId: string,
   players: Players

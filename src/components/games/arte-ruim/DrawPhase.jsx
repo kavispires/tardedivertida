@@ -56,9 +56,14 @@ function DrawPhase({ players, state, info }) {
           buttonText="Um dó, lá, si... vamos ir... já!"
         >
           <Instruction white>
-            Você terá 10 segundos para ler a sua carta e desenhá-la. Aperte o botão quando estiver pronto!
+            Você terá 10 segundos para ler a sua carta e desenhá-la.
             <br />
-            Fique esperto porque começa assim que você apertar. Não 'seje' lerdo.
+            Aperte o botão quando estiver pronto!
+            <br />
+            Fique esperto porque o tempo começa assim que você apertar.
+            <br />
+            Não 'seje' lerdo.
+            <br />
           </Instruction>
         </RoundAnnouncement>
 
@@ -72,7 +77,7 @@ function DrawPhase({ players, state, info }) {
             title="Pronto!"
             instruction="Vamos aguardar enquanto os outros jogadores terminam seus desenhos!"
           />
-          <AdminForceNextPhase goToNextPhase={ARTE_RUIM_API.goToNextPhase} />
+          <AdminForceNextPhase />
         </Fragment>
       </StepSwitcher>
     </PhaseContainer>

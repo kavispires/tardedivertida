@@ -11,13 +11,6 @@ admin.initializeApp();
 // Start writing Firebase Functions
 // https://firebase.google.com/docs/functions/typescript
 
-/**
- * Demo function
- */
-exports.test = functions.https.onCall(async () => {
-  return 'hello world';
-});
-
 // COMMON HTTP CALLS
 
 /**
@@ -41,16 +34,21 @@ exports.addPlayer = functions.https.onCall(commonEngine.addPlayer);
 exports.lockGame = functions.https.onCall(commonEngine.lockGame);
 
 /**
+ * Make player ready and go to next game phase if all players are ready
+ */
+exports.makeMeReady = functions.https.onCall(commonEngine.makeMeReady);
+
+/**
+ * Admin action to force game to go to its next phase
+ */
+exports.goToNextPhase = functions.https.onCall(commonEngine.goToNextPhase);
+
+/**
  * Play game again within the same session
  */
 exports.playAgain = functions.https.onCall(commonEngine.playAgain);
 
 // ARTE_RUIM HTTP CALLS
-
-/**
- * Make player ready, if it's the last player to be ready, move to the next phase
- */
-exports.arteRuimMakeMeReady = functions.https.onCall(arteRuimEngine.makeMeReady);
 
 /**
  * Submit player's drawing, if it's the last player to be ready, move to the next phase
@@ -62,17 +60,7 @@ exports.arteRuimSubmitDrawing = functions.https.onCall(arteRuimEngine.submitDraw
  */
 exports.arteRuimSubmitVoting = functions.https.onCall(arteRuimEngine.submitVoting);
 
-/**
- * Admin action to force game to go to its next phase
- */
-exports.arteRuimGoToNextPhase = functions.https.onCall(arteRuimEngine.goToNextPhase);
-
 // ESPIAO_ENTRE_NOS HTTP CALLS
-
-/**
- * Make player ready, if it's the last player to be ready, move to the next phase
- */
-exports.espiaoEntreNosMakeMeReady = functions.https.onCall(espiaoEntreNosEngine.makeMeReady);
 
 /**
  * handles admin actions
@@ -97,11 +85,6 @@ exports.espiaoEntreNosSubmitVoting = functions.https.onCall(espiaoEntreNosEngine
 // ONDA_TELEPATICA HTTP CALLS
 
 /**
- * Make player ready, if it's the last player to be ready, move to the next phase
- */
-exports.ondaTelepaticaMakeMeReady = functions.https.onCall(ondaTelepaticaEngine.makeMeReady);
-
-/**
  * Submit dial sides and final clue and move to the next phase
  */
 exports.ondaTelepaticaSubmitSides = functions.https.onCall(ondaTelepaticaEngine.submitSides);
@@ -121,17 +104,7 @@ exports.ondaTelepaticaSubmitGuess = functions.https.onCall(ondaTelepaticaEngine.
  */
 exports.ondaTelepaticaSubmitRivalGuess = functions.https.onCall(ondaTelepaticaEngine.submitRivalGuess);
 
-/**
- * Just goes to next phase (admin action)
- */
-exports.ondaTelepaticaGoToNextPhase = functions.https.onCall(ondaTelepaticaEngine.goToNextPhase);
-
 // UE_SO_ISSO HTTP CALLS
-
-/**
- * Make player ready, if it's the last player to be ready, move to the next phase
- */
-exports.ueSoIssoMakeMeReady = functions.https.onCall(ueSoIssoEngine.makeMeReady);
 
 /**
  * Submit word selection votes, if it's the last player to be ready, move to the next phase

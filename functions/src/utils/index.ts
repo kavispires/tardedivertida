@@ -12,10 +12,16 @@ import {
   Players,
   Teams,
 } from '../utils/interfaces';
-import { getInitialState as arteRuimGetInitialState } from '../engine/arte-ruim';
-import { getInitialState as espiaoEntreNosGetInitialState } from '../engine/espiao-entre-nos';
-import { getInitialState as ondaTelepaticaGetInitialState } from '../engine/onda-telepatica';
-import { getInitialState as ueSoIssoGetInitialState } from '../engine/ue-so-isso';
+import { getInitialState as arteRuimGetInitialState, nextArteRuimPhase } from '../engine/arte-ruim';
+import {
+  getInitialState as espiaoEntreNosGetInitialState,
+  nextEspiaoEntreNosPhase,
+} from '../engine/espiao-entre-nos';
+import {
+  getInitialState as ondaTelepaticaGetInitialState,
+  nextOndaTelepaticaPhase,
+} from '../engine/onda-telepatica';
+import { getInitialState as ueSoIssoGetInitialState, nextUeSoIssoPhase } from '../engine/ue-so-isso';
 import { shuffle, getRandomUniqueItem } from './game-utils';
 
 /**
@@ -182,7 +188,7 @@ export const getCollectionNameByGameId = (gameId: GameId): string | null => {
 };
 
 /**
- * Get all methods from game collection
+ * Get the initial state from game collection
  * @param collectionName
  * @returns
  */
@@ -197,7 +203,27 @@ export const getInitialStateForCollection = (collectionName: string) => {
     case GAME_COLLECTIONS.UE_SO_ISSO:
       return ueSoIssoGetInitialState;
     default:
-      throw new Error(`Collection '${collectionName}' does not exist`);
+      throw new Error(`Collection '${collectionName}' initial state does not exist`);
+  }
+};
+
+/**
+ * Get the next phase delegator from game collection
+ * @param collectionName
+ * @returns
+ */
+export const getNextPhaseForCollection = (collectionName: string) => {
+  switch (collectionName) {
+    case GAME_KEYS.ARTE_RUIM:
+      return nextArteRuimPhase;
+    case GAME_KEYS.ESPIAO_ENTRE_NOS:
+      return nextEspiaoEntreNosPhase;
+    case GAME_KEYS.ONDA_TELEPATICA:
+      return nextOndaTelepaticaPhase;
+    case GAME_KEYS.UE_SO_ISSO:
+      return nextUeSoIssoPhase;
+    default:
+      throw new Error(`Collection '${collectionName}' phase delegator does not exist`);
   }
 };
 
@@ -345,7 +371,11 @@ export const getRoundsToEndGame = (round: number, totalRounds: number): number =
  * @param numberOfTeams
  * @returns an object with the teams (the players are modified by reference adding their team Letter)
  */
-export const determineTeams = (players: Players, numberOfTeams: number): PlainObject => {
+export const determineTeams = (
+  players: Players,
+  numberOfTeams: number,
+  extraPoints: number[]
+): PlainObject => {
   const teams = {};
   const playerNames = shuffle(Object.keys(players));
   const playersPerTeam = Math.ceil(playerNames.length / numberOfTeams);
@@ -360,16 +390,18 @@ export const determineTeams = (players: Players, numberOfTeams: number): PlainOb
     }
 
     const teamLetter = LETTERS[currentTeamIndex];
+    const extraPoint = extraPoints?.[currentTeamIndex] ?? 0;
 
     if (teams[teamLetter] === undefined) {
       teams[teamLetter] = {
         members: [],
         name: teamLetter,
-        score: 0,
+        score: extraPoint,
       };
     }
     teams[teamLetter].members.push(playerName);
     players[playerName].team = teamLetter;
+    players[playerName].score = extraPoint;
 
     currentTeamCount += 1;
   });

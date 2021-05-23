@@ -7,13 +7,14 @@ import { FireFilled } from '@ant-design/icons';
 // State & Hooks
 import useGlobalState from '../../hooks/useGlobalState';
 import { useAPICall, useLoading } from '../../hooks';
+import { GAME_API } from '../../adapters';
 
-function AdminForceNextPhase({ goToNextPhase, className = '' }) {
+function AdminForceNextPhase({ className = '' }) {
   const [isLoading] = useLoading();
   const [isAdmin] = useGlobalState('isAdmin');
 
   const onGoToNextPhase = useAPICall({
-    apiFunction: goToNextPhase,
+    apiFunction: GAME_API.goToNextPhase,
     actionName: 'force-next-phase',
     successMessage: 'Funcionou, próxima fase!',
     errorMessage: 'Vixi, o aplicativo encontrou um erro ao tentar ir para a próxima fase',
@@ -37,7 +38,6 @@ function AdminForceNextPhase({ goToNextPhase, className = '' }) {
 }
 
 AdminForceNextPhase.propTypes = {
-  goToNextPhase: PropTypes.func.isRequired,
   className: PropTypes.string,
 };
 

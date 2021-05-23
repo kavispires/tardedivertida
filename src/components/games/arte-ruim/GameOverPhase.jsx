@@ -10,7 +10,7 @@ function GameOverPhase({ state, info }) {
       <ul className="a-game-over__gallery">
         {state.drawings.map((entry) => {
           return (
-            <li className="a-game-over__gallery-item">
+            <li className="a-game-over__gallery-item" key={entry.drawing}>
               <CanvasSVG drawing={entry.drawing} size={200} className="a-game-over__gallery-canvas" />
               <span className="a-game-over__credits">
                 "{entry.text}" por {entry.playerName}

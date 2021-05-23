@@ -135,7 +135,7 @@ const checkResolution = (state: FirebaseFirestore.DocumentData, players: Players
   };
 };
 
-const nextEspiaoEntreNosPhase = async (
+export const nextEspiaoEntreNosPhase = async (
   collectionName: string,
   gameId: string,
   players: Players,

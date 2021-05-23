@@ -14,6 +14,7 @@ const initialState = {
   isAdmin: false,
   // Arte-Ruim
   canvasSize: 250,
+  cachedCanvasSize: 250,
   // Espiao-entre-nos
   espiaoEntreNosCache: {},
 };
