@@ -1,30 +1,28 @@
 import React from 'react';
 // Design Resources
 import { Button, Layout, Space, Typography } from 'antd';
+import { CheckCircleFilled, MehFilled, RobotFilled, SmileFilled } from '@ant-design/icons';
 // State
-import { useGlobalState, useAmIReady, useAPICall } from '../../hooks';
+import { GAME_API } from '../../adapters';
+import { useLoading, useAmIReady, useAPICall } from '../../hooks';
 // Components
 import RulesCarousel from './RulesCarousel';
 import LoadingPage from '../loaders/LoadingPage';
-import { CheckCircleFilled, MehFilled, RobotFilled, SmileFilled } from '@ant-design/icons';
-import { useLoading } from '../../hooks';
-import { getAPI } from '../../adapters';
 import ReadyPlayersBar from '../shared/ReadyPlayersBar';
 
 function Rules({ players, info }) {
   const [isLoading] = useLoading();
-  const [gameName] = useGlobalState('gameName');
   const amIReady = useAmIReady(players);
 
   const onBeReady = useAPICall({
-    apiFunction: getAPI(gameName).makeMeReady,
+    apiFunction: GAME_API.makeMeReady,
     actionName: 'be-ready',
     successMessage: 'Pronto! Aguarde os outros jogadores estarem prontos',
     errorMessage: 'Vixi, o aplicativo encontrou um erro ao tentar continuar',
   });
 
   const onBeReadyQue = useAPICall({
-    apiFunction: getAPI(gameName).makeMeReady,
+    apiFunction: GAME_API.makeMeReady,
     actionName: 'be-ready',
     successMessage: 'Vixi, se fudeu então, pq o jogo vai começar!',
     errorMessage: 'Vixi, o aplicativo encontrou um erro ao tentar continuar',

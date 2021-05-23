@@ -1,4 +1,4 @@
-import React, { Fragment, useCallback, useState } from 'react';
+import React, { Fragment, useCallback, useEffect, useState } from 'react';
 // Design Resources
 import { Button, Space } from 'antd';
 import { CloudUploadOutlined } from '@ant-design/icons';
@@ -29,7 +29,8 @@ function prepareVotes(votes) {
 
 function EvaluationPhase({ players, state, info }) {
   const amIReady = useAmIReady(players, state);
-  const [canvasSize] = useGlobalState('canvasSize');
+  const [canvasSize, setCanvasSize] = useGlobalState('canvasSize');
+  const [cachedCanvasSize] = useGlobalState('cachedCanvasSize');
   const [step, setStep] = useState(0);
   const [votes, setVotes] = useState({});
   const [activeItem, setActiveItem] = useState(null);
@@ -42,6 +43,10 @@ function EvaluationPhase({ players, state, info }) {
     successMessage: 'Avaliação enviada! Agora aguarde os outros jogadores',
     errorMessage: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua avaliação',
   });
+
+  useEffect(() => {
+    setCanvasSize(cachedCanvasSize);
+  }, []); // eslint-disable-line
 
   const onActivateItem = useCallback(
     (entryId) => {
@@ -85,9 +90,9 @@ function EvaluationPhase({ players, state, info }) {
           <Instruction>
             Encontre os pares de desenho e carta clicando em uma carta ou desenho e em seguida clicando em seu
             par.
-          </Instruction>
-          <Instruction>
+            <br />
             Uma bandeirinha aparecerá no topo de cada desenho com a cor e letra da carta que você selecionou.
+            <br />
             Quando encontrar todos os pares, envie sua avaliação!
           </Instruction>
 
@@ -125,7 +130,7 @@ function EvaluationPhase({ players, state, info }) {
             title="Pronto!"
             instruction="Vamos aguardar enquanto os outros jogadores terminam de avaliar!"
           />
-          <AdminForceNextPhase goToNextPhase={ARTE_RUIM_API.goToNextPhase} />
+          <AdminForceNextPhase />
         </Fragment>
       </StepSwitcher>
     </PhaseContainer>

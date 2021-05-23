@@ -292,7 +292,7 @@ const prepareGalleryPhase = async (
     const galleryEntry = gallery.find((e) => e.id === card.id);
     const correctAnswers = galleryEntry.playersSay?.[card.id]?.length ?? 0;
 
-    card.successRate = Math.round((100 * correctAnswers) / numPlayers) / 100;
+    card.successRate = Math.round((100 * correctAnswers) / (numPlayers - 1)) / 100;
     return card;
   });
 
@@ -343,7 +343,7 @@ const prepareGameOverPhase = async (
   return true;
 };
 
-const nextArteRuimPhase = async (
+export const nextArteRuimPhase = async (
   collectionName: string,
   gameId: string,
   players: Players
