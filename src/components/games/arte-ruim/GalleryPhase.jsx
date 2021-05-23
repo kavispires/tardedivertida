@@ -1,24 +1,23 @@
 import React, { Fragment, useEffect, useState } from 'react';
 // Design Resources
 import { Button } from 'antd';
-import { PictureOutlined, RocketFilled } from '@ant-design/icons';
+import { PictureOutlined } from '@ant-design/icons';
 // State & Hooks
 import useGlobalState from '../../../hooks/useGlobalState';
-import { useAPICall, useLoading } from '../../../hooks';
+import { useAPICall } from '../../../hooks';
 // Resources and Utils
 import { ARTE_RUIM_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
 // Components
 import GalleryWindow from './GalleryWindow';
 import PhaseContainer from '../../shared/PhaseContainer';
-import AdminOnly from '../../shared/AdminOnly';
+import { AdminOnlyButton } from '../../shared/AdminOnly';
 import RankingBoard from '../../shared/RankingBoard';
 import Title from '../../shared/Title';
 import Instruction from '../../shared/Instruction';
 import StepSwitcher from '../../shared/StepSwitcher';
 
 function GalleryPhase({ players, state, info }) {
-  const [isLoading] = useLoading();
   const [activeIndex, setActiveIndex] = useState(0);
   const [step, setStep] = useState(0);
   const [canvasSize, setCanvasSize] = useGlobalState('canvasSize');
@@ -78,17 +77,7 @@ function GalleryPhase({ players, state, info }) {
           <Button size="large" onClick={() => setStep(0)} icon={<PictureOutlined />}>
             Ver Galeria
           </Button>
-          <AdminOnly>
-            <Button
-              icon={<RocketFilled />}
-              danger
-              type="primary"
-              onClick={() => onGoToNextRound({})}
-              disabled={isLoading}
-            >
-              Ir para próxima rodada ou game over
-            </Button>
-          </AdminOnly>
+          <AdminOnlyButton action={() => onGoToNextRound({})} label="Ir para próxima rodada ou game over" />
         </Fragment>
       </StepSwitcher>
     </PhaseContainer>

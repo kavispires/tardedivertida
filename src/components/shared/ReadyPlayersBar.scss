@@ -1,8 +1,22 @@
 .ready-player-bar {
   display: flex;
   margin: get-unit(3 auto);
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  &__bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__names {
+    color: get-color(black, 3);
+    font-style: italic;
+    font-size: 80%;
+    margin-top: get-unit(1);
+  }
 
   &__speech-bubble {
     position: relative;

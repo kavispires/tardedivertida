@@ -18,6 +18,14 @@ export const ARTE_RUIM_API = {
   goToNextPhase: functions.httpsCallable('arteRuimGoToNextPhase'),
 };
 
+export const ESPIAO_ENTRE_NOS_API = {
+  makeMeReady: functions.httpsCallable('espiaoEntreNosMakeMeReady'),
+  handleAdminAction: functions.httpsCallable('espiaoEntreNosHandleAdminAction'),
+  makeAccusation: functions.httpsCallable('espiaoEntreNosMakeAccusation'),
+  guessLocation: functions.httpsCallable('espiaoEntreNosGuessLocation'),
+  submitVoting: functions.httpsCallable('espiaoEntreNosSubmitVoting'),
+};
+
 export const ONDA_TELEPATICA = {
   makeMeReady: functions.httpsCallable('ondaTelepaticaMakeMeReady'),
   submitSides: functions.httpsCallable('ondaTelepaticaSubmitSides'),
@@ -33,6 +41,7 @@ export const UE_SO_ISSO_API = {
   submitSuggestions: functions.httpsCallable('ueSoIssoSubmitSuggestions'),
   submitValidation: functions.httpsCallable('ueSoIssoSubmitValidation'),
   confirmGuess: functions.httpsCallable('ueSoIssoConfirmGuess'),
+  sendGuess: functions.httpsCallable('ueSoIssoSendGuess'),
 };
 
 /**
@@ -44,6 +53,8 @@ export const getAPI = (gameName) => {
   switch (gameName) {
     case GAME_COLLECTION.ARTE_RUIM:
       return ARTE_RUIM_API;
+    case GAME_COLLECTION.ESPIAO_ENTRE_NOS:
+      return ESPIAO_ENTRE_NOS_API;
     case GAME_COLLECTION.ONDA_TELEPATICA:
       return ONDA_TELEPATICA;
     case GAME_COLLECTION.UE_SO_ISSO:

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
-import { Button, Input } from 'antd';
+import { Button, Input, Space } from 'antd';
 // Components
 import Title from '../../shared/Title';
 import Instruction from '../../shared/Instruction';
@@ -30,20 +30,20 @@ function DialClueWriting({ onSendClue, card }) {
         telepáticas.
         <br />
         Regras:
-        <br />
-        • Use uma única idea. Evite usar "mas", "enquanto", "quando", e também superlativos "super", "muito"
-        <br />
-        • Não invente coisas. Exemplo: 'Nicolas Cage cantando uma música dos Beatles' é inválido.
-        <br />
-        • Mantenha-se no assunto da carta. Exemplo: 'Amor' não é uma dica válida para 'Sujo'.
-        <br />
-        • Não use números para sugerir a posição do espectro.
-        <br />• Não use partes, derivados ou sinônimos das palavras da carta.
+        <ul>
+          <li>
+            Use uma única idea. Evite usar "mas", "enquanto", "quando", e também superlativos "super", "muito"
+          </li>
+          <li>Não invente coisas. Exemplo: 'Nicolas Cage cantando uma música dos Beatles' é inválido.</li>
+          <li>Mantenha-se no assunto da carta. Exemplo: 'Amor' não é uma dica válida para 'Sujo'.</li>
+          <li>Não use números para sugerir a posição do espectro.</li>
+          <li>Não use partes, derivados ou sinônimos das palavras da carta.</li>
+        </ul>
       </Instruction>
 
       <Dial card={card} showTarget target={card.target} />
 
-      <div className="container container--center container--transparent">
+      <Space className="container container--center container--transparent">
         <Input
           onChange={(e) => setClue(e.target.value.toUpperCase())}
           placeholder="Digite sua dica aqui"
@@ -58,7 +58,7 @@ function DialClueWriting({ onSendClue, card }) {
         >
           Enviar dica
         </Button>
-      </div>
+      </Space>
     </div>
   );
 }

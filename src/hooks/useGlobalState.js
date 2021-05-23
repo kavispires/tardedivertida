@@ -14,6 +14,8 @@ const initialState = {
   isAdmin: false,
   // Arte-Ruim
   canvasSize: 250,
+  // Espiao-entre-nos
+  espiaoEntreNosCache: {},
 };
 
 const { useGlobalState, setGlobalState, getGlobalState } = createGlobalState(initialState);

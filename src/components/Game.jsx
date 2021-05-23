@@ -20,6 +20,8 @@ function Game() {
   const [gameId, setGameId] = useGlobalState('gameId');
   const [gameName, setGameName] = useGlobalState('gameName');
   const [gameMeta, setGameMeta] = useGlobalState('gameMeta');
+  const [, setMe] = useGlobalState('me');
+  const [, setMyAvatar] = useGlobalState('myAvatar');
 
   const [isPageLoading, setPageLoading] = useState(true);
   const isGameStale = useIsGameStale(gameMeta?.createdAt);
@@ -33,7 +35,7 @@ function Game() {
       message.error('Vixi, a id do jogo na barra de endereços tá errada');
       history.push('/');
     }
-  }, [history, setGameId]);
+  }, [history, setGameId, setMe, setMyAvatar]);
 
   // Keeps track of url changes
   useEffect(() => {
@@ -41,13 +43,15 @@ function Game() {
       const urlGameId = getGameIdFromLocation(location);
       if (isValidGameId(urlGameId)) {
         setGameId(urlGameId);
+        setMe('');
+        setMyAvatar('');
         message.info('Uma nova id de jogo foi provida');
       } else {
         message.error('Vixi, a id do jogo na barra de endereços tá errada');
         history.push('/');
       }
     });
-  }, [history, setGameId]);
+  }, [history, setGameId, setMe, setMyAvatar]);
 
   // Load game
   useEffect(() => {
@@ -91,6 +95,8 @@ function Game() {
     switch (gameName) {
       case GAME_COLLECTION.ARTE_RUIM:
         return <GameSessions.ArteRuim gameId={gameId} />;
+      case GAME_COLLECTION.ESPIAO_ENTRE_NOS:
+        return <GameSessions.EspiaoEntreNos gameId={gameId} />;
       case GAME_COLLECTION.ONDA_TELEPATICA:
         return <GameSessions.OndaTelepatica gameId={gameId} />;
       case GAME_COLLECTION.UE_SO_ISSO:

@@ -2,6 +2,7 @@ import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import * as commonEngine from './engine/common';
 import * as arteRuimEngine from './engine/arte-ruim';
+import * as espiaoEntreNosEngine from './engine/espiao-entre-nos';
 import * as ondaTelepaticaEngine from './engine/onda-telepatica';
 import * as ueSoIssoEngine from './engine/ue-so-isso';
 
@@ -66,6 +67,33 @@ exports.arteRuimSubmitVoting = functions.https.onCall(arteRuimEngine.submitVotin
  */
 exports.arteRuimGoToNextPhase = functions.https.onCall(arteRuimEngine.goToNextPhase);
 
+// ESPIAO_ENTRE_NOS HTTP CALLS
+
+/**
+ * Make player ready, if it's the last player to be ready, move to the next phase
+ */
+exports.espiaoEntreNosMakeMeReady = functions.https.onCall(espiaoEntreNosEngine.makeMeReady);
+
+/**
+ * handles admin actions
+ */
+exports.espiaoEntreNosHandleAdminAction = functions.https.onCall(espiaoEntreNosEngine.handleAdminAction);
+
+/**
+ * Pause game and accuse someone
+ */
+exports.espiaoEntreNosMakeAccusation = functions.https.onCall(espiaoEntreNosEngine.makeAccusation);
+
+/**
+ * Pause game and guess location
+ */
+exports.espiaoEntreNosGuessLocation = functions.https.onCall(espiaoEntreNosEngine.guessLocation);
+
+/**
+ * Submit individual voting, if it's the last player to be ready, move to the next phase
+ */
+exports.espiaoEntreNosSubmitVoting = functions.https.onCall(espiaoEntreNosEngine.submitVoting);
+
 // ONDA_TELEPATICA HTTP CALLS
 
 /**
@@ -121,6 +149,11 @@ exports.ueSoIssoSubmitSuggestions = functions.https.onCall(ueSoIssoEngine.submit
 exports.ueSoIssoSubmitValidation = functions.https.onCall(ueSoIssoEngine.submitValidation);
 
 /**
- * Submit guesser guess and move to the next phase
+ * Adds guesser guess to the state
+ */
+exports.ueSoIssoSendGuess = functions.https.onCall(ueSoIssoEngine.sendGuess);
+
+/**
+ * Confirm guesser guess and move to the next phase
  */
 exports.ueSoIssoConfirmGuess = functions.https.onCall(ueSoIssoEngine.confirmGuess);

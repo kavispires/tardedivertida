@@ -66,12 +66,20 @@
     "gameName": "espiao-entre-nos",
     "title": "Espião Entre Nós",
     "summary": "Todos nós, agentes de bem, estamos num mesmo local, mas um de nós é um espião! Será que conseguimos descobrir quem é o impostor antes dele descobrir que local estamos?",
-    "rules": [],
+    "rules": [
+      "Espião Entre Nós é um jogo competitivo jogado em uma ou mais rodadas. Cada rodada dura no máximo 10 minutos e jogo pode ser jogado em apenas uma rodada ou várias",
+      "Somos todos agentes do departamento de segurança e inteligência do governo, vamos nos encontrar em um local secreto combinado e estaremos infiltrados como pessoas comuns",
+      "Mas existe um espião entre nós! O espião não sabe onde estaremos e, claro, nós não sabemos quem é o espião",
+      "Temos apenas 10 minutos para descobrir quem é o espião e, para isso, nos alternaremos fazendo perguntas uns aos outros. Mas não seja óbvio, se o espião descobre o local, a missão falha e todos perdemos",
+      "Se você acabou de responder uma pergunta é a sua vez de perguntar, mas você não pode perguntar quem acabou de ter fazer uma pergunta. Você não pode repetir perguntas numa mesma rodada!",
+      "A qualquer momento, mas uma única vez por rodada, você pode acusar alguém, daí todos têm que votar e se a votação for unânime, revelam-se os papéis e prendemos o espião! Ou será que não? Tenha certeza antes de acusar alguém!",
+      "O espião também pode parar o jogo e tentar adivinhar onde é o local! Se em 10 minutos, nada for descoberto, temos uma última change, mas explicamos isso quando a hora chegar"
+    ],
     "recommended": "6",
     "min": 4,
     "max": 8,
     "tags": ["competitive", "real-time", "traitor", "discussion"],
-    "available": false
+    "available": true
   },
   "M": {
     "gameCode": "M",
@@ -91,11 +99,11 @@
     "title": "Onda Telepática",
     "summary": "Em times jogadores tentam comunicar através de ondas telepáticas",
     "rules": [
-      "Em Onda Telepática, dois times competem para ver quem consegue se comunicar melhor telepaticamente! E como medimos isso? Atravé de um medidor de ondas telepáticas!",
-      "Em cada rodada, um jogador é o Psíquico e escolhe uma carta com dois conceitos opostos que será usada nessa rodada. Por exemplo: \"Quente vs Frio\", \"Seco vs Molhado\".",
-      "O Psíquico secretamente tem acesso ao medidor de ondas! Nele, temos um ponteiro vermelho que indica o resultado! O objetivo da rodada é fazer com que o seu time coloque o ponteiro exatamente naquela posição.",
-      "Para isso, o Psíquico tem que escrever uma dica que ajude seu time. Se a carta é Quente vs Frio e o ponteiro está no 4, será que \"Café\" é uma boa dica? Será que alguns vão achar que 4 não é quente o suficiente para um café? E se eles peferirem café gelado?",
-      "Baseado na dica, o time tenta desvendar onde o ponteiro do resultado deve estar. Será que suas ondas telepáticas estão em sintonia? Será que o Psíquico gosta de café pelando?",
+      "Em Onda Telepática, dois times competem para ver quem consegue se comunicar melhor telepaticamente! E como medimos isso? Através de um medidor de ondas telepáticas!",
+      "Em cada rodada, um jogador é o medium e escolhe uma carta com dois conceitos opostos que será usada nessa rodada. Por exemplo: \"Quente vs Frio\", \"Seco vs Molhado\".",
+      "O medium secretamente tem acesso ao medidor de ondas! Nele, temos um ponteiro vermelho que indica o resultado! O objetivo da rodada é fazer com que o seu time coloque o ponteiro exatamente naquela posição.",
+      "Para isso, o medium tem que escrever uma dica que ajude seu time. Se a carta é Quente vs Frio e o ponteiro está no 4, será que \"Café\" é uma boa dica? Será que alguns vão achar que 4 não é quente o suficiente para um café? E se eles peferirem café gelado?",
+      "Baseado na dica, o time tenta desvendar onde o ponteiro do resultado deve estar. Será que suas ondas telepáticas estão em sintonia? Será que o medium gosta de café pelando?",
       "O time oposto que prestou atenção na discussão, agora tem a chance de chutar se eles acham que a solução está mais pra esquerda ou mais pra direita do que outro time escolheu.",
       "A resposta então é revelada e o time principal ganha pontos de acordo com quão próximo o ponteiro está do resultado no medidor. Se o time rival chutou a direção correta, eles ganham 1 ponto!",
       "O jogo continua até um time conseguir 10 pontos e ser coroado o vencedor!"
@@ -152,7 +160,7 @@
       "Cada rodada todos os jogadores, menos o Adivinhador, votam em qual palavra secreta usar.",
       "Então, em segredo e sem conversar, cada um deles escreve uma dica. Importante: Esta dica DEVE ser uma palavra única, nem conter parte ou variações da palavra secreta",
       "Quando todas as dicas forem enviadas, todas as iguais são automaticamente eliminadas. Porém, os jogadores devem decidir entre eles quais dicas adicionais também devem ser removidas",
-      "São consideradas dicas iguais palavras derivadas, conjugações: piloto = pilotar = pilotando. Variações como pluralidade, gênero e erros ortograficos: príncipe = princesa = principes = pryncipe. Então, tente não ser muito óbvio ao escrever sua dica.",
+      "São consideradas dicas iguais palavras derivadas, conjugações: piloto = pilotar = pilotando. Variações como pluralidade, gênero e erros ortográficos: príncipe = princesa = principes = pryncipe. Então, tente não ser muito óbvio ao escrever sua dica.",
       "Após as dicas terem sido selecionadas, o Adivinhador tem uma única chance de adivinhar (ou passar, se for um covarde).",
       "Se a palavra estiver correta, ganha-se 1 ponto, se estiver errada perde-se 1 ponto. Mas se tiver passado a vez, nada acontece. Ganha-se o jogo se os jogadores acertarem 70% ou mais das Palavras Secretas!"
     ],

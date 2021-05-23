@@ -70,7 +70,17 @@ export const getColorFromLetter = (letter) => {
       O: 'forest',
       P: 'cream',
 
+      // repeats
+      Q: 'red',
+      R: 'blue',
+      S: 'green',
+      T: 'yellow',
+      U: 'pink',
+      V: 'purple',
+      W: 'teal',
       X: 'none',
+      Y: 'orange',
+      Z: 'coffee',
     }[letter] ?? 'none'
   );
 };

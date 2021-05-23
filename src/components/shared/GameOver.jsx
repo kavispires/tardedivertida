@@ -80,13 +80,7 @@ function GameOver({ info, state, children }) {
           okText="Sim"
           cancelText="Não"
         >
-          <Button
-            icon={<RocketFilled />}
-            danger
-            type="primary"
-            // onClick={() => onPlayAgain({})}
-            disabled={isLoading}
-          >
+          <Button icon={<RocketFilled />} danger type="primary" disabled={isLoading}>
             Jogar novamente
           </Button>
         </Popconfirm>
