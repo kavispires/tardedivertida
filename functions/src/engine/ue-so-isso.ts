@@ -529,6 +529,28 @@ export const submitValidation = async (data: SubmitSuggestionsValidationPayload)
   return nextUeSoIssoPhase(collectionName, gameId, players);
 };
 
+export const sendGuess = async (data: ConfirmGuessPayload) => {
+  const { gameId, gameName: collectionName, playerName, guess } = data;
+
+  const actionText = 'submit the guess';
+  utils.verifyPayload(gameId, 'gameId', actionText);
+  utils.verifyPayload(collectionName, 'collectionName', actionText);
+  utils.verifyPayload(playerName, 'playerName', actionText);
+  utils.verifyPayload(guess, 'guess', actionText);
+
+  // Get 'players' from given game session
+  const sessionRef = utils.getSessionRef(collectionName, gameId);
+
+  // Submit suggestions
+  try {
+    await sessionRef.doc('state').update({ guess });
+  } catch (error) {
+    utils.throwException(error, actionText);
+  }
+
+  return true;
+};
+
 export const confirmGuess = async (data: ConfirmGuessPayload) => {
   const { gameId, gameName: collectionName, playerName, guess } = data;
 

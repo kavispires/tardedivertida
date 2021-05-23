@@ -149,6 +149,11 @@ exports.ueSoIssoSubmitSuggestions = functions.https.onCall(ueSoIssoEngine.submit
 exports.ueSoIssoSubmitValidation = functions.https.onCall(ueSoIssoEngine.submitValidation);
 
 /**
- * Submit guesser guess and move to the next phase
+ * Adds guesser guess to the state
+ */
+exports.ueSoIssoSendGuess = functions.https.onCall(ueSoIssoEngine.sendGuess);
+
+/**
+ * Confirm guesser guess and move to the next phase
  */
 exports.ueSoIssoConfirmGuess = functions.https.onCall(ueSoIssoEngine.confirmGuess);

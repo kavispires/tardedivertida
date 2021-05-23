@@ -31,8 +31,6 @@ function Game() {
     const urlGameId = getGameIdFromURL(history);
     if (isValidGameId(urlGameId)) {
       setGameId(urlGameId);
-      setMe('');
-      setMyAvatar('');
     } else {
       message.error('Vixi, a id do jogo na barra de endereços tá errada');
       history.push('/');
@@ -45,14 +43,15 @@ function Game() {
       const urlGameId = getGameIdFromLocation(location);
       if (isValidGameId(urlGameId)) {
         setGameId(urlGameId);
-
+        setMe('');
+        setMyAvatar('');
         message.info('Uma nova id de jogo foi provida');
       } else {
         message.error('Vixi, a id do jogo na barra de endereços tá errada');
         history.push('/');
       }
     });
-  }, [history, setGameId]);
+  }, [history, setGameId, setMe, setMyAvatar]);
 
   // Load game
   useEffect(() => {
