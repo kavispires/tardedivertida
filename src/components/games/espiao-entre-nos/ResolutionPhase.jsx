@@ -25,6 +25,7 @@ function ResolutionPhase({ state, players, info }) {
   });
 
   const missionOutcomeText = isSpy === state.spyWin ? 'Missão Cumprida!' : 'Missão Fracassada!';
+  const wasABadVoting = state.spyWin && Boolean(state?.timeRemaining > 0);
 
   useEffect(() => {
     if (state?.resolutionType === 'SPY_GUESS') {
@@ -51,8 +52,17 @@ function ResolutionPhase({ state, players, info }) {
                 {missionOutcomeText}
               </Title>
               <Instruction className="e-phase-instruction">
-                O espião {state.currentSpy} não foi encontrado a tempo! Todos os segredos da agência foram
-                revelados e agora o mundo vai acabar. Parabéns.
+                {wasABadVoting ? (
+                  <span>
+                    Vocês tentaram incriminar o espião errado. {state.currentSpy} se safou, todos os segredos
+                    da agência foram revelados e o mundo vai acabar. Parabéns.
+                  </span>
+                ) : (
+                  <span>
+                    O espião {state.currentSpy} não foi encontrado a tempo! Todos os segredos da agência foram
+                    revelados e agora o mundo vai acabar. Parabéns.
+                  </span>
+                )}
               </Instruction>
             </div>
           ) : (
