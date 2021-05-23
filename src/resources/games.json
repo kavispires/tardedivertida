@@ -67,7 +67,7 @@
     "title": "Espião Entre Nós",
     "summary": "Todos nós, agentes de bem, estamos num mesmo local, mas um de nós é um espião! Será que conseguimos descobrir quem é o impostor antes dele descobrir que local estamos?",
     "rules": [
-      "Espião Entre Nós é um jogo competitivo jogado em uma ou mais rodadas. Cada rodada dura apenas 10 minutos",
+      "Espião Entre Nós é um jogo competitivo jogado em uma ou mais rodadas. Cada rodada dura no máximo 10 minutos e jogo pode ser jogado em apenas uma rodada ou várias",
       "Somos todos agentes do departamento de segurança e inteligência do governo, vamos nos encontrar em um local secreto combinado e estaremos infiltrados como pessoas comuns",
       "Mas existe um espião entre nós! O espião não sabe onde estaremos e, claro, nós não sabemos quem é o espião",
       "Temos apenas 10 minutos para descobrir quem é o espião e, para isso, nos alternaremos fazendo perguntas uns aos outros. Mas não seja óbvio, se o espião descobre o local, a missão falha e todos perdemos",
