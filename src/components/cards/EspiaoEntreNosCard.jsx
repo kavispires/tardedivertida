@@ -8,8 +8,8 @@ import Card from './Card';
 function EspiaoEntreNosCard({ location, role, header = 'Local' }) {
   return (
     <Card
-      color="lime"
-      header={header}
+      color={location === 'SPY' ? 'red' : 'lime'}
+      header={location === 'SPY' ? 'Local Desconhecido' : header}
       size="large"
       footer={`Você é ${role === 'SPY' ? 'o espião' : `um(a) ${role}`} `}
       className="e-card"

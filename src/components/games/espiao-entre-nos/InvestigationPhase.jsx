@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
 import { AimOutlined, EnvironmentOutlined } from '@ant-design/icons';
+import { message } from 'antd';
 // Hooks
 import { useMe, useAPICall, useAmIActive } from '../../../hooks';
 // Resources & Utils
@@ -36,6 +37,13 @@ function InvestigationPhase({ state, players, info }) {
     successMessage: 'Chute enviado com sucesso',
     errorMessage: 'Vixi, o aplicativo encontrou um erro ao tentar chutar o local',
   });
+
+  useEffect(() => {
+    if (state?.outcome === 'VOTE_FAIL') {
+      message.warning(`A votação não foi unânime`, 4);
+      message.info(state?.votedYes ? `Votaram sim: ${state?.votedYes}` : 'Ninguém votou sim', 6);
+    }
+  }, []); // eslint-disable-line
 
   return (
     <PhaseContainer
