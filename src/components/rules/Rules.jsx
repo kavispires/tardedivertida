@@ -66,7 +66,7 @@ function Rules({ players, info }) {
           Que?
         </Button>
       </Space>
-      <ReadyPlayersBar players={players} />
+      <ReadyPlayersBar players={players} showNames />
     </Layout.Content>
   );
 }

@@ -14,7 +14,7 @@ const WaitingRoom = ({ players, title, instruction, children }) => {
       <Spin />
       <Instruction>{instruction}</Instruction>
       {children}
-      <ReadyPlayersBar players={players} />
+      <ReadyPlayersBar players={players} showNames />
     </div>
   );
 };
