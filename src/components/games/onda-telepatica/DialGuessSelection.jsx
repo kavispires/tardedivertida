@@ -42,7 +42,7 @@ function DialGuessSelection({
       {isMyTeamActive ? (
         <Instruction contained>
           {amIThePsychic ? (
-            <span>Pokerface e bico fechada! MAs pode brincar com a barrra aí!</span>
+            <span>Pokerface e bico fechada! Mas pode brincar com a barrra aí!</span>
           ) : (
             <ul>
               <li>
