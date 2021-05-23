@@ -298,7 +298,7 @@ const prepareGalleryPhase = async (
 
   // clear store
   await sessionRef.doc('store').update({
-    pastDrawings,
+    pastDrawings: [...pastDrawings, store.pastDrawings],
   });
 
   const newPointsToVictory = utils.getPointsToVictory(newPlayers, ARTE_RUIM_GOAL);
