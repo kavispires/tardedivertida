@@ -100,10 +100,10 @@
     "summary": "Em times jogadores tentam comunicar através de ondas telepáticas",
     "rules": [
       "Em Onda Telepática, dois times competem para ver quem consegue se comunicar melhor telepaticamente! E como medimos isso? Através de um medidor de ondas telepáticas!",
-      "Em cada rodada, um jogador é o Psíquico e escolhe uma carta com dois conceitos opostos que será usada nessa rodada. Por exemplo: \"Quente vs Frio\", \"Seco vs Molhado\".",
-      "O Psíquico secretamente tem acesso ao medidor de ondas! Nele, temos um ponteiro vermelho que indica o resultado! O objetivo da rodada é fazer com que o seu time coloque o ponteiro exatamente naquela posição.",
-      "Para isso, o Psíquico tem que escrever uma dica que ajude seu time. Se a carta é Quente vs Frio e o ponteiro está no 4, será que \"Café\" é uma boa dica? Será que alguns vão achar que 4 não é quente o suficiente para um café? E se eles peferirem café gelado?",
-      "Baseado na dica, o time tenta desvendar onde o ponteiro do resultado deve estar. Será que suas ondas telepáticas estão em sintonia? Será que o Psíquico gosta de café pelando?",
+      "Em cada rodada, um jogador é o medium e escolhe uma carta com dois conceitos opostos que será usada nessa rodada. Por exemplo: \"Quente vs Frio\", \"Seco vs Molhado\".",
+      "O medium secretamente tem acesso ao medidor de ondas! Nele, temos um ponteiro vermelho que indica o resultado! O objetivo da rodada é fazer com que o seu time coloque o ponteiro exatamente naquela posição.",
+      "Para isso, o medium tem que escrever uma dica que ajude seu time. Se a carta é Quente vs Frio e o ponteiro está no 4, será que \"Café\" é uma boa dica? Será que alguns vão achar que 4 não é quente o suficiente para um café? E se eles peferirem café gelado?",
+      "Baseado na dica, o time tenta desvendar onde o ponteiro do resultado deve estar. Será que suas ondas telepáticas estão em sintonia? Será que o medium gosta de café pelando?",
       "O time oposto que prestou atenção na discussão, agora tem a chance de chutar se eles acham que a solução está mais pra esquerda ou mais pra direita do que outro time escolheu.",
       "A resposta então é revelada e o time principal ganha pontos de acordo com quão próximo o ponteiro está do resultado no medidor. Se o time rival chutou a direção correta, eles ganham 1 ponto!",
       "O jogo continua até um time conseguir 10 pontos e ser coroado o vencedor!"
