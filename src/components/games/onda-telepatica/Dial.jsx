@@ -54,7 +54,7 @@ function Dial({
           />
         )}
 
-        <g class="o-dial-numbers">
+        <g className="o-dial-numbers">
           <path
             id="bracket-number-10-r"
             className={getBracketClass(10, showNeedle, needle, showTarget, target)}
