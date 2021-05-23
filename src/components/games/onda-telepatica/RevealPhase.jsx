@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 // Hooks
 import { useAPICall } from '../../../hooks';
 // Resources & Utils
-import { ONDA_TELEPATICA } from '../../../adapters';
+import { GAME_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
 // Components
 import PhaseContainer from '../../shared/PhaseContainer';
@@ -13,6 +13,7 @@ import Instruction from '../../shared/Instruction';
 import { AdminOnlyButton } from '../../shared/AdminOnly';
 import { useTimer } from 'react-timer-hook';
 import { inNSeconds } from '../../../utils';
+import { message } from 'antd';
 
 function getResultInstructionLine(pointsBreakdown, team, catchup = false) {
   const { got, now } = pointsBreakdown;
@@ -56,16 +57,43 @@ function getRivalResultInstructionLine(pointsBreakdown, team) {
     `;
 }
 
+const getMessageType = (value) => {
+  switch (value) {
+    case 4:
+    case 3:
+      return 'success';
+    case 2:
+      return 'info';
+    default:
+      return 'error';
+  }
+};
+
 function RevealPhase({ state, players, info }) {
   const onGoToNextRound = useAPICall({
-    apiFunction: ONDA_TELEPATICA.goToNextPhase,
+    apiFunction: GAME_API.goToNextPhase,
     actionName: 'next-phase',
     successMessage: 'Próxima fase ativada com success',
     errorMessage: 'Vixi, ocorreu um erro ao tentar ir pra próxima fase',
   });
 
+  const showMessage = () => {
+    const activeTeamMessageType = getMessageType(state.pointsBreakdown[state.activeTeam].got);
+
+    message[activeTeamMessageType](
+      getResultInstructionLine(
+        state.pointsBreakdown[state.activeTeam],
+        state.activeTeam,
+        state.shouldCatchup
+      ),
+      5
+    );
+    message.info(getRivalResultInstructionLine(state.pointsBreakdown[rivalTeam], rivalTeam), 6);
+  };
+
   const { seconds } = useTimer({
     expiryTimestamp: inNSeconds(7),
+    onExpire: showMessage,
     autoStart: true,
   });
 
@@ -85,20 +113,21 @@ function RevealPhase({ state, players, info }) {
         needle={state.card.needle}
         showTarget={seconds < 4}
         target={state.card.target}
-        showPoints={seconds < 2}
+        showPoints={seconds < 1}
         points={state?.pointsBreakdown?.[state?.activeTeam].got}
         rivalGuess={state.card.rival}
         rivalTeam={rivalTeam}
         animate
       />
       <Instruction contained>
-        {getResultInstructionLine(
-          state.pointsBreakdown[state.activeTeam],
-          state.activeTeam,
-          state.shouldCatchup
-        )}
-        <br />
-        {getRivalResultInstructionLine(state.pointsBreakdown[rivalTeam], rivalTeam)}
+        Distribuição de pontos:
+        <ul>
+          <li>Na mosca: 4 pontos</li>
+          <li>Quase: 3 pontos</li>
+          <li>Dois de distância: 2 pontos</li>
+          <li>Mais de dois distância: 0 ponto</li>
+          <li>Time adversário acertou a direção: 1 ponto</li>
+        </ul>
       </Instruction>
 
       <AdminOnlyButton action={() => onGoToNextRound({})} label="Ir para próxima rodada ou game over" />
