@@ -15,12 +15,19 @@ function DialGuessSelection({
   isMyTeamActive,
   onSendGuess,
   card,
+  amIThePsychic,
 }) {
   const [needle, setNeedle] = useState(0);
 
   return (
     <div className="o-dial-guess-selection">
-      <Title>Time {activeTeam}, hora de brilhar!</Title>
+      <Title>
+        {amIThePsychic ? (
+          <span>Seu time está pensando...</span>
+        ) : (
+          <span>Hora do time {activeTeam} brilhar!</span>
+        )}
+      </Title>
       <Instruction contained>
         Qual número melhor indica <span className="o-dial-guess-selection__clue">{card.clue}</span> na escala
         de{' '}
@@ -34,12 +41,21 @@ function DialGuessSelection({
 
       {isMyTeamActive ? (
         <Instruction contained>
-          Discuta com seu time em qual número do medidor de ondas telepáticas você acha que a dica se encaixa
-          melhor. Se você é o psíquico dessa rodada, boca fechada!
-          <br />
-          Todos podem controlar o ponteiro, mas somente{' '}
-          {amITheController ? 'VOCÊ ' : <AvatarName player={teamController} />}pode apertar o botão para
-          enviar a resposta final.
+          {amIThePsychic ? (
+            <span>Pokerface e bico fechada! MAs pode brincar com a barrra aí!</span>
+          ) : (
+            <ul>
+              <li>
+                Discuta com seu time em qual número do medidor de ondas telepáticas você acha que a dica se
+                melhor encaixa.
+              </li>
+              <li>
+                Todos podem controlar o ponteiro usando a barra abaixo, mas somente{' '}
+                {amITheController ? 'VOCÊ ' : <AvatarName player={teamController} />}pode apertar o botão para
+                enviar a resposta final.
+              </li>
+            </ul>
+          )}
         </Instruction>
       ) : (
         <Instruction contained>
@@ -52,17 +68,19 @@ function DialGuessSelection({
       {isMyTeamActive && (
         <div>
           <Slider defaultValue={0} min={-10} max={10} onChange={setNeedle} />
-          <div className="container container--transparent container--center">
-            <Button
-              type="primary"
-              onClick={() => {
-                onSendGuess({ guess: needle });
-              }}
-              disabled={!amITheController}
-            >
-              Enviar resposta: {needle}
-            </Button>
-          </div>
+          {amITheController && (
+            <div className="container container--transparent container--center">
+              <Button
+                type="primary"
+                onClick={() => {
+                  onSendGuess({ guess: needle });
+                }}
+                disabled={!amITheController}
+              >
+                Enviar resposta: {needle}
+              </Button>
+            </div>
+          )}
         </div>
       )}
     </div>
@@ -80,6 +98,7 @@ DialGuessSelection.propTypes = {
   teamController: PropTypes.object,
   amITheController: PropTypes.bool,
   isMyTeamActive: PropTypes.bool,
+  amIThePsychic: PropTypes.bool,
 };
 
 export default DialGuessSelection;

@@ -19,10 +19,10 @@ function DialRivalSelection({
 }) {
   return (
     <div className="o-dial-guess-selection">
-      <Title>Time {activeTeam}, hora de contra-atacar!</Title>
+      <Title>Hora do time {activeTeam} contra-atacar!</Title>
       <Instruction contained>
-        Qual número melhor indica <span className="o-dial-guess-selection__clue">{card.clue}</span> na escala
-        de{' '}
+        A solução esta mais pra esquerda ou mais pr direita do número {card.needle} para a dica{' '}
+        <span className="o-dial-guess-selection__clue">{card.clue}</span> na escala de{' '}
         <strong>
           {card.left}-{card.right}
         </strong>
@@ -33,12 +33,11 @@ function DialRivalSelection({
 
       {isMyTeamActive ? (
         <Instruction contained>
-          Agora, o seu time tem a change de ganhar 1 ponto ao tentar adivinhar se a solução está mais para a
-          esquerda ou mais para a direita do que o outro time escolheu.
+          Você pode ganhar um ponto se escolher a direção correta.
           <br />
           {amITheRivalController ? 'VOCÊ ' : <AvatarName player={rivalController} />}está no comando para
-          apertar os botões! E então, a solução está mais para a esquerda ou mais para a direita do ponteiro
-          vermelho?
+          apertar os botões! <br />E então, a solução está mais para a esquerda ou mais para a direita do
+          ponteiro vermelho?
         </Instruction>
       ) : (
         <Instruction contained>

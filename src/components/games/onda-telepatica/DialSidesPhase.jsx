@@ -54,7 +54,7 @@ function DialSidesPhase({ state, players, info }) {
             ) : (
               <AvatarName player={psychic} uppercase size="large" />
             )}
-            será o(a) psíquico(a)
+            será o(a) medium
           </Instruction>
           <div className="u-word-selection-phase__team-points"></div>
         </RoundAnnouncement>
@@ -64,7 +64,7 @@ function DialSidesPhase({ state, players, info }) {
           {!amIThePsychic ? (
             <WaitingRoom
               players={players}
-              title={`${psychic.name} está escolhando uma carta...`}
+              title={`${psychic.name} está escolhendo uma carta...`}
               instruction="Aguarde enquanto ele(a) decide a carta que será usada nessa rodada."
             />
           ) : (
