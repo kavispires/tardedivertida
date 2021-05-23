@@ -64,7 +64,7 @@ function AssessmentPhase({ state, players, info }) {
 
       <Card location={user.location} role={user.role} />
 
-      <ReadyPlayersBar players={players} readyLabel="Votei" readyLabelPlural="Votamos" />
+      <ReadyPlayersBar players={players} readyText="Votei" readyTextPlural="Votamos" />
 
       <Instruction className="e-lists">
         <List header="Suspeitos" headerIcon={<AimOutlined />} items={Object.keys(players)} />
