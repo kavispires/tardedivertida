@@ -4,8 +4,9 @@ import { useTimer } from 'react-timer-hook';
 // Utils
 import { inNSeconds } from '../../../utils';
 // Components
-import DrawingCanvas from './DrawingCanvas';
+import { Step } from '../../shared/StepSwitcher';
 import Card from '../../cards/Card';
+import DrawingCanvas from './DrawingCanvas';
 
 function DrawPhaseDrawStep({ secretCard, onSubmitDrawing }) {
   const [lines, setLines] = useState([]);
@@ -21,7 +22,7 @@ function DrawPhaseDrawStep({ secretCard, onSubmitDrawing }) {
   });
 
   return (
-    <div className="a-draw-phase-draw-step">
+    <Step>
       <Card
         size="large"
         header="Desenhe"
@@ -33,7 +34,7 @@ function DrawPhaseDrawStep({ secretCard, onSubmitDrawing }) {
         <span className="a-draw-phase-draw-step__timer">{seconds - 1}</span>
       </Card>
       <DrawingCanvas lines={lines} setLines={setLines} />
-    </div>
+    </Step>
   );
 }
 

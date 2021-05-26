@@ -1,6 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import useSound from 'use-sound';
-
 // State & Hooks
 import { useGlobalState, useAmIReady, useAPICall } from '../../../hooks';
 // Resources & Utils
@@ -42,12 +41,7 @@ function DrawPhase({ players, state, info }) {
   };
 
   return (
-    <PhaseContainer
-      info={info}
-      phase={state?.phase}
-      allowedPhase={PHASES.ARTE_RUIM.DRAW}
-      className="draw-phase"
-    >
+    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.ARTE_RUIM.DRAW} className="a-phase">
       <StepSwitcher step={step} conditions={[!amIReady, !amIReady]}>
         {/* Step 0 */}
         <RoundAnnouncement

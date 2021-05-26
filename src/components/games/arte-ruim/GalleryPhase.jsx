@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 // Design Resources
 import { Button } from 'antd';
 import { PictureOutlined } from '@ant-design/icons';
@@ -14,7 +14,7 @@ import { AdminOnlyButton } from '../../shared/AdminOnly';
 import RankingBoard from '../../shared/RankingBoard';
 import Title from '../../shared/Title';
 import Instruction from '../../shared/Instruction';
-import StepSwitcher from '../../shared/StepSwitcher';
+import StepSwitcher, { Step } from '../../shared/StepSwitcher';
 
 function GalleryPhase({ players, state, info }) {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -48,7 +48,7 @@ function GalleryPhase({ players, state, info }) {
     >
       <StepSwitcher step={step}>
         {/* Step 0 */}
-        <div className="a-gallery-phase__windows">
+        <Step className="a-gallery-phase__windows">
           <Title>Galeria de Arte</Title>
           {state?.gallery && (
             <GalleryWindow
@@ -61,10 +61,10 @@ function GalleryPhase({ players, state, info }) {
               setStep={setStep}
             />
           )}
-        </div>
+        </Step>
 
         {/* Step 1 */}
-        <Fragment>
+        <Step>
           <Title>{state.pointsToVictory >= 0 ? 'Ranking' : 'Game Over'}</Title>
           <RankingBoard players={players} ranking={state.ranking} />
           {state.pointsToVictory >= 0 && (
@@ -77,7 +77,7 @@ function GalleryPhase({ players, state, info }) {
             Ver Galeria
           </Button>
           <AdminOnlyButton action={() => onGoToNextRound({})} label="Ir para próxima rodada ou game over" />
-        </Fragment>
+        </Step>
       </StepSwitcher>
     </PhaseContainer>
   );
