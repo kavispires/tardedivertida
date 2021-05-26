@@ -61,8 +61,9 @@ function GuessPhase({ state, players, info }) {
           <Instruction contained>
             {amITheGuesser ? 'Você' : guesser.name} tem uma única change de adivinhar a palavra secreta!
           </Instruction>
+
           <UeSoIssoCard
-            word={amITheGuesser ? <QuestionCircleOutlined /> : state.secretWord.text}
+            word={amITheGuesser && !state.guess ? <QuestionCircleOutlined /> : state.secretWord.text}
             header="A Palavra Secreta é"
           />
 
