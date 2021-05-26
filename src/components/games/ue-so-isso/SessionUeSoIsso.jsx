@@ -1,12 +1,8 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React from 'react';
 // Hooks
-import { useGameState, useGlobalState } from '../../../hooks';
 import { GAME_COLLECTION, PHASES } from '../../../utils/constants';
-// Hooks
-import { useGamePlayers } from '../../../hooks/useGamePlayers';
-// Utils
-import gameList from '../../../resources/games.json';
 // Components
+import Session from '../../shared/Session';
 import Lobby from '../../lobby/Lobby';
 import Rules from '../../rules/Rules';
 import PageError from '../../errors/PageError';
@@ -15,56 +11,35 @@ import SuggestPhase from './SuggestPhase';
 import ComparePhase from './ComparePhase';
 import GuessPhase from './GuessPhase';
 import GameOver from '../../shared/GameOver';
-import GameInfoDrawer from '../../shared/GameInfoDrawer';
-
-function getActiveComponent(phase) {
-  switch (phase) {
-    case PHASES.UE_SO_ISSO.LOBBY:
-      return Lobby;
-    case PHASES.UE_SO_ISSO.RULES:
-      return Rules;
-    case PHASES.UE_SO_ISSO.WORD_SELECTION:
-      return WordSelectionPhase;
-    case PHASES.UE_SO_ISSO.SUGGEST:
-      return SuggestPhase;
-    case PHASES.UE_SO_ISSO.COMPARE:
-      return ComparePhase;
-    case PHASES.UE_SO_ISSO.GUESS:
-      return GuessPhase;
-    case PHASES.UE_SO_ISSO.GAME_OVER:
-      return GameOver;
-    default:
-      return PageError;
-  }
-}
 
 function SessionUeSoIsso({ gameId }) {
-  const players = useGamePlayers(gameId, GAME_COLLECTION.UE_SO_ISSO);
-  const state = useGameState(gameId, GAME_COLLECTION.UE_SO_ISSO);
-  const [me] = useGlobalState('me');
-  const [info, setInfo] = useState({});
-
-  // Update game description as the gameId comes in
-  useEffect(() => {
-    setInfo(gameId?.[0] ? gameList[gameId[0]] : {});
-  }, [gameId]);
-
-  if (process.env.NODE_ENV === 'development') {
-    console.table(players);
-    console.log({ state });
+  function getActiveComponent(phase) {
+    switch (phase) {
+      case PHASES.UE_SO_ISSO.LOBBY:
+        return Lobby;
+      case PHASES.UE_SO_ISSO.RULES:
+        return Rules;
+      case PHASES.UE_SO_ISSO.WORD_SELECTION:
+        return WordSelectionPhase;
+      case PHASES.UE_SO_ISSO.SUGGEST:
+        return SuggestPhase;
+      case PHASES.UE_SO_ISSO.COMPARE:
+        return ComparePhase;
+      case PHASES.UE_SO_ISSO.GUESS:
+        return GuessPhase;
+      case PHASES.UE_SO_ISSO.GAME_OVER:
+        return GameOver;
+      default:
+        return PageError;
+    }
   }
-
-  if (!me) {
-    return <Lobby players={players} state={state} info={info} />;
-  }
-
-  const ActiveComponent = getActiveComponent(state.phase);
 
   return (
-    <Fragment>
-      <GameInfoDrawer players={players} state={state} info={info} me={me} />
-      <ActiveComponent players={players} state={state} info={info} />
-    </Fragment>
+    <Session
+      gameId={gameId}
+      gameCollection={GAME_COLLECTION.UE_SO_ISSO}
+      getActiveComponent={getActiveComponent}
+    />
   );
 }
 
