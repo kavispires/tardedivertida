@@ -42,17 +42,14 @@
 @import '../components/cards/Card.scss';
 
 // ArteRuim Components
-@import '../components/games/arte-ruim/DrawPhaseDrawStep.scss';
+@import '../components/games/arte-ruim/SessionArteRuim.scss';
 @import '../components/games/arte-ruim/DrawingCanvas.scss';
 @import '../components/games/arte-ruim/Canvas.scss';
 @import '../components/games/arte-ruim/CanvasResizer.scss';
-@import '../components/games/arte-ruim/EvaluationPhase.scss';
 @import '../components/games/arte-ruim/EvaluationAllDrawings.scss';
 @import '../components/games/arte-ruim/EvaluationAllCards.scss';
-@import '../components/games/arte-ruim/GalleryPhase.scss';
 @import '../components/games/arte-ruim/Ribbon.scss';
 @import '../components/games/arte-ruim/GalleryWindow.scss';
-@import '../components/games/arte-ruim/GameOverPhase.scss';
 
 // EspiaoEntreNos Components
 @import '../components/games/espiao-entre-nos/SessionEspiaoEntreNos.scss';

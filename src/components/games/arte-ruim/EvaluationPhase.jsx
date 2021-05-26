@@ -1,6 +1,6 @@
-import React, { Fragment, useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 // Design Resources
-import { Button, Space } from 'antd';
+import { Button } from 'antd';
 import { CloudUploadOutlined } from '@ant-design/icons';
 // Hooks
 import { useAmIReady, useGlobalState, useAPICall } from '../../../hooks';
@@ -15,8 +15,9 @@ import PhaseContainer from '../../shared/PhaseContainer';
 import CanvasResizer from './CanvasResizer';
 import Title from '../../shared/Title';
 import Instruction from '../../shared/Instruction';
-import StepSwitcher from '../../shared/StepSwitcher';
+import StepSwitcher, { Step } from '../../shared/StepSwitcher';
 import AdminForceNextPhase from '../../shared/AdminForceNextPhase';
+import ButtonContainer from '../../shared/ButtonContainer';
 
 function prepareVotes(votes) {
   return Object.entries(votes).reduce((acc, [drawingEntryId, cardEntryId]) => {
@@ -84,7 +85,7 @@ function EvaluationPhase({ players, state, info }) {
     >
       <StepSwitcher step={step} conditions={[!amIReady]}>
         {/*Step 0 */}
-        <div className="a-evaluation-phase__step-one">
+        <Step className="a-evaluation-step">
           <CanvasResizer />
           <Title>Adivinhação</Title>
           <Instruction>
@@ -111,7 +112,7 @@ function EvaluationPhase({ players, state, info }) {
             votes={votes}
           />
 
-          <Space className="a-evaluation-phase__action-button">
+          <ButtonContainer>
             <Button
               type="primary"
               onClick={() => onSubmitVoting({ votes: prepareVotes(votes) })}
@@ -120,18 +121,18 @@ function EvaluationPhase({ players, state, info }) {
             >
               Enviar sua avaliação
             </Button>
-          </Space>
-        </div>
+          </ButtonContainer>
+        </Step>
 
         {/*Step 1 */}
-        <Fragment>
+        <Step>
           <WaitingRoom
             players={players}
             title="Pronto!"
             instruction="Vamos aguardar enquanto os outros jogadores terminam de avaliar!"
           />
           <AdminForceNextPhase />
-        </Fragment>
+        </Step>
       </StepSwitcher>
     </PhaseContainer>
   );
