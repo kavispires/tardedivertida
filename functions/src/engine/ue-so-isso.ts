@@ -76,7 +76,7 @@ const getSuggestionsNumber = (players: Players) => {
   const numberOfPlayers = Object.keys(players).length;
 
   if (numberOfPlayers <= 3) return 3;
-  if (numberOfPlayers <= 5) return 2;
+  if (numberOfPlayers <= 4) return 2;
   return 1;
 };
 
