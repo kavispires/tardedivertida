@@ -25,7 +25,11 @@ function Lobby({ players, info }) {
           />
         ))}
 
-        {me && myAvatar ? <Waiting players={players} info={info} /> : <Join players={players} info={info} />}
+        {me && myAvatar !== undefined ? (
+          <Waiting players={players} info={info} />
+        ) : (
+          <Join players={players} info={info} />
+        )}
       </div>
 
       <CloudBackground />
