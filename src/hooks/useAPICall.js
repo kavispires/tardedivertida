@@ -26,7 +26,7 @@ export function useAPICall({
   const [, setLoader] = useLoading();
   const [gameId] = useGlobalState('gameId');
   const [gameName] = useGlobalState('gameName');
-  const [me] = useGlobalState('me');
+  const [username] = useGlobalState('username');
 
   const onAPICall = useCallback(
     async (payload) => {
@@ -36,7 +36,7 @@ export function useAPICall({
         const response = await apiFunction({
           gameId,
           gameName,
-          playerName: me,
+          playerName: username,
           ...payload,
         });
 
@@ -62,7 +62,7 @@ export function useAPICall({
       errorMessage,
       gameId,
       gameName,
-      me,
+      username,
       setLoader,
       successMessage,
       onBeforeCall,

@@ -12,7 +12,7 @@ import StepSwitcher, { Step } from '../../shared/StepSwitcher';
 import CompareSuggestionsStep from './CompareSuggestionsStep';
 
 function ComparePhase({ state, players, info }) {
-  const [me] = useGlobalState('me');
+  const [username] = useGlobalState('username');
   const [step, setStep] = useState(0);
   const amITheGuesser = useAmIActive(state, 'guesser');
 
@@ -46,7 +46,7 @@ function ComparePhase({ state, players, info }) {
               nextGuesser={state.nextGuesser}
               secretWord={state.secretWord}
               suggestions={state.suggestions}
-              me={me}
+              username={username}
               players={players}
               onValidateSuggestions={onValidateSuggestions}
             />

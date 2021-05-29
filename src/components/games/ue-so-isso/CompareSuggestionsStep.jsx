@@ -14,7 +14,7 @@ import { Step } from '../../shared/StepSwitcher';
 
 function CompareSuggestionsStep({
   nextGuesser,
-  me,
+  username,
   secretWord,
   suggestions,
   onValidateSuggestions,
@@ -42,7 +42,7 @@ function CompareSuggestionsStep({
   };
 
   const suggestionsValues = Object.values(myRecommendation);
-  const amITheNextGuesser = nextGuesser === me;
+  const amITheNextGuesser = nextGuesser === username;
 
   return (
     <Step>

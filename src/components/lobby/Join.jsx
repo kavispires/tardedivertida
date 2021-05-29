@@ -18,12 +18,12 @@ function Join({ players, info }) {
   const [isLoading, setLoader] = useLoading();
   const [gameId] = useGlobalState('gameId');
   const [gameName] = useGlobalState('gameName');
-  const [, setMe] = useGlobalState('me');
-  const [, setMyAvatar] = useGlobalState('myAvatar');
+  const [, setUsername] = useGlobalState('username');
+  const [, setUserAvatarId] = useGlobalState('userAvatarId');
 
   const [availableAvatars, setAvailableAvatars] = useState(AVATAR_IDS);
   const [tempAvatar, setTempAvatar] = useState(getRandomItem(AVATAR_IDS));
-  const [tempMe, setTempMe] = useState('');
+  const [tempUsername, setTempUsername] = useState('');
   const [sameGameId, setSameGameId] = useState(false);
 
   const [localStorageAvatar, setLocalStorageAvatar] = useState(null);
@@ -47,12 +47,12 @@ function Join({ players, info }) {
   // Load name and avatarId from localStorage
   useEffect(() => {
     const lsAvatarId = localStorage.get('avatarId');
-    const lsMe = localStorage.get('me');
+    const lsUsername = localStorage.get('username');
     const lsGameId = localStorage.get('gameId');
 
-    if (lsAvatarId && lsMe) {
+    if (lsAvatarId && lsUsername) {
       setTempAvatar(localStorage.get('avatarId'));
-      setTempMe(localStorage.get('me') ?? '');
+      setTempUsername(localStorage.get('username') ?? '');
       setLocalStorageAvatar(lsAvatarId);
 
       if (lsGameId === gameId) {
@@ -79,14 +79,14 @@ function Join({ players, info }) {
       const response = await GAME_API.addPlayer({
         gameId,
         gameName,
-        playerName: tempMe,
+        playerName: tempUsername,
         playerAvatarId: tempAvatar,
       });
 
-      setMe(response.data.name);
-      setMyAvatar(response.data.avatarId);
+      setUsername(response.data.name);
+      setUserAvatarId(response.data.avatarId);
       localStorage.set({
-        me: response.data.name,
+        username: response.data.name,
         avatarId: response.data.avatarId,
         gameId,
       });
@@ -100,7 +100,7 @@ function Join({ players, info }) {
     } finally {
       setLoader('add-player', false);
     }
-  }, [gameId, gameName, tempMe, tempAvatar]); // eslint-disable-line
+  }, [gameId, gameName, tempUsername, tempAvatar]); // eslint-disable-line
 
   return (
     <div className="lobby-join">
@@ -149,9 +149,9 @@ function Join({ players, info }) {
 
       <Input
         className="lobby-join__name-input"
-        onChange={(e) => setTempMe(e.target.value.trim())}
+        onChange={(e) => setTempUsername(e.target.value.trim())}
         placeholder="Insira seu nome"
-        value={tempMe}
+        value={tempUsername}
         maxLength={10}
         suffix={
           <Tooltip title="Máximo de 10 characteres">
@@ -162,7 +162,7 @@ function Join({ players, info }) {
       <Button
         className="lobby-join__join-button"
         type="primary"
-        disabled={!Boolean(tempMe) || isLoading}
+        disabled={!Boolean(tempUsername) || isLoading}
         onClick={onAddPlayer}
       >
         {isLoading ? <Spin size="small" /> : 'Entrar no jogo'}

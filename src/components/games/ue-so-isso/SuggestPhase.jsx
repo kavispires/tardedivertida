@@ -18,7 +18,7 @@ function SuggestPhase({ state, players, info }) {
   const amIReady = useAmIReady(players, state);
   const [gameId] = useGlobalState('gameId');
   const [gameName] = useGlobalState('gameName');
-  const [me] = useGlobalState('me');
+  const [username] = useGlobalState('username');
   const [step, setStep] = useState(0);
   const guesser = useActivePlayer(state, players, 'guesser');
   const amITheGuesser = useAmIActive(state, 'guesser');
@@ -31,7 +31,7 @@ function SuggestPhase({ state, players, info }) {
         const response = await UE_SO_ISSO_API.submitSuggestions({
           gameId,
           gameName,
-          playerName: me,
+          playerName: username,
           suggestions,
         });
 
@@ -52,7 +52,7 @@ function SuggestPhase({ state, players, info }) {
         setLoader('submit-suggestion', false);
       }
     },
-    [gameId, gameName, me, setLoader]
+    [gameId, gameName, username, setLoader]
   );
 
   return (

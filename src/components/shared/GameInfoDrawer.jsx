@@ -135,7 +135,7 @@ function SectionRankedPlayers({ players }) {
   );
 }
 
-function GameInfoDrawer({ players, state, info, me }) {
+function GameInfoDrawer({ players, state, info, username }) {
   const [visible, setVisible] = useState(false);
 
   if (state.phase === 'LOBBY') {
@@ -149,7 +149,7 @@ function GameInfoDrawer({ players, state, info, me }) {
     setVisible(false);
   };
 
-  const completeMe = players?.[me] ?? {};
+  const completeMe = players?.[username] ?? {};
   const isTeamGame = Boolean(completeMe?.team) && Boolean(state.teams);
 
   return (

@@ -8,11 +8,11 @@ import { useGlobalState, useLoading } from '../../../hooks';
 
 function PlayerSelect({ playersList, onSend }) {
   const [isLoading] = useLoading();
-  const [me] = useGlobalState('me');
+  const [username] = useGlobalState('username');
 
   const [selectedPlayer, setSelectedPlayer] = useState(null);
 
-  const playersWithoutMe = playersList.filter((playerName) => playerName !== me);
+  const playersWithoutMe = playersList.filter((playerName) => playerName !== username);
 
   return (
     <Space>

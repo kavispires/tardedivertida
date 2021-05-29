@@ -9,8 +9,8 @@ const initialState = {
   gameId: null,
   gameName: null,
   gameMeta: {},
-  me: '',
-  myAvatar: '',
+  username: '',
+  userAvatarId: '',
   isAdmin: false,
   // Arte-Ruim
   canvasSize: 250,
