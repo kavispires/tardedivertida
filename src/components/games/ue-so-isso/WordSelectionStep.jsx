@@ -5,6 +5,7 @@ import { CheckCircleFilled, CloudUploadOutlined } from '@ant-design/icons';
 import Title from '../../shared/Title';
 import Instruction from '../../shared/Instruction';
 import TimedButton from '../../shared/TimedButton';
+import { Step } from '../../shared/StepSwitcher';
 
 function WordSelectionStep({ words = [], onSendSelectedWords, guesser }) {
   const [selectedWords, setSelectedWords] = useState({});
@@ -30,7 +31,7 @@ function WordSelectionStep({ words = [], onSendSelectedWords, guesser }) {
   };
 
   return (
-    <div className="u-word-selection-step">
+    <Step>
       <Title white>Selecione a Palavra-Secreta para {guesser.name}</Title>
 
       <Instruction white>
@@ -60,7 +61,7 @@ function WordSelectionStep({ words = [], onSendSelectedWords, guesser }) {
         duration={10}
         showTimer={noSelection}
       />
-    </div>
+    </Step>
   );
 }
 

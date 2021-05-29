@@ -6,6 +6,7 @@ import { CloudUploadOutlined } from '@ant-design/icons';
 import Title from '../../shared/Title';
 import Instruction from '../../shared/Instruction';
 import Card from '../../cards/UeSoIssoCard';
+import { Step } from '../../shared/StepSwitcher';
 
 function SuggestionStep({ onSendSuggestions, secretWord, suggestionsNumber = 1, guesser }) {
   const [suggestions, setSuggestions] = useState([]);
@@ -26,13 +27,13 @@ function SuggestionStep({ onSendSuggestions, secretWord, suggestionsNumber = 1, 
   const suggestionsValues = Object.values(suggestions);
 
   return (
-    <div className="u-word-suggestion-step">
+    <Step>
       <Title>Escreva uma dica para {guesser.name}</Title>
 
       <Instruction contained>
         A dica tem que ser uma palavra única que ajude o adivinhador... adivinhar.
         <br />
-        É proibido usar derivados, partes da palavra ou traduções em outras linguas.
+        É proibido usar derivados, partes da palavra ou traduções em outras línguas.
         <br />
         E não seja tão óbvio, já que dicas similares são eliminadas.
         <br />
@@ -73,7 +74,7 @@ function SuggestionStep({ onSendSuggestions, secretWord, suggestionsNumber = 1, 
           {suggestionsNumber > 1 ? 'Enviar sugestões' : 'Enviar sugestão'}
         </Button>
       </Space>
-    </div>
+    </Step>
   );
 }
 

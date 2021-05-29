@@ -8,7 +8,7 @@ import { PHASES } from '../../../utils/constants';
 // Components
 import PhaseContainer from '../../shared/PhaseContainer';
 import WaitingRoom from '../../shared/WaitingRoom';
-import StepSwitcher from '../../shared/StepSwitcher';
+import StepSwitcher, { Step } from '../../shared/StepSwitcher';
 import CompareSuggestionsStep from './CompareSuggestionsStep';
 
 function ComparePhase({ state, players, info }) {
@@ -34,7 +34,7 @@ function ComparePhase({ state, players, info }) {
     >
       <StepSwitcher step={step}>
         {/* Step 0 */}
-        <div className="u-compare-phase__step">
+        <Step fullWidth>
           {amITheGuesser ? (
             <WaitingRoom
               players={players}
@@ -51,7 +51,7 @@ function ComparePhase({ state, players, info }) {
               onValidateSuggestions={onValidateSuggestions}
             />
           )}
-        </div>
+        </Step>
 
         {/* Step 1 */}
         <WaitingRoom players={players} title="Enviando a confirmação de sugestões" instruction="Aguarde..." />
