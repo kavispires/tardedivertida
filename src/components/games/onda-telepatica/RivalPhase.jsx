@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 // Hooks
-import { useAmIReady, useActivePlayer, useIsUser, useAPICall, useIsMyTeamActive } from '../../../hooks';
+import { useIsUserReady, useActivePlayer, useIsUser, useAPICall, useIsMyTeamActive } from '../../../hooks';
 // Resources & Utils
 import { ONDA_TELEPATICA } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
@@ -12,7 +12,7 @@ import StepSwitcher from '../../shared/StepSwitcher';
 import DialRivalSelection from './DialRivalSelection';
 
 function RivalPhase({ state, players, info }) {
-  const amIReady = useAmIReady(players, state);
+  const amIReady = useIsUserReady(players, state);
   const [step, setStep] = useState(0);
   const psychic = useActivePlayer(state, players, 'psychic');
   const rivalController = useActivePlayer(state, players, 'rivalController');

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 // Hooks
-import { useAmIReady, useActivePlayer, useIsUser, useAPICall } from '../../../hooks';
+import { useIsUserReady, useActivePlayer, useIsUser, useAPICall } from '../../../hooks';
 // Resources & Utils
 import { ONDA_TELEPATICA } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
@@ -15,7 +15,7 @@ import Instruction from '../../shared/Instruction';
 import AvatarName from '../../avatars/AvatarName';
 
 function DialSidesPhase({ state, players, info }) {
-  const amIReady = useAmIReady(players, state);
+  const amIReady = useIsUserReady(players, state);
   const [step, setStep] = useState(0);
   const psychic = useActivePlayer(state, players, 'psychic');
   const amIThePsychic = useIsUser(state, 'psychic');

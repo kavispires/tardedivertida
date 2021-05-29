@@ -4,7 +4,7 @@ import { Button, Layout, Space, Typography } from 'antd';
 import { CheckCircleFilled, MehFilled, RobotFilled, SmileFilled } from '@ant-design/icons';
 // State
 import { GAME_API } from '../../adapters';
-import { useLoading, useAmIReady, useAPICall } from '../../hooks';
+import { useLoading, useIsUserReady, useAPICall } from '../../hooks';
 // Components
 import RulesCarousel from './RulesCarousel';
 import LoadingPage from '../loaders/LoadingPage';
@@ -12,7 +12,7 @@ import ReadyPlayersBar from '../shared/ReadyPlayersBar';
 
 function Rules({ players, info }) {
   const [isLoading] = useLoading();
-  const amIReady = useAmIReady(players);
+  const amIReady = useIsUserReady(players);
 
   const onBeReady = useAPICall({
     apiFunction: GAME_API.makeMeReady,
