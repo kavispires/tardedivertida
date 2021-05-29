@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { Button } from 'antd';
 import { CloudUploadOutlined } from '@ant-design/icons';
 // Hooks
-import { useAmIReady, useGlobalState, useAPICall } from '../../../hooks';
+import { useIsUserReady, useGlobalState, useAPICall } from '../../../hooks';
 // Utils
 import { ARTE_RUIM_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
@@ -29,7 +29,7 @@ function prepareVotes(votes) {
 }
 
 function EvaluationPhase({ players, state, info }) {
-  const amIReady = useAmIReady(players, state);
+  const amIReady = useIsUserReady(players, state);
   const [canvasSize, setCanvasSize] = useGlobalState('canvasSize');
   const [cachedCanvasSize] = useGlobalState('cachedCanvasSize');
   const [step, setStep] = useState(0);

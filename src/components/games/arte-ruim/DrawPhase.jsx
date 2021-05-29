@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import useSound from 'use-sound';
 // State & Hooks
-import { useGlobalState, useAmIReady, useAPICall } from '../../../hooks';
+import { useGlobalState, useIsUserReady, useAPICall } from '../../../hooks';
 // Resources & Utils
 import { ARTE_RUIM_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
@@ -16,7 +16,7 @@ import StepSwitcher, { Step } from '../../shared/StepSwitcher';
 import AdminForceNextPhase from '../../shared/AdminForceNextPhase';
 
 function DrawPhase({ players, state, info }) {
-  const amIReady = useAmIReady(players, state);
+  const amIReady = useIsUserReady(players, state);
   const [username] = useGlobalState('username');
   const [step, setStep] = useState(0);
   const [secretCard, setSecretCard] = useState({});

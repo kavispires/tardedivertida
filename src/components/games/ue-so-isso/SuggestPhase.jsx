@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 // Design Resources
 import { message, notification } from 'antd';
 // Hooks
-import { useGlobalState, useLoading, useAmIReady, useActivePlayer, useIsUser } from '../../../hooks';
+import { useGlobalState, useLoading, useIsUserReady, useActivePlayer, useIsUser } from '../../../hooks';
 // Resources & Utils
 import { UE_SO_ISSO_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
@@ -15,7 +15,7 @@ import SuggestionStep from './SuggestionStep';
 
 function SuggestPhase({ state, players, info }) {
   const [, setLoader] = useLoading();
-  const amIReady = useAmIReady(players, state);
+  const amIReady = useIsUserReady(players, state);
   const [gameId] = useGlobalState('gameId');
   const [gameName] = useGlobalState('gameName');
   const [username] = useGlobalState('username');

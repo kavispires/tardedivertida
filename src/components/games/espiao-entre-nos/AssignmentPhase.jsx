@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
 // Hooks
-import { useAmIReady, useUser, useIsUser } from '../../../hooks';
+import { useIsUserReady, useUser, useIsUser } from '../../../hooks';
 // Resources & Utils
 import { PHASES } from '../../../utils/constants';
 // Components
@@ -19,7 +19,7 @@ import Notes from './Notes';
 import AdminTimerControlButton from './AdminTimerControlButton';
 
 function AssignmentPhase({ state, players, info }) {
-  const amIReady = useAmIReady(players, state);
+  const amIReady = useIsUserReady(players, state);
   const user = useUser(players);
   const isSpy = useIsUser(state, 'currentSpy');
   const [step, setStep] = useState(0);
