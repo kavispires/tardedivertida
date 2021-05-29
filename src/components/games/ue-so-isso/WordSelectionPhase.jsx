@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 // Design Resources
 import { message, Progress } from 'antd';
 // Hooks
-import { useAmIReady, useAmIActive, useActivePlayer, useAPICall } from '../../../hooks';
+import { useAmIReady, useIsUser, useActivePlayer, useAPICall } from '../../../hooks';
 // Resources & Utils
 import { UE_SO_ISSO_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
@@ -19,7 +19,7 @@ import WordSelectionStep from './WordSelectionStep';
 function WordSelectionPhase({ state, players, info }) {
   const amIReady = useAmIReady(players, state);
   const guesser = useActivePlayer(state, players, 'guesser');
-  const amITheGuesser = useAmIActive(state, 'guesser');
+  const amITheGuesser = useIsUser(state, 'guesser');
   const [step, setStep] = useState(0);
 
   useEffect(() => {
