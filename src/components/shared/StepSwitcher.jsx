@@ -19,11 +19,12 @@ StepSwitcher.propTypes = {
 
 export default StepSwitcher;
 
-export function Step({ children, className }) {
-  return <div className={clsx('step', className)}>{children}</div>;
+export function Step({ children, fullWidth = false, className }) {
+  return <div className={clsx('step', fullWidth && 'step--full-width', className)}>{children}</div>;
 }
 
 StepSwitcher.propTypes = {
   children: PropTypes.any.isRequired,
+  fullWidth: PropTypes.bool,
   className: PropTypes.string,
 };
