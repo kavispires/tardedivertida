@@ -125,7 +125,7 @@ function EvaluationPhase({ players, state, info }) {
         </Step>
 
         {/*Step 1 */}
-        <Step>
+        <Step fullWidth>
           <WaitingRoom
             players={players}
             title="Pronto!"

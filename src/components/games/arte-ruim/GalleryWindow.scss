@@ -5,12 +5,16 @@
   padding: get-unit(2);
   border-radius: get-unit(1);
 
-  grid-template-columns: [first] 50% [second] 1fr [end];
-  grid-template-rows: [first] 90px [second] auto [third] auto [fourth] auto [end];
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 90px auto 165px auto;
+  grid-template-areas:
+    'canvas credits'
+    'canvas guesses'
+    'canvas result'
+    'controls controls';
 
   &__drawing-container {
-    grid-column: first / second;
-    grid-row: first / fourth;
+    grid-area: canvas;
     place-self: center;
   }
 
@@ -22,8 +26,8 @@
   }
 
   &__credits {
-    grid-column: second / end;
-    grid-row: first / second;
+    grid-area: credits;
+
     background: get-color(white);
     border-radius: get-unit(1);
     padding: get-unit(2 3);
@@ -41,8 +45,8 @@
   }
 
   &__guesses {
-    grid-column: second / end;
-    grid-row: second / third;
+    grid-area: guesses;
+
     background: get-color(white);
     border-radius: get-unit(1);
     padding: get-unit(2 3);
@@ -77,8 +81,8 @@
   }
 
   &__result {
-    grid-column: second / end;
-    grid-row: third / fourth;
+    grid-area: result;
+
     background: get-color(white);
     border-radius: get-unit(1);
     padding: get-unit(2 3);
@@ -97,8 +101,8 @@
   }
 
   &__controls {
-    grid-column: first / end;
-    grid-row: fourth / end;
+    grid-area: controls;
+
     display: flex;
     justify-content: center;
     flex-wrap: wrap;

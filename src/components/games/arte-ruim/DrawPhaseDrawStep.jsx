@@ -27,11 +27,11 @@ function DrawPhaseDrawStep({ secretCard, onSubmitDrawing }) {
         size="large"
         header="Desenhe"
         footer={Array(secretCard?.level).fill('•').join('')}
-        className="a-draw-phase-draw-step__card"
+        className="a-draw-step__card"
         color="yellow"
       >
         {secretCard?.text}
-        <span className="a-draw-phase-draw-step__timer">{seconds - 1}</span>
+        <span className="a-draw-step__timer">{seconds - 1}</span>
       </Card>
       <DrawingCanvas lines={lines} setLines={setLines} />
     </Step>
