@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 // Hooks
-import { useGlobalState, useAmIActive, useAPICall } from '../../../hooks';
+import { useGlobalState, useIsUser, useAPICall } from '../../../hooks';
 // Resources & Utils
 import { UE_SO_ISSO_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
@@ -14,7 +14,7 @@ import CompareSuggestionsStep from './CompareSuggestionsStep';
 function ComparePhase({ state, players, info }) {
   const [username] = useGlobalState('username');
   const [step, setStep] = useState(0);
-  const amITheGuesser = useAmIActive(state, 'guesser');
+  const amITheGuesser = useIsUser(state, 'guesser');
 
   const onValidateSuggestions = useAPICall({
     apiFunction: UE_SO_ISSO_API.submitValidation,

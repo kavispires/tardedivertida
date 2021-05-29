@@ -1,5 +1,5 @@
 export * from './useActivePlayer';
-export * from './useAmIActive';
+export * from './useIsUser';
 export * from './useAmIReady';
 export * from './useAPICall';
 export * from './useGamePlayers';
