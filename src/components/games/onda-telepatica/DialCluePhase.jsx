@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 // Hooks
 import { useAmIReady, useActivePlayer, useAmIActive, useAPICall } from '../../../hooks';
@@ -8,7 +8,7 @@ import { PHASES } from '../../../utils/constants';
 // Components
 import PhaseContainer from '../../shared/PhaseContainer';
 import WaitingRoom from '../../shared/WaitingRoom';
-import StepSwitcher from '../../shared/StepSwitcher';
+import StepSwitcher, { Step } from '../../shared/StepSwitcher';
 import Card from './Card';
 import DialClueWriting from './DialClueWriting';
 
@@ -36,7 +36,7 @@ function DialCluePhase({ state, players, info }) {
     >
       <StepSwitcher step={step} conditions={[!amIReady]}>
         {/* Step 0 */}
-        <Fragment>
+        <Step>
           {!amIThePsychic ? (
             <WaitingRoom
               players={players}
@@ -50,7 +50,7 @@ function DialCluePhase({ state, players, info }) {
           ) : (
             <DialClueWriting card={state.card} onSendClue={onSendClue} />
           )}
-        </Fragment>
+        </Step>
 
         {/* Step 1 */}
         <WaitingRoom
