@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Button, Space } from 'antd';
 import { AimOutlined, EnvironmentOutlined } from '@ant-design/icons';
 // Hooks
-import { useMe, useAPICall, useAmIActive } from '../../../hooks';
+import { useUser, useAPICall, useAmIActive } from '../../../hooks';
 // Resources & Utils
 import { ESPIAO_ENTRE_NOS_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
@@ -19,7 +19,7 @@ import AdminTimerControlButton from './AdminTimerControlButton';
 import ReadyPlayersBar from '../../shared/ReadyPlayersBar';
 
 function AssessmentPhase({ state, players, info }) {
-  const user = useMe(players);
+  const user = useUser(players);
   const amITheTarget = useAmIActive(state, 'target');
   const amITheAccuser = useAmIActive(state, 'accuser');
   const [submittedAction, setSubmitAction] = useState(false);

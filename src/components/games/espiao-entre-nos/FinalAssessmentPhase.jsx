@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Button, Select } from 'antd';
 import { AimOutlined, EnvironmentOutlined } from '@ant-design/icons';
 // Hooks
-import { useMe, useAPICall } from '../../../hooks';
+import { useUser, useAPICall } from '../../../hooks';
 // Resources & Utils
 import { ESPIAO_ENTRE_NOS_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
@@ -18,7 +18,7 @@ import Notes from './Notes';
 import AdminOnly from '../../shared/AdminOnly';
 
 function FinalAssessmentPhase({ state, players, info }) {
-  const user = useMe(players);
+  const user = useUser(players);
   const [accuser, setAccuser] = useState(null);
   const [target, setTarget] = useState(null);
 
