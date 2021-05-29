@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 // Design Resources
 import { message } from 'antd';
 // Hooks
-import { useMe, useAPICall, useAmIActive } from '../../../hooks';
+import { useUser, useAPICall, useAmIActive } from '../../../hooks';
 // Resources & Utils
 import { ESPIAO_ENTRE_NOS_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
@@ -14,7 +14,7 @@ import Title from '../../shared/Title';
 import AdminOnly, { AdminButton } from '../../shared/AdminOnly';
 
 function ResolutionPhase({ state, players, info }) {
-  const user = useMe(players);
+  const user = useUser(players);
   const isSpy = useAmIActive(state, 'currentSpy');
 
   const onAdminControl = useAPICall({

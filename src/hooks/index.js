@@ -8,4 +8,4 @@ export * from './useGlobalState';
 export * from './useIsGameStale';
 export * from './useIsMyTeamActive';
 export * from './useLoading';
-export * from './useMe';
+export * from './useUser';
