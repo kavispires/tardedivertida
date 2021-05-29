@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 // Hooks
 import { useAmIReady, useActivePlayer, useAmIActive, useAPICall } from '../../../hooks';
@@ -8,7 +8,7 @@ import { PHASES } from '../../../utils/constants';
 // Components
 import PhaseContainer from '../../shared/PhaseContainer';
 import WaitingRoom from '../../shared/WaitingRoom';
-import StepSwitcher from '../../shared/StepSwitcher';
+import StepSwitcher, { Step } from '../../shared/StepSwitcher';
 import CardSelection from './CardSelection';
 import RoundAnnouncement from '../../shared/RoundAnnouncement';
 import Instruction from '../../shared/Instruction';
@@ -60,7 +60,7 @@ function DialSidesPhase({ state, players, info }) {
         </RoundAnnouncement>
 
         {/* Step 1 */}
-        <Fragment>
+        <Step fullWidth>
           {!amIThePsychic ? (
             <WaitingRoom
               players={players}
@@ -70,7 +70,7 @@ function DialSidesPhase({ state, players, info }) {
           ) : (
             <CardSelection onSendChosenSide={onSendChosenSide} cards={state.cards} />
           )}
-        </Fragment>
+        </Step>
 
         {/* Step 2 */}
         <WaitingRoom
