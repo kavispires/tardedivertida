@@ -17,14 +17,14 @@ import AdminForceNextPhase from '../../shared/AdminForceNextPhase';
 
 function DrawPhase({ players, state, info }) {
   const amIReady = useAmIReady(players, state);
-  const [me] = useGlobalState('me');
+  const [username] = useGlobalState('username');
   const [step, setStep] = useState(0);
   const [secretCard, setSecretCard] = useState({});
   const [play] = useSound(arteRuimTimer, { volume: 0.4 });
 
   useEffect(() => {
-    setSecretCard(players[me].currentCard ?? {});
-  }, [players, me]);
+    setSecretCard(players[username].currentCard ?? {});
+  }, [players, username]);
 
   const onSubmitDrawing = useAPICall({
     apiFunction: ARTE_RUIM_API.submitDrawing,

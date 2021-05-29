@@ -9,8 +9,8 @@ import Waiting from './Waiting';
 import CloudBackground from './CloudBackground';
 
 function Lobby({ players, info }) {
-  const [me] = useGlobalState('me');
-  const [myAvatar] = useGlobalState('myAvatar');
+  const [username] = useGlobalState('username');
+  const [userAvatarId] = useGlobalState('userAvatarId');
 
   return (
     <PhaseContainer phase="LOBBY" allowedPhase="LOBBY" info={info}>
@@ -25,7 +25,7 @@ function Lobby({ players, info }) {
           />
         ))}
 
-        {me && myAvatar !== undefined ? (
+        {username && userAvatarId !== undefined ? (
           <Waiting players={players} info={info} />
         ) : (
           <Join players={players} info={info} />

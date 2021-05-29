@@ -18,8 +18,8 @@ function Waiting({ info, players }) {
   const [gameName] = useGlobalState('gameName');
   const [gameMeta] = useGlobalState('gameMeta');
 
-  const [me] = useGlobalState('me');
-  const [myAvatar] = useGlobalState('myAvatar');
+  const [username] = useGlobalState('username');
+  const [userAvatarId] = useGlobalState('userAvatarId');
 
   const onLockGameAndStart = useCallback(async () => {
     try {
@@ -53,9 +53,9 @@ function Waiting({ info, players }) {
         fallback={`${PUBLIC_URL.BANNERS}/game-image-em-breve.jpg`}
       />
 
-      <h1 className="center">{me || 'Fulano'},</h1>
+      <h1 className="center">{username || 'Fulano'},</h1>
       <svg viewBox="0 0 100 100" className="lobby-waiting__avatar">
-        <use href={avatars + `#avatar-${myAvatar}`}></use>
+        <use href={avatars + `#avatar-${userAvatarId}`}></use>
       </svg>
       <h3 className="center">Aguarde os outros jogadores entrarem.</h3>
       <AdminOnly className="lobby-waiting__lock-button">
