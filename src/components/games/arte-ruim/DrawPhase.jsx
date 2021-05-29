@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useSound from 'use-sound';
 // State & Hooks
 import { useGlobalState, useAmIReady, useAPICall } from '../../../hooks';
@@ -12,7 +12,7 @@ import DrawPhaseDrawStep from './DrawPhaseDrawStep';
 import WaitingRoom from '../../shared/WaitingRoom';
 import RoundAnnouncement from '../../shared/RoundAnnouncement';
 import Instruction from '../../shared/Instruction';
-import StepSwitcher from '../../shared/StepSwitcher';
+import StepSwitcher, { Step } from '../../shared/StepSwitcher';
 import AdminForceNextPhase from '../../shared/AdminForceNextPhase';
 
 function DrawPhase({ players, state, info }) {
@@ -55,9 +55,6 @@ function DrawPhase({ players, state, info }) {
             Aperte o botão quando estiver pronto!
             <br />
             Fique esperto porque o tempo começa assim que você apertar.
-            <br />
-            Não 'seje' lerdo.
-            <br />
           </Instruction>
         </RoundAnnouncement>
 
@@ -65,14 +62,14 @@ function DrawPhase({ players, state, info }) {
         <DrawPhaseDrawStep secretCard={secretCard} onSubmitDrawing={onSubmitDrawing} />
 
         {/* Step 2 */}
-        <Fragment>
+        <Step fullWidth>
           <WaitingRoom
             players={players}
             title="Pronto!"
             instruction="Vamos aguardar enquanto os outros jogadores terminam seus desenhos!"
           />
           <AdminForceNextPhase />
-        </Fragment>
+        </Step>
       </StepSwitcher>
     </PhaseContainer>
   );

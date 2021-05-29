@@ -19,7 +19,7 @@ function GalleryWindowResult({
 
   return (
     <div className="a-gallery-window__result">
-      <div className="a-gallery-window__label">E a carta correta é</div>
+      <div className="a-gallery-window__label">E o nome correto da obra é</div>
       <div className="a-gallery-window__speech-bubble">
         <CrownFilled className="a-gallery-window__speech-bubble-icon" />
         {correctAnswerText}
