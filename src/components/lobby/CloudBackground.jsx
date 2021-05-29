@@ -20,7 +20,7 @@ function CloudBackground() {
       </div>
 
       <div className="cloud-background__animation-5">
-        <div classNameName="cloud-background__cloud"></div>
+        <div className="cloud-background__cloud"></div>
       </div>
     </div>
   );
