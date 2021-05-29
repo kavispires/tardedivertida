@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 // Design Resources
 import { Button, Space } from 'antd';
 import { CheckOutlined, CloseOutlined, QuestionCircleOutlined } from '@ant-design/icons';
@@ -11,13 +12,12 @@ import { PHASES } from '../../../utils/constants';
 // Components
 import PhaseContainer from '../../shared/PhaseContainer';
 import WaitingRoom from '../../shared/WaitingRoom';
-import StepSwitcher from '../../shared/StepSwitcher';
+import StepSwitcher, { Step } from '../../shared/StepSwitcher';
 import Title from '../../shared/Title';
 import Avatar from '../../avatars/Avatar';
 import Instruction from '../../shared/Instruction';
 import UeSoIssoCard from '../../cards/UeSoIssoCard';
 import SuggestionCard from './SuggestionCard';
-import clsx from 'clsx';
 import Guess from './Guess';
 
 function GuessPhase({ state, players, info }) {
@@ -46,7 +46,7 @@ function GuessPhase({ state, players, info }) {
     >
       <StepSwitcher step={step}>
         {/* Step 0 */}
-        <div className="u-word-guess-phase__step">
+        <Step>
           <Title>
             {state.guess ? (
               <span>
@@ -122,7 +122,7 @@ function GuessPhase({ state, players, info }) {
               </Button>
             </Space>
           )}
-        </div>
+        </Step>
 
         {/* Step 1 */}
         <WaitingRoom players={players} title="Enviando a confirmação de sugestões" instruction="Aguarde..." />

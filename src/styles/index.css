@@ -1331,49 +1331,84 @@ body {
   border-radius: 4px;
   text-transform: uppercase; }
 
-.u-word-suggestion-step {
-  display: flex;
-  flex-direction: column;
-  align-items: center; }
-  .u-word-suggestion-step__inputs {
+.u-word-selection-phase__guesser-name-announcement {
+  padding: 0 8px;
+  font-weight: bolder;
+  text-transform: uppercase;
+  font-size: 1.5em; }
+
+.u-word-selection-phase__team-points {
+  width: 100%;
+  text-align: center;
+  text-transform: uppercase;
+  color: white;
+  margin-bottom: 8px; }
+
+.u-word-card {
+  background: white;
+  font-size: 1.5em;
+  min-width: 200px;
+  width: 250px;
+  border-radius: 4px;
+  padding: 4px 12px;
+  margin: 8px; }
+  .u-word-card__word {
     display: flex;
-    margin-bottom: 48px; }
-  .u-word-suggestion-step__input {
-    text-transform: uppercase;
-    text-align: center; }
-  .u-word-suggestion-step__submit {
+    margin: 8px 0;
+    border: 4px solid;
+    border-radius: 4px; }
+    .u-word-card__word:nth-child(1) {
+      border-color: #fb9cf0; }
+    .u-word-card__word:nth-child(2) {
+      border-color: #a5c2fe; }
+    .u-word-card__word:nth-child(3) {
+      border-color: #fec891; }
+    .u-word-card__word:nth-child(4) {
+      border-color: #5ecec1; }
+    .u-word-card__word:nth-child(5) {
+      border-color: #9e8ef0; }
+  .u-word-card__button {
     width: 100%;
-    display: flex;
-    justify-content: center; }
-
-.u-compare-phase__step {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%; }
-
-.u-word-compare-suggestions-step {
-  display: flex;
-  flex-direction: column;
-  align-items: center; }
-  .u-word-compare-suggestions-step__suggestions {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 40px; }
-  .u-word-compare-suggestions-step__suggestion-button {
-    background: transparent;
     border: none;
-    cursor: pointer;
-    transition: transform 250ms; }
-    .u-word-compare-suggestions-step__suggestion-button:hover {
-      transform: scale(1.1); }
-    .u-word-compare-suggestions-step__suggestion-button > .card {
-      margin: 0; }
+    background: 0;
+    display: flex;
+    padding-left: 1.5em;
+    cursor: pointer; }
+    .u-word-card__button:hover {
+      background: #c3f0c7; }
+  .u-word-card__text {
+    flex-grow: 1; }
+  .u-word-card__icon {
+    min-width: 1.5em;
+    color: #49d156; }
 
-.u-word-guess-phase__step {
+.u-word-suggestion-step__inputs {
   display: flex;
-  flex-direction: column;
-  align-items: center; }
+  margin-bottom: 48px; }
+
+.u-word-suggestion-step__input {
+  text-transform: uppercase;
+  text-align: center; }
+
+.u-word-suggestion-step__submit {
+  width: 100%;
+  display: flex;
+  justify-content: center; }
+
+.u-word-compare-suggestions-step__suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 40px; }
+
+.u-word-compare-suggestions-step__suggestion-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: transform 250ms; }
+  .u-word-compare-suggestions-step__suggestion-button:hover {
+    transform: scale(1.1); }
+  .u-word-compare-suggestions-step__suggestion-button > .card {
+    margin: 0; }
 
 .u-word-guess-phase__suggestions {
   display: flex;
@@ -1443,164 +1478,164 @@ body {
       animation-iteration-count: infinite; }
       .home__background span:nth-child(1) {
         color: #44bba4;
-        top: 48%;
-        left: 93%;
-        animation-duration: 13.8s;
-        animation-delay: -3.3s;
-        transform-origin: -13vw 11vh;
-        box-shadow: 40vmin 0 5.7428vmin currentColor; }
+        top: 40%;
+        left: 69%;
+        animation-duration: 12.8s;
+        animation-delay: -13.1s;
+        transform-origin: 25vw -12vh;
+        box-shadow: -40vmin 0 10.18381vmin currentColor; }
       .home__background span:nth-child(2) {
-        color: #f2e863;
-        top: 98%;
-        left: 2%;
-        animation-duration: 10.6s;
-        animation-delay: -13.8s;
-        transform-origin: 4vw -10vh;
-        box-shadow: -40vmin 0 12.77716vmin currentColor; }
+        color: #44bba4;
+        top: 1%;
+        left: 87%;
+        animation-duration: 12.8s;
+        animation-delay: -12s;
+        transform-origin: -8vw 18vh;
+        box-shadow: 40vmin 0 9.36918vmin currentColor; }
       .home__background span:nth-child(3) {
         color: #f2e863;
-        top: 35%;
-        left: 76%;
-        animation-duration: 10.2s;
-        animation-delay: -12.8s;
-        transform-origin: 7vw 18vh;
-        box-shadow: -40vmin 0 13.49947vmin currentColor; }
+        top: 66%;
+        left: 31%;
+        animation-duration: 13.2s;
+        animation-delay: -9.7s;
+        transform-origin: -11vw 15vh;
+        box-shadow: 40vmin 0 13.23086vmin currentColor; }
       .home__background span:nth-child(4) {
         color: #f2e863;
-        top: 84%;
-        left: 50%;
-        animation-duration: 13.7s;
-        animation-delay: -12.8s;
-        transform-origin: -21vw -7vh;
-        box-shadow: 40vmin 0 13.83605vmin currentColor; }
+        top: 87%;
+        left: 90%;
+        animation-duration: 13.8s;
+        animation-delay: -7.9s;
+        transform-origin: -17vw 7vh;
+        box-shadow: 40vmin 0 10.59409vmin currentColor; }
       .home__background span:nth-child(5) {
-        color: #3a7ca5;
-        top: 70%;
-        left: 55%;
-        animation-duration: 11.6s;
-        animation-delay: -13.4s;
-        transform-origin: 4vw -1vh;
-        box-shadow: 40vmin 0 13.0495vmin currentColor; }
+        color: #f2e863;
+        top: 65%;
+        left: 12%;
+        animation-duration: 11.1s;
+        animation-delay: -12.9s;
+        transform-origin: 1vw 1vh;
+        box-shadow: 40vmin 0 8.07349vmin currentColor; }
       .home__background span:nth-child(6) {
-        color: #3a7ca5;
-        top: 49%;
-        left: 80%;
-        animation-duration: 11.6s;
-        animation-delay: -14.9s;
-        transform-origin: 5vw -22vh;
-        box-shadow: 40vmin 0 7.54426vmin currentColor; }
-      .home__background span:nth-child(7) {
         color: #f45b69;
-        top: 32%;
-        left: 21%;
-        animation-duration: 10.7s;
-        animation-delay: -4.8s;
-        transform-origin: 0vw 22vh;
-        box-shadow: 40vmin 0 14.36487vmin currentColor; }
+        top: 18%;
+        left: 58%;
+        animation-duration: 15.5s;
+        animation-delay: -11.6s;
+        transform-origin: 8vw 0vh;
+        box-shadow: 40vmin 0 5.72218vmin currentColor; }
+      .home__background span:nth-child(7) {
+        color: #44bba4;
+        top: 100%;
+        left: 7%;
+        animation-duration: 10.2s;
+        animation-delay: -1.3s;
+        transform-origin: 12vw -11vh;
+        box-shadow: -40vmin 0 9.56781vmin currentColor; }
       .home__background span:nth-child(8) {
         color: #f45b69;
-        top: 11%;
-        left: 39%;
-        animation-duration: 13s;
-        animation-delay: -5.7s;
-        transform-origin: 20vw -4vh;
-        box-shadow: -40vmin 0 6.75336vmin currentColor; }
-      .home__background span:nth-child(9) {
-        color: #f45b69;
         top: 90%;
-        left: 96%;
+        left: 2%;
+        animation-duration: 13.8s;
+        animation-delay: -15.2s;
+        transform-origin: 19vw -23vh;
+        box-shadow: 40vmin 0 8.00868vmin currentColor; }
+      .home__background span:nth-child(9) {
+        color: #3a7ca5;
+        top: 57%;
+        left: 73%;
         animation-duration: 10.1s;
-        animation-delay: -0.3s;
-        transform-origin: 6vw -9vh;
-        box-shadow: 40vmin 0 8.78873vmin currentColor; }
+        animation-delay: -0.7s;
+        transform-origin: 9vw -23vh;
+        box-shadow: -40vmin 0 11.16914vmin currentColor; }
       .home__background span:nth-child(10) {
-        color: #f45b69;
-        top: 16%;
-        left: 66%;
-        animation-duration: 12.6s;
-        animation-delay: -13.6s;
-        transform-origin: 12vw 18vh;
-        box-shadow: -40vmin 0 11.4413vmin currentColor; }
+        color: #3a7ca5;
+        top: 55%;
+        left: 16%;
+        animation-duration: 14.9s;
+        animation-delay: -3.8s;
+        transform-origin: -13vw 23vh;
+        box-shadow: -40vmin 0 14.73509vmin currentColor; }
       .home__background span:nth-child(11) {
-        color: #f2e863;
-        top: 56%;
-        left: 38%;
-        animation-duration: 14.3s;
-        animation-delay: -5.9s;
-        transform-origin: 1vw 19vh;
-        box-shadow: -40vmin 0 9.26636vmin currentColor; }
+        color: #44bba4;
+        top: 62%;
+        left: 51%;
+        animation-duration: 14.6s;
+        animation-delay: -15.3s;
+        transform-origin: -13vw 20vh;
+        box-shadow: -40vmin 0 14.87763vmin currentColor; }
       .home__background span:nth-child(12) {
         color: #f2e863;
-        top: 15%;
-        left: 95%;
-        animation-duration: 13.9s;
-        animation-delay: -9s;
-        transform-origin: -23vw 3vh;
-        box-shadow: 40vmin 0 12.11478vmin currentColor; }
+        top: 57%;
+        left: 70%;
+        animation-duration: 13s;
+        animation-delay: -13.9s;
+        transform-origin: 21vw 5vh;
+        box-shadow: -40vmin 0 6.39257vmin currentColor; }
       .home__background span:nth-child(13) {
-        color: #f45b69;
-        top: 86%;
-        left: 21%;
-        animation-duration: 10.8s;
-        animation-delay: -9.2s;
-        transform-origin: 10vw -14vh;
-        box-shadow: 40vmin 0 13.78158vmin currentColor; }
+        color: #44bba4;
+        top: 14%;
+        left: 11%;
+        animation-duration: 13s;
+        animation-delay: -9.8s;
+        transform-origin: 8vw 20vh;
+        box-shadow: -40vmin 0 11.35229vmin currentColor; }
       .home__background span:nth-child(14) {
-        color: #f2e863;
-        top: 30%;
-        left: 87%;
-        animation-duration: 15.6s;
-        animation-delay: -8.9s;
-        transform-origin: 22vw -13vh;
-        box-shadow: -40vmin 0 9.96052vmin currentColor; }
-      .home__background span:nth-child(15) {
         color: #f45b69;
-        top: 10%;
-        left: 22%;
-        animation-duration: 14.3s;
-        animation-delay: -2.5s;
-        transform-origin: -10vw -4vh;
-        box-shadow: 40vmin 0 6.75775vmin currentColor; }
+        top: 36%;
+        left: 15%;
+        animation-duration: 10.8s;
+        animation-delay: -10.1s;
+        transform-origin: 11vw -19vh;
+        box-shadow: -40vmin 0 8.71662vmin currentColor; }
+      .home__background span:nth-child(15) {
+        color: #f2e863;
+        top: 14%;
+        left: 29%;
+        animation-duration: 12.2s;
+        animation-delay: -12.8s;
+        transform-origin: -2vw -10vh;
+        box-shadow: 40vmin 0 13.0389vmin currentColor; }
       .home__background span:nth-child(16) {
-        color: #44bba4;
-        top: 30%;
-        left: 59%;
-        animation-duration: 12.8s;
-        animation-delay: -10.3s;
-        transform-origin: -16vw 23vh;
-        box-shadow: -40vmin 0 12.70664vmin currentColor; }
-      .home__background span:nth-child(17) {
         color: #3a7ca5;
-        top: 93%;
-        left: 81%;
-        animation-duration: 11.3s;
-        animation-delay: -4s;
-        transform-origin: 21vw -14vh;
-        box-shadow: 40vmin 0 13.15452vmin currentColor; }
+        top: 83%;
+        left: 20%;
+        animation-duration: 10.3s;
+        animation-delay: -11.8s;
+        transform-origin: -3vw -6vh;
+        box-shadow: 40vmin 0 5.46443vmin currentColor; }
+      .home__background span:nth-child(17) {
+        color: #f45b69;
+        top: 94%;
+        left: 65%;
+        animation-duration: 15.9s;
+        animation-delay: -5.2s;
+        transform-origin: 1vw -12vh;
+        box-shadow: 40vmin 0 12.88845vmin currentColor; }
       .home__background span:nth-child(18) {
-        color: #44bba4;
-        top: 30%;
-        left: 38%;
-        animation-duration: 10.1s;
-        animation-delay: -1.8s;
-        transform-origin: -15vw -7vh;
-        box-shadow: -40vmin 0 13.92107vmin currentColor; }
+        color: #f2e863;
+        top: 16%;
+        left: 87%;
+        animation-duration: 12.6s;
+        animation-delay: -2.2s;
+        transform-origin: -19vw -1vh;
+        box-shadow: 40vmin 0 5.09674vmin currentColor; }
       .home__background span:nth-child(19) {
         color: #f45b69;
-        top: 97%;
-        left: 49%;
-        animation-duration: 15.3s;
-        animation-delay: -12.5s;
-        transform-origin: -11vw 25vh;
-        box-shadow: -40vmin 0 5.35598vmin currentColor; }
+        top: 24%;
+        left: 10%;
+        animation-duration: 11.8s;
+        animation-delay: -2s;
+        transform-origin: 9vw -22vh;
+        box-shadow: 40vmin 0 11.87578vmin currentColor; }
       .home__background span:nth-child(20) {
         color: #44bba4;
-        top: 36%;
-        left: 47%;
-        animation-duration: 13.6s;
-        animation-delay: -1.6s;
-        transform-origin: 21vw -23vh;
-        box-shadow: 40vmin 0 10.89526vmin currentColor; }
+        top: 78%;
+        left: 99%;
+        animation-duration: 15.5s;
+        animation-delay: -11.6s;
+        transform-origin: 18vw 18vh;
+        box-shadow: 40vmin 0 12.11497vmin currentColor; }
 
 @keyframes move {
   100% {

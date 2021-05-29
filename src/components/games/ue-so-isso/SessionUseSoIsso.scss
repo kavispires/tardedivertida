@@ -15,12 +15,6 @@
   }
 }
 
-.u-word-selection-step {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .u-word-card {
   background: get-color(white);
   font-size: 1.5em;
@@ -77,5 +71,57 @@
   &__icon {
     min-width: 1.5em;
     color: get-color(green);
+  }
+}
+
+.u-word-suggestion-step {
+  &__inputs {
+    display: flex;
+    margin-bottom: get-unit(12);
+  }
+
+  &__input {
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  &__submit {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.u-word-compare-suggestions-step {
+  &__suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    margin: get-unit(10);
+  }
+
+  &__suggestion-button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: transform 250ms;
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    & > .card {
+      margin: 0;
+    }
+  }
+}
+
+.u-word-guess-phase {
+  &__suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    margin: get-unit(1 2 5);
+  }
+
+  &__guess-submit {
+    margin-top: get-unit(2);
   }
 }

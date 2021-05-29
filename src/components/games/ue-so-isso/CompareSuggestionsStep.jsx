@@ -10,6 +10,7 @@ import Instruction from '../../shared/Instruction';
 import { AdminOnlyButton } from '../../shared/AdminOnly';
 import Card from '../../cards/UeSoIssoCard';
 import SuggestionCard from './SuggestionCard';
+import { Step } from '../../shared/StepSwitcher';
 
 function CompareSuggestionsStep({
   nextGuesser,
@@ -44,7 +45,7 @@ function CompareSuggestionsStep({
   const amITheNextGuesser = nextGuesser === me;
 
   return (
-    <div className="u-word-compare-suggestions-step">
+    <Step>
       <Title white>Comparem as sugestões</Title>
       <Card word={secretWord.text} header="Palavra Secreta" />
       <Instruction contained>
@@ -119,7 +120,7 @@ function CompareSuggestionsStep({
         }
         label="Confirmar dicas válidas como Admin"
       />
-    </div>
+    </Step>
   );
 }
 
