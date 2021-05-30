@@ -14,7 +14,7 @@ import CompareSuggestionsStep from './CompareSuggestionsStep';
 function ComparePhase({ state, players, info }) {
   const [username] = useGlobalState('username');
   const [step, setStep] = useState(0);
-  const amITheGuesser = useIsUserThe('guesser', state);
+  const isUserTheGuesser = useIsUserThe('guesser', state);
 
   const onValidateSuggestions = useAPICall({
     apiFunction: UE_SO_ISSO_API.submitValidation,
@@ -35,7 +35,7 @@ function ComparePhase({ state, players, info }) {
       <StepSwitcher step={step}>
         {/* Step 0 */}
         <Step fullWidth>
-          {amITheGuesser ? (
+          {isUserTheGuesser ? (
             <WaitingRoom
               players={players}
               title="Você é o(a) adivinhador(a)"

@@ -21,7 +21,7 @@ function SuggestPhase({ state, players, info }) {
   const [username] = useGlobalState('username');
   const [step, setStep] = useState(0);
   const guesser = useActivePlayer(state, players, 'guesser');
-  const amITheGuesser = useIsUserThe('guesser', state);
+  const isUserTheGuesser = useIsUserThe('guesser', state);
 
   const onSendSuggestions = useCallback(
     async (suggestions) => {
@@ -65,7 +65,7 @@ function SuggestPhase({ state, players, info }) {
       <StepSwitcher step={step} conditions={[!amIReady]}>
         {/* Step 0 */}
         <Fragment>
-          {amITheGuesser ? (
+          {isUserTheGuesser ? (
             <WaitingRoom
               players={players}
               title="Você é o(a) adivinhador(a)"

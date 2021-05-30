@@ -20,8 +20,8 @@ import ReadyPlayersBar from '../../shared/ReadyPlayersBar';
 
 function AssessmentPhase({ state, players, info }) {
   const user = useUser(players);
-  const amITheTarget = useIsUserThe('target', state);
-  const amITheAccuser = useIsUserThe('accuser', state);
+  const isUserTheTarget = useIsUserThe('target', state);
+  const isUserTheAccuser = useIsUserThe('accuser', state);
   const [submittedAction, setSubmitAction] = useState(false);
 
   const onSubmitVoting = useAPICall({
@@ -45,10 +45,10 @@ function AssessmentPhase({ state, players, info }) {
       </Title>
 
       <div>
-        {amITheAccuser || amITheTarget ? (
+        {isUserTheAccuser || isUserTheTarget ? (
           <Instruction className="e-phase-instruction">
             Você não participa dessa votacão, afinal,{' '}
-            {amITheTarget ? 'é você quem está no paredão!' : 'você quem acusou!'}
+            {isUserTheTarget ? 'é você quem está no paredão!' : 'você quem acusou!'}
           </Instruction>
         ) : (
           <Space className="a">

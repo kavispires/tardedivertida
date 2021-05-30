@@ -22,7 +22,7 @@ import AdminTimerControlButton from './AdminTimerControlButton';
 
 function InvestigationPhase({ state, players, info }) {
   const user = useUser(players);
-  const isSpy = useIsUserThe('currentSpy', state);
+  const isUserTheSpy = useIsUserThe('currentSpy', state);
 
   const onMakeAccusation = useAPICall({
     apiFunction: ESPIAO_ENTRE_NOS_API.makeAccusation,
@@ -63,13 +63,13 @@ function InvestigationPhase({ state, players, info }) {
 
         <div className="e-phase-step-header__center">
           <Title level={2} className="e-phase-title">
-            {isSpy ? 'Onde eles estão?' : 'Quem é o Espião?'}
+            {isUserTheSpy ? 'Onde eles estão?' : 'Quem é o Espião?'}
           </Title>
           <Card location={user.location} role={user.role} />
         </div>
       </div>
 
-      {isSpy && <LocationSelect locations={state.possibleLocations} onSend={onGuessLocation} />}
+      {isUserTheSpy && <LocationSelect locations={state.possibleLocations} onSend={onGuessLocation} />}
 
       {!user?.usedAccusation ? (
         <PlayerSelect playersList={Object.keys(players)} onSend={onMakeAccusation} />
