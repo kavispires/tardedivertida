@@ -15,7 +15,7 @@ import AdminOnly, { AdminButton } from '../../shared/AdminOnly';
 
 function ResolutionPhase({ state, players, info }) {
   const user = useUser(players);
-  const isSpy = useIsUserThe('currentSpy', state);
+  const isUserTheSpy = useIsUserThe('currentSpy', state);
 
   const onAdminControl = useAPICall({
     apiFunction: ESPIAO_ENTRE_NOS_API.handleAdminAction,
@@ -24,7 +24,7 @@ function ResolutionPhase({ state, players, info }) {
     errorMessage: 'Vixi, o aplicativo encontrou um erro ao tentar enviar ação',
   });
 
-  const missionOutcomeText = isSpy === state.spyWin ? 'Missão Cumprida!' : 'Missão Fracassada!';
+  const missionOutcomeText = isUserTheSpy === state.spyWin ? 'Missão Cumprida!' : 'Missão Fracassada!';
   const wasABadVoting = state.spyWin && Boolean(state?.timeRemaining > 0);
 
   useEffect(() => {
@@ -72,7 +72,7 @@ function ResolutionPhase({ state, players, info }) {
               </Title>
               <Instruction className="e-phase-instruction">
                 O espião {state.currentSpy} foi encontrado a tempo!{' '}
-                {isSpy ? `Não foi dessa vez, ${user.name}.` : 'O mundo está salvo graças a você!'}
+                {isUserTheSpy ? `Não foi dessa vez, ${user.name}.` : 'O mundo está salvo graças a você!'}
               </Instruction>
             </div>
           )}
@@ -97,7 +97,7 @@ function ResolutionPhase({ state, players, info }) {
               </Title>
               <Instruction className="e-phase-instruction">
                 O espião {state.currentSpy} não descobriu a tempo que estamos no(a) {state.currentLocation}!{' '}
-                {isSpy ? `Não foi dessa vez, ${user.name}.` : 'O mundo está salvo graças a você!'}
+                {isUserTheSpy ? `Não foi dessa vez, ${user.name}.` : 'O mundo está salvo graças a você!'}
               </Instruction>
             </div>
           )}

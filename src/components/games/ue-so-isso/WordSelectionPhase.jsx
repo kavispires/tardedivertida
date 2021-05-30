@@ -19,7 +19,7 @@ import WordSelectionStep from './WordSelectionStep';
 function WordSelectionPhase({ state, players, info }) {
   const amIReady = useIsUserReady(players, state);
   const guesser = useActivePlayer(state, players, 'guesser');
-  const amITheGuesser = useIsUserThe('guesser', state);
+  const isUserTheGuesser = useIsUserThe('guesser', state);
   const [step, setStep] = useState(0);
 
   useEffect(() => {
@@ -50,7 +50,7 @@ function WordSelectionPhase({ state, players, info }) {
           <Instruction contained>
             Para essa rodada,
             <span className="u-word-selection-phase__guesser-name-announcement">
-              {amITheGuesser ? (
+              {isUserTheGuesser ? (
                 'VOCÊ'
               ) : (
                 <>
@@ -78,7 +78,7 @@ function WordSelectionPhase({ state, players, info }) {
 
         {/* Step 1 */}
         <Fragment>
-          {amITheGuesser ? (
+          {isUserTheGuesser ? (
             <WaitingRoom
               players={players}
               title="Você é o(a) adivinhador(a)"

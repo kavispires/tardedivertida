@@ -11,18 +11,18 @@ import AvatarName from '../../avatars/AvatarName';
 function DialGuessSelection({
   activeTeam,
   teamController,
-  amITheController,
+  isUserTheController,
   isMyTeamActive,
   onSendGuess,
   card,
-  amIThePsychic,
+  isUserThePsychic,
 }) {
   const [needle, setNeedle] = useState(0);
 
   return (
     <div className="o-dial-guess-selection">
       <Title>
-        {amIThePsychic ? (
+        {isUserThePsychic ? (
           <span>Seu time está pensando...</span>
         ) : (
           <span>Hora do time {activeTeam} brilhar!</span>
@@ -41,7 +41,7 @@ function DialGuessSelection({
 
       {isMyTeamActive ? (
         <Instruction contained>
-          {amIThePsychic ? (
+          {isUserThePsychic ? (
             <span>Pokerface e bico fechada! Mas pode brincar com a barrra aí!</span>
           ) : (
             <ul>
@@ -51,8 +51,8 @@ function DialGuessSelection({
               </li>
               <li>
                 Todos podem controlar o ponteiro usando a barra abaixo, mas somente{' '}
-                {amITheController ? 'VOCÊ ' : <AvatarName player={teamController} />}pode apertar o botão para
-                enviar a resposta final.
+                {isUserTheController ? 'VOCÊ ' : <AvatarName player={teamController} />}pode apertar o botão
+                para enviar a resposta final.
               </li>
             </ul>
           )}
@@ -68,14 +68,14 @@ function DialGuessSelection({
       {isMyTeamActive && (
         <div>
           <Slider defaultValue={0} min={-10} max={10} onChange={setNeedle} />
-          {amITheController && (
+          {isUserTheController && (
             <div className="container container--transparent container--center">
               <Button
                 type="primary"
                 onClick={() => {
                   onSendGuess({ guess: needle });
                 }}
-                disabled={!amITheController}
+                disabled={!isUserTheController}
               >
                 Enviar resposta: {needle}
               </Button>
@@ -96,9 +96,9 @@ DialGuessSelection.propTypes = {
   }).isRequired,
   activeTeam: PropTypes.oneOf(['A', 'B']),
   teamController: PropTypes.object,
-  amITheController: PropTypes.bool,
+  isUserTheController: PropTypes.bool,
   isMyTeamActive: PropTypes.bool,
-  amIThePsychic: PropTypes.bool,
+  isUserThePsychic: PropTypes.bool,
 };
 
 export default DialGuessSelection;

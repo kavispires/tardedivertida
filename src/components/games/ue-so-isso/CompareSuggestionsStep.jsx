@@ -42,7 +42,7 @@ function CompareSuggestionsStep({
   };
 
   const suggestionsValues = Object.values(myRecommendation);
-  const amITheNextGuesser = nextGuesser === username;
+  const isUserTheNextGuesser = nextGuesser === username;
 
   return (
     <Step>
@@ -65,7 +65,7 @@ function CompareSuggestionsStep({
 
       <Space className="u-word-compare-suggestions-step__suggestions">
         {suggestions.map((suggestionEntry, index) => {
-          if (!amITheNextGuesser && !isAdmin) {
+          if (!isUserTheNextGuesser && !isAdmin) {
             return (
               <div key={`${suggestionEntry.suggestion}-${index}`}>
                 <SuggestionCard
@@ -95,7 +95,7 @@ function CompareSuggestionsStep({
         })}
       </Space>
 
-      {amITheNextGuesser && (
+      {isUserTheNextGuesser && (
         <Space className="u-word-compare-suggestions-step__submit">
           <Button
             icon={<CloudUploadOutlined />}

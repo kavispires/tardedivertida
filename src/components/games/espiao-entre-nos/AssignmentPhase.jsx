@@ -21,7 +21,7 @@ import AdminTimerControlButton from './AdminTimerControlButton';
 function AssignmentPhase({ state, players, info }) {
   const amIReady = useIsUserReady(players, state);
   const user = useUser(players);
-  const isSpy = useIsUserThe('currentSpy', state);
+  const isUserTheSpy = useIsUserThe('currentSpy', state);
   const [step, setStep] = useState(0);
 
   return (
@@ -48,7 +48,7 @@ function AssignmentPhase({ state, players, info }) {
           <AdminTimerControlButton label="Começar cronômetro" action="start" />
 
           <Instruction className="e-phase-instruction">
-            {isSpy
+            {isUserTheSpy
               ? 'Você tem 10 minutos para descobrir onde os outros agentes estão! Pronto?'
               : 'Você tem 10 minutos para descobrir quem é o espião entre nós! Pronto?'}
           </Instruction>

@@ -18,7 +18,7 @@ function DialSidesPhase({ state, players, info }) {
   const amIReady = useIsUserReady(players, state);
   const [step, setStep] = useState(0);
   const psychic = useActivePlayer(state, players, 'psychic');
-  const amIThePsychic = useIsUserThe('psychic', state);
+  const isUserThePsychic = useIsUserThe('psychic', state);
 
   const onSendChosenSide = useAPICall({
     apiFunction: ONDA_TELEPATICA.submitSides,
@@ -49,7 +49,7 @@ function DialSidesPhase({ state, players, info }) {
             É a vez do
             <span className="u-word-selection-phase__guesser-name-announcement">TIME {state.activeTeam}</span>
             <br />
-            {amIThePsychic ? (
+            {isUserThePsychic ? (
               <span className="u-word-selection-phase__guesser-name-announcement">VOCÊ</span>
             ) : (
               <AvatarName player={psychic} uppercase size="large" />
@@ -61,7 +61,7 @@ function DialSidesPhase({ state, players, info }) {
 
         {/* Step 1 */}
         <Step fullWidth>
-          {!amIThePsychic ? (
+          {!isUserThePsychic ? (
             <WaitingRoom
               players={players}
               title={`${psychic.name} está escolhendo uma carta...`}

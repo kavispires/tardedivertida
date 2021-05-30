@@ -25,8 +25,8 @@ function GuessPhase({ state, players, info }) {
   const [isAdmin] = useGlobalState('isAdmin');
   const [step, setStep] = useState(0);
   const guesser = useActivePlayer(state, players, 'guesser');
-  const amITheNextGuesser = useIsUserThe('nextGuesser', state);
-  const amITheGuesser = useIsUserThe('guesser', state);
+  const isUserTheNextGuesser = useIsUserThe('nextGuesser', state);
+  const isUserTheGuesser = useIsUserThe('guesser', state);
 
   const onSubmitGuess = useAPICall({
     apiFunction: UE_SO_ISSO_API.confirmGuess,
@@ -59,11 +59,11 @@ function GuessPhase({ state, players, info }) {
             )}
           </Title>
           <Instruction contained>
-            {amITheGuesser ? 'Você' : guesser.name} tem uma única change de adivinhar a palavra secreta!
+            {isUserTheGuesser ? 'Você' : guesser.name} tem uma única change de adivinhar a palavra secreta!
           </Instruction>
 
           <UeSoIssoCard
-            word={amITheGuesser && !state.guess ? <QuestionCircleOutlined /> : state.secretWord.text}
+            word={isUserTheGuesser && !state.guess ? <QuestionCircleOutlined /> : state.secretWord.text}
             header="A Palavra Secreta é"
           />
 
@@ -75,7 +75,7 @@ function GuessPhase({ state, players, info }) {
             </Instruction>
           ) : (
             <Instruction contained>
-              {amITheGuesser ? (
+              {isUserTheGuesser ? (
                 <span>Escreva seu chute no campo abaixo</span>
               ) : (
                 <span>{guesser.name} está pensando...</span>
@@ -98,9 +98,9 @@ function GuessPhase({ state, players, info }) {
             })}
           </Space>
 
-          {amITheGuesser && !state.guess && <Guess onSubmitGuess={onSubmitGuess} />}
+          {isUserTheGuesser && !state.guess && <Guess onSubmitGuess={onSubmitGuess} />}
 
-          {state.guess && (amITheNextGuesser || isAdmin) && (
+          {state.guess && (isUserTheNextGuesser || isAdmin) && (
             <Space className={clsx('u-word-guess-phase__guess-submit', isAdmin && 'admin-container')}>
               <Button
                 icon={<CheckOutlined />}

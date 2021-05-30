@@ -16,7 +16,7 @@ function DialCluePhase({ state, players, info }) {
   const amIReady = useIsUserReady(players, state);
   const [step, setStep] = useState(0);
   const psychic = useActivePlayer(state, players, 'psychic');
-  const amIThePsychic = useIsUserThe('psychic', state);
+  const isUserThePsychic = useIsUserThe('psychic', state);
 
   const onSendClue = useAPICall({
     apiFunction: ONDA_TELEPATICA.submitClue,
@@ -37,7 +37,7 @@ function DialCluePhase({ state, players, info }) {
       <StepSwitcher step={step} conditions={[!amIReady]}>
         {/* Step 0 */}
         <Step>
-          {!amIThePsychic ? (
+          {!isUserThePsychic ? (
             <WaitingRoom
               players={players}
               title={`${psychic.name} está pensando em uma dica...`}
