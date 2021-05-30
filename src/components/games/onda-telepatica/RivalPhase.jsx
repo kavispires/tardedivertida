@@ -18,7 +18,7 @@ import StepSwitcher from '../../shared/StepSwitcher';
 import DialRivalSelection from './DialRivalSelection';
 
 function RivalPhase({ state, players, info }) {
-  const amIReady = useIsUserReady(players, state);
+  const isUserReady = useIsUserReady(players, state);
   const [step, setStep] = useState(0);
   const psychic = useWhichPlayerIsThe('psychic', state, players);
   const rivalController = useWhichPlayerIsThe('rivalController', state, players);
@@ -41,7 +41,7 @@ function RivalPhase({ state, players, info }) {
       allowedPhase={PHASES.ONDA_TELEPATICA.RIVAL_GUESS}
       className="o-guess-phase"
     >
-      <StepSwitcher step={step} conditions={[!amIReady]}>
+      <StepSwitcher step={step} conditions={[!isUserReady]}>
         {/* Step 0 */}
         <DialRivalSelection
           activeTeam={state.activeTeam === 'A' ? 'B' : 'A'}

@@ -29,7 +29,7 @@ function prepareVotes(votes) {
 }
 
 function EvaluationPhase({ players, state, info }) {
-  const amIReady = useIsUserReady(players, state);
+  const isUserReady = useIsUserReady(players, state);
   const [canvasSize, setCanvasSize] = useGlobalState('canvasSize');
   const [cachedCanvasSize] = useGlobalState('cachedCanvasSize');
   const [step, setStep] = useState(0);
@@ -83,7 +83,7 @@ function EvaluationPhase({ players, state, info }) {
       allowedPhase={PHASES.ARTE_RUIM.EVALUATION}
       className="a-evaluation-phase"
     >
-      <StepSwitcher step={step} conditions={[!amIReady]}>
+      <StepSwitcher step={step} conditions={[!isUserReady]}>
         {/*Step 0 */}
         <Step className="a-evaluation-step">
           <CanvasResizer />

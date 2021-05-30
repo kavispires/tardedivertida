@@ -17,7 +17,7 @@ import StepSwitcher from '../../shared/StepSwitcher';
 import WordSelectionStep from './WordSelectionStep';
 
 function WordSelectionPhase({ state, players, info }) {
-  const amIReady = useIsUserReady(players, state);
+  const isUserReady = useIsUserReady(players, state);
   const guesser = useWhichPlayerIsThe('guesser', state, players);
   const isUserTheGuesser = useIsUserThe('guesser', state);
   const [step, setStep] = useState(0);
@@ -44,7 +44,7 @@ function WordSelectionPhase({ state, players, info }) {
       allowedPhase={PHASES.UE_SO_ISSO.WORD_SELECTION}
       className="u-word-selection-phase"
     >
-      <StepSwitcher step={step} conditions={[!amIReady]}>
+      <StepSwitcher step={step} conditions={[!isUserReady]}>
         {/* Step 0 */}
         <RoundAnnouncement round={state.round} onPressButton={() => setStep(1)} time={7}>
           <Instruction contained>

@@ -12,7 +12,7 @@ import ReadyPlayersBar from '../shared/ReadyPlayersBar';
 
 function Rules({ players, info }) {
   const [isLoading] = useLoading();
-  const amIReady = useIsUserReady(players);
+  const isUserReady = useIsUserReady(players);
 
   const onBeReady = useAPICall({
     apiFunction: GAME_API.makeMeReady,
@@ -41,15 +41,15 @@ function Rules({ players, info }) {
       <Space className="rules__actions">
         <Button
           type="primary"
-          icon={amIReady ? <CheckCircleFilled /> : <SmileFilled />}
-          disabled={isLoading || amIReady}
+          icon={isUserReady ? <CheckCircleFilled /> : <SmileFilled />}
+          disabled={isLoading || isUserReady}
           onClick={() => onBeReady({})}
         >
           Entendi tudo e estou pronto para jogar!
         </Button>
         <Button
-          icon={amIReady ? <CheckCircleFilled /> : <MehFilled />}
-          disabled={isLoading || amIReady}
+          icon={isUserReady ? <CheckCircleFilled /> : <MehFilled />}
+          disabled={isLoading || isUserReady}
           onClick={() => onBeReady({})}
         >
           Não entendi nada, mas vamos lá
@@ -57,8 +57,8 @@ function Rules({ players, info }) {
         <Button
           type="primary"
           danger
-          icon={amIReady ? <CheckCircleFilled /> : <RobotFilled />}
-          disabled={isLoading || amIReady}
+          icon={isUserReady ? <CheckCircleFilled /> : <RobotFilled />}
+          disabled={isLoading || isUserReady}
           onClick={() => onBeReadyQue({})}
         >
           Que?

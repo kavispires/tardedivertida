@@ -21,7 +21,7 @@ import SuggestionStep from './SuggestionStep';
 
 function SuggestPhase({ state, players, info }) {
   const [, setLoader] = useLoading();
-  const amIReady = useIsUserReady(players, state);
+  const isUserReady = useIsUserReady(players, state);
   const [gameId] = useGlobalState('gameId');
   const [gameName] = useGlobalState('gameName');
   const [username] = useGlobalState('username');
@@ -68,7 +68,7 @@ function SuggestPhase({ state, players, info }) {
       allowedPhase={PHASES.UE_SO_ISSO.SUGGEST}
       className="word-selection-phase"
     >
-      <StepSwitcher step={step} conditions={[!amIReady]}>
+      <StepSwitcher step={step} conditions={[!isUserReady]}>
         {/* Step 0 */}
         <Fragment>
           {isUserTheGuesser ? (

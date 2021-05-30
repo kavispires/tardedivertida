@@ -18,7 +18,7 @@ import Notes from './Notes';
 import AdminTimerControlButton from './AdminTimerControlButton';
 
 function AssignmentPhase({ state, players, info }) {
-  const amIReady = useIsUserReady(players, state);
+  const isUserReady = useIsUserReady(players, state);
   const user = useUser(players);
   const isUserTheSpy = useIsUserThe('currentSpy', state);
   const [step, setStep] = useState(0);
@@ -30,7 +30,7 @@ function AssignmentPhase({ state, players, info }) {
       allowedPhase={PHASES.ESPIAO_ENTRE_NOS.ASSIGNMENT}
       className="e-phase"
     >
-      <StepSwitcher step={step} conditions={[!amIReady]}>
+      <StepSwitcher step={step} conditions={[!isUserReady]}>
         {/* Step 0 */}
         <RoundAnnouncement round={state.round} onPressButton={() => setStep(1)} time={5}>
           <Instruction className="e-phase-instruction">Há um espião entre nós!</Instruction>
