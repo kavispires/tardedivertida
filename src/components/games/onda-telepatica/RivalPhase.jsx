@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 // Hooks
-import { useIsUserReady, useActivePlayer, useIsUser, useAPICall, useIsMyTeamActive } from '../../../hooks';
+import { useIsUserReady, useActivePlayer, useIsUserThe, useAPICall, useIsMyTeamActive } from '../../../hooks';
 // Resources & Utils
 import { ONDA_TELEPATICA } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
@@ -16,7 +16,7 @@ function RivalPhase({ state, players, info }) {
   const [step, setStep] = useState(0);
   const psychic = useActivePlayer(state, players, 'psychic');
   const rivalController = useActivePlayer(state, players, 'rivalController');
-  const amITheRivalController = useIsUser(state, 'rivalController');
+  const amITheRivalController = useIsUserThe('rivalController', state);
   const isMyTeamActive = useIsMyTeamActive(state, players);
 
   const onSendRivalGuess = useAPICall({

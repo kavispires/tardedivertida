@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 // Design Resources
 import { message, notification } from 'antd';
 // Hooks
-import { useGlobalState, useLoading, useIsUserReady, useActivePlayer, useIsUser } from '../../../hooks';
+import { useGlobalState, useLoading, useIsUserReady, useActivePlayer, useIsUserThe } from '../../../hooks';
 // Resources & Utils
 import { UE_SO_ISSO_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
@@ -21,7 +21,7 @@ function SuggestPhase({ state, players, info }) {
   const [username] = useGlobalState('username');
   const [step, setStep] = useState(0);
   const guesser = useActivePlayer(state, players, 'guesser');
-  const amITheGuesser = useIsUser(state, 'guesser');
+  const amITheGuesser = useIsUserThe('guesser', state);
 
   const onSendSuggestions = useCallback(
     async (suggestions) => {

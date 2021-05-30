@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { AimOutlined, EnvironmentOutlined } from '@ant-design/icons';
 import { message } from 'antd';
 // Hooks
-import { useUser, useAPICall, useIsUser } from '../../../hooks';
+import { useUser, useAPICall, useIsUserThe } from '../../../hooks';
 // Resources & Utils
 import { ESPIAO_ENTRE_NOS_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
@@ -22,7 +22,7 @@ import AdminTimerControlButton from './AdminTimerControlButton';
 
 function InvestigationPhase({ state, players, info }) {
   const user = useUser(players);
-  const isSpy = useIsUser(state, 'currentSpy');
+  const isSpy = useIsUserThe('currentSpy', state);
 
   const onMakeAccusation = useAPICall({
     apiFunction: ESPIAO_ENTRE_NOS_API.makeAccusation,

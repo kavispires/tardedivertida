@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Button, Space } from 'antd';
 import { AimOutlined, EnvironmentOutlined } from '@ant-design/icons';
 // Hooks
-import { useUser, useAPICall, useIsUser } from '../../../hooks';
+import { useUser, useAPICall, useIsUserThe } from '../../../hooks';
 // Resources & Utils
 import { ESPIAO_ENTRE_NOS_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
@@ -20,8 +20,8 @@ import ReadyPlayersBar from '../../shared/ReadyPlayersBar';
 
 function AssessmentPhase({ state, players, info }) {
   const user = useUser(players);
-  const amITheTarget = useIsUser(state, 'target');
-  const amITheAccuser = useIsUser(state, 'accuser');
+  const amITheTarget = useIsUserThe('target', state);
+  const amITheAccuser = useIsUserThe('accuser', state);
   const [submittedAction, setSubmitAction] = useState(false);
 
   const onSubmitVoting = useAPICall({
