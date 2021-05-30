@@ -15,7 +15,7 @@ import Instruction from '../../shared/Instruction';
 import AvatarName from '../../avatars/AvatarName';
 
 function DialSidesPhase({ state, players, info }) {
-  const amIReady = useIsUserReady(players, state);
+  const isUserReady = useIsUserReady(players, state);
   const [step, setStep] = useState(0);
   const psychic = useWhichPlayerIsThe('psychic', state, players);
   const isUserThePsychic = useIsUserThe('psychic', state);
@@ -36,7 +36,7 @@ function DialSidesPhase({ state, players, info }) {
       allowedPhase={PHASES.ONDA_TELEPATICA.DIAL_SIDES}
       className="o-dial-sides-phase"
     >
-      <StepSwitcher step={step} conditions={[!amIReady]}>
+      <StepSwitcher step={step} conditions={[!isUserReady]}>
         {/* Step 0 */}
         <RoundAnnouncement
           round={state.round}

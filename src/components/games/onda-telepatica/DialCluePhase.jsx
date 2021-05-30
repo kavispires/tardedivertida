@@ -13,7 +13,7 @@ import Card from './Card';
 import DialClueWriting from './DialClueWriting';
 
 function DialCluePhase({ state, players, info }) {
-  const amIReady = useIsUserReady(players, state);
+  const isUserReady = useIsUserReady(players, state);
   const [step, setStep] = useState(0);
   const psychic = useWhichPlayerIsThe('psychic', state, players);
   const isUserThePsychic = useIsUserThe('psychic', state);
@@ -34,7 +34,7 @@ function DialCluePhase({ state, players, info }) {
       allowedPhase={PHASES.ONDA_TELEPATICA.DIAL_CLUE}
       className="o-dial-clue-phase"
     >
-      <StepSwitcher step={step} conditions={[!amIReady]}>
+      <StepSwitcher step={step} conditions={[!isUserReady]}>
         {/* Step 0 */}
         <Step>
           {!isUserThePsychic ? (

@@ -16,7 +16,7 @@ import StepSwitcher, { Step } from '../../shared/StepSwitcher';
 import AdminForceNextPhase from '../../shared/AdminForceNextPhase';
 
 function DrawPhase({ players, state, info }) {
-  const amIReady = useIsUserReady(players, state);
+  const isUserReady = useIsUserReady(players, state);
   const [username] = useGlobalState('username');
   const [step, setStep] = useState(0);
   const [secretCard, setSecretCard] = useState({});
@@ -42,7 +42,7 @@ function DrawPhase({ players, state, info }) {
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.ARTE_RUIM.DRAW} className="a-phase">
-      <StepSwitcher step={step} conditions={[!amIReady, !amIReady]}>
+      <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady]}>
         {/* Step 0 */}
         <RoundAnnouncement
           round={state?.round}

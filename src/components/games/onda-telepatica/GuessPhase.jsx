@@ -18,7 +18,7 @@ import StepSwitcher from '../../shared/StepSwitcher';
 import DialGuessSelection from './DialGuessSelection';
 
 function GuessPhase({ state, players, info }) {
-  const amIReady = useIsUserReady(players, state);
+  const isUserReady = useIsUserReady(players, state);
   const [step, setStep] = useState(0);
   const psychic = useWhichPlayerIsThe('psychic', state, players);
   const controller = useWhichPlayerIsThe('teamController', state, players);
@@ -42,7 +42,7 @@ function GuessPhase({ state, players, info }) {
       allowedPhase={PHASES.ONDA_TELEPATICA.GUESS}
       className="o-guess-phase"
     >
-      <StepSwitcher step={step} conditions={[!amIReady]}>
+      <StepSwitcher step={step} conditions={[!isUserReady]}>
         {/* Step 0 */}
         <DialGuessSelection
           activeTeam={state.activeTeam}
