@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import { Button, Space } from 'antd';
 import { CheckOutlined, CloseOutlined, QuestionCircleOutlined } from '@ant-design/icons';
 // Hooks
-import { useGlobalState, useLoading, useActivePlayer, useIsUser, useAPICall } from '../../../hooks';
+import { useGlobalState, useLoading, useActivePlayer, useIsUserThe, useAPICall } from '../../../hooks';
 // Resources & Utils
 import { UE_SO_ISSO_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
@@ -25,8 +25,8 @@ function GuessPhase({ state, players, info }) {
   const [isAdmin] = useGlobalState('isAdmin');
   const [step, setStep] = useState(0);
   const guesser = useActivePlayer(state, players, 'guesser');
-  const amITheNextGuesser = useIsUser(state, 'nextGuesser');
-  const amITheGuesser = useIsUser(state, 'guesser');
+  const amITheNextGuesser = useIsUserThe('nextGuesser', state);
+  const amITheGuesser = useIsUserThe('guesser', state);
 
   const onSubmitGuess = useAPICall({
     apiFunction: UE_SO_ISSO_API.confirmGuess,

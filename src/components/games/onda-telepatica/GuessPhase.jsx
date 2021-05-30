@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 // Hooks
-import { useIsUserReady, useActivePlayer, useIsUser, useAPICall, useIsMyTeamActive } from '../../../hooks';
+import { useIsUserReady, useActivePlayer, useIsUserThe, useAPICall, useIsMyTeamActive } from '../../../hooks';
 // Resources & Utils
 import { ONDA_TELEPATICA } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
@@ -16,8 +16,8 @@ function GuessPhase({ state, players, info }) {
   const [step, setStep] = useState(0);
   const psychic = useActivePlayer(state, players, 'psychic');
   const controller = useActivePlayer(state, players, 'teamController');
-  const amITheController = useIsUser(state, 'teamController');
-  const amIThePsychic = useIsUser(state, 'psychic');
+  const amITheController = useIsUserThe('teamController', state);
+  const amIThePsychic = useIsUserThe('psychic', state);
   const isMyTeamActive = useIsMyTeamActive(state, players);
 
   const onSendGuess = useAPICall({

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 // Design Resources
 import { message } from 'antd';
 // Hooks
-import { useUser, useAPICall, useIsUser } from '../../../hooks';
+import { useUser, useAPICall, useIsUserThe } from '../../../hooks';
 // Resources & Utils
 import { ESPIAO_ENTRE_NOS_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
@@ -15,7 +15,7 @@ import AdminOnly, { AdminButton } from '../../shared/AdminOnly';
 
 function ResolutionPhase({ state, players, info }) {
   const user = useUser(players);
-  const isSpy = useIsUser(state, 'currentSpy');
+  const isSpy = useIsUserThe('currentSpy', state);
 
   const onAdminControl = useAPICall({
     apiFunction: ESPIAO_ENTRE_NOS_API.handleAdminAction,
