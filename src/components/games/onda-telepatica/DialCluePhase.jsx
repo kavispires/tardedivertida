@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 // Hooks
-import { useIsUserReady, useActivePlayer, useIsUserThe, useAPICall } from '../../../hooks';
+import { useIsUserReady, useWhichPlayerIsThe, useIsUserThe, useAPICall } from '../../../hooks';
 // Resources & Utils
 import { ONDA_TELEPATICA } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
@@ -15,7 +15,7 @@ import DialClueWriting from './DialClueWriting';
 function DialCluePhase({ state, players, info }) {
   const amIReady = useIsUserReady(players, state);
   const [step, setStep] = useState(0);
-  const psychic = useActivePlayer(state, players, 'psychic');
+  const psychic = useWhichPlayerIsThe('psychic', state, players);
   const isUserThePsychic = useIsUserThe('psychic', state);
 
   const onSendClue = useAPICall({

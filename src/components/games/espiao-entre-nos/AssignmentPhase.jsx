@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
+import { EnvironmentOutlined } from '@ant-design/icons';
 // Hooks
 import { useIsUserReady, useUser, useIsUserThe } from '../../../hooks';
 // Resources & Utils
@@ -10,10 +11,8 @@ import PhaseContainer from '../../shared/PhaseContainer';
 import RoundAnnouncement from '../../shared/RoundAnnouncement';
 import Instruction from '../../shared/Instruction';
 import StepSwitcher from '../../shared/StepSwitcher';
-
 import Title from '../../shared/Title';
 import Card from '../../cards/EspiaoEntreNosCard';
-import { EnvironmentOutlined } from '@ant-design/icons';
 import List from './List';
 import Notes from './Notes';
 import AdminTimerControlButton from './AdminTimerControlButton';
