@@ -1,4 +1,4 @@
-export * from './useActivePlayer';
+export * from './useWhichPlayerIsThe';
 export * from './useIsUserThe';
 export * from './useIsUserReady';
 export * from './useAPICall';

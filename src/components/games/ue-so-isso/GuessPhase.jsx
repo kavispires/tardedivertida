@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import { Button, Space } from 'antd';
 import { CheckOutlined, CloseOutlined, QuestionCircleOutlined } from '@ant-design/icons';
 // Hooks
-import { useGlobalState, useLoading, useActivePlayer, useIsUserThe, useAPICall } from '../../../hooks';
+import { useGlobalState, useLoading, useWhichPlayerIsThe, useIsUserThe, useAPICall } from '../../../hooks';
 // Resources & Utils
 import { UE_SO_ISSO_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
@@ -24,7 +24,7 @@ function GuessPhase({ state, players, info }) {
   const [isLoading] = useLoading();
   const [isAdmin] = useGlobalState('isAdmin');
   const [step, setStep] = useState(0);
-  const guesser = useActivePlayer(state, players, 'guesser');
+  const guesser = useWhichPlayerIsThe('guesser', state, players);
   const isUserTheNextGuesser = useIsUserThe('nextGuesser', state);
   const isUserTheGuesser = useIsUserThe('guesser', state);
 

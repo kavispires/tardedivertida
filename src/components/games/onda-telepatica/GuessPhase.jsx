@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 // Hooks
-import { useIsUserReady, useActivePlayer, useIsUserThe, useAPICall, useIsMyTeamActive } from '../../../hooks';
+import {
+  useIsUserReady,
+  useWhichPlayerIsThe,
+  useIsUserThe,
+  useAPICall,
+  useIsMyTeamActive,
+} from '../../../hooks';
 // Resources & Utils
 import { ONDA_TELEPATICA } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
@@ -14,8 +20,8 @@ import DialGuessSelection from './DialGuessSelection';
 function GuessPhase({ state, players, info }) {
   const amIReady = useIsUserReady(players, state);
   const [step, setStep] = useState(0);
-  const psychic = useActivePlayer(state, players, 'psychic');
-  const controller = useActivePlayer(state, players, 'teamController');
+  const psychic = useWhichPlayerIsThe('psychic', state, players);
+  const controller = useWhichPlayerIsThe('teamController', state, players);
   const isUserTheController = useIsUserThe('teamController', state);
   const isUserThePsychic = useIsUserThe('psychic', state);
   const isMyTeamActive = useIsMyTeamActive(state, players);
