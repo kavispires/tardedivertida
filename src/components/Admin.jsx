@@ -8,15 +8,18 @@ import { PUBLIC_URL, TAG_DICT } from '../utils/constants';
 // Components
 import CreateGameModal from './modals/CreateGameModal';
 import RulesModal from './modals/RulesModal';
+import { orderBy } from '../utils';
 
 function Admin() {
+  const sortedGameList = orderBy(Object.values(gameList), ['available', 'title'], ['desc', 'asc']);
+
   return (
     <Layout.Content className="container">
       <Typography.Title>Admin Hub</Typography.Title>
       <Typography.Paragraph>Select the game you want to start</Typography.Paragraph>
 
       <Space size={[8, 16]} wrap align="start">
-        {Object.values(gameList).map((game) => (
+        {sortedGameList.map((game) => (
           <Card
             key={game.gameName}
             hoverable
