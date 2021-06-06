@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
-import { message, Progress } from 'antd';
+import { Progress } from 'antd';
 // Hooks
 import { useIsUserReady, useIsUserThe, useWhichPlayerIsThe, useAPICall } from '../../../hooks';
 // Resources & Utils
@@ -22,12 +22,6 @@ function WordSelectionPhase({ state, players, info }) {
   const guesser = useWhichPlayerIsThe('guesser', state, players);
   const isUserTheGuesser = useIsUserThe('guesser', state);
   const [step, setStep] = useState(0);
-
-  useEffect(() => {
-    if (step === 0 && state.previousSecretWord?.text) {
-      message.info(`A palavra secreta anterior era: ${state.previousSecretWord.text}`, 5);
-    }
-  }, [step, state?.previousSecretWord.text]);
 
   const onSendSelectedWords = useAPICall({
     apiFunction: UE_SO_ISSO_API.submitWordSelectionVotes,

@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 // Design Resources
-import { Button, Space } from 'antd';
+import { Button, message, Space } from 'antd';
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 // Components
 import { Step } from '../../shared/StepSwitcher';
@@ -12,6 +12,7 @@ import UeSoIssoCard from '../../cards/UeSoIssoCard';
 import { View } from '../../shared/View';
 import AvatarName from '../../avatars/AvatarName';
 import SuggestionEasel from './SuggestionEasel';
+import { messageContent } from '../../modals/messageContent';
 
 function GuessVerificationStep({
   guess,
@@ -25,7 +26,13 @@ function GuessVerificationStep({
   onConfirmGuess,
   validSuggestions,
 }) {
-  // TODO: Add Modal
+  useEffect(() => {
+    if (isUserTheNextGuesser) {
+      message.info(
+        messageContent('Você controla!', 'Selecione se o adivinhador acertou ou não', nextGuesser.name)
+      );
+    }
+  }, [isUserTheNextGuesser, nextGuesser.name]);
 
   return (
     <Step>

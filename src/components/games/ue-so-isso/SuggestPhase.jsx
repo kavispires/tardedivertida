@@ -42,7 +42,7 @@ function SuggestPhase({ state, players, info }) {
             <WaitingRoom
               players={players}
               title="Você é o(a) adivinhador(a)"
-              instruction="Aguarde os outros jogadores decidirem a palavra secreta."
+              instruction="Aguarde enquanto os outros jogadores escrevem dicas para você adivinhar."
             />
           </View>
 
