@@ -93,7 +93,7 @@ export const allWordsBR = {
   92: 'Natal',
   93: 'Churchill',
   94: 'Cigarro',
-  95: 'Cimb',
+  95: 'Escalada',
   96: 'Cinderela',
   97: 'Cinema',
   98: 'Circo',

@@ -23,7 +23,7 @@ export function Step({ children, fullWidth = false, className }) {
   return <div className={clsx('step', fullWidth && 'step--full-width', className)}>{children}</div>;
 }
 
-StepSwitcher.propTypes = {
+Step.propTypes = {
   children: PropTypes.any.isRequired,
   fullWidth: PropTypes.bool,
   className: PropTypes.string,

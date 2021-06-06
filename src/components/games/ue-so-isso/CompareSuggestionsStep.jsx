@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 // Design Resources
 import { Button, Space } from 'antd';
 import { CloudUploadOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
-// State
+// Hooks
 import { useGlobalState, useLoading } from '../../../hooks';
+// Utils
+import { deepCopy } from '../../../utils';
 // Components
 import Title from '../../shared/Title';
 import Instruction from '../../shared/Instruction';
@@ -11,17 +14,18 @@ import { AdminOnlyButton } from '../../shared/AdminOnly';
 import Card from '../../cards/UeSoIssoCard';
 import SuggestionCard from './SuggestionCard';
 import { Step } from '../../shared/StepSwitcher';
+import AvatarName from '../../avatars/AvatarName';
 
 function CompareSuggestionsStep({
+  isUserTheNextGuesser,
   nextGuesser,
-  username,
-  secretWord,
-  suggestions,
   onValidateSuggestions,
   players,
+  secretWord,
+  suggestions,
 }) {
   const [isLoading] = useLoading();
-  const [myRecommendation, setMyRecommendation] = useState(suggestions);
+  const [myRecommendation, setMyRecommendation] = useState(deepCopy(suggestions));
   const [isAdmin] = useGlobalState('isAdmin');
 
   const onSetValidation = (index, suggestionEntry, notAllowed) => {
@@ -41,8 +45,9 @@ function CompareSuggestionsStep({
     });
   };
 
+  // TODO: Add Modal
+
   const suggestionsValues = Object.values(myRecommendation);
-  const isUserTheNextGuesser = nextGuesser === username;
 
   return (
     <Step>
@@ -51,16 +56,13 @@ function CompareSuggestionsStep({
       <Instruction contained>
         Já eliminamos todas as palavras iguais, agora, elimine palavras inválidas ou similares.
         <br />
-        Lembre-se que são consideradas dicas iguais palavras derividadas, conjugações: piloto = pilotar =
-        pilotando. Variações como pluralidade, gênero e erros ortográficos também devem ser
-        eliminadas: príncipe = princesa = principes = pryncip.
+        Lembre-se que são consideradas dicas iguais palavras derividadas, conjugações:{' '}
+        <code>piloto = pilotar = pilotando</code>. Variações como pluralidade, gênero e erros ortográficos
+        também devem ser eliminadas: <code>príncipe = princesa = principes = pryncip</code>.
         <br />
-        <ExclamationCircleOutlined /> Para não virar bagunça, somente{' '}
-        <strong>
-          <u>{nextGuesser}</u>
-        </strong>{' '}
+        <ExclamationCircleOutlined /> Para não virar bagunça, somente <AvatarName player={nextGuesser} />
         pode clicar nas palavras para eliminá-las ou ativá-las, mas todos podem discutir. <br /> Refiram às
-        palavras por número, o Adivinhador pode estar ouvindo!
+        palavras por letra, o Adivinhador pode estar ouvindo!
       </Instruction>
 
       <Space className="u-word-compare-suggestions-step__suggestions">
@@ -123,5 +125,23 @@ function CompareSuggestionsStep({
     </Step>
   );
 }
+
+CompareSuggestionsStep.propTypes = {
+  isUserTheNextGuesser: PropTypes.bool,
+  nextGuesser: PropTypes.shape({
+    avatarId: PropTypes.number,
+    name: PropTypes.string,
+  }),
+  onValidateSuggestions: PropTypes.func,
+  players: PropTypes.object,
+  secretWord: PropTypes.shape({ text: PropTypes.string }),
+  suggestions: PropTypes.arrayOf(
+    PropTypes.shape({
+      suggestion: PropTypes.string,
+      invalid: PropTypes.bool,
+      playerName: PropTypes.string,
+    })
+  ),
+};
 
 export default CompareSuggestionsStep;
