@@ -45,7 +45,7 @@ function Guess({ onSubmitGuess, onSendGuess }) {
 
 Guess.propTypes = {
   onSendGuess: PropTypes.func.isRequired,
-  onSubmitGuess: PropTypes.func.isRequired,
+  onSubmitGuess: PropTypes.func,
 };
 
 export default Guess;

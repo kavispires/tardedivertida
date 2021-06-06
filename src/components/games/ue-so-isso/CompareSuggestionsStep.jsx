@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
-import { Button, Space } from 'antd';
+import { Button, message, Space } from 'antd';
 import { CloudUploadOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
 // Hooks
 import { useGlobalState, useLoading } from '../../../hooks';
@@ -15,6 +15,7 @@ import Card from '../../cards/UeSoIssoCard';
 import SuggestionCard from './SuggestionCard';
 import { Step } from '../../shared/StepSwitcher';
 import AvatarName from '../../avatars/AvatarName';
+import { messageContent } from '../../modals/messageContent';
 
 function CompareSuggestionsStep({
   isUserTheNextGuesser,
@@ -45,7 +46,17 @@ function CompareSuggestionsStep({
     });
   };
 
-  // TODO: Add Modal
+  useEffect(() => {
+    if (isUserTheNextGuesser) {
+      message.info(
+        messageContent(
+          'Você controla!',
+          'Clique nas cartas para desclassificá-las, então, pressione "Confirmar Dicas Válidas"',
+          nextGuesser.name
+        )
+      );
+    }
+  }, [isUserTheNextGuesser, nextGuesser.name]);
 
   const suggestionsValues = Object.values(myRecommendation);
 
@@ -60,7 +71,8 @@ function CompareSuggestionsStep({
         <code>piloto = pilotar = pilotando</code>. Variações como pluralidade, gênero e erros ortográficos
         também devem ser eliminadas: <code>príncipe = princesa = principes = pryncip</code>.
         <br />
-        <ExclamationCircleOutlined /> Para não virar bagunça, somente <AvatarName player={nextGuesser} />
+        <ExclamationCircleOutlined /> Para não virar bagunça, somente{' '}
+        <AvatarName player={nextGuesser} addressUser />
         pode clicar nas palavras para eliminá-las ou ativá-las, mas todos podem discutir. <br /> Refiram às
         palavras por letra, o Adivinhador pode estar ouvindo!
       </Instruction>

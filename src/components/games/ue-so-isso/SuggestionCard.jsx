@@ -31,7 +31,7 @@ function SuggestionCard({ avatarId, index, invalid, suggestion }) {
 }
 
 SuggestionCard.propTypes = {
-  avatarId: PropTypes.string.isRequired,
+  avatarId: PropTypes.number.isRequired,
   index: PropTypes.number.isRequired,
   invalid: PropTypes.bool,
   suggestion: PropTypes.string.isRequired,
