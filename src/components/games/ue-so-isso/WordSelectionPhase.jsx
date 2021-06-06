@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
 import { message, Progress } from 'antd';
@@ -8,13 +8,14 @@ import { useIsUserReady, useIsUserThe, useWhichPlayerIsThe, useAPICall } from '.
 import { UE_SO_ISSO_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
 // Components
-import Avatar from '../../avatars/Avatar';
 import PhaseContainer from '../../shared/PhaseContainer';
 import RoundAnnouncement from '../../shared/RoundAnnouncement';
 import Instruction from '../../shared/Instruction';
 import WaitingRoom from '../../shared/WaitingRoom';
-import StepSwitcher from '../../shared/StepSwitcher';
+import StepSwitcher, { Step } from '../../shared/StepSwitcher';
 import WordSelectionStep from './WordSelectionStep';
+import AvatarName from '../../avatars/AvatarName';
+import { View } from '../../shared/View';
 
 function WordSelectionPhase({ state, players, info }) {
   const isUserReady = useIsUserReady(players, state);
@@ -33,7 +34,7 @@ function WordSelectionPhase({ state, players, info }) {
     actionName: 'submit-votes',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(0),
-    successMessage: 'Acabou o tempo! Aguarde enquanto os outros participantes votam',
+    successMessage: 'Aguarde enquanto os outros participantes votam',
     errorMessage: 'Vixi, o aplicativo encontrou um erro ao tentar enviar seus votos',
   });
 
@@ -48,17 +49,7 @@ function WordSelectionPhase({ state, players, info }) {
         {/* Step 0 */}
         <RoundAnnouncement round={state.round} onPressButton={() => setStep(1)} time={7}>
           <Instruction contained>
-            Para essa rodada,
-            <span className="u-word-selection-phase__guesser-name-announcement">
-              {isUserTheGuesser ? (
-                'VOCÊ'
-              ) : (
-                <>
-                  <Avatar id={guesser.avatarId} /> {guesser.name}
-                </>
-              )}
-            </span>
-            será o(a) adivinhador(a) <br />
+            Para essa rodada, <AvatarName player={guesser} addressUser /> será o(a) adivinhador(a) <br />
             {state?.nextGuesser ? `Próximo adivinhador(a): ${state.nextGuesser}` : 'Essa é a última rodada'}
           </Instruction>
           <div className="u-word-selection-phase__team-points">
@@ -77,21 +68,23 @@ function WordSelectionPhase({ state, players, info }) {
         </RoundAnnouncement>
 
         {/* Step 1 */}
-        <Fragment>
-          {isUserTheGuesser ? (
+        <Step fullWidth>
+          <View visibleIf={isUserTheGuesser}>
             <WaitingRoom
               players={players}
               title="Você é o(a) adivinhador(a)"
               instruction="Aguarde os outros jogadores decidirem a palavra secreta."
             />
-          ) : (
+          </View>
+
+          <View visibleIf={!isUserTheGuesser}>
             <WordSelectionStep
               words={state?.words}
               onSendSelectedWords={onSendSelectedWords}
               guesser={guesser}
             />
-          )}
-        </Fragment>
+          </View>
+        </Step>
 
         {/* Step 2 */}
         <WaitingRoom players={players} title="Pronto!" instruction="Vamos aguardar os outros joadores." />

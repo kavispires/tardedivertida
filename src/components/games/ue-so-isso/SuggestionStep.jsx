@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 // Design Resources
-import { Button, Input, Space } from 'antd';
+import { Button, Space } from 'antd';
 import { CloudUploadOutlined } from '@ant-design/icons';
 // Components
 import Title from '../../shared/Title';
 import Instruction from '../../shared/Instruction';
 import Card from '../../cards/UeSoIssoCard';
 import { Step } from '../../shared/StepSwitcher';
+import AvatarName from '../../avatars/AvatarName';
+import SuggestionEasel from './SuggestionEasel';
 
-function SuggestionStep({ onSendSuggestions, secretWord, suggestionsNumber = 1, guesser }) {
+function SuggestionStep({ guesser, onSendSuggestions, secretWord, suggestionsNumber = 1 }) {
   const [suggestions, setSuggestions] = useState([]);
 
   const onChangeInput = (e) => {
@@ -28,7 +31,9 @@ function SuggestionStep({ onSendSuggestions, secretWord, suggestionsNumber = 1, 
 
   return (
     <Step>
-      <Title>Escreva uma dica para {guesser.name}</Title>
+      <Title>
+        Escreva uma dica para <AvatarName player={guesser} />
+      </Title>
 
       <Instruction contained>
         A dica tem que ser uma palavra única que ajude o adivinhador... adivinhar.
@@ -52,15 +57,7 @@ function SuggestionStep({ onSendSuggestions, secretWord, suggestionsNumber = 1, 
           .fill(1)
           .map((entry, index) => {
             const id = `suggestion-${entry + index}`;
-            return (
-              <Input
-                placeholder="Escreva dica"
-                key={id}
-                id={id}
-                onChange={onChangeInput}
-                className="u-word-suggestion-step__input"
-              />
-            );
+            return <SuggestionEasel key={id} id={id} onChangeInput={onChangeInput} />;
           })}
       </Space>
 
@@ -68,7 +65,7 @@ function SuggestionStep({ onSendSuggestions, secretWord, suggestionsNumber = 1, 
         <Button
           icon={<CloudUploadOutlined />}
           type="primary"
-          onClick={() => onSendSuggestions(suggestionsValues)}
+          onClick={() => onSendSuggestions({ suggestions: suggestionsValues })}
           disabled={suggestionsValues.length < suggestionsNumber}
         >
           {suggestionsNumber > 1 ? 'Enviar sugestões' : 'Enviar sugestão'}
@@ -77,5 +74,19 @@ function SuggestionStep({ onSendSuggestions, secretWord, suggestionsNumber = 1, 
     </Step>
   );
 }
+
+SuggestionStep.propTypes = {
+  guesser: PropTypes.shape({
+    avatarId: PropTypes.number,
+    name: PropTypes.string,
+  }),
+  onSendSuggestions: PropTypes.func,
+  secretWord: PropTypes.shape({ text: PropTypes.string }),
+  suggestionsNumber: PropTypes.number,
+};
+
+SuggestionStep.defaultProps = {
+  suggestionsNumber: 1,
+};
 
 export default SuggestionStep;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 // Hooks
-import { useGlobalState, useIsUserThe, useAPICall } from '../../../hooks';
+import { useIsUserThe, useAPICall, useWhichPlayerIsThe } from '../../../hooks';
 // Resources & Utils
 import { UE_SO_ISSO_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
@@ -10,11 +10,13 @@ import PhaseContainer from '../../shared/PhaseContainer';
 import WaitingRoom from '../../shared/WaitingRoom';
 import StepSwitcher, { Step } from '../../shared/StepSwitcher';
 import CompareSuggestionsStep from './CompareSuggestionsStep';
+import { View } from '../../shared/View';
 
 function ComparePhase({ state, players, info }) {
-  const [username] = useGlobalState('username');
   const [step, setStep] = useState(0);
   const isUserTheGuesser = useIsUserThe('guesser', state);
+  const isUserTheNextGuesser = useIsUserThe('nextGuesser', state);
+  const nextGuesser = useWhichPlayerIsThe('nextGuesser', state, players);
 
   const onValidateSuggestions = useAPICall({
     apiFunction: UE_SO_ISSO_API.submitValidation,
@@ -24,6 +26,8 @@ function ComparePhase({ state, players, info }) {
     successMessage: 'Validação enviada com sucesso!',
     errorMessage: 'Vixi, o aplicativo encontrou um erro ao tentar enviar a confirmação das sugestões',
   });
+
+  // TODO: Add modal
 
   return (
     <PhaseContainer
@@ -35,22 +39,24 @@ function ComparePhase({ state, players, info }) {
       <StepSwitcher step={step}>
         {/* Step 0 */}
         <Step fullWidth>
-          {isUserTheGuesser ? (
+          <View visibleIf={isUserTheGuesser}>
             <WaitingRoom
               players={players}
               title="Você é o(a) adivinhador(a)"
               instruction="Aguarde os outros jogadores selecionarem as dicas válidas."
             />
-          ) : (
+          </View>
+
+          <View visibleIf={!isUserTheGuesser}>
             <CompareSuggestionsStep
-              nextGuesser={state.nextGuesser}
+              nextGuesser={nextGuesser}
+              isUserTheNextGuesser={isUserTheNextGuesser}
               secretWord={state.secretWord}
               suggestions={state.suggestions}
-              username={username}
               players={players}
               onValidateSuggestions={onValidateSuggestions}
             />
-          )}
+          </View>
         </Step>
 
         {/* Step 1 */}

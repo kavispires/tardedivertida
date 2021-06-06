@@ -112,3 +112,10 @@ export const getColorFromIndex = (letter) => {
     ][letter] ?? 'none'
   );
 };
+
+/**
+ * Creates a copy of given object
+ * @param {object} obj
+ * @returns {object}
+ */
+export const deepCopy = (obj) => JSON.parse(JSON.stringify(obj));

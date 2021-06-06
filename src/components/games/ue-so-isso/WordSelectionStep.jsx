@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 // Design Resources
 import { CheckCircleFilled, CloudUploadOutlined } from '@ant-design/icons';
 // Components
@@ -6,8 +7,9 @@ import Title from '../../shared/Title';
 import Instruction from '../../shared/Instruction';
 import TimedButton from '../../shared/TimedButton';
 import { Step } from '../../shared/StepSwitcher';
+import AvatarName from '../../avatars/AvatarName';
 
-function WordSelectionStep({ words = [], onSendSelectedWords, guesser }) {
+function WordSelectionStep({ guesser, onSendSelectedWords, words = [] }) {
   const [selectedWords, setSelectedWords] = useState({});
 
   const selectedWordsArray = Object.keys(selectedWords);
@@ -32,7 +34,9 @@ function WordSelectionStep({ words = [], onSendSelectedWords, guesser }) {
 
   return (
     <Step>
-      <Title white>Selecione a Palavra-Secreta para {guesser.name}</Title>
+      <Title white>
+        Selecione a Palavra-Secreta para <AvatarName player={guesser} />
+      </Title>
 
       <Instruction white>
         A palavra secreta com mais votos será escolhida para essa rodada. Você pode selecionar quantas quiser!
@@ -58,11 +62,25 @@ function WordSelectionStep({ words = [], onSendSelectedWords, guesser }) {
         onClick={() => onSendSelectedWords({ votes: selectedWordsArray })}
         disabled={noSelection}
         onExpire={autoSelectRandomWord}
-        duration={10}
+        duration={15}
         showTimer={noSelection}
       />
     </Step>
   );
 }
+
+WordSelectionStep.propTypes = {
+  guesser: PropTypes.shape({
+    avatarId: PropTypes.number,
+    name: PropTypes.string,
+  }),
+  onSendSelectedWords: PropTypes.func.isRequired,
+  words: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      text: PropTypes.string,
+    })
+  ),
+};
 
 export default WordSelectionStep;

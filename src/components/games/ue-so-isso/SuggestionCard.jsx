@@ -1,4 +1,5 @@
 import React, { memo } from 'react';
+import PropTypes from 'prop-types';
 // Design Resources
 import { Avatar as AntAvatar } from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
@@ -9,7 +10,7 @@ import Avatar from '../../avatars/Avatar';
 import { getColorFromIndex } from '../../../utils';
 import { LETTERS } from '../../../utils/constants';
 
-function SuggestionCard({ suggestion, invalid, avatarId, index }) {
+function SuggestionCard({ avatarId, index, invalid, suggestion }) {
   return (
     <BasicCard
       size="medium"
@@ -28,5 +29,12 @@ function SuggestionCard({ suggestion, invalid, avatarId, index }) {
     </BasicCard>
   );
 }
+
+SuggestionCard.propTypes = {
+  avatarId: PropTypes.string.isRequired,
+  index: PropTypes.number.isRequired,
+  invalid: PropTypes.bool,
+  suggestion: PropTypes.string.isRequired,
+};
 
 export default memo(SuggestionCard);
