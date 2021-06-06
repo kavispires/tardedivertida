@@ -49,6 +49,31 @@ function GameOver({ info, state, children }) {
         </div>
       )}
 
+      {Boolean(state.group) && (
+        <div className="game-over__winner">
+          <div className="game-over__text">Jogo concluido.</div>
+          <Progress
+            type="circle"
+            strokeColor={
+              state.group.victory
+                ? {
+                    '0%': '#4ba226',
+                    '100%': '#87d068',
+                  }
+                : {
+                    '0%': '#ff0000',
+                    '70%': '#ff0000',
+                    '100%': '#87d068',
+                  }
+            }
+            percent={state.group.score ?? 0}
+          />
+          <div className="game-over__text">
+            {state.group.victory ? 'Parabéns, vocês ganharam!' : 'Não foi dessa vez, que vergonha heim!'}
+          </div>
+        </div>
+      )}
+
       {Boolean(state.team) && (
         <div className="game-over__winner">
           <div className="game-over__text">Jogo concluido.</div>
@@ -67,7 +92,7 @@ function GameOver({ info, state, children }) {
         </div>
       )}
 
-      {!Boolean(state.winners) && !Boolean(state.team) && (
+      {!Boolean(state.winners) && !Boolean(state.team) && !Boolean(state.group) && (
         <div className="game-over__text">Jogo concluido.</div>
       )}
 
