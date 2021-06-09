@@ -15,7 +15,7 @@ import WaitingRoom from '../../shared/WaitingRoom';
 import StepSwitcher, { Step } from '../../shared/StepSwitcher';
 import WordSelectionStep from './WordSelectionStep';
 import AvatarName from '../../avatars/AvatarName';
-import { View } from '../../shared/View';
+import View from '../../shared/View';
 
 function WordSelectionPhase({ state, players, info }) {
   const isUserReady = useIsUserReady(players, state);

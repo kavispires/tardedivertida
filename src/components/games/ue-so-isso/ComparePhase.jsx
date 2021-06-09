@@ -10,7 +10,7 @@ import PhaseContainer from '../../shared/PhaseContainer';
 import WaitingRoom from '../../shared/WaitingRoom';
 import StepSwitcher, { Step } from '../../shared/StepSwitcher';
 import CompareSuggestionsStep from './CompareSuggestionsStep';
-import { View } from '../../shared/View';
+import View from '../../shared/View';
 
 function ComparePhase({ state, players, info }) {
   const [step, setStep] = useState(0);

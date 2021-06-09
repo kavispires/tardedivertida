@@ -10,7 +10,7 @@ import PhaseContainer from '../../shared/PhaseContainer';
 import WaitingRoom from '../../shared/WaitingRoom';
 import StepSwitcher, { Step } from '../../shared/StepSwitcher';
 import SuggestionStep from './SuggestionStep';
-import { View } from '../../shared/View';
+import View from '../../shared/View';
 
 function SuggestPhase({ state, players, info }) {
   const isUserReady = useIsUserReady(players, state);
