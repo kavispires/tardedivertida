@@ -22,6 +22,16 @@ $o-card-width: 300px;
       border-radius: get-unit(0 2 2 0);
     }
 
+    &--button {
+      cursor: pointer;
+      transition: all 500ms;
+
+      &:hover {
+        // transform: scale(1.05);
+        background: get-color(white);
+      }
+    }
+
     &--L0 {
       background: #2cbb95;
     }
