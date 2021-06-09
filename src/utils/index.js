@@ -155,3 +155,17 @@ export const orderBy = (list, properties, orders) => {
 
   return [...list].sort(cb);
 };
+
+/**
+ * Get the team name that is not active
+ * @param {object|array} teams
+ * @param {string} activeTeam
+ * @returns {string}
+ */
+export const getOppositeTeam = (teams, activeTeam) => {
+  if (!teams || !activeTeam || teams?.length < 2) return '?';
+
+  const teamsNames = Array.isArray(teams) ? teams : Object.keys(teams);
+  if (teamsNames[0] === activeTeam) return teamsNames[1];
+  else return teamsNames[0];
+};
