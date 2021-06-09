@@ -6,6 +6,6 @@ export * from './useGamePlayers';
 export * from './useGameState';
 export * from './useGlobalState';
 export * from './useIsGameStale';
-export * from './useIsMyTeamActive';
+export * from './useIsUsersTeamActive';
 export * from './useLoading';
 export * from './useUser';

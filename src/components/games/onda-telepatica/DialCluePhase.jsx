@@ -11,6 +11,7 @@ import WaitingRoom from '../../shared/WaitingRoom';
 import StepSwitcher, { Step } from '../../shared/StepSwitcher';
 import Card from './Card';
 import DialClueWriting from './DialClueWriting';
+import View from '../../shared/View';
 
 function DialCluePhase({ state, players, info }) {
   const isUserReady = useIsUserReady(players, state);
@@ -37,7 +38,11 @@ function DialCluePhase({ state, players, info }) {
       <StepSwitcher step={step} conditions={[!isUserReady]}>
         {/* Step 0 */}
         <Step>
-          {!isUserThePsychic ? (
+          <View visibleIf={isUserThePsychic}>
+            <DialClueWriting card={state.card} onSendClue={onSendClue} />
+          </View>
+
+          <View visibleIf={!isUserThePsychic}>
             <WaitingRoom
               players={players}
               title={`${psychic.name} está pensando em uma dica...`}
@@ -47,9 +52,7 @@ function DialCluePhase({ state, players, info }) {
                 <Card left={state.card.left} right={state.card.right} />
               </div>
             </WaitingRoom>
-          ) : (
-            <DialClueWriting card={state.card} onSendClue={onSendClue} />
-          )}
+          </View>
         </Step>
 
         {/* Step 1 */}

@@ -6,7 +6,7 @@ import {
   useWhichPlayerIsThe,
   useIsUserThe,
   useAPICall,
-  useIsMyTeamActive,
+  useIsUsersTeamActive,
 } from '../../../hooks';
 // Resources & Utils
 import { ONDA_TELEPATICA } from '../../../adapters';
@@ -20,10 +20,9 @@ import DialRivalSelection from './DialRivalSelection';
 function RivalPhase({ state, players, info }) {
   const isUserReady = useIsUserReady(players, state);
   const [step, setStep] = useState(0);
-  const psychic = useWhichPlayerIsThe('psychic', state, players);
   const rivalController = useWhichPlayerIsThe('rivalController', state, players);
-  const amITheRivalController = useIsUserThe('rivalController', state);
-  const isMyTeamActive = useIsMyTeamActive(state, players);
+  const isUserTheRivalController = useIsUserThe('rivalController', state);
+  const isUsersTeamActive = useIsUsersTeamActive(state, players);
 
   const onSendRivalGuess = useAPICall({
     apiFunction: ONDA_TELEPATICA.submitRivalGuess,
@@ -44,12 +43,11 @@ function RivalPhase({ state, players, info }) {
       <StepSwitcher step={step} conditions={[!isUserReady]}>
         {/* Step 0 */}
         <DialRivalSelection
-          activeTeam={state.activeTeam === 'A' ? 'B' : 'A'}
-          psychic={psychic}
+          rivalTeam={state.activeTeam === 'A' ? 'B' : 'A'}
           rivalController={rivalController}
-          amITheRivalController={amITheRivalController}
+          isUserTheRivalController={isUserTheRivalController}
           onSendRivalGuess={onSendRivalGuess}
-          isMyTeamActive={!isMyTeamActive}
+          isUsersTeamRival={!isUsersTeamActive}
           card={state.card}
         />
 
