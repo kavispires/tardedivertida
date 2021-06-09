@@ -6,7 +6,7 @@ import { CloseOutlined } from '@ant-design/icons';
 // Components
 import BasicCard from '../../cards/Card';
 import clsx from 'clsx';
-import Avatar from '../../avatars/Avatar';
+import { Avatar } from '../../avatars';
 import { getColorFromIndex } from '../../../utils';
 import { LETTERS } from '../../../utils/constants';
 

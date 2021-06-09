@@ -6,7 +6,13 @@ import { Avatar as AntAvatar } from 'antd';
 // Images
 import avatars from '../../images/avatars.svg';
 
-function Avatar({ id = 25, size = 'large', shape = 'circle', alt = 'Fulano', className = '' }) {
+export const Avatar = memo(function ({
+  id = 25,
+  size = 'large',
+  shape = 'circle',
+  alt = 'Fulano',
+  className = '',
+}) {
   return (
     <AntAvatar
       className={clsx('avatar', className)}
@@ -20,7 +26,7 @@ function Avatar({ id = 25, size = 'large', shape = 'circle', alt = 'Fulano', cla
       }
     />
   );
-}
+});
 
 Avatar.propTypes = {
   id: PropTypes.number,
@@ -29,5 +35,3 @@ Avatar.propTypes = {
   shape: PropTypes.string,
   alt: PropTypes.string,
 };
-
-export default memo(Avatar);

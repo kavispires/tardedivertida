@@ -2,10 +2,16 @@ import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 // Components
-import Avatar from './Avatar';
+import { Avatar } from './Avatar';
 import { CrownFilled, LikeFilled } from '@ant-design/icons';
 
-function AvatarRank({ id = 25, name = 'Fulano', score = 0, ready = false, className = '' }) {
+export const AvatarReady = memo(function ({
+  id = 25,
+  name = 'Fulano',
+  score = 0,
+  ready = false,
+  className = '',
+}) {
   return (
     <div className={clsx('avatar-entry', className)}>
       <Avatar id={id} className="avatar-entry__avatar" />
@@ -14,7 +20,7 @@ function AvatarRank({ id = 25, name = 'Fulano', score = 0, ready = false, classN
       <CrownFilled />
     </div>
   );
-}
+});
 
 Avatar.propTypes = {
   id: PropTypes.number,
@@ -24,5 +30,3 @@ Avatar.propTypes = {
   animate: PropTypes.boolean,
   className: PropTypes.string,
 };
-
-export default memo(AvatarRank);

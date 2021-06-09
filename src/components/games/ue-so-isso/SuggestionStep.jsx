@@ -8,7 +8,7 @@ import Title from '../../shared/Title';
 import Instruction from '../../shared/Instruction';
 import Card from '../../cards/UeSoIssoCard';
 import { Step } from '../../shared/StepSwitcher';
-import AvatarName from '../../avatars/AvatarName';
+import { AvatarName } from '../../avatars';
 import SuggestionEasel from './SuggestionEasel';
 
 function SuggestionStep({ guesser, onSendSuggestions, secretWord, suggestionsNumber = 1 }) {

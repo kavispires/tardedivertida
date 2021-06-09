@@ -7,7 +7,7 @@ import Title from '../../shared/Title';
 import Instruction from '../../shared/Instruction';
 import ButtonContainer from '../../shared/ButtonContainer';
 import Dial from './Dial';
-import AvatarName from '../../avatars/AvatarName';
+import { AvatarName } from '../../avatars';
 
 function Prompt({ card }) {
   return (

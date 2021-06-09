@@ -14,7 +14,7 @@ import { AdminOnlyButton } from '../../shared/AdminOnly';
 import Card from '../../cards/UeSoIssoCard';
 import SuggestionCard from './SuggestionCard';
 import { Step } from '../../shared/StepSwitcher';
-import AvatarName from '../../avatars/AvatarName';
+import { AvatarName } from '../../avatars';
 import { messageContent } from '../../modals/messageContent';
 
 function CompareSuggestionsStep({

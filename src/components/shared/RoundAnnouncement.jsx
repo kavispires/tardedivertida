@@ -5,7 +5,7 @@ import { Button, Tag } from 'antd';
 // Images
 import rodadaTitle from '../../images/rodada-title.svg';
 // Components
-import AvatarName from '../avatars/AvatarName';
+import { AvatarName } from '../avatars';
 import TimedButton from './TimedButton';
 
 function Team({ team, players, className }) {

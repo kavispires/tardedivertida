@@ -10,7 +10,7 @@ import Instruction from '../../shared/Instruction';
 import UeSoIssoCard from '../../cards/UeSoIssoCard';
 import Guess from './Guess';
 import View from '../../shared/View';
-import AvatarName from '../../avatars/AvatarName';
+import { AvatarName } from '../../avatars';
 import SuggestionEasel from './SuggestionEasel';
 
 function GuessingStep({

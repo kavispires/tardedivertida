@@ -10,7 +10,7 @@ import { GAME_API } from '../../adapters';
 import { AVATAR_DESCRIPTIONS_BR } from '../../utils/constants';
 // Components
 import PhaseContainer from './PhaseContainer';
-import Avatar from '../avatars/Avatar';
+import { Avatar } from '../avatars';
 import AdminOnly from './AdminOnly';
 
 function GameOver({ info, state, children }) {

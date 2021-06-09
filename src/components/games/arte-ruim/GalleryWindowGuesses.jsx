@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Avatar as AntAvatar } from 'antd';
 import { MessageFilled } from '@ant-design/icons';
 // Components
-import Avatar from '../../avatars/Avatar';
+import { Avatar } from '../../avatars';
 
 function GalleryWindowGuesses({ playersSay, players, cards }) {
   return (
