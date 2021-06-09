@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+// Design Resources
+import { message } from 'antd';
 // Hooks
 import {
   useIsUserReady,
@@ -16,6 +18,7 @@ import PhaseContainer from '../../shared/PhaseContainer';
 import WaitingRoom from '../../shared/WaitingRoom';
 import StepSwitcher from '../../shared/StepSwitcher';
 import DialGuessSelection from './DialGuessSelection';
+import { messageContent } from '../../modals/messageContent';
 
 function GuessPhase({ state, players, info }) {
   const isUserReady = useIsUserReady(players, state);
@@ -34,6 +37,18 @@ function GuessPhase({ state, players, info }) {
     successMessage: 'Chute submetido com sucesso',
     errorMessage: 'Vixi, ocorreu um erro ao tentar enviar seu chute',
   });
+
+  useEffect(() => {
+    if (isUserTheController) {
+      message.info(
+        messageContent(
+          'Você controla!',
+          'Move o ponteiro para a posição desejada pelo time e aperte Enviar Resposta',
+          controller.name
+        )
+      );
+    }
+  }, [isUserTheController, controller.name]);
 
   return (
     <PhaseContainer
