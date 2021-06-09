@@ -6,7 +6,7 @@ import { CrownFilled } from '@ant-design/icons';
 // Utils
 import { inNSeconds } from '../../utils';
 // Components
-import Avatar from '../avatars/Avatar';
+import { Avatar } from '../avatars';
 
 function RankingBoard({ players, ranking }) {
   const [displayStep, setDisplayStep] = useState(0);

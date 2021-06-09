@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Avatar as AntAvatar, Typography } from 'antd';
 import { LikeFilled } from '@ant-design/icons';
 // Components
-import Avatar from '../avatars/Avatar';
+import { Avatar } from '../avatars';
 
 function ReadyPlayersBar({
   players,

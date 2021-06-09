@@ -4,10 +4,10 @@ import clsx from 'clsx';
 // Resources
 import { AVATAR_DESCRIPTIONS_BR } from '../../utils/constants';
 // Components
-import Avatar from './Avatar';
+import { Avatar } from './Avatar';
 import { useGlobalState } from '../../hooks';
 
-function AvatarName({
+export const AvatarName = memo(function ({
   player,
   size = 'default',
   className = '',
@@ -32,7 +32,7 @@ function AvatarName({
       )}
     </span>
   );
-}
+});
 
 AvatarName.propTypes = {
   player: PropTypes.shape({
@@ -45,5 +45,3 @@ AvatarName.propTypes = {
   addressUser: PropTypes.bool,
   className: PropTypes.string,
 };
-
-export default memo(AvatarName);

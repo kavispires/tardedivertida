@@ -19,7 +19,7 @@ import CardSelection from './CardSelection';
 import RoundAnnouncement from '../../shared/RoundAnnouncement';
 import Instruction from '../../shared/Instruction';
 import View from '../../shared/View';
-import AvatarName from '../../avatars/AvatarName';
+import { AvatarName } from '../../avatars';
 
 function DialSidesPhase({ state, players, info }) {
   const isUserReady = useIsUserReady(players, state);

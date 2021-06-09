@@ -10,7 +10,7 @@ import Title from '../../shared/Title';
 import Instruction from '../../shared/Instruction';
 import UeSoIssoCard from '../../cards/UeSoIssoCard';
 import View from '../../shared/View';
-import AvatarName from '../../avatars/AvatarName';
+import { AvatarName } from '../../avatars';
 import SuggestionEasel from './SuggestionEasel';
 import { messageContent } from '../../modals/messageContent';
 

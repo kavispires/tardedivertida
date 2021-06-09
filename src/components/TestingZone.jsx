@@ -2,8 +2,7 @@
 import React from 'react';
 // import { Image, Layout } from 'antd';
 import gameList from '../resources/games.json';
-import Avatar from './avatars/Avatar';
-import AvatarEntry from './avatars/AvatarEntry';
+import { Avatar, AvatarEntry } from './avatars';
 import GameOver from './shared/GameOver';
 import Instruction from './shared/Instruction';
 import PhaseContainer from './shared/PhaseContainer';

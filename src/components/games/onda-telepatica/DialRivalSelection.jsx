@@ -6,7 +6,7 @@ import { Button } from 'antd';
 import Title from '../../shared/Title';
 import Instruction from '../../shared/Instruction';
 import Dial from './Dial';
-import AvatarName from '../../avatars/AvatarName';
+import { AvatarName } from '../../avatars';
 import { BackwardOutlined, ForwardOutlined } from '@ant-design/icons';
 import ButtonContainer from '../../shared/ButtonContainer';
 

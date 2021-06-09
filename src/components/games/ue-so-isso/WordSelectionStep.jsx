@@ -7,7 +7,7 @@ import Title from '../../shared/Title';
 import Instruction from '../../shared/Instruction';
 import TimedButton from '../../shared/TimedButton';
 import { Step } from '../../shared/StepSwitcher';
-import AvatarName from '../../avatars/AvatarName';
+import { AvatarName } from '../../avatars';
 
 function WordSelectionStep({ guesser, onSendSelectedWords, words = [] }) {
   const [selectedWords, setSelectedWords] = useState({});

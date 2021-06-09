@@ -3,10 +3,10 @@ import React from 'react';
 import useGlobalState from '../../hooks/useGlobalState';
 // Components
 import PhaseContainer from '../shared/PhaseContainer';
-import AvatarEntry from '../avatars/AvatarEntry';
 import Join from './Join';
 import Waiting from './Waiting';
 import CloudBackground from './CloudBackground';
+import { AvatarEntry } from '../avatars';
 
 function Lobby({ players, info }) {
   const [username] = useGlobalState('username');
