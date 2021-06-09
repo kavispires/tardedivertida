@@ -12,8 +12,9 @@ import Dial from './Dial';
 import Instruction from '../../shared/Instruction';
 import { AdminOnlyButton } from '../../shared/AdminOnly';
 import { useTimer } from 'react-timer-hook';
-import { inNSeconds } from '../../../utils';
-import { message } from 'antd';
+import { getOppositeTeam, inNSeconds } from '../../../utils';
+import { Button, message, Popover } from 'antd';
+import { InfoCircleOutlined } from '@ant-design/icons';
 
 function getResultInstructionLine(pointsBreakdown, team, catchup = false) {
   const { got, now } = pointsBreakdown;
@@ -73,7 +74,7 @@ function RevealPhase({ state, players, info }) {
   const onGoToNextRound = useAPICall({
     apiFunction: GAME_API.goToNextPhase,
     actionName: 'next-phase',
-    successMessage: 'Próxima fase ativada com success',
+    successMessage: 'Próxima fase ativada com sucesso',
     errorMessage: 'Vixi, ocorreu um erro ao tentar ir pra próxima fase',
   });
 
@@ -97,7 +98,7 @@ function RevealPhase({ state, players, info }) {
     autoStart: true,
   });
 
-  const rivalTeam = state.activeTeam === 'A' ? 'B' : 'A';
+  const rivalTeam = getOppositeTeam(state.teams, state.activeTeam);
 
   return (
     <PhaseContainer
@@ -119,19 +120,42 @@ function RevealPhase({ state, players, info }) {
         rivalTeam={rivalTeam}
         animate
       />
-      <Instruction contained>
-        Distribuição de pontos:
-        <ul>
-          <li>Na mosca: 4 pontos</li>
-          <li>Quase: 3 pontos</li>
-          <li>Dois de distância: 2 pontos</li>
-          <li>Mais de dois distância: 0 ponto</li>
-          <li>Time adversário acertou a direção: 1 ponto</li>
-        </ul>
-      </Instruction>
+
+      {seconds < 1 && (
+        <Instruction contained>
+          <p>
+            {getResultInstructionLine(
+              state.pointsBreakdown[state.activeTeam],
+              state.activeTeam,
+              state.shouldCatchup
+            )}
+          </p>
+          <p>{getRivalResultInstructionLine(state.pointsBreakdown[rivalTeam], rivalTeam)}</p>
+          <Popover title="Como a distribuição de pontos functiona?" content={PointDistributionExplanation}>
+            <Button type="link" icon={<InfoCircleOutlined />}>
+              Como a distribuição de pontos funciona?
+            </Button>
+          </Popover>
+        </Instruction>
+      )}
 
       <AdminOnlyButton action={() => onGoToNextRound({})} label="Ir para próxima rodada ou game over" />
     </PhaseContainer>
+  );
+}
+
+function PointDistributionExplanation() {
+  return (
+    <div>
+      Distribuição de pontos:
+      <ul>
+        <li>Na mosca: 4 pontos</li>
+        <li>Quase: 3 pontos</li>
+        <li>Dois de distância: 2 pontos</li>
+        <li>Mais de dois distância: 0 ponto</li>
+        <li>Time adversário acertou a direção: 1 ponto</li>
+      </ul>
+    </div>
   );
 }
 

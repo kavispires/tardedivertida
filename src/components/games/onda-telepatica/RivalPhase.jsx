@@ -16,6 +16,7 @@ import PhaseContainer from '../../shared/PhaseContainer';
 import WaitingRoom from '../../shared/WaitingRoom';
 import StepSwitcher from '../../shared/StepSwitcher';
 import DialRivalSelection from './DialRivalSelection';
+import { getOppositeTeam } from '../../../utils';
 
 function RivalPhase({ state, players, info }) {
   const isUserReady = useIsUserReady(players, state);
@@ -43,7 +44,7 @@ function RivalPhase({ state, players, info }) {
       <StepSwitcher step={step} conditions={[!isUserReady]}>
         {/* Step 0 */}
         <DialRivalSelection
-          rivalTeam={state.activeTeam === 'A' ? 'B' : 'A'}
+          rivalTeam={getOppositeTeam(state.teams, state.activeTeam)}
           rivalController={rivalController}
           isUserTheRivalController={isUserTheRivalController}
           onSendRivalGuess={onSendRivalGuess}
