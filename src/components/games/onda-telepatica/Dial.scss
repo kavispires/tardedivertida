@@ -31,8 +31,14 @@
 
   .o-dial--animated & > path {
     animation: fan-out 2s;
-    background: green;
     transition: all 5s ease;
+  }
+
+  .o-dial--clickable & > path {
+    cursor: pointer;
+    &:hover {
+      fill: #ffffa8;
+    }
   }
 
   &--odd {
