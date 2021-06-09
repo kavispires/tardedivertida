@@ -6,7 +6,7 @@ import {
   useWhichPlayerIsThe,
   useIsUserThe,
   useAPICall,
-  useIsMyTeamActive,
+  useIsUsersTeamActive,
 } from '../../../hooks';
 // Resources & Utils
 import { ONDA_TELEPATICA } from '../../../adapters';
@@ -24,7 +24,7 @@ function GuessPhase({ state, players, info }) {
   const controller = useWhichPlayerIsThe('teamController', state, players);
   const isUserTheController = useIsUserThe('teamController', state);
   const isUserThePsychic = useIsUserThe('psychic', state);
-  const isMyTeamActive = useIsMyTeamActive(state, players);
+  const isUsersTeamActive = useIsUsersTeamActive(state, players);
 
   const onSendGuess = useAPICall({
     apiFunction: ONDA_TELEPATICA.submitGuess,
@@ -50,7 +50,7 @@ function GuessPhase({ state, players, info }) {
           teamController={controller}
           isUserTheController={isUserTheController}
           onSendGuess={onSendGuess}
-          isMyTeamActive={isMyTeamActive}
+          isUsersTeamActive={isUsersTeamActive}
           card={state.card}
           isUserThePsychic={isUserThePsychic}
         />

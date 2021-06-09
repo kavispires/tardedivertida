@@ -22,6 +22,12 @@ const getHint = (card) => {
 function DialClueWriting({ onSendClue, card }) {
   const [clue, setClue] = useState('');
 
+  const onEnterInput = (e) => {
+    if (e.key === 'Enter') {
+      onSendClue({ clue });
+    }
+  };
+
   return (
     <div className="o-dial-clue-writing">
       <Title>Escreva uma dica!</Title>
@@ -48,6 +54,7 @@ function DialClueWriting({ onSendClue, card }) {
           onChange={(e) => setClue(e.target.value.toUpperCase())}
           placeholder="Digite sua dica aqui"
           className="uppercase-input"
+          onKeyPress={onEnterInput}
         />
         <Button
           type="primary"
