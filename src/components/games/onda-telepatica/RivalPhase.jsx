@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+// Design Resources
+import { message } from 'antd';
 // Hooks
 import {
   useIsUserReady,
@@ -17,6 +19,7 @@ import WaitingRoom from '../../shared/WaitingRoom';
 import StepSwitcher from '../../shared/StepSwitcher';
 import DialRivalSelection from './DialRivalSelection';
 import { getOppositeTeam } from '../../../utils';
+import { messageContent } from '../../modals/messageContent';
 
 function RivalPhase({ state, players, info }) {
   const isUserReady = useIsUserReady(players, state);
@@ -33,6 +36,14 @@ function RivalPhase({ state, players, info }) {
     successMessage: 'Chute submetido com sucesso',
     errorMessage: 'Vixi, ocorreu um erro ao tentar enviar seu chute',
   });
+
+  useEffect(() => {
+    if (isUserTheRivalController) {
+      message.info(
+        messageContent('Você controla!', 'Aperte um dos botões após seu time discutir', rivalController.name)
+      );
+    }
+  }, [isUserTheRivalController, rivalController.name]);
 
   return (
     <PhaseContainer
