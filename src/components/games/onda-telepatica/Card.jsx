@@ -10,20 +10,47 @@ const getColorModifier = (letter) => {
   return Math.abs(index) % 4;
 };
 
-function Card({ left, right, className }) {
+function Card({ left, right, className, setNeedle }) {
   const leftColor = getColorModifier(left[0]);
   const rightColor = getColorModifier(right[0]);
   const cardSideClass = 'o-card__side';
+  const isButton = Boolean(setNeedle);
+
+  const onSetNeedle = (direction) => {
+    if (setNeedle) {
+      if (direction === 1) {
+        setNeedle((n) => Math.min(n + direction, 10));
+      } else {
+        setNeedle((n) => Math.max(n + direction, -10));
+      }
+    }
+  };
 
   return (
     <div className={clsx('o-card', className)}>
-      <div className={clsx(cardSideClass, `${cardSideClass}--left`, `${cardSideClass}--L${leftColor}`)}>
+      <div
+        className={clsx(
+          cardSideClass,
+          `${cardSideClass}--left`,
+          `${cardSideClass}--L${leftColor}`,
+          isButton && `${cardSideClass}--button`
+        )}
+        onClick={() => onSetNeedle(-1)}
+      >
         <span className="o-card__arrow">
           <ArrowLeftOutlined /> <MinusOutlined /> <MinusOutlined />
         </span>
         <span className="o-card__text">{left}</span>
       </div>
-      <div className={clsx(cardSideClass, `${cardSideClass}--right`, `${cardSideClass}--R${rightColor}`)}>
+      <div
+        className={clsx(
+          cardSideClass,
+          `${cardSideClass}--right`,
+          `${cardSideClass}--R${rightColor}`,
+          isButton && `${cardSideClass}--button`
+        )}
+        onClick={() => onSetNeedle(1)}
+      >
         <span className="o-card__arrow">
           <MinusOutlined /> <MinusOutlined /> <ArrowRightOutlined />
         </span>
