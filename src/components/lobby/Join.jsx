@@ -102,6 +102,12 @@ function Join({ players, info }) {
     }
   }, [gameId, gameName, tempUsername, tempAvatar]); // eslint-disable-line
 
+  const onEnterInput = (e) => {
+    if (e.key === 'Enter') {
+      onAddPlayer();
+    }
+  };
+
   return (
     <div className="lobby-join">
       <Image
@@ -150,14 +156,15 @@ function Join({ players, info }) {
       <Input
         className="lobby-join__name-input"
         onChange={(e) => setTempUsername(e.target.value.trim())}
-        placeholder="Insira seu nome"
+        placeholder="Digite seu nome"
         value={tempUsername}
         maxLength={10}
         suffix={
-          <Tooltip title="Máximo de 10 characteres">
+          <Tooltip title="Máximo de 10 caracteres">
             <InfoCircleOutlined />
           </Tooltip>
         }
+        onKeyPress={onEnterInput}
       />
       <Button
         className="lobby-join__join-button"
