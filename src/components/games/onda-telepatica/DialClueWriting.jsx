@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
-import { Button, Input, Space } from 'antd';
+import { Button, Input, Popover, Space } from 'antd';
 // Components
 import Title from '../../shared/Title';
 import Instruction from '../../shared/Instruction';
 import Dial from './Dial';
+import { FileUnknownOutlined } from '@ant-design/icons';
 
 const getHint = (card) => {
   if (card.target === 0) {
@@ -18,6 +19,20 @@ const getHint = (card) => {
 
   return `"${card.target}" do lado "${card.right}"`;
 };
+
+function Rules() {
+  return (
+    <ul>
+      <li>
+        Use uma única idea. Evite usar "mas", "enquanto", "quando", e também superlativos "super", "muito"
+      </li>
+      <li>Não invente coisas. Exemplo: 'Nicolas Cage cantando uma música dos Beatles' é inválido.</li>
+      <li>Mantenha-se no assunto da carta. Exemplo: 'Amor' não é uma dica válida para 'Sujo'.</li>
+      <li>Não use números para sugerir a posição do espectro.</li>
+      <li>Não use partes, derivados ou sinônimos das palavras da carta.</li>
+    </ul>
+  );
+}
 
 function DialClueWriting({ onSendClue, card }) {
   const [clue, setClue] = useState('');
@@ -35,16 +50,11 @@ function DialClueWriting({ onSendClue, card }) {
         Escreva uma dica que ajudará seu time a apontar o número {getHint(card)} do medidor de ondas
         telepáticas.
         <br />
-        Regras:
-        <ul>
-          <li>
-            Use uma única idea. Evite usar "mas", "enquanto", "quando", e também superlativos "super", "muito"
-          </li>
-          <li>Não invente coisas. Exemplo: 'Nicolas Cage cantando uma música dos Beatles' é inválido.</li>
-          <li>Mantenha-se no assunto da carta. Exemplo: 'Amor' não é uma dica válida para 'Sujo'.</li>
-          <li>Não use números para sugerir a posição do espectro.</li>
-          <li>Não use partes, derivados ou sinônimos das palavras da carta.</li>
-        </ul>
+        <Popover title="Regras" content={Rules}>
+          <Button type="link" icon={<FileUnknownOutlined />}>
+            Regras
+          </Button>
+        </Popover>
       </Instruction>
 
       <Dial card={card} showTarget target={card.target} />
