@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 // Design Resources
 import { Button, Popconfirm, Slider } from 'antd';
 // Components
-import Title from '../../shared/Title';
-import Instruction from '../../shared/Instruction';
-import ButtonContainer from '../../shared/ButtonContainer';
+import { ButtonContainer, Instruction, Title } from '../../shared';
 import Dial from './Dial';
 import { AvatarName } from '../../avatars';
 

@@ -8,12 +8,9 @@ import { useGlobalState, useLoading } from '../../../hooks';
 // Utils
 import { deepCopy } from '../../../utils';
 // Components
-import Title from '../../shared/Title';
-import Instruction from '../../shared/Instruction';
-import { AdminOnlyButton } from '../../shared/AdminOnly';
+import { AdminOnlyButton, Instruction, Step, Title } from '../../shared';
 import Card from '../../cards/UeSoIssoCard';
 import SuggestionCard from './SuggestionCard';
-import { Step } from '../../shared/StepSwitcher';
 import { AvatarName } from '../../avatars';
 import { messageContent } from '../../modals/messageContent';
 

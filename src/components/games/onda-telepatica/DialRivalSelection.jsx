@@ -2,13 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
 import { Button } from 'antd';
+import { BackwardOutlined, ForwardOutlined } from '@ant-design/icons';
 // Components
-import Title from '../../shared/Title';
-import Instruction from '../../shared/Instruction';
+import { ButtonContainer, Instruction, Title } from '../../shared';
 import Dial from './Dial';
 import { AvatarName } from '../../avatars';
-import { BackwardOutlined, ForwardOutlined } from '@ant-design/icons';
-import ButtonContainer from '../../shared/ButtonContainer';
 
 function Prompt({ card }) {
   return (

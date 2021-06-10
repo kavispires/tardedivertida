@@ -8,16 +8,19 @@ import { useIsUserReady, useGlobalState, useAPICall } from '../../../hooks';
 import { ARTE_RUIM_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
 // Components
-import WaitingRoom from '../../shared/WaitingRoom';
 import EvaluationAllDrawings from './EvaluationAllDrawings';
 import EvaluationAllCards from './EvaluationAllCards';
-import PhaseContainer from '../../shared/PhaseContainer';
 import CanvasResizer from './CanvasResizer';
-import Title from '../../shared/Title';
-import Instruction from '../../shared/Instruction';
-import StepSwitcher, { Step } from '../../shared/StepSwitcher';
-import AdminForceNextPhase from '../../shared/AdminForceNextPhase';
-import ButtonContainer from '../../shared/ButtonContainer';
+import {
+  AdminForceNextPhase,
+  ButtonContainer,
+  Instruction,
+  PhaseContainer,
+  StepSwitcher,
+  Step,
+  Title,
+  WaitingRoom,
+} from '../../shared';
 
 function prepareVotes(votes) {
   return Object.entries(votes).reduce((acc, [drawingEntryId, cardEntryId]) => {

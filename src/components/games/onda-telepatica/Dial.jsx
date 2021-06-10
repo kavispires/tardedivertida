@@ -1,6 +1,7 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+// Components
 import Card from './Card';
 
 const getBracketClass = (number, showNeedle, needle, showTarget, target) => {

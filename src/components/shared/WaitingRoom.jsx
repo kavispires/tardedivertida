@@ -3,11 +3,9 @@ import PropTypes from 'prop-types';
 // Design Resources
 import { Spin } from 'antd';
 // Components
-import ReadyPlayersBar from './ReadyPlayersBar';
-import Title from './Title';
-import Instruction from './Instruction';
+import { Instruction, ReadyPlayersBar, Title } from './index';
 
-const WaitingRoom = ({ players, title, instruction, children }) => {
+export function WaitingRoom({ players, title, instruction, children }) {
   return (
     <div className="waiting-room">
       <Title>{title}</Title>
@@ -17,7 +15,7 @@ const WaitingRoom = ({ players, title, instruction, children }) => {
       <ReadyPlayersBar players={players} showNames />
     </div>
   );
-};
+}
 
 WaitingRoom.propTypes = {
   players: PropTypes.object.isRequired,

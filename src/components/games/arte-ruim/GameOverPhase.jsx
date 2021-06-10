@@ -1,6 +1,6 @@
 import React from 'react';
 // Components
-import GameOver from '../../shared/GameOver';
+import { GameOver } from '../../shared';
 import CanvasSVG from './CanvasSVG';
 import DrawingGrade from './DrawingGrade';
 

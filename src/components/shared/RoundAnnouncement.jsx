@@ -6,7 +6,7 @@ import { Button, Tag } from 'antd';
 import rodadaTitle from '../../images/rodada-title.svg';
 // Components
 import { AvatarName } from '../avatars';
-import TimedButton from './TimedButton';
+import { TimedButton } from './index';
 
 function Team({ team, players, className }) {
   return (
@@ -26,7 +26,7 @@ function Team({ team, players, className }) {
   );
 }
 
-function RoundAnnouncement({ round, onPressButton, buttonText, time, teams, players, children }) {
+export function RoundAnnouncement({ round, onPressButton, buttonText, time, teams, players, children }) {
   return (
     <div className="round-announcement">
       {Boolean(teams?.A) && (
@@ -82,5 +82,3 @@ RoundAnnouncement.defaultProps = {
   buttonText: 'Prosseguir',
   time: 0,
 };
-
-export default RoundAnnouncement;

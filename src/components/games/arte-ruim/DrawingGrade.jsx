@@ -1,6 +1,7 @@
 import React, { memo } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
+// Design Resources
 import { Avatar, Tooltip } from 'antd';
 
 const grades = ['A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D+', 'D', 'F'];

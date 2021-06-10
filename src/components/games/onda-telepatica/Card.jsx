@@ -1,9 +1,9 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 // Design Resources
 import { ArrowLeftOutlined, ArrowRightOutlined, MinusOutlined } from '@ant-design/icons';
 import { LETTERS } from '../../../utils/constants';
-import clsx from 'clsx';
 
 const getColorModifier = (letter) => {
   const index = LETTERS.indexOf(letter);

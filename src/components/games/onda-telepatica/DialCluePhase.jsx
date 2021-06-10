@@ -6,12 +6,9 @@ import { useIsUserReady, useWhichPlayerIsThe, useIsUserThe, useAPICall } from '.
 import { ONDA_TELEPATICA } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
 // Components
-import PhaseContainer from '../../shared/PhaseContainer';
-import WaitingRoom from '../../shared/WaitingRoom';
-import StepSwitcher, { Step } from '../../shared/StepSwitcher';
+import { PhaseContainer, StepSwitcher, Step, View, WaitingRoom } from '../../shared';
 import Card from './Card';
 import DialClueWriting from './DialClueWriting';
-import View from '../../shared/View';
 
 function DialCluePhase({ state, players, info }) {
   const isUserReady = useIsUserReady(players, state);

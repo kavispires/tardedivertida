@@ -3,10 +3,7 @@ import PropTypes from 'prop-types';
 // Design Resources
 import { CheckCircleFilled, CloudUploadOutlined } from '@ant-design/icons';
 // Components
-import Title from '../../shared/Title';
-import Instruction from '../../shared/Instruction';
-import TimedButton from '../../shared/TimedButton';
-import { Step } from '../../shared/StepSwitcher';
+import { Instruction, Step, TimedButton, Title } from '../../shared';
 import { AvatarName } from '../../avatars';
 
 function WordSelectionStep({ guesser, onSendSelectedWords, words = [] }) {

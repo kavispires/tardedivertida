@@ -4,12 +4,9 @@ import PropTypes from 'prop-types';
 import { Space } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 // Components
-import { Step } from '../../shared/StepSwitcher';
-import Title from '../../shared/Title';
-import Instruction from '../../shared/Instruction';
+import { Instruction, Step, Title, View } from '../../shared';
 import UeSoIssoCard from '../../cards/UeSoIssoCard';
 import Guess from './Guess';
-import View from '../../shared/View';
 import { AvatarName } from '../../avatars';
 import SuggestionEasel from './SuggestionEasel';
 

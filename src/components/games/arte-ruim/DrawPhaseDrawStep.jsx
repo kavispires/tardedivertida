@@ -4,7 +4,7 @@ import { useTimer } from 'react-timer-hook';
 // Utils
 import { inNSeconds } from '../../../utils';
 // Components
-import { Step } from '../../shared/StepSwitcher';
+import { Step } from '../../shared';
 import Card from '../../cards/Card';
 import DrawingCanvas from './DrawingCanvas';
 

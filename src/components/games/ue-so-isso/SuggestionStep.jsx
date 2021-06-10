@@ -4,10 +4,8 @@ import PropTypes from 'prop-types';
 import { Button, Space } from 'antd';
 import { CloudUploadOutlined } from '@ant-design/icons';
 // Components
-import Title from '../../shared/Title';
-import Instruction from '../../shared/Instruction';
+import { Instruction, Step, Title } from '../../shared';
 import Card from '../../cards/UeSoIssoCard';
-import { Step } from '../../shared/StepSwitcher';
 import { AvatarName } from '../../avatars';
 import SuggestionEasel from './SuggestionEasel';
 

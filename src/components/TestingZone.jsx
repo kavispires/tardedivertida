@@ -3,14 +3,10 @@ import React from 'react';
 // import { Image, Layout } from 'antd';
 import gameList from '../resources/games.json';
 import { Avatar, AvatarEntry } from './avatars';
-import GameOver from './shared/GameOver';
-import Instruction from './shared/Instruction';
-import PhaseContainer from './shared/PhaseContainer';
-import RoundAnnouncement from './shared/RoundAnnouncement';
+import { GameOver, Instruction, PhaseContainer, RoundAnnouncement, Title } from './shared';
 // Resources
 import { CheckCircleFilled, CheckCircleOutlined } from '@ant-design/icons';
 import { Button, Input } from 'antd';
-import Title from './shared/Title';
 import { LETTERS } from '../utils/constants';
 import Card from './cards/Card';
 import { getColorFromLetter } from '../utils';

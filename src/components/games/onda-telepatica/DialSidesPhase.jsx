@@ -12,13 +12,16 @@ import {
 import { ONDA_TELEPATICA } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
 // Components
-import PhaseContainer from '../../shared/PhaseContainer';
-import WaitingRoom from '../../shared/WaitingRoom';
-import StepSwitcher, { Step } from '../../shared/StepSwitcher';
+import {
+  Instruction,
+  PhaseContainer,
+  RoundAnnouncement,
+  Step,
+  StepSwitcher,
+  View,
+  WaitingRoom,
+} from '../../shared';
 import CardSelection from './CardSelection';
-import RoundAnnouncement from '../../shared/RoundAnnouncement';
-import Instruction from '../../shared/Instruction';
-import View from '../../shared/View';
 import { AvatarName } from '../../avatars';
 
 function DialSidesPhase({ state, players, info }) {

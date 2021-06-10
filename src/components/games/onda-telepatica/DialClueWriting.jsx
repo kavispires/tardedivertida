@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
 import { Button, Input, Popover, Space } from 'antd';
-// Components
-import Title from '../../shared/Title';
-import Instruction from '../../shared/Instruction';
-import Dial from './Dial';
 import { FileUnknownOutlined } from '@ant-design/icons';
+// Components
+import { Instruction, Title } from '../../shared';
+import Dial from './Dial';
 
 const getHint = (card) => {
   if (card.target === 0) {

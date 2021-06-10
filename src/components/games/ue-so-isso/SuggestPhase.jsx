@@ -6,11 +6,8 @@ import { useIsUserReady, useWhichPlayerIsThe, useIsUserThe, useAPICall } from '.
 import { UE_SO_ISSO_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
 // Components
-import PhaseContainer from '../../shared/PhaseContainer';
-import WaitingRoom from '../../shared/WaitingRoom';
-import StepSwitcher, { Step } from '../../shared/StepSwitcher';
+import { PhaseContainer, Step, StepSwitcher, View, WaitingRoom } from '../../shared';
 import SuggestionStep from './SuggestionStep';
-import View from '../../shared/View';
 
 function SuggestPhase({ state, players, info }) {
   const isUserReady = useIsUserReady(players, state);

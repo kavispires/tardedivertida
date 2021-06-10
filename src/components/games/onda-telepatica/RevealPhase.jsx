@@ -1,20 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useTimer } from 'react-timer-hook';
+// Design Resources
+import { Button, message, Popover } from 'antd';
+import { InfoCircleOutlined } from '@ant-design/icons';
 // Hooks
 import { useAPICall } from '../../../hooks';
 // Resources & Utils
 import { GAME_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
-// Components
-import PhaseContainer from '../../shared/PhaseContainer';
-import Title from '../../shared/Title';
-import Dial from './Dial';
-import Instruction from '../../shared/Instruction';
-import { AdminOnlyButton } from '../../shared/AdminOnly';
-import { useTimer } from 'react-timer-hook';
 import { getOppositeTeam, inNSeconds } from '../../../utils';
-import { Button, message, Popover } from 'antd';
-import { InfoCircleOutlined } from '@ant-design/icons';
+// Components
+import { AdminOnlyButton, Instruction, PhaseContainer, Title } from '../../shared';
+
+import Dial from './Dial';
 
 function getResultInstructionLine(pointsBreakdown, team, catchup = false) {
   const { got, now } = pointsBreakdown;

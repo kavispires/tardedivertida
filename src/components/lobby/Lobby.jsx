@@ -2,7 +2,7 @@ import React from 'react';
 // Hooks
 import useGlobalState from '../../hooks/useGlobalState';
 // Components
-import PhaseContainer from '../shared/PhaseContainer';
+import { PhaseContainer } from '../shared';
 import Join from './Join';
 import Waiting from './Waiting';
 import CloudBackground from './CloudBackground';

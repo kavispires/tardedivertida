@@ -6,11 +6,8 @@ import { useIsUserThe, useAPICall, useWhichPlayerIsThe } from '../../../hooks';
 import { UE_SO_ISSO_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
 // Components
-import PhaseContainer from '../../shared/PhaseContainer';
-import WaitingRoom from '../../shared/WaitingRoom';
-import StepSwitcher, { Step } from '../../shared/StepSwitcher';
+import { PhaseContainer, Step, StepSwitcher, View, WaitingRoom } from '../../shared';
 import CompareSuggestionsStep from './CompareSuggestionsStep';
-import View from '../../shared/View';
 
 function ComparePhase({ state, players, info }) {
   const [step, setStep] = useState(0);

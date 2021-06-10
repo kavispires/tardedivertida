@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 // Components
-import Title from '../../shared/Title';
-import Instruction from '../../shared/Instruction';
+import { Instruction, Title } from '../../shared';
 import Card from './Card';
 
 function CardSelection({ onSendChosenSide, cards }) {

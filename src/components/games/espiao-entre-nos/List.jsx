@@ -1,10 +1,10 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 // Design Resources
 import { Button, Tooltip } from 'antd';
 import { ClearOutlined } from '@ant-design/icons';
-// Components
-import clsx from 'clsx';
+// Hooks
 import { useGlobalState } from '../../../hooks';
 
 function List({ header, headerIcon, items, column }) {

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Typography } from 'antd';
 import clsx from 'clsx';
 
-function Instruction({ children, white, className, contained }) {
+export const Instruction = memo(function ({ children, white, className, contained }) {
   const baseClass = 'instruction';
 
   return (
@@ -19,12 +19,10 @@ function Instruction({ children, white, className, contained }) {
       {children}
     </Typography.Text>
   );
-}
+});
 
 Instruction.propTypes = {
   children: PropTypes.any.isRequired,
   white: PropTypes.bool,
   className: PropTypes.string,
 };
-
-export default memo(Instruction);

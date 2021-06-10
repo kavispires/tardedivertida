@@ -6,9 +6,7 @@ import { useGlobalState, useLoading, useWhichPlayerIsThe, useIsUserThe, useAPICa
 import { UE_SO_ISSO_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
 // Components
-import PhaseContainer from '../../shared/PhaseContainer';
-import WaitingRoom from '../../shared/WaitingRoom';
-import StepSwitcher from '../../shared/StepSwitcher';
+import { PhaseContainer, StepSwitcher, WaitingRoom } from '../../shared';
 import GuessingStep from './GuessingStep';
 import GuessVerificationStep from './GuessVerificationStep';
 

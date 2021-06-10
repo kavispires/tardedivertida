@@ -7,13 +7,16 @@ import { ARTE_RUIM_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
 import arteRuimTimer from '../../../sounds/arte-ruim-timer.mp3';
 // Components
-import PhaseContainer from '../../shared/PhaseContainer';
+import {
+  AdminForceNextPhase,
+  Instruction,
+  PhaseContainer,
+  RoundAnnouncement,
+  Step,
+  StepSwitcher,
+  WaitingRoom,
+} from '../../shared';
 import DrawPhaseDrawStep from './DrawPhaseDrawStep';
-import WaitingRoom from '../../shared/WaitingRoom';
-import RoundAnnouncement from '../../shared/RoundAnnouncement';
-import Instruction from '../../shared/Instruction';
-import StepSwitcher, { Step } from '../../shared/StepSwitcher';
-import AdminForceNextPhase from '../../shared/AdminForceNextPhase';
 
 function DrawPhase({ players, state, info }) {
   const isUserReady = useIsUserReady(players, state);
