@@ -8,7 +8,7 @@ import { useLoading, useIsUserReady, useAPICall } from '../../hooks';
 // Components
 import RulesCarousel from './RulesCarousel';
 import LoadingPage from '../loaders/LoadingPage';
-import ReadyPlayersBar from '../shared/ReadyPlayersBar';
+import { ReadyPlayersBar } from '../shared';
 
 function Rules({ players, info }) {
   const [isLoading] = useLoading();

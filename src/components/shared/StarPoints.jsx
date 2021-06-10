@@ -4,7 +4,7 @@ import clsx from 'clsx';
 // Design Resources
 import { StarFilled } from '@ant-design/icons';
 
-function StarPoints({ quantity, keyPrefix, className = '' }) {
+export const StarPoints = memo(function ({ quantity, keyPrefix, className = '' }) {
   if (!quantity || quantity < 1) {
     return <span></span>;
   }
@@ -14,12 +14,10 @@ function StarPoints({ quantity, keyPrefix, className = '' }) {
       + <span className="star-points__stars">{starsArray}</span> ponto{quantity > 1 ? 's' : ''}
     </span>
   );
-}
+});
 
 StarPoints.propTypes = {
   quantity: PropTypes.number,
   className: PropTypes.string,
   keyPrefix: PropTypes.string.isRequired,
 };
-
-export default memo(StarPoints);

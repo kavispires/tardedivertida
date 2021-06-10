@@ -2,11 +2,10 @@ import React from 'react';
 // Hooks
 import { GAME_COLLECTION, PHASES } from '../../../utils/constants';
 // Components
-import Session from '../../shared/Session';
+import { GameOver, Session } from '../../shared';
 import Lobby from '../../lobby/Lobby';
 import Rules from '../../rules/Rules';
 import PageError from '../../errors/PageError';
-import GameOver from '../../shared/GameOver';
 import DialSidesPhase from './DialSidesPhase';
 import DialCluePhase from './DialCluePhase';
 import GuessPhase from './GuessPhase';

@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 // Design Resources
@@ -12,7 +12,7 @@ import PageError from '../errors/PageError';
  * @param {*} props
  * @returns
  */
-function PhaseContainer({ info, phase, allowedPhase, children, className, fullScreen, white }) {
+export function PhaseContainer({ info, phase, allowedPhase, children, className, fullScreen, white }) {
   if (!info?.gameName || allowedPhase !== phase) {
     return <LoadingPage />;
   }
@@ -55,5 +55,3 @@ PhaseContainer.defaultProps = {
   phase: '',
   white: false,
 };
-
-export default memo(PhaseContainer);

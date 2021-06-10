@@ -5,7 +5,7 @@ import { Avatar as AntAvatar, Typography } from 'antd';
 import { CrownFilled, DeleteFilled } from '@ant-design/icons';
 // Components
 import { Avatar } from '../../avatars';
-import StarPoints from '../../shared/StarPoints';
+import { StarPoints } from '../../shared';
 
 function GalleryWindowResult({
   artist,

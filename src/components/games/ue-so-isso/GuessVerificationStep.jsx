@@ -5,11 +5,8 @@ import clsx from 'clsx';
 import { Button, message, Space } from 'antd';
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 // Components
-import { Step } from '../../shared/StepSwitcher';
-import Title from '../../shared/Title';
-import Instruction from '../../shared/Instruction';
+import { Instruction, Step, Title, View } from '../../shared';
 import UeSoIssoCard from '../../cards/UeSoIssoCard';
-import View from '../../shared/View';
 import { AvatarName } from '../../avatars';
 import SuggestionEasel from './SuggestionEasel';
 import { messageContent } from '../../modals/messageContent';

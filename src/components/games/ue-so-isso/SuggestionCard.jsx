@@ -1,14 +1,15 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 // Design Resources
 import { Avatar as AntAvatar } from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
-// Components
-import BasicCard from '../../cards/Card';
-import clsx from 'clsx';
-import { Avatar } from '../../avatars';
+// Utils
 import { getColorFromIndex } from '../../../utils';
 import { LETTERS } from '../../../utils/constants';
+// Components
+import BasicCard from '../../cards/Card';
+import { Avatar } from '../../avatars';
 
 function SuggestionCard({ avatarId, index, invalid, suggestion }) {
   return (

@@ -8,7 +8,7 @@ import { inNSeconds } from '../../utils';
 // Components
 import { Avatar } from '../avatars';
 
-function RankingBoard({ players, ranking }) {
+export function RankingBoard({ players, ranking }) {
   const [displayStep, setDisplayStep] = useState(0);
   const [sortedRanking, setSortedRanking] = useState([]);
   const [positions, setPositions] = useState([]);

@@ -7,20 +7,18 @@ import { RocketFilled } from '@ant-design/icons';
 // State
 import { useLoading, useGlobalState } from '../../hooks';
 
-function AdminOnly({ children, className = '' }) {
+export const AdminOnly = memo(function ({ children, className = '' }) {
   const [isAdmin] = useGlobalState('isAdmin');
 
   if (!isAdmin) return <span></span>;
 
   return <Space className={clsx('admin-only-container', className)}>{children}</Space>;
-}
+});
 
 AdminOnly.propTypes = {
   children: PropTypes.element.isRequired,
   className: PropTypes.string,
 };
-
-export default memo(AdminOnly);
 
 export function AdminButton({ action, label }) {
   const [isLoading] = useLoading();
@@ -31,6 +29,11 @@ export function AdminButton({ action, label }) {
   );
 }
 
+AdminButton.propTypes = {
+  action: PropTypes.func.isRequired,
+  label: PropTypes.string.isRequired,
+};
+
 export function AdminOnlyButton({ action, label }) {
   return (
     <AdminOnly>
@@ -38,3 +41,8 @@ export function AdminOnlyButton({ action, label }) {
     </AdminOnly>
   );
 }
+
+AdminOnlyButton.propTypes = {
+  action: PropTypes.func.isRequired,
+  label: PropTypes.string.isRequired,
+};

@@ -2,7 +2,7 @@ import React from 'react';
 // Hooks
 import { GAME_COLLECTION, PHASES } from '../../../utils/constants';
 // Components
-import Session from '../../shared/Session';
+import { Session } from '../../shared';
 import Lobby from '../../lobby/Lobby';
 import Rules from '../../rules/Rules';
 import PageError from '../../errors/PageError';

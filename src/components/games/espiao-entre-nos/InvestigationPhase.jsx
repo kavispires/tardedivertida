@@ -9,9 +9,7 @@ import { useUser, useAPICall, useIsUserThe } from '../../../hooks';
 import { ESPIAO_ENTRE_NOS_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
 // Components
-import PhaseContainer from '../../shared/PhaseContainer';
-import Instruction from '../../shared/Instruction';
-import Title from '../../shared/Title';
+import { Instruction, PhaseContainer, Title } from '../../shared';
 import Card from '../../cards/EspiaoEntreNosCard';
 import List from './List';
 import Notes from './Notes';

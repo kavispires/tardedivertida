@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 import { Typography } from 'antd';
 import clsx from 'clsx';
 
-function Title({ children, white, icon, className, level }) {
+export const Title = memo(function ({ children, white, icon, className, level }) {
   return (
     <Typography.Title level={level} className={clsx('title', white && 'title--white', className)}>
       {Boolean(icon) && icon}
       {children}
     </Typography.Title>
   );
-}
+});
 
 Title.propTypes = {
   children: PropTypes.any.isRequired,
@@ -25,5 +25,3 @@ Title.defaultProps = {
   className: '',
   level: 1,
 };
-
-export default memo(Title);

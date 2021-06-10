@@ -2,7 +2,7 @@ import React from 'react';
 // Hooks
 import { GAME_COLLECTION, PHASES } from '../../../utils/constants';
 // Components
-import Session from '../../shared/Session';
+import { GameOver, Session } from '../../shared';
 import Lobby from '../../lobby/Lobby';
 import Rules from '../../rules/Rules';
 import PageError from '../../errors/PageError';
@@ -10,7 +10,6 @@ import WordSelectionPhase from './WordSelectionPhase';
 import SuggestPhase from './SuggestPhase';
 import ComparePhase from './ComparePhase';
 import GuessPhase from './GuessPhase';
-import GameOver from '../../shared/GameOver';
 
 function SessionUeSoIsso({ gameId }) {
   function getActiveComponent(phase) {

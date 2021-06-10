@@ -14,9 +14,7 @@ import {
 import { ONDA_TELEPATICA } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
 // Components
-import PhaseContainer from '../../shared/PhaseContainer';
-import WaitingRoom from '../../shared/WaitingRoom';
-import StepSwitcher from '../../shared/StepSwitcher';
+import { PhaseContainer, StepSwitcher, WaitingRoom } from '../../shared';
 import DialGuessSelection from './DialGuessSelection';
 import { messageContent } from '../../modals/messageContent';
 

@@ -1,9 +1,10 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import Loading from '../loaders/Loading';
 import clsx from 'clsx';
+// Components
+import Loading from '../loaders/Loading';
 
-function StepSwitcher({ children, step, conditions }) {
+export function StepSwitcher({ children, step, conditions }) {
   if (!children[step]) {
     return <Loading />;
   }
@@ -16,8 +17,6 @@ StepSwitcher.propTypes = {
   step: PropTypes.number.isRequired,
   conditions: PropTypes.arrayOf(PropTypes.bool),
 };
-
-export default StepSwitcher;
 
 export function Step({ children, fullWidth = false, className }) {
   return <div className={clsx('step', fullWidth && 'step--full-width', className)}>{children}</div>;

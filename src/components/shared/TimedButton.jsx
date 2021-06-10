@@ -7,7 +7,7 @@ import { Button } from 'antd';
 import { useTimer } from 'react-timer-hook';
 import { inNSeconds } from '../../utils';
 
-function TimedButton({ duration, label, onExpire, showTimer, ...props }) {
+export function TimedButton({ duration, label, onExpire, showTimer, ...props }) {
   const { seconds } = useTimer({
     expiryTimestamp: inNSeconds(duration),
     autoStart: true,
@@ -34,5 +34,3 @@ TimedButton.defaultProps = {
   duration: 10,
   showTimer: true,
 };
-
-export default TimedButton;

@@ -9,7 +9,7 @@ import useGlobalState from '../../hooks/useGlobalState';
 import { useAPICall, useLoading } from '../../hooks';
 import { GAME_API } from '../../adapters';
 
-function AdminForceNextPhase({ className = '' }) {
+export function AdminForceNextPhase({ className = '' }) {
   const [isLoading] = useLoading();
   const [isAdmin] = useGlobalState('isAdmin');
 
@@ -40,5 +40,3 @@ function AdminForceNextPhase({ className = '' }) {
 AdminForceNextPhase.propTypes = {
   className: PropTypes.string,
 };
-
-export default AdminForceNextPhase;

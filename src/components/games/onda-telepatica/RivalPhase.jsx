@@ -13,12 +13,10 @@ import {
 // Resources & Utils
 import { ONDA_TELEPATICA } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
-// Components
-import PhaseContainer from '../../shared/PhaseContainer';
-import WaitingRoom from '../../shared/WaitingRoom';
-import StepSwitcher from '../../shared/StepSwitcher';
-import DialRivalSelection from './DialRivalSelection';
 import { getOppositeTeam } from '../../../utils';
+// Components
+import { PhaseContainer, StepSwitcher, WaitingRoom } from '../../shared';
+import DialRivalSelection from './DialRivalSelection';
 import { messageContent } from '../../modals/messageContent';
 
 function RivalPhase({ state, players, info }) {

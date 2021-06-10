@@ -8,7 +8,7 @@ import gameList from '../../resources/games.json';
 import Lobby from '../lobby/Lobby';
 import GameInfoDrawer from '../shared/GameInfoDrawer';
 
-function Session({ gameId, gameCollection, getActiveComponent }) {
+export function Session({ gameId, gameCollection, getActiveComponent }) {
   const players = useGamePlayers(gameId, gameCollection);
   const state = useGameState(gameId, gameCollection);
   const [username] = useGlobalState('username');
@@ -43,5 +43,3 @@ Session.propTypes = {
   gameCollection: PropTypes.string.isRequired,
   getActiveComponent: PropTypes.func.isRequired,
 };
-
-export default Session;

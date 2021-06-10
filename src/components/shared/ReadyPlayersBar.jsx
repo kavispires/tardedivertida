@@ -6,7 +6,7 @@ import { LikeFilled } from '@ant-design/icons';
 // Components
 import { Avatar } from '../avatars';
 
-function ReadyPlayersBar({
+export function ReadyPlayersBar({
   players,
   readyText = 'Estou pronto!',
   readyTextPlural = 'Estamos prontos!',
@@ -52,5 +52,3 @@ ReadyPlayersBar.defaultProps = {
   readyTextPlural: 'Estamos prontos!',
   showNames: false,
 };
-
-export default ReadyPlayersBar;

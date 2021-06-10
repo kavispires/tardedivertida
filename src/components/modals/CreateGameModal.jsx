@@ -11,8 +11,7 @@ import { useLoading } from '../../hooks';
 import { PUBLIC_URL } from '../../utils/constants';
 // Components
 import Loading from '../loaders/Loading';
-import Instruction from '../shared/Instruction';
-import Title from '../shared/Title';
+import { Instruction, Title } from '../shared';
 
 function CreateGameModal({ gameInfo }) {
   const history = useHistory();

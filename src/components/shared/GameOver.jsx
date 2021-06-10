@@ -9,11 +9,10 @@ import { useAPICall, useLoading } from '../../hooks';
 import { GAME_API } from '../../adapters';
 import { AVATAR_DESCRIPTIONS_BR } from '../../utils/constants';
 // Components
-import PhaseContainer from './PhaseContainer';
 import { Avatar } from '../avatars';
-import AdminOnly from './AdminOnly';
+import { AdminOnly, PhaseContainer } from './index';
 
-function GameOver({ info, state, children }) {
+export function GameOver({ info, state, children }) {
   const [isLoading] = useLoading();
 
   const onPlayAgain = useAPICall({
@@ -113,5 +112,3 @@ function GameOver({ info, state, children }) {
     </PhaseContainer>
   );
 }
-
-export default GameOver;

@@ -7,11 +7,7 @@ import { useIsUserReady, useUser, useIsUserThe } from '../../../hooks';
 // Resources & Utils
 import { PHASES } from '../../../utils/constants';
 // Components
-import PhaseContainer from '../../shared/PhaseContainer';
-import RoundAnnouncement from '../../shared/RoundAnnouncement';
-import Instruction from '../../shared/Instruction';
-import StepSwitcher from '../../shared/StepSwitcher';
-import Title from '../../shared/Title';
+import { Instruction, PhaseContainer, RoundAnnouncement, StepSwitcher, Title } from '../../shared';
 import Card from '../../cards/EspiaoEntreNosCard';
 import List from './List';
 import Notes from './Notes';
