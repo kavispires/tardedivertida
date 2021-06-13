@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 // Design Resources
 import { Button, Tag } from 'antd';
 // Images
@@ -26,9 +27,18 @@ function Team({ team, players, className }) {
   );
 }
 
-export function RoundAnnouncement({ round, onPressButton, buttonText, time, teams, players, children }) {
+export function RoundAnnouncement({
+  round,
+  onPressButton,
+  buttonText,
+  time,
+  teams,
+  players,
+  className,
+  children,
+}) {
   return (
-    <div className="round-announcement">
+    <div className={clsx('round-announcement', className)}>
       {Boolean(teams?.A) && (
         <Team className="round-announcement__team-left" team={teams.A} players={players} />
       )}
@@ -76,6 +86,7 @@ RoundAnnouncement.propTypes = {
   time: PropTypes.number,
   players: PropTypes.object,
   teams: PropTypes.object,
+  className: PropTypes.string,
 };
 
 RoundAnnouncement.defaultProps = {
