@@ -80,8 +80,8 @@
 }
 
 .e-timer {
-  border: 2px solid lime;
-  color: lime;
+  border: 2px solid get-color(lime);
+  color: get-color(lime);
   width: 100px;
   border-radius: get-unit(1);
   font-family: monospace;
@@ -101,4 +101,57 @@
 
 .e-admin-final-assessment {
   color: get-color(red);
+}
+
+.e-modal {
+  color: get-color(lime);
+  font-family: 'Courier New', monospace;
+
+  .ant-modal-content,
+  .ant-modal-header {
+    background: get-color(black);
+  }
+
+  .ant-modal-title {
+    color: get-color(lime);
+  }
+}
+
+.e-emergency-alert {
+  background: transparent;
+
+  .ant-modal-content {
+    background: transparent;
+  }
+
+  &__svg {
+    max-height: 80vh;
+    animation: 500ms emergency-pulse infinite;
+  }
+}
+
+@keyframes emergency-pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.75);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.e-round-announcement {
+  .round-announcement {
+    &__circle {
+      border-color: get-color(lime);
+      background-color: transparent;
+    }
+
+    &__number {
+      color: get-color(lime);
+      transform: translateY(5%);
+    }
+  }
 }

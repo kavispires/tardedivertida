@@ -28,7 +28,12 @@ function AssignmentPhase({ state, players, info }) {
     >
       <StepSwitcher step={step} conditions={[!isUserReady]}>
         {/* Step 0 */}
-        <RoundAnnouncement round={state.round} onPressButton={() => setStep(1)} time={5}>
+        <RoundAnnouncement
+          round={state.round}
+          onPressButton={() => setStep(1)}
+          time={555}
+          className="e-round-announcement"
+        >
           <Instruction className="e-phase-instruction">Há um espião entre nós!</Instruction>
         </RoundAnnouncement>
 
@@ -44,8 +49,8 @@ function AssignmentPhase({ state, players, info }) {
 
           <Instruction className="e-phase-instruction">
             {isUserTheSpy
-              ? 'Você tem 10 minutos para descobrir onde os outros agentes estão! Pronto?'
-              : 'Você tem 10 minutos para descobrir quem é o espião entre nós! Pronto?'}
+              ? 'Você terá 10 minutos para descobrir onde os outros agentes estão! Pronto?'
+              : 'Você terá 10 minutos para descobrir quem é o espião entre nós! Pronto?'}
           </Instruction>
 
           <Instruction className="e-lists">
