@@ -3,14 +3,12 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 // Design Resources
 import { Button, Tooltip } from 'antd';
-import { ClearOutlined } from '@ant-design/icons';
+import { AimOutlined, ClearOutlined, IssuesCloseOutlined } from '@ant-design/icons';
 // Hooks
 import { useGlobalState } from '../../../hooks';
 
-function List({ header, headerIcon, items, column }) {
+function SuspectsList({ players }) {
   const [cache, setCache] = useGlobalState('espiaoEntreNosCache');
-
-  // const [crossed, setCrossed] = useState({});
 
   const onCross = (item) => {
     setCache((s) => {
@@ -27,9 +25,9 @@ function List({ header, headerIcon, items, column }) {
   const onClearCrossed = () => setCache({});
 
   return (
-    <div className={clsx('e-list', column && 'e-list--column')}>
+    <div className={clsx('e-list')}>
       <h3 className="e-list__title">
-        {headerIcon} {header}{' '}
+        <AimOutlined /> Suspeitos{' '}
         <Tooltip title="Deselecionar todos">
           <Button
             shape="circle"
@@ -41,15 +39,20 @@ function List({ header, headerIcon, items, column }) {
           />
         </Tooltip>
       </h3>
-      <ul className={clsx('e-list__list', column && 'e-list__list--column')}>
-        {items.map((item) => (
+      <ul className="e-list__list">
+        {Object.entries(players).map(([playerId, player]) => (
           <li
-            className={clsx('e-list__item', cache[item] && 'e-list__item--crossed')}
-            key={item}
+            className={clsx('e-list__item', cache[playerId] && 'e-list__item--crossed')}
+            key={playerId}
             role="button"
-            onClick={() => onCross(item)}
+            onClick={() => onCross(playerId)}
           >
-            {item}
+            {player.name}{' '}
+            {player.usedAccusation && (
+              <Tooltip title="Já usou acusação">
+                <IssuesCloseOutlined size="small" />
+              </Tooltip>
+            )}
           </li>
         ))}
       </ul>
@@ -57,15 +60,15 @@ function List({ header, headerIcon, items, column }) {
   );
 }
 
-List.propTypes = {
+SuspectsList.propTypes = {
   header: PropTypes.string.isRequired,
   headerIcon: PropTypes.element.isRequired,
   items: PropTypes.arrayOf(PropTypes.string),
   column: PropTypes.bool,
 };
 
-List.defaultProps = {
+SuspectsList.defaultProps = {
   column: false,
 };
 
-export default memo(List);
+export default memo(SuspectsList);

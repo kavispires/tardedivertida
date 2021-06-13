@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
 import { Button, Space } from 'antd';
-import { AimOutlined, EnvironmentOutlined } from '@ant-design/icons';
+import { EnvironmentOutlined } from '@ant-design/icons';
 // Hooks
 import { useUser, useAPICall, useIsUserThe } from '../../../hooks';
 // Resources & Utils
@@ -14,6 +14,8 @@ import Card from '../../cards/EspiaoEntreNosCard';
 import List from './List';
 import Notes from './Notes';
 import AdminTimerControlButton from './AdminTimerControlButton';
+import SuspectsList from './SuspectsList';
+import EmergencyAlert from './EmergencyAlert';
 
 function AssessmentPhase({ state, players, info }) {
   const user = useUser(players);
@@ -41,6 +43,8 @@ function AssessmentPhase({ state, players, info }) {
         {state.accuser} está acusando {state.target} de ser o espião. Concorda?
       </Title>
 
+      {!state?.finalAssessment && <EmergencyAlert />}
+
       <div>
         {isUserTheAccuser || isUserTheTarget ? (
           <Instruction className="e-phase-instruction">
@@ -64,7 +68,7 @@ function AssessmentPhase({ state, players, info }) {
       <ReadyPlayersBar players={players} readyText="Votei" readyTextPlural="Votamos" />
 
       <Instruction className="e-lists">
-        <List header="Suspeitos" headerIcon={<AimOutlined />} items={Object.keys(players)} />
+        <SuspectsList players={players} />
         <List
           header="Possíveis Locais"
           headerIcon={<EnvironmentOutlined />}
