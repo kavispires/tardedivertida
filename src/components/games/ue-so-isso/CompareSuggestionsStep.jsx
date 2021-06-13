@@ -70,8 +70,9 @@ function CompareSuggestionsStep({
         <br />
         <ExclamationCircleOutlined /> Para não virar bagunça, somente{' '}
         <AvatarName player={nextGuesser} addressUser />
-        pode clicar nas palavras para eliminá-las ou ativá-las, mas todos podem discutir. <br /> Refiram às
-        palavras por letra, o Adivinhador pode estar ouvindo!
+        pode clicar nas palavras para eliminá-las ou ativá-las, mas todos podem discutir. Uma dica ser muito
+        ruim não significa que ela seja inválida.
+        <br /> Refiram às palavras por letra, o Adivinhador pode estar ouvindo!
       </Instruction>
 
       <Space className="u-word-compare-suggestions-step__suggestions">
