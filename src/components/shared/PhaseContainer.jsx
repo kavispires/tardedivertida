@@ -6,6 +6,7 @@ import { Layout } from 'antd';
 // Components
 import LoadingPage from '../loaders/LoadingPage';
 import PageError from '../errors/PageError';
+import { useGlobalState } from '../../hooks';
 
 /**
  * Wrapping container around a game screen
@@ -13,6 +14,8 @@ import PageError from '../errors/PageError';
  * @returns
  */
 export function PhaseContainer({ info, phase, allowedPhase, children, className, fullScreen, white }) {
+  const [username] = useGlobalState('username');
+
   if (!info?.gameName || allowedPhase !== phase) {
     return <LoadingPage />;
   }
@@ -32,6 +35,9 @@ export function PhaseContainer({ info, phase, allowedPhase, children, className,
         className
       )}
     >
+      {process.env.NODE_ENV === 'development' && (
+        <span className={`${baseClass}__dev-player-name`}>{username}</span>
+      )}
       <span className={`${baseClass}__title`}>{info.title}</span>
       {children}
     </Layout.Content>
