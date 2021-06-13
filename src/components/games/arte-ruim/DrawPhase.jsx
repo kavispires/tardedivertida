@@ -55,7 +55,7 @@ function DrawPhase({ players, state, info }) {
           <Instruction white>
             Você terá 10 segundos para ler a sua carta e desenhá-la.
             <br />
-            Aperte o botão quando estiver pronto!
+            Aperte o botão quando estiver pronto! Não vale usar números e letras.
             <br />
             Fique esperto porque o tempo começa assim que você apertar.
           </Instruction>
