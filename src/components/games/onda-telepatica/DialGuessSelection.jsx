@@ -61,7 +61,7 @@ function ControllerView({ activeTeam, card, needle, onSendGuess, setNeedle, team
         showTarget={false}
         setNeedle={setNeedle}
       />
-      <Slider defaultValue={0} min={-10} max={10} onChange={setNeedle} />
+      <Slider defaultValue={0} min={-10} max={10} onChange={setNeedle} value={needle} />
       <TeamInstructions teamController={teamController} />
       <ButtonContainer>
         <Popconfirm
@@ -94,7 +94,7 @@ function ActiveTeamView({ activeTeam, card, needle, setNeedle, teamController })
         showTarget={false}
         setNeedle={setNeedle}
       />
-      <Slider defaultValue={0} min={-10} max={10} onChange={setNeedle} />
+      <Slider defaultValue={0} min={-10} max={10} onChange={setNeedle} value={needle} />
       <TeamInstructions teamController={teamController} />
     </div>
   );
