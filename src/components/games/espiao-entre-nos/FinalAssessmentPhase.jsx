@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
-import { Button, Select } from 'antd';
+import { Button, message, Modal, notification, Select } from 'antd';
 import { AimOutlined, EnvironmentOutlined } from '@ant-design/icons';
 // Hooks
 import { useUser, useAPICall } from '../../../hooks';
@@ -9,10 +9,47 @@ import { useUser, useAPICall } from '../../../hooks';
 import { ESPIAO_ENTRE_NOS_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
 // Components
-import { AdminOnly, Instruction, PhaseContainer, Title } from '../../shared';
+import { AdminOnly, ButtonContainer, Instruction, PhaseContainer, Title } from '../../shared';
 import Card from '../../cards/EspiaoEntreNosCard';
 import List from './List';
 import Notes from './Notes';
+import PlayerSelect from './PlayerSelect';
+
+function FinalAssessmentInstruction({ playerOrder, playerOrderIndex }) {
+  return (
+    <Instruction className="e-phase-instruction">
+      Já que vocês falharam em encontrar o espião, há uma última possibilidade!
+      <ul>
+        {playerOrderIndex === 0 ? (
+          <li>Cada jogador, começando por {playerOrder[0]}, cada jogador faz uma acusação.</li>
+        ) : (
+          <li>Agora é a vez de {playerOrder[playerOrderIndex]} faz uma acusação.</li>
+        )}
+        <li>Se a votação for unânime, o jogo acaba e revelam-se os papéis</li>
+        <li>Sem discussão dessa vez, simplesmente acuse alguém! Não temos mais tempo!</li>
+        <li>A ordem será essa: {playerOrder.join(', ')}</li>
+      </ul>
+    </Instruction>
+  );
+}
+
+function FinalAssessmentModal({ isModalVisible, onMakeAccusation, players, playerOrder, playerOrderIndex }) {
+  return (
+    <Modal
+      visible={isModalVisible}
+      title="Quem você vai acusar?"
+      footer={null}
+      closable={false}
+      className="e-modal"
+    >
+      <FinalAssessmentInstruction playerOrder={playerOrder} playerOrderIndex={playerOrderIndex} />
+      Não há tempo pra pensar, escolha alguém!
+      <ButtonContainer>
+        <PlayerSelect playersList={Object.keys(players)} onSend={onMakeAccusation} isFinalAssessment />
+      </ButtonContainer>
+    </Modal>
+  );
+}
 
 function FinalAssessmentPhase({ state, players, info }) {
   const user = useUser(players);
@@ -26,6 +63,25 @@ function FinalAssessmentPhase({ state, players, info }) {
     errorMessage: 'Vixi, o aplicativo encontrou um erro ao tentar enviar ação',
   });
 
+  const onMakeAccusation = useAPICall({
+    apiFunction: ESPIAO_ENTRE_NOS_API.makeAccusation,
+    actionName: 'accuse',
+    successMessage: 'Jogador acusado com sucesso',
+    errorMessage: 'Vixi, o aplicativo encontrou um erro ao tentar acusar',
+  });
+
+  useEffect(() => {
+    if (state?.outcome === 'VOTE_FAIL') {
+      notification.info({
+        message: 'A votação não foi unânime',
+        description: state?.votedYes ? `Votaram sim: ${state?.votedYes}` : 'Ninguém votou sim',
+        duration: 10,
+      });
+    }
+  }, []); // eslint-disable-line
+
+  const isUserTheAccuser = state.playerOrder[state.playerOrderIndex] === user.name;
+  console.log({ playerOrderIndex: state.playerOrderIndex });
   return (
     <PhaseContainer
       info={info}
@@ -37,19 +93,15 @@ function FinalAssessmentPhase({ state, players, info }) {
         Última Chance!
       </Title>
 
-      <Instruction className="e-phase-instruction">
-        Já que vocês falharam em encontrar o espião, há uma última possibilidade!
-        <ul>
-          <li>
-            Um jogador de cada vez e começando por {state?.playerOrder[0]}, cada jogador faz uma acusação em
-            voz alta.
-          </li>
-          <li>Os outros jogadores votam também em voz alta (menos o acusado, claro)</li>
-          <li>Se a votação for unânime, o admnistrador vai enviar o voto para o servidor</li>
-          <li>Sem discussão dessa vez, simplesmente acuse alguém! Não temos mais tempo!</li>
-          <li>Siga essa ordem: {state?.playerOrder.join(', ')}</li>
-        </ul>
-      </Instruction>
+      <FinalAssessmentModal
+        isModalVisible={isUserTheAccuser}
+        onMakeAccusation={onMakeAccusation}
+        players={players}
+        playerOrder={state.playerOrder}
+        playerOrderIndex={state.playerOrderIndex}
+      />
+
+      <FinalAssessmentInstruction playerOrder={state.playerOrder} playerOrderIndex={state.playerOrderIndex} />
 
       <Card location={user.location} role={user.role} />
 

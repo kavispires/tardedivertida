@@ -6,7 +6,7 @@ import { LoadingOutlined } from '@ant-design/icons';
 // Hooks
 import { useGlobalState, useLoading } from '../../../hooks';
 
-function PlayerSelect({ playersList, onSend }) {
+function PlayerSelect({ playersList, onSend, isFinalAssessment = false }) {
   const [isLoading] = useLoading();
   const [username] = useGlobalState('username');
 
@@ -24,7 +24,9 @@ function PlayerSelect({ playersList, onSend }) {
         ))}
       </Select>
       <Popconfirm
-        title={`Você só pode acusar uma vez durante o jogo! Tem certeza que quer acusar ${selectedPlayer}?`}
+        title={`${
+          isFinalAssessment ? '' : 'Você só pode acusar uma vez durante o jogo! '
+        }Tem certeza que quer acusar ${selectedPlayer}?`}
         onConfirm={() => onSend({ vote: selectedPlayer })}
         okText="Sim"
         cancelText="Não"
@@ -42,9 +44,9 @@ function PlayerSelect({ playersList, onSend }) {
 }
 
 PlayerSelect.propTypes = {
-  info: PropTypes.object,
-  players: PropTypes.object,
-  state: PropTypes.object,
+  playersList: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onSend: PropTypes.func.isRequired,
+  isFinalAssessment: PropTypes.bool,
 };
 
 export default PlayerSelect;

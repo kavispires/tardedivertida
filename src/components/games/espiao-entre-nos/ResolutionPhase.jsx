@@ -51,8 +51,8 @@ function ResolutionPhase({ state, players, info }) {
               <Instruction className="e-phase-instruction">
                 {wasABadVoting ? (
                   <span>
-                    Vocês tentaram incriminar o espião errado. {state.currentSpy} se safou, todos os segredos
-                    da agência foram revelados e o mundo vai acabar. Parabéns.
+                    Vocês incriminaram o espião errado. {state.currentSpy} se safou, todos os segredos da
+                    agência foram revelados e o mundo vai acabar. Parabéns.
                   </span>
                 ) : (
                   <span>
@@ -102,7 +102,7 @@ function ResolutionPhase({ state, players, info }) {
       )}
 
       <Instruction className="e-phase-instruction">
-        Desfarces dos infiltrados:
+        Disfarces dos infiltrados:
         {Object.values(players).map((player) => (
           <li>
             {player.name} como {player.role}

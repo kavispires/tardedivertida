@@ -172,6 +172,7 @@ export interface EspiaoEntreNosInitialState {
 
 export interface EspiaoEntreNosAdminPayload extends Payload {
   action: string | any;
+  [key: string]: any;
 }
 
 // ONDA_TELEPATICA

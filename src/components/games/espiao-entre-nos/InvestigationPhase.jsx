@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
-import { AimOutlined, EnvironmentOutlined } from '@ant-design/icons';
-import { message } from 'antd';
+import { EnvironmentOutlined } from '@ant-design/icons';
+import { notification } from 'antd';
 // Hooks
 import { useUser, useAPICall, useIsUserThe } from '../../../hooks';
 // Resources & Utils
@@ -17,10 +17,12 @@ import PlayerSelect from './PlayerSelect';
 import LocationSelect from './LocationSelect';
 import Timer from './Timer';
 import AdminTimerControlButton from './AdminTimerControlButton';
+import SuspectsList from './SuspectsList';
 
 function InvestigationPhase({ state, players, info }) {
   const user = useUser(players);
   const isUserTheSpy = useIsUserThe('currentSpy', state);
+  const [isAccusationSelectVisible, setAccusationSelectVisible] = useState(true);
 
   const onMakeAccusation = useAPICall({
     apiFunction: ESPIAO_ENTRE_NOS_API.makeAccusation,
@@ -36,14 +38,25 @@ function InvestigationPhase({ state, players, info }) {
     errorMessage: 'Vixi, o aplicativo encontrou um erro ao tentar chutar o local',
   });
 
+  const hideAccusationSelect = () => {
+    setAccusationSelectVisible(false);
+  };
+
   useEffect(() => {
     if (state?.outcome === 'VOTE_FAIL') {
-      message.warning(`A votação não foi unânime`, 4);
-      message.info(state?.votedYes ? `Votaram sim: ${state?.votedYes}` : 'Ninguém votou sim', 6);
+      notification.info({
+        message: 'A votação não foi unânime',
+        description: state?.votedYes ? `Votaram sim: ${state?.votedYes}` : 'Ninguém votou sim',
+        duration: 10,
+      });
     }
 
     if (state.timeRemaining > 590000) {
-      message.info(`${Object.keys(players)[0]} começa perguntando!`, 3);
+      notification.info({
+        message: '10 minutos!',
+        description: `${state?.startingPlayer ?? Object.keys(players)[0]} começa perguntando!`,
+        duration: 10,
+      });
     }
   }, []); // eslint-disable-line
 
@@ -56,7 +69,11 @@ function InvestigationPhase({ state, players, info }) {
     >
       <div className="e-phase-step-header">
         <div className="e-phase-step-header__timer-container">
-          <Timer timeRemaining={state.timeRemaining} />
+          <Timer
+            timeRemaining={state.timeRemaining}
+            players={players}
+            hideAccusationSelect={hideAccusationSelect}
+          />
         </div>
 
         <div className="e-phase-step-header__center">
@@ -67,16 +84,20 @@ function InvestigationPhase({ state, players, info }) {
         </div>
       </div>
 
-      {isUserTheSpy && <LocationSelect locations={state.possibleLocations} onSend={onGuessLocation} />}
+      {isAccusationSelectVisible && (
+        <Fragment>
+          {isUserTheSpy && <LocationSelect locations={state.possibleLocations} onSend={onGuessLocation} />}
 
-      {!user?.usedAccusation ? (
-        <PlayerSelect playersList={Object.keys(players)} onSend={onMakeAccusation} />
-      ) : (
-        <Instruction className="e-phase-instruction">Você já usou sua chance de acusar</Instruction>
+          {!user?.usedAccusation ? (
+            <PlayerSelect playersList={Object.keys(players)} onSend={onMakeAccusation} />
+          ) : (
+            <Instruction className="e-phase-instruction">Você já usou sua chance de acusar</Instruction>
+          )}
+        </Fragment>
       )}
 
       <Instruction className="e-lists">
-        <List header="Suspeitos" headerIcon={<AimOutlined />} items={Object.keys(players)} />
+        <SuspectsList players={players} />
         <List
           header="Possíveis Locais"
           headerIcon={<EnvironmentOutlined />}

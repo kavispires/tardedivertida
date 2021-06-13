@@ -59,9 +59,10 @@ export const getInitialState = (
  * Determine the next phase based on the current one
  * @param currentPhase
  * @param outcome
+ * @param isFinalAssessment
  * @returns
  */
-const determineNextPhase = (currentPhase: string, outcome: string): string => {
+const determineNextPhase = (currentPhase: string, outcome: string, isFinalAssessment = false): string => {
   const {
     RULES,
     ASSIGNMENT,
@@ -82,7 +83,11 @@ const determineNextPhase = (currentPhase: string, outcome: string): string => {
   }
 
   if (currentPhase === ASSESSMENT) {
-    return INVESTIGATION;
+    return isFinalAssessment ? FINAL_ASSESSMENT : INVESTIGATION;
+  }
+
+  if (currentPhase === FINAL_ASSESSMENT) {
+    return ASSESSMENT;
   }
 
   const currentPhaseIndex = order.indexOf(currentPhase);
@@ -126,7 +131,10 @@ const checkResolution = (state: FirebaseFirestore.DocumentData, players: Players
 
     return {
       outcome: E_CONSTANTS.OUTCOME.VOTE_FAIL,
-      votedYes: playersWhoVotedYes.map((player) => player.name).join(', '),
+      votedYes: playersWhoVotedYes
+        .map((player) => player.name)
+        .sort()
+        .join(', '),
     };
   }
 
@@ -154,7 +162,9 @@ export const nextEspiaoEntreNosPhase = async (
   const resolution = checkResolution(state, players);
 
   // Determine next phase
-  const nextPhase = additionalData?.forcePhase || determineNextPhase(state?.phase, resolution?.outcome ?? '');
+  const nextPhase =
+    additionalData?.forcePhase ||
+    determineNextPhase(state?.phase, resolution?.outcome ?? '', state?.finalAssessment);
 
   // * -> ASSIGNMENT
   if (nextPhase === PHASES.ESPIAO_ENTRE_NOS.ASSIGNMENT) {
@@ -173,7 +183,7 @@ export const nextEspiaoEntreNosPhase = async (
 
   // * -> FINAL_ASSESSMENT
   if (nextPhase === PHASES.ESPIAO_ENTRE_NOS.FINAL_ASSESSMENT) {
-    return prepareFinalAssessmentPhase(sessionRef, players);
+    return prepareFinalAssessmentPhase(sessionRef, state, players);
   }
 
   // * -> FINAL_ASSESSMENT
@@ -225,7 +235,7 @@ const prepareAssignmentPhase = async (
     }
     player.role = playerRole;
     player.usedAccusation = false;
-    player.false = false;
+    player.false = false; // TODO: what the hell?
   });
 
   // Save used cards to store
@@ -244,6 +254,7 @@ const prepareAssignmentPhase = async (
     currentSpy,
     currentLocation,
     possibleLocations,
+    startingPlayer: gameUtils.shuffle(Object.keys(players))[0],
   });
 
   return true;
@@ -269,6 +280,17 @@ const prepareAssessmentPhase = async (
   newPlayers[accuser].vote = true;
 
   await sessionRef.doc('players').set(players);
+
+  // Save new state
+  if (state?.finalAssessment) {
+    await sessionRef.doc('state').update({
+      phase: PHASES.ESPIAO_ENTRE_NOS.ASSESSMENT,
+      updatedAt: Date.now(),
+      target,
+      accuser,
+    });
+    return true;
+  }
 
   // Save new state
   await sessionRef.doc('state').update({
@@ -314,6 +336,7 @@ const prepareInvestigationPhase = async (
 
 const prepareFinalAssessmentPhase = async (
   sessionRef: FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData>,
+  state: FirebaseFirestore.DocumentData,
   players: Players
 ) => {
   // Save new state
@@ -324,7 +347,9 @@ const prepareFinalAssessmentPhase = async (
     accuser: utils.deleteValue(),
     timerStartedAt: utils.deleteValue(),
     timeRemaining: utils.deleteValue(),
-    playerOrder: gameUtils.shuffle(Object.keys(players)),
+    playerOrder: state.playerOrder ?? gameUtils.shuffle(Object.keys(players)),
+    finalAssessment: true,
+    playerOrderIndex: state.playerOrderIndex !== undefined ? state.playerOrderIndex + 1 : 0,
     timerStatus: E_CONSTANTS.TIMER_STATUS.STOPPED,
   });
 
@@ -519,6 +544,7 @@ export const handleAdminAction = async (data: EspiaoEntreNosAdminPayload, contex
   if (typeof action === 'string' && action === 'final') {
     return nextEspiaoEntreNosPhase(collectionName, gameId, players, {
       forcePhase: PHASES.ESPIAO_ENTRE_NOS.FINAL_ASSESSMENT,
+      lastPlayer: data.lastPlayer,
     });
   }
 
