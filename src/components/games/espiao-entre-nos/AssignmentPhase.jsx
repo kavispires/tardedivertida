@@ -31,7 +31,7 @@ function AssignmentPhase({ state, players, info }) {
         <RoundAnnouncement
           round={state.round}
           onPressButton={() => setStep(1)}
-          time={555}
+          time={5}
           className="e-round-announcement"
         >
           <Instruction className="e-phase-instruction">Há um espião entre nós!</Instruction>

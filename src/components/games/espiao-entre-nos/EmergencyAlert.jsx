@@ -43,7 +43,7 @@ function EmergencyAlert() {
   const [isVisible, setVisible] = useState(true);
 
   useTimer({
-    expiryTimestamp: inNSeconds(3),
+    expiryTimestamp: inNSeconds(2),
     autoStart: true,
     onExpire: () => setVisible(false),
   });
