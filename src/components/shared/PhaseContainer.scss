@@ -29,4 +29,18 @@
     top: get-unit(1);
     background: rgba($color: #ffffff, $alpha: 0.9);
   }
+
+  &__dev-player-name {
+    background: get-color(white);
+    border-radius: get-unit(3);
+    padding: get-unit(0 2);
+    position: absolute;
+    top: get-unit(1);
+    left: get-unit(1);
+    transform: scale(0.5);
+
+    &:hover {
+      transform: scale(1.5);
+    }
+  }
 }
