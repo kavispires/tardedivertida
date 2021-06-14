@@ -20,6 +20,7 @@ import {
   Step,
   Title,
   WaitingRoom,
+  ReadyPlayersBar,
 } from '../../shared';
 
 function prepareVotes(votes) {
@@ -125,6 +126,12 @@ function EvaluationPhase({ players, state, info }) {
               Enviar sua avaliação
             </Button>
           </ButtonContainer>
+
+          <ReadyPlayersBar
+            readyText="Já acabei, anda logo!"
+            readyTextPlural="Já acabamos, anda logo!"
+            showNames
+          />
         </Step>
 
         {/*Step 1 */}
