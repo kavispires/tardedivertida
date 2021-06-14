@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
 import { Button, Space } from 'antd';
-import { EnvironmentOutlined } from '@ant-design/icons';
 // Hooks
 import { useUser, useAPICall, useIsUserThe } from '../../../hooks';
 // Resources & Utils
@@ -11,11 +10,11 @@ import { PHASES } from '../../../utils/constants';
 // Components
 import { Instruction, PhaseContainer, ReadyPlayersBar, Title } from '../../shared';
 import Card from '../../cards/EspiaoEntreNosCard';
-import List from './List';
 import Notes from './Notes';
 import AdminTimerControlButton from './AdminTimerControlButton';
 import SuspectsList from './SuspectsList';
 import EmergencyAlert from './EmergencyAlert';
+import LocationsList from './LocationsList';
 
 function AssessmentPhase({ state, players, info }) {
   const user = useUser(players);
@@ -69,11 +68,7 @@ function AssessmentPhase({ state, players, info }) {
 
       <Instruction className="e-lists">
         <SuspectsList players={players} />
-        <List
-          header="Possíveis Locais"
-          headerIcon={<EnvironmentOutlined />}
-          items={state.possibleLocations}
-        />
+        <LocationsList locations={state.possibleLocations} />
       </Instruction>
 
       <Notes />
