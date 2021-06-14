@@ -1,7 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
-import { EnvironmentOutlined } from '@ant-design/icons';
 import { notification } from 'antd';
 // Hooks
 import { useUser, useAPICall, useIsUserThe } from '../../../hooks';
@@ -11,13 +10,13 @@ import { PHASES } from '../../../utils/constants';
 // Components
 import { Instruction, PhaseContainer, Title } from '../../shared';
 import Card from '../../cards/EspiaoEntreNosCard';
-import List from './List';
 import Notes from './Notes';
 import PlayerSelect from './PlayerSelect';
 import LocationSelect from './LocationSelect';
 import Timer from './Timer';
 import AdminTimerControlButton from './AdminTimerControlButton';
 import SuspectsList from './SuspectsList';
+import LocationsList from './LocationsList';
 
 function InvestigationPhase({ state, players, info }) {
   const user = useUser(players);
@@ -98,11 +97,7 @@ function InvestigationPhase({ state, players, info }) {
 
       <Instruction className="e-lists">
         <SuspectsList players={players} />
-        <List
-          header="Possíveis Locais"
-          headerIcon={<EnvironmentOutlined />}
-          items={state.possibleLocations}
-        />
+        <LocationsList locations={state.possibleLocations} />
       </Instruction>
 
       <Notes />

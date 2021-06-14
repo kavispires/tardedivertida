@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
-import { EnvironmentOutlined } from '@ant-design/icons';
 // Hooks
 import { useIsUserReady, useUser, useIsUserThe } from '../../../hooks';
 // Resources & Utils
@@ -9,9 +8,9 @@ import { PHASES } from '../../../utils/constants';
 // Components
 import { Instruction, PhaseContainer, RoundAnnouncement, StepSwitcher, Title } from '../../shared';
 import Card from '../../cards/EspiaoEntreNosCard';
-import List from './List';
 import Notes from './Notes';
 import AdminTimerControlButton from './AdminTimerControlButton';
+import LocationsList from './LocationsList';
 
 function AssignmentPhase({ state, players, info }) {
   const isUserReady = useIsUserReady(players, state);
@@ -54,11 +53,7 @@ function AssignmentPhase({ state, players, info }) {
           </Instruction>
 
           <Instruction className="e-lists">
-            <List
-              header="Possíveis Locais"
-              headerIcon={<EnvironmentOutlined />}
-              items={state.possibleLocations}
-            />
+            <LocationsList locations={state.possibleLocations} />
           </Instruction>
           <Notes />
         </div>

@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
-import { Button, message, Modal, notification, Select } from 'antd';
-import { AimOutlined, EnvironmentOutlined } from '@ant-design/icons';
+import { Button, Modal, notification, Select } from 'antd';
 // Hooks
 import { useUser, useAPICall } from '../../../hooks';
 // Resources & Utils
@@ -11,7 +10,8 @@ import { PHASES } from '../../../utils/constants';
 // Components
 import { AdminOnly, ButtonContainer, Instruction, PhaseContainer, Title } from '../../shared';
 import Card from '../../cards/EspiaoEntreNosCard';
-import List from './List';
+import LocationsList from './LocationsList';
+import SuspectsList from './SuspectsList';
 import Notes from './Notes';
 import PlayerSelect from './PlayerSelect';
 
@@ -81,7 +81,7 @@ function FinalAssessmentPhase({ state, players, info }) {
   }, []); // eslint-disable-line
 
   const isUserTheAccuser = state.playerOrder[state.playerOrderIndex] === user.name;
-  console.log({ playerOrderIndex: state.playerOrderIndex });
+
   return (
     <PhaseContainer
       info={info}
@@ -106,12 +106,8 @@ function FinalAssessmentPhase({ state, players, info }) {
       <Card location={user.location} role={user.role} />
 
       <Instruction className="e-lists">
-        <List header="Suspeitos" headerIcon={<AimOutlined />} items={Object.keys(players)} />
-        <List
-          header="Possíveis Locais"
-          headerIcon={<EnvironmentOutlined />}
-          items={state.possibleLocations}
-        />
+        <SuspectsList players={players} />
+        <LocationsList locations={state.possibleLocations} />
       </Instruction>
 
       <Notes />

@@ -3,14 +3,12 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 // Design Resources
 import { Button, Tooltip } from 'antd';
-import { ClearOutlined } from '@ant-design/icons';
+import { ClearOutlined, EnvironmentOutlined } from '@ant-design/icons';
 // Hooks
 import { useGlobalState } from '../../../hooks';
 
-function List({ header, headerIcon, items, column }) {
+function List({ locations }) {
   const [cache, setCache] = useGlobalState('espiaoEntreNosCache');
-
-  // const [crossed, setCrossed] = useState({});
 
   const onCross = (item) => {
     setCache((s) => {
@@ -27,9 +25,9 @@ function List({ header, headerIcon, items, column }) {
   const onClearCrossed = () => setCache({});
 
   return (
-    <div className={clsx('e-list', column && 'e-list--column')}>
+    <div className="e-list">
       <h3 className="e-list__title">
-        {headerIcon} {header}{' '}
+        <EnvironmentOutlined /> Possíveis Locais
         <Tooltip title="Deselecionar todos">
           <Button
             shape="circle"
@@ -41,8 +39,8 @@ function List({ header, headerIcon, items, column }) {
           />
         </Tooltip>
       </h3>
-      <ul className={clsx('e-list__list', column && 'e-list__list--column')}>
-        {items.map((item) => (
+      <ul className={clsx('e-list__list')}>
+        {locations.map((item) => (
           <li
             className={clsx('e-list__item', cache[item] && 'e-list__item--crossed')}
             key={item}
@@ -58,14 +56,7 @@ function List({ header, headerIcon, items, column }) {
 }
 
 List.propTypes = {
-  header: PropTypes.string.isRequired,
-  headerIcon: PropTypes.element.isRequired,
-  items: PropTypes.arrayOf(PropTypes.string),
-  column: PropTypes.bool,
-};
-
-List.defaultProps = {
-  column: false,
+  locations: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default memo(List);

@@ -453,7 +453,7 @@ export const allWordsBR = {
   452: 'Fumaça',
   453: 'Cobra',
   454: 'Neve',
-  455: 'Soaf',
+  455: 'Sofá',
   456: 'Sabão',
   457: 'Soquete',
   458: 'Soquete',
