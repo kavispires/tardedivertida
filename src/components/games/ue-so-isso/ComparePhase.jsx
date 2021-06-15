@@ -6,7 +6,7 @@ import { useIsUserThe, useAPICall, useWhichPlayerIsThe } from '../../../hooks';
 import { UE_SO_ISSO_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
 // Components
-import { PhaseContainer, Step, StepSwitcher, View, WaitingRoom } from '../../shared';
+import { PhaseContainer, Step, StepSwitcher, ViewIf, WaitingRoom } from '../../shared';
 import CompareSuggestionsStep from './CompareSuggestionsStep';
 
 function ComparePhase({ state, players, info }) {
@@ -36,15 +36,15 @@ function ComparePhase({ state, players, info }) {
       <StepSwitcher step={step}>
         {/* Step 0 */}
         <Step fullWidth>
-          <View visibleIf={isUserTheGuesser}>
+          <ViewIf isVisible={isUserTheGuesser}>
             <WaitingRoom
               players={players}
               title="Você é o(a) adivinhador(a)"
               instruction="Aguarde os outros jogadores selecionarem as dicas válidas."
             />
-          </View>
+          </ViewIf>
 
-          <View visibleIf={!isUserTheGuesser}>
+          <ViewIf isVisible={!isUserTheGuesser}>
             <CompareSuggestionsStep
               nextGuesser={nextGuesser}
               isUserTheNextGuesser={isUserTheNextGuesser}
@@ -53,7 +53,7 @@ function ComparePhase({ state, players, info }) {
               players={players}
               onValidateSuggestions={onValidateSuggestions}
             />
-          </View>
+          </ViewIf>
         </Step>
 
         {/* Step 1 */}

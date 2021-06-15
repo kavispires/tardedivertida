@@ -6,7 +6,7 @@ import { useIsUserReady, useWhichPlayerIsThe, useIsUserThe, useAPICall } from '.
 import { UE_SO_ISSO_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
 // Components
-import { PhaseContainer, Step, StepSwitcher, View, WaitingRoom } from '../../shared';
+import { PhaseContainer, Step, StepSwitcher, ViewIf, WaitingRoom } from '../../shared';
 import SuggestionStep from './SuggestionStep';
 
 function SuggestPhase({ state, players, info }) {
@@ -35,22 +35,22 @@ function SuggestPhase({ state, players, info }) {
       <StepSwitcher step={step} conditions={[!isUserReady]}>
         {/* Step 0 */}
         <Step fullWidth>
-          <View visibleIf={isUserTheGuesser}>
+          <ViewIf isVisible={isUserTheGuesser}>
             <WaitingRoom
               players={players}
               title="Você é o(a) adivinhador(a)"
               instruction="Aguarde enquanto os outros jogadores escrevem dicas para você adivinhar."
             />
-          </View>
+          </ViewIf>
 
-          <View visibleIf={!isUserTheGuesser}>
+          <ViewIf isVisible={!isUserTheGuesser}>
             <SuggestionStep
               guesser={guesser}
               onSendSuggestions={onSendSuggestions}
               secretWord={state.secretWord}
               suggestionsNumber={state.suggestionsNumber}
             />
-          </View>
+          </ViewIf>
         </Step>
 
         {/* Step 1 */}

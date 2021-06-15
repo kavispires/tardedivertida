@@ -6,7 +6,7 @@ import { useIsUserReady, useWhichPlayerIsThe, useIsUserThe, useAPICall } from '.
 import { ONDA_TELEPATICA } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
 // Components
-import { PhaseContainer, StepSwitcher, Step, View, WaitingRoom } from '../../shared';
+import { PhaseContainer, StepSwitcher, Step, ViewIf, WaitingRoom } from '../../shared';
 import Card from './Card';
 import DialClueWriting from './DialClueWriting';
 
@@ -35,11 +35,11 @@ function DialCluePhase({ state, players, info }) {
       <StepSwitcher step={step} conditions={[!isUserReady]}>
         {/* Step 0 */}
         <Step>
-          <View visibleIf={isUserThePsychic}>
+          <ViewIf isVisible={isUserThePsychic}>
             <DialClueWriting card={state.card} onSendClue={onSendClue} />
-          </View>
+          </ViewIf>
 
-          <View visibleIf={!isUserThePsychic}>
+          <ViewIf isVisible={!isUserThePsychic}>
             <WaitingRoom
               players={players}
               title={`${psychic.name} está pensando em uma dica...`}
@@ -49,7 +49,7 @@ function DialCluePhase({ state, players, info }) {
                 <Card left={state.card.left} right={state.card.right} />
               </div>
             </WaitingRoom>
-          </View>
+          </ViewIf>
         </Step>
 
         {/* Step 1 */}
