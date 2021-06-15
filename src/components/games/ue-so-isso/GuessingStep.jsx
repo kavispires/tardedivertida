@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Space } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 // Components
-import { Instruction, Step, Title, View } from '../../shared';
+import { Instruction, Step, Title, ViewIf } from '../../shared';
 import UeSoIssoCard from '../../cards/UeSoIssoCard';
 import Guess from './Guess';
 import { AvatarName } from '../../avatars';
@@ -20,7 +20,7 @@ function GuessingStep({
 }) {
   return (
     <Step>
-      <View visibleIf={isUserTheGuesser}>
+      <ViewIf isVisible={isUserTheGuesser}>
         <Title>
           Hora de brilhar, <AvatarName player={guesser} />!
         </Title>
@@ -38,9 +38,9 @@ function GuessingStep({
         </Space>
 
         <Guess onSubmitGuess={onSubmitGuess} onSendGuess={onSendGuess} />
-      </View>
+      </ViewIf>
 
-      <View visibleIf={!isUserTheGuesser}>
+      <ViewIf isVisible={!isUserTheGuesser}>
         <Title>
           Hora de <AvatarName player={guesser} /> brilhar!
         </Title>
@@ -56,7 +56,7 @@ function GuessingStep({
             return <SuggestionEasel key={id} id={id} value={suggestionEntry.suggestion} />;
           })}
         </Space>
-      </View>
+      </ViewIf>
     </Step>
   );
 }

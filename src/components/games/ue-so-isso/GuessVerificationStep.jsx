@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import { Button, message, Space } from 'antd';
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 // Components
-import { Instruction, Step, Title, View } from '../../shared';
+import { Instruction, Step, Title, ViewIf } from '../../shared';
 import UeSoIssoCard from '../../cards/UeSoIssoCard';
 import { AvatarName } from '../../avatars';
 import SuggestionEasel from './SuggestionEasel';
@@ -33,7 +33,7 @@ function GuessVerificationStep({
 
   return (
     <Step>
-      <View visibleIf={isUserTheGuesser}>
+      <ViewIf isVisible={isUserTheGuesser}>
         <Title>
           <AvatarName player={guesser} addressUser /> disse "{guess}"
         </Title>
@@ -53,9 +53,9 @@ function GuessVerificationStep({
             return <SuggestionEasel key={id} id={id} value={suggestionEntry.suggestion} />;
           })}
         </Space>
-      </View>
+      </ViewIf>
 
-      <View visibleIf={!isUserTheGuesser}>
+      <ViewIf isVisible={!isUserTheGuesser}>
         <Title>
           <AvatarName player={guesser} addressUser /> disse "{guess}"
         </Title>
@@ -98,7 +98,7 @@ function GuessVerificationStep({
             </Button>
           </Space>
         )}
-      </View>
+      </ViewIf>
     </Step>
   );
 }

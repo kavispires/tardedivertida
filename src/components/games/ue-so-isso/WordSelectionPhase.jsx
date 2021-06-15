@@ -14,7 +14,7 @@ import {
   RoundAnnouncement,
   Step,
   StepSwitcher,
-  View,
+  ViewIf,
   WaitingRoom,
 } from '../../shared';
 import WordSelectionStep from './WordSelectionStep';
@@ -66,21 +66,21 @@ function WordSelectionPhase({ state, players, info }) {
 
         {/* Step 1 */}
         <Step fullWidth>
-          <View visibleIf={isUserTheGuesser}>
+          <ViewIf isVisible={isUserTheGuesser}>
             <WaitingRoom
               players={players}
               title="Você é o(a) adivinhador(a)"
               instruction="Aguarde os outros jogadores decidirem a palavra secreta."
             />
-          </View>
+          </ViewIf>
 
-          <View visibleIf={!isUserTheGuesser}>
+          <ViewIf isVisible={!isUserTheGuesser}>
             <WordSelectionStep
               words={state?.words}
               onSendSelectedWords={onSendSelectedWords}
               guesser={guesser}
             />
-          </View>
+          </ViewIf>
         </Step>
 
         {/* Step 2 */}

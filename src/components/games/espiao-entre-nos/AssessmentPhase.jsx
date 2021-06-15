@@ -8,7 +8,7 @@ import { useUser, useAPICall, useIsUserThe } from '../../../hooks';
 import { ESPIAO_ENTRE_NOS_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
 // Components
-import { Instruction, PhaseContainer, ReadyPlayersBar, Title } from '../../shared';
+import { Instruction, PhaseContainer, ReadyPlayersBar, Title, View, ViewSwitch } from '../../shared';
 import Card from '../../cards/EspiaoEntreNosCard';
 import Notes from './Notes';
 import AdminTimerControlButton from './AdminTimerControlButton';
@@ -44,14 +44,21 @@ function AssessmentPhase({ state, players, info }) {
 
       {!state?.finalAssessment && <EmergencyAlert />}
 
-      <div>
-        {isUserTheAccuser || isUserTheTarget ? (
+      <ViewSwitch cases={[isUserTheAccuser, isUserTheTarget, true]}>
+        <View key="accuser">
           <Instruction className="e-phase-instruction">
-            Você não participa dessa votacão, afinal,{' '}
-            {isUserTheTarget ? 'é você quem está no paredão!' : 'você quem acusou!'}
+            Você não participa dessa votacão, afinal, você quem acusou!
           </Instruction>
-        ) : (
-          <Space className="a">
+        </View>
+
+        <View key="target">
+          <Instruction className="e-phase-instruction">
+            Você não participa dessa votacão, afinal, é você quem está no paredão!
+          </Instruction>
+        </View>
+
+        <View key="others">
+          <Space>
             <Button ghost disabled={submittedAction} onClick={() => onSubmitVoting({ vote: true })}>
               Também acho!
             </Button>
@@ -59,8 +66,8 @@ function AssessmentPhase({ state, players, info }) {
               Não é ele(a)
             </Button>
           </Space>
-        )}
-      </div>
+        </View>
+      </ViewSwitch>
 
       <Card location={user.location} role={user.role} />
 
