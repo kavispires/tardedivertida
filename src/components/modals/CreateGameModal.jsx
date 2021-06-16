@@ -10,7 +10,7 @@ import { useLoading } from '../../hooks';
 // Constants
 import { PUBLIC_URL } from '../../utils/constants';
 // Components
-import Loading from '../loaders/Loading';
+import { Loading } from '../loaders';
 import { Instruction, Title } from '../shared';
 
 function CreateGameModal({ gameInfo }) {

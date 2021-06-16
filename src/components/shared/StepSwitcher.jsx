@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 // Components
-import Loading from '../loaders/Loading';
+import { Loading } from '../loaders';
 
 export function StepSwitcher({ children, step, conditions }) {
   if (!children[step]) {

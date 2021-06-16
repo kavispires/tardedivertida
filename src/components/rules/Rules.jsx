@@ -7,7 +7,7 @@ import { GAME_API } from '../../adapters';
 import { useLoading, useIsUserReady, useAPICall } from '../../hooks';
 // Components
 import RulesCarousel from './RulesCarousel';
-import LoadingPage from '../loaders/LoadingPage';
+import { LoadingPage } from '../loaders';
 import { ReadyPlayersBar } from '../shared';
 
 function Rules({ players, info }) {

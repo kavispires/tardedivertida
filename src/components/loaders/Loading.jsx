@@ -4,7 +4,7 @@ import clsx from 'clsx';
 // Design Resources
 import { Space, Spin, Typography } from 'antd';
 
-function Loading({ message, margin }) {
+export function Loading({ message, margin }) {
   return (
     <Space className={clsx('loading', margin && 'loading--margin')}>
       <Spin />
@@ -21,5 +21,3 @@ Loading.propTypes = {
 Loading.defaultProps = {
   margin: false,
 };
-
-export default Loading;
