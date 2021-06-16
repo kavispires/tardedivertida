@@ -10,7 +10,7 @@ import { useIsGameStale, useLoading, useGlobalState } from '../hooks';
 import { getGameIdFromURL, getGameIdFromLocation, isValidGameId } from '../utils';
 import { GAME_COLLECTION } from '../utils/constants';
 // Components
-import LoadingPage from './loaders/LoadingPage';
+import { LoadingPage } from './loaders';
 import PageError from './errors/PageError';
 import GameSessions from './games';
 
