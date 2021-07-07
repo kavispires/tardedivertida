@@ -194,6 +194,7 @@ export const LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
  */
 export const GAME_COLLECTION = {
   ARTE_RUIM: 'arte-ruim',
+  CLUBE_DETETIVES: 'clube-detetives',
   ESPIAO_ENTRE_NOS: 'espiao-entre-nos',
   ONDA_TELEPATICA: 'onda-telepatica',
   UE_SO_ISSO: 'ue-so-isso',
@@ -209,6 +210,15 @@ export const PHASES = {
     DRAW: 'DRAW',
     EVALUATION: 'EVALUATION',
     GALLERY: 'GALLERY',
+    GAME_OVER: 'GAME_OVER',
+  },
+  CLUBE_DETETIVES: {
+    LOBBY: 'LOBBY',
+    RULES: 'RULES',
+    SECRET_CLUE: 'SECRET_CLUE',
+    CARD_PLAY: 'CARD_PLAY',
+    DEFENSE: 'DEFENSE',
+    REVEAL: 'REVEAL',
     GAME_OVER: 'GAME_OVER',
   },
   ESPIAO_ENTRE_NOS: {
