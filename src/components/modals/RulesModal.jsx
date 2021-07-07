@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { Button, Modal } from 'antd';
 import { ReadOutlined } from '@ant-design/icons';
 // Components
-import RulesCarousel from '../rules/RulesCarousel';
+import { RulesCarousel } from '../rules/index';
 
 export function RulesModal({ gameInfo }) {
   const [isVisible, setVisibility] = useState(false);

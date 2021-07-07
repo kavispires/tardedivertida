@@ -8,7 +8,8 @@ import { useUser, useAPICall } from '../../../hooks';
 import { ESPIAO_ENTRE_NOS_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
 // Components
-import { AdminOnly, ButtonContainer, Instruction, PhaseContainer, Title } from '../../shared';
+import { AdminOnly } from '../../admin/index';
+import { ButtonContainer, Instruction, PhaseContainer, Title } from '../../shared';
 import { EspiaoEntreNosCard as Card } from '../../cards';
 import LocationsList from './LocationsList';
 import SuspectsList from './SuspectsList';

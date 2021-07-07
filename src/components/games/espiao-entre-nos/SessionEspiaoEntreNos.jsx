@@ -4,7 +4,7 @@ import { GAME_COLLECTION, PHASES } from '../../../utils/constants';
 // Components
 import { GameOver, Session } from '../../shared';
 import Lobby from '../../lobby/Lobby';
-import Rules from '../../rules/Rules';
+import { Rules } from '../../rules';
 import { PageError } from '../../errors/PageError';
 import AssignmentPhase from './AssignmentPhase';
 import InvestigationPhase from './InvestigationPhase';
