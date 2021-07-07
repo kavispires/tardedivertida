@@ -5,7 +5,7 @@ import { GAME_COLLECTION, PHASES } from '../../../utils/constants';
 import { GameOver, Session } from '../../shared';
 import Lobby from '../../lobby/Lobby';
 import Rules from '../../rules/Rules';
-import PageError from '../../errors/PageError';
+import { PageError } from '../../errors/PageError';
 import WordSelectionPhase from './WordSelectionPhase';
 import SuggestPhase from './SuggestPhase';
 import ComparePhase from './ComparePhase';

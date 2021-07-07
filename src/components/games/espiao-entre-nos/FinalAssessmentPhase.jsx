@@ -9,7 +9,7 @@ import { ESPIAO_ENTRE_NOS_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
 // Components
 import { AdminOnly, ButtonContainer, Instruction, PhaseContainer, Title } from '../../shared';
-import Card from '../../cards/EspiaoEntreNosCard';
+import { EspiaoEntreNosCard as Card } from '../../cards';
 import LocationsList from './LocationsList';
 import SuspectsList from './SuspectsList';
 import Notes from './Notes';

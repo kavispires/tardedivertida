@@ -9,7 +9,7 @@ import { ESPIAO_ENTRE_NOS_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
 // Components
 import { Instruction, PhaseContainer, ReadyPlayersBar, Title, View, ViewSwitch } from '../../shared';
-import Card from '../../cards/EspiaoEntreNosCard';
+import { EspiaoEntreNosCard as Card } from '../../cards';
 import Notes from './Notes';
 import AdminTimerControlButton from './AdminTimerControlButton';
 import SuspectsList from './SuspectsList';

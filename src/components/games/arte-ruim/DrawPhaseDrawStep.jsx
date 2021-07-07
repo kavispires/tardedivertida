@@ -5,7 +5,7 @@ import { useTimer } from 'react-timer-hook';
 import { inNSeconds } from '../../../utils';
 // Components
 import { Step } from '../../shared';
-import Card from '../../cards/Card';
+import { Card } from '../../cards';
 import DrawingCanvas from './DrawingCanvas';
 
 function DrawPhaseDrawStep({ secretCard, onSubmitDrawing }) {

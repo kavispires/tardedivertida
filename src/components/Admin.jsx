@@ -6,8 +6,7 @@ import { Typography, Layout, Space, Card, Image, Divider, Tag } from 'antd';
 import gameList from '../resources/games.json';
 import { PUBLIC_URL, TAG_DICT } from '../utils/constants';
 // Components
-import CreateGameModal from './modals/CreateGameModal';
-import RulesModal from './modals/RulesModal';
+import { CreateGameModal, RulesModal } from './modals';
 import { orderBy } from '../utils';
 
 function Admin() {

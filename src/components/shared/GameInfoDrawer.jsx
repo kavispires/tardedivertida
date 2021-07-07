@@ -6,7 +6,7 @@ import { InfoCircleOutlined } from '@ant-design/icons';
 import { AVATAR_DESCRIPTIONS_BR } from '../../utils/constants';
 // Components
 import { Avatar } from '../avatars';
-import RulesModal from '../modals/RulesModal';
+import { RulesModal } from '../modals';
 
 function SectionMe({ player, isTeamGame }) {
   return (

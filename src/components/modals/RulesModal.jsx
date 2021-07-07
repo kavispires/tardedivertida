@@ -7,7 +7,7 @@ import { ReadOutlined } from '@ant-design/icons';
 // Components
 import RulesCarousel from '../rules/RulesCarousel';
 
-function RulesModal({ gameInfo }) {
+export function RulesModal({ gameInfo }) {
   const [isVisible, setVisibility] = useState(false);
 
   const onCloseModal = () => {
@@ -45,5 +45,3 @@ RulesModal.propTypes = {
     title: PropTypes.string,
   }),
 };
-
-export default RulesModal;

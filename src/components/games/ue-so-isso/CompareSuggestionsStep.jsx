@@ -9,10 +9,10 @@ import { useGlobalState, useLoading } from '../../../hooks';
 import { deepCopy } from '../../../utils';
 // Components
 import { AdminOnlyButton, Instruction, Step, Title } from '../../shared';
-import Card from '../../cards/UeSoIssoCard';
-import SuggestionCard from './SuggestionCard';
+import { UeSoIssoCard as Card } from '../../cards';
 import { AvatarName } from '../../avatars';
 import { messageContent } from '../../modals/messageContent';
+import SuggestionCard from './SuggestionCard';
 
 function CompareSuggestionsStep({
   isUserTheNextGuesser,
