@@ -8,7 +8,8 @@ import { useGlobalState, useLoading } from '../../../hooks';
 // Utils
 import { deepCopy } from '../../../utils';
 // Components
-import { AdminOnlyButton, Instruction, Step, Title } from '../../shared';
+import { AdminOnlyButton } from '../../admin/index';
+import { Instruction, Step, Title } from '../../shared';
 import { UeSoIssoCard as Card } from '../../cards';
 import { AvatarName } from '../../avatars';
 import { messageContent } from '../../modals/messageContent';

@@ -10,7 +10,8 @@ import { GAME_API } from '../../adapters';
 import { AVATAR_DESCRIPTIONS_BR } from '../../utils/constants';
 // Components
 import { Avatar } from '../avatars';
-import { AdminOnly, PhaseContainer } from './index';
+import { AdminOnly } from '../admin/index';
+import { PhaseContainer } from './index';
 
 export function GameOver({ info, state, children }) {
   const [isLoading] = useLoading();
