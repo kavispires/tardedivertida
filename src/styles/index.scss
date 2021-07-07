@@ -28,7 +28,6 @@
 @import '../components/rules/Rules.scss';
 @import '../components/shared/PhaseContainer.scss';
 @import '../components/shared/RoundAnnouncement.scss';
-@import '../components/shared/AdminOnly.scss';
 @import '../components/shared/ButtonContainer.scss';
 @import '../components/shared/RankingBoard.scss';
 @import '../components/shared/StarPoints.scss';
@@ -40,7 +39,8 @@
 @import '../components/shared/Title.scss';
 @import '../components/shared/GameInfoDrawer.scss';
 @import '../components/shared/StepSwitcher.scss';
-@import '../components/cards/Card.scss';
+@import '../components/cards/cards';
+@import '../components/admin/admin';
 
 // ArteRuim Components
 @import '../components/games/arte-ruim/SessionArteRuim.scss';

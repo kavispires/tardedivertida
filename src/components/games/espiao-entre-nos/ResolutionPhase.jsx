@@ -8,7 +8,8 @@ import { useUser, useAPICall, useIsUserThe } from '../../../hooks';
 import { ESPIAO_ENTRE_NOS_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
 // Components
-import { AdminOnly, AdminButton, Instruction, PhaseContainer, Title, ViewSwitch, View } from '../../shared';
+import { AdminOnly, AdminButton } from '../../admin/index';
+import { Instruction, PhaseContainer, Title, ViewSwitch, View } from '../../shared';
 
 function ResolutionPhase({ state, players, info }) {
   const user = useUser(players);

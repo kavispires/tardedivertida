@@ -5,7 +5,7 @@ import { useAPICall } from '../../../hooks';
 // Resources & Utils
 import { ESPIAO_ENTRE_NOS_API } from '../../../adapters';
 // Components
-import { AdminOnlyButton } from '../../shared';
+import { AdminOnlyButton } from '../../admin/index';
 
 function AdminTimerControlButton({ label = 'Continuar', action = 'resume' }) {
   const onControlStopwatch = useAPICall({

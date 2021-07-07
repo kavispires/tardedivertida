@@ -13,8 +13,7 @@ import Admin from './Admin';
 import Login from './Login';
 import Game from './Game';
 import TestingZone from './TestingZone';
-import LoadingPage from './loaders/LoadingPage';
-import LoadingBar from './loaders/LoadingBar';
+import { LoadingBar, LoadingPage } from './loaders';
 
 function PrivateRoute({ component: Component, authenticated, ...rest }) {
   return (

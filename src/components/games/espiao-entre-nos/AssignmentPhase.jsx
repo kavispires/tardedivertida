@@ -7,7 +7,7 @@ import { useIsUserReady, useUser, useIsUserThe } from '../../../hooks';
 import { PHASES } from '../../../utils/constants';
 // Components
 import { Instruction, PhaseContainer, RoundAnnouncement, StepSwitcher, Title } from '../../shared';
-import Card from '../../cards/EspiaoEntreNosCard';
+import { EspiaoEntreNosCard as Card } from '../../cards';
 import Notes from './Notes';
 import AdminTimerControlButton from './AdminTimerControlButton';
 import LocationsList from './LocationsList';

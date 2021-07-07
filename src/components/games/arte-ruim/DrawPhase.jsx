@@ -7,8 +7,8 @@ import { ARTE_RUIM_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
 import arteRuimTimer from '../../../sounds/arte-ruim-timer.mp3';
 // Components
+import { AdminForceNextPhase } from '../../admin/index';
 import {
-  AdminForceNextPhase,
   Instruction,
   PhaseContainer,
   RoundAnnouncement,

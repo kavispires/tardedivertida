@@ -11,8 +11,8 @@ import { PHASES } from '../../../utils/constants';
 import EvaluationAllDrawings from './EvaluationAllDrawings';
 import EvaluationAllCards from './EvaluationAllCards';
 import CanvasResizer from './CanvasResizer';
+import { AdminForceNextPhase } from '../../admin/index';
 import {
-  AdminForceNextPhase,
   ButtonContainer,
   Instruction,
   PhaseContainer,

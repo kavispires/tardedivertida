@@ -7,7 +7,7 @@ import { Typography, Image, Carousel, Button } from 'antd';
 import { PUBLIC_URL } from '../../utils/constants';
 import { DoubleLeftOutlined, DoubleRightOutlined } from '@ant-design/icons';
 
-function RulesCarousel({ info, className, ruleClass }) {
+export function RulesCarousel({ info, className, ruleClass }) {
   const settings = {
     prevArrow: (
       <Button>
@@ -64,5 +64,3 @@ RulesCarousel.defaultProps = {
   className: '',
   ruleClass: '',
 };
-
-export default RulesCarousel;

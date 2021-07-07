@@ -4,8 +4,8 @@ import { GAME_COLLECTION, PHASES } from '../../../utils/constants';
 // Components
 import { Session } from '../../shared';
 import Lobby from '../../lobby/Lobby';
-import Rules from '../../rules/Rules';
-import PageError from '../../errors/PageError';
+import { Rules } from '../../rules';
+import { PageError } from '../../errors/PageError';
 import DrawPhase from './DrawPhase';
 import EvaluationPhase from './EvaluationPhase';
 import GalleryPhase from './GalleryPhase';

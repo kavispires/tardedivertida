@@ -5,9 +5,9 @@ import { Space } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 // Components
 import { Instruction, Step, Title, ViewIf } from '../../shared';
-import UeSoIssoCard from '../../cards/UeSoIssoCard';
-import Guess from './Guess';
+import { UeSoIssoCard as Card } from '../../cards';
 import { AvatarName } from '../../avatars';
+import Guess from './Guess';
 import SuggestionEasel from './SuggestionEasel';
 
 function GuessingStep({
@@ -26,7 +26,7 @@ function GuessingStep({
         </Title>
         <Instruction contained>Você tem uma única change de adivinhar a palavra secreta!</Instruction>
 
-        <UeSoIssoCard word={<QuestionCircleOutlined />} header="A Palavra Secreta é" />
+        <Card word={<QuestionCircleOutlined />} header="A Palavra Secreta é" />
 
         <Instruction contained>Escreva seu chute no campo abaixo</Instruction>
 
@@ -47,7 +47,7 @@ function GuessingStep({
         <Instruction contained>
           {guesser.name} tem uma única change de adivinhar a palavra secreta!
         </Instruction>
-        <UeSoIssoCard word={secretWord.text} header="A Palavra Secreta é" />
+        <Card word={secretWord.text} header="A Palavra Secreta é" />
         <Instruction contained>{guesser.name} está pensando...</Instruction>
 
         <Space className="u-word-guess-phase__suggestions">

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 // Utils
 import { LETTERS } from '../../../utils/constants';
 // Components
-import Card from '../../cards/ArteRuimCard';
+import { ArteRuimCard as Card } from '../../cards';
 
 function EvaluationAllCards({ cards, activeItem, onActivateItem, votes }) {
   const liButtonBaseClass = 'a-evaluation-all-cards__li-card-button';

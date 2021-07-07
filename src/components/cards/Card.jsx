@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { getColorFromLetter } from '../../utils';
 
-function Card({
+export const Card = memo(function ({
   children,
   header,
   footer,
@@ -27,7 +27,7 @@ function Card({
       {footer && <span className={clsx(`${baseClass}__footer`, footerClassName)}>{footer}</span>}
     </div>
   );
-}
+});
 
 Card.propTypes = {
   children: PropTypes.any.isRequired,

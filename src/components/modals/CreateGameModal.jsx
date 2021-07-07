@@ -10,10 +10,10 @@ import { useLoading } from '../../hooks';
 // Constants
 import { PUBLIC_URL } from '../../utils/constants';
 // Components
-import Loading from '../loaders/Loading';
+import { Loading } from '../loaders';
 import { Instruction, Title } from '../shared';
 
-function CreateGameModal({ gameInfo }) {
+export function CreateGameModal({ gameInfo }) {
   const history = useHistory();
   const [, setLoader] = useLoading();
   const [isVisible, setVisibility] = useState(false);
@@ -103,5 +103,3 @@ CreateGameModal.propTypes = {
     title: PropTypes.string,
   }),
 };
-
-export default CreateGameModal;

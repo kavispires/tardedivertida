@@ -9,15 +9,8 @@ import { GAME_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
 // Components
 import GalleryWindow from './GalleryWindow';
-import {
-  AdminOnlyButton,
-  Instruction,
-  PhaseContainer,
-  RankingBoard,
-  StepSwitcher,
-  Step,
-  Title,
-} from '../../shared';
+import { AdminOnlyButton } from '../../admin/index';
+import { Instruction, PhaseContainer, RankingBoard, StepSwitcher, Step, Title } from '../../shared';
 
 function GalleryPhase({ players, state, info }) {
   const [activeIndex, setActiveIndex] = useState(0);
