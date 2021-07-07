@@ -3,7 +3,7 @@ import React, { Fragment, useMemo, useState } from 'react';
 import { Affix, Avatar as AntAvatar, Badge, Button, Divider, Drawer } from 'antd';
 import { InfoCircleOutlined } from '@ant-design/icons';
 // Utils
-import { AVATAR_DESCRIPTIONS_BR } from '../../utils/constants';
+import { AVATARS } from '../../utils/constants';
 // Components
 import { Avatar } from '../avatars';
 import { RulesModal } from '../modals';
@@ -16,7 +16,7 @@ function SectionMe({ player, isTeamGame }) {
         <Badge count={player.score} className="game-info-drawer__avatar-with-badge">
           <Avatar id={player.avatarId} shape="square" />
         </Badge>
-        {player.name}, {AVATAR_DESCRIPTIONS_BR[player.avatarId]}
+        {player.name}, {AVATARS[player.avatarId].description.br}
       </div>
     </div>
   );
@@ -105,7 +105,7 @@ function SectionTeamPlayers({ team, players }) {
           return (
             <div className="game-info-drawer__ranked-player" key={`ranked-${player.name}`}>
               <Avatar id={player.avatarId} shape="square" className="game-info-drawer__avatar-with-badge" />
-              {player.name}, {AVATAR_DESCRIPTIONS_BR[player.avatarId]}
+              {player.name}, {AVATARS[player.avatarId].description.br}
             </div>
           );
         })}
@@ -127,7 +127,7 @@ function SectionRankedPlayers({ players }) {
             <Badge count={player.score} className="game-info-drawer__avatar-with-badge">
               <Avatar id={player.avatarId} shape="square" />
             </Badge>
-            {player.name}, {AVATAR_DESCRIPTIONS_BR[player.avatarId]}
+            {player.name}, {AVATARS[player.avatarId].description.br}
           </div>
         );
       })}
