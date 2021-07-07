@@ -7,7 +7,7 @@ import { Layout } from 'antd';
 import { useGlobalState } from '../../hooks';
 // Components
 import { LoadingPage } from '../loaders';
-import PageError from '../errors/PageError';
+import { PageError } from '../errors/PageError';
 
 /**
  * Wrapping container around a game screen

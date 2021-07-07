@@ -5,7 +5,7 @@ import { Button, Space } from 'antd';
 import { CloudUploadOutlined } from '@ant-design/icons';
 // Components
 import { Instruction, Step, Title } from '../../shared';
-import Card from '../../cards/UeSoIssoCard';
+import { UeSoIssoCard as Card } from '../../cards';
 import { AvatarName } from '../../avatars';
 import SuggestionEasel from './SuggestionEasel';
 
