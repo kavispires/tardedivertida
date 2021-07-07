@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 // Design Resources
 import { QuestionCircleFilled } from '@ant-design/icons';
 // Components
-import Card from './Card';
+import { Card } from './index';
 
-function EspiaoEntreNosCard({ location, role, header = 'Local' }) {
+export const EspiaoEntreNosCard = memo(function ({ location, role, header = 'Local' }) {
   return (
     <Card
       color={location === 'SPY' ? 'red' : 'lime'}
@@ -18,12 +18,10 @@ function EspiaoEntreNosCard({ location, role, header = 'Local' }) {
       {location === 'SPY' ? <QuestionCircleFilled /> : location}
     </Card>
   );
-}
+});
 
 EspiaoEntreNosCard.propTypes = {
   location: PropTypes.string.isRequired,
   header: PropTypes.string,
   role: PropTypes.string.isRequired,
 };
-
-export default memo(EspiaoEntreNosCard);

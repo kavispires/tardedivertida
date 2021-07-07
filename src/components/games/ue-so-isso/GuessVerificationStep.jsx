@@ -6,10 +6,10 @@ import { Button, message, Space } from 'antd';
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 // Components
 import { Instruction, Step, Title, ViewIf } from '../../shared';
-import UeSoIssoCard from '../../cards/UeSoIssoCard';
+import { UeSoIssoCard as Card } from '../../cards';
 import { AvatarName } from '../../avatars';
-import SuggestionEasel from './SuggestionEasel';
 import { messageContent } from '../../modals/messageContent';
+import SuggestionEasel from './SuggestionEasel';
 
 function GuessVerificationStep({
   guess,
@@ -38,7 +38,7 @@ function GuessVerificationStep({
           <AvatarName player={guesser} addressUser /> disse "{guess}"
         </Title>
 
-        <UeSoIssoCard word={secretWord.text} header="A Palavra Secreta é" />
+        <Card word={secretWord.text} header="A Palavra Secreta é" />
 
         <Instruction contained>
           <AvatarName player={nextGuesser} /> está encarregado(a) de apertar os botões se você acertou ou não.{' '}
@@ -60,7 +60,7 @@ function GuessVerificationStep({
           <AvatarName player={guesser} addressUser /> disse "{guess}"
         </Title>
 
-        <UeSoIssoCard word={secretWord.text} header="A Palavra Secreta é" />
+        <Card word={secretWord.text} header="A Palavra Secreta é" />
 
         <Instruction contained>
           <AvatarName player={nextGuesser} addressUser /> está encarregado(a) de apertar os botões se você

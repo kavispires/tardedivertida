@@ -1,5 +1,3 @@
-export * from './AdminForceNextPhase';
-export * from './AdminOnly';
 export * from './ButtonContainer';
 export * from './GameOver';
 export * from './Instruction';

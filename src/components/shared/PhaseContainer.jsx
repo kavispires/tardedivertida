@@ -3,10 +3,11 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 // Design Resources
 import { Layout } from 'antd';
-// Components
-import LoadingPage from '../loaders/LoadingPage';
-import PageError from '../errors/PageError';
+// Hooks
 import { useGlobalState } from '../../hooks';
+// Components
+import { LoadingPage } from '../loaders';
+import { PageError } from '../errors/PageError';
 
 /**
  * Wrapping container around a game screen

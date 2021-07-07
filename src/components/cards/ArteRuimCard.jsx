@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import { WarningOutlined } from '@ant-design/icons';
 import { getColorFromLetter } from '../../utils';
 // Components
-import Card from './Card';
+import { Card } from './index';
 
-function ArteRuimCard({ text, level, header = 'X' }) {
+export const ArteRuimCard = memo(function ({ text, level, header = 'X' }) {
   return (
     <Card
       color={getColorFromLetter(header)}
@@ -17,12 +17,10 @@ function ArteRuimCard({ text, level, header = 'X' }) {
       {text ?? <WarningOutlined />}
     </Card>
   );
-}
+});
 
 ArteRuimCard.propTypes = {
   text: PropTypes.string.isRequired,
   header: PropTypes.string,
   level: PropTypes.number,
 };
-
-export default memo(ArteRuimCard);

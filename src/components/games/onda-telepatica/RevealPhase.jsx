@@ -11,7 +11,8 @@ import { GAME_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
 import { getOppositeTeam, inNSeconds } from '../../../utils';
 // Components
-import { AdminOnlyButton, Instruction, PhaseContainer, Title } from '../../shared';
+import { AdminOnlyButton } from '../../admin/index';
+import { Instruction, PhaseContainer, Title } from '../../shared';
 
 import Dial from './Dial';
 

@@ -5,8 +5,7 @@ import PropTypes from 'prop-types';
 import { Button, Space } from 'antd';
 import { FireFilled } from '@ant-design/icons';
 // State & Hooks
-import useGlobalState from '../../hooks/useGlobalState';
-import { useAPICall, useLoading } from '../../hooks';
+import { useAPICall, useGlobalState, useLoading } from '../../hooks';
 import { GAME_API } from '../../adapters';
 
 export function AdminForceNextPhase({ className = '' }) {
@@ -31,7 +30,7 @@ export function AdminForceNextPhase({ className = '' }) {
         onClick={() => onGoToNextPhase({})}
         disabled={isLoading}
       >
-        ADMIN: Force Next Phase
+        Force Next Phase
       </Button>
     </Space>
   );
