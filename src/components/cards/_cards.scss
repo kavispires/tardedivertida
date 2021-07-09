@@ -64,3 +64,17 @@
     }
   }
 }
+
+.image-card {
+  border-radius: get-unit(3);
+  margin: get-unit(1);
+  transition: 500ms transform;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  .ant-image-img {
+    border-radius: get-unit(3);
+  }
+}
