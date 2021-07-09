@@ -14,6 +14,25 @@ import localStorage from '../../services/localStorage';
 import { AVATARS, PUBLIC_URL } from '../../utils/constants';
 import { getRandomItem } from '../../utils/index';
 
+const randomName =
+  process.env.NODE_ENV === 'development'
+    ? getRandomItem([
+        'Ana',
+        'Bob',
+        'Cam',
+        'Dan',
+        'Evan',
+        'Fred',
+        'Gus',
+        'Helen',
+        'Ira',
+        'Jen',
+        'Kevin',
+        'Leo',
+        'Mary',
+      ])
+    : undefined;
+
 const AVATAR_IDS = Object.keys(AVATARS);
 
 function Join({ players, info }) {
@@ -160,7 +179,7 @@ function Join({ players, info }) {
         className="lobby-join__name-input"
         onChange={(e) => setTempUsername(e.target.value.trim())}
         placeholder="Digite seu nome"
-        value={tempUsername}
+        value={tempUsername || randomName}
         maxLength={10}
         suffix={
           <Tooltip title="Máximo de 10 caracteres">
