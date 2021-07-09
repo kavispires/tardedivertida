@@ -2,6 +2,16 @@ import { useCallback } from 'react';
 import { message, notification } from 'antd';
 import { useGlobalState, useLoading } from './index';
 
+function debounce(func, timeout = 500) {
+  let timer;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      func.apply(this, args);
+    }, timeout);
+  };
+}
+
 /**
  * Wrapper around common firebase http call
  * @param {object} data
@@ -28,47 +38,49 @@ export function useAPICall({
   const [gameName] = useGlobalState('gameName');
   const [username] = useGlobalState('username');
 
-  const onAPICall = useCallback(
-    async (payload) => {
-      try {
-        setLoader(actionName, true);
-        await onBeforeCall();
-        const response = await apiFunction({
-          gameId,
-          gameName,
-          playerName: username,
-          ...payload,
-        });
+  const onAPICall = debounce(
+    useCallback(
+      async (payload) => {
+        try {
+          setLoader(actionName, true);
+          await onBeforeCall();
+          const response = await apiFunction({
+            gameId,
+            gameName,
+            playerName: username,
+            ...payload,
+          });
 
-        if (response.data) {
-          message.success(successMessage);
+          if (response.data) {
+            message.success(successMessage);
+          }
+        } catch (e) {
+          notification.error({
+            message: errorMessage,
+            description: JSON.stringify(e.message),
+            placement: 'bottomLeft',
+          });
+          console.error(e);
+          onError();
+        } finally {
+          await onAfterCall();
+          setLoader(actionName, false);
         }
-      } catch (e) {
-        notification.error({
-          message: errorMessage,
-          description: JSON.stringify(e.message),
-          placement: 'bottomLeft',
-        });
-        console.error(e);
-        onError();
-      } finally {
-        await onAfterCall();
-        setLoader(actionName, false);
-      }
-    },
-    [
-      actionName,
-      apiFunction,
-      errorMessage,
-      gameId,
-      gameName,
-      username,
-      setLoader,
-      successMessage,
-      onBeforeCall,
-      onAfterCall,
-      onError,
-    ]
+      },
+      [
+        actionName,
+        apiFunction,
+        errorMessage,
+        gameId,
+        gameName,
+        username,
+        setLoader,
+        successMessage,
+        onBeforeCall,
+        onAfterCall,
+        onError,
+      ]
+    )
   );
 
   return onAPICall;
