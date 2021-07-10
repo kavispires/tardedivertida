@@ -4,6 +4,7 @@ export type GameCode = string;
 export type DateMilliseconds = number;
 export type PlayerId = string;
 export type PlayerName = string;
+export type PlayerAvatarId = string;
 
 // COMMON INTERFACES
 
@@ -28,7 +29,7 @@ export interface AddPlayerPayload {
   gameId: GameId;
   gameName: GameName;
   playerName: PlayerName;
-  playerAvatarId: string;
+  playerAvatarId: PlayerAvatarId;
 }
 
 export interface BasicGamePayload {
@@ -51,7 +52,7 @@ export interface Meta {
 
 export interface Player {
   id: PlayerId;
-  avatarId: string;
+  avatarId: PlayerAvatarId;
   name: PlayerName;
   ready: boolean;
   score: number;

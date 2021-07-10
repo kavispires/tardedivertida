@@ -8,6 +8,7 @@ import {
   GameId,
   PlainObject,
   Player,
+  PlayerAvatarId,
   PlayerId,
   PlayerName,
   Players,
@@ -250,17 +251,19 @@ export const getNextPhaseForCollection = (collectionName: string) => {
 export const createPlayer = (
   id: PlayerId,
   name: PlayerName,
-  avatarId: string,
+  avatarId: PlayerAvatarId,
   players: Players = {}
 ): Player => {
   const playerList = Object.values(players);
   const usedAvatars = playerList.map((player) => player.avatarId);
-  avatarId = usedAvatars.includes(avatarId) ? getRandomUniqueItem(AVATAR_IDS, usedAvatars) : `${avatarId}`;
+  const newAvatarId = usedAvatars.includes(avatarId)
+    ? getRandomUniqueItem(AVATAR_IDS, usedAvatars)
+    : avatarId;
 
   return {
     id,
     name,
-    avatarId,
+    avatarId: newAvatarId,
     ready: false,
     score: 0,
     updatedAt: Date.now(),

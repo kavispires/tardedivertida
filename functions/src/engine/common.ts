@@ -173,7 +173,7 @@ export const addPlayer = async (data: AddPlayerPayload) => {
   }
 
   try {
-    const newPlayer = utils.createPlayer(playerId, cleanPlayerName, playerAvatarId, players);
+    const newPlayer = utils.createPlayer(playerId, cleanPlayerName, `${playerAvatarId}`, players);
     await sessionRef.doc('players').update({
       [playerId]: newPlayer,
     });
