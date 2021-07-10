@@ -15,6 +15,6 @@ export const AdminOnly = ({ children, className = '' }) => {
 };
 
 AdminOnly.propTypes = {
-  children: PropTypes.element.isRequired,
+  children: PropTypes.oneOfType([PropTypes.element, PropTypes.arrayOf(PropTypes.element)]).isRequired,
   className: PropTypes.string,
 };
