@@ -1,8 +1,6 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-// Design Resources
-import { Layout } from 'antd';
 // Hooks
 import { useGlobalState } from '../../hooks';
 // Components
@@ -15,7 +13,17 @@ import { PageError } from '../errors/PageError';
  * @returns
  */
 export function PhaseContainer({ info, phase, allowedPhase, children, className, fullScreen, white }) {
+  const screenRef = useRef(null);
   const [username] = useGlobalState('username');
+  const [, setScreenSize] = useGlobalState('screenSize');
+
+  useEffect(() => {
+    if (screenRef.current) {
+      let height = screenRef.current.offsetHeight;
+      let width = screenRef.current.offsetWidth;
+      setScreenSize([width, height]);
+    }
+  }, [screenRef, setScreenSize]);
 
   if (!info?.gameName || allowedPhase !== phase) {
     return <LoadingPage />;
@@ -28,29 +36,34 @@ export function PhaseContainer({ info, phase, allowedPhase, children, className,
   const baseClass = 'phase-container';
 
   return (
-    <Layout.Content
+    <main
       className={clsx(
         baseClass,
         fullScreen && `${baseClass}--full-screen`,
         white && `${baseClass}--white`,
         className
       )}
+      id="screen"
+      ref={screenRef}
     >
       {process.env.NODE_ENV === 'development' && (
         <span className={`${baseClass}__dev-player-name`}>{username}</span>
       )}
       <span className={`${baseClass}__title`}>{info.title}</span>
       {children}
-    </Layout.Content>
+    </main>
   );
 }
 
 PhaseContainer.propTypes = {
-  children: PropTypes.any.isRequired,
   allowedPhase: PropTypes.string,
+  children: PropTypes.any.isRequired,
   className: PropTypes.string,
   fullScreen: PropTypes.bool,
-  info: PropTypes.object,
+  info: PropTypes.shape({
+    gameName: PropTypes.string,
+    title: PropTypes.string,
+  }),
   phase: PropTypes.string,
   white: PropTypes.bool,
 };

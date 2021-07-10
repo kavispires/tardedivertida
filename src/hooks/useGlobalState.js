@@ -5,6 +5,7 @@ const initialState = {
   loaders: false,
   isAuthenticated: false,
   appStartedAt: Date.now(),
+  screenSize: [],
   // Meta
   gameId: null,
   gameName: null,
