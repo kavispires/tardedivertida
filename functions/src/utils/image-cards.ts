@@ -1,6 +1,6 @@
 import * as gameUtils from './game-utils';
 
-const DECKS = ['dx-mr', 'dc-b1'];
+const DECKS = ['dx-mr', 'dc-b1', 'dc-b2'];
 
 export const IMAGE_CARDS_PER_DECK = 84;
 
