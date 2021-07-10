@@ -15,6 +15,9 @@ export const ImageCard = memo(function ({ imageId, size, cardWidth, className })
         width={cardWidth}
         src={`${PUBLIC_URL.CARDS}${imageId}.jpg`}
         fallback={`${PUBLIC_URL.CARDS}${fallbackName}.jpg`}
+        preview={{
+          maskClassName: `${baseClass}__preview-mask`,
+        }}
       />
     </div>
   );
