@@ -63,7 +63,7 @@ function GuessingStep({
 
 GuessingStep.propTypes = {
   guesser: PropTypes.shape({
-    avatarId: PropTypes.number,
+    avatarId: PropTypes.string,
     name: PropTypes.string,
   }),
   isUserTheGuesser: PropTypes.bool,

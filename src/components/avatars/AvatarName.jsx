@@ -36,7 +36,7 @@ export const AvatarName = memo(function ({
 
 AvatarName.propTypes = {
   player: PropTypes.shape({
-    avatarId: PropTypes.number,
+    avatarId: PropTypes.string,
     name: PropTypes.string,
   }).isRequired,
   size: PropTypes.oneOf(['small', 'default', 'large']),

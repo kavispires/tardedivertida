@@ -140,7 +140,7 @@ function CompareSuggestionsStep({
 CompareSuggestionsStep.propTypes = {
   isUserTheNextGuesser: PropTypes.bool,
   nextGuesser: PropTypes.shape({
-    avatarId: PropTypes.number,
+    avatarId: PropTypes.string,
     name: PropTypes.string,
   }),
   onValidateSuggestions: PropTypes.func,

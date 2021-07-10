@@ -14,7 +14,7 @@ export const AvatarEntry = memo(function ({ id = 25, name = 'Fulano', animate = 
 });
 
 Avatar.propTypes = {
-  id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  id: PropTypes.string,
   name: PropTypes.string,
   animate: PropTypes.bool,
   className: PropTypes.string,

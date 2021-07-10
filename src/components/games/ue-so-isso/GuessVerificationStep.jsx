@@ -106,7 +106,7 @@ function GuessVerificationStep({
 GuessVerificationStep.propTypes = {
   guess: PropTypes.string,
   guesser: PropTypes.shape({
-    avatarId: PropTypes.number,
+    avatarId: PropTypes.string,
     name: PropTypes.string,
   }),
   isAdmin: PropTypes.bool,
@@ -114,7 +114,7 @@ GuessVerificationStep.propTypes = {
   isUserTheGuesser: PropTypes.bool,
   isUserTheNextGuesser: PropTypes.bool,
   nextGuesser: PropTypes.shape({
-    avatarId: PropTypes.number,
+    avatarId: PropTypes.string,
     name: PropTypes.string,
   }),
   onConfirmGuess: PropTypes.func,

@@ -23,7 +23,7 @@ export const AvatarReady = memo(function ({
 });
 
 Avatar.propTypes = {
-  id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  id: PropTypes.string,
   name: PropTypes.string,
   score: PropTypes.number,
   ready: PropTypes.bool,

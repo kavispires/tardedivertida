@@ -75,7 +75,7 @@ function SuggestionStep({ guesser, onSendSuggestions, secretWord, suggestionsNum
 
 SuggestionStep.propTypes = {
   guesser: PropTypes.shape({
-    avatarId: PropTypes.number,
+    avatarId: PropTypes.string,
     name: PropTypes.string,
   }),
   onSendSuggestions: PropTypes.func,
