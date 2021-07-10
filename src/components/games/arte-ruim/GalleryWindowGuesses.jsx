@@ -40,8 +40,14 @@ function GalleryWindowGuesses({ playersSay, players, cards }) {
 }
 
 GalleryWindowGuesses.propTypes = {
-  playersSay: PropTypes.object,
+  cards: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      text: PropTypes.string,
+    })
+  ),
   players: PropTypes.object,
+  playersSay: PropTypes.object,
 };
 
 export default memo(GalleryWindowGuesses);

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { memo } from 'react';
 
 // Hooks
@@ -52,5 +53,24 @@ function GalleryWindow({ window, galleryLength, players, activeIndex, setActiveI
     </div>
   );
 }
+
+GalleryWindow.propTypes = {
+  activeIndex: PropTypes.number,
+  cards: PropTypes.array,
+  galleryLength: PropTypes.number,
+  players: PropTypes.object,
+  setActiveIndex: PropTypes.number,
+  setStep: PropTypes.func,
+  window: PropTypes.shape({
+    artist: PropTypes.string,
+    correctAnswer: PropTypes.string,
+    drawing: PropTypes.string,
+    id: PropTypes.string,
+    level: PropTypes.number,
+    playersPoints: PropTypes.object,
+    playersSay: PropTypes.object,
+    text: PropTypes.string,
+  }),
+};
 
 export default memo(GalleryWindow);

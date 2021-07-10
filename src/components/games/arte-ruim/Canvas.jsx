@@ -26,8 +26,8 @@ const Canvas = ({ drawing = '[]', className = '' }) => {
 };
 
 Canvas.propTypes = {
-  lines: PropTypes.oneOfType(PropTypes.array, PropTypes.string).isRequired,
   className: PropTypes.string,
+  drawing: PropTypes.oneOfType([PropTypes.array, PropTypes.string]).isRequired,
 };
 
 export default memo(Canvas);

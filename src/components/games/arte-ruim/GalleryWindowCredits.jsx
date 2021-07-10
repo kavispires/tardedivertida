@@ -15,8 +15,8 @@ function GalleryWindowCredits({ artistName, artistAvatarId }) {
 }
 
 GalleryWindowCredits.propTypes = {
-  artistName: PropTypes.string,
   artistAvatarId: PropTypes.string,
+  artistName: PropTypes.string,
 };
 
 export default memo(GalleryWindowCredits);
