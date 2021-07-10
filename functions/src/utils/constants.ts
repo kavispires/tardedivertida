@@ -1,9 +1,10 @@
-export const AVATAR_IDS = new Array(25).fill(0).map((i, index) => i + index);
+export const AVATAR_IDS = new Array(25).fill(0).map((i, index) => `${i + index}`);
 
 export const LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
 export const GAME_CODES = {
   A: 'A', // arte-ruim
+  D: 'D', // clube-detetive
   E: 'E', // espiao-entre-nos
   O: 'O', // onda-telepatica
   U: 'U', // ue-so-isso
@@ -11,6 +12,7 @@ export const GAME_CODES = {
 
 export const GAME_KEYS = {
   ARTE_RUIM: 'ARTE_RUIM',
+  CLUBE_DETETIVE: 'CLUBE_DETETIVE',
   ESPIAO_ENTRE_NOS: 'ESPIAO_ENTRE_NOS',
   ONDA_TELEPATICA: 'ONDA_TELEPATICA',
   UE_SO_ISSO: 'UE_SO_ISSO',
@@ -18,6 +20,7 @@ export const GAME_KEYS = {
 
 export const GAME_COLLECTIONS = {
   ARTE_RUIM: 'arte-ruim',
+  CLUBE_DETETIVE: 'clube-detetives',
   ESPIAO_ENTRE_NOS: 'espiao-entre-nos',
   ONDA_TELEPATICA: 'onda-telepatica',
   UE_SO_ISSO: 'ue-so-isso',
@@ -26,6 +29,10 @@ export const GAME_COLLECTIONS = {
 export const GAME_PLAYERS_LIMIT = {
   ARTE_RUIM: {
     min: 3,
+    max: 8,
+  },
+  CLUBE_DETETIVE: {
+    min: 4,
     max: 8,
   },
   ESPIAO_ENTRE_NOS: {
@@ -52,6 +59,16 @@ export const PHASES = {
     DRAW: 'DRAW',
     EVALUATION: 'EVALUATION',
     GALLERY: 'GALLERY',
+    GAME_OVER: 'GAME_OVER',
+  },
+  CLUBE_DETETIVES: {
+    LOBBY: 'LOBBY',
+    RULES: 'RULES',
+    SECRET_CLUE: 'SECRET_CLUE',
+    CARD_PLAY: 'CARD_PLAY',
+    DEFENSE: 'DEFENSE',
+    VOTING: 'VOTING',
+    REVEAL: 'REVEAL',
     GAME_OVER: 'GAME_OVER',
   },
   ESPIAO_ENTRE_NOS: {
@@ -85,6 +102,8 @@ export const PHASES = {
   },
 };
 
+export const SEPARATOR = ';;';
+
 // ARTE_RUIM
 
 export const ARTE_RUIM_GOAL = 50;
@@ -93,6 +112,19 @@ export const ARTE_RUIM_CARDS_BY_LEVEL = {
   1: new Array(200).fill(1).map((i, index) => `${i + index}`),
   2: new Array(200).fill(201).map((i, index) => `${i + index}`),
   3: new Array(200).fill(401).map((i, index) => `${i + index}`),
+};
+
+// CLUBE_DETETIVE
+
+export const CLUBE_DETETIVE_CONSTANTS = {
+  CARDS_PER_PLAYER: {
+    4: 22,
+    5: 26,
+    6: 18,
+    7: 20,
+    8: 22,
+  },
+  HAND_LIMIT: 6,
 };
 
 // ESPIAO_ENTRE_NOS

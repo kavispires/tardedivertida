@@ -324,10 +324,7 @@ const prepareGameOverPhase = async (
   store: FirebaseFirestore.DocumentData,
   players: Players
 ) => {
-  const maxScore = Math.max(...Object.values(players).map((player) => player.score));
-  const winners = Object.values(players).filter((player) => {
-    return player.score === maxScore;
-  });
+  const winners = utils.determineWinners(players);
 
   await sessionRef.doc('state').set({
     phase: PHASES.ARTE_RUIM.GAME_OVER,

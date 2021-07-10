@@ -250,7 +250,11 @@ export const makeMeReady = async (data: MakeMeReadyPayload) => {
   const nextPhaseDelegator = utils.getNextPhaseForCollection(collectionKey);
 
   // If all players are ready, trigger next phase
-  return nextPhaseDelegator(collectionName, gameId, players);
+  try {
+    return nextPhaseDelegator(collectionName, gameId, players);
+  } catch (error) {
+    utils.throwException(error, actionText);
+  }
 };
 
 // Next phase
