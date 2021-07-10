@@ -35,15 +35,16 @@ function EvaluationAllDrawings({ drawings, activeItem, onActivateItem, votes, ca
 
 EvaluationAllDrawings.propTypes = {
   activeItem: PropTypes.string,
+  canvasSize: PropTypes.number,
   drawings: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,
       drawing: PropTypes.string,
     })
   ),
+  onActivateItem: PropTypes.func,
   onActiveItem: PropTypes.func,
   votes: PropTypes.object,
-  canvasSize: PropTypes.number,
 };
 
 export default EvaluationAllDrawings;

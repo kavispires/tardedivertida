@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 // Design Resources
 import { Button } from 'antd';
@@ -78,5 +79,17 @@ function GalleryPhase({ players, state, info }) {
     </PhaseContainer>
   );
 }
+
+GalleryPhase.propTypes = {
+  info: PropTypes.object,
+  players: PropTypes.object,
+  state: PropTypes.shape({
+    cards: PropTypes.array,
+    gallery: PropTypes.array,
+    phase: PropTypes.string,
+    pointsToVictory: PropTypes.number,
+    ranking: PropTypes.object,
+  }),
+};
 
 export default GalleryPhase;

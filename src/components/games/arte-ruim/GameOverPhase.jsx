@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 // Components
 import { GameOver } from '../../shared';
@@ -23,5 +24,12 @@ function GameOverPhase({ state, info }) {
     </GameOver>
   );
 }
+
+GameOverPhase.propTypes = {
+  info: PropTypes.object,
+  state: PropTypes.shape({
+    drawings: PropTypes.array,
+  }),
+};
 
 export default GameOverPhase;

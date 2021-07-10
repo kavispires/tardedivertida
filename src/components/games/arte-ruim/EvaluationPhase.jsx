@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useState } from 'react';
 // Design Resources
 import { Button } from 'antd';
@@ -8,10 +9,6 @@ import { useIsUserReady, useGlobalState, useAPICall } from '../../../hooks';
 import { ARTE_RUIM_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
 // Components
-import EvaluationAllDrawings from './EvaluationAllDrawings';
-import EvaluationAllCards from './EvaluationAllCards';
-import CanvasResizer from './CanvasResizer';
-import { AdminForceNextPhase } from '../../admin/index';
 import {
   ButtonContainer,
   Instruction,
@@ -22,6 +19,10 @@ import {
   WaitingRoom,
   ReadyPlayersBar,
 } from '../../shared';
+import EvaluationAllDrawings from './EvaluationAllDrawings';
+import EvaluationAllCards from './EvaluationAllCards';
+import CanvasResizer from './CanvasResizer';
+import { AdminForceNextPhase } from '../../admin/index';
 
 function prepareVotes(votes) {
   return Object.entries(votes).reduce((acc, [drawingEntryId, cardEntryId]) => {
@@ -148,5 +149,15 @@ function EvaluationPhase({ players, state, info }) {
     </PhaseContainer>
   );
 }
+
+EvaluationPhase.propTypes = {
+  info: PropTypes.object,
+  players: PropTypes.object,
+  state: PropTypes.shape({
+    cards: PropTypes.array,
+    drawings: PropTypes.array,
+    phase: PropTypes.string,
+  }),
+};
 
 export default EvaluationPhase;

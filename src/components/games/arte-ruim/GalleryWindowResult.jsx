@@ -58,11 +58,13 @@ function GalleryWindowResult({
 }
 
 GalleryWindowResult.propTypes = {
-  playerArtist: PropTypes.object,
   correctAnswer: PropTypes.string,
+  correctAnswerId: PropTypes.string,
+  correctAnswerText: PropTypes.string,
+  playerArtist: PropTypes.object,
+  players: PropTypes.object,
   playersPoints: PropTypes.object,
   playersSay: PropTypes.object,
-  players: PropTypes.object,
 };
 
 export default memo(GalleryWindowResult);

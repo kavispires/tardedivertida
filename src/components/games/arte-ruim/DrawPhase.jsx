@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import useSound from 'use-sound';
 // State & Hooks
@@ -79,5 +80,14 @@ function DrawPhase({ players, state, info }) {
     </PhaseContainer>
   );
 }
+
+DrawPhase.propTypes = {
+  info: PropTypes.object,
+  players: PropTypes.object,
+  state: PropTypes.shape({
+    phase: PropTypes.string,
+    round: PropTypes.number,
+  }),
+};
 
 export default DrawPhase;
