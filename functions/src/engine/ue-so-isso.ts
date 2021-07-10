@@ -6,7 +6,6 @@ import {
   Player,
   GameId,
   UeSoIssoInitialState,
-  MakeMeReadyPayload,
   SubmitVotesPayload,
   SubmitSuggestionsPayload,
   CurrentSuggestions,
@@ -52,7 +51,7 @@ export const getInitialState = (gameId: GameId, uid: string, language: string): 
 /**
  * Determine the next phase based on the current one
  * @param currentPhase
- * @param pointsToVictory
+ * @param roundsToEndGame
  * @returns
  */
 const determineNextPhase = (currentPhase: string, roundsToEndGame: number): string => {
@@ -72,7 +71,12 @@ const determineNextPhase = (currentPhase: string, roundsToEndGame: number): stri
   return WORD_SELECTION;
 };
 
-const getSuggestionsNumber = (players: Players) => {
+/**
+ * Determine the number of suggestions based on the number of Players
+ * @param players
+ * @returns
+ */
+const determineSuggestionsNumber = (players: Players) => {
   const numberOfPlayers = Object.keys(players).length;
 
   if (numberOfPlayers <= 3) return 3;
@@ -80,12 +84,23 @@ const getSuggestionsNumber = (players: Players) => {
   return 1;
 };
 
+/**
+ * Determine score based on the guess value
+ * @param guess
+ * @returns
+ */
 const determineScore = (guess: string): number => {
   if (guess === 'CORRECT') return 3;
   if (guess === 'WRONG') return -1;
   return 0;
 };
 
+/**
+ * Determine the group current score
+ * @param players
+ * @param totalRounds
+ * @returns
+ */
 const determineGroupScore = (players: Players, totalRounds: number): number => {
   const expectedPoints = totalRounds * 3;
   const totalPoints = Object.values(players).reduce((acc: number, player: Player) => {
@@ -125,7 +140,7 @@ export const nextUeSoIssoPhase = async (
     });
   }
 
-  // // Calculate remaining rounds to end game
+  // Calculate remaining rounds to end game
   const roundsToEndGame = utils.getRoundsToEndGame(state.round, store.turnOrder.length);
 
   // Determine next phase
@@ -286,7 +301,7 @@ const prepareSuggestPhase = async (
     nextGuesser: state.nextGuesser,
     roundsToEndGame,
     secretWord: secretWord,
-    suggestionsNumber: getSuggestionsNumber(players),
+    suggestionsNumber: determineSuggestionsNumber(players),
   });
   // Unready players and return
   await sessionRef.doc('players').set(utils.unReadyPlayers(players, state.guesser));
@@ -409,35 +424,6 @@ const prepareGameOverPhase = async (
   });
 
   return true;
-};
-
-export const makeMeReady = async (data: MakeMeReadyPayload) => {
-  const { gameId, gameName: collectionName, playerName } = data;
-
-  const actionText = 'make you ready';
-  utils.verifyPayload(gameId, 'gameId', actionText);
-  utils.verifyPayload(collectionName, 'collectionName', actionText);
-  utils.verifyPayload(playerName, 'playerName', actionText);
-
-  // Get 'players' from given game session
-  const sessionRef = utils.getSessionRef(collectionName, gameId);
-  const playersDoc = await utils.getSessionDoc(collectionName, gameId, 'players', actionText);
-
-  // Make player ready
-  const players = playersDoc.data() ?? {};
-  const updatedPlayers = utils.readyPlayer(players, playerName);
-
-  if (!utils.isEverybodyReady(updatedPlayers)) {
-    try {
-      await sessionRef.doc('players').update({ [playerName]: updatedPlayers[playerName] });
-      return true;
-    } catch (error) {
-      utils.throwException(error, actionText);
-    }
-  }
-
-  // If all players are ready, trigger next phase
-  return nextUeSoIssoPhase(collectionName, gameId, players);
 };
 
 export const submitWordSelectionVotes = async (data: SubmitVotesPayload) => {

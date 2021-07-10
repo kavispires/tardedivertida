@@ -1,3 +1,5 @@
+import { Players } from './interfaces';
+
 // Shuffling
 
 /**
@@ -104,4 +106,69 @@ export const getPreviousItem = (list: any[], currentItem: any, wrap = true) => {
   }
 
   return list[currentIndex - 1];
+};
+
+/**
+ * Remove item from list of strings
+ * @param list
+ * @param target
+ * @returns
+ */
+export const removeItem = (list: string[], target: string): string[] => {
+  return list.filter((item) => item !== target);
+};
+
+/**
+ * Splits list into chunks of given size
+ * @param list
+ * @param [chunkSize] the size of the chunks the list is being split into
+ * @returns
+ */
+export const sliceIntoChunks = (list: any[], chunkSize = 2) => {
+  const res: any[] = [];
+  for (let i = 0; i < list.length; i += chunkSize) {
+    const chunk = list.slice(i, i + chunkSize);
+    res.push(chunk);
+  }
+  return res;
+};
+
+/**
+ * Splits list into a number of parts
+ * @param list
+ * @param [numParts] how many parts it should be split into
+ * @returns
+ */
+export const sliceInParts = (list: any[], numParts = 1) => {
+  const partSize = Math.ceil(list.length / numParts);
+
+  return sliceIntoChunks(list, partSize);
+};
+
+/**
+ * Deal list items between players
+ * @param list a list of items, usually cards ids
+ * @param players players object
+ * @param [quantity] how many items each player should get
+ * @param [propertyName] what property should the items be attributed to
+ * @param [recursive] if not enough items, restart from the beginning
+ * @returns
+ */
+export const dealList = (
+  list: any[],
+  players: Players,
+  quantity = 1,
+  propertyName = 'hand',
+  recursive = false
+): Players => {
+  const playerIds = Object.keys(players);
+  // Ensure there are enough cards
+  const newList = recursive && playerIds.length * quantity < list.length ? [...list, ...list] : list;
+  const hands = sliceIntoChunks(newList, quantity);
+
+  playerIds.forEach((playerId, index) => {
+    players[playerId][propertyName] = hands[index];
+  });
+
+  return players;
 };

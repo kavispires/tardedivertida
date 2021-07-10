@@ -9,7 +9,6 @@ import * as utils from '../utils/index';
 import {
   Players,
   GameId,
-  MakeMeReadyPayload,
   EspiaoEntreNosInitialState,
   FirebaseContext,
   EspiaoEntreNosAdminPayload,
@@ -477,35 +476,6 @@ const prepareInGamePhase = async (collectionName: string, gameId: string, action
   await sessionRef.doc('state').update(stateUpdate);
 
   return true;
-};
-
-export const makeMeReady = async (data: MakeMeReadyPayload) => {
-  const { gameId, gameName: collectionName, playerName } = data;
-
-  const actionText = 'make you ready';
-  utils.verifyPayload(gameId, 'gameId', actionText);
-  utils.verifyPayload(collectionName, 'collectionName', actionText);
-  utils.verifyPayload(playerName, 'playerName', actionText);
-
-  // Get 'players' from given game session
-  const sessionRef = utils.getSessionRef(collectionName, gameId);
-  const playersDoc = await utils.getSessionDoc(collectionName, gameId, 'players', actionText);
-
-  // Make player ready
-  const players = playersDoc.data() ?? {};
-  const updatedPlayers = utils.readyPlayer(players, playerName);
-
-  if (!utils.isEverybodyReady(updatedPlayers)) {
-    try {
-      await sessionRef.doc('players').update({ [playerName]: updatedPlayers[playerName] });
-      return true;
-    } catch (error) {
-      utils.throwException(error, actionText);
-    }
-  }
-
-  // If all players are ready, trigger next phase
-  return nextEspiaoEntreNosPhase(collectionName, gameId, players);
 };
 
 export const handleAdminAction = async (data: EspiaoEntreNosAdminPayload, context: FirebaseContext) => {

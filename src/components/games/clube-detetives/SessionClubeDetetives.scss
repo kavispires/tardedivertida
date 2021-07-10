@@ -1,0 +1,85 @@
+.d-clue {
+  text-transform: uppercase;
+  font-size: 0.75em;
+  background: rgba($color: white, $alpha: 0.6);
+  padding: get-unit(1 3);
+  border-radius: get-unit(1);
+}
+
+.d-table {
+  flex: 1;
+  display: flex;
+  width: 100%;
+  max-width: 94vw;
+  overflow-x: auto;
+  padding: get-unit(2);
+  background: rgba($color: white, $alpha: 0.3);
+  border-radius: get-unit(1);
+
+  &--center {
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__player-entry {
+    background: rgba($color: white, $alpha: 0.3);
+    border-radius: get-unit(1);
+    margin-right: get-unit(1);
+    padding: get-unit(1);
+    transition: 2s all;
+  }
+
+  &__cards {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+
+  &__player-info {
+    display: grid;
+    gap: get-unit(1);
+    grid-template-columns: 32px auto;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      'avatar bar'
+      'avatar name';
+  }
+
+  &__player-avatar {
+    grid-area: avatar;
+  }
+
+  &__player-bar {
+    width: 100%;
+    height: 3px;
+    grid-area: bar;
+  }
+
+  &__player-name {
+    text-transform: uppercase;
+    color: get-color(black, 4);
+    grid-area: name;
+  }
+}
+
+.d-voting-options {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  flex-wrap: wrap;
+
+  &__container {
+    margin-top: get-unit(1);
+  }
+
+  &__vote-container {
+    background: rgba($color: white, $alpha: 0.3);
+    padding: get-unit(1);
+    margin-top: get-unit(1);
+    border-radius: get-unit(1);
+  }
+
+  &__votes {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}

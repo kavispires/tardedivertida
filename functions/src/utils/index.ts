@@ -14,6 +14,10 @@ import {
 } from '../utils/interfaces';
 import { getInitialState as arteRuimGetInitialState, nextArteRuimPhase } from '../engine/arte-ruim';
 import {
+  getInitialState as clubeDetetivesGetInitialState,
+  nextClubeDetetivesPhase,
+} from '../engine/clube-detetives';
+import {
   getInitialState as espiaoEntreNosGetInitialState,
   nextEspiaoEntreNosPhase,
 } from '../engine/espiao-entre-nos';
@@ -148,6 +152,8 @@ export const getCollectionNameByGameCode = (gameCode: GameCode): string | null =
   switch (gameCode) {
     case GAME_CODES.A:
       return GAME_COLLECTIONS.ARTE_RUIM;
+    case GAME_CODES.D:
+      return GAME_COLLECTIONS.CLUBE_DETETIVE;
     case GAME_CODES.E:
       return GAME_COLLECTIONS.ESPIAO_ENTRE_NOS;
     case GAME_CODES.O:
@@ -168,6 +174,8 @@ export const getCollectionKeyByGameCode = (gameCode: GameCode): string | null =>
   switch (gameCode) {
     case GAME_CODES.A:
       return GAME_KEYS.ARTE_RUIM;
+    case GAME_CODES.D:
+      return GAME_KEYS.CLUBE_DETETIVE;
     case GAME_CODES.E:
       return GAME_KEYS.ESPIAO_ENTRE_NOS;
     case GAME_CODES.O:
@@ -196,6 +204,8 @@ export const getInitialStateForCollection = (collectionName: string) => {
   switch (collectionName) {
     case GAME_COLLECTIONS.ARTE_RUIM:
       return arteRuimGetInitialState;
+    case GAME_COLLECTIONS.CLUBE_DETETIVE:
+      return clubeDetetivesGetInitialState;
     case GAME_COLLECTIONS.ESPIAO_ENTRE_NOS:
       return espiaoEntreNosGetInitialState;
     case GAME_COLLECTIONS.ONDA_TELEPATICA:
@@ -216,6 +226,8 @@ export const getNextPhaseForCollection = (collectionName: string) => {
   switch (collectionName) {
     case GAME_KEYS.ARTE_RUIM:
       return nextArteRuimPhase;
+    case GAME_KEYS.CLUBE_DETETIVE:
+      return nextClubeDetetivesPhase;
     case GAME_KEYS.ESPIAO_ENTRE_NOS:
       return nextEspiaoEntreNosPhase;
     case GAME_KEYS.ONDA_TELEPATICA:
@@ -407,4 +419,16 @@ export const determineTeams = (
   });
 
   return teams;
+};
+
+/**
+ * Determine winners based on who has the highest score
+ * @param players
+ * @returns array of winning players
+ */
+export const determineWinners = (players: Players): Player[] => {
+  const maxScore = Math.max(...Object.values(players).map((player) => player.score));
+  return Object.values(players).filter((player) => {
+    return player.score === maxScore;
+  });
 };

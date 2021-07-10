@@ -7,7 +7,7 @@ import gameOverTitle from '../../images/game-over-title.svg';
 // Utils
 import { useAPICall, useLoading } from '../../hooks';
 import { GAME_API } from '../../adapters';
-import { AVATAR_DESCRIPTIONS_BR } from '../../utils/constants';
+import { AVATARS } from '../../utils/constants';
 // Components
 import { Avatar } from '../avatars';
 import { AdminOnly } from '../admin/index';
@@ -40,7 +40,7 @@ export function GameOver({ info, state, children }) {
                 <li className="game-over__winner" key={`winner-${winner.name}`}>
                   <Avatar className="game-over__avatar" id={winner.avatarId ?? 25} />
                   <div className="game-over__winner-name">
-                    <strong>{winner.name ?? '?'}</strong>, {AVATAR_DESCRIPTIONS_BR[winner.avatarId]}
+                    <strong>{winner.name ?? '?'}</strong>, {AVATARS[winner.avatarId].description.br}
                   </div>
                 </li>
               );
