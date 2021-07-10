@@ -11,8 +11,29 @@ import avatars from '../../images/avatars.svg';
 // Services
 import localStorage from '../../services/localStorage';
 // Utils
-import { AVATAR_IDS, PUBLIC_URL } from '../../utils/constants';
+import { AVATARS, PUBLIC_URL } from '../../utils/constants';
 import { getRandomItem } from '../../utils/index';
+
+const randomName =
+  process.env.NODE_ENV === 'development'
+    ? getRandomItem([
+        'Ana',
+        'Bob',
+        'Cam',
+        'Dan',
+        'Evan',
+        'Fred',
+        'Gus',
+        'Helen',
+        'Ira',
+        'Jen',
+        'Kevin',
+        'Leo',
+        'Mary',
+      ])
+    : undefined;
+
+const AVATAR_IDS = Object.keys(AVATARS);
 
 function Join({ players, info }) {
   const [isLoading, setLoader] = useLoading();
@@ -30,8 +51,8 @@ function Join({ players, info }) {
 
   // Calculate available avatars and monitor if user chose a non-available one
   useEffect(() => {
-    const usedAvatars = Object.values(players).reduce((acc, p) => {
-      acc[p.avatarId] = true;
+    const usedAvatars = Object.values(players).reduce((acc, { avatarId }) => {
+      acc[avatarId] = true;
       return acc;
     }, {});
 
@@ -125,6 +146,7 @@ function Join({ players, info }) {
         </Button>
         <svg viewBox="0 0 100 100" className="lobby-join__avatar-selection-image">
           <use href={avatars + `#avatar-${tempAvatar}`}></use>
+          <title>{AVATARS[tempAvatar].description.br}</title>
         </svg>
         <Button type="dashed" onClick={onNextAvatar} className="lobby-join__avatar-nav-button">
           <CaretRightOutlined />
@@ -157,7 +179,7 @@ function Join({ players, info }) {
         className="lobby-join__name-input"
         onChange={(e) => setTempUsername(e.target.value.trim())}
         placeholder="Digite seu nome"
-        value={tempUsername}
+        value={tempUsername || randomName}
         maxLength={10}
         suffix={
           <Tooltip title="Máximo de 10 caracteres">

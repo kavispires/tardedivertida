@@ -2,6 +2,7 @@ import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import * as commonEngine from './engine/common';
 import * as arteRuimEngine from './engine/arte-ruim';
+import * as clubeDetetivesEngine from './engine/clube-detetives';
 import * as espiaoEntreNosEngine from './engine/espiao-entre-nos';
 import * as ondaTelepaticaEngine from './engine/onda-telepatica';
 import * as ueSoIssoEngine from './engine/ue-so-isso';
@@ -59,6 +60,10 @@ exports.arteRuimSubmitDrawing = functions.https.onCall(arteRuimEngine.submitDraw
  * Submit players votes, if it's the last player to be ready, move to the next phase
  */
 exports.arteRuimSubmitVoting = functions.https.onCall(arteRuimEngine.submitVoting);
+
+// CLUBE_DETETIVES HTTP CALLS
+
+exports.clubeDetetivesSubmitAction = functions.https.onCall(clubeDetetivesEngine.submitAction);
 
 // ESPIAO_ENTRE_NOS HTTP CALLS
 

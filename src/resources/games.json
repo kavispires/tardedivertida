@@ -54,12 +54,23 @@
     "gameName": "clube-detetives",
     "title": "Clube dos Detetives",
     "summary": "Existe um impostor entre nós, mas será que ele tem boa lábia para se safar?",
-    "rules": [],
-    "recommended": "?",
+    "rules": [
+      "O Clube dos Detetives abriu uma nova vaga! E para decidir quem será o novo membro, eles estão fazendo uma dinâmica de grupo para analisar seu poder de análise e persuasão",
+      "Em cada rodada, um jogador é o Líder, um será um secreto Impostor e os outros, Detetives. Todos jogadores terão 6 cartas com imagens aleatórias.",
+      "O Líder escreverá uma dica secreta que corresponda a duas cartas em sua mão. O Líder ganha mais pontos se escrever algo fácil que ajude o Impostor se safar",
+      "Todos os jogadores receberão a dica secreta, menos um... esse jogador será o Impostor da rodada",
+      "Começando pelo líder, os jogadores selecionarão uma carta que eles acham que melhor representa a dica secreta incluindo o Impostor. Mas ele não sabe qual é a dica secreta! Então, baseando-se nas cartas colocadas pelos outros jogadores, ele deve tentar fingir que ele sabe o que é!",
+      "Todos os jogadores selecional uma outra carta seguindo o mesmo critério",
+      "Após todos os jogadorem terem colocado duas cartas, revela-se a palavra secreta e novamente um a um, os jogadores devem explicar porque escolheram as cartas que escolheram",
+      "Quando todos tiverem apresentado suas defesas, todos, menos o Líder, votam em quem eles acham ser o Impostor",
+      "Se mais de uma pessoa escolher o correto Impostor, todos os Detetives ganham 3 pontos. Se o Impostor receber um ou nenhum voto, ele ganha 5 pontos e o líder ganha 4 pontos",
+      "O jogo procede com um novo Líder até todos os jogadores tenham sido o líder uma ou duas vezes (menos de 6 jogadores)"
+    ],
+    "recommended": "5+",
     "min": 3,
     "max": 8,
     "tags": ["competitive", "turn-based", "traitor", "discussion", "images"],
-    "available": false
+    "available": true
   },
   "E": {
     "gameCode": "E",
@@ -108,7 +119,7 @@
       "A resposta então é revelada e o time principal ganha pontos de acordo com quão próximo o ponteiro está do resultado no medidor. Se o time rival chutou a direção correta, eles ganham 1 ponto!",
       "O jogo continua até um time conseguir 10 pontos e ser coroado o vencedor!"
     ],
-    "recommended": "4+",
+    "recommended": "6+",
     "min": 4,
     "max": 12,
     "tags": ["competitive", "real-time", "guessing"],

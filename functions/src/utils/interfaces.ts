@@ -2,6 +2,7 @@ export type GameId = string;
 export type GameName = string;
 export type GameCode = string;
 export type DateMilliseconds = number;
+export type PlayerId = string;
 export type PlayerName = string;
 
 // COMMON INTERFACES
@@ -84,16 +85,16 @@ export interface Payload {
   playerName: PlayerName;
 }
 
+export interface SubmitGuessPayload extends Payload {
+  guess: string | number;
+}
+
 export interface SubmitVotesPayload extends Payload {
   votes: PlainObject;
 }
 
 export interface SubmitVotePayload extends Payload {
   vote: string;
-}
-
-export interface SubmitGuessPayload extends Payload {
-  guess: string | number;
 }
 
 // ARTE_RUIM
@@ -135,6 +136,34 @@ export interface DrawingEntry {
 export interface SubmitDrawingPayload extends Payload {
   drawing: string;
   cardId: string;
+}
+
+// CLUBE_DETETIVES
+
+export type ImageCard = string;
+
+export interface ClubeDetetivesStore {
+  usedCards: ImageCard[];
+  gameOrder: PlayerId[];
+  [key: string]: any;
+}
+
+export interface ClubeDetetivesState {
+  phase: string;
+  round: number;
+  [key: string]: any;
+}
+
+export interface ClubeDetetivesInitialState {
+  meta: Meta;
+  players: Players;
+  store: ClubeDetetivesStore;
+  state: ClubeDetetivesState;
+}
+
+export interface ClubeDetetivesSubmitAction extends Payload {
+  action: 'SUBMIT_CLUE' | 'PLAY_CARD' | 'DEFEND' | 'SUBMIT_VOTE';
+  [key: string]: any;
 }
 
 // ESPIAO_ENTRE_NOS
