@@ -70,11 +70,40 @@
   margin: get-unit(1);
   transition: 500ms transform;
 
+  &__preview-mask {
+    border-radius: get-unit(3);
+  }
+
   &:hover {
     transform: scale(1.05);
   }
 
   .ant-image-img {
     border-radius: get-unit(3);
+  }
+}
+
+.image-card-hand {
+  display: flex;
+  width: 100%;
+  max-width: 94vw;
+  overflow-x: auto;
+  padding: get-unit(2);
+  justify-content: center;
+
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(8, 12, 42, 1) 15%,
+    rgba(15, 13, 50, 0) 50%,
+    rgba(0, 0, 0, 0) 100%
+  );
+
+  &__card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: get-unit(1);
   }
 }
