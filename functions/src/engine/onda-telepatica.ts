@@ -436,12 +436,12 @@ const prepareGameOverPhase = async (
 };
 
 export const submitSides = async (data: OndaTelepaticaSubmitSidesPayload) => {
-  const { gameId, gameName: collectionName, playerName, cardId } = data;
+  const { gameId, gameName: collectionName, playerId, cardId } = data;
 
   const actionText = 'submit the suggestions validation';
   utils.verifyPayload(gameId, 'gameId', actionText);
   utils.verifyPayload(collectionName, 'collectionName', actionText);
-  utils.verifyPayload(playerName, 'playerName', actionText);
+  utils.verifyPayload(playerId, 'playerId', actionText);
   utils.verifyPayload(cardId, 'cardId', actionText);
 
   // Get 'players' from given game session
@@ -462,12 +462,12 @@ export const submitSides = async (data: OndaTelepaticaSubmitSidesPayload) => {
 };
 
 export const submitClue = async (data: OndaTelepaticaSubmitCluePayload) => {
-  const { gameId, gameName: collectionName, playerName, clue } = data;
+  const { gameId, gameName: collectionName, playerId, clue } = data;
 
   const actionText = 'submit the suggestions validation';
   utils.verifyPayload(gameId, 'gameId', actionText);
   utils.verifyPayload(collectionName, 'collectionName', actionText);
-  utils.verifyPayload(playerName, 'playerName', actionText);
+  utils.verifyPayload(playerId, 'playerId', actionText);
   utils.verifyPayload(clue, 'clue', actionText);
 
   // Get 'players' from given game session
@@ -488,12 +488,12 @@ export const submitClue = async (data: OndaTelepaticaSubmitCluePayload) => {
 };
 
 export const submitGuess = async (data: OndaTelepaticaSubmitGuessPayload) => {
-  const { gameId, gameName: collectionName, playerName, guess } = data;
+  const { gameId, gameName: collectionName, playerId, guess } = data;
 
   const actionText = 'submit the suggestions validation';
   utils.verifyPayload(gameId, 'gameId', actionText);
   utils.verifyPayload(collectionName, 'collectionName', actionText);
-  utils.verifyPayload(playerName, 'playerName', actionText);
+  utils.verifyPayload(playerId, 'playerId', actionText);
   utils.verifyPayload(guess, 'guess', actionText);
 
   // Get 'players' from given game session
@@ -514,12 +514,12 @@ export const submitGuess = async (data: OndaTelepaticaSubmitGuessPayload) => {
 };
 
 export const submitRivalGuess = async (data: OndaTelepaticaSubmitRivalGuessPayload) => {
-  const { gameId, gameName: collectionName, playerName, rivalGuess } = data;
+  const { gameId, gameName: collectionName, playerId, rivalGuess } = data;
 
   const actionText = 'submit the suggestions validation';
   utils.verifyPayload(gameId, 'gameId', actionText);
   utils.verifyPayload(collectionName, 'collectionName', actionText);
-  utils.verifyPayload(playerName, 'playerName', actionText);
+  utils.verifyPayload(playerId, 'playerId', actionText);
   utils.verifyPayload(rivalGuess, 'rivalGuess', actionText);
 
   // Get 'players' from given game session

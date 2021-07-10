@@ -8,13 +8,13 @@ import { useGlobalState } from './useGlobalState';
  * @returns {boolean}
  */
 export function useIsUserThe(propertyName = 'activePlayer', state = {}) {
-  const [username] = useGlobalState('username');
+  const [userId] = useGlobalState('userId');
   const [isUser, setIsUser] = useState(false);
 
   // Determine if user is active as the guesser, the clue giver, the psychic, the storyteller, etc
   useEffect(() => {
-    setIsUser(state?.[propertyName] === username);
-  }, [state, username, propertyName]);
+    setIsUser(state?.[propertyName] === userId);
+  }, [state, userId, propertyName]);
 
   return isUser;
 }

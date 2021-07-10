@@ -527,12 +527,12 @@ export const handleAdminAction = async (data: EspiaoEntreNosAdminPayload, contex
 };
 
 export const makeAccusation = async (data: SubmitVotePayload) => {
-  const { gameId, gameName: collectionName, playerName, vote } = data;
+  const { gameId, gameName: collectionName, playerId, vote } = data;
 
   const actionText = 'submit your vote';
   utils.verifyPayload(gameId, 'gameId', actionText);
   utils.verifyPayload(collectionName, 'collectionName', actionText);
-  utils.verifyPayload(playerName, 'playerName', actionText);
+  utils.verifyPayload(playerId, 'playerId', actionText);
   utils.verifyPayload(vote, 'vote', actionText);
 
   const pausedAt = Date.now();
@@ -543,19 +543,19 @@ export const makeAccusation = async (data: SubmitVotePayload) => {
   const players = playersDoc.data() ?? {};
 
   return nextEspiaoEntreNosPhase(collectionName, gameId, players, {
-    accuser: playerName,
+    accuser: playerId,
     target: vote,
     pausedAt,
   });
 };
 
 export const submitVoting = async (data: SubmitVotePayload) => {
-  const { gameId, gameName: collectionName, playerName, vote } = data;
+  const { gameId, gameName: collectionName, playerId, vote } = data;
 
   const actionText = 'submit your vote';
   utils.verifyPayload(gameId, 'gameId', actionText);
   utils.verifyPayload(collectionName, 'collectionName', actionText);
-  utils.verifyPayload(playerName, 'playerName', actionText);
+  utils.verifyPayload(playerId, 'playerId', actionText);
   utils.verifyPayload(vote, 'vote', actionText);
 
   const sessionRef = utils.getSessionRef(collectionName, gameId);
@@ -563,11 +563,11 @@ export const submitVoting = async (data: SubmitVotePayload) => {
 
   // Make player ready and attach drawing
   const players = playersDoc.data() ?? {};
-  const updatedPlayers = utils.readyPlayer(players, playerName);
-  updatedPlayers[playerName].vote = vote;
+  const updatedPlayers = utils.readyPlayer(players, playerId);
+  updatedPlayers[playerId].vote = vote;
 
   try {
-    await sessionRef.doc('players').update({ [playerName]: updatedPlayers[playerName] });
+    await sessionRef.doc('players').update({ [playerId]: updatedPlayers[playerId] });
   } catch (error) {
     utils.throwException(error, actionText);
   }
@@ -581,12 +581,12 @@ export const submitVoting = async (data: SubmitVotePayload) => {
 };
 
 export const guessLocation = async (data: SubmitGuessPayload) => {
-  const { gameId, gameName: collectionName, playerName, guess } = data;
+  const { gameId, gameName: collectionName, playerId, guess } = data;
 
   const actionText = 'submit your vote';
   utils.verifyPayload(gameId, 'gameId', actionText);
   utils.verifyPayload(collectionName, 'collectionName', actionText);
-  utils.verifyPayload(playerName, 'playerName', actionText);
+  utils.verifyPayload(playerId, 'playerId', actionText);
   utils.verifyPayload(guess, 'vote', actionText);
 
   const playersDoc = await utils.getSessionDoc(collectionName, gameId, 'players', actionText);
@@ -595,7 +595,7 @@ export const guessLocation = async (data: SubmitGuessPayload) => {
   const players = playersDoc.data() ?? {};
 
   return nextEspiaoEntreNosPhase(collectionName, gameId, players, {
-    spy: playerName,
+    spy: playerId,
     guess,
     forcePhase: PHASES.ESPIAO_ENTRE_NOS.RESOLUTION,
   });

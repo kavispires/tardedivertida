@@ -50,6 +50,7 @@ export interface Meta {
 }
 
 export interface Player {
+  id: PlayerId;
   avatarId: string;
   name: PlayerName;
   ready: boolean;
@@ -66,11 +67,11 @@ export interface Players {
 export interface MakeMeReadyPayload {
   gameId: GameId;
   gameName: GameName;
-  playerName: PlayerName;
+  playerId: PlayerId;
 }
 
 export interface Team {
-  members: PlayerName[];
+  members: PlayerId[];
   name: string;
   score: number;
 }
@@ -82,7 +83,7 @@ export interface Teams {
 export interface Payload {
   gameId: GameId;
   gameName: GameName;
-  playerName: PlayerName;
+  playerId: PlayerId;
 }
 
 export interface SubmitGuessPayload extends Payload {
@@ -101,7 +102,7 @@ export interface SubmitVotePayload extends Payload {
 
 export interface UsedCard {
   id: string;
-  playerName: PlayerName | null;
+  playerId: PlayerId | null;
   drawing: string | null;
   successRate: number;
   [key: string]: any;
@@ -130,7 +131,7 @@ export interface ArteRuimInitialState {
 export interface DrawingEntry {
   cardId: string | number;
   drawing: string;
-  playerName: string;
+  playerId: string;
 }
 
 export interface SubmitDrawingPayload extends Payload {

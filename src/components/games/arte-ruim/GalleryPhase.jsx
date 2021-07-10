@@ -8,9 +8,9 @@ import { useAPICall, useGlobalState } from '../../../hooks';
 import { GAME_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
 // Components
-import GalleryWindow from './GalleryWindow';
 import { AdminOnlyButton } from '../../admin/index';
 import { Instruction, PhaseContainer, RankingBoard, StepSwitcher, Step, Title } from '../../shared';
+import GalleryWindow from './GalleryWindow';
 
 function GalleryPhase({ players, state, info }) {
   const [activeIndex, setActiveIndex] = useState(0);
