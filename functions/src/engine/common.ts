@@ -140,8 +140,17 @@ export const addPlayer = async (data: AddPlayerPayload) => {
   const playersDoc = await utils.getSessionDoc(collectionName, gameId, 'players', actionText);
   const players: Players = playersDoc.data() ?? {};
 
-  if (players?.[playerName]) {
-    return players[playerName];
+  // Remove symbols from the player name
+  const cleanPlayerName = playerName.replace(/[\][(){},.:;!?<>%]/g, '');
+
+  // Generate playerId by removing accents and lower casing the name
+  const playerId = `_${cleanPlayerName
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '') // Replace characters with accents
+    .toLowerCase()}`;
+
+  if (players?.[playerId]) {
+    return players[playerId];
   }
 
   // Verify maximum number of players
@@ -164,9 +173,9 @@ export const addPlayer = async (data: AddPlayerPayload) => {
   }
 
   try {
-    const newPlayer = utils.createPlayer(playerName, playerAvatarId, players);
+    const newPlayer = utils.createPlayer(playerId, cleanPlayerName, playerAvatarId, players);
     await sessionRef.doc('players').update({
-      [playerName]: newPlayer,
+      [playerId]: newPlayer,
     });
     return newPlayer;
   } catch (error) {
@@ -222,12 +231,12 @@ export const lockGame = async (data: BasicGamePayload, context: FirebaseContext)
 
 // Make me ready
 export const makeMeReady = async (data: MakeMeReadyPayload) => {
-  const { gameId, gameName: collectionName, playerName } = data;
+  const { gameId, gameName: collectionName, playerId } = data;
 
   const actionText = 'make you ready';
   utils.verifyPayload(gameId, 'gameId', actionText);
   utils.verifyPayload(collectionName, 'collectionName', actionText);
-  utils.verifyPayload(playerName, 'playerName', actionText);
+  utils.verifyPayload(playerId, 'playerId', actionText);
 
   // Get 'players' from given game session
   const sessionRef = utils.getSessionRef(collectionName, gameId);
@@ -235,11 +244,11 @@ export const makeMeReady = async (data: MakeMeReadyPayload) => {
 
   // Make player ready
   const players = playersDoc.data() ?? {};
-  const updatedPlayers = utils.readyPlayer(players, playerName);
+  const updatedPlayers = utils.readyPlayer(players, playerId);
 
   if (!utils.isEverybodyReady(updatedPlayers)) {
     try {
-      await sessionRef.doc('players').update({ [playerName]: updatedPlayers[playerName] });
+      await sessionRef.doc('players').update({ [playerId]: updatedPlayers[playerId] });
       return true;
     } catch (error) {
       utils.throwException(error, actionText);

@@ -9,6 +9,7 @@ import CloudBackground from './CloudBackground';
 import { AvatarEntry } from '../avatars';
 
 function Lobby({ players, info }) {
+  const [userId] = useGlobalState('userId');
   const [username] = useGlobalState('username');
   const [userAvatarId] = useGlobalState('userAvatarId');
 
@@ -25,7 +26,7 @@ function Lobby({ players, info }) {
           />
         ))}
 
-        {username && userAvatarId !== undefined ? (
+        {userId && username && userAvatarId !== undefined ? (
           <Waiting players={players} info={info} />
         ) : (
           <Join players={players} info={info} />

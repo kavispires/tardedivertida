@@ -10,6 +10,8 @@ const initialState = {
   gameId: null,
   gameName: null,
   gameMeta: {},
+  // User/Player
+  userId: null,
   username: '',
   userAvatarId: '',
   isAdmin: false,

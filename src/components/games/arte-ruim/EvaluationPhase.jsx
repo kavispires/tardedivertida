@@ -90,7 +90,7 @@ function EvaluationPhase({ players, state, info }) {
       <StepSwitcher step={step} conditions={[!isUserReady]}>
         {/*Step 0 */}
         <Step className="a-evaluation-step">
-          <CanvasResizer />
+          <CanvasResizer numPlayers={Object.keys(players).length} />
           <Title>Adivinhação</Title>
           <Instruction>
             Encontre os pares de desenho e carta clicando em uma carta ou desenho e em seguida clicando em seu
@@ -128,6 +128,7 @@ function EvaluationPhase({ players, state, info }) {
           </ButtonContainer>
 
           <ReadyPlayersBar
+            players={players}
             readyText="Já acabei, anda logo!"
             readyTextPlural="Já acabamos, anda logo!"
             showNames

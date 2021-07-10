@@ -126,24 +126,24 @@ const prepareDrawPhase = async (
   const newPlayers = utils.unReadyPlayers(players);
 
   // Assign one card per player
-  const playersNames = Object.keys(players);
+  const playersIds = Object.keys(players);
   const newUsedCards: string[] = [];
   const currentCards = cards.map((cardId, index) => {
-    const currentPlayer = playersNames?.[index] ?? null;
+    const currentPlayerId = playersIds?.[index] ?? null;
 
     const card = allCardsBR[cardId];
     const newCard = {
       id: cardId,
       level: card.level,
       text: card.text,
-      playerName: currentPlayer,
+      playerId: currentPlayerId,
       drawing: null,
       successRate: 0,
     };
 
-    if (currentPlayer) {
-      newPlayers[currentPlayer].currentCard = newCard;
-      delete newPlayers[currentPlayer].votes;
+    if (currentPlayerId) {
+      newPlayers[currentPlayerId].currentCard = newCard;
+      delete newPlayers[currentPlayerId].votes;
     }
 
     newUsedCards.push(cardId);
@@ -208,12 +208,12 @@ const prepareGalleryPhase = async (
   // Calculate everybody's points
   const gallery = state.drawings.map((drawingEntry) => {
     const correctAnswer = `${drawingEntry.id}`;
-    const artist = drawingEntry.playerName;
+    const artist = drawingEntry.playerId;
 
     const newGalleryEntry = {
       id: drawingEntry.id,
       drawing: drawingEntry.drawing,
-      artist: drawingEntry.playerName,
+      artist: drawingEntry.playerId,
       level: drawingEntry.level,
       text: drawingEntry.text,
       playersSay: {},
@@ -223,25 +223,25 @@ const prepareGalleryPhase = async (
     const playersSay = {};
     const playersPoints = {};
 
-    Object.entries(<PlainObject>players).forEach(([pName, pObject]) => {
-      if (artist === pName) return;
+    Object.entries(<PlainObject>players).forEach(([playerId, pObject]) => {
+      if (artist === playerId) return;
 
       // Calculate what players say
       const currentVote = pObject.votes[correctAnswer];
       if (playersSay[currentVote] === undefined) {
         playersSay[currentVote] = [];
       }
-      playersSay[currentVote].push(pName);
+      playersSay[currentVote].push(playerId);
       // Calculate player points
-      if (playersPoints[pName] === undefined) {
-        playersPoints[pName] = 0;
+      if (playersPoints[playerId] === undefined) {
+        playersPoints[playerId] = 0;
       }
       if (playersPoints[artist] === undefined) {
         playersPoints[artist] = 0;
       }
 
       if (currentVote === correctAnswer) {
-        playersPoints[pName] += 2;
+        playersPoints[playerId] += 2;
         playersPoints[artist] += 1;
       }
     });
@@ -259,23 +259,23 @@ const prepareGalleryPhase = async (
 
   // Build score object
   Object.values(newPlayers).forEach((player) => {
-    newScores[player.name] = [player.score, 0, player.score];
+    newScores[player.id] = [player.score, 0, player.score];
   });
 
   gallery.forEach((window) => {
-    Object.entries(window.playersPoints).forEach(([pName, value]) => {
+    Object.entries(window.playersPoints).forEach(([playerId, value]) => {
       const points = Number(value ?? 0);
-      newScores[pName][1] += points;
-      newScores[pName][2] += points;
+      newScores[playerId][1] += points;
+      newScores[playerId][2] += points;
 
-      newPlayers[pName].score += points;
+      newPlayers[playerId].score += points;
     });
   });
 
   const ranking = Object.entries(newScores)
-    .map(([pName, scores]) => {
+    .map(([playerId, scores]) => {
       return {
-        playerName: pName,
+        playerId,
         previousScore: scores[0],
         gainedPoints: scores[1],
         newScore: scores[2],
@@ -389,12 +389,12 @@ export const nextArteRuimPhase = async (
 };
 
 export const submitDrawing = async (data: SubmitDrawingPayload) => {
-  const { gameId, gameName: collectionName, playerName, drawing, cardId } = data;
+  const { gameId, gameName: collectionName, playerId, drawing, cardId } = data;
 
   const actionText = 'submit your drawing';
   utils.verifyPayload(gameId, 'gameId', actionText);
   utils.verifyPayload(collectionName, 'collectionName', actionText);
-  utils.verifyPayload(playerName, 'playerName', actionText);
+  utils.verifyPayload(playerId, 'playerId', actionText);
   utils.verifyPayload(drawing, 'drawing', actionText);
   utils.verifyPayload(cardId, 'cardId', actionText);
 
@@ -404,11 +404,11 @@ export const submitDrawing = async (data: SubmitDrawingPayload) => {
 
   // Make player ready and attach drawing
   const players = playersDoc.data() ?? {};
-  const updatedPlayers = utils.readyPlayer(players, playerName);
-  updatedPlayers[playerName].currentCard.drawing = drawing;
+  const updatedPlayers = utils.readyPlayer(players, playerId);
+  updatedPlayers[playerId].currentCard.drawing = drawing;
 
   try {
-    await sessionRef.doc('players').update({ [playerName]: updatedPlayers[playerName] });
+    await sessionRef.doc('players').update({ [playerId]: updatedPlayers[playerId] });
   } catch (error) {
     utils.throwException(error, actionText);
   }
@@ -422,12 +422,12 @@ export const submitDrawing = async (data: SubmitDrawingPayload) => {
 };
 
 export const submitVoting = async (data: SubmitVotesPayload) => {
-  const { gameId, gameName: collectionName, playerName, votes } = data;
+  const { gameId, gameName: collectionName, playerId, votes } = data;
 
   const actionText = 'submit your votes';
   utils.verifyPayload(gameId, 'gameId', actionText);
   utils.verifyPayload(collectionName, 'collectionName', actionText);
-  utils.verifyPayload(playerName, 'playerName', actionText);
+  utils.verifyPayload(playerId, 'playerId', actionText);
   utils.verifyPayload(votes, 'votes', actionText);
 
   const sessionRef = utils.getSessionRef(collectionName, gameId);
@@ -435,11 +435,11 @@ export const submitVoting = async (data: SubmitVotesPayload) => {
 
   // Make player ready and attach drawing
   const players = playersDoc.data() ?? {};
-  const updatedPlayers = utils.readyPlayer(players, playerName);
-  updatedPlayers[playerName].votes = votes;
+  const updatedPlayers = utils.readyPlayer(players, playerId);
+  updatedPlayers[playerId].votes = votes;
 
   try {
-    await sessionRef.doc('players').update({ [playerName]: updatedPlayers[playerName] });
+    await sessionRef.doc('players').update({ [playerId]: updatedPlayers[playerId] });
   } catch (error) {
     utils.throwException(error, actionText);
   }

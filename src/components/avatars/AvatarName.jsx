@@ -15,11 +15,11 @@ export const AvatarName = memo(function ({
   uppercase = false,
   addressUser = false,
 }) {
-  const [username] = useGlobalState('username');
+  const [userId] = useGlobalState('userId');
 
   const baseClass = 'avatar-name';
 
-  const isUser = player.name === username;
+  const isUser = player.id === userId;
 
   return (
     <span

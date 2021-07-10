@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 // Design Resources
 import { Avatar as AntAvatar } from 'antd';
 import { MessageFilled } from '@ant-design/icons';
+// Utils
+import { getPlayersFromIds } from '../../../utils';
 // Components
 import { Avatar } from '../../avatars';
 
@@ -10,7 +12,7 @@ function GalleryWindowGuesses({ playersSay, players, cards }) {
   return (
     <div className="a-gallery-window__guesses">
       <div className="a-gallery-window__label">Participantes votaram</div>
-      {Object.entries(playersSay).map(([cardId, playersNames], index) => {
+      {Object.entries(playersSay).map(([cardId, playerIds], index) => {
         const card = cards.find((i) => i.id === cardId);
         return (
           <div key={`guess-${cardId}-${index}`} className="a-gallery-window__guess">
@@ -19,14 +21,16 @@ function GalleryWindowGuesses({ playersSay, players, cards }) {
             </div>
             <div className="a-gallery-window__players">
               <AntAvatar.Group>
-                {playersNames.map((playerName) => (
+                {playerIds.map((playerId) => (
                   <Avatar
-                    id={players[playerName].avatarId}
-                    key={`guess-avatar-${players[playerName].avatarId}`}
+                    id={players[playerId].avatarId}
+                    key={`guess-avatar-${players[playerId].avatarId}`}
                   />
                 ))}
               </AntAvatar.Group>
-              <span className="a-gallery-window__players-names">{playersNames.join(', ')}</span>
+              <span className="a-gallery-window__players-names">
+                {getPlayersFromIds(playerIds, players, true).join(', ')}
+              </span>
             </div>
           </div>
         );

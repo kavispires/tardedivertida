@@ -36,7 +36,7 @@ export function useAPICall({
   const [, setLoader] = useLoading();
   const [gameId] = useGlobalState('gameId');
   const [gameName] = useGlobalState('gameName');
-  const [username] = useGlobalState('username');
+  const [userId] = useGlobalState('userId');
 
   const onAPICall = debounce(
     useCallback(
@@ -47,7 +47,7 @@ export function useAPICall({
           const response = await apiFunction({
             gameId,
             gameName,
-            playerName: username,
+            playerId: userId,
             ...payload,
           });
 
@@ -73,7 +73,7 @@ export function useAPICall({
         errorMessage,
         gameId,
         gameName,
-        username,
+        userId,
         setLoader,
         successMessage,
         onBeforeCall,

@@ -11,27 +11,10 @@ import avatars from '../../images/avatars.svg';
 // Services
 import localStorage from '../../services/localStorage';
 // Utils
-import { AVATARS, PUBLIC_URL } from '../../utils/constants';
+import { AVATARS, PUBLIC_URL, RANDOM_NAMES } from '../../utils/constants';
 import { getRandomItem } from '../../utils/index';
 
-const randomName =
-  process.env.NODE_ENV === 'development'
-    ? getRandomItem([
-        'Ana',
-        'Bob',
-        'Cam',
-        'Dan',
-        'Evan',
-        'Fred',
-        'Gus',
-        'Helen',
-        'Ira',
-        'Jen',
-        'Kevin',
-        'Leo',
-        'Mary',
-      ])
-    : undefined;
+const randomName = process.env.NODE_ENV === 'development' ? getRandomItem(RANDOM_NAMES) : undefined;
 
 const AVATAR_IDS = Object.keys(AVATARS);
 
@@ -39,6 +22,7 @@ function Join({ players, info }) {
   const [isLoading, setLoader] = useLoading();
   const [gameId] = useGlobalState('gameId');
   const [gameName] = useGlobalState('gameName');
+  const [, setUserId] = useGlobalState('userId');
   const [, setUsername] = useGlobalState('username');
   const [, setUserAvatarId] = useGlobalState('userAvatarId');
 
@@ -104,8 +88,10 @@ function Join({ players, info }) {
         playerAvatarId: tempAvatar,
       });
 
+      setUserId(response.data.id);
       setUsername(response.data.name);
       setUserAvatarId(response.data.avatarId);
+
       localStorage.set({
         username: response.data.name,
         avatarId: response.data.avatarId,

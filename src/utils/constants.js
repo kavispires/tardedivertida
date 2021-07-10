@@ -191,6 +191,13 @@ export const AVATARS = {
 export const LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
 /**
+ * Random names used during Dev
+ */
+export const RANDOM_NAMES = 'Ana,Bob,Cam,Dan,Evan,Fred,Gus,Helen,Ian,Jess,Kim,Liam,Max,Nick,Oliver,Peter,Quinn,Roy,Tina'.split(
+  ','
+);
+
+/**
  * Enum of available games
  */
 export const GAME_COLLECTION = {
