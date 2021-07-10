@@ -4,6 +4,7 @@
 export const PUBLIC_URL = {
   BANNERS: `${process.env.PUBLIC_URL}/images/banners/`,
   RULES: `${process.env.PUBLIC_URL}/images/rules/`,
+  CARDS: `${process.env.PUBLIC_URL}/images/cards/`,
 };
 
 /**
@@ -218,6 +219,7 @@ export const PHASES = {
     SECRET_CLUE: 'SECRET_CLUE',
     CARD_PLAY: 'CARD_PLAY',
     DEFENSE: 'DEFENSE',
+    VOTING: 'VOTING',
     REVEAL: 'REVEAL',
     GAME_OVER: 'GAME_OVER',
   },

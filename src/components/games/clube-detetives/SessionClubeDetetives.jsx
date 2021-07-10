@@ -2,10 +2,15 @@ import React from 'react';
 // Hooks
 import { GAME_COLLECTION, PHASES } from '../../../utils/constants';
 // Components
-import { GameOver, Session, PhaseContainer } from '../../shared';
+import { GameOver, Session } from '../../shared';
 import Lobby from '../../lobby/Lobby';
 import { Rules } from '../../rules';
 import { PageError } from '../../errors/PageError';
+import SecretCluePhase from './SecretCluePhase';
+import CardPlayPhase from './CardPlayPhase';
+import DefensePhase from './DefensePhase';
+import VotingPhase from './VotingPhase';
+import RevealPhase from './RevealPhase';
 
 function SessionClubeDetetives({ gameId }) {
   function getActiveComponent(phase) {
@@ -15,13 +20,15 @@ function SessionClubeDetetives({ gameId }) {
       case PHASES.CLUBE_DETETIVES.RULES:
         return Rules;
       case PHASES.CLUBE_DETETIVES.SECRET_CLUE:
-        return PhaseContainer;
+        return SecretCluePhase;
       case PHASES.CLUBE_DETETIVES.CARD_PLAY:
-        return PhaseContainer;
+        return CardPlayPhase;
       case PHASES.CLUBE_DETETIVES.DEFENSE:
-        return PhaseContainer;
+        return DefensePhase;
+      case PHASES.CLUBE_DETETIVES.VOTING:
+        return VotingPhase;
       case PHASES.CLUBE_DETETIVES.REVEAL:
-        return PhaseContainer;
+        return RevealPhase;
       case PHASES.CLUBE_DETETIVES.GAME_OVER:
         return GameOver;
       default:
