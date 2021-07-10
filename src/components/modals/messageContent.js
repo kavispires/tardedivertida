@@ -1,7 +1,15 @@
 import React from 'react';
 import { message } from 'antd';
 
-export const messageContent = (title, description, id) => {
+/**
+ * Pops up a modal with a confirmation button but also closing timeout
+ * @param {string} title
+ * @param {string} description
+ * @param {string} id
+ * @param {number} duration
+ * @returns
+ */
+export const messageContent = (title, description, id, duration = 30) => {
   const key = `${id} - ${title}`;
 
   return {
@@ -15,7 +23,7 @@ export const messageContent = (title, description, id) => {
       </div>
     ),
     top: window.innerWidth / 2 - 100,
-    duration: 30,
+    duration,
     key,
     onClick: () => message.destroy(key),
   };
