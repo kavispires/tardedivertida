@@ -344,7 +344,7 @@ const prepareRevealPhase = async (
     const currentScore = player.score;
     let addedScore = 0;
     // If detectives won
-    if (impostorVotes > 1 && !relevantPlayers.includes(player.name)) {
+    if (impostorVotes > 1 && !relevantPlayers.includes(player.id)) {
       // If the player voted for the impostor
       if (player.vote === state.impostor) {
         addedScore += 3;
@@ -352,25 +352,25 @@ const prepareRevealPhase = async (
     }
     // If relevant players won
     if (impostorVotes <= 1) {
-      if (state.impostor === player.name) {
+      if (state.impostor === player.id) {
         addedScore += 5;
       }
-      if (state.leader === player.name) {
+      if (state.leader === player.id) {
         addedScore += 4;
       }
     }
 
     const newScore = currentScore + addedScore;
-    result[player.name] = [currentScore, addedScore, newScore];
+    result[player.id] = [currentScore, addedScore, newScore];
     // Update player as well
     player.score = newScore;
     return result;
   }, {});
 
   const ranking = Object.entries(newScores)
-    .map(([pName, scores]) => {
+    .map(([playerId, scores]) => {
       return {
-        playerName: pName,
+        playerId,
         previousScore: scores[0],
         gainedPoints: scores[1],
         newScore: scores[2],
@@ -562,12 +562,12 @@ const handleSubmitVote = async (
 // API caller
 
 export const submitAction = async (data: ClubeDetetivesSubmitAction) => {
-  const { gameId, gameName: collectionName, playerName, action } = data;
+  const { gameId, gameName: collectionName, playerId, action } = data;
 
   const actionText = 'submit action';
   utils.verifyPayload(gameId, 'gameId', actionText);
   utils.verifyPayload(collectionName, 'collectionName', actionText);
-  utils.verifyPayload(playerName, 'playerName', actionText);
+  utils.verifyPayload(playerId, 'playerId', actionText);
   utils.verifyPayload(action, 'action', actionText);
 
   switch (action) {
@@ -575,19 +575,19 @@ export const submitAction = async (data: ClubeDetetivesSubmitAction) => {
       if (!data.clue) {
         utils.throwException('Missing `clue` value', 'submit clue');
       }
-      return handleSubmitClue(collectionName, gameId, playerName, data.clue);
+      return handleSubmitClue(collectionName, gameId, playerId, data.clue);
     case 'PLAY_CARD':
       if (!data.cardId) {
         utils.throwException('Missing `cardId` value', 'play card');
       }
-      return handlePlayCard(collectionName, gameId, playerName, data.cardId);
+      return handlePlayCard(collectionName, gameId, playerId, data.cardId);
     case 'DEFEND':
-      return handleDefend(collectionName, gameId, playerName);
+      return handleDefend(collectionName, gameId, playerId);
     case 'SUBMIT_VOTE':
       if (!data.vote) {
         utils.throwException('Missing `vote` value', 'submit vote');
       }
-      return handleSubmitVote(collectionName, gameId, playerName, data.vote);
+      return handleSubmitVote(collectionName, gameId, playerId, data.vote);
     default:
       utils.throwException(`Given action ${action} is not allowed`);
   }

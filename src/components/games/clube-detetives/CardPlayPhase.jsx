@@ -42,12 +42,12 @@ function CardPlayPhase({ state, players, info }) {
         messageContent(
           'Escolha uma carta!',
           'Aperte o botão Selecionar acima da carta escolhida',
-          currentPlayer.name,
+          currentPlayer.id,
           3
         )
       );
     }
-  }, [isUserTheCurrentPlayer, currentPlayer.name]);
+  }, [isUserTheCurrentPlayer, currentPlayer.id]);
 
   return (
     <PhaseContainer
