@@ -24,6 +24,7 @@ function WordSelectionPhase({ state, players, info }) {
   const isUserReady = useIsUserReady(players, state);
   const guesser = useWhichPlayerIsThe('guesser', state, players);
   const isUserTheGuesser = useIsUserThe('guesser', state);
+  const nextGuesser = useWhichPlayerIsThe('nextGuesser', state, players);
   const [step, setStep] = useState(0);
 
   const onSendSelectedWords = useAPICall({
@@ -47,7 +48,7 @@ function WordSelectionPhase({ state, players, info }) {
         <RoundAnnouncement round={state.round} onPressButton={() => setStep(1)} time={7}>
           <Instruction contained>
             Para essa rodada, <AvatarName player={guesser} addressUser /> será o(a) adivinhador(a) <br />
-            {state?.nextGuesser ? `Próximo adivinhador(a): ${state.nextGuesser}` : 'Essa é a última rodada'}
+            {state?.nextGuesser ? `Próximo adivinhador(a): ${nextGuesser.name}` : 'Essa é a última rodada'}
           </Instruction>
           <div className="u-word-selection-phase__team-points">
             Pontos do Grupo:
