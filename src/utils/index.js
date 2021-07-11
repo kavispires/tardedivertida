@@ -169,3 +169,18 @@ export const getOppositeTeam = (teams, activeTeam) => {
   if (teamsNames[0] === activeTeam) return teamsNames[1];
   else return teamsNames[0];
 };
+
+/**
+ * Get given players from list of ids
+ * @param {string[]} playerIds
+ * @param {object} players
+ * @param {boolean} justNames if true, only return names
+ * @returns
+ */
+export const getPlayersFromIds = (playerIds, players, justNames = false) => {
+  return playerIds.map((playerId) => {
+    const player = players[playerId];
+    if (justNames) return player.name;
+    return player;
+  });
+};

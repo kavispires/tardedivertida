@@ -1,11 +1,20 @@
-import React, { memo } from 'react';
+import PropTypes from 'prop-types';
+import React, { memo, useEffect } from 'react';
 // Design Resources
 import { Slider } from 'antd';
 // State & Hooks
-import { useGlobalState } from '../../../hooks';
+import { useDimensions, useGlobalState } from '../../../hooks';
 
-const CanvasResizer = () => {
+const CanvasResizer = ({ numPlayers = 5 }) => {
   const [canvasSize, setCanvasSize] = useGlobalState('canvasSize');
+  const [cachedCanvasSize] = useGlobalState('cachedCanvasSize');
+  const [width] = useDimensions();
+
+  useEffect(() => {
+    if (canvasSize === 250 || canvasSize !== cachedCanvasSize) {
+      setCanvasSize(Math.round(width / numPlayers) - 30);
+    }
+  }, [width]); // eslint-disable-line
 
   return (
     <div className="a-canvas-resizer">
@@ -20,6 +29,10 @@ const CanvasResizer = () => {
       />
     </div>
   );
+};
+
+CanvasResizer.propTypes = {
+  numPlayers: PropTypes.number,
 };
 
 export default memo(CanvasResizer);

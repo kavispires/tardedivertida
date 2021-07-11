@@ -8,6 +8,8 @@ import {
   GameId,
   PlainObject,
   Player,
+  PlayerAvatarId,
+  PlayerId,
   PlayerName,
   Players,
   Teams,
@@ -246,14 +248,22 @@ export const getNextPhaseForCollection = (collectionName: string) => {
  * @param players
  * @returns
  */
-export const createPlayer = (name: PlayerName, avatarId: string, players: Players = {}): Player => {
+export const createPlayer = (
+  id: PlayerId,
+  name: PlayerName,
+  avatarId: PlayerAvatarId,
+  players: Players = {}
+): Player => {
   const playerList = Object.values(players);
   const usedAvatars = playerList.map((player) => player.avatarId);
-  avatarId = usedAvatars.includes(avatarId) ? getRandomUniqueItem(AVATAR_IDS, usedAvatars) : avatarId;
+  const newAvatarId = usedAvatars.includes(avatarId)
+    ? getRandomUniqueItem(AVATAR_IDS, usedAvatars)
+    : avatarId;
 
   return {
+    id,
     name,
-    avatarId,
+    avatarId: newAvatarId,
     ready: false,
     score: 0,
     updatedAt: Date.now(),
@@ -263,12 +273,12 @@ export const createPlayer = (name: PlayerName, avatarId: string, players: Player
 /**
  * Set given player as ready in the players object
  * @param players
- * @param playerName
+ * @param playerId
  * @returns
  */
-export const readyPlayer = (players: Players, playerName: PlayerName): Players => {
-  players[playerName].ready = true;
-  players[playerName].updatedAt = Date.now();
+export const readyPlayer = (players: Players, playerId: PlayerId): Players => {
+  players[playerId].ready = true;
+  players[playerId].updatedAt = Date.now();
   return players;
 };
 
@@ -278,7 +288,7 @@ export const readyPlayer = (players: Players, playerName: PlayerName): Players =
  * @param butThisOne
  * @returns
  */
-export const readyPlayers = (players: Players, butThisOne = ''): Players => {
+export const readyPlayers = (players: Players, butThisOne: PlayerId = ''): Players => {
   for (const playerKey in players) {
     players[playerKey].ready = playerKey === butThisOne ? false : true;
   }
@@ -291,7 +301,7 @@ export const readyPlayers = (players: Players, butThisOne = ''): Players => {
  * @param butThisOne
  * @returns
  */
-export const unReadyPlayers = (players: Players, butThisOne = ''): Players => {
+export const unReadyPlayers = (players: Players, butThisOne: PlayerId = ''): Players => {
   for (const playerKey in players) {
     players[playerKey].ready = playerKey === butThisOne ? true : false;
   }
@@ -317,10 +327,11 @@ export const modifyPlayers = (players: Players, property: string, value: any, bu
  * @returns
  */
 export const resetPlayers = (players: Players): Players => {
-  for (const playerKey in players) {
-    players[playerKey] = {
-      avatarId: players[playerKey].avatarId,
-      name: players[playerKey].name,
+  for (const playerId in players) {
+    players[playerId] = {
+      id: playerId,
+      avatarId: players[playerId].avatarId,
+      name: players[playerId].name,
       ready: false,
       score: 0,
       updatedAt: Date.now(),

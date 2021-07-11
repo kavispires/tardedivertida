@@ -66,8 +66,8 @@ function GalleryWindowControls({ galleryLength, activeIndex, setActiveIndex, set
 }
 
 GalleryWindowControls.propTypes = {
-  galleryLength: PropTypes.number,
   activeIndex: PropTypes.number,
+  galleryLength: PropTypes.number,
   setActiveIndex: PropTypes.func,
   setStep: PropTypes.func,
 };

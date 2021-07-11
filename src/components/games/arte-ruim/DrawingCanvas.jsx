@@ -10,7 +10,6 @@ const DrawingCanvas = ({ lines, setLines, className = '' }) => {
     isDrawing.current = true;
     const pos = e.target.getStage().getPointerPosition();
     setLines([...lines, [pos.x, pos.y]]);
-    // return false;
   };
 
   const handleMouseMove = (e) => {
@@ -63,9 +62,9 @@ const DrawingCanvas = ({ lines, setLines, className = '' }) => {
 };
 
 DrawingCanvas.propTypes = {
+  className: PropTypes.string,
   lines: PropTypes.array.isRequired,
   setLines: PropTypes.func.isRequired,
-  className: PropTypes.string,
 };
 
 export default DrawingCanvas;

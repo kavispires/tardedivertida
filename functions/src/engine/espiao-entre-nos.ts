@@ -227,7 +227,7 @@ const prepareAssignmentPhase = async (
   Object.values(players).forEach((player, index) => {
     const playerRole = availableRoles[index];
     if (playerRole === E_CONSTANTS.SPY) {
-      currentSpy = player.name;
+      currentSpy = player.id;
       player.location = E_CONSTANTS.SPY;
     } else {
       player.location = currentLocation.name;
@@ -378,7 +378,7 @@ const prepareResolutionPhase = async (
   // Calculate Points
   Object.values(players).forEach((player) => {
     // If spy was successful, gets 4 points (if he guessed, otherwise 2 for not being found)
-    if (stateUpdate.spyWin && state.currentSpy === player.name) {
+    if (stateUpdate.spyWin && state.currentSpy === player.id) {
       if (isSpyGuess) {
         player.score += 4;
       } else {
@@ -386,13 +386,13 @@ const prepareResolutionPhase = async (
       }
 
       // IF spy failed, everybody else gets 1 point
-    } else if (!stateUpdate.spyWin && state.currentSpy !== player.name) {
+    } else if (!stateUpdate.spyWin && state.currentSpy !== player.id) {
       player.score += 1;
     }
 
     // Accuser gets 2 points if correct
     if (!stateUpdate.spyWin && resolutionType === E_CONSTANTS.RESOLUTION.SPY_FOUND) {
-      if ((payload?.accuser ?? state.accuser) === player.name) {
+      if ((payload?.accuser ?? state.accuser) === player.id) {
         player.score += 2;
       }
     }
@@ -527,12 +527,12 @@ export const handleAdminAction = async (data: EspiaoEntreNosAdminPayload, contex
 };
 
 export const makeAccusation = async (data: SubmitVotePayload) => {
-  const { gameId, gameName: collectionName, playerName, vote } = data;
+  const { gameId, gameName: collectionName, playerId, vote } = data;
 
   const actionText = 'submit your vote';
   utils.verifyPayload(gameId, 'gameId', actionText);
   utils.verifyPayload(collectionName, 'collectionName', actionText);
-  utils.verifyPayload(playerName, 'playerName', actionText);
+  utils.verifyPayload(playerId, 'playerId', actionText);
   utils.verifyPayload(vote, 'vote', actionText);
 
   const pausedAt = Date.now();
@@ -543,19 +543,19 @@ export const makeAccusation = async (data: SubmitVotePayload) => {
   const players = playersDoc.data() ?? {};
 
   return nextEspiaoEntreNosPhase(collectionName, gameId, players, {
-    accuser: playerName,
+    accuser: playerId,
     target: vote,
     pausedAt,
   });
 };
 
 export const submitVoting = async (data: SubmitVotePayload) => {
-  const { gameId, gameName: collectionName, playerName, vote } = data;
+  const { gameId, gameName: collectionName, playerId, vote } = data;
 
   const actionText = 'submit your vote';
   utils.verifyPayload(gameId, 'gameId', actionText);
   utils.verifyPayload(collectionName, 'collectionName', actionText);
-  utils.verifyPayload(playerName, 'playerName', actionText);
+  utils.verifyPayload(playerId, 'playerId', actionText);
   utils.verifyPayload(vote, 'vote', actionText);
 
   const sessionRef = utils.getSessionRef(collectionName, gameId);
@@ -563,11 +563,11 @@ export const submitVoting = async (data: SubmitVotePayload) => {
 
   // Make player ready and attach drawing
   const players = playersDoc.data() ?? {};
-  const updatedPlayers = utils.readyPlayer(players, playerName);
-  updatedPlayers[playerName].vote = vote;
+  const updatedPlayers = utils.readyPlayer(players, playerId);
+  updatedPlayers[playerId].vote = vote;
 
   try {
-    await sessionRef.doc('players').update({ [playerName]: updatedPlayers[playerName] });
+    await sessionRef.doc('players').update({ [playerId]: updatedPlayers[playerId] });
   } catch (error) {
     utils.throwException(error, actionText);
   }
@@ -581,12 +581,12 @@ export const submitVoting = async (data: SubmitVotePayload) => {
 };
 
 export const guessLocation = async (data: SubmitGuessPayload) => {
-  const { gameId, gameName: collectionName, playerName, guess } = data;
+  const { gameId, gameName: collectionName, playerId, guess } = data;
 
   const actionText = 'submit your vote';
   utils.verifyPayload(gameId, 'gameId', actionText);
   utils.verifyPayload(collectionName, 'collectionName', actionText);
-  utils.verifyPayload(playerName, 'playerName', actionText);
+  utils.verifyPayload(playerId, 'playerId', actionText);
   utils.verifyPayload(guess, 'vote', actionText);
 
   const playersDoc = await utils.getSessionDoc(collectionName, gameId, 'players', actionText);
@@ -595,7 +595,7 @@ export const guessLocation = async (data: SubmitGuessPayload) => {
   const players = playersDoc.data() ?? {};
 
   return nextEspiaoEntreNosPhase(collectionName, gameId, players, {
-    spy: playerName,
+    spy: playerId,
     guess,
     forcePhase: PHASES.ESPIAO_ENTRE_NOS.RESOLUTION,
   });

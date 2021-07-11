@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { memo } from 'react';
 
 // Hooks
@@ -15,9 +16,11 @@ function GalleryWindow({ window, galleryLength, players, activeIndex, setActiveI
 
   const { drawing, artist, id, text, level, playersPoints, playersSay } = window;
 
+  const playerArtist = players[artist];
+
   return (
     <div className="a-gallery-window">
-      <CanvasResizer />
+      <CanvasResizer numPlayers={Object.keys(players).length} />
       <div className="a-gallery-window__drawing-container">
         <CanvasSVG
           key={window.correctAnswer}
@@ -27,12 +30,12 @@ function GalleryWindow({ window, galleryLength, players, activeIndex, setActiveI
         />
       </div>
 
-      <GalleryWindowCredits artist={artist} artistAvatarId={players[artist].avatarId} />
+      <GalleryWindowCredits artistName={playerArtist.name} artistAvatarId={playerArtist.avatarId} />
 
       <GalleryWindowGuesses players={players} playersSay={playersSay} cards={cards} />
 
       <GalleryWindowResult
-        artist={artist}
+        playerArtist={playerArtist}
         correctAnswerId={id}
         correctAnswerText={text}
         correctAnswerLevel={level}
@@ -50,5 +53,24 @@ function GalleryWindow({ window, galleryLength, players, activeIndex, setActiveI
     </div>
   );
 }
+
+GalleryWindow.propTypes = {
+  activeIndex: PropTypes.number,
+  cards: PropTypes.array,
+  galleryLength: PropTypes.number,
+  players: PropTypes.object,
+  setActiveIndex: PropTypes.number,
+  setStep: PropTypes.func,
+  window: PropTypes.shape({
+    artist: PropTypes.string,
+    correctAnswer: PropTypes.string,
+    drawing: PropTypes.string,
+    id: PropTypes.string,
+    level: PropTypes.number,
+    playersPoints: PropTypes.object,
+    playersSay: PropTypes.object,
+    text: PropTypes.string,
+  }),
+};
 
 export default memo(GalleryWindow);

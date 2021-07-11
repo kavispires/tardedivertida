@@ -43,6 +43,7 @@ EvaluationAllCards.propTypes = {
       id: PropTypes.string,
     })
   ),
+  onActivateItem: PropTypes.func,
   onActiveItem: PropTypes.func,
   votes: PropTypes.object,
 };

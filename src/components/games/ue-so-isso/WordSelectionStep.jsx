@@ -68,7 +68,7 @@ function WordSelectionStep({ guesser, onSendSelectedWords, words = [] }) {
 
 WordSelectionStep.propTypes = {
   guesser: PropTypes.shape({
-    avatarId: PropTypes.number,
+    avatarId: PropTypes.string,
     name: PropTypes.string,
   }),
   onSendSelectedWords: PropTypes.func.isRequired,
