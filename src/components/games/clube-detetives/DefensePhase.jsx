@@ -8,10 +8,11 @@ import { useIsUserThe, useWhichPlayerIsThe, useAPICall, useLoading } from '../..
 import { CLUBE_DETETIVES_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
 // Components
-import { ButtonContainer, Instruction, PhaseContainer, Title } from '../../shared';
+import { ButtonContainer, EmergencyAlert, Instruction, PhaseContainer, Title } from '../../shared';
 import { AvatarName } from '../../avatars';
 import { messageContent } from '../../modals';
 import TableFocus from './TableFocus';
+import MagnifyingGlassSVG from './MagnifyingGlassSVG';
 
 function DefensePhase({ state, players, info }) {
   const [isLoading] = useLoading();
@@ -49,8 +50,15 @@ function DefensePhase({ state, players, info }) {
       info={info}
       phase={state?.phase}
       allowedPhase={PHASES.CLUBE_DETETIVES.DEFENSE}
-      className="d-secret-clue-phase"
+      className="d-defense-phase"
     >
+      <EmergencyAlert duration={5}>
+        <MagnifyingGlassSVG />
+        <Title className="d-emergency-alert-title">
+          Pista secreta: <span className="d-clue">{state.clue}</span>
+        </Title>
+      </EmergencyAlert>
+
       <Title>
         Defesa: A pista secreta era <span className="d-clue">{state.clue}</span>
       </Title>

@@ -83,3 +83,9 @@
     flex-wrap: wrap;
   }
 }
+
+.d-emergency-alert-title {
+  background: rgba($color: white, $alpha: 0.8);
+  border-radius: get-unit(1);
+  padding: get-unit(1 1 2 1);
+}

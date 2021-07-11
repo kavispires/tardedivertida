@@ -1,4 +1,5 @@
 export * from './ButtonContainer';
+export * from './EmergencyAlert';
 export * from './GameOver';
 export * from './Instruction';
 export * from './PhaseContainer';
