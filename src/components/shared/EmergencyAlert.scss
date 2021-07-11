@@ -1,0 +1,25 @@
+.emergency-alert {
+  background: transparent;
+
+  .ant-modal-content {
+    background: transparent;
+    box-shadow: none;
+  }
+
+  &__svg {
+    max-height: 80vh;
+    animation: 500ms emergency-pulse infinite;
+  }
+}
+
+@keyframes emergency-pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.75);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
