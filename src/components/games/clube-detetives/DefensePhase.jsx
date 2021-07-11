@@ -16,10 +16,7 @@ import TableFocus from './TableFocus';
 function DefensePhase({ state, players, info }) {
   const [isLoading] = useLoading();
   const currentPlayer = useWhichPlayerIsThe('currentPlayerId', state, players);
-  const leader = useWhichPlayerIsThe('leader', state, players);
   const isUserTheCurrentPlayer = useIsUserThe('currentPlayerId', state);
-  console.log({ currentPlayer });
-  console.log({ leader });
 
   const onFinishDefense = useAPICall({
     apiFunction: CLUBE_DETETIVES_API.submitAction,
