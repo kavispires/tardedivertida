@@ -129,8 +129,8 @@ export const nextUeSoIssoPhase = async (
   // Perform setup and reset any previous session stuff
   if (state?.phase === 'RULES') {
     // Determine player order
-    const playersNames = gameUtils.shuffle(Object.keys(players));
-    store.turnOrder = playersNames.length <= 6 ? [...playersNames, ...playersNames] : playersNames;
+    const playersIds = gameUtils.shuffle(Object.keys(players));
+    store.turnOrder = playersIds.length <= 6 ? [...playersIds, ...playersIds] : playersIds;
     await sessionRef.doc('store').update({
       turnOrder: store.turnOrder,
       currentWord: utils.deleteValue(),
@@ -323,7 +323,7 @@ const prepareComparePhase = async (
         if (currentSuggestions[suggestion] === undefined) {
           currentSuggestions[suggestion] = [];
         }
-        currentSuggestions[suggestion].push(player.name);
+        currentSuggestions[suggestion].push(player.id);
       });
     }
   });
@@ -334,10 +334,10 @@ const prepareComparePhase = async (
       const [suggestion, playersSug] = suggestionEntry;
 
       if (playersSug.length > 1) {
-        const res = playersSug.map((pName) => {
+        const res = playersSug.map((playerId) => {
           return {
             suggestion,
-            playerName: pName,
+            playerId,
             invalid: true,
           };
         });
@@ -347,7 +347,7 @@ const prepareComparePhase = async (
 
       acc.push({
         suggestion,
-        playerName: playersSug[0],
+        playerId: playersSug[0],
         invalid: false,
       });
 
