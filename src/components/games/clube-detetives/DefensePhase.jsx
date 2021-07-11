@@ -28,7 +28,7 @@ function DefensePhase({ state, players, info }) {
     errorMessage: 'Vixi, o aplicativo encontrou um erro ao tentar concluir sua defesa',
   });
 
-  const onFinishDefenseClick = (cardId) => {
+  const onFinishDefenseClick = () => {
     onFinishDefense({
       action: 'DEFEND',
     });
@@ -40,12 +40,12 @@ function DefensePhase({ state, players, info }) {
         messageContent(
           'Sua vez de defender suas escolhas!',
           'Aperte o botão Concluir Defesa quando terminar',
-          currentPlayer?.name,
+          currentPlayer?.id,
           4
         )
       );
     }
-  }, [isUserTheCurrentPlayer, currentPlayer?.name]);
+  }, [isUserTheCurrentPlayer, currentPlayer?.id]);
 
   return (
     <PhaseContainer
