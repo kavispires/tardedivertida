@@ -8,6 +8,14 @@ import Waiting from './Waiting';
 import CloudBackground from './CloudBackground';
 import { AvatarEntry } from '../avatars';
 
+const backgroundType = {
+  A: 'artsy-cloud',
+  E: 'cyber-cloud',
+  O: 'funky-cloud',
+  D: 'detective-cloud',
+  U: 'cloud',
+};
+
 function Lobby({ players, info }) {
   const [userId] = useGlobalState('userId');
   const [username] = useGlobalState('username');
@@ -33,7 +41,7 @@ function Lobby({ players, info }) {
         )}
       </div>
 
-      <CloudBackground />
+      <CloudBackground type={backgroundType?.[info.gameCode]} />
     </PhaseContainer>
   );
 }

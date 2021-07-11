@@ -32,15 +32,35 @@
     transform: scale(0.55);
   }
 
+  &--artsy-cloud {
+    background: rgba(255, 238, 111, 0.6);
+  }
+
+  &--cloud {
+    background: none;
+  }
+
+  &--cyber-cloud {
+    background: rgba(35, 35, 35, 0.95);
+  }
+
+  &--detective-cloud {
+    background: rgba(35, 35, 35, 0.8);
+  }
+
   &__cloud {
+    position: relative;
+  }
+
+  &__cloud-basic {
     background: get-color(white);
     background: linear-gradient(top, #fff 5%, #f1f1f1 100%);
     border-radius: 100px;
     box-shadow: 0 8px 5px rgba(0, 0, 0, 0.1);
 
-    height: 120px;
     position: relative;
     width: 350px;
+    height: 120px;
 
     &:after,
     &:before {
@@ -67,6 +87,13 @@
       right: 50px;
       top: -90px;
     }
+  }
+
+  &__cyber-cloud,
+  &__funky-cloud,
+  &__body-mark {
+    width: 350px;
+    height: 120px;
   }
 }
 
