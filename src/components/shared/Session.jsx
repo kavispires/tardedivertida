@@ -11,7 +11,7 @@ import GameInfoDrawer from '../shared/GameInfoDrawer';
 export function Session({ gameId, gameCollection, getActiveComponent }) {
   const players = useGamePlayers(gameId, gameCollection);
   const state = useGameState(gameId, gameCollection);
-  const [username] = useGlobalState('username');
+  const [userId] = useGlobalState('userId');
   const [info, setInfo] = useState({});
 
   // Update game description as the gameId comes in
@@ -24,7 +24,7 @@ export function Session({ gameId, gameCollection, getActiveComponent }) {
     console.log({ state });
   }
 
-  if (!username) {
+  if (!userId) {
     return <Lobby players={players} state={state} info={info} />;
   }
 
@@ -32,7 +32,7 @@ export function Session({ gameId, gameCollection, getActiveComponent }) {
 
   return (
     <Fragment>
-      <GameInfoDrawer players={players} state={state} info={info} username={username} />
+      <GameInfoDrawer players={players} state={state} info={info} userId={userId} />
       <ActiveComponent players={players} state={state} info={info} />
     </Fragment>
   );

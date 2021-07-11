@@ -90,8 +90,8 @@ function SectionTeamPlayers({ team, players }) {
   const sortedPlayers = useMemo(
     () =>
       team.members
-        .map((memberName) => {
-          return players[memberName];
+        .map((playerId) => {
+          return players[playerId];
         })
         .sort((a, b) => (a.name > b.name ? 1 : -1)),
     [players, team]
@@ -101,9 +101,9 @@ function SectionTeamPlayers({ team, players }) {
     <div className="game-info-drawer__team" key={team.name}>
       <h3>Team {team.name}</h3>
       <ul>
-        {sortedPlayers.map((player, index) => {
+        {sortedPlayers.map((player) => {
           return (
-            <div className="game-info-drawer__ranked-player" key={`ranked-${player.name}`}>
+            <div className="game-info-drawer__ranked-player" key={`ranked-${player.id}`}>
               <Avatar id={player.avatarId} shape="square" className="game-info-drawer__avatar-with-badge" />
               {player.name}, {AVATARS[player.avatarId].description.br}
             </div>
@@ -135,7 +135,7 @@ function SectionRankedPlayers({ players }) {
   );
 }
 
-function GameInfoDrawer({ players, state, info, username }) {
+function GameInfoDrawer({ players, state, info, userId }) {
   const [visible, setVisible] = useState(false);
 
   if (state.phase === 'LOBBY') {
@@ -149,7 +149,7 @@ function GameInfoDrawer({ players, state, info, username }) {
     setVisible(false);
   };
 
-  const completeMe = players?.[username] ?? {};
+  const completeMe = players?.[userId] ?? {};
   const isTeamGame = Boolean(completeMe?.team) && Boolean(state.teams);
 
   return (
