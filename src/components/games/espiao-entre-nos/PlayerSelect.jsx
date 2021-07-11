@@ -6,37 +6,37 @@ import { LoadingOutlined } from '@ant-design/icons';
 // Hooks
 import { useGlobalState, useLoading } from '../../../hooks';
 
-function PlayerSelect({ playersList, onSend, isFinalAssessment = false }) {
+function PlayerSelect({ players, onSend, isFinalAssessment = false }) {
   const [isLoading] = useLoading();
-  const [username] = useGlobalState('username');
+  const [userId] = useGlobalState('userId');
 
-  const [selectedPlayer, setSelectedPlayer] = useState(null);
+  const [selectedPlayerId, setSelectedPlayerId] = useState(null);
 
-  const playersWithoutMe = playersList.filter((playerName) => playerName !== username);
+  const playersWithoutMe = Object.values(players).filter((player) => player.id !== userId);
 
   return (
     <Space>
-      <Select onChange={setSelectedPlayer} className="e-select" placeholder="Acuse um jogador">
-        {playersWithoutMe.map((playerName) => (
-          <Select.Option key={playerName} value={playerName}>
-            {playerName}
+      <Select onChange={setSelectedPlayerId} className="e-select" placeholder="Acuse um jogador">
+        {playersWithoutMe.map((player) => (
+          <Select.Option key={player.id} value={player.id}>
+            {player.name}
           </Select.Option>
         ))}
       </Select>
       <Popconfirm
         title={`${
           isFinalAssessment ? '' : 'Você só pode acusar uma vez durante o jogo! '
-        }Tem certeza que quer acusar ${selectedPlayer}?`}
-        onConfirm={() => onSend({ vote: selectedPlayer })}
+        }Tem certeza que quer acusar ${players[selectedPlayerId]?.name}?`}
+        onConfirm={() => onSend({ vote: selectedPlayerId })}
         okText="Sim"
         cancelText="Não"
       >
         <Button
           type="primary"
-          disabled={!selectedPlayer || isLoading}
+          disabled={!selectedPlayerId || isLoading}
           icon={isLoading ? <LoadingOutlined /> : null}
         >
-          Acusar{selectedPlayer ? `: ${selectedPlayer}` : ''}
+          Acusar{selectedPlayerId ? `: ${players[selectedPlayerId]?.name}` : ''}
         </Button>
       </Popconfirm>
     </Space>
@@ -44,7 +44,7 @@ function PlayerSelect({ playersList, onSend, isFinalAssessment = false }) {
 }
 
 PlayerSelect.propTypes = {
-  playersList: PropTypes.arrayOf(PropTypes.string).isRequired,
+  players: PropTypes.object.isRequired,
   onSend: PropTypes.func.isRequired,
   isFinalAssessment: PropTypes.bool,
 };

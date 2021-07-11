@@ -227,7 +227,7 @@ const prepareAssignmentPhase = async (
   Object.values(players).forEach((player, index) => {
     const playerRole = availableRoles[index];
     if (playerRole === E_CONSTANTS.SPY) {
-      currentSpy = player.name;
+      currentSpy = player.id;
       player.location = E_CONSTANTS.SPY;
     } else {
       player.location = currentLocation.name;
@@ -378,7 +378,7 @@ const prepareResolutionPhase = async (
   // Calculate Points
   Object.values(players).forEach((player) => {
     // If spy was successful, gets 4 points (if he guessed, otherwise 2 for not being found)
-    if (stateUpdate.spyWin && state.currentSpy === player.name) {
+    if (stateUpdate.spyWin && state.currentSpy === player.id) {
       if (isSpyGuess) {
         player.score += 4;
       } else {
@@ -386,13 +386,13 @@ const prepareResolutionPhase = async (
       }
 
       // IF spy failed, everybody else gets 1 point
-    } else if (!stateUpdate.spyWin && state.currentSpy !== player.name) {
+    } else if (!stateUpdate.spyWin && state.currentSpy !== player.id) {
       player.score += 1;
     }
 
     // Accuser gets 2 points if correct
     if (!stateUpdate.spyWin && resolutionType === E_CONSTANTS.RESOLUTION.SPY_FOUND) {
-      if ((payload?.accuser ?? state.accuser) === player.name) {
+      if ((payload?.accuser ?? state.accuser) === player.id) {
         player.score += 2;
       }
     }

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 // Design Resources
 import { Button, Space } from 'antd';
 // Hooks
-import { useUser, useAPICall, useIsUserThe } from '../../../hooks';
+import { useUser, useAPICall, useIsUserThe, useWhichPlayerIsThe } from '../../../hooks';
 // Resources & Utils
 import { ESPIAO_ENTRE_NOS_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
@@ -21,6 +21,8 @@ function AssessmentPhase({ state, players, info }) {
   const isUserTheTarget = useIsUserThe('target', state);
   const isUserTheAccuser = useIsUserThe('accuser', state);
   const [submittedAction, setSubmitAction] = useState(false);
+  const accuser = useWhichPlayerIsThe('accuser', state, players);
+  const target = useWhichPlayerIsThe('target', state, players);
 
   const onSubmitVoting = useAPICall({
     apiFunction: ESPIAO_ENTRE_NOS_API.submitVoting,
@@ -39,7 +41,7 @@ function AssessmentPhase({ state, players, info }) {
       className="e-phase"
     >
       <Title level={2} className="e-phase-title">
-        {state.accuser} está acusando {state.target} de ser o espião. Concorda?
+        {accuser.name} está acusando {target.name} de ser o espião. Concorda?
       </Title>
 
       {!state?.finalAssessment && <EmergencyAlert />}
