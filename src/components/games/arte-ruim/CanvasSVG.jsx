@@ -46,8 +46,13 @@ function CanvasSVG({ drawing = '', className = '', size = 250 }) {
 }
 
 CanvasSVG.propTypes = {
-  drawing: PropTypes.string.isRequired,
   className: PropTypes.string,
+  drawing: PropTypes.string.isRequired,
+  size: PropTypes.number,
+};
+
+CanvasSVG.defaultProps = {
+  size: 250,
 };
 
 export default memo(CanvasSVG);

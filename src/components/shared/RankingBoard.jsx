@@ -61,9 +61,9 @@ export function RankingBoard({ players, ranking }) {
   return (
     <div className="ranking-board">
       {sortedRanking.map((entry, index) => {
-        const { playerName, newScore, previousScore, gainedPoints } = entry;
+        const { playerId, newScore, previousScore, gainedPoints } = entry;
         return (
-          <div className={`ranking-board__row ranking-board__row--${index}`} key={`ranking-${playerName}`}>
+          <div className={`ranking-board__row ranking-board__row--${index}`} key={`ranking-${playerId}`}>
             <div className="ranking-board__cell-crown">
               {newScore > 0 && maxPoints === newScore && displayStep >= 3 && (
                 <CrownFilled className="ranking-board__crown-icon" />
@@ -72,9 +72,9 @@ export function RankingBoard({ players, ranking }) {
             <div className="ranking-board__cell-position">#{positions?.[index] ?? ''}</div>
             <div className="ranking-board__cell-player">
               <div className="ranking-board__avatar">
-                <Avatar id={players[playerName].avatarId} />
+                <Avatar id={players[playerId].avatarId} />
               </div>
-              <div className="ranking-board__name">{playerName}</div>
+              <div className="ranking-board__name">{players[playerId].name}</div>
             </div>
             <div className="ranking-board__cell-points">{previousScore}</div>
             {displayStep >= 1 && <div className="ranking-board__cell-points-plus">+{gainedPoints}</div>}
@@ -90,7 +90,7 @@ RankingBoard.propTypes = {
   players: PropTypes.object,
   ranking: PropTypes.arrayOf(
     PropTypes.shape({
-      playerName: PropTypes.string,
+      playerId: PropTypes.string,
       previousScore: PropTypes.number,
       gainedPoints: PropTypes.number,
       newScore: PropTypes.number,

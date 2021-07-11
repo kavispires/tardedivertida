@@ -39,11 +39,12 @@ function DrawPhaseDrawStep({ secretCard, onSubmitDrawing }) {
 }
 
 DrawPhaseDrawStep.propTypes = {
-  secretCard: PropTypes.shape({
-    text: PropTypes.string,
-    level: PropTypes.number,
-  }).isRequired,
   onSubmitDrawing: PropTypes.func.isRequired,
+  secretCard: PropTypes.shape({
+    id: PropTypes.string,
+    level: PropTypes.number,
+    text: PropTypes.string,
+  }).isRequired,
 };
 
 export default DrawPhaseDrawStep;

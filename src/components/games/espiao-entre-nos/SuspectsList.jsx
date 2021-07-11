@@ -61,14 +61,7 @@ function SuspectsList({ players }) {
 }
 
 SuspectsList.propTypes = {
-  header: PropTypes.string.isRequired,
-  headerIcon: PropTypes.element.isRequired,
-  items: PropTypes.arrayOf(PropTypes.string),
-  column: PropTypes.bool,
-};
-
-SuspectsList.defaultProps = {
-  column: false,
+  players: PropTypes.object,
 };
 
 export default memo(SuspectsList);

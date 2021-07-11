@@ -10,7 +10,7 @@ import { ImageCard } from '../../cards';
 import { Avatar } from '../../avatars';
 
 export function TableFocus({ table, currentPlayer }) {
-  const tableEntry = table.find((entry) => entry.playerId === currentPlayer.name);
+  const tableEntry = table.find((entry) => entry.playerId === currentPlayer.id);
   const baseClass = 'd-table';
 
   if (!currentPlayer || !tableEntry?.cards) {

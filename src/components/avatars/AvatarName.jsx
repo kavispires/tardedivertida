@@ -15,11 +15,11 @@ export const AvatarName = memo(function ({
   uppercase = false,
   addressUser = false,
 }) {
-  const [username] = useGlobalState('username');
+  const [userId] = useGlobalState('userId');
 
   const baseClass = 'avatar-name';
 
-  const isUser = player.name === username;
+  const isUser = player.id === userId;
 
   return (
     <span
@@ -36,7 +36,7 @@ export const AvatarName = memo(function ({
 
 AvatarName.propTypes = {
   player: PropTypes.shape({
-    avatarId: PropTypes.number,
+    avatarId: PropTypes.string,
     name: PropTypes.string,
   }).isRequired,
   size: PropTypes.oneOf(['small', 'default', 'large']),

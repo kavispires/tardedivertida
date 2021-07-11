@@ -1,7 +1,8 @@
+import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import useSound from 'use-sound';
 // State & Hooks
-import { useGlobalState, useIsUserReady, useAPICall } from '../../../hooks';
+import { useIsUserReady, useAPICall, useUser } from '../../../hooks';
 // Resources & Utils
 import { ARTE_RUIM_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
@@ -20,14 +21,14 @@ import DrawPhaseDrawStep from './DrawPhaseDrawStep';
 
 function DrawPhase({ players, state, info }) {
   const isUserReady = useIsUserReady(players, state);
-  const [username] = useGlobalState('username');
+  const user = useUser(players);
   const [step, setStep] = useState(0);
   const [secretCard, setSecretCard] = useState({});
   const [play] = useSound(arteRuimTimer, { volume: 0.4 });
 
   useEffect(() => {
-    setSecretCard(players[username].currentCard ?? {});
-  }, [players, username]);
+    setSecretCard(players[user?.id]?.currentCard ?? {});
+  }, [players, user?.id]);
 
   const onSubmitDrawing = useAPICall({
     apiFunction: ARTE_RUIM_API.submitDrawing,
@@ -55,7 +56,9 @@ function DrawPhase({ players, state, info }) {
           <Instruction white>
             Você terá 10 segundos para ler a sua carta e desenhá-la.
             <br />
-            Aperte o botão quando estiver pronto! Não vale usar números e letras.
+            Aperte o botão quando estiver pronto!
+            <br />
+            Não vale usar números e letras.
             <br />
             Fique esperto porque o tempo começa assim que você apertar.
           </Instruction>
@@ -77,5 +80,14 @@ function DrawPhase({ players, state, info }) {
     </PhaseContainer>
   );
 }
+
+DrawPhase.propTypes = {
+  info: PropTypes.object,
+  players: PropTypes.object,
+  state: PropTypes.shape({
+    phase: PropTypes.string,
+    round: PropTypes.number,
+  }),
+};
 
 export default DrawPhase;

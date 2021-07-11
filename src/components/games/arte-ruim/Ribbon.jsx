@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { getColorFromLetter } from '../../../utils';
 
@@ -15,5 +16,9 @@ function Ribbon({ cardEntryId }) {
     </div>
   );
 }
+
+Ribbon.propTypes = {
+  cardEntryId: PropTypes.string,
+};
 
 export default Ribbon;

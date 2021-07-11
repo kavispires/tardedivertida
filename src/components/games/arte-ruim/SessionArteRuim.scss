@@ -44,10 +44,10 @@
 }
 
 .a-gallery-phase {
-  position: relative;
-
   &__windows {
+    position: relative;
     width: 100%;
+    flex: 1;
   }
 }
 

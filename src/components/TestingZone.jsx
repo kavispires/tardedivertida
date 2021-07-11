@@ -16,21 +16,21 @@ function TestingZone() {
 
   const players = {
     Flaviane: {
-      avatarId: 10,
+      avatarId: '10',
       name: 'Flaviane',
       ready: false,
       score: 0,
       updatedAt: Date.now(),
     },
     Kavis: {
-      avatarId: 11,
+      avatarId: '11',
       name: 'Kavis',
       ready: false,
       score: 0,
       updatedAt: Date.now(),
     },
     Stephanie: {
-      avatarId: 12,
+      avatarId: '12',
       name: 'Stephanie',
       ready: false,
       score: 0,
@@ -48,7 +48,7 @@ function TestingZone() {
     // phase: 'GAME_OVER',
     // winner: {
     //   name: 'Flaviane',
-    //   avatarId: 15,
+    //   avatarId: '15',
     //   score: 35,
     // },
   };

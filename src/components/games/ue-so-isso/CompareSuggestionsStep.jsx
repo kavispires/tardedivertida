@@ -84,7 +84,7 @@ function CompareSuggestionsStep({
                 <SuggestionCard
                   suggestion={suggestionEntry.suggestion}
                   invalid={suggestionEntry.invalid}
-                  avatarId={players[suggestionEntry.playerName].avatarId}
+                  avatarId={players[suggestionEntry.playerId].avatarId}
                   index={index}
                 />
               </div>
@@ -100,7 +100,7 @@ function CompareSuggestionsStep({
               <SuggestionCard
                 suggestion={suggestionEntry.suggestion}
                 invalid={myRecommendation?.[index]?.invalid ?? suggestionEntry.invalid}
-                avatarId={players[suggestionEntry.playerName].avatarId}
+                avatarId={players[suggestionEntry.playerId].avatarId}
                 index={index}
               />
             </button>
@@ -140,7 +140,7 @@ function CompareSuggestionsStep({
 CompareSuggestionsStep.propTypes = {
   isUserTheNextGuesser: PropTypes.bool,
   nextGuesser: PropTypes.shape({
-    avatarId: PropTypes.number,
+    avatarId: PropTypes.string,
     name: PropTypes.string,
   }),
   onValidateSuggestions: PropTypes.func,
@@ -150,7 +150,7 @@ CompareSuggestionsStep.propTypes = {
     PropTypes.shape({
       suggestion: PropTypes.string,
       invalid: PropTypes.bool,
-      playerName: PropTypes.string,
+      playerId: PropTypes.string,
     })
   ),
 };

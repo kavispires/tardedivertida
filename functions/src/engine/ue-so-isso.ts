@@ -129,8 +129,8 @@ export const nextUeSoIssoPhase = async (
   // Perform setup and reset any previous session stuff
   if (state?.phase === 'RULES') {
     // Determine player order
-    const playersNames = gameUtils.shuffle(Object.keys(players));
-    store.turnOrder = playersNames.length <= 6 ? [...playersNames, ...playersNames] : playersNames;
+    const playersIds = gameUtils.shuffle(Object.keys(players));
+    store.turnOrder = playersIds.length <= 6 ? [...playersIds, ...playersIds] : playersIds;
     await sessionRef.doc('store').update({
       turnOrder: store.turnOrder,
       currentWord: utils.deleteValue(),
@@ -323,7 +323,7 @@ const prepareComparePhase = async (
         if (currentSuggestions[suggestion] === undefined) {
           currentSuggestions[suggestion] = [];
         }
-        currentSuggestions[suggestion].push(player.name);
+        currentSuggestions[suggestion].push(player.id);
       });
     }
   });
@@ -334,10 +334,10 @@ const prepareComparePhase = async (
       const [suggestion, playersSug] = suggestionEntry;
 
       if (playersSug.length > 1) {
-        const res = playersSug.map((pName) => {
+        const res = playersSug.map((playerId) => {
           return {
             suggestion,
-            playerName: pName,
+            playerId,
             invalid: true,
           };
         });
@@ -347,7 +347,7 @@ const prepareComparePhase = async (
 
       acc.push({
         suggestion,
-        playerName: playersSug[0],
+        playerId: playersSug[0],
         invalid: false,
       });
 
@@ -427,12 +427,12 @@ const prepareGameOverPhase = async (
 };
 
 export const submitWordSelectionVotes = async (data: SubmitVotesPayload) => {
-  const { gameId, gameName: collectionName, playerName, votes } = data;
+  const { gameId, gameName: collectionName, playerId, votes } = data;
 
   const actionText = 'submit your word selection votes';
   utils.verifyPayload(gameId, 'gameId', actionText);
   utils.verifyPayload(collectionName, 'collectionName', actionText);
-  utils.verifyPayload(playerName, 'playerName', actionText);
+  utils.verifyPayload(playerId, 'playerId', actionText);
   utils.verifyPayload(votes, 'votes', actionText);
 
   // Get 'players' from given game session
@@ -441,11 +441,11 @@ export const submitWordSelectionVotes = async (data: SubmitVotesPayload) => {
 
   // Make player ready and attach drawing
   const players = playersDoc.data() ?? {};
-  const updatedPlayers = utils.readyPlayer(players, playerName);
-  updatedPlayers[playerName].votes = votes;
+  const updatedPlayers = utils.readyPlayer(players, playerId);
+  updatedPlayers[playerId].votes = votes;
 
   try {
-    await sessionRef.doc('players').update({ [playerName]: updatedPlayers[playerName] });
+    await sessionRef.doc('players').update({ [playerId]: updatedPlayers[playerId] });
   } catch (error) {
     utils.throwException(error, actionText);
   }
@@ -459,12 +459,12 @@ export const submitWordSelectionVotes = async (data: SubmitVotesPayload) => {
 };
 
 export const submitSuggestions = async (data: SubmitSuggestionsPayload) => {
-  const { gameId, gameName: collectionName, playerName, suggestions } = data;
+  const { gameId, gameName: collectionName, playerId, suggestions } = data;
 
   const actionText = 'submit your suggestions';
   utils.verifyPayload(gameId, 'gameId', actionText);
   utils.verifyPayload(collectionName, 'collectionName', actionText);
-  utils.verifyPayload(playerName, 'playerName', actionText);
+  utils.verifyPayload(playerId, 'playerId', actionText);
   utils.verifyPayload(suggestions, 'suggestions', actionText);
 
   // Get 'players' from given game session
@@ -473,11 +473,11 @@ export const submitSuggestions = async (data: SubmitSuggestionsPayload) => {
 
   // Make player ready and attach drawing
   const players = playersDoc.data() ?? {};
-  const updatedPlayers = utils.readyPlayer(players, playerName);
-  updatedPlayers[playerName].suggestions = suggestions;
+  const updatedPlayers = utils.readyPlayer(players, playerId);
+  updatedPlayers[playerId].suggestions = suggestions;
 
   try {
-    await sessionRef.doc('players').update({ [playerName]: updatedPlayers[playerName] });
+    await sessionRef.doc('players').update({ [playerId]: updatedPlayers[playerId] });
   } catch (error) {
     utils.throwException(error, actionText);
   }
@@ -490,12 +490,12 @@ export const submitSuggestions = async (data: SubmitSuggestionsPayload) => {
 };
 
 export const submitValidation = async (data: SubmitSuggestionsValidationPayload) => {
-  const { gameId, gameName: collectionName, playerName, validSuggestions } = data;
+  const { gameId, gameName: collectionName, playerId, validSuggestions } = data;
 
   const actionText = 'submit the suggestions validation';
   utils.verifyPayload(gameId, 'gameId', actionText);
   utils.verifyPayload(collectionName, 'collectionName', actionText);
-  utils.verifyPayload(playerName, 'playerName', actionText);
+  utils.verifyPayload(playerId, 'playerId', actionText);
   utils.verifyPayload(validSuggestions, 'validSuggestions', actionText);
 
   // Get 'players' from given game session
@@ -516,12 +516,12 @@ export const submitValidation = async (data: SubmitSuggestionsValidationPayload)
 };
 
 export const sendGuess = async (data: ConfirmGuessPayload) => {
-  const { gameId, gameName: collectionName, playerName, guess } = data;
+  const { gameId, gameName: collectionName, playerId, guess } = data;
 
   const actionText = 'submit the guess';
   utils.verifyPayload(gameId, 'gameId', actionText);
   utils.verifyPayload(collectionName, 'collectionName', actionText);
-  utils.verifyPayload(playerName, 'playerName', actionText);
+  utils.verifyPayload(playerId, 'playerId', actionText);
   utils.verifyPayload(guess, 'guess', actionText);
 
   // Get 'players' from given game session
@@ -538,12 +538,12 @@ export const sendGuess = async (data: ConfirmGuessPayload) => {
 };
 
 export const confirmGuess = async (data: ConfirmGuessPayload) => {
-  const { gameId, gameName: collectionName, playerName, guess } = data;
+  const { gameId, gameName: collectionName, playerId, guess } = data;
 
   const actionText = 'submit the guess';
   utils.verifyPayload(gameId, 'gameId', actionText);
   utils.verifyPayload(collectionName, 'collectionName', actionText);
-  utils.verifyPayload(playerName, 'playerName', actionText);
+  utils.verifyPayload(playerId, 'playerId', actionText);
   utils.verifyPayload(guess, 'guess', actionText);
 
   // Get 'players' from given game session

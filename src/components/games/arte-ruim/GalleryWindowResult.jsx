@@ -3,12 +3,14 @@ import PropTypes from 'prop-types';
 // Design Resources
 import { Avatar as AntAvatar, Typography } from 'antd';
 import { CrownFilled, DeleteFilled } from '@ant-design/icons';
+// Utils
+import { getPlayersFromIds } from '../../../utils';
 // Components
 import { Avatar } from '../../avatars';
 import { StarPoints } from '../../shared';
 
 function GalleryWindowResult({
-  artist,
+  playerArtist,
   correctAnswerId,
   correctAnswerText,
   playersPoints,
@@ -28,19 +30,22 @@ function GalleryWindowResult({
         <Fragment>
           <div className="a-gallery-window__players">
             <AntAvatar.Group>
-              {correctGuesses.map((playerName) => {
-                return (
-                  <Avatar key={`correct-guess-avatar-${playerName}`} id={players[playerName].avatarId} />
-                );
+              {correctGuesses.map((playerId) => {
+                return <Avatar key={`correct-guess-avatar-${playerId}`} id={players[playerId].avatarId} />;
               })}
             </AntAvatar.Group>
-            <StarPoints quantity={2} keyPrefix={`guessers-points-${artist}`} />
-            <span className="a-gallery-window__players-names">{correctGuesses.join(', ')}</span>
+            <StarPoints quantity={2} keyPrefix={`guessers-points-${playerArtist.id}`} />
+            <span className="a-gallery-window__players-names">
+              {getPlayersFromIds(correctGuesses, players, true).join(', ')}
+            </span>
           </div>
           <div className="a-gallery-window__artist-points">
-            <Avatar id={players[artist].avatarId} />{' '}
-            <StarPoints quantity={playersPoints?.[artist]} keyPrefix={`artist-points-${artist}`} />{' '}
-            <span className="a-gallery-window__players-names">{artist}</span>
+            <Avatar id={playerArtist.avatarId} />{' '}
+            <StarPoints
+              quantity={playersPoints?.[playerArtist.id]}
+              keyPrefix={`artist-points-${playerArtist.id}`}
+            />{' '}
+            <span className="a-gallery-window__players-names">{playerArtist.name}</span>
           </div>
         </Fragment>
       ) : (
@@ -53,11 +58,13 @@ function GalleryWindowResult({
 }
 
 GalleryWindowResult.propTypes = {
-  artist: PropTypes.string,
   correctAnswer: PropTypes.string,
+  correctAnswerId: PropTypes.string,
+  correctAnswerText: PropTypes.string,
+  playerArtist: PropTypes.object,
+  players: PropTypes.object,
   playersPoints: PropTypes.object,
   playersSay: PropTypes.object,
-  players: PropTypes.object,
 };
 
 export default memo(GalleryWindowResult);
