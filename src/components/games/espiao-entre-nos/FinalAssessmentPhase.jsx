@@ -7,6 +7,7 @@ import { useUser, useAPICall } from '../../../hooks';
 // Resources & Utils
 import { ESPIAO_ENTRE_NOS_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
+import { getPlayersFromIds } from '../../../utils';
 // Components
 import { AdminOnly } from '../../admin/index';
 import { ButtonContainer, Instruction, PhaseContainer, Title } from '../../shared';
@@ -16,19 +17,19 @@ import SuspectsList from './SuspectsList';
 import Notes from './Notes';
 import PlayerSelect from './PlayerSelect';
 
-function FinalAssessmentInstruction({ playerOrder, playerOrderIndex }) {
+function FinalAssessmentInstruction({ playerOrder, playerOrderIndex, players }) {
   return (
     <Instruction className="e-phase-instruction">
       Já que vocês falharam em encontrar o espião, há uma última possibilidade!
       <ul>
         {playerOrderIndex === 0 ? (
-          <li>Cada jogador, começando por {playerOrder[0]}, cada jogador faz uma acusação.</li>
+          <li>Cada jogador, começando por {players?.[playerOrder[0]]?.name}, faz uma acusação.</li>
         ) : (
           <li>Agora é a vez de {playerOrder[playerOrderIndex]} faz uma acusação.</li>
         )}
-        <li>Se a votação for unânime, o jogo acaba e revelam-se os papéis</li>
+        <li>Se a votação for unânime em qualquer uma das votações, o jogo acaba e revelam-se os papéis.</li>
         <li>Sem discussão dessa vez, simplesmente acuse alguém! Não temos mais tempo!</li>
-        <li>A ordem será essa: {playerOrder.join(', ')}</li>
+        <li>A ordem será essa: {getPlayersFromIds(playerOrder, players, true).join(', ')}</li>
       </ul>
     </Instruction>
   );
@@ -43,10 +44,14 @@ function FinalAssessmentModal({ isModalVisible, onMakeAccusation, players, playe
       closable={false}
       className="e-modal"
     >
-      <FinalAssessmentInstruction playerOrder={playerOrder} playerOrderIndex={playerOrderIndex} />
+      <FinalAssessmentInstruction
+        playerOrder={playerOrder}
+        playerOrderIndex={playerOrderIndex}
+        players={players}
+      />
       Não há tempo pra pensar, escolha alguém!
       <ButtonContainer>
-        <PlayerSelect playersList={Object.keys(players)} onSend={onMakeAccusation} isFinalAssessment />
+        <PlayerSelect players={players} onSend={onMakeAccusation} isFinalAssessment />
       </ButtonContainer>
     </Modal>
   );
@@ -81,8 +86,7 @@ function FinalAssessmentPhase({ state, players, info }) {
     }
   }, []); // eslint-disable-line
 
-  const isUserTheAccuser = state.playerOrder[state.playerOrderIndex] === user.name;
-
+  const isUserTheAccuser = state.playerOrder[state.playerOrderIndex] === user.id;
   return (
     <PhaseContainer
       info={info}
@@ -102,7 +106,11 @@ function FinalAssessmentPhase({ state, players, info }) {
         playerOrderIndex={state.playerOrderIndex}
       />
 
-      <FinalAssessmentInstruction playerOrder={state.playerOrder} playerOrderIndex={state.playerOrderIndex} />
+      <FinalAssessmentInstruction
+        playerOrder={state.playerOrder}
+        playerOrderIndex={state.playerOrderIndex}
+        players={players}
+      />
 
       <Card location={user.location} role={user.role} />
 
@@ -116,17 +124,17 @@ function FinalAssessmentPhase({ state, players, info }) {
       <AdminOnly className="e-admin-final-assessment">
         <span>Acusador:</span>
         <Select onChange={setAccuser} className="e-select" placeholder="Acusador">
-          {Object.keys(players).map((playerName) => (
-            <Select.Option key={playerName} value={playerName}>
-              {playerName}
+          {Object.values(players).map((player) => (
+            <Select.Option key={player.id} value={player.id}>
+              {player.name}
             </Select.Option>
           ))}
         </Select>
         <span>Acusado:</span>
         <Select onChange={setTarget} className="e-select" placeholder="Acusado">
-          {Object.keys(players).map((playerName) => (
-            <Select.Option key={playerName} value={playerName}>
-              {playerName}
+          {Object.values(players).map((player) => (
+            <Select.Option key={player.id} value={player.id}>
+              {player.name}
             </Select.Option>
           ))}
         </Select>

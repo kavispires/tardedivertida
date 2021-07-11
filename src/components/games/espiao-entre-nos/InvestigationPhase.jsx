@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 // Design Resources
 import { notification } from 'antd';
 // Hooks
-import { useUser, useAPICall, useIsUserThe } from '../../../hooks';
+import { useUser, useAPICall, useIsUserThe, useWhichPlayerIsThe } from '../../../hooks';
 // Resources & Utils
 import { ESPIAO_ENTRE_NOS_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
@@ -21,6 +21,7 @@ import LocationsList from './LocationsList';
 function InvestigationPhase({ state, players, info }) {
   const user = useUser(players);
   const isUserTheSpy = useIsUserThe('currentSpy', state);
+  const startingPlayer = useWhichPlayerIsThe('startingPlayer', state, players);
   const [isAccusationSelectVisible, setAccusationSelectVisible] = useState(true);
 
   const onMakeAccusation = useAPICall({
@@ -53,7 +54,7 @@ function InvestigationPhase({ state, players, info }) {
     if (state.timeRemaining > 590000) {
       notification.info({
         message: '10 minutos!',
-        description: `${state?.startingPlayer ?? Object.keys(players)[0]} começa perguntando!`,
+        description: `${startingPlayer.name ?? Object.values(players)[0].name} começa perguntando!`,
         duration: 10,
       });
     }
@@ -88,7 +89,7 @@ function InvestigationPhase({ state, players, info }) {
           {isUserTheSpy && <LocationSelect locations={state.possibleLocations} onSend={onGuessLocation} />}
 
           {!user?.usedAccusation ? (
-            <PlayerSelect playersList={Object.keys(players)} onSend={onMakeAccusation} />
+            <PlayerSelect players={players} onSend={onMakeAccusation} />
           ) : (
             <Instruction className="e-phase-instruction">Você já usou sua chance de acusar</Instruction>
           )}

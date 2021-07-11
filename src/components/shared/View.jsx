@@ -33,7 +33,7 @@ export function ViewSwitch({ cases, children }) {
   if (cases[4] && children[4]) {
     return children[4];
   }
-
+  console.warn('Rendering all children in the ViewSwitch');
   return children;
 }
 
