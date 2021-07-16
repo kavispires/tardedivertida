@@ -11,13 +11,13 @@ import { LETTERS } from '../../../utils/constants';
 import BasicCard from '../../cards/Card';
 import { Avatar } from '../../avatars';
 
-function SuggestionCard({ avatarId, index, invalid, suggestion }) {
+function SuggestionCard({ avatarId, playerName, index, invalid, suggestion }) {
   return (
     <BasicCard
       size="medium"
       color={getColorFromIndex(index)}
       className={clsx(invalid && 'u-suggestion-card__invalid')}
-      header={LETTERS[index]}
+      header={playerName ? `${LETTERS[index]} (${playerName})` : LETTERS[index]}
     >
       {invalid ? (
         <AntAvatar size="small" className="u-suggestion-card__suggestion-avatar">
