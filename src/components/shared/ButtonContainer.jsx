@@ -7,7 +7,7 @@ import { Space } from 'antd';
 export function ButtonContainer({ children, wrap = false, className = '' }) {
   const baseClass = 'button-container';
   return (
-    <Space className={clsx(baseClass, className)} wrap={wrap}>
+    <Space className={clsx(baseClass, className)} wrap={wrap} data-testid="button-container">
       {children}
     </Space>
   );
