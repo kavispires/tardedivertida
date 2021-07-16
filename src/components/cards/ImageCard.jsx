@@ -9,11 +9,13 @@ export const ImageCard = memo(function ({ imageId, size, cardWidth, className })
 
   const fallbackName = `placeholder-${imageId[imageId.length - 1]}`;
 
+  const imageURL = imageId.replace(/-/g, '/');
+
   return (
     <div className={clsx(baseClass, `${baseClass}--${size}`, className)}>
       <Image
         width={cardWidth}
-        src={`${PUBLIC_URL.CARDS}${imageId}.jpg`}
+        src={`${process.env.REACT_APP_IMG_URL}${imageURL}.jpg`}
         fallback={`${PUBLIC_URL.CARDS}${fallbackName}.jpg`}
         preview={{
           maskClassName: `${baseClass}__preview-mask`,
