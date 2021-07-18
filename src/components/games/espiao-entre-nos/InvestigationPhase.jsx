@@ -23,7 +23,6 @@ function InvestigationPhase({ state, players, info }) {
   const isUserTheSpy = useIsUserThe('currentSpy', state);
   const startingPlayer = useWhichPlayerIsThe('startingPlayer', state, players);
   const [isAccusationSelectVisible, setAccusationSelectVisible] = useState(true);
-  console.log({ startingPlayer });
 
   const onMakeAccusation = useAPICall({
     apiFunction: ESPIAO_ENTRE_NOS_API.makeAccusation,
