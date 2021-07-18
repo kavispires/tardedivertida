@@ -66,12 +66,6 @@ export interface Players {
   [key: string]: Player;
 }
 
-export interface MakeMeReadyPayload {
-  gameId: GameId;
-  gameName: GameName;
-  playerId: PlayerId;
-}
-
 export interface Team {
   members: PlayerId[];
   name: string;

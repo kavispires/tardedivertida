@@ -15,14 +15,14 @@ export function Rules({ players, info }) {
   const isUserReady = useIsUserReady(players);
 
   const onBeReady = useAPICall({
-    apiFunction: GAME_API.makeMeReady,
+    apiFunction: GAME_API.makePlayerReady,
     actionName: 'be-ready',
     successMessage: 'Pronto! Aguarde os outros jogadores estarem prontos',
     errorMessage: 'Vixi, o aplicativo encontrou um erro ao tentar continuar',
   });
 
   const onBeReadyQue = useAPICall({
-    apiFunction: GAME_API.makeMeReady,
+    apiFunction: GAME_API.makePlayerReady,
     actionName: 'be-ready',
     successMessage: 'Vixi, se fudeu então, pq o jogo vai começar!',
     errorMessage: 'Vixi, o aplicativo encontrou um erro ao tentar continuar',
