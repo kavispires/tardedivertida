@@ -23,6 +23,7 @@ function InvestigationPhase({ state, players, info }) {
   const isUserTheSpy = useIsUserThe('currentSpy', state);
   const startingPlayer = useWhichPlayerIsThe('startingPlayer', state, players);
   const [isAccusationSelectVisible, setAccusationSelectVisible] = useState(true);
+  console.log({ startingPlayer });
 
   const onMakeAccusation = useAPICall({
     apiFunction: ESPIAO_ENTRE_NOS_API.makeAccusation,
@@ -51,14 +52,14 @@ function InvestigationPhase({ state, players, info }) {
       });
     }
 
-    if (state.timeRemaining > 590000) {
+    if (state.timeRemaining > 590000 && startingPlayer.name) {
       notification.info({
         message: '10 minutos!',
-        description: `${startingPlayer.name ?? Object.values(players)[0].name} começa perguntando!`,
+        description: `${startingPlayer.name} começa perguntando!`,
         duration: 10,
       });
     }
-  }, []); // eslint-disable-line
+  }, [startingPlayer.name]); // eslint-disable-line
 
   return (
     <PhaseContainer
