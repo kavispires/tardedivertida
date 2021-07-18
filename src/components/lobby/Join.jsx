@@ -12,9 +12,9 @@ import avatars from '../../images/avatars.svg';
 import localStorage from '../../services/localStorage';
 // Utils
 import { AVATARS, PUBLIC_URL, RANDOM_NAMES } from '../../utils/constants';
-import { getRandomItem } from '../../utils/index';
+import { getRandomItem, isDevEnv } from '../../utils/index';
 
-const randomName = process.env.NODE_ENV === 'development' ? getRandomItem(RANDOM_NAMES) : undefined;
+const randomName = isDevEnv ? getRandomItem(RANDOM_NAMES) : undefined;
 
 const AVATAR_IDS = Object.keys(AVATARS);
 

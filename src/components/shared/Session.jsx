@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { useGameState, useGlobalState, useGamePlayers } from '../../hooks';
 // Utils
 import gameList from '../../resources/games.json';
+import { isDevEnv } from '../../utils';
 // Components
 import Lobby from '../lobby/Lobby';
 import GameInfoDrawer from '../shared/GameInfoDrawer';
@@ -19,7 +20,7 @@ export function Session({ gameId, gameCollection, getActiveComponent }) {
     setInfo(gameId?.[0] ? gameList[gameId[0]] : {});
   }, [gameId]);
 
-  if (process.env.NODE_ENV === 'development') {
+  if (isDevEnv) {
     console.table(players);
     console.log({ state });
   }

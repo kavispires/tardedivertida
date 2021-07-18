@@ -9,11 +9,12 @@ import { auth } from '../services/firebase';
 import { useGlobalState } from '../hooks';
 // Pages
 import Home from './Home';
-import Admin from './Admin';
+import Hub from './Hub';
 import Login from './Login';
 import Game from './Game';
 import TestingZone from './TestingZone';
 import { LoadingBar, LoadingPage } from './loaders';
+import { isDevEnv } from '../utils';
 
 function PrivateRoute({ component: Component, authenticated, ...rest }) {
   return (
@@ -69,9 +70,14 @@ function App() {
         ) : (
           <Switch>
             <Route exact path="/" component={Home}></Route>
-            <PrivateRoute path="/admin" authenticated={isAuthenticated} component={Admin} />
+            <PrivateRoute path="/hub" authenticated={isAuthenticated} component={Hub} />
             <PublicRoute path="/login" authenticated={isAuthenticated} component={Login} />
-            <PrivateRoute path="/testing-zone" authenticated={isAuthenticated} component={TestingZone} />
+            {isDevEnv && (
+              <>
+                <PrivateRoute path="/testing-zone" authenticated={isAuthenticated} component={TestingZone} />
+              </>
+            )}
+
             <Route path="*" component={Game} />
           </Switch>
         )}
