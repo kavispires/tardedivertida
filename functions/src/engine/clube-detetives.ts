@@ -4,9 +4,10 @@ import {
   GAME_PLAYERS_LIMIT,
   CLUBE_DETETIVE_CONSTANTS as D_CONSTANTS,
 } from '../utils/constants';
+import * as firebaseUtils from '../utils/firebase';
 import * as gameUtils from '../utils/game-utils';
-import * as utils from '../utils/index';
 import * as imageCards from '../utils/image-cards';
+import * as utils from '../utils/index';
 import {
   GameId,
   ClubeDetetivesInitialState,
@@ -153,9 +154,9 @@ export const nextClubeDetetivesPhase = async (
   const actionText = 'prepare next phase';
 
   // Determine and prepare next phase
-  const sessionRef = utils.getSessionRef(collectionName, gameId);
-  const stateDoc = await utils.getSessionDoc(collectionName, gameId, 'state', actionText);
-  const storeDoc = await utils.getSessionDoc(collectionName, gameId, 'store', actionText);
+  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
+  const stateDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'state', actionText);
+  const storeDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'store', actionText);
 
   const state = stateDoc.data() ?? {};
   const store = { ...(storeDoc.data() ?? {}) };
@@ -421,14 +422,14 @@ const handleSubmitClue = async (
   clue: string
 ) => {
   // Get 'players' from given game session
-  const sessionRef = utils.getSessionRef(collectionName, gameId);
-  const playersDoc = await utils.getSessionDoc(collectionName, gameId, 'players', 'submit clue');
+  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
+  const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', 'submit clue');
 
   // Submit clue
   try {
     await sessionRef.doc('store').update({ clue });
   } catch (error) {
-    utils.throwException(error, 'Failed to save clue to store');
+    firebaseUtils.throwException(error, 'Failed to save clue to store');
   }
 
   const players = playersDoc.data() ?? {};
@@ -445,14 +446,14 @@ const handlePlayCard = async (
 ) => {
   const actionText = 'play a card';
 
-  const sessionRef = utils.getSessionRef(collectionName, gameId);
-  const playersDoc = await utils.getSessionDoc(collectionName, gameId, 'players', actionText);
-  const stateDoc = await utils.getSessionDoc(collectionName, gameId, 'state', actionText);
+  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
+  const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
+  const stateDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'state', actionText);
   const players = playersDoc.data() ?? {};
   const state = stateDoc.data() ?? {};
 
   if (state.currentPlayerId !== playerId) {
-    utils.throwException('You are not the current player!', 'Failed to play card.');
+    firebaseUtils.throwException('You are not the current player!', 'Failed to play card.');
   }
 
   // Remove card from player's hand and add new card
@@ -460,7 +461,7 @@ const handlePlayCard = async (
     const newPlayers = discardPlayerCard(players, cardId, playerId);
     await sessionRef.doc('players').update(newPlayers);
   } catch (error) {
-    utils.throwException(error, 'Failed to update player with new card');
+    firebaseUtils.throwException(error, 'Failed to update player with new card');
   }
 
   // Add card to table
@@ -490,7 +491,7 @@ const handlePlayCard = async (
       });
     }
   } catch (error) {
-    utils.throwException(error, 'Failed to update table with new card');
+    firebaseUtils.throwException(error, 'Failed to update table with new card');
   }
 
   return true;
@@ -499,13 +500,13 @@ const handlePlayCard = async (
 const handleDefend = async (collectionName: GameName, gameId: GameId, playerId: PlayerId) => {
   const actionText = 'defend';
 
-  const sessionRef = utils.getSessionRef(collectionName, gameId);
-  const stateDoc = await utils.getSessionDoc(collectionName, gameId, 'state', actionText);
+  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
+  const stateDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'state', actionText);
 
   const state = stateDoc.data() ?? {};
 
   if (state.currentPlayerId !== playerId) {
-    utils.throwException('You are not the current player!', 'Failed to play card.');
+    firebaseUtils.throwException('You are not the current player!', 'Failed to play card.');
   }
 
   // Add card to table
@@ -514,7 +515,7 @@ const handleDefend = async (collectionName: GameName, gameId: GameId, playerId: 
 
     // If it is the last player to play, go to the next phase
     if (newPhaseIndex === state.phaseOrder.length) {
-      const playersDoc = await utils.getSessionDoc(collectionName, gameId, 'players', actionText);
+      const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
       const players = playersDoc.data() ?? {};
       nextClubeDetetivesPhase(collectionName, gameId, players);
     } else {
@@ -524,7 +525,7 @@ const handleDefend = async (collectionName: GameName, gameId: GameId, playerId: 
       });
     }
   } catch (error) {
-    utils.throwException(error, 'Failed to conclude your defense');
+    firebaseUtils.throwException(error, 'Failed to conclude your defense');
   }
 
   return true;
@@ -537,8 +538,8 @@ const handleSubmitVote = async (
   vote: PlayerId
 ) => {
   const actionText = 'vote';
-  const sessionRef = utils.getSessionRef(collectionName, gameId);
-  const playersDoc = await utils.getSessionDoc(collectionName, gameId, 'players', actionText);
+  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
+  const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
 
   // Make player ready and attach vote
   const players = playersDoc.data() ?? {};
@@ -548,7 +549,7 @@ const handleSubmitVote = async (
   try {
     await sessionRef.doc('players').update({ [playerId]: updatedPlayers[playerId] });
   } catch (error) {
-    utils.throwException(error, actionText);
+    firebaseUtils.throwException(error, actionText);
   }
 
   if (!utils.isEverybodyReady(updatedPlayers)) {
@@ -565,30 +566,30 @@ export const submitAction = async (data: ClubeDetetivesSubmitAction) => {
   const { gameId, gameName: collectionName, playerId, action } = data;
 
   const actionText = 'submit action';
-  utils.verifyPayload(gameId, 'gameId', actionText);
-  utils.verifyPayload(collectionName, 'collectionName', actionText);
-  utils.verifyPayload(playerId, 'playerId', actionText);
-  utils.verifyPayload(action, 'action', actionText);
+  firebaseUtils.verifyPayload(gameId, 'gameId', actionText);
+  firebaseUtils.verifyPayload(collectionName, 'collectionName', actionText);
+  firebaseUtils.verifyPayload(playerId, 'playerId', actionText);
+  firebaseUtils.verifyPayload(action, 'action', actionText);
 
   switch (action) {
     case 'SUBMIT_CLUE':
       if (!data.clue) {
-        utils.throwException('Missing `clue` value', 'submit clue');
+        firebaseUtils.throwException('Missing `clue` value', 'submit clue');
       }
       return handleSubmitClue(collectionName, gameId, playerId, data.clue);
     case 'PLAY_CARD':
       if (!data.cardId) {
-        utils.throwException('Missing `cardId` value', 'play card');
+        firebaseUtils.throwException('Missing `cardId` value', 'play card');
       }
       return handlePlayCard(collectionName, gameId, playerId, data.cardId);
     case 'DEFEND':
       return handleDefend(collectionName, gameId, playerId);
     case 'SUBMIT_VOTE':
       if (!data.vote) {
-        utils.throwException('Missing `vote` value', 'submit vote');
+        firebaseUtils.throwException('Missing `vote` value', 'submit vote');
       }
       return handleSubmitVote(collectionName, gameId, playerId, data.vote);
     default:
-      utils.throwException(`Given action ${action} is not allowed`);
+      firebaseUtils.throwException(`Given action ${action} is not allowed`);
   }
 };

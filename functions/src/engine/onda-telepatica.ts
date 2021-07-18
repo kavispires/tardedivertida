@@ -1,4 +1,5 @@
 import { GAME_COLLECTIONS, PHASES, ONDA_TELEPATICA_GOAL, GAME_PLAYERS_LIMIT } from '../utils/constants';
+import * as firebaseUtils from '../utils/firebase';
 import * as gameUtils from '../utils/game-utils';
 import * as utils from '../utils/index';
 import {
@@ -112,9 +113,9 @@ export const nextOndaTelepaticaPhase = async (
   const actionText = 'prepare next phase';
 
   // Determine and prepare next phase
-  const sessionRef = utils.getSessionRef(collectionName, gameId);
-  const stateDoc = await utils.getSessionDoc(collectionName, gameId, 'state', actionText);
-  const storeDoc = await utils.getSessionDoc(collectionName, gameId, 'store', actionText);
+  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
+  const stateDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'state', actionText);
+  const storeDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'store', actionText);
 
   const state = stateDoc.data() ?? {};
   const store = { ...(storeDoc.data() ?? {}) };
@@ -126,8 +127,8 @@ export const nextOndaTelepaticaPhase = async (
     await sessionRef.doc('players').set(players);
     await sessionRef.doc('store').update({
       teams,
-      lastPsychicA: utils.deleteValue(),
-      lastPsychicB: utils.deleteValue(),
+      lastPsychicA: firebaseUtils.deleteValue(),
+      lastPsychicB: firebaseUtils.deleteValue(),
     });
     // Note: turn order is dynamically determined in the dial sides phase preparation
   }
@@ -365,23 +366,23 @@ const prepareRevealPhase = async (
   await sessionRef.doc('store').update({
     usedCards,
     teams,
-    activeTeamGuess: utils.deleteValue(),
-    rivalTeamGuess: utils.deleteValue(),
-    clue: utils.deleteValue(),
-    currentCard: utils.deleteValue(),
-    currentCardId: utils.deleteValue(),
-    currentCards: utils.deleteValue(),
+    activeTeamGuess: firebaseUtils.deleteValue(),
+    rivalTeamGuess: firebaseUtils.deleteValue(),
+    clue: firebaseUtils.deleteValue(),
+    currentCard: firebaseUtils.deleteValue(),
+    currentCardId: firebaseUtils.deleteValue(),
+    currentCards: firebaseUtils.deleteValue(),
   });
 
   await sessionRef.doc('store').update({
     usedCards,
     teams,
-    activeTeamGuess: utils.deleteValue(),
-    rivalTeamGuess: utils.deleteValue(),
-    clue: utils.deleteValue(),
-    currentCard: utils.deleteValue(),
-    currentCardId: utils.deleteValue(),
-    currentCards: utils.deleteValue(),
+    activeTeamGuess: firebaseUtils.deleteValue(),
+    rivalTeamGuess: firebaseUtils.deleteValue(),
+    clue: firebaseUtils.deleteValue(),
+    currentCard: firebaseUtils.deleteValue(),
+    currentCardId: firebaseUtils.deleteValue(),
+    currentCards: firebaseUtils.deleteValue(),
   });
 
   // Save new state
@@ -439,20 +440,20 @@ export const submitSides = async (data: OndaTelepaticaSubmitSidesPayload) => {
   const { gameId, gameName: collectionName, playerId, cardId } = data;
 
   const actionText = 'submit the suggestions validation';
-  utils.verifyPayload(gameId, 'gameId', actionText);
-  utils.verifyPayload(collectionName, 'collectionName', actionText);
-  utils.verifyPayload(playerId, 'playerId', actionText);
-  utils.verifyPayload(cardId, 'cardId', actionText);
+  firebaseUtils.verifyPayload(gameId, 'gameId', actionText);
+  firebaseUtils.verifyPayload(collectionName, 'collectionName', actionText);
+  firebaseUtils.verifyPayload(playerId, 'playerId', actionText);
+  firebaseUtils.verifyPayload(cardId, 'cardId', actionText);
 
   // Get 'players' from given game session
-  const sessionRef = utils.getSessionRef(collectionName, gameId);
-  const playersDoc = await utils.getSessionDoc(collectionName, gameId, 'players', actionText);
+  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
+  const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
 
   // Submit suggestions
   try {
     await sessionRef.doc('store').update({ currentCardId: cardId });
   } catch (error) {
-    utils.throwException(error, actionText);
+    firebaseUtils.throwException(error, actionText);
   }
 
   const players = playersDoc.data() ?? {};
@@ -465,20 +466,20 @@ export const submitClue = async (data: OndaTelepaticaSubmitCluePayload) => {
   const { gameId, gameName: collectionName, playerId, clue } = data;
 
   const actionText = 'submit the suggestions validation';
-  utils.verifyPayload(gameId, 'gameId', actionText);
-  utils.verifyPayload(collectionName, 'collectionName', actionText);
-  utils.verifyPayload(playerId, 'playerId', actionText);
-  utils.verifyPayload(clue, 'clue', actionText);
+  firebaseUtils.verifyPayload(gameId, 'gameId', actionText);
+  firebaseUtils.verifyPayload(collectionName, 'collectionName', actionText);
+  firebaseUtils.verifyPayload(playerId, 'playerId', actionText);
+  firebaseUtils.verifyPayload(clue, 'clue', actionText);
 
   // Get 'players' from given game session
-  const sessionRef = utils.getSessionRef(collectionName, gameId);
-  const playersDoc = await utils.getSessionDoc(collectionName, gameId, 'players', actionText);
+  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
+  const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
 
   // Submit suggestions
   try {
     await sessionRef.doc('store').update({ clue });
   } catch (error) {
-    utils.throwException(error, actionText);
+    firebaseUtils.throwException(error, actionText);
   }
 
   const players = playersDoc.data() ?? {};
@@ -491,20 +492,20 @@ export const submitGuess = async (data: OndaTelepaticaSubmitGuessPayload) => {
   const { gameId, gameName: collectionName, playerId, guess } = data;
 
   const actionText = 'submit the suggestions validation';
-  utils.verifyPayload(gameId, 'gameId', actionText);
-  utils.verifyPayload(collectionName, 'collectionName', actionText);
-  utils.verifyPayload(playerId, 'playerId', actionText);
-  utils.verifyPayload(guess, 'guess', actionText);
+  firebaseUtils.verifyPayload(gameId, 'gameId', actionText);
+  firebaseUtils.verifyPayload(collectionName, 'collectionName', actionText);
+  firebaseUtils.verifyPayload(playerId, 'playerId', actionText);
+  firebaseUtils.verifyPayload(guess, 'guess', actionText);
 
   // Get 'players' from given game session
-  const sessionRef = utils.getSessionRef(collectionName, gameId);
-  const playersDoc = await utils.getSessionDoc(collectionName, gameId, 'players', actionText);
+  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
+  const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
 
   // Submit suggestions
   try {
     await sessionRef.doc('store').update({ activeTeamGuess: guess });
   } catch (error) {
-    utils.throwException(error, actionText);
+    firebaseUtils.throwException(error, actionText);
   }
 
   const players = playersDoc.data() ?? {};
@@ -517,20 +518,20 @@ export const submitRivalGuess = async (data: OndaTelepaticaSubmitRivalGuessPaylo
   const { gameId, gameName: collectionName, playerId, rivalGuess } = data;
 
   const actionText = 'submit the suggestions validation';
-  utils.verifyPayload(gameId, 'gameId', actionText);
-  utils.verifyPayload(collectionName, 'collectionName', actionText);
-  utils.verifyPayload(playerId, 'playerId', actionText);
-  utils.verifyPayload(rivalGuess, 'rivalGuess', actionText);
+  firebaseUtils.verifyPayload(gameId, 'gameId', actionText);
+  firebaseUtils.verifyPayload(collectionName, 'collectionName', actionText);
+  firebaseUtils.verifyPayload(playerId, 'playerId', actionText);
+  firebaseUtils.verifyPayload(rivalGuess, 'rivalGuess', actionText);
 
   // Get 'players' from given game session
-  const sessionRef = utils.getSessionRef(collectionName, gameId);
-  const playersDoc = await utils.getSessionDoc(collectionName, gameId, 'players', actionText);
+  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
+  const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
 
   // Submit suggestions
   try {
     await sessionRef.doc('store').update({ rivalTeamGuess: rivalGuess });
   } catch (error) {
-    utils.throwException(error, actionText);
+    firebaseUtils.throwException(error, actionText);
   }
 
   const players = playersDoc.data() ?? {};
@@ -543,11 +544,11 @@ export const goToNextPhase = async (data: BasicGamePayload, context: FirebaseCon
   const { gameId, gameName: collectionName } = data;
 
   const actionText = 'go to new round';
-  utils.verifyPayload(gameId, 'gameId', actionText);
-  utils.verifyPayload(collectionName, 'collectionName', actionText);
-  utils.verifyAuth(context, actionText);
+  firebaseUtils.verifyPayload(gameId, 'gameId', actionText);
+  firebaseUtils.verifyPayload(collectionName, 'collectionName', actionText);
+  firebaseUtils.verifyAuth(context, actionText);
 
-  const playersDoc = await utils.getSessionDoc(collectionName, gameId, 'players', actionText);
+  const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
 
   const players = playersDoc.data() ?? {};
 

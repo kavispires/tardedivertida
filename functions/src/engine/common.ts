@@ -1,5 +1,6 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
+import * as firebaseUtils from '../utils/firebase';
 import * as utils from '../utils/index';
 import {
   AddPlayerPayload,
@@ -20,7 +21,7 @@ import { GAME_PLAYERS_LIMIT } from '../utils/constants';
  */
 export const createGame = async (data: CreateGamePayload, context: FirebaseContext) => {
   const actionText = 'create new game';
-  utils.verifyAuth(context, actionText);
+  firebaseUtils.verifyAuth(context, actionText);
 
   // Get collection name by game code on request
   const { gameCode } = data;
@@ -63,7 +64,7 @@ export const createGame = async (data: CreateGamePayload, context: FirebaseConte
   // Create game entry in database
   let response = {};
   try {
-    const sessionRef = utils.getSessionRef(collectionName, gameId);
+    const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
 
     const getInitialState = utils.getInitialStateForCollection(collectionName);
     const uid = context?.auth?.uid ?? '';
@@ -97,7 +98,7 @@ export const loadGame = async (data: LoadGamePayload) => {
   const { gameId } = data;
 
   const actionText = 'load game';
-  utils.verifyPayload(gameId, 'gameId', 'load game');
+  firebaseUtils.verifyPayload(gameId, 'gameId', 'load game');
 
   const collectionName = utils.getCollectionNameByGameId(gameId);
 
@@ -109,7 +110,7 @@ export const loadGame = async (data: LoadGamePayload) => {
   }
 
   // Get 'meta' from given game session
-  const sessionRef = utils.getSessionRef(collectionName, gameId);
+  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
   const gameMeta = await sessionRef.doc('meta').get();
 
   if (!gameMeta.exists) {
@@ -131,13 +132,13 @@ export const addPlayer = async (data: AddPlayerPayload) => {
   const { gameId, gameName: collectionName, playerName, playerAvatarId } = data;
 
   const actionText = 'add player';
-  utils.verifyPayload(gameId, 'gameId', actionText);
-  utils.verifyPayload(collectionName, 'collectionName', actionText);
-  utils.verifyPayload(playerName, 'playerName', actionText);
+  firebaseUtils.verifyPayload(gameId, 'gameId', actionText);
+  firebaseUtils.verifyPayload(collectionName, 'collectionName', actionText);
+  firebaseUtils.verifyPayload(playerName, 'playerName', actionText);
 
   // Get 'players' from given game session
-  const sessionRef = utils.getSessionRef(collectionName, gameId);
-  const playersDoc = await utils.getSessionDoc(collectionName, gameId, 'players', actionText);
+  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
+  const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
   const players: Players = playersDoc.data() ?? {};
 
   // Remove symbols from the player name
@@ -158,18 +159,18 @@ export const addPlayer = async (data: AddPlayerPayload) => {
   const numPlayers = Object.keys(players).length;
   const maximum = GAME_PLAYERS_LIMIT[collectionKey].max;
   if (numPlayers === maximum) {
-    utils.throwException(
+    firebaseUtils.throwException(
       `Sorry, you can't join. Game ${gameId} already has the maximum number of players: ${maximum}`,
       actionText
     );
   }
 
   // Verify if game is locked
-  const metaDoc = await utils.getSessionDoc(collectionName, gameId, 'meta', actionText);
+  const metaDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'meta', actionText);
   const meta = metaDoc.data() ?? {};
 
   if (meta?.isLocked) {
-    utils.throwException(`This game ${gameId} is locked and cannot accept new players`, actionText);
+    firebaseUtils.throwException(`This game ${gameId} is locked and cannot accept new players`, actionText);
   }
 
   try {
@@ -179,7 +180,7 @@ export const addPlayer = async (data: AddPlayerPayload) => {
     });
     return newPlayer;
   } catch (error) {
-    utils.throwException(error, actionText);
+    firebaseUtils.throwException(error, actionText);
   }
 };
 
@@ -193,12 +194,12 @@ export const lockGame = async (data: BasicGamePayload, context: FirebaseContext)
   const { gameId, gameName: collectionName } = data;
 
   const actionText = 'lock game';
-  utils.verifyPayload(gameId, 'gameId', actionText);
-  utils.verifyPayload(collectionName, 'collectionName', actionText);
-  utils.verifyAuth(context, actionText);
+  firebaseUtils.verifyPayload(gameId, 'gameId', actionText);
+  firebaseUtils.verifyPayload(collectionName, 'collectionName', actionText);
+  firebaseUtils.verifyAuth(context, actionText);
 
-  const sessionRef = utils.getSessionRef(collectionName, gameId);
-  const playersDoc = await utils.getSessionDoc(collectionName, gameId, 'players', actionText);
+  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
+  const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
   const players: Players = playersDoc.data() ?? {};
 
   // Verify minimum number of players
@@ -206,7 +207,7 @@ export const lockGame = async (data: BasicGamePayload, context: FirebaseContext)
   const numPlayers = Object.keys(players).length;
   const minimum = GAME_PLAYERS_LIMIT[collectionKey].min;
   if (numPlayers < minimum) {
-    utils.throwException(
+    firebaseUtils.throwException(
       `Game ${gameId} has an insufficient number of players: Minimum ${minimum} players, has ${numPlayers}`,
       actionText
     );
@@ -223,24 +224,28 @@ export const lockGame = async (data: BasicGamePayload, context: FirebaseContext)
 
     return true;
   } catch (error) {
-    utils.throwException(error, actionText);
+    firebaseUtils.throwException(error, actionText);
   }
 
   return false;
 };
 
-// Make me ready
+/**
+ * Makes player ready, if all players are ready
+ * @param data
+ * @returns
+ */
 export const makeMeReady = async (data: MakeMeReadyPayload) => {
   const { gameId, gameName: collectionName, playerId } = data;
 
   const actionText = 'make you ready';
-  utils.verifyPayload(gameId, 'gameId', actionText);
-  utils.verifyPayload(collectionName, 'collectionName', actionText);
-  utils.verifyPayload(playerId, 'playerId', actionText);
+  firebaseUtils.verifyPayload(gameId, 'gameId', actionText);
+  firebaseUtils.verifyPayload(collectionName, 'collectionName', actionText);
+  firebaseUtils.verifyPayload(playerId, 'playerId', actionText);
 
   // Get 'players' from given game session
-  const sessionRef = utils.getSessionRef(collectionName, gameId);
-  const playersDoc = await utils.getSessionDoc(collectionName, gameId, 'players', actionText);
+  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
+  const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
 
   // Make player ready
   const players = playersDoc.data() ?? {};
@@ -248,10 +253,11 @@ export const makeMeReady = async (data: MakeMeReadyPayload) => {
 
   if (!utils.isEverybodyReady(updatedPlayers)) {
     try {
-      await sessionRef.doc('players').update({ [playerId]: updatedPlayers[playerId] });
+      const key = `${playerId}.ready`;
+      await sessionRef.doc('players').update({ [key]: true });
       return true;
     } catch (error) {
-      utils.throwException(error, actionText);
+      firebaseUtils.throwException(error, actionText);
     }
   }
 
@@ -262,7 +268,7 @@ export const makeMeReady = async (data: MakeMeReadyPayload) => {
   try {
     return nextPhaseDelegator(collectionName, gameId, players);
   } catch (error) {
-    utils.throwException(error, actionText);
+    firebaseUtils.throwException(error, actionText);
   }
 };
 
@@ -271,11 +277,11 @@ export const goToNextPhase = async (data: BasicGamePayload, context: FirebaseCon
   const { gameId, gameName: collectionName } = data;
 
   const actionText = 'go to the next phase';
-  utils.verifyPayload(gameId, 'gameId', actionText);
-  utils.verifyPayload(collectionName, 'collectionName', actionText);
-  utils.verifyAuth(context, actionText);
+  firebaseUtils.verifyPayload(gameId, 'gameId', actionText);
+  firebaseUtils.verifyPayload(collectionName, 'collectionName', actionText);
+  firebaseUtils.verifyAuth(context, actionText);
 
-  const playersDoc = await utils.getSessionDoc(collectionName, gameId, 'players', actionText);
+  const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
 
   const players = playersDoc.data() ?? {};
 
@@ -295,18 +301,18 @@ export const playAgain = async (data: BasicGamePayload, context: FirebaseContext
   const { gameId, gameName: collectionName } = data;
 
   const actionText = 'play game again';
-  utils.verifyPayload(gameId, 'gameId', actionText);
-  utils.verifyPayload(collectionName, 'collectionName', actionText);
-  utils.verifyAuth(context, actionText);
+  firebaseUtils.verifyPayload(gameId, 'gameId', actionText);
+  firebaseUtils.verifyPayload(collectionName, 'collectionName', actionText);
+  firebaseUtils.verifyAuth(context, actionText);
 
-  const sessionRef = utils.getSessionRef(collectionName, gameId);
+  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
   // Reset players
-  const playersDoc = await utils.getSessionDoc(collectionName, gameId, 'players', actionText);
+  const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
   const players: Players = playersDoc.data() ?? {};
   const newPlayers = utils.resetPlayers(players);
 
   // Update meta
-  const metaDoc = await utils.getSessionDoc(collectionName, gameId, 'meta', actionText);
+  const metaDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'meta', actionText);
   const meta = metaDoc.data() ?? {};
 
   try {
@@ -325,7 +331,7 @@ export const playAgain = async (data: BasicGamePayload, context: FirebaseContext
 
     return true;
   } catch (error) {
-    utils.throwException(error, actionText);
+    firebaseUtils.throwException(error, actionText);
   }
 
   return false;
