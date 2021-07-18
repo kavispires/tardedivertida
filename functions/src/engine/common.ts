@@ -27,37 +27,33 @@ export const createGame = async (data: CreateGamePayload, context: FirebaseConte
   const { gameCode } = data;
 
   if (!gameCode) {
-    throw new functions.https.HttpsError('internal', `Failed to ${actionText}: a gameCode is required`);
+    return firebaseUtils.throwException('a gameCode is required', actionText);
   }
 
   const collectionName = utils.getCollectionNameByGameCode(gameCode);
 
   if (!collectionName) {
-    throw new functions.https.HttpsError(
-      'internal',
-      `Failed to ${actionText}: provided gameCode is invalid ${gameCode}`
-    );
+    return firebaseUtils.throwException(`provided gameCode is invalid ${gameCode}`, actionText);
   }
+
+  // Get list of used ids
+  const globalRef = firebaseUtils.getGlobalRef();
+  const usedGameIdsDocs = await globalRef.doc('usedGameIds').get();
+  const usedGameIdsData = usedGameIdsDocs.data();
+  const usedGameIds = Object.keys(usedGameIdsData ?? {});
 
   // Get list of code ids present in database
   const collectionRef = admin.firestore().collection(collectionName);
 
   // Generate unique 4 digit code starting with game code letter
-  let gameId: string | null = null;
-  while (!gameId) {
-    const tempId = utils.generateGameId(gameCode);
-    const tempDoc = await collectionRef.doc(tempId).get();
-    if (!tempDoc.exists) {
-      gameId = tempId;
-    }
-  }
+  const gameId: string = utils.generateGameId(gameCode, usedGameIds);
 
   // Make sure the game does not exist, I do not trust that while loop
   const tempGame = await collectionRef.doc(gameId).get();
   if (tempGame.exists) {
-    throw new functions.https.HttpsError(
-      'internal',
-      `Failed to ${actionText}: the generated game id ${gameCode} belongs to an existing session`
+    return firebaseUtils.throwException(
+      `the generated game id ${gameCode} belongs to an existing session`,
+      actionText
     );
   }
 
@@ -75,6 +71,8 @@ export const createGame = async (data: CreateGamePayload, context: FirebaseConte
     await sessionRef.doc('players').set(players);
     await sessionRef.doc('state').set(state);
     await sessionRef.doc('store').set(store);
+    // Update global ids
+    await globalRef.doc('usedGameIds').update({ gameId: true });
 
     response = meta;
   } catch (e) {
@@ -103,10 +101,7 @@ export const loadGame = async (data: LoadGamePayload) => {
   const collectionName = utils.getCollectionNameByGameId(gameId);
 
   if (!collectionName) {
-    throw new functions.https.HttpsError(
-      'internal',
-      `Failed to ${actionText}: there is no game engine for the given id: ${gameId}`
-    );
+    return firebaseUtils.throwException(`there is no game engine for the given id: ${gameId}`, actionText);
   }
 
   // Get 'meta' from given game session
@@ -114,10 +109,7 @@ export const loadGame = async (data: LoadGamePayload) => {
   const gameMeta = await sessionRef.doc('meta').get();
 
   if (!gameMeta.exists) {
-    throw new functions.https.HttpsError(
-      'internal',
-      `Failed to ${actionText}: game ${gameId} does not exist`
-    );
+    return firebaseUtils.throwException(`game ${gameId} does not exist`, actionText);
   }
 
   return gameMeta.data();
