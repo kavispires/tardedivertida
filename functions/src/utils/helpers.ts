@@ -1,14 +1,5 @@
 import { AVATAR_IDS, LETTERS } from './constants';
-import {
-  GameCode,
-  PlainObject,
-  Player,
-  PlayerAvatarId,
-  PlayerId,
-  PlayerName,
-  Players,
-  Teams,
-} from '../utils/interfaces';
+import { GameCode, Player, PlayerAvatarId, PlayerId, PlayerName, Players, Teams } from '../utils/interfaces';
 import { shuffle, getRandomUniqueItem } from './game-utils';
 
 /**
@@ -21,6 +12,8 @@ import { shuffle, getRandomUniqueItem } from './game-utils';
 export const generateGameId = (gameCode: GameCode, usedIds: string[] = [], length = 4): string => {
   if (!gameCode) throw Error('Missing game code');
 
+  if (gameCode.length > 1 || !LETTERS.includes(gameCode)) throw Error('Invalid game code');
+
   /**
    * Generate a game id
    * @param gameCode a single capital letter
@@ -29,7 +22,6 @@ export const generateGameId = (gameCode: GameCode, usedIds: string[] = [], lengt
    */
   function generateId(gameCode: GameCode, length: number) {
     let id = `${gameCode}`;
-    const LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     while (id.length < length) {
       id += LETTERS[Math.floor(Math.random() * LETTERS.length)];
     }
@@ -119,7 +111,9 @@ export const unReadyPlayers = (players: Players, butThisOne: PlayerId = ''): Pla
  */
 export const modifyPlayers = (players: Players, property: string, value: any, butThisOne = ''): Players => {
   for (const playerKey in players) {
-    players[playerKey][property] = playerKey === butThisOne ? value : value;
+    if (playerKey !== butThisOne) {
+      players[playerKey][property] = value;
+    }
   }
   return players;
 };
@@ -177,7 +171,6 @@ export const getPointsToVictory = (players: Players | Teams, victory: number): n
   const max = Object.values(players).reduce((acc, player) => {
     return Math.max(acc, player.score);
   }, 0);
-
   return max < victory ? victory - max : 0;
 };
 
@@ -200,16 +193,15 @@ export const getRoundsToEndGame = (round: number, totalRounds: number): number =
 export const determineTeams = (
   players: Players,
   numberOfTeams: number,
-  extraPoints: number[]
-): PlainObject => {
+  extraPoints: number[] = []
+): Teams => {
   const teams = {};
-  const playerNames = shuffle(Object.keys(players));
-  const playersPerTeam = Math.ceil(playerNames.length / numberOfTeams);
-  const shuffledPlayerNames = shuffle(playerNames);
+  const playerIds = shuffle(Object.keys(players));
+  const playersPerTeam = Math.ceil(playerIds.length / numberOfTeams);
 
   let currentTeamIndex = 0;
   let currentTeamCount = 0;
-  shuffledPlayerNames.forEach((playerName) => {
+  playerIds.forEach((playerName) => {
     if (currentTeamCount >= playersPerTeam) {
       currentTeamCount = 0;
       currentTeamIndex += 1;

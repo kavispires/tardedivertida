@@ -1,7 +1,7 @@
 import { GAME_COLLECTIONS, PHASES, ONDA_TELEPATICA_GOAL, GAME_PLAYERS_LIMIT } from '../utils/constants';
 import * as firebaseUtils from '../utils/firebase';
 import * as gameUtils from '../utils/game-utils';
-import * as utils from '../utils/index';
+import * as utils from '../utils/helpers';
 import {
   Players,
   GameId,
