@@ -30,6 +30,14 @@ export function verifyAuth(context: FirebaseContext, action = 'perform function'
 
 /**
  * Get Firebase session for gameId in collection
+ * @returns firebase _global reference
+ */
+export function getGlobalRef(): FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData> {
+  return admin.firestore().collection('_global');
+}
+
+/**
+ * Get Firebase session for gameId in collection
  * @param collectionName
  * @param gameId
  * @returns firebase session reference
