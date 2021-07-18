@@ -2,7 +2,7 @@ import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import * as delegatorUtils from '../utils/delegators';
 import * as firebaseUtils from '../utils/firebase';
-import * as utils from '../utils/index';
+import * as utils from '../utils/helpers';
 import {
   AddPlayerPayload,
   CreateGamePayload,

@@ -7,7 +7,7 @@ import {
 import * as firebaseUtils from '../utils/firebase';
 import * as gameUtils from '../utils/game-utils';
 import * as imageCards from '../utils/image-cards';
-import * as utils from '../utils/index';
+import * as utils from '../utils/helpers';
 import {
   GameId,
   ClubeDetetivesInitialState,
