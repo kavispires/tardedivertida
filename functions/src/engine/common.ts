@@ -1,5 +1,6 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
+import * as delegatorUtils from '../utils/delegators';
 import * as firebaseUtils from '../utils/firebase';
 import * as utils from '../utils/index';
 import {
@@ -30,7 +31,7 @@ export const createGame = async (data: CreateGamePayload, context: FirebaseConte
     return firebaseUtils.throwException('a gameCode is required', actionText);
   }
 
-  const collectionName = utils.getCollectionNameByGameCode(gameCode);
+  const collectionName = delegatorUtils.getCollectionNameByGameCode(gameCode);
 
   if (!collectionName) {
     return firebaseUtils.throwException(`provided gameCode is invalid ${gameCode}`, actionText);
@@ -62,7 +63,7 @@ export const createGame = async (data: CreateGamePayload, context: FirebaseConte
   try {
     const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
 
-    const getInitialState = utils.getInitialStateForCollection(collectionName);
+    const getInitialState = delegatorUtils.getInitialStateForCollection(collectionName);
     const uid = context?.auth?.uid ?? '';
 
     const { meta, players, state, store } = getInitialState(gameId, uid, data.language ?? 'BR');
@@ -98,7 +99,7 @@ export const loadGame = async (data: LoadGamePayload) => {
   const actionText = 'load game';
   firebaseUtils.verifyPayload(gameId, 'gameId', 'load game');
 
-  const collectionName = utils.getCollectionNameByGameId(gameId);
+  const collectionName = delegatorUtils.getCollectionNameByGameId(gameId);
 
   if (!collectionName) {
     return firebaseUtils.throwException(`there is no game engine for the given id: ${gameId}`, actionText);
@@ -147,7 +148,7 @@ export const addPlayer = async (data: AddPlayerPayload) => {
   }
 
   // Verify maximum number of players
-  const collectionKey = utils.getCollectionKeyByGameCode(gameId[0]) ?? '';
+  const collectionKey = delegatorUtils.getCollectionKeyByGameCode(gameId[0]) ?? '';
   const numPlayers = Object.keys(players).length;
   const maximum = GAME_PLAYERS_LIMIT[collectionKey].max;
   if (numPlayers === maximum) {
@@ -195,7 +196,7 @@ export const lockGame = async (data: BasicGamePayload, context: FirebaseContext)
   const players: Players = playersDoc.data() ?? {};
 
   // Verify minimum number of players
-  const collectionKey = utils.getCollectionKeyByGameCode(gameId[0]) ?? '';
+  const collectionKey = delegatorUtils.getCollectionKeyByGameCode(gameId[0]) ?? '';
   const numPlayers = Object.keys(players).length;
   const minimum = GAME_PLAYERS_LIMIT[collectionKey].min;
   if (numPlayers < minimum) {
@@ -253,8 +254,8 @@ export const makeMeReady = async (data: MakeMeReadyPayload) => {
     }
   }
 
-  const collectionKey = utils.getCollectionKeyByGameCode(gameId[0]) ?? '';
-  const nextPhaseDelegator = utils.getNextPhaseForCollection(collectionKey);
+  const collectionKey = delegatorUtils.getCollectionKeyByGameCode(gameId[0]) ?? '';
+  const nextPhaseDelegator = delegatorUtils.getNextPhaseForCollection(collectionKey);
 
   // If all players are ready, trigger next phase
   try {
@@ -277,8 +278,8 @@ export const goToNextPhase = async (data: BasicGamePayload, context: FirebaseCon
 
   const players = playersDoc.data() ?? {};
 
-  const collectionKey = utils.getCollectionKeyByGameCode(gameId[0]) ?? '';
-  const nextPhaseDelegator = utils.getNextPhaseForCollection(collectionKey);
+  const collectionKey = delegatorUtils.getCollectionKeyByGameCode(gameId[0]) ?? '';
+  const nextPhaseDelegator = delegatorUtils.getNextPhaseForCollection(collectionKey);
 
   return nextPhaseDelegator(collectionName, gameId, players);
 };
