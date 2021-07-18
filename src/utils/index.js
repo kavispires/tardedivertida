@@ -1,4 +1,10 @@
 /**
+ * Flag indicating if the environment is for development
+ * @type {boolean}
+ */
+export const isDevEnv = process.env.NODE_ENV === 'development';
+
+/**
  * Extract the gameId from react history
  * @param {object} history
  * @returns {string}

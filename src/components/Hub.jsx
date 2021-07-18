@@ -58,7 +58,7 @@ GameCard.propTypes = {
   }),
 };
 
-function Admin() {
+function Hub() {
   const sortedGameList = orderBy(Object.values(gameList), ['available', 'title'], ['desc', 'asc']);
 
   const { availableGames, comingSoonGames } = sortedGameList.reduce(
@@ -78,7 +78,7 @@ function Admin() {
 
   return (
     <Layout.Content className="container">
-      <Typography.Title>Admin Hub</Typography.Title>
+      <Typography.Title>Hub</Typography.Title>
 
       <Typography.Paragraph>Selecione um jogo para começar</Typography.Paragraph>
       <Space size={[8, 16]} wrap align="start">
@@ -97,4 +97,4 @@ function Admin() {
   );
 }
 
-export default Admin;
+export default Hub;
