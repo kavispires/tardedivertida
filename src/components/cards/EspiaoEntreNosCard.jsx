@@ -21,7 +21,7 @@ export const EspiaoEntreNosCard = memo(function ({ location, role, header = 'Loc
 });
 
 EspiaoEntreNosCard.propTypes = {
-  location: PropTypes.string.isRequired,
+  location: PropTypes.string,
   header: PropTypes.string,
-  role: PropTypes.string.isRequired,
+  role: PropTypes.string,
 };

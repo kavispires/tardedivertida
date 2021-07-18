@@ -166,6 +166,10 @@
     color: get-color(lime) !important;
   }
 
+  &__clear-button {
+    margin-left: get-unit(3);
+  }
+
   &--column {
     width: auto;
     min-width: auto;
@@ -177,8 +181,8 @@
     text-align: left;
 
     &--column {
-      display: flex;
-      flex-direction: column;
+      grid-template-rows: repeat(8, 1fr);
+      grid-auto-flow: column;
     }
   }
 

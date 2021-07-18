@@ -36,10 +36,11 @@ function List({ locations }) {
             size="small"
             icon={<ClearOutlined />}
             onClick={onClearCrossed}
+            className="e-list__clear-button"
           />
         </Tooltip>
       </h3>
-      <ul className={clsx('e-list__list')}>
+      <ul className={clsx('e-list__list', 'e-list__list--column')}>
         {locations.map((item) => (
           <li
             className={clsx('e-list__item', cache[item] && 'e-list__item--crossed')}
