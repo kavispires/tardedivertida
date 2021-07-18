@@ -7,6 +7,10 @@ export const IMAGE_CARDS_PER_DECK = 84;
 const deckCache = {};
 
 export const getImageCards = (numDecks = 1) => {
+  if (numDecks > DECKS.length) {
+    throw Error(`${numDecks} image decks were requested while game only has ${DECKS.length} available`);
+  }
+
   const decks = gameUtils.shuffle(DECKS);
   const selectedDecks = new Array(numDecks).fill('').map((item, index) => `${item}${decks[index]}`);
 
