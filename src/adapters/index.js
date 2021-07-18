@@ -7,7 +7,7 @@ export const GAME_API = {
   loadGame: functions.httpsCallable('loadGame'),
   addPlayer: functions.httpsCallable('addPlayer'),
   lockGame: functions.httpsCallable('lockGame'),
-  makeMeReady: functions.httpsCallable('makeMeReady'),
+  makePlayerReady: functions.httpsCallable('makePlayerReady'),
   playAgain: functions.httpsCallable('playAgain'),
   goToNextPhase: functions.httpsCallable('goToNextPhase'),
 };

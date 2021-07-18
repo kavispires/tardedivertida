@@ -1,4 +1,3 @@
-import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import * as delegatorUtils from '../utils/delegators';
 import * as firebaseUtils from '../utils/firebase';
@@ -10,7 +9,7 @@ import {
   LoadGamePayload,
   BasicGamePayload,
   Players,
-  MakeMeReadyPayload,
+  Payload,
 } from '../utils/interfaces';
 import { GAME_PLAYERS_LIMIT } from '../utils/constants';
 
@@ -77,10 +76,7 @@ export const createGame = async (data: CreateGamePayload, context: FirebaseConte
 
     response = meta;
   } catch (e) {
-    throw new functions.https.HttpsError(
-      'internal',
-      `Failed to ${actionText} in the firestore database: ${e}`
-    );
+    return firebaseUtils.throwException(`${e}`, `${actionText} in the firestore database`);
   }
 
   return {
@@ -228,7 +224,7 @@ export const lockGame = async (data: BasicGamePayload, context: FirebaseContext)
  * @param data
  * @returns
  */
-export const makeMeReady = async (data: MakeMeReadyPayload) => {
+export const makePlayerReady = async (data: Payload) => {
   const { gameId, gameName: collectionName, playerId } = data;
 
   const actionText = 'make you ready';
