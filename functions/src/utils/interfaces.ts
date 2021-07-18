@@ -5,6 +5,7 @@ export type DateMilliseconds = number;
 export type PlayerId = string;
 export type PlayerName = string;
 export type PlayerAvatarId = string;
+export type Primitive = string | number | boolean | symbol | null;
 
 // COMMON INTERFACES
 
