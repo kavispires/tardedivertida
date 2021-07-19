@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
 import { Typography, Layout, Space, Card, Image, Divider, Tag } from 'antd';
+// Hooks
+import { useDimensions } from '../hooks';
 // Utils
 import gameList from '../resources/games.json';
 import { PUBLIC_URL, TAG_DICT } from '../utils/constants';
@@ -10,11 +12,13 @@ import { orderBy } from '../utils';
 import { CreateGameModal, RulesModal } from './modals';
 
 function GameCard({ game }) {
+  const [width] = useDimensions();
+
   return (
     <Card
       key={game.gameName}
       hoverable
-      style={{ width: 240 }}
+      style={{ width: width && width > 0 ? width / 5 : 240 }}
       cover={
         <Image
           alt={game.title}
