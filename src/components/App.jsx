@@ -72,11 +72,7 @@ function App() {
             <Route exact path="/" component={Home}></Route>
             <PrivateRoute path="/hub" authenticated={isAuthenticated} component={Hub} />
             <PublicRoute path="/login" authenticated={isAuthenticated} component={Login} />
-            {isDevEnv && (
-              <>
-                <PrivateRoute path="/testing-zone" authenticated={isAuthenticated} component={TestingZone} />
-              </>
-            )}
+            <PrivateRoute path="/testing-zone" authenticated={isAuthenticated} component={TestingZone} />
 
             <Route path="*" component={Game} />
           </Switch>
