@@ -48,8 +48,10 @@ export function PhaseContainer({ info, phase, allowedPhase, children, className,
       id="screen"
       ref={screenRef}
     >
-      {isDevEnv && <span className={`${baseClass}__dev-player-name`}>{username}</span>}
-      <span className={`${baseClass}__title`}>{info.title}</span>
+      <span className={`${baseClass}__title`}>
+        {info.title}
+        {isDevEnv && Boolean(username) && `| ${username}`}
+      </span>
       {children}
     </main>
   );
