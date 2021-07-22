@@ -15,6 +15,7 @@ export const Instruction = memo(function ({ children, white, className, containe
         white && `${baseClass}--white`,
         className
       )}
+      data-testid="instruction"
     >
       {children}
     </Typography.Text>
