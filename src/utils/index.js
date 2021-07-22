@@ -44,6 +44,12 @@ export const inNSeconds = (seconds) => {
 };
 
 /**
+ * Flag indicating if the environment is for development
+ * @type {boolean}
+ */
+export const isDevEnv = process.env.NODE_ENV === 'development';
+
+/**
  * Verify if the game id exists and has the correct length
  * @param {string} gameId
  * @returns

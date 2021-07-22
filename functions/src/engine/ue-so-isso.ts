@@ -1,6 +1,7 @@
 import { GAME_COLLECTIONS, GAME_PLAYERS_LIMIT, PHASES } from '../utils/constants';
+import * as firebaseUtils from '../utils/firebase';
 import * as gameUtils from '../utils/game-utils';
-import * as utils from '../utils/index';
+import * as utils from '../utils/helpers';
 import {
   Players,
   Player,
@@ -119,9 +120,9 @@ export const nextUeSoIssoPhase = async (
   const actionText = 'prepare next phase';
 
   // Determine and prepare next phase
-  const sessionRef = utils.getSessionRef(collectionName, gameId);
-  const stateDoc = await utils.getSessionDoc(collectionName, gameId, 'state', actionText);
-  const storeDoc = await utils.getSessionDoc(collectionName, gameId, 'store', actionText);
+  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
+  const stateDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'state', actionText);
+  const storeDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'store', actionText);
 
   const state = stateDoc.data() ?? {};
   const store = { ...(storeDoc.data() ?? {}) };
@@ -133,9 +134,9 @@ export const nextUeSoIssoPhase = async (
     store.turnOrder = playersIds.length <= 6 ? [...playersIds, ...playersIds] : playersIds;
     await sessionRef.doc('store').update({
       turnOrder: store.turnOrder,
-      currentWord: utils.deleteValue(),
+      currentWord: firebaseUtils.deleteValue(),
       currentWords: {},
-      guess: utils.deleteValue(),
+      guess: firebaseUtils.deleteValue(),
       validSuggestions: {},
     });
   }
@@ -430,14 +431,14 @@ export const submitWordSelectionVotes = async (data: SubmitVotesPayload) => {
   const { gameId, gameName: collectionName, playerId, votes } = data;
 
   const actionText = 'submit your word selection votes';
-  utils.verifyPayload(gameId, 'gameId', actionText);
-  utils.verifyPayload(collectionName, 'collectionName', actionText);
-  utils.verifyPayload(playerId, 'playerId', actionText);
-  utils.verifyPayload(votes, 'votes', actionText);
+  firebaseUtils.verifyPayload(gameId, 'gameId', actionText);
+  firebaseUtils.verifyPayload(collectionName, 'collectionName', actionText);
+  firebaseUtils.verifyPayload(playerId, 'playerId', actionText);
+  firebaseUtils.verifyPayload(votes, 'votes', actionText);
 
   // Get 'players' from given game session
-  const sessionRef = utils.getSessionRef(collectionName, gameId);
-  const playersDoc = await utils.getSessionDoc(collectionName, gameId, 'players', actionText);
+  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
+  const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
 
   // Make player ready and attach drawing
   const players = playersDoc.data() ?? {};
@@ -447,7 +448,7 @@ export const submitWordSelectionVotes = async (data: SubmitVotesPayload) => {
   try {
     await sessionRef.doc('players').update({ [playerId]: updatedPlayers[playerId] });
   } catch (error) {
-    utils.throwException(error, actionText);
+    firebaseUtils.throwException(error, actionText);
   }
 
   if (!utils.isEverybodyReady(updatedPlayers)) {
@@ -462,14 +463,14 @@ export const submitSuggestions = async (data: SubmitSuggestionsPayload) => {
   const { gameId, gameName: collectionName, playerId, suggestions } = data;
 
   const actionText = 'submit your suggestions';
-  utils.verifyPayload(gameId, 'gameId', actionText);
-  utils.verifyPayload(collectionName, 'collectionName', actionText);
-  utils.verifyPayload(playerId, 'playerId', actionText);
-  utils.verifyPayload(suggestions, 'suggestions', actionText);
+  firebaseUtils.verifyPayload(gameId, 'gameId', actionText);
+  firebaseUtils.verifyPayload(collectionName, 'collectionName', actionText);
+  firebaseUtils.verifyPayload(playerId, 'playerId', actionText);
+  firebaseUtils.verifyPayload(suggestions, 'suggestions', actionText);
 
   // Get 'players' from given game session
-  const sessionRef = utils.getSessionRef(collectionName, gameId);
-  const playersDoc = await utils.getSessionDoc(collectionName, gameId, 'players', actionText);
+  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
+  const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
 
   // Make player ready and attach drawing
   const players = playersDoc.data() ?? {};
@@ -479,7 +480,7 @@ export const submitSuggestions = async (data: SubmitSuggestionsPayload) => {
   try {
     await sessionRef.doc('players').update({ [playerId]: updatedPlayers[playerId] });
   } catch (error) {
-    utils.throwException(error, actionText);
+    firebaseUtils.throwException(error, actionText);
   }
 
   if (!utils.isEverybodyReady(updatedPlayers)) {
@@ -493,20 +494,20 @@ export const submitValidation = async (data: SubmitSuggestionsValidationPayload)
   const { gameId, gameName: collectionName, playerId, validSuggestions } = data;
 
   const actionText = 'submit the suggestions validation';
-  utils.verifyPayload(gameId, 'gameId', actionText);
-  utils.verifyPayload(collectionName, 'collectionName', actionText);
-  utils.verifyPayload(playerId, 'playerId', actionText);
-  utils.verifyPayload(validSuggestions, 'validSuggestions', actionText);
+  firebaseUtils.verifyPayload(gameId, 'gameId', actionText);
+  firebaseUtils.verifyPayload(collectionName, 'collectionName', actionText);
+  firebaseUtils.verifyPayload(playerId, 'playerId', actionText);
+  firebaseUtils.verifyPayload(validSuggestions, 'validSuggestions', actionText);
 
   // Get 'players' from given game session
-  const sessionRef = utils.getSessionRef(collectionName, gameId);
-  const playersDoc = await utils.getSessionDoc(collectionName, gameId, 'players', actionText);
+  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
+  const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
 
   // Submit suggestions
   try {
     await sessionRef.doc('store').update({ validSuggestions });
   } catch (error) {
-    utils.throwException(error, actionText);
+    firebaseUtils.throwException(error, actionText);
   }
 
   const players = playersDoc.data() ?? {};
@@ -519,19 +520,19 @@ export const sendGuess = async (data: ConfirmGuessPayload) => {
   const { gameId, gameName: collectionName, playerId, guess } = data;
 
   const actionText = 'submit the guess';
-  utils.verifyPayload(gameId, 'gameId', actionText);
-  utils.verifyPayload(collectionName, 'collectionName', actionText);
-  utils.verifyPayload(playerId, 'playerId', actionText);
-  utils.verifyPayload(guess, 'guess', actionText);
+  firebaseUtils.verifyPayload(gameId, 'gameId', actionText);
+  firebaseUtils.verifyPayload(collectionName, 'collectionName', actionText);
+  firebaseUtils.verifyPayload(playerId, 'playerId', actionText);
+  firebaseUtils.verifyPayload(guess, 'guess', actionText);
 
   // Get 'players' from given game session
-  const sessionRef = utils.getSessionRef(collectionName, gameId);
+  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
 
   // Submit suggestions
   try {
     await sessionRef.doc('state').update({ guess });
   } catch (error) {
-    utils.throwException(error, actionText);
+    firebaseUtils.throwException(error, actionText);
   }
 
   return true;
@@ -541,20 +542,20 @@ export const confirmGuess = async (data: ConfirmGuessPayload) => {
   const { gameId, gameName: collectionName, playerId, guess } = data;
 
   const actionText = 'submit the guess';
-  utils.verifyPayload(gameId, 'gameId', actionText);
-  utils.verifyPayload(collectionName, 'collectionName', actionText);
-  utils.verifyPayload(playerId, 'playerId', actionText);
-  utils.verifyPayload(guess, 'guess', actionText);
+  firebaseUtils.verifyPayload(gameId, 'gameId', actionText);
+  firebaseUtils.verifyPayload(collectionName, 'collectionName', actionText);
+  firebaseUtils.verifyPayload(playerId, 'playerId', actionText);
+  firebaseUtils.verifyPayload(guess, 'guess', actionText);
 
   // Get 'players' from given game session
-  const sessionRef = utils.getSessionRef(collectionName, gameId);
-  const playersDoc = await utils.getSessionDoc(collectionName, gameId, 'players', actionText);
+  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
+  const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
 
   // Submit suggestions
   try {
     await sessionRef.doc('store').update({ guess });
   } catch (error) {
-    utils.throwException(error, actionText);
+    firebaseUtils.throwException(error, actionText);
   }
 
   const players = playersDoc.data() ?? {};

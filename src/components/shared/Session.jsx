@@ -4,9 +4,11 @@ import PropTypes from 'prop-types';
 import { useGameState, useGlobalState, useGamePlayers } from '../../hooks';
 // Utils
 import gameList from '../../resources/games.json';
+import { isDevEnv } from '../../utils';
 // Components
 import Lobby from '../lobby/Lobby';
 import GameInfoDrawer from '../shared/GameInfoDrawer';
+import { AdminMenu } from '../admin/index';
 
 export function Session({ gameId, gameCollection, getActiveComponent }) {
   const players = useGamePlayers(gameId, gameCollection);
@@ -19,7 +21,7 @@ export function Session({ gameId, gameCollection, getActiveComponent }) {
     setInfo(gameId?.[0] ? gameList[gameId[0]] : {});
   }, [gameId]);
 
-  if (process.env.NODE_ENV === 'development') {
+  if (isDevEnv) {
     console.table(players);
     console.log({ state });
   }
@@ -34,6 +36,7 @@ export function Session({ gameId, gameCollection, getActiveComponent }) {
     <Fragment>
       <GameInfoDrawer players={players} state={state} info={info} userId={userId} />
       <ActiveComponent players={players} state={state} info={info} />
+      <AdminMenu state={state} />
     </Fragment>
   );
 }

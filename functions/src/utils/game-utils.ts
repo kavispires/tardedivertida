@@ -1,4 +1,4 @@
-import { Players } from './interfaces';
+import { Players, Primitive } from './interfaces';
 
 // Shuffling
 
@@ -21,7 +21,8 @@ export const shuffle = (list: any[]) => {
  * @param [max] inclusive
  * @returns a random number
  */
-export const getRandomNumber = (min = 0, max = 100) => Math.floor(Math.random() * (max - min + 1) + min);
+export const getRandomNumber = (min = 0, max = 100): number =>
+  Math.floor(Math.random() * (max - min + 1) + min);
 
 /**
  * Get random element/item from a list
@@ -38,8 +39,10 @@ export const getRandomItem = (list: any[]) => {
  * @param [quantity]
  * @returns random items
  */
-export const getRandomItems = (list: any[], quantity = 1) => {
+export const getRandomItems = (list: any[], quantity = 1): any[] => {
   const shuffledList = shuffle(list);
+  if (quantity > shuffledList.length) return shuffledList;
+
   const res = new Array(quantity).fill(null);
   for (let i = 0; i < res.length; i++) {
     res[i] = shuffledList[i];
@@ -53,7 +56,7 @@ export const getRandomItems = (list: any[], quantity = 1) => {
  * @param used
  * @returns
  */
-export const getRandomUniqueItem = (list: string[], used: string[]) => {
+export const getRandomUniqueItem = (list: Primitive[], used: Primitive[]) => {
   const availableList = list.filter((i) => !used.includes(i));
   return getRandomItem(availableList);
 };
@@ -65,7 +68,7 @@ export const getRandomUniqueItem = (list: string[], used: string[]) => {
  * @param [quantity]
  * @returns
  */
-export const getRandomUniqueItems = (list: string[], used: string[] = [], quantity = 1) => {
+export const getRandomUniqueItems = (list: Primitive[], used: Primitive[] = [], quantity = 1) => {
   const availableList = list.filter((i) => !used.includes(i));
   return getRandomItems(availableList, quantity);
 };
@@ -77,7 +80,7 @@ export const getRandomUniqueItems = (list: string[], used: string[] = [], quanti
  * @param wrap determine if the result should wrap to the beginning of the array
  * @returns
  */
-export const getNextItem = (list: any[], currentItem: any, wrap = true) => {
+export const getNextItem = (list: Primitive[], currentItem: Primitive, wrap = true) => {
   const currentIndex = list.findIndex((i) => i === currentItem);
 
   if (currentItem === -1) return null;
@@ -96,7 +99,7 @@ export const getNextItem = (list: any[], currentItem: any, wrap = true) => {
  * @param wrap determine if the result should wrap to the end of the array
  * @returns
  */
-export const getPreviousItem = (list: any[], currentItem: any, wrap = true) => {
+export const getPreviousItem = (list: Primitive[], currentItem: Primitive, wrap = true) => {
   const currentIndex = list.findIndex((i) => i === currentItem);
 
   if (currentItem === -1) return null;
@@ -114,7 +117,7 @@ export const getPreviousItem = (list: any[], currentItem: any, wrap = true) => {
  * @param target
  * @returns
  */
-export const removeItem = (list: string[], target: string): string[] => {
+export const removeItem = (list: Primitive[], target: Primitive): Primitive[] => {
   return list.filter((item) => item !== target);
 };
 
@@ -140,9 +143,26 @@ export const sliceIntoChunks = (list: any[], chunkSize = 2) => {
  * @returns
  */
 export const sliceInParts = (list: any[], numParts = 1) => {
-  const partSize = Math.ceil(list.length / numParts);
+  const res: any[] = [];
 
-  return sliceIntoChunks(list, partSize);
+  if (numParts === 1) return [list];
+  if (numParts < 1) return [];
+
+  let i = 0;
+
+  if (list.length % numParts === 0) {
+    const partSize = Math.floor(list.length / numParts);
+    while (i < list.length) {
+      res.push(list.slice(i, (i += partSize)));
+    }
+  } else {
+    while (i < list.length) {
+      const partSize = Math.ceil((list.length - i) / numParts--);
+      res.push(list.slice(i, (i += partSize)));
+    }
+  }
+
+  return res;
 };
 
 /**
@@ -163,8 +183,8 @@ export const dealList = (
 ): Players => {
   const playerIds = Object.keys(players);
   // Ensure there are enough cards
-  const newList = recursive && playerIds.length * quantity < list.length ? [...list, ...list] : list;
-  const hands = sliceIntoChunks(newList, quantity);
+  const availableList = recursive && playerIds.length * quantity > list.length ? [...list, ...list] : list;
+  const hands = sliceIntoChunks(availableList, quantity);
 
   playerIds.forEach((playerId, index) => {
     players[playerId][propertyName] = hands[index];

@@ -5,7 +5,7 @@ import { GameOver } from '../../shared';
 import CanvasSVG from './CanvasSVG';
 import DrawingGrade from './DrawingGrade';
 
-function GameOverPhase({ state, info }) {
+function GameOverPhase({ state, players, info }) {
   return (
     <GameOver info={info} state={state}>
       <ul className="a-game-over__gallery">
@@ -14,7 +14,7 @@ function GameOverPhase({ state, info }) {
             <li className="a-game-over__gallery-item" key={entry.drawing}>
               <CanvasSVG drawing={entry.drawing} size={200} className="a-game-over__gallery-canvas" />
               <span className="a-game-over__credits">
-                "{entry.text}" por {entry.playerName}
+                "{entry.text}" por {players[entry.playerId].name}
               </span>
               <DrawingGrade value={entry.successRate} />
             </li>
@@ -30,6 +30,7 @@ GameOverPhase.propTypes = {
   state: PropTypes.shape({
     drawings: PropTypes.array,
   }),
+  players: PropTypes.object,
 };
 
 export default GameOverPhase;

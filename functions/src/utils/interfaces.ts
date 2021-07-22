@@ -5,6 +5,7 @@ export type DateMilliseconds = number;
 export type PlayerId = string;
 export type PlayerName = string;
 export type PlayerAvatarId = string;
+export type Primitive = string | number | boolean | symbol | null;
 
 // COMMON INTERFACES
 
@@ -65,12 +66,6 @@ export interface Players {
   [key: string]: Player;
 }
 
-export interface MakeMeReadyPayload {
-  gameId: GameId;
-  gameName: GameName;
-  playerId: PlayerId;
-}
-
 export interface Team {
   members: PlayerId[];
   name: string;
@@ -85,6 +80,12 @@ export interface Payload {
   gameId: GameId;
   gameName: GameName;
   playerId: PlayerId;
+}
+
+export interface ExtendedPayload {
+  gameId: GameId;
+  gameName: GameName;
+  [key: string]: any;
 }
 
 export interface SubmitGuessPayload extends Payload {
