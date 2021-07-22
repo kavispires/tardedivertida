@@ -82,6 +82,12 @@ export interface Payload {
   playerId: PlayerId;
 }
 
+export interface ExtendedPayload {
+  gameId: GameId;
+  gameName: GameName;
+  [key: string]: any;
+}
+
 export interface SubmitGuessPayload extends Payload {
   guess: string | number;
 }

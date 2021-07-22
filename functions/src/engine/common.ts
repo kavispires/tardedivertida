@@ -10,6 +10,7 @@ import {
   BasicGamePayload,
   Players,
   Payload,
+  ExtendedPayload,
 } from '../utils/interfaces';
 import { GAME_PLAYERS_LIMIT } from '../utils/constants';
 
@@ -71,12 +72,17 @@ export const createGame = async (data: CreateGamePayload, context: FirebaseConte
     await sessionRef.doc('players').set(players);
     await sessionRef.doc('state').set(state);
     await sessionRef.doc('store').set(store);
-    // Update global ids
-    await globalRef.doc('usedGameIds').update({ gameId: true });
 
     response = meta;
   } catch (e) {
     return firebaseUtils.throwException(`${e}`, `${actionText} in the firestore database`);
+  }
+
+  try {
+    // Update global ids. This is in a different block just for dev purposes
+    await globalRef.doc('usedGameIds').update({ gameId: true });
+  } catch (e) {
+    // Do nothing
   }
 
   return {
@@ -261,7 +267,12 @@ export const makePlayerReady = async (data: Payload) => {
   }
 };
 
-// Next phase
+/**
+ * Makes state goes to the next game face
+ * @param data
+ * @param context
+ * @returns
+ */
 export const goToNextPhase = async (data: BasicGamePayload, context: FirebaseContext) => {
   const { gameId, gameName: collectionName } = data;
 
@@ -278,6 +289,31 @@ export const goToNextPhase = async (data: BasicGamePayload, context: FirebaseCon
   const nextPhaseDelegator = delegatorUtils.getNextPhaseForCollection(collectionKey);
 
   return nextPhaseDelegator(collectionName, gameId, players);
+};
+
+/**
+ * Makes game
+ * @param data
+ * @param context
+ * @returns
+ */
+export const forceStateProperty = async (data: ExtendedPayload, context: FirebaseContext) => {
+  const { gameId, gameName: collectionName } = data;
+
+  const actionText = 'force state property';
+  firebaseUtils.verifyPayload(gameId, 'gameId', actionText);
+  firebaseUtils.verifyPayload(collectionName, 'collectionName', actionText);
+  firebaseUtils.verifyAuth(context, actionText);
+
+  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
+
+  try {
+    await sessionRef.doc('state').update(data.state);
+  } catch (error) {
+    return firebaseUtils.throwException(error, actionText);
+  }
+
+  return false;
 };
 
 /**

@@ -10,6 +10,7 @@ export const GAME_API = {
   makePlayerReady: functions.httpsCallable('makePlayerReady'),
   playAgain: functions.httpsCallable('playAgain'),
   goToNextPhase: functions.httpsCallable('goToNextPhase'),
+  forceStateProperty: functions.httpsCallable('forceStateProperty'),
 };
 
 export const ARTE_RUIM_API = {
