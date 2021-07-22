@@ -6,9 +6,12 @@ import { Button, Tooltip } from 'antd';
 import { AimOutlined, ClearOutlined, IssuesCloseOutlined } from '@ant-design/icons';
 // Hooks
 import { useGlobalState } from '../../../hooks';
+// Utils
+import { orderBy } from '../../../utils';
 
 function SuspectsList({ players }) {
   const [cache, setCache] = useGlobalState('espiaoEntreNosCache');
+  const sortedPlayers = orderBy(Object.values(players), 'name');
 
   const onCross = (item) => {
     setCache((s) => {
@@ -27,7 +30,7 @@ function SuspectsList({ players }) {
   return (
     <div className={clsx('e-list')}>
       <h3 className="e-list__title">
-        <AimOutlined /> Suspeitos{' '}
+        <AimOutlined /> Suspeitos
         <Tooltip title="Deselecionar todos">
           <Button
             shape="circle"
@@ -36,16 +39,17 @@ function SuspectsList({ players }) {
             size="small"
             icon={<ClearOutlined />}
             onClick={onClearCrossed}
+            className="e-list__clear-button"
           />
         </Tooltip>
       </h3>
       <ul className="e-list__list">
-        {Object.entries(players).map(([playerId, player]) => (
+        {sortedPlayers.map((player) => (
           <li
-            className={clsx('e-list__item', cache[playerId] && 'e-list__item--crossed')}
-            key={playerId}
+            className={clsx('e-list__item', cache[player.id] && 'e-list__item--crossed')}
+            key={player.id}
             role="button"
-            onClick={() => onCross(playerId)}
+            onClick={() => onCross(player.id)}
           >
             {player.name}{' '}
             {player.usedAccusation && (
@@ -61,7 +65,13 @@ function SuspectsList({ players }) {
 }
 
 SuspectsList.propTypes = {
-  players: PropTypes.object,
+  players: PropTypes.objectOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      name: PropTypes.string,
+      usedAccusation: PropTypes.bool,
+    })
+  ),
 };
 
 export default memo(SuspectsList);

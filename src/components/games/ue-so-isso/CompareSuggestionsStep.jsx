@@ -63,17 +63,18 @@ function CompareSuggestionsStep({
       <Title white>Comparem as sugestões</Title>
       <Card word={secretWord.text} header="Palavra Secreta" />
       <Instruction contained>
-        Já eliminamos todas as palavras iguais, agora, elimine palavras inválidas ou similares.
+        Já eliminamos todas as palavras idênticas, agora, elimine palavras inválidas ou similares.
         <br />
-        Lembre-se que são consideradas dicas iguais palavras derividadas, conjugações:{' '}
+        Lembre-se que são consideradas dicas iguais palavras derivadas e conjugações:{' '}
         <code>piloto = pilotar = pilotando</code>. Variações como pluralidade, gênero e erros ortográficos
-        também devem ser eliminadas: <code>príncipe = princesa = principes = pryncip</code>.
+        também devem ser eliminadas: <code>príncipe = princesa = principes = pryncipi</code>.
         <br />
         <ExclamationCircleOutlined /> Para não virar bagunça, somente{' '}
         <AvatarName player={nextGuesser} addressUser />
         pode clicar nas palavras para eliminá-las ou ativá-las, mas todos podem discutir. Uma dica ser muito
         ruim não significa que ela seja inválida.
-        <br /> Refiram às palavras por letra, o Adivinhador pode estar ouvindo!
+        <br />
+        Refiram às palavras por letra, o Adivinhador pode estar ouvindo!
       </Instruction>
 
       <Space className="u-word-compare-suggestions-step__suggestions">
@@ -84,6 +85,7 @@ function CompareSuggestionsStep({
                 <SuggestionCard
                   suggestion={suggestionEntry.suggestion}
                   invalid={suggestionEntry.invalid}
+                  playerName={players[suggestionEntry.playerId].name}
                   avatarId={players[suggestionEntry.playerId].avatarId}
                   index={index}
                 />
@@ -101,6 +103,7 @@ function CompareSuggestionsStep({
                 suggestion={suggestionEntry.suggestion}
                 invalid={myRecommendation?.[index]?.invalid ?? suggestionEntry.invalid}
                 avatarId={players[suggestionEntry.playerId].avatarId}
+                playerName={players[suggestionEntry.playerId].name}
                 index={index}
               />
             </button>

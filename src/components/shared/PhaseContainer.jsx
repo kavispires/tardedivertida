@@ -3,6 +3,8 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 // Hooks
 import { useGlobalState } from '../../hooks';
+// Utils
+import { isDevEnv } from '../../utils';
 // Components
 import { LoadingPage } from '../loaders';
 import { PageError } from '../errors/PageError';
@@ -46,10 +48,10 @@ export function PhaseContainer({ info, phase, allowedPhase, children, className,
       id="screen"
       ref={screenRef}
     >
-      {process.env.NODE_ENV === 'development' && (
-        <span className={`${baseClass}__dev-player-name`}>{username}</span>
-      )}
-      <span className={`${baseClass}__title`}>{info.title}</span>
+      <span className={`${baseClass}__title`}>
+        {info.title}
+        {isDevEnv && Boolean(username) && `| ${username}`}
+      </span>
       {children}
     </main>
   );

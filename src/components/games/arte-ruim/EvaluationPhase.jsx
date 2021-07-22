@@ -108,6 +108,7 @@ function EvaluationPhase({ players, state, info }) {
             onActivateItem={onActivateItem}
             votes={votes}
             canvasSize={canvasSize}
+            players={players}
           />
 
           <EvaluationAllCards

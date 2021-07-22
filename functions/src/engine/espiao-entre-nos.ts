@@ -4,8 +4,9 @@ import {
   GAME_PLAYERS_LIMIT,
   ESPIAO_ENTRE_NOS_CONSTANTS as E_CONSTANTS,
 } from '../utils/constants';
+import * as firebaseUtils from '../utils/firebase';
 import * as gameUtils from '../utils/game-utils';
-import * as utils from '../utils/index';
+import * as utils from '../utils/helpers';
 import {
   Players,
   GameId,
@@ -151,9 +152,9 @@ export const nextEspiaoEntreNosPhase = async (
   const actionText = 'prepare next phase';
 
   // Determine and prepare next phase
-  const sessionRef = utils.getSessionRef(collectionName, gameId);
-  const stateDoc = await utils.getSessionDoc(collectionName, gameId, 'state', actionText);
-  const storeDoc = await utils.getSessionDoc(collectionName, gameId, 'store', actionText);
+  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
+  const stateDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'state', actionText);
+  const storeDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'store', actionText);
 
   const state = stateDoc.data() ?? {};
   const store = { ...(storeDoc.data() ?? {}) };
@@ -322,8 +323,8 @@ const prepareInvestigationPhase = async (
   await sessionRef.doc('state').update({
     phase: PHASES.ESPIAO_ENTRE_NOS.INVESTIGATION,
     updatedAt: Date.now(),
-    target: utils.deleteValue(),
-    accuser: utils.deleteValue(),
+    target: firebaseUtils.deleteValue(),
+    accuser: firebaseUtils.deleteValue(),
     timerUpdatedAt: Date.now(),
     timeRemaining,
     timerStatus: E_CONSTANTS.TIMER_STATUS.RUNNING,
@@ -342,10 +343,10 @@ const prepareFinalAssessmentPhase = async (
   await sessionRef.doc('state').update({
     phase: PHASES.ESPIAO_ENTRE_NOS.FINAL_ASSESSMENT,
     updatedAt: Date.now(),
-    target: utils.deleteValue(),
-    accuser: utils.deleteValue(),
-    timerStartedAt: utils.deleteValue(),
-    timeRemaining: utils.deleteValue(),
+    target: firebaseUtils.deleteValue(),
+    accuser: firebaseUtils.deleteValue(),
+    timerStartedAt: firebaseUtils.deleteValue(),
+    timeRemaining: firebaseUtils.deleteValue(),
     playerOrder: state.playerOrder ?? gameUtils.shuffle(Object.keys(players)),
     finalAssessment: true,
     playerOrderIndex: state.playerOrderIndex !== undefined ? state.playerOrderIndex + 1 : 0,
@@ -406,7 +407,7 @@ const prepareResolutionPhase = async (
     updatedAt: Date.now(),
     resolutionType,
     timerStatus: E_CONSTANTS.TIMER_STATUS.STOPPED,
-    outcome: utils.deleteValue(),
+    outcome: firebaseUtils.deleteValue(),
     ...stateUpdate,
   });
 
@@ -440,8 +441,8 @@ const prepareInGamePhase = async (collectionName: string, gameId: string, action
   const actionText = `${action} game`;
 
   // Determine and prepare next phase
-  const sessionRef = utils.getSessionRef(collectionName, gameId);
-  const stateDoc = await utils.getSessionDoc(collectionName, gameId, 'state', actionText);
+  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
+  const stateDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'state', actionText);
   const state = stateDoc.data() ?? {};
 
   const stateUpdate: PlainObject = {
@@ -482,10 +483,10 @@ export const handleAdminAction = async (data: EspiaoEntreNosAdminPayload, contex
   const { gameId, gameName: collectionName, action } = data;
 
   const actionText = `${action} stopwatch`;
-  utils.verifyPayload(gameId, 'gameId', actionText);
-  utils.verifyPayload(collectionName, 'collectionName', actionText);
-  utils.verifyPayload(action, 'action', actionText);
-  utils.verifyAuth(context, actionText);
+  firebaseUtils.verifyPayload(gameId, 'gameId', actionText);
+  firebaseUtils.verifyPayload(collectionName, 'collectionName', actionText);
+  firebaseUtils.verifyPayload(action, 'action', actionText);
+  firebaseUtils.verifyAuth(context, actionText);
 
   // resume, pause => timer functions
   if (typeof action === 'string' && ['start', 'pause', 'resume', 'stop'].includes(action)) {
@@ -493,7 +494,7 @@ export const handleAdminAction = async (data: EspiaoEntreNosAdminPayload, contex
   }
 
   // Get 'players' from given game session
-  const playersDoc = await utils.getSessionDoc(collectionName, gameId, 'players', actionText);
+  const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
   const players = playersDoc.data() ?? {};
 
   // round => starts new round with new assignment phase
@@ -530,14 +531,14 @@ export const makeAccusation = async (data: SubmitVotePayload) => {
   const { gameId, gameName: collectionName, playerId, vote } = data;
 
   const actionText = 'submit your vote';
-  utils.verifyPayload(gameId, 'gameId', actionText);
-  utils.verifyPayload(collectionName, 'collectionName', actionText);
-  utils.verifyPayload(playerId, 'playerId', actionText);
-  utils.verifyPayload(vote, 'vote', actionText);
+  firebaseUtils.verifyPayload(gameId, 'gameId', actionText);
+  firebaseUtils.verifyPayload(collectionName, 'collectionName', actionText);
+  firebaseUtils.verifyPayload(playerId, 'playerId', actionText);
+  firebaseUtils.verifyPayload(vote, 'vote', actionText);
 
   const pausedAt = Date.now();
 
-  const playersDoc = await utils.getSessionDoc(collectionName, gameId, 'players', actionText);
+  const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
 
   // Make player ready and attach drawing
   const players = playersDoc.data() ?? {};
@@ -553,13 +554,13 @@ export const submitVoting = async (data: SubmitVotePayload) => {
   const { gameId, gameName: collectionName, playerId, vote } = data;
 
   const actionText = 'submit your vote';
-  utils.verifyPayload(gameId, 'gameId', actionText);
-  utils.verifyPayload(collectionName, 'collectionName', actionText);
-  utils.verifyPayload(playerId, 'playerId', actionText);
-  utils.verifyPayload(vote, 'vote', actionText);
+  firebaseUtils.verifyPayload(gameId, 'gameId', actionText);
+  firebaseUtils.verifyPayload(collectionName, 'collectionName', actionText);
+  firebaseUtils.verifyPayload(playerId, 'playerId', actionText);
+  firebaseUtils.verifyPayload(vote, 'vote', actionText);
 
-  const sessionRef = utils.getSessionRef(collectionName, gameId);
-  const playersDoc = await utils.getSessionDoc(collectionName, gameId, 'players', actionText);
+  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
+  const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
 
   // Make player ready and attach drawing
   const players = playersDoc.data() ?? {};
@@ -569,7 +570,7 @@ export const submitVoting = async (data: SubmitVotePayload) => {
   try {
     await sessionRef.doc('players').update({ [playerId]: updatedPlayers[playerId] });
   } catch (error) {
-    utils.throwException(error, actionText);
+    firebaseUtils.throwException(error, actionText);
   }
 
   if (!utils.isEverybodyReady(updatedPlayers)) {
@@ -584,12 +585,12 @@ export const guessLocation = async (data: SubmitGuessPayload) => {
   const { gameId, gameName: collectionName, playerId, guess } = data;
 
   const actionText = 'submit your vote';
-  utils.verifyPayload(gameId, 'gameId', actionText);
-  utils.verifyPayload(collectionName, 'collectionName', actionText);
-  utils.verifyPayload(playerId, 'playerId', actionText);
-  utils.verifyPayload(guess, 'vote', actionText);
+  firebaseUtils.verifyPayload(gameId, 'gameId', actionText);
+  firebaseUtils.verifyPayload(collectionName, 'collectionName', actionText);
+  firebaseUtils.verifyPayload(playerId, 'playerId', actionText);
+  firebaseUtils.verifyPayload(guess, 'vote', actionText);
 
-  const playersDoc = await utils.getSessionDoc(collectionName, gameId, 'players', actionText);
+  const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
 
   // Make player ready and attach drawing
   const players = playersDoc.data() ?? {};

@@ -37,12 +37,18 @@ exports.lockGame = functions.https.onCall(commonEngine.lockGame);
 /**
  * Make player ready and go to next game phase if all players are ready
  */
-exports.makeMeReady = functions.https.onCall(commonEngine.makeMeReady);
+exports.makePlayerReady = functions.https.onCall(commonEngine.makePlayerReady);
 
 /**
- * Admin action to force game to go to its next phase
+ * Action to force game to go to its next phase.
+ * It may be using by players during a specific time during the game, or by the admin at any phase
  */
 exports.goToNextPhase = functions.https.onCall(commonEngine.goToNextPhase);
+
+/**
+ * Admin action to force game certain state property and value
+ */
+exports.forceStateProperty = functions.https.onCall(commonEngine.forceStateProperty);
 
 /**
  * Play game again within the same session

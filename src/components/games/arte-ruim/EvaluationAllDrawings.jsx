@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import CanvasSVG from './CanvasSVG';
 import Ribbon from './Ribbon';
 
-function EvaluationAllDrawings({ drawings, activeItem, onActivateItem, votes, canvasSize }) {
+function EvaluationAllDrawings({ drawings, activeItem, onActivateItem, votes, canvasSize, players }) {
   const liButtonBaseClass = 'a-evaluation-all-drawings__li-drawing-button';
 
   return (
@@ -25,7 +25,7 @@ function EvaluationAllDrawings({ drawings, activeItem, onActivateItem, votes, ca
               className="a-evaluation-all-drawings__drawing"
               size={canvasSize}
             />
-            <span className="a-evaluation-all-drawings__artist">{drawingEntry.playerName}</span>
+            <span className="a-evaluation-all-drawings__artist">{players[drawingEntry.playerId].name}</span>
           </li>
         );
       })}
@@ -40,11 +40,13 @@ EvaluationAllDrawings.propTypes = {
     PropTypes.shape({
       id: PropTypes.string,
       drawing: PropTypes.string,
+      playerId: PropTypes.string,
     })
   ),
   onActivateItem: PropTypes.func,
   onActiveItem: PropTypes.func,
   votes: PropTypes.object,
+  players: PropTypes.object,
 };
 
 export default EvaluationAllDrawings;

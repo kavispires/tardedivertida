@@ -7,3 +7,13 @@
   display: flex;
   justify-content: center;
 }
+
+.admin-menu {
+  &__affix-button {
+    position: absolute;
+    bottom: -8px;
+    left: 8px;
+    transform: translateY(-50%);
+    z-index: 100;
+  }
+}

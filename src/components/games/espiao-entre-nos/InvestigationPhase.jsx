@@ -51,14 +51,14 @@ function InvestigationPhase({ state, players, info }) {
       });
     }
 
-    if (state.timeRemaining > 590000) {
+    if (state.timeRemaining > 590000 && startingPlayer.name) {
       notification.info({
         message: '10 minutos!',
-        description: `${startingPlayer.name ?? Object.values(players)[0].name} começa perguntando!`,
+        description: `${startingPlayer.name} começa perguntando!`,
         duration: 10,
       });
     }
-  }, []); // eslint-disable-line
+  }, [startingPlayer.name]); // eslint-disable-line
 
   return (
     <PhaseContainer
