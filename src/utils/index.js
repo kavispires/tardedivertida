@@ -1,8 +1,9 @@
 /**
- * Flag indicating if the environment is for development
- * @type {boolean}
+ * Creates a copy of given object
+ * @param {object} obj
+ * @returns {object}
  */
-export const isDevEnv = process.env.NODE_ENV === 'development';
+export const deepCopy = (obj) => JSON.parse(JSON.stringify(obj));
 
 /**
  * Extract the gameId from react history
@@ -25,15 +26,6 @@ export const getGameIdFromLocation = (location) => {
 };
 
 /**
- * Verify if the game id exists and has the correct length
- * @param {string} gameId
- * @returns
- */
-export const isValidGameId = (gameId) => {
-  return gameId && gameId.length === 4;
-};
-
-/**
  * Get random element/item from a list
  * @param {array} list
  * @returns one random item
@@ -49,6 +41,49 @@ export const getRandomItem = (list) => {
  */
 export const inNSeconds = (seconds) => {
   return Date.now() + seconds * 1000;
+};
+
+/**
+ * Flag indicating if the environment is for development
+ * @type {boolean}
+ */
+export const isDevEnv = process.env.NODE_ENV === 'development';
+
+/**
+ * Verify if the game id exists and has the correct length
+ * @param {string} gameId
+ * @returns
+ */
+export const isValidGameId = (gameId) => {
+  return gameId && gameId.length === 4;
+};
+
+/**
+ * Gets color name from index
+ * @param {number} letter
+ * @returns
+ */
+export const getColorFromIndex = (letter) => {
+  return (
+    [
+      'red',
+      'blue',
+      'green',
+      'yellow',
+      'pink',
+      'purple',
+      'teal',
+      'orange',
+      'coffee',
+      'navy',
+      'light-green',
+      'brown',
+      'hot-pink',
+      'violet',
+      'forest',
+      'cream',
+    ][letter] ?? 'none'
+  );
 };
 
 /**
@@ -92,39 +127,33 @@ export const getColorFromLetter = (letter) => {
 };
 
 /**
- * Gets color name from index
- * @param {number} letter
- * @returns
+ * Get the team name that is not active
+ * @param {object|array} teams
+ * @param {string} activeTeam
+ * @returns {string}
  */
-export const getColorFromIndex = (letter) => {
-  return (
-    [
-      'red',
-      'blue',
-      'green',
-      'yellow',
-      'pink',
-      'purple',
-      'teal',
-      'orange',
-      'coffee',
-      'navy',
-      'light-green',
-      'brown',
-      'hot-pink',
-      'violet',
-      'forest',
-      'cream',
-    ][letter] ?? 'none'
-  );
+export const getOppositeTeam = (teams, activeTeam) => {
+  if (!teams || !activeTeam || teams?.length < 2 || teams?.length > 2) return '?';
+
+  const teamsNames = Array.isArray(teams) ? teams : Object.keys(teams);
+  if (teamsNames[0] === activeTeam) return teamsNames[1];
+  else return teamsNames[0];
 };
 
 /**
- * Creates a copy of given object
- * @param {object} obj
- * @returns {object}
+ * Get given players from list of ids
+ * @param {string[]} playerIds
+ * @param {object} players
+ * @param {boolean} justNames if true, only return names
+ * @returns
  */
-export const deepCopy = (obj) => JSON.parse(JSON.stringify(obj));
+export const getPlayersFromIds = (playerIds, players, justNames = false) => {
+  return playerIds.map((playerId) => {
+    const player = players[playerId];
+    if (justNames) return player.name;
+    return player;
+  });
+};
 
 /**
  * Orders array by a value its item object
@@ -146,7 +175,7 @@ export const orderBy = (list, properties, orders) => {
 
   let cb = () => 0;
   const p = Array.isArray(properties) ? properties.reverse() : [properties];
-  const o = Array.isArray(properties) ? orders.reverse() : [orders];
+  const o = Array.isArray(orders) ? orders.reverse() : [orders];
 
   for (const [i, key] of p.entries()) {
     const order = o[i] ?? o[0] ?? 'asc';
@@ -163,30 +192,13 @@ export const orderBy = (list, properties, orders) => {
 };
 
 /**
- * Get the team name that is not active
- * @param {object|array} teams
- * @param {string} activeTeam
- * @returns {string}
- */
-export const getOppositeTeam = (teams, activeTeam) => {
-  if (!teams || !activeTeam || teams?.length < 2) return '?';
-
-  const teamsNames = Array.isArray(teams) ? teams : Object.keys(teams);
-  if (teamsNames[0] === activeTeam) return teamsNames[1];
-  else return teamsNames[0];
-};
-
-/**
- * Get given players from list of ids
- * @param {string[]} playerIds
- * @param {object} players
- * @param {boolean} justNames if true, only return names
+ * Determines if it should output the singular or plural argument depending on given quantity
+ * @param {number} quantity
+ * @param {string} singular
+ * @param {string} plural
  * @returns
  */
-export const getPlayersFromIds = (playerIds, players, justNames = false) => {
-  return playerIds.map((playerId) => {
-    const player = players[playerId];
-    if (justNames) return player.name;
-    return player;
-  });
+export const pluralize = (quantity, singular, plural) => {
+  if (!plural) return singular;
+  return quantity === 1 ? singular : plural;
 };
