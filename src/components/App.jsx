@@ -14,7 +14,6 @@ import Login from './Login';
 import Game from './Game';
 import TestingZone from './TestingZone';
 import { LoadingBar, LoadingPage } from './loaders';
-import { isDevEnv } from '../utils';
 
 function PrivateRoute({ component: Component, authenticated, ...rest }) {
   return (

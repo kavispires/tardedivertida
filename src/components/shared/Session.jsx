@@ -8,6 +8,7 @@ import { isDevEnv } from '../../utils';
 // Components
 import Lobby from '../lobby/Lobby';
 import GameInfoDrawer from '../shared/GameInfoDrawer';
+import { AdminMenu } from '../admin/index';
 
 export function Session({ gameId, gameCollection, getActiveComponent }) {
   const players = useGamePlayers(gameId, gameCollection);
@@ -35,6 +36,7 @@ export function Session({ gameId, gameCollection, getActiveComponent }) {
     <Fragment>
       <GameInfoDrawer players={players} state={state} info={info} userId={userId} />
       <ActiveComponent players={players} state={state} info={info} />
+      <AdminMenu state={state} />
     </Fragment>
   );
 }
