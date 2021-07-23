@@ -3,6 +3,42 @@ import { setGlobalState } from '../hooks';
 const names = ['Abe', 'Bob', 'Cam', 'Doc', 'Eva', 'Fred', 'Gus', 'Hal'];
 const random = (array) => array[Math.floor(Math.random() * array.length)];
 
+export const getHooksControls = () => ({
+  _withUser: {
+    control: 'boolean',
+    defaultValue: false,
+    description: '[internal] Mocks active user',
+  },
+  _withAdmin: {
+    control: 'boolean',
+    defaultValue: false,
+    description: '[internal] Mocks admin user',
+  },
+  _withLoading: {
+    control: 'boolean',
+    defaultValue: false,
+    description: '[internal] Mocks app loading state',
+  },
+  _withPlayers: {
+    control: {
+      type: 'range',
+      min: 0,
+      max: 8,
+      step: 1,
+    },
+    defaultValue: 0,
+    description: '[internal] Mocks given number of players',
+  },
+});
+
+export const mockHooks = (args) => {
+  mockLoading(args._withLoading);
+  mockGlobalUser({}, !args._withUser);
+  mockAdmin(args._withAdmin);
+  const players = args._withPlayers ? mockPlayers(args._withPlayers) : {};
+  return { ...args, players };
+};
+
 class Player {
   constructor(data) {
     this.id = data.id ?? '_bob';
@@ -158,8 +194,8 @@ export const mockLoading = (value = true) => {
  */
 export const mockGameMeta = () => {
   setGlobalState('gameMeta', {
-    min: 2,
-    max: 6,
+    min: 4,
+    max: 8,
   });
 };
 
