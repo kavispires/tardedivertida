@@ -9,11 +9,11 @@ import { useGlobalState } from '../../hooks';
 
 export const AvatarName = memo(function ({
   player,
-  size = 'default',
-  className = '',
-  withDescription = false,
-  uppercase = false,
-  addressUser = false,
+  size,
+  className,
+  withDescription,
+  uppercase,
+  addressUser,
 }) {
   const [userId] = useGlobalState('userId');
 
@@ -35,13 +35,22 @@ export const AvatarName = memo(function ({
 });
 
 AvatarName.propTypes = {
+  addressUser: PropTypes.bool,
+  className: PropTypes.string,
   player: PropTypes.shape({
     avatarId: PropTypes.string,
+    id: PropTypes.any,
     name: PropTypes.string,
   }).isRequired,
   size: PropTypes.oneOf(['small', 'default', 'large']),
-  withDescription: PropTypes.bool,
   uppercase: PropTypes.bool,
-  addressUser: PropTypes.bool,
-  className: PropTypes.string,
+  withDescription: PropTypes.bool,
+};
+
+AvatarName.defaultProps = {
+  addressUser: false,
+  className: '',
+  size: 'default',
+  uppercase: false,
+  withDescription: false,
 };

@@ -4,7 +4,7 @@ import clsx from 'clsx';
 // Components
 import { Avatar } from './Avatar';
 
-export const AvatarEntry = memo(function ({ id = 25, name = 'Fulano', animate = false, className = '' }) {
+export const AvatarEntry = memo(function ({ id, name, animate, className }) {
   return (
     <div className={clsx('avatar-entry', animate && 'avatar-entry--floating', className)}>
       <Avatar id={id} className="avatar-entry__avatar" />
@@ -14,8 +14,15 @@ export const AvatarEntry = memo(function ({ id = 25, name = 'Fulano', animate = 
 });
 
 Avatar.propTypes = {
-  id: PropTypes.string,
-  name: PropTypes.string,
   animate: PropTypes.bool,
   className: PropTypes.string,
+  id: PropTypes.string,
+  name: PropTypes.string,
+};
+
+Avatar.defaultProps = {
+  animate: false,
+  className: '',
+  id: '25',
+  name: 'Fulano',
 };

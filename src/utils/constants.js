@@ -189,6 +189,8 @@ export const AVATARS = {
   },
 };
 
+export const AVAILABLE_AVATAR_IDS = Object.keys(AVATARS);
+
 export const LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
 /**
