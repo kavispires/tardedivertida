@@ -44,7 +44,6 @@ function Waiting({ info, players }) {
   }, [gameId, gameName, setLoader]);
 
   const numPlayers = Object.keys(players).length;
-
   return (
     <div className="lobby-waiting">
       <Image

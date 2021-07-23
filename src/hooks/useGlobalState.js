@@ -3,7 +3,6 @@ import { createGlobalState } from 'react-hooks-global-state';
 const initialState = {
   isLoading: false,
   loaders: false,
-  isAuthenticated: false,
   appStartedAt: Date.now(),
   screenSize: [],
   // Meta
@@ -14,6 +13,7 @@ const initialState = {
   userId: null,
   username: '',
   userAvatarId: '',
+  isAuthenticated: false,
   isAdmin: false,
   // Arte-Ruim
   canvasSize: 250,
