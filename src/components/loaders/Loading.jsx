@@ -14,8 +14,8 @@ export function Loading({ message, margin }) {
 }
 
 Loading.propTypes = {
-  message: PropTypes.string,
   margin: PropTypes.bool,
+  message: PropTypes.string,
 };
 
 Loading.defaultProps = {

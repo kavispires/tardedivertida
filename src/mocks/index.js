@@ -16,3 +16,7 @@ export const mockGlobalUser = (overrideData = {}) => {
   setGlobalState('username', overrideData.username ?? 'Bob');
   setGlobalState('userAvatarId', overrideData.userAvatarId ?? '1');
 };
+
+export const mockLoading = () => {
+  setGlobalState('loaders', { testing: true });
+};
