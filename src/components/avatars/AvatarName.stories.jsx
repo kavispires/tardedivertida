@@ -4,7 +4,7 @@ import { mockGlobalUser, mockPlayer } from '../../mocks';
 import { AvatarName } from './AvatarName';
 
 export default {
-  title: 'Avatar/AvatarName',
+  title: 'avatar/AvatarName',
   component: AvatarName,
   argTypes: {
     size: {
