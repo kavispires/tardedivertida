@@ -28,25 +28,10 @@ export const Avatar = memo(function ({ id, size, shape, alt, className }) {
 });
 
 Avatar.propTypes = {
-  /**
-   * The alternate image text, usually the name of the user/player
-   */
   alt: PropTypes.string,
-  /**
-   * A custom className
-   */
   className: PropTypes.string,
-  /**
-   * The id of the avatar in the svg map
-   */
   id: PropTypes.oneOf(AVAILABLE_AVATAR_IDS),
-  /**
-   * The shape of the avatar
-   */
   shape: PropTypes.oneOf(['circle', 'square']),
-  /**
-   * The size of the avatar
-   */
   size: PropTypes.oneOfType([PropTypes.oneOf(['large', 'small', 'default']), PropTypes.number]),
 };
 
