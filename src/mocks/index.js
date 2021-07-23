@@ -106,11 +106,34 @@ export const mockTeams = (quantity = 2, playersPerTeam = 2) => {
 /**
  * Mock Global User
  * @param {*} overrideData
+ * @param {boolean} reset
  */
-export const mockGlobalUser = (overrideData = {}) => {
-  setGlobalState('userId', overrideData.userId ?? '_bob');
-  setGlobalState('username', overrideData.username ?? 'Bob');
-  setGlobalState('userAvatarId', overrideData.userAvatarId ?? '1');
+export const mockGlobalUser = (overrideData = {}, reset = false) => {
+  if (reset) {
+    setGlobalState('userId', null);
+    setGlobalState('username', null);
+    setGlobalState('userAvatarId', null);
+  } else {
+    setGlobalState('userId', overrideData.userId ?? '_bob');
+    setGlobalState('username', overrideData.username ?? 'Bob');
+    setGlobalState('userAvatarId', overrideData.userAvatarId ?? '1');
+  }
+};
+
+/**
+ * Mock Authentication
+ * @param {boolean} value
+ */
+export const mockAuthenticated = (value = true) => {
+  setGlobalState('isAuthenticated', value);
+};
+
+/**
+ * Mock Admin
+ * @param {boolean} value
+ */
+export const mockAdmin = (value = true) => {
+  setGlobalState('isAdmin', value);
 };
 
 /**
@@ -123,8 +146,29 @@ export const mockGlobalProperty = (propertyName, value) => {
 };
 
 /**
- * Mock loading
+ *
  */
-export const mockLoading = () => {
-  setGlobalState('loaders', { testing: true });
+export const mockLoading = (value = true) => {
+  setGlobalState('loaders', { testing: value });
 };
+
+/**
+ * Mock Game Meta (firebase)
+ * @returns {object}
+ */
+export const mockGameMeta = () => {
+  setGlobalState('gameMeta', {
+    min: 2,
+    max: 6,
+  });
+};
+
+/**
+ * Mock Game Info (static)
+ * @returns  {object}
+ */
+export const mockInfo = () => ({
+  title: 'The Game Title',
+  gameName: 'Game Name',
+  description: 'It is a game!',
+});

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import React from 'react';
 import { PUBLIC_URL } from '../../utils/constants';
@@ -126,5 +127,9 @@ function CloudBackground({ type = 'cloud' }) {
     </div>
   );
 }
+
+CloudBackground.propTypes = {
+  type: PropTypes.oneOf(['cloud', 'cyber-cloud', 'funky-cloud', 'detective-cloud', 'artsy-cloud']),
+};
 
 export default CloudBackground;
