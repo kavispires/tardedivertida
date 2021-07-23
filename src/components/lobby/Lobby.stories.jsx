@@ -1,5 +1,5 @@
 import React from 'react';
-import { mockGlobalUser, mockInfo, mockLoading, mockPlayers } from '../../mocks';
+import { getHooksControls, mockGameMeta, mockHooks, mockInfo } from '../../mocks';
 
 import Lobby from './Lobby';
 
@@ -7,30 +7,28 @@ export default {
   title: 'lobby/Lobby',
   component: Lobby,
   argTypes: {
-    join: { control: 'boolean', defaultValue: false },
-    loading: { control: 'boolean', defaultValue: false },
-    withPlayers: { control: 'boolean', defaultValue: false },
+    ...getHooksControls(),
   },
 };
 
 const Template = (args) => {
-  mockLoading(args.loading);
-  mockGlobalUser({}, !args.join);
-  return <Lobby players={args.withPlayers ? mockPlayers(4) : {}} {...args} />;
+  mockGameMeta();
+  const hookedArgs = mockHooks(args);
+  return <Lobby {...hookedArgs} />;
 };
 
 export const Join = Template.bind({});
 
 Join.args = {
   info: mockInfo(),
-  join: false,
+  _withUser: false,
 };
 
 export const Waiting = Template.bind({});
 
 Waiting.args = {
   info: mockInfo(),
-  join: true,
+  _withUser: true,
 };
 
 export const NoInfo = Template.bind({});
