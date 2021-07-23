@@ -19,6 +19,10 @@
     margin-left: get-unit(2);
   }
 
+  &__meta {
+    padding-left: 0;
+  }
+
   &__meta-item {
     margin: get-unit(1 0);
   }

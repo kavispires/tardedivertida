@@ -4,7 +4,7 @@ import { AVAILABLE_AVATAR_IDS } from '../../utils/constants';
 import { AvatarEntry } from './AvatarEntry';
 
 export default {
-  title: 'Avatar/AvatarEntry',
+  title: 'avatar/AvatarEntry',
   component: AvatarEntry,
   argTypes: {
     id: {

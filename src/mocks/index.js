@@ -1,22 +1,130 @@
 import { setGlobalState } from '../hooks';
 
-export const player = {
-  id: '_bob',
-  avatarId: '1',
-  name: 'Bob',
-  ready: false,
-  score: 0,
-  updatedAt: Date.now(),
+const names = ['Abe', 'Bob', 'Cam', 'Doc', 'Eva', 'Fred', 'Gus', 'Hal'];
+const random = (array) => array[Math.floor(Math.random() * array.length)];
+
+class Player {
+  constructor(data) {
+    this.id = data.id ?? '_bob';
+    this.avatarId = data.avatarId ? `${data.avatarId}` : '1';
+    this.name = data.name ?? 'Bob';
+    this.ready = data.ready ?? false;
+    this.score = data.score ?? 0;
+    this.updatedAt = data.updatedAt ?? Date.now();
+
+    // Build id or name if either is not available
+    if (data.id && !data.name) {
+      this.id = data.id;
+      this.name = data.id;
+    } else if (data.name && !data.id) {
+      this.id = `_${data.name.toLowerCase()}`;
+      this.name = data.name;
+    }
+
+    this.extend(data);
+  }
+
+  extend(data) {
+    for (const property in data) {
+      this[property] = data[property];
+    }
+    return this;
+  }
+
+  randomize() {
+    this.ready = random([true, false]);
+    this.score = random([1, 2, 2, 3, 3, 5, 7, 11, 13, 17]);
+    return this;
+  }
+}
+
+/**
+ * Mocks a player (default: bob)
+ * @param {*} overrideData
+ * @returns
+ */
+export const mockPlayer = (overrideData = {}) => new Player(overrideData);
+
+/**
+ * Mocks up to 8 players
+ * @param {number} quantity
+ * @param {boolean} randomize
+ * @param {boolean} withTeams
+ * @returns
+ */
+export const mockPlayers = (quantity = 2, randomize = false, withTeams = false) => {
+  return Array(quantity)
+    .fill(0)
+    .map((_, index) => {
+      const newPlayer = new Player({
+        id: `_${names[index].toLowerCase()}`,
+        avatarId: `${index}`,
+        name: names[index],
+      });
+
+      if (randomize) {
+        newPlayer.randomize();
+      }
+
+      if (withTeams) {
+        newPlayer.extend({ team: index % 2 === 0 ? 'A' : 'B' });
+      }
+      return newPlayer;
+    })
+    .reduce((acc, item) => {
+      acc[item.id] = item;
+      return acc;
+    }, {});
 };
 
-export const mockPlayer = (overrideData = {}) => ({ ...player, ...overrideData });
+/**
+ * Mock Teams
+ * Only works with even number of team players
+ * @param {number} quantity
+ * @param {number} playersPerTeam
+ * @returns
+ */
+export const mockTeams = (quantity = 2, playersPerTeam = 2) => {
+  const letters = 'ABCD';
+  const players = Object.keys(mockPlayers(quantity * playersPerTeam));
 
+  return Array(quantity)
+    .fill(0)
+    .map((_, index) => {
+      return {
+        members: players.slice(index * playersPerTeam, (index + 1) * playersPerTeam),
+        name: letters[index],
+        score: random([1, 3, 7, 11]),
+      };
+    })
+    .reduce((acc, item) => {
+      acc[item.name] = item;
+      return acc;
+    }, {});
+};
+
+/**
+ * Mock Global User
+ * @param {*} overrideData
+ */
 export const mockGlobalUser = (overrideData = {}) => {
   setGlobalState('userId', overrideData.userId ?? '_bob');
   setGlobalState('username', overrideData.username ?? 'Bob');
   setGlobalState('userAvatarId', overrideData.userAvatarId ?? '1');
 };
 
+/**
+ * Mock Global Property
+ * @param {string} propertyName
+ * @param {*} value
+ */
+export const mockGlobalProperty = (propertyName, value) => {
+  setGlobalState(propertyName, value);
+};
+
+/**
+ * Mock loading
+ */
 export const mockLoading = () => {
   setGlobalState('loaders', { testing: true });
 };

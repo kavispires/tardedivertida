@@ -4,7 +4,7 @@ import { mockLoading } from '../../mocks';
 import { PageError } from './PageError';
 
 export default {
-  title: 'Errors/Page Error',
+  title: 'errors/PageError',
   component: PageError,
   argTypes: {},
 };
