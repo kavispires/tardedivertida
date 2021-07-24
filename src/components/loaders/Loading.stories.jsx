@@ -17,5 +17,5 @@ export const Default = Template.bind({});
 export const WithText = Template.bind({});
 
 WithText.args = {
-  message: 'Loading...',
+  message: 'Schirming...',
 };
