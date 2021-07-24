@@ -1,15 +1,27 @@
 import React from 'react';
-import { mockAdmin, mockGameMeta, mockGlobalUser, mockInfo, mockLoading, mockPlayers } from '../../mocks';
+import {
+  getLanguageControl,
+  mockAdmin,
+  mockGameMeta,
+  mockGlobalUser,
+  mockInfo,
+  mockLanguageHook,
+  mockLoading,
+  mockPlayers,
+} from '../../../mocks';
 
 import Waiting from './Waiting';
 
 export default {
-  title: 'lobby/_Private/Waiting',
+  title: 'lobby/_private/Waiting',
   component: Waiting,
-  argTypes: {},
+  argTypes: {
+    ...getLanguageControl(),
+  },
 };
 
 const Template = (args) => {
+  mockLanguageHook(args);
   mockGlobalUser();
   mockAdmin(false);
   return <Waiting {...args} />;
@@ -23,6 +35,7 @@ Default.args = {
 };
 
 const TemplateAdmin = (args) => {
+  mockLanguageHook(args);
   mockLoading(false);
   mockGlobalUser();
   mockAdmin();

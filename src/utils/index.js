@@ -44,10 +44,10 @@ export const inNSeconds = (seconds) => {
 };
 
 /**
- * Flag indicating if the environment is for development
+ * Flag indicating if the environment is for development and not storybook
  * @type {boolean}
  */
-export const isDevEnv = process.env.NODE_ENV === 'development';
+export const isDevEnv = process.env.NODE_ENV === 'development' && window.location.port !== '6006';
 
 /**
  * Verify if the game id exists and has the correct length

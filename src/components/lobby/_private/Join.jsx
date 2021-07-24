@@ -1,24 +1,26 @@
 import React, { useCallback, useEffect, useState } from 'react';
 // Design Resources
-import { Alert, Button, Image, Input, notification, Spin, Tooltip } from 'antd';
+import { Alert, Button, Image, Input, notification, Tooltip } from 'antd';
 import { CaretLeftOutlined, CaretRightOutlined, InfoCircleOutlined } from '@ant-design/icons';
 // API & Hooks
-import { GAME_API } from '../../adapters';
-import { useLoading } from '../../hooks';
-import useGlobalState from '../../hooks/useGlobalState';
+import { GAME_API } from '../../../adapters';
+import { useLanguage, useLoading } from '../../../hooks';
+import useGlobalState from '../../../hooks/useGlobalState';
 // Images
-import avatars from '../../images/avatars.svg';
+import avatars from '../../../images/avatars.svg';
 // Services
-import localStorage from '../../services/localStorage';
+import localStorage from '../../../services/localStorage';
 // Utils
-import { AVATARS, PUBLIC_URL, RANDOM_NAMES } from '../../utils/constants';
-import { getRandomItem, isDevEnv } from '../../utils/index';
+import { AVATARS, PUBLIC_URL, RANDOM_NAMES } from '../../../utils/constants';
+import { getRandomItem, isDevEnv } from '../../../utils/index';
+import { Translate, translate } from '../../shared';
 
 const randomName = isDevEnv ? getRandomItem(RANDOM_NAMES) : undefined;
 
 const AVATAR_IDS = Object.keys(AVATARS);
 
 function Join({ players, info }) {
+  const language = useLanguage();
   const [isLoading, setLoader] = useLoading();
   const [gameId] = useGlobalState('gameId');
   const [gameName] = useGlobalState('gameName');
@@ -99,7 +101,11 @@ function Join({ players, info }) {
       });
     } catch (e) {
       notification.error({
-        message: 'Vixi, o aplicativo encontrou um erro ao tentar te adicionar como jogador',
+        message: translate(
+          'Vixi, o aplicativo encontrou um erro ao tentar te adicionar como jogador',
+          'Oops, the application failed when trying to add you as a player',
+          translate
+        ),
         description: JSON.stringify(e.message),
         placement: 'bottomLeft',
       });
@@ -124,7 +130,11 @@ function Join({ players, info }) {
         className="lobby-join__game-image"
       />
       <h1 className="lobby-join__title">
-        {Boolean(localStorageAvatar) ? 'Bem-vindo de volta!' : 'Selecione seu avatar'}
+        {Boolean(localStorageAvatar) ? (
+          <Translate pt="Bem-vindo de volta!" en="Welcome Back!" />
+        ) : (
+          <Translate pt="Selecione seu avatar" en="Select your avatar" />
+        )}
       </h1>
       <div className="lobby-join__avatar-selection">
         <Button type="dashed" onClick={onPreviousAvatar} className="lobby-join__avatar-nav-button">
@@ -132,7 +142,7 @@ function Join({ players, info }) {
         </Button>
         <svg viewBox="0 0 100 100" className="lobby-join__avatar-selection-image">
           <use href={avatars + `#avatar-${tempAvatar}`}></use>
-          <title>{AVATARS[tempAvatar].description.pt}</title>
+          <title>{AVATARS[tempAvatar].description[language]}</title>
         </svg>
         <Button type="dashed" onClick={onNextAvatar} className="lobby-join__avatar-nav-button">
           <CaretRightOutlined />
@@ -143,13 +153,21 @@ function Join({ players, info }) {
         <Alert
           className="lobby-join__avatar-alert"
           type="success"
-          message="Você está de volta! Lembramos seu nome e avatar!"
+          message={translate(
+            'Você está de volta! Lembramos seu nome e avatar!',
+            "You're back! We saved your name and avatar!",
+            language
+          )}
         />
       ) : (
         <Alert
           className="lobby-join__avatar-alert"
           type="warning"
-          message="Se alguém selecionar um mesmo avatar, um avatar aleatório será atribuido à você."
+          message={translate(
+            'Se alguém selecionar um mesmo avatar, um avatar aleatório será atribuido à você.',
+            'If you selected the same avatar of someone else, a new random avatar will be given to you.',
+            language
+          )}
         />
       )}
 
@@ -157,18 +175,22 @@ function Join({ players, info }) {
         <Alert
           className="lobby-join__avatar-alert"
           type="error"
-          message="Se você está retornando a um jogo, NÃO mude seu apelido! Se o apelido for modificado, você será adicionado como um novo jogador e tudo pode bugar."
+          message={translate(
+            'Se você está retornando a um jogo, NÃO mude seu apelido! Se o apelido for modificado, você será adicionado como um novo jogador e tudo pode bugar.',
+            'If you are returning to a game, DO NOT change your nickname else the game might crash.',
+            language
+          )}
         />
       )}
 
       <Input
         className="lobby-join__name-input"
         onChange={(e) => setTempUsername(e.target.value.trim())}
-        placeholder="Digite seu nome"
+        placeholder={translate('Digite seu nome', 'Insert your name', language)}
         value={tempUsername || randomName}
         maxLength={10}
         suffix={
-          <Tooltip title="Máximo de 10 caracteres">
+          <Tooltip title={translate('Máximo de 10 caracteres', '10 characters max', language)}>
             <InfoCircleOutlined />
           </Tooltip>
         }
@@ -179,8 +201,9 @@ function Join({ players, info }) {
         type="primary"
         disabled={!Boolean(tempUsername) || isLoading}
         onClick={onAddPlayer}
+        loading={isLoading}
       >
-        {isLoading ? <Spin size="small" /> : 'Entrar no jogo'}
+        {translate('Entrar no jogo', 'Enter', language)}
       </Button>
     </div>
   );

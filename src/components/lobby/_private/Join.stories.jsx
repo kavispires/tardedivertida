@@ -1,15 +1,20 @@
 import React from 'react';
-import { mockInfo, mockPlayers } from '../../mocks';
+import { getLanguageControl, mockInfo, mockLanguageHook, mockPlayers } from '../../../mocks';
 
 import Join from './Join';
 
 export default {
-  title: 'lobby/_Private/Join',
+  title: 'lobby/_private/Join',
   component: Join,
-  argTypes: {},
+  argTypes: {
+    ...getLanguageControl(),
+  },
 };
 
-const Template = (args) => <Join {...args} />;
+const Template = (args) => {
+  mockLanguageHook(args);
+  return <Join {...args} />;
+};
 
 export const Default = Template.bind({});
 
