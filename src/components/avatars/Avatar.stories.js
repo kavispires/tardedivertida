@@ -1,4 +1,5 @@
 import React from 'react';
+import { getLanguageControl, mockLanguageHook } from '../../mocks';
 import { AVAILABLE_AVATAR_IDS } from '../../utils/constants';
 
 import { Avatar } from './Avatar';
@@ -7,6 +8,7 @@ export default {
   title: 'avatar/Avatar',
   component: Avatar,
   argTypes: {
+    ...getLanguageControl(),
     alt: { control: 'text' },
     id: {
       control: 'inline-radio',
@@ -24,6 +26,7 @@ export default {
 };
 
 const Template = (args) => {
+  mockLanguageHook(args);
   return <Avatar {...args} />;
 };
 
