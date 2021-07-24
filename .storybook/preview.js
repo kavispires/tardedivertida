@@ -9,4 +9,12 @@ export const parameters = {
     },
   },
   controls: { expanded: true },
+  backgrounds: {
+    default: 'green',
+    values: [
+      { name: 'yellow', value: '#f2e863' },
+      { name: 'green', value: '#44bba4' },
+      { name: 'purple', value: '#3e1e68' },
+    ],
+  },
 };
