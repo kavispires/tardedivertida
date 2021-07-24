@@ -3,7 +3,7 @@ import React from 'react';
 import CloudBackground from './CloudBackground';
 
 export default {
-  title: 'lobby/_Private/CloudBackground',
+  title: 'lobby/_private/CloudBackground',
   component: CloudBackground,
   argTypes: {
     type: {

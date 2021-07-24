@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import React from 'react';
-import { PUBLIC_URL } from '../../utils/constants';
+import { PUBLIC_URL } from '../../../utils/constants';
 
 function Cloud() {
   return <div className="cloud-background__cloud cloud-background__cloud-basic"></div>;

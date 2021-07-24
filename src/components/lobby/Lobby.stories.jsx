@@ -1,5 +1,12 @@
 import React from 'react';
-import { getHooksControls, mockGameMeta, mockHooks, mockInfo } from '../../mocks';
+import {
+  getHooksControls,
+  getLanguageControl,
+  mockGameMeta,
+  mockHooks,
+  mockInfo,
+  mockLanguageHook,
+} from '../../mocks';
 
 import Lobby from './Lobby';
 
@@ -7,11 +14,13 @@ export default {
   title: 'lobby/Lobby',
   component: Lobby,
   argTypes: {
+    ...getLanguageControl(),
     ...getHooksControls(),
   },
 };
 
 const Template = (args) => {
+  mockLanguageHook(args);
   mockGameMeta();
   const hookedArgs = mockHooks(args);
   return <Lobby {...hookedArgs} />;

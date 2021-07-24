@@ -2,17 +2,18 @@ import React, { useCallback } from 'react';
 // Design Resources
 import { Button, Image, message, notification, Typography } from 'antd';
 // API & Hooks
-import { GAME_API } from '../../adapters';
-import useGlobalState from '../../hooks/useGlobalState';
-import { useLoading } from '../../hooks';
+import { GAME_API } from '../../../adapters';
+import { useLoading, useGlobalState, useLanguage } from '../../../hooks';
 // Images
-import avatars from '../../images/avatars.svg';
+import avatars from '../../../images/avatars.svg';
 // Utils and Resources
-import { PUBLIC_URL } from '../../utils/constants';
+import { PUBLIC_URL } from '../../../utils/constants';
 // Components
-import { AdminOnly } from '../admin/index';
+import { AdminOnly } from '../../admin/index';
+import { Translate, translate } from '../../shared';
 
 function Waiting({ info, players }) {
+  const language = useLanguage();
   const [isLoading, setLoader] = useLoading();
   const [gameId] = useGlobalState('gameId');
   const [gameName] = useGlobalState('gameName');
@@ -29,11 +30,21 @@ function Waiting({ info, players }) {
         gameName,
       });
       if (response.data.isLocked) {
-        message.success('Jogo trancado e iniciado com sucesso!');
+        message.success(
+          translate(
+            'Jogo trancado e iniciado com sucesso!',
+            'Game locked and initialized successfully',
+            language
+          )
+        );
       }
     } catch (e) {
       notification.error({
-        message: 'Vixi, o aplicativo encontrou um erro ao tentar trancar e iniciar o jogo',
+        message: translate(
+          'Vixi, o aplicativo encontrou um erro ao tentar trancar e iniciar o jogo',
+          'Oops, the application found an error while trying to lock and start the game',
+          language
+        ),
         description: JSON.stringify(e.message),
         placement: 'bottomLeft',
       });
@@ -41,7 +52,7 @@ function Waiting({ info, players }) {
     } finally {
       setLoader('lock-game', false);
     }
-  }, [gameId, gameName, setLoader]);
+  }, [gameId, gameName, setLoader, language]);
 
   const numPlayers = Object.keys(players).length;
   return (
@@ -56,18 +67,21 @@ function Waiting({ info, players }) {
       <svg viewBox="0 0 100 100" className="lobby-waiting__avatar">
         <use href={avatars + `#avatar-${userAvatarId}`}></use>
       </svg>
-      <h3 className="center">Aguarde os outros jogadores entrarem.</h3>
+      <h3 className="center">
+        <Translate pt="Aguarde os outros jogadores entrarem." en="Wait while other players join..." />
+      </h3>
       <AdminOnly className="lobby-waiting__lock-button">
         <Typography.Text className="center padding">
-          Jogadores necessários: {numPlayers}/{gameMeta.min}
+          <Translate pt="Jogadores necessários" en="Players needed" />: {numPlayers}/{gameMeta.min}
         </Typography.Text>
         <Button
           type="primary"
           danger
           onClick={onLockGameAndStart}
           disabled={isLoading || numPlayers < gameMeta.min}
+          loading={isLoading}
         >
-          Trancar e Iniciar Jogo
+          <Translate pt="Trancar e Iniciar Jogo" en="Lock and Start Game" />
         </Button>
       </AdminOnly>
     </div>
