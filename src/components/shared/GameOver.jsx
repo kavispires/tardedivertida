@@ -40,7 +40,7 @@ export function GameOver({ info, state, children }) {
                 <li className="game-over__winner" key={`winner-${winner.name}`}>
                   <Avatar className="game-over__avatar" id={winner.avatarId ?? 25} />
                   <div className="game-over__winner-name">
-                    <strong>{winner.name ?? '?'}</strong>, {AVATARS[winner.avatarId].description.br}
+                    <strong>{winner.name ?? '?'}</strong>, {AVATARS[winner.avatarId].description.pt}
                   </div>
                 </li>
               );

@@ -132,7 +132,7 @@ function Join({ players, info }) {
         </Button>
         <svg viewBox="0 0 100 100" className="lobby-join__avatar-selection-image">
           <use href={avatars + `#avatar-${tempAvatar}`}></use>
-          <title>{AVATARS[tempAvatar].description.br}</title>
+          <title>{AVATARS[tempAvatar].description.pt}</title>
         </svg>
         <Button type="dashed" onClick={onNextAvatar} className="lobby-join__avatar-nav-button">
           <CaretRightOutlined />

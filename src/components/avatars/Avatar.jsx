@@ -5,19 +5,24 @@ import clsx from 'clsx';
 import { Avatar as AntAvatar } from 'antd';
 // Images
 import avatars from '../../images/avatars.svg';
+// Hooks
+import { useLanguage } from '../../hooks';
 // Utils
 import { AVAILABLE_AVATAR_IDS } from '../../utils/constants';
+import { translate } from '../shared';
 
 /**
  * Displays an Avatar svg image for given player
  */
 export const Avatar = memo(function ({ id, size, shape, alt, className }) {
+  const language = useLanguage();
+
   return (
     <AntAvatar
       className={clsx('avatar', className)}
       size={size}
       shape={shape}
-      alt={alt}
+      alt={alt || translate('Fulano', 'John Doe', language)}
       src={
         <svg viewBox="0 0 100 100">
           <use href={avatars + `#avatar-${id}`}></use>
@@ -36,7 +41,6 @@ Avatar.propTypes = {
 };
 
 Avatar.defaultProps = {
-  alt: 'Fulano',
   className: '',
   id: '25',
   shape: 'circle',

@@ -11,6 +11,7 @@ export * from './Session';
 export * from './StarPoints';
 export * from './StepSwitcher';
 export * from './TimedButton';
+export * from './Translate';
 export * from './Title';
 export * from './View';
 export * from './WaitingRoom';

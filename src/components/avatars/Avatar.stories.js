@@ -7,6 +7,7 @@ export default {
   title: 'avatar/Avatar',
   component: Avatar,
   argTypes: {
+    alt: { control: 'text' },
     id: {
       control: 'inline-radio',
       options: AVAILABLE_AVATAR_IDS,
@@ -22,12 +23,13 @@ export default {
   },
 };
 
-const Template = (args) => <Avatar {...args} />;
+const Template = (args) => {
+  return <Avatar {...args} />;
+};
 
 export const Default = Template.bind({});
 
 Default.args = {
-  alt: 'Fulano',
   className: '',
   id: '3',
   shape: 'circle',
