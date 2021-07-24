@@ -15,7 +15,7 @@ export function Translate({ pt, en }) {
 
   if (!language) {
     message.error('Default language not provided');
-    return <></>;
+    return <>?</>;
   }
 
   return language === 'pt' ? <>{pt}</> : <>{en}</>;
@@ -29,8 +29,8 @@ export function Translate({ pt, en }) {
  * @returns {string}
  */
 export function translate(pt, en, language) {
-  if (!language) {
-    message.error('Default language not provided');
+  if (!pt || !en || !language) {
+    message.error('Something was not provided');
     return '';
   }
 

@@ -2,11 +2,28 @@ import React from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
 import { Alert } from 'antd';
+// Hooks
+import { useLanguage } from '../../hooks';
+import { translate } from '../shared';
 
 export function PageError({ message, description }) {
+  const language = useLanguage();
+
   return (
     <div className="container container--center">
-      <Alert message={message} description={description} type="error" showIcon />
+      <Alert
+        message={message || translate('Algo errado não está certo', 'Something wrong is not right', language)}
+        description={
+          description ||
+          translate(
+            'Não era pra você estar vendo esta mensagem.',
+            'You were not supposed to see this message.',
+            language
+          )
+        }
+        type="error"
+        showIcon
+      />
     </div>
   );
 }
@@ -14,9 +31,4 @@ export function PageError({ message, description }) {
 PageError.propTypes = {
   message: PropTypes.string,
   description: PropTypes.string,
-};
-
-PageError.defaultProps = {
-  message: 'Algo errado não está certo',
-  description: 'Não era pra você estar vendo esta mensagem.',
 };
