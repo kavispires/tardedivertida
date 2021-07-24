@@ -5,6 +5,8 @@ const initialState = {
   loaders: false,
   appStartedAt: Date.now(),
   screenSize: [],
+  // Language
+  language: 'pt',
   // Meta
   gameId: null,
   gameName: null,

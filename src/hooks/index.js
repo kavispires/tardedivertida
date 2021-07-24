@@ -7,6 +7,7 @@ export * from './useIsGameStale';
 export * from './useIsUserReady';
 export * from './useIsUserThe';
 export * from './useIsUsersTeamActive';
+export * from './useLanguage';
 export * from './useLoading';
 export * from './useUser';
 export * from './useWhichPlayerIsThe';
