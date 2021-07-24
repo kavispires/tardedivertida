@@ -3,6 +3,15 @@ import { setGlobalState } from '../hooks';
 const names = ['Abe', 'Bob', 'Cam', 'Doc', 'Eva', 'Fred', 'Gus', 'Hal'];
 const random = (array) => array[Math.floor(Math.random() * array.length)];
 
+export const getLanguageControl = () => ({
+  _withLanguage: {
+    control: 'inline-radio',
+    options: ['pt', 'en'],
+    defaultValue: 'pt',
+    description: '[internal] Changes language',
+  },
+});
+
 export const getHooksControls = () => ({
   _withUser: {
     control: 'boolean',
@@ -30,6 +39,10 @@ export const getHooksControls = () => ({
     description: '[internal] Mocks given number of players',
   },
 });
+
+export const mockLanguageHook = (args) => {
+  mockLanguage(args?._withLanguage ?? 'pt');
+};
 
 export const mockHooks = (args) => {
   mockLoading(args._withLoading);
@@ -179,6 +192,13 @@ export const mockAdmin = (value = true) => {
  */
 export const mockGlobalProperty = (propertyName, value) => {
   setGlobalState(propertyName, value);
+};
+
+/**
+ * Mocks language
+ */
+export const mockLanguage = (value = 'pt') => {
+  setGlobalState('language', value);
 };
 
 /**

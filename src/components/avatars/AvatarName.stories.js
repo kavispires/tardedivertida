@@ -1,5 +1,5 @@
 import React from 'react';
-import { mockGlobalUser, mockPlayer } from '../../mocks';
+import { getLanguageControl, mockGlobalUser, mockLanguageHook, mockPlayer } from '../../mocks';
 
 import { AvatarName } from './AvatarName';
 
@@ -7,6 +7,7 @@ export default {
   title: 'avatar/AvatarName',
   component: AvatarName,
   argTypes: {
+    ...getLanguageControl(),
     size: {
       control: 'inline-radio',
       options: ['small', 'default', 'large'],
@@ -15,6 +16,7 @@ export default {
 };
 
 const Template = (args) => {
+  mockLanguageHook(args);
   mockGlobalUser();
   return <AvatarName {...args} />;
 };

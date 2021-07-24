@@ -26,7 +26,7 @@ export function SectionTeamPlayers({ team, players }) {
           return (
             <div className="game-info-drawer__ranked-player" key={`ranked-${player.id}`}>
               <Avatar id={player.avatarId} shape="square" className="game-info-drawer__avatar-with-badge" />
-              {player.name}, {AVATARS[player.avatarId].description.br}
+              {player.name}, {AVATARS[player.avatarId].description.pt}
             </div>
           );
         })}

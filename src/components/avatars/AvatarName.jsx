@@ -3,9 +3,11 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 // Resources
 import { AVATARS } from '../../utils/constants';
+// Hooks
+import { useGlobalState, useLanguage } from '../../hooks';
 // Components
 import { Avatar } from './Avatar';
-import { useGlobalState } from '../../hooks';
+import { translate } from '../shared';
 
 export const AvatarName = memo(function ({
   player,
@@ -16,19 +18,21 @@ export const AvatarName = memo(function ({
   addressUser,
 }) {
   const [userId] = useGlobalState('userId');
+  const language = useLanguage();
 
   const baseClass = 'avatar-name';
 
   const isUser = player.id === userId;
+  const addressedUser = translate('VOCÊ', 'YOU', language);
 
   return (
     <span
       className={clsx(baseClass, `${baseClass}--${size}`, uppercase && `${baseClass}--uppercase`, className)}
     >
       <Avatar id={player.avatarId} className="avatar-name__avatar" size={size} />
-      <span className="avatar-name__name">{addressUser && isUser ? 'VOCÊ' : player.name}</span>
+      <span className="avatar-name__name">{addressUser && isUser ? addressedUser : player.name}</span>
       {withDescription && (
-        <span className="avatar-name__name">, {AVATARS[player.avatarId].description.br}</span>
+        <span className="avatar-name__name">, {AVATARS[player.avatarId].description[language]}</span>
       )}
     </span>
   );

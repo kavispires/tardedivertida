@@ -10,7 +10,7 @@ import { useLanguage } from '../../hooks';
  * @param {*} en
  * @returns a fragment
  */
-export function Translate(pt, en) {
+export function Translate({ pt, en }) {
   const language = useLanguage();
 
   if (!language) {

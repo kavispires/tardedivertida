@@ -15,7 +15,7 @@ export function SectionMe({ player, isTeamGame }) {
         <Badge count={player.score} className="game-info-drawer__avatar-with-badge">
           <Avatar id={player.avatarId} shape="square" />
         </Badge>
-        {player.name}, {AVATARS[player.avatarId].description.br}
+        {player.name}, {AVATARS[player.avatarId].description.pt}
       </div>
     </div>
   );
