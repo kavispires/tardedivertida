@@ -2,13 +2,13 @@ import PropTypes from 'prop-types';
 import React, { Fragment, useState } from 'react';
 // Design Resources
 import { Affix, Button, Divider, Drawer } from 'antd';
-import { InfoCircleOutlined } from '@ant-design/icons';
+import { InfoCircleFilled } from '@ant-design/icons';
 // Components
 import { RulesModal } from '../modals';
-import { SectionMe } from './SectionMe';
-import { SectionMeta } from './SectionMeta';
-import { SectionTeams } from './SectionTeams';
-import { SectionRankedPlayers } from './SectionRankedPlayers';
+import { SectionMe } from './_internal/SectionMe';
+import { SectionMeta } from './_internal/SectionMeta';
+import { SectionTeams } from './_internal/SectionTeams';
+import { SectionRankedPlayers } from './_internal/SectionRankedPlayers';
 
 export function GameInfoDrawer({ players, state, info, userId }) {
   const [visible, setVisible] = useState(false);
@@ -36,7 +36,7 @@ export function GameInfoDrawer({ players, state, info, userId }) {
           size="large"
           className="game-info-drawer__button"
           onClick={showDrawer}
-          icon={<InfoCircleOutlined />}
+          icon={<InfoCircleFilled style={{ color: 'white' }} />}
         />
       </Affix>
 

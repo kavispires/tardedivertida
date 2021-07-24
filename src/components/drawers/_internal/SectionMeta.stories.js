@@ -1,11 +1,13 @@
 import React from 'react';
+import { getLanguageControl, mockLanguageHook } from '../../../mocks';
 
 import { SectionMeta } from './SectionMeta';
 
 export default {
-  title: 'drawers/_Private/SectionMeta',
+  title: 'drawers/_private/SectionMeta',
   component: SectionMeta,
   argTypes: {
+    ...getLanguageControl(),
     round: { control: 'number' },
     roundsToEndGame: { control: 'number' },
     groupScore: { control: 'number' },
@@ -13,6 +15,7 @@ export default {
 };
 
 const Template = (args) => {
+  mockLanguageHook(args);
   return <SectionMeta {...args} />;
 };
 

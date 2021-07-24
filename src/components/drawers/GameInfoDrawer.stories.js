@@ -1,15 +1,18 @@
 import React from 'react';
-import { mockGlobalUser, mockPlayers, mockTeams } from '../../mocks';
+import { getLanguageControl, mockGlobalUser, mockLanguageHook, mockPlayers, mockTeams } from '../../mocks';
 
 import { GameInfoDrawer } from './GameInfoDrawer';
 
 export default {
   title: 'drawers/GameInfoDrawer',
   component: GameInfoDrawer,
-  argTypes: {},
+  argTypes: {
+    ...getLanguageControl(),
+  },
 };
 
 const Template = (args) => {
+  mockLanguageHook(args);
   mockGlobalUser();
   return <GameInfoDrawer {...args} />;
 };

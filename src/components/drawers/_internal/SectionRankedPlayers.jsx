@@ -2,13 +2,17 @@ import PropTypes from 'prop-types';
 import React, { useMemo } from 'react';
 // Design Resources
 import { Badge } from 'antd';
+// Hooks
+import { useLanguage } from '../../../hooks';
 // Utils
-import { AVATARS } from '../../utils/constants';
-import { orderBy } from '../../utils';
+import { AVATARS } from '../../../utils/constants';
+import { orderBy } from '../../../utils';
 // Components
-import { Avatar } from '../avatars';
+import { Avatar } from '../../avatars';
 
 export function SectionRankedPlayers({ players }) {
+  const language = useLanguage();
+
   const rankedPlayers = useMemo(() => orderBy(Object.values(players), 'score'), [players]);
   return (
     <ul>
@@ -19,7 +23,7 @@ export function SectionRankedPlayers({ players }) {
             <Badge count={player.score} className="game-info-drawer__avatar-with-badge">
               <Avatar id={player.avatarId} shape="square" />
             </Badge>
-            {player.name}, {AVATARS[player.avatarId].description.pt}
+            {player.name}, {AVATARS[player.avatarId].description[language]}
           </div>
         );
       })}
