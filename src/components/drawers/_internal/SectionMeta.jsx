@@ -2,18 +2,23 @@ import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
 // Design Resources
 import { Avatar as AntAvatar, Table } from 'antd';
+import { Translate } from '../../shared';
 
 export function SectionMeta({ round, roundsToEndGame, groupScore, pointsToVictory, isTeamGame, teams }) {
   return (
     <ul className="game-info-drawer__meta">
       <li className="game-info-drawer__meta-item">
-        <div className="game-info-drawer__label-inline">Rodada:</div>
+        <div className="game-info-drawer__label-inline">
+          <Translate pt="Rodada:" en="Round:" />
+        </div>
         <AntAvatar className="game-info-drawer__round" size="small">
           {round}
         </AntAvatar>
         {Boolean(roundsToEndGame) && !isNaN(round) && (
           <Fragment>
-            <span className="game-info-drawer__inline-separator">de</span>
+            <span className="game-info-drawer__inline-separator">
+              <Translate pt="de" en="out of" />
+            </span>
             <AntAvatar className="game-info-drawer__round" size="small">
               {round + roundsToEndGame}
             </AntAvatar>
@@ -23,7 +28,9 @@ export function SectionMeta({ round, roundsToEndGame, groupScore, pointsToVictor
 
       {Boolean(groupScore) && (
         <li className="game-info-drawer__meta-item">
-          <div className="game-info-drawer__label-inline">Pontos:</div>
+          <div className="game-info-drawer__label-inline">
+            <Translate pt="Pontos:" en="Points:" />
+          </div>
           <AntAvatar className="game-info-drawer__round" size="default" style={{ backgroundColor: 'gold' }}>
             {groupScore ?? 0}
           </AntAvatar>
@@ -32,7 +39,9 @@ export function SectionMeta({ round, roundsToEndGame, groupScore, pointsToVictor
 
       {Boolean(teams) && (
         <li className="game-info-drawer__meta-item">
-          <div className="game-info-drawer__label-inline">Pontos:</div>
+          <div className="game-info-drawer__label-inline">
+            <Translate pt="Pontos:" en="Points:" />
+          </div>
           <Table
             size="small"
             pagination={false}
@@ -57,7 +66,10 @@ export function SectionMeta({ round, roundsToEndGame, groupScore, pointsToVictor
       {Boolean(pointsToVictory) && (
         <div>
           <div className="game-info-drawer__label-inline">
-            Pontos restantes para {isTeamGame ? 'um time' : 'alguém'} ganhar:
+            <Translate
+              pt={`Pontos restantes para ${isTeamGame ? 'um time' : 'alguém'} ganhar:`}
+              en={`Points left for ${isTeamGame ? 'a team' : 'someone'} to win:`}
+            />
           </div>
           <AntAvatar className="game-info-drawer__round" size="small">
             {pointsToVictory}

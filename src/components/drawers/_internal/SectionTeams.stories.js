@@ -1,15 +1,18 @@
 import React from 'react';
-import { mockPlayers, mockTeams } from '../../mocks';
+import { getLanguageControl, mockLanguageHook, mockPlayers, mockTeams } from '../../../mocks';
 
 import { SectionTeams } from './SectionTeams';
 
 export default {
-  title: 'Drawers/_Private/SectionTeams',
+  title: 'Drawers/_private/SectionTeams',
   component: SectionTeams,
-  argTypes: {},
+  argTypes: {
+    ...getLanguageControl(),
+  },
 };
 
 const Template = (args) => {
+  mockLanguageHook(args);
   return <SectionTeams {...args} />;
 };
 
