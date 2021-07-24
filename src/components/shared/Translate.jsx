@@ -14,7 +14,16 @@ export function Translate({ pt, en }) {
   const language = useLanguage();
 
   if (!language) {
-    message.error('Default language not provided');
+    const errorMessage = 'Could not reach the useLanguage hook';
+    console.error(errorMessage);
+    message.error(errorMessage);
+    return <>?</>;
+  }
+
+  if (!pt || !en) {
+    const errorMessage = '`pt` or `en` translation was not provided';
+    console.error(errorMessage);
+    message.error(errorMessage);
     return <>?</>;
   }
 
@@ -29,9 +38,18 @@ export function Translate({ pt, en }) {
  * @returns {string}
  */
 export function translate(pt, en, language) {
-  if (!pt || !en || !language) {
-    message.error('Something was not provided');
-    return '';
+  if (!language) {
+    const errorMessage = 'Could not reach the language global state';
+    console.error(errorMessage);
+
+    return '?';
+  }
+
+  if (!pt || !en) {
+    const errorMessage = 'PT or EN translation was not provided';
+    console.error(errorMessage);
+
+    return '?';
   }
 
   return language === 'pt' ? pt : en;
