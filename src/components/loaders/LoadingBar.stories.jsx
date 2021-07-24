@@ -6,11 +6,13 @@ import { LoadingBar } from './LoadingBar';
 export default {
   title: 'Loaders/Loading Bar',
   component: LoadingBar,
-  argTypes: {},
+  argTypes: {
+    _withLoading: { control: 'boolean', defaultValue: 'true' },
+  },
 };
 
 const Template = (args) => {
-  mockLoading();
+  mockLoading(args._withLoading);
   return <LoadingBar {...args} />;
 };
 
