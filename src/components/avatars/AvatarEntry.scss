@@ -13,10 +13,10 @@
   &__name {
     background: get-color(white);
     padding: get-unit(1 4 1 7);
-    margin-left: get-unit(3);
+    margin-left: get-unit(5);
     border-radius: get-unit(0 4 4 0);
     position: absolute;
-    transform: translateY(1px);
+    transform: translateY(5px);
     white-space: nowrap;
   }
 }

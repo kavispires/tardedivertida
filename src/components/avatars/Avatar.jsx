@@ -9,7 +9,7 @@ import avatars from '../../images/avatars.svg';
 import { useLanguage } from '../../hooks';
 // Utils
 import { AVAILABLE_AVATAR_IDS } from '../../utils/constants';
-import { translate } from '../shared';
+import { translate } from '../shared/Translate';
 
 /**
  * Displays an Avatar svg image for given player
@@ -22,7 +22,7 @@ export const Avatar = memo(function ({ id, size, shape, alt, className }) {
       className={clsx('avatar', className)}
       size={size}
       shape={shape}
-      alt={alt || translate('Fulano', 'John Doe', language)}
+      alt={alt ?? translate('Fulano', 'John Doe', language)}
       src={
         <svg viewBox="0 0 100 100">
           <use href={avatars + `#avatar-${id}`}></use>

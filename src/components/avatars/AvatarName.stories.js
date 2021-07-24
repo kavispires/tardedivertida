@@ -1,47 +1,47 @@
-import React from 'react';
-import { getLanguageControl, mockGlobalUser, mockLanguageHook, mockPlayer } from '../../mocks';
+// import React from 'react';
+// import { getLanguageControl, mockGlobalUser, mockLanguageHook, mockPlayer } from '../../mocks';
 
-import { AvatarName } from './AvatarName';
+// import { AvatarName } from './AvatarName';
 
-export default {
-  title: 'avatar/AvatarName',
-  component: AvatarName,
-  argTypes: {
-    ...getLanguageControl(),
-    size: {
-      control: 'inline-radio',
-      options: ['small', 'default', 'large'],
-    },
-  },
-};
+// export default {
+//   title: 'avatar/AvatarName',
+//   component: AvatarName,
+//   argTypes: {
+//     ...getLanguageControl(),
+//     size: {
+//       control: 'inline-radio',
+//       options: ['small', 'default', 'large'],
+//     },
+//   },
+// };
 
-const Template = (args) => {
-  mockLanguageHook(args);
-  mockGlobalUser();
-  return <AvatarName {...args} />;
-};
+// const Template = (args) => {
+//   mockLanguageHook(args);
+//   mockGlobalUser();
+//   return <AvatarName {...args} />;
+// };
 
-export const Default = Template.bind({});
+// export const Default = Template.bind({});
 
-Default.args = {
-  player: mockPlayer(),
-  addressUser: false,
-  className: '',
-  size: 'default',
-  uppercase: false,
-  withDescription: false,
-};
+// Default.args = {
+//   player: mockPlayer(),
+//   addressUser: false,
+//   className: '',
+//   size: 'default',
+//   uppercase: false,
+//   withDescription: false,
+// };
 
-export const AddressUser = Template.bind({});
+// export const AddressUser = Template.bind({});
 
-AddressUser.args = {
-  ...Default.args,
-  addressUser: true,
-};
+// AddressUser.args = {
+//   ...Default.args,
+//   addressUser: true,
+// };
 
-export const withDescription = Template.bind({});
+// export const withDescription = Template.bind({});
 
-withDescription.args = {
-  ...Default.args,
-  withDescription: true,
-};
+// withDescription.args = {
+//   ...Default.args,
+//   withDescription: true,
+// };
