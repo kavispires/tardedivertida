@@ -2,12 +2,13 @@ import React, { useEffect, useRef } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 // Hooks
-import { useGlobalState } from '../../hooks';
+import { useGlobalState, useLanguage } from '../../hooks';
 // Utils
 import { isDevEnv } from '../../utils';
 // Components
 import { LoadingPage } from '../loaders';
 import { PageError } from '../errors/PageError';
+import { translate } from './Translate';
 
 /**
  * Wrapping container around a game screen
@@ -15,6 +16,7 @@ import { PageError } from '../errors/PageError';
  * @returns
  */
 export function PhaseContainer({ info, phase, allowedPhase, children, className, fullScreen, white }) {
+  const language = useLanguage();
   const screenRef = useRef(null);
   const [username] = useGlobalState('username');
   const [, setScreenSize] = useGlobalState('screenSize');
@@ -32,7 +34,11 @@ export function PhaseContainer({ info, phase, allowedPhase, children, className,
   }
 
   if (!phase) {
-    return <PageError message="Algo errado não está certo" description="Estado do jogo não está correto" />;
+    return (
+      <PageError
+        description={translate('Estado do jogo não está correto', 'Game state is not correct', language)}
+      />
+    );
   }
 
   const baseClass = 'phase-container';
@@ -49,7 +55,7 @@ export function PhaseContainer({ info, phase, allowedPhase, children, className,
       ref={screenRef}
     >
       <span className={`${baseClass}__title`}>
-        {info.title}
+        {info.title[language]}
         {isDevEnv && Boolean(username) && `| ${username}`}
       </span>
       {children}
@@ -64,7 +70,10 @@ PhaseContainer.propTypes = {
   fullScreen: PropTypes.bool,
   info: PropTypes.shape({
     gameName: PropTypes.string,
-    title: PropTypes.string,
+    title: PropTypes.shape({
+      pt: PropTypes.string,
+      en: PropTypes.string,
+    }),
   }),
   phase: PropTypes.string,
   white: PropTypes.bool,

@@ -3,11 +3,14 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 // Design Resources
 import { Typography, Image, Carousel, Button } from 'antd';
+// Hooks
+import { useLanguage } from '../../hooks';
 // Constants
 import { PUBLIC_URL } from '../../utils/constants';
 import { DoubleLeftOutlined, DoubleRightOutlined } from '@ant-design/icons';
 
 export function RulesCarousel({ info, className, ruleClass }) {
+  const language = useLanguage();
   const settings = {
     prevArrow: (
       <Button>
@@ -29,7 +32,7 @@ export function RulesCarousel({ info, className, ruleClass }) {
       arrows
       {...settings}
     >
-      {info.rules.map((rule, index) => (
+      {info.rules[language].map((rule, index) => (
         <div className={clsx('rules-carousel__rule', ruleClass)} key={rule}>
           <span className="rules-carousel__rule-number">{index + 1}</span>
 
@@ -37,7 +40,7 @@ export function RulesCarousel({ info, className, ruleClass }) {
             className="rules-carousel__image"
             src={
               index === 0
-                ? `${PUBLIC_URL.BANNERS}game-image-${info.gameName}.jpg`
+                ? `${PUBLIC_URL.BANNERS}game-image-${info.gameName}-${language}.jpg`
                 : `${PUBLIC_URL.RULES}game-rule-${info.gameName}-${index}.jpg`
             }
             fallback={`${PUBLIC_URL.RULES}game-rule-not-found.jpg`}
@@ -54,7 +57,10 @@ RulesCarousel.propTypes = {
   info: PropTypes.shape({
     gameName: PropTypes.string,
     rules: PropTypes.arrayOf(PropTypes.string),
-    title: PropTypes.string,
+    title: PropTypes.shape({
+      pt: PropTypes.string,
+      en: PropTypes.string,
+    }),
   }),
   className: PropTypes.string,
   ruleClass: PropTypes.string,

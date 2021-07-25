@@ -224,7 +224,17 @@ export const mockGameMeta = () => {
  * @returns  {object}
  */
 export const mockInfo = () => ({
-  title: 'The Game Title',
-  gameName: 'Game Name',
-  description: 'It is a game!',
+  title: {
+    pt: 'O Nome do Jogo',
+    en: 'The Game Title',
+  },
+  gameName: 'game-name',
+  summary: {
+    pt: 'It is a game!',
+    en: 'É um jogo!',
+  },
+  rules: {
+    pt: ['Regra 1', 'Regra 2', 'Regra 3'],
+    en: ['Rule 1', 'Rule 2', 'Rule 3'],
+  },
 });
