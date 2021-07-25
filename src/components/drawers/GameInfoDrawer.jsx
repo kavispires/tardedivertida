@@ -3,14 +3,18 @@ import React, { Fragment, useState } from 'react';
 // Design Resources
 import { Affix, Button, Divider, Drawer } from 'antd';
 import { InfoCircleFilled } from '@ant-design/icons';
+// Hooks
+import { useLanguage } from '../../hooks';
 // Components
 import { RulesModal } from '../modals';
 import { SectionMe } from './_internal/SectionMe';
 import { SectionMeta } from './_internal/SectionMeta';
 import { SectionTeams } from './_internal/SectionTeams';
 import { SectionRankedPlayers } from './_internal/SectionRankedPlayers';
+import { LanguageSwitch } from '../shared';
 
 export function GameInfoDrawer({ players, state, info, userId }) {
+  const language = useLanguage();
   const [visible, setVisible] = useState(false);
 
   if (state.phase === 'LOBBY') {
@@ -40,7 +44,17 @@ export function GameInfoDrawer({ players, state, info, userId }) {
         />
       </Affix>
 
-      <Drawer title={info.title} placement="right" closable={false} onClose={onClose} visible={visible}>
+      <Drawer
+        title={info.title[language]}
+        placement="right"
+        closable={false}
+        onClose={onClose}
+        visible={visible}
+      >
+        <LanguageSwitch />
+
+        <Divider />
+
         {completeMe && <SectionMe player={completeMe} isTeamGame={isTeamGame} />}
 
         <Divider />
@@ -72,7 +86,10 @@ export function GameInfoDrawer({ players, state, info, userId }) {
 
 GameInfoDrawer.propTypes = {
   info: PropTypes.shape({
-    title: PropTypes.string,
+    title: PropTypes.shape({
+      pt: PropTypes.string,
+      en: PropTypes.string,
+    }),
   }),
   players: PropTypes.objectOf(
     PropTypes.shape({

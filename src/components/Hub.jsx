@@ -3,15 +3,16 @@ import PropTypes from 'prop-types';
 // Design Resources
 import { Typography, Layout, Space, Card, Image, Divider, Tag } from 'antd';
 // Hooks
-import { useDimensions } from '../hooks';
+import { useDimensions, useLanguage } from '../hooks';
 // Utils
 import gameList from '../resources/games.json';
 import { PUBLIC_URL, TAG_DICT } from '../utils/constants';
 import { orderBy } from '../utils';
 // Components
 import { CreateGameModal, RulesModal } from './modals';
+import { LanguageSwitch, translate } from './shared';
 
-function GameCard({ game }) {
+function GameCard({ game, language }) {
   const [width] = useDimensions();
 
   return (
@@ -21,28 +22,40 @@ function GameCard({ game }) {
       style={{ width: width && width > 0 ? width / 5 : 240 }}
       cover={
         <Image
-          alt={game.title}
-          src={`${PUBLIC_URL.BANNERS}game-image-${game.gameName}.jpg`}
-          fallback={`${PUBLIC_URL.BANNERS}/game-image-em-breve.jpg`}
+          alt={game.title[language]}
+          src={`${PUBLIC_URL.BANNERS}game-image-${game.gameName}-${language}.jpg`}
+          fallback={`${PUBLIC_URL.BANNERS}/game-image-em-breve-${language}.jpg`}
         />
       }
     >
-      <Card.Meta title={game.title} description={game.summary} />
+      <Card.Meta title={game.title[language]} description={game.summary[language]} />
       <Divider />
-      <Card.Meta description={`Para ${game.min}-${game.max} jogadores`} />
-      <Card.Meta description={`Recomendado jogar com ${game.recommended}`} />
+      <Card.Meta
+        description={translate(
+          `Para ${game.min}-${game.max} jogadores`,
+          `For ${game.min}-${game.max} players`,
+          language
+        )}
+      />
+      <Card.Meta
+        description={translate(
+          `Recomendado jogar com ${game.recommended}`,
+          `Recommended with ${game.recommended}`,
+          language
+        )}
+      />
       <Divider />
       <Space wrap size={[1, 6]}>
         {game.tags.map((tag) => (
           <Tag key={`${game.gameCode}-${tag}`} color={TAG_DICT[tag]?.color}>
-            {TAG_DICT[tag]?.label}
+            {language === 'pt' ? TAG_DICT[tag]?.label : tag}
           </Tag>
         ))}
       </Space>
       <Divider />
       <Space>
         <RulesModal gameInfo={game} />
-        {Boolean(game.available) && <CreateGameModal gameInfo={game} />}
+        {Boolean(game.available[language]) && <CreateGameModal gameInfo={game} />}
       </Space>
     </Card>
   );
@@ -50,24 +63,34 @@ function GameCard({ game }) {
 
 GameCard.propTypes = {
   game: PropTypes.shape({
-    available: PropTypes.bool,
+    available: PropTypes.shape({
+      pt: PropTypes.bool,
+      en: PropTypes.bool,
+    }),
     gameCode: PropTypes.string,
     gameName: PropTypes.string,
     max: PropTypes.number,
     min: PropTypes.number,
     recommended: PropTypes.string,
-    summary: PropTypes.string,
+    summary: PropTypes.shape({
+      pt: PropTypes.string,
+      en: PropTypes.string,
+    }),
     tags: PropTypes.arrayOf(PropTypes.string),
-    title: PropTypes.string,
+    title: PropTypes.shape({
+      pt: PropTypes.string,
+      en: PropTypes.string,
+    }),
   }),
 };
 
 function Hub() {
+  const language = useLanguage();
   const sortedGameList = orderBy(Object.values(gameList), ['available', 'title'], ['desc', 'asc']);
 
   const { availableGames, comingSoonGames } = sortedGameList.reduce(
     (acc, game) => {
-      if (game.available) {
+      if (game.available[language]) {
         acc.availableGames.push(game);
       } else {
         acc.comingSoonGames.push(game);
@@ -82,19 +105,23 @@ function Hub() {
 
   return (
     <Layout.Content className="container">
-      <Typography.Title>Hub</Typography.Title>
+      <Typography.Title>
+        Hub <LanguageSwitch />
+      </Typography.Title>
 
-      <Typography.Paragraph>Selecione um jogo para começar</Typography.Paragraph>
+      <Typography.Paragraph>
+        {translate('Selecione um jogo para começar', 'Select a game to start', language)}
+      </Typography.Paragraph>
       <Space size={[8, 16]} wrap align="start">
         {availableGames.map((game) => (
-          <GameCard key={game.code} game={game} />
+          <GameCard key={game.code} game={game} language={language} />
         ))}
       </Space>
 
-      <Typography.Title level={2}>Em Breve</Typography.Title>
+      <Typography.Title level={2}>{translate('Em Breve', 'Coming Soon', language)}</Typography.Title>
       <Space size={[8, 16]} wrap align="start">
         {comingSoonGames.map((game) => (
-          <GameCard key={game.code} game={game} />
+          <GameCard key={game.code} game={game} language={language} />
         ))}
       </Space>
     </Layout.Content>

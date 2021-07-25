@@ -1,5 +1,5 @@
 import React from 'react';
-import { mockHooks, mockInfo } from '../../mocks';
+import { getLanguageControl, mockHooks, mockInfo, mockLanguageHook } from '../../mocks';
 
 import { PhaseContainer } from './PhaseContainer';
 
@@ -7,12 +7,14 @@ export default {
   title: 'shared/PhaseContainer',
   component: PhaseContainer,
   argTypes: {
+    ...getLanguageControl(),
     fullScreen: { control: 'boolean', defaultValue: false },
     white: { control: 'boolean', defaultValue: false },
   },
 };
 
 const Template = (args) => {
+  mockLanguageHook(args);
   const hookedArgs = mockHooks(args);
   return <PhaseContainer {...hookedArgs} />;
 };

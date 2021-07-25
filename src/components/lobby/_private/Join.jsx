@@ -124,8 +124,8 @@ function Join({ players, info }) {
   return (
     <div className="lobby-join">
       <Image
-        alt={info?.title}
-        src={`${PUBLIC_URL.BANNERS}game-image-${info?.gameName}.jpg`}
+        alt={info?.title[language]}
+        src={`${PUBLIC_URL.BANNERS}game-image-${info?.gameName}-${language}.jpg`}
         fallback={`${PUBLIC_URL.BANNERS}/game-image-em-breve.jpg`}
         className="lobby-join__game-image"
       />

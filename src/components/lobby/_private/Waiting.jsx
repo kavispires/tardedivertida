@@ -58,8 +58,8 @@ function Waiting({ info, players }) {
   return (
     <div className="lobby-waiting">
       <Image
-        alt={info?.title}
-        src={`${PUBLIC_URL.BANNERS}game-image-${info?.gameName}.jpg`}
+        alt={info?.title[language]}
+        src={`${PUBLIC_URL.BANNERS}game-image-${info?.gameName}-${language}.jpg`}
         fallback={`${PUBLIC_URL.BANNERS}/game-image-em-breve.jpg`}
       />
 

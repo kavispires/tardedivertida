@@ -1,5 +1,12 @@
 import React from 'react';
-import { getLanguageControl, mockGlobalUser, mockLanguageHook, mockPlayers, mockTeams } from '../../mocks';
+import {
+  getLanguageControl,
+  mockGlobalUser,
+  mockInfo,
+  mockLanguageHook,
+  mockPlayers,
+  mockTeams,
+} from '../../mocks';
 
 import { GameInfoDrawer } from './GameInfoDrawer';
 
@@ -22,15 +29,12 @@ const mockedState = {
   round: 1,
   pointsToVictory: 1,
 };
-const mockedInfo = {
-  title: 'Game Title',
-  description: '',
-};
+
 const defaultArgs = {
   userId: '_bob',
   players: mockPlayers(8, true, true),
   state: mockedState,
-  info: mockedInfo,
+  info: mockInfo(),
 };
 
 export const Default = Template.bind({});
