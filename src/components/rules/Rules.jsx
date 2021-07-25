@@ -4,28 +4,45 @@ import { Button, Layout, Space, Typography } from 'antd';
 import { CheckCircleFilled, MehFilled, RobotFilled, SmileFilled } from '@ant-design/icons';
 // State
 import { GAME_API } from '../../adapters';
-import { useLoading, useIsUserReady, useAPICall } from '../../hooks';
+import { useLoading, useIsUserReady, useAPICall, useLanguage } from '../../hooks';
 // Components
 import { RulesCarousel } from './index';
 import { LoadingPage } from '../loaders';
-import { ReadyPlayersBar } from '../shared';
+import { ReadyPlayersBar, Translate, translate } from '../shared';
 
 export function Rules({ players, info }) {
   const [isLoading] = useLoading();
+  const language = useLanguage();
   const isUserReady = useIsUserReady(players);
 
   const onBeReady = useAPICall({
     apiFunction: GAME_API.makePlayerReady,
     actionName: 'be-ready',
-    successMessage: 'Pronto! Aguarde os outros jogadores estarem prontos',
-    errorMessage: 'Vixi, o aplicativo encontrou um erro ao tentar continuar',
+    successMessage: translate(
+      'Pronto! Aguarde os outros jogadores estarem prontos',
+      'Done! Now wait for the other players',
+      language
+    ),
+    errorMessage: translate(
+      'Vixi, o aplicativo encontrou um erro ao tentar continuar',
+      'Oh no! The application found an error when trying to continue',
+      language
+    ),
   });
 
   const onBeReadyQue = useAPICall({
     apiFunction: GAME_API.makePlayerReady,
     actionName: 'be-ready',
-    successMessage: 'Vixi, se fudeu então, pq o jogo vai começar!',
-    errorMessage: 'Vixi, o aplicativo encontrou um erro ao tentar continuar',
+    successMessage: translate(
+      'Vixi, se fudeu então, porque o jogo vai começar!',
+      'Sorry, you are screwed because the game is starting anyway!',
+      language
+    ),
+    errorMessage: translate(
+      'Vixi, o aplicativo encontrou um erro ao tentar continuar',
+      'Oh no! The application found an error when trying to continue',
+      language
+    ),
   });
 
   if (!info?.gameName) {
@@ -34,7 +51,9 @@ export function Rules({ players, info }) {
 
   return (
     <Layout.Content className="rules">
-      <Typography.Title className="center">Regras do Jogo</Typography.Title>
+      <Typography.Title className="center">
+        <Translate pt="Regras do Jogo" en="Game Rules" />
+      </Typography.Title>
 
       <RulesCarousel info={info} className="rules__carousel" ruleClass="rules__rule" />
 
@@ -44,15 +63,20 @@ export function Rules({ players, info }) {
           icon={isUserReady ? <CheckCircleFilled /> : <SmileFilled />}
           disabled={isLoading || isUserReady}
           onClick={() => onBeReady({})}
+          loading={isLoading}
         >
-          Entendi tudo e estou pronto para jogar!
+          <Translate
+            pt="Entendi tudo e estou pronto para jogar!"
+            en="I understood everything and I'm ready to play!"
+          />
         </Button>
         <Button
           icon={isUserReady ? <CheckCircleFilled /> : <MehFilled />}
           disabled={isLoading || isUserReady}
           onClick={() => onBeReady({})}
+          loading={isLoading}
         >
-          Não entendi nada, mas vamos lá
+          <Translate pt="Não entendi nada, mas vamos lá!" en="I don't get it but let's go!" />
         </Button>
         <Button
           type="primary"
@@ -60,8 +84,9 @@ export function Rules({ players, info }) {
           icon={isUserReady ? <CheckCircleFilled /> : <RobotFilled />}
           disabled={isLoading || isUserReady}
           onClick={() => onBeReadyQue({})}
+          loading={isLoading}
         >
-          Que?
+          <Translate pt="Quê?" en="What?" />
         </Button>
       </Space>
       <ReadyPlayersBar players={players} showNames />

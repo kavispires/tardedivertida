@@ -7,7 +7,7 @@ import { ReadOutlined } from '@ant-design/icons';
 // Components
 import { RulesCarousel } from '../rules/index';
 import { useLanguage } from '../../hooks';
-import { translate } from '../shared';
+import { Translate, translate } from '../shared';
 
 export function RulesModal({ gameInfo }) {
   const language = useLanguage();
@@ -20,7 +20,7 @@ export function RulesModal({ gameInfo }) {
   return (
     <Fragment>
       <Button type="default" onClick={() => setVisibility(true)} icon={<ReadOutlined />}>
-        {translate('Regras', 'Rules', language)}
+        <Translate pt="Regras" en="Rules" />
       </Button>
       {isVisible && (
         <Modal
@@ -30,7 +30,7 @@ export function RulesModal({ gameInfo }) {
           className="rules-modal"
           footer={[
             <Button key="close" onClick={onCloseModal}>
-              {translate('Fechar', 'Close', language)}
+              <Translate pt="Fechar" en="Close" />
             </Button>,
           ]}
         >

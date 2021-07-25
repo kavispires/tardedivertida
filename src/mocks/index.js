@@ -12,22 +12,31 @@ export const getLanguageControl = () => ({
   },
 });
 
-export const getHooksControls = () => ({
+export const getUserControls = () => ({
   _withUser: {
     control: 'boolean',
     defaultValue: false,
     description: '[internal] Mocks active user',
   },
+});
+
+export const getAdminControls = () => ({
   _withAdmin: {
     control: 'boolean',
     defaultValue: false,
     description: '[internal] Mocks admin user',
   },
+});
+
+export const getLoadingControls = () => ({
   _withLoading: {
     control: 'boolean',
     defaultValue: false,
     description: '[internal] Mocks app loading state',
   },
+});
+
+export const getPlayersControls = () => ({
   _withPlayers: {
     control: {
       type: 'range',
@@ -40,8 +49,19 @@ export const getHooksControls = () => ({
   },
 });
 
+export const getHooksControls = () => ({
+  ...getUserControls(),
+  ...getAdminControls(),
+  ...getLoadingControls(),
+  ...getPlayersControls(),
+});
+
 export const mockLanguageHook = (args) => {
   mockLanguage(args?._withLanguage ?? 'pt');
+};
+
+export const mockLoadingHook = (args) => {
+  mockLoading(args?._withLoading ?? false);
 };
 
 export const mockHooks = (args) => {

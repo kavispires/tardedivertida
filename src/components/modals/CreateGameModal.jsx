@@ -90,7 +90,7 @@ export function CreateGameModal({ gameInfo }) {
                 <Instruction>
                   <Translate pt="O jogo está sendo criado..." en="The game session is being created" />
                 </Instruction>
-                <Loading message={translate('Gerando....', 'Generating...', language)} margin />
+                <Loading message={translate('Gerando...', 'Generating...', language)} margin />
               </Fragment>
             ) : (
               <div>
