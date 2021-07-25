@@ -10,7 +10,7 @@ import { PUBLIC_URL, TAG_DICT } from '../utils/constants';
 import { orderBy } from '../utils';
 // Components
 import { CreateGameModal, RulesModal } from './modals';
-import { LanguageSwitch, translate } from './shared';
+import { LanguageSwitch, Translate, translate } from './shared';
 
 function GameCard({ game, language }) {
   const [width] = useDimensions();
@@ -110,7 +110,7 @@ function Hub() {
       </Typography.Title>
 
       <Typography.Paragraph>
-        {translate('Selecione um jogo para começar', 'Select a game to start', language)}
+        <Translate pt="Selecione um jogo para começar" en="Select a game to start" />
       </Typography.Paragraph>
       <Space size={[8, 16]} wrap align="start">
         {availableGames.map((game) => (
@@ -118,7 +118,9 @@ function Hub() {
         ))}
       </Space>
 
-      <Typography.Title level={2}>{translate('Em Breve', 'Coming Soon', language)}</Typography.Title>
+      <Typography.Title level={2}>
+        <Translate pt="Em Breve" en="Coming Soon" />
+      </Typography.Title>
       <Space size={[8, 16]} wrap align="start">
         {comingSoonGames.map((game) => (
           <GameCard key={game.code} game={game} language={language} />
