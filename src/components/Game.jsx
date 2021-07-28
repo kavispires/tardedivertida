@@ -23,6 +23,7 @@ function Game() {
   const [, setUserId] = useGlobalState('userId');
   const [, setUsername] = useGlobalState('username');
   const [, setUserAvatarId] = useGlobalState('userAvatarId');
+  const [, setLanguage] = useGlobalState('language');
 
   const [isPageLoading, setPageLoading] = useState(true);
   const isGameStale = useIsGameStale(gameMeta?.createdAt);
@@ -64,6 +65,7 @@ function Game() {
         const meta = await GAME_API.loadGame({ gameId });
         setGameName(meta.data.gameName);
         setGameMeta(meta.data);
+        setLanguage(meta.data?.language ?? 'pt');
       } catch (e) {
         console.error(e);
         notification.error({

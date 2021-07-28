@@ -68,7 +68,7 @@ function Waiting({ info, players }) {
         <use href={avatars + `#avatar-${userAvatarId}`}></use>
       </svg>
       <h3 className="center">
-        <Translate pt="Aguarde os outros jogadores entrarem." en="Wait while other players join..." />
+        <Translate pt="Aguarde os outros jogadores entrarem." en="Please, wait while other players join..." />
       </h3>
       <AdminOnly className="lobby-waiting__lock-button">
         <Typography.Text className="center padding">

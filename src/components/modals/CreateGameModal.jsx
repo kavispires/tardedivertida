@@ -29,7 +29,7 @@ export function CreateGameModal({ gameInfo }) {
     async function createGame() {
       try {
         setLoader('create', true);
-        const response = await GAME_API.initializeGame({ gameCode: gameInfo.gameCode });
+        const response = await GAME_API.initializeGame({ gameCode: gameInfo.gameCode, language });
         if (response.data.gameId) {
           setGameId(response.data.gameId);
         }
