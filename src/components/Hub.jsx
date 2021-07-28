@@ -19,7 +19,7 @@ function GameCard({ game, language }) {
     <Card
       key={game.gameName}
       hoverable
-      style={{ width: width && width > 0 ? width / 5 : 240 }}
+      style={{ width: width && width > 0 ? width / 5 : 250 }}
       cover={
         <Image
           alt={game.title[language]}
@@ -117,7 +117,7 @@ function Hub() {
           <GameCard key={game.code} game={game} language={language} />
         ))}
       </Space>
-
+      <Divider />
       <Typography.Title level={2}>
         <Translate pt="Em Breve" en="Coming Soon" />
       </Typography.Title>

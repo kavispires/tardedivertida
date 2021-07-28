@@ -4,7 +4,7 @@
     "gameName": "arte-ruim",
     "title": {
       "pt": "Arte Ruim Pra Dedéu",
-      "en": "Terrible Art"
+      "en": "Questionable Art"
     },
     "summary": {
       "pt": "Tende idenficar as obras-primas criadas por seus oponentes!",
@@ -20,7 +20,7 @@
         "O primeiro jogador a cruzar a marca de 50 pontos sinaliza o fim do jogo e, então, o jogador com mais pontos é o vencedor!"
       ],
       "en": [
-        "Terrible Art is a competitive game where players try to match artworks to their titles",
+        "Questionable Art is a competitive game where players try to match artworks to their titles",
         "Every round, players get a card with an expression and have 10 seconds to draw it.",
         "After every player has completed their masterpiece, all expressions and artworks are shuffled and everybody has to match the correct piece to its title.",
         "Correct matches grants 2 points and every correct guess your drawing gets also gives you 1 point.",
@@ -94,7 +94,7 @@
   },
   "D": {
     "gameCode": "D",
-    "gameName": "detetives-imaginativos",
+    "gameName": "clube-detetives",
     "title": {
       "pt": "Detetives Imaginativos",
       "en": "Imaginative Detectives"
