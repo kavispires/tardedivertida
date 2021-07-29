@@ -7,7 +7,7 @@ import { CloudUploadOutlined } from '@ant-design/icons';
 import { useIsUserReady, useGlobalState, useAPICall } from '../../../hooks';
 // Utils
 import { ARTE_RUIM_API } from '../../../adapters';
-import { PHASES } from '../../../utils/constants';
+import { PHASES, SEPARATOR } from '../../../utils/constants';
 // Components
 import {
   ButtonContainer,
@@ -25,8 +25,8 @@ import CanvasResizer from './CanvasResizer';
 
 function prepareVotes(votes) {
   return Object.entries(votes).reduce((acc, [drawingEntryId, cardEntryId]) => {
-    const [, drawingId] = drawingEntryId.split('-');
-    const [, cardId] = cardEntryId.split('-');
+    const [, drawingId] = drawingEntryId.split(SEPARATOR);
+    const [, cardId] = cardEntryId.split(SEPARATOR);
     acc[drawingId] = cardId;
     return acc;
   }, {});
@@ -49,13 +49,15 @@ function EvaluationPhase({ players, state, info }) {
     errorMessage: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua avaliação',
   });
 
+  console.log({ votes });
+
   useEffect(() => {
     setCanvasSize(cachedCanvasSize);
   }, []); // eslint-disable-line
 
   const onActivateItem = useCallback(
     (entryId) => {
-      const [type] = entryId.split('-');
+      const [type] = entryId.split(SEPARATOR);
       if (!activeItem || activeItem.startsWith(type)) {
         setActiveItem(entryId);
       } else {

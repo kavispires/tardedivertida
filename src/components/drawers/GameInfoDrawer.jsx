@@ -45,7 +45,7 @@ export function GameInfoDrawer({ players, state, info, userId }) {
       </Affix>
 
       <Drawer
-        title={info.title[language]}
+        title={info?.title?.[language]}
         placement="right"
         closable={false}
         onClose={onClose}
