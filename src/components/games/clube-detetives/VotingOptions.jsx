@@ -7,11 +7,11 @@ import { Avatar, AvatarName } from '../../avatars';
 import { ButtonContainer } from '../../shared';
 import { orderBy } from '../../../utils';
 
-export function VotingOptions({ players, leader, user, onVote, isLoading }) {
+export function VotingOptions({ players, leader, user, onVote, isLoading, isAllDisabled }) {
   const votingOptions = useMemo(
     () =>
       orderBy(
-        Object.values(players).filter((playerId) => playerId !== leader),
+        Object.values(players).filter((player) => player.id !== leader),
         'name'
       ),
     [players, leader]
@@ -20,14 +20,14 @@ export function VotingOptions({ players, leader, user, onVote, isLoading }) {
   return (
     <ButtonContainer className="d-voting-options">
       {votingOptions?.map((playerOption) => {
-        const votedForPlayer = Object.values(players).filter((player) => player?.vote === playerOption.name);
+        const votedForPlayer = Object.values(players).filter((player) => player?.vote === playerOption.id);
         return (
           <div className="d-voting-options__container" key={`voting-button-${playerOption.name}`}>
             <Button
-              onClick={() => onVote(playerOption.name)}
+              onClick={() => onVote(playerOption.id)}
               ghost
               size="large"
-              disabled={user.vote || isLoading || user.name === playerOption.name}
+              disabled={isAllDisabled || user.vote || isLoading || user.name === playerOption.name}
             >
               <AvatarName player={playerOption} uppercase />
             </Button>
@@ -47,13 +47,15 @@ export function VotingOptions({ players, leader, user, onVote, isLoading }) {
 }
 
 VotingOptions.propTypes = {
+  isAllDisabled: PropTypes.any,
+  isLoading: PropTypes.bool,
   leader: PropTypes.string,
   onVote: PropTypes.func,
   players: PropTypes.object,
   user: PropTypes.shape({
     name: PropTypes.string,
+    vote: PropTypes.any,
   }),
-  isLoading: PropTypes.bool,
 };
 
 export default VotingOptions;

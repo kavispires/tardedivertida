@@ -9,6 +9,7 @@ import { PHASES } from '../../../utils/constants';
 import { Instruction, PhaseContainer, RankingBoard, Title } from '../../shared';
 import { AvatarName } from '../../avatars';
 import { AdminOnlyButton } from '../../admin/index';
+import VotingOptions from './VotingOptions';
 
 function RevealPhase({ state, players, info }) {
   const impostor = useWhichPlayerIsThe('impostor', state, players);
@@ -32,9 +33,12 @@ function RevealPhase({ state, players, info }) {
         {state.impostorVotes > 1 ? (
           <>Ele(a) recebeu mais de dois votos! Quem votou nele(a) ganha 3 pontos!</>
         ) : (
-          <>Ele(a) não recebeu mais de 2 votos: Impostor ganha 5 pontos e Líder ganha 4 pontos!</>
+          <>
+            Ele(a) não recebeu mais de 2 votos: <b>Impostor</b> ganha 5 pontos e <b>Líder</b> ganha 4 pontos!
+          </>
         )}
       </Instruction>
+      <VotingOptions players={players} isAllDisabled={true} leader={state.leader} />
       <RankingBoard players={players} ranking={state.ranking} />
 
       <Instruction contained>Faltam {state.roundsToEndGame} rodadas para o jogo terminar</Instruction>

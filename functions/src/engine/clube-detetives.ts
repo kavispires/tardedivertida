@@ -322,41 +322,39 @@ const prepareVotingPhase = async (
   return true;
 };
 
-const prepareRevealPhase = async (
-  sessionRef: FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData>,
-  store: FirebaseFirestore.DocumentData,
-  state: FirebaseFirestore.DocumentData,
-  players: Players
-) => {
-  // Check how many votes impostor got
-  const impostorVotes = Object.values(players).reduce((total: number, player: Player) => {
-    if (player.vote === state.impostor) {
+export const countImpostorVotes = (players: Players, impostor: PlayerId): number =>
+  Object.values(players).reduce((total: number, player: Player) => {
+    if (player.vote === impostor) {
       total += 1;
     }
 
     return total;
   }, 0);
 
-  const relevantPlayers = [state.impostor, state.leader];
+export const calculateNewScores = (
+  players: Players,
+  impostorVotes: number,
+  impostor: PlayerId,
+  leader: PlayerId
+): PlainObject => {
+  const relevantPlayers = [impostor, leader];
 
-  // -- Ranking Stuff Start
-  // Format <playerId>: [<old score>, <addition points>, <new score>]
-  const newScores: PlainObject = Object.values(players).reduce((result, player) => {
+  return Object.values(players).reduce((result, player) => {
     const currentScore = player.score;
     let addedScore = 0;
     // If detectives won
     if (impostorVotes > 1 && !relevantPlayers.includes(player.id)) {
       // If the player voted for the impostor
-      if (player.vote === state.impostor) {
+      if (player.vote === impostor) {
         addedScore += 3;
       }
     }
     // If relevant players won
     if (impostorVotes <= 1) {
-      if (state.impostor === player.id) {
+      if (impostor === player.id) {
         addedScore += 5;
       }
-      if (state.leader === player.id) {
+      if (leader === player.id) {
         addedScore += 4;
       }
     }
@@ -367,6 +365,20 @@ const prepareRevealPhase = async (
     player.score = newScore;
     return result;
   }, {});
+};
+
+const prepareRevealPhase = async (
+  sessionRef: FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData>,
+  store: FirebaseFirestore.DocumentData,
+  state: FirebaseFirestore.DocumentData,
+  players: Players
+) => {
+  // Check how many votes impostor got
+  const impostorVotes = countImpostorVotes(players, state.impostor);
+
+  // -- Ranking Stuff Start
+  // Format <playerId>: [<old score>, <addition points>, <new score>]
+  const newScores = calculateNewScores(players, impostorVotes, state.impostor, state.leader);
 
   const ranking = Object.entries(newScores)
     .map(([playerId, scores]) => {
@@ -471,10 +483,10 @@ const handlePlayCard = async (
     if (playerTableIndex === -1) {
       state.table.push({
         playerId,
-        cards: [cardId],
+        cards: [cardId, ''],
       });
     } else {
-      state.table[playerTableIndex].cards.push(cardId);
+      state.table[playerTableIndex].cards[1] = cardId;
     }
 
     const newPhaseIndex = state.phaseIndex + 1;

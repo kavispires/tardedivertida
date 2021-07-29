@@ -50,15 +50,14 @@ function VotingPhase({ state, players, info }) {
         {!isUserTheLeader && user.vote && 'Aguarde enquanto os outros jogadores votam...'}
       </Instruction>
 
-      {!isUserTheLeader && (
-        <VotingOptions
-          players={players}
-          leader={state.leader}
-          user={user}
-          onVote={onVote}
-          isLoading={isLoading}
-        />
-      )}
+      <VotingOptions
+        players={players}
+        leader={state.leader}
+        user={user}
+        onVote={onVote}
+        isLoading={isLoading}
+        isAllDisabled={isUserTheLeader}
+      />
 
       <Table table={state.table} players={players} />
 
