@@ -8,7 +8,6 @@ import { ARTE_RUIM_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
 import arteRuimTimer from '../../../sounds/arte-ruim-timer.mp3';
 // Components
-import { AdminForceNextPhase } from '../../admin/index';
 import {
   Instruction,
   PhaseContainer,
@@ -74,7 +73,6 @@ function DrawPhase({ players, state, info }) {
             title="Pronto!"
             instruction="Vamos aguardar enquanto os outros jogadores terminam seus desenhos!"
           />
-          <AdminForceNextPhase />
         </Step>
       </StepSwitcher>
     </PhaseContainer>
