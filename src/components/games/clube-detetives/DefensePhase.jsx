@@ -71,7 +71,7 @@ function DefensePhase({ state, players, info }) {
 
       {isUserTheCurrentPlayer && (
         <ButtonContainer>
-          <Button type="primary" onClick={onFinishDefenseClick} disabled={isLoading}>
+          <Button type="primary" onClick={onFinishDefenseClick} disabled={isLoading} size="large">
             Concluir Defesa
           </Button>
         </ButtonContainer>

@@ -37,6 +37,18 @@ export const generateGameId = (gameCode: GameCode, usedIds: string[] = [], lengt
 };
 
 /**
+ * Generates a player id based of their name
+ * @param playerName
+ * @returns
+ */
+export function generatePLayerId(playerName: PlayerName) {
+  return `_${playerName
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '') // Replace characters with accents
+    .toLowerCase()}`;
+}
+
+/**
  * Creates new player object
  * @param name
  * @param avatarId the player's chosen avatar

@@ -8,10 +8,12 @@ import { AVATARS } from '../../../utils/constants';
 // Components
 import { ImageCard } from '../../cards';
 import { Avatar } from '../../avatars';
+import { useDimensions } from '../../../hooks';
 
 export function TableFocus({ table, currentPlayer }) {
   const tableEntry = table.find((entry) => entry.playerId === currentPlayer.id);
   const baseClass = 'd-table';
+  const [width] = useDimensions();
 
   if (!currentPlayer || !tableEntry?.cards) {
     return (
@@ -30,7 +32,7 @@ export function TableFocus({ table, currentPlayer }) {
               <ImageCard
                 key={`table-focous-${cardId}`}
                 imageId={cardId}
-                cardWidth={200}
+                cardWidth={Math.max(200, Math.min(400, width / 6))}
                 className="d-table__card"
               />
             );
