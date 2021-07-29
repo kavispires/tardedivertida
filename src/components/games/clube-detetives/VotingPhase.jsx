@@ -11,7 +11,6 @@ import { PHASES } from '../../../utils/constants';
 import { Instruction, PhaseContainer, Title } from '../../shared';
 import Table from './Table';
 import VotingOptions from './VotingOptions';
-import { AdminForceNextPhase } from '../../admin/index';
 
 function VotingPhase({ state, players, info }) {
   const [isLoading] = useLoading();
@@ -60,8 +59,6 @@ function VotingPhase({ state, players, info }) {
       />
 
       <Table table={state.table} players={players} />
-
-      <AdminForceNextPhase />
     </PhaseContainer>
   );
 }

@@ -22,7 +22,6 @@ import {
 import EvaluationAllDrawings from './EvaluationAllDrawings';
 import EvaluationAllCards from './EvaluationAllCards';
 import CanvasResizer from './CanvasResizer';
-import { AdminForceNextPhase } from '../../admin/index';
 
 function prepareVotes(votes) {
   return Object.entries(votes).reduce((acc, [drawingEntryId, cardEntryId]) => {
@@ -144,7 +143,6 @@ function EvaluationPhase({ players, state, info }) {
             title="Pronto!"
             instruction="Vamos aguardar enquanto os outros jogadores terminam de avaliar!"
           />
-          <AdminForceNextPhase />
         </Step>
       </StepSwitcher>
     </PhaseContainer>
