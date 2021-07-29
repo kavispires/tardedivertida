@@ -11,5 +11,5 @@
     "noImplicitAny": false
   },
   "compileOnSave": true,
-  "include": ["src", "src/*"]
+  "include": ["src", "src/*", "test", "test/*", "jest.config.js"]
 }

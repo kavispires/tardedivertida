@@ -24,14 +24,14 @@ describe('clube-detetives', () => {
       result = engine.countImpostorVotes(sample, '_bob');
       expect(result).toEqual(2);
 
-      sample = Array.from(['Abe', 'Bob', 'Cam', 'Dan'], (name, index) =>
+      sample = Array.from(['Abe', 'Bob', 'Cam', 'Dan'], (name) =>
         mockPlayer({ name, additionalInfo: { vote: name === 'Bob' ? '_cam' : '_bob' } })
       );
 
       result = engine.countImpostorVotes(sample, '_bob');
       expect(result).toEqual(3);
 
-      sample = Array.from(['Abe', 'Bob', 'Cam', 'Dan'], (name, index) =>
+      sample = Array.from(['Abe', 'Bob', 'Cam', 'Dan'], (name) =>
         mockPlayer({ name, additionalInfo: { vote: '_cam' } })
       );
 
