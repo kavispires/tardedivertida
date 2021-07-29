@@ -11,7 +11,7 @@ function EvaluationAllDrawings({ drawings, activeItem, onActivateItem, votes, ca
   return (
     <ul className="a-evaluation-all-drawings">
       {drawings?.map((drawingEntry) => {
-        const canvasEntryId = `drawing-${drawingEntry.id}`;
+        const canvasEntryId = `drawing::${drawingEntry.id}`;
         const isActive = activeItem === canvasEntryId;
         return (
           <li
@@ -19,6 +19,7 @@ function EvaluationAllDrawings({ drawings, activeItem, onActivateItem, votes, ca
             className={clsx(liButtonBaseClass, isActive && `${liButtonBaseClass}--active`)}
             onClick={() => onActivateItem(canvasEntryId)}
           >
+            {console.log(votes?.[canvasEntryId])}
             {votes?.[canvasEntryId] && <Ribbon cardEntryId={votes[canvasEntryId]} />}
             <CanvasSVG
               drawing={drawingEntry.drawing}
