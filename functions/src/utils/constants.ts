@@ -53,14 +53,6 @@ export const GAME_PLAYERS_LIMIT = {
  * Enum of Game Phases
  */
 export const PHASES = {
-  ARTE_RUIM: {
-    LOBBY: 'LOBBY',
-    RULES: 'RULES',
-    DRAW: 'DRAW',
-    EVALUATION: 'EVALUATION',
-    GALLERY: 'GALLERY',
-    GAME_OVER: 'GAME_OVER',
-  },
   CLUBE_DETETIVES: {
     LOBBY: 'LOBBY',
     RULES: 'RULES',
@@ -103,16 +95,6 @@ export const PHASES = {
 };
 
 export const SEPARATOR = ';;';
-
-// ARTE_RUIM
-
-export const ARTE_RUIM_GOAL = 50;
-
-export const ARTE_RUIM_CARDS_BY_LEVEL = {
-  1: new Array(200).fill(1).map((i, index) => `${i + index}`),
-  2: new Array(200).fill(201).map((i, index) => `${i + index}`),
-  3: new Array(200).fill(401).map((i, index) => `${i + index}`),
-};
 
 // CLUBE_DETETIVE
 

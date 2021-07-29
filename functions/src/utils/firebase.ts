@@ -1,7 +1,7 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
-
-import { FirebaseContext } from '../utils/interfaces';
+// Interfaces
+import { FirebaseContext, SaveGamePayload } from '../utils/interfaces';
 
 /**
  * Validate if payload property exists
@@ -92,3 +92,45 @@ export async function getSessionDoc(
 export function throwException(error: any, action = 'function') {
   throw new functions.https.HttpsError('internal', `Failed to ${action}: ${JSON.stringify(error)}`);
 }
+
+/**
+ * Saves (setting or updating) the game's session
+ * @param sessionRef
+ * @param toSet
+ * @param toUpdate
+ * @returns
+ */
+export const saveGame = async (
+  sessionRef: FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData>,
+  saveContent: SaveGamePayload
+) => {
+  try {
+    if (saveContent?.set?.players) {
+      await sessionRef.doc('players').set(saveContent.set.players ?? {});
+    }
+
+    if (saveContent?.set?.state) {
+      await sessionRef.doc('state').set(saveContent.set.state ?? {});
+    }
+
+    if (saveContent?.update?.store) {
+      await sessionRef.doc('store').update(saveContent.update.store);
+    }
+
+    if (saveContent?.update?.players) {
+      await sessionRef.doc('players').update(saveContent.update.players);
+    }
+
+    if (saveContent?.update?.state) {
+      await sessionRef.doc('state').update(saveContent.update.state);
+    }
+
+    if (saveContent?.update?.meta) {
+      await sessionRef.doc('meta').update(saveContent.update.meta);
+    }
+  } catch (error) {
+    throwException(error, 'update game');
+  }
+
+  return true;
+};
