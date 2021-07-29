@@ -27,7 +27,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "react-scripts test && gh-pages -d build",
+    "deploy": "gh-pages -d build",
     "build-css": "node-sass-chokidar ./src/styles/index.scss ./src/styles/index.css",
     "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
     "storybook": "start-storybook -p 6006 -s public",
