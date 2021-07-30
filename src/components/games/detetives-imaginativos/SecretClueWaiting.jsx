@@ -1,22 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// Design Resources
-import { Spin } from 'antd';
 // Components
-import { Instruction, Title } from '../../shared';
+import { Instruction, Title, Translate } from '../../shared';
 import { AvatarName } from '../../avatars';
 import { ImageCardHand as Hand } from '../../cards';
+import { LoadingClock } from '../../icons';
 
 function SecretClueWaiting({ leader, user }) {
   return (
     <div className="d-secret-clue-write">
       <Title>
-        <Spin /> Aguarde...
+        <LoadingClock /> <Translate pt="Aguarde..." en="Please wait..." />
       </Title>
       <Instruction contained>
-        <AvatarName player={leader} addressUser /> está escrevendo a pista secreta.
+        <AvatarName player={leader} addressUser />{' '}
+        <Translate pt="está escrevendo a pista secreta." en="is writing the secret clue." />
         <br />
-        Enquanto isso, examine suas cartas! Você as usará durante esta rodada.
+        <Translate
+          pt="Enquanto isso, examine suas cartas! Você as usará durante esta rodada."
+          en="In the meantime, examine your cards. You're gonna use them this turn."
+        />
       </Instruction>
       <Hand hand={user.hand} />
     </div>

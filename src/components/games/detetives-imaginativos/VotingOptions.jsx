@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Button } from 'antd';
 // Components
 import { Avatar, AvatarName } from '../../avatars';
-import { ButtonContainer } from '../../shared';
+import { ButtonContainer, Translate } from '../../shared';
 import { orderBy } from '../../../utils';
 
 export function VotingOptions({ players, leader, user, onVote, isLoading, isAllDisabled }) {
@@ -32,7 +32,7 @@ export function VotingOptions({ players, leader, user, onVote, isLoading, isAllD
               <AvatarName player={playerOption} uppercase />
             </Button>
             <div className="d-voting-options__vote-container">
-              Votos: {votedForPlayer.length}
+              <Translate pt="Votos" en="Votes" />: {votedForPlayer.length}
               <ul className="d-voting-options__votes">
                 {votedForPlayer.map((vPlayer) => (
                   <Avatar id={vPlayer.avatarId} size="small" alt={vPlayer.name} />
