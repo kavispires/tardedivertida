@@ -36,7 +36,7 @@ function PhaseReveal({ state, players, info }) {
       <StepSwitcher step={step}>
         {/* Step 0 */}
         <PhaseAnnouncement
-          type="ranking"
+          type="rank"
           title={translate('Revelação', 'Reveal', language)}
           onClose={() => setStep(1)}
           currentRound={state?.round?.current}
