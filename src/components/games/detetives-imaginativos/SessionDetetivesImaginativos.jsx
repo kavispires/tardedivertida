@@ -2,7 +2,7 @@ import React from 'react';
 // Hooks
 import { GAME_COLLECTION, PHASES } from '../../../utils/constants';
 // Components
-import { GameOver, Session } from '../../shared';
+import { GameOver, Session, SetupScreen } from '../../shared';
 import Lobby from '../../lobby/Lobby';
 import { Rules } from '../../rules';
 import { PageError } from '../../errors/PageError';
@@ -19,6 +19,8 @@ function SessionDetetivesImaginativos({ gameId }) {
         return Lobby;
       case PHASES.DETETIVES_IMAGINATIVOS.RULES:
         return Rules;
+      case PHASES.DETETIVES_IMAGINATIVOS.SETUP:
+        return SetupScreen;
       case PHASES.DETETIVES_IMAGINATIVOS.SECRET_CLUE:
         return SecretCluePhase;
       case PHASES.DETETIVES_IMAGINATIVOS.CARD_PLAY:
