@@ -7,7 +7,7 @@ import { useDimensions, useGlobalState } from '../../hooks';
 // Components
 import { Translate } from '../shared';
 
-export const CanvasReSizer = ({ numPlayers = 5 }) => {
+export const CanvasResizer = ({ numPlayers = 5 }) => {
   const [canvasSize, setCanvasSize] = useGlobalState('canvasSize');
   const [cachedCanvasSize] = useGlobalState('cachedCanvasSize');
   const [width] = useDimensions();
@@ -35,6 +35,6 @@ export const CanvasReSizer = ({ numPlayers = 5 }) => {
   );
 };
 
-CanvasReSizer.propTypes = {
+CanvasResizer.propTypes = {
   numPlayers: PropTypes.number,
 };

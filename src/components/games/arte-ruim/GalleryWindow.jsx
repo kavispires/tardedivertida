@@ -1,10 +1,9 @@
 import PropTypes from 'prop-types';
 import React, { memo } from 'react';
-
 // Hooks
 import { useGlobalState } from '../../../hooks';
 // Components
-import { CanvasSVG, CanvasReSizer } from '../../canvas';
+import { CanvasSVG, CanvasResizer } from '../../canvas';
 import GalleryWindowCredits from './GalleryWindowCredits';
 import GalleryWindowGuesses from './GalleryWindowGuesses';
 import GalleryWindowControls from './GalleryWindowControls';
@@ -19,7 +18,7 @@ function GalleryWindow({ window, galleryLength, players, activeIndex, setActiveI
 
   return (
     <div className="a-gallery-window">
-      <CanvasReSizer numPlayers={Object.keys(players).length} />
+      <CanvasResizer numPlayers={Object.keys(players).length} />
       <div className="a-gallery-window__drawing-container">
         <CanvasSVG
           key={window.correctAnswer}
