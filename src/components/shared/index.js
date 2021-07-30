@@ -4,6 +4,7 @@ export * from './GameOver';
 export * from './Instruction';
 export * from './LanguageSwitch';
 export * from './PhaseContainer';
+export * from './PhaseAnnouncement';
 export * from './PhasePlaceholder';
 export * from './RankingBoard';
 export * from './ReadyPlayersBar';

@@ -1,0 +1,15 @@
+.phase-announcement {
+  display: flex;
+  flex-direction: column;
+  background: rgba(white, 0.7);
+  padding: get-unit(4 8);
+  border-radius: get-unit(4);
+  min-width: 40vw;
+
+  &__icon {
+    display: flex;
+    flex-direction: column;
+    height: 40vh;
+    max-height: 200px;
+  }
+}
