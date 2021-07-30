@@ -12,12 +12,14 @@ import {
 } from '@ant-design/icons';
 // Utils
 import { inNSeconds } from '../../../utils';
+// Components
+import { Translate } from '../../shared';
 
 function GalleryWindowControls({ galleryLength, activeIndex, setActiveIndex, setStep }) {
   const { seconds, isRunning, pause, resume } = useTimer({
     expiryTimestamp: inNSeconds(10 * galleryLength),
     autoStart: true,
-    onExpire: () => setStep(1),
+    onExpire: () => setStep(2),
   });
 
   // Automatically go to the next window every 10 seconds
@@ -47,7 +49,7 @@ function GalleryWindowControls({ galleryLength, activeIndex, setActiveIndex, set
           onClick={previousStep}
           disabled={activeIndex === 0}
         >
-          Desenho Anterior
+          <Translate pt="Desenho Anterior" en="Previous Art" />
         </Button>
         <Button
           size="large"
@@ -55,10 +57,10 @@ function GalleryWindowControls({ galleryLength, activeIndex, setActiveIndex, set
           onClick={isRunning ? pause : resume}
         />
         <Button size="large" onClick={nextStep} disabled={activeIndex === galleryLength - 1}>
-          Próximo Desenho <StepForwardOutlined />
+          <Translate pt="Próximo Desenho" en="Next Art" /> <StepForwardOutlined />
         </Button>
-        <Button size="large" onClick={() => setStep(1)} icon={<TrophyOutlined />}>
-          Ver Ranking
+        <Button size="large" onClick={() => setStep(2)} icon={<TrophyOutlined />}>
+          <Translate pt="Ver Ranking" en="See Ranking" />
         </Button>
       </Space>
     </div>
