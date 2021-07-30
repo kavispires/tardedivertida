@@ -2,7 +2,7 @@ import React from 'react';
 // Hooks
 import { GAME_COLLECTION, PHASES } from '../../../utils/constants';
 // Components
-import { GameOver, Session } from '../../shared';
+import { GameOver, Session, SetupScreen } from '../../shared';
 import Lobby from '../../lobby/Lobby';
 import { Rules } from '../../rules';
 import { PageError } from '../../errors/PageError';
@@ -19,6 +19,8 @@ function SessionOndaTelepatica({ gameId }) {
         return Lobby;
       case PHASES.ONDA_TELEPATICA.RULES:
         return Rules;
+      case PHASES.ONDA_TELEPATICA.SETUP:
+        return SetupScreen;
       case PHASES.ONDA_TELEPATICA.DIAL_SIDES:
         return DialSidesPhase;
       case PHASES.ONDA_TELEPATICA.DIAL_CLUE:

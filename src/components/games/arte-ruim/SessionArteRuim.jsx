@@ -2,7 +2,7 @@ import React from 'react';
 // Hooks
 import { GAME_COLLECTION, PHASES } from '../../../utils/constants';
 // Components
-import { Session } from '../../shared';
+import { Session, SetupScreen } from '../../shared';
 import Lobby from '../../lobby/Lobby';
 import { Rules } from '../../rules';
 import { PageError } from '../../errors/PageError';
@@ -18,6 +18,8 @@ function SessionArteRuim({ gameId }) {
         return Lobby;
       case PHASES.ARTE_RUIM.RULES:
         return Rules;
+      case PHASES.ARTE_RUIM.SETUP:
+        return SetupScreen;
       case PHASES.ARTE_RUIM.DRAW:
         return PhaseDraw;
       case PHASES.ARTE_RUIM.EVALUATION:
