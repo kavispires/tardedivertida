@@ -6,11 +6,11 @@ import { GameOver, Session, SetupScreen } from '../../shared';
 import Lobby from '../../lobby/Lobby';
 import { Rules } from '../../rules';
 import { PageError } from '../../errors/PageError';
-import SecretCluePhase from './SecretCluePhase';
-import CardPlayPhase from './CardPlayPhase';
-import DefensePhase from './DefensePhase';
-import VotingPhase from './VotingPhase';
-import RevealPhase from './RevealPhase';
+import PhaseSecretClue from './PhaseSecretClue';
+import PhaseCardPlay from './PhaseCardPlay';
+import PhaseDefense from './PhaseDefense';
+import PhaseVoting from './PhaseVoting';
+import PhaseReveal from './PhaseReveal';
 
 function SessionDetetivesImaginativos({ gameId }) {
   function getActiveComponent(phase) {
@@ -22,15 +22,15 @@ function SessionDetetivesImaginativos({ gameId }) {
       case PHASES.DETETIVES_IMAGINATIVOS.SETUP:
         return SetupScreen;
       case PHASES.DETETIVES_IMAGINATIVOS.SECRET_CLUE:
-        return SecretCluePhase;
+        return PhaseSecretClue;
       case PHASES.DETETIVES_IMAGINATIVOS.CARD_PLAY:
-        return CardPlayPhase;
+        return PhaseCardPlay;
       case PHASES.DETETIVES_IMAGINATIVOS.DEFENSE:
-        return DefensePhase;
+        return PhaseDefense;
       case PHASES.DETETIVES_IMAGINATIVOS.VOTING:
-        return VotingPhase;
+        return PhaseVoting;
       case PHASES.DETETIVES_IMAGINATIVOS.REVEAL:
-        return RevealPhase;
+        return PhaseReveal;
       case PHASES.DETETIVES_IMAGINATIVOS.GAME_OVER:
         return GameOver;
       default:

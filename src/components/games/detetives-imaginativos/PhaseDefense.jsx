@@ -14,7 +14,7 @@ import { messageContent } from '../../modals';
 import TableFocus from './TableFocus';
 import MagnifyingGlassSVG from './MagnifyingGlassSVG';
 
-function DefensePhase({ state, players, info }) {
+function PhaseDefense({ state, players, info }) {
   const [isLoading] = useLoading();
   const currentPlayer = useWhichPlayerIsThe('currentPlayerId', state, players);
   const isUserTheCurrentPlayer = useIsUserThe('currentPlayerId', state);
@@ -80,7 +80,7 @@ function DefensePhase({ state, players, info }) {
   );
 }
 
-DefensePhase.propTypes = {
+PhaseDefense.propTypes = {
   info: PropTypes.object,
   players: PropTypes.object,
   state: PropTypes.shape({
@@ -95,4 +95,4 @@ DefensePhase.propTypes = {
   }),
 };
 
-export default DefensePhase;
+export default PhaseDefense;

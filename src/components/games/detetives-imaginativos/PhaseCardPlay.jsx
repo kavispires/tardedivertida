@@ -15,7 +15,7 @@ import { messageContent } from '../../modals';
 import { ImageCardHand as Hand } from '../../cards';
 import Table from './Table';
 
-function CardPlayPhase({ state, players, info }) {
+function PhaseCardPlay({ state, players, info }) {
   const [isLoading] = useLoading();
   const user = useUser(players);
   const currentPlayer = useWhichPlayerIsThe('currentPlayerId', state, players);
@@ -90,7 +90,7 @@ function CardPlayPhase({ state, players, info }) {
   );
 }
 
-CardPlayPhase.propTypes = {
+PhaseCardPlay.propTypes = {
   info: PropTypes.object,
   players: PropTypes.object,
   state: PropTypes.shape({
@@ -105,4 +105,4 @@ CardPlayPhase.propTypes = {
   }),
 };
 
-export default CardPlayPhase;
+export default PhaseCardPlay;

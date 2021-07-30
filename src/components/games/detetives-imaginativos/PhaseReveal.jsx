@@ -11,7 +11,7 @@ import { AvatarName } from '../../avatars';
 import { AdminOnlyButton } from '../../admin/index';
 import VotingOptions from './VotingOptions';
 
-function RevealPhase({ state, players, info }) {
+function PhaseReveal({ state, players, info }) {
   const impostor = useWhichPlayerIsThe('impostor', state, players);
 
   const onGoToNextRound = useAPICall({
@@ -48,7 +48,7 @@ function RevealPhase({ state, players, info }) {
   );
 }
 
-RevealPhase.propTypes = {
+PhaseReveal.propTypes = {
   info: PropTypes.any,
   players: PropTypes.any,
   state: PropTypes.shape({
@@ -59,4 +59,4 @@ RevealPhase.propTypes = {
   }),
 };
 
-export default RevealPhase;
+export default PhaseReveal;
