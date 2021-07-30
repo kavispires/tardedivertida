@@ -19,7 +19,7 @@ function GameCard({ game, language }) {
     <Card
       key={game.gameName}
       hoverable
-      style={{ width: width && width > 0 ? width / 5 : 250 }}
+      style={{ width: width && width > 0 ? Math.max(width / 5, 250) : 250 }}
       cover={
         <Image
           alt={game.title[language]}
