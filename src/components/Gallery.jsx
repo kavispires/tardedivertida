@@ -3,7 +3,7 @@ import React from 'react';
 import { Layout, Progress, Table } from 'antd';
 // Utils
 import pastDrawings from '../resources/pastDrawings.json';
-import CanvasSVG from './games/arte-ruim/CanvasSVG';
+import { CanvasSVG } from './canvas';
 import { Title } from './shared';
 import { orderBy } from '../utils';
 

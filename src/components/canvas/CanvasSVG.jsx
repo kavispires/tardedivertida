@@ -16,7 +16,7 @@ const getPathFromKonvaLines = (lines) => {
   return result;
 };
 
-function CanvasSVG({ drawing = '', className = '', size = 250 }) {
+export const CanvasSVG = memo(function ({ drawing = '', className = '', size = 250 }) {
   const konvaLines = JSON.parse(drawing);
   const paths = getPathFromKonvaLines(konvaLines);
 
@@ -43,7 +43,7 @@ function CanvasSVG({ drawing = '', className = '', size = 250 }) {
       ))}
     </svg>
   );
-}
+});
 
 CanvasSVG.propTypes = {
   className: PropTypes.string,
@@ -54,5 +54,3 @@ CanvasSVG.propTypes = {
 CanvasSVG.defaultProps = {
   size: 250,
 };
-
-export default memo(CanvasSVG);

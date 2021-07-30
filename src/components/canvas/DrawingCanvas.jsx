@@ -3,7 +3,7 @@ import { Stage, Layer, Line } from 'react-konva';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 
-const DrawingCanvas = ({ lines, setLines, className = '' }) => {
+export const DrawingCanvas = ({ lines, setLines, className = '' }) => {
   const isDrawing = useRef(false);
 
   const handleMouseDown = (e) => {
@@ -42,7 +42,7 @@ const DrawingCanvas = ({ lines, setLines, className = '' }) => {
       onTouchStart={handleMouseDown}
       onTouchMove={handleMouseMove}
       onTouchEnd={handleMouseUp}
-      className={clsx('a-drawing-canvas', className)}
+      className={clsx('drawing-canvas', className)}
     >
       <Layer>
         {lines.map((line, i) => (
@@ -66,5 +66,3 @@ DrawingCanvas.propTypes = {
   lines: PropTypes.array.isRequired,
   setLines: PropTypes.func.isRequired,
 };
-
-export default DrawingCanvas;

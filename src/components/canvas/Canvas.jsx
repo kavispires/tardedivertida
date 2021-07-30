@@ -3,7 +3,7 @@ import { Stage, Layer, Line } from 'react-konva';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 
-const Canvas = ({ drawing = '[]', className = '' }) => {
+export const Canvas = memo(function ({ drawing = '[]', className = '' }) {
   const lines = typeof drawing === 'string' ? JSON.parse(drawing) : drawing;
 
   return (
@@ -23,11 +23,9 @@ const Canvas = ({ drawing = '[]', className = '' }) => {
       </Layer>
     </Stage>
   );
-};
+});
 
 Canvas.propTypes = {
   className: PropTypes.string,
   drawing: PropTypes.oneOfType([PropTypes.array, PropTypes.string]).isRequired,
 };
-
-export default memo(Canvas);

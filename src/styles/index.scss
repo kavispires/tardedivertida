@@ -41,13 +41,13 @@
 @import '../components/shared/EmergencyAlert.scss';
 @import '../components/drawers/drawers.scss';
 @import '../components/cards/cards';
+@import '../components/canvas/Canvas.scss';
+@import '../components/canvas/CanvasReSizer.scss';
+@import '../components/canvas/DrawingCanvas.scss';
 @import '../components/admin/admin';
 
 // ArteRuim Components
 @import '../components/games/arte-ruim/SessionArteRuim.scss';
-@import '../components/games/arte-ruim/DrawingCanvas.scss';
-@import '../components/games/arte-ruim/Canvas.scss';
-@import '../components/games/arte-ruim/CanvasResizer.scss';
 @import '../components/games/arte-ruim/EvaluationAllDrawings.scss';
 @import '../components/games/arte-ruim/EvaluationAllCards.scss';
 @import '../components/games/arte-ruim/Ribbon.scss';

@@ -6,7 +6,7 @@ import { inNSeconds } from '../../../utils';
 // Components
 import { Step } from '../../shared';
 import { Card } from '../../cards';
-import DrawingCanvas from './DrawingCanvas';
+import { DrawingCanvas } from '../../canvas';
 
 function DrawPhaseDrawStep({ secretCard, onSubmitDrawing }) {
   const [lines, setLines] = useState([]);
