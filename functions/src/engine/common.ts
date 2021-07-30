@@ -12,7 +12,7 @@ import {
   Payload,
   ExtendedPayload,
 } from '../utils/interfaces';
-import { GAME_PLAYERS_LIMIT } from '../utils/constants';
+import { DEV_GAME_IDS, GAME_PLAYERS_LIMIT } from '../utils/constants';
 
 /**
  * Creates a new game instance
@@ -51,7 +51,7 @@ export const createGame = async (data: CreateGamePayload, context: FirebaseConte
   const collectionRef = admin.firestore().collection(collectionName);
 
   // Generate unique 4 digit code starting with game code letter
-  const gameId: string = utils.generateGameId(gameCode, usedGameIds);
+  let gameId: string = utils.generateGameId(gameCode, usedGameIds);
 
   // Make sure the game does not exist, I do not trust that while loop
   const tempGame = await collectionRef.doc(gameId).get();
@@ -60,6 +60,10 @@ export const createGame = async (data: CreateGamePayload, context: FirebaseConte
       `the generated game id ${gameCode} belongs to an existing session`,
       actionText
     );
+  }
+
+  if (process.env.FUNCTIONS_EMULATOR) {
+    gameId = DEV_GAME_IDS[gameCode];
   }
 
   // Create game entry in database

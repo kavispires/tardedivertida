@@ -10,6 +10,14 @@ export const GAME_CODES = {
   U: 'U', // ue-so-isso
 };
 
+export const DEV_GAME_IDS = {
+  A: 'AAAA', // arte-ruim
+  D: 'DDDD', // detetives-imaginativos
+  E: 'EEEE', // espiao-entre-nos
+  O: 'OOOO', // onda-telepatica
+  U: 'UUUU', // ue-so-isso
+};
+
 export const GAME_KEYS = {
   ARTE_RUIM: 'ARTE_RUIM',
   DETETIVES_IMAGINATIVOS: 'DETETIVES_IMAGINATIVOS',
