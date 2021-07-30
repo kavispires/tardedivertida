@@ -7,11 +7,14 @@ import { MessageFilled } from '@ant-design/icons';
 import { getPlayersFromIds } from '../../../utils';
 // Components
 import { Avatar } from '../../avatars';
+import { Translate } from '../../shared';
 
 function GalleryWindowGuesses({ playersSay, players, cards }) {
   return (
     <div className="a-gallery-window__guesses">
-      <div className="a-gallery-window__label">Participantes votaram</div>
+      <div className="a-gallery-window__label">
+        <Translate pt="Participantes votaram" en="Players voted" />
+      </div>
       {Object.entries(playersSay).map(([cardId, playerIds], index) => {
         const card = cards.find((i) => i.id === cardId);
         return (

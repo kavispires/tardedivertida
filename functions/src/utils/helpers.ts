@@ -1,5 +1,14 @@
 import { AVATAR_IDS, LETTERS } from './constants';
-import { GameCode, Player, PlayerAvatarId, PlayerId, PlayerName, Players, Teams } from '../utils/interfaces';
+import {
+  GameCode,
+  PlainObject,
+  Player,
+  PlayerAvatarId,
+  PlayerId,
+  PlayerName,
+  Players,
+  Teams,
+} from '../utils/interfaces';
 import { shuffle, getRandomUniqueItem } from './game-utils';
 
 /**
@@ -35,6 +44,18 @@ export const generateGameId = (gameCode: GameCode, usedIds: string[] = [], lengt
 
   return gameId;
 };
+
+/**
+ * Generates a player id based of their name
+ * @param playerName
+ * @returns
+ */
+export function generatePLayerId(playerName: PlayerName) {
+  return `_${playerName
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '') // Replace characters with accents
+    .toLowerCase()}`;
+}
 
 /**
  * Creates new player object
@@ -237,4 +258,40 @@ export const determineWinners = (players: Players): Player[] => {
   return Object.values(players).filter((player) => {
     return player.score === maxScore;
   });
+};
+
+/**
+ * Orders array by a value its item object
+ * @param {object[]} list
+ * @param {string|string[]} properties
+ * @param {string|string[]} orders
+ * @returns {object[]}
+ */
+export const orderBy = (list: PlainObject[], properties: string | string[], orders: string | string[]) => {
+  function sortBy(_key, _cb) {
+    if (!_cb) _cb = () => 0;
+    return (a, b) => (a[_key] > b[_key] ? 1 : b[_key] > a[_key] ? -1 : _cb(a, b));
+  }
+
+  function sortByDesc(key, _cb) {
+    if (!_cb) _cb = () => 0;
+    return (b, a) => (a[key] > b[key] ? 1 : b[key] > a[key] ? -1 : _cb(b, a));
+  }
+
+  let cb: any = () => 0;
+  const p = Array.isArray(properties) ? properties.reverse() : [properties];
+  const o = Array.isArray(orders) ? orders.reverse() : [orders];
+
+  for (const [i, key] of p.entries()) {
+    const order = o[i] ?? o[0] ?? 'asc';
+    if (order === 'asc') {
+      cb = sortBy(key, cb);
+    } else if (order === 'desc') {
+      cb = sortByDesc(key, cb);
+    } else {
+      throw new Error(`Unsupported order "${order}"`);
+    }
+  }
+
+  return [...list].sort(cb);
 };

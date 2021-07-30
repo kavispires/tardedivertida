@@ -13,7 +13,6 @@ import { Avatar } from '../avatars';
 export function RankingBoard({ players, ranking }) {
   const [displayStep, setDisplayStep] = useState(0);
   const [sortedRanking, setSortedRanking] = useState([]);
-  // const [positions, setPositions] = useState([]);
   const [reRank, setReRank] = useState(0);
   const [, height] = useDimensions('ranking-row-0');
 
@@ -77,10 +76,13 @@ export function RankingBoard({ players, ranking }) {
   }, [seconds]);
 
   return (
-    <div className="ranking-board" style={{ height: `${(height + 8) * sortedRanking.length}px` }}>
+    <div
+      className="ranking-board"
+      style={{ height: `${(Math.max(60, height) + 8) * sortedRanking.length}px` }}
+    >
       {sortedRanking.map((entry, index) => {
         const { playerId, newScore, previousScore, gainedPoints, order, position } = entry;
-        const hPosition = (height + 8) * (order[reRank] ?? 0);
+        const hPosition = (Math.max(60, height) + 8) * (order[reRank] ?? 0);
         return (
           <div
             className={`ranking-board__row ranking-board__row--${index}`}

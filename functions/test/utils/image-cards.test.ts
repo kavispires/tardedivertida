@@ -15,7 +15,7 @@ describe('image-cards', () => {
       function catcher() {
         return imageCardUtils.getImageCards(5000);
       }
-      expect(catcher).toThrow('5000 image decks were requested while game only has 4 available');
+      expect(catcher).toThrow('5000 image decks were requested while game only has 7 available');
     });
   });
 });

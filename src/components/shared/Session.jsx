@@ -7,7 +7,7 @@ import gameList from '../../resources/games.json';
 import { isDevEnv } from '../../utils';
 // Components
 import Lobby from '../lobby/Lobby';
-import GameInfoDrawer from '../shared/GameInfoDrawer';
+import { GameInfoDrawer } from '../drawers';
 import { AdminMenu } from '../admin/index';
 
 export function Session({ gameId, gameCollection, getActiveComponent }) {

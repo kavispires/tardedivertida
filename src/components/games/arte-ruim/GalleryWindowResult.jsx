@@ -7,7 +7,7 @@ import { CrownFilled, DeleteFilled } from '@ant-design/icons';
 import { getPlayersFromIds } from '../../../utils';
 // Components
 import { Avatar } from '../../avatars';
-import { StarPoints } from '../../shared';
+import { StarPoints, Translate } from '../../shared';
 
 function GalleryWindowResult({
   playerArtist,
@@ -21,7 +21,9 @@ function GalleryWindowResult({
 
   return (
     <div className="a-gallery-window__result">
-      <div className="a-gallery-window__label">E o nome correto da obra é</div>
+      <div className="a-gallery-window__label">
+        <Translate pt="E o título correto da obra é" en="And the masterpiece title is" />
+      </div>
       <div className="a-gallery-window__speech-bubble">
         <CrownFilled className="a-gallery-window__speech-bubble-icon" />
         {correctAnswerText}
@@ -50,7 +52,11 @@ function GalleryWindowResult({
         </Fragment>
       ) : (
         <Typography.Text className="a-gallery-window__no-wins">
-          <DeleteFilled /> Nossa, ninguém acertou. Esse desenho deve ter sido muito ruim.
+          <DeleteFilled />{' '}
+          <Translate
+            pt="Nossa, ninguém acertou. Esse desenho deve ter sido muito ruim."
+            en="Wow, nobody got it. It must have been a very crappy drawing. Shame..."
+          />
         </Typography.Text>
       )}
     </div>

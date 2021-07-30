@@ -20,12 +20,13 @@
 @import '../components/loaders/LoadingBar.scss';
 @import '../components/loaders/LoadingPage.scss';
 @import '../components/lobby/Lobby.scss';
-@import '../components/lobby/Join.scss';
-@import '../components/lobby/Waiting.scss';
-@import '../components/lobby/CloudBackground.scss';
+@import '../components/lobby/_private/Join.scss';
+@import '../components/lobby/_private/Waiting.scss';
+@import '../components/lobby/_private/CloudBackground.scss';
 @import '../components/modals/RulesModal.scss';
 @import '../components/rules/RulesCarousel.scss';
 @import '../components/rules/Rules.scss';
+@import '../components/shared/PhaseAnnouncement.scss';
 @import '../components/shared/PhaseContainer.scss';
 @import '../components/shared/RoundAnnouncement.scss';
 @import '../components/shared/ButtonContainer.scss';
@@ -37,17 +38,17 @@
 @import '../components/shared/Instruction.scss';
 @import '../components/shared/TimedButton.scss';
 @import '../components/shared/Title.scss';
-@import '../components/shared/GameInfoDrawer.scss';
 @import '../components/shared/StepSwitcher.scss';
 @import '../components/shared/EmergencyAlert.scss';
+@import '../components/drawers/drawers.scss';
 @import '../components/cards/cards';
+@import '../components/canvas/Canvas.scss';
+@import '../components/canvas/CanvasReSizer.scss';
+@import '../components/canvas/DrawingCanvas.scss';
 @import '../components/admin/admin';
 
 // ArteRuim Components
 @import '../components/games/arte-ruim/SessionArteRuim.scss';
-@import '../components/games/arte-ruim/DrawingCanvas.scss';
-@import '../components/games/arte-ruim/Canvas.scss';
-@import '../components/games/arte-ruim/CanvasResizer.scss';
 @import '../components/games/arte-ruim/EvaluationAllDrawings.scss';
 @import '../components/games/arte-ruim/EvaluationAllCards.scss';
 @import '../components/games/arte-ruim/Ribbon.scss';

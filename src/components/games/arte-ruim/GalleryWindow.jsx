@@ -4,12 +4,11 @@ import React, { memo } from 'react';
 // Hooks
 import { useGlobalState } from '../../../hooks';
 // Components
-import CanvasSVG from './CanvasSVG';
+import { CanvasSVG, CanvasReSizer } from '../../canvas';
 import GalleryWindowCredits from './GalleryWindowCredits';
 import GalleryWindowGuesses from './GalleryWindowGuesses';
 import GalleryWindowControls from './GalleryWindowControls';
 import GalleryWindowResult from './GalleryWindowResult';
-import CanvasResizer from './CanvasResizer';
 
 function GalleryWindow({ window, galleryLength, players, activeIndex, setActiveIndex, setStep, cards }) {
   const [canvasSize] = useGlobalState('canvasSize');
@@ -20,7 +19,7 @@ function GalleryWindow({ window, galleryLength, players, activeIndex, setActiveI
 
   return (
     <div className="a-gallery-window">
-      <CanvasResizer numPlayers={Object.keys(players).length} />
+      <CanvasReSizer numPlayers={Object.keys(players).length} />
       <div className="a-gallery-window__drawing-container">
         <CanvasSVG
           key={window.correctAnswer}
@@ -59,7 +58,7 @@ GalleryWindow.propTypes = {
   cards: PropTypes.array,
   galleryLength: PropTypes.number,
   players: PropTypes.object,
-  setActiveIndex: PropTypes.number,
+  setActiveIndex: PropTypes.func,
   setStep: PropTypes.func,
   window: PropTypes.shape({
     artist: PropTypes.string,

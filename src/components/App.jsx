@@ -13,6 +13,7 @@ import Hub from './Hub';
 import Login from './Login';
 import Game from './Game';
 import TestingZone from './TestingZone';
+import Gallery from './Gallery';
 import { LoadingBar, LoadingPage } from './loaders';
 
 function PrivateRoute({ component: Component, authenticated, ...rest }) {
@@ -72,6 +73,7 @@ function App() {
             <PrivateRoute path="/hub" authenticated={isAuthenticated} component={Hub} />
             <PublicRoute path="/login" authenticated={isAuthenticated} component={Login} />
             <PrivateRoute path="/testing-zone" authenticated={isAuthenticated} component={TestingZone} />
+            <Route path="/gallery" component={Gallery} />
 
             <Route path="*" component={Game} />
           </Switch>

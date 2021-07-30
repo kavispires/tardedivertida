@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 // Design Resources
 import { Spin } from 'antd';
+// Hooks
+import { useDimensions } from '../../../hooks';
 // Components
 import { ImageCard } from '../../cards';
 import { Avatar } from '../../avatars';
@@ -10,6 +12,7 @@ import { AVATARS } from '../../../utils/constants';
 
 export function Table({ table, players }) {
   const baseClass = 'd-table';
+  const [width] = useDimensions();
 
   if (!table || !table?.length) {
     return (
@@ -28,11 +31,21 @@ export function Table({ table, players }) {
           <div key={playerEntryKey} className="d-table__player-entry">
             <div className="d-table__cards">
               {cards.map((cardId) => {
+                if (!cardId) {
+                  return (
+                    <div
+                      key={`${playerEntryKey}-placeholder`}
+                      className="d-table__card d-table__card-placeholder"
+                      style={{ width: 1 }}
+                    />
+                  );
+                }
+
                 return (
                   <ImageCard
                     key={`${playerEntryKey}${cardId}`}
                     imageId={cardId}
-                    cardWidth={120}
+                    cardWidth={Math.max(width / 12, 120)}
                     className="d-table__card"
                   />
                 );

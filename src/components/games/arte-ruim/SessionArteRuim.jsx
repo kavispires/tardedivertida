@@ -6,10 +6,10 @@ import { Session } from '../../shared';
 import Lobby from '../../lobby/Lobby';
 import { Rules } from '../../rules';
 import { PageError } from '../../errors/PageError';
-import DrawPhase from './DrawPhase';
-import EvaluationPhase from './EvaluationPhase';
-import GalleryPhase from './GalleryPhase';
-import GameOverPhase from './GameOverPhase';
+import PhaseDraw from './PhaseDraw';
+import PhaseEvaluation from './PhaseEvaluation';
+import PhaseGallery from './PhaseGallery';
+import PhaseGameOver from './PhaseGameOver';
 
 function SessionArteRuim({ gameId }) {
   function getActiveComponent(phase) {
@@ -19,13 +19,13 @@ function SessionArteRuim({ gameId }) {
       case PHASES.ARTE_RUIM.RULES:
         return Rules;
       case PHASES.ARTE_RUIM.DRAW:
-        return DrawPhase;
+        return PhaseDraw;
       case PHASES.ARTE_RUIM.EVALUATION:
-        return EvaluationPhase;
+        return PhaseEvaluation;
       case PHASES.ARTE_RUIM.GALLERY:
-        return GalleryPhase;
+        return PhaseGallery;
       case PHASES.ARTE_RUIM.GAME_OVER:
-        return GameOverPhase;
+        return PhaseGameOver;
       default:
         return PageError;
     }

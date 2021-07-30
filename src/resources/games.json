@@ -2,184 +2,299 @@
   "A": {
     "gameCode": "A",
     "gameName": "arte-ruim",
-    "title": "Arte Ruim Pra Dedéu",
-    "summary": "Tende idenficar as obras-primas criadas por seus oponentes!",
-    "rules": [
-      "Arte Ruim Pra Dedéu é um jogo competitivo que os jogadores tentam adivinhar o maior número de desenhos possíveis",
-      "Em cada rodada, jogadores recebem uma carta com uma expressão e tem 10 segundos para desenhá-la.",
-      "Após todos jogadores terminarem suas obras de arte, embaralha-se as cartas e os desenhos e todos tem que identificar qual desenho corresconde a cada expressão.",
-      "Respostas corretas ganham 2 pontos, mas cada voto que seu desenho recebe também te dá 1 ponto.",
-      "Quanto mais próximo do final do jogo, mais difíceis as expressões ficam! Fique esperto!",
-      "O primeiro jogador a cruzar a marca de 50 pontos sinaliza o fim do jogo e, então, o jogador com mais pontos é o vencedor!"
-    ],
+    "title": {
+      "pt": "Arte Ruim Pra Dedéu",
+      "en": "Questionable Art"
+    },
+    "summary": {
+      "pt": "Tende idenficar as obras-primas criadas por seus oponentes!",
+      "en": "Try to guess the masterpieces created by your opponents"
+    },
+    "rules": {
+      "pt": [
+        "Arte Ruim Pra Dedéu é um jogo competitivo que os jogadores tentam adivinhar o maior número de desenhos possíveis",
+        "Em cada rodada, jogadores recebem uma carta com uma expressão e tem 10 segundos para desenhá-la.",
+        "Após todos jogadores terminarem suas obras de arte, embaralha-se as cartas e os desenhos e todos tem que identificar qual desenho corresconde a cada expressão.",
+        "Respostas corretas ganham 2 pontos e cada voto que seu desenho recebe também te dá 1 ponto.",
+        "Quanto mais próximo do final do jogo, mais difíceis as expressões ficam! Fique esperto!",
+        "Após 10 rodadas, o jogador com mais pontos é o vencedor!"
+      ],
+      "en": [
+        "Questionable Art is a competitive game where players try to match artworks to their titles",
+        "Every round, players get a card with an expression and have 10 seconds to draw it.",
+        "After every player has completed their masterpiece, all expressions and artworks are shuffled and everybody has to match the correct piece to its title.",
+        "Correct matches grants 2 points and every correct guess your drawing gets also gives you 1 point.",
+        "As you advance the game, harder expressions will come up! Try to keep up!",
+        "After 10 rounds, the game is over and the player with the most points wins!"
+      ]
+    },
     "recommended": "4-6",
     "min": 3,
     "max": 8,
     "tags": ["competitive", "real-time", "drawing", "guessing", "timed"],
-    "available": true
+    "available": {
+      "pt": true,
+      "en": true
+    }
   },
   "B": {
     "gameCode": "B",
     "gameName": "bomba-relogio",
-    "title": "Bomba Relógio",
-    "summary": "Uns são agentes, outros terroristas. Você será capaz de parar a bomba antes que ela detone?",
-    "rules": [
-      "Jogadores são agentes tentando desarmar uma bomba e pra isso têm que cortar todos os fios coloridos. Mas entre os agentes, pode haver um ou mais terroristas que querem que a bomba exploda.",
-      "Cada rodada os jogadores recebem cartas que podem conter um fio colorido a ser cortado ou um fio cinza que não serve pra nada. Eles examinam suas cartas e colocam-as a sua frente embaralhadas. Você sabe todas as cartas que você tem, mas não exatamente qual é qual.",
-      "Jogadores, então, declaram o que vieram. \"Eu tenho um fio colorido\", ou \"Eu não tenho nada\", ou até mesmo \"Eu tenho a bomba!\" (sim, existe uma bomba). Essa é a hora de tentar descobrir quem pode estar mentindo. O número de fios coloridos é igual ao número de jogadores, será que a quantidade declarada pelos jogadores corresponde mesmo a esse número?",
-      "Agora, uma pessoa se torna o investigador e tem que escolher outro jogador e virar uma de duas cartas. Se for um fio comum, nada acontece. Se for um fio colorído, maravilha, estamos mais próximos de desarmar a bomba. Se for a bomba, CABUM!!! - Os terroristas ganham... Após virar uma cara, o jogador selecionado se torna o investigador e escolhe outro jogador e repete o mesmo processo.",
-      "Mas como ganha ou perde? Se os agentes encontram todos os fios coloridos, eles ganham! Os terroristas ganham se a qualquer momento a bomba é revelada, ou se, ao final de 4 rodadas, os não conseguiram encontrar todos os fios coloridos",
-      "Uma rodada termina qdo as cartas reveladas são iguais ao número de jogadores, a partir dai, todas as cartas são embaralhadas novamente e os jogadores recebem uma nova mão, agora com uma carta a menos que a rodada anterior e por ai vai."
-    ],
+    "title": {
+      "pt": "Bomba Relógio",
+      "en": "Time Bomb"
+    },
+    "summary": {
+      "pt": "Uns são agentes, outros terroristas. Você será capaz de parar a bomba antes que ela detone?",
+      "en": "Some are agents, some are terrorists. Are you capable to stop the bomb before it goes kaboom?"
+    },
+    "rules": {
+      "pt": [
+        "Jogadores são agentes tentando desarmar uma bomba e pra isso têm que cortar todos os fios coloridos. Mas entre os agentes, pode haver um ou mais terroristas que querem que a bomba exploda.",
+        "Cada rodada os jogadores recebem cartas que podem conter um fio colorido a ser cortado ou um fio cinza que não serve pra nada. Eles examinam suas cartas e colocam-as a sua frente embaralhadas. Você sabe todas as cartas que você tem, mas não exatamente qual é qual.",
+        "Jogadores, então, declaram o que vieram. \"Eu tenho um fio colorido\", ou \"Eu não tenho nada\", ou até mesmo \"Eu tenho a bomba!\" (sim, existe uma bomba). Essa é a hora de tentar descobrir quem pode estar mentindo. O número de fios coloridos é igual ao número de jogadores, será que a quantidade declarada pelos jogadores corresponde mesmo a esse número?",
+        "Agora, uma pessoa se torna o investigador e tem que escolher outro jogador e virar uma de duas cartas. Se for um fio comum, nada acontece. Se for um fio colorído, maravilha, estamos mais próximos de desarmar a bomba. Se for a bomba, CABUM!!! - Os terroristas ganham... Após virar uma cara, o jogador selecionado se torna o investigador e escolhe outro jogador e repete o mesmo processo.",
+        "Mas como ganha ou perde? Se os agentes encontram todos os fios coloridos, eles ganham! Os terroristas ganham se a qualquer momento a bomba é revelada, ou se, ao final de 4 rodadas, os não conseguiram encontrar todos os fios coloridos",
+        "Uma rodada termina qdo as cartas reveladas são iguais ao número de jogadores, a partir dai, todas as cartas são embaralhadas novamente e os jogadores recebem uma nova mão, agora com uma carta a menos que a rodada anterior e por ai vai."
+      ],
+      "en": ["TBD"]
+    },
     "recommended": "6",
     "min": 5,
     "max": 8,
     "tags": ["cooperative", "turn-based", "traitor", "discussion"],
-    "available": false
+    "available": {
+      "pt": false,
+      "en": false
+    }
   },
   "C": {
     "gameCode": "C",
     "gameName": "contadores-historias",
-    "title": "Contadores de Histórias",
-    "summary": "Uma imagem vale mesmo mais que mil palavras? Tente descobrir de qual imagem o contador de histórias está falando",
-    "rules": [],
+    "title": {
+      "pt": "Contadores de Histórias",
+      "en": "Storytellers"
+    },
+    "summary": {
+      "pt": "Uma imagem vale mesmo mais que mil palavras? Tente descobrir de qual imagem o contador de histórias está falando",
+      "en": "Is an image really worth a thousand words? Try to find out what image is the storyteller refering to"
+    },
+    "rules": {
+      "pt": [],
+      "en": []
+    },
     "recommended": "4-6",
     "min": 3,
     "max": 8,
     "tags": ["competitive", "turn-based", "guessing", "images"],
-    "available": false
+    "available": {
+      "pt": false,
+      "en": false
+    }
   },
   "D": {
     "gameCode": "D",
     "gameName": "clube-detetives",
-    "title": "Clube dos Detetives",
-    "summary": "Existe um impostor entre nós, mas será que ele tem boa lábia para se safar?",
-    "rules": [
-      "O Clube dos Detetives abriu uma nova vaga! E para decidir quem será o novo membro, eles estão fazendo uma dinâmica de grupo para analisar seu poder de análise e persuasão",
-      "Em cada rodada, um jogador é o Líder, um será um secreto Impostor e os outros, Detetives. Todos jogadores terão 6 cartas com imagens aleatórias.",
-      "O Líder escreverá uma dica secreta que corresponda a duas cartas em sua mão. O Líder ganha mais pontos se escrever algo fácil que ajude o Impostor se safar",
-      "Todos os jogadores receberão a dica secreta, menos um... esse jogador será o Impostor da rodada",
-      "Começando pelo líder, os jogadores selecionarão uma carta que eles acham que melhor representa a dica secreta incluindo o Impostor. Mas ele não sabe qual é a dica secreta! Então, baseando-se nas cartas colocadas pelos outros jogadores, ele deve tentar fingir que ele sabe o que é!",
-      "Todos os jogadores selecional uma outra carta seguindo o mesmo critério",
-      "Após todos os jogadorem terem colocado duas cartas, revela-se a palavra secreta e novamente um a um, os jogadores devem explicar porque escolheram as cartas que escolheram",
-      "Quando todos tiverem apresentado suas defesas, todos, menos o Líder, votam em quem eles acham ser o Impostor",
-      "Se mais de uma pessoa escolher o correto Impostor, todos os Detetives ganham 3 pontos. Se o Impostor receber um ou nenhum voto, ele ganha 5 pontos e o líder ganha 4 pontos",
-      "O jogo procede com um novo Líder até todos os jogadores tenham sido o líder uma ou duas vezes (menos de 6 jogadores)"
-    ],
+    "title": {
+      "pt": "Detetives Imaginativos",
+      "en": "Imaginative Detectives"
+    },
+    "summary": {
+      "pt": "Existe um impostor entre nós, mas será que ele tem boa lábia para se safar?",
+      "en": "There is an impostor among us, but will they be able to fool us all?"
+    },
+    "rules": {
+      "pt": [
+        "O Clube dos Detetives abriu uma nova vaga! E para decidir quem será o novo membro, eles estão fazendo uma dinâmica de grupo para analisar seu poder de análise e persuasão",
+        "Em cada rodada, um jogador é o Líder, um será um secreto Impostor e os outros, Detetives. Todos jogadores terão 6 cartas com imagens aleatórias.",
+        "O Líder escreverá uma dica secreta que corresponda a duas cartas em sua mão. O Líder ganha mais pontos se escrever algo fácil que ajude o Impostor se safar",
+        "Todos os jogadores receberão a dica secreta, menos um... esse jogador será o Impostor da rodada",
+        "Começando pelo líder, os jogadores selecionarão uma carta que eles acham que melhor representa a dica secreta incluindo o Impostor. Mas ele não sabe qual é a dica secreta! Então, baseando-se nas cartas colocadas pelos outros jogadores, ele deve tentar fingir que ele sabe o que é!",
+        "Todos os jogadores selecional uma outra carta seguindo o mesmo critério",
+        "Após todos os jogadorem terem colocado duas cartas, revela-se a palavra secreta e novamente um a um, os jogadores devem explicar porque escolheram as cartas que escolheram",
+        "Quando todos tiverem apresentado suas defesas, todos, menos o Líder, votam em quem eles acham ser o Impostor",
+        "Se mais de uma pessoa escolher o correto Impostor, todos os Detetives ganham 3 pontos. Se o Impostor receber um ou nenhum voto, ele ganha 5 pontos e o líder ganha 4 pontos",
+        "O jogo procede com um novo Líder até todos os jogadores tenham sido o líder uma ou duas vezes (menos de 6 jogadores)"
+      ],
+      "en": ["TBD"]
+    },
     "recommended": "5+",
     "min": 3,
     "max": 8,
     "tags": ["competitive", "turn-based", "traitor", "discussion", "images"],
-    "available": true
+    "available": {
+      "pt": true,
+      "en": false
+    }
   },
   "E": {
     "gameCode": "E",
     "gameName": "espiao-entre-nos",
-    "title": "Espião Entre Nós",
-    "summary": "Todos nós, agentes de bem, estamos num mesmo local, mas um de nós é um espião! Será que conseguimos descobrir quem é o impostor antes dele descobrir que local estamos?",
-    "rules": [
-      "Espião Entre Nós é um jogo competitivo jogado em uma ou mais rodadas. Cada rodada dura no máximo 10 minutos e jogo pode ser jogado em apenas uma rodada ou várias",
-      "Somos todos agentes do departamento de segurança e inteligência do governo, vamos nos encontrar em um local secreto combinado e estaremos infiltrados como pessoas comuns",
-      "Mas existe um espião entre nós! O espião não sabe onde estaremos e, claro, nós não sabemos quem é o espião",
-      "Temos apenas 10 minutos para descobrir quem é o espião e, para isso, nos alternaremos fazendo perguntas uns aos outros. Mas não seja óbvio, se o espião descobre o local, a missão falha e todos perdemos",
-      "Se você acabou de responder uma pergunta é a sua vez de perguntar, mas você não pode perguntar quem acabou de ter fazer uma pergunta. Você não pode repetir perguntas numa mesma rodada!",
-      "A qualquer momento, mas uma única vez por rodada, você pode acusar alguém, daí todos têm que votar e se a votação for unânime, revelam-se os papéis e prendemos o espião! Ou será que não? Tenha certeza antes de acusar alguém!",
-      "O espião também pode parar o jogo e tentar adivinhar onde é o local! Se em 10 minutos, nada for descoberto, temos uma última change, mas explicamos isso quando a hora chegar"
-    ],
+    "title": {
+      "pt": "Espião Entre Nós",
+      "en": "The Spy Among Us"
+    },
+    "summary": {
+      "pt": "Todos nós, agentes de bem, estamos num mesmo local, mas um de nós é um espião! Será que conseguimos descobrir quem é o impostor antes dele descobrir que local estamos?",
+      "en": "We, all good agents, are meeting in the same place, but there's a spy among us. Can we find the impostor before they find out where we're supposed to meet?"
+    },
+    "rules": {
+      "pt": [
+        "Espião Entre Nós é um jogo competitivo jogado em uma ou mais rodadas. Cada rodada dura no máximo 10 minutos e jogo pode ser jogado em apenas uma rodada ou várias",
+        "Somos todos agentes do departamento de segurança e inteligência do governo, vamos nos encontrar em um local secreto combinado e estaremos infiltrados como pessoas comuns",
+        "Mas existe um espião entre nós! O espião não sabe onde estaremos e, claro, nós não sabemos quem é o espião",
+        "Temos apenas 10 minutos para descobrir quem é o espião e, para isso, nos alternaremos fazendo perguntas uns aos outros. Mas não seja óbvio, se o espião descobre o local, a missão falha e todos perdemos",
+        "Se você acabou de responder uma pergunta é a sua vez de perguntar, mas você não pode perguntar quem acabou de ter fazer uma pergunta. Você não pode repetir perguntas numa mesma rodada!",
+        "A qualquer momento, mas uma única vez por rodada, você pode acusar alguém, daí todos têm que votar e se a votação for unânime, revelam-se os papéis e prendemos o espião! Ou será que não? Tenha certeza antes de acusar alguém!",
+        "O espião também pode parar o jogo e tentar adivinhar onde é o local! Se em 10 minutos, nada for descoberto, temos uma última change, mas explicamos isso quando a hora chegar"
+      ],
+      "en": ["TBD"]
+    },
     "recommended": "6",
     "min": 4,
     "max": 8,
     "tags": ["competitive", "real-time", "traitor", "discussion"],
-    "available": true
+    "available": {
+      "pt": true,
+      "en": false
+    }
   },
   "M": {
     "gameCode": "M",
     "gameName": "mente-coletiva",
-    "title": "Mente Coletiva",
-    "summary": "Você é capaz de pensar como o grupo para não correr o risco de ser expulso?",
-    "rules": [],
+    "title": {
+      "pt": "Mente Coletiva",
+      "en": "Herd Mentality"
+    },
+    "summary": {
+      "pt": "Você é capaz de pensar como o grupo para não correr o risco de ser expulso?",
+      "en": "Do you think like the group or are you the sheep about to be kicked out?"
+    },
+    "rules": {
+      "pt": ["TBD"],
+      "en": ["TBD"]
+    },
     "recommended": "4+",
     "min": 3,
     "max": 12,
     "tags": ["competitive", "real-time", "writing"],
-    "available": false
+    "available": {
+      "pt": false,
+      "en": false
+    }
   },
   "O": {
     "gameCode": "O",
     "gameName": "onda-telepatica",
-    "title": "Onda Telepática",
-    "summary": "Em times jogadores tentam comunicar através de ondas telepáticas",
-    "rules": [
-      "Em Onda Telepática, dois times competem para ver quem consegue se comunicar melhor telepaticamente! E como medimos isso? Através de um medidor de ondas telepáticas!",
-      "Em cada rodada, um jogador é o medium e escolhe uma carta com dois conceitos opostos que será usada nessa rodada. Por exemplo: \"Quente vs Frio\", \"Seco vs Molhado\".",
-      "O medium secretamente tem acesso ao medidor de ondas! Nele, temos um ponteiro vermelho que indica o resultado! O objetivo da rodada é fazer com que o seu time coloque o ponteiro exatamente naquela posição.",
-      "Para isso, o medium tem que escrever uma dica que ajude seu time. Se a carta é Quente vs Frio e o ponteiro está no 4, será que \"Café\" é uma boa dica? Será que alguns vão achar que 4 não é quente o suficiente para um café? E se eles peferirem café gelado?",
-      "Baseado na dica, o time tenta desvendar onde o ponteiro do resultado deve estar. Será que suas ondas telepáticas estão em sintonia? Será que o medium gosta de café pelando?",
-      "O time oposto que prestou atenção na discussão, agora tem a chance de chutar se eles acham que a solução está mais pra esquerda ou mais pra direita do que outro time escolheu.",
-      "A resposta então é revelada e o time principal ganha pontos de acordo com quão próximo o ponteiro está do resultado no medidor. Se o time rival chutou a direção correta, eles ganham 1 ponto!",
-      "O jogo continua até um time conseguir 10 pontos e ser coroado o vencedor!"
-    ],
+    "title": {
+      "pt": "Onda Telepática",
+      "en": "Telepathic Waves"
+    },
+    "summary": {
+      "pt": "Em times, jogadores tentam comunicar através de ondas telepáticas",
+      "en": "In teams, players try to communicate using their telepathic waves"
+    },
+    "rules": {
+      "pt": [
+        "Em Onda Telepática, dois times competem para ver quem consegue se comunicar melhor telepaticamente! E como medimos isso? Através de um medidor de ondas telepáticas!",
+        "Em cada rodada, um jogador é o medium e escolhe uma carta com dois conceitos opostos que será usada nessa rodada. Por exemplo: \"Quente vs Frio\", \"Seco vs Molhado\".",
+        "O medium secretamente tem acesso ao medidor de ondas! Nele, temos um ponteiro vermelho que indica o resultado! O objetivo da rodada é fazer com que o seu time coloque o ponteiro exatamente naquela posição.",
+        "Para isso, o medium tem que escrever uma dica que ajude seu time. Se a carta é Quente vs Frio e o ponteiro está no 4, será que \"Café\" é uma boa dica? Será que alguns vão achar que 4 não é quente o suficiente para um café? E se eles peferirem café gelado?",
+        "Baseado na dica, o time tenta desvendar onde o ponteiro do resultado deve estar. Será que suas ondas telepáticas estão em sintonia? Será que o medium gosta de café pelando?",
+        "O time oposto que prestou atenção na discussão, agora tem a chance de chutar se eles acham que a solução está mais pra esquerda ou mais pra direita do que outro time escolheu.",
+        "A resposta então é revelada e o time principal ganha pontos de acordo com quão próximo o ponteiro está do resultado no medidor. Se o time rival chutou a direção correta, eles ganham 1 ponto!",
+        "O jogo continua até um time conseguir 10 pontos e ser coroado o vencedor!"
+      ],
+      "en": ["TBD"]
+    },
     "recommended": "6+",
     "min": 4,
     "max": 12,
     "tags": ["competitive", "real-time", "guessing"],
-    "available": true
+    "available": {
+      "pt": true,
+      "en": false
+    }
   },
   "P": {
     "gameCode": "P",
     "gameName": "polemica-vez",
-    "title": "Polêmica da Vez",
-    "summary": "Um tópico... Polêmico. Você sabe a sua opinião, mas consegue descobrir a dos seus oponentes?",
-    "rules": [],
+    "title": {
+      "pt": "Polêmica da Vez",
+      "en": "Polemic"
+    },
+    "summary": {
+      "pt": "Um tópico... Polêmico. Você sabe a sua opinião, mas consegue descobrir a dos seus oponentes?",
+      "en": "One... polemic... subject... You know your opinion, but can do guess the oponents' ones?"
+    },
+    "rules": {
+      "pt": ["TBD"],
+      "en": ["TBD"]
+    },
     "recommended": "6",
     "min": 4,
     "max": 8,
     "tags": ["competitive", "guessing"],
-    "available": false
+    "available": {
+      "pt": false,
+      "en": false
+    }
   },
-  "S": {
-    "gameCode": "S",
-    "gameName": "suspeitos",
-    "title": "Suspeitos Fora do Comum",
-    "summary": "Um crime. Uma testemunha. Desde quando julgando por aparência não se desvenda um crime?",
-    "rules": [],
+  "T": {
+    "gameCode": "T",
+    "gameName": "testemunha-ocular",
+    "title": {
+      "pt": "Testemunha Ocular",
+      "en": "Eye Witness"
+    },
+    "summary": {
+      "pt": "Um crime. Uma testemunha. Desde quando julgando por aparência não se desvenda um crime?",
+      "en": "One crime. One witness... that judge people by their appearances. What could go wrong?"
+    },
+    "rules": {
+      "pt": ["TBD"],
+      "en": ["TBD"]
+    },
     "recommended": "2+",
     "min": 2,
     "max": 8,
     "tags": ["competitive", "turn-based", "guessing"],
-    "available": false
-  },
-  "T": {
-    "gameCode": "T",
-    "gameName": "toro-palpite",
-    "title": "Toró de Palpite",
-    "summary": "Só existe uma resposta e o grupo tem que fazer as sugestões corretas para desvendá-la",
-    "rules": [],
-    "recommended": "?",
-    "min": 4,
-    "max": 8,
-    "tags": ["cooperative", "real-time", "writing"],
-    "available": false
+    "available": {
+      "pt": false,
+      "en": false
+    }
   },
   "U": {
     "gameCode": "U",
     "gameName": "ue-so-isso",
-    "title": "Ué, Só Isso?",
-    "summary": "Tente adivinhar a palavra secreta com as dicas de seus amigos, mas dicas repetidas são eliminadas... ferrou! Ué, só isso?",
-    "rules": [
-      "Ué, Só Isso? é um jogo cooperativo em que cada rodada um jogador tenta adivinhar a palavra secreta usando as dicas que os outros jogadores sugeriram, mas existe um porém: dicas repetidas ou similares são desclassificadas! Ué, só isso?",
-      "Cada rodada todos os jogadores, menos o Adivinhador, votam em qual palavra secreta usar.",
-      "Então, em segredo e sem conversar, cada um deles escreve uma dica. Importante: Esta dica DEVE ser uma palavra única, nem conter parte ou variações da palavra secreta",
-      "Quando todas as dicas forem enviadas, todas as iguais são automaticamente eliminadas. Porém, os jogadores devem decidir entre eles quais dicas adicionais também devem ser removidas",
-      "São consideradas dicas iguais palavras derivadas, conjugações: piloto = pilotar = pilotando. Variações como pluralidade, gênero e erros ortográficos: príncipe = princesa = principes = pryncipe. Então, tente não ser muito óbvio ao escrever sua dica.",
-      "Após as dicas terem sido selecionadas, o Adivinhador tem uma única chance de adivinhar (ou passar, se for um covarde).",
-      "Se a palavra estiver correta, ganha-se 1 ponto, se estiver errada perde-se 1 ponto. Mas se tiver passado a vez, nada acontece. Ganha-se o jogo se os jogadores acertarem 70% ou mais das Palavras Secretas!"
-    ],
+    "title": {
+      "pt": "Ué, Só Isso?",
+      "en": "That's It?"
+    },
+    "summary": {
+      "pt": "Tente adivinhar a palavra secreta com as dicas de seus amigos, mas dicas repetidas são eliminadas... ferrou! Ué, só isso?",
+      "en": "Try to guess the secret word from clues given by the players, but there's a catch: similar clues are thrown out and all you have left are... that's it?"
+    },
+    "rules": {
+      "pt": [
+        "Ué, Só Isso? é um jogo cooperativo em que cada rodada um jogador tenta adivinhar a palavra secreta usando as dicas que os outros jogadores sugeriram, mas existe um porém: dicas repetidas ou similares são desclassificadas! Ué, só isso?",
+        "Cada rodada todos os jogadores, menos o Adivinhador, votam em qual palavra secreta usar.",
+        "Então, em segredo e sem conversar, cada um deles escreve uma dica. Importante: Esta dica DEVE ser uma palavra única, nem conter parte ou variações da palavra secreta",
+        "Quando todas as dicas forem enviadas, todas as iguais são automaticamente eliminadas. Porém, os jogadores devem decidir entre eles quais dicas adicionais também devem ser removidas",
+        "São consideradas dicas iguais palavras derivadas, conjugações: piloto = pilotar = pilotando. Variações como pluralidade, gênero e erros ortográficos: príncipe = princesa = principes = pryncipe. Então, tente não ser muito óbvio ao escrever sua dica.",
+        "Após as dicas terem sido selecionadas, o Adivinhador tem uma única chance de adivinhar (ou passar, se for um covarde).",
+        "Se a palavra estiver correta, ganha-se 1 ponto, se estiver errada perde-se 1 ponto. Mas se tiver passado a vez, nada acontece. Ganha-se o jogo se os jogadores acertarem 70% ou mais das Palavras Secretas!"
+      ],
+      "en": ["TBD"]
+    },
     "recommended": "6-8",
     "min": 4,
     "max": 8,
     "tags": ["cooperative", "guessing", "writing"],
     "cooperative": true,
-    "available": true
+    "available": {
+      "pt": true,
+      "en": false
+    }
   }
 }

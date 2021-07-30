@@ -37,6 +37,10 @@ export const createGame = async (data: CreateGamePayload, context: FirebaseConte
     return firebaseUtils.throwException(`provided gameCode is invalid ${gameCode}`, actionText);
   }
 
+  if (process.env.FUNCTIONS_EMULATOR) {
+    await feedEmulatorDB();
+  }
+
   // Get list of used ids
   const globalRef = firebaseUtils.getGlobalRef();
   const usedGameIdsDocs = await globalRef.doc('usedGameIds').get();
@@ -66,7 +70,7 @@ export const createGame = async (data: CreateGamePayload, context: FirebaseConte
     const getInitialState = delegatorUtils.getInitialStateForCollection(collectionName);
     const uid = context?.auth?.uid ?? '';
 
-    const { meta, players, state, store } = getInitialState(gameId, uid, data.language ?? 'BR');
+    const { meta, players, state, store } = getInitialState(gameId, uid, data.language ?? 'pt');
 
     await sessionRef.doc('meta').set(meta);
     await sessionRef.doc('players').set(players);
@@ -80,7 +84,7 @@ export const createGame = async (data: CreateGamePayload, context: FirebaseConte
 
   try {
     // Update global ids. This is in a different block just for dev purposes
-    await globalRef.doc('usedGameIds').update({ gameId: true });
+    await globalRef.doc('usedGameIds').update({ [gameId]: true });
   } catch (e) {
     // Do nothing
   }
@@ -140,10 +144,7 @@ export const addPlayer = async (data: AddPlayerPayload) => {
   const cleanPlayerName = playerName.replace(/[\][(){},.:;!?<>%]/g, '');
 
   // Generate playerId by removing accents and lower casing the name
-  const playerId = `_${cleanPlayerName
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '') // Replace characters with accents
-    .toLowerCase()}`;
+  const playerId = utils.generatePLayerId(cleanPlayerName);
 
   if (players?.[playerId]) {
     return players[playerId];
@@ -360,4 +361,19 @@ export const playAgain = async (data: BasicGamePayload, context: FirebaseContext
   }
 
   return false;
+};
+
+/**
+ * Feeds basic data to the emulator DB
+ */
+const feedEmulatorDB = async () => {
+  const sample = { 'a-a-a': true };
+
+  // GLOBAL
+  await firebaseUtils.getGlobalRef().doc('usedGameIds').set(sample);
+
+  // ARTE-RUIM
+
+  await firebaseUtils.getPublicRef().doc('arteRuimDrawings').set(sample);
+  await firebaseUtils.getGlobalRef().doc('usedArteRuimCards').set(sample);
 };

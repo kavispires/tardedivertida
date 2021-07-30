@@ -3,7 +3,7 @@ import React from 'react';
 // import { Image, Layout } from 'antd';
 import gameList from '../resources/games.json';
 import { Avatar, AvatarEntry } from './avatars';
-import { GameOver, Instruction, PhaseContainer, RoundAnnouncement, Title } from './shared';
+import { GameOver, Instruction, PhaseAnnouncement, PhaseContainer, RoundAnnouncement, Title } from './shared';
 // Resources
 import { CheckCircleFilled, CheckCircleOutlined } from '@ant-design/icons';
 import { Button, Input } from 'antd';
@@ -43,29 +43,19 @@ function TestingZone() {
     phase: 'WORD_SELECTION',
     guesser: 'Kavis',
     playerOrder: ['Flaviane', 'Stephanie', 'Kavis', 'Flaviane', 'Stephanie', 'Kavis'],
-    round: 3,
-    words: [1, 2, 3, 4, 5],
-    // phase: 'GAME_OVER',
-    // winner: {
-    //   name: 'Flaviane',
-    //   avatarId: '15',
-    //   score: 35,
-    // },
+    round: {
+      current: 1,
+      total: 4,
+    },
   };
-
-  console.log('==========');
-  console.log({ info });
-  console.table(players);
-  console.log({ state });
-  console.log('==========');
-
-  const guesser = players[state.guesser];
-  console.log(guesser);
+  const onRun = () => console.log('RUN');
 
   // return <GameOver info={info} state={state} players={players} />;
   return (
     <PhaseContainer info={info} phase={state.phase} allowedPhase="WORD_SELECTION" className="" fullScreen>
-      <div className="u-word-selection"></div>
+      <PhaseAnnouncement title="Drawing!" round={state.round.current} onClose={onRun}>
+        <Instruction>Do this and that and the other thing</Instruction>
+      </PhaseAnnouncement>
     </PhaseContainer>
   );
 }
