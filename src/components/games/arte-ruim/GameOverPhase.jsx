@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 // Components
 import { GameOver } from '../../shared';
-import CanvasSVG from './CanvasSVG';
+import { CanvasSVG } from '../../canvas';
 import DrawingGrade from './DrawingGrade';
 
 function GameOverPhase({ state, players, info }) {

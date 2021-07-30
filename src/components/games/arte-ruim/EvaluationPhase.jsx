@@ -21,7 +21,7 @@ import {
 } from '../../shared';
 import EvaluationAllDrawings from './EvaluationAllDrawings';
 import EvaluationAllCards from './EvaluationAllCards';
-import CanvasResizer from './CanvasResizer';
+import { CanvasReSizer } from '../../canvas';
 import { shuffle } from '../../../utils';
 
 function prepareVotes(votes) {
@@ -117,7 +117,7 @@ function EvaluationPhase({ players, state, info }) {
       <StepSwitcher step={step} conditions={[!isUserReady]}>
         {/*Step 0 */}
         <Step className="a-evaluation-step">
-          <CanvasResizer numPlayers={Object.keys(players).length} />
+          <CanvasReSizer numPlayers={Object.keys(players).length} />
           <Title>Adivinhação</Title>
           <Instruction>
             Encontre os pares de desenho e carta clicando em uma carta ou desenho e em seguida clicando em seu

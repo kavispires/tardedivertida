@@ -2,7 +2,7 @@ import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 // Components
-import CanvasSVG from './CanvasSVG';
+import { CanvasSVG } from '../../canvas';
 import Ribbon from './Ribbon';
 
 function EvaluationAllDrawings({ drawings, activeItem, onActivateItem, votes, canvasSize, players }) {

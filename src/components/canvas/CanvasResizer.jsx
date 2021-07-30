@@ -1,11 +1,13 @@
 import PropTypes from 'prop-types';
-import React, { memo, useEffect } from 'react';
+import React, { useEffect } from 'react';
 // Design Resources
 import { Slider } from 'antd';
 // State & Hooks
-import { useDimensions, useGlobalState } from '../../../hooks';
+import { useDimensions, useGlobalState } from '../../hooks';
+// Components
+import { Translate } from '../shared';
 
-const CanvasResizer = ({ numPlayers = 5 }) => {
+export const CanvasReSizer = ({ numPlayers = 5 }) => {
   const [canvasSize, setCanvasSize] = useGlobalState('canvasSize');
   const [cachedCanvasSize] = useGlobalState('cachedCanvasSize');
   const [width] = useDimensions();
@@ -17,10 +19,12 @@ const CanvasResizer = ({ numPlayers = 5 }) => {
   }, [width]); // eslint-disable-line
 
   return (
-    <div className="a-canvas-resizer">
-      <div className="a-canvas-resizer__label">Tamanho das Images</div>
+    <div className="canvas-resizer">
+      <div className="canvas-resizer__label">
+        <Translate pt="Tamanho das Images" en="Image Size" />
+      </div>
       <Slider
-        className="a-canvas-resizer__slider"
+        className="canvas-resizer__slider"
         defaultValue={canvasSize}
         min={100}
         max={500}
@@ -31,8 +35,6 @@ const CanvasResizer = ({ numPlayers = 5 }) => {
   );
 };
 
-CanvasResizer.propTypes = {
+CanvasReSizer.propTypes = {
   numPlayers: PropTypes.number,
 };
-
-export default memo(CanvasResizer);
