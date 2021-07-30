@@ -24,9 +24,9 @@ import {
 } from '../../shared';
 import EvaluationAllDrawings from './EvaluationAllDrawings';
 import EvaluationAllCards from './EvaluationAllCards';
-import { CanvasReSizer } from '../../canvas';
 import { shuffle } from '../../../utils';
 import { CollapsibleRule } from '../../rules';
+import { CanvasResizer } from '../../canvas';
 
 function prepareVotes(votes) {
   return Object.entries(votes).reduce((acc, [drawingEntryId, cardEntryId]) => {
@@ -164,7 +164,7 @@ function EvaluationPhase({ players, state, info }) {
 
         {/* Step 1 */}
         <Step className="a-evaluation-step">
-          <CanvasReSizer numPlayers={Object.keys(players).length} />
+          <CanvasResizer numPlayers={Object.keys(players).length} />
           <Title>{translate('Adivinhação', 'Match the Pairs', language)}</Title>
           <CollapsibleRule>
             <EvaluationRules />
