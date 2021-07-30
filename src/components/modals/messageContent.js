@@ -1,5 +1,6 @@
 import React from 'react';
 import { message } from 'antd';
+import { Translate } from '../shared';
 
 /**
  * Pops up a modal with a confirmation button but also closing timeout
@@ -18,7 +19,9 @@ export const messageContent = (title, description, id, duration = 30) => {
         <h1>{title}</h1>
         <p>{description}</p>
         <p>
-          <small>Click para fechar</small>
+          <small>
+            <Translate pt="Clique para fechar" en="Click to close" />
+          </small>
         </p>
       </div>
     ),
