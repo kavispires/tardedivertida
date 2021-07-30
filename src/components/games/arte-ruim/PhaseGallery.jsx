@@ -19,6 +19,7 @@ import {
   PhaseAnnouncement,
   translate,
   Translate,
+  RoundsLeftInstruction,
 } from '../../shared';
 import GalleryWindow from './GalleryWindow';
 
@@ -105,22 +106,7 @@ function PhaseGallery({ players, state, info }) {
           <Title>{state.pointsToVictory >= 0 ? 'Ranking' : 'Game Over'}</Title>
           <RankingBoard players={players} ranking={state.ranking} />
 
-          <Instruction contained>
-            <Translate
-              pt={
-                <>
-                  Faltam <strong>{(state?.round?.total ?? 0) - (state?.round?.current ?? 0)}</strong> rodadas
-                  para o jogo terminar...
-                </>
-              }
-              en={
-                <>
-                  <strong>{(state?.round?.total ?? 0) - (state?.round?.current ?? 0)}</strong> rounds left for
-                  the game to end...
-                </>
-              }
-            />
-          </Instruction>
+          <RoundsLeftInstruction round={state?.round} />
 
           <Button size="large" onClick={() => setStep(0)} icon={<PictureOutlined />}>
             <Translate pt="Ver Galeria De Novo" en="See Gallery Again" />

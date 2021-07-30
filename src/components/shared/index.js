@@ -9,6 +9,7 @@ export * from './PhasePlaceholder';
 export * from './RankingBoard';
 export * from './ReadyPlayersBar';
 export * from './RoundAnnouncement';
+export * from './RoundsLeftInstruction';
 export * from './SetupScreen';
 export * from './Session';
 export * from './StarPoints';
