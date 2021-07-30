@@ -162,7 +162,10 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
-  //
+  const winners = utils.determineWinners(players);
+
+  const finalGallery = utils.orderBy(store.pastDrawings, 'successRate', 'desc');
+
   return {
     update: {
       store: {
@@ -176,9 +179,10 @@ export const prepareGameOverPhase = async (
       players,
       state: {
         phase: ARTE_RUIM_PHASES.GAME_OVER,
+        winners,
         gameEndedAt: Date.now(),
         round: state.round,
-        drawings: utils.orderBy(store.pastDrawings, 'successRate', 'desc'),
+        drawings: finalGallery,
       },
     },
   };

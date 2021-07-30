@@ -76,7 +76,7 @@ export const nextArteRuimPhase = async (
   const store = storeDoc.data() ?? {};
 
   // Determine next phase
-  const nextPhase = determineNextPhase(state?.phase, state?.round ?? 0);
+  const nextPhase = determineNextPhase(state?.phase, state?.round?.current ?? 0);
 
   // RULES -> SETUP
   if (nextPhase === ARTE_RUIM_PHASES.SETUP) {
