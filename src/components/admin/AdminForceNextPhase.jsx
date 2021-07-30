@@ -5,18 +5,24 @@ import PropTypes from 'prop-types';
 import { Button, Space } from 'antd';
 import { FireFilled } from '@ant-design/icons';
 // State & Hooks
-import { useAPICall, useGlobalState, useLoading } from '../../hooks';
+import { useAPICall, useGlobalState, useLanguage, useLoading } from '../../hooks';
 import { GAME_API } from '../../adapters';
+import { translate } from '../shared';
 
-export function AdminForceNextPhase({ className = '' }) {
+export function AdminForceNextPhase({ buttonText, className = '' }) {
+  const language = useLanguage();
   const [isLoading] = useLoading();
   const [isAdmin] = useGlobalState('isAdmin');
 
   const onGoToNextPhase = useAPICall({
     apiFunction: GAME_API.goToNextPhase,
     actionName: 'force-next-phase',
-    successMessage: 'Funcionou, próxima fase!',
-    errorMessage: 'Vixi, o aplicativo encontrou um erro ao tentar ir para a próxima fase',
+    successMessage: translate('Funcionou, próxima fase!', 'It worked, next phase!', language),
+    errorMessage: translate(
+      'Vixi, o aplicativo encontrou um erro ao tentar ir para a próxima fase',
+      'The application found an error while trying to go to the next phase',
+      language
+    ),
   });
 
   if (!isAdmin) return <span></span>;
@@ -30,12 +36,13 @@ export function AdminForceNextPhase({ className = '' }) {
         onClick={() => onGoToNextPhase({})}
         disabled={isLoading}
       >
-        Force Next Phase
+        {buttonText ?? <>Force Next Phase</>}
       </Button>
     </Space>
   );
 }
 
 AdminForceNextPhase.propTypes = {
+  buttonText: PropTypes.string,
   className: PropTypes.string,
 };
