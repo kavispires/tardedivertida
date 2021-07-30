@@ -6,7 +6,7 @@ import { FileImageOutlined, QuestionCircleFilled } from '@ant-design/icons';
 // Hooks
 import { useIsUserThe, useWhichPlayerIsThe, useAPICall, useUser, useLoading } from '../../../hooks';
 // Resources & Utils
-import { CLUBE_DETETIVES_API } from '../../../adapters';
+import { DETETIVES_IMAGINATIVOS_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
 // Components
 import { Instruction, PhaseContainer, Title } from '../../shared';
@@ -23,7 +23,7 @@ function CardPlayPhase({ state, players, info }) {
   const isUserTheCurrentPlayer = useIsUserThe('currentPlayerId', state);
 
   const onPlayCard = useAPICall({
-    apiFunction: CLUBE_DETETIVES_API.submitAction,
+    apiFunction: DETETIVES_IMAGINATIVOS_API.submitAction,
     actionName: 'play-card',
     successMessage: 'Carta enviada com sucesso',
     errorMessage: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua carta',
@@ -53,7 +53,7 @@ function CardPlayPhase({ state, players, info }) {
     <PhaseContainer
       info={info}
       phase={state?.phase}
-      allowedPhase={PHASES.CLUBE_DETETIVES.CARD_PLAY}
+      allowedPhase={PHASES.DETETIVES_IMAGINATIVOS.CARD_PLAY}
       className="d-phase d-play-card-phase"
     >
       <Title>

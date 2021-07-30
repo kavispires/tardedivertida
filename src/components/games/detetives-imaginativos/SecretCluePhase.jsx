@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 // Hooks
 import { useIsUserReady, useIsUserThe, useWhichPlayerIsThe, useAPICall, useUser } from '../../../hooks';
 // Resources & Utils
-import { CLUBE_DETETIVES_API } from '../../../adapters';
+import { DETETIVES_IMAGINATIVOS_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
 // Components
 import {
@@ -27,7 +27,7 @@ function SecretCluePhase({ state, players, info }) {
   const [step, setStep] = useState(0);
 
   const onSubmitSecretClue = useAPICall({
-    apiFunction: CLUBE_DETETIVES_API.submitAction,
+    apiFunction: DETETIVES_IMAGINATIVOS_API.submitAction,
     actionName: 'submit-secret-clue',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(0),
@@ -39,7 +39,7 @@ function SecretCluePhase({ state, players, info }) {
     <PhaseContainer
       info={info}
       phase={state?.phase}
-      allowedPhase={PHASES.CLUBE_DETETIVES.SECRET_CLUE}
+      allowedPhase={PHASES.DETETIVES_IMAGINATIVOS.SECRET_CLUE}
       className="d-secret-clue-phase"
     >
       <StepSwitcher step={step} conditions={[!isUserReady]}>

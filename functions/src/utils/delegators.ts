@@ -2,9 +2,9 @@ import { GAME_CODES, GAME_COLLECTIONS, GAME_KEYS } from './constants';
 import { GameCode, GameId } from '../utils/interfaces';
 import { getInitialState as arteRuimGetInitialState, nextArteRuimPhase } from '../engine/arte-ruim';
 import {
-  getInitialState as clubeDetetivesGetInitialState,
-  nextClubeDetetivesPhase,
-} from '../engine/clube-detetives';
+  getInitialState as DetetivesImaginativosGetInitialState,
+  nextDetetivesImaginativosPhase,
+} from '../engine/detetives-imaginativos';
 import {
   getInitialState as espiaoEntreNosGetInitialState,
   nextEspiaoEntreNosPhase,
@@ -77,7 +77,7 @@ export const getInitialStateForCollection = (collectionName: string) => {
     case GAME_COLLECTIONS.ARTE_RUIM:
       return arteRuimGetInitialState;
     case GAME_COLLECTIONS.CLUBE_DETETIVE:
-      return clubeDetetivesGetInitialState;
+      return DetetivesImaginativosGetInitialState;
     case GAME_COLLECTIONS.ESPIAO_ENTRE_NOS:
       return espiaoEntreNosGetInitialState;
     case GAME_COLLECTIONS.ONDA_TELEPATICA:
@@ -99,7 +99,7 @@ export const getNextPhaseForCollection = (collectionName: string) => {
     case GAME_KEYS.ARTE_RUIM:
       return nextArteRuimPhase;
     case GAME_KEYS.CLUBE_DETETIVE:
-      return nextClubeDetetivesPhase;
+      return nextDetetivesImaginativosPhase;
     case GAME_KEYS.ESPIAO_ENTRE_NOS:
       return nextEspiaoEntreNosPhase;
     case GAME_KEYS.ONDA_TELEPATICA:

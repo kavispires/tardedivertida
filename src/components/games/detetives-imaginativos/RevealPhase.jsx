@@ -25,7 +25,7 @@ function RevealPhase({ state, players, info }) {
     <PhaseContainer
       info={info}
       phase={state?.phase}
-      allowedPhase={PHASES.CLUBE_DETETIVES.REVEAL}
+      allowedPhase={PHASES.DETETIVES_IMAGINATIVOS.REVEAL}
       className="d-voting-phase"
     >
       <Title>O impostor era {<AvatarName player={impostor} />}</Title>

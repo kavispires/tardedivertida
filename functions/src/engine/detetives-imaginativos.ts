@@ -10,10 +10,10 @@ import * as imageCards from '../utils/image-cards';
 import * as utils from '../utils/helpers';
 import {
   GameId,
-  ClubeDetetivesInitialState,
+  DetetivesImaginativosInitialState,
   Players,
   PlayerId,
-  ClubeDetetivesSubmitAction,
+  DetetivesImaginativosSubmitAction,
   GameName,
   Player,
   PlainObject,
@@ -30,7 +30,7 @@ export const getInitialState = (
   gameId: GameId,
   uid: string,
   language: string
-): ClubeDetetivesInitialState => ({
+): DetetivesImaginativosInitialState => ({
   meta: {
     gameId,
     gameName: GAME_COLLECTIONS.CLUBE_DETETIVE,
@@ -49,7 +49,7 @@ export const getInitialState = (
     gameOrder: [],
   },
   state: {
-    phase: PHASES.CLUBE_DETETIVES.LOBBY,
+    phase: PHASES.DETETIVES_IMAGINATIVOS.LOBBY,
     round: 0,
   },
 });
@@ -61,7 +61,7 @@ export const getInitialState = (
  * @returns
  */
 const determineNextPhase = (currentPhase: string, roundsToEndGame: number): string => {
-  const { RULES, SECRET_CLUE, CARD_PLAY, DEFENSE, VOTING, REVEAL, GAME_OVER } = PHASES.CLUBE_DETETIVES;
+  const { RULES, SECRET_CLUE, CARD_PLAY, DEFENSE, VOTING, REVEAL, GAME_OVER } = PHASES.DETETIVES_IMAGINATIVOS;
   const order = [RULES, SECRET_CLUE, CARD_PLAY, DEFENSE, VOTING, REVEAL, GAME_OVER];
 
   if (currentPhase === REVEAL) {
@@ -146,7 +146,7 @@ const determinePhaseOrder = (
   return repeat ? [...result, ...result] : result;
 };
 
-export const nextClubeDetetivesPhase = async (
+export const nextDetetivesImaginativosPhase = async (
   collectionName: string,
   gameId: string,
   players: Players
@@ -191,32 +191,32 @@ export const nextClubeDetetivesPhase = async (
   const nextPhase = determineNextPhase(state?.phase, roundsToEndGame);
 
   // * -> SECRET_CLUE
-  if (nextPhase === PHASES.CLUBE_DETETIVES.SECRET_CLUE) {
+  if (nextPhase === PHASES.DETETIVES_IMAGINATIVOS.SECRET_CLUE) {
     return prepareSecretCluePhase(sessionRef, store, state, players, roundsToEndGame);
   }
 
   // SECRET_CLUE -> CARD_PLAY
-  if (nextPhase === PHASES.CLUBE_DETETIVES.CARD_PLAY) {
+  if (nextPhase === PHASES.DETETIVES_IMAGINATIVOS.CARD_PLAY) {
     return prepareCardPlayPhase(sessionRef, store, state, players);
   }
 
   // CARD_PLAY -> DEFENSE
-  if (nextPhase === PHASES.CLUBE_DETETIVES.DEFENSE) {
+  if (nextPhase === PHASES.DETETIVES_IMAGINATIVOS.DEFENSE) {
     return prepareDefensePhase(sessionRef, store, state, players);
   }
 
   // DEFENSE -> VOTING
-  if (nextPhase === PHASES.CLUBE_DETETIVES.VOTING) {
+  if (nextPhase === PHASES.DETETIVES_IMAGINATIVOS.VOTING) {
     return prepareVotingPhase(sessionRef, store, state, players);
   }
 
   // VOTING -> REVEAL
-  if (nextPhase === PHASES.CLUBE_DETETIVES.REVEAL) {
+  if (nextPhase === PHASES.DETETIVES_IMAGINATIVOS.REVEAL) {
     return prepareRevealPhase(sessionRef, store, state, players);
   }
 
   // REVEAL --> GAME_OVER
-  if (nextPhase === PHASES.CLUBE_DETETIVES.GAME_OVER) {
+  if (nextPhase === PHASES.DETETIVES_IMAGINATIVOS.GAME_OVER) {
     return prepareGameOverPhase(sessionRef, players);
   }
 
@@ -246,7 +246,7 @@ const prepareSecretCluePhase = async (
 
   // Update players
   await sessionRef.doc('state').set({
-    phase: PHASES.CLUBE_DETETIVES.SECRET_CLUE,
+    phase: PHASES.DETETIVES_IMAGINATIVOS.SECRET_CLUE,
     updatedAt: Date.now(),
     round: newRound,
     roundsToEndGame,
@@ -268,7 +268,7 @@ const prepareCardPlayPhase = async (
 
   // Update state
   await sessionRef.doc('state').update({
-    phase: PHASES.CLUBE_DETETIVES.CARD_PLAY,
+    phase: PHASES.DETETIVES_IMAGINATIVOS.CARD_PLAY,
     updatedAt: Date.now(),
     clue: store.clue,
     phaseOrder,
@@ -291,7 +291,7 @@ const prepareDefensePhase = async (
 
   // Update state
   await sessionRef.doc('state').update({
-    phase: PHASES.CLUBE_DETETIVES.DEFENSE,
+    phase: PHASES.DETETIVES_IMAGINATIVOS.DEFENSE,
     updatedAt: Date.now(),
     phaseOrder,
     phaseIndex: 0,
@@ -315,7 +315,7 @@ const prepareVotingPhase = async (
 
   // Update state
   await sessionRef.doc('state').update({
-    phase: PHASES.CLUBE_DETETIVES.VOTING,
+    phase: PHASES.DETETIVES_IMAGINATIVOS.VOTING,
     updatedAt: Date.now(),
   });
 
@@ -396,7 +396,7 @@ const prepareRevealPhase = async (
 
   // Update state
   await sessionRef.doc('state').update({
-    phase: PHASES.CLUBE_DETETIVES.REVEAL,
+    phase: PHASES.DETETIVES_IMAGINATIVOS.REVEAL,
     updatedAt: Date.now(),
     ranking,
     impostorVotes,
@@ -413,7 +413,7 @@ const prepareGameOverPhase = async (
 
   // Update state
   await sessionRef.doc('state').set({
-    phase: PHASES.CLUBE_DETETIVES.GAME_OVER,
+    phase: PHASES.DETETIVES_IMAGINATIVOS.GAME_OVER,
     gameEndedAt: Date.now(),
     winners,
   });
@@ -447,7 +447,7 @@ const handleSubmitClue = async (
   const players = playersDoc.data() ?? {};
 
   // If all players are ready, trigger next phase
-  return nextClubeDetetivesPhase(collectionName, gameId, players);
+  return nextDetetivesImaginativosPhase(collectionName, gameId, players);
 };
 
 const handlePlayCard = async (
@@ -494,7 +494,7 @@ const handlePlayCard = async (
     // If it is the last player to play, go to the next phase
     if (newPhaseIndex === state.phaseOrder.length) {
       await sessionRef.doc('state').update({ table });
-      nextClubeDetetivesPhase(collectionName, gameId, players);
+      nextDetetivesImaginativosPhase(collectionName, gameId, players);
     } else {
       await sessionRef.doc('state').update({
         table,
@@ -529,7 +529,7 @@ const handleDefend = async (collectionName: GameName, gameId: GameId, playerId: 
     if (newPhaseIndex === state.phaseOrder.length) {
       const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
       const players = playersDoc.data() ?? {};
-      nextClubeDetetivesPhase(collectionName, gameId, players);
+      nextDetetivesImaginativosPhase(collectionName, gameId, players);
     } else {
       await sessionRef.doc('state').update({
         phaseIndex: newPhaseIndex,
@@ -569,12 +569,12 @@ const handleSubmitVote = async (
   }
 
   // If all players are ready, trigger next phase
-  return nextClubeDetetivesPhase(collectionName, gameId, updatedPlayers);
+  return nextDetetivesImaginativosPhase(collectionName, gameId, updatedPlayers);
 };
 
 // API caller
 
-export const submitAction = async (data: ClubeDetetivesSubmitAction) => {
+export const submitAction = async (data: DetetivesImaginativosSubmitAction) => {
   const { gameId, gameName: collectionName, playerId, action } = data;
 
   const actionText = 'submit action';

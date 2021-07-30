@@ -12,24 +12,24 @@ import DefensePhase from './DefensePhase';
 import VotingPhase from './VotingPhase';
 import RevealPhase from './RevealPhase';
 
-function SessionClubeDetetives({ gameId }) {
+function SessionDetetivesImaginativos({ gameId }) {
   function getActiveComponent(phase) {
     switch (phase) {
-      case PHASES.CLUBE_DETETIVES.LOBBY:
+      case PHASES.DETETIVES_IMAGINATIVOS.LOBBY:
         return Lobby;
-      case PHASES.CLUBE_DETETIVES.RULES:
+      case PHASES.DETETIVES_IMAGINATIVOS.RULES:
         return Rules;
-      case PHASES.CLUBE_DETETIVES.SECRET_CLUE:
+      case PHASES.DETETIVES_IMAGINATIVOS.SECRET_CLUE:
         return SecretCluePhase;
-      case PHASES.CLUBE_DETETIVES.CARD_PLAY:
+      case PHASES.DETETIVES_IMAGINATIVOS.CARD_PLAY:
         return CardPlayPhase;
-      case PHASES.CLUBE_DETETIVES.DEFENSE:
+      case PHASES.DETETIVES_IMAGINATIVOS.DEFENSE:
         return DefensePhase;
-      case PHASES.CLUBE_DETETIVES.VOTING:
+      case PHASES.DETETIVES_IMAGINATIVOS.VOTING:
         return VotingPhase;
-      case PHASES.CLUBE_DETETIVES.REVEAL:
+      case PHASES.DETETIVES_IMAGINATIVOS.REVEAL:
         return RevealPhase;
-      case PHASES.CLUBE_DETETIVES.GAME_OVER:
+      case PHASES.DETETIVES_IMAGINATIVOS.GAME_OVER:
         return GameOver;
       default:
         return PageError;
@@ -39,10 +39,10 @@ function SessionClubeDetetives({ gameId }) {
   return (
     <Session
       gameId={gameId}
-      gameCollection={GAME_COLLECTION.CLUBE_DETETIVES}
+      gameCollection={GAME_COLLECTION.DETETIVES_IMAGINATIVOS}
       getActiveComponent={getActiveComponent}
     />
   );
 }
 
-export default SessionClubeDetetives;
+export default SessionDetetivesImaginativos;

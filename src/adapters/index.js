@@ -18,8 +18,8 @@ export const ARTE_RUIM_API = {
   submitVoting: functions.httpsCallable('arteRuimSubmitVoting'),
 };
 
-export const CLUBE_DETETIVES_API = {
-  submitAction: functions.httpsCallable('clubeDetetivesSubmitAction'),
+export const DETETIVES_IMAGINATIVOS_API = {
+  submitAction: functions.httpsCallable('detetivesImaginativosSubmitAction'),
 };
 
 export const ESPIAO_ENTRE_NOS_API = {
