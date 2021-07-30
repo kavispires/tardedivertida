@@ -1,6 +1,6 @@
 import * as gameUtils from '../../utils/game-utils';
 import { PlainObject, Players } from '../../utils/interfaces';
-import { ARTE_RUIM_CARDS_BY_LEVEL, ARTE_RUIM_PHASES } from './constants';
+import { ARTE_RUIM_CARDS_BY_LEVEL, ARTE_RUIM_PHASES, ARTE_RUIM_TOTAL_ROUNDS } from './constants';
 import { ArteRuimCard, ArteRuimCardsDatabase, ArteRuimDrawing, FirebaseStoreData } from './interfaces';
 
 /**
@@ -14,7 +14,7 @@ export const determineNextPhase = (currentPhase: string, currentRound: number): 
   const order = [RULES, SETUP, DRAW, EVALUATION, GALLERY];
 
   if (currentPhase === GALLERY) {
-    return currentRound >= 10 ? GAME_OVER : DRAW;
+    return currentRound >= ARTE_RUIM_TOTAL_ROUNDS ? GAME_OVER : DRAW;
   }
 
   const currentPhaseIndex = order.indexOf(currentPhase);
@@ -258,4 +258,42 @@ export const getLevel = (pointsToVictory: number, goal: number): number => {
  */
 export const getCardsForLevel = (level: number): string[] => {
   return ARTE_RUIM_CARDS_BY_LEVEL[level];
+};
+
+/**
+ * Creates a dictionary with used card ids
+ * @param drawings
+ * @returns
+ */
+export const buildUsedCardsIdsDict = (drawings: ArteRuimDrawing[]) => {
+  return drawings.reduce((acc, drawing) => {
+    acc[drawing.id] = true;
+    return acc;
+  }, {});
+};
+
+export const buildPastDrawingsDict = (drawings, publicDrawings) => {
+  const newDrawings = { ...publicDrawings };
+
+  drawings.forEach((drawing) => {
+    if (newDrawings[drawing.id] === undefined) {
+      newDrawings[drawing.id] = {
+        id: drawing.id,
+        level: drawing.level,
+        text: drawing.text,
+        entries: [],
+      };
+    }
+
+    newDrawings[drawing.id].entries.push(
+      JSON.stringify({
+        playerId: drawing.playerId,
+        createdAt: Date.now(),
+        drawing: drawing.drawing,
+        successRate: drawing.successRate,
+      })
+    );
+  });
+
+  return newDrawings;
 };

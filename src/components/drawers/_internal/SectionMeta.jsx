@@ -12,15 +12,15 @@ export function SectionMeta({ round, roundsToEndGame, groupScore, pointsToVictor
           <Translate pt="Rodada:" en="Round:" />
         </div>
         <AntAvatar className="game-info-drawer__round" size="small">
-          {round}
+          {round?.current || round}
         </AntAvatar>
-        {Boolean(roundsToEndGame) && !isNaN(round) && (
+        {Boolean(round?.total || roundsToEndGame) && (
           <Fragment>
             <span className="game-info-drawer__inline-separator">
               <Translate pt="de" en="out of" />
             </span>
             <AntAvatar className="game-info-drawer__round" size="small">
-              {round + roundsToEndGame}
+              {round?.total || round + roundsToEndGame}
             </AntAvatar>
           </Fragment>
         )}
@@ -84,7 +84,10 @@ SectionMeta.propTypes = {
   groupScore: PropTypes.number,
   isTeamGame: PropTypes.bool,
   pointsToVictory: PropTypes.number,
-  round: PropTypes.number,
+  round: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.shape({ current: PropTypes.number, total: PropTypes.number }),
+  ]),
   roundsToEndGame: PropTypes.number,
   teams: PropTypes.objectOf(
     PropTypes.shape({

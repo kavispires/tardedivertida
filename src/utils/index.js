@@ -202,3 +202,14 @@ export const pluralize = (quantity, singular, plural) => {
   if (!plural) return singular;
   return quantity === 1 ? singular : plural;
 };
+
+/**
+ * Shuffle list copy
+ * @param {any[]} list
+ * @returns
+ */
+export const shuffle = (list) => {
+  const result = [...list];
+  result.sort(() => Math.random() - 0.5);
+  return result;
+};

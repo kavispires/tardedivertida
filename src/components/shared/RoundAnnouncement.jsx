@@ -49,7 +49,7 @@ export function RoundAnnouncement({
         </div>
         <div className="round-announcement__round-wrapper">
           <div className="round-announcement__circle"></div>
-          <div className="round-announcement__number">{round ?? 0}</div>
+          <div className="round-announcement__number">{round?.current ?? round ?? 0}</div>
         </div>
 
         {children}
@@ -80,7 +80,10 @@ export function RoundAnnouncement({
 }
 
 RoundAnnouncement.propTypes = {
-  round: PropTypes.number,
+  round: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.shape({ current: PropTypes.number, total: PropTypes.number }),
+  ]),
   onPressButton: PropTypes.func,
   buttonText: PropTypes.string,
   time: PropTypes.number,

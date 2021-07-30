@@ -1,7 +1,7 @@
 // Interfaces
 import { PlainObject, Players, SaveGamePayload } from '../../utils/interfaces';
 // Constants
-import { ARTE_RUIM_PHASES, CARDS_PER_PLAYER_COUNT } from './constants';
+import { ARTE_RUIM_PHASES, ARTE_RUIM_TOTAL_ROUNDS, CARDS_PER_PLAYER_COUNT } from './constants';
 // Helpers
 import * as gameUtils from '../../utils/game-utils';
 import * as utils from '../../utils/helpers';
@@ -45,6 +45,8 @@ export const prepareSetupPhase = async (
     update: {
       store: {
         deck,
+        pastDrawings: [],
+        currentCards: [],
       },
       state: {
         phase: ARTE_RUIM_PHASES.SETUP,
@@ -75,7 +77,10 @@ export const prepareDrawPhase = async (
       state: {
         phase: ARTE_RUIM_PHASES.DRAW,
         updatedAt: Date.now(),
-        round: (state?.round ?? 0) + 1,
+        round: {
+          current: (state?.round ?? 0) + 1,
+          total: ARTE_RUIM_TOTAL_ROUNDS,
+        },
       },
     },
     set: {
@@ -143,7 +148,7 @@ export const prepareGalleryPhase = async (
       state: {
         phase: ARTE_RUIM_PHASES.GALLERY,
         updatedAt: Date.now(),
-        round: (state?.round ?? 0) + 1,
+        round: state.round,
         gallery,
         cards: store.currentCards,
         ranking,
@@ -172,7 +177,7 @@ export const prepareGameOverPhase = async (
       state: {
         phase: ARTE_RUIM_PHASES.GAME_OVER,
         gameEndedAt: Date.now(),
-        round: (state?.round ?? 0) + 1,
+        round: state.round,
         drawings: utils.orderBy(store.pastDrawings, 'successRate', 'desc'),
       },
     },

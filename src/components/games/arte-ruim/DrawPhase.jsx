@@ -84,7 +84,10 @@ DrawPhase.propTypes = {
   players: PropTypes.object,
   state: PropTypes.shape({
     phase: PropTypes.string,
-    round: PropTypes.number,
+    round: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.shape({ current: PropTypes.number, total: PropTypes.number }),
+    ]),
   }),
 };
 

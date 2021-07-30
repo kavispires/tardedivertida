@@ -31,7 +31,7 @@ function DrawPhaseDrawStep({ secretCard, onSubmitDrawing }) {
         color="yellow"
       >
         {secretCard?.text}
-        <span className="a-draw-step__timer">{seconds - 1}</span>
+        <span className="a-draw-step__timer">{seconds > 0 ? seconds - 1 : 0}</span>
       </Card>
       <DrawingCanvas lines={lines} setLines={setLines} />
     </Step>

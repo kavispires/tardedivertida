@@ -1,4 +1,4 @@
-import { Meta, Payload, PlayerId, Players } from '../../utils/interfaces';
+import { Meta, Payload, PlayerId, Players, Round } from '../../utils/interfaces';
 
 export interface ArteRuimCard {
   id: string;
@@ -29,7 +29,6 @@ export interface UsedCard {
 export interface ArteRuimStore {
   language: string;
   deck: ArteRuimCardsDatabase[];
-  usedCards: UsedCard[];
   currentCards: string[];
   pastDrawings: UsedCard[];
   [key: string]: any;
@@ -37,10 +36,7 @@ export interface ArteRuimStore {
 
 export interface ArteRuimState {
   phase: string;
-  round: {
-    current: number;
-    total: number;
-  };
+  round: Round;
   [key: string]: any;
 }
 
