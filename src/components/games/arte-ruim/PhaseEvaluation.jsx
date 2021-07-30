@@ -4,7 +4,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { Button } from 'antd';
 import { CloudUploadOutlined, ThunderboltOutlined } from '@ant-design/icons';
 // Hooks
-import { useIsUserReady, useGlobalState, useAPICall } from '../../../hooks';
+import { useIsUserReady, useGlobalState, useAPICall, useLanguage } from '../../../hooks';
 // Utils
 import { ARTE_RUIM_API } from '../../../adapters';
 import { LETTERS, PHASES, SEPARATOR } from '../../../utils/constants';
@@ -18,11 +18,15 @@ import {
   Title,
   WaitingRoom,
   ReadyPlayersBar,
+  PhaseAnnouncement,
+  translate,
+  Translate,
 } from '../../shared';
 import EvaluationAllDrawings from './EvaluationAllDrawings';
 import EvaluationAllCards from './EvaluationAllCards';
 import { CanvasReSizer } from '../../canvas';
 import { shuffle } from '../../../utils';
+import { CollapsibleRule } from '../../rules';
 
 function prepareVotes(votes) {
   return Object.entries(votes).reduce((acc, [drawingEntryId, cardEntryId]) => {
@@ -33,7 +37,34 @@ function prepareVotes(votes) {
   }, {});
 }
 
+const EvaluationRules = () => (
+  <Instruction>
+    <Translate
+      pt={
+        <>
+          Encontre os pares de desenho e carta clicando em uma carta ou desenho e em seguida clicando em seu
+          par.
+          <br />
+          Uma bandeirinha aparecerá no topo de cada desenho com a cor e letra da carta que você selecionou.
+          <br />
+          Quando encontrar todos os pares, envie sua avaliação!
+        </>
+      }
+      en={
+        <>
+          Find the pairs of artwork and card by clicking on a card or artwork then on its match.
+          <br />
+          A ribbon will show up on the artwork with the color and letter of the matching card.
+          <br />
+          When you're done, click the button to send your evaluation!
+        </>
+      }
+    />
+  </Instruction>
+);
+
 function EvaluationPhase({ players, state, info }) {
+  const language = useLanguage();
   const isUserReady = useIsUserReady(players, state);
   const [canvasSize, setCanvasSize] = useGlobalState('canvasSize');
   const [cachedCanvasSize] = useGlobalState('cachedCanvasSize');
@@ -44,14 +75,21 @@ function EvaluationPhase({ players, state, info }) {
   const onSubmitVoting = useAPICall({
     apiFunction: ARTE_RUIM_API.submitVoting,
     actionName: 'submit-drawing',
-    onBeforeCall: () => setStep(1),
+    onBeforeCall: () => setStep(2),
     onError: () => setStep(0),
-    successMessage: 'Avaliação enviada! Agora aguarde os outros jogadores',
-    errorMessage: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua avaliação',
+    successMessage: translate(
+      'Avaliação enviada! Agora aguarde os outros jogadores',
+      'Evaluation sent successfully! Wait for the other players',
+      language
+    ),
+    errorMessage: translate(
+      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua avaliação',
+      'Oops, the application fail to send your evaluation',
+      language
+    ),
   });
 
   const onGuessForMe = () => {
-    // console.log({ votes });
     const usedDrawings = Object.keys(votes);
     const usedCards = Object.values(votes);
     const drawingsKeys = state?.drawings
@@ -68,7 +106,6 @@ function EvaluationPhase({ players, state, info }) {
         newVotes[drawingKey] = cardsKeys[index];
       }
     });
-    console.log({ newVotes });
     setVotes(newVotes);
   };
 
@@ -114,19 +151,24 @@ function EvaluationPhase({ players, state, info }) {
       allowedPhase={PHASES.ARTE_RUIM.EVALUATION}
       className="a-evaluation-phase"
     >
-      <StepSwitcher step={step} conditions={[!isUserReady]}>
+      <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady]}>
         {/*Step 0 */}
+        <PhaseAnnouncement
+          type="evaluate"
+          title={translate('Adivinhação', 'Match the Pairs', language)}
+          onClose={() => setStep(1)}
+          currentRound={state?.round?.current}
+        >
+          <EvaluationRules />
+        </PhaseAnnouncement>
+
+        {/* Step 1 */}
         <Step className="a-evaluation-step">
           <CanvasReSizer numPlayers={Object.keys(players).length} />
-          <Title>Adivinhação</Title>
-          <Instruction>
-            Encontre os pares de desenho e carta clicando em uma carta ou desenho e em seguida clicando em seu
-            par.
-            <br />
-            Uma bandeirinha aparecerá no topo de cada desenho com a cor e letra da carta que você selecionou.
-            <br />
-            Quando encontrar todos os pares, envie sua avaliação!
-          </Instruction>
+          <Title>{translate('Adivinhação', 'Match the Pairs', language)}</Title>
+          <CollapsibleRule>
+            <EvaluationRules />
+          </CollapsibleRule>
 
           <EvaluationAllDrawings
             drawings={state?.drawings ?? []}
@@ -151,7 +193,7 @@ function EvaluationPhase({ players, state, info }) {
               onClick={onGuessForMe}
               disabled={Object.values(votes).length === state.drawings.length}
             >
-              Chutar restantes
+              <Translate pt="Chutar restantes" en="Guess for me" />
             </Button>
             <Button
               type="primary"
@@ -159,24 +201,28 @@ function EvaluationPhase({ players, state, info }) {
               disabled={Object.values(votes).length < state.drawings.length}
               icon={<CloudUploadOutlined />}
             >
-              Enviar sua avaliação
+              <Translate pt="Enviar sua avaliação" en="Send evaluation" />
             </Button>
           </ButtonContainer>
 
           <ReadyPlayersBar
             players={players}
-            readyText="Já acabei, anda logo!"
-            readyTextPlural="Já acabamos, anda logo!"
+            readyText={translate('Já acabei, anda logo!', "I'm done, hurry up!", language)}
+            readyTextPlural={translate('Já acabamos, anda logo!', "We're done, hurry up!", language)}
             showNames
           />
         </Step>
 
-        {/*Step 1 */}
+        {/*Step 2 */}
         <Step fullWidth>
           <WaitingRoom
             players={players}
-            title="Pronto!"
-            instruction="Vamos aguardar enquanto os outros jogadores terminam de avaliar!"
+            title={translate('Pronto!', 'Done!', language)}
+            instruction={translate(
+              'Vamos aguardar enquanto os outros jogadores terminam seus desenhos!',
+              'Please wait while other players finish their evaluations!',
+              language
+            )}
           />
         </Step>
       </StepSwitcher>

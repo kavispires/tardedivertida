@@ -4,11 +4,13 @@ import { useTimer } from 'react-timer-hook';
 // Utils
 import { inNSeconds } from '../../../utils';
 // Components
-import { Step } from '../../shared';
+import { Step, translate } from '../../shared';
 import { Card } from '../../cards';
 import { DrawingCanvas } from '../../canvas';
+import { useLanguage } from '../../../hooks';
 
 function DrawPhaseDrawStep({ secretCard, onSubmitDrawing }) {
+  const language = useLanguage();
   const [lines, setLines] = useState([]);
 
   const { seconds } = useTimer({
@@ -25,7 +27,7 @@ function DrawPhaseDrawStep({ secretCard, onSubmitDrawing }) {
     <Step>
       <Card
         size="large"
-        header="Desenhe"
+        header={translate('Desenhe', 'Draw', language)}
         footer={Array(secretCard?.level).fill('•').join('')}
         className="a-draw-step__card"
         color="yellow"
