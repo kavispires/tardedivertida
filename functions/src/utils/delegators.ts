@@ -2,7 +2,7 @@ import { GAME_CODES, GAME_COLLECTIONS, GAME_KEYS } from './constants';
 import { GameCode, GameId } from '../utils/interfaces';
 import { getInitialState as arteRuimGetInitialState, nextArteRuimPhase } from '../engine/arte-ruim';
 import {
-  getInitialState as DetetivesImaginativosGetInitialState,
+  getInitialState as detetivesImaginativosGetInitialState,
   nextDetetivesImaginativosPhase,
 } from '../engine/detetives-imaginativos';
 import {
@@ -25,7 +25,7 @@ export const getCollectionNameByGameCode = (gameCode: GameCode): string | null =
     case GAME_CODES.A:
       return GAME_COLLECTIONS.ARTE_RUIM;
     case GAME_CODES.D:
-      return GAME_COLLECTIONS.CLUBE_DETETIVE;
+      return GAME_COLLECTIONS.DETETIVES_IMAGINATIVOS;
     case GAME_CODES.E:
       return GAME_COLLECTIONS.ESPIAO_ENTRE_NOS;
     case GAME_CODES.O:
@@ -47,7 +47,7 @@ export const getCollectionKeyByGameCode = (gameCode: GameCode): string | null =>
     case GAME_CODES.A:
       return GAME_KEYS.ARTE_RUIM;
     case GAME_CODES.D:
-      return GAME_KEYS.CLUBE_DETETIVE;
+      return GAME_KEYS.DETETIVES_IMAGINATIVOS;
     case GAME_CODES.E:
       return GAME_KEYS.ESPIAO_ENTRE_NOS;
     case GAME_CODES.O:
@@ -76,8 +76,8 @@ export const getInitialStateForCollection = (collectionName: string) => {
   switch (collectionName) {
     case GAME_COLLECTIONS.ARTE_RUIM:
       return arteRuimGetInitialState;
-    case GAME_COLLECTIONS.CLUBE_DETETIVE:
-      return DetetivesImaginativosGetInitialState;
+    case GAME_COLLECTIONS.DETETIVES_IMAGINATIVOS:
+      return detetivesImaginativosGetInitialState;
     case GAME_COLLECTIONS.ESPIAO_ENTRE_NOS:
       return espiaoEntreNosGetInitialState;
     case GAME_COLLECTIONS.ONDA_TELEPATICA:
@@ -98,7 +98,7 @@ export const getNextPhaseForCollection = (collectionName: string) => {
   switch (collectionName) {
     case GAME_KEYS.ARTE_RUIM:
       return nextArteRuimPhase;
-    case GAME_KEYS.CLUBE_DETETIVE:
+    case GAME_KEYS.DETETIVES_IMAGINATIVOS:
       return nextDetetivesImaginativosPhase;
     case GAME_KEYS.ESPIAO_ENTRE_NOS:
       return nextEspiaoEntreNosPhase;

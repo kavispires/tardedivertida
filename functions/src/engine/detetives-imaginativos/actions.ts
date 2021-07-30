@@ -1,0 +1,183 @@
+// Interfaces
+import { GameId, PlayerId, GameName } from '../../utils/interfaces';
+// Utils
+import * as firebaseUtils from '../../utils/firebase';
+import * as utils from '../../utils/helpers';
+import { discardPlayerCard } from './helpers';
+import { nextDetetivesImaginativosPhase } from './index';
+
+/**
+ *
+ * @param collectionName
+ * @param gameId
+ * @param playerId
+ * @param cardId
+ * @returns
+ */
+export const handlePlayCard = async (
+  collectionName: GameName,
+  gameId: GameId,
+  playerId: PlayerId,
+  cardId: string
+) => {
+  const actionText = 'play a card';
+
+  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
+  const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
+  const stateDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'state', actionText);
+  const players = playersDoc.data() ?? {};
+  const state = stateDoc.data() ?? {};
+
+  if (state.currentPlayerId !== playerId) {
+    firebaseUtils.throwException('You are not the current player!', 'Failed to play card.');
+  }
+
+  // Remove card from player's hand and add new card
+  try {
+    const newPlayers = discardPlayerCard(players, cardId, playerId);
+    await sessionRef.doc('players').update(newPlayers);
+  } catch (error) {
+    firebaseUtils.throwException(error, 'Failed to update player with new card');
+  }
+
+  // Add card to table
+  try {
+    const table = state?.table ?? [];
+    const playerTableIndex = table.findIndex((i) => i.playerId === playerId);
+    if (playerTableIndex === -1) {
+      state.table.push({
+        playerId,
+        cards: [cardId, ''],
+      });
+    } else {
+      state.table[playerTableIndex].cards[1] = cardId;
+    }
+
+    const newPhaseIndex = state.phaseIndex + 1;
+
+    // If it is the last player to play, go to the next phase
+    if (newPhaseIndex === state.phaseOrder.length) {
+      await sessionRef.doc('state').update({ table });
+      nextDetetivesImaginativosPhase(collectionName, gameId, players);
+    } else {
+      await sessionRef.doc('state').update({
+        table,
+        phaseIndex: newPhaseIndex,
+        currentPlayerId: state.phaseOrder[newPhaseIndex],
+      });
+    }
+  } catch (error) {
+    firebaseUtils.throwException(error, 'Failed to update table with new card');
+  }
+
+  return true;
+};
+
+/**
+ *
+ * @param collectionName
+ * @param gameId
+ * @param playerId
+ * @returns
+ */
+export const handleDefend = async (collectionName: GameName, gameId: GameId, playerId: PlayerId) => {
+  const actionText = 'defend';
+
+  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
+  const stateDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'state', actionText);
+
+  const state = stateDoc.data() ?? {};
+
+  if (state.currentPlayerId !== playerId) {
+    firebaseUtils.throwException('You are not the current player!', 'Failed to play card.');
+  }
+
+  // Add card to table
+  try {
+    const newPhaseIndex = state.phaseIndex + 1;
+
+    // If it is the last player to play, go to the next phase
+    if (newPhaseIndex === state.phaseOrder.length) {
+      const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
+      const players = playersDoc.data() ?? {};
+      nextDetetivesImaginativosPhase(collectionName, gameId, players);
+    } else {
+      await sessionRef.doc('state').update({
+        phaseIndex: newPhaseIndex,
+        currentPlayerId: state.phaseOrder[newPhaseIndex],
+      });
+    }
+  } catch (error) {
+    firebaseUtils.throwException(error, 'Failed to conclude your defense');
+  }
+
+  return true;
+};
+
+/**
+ *
+ * @param collectionName
+ * @param gameId
+ * @param playerId
+ * @param vote
+ * @returns
+ */
+export const handleSubmitVote = async (
+  collectionName: GameName,
+  gameId: GameId,
+  playerId: PlayerId,
+  vote: PlayerId
+) => {
+  const actionText = 'vote';
+  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
+  const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
+
+  // Make player ready and attach vote
+  const players = playersDoc.data() ?? {};
+  const updatedPlayers = utils.readyPlayer(players, playerId);
+  updatedPlayers[playerId].vote = vote;
+
+  try {
+    await sessionRef.doc('players').update({ [playerId]: updatedPlayers[playerId] });
+  } catch (error) {
+    firebaseUtils.throwException(error, actionText);
+  }
+
+  if (!utils.isEverybodyReady(updatedPlayers)) {
+    return true;
+  }
+
+  // If all players are ready, trigger next phase
+  return nextDetetivesImaginativosPhase(collectionName, gameId, updatedPlayers);
+};
+
+/**
+ *
+ * @param collectionName
+ * @param gameId
+ * @param playerId
+ * @param clue
+ * @returns
+ */
+export const handleSubmitClue = async (
+  collectionName: GameName,
+  gameId: GameId,
+  playerId: PlayerId,
+  clue: string
+) => {
+  // Get 'players' from given game session
+  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
+  const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', 'submit clue');
+
+  // Submit clue
+  try {
+    await sessionRef.doc('store').update({ clue });
+  } catch (error) {
+    firebaseUtils.throwException(error, 'Failed to save clue to store');
+  }
+
+  const players = playersDoc.data() ?? {};
+
+  // If all players are ready, trigger next phase
+  return nextDetetivesImaginativosPhase(collectionName, gameId, players);
+};

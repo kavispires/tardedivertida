@@ -1,6 +1,6 @@
 import 'jest';
-import * as engine from '../../src/engine/detetives-imaginativos';
-import { generatePLayerId } from '../../src/utils/helpers';
+import * as helpers from '../../../src/engine/detetives-imaginativos/helpers';
+import { generatePLayerId } from '../../../src/utils/helpers';
 
 const mockPlayer = ({ name, ready = true, score = 0, additionalInfo }) => ({
   id: generatePLayerId(name),
@@ -20,21 +20,21 @@ describe('clube-detetives', () => {
         mockPlayer({ name, additionalInfo: { vote: index % 2 === 0 ? '_bob' : '_cam' } })
       );
 
-      result = engine.countImpostorVotes(sample, '_bob');
+      result = helpers.countImpostorVotes(sample, '_bob');
       expect(result).toEqual(2);
 
       sample = Array.from(['Abe', 'Bob', 'Cam', 'Dan'], (name) =>
         mockPlayer({ name, additionalInfo: { vote: name === 'Bob' ? '_cam' : '_bob' } })
       );
 
-      result = engine.countImpostorVotes(sample, '_bob');
+      result = helpers.countImpostorVotes(sample, '_bob');
       expect(result).toEqual(3);
 
       sample = Array.from(['Abe', 'Bob', 'Cam', 'Dan'], (name) =>
         mockPlayer({ name, additionalInfo: { vote: '_cam' } })
       );
 
-      result = engine.countImpostorVotes(sample, '_bob');
+      result = helpers.countImpostorVotes(sample, '_bob');
       expect(result).toEqual(0);
     });
   });
@@ -45,7 +45,7 @@ describe('clube-detetives', () => {
         mockPlayer({ name, additionalInfo: { vote: index % 2 === 0 ? '_bob' : '_cam' } })
       );
 
-      result = engine.calculateNewScores(sample, 3, '_bob', '_dan');
+      result = helpers.calculateNewScores(sample, 3, '_bob', '_dan');
       expect(result['_abe']).toStrictEqual([0, 3, 3]);
       expect(result['_bob']).toStrictEqual([0, 0, 0]);
       expect(result['_cam']).toStrictEqual([0, 3, 3]);
@@ -57,7 +57,7 @@ describe('clube-detetives', () => {
         mockPlayer({ name, additionalInfo: { vote: '_cam' } })
       );
 
-      result = engine.calculateNewScores(sample, 0, '_bob', '_dan');
+      result = helpers.calculateNewScores(sample, 0, '_bob', '_dan');
 
       expect(result['_abe']).toStrictEqual([0, 0, 0]);
       expect(result['_bob']).toStrictEqual([0, 5, 5]);
@@ -70,7 +70,7 @@ describe('clube-detetives', () => {
         mockPlayer({ name, additionalInfo: { vote: index % 2 === 0 ? '_bob' : '_cam', score: index + 1 } })
       );
 
-      result = engine.calculateNewScores(sample, 3, '_bob', '_dan');
+      result = helpers.calculateNewScores(sample, 3, '_bob', '_dan');
       expect(result['_abe']).toStrictEqual([1, 3, 4]);
       expect(result['_bob']).toStrictEqual([2, 0, 2]);
       expect(result['_cam']).toStrictEqual([3, 3, 6]);
@@ -82,7 +82,7 @@ describe('clube-detetives', () => {
         mockPlayer({ name, additionalInfo: { vote: '_cam', score: index } })
       );
 
-      result = engine.calculateNewScores(sample, 0, '_bob', '_dan');
+      result = helpers.calculateNewScores(sample, 0, '_bob', '_dan');
 
       expect(result['_abe']).toStrictEqual([0, 0, 0]);
       expect(result['_bob']).toStrictEqual([1, 5, 6]);
