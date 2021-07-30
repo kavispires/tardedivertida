@@ -19,7 +19,6 @@ function EvaluationAllDrawings({ drawings, activeItem, onActivateItem, votes, ca
             className={clsx(liButtonBaseClass, isActive && `${liButtonBaseClass}--active`)}
             onClick={() => onActivateItem(canvasEntryId)}
           >
-            {console.log(votes?.[canvasEntryId])}
             {votes?.[canvasEntryId] && <Ribbon cardEntryId={votes[canvasEntryId]} />}
             <CanvasSVG
               drawing={drawingEntry.drawing}

@@ -102,7 +102,10 @@ GameInfoDrawer.propTypes = {
     groupScore: PropTypes.number,
     phase: PropTypes.string,
     pointsToVictory: PropTypes.number,
-    round: PropTypes.number,
+    round: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.shape({ current: PropTypes.number, total: PropTypes.number }),
+    ]),
     roundsToEndGame: PropTypes.number,
     teams: PropTypes.objectOf(
       PropTypes.shape({

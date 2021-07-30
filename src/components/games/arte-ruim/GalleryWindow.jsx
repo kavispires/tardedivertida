@@ -59,7 +59,7 @@ GalleryWindow.propTypes = {
   cards: PropTypes.array,
   galleryLength: PropTypes.number,
   players: PropTypes.object,
-  setActiveIndex: PropTypes.number,
+  setActiveIndex: PropTypes.func,
   setStep: PropTypes.func,
   window: PropTypes.shape({
     artist: PropTypes.string,

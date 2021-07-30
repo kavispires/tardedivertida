@@ -11,6 +11,22 @@ export const ARTE_RUIM_PHASES = {
 export const ARTE_RUIM_TOTAL_ROUNDS = 10;
 
 export const CARDS_PER_PLAYER_COUNT = {
+  3: {
+    total: 70,
+    perLevel: {
+      1: 28,
+      2: 21,
+      3: 21,
+    },
+  },
+  4: {
+    total: 70,
+    perLevel: {
+      1: 28,
+      2: 21,
+      3: 21,
+    },
+  },
   5: {
     total: 70,
     perLevel: {

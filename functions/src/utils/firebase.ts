@@ -29,11 +29,19 @@ export function verifyAuth(context: FirebaseContext, action = 'perform function'
 }
 
 /**
- * Get Firebase session for gameId in collection
+ * Get Firebase session for the _global collection
  * @returns firebase _global reference
  */
 export function getGlobalRef(): FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData> {
   return admin.firestore().collection('_global');
+}
+
+/**
+ * Get Firebase session for the _public collection
+ * @returns firebase _public reference
+ */
+export function getPublicRef(): FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData> {
+  return admin.firestore().collection('_public');
 }
 
 /**

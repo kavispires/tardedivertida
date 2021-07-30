@@ -2,12 +2,12 @@ import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useState } from 'react';
 // Design Resources
 import { Button } from 'antd';
-import { CloudUploadOutlined } from '@ant-design/icons';
+import { CloudUploadOutlined, ThunderboltOutlined } from '@ant-design/icons';
 // Hooks
 import { useIsUserReady, useGlobalState, useAPICall } from '../../../hooks';
 // Utils
 import { ARTE_RUIM_API } from '../../../adapters';
-import { PHASES, SEPARATOR } from '../../../utils/constants';
+import { LETTERS, PHASES, SEPARATOR } from '../../../utils/constants';
 // Components
 import {
   ButtonContainer,
@@ -22,6 +22,7 @@ import {
 import EvaluationAllDrawings from './EvaluationAllDrawings';
 import EvaluationAllCards from './EvaluationAllCards';
 import CanvasResizer from './CanvasResizer';
+import { shuffle } from '../../../utils';
 
 function prepareVotes(votes) {
   return Object.entries(votes).reduce((acc, [drawingEntryId, cardEntryId]) => {
@@ -49,7 +50,27 @@ function EvaluationPhase({ players, state, info }) {
     errorMessage: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua avaliação',
   });
 
-  console.log({ votes });
+  const onGuessForMe = () => {
+    // console.log({ votes });
+    const usedDrawings = Object.keys(votes);
+    const usedCards = Object.values(votes);
+    const drawingsKeys = state?.drawings
+      .map((e) => `drawing${SEPARATOR}${e.id}`)
+      .filter((key) => !usedDrawings.includes(key));
+    const cardsKeys = shuffle(
+      state?.cards
+        .map((e, index) => `card${SEPARATOR}${e.id}${SEPARATOR}${LETTERS[index]}`)
+        .filter((key) => !usedCards.includes(key))
+    );
+    const newVotes = { ...votes };
+    drawingsKeys.forEach((drawingKey, index) => {
+      if (!newVotes[drawingKey]) {
+        newVotes[drawingKey] = cardsKeys[index];
+      }
+    });
+    console.log({ newVotes });
+    setVotes(newVotes);
+  };
 
   useEffect(() => {
     setCanvasSize(cachedCanvasSize);
@@ -57,6 +78,10 @@ function EvaluationPhase({ players, state, info }) {
 
   const onActivateItem = useCallback(
     (entryId) => {
+      if (entryId === activeItem) {
+        return setActiveItem(null);
+      }
+
       const [type] = entryId.split(SEPARATOR);
       if (!activeItem || activeItem.startsWith(type)) {
         setActiveItem(entryId);
@@ -120,6 +145,14 @@ function EvaluationPhase({ players, state, info }) {
           />
 
           <ButtonContainer>
+            <Button
+              type="default"
+              icon={<ThunderboltOutlined />}
+              onClick={onGuessForMe}
+              disabled={Object.values(votes).length === state.drawings.length}
+            >
+              Chutar restantes
+            </Button>
             <Button
               type="primary"
               onClick={() => onSubmitVoting({ votes: prepareVotes(votes) })}

@@ -6,7 +6,7 @@ import { GameId, Players } from '../../utils/interfaces';
 import { ArteRuimInitialState } from './interfaces';
 // Utilities
 import * as firebaseUtils from '../../utils/firebase';
-import { determineNextPhase } from './helpers';
+import { buildPastDrawingsDict, buildUsedCardsIdsDict, determineNextPhase } from './helpers';
 // Internal Functions
 import {
   prepareSetupPhase,
@@ -19,6 +19,8 @@ import * as arteRuimActions from './actions';
 // Data
 import arteRuimCardsPt from '../../resources/arte-ruim-pt.json';
 import arteRuimCardsEn from '../../resources/arte-ruim-en.json';
+import * as globalUtils from '../global';
+import * as publicUtils from '../public';
 
 /**
  * Get Initial Game State
@@ -105,6 +107,15 @@ export const nextArteRuimPhase = async (
 
   if (nextPhase === ARTE_RUIM_PHASES.GAME_OVER) {
     const newPhase = await prepareGameOverPhase(store, state, players);
+
+    // Save usedArteRuimCards to global
+    const usedArteRuimCards = buildUsedCardsIdsDict(store.pastDrawings);
+    await globalUtils.updateGlobalFirebaseDoc('usedArteRuimCards', usedArteRuimCards);
+    // Save drawings to public gallery
+    const publicDrawings = await publicUtils.getPublicFirebaseDocData('arteRuimDrawings', {});
+    const newArteRuimDrawings = buildPastDrawingsDict(store.pastDrawings, publicDrawings);
+    await publicUtils.updatePublicFirebaseDoc('arteRuimDrawings', newArteRuimDrawings);
+
     return firebaseUtils.saveGame(sessionRef, newPhase);
   }
 
@@ -118,9 +129,10 @@ const getCards = async (language: string) => {
   // Get full deck
   const allCards = language === 'en' ? arteRuimCardsEn : arteRuimCardsPt;
   // Get used deck
-  const usedCards = (await firebaseUtils.getGlobalRef().doc('usedArteRuimCards')?.get())?.data() ?? [];
+  // const usedCards = (await firebaseUtils.getGlobalRef().doc('usedArteRuimCards')?.get())?.data() ?? {};
+  const usedCards = globalUtils.getGlobalFirebaseDocData('usedArteRuimCards', {});
   return {
     allCards,
-    usedCards,
+    usedCards: Object.keys(usedCards),
   };
 };

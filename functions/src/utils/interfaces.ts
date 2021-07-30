@@ -51,6 +51,11 @@ export interface Meta {
   replay: number;
 }
 
+export interface Round {
+  current: number;
+  total: number;
+}
+
 export interface Player {
   id: PlayerId;
   avatarId: PlayerAvatarId;
