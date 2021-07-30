@@ -19,7 +19,7 @@ import { AvatarName } from '../../avatars';
 import SecretClueWrite from './SecretClueWrite';
 import SecretClueWaiting from './SecretClueWaiting';
 
-function SecretCluePhase({ state, players, info }) {
+function PhaseSecretClue({ state, players, info }) {
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
   const leader = useWhichPlayerIsThe('leader', state, players);
@@ -72,7 +72,7 @@ function SecretCluePhase({ state, players, info }) {
   );
 }
 
-SecretCluePhase.propTypes = {
+PhaseSecretClue.propTypes = {
   info: PropTypes.object,
   players: PropTypes.object,
   state: PropTypes.shape({
@@ -81,4 +81,4 @@ SecretCluePhase.propTypes = {
   }),
 };
 
-export default SecretCluePhase;
+export default PhaseSecretClue;

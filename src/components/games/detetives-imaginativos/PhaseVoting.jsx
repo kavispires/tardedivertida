@@ -12,7 +12,7 @@ import { Instruction, PhaseContainer, Title } from '../../shared';
 import Table from './Table';
 import VotingOptions from './VotingOptions';
 
-function VotingPhase({ state, players, info }) {
+function PhaseVoting({ state, players, info }) {
   const [isLoading] = useLoading();
   const user = useUser(players);
   const isUserTheLeader = useIsUserThe('leader', state);
@@ -63,7 +63,7 @@ function VotingPhase({ state, players, info }) {
   );
 }
 
-VotingPhase.propTypes = {
+PhaseVoting.propTypes = {
   info: PropTypes.object,
   players: PropTypes.object,
   state: PropTypes.shape({
@@ -78,4 +78,4 @@ VotingPhase.propTypes = {
   }),
 };
 
-export default VotingPhase;
+export default PhaseVoting;
