@@ -42,7 +42,7 @@ function PhaseCardPlay({ state, players, info }) {
 
   const onPlayCard = useAPICall({
     apiFunction: DETETIVES_IMAGINATIVOS_API.submitAction,
-    actionName: 'hanging-photograph',
+    actionName: 'play-card',
     successMessage: translate('Carta enviada com sucesso', 'Card submitted successfully', language),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar sua carta',
@@ -86,8 +86,8 @@ function PhaseCardPlay({ state, players, info }) {
       <StepSwitcher step={step}>
         {/* Step 0 */}
         <PhaseAnnouncement
-          type="card-play"
-          title={translate('Evidências', 'Evidence', language)}
+          type="hanging-photograph"
+          title={translate('Apresentação das Evidências', 'Evidence', language)}
           onClose={() => setStep(1)}
           currentRound={state?.round?.current}
         >

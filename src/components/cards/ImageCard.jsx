@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { Image } from 'antd';
 import { PUBLIC_URL } from '../../utils/constants';
+import placeholder from '../../images/placeholder.jpg';
 
 export const ImageCard = memo(function ({ imageId, size, cardWidth, className }) {
   const baseClass = 'image-card';
@@ -16,6 +17,7 @@ export const ImageCard = memo(function ({ imageId, size, cardWidth, className })
       <Image
         width={cardWidth}
         src={`${process.env.REACT_APP_IMG_URL}${imageURL}.jpg`}
+        placeholder={<Image preview={false} src={placeholder} width={cardWidth} />}
         fallback={`${PUBLIC_URL.CARDS}${fallbackName}.jpg`}
         preview={{
           maskClassName: `${baseClass}__preview-mask`,

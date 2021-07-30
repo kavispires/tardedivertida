@@ -82,7 +82,7 @@ function PhaseDefense({ state, players, info }) {
           time={5}
         >
           <Title>
-            <Translate pt="Pista secreta era: " en="The Secret Clue was: " />
+            <Translate pt="Pista Secreta era: " en="The Secret Clue was: " />
             <span className="d-clue">{state.clue}</span>
           </Title>
           <Instruction>
@@ -96,7 +96,7 @@ function PhaseDefense({ state, players, info }) {
         {/* Step 1 */}
         <Step key={1}>
           <Title>
-            <Translate pt="Pista secreta era: " en="The Secret Clue was: " />
+            <Translate pt="Pista Secreta era: " en="The Secret Clue was: " />
             <span className="d-clue">{state.clue}</span>
           </Title>
           <Instruction>
