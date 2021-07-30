@@ -9,20 +9,32 @@ import { useLanguage } from '../../hooks';
 import { TimedButton } from './index';
 import { translate } from './Translate';
 import { Title } from './Title';
-import { Painting, Evaluate, Multitask, Picture, Seal } from '../icons';
+import * as IconIllustrations from '../icons';
 
 const getIconType = (type) => {
   switch (type) {
-    case 'painting':
-      return Painting;
+    case 'defense':
+      return IconIllustrations.Defense;
     case 'evaluate':
-      return Evaluate;
+      return IconIllustrations.Evaluate;
+    case 'gears':
+      return IconIllustrations.Gears;
+    case 'hanging-photograph':
+      return IconIllustrations.HangingPhotograph;
+    case 'painting':
+      return IconIllustrations.Painting;
     case 'picture':
-      return Picture;
+      return IconIllustrations.Picture;
+    case 'rank':
+      return IconIllustrations.Rank;
     case 'seal':
-      return Seal;
+      return IconIllustrations.Seal;
+    case 'secret':
+      return IconIllustrations.Secret;
+    case 'vote':
+      return IconIllustrations.Vote;
     default:
-      return Multitask;
+      return IconIllustrations.Multitask;
   }
 };
 

@@ -42,7 +42,7 @@ function PhaseCardPlay({ state, players, info }) {
 
   const onPlayCard = useAPICall({
     apiFunction: DETETIVES_IMAGINATIVOS_API.submitAction,
-    actionName: 'play-card',
+    actionName: 'hanging-photograph',
     successMessage: translate('Carta enviada com sucesso', 'Card submitted successfully', language),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar sua carta',

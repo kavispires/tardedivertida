@@ -72,7 +72,7 @@ function PhaseSecretClue({ state, players, info }) {
 
         {/* Step 1 */}
         <PhaseAnnouncement
-          type="secret-clue"
+          type="secret"
           title={translate('Pista Secreta', 'Secret Clue', language)}
           onClose={() => setStep(2)}
           currentRound={state?.round?.current}
