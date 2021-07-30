@@ -4,6 +4,7 @@
   width: 50vw;
   min-width: 500px;
   position: relative;
+  margin-bottom: get-unit(4);
 
   &__row {
     width: 100%;
@@ -19,6 +20,7 @@
     position: absolute;
     right: 0;
     top: 0;
+    animation: fade-in 2s;
     transition: all 1500ms;
   }
 

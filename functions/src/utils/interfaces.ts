@@ -51,6 +51,11 @@ export interface Meta {
   replay: number;
 }
 
+export interface Round {
+  current: number;
+  total: number;
+}
+
 export interface Player {
   id: PlayerId;
   avatarId: PlayerAvatarId;
@@ -100,45 +105,22 @@ export interface SubmitVotePayload extends Payload {
   vote: string;
 }
 
-// ARTE_RUIM
-
-export interface UsedCard {
-  id: string;
-  playerId: PlayerId | null;
-  drawing: string | null;
-  successRate: number;
-  [key: string]: any;
+export interface SetPayload {
+  players?: PlainObject;
+  state?: PlainObject;
+  store?: PlainObject;
 }
 
-export interface ArteRuimStore {
-  usedCards: UsedCard[];
-  currentCards: string[];
-  pastDrawings: UsedCard[];
-  [key: string]: any;
+export interface UpdatePayload {
+  players?: PlainObject;
+  state?: PlainObject;
+  store?: PlainObject;
+  meta?: PlainObject;
 }
 
-export interface ArteRuimState {
-  phase: string;
-  round: number;
-  [key: string]: any;
-}
-
-export interface ArteRuimInitialState {
-  meta: Meta;
-  players: Players;
-  store: ArteRuimStore;
-  state: ArteRuimState;
-}
-
-export interface DrawingEntry {
-  cardId: string | number;
-  drawing: string;
-  playerId: string;
-}
-
-export interface SubmitDrawingPayload extends Payload {
-  drawing: string;
-  cardId: string;
+export interface SaveGamePayload {
+  set?: SetPayload;
+  update?: UpdatePayload;
 }
 
 // CLUBE_DETETIVES

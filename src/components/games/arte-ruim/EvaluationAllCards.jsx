@@ -13,7 +13,7 @@ function EvaluationAllCards({ cards, activeItem, onActivateItem, votes }) {
     <ul className="a-evaluation-all-cards">
       {cards.map((cardEntry, index) => {
         const letter = LETTERS[index];
-        const cardEntryId = `card-${cardEntry.id}-${letter}`;
+        const cardEntryId = `card::${cardEntry.id}::${letter}`;
         const isActive = activeItem === cardEntryId;
         const isUsed = Object.values(votes).includes(cardEntryId);
 

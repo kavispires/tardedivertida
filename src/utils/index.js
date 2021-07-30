@@ -44,10 +44,10 @@ export const inNSeconds = (seconds) => {
 };
 
 /**
- * Flag indicating if the environment is for development
+ * Flag indicating if the environment is for development and not storybook
  * @type {boolean}
  */
-export const isDevEnv = process.env.NODE_ENV === 'development';
+export const isDevEnv = process.env.NODE_ENV === 'development' && window.location.port !== '6006';
 
 /**
  * Verify if the game id exists and has the correct length
@@ -201,4 +201,15 @@ export const orderBy = (list, properties, orders) => {
 export const pluralize = (quantity, singular, plural) => {
   if (!plural) return singular;
   return quantity === 1 ? singular : plural;
+};
+
+/**
+ * Shuffle list copy
+ * @param {any[]} list
+ * @returns
+ */
+export const shuffle = (list) => {
+  const result = [...list];
+  result.sort(() => Math.random() - 0.5);
+  return result;
 };

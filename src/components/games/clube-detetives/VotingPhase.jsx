@@ -11,7 +11,6 @@ import { PHASES } from '../../../utils/constants';
 import { Instruction, PhaseContainer, Title } from '../../shared';
 import Table from './Table';
 import VotingOptions from './VotingOptions';
-import { AdminForceNextPhase } from '../../admin/index';
 
 function VotingPhase({ state, players, info }) {
   const [isLoading] = useLoading();
@@ -50,19 +49,16 @@ function VotingPhase({ state, players, info }) {
         {!isUserTheLeader && user.vote && 'Aguarde enquanto os outros jogadores votam...'}
       </Instruction>
 
-      {!isUserTheLeader && (
-        <VotingOptions
-          players={players}
-          leader={state.leader}
-          user={user}
-          onVote={onVote}
-          isLoading={isLoading}
-        />
-      )}
+      <VotingOptions
+        players={players}
+        leader={state.leader}
+        user={user}
+        onVote={onVote}
+        isLoading={isLoading}
+        isAllDisabled={isUserTheLeader}
+      />
 
       <Table table={state.table} players={players} />
-
-      <AdminForceNextPhase />
     </PhaseContainer>
   );
 }

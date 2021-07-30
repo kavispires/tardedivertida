@@ -29,6 +29,10 @@
     transition: 2s all;
   }
 
+  &__card {
+    transition: 2s width;
+  }
+
   &__cards {
     display: flex;
     flex-wrap: nowrap;

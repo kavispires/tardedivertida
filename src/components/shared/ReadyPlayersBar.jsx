@@ -5,15 +5,10 @@ import { Avatar as AntAvatar, Typography } from 'antd';
 import { LikeFilled } from '@ant-design/icons';
 // Components
 import { Avatar } from '../avatars';
+import { Translate } from './Translate';
 
-export function ReadyPlayersBar({
-  players,
-  readyText = 'Estou pronto!',
-  readyTextPlural = 'Estamos prontos!',
-  showNames,
-}) {
+export function ReadyPlayersBar({ players, readyText, readyTextPlural, showNames }) {
   const readyPlayers = Object.values(players).filter((player) => player.ready);
-
   if (readyPlayers.length === 0) {
     return <span></span>;
   }
@@ -27,7 +22,13 @@ export function ReadyPlayersBar({
           ))}
         </AntAvatar.Group>
         <span className="ready-player-bar__speech-bubble">
-          <Typography.Text>{readyPlayers.length > 1 ? readyTextPlural : readyText}</Typography.Text>
+          <Typography.Text>
+            {readyPlayers.length > 1 ? (
+              <Translate pt="Estamos prontos!" en="We're ready!" custom={readyTextPlural} />
+            ) : (
+              <Translate pt="Estou pronto!" en="I'm ready!" custom={readyText} />
+            )}
+          </Typography.Text>
           <LikeFilled className="ready-player-bar__speech-bubble-icon" />
         </span>
       </div>
@@ -48,7 +49,5 @@ ReadyPlayersBar.propTypes = {
 };
 
 ReadyPlayersBar.defaultProps = {
-  readyText: 'Estou pronto!',
-  readyTextPlural: 'Estamos prontos!',
   showNames: false,
 };
