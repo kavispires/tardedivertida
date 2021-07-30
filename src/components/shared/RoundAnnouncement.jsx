@@ -4,15 +4,20 @@ import clsx from 'clsx';
 // Design Resources
 import { Button, Tag } from 'antd';
 // Images
-import rodadaTitle from '../../images/rodada-title.svg';
+import roundTitleEn from '../../images/round-title-en.svg';
+import roundTitlePt from '../../images/round-title-pt.svg';
 // Components
 import { AvatarName } from '../avatars';
 import { TimedButton } from './index';
+import { useLanguage } from '../../hooks';
+import { translate, Translate } from './Translate';
 
 function Team({ team, players, className }) {
   return (
     <div className={className}>
-      <h1>Time {team.name}</h1>
+      <h1>
+        <Translate pt="Time" en="Team" /> {team.name}
+      </h1>
       <ul className="round-announcement__team-members">
         {team.members.map((playerName) => (
           <li key={`team-member-${playerName}`} className="round-announcement__team-member">
@@ -21,7 +26,8 @@ function Team({ team, players, className }) {
         ))}
       </ul>
       <Tag className="round-announcement__points" color="blue">
-        {team.score} {team.score > 1 ? 'pontos' : 'ponto'}
+        {team.score}{' '}
+        <Translate pt={team.score > 1 ? 'pontos' : 'ponto'} en={team.score > 1 ? 'points' : 'point'} />
       </Tag>
     </div>
   );
@@ -37,6 +43,8 @@ export function RoundAnnouncement({
   className,
   children,
 }) {
+  const language = useLanguage();
+
   return (
     <div className={clsx('round-announcement', className)}>
       {Boolean(teams?.A) && (
@@ -45,7 +53,10 @@ export function RoundAnnouncement({
 
       <div className="round-announcement__main">
         <div className="round-announcement__title">
-          <img src={rodadaTitle} alt="Rodada" />
+          <img
+            src={translate(roundTitlePt, roundTitleEn, language)}
+            alt={translate('Rodada', 'Round', language)}
+          />
         </div>
         <div className="round-announcement__round-wrapper">
           <div className="round-announcement__circle"></div>
@@ -62,7 +73,7 @@ export function RoundAnnouncement({
 
         {Boolean(onPressButton) && Boolean(time) && (
           <TimedButton
-            label={buttonText}
+            label={buttonText || translate('Prosseguir', 'Continue', language)}
             type="primary"
             onClick={onPressButton}
             onExpire={onPressButton}
@@ -93,6 +104,5 @@ RoundAnnouncement.propTypes = {
 };
 
 RoundAnnouncement.defaultProps = {
-  buttonText: 'Prosseguir',
   time: 0,
 };
