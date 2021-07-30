@@ -88,8 +88,8 @@ function PhaseVoting({ state, players, info }) {
           <Instruction>
             {isUserTheLeader && (
               <Translate
-                pt="Aguarde enquanto os outros jogadorem votam em quem eles acham ser o impostor..."
-                en="Wait while the other detectives vote..."
+                pt="Aguarde enquanto os outros jogadorem votam em quem eles acham ser o impostor. Como Líder, você não vota."
+                en="Wait while the other detectives vote. As Lead Detective, you don't vote"
               />
             )}
 
