@@ -17,7 +17,7 @@
         "Após todos jogadores terminarem suas obras de arte, embaralha-se as cartas e os desenhos e todos tem que identificar qual desenho corresconde a cada expressão.",
         "Respostas corretas ganham 2 pontos e cada voto que seu desenho recebe também te dá 1 ponto.",
         "Quanto mais próximo do final do jogo, mais difíceis as expressões ficam! Fique esperto!",
-        "O primeiro jogador a cruzar a marca de 50 pontos sinaliza o fim do jogo e, então, o jogador com mais pontos é o vencedor!"
+        "Após 10 rodadas, o jogador com mais pontos é o vencedor!"
       ],
       "en": [
         "Questionable Art is a competitive game where players try to match artworks to their titles",
@@ -25,7 +25,7 @@
         "After every player has completed their masterpiece, all expressions and artworks are shuffled and everybody has to match the correct piece to its title.",
         "Correct matches grants 2 points and every correct guess your drawing gets also gives you 1 point.",
         "As you advance the game, harder expressions will come up! Try to keep up!",
-        "When a player gets 50 points, the game is over and the player with the most points wins!"
+        "After 10 rounds, the game is over and the player with the most points wins!"
       ]
     },
     "recommended": "4-6",
@@ -34,7 +34,7 @@
     "tags": ["competitive", "real-time", "drawing", "guessing", "timed"],
     "available": {
       "pt": true,
-      "en": false
+      "en": true
     }
   },
   "B": {
