@@ -78,7 +78,7 @@ export const prepareDrawPhase = async (
         phase: ARTE_RUIM_PHASES.DRAW,
         updatedAt: Date.now(),
         round: {
-          current: (state?.round ?? 0) + 1,
+          current: (state?.round?.current ?? 0) + 1,
           total: ARTE_RUIM_TOTAL_ROUNDS,
         },
       },
