@@ -6,6 +6,7 @@ export type PlayerId = string;
 export type PlayerName = string;
 export type PlayerAvatarId = string;
 export type Primitive = string | number | boolean | symbol | null;
+export type ImageCard = string;
 
 // COMMON INTERFACES
 
@@ -121,34 +122,6 @@ export interface UpdatePayload {
 export interface SaveGamePayload {
   set?: SetPayload;
   update?: UpdatePayload;
-}
-
-// DETETIVES_IMAGINATIVOS
-
-export type ImageCard = string;
-
-export interface DetetivesImaginativosStore {
-  usedCards: ImageCard[];
-  gameOrder: PlayerId[];
-  [key: string]: any;
-}
-
-export interface DetetivesImaginativosState {
-  phase: string;
-  round: number;
-  [key: string]: any;
-}
-
-export interface DetetivesImaginativosInitialState {
-  meta: Meta;
-  players: Players;
-  store: DetetivesImaginativosStore;
-  state: DetetivesImaginativosState;
-}
-
-export interface DetetivesImaginativosSubmitAction extends Payload {
-  action: 'SUBMIT_CLUE' | 'PLAY_CARD' | 'DEFEND' | 'SUBMIT_VOTE';
-  [key: string]: any;
 }
 
 // ESPIAO_ENTRE_NOS
