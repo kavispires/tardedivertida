@@ -1,29 +1,44 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
 import { Button, message } from 'antd';
 // Hooks
-import { useIsUserThe, useWhichPlayerIsThe, useAPICall, useLoading } from '../../../hooks';
+import { useIsUserThe, useWhichPlayerIsThe, useAPICall, useLoading, useLanguage } from '../../../hooks';
 // Resources & Utils
 import { DETETIVES_IMAGINATIVOS_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
 // Components
-import { ButtonContainer, EmergencyAlert, Instruction, PhaseContainer, Title } from '../../shared';
+import {
+  ButtonContainer,
+  Instruction,
+  PhaseAnnouncement,
+  PhaseContainer,
+  Step,
+  StepSwitcher,
+  Title,
+  Translate,
+  translate,
+} from '../../shared';
 import { AvatarName } from '../../avatars';
 import { messageContent } from '../../modals';
 import TableFocus from './TableFocus';
-import MagnifyingGlassSVG from './MagnifyingGlassSVG';
 
 function PhaseDefense({ state, players, info }) {
+  const language = useLanguage();
   const [isLoading] = useLoading();
   const currentPlayer = useWhichPlayerIsThe('currentPlayerId', state, players);
   const isUserTheCurrentPlayer = useIsUserThe('currentPlayerId', state);
+  const [step, setStep] = useState(0);
 
   const onFinishDefense = useAPICall({
     apiFunction: DETETIVES_IMAGINATIVOS_API.submitAction,
     actionName: 'submit-secret-clue',
-    successMessage: 'Defesa concluída com sucesso',
-    errorMessage: 'Vixi, o aplicativo encontrou um erro ao tentar concluir sua defesa',
+    successMessage: translate('Defesa concluída com sucesso', 'Defense concluded successfully', language),
+    errorMessage: translate(
+      'Vixi, o aplicativo encontrou um erro ao tentar concluir sua defesa',
+      'Oops, the application found an error while trying to conclude your defense',
+      language
+    ),
   });
 
   const onFinishDefenseClick = () => {
@@ -33,17 +48,22 @@ function PhaseDefense({ state, players, info }) {
   };
 
   useEffect(() => {
-    if (isUserTheCurrentPlayer) {
+    if (isUserTheCurrentPlayer && step > 0) {
       message.info(
         messageContent(
-          'Sua vez de defender suas escolhas!',
-          'Aperte o botão Concluir Defesa quando terminar',
+          translate('Sua vez de defender suas escolhas!', "It's your turn to defend your choices", language),
+          translate(
+            'Aperte o botão Concluir Defesa quando terminar',
+            "Press the button End Defense when you're done",
+            language
+          ),
+
           currentPlayer?.id,
           4
         )
       );
     }
-  }, [isUserTheCurrentPlayer, currentPlayer?.id]);
+  }, [isUserTheCurrentPlayer, currentPlayer?.id, language, step]);
 
   return (
     <PhaseContainer
@@ -52,30 +72,57 @@ function PhaseDefense({ state, players, info }) {
       allowedPhase={PHASES.DETETIVES_IMAGINATIVOS.DEFENSE}
       className="d-defense-phase"
     >
-      <EmergencyAlert duration={5}>
-        <MagnifyingGlassSVG />
-        <Title className="d-emergency-alert-title">
-          Pista secreta: <span className="d-clue">{state.clue}</span>
-        </Title>
-      </EmergencyAlert>
+      <StepSwitcher step={step}>
+        {/* Step 0 */}
+        <PhaseAnnouncement
+          type="defense"
+          title={translate('Defensa', 'Defense', language)}
+          onClose={() => setStep(1)}
+          currentRound={state?.round?.current}
+          time={5}
+        >
+          <Title>
+            <Translate pt="Pista secreta era: " en="The Secret Clue was: " />
+            <span className="d-clue">{state.clue}</span>
+          </Title>
+          <Instruction>
+            <Translate
+              pt="Agora, cada jogador em ordem deve defender porque escolheu as castas que escolheu."
+              en="Now, in turn-order, each player must present the reason they chose their cards."
+            />
+          </Instruction>
+        </PhaseAnnouncement>
 
-      <Title>
-        Defesa: A pista secreta era <span className="d-clue">{state.clue}</span>
-      </Title>
-      <Instruction>
-        <AvatarName player={currentPlayer} />, explique porque você escolheu as cartas.
-        {isUserTheCurrentPlayer && <> Quando terminar sua defesa, aperte concluir.</>}
-      </Instruction>
+        {/* Step 1 */}
+        <Step key={1}>
+          <Title>
+            <Translate pt="Pista secreta era: " en="The Secret Clue was: " />
+            <span className="d-clue">{state.clue}</span>
+          </Title>
+          <Instruction>
+            <AvatarName player={currentPlayer} />,{' '}
+            <Translate pt="explique porque você escolheu as cartas." en="explain why you chose your cards." />
+            {isUserTheCurrentPlayer && (
+              <>
+                <Translate
+                  pt=" Quando terminar sua defesa, aperte concluir."
+                  en=" When you're done, press 'End Defense'"
+                />
+              </>
+            )}
+          </Instruction>
 
-      <TableFocus table={state.table} currentPlayer={currentPlayer} />
+          <TableFocus table={state.table} currentPlayer={currentPlayer} />
 
-      {isUserTheCurrentPlayer && (
-        <ButtonContainer>
-          <Button type="primary" onClick={onFinishDefenseClick} disabled={isLoading} size="large">
-            Concluir Defesa
-          </Button>
-        </ButtonContainer>
-      )}
+          {isUserTheCurrentPlayer && (
+            <ButtonContainer>
+              <Button type="primary" onClick={onFinishDefenseClick} disabled={isLoading} size="large">
+                <Translate pt="Concluir Defesa" en="End Defense" />
+              </Button>
+            </ButtonContainer>
+          )}
+        </Step>
+      </StepSwitcher>
     </PhaseContainer>
   );
 }

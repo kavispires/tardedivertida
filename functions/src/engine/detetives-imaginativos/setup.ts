@@ -42,10 +42,11 @@ export const prepareSetupPhase = async (
         turnOrder: playerIds,
         gameOrder,
         usedCards: [],
+        teton: true,
       },
       state: {
         phase: DETETIVES_IMAGINATIVOS_PHASES.SETUP,
-        rounds: {
+        round: {
           current: 0,
           total: gameOrder.length,
         },
@@ -82,7 +83,7 @@ export const prepareSecretCluePhase = async (
       state: {
         phase: DETETIVES_IMAGINATIVOS_PHASES.SECRET_CLUE,
         updatedAt: Date.now(),
-        rounds: utils.increaseRound(state.round),
+        round: utils.increaseRound(state.round),
         leader,
         impostor,
       },

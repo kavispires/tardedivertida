@@ -1,32 +1,54 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
 import { message, Spin } from 'antd';
 import { FileImageOutlined, QuestionCircleFilled } from '@ant-design/icons';
 // Hooks
-import { useIsUserThe, useWhichPlayerIsThe, useAPICall, useUser, useLoading } from '../../../hooks';
+import {
+  useIsUserThe,
+  useWhichPlayerIsThe,
+  useAPICall,
+  useUser,
+  useLoading,
+  useLanguage,
+} from '../../../hooks';
 // Resources & Utils
 import { DETETIVES_IMAGINATIVOS_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
 // Components
-import { Instruction, PhaseContainer, Title } from '../../shared';
+import {
+  Instruction,
+  PhaseAnnouncement,
+  PhaseContainer,
+  Step,
+  StepSwitcher,
+  Title,
+  Translate,
+  translate,
+} from '../../shared';
 import { AvatarName } from '../../avatars';
 import { messageContent } from '../../modals';
 import { ImageCardHand as Hand } from '../../cards';
 import Table from './Table';
 
 function PhaseCardPlay({ state, players, info }) {
+  const language = useLanguage();
   const [isLoading] = useLoading();
   const user = useUser(players);
   const currentPlayer = useWhichPlayerIsThe('currentPlayerId', state, players);
   const isUserTheImpostor = useIsUserThe('impostor', state);
   const isUserTheCurrentPlayer = useIsUserThe('currentPlayerId', state);
+  const [step, setStep] = useState(0);
 
   const onPlayCard = useAPICall({
     apiFunction: DETETIVES_IMAGINATIVOS_API.submitAction,
     actionName: 'play-card',
-    successMessage: 'Carta enviada com sucesso',
-    errorMessage: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua carta',
+    successMessage: translate('Carta enviada com sucesso', 'Card submitted successfully', language),
+    errorMessage: translate(
+      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua carta',
+      'Oops, the application found an error while trying to submit your card',
+      language
+    ),
   });
 
   const onSelectCard = (cardId) => {
@@ -37,17 +59,22 @@ function PhaseCardPlay({ state, players, info }) {
   };
 
   useEffect(() => {
-    if (isUserTheCurrentPlayer) {
+    if (isUserTheCurrentPlayer && step > 0) {
       message.info(
         messageContent(
-          'Escolha uma carta!',
-          'Aperte o botão Selecionar acima da carta escolhida',
+          translate('Escolha uma carta!', 'Choose a card to play', language),
+          translate(
+            'Aperte o botão Selecionar acima da carta escolhida',
+            'Press the select button above each card',
+            language
+          ),
+
           currentPlayer.id,
           3
         )
       );
     }
-  }, [isUserTheCurrentPlayer, currentPlayer.id]);
+  }, [isUserTheCurrentPlayer, currentPlayer.id, language, step]);
 
   return (
     <PhaseContainer
@@ -56,36 +83,89 @@ function PhaseCardPlay({ state, players, info }) {
       allowedPhase={PHASES.DETETIVES_IMAGINATIVOS.CARD_PLAY}
       className="d-phase d-play-card-phase"
     >
-      <Title>
-        A pista secreta é{' '}
-        <span className="d-clue">{isUserTheImpostor ? <QuestionCircleFilled /> : state.clue}</span>
-      </Title>
-      <Instruction>
-        {isUserTheCurrentPlayer && !isUserTheImpostor && (
-          <>
-            <FileImageOutlined /> Selecione uma carta que mais combine com a pista secreta.
-          </>
-        )}
-        {isUserTheCurrentPlayer && isUserTheImpostor && (
-          <>
-            <FileImageOutlined /> Selecione uma carta que mais combine com as cartas que os outros jogadores
-            estão usando.
-          </>
-        )}
-        {!isUserTheCurrentPlayer && (
-          <>
-            <Spin /> Aguarde enquanto <AvatarName player={currentPlayer} addressUser /> escolhe uma carta
-          </>
-        )}
-      </Instruction>
-      <Table table={state.table} players={players} />
-      <Hand
-        hand={user.hand}
-        onSelectCard={isUserTheCurrentPlayer ? onSelectCard : null}
-        disabledSelectButton={isLoading}
-        selectButtonLabel="Selecionar"
-        sizeRatio={10}
-      />
+      <StepSwitcher step={step}>
+        {/* Step 0 */}
+        <PhaseAnnouncement
+          type="card-play"
+          title={translate('Evidências', 'Evidence', language)}
+          onClose={() => setStep(1)}
+          currentRound={state?.round?.current}
+        >
+          <Instruction>
+            <Translate
+              pt="Agora, jogadores selecionaram duas cartas, uma de cada vez, como evidência que eles não sao o impostor. Enquanto isso, o impostor está prestando bastante atenção nas cartas selecionadas e escolhando algo que o(a) ajude a passar despercebido."
+              en="Now players will play 2 cards, one at a time, as evidence that they are not the impostor while the impostor is looking closely to what others are playing and trying to go unnoticed."
+            />
+          </Instruction>
+          {/* TODO: Preload hand */}
+        </PhaseAnnouncement>
+
+        {/* Step 1 */}
+        <Step key={1}>
+          <Title>
+            {isUserTheImpostor ? (
+              <>
+                <QuestionCircleFilled />{' '}
+                <Translate
+                  pt="Pista? Que pista? Você é o impostor!"
+                  en="Clue? What clue? You are the impostor!"
+                />
+              </>
+            ) : (
+              <>
+                <Translate pt="A pista secreta é" en="The secret clue is" />{' '}
+                <span className="d-clue">{state.clue}</span>
+              </>
+            )}
+          </Title>
+          <Instruction>
+            {isUserTheCurrentPlayer && !isUserTheImpostor && (
+              <>
+                <FileImageOutlined />{' '}
+                <Translate
+                  pt="Selecione uma carta que mais combine com a pista secreta."
+                  en="Select a card that best fits the secret clue."
+                />
+              </>
+            )}
+            {isUserTheCurrentPlayer && isUserTheImpostor && (
+              <>
+                <FileImageOutlined />{' '}
+                <Translate
+                  pt="Selecione uma carta que mais combine com as cartas que os outros
+                jogadores estão usando."
+                  en="Select a card that best fits with what others are playing."
+                />
+              </>
+            )}
+            {!isUserTheCurrentPlayer && (
+              <>
+                <Spin />{' '}
+                <Translate
+                  pt={
+                    <>
+                      Aguarde enquanto <AvatarName player={currentPlayer} addressUser /> escolhe uma carta.
+                    </>
+                  }
+                  en={
+                    <>
+                      Wait while <AvatarName player={currentPlayer} /> picks a card.
+                    </>
+                  }
+                />
+              </>
+            )}
+          </Instruction>
+          <Table table={state.table} players={players} />
+          <Hand
+            hand={user.hand}
+            onSelectCard={isUserTheCurrentPlayer ? onSelectCard : null}
+            disabledSelectButton={isLoading}
+            selectButtonLabel={translate('Selecionar', 'Select', language)}
+            sizeRatio={10}
+          />
+        </Step>
+      </StepSwitcher>
     </PhaseContainer>
   );
 }

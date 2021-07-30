@@ -107,13 +107,13 @@ export interface SubmitVotePayload extends Payload {
 }
 
 export interface SetPayload {
-  players?: PlainObject;
+  players?: PlainObject | Players;
   state?: PlainObject;
   store?: PlainObject;
 }
 
 export interface UpdatePayload {
-  players?: PlainObject;
+  players?: PlainObject | Players;
   state?: PlainObject;
   store?: PlainObject;
   meta?: PlainObject;

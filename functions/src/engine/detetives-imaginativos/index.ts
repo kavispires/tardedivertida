@@ -6,7 +6,6 @@ import { GameId, Players } from '../../utils/interfaces';
 import { DetetivesImaginativosInitialState, DetetivesImaginativosSubmitAction } from './interfaces';
 // Utils
 import * as firebaseUtils from '../../utils/firebase';
-import { determineNextPhase } from '../arte-ruim/helpers';
 import {
   prepareCardPlayPhase,
   prepareDefensePhase,
@@ -17,6 +16,7 @@ import {
   prepareVotingPhase,
 } from './setup';
 import { handleDefend, handlePlayCard, handleSubmitClue, handleSubmitVote } from './actions';
+import { determineNextPhase } from './helpers';
 
 /**
  * Get Initial Game State
@@ -79,7 +79,10 @@ export const nextDetetivesImaginativosPhase = async (
   if (nextPhase === DETETIVES_IMAGINATIVOS_PHASES.SETUP) {
     const newPhase = await prepareSetupPhase(store, state, players);
     await firebaseUtils.saveGame(sessionRef, newPhase);
-    return nextDetetivesImaginativosPhase(collectionName, gameId, players);
+    const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
+    const newPlayers = playersDoc.data() ?? {};
+    console.log(newPlayers);
+    return nextDetetivesImaginativosPhase(collectionName, gameId, newPlayers);
   }
 
   // * -> SECRET_CLUE
