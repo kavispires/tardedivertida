@@ -1,7 +1,6 @@
 import 'jest';
-import * as engine from '../../src/engine/clube-detetives';
+import * as engine from '../../src/engine/detetives-imaginativos';
 import { generatePLayerId } from '../../src/utils/helpers';
-// import { Players } from '../../src/utils/interfaces';
 
 const mockPlayer = ({ name, ready = true, score = 0, additionalInfo }) => ({
   id: generatePLayerId(name),

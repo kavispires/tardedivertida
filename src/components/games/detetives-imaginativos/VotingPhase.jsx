@@ -5,7 +5,7 @@ import { Spin } from 'antd';
 // Hooks
 import { useIsUserThe, useAPICall, useUser, useLoading } from '../../../hooks';
 // Resources & Utils
-import { CLUBE_DETETIVES_API } from '../../../adapters';
+import { DETETIVES_IMAGINATIVOS_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
 // Components
 import { Instruction, PhaseContainer, Title } from '../../shared';
@@ -18,7 +18,7 @@ function VotingPhase({ state, players, info }) {
   const isUserTheLeader = useIsUserThe('leader', state);
 
   const onSubmitVote = useAPICall({
-    apiFunction: CLUBE_DETETIVES_API.submitAction,
+    apiFunction: DETETIVES_IMAGINATIVOS_API.submitAction,
     actionName: 'submit-vote',
     successMessage: 'Voto enviado com sucesso',
     errorMessage: 'Vixi, o aplicativo encontrou um erro ao tentar enviar seu voto',
@@ -35,7 +35,7 @@ function VotingPhase({ state, players, info }) {
     <PhaseContainer
       info={info}
       phase={state?.phase}
-      allowedPhase={PHASES.CLUBE_DETETIVES.VOTING}
+      allowedPhase={PHASES.DETETIVES_IMAGINATIVOS.VOTING}
       className="d-voting-phase"
     >
       <Title>{isLoading ? <Spin size="large" /> : 'Quem é o impostor?'}</Title>

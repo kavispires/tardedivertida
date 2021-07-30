@@ -5,7 +5,7 @@ import { Button, message } from 'antd';
 // Hooks
 import { useIsUserThe, useWhichPlayerIsThe, useAPICall, useLoading } from '../../../hooks';
 // Resources & Utils
-import { CLUBE_DETETIVES_API } from '../../../adapters';
+import { DETETIVES_IMAGINATIVOS_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
 // Components
 import { ButtonContainer, EmergencyAlert, Instruction, PhaseContainer, Title } from '../../shared';
@@ -20,7 +20,7 @@ function DefensePhase({ state, players, info }) {
   const isUserTheCurrentPlayer = useIsUserThe('currentPlayerId', state);
 
   const onFinishDefense = useAPICall({
-    apiFunction: CLUBE_DETETIVES_API.submitAction,
+    apiFunction: DETETIVES_IMAGINATIVOS_API.submitAction,
     actionName: 'submit-secret-clue',
     successMessage: 'Defesa concluída com sucesso',
     errorMessage: 'Vixi, o aplicativo encontrou um erro ao tentar concluir sua defesa',
@@ -49,7 +49,7 @@ function DefensePhase({ state, players, info }) {
     <PhaseContainer
       info={info}
       phase={state?.phase}
-      allowedPhase={PHASES.CLUBE_DETETIVES.DEFENSE}
+      allowedPhase={PHASES.DETETIVES_IMAGINATIVOS.DEFENSE}
       className="d-defense-phase"
     >
       <EmergencyAlert duration={5}>

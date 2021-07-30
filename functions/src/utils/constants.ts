@@ -20,7 +20,7 @@ export const GAME_KEYS = {
 
 export const GAME_COLLECTIONS = {
   ARTE_RUIM: 'arte-ruim',
-  CLUBE_DETETIVE: 'clube-detetives',
+  CLUBE_DETETIVE: 'detetives-imaginativos',
   ESPIAO_ENTRE_NOS: 'espiao-entre-nos',
   ONDA_TELEPATICA: 'onda-telepatica',
   UE_SO_ISSO: 'ue-so-isso',
@@ -53,7 +53,7 @@ export const GAME_PLAYERS_LIMIT = {
  * Enum of Game Phases
  */
 export const PHASES = {
-  CLUBE_DETETIVES: {
+  DETETIVES_IMAGINATIVOS: {
     LOBBY: 'LOBBY',
     RULES: 'RULES',
     SECRET_CLUE: 'SECRET_CLUE',

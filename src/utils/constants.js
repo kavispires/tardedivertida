@@ -207,7 +207,7 @@ export const RANDOM_NAMES = 'Ana,Bob,Cam,Dan,Evan,Fred,Gus,Helen,Ian,Jess,Kim,Li
  */
 export const GAME_COLLECTION = {
   ARTE_RUIM: 'arte-ruim',
-  CLUBE_DETETIVES: 'clube-detetives',
+  DETETIVES_IMAGINATIVOS: 'detetives-imaginativos',
   ESPIAO_ENTRE_NOS: 'espiao-entre-nos',
   ONDA_TELEPATICA: 'onda-telepatica',
   UE_SO_ISSO: 'ue-so-isso',
@@ -225,7 +225,7 @@ export const PHASES = {
     GALLERY: 'GALLERY',
     GAME_OVER: 'GAME_OVER',
   },
-  CLUBE_DETETIVES: {
+  DETETIVES_IMAGINATIVOS: {
     LOBBY: 'LOBBY',
     RULES: 'RULES',
     SECRET_CLUE: 'SECRET_CLUE',

@@ -123,30 +123,30 @@ export interface SaveGamePayload {
   update?: UpdatePayload;
 }
 
-// CLUBE_DETETIVES
+// DETETIVES_IMAGINATIVOS
 
 export type ImageCard = string;
 
-export interface ClubeDetetivesStore {
+export interface DetetivesImaginativosStore {
   usedCards: ImageCard[];
   gameOrder: PlayerId[];
   [key: string]: any;
 }
 
-export interface ClubeDetetivesState {
+export interface DetetivesImaginativosState {
   phase: string;
   round: number;
   [key: string]: any;
 }
 
-export interface ClubeDetetivesInitialState {
+export interface DetetivesImaginativosInitialState {
   meta: Meta;
   players: Players;
-  store: ClubeDetetivesStore;
-  state: ClubeDetetivesState;
+  store: DetetivesImaginativosStore;
+  state: DetetivesImaginativosState;
 }
 
-export interface ClubeDetetivesSubmitAction extends Payload {
+export interface DetetivesImaginativosSubmitAction extends Payload {
   action: 'SUBMIT_CLUE' | 'PLAY_CARD' | 'DEFEND' | 'SUBMIT_VOTE';
   [key: string]: any;
 }
