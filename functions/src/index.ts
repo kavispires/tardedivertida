@@ -5,6 +5,7 @@ import * as arteRuimEngine from './engine/arte-ruim';
 import * as DetetivesImaginativosEngine from './engine/detetives-imaginativos';
 import * as espiaoEntreNosEngine from './engine/espiao-entre-nos';
 import * as ondaTelepaticaEngine from './engine/onda-telepatica';
+import * as testemunhaOcularEngine from './engine/testemunha-ocular';
 import * as ueSoIssoEngine from './engine/ue-so-isso';
 
 admin.initializeApp();
@@ -114,6 +115,10 @@ exports.ondaTelepaticaSubmitGuess = functions.https.onCall(ondaTelepaticaEngine.
  * Submit rival team guess and move to the next phase
  */
 exports.ondaTelepaticaSubmitRivalGuess = functions.https.onCall(ondaTelepaticaEngine.submitRivalGuess);
+
+// TESTEMUNHA_OCULAR HTTP CALLS
+
+exports.testemunhaOcularSubmitAction = functions.https.onCall(testemunhaOcularEngine.submitAction);
 
 // UE_SO_ISSO HTTP CALLS
 

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 // Hooks
 import { useIsUserReady, useWhichPlayerIsThe, useIsUserThe, useAPICall } from '../../../hooks';
 // Resources & Utils
-import { ONDA_TELEPATICA } from '../../../adapters';
+import { ONDA_TELEPATICA_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
 // Components
 import { PhaseContainer, StepSwitcher, Step, ViewIf, WaitingRoom } from '../../shared';
@@ -17,7 +17,7 @@ function DialCluePhase({ state, players, info }) {
   const isUserThePsychic = useIsUserThe('psychic', state);
 
   const onSendClue = useAPICall({
-    apiFunction: ONDA_TELEPATICA.submitClue,
+    apiFunction: ONDA_TELEPATICA_API.submitClue,
     actionName: 'submit-clue',
     onBeforeCall: () => setStep(1),
     onError: () => setStep(0),
