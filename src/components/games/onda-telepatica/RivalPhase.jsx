@@ -11,7 +11,7 @@ import {
   useIsUsersTeamActive,
 } from '../../../hooks';
 // Resources & Utils
-import { ONDA_TELEPATICA } from '../../../adapters';
+import { ONDA_TELEPATICA_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
 import { getOppositeTeam } from '../../../utils';
 // Components
@@ -27,7 +27,7 @@ function RivalPhase({ state, players, info }) {
   const isUsersTeamActive = useIsUsersTeamActive(state, players);
 
   const onSendRivalGuess = useAPICall({
-    apiFunction: ONDA_TELEPATICA.submitRivalGuess,
+    apiFunction: ONDA_TELEPATICA_API.submitRivalGuess,
     actionName: 'submit-rival-guess',
     onBeforeCall: () => setStep(1),
     onError: () => setStep(0),
