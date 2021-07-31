@@ -23,7 +23,7 @@ export const handleExtraAction = async (
   try {
     const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
     const players = playersDoc.data() ?? {};
-    nextTestemunhaOcularPhase(collectionName, gameId, players, ...additionalPayload);
+    return nextTestemunhaOcularPhase(collectionName, gameId, players, additionalPayload);
   } catch (error) {
     firebaseUtils.throwException(error, `Failed to ${actionText}`);
   }

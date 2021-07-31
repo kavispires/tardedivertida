@@ -81,7 +81,7 @@ export const nextTestemunhaOcularPhase = async (
   if (nextPhase === TESTEMUNHA_OCULAR_PHASES.SETUP) {
     // Request data
     const additionalData = await getCards(store.language);
-    const newPhase = await prepareSetupPhase(store, state, players, additionalData);
+    const newPhase = await prepareSetupPhase(additionalData);
     await firebaseUtils.saveGame(sessionRef, newPhase);
     return nextTestemunhaOcularPhase(collectionName, gameId, players);
   }
@@ -124,7 +124,6 @@ export const submitAction = async (data: TestemunhaOcularSubmitAction) => {
   firebaseUtils.verifyPayload(collectionName, 'collectionName', actionText);
   firebaseUtils.verifyPayload(playerId, 'playerId', actionText);
   firebaseUtils.verifyPayload(action, 'action', actionText);
-
   switch (action) {
     case 'SELECT_WITNESS':
       actionText = 'select witness';

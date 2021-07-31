@@ -1,6 +1,7 @@
 export * from './LoadingCircles';
 export * from './LoadingBox';
 export * from './LoadingClock';
+export * from './CrimeScene';
 export * from './Defense';
 export * from './Evaluate';
 export * from './Gears';
@@ -13,3 +14,4 @@ export * from './Seal';
 export * from './Secret';
 export * from './Trophy';
 export * from './Vote';
+export * from './Witness';

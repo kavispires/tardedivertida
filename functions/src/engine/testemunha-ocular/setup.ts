@@ -1,8 +1,14 @@
 // Interfaces
 import * as gameUtils from '../../utils/game-utils';
-import { increaseRound } from '../../utils/helpers';
+import * as utils from '../../utils/helpers';
 import { PlainObject, Players, SaveGamePayload } from '../../utils/interfaces';
-import { QUESTION_COUNT, SUSPECTS_IDS, SUSPECT_COUNT, TESTEMUNHA_OCULAR_PHASES } from './constants';
+import {
+  MAX_NUMBER_OF_ROUNDS,
+  QUESTION_COUNT,
+  SUSPECTS_IDS,
+  SUSPECT_COUNT,
+  TESTEMUNHA_OCULAR_PHASES,
+} from './constants';
 import { determineTurnOrder, filterAvailableCards, getQuestioner, getQuestions } from './helpers';
 import { FirebaseStateData, FirebaseStoreData, TestemunhaOcularCard } from './interfaces';
 
@@ -12,12 +18,7 @@ import { FirebaseStateData, FirebaseStoreData, TestemunhaOcularCard } from './in
  * Resets previous changes to the store
  * @returns
  */
-export const prepareSetupPhase = async (
-  store: FirebaseStoreData,
-  state: FirebaseStateData,
-  players: Players,
-  additionalData: PlainObject
-): Promise<SaveGamePayload> => {
+export const prepareSetupPhase = async (additionalData: PlainObject): Promise<SaveGamePayload> => {
   // Build suspects grid
   const suspectsList = gameUtils.shuffle(SUSPECTS_IDS);
   const suspects = gameUtils.getRandomItems(suspectsList, SUSPECT_COUNT);
@@ -41,6 +42,10 @@ export const prepareSetupPhase = async (
       state: {
         phase: TESTEMUNHA_OCULAR_PHASES.SETUP,
         suspects,
+        round: {
+          current: 0,
+          total: MAX_NUMBER_OF_ROUNDS,
+        },
       },
     },
   };
@@ -86,7 +91,7 @@ export const prepareQuestionSelectionPhase = async (
       state: {
         phase: TESTEMUNHA_OCULAR_PHASES.QUESTION_SELECTION,
         updatedAt: Date.now(),
-        round: increaseRound(state.round),
+        round: utils.increaseRound(state.round),
         questioner,
         questions,
         witness: additionalPayload?.witness ?? state.witness,
