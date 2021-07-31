@@ -1,5 +1,6 @@
 // Interfaces
 import { PlainObject, Players, SaveGamePayload } from '../../utils/interfaces';
+import { FirebaseStateData, FirebaseStoreData } from './interfaces';
 // Constants
 import { ARTE_RUIM_PHASES, ARTE_RUIM_TOTAL_ROUNDS, CARDS_PER_PLAYER_COUNT } from './constants';
 // Helpers
@@ -13,8 +14,6 @@ import {
   filterAvailableCards,
   getNewPastDrawings,
 } from './helpers';
-// Other
-import { FirebaseStateData, FirebaseStoreData } from './interfaces';
 
 /**
  * Setup

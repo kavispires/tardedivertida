@@ -7,15 +7,17 @@ export const GAME_CODES = {
   D: 'D', // detetives-imaginativos
   E: 'E', // espiao-entre-nos
   O: 'O', // onda-telepatica
+  T: 'T', // testemunha-ocular
   U: 'U', // ue-so-isso
 };
 
 export const DEV_GAME_IDS = {
-  A: 'AAAA', // arte-ruim
-  D: 'DDDD', // detetives-imaginativos
-  E: 'EEEE', // espiao-entre-nos
-  O: 'OOOO', // onda-telepatica
-  U: 'UUUU', // ue-so-isso
+  A: 'AAAA',
+  D: 'DDDD',
+  E: 'EEEE',
+  O: 'OOOO',
+  T: 'TTTT',
+  U: 'UUUU',
 };
 
 export const GAME_KEYS = {
@@ -23,6 +25,7 @@ export const GAME_KEYS = {
   DETETIVES_IMAGINATIVOS: 'DETETIVES_IMAGINATIVOS',
   ESPIAO_ENTRE_NOS: 'ESPIAO_ENTRE_NOS',
   ONDA_TELEPATICA: 'ONDA_TELEPATICA',
+  TESTEMUNHA_OCULAR: 'TESTEMUNHA_OCULAR',
   UE_SO_ISSO: 'UE_SO_ISSO',
 };
 
@@ -31,6 +34,7 @@ export const GAME_COLLECTIONS = {
   DETETIVES_IMAGINATIVOS: 'detetives-imaginativos',
   ESPIAO_ENTRE_NOS: 'espiao-entre-nos',
   ONDA_TELEPATICA: 'onda-telepatica',
+  TESTEMUNHA_OCULAR: 'testemunha-ocular',
   UE_SO_ISSO: 'ue-so-isso',
 };
 
@@ -49,6 +53,10 @@ export const GAME_PLAYERS_LIMIT = {
   },
   ONDA_TELEPATICA: {
     min: 4,
+    max: 8,
+  },
+  TESTEMUNHA_OCULAR: {
+    min: 2,
     max: 8,
   },
   UE_SO_ISSO: {

@@ -81,7 +81,6 @@ export const nextDetetivesImaginativosPhase = async (
     await firebaseUtils.saveGame(sessionRef, newPhase);
     const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
     const newPlayers = playersDoc.data() ?? {};
-    console.log(newPlayers);
     return nextDetetivesImaginativosPhase(collectionName, gameId, newPlayers);
   }
 
