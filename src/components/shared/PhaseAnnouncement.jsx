@@ -23,6 +23,8 @@ const getIconType = (type) => {
       return IconIllustrations.Gears;
     case 'hanging-photograph':
       return IconIllustrations.HangingPhotograph;
+    case 'investigation':
+      return IconIllustrations.Investigation;
     case 'painting':
       return IconIllustrations.Painting;
     case 'picture':

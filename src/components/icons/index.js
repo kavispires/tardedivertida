@@ -6,6 +6,7 @@ export * from './Defense';
 export * from './Evaluate';
 export * from './Gears';
 export * from './HangingPhotograph';
+export * from './Investigation';
 export * from './Multitask';
 export * from './Painting';
 export * from './Picture';

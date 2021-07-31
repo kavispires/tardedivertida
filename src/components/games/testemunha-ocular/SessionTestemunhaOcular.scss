@@ -1,0 +1,31 @@
+.t-select-question {
+  &__button {
+    transition: 500ms transform;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+}
+
+.t-suspects-table {
+  background: get-color(brown);
+  border-radius: get-unit(2);
+
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+
+  &__suspect {
+    // background: orange;
+    position: relative;
+  }
+
+  &__suspect-name {
+    font-family: 'Architects Daughter', cursive;
+    position: absolute;
+    bottom: get-unit(6);
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+  }
+}
