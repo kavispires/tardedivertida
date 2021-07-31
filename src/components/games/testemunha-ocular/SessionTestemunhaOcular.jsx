@@ -7,6 +7,7 @@ import Lobby from '../../lobby/Lobby';
 import { Rules } from '../../rules';
 import { PageError } from '../../errors/PageError';
 import PhaseWitnessSelection from './PhaseWitnessSelection';
+import PhaseQuestionSelection from './PhaseQuestionSelection';
 // import PhaseSecretClue from './PhaseSecretClue';
 // import PhaseCardPlay from './PhaseCardPlay';
 // import PhaseDefense from './PhaseDefense';
@@ -25,7 +26,7 @@ function SessionTestemunhaOcular({ gameId }) {
       case PHASES.TESTEMUNHA_OCULAR.WITNESS_SELECTION:
         return PhaseWitnessSelection;
       case PHASES.TESTEMUNHA_OCULAR.QUESTION_SELECTION:
-        return PhasePlaceholder;
+        return PhaseQuestionSelection;
       case PHASES.TESTEMUNHA_OCULAR.QUESTIONING:
         return PhasePlaceholder;
       case PHASES.TESTEMUNHA_OCULAR.TRIAL:

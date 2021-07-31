@@ -110,7 +110,7 @@ export const prepareQuestioningPhase = async (
   return {
     update: {
       state: {
-        phase: TESTEMUNHA_OCULAR_PHASES.SETUP,
+        phase: TESTEMUNHA_OCULAR_PHASES.QUESTIONING,
         updatedAt: Date.now(),
         question,
       },

@@ -115,14 +115,11 @@ PhaseWitnessSelection.propTypes = {
   info: PropTypes.object,
   players: PropTypes.object,
   state: PropTypes.shape({
-    clue: PropTypes.string,
     phase: PropTypes.string,
-    table: PropTypes.arrayOf(
-      PropTypes.shape({
-        playerId: PropTypes.string,
-        cards: PropTypes.arrayOf(PropTypes.string),
-      })
-    ),
+    round: PropTypes.shape({
+      current: PropTypes.number,
+      total: PropTypes.number,
+    }),
   }),
 };
 
