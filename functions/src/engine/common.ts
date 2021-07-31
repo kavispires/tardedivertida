@@ -356,7 +356,10 @@ export const playAgain = async (data: BasicGamePayload, context: FirebaseContext
     // Force rules phase which will trigger new setup
     await sessionRef.doc('state').set({
       phase: 'RULES',
-      round: 0,
+      round: {
+        current: 0,
+        total: 0,
+      },
     });
 
     return true;
@@ -376,8 +379,12 @@ const feedEmulatorDB = async () => {
   // GLOBAL
   await firebaseUtils.getGlobalRef().doc('usedGameIds').set(sample);
 
-  // ARTE-RUIM
+  // ARTE_RUIM
 
   await firebaseUtils.getPublicRef().doc('arteRuimDrawings').set(sample);
   await firebaseUtils.getGlobalRef().doc('usedArteRuimCards').set(sample);
+
+  // TESTEMUNHA_OCULAR
+
+  await firebaseUtils.getGlobalRef().doc('usedTestemunhaOcularCards').set(sample);
 };
