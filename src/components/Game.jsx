@@ -105,6 +105,8 @@ function Game() {
         return <GameSessions.EspiaoEntreNos gameId={gameId} />;
       case GAME_COLLECTION.ONDA_TELEPATICA:
         return <GameSessions.OndaTelepatica gameId={gameId} />;
+      case GAME_COLLECTION.TESTEMUNHA_OCULAR:
+        return <GameSessions.TestemunhaOcular gameId={gameId} />;
       case GAME_COLLECTION.UE_SO_ISSO:
         return <GameSessions.UeSoIsso gameId={gameId} />;
       default:

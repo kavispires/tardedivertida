@@ -258,10 +258,10 @@
     "recommended": "2+",
     "min": 2,
     "max": 8,
-    "tags": ["competitive", "turn-based", "guessing"],
+    "tags": ["cooperative", "turn-based", "guessing"],
     "available": {
-      "pt": false,
-      "en": false
+      "pt": true,
+      "en": true
     }
   },
   "U": {
