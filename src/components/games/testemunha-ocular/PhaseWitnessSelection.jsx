@@ -1,0 +1,129 @@
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+// Design Resources
+import { Button } from 'antd';
+// Hooks
+import { useIsUserThe, useWhichPlayerIsThe, useAPICall, useLoading, useLanguage } from '../../../hooks';
+// Resources & Utils
+import { TESTEMUNHA_OCULAR_API } from '../../../adapters';
+import { PHASES } from '../../../utils/constants';
+// Components
+import {
+  Instruction,
+  PhaseAnnouncement,
+  PhaseContainer,
+  Step,
+  StepSwitcher,
+  Title,
+  Translate,
+  translate,
+} from '../../shared';
+import { AdminOnly } from '../../admin';
+import { LoadingClock } from '../../icons';
+
+function PhaseWitnessSelection({ state, players, info }) {
+  const language = useLanguage();
+  const [isLoading] = useLoading();
+  const [step, setStep] = useState(0);
+
+  const witness = useWhichPlayerIsThe('witness', state, players);
+  const isUserTheWitness = useIsUserThe('witness', state);
+  const questioner = useWhichPlayerIsThe('questioner', state, players);
+  const isUserTheQuestioner = useIsUserThe('questioner', state);
+
+  const onSelectWitness = useAPICall({
+    apiFunction: TESTEMUNHA_OCULAR_API.submitAction,
+    actionName: 'select-witness',
+    successMessage: translate('Testemunha enviada com sucesso', 'Witness submitted successfully', language),
+    errorMessage: translate(
+      'Vixi, o aplicativo encontrou um erro ao tentar selectionar a testemunha',
+      'Oops, the application found an error while trying to submit the witness',
+      language
+    ),
+  });
+
+  const onWitnessButtonClick = (witnessId) => {
+    onSelectWitness({
+      action: 'SELECT_WITNESS',
+      witness: witnessId,
+    });
+  };
+
+  console.log({ witness, isUserTheWitness, questioner, isUserTheQuestioner });
+
+  return (
+    <PhaseContainer
+      info={info}
+      phase={state?.phase}
+      allowedPhase={PHASES.TESTEMUNHA_OCULAR.WITNESS_SELECTION}
+      className="t-phase"
+    >
+      <StepSwitcher step={step}>
+        {/* Step 0 */}
+        <PhaseAnnouncement
+          type="crime-scene"
+          title={translate('O Caso', 'The Case', language)}
+          onClose={() => setStep(1)}
+          currentRound={state?.round?.current}
+        >
+          <Instruction>
+            <Translate
+              pt={
+                <>
+                  Um crime horrível aconteceu. Tão horrível quem não consigo explicar e nem podemos contar com
+                  a ciência forense para resolvê-lo. Portanto, só há uma pessoa que pode nos ajudar agora: uma
+                  testemunha ocular...
+                </>
+              }
+              en={
+                <>
+                  A horrible crime has happened. So horrible that I can't even explain, neither can't rely on
+                  forensics and science to solve it. So there's only one person that could help us now: An eye
+                  witness...
+                </>
+              }
+            />
+          </Instruction>
+        </PhaseAnnouncement>
+
+        {/* Step 1 */}
+        <Step key={1}>
+          <Title>
+            <LoadingClock />
+            <br />
+            <Translate pt="Quem quer ser a testemunha ocular?" en="Who wants to be the eye witness?" />
+          </Title>
+
+          <Instruction>
+            <Translate pt="O administrator selecionará a testemunha." en="The VIP will select the witness." />
+          </Instruction>
+
+          <AdminOnly>
+            {Object.values(players).map((player) => (
+              <Button disabled={isLoading} onClick={() => onWitnessButtonClick(player.id)}>
+                {player.name}
+              </Button>
+            ))}
+          </AdminOnly>
+        </Step>
+      </StepSwitcher>
+    </PhaseContainer>
+  );
+}
+
+PhaseWitnessSelection.propTypes = {
+  info: PropTypes.object,
+  players: PropTypes.object,
+  state: PropTypes.shape({
+    clue: PropTypes.string,
+    phase: PropTypes.string,
+    table: PropTypes.arrayOf(
+      PropTypes.shape({
+        playerId: PropTypes.string,
+        cards: PropTypes.arrayOf(PropTypes.string),
+      })
+    ),
+  }),
+};
+
+export default PhaseWitnessSelection;

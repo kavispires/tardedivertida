@@ -13,6 +13,8 @@ import * as IconIllustrations from '../icons';
 
 const getIconType = (type) => {
   switch (type) {
+    case 'crime-scene':
+      return IconIllustrations.CrimeScene;
     case 'defense':
       return IconIllustrations.Defense;
     case 'evaluate':

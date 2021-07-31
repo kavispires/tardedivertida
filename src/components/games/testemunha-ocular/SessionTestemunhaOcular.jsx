@@ -6,6 +6,7 @@ import { GameOver, PhasePlaceholder, Session, SetupScreen } from '../../shared';
 import Lobby from '../../lobby/Lobby';
 import { Rules } from '../../rules';
 import { PageError } from '../../errors/PageError';
+import PhaseWitnessSelection from './PhaseWitnessSelection';
 // import PhaseSecretClue from './PhaseSecretClue';
 // import PhaseCardPlay from './PhaseCardPlay';
 // import PhaseDefense from './PhaseDefense';
@@ -22,7 +23,7 @@ function SessionTestemunhaOcular({ gameId }) {
       case PHASES.TESTEMUNHA_OCULAR.SETUP:
         return SetupScreen;
       case PHASES.TESTEMUNHA_OCULAR.WITNESS_SELECTION:
-        return PhasePlaceholder;
+        return PhaseWitnessSelection;
       case PHASES.TESTEMUNHA_OCULAR.QUESTION_SELECTION:
         return PhasePlaceholder;
       case PHASES.TESTEMUNHA_OCULAR.QUESTIONING:
