@@ -9,15 +9,17 @@ All file paths here are related to `/functions/src`.
 - Update `GAME_CODES` in `/utils/constants.ts`.
 - Update `GAME_KEYS` in `/utils/constants.ts`.
 - Update `GAME_COLLECTIONS` in `/utils/constants.ts`.
-- Update `GAME_PLAYERS_LIMIT` in `/utils/constants.ts`
-- Update `PHASES` in `/utils/constants.ts`.
+- Update `GAME_PLAYERS_LIMIT` in `/utils/constants.ts`.
+- Update `DEV_GAME_IDS` in `/utils/constants.ts`.
 
 ### Create engine
 
-- Create an engine file with the name convention `<game-name>.ts` in `/engine/`.
-- Create a function that will output the initial state called `getInitialState`
+- Create a folder with the game name under `/engine/`.
+- Create the files: `touch actions.ts constants.ts helpers.ts index.ts interfaces.ts setup.ts`
+- Add `<game-name>_PHASES` in `/.../constants.ts`.
+- In `index.ts`, create a function that will output the initial state called `getInitialState`
 
-### Update /utils/index.ts
+### Update delegators in `/utils/delegators.ts`
 
 - Add entry to `getCollectionNameByGameCode`.
 - Add entry to `getCollectionKeyByGameCode`.

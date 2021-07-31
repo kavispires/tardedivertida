@@ -210,6 +210,7 @@ export const GAME_COLLECTION = {
   DETETIVES_IMAGINATIVOS: 'detetives-imaginativos',
   ESPIAO_ENTRE_NOS: 'espiao-entre-nos',
   ONDA_TELEPATICA: 'onda-telepatica',
+  TESTEMUNHA_OCULAR: 'testemunha-ocular',
   UE_SO_ISSO: 'ue-so-isso',
 };
 
@@ -257,6 +258,16 @@ export const PHASES = {
     GUESS: 'GUESS',
     RIVAL_GUESS: 'RIVAL_GUESS',
     REVEAL: 'REVEAL',
+    GAME_OVER: 'GAME_OVER',
+  },
+  TESTEMUNHA_OCULAR: {
+    LOBBY: 'LOBBY',
+    RULES: 'RULES',
+    SETUP: 'SETUP',
+    WITNESS_SELECTION: 'WITNESS_SELECTION',
+    QUESTION_SELECTION: 'QUESTION_SELECTION',
+    QUESTIONING: 'QUESTIONING',
+    TRIAL: 'TRIAL',
     GAME_OVER: 'GAME_OVER',
   },
   UE_SO_ISSO: {
