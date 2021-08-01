@@ -1,12 +1,9 @@
 import React from 'react';
-// Design Resources
-import { Button } from 'antd';
-// Hooks
-
+// Utils
+import { LETTERS } from '../../../utils/constants';
 // Components
 import { Card } from '../../cards';
 import { ButtonContainer, Instruction, Title, Translate } from '../../shared';
-import { LETTERS } from '../../../utils/constants';
 
 export function SelectQuestion({ questions, onSelectQuestion, isLoading }) {
   return (
@@ -24,7 +21,7 @@ export function SelectQuestion({ questions, onSelectQuestion, isLoading }) {
       <ButtonContainer className="t-select-question">
         {questions.map(({ question, id }, index) => {
           return (
-            <Button
+            <button
               key={id}
               type="text"
               className="t-select-question__button"
@@ -32,10 +29,10 @@ export function SelectQuestion({ questions, onSelectQuestion, isLoading }) {
               onClick={() => onSelectQuestion(id)}
               disabled={isLoading}
             >
-              <Card header={LETTERS[index]} randomColor>
+              <Card header={LETTERS[index]} randomColor className="t-card">
                 {question}
               </Card>
-            </Button>
+            </button>
           );
         })}
       </ButtonContainer>

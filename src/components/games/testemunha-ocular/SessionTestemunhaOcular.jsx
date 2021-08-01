@@ -2,17 +2,15 @@ import React from 'react';
 // Hooks
 import { GAME_COLLECTION, PHASES } from '../../../utils/constants';
 // Components
-import { GameOver, PhasePlaceholder, Session, SetupScreen } from '../../shared';
+import { Session, SetupScreen } from '../../shared';
 import Lobby from '../../lobby/Lobby';
 import { Rules } from '../../rules';
 import { PageError } from '../../errors/PageError';
 import PhaseWitnessSelection from './PhaseWitnessSelection';
 import PhaseQuestionSelection from './PhaseQuestionSelection';
-// import PhaseSecretClue from './PhaseSecretClue';
-// import PhaseCardPlay from './PhaseCardPlay';
-// import PhaseDefense from './PhaseDefense';
-// import PhaseVoting from './PhaseVoting';
-// import PhaseReveal from './PhaseReveal';
+import PhaseQuestioning from './PhaseQuestioning';
+import PhaseTrial from './PhaseTrial';
+import PhaseGameOver from './PhaseGameOver';
 
 function SessionTestemunhaOcular({ gameId }) {
   function getActiveComponent(phase) {
@@ -28,11 +26,11 @@ function SessionTestemunhaOcular({ gameId }) {
       case PHASES.TESTEMUNHA_OCULAR.QUESTION_SELECTION:
         return PhaseQuestionSelection;
       case PHASES.TESTEMUNHA_OCULAR.QUESTIONING:
-        return PhasePlaceholder;
+        return PhaseQuestioning;
       case PHASES.TESTEMUNHA_OCULAR.TRIAL:
-        return PhasePlaceholder;
+        return PhaseTrial;
       case PHASES.TESTEMUNHA_OCULAR.GAME_OVER:
-        return GameOver;
+        return PhaseGameOver;
       default:
         return PageError;
     }

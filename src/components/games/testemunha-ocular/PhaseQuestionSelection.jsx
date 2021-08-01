@@ -49,8 +49,6 @@ function PhaseQuestionSelection({ state, players, info }) {
     });
   };
 
-  console.log({ witness, isUserTheWitness, questioner, isUserTheQuestioner });
-
   const roundsLeft = (state?.round?.total ?? 0 - state?.round?.current ?? 0) || 11;
 
   return (
@@ -108,19 +106,31 @@ function PhaseQuestionSelection({ state, players, info }) {
                 <Translate
                   pt={
                     <>
-                      Examine os suspeitos enquanto <AvatarName player={witness} /> escolhe uma pergunta
+                      Examine os suspeitos enquanto <AvatarName player={questioner} /> escolhe uma pergunta
                     </>
                   }
                   en={
                     <>
-                      Examine the suspects while <AvatarName player={witness} /> chooses a question.
+                      Examine the suspects while <AvatarName player={questioner} /> chooses a question.
                     </>
                   }
                 />
               </Title>
-              <Suspects suspects={state.suspects} />
             </div>
           )}
+          {isUserTheWitness && (
+            <Instruction contained>
+              <Translate
+                pt="O crimimoso que você viu está marcado com borda amarela"
+                en="The criminal you saw is highlighted in yellow"
+              />
+            </Instruction>
+          )}
+          <Suspects
+            suspects={state.suspects}
+            perpetrator={isUserTheWitness ? state.perpetrator : null}
+            eliminatedSuspects={state?.previouslyEliminatedSuspects}
+          />
         </Step>
       </StepSwitcher>
     </PhaseContainer>
@@ -131,14 +141,15 @@ PhaseQuestionSelection.propTypes = {
   info: PropTypes.object,
   players: PropTypes.object,
   state: PropTypes.shape({
-    clue: PropTypes.string,
+    perpetrator: PropTypes.string,
     phase: PropTypes.string,
-    table: PropTypes.arrayOf(
-      PropTypes.shape({
-        playerId: PropTypes.string,
-        cards: PropTypes.arrayOf(PropTypes.string),
-      })
-    ),
+    previouslyEliminatedSuspects: PropTypes.arrayOf(PropTypes.string),
+    questions: PropTypes.any,
+    round: PropTypes.shape({
+      current: PropTypes.number,
+      total: PropTypes.number,
+    }),
+    suspects: PropTypes.arrayOf(PropTypes.string),
   }),
 };
 
