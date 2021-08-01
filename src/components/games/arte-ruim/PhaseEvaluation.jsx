@@ -4,7 +4,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { Button } from 'antd';
 import { CloudUploadOutlined, ThunderboltOutlined } from '@ant-design/icons';
 // Hooks
-import { useIsUserReady, useGlobalState, useAPICall, useLanguage } from '../../../hooks';
+import { useIsUserReady, useGlobalState, useAPICall, useLanguage, useUser } from '../../../hooks';
 // Utils
 import { ARTE_RUIM_API } from '../../../adapters';
 import { LETTERS, PHASES, SEPARATOR } from '../../../utils/constants';
@@ -65,6 +65,7 @@ const EvaluationRules = () => (
 
 function EvaluationPhase({ players, state, info }) {
   const language = useLanguage();
+  const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
   const [canvasSize, setCanvasSize] = useGlobalState('canvasSize');
   const [cachedCanvasSize] = useGlobalState('cachedCanvasSize');
@@ -112,6 +113,18 @@ function EvaluationPhase({ players, state, info }) {
   useEffect(() => {
     setCanvasSize(cachedCanvasSize);
   }, []); // eslint-disable-line
+
+  // Auto select the players own drawing and word
+  useEffect(() => {
+    const playersDrawing = (state?.drawings ?? []).find((drawing) => drawing.playerId === user.id);
+    if (playersDrawing) {
+      const drawingKey = `drawing${SEPARATOR}${playersDrawing.id}`;
+      const cardIndex = (state?.cards ?? []).findIndex((card) => card.playerId === user.id);
+      const cardKey = `card${SEPARATOR}${playersDrawing.id}${SEPARATOR}${LETTERS[cardIndex]}`;
+      const vote = { [drawingKey]: cardKey };
+      setVotes((s) => ({ ...s, ...vote }));
+    }
+  }, [user, state?.drawings, state?.cards]);
 
   const onActivateItem = useCallback(
     (entryId) => {
