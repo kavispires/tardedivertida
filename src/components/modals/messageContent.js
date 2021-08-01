@@ -1,6 +1,7 @@
 import React from 'react';
 import { message } from 'antd';
 import { Translate } from '../shared';
+import { VideoGameController } from '../icons';
 
 /**
  * Pops up a modal with a confirmation button but also closing timeout
@@ -28,6 +29,7 @@ export const messageContent = (title, description, id, duration = 30) => {
     top: window.innerWidth / 2 - 100,
     duration,
     key,
+    icon: <VideoGameController style={{ width: '64px' }} />,
     onClick: () => message.destroy(key),
   };
 };
