@@ -70,7 +70,7 @@ export function PhaseAnnouncement({
   withoutTimer,
 }) {
   const language = useLanguage();
-  const durationPerRound = [15, 10, 5, 4]?.[currentRound] ?? 4;
+  const durationPerRound = [15, 15, 10, 5, 4]?.[currentRound] ?? 4;
   const Icon = getIconType(type);
 
   return (

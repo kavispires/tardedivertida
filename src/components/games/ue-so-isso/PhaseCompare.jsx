@@ -6,8 +6,17 @@ import { useIsUserThe, useAPICall, useWhichPlayerIsThe } from '../../../hooks';
 import { UE_SO_ISSO_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
 // Components
-import { PhaseContainer, Step, StepSwitcher, ViewIf, WaitingRoom } from '../../shared';
+import {
+  Instruction,
+  PhaseAnnouncement,
+  PhaseContainer,
+  Step,
+  StepSwitcher,
+  ViewIf,
+  WaitingRoom,
+} from '../../shared';
 import CompareSuggestionsStep from './CompareSuggestionsStep';
+import { ComparisonRules } from './RulesBlobs';
 
 function PhaseCompare({ state, players, info }) {
   const [step, setStep] = useState(0);
@@ -18,7 +27,7 @@ function PhaseCompare({ state, players, info }) {
   const onValidateSuggestions = useAPICall({
     apiFunction: UE_SO_ISSO_API.submitValidation,
     actionName: 'validate-suggestions',
-    onBeforeCall: () => setStep(1),
+    onBeforeCall: () => setStep(2),
     onError: () => setStep(0),
     successMessage: 'Validação enviada com sucesso!',
     errorMessage: 'Vixi, o aplicativo encontrou um erro ao tentar enviar a confirmação das sugestões',
@@ -35,6 +44,19 @@ function PhaseCompare({ state, players, info }) {
     >
       <StepSwitcher step={step}>
         {/* Step 0 */}
+        <PhaseAnnouncement
+          type="verify-list"
+          title="Comparação de Dicas"
+          onClose={() => setStep(1)}
+          currentRound={state?.round}
+        >
+          <ComparisonRules />
+          {isUserTheGuesser && (
+            <Instruction contained>Se você é o adivinhador, relaxe e aguarde... novamente</Instruction>
+          )}
+        </PhaseAnnouncement>
+
+        {/* Step 1 */}
         <Step fullWidth>
           <ViewIf isVisible={isUserTheGuesser}>
             <WaitingRoom
@@ -56,7 +78,7 @@ function PhaseCompare({ state, players, info }) {
           </ViewIf>
         </Step>
 
-        {/* Step 1 */}
+        {/* Step 2 */}
         <WaitingRoom players={players} title="Enviando a confirmação de sugestões" instruction="Aguarde..." />
       </StepSwitcher>
     </PhaseContainer>
