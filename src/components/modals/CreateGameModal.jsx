@@ -6,7 +6,7 @@ import { Image, Modal, message, Button, notification } from 'antd';
 // Adapters
 import { GAME_API } from '../../adapters';
 // Hooks
-import { useLanguage, useLoading } from '../../hooks';
+import { useGlobalState, useLanguage, useLoading } from '../../hooks';
 // Constants
 import { PUBLIC_URL } from '../../utils/constants';
 // Components
@@ -20,6 +20,9 @@ export function CreateGameModal({ gameInfo }) {
   const [isVisible, setVisibility] = useState(false);
   const [isLoading, setLoading] = useState(true);
   const [gameId, setGameId] = useState(null);
+  const [, setUserId] = useGlobalState('userId');
+  const [, setUserName] = useGlobalState('username');
+  const [, setUserAvatarId] = useGlobalState('userAvatarId');
 
   const onCloseModal = useCallback(() => {
     setVisibility(false);
@@ -32,6 +35,9 @@ export function CreateGameModal({ gameInfo }) {
         const response = await GAME_API.initializeGame({ gameCode: gameInfo.gameCode, language });
         if (response.data.gameId) {
           setGameId(response.data.gameId);
+          setUserId(null);
+          setUserName('');
+          setUserAvatarId('');
         }
       } catch (e) {
         notification.error({
