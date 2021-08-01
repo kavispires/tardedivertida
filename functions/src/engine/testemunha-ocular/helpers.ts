@@ -1,7 +1,7 @@
 import * as gameUtils from '../../utils/game-utils';
 import { PlayerId, Players } from '../../utils/interfaces';
 import { MAX_NUMBER_OF_ROUNDS, TESTEMUNHA_OCULAR_PHASES } from './constants';
-import { TestemunhaOcularCard, TestemunhaOcularCardsDatabase } from './interfaces';
+import { TestemunhaOcularCard, TestemunhaOcularCardsDatabase, TestemunhaOcularEntry } from './interfaces';
 
 /**
  * Determine the next phase based on the current one
@@ -9,7 +9,12 @@ import { TestemunhaOcularCard, TestemunhaOcularCardsDatabase } from './interface
  * @param currentRound
  * @returns
  */
-export const determineNextPhase = (currentPhase: string, currentRound: number): string => {
+export const determineNextPhase = (
+  currentPhase: string,
+  currentRound: number,
+  lose?: boolean,
+  win?: boolean
+): string => {
   const {
     RULES,
     SETUP,
@@ -20,6 +25,10 @@ export const determineNextPhase = (currentPhase: string, currentRound: number): 
     GAME_OVER,
   } = TESTEMUNHA_OCULAR_PHASES;
   const order = [RULES, SETUP, WITNESS_SELECTION, QUESTION_SELECTION, QUESTIONING, TRIAL];
+
+  if (currentPhase === TRIAL && (lose || win)) {
+    return GAME_OVER;
+  }
 
   if (currentPhase === TRIAL) {
     return currentRound >= MAX_NUMBER_OF_ROUNDS ? GAME_OVER : QUESTION_SELECTION;
@@ -55,7 +64,6 @@ export const filterAvailableCards = (
  */
 export const determineTurnOrder = (players: Players, witness: PlayerId): PlayerId[] => {
   const availablePlayers = Object.keys(players).filter((id) => id !== witness);
-
   return gameUtils.shuffle(availablePlayers);
 };
 
@@ -69,9 +77,36 @@ export const getQuestioner = (turnOrder: PlayerId[], questionerIndex: number): P
   return turnOrder[questionerIndex % turnOrder.length];
 };
 
+/**
+ * Get two questions from the deck
+ * @param questions
+ * @param questionIndex
+ * @returns
+ */
 export const getQuestions = (
   questions: TestemunhaOcularCard[],
   questionIndex: number
 ): TestemunhaOcularCard[] => {
   return [questions[questionIndex], questions[questionIndex + 1]];
+};
+
+/**
+ * Calculates round score
+ * @param currentScore
+ * @param currentRound
+ * @param eliminatedSuspectsCount
+ * @returns
+ */
+export const calculateScore = (
+  currentScore: number,
+  currentRound: number,
+  eliminatedSuspectsCount: number
+): number => {
+  if (currentRound === 0) return 0;
+
+  return currentScore + currentRound * eliminatedSuspectsCount;
+};
+
+export const buildUsedCardsIdsDict = (pastQuestions: TestemunhaOcularEntry[]): string[] => {
+  return pastQuestions.map((q) => q.id);
 };

@@ -1,4 +1,5 @@
 // Interfaces
+import { deleteValue } from '../../utils/firebase';
 import * as gameUtils from '../../utils/game-utils';
 import * as utils from '../../utils/helpers';
 import { PlainObject, Players, SaveGamePayload } from '../../utils/interfaces';
@@ -9,7 +10,13 @@ import {
   SUSPECT_COUNT,
   TESTEMUNHA_OCULAR_PHASES,
 } from './constants';
-import { determineTurnOrder, filterAvailableCards, getQuestioner, getQuestions } from './helpers';
+import {
+  calculateScore,
+  determineTurnOrder,
+  filterAvailableCards,
+  getQuestioner,
+  getQuestions,
+} from './helpers';
 import { FirebaseStateData, FirebaseStoreData, TestemunhaOcularCard } from './interfaces';
 
 /**
@@ -22,6 +29,7 @@ export const prepareSetupPhase = async (additionalData: PlainObject): Promise<Sa
   // Build suspects grid
   const suspectsList = gameUtils.shuffle(SUSPECTS_IDS);
   const suspects = gameUtils.getRandomItems(suspectsList, SUSPECT_COUNT);
+  const perpetrator = gameUtils.getRandomItem(suspects);
 
   // Filter used cards, if not enough cards, just use the full deck
   const filteredCards = filterAvailableCards(additionalData.allCards, additionalData.usedCards);
@@ -36,16 +44,23 @@ export const prepareSetupPhase = async (additionalData: PlainObject): Promise<Sa
     update: {
       store: {
         deck,
-        currentDeckIndex: 0,
+        questionIndex: -2,
+        questionerIndex: -1,
         pastQuestions: [],
+        turnOrder: [],
+        gameOrder: [],
       },
+    },
+    set: {
       state: {
         phase: TESTEMUNHA_OCULAR_PHASES.SETUP,
         suspects,
+        perpetrator,
         round: {
           current: 0,
           total: MAX_NUMBER_OF_ROUNDS,
         },
+        groupScore: 0,
       },
     },
   };
@@ -69,15 +84,39 @@ export const prepareQuestionSelectionPhase = async (
   players: Players,
   additionalPayload: PlainObject
 ): Promise<SaveGamePayload> => {
-  const turnOrder = store.turnOrder.length > 0 ? store.turnOrder : determineTurnOrder(players, store.witness);
+  const turnOrder =
+    store.turnOrder.length > 0
+      ? store.turnOrder
+      : determineTurnOrder(players, additionalPayload?.witness ?? state.witness);
 
   // Determine questioner player
-  const questionerIndex = store.questionerIndex ? store.questionerIndex + 1 : 0;
+  const questionerIndex = store.questionerIndex + 1;
   const questioner = getQuestioner(turnOrder, questionerIndex);
-
   // Determine questions
-  const questionIndex = store.questionIndex ? store.questionIndex + 2 : 0;
+  const questionIndex = store.questionIndex + 2;
   const questions = getQuestions(store.deck, questionIndex);
+
+  // Calculate score and move eliminated suspects
+  const previouslyEliminatedSuspects = [
+    ...(state?.previouslyEliminatedSuspects ?? []),
+    ...(state?.eliminatedSuspects ?? []),
+  ];
+
+  const eliminatedSuspects = state?.eliminatedSuspects ?? [];
+
+  // Calculate score
+  const groupScore = calculateScore(state.score ?? 0, state.round.current, eliminatedSuspects.length);
+
+  // Add entry to store
+  let testimonyEntry = {};
+  if (state.question) {
+    testimonyEntry = {
+      id: state.question.id,
+      question: state.question.question,
+      unfit: eliminatedSuspects,
+      fit: state.suspects.filter((sId: string) => !eliminatedSuspects.includes(sId)),
+    };
+  }
 
   // Save
   return {
@@ -87,6 +126,7 @@ export const prepareQuestionSelectionPhase = async (
         gameOrder: turnOrder,
         questionerIndex,
         questionIndex,
+        pastQuestions: [...store.pastQuestions, testimonyEntry],
       },
       state: {
         phase: TESTEMUNHA_OCULAR_PHASES.QUESTION_SELECTION,
@@ -94,7 +134,12 @@ export const prepareQuestionSelectionPhase = async (
         round: utils.increaseRound(state.round),
         questioner,
         questions,
+        question: deleteValue(),
         witness: additionalPayload?.witness ?? state.witness,
+        testimony: deleteValue(),
+        eliminatedSuspects: deleteValue(),
+        previouslyEliminatedSuspects: previouslyEliminatedSuspects,
+        groupScore,
       },
     },
   };
@@ -113,6 +158,44 @@ export const prepareQuestioningPhase = async (
         phase: TESTEMUNHA_OCULAR_PHASES.QUESTIONING,
         updatedAt: Date.now(),
         question,
+      },
+    },
+  };
+};
+
+export const prepareTrialPhase = async (
+  store: FirebaseStoreData,
+  state: FirebaseStateData,
+  additionalPayload: PlainObject
+): Promise<SaveGamePayload> => {
+  // Save
+  return {
+    update: {
+      state: {
+        phase: TESTEMUNHA_OCULAR_PHASES.TRIAL,
+        updatedAt: Date.now(),
+        testimony: additionalPayload?.testimony ?? state.testimony,
+      },
+    },
+  };
+};
+
+export const prepareGameOverPhase = async (
+  store: FirebaseStoreData,
+  state: FirebaseStateData,
+  additionalPayload: PlainObject
+): Promise<SaveGamePayload> => {
+  // Save
+  return {
+    set: {
+      state: {
+        phase: TESTEMUNHA_OCULAR_PHASES.GAME_OVER,
+        updatedAt: Date.now(),
+        gameEndedAt: Date.now(),
+        round: state.round,
+        perpetrator: state.perpetrator,
+        groupScore: state.groupScore,
+        outcome: additionalPayload?.win ? 'WIN' : 'LOSE',
       },
     },
   };
