@@ -140,8 +140,8 @@ export const SUSPECTS_NAMES = {
     en: 'Robert I.',
   },
   'us-36': {
-    pt: ' J.',
-    en: ' J.',
+    pt: 'Jeremias J.',
+    en: 'Jeremiah J.',
   },
   'us-37': {
     pt: 'Josenildo K.',
