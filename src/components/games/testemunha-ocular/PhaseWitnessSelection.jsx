@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 // Design Resources
 import { Button } from 'antd';
 // Hooks
-import { useIsUserThe, useWhichPlayerIsThe, useAPICall, useLoading, useLanguage } from '../../../hooks';
+import { useAPICall, useLoading, useLanguage } from '../../../hooks';
 // Resources & Utils
 import { TESTEMUNHA_OCULAR_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
@@ -20,16 +20,12 @@ import {
 } from '../../shared';
 import { AdminOnly } from '../../admin';
 import { LoadingClock } from '../../icons';
+import { AvatarName } from '../../avatars';
 
 function PhaseWitnessSelection({ state, players, info }) {
   const language = useLanguage();
   const [isLoading] = useLoading();
   const [step, setStep] = useState(0);
-
-  const witness = useWhichPlayerIsThe('witness', state, players);
-  const isUserTheWitness = useIsUserThe('witness', state);
-  const questioner = useWhichPlayerIsThe('questioner', state, players);
-  const isUserTheQuestioner = useIsUserThe('questioner', state);
 
   const onSelectWitness = useAPICall({
     apiFunction: TESTEMUNHA_OCULAR_API.submitAction,
@@ -48,8 +44,6 @@ function PhaseWitnessSelection({ state, players, info }) {
       witness: witnessId,
     });
   };
-
-  console.log({ witness, isUserTheWitness, questioner, isUserTheQuestioner });
 
   return (
     <PhaseContainer
@@ -70,9 +64,9 @@ function PhaseWitnessSelection({ state, players, info }) {
             <Translate
               pt={
                 <>
-                  Um crime horrível aconteceu. Tão horrível quem não consigo explicar e nem podemos contar com
-                  a ciência forense para resolvê-lo. Portanto, só há uma pessoa que pode nos ajudar agora: uma
-                  testemunha ocular...
+                  Um crime horrível aconteceu. Tão horrível quem não consigo nem explicar e nem podemos contar
+                  com a ciência forense para resolvê-lo. Portanto, só há uma pessoa que pode nos ajudar agora:
+                  uma testemunha ocular...
                 </>
               }
               en={
@@ -95,12 +89,24 @@ function PhaseWitnessSelection({ state, players, info }) {
           </Title>
 
           <Instruction>
-            <Translate pt="O administrator selecionará a testemunha." en="The VIP will select the witness." />
+            {Object.values(players).map((player) => (
+              // <AvatarEntry key={`p-a-${player.id}`} id={player.avatarId} name={player.name} animate />
+              <AvatarName key={`p-a-${player.id}`} player={player} />
+            ))}
+          </Instruction>
+
+          <Instruction>
+            (
+            <Translate pt="O administrator selecionará a testemunha" en="The VIP will select the witness" />)
           </Instruction>
 
           <AdminOnly>
             {Object.values(players).map((player) => (
-              <Button disabled={isLoading} onClick={() => onWitnessButtonClick(player.id)}>
+              <Button
+                key={`p-bt-${player.id}`}
+                disabled={isLoading}
+                onClick={() => onWitnessButtonClick(player.id)}
+              >
                 {player.name}
               </Button>
             ))}
