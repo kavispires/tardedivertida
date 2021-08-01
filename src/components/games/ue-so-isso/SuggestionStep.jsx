@@ -8,6 +8,7 @@ import { Instruction, Step, Title } from '../../shared';
 import { UeSoIssoCard as Card } from '../../cards';
 import { AvatarName } from '../../avatars';
 import SuggestionEasel from './SuggestionEasel';
+import { WritingRules } from './RulesBlobs';
 
 function SuggestionStep({ guesser, onSendSuggestions, secretWord, suggestionsNumber = 1 }) {
   const [suggestions, setSuggestions] = useState([]);
@@ -40,14 +41,7 @@ function SuggestionStep({ guesser, onSendSuggestions, secretWord, suggestionsNum
         Escreva uma dica para <AvatarName player={guesser} />
       </Title>
 
-      <Instruction contained>
-        A dica tem que ser uma palavra única que ajude o adivinhador... adivinhar.
-        <br />
-        É proibido usar derivados, partes da palavra ou traduções em outras línguas.
-        <br />
-        E não seja tão óbvio, já que dicas similares são eliminadas.
-        <br />
-      </Instruction>
+      <WritingRules />
 
       <Card word={secretWord.text} header="Palavra Secreta" />
 

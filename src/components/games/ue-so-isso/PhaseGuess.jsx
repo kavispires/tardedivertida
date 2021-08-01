@@ -6,9 +6,10 @@ import { useGlobalState, useLoading, useWhichPlayerIsThe, useIsUserThe, useAPICa
 import { UE_SO_ISSO_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
 // Components
-import { PhaseContainer, StepSwitcher, WaitingRoom } from '../../shared';
+import { PhaseAnnouncement, PhaseContainer, StepSwitcher, WaitingRoom } from '../../shared';
 import GuessingStep from './GuessingStep';
 import GuessVerificationStep from './GuessVerificationStep';
+import { GuessingRules } from './RulesBlobs';
 
 function PhaseGuess({ state, players, info }) {
   const [isLoading] = useLoading();
@@ -22,7 +23,7 @@ function PhaseGuess({ state, players, info }) {
   const onConfirmGuess = useAPICall({
     apiFunction: UE_SO_ISSO_API.confirmGuess,
     actionName: 'guess',
-    onBeforeCall: () => setStep(2),
+    onBeforeCall: () => setStep(3),
     onError: () => setStep(0),
     successMessage: 'Resultado enviado com sucesso!',
     errorMessage: 'Vixi, o aplicativo encontrou um erro ao tentar enviar o resultado',
@@ -38,9 +39,11 @@ function PhaseGuess({ state, players, info }) {
   // If guess is present in the state, move to the next step
   useEffect(() => {
     if (state?.guess) {
-      setStep(1);
+      setStep(2);
     }
   }, [state]);
+
+  console.log({ step });
 
   return (
     <PhaseContainer
@@ -51,6 +54,16 @@ function PhaseGuess({ state, players, info }) {
     >
       <StepSwitcher step={step}>
         {/* Step 0 */}
+        <PhaseAnnouncement
+          type="guess"
+          title="Adivinhação"
+          onClose={() => setStep(1)}
+          currentRound={state?.round}
+        >
+          <GuessingRules guesserName={guesser.name} />
+        </PhaseAnnouncement>
+
+        {/* Step 1 */}
         <GuessingStep
           guesser={guesser}
           isUserTheGuesser={isUserTheGuesser}
@@ -61,7 +74,7 @@ function PhaseGuess({ state, players, info }) {
           players={players}
         />
 
-        {/* Step 1 */}
+        {/* Step 2 */}
         <GuessVerificationStep
           guesser={guesser}
           guess={state.guess}
@@ -75,7 +88,7 @@ function PhaseGuess({ state, players, info }) {
           isLoading={isLoading}
         />
 
-        {/* Step 2 */}
+        {/* Step 3 */}
         <WaitingRoom players={players} title="Enviando a confirmação de sugestões" instruction="Aguarde..." />
       </StepSwitcher>
     </PhaseContainer>

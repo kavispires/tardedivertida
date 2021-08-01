@@ -85,7 +85,7 @@ function PhaseWordSelection({ state, players, info }) {
         </Step>
 
         {/* Step 2 */}
-        <WaitingRoom players={players} title="Pronto!" instruction="Vamos aguardar os outros joadores." />
+        <WaitingRoom players={players} title="Pronto!" instruction="Vamos aguardar os outros jogadores." />
       </StepSwitcher>
     </PhaseContainer>
   );

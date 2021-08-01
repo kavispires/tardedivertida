@@ -6,8 +6,17 @@ import { useIsUserReady, useWhichPlayerIsThe, useIsUserThe, useAPICall } from '.
 import { UE_SO_ISSO_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
 // Components
-import { PhaseContainer, Step, StepSwitcher, ViewIf, WaitingRoom } from '../../shared';
+import {
+  Instruction,
+  PhaseAnnouncement,
+  PhaseContainer,
+  Step,
+  StepSwitcher,
+  ViewIf,
+  WaitingRoom,
+} from '../../shared';
 import SuggestionStep from './SuggestionStep';
+import { WritingRules } from './RulesBlobs';
 
 function PhaseSuggest({ state, players, info }) {
   const isUserReady = useIsUserReady(players, state);
@@ -18,8 +27,8 @@ function PhaseSuggest({ state, players, info }) {
   const onSendSuggestions = useAPICall({
     apiFunction: UE_SO_ISSO_API.submitSuggestions,
     actionName: 'submit-suggestion',
-    onBeforeCall: () => setStep(1),
-    onError: () => setStep(0),
+    onBeforeCall: () => setStep(2),
+    onError: () => setStep(1),
     successMessage:
       'Sugestão enviada com successo! Aguarde enquanto os outros participantes escrevem suas dicas',
     errorMessage: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua(s) dica(s)',
@@ -34,6 +43,19 @@ function PhaseSuggest({ state, players, info }) {
     >
       <StepSwitcher step={step} conditions={[!isUserReady]}>
         {/* Step 0 */}
+        <PhaseAnnouncement
+          type="writing"
+          title="Escreva uma dica!"
+          onClose={() => setStep(1)}
+          currentRound={state?.round}
+        >
+          <WritingRules />
+          {isUserTheGuesser && (
+            <Instruction contained>Se você é o adivinhador, relaxe e aguarde...</Instruction>
+          )}
+        </PhaseAnnouncement>
+
+        {/* Step 1 */}
         <Step fullWidth>
           <ViewIf isVisible={isUserTheGuesser}>
             <WaitingRoom
@@ -53,8 +75,8 @@ function PhaseSuggest({ state, players, info }) {
           </ViewIf>
         </Step>
 
-        {/* Step 1 */}
-        <WaitingRoom players={players} title="Pronto!" instruction="Vamos aguardar os outros joadores." />
+        {/* Step 2 */}
+        <WaitingRoom players={players} title="Pronto!" instruction="Vamos aguardar os outros jogadores." />
       </StepSwitcher>
     </PhaseContainer>
   );
