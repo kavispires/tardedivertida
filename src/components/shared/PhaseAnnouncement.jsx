@@ -25,6 +25,8 @@ const getIconType = (type) => {
       return IconIllustrations.Evaluate;
     case 'gears':
       return IconIllustrations.Gears;
+    case 'guess':
+      return IconIllustrations.Guess;
     case 'hanging-photograph':
       return IconIllustrations.HangingPhotograph;
     case 'investigation':
@@ -43,8 +45,14 @@ const getIconType = (type) => {
       return IconIllustrations.Seal;
     case 'secret':
       return IconIllustrations.Secret;
+    case 'verify-list':
+      return IconIllustrations.VerifyList;
     case 'vote':
       return IconIllustrations.Vote;
+    case 'witness':
+      return IconIllustrations.Witness;
+    case 'writing':
+      return IconIllustrations.Writing;
     default:
       return IconIllustrations.Multitask;
   }
