@@ -9,7 +9,7 @@ import { PHASES } from '../../../utils/constants';
 import { PhaseContainer, Step, StepSwitcher, ViewIf, WaitingRoom } from '../../shared';
 import SuggestionStep from './SuggestionStep';
 
-function SuggestPhase({ state, players, info }) {
+function PhaseSuggest({ state, players, info }) {
   const isUserReady = useIsUserReady(players, state);
   const [step, setStep] = useState(0);
   const guesser = useWhichPlayerIsThe('guesser', state, players);
@@ -60,10 +60,14 @@ function SuggestPhase({ state, players, info }) {
   );
 }
 
-SuggestPhase.propTypes = {
+PhaseSuggest.propTypes = {
   info: PropTypes.object,
   players: PropTypes.object,
-  state: PropTypes.object,
+  state: PropTypes.shape({
+    phase: PropTypes.string,
+    secretWord: PropTypes.any,
+    suggestionsNumber: PropTypes.any,
+  }),
 };
 
-export default SuggestPhase;
+export default PhaseSuggest;

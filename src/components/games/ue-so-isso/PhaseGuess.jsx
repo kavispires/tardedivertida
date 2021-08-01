@@ -10,7 +10,7 @@ import { PhaseContainer, StepSwitcher, WaitingRoom } from '../../shared';
 import GuessingStep from './GuessingStep';
 import GuessVerificationStep from './GuessVerificationStep';
 
-function GuessPhase({ state, players, info }) {
+function PhaseGuess({ state, players, info }) {
   const [isLoading] = useLoading();
   const [isAdmin] = useGlobalState('isAdmin');
   const [step, setStep] = useState(0);
@@ -82,10 +82,15 @@ function GuessPhase({ state, players, info }) {
   );
 }
 
-GuessPhase.propTypes = {
+PhaseGuess.propTypes = {
   info: PropTypes.object,
   players: PropTypes.object,
-  state: PropTypes.object,
+  state: PropTypes.shape({
+    guess: PropTypes.any,
+    phase: PropTypes.string,
+    secretWord: PropTypes.any,
+    validSuggestions: PropTypes.any,
+  }),
 };
 
-export default GuessPhase;
+export default PhaseGuess;

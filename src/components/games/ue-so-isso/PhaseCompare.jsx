@@ -9,7 +9,7 @@ import { PHASES } from '../../../utils/constants';
 import { PhaseContainer, Step, StepSwitcher, ViewIf, WaitingRoom } from '../../shared';
 import CompareSuggestionsStep from './CompareSuggestionsStep';
 
-function ComparePhase({ state, players, info }) {
+function PhaseCompare({ state, players, info }) {
   const [step, setStep] = useState(0);
   const isUserTheGuesser = useIsUserThe('guesser', state);
   const isUserTheNextGuesser = useIsUserThe('nextGuesser', state);
@@ -63,10 +63,14 @@ function ComparePhase({ state, players, info }) {
   );
 }
 
-ComparePhase.propTypes = {
+PhaseCompare.propTypes = {
   info: PropTypes.object,
   players: PropTypes.object,
-  state: PropTypes.object,
+  state: PropTypes.shape({
+    phase: PropTypes.string,
+    secretWord: PropTypes.any,
+    suggestions: PropTypes.any,
+  }),
 };
 
-export default ComparePhase;
+export default PhaseCompare;
