@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 // Design Resources
 import { Input } from 'antd';
 
-function SuggestionEasel({ id, onChangeInput, value }) {
+function SuggestionEasel({ id, onChangeInput, onKeyPress, value }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -25,6 +25,7 @@ function SuggestionEasel({ id, onChangeInput, value }) {
             onChange={onChangeInput}
             className="u-suggestion-easel__input"
             bordered={false}
+            onKeyPress={onKeyPress}
           />
         </div>
       </foreignObject>

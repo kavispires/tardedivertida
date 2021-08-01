@@ -27,6 +27,13 @@ function SuggestionStep({ guesser, onSendSuggestions, secretWord, suggestionsNum
 
   const suggestionsValues = Object.values(suggestions);
 
+  // On enter in the easel if only one suggestion is necessary
+  const onEnterInput = (e) => {
+    if (e.key === 'Enter' && suggestionsNumber === 1) {
+      onSendSuggestions({ suggestions: suggestionsValues });
+    }
+  };
+
   return (
     <Step>
       <Title>
@@ -55,7 +62,14 @@ function SuggestionStep({ guesser, onSendSuggestions, secretWord, suggestionsNum
           .fill(1)
           .map((entry, index) => {
             const id = `suggestion-${entry + index}`;
-            return <SuggestionEasel key={id} id={id} onChangeInput={onChangeInput} />;
+            return (
+              <SuggestionEasel
+                key={id}
+                id={id}
+                onChangeInput={onChangeInput}
+                onKeyPress={suggestionsNumber === 1 ? onEnterInput : null}
+              />
+            );
           })}
       </Space>
 
