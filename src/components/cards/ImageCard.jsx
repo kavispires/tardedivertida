@@ -5,7 +5,7 @@ import { Image } from 'antd';
 import { PUBLIC_URL } from '../../utils/constants';
 import placeholder from '../../images/placeholder.jpg';
 
-export const ImageCard = memo(function ({ imageId, size, cardWidth, className }) {
+export const ImageCard = memo(function ({ imageId, size, cardWidth, className, preview }) {
   const baseClass = 'image-card';
 
   const fallbackName = `placeholder-${imageId[imageId.length - 1]}`;
@@ -19,9 +19,13 @@ export const ImageCard = memo(function ({ imageId, size, cardWidth, className })
         src={`${process.env.REACT_APP_IMG_URL}${imageURL}.jpg`}
         placeholder={<Image preview={false} src={placeholder} width={cardWidth} />}
         fallback={`${PUBLIC_URL.CARDS}${fallbackName}.jpg`}
-        preview={{
-          maskClassName: `${baseClass}__preview-mask`,
-        }}
+        preview={
+          preview
+            ? {
+                maskClassName: `${baseClass}__preview-mask`,
+              }
+            : false
+        }
       />
     </div>
   );
@@ -33,6 +37,7 @@ ImageCard.propTypes = {
   bordered: PropTypes.bool,
   cardWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   className: PropTypes.string,
+  preview: PropTypes.bool,
 };
 
 ImageCard.defaultProps = {
@@ -40,6 +45,7 @@ ImageCard.defaultProps = {
   className: '',
   bordered: false,
   cardWidth: 200,
+  preview: true,
 };
 
 export default memo(ImageCard);
