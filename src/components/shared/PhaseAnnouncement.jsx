@@ -15,8 +15,12 @@ const getIconType = (type) => {
   switch (type) {
     case 'crime-scene':
       return IconIllustrations.CrimeScene;
+    case 'criminal':
+      return IconIllustrations.Criminal;
     case 'defense':
       return IconIllustrations.Defense;
+    case 'eye':
+      return IconIllustrations.Eye;
     case 'evaluate':
       return IconIllustrations.Evaluate;
     case 'gears':
@@ -25,6 +29,10 @@ const getIconType = (type) => {
       return IconIllustrations.HangingPhotograph;
     case 'investigation':
       return IconIllustrations.Investigation;
+    case 'law':
+      return IconIllustrations.Law;
+    case 'newspaper':
+      return IconIllustrations.Newspaper;
     case 'painting':
       return IconIllustrations.Painting;
     case 'picture':
@@ -54,7 +62,7 @@ export function PhaseAnnouncement({
   withoutTimer,
 }) {
   const language = useLanguage();
-  const durationPerRound = [15, 10, 7, 5]?.[currentRound] ?? 4;
+  const durationPerRound = [15, 10, 5, 4]?.[currentRound] ?? 4;
   const Icon = getIconType(type);
 
   return (
