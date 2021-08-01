@@ -6,10 +6,10 @@ import { GameOverPhase, Session, SetupScreen } from '../../shared';
 import Lobby from '../../lobby/Lobby';
 import { Rules } from '../../rules';
 import { PageError } from '../../errors/PageError';
-import WordSelectionPhase from './WordSelectionPhase';
-import SuggestPhase from './SuggestPhase';
-import ComparePhase from './ComparePhase';
-import GuessPhase from './GuessPhase';
+import PhaseWordSelection from './PhaseWordSelection';
+import PhaseSuggest from './PhaseSuggest';
+import PhaseCompare from './PhaseCompare';
+import PhaseGuess from './PhaseGuess';
 
 function SessionUeSoIsso({ gameId }) {
   function getActiveComponent(phase) {
@@ -21,13 +21,13 @@ function SessionUeSoIsso({ gameId }) {
       case PHASES.UE_SO_ISSO.SETUP:
         return SetupScreen;
       case PHASES.UE_SO_ISSO.WORD_SELECTION:
-        return WordSelectionPhase;
+        return PhaseWordSelection;
       case PHASES.UE_SO_ISSO.SUGGEST:
-        return SuggestPhase;
+        return PhaseSuggest;
       case PHASES.UE_SO_ISSO.COMPARE:
-        return ComparePhase;
+        return PhaseCompare;
       case PHASES.UE_SO_ISSO.GUESS:
-        return GuessPhase;
+        return PhaseGuess;
       case PHASES.UE_SO_ISSO.GAME_OVER:
         return GameOverPhase;
       default:

@@ -20,7 +20,7 @@ import {
 import WordSelectionStep from './WordSelectionStep';
 import { AvatarName } from '../../avatars';
 
-function WordSelectionPhase({ state, players, info }) {
+function PhaseWordSelection({ state, players, info }) {
   const isUserReady = useIsUserReady(players, state);
   const guesser = useWhichPlayerIsThe('guesser', state, players);
   const isUserTheGuesser = useIsUserThe('guesser', state);
@@ -91,10 +91,16 @@ function WordSelectionPhase({ state, players, info }) {
   );
 }
 
-WordSelectionPhase.propTypes = {
+PhaseWordSelection.propTypes = {
   info: PropTypes.object,
   players: PropTypes.object,
-  state: PropTypes.object,
+  state: PropTypes.shape({
+    groupScore: PropTypes.number,
+    nextGuesser: PropTypes.string,
+    phase: PropTypes.string,
+    round: PropTypes.number,
+    words: PropTypes.any,
+  }),
 };
 
-export default WordSelectionPhase;
+export default PhaseWordSelection;
