@@ -43,8 +43,6 @@ function PhaseGuess({ state, players, info }) {
     }
   }, [state]);
 
-  console.log({ step });
-
   return (
     <PhaseContainer
       info={info}
