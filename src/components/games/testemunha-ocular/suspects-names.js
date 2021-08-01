@@ -4,7 +4,7 @@ export const SUSPECTS_NAMES = {
     en: 'Arthur A.',
   },
   'us-02': {
-    pt: 'Péricles B.',
+    pt: 'Pedro B.',
     en: 'Prince B.',
   },
   'us-03': {
@@ -116,16 +116,16 @@ export const SUSPECTS_NAMES = {
     en: 'Andre C.',
   },
   'us-30': {
-    pt: 'José D.',
-    en: 'Joseph D.',
+    pt: 'Heitor D.',
+    en: 'Hector D.',
   },
   'us-31': {
     pt: 'Estefânia E.',
     en: 'Stephanie E.',
   },
   'us-32': {
-    pt: 'Karen F.',
-    en: 'Karen F.',
+    pt: 'Valentina F.',
+    en: 'Valentina F.',
   },
   'us-33': {
     pt: 'Geraldo G.',

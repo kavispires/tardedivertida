@@ -1,6 +1,9 @@
 .t-select-question {
   &__button {
+    border: none;
+    background: none;
     transition: 500ms transform;
+    cursor: pointer;
 
     &:hover {
       transform: scale(1.05);
@@ -16,16 +19,68 @@
   grid-template-columns: repeat(6, 1fr);
 
   &__suspect {
-    // background: orange;
     position: relative;
+  }
+
+  &__suspect-image {
+    & > .ant-image {
+      max-width: 250px;
+    }
+
+    &--active {
+      border: 3px solid gold;
+      border-radius: get-unit(4);
+    }
+    &--disabled {
+      cursor: not-allowed;
+    }
   }
 
   &__suspect-name {
     font-family: 'Architects Daughter', cursive;
     position: absolute;
-    bottom: get-unit(6);
+    bottom: 12%;
     left: 50%;
     transform: translateX(-50%);
     white-space: nowrap;
+    font-size: 1rem;
   }
+
+  &__suspect-button {
+    cursor: pointer !important;
+    border: none;
+    background: rgba(orange, 0.6);
+    padding: 0;
+  }
+}
+
+.t-questioning-answer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  align-items: center;
+  gap: get-unit(10);
+
+  &__button {
+    font-size: 1em;
+    transform: transform 500ms;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: get-unit(6 5);
+
+    &:hover {
+      transform: scale(1.25);
+      color: get-color(white);
+    }
+  }
+
+  &__answer {
+    display: inline-block;
+    margin: get-unit(0 2);
+  }
+}
+
+.t-card {
+  width: 40vw;
+  max-width: 400px;
 }
