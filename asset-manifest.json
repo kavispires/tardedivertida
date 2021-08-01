@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/tardedivertida/static/css/main.db2280e4.chunk.css",
-    "main.js": "/tardedivertida/static/js/main.8ea5bfca.chunk.js",
-    "main.js.map": "/tardedivertida/static/js/main.8ea5bfca.chunk.js.map",
+    "main.js": "/tardedivertida/static/js/main.3ccf58e2.chunk.js",
+    "main.js.map": "/tardedivertida/static/js/main.3ccf58e2.chunk.js.map",
     "runtime-main.js": "/tardedivertida/static/js/runtime-main.eda01472.js",
     "runtime-main.js.map": "/tardedivertida/static/js/runtime-main.eda01472.js.map",
     "static/css/2.289e503f.chunk.css": "/tardedivertida/static/css/2.289e503f.chunk.css",
-    "static/js/2.4b6d5476.chunk.js": "/tardedivertida/static/js/2.4b6d5476.chunk.js",
-    "static/js/2.4b6d5476.chunk.js.map": "/tardedivertida/static/js/2.4b6d5476.chunk.js.map",
+    "static/js/2.51ddadae.chunk.js": "/tardedivertida/static/js/2.51ddadae.chunk.js",
+    "static/js/2.51ddadae.chunk.js.map": "/tardedivertida/static/js/2.51ddadae.chunk.js.map",
     "static/js/3.f0bd28dd.chunk.js": "/tardedivertida/static/js/3.f0bd28dd.chunk.js",
     "static/js/3.f0bd28dd.chunk.js.map": "/tardedivertida/static/js/3.f0bd28dd.chunk.js.map",
     "static/js/4.cfcfccb5.chunk.js": "/tardedivertida/static/js/4.cfcfccb5.chunk.js",
@@ -15,7 +15,7 @@
     "index.html": "/tardedivertida/index.html",
     "static/css/2.289e503f.chunk.css.map": "/tardedivertida/static/css/2.289e503f.chunk.css.map",
     "static/css/main.db2280e4.chunk.css.map": "/tardedivertida/static/css/main.db2280e4.chunk.css.map",
-    "static/js/2.4b6d5476.chunk.js.LICENSE.txt": "/tardedivertida/static/js/2.4b6d5476.chunk.js.LICENSE.txt",
+    "static/js/2.51ddadae.chunk.js.LICENSE.txt": "/tardedivertida/static/js/2.51ddadae.chunk.js.LICENSE.txt",
     "static/js/3.f0bd28dd.chunk.js.LICENSE.txt": "/tardedivertida/static/js/3.f0bd28dd.chunk.js.LICENSE.txt",
     "static/media/arte-ruim-timer.1f16745a.mp3": "/tardedivertida/static/media/arte-ruim-timer.1f16745a.mp3",
     "static/media/avatars.a2364409.svg": "/tardedivertida/static/media/avatars.a2364409.svg",
@@ -28,8 +28,8 @@
   "entrypoints": [
     "static/js/runtime-main.eda01472.js",
     "static/css/2.289e503f.chunk.css",
-    "static/js/2.4b6d5476.chunk.js",
+    "static/js/2.51ddadae.chunk.js",
     "static/css/main.db2280e4.chunk.css",
-    "static/js/main.8ea5bfca.chunk.js"
+    "static/js/main.3ccf58e2.chunk.js"
   ]
 }
