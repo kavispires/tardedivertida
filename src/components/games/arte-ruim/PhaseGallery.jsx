@@ -109,7 +109,14 @@ function PhaseGallery({ players, state, info }) {
 
           <RoundsLeftInstruction round={state?.round} />
 
-          <Button size="large" onClick={() => setStep(0)} icon={<PictureOutlined />}>
+          <Button
+            size="large"
+            onClick={() => {
+              setStep(1);
+              setActiveIndex(0);
+            }}
+            icon={<PictureOutlined />}
+          >
             <Translate pt="Ver Galeria De Novo" en="See Gallery Again" />
           </Button>
 
