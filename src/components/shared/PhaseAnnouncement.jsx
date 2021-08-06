@@ -68,6 +68,7 @@ export function PhaseAnnouncement({
   onClose,
   className,
   withoutTimer,
+  unskippable,
 }) {
   const language = useLanguage();
   const durationPerRound = [15, 15, 10, 5, 4]?.[currentRound] ?? 4;
@@ -91,6 +92,7 @@ export function PhaseAnnouncement({
           label={translate('Prosseguir', 'Continue', language, buttonText)}
           onClick={onClose}
           onExpire={onClose}
+          disabled={unskippable}
         />
       )}
     </div>
@@ -106,6 +108,7 @@ PhaseAnnouncement.propTypes = {
   onClose: PropTypes.func,
   title: PropTypes.string,
   type: PropTypes.string,
+  unskippable: PropTypes.bool,
   withoutTimer: PropTypes.bool,
 };
 

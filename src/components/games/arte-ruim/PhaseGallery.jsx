@@ -79,6 +79,7 @@ function PhaseGallery({ players, state, info }) {
           title={translate('Galeria de Arte', 'Art Gallery', language)}
           onClose={() => setStep(1)}
           currentRound={state?.round?.current}
+          unskippable
         >
           <GalleryRules />
         </PhaseAnnouncement>
