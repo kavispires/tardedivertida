@@ -18,8 +18,8 @@ export const ARTE_RUIM_API = {
   submitVoting: functions.httpsCallable('arteRuimSubmitVoting'),
 };
 
-export const CLUBE_DETETIVES_API = {
-  submitAction: functions.httpsCallable('clubeDetetivesSubmitAction'),
+export const DETETIVES_IMAGINATIVOS_API = {
+  submitAction: functions.httpsCallable('detetivesImaginativosSubmitAction'),
 };
 
 export const ESPIAO_ENTRE_NOS_API = {
@@ -29,11 +29,15 @@ export const ESPIAO_ENTRE_NOS_API = {
   submitVoting: functions.httpsCallable('espiaoEntreNosSubmitVoting'),
 };
 
-export const ONDA_TELEPATICA = {
+export const ONDA_TELEPATICA_API = {
   submitSides: functions.httpsCallable('ondaTelepaticaSubmitSides'),
   submitClue: functions.httpsCallable('ondaTelepaticaSubmitClue'),
   submitGuess: functions.httpsCallable('ondaTelepaticaSubmitGuess'),
   submitRivalGuess: functions.httpsCallable('ondaTelepaticaSubmitRivalGuess'),
+};
+
+export const TESTEMUNHA_OCULAR_API = {
+  submitAction: functions.httpsCallable('testemunhaOcularSubmitAction'),
 };
 
 export const UE_SO_ISSO_API = {
@@ -56,7 +60,9 @@ export const getAPI = (gameName) => {
     case GAME_COLLECTION.ESPIAO_ENTRE_NOS:
       return ESPIAO_ENTRE_NOS_API;
     case GAME_COLLECTION.ONDA_TELEPATICA:
-      return ONDA_TELEPATICA;
+      return ONDA_TELEPATICA_API;
+    case GAME_COLLECTION.TESTEMUNHA_OCULAR:
+      return TESTEMUNHA_OCULAR_API;
     case GAME_COLLECTION.UE_SO_ISSO:
       return UE_SO_ISSO_API;
     default:

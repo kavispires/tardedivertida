@@ -2,7 +2,7 @@ import React from 'react';
 // Hooks
 import { GAME_COLLECTION, PHASES } from '../../../utils/constants';
 // Components
-import { GameOver, Session } from '../../shared';
+import { GameOver, Session, SetupScreen } from '../../shared';
 import Lobby from '../../lobby/Lobby';
 import { Rules } from '../../rules';
 import { PageError } from '../../errors/PageError';
@@ -19,6 +19,8 @@ function SessionEspiaoEntreNos({ gameId }) {
         return Lobby;
       case PHASES.ESPIAO_ENTRE_NOS.RULES:
         return Rules;
+      case PHASES.ESPIAO_ENTRE_NOS.SETUP:
+        return SetupScreen;
       case PHASES.ESPIAO_ENTRE_NOS.ASSIGNMENT:
         return AssignmentPhase;
       case PHASES.ESPIAO_ENTRE_NOS.INVESTIGATION:

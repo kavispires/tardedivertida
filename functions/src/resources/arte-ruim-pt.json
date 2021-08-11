@@ -2576,7 +2576,7 @@
   },
   "a-516-pt": {
     "id": "a-516-pt",
-    "text": "Prossiga com cuidado",
+    "text": "Prossiga com cautela",
     "level": 3
   },
   "a-517-pt": {
@@ -3147,6 +3147,96 @@
   "a-630-pt": {
     "id": "a-630-pt",
     "text": "Cringe",
+    "level": 2
+  },
+  "a-631-pt": {
+    "id": "a-631-pt",
+    "text": "O contrário de volátil",
+    "level": 2
+  },
+  "a-632-pt": {
+    "id": "a-632-pt",
+    "text": "A direfença de afetivo e efetivo",
+    "level": 1
+  },
+  "a-633-pt": {
+    "id": "a-633-pt",
+    "text": "Imunizada na manicure",
+    "level": 1
+  },
+  "a-634-pt": {
+    "id": "a-634-pt",
+    "text": "Arrombado",
+    "level": 1
+  },
+  "a-635-pt": {
+    "id": "a-635-pt",
+    "text": "Hoje não",
+    "level": 1
+  },
+  "a-636-pt": {
+    "id": "a-636-pt",
+    "text": "Só uma lembrancinha",
+    "level": 1
+  },
+  "a-637-pt": {
+    "id": "a-637-pt",
+    "text": "Porque Deus quis",
+    "level": 1
+  },
+  "a-638-pt": {
+    "id": "a-638-pt",
+    "text": "Feio bonito",
+    "level": 1
+  },
+  "a-639-pt": {
+    "id": "a-639-pt",
+    "text": "De lei",
+    "level": 1
+  },
+  "a-640-pt": {
+    "id": "a-640-pt",
+    "text": "Não deixar passar batido",
+    "level": 1
+  },
+  "a-641-pt": {
+    "id": "a-641-pt",
+    "text": "Moral da história",
+    "level": 2
+  },
+  "a-642-pt": {
+    "id": "a-642-pt",
+    "text": "Zika",
+    "level": 2
+  },
+  "a-643-pt": {
+    "id": "a-643-pt",
+    "text": "Cartão vermelho",
+    "level": 1
+  },
+  "a-644-pt": {
+    "id": "a-644-pt",
+    "text": "Matar no peito",
+    "level": 1
+  },
+  "a-645-pt": {
+    "id": "a-645-pt",
+    "text": "Estocar vento",
+    "level": 1
+  },
+  "a-646-pt": {
+    "id": "a-646-pt",
+    "text": "Farinha do mesmo saco",
+    "level": 1
+  },
+  "a-647-pt": {
+    "id": "a-647-pt",
+    "text": "Gemidão do Zap",
+    "level": 1
+  },
+  "a-648-pt": {
+    "id": "a-648-pt",
+    "text": "COVID-19",
     "level": 2
   }
 }

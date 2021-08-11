@@ -67,7 +67,7 @@ export const nextArteRuimPhase = async (
 ): Promise<boolean> => {
   const actionText = 'prepare next phase';
 
-  // Determine and prepare next phase
+  // Gather docs and references
   const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
   const stateDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'state', actionText);
   const storeDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'store', actionText);
@@ -129,7 +129,6 @@ const getCards = async (language: string) => {
   // Get full deck
   const allCards = language === 'en' ? arteRuimCardsEn : arteRuimCardsPt;
   // Get used deck
-  // const usedCards = (await firebaseUtils.getGlobalRef().doc('usedArteRuimCards')?.get())?.data() ?? {};
   const usedCards = globalUtils.getGlobalFirebaseDocData('usedArteRuimCards', {});
   return {
     allCards,

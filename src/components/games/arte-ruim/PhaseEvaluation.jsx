@@ -4,7 +4,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { Button } from 'antd';
 import { CloudUploadOutlined, ThunderboltOutlined } from '@ant-design/icons';
 // Hooks
-import { useIsUserReady, useGlobalState, useAPICall, useLanguage } from '../../../hooks';
+import { useIsUserReady, useGlobalState, useAPICall, useLanguage, useUser, useLoading } from '../../../hooks';
 // Utils
 import { ARTE_RUIM_API } from '../../../adapters';
 import { LETTERS, PHASES, SEPARATOR } from '../../../utils/constants';
@@ -24,9 +24,9 @@ import {
 } from '../../shared';
 import EvaluationAllDrawings from './EvaluationAllDrawings';
 import EvaluationAllCards from './EvaluationAllCards';
-import { CanvasReSizer } from '../../canvas';
 import { shuffle } from '../../../utils';
 import { CollapsibleRule } from '../../rules';
+import { CanvasResizer } from '../../canvas';
 
 function prepareVotes(votes) {
   return Object.entries(votes).reduce((acc, [drawingEntryId, cardEntryId]) => {
@@ -64,7 +64,9 @@ const EvaluationRules = () => (
 );
 
 function EvaluationPhase({ players, state, info }) {
+  const [isLoading] = useLoading();
   const language = useLanguage();
+  const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
   const [canvasSize, setCanvasSize] = useGlobalState('canvasSize');
   const [cachedCanvasSize] = useGlobalState('cachedCanvasSize');
@@ -89,7 +91,7 @@ function EvaluationPhase({ players, state, info }) {
     ),
   });
 
-  const onGuessForMe = () => {
+  const onGuessForMe = useCallback(() => {
     const usedDrawings = Object.keys(votes);
     const usedCards = Object.values(votes);
     const drawingsKeys = state?.drawings
@@ -107,11 +109,37 @@ function EvaluationPhase({ players, state, info }) {
       }
     });
     setVotes(newVotes);
-  };
+  }, [state?.cards, state?.drawings, votes]);
+
+  const selectOwnDrawing = useCallback(() => {
+    const playersDrawing = (state?.drawings ?? []).find((drawing) => drawing.playerId === user.id);
+    if (playersDrawing) {
+      const drawingKey = `drawing${SEPARATOR}${playersDrawing.id}`;
+      const cardIndex = (state?.cards ?? []).findIndex((card) => card.playerId === user.id);
+      const cardKey = `card${SEPARATOR}${playersDrawing.id}${SEPARATOR}${LETTERS[cardIndex]}`;
+      const vote = { [drawingKey]: cardKey };
+      return vote;
+    }
+  }, [user, state?.drawings, state?.cards]);
+
+  const onClearSelections = useCallback(() => {
+    const selection = selectOwnDrawing();
+    if (selection) {
+      setVotes(selection);
+    }
+  }, [selectOwnDrawing]);
 
   useEffect(() => {
     setCanvasSize(cachedCanvasSize);
   }, []); // eslint-disable-line
+
+  // Auto select the players own drawing and word
+  useEffect(() => {
+    const selection = selectOwnDrawing();
+    if (selection) {
+      setVotes((s) => ({ ...s, ...selection }));
+    }
+  }, [selectOwnDrawing]);
 
   const onActivateItem = useCallback(
     (entryId) => {
@@ -164,7 +192,7 @@ function EvaluationPhase({ players, state, info }) {
 
         {/* Step 1 */}
         <Step className="a-evaluation-step">
-          <CanvasReSizer numPlayers={Object.keys(players).length} />
+          <CanvasResizer numPlayers={Object.keys(players).length} />
           <Title>{translate('Adivinhação', 'Match the Pairs', language)}</Title>
           <CollapsibleRule>
             <EvaluationRules />
@@ -190,15 +218,23 @@ function EvaluationPhase({ players, state, info }) {
             <Button
               type="default"
               icon={<ThunderboltOutlined />}
+              onClick={onClearSelections}
+              disabled={isLoading}
+            >
+              <Translate pt="Limpar seleções" en="Clear selections" />
+            </Button>
+            <Button
+              type="default"
+              icon={<ThunderboltOutlined />}
               onClick={onGuessForMe}
-              disabled={Object.values(votes).length === state.drawings.length}
+              disabled={isLoading || Object.values(votes).length === state.drawings.length}
             >
               <Translate pt="Chutar restantes" en="Guess for me" />
             </Button>
             <Button
               type="primary"
               onClick={() => onSubmitVoting({ votes: prepareVotes(votes) })}
-              disabled={Object.values(votes).length < state.drawings.length}
+              disabled={isLoading || Object.values(votes).length < state.drawings.length}
               icon={<CloudUploadOutlined />}
             >
               <Translate pt="Enviar sua avaliação" en="Send evaluation" />

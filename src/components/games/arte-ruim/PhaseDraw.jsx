@@ -89,7 +89,7 @@ function PhaseDraw({ players, state, info }) {
                   <br />
                   Press the button when you're ready!
                   <br />
-                  You can use numbers or letters.
+                  You can NOT use numbers or letters.
                   <br />
                   Be aware of the timer! It starts as soon as you press the button.
                 </>
@@ -123,10 +123,7 @@ PhaseDraw.propTypes = {
   players: PropTypes.object,
   state: PropTypes.shape({
     phase: PropTypes.string,
-    round: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.shape({ current: PropTypes.number, total: PropTypes.number }),
-    ]),
+    round: PropTypes.shape({ current: PropTypes.number, total: PropTypes.number }),
   }),
 };
 

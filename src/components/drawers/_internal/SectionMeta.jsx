@@ -7,24 +7,46 @@ import { Translate } from '../../shared';
 export function SectionMeta({ round, roundsToEndGame, groupScore, pointsToVictory, isTeamGame, teams }) {
   return (
     <ul className="game-info-drawer__meta">
-      <li className="game-info-drawer__meta-item">
-        <div className="game-info-drawer__label-inline">
-          <Translate pt="Rodada:" en="Round:" />
-        </div>
-        <AntAvatar className="game-info-drawer__round" size="small">
-          {round?.current || round}
-        </AntAvatar>
-        {Boolean(round?.total || roundsToEndGame) && (
-          <Fragment>
-            <span className="game-info-drawer__inline-separator">
-              <Translate pt="de" en="out of" />
-            </span>
-            <AntAvatar className="game-info-drawer__round" size="small">
-              {round?.total || round + roundsToEndGame}
-            </AntAvatar>
-          </Fragment>
-        )}
-      </li>
+      {/* TODO: Remove after migration is complete */}
+      {typeof round === 'number' ? (
+        <li className="game-info-drawer__meta-item">
+          <div className="game-info-drawer__label-inline">
+            <Translate pt="Rodada:" en="Round:" />
+          </div>
+          <AntAvatar className="game-info-drawer__round" size="small">
+            {round}
+          </AntAvatar>
+          {Boolean(roundsToEndGame) && (
+            <Fragment>
+              <span className="game-info-drawer__inline-separator">
+                <Translate pt="de" en="out of" />
+              </span>
+              <AntAvatar className="game-info-drawer__round" size="small">
+                {round + roundsToEndGame}
+              </AntAvatar>
+            </Fragment>
+          )}
+        </li>
+      ) : (
+        <li className="game-info-drawer__meta-item">
+          <div className="game-info-drawer__label-inline">
+            <Translate pt="Rodada:" en="Round:" />
+          </div>
+          <AntAvatar className="game-info-drawer__round" size="small">
+            {round?.current}
+          </AntAvatar>
+          {Boolean(round?.total) && (
+            <Fragment>
+              <span className="game-info-drawer__inline-separator">
+                <Translate pt="de" en="out of" />
+              </span>
+              <AntAvatar className="game-info-drawer__round" size="small">
+                {round?.total}
+              </AntAvatar>
+            </Fragment>
+          )}
+        </li>
+      )}
 
       {Boolean(groupScore) && (
         <li className="game-info-drawer__meta-item">

@@ -6,6 +6,7 @@ export type PlayerId = string;
 export type PlayerName = string;
 export type PlayerAvatarId = string;
 export type Primitive = string | number | boolean | symbol | null;
+export type ImageCard = string;
 
 // COMMON INTERFACES
 
@@ -106,13 +107,13 @@ export interface SubmitVotePayload extends Payload {
 }
 
 export interface SetPayload {
-  players?: PlainObject;
+  players?: PlainObject | Players;
   state?: PlainObject;
   store?: PlainObject;
 }
 
 export interface UpdatePayload {
-  players?: PlainObject;
+  players?: PlainObject | Players;
   state?: PlainObject;
   store?: PlainObject;
   meta?: PlainObject;
@@ -121,34 +122,6 @@ export interface UpdatePayload {
 export interface SaveGamePayload {
   set?: SetPayload;
   update?: UpdatePayload;
-}
-
-// CLUBE_DETETIVES
-
-export type ImageCard = string;
-
-export interface ClubeDetetivesStore {
-  usedCards: ImageCard[];
-  gameOrder: PlayerId[];
-  [key: string]: any;
-}
-
-export interface ClubeDetetivesState {
-  phase: string;
-  round: number;
-  [key: string]: any;
-}
-
-export interface ClubeDetetivesInitialState {
-  meta: Meta;
-  players: Players;
-  store: ClubeDetetivesStore;
-  state: ClubeDetetivesState;
-}
-
-export interface ClubeDetetivesSubmitAction extends Payload {
-  action: 'SUBMIT_CLUE' | 'PLAY_CARD' | 'DEFEND' | 'SUBMIT_VOTE';
-  [key: string]: any;
 }
 
 // ESPIAO_ENTRE_NOS

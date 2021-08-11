@@ -9,7 +9,7 @@ import {
   useIsUsersTeamActive,
 } from '../../../hooks';
 // Resources & Utils
-import { ONDA_TELEPATICA } from '../../../adapters';
+import { ONDA_TELEPATICA_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
 // Components
 import {
@@ -32,7 +32,7 @@ function DialSidesPhase({ state, players, info }) {
   const isUsersTeamActive = useIsUsersTeamActive(state, players);
 
   const onSendChosenSide = useAPICall({
-    apiFunction: ONDA_TELEPATICA.submitSides,
+    apiFunction: ONDA_TELEPATICA_API.submitSides,
     actionName: 'submit-side',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),

@@ -99,12 +99,14 @@ function Game() {
     switch (gameName) {
       case GAME_COLLECTION.ARTE_RUIM:
         return <GameSessions.ArteRuim gameId={gameId} />;
-      case GAME_COLLECTION.CLUBE_DETETIVES:
-        return <GameSessions.ClubeDetetives gameId={gameId} />;
+      case GAME_COLLECTION.DETETIVES_IMAGINATIVOS:
+        return <GameSessions.DetetivesImaginativos gameId={gameId} />;
       case GAME_COLLECTION.ESPIAO_ENTRE_NOS:
         return <GameSessions.EspiaoEntreNos gameId={gameId} />;
       case GAME_COLLECTION.ONDA_TELEPATICA:
         return <GameSessions.OndaTelepatica gameId={gameId} />;
+      case GAME_COLLECTION.TESTEMUNHA_OCULAR:
+        return <GameSessions.TestemunhaOcular gameId={gameId} />;
       case GAME_COLLECTION.UE_SO_ISSO:
         return <GameSessions.UeSoIsso gameId={gameId} />;
       default:
