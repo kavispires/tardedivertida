@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { useLanguage } from '../../../hooks';
 // Components
 import {
-  GameOver,
+  GameOverPhase,
   PhaseAnnouncement,
   PhaseContainer,
   StepSwitcher,
@@ -31,7 +31,7 @@ function PhaseGameOver({ state, players, info }) {
         />
       </PhaseContainer>
 
-      <GameOver info={info} state={state}>
+      <GameOverPhase info={info} state={state}>
         {/*Step 1 */}
         <ul className="a-game-over__gallery">
           {state.drawings.map((entry) => {
@@ -46,7 +46,7 @@ function PhaseGameOver({ state, players, info }) {
             );
           })}
         </ul>
-      </GameOver>
+      </GameOverPhase>
     </StepSwitcher>
   );
 }

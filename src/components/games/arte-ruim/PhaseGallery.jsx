@@ -104,7 +104,7 @@ function PhaseGallery({ players, state, info }) {
 
         {/* Step 3 */}
         <Step>
-          <Title>{state.round.current < state.round.total ? 'Ranking' : 'Game Over'}</Title>
+          <Title>Ranking</Title>
           <RankingBoard players={players} ranking={state.ranking} />
 
           <RoundsLeftInstruction round={state?.round} />

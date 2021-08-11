@@ -54,7 +54,9 @@
 .a-game-over {
   &__gallery {
     display: flex;
+    flex-wrap: wrap;
     overflow-y: auto;
+    justify-content: center;
     max-width: 94vw;
   }
 
