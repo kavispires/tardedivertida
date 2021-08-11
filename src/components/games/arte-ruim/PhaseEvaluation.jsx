@@ -4,7 +4,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { Button } from 'antd';
 import { CloudUploadOutlined, ThunderboltOutlined } from '@ant-design/icons';
 // Hooks
-import { useIsUserReady, useGlobalState, useAPICall, useLanguage, useUser } from '../../../hooks';
+import { useIsUserReady, useGlobalState, useAPICall, useLanguage, useUser, useLoading } from '../../../hooks';
 // Utils
 import { ARTE_RUIM_API } from '../../../adapters';
 import { LETTERS, PHASES, SEPARATOR } from '../../../utils/constants';
@@ -64,6 +64,7 @@ const EvaluationRules = () => (
 );
 
 function EvaluationPhase({ players, state, info }) {
+  const [isLoading] = useLoading();
   const language = useLanguage();
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
@@ -90,7 +91,7 @@ function EvaluationPhase({ players, state, info }) {
     ),
   });
 
-  const onGuessForMe = () => {
+  const onGuessForMe = useCallback(() => {
     const usedDrawings = Object.keys(votes);
     const usedCards = Object.values(votes);
     const drawingsKeys = state?.drawings
@@ -108,7 +109,25 @@ function EvaluationPhase({ players, state, info }) {
       }
     });
     setVotes(newVotes);
-  };
+  }, [state?.cards, state?.drawings, votes]);
+
+  const selectOwnDrawing = useCallback(() => {
+    const playersDrawing = (state?.drawings ?? []).find((drawing) => drawing.playerId === user.id);
+    if (playersDrawing) {
+      const drawingKey = `drawing${SEPARATOR}${playersDrawing.id}`;
+      const cardIndex = (state?.cards ?? []).findIndex((card) => card.playerId === user.id);
+      const cardKey = `card${SEPARATOR}${playersDrawing.id}${SEPARATOR}${LETTERS[cardIndex]}`;
+      const vote = { [drawingKey]: cardKey };
+      return vote;
+    }
+  }, [user, state?.drawings, state?.cards]);
+
+  const onClearSelections = useCallback(() => {
+    const selection = selectOwnDrawing();
+    if (selection) {
+      setVotes(selection);
+    }
+  }, [selectOwnDrawing]);
 
   useEffect(() => {
     setCanvasSize(cachedCanvasSize);
@@ -116,15 +135,11 @@ function EvaluationPhase({ players, state, info }) {
 
   // Auto select the players own drawing and word
   useEffect(() => {
-    const playersDrawing = (state?.drawings ?? []).find((drawing) => drawing.playerId === user.id);
-    if (playersDrawing) {
-      const drawingKey = `drawing${SEPARATOR}${playersDrawing.id}`;
-      const cardIndex = (state?.cards ?? []).findIndex((card) => card.playerId === user.id);
-      const cardKey = `card${SEPARATOR}${playersDrawing.id}${SEPARATOR}${LETTERS[cardIndex]}`;
-      const vote = { [drawingKey]: cardKey };
-      setVotes((s) => ({ ...s, ...vote }));
+    const selection = selectOwnDrawing();
+    if (selection) {
+      setVotes((s) => ({ ...s, ...selection }));
     }
-  }, [user, state?.drawings, state?.cards]);
+  }, [selectOwnDrawing]);
 
   const onActivateItem = useCallback(
     (entryId) => {
@@ -203,15 +218,23 @@ function EvaluationPhase({ players, state, info }) {
             <Button
               type="default"
               icon={<ThunderboltOutlined />}
+              onClick={onClearSelections}
+              disabled={isLoading}
+            >
+              <Translate pt="Limpar seleções" en="Clear selections" />
+            </Button>
+            <Button
+              type="default"
+              icon={<ThunderboltOutlined />}
               onClick={onGuessForMe}
-              disabled={Object.values(votes).length === state.drawings.length}
+              disabled={isLoading || Object.values(votes).length === state.drawings.length}
             >
               <Translate pt="Chutar restantes" en="Guess for me" />
             </Button>
             <Button
               type="primary"
               onClick={() => onSubmitVoting({ votes: prepareVotes(votes) })}
-              disabled={Object.values(votes).length < state.drawings.length}
+              disabled={isLoading || Object.values(votes).length < state.drawings.length}
               icon={<CloudUploadOutlined />}
             >
               <Translate pt="Enviar sua avaliação" en="Send evaluation" />
