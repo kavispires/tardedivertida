@@ -19,7 +19,12 @@ const GameOverText = () => <Translate pt="Jogo concluído" en="The game is over"
 
 export function GameOverPhase({ info, state, children }) {
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase="GAME_OVER" className="game-over">
+    <PhaseContainer
+      info={info}
+      phase={state?.phase}
+      allowedPhase="GAME_OVER"
+      className="game-over__container"
+    >
       <GameOver info={info} state={state}>
         {children}
       </GameOver>
