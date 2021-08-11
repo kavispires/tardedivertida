@@ -207,9 +207,10 @@ export const RANDOM_NAMES = 'Ana,Bob,Cam,Dan,Evan,Fred,Gus,Helen,Ian,Jess,Kim,Li
  */
 export const GAME_COLLECTION = {
   ARTE_RUIM: 'arte-ruim',
-  CLUBE_DETETIVES: 'clube-detetives',
+  DETETIVES_IMAGINATIVOS: 'detetives-imaginativos',
   ESPIAO_ENTRE_NOS: 'espiao-entre-nos',
   ONDA_TELEPATICA: 'onda-telepatica',
+  TESTEMUNHA_OCULAR: 'testemunha-ocular',
   UE_SO_ISSO: 'ue-so-isso',
 };
 
@@ -220,14 +221,16 @@ export const PHASES = {
   ARTE_RUIM: {
     LOBBY: 'LOBBY',
     RULES: 'RULES',
+    SETUP: 'SETUP',
     DRAW: 'DRAW',
     EVALUATION: 'EVALUATION',
     GALLERY: 'GALLERY',
     GAME_OVER: 'GAME_OVER',
   },
-  CLUBE_DETETIVES: {
+  DETETIVES_IMAGINATIVOS: {
     LOBBY: 'LOBBY',
     RULES: 'RULES',
+    SETUP: 'SETUP',
     SECRET_CLUE: 'SECRET_CLUE',
     CARD_PLAY: 'CARD_PLAY',
     DEFENSE: 'DEFENSE',
@@ -238,6 +241,7 @@ export const PHASES = {
   ESPIAO_ENTRE_NOS: {
     LOBBY: 'LOBBY',
     RULES: 'RULES',
+    SETUP: 'SETUP',
     ASSIGNMENT: 'ASSIGNMENT',
     INVESTIGATION: 'INVESTIGATION',
     ASSESSMENT: 'ASSESSMENT',
@@ -248,6 +252,7 @@ export const PHASES = {
   ONDA_TELEPATICA: {
     LOBBY: 'LOBBY',
     RULES: 'RULES',
+    SETUP: 'SETUP',
     DIAL_SIDES: 'DIAL_SIDES',
     DIAL_CLUE: 'DIAL_CLUE',
     GUESS: 'GUESS',
@@ -255,9 +260,20 @@ export const PHASES = {
     REVEAL: 'REVEAL',
     GAME_OVER: 'GAME_OVER',
   },
+  TESTEMUNHA_OCULAR: {
+    LOBBY: 'LOBBY',
+    RULES: 'RULES',
+    SETUP: 'SETUP',
+    WITNESS_SELECTION: 'WITNESS_SELECTION',
+    QUESTION_SELECTION: 'QUESTION_SELECTION',
+    QUESTIONING: 'QUESTIONING',
+    TRIAL: 'TRIAL',
+    GAME_OVER: 'GAME_OVER',
+  },
   UE_SO_ISSO: {
     LOBBY: 'LOBBY',
     RULES: 'RULES',
+    SETUP: 'SETUP',
     WORD_SELECTION: 'WORD_SELECTION',
     SUGGEST: 'SUGGEST',
     COMPARE: 'COMPARE',

@@ -11,7 +11,7 @@ import {
   useIsUsersTeamActive,
 } from '../../../hooks';
 // Resources & Utils
-import { ONDA_TELEPATICA } from '../../../adapters';
+import { ONDA_TELEPATICA_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
 // Components
 import { PhaseContainer, StepSwitcher, WaitingRoom } from '../../shared';
@@ -28,7 +28,7 @@ function GuessPhase({ state, players, info }) {
   const isUsersTeamActive = useIsUsersTeamActive(state, players);
 
   const onSendGuess = useAPICall({
-    apiFunction: ONDA_TELEPATICA.submitGuess,
+    apiFunction: ONDA_TELEPATICA_API.submitGuess,
     actionName: 'submit-guess',
     onBeforeCall: () => setStep(1),
     onError: () => setStep(0),

@@ -12,7 +12,7 @@ import {
   Payload,
   ExtendedPayload,
 } from '../utils/interfaces';
-import { GAME_PLAYERS_LIMIT } from '../utils/constants';
+import { DEV_GAME_IDS, GAME_PLAYERS_LIMIT } from '../utils/constants';
 
 /**
  * Creates a new game instance
@@ -51,7 +51,7 @@ export const createGame = async (data: CreateGamePayload, context: FirebaseConte
   const collectionRef = admin.firestore().collection(collectionName);
 
   // Generate unique 4 digit code starting with game code letter
-  const gameId: string = utils.generateGameId(gameCode, usedGameIds);
+  let gameId: string = utils.generateGameId(gameCode, usedGameIds);
 
   // Make sure the game does not exist, I do not trust that while loop
   const tempGame = await collectionRef.doc(gameId).get();
@@ -62,13 +62,17 @@ export const createGame = async (data: CreateGamePayload, context: FirebaseConte
     );
   }
 
+  if (process.env.FUNCTIONS_EMULATOR) {
+    gameId = DEV_GAME_IDS[gameCode];
+  }
+
   // Create game entry in database
   let response = {};
   try {
     const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
-
     const getInitialState = delegatorUtils.getInitialStateForCollection(collectionName);
-    const uid = context?.auth?.uid ?? '';
+
+    const uid = context?.auth?.uid ?? 'admin?';
 
     const { meta, players, state, store } = getInitialState(gameId, uid, data.language ?? 'pt');
 
@@ -352,7 +356,10 @@ export const playAgain = async (data: BasicGamePayload, context: FirebaseContext
     // Force rules phase which will trigger new setup
     await sessionRef.doc('state').set({
       phase: 'RULES',
-      round: 0,
+      round: {
+        current: 0,
+        total: 0,
+      },
     });
 
     return true;
@@ -372,8 +379,12 @@ const feedEmulatorDB = async () => {
   // GLOBAL
   await firebaseUtils.getGlobalRef().doc('usedGameIds').set(sample);
 
-  // ARTE-RUIM
+  // ARTE_RUIM
 
   await firebaseUtils.getPublicRef().doc('arteRuimDrawings').set(sample);
   await firebaseUtils.getGlobalRef().doc('usedArteRuimCards').set(sample);
+
+  // TESTEMUNHA_OCULAR
+
+  await firebaseUtils.getGlobalRef().doc('usedTestemunhaOcularCards').set(sample);
 };

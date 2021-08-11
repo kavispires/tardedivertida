@@ -4,25 +4,37 @@ export const LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
 export const GAME_CODES = {
   A: 'A', // arte-ruim
-  D: 'D', // clube-detetive
+  D: 'D', // detetives-imaginativos
   E: 'E', // espiao-entre-nos
   O: 'O', // onda-telepatica
+  T: 'T', // testemunha-ocular
   U: 'U', // ue-so-isso
+};
+
+export const DEV_GAME_IDS = {
+  A: 'AAAA',
+  D: 'DDDD',
+  E: 'EEEE',
+  O: 'OOOO',
+  T: 'TTTT',
+  U: 'UUUU',
 };
 
 export const GAME_KEYS = {
   ARTE_RUIM: 'ARTE_RUIM',
-  CLUBE_DETETIVE: 'CLUBE_DETETIVE',
+  DETETIVES_IMAGINATIVOS: 'DETETIVES_IMAGINATIVOS',
   ESPIAO_ENTRE_NOS: 'ESPIAO_ENTRE_NOS',
   ONDA_TELEPATICA: 'ONDA_TELEPATICA',
+  TESTEMUNHA_OCULAR: 'TESTEMUNHA_OCULAR',
   UE_SO_ISSO: 'UE_SO_ISSO',
 };
 
 export const GAME_COLLECTIONS = {
   ARTE_RUIM: 'arte-ruim',
-  CLUBE_DETETIVE: 'clube-detetives',
+  DETETIVES_IMAGINATIVOS: 'detetives-imaginativos',
   ESPIAO_ENTRE_NOS: 'espiao-entre-nos',
   ONDA_TELEPATICA: 'onda-telepatica',
+  TESTEMUNHA_OCULAR: 'testemunha-ocular',
   UE_SO_ISSO: 'ue-so-isso',
 };
 
@@ -31,7 +43,7 @@ export const GAME_PLAYERS_LIMIT = {
     min: 3,
     max: 8,
   },
-  CLUBE_DETETIVE: {
+  DETETIVES_IMAGINATIVOS: {
     min: 4,
     max: 8,
   },
@@ -41,6 +53,10 @@ export const GAME_PLAYERS_LIMIT = {
   },
   ONDA_TELEPATICA: {
     min: 4,
+    max: 8,
+  },
+  TESTEMUNHA_OCULAR: {
+    min: 2,
     max: 8,
   },
   UE_SO_ISSO: {
@@ -53,16 +69,6 @@ export const GAME_PLAYERS_LIMIT = {
  * Enum of Game Phases
  */
 export const PHASES = {
-  CLUBE_DETETIVES: {
-    LOBBY: 'LOBBY',
-    RULES: 'RULES',
-    SECRET_CLUE: 'SECRET_CLUE',
-    CARD_PLAY: 'CARD_PLAY',
-    DEFENSE: 'DEFENSE',
-    VOTING: 'VOTING',
-    REVEAL: 'REVEAL',
-    GAME_OVER: 'GAME_OVER',
-  },
   ESPIAO_ENTRE_NOS: {
     LOBBY: 'LOBBY',
     RULES: 'RULES',
@@ -95,19 +101,6 @@ export const PHASES = {
 };
 
 export const SEPARATOR = ';;';
-
-// CLUBE_DETETIVE
-
-export const CLUBE_DETETIVE_CONSTANTS = {
-  CARDS_PER_PLAYER: {
-    4: 22,
-    5: 26,
-    6: 18,
-    7: 20,
-    8: 22,
-  },
-  HAND_LIMIT: 6,
-};
 
 // ESPIAO_ENTRE_NOS
 

@@ -8,6 +8,7 @@ import { Instruction, Step, Title } from '../../shared';
 import { UeSoIssoCard as Card } from '../../cards';
 import { AvatarName } from '../../avatars';
 import SuggestionEasel from './SuggestionEasel';
+import { WritingRules } from './RulesBlobs';
 
 function SuggestionStep({ guesser, onSendSuggestions, secretWord, suggestionsNumber = 1 }) {
   const [suggestions, setSuggestions] = useState([]);
@@ -27,20 +28,20 @@ function SuggestionStep({ guesser, onSendSuggestions, secretWord, suggestionsNum
 
   const suggestionsValues = Object.values(suggestions);
 
+  // On enter in the easel if only one suggestion is necessary
+  const onEnterInput = (e) => {
+    if (e.key === 'Enter' && suggestionsNumber === 1) {
+      onSendSuggestions({ suggestions: suggestionsValues });
+    }
+  };
+
   return (
     <Step>
       <Title>
         Escreva uma dica para <AvatarName player={guesser} />
       </Title>
 
-      <Instruction contained>
-        A dica tem que ser uma palavra única que ajude o adivinhador... adivinhar.
-        <br />
-        É proibido usar derivados, partes da palavra ou traduções em outras línguas.
-        <br />
-        E não seja tão óbvio, já que dicas similares são eliminadas.
-        <br />
-      </Instruction>
+      <WritingRules />
 
       <Card word={secretWord.text} header="Palavra Secreta" />
 
@@ -55,7 +56,14 @@ function SuggestionStep({ guesser, onSendSuggestions, secretWord, suggestionsNum
           .fill(1)
           .map((entry, index) => {
             const id = `suggestion-${entry + index}`;
-            return <SuggestionEasel key={id} id={id} onChangeInput={onChangeInput} />;
+            return (
+              <SuggestionEasel
+                key={id}
+                id={id}
+                onChangeInput={onChangeInput}
+                onKeyPress={suggestionsNumber === 1 ? onEnterInput : null}
+              />
+            );
           })}
       </Space>
 

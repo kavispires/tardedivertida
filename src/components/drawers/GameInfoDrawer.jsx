@@ -64,7 +64,7 @@ export function GameInfoDrawer({ players, state, info, userId }) {
         <Divider />
 
         <SectionMeta
-          round={state?.round || '?'}
+          round={state?.round || 0}
           roundsToEndGame={state?.roundsToEndGame}
           groupScore={state?.groupScore}
           pointsToVictory={state?.pointsToVictory}

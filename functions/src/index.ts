@@ -2,9 +2,10 @@ import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import * as commonEngine from './engine/common';
 import * as arteRuimEngine from './engine/arte-ruim';
-import * as clubeDetetivesEngine from './engine/clube-detetives';
+import * as DetetivesImaginativosEngine from './engine/detetives-imaginativos';
 import * as espiaoEntreNosEngine from './engine/espiao-entre-nos';
 import * as ondaTelepaticaEngine from './engine/onda-telepatica';
+import * as testemunhaOcularEngine from './engine/testemunha-ocular';
 import * as ueSoIssoEngine from './engine/ue-so-isso';
 
 admin.initializeApp();
@@ -67,9 +68,9 @@ exports.arteRuimSubmitDrawing = functions.https.onCall(arteRuimEngine.submitDraw
  */
 exports.arteRuimSubmitVoting = functions.https.onCall(arteRuimEngine.submitVoting);
 
-// CLUBE_DETETIVES HTTP CALLS
+// DETETIVES_IMAGINATIVOS HTTP CALLS
 
-exports.clubeDetetivesSubmitAction = functions.https.onCall(clubeDetetivesEngine.submitAction);
+exports.detetivesImaginativosSubmitAction = functions.https.onCall(DetetivesImaginativosEngine.submitAction);
 
 // ESPIAO_ENTRE_NOS HTTP CALLS
 
@@ -114,6 +115,10 @@ exports.ondaTelepaticaSubmitGuess = functions.https.onCall(ondaTelepaticaEngine.
  * Submit rival team guess and move to the next phase
  */
 exports.ondaTelepaticaSubmitRivalGuess = functions.https.onCall(ondaTelepaticaEngine.submitRivalGuess);
+
+// TESTEMUNHA_OCULAR HTTP CALLS
+
+exports.testemunhaOcularSubmitAction = functions.https.onCall(testemunhaOcularEngine.submitAction);
 
 // UE_SO_ISSO HTTP CALLS
 

@@ -94,7 +94,7 @@
   },
   "D": {
     "gameCode": "D",
-    "gameName": "clube-detetives",
+    "gameName": "detetives-imaginativos",
     "title": {
       "pt": "Detetives Imaginativos",
       "en": "Imaginative Detectives"
@@ -124,7 +124,7 @@
     "tags": ["competitive", "turn-based", "traitor", "discussion", "images"],
     "available": {
       "pt": true,
-      "en": false
+      "en": true
     }
   },
   "E": {
@@ -258,10 +258,10 @@
     "recommended": "2+",
     "min": 2,
     "max": 8,
-    "tags": ["competitive", "turn-based", "guessing"],
+    "tags": ["cooperative", "turn-based", "guessing"],
     "available": {
-      "pt": false,
-      "en": false
+      "pt": true,
+      "en": true
     }
   },
   "U": {

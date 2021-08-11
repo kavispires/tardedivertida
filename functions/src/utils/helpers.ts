@@ -7,6 +7,7 @@ import {
   PlayerId,
   PlayerName,
   Players,
+  Round,
   Teams,
 } from '../utils/interfaces';
 import { shuffle, getRandomUniqueItem } from './game-utils';
@@ -294,4 +295,18 @@ export const orderBy = (list: PlainObject[], properties: string | string[], orde
   }
 
   return [...list].sort(cb);
+};
+
+/**
+ * Increase the current round count by 1
+ * @param round
+ * @param [total] overrides total
+ * @param [current] overrides current (there won't be a increase)
+ * @returns
+ */
+export const increaseRound = (round: Round, total?: number, current?: number): Round => {
+  return {
+    total: total ?? round.total,
+    current: current ?? (round?.current ?? 0) + 1,
+  };
 };

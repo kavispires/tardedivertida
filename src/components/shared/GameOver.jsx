@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 // Design Resources
 import { Button, Popconfirm, Progress } from 'antd';
@@ -16,7 +17,22 @@ import { translate, Translate } from './Translate';
 
 const GameOverText = () => <Translate pt="Jogo concluído" en="The game is over" />;
 
-export function GameOver({ info, state, children }) {
+export function GameOverPhase({ info, state, children }) {
+  return (
+    <PhaseContainer
+      info={info}
+      phase={state?.phase}
+      allowedPhase="GAME_OVER"
+      className="game-over__container"
+    >
+      <GameOver info={info} state={state}>
+        {children}
+      </GameOver>
+    </PhaseContainer>
+  );
+}
+
+export function GameOver({ state, children, className }) {
   const language = useLanguage();
   const [isLoading] = useLoading();
 
@@ -32,7 +48,7 @@ export function GameOver({ info, state, children }) {
   });
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase="GAME_OVER" className="game-over">
+    <div className={className}>
       <div className="game-over__title">
         <img src={gameOverTitle} alt="Game Over" />
       </div>
@@ -142,6 +158,25 @@ export function GameOver({ info, state, children }) {
           </Button>
         </Popconfirm>
       </AdminOnly>
-    </PhaseContainer>
+    </div>
   );
 }
+
+GameOver.propTypes = {
+  children: PropTypes.any,
+  className: PropTypes.any,
+  state: PropTypes.shape({
+    group: PropTypes.shape({
+      score: PropTypes.number,
+      victory: PropTypes.any,
+    }),
+    team: PropTypes.shape({
+      score: PropTypes.number,
+      victory: PropTypes.any,
+    }),
+    winners: PropTypes.shape({
+      length: PropTypes.number,
+      map: PropTypes.func,
+    }),
+  }),
+};
