@@ -3223,5 +3223,20 @@
     "id": "a-645-pt",
     "text": "Estocar vento",
     "level": 1
+  },
+  "a-646-pt": {
+    "id": "a-646-pt",
+    "text": "Farinha do mesmo saco",
+    "level": 1
+  },
+  "a-647-pt": {
+    "id": "a-647-pt",
+    "text": "Gemidão do Zap",
+    "level": 1
+  },
+  "a-648-pt": {
+    "id": "a-648-pt",
+    "text": "COVID-19",
+    "level": 2
   }
 }
