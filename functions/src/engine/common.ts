@@ -12,7 +12,7 @@ import {
   Payload,
   ExtendedPayload,
 } from '../utils/interfaces';
-import { DEV_GAME_IDS, GAME_PLAYERS_LIMIT } from '../utils/constants';
+import { GAME_PLAYERS_LIMIT } from '../utils/constants';
 
 /**
  * Creates a new game instance
@@ -63,7 +63,7 @@ export const createGame = async (data: CreateGamePayload, context: FirebaseConte
   }
 
   if (process.env.FUNCTIONS_EMULATOR) {
-    gameId = DEV_GAME_IDS[gameCode];
+    gameId = Array(4).fill(gameCode).join('');
   }
 
   // Create game entry in database
