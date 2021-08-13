@@ -6,11 +6,8 @@ import { GameId, PlainObject, Players } from '../../utils/interfaces';
 import { TestemunhaOcularInitialState, TestemunhaOcularSubmitAction } from './interfaces';
 // Utils
 import * as firebaseUtils from '../../utils/firebase';
-import { buildUsedCardsIdsDict, determineNextPhase } from './helpers';
-// Data
-import testemunhaOcularCardsPt from '../../resources/testemunha-ocular-pt.json';
-import testemunhaOcularCardsEn from '../../resources/testemunha-ocular-en.json';
 import * as globalUtils from '../global';
+import { buildUsedCardsIdsDict, determineNextPhase } from './helpers';
 // Internal Functions
 import {
   prepareGameOverPhase,
@@ -21,6 +18,7 @@ import {
   prepareWitnessSelectionPhase,
 } from './setup';
 import { handleElimination, handleExtraAction } from './actions';
+import { getCards } from './data';
 
 /**
  * Get Initial Game State
@@ -155,12 +153,14 @@ export const submitAction = async (data: TestemunhaOcularSubmitAction) => {
         firebaseUtils.throwException('Missing `witness` value', actionText);
       }
       return handleExtraAction(collectionName, gameId, actionText, { playerId, witness: data.witness });
+
     case 'SELECT_QUESTION':
       actionText = 'select question';
       if (!data.questionId) {
         firebaseUtils.throwException('Missing `questionId` value', actionText);
       }
       return handleExtraAction(collectionName, gameId, actionText, { playerId, questionId: data.questionId });
+
     case 'GIVE_TESTIMONY':
       actionText = 'give testimony';
       if (data.testimony === undefined) {
@@ -178,18 +178,8 @@ export const submitAction = async (data: TestemunhaOcularSubmitAction) => {
         suspectId: data?.suspectId,
         pass: data?.pass,
       });
+
     default:
       firebaseUtils.throwException(`Given action ${action} is not allowed`);
   }
-};
-
-const getCards = async (language: string) => {
-  // Get full deck
-  const allCards = language === 'en' ? testemunhaOcularCardsEn : testemunhaOcularCardsPt;
-  // Get used deck
-  const usedCards = globalUtils.getGlobalFirebaseDocData('usedTestemunhaOcularCards', {});
-  return {
-    allCards,
-    usedCards: Object.keys(usedCards),
-  };
 };
