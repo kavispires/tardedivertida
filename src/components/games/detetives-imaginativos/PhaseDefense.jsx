@@ -16,6 +16,7 @@ import {
   Step,
   StepSwitcher,
   Title,
+  TitleHighlight,
   Translate,
   translate,
 } from '../../shared';
@@ -83,7 +84,7 @@ function PhaseDefense({ state, players, info }) {
         >
           <Title>
             <Translate pt="Pista Secreta era: " en="The Secret Clue was: " />
-            <span className="d-clue">{state.clue}</span>
+            <TitleHighlight>{state.clue}</TitleHighlight>
           </Title>
           <Instruction>
             <Translate
@@ -97,7 +98,7 @@ function PhaseDefense({ state, players, info }) {
         <Step key={1}>
           <Title>
             <Translate pt="Pista Secreta era: " en="The Secret Clue was: " />
-            <span className="d-clue">{state.clue}</span>
+            <TitleHighlight>{state.clue}</TitleHighlight>
           </Title>
           <Instruction>
             <AvatarName player={currentPlayer} />,{' '}
