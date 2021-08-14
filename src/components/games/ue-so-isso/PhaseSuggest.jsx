@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 // Hooks
-import { useIsUserReady, useWhichPlayerIsThe, useIsUserThe, useAPICall } from '../../../hooks';
+import { useIsUserReady, useWhichPlayerIsThe, useIsUserThe, useAPICall, useLanguage } from '../../../hooks';
 // Resources & Utils
 import { UE_SO_ISSO_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
@@ -12,27 +12,41 @@ import {
   PhaseContainer,
   Step,
   StepSwitcher,
+  Translate,
+  translate,
   ViewIf,
-  WaitingRoom,
+  DefaultWaitingRoom,
 } from '../../shared';
 import SuggestionStep from './SuggestionStep';
 import { WritingRules } from './RulesBlobs';
+import { GuesserWaitingRoom } from './GuesserWaitingRoom';
 
 function PhaseSuggest({ state, players, info }) {
   const isUserReady = useIsUserReady(players, state);
+  const language = useLanguage();
   const [step, setStep] = useState(0);
   const guesser = useWhichPlayerIsThe('guesser', state, players);
   const isUserTheGuesser = useIsUserThe('guesser', state);
 
-  const onSendSuggestions = useAPICall({
-    apiFunction: UE_SO_ISSO_API.submitSuggestions,
+  const onSendSuggestionsAPIRequest = useAPICall({
+    apiFunction: UE_SO_ISSO_API.submitAction,
     actionName: 'submit-suggestion',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
-    successMessage:
-      'Sugestão enviada com successo! Aguarde enquanto os outros participantes escrevem suas dicas',
-    errorMessage: 'Vixi, o aplicativo encontrou um erro ao tentar enviar sua(s) dica(s)',
+    successMessage: translate('Dicas enviada com successo!', 'Suggestion sent successfully!', language),
+    errorMessage: translate(
+      'Vixi, o aplicativo encontrou um erro ao tentar enviar suas dicas',
+      'Oops, the application fail to send your votes',
+      language
+    ),
   });
+
+  const onSendSuggestions = (payload) => {
+    onSendSuggestionsAPIRequest({
+      action: 'SUBMIT_SUGGESTIONS',
+      ...payload,
+    });
+  };
 
   return (
     <PhaseContainer
@@ -45,23 +59,30 @@ function PhaseSuggest({ state, players, info }) {
         {/* Step 0 */}
         <PhaseAnnouncement
           type="writing"
-          title="Escreva uma dica!"
+          title={translate('Escreva uma dica!', 'Write a Clue!', language)}
           onClose={() => setStep(1)}
-          currentRound={state?.round}
+          currentRound={state?.round?.current}
         >
           <WritingRules />
           {isUserTheGuesser && (
-            <Instruction contained>Se você é o adivinhador, relaxe e aguarde...</Instruction>
+            <Instruction contained>
+              <Translate
+                pt="Já que você é o adivinhador, relaxe e aguarde..."
+                en="Since you're the guesser, just relax and wait..."
+              />
+            </Instruction>
           )}
         </PhaseAnnouncement>
 
         {/* Step 1 */}
         <Step fullWidth>
           <ViewIf isVisible={isUserTheGuesser}>
-            <WaitingRoom
+            <GuesserWaitingRoom
               players={players}
-              title="Você é o(a) adivinhador(a)"
-              instruction="Aguarde enquanto os outros jogadores escrevem dicas para você adivinhar."
+              instructionSuffix={{
+                pt: 'escrevem dicas',
+                en: 'write clues',
+              }}
             />
           </ViewIf>
 
@@ -76,7 +97,7 @@ function PhaseSuggest({ state, players, info }) {
         </Step>
 
         {/* Step 2 */}
-        <WaitingRoom players={players} title="Pronto!" instruction="Vamos aguardar os outros jogadores." />
+        <DefaultWaitingRoom players={players} />
       </StepSwitcher>
     </PhaseContainer>
   );
@@ -87,6 +108,10 @@ PhaseSuggest.propTypes = {
   players: PropTypes.object,
   state: PropTypes.shape({
     phase: PropTypes.string,
+    round: PropTypes.shape({
+      current: PropTypes.number,
+      total: PropTypes.number,
+    }),
     secretWord: PropTypes.any,
     suggestionsNumber: PropTypes.any,
   }),

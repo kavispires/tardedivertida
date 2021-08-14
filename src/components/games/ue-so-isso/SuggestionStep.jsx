@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Button, Space } from 'antd';
 import { CloudUploadOutlined } from '@ant-design/icons';
 // Components
-import { Instruction, Step, Title } from '../../shared';
+import { Instruction, Step, Title, Translate } from '../../shared';
 import { UeSoIssoCard as Card } from '../../cards';
 import { AvatarName } from '../../avatars';
 import SuggestionEasel from './SuggestionEasel';
@@ -38,16 +38,32 @@ function SuggestionStep({ guesser, onSendSuggestions, secretWord, suggestionsNum
   return (
     <Step>
       <Title>
-        Escreva uma dica para <AvatarName player={guesser} />
+        <Translate
+          pt={
+            <>
+              Escreva uma dica para <AvatarName player={guesser} />
+            </>
+          }
+          en={
+            <>
+              Write a clue for <AvatarName player={guesser} />
+            </>
+          }
+        />
       </Title>
 
       <WritingRules />
 
-      <Card word={secretWord.text} header="Palavra Secreta" />
+      <Card word={secretWord.text} />
 
       {suggestionsNumber > 1 && (
         <Instruction contained>
-          Já que esse jogo tem menos jogadores, você tem que escrever {suggestionsNumber} sugestões
+          <Translate
+            pt={
+              <>Já que esse jogo tem menos jogadores, você tem que escrever {suggestionsNumber} sugestões</>
+            }
+            en={<>Since we have fewer players you must write {suggestionsNumber} clues</>}
+          />
         </Instruction>
       )}
 
@@ -73,8 +89,10 @@ function SuggestionStep({ guesser, onSendSuggestions, secretWord, suggestionsNum
           type="primary"
           onClick={() => onSendSuggestions({ suggestions: suggestionsValues })}
           disabled={suggestionsValues.length < suggestionsNumber}
+          size="large"
         >
-          {suggestionsNumber > 1 ? 'Enviar sugestões' : 'Enviar sugestão'}
+          <Translate pt="Enviar dica" en="Send clue" />
+          {suggestionsNumber > 1 && 's'}
         </Button>
       </Space>
     </Step>
@@ -87,7 +105,9 @@ SuggestionStep.propTypes = {
     name: PropTypes.string,
   }),
   onSendSuggestions: PropTypes.func,
-  secretWord: PropTypes.shape({ text: PropTypes.string }),
+  secretWord: PropTypes.shape({
+    text: PropTypes.string,
+  }),
   suggestionsNumber: PropTypes.number,
 };
 

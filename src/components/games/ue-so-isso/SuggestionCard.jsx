@@ -35,6 +35,7 @@ SuggestionCard.propTypes = {
   avatarId: PropTypes.number.isRequired,
   index: PropTypes.number.isRequired,
   invalid: PropTypes.bool,
+  playerName: PropTypes.string,
   suggestion: PropTypes.string.isRequired,
 };
 

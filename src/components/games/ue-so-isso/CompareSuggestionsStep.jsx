@@ -2,23 +2,25 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
 import { Button, message, Space } from 'antd';
-import { CloudUploadOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
+import { CloudUploadOutlined } from '@ant-design/icons';
 // Hooks
 import { useGlobalState, useLoading } from '../../../hooks';
 // Utils
 import { deepCopy } from '../../../utils';
 // Components
 import { AdminOnlyButton } from '../../admin/index';
-import { Instruction, Step, Title } from '../../shared';
+import { Step, Title, Translate } from '../../shared';
 import { UeSoIssoCard as Card } from '../../cards';
-import { AvatarName } from '../../avatars';
 import { messageContent } from '../../modals/messageContent';
 import SuggestionCard from './SuggestionCard';
+import { ComparisonDetailedRules, ComparisonPhaseRules } from './RulesBlobs';
+import { CollapsibleRule } from '../../rules';
 
 function CompareSuggestionsStep({
-  isUserTheNextGuesser,
-  nextGuesser,
+  isUserTheController,
+  controller,
   onValidateSuggestions,
+  onUpdateSuggestions,
   players,
   secretWord,
   suggestions,
@@ -30,56 +32,51 @@ function CompareSuggestionsStep({
   const onSetValidation = (index, suggestionEntry, notAllowed) => {
     if (notAllowed) return;
 
-    setMyRecommendation((arr) => {
-      const newArr = [...arr];
-      if (newArr[index]) {
-        newArr[index].invalid = !newArr[index].invalid;
-      } else {
-        newArr[index] = {
-          ...suggestionEntry,
-          invalid: true,
-        };
-      }
-      return newArr;
-    });
+    const newRecommendation = [...myRecommendation];
+    if (newRecommendation[index]) {
+      newRecommendation[index].invalid = !newRecommendation[index].invalid;
+    } else {
+      newRecommendation[index] = {
+        ...suggestionEntry,
+        invalid: true,
+      };
+    }
+
+    onUpdateSuggestions({ suggestions: newRecommendation });
+    setMyRecommendation(newRecommendation);
   };
 
   useEffect(() => {
-    if (isUserTheNextGuesser) {
+    if (isUserTheController) {
       message.info(
         messageContent(
-          'Você controla!',
-          'Clique nas cartas para desclassificá-las, então, pressione "Confirmar Dicas Válidas"',
-          nextGuesser.name
+          <Translate pt="Você controla!" en="You control!" string />,
+          <Translate pt="Siga as instruções na página" en="Follow the instructions on the page" string />,
+          controller.id,
+          3
         )
       );
     }
-  }, [isUserTheNextGuesser, nextGuesser.name]);
+  }, [isUserTheController, controller.id]);
 
   const suggestionsValues = Object.values(myRecommendation);
 
   return (
     <Step>
-      <Title white>Comparem as sugestões</Title>
-      <Card word={secretWord.text} header="Palavra Secreta" />
-      <Instruction contained>
-        Já eliminamos todas as palavras idênticas, agora, elimine palavras inválidas ou similares.
-        <br />
-        Lembre-se que são consideradas dicas iguais palavras derivadas e conjugações:{' '}
-        <code>piloto = pilotar = pilotando</code>. Variações como pluralidade, gênero e erros ortográficos
-        também devem ser eliminadas: <code>príncipe = princesa = principes = pryncipi</code>.
-        <br />
-        <ExclamationCircleOutlined /> Para não virar bagunça, somente{' '}
-        <AvatarName player={nextGuesser} addressUser />
-        pode clicar nas palavras para eliminá-las ou ativá-las, mas todos podem discutir. Uma dica ser muito
-        ruim não significa que ela seja inválida.
-        <br />
-        Refiram às palavras por letra, o Adivinhador pode estar ouvindo!
-      </Instruction>
+      <Title white>
+        <Translate pt="Comparem as Dicas" en="Compare Clues" />
+      </Title>
+
+      <Card word={secretWord.text} />
+
+      <CollapsibleRule>
+        <ComparisonDetailedRules />
+      </CollapsibleRule>
+      <ComparisonPhaseRules controller={controller} />
 
       <Space className="u-word-compare-suggestions-step__suggestions">
         {suggestions.map((suggestionEntry, index) => {
-          if (!isUserTheNextGuesser && !isAdmin) {
+          if (!isUserTheController && !isAdmin) {
             return (
               <div key={`${suggestionEntry.suggestion}-${index}`}>
                 <SuggestionCard
@@ -97,11 +94,12 @@ function CompareSuggestionsStep({
             <button
               key={`${suggestionEntry.suggestion}-${index}`}
               className="u-word-compare-suggestions-step__suggestion-button"
-              onClick={() => onSetValidation(index, suggestionEntry, suggestionEntry.invalid)}
+              onClick={() => onSetValidation(index, suggestionEntry)}
+              disabled={isLoading}
             >
               <SuggestionCard
                 suggestion={suggestionEntry.suggestion}
-                invalid={myRecommendation?.[index]?.invalid ?? suggestionEntry.invalid}
+                invalid={myRecommendation?.[index]?.invalid}
                 avatarId={players[suggestionEntry.playerId].avatarId}
                 playerName={players[suggestionEntry.playerId].name}
                 index={index}
@@ -111,7 +109,7 @@ function CompareSuggestionsStep({
         })}
       </Space>
 
-      {isUserTheNextGuesser && (
+      {isUserTheController && (
         <Space className="u-word-compare-suggestions-step__submit">
           <Button
             icon={<CloudUploadOutlined />}
@@ -123,7 +121,7 @@ function CompareSuggestionsStep({
             }
             disabled={isLoading}
           >
-            Confirmar dicas válidas
+            <Translate pt="Confirmar dicas válidas" en="Confirm valid clues" />
           </Button>
         </Space>
       )}
@@ -134,21 +132,25 @@ function CompareSuggestionsStep({
             validSuggestions: suggestionsValues.filter((suggestion) => !suggestion.invalid),
           })
         }
-        label="Confirmar dicas válidas como Admin"
+        label={<Translate pt="Confirmar dicas válidas como Admin" en="Confirm valid clues as Admin" string />}
       />
     </Step>
   );
 }
 
 CompareSuggestionsStep.propTypes = {
-  isUserTheNextGuesser: PropTypes.bool,
-  nextGuesser: PropTypes.shape({
+  controller: PropTypes.shape({
     avatarId: PropTypes.string,
+    id: PropTypes.string,
     name: PropTypes.string,
   }),
+  isUserTheController: PropTypes.bool,
+  onUpdateSuggestions: PropTypes.func,
   onValidateSuggestions: PropTypes.func,
   players: PropTypes.object,
-  secretWord: PropTypes.shape({ text: PropTypes.string }),
+  secretWord: PropTypes.shape({
+    text: PropTypes.string,
+  }),
   suggestions: PropTypes.arrayOf(
     PropTypes.shape({
       suggestion: PropTypes.string,

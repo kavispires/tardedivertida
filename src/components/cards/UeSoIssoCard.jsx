@@ -4,10 +4,18 @@ import PropTypes from 'prop-types';
 import { WarningOutlined } from '@ant-design/icons';
 // Components
 import { Card } from './index';
+import { useLanguage } from '../../hooks';
+import { translate } from '../shared';
 
-export const UeSoIssoCard = memo(function ({ word, header = 'Palavra Secreta' }) {
+export const UeSoIssoCard = memo(function ({ word, header }) {
+  const language = useLanguage();
+
   return (
-    <Card color="purple" header={header} size="large">
+    <Card
+      color="purple"
+      header={translate('A Palavra Secreta é', 'Secret Word', language, header)}
+      size="large"
+    >
       {word ?? <WarningOutlined />}
     </Card>
   );
