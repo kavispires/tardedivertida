@@ -6,12 +6,12 @@
     font-size: 1.5em;
   }
 
-  &__team-points {
+  &__game-progress-bar {
     width: 100%;
     text-align: center;
     text-transform: uppercase;
-    color: get-color(white);
-    margin-bottom: get-unit(2);
+
+    margin: get-unit(2 0);
   }
 }
 

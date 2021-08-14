@@ -3,11 +3,13 @@ import PropTypes from 'prop-types';
 // Design Resources
 import { CheckCircleFilled, CloudUploadOutlined } from '@ant-design/icons';
 // Components
-import { Instruction, Step, TimedButton, Title } from '../../shared';
+import { Instruction, Step, TimedButton, Title, translate, Translate } from '../../shared';
 import { AvatarName } from '../../avatars';
+import { useLanguage } from '../../../hooks';
 
 function WordSelectionStep({ guesser, onSendSelectedWords, words = [] }) {
   const [selectedWords, setSelectedWords] = useState({});
+  const language = useLanguage();
 
   const selectedWordsArray = Object.keys(selectedWords);
   const noSelection = selectedWordsArray.length === 0;
@@ -32,11 +34,34 @@ function WordSelectionStep({ guesser, onSendSelectedWords, words = [] }) {
   return (
     <Step>
       <Title white>
-        Selecione a Palavra-Secreta para <AvatarName player={guesser} />
+        <Translate
+          pt={
+            <>
+              Selecione a Palavra Secreta para <AvatarName player={guesser} />
+            </>
+          }
+          en={
+            <>
+              {' '}
+              Select a Secret Word for <AvatarName player={guesser} />
+            </>
+          }
+        />
       </Title>
 
-      <Instruction white>
-        A palavra secreta com mais votos será escolhida para essa rodada. Você pode selecionar quantas quiser!
+      <Instruction contained>
+        <Translate
+          pt={
+            <>
+              A palavra com mais votos será escolhida para essa rodada. Você pode selecionar quantas quiser!
+            </>
+          }
+          en={
+            <>
+              The word with the most votes will be selected for the round. You can choose as many as you wish!
+            </>
+          }
+        />
       </Instruction>
 
       <ul className="u-word-card">
@@ -53,7 +78,7 @@ function WordSelectionStep({ guesser, onSendSelectedWords, words = [] }) {
       </ul>
 
       <TimedButton
-        label="Enviar votos"
+        label={translate('Enviar votos', 'Send votes', language)}
         icon={<CloudUploadOutlined />}
         type="primary"
         onClick={() => onSendSelectedWords({ votes: selectedWordsArray })}
