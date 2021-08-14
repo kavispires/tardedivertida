@@ -137,6 +137,7 @@ export const saveGame = async (
       await sessionRef.doc('meta').update(saveContent.update.meta);
     }
   } catch (error) {
+    console.log(error);
     throwException(error, 'update game');
   }
 
