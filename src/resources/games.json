@@ -294,7 +294,7 @@
     "cooperative": true,
     "available": {
       "pt": true,
-      "en": false
+      "en": true
     }
   }
 }
