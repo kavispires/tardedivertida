@@ -13,6 +13,7 @@ export * from './Investigation';
 export * from './Law';
 export * from './Multitask';
 export * from './Newspaper';
+export * from './Opinions';
 export * from './Painting';
 export * from './Picture';
 export * from './Rank';
