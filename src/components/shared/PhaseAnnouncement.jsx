@@ -35,6 +35,8 @@ const getIconType = (type) => {
       return IconIllustrations.Law;
     case 'newspaper':
       return IconIllustrations.Newspaper;
+    case 'opinions':
+      return IconIllustrations.Opinions;
     case 'painting':
       return IconIllustrations.Painting;
     case 'picture':
