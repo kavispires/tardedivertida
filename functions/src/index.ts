@@ -122,27 +122,5 @@ exports.testemunhaOcularSubmitAction = functions.https.onCall(testemunhaOcularEn
 
 // UE_SO_ISSO HTTP CALLS
 
-/**
- * Submit word selection votes, if it's the last player to be ready, move to the next phase
- */
-exports.ueSoIssoSubmitWordSelectionVotes = functions.https.onCall(ueSoIssoEngine.submitWordSelectionVotes);
-
-/**
- * Submit user suggestions, if it's the last player to be ready, move to the next phase
- */
-exports.ueSoIssoSubmitSuggestions = functions.https.onCall(ueSoIssoEngine.submitSuggestions);
-
-/**
- * Submit user validation and move to the next phase
- */
-exports.ueSoIssoSubmitValidation = functions.https.onCall(ueSoIssoEngine.submitValidation);
-
-/**
- * Adds guesser guess to the state
- */
-exports.ueSoIssoSendGuess = functions.https.onCall(ueSoIssoEngine.sendGuess);
-
-/**
- * Confirm guesser guess and move to the next phase
- */
-exports.ueSoIssoConfirmGuess = functions.https.onCall(ueSoIssoEngine.confirmGuess);
+exports.ueSoIssoSubmitAction = functions.https.onCall(ueSoIssoEngine.submitAction);
+exports.ueSoIssoUpdateAction = functions.https.onCall(ueSoIssoEngine.updateAction);

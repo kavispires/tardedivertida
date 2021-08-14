@@ -219,7 +219,10 @@ export const lockGame = async (data: BasicGamePayload, context: FirebaseContext)
     // Set state with new Phase: Rules
     await sessionRef.doc('state').set({
       phase: 'RULES',
-      round: 0,
+      round: {
+        current: 0,
+        total: 0,
+      },
     });
 
     return true;

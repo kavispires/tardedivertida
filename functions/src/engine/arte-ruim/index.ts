@@ -8,8 +8,8 @@ import { ArteRuimInitialState } from './interfaces';
 import * as firebaseUtils from '../../utils/firebase';
 import * as globalUtils from '../global';
 import * as publicUtils from '../public';
-import { buildPastDrawingsDict, buildUsedCardsIdsDict, determineNextPhase } from './helpers';
 // Internal Functions
+import { buildPastDrawingsDict, buildUsedCardsIdsDict, determineNextPhase } from './helpers';
 import {
   prepareSetupPhase,
   prepareDrawPhase,
