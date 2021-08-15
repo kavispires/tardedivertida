@@ -6,6 +6,7 @@ export const GAME_CODES = {
   A: 'A', // arte-ruim
   D: 'D', // detetives-imaginativos
   E: 'E', // espiao-entre-nos
+  M: 'M', // mente-coletiva
   O: 'O', // onda-telepatica
   T: 'T', // testemunha-ocular
   U: 'U', // ue-so-isso
@@ -15,6 +16,7 @@ export const GAME_KEYS = {
   ARTE_RUIM: 'ARTE_RUIM',
   DETETIVES_IMAGINATIVOS: 'DETETIVES_IMAGINATIVOS',
   ESPIAO_ENTRE_NOS: 'ESPIAO_ENTRE_NOS',
+  MENTE_COLETIVA: 'MENTE_COLETIVA',
   ONDA_TELEPATICA: 'ONDA_TELEPATICA',
   TESTEMUNHA_OCULAR: 'TESTEMUNHA_OCULAR',
   UE_SO_ISSO: 'UE_SO_ISSO',
@@ -24,6 +26,7 @@ export const GAME_COLLECTIONS = {
   ARTE_RUIM: 'arte-ruim',
   DETETIVES_IMAGINATIVOS: 'detetives-imaginativos',
   ESPIAO_ENTRE_NOS: 'espiao-entre-nos',
+  MENTE_COLETIVA: 'mente-coletiva',
   ONDA_TELEPATICA: 'onda-telepatica',
   TESTEMUNHA_OCULAR: 'testemunha-ocular',
   UE_SO_ISSO: 'ue-so-isso',
@@ -40,6 +43,10 @@ export const GAME_PLAYERS_LIMIT = {
   },
   ESPIAO_ENTRE_NOS: {
     min: 4,
+    max: 8,
+  },
+  MENTE_COLETIVA: {
+    min: 3,
     max: 8,
   },
   ONDA_TELEPATICA: {
@@ -80,15 +87,6 @@ export const PHASES = {
     REVEAL: 'REVEAL',
     GAME_OVER: 'GAME_OVER',
   },
-  UE_SO_ISSO: {
-    LOBBY: 'LOBBY',
-    RULES: 'RULES',
-    WORD_SELECTION: 'WORD_SELECTION',
-    SUGGEST: 'SUGGEST',
-    COMPARE: 'COMPARE',
-    GUESS: 'GUESS',
-    GAME_OVER: 'GAME_OVER',
-  },
 };
 
 export const SEPARATOR = ';;';
@@ -117,7 +115,3 @@ export const ESPIAO_ENTRE_NOS_CONSTANTS = {
 // ONDA_TELEPATICA
 
 export const ONDA_TELEPATICA_GOAL = 10;
-
-// UE_SO_ISSO
-
-export const UE_SO_ISSO_WORDS = new Array(600).fill(1).map((i, index) => `${i + index}`);
