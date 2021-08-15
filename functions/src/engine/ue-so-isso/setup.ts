@@ -1,13 +1,12 @@
 // Interfaces
 import { Players, SaveGamePayload } from '../../utils/interfaces';
-import { FirebaseStateData, FirebaseStoreData } from '../arte-ruim/interfaces';
+import { FirebaseStateData, FirebaseStoreData, AllWords } from '../ue-so-isso/interfaces';
 // Constants
 import { DOUBLE_ROUNDS_THRESHOLD, UE_SO_ISSO_PHASES } from './constants';
 // Helpers
 import * as firebaseUtils from '../../utils/firebase';
 import * as gameUtils from '../../utils/game-utils';
 import * as utils from '../../utils/helpers';
-import { AllWords } from './interfaces';
 import {
   buildCurrentWords,
   buildDeck,

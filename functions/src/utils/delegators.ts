@@ -10,6 +10,10 @@ import {
   nextEspiaoEntreNosPhase,
 } from '../engine/espiao-entre-nos';
 import {
+  getInitialState as menteColetivaGetInitialState,
+  nextMenteColetivaPhase,
+} from '../engine/mente-coletiva';
+import {
   getInitialState as ondaTelepaticaGetInitialState,
   nextOndaTelepaticaPhase,
 } from '../engine/onda-telepatica';
@@ -32,6 +36,8 @@ export const getCollectionNameByGameCode = (gameCode: GameCode): string | null =
       return GAME_COLLECTIONS.DETETIVES_IMAGINATIVOS;
     case GAME_CODES.E:
       return GAME_COLLECTIONS.ESPIAO_ENTRE_NOS;
+    case GAME_CODES.M:
+      return GAME_COLLECTIONS.MENTE_COLETIVA;
     case GAME_CODES.O:
       return GAME_COLLECTIONS.ONDA_TELEPATICA;
     case GAME_CODES.T:
@@ -56,6 +62,8 @@ export const getCollectionKeyByGameCode = (gameCode: GameCode): string | null =>
       return GAME_KEYS.DETETIVES_IMAGINATIVOS;
     case GAME_CODES.E:
       return GAME_KEYS.ESPIAO_ENTRE_NOS;
+    case GAME_CODES.M:
+      return GAME_KEYS.MENTE_COLETIVA;
     case GAME_CODES.O:
       return GAME_KEYS.ONDA_TELEPATICA;
     case GAME_CODES.T:
@@ -88,6 +96,8 @@ export const getInitialStateForCollection = (collectionName: string) => {
       return detetivesImaginativosGetInitialState;
     case GAME_COLLECTIONS.ESPIAO_ENTRE_NOS:
       return espiaoEntreNosGetInitialState;
+    case GAME_COLLECTIONS.MENTE_COLETIVA:
+      return menteColetivaGetInitialState;
     case GAME_COLLECTIONS.ONDA_TELEPATICA:
       return ondaTelepaticaGetInitialState;
     case GAME_COLLECTIONS.TESTEMUNHA_OCULAR:
@@ -112,6 +122,8 @@ export const getNextPhaseForCollection = (collectionName: string) => {
       return nextDetetivesImaginativosPhase;
     case GAME_KEYS.ESPIAO_ENTRE_NOS:
       return nextEspiaoEntreNosPhase;
+    case GAME_KEYS.MENTE_COLETIVA:
+      return nextMenteColetivaPhase;
     case GAME_KEYS.ONDA_TELEPATICA:
       return nextOndaTelepaticaPhase;
     case GAME_KEYS.TESTEMUNHA_OCULAR:

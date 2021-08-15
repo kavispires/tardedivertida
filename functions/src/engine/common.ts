@@ -387,6 +387,10 @@ const feedEmulatorDB = async () => {
   await firebaseUtils.getPublicRef().doc('arteRuimDrawings').set(sample);
   await firebaseUtils.getGlobalRef().doc('usedArteRuimCards').set(sample);
 
+  // MENTE_COLETIVA
+
+  await firebaseUtils.getGlobalRef().doc('usedMenteColetivaQuestions').set(sample);
+
   // TESTEMUNHA_OCULAR
 
   await firebaseUtils.getGlobalRef().doc('usedTestemunhaOcularCards').set(sample);
