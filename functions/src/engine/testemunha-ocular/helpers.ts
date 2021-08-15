@@ -1,5 +1,5 @@
 import * as gameUtils from '../../utils/game-utils';
-import { PlayerId, Players } from '../../utils/interfaces';
+import { PlainObject, PlayerId, Players } from '../../utils/interfaces';
 import { MAX_NUMBER_OF_ROUNDS, TESTEMUNHA_OCULAR_PHASES } from './constants';
 import { TestemunhaOcularCard, TestemunhaOcularCardsDatabase, TestemunhaOcularEntry } from './interfaces';
 
@@ -107,6 +107,9 @@ export const calculateScore = (
   return currentScore + currentRound * eliminatedSuspectsCount;
 };
 
-export const buildUsedCardsIdsDict = (pastQuestions: TestemunhaOcularEntry[]): string[] => {
-  return pastQuestions.map((q) => q.id);
+export const buildUsedCardsIdsDict = (pastQuestions: TestemunhaOcularEntry[]): PlainObject => {
+  return pastQuestions.reduce((acc, question) => {
+    acc[question.id] = true;
+    return acc;
+  }, {});
 };
