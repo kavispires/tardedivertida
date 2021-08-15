@@ -124,6 +124,14 @@ export interface SaveGamePayload {
   update?: UpdatePayload;
 }
 
+export interface UsedWord {
+  id: string;
+  playerName?: PlayerName | null;
+  uniqueSuggestions?: string[] | [];
+  commonSuggestions?: string[] | [];
+  votes: 0;
+}
+
 // ESPIAO_ENTRE_NOS
 
 export type LocationId = string;
@@ -214,56 +222,4 @@ export interface OndaTelepaticaSubmitGuessPayload extends Payload {
 
 export interface OndaTelepaticaSubmitRivalGuessPayload extends Payload {
   rivalGuess: number;
-}
-
-// UE_SO_ISSO
-
-export interface UsedWord {
-  id: string;
-  playerName?: PlayerName | null;
-  uniqueSuggestions?: string[] | [];
-  commonSuggestions?: string[] | [];
-  votes: 0;
-}
-
-export interface UsedWords {
-  [key: string]: UsedWord;
-}
-
-export interface UeSoIssoStore {
-  turnOrder: string[];
-  usedWords: UsedWords;
-  currentWords: PlainObject[];
-  currentSuggestions: PlainObject[];
-  [key: string]: any;
-}
-
-export interface UeSoIssoState {
-  phase: string;
-  round: number;
-  guesser?: PlayerName;
-  [key: string]: any;
-}
-
-export interface UeSoIssoInitialState {
-  meta: Meta;
-  players: Players;
-  store: UeSoIssoStore;
-  state: UeSoIssoState;
-}
-
-export interface SubmitSuggestionsPayload extends Payload {
-  suggestions: string[];
-}
-
-export interface CurrentSuggestions {
-  [key: string]: string[];
-}
-
-export interface SubmitSuggestionsValidationPayload extends Payload {
-  validSuggestions: PlainObject[];
-}
-
-export interface ConfirmGuessPayload extends Payload {
-  guess: string;
 }

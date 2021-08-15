@@ -4,9 +4,11 @@ import PropTypes from 'prop-types';
 import { Button, Input, Space } from 'antd';
 import { CloudUploadOutlined, MinusOutlined } from '@ant-design/icons';
 // Hooks
-import { useLoading } from '../../../hooks';
+import { useLanguage, useLoading } from '../../../hooks';
+import { translate, Translate } from '../../shared';
 
-function Guess({ onSubmitGuess, onSendGuess }) {
+function Guess({ onSubmitOutcome, onSendGuess }) {
+  const language = useLanguage();
   const [isLoading] = useLoading();
   const [guess, setGuess] = useState('');
 
@@ -19,7 +21,7 @@ function Guess({ onSubmitGuess, onSendGuess }) {
   return (
     <Space className="u-word-guess-phase__suggestions">
       <Input
-        placeholder="Digite aqui seu chute"
+        placeholder={translate('Digite aqui seu chute', 'Type your guess here', language)}
         onChange={(e) => setGuess(e.target.value)}
         onKeyPress={onEnterInput}
       />
@@ -29,15 +31,15 @@ function Guess({ onSubmitGuess, onSendGuess }) {
         onClick={() => onSendGuess({ guess })}
         disabled={guess.length < 3 || isLoading}
       >
-        Enviar
+        <Translate pt="Enviar" en="Submit" />
       </Button>
       <Button
         icon={<MinusOutlined />}
         type="default"
-        onClick={() => onSubmitGuess({ guess: 'PASS' })}
+        onClick={() => onSubmitOutcome({ outcome: 'PASS' })}
         disabled={isLoading}
       >
-        Passar a vez...
+        <Translate pt="Passar a vez..." en="Skip turn" />
       </Button>
     </Space>
   );
@@ -45,7 +47,7 @@ function Guess({ onSubmitGuess, onSendGuess }) {
 
 Guess.propTypes = {
   onSendGuess: PropTypes.func.isRequired,
-  onSubmitGuess: PropTypes.func,
+  onSubmitOutcome: PropTypes.func.isRequired,
 };
 
 export default Guess;

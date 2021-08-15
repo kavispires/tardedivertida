@@ -25,3 +25,11 @@ Title.defaultProps = {
   className: '',
   level: 1,
 };
+
+export function TitleHighlight({ children }) {
+  return <span className="title-highlight">{children}</span>;
+}
+
+TitleHighlight.propTypes = {
+  children: PropTypes.any,
+};

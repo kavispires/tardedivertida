@@ -6,8 +6,10 @@ import { GameId, Players } from '../../utils/interfaces';
 import { ArteRuimInitialState } from './interfaces';
 // Utilities
 import * as firebaseUtils from '../../utils/firebase';
-import { buildPastDrawingsDict, buildUsedCardsIdsDict, determineNextPhase } from './helpers';
+import * as globalUtils from '../global';
+import * as publicUtils from '../public';
 // Internal Functions
+import { buildPastDrawingsDict, buildUsedCardsIdsDict, determineNextPhase } from './helpers';
 import {
   prepareSetupPhase,
   prepareDrawPhase,
@@ -16,11 +18,7 @@ import {
   prepareGameOverPhase,
 } from './setup';
 import * as arteRuimActions from './actions';
-// Data
-import arteRuimCardsPt from '../../resources/arte-ruim-pt.json';
-import arteRuimCardsEn from '../../resources/arte-ruim-en.json';
-import * as globalUtils from '../global';
-import * as publicUtils from '../public';
+import { getCards } from './data';
 
 /**
  * Get Initial Game State
@@ -124,14 +122,3 @@ export const nextArteRuimPhase = async (
 
 export const submitDrawing = arteRuimActions.submitDrawing;
 export const submitVoting = arteRuimActions.submitVoting;
-
-const getCards = async (language: string) => {
-  // Get full deck
-  const allCards = language === 'en' ? arteRuimCardsEn : arteRuimCardsPt;
-  // Get used deck
-  const usedCards = globalUtils.getGlobalFirebaseDocData('usedArteRuimCards', {});
-  return {
-    allCards,
-    usedCards: Object.keys(usedCards),
-  };
-};

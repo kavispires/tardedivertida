@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Space } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 // Components
-import { Instruction, Step, Title, ViewIf } from '../../shared';
+import { Instruction, Step, Title, Translate, ViewIf } from '../../shared';
 import { UeSoIssoCard as Card } from '../../cards';
 import { AvatarName } from '../../avatars';
 import Guess from './Guess';
@@ -15,20 +15,27 @@ function GuessingStep({
   isUserTheGuesser,
   secretWord,
   onSendGuess,
-  onSubmitGuess,
+  onSubmitOutcome,
   validSuggestions,
 }) {
   return (
     <Step>
       <ViewIf isVisible={isUserTheGuesser}>
         <Title>
-          Hora de brilhar, <AvatarName player={guesser} />!
+          <Translate pt="Hora de brilhar" en="Time to shine" />, <AvatarName player={guesser} />!
         </Title>
-        <Instruction contained>Você tem uma única change de adivinhar a palavra secreta!</Instruction>
+        <Instruction contained>
+          <Translate
+            pt="Você tem uma única change de adivinhar a palavra secreta!"
+            en="You have a single chance to guess the secret word!"
+          />
+        </Instruction>
 
-        <Card word={<QuestionCircleOutlined />} header="A Palavra Secreta é" />
+        <Card word={<QuestionCircleOutlined />} />
 
-        <Instruction contained>Escreva seu chute no campo abaixo</Instruction>
+        <Instruction contained>
+          <Translate pt="Escreva seu chute no campo abaixo" en="Write your guess below" />
+        </Instruction>
 
         <Space className="u-word-guess-phase__suggestions">
           {validSuggestions.map((suggestionEntry, index) => {
@@ -37,18 +44,38 @@ function GuessingStep({
           })}
         </Space>
 
-        <Guess onSubmitGuess={onSubmitGuess} onSendGuess={onSendGuess} />
+        <Guess onSubmitOutcome={onSubmitOutcome} onSendGuess={onSendGuess} />
       </ViewIf>
 
       <ViewIf isVisible={!isUserTheGuesser}>
         <Title>
-          Hora de <AvatarName player={guesser} /> brilhar!
+          <Translate
+            pt={
+              <>
+                Hora de <AvatarName player={guesser} /> brilhar!
+              </>
+            }
+            en={
+              <>
+                Time for <AvatarName player={guesser} /> to shine!
+              </>
+            }
+          />
         </Title>
+
         <Instruction contained>
-          {guesser.name} tem uma única change de adivinhar a palavra secreta!
+          {guesser.name}{' '}
+          <Translate
+            pt="tem uma única chance de adivinhar a palavra secreta!"
+            en="has a single chance to guess the secret word!"
+          />
         </Instruction>
-        <Card word={secretWord.text} header="A Palavra Secreta é" />
-        <Instruction contained>{guesser.name} está pensando...</Instruction>
+
+        <Card word={secretWord.text} />
+
+        <Instruction contained>
+          {guesser.name} <Translate pt="está pensando..." en="is thinking..." />
+        </Instruction>
 
         <Space className="u-word-guess-phase__suggestions">
           {validSuggestions.map((suggestionEntry, index) => {
@@ -68,8 +95,10 @@ GuessingStep.propTypes = {
   }),
   isUserTheGuesser: PropTypes.bool,
   onSendGuess: PropTypes.func,
-  onSubmitGuess: PropTypes.func,
-  secretWord: PropTypes.shape({ text: PropTypes.string }),
+  onSubmitOutcome: PropTypes.func,
+  secretWord: PropTypes.shape({
+    text: PropTypes.string,
+  }),
   validSuggestions: PropTypes.arrayOf(
     PropTypes.shape({
       suggestion: PropTypes.string,

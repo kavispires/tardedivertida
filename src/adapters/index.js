@@ -41,11 +41,8 @@ export const TESTEMUNHA_OCULAR_API = {
 };
 
 export const UE_SO_ISSO_API = {
-  submitWordSelectionVotes: functions.httpsCallable('ueSoIssoSubmitWordSelectionVotes'),
-  submitSuggestions: functions.httpsCallable('ueSoIssoSubmitSuggestions'),
-  submitValidation: functions.httpsCallable('ueSoIssoSubmitValidation'),
-  confirmGuess: functions.httpsCallable('ueSoIssoConfirmGuess'),
-  sendGuess: functions.httpsCallable('ueSoIssoSendGuess'),
+  submitAction: functions.httpsCallable('ueSoIssoSubmitAction'),
+  updateAction: functions.httpsCallable('ueSoIssoUpdateAction'),
 };
 
 /**

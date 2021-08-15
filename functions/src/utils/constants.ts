@@ -11,15 +11,6 @@ export const GAME_CODES = {
   U: 'U', // ue-so-isso
 };
 
-export const DEV_GAME_IDS = {
-  A: 'AAAA',
-  D: 'DDDD',
-  E: 'EEEE',
-  O: 'OOOO',
-  T: 'TTTT',
-  U: 'UUUU',
-};
-
 export const GAME_KEYS = {
   ARTE_RUIM: 'ARTE_RUIM',
   DETETIVES_IMAGINATIVOS: 'DETETIVES_IMAGINATIVOS',

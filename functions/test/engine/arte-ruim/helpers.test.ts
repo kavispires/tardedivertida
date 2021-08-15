@@ -6,8 +6,8 @@ describe('arte-ruim/helpers', () => {
   let result: any = null;
   // let sample: any = null;
 
-  describe('getCardsPerLevel', () => {
-    test('it gets the correct number of cards per level', () => {
+  describe('buildDeck', () => {
+    test('it builds a deck with the correct number of cards per level', () => {
       const perLevels = {
         1: 10,
         2: 12,

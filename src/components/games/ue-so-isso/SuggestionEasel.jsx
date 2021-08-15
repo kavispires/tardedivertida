@@ -2,8 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
 import { Input } from 'antd';
+import { translate } from '../../shared';
+import { useLanguage } from '../../../hooks';
 
 function SuggestionEasel({ id, onChangeInput, onKeyPress, value }) {
+  const language = useLanguage();
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,7 +21,7 @@ function SuggestionEasel({ id, onChangeInput, onKeyPress, value }) {
       <foreignObject x="32.6" y="13.9" width="185" height="300">
         <div xmlns="http://www.w3.org/1999/xhtml">
           <Input
-            placeholder="Escreva dica aqui"
+            placeholder={translate('Escreva dica aqui', 'Write here', language)}
             key={id}
             id={id}
             value={value}
@@ -37,6 +40,7 @@ function SuggestionEasel({ id, onChangeInput, onKeyPress, value }) {
 SuggestionEasel.propTypes = {
   id: PropTypes.string,
   onChangeInput: PropTypes.func,
+  onKeyPress: PropTypes.func,
   value: PropTypes.string,
 };
 
