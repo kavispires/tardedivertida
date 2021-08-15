@@ -98,6 +98,7 @@ export async function getSessionDoc(
  * @param action
  */
 export function throwException(error: any, action = 'function') {
+  console.log(error);
   throw new functions.https.HttpsError('internal', `Failed to ${action}: ${JSON.stringify(error)}`);
 }
 
@@ -137,7 +138,6 @@ export const saveGame = async (
       await sessionRef.doc('meta').update(saveContent.update.meta);
     }
   } catch (error) {
-    console.log(error);
     throwException(error, 'update game');
   }
 

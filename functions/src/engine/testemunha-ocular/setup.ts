@@ -1,5 +1,5 @@
 // Interfaces
-import { deleteValue } from '../../utils/firebase';
+import * as firebaseUtils from '../../utils/firebase';
 import * as gameUtils from '../../utils/game-utils';
 import * as utils from '../../utils/helpers';
 import { PlainObject, Players, SaveGamePayload } from '../../utils/interfaces';
@@ -17,7 +17,12 @@ import {
   getQuestioner,
   getQuestions,
 } from './helpers';
-import { FirebaseStateData, FirebaseStoreData, TestemunhaOcularCard } from './interfaces';
+import {
+  FirebaseStateData,
+  FirebaseStoreData,
+  TestemunhaOcularCard,
+  TestemunhaOcularEntry,
+} from './interfaces';
 
 /**
  * Setup
@@ -108,7 +113,7 @@ export const prepareQuestionSelectionPhase = async (
   const groupScore = calculateScore(state.score ?? 0, state.round.current, eliminatedSuspects.length);
 
   // Add entry to store
-  let testimonyEntry = {};
+  let testimonyEntry: TestemunhaOcularEntry | PlainObject = {};
   if (state.question) {
     testimonyEntry = {
       id: state.question.id,
@@ -118,6 +123,8 @@ export const prepareQuestionSelectionPhase = async (
     };
   }
 
+  const pastQuestions = testimonyEntry?.id ? [...store.pastQuestions, testimonyEntry] : store.pastQuestions;
+
   // Save
   return {
     update: {
@@ -126,7 +133,7 @@ export const prepareQuestionSelectionPhase = async (
         gameOrder: turnOrder,
         questionerIndex,
         questionIndex,
-        pastQuestions: [...store.pastQuestions, testimonyEntry],
+        pastQuestions,
       },
       state: {
         phase: TESTEMUNHA_OCULAR_PHASES.QUESTION_SELECTION,
@@ -134,10 +141,10 @@ export const prepareQuestionSelectionPhase = async (
         round: utils.increaseRound(state.round),
         questioner,
         questions,
-        question: deleteValue(),
+        question: firebaseUtils.deleteValue(),
         witness: additionalPayload?.witness ?? state.witness,
-        testimony: deleteValue(),
-        eliminatedSuspects: deleteValue(),
+        testimony: firebaseUtils.deleteValue(),
+        eliminatedSuspects: firebaseUtils.deleteValue(),
         previouslyEliminatedSuspects: previouslyEliminatedSuspects,
         groupScore,
       },
@@ -158,6 +165,7 @@ export const prepareQuestioningPhase = async (
         phase: TESTEMUNHA_OCULAR_PHASES.QUESTIONING,
         updatedAt: Date.now(),
         question,
+        questions: firebaseUtils.deleteValue(),
       },
     },
   };
@@ -190,7 +198,6 @@ export const prepareGameOverPhase = async (
     set: {
       state: {
         phase: TESTEMUNHA_OCULAR_PHASES.GAME_OVER,
-        updatedAt: Date.now(),
         gameEndedAt: Date.now(),
         round: state.round,
         perpetrator: state.perpetrator,
