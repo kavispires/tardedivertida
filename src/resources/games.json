@@ -179,8 +179,8 @@
     "max": 12,
     "tags": ["competitive", "real-time", "writing"],
     "available": {
-      "pt": false,
-      "en": false
+      "pt": true,
+      "en": true
     }
   },
   "O": {
