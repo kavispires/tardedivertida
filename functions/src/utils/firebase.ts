@@ -98,6 +98,7 @@ export async function getSessionDoc(
  * @param action
  */
 export function throwException(error: any, action = 'function') {
+  console.log(error);
   throw new functions.https.HttpsError('internal', `Failed to ${action}: ${JSON.stringify(error)}`);
 }
 

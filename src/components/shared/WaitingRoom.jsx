@@ -2,8 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
 import { Spin } from 'antd';
+// Hooks
+import { useLanguage } from '../../hooks';
 // Components
 import { Instruction, ReadyPlayersBar, Title } from './index';
+import { translate } from './Translate';
 
 export function WaitingRoom({ players, title, instruction, children }) {
   return (
@@ -24,4 +27,22 @@ WaitingRoom.propTypes = {
   children: PropTypes.any,
 };
 
-export default WaitingRoom;
+export function DefaultWaitingRoom({ players }) {
+  const language = useLanguage();
+
+  return (
+    <WaitingRoom
+      players={players}
+      title={translate('Pronto!', 'Done!', language)}
+      instruction={translate(
+        'Vamos aguardar os outros jogadores!',
+        'Please wait for the other players!',
+        language
+      )}
+    />
+  );
+}
+
+DefaultWaitingRoom.propTypes = {
+  players: PropTypes.object.isRequired,
+};

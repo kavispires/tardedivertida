@@ -23,6 +23,7 @@ import {
   Step,
   StepSwitcher,
   Title,
+  TitleHighlight,
   Translate,
   translate,
 } from '../../shared';
@@ -114,7 +115,7 @@ function PhaseCardPlay({ state, players, info }) {
             ) : (
               <>
                 <Translate pt="A pista secreta é" en="The secret clue is" />{' '}
-                <span className="d-clue">{state.clue}</span>
+                <TitleHighlight>{state.clue}</TitleHighlight>
               </>
             )}
           </Title>

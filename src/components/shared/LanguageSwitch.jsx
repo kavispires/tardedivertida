@@ -7,6 +7,11 @@ export function LanguageSwitch() {
   const onSwitchClick = (e) => setLanguage(e ? 'pt' : 'en');
 
   return (
-    <Switch checkedChildren="pt" unCheckedChildren="en" defaultChecked={language} onClick={onSwitchClick} />
+    <Switch
+      checkedChildren="pt"
+      unCheckedChildren="en"
+      defaultChecked={language === 'pt'}
+      onClick={onSwitchClick}
+    />
   );
 }

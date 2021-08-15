@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
-import { Button } from 'antd';
+import { Button, Space } from 'antd';
 // Hooks
 import { useAPICall, useLoading, useLanguage } from '../../../hooks';
 // Resources & Utils
@@ -88,11 +88,12 @@ function PhaseWitnessSelection({ state, players, info }) {
             <Translate pt="Quem quer ser a testemunha ocular?" en="Who wants to be the eye witness?" />
           </Title>
 
-          <Instruction>
-            {Object.values(players).map((player) => (
-              // <AvatarEntry key={`p-a-${player.id}`} id={player.avatarId} name={player.name} animate />
-              <AvatarName key={`p-a-${player.id}`} player={player} />
-            ))}
+          <Instruction contained>
+            <Space>
+              {Object.values(players).map((player) => (
+                <AvatarName key={`p-a-${player.id}`} player={player} />
+              ))}
+            </Space>
           </Instruction>
 
           <Instruction>

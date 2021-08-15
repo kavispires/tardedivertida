@@ -96,7 +96,7 @@ PhaseGameOver.propTypes = {
   info: PropTypes.object,
   players: PropTypes.object,
   state: PropTypes.shape({
-    groupScore: PropTypes.string,
+    groupScore: PropTypes.number,
     outcome: PropTypes.string,
     perpetrator: PropTypes.string,
     phase: PropTypes.string,

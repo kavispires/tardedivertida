@@ -1,40 +1,75 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-// Design Resources
-import { Progress } from 'antd';
 // Hooks
-import { useIsUserReady, useIsUserThe, useWhichPlayerIsThe, useAPICall } from '../../../hooks';
+import { useIsUserReady, useIsUserThe, useWhichPlayerIsThe, useAPICall, useLanguage } from '../../../hooks';
 // Resources & Utils
 import { UE_SO_ISSO_API } from '../../../adapters';
 import { PHASES } from '../../../utils/constants';
 // Components
 import {
   Instruction,
+  PhaseAnnouncement,
   PhaseContainer,
   RoundAnnouncement,
   Step,
   StepSwitcher,
+  Translate,
+  translate,
   ViewIf,
-  WaitingRoom,
+  DefaultWaitingRoom,
 } from '../../shared';
 import WordSelectionStep from './WordSelectionStep';
 import { AvatarName } from '../../avatars';
+import { GameProgressBar } from './GameProgressBar';
+import { GuesserWaitingRoom } from './GuesserWaitingRoom';
+
+function RoundAnnouncementText({ guesser, gameOrder, groupScore, round }) {
+  return (
+    <Instruction contained>
+      <Translate
+        pt={
+          <>
+            Para essa rodada, <AvatarName player={guesser} addressUser /> será o(a) adivinhador(a).
+          </>
+        }
+        en={
+          <>
+            For this round, <AvatarName player={guesser} addressUser /> will be the guesser.
+          </>
+        }
+      />
+      <br />
+      <GameProgressBar groupScore={groupScore} currentRound={round.current} totalRounds={round.total} />
+    </Instruction>
+  );
+}
 
 function PhaseWordSelection({ state, players, info }) {
   const isUserReady = useIsUserReady(players, state);
+  const language = useLanguage();
   const guesser = useWhichPlayerIsThe('guesser', state, players);
   const isUserTheGuesser = useIsUserThe('guesser', state);
-  const nextGuesser = useWhichPlayerIsThe('nextGuesser', state, players);
   const [step, setStep] = useState(0);
 
-  const onSendSelectedWords = useAPICall({
-    apiFunction: UE_SO_ISSO_API.submitWordSelectionVotes,
+  const onSendSelectedWordsAPIRequest = useAPICall({
+    apiFunction: UE_SO_ISSO_API.submitAction,
     actionName: 'submit-votes',
-    onBeforeCall: () => setStep(2),
-    onError: () => setStep(0),
-    successMessage: 'Aguarde enquanto os outros participantes votam',
-    errorMessage: 'Vixi, o aplicativo encontrou um erro ao tentar enviar seus votos',
+    onBeforeCall: () => setStep(3),
+    onError: () => setStep(1),
+    successMessage: translate('Votos enviados com sucesso!', 'Votes send successfully!', language),
+    errorMessage: translate(
+      'Vixi, o aplicativo encontrou um erro ao tentar enviar seus votos',
+      'Oops, the application fail to send your votes',
+      language
+    ),
   });
+
+  const onSendSelectedWords = (payload) => {
+    onSendSelectedWordsAPIRequest({
+      action: 'SUBMIT_VOTES',
+      ...payload,
+    });
+  };
 
   return (
     <PhaseContainer
@@ -46,32 +81,74 @@ function PhaseWordSelection({ state, players, info }) {
       <StepSwitcher step={step} conditions={[!isUserReady]}>
         {/* Step 0 */}
         <RoundAnnouncement round={state.round} onPressButton={() => setStep(1)} time={7}>
-          <Instruction contained>
-            Para essa rodada, <AvatarName player={guesser} addressUser /> será o(a) adivinhador(a) <br />
-            {state?.nextGuesser ? `Próximo adivinhador(a): ${nextGuesser.name}` : 'Essa é a última rodada'}
-          </Instruction>
-          <div className="u-word-selection-phase__team-points">
-            Pontos do Grupo:
-            <br />
-            <Progress
-              percent={state.groupScore ?? 0}
-              status="active"
-              strokeColor={{
-                '0%': '#ff0000',
-                '70%': '#ff0000',
-                '100%': '#87d068',
-              }}
-            />
-          </div>
+          <RoundAnnouncementText
+            guesser={guesser}
+            groupScore={state.groupScore}
+            gameOrder={state.gameOrder}
+            round={state.round}
+          />
         </RoundAnnouncement>
 
         {/* Step 1 */}
+        <PhaseAnnouncement
+          type="opinions"
+          title={translate('Seleção da Palavra Secreta', 'Secret Word Selection', language)}
+          onClose={() => setStep(2)}
+          currentRound={state?.round?.current}
+        >
+          {isUserTheGuesser ? (
+            <Instruction>
+              <Translate
+                pt={
+                  <>
+                    Os outros jogadores escolherão a palavra secreta.
+                    <br />
+                    Aguarde...
+                  </>
+                }
+                en={
+                  <>
+                    The other players will now choose the secret word.
+                    <br />
+                    Just wait...
+                  </>
+                }
+              />
+            </Instruction>
+          ) : (
+            <Instruction>
+              <Translate
+                pt={
+                  <>
+                    Selecione a palavra secreta para essa rodada.
+                    <br />
+                    Você pode selecionar quantas quiser.
+                    <br />A palavra mais votada será selecionada!
+                  </>
+                }
+                en={
+                  <>
+                    Choose the secret word for this round.
+                    <br />
+                    You may select as many as you wish.
+                    <br />
+                    The most voted word would be selected!
+                  </>
+                }
+              />
+            </Instruction>
+          )}
+        </PhaseAnnouncement>
+
+        {/* Step 2 */}
         <Step fullWidth>
           <ViewIf isVisible={isUserTheGuesser}>
-            <WaitingRoom
+            <GuesserWaitingRoom
               players={players}
-              title="Você é o(a) adivinhador(a)"
-              instruction="Aguarde os outros jogadores decidirem a palavra secreta."
+              instructionSuffix={{
+                pt: 'decidirem a palavra secreta',
+                en: 'choose a secret word',
+              }}
             />
           </ViewIf>
 
@@ -84,8 +161,10 @@ function PhaseWordSelection({ state, players, info }) {
           </ViewIf>
         </Step>
 
-        {/* Step 2 */}
-        <WaitingRoom players={players} title="Pronto!" instruction="Vamos aguardar os outros jogadores." />
+        {/* Step 3 */}
+        <Step fullWidth>
+          <DefaultWaitingRoom players={players} />
+        </Step>
       </StepSwitcher>
     </PhaseContainer>
   );
@@ -95,10 +174,14 @@ PhaseWordSelection.propTypes = {
   info: PropTypes.object,
   players: PropTypes.object,
   state: PropTypes.shape({
+    gameOrder: PropTypes.any,
     groupScore: PropTypes.number,
     nextGuesser: PropTypes.string,
     phase: PropTypes.string,
-    round: PropTypes.number,
+    round: PropTypes.shape({
+      current: PropTypes.number,
+      total: PropTypes.number,
+    }),
     words: PropTypes.any,
   }),
 };

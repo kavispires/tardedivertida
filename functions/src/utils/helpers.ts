@@ -198,12 +198,12 @@ export const getPointsToVictory = (players: Players | Teams, victory: number): n
 
 /**
  * Calculates how many rounds remain to call the end of the game
- * @param round
+ * @param currentRound
  * @param totalRounds
  * @returns
  */
-export const getRoundsToEndGame = (round: number, totalRounds: number): number => {
-  return totalRounds - round;
+export const getRoundsToEndGame = (currentRound: number, totalRounds: number): number => {
+  return totalRounds - currentRound;
 };
 
 /**
