@@ -1,37 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-// Hooks
-import { useLanguage } from '../../../hooks';
 // Components
-import {
-  GameOverPhase,
-  PhaseAnnouncement,
-  PhaseContainer,
-  StepSwitcher,
-  Title,
-  translate,
-} from '../../shared';
+import { GameOverWrapper, Title } from '../../shared';
 import { SheepAvatar } from '../../avatars';
 
 function PhaseGameOver({ state, info }) {
-  const [step, setStep] = useState(0);
-  const language = useLanguage();
-
   return (
-    <StepSwitcher step={step}>
-      {/*Step 0 */}
-      <PhaseContainer info={info} phase={state?.phase} allowedPhase="GAME_OVER" className="game-over">
-        <PhaseAnnouncement
-          type="game-over"
-          title={translate('E o jogo chegou ao fim...', 'And the game is over...', language)}
-          onClose={() => setStep(1)}
-          currentRound={state?.round?.current}
-          duration={4}
-        />
-      </PhaseContainer>
-
-      <GameOverPhase info={info} state={state}>
-        <Title>RIP</Title>
+    <GameOverWrapper info={info} state={state} announcementIcon="the-end">
+      <div className="m-game-over-in-memoriam">
+        <Title>In memoriam</Title>
         <div className="m-sheep-rip">
           {state.losers.map((player) => {
             return (
@@ -42,16 +19,16 @@ function PhaseGameOver({ state, info }) {
             );
           })}
         </div>
-      </GameOverPhase>
-    </StepSwitcher>
+      </div>
+    </GameOverWrapper>
   );
 }
 
 PhaseGameOver.propTypes = {
-  info: PropTypes.object,
+  info: PropTypes.any,
   state: PropTypes.shape({
-    losers: PropTypes.array,
     winners: PropTypes.array,
+    losers: PropTypes.array,
     phase: PropTypes.string,
     round: PropTypes.shape({
       current: PropTypes.number,
