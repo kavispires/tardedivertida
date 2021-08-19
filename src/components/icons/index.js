@@ -1,6 +1,7 @@
 export * from './LoadingCircles';
 export * from './LoadingBox';
 export * from './LoadingClock';
+export * from './Arrow';
 export * from './CrimeScene';
 export * from './Criminal';
 export * from './Defense';

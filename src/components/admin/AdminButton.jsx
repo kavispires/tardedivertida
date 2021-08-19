@@ -6,10 +6,10 @@ import { RocketFilled } from '@ant-design/icons';
 // State
 import { useLoading } from '../../hooks';
 
-export function AdminButton({ action, label }) {
+export function AdminButton({ action, label, ...props }) {
   const [isLoading] = useLoading();
   return (
-    <Button icon={<RocketFilled />} danger type="primary" onClick={action} disabled={isLoading}>
+    <Button icon={<RocketFilled />} danger type="primary" onClick={action} disabled={isLoading} {...props}>
       {label}
     </Button>
   );
