@@ -42,7 +42,7 @@ export const prepareSetupPhase = async (
 
   // Add level to players
   utils.addPropertiesFromPlayers(players, {
-    level: 4,
+    level: 0,
     answers: [],
   });
 
