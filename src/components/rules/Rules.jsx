@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 // Design Resources
 import { Button, Layout, Space, Typography } from 'antd';
 import { CheckCircleFilled, MehFilled, RobotFilled, SmileFilled } from '@ant-design/icons';
@@ -9,6 +9,7 @@ import { useLoading, useIsUserReady, useAPICall, useLanguage } from '../../hooks
 import { RulesCarousel } from './index';
 import { LoadingPage } from '../loaders';
 import { ReadyPlayersBar, Translate, translate } from '../shared';
+import { isDevEnv } from '../../utils';
 
 export function Rules({ players, info }) {
   const [isLoading] = useLoading();
@@ -44,6 +45,13 @@ export function Rules({ players, info }) {
       language
     ),
   });
+
+  // DEV: Auto-ready
+  useEffect(() => {
+    if (isDevEnv) {
+      onBeReady({});
+    }
+  }, []); // eslint-disable-line
 
   if (!info?.gameName) {
     return <LoadingPage />;
