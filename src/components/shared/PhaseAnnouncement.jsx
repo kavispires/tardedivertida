@@ -13,22 +13,38 @@ import * as IconIllustrations from '../icons';
 
 const getIconType = (type) => {
   switch (type) {
+    case 'chat':
+      return IconIllustrations.Chat;
+    case 'clock':
+      return IconIllustrations.Clock;
     case 'crime-scene':
       return IconIllustrations.CrimeScene;
     case 'criminal':
       return IconIllustrations.Criminal;
+    case 'customer-review':
+      return IconIllustrations.CustomerReview;
     case 'defense':
       return IconIllustrations.Defense;
-    case 'eye':
-      return IconIllustrations.Eye;
+    case 'discussion':
+      return IconIllustrations.Discussion;
     case 'evaluate':
       return IconIllustrations.Evaluate;
+    case 'eye':
+      return IconIllustrations.Eye;
+    case 'fairytale':
+      return IconIllustrations.FairyTale;
+    case 'feedback':
+      return IconIllustrations.Feedback;
+    case 'flag':
+      return IconIllustrations.Flag;
     case 'gears':
       return IconIllustrations.Gears;
     case 'guess':
       return IconIllustrations.Guess;
     case 'hanging-photograph':
       return IconIllustrations.HangingPhotograph;
+    case 'image-cards':
+      return IconIllustrations.ImageCards;
     case 'investigation':
       return IconIllustrations.Investigation;
     case 'law':
@@ -43,10 +59,20 @@ const getIconType = (type) => {
       return IconIllustrations.Picture;
     case 'rank':
       return IconIllustrations.Rank;
+    case 'review':
+      return IconIllustrations.Review;
     case 'seal':
       return IconIllustrations.Seal;
     case 'secret':
       return IconIllustrations.Secret;
+    case 'sheep':
+      return IconIllustrations.Sheep;
+    case 'the-end':
+      return IconIllustrations.TheEnd;
+    case 'trending':
+      return IconIllustrations.Trending;
+    case 'trophy':
+      return IconIllustrations.Trophy;
     case 'verify-list':
       return IconIllustrations.VerifyList;
     case 'vote':
