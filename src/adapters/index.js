@@ -29,6 +29,11 @@ export const ESPIAO_ENTRE_NOS_API = {
   submitVoting: functions.httpsCallable('espiaoEntreNosSubmitVoting'),
 };
 
+export const MENTE_COLETIVA_API = {
+  submitAction: functions.httpsCallable('menteColetivaSubmitAction'),
+  updateAction: functions.httpsCallable('menteColetivaUpdateAction'),
+};
+
 export const ONDA_TELEPATICA_API = {
   submitSides: functions.httpsCallable('ondaTelepaticaSubmitSides'),
   submitClue: functions.httpsCallable('ondaTelepaticaSubmitClue'),

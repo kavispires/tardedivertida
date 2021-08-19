@@ -90,9 +90,7 @@ function Game() {
   }
 
   if (isGameStale) {
-    return (
-      <PageError message="Jogo expirado" description="Esse jogo é muito antigo e não pode ser usado mais" />
-    );
+    return <PageError message="Expired Game" description="This game is too old or does not exist" />;
   }
 
   if (gameId && gameName) {
@@ -103,6 +101,8 @@ function Game() {
         return <GameSessions.DetetivesImaginativos gameId={gameId} />;
       case GAME_COLLECTION.ESPIAO_ENTRE_NOS:
         return <GameSessions.EspiaoEntreNos gameId={gameId} />;
+      case GAME_COLLECTION.MENTE_COLETIVA:
+        return <GameSessions.MenteColetiva gameId={gameId} />;
       case GAME_COLLECTION.ONDA_TELEPATICA:
         return <GameSessions.OndaTelepatica gameId={gameId} />;
       case GAME_COLLECTION.TESTEMUNHA_OCULAR:
