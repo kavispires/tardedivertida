@@ -2,7 +2,7 @@ import React from 'react';
 // Hooks
 import { GAME_COLLECTION, PHASES } from '../../../utils/constants';
 // Components
-import { GameOverPhase, Session, SetupScreen } from '../../shared';
+import { Session, SetupScreen } from '../../shared';
 import Lobby from '../../lobby/Lobby';
 import { Rules } from '../../rules';
 import { PageError } from '../../errors/PageError';
@@ -11,6 +11,7 @@ import PhaseCardPlay from './PhaseCardPlay';
 import PhaseDefense from './PhaseDefense';
 import PhaseVoting from './PhaseVoting';
 import PhaseReveal from './PhaseReveal';
+import PhaseGameOver from './PhaseGameOver';
 
 function SessionDetetivesImaginativos({ gameId }) {
   function getActiveComponent(phase) {
@@ -32,7 +33,7 @@ function SessionDetetivesImaginativos({ gameId }) {
       case PHASES.DETETIVES_IMAGINATIVOS.REVEAL:
         return PhaseReveal;
       case PHASES.DETETIVES_IMAGINATIVOS.GAME_OVER:
-        return GameOverPhase;
+        return PhaseGameOver;
       default:
         return PageError;
     }

@@ -294,8 +294,12 @@
   animation: scale-in-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
-.m-sheep-rip {
+.m-game-over-in-memoriam {
   margin-top: get-unit(6);
+}
+
+.m-sheep-rip {
+  margin-top: get-unit(4);
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
