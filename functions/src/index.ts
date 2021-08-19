@@ -4,6 +4,7 @@ import * as commonEngine from './engine/common';
 import * as arteRuimEngine from './engine/arte-ruim';
 import * as DetetivesImaginativosEngine from './engine/detetives-imaginativos';
 import * as espiaoEntreNosEngine from './engine/espiao-entre-nos';
+import * as menteColetivaEngine from './engine/mente-coletiva';
 import * as ondaTelepaticaEngine from './engine/onda-telepatica';
 import * as testemunhaOcularEngine from './engine/testemunha-ocular';
 import * as ueSoIssoEngine from './engine/ue-so-isso';
@@ -93,6 +94,11 @@ exports.espiaoEntreNosGuessLocation = functions.https.onCall(espiaoEntreNosEngin
  * Submit individual voting, if it's the last player to be ready, move to the next phase
  */
 exports.espiaoEntreNosSubmitVoting = functions.https.onCall(espiaoEntreNosEngine.submitVoting);
+
+// UE_SO_ISSO HTTP CALLS
+
+exports.menteColetivaSubmitAction = functions.https.onCall(menteColetivaEngine.submitAction);
+exports.menteColetivaUpdateAction = functions.https.onCall(menteColetivaEngine.updateAction);
 
 // ONDA_TELEPATICA HTTP CALLS
 

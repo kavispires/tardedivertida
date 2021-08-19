@@ -7,7 +7,20 @@ import { MAX_NUMBER_OF_ROUNDS, MENTE_COLETIVA_PHASES, QUESTIONS_PER_ROUND } from
 import * as gameUtils from '../../utils/game-utils';
 import * as firebaseUtils from '../../utils/firebase';
 import * as utils from '../../utils/helpers';
-import { buildDeck, determineRoundType } from './helpers';
+import {
+  buildDeck,
+  buildListOfAnswers,
+  buildPastureChange,
+  buildRanking,
+  determineGameOver,
+  determineHighestScores,
+  determineLowestScores,
+  determineRoundType,
+  extendPlayerAnswers,
+  updateLevelsForPlayers,
+  gatherAllAnswers,
+  recalculateLastPasture,
+} from './helpers';
 
 /**
  * Setup
@@ -25,11 +38,11 @@ export const prepareSetupPhase = async (
   const gameOrder = gameUtils.shuffle(Object.keys(players));
 
   // Build deck
-  const deck = buildDeck(additionalData.allQuestions, additionalData.pastQuestions);
+  const deck = buildDeck(additionalData.allQuestions, additionalData.usedQuestions);
 
   // Add level to players
   utils.addPropertiesFromPlayers(players, {
-    level: 0,
+    level: 4,
     answers: [],
   });
 
@@ -103,13 +116,15 @@ export const prepareEverybodyWritesPhase = async (
   // Modify player
   utils.unReadyPlayers(players);
 
+  const currentQuestion = store.deck.find((question) => question.id === store.questionId);
+
   // Save
   return {
     update: {
       state: {
         phase: MENTE_COLETIVA_PHASES.EVERYBODY_WRITES,
         updatedAt: Date.now(),
-        currentQuestion: store.currentQuestion,
+        currentQuestion,
         currentQuestions: firebaseUtils.deleteValue(),
       },
       players,
@@ -122,7 +137,11 @@ export const prepareComparePhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
-  console.log(Object.keys(players));
+  const allAnswers = gatherAllAnswers(players);
+  const answersList = buildListOfAnswers(allAnswers);
+
+  // Transform player answers into objects
+  extendPlayerAnswers(players);
 
   // Save
   return {
@@ -130,8 +149,10 @@ export const prepareComparePhase = async (
       state: {
         phase: MENTE_COLETIVA_PHASES.COMPARE,
         updatedAt: Date.now(),
-        answers: [],
+        answersList,
+        allAnswers,
       },
+      players,
     },
   };
 };
@@ -141,7 +162,30 @@ export const prepareResolutionPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
-  console.log(Object.keys(players));
+  // Add up score
+  Object.values(players).forEach((player) => {
+    Object.values(player.answers).forEach((playerAnswer: any) => {
+      player.score += playerAnswer.score;
+    });
+  });
+
+  // Determine ranking
+  const ranking = buildRanking(players);
+
+  const lowestScores = determineLowestScores(ranking, state.roundType);
+
+  const highestScores = determineHighestScores(ranking, state.roundType);
+
+  const pastureChange = buildPastureChange(players, lowestScores, highestScores);
+
+  // Fixed up level based on pastureChange
+  updateLevelsForPlayers(players, pastureChange[2]);
+
+  const isGameOver = determineGameOver(players);
+  if (isGameOver && !state?.usedSave) {
+    recalculateLastPasture(pastureChange);
+    updateLevelsForPlayers(players, pastureChange[2]);
+  }
 
   // Save
   return {
@@ -149,8 +193,12 @@ export const prepareResolutionPhase = async (
       state: {
         phase: MENTE_COLETIVA_PHASES.RESOLUTION,
         updatedAt: Date.now(),
-        answers: [],
+        ranking,
+        pastureChangeStr: JSON.stringify(pastureChange),
+        usedSave: state?.usedSave || (isGameOver && !state?.usedSave),
+        announceSave: isGameOver && !state?.usedSave,
       },
+      players,
     },
   };
 };
@@ -160,15 +208,19 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
-  console.log(Object.keys(players));
+  const winners = Object.values(players).filter((player) => player.level < 5);
+
+  const losers = Object.values(players).filter((player) => player.level === 5);
 
   // Save
   return {
-    update: {
+    set: {
       state: {
         phase: MENTE_COLETIVA_PHASES.GAME_OVER,
-        updatedAt: Date.now(),
-        answers: [],
+        gameEndedAt: Date.now(),
+        round: state.round,
+        winners,
+        losers,
       },
     },
   };
