@@ -21,7 +21,7 @@
     "id": "m-4-pt",
     "prefix": "Cite",
     "number": 3,
-    "suffix": "Cite 3 premiações"
+    "suffix": "premiações"
   },
   "m-5-pt": {
     "id": "m-5-pt",
@@ -117,7 +117,7 @@
     "id": "m-20-pt",
     "prefix": "Complete a frase com",
     "number": 3,
-    "suffix": "Complete a frase com 3 opções: Não havia uma faca, então Roberto usou um(a) ___ para passar manteiga."
+    "suffix": "opções: Não havia uma faca, então Roberto usou um(a) ___ para passar manteiga."
   },
   "m-21-pt": {
     "id": "m-21-pt",
@@ -147,7 +147,7 @@
     "id": "m-25-pt",
     "prefix": "Cite",
     "number": 3,
-    "suffix": "animais com a letra \"I\""
+    "suffix": "animais com a letra \"B\""
   },
   "m-26-pt": {
     "id": "m-26-pt",
@@ -285,13 +285,13 @@
     "id": "m-48-pt",
     "prefix": "Cite",
     "number": 3,
-    "suffix": "Cite 3 maneiras de atrair pássaros"
+    "suffix": "maneiras de atrair pássaros"
   },
   "m-49-pt": {
     "id": "m-49-pt",
     "prefix": "Cite",
     "number": 5,
-    "suffix": "Cite 5 razões para ter uma festa"
+    "suffix": "razões para dar uma festa"
   },
   "m-50-pt": {
     "id": "m-50-pt",
@@ -633,7 +633,7 @@
     "id": "m-106-pt",
     "prefix": "Complete a frase com",
     "number": 3,
-    "suffix": "opções. \"Existe mais de um jeito de ___ um gato.\""
+    "suffix": "opções. \"Existe mais de uma forma de ___ um gato.\""
   },
   "m-107-pt": {
     "id": "m-107-pt",
@@ -765,7 +765,7 @@
     "id": "m-128-pt",
     "prefix": "Cite",
     "number": 3,
-    "suffix": "coisas grandes de brancas"
+    "suffix": "coisas grandes e brancas"
   },
   "m-129-pt": {
     "id": "m-129-pt",

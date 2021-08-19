@@ -1,9 +1,10 @@
+// Interfaces
+import { SubmitVotesPayload } from '../../utils/interfaces';
+import { SubmitDrawingPayload } from './interfaces';
+// Helpers
 import * as firebaseUtils from '../../utils/firebase';
 import * as utils from '../../utils/helpers';
 import { nextArteRuimPhase } from './index';
-
-import { SubmitVotesPayload } from '../../utils/interfaces';
-import { SubmitDrawingPayload } from './interfaces';
 
 export const submitDrawing = async (data: SubmitDrawingPayload) => {
   const { gameId, gameName: collectionName, playerId, drawing, cardId } = data;
