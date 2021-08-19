@@ -1,0 +1,72 @@
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+// Hooks
+import { useIsUserReady, useWhichPlayerIsThe, useIsUserThe, useAPICall } from '../../hooks';
+// Resources & Utils
+import { ONDA_TELEPATICA_API } from '../../adapters';
+import { PHASES } from '../../utils/constants';
+// Components
+import { PhaseContainer, StepSwitcher, Step, ViewIf, WaitingRoom } from '../../components/shared';
+import Card from './Card';
+import DialClueWriting from './DialClueWriting';
+
+function DialCluePhase({ state, players, info }) {
+  const isUserReady = useIsUserReady(players, state);
+  const [step, setStep] = useState(0);
+  const psychic = useWhichPlayerIsThe('psychic', state, players);
+  const isUserThePsychic = useIsUserThe('psychic', state);
+
+  const onSendClue = useAPICall({
+    apiFunction: ONDA_TELEPATICA_API.submitClue,
+    actionName: 'submit-clue',
+    onBeforeCall: () => setStep(1),
+    onError: () => setStep(0),
+    successMessage: 'Dica submetida com sucesso',
+    errorMessage: 'Vixi, ocorreu um erro ao tentar enviar a dica',
+  });
+
+  return (
+    <PhaseContainer
+      info={info}
+      phase={state?.phase}
+      allowedPhase={PHASES.ONDA_TELEPATICA.DIAL_CLUE}
+      className="o-dial-clue-phase"
+    >
+      <StepSwitcher step={step} conditions={[!isUserReady]}>
+        {/* Step 0 */}
+        <Step>
+          <ViewIf isVisible={isUserThePsychic}>
+            <DialClueWriting card={state.card} onSendClue={onSendClue} />
+          </ViewIf>
+
+          <ViewIf isVisible={!isUserThePsychic}>
+            <WaitingRoom
+              players={players}
+              title={`${psychic.name} está pensando em uma dica...`}
+              instruction="Aguarde enquanto ele(a) escreve uma dica para:"
+            >
+              <div className="container container--center">
+                <Card left={state.card.left} right={state.card.right} />
+              </div>
+            </WaitingRoom>
+          </ViewIf>
+        </Step>
+
+        {/* Step 1 */}
+        <WaitingRoom
+          players={players}
+          title="Pronto!"
+          instruction="Vamos aguardar o jogo iniciar a próxima fase."
+        />
+      </StepSwitcher>
+    </PhaseContainer>
+  );
+}
+
+DialCluePhase.propTypes = {
+  info: PropTypes.object,
+  players: PropTypes.object,
+  state: PropTypes.object,
+};
+
+export default DialCluePhase;
