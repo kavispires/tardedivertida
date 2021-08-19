@@ -14,7 +14,7 @@ export function ButtonContainer({ children, wrap = false, className = '' }) {
 }
 
 ButtonContainer.propTypes = {
-  children: PropTypes.element.isRequired,
+  children: PropTypes.oneOfType([PropTypes.element, PropTypes.arrayOf(PropTypes.element)]).isRequired,
   className: PropTypes.string,
   wrap: PropTypes.bool,
 };
