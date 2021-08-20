@@ -1,0 +1,962 @@
+{
+  "m-1-pt": {
+    "id": "m-1-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "coisas que podem ser encontradas em um bolso"
+  },
+  "m-2-pt": {
+    "id": "m-2-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "atrizes excelentes"
+  },
+  "m-3-pt": {
+    "id": "m-3-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "signos do zodíaco"
+  },
+  "m-4-pt": {
+    "id": "m-4-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "premiações"
+  },
+  "m-5-pt": {
+    "id": "m-5-pt",
+    "prefix": "Complete a frase com",
+    "number": 4,
+    "suffix": "opções: Ao invés de bolo de casamento, eles preferirem ter ___ no casamento."
+  },
+  "m-6-pt": {
+    "id": "m-6-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "coisas imprevisíveis"
+  },
+  "m-7-pt": {
+    "id": "m-7-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "nomes de homens que comecem com \"H\""
+  },
+  "m-8-pt": {
+    "id": "m-8-pt",
+    "prefix": "Cite",
+    "number": 5,
+    "suffix": "coisas que são cinza"
+  },
+  "m-9-pt": {
+    "id": "m-9-pt",
+    "prefix": "Cite",
+    "number": 4,
+    "suffix": "coisas que existem em 7"
+  },
+  "m-10-pt": {
+    "id": "m-10-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "profissões que é preferível não ter um bom olfato"
+  },
+  "m-11-pt": {
+    "id": "m-11-pt",
+    "prefix": "Complete a lacuna com",
+    "number": 3,
+    "suffix": "opções: faixa ___"
+  },
+  "m-12-pt": {
+    "id": "m-12-pt",
+    "prefix": "Cite",
+    "number": 4,
+    "suffix": "coisas incomuns que as pessoas comem"
+  },
+  "m-13-pt": {
+    "id": "m-13-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "sons de animais que você pode ouvir numa fazenda"
+  },
+  "m-14-pt": {
+    "id": "m-14-pt",
+    "prefix": "Cite",
+    "number": 2,
+    "suffix": "pessoas aqui que não gostariam de ser policiais"
+  },
+  "m-15-pt": {
+    "id": "m-15-pt",
+    "prefix": "Cite",
+    "number": 5,
+    "suffix": "coisas que vêm na sua cabeça quando você pensa em noite"
+  },
+  "m-16-pt": {
+    "id": "m-16-pt",
+    "prefix": "Cite",
+    "number": 4,
+    "suffix": "alarmes que as pessoas ignoram"
+  },
+  "m-17-pt": {
+    "id": "m-17-pt",
+    "prefix": "Cite",
+    "number": 2,
+    "suffix": "pessoas aqui que seriam os melhores professores"
+  },
+  "m-18-pt": {
+    "id": "m-18-pt",
+    "prefix": "Cite",
+    "number": 5,
+    "suffix": "coisas que vêm na cabeça quando você pensa em Nova Iorque"
+  },
+  "m-19-pt": {
+    "id": "m-19-pt",
+    "prefix": "Cite",
+    "number": 2,
+    "suffix": "línguas asiáticas"
+  },
+  "m-20-pt": {
+    "id": "m-20-pt",
+    "prefix": "Complete a frase com",
+    "number": 3,
+    "suffix": "opções: Não havia uma faca, então Roberto usou um(a) ___ para passar manteiga."
+  },
+  "m-21-pt": {
+    "id": "m-21-pt",
+    "prefix": "Cite",
+    "number": 4,
+    "suffix": "coisas que podem acontecer com as suas malas quando você viaja"
+  },
+  "m-22-pt": {
+    "id": "m-22-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "estrelas"
+  },
+  "m-23-pt": {
+    "id": "m-23-pt",
+    "prefix": "Complete a lacuna com",
+    "number": 3,
+    "suffix": "opções: ___ cheio"
+  },
+  "m-24-pt": {
+    "id": "m-24-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "coisas que as pessoas usam para se proteger da chuva"
+  },
+  "m-25-pt": {
+    "id": "m-25-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "animais com a letra \"B\""
+  },
+  "m-26-pt": {
+    "id": "m-26-pt",
+    "prefix": "Cite",
+    "number": 5,
+    "suffix": "coisas que você encontra numa caixa de ferramentas"
+  },
+  "m-27-pt": {
+    "id": "m-27-pt",
+    "prefix": "Cite",
+    "number": 4,
+    "suffix": "coisas que você faz quando está com calor"
+  },
+  "m-28-pt": {
+    "id": "m-28-pt",
+    "prefix": "Cite",
+    "number": 4,
+    "suffix": "comidas que são servidas/vem no palito"
+  },
+  "m-29-pt": {
+    "id": "m-29-pt",
+    "prefix": "Complete a lacuna com",
+    "number": 3,
+    "suffix": "opções: ponto ___"
+  },
+  "m-30-pt": {
+    "id": "m-30-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "coisas que rimam com \"sinto\""
+  },
+  "m-31-pt": {
+    "id": "m-31-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "línguas européias"
+  },
+  "m-32-pt": {
+    "id": "m-32-pt",
+    "prefix": "Cite",
+    "number": 5,
+    "suffix": "coisas que podem quebrar uma janela"
+  },
+  "m-33-pt": {
+    "id": "m-33-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "coisas que têm cabos"
+  },
+  "m-34-pt": {
+    "id": "m-34-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "raças de cachorro que são consideradas inteligentes"
+  },
+  "m-35-pt": {
+    "id": "m-35-pt",
+    "prefix": "Complete a lacuna com",
+    "number": 3,
+    "suffix": "opções: cama ___"
+  },
+  "m-36-pt": {
+    "id": "m-36-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "maneiras de colar na prova"
+  },
+  "m-37-pt": {
+    "id": "m-37-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "animais que podem te atacar com cabeçadas"
+  },
+  "m-38-pt": {
+    "id": "m-38-pt",
+    "prefix": "Complete a lacuna com",
+    "number": 3,
+    "suffix": "opções: banho ___"
+  },
+  "m-39-pt": {
+    "id": "m-39-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "comediantes"
+  },
+  "m-40-pt": {
+    "id": "m-40-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "coisas que são ótimas"
+  },
+  "m-41-pt": {
+    "id": "m-41-pt",
+    "prefix": "Cite",
+    "number": 5,
+    "suffix": "coisas que se coloca no sorvete"
+  },
+  "m-42-pt": {
+    "id": "m-42-pt",
+    "prefix": "Cite",
+    "number": 4,
+    "suffix": "coisas que se pode virar"
+  },
+  "m-43-pt": {
+    "id": "m-43-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "coisas que podem ser encontradas no deserto"
+  },
+  "m-44-pt": {
+    "id": "m-44-pt",
+    "prefix": "Cite",
+    "number": 5,
+    "suffix": "coisas que existem em 10"
+  },
+  "m-45-pt": {
+    "id": "m-45-pt",
+    "prefix": "Cite",
+    "number": 4,
+    "suffix": "coisas encontradas num estojo que não sejam lápis"
+  },
+  "m-46-pt": {
+    "id": "m-46-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "esportes que você prefere assistir do que praticar"
+  },
+  "m-47-pt": {
+    "id": "m-47-pt",
+    "prefix": "Complete a lacuna com",
+    "number": 3,
+    "suffix": "opções: Siga ___"
+  },
+  "m-48-pt": {
+    "id": "m-48-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "maneiras de atrair pássaros"
+  },
+  "m-49-pt": {
+    "id": "m-49-pt",
+    "prefix": "Cite",
+    "number": 5,
+    "suffix": "razões para dar uma festa"
+  },
+  "m-50-pt": {
+    "id": "m-50-pt",
+    "prefix": "Complete a lacuna com",
+    "number": 3,
+    "suffix": "opções: Mr. ___"
+  },
+  "m-51-pt": {
+    "id": "m-51-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "efeitos especiais um diretor pode usar em um filme"
+  },
+  "m-52-pt": {
+    "id": "m-52-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "coisas grandes e pretas"
+  },
+  "m-53-pt": {
+    "id": "m-53-pt",
+    "prefix": "Cite",
+    "number": 5,
+    "suffix": "coisas que vêm na sua cabeça quando você pensa em neve"
+  },
+  "m-54-pt": {
+    "id": "m-54-pt",
+    "prefix": "Cite",
+    "number": 5,
+    "suffix": "coisas que estalam"
+  },
+  "m-55-pt": {
+    "id": "m-55-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "coisas que são amarelas e pequenas"
+  },
+  "m-56-pt": {
+    "id": "m-56-pt",
+    "prefix": "Complete a lacuna com",
+    "number": 3,
+    "suffix": "opções: ___ fácil"
+  },
+  "m-57-pt": {
+    "id": "m-57-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "coisas que rimam com \"banha\""
+  },
+  "m-58-pt": {
+    "id": "m-58-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "coisas que são brancas e pequenas"
+  },
+  "m-59-pt": {
+    "id": "m-59-pt",
+    "prefix": "Quais",
+    "number": 2,
+    "suffix": "jogadores aqui que devem gostar de assistir seriados policiais?"
+  },
+  "m-60-pt": {
+    "id": "m-60-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "coisas que se vê bastante no Rio de Janeiro"
+  },
+  "m-61-pt": {
+    "id": "m-61-pt",
+    "prefix": "Cite",
+    "number": 4,
+    "suffix": "coisas que um vaqueiro tem"
+  },
+  "m-62-pt": {
+    "id": "m-62-pt",
+    "prefix": "Cite",
+    "number": 5,
+    "suffix": "estados brasileiros"
+  },
+  "m-63-pt": {
+    "id": "m-63-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "tipos de molho"
+  },
+  "m-64-pt": {
+    "id": "m-64-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "coisas da era medieval"
+  },
+  "m-65-pt": {
+    "id": "m-65-pt",
+    "prefix": "Cite",
+    "number": 5,
+    "suffix": "atores excelentes"
+  },
+  "m-66-pt": {
+    "id": "m-66-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "nomes de mulheres que começam com \"D\""
+  },
+  "m-67-pt": {
+    "id": "m-67-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "filmes que contém uma direção no título"
+  },
+  "m-68-pt": {
+    "id": "m-68-pt",
+    "prefix": "Complete a lacuna com",
+    "number": 3,
+    "suffix": "opções: bunda ___"
+  },
+  "m-69-pt": {
+    "id": "m-69-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "reis"
+  },
+  "m-70-pt": {
+    "id": "m-70-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "coisas roxas"
+  },
+  "m-71-pt": {
+    "id": "m-71-pt",
+    "prefix": "Cite",
+    "number": 5,
+    "suffix": "cantores homens"
+  },
+  "m-72-pt": {
+    "id": "m-72-pt",
+    "prefix": "Cite",
+    "number": 4,
+    "suffix": "coisas que pode se ganhar um troféu ao fazê-las"
+  },
+  "m-73-pt": {
+    "id": "m-73-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "flores vermelhas"
+  },
+  "m-74-pt": {
+    "id": "m-74-pt",
+    "prefix": "Cite",
+    "number": 4,
+    "suffix": "cidades que seriam um bom nome para uma criança"
+  },
+  "m-75-pt": {
+    "id": "m-75-pt",
+    "prefix": "Cite",
+    "number": 4,
+    "suffix": "coisas que podem ser encontradas num parquinho"
+  },
+  "m-76-pt": {
+    "id": "m-76-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "armas antigas"
+  },
+  "m-77-pt": {
+    "id": "m-77-pt",
+    "prefix": "Complete a lacuna com",
+    "number": 3,
+    "suffix": "opções: cara ___"
+  },
+  "m-78-pt": {
+    "id": "m-78-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "animais que você pode encontrar no Parque Municipal"
+  },
+  "m-79-pt": {
+    "id": "m-79-pt",
+    "prefix": "Quais",
+    "number": 2,
+    "suffix": "jogadores aqui que devem gostar de sitcoms?"
+  },
+  "m-80-pt": {
+    "id": "m-80-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "coisas que se vê bastante em Belo Horizonte"
+  },
+  "m-81-pt": {
+    "id": "m-81-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "comidas fedorentas"
+  },
+  "m-82-pt": {
+    "id": "m-82-pt",
+    "prefix": "Complete a frase com",
+    "number": 3,
+    "suffix": "opções: \"Josisclene era faxineira até ter um dia de princesa, e agora ela é ___.\""
+  },
+  "m-83-pt": {
+    "id": "m-83-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "esportes bons para pessoas mais velhas"
+  },
+  "m-84-pt": {
+    "id": "m-84-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "coisas que as pessoas fazem numa cabine"
+  },
+  "m-85-pt": {
+    "id": "m-85-pt",
+    "prefix": "Cite",
+    "number": 4,
+    "suffix": "tipos de bolo"
+  },
+  "m-86-pt": {
+    "id": "m-86-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "tipos de comida oriental"
+  },
+  "m-87-pt": {
+    "id": "m-87-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "animais venenosos que não sejam cobras"
+  },
+  "m-88-pt": {
+    "id": "m-88-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "comidas que podem ser comidas quente ou frias"
+  },
+  "m-89-pt": {
+    "id": "m-89-pt",
+    "prefix": "Cite",
+    "number": 5,
+    "suffix": "coisas que se pode fazer num jardim"
+  },
+  "m-90-pt": {
+    "id": "m-90-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "coisas não podem ser desligadas"
+  },
+  "m-91-pt": {
+    "id": "m-91-pt",
+    "prefix": "Cite",
+    "number": 4,
+    "suffix": "comidas que precisam ser comidas com o uso de um guardanapo"
+  },
+  "m-92-pt": {
+    "id": "m-92-pt",
+    "prefix": "Quais",
+    "number": 2,
+    "suffix": "jogadores aqui que seriam os melhores policiais?"
+  },
+  "m-93-pt": {
+    "id": "m-93-pt",
+    "prefix": "Cite",
+    "number": 5,
+    "suffix": "coisas que vêm na cabeça quando você pensa em Coréia"
+  },
+  "m-94-pt": {
+    "id": "m-94-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "instrumentos que fazem muito barulho"
+  },
+  "m-95-pt": {
+    "id": "m-95-pt",
+    "prefix": "Quais",
+    "number": 2,
+    "suffix": "jogadores aqui que seriam os melhores lenhadores?"
+  },
+  "m-96-pt": {
+    "id": "m-96-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "coisas que faz barulho quando são comidas"
+  },
+  "m-97-pt": {
+    "id": "m-97-pt",
+    "prefix": "Quais",
+    "number": 2,
+    "suffix": "jogadores aqui que você gostaria que falassem no seu funeral?"
+  },
+  "m-98-pt": {
+    "id": "m-98-pt",
+    "prefix": "Cite",
+    "number": 5,
+    "suffix": "coisas que vêm à cabeça quando você pensa em Polícia Federal"
+  },
+  "m-99-pt": {
+    "id": "m-99-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "lugares que têm lista de espera"
+  },
+  "m-100-pt": {
+    "id": "m-100-pt",
+    "prefix": "Complete a frase com",
+    "number": 4,
+    "suffix": "opções: \"Todo mundo ficou surpreso com souberam que o livro sobre ___ virou bestseller.\""
+  },
+  "m-101-pt": {
+    "id": "m-101-pt",
+    "prefix": "Cite",
+    "number": 5,
+    "suffix": "pimentas"
+  },
+  "m-102-pt": {
+    "id": "m-102-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "animais que comecem com a letra \"M\""
+  },
+  "m-103-pt": {
+    "id": "m-103-pt",
+    "prefix": "Cite",
+    "number": 5,
+    "suffix": "personagens masculinos da Disney"
+  },
+  "m-104-pt": {
+    "id": "m-104-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "animais selvagens que podem ser treinados como pets"
+  },
+  "m-105-pt": {
+    "id": "m-105-pt",
+    "prefix": "Cite",
+    "number": 4,
+    "suffix": "coisas dragões podem ter em suas tocas"
+  },
+  "m-106-pt": {
+    "id": "m-106-pt",
+    "prefix": "Complete a frase com",
+    "number": 3,
+    "suffix": "opções. \"Existe mais de uma forma de ___ um gato.\""
+  },
+  "m-107-pt": {
+    "id": "m-107-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "coisas que podem estragar uma colheita"
+  },
+  "m-108-pt": {
+    "id": "m-108-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "instrumentos musicais barulhentos que não precisam de eletricidade"
+  },
+  "m-109-pt": {
+    "id": "m-109-pt",
+    "prefix": "Cite",
+    "number": 5,
+    "suffix": "temperos"
+  },
+  "m-110-pt": {
+    "id": "m-110-pt",
+    "prefix": "Cite",
+    "number": 4,
+    "suffix": "filmes com aviões"
+  },
+  "m-111-pt": {
+    "id": "m-111-pt",
+    "prefix": "Quais",
+    "number": 2,
+    "suffix": "jogadores aqui que seriam os melhores editores de livros?"
+  },
+  "m-112-pt": {
+    "id": "m-112-pt",
+    "prefix": "Cite",
+    "number": 5,
+    "suffix": "que vêm na cabeça quando se fala em cozinhar"
+  },
+  "m-113-pt": {
+    "id": "m-113-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "animais com orelhas grandes"
+  },
+  "m-114-pt": {
+    "id": "m-114-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "palavras que rimam com \"cilada\""
+  },
+  "m-115-pt": {
+    "id": "m-115-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "palavras que você pode usar quando você não lembra o nome de uma pessoa"
+  },
+  "m-116-pt": {
+    "id": "m-116-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "animais com a letra \"M\""
+  },
+  "m-117-pt": {
+    "id": "m-117-pt",
+    "prefix": "Cite",
+    "number": 4,
+    "suffix": "animais domésticos"
+  },
+  "m-118-pt": {
+    "id": "m-118-pt",
+    "prefix": "Cite",
+    "number": 4,
+    "suffix": "coisas que você precisa da sua identidade"
+  },
+  "m-119-pt": {
+    "id": "m-119-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "marcas de carro que seriam bons nomes para uma criança"
+  },
+  "m-120-pt": {
+    "id": "m-120-pt",
+    "prefix": "Complete a frase com",
+    "number": 3,
+    "suffix": "opções: Patrícia formou em publicidade, mas hoje ela trabalha com ___."
+  },
+  "m-121-pt": {
+    "id": "m-121-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "coisas que podem se enrolar"
+  },
+  "m-122-pt": {
+    "id": "m-122-pt",
+    "prefix": "Cite",
+    "number": 4,
+    "suffix": "razões pelas quais alguém pode cheirar mal"
+  },
+  "m-123-pt": {
+    "id": "m-123-pt",
+    "prefix": "Cite",
+    "number": 4,
+    "suffix": "nomes de animais que tem apenas 4 letras"
+  },
+  "m-124-pt": {
+    "id": "m-124-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "coisas que se pode achar numa piscina"
+  },
+  "m-125-pt": {
+    "id": "m-125-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "coisas que se coloca numa maionese de batata além de maionese"
+  },
+  "m-126-pt": {
+    "id": "m-126-pt",
+    "prefix": "Complete a frase com",
+    "number": 3,
+    "suffix": "opções: \"Amanda acabou de apresentar um trabalho na frente de todos, mas aí ela se olhou no espelho e ela tava com ___ na cara!"
+  },
+  "m-127-pt": {
+    "id": "m-127-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "coisas que queimam"
+  },
+  "m-128-pt": {
+    "id": "m-128-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "coisas grandes e brancas"
+  },
+  "m-129-pt": {
+    "id": "m-129-pt",
+    "prefix": "Cite",
+    "number": 5,
+    "suffix": "celebridades mulheres"
+  },
+  "m-130-pt": {
+    "id": "m-130-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "tipos de chá"
+  },
+  "m-131-pt": {
+    "id": "m-131-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "filmes com \"tempo\" no título"
+  },
+  "m-132-pt": {
+    "id": "m-132-pt",
+    "prefix": "Quais",
+    "number": 2,
+    "suffix": "jogadores aqui seriam os melhores designers de interiores?"
+  },
+  "m-133-pt": {
+    "id": "m-133-pt",
+    "prefix": "Cite",
+    "number": 5,
+    "suffix": "vem na sua cabeça quando você pensa em cachorros"
+  },
+  "m-134-pt": {
+    "id": "m-134-pt",
+    "prefix": "Cite",
+    "number": 4,
+    "suffix": "filmes com animais falantes"
+  },
+  "m-135-pt": {
+    "id": "m-135-pt",
+    "prefix": "Quais",
+    "number": 2,
+    "suffix": "jogadores aqui seriam os melhores engenheiros?"
+  },
+  "m-136-pt": {
+    "id": "m-136-pt",
+    "prefix": "Cite",
+    "number": 5,
+    "suffix": "que vêm na cabeça quando se fala em jantar"
+  },
+  "m-137-pt": {
+    "id": "m-137-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "nomes masculinos que comecem com a letra \"M\""
+  },
+  "m-138-pt": {
+    "id": "m-138-pt",
+    "prefix": "Cite",
+    "number": 5,
+    "suffix": "insetos"
+  },
+  "m-139-pt": {
+    "id": "m-139-pt",
+    "prefix": "Complete a frase com",
+    "number": 4,
+    "suffix": "opções: Eu contratei um palhaço para se apresentar na festa de aniversário, mas ele ___."
+  },
+  "m-140-pt": {
+    "id": "m-140-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "palavras em alemão que todo mundo sabe"
+  },
+  "m-141-pt": {
+    "id": "m-141-pt",
+    "prefix": "Complete a lacuna com",
+    "number": 3,
+    "suffix": "opções: garrafa ___"
+  },
+  "m-142-pt": {
+    "id": "m-142-pt",
+    "prefix": "Cite",
+    "number": 4,
+    "suffix": "brinquedos encontrados num parque de diversões"
+  },
+  "m-143-pt": {
+    "id": "m-143-pt",
+    "prefix": "Cite",
+    "number": 4,
+    "suffix": "lojas de roupa"
+  },
+  "m-144-pt": {
+    "id": "m-144-pt",
+    "prefix": "Cite",
+    "number": 5,
+    "suffix": "nomes femininos mais comuns"
+  },
+  "m-145-pt": {
+    "id": "m-145-pt",
+    "prefix": "Cite",
+    "number": 4,
+    "suffix": "filmes de guerra"
+  },
+  "m-146-pt": {
+    "id": "m-146-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "palavras que comecem com X"
+  },
+  "m-147-pt": {
+    "id": "m-147-pt",
+    "prefix": "Complete a lacuna com",
+    "number": 3,
+    "suffix": "opções: caixa ___"
+  },
+  "m-148-pt": {
+    "id": "m-148-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "jeitos de invadir uma casa"
+  },
+  "m-149-pt": {
+    "id": "m-149-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "países com muitos templos"
+  },
+  "m-150-pt": {
+    "id": "m-150-pt",
+    "prefix": "Cite",
+    "number": 5,
+    "suffix": "esportes olímpicos"
+  },
+  "m-151-pt": {
+    "id": "m-151-pt",
+    "prefix": "Cite",
+    "number": 4,
+    "suffix": "encontradas em uma caverna"
+  },
+  "m-152-pt": {
+    "id": "m-152-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "países com culinárias bem ruins"
+  },
+  "m-153-pt": {
+    "id": "m-153-pt",
+    "prefix": "Cite",
+    "number": 5,
+    "suffix": "ocasiões alguém pode te enviar um cartão de parabéns"
+  },
+  "m-154-pt": {
+    "id": "m-154-pt",
+    "prefix": "Cite",
+    "number": 4,
+    "suffix": "nomes que podem ser tanto de homem quanto de mulher"
+  },
+  "m-155-pt": {
+    "id": "m-155-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "instrumentos musicais que não dão pra ser tocados numa banda marcial"
+  },
+  "m-156-pt": {
+    "id": "m-156-pt",
+    "prefix": "Quais",
+    "number": 2,
+    "suffix": "jogadores aqui seriam os melhores repórteres?"
+  },
+  "m-157-pt": {
+    "id": "m-157-pt",
+    "prefix": "Cite",
+    "number": 5,
+    "suffix": "coisas que vêm à cabeça quando se pensa em amor"
+  },
+  "m-158-pt": {
+    "id": "m-158-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "filmes com adolescentes na escola"
+  },
+  "m-159-pt": {
+    "id": "m-159-pt",
+    "prefix": "Complete a lacuna com",
+    "number": 4,
+    "suffix": "opções: sono ___"
+  },
+  "m-160-pt": {
+    "id": "m-160-pt",
+    "prefix": "Cite",
+    "number": 3,
+    "suffix": "nomes de mulheres que começam com \"I\""
+  }
+}

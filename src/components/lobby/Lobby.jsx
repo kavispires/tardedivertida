@@ -3,9 +3,9 @@ import React from 'react';
 import useGlobalState from '../../hooks/useGlobalState';
 // Components
 import { PhaseContainer } from '../shared';
-import Join from './_private/Join';
-import Waiting from './_private/Waiting';
-import CloudBackground from './_private/CloudBackground';
+import Join from './_internal/Join';
+import Waiting from './_internal/Waiting';
+import CloudBackground from './_internal/CloudBackground';
 import { AvatarEntry } from '../avatars';
 
 const backgroundType = {

@@ -59,3 +59,9 @@ body {
   border: 1px solid get-color(red);
   border-radius: get-unit(1);
 }
+
+.contained {
+  background: rgba($color: white, $alpha: 0.6);
+  padding: get-unit(2);
+  border-radius: get-unit(1);
+}

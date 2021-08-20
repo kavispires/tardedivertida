@@ -1,7 +1,10 @@
-import * as gameUtils from '../../utils/game-utils';
+// Interfaces
 import { PlainObject, Players } from '../../utils/interfaces';
-import { ARTE_RUIM_CARDS_BY_LEVEL, ARTE_RUIM_PHASES, ARTE_RUIM_TOTAL_ROUNDS } from './constants';
 import { ArteRuimCard, ArteRuimCardsDatabase, ArteRuimDrawing, FirebaseStoreData } from './interfaces';
+// Constants
+import { ARTE_RUIM_CARDS_BY_LEVEL, ARTE_RUIM_PHASES, ARTE_RUIM_TOTAL_ROUNDS } from './constants';
+// Helpers
+import * as gameUtils from '../../utils/game-utils';
 
 /**
  * Determine the next phase based on the current one

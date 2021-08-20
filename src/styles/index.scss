@@ -16,13 +16,14 @@
 // Shared Components
 @import '../components/avatars/AvatarEntry.scss';
 @import '../components/avatars/AvatarName.scss';
+@import '../components/avatars/SheepAvatar.scss';
 @import '../components/loaders/Loading.scss';
 @import '../components/loaders/LoadingBar.scss';
 @import '../components/loaders/LoadingPage.scss';
 @import '../components/lobby/Lobby.scss';
-@import '../components/lobby/_private/Join.scss';
-@import '../components/lobby/_private/Waiting.scss';
-@import '../components/lobby/_private/CloudBackground.scss';
+@import '../components/lobby/_internal/Join.scss';
+@import '../components/lobby/_internal/Waiting.scss';
+@import '../components/lobby/_internal/CloudBackground.scss';
 @import '../components/modals/RulesModal.scss';
 @import '../components/rules/RulesCarousel.scss';
 @import '../components/rules/Rules.scss';
@@ -48,36 +49,39 @@
 @import '../components/admin/admin';
 
 // ArteRuim Components
-@import '../components/games/arte-ruim/SessionArteRuim.scss';
-@import '../components/games/arte-ruim/EvaluationAllDrawings.scss';
-@import '../components/games/arte-ruim/EvaluationAllCards.scss';
-@import '../components/games/arte-ruim/Ribbon.scss';
-@import '../components/games/arte-ruim/GalleryWindow.scss';
+@import '../games/arte-ruim/SessionArteRuim.scss';
+@import '../games/arte-ruim/EvaluationAllDrawings.scss';
+@import '../games/arte-ruim/EvaluationAllCards.scss';
+@import '../games/arte-ruim/Ribbon.scss';
+@import '../games/arte-ruim/GalleryWindow.scss';
 
 // DetetivesImaginativos Components
-@import '../components/games/detetives-imaginativos/SessionDetetivesImaginativos.scss';
+@import '../games/detetives-imaginativos/SessionDetetivesImaginativos.scss';
 
 // EspiaoEntreNos Components
-@import '../components/games/espiao-entre-nos/SessionEspiaoEntreNos.scss';
+@import '../games/espiao-entre-nos/SessionEspiaoEntreNos.scss';
+
+// MenteColetiva Components
+@import '../games/mente-coletiva/SessionMenteColetiva.scss';
 
 // OndaTelepatica Components
-@import '../components/games/onda-telepatica/SessionOndaTelepatica.scss';
-@import '../components/games/onda-telepatica/Card.scss';
-@import '../components/games/onda-telepatica/CardSelection.scss';
-@import '../components/games/onda-telepatica/Dial.scss';
+@import '../games/onda-telepatica/SessionOndaTelepatica.scss';
+@import '../games/onda-telepatica/Card.scss';
+@import '../games/onda-telepatica/CardSelection.scss';
+@import '../games/onda-telepatica/Dial.scss';
 
 // TestemunhaOcular Components
-@import '../components/games/testemunha-ocular/SessionTestemunhaOcular.scss';
+@import '../games/testemunha-ocular/SessionTestemunhaOcular.scss';
 
 // UeSoIsso Components
-@import '../components/games/ue-so-isso/SessionUseSoIsso.scss';
-@import '../components/games/ue-so-isso/SuggestionCard.scss';
+@import '../games/ue-so-isso/SessionUseSoIsso.scss';
+@import '../games/ue-so-isso/SuggestionCard.scss';
 
 // Pages
-@import '../components/App.scss';
-@import '../components/Home.scss';
-@import '../components/Login.scss';
-@import '../components/TestingZone.scss';
+@import '../routes/App.scss';
+@import '../routes/Home.scss';
+@import '../routes/Login.scss';
+@import '../routes/TestingZone.scss';
 
 // Overridden colors
 @import './colors';

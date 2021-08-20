@@ -11,6 +11,14 @@ export default {
 
 const components = [
   {
+    component: <icons.Chat />,
+    name: 'Chat',
+  },
+  {
+    component: <icons.Clock />,
+    name: 'Clock',
+  },
+  {
     component: <icons.CrimeScene />,
     name: 'CrimeScene',
   },
@@ -19,8 +27,16 @@ const components = [
     name: 'Criminal',
   },
   {
+    component: <icons.CustomerReview />,
+    name: 'CustomerReview',
+  },
+  {
     component: <icons.Defense />,
     name: 'Defense',
+  },
+  {
+    component: <icons.Discussion />,
+    name: 'Discussion',
   },
   {
     component: <icons.Evaluate />,
@@ -29,6 +45,18 @@ const components = [
   {
     component: <icons.Eye />,
     name: 'Eye',
+  },
+  {
+    component: <icons.FairyTale />,
+    name: 'FairyTale',
+  },
+  {
+    component: <icons.Feedback />,
+    name: 'Feedback',
+  },
+  {
+    component: <icons.Flag />,
+    name: 'Flag',
   },
   {
     component: <icons.Gears />,
@@ -41,6 +69,10 @@ const components = [
   {
     component: <icons.HangingPhotograph />,
     name: 'HangingPhotograph',
+  },
+  {
+    component: <icons.ImageCards />,
+    name: 'ImageCards',
   },
   {
     component: <icons.Investigation />,
@@ -79,12 +111,28 @@ const components = [
     name: 'Rank',
   },
   {
+    component: <icons.Review />,
+    name: 'Review',
+  },
+  {
     component: <icons.Seal />,
     name: 'Seal',
   },
   {
     component: <icons.Secret />,
     name: 'Secret',
+  },
+  {
+    component: <icons.Sheep />,
+    name: 'Sheep',
+  },
+  {
+    component: <icons.TheEnd />,
+    name: 'TheEnd',
+  },
+  {
+    component: <icons.Trending />,
+    name: 'Trending',
   },
   {
     component: <icons.Trophy />,

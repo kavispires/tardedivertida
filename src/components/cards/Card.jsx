@@ -16,7 +16,9 @@ export const Card = memo(function ({
 }) {
   const baseClass = 'card';
 
-  const bgColor = randomColor ? getColorFromLetter(typeof children === 'string' ? children[0] : 'X') : color;
+  const bgColor = randomColor
+    ? getColorFromLetter(typeof children === 'string' ? children[0] : header !== 'Carta' ? header[0] : 'X')
+    : color;
 
   return (
     <div className={clsx(baseClass, `${baseClass}--${size}`, className)}>
