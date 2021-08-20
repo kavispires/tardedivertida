@@ -45,12 +45,7 @@ export type FirebaseStateData = FirebaseFirestore.DocumentData | MenteColetivaSt
 export type FirebaseStoreData = FirebaseFirestore.DocumentData | MenteColetivaStore;
 
 export interface MenteColetivaSubmitAction extends Payload {
-  action: 'SUBMIT_QUESTION' | 'SUBMIT_ANSWERS' | 'NEXT_ANSWERS';
-  [key: string]: any;
-}
-
-export interface MenteColetivaUpdateAction extends Payload {
-  action: 'ADD_ANSWER';
+  action: 'SUBMIT_QUESTION' | 'SUBMIT_ANSWERS' | 'NEXT_ANSWERS' | 'ADD_ANSWER';
   [key: string]: any;
 }
 

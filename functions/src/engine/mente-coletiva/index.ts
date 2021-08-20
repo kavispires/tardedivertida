@@ -3,11 +3,7 @@ import { GAME_COLLECTIONS, GAME_PLAYERS_LIMIT } from '../../utils/constants';
 import { MAX_NUMBER_OF_ROUNDS, MENTE_COLETIVA_PHASES } from './constants';
 // Interfaces
 import { GameId, Players } from '../../utils/interfaces';
-import {
-  MenteColetivaInitialState,
-  MenteColetivaSubmitAction,
-  MenteColetivaUpdateAction,
-} from './interfaces';
+import { MenteColetivaInitialState, MenteColetivaSubmitAction } from './interfaces';
 // Utilities
 import * as firebaseUtils from '../../utils/firebase';
 // Internal Functions
@@ -156,25 +152,6 @@ export const submitAction = async (data: MenteColetivaSubmitAction) => {
         firebaseUtils.throwException('Missing `allowedList` value', 'advance answers');
       }
       return handleNextAnswers(collectionName, gameId, playerId, data.allowedList);
-    default:
-      firebaseUtils.throwException(`Given action ${action} is not allowed`);
-  }
-};
-
-/**
- * Handles question and answers submissions
- * May trigger next phase
- */
-export const updateAction = async (data: MenteColetivaUpdateAction) => {
-  const { gameId, gameName: collectionName, playerId, action } = data;
-
-  const actionText = 'submit action';
-  firebaseUtils.verifyPayload(gameId, 'gameId', actionText);
-  firebaseUtils.verifyPayload(collectionName, 'collectionName', actionText);
-  firebaseUtils.verifyPayload(playerId, 'playerId', actionText);
-  firebaseUtils.verifyPayload(action, 'action', actionText);
-
-  switch (action) {
     case 'ADD_ANSWER':
       if (!data.answer) {
         firebaseUtils.throwException('Missing `answer` value', 'add answer');

@@ -24,7 +24,7 @@ function PhaseCompare({ state, players, info }) {
   const user = useUser(players);
 
   const onAddAnswerAPIRequest = useAPICall({
-    apiFunction: MENTE_COLETIVA_API.updateAction,
+    apiFunction: MENTE_COLETIVA_API.submitAction,
     actionName: 'add-answer',
     successMessage: translate('Resposta adicionada com sucesso!', 'Answer added successfully!', language),
     errorMessage: translate(
