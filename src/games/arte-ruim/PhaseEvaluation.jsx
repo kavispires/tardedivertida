@@ -86,7 +86,7 @@ function EvaluationPhase({ players, state, info }) {
     ),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar sua avaliação',
-      'Oops, the application fail to send your evaluation',
+      'Oops, the application failed to send your evaluation',
       language
     ),
   });

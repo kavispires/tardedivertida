@@ -36,7 +36,7 @@ function PhaseCompare({ state, players, info }) {
     successMessage: translate('Validação enviada com successo!', 'Validation sent successfully!', language),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar a validação das sugestões',
-      'Oops, the application fail to send the validation',
+      'Oops, the application failed to send the validation',
       language
     ),
   });
@@ -47,7 +47,7 @@ function PhaseCompare({ state, players, info }) {
     successMessage: translate('Atualizado!', 'Updated!', language),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar atualizar',
-      'Oops, the application fail to update',
+      'Oops, the application failed to update',
       language
     ),
   });

@@ -36,7 +36,7 @@ function PhaseSuggest({ state, players, info }) {
     successMessage: translate('Dicas enviada com successo!', 'Suggestion sent successfully!', language),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar suas dicas',
-      'Oops, the application fail to send your votes',
+      'Oops, the application failed to send your votes',
       language
     ),
   });

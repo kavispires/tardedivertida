@@ -29,7 +29,7 @@ function PhaseCompare({ state, players, info }) {
     successMessage: translate('Resposta adicionada com sucesso!', 'Answer added successfully!', language),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar adicionar respostar',
-      'Oops, the application fail to add answer',
+      'Oops, the application failed to add answer',
       language
     ),
   });
@@ -44,7 +44,7 @@ function PhaseCompare({ state, players, info }) {
     ),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar avançar',
-      'Oops, the application fail to advance',
+      'Oops, the application failed to advance',
       language
     ),
   });

@@ -37,7 +37,7 @@ function PhaseQuestionSelection({ state, players, info }) {
     successMessage: translate('Pergunta enviada com sucesso!', 'Question send successfully!', language),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar a pergunta',
-      'Oops, the application fail to submit the question',
+      'Oops, the application failed to submit the question',
       language
     ),
   });

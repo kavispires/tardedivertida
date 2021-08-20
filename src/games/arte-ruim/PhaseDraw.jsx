@@ -45,7 +45,7 @@ function PhaseDraw({ players, state, info }) {
     ),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar o desenho',
-      'Oops, the application fail to send your art',
+      'Oops, the application failed to send your art',
       language
     ),
   });

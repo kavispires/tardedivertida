@@ -43,7 +43,7 @@ function PhaseGuess({ state, players, info }) {
     successMessage: translate('Resultado enviado com sucesso!', 'Outcome sent successfully!', language),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar o resultado',
-      'Oops, the application fail to submit the outcome',
+      'Oops, the application failed to submit the outcome',
       language
     ),
   });
@@ -54,7 +54,7 @@ function PhaseGuess({ state, players, info }) {
     successMessage: translate('Chute enviado!', 'Guess sent!', language),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar atualizar',
-      'Oops, the application fail to update',
+      'Oops, the application failed to update',
       language
     ),
   });
