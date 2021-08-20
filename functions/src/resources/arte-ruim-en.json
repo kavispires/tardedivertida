@@ -22,7 +22,7 @@
   "a-5-en": {
     "id": "a-5-en",
     "text": "Even-steven",
-    "level": 1
+    "level": 2
   },
   "a-6-en": {
     "id": "a-6-en",
@@ -77,7 +77,7 @@
   "a-16-en": {
     "id": "a-16-en",
     "text": "New Year's resolution",
-    "level": 1
+    "level": 2
   },
   "a-17-en": {
     "id": "a-17-en",
@@ -102,7 +102,7 @@
   "a-21-en": {
     "id": "a-21-en",
     "text": "Charades",
-    "level": 1
+    "level": 2
   },
   "a-22-en": {
     "id": "a-22-en",
@@ -117,17 +117,17 @@
   "a-24-en": {
     "id": "a-24-en",
     "text": "Few and far between",
-    "level": 1
+    "level": 2
   },
   "a-25-en": {
     "id": "a-25-en",
     "text": "The usual suspects",
-    "level": 1
+    "level": 2
   },
   "a-26-en": {
     "id": "a-26-en",
     "text": "Uninvited guest",
-    "level": 1
+    "level": 2
   },
   "a-27-en": {
     "id": "a-27-en",
@@ -152,7 +152,7 @@
   "a-31-en": {
     "id": "a-31-en",
     "text": "The greater good",
-    "level": 1
+    "level": 2
   },
   "a-32-en": {
     "id": "a-32-en",
@@ -227,7 +227,7 @@
   "a-46-en": {
     "id": "a-46-en",
     "text": "Backlash",
-    "level": 1
+    "level": 2
   },
   "a-47-en": {
     "id": "a-47-en",
@@ -252,7 +252,7 @@
   "a-51-en": {
     "id": "a-51-en",
     "text": "Guilty pleasure",
-    "level": 1
+    "level": 2
   },
   "a-52-en": {
     "id": "a-52-en",
@@ -287,7 +287,7 @@
   "a-58-en": {
     "id": "a-58-en",
     "text": "Slang",
-    "level": 1
+    "level": 2
   },
   "a-59-en": {
     "id": "a-59-en",
@@ -2682,6 +2682,11 @@
   "a-537-en": {
     "id": "a-537-en",
     "text": "Rolling in the deep",
+    "level": 1
+  },
+  "a-538-en": {
+    "id": "a-538-en",
+    "text": "Cancel culture",
     "level": 1
   }
 }
