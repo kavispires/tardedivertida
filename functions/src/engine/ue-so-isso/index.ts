@@ -3,7 +3,7 @@ import { GAME_COLLECTIONS, GAME_PLAYERS_LIMIT } from '../../utils/constants';
 import { UE_SO_ISSO_PHASES } from './constants';
 // Interfaces
 import { Players, GameId } from '../../utils/interfaces';
-import { UeSoIssoInitialState, UeSoIssoSubmitAction, UeSoIssoUpdateAction } from './interfaces';
+import { UeSoIssoInitialState, UeSoIssoSubmitAction } from './interfaces';
 // Utilities
 import * as firebaseUtils from '../../utils/firebase';
 import * as utils from '../../utils/helpers';
@@ -163,25 +163,6 @@ export const submitAction = async (data: UeSoIssoSubmitAction) => {
         firebaseUtils.throwException('Missing `outcome` value', 'submit outcome');
       }
       return handleConfirmGuess(collectionName, gameId, playerId, data.outcome);
-    default:
-      firebaseUtils.throwException(`Given action ${action} is not allowed`);
-  }
-};
-
-/**
- * Handles guess, live suggestion validation
- * Never triggers next phase
- */
-export const updateAction = async (data: UeSoIssoUpdateAction) => {
-  const { gameId, gameName: collectionName, playerId, action } = data;
-
-  const actionText = 'update action';
-  firebaseUtils.verifyPayload(gameId, 'gameId', actionText);
-  firebaseUtils.verifyPayload(collectionName, 'collectionName', actionText);
-  firebaseUtils.verifyPayload(playerId, 'playerId', actionText);
-  firebaseUtils.verifyPayload(action, 'action', actionText);
-
-  switch (action) {
     case 'VALIDATE_SUGGESTION':
       if (!data.suggestions) {
         firebaseUtils.throwException('Missing `suggestions` value', 'submit suggestions');
