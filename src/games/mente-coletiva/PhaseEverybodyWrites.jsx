@@ -68,8 +68,8 @@ function PhaseEverybodyWrites({ state, players, info }) {
                   <br />
                   Pense em respostas comuns que fará com que você responda igual a outros jogadores.
                   <br />
-                  Você ganha 1 ponto para cada uma de suas respostas MAIS 1 ponto para cada resposta igual a
-                  de outro jogador (1 ponto por jogador).
+                  Você ganha 1 ponto para cada uma de suas respostas + 1 ponto para cada resposta igual a de
+                  outro jogador (1 ponto por jogador).
                   <br />
                   Por exemplo, se 3 jogadores escreveram 'bola', são 3 pontos para cada.
                 </>

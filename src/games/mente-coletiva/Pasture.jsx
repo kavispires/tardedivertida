@@ -40,7 +40,7 @@ export const Pasture = memo(function ({ players }) {
                   sheepPlayers.map((player, index) => {
                     const sheepKey = `${enclosureKey}-${player.id}`;
                     const sheepClassName = `m-sheep--pos-${index}`;
-
+                    console.log();
                     return (
                       <SheepAvatar
                         key={sheepKey}
@@ -50,7 +50,8 @@ export const Pasture = memo(function ({ players }) {
                           sheepClassName,
                           player.animateRight && 'm-sheep--animate-right',
                           player.animateLeft && 'm-sheep--animate-left',
-                          player.animateRebound && 'm-sheep--animate-rebound'
+                          player.animateRebound && 'm-sheep--animate-rebound',
+                          player.level === 5 && 'm-sheep--animate-die'
                         )}
                         width={sheepWidth}
                         animate
