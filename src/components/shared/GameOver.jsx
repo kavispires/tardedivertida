@@ -55,14 +55,14 @@ export function GameOver({ state, children, className }) {
         <img src={gameOverTitle} alt="Game Over" />
       </div>
 
-      {Boolean(state.winners) && (
+      {Boolean(state.winners) && state.winners.length > 0 && (
         <div className="game-over__winner-container">
           <div className="game-over__text">
             <GameOverText />{' '}
             {state.winners.length > 1 ? (
               <Translate pt="e os vencedores são" en="and the winners are" />
             ) : (
-              <Translate pt="o vencedor é" en="and the winner is" />
+              <Translate pt="e o vencedor é" en="and the winner is" />
             )}
             :
           </div>
