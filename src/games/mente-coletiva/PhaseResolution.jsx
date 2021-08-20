@@ -31,7 +31,7 @@ function PhaseResolution({ state, players, info }) {
       <StepSwitcher step={step}>
         {/* Step 0 */}
         <PhaseAnnouncement
-          type="default"
+          type="customer-review"
           title={translate('Resultado', 'And who moves is...', language)}
           onClose={() => setStep(1)}
           currentRound={state?.round?.current}

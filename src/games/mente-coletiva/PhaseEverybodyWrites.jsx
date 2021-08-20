@@ -54,7 +54,7 @@ function PhaseEverybodyWrites({ state, players, info }) {
       <StepSwitcher step={step}>
         {/* Step 0 */}
         <PhaseAnnouncement
-          type="default"
+          type="writing"
           title={translate('Todos Respondem', 'Everybody Writes', language)}
           onClose={() => setStep(1)}
           currentRound={state?.round?.current}
@@ -71,7 +71,7 @@ function PhaseEverybodyWrites({ state, players, info }) {
                   Você ganha 1 ponto para cada uma de suas respostas MAIS 1 ponto para cada resposta igual a
                   de outro jogador (1 ponto por jogador).
                   <br />
-                  Se 3 jogadores escreveram 'bola', são 3 pontos para cada.
+                  Por exemplo, se 3 jogadores escreveram 'bola', são 3 pontos para cada.
                 </>
               }
               en={

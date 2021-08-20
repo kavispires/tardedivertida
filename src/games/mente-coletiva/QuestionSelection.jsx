@@ -12,7 +12,7 @@ function QuestionSelection({ currentQuestions, onSubmitQuestion, players, roundT
         <Translate pt="Selecione uma das perguntas" en="Select one of the questions" />
       </Title>
 
-      <ul className="m-questions">
+      <ul className="m-questions contained">
         {currentQuestions.map((question) => (
           <li className="m-questions__item" key={question.id}>
             <button

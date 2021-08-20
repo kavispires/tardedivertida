@@ -9,7 +9,7 @@ import { ButtonContainer, Title, translate, Translate } from '../../components/s
 import { Pasture } from './Pasture';
 import { RoundType } from './RoundType';
 import { Question } from './Question';
-import { shuffle } from '../../utils';
+import { isDevEnv, shuffle } from '../../utils';
 
 const mockAnswers = (userId, numAnswers) => {
   const list = ['agua', 'bola', 'coco', 'dedo', 'egua', 'flauta', 'gatilho', 'helio', 'ilha', 'jaguar', 'ky'];
@@ -28,9 +28,10 @@ function AnsweringStep({ user, currentQuestion, players, roundType, onSubmitAnsw
   const language = useLanguage();
   const [answers, setAnswers] = useState({});
 
-  // TODO: REMOVE, DEV ONLY
   useEffect(() => {
-    onSubmitAnswers({ answers: mockAnswers(user.id, currentQuestion.number) });
+    if (isDevEnv) {
+      onSubmitAnswers({ answers: mockAnswers(user.id, currentQuestion.number) });
+    }
   }, []); // eslint-disable-line
 
   const onWriteAnswer = (e) => {
