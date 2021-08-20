@@ -56,7 +56,7 @@ export interface DrawingEntry {
   playerId: string;
 }
 
-export interface SubmitDrawingPayload extends Payload {
-  drawing: string;
-  cardId: string;
+export interface ArteRuimSubmitAction extends Payload {
+  action: 'SUBMIT_DRAWING' | 'SUBMIT_VOTING';
+  [key: string]: any;
 }

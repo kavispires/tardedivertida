@@ -74,8 +74,8 @@ function EvaluationPhase({ players, state, info }) {
   const [votes, setVotes] = useState({});
   const [activeItem, setActiveItem] = useState(null);
 
-  const onSubmitVoting = useAPICall({
-    apiFunction: ARTE_RUIM_API.submitVoting,
+  const onSubmitVotingAPIRequest = useAPICall({
+    apiFunction: ARTE_RUIM_API.submitAction,
     actionName: 'submit-drawing',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(0),
@@ -90,6 +90,13 @@ function EvaluationPhase({ players, state, info }) {
       language
     ),
   });
+
+  const onSubmitVoting = (payload) => {
+    onSubmitVotingAPIRequest({
+      action: 'SUBMIT_VOTING',
+      ...payload,
+    });
+  };
 
   const onGuessForMe = useCallback(() => {
     const usedDrawings = Object.keys(votes);

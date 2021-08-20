@@ -60,15 +60,7 @@ exports.playAgain = functions.https.onCall(commonEngine.playAgain);
 
 // ARTE_RUIM HTTP CALLS
 
-/**
- * Submit player's drawing, if it's the last player to be ready, move to the next phase
- */
-exports.arteRuimSubmitDrawing = functions.https.onCall(arteRuimEngine.submitDrawing);
-
-/**
- * Submit players votes, if it's the last player to be ready, move to the next phase
- */
-exports.arteRuimSubmitVoting = functions.https.onCall(arteRuimEngine.submitVoting);
+exports.arteRuimSubmitAction = functions.https.onCall(arteRuimEngine.submitAction);
 
 // DETETIVES_IMAGINATIVOS HTTP CALLS
 

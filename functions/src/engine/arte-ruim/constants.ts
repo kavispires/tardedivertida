@@ -60,13 +60,3 @@ export const CARDS_PER_PLAYER_COUNT = {
     },
   },
 };
-
-// deprecated
-export const ARTE_RUIM_GOAL = 50;
-
-// deprecated
-export const ARTE_RUIM_CARDS_BY_LEVEL = {
-  1: new Array(200).fill(1).map((i, index) => `${i + index}`),
-  2: new Array(200).fill(201).map((i, index) => `${i + index}`),
-  3: new Array(200).fill(401).map((i, index) => `${i + index}`),
-};
