@@ -31,7 +31,7 @@ function PhaseEverybodyWrites({ state, players, info }) {
     successMessage: translate('Respostas enviadas com sucesso!', 'Answers send successfully!', language),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar respostas',
-      'Oops, the application fail to submit answers',
+      'Oops, the application failed to submit answers',
       language
     ),
   });
