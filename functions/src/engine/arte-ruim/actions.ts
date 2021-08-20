@@ -1,27 +1,23 @@
 // Interfaces
-import { SubmitVotesPayload } from '../../utils/interfaces';
-import { SubmitDrawingPayload } from './interfaces';
+import { GameId, PlayerId, GameName, PlainObject } from '../../utils/interfaces';
 // Helpers
 import * as firebaseUtils from '../../utils/firebase';
 import * as utils from '../../utils/helpers';
 import { nextArteRuimPhase } from './index';
 
-export const submitDrawing = async (data: SubmitDrawingPayload) => {
-  const { gameId, gameName: collectionName, playerId, drawing, cardId } = data;
-
+export const handleSubmitDrawing = async (
+  collectionName: GameName,
+  gameId: GameId,
+  playerId: PlayerId,
+  drawing: string
+) => {
   const actionText = 'submit your drawing';
-  firebaseUtils.verifyPayload(gameId, 'gameId', actionText);
-  firebaseUtils.verifyPayload(collectionName, 'collectionName', actionText);
-  firebaseUtils.verifyPayload(playerId, 'playerId', actionText);
-  firebaseUtils.verifyPayload(drawing, 'drawing', actionText);
-  firebaseUtils.verifyPayload(cardId, 'cardId', actionText);
 
-  // Get 'players' from given game session
   const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
   const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
 
-  // Make player ready and attach drawing
   const players = playersDoc.data() ?? {};
+
   const updatedPlayers = utils.readyPlayer(players, playerId);
   updatedPlayers[playerId].currentCard.drawing = drawing;
 
@@ -31,28 +27,27 @@ export const submitDrawing = async (data: SubmitDrawingPayload) => {
     firebaseUtils.throwException(error, actionText);
   }
 
-  if (!utils.isEverybodyReady(updatedPlayers)) {
-    return true;
+  // If all players are ready, trigger next phase
+  if (utils.isEverybodyReady(updatedPlayers)) {
+    return nextArteRuimPhase(collectionName, gameId, players);
   }
 
-  // If all players are ready, trigger next phase
-  return nextArteRuimPhase(collectionName, gameId, players);
+  return true;
 };
 
-export const submitVoting = async (data: SubmitVotesPayload) => {
-  const { gameId, gameName: collectionName, playerId, votes } = data;
-
-  const actionText = 'submit your votes';
-  firebaseUtils.verifyPayload(gameId, 'gameId', actionText);
-  firebaseUtils.verifyPayload(collectionName, 'collectionName', actionText);
-  firebaseUtils.verifyPayload(playerId, 'playerId', actionText);
-  firebaseUtils.verifyPayload(votes, 'votes', actionText);
+export const handleSubmitVoting = async (
+  collectionName: GameName,
+  gameId: GameId,
+  playerId: PlayerId,
+  votes: PlainObject
+) => {
+  const actionText = 'submit your drawing';
 
   const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
   const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
 
-  // Make player ready and attach drawing
   const players = playersDoc.data() ?? {};
+
   const updatedPlayers = utils.readyPlayer(players, playerId);
   updatedPlayers[playerId].votes = votes;
 
@@ -62,10 +57,10 @@ export const submitVoting = async (data: SubmitVotesPayload) => {
     firebaseUtils.throwException(error, actionText);
   }
 
-  if (!utils.isEverybodyReady(updatedPlayers)) {
-    return true;
+  // If all players are ready, trigger next phase
+  if (utils.isEverybodyReady(updatedPlayers)) {
+    return nextArteRuimPhase(collectionName, gameId, players);
   }
 
-  // If all players are ready, trigger next phase
-  return nextArteRuimPhase(collectionName, gameId, players);
+  return true;
 };

@@ -2,7 +2,7 @@
 import { PlainObject, Players } from '../../utils/interfaces';
 import { ArteRuimCard, ArteRuimCardsDatabase, ArteRuimDrawing, FirebaseStoreData } from './interfaces';
 // Constants
-import { ARTE_RUIM_CARDS_BY_LEVEL, ARTE_RUIM_PHASES, ARTE_RUIM_TOTAL_ROUNDS } from './constants';
+import { ARTE_RUIM_PHASES, ARTE_RUIM_TOTAL_ROUNDS } from './constants';
 // Helpers
 import * as gameUtils from '../../utils/game-utils';
 
@@ -242,25 +242,6 @@ export const getNewPastDrawings = (players: Players, gallery) => {
     card.successRate = Math.round((100 * correctAnswers) / (playerCount - 1)) / 100;
     return card;
   });
-};
-
-/** DEPRECATED
- * Calculate what level of cards it should be gotten
- * @param pointsToVictory
- * @param goal
- * @returns
- */
-export const getLevel = (pointsToVictory: number, goal: number): number => {
-  return pointsToVictory <= goal / 3 ? 3 : pointsToVictory <= (goal * 2) / 3 ? 2 : 1;
-};
-
-/** DEPRECATED
- * Get the group of cards according to the given level
- * @param level
- * @returns
- */
-export const getCardsForLevel = (level: number): string[] => {
-  return ARTE_RUIM_CARDS_BY_LEVEL[level];
 };
 
 /**

@@ -14,8 +14,7 @@ export const GAME_API = {
 };
 
 export const ARTE_RUIM_API = {
-  submitDrawing: functions.httpsCallable('arteRuimSubmitDrawing'),
-  submitVoting: functions.httpsCallable('arteRuimSubmitVoting'),
+  submitAction: functions.httpsCallable('arteRuimSubmitAction'),
 };
 
 export const DETETIVES_IMAGINATIVOS_API = {

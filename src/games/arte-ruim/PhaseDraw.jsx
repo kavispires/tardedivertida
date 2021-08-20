@@ -33,8 +33,8 @@ function PhaseDraw({ players, state, info }) {
     setSecretCard(players[user?.id]?.currentCard ?? {});
   }, [players, user?.id]);
 
-  const onSubmitDrawing = useAPICall({
-    apiFunction: ARTE_RUIM_API.submitDrawing,
+  const onSubmitDrawingAPIRequest = useAPICall({
+    apiFunction: ARTE_RUIM_API.submitAction,
     actionName: 'submit-drawing',
     onBeforeCall: () => setStep(3),
     onError: () => setStep(1),
@@ -49,6 +49,13 @@ function PhaseDraw({ players, state, info }) {
       language
     ),
   });
+
+  const onSubmitDrawing = (payload) => {
+    onSubmitDrawingAPIRequest({
+      action: 'SUBMIT_DRAWING',
+      ...payload,
+    });
+  };
 
   const onStartDrawing = () => {
     play();

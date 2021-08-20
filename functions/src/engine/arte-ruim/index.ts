@@ -3,7 +3,7 @@ import { GAME_COLLECTIONS, GAME_PLAYERS_LIMIT } from '../../utils/constants';
 import { ARTE_RUIM_PHASES, ARTE_RUIM_TOTAL_ROUNDS } from './constants';
 // Interfaces
 import { GameId, Players } from '../../utils/interfaces';
-import { ArteRuimInitialState } from './interfaces';
+import { ArteRuimInitialState, ArteRuimSubmitAction } from './interfaces';
 // Utilities
 import * as firebaseUtils from '../../utils/firebase';
 import * as globalUtils from '../global';
@@ -17,8 +17,8 @@ import {
   prepareGalleryPhase,
   prepareGameOverPhase,
 } from './setup';
-import * as arteRuimActions from './actions';
 import { getCards } from './data';
+import { handleSubmitDrawing, handleSubmitVoting } from './actions';
 
 /**
  * Get Initial Game State
@@ -120,5 +120,32 @@ export const nextArteRuimPhase = async (
   return true;
 };
 
-export const submitDrawing = arteRuimActions.submitDrawing;
-export const submitVoting = arteRuimActions.submitVoting;
+/**
+ * Perform action submitted by the app
+ * @param data
+ * @returns
+ */
+export const submitAction = async (data: ArteRuimSubmitAction) => {
+  const { gameId, gameName: collectionName, playerId, action } = data;
+
+  const actionText = 'submit action';
+  firebaseUtils.verifyPayload(gameId, 'gameId', actionText);
+  firebaseUtils.verifyPayload(collectionName, 'collectionName', actionText);
+  firebaseUtils.verifyPayload(playerId, 'playerId', actionText);
+  firebaseUtils.verifyPayload(action, 'action', actionText);
+
+  switch (action) {
+    case 'SUBMIT_DRAWING':
+      if (!data.drawing) {
+        firebaseUtils.throwException('Missing `drawing` value', 'submit drawing');
+      }
+      return handleSubmitDrawing(collectionName, gameId, playerId, data.drawing);
+    case 'SUBMIT_VOTING':
+      if (!data.votes) {
+        firebaseUtils.throwException('Missing `reaction` value', 'submit votes');
+      }
+      return handleSubmitVoting(collectionName, gameId, playerId, data.votes);
+    default:
+      firebaseUtils.throwException(`Given action ${action} is not allowed`);
+  }
+};
