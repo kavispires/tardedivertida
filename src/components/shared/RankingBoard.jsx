@@ -103,7 +103,9 @@ export function RankingBoard({ players, ranking }) {
               <div className="ranking-board__name">{players[playerId].name}</div>
             </div>
             <div className="ranking-board__cell-points">{previousScore}</div>
-            {displayStep >= 1 && <div className="ranking-board__cell-points-plus">+{gainedPoints}</div>}
+            {displayStep >= 1 && gainedPoints !== undefined && (
+              <div className="ranking-board__cell-points-plus">+{gainedPoints}</div>
+            )}
             {displayStep >= 2 && <div className="ranking-board__cell-points-total">{newScore}</div>}
           </div>
         );

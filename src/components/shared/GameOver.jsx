@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState } from 'react';
 // Design Resources
 import { Button, Popconfirm, Progress } from 'antd';
 import { RocketFilled } from '@ant-design/icons';
@@ -14,6 +14,8 @@ import { Avatar } from '../avatars';
 import { AdminOnly } from '../admin/index';
 import { PhaseContainer } from './index';
 import { translate, Translate } from './Translate';
+import { StepSwitcher } from './StepSwitcher';
+import { PhaseAnnouncement } from './PhaseAnnouncement';
 
 const GameOverText = () => <Translate pt="Jogo concluído" en="The game is over" />;
 
@@ -53,14 +55,14 @@ export function GameOver({ state, children, className }) {
         <img src={gameOverTitle} alt="Game Over" />
       </div>
 
-      {Boolean(state.winners) && (
+      {Boolean(state.winners) && state.winners.length > 0 && (
         <div className="game-over__winner-container">
           <div className="game-over__text">
             <GameOverText />{' '}
             {state.winners.length > 1 ? (
               <Translate pt="e os vencedores são" en="and the winners are" />
             ) : (
-              <Translate pt="o vencedor é" en="and the winner is" />
+              <Translate pt="e o vencedor é" en="and the winner is" />
             )}
             :
           </div>
@@ -177,6 +179,65 @@ GameOver.propTypes = {
     winners: PropTypes.shape({
       length: PropTypes.number,
       map: PropTypes.func,
+    }),
+  }),
+};
+
+export function GameOverWrapper({
+  info,
+  state,
+  announcementIcon,
+  announcementTitle,
+  announcementDuration,
+  announcementContent,
+  children,
+}) {
+  const [step, setStep] = useState(0);
+  const language = useLanguage();
+
+  return (
+    <PhaseContainer
+      info={info}
+      phase={state?.phase}
+      allowedPhase="GAME_OVER"
+      className="game-over__container"
+    >
+      <StepSwitcher step={step}>
+        {/*Step 0 */}
+        <PhaseAnnouncement
+          type={announcementIcon ?? 'the-end'}
+          title={translate(
+            'E o jogo chegou ao fim...',
+            'And the game is over...',
+            language,
+            announcementTitle
+          )}
+          onClose={() => setStep(1)}
+          currentRound={state?.round?.current}
+          duration={announcementDuration || 3}
+        >
+          {announcementContent}
+        </PhaseAnnouncement>
+
+        <GameOver info={info} state={state}>
+          {children}
+        </GameOver>
+      </StepSwitcher>
+    </PhaseContainer>
+  );
+}
+
+GameOverWrapper.propTypes = {
+  announcementContent: PropTypes.any,
+  announcementDuration: PropTypes.number,
+  announcementIcon: PropTypes.oneOf(['trophy', 'the-end', 'flag', 'criminal', 'newspaper']),
+  announcementTitle: PropTypes.string,
+  children: PropTypes.any,
+  info: PropTypes.object,
+  state: PropTypes.shape({
+    phase: PropTypes.string,
+    round: PropTypes.shape({
+      current: PropTypes.number,
     }),
   }),
 };

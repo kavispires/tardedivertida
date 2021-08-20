@@ -1,6 +1,7 @@
 import { AVATAR_IDS, LETTERS } from './constants';
 import {
   GameCode,
+  GameOrder,
   PlainObject,
   Player,
   PlayerAvatarId,
@@ -9,6 +10,7 @@ import {
   Players,
   Round,
   Teams,
+  TurnOrder,
 } from '../utils/interfaces';
 import { shuffle, getRandomUniqueItem } from './game-utils';
 
@@ -113,6 +115,18 @@ export const readyPlayers = (players: Players, butThisOne: PlayerId = ''): Playe
 };
 
 /**
+ * Set given player as ready in the players object
+ * @param players
+ * @param playerId
+ * @returns
+ */
+export const unReadyPlayer = (players: Players, playerId: PlayerId): Players => {
+  players[playerId].ready = false;
+  players[playerId].updatedAt = Date.now();
+  return players;
+};
+
+/**
  * Set all players as not ready
  * @param players
  * @param butThisOne
@@ -166,10 +180,27 @@ export const resetPlayers = (players: Players): Players => {
  * @returns
  */
 export const removePropertiesFromPlayers = (players: Players, properties: string[]): Players => {
-  for (const playerKey in players) {
+  for (const playerId in players) {
     properties.forEach((property) => {
-      delete players[playerKey]?.[property];
+      delete players[playerId]?.[property];
     });
+  }
+  return players;
+};
+
+/**
+ * Set all players as not ready
+ * @param players
+ * @param butThisOne
+ * @returns
+ */
+export const addPropertiesFromPlayers = (players: Players, properties: PlainObject): Players => {
+  for (const playerId in players) {
+    players[playerId] = {
+      ...players[playerId],
+      ...properties,
+      updatedAt: Date.now(),
+    };
   }
   return players;
 };
@@ -309,4 +340,14 @@ export const increaseRound = (round: Round, total?: number, current?: number): R
     total: total ?? round.total,
     current: current ?? (round?.current ?? 0) + 1,
   };
+};
+
+/**
+ * Get active player
+ * @param turnOrder
+ * @param currentRound
+ * @returns
+ */
+export const getActivePlayer = (turnOrder: GameOrder | TurnOrder, currentRound: number) => {
+  return turnOrder[(currentRound - 1) % turnOrder.length];
 };

@@ -198,7 +198,7 @@ export const SEPARATOR = '::';
 /**
  * Random names used during Dev
  */
-export const RANDOM_NAMES = 'Ana,Bob,Cam,Dan,Evan,Fred,Gus,Helen,Ian,Jess,Kim,Liam,Max,Nick,Oliver,Peter,Quinn,Roy,Tina'.split(
+export const RANDOM_NAMES = 'Abe,Bob,Cam,Dan,Eva,Fin,Gus,Hal,Ian,Jan,Kim,Leo,Max,Nic,Ole,Pat,Quinn,Roy,Tim'.split(
   ','
 );
 
@@ -209,6 +209,7 @@ export const GAME_COLLECTION = {
   ARTE_RUIM: 'arte-ruim',
   DETETIVES_IMAGINATIVOS: 'detetives-imaginativos',
   ESPIAO_ENTRE_NOS: 'espiao-entre-nos',
+  MENTE_COLETIVA: 'mente-coletiva',
   ONDA_TELEPATICA: 'onda-telepatica',
   TESTEMUNHA_OCULAR: 'testemunha-ocular',
   UE_SO_ISSO: 'ue-so-isso',
@@ -246,6 +247,16 @@ export const PHASES = {
     INVESTIGATION: 'INVESTIGATION',
     ASSESSMENT: 'ASSESSMENT',
     FINAL_ASSESSMENT: 'FINAL_ASSESSMENT',
+    RESOLUTION: 'RESOLUTION',
+    GAME_OVER: 'GAME_OVER',
+  },
+  MENTE_COLETIVA: {
+    LOBBY: 'LOBBY',
+    RULES: 'RULES',
+    SETUP: 'SETUP',
+    QUESTION_SELECTION: 'QUESTION_SELECTION',
+    EVERYBODY_WRITES: 'EVERYBODY_WRITES',
+    COMPARE: 'COMPARE',
     RESOLUTION: 'RESOLUTION',
     GAME_OVER: 'GAME_OVER',
   },

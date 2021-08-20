@@ -1,0 +1,52 @@
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import { useTimer } from 'react-timer-hook';
+// Utils
+import { inNSeconds } from '../../utils';
+// Components
+import { Step, translate } from '../../components/shared';
+import { Card } from '../../components/cards';
+import { DrawingCanvas } from '../../components/canvas';
+import { useLanguage } from '../../hooks';
+
+function DrawPhaseDrawStep({ secretCard, onSubmitDrawing }) {
+  const language = useLanguage();
+  const [lines, setLines] = useState([]);
+
+  const { seconds } = useTimer({
+    expiryTimestamp: inNSeconds(11),
+    autoStart: true,
+    onExpire: () =>
+      onSubmitDrawing({
+        drawing: JSON.stringify(lines),
+        cardId: secretCard.id,
+      }),
+  });
+
+  return (
+    <Step>
+      <Card
+        size="large"
+        header={translate('Desenhe', 'Draw', language)}
+        footer={Array(secretCard?.level).fill('•').join('')}
+        className="a-draw-step__card"
+        color="yellow"
+      >
+        {secretCard?.text}
+        <span className="a-draw-step__timer">{seconds > 0 ? seconds - 1 : 0}</span>
+      </Card>
+      <DrawingCanvas lines={lines} setLines={setLines} />
+    </Step>
+  );
+}
+
+DrawPhaseDrawStep.propTypes = {
+  onSubmitDrawing: PropTypes.func.isRequired,
+  secretCard: PropTypes.shape({
+    id: PropTypes.string,
+    level: PropTypes.number,
+    text: PropTypes.string,
+  }).isRequired,
+};
+
+export default DrawPhaseDrawStep;
