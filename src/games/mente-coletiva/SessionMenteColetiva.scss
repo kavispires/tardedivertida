@@ -12,7 +12,6 @@
   width: 100%;
   position: relative;
   min-height: 10vh;
-  background: red;
 
   &__background {
     width: 100%;
@@ -121,6 +120,10 @@
 
   &--animate-rebound {
     animation: move-sheep-rebound 1000ms ease-in-out forwards;
+  }
+
+  &--animate-die {
+    animation: sheep-die 500ms ease-in forwards;
   }
 }
 
@@ -352,5 +355,26 @@
   100% {
     transform: scale(1);
     transform-origin: 50% 0%;
+  }
+}
+
+@keyframes sheep-die {
+  0% {
+    transform: translateY(0);
+  }
+  10% {
+    transform: translateY(-10%);
+  }
+  15% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(0.1) translateY(600%);
+    opacity: 0.2;
+  }
+  100% {
+    transform: scale(0.1) translateY(700%);
+    opacity: 0;
   }
 }
