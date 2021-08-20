@@ -75,7 +75,7 @@ function PhaseCompare({ state, players, info }) {
       <StepSwitcher step={step}>
         {/* Step 0 */}
         <PhaseAnnouncement
-          type="default"
+          type="discussion"
           title={translate('Respostas', 'Respostas', language)}
           onClose={() => setStep(1)}
           currentRound={state?.round?.current}

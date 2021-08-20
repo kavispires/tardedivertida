@@ -10,9 +10,9 @@ import { SheepAvatar } from '../../components/avatars';
 export const Pasture = memo(function ({ players }) {
   const [width] = useDimensions();
 
-  const pastureWidth = width - 36;
+  const pastureWidth = Math.min(width, 1360) - 36;
   const pastureHeight = pastureWidth / 4;
-  const sheepWidth = width / 22;
+  const sheepWidth = Math.min(width, 1360) / 22;
 
   const sheepPerEnclosure = useMemo(() => {
     const spe = Array(6).fill(null);
@@ -64,7 +64,7 @@ export const Pasture = memo(function ({ players }) {
 
         <img src={pastureFence} alt="fence" className="m-pasture__fence" />
       </div>
-      <div className="m-pasture-names" style={{ width: `${pastureWidth}px` }}>
+      <div className="m-pasture-names" style={{ width: `${Math.min(pastureWidth, 1360)}px` }}>
         <div className="m-enclosures m-enclosures--names">
           {sheepPerEnclosure.map((sheepPlayers, index) => {
             const names = sheepPlayers?.map((p) => p.name)?.join(',\n') ?? '';

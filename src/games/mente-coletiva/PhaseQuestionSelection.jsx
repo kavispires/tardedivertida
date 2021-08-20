@@ -79,12 +79,11 @@ function PhaseQuestionSelection({ state, players, info }) {
             <Translate
               pt={
                 <>
-                  Somos todos ovelhinhas e nosso pasto está superlotado! Precisamos decidir quem deve sair.
+                  Precisamos reduzir essa população! Vamos fazer uma pergunta em que todos tem que escrever
+                  uma certa quantidade de respostas. Você ganha um ponto para cada resposta igual a de outra
+                  ovelha. Quem receber o menor número de pontos move uma seção para a direita.
                   <br />
-                  Vamos fazer uma pergunta e quem receber o menor número de pontos move uma seção para a
-                  direita. Chega de inclusão!
-                  <br />
-                  Se você já está na última seção e tiver que mover pra direita, você cai no precipício e
+                  Se você já está no últimp pasto e tiver que mover pra direita, você cai no precipício e
                   morre. O pasto fica menos lotado e todos mais felizes.
                   <br />
                   <Instruction contained>

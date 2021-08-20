@@ -12,6 +12,7 @@
   width: 100%;
   position: relative;
   min-height: 10vh;
+  background: red;
 
   &__background {
     width: 100%;
@@ -121,10 +122,6 @@
   &--animate-rebound {
     animation: move-sheep-rebound 1000ms ease-in-out forwards;
   }
-}
-
-.m-questions {
-  @include contained;
 }
 
 .m-question {
