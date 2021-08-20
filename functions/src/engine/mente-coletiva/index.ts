@@ -10,9 +10,6 @@ import {
 } from './interfaces';
 // Utilities
 import * as firebaseUtils from '../../utils/firebase';
-// import * as globalUtils from '../global';
-// import * as publicUtils from '../public';
-// import * as utils from '../../utils/helpers';
 // Internal Functions
 import { determineNextPhase, determineGameOver } from './helpers';
 import {
@@ -23,7 +20,6 @@ import {
   prepareComparePhase,
   prepareResolutionPhase,
 } from './setup';
-// import * as arteRuimActions from './actions';
 import { getQuestions } from './data';
 import { handleAddAnswer, handleNextAnswers, handleSubmitAnswers, handleSubmitQuestion } from './actions';
 

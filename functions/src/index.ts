@@ -6,6 +6,7 @@ import * as DetetivesImaginativosEngine from './engine/detetives-imaginativos';
 import * as espiaoEntreNosEngine from './engine/espiao-entre-nos';
 import * as menteColetivaEngine from './engine/mente-coletiva';
 import * as ondaTelepaticaEngine from './engine/onda-telepatica';
+import * as polemicaDaVezEngine from './engine/polemica-da-vez';
 import * as testemunhaOcularEngine from './engine/testemunha-ocular';
 import * as ueSoIssoEngine from './engine/ue-so-isso';
 
@@ -95,7 +96,7 @@ exports.espiaoEntreNosGuessLocation = functions.https.onCall(espiaoEntreNosEngin
  */
 exports.espiaoEntreNosSubmitVoting = functions.https.onCall(espiaoEntreNosEngine.submitVoting);
 
-// UE_SO_ISSO HTTP CALLS
+// MENTE_COLETIVA HTTP CALLS
 
 exports.menteColetivaSubmitAction = functions.https.onCall(menteColetivaEngine.submitAction);
 exports.menteColetivaUpdateAction = functions.https.onCall(menteColetivaEngine.updateAction);
@@ -121,6 +122,10 @@ exports.ondaTelepaticaSubmitGuess = functions.https.onCall(ondaTelepaticaEngine.
  * Submit rival team guess and move to the next phase
  */
 exports.ondaTelepaticaSubmitRivalGuess = functions.https.onCall(ondaTelepaticaEngine.submitRivalGuess);
+
+// POLEMICA_DA_VEZ HTTP CALLS
+
+exports.polemicaDaVezSubmitAction = functions.https.onCall(polemicaDaVezEngine.submitAction);
 
 // TESTEMUNHA_OCULAR HTTP CALLS
 

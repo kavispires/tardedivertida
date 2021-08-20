@@ -74,7 +74,7 @@ export const prepareQuestionSelectionPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
-  // Determine turn order
+  // Determine active player based on current round
   const activePlayer = utils.getActivePlayer(store.gameOrder, state.round.current + 1);
 
   // Modify player
@@ -113,7 +113,7 @@ export const prepareEverybodyWritesPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
-  // Modify player
+  // Modify players
   utils.unReadyPlayers(players);
 
   const currentQuestion = store.deck.find((question) => question.id === store.questionId);
