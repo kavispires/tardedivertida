@@ -49,7 +49,7 @@ function PhaseGuess({ state, players, info }) {
   });
 
   const onSendGuessAPIRequest = useAPICall({
-    apiFunction: UE_SO_ISSO_API.updateAction,
+    apiFunction: UE_SO_ISSO_API.submitAction,
     actionName: 'validate-suggestions',
     successMessage: translate('Chute enviado!', 'Guess sent!', language),
     errorMessage: translate(

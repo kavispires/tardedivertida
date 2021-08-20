@@ -46,7 +46,6 @@ export const TESTEMUNHA_OCULAR_API = {
 
 export const UE_SO_ISSO_API = {
   submitAction: functions.httpsCallable('ueSoIssoSubmitAction'),
-  updateAction: functions.httpsCallable('ueSoIssoUpdateAction'),
 };
 
 /**

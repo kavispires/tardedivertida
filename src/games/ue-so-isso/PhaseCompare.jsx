@@ -42,7 +42,7 @@ function PhaseCompare({ state, players, info }) {
   });
 
   const onUpdateValidSuggestionsAPIRequest = useAPICall({
-    apiFunction: UE_SO_ISSO_API.updateAction,
+    apiFunction: UE_SO_ISSO_API.submitAction,
     actionName: 'validate-suggestions',
     successMessage: translate('Atualizado!', 'Updated!', language),
     errorMessage: translate(

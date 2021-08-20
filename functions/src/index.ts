@@ -126,4 +126,3 @@ exports.testemunhaOcularSubmitAction = functions.https.onCall(testemunhaOcularEn
 // UE_SO_ISSO HTTP CALLS
 
 exports.ueSoIssoSubmitAction = functions.https.onCall(ueSoIssoEngine.submitAction);
-exports.ueSoIssoUpdateAction = functions.https.onCall(ueSoIssoEngine.updateAction);
