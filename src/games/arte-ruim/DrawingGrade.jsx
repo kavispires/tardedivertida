@@ -3,17 +3,27 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 // Design Resources
 import { Avatar, Tooltip } from 'antd';
+// Hooks
+import { useLanguage } from '../../hooks';
+// Components
+import { translate } from '../../components/shared';
 
-const grades = ['A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D+', 'D', 'F'];
-const minValues = [97, 93, 90, 87, 83, 80, 77, 73, 70, 67, 65, 0];
+const GRADES = ['F', 'D', 'D+', 'C-', 'C', 'C+', 'B-', 'B', 'B+', 'A-', 'A', 'A+'];
 
 const DrawingGrade = ({ value }) => {
-  const grade = grades[minValues.findIndex((i) => value * 100 >= i) ?? 11];
+  const language = useLanguage();
+  const grade = GRADES[Math.floor(value / 0.084)];
 
   const baseClass = 'a-drawing-grade';
 
   return (
-    <Tooltip title={`Nota baseada em quantos acertos o desenho teve: ${value * 100}%`}>
+    <Tooltip
+      title={translate(
+        `Nota baseada em quantos acertos o desenho teve: ${value * 100}%`,
+        `Grade based on the number of correct guesses the artwork got: ${value * 100}%`,
+        language
+      )}
+    >
       <Avatar className={clsx(baseClass, `${baseClass}--${grade[0]}`)}>{grade}</Avatar>
     </Tooltip>
   );
