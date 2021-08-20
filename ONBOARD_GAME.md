@@ -2,7 +2,7 @@
 
 ## Cloud functions
 
-All file paths here are related to `/functions/src`.
+All file paths here are relative to `/functions/src`.
 
 ### Constants
 
@@ -18,12 +18,15 @@ All file paths here are related to `/functions/src`.
 - Create the files: `touch actions.ts constants.ts data.ts helpers.ts index.ts interfaces.ts setup.ts`
 - Add `<game-name>_PHASES` in `/.../constants.ts`.
 - In `index.ts`, create a function that will output the initial state called `getInitialState`
+- In `index.ts`, create a function named `next<game-name>Phase`
+- Use a single `submitAction` function for the game if needed.
 
 ### Update delegators in `/utils/delegators.ts`
 
 - Add entry to `getCollectionNameByGameCode`.
 - Add entry to `getCollectionKeyByGameCode`.
 - Add entry to `getInitialStateForCollection`.
+- Add entry to `getNextPhaseForCollection`.
 
 ## UI Setup
 
