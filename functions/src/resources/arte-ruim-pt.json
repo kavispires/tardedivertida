@@ -3238,5 +3238,15 @@
     "id": "a-648-pt",
     "text": "COVID-19",
     "level": 2
+  },
+  "a-649-pt": {
+    "id": "a-649-pt",
+    "text": "Crise existencial",
+    "level": 2
+  },
+  "a-650-pt": {
+    "id": "a-650-pt",
+    "text": "Porque é junto ou separado?",
+    "level": 1
   }
 }
