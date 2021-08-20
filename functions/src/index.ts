@@ -66,6 +66,24 @@ exports.arteRuimSubmitAction = functions.https.onCall(arteRuimEngine.submitActio
 
 exports.detetivesImaginativosSubmitAction = functions.https.onCall(DetetivesImaginativosEngine.submitAction);
 
+// MENTE_COLETIVA HTTP CALLS
+
+exports.menteColetivaSubmitAction = functions.https.onCall(menteColetivaEngine.submitAction);
+
+// POLEMICA_DA_VEZ HTTP CALLS
+
+exports.polemicaDaVezSubmitAction = functions.https.onCall(polemicaDaVezEngine.submitAction);
+
+// TESTEMUNHA_OCULAR HTTP CALLS
+
+exports.testemunhaOcularSubmitAction = functions.https.onCall(testemunhaOcularEngine.submitAction);
+
+// UE_SO_ISSO HTTP CALLS
+
+exports.ueSoIssoSubmitAction = functions.https.onCall(ueSoIssoEngine.submitAction);
+
+// TODO: MIGRATE ENGINES BELOW
+
 // ESPIAO_ENTRE_NOS HTTP CALLS
 
 /**
@@ -88,11 +106,6 @@ exports.espiaoEntreNosGuessLocation = functions.https.onCall(espiaoEntreNosEngin
  */
 exports.espiaoEntreNosSubmitVoting = functions.https.onCall(espiaoEntreNosEngine.submitVoting);
 
-// MENTE_COLETIVA HTTP CALLS
-
-exports.menteColetivaSubmitAction = functions.https.onCall(menteColetivaEngine.submitAction);
-exports.menteColetivaUpdateAction = functions.https.onCall(menteColetivaEngine.updateAction);
-
 // ONDA_TELEPATICA HTTP CALLS
 
 /**
@@ -114,15 +127,3 @@ exports.ondaTelepaticaSubmitGuess = functions.https.onCall(ondaTelepaticaEngine.
  * Submit rival team guess and move to the next phase
  */
 exports.ondaTelepaticaSubmitRivalGuess = functions.https.onCall(ondaTelepaticaEngine.submitRivalGuess);
-
-// POLEMICA_DA_VEZ HTTP CALLS
-
-exports.polemicaDaVezSubmitAction = functions.https.onCall(polemicaDaVezEngine.submitAction);
-
-// TESTEMUNHA_OCULAR HTTP CALLS
-
-exports.testemunhaOcularSubmitAction = functions.https.onCall(testemunhaOcularEngine.submitAction);
-
-// UE_SO_ISSO HTTP CALLS
-
-exports.ueSoIssoSubmitAction = functions.https.onCall(ueSoIssoEngine.submitAction);
