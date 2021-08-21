@@ -106,8 +106,16 @@ export const prepareReactPhase = async (
   // Modify players
   utils.unReadyPlayers(players);
 
-  const currentTopic = store.deck.find((topic) => topic.id === store.topicId);
+  let currentTopic = {};
   const customTopic = store.customTopic ?? null;
+  console.log({ customTopic });
+  if (customTopic) {
+    currentTopic = store.customDeck.find((topic) => topic.id === store.topicId);
+  } else {
+    currentTopic = store.deck.find((topic) => topic.id === store.topicId);
+  }
+  console.log({ topicId: store.topicId });
+  console.log({ currentTopic });
 
   // Save
   return {

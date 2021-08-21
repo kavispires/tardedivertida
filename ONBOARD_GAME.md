@@ -30,6 +30,8 @@ All file paths here are relative to `/functions/src`.
 
 ## UI Setup
 
+All file paths here are relative to `/src`.
+
 ### Constants
 
 - Add your game to `/resources/games.json`, make sure to use an unique game code letter and the available flag.
@@ -48,12 +50,11 @@ All file paths here are relative to `/functions/src`.
 
 ### Setup Basic Game files
 
-- Create a folder with the game name under `/components/games/`.
+- Create a folder with the game name under `/games/`.
 - Create a session file `Session<game-name>.jsx` with basic placeholder stuff.
-- Update `/components/games/index.jsx` to include the new game.
-- Update `/components/Game.jsx` to include the new Game Session.
+- Update `/games/index.js` to include the new game.
+- Update `/routes/Game.jsx` to include the new Game Session.
 
 # Add cloud functions Adapter
 
 - Update `/adapters/index.js` with the new cloud functions
-- Update the getAPI function as well

@@ -30,7 +30,7 @@ export const GAME_COLLECTIONS = {
   ESPIAO_ENTRE_NOS: 'espiao-entre-nos',
   MENTE_COLETIVA: 'mente-coletiva',
   ONDA_TELEPATICA: 'onda-telepatica',
-  POLEMICA_DA_VEZ: 'testemunha-ocular',
+  POLEMICA_DA_VEZ: 'polemica-da-vez',
   TESTEMUNHA_OCULAR: 'testemunha-ocular',
   UE_SO_ISSO: 'ue-so-isso',
 };

@@ -221,7 +221,7 @@
     "gameName": "polemica-vez",
     "title": {
       "pt": "Polêmica da Vez",
-      "en": "Polemic"
+      "en": "That's Polemic"
     },
     "summary": {
       "pt": "Um tópico... Polêmico. Você sabe a sua opinião, mas consegue descobrir a dos seus oponentes?",
@@ -231,13 +231,13 @@
       "pt": ["TBD"],
       "en": ["TBD"]
     },
-    "recommended": "6",
-    "min": 4,
+    "recommended": "5+",
+    "min": 3,
     "max": 8,
     "tags": ["competitive", "guessing"],
     "available": {
-      "pt": false,
-      "en": false
+      "pt": true,
+      "en": true
     }
   },
   "T": {

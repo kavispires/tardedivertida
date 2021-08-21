@@ -1,5 +1,4 @@
 import { functions } from '../services/firebase';
-import { GAME_COLLECTION } from '../utils/constants';
 
 export const GAME_API = {
   helloWorld: functions.httpsCallable('helloWorld'),
@@ -39,32 +38,14 @@ export const ONDA_TELEPATICA_API = {
   submitRivalGuess: functions.httpsCallable('ondaTelepaticaSubmitRivalGuess'),
 };
 
+export const POLEMICA_DA_VEZ_API = {
+  submitAction: functions.httpsCallable('polemicaDaVezSubmitAction'),
+};
+
 export const TESTEMUNHA_OCULAR_API = {
   submitAction: functions.httpsCallable('testemunhaOcularSubmitAction'),
 };
 
 export const UE_SO_ISSO_API = {
   submitAction: functions.httpsCallable('ueSoIssoSubmitAction'),
-};
-
-/**
- * Gets the game specific API http functions
- * @param {string} gameName
- * @returns
- */
-export const getAPI = (gameName) => {
-  switch (gameName) {
-    case GAME_COLLECTION.ARTE_RUIM:
-      return ARTE_RUIM_API;
-    case GAME_COLLECTION.ESPIAO_ENTRE_NOS:
-      return ESPIAO_ENTRE_NOS_API;
-    case GAME_COLLECTION.ONDA_TELEPATICA:
-      return ONDA_TELEPATICA_API;
-    case GAME_COLLECTION.TESTEMUNHA_OCULAR:
-      return TESTEMUNHA_OCULAR_API;
-    case GAME_COLLECTION.UE_SO_ISSO:
-      return UE_SO_ISSO_API;
-    default:
-      throw Error(`Adapter for ${gameName} does not exist`);
-  }
 };
