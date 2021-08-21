@@ -134,10 +134,10 @@ export const submitAction = async (data: PolemicaDaVezSubmitAction) => {
       }
       return handleSubmitTopic(collectionName, gameId, playerId, data.topicId, data?.customTopic);
     case 'SUBMIT_REACTION':
-      if (!data.reaction) {
+      if (data.reaction === undefined) {
         firebaseUtils.throwException('Missing `reaction` value', 'submit reaction');
       }
-      if (!data.likesGuess) {
+      if (data.likesGuess === undefined) {
         firebaseUtils.throwException('Missing `likesGuess` value', 'submit reaction');
       }
       return handleSubmitReaction(collectionName, gameId, playerId, data.reaction, data.likesGuess);

@@ -31,7 +31,6 @@ function ResolutionStep({ ranking, players, roundType, pastureChangeStr, announc
   const { seconds } = useTimer({
     expiryTimestamp: inNSeconds(15),
     autoStart: true,
-    onExpire: () => console.log('DONE'),
   });
 
   useEffect(() => {

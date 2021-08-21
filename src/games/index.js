@@ -3,6 +3,7 @@ import DetetivesImaginativos from './detetives-imaginativos/SessionDetetivesImag
 import EspiaoEntreNos from './espiao-entre-nos/SessionEspiaoEntreNos';
 import MenteColetiva from './mente-coletiva/SessionMenteColetiva';
 import OndaTelepatica from './onda-telepatica/SessionOndaTelepatica';
+import PolemicaDaVez from './polemica-da-vez/SessionPolemicaDaVez';
 import TestemunhaOcular from './testemunha-ocular/SessionTestemunhaOcular';
 import UeSoIsso from './ue-so-isso/SessionUeSoIsso';
 
@@ -12,6 +13,7 @@ const games = {
   EspiaoEntreNos,
   MenteColetiva,
   OndaTelepatica,
+  PolemicaDaVez,
   TestemunhaOcular,
   UeSoIsso,
 };

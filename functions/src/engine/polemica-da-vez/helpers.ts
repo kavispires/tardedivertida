@@ -1,18 +1,16 @@
 // Constants
-// Interfaces
-// Utils
-// import * as firebaseUtils from '../../utils/firebase';
-// import * as utils from '../../utils/helpers';
-import * as gameUtils from '../../utils/game-utils';
-import { PlainObject, Players } from '../../utils/interfaces';
-
 import {
   CUSTOM_TOPICS_PER_ROUND,
   MAX_NUMBER_OF_ROUNDS,
   POLEMICA_DA_VEZ_PHASES,
+  SCORE_GOAL,
   TOPICS_PER_ROUND,
 } from './constants';
+// Interfaces
+import { PlainObject, Players } from '../../utils/interfaces';
 import { Decks } from './interfaces';
+// Utils
+import * as gameUtils from '../../utils/game-utils';
 
 /**
  * Determine the next phase based on the current one
@@ -28,7 +26,11 @@ export const determineNextPhase = (
   const { RULES, SETUP, TOPIC_SELECTION, REACT, RESOLUTION, GAME_OVER } = POLEMICA_DA_VEZ_PHASES;
   const order = [RULES, SETUP, TOPIC_SELECTION, REACT, RESOLUTION];
 
-  if (isGameOver || currentRound === MAX_NUMBER_OF_ROUNDS) {
+  if (isGameOver) {
+    return GAME_OVER;
+  }
+
+  if (currentPhase === RESOLUTION && currentRound === MAX_NUMBER_OF_ROUNDS) {
     return GAME_OVER;
   }
 
@@ -111,5 +113,5 @@ export const rankAndScore = (players: Players, totalLikes: number): PlainObject 
  * @returns
  */
 export const determineGameOver = (players: Players) => {
-  return Object.values(players).some((player) => player.level >= 4);
+  return Object.values(players).some((player) => player.score >= SCORE_GOAL);
 };

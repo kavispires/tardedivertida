@@ -48,9 +48,9 @@ function Game() {
         setUserId(null);
         setUsername('');
         setUserAvatarId('');
-        message.info('Uma nova id de jogo foi provida');
+        message.info('New id provided');
       } else {
-        message.error('Vixi, a id do jogo na barra de endereços está errada');
+        message.error('Oops, the game id in the address bar is incorrect');
         history.push('/');
       }
     });
@@ -69,7 +69,7 @@ function Game() {
       } catch (e) {
         console.error(e);
         notification.error({
-          message: 'Erro ao carregar o jogo',
+          message: 'Failed to load game',
           description: JSON.stringify(e.message),
         });
         console.error(e);
@@ -105,6 +105,8 @@ function Game() {
         return <GameSessions.MenteColetiva gameId={gameId} />;
       case GAME_COLLECTION.ONDA_TELEPATICA:
         return <GameSessions.OndaTelepatica gameId={gameId} />;
+      case GAME_COLLECTION.POLEMICA_DA_VEZ:
+        return <GameSessions.PolemicaDaVez gameId={gameId} />;
       case GAME_COLLECTION.TESTEMUNHA_OCULAR:
         return <GameSessions.TestemunhaOcular gameId={gameId} />;
       case GAME_COLLECTION.UE_SO_ISSO:
