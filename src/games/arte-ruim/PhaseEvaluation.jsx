@@ -74,8 +74,8 @@ function EvaluationPhase({ players, state, info }) {
   const [votes, setVotes] = useState({});
   const [activeItem, setActiveItem] = useState(null);
 
-  const onSubmitVoting = useAPICall({
-    apiFunction: ARTE_RUIM_API.submitVoting,
+  const onSubmitVotingAPIRequest = useAPICall({
+    apiFunction: ARTE_RUIM_API.submitAction,
     actionName: 'submit-drawing',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(0),
@@ -86,10 +86,17 @@ function EvaluationPhase({ players, state, info }) {
     ),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar sua avaliação',
-      'Oops, the application fail to send your evaluation',
+      'Oops, the application failed to send your evaluation',
       language
     ),
   });
+
+  const onSubmitVoting = (payload) => {
+    onSubmitVotingAPIRequest({
+      action: 'SUBMIT_VOTING',
+      ...payload,
+    });
+  };
 
   const onGuessForMe = useCallback(() => {
     const usedDrawings = Object.keys(votes);

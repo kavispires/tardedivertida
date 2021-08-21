@@ -37,7 +37,7 @@ function PhaseQuestionSelection({ state, players, info }) {
     successMessage: translate('Pergunta enviada com sucesso!', 'Question send successfully!', language),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar a pergunta',
-      'Oops, the application fail to submit the question',
+      'Oops, the application failed to submit the question',
       language
     ),
   });
@@ -83,7 +83,7 @@ function PhaseQuestionSelection({ state, players, info }) {
                   uma certa quantidade de respostas. Você ganha um ponto para cada resposta igual a de outra
                   ovelha. Quem receber o menor número de pontos move uma seção para a direita.
                   <br />
-                  Se você já está no últimp pasto e tiver que mover pra direita, você cai no precipício e
+                  Se você já está no último pasto e tiver que mover pra direita, você cai no precipício e
                   morre. O pasto fica menos lotado e todos mais felizes.
                   <br />
                   <Instruction contained>
@@ -95,10 +95,11 @@ function PhaseQuestionSelection({ state, players, info }) {
                 <>
                   We are sheep and our pasture is overcrowded! We need to decide who should leave.
                   <br />
-                  Let's ask a question and whoever gets the fewest points moves one section to the right.
-                  Enough with inclusion!
+                  Let's ask a question and everyone has to give a certain number of answers. You are trying to
+                  match answers with other sheep to get points. Whoever gets the fewest points moves one
+                  section to the right.
                   <br />
-                  If you are already in the last section and have to move to the right, you fall off the cliff
+                  If you are already in the last pasture and have to move to the right, you fall off the cliff
                   and die. The pasture is less crowded and everyone is happier.
                   <br />
                   <Instruction contained>

@@ -36,18 +36,18 @@ function PhaseCompare({ state, players, info }) {
     successMessage: translate('Validação enviada com successo!', 'Validation sent successfully!', language),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar a validação das sugestões',
-      'Oops, the application fail to send the validation',
+      'Oops, the application failed to send the validation',
       language
     ),
   });
 
   const onUpdateValidSuggestionsAPIRequest = useAPICall({
-    apiFunction: UE_SO_ISSO_API.updateAction,
+    apiFunction: UE_SO_ISSO_API.submitAction,
     actionName: 'validate-suggestions',
     successMessage: translate('Atualizado!', 'Updated!', language),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar atualizar',
-      'Oops, the application fail to update',
+      'Oops, the application failed to update',
       language
     ),
   });

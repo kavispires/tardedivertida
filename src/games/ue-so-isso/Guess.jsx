@@ -12,8 +12,8 @@ function Guess({ onSubmitOutcome, onSendGuess }) {
   const [isLoading] = useLoading();
   const [guess, setGuess] = useState('');
 
-  const onEnterInput = (e) => {
-    if (e.key === 'Enter') {
+  const onPressEnter = () => {
+    if (guess && guess.length > 0) {
       onSendGuess({ guess });
     }
   };
@@ -23,7 +23,7 @@ function Guess({ onSubmitOutcome, onSendGuess }) {
       <Input
         placeholder={translate('Digite aqui seu chute', 'Type your guess here', language)}
         onChange={(e) => setGuess(e.target.value)}
-        onKeyPress={onEnterInput}
+        onPressEnter={onPressEnter}
       />
       <Button
         icon={<CloudUploadOutlined />}

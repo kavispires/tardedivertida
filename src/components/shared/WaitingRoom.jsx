@@ -22,8 +22,8 @@ export function WaitingRoom({ players, title, instruction, children }) {
 
 WaitingRoom.propTypes = {
   players: PropTypes.object.isRequired,
-  title: PropTypes.string.isRequired,
-  instruction: PropTypes.string.isRequired,
+  title: PropTypes.any.isRequired,
+  instruction: PropTypes.any.isRequired,
   children: PropTypes.any,
 };
 

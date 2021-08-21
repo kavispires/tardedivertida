@@ -33,8 +33,8 @@ function PhaseDraw({ players, state, info }) {
     setSecretCard(players[user?.id]?.currentCard ?? {});
   }, [players, user?.id]);
 
-  const onSubmitDrawing = useAPICall({
-    apiFunction: ARTE_RUIM_API.submitDrawing,
+  const onSubmitDrawingAPIRequest = useAPICall({
+    apiFunction: ARTE_RUIM_API.submitAction,
     actionName: 'submit-drawing',
     onBeforeCall: () => setStep(3),
     onError: () => setStep(1),
@@ -45,10 +45,17 @@ function PhaseDraw({ players, state, info }) {
     ),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar o desenho',
-      'Oops, the application fail to send your art',
+      'Oops, the application failed to send your art',
       language
     ),
   });
+
+  const onSubmitDrawing = (payload) => {
+    onSubmitDrawingAPIRequest({
+      action: 'SUBMIT_DRAWING',
+      ...payload,
+    });
+  };
 
   const onStartDrawing = () => {
     play();

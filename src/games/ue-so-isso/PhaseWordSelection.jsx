@@ -59,7 +59,7 @@ function PhaseWordSelection({ state, players, info }) {
     successMessage: translate('Votos enviados com sucesso!', 'Votes send successfully!', language),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar seus votos',
-      'Oops, the application fail to send your votes',
+      'Oops, the application failed to send your votes',
       language
     ),
   });
