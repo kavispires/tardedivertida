@@ -80,11 +80,15 @@ PhaseReact.propTypes = {
   info: PropTypes.object,
   players: PropTypes.object,
   state: PropTypes.shape({
+    currentTopic: PropTypes.object,
+    customTopic: PropTypes.string,
     phase: PropTypes.string,
+    ranking: PropTypes.array,
     round: PropTypes.shape({
       current: PropTypes.number,
       total: PropTypes.number,
     }),
+    totalLikes: PropTypes.number,
   }),
 };
 

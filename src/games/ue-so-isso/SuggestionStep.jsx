@@ -30,9 +30,7 @@ function SuggestionStep({ guesser, onSendSuggestions, secretWord, suggestionsNum
 
   // On enter in the easel if only one suggestion is necessary
   const onPressEnter = () => {
-    console.log('here', suggestionsNumber, suggestionsValues.length);
     if (suggestionsNumber === suggestionsValues.length) {
-      console.log('it worked');
       onSendSuggestions({ suggestions: suggestionsValues });
     }
   };
