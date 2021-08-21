@@ -12,8 +12,6 @@ function LikingStep({ currentTopic, customTopic, onSubmitReaction, players }) {
   const [like, setLike] = useState(null);
 
   const onSubmitReactions = (likes) => {
-    console.log({ reaction: like, likesGuess: likes });
-
     onSubmitReaction({ reaction: like, likesGuess: likes });
   };
 
@@ -95,10 +93,9 @@ LikingStep.propTypes = {
   currentTopic: PropTypes.shape({
     text: PropTypes.string,
   }),
-  customTopic: PropTypes.any,
+  customTopic: PropTypes.string,
   onSubmitReaction: PropTypes.func,
-  onSubmitTopic: PropTypes.func,
-  players: PropTypes.any,
+  players: PropTypes.object,
 };
 
 export default LikingStep;

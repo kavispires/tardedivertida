@@ -8,16 +8,8 @@ function PhaseGameOver({ state, info }) {
 }
 
 PhaseGameOver.propTypes = {
-  info: PropTypes.any,
-  state: PropTypes.shape({
-    winners: PropTypes.array,
-    losers: PropTypes.array,
-    phase: PropTypes.string,
-    round: PropTypes.shape({
-      current: PropTypes.number,
-      total: PropTypes.number,
-    }),
-  }),
+  info: PropTypes.object,
+  state: PropTypes.object,
 };
 
 export default PhaseGameOver;

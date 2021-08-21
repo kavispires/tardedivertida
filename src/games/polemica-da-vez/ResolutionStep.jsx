@@ -91,17 +91,13 @@ function ResolutionStep({ ranking, players, totalLikes, customTopic, currentTopi
 }
 
 ResolutionStep.propTypes = {
-  currentQuestion: PropTypes.shape({
-    number: PropTypes.number,
-    prefix: PropTypes.string,
-    suffix: PropTypes.string,
+  currentTopic: PropTypes.shape({
+    text: PropTypes.string,
   }),
-  onSubmitAnswers: PropTypes.func,
+  customTopic: PropTypes.string,
   players: PropTypes.object,
-  roundType: PropTypes.number,
-  user: PropTypes.shape({
-    id: PropTypes.string,
-  }),
+  ranking: PropTypes.array,
+  totalLikes: PropTypes.number,
 };
 
 export default ResolutionStep;

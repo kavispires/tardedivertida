@@ -144,6 +144,8 @@ PhaseTopicSelection.propTypes = {
   info: PropTypes.object,
   players: PropTypes.object,
   state: PropTypes.shape({
+    currentCustomTopic: PropTypes.object,
+    currentTopics: PropTypes.object,
     phase: PropTypes.string,
     round: PropTypes.shape({
       current: PropTypes.number,
