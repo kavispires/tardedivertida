@@ -40,7 +40,7 @@ export const Pasture = memo(function ({ players }) {
                   sheepPlayers.map((player, index) => {
                     const sheepKey = `${enclosureKey}-${player.id}`;
                     const sheepClassName = `m-sheep--pos-${index}`;
-                    console.log();
+
                     return (
                       <SheepAvatar
                         key={sheepKey}

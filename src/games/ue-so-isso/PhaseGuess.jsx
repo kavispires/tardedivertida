@@ -43,18 +43,18 @@ function PhaseGuess({ state, players, info }) {
     successMessage: translate('Resultado enviado com sucesso!', 'Outcome sent successfully!', language),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar o resultado',
-      'Oops, the application fail to submit the outcome',
+      'Oops, the application failed to submit the outcome',
       language
     ),
   });
 
   const onSendGuessAPIRequest = useAPICall({
-    apiFunction: UE_SO_ISSO_API.updateAction,
+    apiFunction: UE_SO_ISSO_API.submitAction,
     actionName: 'validate-suggestions',
     successMessage: translate('Chute enviado!', 'Guess sent!', language),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar atualizar',
-      'Oops, the application fail to update',
+      'Oops, the application failed to update',
       language
     ),
   });

@@ -8,6 +8,7 @@ export const GAME_CODES = {
   E: 'E', // espiao-entre-nos
   M: 'M', // mente-coletiva
   O: 'O', // onda-telepatica
+  P: 'P', // polemica-da-vez
   T: 'T', // testemunha-ocular
   U: 'U', // ue-so-isso
 };
@@ -18,6 +19,7 @@ export const GAME_KEYS = {
   ESPIAO_ENTRE_NOS: 'ESPIAO_ENTRE_NOS',
   MENTE_COLETIVA: 'MENTE_COLETIVA',
   ONDA_TELEPATICA: 'ONDA_TELEPATICA',
+  POLEMICA_DA_VEZ: 'POLEMICA_DA_VEZ',
   TESTEMUNHA_OCULAR: 'TESTEMUNHA_OCULAR',
   UE_SO_ISSO: 'UE_SO_ISSO',
 };
@@ -28,6 +30,7 @@ export const GAME_COLLECTIONS = {
   ESPIAO_ENTRE_NOS: 'espiao-entre-nos',
   MENTE_COLETIVA: 'mente-coletiva',
   ONDA_TELEPATICA: 'onda-telepatica',
+  POLEMICA_DA_VEZ: 'polemica-da-vez',
   TESTEMUNHA_OCULAR: 'testemunha-ocular',
   UE_SO_ISSO: 'ue-so-isso',
 };
@@ -46,6 +49,10 @@ export const GAME_PLAYERS_LIMIT = {
     max: 8,
   },
   MENTE_COLETIVA: {
+    min: 3,
+    max: 8,
+  },
+  POLEMICA_DA_VEZ: {
     min: 3,
     max: 8,
   },

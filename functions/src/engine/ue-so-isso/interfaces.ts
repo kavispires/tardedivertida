@@ -67,11 +67,12 @@ export interface ConfirmGuessPayload extends Payload {
 }
 
 export interface UeSoIssoSubmitAction extends Payload {
-  action: 'SUBMIT_VOTES' | 'SUBMIT_SUGGESTIONS' | 'SUBMIT_VALIDATION' | 'SUBMIT_OUTCOME';
-  [key: string]: any;
-}
-
-export interface UeSoIssoUpdateAction extends Payload {
-  action: 'VALIDATE_SUGGESTION' | 'SEND_GUESS';
+  action:
+    | 'SUBMIT_VOTES'
+    | 'SUBMIT_SUGGESTIONS'
+    | 'SUBMIT_VALIDATION'
+    | 'SUBMIT_OUTCOME'
+    | 'VALIDATE_SUGGESTION'
+    | 'SEND_GUESS';
   [key: string]: any;
 }

@@ -5,7 +5,7 @@ import { Input } from 'antd';
 import { translate } from '../../components/shared';
 import { useLanguage } from '../../hooks';
 
-function SuggestionEasel({ id, onChangeInput, onKeyPress, value }) {
+function SuggestionEasel({ id, onChangeInput, onPressEnter, value }) {
   const language = useLanguage();
   return (
     <svg
@@ -28,7 +28,8 @@ function SuggestionEasel({ id, onChangeInput, onKeyPress, value }) {
             onChange={onChangeInput}
             className="u-suggestion-easel__input"
             bordered={false}
-            onKeyPress={onKeyPress}
+            onPressEnter={onPressEnter}
+            autoComplete="off"
           />
         </div>
       </foreignObject>

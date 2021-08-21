@@ -211,6 +211,7 @@ export const GAME_COLLECTION = {
   ESPIAO_ENTRE_NOS: 'espiao-entre-nos',
   MENTE_COLETIVA: 'mente-coletiva',
   ONDA_TELEPATICA: 'onda-telepatica',
+  POLEMICA_DA_VEZ: 'polemica-da-vez',
   TESTEMUNHA_OCULAR: 'testemunha-ocular',
   UE_SO_ISSO: 'ue-so-isso',
 };
@@ -269,6 +270,15 @@ export const PHASES = {
     GUESS: 'GUESS',
     RIVAL_GUESS: 'RIVAL_GUESS',
     REVEAL: 'REVEAL',
+    GAME_OVER: 'GAME_OVER',
+  },
+  POLEMICA_DA_VEZ: {
+    LOBBY: 'LOBBY',
+    RULES: 'RULES',
+    SETUP: 'SETUP',
+    TOPIC_SELECTION: 'TOPIC_SELECTION',
+    REACT: 'REACT',
+    RESOLUTION: 'RESOLUTION',
     GAME_OVER: 'GAME_OVER',
   },
   TESTEMUNHA_OCULAR: {
