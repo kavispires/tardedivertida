@@ -361,3 +361,15 @@ export const updateLevelsForPlayers = (players: Players, pastureChange) => {
 export const determineGameOver = (players: Players) => {
   return Object.values(players).some((player) => player.level >= 5);
 };
+
+/**
+ * Transform a list of ids into an object of id=true pairs
+ * @param pastQuestions
+ * @returns
+ */
+export const buildUsedQuestionIdsDict = (pastQuestions: string[]): PlainObject => {
+  return pastQuestions.reduce((acc, id) => {
+    acc[id] = true;
+    return acc;
+  }, {});
+};

@@ -6,8 +6,9 @@ import { GameId, Players } from '../../utils/interfaces';
 import { MenteColetivaInitialState, MenteColetivaSubmitAction } from './interfaces';
 // Utilities
 import * as firebaseUtils from '../../utils/firebase';
+import * as globalUtils from '../global';
 // Internal Functions
-import { determineNextPhase, determineGameOver } from './helpers';
+import { determineNextPhase, determineGameOver, buildUsedQuestionIdsDict } from './helpers';
 import {
   prepareSetupPhase,
   prepareGameOverPhase,
@@ -116,6 +117,11 @@ export const nextMenteColetivaPhase = async (
   // GUESS -> GAME_OVER
   if (nextPhase === MENTE_COLETIVA_PHASES.GAME_OVER) {
     const newPhase = await prepareGameOverPhase(store, state, players);
+
+    // Save usedMenteColetivaQuestions to global
+    const usedMenteColetivaQuestions = buildUsedQuestionIdsDict(store.pastQuestions);
+    await globalUtils.updateGlobalFirebaseDoc('usedMenteColetivaQuestions', usedMenteColetivaQuestions);
+
     return firebaseUtils.saveGame(sessionRef, newPhase);
   }
 
