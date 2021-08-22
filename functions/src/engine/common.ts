@@ -148,7 +148,7 @@ export const addPlayer = async (data: AddPlayerPayload) => {
   const cleanPlayerName = playerName.replace(/[\][(){},.:;!?<>%]/g, '');
 
   // Generate playerId by removing accents and lower casing the name
-  const playerId = utils.generatePLayerId(cleanPlayerName);
+  const playerId = utils.generatePlayerId(cleanPlayerName);
 
   if (players?.[playerId]) {
     return players[playerId];
