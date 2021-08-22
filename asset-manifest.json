@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/tardedivertida/static/css/main.8b531011.chunk.css",
-    "main.js": "/tardedivertida/static/js/main.b29ce116.chunk.js",
-    "main.js.map": "/tardedivertida/static/js/main.b29ce116.chunk.js.map",
+    "main.css": "/tardedivertida/static/css/main.c6444f41.chunk.css",
+    "main.js": "/tardedivertida/static/js/main.8f55f04c.chunk.js",
+    "main.js.map": "/tardedivertida/static/js/main.8f55f04c.chunk.js.map",
     "runtime-main.js": "/tardedivertida/static/js/runtime-main.789f7cca.js",
     "runtime-main.js.map": "/tardedivertida/static/js/runtime-main.789f7cca.js.map",
     "static/css/2.289e503f.chunk.css": "/tardedivertida/static/css/2.289e503f.chunk.css",
@@ -14,13 +14,13 @@
     "static/js/4.6ca8aa92.chunk.js.map": "/tardedivertida/static/js/4.6ca8aa92.chunk.js.map",
     "index.html": "/tardedivertida/index.html",
     "static/css/2.289e503f.chunk.css.map": "/tardedivertida/static/css/2.289e503f.chunk.css.map",
-    "static/css/main.8b531011.chunk.css.map": "/tardedivertida/static/css/main.8b531011.chunk.css.map",
+    "static/css/main.c6444f41.chunk.css.map": "/tardedivertida/static/css/main.c6444f41.chunk.css.map",
     "static/js/2.bd93ad49.chunk.js.LICENSE.txt": "/tardedivertida/static/js/2.bd93ad49.chunk.js.LICENSE.txt",
     "static/js/3.6484b546.chunk.js.LICENSE.txt": "/tardedivertida/static/js/3.6484b546.chunk.js.LICENSE.txt",
     "static/media/arte-ruim-timer.1f16745a.mp3": "/tardedivertida/static/media/arte-ruim-timer.1f16745a.mp3",
     "static/media/avatars.a2364409.svg": "/tardedivertida/static/media/avatars.a2364409.svg",
     "static/media/game-over-title.7073f1c0.svg": "/tardedivertida/static/media/game-over-title.7073f1c0.svg",
-    "static/media/m-pasture-background.09908531.png": "/tardedivertida/static/media/m-pasture-background.09908531.png",
+    "static/media/m-pasture-background.6e4af2b9.png": "/tardedivertida/static/media/m-pasture-background.6e4af2b9.png",
     "static/media/m-pasture-fence.30c25ac6.svg": "/tardedivertida/static/media/m-pasture-fence.30c25ac6.svg",
     "static/media/placeholder.cabb9e00.jpg": "/tardedivertida/static/media/placeholder.cabb9e00.jpg",
     "static/media/round-title-en.2ad07e1f.svg": "/tardedivertida/static/media/round-title-en.2ad07e1f.svg",
@@ -32,7 +32,7 @@
     "static/js/runtime-main.789f7cca.js",
     "static/css/2.289e503f.chunk.css",
     "static/js/2.bd93ad49.chunk.js",
-    "static/css/main.8b531011.chunk.css",
-    "static/js/main.b29ce116.chunk.js"
+    "static/css/main.c6444f41.chunk.css",
+    "static/js/main.8f55f04c.chunk.js"
   ]
 }
