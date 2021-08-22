@@ -46,11 +46,11 @@ function AnsweringStep({ user, currentQuestion, players, roundType, onSubmitAnsw
   };
 
   const isDisabled =
-    Object.keys(answers).length < currentQuestion.number &&
-    new Set(Object.keys(answers)).size !== Object.keys(answers).length;
+    Object.keys(answers).length < currentQuestion.number ||
+    new Set(Object.values(answers)).size !== currentQuestion.number;
 
   const onPressEnter = () => {
-    if (isDisabled) {
+    if (!isDisabled) {
       onSubmitAnswers({ answers });
     }
   };
