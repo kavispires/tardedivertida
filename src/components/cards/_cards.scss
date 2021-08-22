@@ -106,4 +106,8 @@
     align-items: center;
     margin: get-unit(1);
   }
+
+  &--blur {
+    filter: blur(10px);
+  }
 }
