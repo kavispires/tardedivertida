@@ -14,6 +14,8 @@ import { isDevEnv, shuffle } from '../../utils';
 const mockAnswers = (userId, numAnswers) => {
   const list = ['agua', 'bola', 'coco', 'dedo', 'egua', 'flauta', 'gatilho', 'hélio', 'jaguar'];
   const list2 = ['água', 'bola', 'cocô', 'dedo', 'égua', 'flauta', 'gatilho', 'helio', 'jipe'];
+  // const list = ['abacaxi', 'maça', 'pera', 'mamão', 'manga', 'tomate'];
+  // const list2 = ['abacaxi', 'macã', 'pêra', 'pêssego', 'manga', 'melancia'];
 
   const shuffled = shuffle(Math.random() > 0.5 ? list : list2);
 

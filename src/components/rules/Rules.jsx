@@ -49,7 +49,7 @@ export function Rules({ players, info }) {
   // DEV: Auto-ready
   useEffect(() => {
     if (isDevEnv) {
-      onBeReady({});
+      // onBeReady({});
     }
   }, []); // eslint-disable-line
 
