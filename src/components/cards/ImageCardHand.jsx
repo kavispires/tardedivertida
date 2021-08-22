@@ -1,11 +1,11 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 // Design Resources
 import { Button } from 'antd';
 import { DownSquareOutlined } from '@ant-design/icons';
 // Hooks
-import { useDimensions } from '../../hooks';
+import { useDimensions, useGlobalState } from '../../hooks';
 // Components
 import { ImageCard } from '.';
 
@@ -19,6 +19,18 @@ export function ImageCardHand({
   cardSize,
   disabledSelectButton,
 }) {
+  const [userId] = useGlobalState('userId');
+  const isFlavia = userId?.includes('fla');
+
+  const [hideCard, setHideCard] = useState({});
+
+  const addToHide = (cardId) => {
+    setHideCard((s) => ({
+      ...s,
+      [cardId]: !s?.[cardId] ?? true,
+    }));
+  };
+
   const [screenWidth] = useDimensions();
   // Prefers cardSize otherwise calculates width based on screen and ratio
   const cardWidth = useMemo(() => cardSize || screenWidth / sizeRatio || 200, [
@@ -44,7 +56,16 @@ export function ImageCardHand({
                 {selectButtonLabel}
               </Button>
             )}
-            <ImageCard imageId={cardId} cardWidth={cardWidth} />
+            <ImageCard
+              imageId={cardId}
+              cardWidth={cardWidth}
+              className={hideCard?.[cardId] && 'image-card-hand--blur'}
+            />
+            {isFlavia && (
+              <Button ghost onClick={() => addToHide(cardId)}>
+                Credo
+              </Button>
+            )}
           </div>
         );
       })}
