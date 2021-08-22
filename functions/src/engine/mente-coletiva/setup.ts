@@ -127,6 +127,9 @@ export const prepareEverybodyWritesPhase = async (
         currentQuestion,
         currentQuestions: firebaseUtils.deleteValue(),
       },
+      store: {
+        pastQuestions: [...store.pastQuestions, currentQuestion.id],
+      },
       players,
     },
   };
