@@ -21,7 +21,7 @@ function AnswerGroup({ answerGroup, currentQuestion, players, allowUserAnswer, r
         <Translate pt="Comparar Respostas" en="Compare Answers" />
         <Card
           header={translate('Pergunta', 'Question', language)}
-          color={['yellow', 'red', 'green', 'blue', 'purple'][remainingGroupsCount % 5]}
+          color={['yellow', 'orange', 'green', 'blue', 'purple'][remainingGroupsCount % 5]}
           className="m-question-card"
           footer={Array(remainingGroupsCount).fill('•').join('')}
         >
@@ -45,7 +45,8 @@ function AnswerGroup({ answerGroup, currentQuestion, players, allowUserAnswer, r
             const key = `ag-${entry.id}`;
             const player = players[entry.playerId];
             const isLocked =
-              player.answers[entry.id].answer === answerGroup.answer || player.answers[entry.id].isLocked;
+              player.answers[entry.id].parsedAnswer === answerGroup.parsedAnswer ||
+              player.answers[entry.id].isLocked;
             return (
               <li className="m-answer-group__player" key={key}>
                 <SheepAvatar
@@ -83,6 +84,7 @@ AnswerGroup.propTypes = {
   allowUserAnswer: PropTypes.func,
   answerGroup: PropTypes.shape({
     answer: PropTypes.string,
+    parsedAnswer: PropTypes.string,
     entries: PropTypes.any,
   }),
   currentQuestion: PropTypes.shape({

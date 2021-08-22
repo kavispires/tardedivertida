@@ -12,8 +12,10 @@ import { Question } from './Question';
 import { isDevEnv, shuffle } from '../../utils';
 
 const mockAnswers = (userId, numAnswers) => {
-  const list = ['agua', 'bola', 'coco', 'dedo', 'egua', 'flauta', 'gatilho', 'helio', 'ilha', 'jaguar', 'ky'];
-  const shuffled = shuffle(list);
+  const list = ['agua', 'bola', 'coco', 'dedo', 'egua', 'flauta', 'gatilho', 'hélio', 'jaguar'];
+  const list2 = ['água', 'bola', 'cocô', 'dedo', 'égua', 'flauta', 'gatilho', 'helio', 'jipe'];
+
+  const shuffled = shuffle(Math.random() > 0.5 ? list : list2);
 
   return Array(numAnswers)
     .fill(0)

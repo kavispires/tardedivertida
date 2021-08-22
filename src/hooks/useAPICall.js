@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import { message, notification } from 'antd';
 import { useGlobalState, useLoading } from './index';
 
-function debounce(func, timeout = 500) {
+function debounce(func, timeout = 1000) {
   let timer;
   return (...args) => {
     clearTimeout(timer);

@@ -49,6 +49,15 @@ export const generateGameId = (gameCode: GameCode, usedIds: string[] = [], lengt
 };
 
 /**
+ * Remove accents from a string keeping original letters
+ * @param str
+ * @returns
+ */
+export function stringRemoveAccents(str: string): string {
+  return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+}
+
+/**
  * Generates a player id based of their name
  * @param playerName
  * @returns

@@ -99,7 +99,7 @@ export const handleNextAnswers = async (
   const answerGroup = state.answersList[0];
   // Get identical matches first
   let matchingAnswers = answerGroup.entries
-    .filter((entry) => entry.answer === answerGroup.answer)
+    .filter((entry) => entry.parsedAnswer === answerGroup.parsedAnswer)
     .map((entry) => entry.id);
   // Add allowed ones
   matchingAnswers = [...matchingAnswers, ...allowedList];

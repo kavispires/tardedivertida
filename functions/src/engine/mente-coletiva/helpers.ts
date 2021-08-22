@@ -91,25 +91,29 @@ export const buildDeck = (allQuestions: AllQuestions, pastQuestionsIds: string[]
  * @returns
  */
 export const gatherAllAnswers = (players: Players): AnswerEntry[] => {
-  const answers: any[] = [];
+  const answersObj: any[] = [];
   Object.values(players).forEach((player) => {
-    Object.entries(player.answers).forEach(([key, answer]) => {
-      answers.push({
+    const answers: PlainObject = player.answers;
+    Object.entries(answers).forEach(([key, answer]) => {
+      answersObj.push({
         id: key,
         playerId: player.id,
         answer,
+        parsedAnswer: utils.stringRemoveAccents(answer),
         isLocked: false,
         score: 0,
       });
     });
   });
-  return answers;
+  return answersObj;
 };
 
 export const extendPlayerAnswers = (players: Players) => {
   Object.values(players).forEach((player) => {
-    Object.entries(player.answers).forEach(([key, answer]) => {
+    const answers: PlainObject = player.answers;
+    Object.entries(answers).forEach(([key, answer]) => {
       player.answers[key] = {
+        parsedAnswer: utils.stringRemoveAccents(answer),
         answer,
         isLocked: false,
       };
@@ -131,15 +135,16 @@ export const buildListOfAnswers = (allAnswers: PlainObject) => {
       return acc;
     }
 
-    if (acc[entry.answer] === undefined) {
-      acc[entry.answer] = {
+    if (acc[entry.parsedAnswer] === undefined) {
+      acc[entry.parsedAnswer] = {
+        parsedAnswer: entry.parsedAnswer,
         answer: entry.answer,
         entries: [],
       };
     }
 
-    acc[entry.answer].entries.push(entry);
-    acc[entry.answer].score = acc[entry.answer].entries.length;
+    acc[entry.parsedAnswer].entries.push(entry);
+    acc[entry.parsedAnswer].score = acc[entry.parsedAnswer].entries.length;
     return acc;
   }, {});
 

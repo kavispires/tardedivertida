@@ -11,6 +11,10 @@ function UserAnswers({ answerGroup, user, onAddAnswer }) {
 
   const alreadyHasAnswer = answerGroup.entries.some((entry) => entry.playerId === user.id);
 
+  const points = Object.values(user.answers).reduce((acc, answer) => {
+    return acc + (answer?.score ?? 0);
+  }, 0);
+
   return (
     <div className="m-step">
       <div className="m-step__contained-content">
@@ -19,6 +23,8 @@ function UserAnswers({ answerGroup, user, onAddAnswer }) {
             pt="Se você cometeu um erro ortográfico ou acha que sua resposta deveria estar no grupo acima, clique nela para adicioná-la. Você só pode ter uma resposta por pergunta!"
             en="If you made a typo or for some reason think your answer should be in this group, click on it to add it. You can only have one answer per question."
           />
+          <br />
+          <Translate pt={<>Você tem: {points} ponto(s)</>} en={<>You have: {points} point(s)</>} />
         </Instruction>
 
         <ButtonContainer className="m-user-answers">
@@ -31,7 +37,7 @@ function UserAnswers({ answerGroup, user, onAddAnswer }) {
                 icon={answerObj.isLocked ? <LockFilled /> : <PlusCircleFilled />}
                 onClick={() => onAddAnswer({ id: key, playerId: user.id, ...answerObj })}
               >
-                {answerObj.answer}
+                {answerObj.answer} {Boolean(answerObj.score) && `(${answerObj.score})`}
               </Button>
             );
           })}
