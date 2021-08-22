@@ -235,7 +235,12 @@
       "en": "One... polemic... subject... You know your opinion, but can do guess the oponents' ones?"
     },
     "rules": {
-      "pt": ["TBD"],
+      "pt": [
+        "Você consegue prever se a polêmica da vez realmente está gerando polêmica?",
+        "Cada rodada, um jogador escolhe um assunto e todos votam se curtem ou não",
+        "Ao mesmo tempo, você tem que tentar adivinhar quantas curtidas o assunto vai ganhar",
+        "Se você acertar o número de curtidas, você ganha 1 ponto! O primeiro jogador a chegar a 4 pontos ganha o jogo (ou 15 rodadas)"
+      ],
       "en": ["TBD"]
     },
     "recommended": "5+",
@@ -259,7 +264,14 @@
       "en": "One crime. One witness... that judge people by their appearances. What could go wrong?"
     },
     "rules": {
-      "pt": ["TBD"],
+      "pt": [
+        "Um crime. Uma testemunha. Desde quando julgando por aparência não se desvenda um crime?",
+        "Um jogador será a testemunha de um crime horrível, os outros, detetive.",
+        "Em cada rodada pergunta-se uma pergunta à testemunha que deve responder sim ou não",
+        "Então, os detetive devem libertar pelo menos um dos suspeitos, de um a um.",
+        "Se os detetives liberarem o criminoso, todos perdem. Se o último suspeito é o criminoso, todos ganham",
+        "Mas há um porém! A testemunha não fala nada sobre a aparência, simplesmente julga o crimiso"
+      ],
       "en": ["TBD"]
     },
     "recommended": "2+",
