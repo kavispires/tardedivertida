@@ -53,5 +53,6 @@ export interface AnswerEntry {
   id: string;
   playerId: PlayerId;
   answer: string;
+  parsedAnswer: string;
   isLocked: boolean;
 }
