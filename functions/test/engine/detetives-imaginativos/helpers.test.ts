@@ -1,9 +1,9 @@
 import 'jest';
 import * as helpers from '../../../src/engine/detetives-imaginativos/helpers';
-import { generatePLayerId } from '../../../src/utils/helpers';
+import { generatePlayerId } from '../../../src/utils/helpers';
 
 const mockPlayer = ({ name, ready = true, score = 0, additionalInfo }) => ({
-  id: generatePLayerId(name),
+  id: generatePlayerId(name),
   name,
   ready,
   score,

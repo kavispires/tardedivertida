@@ -53,7 +53,7 @@ export const generateGameId = (gameCode: GameCode, usedIds: string[] = [], lengt
  * @param playerName
  * @returns
  */
-export function generatePLayerId(playerName: PlayerName) {
+export function generatePlayerId(playerName: PlayerName) {
   return `_${playerName
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '') // Replace characters with accents
