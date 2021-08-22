@@ -171,7 +171,14 @@
       "en": "Do you think like the group or are you the sheep about to be kicked out?"
     },
     "rules": {
-      "pt": ["TBD"],
+      "pt": [
+        "Somos todos ovelhinhas e nosso pasto está super lotado. Precisamos expulsar pelo menos uma de nós para que o pasto fique mais confortável e qual a melhor maneira de fazer isso? Expulsando a ovelha mais diferente de todas! Chega de inclusão!",
+        "Temos 5 partes no nosso pasto, começamos todos na parte 1 e vamos fazer uma pergunta toda rodada e todos respondem uma certa quantidade de respostas, por exemplo: 'Cite 3 frutas'",
+        "Após todos respoderem, contamos todas as respostas iguais. Você ganha 1 ponto para cada resposta igual a de outro jogador (incluindo a sua). Se 3 jogadores responderam Maçã, cada um deles ganha 3 pontos.",
+        "O objetivo é pensar como o grupo, então escreva respostas comuns! Nada de bancar o diferentão.",
+        "Quando contarmos todas as respostas, o jogador (ou jogadores) com o menor número de pontosé enviado para o pasto da direita. (Os pontos resetam toda rodada)",
+        "Se você tem que mover mais adiante que o pasto 5, você cai no precipício e morre, o pasto fica menos lotado e todos mais felizes. Viva."
+      ],
       "en": ["TBD"]
     },
     "recommended": "4+",

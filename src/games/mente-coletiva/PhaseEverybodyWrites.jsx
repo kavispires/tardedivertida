@@ -37,7 +37,6 @@ function PhaseEverybodyWrites({ state, players, info }) {
   });
 
   const onSubmitAnswers = (payload) => {
-    console.log(payload);
     onSubmitAnswersAPIRequest({
       action: 'SUBMIT_ANSWERS',
       ...payload,

@@ -70,7 +70,7 @@ export const Pasture = memo(function ({ players }) {
           {sheepPerEnclosure.map((sheepPlayers, index) => {
             const names = sheepPlayers?.map((p) => p.name)?.join(',\n') ?? '';
             return (
-              <span key={`m-enclosure-${index}`} class="m-enclosure-names">
+              <span key={`m-enclosure-${index}`} className="m-enclosure-names">
                 {names}
               </span>
             );
