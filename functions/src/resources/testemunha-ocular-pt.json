@@ -325,7 +325,7 @@
   },
   "t-82-pt": {
     "id": "t-82-pt",
-    "question": "Ele(a) possue um bastão de selfie?"
+    "question": "Ele(a) possue um pau de selfie?"
   },
   "t-83-pt": {
     "id": "t-83-pt",
@@ -438,5 +438,17 @@
   "t-110-pt": {
     "id": "t-110-pt",
     "question": "Ele(a) usa drogas?"
+  },
+  "t-111-pt": {
+    "id": "t-111-pt",
+    "question": "Ele(a) é cringe?"
+  },
+  "t-112-pt": {
+    "id": "t-112-pt",
+    "question": "Ele(a) teve um tamagochi quando criança?"
+  },
+  "t-113-pt": {
+    "id": "t-113-pt",
+    "question": "Ele(a) já vestiu fantasias para apimentar a relação?"
   }
 }
