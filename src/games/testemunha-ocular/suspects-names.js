@@ -8,7 +8,7 @@ export const SUSPECTS_NAMES = {
     en: 'Prince B.',
   },
   'us-03': {
-    pt: 'Cameron C.',
+    pt: 'Conrado C.',
     en: 'Cameron C.',
   },
   'us-04': {
