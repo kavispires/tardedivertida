@@ -384,7 +384,8 @@ const feedEmulatorDB = async () => {
 
   // ARTE_RUIM
 
-  await firebaseUtils.getPublicRef().doc('arteRuimDrawings').set(sample);
+  await firebaseUtils.getPublicRef().doc('arteRuimDrawingsPt').set(sample);
+  await firebaseUtils.getPublicRef().doc('arteRuimDrawingsEn').set(sample);
   await firebaseUtils.getGlobalRef().doc('usedArteRuimCards').set(sample);
 
   // MENTE_COLETIVA
