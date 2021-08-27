@@ -1,81 +1,100 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 // Design Resources
-import { Layout, Progress, Table } from 'antd';
+import { Card, Layout, Progress, Space } from 'antd';
 // Utils
-import pastDrawings from '../resources/pastDrawings.json';
+import { orderBy } from '../utils';
+import { PUBLIC_URL } from '../utils/constants';
+// Components
+import { LoadingPage } from '../components/loaders';
 import { CanvasSVG } from '../components/canvas';
 import { Title } from '../components/shared';
-import { orderBy } from '../utils';
 
 function Gallery() {
-  const dataSource = orderBy(
-    Object.values(pastDrawings).reduce((acc, entry) => {
-      const data = {
-        id: entry.id,
-        text: entry.text,
-        level: entry.level,
-      };
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [dataSource, setDataSource] = useState([]);
 
-      entry.entries.forEach((drawingEntry) => {
-        acc.push({
-          ...data,
-          drawing: drawingEntry.drawing,
-          playerId: drawingEntry.playerId,
-          successRate: drawingEntry.successRate,
-          createdAt: drawingEntry.createdAt,
-        });
+  const getData = () => {
+    setIsLoading(true);
+    fetch(`${PUBLIC_URL.RESOURCES}/arteRuimGallery.json`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+    })
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (myJson) {
+        setData(myJson);
+        setIsLoading(false);
       });
-      return acc;
-    }, []),
-    ['level', 'id'],
-    ['asc', 'asc']
-  );
+  };
 
-  const columns = [
-    {
-      title: 'Id',
-      dataIndex: 'id',
-      key: 'id',
-    },
-    {
-      title: 'Text',
-      dataIndex: 'text',
-      key: 'text',
-    },
-    {
-      title: 'Level',
-      dataIndex: 'level',
-      key: 'level',
-      render: (v) => Array(v).fill('☆').join(''),
-    },
-    {
-      title: 'Artist',
-      dataIndex: 'playerId',
-      key: 'playerId',
-    },
-    {
-      title: 'Created On',
-      dataIndex: 'createdAt',
-      key: 'createdAt',
-    },
-    {
-      title: 'Drawing',
-      dataIndex: 'drawing',
-      key: 'drawing',
-      render: (v) => <CanvasSVG drawing={v} className="a-evaluation-all-drawings__drawing" />,
-    },
-    {
-      title: 'Success Rate',
-      dataIndex: 'successRate',
-      key: 'successRate',
-      render: (v) => <Progress type="circle" percent={v ? v * 100 : 0} width={80} />,
-    },
-  ];
+  useEffect(() => {
+    getData();
+  }, []);
+
+  useEffect(() => {
+    const sortedDataSource = orderBy(
+      Object.values(data).reduce((acc, entry) => {
+        const data = {
+          id: entry.id,
+          text: entry.text,
+          level: entry.level,
+        };
+
+        entry.entries.forEach((drawingEntry) => {
+          const date = new Date(drawingEntry.createdAt).toLocaleString();
+          acc.push({
+            ...data,
+            drawing: drawingEntry.drawing,
+            playerId: drawingEntry.playerId,
+            successRate: drawingEntry.successRate,
+            createdAt: drawingEntry.createdAt,
+            date,
+          });
+        });
+        return acc;
+      }, []),
+      ['text', 'playerId'],
+      ['asc', 'asc']
+    );
+    setDataSource(sortedDataSource);
+  }, [data]);
+
+  if (isLoading) {
+    return <LoadingPage />;
+  }
 
   return (
     <Layout.Content className="container">
       <Title>Galeria</Title>
-      <Table dataSource={dataSource} columns={columns} />
+
+      <Space wrap className="gallery">
+        {dataSource.map((entry) => {
+          return (
+            <Card
+              cover={<CanvasSVG drawing={entry.drawing} className="gallery__card-drawing" />}
+              className="gallery__card"
+            >
+              <div className="gallery__card-content">
+                <h3 className="gallery__card-title">{entry.text}</h3>
+                <p className="gallery__card-credits">by {entry.playerId}</p>
+                <p className="gallery__card-date">{entry.date.split(', ')[0]}</p>
+                <p className="gallery__card-level">{Array(entry.level).fill('☆').join('')}</p>
+                <Progress
+                  type="circle"
+                  percent={entry.successRate ? entry.successRate * 100 : 0}
+                  width={30}
+                  status={entry.successRate < 0.1 ? 'exception' : undefined}
+                  className="gallery__card-progress"
+                />
+              </div>
+            </Card>
+          );
+        })}
+      </Space>
     </Layout.Content>
   );
 }

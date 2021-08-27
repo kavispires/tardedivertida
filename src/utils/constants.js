@@ -6,6 +6,7 @@ export const PUBLIC_URL = {
   RULES: `${process.env.PUBLIC_URL}/images/rules/`,
   CARDS: `${process.env.PUBLIC_URL}/images/cards/`,
   ROOT: `${process.env.PUBLIC_URL}/images/`,
+  RESOURCES: `${process.env.PUBLIC_URL}/resources/`,
 };
 
 /**
