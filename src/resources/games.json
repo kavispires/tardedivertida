@@ -304,7 +304,15 @@
         "Após as dicas terem sido selecionadas, o Adivinhador tem uma única chance de adivinhar (ou passar, se for um covarde).",
         "Se a palavra estiver correta, ganha-se 1 ponto, se estiver errada perde-se 1 ponto. Mas se tiver passado a vez, nada acontece. Ganha-se o jogo se os jogadores acertarem 70% ou mais das Palavras Secretas!"
       ],
-      "en": ["TBD"]
+      "en": [
+        "That's it? is a cooperative game where a player tries to guess the secret word using clues given but the other players, but there's a catch: similar clues are eliminated! That's it?",
+        "Every round, all players but the Guesser vote for the secret word.",
+        "Then, in secret and in silence, each player writes a clue. Important: A clue MUST be a single word without any parts or variations of the secret word.",
+        "When all clues are submitted, all identical clues are automatically eliminated. Then the players must judge what clues should also be eliminated (because of a typo, etc)",
+        "Variants of the secret word are considered similar: prince = princess, drive = driving. So, don't be too obvious.",
+        "Finally the guesser has a single chance to guess the secret word (or pass, coward).",
+        "If they guess correctly the group gets 1 point, if incorrect the group loses 1 point. Nothing happens if passing. The group wins the game if it scores over 70%!"
+      ]
     },
     "recommended": "6-8",
     "min": 4,
