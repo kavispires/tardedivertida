@@ -76,7 +76,7 @@ function PhaseCompare({ state, players, info }) {
         {/* Step 0 */}
         <PhaseAnnouncement
           type="discussion"
-          title={translate('Respostas', 'Respostas', language)}
+          title={translate('Respostas', 'Answers', language)}
           onClose={() => setStep(1)}
           currentRound={state?.round?.current}
           duration={state?.round?.current < 3 ? 20 : undefined}

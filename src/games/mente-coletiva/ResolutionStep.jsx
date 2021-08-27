@@ -65,8 +65,13 @@ function ResolutionStep({ ranking, players, roundType, pastureChangeStr, announc
         <Step key={1}>
           {showAnnounceSave && (
             <Instruction contained className="m-save-card">
-              <HeartFilled style={{ color: 'red' }} /> Vamos dar uma última chance para a pobre ovelhinha que
-              ia morrer agora <HeartFilled style={{ color: 'red' }} />
+              <HeartFilled style={{ color: 'red' }} />
+              <Translate
+                en="Vamos dar uma última chance para a pobre ovelhinha que
+              ia morrer agora"
+                pt="Let's give one more chance to the poor sheep about to die. The last one!"
+              />
+              <HeartFilled style={{ color: 'red' }} />
             </Instruction>
           )}
           <Pasture players={pastureChange[pastureIndex]} />
