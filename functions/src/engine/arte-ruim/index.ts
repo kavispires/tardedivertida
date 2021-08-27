@@ -110,9 +110,10 @@ export const nextArteRuimPhase = async (
     const usedArteRuimCards = buildUsedCardsIdsDict(store.pastDrawings);
     await globalUtils.updateGlobalFirebaseDoc('usedArteRuimCards', usedArteRuimCards);
     // Save drawings to public gallery
-    const publicDrawings = await publicUtils.getPublicFirebaseDocData('arteRuimDrawings', {});
+    const drawingDocumentName = store.language === 'pt' ? 'arteRuimDrawingsPt' : 'arteRuimDrawingsEn';
+    const publicDrawings = await publicUtils.getPublicFirebaseDocData(drawingDocumentName, {});
     const newArteRuimDrawings = buildPastDrawingsDict(store.pastDrawings, publicDrawings);
-    await publicUtils.updatePublicFirebaseDoc('arteRuimDrawings', newArteRuimDrawings);
+    await publicUtils.updatePublicFirebaseDoc(drawingDocumentName, newArteRuimDrawings);
 
     return firebaseUtils.saveGame(sessionRef, newPhase);
   }
