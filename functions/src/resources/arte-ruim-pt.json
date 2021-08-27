@@ -1,12 +1,12 @@
 {
   "a-1-pt": {
     "id": "a-1-pt",
-    "text": "A beira da morte",
+    "text": "À beira da morte",
     "level": 1
   },
   "a-2-pt": {
     "id": "a-2-pt",
-    "text": "A moda antiga",
+    "text": "À moda antiga",
     "level": 1
   },
   "a-3-pt": {
@@ -3247,6 +3247,36 @@
   "a-650-pt": {
     "id": "a-650-pt",
     "text": "Porque é junto ou separado?",
+    "level": 1
+  },
+  "a-651-pt": {
+    "id": "a-651-pt",
+    "text": "Sexy sem ser vulgar",
+    "level": 1
+  },
+  "a-652-pt": {
+    "id": "a-652-pt",
+    "text": "Vulgar sem ser sexy",
+    "level": 1
+  },
+  "a-653-pt": {
+    "id": "a-653-pt",
+    "text": "Mandar bem",
+    "level": 2
+  },
+  "a-654-pt": {
+    "id": "a-654-pt",
+    "text": "Preferência nacional",
+    "level": 1
+  },
+  "a-655-pt": {
+    "id": "a-655-pt",
+    "text": "De vez e nunca",
+    "level": 3
+  },
+  "a-656-pt": {
+    "id": "a-656-pt",
+    "text": "Atrasada, mas a caminho",
     "level": 1
   }
 }
