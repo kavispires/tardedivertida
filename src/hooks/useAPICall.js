@@ -30,6 +30,7 @@ export function useAPICall({
   onBeforeCall = () => {},
   onAfterCall = () => {},
   onError = () => {},
+  onSuccess = () => {},
   successMessage = 'API call was successful',
   errorMessage = 'API call has failed',
 }) {
@@ -52,6 +53,7 @@ export function useAPICall({
           });
 
           if (response.data) {
+            onSuccess();
             message.success(successMessage);
           }
         } catch (e) {
@@ -79,6 +81,7 @@ export function useAPICall({
         onBeforeCall,
         onAfterCall,
         onError,
+        onSuccess,
       ]
     )
   );

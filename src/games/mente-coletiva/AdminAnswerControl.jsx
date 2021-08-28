@@ -62,7 +62,7 @@ AdminAnswerControl.propTypes = {
       answer: PropTypes.string,
     })
   ),
-  allowedList: PropTypes.any,
+  allowedList: PropTypes.object,
   answerGroup: PropTypes.shape({
     entries: PropTypes.any,
   }),

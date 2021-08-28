@@ -22,6 +22,7 @@ function PhaseCompare({ state, players, info }) {
   const language = useLanguage();
   const [step, setStep] = useState(0);
   const user = useUser(players);
+  const [allowedList, setAllowedList] = useState({});
 
   const onAddAnswerAPIRequest = useAPICall({
     apiFunction: MENTE_COLETIVA_API.submitAction,
@@ -37,6 +38,7 @@ function PhaseCompare({ state, players, info }) {
   const onNextQuestionAPIRequest = useAPICall({
     apiFunction: MENTE_COLETIVA_API.submitAction,
     actionName: 'next-answers',
+    onSuccess: () => setAllowedList({}),
     successMessage: translate(
       'Próximas respostas acionadas com sucesso!',
       'Next answers triggered successfully!',
@@ -119,6 +121,8 @@ function PhaseCompare({ state, players, info }) {
           onAddAnswer={onAddAnswer}
           onNextAnswer={onNextAnswer}
           remainingGroupsCount={state.answersList.length}
+          allowedList={allowedList}
+          setAllowedList={setAllowedList}
         />
 
         {/* Step 2 */}

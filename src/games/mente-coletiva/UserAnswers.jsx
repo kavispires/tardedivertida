@@ -48,16 +48,14 @@ function UserAnswers({ answerGroup, user, onAddAnswer }) {
 }
 
 UserAnswers.propTypes = {
-  currentQuestions: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string,
-      prefix: PropTypes.string,
-      number: PropTypes.number,
-      suffix: PropTypes.string,
-    })
-  ),
-  onQuestionSelection: PropTypes.func,
-  players: PropTypes.object,
+  answerGroup: PropTypes.shape({
+    entries: PropTypes.any,
+  }),
+  onAddAnswer: PropTypes.func,
+  user: PropTypes.shape({
+    answers: PropTypes.any,
+    id: PropTypes.any,
+  }),
 };
 
 export default UserAnswers;
