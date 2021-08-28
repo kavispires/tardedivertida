@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React from 'react';
 // Design Resources
 import { Divider } from 'antd';
 // Components
@@ -17,9 +17,9 @@ export function CompareStep({
   onAddAnswer,
   onNextAnswer,
   remainingGroupsCount,
+  allowedList,
+  setAllowedList,
 }) {
-  const [allowedList, setAllowedList] = useState({});
-
   const allowUserAnswer = (isAllowed, answerId) => {
     const allowedListCopy = { ...allowedList };
     if (!isAllowed) {
@@ -59,11 +59,33 @@ export function CompareStep({
 }
 
 CompareStep.propTypes = {
-  allAnswers: PropTypes.any,
-  answerGroup: PropTypes.any,
-  currentQuestion: PropTypes.any,
-  onAddAnswer: PropTypes.any,
-  onNextAnswer: PropTypes.any,
-  players: PropTypes.any,
-  user: PropTypes.any,
+  allAnswers: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      isLocked: PropTypes.bool,
+      playerId: PropTypes.string,
+      answer: PropTypes.string,
+    })
+  ),
+  allowedList: PropTypes.object,
+  answerGroup: PropTypes.shape({
+    answer: PropTypes.string,
+    entries: PropTypes.any,
+    parsedAnswer: PropTypes.string,
+  }),
+  currentQuestion: PropTypes.shape({
+    id: PropTypes.string,
+    number: PropTypes.number,
+    prefix: PropTypes.string,
+    suffix: PropTypes.string,
+  }),
+  onAddAnswer: PropTypes.func,
+  onNextAnswer: PropTypes.func,
+  players: PropTypes.object,
+  remainingGroupsCount: PropTypes.number,
+  setAllowedList: PropTypes.func,
+  user: PropTypes.shape({
+    answers: PropTypes.any,
+    id: PropTypes.any,
+  }),
 };

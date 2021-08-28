@@ -84,17 +84,18 @@ AnswerGroup.propTypes = {
   allowUserAnswer: PropTypes.func,
   answerGroup: PropTypes.shape({
     answer: PropTypes.string,
-    parsedAnswer: PropTypes.string,
     entries: PropTypes.any,
+    parsedAnswer: PropTypes.string,
   }),
   currentQuestion: PropTypes.shape({
     id: PropTypes.string,
-    prefix: PropTypes.string,
     number: PropTypes.number,
+    prefix: PropTypes.string,
     suffix: PropTypes.string,
   }),
   onQuestionSelection: PropTypes.func,
   players: PropTypes.object,
+  remainingGroupsCount: PropTypes.number,
 };
 
 export default AnswerGroup;
