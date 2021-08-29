@@ -208,6 +208,7 @@ export const RANDOM_NAMES = 'Abe,Bob,Cam,Dan,Eva,Fin,Gus,Hal,Ian,Jan,Kim,Leo,Max
  */
 export const GAME_COLLECTION = {
   ARTE_RUIM: 'arte-ruim',
+  CONTADORES_HISTORIAS: 'contadores-historias',
   DETETIVES_IMAGINATIVOS: 'detetives-imaginativos',
   ESPIAO_ENTRE_NOS: 'espiao-entre-nos',
   MENTE_COLETIVA: 'mente-coletiva',
@@ -228,6 +229,16 @@ export const PHASES = {
     DRAW: 'DRAW',
     EVALUATION: 'EVALUATION',
     GALLERY: 'GALLERY',
+    GAME_OVER: 'GAME_OVER',
+  },
+  CONTADORES_HISTORIAS: {
+    LOBBY: 'LOBBY',
+    RULES: 'RULES',
+    SETUP: 'SETUP',
+    STORY: 'STORY',
+    CARD_PLAY: 'CARD_PLAY',
+    VOTING: 'VOTING',
+    RESOLUTION: 'RESOLUTION',
     GAME_OVER: 'GAME_OVER',
   },
   DETETIVES_IMAGINATIVOS: {

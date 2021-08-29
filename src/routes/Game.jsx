@@ -97,6 +97,8 @@ function Game() {
     switch (gameName) {
       case GAME_COLLECTION.ARTE_RUIM:
         return <GameSessions.ArteRuim gameId={gameId} />;
+      case GAME_COLLECTION.CONTADORES_HISTORIAS:
+        return <GameSessions.ContadoresHistorias gameId={gameId} />;
       case GAME_COLLECTION.DETETIVES_IMAGINATIVOS:
         return <GameSessions.DetetivesImaginativos gameId={gameId} />;
       case GAME_COLLECTION.ESPIAO_ENTRE_NOS:
