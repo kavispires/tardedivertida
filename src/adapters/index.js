@@ -16,6 +16,10 @@ export const ARTE_RUIM_API = {
   submitAction: functions.httpsCallable('arteRuimSubmitAction'),
 };
 
+export const CONTADORES_HISTORIAS_API = {
+  submitAction: functions.httpsCallable('contadoresHistoriasSubmitAction'),
+};
+
 export const DETETIVES_IMAGINATIVOS_API = {
   submitAction: functions.httpsCallable('detetivesImaginativosSubmitAction'),
 };
