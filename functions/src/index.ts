@@ -2,6 +2,7 @@ import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import * as commonEngine from './engine/common';
 import * as arteRuimEngine from './engine/arte-ruim';
+import * as contadoresHistoriasEngine from './engine/contadores-historias';
 import * as DetetivesImaginativosEngine from './engine/detetives-imaginativos';
 import * as espiaoEntreNosEngine from './engine/espiao-entre-nos';
 import * as menteColetivaEngine from './engine/mente-coletiva';
@@ -61,6 +62,10 @@ exports.playAgain = functions.https.onCall(commonEngine.playAgain);
 // ARTE_RUIM HTTP CALLS
 
 exports.arteRuimSubmitAction = functions.https.onCall(arteRuimEngine.submitAction);
+
+// CONTADORES_HISTORIAS HTTP CALLS
+
+exports.contadoresHistoriasSubmitAction = functions.https.onCall(contadoresHistoriasEngine.submitAction);
 
 // DETETIVES_IMAGINATIVOS HTTP CALLS
 

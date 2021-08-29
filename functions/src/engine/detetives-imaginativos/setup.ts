@@ -1,5 +1,5 @@
 // Constants
-import { CARDS_PER_PLAYER, DETETIVES_IMAGINATIVOS_PHASES } from './constants';
+import { CARDS_PER_PLAYER, DETETIVES_IMAGINATIVOS_PHASES, HAND_LIMIT } from './constants';
 // Interfaces
 import { FirebaseStateData, FirebaseStoreData } from './interfaces';
 import { Players, SaveGamePayload } from '../../utils/interfaces';
@@ -7,7 +7,8 @@ import { Players, SaveGamePayload } from '../../utils/interfaces';
 import * as gameUtils from '../../utils/game-utils';
 import * as imageCards from '../../utils/image-cards';
 import * as utils from '../../utils/helpers';
-import { calculateNewScores, countImpostorVotes, dealPlayersCard, determinePhaseOrder } from './helpers';
+import * as playerHandUtils from '../../utils/player-hand-utils';
+import { calculateNewScores, countImpostorVotes, determinePhaseOrder } from './helpers';
 
 /**
  * Setup
@@ -42,7 +43,6 @@ export const prepareSetupPhase = async (
         turnOrder: playerIds,
         gameOrder,
         usedCards: [],
-        teton: true,
       },
       state: {
         phase: DETETIVES_IMAGINATIVOS_PHASES.SETUP,
@@ -69,7 +69,7 @@ export const prepareSecretCluePhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Make sure everybody has 6 cards in hand
-  players = dealPlayersCard(players);
+  players = playerHandUtils.dealPlayersCard(players, HAND_LIMIT);
   players = utils.removePropertiesFromPlayers(players, ['vote']);
 
   // Determine the leader

@@ -28,6 +28,10 @@ All file paths here are relative to `/functions/src`.
 - Add entry to `getInitialStateForCollection`.
 - Add entry to `getNextPhaseForCollection`.
 
+### Add submitAction to `/index.ts`
+
+- Add the action there
+
 ## UI Setup
 
 All file paths here are relative to `/src`.
