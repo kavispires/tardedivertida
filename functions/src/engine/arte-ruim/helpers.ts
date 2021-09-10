@@ -2,7 +2,7 @@
 import { PlainObject, Players } from '../../utils/interfaces';
 import { ArteRuimCard, ArteRuimCardsDatabase, ArteRuimDrawing, FirebaseStoreData } from './interfaces';
 // Constants
-import { ARTE_RUIM_PHASES, ARTE_RUIM_TOTAL_ROUNDS } from './constants';
+import { ARTE_RUIM_PHASES, ARTE_RUIM_TOTAL_ROUNDS, GAME_OVER_SCORE_THRESHOLD } from './constants';
 // Helpers
 import * as gameUtils from '../../utils/game-utils';
 
@@ -12,9 +12,17 @@ import * as gameUtils from '../../utils/game-utils';
  * @param currentRound
  * @returns
  */
-export const determineNextPhase = (currentPhase: string, currentRound: number): string => {
+export const determineNextPhase = (
+  currentPhase: string,
+  currentRound: number,
+  isGameOver?: boolean
+): string => {
   const { RULES, SETUP, DRAW, EVALUATION, GALLERY, GAME_OVER } = ARTE_RUIM_PHASES;
   const order = [RULES, SETUP, DRAW, EVALUATION, GALLERY];
+
+  if (isGameOver) {
+    return GAME_OVER;
+  }
 
   if (currentPhase === GALLERY) {
     return currentRound >= ARTE_RUIM_TOTAL_ROUNDS ? GAME_OVER : DRAW;
@@ -27,6 +35,15 @@ export const determineNextPhase = (currentPhase: string, currentRound: number): 
   }
   console.warn('Missing phase check');
   return DRAW;
+};
+
+/**
+ * Determine if a player has passed max points and it should be game over
+ * @param players
+ * @returns
+ */
+export const determineGameOver = (players: Players) => {
+  return Object.values(players).some((player) => player.score >= GAME_OVER_SCORE_THRESHOLD);
 };
 
 /**

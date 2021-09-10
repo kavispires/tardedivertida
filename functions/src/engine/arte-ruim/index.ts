@@ -9,7 +9,12 @@ import * as firebaseUtils from '../../utils/firebase';
 import * as globalUtils from '../global';
 import * as publicUtils from '../public';
 // Internal Functions
-import { buildPastDrawingsDict, buildUsedCardsIdsDict, determineNextPhase } from './helpers';
+import {
+  buildPastDrawingsDict,
+  buildUsedCardsIdsDict,
+  determineGameOver,
+  determineNextPhase,
+} from './helpers';
 import {
   prepareSetupPhase,
   prepareDrawPhase,
@@ -73,8 +78,10 @@ export const nextArteRuimPhase = async (
   const state = stateDoc.data() ?? {};
   const store = storeDoc.data() ?? {};
 
+  // Determine if it's game over
+  const isGameOver = determineGameOver(players);
   // Determine next phase
-  const nextPhase = determineNextPhase(state?.phase, state?.round?.current ?? 0);
+  const nextPhase = determineNextPhase(state?.phase, state?.round?.current ?? 0, isGameOver);
 
   // RULES -> SETUP
   if (nextPhase === ARTE_RUIM_PHASES.SETUP) {
