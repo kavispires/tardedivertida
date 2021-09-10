@@ -11,7 +11,7 @@ function PhaseGameOver({ state, players, info }) {
       <ul className="a-game-over__gallery">
         {state.drawings.map((entry) => {
           return (
-            <li className="a-game-over__gallery-item" key={entry.drawing}>
+            <li className="a-game-over__gallery-item" key={entry.drawing} style={{ width: '200px' }}>
               <CanvasSVG drawing={entry.drawing} size={200} className="a-game-over__gallery-canvas" />
               <span className="a-game-over__credits">
                 "{entry.text}" <Translate pt="por" en="by" /> {players[entry.playerId].name}
