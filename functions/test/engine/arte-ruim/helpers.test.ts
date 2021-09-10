@@ -13,7 +13,7 @@ describe('arte-ruim/helpers', () => {
         2: 12,
         3: 20,
       };
-      result = helpers.buildDeck(Object.values(mockArteRuimCardDatabase), perLevels);
+      result = helpers.buildDeck(Object.values(mockArteRuimCardDatabase), perLevels, 7);
 
       expect(result).toHaveLength(42);
       expect(result[0].level).toBe(3);
