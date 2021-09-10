@@ -65,6 +65,8 @@ function PhaseGallery({ players, state, info }) {
     }
   }, [step]); // eslint-disable-line
 
+  const isGameOver = Object.values(players).some((player) => player.score > 50);
+
   return (
     <PhaseContainer
       info={info}
@@ -107,7 +109,7 @@ function PhaseGallery({ players, state, info }) {
           <Title>Ranking</Title>
           <RankingBoard players={players} ranking={state.ranking} />
 
-          <RoundsLeftInstruction round={state?.round} />
+          {!isGameOver && <RoundsLeftInstruction round={state?.round} />}
 
           <Button
             size="large"
