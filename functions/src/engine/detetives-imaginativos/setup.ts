@@ -174,6 +174,7 @@ export const prepareRevealPhase = async (
     .map(([playerId, scores]) => {
       return {
         playerId,
+        name: players[playerId].name,
         previousScore: scores[0],
         gainedPoints: scores[1],
         newScore: scores[2],

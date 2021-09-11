@@ -172,6 +172,7 @@ export const buildRanking = (players: Players): PlainObject[] => {
   const ranking = Object.values(players)
     .map((player) => ({
       playerId: player.id,
+      name: player.name,
       previousScore: 0,
       newScore: player.score,
     }))
