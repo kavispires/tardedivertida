@@ -13,7 +13,9 @@ import { Avatar } from '../../avatars';
 export function SectionRankedPlayers({ players }) {
   const language = useLanguage();
 
-  const rankedPlayers = useMemo(() => orderBy(Object.values(players), 'score'), [players]);
+  const rankedPlayers = useMemo(() => orderBy(Object.values(players), ['score', 'name'], ['desc', 'asc']), [
+    players,
+  ]);
   return (
     <ul>
       {rankedPlayers.map((player, index) => {
