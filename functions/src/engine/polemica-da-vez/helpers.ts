@@ -99,6 +99,7 @@ export const rankAndScore = (players: Players, totalLikes: number): PlainObject 
       player.score = newScore;
       return {
         playerId: player.id,
+        name: player.name,
         previousScore,
         gainedPoints,
         newScore,

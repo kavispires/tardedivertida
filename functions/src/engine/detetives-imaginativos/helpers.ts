@@ -1,9 +1,7 @@
 // Constants
-import { DETETIVES_IMAGINATIVOS_PHASES, HAND_LIMIT } from './constants';
+import { DETETIVES_IMAGINATIVOS_PHASES } from './constants';
 // Interfaces
 import { PlainObject, Player, PlayerId, Players, Round } from '../../utils/interfaces';
-// Utils
-import * as gameUtils from '../../utils/game-utils';
 
 /**
  * Determine the next phase based on the current one
@@ -35,57 +33,6 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
   }
   console.warn('Missing phase check');
   return SECRET_CLUE;
-};
-
-/**
- * Deal cards to players from their own deck
- * @param players players object
- * @param quantity number of cards to be dealt
- * @param [playerId] if present, only this player will get cards
- * @returns
- */
-export const dealPlayersCard = (players: Players, quantity?: number, playerId?: PlayerId) => {
-  const toPlayers = playerId ? [playerId] : Object.keys(players);
-
-  toPlayers.forEach((playerId) => {
-    const player = players[playerId];
-    const currentHand = player?.hand ?? [];
-    const handLimit = quantity ? currentHand.length + quantity : HAND_LIMIT;
-    let currentDeckIndex = player?.deckIndex ?? -1;
-    for (let i = currentHand.length; i < handLimit; i++) {
-      currentHand.push(player.deck[currentDeckIndex + 1]);
-      currentDeckIndex++;
-    }
-
-    player.hand = currentHand;
-    player.deckIndex = currentDeckIndex;
-  });
-
-  return players;
-};
-
-/**
- * Deal cards to players from their own deck
- * @param players players object
- * @param quantity number of cards to be dealt
- * @param [playerId] if present, only this player will get cards
- * @returns
- */
-export const discardPlayerCard = (players: Players, cardId: string, playerId: PlayerId) => {
-  const player = players[playerId];
-  const currentHand = gameUtils.removeItem(player?.hand ?? [], cardId);
-
-  let currentDeckIndex = player?.deckIndex ?? -1;
-  for (let i = currentHand.length; i < HAND_LIMIT; i++) {
-    const deck = player.deck;
-    currentHand.push(deck[currentDeckIndex + 1]);
-    currentDeckIndex++;
-  }
-
-  player.hand = currentHand;
-  player.deckIndex = currentDeckIndex;
-
-  return players;
 };
 
 /**

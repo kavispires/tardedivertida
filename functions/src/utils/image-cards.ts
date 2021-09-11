@@ -1,12 +1,13 @@
 import * as gameUtils from './game-utils';
+import { ImageCard } from './interfaces';
 
-const DECKS = ['dc-b1', 'dc-b2', 'dx-mr', 'dx-mm', 'dx-or', 'mu-aw', 'my-pr'];
+const DECKS = ['dc-b1', 'dc-b2', 'dx-hm', 'dx-mr', 'dx-mm', 'dx-od', 'dx-or', 'mu-aw', 'my-bs', 'my-pr'];
 
 export const IMAGE_CARDS_PER_DECK = 84;
 
 const deckCache = {};
 
-export const getImageCards = (numDecks = 1) => {
+export const getImageCards = (numDecks = 1): ImageCard[] => {
   if (numDecks > DECKS.length) {
     throw Error(`${numDecks} image decks were requested while game only has ${DECKS.length} available`);
   }

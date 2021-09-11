@@ -1,4 +1,5 @@
 export * from './useAPICall';
+export * from './useBlurCards';
 export * from './useDimensions';
 export * from './useGamePlayers';
 export * from './useGameState';

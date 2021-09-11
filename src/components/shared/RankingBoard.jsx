@@ -6,7 +6,7 @@ import { CrownFilled } from '@ant-design/icons';
 // Hooks
 import { useDimensions } from '../../hooks';
 // Utils
-import { inNSeconds } from '../../utils';
+import { inNSeconds, orderBy } from '../../utils';
 // Components
 import { Avatar } from '../avatars';
 
@@ -30,9 +30,8 @@ export function RankingBoard({ players, ranking }) {
     let lastPosition = 0;
     let lastPoints = null;
 
-    const rankByFinalScoreDict = ranking
-      .sort((a, b) => (a.newScore < b.newScore ? 1 : -1))
-      .reduce((acc, entry, index) => {
+    const rankByFinalScoreDict = orderBy(ranking, ['newScore', 'name'], ['desc', 'asc']).reduce(
+      (acc, entry, index) => {
         acc[entry.playerId] = index;
         // Calculate position
         if (lastPoints === null || entry.newScore < lastPoints) {
@@ -41,9 +40,11 @@ export function RankingBoard({ players, ranking }) {
         }
         positions[entry.playerId] = [0, lastPosition];
         return acc;
-      }, {});
+      },
+      {}
+    );
 
-    const rankByPreviousScore = ranking.sort((a, b) => (a.previousScore < b.previousScore ? 1 : -1));
+    const rankByPreviousScore = orderBy(ranking, ['previousScore', 'name'], ['desc', 'asc']);
 
     // Reset position trackers
     lastPosition = 0;

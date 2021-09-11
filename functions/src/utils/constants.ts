@@ -4,6 +4,7 @@ export const LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
 export const GAME_CODES = {
   A: 'A', // arte-ruim
+  C: 'C', // contadores-historias
   D: 'D', // detetives-imaginativos
   E: 'E', // espiao-entre-nos
   M: 'M', // mente-coletiva
@@ -15,6 +16,7 @@ export const GAME_CODES = {
 
 export const GAME_KEYS = {
   ARTE_RUIM: 'ARTE_RUIM',
+  CONTADORES_HISTORIAS: 'CONTADORES_HISTORIAS',
   DETETIVES_IMAGINATIVOS: 'DETETIVES_IMAGINATIVOS',
   ESPIAO_ENTRE_NOS: 'ESPIAO_ENTRE_NOS',
   MENTE_COLETIVA: 'MENTE_COLETIVA',
@@ -26,6 +28,7 @@ export const GAME_KEYS = {
 
 export const GAME_COLLECTIONS = {
   ARTE_RUIM: 'arte-ruim',
+  CONTADORES_HISTORIAS: 'contadores-historias',
   DETETIVES_IMAGINATIVOS: 'detetives-imaginativos',
   ESPIAO_ENTRE_NOS: 'espiao-entre-nos',
   MENTE_COLETIVA: 'mente-coletiva',
@@ -37,6 +40,10 @@ export const GAME_COLLECTIONS = {
 
 export const GAME_PLAYERS_LIMIT = {
   ARTE_RUIM: {
+    min: 3,
+    max: 8,
+  },
+  CONTADORES_HISTORIAS: {
     min: 3,
     max: 8,
   },

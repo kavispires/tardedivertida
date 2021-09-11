@@ -10,7 +10,7 @@ import {
   useLanguage,
 } from '../../hooks';
 // Resources & Utils
-import { DETETIVES_IMAGINATIVOS_API } from '../../adapters';
+import { CONTADORES_HISTORIAS_API } from '../../adapters';
 import { PHASES } from '../../utils/constants';
 // Components
 import {
@@ -27,30 +27,27 @@ import {
 } from '../../components/shared';
 import { AvatarName } from '../../components/avatars';
 import { ImageCardPreloadHand } from '../../components/cards';
-import SecretClueWrite from './SecretClueWrite';
-import SecretClueWaiting from './SecretClueWaiting';
+import StoryWaiting from './StoryWaiting';
+import StoryWriting from './StoryWriting';
 
-function PhaseSecretClue({ state, players, info }) {
+function PhaseStory({ state, players, info }) {
   const language = useLanguage();
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
-  const leader = useWhichPlayerIsThe('leader', state, players);
-  const isUserTheLeader = useIsUserThe('leader', state);
+  const storyteller = useWhichPlayerIsThe('storyteller', state, players);
+  const nextStoryteller = useWhichPlayerIsThe('nextStoryteller', state, players);
+  const isUserTheStoryTeller = useIsUserThe('storyteller', state);
   const [step, setStep] = useState(0);
 
-  const onSubmitSecretClue = useAPICall({
-    apiFunction: DETETIVES_IMAGINATIVOS_API.submitAction,
-    actionName: 'submit-secret-clue',
+  const onSubmitStory = useAPICall({
+    apiFunction: CONTADORES_HISTORIAS_API.submitAction,
+    actionName: 'submit-story',
     onBeforeCall: () => setStep(3),
     onError: () => setStep(0),
-    successMessage: translate(
-      'Pista Secreta submetida com sucesso',
-      'Secret clue submitted successfully',
-      language
-    ),
+    successMessage: translate('História submetida com sucesso', 'Story submitted successfully', language),
     errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua pista secreta',
-      'Oops, the application found an error while trying to submit your secret clue',
+      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua história',
+      'Oops, the application found an error while trying to submit your story',
       language
     ),
   });
@@ -59,8 +56,8 @@ function PhaseSecretClue({ state, players, info }) {
     <PhaseContainer
       info={info}
       phase={state?.phase}
-      allowedPhase={PHASES.DETETIVES_IMAGINATIVOS.SECRET_CLUE}
-      className="d-secret-clue-phase"
+      allowedPhase={PHASES.CONTADORES_HISTORIAS.STORY}
+      className="c-story-phase"
     >
       <StepSwitcher step={step} conditions={[!isUserReady]}>
         {/* Step 0 */}
@@ -73,8 +70,8 @@ function PhaseSecretClue({ state, players, info }) {
 
         {/* Step 1 */}
         <PhaseAnnouncement
-          type="secret"
-          title={translate('Pista Secreta', 'Secret Clue', language)}
+          type="fairytale"
+          title={translate('Conte-nos uma história', 'Tell us a story...', language)}
           onClose={() => setStep(2)}
           currentRound={state?.round?.current}
         >
@@ -82,12 +79,17 @@ function PhaseSecretClue({ state, players, info }) {
             <Translate
               pt={
                 <>
-                  Para essa rodada, <AvatarName player={leader} addressUser /> será o(a) Detetive Líder.
+                  Para essa rodada, <AvatarName player={storyteller} addressUser /> será o(a) Contador(a) de
+                  Histórias.
+                  <br />
+                  Para a próxima rodada, será: {nextStoryteller.name}
                 </>
               }
               en={
                 <>
-                  For this round, <AvatarName player={leader} addressUser /> will be the Lead Detective.
+                  For this round, <AvatarName player={storyteller} addressUser /> will be the Storyteller.
+                  <br />
+                  For the next round we will have: {nextStoryteller.name}
                 </>
               }
             />
@@ -97,12 +99,12 @@ function PhaseSecretClue({ state, players, info }) {
 
         {/* Step 2 */}
         <Step fullWidth>
-          <ViewIf isVisible={!isUserTheLeader}>
-            <SecretClueWaiting user={user} leader={leader} />
+          <ViewIf isVisible={!isUserTheStoryTeller}>
+            <StoryWaiting user={user} storyteller={storyteller} />
           </ViewIf>
 
-          <ViewIf isVisible={isUserTheLeader}>
-            <SecretClueWrite user={user} onSubmitClue={onSubmitSecretClue} />
+          <ViewIf isVisible={isUserTheStoryTeller}>
+            <StoryWriting user={user} onSubmitStory={onSubmitStory} />
           </ViewIf>
         </Step>
 
@@ -121,13 +123,16 @@ function PhaseSecretClue({ state, players, info }) {
   );
 }
 
-PhaseSecretClue.propTypes = {
+PhaseStory.propTypes = {
   info: PropTypes.object,
   players: PropTypes.object,
   state: PropTypes.shape({
     phase: PropTypes.string,
-    round: PropTypes.shape({ current: PropTypes.number, total: PropTypes.number }),
+    round: PropTypes.shape({
+      current: PropTypes.number,
+      total: PropTypes.number,
+    }),
   }),
 };
 
-export default PhaseSecretClue;
+export default PhaseStory;

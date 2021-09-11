@@ -89,7 +89,6 @@
   max-width: 94vw;
   overflow-x: auto;
   padding: get-unit(2);
-  justify-content: center;
 
   background: rgb(0, 0, 0);
   background: linear-gradient(
@@ -109,5 +108,21 @@
 
   &--blur {
     filter: blur(10px);
+  }
+}
+
+.image-card-preload-hand {
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.image-card-back {
+  border-radius: get-unit(3);
+  margin: get-unit(1);
+  transition: 500ms transform;
+
+  .ant-image-img {
+    border-radius: get-unit(3);
   }
 }
