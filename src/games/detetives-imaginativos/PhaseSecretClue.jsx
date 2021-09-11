@@ -26,9 +26,9 @@ import {
   WaitingRoom,
 } from '../../components/shared';
 import { AvatarName } from '../../components/avatars';
+import { ImageCardPreloadHand } from '../../components/cards';
 import SecretClueWrite from './SecretClueWrite';
 import SecretClueWaiting from './SecretClueWaiting';
-import { PreloadHand } from './PreloadHand';
 
 function PhaseSecretClue({ state, players, info }) {
   const language = useLanguage();
@@ -92,7 +92,7 @@ function PhaseSecretClue({ state, players, info }) {
               }
             />
           </Instruction>
-          <PreloadHand hand={user?.hand} />
+          <ImageCardPreloadHand hand={user?.hand} />
         </PhaseAnnouncement>
 
         {/* Step 2 */}

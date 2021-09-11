@@ -91,7 +91,6 @@ function PhaseCardPlay({ state, players, info }) {
               en="Now players will play 2 cards, one at a time, as evidence that they are not the impostor while the impostor is looking closely to what others are playing and trying to go unnoticed."
             />
           </Instruction>
-          {/* TODO: Preload hand */}
         </PhaseAnnouncement>
 
         {/* Step 1 */}
@@ -155,7 +154,6 @@ function PhaseCardPlay({ state, players, info }) {
             hand={user.hand}
             onSelectCard={isUserTheCurrentPlayer ? onSelectCard : null}
             disabledSelectButton={isLoading}
-            selectButtonLabel={translate('Selecionar', 'Select', language)}
             sizeRatio={10}
           />
         </Step>
