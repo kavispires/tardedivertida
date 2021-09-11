@@ -108,14 +108,11 @@ export const prepareReactPhase = async (
 
   let currentTopic = {};
   const customTopic = store.customTopic ?? null;
-  console.log({ customTopic });
   if (customTopic) {
     currentTopic = store.customDeck.find((topic) => topic.id === store.topicId);
   } else {
     currentTopic = store.deck.find((topic) => topic.id === store.topicId);
   }
-  console.log({ topicId: store.topicId });
-  console.log({ currentTopic });
 
   // Save
   return {
