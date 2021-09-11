@@ -3,6 +3,7 @@ import {
   CARDS_PER_PLAYER,
   CONTADORES_HISTORIAS_PHASES,
   HAND_LIMIT,
+  MAX_ROUNDS,
   TABLE_CARDS_BY_PLAYER_COUNT,
 } from './constants';
 // Interfaces
@@ -58,13 +59,13 @@ export const prepareSetupPhase = async (
         gameOrder,
         usedCards: [],
         tableDeck,
-        tableDeckIndex: 0,
+        tableDeckIndex: -1,
       },
       state: {
         phase: CONTADORES_HISTORIAS_PHASES.SETUP,
         round: {
           current: 0,
-          total: gameOrder.length,
+          total: MAX_ROUNDS,
         },
       },
       players,
@@ -86,10 +87,11 @@ export const prepareStoryPhase = async (
 ): Promise<SaveGamePayload> => {
   // Make sure everybody has 6 cards in hand
   players = playerHandUtils.dealPlayersCard(players, HAND_LIMIT);
-  players = utils.removePropertiesFromPlayers(players, ['vote', 'card']);
+  players = utils.removePropertiesFromPlayers(players, ['vote', 'cardId']);
 
   // Determine active player based on current round
   const storyteller = utils.getActivePlayer(store.gameOrder, state.round.current + 1);
+  const nextStoryteller = utils.getActivePlayer(store.gameOrder, state.round.current + 2);
 
   // Save
   return {
@@ -104,6 +106,11 @@ export const prepareStoryPhase = async (
         updatedAt: Date.now(),
         round: utils.increaseRound(state.round),
         storyteller,
+        nextStoryteller,
+        outcome: firebaseUtils.deleteValue(),
+        ranking: firebaseUtils.deleteValue(),
+        table: firebaseUtils.deleteValue(),
+        story: firebaseUtils.deleteValue(),
       },
       players,
     },
@@ -115,10 +122,11 @@ export const prepareCardPlayPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
-  // Unready players to vote
-  utils.unReadyPlayer(players, state.storyteller);
+  // Unready players to play cards
+  utils.unReadyPlayers(players, state.storyteller);
 
   // Add card solution to storyteller
+  players[state.storyteller].cardId = store.solutionCardId;
   players[state.storyteller].vote = store.solutionCardId;
 
   // Save
@@ -142,18 +150,18 @@ export const prepareVotingPhase = async (
   const tableCardsCount = TABLE_CARDS_BY_PLAYER_COUNT[Object.keys(players).length];
 
   // Get N cards from tableDeck
-  const tableCards = getTableCards(store.deck, store.deckIndex, tableCardsCount);
+  const tableCards = getTableCards(store.tableDeck, store.tableDeckIndex, tableCardsCount);
 
   const table = buildTable(players, tableCards, state.storyteller);
 
   // Unready players to vote
-  utils.unReadyPlayer(players, state.storyteller);
+  utils.unReadyPlayers(players, state.storyteller);
 
   // Save
   return {
     update: {
       store: {
-        deckIndex: store.deckIndex + tableCardsCount,
+        tableDeckIndex: store.tableDeckIndex + tableCardsCount,
       },
       state: {
         phase: CONTADORES_HISTORIAS_PHASES.VOTING,
@@ -183,6 +191,7 @@ export const prepareResolutionPhase = async (
         ranking,
         table,
       },
+      players,
     },
   };
 };

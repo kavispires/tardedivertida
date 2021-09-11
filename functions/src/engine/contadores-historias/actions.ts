@@ -26,14 +26,23 @@ export const handleSubmitStory = async (
   const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
   const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', 'submit story');
 
+  const players = playersDoc.data() ?? {};
+
+  // Remove card from storytellers's hand and add new card
+  try {
+    playerHandUtils.discardPlayerCard(players, cardId, playerId, HAND_LIMIT);
+    players[playerId].cardId = cardId;
+    await sessionRef.doc('players').update({ [playerId]: players[playerId] });
+  } catch (error) {
+    firebaseUtils.throwException(error, 'Failed to update player with new card');
+  }
+
   // Submit clue
   try {
     await sessionRef.doc('store').update({ story, solutionCardId: cardId });
   } catch (error) {
     firebaseUtils.throwException(error, 'Failed to save story to store');
   }
-
-  const players = playersDoc.data() ?? {};
 
   // If all players are ready, trigger next phase
   return nextContadoresHistoriasPhase(collectionName, gameId, players);
@@ -61,7 +70,7 @@ export const handlePlayCard = async (
   const players = playersDoc.data() ?? {};
   const state = stateDoc.data() ?? {};
 
-  if (state.storyteller !== playerId) {
+  if (state.storyteller === playerId) {
     firebaseUtils.throwException('You are the storyteller!', 'Failed to play card.');
   }
 
