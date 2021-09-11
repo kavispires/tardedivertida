@@ -256,6 +256,7 @@ export const buildRanking = (players: Players, gallery: PlainObject) => {
     .map(([playerId, scores]) => {
       return {
         playerId,
+        name: players[playerId].name,
         previousScore: scores[0],
         gainedPoints: scores[1],
         newScore: scores[2],
