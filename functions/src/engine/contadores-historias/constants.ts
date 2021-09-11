@@ -15,6 +15,8 @@ export const HAND_LIMIT = 7;
 
 export const MAX_ROUNDS = 15;
 
+export const GAME_OVER_SCORE_THRESHOLD = 30;
+
 export const TABLE_CARDS_BY_PLAYER_COUNT = {
   3: 3,
   4: 2,

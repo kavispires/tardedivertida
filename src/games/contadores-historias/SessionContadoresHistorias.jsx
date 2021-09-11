@@ -2,10 +2,15 @@ import React from 'react';
 // Hooks
 import { GAME_COLLECTION, PHASES } from '../../utils/constants';
 // Components
-import { PhasePlaceholder, Session, SetupScreen } from '../../components/shared';
+import { Session, SetupScreen } from '../../components/shared';
 import Lobby from '../../components/lobby/Lobby';
 import { Rules } from '../../components/rules';
 import { PageError } from '../../components/errors/PageError';
+import PhaseStory from './PhaseStory';
+import PhaseCardPlay from './PhaseCardPlay';
+import PhaseVoting from './PhaseVoting';
+import PhaseResolution from './PhaseResolution';
+import PhaseGameOver from './PhaseGameOver';
 
 function SessionDetetivesImaginativos({ gameId }) {
   function getActiveComponent(phase) {
@@ -17,15 +22,15 @@ function SessionDetetivesImaginativos({ gameId }) {
       case PHASES.CONTADORES_HISTORIAS.SETUP:
         return SetupScreen;
       case PHASES.CONTADORES_HISTORIAS.STORY:
-        return PhasePlaceholder;
+        return PhaseStory;
       case PHASES.CONTADORES_HISTORIAS.CARD_PLAY:
-        return PhasePlaceholder;
+        return PhaseCardPlay;
       case PHASES.CONTADORES_HISTORIAS.VOTING:
-        return PhasePlaceholder;
+        return PhaseVoting;
       case PHASES.CONTADORES_HISTORIAS.RESOLUTION:
-        return PhasePlaceholder;
+        return PhaseResolution;
       case PHASES.CONTADORES_HISTORIAS.GAME_OVER:
-        return PhasePlaceholder;
+        return PhaseGameOver;
       default:
         return PageError;
     }

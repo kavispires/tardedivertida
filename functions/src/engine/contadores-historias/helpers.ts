@@ -1,5 +1,5 @@
 // Constants
-import { CONTADORES_HISTORIAS_PHASES, OUTCOME } from './constants';
+import { CONTADORES_HISTORIAS_PHASES, GAME_OVER_SCORE_THRESHOLD, OUTCOME } from './constants';
 // Interfaces
 import { ImageCard, PlainObject, PlayerId, Players, Round } from '../../utils/interfaces';
 // Utils
@@ -16,7 +16,11 @@ export const determineNextPhase = (currentPhase: string, round: Round, isGameOve
   const { RULES, SETUP, STORY, CARD_PLAY, VOTING, RESOLUTION, GAME_OVER } = CONTADORES_HISTORIAS_PHASES;
   const order = [RULES, SETUP, STORY, CARD_PLAY, VOTING, RESOLUTION, GAME_OVER];
 
-  if (isGameOver || currentPhase === RESOLUTION) {
+  if (isGameOver) {
+    return GAME_OVER;
+  }
+
+  if (currentPhase === RESOLUTION) {
     return round.current > 0 && round.current === round.total ? GAME_OVER : STORY;
   }
 
@@ -149,6 +153,7 @@ export const scoreRound = (players: Players, table: Table, storyteller: PlayerId
     .map(([playerId, scores]) => {
       return {
         playerId,
+        name: players[playerId].name,
         previousScore: scores[0],
         gainedPoints: scores[1],
         newScore: scores[2],
@@ -156,8 +161,6 @@ export const scoreRound = (players: Players, table: Table, storyteller: PlayerId
     })
     .sort((a, b) => (a.newScore > b.newScore ? 1 : -1));
 
-  // Determine outcome type
-  // Score points
   return {
     table,
     outcome,
@@ -170,6 +173,6 @@ export const scoreRound = (players: Players, table: Table, storyteller: PlayerId
  * @param players
  * @returns
  */
-export const determineGameOver = (players: Players) => {
-  return Object.values(players).some((player) => player.score >= 30);
+export const determineGameOver = (players: Players): boolean => {
+  return Object.values(players).some((player) => player.score >= GAME_OVER_SCORE_THRESHOLD);
 };
