@@ -88,8 +88,6 @@ export const buildDeck = (
     }
   );
 
-  console.log({ cardsPerLevel });
-
   // Shuffle decks and verify if number of cards will be sufficient
   const willLevelNeedExtraCards = {};
   Object.keys(cardsPerLevel).forEach((level) => {
@@ -97,12 +95,9 @@ export const buildDeck = (
     willLevelNeedExtraCards[level] = cardsPerLevel[level] < perLevel[level];
   });
 
-  console.log({ willLevelNeedExtraCards });
-
   const getAvailableDeck = (deck: ArteRuimCard[], level: number, decks) => {
     let activeDeck = deck;
     let activeLevel = level;
-    console.log('HAD TO USE THIS?');
     while (activeDeck.length === 0) {
       activeLevel = decks[level - 1].length ? level - 1 : 3;
       activeDeck = decks[activeLevel];
@@ -121,7 +116,6 @@ export const buildDeck = (
     return newDeck;
   });
 
-  console.log({ distributedCards });
   const deck: ArteRuimCard[] = [];
 
   DECK_ORDER_BY_LEVEL.forEach((deckLevel) => {
@@ -130,8 +124,6 @@ export const buildDeck = (
       deck.push(distributedCards[distributedCardsIndex].pop());
     }
   });
-
-  console.log({ deck });
 
   return deck;
 };
