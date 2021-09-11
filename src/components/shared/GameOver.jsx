@@ -176,10 +176,7 @@ GameOver.propTypes = {
       score: PropTypes.number,
       victory: PropTypes.any,
     }),
-    winners: PropTypes.shape({
-      length: PropTypes.number,
-      map: PropTypes.func,
-    }),
+    winners: PropTypes.array,
   }),
 };
 
