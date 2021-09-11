@@ -2,6 +2,7 @@ export type GameId = string;
 export type GameName = string;
 export type GameCode = string;
 export type DateMilliseconds = number;
+export type Language = string;
 export type PlayerId = string;
 export type PlayerName = string;
 export type PlayerAvatarId = string;

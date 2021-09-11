@@ -80,16 +80,16 @@
       "en": "Is an image really worth a thousand words? Try to find out what image is the storyteller refering to"
     },
     "rules": {
-      "pt": [],
-      "en": []
+      "pt": ["TBD"],
+      "en": ["TBD"]
     },
     "recommended": "4-6",
     "min": 3,
     "max": 8,
     "tags": ["competitive", "turn-based", "guessing", "images"],
     "available": {
-      "pt": false,
-      "en": false
+      "pt": true,
+      "en": true
     }
   },
   "D": {

@@ -3,8 +3,9 @@ import { GameId, PlayerId, GameName } from '../../utils/interfaces';
 // Utils
 import * as firebaseUtils from '../../utils/firebase';
 import * as utils from '../../utils/helpers';
-import { discardPlayerCard } from './helpers';
+import * as playerHandUtils from '../../utils/player-hand-utils';
 import { nextDetetivesImaginativosPhase } from './index';
+import { HAND_LIMIT } from './constants';
 
 /**
  *
@@ -34,7 +35,7 @@ export const handlePlayCard = async (
 
   // Remove card from player's hand and add new card
   try {
-    const newPlayers = discardPlayerCard(players, cardId, playerId);
+    const newPlayers = playerHandUtils.discardPlayerCard(players, cardId, playerId, HAND_LIMIT);
     await sessionRef.doc('players').update(newPlayers);
   } catch (error) {
     firebaseUtils.throwException(error, 'Failed to update player with new card');
