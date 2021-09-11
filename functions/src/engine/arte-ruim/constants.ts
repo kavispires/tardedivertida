@@ -10,8 +10,13 @@ export const ARTE_RUIM_PHASES = {
 
 export const ARTE_RUIM_TOTAL_ROUNDS = 10;
 
+export const GAME_OVER_SCORE_THRESHOLD = 50;
+
+export const DECK_ORDER_BY_LEVEL = [1, 1, 2, 3, 1, 2, 3, 1, 2, 3].reverse();
+
 export const CARDS_PER_PLAYER_COUNT = {
   3: {
+    perRound: 7,
     total: 70,
     perLevel: {
       1: 28,
@@ -20,6 +25,7 @@ export const CARDS_PER_PLAYER_COUNT = {
     },
   },
   4: {
+    perRound: 7,
     total: 70,
     perLevel: {
       1: 28,
@@ -28,6 +34,7 @@ export const CARDS_PER_PLAYER_COUNT = {
     },
   },
   5: {
+    perRound: 7,
     total: 70,
     perLevel: {
       1: 28,
@@ -36,6 +43,7 @@ export const CARDS_PER_PLAYER_COUNT = {
     },
   },
   6: {
+    perRound: 8,
     total: 80,
     perLevel: {
       1: 32,
@@ -44,6 +52,7 @@ export const CARDS_PER_PLAYER_COUNT = {
     },
   },
   7: {
+    perRound: 9,
     total: 90,
     perLevel: {
       1: 36,
@@ -52,6 +61,7 @@ export const CARDS_PER_PLAYER_COUNT = {
     },
   },
   8: {
+    perRound: 10,
     total: 100,
     perLevel: {
       1: 40,

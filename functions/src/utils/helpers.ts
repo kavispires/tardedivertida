@@ -360,3 +360,11 @@ export const increaseRound = (round: Round, total?: number, current?: number): R
 export const getActivePlayer = (turnOrder: GameOrder | TurnOrder, currentRound: number) => {
   return turnOrder[(currentRound - 1) % turnOrder.length];
 };
+
+/**
+ * Flattens a two dimensional array
+ * @param twoDimensionalArray
+ * @returns
+ */
+export const flattenArray = (twoDimensionalArray: any[]) =>
+  twoDimensionalArray.reduce((acc, arr) => [...acc, ...arr], []);

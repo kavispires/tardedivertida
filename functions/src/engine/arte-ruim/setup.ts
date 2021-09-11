@@ -31,13 +31,14 @@ export const prepareSetupPhase = async (
   const playerCount = Object.keys(players).length;
   const totalCardsNeeded = CARDS_PER_PLAYER_COUNT[playerCount].total;
   const perLevelNeeded = CARDS_PER_PLAYER_COUNT[playerCount].perLevel;
+  const perRoundNeeded = CARDS_PER_PLAYER_COUNT[playerCount].perRound;
 
   // Filter used cards, if not enough cards, just use the full deck
   const filteredCards = filterAvailableCards(additionalData.allCards, additionalData.usedCards);
   const availableCards = filteredCards.length < totalCardsNeeded ? additionalData.allCards : filteredCards;
 
   // Build deck
-  const deck = buildDeck(availableCards, perLevelNeeded);
+  const deck = buildDeck(availableCards, perLevelNeeded, perRoundNeeded);
 
   // Save
   return {

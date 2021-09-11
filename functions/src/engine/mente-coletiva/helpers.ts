@@ -1,5 +1,10 @@
 // Constants
-import { MAX_NUMBER_OF_ROUNDS, MENTE_COLETIVA_PHASES, QUESTIONS_PER_ROUND } from './constants';
+import {
+  MAX_NUMBER_OF_ROUNDS,
+  MENTE_COLETIVA_PHASES,
+  PASTURE_GAME_OVER_THRESHOLD,
+  QUESTIONS_PER_ROUND,
+} from './constants';
 // Interfaces
 import { PlainObject, PlayerId, Players } from '../../utils/interfaces';
 import { AllQuestions, AnswerEntry, Deck } from './interfaces';
@@ -359,7 +364,7 @@ export const updateLevelsForPlayers = (players: Players, pastureChange) => {
  * @returns
  */
 export const determineGameOver = (players: Players) => {
-  return Object.values(players).some((player) => player.level >= 5);
+  return Object.values(players).some((player) => player.level >= PASTURE_GAME_OVER_THRESHOLD);
 };
 
 /**
