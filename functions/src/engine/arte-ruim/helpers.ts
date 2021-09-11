@@ -2,7 +2,12 @@
 import { PlainObject, Players } from '../../utils/interfaces';
 import { ArteRuimCard, ArteRuimCardsDatabase, ArteRuimDrawing, FirebaseStoreData } from './interfaces';
 // Constants
-import { ARTE_RUIM_PHASES, ARTE_RUIM_TOTAL_ROUNDS } from './constants';
+import {
+  ARTE_RUIM_PHASES,
+  ARTE_RUIM_TOTAL_ROUNDS,
+  DECK_ORDER_BY_LEVEL,
+  GAME_OVER_SCORE_THRESHOLD,
+} from './constants';
 // Helpers
 import * as gameUtils from '../../utils/game-utils';
 
@@ -12,9 +17,17 @@ import * as gameUtils from '../../utils/game-utils';
  * @param currentRound
  * @returns
  */
-export const determineNextPhase = (currentPhase: string, currentRound: number): string => {
+export const determineNextPhase = (
+  currentPhase: string,
+  currentRound: number,
+  isGameOver?: boolean
+): string => {
   const { RULES, SETUP, DRAW, EVALUATION, GALLERY, GAME_OVER } = ARTE_RUIM_PHASES;
   const order = [RULES, SETUP, DRAW, EVALUATION, GALLERY];
+
+  if (isGameOver) {
+    return GAME_OVER;
+  }
 
   if (currentPhase === GALLERY) {
     return currentRound >= ARTE_RUIM_TOTAL_ROUNDS ? GAME_OVER : DRAW;
@@ -27,6 +40,15 @@ export const determineNextPhase = (currentPhase: string, currentRound: number): 
   }
   console.warn('Missing phase check');
   return DRAW;
+};
+
+/**
+ * Determine if a player has passed max points and it should be game over
+ * @param players
+ * @returns
+ */
+export const determineGameOver = (players: Players) => {
+  return Object.values(players).some((player) => player.score >= GAME_OVER_SCORE_THRESHOLD);
 };
 
 /**
@@ -48,7 +70,11 @@ export const filterAvailableCards = (
  * @param perLevel
  * @returns
  */
-export const buildDeck = (deckData: ArteRuimCard[], perLevel): ArteRuimCard[] => {
+export const buildDeck = (
+  deckData: ArteRuimCard[],
+  perLevel: PlainObject,
+  perRound: number
+): ArteRuimCard[] => {
   // Split in levels
   const cardsPerLevel = deckData.reduce(
     (acc, entry: any) => {
@@ -62,16 +88,21 @@ export const buildDeck = (deckData: ArteRuimCard[], perLevel): ArteRuimCard[] =>
     }
   );
 
-  // Shuffle decks
+  console.log({ cardsPerLevel });
+
+  // Shuffle decks and verify if number of cards will be sufficient
   const willLevelNeedExtraCards = {};
   Object.keys(cardsPerLevel).forEach((level) => {
     cardsPerLevel[level] = gameUtils.shuffle(cardsPerLevel[level]);
     willLevelNeedExtraCards[level] = cardsPerLevel[level] < perLevel[level];
   });
 
+  console.log({ willLevelNeedExtraCards });
+
   const getAvailableDeck = (deck: ArteRuimCard[], level: number, decks) => {
     let activeDeck = deck;
     let activeLevel = level;
+    console.log('HAD TO USE THIS?');
     while (activeDeck.length === 0) {
       activeLevel = decks[level - 1].length ? level - 1 : 3;
       activeDeck = decks[activeLevel];
@@ -90,8 +121,19 @@ export const buildDeck = (deckData: ArteRuimCard[], perLevel): ArteRuimCard[] =>
     return newDeck;
   });
 
-  // flatten and return array
-  return distributedCards.reduce((acc, arr) => [...acc, ...arr], []);
+  console.log({ distributedCards });
+  const deck: ArteRuimCard[] = [];
+
+  DECK_ORDER_BY_LEVEL.forEach((deckLevel) => {
+    const distributedCardsIndex = Math.abs(deckLevel - 3);
+    for (let i = 0; i < perRound; i++) {
+      deck.push(distributedCards[distributedCardsIndex].pop());
+    }
+  });
+
+  console.log({ deck });
+
+  return deck;
 };
 
 /**

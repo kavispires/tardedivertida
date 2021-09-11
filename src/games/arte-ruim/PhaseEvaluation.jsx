@@ -205,22 +205,6 @@ function EvaluationPhase({ players, state, info }) {
             <EvaluationRules />
           </CollapsibleRule>
 
-          <EvaluationAllDrawings
-            drawings={state?.drawings ?? []}
-            activeItem={activeItem}
-            onActivateItem={onActivateItem}
-            votes={votes}
-            canvasSize={canvasSize}
-            players={players}
-          />
-
-          <EvaluationAllCards
-            cards={state?.cards ?? []}
-            activeItem={activeItem}
-            onActivateItem={onActivateItem}
-            votes={votes}
-          />
-
           <ButtonContainer>
             <Button
               type="default"
@@ -247,6 +231,22 @@ function EvaluationPhase({ players, state, info }) {
               <Translate pt="Enviar sua avaliação" en="Send evaluation" />
             </Button>
           </ButtonContainer>
+
+          <EvaluationAllDrawings
+            drawings={state?.drawings ?? []}
+            activeItem={activeItem}
+            onActivateItem={onActivateItem}
+            votes={votes}
+            canvasSize={canvasSize}
+            players={players}
+          />
+
+          <EvaluationAllCards
+            cards={state?.cards ?? []}
+            activeItem={activeItem}
+            onActivateItem={onActivateItem}
+            votes={votes}
+          />
 
           <ReadyPlayersBar
             players={players}
