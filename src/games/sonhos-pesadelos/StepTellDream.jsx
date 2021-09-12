@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
 import { Button } from 'antd';
@@ -15,11 +15,51 @@ import {
   Translate,
 } from '../../components/shared';
 import DreamBoardWrite from './DreamBoardWrite';
+import { isDevEnv, shuffle } from '../../utils';
+
+const mockedClues = [
+  'água',
+  'bola',
+  'cagar',
+  'dedo',
+  'esmalte',
+  'fatídico',
+  'ganhar',
+  'calderão do huck',
+  'simpático',
+  'abismo',
+  'rola',
+  'a branca de neve',
+  'oops i did it again',
+  'pesquisa',
+  'saborosa',
+  'amargo',
+];
 
 function StepTellDream({ players, theme, user, table, onSubmitDream, dreamsCount }) {
   const [isLoading] = useLoading();
   const language = useLanguage();
   const [localClues, setLocalClues] = useState({});
+  const [hasClues, setHasClues] = useState(false);
+
+  useEffect(() => {
+    setHasClues(
+      Object.keys(localClues).length === dreamsCount &&
+        Object.values(localClues).every((e) => Boolean(e.trim()))
+    );
+  }, [localClues, dreamsCount]);
+
+  useEffect(() => {
+    if (isDevEnv) {
+      const shuffledMockedClues = shuffle(mockedClues);
+      setLocalClues(
+        Object.keys(user.dreams).reduce((acc, cardId, index) => {
+          acc[cardId] = shuffledMockedClues[index];
+          return acc;
+        }, {})
+      );
+    }
+  }, []); // eslint-disable-line
 
   const onSubmitDreams = () => {
     onSubmitDream({
@@ -27,10 +67,6 @@ function StepTellDream({ players, theme, user, table, onSubmitDream, dreamsCount
       dreams: localClues,
     });
   };
-
-  const hasClues =
-    Object.keys(localClues).length === dreamsCount &&
-    Object.values(localClues).every((e) => Boolean(e.trim()));
 
   return (
     <div className="s-tell-dream-step">

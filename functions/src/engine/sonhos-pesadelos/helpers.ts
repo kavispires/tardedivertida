@@ -1,8 +1,9 @@
-import { Players } from '../../utils/interfaces';
+import { PlainObject, Players } from '../../utils/interfaces';
 import { SONHOS_PESADELOS_PHASES, TOTAL_ROUNDS } from './constants';
 import { Table } from './interfaces';
 // Helpers
 import * as gameUtils from '../../utils/game-utils';
+import { SEPARATOR } from '../../utils/constants';
 
 /**
  * Determine the next phase based on the current one
@@ -106,4 +107,93 @@ export const determineNightmares = (players: Players, table: Table, nightmareCou
       table[cardIndexDict[cardId]].nightmares.push(player.id);
     }
   });
+};
+
+export const gatherClues = (players: Players): PlainObject[] => {
+  const clues = Object.values(players).reduce((acc: PlainObject[], player) => {
+    Object.keys(player.dreams).forEach((cardId) => {
+      acc.push({
+        cardId,
+        playerId: player.id,
+        clue: player.dreams[cardId].reverse(),
+      });
+    });
+
+    return acc;
+  }, []);
+
+  return gameUtils.shuffle(clues);
+};
+
+const parseVote = (voteId: string): string => voteId.split(SEPARATOR)[1];
+
+export const tallyScore = (players: Players, previousScore: PlainObject, goal: number) => {
+  const results: PlainObject = {};
+  // Build nightmares dict count to add players who voted to user's nightmare
+  const nightmareCount = Object.values(players).reduce((acc, player) => {
+    player.nightmares.forEach((nightmareId) => {
+      acc[nightmareId] = {};
+    });
+    return acc;
+  }, {});
+
+  // Build nightmares dictionary cardId: nightmareId[]
+  const dreamNightmaresDict = Object.values(players).reduce((acc, player) => {
+    Object.keys(player.dreams).forEach((dreamId) => {
+      acc[dreamId] = player.nightmares;
+    });
+    return acc;
+  }, {});
+
+  // Tally correct votes
+  Object.values(players).forEach((player) => {
+    results[player.id] = {
+      playerId: player.id,
+      dreamGuesses: [],
+      correct: 0,
+      nightmareHits: [],
+      win: false,
+      previousScore: previousScore?.[player.id]?.correct ?? 0,
+    };
+
+    Object.keys(player.votes).forEach((cardEntryId) => {
+      const cardVoteId = parseVote(cardEntryId);
+      const clueVoteId = parseVote(player.votes[cardEntryId]);
+
+      // Check if its their own card
+      if (player.dreams[cardVoteId]) {
+        return;
+      }
+
+      // Add if correct vote
+      if (cardVoteId === clueVoteId) {
+        results[player.id].dreamGuesses[cardVoteId] = true;
+      }
+
+      // Add if nightmare
+      if (dreamNightmaresDict[clueVoteId].includes(cardVoteId)) {
+        nightmareCount[cardVoteId][player.id] = clueVoteId;
+      }
+    });
+  });
+
+  // Finish counts
+  Object.values(results).forEach((result) => {
+    const entry = results[result.playerId];
+    // Add correct count
+    results[result.playerId].correct = Object.keys(entry.dreamGuesses).length;
+    // Add nightmareHits
+    players[result.playerId].nightmares.forEach((nightmareId) => {
+      if (Object.keys(nightmareCount[nightmareId]).length) {
+        results[result.playerId].nightmareHits.push(nightmareCount[nightmareId]);
+      }
+    });
+    // Determine win
+    results[result.playerId].win =
+      results[result.playerId].correct === goal && results[result.playerId].nightmareHits.length === 0;
+    // Add player score
+    players[result.playerId].score = results[result.playerId].correct;
+  });
+
+  return results;
 };

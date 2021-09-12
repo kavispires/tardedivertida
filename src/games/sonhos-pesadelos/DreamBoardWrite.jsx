@@ -75,7 +75,7 @@ function DreamCluePopover({ cardId, clue, previousClues, onClueChange }) {
 
 function DreamBoard({ table, user, localClues, setLocalClues }) {
   const [screenWidth] = useDimensions();
-  const cardWidth = Math.round(screenWidth / (table.length / 2)) - 32;
+  const cardWidth = Math.round(screenWidth / (table.length / 2)) - 40;
   const baseClass = 's-dream-board-card';
   let dreamNumber = 0;
 

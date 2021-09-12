@@ -9,7 +9,7 @@ import { ButtonContainer, Title, translate, Translate } from '../../components/s
 import { Pasture } from './Pasture';
 import { RoundType } from './RoundType';
 import { Question } from './Question';
-import { isDevEnv, shuffle } from '../../utils';
+import { getEntryId, isDevEnv, shuffle } from '../../utils';
 
 const mockAnswers = (userId, numAnswers) => {
   const list = ['agua', 'bola', 'coco', 'dedo', 'egua', 'flauta', 'gatilho', 'hélio', 'jaguar'];
@@ -21,7 +21,7 @@ const mockAnswers = (userId, numAnswers) => {
 
   return Array(numAnswers)
     .fill(0)
-    .map((i, index) => ({ [`answer::${index}::${userId}`]: shuffled[i + index] }))
+    .map((i, index) => ({ [getEntryId(['answer', index, userId])]: shuffled[i + index] }))
     .reduce((acc, item) => {
       acc = { ...acc, ...item };
       return acc;
@@ -69,7 +69,7 @@ function AnsweringStep({ user, currentQuestion, players, roundType, onSubmitAnsw
             .map((i, index) => {
               const num = i + index;
               const key = `answer-${index}`;
-              const id = `answer::${index}::${user.id}`;
+              const id = getEntryId(['answer', index, user.id]);
               return (
                 <li className="m-answers__item" key={key}>
                   <Input

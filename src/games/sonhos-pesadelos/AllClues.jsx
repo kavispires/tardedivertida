@@ -5,16 +5,16 @@ import PropTypes from 'prop-types';
 import { LETTERS } from '../../utils/constants';
 import { getEntryId } from '../../utils';
 // Components
-import { ArteRuimCard as Card } from '../../components/cards';
+import { SonhosPesadelosCard as Card } from '../../components/cards';
 
-function EvaluationAllCards({ cards, activeItem, onActivateItem, votes }) {
+function AllClues({ clues, activeItem, onActivateItem, votes, players }) {
   const liButtonBaseClass = 'a-evaluation-all-cards__li-card-button';
 
   return (
     <ul className="a-evaluation-all-cards">
-      {cards.map((cardEntry, index) => {
+      {clues.map(({ cardId, clue, playerId }, index) => {
         const letter = LETTERS[index];
-        const cardEntryId = getEntryId(['card', cardEntry.id, letter]);
+        const cardEntryId = getEntryId(['clue', cardId, letter]);
         const isActive = activeItem === cardEntryId;
         const isUsed = Object.values(votes).includes(cardEntryId);
 
@@ -29,7 +29,12 @@ function EvaluationAllCards({ cards, activeItem, onActivateItem, votes }) {
             )}
             onClick={() => onActivateItem(cardEntryId)}
           >
-            <Card text={cardEntry.text} level={cardEntry.level} header={letter} />
+            <Card
+              clue={clue[0]}
+              header={letter}
+              footer={players[playerId].name}
+              previousClues={clue.slice(1)}
+            />
           </li>
         );
       })}
@@ -37,11 +42,12 @@ function EvaluationAllCards({ cards, activeItem, onActivateItem, votes }) {
   );
 }
 
-EvaluationAllCards.propTypes = {
+AllClues.propTypes = {
   activeItem: PropTypes.string,
-  cards: PropTypes.arrayOf(
+  clues: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string,
+      cardId: PropTypes.string,
+      clue: PropTypes.string,
     })
   ),
   onActivateItem: PropTypes.func,
@@ -49,4 +55,4 @@ EvaluationAllCards.propTypes = {
   votes: PropTypes.object,
 };
 
-export default EvaluationAllCards;
+export default AllClues;

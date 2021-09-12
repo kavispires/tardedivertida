@@ -142,7 +142,7 @@ export const submitAction = async (data: SonhosPesadelosSubmitAction) => {
       if (!data.dreams) {
         firebaseUtils.throwException('Missing `dreams` value', 'submit dreams');
       }
-      return handleSubmitDreams(collectionName, gameId, playerId, data.clues);
+      return handleSubmitDreams(collectionName, gameId, playerId, data.dreams);
     case 'SUBMIT_VOTING':
       if (!data.votes) {
         firebaseUtils.throwException('Missing `votes` value', 'submit votes');

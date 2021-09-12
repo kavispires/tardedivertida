@@ -194,7 +194,7 @@ export const AVAILABLE_AVATAR_IDS = Object.keys(AVATARS);
 
 export const LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-export const SEPARATOR = '::';
+export const SEPARATOR = ';;';
 
 /**
  * Random names used during Dev

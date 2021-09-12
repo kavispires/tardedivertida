@@ -7,7 +7,7 @@ import { COUNTS_BY_PLAYER, SONHOS_PESADELOS_PHASES, TOTAL_ROUNDS } from './const
 import * as gameUtils from '../../utils/game-utils';
 import * as imageCards from '../../utils/image-cards';
 import * as utils from '../../utils/helpers';
-import { buildTable, determineDreams, determineNightmares } from './helpers';
+import { buildTable, determineDreams, determineNightmares, gatherClues, tallyScore } from './helpers';
 
 /**
  * Setup
@@ -21,11 +21,8 @@ export const prepareSetupPhase = async (
   players: Players,
   cards: string[]
 ): Promise<SaveGamePayload> => {
-  // Unready players
-  utils.unReadyPlayers(players);
-
   // Get 4 themes
-  const themes = gameUtils.getRandomItems(cards, 4);
+  const themes = gameUtils.getRandomItems(cards, TOTAL_ROUNDS);
 
   const playerCount = Object.keys(players).length;
   const counts = COUNTS_BY_PLAYER[playerCount];
@@ -60,7 +57,8 @@ export const prepareTellDreamPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
-  console.log(players);
+  // Unready players
+  utils.unReadyPlayers(players);
 
   const theme = store.themes[state.round.current];
 
@@ -73,6 +71,7 @@ export const prepareTellDreamPhase = async (
         round: utils.increaseRound(state?.round, TOTAL_ROUNDS),
         theme,
       },
+      players,
     },
   };
 };
@@ -82,7 +81,14 @@ export const prepareMatchPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
-  console.log(players);
+  // Unready players
+  utils.unReadyPlayers(players);
+  // Remove votes
+  utils.removePropertiesFromPlayers(players, ['votes']);
+  // TODO: I might want to save those votes
+
+  // Gather clues
+  const clues = gatherClues(players);
 
   // Save
   return {
@@ -90,7 +96,9 @@ export const prepareMatchPhase = async (
       state: {
         phase: SONHOS_PESADELOS_PHASES.MATCH,
         updatedAt: Date.now(),
+        clues,
       },
+      players,
     },
   };
 };
@@ -100,7 +108,9 @@ export const prepareResolutionPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
-  console.log(players);
+  // Count votes
+  const goal = state.dreamsCount * (Object.keys(players).length - 1);
+  const results = tallyScore(players, store?.results ?? {}, goal);
 
   // Save
   return {
@@ -108,7 +118,12 @@ export const prepareResolutionPhase = async (
       state: {
         phase: SONHOS_PESADELOS_PHASES.RESOLUTION,
         updatedAt: Date.now(),
+        results,
       },
+      store: {
+        results,
+      },
+      players,
     },
   };
 };
@@ -118,7 +133,8 @@ export const prepareLastChancePhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
-  console.log(players);
+  // Unready players
+  utils.unReadyPlayers(players);
 
   // Save
   return {
@@ -136,14 +152,24 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
-  console.log(players);
+  const winners = utils.determineWinners(players);
 
-  // Save
   return {
     update: {
+      store: {
+        ...store,
+      },
+      meta: {
+        isComplete: true,
+      },
+    },
+    set: {
+      players,
       state: {
         phase: SONHOS_PESADELOS_PHASES.GAME_OVER,
-        updatedAt: Date.now(),
+        winners,
+        gameEndedAt: Date.now(),
+        round: state.round,
       },
     },
   };
