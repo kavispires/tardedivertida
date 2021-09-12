@@ -109,6 +109,8 @@ function Game() {
         return <GameSessions.OndaTelepatica gameId={gameId} />;
       case GAME_COLLECTION.POLEMICA_DA_VEZ:
         return <GameSessions.PolemicaDaVez gameId={gameId} />;
+      case GAME_COLLECTION.SONHOS_PESADELOS:
+        return <GameSessions.SonhosPesadelos gameId={gameId} />;
       case GAME_COLLECTION.TESTEMUNHA_OCULAR:
         return <GameSessions.TestemunhaOcular gameId={gameId} />;
       case GAME_COLLECTION.UE_SO_ISSO:
