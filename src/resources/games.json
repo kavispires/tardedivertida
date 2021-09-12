@@ -264,7 +264,14 @@
       "en": "TBD"
     },
     "rules": {
-      "pt": ["TBD"],
+      "pt": [
+        "Em Sonhos e Pesadelos, os jogadores são paranormais num concurso de adivinhar os sonhos dos outros! Quando um jogador consegue adivinhar todos os sonhos corretamente numa mesma rodada, ele vence!",
+        "Cada jogador será designado a um ou mais cartas que representam sonhos.Em cada uma das 4 rodadas, o jogo escolherá um tema aleatório e você deve escrever uma dica para cada um dos seus sonhos, sempre dentro do tema.",
+        "Mas cuidado, você também terá cartas pesadelos que te impedem de ganhar se qualquer outro jogador achar que ele é o seu sonho. Então, escreva algo que claramente não pode ser nenhum dos seus pesadelos.",
+        "Quando todos jogadores tiverem escrito seus sonhos, é hora de votar. Você tem que fazer combinações corretas entre dicas e sonhos.",
+        "Se algum jogador escolher todos os pares corretamente e nenhum outro jogador tiver achado que sua dica é um de seus pesadelos. Ele ganha o jogo! Caso contrário, o jogo te avisa apesar quantos acertos você cometeu e próxima rodada.",
+        "Após 4 rodadas, se ninguém tiver ganhado, temos uma última chance de apenas tentar adivinhar o maior número de sonhos."
+      ],
       "en": ["TBD"]
     },
     "recommended": "2+",

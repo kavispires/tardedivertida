@@ -8,6 +8,7 @@ import * as espiaoEntreNosEngine from './engine/espiao-entre-nos';
 import * as menteColetivaEngine from './engine/mente-coletiva';
 import * as ondaTelepaticaEngine from './engine/onda-telepatica';
 import * as polemicaDaVezEngine from './engine/polemica-da-vez';
+import * as sonhosPesadelosEngine from './engine/sonhos-pesadelos';
 import * as testemunhaOcularEngine from './engine/testemunha-ocular';
 import * as ueSoIssoEngine from './engine/ue-so-isso';
 
@@ -78,6 +79,10 @@ exports.menteColetivaSubmitAction = functions.https.onCall(menteColetivaEngine.s
 // POLEMICA_DA_VEZ HTTP CALLS
 
 exports.polemicaDaVezSubmitAction = functions.https.onCall(polemicaDaVezEngine.submitAction);
+
+// SONHOS_PESADELOS HTTP CALLS
+
+exports.sonhosPesadelosSubmitAction = functions.https.onCall(sonhosPesadelosEngine.submitAction);
 
 // TESTEMUNHA_OCULAR HTTP CALLS
 
