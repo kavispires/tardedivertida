@@ -10,7 +10,6 @@ All file paths here are relative to `/functions/src`.
 - Update `GAME_KEYS` in `/utils/constants.ts`.
 - Update `GAME_COLLECTIONS` in `/utils/constants.ts`.
 - Update `GAME_PLAYERS_LIMIT` in `/utils/constants.ts`.
-- Update `DEV_GAME_IDS` in `/utils/constants.ts`.
 
 ### Create engine
 
