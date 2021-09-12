@@ -68,9 +68,9 @@ export const determineDreams = (players: Players, table: Table, dreamsCount: num
   Object.values(players).forEach((player) => {
     for (let d = 0; d < dreamsCount; d++) {
       if (!player.dreams) {
-        player.dreams = [];
+        player.dreams = {};
       }
-      player.dreams.push(table[shuffledTableIndexes[currentIndex]].cardId);
+      player.dreams[table[shuffledTableIndexes[currentIndex]].cardId] = [];
       table[shuffledTableIndexes[currentIndex]].dreamer = player.id;
 
       currentIndex++;
@@ -93,7 +93,9 @@ export const determineNightmares = (players: Players, table: Table, nightmareCou
   const cardIds = Object.keys(cardIndexDict);
 
   Object.values(players).forEach((player) => {
-    const filteredNightmares = gameUtils.shuffle(cardIds.filter((cardId) => !player.dreams.includes(cardId)));
+    const filteredNightmares = gameUtils.shuffle(
+      cardIds.filter((cardId) => !Object.keys(player.dreams).includes(cardId))
+    );
 
     for (let n = 0; n < nightmareCount; n++) {
       if (!player.nightmares) {

@@ -48,10 +48,6 @@
   color: get-color(blue);
 }
 
-.c-story-card {
-  font-size: 1.25rem;
-}
-
 .c-table-face-down {
   display: flex;
   justify-content: center;
@@ -128,6 +124,7 @@
 
 .c-story-card {
   width: 70%;
+  font-size: 1.25rem;
   max-width: 720px;
   margin: 0.5em auto;
   .card__text {

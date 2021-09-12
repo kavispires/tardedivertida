@@ -1,4 +1,4 @@
-import { ImageCard, Language, Meta, PlayerId, Players, Round } from '../../utils/interfaces';
+import { ImageCard, Language, Meta, Payload, PlayerId, Players, Round } from '../../utils/interfaces';
 
 export interface SonhosPesadelosStore {
   language: Language;
@@ -28,10 +28,10 @@ export interface TableEntry {
 
 export type Table = TableEntry[];
 
-// export interface ContadoresHistoriasSubmitAction extends Payload {
-//   action: 'SUBMIT_STORY' | 'PLAY_CARD' | 'SUBMIT_VOTE';
-//   [key: string]: any;
-// }
+export interface SonhosPesadelosSubmitAction extends Payload {
+  action: 'SUBMIT_DREAMS' | 'SUBMIT_VOTING';
+  [key: string]: any;
+}
 
 export type FirebaseStateData = FirebaseFirestore.DocumentData | SonhosPesadelosState;
 export type FirebaseStoreData = FirebaseFirestore.DocumentData | SonhosPesadelosStore;

@@ -21,6 +21,9 @@ export const prepareSetupPhase = async (
   players: Players,
   cards: string[]
 ): Promise<SaveGamePayload> => {
+  // Unready players
+  utils.unReadyPlayers(players);
+
   // Get 4 themes
   const themes = gameUtils.getRandomItems(cards, 4);
 
@@ -44,6 +47,8 @@ export const prepareSetupPhase = async (
       state: {
         phase: SONHOS_PESADELOS_PHASES.SETUP,
         table,
+        dreamsCount: counts.dreams,
+        nightmaresCount: counts.nightmares,
       },
       players,
     },

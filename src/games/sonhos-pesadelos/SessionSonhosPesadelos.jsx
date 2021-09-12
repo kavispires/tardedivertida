@@ -6,6 +6,7 @@ import { PhasePlaceholder, Session, SetupScreen } from '../../components/shared'
 import Lobby from '../../components/lobby/Lobby';
 import { Rules } from '../../components/rules';
 import { PageError } from '../../components/errors/PageError';
+import PhaseTellDream from './PhaseTellDream';
 
 function SessionSonhosPesadelos({ gameId }) {
   function getActiveComponent(phase) {
@@ -17,7 +18,7 @@ function SessionSonhosPesadelos({ gameId }) {
       case PHASES.SONHOS_PESADELOS.SETUP:
         return SetupScreen;
       case PHASES.SONHOS_PESADELOS.TELL_DREAM:
-        return PhasePlaceholder;
+        return PhaseTellDream;
       case PHASES.SONHOS_PESADELOS.MATCH:
         return PhasePlaceholder;
       case PHASES.SONHOS_PESADELOS.RESOLUTION:

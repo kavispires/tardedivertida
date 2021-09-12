@@ -6,7 +6,7 @@ import { GameId, Language, Players } from '../../utils/interfaces';
 // Utils
 import * as firebaseUtils from '../../utils/firebase';
 import { determineNextPhase } from './helpers';
-import { SonhosPesadelosInitialState } from './interfaces';
+import { SonhosPesadelosInitialState, SonhosPesadelosSubmitAction } from './interfaces';
 import {
   prepareGameOverPhase,
   prepareResolutionPhase,
@@ -15,8 +15,8 @@ import {
   prepareTellDreamPhase,
   prepareLastChancePhase,
 } from './setup';
-// import { handlePlayCard, handleSubmitStory, handleSubmitVote } from './actions';
 import { getCards } from './data';
+import { handleSubmitDreams, handleSubmitVoting } from './actions';
 
 /**
  * Get Initial Game State
@@ -123,39 +123,32 @@ export const nextSonhosPesadelosPhase = async (
   return true;
 };
 
-// /**
-//  * Handles question and answers submissions
-//  * May trigger next phase
-//  */
-// export const submitAction = async (data: ContadoresHistoriasSubmitAction) => {
-//   const { gameId, gameName: collectionName, playerId, action } = data;
+/**
+ * Perform action submit by the app
+ * @param data
+ * @returns
+ */
+export const submitAction = async (data: SonhosPesadelosSubmitAction) => {
+  const { gameId, gameName: collectionName, playerId, action } = data;
 
-//   const actionText = 'submit action';
-//   firebaseUtils.verifyPayload(gameId, 'gameId', actionText);
-//   firebaseUtils.verifyPayload(collectionName, 'collectionName', actionText);
-//   firebaseUtils.verifyPayload(playerId, 'playerId', actionText);
-//   firebaseUtils.verifyPayload(action, 'action', actionText);
+  const actionText = 'submit action';
+  firebaseUtils.verifyPayload(gameId, 'gameId', actionText);
+  firebaseUtils.verifyPayload(collectionName, 'collectionName', actionText);
+  firebaseUtils.verifyPayload(playerId, 'playerId', actionText);
+  firebaseUtils.verifyPayload(action, 'action', actionText);
 
-//   switch (action) {
-//     case 'SUBMIT_STORY':
-//       if (!data.story) {
-//         firebaseUtils.throwException('Missing `story` value', 'submit story');
-//       }
-//       if (!data.cardId) {
-//         firebaseUtils.throwException('Missing `cardId` value', 'submit story');
-//       }
-//       return handleSubmitStory(collectionName, gameId, playerId, data.story, data.cardId);
-//     case 'PLAY_CARD':
-//       if (!data.cardId) {
-//         firebaseUtils.throwException('Missing `cardId` value', 'play card');
-//       }
-//       return handlePlayCard(collectionName, gameId, playerId, data.cardId);
-//     case 'SUBMIT_VOTE':
-//       if (!data.vote) {
-//         firebaseUtils.throwException('Missing `vote` value', 'submit vote');
-//       }
-//       return handleSubmitVote(collectionName, gameId, playerId, data.vote);
-//     default:
-//       firebaseUtils.throwException(`Given action ${action} is not allowed`);
-//   }
-// };
+  switch (action) {
+    case 'SUBMIT_DREAMS':
+      if (!data.dreams) {
+        firebaseUtils.throwException('Missing `dreams` value', 'submit dreams');
+      }
+      return handleSubmitDreams(collectionName, gameId, playerId, data.clues);
+    case 'SUBMIT_VOTING':
+      if (!data.votes) {
+        firebaseUtils.throwException('Missing `votes` value', 'submit votes');
+      }
+      return handleSubmitVoting(collectionName, gameId, playerId, data.votes);
+    default:
+      firebaseUtils.throwException(`Given action ${action} is not allowed`);
+  }
+};
