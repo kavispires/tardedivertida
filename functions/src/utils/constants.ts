@@ -10,6 +10,7 @@ export const GAME_CODES = {
   M: 'M', // mente-coletiva
   O: 'O', // onda-telepatica
   P: 'P', // polemica-da-vez
+  S: 'S', // sonhos-pesadelos
   T: 'T', // testemunha-ocular
   U: 'U', // ue-so-isso
 };
@@ -22,6 +23,7 @@ export const GAME_KEYS = {
   MENTE_COLETIVA: 'MENTE_COLETIVA',
   ONDA_TELEPATICA: 'ONDA_TELEPATICA',
   POLEMICA_DA_VEZ: 'POLEMICA_DA_VEZ',
+  SONHOS_PESADELOS: 'SONHOS_PESADELOS',
   TESTEMUNHA_OCULAR: 'TESTEMUNHA_OCULAR',
   UE_SO_ISSO: 'UE_SO_ISSO',
 };
@@ -34,6 +36,7 @@ export const GAME_COLLECTIONS = {
   MENTE_COLETIVA: 'mente-coletiva',
   ONDA_TELEPATICA: 'onda-telepatica',
   POLEMICA_DA_VEZ: 'polemica-da-vez',
+  SONHOS_PESADELOS: 'sonhos-pesadelos',
   TESTEMUNHA_OCULAR: 'testemunha-ocular',
   UE_SO_ISSO: 'ue-so-isso',
 };
@@ -59,12 +62,16 @@ export const GAME_PLAYERS_LIMIT = {
     min: 3,
     max: 8,
   },
+  ONDA_TELEPATICA: {
+    min: 4,
+    max: 8,
+  },
   POLEMICA_DA_VEZ: {
     min: 3,
     max: 8,
   },
-  ONDA_TELEPATICA: {
-    min: 4,
+  SONHOS_PESADELOS: {
+    min: 2,
     max: 8,
   },
   TESTEMUNHA_OCULAR: {
