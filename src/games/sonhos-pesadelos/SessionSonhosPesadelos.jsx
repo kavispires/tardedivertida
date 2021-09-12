@@ -7,6 +7,8 @@ import Lobby from '../../components/lobby/Lobby';
 import { Rules } from '../../components/rules';
 import { PageError } from '../../components/errors/PageError';
 import PhaseTellDream from './PhaseTellDream';
+import PhaseMatch from './PhaseMatch';
+import PhaseResolution from './PhaseResolution';
 
 function SessionSonhosPesadelos({ gameId }) {
   function getActiveComponent(phase) {
@@ -20,9 +22,9 @@ function SessionSonhosPesadelos({ gameId }) {
       case PHASES.SONHOS_PESADELOS.TELL_DREAM:
         return PhaseTellDream;
       case PHASES.SONHOS_PESADELOS.MATCH:
-        return PhasePlaceholder;
+        return PhaseMatch;
       case PHASES.SONHOS_PESADELOS.RESOLUTION:
-        return PhasePlaceholder;
+        return PhaseResolution;
       case PHASES.SONHOS_PESADELOS.LAST_CHANCE:
         return PhasePlaceholder;
       case PHASES.SONHOS_PESADELOS.GAME_OVER:

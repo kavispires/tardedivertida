@@ -8,16 +8,8 @@ import { useDimensions } from '../../hooks';
 import ImageCard from '../../components/cards/ImageCard';
 import { Translate } from '../../components/shared';
 import { Button } from 'antd';
-
-function NightmareButton() {
-  return (
-    <Button disabled className="s-dream-board-entry-nightmare">
-      <CaretUpOutlined />
-      <Translate pt="Pesadelo" en="Nightmare" />
-      <CaretUpOutlined />
-    </Button>
-  );
-}
+import Ribbon from '../arte-ruim/Ribbon';
+import { getEntryId } from '../../utils';
 
 function DreamButton() {
   return (
@@ -29,23 +21,41 @@ function DreamButton() {
   );
 }
 
-function DreamBoard({ table, user }) {
+function SelectButton({ onActivateItem, cardEntryId }) {
+  return (
+    <Button ghost block size="small" onClick={() => onActivateItem(cardEntryId)}>
+      <CaretUpOutlined />
+      <Translate pt="Selectionar" en="Select" />
+      <CaretUpOutlined />
+    </Button>
+  );
+}
+
+function DreamBoardVote({ table, user, activeItem, onActivateItem, votes }) {
   const [screenWidth] = useDimensions();
   const cardWidth = Math.round(screenWidth / (table.length / 2)) - 40;
   const baseClass = 's-dream-board-card';
+  const liButtonBaseClass = 'a-evaluation-all-drawings__li-drawing-button';
 
   return (
     <ul className="s-dream-board">
       {table.map((entry) => {
         const isDream = Boolean(user.dreams[entry.cardId]);
         const isNightmare = user.nightmares.includes(entry.cardId);
+        const cardEntryId = getEntryId(['card', entry.cardId]);
+        const isActive = activeItem === cardEntryId;
 
         return (
           <li
-            className="s-dream-board-entry"
+            className={clsx(
+              's-dream-board-entry',
+              liButtonBaseClass,
+              isActive && `${liButtonBaseClass}--active`
+            )}
             key={`board-${entry.cardId}`}
             style={{ maxWidth: `${cardWidth + 20}px` }}
           >
+            {votes?.[cardEntryId] && <Ribbon cardEntryId={votes[cardEntryId]} />}
             <ImageCard
               imageId={entry.cardId}
               bordered
@@ -56,9 +66,11 @@ function DreamBoard({ table, user }) {
                 isNightmare && `${baseClass}--nightmare`
               )}
             />
-            {isNightmare && <NightmareButton />}
-
-            {isDream && <DreamButton />}
+            {isDream ? (
+              <DreamButton />
+            ) : (
+              <SelectButton cardEntryId={cardEntryId} onActivateItem={onActivateItem} />
+            )}
           </li>
         );
       })}
@@ -66,4 +78,4 @@ function DreamBoard({ table, user }) {
   );
 }
 
-export default DreamBoard;
+export default DreamBoardVote;

@@ -11,17 +11,15 @@ import {
   Instruction,
   PhaseAnnouncement,
   PhaseContainer,
-  RoundAnnouncement,
   Step,
   StepSwitcher,
   Translate,
   translate,
 } from '../../components/shared';
-import { ImageCardPreloadHand } from '../../components/cards';
-import StepTellDream from './StepTellDream';
 import DreamBoard from './DreamBoard';
+import StepMatchDreams from './StepMatchDreams';
 
-function PhaseTellDream({ state, players, info }) {
+function PhaseMatch({ state, players, info }) {
   const language = useLanguage();
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
@@ -30,7 +28,7 @@ function PhaseTellDream({ state, players, info }) {
   const onSubmitDream = useAPICall({
     apiFunction: SONHOS_PESADELOS_API.submitAction,
     actionName: 'submit-dreams',
-    onBeforeCall: () => setStep(3),
+    onBeforeCall: () => setStep(2),
     onError: () => setStep(0),
     successMessage: translate('Sonhos submetidos com sucesso', 'Dreams submitted successfully', language),
     errorMessage: translate(
@@ -44,67 +42,55 @@ function PhaseTellDream({ state, players, info }) {
     <PhaseContainer
       info={info}
       phase={state?.phase}
-      allowedPhase={PHASES.SONHOS_PESADELOS.TELL_DREAM}
+      allowedPhase={PHASES.SONHOS_PESADELOS.MATCH}
       className="s-tell-dream-phase"
     >
       <StepSwitcher step={step} conditions={[!isUserReady]}>
         {/* Step 0 */}
-        <RoundAnnouncement round={state.round} buttonText="" onPressButton={() => setStep(1)} time={5}>
-          <Instruction contained>
-            <Translate
-              pt="Somos paranormais tentando adivinhar os sonhos dos outros..."
-              en="We're psychics trying to guess each others dreams..."
-            />
-          </Instruction>
-        </RoundAnnouncement>
-
-        {/* Step 1 */}
         <PhaseAnnouncement
           type="default"
-          title={translate('Conte-nos sobre seu sonho', 'Tell us about your dream...', language)}
-          onClose={() => setStep(2)}
+          title={translate('Selecione os pares', 'Match the dreams', language)}
+          onClose={() => setStep(1)}
           currentRound={state?.round?.current}
         >
           <Instruction>
             <Translate
               pt={
                 <>
-                  Escreva uma dica para cada um dos seus sonhos (cartas com bordas coloridas).
+                  Selecione os pares de dica e carta.
                   <br />
-                  Preste atenção em seus pesadelos (cartas com bordas pretas), se alguém achar que alguma de
-                  suas dicas é relacionada a um pesadelo, você não pode ganhar nessa rodada.
+                  Se você acertas todas, você ganha o jogo.
                   <br />
-                  Você tem {state.dreamsCount} sonho(s) e {state.nightmaresCount} pesadelo(s).
+                  Dica: Seus pesadelos podem ser o sonho de outra pessoa.
                 </>
               }
               en={
                 <>
-                  Write a clue for each of your dreams (colored bordered cards.
+                  Match the pairs of cards and clues.
                   <br />
-                  Pay attention to your nightmares (black bordered cards). If a player thinks any of your
-                  clues is related to a nightmare, you can not win this round.
+                  If you match all of them correctly, you win the game.
                   <br />
-                  You have {state.dreamsCount} dream(s) e {state.nightmaresCount} nightmare(s).
+                  Hint: Your nightmares may be the dream of another player.
                 </>
               }
             />
           </Instruction>
-          <ImageCardPreloadHand hand={state.table.map((e) => e.cardId)} />
         </PhaseAnnouncement>
 
-        {/* Step 2 */}
+        {/* Step 1 */}
         <Step fullWidth>
-          <StepTellDream
+          <StepMatchDreams
             players={players}
             theme={state.theme}
             user={user}
             table={state.table}
             onSubmitDream={onSubmitDream}
             dreamsCount={state.dreamsCount}
+            clues={state.clues}
           />
         </Step>
 
-        {/* Step 3 */}
+        {/* Step 2 */}
         <Step fullWidth>
           <DefaultWaitingRoom players={players} />
           <DreamBoard user={user} table={state.table} />
@@ -114,7 +100,7 @@ function PhaseTellDream({ state, players, info }) {
   );
 }
 
-PhaseTellDream.propTypes = {
+PhaseMatch.propTypes = {
   info: PropTypes.object,
   players: PropTypes.object,
   state: PropTypes.shape({
@@ -126,4 +112,4 @@ PhaseTellDream.propTypes = {
   }),
 };
 
-export default PhaseTellDream;
+export default PhaseMatch;

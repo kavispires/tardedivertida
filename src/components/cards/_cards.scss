@@ -126,3 +126,17 @@
     border-radius: get-unit(3);
   }
 }
+
+.s-clue-card {
+  font-size: 0.8rem;
+
+  &__footer {
+    font-size: 0.75em;
+  }
+
+  &__previous--clue {
+    border-top: 1px dashed get-color(grey, 1);
+    font-size: 0.85em;
+    color: get-color(grey, 4);
+  }
+}

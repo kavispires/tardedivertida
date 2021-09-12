@@ -17,11 +17,10 @@ export const handleSubmitDreams = async (
   const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
 
   const players = playersDoc.data() ?? {};
-
   const updatedPlayers = utils.readyPlayer(players, playerId);
-  for (const cardId in dreams) {
+  Object.keys(dreams).forEach((cardId) => {
     updatedPlayers[playerId].dreams[cardId].push(dreams[cardId]);
-  }
+  });
 
   try {
     await sessionRef.doc('players').update({ [playerId]: updatedPlayers[playerId] });

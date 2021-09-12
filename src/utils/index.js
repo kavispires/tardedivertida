@@ -1,3 +1,5 @@
+import { SEPARATOR } from './constants';
+
 /**
  * Creates a copy of given object
  * @param {object} obj
@@ -212,4 +214,20 @@ export const shuffle = (list) => {
   const result = [...list];
   result.sort(() => Math.random() - 0.5);
   return result;
+};
+
+/**
+ * Builds entry id from array elements separated by the separator
+ * @param {string[]} arr
+ * @returns
+ */
+export const getEntryId = (arr) => arr.join(SEPARATOR);
+
+/**
+ * Check if array has duplicates
+ * @param {*} arr
+ * @returns
+ */
+export const hasDuplicates = (arr) => {
+  return new Set(arr).size !== arr.length;
 };
