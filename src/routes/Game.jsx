@@ -5,7 +5,7 @@ import { message, notification } from 'antd';
 // Adapters
 import { GAME_API } from '../adapters';
 // Hooks
-import { useIsGameStale, useLoading, useGlobalState } from '../hooks';
+import { useIsGameStale, useLoading, useGlobalState, useLocalStorage } from '../hooks';
 // Utils
 import { getGameIdFromURL, getGameIdFromLocation, isValidGameId, isDevEnv } from '../utils';
 import { GAME_COLLECTION } from '../utils/constants';
@@ -24,6 +24,7 @@ function Game() {
   const [, setUsername] = useGlobalState('username');
   const [, setUserAvatarId] = useGlobalState('userAvatarId');
   const [, setLanguage] = useGlobalState('language');
+  const [, setLocalStorage] = useLocalStorage();
 
   const [isPageLoading, setPageLoading] = useState(true);
   const isGameStale = useIsGameStale(gameMeta?.createdAt);
@@ -69,6 +70,7 @@ function Game() {
         setGameName(meta.data.gameName);
         setGameMeta(meta.data);
         setLanguage(meta.data?.language ?? 'pt');
+        setLocalStorage({ language: meta.data?.language ?? 'pt' });
       } catch (e) {
         console.error(e);
         notification.error({
