@@ -28,6 +28,21 @@ export interface TableEntry {
 
 export type Table = TableEntry[];
 
+export type Result = {
+  playerId: PlayerId;
+  dreamGuesses: {
+    [key: string]: boolean;
+  };
+  correct: number;
+  nightmareHits: string[];
+  win: boolean;
+  previousScore: number;
+};
+
+export type Results = {
+  [key: string]: Result;
+};
+
 export interface SonhosPesadelosSubmitAction extends Payload {
   action: 'SUBMIT_DREAMS' | 'SUBMIT_VOTING';
   [key: string]: any;

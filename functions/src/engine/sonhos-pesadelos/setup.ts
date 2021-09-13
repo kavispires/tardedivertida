@@ -1,6 +1,6 @@
 // Interfaces
 import { Players, SaveGamePayload } from '../../utils/interfaces';
-import { FirebaseStateData, FirebaseStoreData } from './interfaces';
+import { FirebaseStateData, FirebaseStoreData, Results } from './interfaces';
 // Constants
 import { COUNTS_BY_PLAYER, SONHOS_PESADELOS_PHASES, TOTAL_ROUNDS } from './constants';
 // Helpers
@@ -152,7 +152,8 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
-  const winners = utils.determineWinners(players);
+  const results: Results = store.results;
+  const winners = Object.values(results).filter((result) => result.win);
 
   return {
     update: {

@@ -1,6 +1,6 @@
 import { PlainObject, Players } from '../../utils/interfaces';
 import { SONHOS_PESADELOS_PHASES, TOTAL_ROUNDS } from './constants';
-import { Table } from './interfaces';
+import { Results, Table } from './interfaces';
 // Helpers
 import * as gameUtils from '../../utils/game-utils';
 import { SEPARATOR } from '../../utils/constants';
@@ -40,6 +40,10 @@ export const determineNextPhase = (
   return TELL_DREAM;
 };
 
+export const determineGameOver = (results: PlainObject) => {
+  return Object.values(results).some((result) => result.win);
+};
+
 export const buildTable = (images: string[]): Table => {
   return images.map((cardId) => ({
     cardId,
@@ -47,10 +51,6 @@ export const buildTable = (images: string[]): Table => {
     nightmares: [],
   }));
 };
-
-// export const getTableIndexes = (table: Table, property: string) => {
-
-// }
 
 /**
  * Determine dreams for each player and dreamer for each card
@@ -127,8 +127,8 @@ export const gatherClues = (players: Players): PlainObject[] => {
 
 const parseVote = (voteId: string): string => voteId.split(SEPARATOR)[1];
 
-export const tallyScore = (players: Players, previousScore: PlainObject, goal: number) => {
-  const results: PlainObject = {};
+export const tallyScore = (players: Players, previousScore: PlainObject, goal: number): Results => {
+  const results: Results = {};
   // Build nightmares dict count to add players who voted to user's nightmare
   const nightmareCount = Object.values(players).reduce((acc, player) => {
     player.nightmares.forEach((nightmareId) => {
@@ -149,7 +149,7 @@ export const tallyScore = (players: Players, previousScore: PlainObject, goal: n
   Object.values(players).forEach((player) => {
     results[player.id] = {
       playerId: player.id,
-      dreamGuesses: [],
+      dreamGuesses: {},
       correct: 0,
       nightmareHits: [],
       win: false,
