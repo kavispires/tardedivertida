@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
 import { Typography, Layout, Space, Card, Image, Divider, Tag } from 'antd';
 // Hooks
-import { useDimensions, useLanguage } from '../hooks';
+import { useDimensions, useGlobalState, useLanguage, useLocalStorage } from '../hooks';
 // Utils
 import gameList from '../resources/games.json';
 import { PUBLIC_URL, TAG_DICT } from '../utils/constants';
@@ -86,7 +86,16 @@ GameCard.propTypes = {
 
 function Hub() {
   const language = useLanguage();
+  const [getLocalStorage] = useLocalStorage();
+  const [, setLanguage] = useGlobalState('language');
   const sortedGameList = orderBy(Object.values(gameList), ['available', 'title'], ['desc', 'asc']);
+
+  useEffect(() => {
+    const prevLanguage = getLocalStorage('language');
+    if (prevLanguage) {
+      setLanguage(prevLanguage);
+    }
+  }, []); // eslint-disable-line
 
   const { availableGames, comingSoonGames } = sortedGameList.reduce(
     (acc, game) => {
