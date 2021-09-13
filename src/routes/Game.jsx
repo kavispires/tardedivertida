@@ -7,7 +7,7 @@ import { GAME_API } from '../adapters';
 // Hooks
 import { useIsGameStale, useLoading, useGlobalState } from '../hooks';
 // Utils
-import { getGameIdFromURL, getGameIdFromLocation, isValidGameId } from '../utils';
+import { getGameIdFromURL, getGameIdFromLocation, isValidGameId, isDevEnv } from '../utils';
 import { GAME_COLLECTION } from '../utils/constants';
 // Components
 import { LoadingPage } from '../components/loaders';
@@ -63,6 +63,9 @@ function Game() {
       try {
         setLoader('load', true);
         const meta = await GAME_API.loadGame({ gameId });
+        if (isDevEnv) {
+          console.log({ meta: meta.data });
+        }
         setGameName(meta.data.gameName);
         setGameMeta(meta.data);
         setLanguage(meta.data?.language ?? 'pt');

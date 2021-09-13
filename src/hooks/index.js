@@ -10,5 +10,6 @@ export * from './useIsUserThe';
 export * from './useIsUsersTeamActive';
 export * from './useLanguage';
 export * from './useLoading';
+export * from './useLocalStorage';
 export * from './useUser';
 export * from './useWhichPlayerIsThe';
