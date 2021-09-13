@@ -41,7 +41,7 @@ export const determineNextPhase = (
 };
 
 export const determineGameOver = (results: PlainObject) => {
-  return Object.values(results).some((result) => result.win);
+  return Object.values(results ?? {}).some((result) => result.win);
 };
 
 export const buildTable = (images: string[]): Table => {
