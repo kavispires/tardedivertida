@@ -5,7 +5,7 @@ import { SONHOS_PESADELOS_PHASES } from './constants';
 import { GameId, Language, Players } from '../../utils/interfaces';
 // Utils
 import * as firebaseUtils from '../../utils/firebase';
-import { determineNextPhase } from './helpers';
+import { determineGameOver, determineNextPhase } from './helpers';
 import { SonhosPesadelosInitialState, SonhosPesadelosSubmitAction } from './interfaces';
 import {
   prepareGameOverPhase,
@@ -73,8 +73,7 @@ export const nextSonhosPesadelosPhase = async (
   const store = { ...(storeDoc.data() ?? {}) };
 
   // Determine if it's game over
-  // const isGameOver = determineGameOver(players);
-  const isGameOver = false;
+  const isGameOver = determineGameOver(store.results);
   // Determine next phase
   const nextPhase = determineNextPhase(state?.phase, state?.round, isGameOver);
 
