@@ -47,7 +47,7 @@ AllClues.propTypes = {
   clues: PropTypes.arrayOf(
     PropTypes.shape({
       cardId: PropTypes.string,
-      clue: PropTypes.string,
+      clue: PropTypes.array,
     })
   ),
   onActivateItem: PropTypes.func,
