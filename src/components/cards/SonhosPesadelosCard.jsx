@@ -27,6 +27,7 @@ export const SonhosPesadelosCard = memo(function ({ clue, footer, header = 'X', 
 
 SonhosPesadelosCard.propTypes = {
   clue: PropTypes.string.isRequired,
-  header: PropTypes.string,
   footer: PropTypes.string,
+  header: PropTypes.string,
+  previousClues: PropTypes.array,
 };

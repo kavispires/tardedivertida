@@ -277,7 +277,7 @@
     "recommended": "2+",
     "min": 2,
     "max": 8,
-    "tags": ["competitive", "image", "guessing"],
+    "tags": ["competitive", "images", "guessing"],
     "available": {
       "pt": true,
       "en": true

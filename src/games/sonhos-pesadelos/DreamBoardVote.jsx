@@ -25,7 +25,7 @@ function SelectButton({ onActivateItem, cardEntryId }) {
   return (
     <Button ghost block size="small" onClick={() => onActivateItem(cardEntryId)}>
       <CaretUpOutlined />
-      <Translate pt="Selectionar" en="Select" />
+      <Translate pt="Selecionar" en="Select" />
       <CaretUpOutlined />
     </Button>
   );
