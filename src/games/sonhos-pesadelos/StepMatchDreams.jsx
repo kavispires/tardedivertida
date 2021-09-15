@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
 import { Button } from 'antd';
 // Hooks
-import { useLanguage, useLoading } from '../../hooks';
+import { useLanguage, useLoading, useVotingMatch } from '../../hooks';
 // Components
 import {
   ButtonContainer,
@@ -14,20 +14,18 @@ import {
   Translate,
 } from '../../components/shared';
 import AllClues from './AllClues';
-import { getEntryId, hasDuplicates, isDevEnv, shuffle } from '../../utils';
-import { LETTERS, SEPARATOR } from '../../utils/constants';
+import { getEntryId, isDevEnv, shuffle } from '../../utils';
+import { LETTERS } from '../../utils/constants';
 import DreamBoardVote from './DreamBoardVote';
 
 function StepMatchDreams({ players, theme, user, table, onSubmitDream, clues }) {
   const [isLoading] = useLoading();
   const language = useLanguage();
-  const [votes, setVotes] = useState({});
-  const [activeItem, setActiveItem] = useState(null);
-  const [isDoneVoting, setIsDoneVoting] = useState(false);
-
-  useEffect(() => {
-    setIsDoneVoting(Object.keys(votes).length === clues.length && !hasDuplicates(Object.values(votes)));
-  }, [votes, clues]);
+  const { votes, setVotes, activeItem, activateItem, isVotingComplete } = useVotingMatch(
+    'clue',
+    true,
+    clues.length
+  );
 
   // Auto-select own clues
   useEffect(() => {
@@ -71,37 +69,6 @@ function StepMatchDreams({ players, theme, user, table, onSubmitDream, clues }) 
     });
   };
 
-  const onActivateItem = useCallback(
-    (entryId) => {
-      if (entryId === activeItem) {
-        return setActiveItem(null);
-      }
-
-      const [type] = entryId.split(SEPARATOR);
-      if (!activeItem || activeItem.startsWith(type)) {
-        setActiveItem(entryId);
-      } else {
-        if (type === 'card') {
-          setVotes((prevVotes) => {
-            return {
-              ...prevVotes,
-              [activeItem]: entryId,
-            };
-          });
-        } else {
-          setVotes((prevVotes) => {
-            return {
-              ...prevVotes,
-              [entryId]: activeItem,
-            };
-          });
-        }
-        setActiveItem(null);
-      }
-    },
-    [activeItem]
-  );
-
   return (
     <div className="s-tell-dream-step">
       <Title>{translate('Adivinhação', 'Match the Pairs', language)}</Title>
@@ -113,7 +80,7 @@ function StepMatchDreams({ players, theme, user, table, onSubmitDream, clues }) 
       </Instruction>
 
       <ButtonContainer>
-        <Button type="primary" disabled={isLoading || !isDoneVoting} onClick={onSubmitDreams}>
+        <Button type="primary" disabled={isLoading || !isVotingComplete} onClick={onSubmitDreams}>
           <Translate pt="Enviar" en="Submit" />
         </Button>
         {isDevEnv && <Button onClick={devRandomVoting}>Dev Random Vote</Button>}
@@ -122,7 +89,7 @@ function StepMatchDreams({ players, theme, user, table, onSubmitDream, clues }) 
       <AllClues
         clues={clues}
         activeItem={activeItem}
-        onActivateItem={onActivateItem}
+        onActivateItem={activateItem}
         votes={votes}
         players={players}
       />
@@ -131,7 +98,7 @@ function StepMatchDreams({ players, theme, user, table, onSubmitDream, clues }) 
         user={user}
         table={table}
         activeItem={activeItem}
-        onActivateItem={onActivateItem}
+        onActivateItem={activateItem}
         votes={votes}
         players={players}
       />

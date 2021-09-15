@@ -9,7 +9,7 @@ import { LETTERS, SEPARATOR } from '../../utils/constants';
 import { AdminForceNextPhase } from '../../components/admin';
 import { ImageCard } from '../../components/cards';
 
-function StepResults({ players, results, user, clues }) {
+function StepResults({ results, user, clues }) {
   const language = useLanguage();
   const playerResults = results[user.id];
 
@@ -65,6 +65,14 @@ function StepResults({ players, results, user, clues }) {
   );
 }
 
-StepResults.propTypes = {};
+StepResults.propTypes = {
+  clues: PropTypes.any,
+  results: PropTypes.any,
+  user: PropTypes.shape({
+    dreams: PropTypes.any,
+    id: PropTypes.any,
+    votes: PropTypes.any,
+  }),
+};
 
 export default StepResults;

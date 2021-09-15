@@ -12,4 +12,5 @@ export * from './useLanguage';
 export * from './useLoading';
 export * from './useLocalStorage';
 export * from './useUser';
+export * from './useVotingMatch';
 export * from './useWhichPlayerIsThe';
