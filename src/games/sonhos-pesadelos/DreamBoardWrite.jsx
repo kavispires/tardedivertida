@@ -8,6 +8,7 @@ import { useDimensions, useLanguage } from '../../hooks';
 import ImageCard from '../../components/cards/ImageCard';
 import { translate, Translate } from '../../components/shared';
 import { Button, Input, Popover } from 'antd';
+import { ImageCardBack } from '../../components/cards';
 
 function NightmareButton() {
   return (
@@ -72,8 +73,11 @@ function DreamCluePopover({ cardId, clue, previousClues, onClueChange }) {
     </div>
   );
 }
+const shouldDisplayCard = (currentRound, entry, userId) => {
+  return currentRound > 1 || entry.dreamer === userId || entry.nightmares.includes(userId);
+};
 
-function DreamBoard({ table, user, localClues, setLocalClues }) {
+function DreamBoard({ table, user, localClues, setLocalClues, currentRound }) {
   const [screenWidth] = useDimensions();
   const cardWidth = Math.round(screenWidth / (table.length / 2)) - 40;
   const baseClass = 's-dream-board-card';
@@ -105,16 +109,21 @@ function DreamBoard({ table, user, localClues, setLocalClues }) {
             key={`board-${entry.cardId}`}
             style={{ maxWidth: `${cardWidth + 20}px` }}
           >
-            <ImageCard
-              imageId={entry.cardId}
-              bordered
-              cardWidth={cardWidth}
-              className={clsx(
-                baseClass,
-                isDream && `${baseClass}--dream`,
-                isNightmare && `${baseClass}--nightmare`
-              )}
-            />
+            {shouldDisplayCard(currentRound, entry, user.id) ? (
+              <ImageCard
+                imageId={entry.cardId}
+                bordered
+                cardWidth={cardWidth}
+                className={clsx(
+                  baseClass,
+                  isDream && `${baseClass}--dream`,
+                  isNightmare && `${baseClass}--nightmare`
+                )}
+              />
+            ) : (
+              <ImageCardBack className={baseClass} cardWidth={cardWidth} />
+            )}
+
             {isNightmare && <NightmareButton />}
 
             {isDream && (

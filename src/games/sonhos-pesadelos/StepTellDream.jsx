@@ -36,7 +36,7 @@ const mockedClues = [
   'amargo',
 ];
 
-function StepTellDream({ players, theme, user, table, onSubmitDream, dreamsCount }) {
+function StepTellDream({ players, theme, user, table, onSubmitDream, dreamsCount, currentRound }) {
   const [isLoading] = useLoading();
   const language = useLanguage();
   const [localClues, setLocalClues] = useState({});
@@ -88,7 +88,13 @@ function StepTellDream({ players, theme, user, table, onSubmitDream, dreamsCount
         </Button>
       </ButtonContainer>
 
-      <DreamBoardWrite user={user} table={table} localClues={localClues} setLocalClues={setLocalClues} />
+      <DreamBoardWrite
+        user={user}
+        table={table}
+        localClues={localClues}
+        setLocalClues={setLocalClues}
+        currentRound={currentRound}
+      />
 
       <ReadyPlayersBar players={players} />
     </div>

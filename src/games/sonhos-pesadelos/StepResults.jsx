@@ -13,7 +13,7 @@ function StepResults({ players, results, user, clues }) {
   const language = useLanguage();
   const playerResults = results[user.id];
 
-  const currentVotes = Object.entries(user.votes).reduce((acc, [cardEntryId, clueEntryId]) => {
+  const currentVotes = Object.entries(user.votes).reduce((acc, [clueEntryId, cardEntryId]) => {
     const cardId = cardEntryId.split(SEPARATOR)[1];
     if (Boolean(user.dreams[cardId])) return acc;
 
