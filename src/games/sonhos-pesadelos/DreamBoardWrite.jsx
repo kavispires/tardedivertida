@@ -1,15 +1,13 @@
 import React, { Fragment } from 'react';
-import clsx from 'clsx';
 // Design Resources
 import { Button, Input, Popover } from 'antd';
 import { CaretUpOutlined } from '@ant-design/icons';
 // Hooks
 import { useDimensions, useLanguage } from '../../hooks';
 // Components
-import ImageCard from '../../components/cards/ImageCard';
 import { translate, Translate } from '../../components/shared';
-import { ImageCardBack } from '../../components/cards';
 import NightmareButton from './NightmareButton';
+import DreamCard from './DreamCard';
 
 function DreamButton({ cardId, clue, previousClues, onClueChange }) {
   const language = useLanguage();
@@ -72,7 +70,6 @@ const shouldDisplayCard = (currentRound, entry, userId) => {
 function DreamBoardWrite({ table, user, localClues, setLocalClues, currentRound }) {
   const [screenWidth] = useDimensions();
   const cardWidth = Math.round(screenWidth / (table.length / 2)) - 40;
-  const baseClass = 's-dream-board-card';
 
   const onClueChange = ({ target }) => {
     const { value, dataset } = target;
@@ -97,20 +94,13 @@ function DreamBoardWrite({ table, user, localClues, setLocalClues, currentRound 
             key={`board-${entry.cardId}`}
             style={{ maxWidth: `${cardWidth + 20}px` }}
           >
-            {shouldDisplayCard(currentRound, entry, user.id) ? (
-              <ImageCard
-                imageId={entry.cardId}
-                bordered
-                cardWidth={cardWidth}
-                className={clsx(
-                  baseClass,
-                  isDream && `${baseClass}--dream`,
-                  isNightmare && `${baseClass}--nightmare`
-                )}
-              />
-            ) : (
-              <ImageCardBack className={baseClass} cardWidth={cardWidth} />
-            )}
+            <DreamCard
+              cardId={entry.cardId}
+              cardWidth={cardWidth}
+              flipped={!shouldDisplayCard(currentRound, entry, user.id)}
+              isDream={isDream}
+              isNightmare={isNightmare}
+            />
 
             {isNightmare && <NightmareButton />}
 
