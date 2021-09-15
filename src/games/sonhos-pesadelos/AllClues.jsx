@@ -7,7 +7,7 @@ import { getEntryId } from '../../utils';
 // Components
 import { SonhosPesadelosCard as Card } from '../../components/cards';
 
-function AllClues({ clues, activeItem, onActivateItem, votes, players }) {
+function AllClues({ clues, activeItem, onActivateItem, votes, players, currentRound }) {
   const liButtonBaseClass = 'a-evaluation-all-cards__li-card-button';
 
   return (
@@ -33,7 +33,7 @@ function AllClues({ clues, activeItem, onActivateItem, votes, players }) {
               clue={clue[0]}
               header={letter}
               footer={players[playerId].name}
-              previousClues={clue.slice(1)}
+              previousClues={currentRound > 2 ? clue.slice(1) : []}
             />
           </li>
         );
@@ -50,8 +50,10 @@ AllClues.propTypes = {
       clue: PropTypes.array,
     })
   ),
+  currentRound: PropTypes.number,
   onActivateItem: PropTypes.func,
   onActiveItem: PropTypes.func,
+  players: PropTypes.object,
   votes: PropTypes.object,
 };
 

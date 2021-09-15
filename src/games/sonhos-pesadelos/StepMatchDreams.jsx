@@ -18,7 +18,7 @@ import { getEntryId, isDevEnv, shuffle } from '../../utils';
 import { LETTERS } from '../../utils/constants';
 import DreamBoardVote from './DreamBoardVote';
 
-function StepMatchDreams({ players, theme, user, table, onSubmitDream, clues }) {
+function StepMatchDreams({ players, user, table, onSubmitDream, clues, currentRound }) {
   const [isLoading] = useLoading();
   const language = useLanguage();
   const { votes, setVotes, activeItem, activateItem, isVotingComplete } = useVotingMatch(
@@ -92,6 +92,7 @@ function StepMatchDreams({ players, theme, user, table, onSubmitDream, clues }) 
         onActivateItem={activateItem}
         votes={votes}
         players={players}
+        currentRound={currentRound}
       />
 
       <DreamBoardVote
@@ -109,11 +110,12 @@ function StepMatchDreams({ players, theme, user, table, onSubmitDream, clues }) 
 }
 
 StepMatchDreams.propTypes = {
+  clues: PropTypes.array,
+  currentRound: PropTypes.number,
   dreamsCount: PropTypes.number,
   onSubmitDream: PropTypes.func,
   players: PropTypes.object,
   table: PropTypes.array,
-  theme: PropTypes.string,
   user: PropTypes.object,
 };
 

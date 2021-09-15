@@ -87,6 +87,7 @@ function PhaseMatch({ state, players, info }) {
             onSubmitDream={onSubmitDream}
             dreamsCount={state.dreamsCount}
             clues={state.clues}
+            currentRound={state?.round?.current}
           />
         </Step>
 
