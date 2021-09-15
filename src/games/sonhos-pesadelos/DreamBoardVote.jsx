@@ -31,6 +31,10 @@ function SelectButton({ onActivateItem, cardEntryId }) {
   );
 }
 
+const getClueId = (votes, cardEntryId) => {
+  return Object.keys(votes).find((key) => votes[key] === cardEntryId);
+};
+
 function DreamBoardVote({ table, user, activeItem, onActivateItem, votes }) {
   const [screenWidth] = useDimensions();
   const cardWidth = Math.round(screenWidth / (table.length / 2)) - 40;
@@ -44,6 +48,7 @@ function DreamBoardVote({ table, user, activeItem, onActivateItem, votes }) {
         const isNightmare = user.nightmares.includes(entry.cardId);
         const cardEntryId = getEntryId(['card', entry.cardId]);
         const isActive = activeItem === cardEntryId;
+        const ribbonId = getClueId(votes, cardEntryId);
 
         return (
           <li
@@ -55,7 +60,7 @@ function DreamBoardVote({ table, user, activeItem, onActivateItem, votes }) {
             key={`board-${entry.cardId}`}
             style={{ maxWidth: `${cardWidth + 20}px` }}
           >
-            {votes?.[cardEntryId] && <Ribbon cardEntryId={votes[cardEntryId]} />}
+            {ribbonId && <Ribbon cardEntryId={ribbonId} />}
             <ImageCard
               imageId={entry.cardId}
               bordered

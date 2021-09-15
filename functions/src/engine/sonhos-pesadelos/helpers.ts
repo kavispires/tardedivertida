@@ -156,9 +156,9 @@ export const tallyScore = (players: Players, previousScore: PlainObject, goal: n
       previousScore: previousScore?.[player.id]?.correct ?? 0,
     };
 
-    Object.keys(player.votes).forEach((cardEntryId) => {
-      const cardVoteId = parseVote(cardEntryId);
-      const clueVoteId = parseVote(player.votes[cardEntryId]);
+    Object.keys(player.votes).forEach((clueEntryId) => {
+      const clueVoteId = parseVote(clueEntryId);
+      const cardVoteId = parseVote(player.votes[clueEntryId]);
 
       // Check if its their own card
       if (player.dreams[cardVoteId]) {

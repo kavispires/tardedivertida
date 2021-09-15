@@ -101,6 +101,7 @@ function PhaseTellDream({ state, players, info }) {
             table={state.table}
             onSubmitDream={onSubmitDream}
             dreamsCount={state.dreamsCount}
+            currentRound={state.round.current}
           />
         </Step>
 

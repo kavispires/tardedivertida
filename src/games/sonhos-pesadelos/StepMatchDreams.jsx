@@ -35,7 +35,7 @@ function StepMatchDreams({ players, theme, user, table, onSubmitDream, clues }) 
       if (entry.playerId === user.id) {
         const clueEntryId = getEntryId(['clue', entry.cardId, LETTERS[index]]);
         const cardEntryId = getEntryId(['card', entry.cardId]);
-        acc[cardEntryId] = clueEntryId;
+        acc[clueEntryId] = cardEntryId;
       }
       return acc;
     }, {});
@@ -51,11 +51,11 @@ function StepMatchDreams({ players, theme, user, table, onSubmitDream, clues }) 
     const devClues = shuffle(
       clues
         .map((entry, index) => getEntryId(['clue', entry.cardId, LETTERS[index]]))
-        .filter((entryId) => !Object.values(votes).includes(entryId))
+        .filter((entryId) => !Object.keys(votes).includes(entryId))
     );
 
-    const devRes = devCards.reduce((acc, cardEntryId, index) => {
-      acc[cardEntryId] = devClues[index];
+    const devRes = devClues.reduce((acc, clueEntryId, index) => {
+      acc[clueEntryId] = devCards[index];
       return acc;
     }, {});
 
@@ -81,7 +81,7 @@ function StepMatchDreams({ players, theme, user, table, onSubmitDream, clues }) 
       if (!activeItem || activeItem.startsWith(type)) {
         setActiveItem(entryId);
       } else {
-        if (type === 'clue') {
+        if (type === 'card') {
           setVotes((prevVotes) => {
             return {
               ...prevVotes,

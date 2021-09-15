@@ -16,7 +16,7 @@ function AllClues({ clues, activeItem, onActivateItem, votes, players }) {
         const letter = LETTERS[index];
         const cardEntryId = getEntryId(['clue', cardId, letter]);
         const isActive = activeItem === cardEntryId;
-        const isUsed = Object.values(votes).includes(cardEntryId);
+        const isUsed = Object.keys(votes).includes(cardEntryId);
 
         return (
           <li
