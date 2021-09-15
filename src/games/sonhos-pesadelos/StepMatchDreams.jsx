@@ -74,8 +74,8 @@ function StepMatchDreams({ players, user, table, onSubmitDream, clues, currentRo
       <Title>{translate('Adivinhação', 'Match the Pairs', language)}</Title>
       <Instruction contained>
         <Translate
-          pt="Clique em uma dica e então uma botão da imagem correspondente ou vice e versa. Aperte enviar quando terminar te combinar todas as dicas"
-          en="Click on a clue then on an image button or vice versa. When you're done matching all clues, press Submit"
+          pt="Clique em uma carta e então uma botão da imagem correspondente ou vice e versa. Aperte enviar quando terminar te combinar todas as dicas."
+          en="Click on a clue then on an image button or vice versa. When you're done matching all clues, press Submit."
         />
       </Instruction>
 

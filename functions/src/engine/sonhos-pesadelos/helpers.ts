@@ -1,9 +1,11 @@
+// Interfaces
 import { PlainObject, Players } from '../../utils/interfaces';
-import { SONHOS_PESADELOS_PHASES, TOTAL_ROUNDS } from './constants';
 import { Results, Table } from './interfaces';
+// Constants
+import { SEPARATOR } from '../../utils/constants';
+import { SONHOS_PESADELOS_PHASES, TOTAL_ROUNDS } from './constants';
 // Helpers
 import * as gameUtils from '../../utils/game-utils';
-import { SEPARATOR } from '../../utils/constants';
 
 /**
  * Determine the next phase based on the current one
@@ -24,11 +26,17 @@ export const determineNextPhase = (
   }
 
   if (currentPhase === RESOLUTION) {
-    return currentRound >= TOTAL_ROUNDS ? LAST_CHANCE : TELL_DREAM;
+    if (currentRound < TOTAL_ROUNDS) {
+      return TELL_DREAM;
+    }
+    if (currentRound === TOTAL_ROUNDS) {
+      return LAST_CHANCE;
+    }
+    return GAME_OVER;
   }
 
   if (currentPhase === LAST_CHANCE) {
-    return GAME_OVER;
+    return RESOLUTION;
   }
 
   const currentPhaseIndex = order.indexOf(currentPhase);

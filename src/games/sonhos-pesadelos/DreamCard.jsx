@@ -29,11 +29,6 @@ function DreamCard({
 
   return (
     <Fragment>
-      {!hideBlurButton && isFlavia && (
-        <Button ghost onClick={() => addBlurCard(cardId)} size="small">
-          {translate('Credo', 'Blur', language)}
-        </Button>
-      )}
       <ImageCard
         imageId={cardId}
         bordered
@@ -44,7 +39,13 @@ function DreamCard({
           isNightmare && `${baseClass}--nightmare`,
           blurredCards?.[cardId] && 'image-card-hand--blur'
         )}
+        preview={!blurredCards?.[cardId]}
       />
+      {!hideBlurButton && isFlavia && (
+        <Button ghost onClick={() => addBlurCard(cardId)} size="small">
+          {translate('Credo', 'Blur', language)}
+        </Button>
+      )}
     </Fragment>
   );
 }
