@@ -1,41 +1,20 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import clsx from 'clsx';
-// Design Resources
-import { CaretUpOutlined } from '@ant-design/icons';
 // Hooks
 import { useDimensions } from '../../hooks';
 // Components
 import ImageCard from '../../components/cards/ImageCard';
-import { Translate } from '../../components/shared';
-import { Button } from 'antd';
+import NightmareButton from './NightmareButton';
+import DreamButton from './DreamButton';
 
-function NightmareButton() {
-  return (
-    <Button disabled className="s-dream-board-entry-nightmare">
-      <CaretUpOutlined />
-      <Translate pt="Pesadelo" en="Nightmare" />
-      <CaretUpOutlined />
-    </Button>
-  );
-}
-
-function DreamButton() {
-  return (
-    <Button disabled className="s-dream-board-entry-dream">
-      <CaretUpOutlined />
-      <Translate pt="Sonho" en="Dream" />
-      <CaretUpOutlined />
-    </Button>
-  );
-}
-
-function DreamBoard({ table, user }) {
+function DreamBoard({ table, user, className }) {
   const [screenWidth] = useDimensions();
   const cardWidth = Math.round(screenWidth / (table.length / 2)) - 40;
   const baseClass = 's-dream-board-card';
 
   return (
-    <ul className="s-dream-board">
+    <ul className={clsx('s-dream-board', className)}>
       {table.map((entry) => {
         const isDream = Boolean(user.dreams[entry.cardId]);
         const isNightmare = user.nightmares.includes(entry.cardId);
@@ -65,5 +44,14 @@ function DreamBoard({ table, user }) {
     </ul>
   );
 }
+
+DreamBoard.propTypes = {
+  className: PropTypes.string,
+  table: PropTypes.array,
+  user: PropTypes.shape({
+    dreams: PropTypes.array,
+    nightmares: PropTypes.array,
+  }),
+};
 
 export default DreamBoard;

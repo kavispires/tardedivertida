@@ -1,29 +1,20 @@
 import React, { Fragment } from 'react';
 import clsx from 'clsx';
 // Design Resources
+import { Button, Input, Popover } from 'antd';
 import { CaretUpOutlined } from '@ant-design/icons';
 // Hooks
 import { useDimensions, useLanguage } from '../../hooks';
 // Components
 import ImageCard from '../../components/cards/ImageCard';
 import { translate, Translate } from '../../components/shared';
-import { Button, Input, Popover } from 'antd';
 import { ImageCardBack } from '../../components/cards';
+import NightmareButton from './NightmareButton';
 
-function NightmareButton() {
-  return (
-    <Button disabled className="s-dream-board-entry-nightmare">
-      <CaretUpOutlined />
-      <Translate pt="Pesadelo" en="Nightmare" />
-      <CaretUpOutlined />
-    </Button>
-  );
-}
-
-function DreamButton({ dreamNumber, cardId, clue, previousClues, onClueChange }) {
+function DreamButton({ cardId, clue, previousClues, onClueChange }) {
   const language = useLanguage();
 
-  const title = `${translate('Sonho', 'Dream', language)} ${dreamNumber}`;
+  const title = `${translate('Sonho', 'Dream', language)}`;
 
   return (
     <Popover
@@ -73,15 +64,15 @@ function DreamCluePopover({ cardId, clue, previousClues, onClueChange }) {
     </div>
   );
 }
+
 const shouldDisplayCard = (currentRound, entry, userId) => {
   return currentRound > 1 || entry.dreamer === userId || entry.nightmares.includes(userId);
 };
 
-function DreamBoard({ table, user, localClues, setLocalClues, currentRound }) {
+function DreamBoardWrite({ table, user, localClues, setLocalClues, currentRound }) {
   const [screenWidth] = useDimensions();
   const cardWidth = Math.round(screenWidth / (table.length / 2)) - 40;
   const baseClass = 's-dream-board-card';
-  let dreamNumber = 0;
 
   const onClueChange = ({ target }) => {
     const { value, dataset } = target;
@@ -99,9 +90,6 @@ function DreamBoard({ table, user, localClues, setLocalClues, currentRound }) {
       {table.map((entry) => {
         const isDream = Boolean(user.dreams[entry.cardId]);
         const isNightmare = user.nightmares.includes(entry.cardId);
-        if (isDream) {
-          dreamNumber++;
-        }
 
         return (
           <li
@@ -128,7 +116,6 @@ function DreamBoard({ table, user, localClues, setLocalClues, currentRound }) {
 
             {isDream && (
               <DreamButton
-                dreamNumber={dreamNumber}
                 cardId={entry.cardId}
                 clue={localClues?.[entry.cardId] ?? ''}
                 previousClues={user.dreams[entry.cardId]}
@@ -142,4 +129,4 @@ function DreamBoard({ table, user, localClues, setLocalClues, currentRound }) {
   );
 }
 
-export default DreamBoard;
+export default DreamBoardWrite;

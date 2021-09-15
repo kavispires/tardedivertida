@@ -8,8 +8,10 @@ import { Instruction, Title, translate, Translate } from '../../components/share
 import { LETTERS, SEPARATOR } from '../../utils/constants';
 import { AdminForceNextPhase } from '../../components/admin';
 import { ImageCard } from '../../components/cards';
+import { Alert } from 'antd';
+import DreamBoard from './DreamBoard';
 
-function StepResults({ results, user, clues }) {
+function StepResults({ results, user, clues, table }) {
   const language = useLanguage();
   const playerResults = results[user.id];
 
@@ -48,17 +50,20 @@ function StepResults({ results, user, clues }) {
             );
           })}
         </ul>
+        {Boolean(playerResults.nightmareHits.length) && (
+          <Alert
+            type="warning"
+            showIcon
+            message={translate(
+              `${playerResults.nightmareHits.length} jogadores acharam que um dos seus pesadelos era a resposta. Você não pode ganhar se isso acontece.`,
+              `${playerResults.nightmareHits.length} players match one of your nightmares with one of your clues. You can't win if this happens.`,
+              language
+            )}
+          />
+        )}
       </Instruction>
 
-      <Instruction contained>
-        <p>
-          <Translate
-            pt={`${playerResults.nightmareHits.length} jogadores acharam que um dos seus pesadelos era a resposta.`}
-            en={`${playerResults.nightmareHits.length} players match one of your nightmares with one of your clues.`}
-          />
-        </p>
-        <p>TODO: Mostrar resultados?</p>
-      </Instruction>
+      <DreamBoard table={table} user={user} className="s-dream-board-results" />
 
       <AdminForceNextPhase buttonText={translate('Próxima Rodada', 'Go to Next Round', language)} />
     </div>
