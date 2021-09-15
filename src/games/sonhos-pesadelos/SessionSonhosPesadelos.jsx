@@ -2,13 +2,15 @@ import React from 'react';
 // Hooks
 import { GAME_COLLECTION, PHASES } from '../../utils/constants';
 // Components
-import { PhasePlaceholder, Session, SetupScreen } from '../../components/shared';
+import { Session, SetupScreen } from '../../components/shared';
 import Lobby from '../../components/lobby/Lobby';
 import { Rules } from '../../components/rules';
 import { PageError } from '../../components/errors/PageError';
 import PhaseTellDream from './PhaseTellDream';
 import PhaseMatch from './PhaseMatch';
 import PhaseResolution from './PhaseResolution';
+import PhaseGameOver from './PhaseGameOver';
+import PhaseLastChance from './PhaseLastChance';
 
 function SessionSonhosPesadelos({ gameId }) {
   function getActiveComponent(phase) {
@@ -26,9 +28,9 @@ function SessionSonhosPesadelos({ gameId }) {
       case PHASES.SONHOS_PESADELOS.RESOLUTION:
         return PhaseResolution;
       case PHASES.SONHOS_PESADELOS.LAST_CHANCE:
-        return PhasePlaceholder;
+        return PhaseLastChance;
       case PHASES.SONHOS_PESADELOS.GAME_OVER:
-        return PhasePlaceholder;
+        return PhaseGameOver;
       default:
         return PageError;
     }

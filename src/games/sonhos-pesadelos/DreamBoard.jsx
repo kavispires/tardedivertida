@@ -45,7 +45,7 @@ DreamBoard.propTypes = {
   className: PropTypes.string,
   table: PropTypes.array,
   user: PropTypes.shape({
-    dreams: PropTypes.array,
+    dreams: PropTypes.object,
     nightmares: PropTypes.array,
   }),
 };

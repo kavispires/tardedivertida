@@ -1,5 +1,5 @@
 // Interfaces
-import { Players, SaveGamePayload } from '../../utils/interfaces';
+import { Player, Players, SaveGamePayload } from '../../utils/interfaces';
 import { FirebaseStateData, FirebaseStoreData, Results } from './interfaces';
 // Constants
 import { COUNTS_BY_PLAYER, SONHOS_PESADELOS_PHASES, TOTAL_ROUNDS } from './constants';
@@ -85,7 +85,6 @@ export const prepareMatchPhase = async (
   utils.unReadyPlayers(players);
   // Remove votes
   utils.removePropertiesFromPlayers(players, ['votes']);
-  // TODO: I might want to save those votes
 
   // Gather clues
   const clues = gatherClues(players);
@@ -135,6 +134,8 @@ export const prepareLastChancePhase = async (
 ): Promise<SaveGamePayload> => {
   // Unready players
   utils.unReadyPlayers(players);
+  // Remove votes
+  utils.removePropertiesFromPlayers(players, ['votes']);
 
   // Save
   return {
@@ -142,7 +143,10 @@ export const prepareLastChancePhase = async (
       state: {
         phase: SONHOS_PESADELOS_PHASES.LAST_CHANCE,
         updatedAt: Date.now(),
+        isLastChance: true,
+        round: utils.increaseRound(state?.round, TOTAL_ROUNDS),
       },
+      players,
     },
   };
 };
@@ -153,7 +157,15 @@ export const prepareGameOverPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   const results: Results = store.results;
-  const winners = Object.values(results).filter((result) => result.win);
+
+  let winners: Player[] = [];
+  if (state.isLastChance) {
+    winners = Object.values(results)
+      .filter((result) => result.win)
+      .map(({ playerId }) => players[playerId]);
+  } else {
+    winners = utils.determineWinners(players);
+  }
 
   return {
     update: {
