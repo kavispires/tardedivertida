@@ -1,25 +1,17 @@
 import React from 'react';
 import clsx from 'clsx';
 // Design Resources
+import { Button } from 'antd';
 import { CaretUpOutlined } from '@ant-design/icons';
 // Hooks
 import { useDimensions } from '../../hooks';
+// Utils
+import { getEntryId } from '../../utils';
 // Components
 import ImageCard from '../../components/cards/ImageCard';
 import { Translate } from '../../components/shared';
-import { Button } from 'antd';
 import Ribbon from '../arte-ruim/Ribbon';
-import { getEntryId } from '../../utils';
-
-function DreamButton() {
-  return (
-    <Button disabled className="s-dream-board-entry-dream">
-      <CaretUpOutlined />
-      <Translate pt="Sonho" en="Dream" />
-      <CaretUpOutlined />
-    </Button>
-  );
-}
+import DreamButton from './DreamButton';
 
 function SelectButton({ onActivateItem, cardEntryId }) {
   return (

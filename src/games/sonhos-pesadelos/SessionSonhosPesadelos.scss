@@ -57,6 +57,7 @@
 .s-results-current-votes.s-results-current-votes {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   list-style: none;
   margin: get-unit(2);
 }

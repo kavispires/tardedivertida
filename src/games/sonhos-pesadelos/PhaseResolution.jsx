@@ -70,6 +70,7 @@ function PhaseResolution({ state, players, info }) {
             results={state.results}
             dreamsCount={state.dreamsCount}
             clues={state.clues}
+            table={state.table}
           />
         </Step>
 
