@@ -8,10 +8,10 @@ import { useDimensions } from '../../hooks';
 // Utils
 import { getEntryId } from '../../utils';
 // Components
-import ImageCard from '../../components/cards/ImageCard';
 import { Translate } from '../../components/shared';
 import Ribbon from '../arte-ruim/Ribbon';
 import DreamButton from './DreamButton';
+import DreamCard from './DreamCard';
 
 function SelectButton({ onActivateItem, cardEntryId }) {
   return (
@@ -30,7 +30,6 @@ const getClueId = (votes, cardEntryId) => {
 function DreamBoardVote({ table, user, activeItem, onActivateItem, votes }) {
   const [screenWidth] = useDimensions();
   const cardWidth = Math.round(screenWidth / (table.length / 2)) - 40;
-  const baseClass = 's-dream-board-card';
   const liButtonBaseClass = 'a-evaluation-all-drawings__li-drawing-button';
 
   return (
@@ -53,16 +52,13 @@ function DreamBoardVote({ table, user, activeItem, onActivateItem, votes }) {
             style={{ maxWidth: `${cardWidth + 20}px` }}
           >
             {ribbonId && <Ribbon cardEntryId={ribbonId} />}
-            <ImageCard
-              imageId={entry.cardId}
-              bordered
+            <DreamCard
+              cardId={entry.cardId}
               cardWidth={cardWidth}
-              className={clsx(
-                baseClass,
-                isDream && `${baseClass}--dream`,
-                isNightmare && `${baseClass}--nightmare`
-              )}
+              isDream={isDream}
+              isNightmare={isNightmare}
             />
+
             {isDream ? (
               <DreamButton />
             ) : (

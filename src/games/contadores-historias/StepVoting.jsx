@@ -49,7 +49,6 @@ function StepVoting({ players, story, user, onSubmitVote, storyteller, table }) 
                   icon={<DownSquareOutlined />}
                   onClick={() => onSelectCard(cardEntry.cardId)}
                   size="small"
-                  // ghost
                   disabled={isLoading || isUserCard}
                 >
                   {isUserCard ? translate('Sua', 'Yours', language) : translate('Votar', 'Vote', language)}
@@ -59,7 +58,7 @@ function StepVoting({ players, story, user, onSubmitVote, storyteller, table }) 
                 imageId={cardEntry.cardId}
                 cardWidth={cardWidth}
                 className={clsx(
-                  blurredCards?.[cardEntry.cardId] && 'c-game-table--blur',
+                  blurredCards?.[cardEntry.cardId] && 'image-card-hand--blur',
                   isUserVote && 'c-game-table--vote'
                 )}
               />

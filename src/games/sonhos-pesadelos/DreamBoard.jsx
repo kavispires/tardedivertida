@@ -4,14 +4,13 @@ import clsx from 'clsx';
 // Hooks
 import { useDimensions } from '../../hooks';
 // Components
-import ImageCard from '../../components/cards/ImageCard';
 import NightmareButton from './NightmareButton';
 import DreamButton from './DreamButton';
+import DreamCard from './DreamCard';
 
 function DreamBoard({ table, user, className }) {
   const [screenWidth] = useDimensions();
   const cardWidth = Math.round(screenWidth / (table.length / 2)) - 40;
-  const baseClass = 's-dream-board-card';
 
   return (
     <ul className={clsx('s-dream-board', className)}>
@@ -25,16 +24,13 @@ function DreamBoard({ table, user, className }) {
             key={`board-${entry.cardId}`}
             style={{ maxWidth: `${cardWidth + 20}px` }}
           >
-            <ImageCard
-              imageId={entry.cardId}
-              bordered
+            <DreamCard
+              cardId={entry.cardId}
               cardWidth={cardWidth}
-              className={clsx(
-                baseClass,
-                isDream && `${baseClass}--dream`,
-                isNightmare && `${baseClass}--nightmare`
-              )}
+              isDream={isDream}
+              isNightmare={isNightmare}
             />
+
             {isNightmare && <NightmareButton />}
 
             {isDream && <DreamButton />}

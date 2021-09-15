@@ -55,7 +55,7 @@ export function ImageCardHand({
             />
             {isFlavia && (
               <Button ghost onClick={() => addBlurCard(cardId)} size="small">
-                Credo
+                {translate('Credo', 'Blur', language)}
               </Button>
             )}
           </div>

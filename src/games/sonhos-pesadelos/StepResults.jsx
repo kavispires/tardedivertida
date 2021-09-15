@@ -1,15 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+// Design Resources
+import { Alert } from 'antd';
 // Hooks
 import { useLanguage } from '../../hooks';
+// Utils
+import { LETTERS, SEPARATOR } from '../../utils/constants';
 // Components
 import { Instruction, Title, translate, Translate } from '../../components/shared';
-
-import { LETTERS, SEPARATOR } from '../../utils/constants';
 import { AdminForceNextPhase } from '../../components/admin';
-import { ImageCard } from '../../components/cards';
-import { Alert } from 'antd';
 import DreamBoard from './DreamBoard';
+import DreamCard from './DreamCard';
 
 function StepResults({ results, user, clues, table }) {
   const language = useLanguage();
@@ -40,7 +41,7 @@ function StepResults({ results, user, clues, table }) {
           {currentVotes.map((entry) => {
             return (
               <li key={`current-votes-${entry.cardId}`} className="s-results-current-vote">
-                <ImageCard imageId={entry.cardId} bordered cardWidth={80} className="" />
+                <DreamCard cardId={entry.cardId} cardWidth={80} hideBlurButton />
                 <ol>
                   {entry.clue.map((clueText) => {
                     return <li key={clueText}>{clueText}</li>;
