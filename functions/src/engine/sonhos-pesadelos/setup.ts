@@ -160,11 +160,11 @@ export const prepareGameOverPhase = async (
 
   let winners: Player[] = [];
   if (state.isLastChance) {
+    winners = utils.determineWinners(players);
+  } else {
     winners = Object.values(results)
       .filter((result) => result.win)
       .map(({ playerId }) => players[playerId]);
-  } else {
-    winners = utils.determineWinners(players);
   }
 
   return {
