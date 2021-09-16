@@ -33,7 +33,7 @@ function AllClues({ clues, activeItem, onActivateItem, votes, players, currentRo
               clue={clue[0]}
               header={letter}
               footer={players[playerId].name}
-              previousClues={currentRound > 2 ? clue.slice(1) : []}
+              previousClues={currentRound > 3 ? clue.slice(1) : []}
             />
           </li>
         );
