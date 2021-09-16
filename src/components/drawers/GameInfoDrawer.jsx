@@ -11,7 +11,7 @@ import { SectionMe } from './_internal/SectionMe';
 import { SectionMeta } from './_internal/SectionMeta';
 import { SectionTeams } from './_internal/SectionTeams';
 import { SectionRankedPlayers } from './_internal/SectionRankedPlayers';
-import { LanguageSwitch } from '../shared';
+import { SectionSettings } from './_internal/SectionSettings';
 
 export function GameInfoDrawer({ players, state, info, userId }) {
   const language = useLanguage();
@@ -51,11 +51,11 @@ export function GameInfoDrawer({ players, state, info, userId }) {
         onClose={onClose}
         visible={visible}
       >
-        <LanguageSwitch />
+        {completeMe && <SectionMe player={completeMe} isTeamGame={isTeamGame} />}
 
         <Divider />
 
-        {completeMe && <SectionMe player={completeMe} isTeamGame={isTeamGame} />}
+        <SectionSettings />
 
         <Divider />
 

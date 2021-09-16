@@ -1,14 +1,9 @@
 import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
 import clsx from 'clsx';
-// Design Resources
-import { Button } from 'antd';
-// Hooks
-import { useBlurCards, useLanguage } from '../../hooks';
 // Components
 import ImageCard from '../../components/cards/ImageCard';
-import { ImageCardBack } from '../../components/cards';
-import { translate } from '../../components/shared';
+import { ImageBlurButton, ImageCardBack } from '../../components/cards';
 
 function DreamCard({
   cardId,
@@ -18,9 +13,6 @@ function DreamCard({
   flipped = false,
   hideBlurButton = false,
 }) {
-  const language = useLanguage();
-  const [blurredCards, addBlurCard, isFlavia] = useBlurCards();
-
   const baseClass = 's-dream-board-card';
 
   if (flipped) {
@@ -36,16 +28,10 @@ function DreamCard({
         className={clsx(
           baseClass,
           isDream && `${baseClass}--dream`,
-          isNightmare && `${baseClass}--nightmare`,
-          blurredCards?.[cardId] && 'image-card-hand--blur'
+          isNightmare && `${baseClass}--nightmare`
         )}
-        preview={!blurredCards?.[cardId]}
       />
-      {!hideBlurButton && isFlavia && (
-        <Button ghost onClick={() => addBlurCard(cardId)} size="small">
-          {translate('Credo', 'Blur', language)}
-        </Button>
-      )}
+      {!hideBlurButton && <ImageBlurButton cardId={cardId} />}
     </Fragment>
   );
 }

@@ -4,17 +4,16 @@ import clsx from 'clsx';
 import { Button } from 'antd';
 import { DownSquareOutlined } from '@ant-design/icons';
 // Hooks & Utils
-import { useBlurCards, useDimensions, useLanguage, useLoading } from '../../hooks';
+import { useDimensions, useLanguage, useLoading } from '../../hooks';
 import { isDevEnv } from '../../utils';
 // Components
 import { ReadyPlayersBar, Title, translate, Translate } from '../../components/shared';
-import { Card, ImageCard } from '../../components/cards';
+import { Card, ImageBlurButton, ImageCard } from '../../components/cards';
 
 function StepVoting({ players, story, user, onSubmitVote, storyteller, table }) {
   const language = useLanguage();
   const [isLoading] = useLoading();
   const [screenWidth] = useDimensions();
-  const [blurredCards, addBlurCard, isFlavia] = useBlurCards();
 
   const hasPlayedCardAlready = Boolean(user.vote);
   const cardWidth = useMemo(() => Math.max((screenWidth - 100) / (Object.keys(players).length + 3), 150), [
@@ -57,18 +56,11 @@ function StepVoting({ players, story, user, onSubmitVote, storyteller, table }) 
               <ImageCard
                 imageId={cardEntry.cardId}
                 cardWidth={cardWidth}
-                className={clsx(
-                  blurredCards?.[cardEntry.cardId] && 'image-card-hand--blur',
-                  isUserVote && 'c-game-table--vote'
-                )}
+                className={clsx(isUserVote && 'c-game-table--vote')}
               />
               {isDevEnv && <div>{cardEntry.cardId}</div>}
 
-              {isFlavia && (
-                <Button ghost onClick={() => addBlurCard(cardEntry.cardId)} size="small">
-                  {translate('Credo', 'Blur', language)}
-                </Button>
-              )}
+              <ImageBlurButton cardId={cardEntry.cardId} />
             </div>
           );
         })}

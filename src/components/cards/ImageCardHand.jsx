@@ -5,9 +5,9 @@ import clsx from 'clsx';
 import { Button } from 'antd';
 import { DownSquareOutlined } from '@ant-design/icons';
 // Hooks
-import { useBlurCards, useDimensions, useLanguage } from '../../hooks';
+import { useDimensions, useLanguage } from '../../hooks';
 // Components
-import { ImageCard } from '.';
+import { ImageBlurButton, ImageCard } from '.';
 import { translate } from '../shared';
 
 export function ImageCardHand({
@@ -22,7 +22,6 @@ export function ImageCardHand({
 }) {
   const language = useLanguage();
   const [screenWidth] = useDimensions();
-  const [blurredCards, addBlurCard, isFlavia] = useBlurCards();
 
   // Prefers cardSize otherwise calculates width based on screen and ratio
   const cardWidth = useMemo(() => cardSize || screenWidth / sizeRatio || 200, [
@@ -48,16 +47,8 @@ export function ImageCardHand({
                 {translate('Selecionar', 'Select', language, selectButtonLabel)}
               </Button>
             )}
-            <ImageCard
-              imageId={cardId}
-              cardWidth={cardWidth}
-              className={blurredCards?.[cardId] && 'image-card-hand--blur'}
-            />
-            {isFlavia && (
-              <Button ghost onClick={() => addBlurCard(cardId)} size="small">
-                {translate('Credo', 'Blur', language)}
-              </Button>
-            )}
+            <ImageCard imageId={cardId} cardWidth={cardWidth} />
+            <ImageBlurButton cardId={cardId} />
           </div>
         );
       })}

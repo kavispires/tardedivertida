@@ -152,10 +152,6 @@
     background: rgba($color: black, $alpha: 0.1);
   }
 
-  &--blur {
-    filter: blur(10px);
-  }
-
   &--vote {
     border: 2px solid get-color(yellow);
   }
