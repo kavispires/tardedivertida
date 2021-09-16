@@ -18,6 +18,7 @@ const initialState = {
   isAuthenticated: false,
   isAdmin: false,
   blurredCards: {},
+  blurEnabled: false,
   // Arte-Ruim
   canvasSize: 250,
   cachedCanvasSize: 250,

@@ -1,5 +1,7 @@
-import { Switch } from 'antd';
 import React from 'react';
+// Design Resources
+import { Switch } from 'antd';
+// Hooks
 import { useGlobalState, useLocalStorage } from '../../hooks';
 
 export function LanguageSwitch() {

@@ -3,14 +3,12 @@ import { useGlobalState, useLocalStorage } from './index';
 
 /**
  * Add card ids to the blur dictionary
- * @returns [object, function, boolean] the dictionary of blurred ids, the function to add a blur card, flag indicating if the userid contains `fla`
+ * @returns [object, function, boolean] the dictionary of blurred ids, the function to add a blur card, flag indicating if the userId contains `fla` or it was enabled by the user
  */
 export function useBlurCards() {
   const [blurredCards, setBlurredCards] = useGlobalState('blurredCards');
-  const [userId] = useGlobalState('userId');
+  const [blurEnabled] = useGlobalState('blurEnabled');
   const [getLocalStorage, setLocalStorage] = useLocalStorage();
-
-  const isFlavia = userId?.includes('fla');
 
   const blurCard = (cardId) => {
     setBlurredCards((s) => ({
@@ -20,14 +18,14 @@ export function useBlurCards() {
   };
 
   useEffect(() => {
-    setBlurredCards(getLocalStorage('blurredCards'));
+    setBlurredCards(getLocalStorage('blurredCards') ?? {});
   }, []); // eslint-disable-line
 
   useEffect(() => {
-    if (Object.keys(blurredCards).length) {
-      setLocalStorage({ blurredCards: blurredCards });
+    if (Object.keys(blurredCards ?? {}).length) {
+      setLocalStorage({ blurredCards: blurredCards ?? {} });
     }
   }, [blurredCards, setLocalStorage]);
 
-  return [blurredCards, blurCard, isFlavia];
+  return [blurredCards, blurCard, blurEnabled];
 }
