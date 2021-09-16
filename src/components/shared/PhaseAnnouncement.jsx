@@ -17,6 +17,8 @@ const getIconType = (type) => {
       return IconIllustrations.Chat;
     case 'clock':
       return IconIllustrations.Clock;
+    case 'countdown':
+      return IconIllustrations.Countdown;
     case 'crime-scene':
       return IconIllustrations.CrimeScene;
     case 'criminal':
@@ -27,6 +29,8 @@ const getIconType = (type) => {
       return IconIllustrations.Defense;
     case 'discussion':
       return IconIllustrations.Discussion;
+    case 'dream':
+      return IconIllustrations.Dream;
     case 'evaluate':
       return IconIllustrations.Evaluate;
     case 'eye':
@@ -47,6 +51,10 @@ const getIconType = (type) => {
       return IconIllustrations.ImageCards;
     case 'investigation':
       return IconIllustrations.Investigation;
+    case 'knowledge':
+      return IconIllustrations.Knowledge;
+    case 'ladder':
+      return IconIllustrations.Ladder;
     case 'law':
       return IconIllustrations.Law;
     case 'newspaper':

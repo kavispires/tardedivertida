@@ -43,12 +43,12 @@ function PhaseMatch({ state, players, info }) {
       info={info}
       phase={state?.phase}
       allowedPhase={PHASES.SONHOS_PESADELOS.MATCH}
-      className="s-tell-dream-phase"
+      className="s-phase"
     >
       <StepSwitcher step={step} conditions={[!isUserReady]}>
         {/* Step 0 */}
         <PhaseAnnouncement
-          type="default"
+          type="evaluate"
           title={translate('Selecione os pares', 'Match the dreams', language)}
           onClose={() => setStep(1)}
           currentRound={state?.round?.current}

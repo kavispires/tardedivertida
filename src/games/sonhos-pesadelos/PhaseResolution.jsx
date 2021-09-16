@@ -29,12 +29,12 @@ function PhaseResolution({ state, players, info }) {
       info={info}
       phase={state?.phase}
       allowedPhase={PHASES.SONHOS_PESADELOS.RESOLUTION}
-      className="s-tell-dream-phase"
+      className="s-phase"
     >
       <StepSwitcher step={step} conditions={[!isUserReady]}>
         {/* Step 0 */}
         <PhaseAnnouncement
-          type="default"
+          type="countdown"
           title={translate('Resultado', 'Results', language)}
           onClose={() => setStep(1)}
           currentRound={state?.round?.current}
