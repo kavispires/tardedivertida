@@ -19,6 +19,10 @@ const components = [
     name: 'Clock',
   },
   {
+    component: <icons.Countdown />,
+    name: 'Countdown',
+  },
+  {
     component: <icons.CrimeScene />,
     name: 'CrimeScene',
   },
@@ -37,6 +41,10 @@ const components = [
   {
     component: <icons.Discussion />,
     name: 'Discussion',
+  },
+  {
+    component: <icons.Dream />,
+    name: 'Dream',
   },
   {
     component: <icons.Evaluate />,
@@ -77,6 +85,14 @@ const components = [
   {
     component: <icons.Investigation />,
     name: 'Investigation',
+  },
+  {
+    component: <icons.Knowledge />,
+    name: 'Knowledge',
+  },
+  {
+    component: <icons.Ladder />,
+    name: 'Ladder',
   },
   {
     component: <icons.Law />,

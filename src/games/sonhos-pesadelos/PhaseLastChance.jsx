@@ -11,6 +11,7 @@ import {
   Instruction,
   PhaseAnnouncement,
   PhaseContainer,
+  RoundAnnouncement,
   Step,
   StepSwitcher,
   Translate,
@@ -28,8 +29,8 @@ function PhaseLastChance({ state, players, info }) {
   const onSubmitDream = useAPICall({
     apiFunction: SONHOS_PESADELOS_API.submitAction,
     actionName: 'submit-dreams',
-    onBeforeCall: () => setStep(2),
-    onError: () => setStep(0),
+    onBeforeCall: () => setStep(3),
+    onError: () => setStep(1),
     successMessage: translate('Sonhos submetidos com sucesso', 'Dreams submitted successfully', language),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar seus sonhos',
@@ -43,14 +44,24 @@ function PhaseLastChance({ state, players, info }) {
       info={info}
       phase={state?.phase}
       allowedPhase={PHASES.SONHOS_PESADELOS.LAST_CHANCE}
-      className="s-tell-dream-phase"
+      className="s-phase"
     >
       <StepSwitcher step={step} conditions={[!isUserReady]}>
         {/* Step 0 */}
+        <RoundAnnouncement round={state.round} buttonText="" onPressButton={() => setStep(1)} time={5}>
+          <Instruction contained>
+            <Translate
+              pt="E não era pra ter somente 5 rodadas?"
+              en="Weren't we supposed to have only 5 rounds?"
+            />
+          </Instruction>
+        </RoundAnnouncement>
+
+        {/* Step 1 */}
         <PhaseAnnouncement
-          type="default"
+          type="knowledge"
           title={translate('Última Chance!', 'Last Chance', language)}
-          onClose={() => setStep(1)}
+          onClose={() => setStep(2)}
           currentRound={state?.round?.current}
         >
           <Instruction>
@@ -73,7 +84,7 @@ function PhaseLastChance({ state, players, info }) {
           </Instruction>
         </PhaseAnnouncement>
 
-        {/* Step 1 */}
+        {/* Step 2 */}
         <Step fullWidth>
           <StepMatchDreams
             players={players}
@@ -87,7 +98,7 @@ function PhaseLastChance({ state, players, info }) {
           />
         </Step>
 
-        {/* Step 2 */}
+        {/* Step 3 */}
         <Step fullWidth>
           <DefaultWaitingRoom players={players} />
           <DreamBoard user={user} table={state.table} />

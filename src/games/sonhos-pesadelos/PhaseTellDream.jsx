@@ -60,7 +60,7 @@ function PhaseTellDream({ state, players, info }) {
 
         {/* Step 1 */}
         <PhaseAnnouncement
-          type="default"
+          type="dream"
           title={translate('Conte-nos sobre seu sonho', 'Tell us about your dream...', language)}
           onClose={() => setStep(2)}
           currentRound={state?.round?.current}
