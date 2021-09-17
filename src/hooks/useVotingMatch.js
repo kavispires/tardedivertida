@@ -1,6 +1,15 @@
 import { useCallback, useEffect, useState } from 'react';
 import { SEPARATOR } from '../utils/constants';
 
+const deleteDuplicate = (votes, target) => {
+  const votesArray = Object.entries(votes);
+  const duplicateIndex = votesArray.findIndex((el) => el[1] === target);
+  if (duplicateIndex > -1) {
+    const duplicateKey = votesArray[duplicateIndex][0];
+    delete votes[duplicateKey];
+  }
+};
+
 /**
  * Keeps track of an object with votes follwing the schema:
  * {<typeSEPARATORid...>: <typeSEPARATORid...>
@@ -26,13 +35,25 @@ export function useVotingMatch(leftSideType, uniqueOnly = false, completeCount =
       } else {
         if (type === leftSideType) {
           setVotes((prevVotes) => {
+            const copy = { ...prevVotes };
+            // Find and clear any previous vote if uniqueOnly
+            if (uniqueOnly) {
+              deleteDuplicate(copy, activeItem);
+            }
+
             return {
-              ...prevVotes,
+              ...copy,
               [entryId]: activeItem,
             };
           });
         } else {
           setVotes((prevVotes) => {
+            const copy = { ...prevVotes };
+            // Find and clear any previous vote if uniqueOnly
+            if (uniqueOnly) {
+              deleteDuplicate(copy, entryId);
+            }
+
             return {
               ...prevVotes,
               [activeItem]: entryId,
@@ -42,7 +63,7 @@ export function useVotingMatch(leftSideType, uniqueOnly = false, completeCount =
         setActiveItem(null);
       }
     },
-    [activeItem, leftSideType]
+    [activeItem, leftSideType, uniqueOnly]
   );
 
   useEffect(() => {
