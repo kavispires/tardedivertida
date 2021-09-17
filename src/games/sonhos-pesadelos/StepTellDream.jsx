@@ -20,12 +20,12 @@ import { isDevEnv, shuffle } from '../../utils';
 const mockedClues = [
   'água',
   'bola',
-  'cagar',
+  'calderão do huck',
   'dedo',
   'esmalte',
   'fatídico',
   'ganhar',
-  'calderão do huck',
+  'hereditário',
   'simpático',
   'abismo',
   'rola',
@@ -42,6 +42,7 @@ function StepTellDream({ players, theme, user, table, onSubmitDream, dreamsCount
   const [localClues, setLocalClues] = useState({});
   const [hasClues, setHasClues] = useState(false);
 
+  // Verify if player has completed all his clues
   useEffect(() => {
     setHasClues(
       Object.keys(localClues).length === dreamsCount &&

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
 import { Alert } from 'antd';
@@ -42,11 +42,22 @@ function StepResults({ results, user, clues, table }) {
             return (
               <li key={`current-votes-${entry.cardId}`} className="s-results-current-vote">
                 <DreamCard cardId={entry.cardId} cardWidth={80} hideBlurButton />
-                <ol>
-                  {entry.clue.map((clueText) => {
-                    return <li key={clueText}>{clueText}</li>;
+                <ul className="s-results-clues">
+                  {entry.clue.map((clueText, index) => {
+                    return (
+                      <Fragment>
+                        {index === 1 && (
+                          <li key={`label-${index}`} className="s-results-clues-label">
+                            <Translate pt="Dicas no mesmo grupo:" en="Clues on the same group:" />
+                          </li>
+                        )}
+                        <li key={clueText} className="s-results-clues-item">
+                          {clueText}
+                        </li>
+                      </Fragment>
+                    );
                   })}
-                </ol>
+                </ul>
               </li>
             );
           })}
@@ -56,8 +67,8 @@ function StepResults({ results, user, clues, table }) {
             type="warning"
             showIcon
             message={translate(
-              `${playerResults.nightmareHits.length} jogadores acharam que um dos seus pesadelos era a resposta. Você não pode ganhar se isso acontece.`,
-              `${playerResults.nightmareHits.length} players match one of your nightmares with one of your clues. You can't win if this happens.`,
+              `Seus pesadelos foram selecionados ${playerResults.nightmareHits.length} veze(s) por um ou mais jogadores achando que eles eram seus sonhos. Você não pode ganhar nessa rodada quando isso acontece.`,
+              `You dreams were selected ${playerResults.nightmareHits.length} time(s) by one or more players thinking they match one of your clues. You can't win this round when this happens.`,
               language
             )}
           />
