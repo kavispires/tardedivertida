@@ -1,16 +1,20 @@
 .lobby-join {
-  background: white;
   grid-column: col 4;
   grid-row: row -7 / row 6;
   justify-self: center;
-
   width: 300px;
   @include vertical-centered-container;
-  @include box-shadow;
-
-  padding: get-unit(3);
   margin: get-unit(8 0);
-  border-radius: get-unit(1);
+
+  &__card {
+    background: white;
+    @include box-shadow;
+    padding: get-unit(3);
+    border-radius: get-unit(1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
   &__game-image {
     max-width: 360px;

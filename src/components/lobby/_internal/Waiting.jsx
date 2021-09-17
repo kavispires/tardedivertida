@@ -57,33 +57,38 @@ function Waiting({ info, players }) {
   const numPlayers = Object.keys(players).length;
   return (
     <div className="lobby-waiting">
-      <Image
-        alt={info?.title[language]}
-        src={`${PUBLIC_URL.BANNERS}game-image-${info?.gameName}-${language}.jpg`}
-        fallback={`${PUBLIC_URL.BANNERS}/game-image-em-breve.jpg`}
-      />
+      <div className="lobby-waiting__card">
+        <Image
+          alt={info?.title[language]}
+          src={`${PUBLIC_URL.BANNERS}game-image-${info?.gameName}-${language}.jpg`}
+          fallback={`${PUBLIC_URL.BANNERS}/game-image-em-breve.jpg`}
+        />
 
-      <h1 className="center">{username || 'Fulano'},</h1>
-      <svg viewBox="0 0 100 100" className="lobby-waiting__avatar">
-        <use href={avatars + `#avatar-${userAvatarId}`}></use>
-      </svg>
-      <h3 className="center">
-        <Translate pt="Aguarde os outros jogadores entrarem." en="Please, wait while other players join..." />
-      </h3>
-      <AdminOnly className="lobby-waiting__lock-button">
-        <Typography.Text className="center padding">
-          <Translate pt="Jogadores necessários" en="Players needed" />: {numPlayers}/{gameMeta.min}
-        </Typography.Text>
-        <Button
-          type="primary"
-          danger
-          onClick={onLockGameAndStart}
-          disabled={isLoading || numPlayers < gameMeta.min}
-          loading={isLoading}
-        >
-          <Translate pt="Trancar e Iniciar Jogo" en="Lock and Start Game" />
-        </Button>
-      </AdminOnly>
+        <h1 className="center">{username || 'Fulano'},</h1>
+        <svg viewBox="0 0 100 100" className="lobby-waiting__avatar">
+          <use href={avatars + `#avatar-${userAvatarId}`}></use>
+        </svg>
+        <h3 className="center">
+          <Translate
+            pt="Aguarde os outros jogadores entrarem."
+            en="Please, wait while other players join..."
+          />
+        </h3>
+        <AdminOnly className="lobby-waiting__lock-button">
+          <Typography.Text className="center padding">
+            <Translate pt="Jogadores necessários" en="Players needed" />: {numPlayers}/{gameMeta.min}
+          </Typography.Text>
+          <Button
+            type="primary"
+            danger
+            onClick={onLockGameAndStart}
+            disabled={isLoading || numPlayers < gameMeta.min}
+            loading={isLoading}
+          >
+            <Translate pt="Trancar e Iniciar Jogo" en="Lock and Start Game" />
+          </Button>
+        </AdminOnly>
+      </div>
     </div>
   );
 }
