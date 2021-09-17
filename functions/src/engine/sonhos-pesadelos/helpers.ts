@@ -139,7 +139,7 @@ export const tallyScore = (players: Players, previousScore: PlainObject, goal: n
   const results: Results = {};
   // Build nightmares dict count to add players who voted to user's nightmare
   const nightmareCount = Object.values(players).reduce((acc, player) => {
-    player.nightmares.forEach((nightmareId) => {
+    player.nightmares.forEach((nightmareId: string) => {
       acc[nightmareId] = {};
     });
     return acc;
@@ -147,7 +147,7 @@ export const tallyScore = (players: Players, previousScore: PlainObject, goal: n
 
   // Build nightmares dictionary cardId: nightmareId[]
   const dreamNightmaresDict = Object.values(players).reduce((acc, player) => {
-    Object.keys(player.dreams).forEach((dreamId) => {
+    Object.keys(player.dreams).forEach((dreamId: string) => {
       acc[dreamId] = player.nightmares;
     });
     return acc;
@@ -176,10 +176,10 @@ export const tallyScore = (players: Players, previousScore: PlainObject, goal: n
       // Add if correct vote
       if (cardVoteId === clueVoteId) {
         results[player.id].dreamGuesses[cardVoteId] = true;
-      }
-
-      // Add if nightmare
-      if (dreamNightmaresDict[clueVoteId].includes(cardVoteId)) {
+      } else if (
+        // Add if nightmare and not player's own
+        dreamNightmaresDict[clueVoteId].includes(cardVoteId)
+      ) {
         nightmareCount[cardVoteId][player.id] = clueVoteId;
       }
     });
