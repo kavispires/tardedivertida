@@ -63,9 +63,27 @@
 }
 
 .s-results-current-vote {
-  // background: red;
   font-size: 0.75rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.s-results-clues.s-results-clues {
+  list-style: none;
+  text-align: center;
+}
+
+.s-results-clues-label.s-results-clues-label {
+  font-size: 0.8em;
+  margin: 0;
+  padding: 0;
+}
+
+.s-results-clues-item.s-results-clues-item {
+  margin: get-unit(1);
+
+  padding: get-unit(1);
+  background: get-color(white);
+  border-radius: get-unit(1);
 }
