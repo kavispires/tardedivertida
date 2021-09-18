@@ -124,88 +124,90 @@ function Join({ players, info }) {
 
   return (
     <div className="lobby-join">
-      <Image
-        alt={info?.title[language]}
-        src={`${PUBLIC_URL.BANNERS}game-image-${info?.gameName}-${language}.jpg`}
-        fallback={`${PUBLIC_URL.BANNERS}/game-image-em-breve.jpg`}
-        className="lobby-join__game-image"
-      />
-      <h1 className="lobby-join__title">
+      <div className="lobby-join__card">
+        <Image
+          alt={info?.title[language]}
+          src={`${PUBLIC_URL.BANNERS}game-image-${info?.gameName}-${language}.jpg`}
+          fallback={`${PUBLIC_URL.BANNERS}/game-image-em-breve.jpg`}
+          className="lobby-join__game-image"
+        />
+        <h1 className="lobby-join__title">
+          {Boolean(localStorageAvatar) ? (
+            <Translate pt="Bem-vindo de volta!" en="Welcome Back!" />
+          ) : (
+            <Translate pt="Selecione seu avatar" en="Select your avatar" />
+          )}
+        </h1>
+        <div className="lobby-join__avatar-selection">
+          <Button type="dashed" onClick={onPreviousAvatar} className="lobby-join__avatar-nav-button">
+            <CaretLeftOutlined />
+          </Button>
+          <svg viewBox="0 0 100 100" className="lobby-join__avatar-selection-image">
+            <use href={avatars + `#avatar-${tempAvatar}`}></use>
+            <title>{AVATARS[tempAvatar].description[language]}</title>
+          </svg>
+          <Button type="dashed" onClick={onNextAvatar} className="lobby-join__avatar-nav-button">
+            <CaretRightOutlined />
+          </Button>
+        </div>
+
         {Boolean(localStorageAvatar) ? (
-          <Translate pt="Bem-vindo de volta!" en="Welcome Back!" />
+          <Alert
+            className="lobby-join__avatar-alert"
+            type="success"
+            message={translate(
+              'Você está de volta! Lembramos seu nome e avatar!',
+              "You're back! We saved your name and avatar!",
+              language
+            )}
+          />
         ) : (
-          <Translate pt="Selecione seu avatar" en="Select your avatar" />
+          <Alert
+            className="lobby-join__avatar-alert"
+            type="warning"
+            message={translate(
+              'Se alguém selecionar um mesmo avatar, um avatar aleatório será atribuido à você.',
+              'If you selected the same avatar of someone else, a new random avatar will be given to you.',
+              language
+            )}
+          />
         )}
-      </h1>
-      <div className="lobby-join__avatar-selection">
-        <Button type="dashed" onClick={onPreviousAvatar} className="lobby-join__avatar-nav-button">
-          <CaretLeftOutlined />
-        </Button>
-        <svg viewBox="0 0 100 100" className="lobby-join__avatar-selection-image">
-          <use href={avatars + `#avatar-${tempAvatar}`}></use>
-          <title>{AVATARS[tempAvatar].description[language]}</title>
-        </svg>
-        <Button type="dashed" onClick={onNextAvatar} className="lobby-join__avatar-nav-button">
-          <CaretRightOutlined />
+
+        {Boolean(sameGameId) && (
+          <Alert
+            className="lobby-join__avatar-alert"
+            type="error"
+            message={translate(
+              'Se você está retornando a um jogo, NÃO mude seu apelido! Se o apelido for modificado, você será adicionado como um novo jogador e tudo pode bugar.',
+              'If you are returning to a game, DO NOT change your nickname else the game might crash.',
+              language
+            )}
+          />
+        )}
+
+        <Input
+          className="lobby-join__name-input"
+          onChange={(e) => setTempUsername(e.target.value.trim())}
+          placeholder={translate('Digite seu nome', 'Insert your name', language)}
+          value={tempUsername || randomName}
+          maxLength={10}
+          suffix={
+            <Tooltip title={translate('Máximo de 10 caracteres', '10 characters max', language)}>
+              <InfoCircleOutlined />
+            </Tooltip>
+          }
+          onKeyPress={onEnterInput}
+        />
+        <Button
+          className="lobby-join__join-button"
+          type="primary"
+          disabled={!Boolean(tempUsername) || isLoading}
+          onClick={onAddPlayer}
+          loading={isLoading}
+        >
+          {translate('Entrar no jogo', 'Enter', language)}
         </Button>
       </div>
-
-      {Boolean(localStorageAvatar) ? (
-        <Alert
-          className="lobby-join__avatar-alert"
-          type="success"
-          message={translate(
-            'Você está de volta! Lembramos seu nome e avatar!',
-            "You're back! We saved your name and avatar!",
-            language
-          )}
-        />
-      ) : (
-        <Alert
-          className="lobby-join__avatar-alert"
-          type="warning"
-          message={translate(
-            'Se alguém selecionar um mesmo avatar, um avatar aleatório será atribuido à você.',
-            'If you selected the same avatar of someone else, a new random avatar will be given to you.',
-            language
-          )}
-        />
-      )}
-
-      {Boolean(sameGameId) && (
-        <Alert
-          className="lobby-join__avatar-alert"
-          type="error"
-          message={translate(
-            'Se você está retornando a um jogo, NÃO mude seu apelido! Se o apelido for modificado, você será adicionado como um novo jogador e tudo pode bugar.',
-            'If you are returning to a game, DO NOT change your nickname else the game might crash.',
-            language
-          )}
-        />
-      )}
-
-      <Input
-        className="lobby-join__name-input"
-        onChange={(e) => setTempUsername(e.target.value.trim())}
-        placeholder={translate('Digite seu nome', 'Insert your name', language)}
-        value={tempUsername || randomName}
-        maxLength={10}
-        suffix={
-          <Tooltip title={translate('Máximo de 10 caracteres', '10 characters max', language)}>
-            <InfoCircleOutlined />
-          </Tooltip>
-        }
-        onKeyPress={onEnterInput}
-      />
-      <Button
-        className="lobby-join__join-button"
-        type="primary"
-        disabled={!Boolean(tempUsername) || isLoading}
-        onClick={onAddPlayer}
-        loading={isLoading}
-      >
-        {translate('Entrar no jogo', 'Enter', language)}
-      </Button>
     </div>
   );
 }

@@ -252,6 +252,37 @@
       "en": true
     }
   },
+  "S": {
+    "gameCode": "S",
+    "gameName": "sonhos-pesadelos",
+    "title": {
+      "pt": "Sonhos e Pesadelos",
+      "en": "Dreams and Nightmares"
+    },
+    "summary": {
+      "pt": "Às vezes, sonhos são bem difíceis de contar porque você só consegue lembrar fragmentos e colocar todas ideias juntas pode ser um desafio",
+      "en": "Sometimes dreams are very hard to tell because you can only remember so many things among the fragments of your memory and trying to put your ideas together can be a challenge"
+    },
+    "rules": {
+      "pt": [
+        "Em Sonhos e Pesadelos, os jogadores são paranormais num concurso de adivinhar os sonhos dos outros! Quando um jogador consegue adivinhar todos os sonhos corretamente numa mesma rodada, ele vence!",
+        "Cada jogador será designado a um ou mais cartas que representam sonhos.Em cada uma das 6 rodadas, o jogo escolherá um tema aleatório e você deve escrever uma dica para cada um dos seus sonhos, sempre dentro do tema.",
+        "Mas cuidado, você também terá cartas pesadelos que te impedem de ganhar se qualquer outro jogador achar que ele é o seu sonho. Então, escreva algo que claramente não pode ser nenhum dos seus pesadelos.",
+        "Quando todos jogadores tiverem escrito seus sonhos, é hora de votar. Você tem que fazer combinações corretas entre dicas e sonhos.",
+        "Se algum jogador escolher todos os pares corretamente e nenhum outro jogador tiver achado que sua dica é um de seus pesadelos. Ele ganha o jogo! Caso contrário, o jogo te avisa apesar quantos acertos você cometeu e próxima rodada.",
+        "Após 4 rodadas, se ninguém tiver ganhado, temos uma última chance de apenas tentar adivinhar o maior número de sonhos."
+      ],
+      "en": ["TBD"]
+    },
+    "recommended": "2+",
+    "min": 2,
+    "max": 8,
+    "tags": ["competitive", "images", "guessing"],
+    "available": {
+      "pt": true,
+      "en": true
+    }
+  },
   "T": {
     "gameCode": "T",
     "gameName": "testemunha-ocular",

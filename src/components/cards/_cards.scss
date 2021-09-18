@@ -81,6 +81,10 @@
   .ant-image-img {
     border-radius: get-unit(3);
   }
+
+  &--blur {
+    filter: blur(10px);
+  }
 }
 
 .image-card-hand {
@@ -105,10 +109,6 @@
     align-items: center;
     margin: get-unit(1);
   }
-
-  &--blur {
-    filter: blur(10px);
-  }
 }
 
 .image-card-preload-hand {
@@ -125,4 +125,22 @@
   .ant-image-img {
     border-radius: get-unit(3);
   }
+}
+
+.s-clue-card {
+  font-size: 0.8rem;
+
+  &__footer {
+    font-size: 0.75em;
+  }
+
+  &__previous--clue {
+    border-top: 1px dashed get-color(grey, 1);
+    font-size: 0.85em;
+    color: get-color(grey, 4);
+  }
+}
+
+.image-blur-button {
+  transform: scale(0.8);
 }

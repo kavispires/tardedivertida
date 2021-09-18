@@ -46,6 +46,10 @@ export const POLEMICA_DA_VEZ_API = {
   submitAction: functions.httpsCallable('polemicaDaVezSubmitAction'),
 };
 
+export const SONHOS_PESADELOS_API = {
+  submitAction: functions.httpsCallable('sonhosPesadelosSubmitAction'),
+};
+
 export const TESTEMUNHA_OCULAR_API = {
   submitAction: functions.httpsCallable('testemunhaOcularSubmitAction'),
 };

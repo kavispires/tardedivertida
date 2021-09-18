@@ -6,7 +6,7 @@ import { Layout, message } from 'antd';
 // Firebase
 import { auth } from '../services/firebase';
 // State
-import { useGlobalState } from '../hooks';
+import { useGlobalState, useLocalStorage } from '../hooks';
 // Pages
 import Home from './Home';
 import Hub from './Hub';
@@ -44,7 +44,9 @@ function PublicRoute({ component: Component, authenticated, ...rest }) {
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useGlobalState('isAuthenticated');
+  const [, setBlurEnabled] = useGlobalState('blurEnabled');
   const [, setIsAdmin] = useGlobalState('isAdmin');
+  const [getLocalStorage] = useLocalStorage();
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
@@ -59,6 +61,8 @@ function App() {
         setIsAdmin(false);
       }
     });
+
+    setBlurEnabled(getLocalStorage('blurEnabled') || false);
   }, []); // eslint-disable-line
 
   return (

@@ -1,0 +1,122 @@
+import React, { Fragment } from 'react';
+// Design Resources
+import { Button, Input, Popover } from 'antd';
+import { CaretUpOutlined } from '@ant-design/icons';
+// Hooks
+import { useDimensions, useLanguage } from '../../hooks';
+// Components
+import { translate, Translate } from '../../components/shared';
+import NightmareButton from './NightmareButton';
+import DreamCard from './DreamCard';
+
+function DreamButton({ cardId, clue, previousClues, onClueChange }) {
+  const language = useLanguage();
+
+  const title = `${translate('Sonho', 'Dream', language)}`;
+
+  return (
+    <Popover
+      trigger="click"
+      title={title}
+      content={
+        <DreamCluePopover
+          cardId={cardId}
+          clue={clue}
+          previousClues={previousClues}
+          onClueChange={onClueChange}
+        />
+      }
+    >
+      <Button block className="s-dream-board-entry-dream">
+        {clue ? (
+          clue
+        ) : (
+          <Fragment>
+            <CaretUpOutlined />
+            {title}
+            <CaretUpOutlined />
+          </Fragment>
+        )}
+      </Button>
+    </Popover>
+  );
+}
+
+function DreamCluePopover({ cardId, clue, previousClues, onClueChange }) {
+  return (
+    <div className="s-dream-clue-popover">
+      <Input defaultValue={clue} onChange={onClueChange} data-card={cardId} />
+
+      {Boolean(previousClues.length) && (
+        <div className="s-dream-clue-popover__previous-clues">
+          <Translate pt="Dicas anteriores" en="Previous Clues" />
+          <ol>
+            {previousClues.map((pClue, index) => (
+              <li className="s-dream-clue-popover__previous-clue" key={`pClue-${cardId}-${index}`}>
+                {pClue}
+              </li>
+            ))}
+          </ol>
+        </div>
+      )}
+    </div>
+  );
+}
+
+const shouldDisplayCard = (currentRound, entry, userId) => {
+  return currentRound > 1 || entry.dreamer === userId || entry.nightmares.includes(userId);
+};
+
+function DreamBoardWrite({ table, user, localClues, setLocalClues, currentRound }) {
+  const [screenWidth] = useDimensions();
+  const cardWidth = Math.round(screenWidth / (table.length / 2)) - 40;
+
+  const onClueChange = ({ target }) => {
+    const { value, dataset } = target;
+
+    setLocalClues((s) => {
+      const newState = { ...(s ?? {}) };
+      newState[dataset.card] = value;
+
+      return newState;
+    });
+  };
+
+  return (
+    <ul className="s-dream-board">
+      {table.map((entry) => {
+        const isDream = Boolean(user.dreams[entry.cardId]);
+        const isNightmare = user.nightmares.includes(entry.cardId);
+
+        return (
+          <li
+            className="s-dream-board-entry"
+            key={`board-${entry.cardId}`}
+            style={{ maxWidth: `${cardWidth + 20}px` }}
+          >
+            <DreamCard
+              cardId={entry.cardId}
+              cardWidth={cardWidth}
+              flipped={!shouldDisplayCard(currentRound, entry, user.id)}
+              isDream={isDream}
+              isNightmare={isNightmare}
+            />
+
+            {isNightmare && <NightmareButton />}
+
+            {isDream && (
+              <DreamButton
+                cardId={entry.cardId}
+                clue={localClues?.[entry.cardId] ?? ''}
+                previousClues={user.dreams[entry.cardId]}
+                onClueChange={onClueChange}
+              />
+            )}
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
+
+export default DreamBoardWrite;

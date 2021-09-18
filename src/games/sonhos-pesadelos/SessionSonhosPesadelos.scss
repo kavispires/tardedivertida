@@ -1,0 +1,93 @@
+.s-dream-board {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.s-dream-board-card {
+  border: 5px solid transparent;
+
+  &--dream {
+    border: 5px solid get-color(yellow);
+  }
+
+  &--nightmare {
+    border: 5px solid get-color(black);
+  }
+}
+.s-dream-board-entry {
+  margin: get-unit(1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.s-dream-board-entry-nightmare {
+  background: get-color(black);
+  border-radius: get-unit(2);
+  color: get-color(white);
+  text-align: center;
+
+  &:disabled {
+    background: get-color(black);
+    color: get-color(white);
+    border-color: get-color(black);
+  }
+}
+
+.s-dream-board-entry-dream {
+  background: get-color(yellow);
+  border-radius: get-unit(2);
+  color: get-color(black);
+  text-align: center;
+  overflow: hidden;
+}
+
+.s-theme-card {
+  width: 70%;
+  font-size: 1.25rem;
+  max-width: none;
+  margin: 0.5em auto;
+
+  &__description {
+    font-size: 0.8rem;
+  }
+}
+
+.s-result-correct {
+  font-size: 2em;
+  color: get-color(blue);
+}
+
+.s-results-current-votes.s-results-current-votes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  list-style: none;
+  margin: get-unit(2);
+}
+
+.s-results-current-vote {
+  font-size: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.s-results-clues.s-results-clues {
+  list-style: none;
+  text-align: center;
+}
+
+.s-results-clues-label.s-results-clues-label {
+  font-size: 0.8em;
+  margin: 0;
+  padding: 0;
+}
+
+.s-results-clues-item.s-results-clues-item {
+  margin: get-unit(1);
+
+  padding: get-unit(1);
+  background: get-color(white);
+  border-radius: get-unit(1);
+}

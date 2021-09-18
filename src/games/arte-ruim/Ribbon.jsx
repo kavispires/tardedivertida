@@ -1,9 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+// Utils
 import { getColorFromLetter } from '../../utils';
+import { SEPARATOR } from '../../utils/constants';
 
 function Ribbon({ cardEntryId }) {
-  const [, , letter] = cardEntryId.split('::');
+  const [, , letter] = cardEntryId.split(SEPARATOR);
   return (
     <div className="a-ribbon">
       <div

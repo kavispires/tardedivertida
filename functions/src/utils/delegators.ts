@@ -26,6 +26,10 @@ import {
   nextPolemicaDaVezPhase,
 } from '../engine/polemica-da-vez';
 import {
+  getInitialState as sonhosPesadelosGetInitialState,
+  nextSonhosPesadelosPhase,
+} from '../engine/sonhos-pesadelos';
+import {
   getInitialState as testemunhaOcularGetInitialState,
   nextTestemunhaOcularPhase,
 } from '../engine/testemunha-ocular';
@@ -52,6 +56,8 @@ export const getCollectionNameByGameCode = (gameCode: GameCode): string | null =
       return GAME_COLLECTIONS.ONDA_TELEPATICA;
     case GAME_CODES.P:
       return GAME_COLLECTIONS.POLEMICA_DA_VEZ;
+    case GAME_CODES.S:
+      return GAME_COLLECTIONS.SONHOS_PESADELOS;
     case GAME_CODES.T:
       return GAME_COLLECTIONS.TESTEMUNHA_OCULAR;
     case GAME_CODES.U:
@@ -82,6 +88,8 @@ export const getCollectionKeyByGameCode = (gameCode: GameCode): string | null =>
       return GAME_KEYS.ONDA_TELEPATICA;
     case GAME_CODES.P:
       return GAME_KEYS.POLEMICA_DA_VEZ;
+    case GAME_CODES.S:
+      return GAME_KEYS.SONHOS_PESADELOS;
     case GAME_CODES.T:
       return GAME_KEYS.TESTEMUNHA_OCULAR;
     case GAME_CODES.U:
@@ -120,6 +128,8 @@ export const getInitialStateForCollection = (collectionName: string) => {
       return ondaTelepaticaGetInitialState;
     case GAME_COLLECTIONS.POLEMICA_DA_VEZ:
       return polemicaDaVezGetInitialState;
+    case GAME_COLLECTIONS.SONHOS_PESADELOS:
+      return sonhosPesadelosGetInitialState;
     case GAME_COLLECTIONS.TESTEMUNHA_OCULAR:
       return testemunhaOcularGetInitialState;
     case GAME_COLLECTIONS.UE_SO_ISSO:
@@ -150,6 +160,8 @@ export const getNextPhaseForCollection = (collectionName: string) => {
       return nextOndaTelepaticaPhase;
     case GAME_KEYS.POLEMICA_DA_VEZ:
       return nextPolemicaDaVezPhase;
+    case GAME_KEYS.SONHOS_PESADELOS:
+      return nextSonhosPesadelosPhase;
     case GAME_KEYS.TESTEMUNHA_OCULAR:
       return nextTestemunhaOcularPhase;
     case GAME_KEYS.UE_SO_ISSO:
