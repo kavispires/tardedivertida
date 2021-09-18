@@ -5,9 +5,9 @@ import { message, notification } from 'antd';
 // Adapters
 import { GAME_API } from '../adapters';
 // Hooks
-import { useIsGameStale, useLoading, useGlobalState } from '../hooks';
+import { useIsGameStale, useLoading, useGlobalState, useLocalStorage } from '../hooks';
 // Utils
-import { getGameIdFromURL, getGameIdFromLocation, isValidGameId } from '../utils';
+import { getGameIdFromURL, getGameIdFromLocation, isValidGameId, isDevEnv } from '../utils';
 import { GAME_COLLECTION } from '../utils/constants';
 // Components
 import { LoadingPage } from '../components/loaders';
@@ -24,6 +24,7 @@ function Game() {
   const [, setUsername] = useGlobalState('username');
   const [, setUserAvatarId] = useGlobalState('userAvatarId');
   const [, setLanguage] = useGlobalState('language');
+  const [, setLocalStorage] = useLocalStorage();
 
   const [isPageLoading, setPageLoading] = useState(true);
   const isGameStale = useIsGameStale(gameMeta?.createdAt);
@@ -63,9 +64,13 @@ function Game() {
       try {
         setLoader('load', true);
         const meta = await GAME_API.loadGame({ gameId });
+        if (isDevEnv) {
+          console.log({ meta: meta.data });
+        }
         setGameName(meta.data.gameName);
         setGameMeta(meta.data);
         setLanguage(meta.data?.language ?? 'pt');
+        setLocalStorage({ language: meta.data?.language ?? 'pt' });
       } catch (e) {
         console.error(e);
         notification.error({
@@ -109,6 +114,8 @@ function Game() {
         return <GameSessions.OndaTelepatica gameId={gameId} />;
       case GAME_COLLECTION.POLEMICA_DA_VEZ:
         return <GameSessions.PolemicaDaVez gameId={gameId} />;
+      case GAME_COLLECTION.SONHOS_PESADELOS:
+        return <GameSessions.SonhosPesadelos gameId={gameId} />;
       case GAME_COLLECTION.TESTEMUNHA_OCULAR:
         return <GameSessions.TestemunhaOcular gameId={gameId} />;
       case GAME_COLLECTION.UE_SO_ISSO:

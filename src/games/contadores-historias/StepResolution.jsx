@@ -1,20 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 // Design Resources
-import { Button, Avatar as AntAvatar } from 'antd';
+import { Avatar as AntAvatar } from 'antd';
 // Hooks
-import { useBlurCards, useDimensions, useLanguage } from '../../hooks';
+import { useDimensions, useLanguage } from '../../hooks';
 // Components
 import { Avatar, AvatarName } from '../../components/avatars';
-import { ImageCard } from '../../components/cards';
+import { ImageBlurButton, ImageCard } from '../../components/cards';
 import { ButtonContainer, TimedButton, Title, translate, Translate } from '../../components/shared';
 import BookPages from './BookPages';
 
 function StepResolution({ players, story, storyteller, table, setStep }) {
   const language = useLanguage();
   const [screenWidth] = useDimensions();
-  const [blurredCards, addBlurCard, isFlavia] = useBlurCards();
 
   const solution = table.find((entry) => entry.playerId === storyteller.id);
   const otherCards = table.filter((entry) => entry.playerId !== storyteller.id);
@@ -77,16 +75,9 @@ function StepResolution({ players, story, storyteller, table, setStep }) {
               <ImageCard
                 imageId={cardEntry.cardId}
                 cardWidth={Math.max(75, screenWidth / 16)}
-                className={clsx(
-                  'c-other-cards__card',
-                  blurredCards?.[cardEntry.cardId] && 'c-game-table--blur'
-                )}
+                className={'c-other-cards__card'}
               />
-              {isFlavia && (
-                <Button ghost onClick={() => addBlurCard(cardEntry.cardId)} size="small">
-                  {translate('Credo', 'Blur', language)}
-                </Button>
-              )}
+              <ImageBlurButton cardId={cardEntry.cardId} />
 
               <div className="c-other-cards__votes">
                 <AntAvatar.Group size="small">

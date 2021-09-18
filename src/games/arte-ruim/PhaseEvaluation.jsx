@@ -24,7 +24,7 @@ import {
 } from '../../components/shared';
 import EvaluationAllDrawings from './EvaluationAllDrawings';
 import EvaluationAllCards from './EvaluationAllCards';
-import { shuffle } from '../../utils';
+import { getEntryId, shuffle } from '../../utils';
 import { CollapsibleRule } from '../../components/rules';
 import { CanvasResizer } from '../../components/canvas';
 
@@ -102,11 +102,11 @@ function EvaluationPhase({ players, state, info }) {
     const usedDrawings = Object.keys(votes);
     const usedCards = Object.values(votes);
     const drawingsKeys = state?.drawings
-      .map((e) => `drawing${SEPARATOR}${e.id}`)
+      .map((e) => getEntryId(['drawing', e.id]))
       .filter((key) => !usedDrawings.includes(key));
     const cardsKeys = shuffle(
       state?.cards
-        .map((e, index) => `card${SEPARATOR}${e.id}${SEPARATOR}${LETTERS[index]}`)
+        .map((e, index) => getEntryId(['card', e.id, LETTERS[index]]))
         .filter((key) => !usedCards.includes(key))
     );
     const newVotes = { ...votes };
@@ -121,9 +121,9 @@ function EvaluationPhase({ players, state, info }) {
   const selectOwnDrawing = useCallback(() => {
     const playersDrawing = (state?.drawings ?? []).find((drawing) => drawing.playerId === user.id);
     if (playersDrawing) {
-      const drawingKey = `drawing${SEPARATOR}${playersDrawing.id}`;
+      const drawingKey = getEntryId(['drawing', playersDrawing.id]);
       const cardIndex = (state?.cards ?? []).findIndex((card) => card.playerId === user.id);
-      const cardKey = `card${SEPARATOR}${playersDrawing.id}${SEPARATOR}${LETTERS[cardIndex]}`;
+      const cardKey = getEntryId(['card', playersDrawing.id, LETTERS[cardIndex]]);
       const vote = { [drawingKey]: cardKey };
       return vote;
     }

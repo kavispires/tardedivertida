@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 // Utils
 import { LETTERS } from '../../utils/constants';
+import { getEntryId } from '../../utils';
 // Components
 import { ArteRuimCard as Card } from '../../components/cards';
 
@@ -13,7 +14,7 @@ function EvaluationAllCards({ cards, activeItem, onActivateItem, votes }) {
     <ul className="a-evaluation-all-cards">
       {cards.map((cardEntry, index) => {
         const letter = LETTERS[index];
-        const cardEntryId = `card::${cardEntry.id}::${letter}`;
+        const cardEntryId = getEntryId(['card', cardEntry.id, letter]);
         const isActive = activeItem === cardEntryId;
         const isUsed = Object.values(votes).includes(cardEntryId);
 

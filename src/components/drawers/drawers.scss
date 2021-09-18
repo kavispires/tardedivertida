@@ -51,6 +51,19 @@
     margin-right: get-unit(2);
   }
 
+  &__section-settings {
+    display: flex;
+  }
+
+  &__settings-entry {
+    width: 45%;
+    margin-right: get-unit(1);
+  }
+
+  &__switch-label {
+    font-size: 0.8em;
+  }
+
   &__round {
     font-weight: bolder;
     background: get-color(gray, 4);
