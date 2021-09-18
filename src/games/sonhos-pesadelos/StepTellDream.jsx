@@ -72,8 +72,14 @@ function StepTellDream({ players, theme, user, table, onSubmitDream, dreamsCount
   return (
     <div className="s-tell-dream-step">
       <Title center>
-        <Card header={translate('Tema', 'Theme', language)} className="s-theme-card" randomColor>
-          {theme}
+        <Card
+          header={translate('Tema', 'Theme', language)}
+          className="s-theme-card"
+          randomColor
+          footer={theme.description}
+          footerClassName="s-theme-card__description"
+        >
+          {theme.text}
         </Card>
       </Title>
       <Instruction contained>
