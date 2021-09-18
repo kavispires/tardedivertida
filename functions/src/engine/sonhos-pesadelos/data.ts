@@ -1,8 +1,8 @@
 // Resources
-import sonhosPesadelosCardsPt from '../../resources/sonho-pesadelo-pt.json';
-import sonhosPesadelosCardsEn from '../../resources/sonho-pesadelo-en.json';
+import themeCardsPt from '../../resources/themes-pt.json';
+import themeCardsEn from '../../resources/themes-en.json';
 
 export const getCards = async (language: string) => {
   // Get full deck
-  return language === 'en' ? sonhosPesadelosCardsEn : sonhosPesadelosCardsPt;
+  return language === 'en' ? themeCardsEn : themeCardsPt;
 };

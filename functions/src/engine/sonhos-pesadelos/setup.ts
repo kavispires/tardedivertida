@@ -1,5 +1,5 @@
 // Interfaces
-import { Player, Players, SaveGamePayload } from '../../utils/interfaces';
+import { PlainObject, Player, Players, SaveGamePayload } from '../../utils/interfaces';
 import { FirebaseStateData, FirebaseStoreData, Results } from './interfaces';
 // Constants
 import { COUNTS_BY_PLAYER, SONHOS_PESADELOS_PHASES, TOTAL_ROUNDS } from './constants';
@@ -19,10 +19,10 @@ export const prepareSetupPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
-  cards: string[]
+  cards: PlainObject
 ): Promise<SaveGamePayload> => {
   // Get 4 themes
-  const themes = gameUtils.getRandomItems(cards, TOTAL_ROUNDS);
+  const themes = gameUtils.getRandomItems(Object.values(cards), TOTAL_ROUNDS);
 
   const playerCount = Object.keys(players).length;
   const counts = COUNTS_BY_PLAYER[playerCount];

@@ -47,6 +47,10 @@
   font-size: 1.25rem;
   max-width: none;
   margin: 0.5em auto;
+
+  &__description {
+    font-size: 0.8rem;
+  }
 }
 
 .s-result-correct {
