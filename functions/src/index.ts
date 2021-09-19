@@ -3,8 +3,9 @@ import * as admin from 'firebase-admin';
 import * as commonEngine from './engine/common';
 import * as arteRuimEngine from './engine/arte-ruim';
 import * as contadoresHistoriasEngine from './engine/contadores-historias';
-import * as DetetivesImaginativosEngine from './engine/detetives-imaginativos';
+import * as detetivesImaginativosEngine from './engine/detetives-imaginativos';
 import * as espiaoEntreNosEngine from './engine/espiao-entre-nos';
+import * as instrumentosCodificadosEngine from './engine/instrumentos-codificados';
 import * as menteColetivaEngine from './engine/mente-coletiva';
 import * as ondaTelepaticaEngine from './engine/onda-telepatica';
 import * as polemicaDaVezEngine from './engine/polemica-da-vez';
@@ -70,7 +71,13 @@ exports.contadoresHistoriasSubmitAction = functions.https.onCall(contadoresHisto
 
 // DETETIVES_IMAGINATIVOS HTTP CALLS
 
-exports.detetivesImaginativosSubmitAction = functions.https.onCall(DetetivesImaginativosEngine.submitAction);
+exports.detetivesImaginativosSubmitAction = functions.https.onCall(detetivesImaginativosEngine.submitAction);
+
+// INSTRUMENTOS_CODIFICADOS HTTP CALLS
+
+exports.instrumentosCodificadosSubmitAction = functions.https.onCall(
+  instrumentosCodificadosEngine.submitAction
+);
 
 // MENTE_COLETIVA HTTP CALLS
 
