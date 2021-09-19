@@ -21,7 +21,7 @@ function SecretClueWaiting({ leader, user }) {
           en="In the meantime, examine your cards. You're gonna use them this turn."
         />
       </Instruction>
-      <Hand hand={user.hand} />
+      <Hand hand={user.hand} sizeRatio={6} />
     </div>
   );
 }
