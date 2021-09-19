@@ -2,6 +2,7 @@ import { useGlobalState } from './index';
 
 /**
  * Get width and height of given element or from the screen
+ * @param {string} [elementId]
  * @returns [number, number] representing width and height of the element
  */
 export function useDimensions(elementId) {
