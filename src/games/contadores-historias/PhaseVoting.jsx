@@ -42,7 +42,7 @@ function PhaseVoting({ state, players, info }) {
       info={info}
       phase={state?.phase}
       allowedPhase={PHASES.CONTADORES_HISTORIAS.VOTING}
-      className="c-voting"
+      className="c-phase"
     >
       <StepSwitcher step={step}>
         {/* Step 0 */}
