@@ -57,7 +57,7 @@ function PhaseStory({ state, players, info }) {
       info={info}
       phase={state?.phase}
       allowedPhase={PHASES.CONTADORES_HISTORIAS.STORY}
-      className="c-story-phase"
+      className="c-phase"
     >
       <StepSwitcher step={step} conditions={[!isUserReady]}>
         {/* Step 0 */}

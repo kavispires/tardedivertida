@@ -41,7 +41,7 @@ function PhaseCardPlay({ state, players, info }) {
       info={info}
       phase={state?.phase}
       allowedPhase={PHASES.CONTADORES_HISTORIAS.CARD_PLAY}
-      className="c-card-play"
+      className="c-phase"
     >
       <StepSwitcher step={step}>
         {/* Step 0 */}
