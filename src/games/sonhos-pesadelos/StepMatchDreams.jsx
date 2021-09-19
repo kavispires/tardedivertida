@@ -4,6 +4,9 @@ import PropTypes from 'prop-types';
 import { Button } from 'antd';
 // Hooks
 import { useLanguage, useLoading, useVotingMatch } from '../../hooks';
+// Utils
+import { getEntryId, isDevEnv, shuffle } from '../../utils';
+import { LETTERS } from '../../utils/constants';
 // Components
 import {
   ButtonContainer,
@@ -14,8 +17,6 @@ import {
   Translate,
 } from '../../components/shared';
 import AllClues from './AllClues';
-import { getEntryId, isDevEnv, shuffle } from '../../utils';
-import { LETTERS } from '../../utils/constants';
 import DreamBoardVote from './DreamBoardVote';
 
 function StepMatchDreams({ players, user, table, onSubmitDream, clues, currentRound }) {

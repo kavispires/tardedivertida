@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { Button } from 'antd';
 import { CaretUpOutlined } from '@ant-design/icons';
 // Hooks
-import { useDimensions } from '../../hooks';
+import { useCardWidth } from '../../hooks';
 // Utils
 import { getEntryId } from '../../utils';
 // Components
@@ -28,8 +28,7 @@ const getClueId = (votes, cardEntryId) => {
 };
 
 function DreamBoardVote({ table, user, activeItem, onActivateItem, votes }) {
-  const [screenWidth] = useDimensions();
-  const cardWidth = Math.round(screenWidth / (table.length / 2)) - 40;
+  const cardWidth = useCardWidth(table.length / 2, 40);
   const liButtonBaseClass = 'a-evaluation-all-drawings__li-drawing-button';
 
   return (
