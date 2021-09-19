@@ -64,7 +64,7 @@ function SecretClueWrite({ user, onSubmitClue }) {
           <Translate pt="Enviar pista secreta" en="Send secret clue" />
         </Button>
       </ButtonContainer>
-      <Hand hand={user.hand} />
+      <Hand hand={user.hand} sizeRatio={6} />
     </div>
   );
 }
