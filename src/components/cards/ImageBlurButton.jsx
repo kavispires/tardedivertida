@@ -1,8 +1,10 @@
+import PropTypes from 'prop-types';
 import { EyeInvisibleOutlined } from '@ant-design/icons';
 import { Button, Tooltip } from 'antd';
 import React from 'react';
 import { useBlurCards } from '../../hooks';
 import { Translate } from '../shared';
+import clsx from 'clsx';
 
 export function ImageBlurButton({ cardId }) {
   const [, addBlurCard, blurEnabled] = useBlurCards();
@@ -25,3 +27,19 @@ export function ImageBlurButton({ cardId }) {
     <></>
   );
 }
+
+ImageBlurButton.propTypes = {
+  cardId: PropTypes.string,
+};
+
+export function ImageBlurButtonContainer({ cardId, className, children, ...props }) {
+  return (
+    <div className={clsx('image-blur-button-container', className)} {...props}>
+      {children}
+      <ImageBlurButton cardId={cardId} />
+    </div>
+  );
+}
+ImageBlurButtonContainer.propTypes = {
+  children: PropTypes.any,
+};
