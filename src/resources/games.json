@@ -179,8 +179,8 @@
     "max": 8,
     "tags": ["cooperative", "competitive", "guessing", "images"],
     "available": {
-      "pt": true,
-      "en": true
+      "pt": false,
+      "en": false
     }
   },
   "L": {
