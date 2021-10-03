@@ -14,6 +14,10 @@ import {
   nextEspiaoEntreNosPhase,
 } from '../engine/espiao-entre-nos';
 import {
+  getInitialState as instrumentosCodificadosGetInitialState,
+  nextInstrumentosCodificadosPhase,
+} from '../engine/instrumentos-codificados';
+import {
   getInitialState as menteColetivaGetInitialState,
   nextMenteColetivaPhase,
 } from '../engine/mente-coletiva';
@@ -50,6 +54,8 @@ export const getCollectionNameByGameCode = (gameCode: GameCode): string | null =
       return GAME_COLLECTIONS.DETETIVES_IMAGINATIVOS;
     case GAME_CODES.E:
       return GAME_COLLECTIONS.ESPIAO_ENTRE_NOS;
+    case GAME_CODES.I:
+      return GAME_COLLECTIONS.INSTRUMENTOS_CODIFICADOS;
     case GAME_CODES.M:
       return GAME_COLLECTIONS.MENTE_COLETIVA;
     case GAME_CODES.O:
@@ -82,6 +88,8 @@ export const getCollectionKeyByGameCode = (gameCode: GameCode): string | null =>
       return GAME_KEYS.DETETIVES_IMAGINATIVOS;
     case GAME_CODES.E:
       return GAME_KEYS.ESPIAO_ENTRE_NOS;
+    case GAME_CODES.I:
+      return GAME_KEYS.INSTRUMENTOS_CODIFICADOS;
     case GAME_CODES.M:
       return GAME_KEYS.MENTE_COLETIVA;
     case GAME_CODES.O:
@@ -122,6 +130,8 @@ export const getInitialStateForCollection = (collectionName: string) => {
       return detetivesImaginativosGetInitialState;
     case GAME_COLLECTIONS.ESPIAO_ENTRE_NOS:
       return espiaoEntreNosGetInitialState;
+    case GAME_COLLECTIONS.INSTRUMENTOS_CODIFICADOS:
+      return instrumentosCodificadosGetInitialState;
     case GAME_COLLECTIONS.MENTE_COLETIVA:
       return menteColetivaGetInitialState;
     case GAME_COLLECTIONS.ONDA_TELEPATICA:
@@ -154,6 +164,8 @@ export const getNextPhaseForCollection = (collectionName: string) => {
       return nextDetetivesImaginativosPhase;
     case GAME_KEYS.ESPIAO_ENTRE_NOS:
       return nextEspiaoEntreNosPhase;
+    case GAME_KEYS.INSTRUMENTOS_CODIFICADOS:
+      return nextInstrumentosCodificadosPhase;
     case GAME_KEYS.MENTE_COLETIVA:
       return nextMenteColetivaPhase;
     case GAME_KEYS.ONDA_TELEPATICA:

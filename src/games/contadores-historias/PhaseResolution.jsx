@@ -28,7 +28,7 @@ function PhaseResolution({ state, players, info }) {
       info={info}
       phase={state?.phase}
       allowedPhase={PHASES.CONTADORES_HISTORIAS.RESOLUTION}
-      className="c-resolution"
+      className="c-phase"
     >
       <StepSwitcher step={step}>
         {/* Step 0 */}

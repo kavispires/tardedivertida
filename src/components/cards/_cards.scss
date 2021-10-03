@@ -144,3 +144,9 @@
 .image-blur-button {
   transform: scale(0.8);
 }
+
+.image-blur-button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

@@ -87,7 +87,7 @@ function PhaseCardPlay({ state, players, info }) {
         >
           <Instruction>
             <Translate
-              pt="Agora, jogadores selecionarão duas cartas, uma de cada vez, como evidência que eles não sao o impostor. Enquanto isso, o impostor está prestando bastante atenção nas cartas selecionadas e escolhando algo que o(a) ajude a passar despercebido."
+              pt="Agora, jogadores selecionarão duas cartas, uma de cada vez, como evidência que eles não sao o impostor. Enquanto isso, o impostor está prestando bastante atenção nas cartas selecionadas e escolhendo algo que o(a) ajude a passar despercebido."
               en="Now players will play 2 cards, one at a time, as evidence that they are not the impostor while the impostor is looking closely to what others are playing and trying to go unnoticed."
             />
           </Instruction>
@@ -154,7 +154,7 @@ function PhaseCardPlay({ state, players, info }) {
             hand={user.hand}
             onSelectCard={isUserTheCurrentPlayer ? onSelectCard : null}
             disabledSelectButton={isLoading}
-            sizeRatio={10}
+            sizeRatio={6}
           />
         </Step>
       </StepSwitcher>

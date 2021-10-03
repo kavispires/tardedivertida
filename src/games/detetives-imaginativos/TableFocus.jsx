@@ -3,17 +3,19 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 // Design Resources
 import { Spin } from 'antd';
+// Hooks
+import { useCardWidth } from '../../hooks';
 // Utils
 import { AVATARS } from '../../utils/constants';
 // Components
-import { ImageCard } from '../../components/cards';
+import { ImageBlurButtonContainer, ImageCard } from '../../components/cards';
 import { Avatar } from '../../components/avatars';
-import { useDimensions } from '../../hooks';
 
 export function TableFocus({ table, currentPlayer }) {
+  const cardWidth = useCardWidth(6, 32, 250);
+
   const tableEntry = table.find((entry) => entry.playerId === currentPlayer.id);
   const baseClass = 'd-table';
-  const [width] = useDimensions();
 
   if (!currentPlayer || !tableEntry?.cards) {
     return (
@@ -29,12 +31,9 @@ export function TableFocus({ table, currentPlayer }) {
         <div className="d-table__cards">
           {tableEntry?.cards.map((cardId) => {
             return (
-              <ImageCard
-                key={`table-focous-${cardId}`}
-                imageId={cardId}
-                cardWidth={Math.max(200, Math.min(400, width / 6))}
-                className="d-table__card"
-              />
+              <ImageBlurButtonContainer cardId={cardId} className="d-table__card">
+                <ImageCard key={`table-focus-${cardId}`} imageId={cardId} cardWidth={cardWidth} />
+              </ImageBlurButtonContainer>
             );
           })}
         </div>

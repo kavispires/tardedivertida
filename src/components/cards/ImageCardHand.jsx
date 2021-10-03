@@ -1,11 +1,11 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 // Design Resources
 import { Button } from 'antd';
 import { DownSquareOutlined } from '@ant-design/icons';
 // Hooks
-import { useDimensions, useLanguage } from '../../hooks';
+import { useCardWidth, useLanguage } from '../../hooks';
 // Components
 import { ImageBlurButton, ImageCard } from '.';
 import { translate } from '../shared';
@@ -18,17 +18,12 @@ export function ImageCardHand({
   selectButtonClass,
   sizeRatio,
   cardSize,
+  minCardSize,
   disabledSelectButton,
 }) {
   const language = useLanguage();
-  const [screenWidth] = useDimensions();
-
   // Prefers cardSize otherwise calculates width based on screen and ratio
-  const cardWidth = useMemo(() => cardSize || screenWidth / sizeRatio || 200, [
-    cardSize,
-    screenWidth,
-    sizeRatio,
-  ]);
+  const cardWidth = useCardWidth(sizeRatio, 32, minCardSize);
 
   return (
     <div className={clsx('image-card-hand', className)}>
@@ -47,7 +42,7 @@ export function ImageCardHand({
                 {translate('Selecionar', 'Select', language, selectButtonLabel)}
               </Button>
             )}
-            <ImageCard imageId={cardId} cardWidth={cardWidth} />
+            <ImageCard imageId={cardId} cardWidth={cardSize || cardWidth} />
             <ImageBlurButton cardId={cardId} />
           </div>
         );
@@ -75,4 +70,5 @@ ImageCardHand.defaultProps = {
   onSelectCard: null,
   selectButtonClass: '',
   sizeRatio: 8,
+  minCardSize: 120,
 };

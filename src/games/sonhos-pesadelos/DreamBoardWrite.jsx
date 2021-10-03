@@ -3,7 +3,7 @@ import React, { Fragment } from 'react';
 import { Button, Input, Popover } from 'antd';
 import { CaretUpOutlined } from '@ant-design/icons';
 // Hooks
-import { useDimensions, useLanguage } from '../../hooks';
+import { useCardWidth, useLanguage } from '../../hooks';
 // Components
 import { translate, Translate } from '../../components/shared';
 import NightmareButton from './NightmareButton';
@@ -68,8 +68,7 @@ const shouldDisplayCard = (currentRound, entry, userId) => {
 };
 
 function DreamBoardWrite({ table, user, localClues, setLocalClues, currentRound }) {
-  const [screenWidth] = useDimensions();
-  const cardWidth = Math.round(screenWidth / (table.length / 2)) - 40;
+  const cardWidth = useCardWidth(table.length / 2, 40);
 
   const onClueChange = ({ target }) => {
     const { value, dataset } = target;

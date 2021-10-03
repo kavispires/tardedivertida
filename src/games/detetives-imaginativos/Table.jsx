@@ -4,15 +4,16 @@ import clsx from 'clsx';
 // Design Resources
 import { Spin } from 'antd';
 // Hooks
-import { useDimensions } from '../../hooks';
-// Components
-import { ImageCard } from '../../components/cards';
-import { Avatar } from '../../components/avatars';
+import { useCardWidth } from '../../hooks';
+// Utils
 import { AVATARS } from '../../utils/constants';
+// Components
+import { ImageBlurButtonContainer, ImageCard } from '../../components/cards';
+import { Avatar } from '../../components/avatars';
 
 export function Table({ table, players }) {
+  const cardWidth = useCardWidth(12, 16);
   const baseClass = 'd-table';
-  const [width] = useDimensions();
 
   if (!table || !table?.length) {
     return (
@@ -42,12 +43,9 @@ export function Table({ table, players }) {
                 }
 
                 return (
-                  <ImageCard
-                    key={`${playerEntryKey}${cardId}`}
-                    imageId={cardId}
-                    cardWidth={Math.max(width / 12, 120)}
-                    className="d-table__card"
-                  />
+                  <ImageBlurButtonContainer cardId={cardId} className="d-table__card">
+                    <ImageCard key={`${playerEntryKey}${cardId}`} imageId={cardId} cardWidth={cardWidth} />
+                  </ImageBlurButtonContainer>
                 );
               })}
             </div>
