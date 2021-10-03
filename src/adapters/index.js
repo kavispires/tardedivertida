@@ -31,6 +31,10 @@ export const ESPIAO_ENTRE_NOS_API = {
   submitVoting: functions.httpsCallable('espiaoEntreNosSubmitVoting'),
 };
 
+export const INSTRUMENTOS_CODIFICADOS_API = {
+  submitAction: functions.httpsCallable('instrumentosCodificadosSubmitAction'),
+};
+
 export const MENTE_COLETIVA_API = {
   submitAction: functions.httpsCallable('menteColetivaSubmitAction'),
 };

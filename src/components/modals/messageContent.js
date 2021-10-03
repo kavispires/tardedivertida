@@ -21,7 +21,10 @@ export const messageContent = (title, description, id, duration = 30) => {
         <p>{description}</p>
         <p>
           <small>
-            <Translate pt="Clique para fechar" en="Click to close" />
+            <Translate
+              pt="Popup fecha automaticamente ou clique para fechar"
+              en="Auto-close or click to close"
+            />
           </small>
         </p>
       </div>

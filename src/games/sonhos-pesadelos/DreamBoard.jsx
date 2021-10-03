@@ -2,15 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 // Hooks
-import { useDimensions } from '../../hooks';
+import { useCardWidth } from '../../hooks';
 // Components
 import NightmareButton from './NightmareButton';
 import DreamButton from './DreamButton';
 import DreamCard from './DreamCard';
 
 function DreamBoard({ table, user, className }) {
-  const [screenWidth] = useDimensions();
-  const cardWidth = Math.round(screenWidth / (table.length / 2)) - 40;
+  const cardWidth = useCardWidth(table.length / 2, 40);
 
   return (
     <ul className={clsx('s-dream-board', className)}>

@@ -7,14 +7,14 @@
       "en": "Questionable Art"
     },
     "summary": {
-      "pt": "Tende idenficar as obras-primas criadas por seus oponentes!",
+      "pt": "Tente identificar as obras-primas criadas por seus oponentes!",
       "en": "Try to guess the masterpieces created by your opponents"
     },
     "rules": {
       "pt": [
         "Arte Ruim Pra Dedéu é um jogo competitivo que os jogadores tentam adivinhar o maior número de desenhos possíveis",
         "Em cada rodada, jogadores recebem uma carta com uma expressão e tem 10 segundos para desenhá-la.",
-        "Após todos jogadores terminarem suas obras de arte, embaralha-se as cartas e os desenhos e todos tem que identificar qual desenho corresconde a cada expressão.",
+        "Após todos jogadores terminarem suas obras de arte, embaralha-se as cartas e os desenhos e todos tem que identificar qual desenho corresponde a cada expressão.",
         "Respostas corretas ganham 2 pontos e cada voto que seu desenho recebe também te dá 1 ponto.",
         "Quanto mais próximo do final do jogo, mais difíceis as expressões ficam! Fique esperto!",
         "Após 10 rodadas, o jogador com mais pontos é o vencedor!"
@@ -53,7 +53,7 @@
         "Jogadores são agentes tentando desarmar uma bomba e pra isso têm que cortar todos os fios coloridos. Mas entre os agentes, pode haver um ou mais terroristas que querem que a bomba exploda.",
         "Cada rodada os jogadores recebem cartas que podem conter um fio colorido a ser cortado ou um fio cinza que não serve pra nada. Eles examinam suas cartas e colocam-as a sua frente embaralhadas. Você sabe todas as cartas que você tem, mas não exatamente qual é qual.",
         "Jogadores, então, declaram o que vieram. \"Eu tenho um fio colorido\", ou \"Eu não tenho nada\", ou até mesmo \"Eu tenho a bomba!\" (sim, existe uma bomba). Essa é a hora de tentar descobrir quem pode estar mentindo. O número de fios coloridos é igual ao número de jogadores, será que a quantidade declarada pelos jogadores corresponde mesmo a esse número?",
-        "Agora, uma pessoa se torna o investigador e tem que escolher outro jogador e virar uma de duas cartas. Se for um fio comum, nada acontece. Se for um fio colorído, maravilha, estamos mais próximos de desarmar a bomba. Se for a bomba, CABUM!!! - Os terroristas ganham... Após virar uma cara, o jogador selecionado se torna o investigador e escolhe outro jogador e repete o mesmo processo.",
+        "Agora, uma pessoa se torna o investigador e tem que escolher outro jogador e virar uma de duas cartas. Se for um fio comum, nada acontece. Se for um fio colorido, maravilha, estamos mais próximos de desarmar a bomba. Se for a bomba, CABUM!!! - Os terroristas ganham... Após virar uma cara, o jogador selecionado se torna o investigador e escolhe outro jogador e repete o mesmo processo.",
         "Mas como ganha ou perde? Se os agentes encontram todos os fios coloridos, eles ganham! Os terroristas ganham se a qualquer momento a bomba é revelada, ou se, ao final de 4 rodadas, os não conseguiram encontrar todos os fios coloridos",
         "Uma rodada termina qdo as cartas reveladas são iguais ao número de jogadores, a partir dai, todas as cartas são embaralhadas novamente e os jogadores recebem uma nova mão, agora com uma carta a menos que a rodada anterior e por ai vai."
       ],
@@ -77,7 +77,7 @@
     },
     "summary": {
       "pt": "Uma imagem vale mesmo mais que mil palavras? Tente descobrir de qual imagem o contador de histórias está falando",
-      "en": "Is an image really worth a thousand words? Try to find out what image is the storyteller refering to"
+      "en": "Is an image really worth a thousand words? Try to find out what image is the storyteller referring to"
     },
     "rules": {
       "pt": ["TBD"],
@@ -111,7 +111,7 @@
         "Todos os jogadores receberão a dica secreta, menos um... esse jogador será o Impostor da rodada",
         "Começando pelo líder, os jogadores selecionarão uma carta que eles acham que melhor representa a dica secreta incluindo o Impostor. Mas ele não sabe qual é a dica secreta! Então, baseando-se nas cartas colocadas pelos outros jogadores, ele deve tentar fingir que ele sabe o que é!",
         "Todos os jogadores selecional uma outra carta seguindo o mesmo critério",
-        "Após todos os jogadorem terem colocado duas cartas, revela-se a palavra secreta e novamente um a um, os jogadores devem explicar porque escolheram as cartas que escolheram",
+        "Após todos os jogadores terem colocado duas cartas, revela-se a palavra secreta e novamente um a um, os jogadores devem explicar porque escolheram as cartas que escolheram",
         "Quando todos tiverem apresentado suas defesas, todos, menos o Líder, votam em quem eles acham ser o Impostor",
         "Se mais de uma pessoa escolher o correto Impostor, todos os Detetives ganham 3 pontos. Se o Impostor receber um ou nenhum voto, ele ganha 5 pontos e o líder ganha 4 pontos",
         "O jogo procede com um novo Líder até todos os jogadores tenham sido o líder uma ou duas vezes (menos de 6 jogadores)"
@@ -159,6 +159,54 @@
       "en": false
     }
   },
+  "I": {
+    "gameCode": "I",
+    "gameName": "instrumentos-codificados",
+    "title": {
+      "pt": "Instrumentos Codificados",
+      "en": "Instrumental Cyphers"
+    },
+    "summary": {
+      "pt": "TBD",
+      "en": "TBD"
+    },
+    "rules": {
+      "pt": ["TBD"],
+      "en": ["TBD"]
+    },
+    "recommended": "2+",
+    "min": 2,
+    "max": 8,
+    "tags": ["cooperative", "competitive", "guessing", "images"],
+    "available": {
+      "pt": false,
+      "en": false
+    }
+  },
+  "L": {
+    "gameCode": "L",
+    "gameName": "linhas-cruzadas",
+    "title": {
+      "pt": "Linhas Cruzadas",
+      "en": "Mis...communication"
+    },
+    "summary": {
+      "pt": "TBD",
+      "en": "TBD"
+    },
+    "rules": {
+      "pt": ["TBD"],
+      "en": ["TBD"]
+    },
+    "recommended": "4+",
+    "min": 4,
+    "max": 8,
+    "tags": ["cooperative", "drawing", "guessing"],
+    "available": {
+      "pt": false,
+      "en": false
+    }
+  },
   "M": {
     "gameCode": "M",
     "gameName": "mente-coletiva",
@@ -174,9 +222,9 @@
       "pt": [
         "Somos todos ovelhinhas e nosso pasto está super lotado. Precisamos expulsar pelo menos uma de nós para que o pasto fique mais confortável e qual a melhor maneira de fazer isso? Expulsando a ovelha mais diferente de todas! Chega de inclusão!",
         "Temos 5 partes no nosso pasto, começamos todos na parte 1 e vamos fazer uma pergunta toda rodada e todos respondem uma certa quantidade de respostas, por exemplo: 'Cite 3 frutas'",
-        "Após todos respoderem, contamos todas as respostas iguais. Você ganha 1 ponto para cada resposta igual a de outro jogador (incluindo a sua). Se 3 jogadores responderam Maçã, cada um deles ganha 3 pontos.",
+        "Após todos responderem, contamos todas as respostas iguais. Você ganha 1 ponto para cada resposta igual a de outro jogador (incluindo a sua). Se 3 jogadores responderam Maçã, cada um deles ganha 3 pontos.",
         "O objetivo é pensar como o grupo, então escreva respostas comuns! Nada de bancar o diferentão.",
-        "Quando contarmos todas as respostas, o jogador (ou jogadores) com o menor número de pontosé enviado para o pasto da direita. (Os pontos resetam toda rodada)",
+        "Quando contarmos todas as respostas, o jogador (ou jogadores) com o menor número de pontos é enviado para o pasto da direita. (Os pontos resetam toda rodada)",
         "Se você tem que mover mais adiante que o pasto 5, você cai no precipício e morre, o pasto fica menos lotado e todos mais felizes. Viva."
       ],
       "en": ["TBD"]
@@ -206,7 +254,7 @@
         "Em Onda Telepática, dois times competem para ver quem consegue se comunicar melhor telepaticamente! E como medimos isso? Através de um medidor de ondas telepáticas!",
         "Em cada rodada, um jogador é o medium e escolhe uma carta com dois conceitos opostos que será usada nessa rodada. Por exemplo: \"Quente vs Frio\", \"Seco vs Molhado\".",
         "O medium secretamente tem acesso ao medidor de ondas! Nele, temos um ponteiro vermelho que indica o resultado! O objetivo da rodada é fazer com que o seu time coloque o ponteiro exatamente naquela posição.",
-        "Para isso, o medium tem que escrever uma dica que ajude seu time. Se a carta é Quente vs Frio e o ponteiro está no 4, será que \"Café\" é uma boa dica? Será que alguns vão achar que 4 não é quente o suficiente para um café? E se eles peferirem café gelado?",
+        "Para isso, o medium tem que escrever uma dica que ajude seu time. Se a carta é Quente vs Frio e o ponteiro está no 4, será que \"Café\" é uma boa dica? Será que alguns vão achar que 4 não é quente o suficiente para um café? E se eles preferirem café gelado?",
         "Baseado na dica, o time tenta desvendar onde o ponteiro do resultado deve estar. Será que suas ondas telepáticas estão em sintonia? Será que o medium gosta de café pelando?",
         "O time oposto que prestou atenção na discussão, agora tem a chance de chutar se eles acham que a solução está mais pra esquerda ou mais pra direita do que outro time escolheu.",
         "A resposta então é revelada e o time principal ganha pontos de acordo com quão próximo o ponteiro está do resultado no medidor. Se o time rival chutou a direção correta, eles ganham 1 ponto!",
@@ -232,7 +280,7 @@
     },
     "summary": {
       "pt": "Um tópico... Polêmico. Você sabe a sua opinião, mas consegue descobrir a dos seus oponentes?",
-      "en": "One... polemic... subject... You know your opinion, but can do guess the oponents' ones?"
+      "en": "One... polemic... subject... You know your opinion, but can do guess the opponents' ones?"
     },
     "rules": {
       "pt": [
@@ -301,7 +349,7 @@
         "Em cada rodada pergunta-se uma pergunta à testemunha que deve responder sim ou não",
         "Então, os detetive devem libertar pelo menos um dos suspeitos, de um a um.",
         "Se os detetives liberarem o criminoso, todos perdem. Se o último suspeito é o criminoso, todos ganham",
-        "Mas há um porém! A testemunha não fala nada sobre a aparência, simplesmente julga o crimiso"
+        "Mas há um porém! A testemunha não fala nada sobre a aparência, simplesmente julga o criminoso"
       ],
       "en": ["TBD"]
     },

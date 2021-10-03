@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { Button } from 'antd';
 // Hooks
 import { useLanguage, useLoading } from '../../hooks';
+// Utils
+import { isDevEnv, shuffle } from '../../utils';
 // Components
 import { Card } from '../../components/cards';
 import {
@@ -15,7 +17,6 @@ import {
   Translate,
 } from '../../components/shared';
 import DreamBoardWrite from './DreamBoardWrite';
-import { isDevEnv, shuffle } from '../../utils';
 
 const mockedClues = [
   'água',

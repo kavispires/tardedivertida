@@ -47,6 +47,7 @@ function StepPlayCard({ players, story, user, onPlayCard, storyteller, isUserThe
         hand={user.hand}
         onSelectCard={hasPlayedCardAlready ? null : onSelectCard}
         disabledSelectButton={isLoading || hasPlayedCardAlready}
+        sizeRatio={user.hand.length}
       />
     </div>
   );

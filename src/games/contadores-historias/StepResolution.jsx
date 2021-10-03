@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 // Design Resources
 import { Avatar as AntAvatar } from 'antd';
 // Hooks
-import { useDimensions, useLanguage } from '../../hooks';
+import { useCardWidth, useLanguage } from '../../hooks';
 // Components
 import { Avatar, AvatarName } from '../../components/avatars';
 import { ImageBlurButton, ImageCard } from '../../components/cards';
@@ -12,7 +12,7 @@ import BookPages from './BookPages';
 
 function StepResolution({ players, story, storyteller, table, setStep }) {
   const language = useLanguage();
-  const [screenWidth] = useDimensions();
+  const cardWidth = useCardWidth(10, 32, 75);
 
   const solution = table.find((entry) => entry.playerId === storyteller.id);
   const otherCards = table.filter((entry) => entry.playerId !== storyteller.id);
@@ -72,11 +72,7 @@ function StepResolution({ players, story, storyteller, table, setStep }) {
                 )}
               </div>
 
-              <ImageCard
-                imageId={cardEntry.cardId}
-                cardWidth={Math.max(75, screenWidth / 16)}
-                className={'c-other-cards__card'}
-              />
+              <ImageCard imageId={cardEntry.cardId} cardWidth={cardWidth} className={'c-other-cards__card'} />
               <ImageBlurButton cardId={cardEntry.cardId} />
 
               <div className="c-other-cards__votes">

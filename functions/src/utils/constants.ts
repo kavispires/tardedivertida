@@ -7,6 +7,7 @@ export const GAME_CODES = {
   C: 'C', // contadores-historias
   D: 'D', // detetives-imaginativos
   E: 'E', // espiao-entre-nos
+  I: 'I', // instrumentos-codificados
   M: 'M', // mente-coletiva
   O: 'O', // onda-telepatica
   P: 'P', // polemica-da-vez
@@ -20,6 +21,7 @@ export const GAME_KEYS = {
   CONTADORES_HISTORIAS: 'CONTADORES_HISTORIAS',
   DETETIVES_IMAGINATIVOS: 'DETETIVES_IMAGINATIVOS',
   ESPIAO_ENTRE_NOS: 'ESPIAO_ENTRE_NOS',
+  INSTRUMENTOS_CODIFICADOS: 'INSTRUMENTOS_CODIFICADOS',
   MENTE_COLETIVA: 'MENTE_COLETIVA',
   ONDA_TELEPATICA: 'ONDA_TELEPATICA',
   POLEMICA_DA_VEZ: 'POLEMICA_DA_VEZ',
@@ -33,6 +35,7 @@ export const GAME_COLLECTIONS = {
   CONTADORES_HISTORIAS: 'contadores-historias',
   DETETIVES_IMAGINATIVOS: 'detetives-imaginativos',
   ESPIAO_ENTRE_NOS: 'espiao-entre-nos',
+  INSTRUMENTOS_CODIFICADOS: 'instrumentos-codificados',
   MENTE_COLETIVA: 'mente-coletiva',
   ONDA_TELEPATICA: 'onda-telepatica',
   POLEMICA_DA_VEZ: 'polemica-da-vez',
@@ -56,6 +59,10 @@ export const GAME_PLAYERS_LIMIT = {
   },
   ESPIAO_ENTRE_NOS: {
     min: 4,
+    max: 8,
+  },
+  INSTRUMENTOS_CODIFICADOS: {
+    min: 2,
     max: 8,
   },
   MENTE_COLETIVA: {

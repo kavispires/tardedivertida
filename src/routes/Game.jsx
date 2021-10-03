@@ -108,6 +108,8 @@ function Game() {
         return <GameSessions.DetetivesImaginativos gameId={gameId} />;
       case GAME_COLLECTION.ESPIAO_ENTRE_NOS:
         return <GameSessions.EspiaoEntreNos gameId={gameId} />;
+      case GAME_COLLECTION.INSTRUMENTOS_CODIFICADOS:
+        return <GameSessions.InstrumentosCodificados gameId={gameId} />;
       case GAME_COLLECTION.MENTE_COLETIVA:
         return <GameSessions.MenteColetiva gameId={gameId} />;
       case GAME_COLLECTION.ONDA_TELEPATICA:

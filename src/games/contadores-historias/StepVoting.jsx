@@ -1,10 +1,10 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import clsx from 'clsx';
 // Design Resources
 import { Button } from 'antd';
 import { DownSquareOutlined } from '@ant-design/icons';
 // Hooks & Utils
-import { useDimensions, useLanguage, useLoading } from '../../hooks';
+import { useCardWidth, useLanguage, useLoading } from '../../hooks';
 import { isDevEnv } from '../../utils';
 // Components
 import { ReadyPlayersBar, Title, translate, Translate } from '../../components/shared';
@@ -13,13 +13,9 @@ import { Card, ImageBlurButton, ImageCard } from '../../components/cards';
 function StepVoting({ players, story, user, onSubmitVote, storyteller, table }) {
   const language = useLanguage();
   const [isLoading] = useLoading();
-  const [screenWidth] = useDimensions();
+  const cardWidth = useCardWidth(Math.max(Object.keys(players).length, 6), 32, 150);
 
   const hasPlayedCardAlready = Boolean(user.vote);
-  const cardWidth = useMemo(() => Math.max((screenWidth - 100) / (Object.keys(players).length + 3), 150), [
-    screenWidth,
-    players,
-  ]);
 
   const onSelectCard = (vote) => {
     onSubmitVote({

@@ -24,7 +24,7 @@ function StoryWaiting({ storyteller, user }) {
           en="In the meantime, examine your cards. You're gonna use them this round."
         />
       </Instruction>
-      <Hand hand={user.hand} />
+      <Hand hand={user.hand} sizeRatio={user.hand.length} />
     </div>
   );
 }

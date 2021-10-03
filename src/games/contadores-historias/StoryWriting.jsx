@@ -77,7 +77,12 @@ function StoryWriting({ user, onSubmitStory }) {
           <Translate pt="Enviar pista secreta e carta" en="Send secret clue and card" />
         </Button>
       </ButtonContainer>
-      <Hand hand={user.hand} onSelectCard={setCardId} disabledSelectButton={isLoading} />
+      <Hand
+        hand={user.hand}
+        onSelectCard={setCardId}
+        disabledSelectButton={isLoading}
+        sizeRatio={user.hand.length}
+      />
     </div>
   );
 }
