@@ -12,7 +12,7 @@ import { AVATARS } from '../../utils/constants';
 // Components
 import { Avatar } from '../avatars';
 import { AdminOnly } from '../admin/index';
-import { PhaseContainer } from './index';
+import { PhaseContainer, RateGameWidget } from './index';
 import { translate, Translate } from './Translate';
 import { StepSwitcher } from './StepSwitcher';
 import { PhaseAnnouncement } from './PhaseAnnouncement';
@@ -141,6 +141,8 @@ export function GameOver({ state, children, className }) {
           <GameOverText />
         </div>
       )}
+
+      <RateGameWidget />
 
       {children}
 

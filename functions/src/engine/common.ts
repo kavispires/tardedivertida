@@ -373,6 +373,36 @@ export const playAgain = async (data: BasicGamePayload, context: FirebaseContext
   return false;
 };
 
+export const rateGame = async (data: ExtendedPayload) => {
+  const { gameId, gameName: collectionName, playerId } = data;
+  const actionText = 'submit ratings';
+
+  try {
+    await firebaseUtils
+      .getPublicRef()
+      .doc('ratings')
+      .collection(collectionName)
+      .doc(playerId)
+      .update({
+        [gameId]: data.ratings,
+      });
+  } catch (e) {
+    try {
+      await firebaseUtils
+        .getPublicRef()
+        .doc('ratings')
+        .collection(collectionName)
+        .doc(playerId)
+        .set({
+          [gameId]: data.ratings,
+        });
+    } catch (error) {
+      firebaseUtils.throwException(error, actionText);
+    }
+  }
+  return false;
+};
+
 /**
  * Feeds basic data to the emulator DB
  */
@@ -386,6 +416,7 @@ const feedEmulatorDB = async () => {
 
   await firebaseUtils.getPublicRef().doc('arteRuimDrawingsPt').set(sample);
   await firebaseUtils.getPublicRef().doc('arteRuimDrawingsEn').set(sample);
+  await firebaseUtils.getPublicRef().doc('ratings').set(sample);
   await firebaseUtils.getGlobalRef().doc('usedArteRuimCards').set(sample);
 
   // MENTE_COLETIVA
