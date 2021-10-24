@@ -8,7 +8,7 @@ export const getCards = async (language: string) => {
   // Get full deck
   const allCards = language === 'en' ? arteRuimCardsEn : arteRuimCardsPt;
   // Get used deck
-  const usedCards = globalUtils.getGlobalFirebaseDocData('usedArteRuimCards', {});
+  const usedCards = await globalUtils.getGlobalFirebaseDocData('usedArteRuimCards', {});
   return {
     allCards,
     usedCards: Object.keys(usedCards),

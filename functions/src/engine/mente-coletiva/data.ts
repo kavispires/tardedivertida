@@ -8,7 +8,7 @@ export const getQuestions = async (language: string) => {
   // Get full deck
   const allQuestions = language === 'en' ? menteColetivaQuestionsEn : menteColetivaQuestionsPt;
   // Get used deck
-  const usedQuestions = globalUtils.getGlobalFirebaseDocData('usedMenteColetivaQuestions', {});
+  const usedQuestions = await globalUtils.getGlobalFirebaseDocData('usedMenteColetivaQuestions', {});
   return {
     allQuestions,
     usedQuestions: Object.keys(usedQuestions),
