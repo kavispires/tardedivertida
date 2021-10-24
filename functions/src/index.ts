@@ -61,6 +61,11 @@ exports.forceStateProperty = functions.https.onCall(commonEngine.forceStatePrope
  */
 exports.playAgain = functions.https.onCall(commonEngine.playAgain);
 
+/**
+ * Rate game
+ */
+exports.rateGame = functions.https.onCall(commonEngine.rateGame);
+
 // ARTE_RUIM HTTP CALLS
 
 exports.arteRuimSubmitAction = functions.https.onCall(arteRuimEngine.submitAction);

@@ -1,7 +1,6 @@
 import { functions } from '../services/firebase';
 
 export const GAME_API = {
-  helloWorld: functions.httpsCallable('helloWorld'),
   initializeGame: functions.httpsCallable('initializeGame'),
   loadGame: functions.httpsCallable('loadGame'),
   addPlayer: functions.httpsCallable('addPlayer'),
@@ -10,6 +9,7 @@ export const GAME_API = {
   playAgain: functions.httpsCallable('playAgain'),
   goToNextPhase: functions.httpsCallable('goToNextPhase'),
   forceStateProperty: functions.httpsCallable('forceStateProperty'),
+  rateGame: functions.httpsCallable('rateGame'),
 };
 
 export const ARTE_RUIM_API = {
