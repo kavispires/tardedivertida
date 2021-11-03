@@ -15,7 +15,7 @@ import {
   prepareTellDreamPhase,
   prepareLastChancePhase,
 } from './setup';
-import { getCards } from './data';
+import { getThemes } from './data';
 import { handleSubmitDreams, handleSubmitVoting } from './actions';
 
 /**
@@ -80,7 +80,7 @@ export const nextSonhosPesadelosPhase = async (
   // RULES -> SETUP
   if (nextPhase === SONHOS_PESADELOS_PHASES.SETUP) {
     // Request data
-    const additionalData = await getCards(store.language);
+    const additionalData = await getThemes(store.language);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await firebaseUtils.saveGame(sessionRef, newPhase);
 
