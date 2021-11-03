@@ -14,7 +14,7 @@ import {
   prepareHintReceivingPhase,
   prepareGuessTheCodePhase,
 } from './setup';
-import { getCards } from './data';
+import { getThemes } from './data';
 import { determineNextPhase } from './helpers';
 import { handleSubmitCode, handleSubmitConclusions, handleSubmitHint } from './actions';
 // import { handleSubmitDreams, handleSubmitVoting } from './actions';
@@ -77,7 +77,7 @@ export const nextInstrumentosCodificadosPhase = async (
   // RULES -> SETUP
   if (nextPhase === INSTRUMENTOS_CODIFICADOS_PHASES.SETUP) {
     // Request data
-    const additionalData = await getCards(store.language);
+    const additionalData = await getThemes(store.language);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await firebaseUtils.saveGame(sessionRef, newPhase);
 
