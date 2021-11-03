@@ -1,8 +1,12 @@
-// Resources
-import ueSoIssoWordsPt from '../../resources/ue-so-isso-pt.json';
-import ueSoIssoWordsEn from '../../resources/ue-so-isso-en.json';
+// Helpers
+import * as resourceUtils from '../resource';
 
+/**
+ * Get word cards resource based on the game's language
+ * @param language
+ * @returns
+ */
 export const getWords = async (language: string) => {
-  // Get list of words
-  return language === 'en' ? ueSoIssoWordsEn : ueSoIssoWordsPt;
+  const resourceName = `ue-so-isso-${language}`;
+  return await resourceUtils.fetchResource(resourceName);
 };
