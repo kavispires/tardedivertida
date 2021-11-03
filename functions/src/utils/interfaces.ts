@@ -55,6 +55,34 @@ export interface Meta {
   replay: number;
 }
 
+export interface PlayerCount {
+  MIN: number;
+  MAX: number;
+}
+
+export interface InitialState {
+  meta: Meta;
+  players: Players;
+  store: any;
+  state: {
+    phase: string;
+    round: Round;
+    updatedAt: DateMilliseconds;
+    [key: string]: any;
+  };
+}
+
+export interface InitialStateArgs {
+  gameId: GameId;
+  gameName: GameName;
+  uid: string;
+  language: string;
+  playerCount: PlayerCount;
+  initialPhase: string;
+  totalRounds: number;
+  store: PlainObject;
+}
+
 export interface Round {
   current: number;
   total: number;
