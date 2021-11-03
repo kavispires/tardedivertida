@@ -12,7 +12,7 @@ import {
   Payload,
   ExtendedPayload,
 } from '../utils/interfaces';
-import { GAME_PLAYERS_LIMIT } from '../utils/constants';
+import { GAME_PLAYERS_LIMIT, GLOBAL_USED_DOCUMENTS } from '../utils/constants';
 
 /**
  * Creates a new game instance
@@ -417,13 +417,13 @@ const feedEmulatorDB = async () => {
   await firebaseUtils.getPublicRef().doc('arteRuimDrawingsPt').set(sample);
   await firebaseUtils.getPublicRef().doc('arteRuimDrawingsEn').set(sample);
   await firebaseUtils.getPublicRef().doc('ratings').set(sample);
-  await firebaseUtils.getGlobalRef().doc('usedArteRuimCards').set(sample);
+  await firebaseUtils.getGlobalRef().doc(GLOBAL_USED_DOCUMENTS.ARTE_RUIM).set(sample);
 
   // MENTE_COLETIVA
 
-  await firebaseUtils.getGlobalRef().doc('usedMenteColetivaQuestions').set(sample);
+  await firebaseUtils.getGlobalRef().doc(GLOBAL_USED_DOCUMENTS.MENTE_COLETIVA).set(sample);
 
   // TESTEMUNHA_OCULAR
 
-  await firebaseUtils.getGlobalRef().doc('usedTestemunhaOcularCards').set(sample);
+  await firebaseUtils.getGlobalRef().doc(GLOBAL_USED_DOCUMENTS.TESTEMUNHA_OCULAR).set(sample);
 };

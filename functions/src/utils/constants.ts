@@ -91,6 +91,14 @@ export const GAME_PLAYERS_LIMIT = {
   },
 };
 
+export const SEPARATOR = ';;';
+
+export const GLOBAL_USED_DOCUMENTS = {
+  ARTE_RUIM: 'usedArteRuimCards',
+  MENTE_COLETIVA: 'usedMenteColetivaQuestions',
+  TESTEMUNHA_OCULAR: 'usedTestemunhaOcularCards',
+};
+
 /**
  * Enum of Game Phases
  */
@@ -116,8 +124,6 @@ export const PHASES = {
     GAME_OVER: 'GAME_OVER',
   },
 };
-
-export const SEPARATOR = ';;';
 
 // ESPIAO_ENTRE_NOS
 

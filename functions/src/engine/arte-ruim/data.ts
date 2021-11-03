@@ -1,3 +1,5 @@
+// Constants
+import { GLOBAL_USED_DOCUMENTS } from '../../utils/constants';
 // Helpers
 import * as globalUtils from '../global';
 import * as resourceUtils from '../resource';
@@ -12,7 +14,7 @@ export const getCards = async (language: string) => {
   // Get full deck
   const allCards = await resourceUtils.fetchResource(resourceName);
   // Get used deck
-  const usedCards = await globalUtils.getGlobalFirebaseDocData('usedArteRuimCards', {});
+  const usedCards = await globalUtils.getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.ARTE_RUIM, {});
   return {
     allCards,
     usedCards: Object.keys(usedCards),
