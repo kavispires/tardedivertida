@@ -1,12 +1,16 @@
 // Helpers
 import * as globalUtils from '../global';
-// Resources
-import arteRuimCardsPt from '../../resources/arte-ruim-pt.json';
-import arteRuimCardsEn from '../../resources/arte-ruim-en.json';
+import * as resourceUtils from '../resource';
 
+/**
+ * Get expression cards resource based on the game's language
+ * @param language
+ * @returns
+ */
 export const getCards = async (language: string) => {
+  const resourceName = `arte-ruim-${language}`;
   // Get full deck
-  const allCards = language === 'en' ? arteRuimCardsEn : arteRuimCardsPt;
+  const allCards = await resourceUtils.fetchResource(resourceName);
   // Get used deck
   const usedCards = await globalUtils.getGlobalFirebaseDocData('usedArteRuimCards', {});
   return {
