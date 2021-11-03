@@ -18,7 +18,7 @@ import {
   prepareWitnessSelectionPhase,
 } from './setup';
 import { handleElimination, handleExtraAction } from './actions';
-import { getCards } from './data';
+import { getQuestions } from './data';
 
 /**
  * Get Initial Game State
@@ -86,7 +86,7 @@ export const nextTestemunhaOcularPhase = async (
   // RULES -> SETUP
   if (nextPhase === TESTEMUNHA_OCULAR_PHASES.SETUP) {
     // Request data
-    const additionalData = await getCards(store.language);
+    const additionalData = await getQuestions(store.language);
     const newPhase = await prepareSetupPhase(additionalData);
     await firebaseUtils.saveGame(sessionRef, newPhase);
     return nextTestemunhaOcularPhase(collectionName, gameId, players);
