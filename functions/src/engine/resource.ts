@@ -1,12 +1,10 @@
 import fetch from 'cross-fetch';
+// Helpers
 import * as firebaseUtils from '../utils/firebase';
 
 export const fetchResource = async (resourceName: string): Promise<any> => {
-  console.log({ env: process.env.TDI_RESOURCE_URL });
-  console.log(process.env);
-
   try {
-    const response = await fetch(`https://www.kavispires.com/tdi/resources/${resourceName}.json`);
+    const response = await fetch(`${firebaseUtils.config().tdi.url}resources/${resourceName}.json`);
     return response.json();
   } catch (e) {
     return firebaseUtils.throwException(`${e}`, `Failed to get resource for ${resourceName}`);

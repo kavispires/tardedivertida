@@ -3,6 +3,8 @@ import * as admin from 'firebase-admin';
 // Interfaces
 import { FirebaseContext, SaveGamePayload } from '../utils/interfaces';
 
+export const config = functions.config;
+
 /**
  * Validate if payload property exists
  * @param property
