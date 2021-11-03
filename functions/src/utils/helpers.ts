@@ -2,6 +2,8 @@ import { AVATAR_IDS, LETTERS } from './constants';
 import {
   GameCode,
   GameOrder,
+  InitialState,
+  InitialStateArgs,
   PlainObject,
   Player,
   PlayerAvatarId,
@@ -55,6 +57,50 @@ export const generateGameId = (gameCode: GameCode, usedIds: string[] = [], lengt
  */
 export function stringRemoveAccents(str: string): string {
   return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+}
+
+/**
+ * Builds default initial state to be extended by game engines
+ * @param dataObject
+ * @returns
+ */
+export function getDefaultInitialState({
+  gameId,
+  gameName,
+  uid,
+  language,
+  playerCount,
+  initialPhase,
+  totalRounds,
+  store,
+}: InitialStateArgs): InitialState {
+  return {
+    meta: {
+      gameId,
+      gameName: gameName,
+      createdAt: Date.now(),
+      createdBy: uid,
+      min: playerCount.MIN,
+      max: playerCount.MAX,
+      isLocked: false,
+      isComplete: false,
+      language,
+      replay: 0,
+    },
+    players: {},
+    store: {
+      language,
+      ...store,
+    },
+    state: {
+      phase: initialPhase,
+      round: {
+        current: 0,
+        total: totalRounds,
+      },
+      updatedAt: Date.now(),
+    },
+  };
 }
 
 /**
