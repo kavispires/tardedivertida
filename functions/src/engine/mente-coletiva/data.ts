@@ -1,12 +1,16 @@
 // Helpers
 import * as globalUtils from '../global';
-// Resources
-import menteColetivaQuestionsPt from '../../resources/mente-coletiva-pt.json';
-import menteColetivaQuestionsEn from '../../resources/mente-coletiva-en.json';
+import * as resourceUtils from '../resource';
 
+/**
+ * Get question cards resource based on the game's language
+ * @param language
+ * @returns
+ */
 export const getQuestions = async (language: string) => {
+  const resourceName = `mente-coletiva-${language}`;
   // Get full deck
-  const allQuestions = language === 'en' ? menteColetivaQuestionsEn : menteColetivaQuestionsPt;
+  const allQuestions = await resourceUtils.fetchResource(resourceName);
   // Get used deck
   const usedQuestions = await globalUtils.getGlobalFirebaseDocData('usedMenteColetivaQuestions', {});
   return {
