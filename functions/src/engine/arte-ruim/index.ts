@@ -1,5 +1,5 @@
 // Constants
-import { GAME_COLLECTIONS, GAME_PLAYERS_LIMIT } from '../../utils/constants';
+import { GAME_COLLECTIONS, GAME_PLAYERS_LIMIT, GLOBAL_USED_DOCUMENTS } from '../../utils/constants';
 import { ARTE_RUIM_PHASES, ARTE_RUIM_TOTAL_ROUNDS } from './constants';
 // Interfaces
 import { GameId, Players } from '../../utils/interfaces';
@@ -115,7 +115,7 @@ export const nextArteRuimPhase = async (
 
     // Save usedArteRuimCards to global
     const usedArteRuimCards = buildUsedCardsIdsDict(store.pastDrawings);
-    await globalUtils.updateGlobalFirebaseDoc('usedArteRuimCards', usedArteRuimCards);
+    await globalUtils.updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.ARTE_RUIM, usedArteRuimCards);
     // Save drawings to public gallery
     const drawingDocumentName = store.language === 'pt' ? 'arteRuimDrawingsPt' : 'arteRuimDrawingsEn';
     const publicDrawings = await publicUtils.getPublicFirebaseDocData(drawingDocumentName, {});

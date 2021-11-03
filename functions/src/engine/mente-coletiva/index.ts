@@ -1,5 +1,5 @@
 // Constants
-import { GAME_COLLECTIONS, GAME_PLAYERS_LIMIT } from '../../utils/constants';
+import { GAME_COLLECTIONS, GAME_PLAYERS_LIMIT, GLOBAL_USED_DOCUMENTS } from '../../utils/constants';
 import { MAX_NUMBER_OF_ROUNDS, MENTE_COLETIVA_PHASES } from './constants';
 // Interfaces
 import { GameId, Players } from '../../utils/interfaces';
@@ -120,7 +120,10 @@ export const nextMenteColetivaPhase = async (
 
     // Save usedMenteColetivaQuestions to global
     const usedMenteColetivaQuestions = buildUsedQuestionIdsDict(store.pastQuestions);
-    await globalUtils.updateGlobalFirebaseDoc('usedMenteColetivaQuestions', usedMenteColetivaQuestions);
+    await globalUtils.updateGlobalFirebaseDoc(
+      GLOBAL_USED_DOCUMENTS.MENTE_COLETIVA,
+      usedMenteColetivaQuestions
+    );
 
     return firebaseUtils.saveGame(sessionRef, newPhase);
   }
