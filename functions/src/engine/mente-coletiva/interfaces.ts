@@ -36,14 +36,6 @@ export interface MenteColetivaInitialState extends InitialState {
   state: MenteColetivaState;
 }
 
-export type FirebaseStateData = FirebaseFirestore.DocumentData | MenteColetivaState;
-export type FirebaseStoreData = FirebaseFirestore.DocumentData | MenteColetivaStore;
-
-export interface MenteColetivaSubmitAction extends Payload {
-  action: 'SUBMIT_QUESTION' | 'SUBMIT_ANSWERS' | 'NEXT_ANSWERS' | 'ADD_ANSWER';
-  [key: string]: any;
-}
-
 export interface AnswerEntry {
   id: string;
   playerId: PlayerId;
@@ -51,3 +43,10 @@ export interface AnswerEntry {
   parsedAnswer: string;
   isLocked: boolean;
 }
+
+export interface MenteColetivaSubmitAction extends Payload {
+  action: 'SUBMIT_QUESTION' | 'SUBMIT_ANSWERS' | 'NEXT_ANSWERS' | 'ADD_ANSWER';
+}
+
+export type FirebaseStateData = FirebaseFirestore.DocumentData | MenteColetivaState;
+export type FirebaseStoreData = FirebaseFirestore.DocumentData | MenteColetivaStore;
