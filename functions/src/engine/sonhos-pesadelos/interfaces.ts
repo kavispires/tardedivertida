@@ -1,15 +1,20 @@
-import { ImageCard, Language, Meta, Payload, PlayerId, Players, Round } from '../../utils/interfaces';
+import {
+  DefaultState,
+  DefaultStore,
+  ImageCard,
+  Meta,
+  Payload,
+  PlayerId,
+  Players,
+} from '../../utils/interfaces';
 
-export interface SonhosPesadelosStore {
-  language: Language;
+export interface SonhosPesadelosStore extends DefaultStore {
   deck: ImageCard[];
   deckIndex: number;
   [key: string]: any;
 }
 
-export interface SonhosPesadelosState {
-  phase: string;
-  round: Round;
+export interface SonhosPesadelosState extends DefaultState {
   [key: string]: any;
 }
 
@@ -45,7 +50,6 @@ export type Results = {
 
 export interface SonhosPesadelosSubmitAction extends Payload {
   action: 'SUBMIT_DREAMS' | 'SUBMIT_VOTING';
-  [key: string]: any;
 }
 
 export type FirebaseStateData = FirebaseFirestore.DocumentData | SonhosPesadelosState;

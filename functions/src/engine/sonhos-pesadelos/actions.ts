@@ -2,9 +2,17 @@
 import { GameId, PlayerId, GameName, PlainObject } from '../../utils/interfaces';
 // Helpers
 import * as firebaseUtils from '../../utils/firebase';
-import * as utils from '../../utils/helpers';
+// Internal
 import { nextSonhosPesadelosPhase } from './index';
 
+/**
+ *
+ * @param collectionName
+ * @param gameId
+ * @param playerId
+ * @param dreams
+ * @returns
+ */
 export const handleSubmitDreams = async (
   collectionName: GameName,
   gameId: GameId,
@@ -13,55 +21,52 @@ export const handleSubmitDreams = async (
 ) => {
   const actionText = 'submit your drawing';
 
-  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
   const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
 
   const players = playersDoc.data() ?? {};
-  const updatedPlayers = utils.readyPlayer(players, playerId);
+
+  const newDreams = {};
   Object.keys(dreams).forEach((cardId) => {
-    updatedPlayers[playerId].dreams[cardId].push(dreams[cardId]);
+    if (newDreams[cardId] === undefined) {
+      newDreams[cardId] = [...(players[playerId]?.dreams?.[cardId] ?? [])];
+    }
+    newDreams[cardId].push(dreams[cardId]);
   });
 
-  try {
-    await sessionRef.doc('players').update({ [playerId]: updatedPlayers[playerId] });
-  } catch (error) {
-    firebaseUtils.throwException(error, actionText);
-  }
-
-  // If all players are ready, trigger next phase
-  if (utils.isEverybodyReady(updatedPlayers)) {
-    return nextSonhosPesadelosPhase(collectionName, gameId, players);
-  }
-
-  return true;
+  return await firebaseUtils.updatePlayer({
+    collectionName,
+    gameId,
+    playerId,
+    actionText: 'submit dreams',
+    shouldReady: true,
+    change: {
+      dreams: newDreams,
+    },
+    nextPhaseFunction: nextSonhosPesadelosPhase,
+  });
 };
 
+/**
+ *
+ * @param collectionName
+ * @param gameId
+ * @param playerId
+ * @param votes
+ * @returns
+ */
 export const handleSubmitVoting = async (
   collectionName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   votes: PlainObject
 ) => {
-  const actionText = 'submit your drawing';
-
-  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
-  const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
-
-  const players = playersDoc.data() ?? {};
-
-  const updatedPlayers = utils.readyPlayer(players, playerId);
-  updatedPlayers[playerId].votes = votes;
-
-  try {
-    await sessionRef.doc('players').update({ [playerId]: updatedPlayers[playerId] });
-  } catch (error) {
-    firebaseUtils.throwException(error, actionText);
-  }
-
-  // If all players are ready, trigger next phase
-  if (utils.isEverybodyReady(updatedPlayers)) {
-    return nextSonhosPesadelosPhase(collectionName, gameId, players);
-  }
-
-  return true;
+  return await firebaseUtils.updatePlayer({
+    collectionName,
+    gameId,
+    playerId,
+    actionText: 'submit votes',
+    shouldReady: true,
+    change: { votes },
+    nextPhaseFunction: nextSonhosPesadelosPhase,
+  });
 };
