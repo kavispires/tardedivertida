@@ -1,10 +1,5 @@
 // Constants
-import {
-  CUSTOM_TOPICS_PER_ROUND,
-  MAX_NUMBER_OF_ROUNDS,
-  POLEMICA_DA_VEZ_PHASES,
-  TOPICS_PER_ROUND,
-} from './constants';
+import { CUSTOM_TOPICS_PER_ROUND, MAX_ROUNDS, POLEMICA_DA_VEZ_PHASES, TOPICS_PER_ROUND } from './constants';
 // Interfaces
 import { PlainObject, Players, SaveGamePayload } from '../../utils/interfaces';
 import { FirebaseStateData, FirebaseStoreData } from './interfaces';
@@ -49,7 +44,7 @@ export const prepareSetupPhase = async (
         gameOrder,
         round: {
           current: 0,
-          total: MAX_NUMBER_OF_ROUNDS,
+          total: MAX_ROUNDS,
         },
       },
     },
