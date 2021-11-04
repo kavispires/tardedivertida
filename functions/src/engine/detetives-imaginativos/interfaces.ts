@@ -1,29 +1,31 @@
-import { ImageCard, Meta, Payload, PlayerId, Players, Round } from '../../utils/interfaces';
+import {
+  DefaultState,
+  DefaultStore,
+  ImageCard,
+  InitialState,
+  Payload,
+  PlayerId,
+} from '../../utils/interfaces';
 
-export interface DetetivesImaginativosStore {
+export interface DetetivesImaginativosStore extends DefaultStore {
   usedCards: ImageCard[];
   gameOrder: PlayerId[];
   turnOrder: PlayerId[];
   [key: string]: any;
 }
 
-export interface DetetivesImaginativosState {
-  phase: string;
-  round: Round;
+export interface DetetivesImaginativosState extends DefaultState {
   [key: string]: any;
 }
 
-export interface DetetivesImaginativosInitialState {
-  meta: Meta;
-  players: Players;
+export interface DetetivesImaginativosInitialState extends InitialState {
   store: DetetivesImaginativosStore;
   state: DetetivesImaginativosState;
 }
 
-export interface DetetivesImaginativosSubmitAction extends Payload {
-  action: 'SUBMIT_CLUE' | 'PLAY_CARD' | 'DEFEND' | 'SUBMIT_VOTE';
-  [key: string]: any;
-}
-
 export type FirebaseStateData = FirebaseFirestore.DocumentData | DetetivesImaginativosState;
 export type FirebaseStoreData = FirebaseFirestore.DocumentData | DetetivesImaginativosStore;
+
+export interface DetetivesImaginativosSubmitAction extends Payload {
+  action: 'SUBMIT_CLUE' | 'PLAY_CARD' | 'DEFEND' | 'SUBMIT_VOTE';
+}
