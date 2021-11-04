@@ -2,7 +2,7 @@
 import { PlainObject, Players, SaveGamePayload } from '../../utils/interfaces';
 import { FirebaseStateData, FirebaseStoreData } from './interfaces';
 // Constants
-import { ARTE_RUIM_PHASES, ARTE_RUIM_TOTAL_ROUNDS, CARDS_PER_PLAYER_COUNT } from './constants';
+import { ARTE_RUIM_PHASES, MAX_ROUNDS, CARDS_PER_PLAYER_COUNT } from './constants';
 // Helpers
 import * as gameUtils from '../../utils/game-utils';
 import * as utils from '../../utils/helpers';
@@ -77,7 +77,7 @@ export const prepareDrawPhase = async (
       state: {
         phase: ARTE_RUIM_PHASES.DRAW,
         updatedAt: Date.now(),
-        round: utils.increaseRound(state?.round, ARTE_RUIM_TOTAL_ROUNDS),
+        round: utils.increaseRound(state?.round, MAX_ROUNDS),
       },
     },
     set: {

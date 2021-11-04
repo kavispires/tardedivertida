@@ -2,12 +2,7 @@
 import { PlainObject, Players } from '../../utils/interfaces';
 import { ArteRuimCard, ArteRuimCardsDatabase, ArteRuimDrawing, FirebaseStoreData } from './interfaces';
 // Constants
-import {
-  ARTE_RUIM_PHASES,
-  ARTE_RUIM_TOTAL_ROUNDS,
-  DECK_ORDER_BY_LEVEL,
-  GAME_OVER_SCORE_THRESHOLD,
-} from './constants';
+import { ARTE_RUIM_PHASES, MAX_ROUNDS, DECK_ORDER_BY_LEVEL, GAME_OVER_SCORE_THRESHOLD } from './constants';
 // Helpers
 import * as gameUtils from '../../utils/game-utils';
 
@@ -30,7 +25,7 @@ export const determineNextPhase = (
   }
 
   if (currentPhase === GALLERY) {
-    return currentRound >= ARTE_RUIM_TOTAL_ROUNDS ? GAME_OVER : DRAW;
+    return currentRound >= MAX_ROUNDS ? GAME_OVER : DRAW;
   }
 
   const currentPhaseIndex = order.indexOf(currentPhase);
