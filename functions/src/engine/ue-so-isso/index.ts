@@ -1,6 +1,6 @@
 // Constants
-import { GAME_COLLECTIONS, GAME_PLAYERS_LIMIT } from '../../utils/constants';
-import { UE_SO_ISSO_PHASES } from './constants';
+import { GAME_COLLECTIONS } from '../../utils/constants';
+import { PLAYER_COUNT, UE_SO_ISSO_PHASES } from './constants';
 // Interfaces
 import { Players, GameId } from '../../utils/interfaces';
 import { UeSoIssoInitialState, UeSoIssoSubmitAction } from './interfaces';
@@ -34,52 +34,38 @@ import {
  * @param language
  * @returns
  */
-export const getInitialState = (gameId: GameId, uid: string, language: string): UeSoIssoInitialState => ({
-  meta: {
+export const getInitialState = (gameId: GameId, uid: string, language: string): UeSoIssoInitialState => {
+  return utils.getDefaultInitialState({
     gameId,
     gameName: GAME_COLLECTIONS.UE_SO_ISSO,
-    createdAt: Date.now(),
-    createdBy: uid,
-    min: GAME_PLAYERS_LIMIT.UE_SO_ISSO.min,
-    max: GAME_PLAYERS_LIMIT.UE_SO_ISSO.max,
-    isLocked: false,
-    isComplete: false,
+    uid,
     language,
-    replay: 0,
-  },
-  players: {},
-  store: {
-    language,
-    deck: [],
-    turnOrder: [],
-    gameOrder: [],
-    usedWords: {},
-    currentWords: [],
-    currentSuggestions: [],
-  },
-  state: {
-    phase: UE_SO_ISSO_PHASES.LOBBY,
-    round: {
-      current: 0,
-      total: 0,
+    playerCount: PLAYER_COUNT,
+    initialPhase: UE_SO_ISSO_PHASES.LOBBY,
+    totalRounds: 0,
+    store: {
+      language,
+      deck: [],
+      turnOrder: [],
+      gameOrder: [],
+      usedWords: {},
+      currentWords: [],
+      currentSuggestions: [],
     },
-  },
-});
+  });
+};
 
 export const nextUeSoIssoPhase = async (
   collectionName: string,
   gameId: string,
   players: Players
 ): Promise<boolean> => {
-  const actionText = 'prepare next phase';
-
   // Gather docs and references
-  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
-  const stateDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'state', actionText);
-  const storeDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'store', actionText);
-
-  const state = stateDoc.data() ?? {};
-  const store = { ...(storeDoc.data() ?? {}) };
+  const { sessionRef, state, store } = await firebaseUtils.getStateAndStoreReferences(
+    collectionName,
+    gameId,
+    'prepare next phase'
+  );
 
   // Calculate remaining rounds to end game
   const roundsToEndGame = utils.getRoundsToEndGame(state.round.current, state.round.total);
@@ -136,11 +122,7 @@ export const nextUeSoIssoPhase = async (
 export const submitAction = async (data: UeSoIssoSubmitAction) => {
   const { gameId, gameName: collectionName, playerId, action } = data;
 
-  const actionText = 'submit action';
-  firebaseUtils.verifyPayload(gameId, 'gameId', actionText);
-  firebaseUtils.verifyPayload(collectionName, 'collectionName', actionText);
-  firebaseUtils.verifyPayload(playerId, 'playerId', actionText);
-  firebaseUtils.verifyPayload(action, 'action', actionText);
+  firebaseUtils.validateSubmitActionPayload(gameId, collectionName, playerId, action);
 
   switch (action) {
     case 'SUBMIT_VOTES':
