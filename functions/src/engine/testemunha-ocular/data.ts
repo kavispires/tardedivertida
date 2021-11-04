@@ -1,6 +1,9 @@
 // Helpers
+import { GLOBAL_USED_DOCUMENTS } from '../../utils/constants';
 import * as globalUtils from '../global';
 import * as resourceUtils from '../resource';
+import { buildUsedCardsIdsDict } from './helpers';
+import { TestemunhaOcularEntry } from './interfaces';
 
 /**
  * Get question resource based on the game's language
@@ -17,4 +20,17 @@ export const getQuestions = async (language: string) => {
     allCards,
     usedCards: Object.keys(usedCards),
   };
+};
+
+/**
+ * Save use questions to the global document
+ * @param pastQuestions
+ */
+export const saveUsedQUestions = async (pastQuestions: TestemunhaOcularEntry[]) => {
+  // Save usedTestemunhaOcularCards to global
+  const usedTestemunhaOcularCards = buildUsedCardsIdsDict(pastQuestions);
+  await globalUtils.updateGlobalFirebaseDoc(
+    GLOBAL_USED_DOCUMENTS.TESTEMUNHA_OCULAR,
+    usedTestemunhaOcularCards
+  );
 };
