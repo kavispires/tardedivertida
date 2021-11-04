@@ -170,6 +170,16 @@ export interface SaveGamePayload {
   update?: UpdatePayload;
 }
 
+export interface UpdatePlayerArgs {
+  collectionName: GameName;
+  gameId: GameId;
+  playerId: PlayerId;
+  actionText: string;
+  shouldReady: boolean;
+  change: PlainObject;
+  nextPhaseFunction?: any;
+}
+
 export interface UsedWord {
   id: string;
   playerName?: PlayerName | null;
