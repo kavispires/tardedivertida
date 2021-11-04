@@ -1,10 +1,11 @@
 // Constants
-import { GAME_COLLECTIONS, GAME_PLAYERS_LIMIT } from '../../utils/constants';
-import { SONHOS_PESADELOS_PHASES } from './constants';
+import { GAME_COLLECTIONS } from '../../utils/constants';
+import { PLAYER_COUNT, SONHOS_PESADELOS_PHASES, TOTAL_ROUNDS } from './constants';
 // Interfaces
 import { GameId, Language, Players } from '../../utils/interfaces';
 // Utils
 import * as firebaseUtils from '../../utils/firebase';
+import * as utils from '../../utils/helpers';
 import { determineGameOver, determineNextPhase } from './helpers';
 import { SonhosPesadelosInitialState, SonhosPesadelosSubmitAction } from './interfaces';
 import {
@@ -29,33 +30,23 @@ export const getInitialState = (
   gameId: GameId,
   uid: string,
   language: Language
-): SonhosPesadelosInitialState => ({
-  meta: {
+): SonhosPesadelosInitialState => {
+  return utils.getDefaultInitialState({
     gameId,
-    gameName: GAME_COLLECTIONS.SONHOS_PESADELOS,
-    createdAt: Date.now(),
-    createdBy: uid,
-    min: GAME_PLAYERS_LIMIT.SONHOS_PESADELOS.min,
-    max: GAME_PLAYERS_LIMIT.SONHOS_PESADELOS.max,
-    isLocked: false,
-    isComplete: false,
+    gameName: GAME_COLLECTIONS.POLEMICA_DA_VEZ,
+    uid,
     language,
-    replay: 0,
-  },
-  players: {},
-  store: {
-    language,
-    deck: [],
-    deckIndex: -1,
-  },
-  state: {
-    phase: SONHOS_PESADELOS_PHASES.LOBBY,
-    round: {
-      current: 0,
-      total: 0,
+    playerCount: PLAYER_COUNT,
+    initialPhase: SONHOS_PESADELOS_PHASES.LOBBY,
+    totalRounds: TOTAL_ROUNDS,
+    store: {
+      language,
+
+      deck: [],
+      deckIndex: -1,
     },
-  },
-});
+  });
+};
 
 export const nextSonhosPesadelosPhase = async (
   collectionName: string,
@@ -65,12 +56,11 @@ export const nextSonhosPesadelosPhase = async (
   const actionText = 'prepare next phase';
 
   // Gather docs and references
-  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
-  const stateDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'state', actionText);
-  const storeDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'store', actionText);
-
-  const state = stateDoc.data() ?? {};
-  const store = { ...(storeDoc.data() ?? {}) };
+  const { sessionRef, state, store } = await firebaseUtils.getStateAndStoreReferences(
+    collectionName,
+    gameId,
+    actionText
+  );
 
   // Determine if it's game over
   const isGameOver = determineGameOver(store.results);
@@ -130,11 +120,7 @@ export const nextSonhosPesadelosPhase = async (
 export const submitAction = async (data: SonhosPesadelosSubmitAction) => {
   const { gameId, gameName: collectionName, playerId, action } = data;
 
-  const actionText = 'submit action';
-  firebaseUtils.verifyPayload(gameId, 'gameId', actionText);
-  firebaseUtils.verifyPayload(collectionName, 'collectionName', actionText);
-  firebaseUtils.verifyPayload(playerId, 'playerId', actionText);
-  firebaseUtils.verifyPayload(action, 'action', actionText);
+  firebaseUtils.validateSubmitActionPayload(gameId, collectionName, playerId, action);
 
   switch (action) {
     case 'SUBMIT_DREAMS':
