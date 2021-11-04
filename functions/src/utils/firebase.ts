@@ -236,7 +236,7 @@ export const updatePlayer = async ({
   } catch (error) {
     throwException(error, actionText);
   }
-  if (shouldReady) {
+  if (shouldReady && nextPhaseFunction) {
     const playersDoc = await getSessionDoc(collectionName, gameId, 'players', actionText);
     const players = playersDoc.data() ?? {};
 
