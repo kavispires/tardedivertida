@@ -9,6 +9,7 @@ import {
   SaveGamePayload,
   StateAndStoreReferences,
   UpdatePlayerArgs,
+  UpdateStoreArgs,
 } from '../utils/interfaces';
 // Utils
 import * as utils from '../utils/helpers';
@@ -204,7 +205,7 @@ export const saveGame = async (
 };
 
 /**
- * Easily update player properties for submit actions
+ * Aides updating player properties on submit actions
  * @param collectionName
  * @param gameId
  * @param playerId
@@ -243,6 +244,40 @@ export const updatePlayer = async ({
     if (utils.isEverybodyReady(players)) {
       return nextPhaseFunction(collectionName, gameId, players);
     }
+  }
+
+  return true;
+};
+
+/**
+ * Aides updating simple store properties on submit actions
+ * @param collectionName
+ * @param gameId
+ * @param playerId
+ * @param actionText
+ * @param change
+ * @param nextPhaseFunction
+ * @returns
+ */
+export const updateStore = async ({
+  collectionName,
+  gameId,
+  actionText,
+  change,
+  nextPhaseFunction,
+}: UpdateStoreArgs) => {
+  const sessionRef = getSessionRef(collectionName, gameId);
+
+  try {
+    await sessionRef.doc('store').update({ ...change });
+  } catch (error) {
+    throwException(error, actionText);
+  }
+
+  if (nextPhaseFunction) {
+    const playersDoc = await getSessionDoc(collectionName, gameId, 'players', actionText);
+    const players = playersDoc.data() ?? {};
+    return nextPhaseFunction(collectionName, gameId, players);
   }
 
   return true;
