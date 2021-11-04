@@ -1,8 +1,13 @@
 // Constants
 import { GLOBAL_USED_DOCUMENTS } from '../../utils/constants';
+// Interfaces
+import { Language } from '../../utils/interfaces';
+import { ArteRuimDrawing } from './interfaces';
 // Helpers
 import * as globalUtils from '../global';
+import * as publicUtils from '../public';
 import * as resourceUtils from '../resource';
+import { buildPastDrawingsDict, buildUsedCardsIdsDict } from './helpers';
 
 /**
  * Get expression cards resource based on the game's language
@@ -19,4 +24,20 @@ export const getCards = async (language: string) => {
     allCards,
     usedCards: Object.keys(usedCards),
   };
+};
+
+/**
+ * Saves past drawings into a public document depending on the language
+ * @param pastDrawings
+ * @param language
+ */
+export const saveUsedCards = async (pastDrawings: ArteRuimDrawing[], language: Language) => {
+  // Save usedArteRuimCards to global
+  const usedArteRuimCards = buildUsedCardsIdsDict(pastDrawings);
+  await globalUtils.updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.ARTE_RUIM, usedArteRuimCards);
+  // Save drawings to public gallery
+  const drawingDocumentName = language === 'pt' ? 'arteRuimDrawingsPt' : 'arteRuimDrawingsEn';
+  const publicDrawings = await publicUtils.getPublicFirebaseDocData(drawingDocumentName, {});
+  const newArteRuimDrawings = buildPastDrawingsDict(pastDrawings, publicDrawings);
+  await publicUtils.updatePublicFirebaseDoc(drawingDocumentName, newArteRuimDrawings);
 };

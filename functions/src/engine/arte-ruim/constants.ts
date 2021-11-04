@@ -8,7 +8,12 @@ export const ARTE_RUIM_PHASES = {
   GAME_OVER: 'GAME_OVER',
 };
 
-export const ARTE_RUIM_TOTAL_ROUNDS = 10;
+export const PLAYER_COUNT = {
+  MIN: 3,
+  MAX: 8,
+};
+
+export const MAX_ROUNDS = 10;
 
 export const GAME_OVER_SCORE_THRESHOLD = 50;
 

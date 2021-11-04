@@ -1,20 +1,14 @@
 // Constants
-import { GAME_COLLECTIONS, GAME_PLAYERS_LIMIT, GLOBAL_USED_DOCUMENTS } from '../../utils/constants';
-import { ARTE_RUIM_PHASES, ARTE_RUIM_TOTAL_ROUNDS } from './constants';
+import { GAME_COLLECTIONS } from '../../utils/constants';
+import { ARTE_RUIM_PHASES, PLAYER_COUNT, MAX_ROUNDS } from './constants';
 // Interfaces
-import { GameId, Players } from '../../utils/interfaces';
+import { GameId, GameName, Language, Players } from '../../utils/interfaces';
 import { ArteRuimInitialState, ArteRuimSubmitAction } from './interfaces';
 // Utilities
 import * as firebaseUtils from '../../utils/firebase';
-import * as globalUtils from '../global';
-import * as publicUtils from '../public';
+import * as utils from '../../utils/helpers';
 // Internal Functions
-import {
-  buildPastDrawingsDict,
-  buildUsedCardsIdsDict,
-  determineGameOver,
-  determineNextPhase,
-} from './helpers';
+import { determineGameOver, determineNextPhase } from './helpers';
 import {
   prepareSetupPhase,
   prepareDrawPhase,
@@ -22,7 +16,7 @@ import {
   prepareGalleryPhase,
   prepareGameOverPhase,
 } from './setup';
-import { getCards } from './data';
+import { getCards, saveUsedCards } from './data';
 import { handleSubmitDrawing, handleSubmitVoting } from './actions';
 
 /**
@@ -32,51 +26,35 @@ import { handleSubmitDrawing, handleSubmitVoting } from './actions';
  * @param language
  * @returns
  */
-export const getInitialState = (gameId: GameId, uid: string, language: string): ArteRuimInitialState => ({
-  meta: {
+export const getInitialState = (gameId: GameId, uid: string, language: Language): ArteRuimInitialState => {
+  return utils.getDefaultInitialState({
     gameId,
     gameName: GAME_COLLECTIONS.ARTE_RUIM,
-    createdAt: Date.now(),
-    createdBy: uid,
-    min: GAME_PLAYERS_LIMIT.ARTE_RUIM.min,
-    max: GAME_PLAYERS_LIMIT.ARTE_RUIM.max,
-    isLocked: false,
-    isComplete: false,
+    uid,
     language,
-    replay: 0,
-  },
-  players: {},
-  store: {
-    language,
-    deck: [],
-    usedCards: [],
-    currentCards: [],
-    pastDrawings: [],
-  },
-  state: {
-    phase: ARTE_RUIM_PHASES.LOBBY,
-    round: {
-      current: 0,
-      total: ARTE_RUIM_TOTAL_ROUNDS,
+    playerCount: PLAYER_COUNT,
+    initialPhase: ARTE_RUIM_PHASES.LOBBY,
+    totalRounds: MAX_ROUNDS,
+    store: {
+      language,
+      deck: [],
+      usedCards: [],
+      currentCards: [],
+      pastDrawings: [],
     },
-    updatedAt: Date.now(),
-  },
-});
+  });
+};
 
 export const nextArteRuimPhase = async (
-  collectionName: string,
-  gameId: string,
+  collectionName: GameName,
+  gameId: GameId,
   players: Players
 ): Promise<boolean> => {
-  const actionText = 'prepare next phase';
-
-  // Gather docs and references
-  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
-  const stateDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'state', actionText);
-  const storeDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'store', actionText);
-
-  const state = stateDoc.data() ?? {};
-  const store = storeDoc.data() ?? {};
+  const { sessionRef, state, store } = await firebaseUtils.getStateAndStoreReferences(
+    collectionName,
+    gameId,
+    'prepare next phase'
+  );
 
   // Determine if it's game over
   const isGameOver = determineGameOver(players);
@@ -110,18 +88,10 @@ export const nextArteRuimPhase = async (
     return firebaseUtils.saveGame(sessionRef, newPhase);
   }
 
+  // GALLERY -> GAME_OVER
   if (nextPhase === ARTE_RUIM_PHASES.GAME_OVER) {
     const newPhase = await prepareGameOverPhase(store, state, players);
-
-    // Save usedArteRuimCards to global
-    const usedArteRuimCards = buildUsedCardsIdsDict(store.pastDrawings);
-    await globalUtils.updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.ARTE_RUIM, usedArteRuimCards);
-    // Save drawings to public gallery
-    const drawingDocumentName = store.language === 'pt' ? 'arteRuimDrawingsPt' : 'arteRuimDrawingsEn';
-    const publicDrawings = await publicUtils.getPublicFirebaseDocData(drawingDocumentName, {});
-    const newArteRuimDrawings = buildPastDrawingsDict(store.pastDrawings, publicDrawings);
-    await publicUtils.updatePublicFirebaseDoc(drawingDocumentName, newArteRuimDrawings);
-
+    await saveUsedCards(store.pastDrawings, store.language);
     return firebaseUtils.saveGame(sessionRef, newPhase);
   }
 
@@ -136,11 +106,7 @@ export const nextArteRuimPhase = async (
 export const submitAction = async (data: ArteRuimSubmitAction) => {
   const { gameId, gameName: collectionName, playerId, action } = data;
 
-  const actionText = 'submit action';
-  firebaseUtils.verifyPayload(gameId, 'gameId', actionText);
-  firebaseUtils.verifyPayload(collectionName, 'collectionName', actionText);
-  firebaseUtils.verifyPayload(playerId, 'playerId', actionText);
-  firebaseUtils.verifyPayload(action, 'action', actionText);
+  firebaseUtils.validateSubmitActionPayload(gameId, collectionName, playerId, action);
 
   switch (action) {
     case 'SUBMIT_DRAWING':
