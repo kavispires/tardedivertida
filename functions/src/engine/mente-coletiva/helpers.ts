@@ -1,6 +1,6 @@
 // Constants
 import {
-  MAX_NUMBER_OF_ROUNDS,
+  MAX_ROUNDS,
   MENTE_COLETIVA_PHASES,
   PASTURE_GAME_OVER_THRESHOLD,
   QUESTIONS_PER_ROUND,
@@ -34,7 +34,7 @@ export const determineNextPhase = (
   } = MENTE_COLETIVA_PHASES;
   const order = [RULES, SETUP, QUESTION_SELECTION, EVERYBODY_WRITES, COMPARE, RESOLUTION];
 
-  if (isGameOver || currentRound === MAX_NUMBER_OF_ROUNDS) {
+  if (isGameOver || currentRound === MAX_ROUNDS) {
     return GAME_OVER;
   }
 
@@ -78,7 +78,7 @@ export const determineRoundType = (playerCount: number, currentRound: number): n
  * @returns
  */
 export const buildDeck = (allQuestions: AllQuestions, pastQuestionsIds: string[]): Deck => {
-  const neededQuestionsAmount = MAX_NUMBER_OF_ROUNDS * QUESTIONS_PER_ROUND;
+  const neededQuestionsAmount = MAX_ROUNDS * QUESTIONS_PER_ROUND;
 
   const filteredQuestions = Object.values(allQuestions).filter(({ id }) => !pastQuestionsIds.includes(id));
 

@@ -9,7 +9,12 @@ export const MENTE_COLETIVA_PHASES = {
   GAME_OVER: 'GAME_OVER',
 };
 
-export const MAX_NUMBER_OF_ROUNDS = 15;
+export const PLAYER_COUNT = {
+  MIN: 3,
+  MAX: 8,
+};
+
+export const MAX_ROUNDS = 15;
 
 export const QUESTIONS_PER_ROUND = 3;
 

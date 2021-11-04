@@ -2,7 +2,7 @@
 import { GameId, PlayerId, GameName, PlainObject } from '../../utils/interfaces';
 // Utils
 import * as firebaseUtils from '../../utils/firebase';
-import * as utils from '../../utils/helpers';
+// Internal
 import { nextMenteColetivaPhase } from '.';
 import { buildListOfAnswers } from './helpers';
 
@@ -50,28 +50,15 @@ export const handleSubmitAnswers = async (
   playerId: PlayerId,
   answers: PlainObject
 ) => {
-  const actionText = 'submit the answers';
-
-  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
-  const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
-
-  const players = playersDoc.data() ?? {};
-
-  const updatedPlayers = utils.readyPlayer(players, playerId);
-  updatedPlayers[playerId].answers = answers;
-
-  try {
-    await sessionRef.doc('players').update({ [playerId]: updatedPlayers[playerId] });
-  } catch (error) {
-    firebaseUtils.throwException(error, actionText);
-  }
-
-  // If all players are ready, trigger next phase
-  if (utils.isEverybodyReady(updatedPlayers)) {
-    return nextMenteColetivaPhase(collectionName, gameId, players);
-  }
-
-  return true;
+  return await firebaseUtils.updatePlayer({
+    collectionName,
+    gameId,
+    playerId,
+    actionText: 'submit the answers',
+    shouldReady: true,
+    change: { answers },
+    nextPhaseFunction: nextMenteColetivaPhase,
+  });
 };
 
 /**

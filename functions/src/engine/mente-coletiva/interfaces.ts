@@ -1,4 +1,4 @@
-import { Meta, Payload, PlayerId, Players, Round } from '../../utils/interfaces';
+import { DefaultState, DefaultStore, InitialState, Payload, PlayerId } from '../../utils/interfaces';
 
 export interface Question {
   id: string;
@@ -18,8 +18,7 @@ export interface PastQuestions {
 
 export type Deck = Question[];
 
-export interface MenteColetivaStore {
-  language: string;
+export interface MenteColetivaStore extends DefaultStore {
   deck: Deck;
   gameOrder: PlayerId[];
   pastQuestions: PastQuestions[];
@@ -27,16 +26,12 @@ export interface MenteColetivaStore {
   [key: string]: any;
 }
 
-export interface MenteColetivaState {
-  phase: string;
-  round: Round;
+export interface MenteColetivaState extends DefaultState {
   activePlayer?: PlayerId;
   [key: string]: any;
 }
 
-export interface MenteColetivaInitialState {
-  meta: Meta;
-  players: Players;
+export interface MenteColetivaInitialState extends InitialState {
   store: MenteColetivaStore;
   state: MenteColetivaState;
 }
