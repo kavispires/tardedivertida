@@ -23,9 +23,9 @@ export interface DetetivesImaginativosInitialState extends InitialState {
   state: DetetivesImaginativosState;
 }
 
-export type FirebaseStateData = FirebaseFirestore.DocumentData | DetetivesImaginativosState;
-export type FirebaseStoreData = FirebaseFirestore.DocumentData | DetetivesImaginativosStore;
-
 export interface DetetivesImaginativosSubmitAction extends Payload {
   action: 'SUBMIT_CLUE' | 'PLAY_CARD' | 'DEFEND' | 'SUBMIT_VOTE';
 }
+
+export type FirebaseStateData = FirebaseFirestore.DocumentData | DetetivesImaginativosState;
+export type FirebaseStoreData = FirebaseFirestore.DocumentData | DetetivesImaginativosStore;

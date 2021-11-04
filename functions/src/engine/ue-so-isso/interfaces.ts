@@ -49,9 +49,6 @@ export interface UeSoIssoInitialState extends InitialState {
   state: UeSoIssoState;
 }
 
-export type FirebaseStateData = FirebaseFirestore.DocumentData | UeSoIssoState;
-export type FirebaseStoreData = FirebaseFirestore.DocumentData | UeSoIssoStore;
-
 export interface SubmitSuggestionsPayload extends Payload {
   suggestions: string[];
 }
@@ -77,3 +74,6 @@ export interface UeSoIssoSubmitAction extends Payload {
     | 'VALIDATE_SUGGESTION'
     | 'SEND_GUESS';
 }
+
+export type FirebaseStateData = FirebaseFirestore.DocumentData | UeSoIssoState;
+export type FirebaseStoreData = FirebaseFirestore.DocumentData | UeSoIssoStore;

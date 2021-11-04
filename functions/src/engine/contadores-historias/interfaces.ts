@@ -23,9 +23,6 @@ export interface ContadoresHistoriasInitialState extends InitialState {
   state: ContadoresHistoriasState;
 }
 
-export type FirebaseStateData = FirebaseFirestore.DocumentData | ContadoresHistoriasState;
-export type FirebaseStoreData = FirebaseFirestore.DocumentData | ContadoresHistoriasStore;
-
 export interface TableEntry {
   cardId: ImageCard;
   playerId: PlayerId;
@@ -38,3 +35,6 @@ export type Table = TableEntry[];
 export interface ContadoresHistoriasSubmitAction extends Payload {
   action: 'SUBMIT_STORY' | 'PLAY_CARD' | 'SUBMIT_VOTE';
 }
+
+export type FirebaseStateData = FirebaseFirestore.DocumentData | ContadoresHistoriasState;
+export type FirebaseStoreData = FirebaseFirestore.DocumentData | ContadoresHistoriasStore;

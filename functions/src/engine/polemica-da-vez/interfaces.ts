@@ -32,9 +32,9 @@ export interface PolemicaDaVezInitialState extends InitialState {
   state: PolemicaDaVezState;
 }
 
-export type FirebaseStateData = FirebaseFirestore.DocumentData | PolemicaDaVezState;
-export type FirebaseStoreData = FirebaseFirestore.DocumentData | PolemicaDaVezStore;
-
 export interface PolemicaDaVezSubmitAction extends Payload {
   action: 'SUBMIT_TOPIC' | 'SUBMIT_REACTION';
 }
+
+export type FirebaseStateData = FirebaseFirestore.DocumentData | PolemicaDaVezState;
+export type FirebaseStoreData = FirebaseFirestore.DocumentData | PolemicaDaVezStore;

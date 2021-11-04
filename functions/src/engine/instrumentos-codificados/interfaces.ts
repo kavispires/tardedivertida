@@ -13,15 +13,15 @@ export interface InstrumentosCodificadosInitialState extends InitialState {
   state: InstrumentosCodificadosState;
 }
 
-export type FirebaseStateData = FirebaseFirestore.DocumentData | InstrumentosCodificadosState;
-export type FirebaseStoreData = FirebaseFirestore.DocumentData | InstrumentosCodificadosStore;
-
-export interface InstrumentosCodificadosSubmitAction extends Payload {
-  action: 'SUBMIT_HINT' | 'SUBMIT_CONCLUSIONS' | 'SUBMIT_CODE';
-}
-
 export interface Hint {
   hint: string;
   targetId: PlayerId;
   position: number;
 }
+
+export interface InstrumentosCodificadosSubmitAction extends Payload {
+  action: 'SUBMIT_HINT' | 'SUBMIT_CONCLUSIONS' | 'SUBMIT_CODE';
+}
+
+export type FirebaseStateData = FirebaseFirestore.DocumentData | InstrumentosCodificadosState;
+export type FirebaseStoreData = FirebaseFirestore.DocumentData | InstrumentosCodificadosStore;
