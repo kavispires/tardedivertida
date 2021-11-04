@@ -1,14 +1,14 @@
 // Constants
-import { GAME_COLLECTIONS, GAME_PLAYERS_LIMIT, GLOBAL_USED_DOCUMENTS } from '../../utils/constants';
-import { MAX_NUMBER_OF_ROUNDS, MENTE_COLETIVA_PHASES } from './constants';
+import { GAME_COLLECTIONS } from '../../utils/constants';
+import { MENTE_COLETIVA_PHASES, MAX_ROUNDS, PLAYER_COUNT } from './constants';
 // Interfaces
-import { GameId, Players } from '../../utils/interfaces';
+import { GameId, Language, Players } from '../../utils/interfaces';
 import { MenteColetivaInitialState, MenteColetivaSubmitAction } from './interfaces';
 // Utilities
 import * as firebaseUtils from '../../utils/firebase';
-import * as globalUtils from '../global';
+import * as utils from '../../utils/helpers';
 // Internal Functions
-import { determineNextPhase, determineGameOver, buildUsedQuestionIdsDict } from './helpers';
+import { determineNextPhase, determineGameOver } from './helpers';
 import {
   prepareSetupPhase,
   prepareGameOverPhase,
@@ -17,7 +17,7 @@ import {
   prepareComparePhase,
   prepareResolutionPhase,
 } from './setup';
-import { getQuestions } from './data';
+import { getQuestions, saveUsedQuestions } from './data';
 import { handleAddAnswer, handleNextAnswers, handleSubmitAnswers, handleSubmitQuestion } from './actions';
 
 /**
@@ -30,36 +30,24 @@ import { handleAddAnswer, handleNextAnswers, handleSubmitAnswers, handleSubmitQu
 export const getInitialState = (
   gameId: GameId,
   uid: string,
-  language: string
-): MenteColetivaInitialState => ({
-  meta: {
+  language: Language
+): MenteColetivaInitialState => {
+  return utils.getDefaultInitialState({
     gameId,
     gameName: GAME_COLLECTIONS.MENTE_COLETIVA,
-    createdAt: Date.now(),
-    createdBy: uid,
-    min: GAME_PLAYERS_LIMIT.MENTE_COLETIVA.min,
-    max: GAME_PLAYERS_LIMIT.MENTE_COLETIVA.max,
-    isLocked: false,
-    isComplete: false,
+    uid,
     language,
-    replay: 0,
-  },
-  players: {},
-  store: {
-    language,
-    deck: [],
-    gameOrder: [],
-    pastQuestions: [],
-  },
-  state: {
-    phase: MENTE_COLETIVA_PHASES.LOBBY,
-    round: {
-      current: 0,
-      total: MAX_NUMBER_OF_ROUNDS,
+    playerCount: PLAYER_COUNT,
+    initialPhase: MENTE_COLETIVA_PHASES.LOBBY,
+    totalRounds: MAX_ROUNDS,
+    store: {
+      language,
+      deck: [],
+      gameOrder: [],
+      pastQuestions: [],
     },
-    updatedAt: Date.now(),
-  },
-});
+  });
+};
 
 export const nextMenteColetivaPhase = async (
   collectionName: string,
@@ -119,11 +107,7 @@ export const nextMenteColetivaPhase = async (
     const newPhase = await prepareGameOverPhase(store, state, players);
 
     // Save usedMenteColetivaQuestions to global
-    const usedMenteColetivaQuestions = buildUsedQuestionIdsDict(store.pastQuestions);
-    await globalUtils.updateGlobalFirebaseDoc(
-      GLOBAL_USED_DOCUMENTS.MENTE_COLETIVA,
-      usedMenteColetivaQuestions
-    );
+    await saveUsedQuestions(store.pastQuestions);
 
     return firebaseUtils.saveGame(sessionRef, newPhase);
   }
@@ -138,11 +122,7 @@ export const nextMenteColetivaPhase = async (
 export const submitAction = async (data: MenteColetivaSubmitAction) => {
   const { gameId, gameName: collectionName, playerId, action } = data;
 
-  const actionText = 'submit action';
-  firebaseUtils.verifyPayload(gameId, 'gameId', actionText);
-  firebaseUtils.verifyPayload(collectionName, 'collectionName', actionText);
-  firebaseUtils.verifyPayload(playerId, 'playerId', actionText);
-  firebaseUtils.verifyPayload(action, 'action', actionText);
+  firebaseUtils.validateSubmitActionPayload(gameId, collectionName, playerId, action);
 
   switch (action) {
     case 'SUBMIT_QUESTION':

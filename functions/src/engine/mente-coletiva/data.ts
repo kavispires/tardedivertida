@@ -3,6 +3,8 @@ import { GLOBAL_USED_DOCUMENTS } from '../../utils/constants';
 // Helpers
 import * as globalUtils from '../global';
 import * as resourceUtils from '../resource';
+// Internal
+import { buildUsedQuestionIdsDict } from './helpers';
 
 /**
  * Get question cards resource based on the game's language
@@ -19,4 +21,14 @@ export const getQuestions = async (language: string) => {
     allQuestions,
     usedQuestions: Object.keys(usedQuestions),
   };
+};
+
+/**
+ * Save past past questions to global document
+ * @param pastQuestions
+ */
+export const saveUsedQuestions = async (pastQuestions: string[]) => {
+  // Save usedMenteColetivaQuestions to global
+  const usedMenteColetivaQuestions = buildUsedQuestionIdsDict(pastQuestions);
+  await globalUtils.updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.MENTE_COLETIVA, usedMenteColetivaQuestions);
 };

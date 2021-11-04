@@ -2,7 +2,7 @@
 import { PlainObject, Players, SaveGamePayload } from '../../utils/interfaces';
 import { FirebaseStateData, FirebaseStoreData } from './interfaces';
 // Constants
-import { MAX_NUMBER_OF_ROUNDS, MENTE_COLETIVA_PHASES, QUESTIONS_PER_ROUND } from './constants';
+import { MAX_ROUNDS, MENTE_COLETIVA_PHASES, QUESTIONS_PER_ROUND } from './constants';
 // Utils
 import * as gameUtils from '../../utils/game-utils';
 import * as firebaseUtils from '../../utils/firebase';
@@ -61,7 +61,7 @@ export const prepareSetupPhase = async (
         gameOrder,
         round: {
           current: 0,
-          total: MAX_NUMBER_OF_ROUNDS,
+          total: MAX_ROUNDS,
         },
       },
       players,
