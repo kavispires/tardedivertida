@@ -8,7 +8,10 @@ import {
   PlayerId,
   SaveGamePayload,
   StateAndStoreReferences,
+  UpdatePlayerArgs,
 } from '../utils/interfaces';
+// Utils
+import * as utils from '../utils/helpers';
 
 export const config = functions.config;
 
@@ -195,6 +198,52 @@ export const saveGame = async (
     }
   } catch (error) {
     throwException(error, 'update game');
+  }
+
+  return true;
+};
+
+/**
+ * Easily update player properties for submit actions
+ * @param collectionName
+ * @param gameId
+ * @param playerId
+ * @param actionText
+ * @param shouldReady
+ * @param change
+ * @param nextPhaseFunction
+ * @returns
+ */
+export const updatePlayer = async ({
+  collectionName,
+  gameId,
+  playerId,
+  actionText,
+  shouldReady,
+  change,
+  nextPhaseFunction,
+}: UpdatePlayerArgs) => {
+  const sessionRef = getSessionRef(collectionName, gameId);
+
+  const playerChange = {};
+  for (const key in change) {
+    playerChange[`${playerId}.${key}`] = change[key];
+  }
+
+  try {
+    await sessionRef.doc('players').update({ ...playerChange });
+  } catch (error) {
+    throwException(error, actionText);
+  }
+  if (shouldReady) {
+    const playersDoc = await getSessionDoc(collectionName, gameId, 'players', actionText);
+    const players = playersDoc.data() ?? {};
+    utils.readyPlayer(players, playerId);
+
+    // If all players are ready, trigger next phase
+    if (utils.isEverybodyReady(players)) {
+      return nextPhaseFunction(collectionName, gameId, players);
+    }
   }
 
   return true;
