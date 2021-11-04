@@ -16,42 +16,24 @@ export interface ArteRuimDrawing extends ArteRuimCard {
   successRate: number;
 }
 
-// OLD STUFF
-
-export interface UsedCard {
-  id: string;
-  playerId: PlayerId | null;
-  drawing: string | null;
-  successRate: number;
-  [key: string]: any;
-}
-
 export interface ArteRuimStore extends DefaultStore {
   deck: ArteRuimCardsDatabase[];
   currentCards: string[];
-  pastDrawings: UsedCard[];
+  pastDrawings: ArteRuimDrawing[];
   [key: string]: any;
 }
 
 export interface ArteRuimState extends DefaultState {
   [key: string]: any;
 }
-
-export type FirebaseStateData = FirebaseFirestore.DocumentData | ArteRuimState;
-export type FirebaseStoreData = FirebaseFirestore.DocumentData | ArteRuimStore;
-
 export interface ArteRuimInitialState extends InitialState {
   store: ArteRuimStore;
   state: ArteRuimState;
 }
 
-export interface DrawingEntry {
-  cardId: string | number;
-  drawing: string;
-  playerId: string;
-}
+export type FirebaseStateData = FirebaseFirestore.DocumentData | ArteRuimState;
+export type FirebaseStoreData = FirebaseFirestore.DocumentData | ArteRuimStore;
 
 export interface ArteRuimSubmitAction extends Payload {
   action: 'SUBMIT_DRAWING' | 'SUBMIT_VOTING';
-  [key: string]: any;
 }
