@@ -36,13 +36,12 @@ export const handleSubmitStory = async (
     gameId,
     playerId,
     actionText: 'submit story',
-    shouldReady: true,
+    shouldReady: false,
     change: {
       hand,
       deckIndex,
       cardId,
     },
-    nextPhaseFunction: nextContadoresHistoriasPhase,
   });
 
   // Submit clue
