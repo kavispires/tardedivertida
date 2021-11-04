@@ -9,6 +9,11 @@ export const CONTADORES_HISTORIAS_PHASES = {
   GAME_OVER: 'GAME_OVER',
 };
 
+export const PLAYER_COUNT = {
+  MIN: 3,
+  MAX: 8,
+};
+
 export const CARDS_PER_PLAYER = 30;
 
 export const HAND_LIMIT = 7;

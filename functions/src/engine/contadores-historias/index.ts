@@ -1,10 +1,12 @@
 // Constants
-import { GAME_COLLECTIONS, GAME_PLAYERS_LIMIT } from '../../utils/constants';
-import { CONTADORES_HISTORIAS_PHASES } from './constants';
+import { GAME_COLLECTIONS } from '../../utils/constants';
+import { CONTADORES_HISTORIAS_PHASES, PLAYER_COUNT } from './constants';
 // Interfaces
 import { GameId, Language, Players } from '../../utils/interfaces';
 // Utils
 import * as firebaseUtils from '../../utils/firebase';
+import * as utils from '../../utils/helpers';
+// Internal Functions
 import { determineGameOver, determineNextPhase } from './helpers';
 import { ContadoresHistoriasInitialState, ContadoresHistoriasSubmitAction } from './interfaces';
 import {
@@ -28,34 +30,23 @@ export const getInitialState = (
   gameId: GameId,
   uid: string,
   language: Language
-): ContadoresHistoriasInitialState => ({
-  meta: {
+): ContadoresHistoriasInitialState => {
+  return utils.getDefaultInitialState({
     gameId,
     gameName: GAME_COLLECTIONS.CONTADORES_HISTORIAS,
-    createdAt: Date.now(),
-    createdBy: uid,
-    min: GAME_PLAYERS_LIMIT.CONTADORES_HISTORIAS.min,
-    max: GAME_PLAYERS_LIMIT.CONTADORES_HISTORIAS.max,
-    isLocked: false,
-    isComplete: false,
+    uid,
     language,
-    replay: 0,
-  },
-  players: {},
-  store: {
-    language,
-    gameOrder: [],
-    tableDeck: [],
-    deckIndex: -1,
-  },
-  state: {
-    phase: CONTADORES_HISTORIAS_PHASES.LOBBY,
-    round: {
-      current: 0,
-      total: 0,
+    playerCount: PLAYER_COUNT,
+    initialPhase: CONTADORES_HISTORIAS_PHASES.LOBBY,
+    totalRounds: 0,
+    store: {
+      language,
+      gameOrder: [],
+      tableDeck: [],
+      deckIndex: -1,
     },
-  },
-});
+  });
+};
 
 export const nextContadoresHistoriasPhase = async (
   collectionName: string,
@@ -65,12 +56,11 @@ export const nextContadoresHistoriasPhase = async (
   const actionText = 'prepare next phase';
 
   // Gather docs and references
-  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
-  const stateDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'state', actionText);
-  const storeDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'store', actionText);
-
-  const state = stateDoc.data() ?? {};
-  const store = { ...(storeDoc.data() ?? {}) };
+  const { sessionRef, state, store } = await firebaseUtils.getStateAndStoreReferences(
+    collectionName,
+    gameId,
+    actionText
+  );
 
   // Determine if it's game over
   const isGameOver = determineGameOver(players);
@@ -110,7 +100,7 @@ export const nextContadoresHistoriasPhase = async (
     return firebaseUtils.saveGame(sessionRef, newPhase);
   }
 
-  // RESOLUTION --> GAME_OVER
+  // RESOLUTION -> GAME_OVER
   if (nextPhase === CONTADORES_HISTORIAS_PHASES.GAME_OVER) {
     const newPhase = await prepareGameOverPhase(store, state, players);
     return firebaseUtils.saveGame(sessionRef, newPhase);
@@ -126,11 +116,7 @@ export const nextContadoresHistoriasPhase = async (
 export const submitAction = async (data: ContadoresHistoriasSubmitAction) => {
   const { gameId, gameName: collectionName, playerId, action } = data;
 
-  const actionText = 'submit action';
-  firebaseUtils.verifyPayload(gameId, 'gameId', actionText);
-  firebaseUtils.verifyPayload(collectionName, 'collectionName', actionText);
-  firebaseUtils.verifyPayload(playerId, 'playerId', actionText);
-  firebaseUtils.verifyPayload(action, 'action', actionText);
+  firebaseUtils.validateSubmitActionPayload(gameId, collectionName, playerId, action);
 
   switch (action) {
     case 'SUBMIT_STORY':

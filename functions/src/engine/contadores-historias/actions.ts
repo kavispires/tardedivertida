@@ -1,11 +1,12 @@
 // Interfaces
 import { GameId, PlayerId, GameName } from '../../utils/interfaces';
+// Constants
+import { HAND_LIMIT } from './constants';
 // Utils
 import * as firebaseUtils from '../../utils/firebase';
-import * as utils from '../../utils/helpers';
 import * as playerHandUtils from '../../utils/player-hand-utils';
+// Internal
 import { nextContadoresHistoriasPhase } from './index';
-import { HAND_LIMIT } from './constants';
 
 /**
  *
@@ -28,14 +29,21 @@ export const handleSubmitStory = async (
 
   const players = playersDoc.data() ?? {};
 
-  // Remove card from storytellers's hand and add new card
-  try {
-    playerHandUtils.discardPlayerCard(players, cardId, playerId, HAND_LIMIT);
-    players[playerId].cardId = cardId;
-    await sessionRef.doc('players').update({ [playerId]: players[playerId] });
-  } catch (error) {
-    firebaseUtils.throwException(error, 'Failed to update player with new card');
-  }
+  const { hand, deckIndex } = playerHandUtils.discardPlayerCard(players, cardId, playerId, HAND_LIMIT);
+
+  await firebaseUtils.updatePlayer({
+    collectionName,
+    gameId,
+    playerId,
+    actionText: 'submit story',
+    shouldReady: true,
+    change: {
+      hand,
+      deckIndex,
+      cardId,
+    },
+    nextPhaseFunction: nextContadoresHistoriasPhase,
+  });
 
   // Submit clue
   try {
@@ -64,7 +72,6 @@ export const handlePlayCard = async (
 ) => {
   const actionText = 'play a card';
 
-  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
   const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
   const stateDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'state', actionText);
   const players = playersDoc.data() ?? {};
@@ -74,25 +81,21 @@ export const handlePlayCard = async (
     firebaseUtils.throwException('You are the storyteller!', 'Failed to play card.');
   }
 
-  let updatedPlayers = utils.readyPlayer(players, playerId);
+  const { hand, deckIndex } = playerHandUtils.discardPlayerCard(players, cardId, playerId, HAND_LIMIT);
 
-  // Remove card from player's hand and add new card
-  try {
-    updatedPlayers = playerHandUtils.discardPlayerCard(updatedPlayers, cardId, playerId, HAND_LIMIT);
-    updatedPlayers[playerId].cardId = cardId;
-    await sessionRef.doc('players').update({ [playerId]: updatedPlayers[playerId] });
-  } catch (error) {
-    firebaseUtils.throwException(error, 'Failed to update player with new card');
-  }
-
-  if (!utils.isEverybodyReady(updatedPlayers)) {
-    return true;
-  }
-
-  // If all players are ready, trigger next phase
-  return nextContadoresHistoriasPhase(collectionName, gameId, updatedPlayers);
-
-  return true;
+  return await firebaseUtils.updatePlayer({
+    collectionName,
+    gameId,
+    playerId,
+    actionText,
+    shouldReady: true,
+    change: {
+      hand,
+      deckIndex,
+      cardId,
+    },
+    nextPhaseFunction: nextContadoresHistoriasPhase,
+  });
 };
 
 /**
@@ -109,25 +112,13 @@ export const handleSubmitVote = async (
   playerId: PlayerId,
   vote: PlayerId
 ) => {
-  const actionText = 'vote';
-  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
-  const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
-
-  // Make player ready and attach vote
-  const players = playersDoc.data() ?? {};
-  const updatedPlayers = utils.readyPlayer(players, playerId);
-  updatedPlayers[playerId].vote = vote;
-
-  try {
-    await sessionRef.doc('players').update({ [playerId]: updatedPlayers[playerId] });
-  } catch (error) {
-    firebaseUtils.throwException(error, actionText);
-  }
-
-  if (!utils.isEverybodyReady(updatedPlayers)) {
-    return true;
-  }
-
-  // If all players are ready, trigger next phase
-  return nextContadoresHistoriasPhase(collectionName, gameId, updatedPlayers);
+  return await firebaseUtils.updatePlayer({
+    collectionName,
+    gameId,
+    playerId,
+    actionText: 'submit vote',
+    shouldReady: true,
+    change: { vote },
+    nextPhaseFunction: nextContadoresHistoriasPhase,
+  });
 };
