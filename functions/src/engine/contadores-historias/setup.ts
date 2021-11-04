@@ -15,14 +15,8 @@ import * as gameUtils from '../../utils/game-utils';
 import * as imageCards from '../../utils/image-cards';
 import * as utils from '../../utils/helpers';
 import * as playerHandUtils from '../../utils/player-hand-utils';
+// Internal
 import { buildTable, buildTableDeck, getTableCards, scoreRound } from './helpers';
-
-// prepareSetupPhase
-// prepareWriteStoryPhase
-// preparePlayCardPhase
-// prepareVotingPhase
-// prepareResolutionPhase
-// prepareGameOverPhase
 
 /**
  * Setup

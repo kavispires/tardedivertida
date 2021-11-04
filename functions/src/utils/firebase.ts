@@ -238,7 +238,6 @@ export const updatePlayer = async ({
   if (shouldReady) {
     const playersDoc = await getSessionDoc(collectionName, gameId, 'players', actionText);
     const players = playersDoc.data() ?? {};
-    utils.readyPlayer(players, playerId);
 
     // If all players are ready, trigger next phase
     if (utils.isEverybodyReady(players)) {
