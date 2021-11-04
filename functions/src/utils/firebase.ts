@@ -5,6 +5,7 @@ import {
   FirebaseContext,
   GameId,
   GameName,
+  PlayerId,
   SaveGamePayload,
   StateAndStoreReferences,
 } from '../utils/interfaces';
@@ -21,6 +22,26 @@ export function verifyPayload(property?: any, propertyName = 'unknown property',
   if (property === undefined || property === null) {
     throw new functions.https.HttpsError('internal', `Failed to ${action}: a ${propertyName} is required`);
   }
+}
+
+/**
+ * Validate payload data for a submit action
+ * @param gameId
+ * @param collectionName
+ * @param playerId
+ * @param action
+ */
+export function validateSubmitActionPayload(
+  gameId: GameId,
+  collectionName: GameName,
+  playerId: PlayerId,
+  action: string
+) {
+  const actionText = 'submit action';
+  verifyPayload(gameId, 'gameId', actionText);
+  verifyPayload(collectionName, 'collectionName', actionText);
+  verifyPayload(playerId, 'playerId', actionText);
+  verifyPayload(action, 'action', actionText);
 }
 
 /**
