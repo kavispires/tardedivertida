@@ -160,19 +160,14 @@ export const handleSubmitClue = async (
   playerId: PlayerId,
   clue: string
 ) => {
-  // Get 'players' from given game session
-  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
-  const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', 'submit clue');
-
-  // Submit clue
-  try {
-    await sessionRef.doc('store').update({ clue });
-  } catch (error) {
-    firebaseUtils.throwException(error, 'Failed to save clue to store');
-  }
-
-  const players = playersDoc.data() ?? {};
-
-  // If all players are ready, trigger next phase
-  return nextDetetivesImaginativosPhase(collectionName, gameId, players);
+  return await firebaseUtils.updateStore({
+    collectionName,
+    gameId,
+    playerId,
+    actionText: 'submit clue',
+    change: {
+      clue,
+    },
+    nextPhaseFunction: nextDetetivesImaginativosPhase,
+  });
 };
