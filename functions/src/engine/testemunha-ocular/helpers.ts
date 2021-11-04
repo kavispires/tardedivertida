@@ -1,6 +1,6 @@
 import * as gameUtils from '../../utils/game-utils';
 import { PlainObject, PlayerId, Players } from '../../utils/interfaces';
-import { MAX_NUMBER_OF_ROUNDS, TESTEMUNHA_OCULAR_PHASES } from './constants';
+import { MAX_ROUNDS, TESTEMUNHA_OCULAR_PHASES } from './constants';
 import { TestemunhaOcularCard, TestemunhaOcularCardsDatabase, TestemunhaOcularEntry } from './interfaces';
 
 /**
@@ -31,7 +31,7 @@ export const determineNextPhase = (
   }
 
   if (currentPhase === TRIAL) {
-    return currentRound >= MAX_NUMBER_OF_ROUNDS ? GAME_OVER : QUESTION_SELECTION;
+    return currentRound >= MAX_ROUNDS ? GAME_OVER : QUESTION_SELECTION;
   }
 
   const currentPhaseIndex = order.indexOf(currentPhase);

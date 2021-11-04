@@ -4,7 +4,7 @@ import * as gameUtils from '../../utils/game-utils';
 import * as utils from '../../utils/helpers';
 import { PlainObject, Players, SaveGamePayload } from '../../utils/interfaces';
 import {
-  MAX_NUMBER_OF_ROUNDS,
+  MAX_ROUNDS,
   QUESTION_COUNT,
   SUSPECTS_IDS,
   SUSPECT_COUNT,
@@ -63,7 +63,7 @@ export const prepareSetupPhase = async (additionalData: PlainObject): Promise<Sa
         perpetrator,
         round: {
           current: 0,
-          total: MAX_NUMBER_OF_ROUNDS,
+          total: MAX_ROUNDS,
         },
         groupScore: 0,
       },
