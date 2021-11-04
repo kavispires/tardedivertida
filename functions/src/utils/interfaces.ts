@@ -60,16 +60,22 @@ export interface PlayerCount {
   MAX: number;
 }
 
+export interface DefaultState {
+  phase: string;
+  round: Round;
+  updatedAt: DateMilliseconds;
+}
+
+export interface DefaultStore {
+  language: Language;
+  [key: string]: any;
+}
+
 export interface InitialState {
   meta: Meta;
   players: Players;
   store: any;
-  state: {
-    phase: string;
-    round: Round;
-    updatedAt: DateMilliseconds;
-    [key: string]: any;
-  };
+  state: any;
 }
 
 export interface InitialStateArgs {
@@ -117,6 +123,7 @@ export interface Payload {
   gameId: GameId;
   gameName: GameName;
   playerId: PlayerId;
+  [key: string]: any;
 }
 
 export interface ExtendedPayload {
@@ -135,6 +142,14 @@ export interface SubmitVotesPayload extends Payload {
 
 export interface SubmitVotePayload extends Payload {
   vote: string;
+}
+
+export interface StateAndStoreReferences {
+  sessionRef: FirebaseFirestore.CollectionReference;
+  stateDoc: FirebaseFirestore.DocumentSnapshot;
+  storeDoc: FirebaseFirestore.DocumentSnapshot;
+  state: FirebaseFirestore.DocumentData | PlainObject;
+  store: FirebaseFirestore.DocumentData | PlainObject;
 }
 
 export interface SetPayload {

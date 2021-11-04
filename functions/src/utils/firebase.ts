@@ -1,7 +1,13 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 // Interfaces
-import { FirebaseContext, SaveGamePayload } from '../utils/interfaces';
+import {
+  FirebaseContext,
+  GameId,
+  GameName,
+  SaveGamePayload,
+  StateAndStoreReferences,
+} from '../utils/interfaces';
 
 export const config = functions.config;
 
@@ -103,6 +109,33 @@ export function throwException(error: any, action = 'function') {
   console.log(error);
   throw new functions.https.HttpsError('internal', `Failed to ${action}: ${JSON.stringify(error)}`);
 }
+
+/**
+ * Gather docs and references needed in every nextPhase function
+ * @param collectionName
+ * @param gameId
+ * @param actionText
+ * @returns
+ */
+export const getStateAndStoreReferences = async (
+  collectionName: GameName,
+  gameId: GameId,
+  actionText: string
+): Promise<StateAndStoreReferences> => {
+  const sessionRef = getSessionRef(collectionName, gameId);
+  const stateDoc = await getSessionDoc(collectionName, gameId, 'state', actionText);
+  const storeDoc = await getSessionDoc(collectionName, gameId, 'store', actionText);
+  const state = stateDoc.data() ?? {};
+  const store = storeDoc.data() ?? {};
+
+  return {
+    sessionRef,
+    stateDoc,
+    storeDoc,
+    state,
+    store,
+  };
+};
 
 /**
  * Saves (setting or updating) the game's session
