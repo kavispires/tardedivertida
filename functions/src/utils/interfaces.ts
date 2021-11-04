@@ -189,6 +189,15 @@ export interface UpdateStoreArgs {
   nextPhaseFunction?: any;
 }
 
+export interface UpdateStateArgs {
+  collectionName: GameName;
+  gameId: GameId;
+  playerId: PlayerId;
+  actionText: string;
+  change: PlainObject;
+  nextPhaseFunction?: any;
+}
+
 export interface UsedWord {
   id: string;
   playerName?: PlayerName | null;

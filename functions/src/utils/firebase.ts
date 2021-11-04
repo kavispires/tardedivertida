@@ -282,3 +282,37 @@ export const updateStore = async ({
 
   return true;
 };
+
+/**
+ * Aides updating simple state properties on submit actions
+ * @param collectionName
+ * @param gameId
+ * @param playerId
+ * @param actionText
+ * @param change
+ * @param nextPhaseFunction
+ * @returns
+ */
+export const updateState = async ({
+  collectionName,
+  gameId,
+  actionText,
+  change,
+  nextPhaseFunction,
+}: UpdateStoreArgs) => {
+  const sessionRef = getSessionRef(collectionName, gameId);
+
+  try {
+    await sessionRef.doc('state').update({ ...change });
+  } catch (error) {
+    throwException(error, actionText);
+  }
+
+  if (nextPhaseFunction) {
+    const playersDoc = await getSessionDoc(collectionName, gameId, 'players', actionText);
+    const players = playersDoc.data() ?? {};
+    return nextPhaseFunction(collectionName, gameId, players);
+  }
+
+  return true;
+};
