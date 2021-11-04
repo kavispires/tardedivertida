@@ -1,4 +1,12 @@
-import { Meta, Payload, PlainObject, PlayerId, PlayerName, Players, Round } from '../../utils/interfaces';
+import {
+  DefaultState,
+  DefaultStore,
+  InitialState,
+  Payload,
+  PlainObject,
+  PlayerId,
+  PlayerName,
+} from '../../utils/interfaces';
 
 export interface Word {
   id: string;
@@ -22,27 +30,21 @@ export interface UsedWords {
   [key: string]: UsedWord;
 }
 
-export interface UeSoIssoStore {
-  language: string;
+export interface UeSoIssoStore extends DefaultStore {
   deck: Word[];
   turnOrder: PlayerId[];
   gameOrder: PlayerId[];
   usedWords: UsedWords;
   currentWords: Word[];
   currentSuggestions: PlainObject[];
-  [key: string]: any;
 }
 
-export interface UeSoIssoState {
-  phase: string;
-  round: Round;
+export interface UeSoIssoState extends DefaultState {
   guesser?: PlayerId;
   [key: string]: any;
 }
 
-export interface UeSoIssoInitialState {
-  meta: Meta;
-  players: Players;
+export interface UeSoIssoInitialState extends InitialState {
   store: UeSoIssoStore;
   state: UeSoIssoState;
 }
@@ -74,5 +76,4 @@ export interface UeSoIssoSubmitAction extends Payload {
     | 'SUBMIT_OUTCOME'
     | 'VALIDATE_SUGGESTION'
     | 'SEND_GUESS';
-  [key: string]: any;
 }

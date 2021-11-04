@@ -9,6 +9,11 @@ export const UE_SO_ISSO_PHASES = {
   GAME_OVER: 'GAME_OVER',
 };
 
+export const PLAYER_COUNT = {
+  MIN: 3,
+  MAX: 8,
+};
+
 export const DOUBLE_ROUNDS_THRESHOLD = 6;
 
 export const WORDS_PER_CARD = 5;
