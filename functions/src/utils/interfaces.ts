@@ -180,6 +180,15 @@ export interface UpdatePlayerArgs {
   nextPhaseFunction?: any;
 }
 
+export interface UpdateStoreArgs {
+  collectionName: GameName;
+  gameId: GameId;
+  playerId: PlayerId;
+  actionText: string;
+  change: PlainObject;
+  nextPhaseFunction?: any;
+}
+
 export interface UsedWord {
   id: string;
   playerName?: PlayerName | null;
