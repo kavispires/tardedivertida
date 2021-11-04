@@ -9,10 +9,11 @@ import {
   TOTAL_IMAGE_CARDS,
   TOTAL_ROUNDS,
 } from './constants';
-// Helpers
+// Utils
 import * as gameUtils from '../../utils/game-utils';
 import * as imageCards from '../../utils/image-cards';
 import * as utils from '../../utils/helpers';
+// Internal
 import { buildCode, buildCodeFragment, buildTable } from './helpers';
 
 /**

@@ -13,32 +13,21 @@ export const handleSubmitHint = async (
   targetId: PlayerId,
   position: number
 ) => {
-  const actionText = 'submit hint';
-
-  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
-  const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
-
-  const players = playersDoc.data() ?? {};
-  const updatedPlayers = utils.readyPlayer(players, playerId);
-
-  updatedPlayers[playerId].currentHint = {
+  const currentHint = {
     targetId,
     hint,
     position,
   };
 
-  try {
-    await sessionRef.doc('players').update({ [playerId]: updatedPlayers[playerId] });
-  } catch (error) {
-    firebaseUtils.throwException(error, actionText);
-  }
-
-  // If all players are ready, trigger next phase
-  if (utils.isEverybodyReady(updatedPlayers)) {
-    return nextInstrumentosCodificadosPhase(collectionName, gameId, players);
-  }
-
-  return true;
+  return await firebaseUtils.updatePlayer({
+    collectionName,
+    gameId,
+    playerId,
+    actionText: 'submit hint',
+    shouldReady: true,
+    change: { currentHint },
+    nextPhaseFunction: nextInstrumentosCodificadosPhase,
+  });
 };
 
 export const handleSubmitConclusions = async (
@@ -49,29 +38,23 @@ export const handleSubmitConclusions = async (
 ) => {
   const actionText = 'submit conclusions';
 
-  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
   const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
-
   const players = playersDoc.data() ?? {};
-  const updatedPlayers = utils.readyPlayer(players, playerId);
 
-  updatedPlayers[playerId].conclusions = {
-    ...updatedPlayers[playerId].conclusions,
+  const updatedConclusions = {
+    ...players[playerId].conclusions,
     ...conclusions,
   };
 
-  try {
-    await sessionRef.doc('players').update({ [playerId]: updatedPlayers[playerId] });
-  } catch (error) {
-    firebaseUtils.throwException(error, actionText);
-  }
-
-  // If all players are ready, trigger next phase
-  if (utils.isEverybodyReady(updatedPlayers)) {
-    return nextInstrumentosCodificadosPhase(collectionName, gameId, players);
-  }
-
-  return true;
+  return await firebaseUtils.updatePlayer({
+    collectionName,
+    gameId,
+    playerId,
+    actionText,
+    shouldReady: true,
+    change: { conclusions: updatedConclusions },
+    nextPhaseFunction: nextInstrumentosCodificadosPhase,
+  });
 };
 
 export const handleSubmitCode = async (

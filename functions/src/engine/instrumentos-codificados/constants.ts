@@ -10,6 +10,11 @@ export const INSTRUMENTOS_CODIFICADOS_PHASES = {
   GAME_OVER: 'GAME_OVER',
 };
 
+export const PLAYER_COUNT = {
+  MIN: 2,
+  MAX: 8,
+};
+
 export const TOTAL_ROUNDS = 5;
 
 export const PLAYER_CODE_LENGTH = 3;
