@@ -67,7 +67,6 @@ export const prepareTellDreamPhase = async (
     update: {
       state: {
         phase: SONHOS_PESADELOS_PHASES.TELL_DREAM,
-        updatedAt: Date.now(),
         round: utils.increaseRound(state?.round, TOTAL_ROUNDS),
         theme,
       },
@@ -94,7 +93,6 @@ export const prepareMatchPhase = async (
     update: {
       state: {
         phase: SONHOS_PESADELOS_PHASES.MATCH,
-        updatedAt: Date.now(),
         clues,
       },
       players,
@@ -142,7 +140,6 @@ export const prepareLastChancePhase = async (
     update: {
       state: {
         phase: SONHOS_PESADELOS_PHASES.LAST_CHANCE,
-        updatedAt: Date.now(),
         isLastChance: true,
         round: utils.increaseRound(state?.round, TOTAL_ROUNDS),
       },
@@ -169,9 +166,6 @@ export const prepareGameOverPhase = async (
 
   return {
     update: {
-      store: {
-        ...store,
-      },
       meta: {
         isComplete: true,
       },

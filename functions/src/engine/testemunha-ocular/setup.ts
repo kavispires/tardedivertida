@@ -3,13 +3,7 @@ import * as firebaseUtils from '../../utils/firebase';
 import * as gameUtils from '../../utils/game-utils';
 import * as utils from '../../utils/helpers';
 import { PlainObject, Players, SaveGamePayload } from '../../utils/interfaces';
-import {
-  MAX_ROUNDS,
-  QUESTION_COUNT,
-  SUSPECTS_IDS,
-  SUSPECT_COUNT,
-  TESTEMUNHA_OCULAR_PHASES,
-} from './constants';
+import { QUESTION_COUNT, SUSPECTS_IDS, SUSPECT_COUNT, TESTEMUNHA_OCULAR_PHASES } from './constants';
 import {
   calculateScore,
   determineTurnOrder,
@@ -61,10 +55,6 @@ export const prepareSetupPhase = async (additionalData: PlainObject): Promise<Sa
         phase: TESTEMUNHA_OCULAR_PHASES.SETUP,
         suspects,
         perpetrator,
-        round: {
-          current: 0,
-          total: MAX_ROUNDS,
-        },
         groupScore: 0,
       },
     },
@@ -137,7 +127,6 @@ export const prepareQuestionSelectionPhase = async (
       },
       state: {
         phase: TESTEMUNHA_OCULAR_PHASES.QUESTION_SELECTION,
-        updatedAt: Date.now(),
         round: utils.increaseRound(state.round),
         questioner,
         questions,
@@ -163,7 +152,6 @@ export const prepareQuestioningPhase = async (
     update: {
       state: {
         phase: TESTEMUNHA_OCULAR_PHASES.QUESTIONING,
-        updatedAt: Date.now(),
         question,
         questions: firebaseUtils.deleteValue(),
       },
@@ -181,7 +169,6 @@ export const prepareTrialPhase = async (
     update: {
       state: {
         phase: TESTEMUNHA_OCULAR_PHASES.TRIAL,
-        updatedAt: Date.now(),
         testimony: additionalPayload?.testimony ?? state.testimony,
       },
     },
@@ -195,6 +182,11 @@ export const prepareGameOverPhase = async (
 ): Promise<SaveGamePayload> => {
   // Save
   return {
+    update: {
+      meta: {
+        isComplete: true,
+      },
+    },
     set: {
       state: {
         phase: TESTEMUNHA_OCULAR_PHASES.GAME_OVER,

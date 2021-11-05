@@ -71,10 +71,14 @@ export const nextMenteColetivaPhase = async (
 
   // RULES -> SETUP
   if (nextPhase === MENTE_COLETIVA_PHASES.SETUP) {
+    // Enter setup phase before doing anything
+    await firebaseUtils.triggerSetupPhase(sessionRef);
+
     // Request data
     const additionalData = await getQuestions(store.language);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await firebaseUtils.saveGame(sessionRef, newPhase);
+
     return nextMenteColetivaPhase(collectionName, gameId, players);
   }
 

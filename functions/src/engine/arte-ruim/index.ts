@@ -63,6 +63,9 @@ export const nextArteRuimPhase = async (
 
   // RULES -> SETUP
   if (nextPhase === ARTE_RUIM_PHASES.SETUP) {
+    // Enter setup phase before doing anything
+    await firebaseUtils.triggerSetupPhase(sessionRef);
+
     // Request data
     const additionalData = await getCards(store.language);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);

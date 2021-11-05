@@ -3,7 +3,6 @@ import {
   CARDS_PER_PLAYER,
   CONTADORES_HISTORIAS_PHASES,
   HAND_LIMIT,
-  MAX_ROUNDS,
   TABLE_CARDS_BY_PLAYER_COUNT,
 } from './constants';
 // Interfaces
@@ -55,13 +54,6 @@ export const prepareSetupPhase = async (
         tableDeck,
         tableDeckIndex: -1,
       },
-      state: {
-        phase: CONTADORES_HISTORIAS_PHASES.SETUP,
-        round: {
-          current: 0,
-          total: MAX_ROUNDS,
-        },
-      },
       players,
     },
   };
@@ -97,7 +89,6 @@ export const prepareStoryPhase = async (
       },
       state: {
         phase: CONTADORES_HISTORIAS_PHASES.STORY,
-        updatedAt: Date.now(),
         round: utils.increaseRound(state.round),
         storyteller,
         nextStoryteller,
@@ -128,7 +119,6 @@ export const prepareCardPlayPhase = async (
     update: {
       state: {
         phase: CONTADORES_HISTORIAS_PHASES.CARD_PLAY,
-        updatedAt: Date.now(),
         story: store.story,
       },
       players,
@@ -159,7 +149,6 @@ export const prepareVotingPhase = async (
       },
       state: {
         phase: CONTADORES_HISTORIAS_PHASES.VOTING,
-        updatedAt: Date.now(),
         table,
       },
       players,
@@ -180,7 +169,6 @@ export const prepareResolutionPhase = async (
     update: {
       state: {
         phase: CONTADORES_HISTORIAS_PHASES.RESOLUTION,
-        updatedAt: Date.now(),
         outcome,
         ranking,
         table,

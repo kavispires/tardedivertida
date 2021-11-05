@@ -67,11 +67,13 @@ export const nextDetetivesImaginativosPhase = async (
 
   // RULES -> SETUP
   if (nextPhase === DETETIVES_IMAGINATIVOS_PHASES.SETUP) {
+    // Enter setup phase before doing anything
+    await firebaseUtils.triggerSetupPhase(sessionRef);
+
     const newPhase = await prepareSetupPhase(store, state, players);
     await firebaseUtils.saveGame(sessionRef, newPhase);
-    const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
-    const newPlayers = playersDoc.data() ?? {};
-    return nextDetetivesImaginativosPhase(collectionName, gameId, newPlayers);
+
+    return nextDetetivesImaginativosPhase(collectionName, gameId, newPhase.update?.players ?? {});
   }
 
   // * -> SECRET_CLUE

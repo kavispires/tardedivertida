@@ -65,6 +65,9 @@ export const nextPolemicaDaVezPhase = async (
 
   // RULES -> SETUP
   if (nextPhase === POLEMICA_DA_VEZ_PHASES.SETUP) {
+    // Enter setup phase before doing anything
+    await firebaseUtils.triggerSetupPhase(sessionRef);
+
     // Request data
     const additionalData = await getTopics(store.language);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);

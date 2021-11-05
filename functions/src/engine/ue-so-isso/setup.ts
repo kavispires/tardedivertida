@@ -55,7 +55,6 @@ export const prepareSetupPhase = async (
       },
       state: {
         phase: UE_SO_ISSO_PHASES.SETUP,
-        updatedAt: Date.now(),
         gameOrder: store.gameOrder,
         round: {
           current: 0,
@@ -101,7 +100,6 @@ export const prepareWordSelectionPhase = async (
       },
       state: {
         phase: UE_SO_ISSO_PHASES.WORD_SELECTION,
-        updatedAt: Date.now(),
         round: utils.increaseRound(state.round),
         gameOrder: store.gameOrder,
         groupScore,
@@ -140,7 +138,6 @@ export const prepareSuggestPhase = async (
       },
       state: {
         phase: UE_SO_ISSO_PHASES.SUGGEST,
-        updatedAt: Date.now(),
         secretWord,
         suggestionsNumber,
         words: firebaseUtils.deleteValue(),
@@ -170,7 +167,6 @@ export const prepareComparePhase = async (
       // store: {},
       state: {
         phase: UE_SO_ISSO_PHASES.COMPARE,
-        updatedAt: Date.now(),
         suggestions: shuffledSuggestions,
         suggestionsNumber: firebaseUtils.deleteValue(),
       },
@@ -184,7 +180,6 @@ export const prepareGuessPhase = async (store: FirebaseStoreData): Promise<SaveG
     update: {
       state: {
         phase: UE_SO_ISSO_PHASES.GUESS,
-        updatedAt: Date.now(),
         validSuggestions: store.validSuggestions,
         suggestions: firebaseUtils.deleteValue(),
       },

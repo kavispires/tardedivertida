@@ -1,5 +1,5 @@
 // Constants
-import { CUSTOM_TOPICS_PER_ROUND, MAX_ROUNDS, POLEMICA_DA_VEZ_PHASES, TOPICS_PER_ROUND } from './constants';
+import { CUSTOM_TOPICS_PER_ROUND, POLEMICA_DA_VEZ_PHASES, TOPICS_PER_ROUND } from './constants';
 // Interfaces
 import { PlainObject, Players, SaveGamePayload } from '../../utils/interfaces';
 import { FirebaseStateData, FirebaseStoreData } from './interfaces';
@@ -40,12 +40,7 @@ export const prepareSetupPhase = async (
       },
       state: {
         phase: POLEMICA_DA_VEZ_PHASES.SETUP,
-        updatedAt: Date.now(),
         gameOrder,
-        round: {
-          current: 0,
-          total: MAX_ROUNDS,
-        },
       },
     },
   };
@@ -82,7 +77,6 @@ export const prepareTopicSelectionPhase = async (
       },
       state: {
         phase: POLEMICA_DA_VEZ_PHASES.TOPIC_SELECTION,
-        updatedAt: Date.now(),
         round: utils.increaseRound(state.round),
         activePlayer,
         currentTopics,
@@ -114,7 +108,6 @@ export const prepareReactPhase = async (
     update: {
       state: {
         phase: POLEMICA_DA_VEZ_PHASES.REACT,
-        updatedAt: Date.now(),
         currentTopic,
         customTopic,
         currentTopics: firebaseUtils.deleteValue(),
@@ -141,7 +134,6 @@ export const prepareResolutionPhase = async (
     update: {
       state: {
         phase: POLEMICA_DA_VEZ_PHASES.RESOLUTION,
-        updatedAt: Date.now(),
         currentTopics: firebaseUtils.deleteValue(),
         currentCustomTopic: firebaseUtils.deleteValue(),
         totalLikes,

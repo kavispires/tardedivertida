@@ -2,7 +2,7 @@
 import { PlainObject, Players, SaveGamePayload } from '../../utils/interfaces';
 import { FirebaseStateData, FirebaseStoreData } from './interfaces';
 // Constants
-import { MAX_ROUNDS, MENTE_COLETIVA_PHASES, QUESTIONS_PER_ROUND } from './constants';
+import { MENTE_COLETIVA_PHASES, QUESTIONS_PER_ROUND } from './constants';
 // Utils
 import * as gameUtils from '../../utils/game-utils';
 import * as firebaseUtils from '../../utils/firebase';
@@ -57,12 +57,7 @@ export const prepareSetupPhase = async (
       },
       state: {
         phase: MENTE_COLETIVA_PHASES.SETUP,
-        updatedAt: Date.now(),
         gameOrder,
-        round: {
-          current: 0,
-          total: MAX_ROUNDS,
-        },
       },
       players,
     },
@@ -97,7 +92,6 @@ export const prepareQuestionSelectionPhase = async (
       },
       state: {
         phase: MENTE_COLETIVA_PHASES.QUESTION_SELECTION,
-        updatedAt: Date.now(),
         round: utils.increaseRound(state.round),
         roundType: determineRoundType(store.gameOrder.length, state.round.current + 1),
         activePlayer,
@@ -123,7 +117,6 @@ export const prepareEverybodyWritesPhase = async (
     update: {
       state: {
         phase: MENTE_COLETIVA_PHASES.EVERYBODY_WRITES,
-        updatedAt: Date.now(),
         currentQuestion,
         currentQuestions: firebaseUtils.deleteValue(),
       },
@@ -151,7 +144,6 @@ export const prepareComparePhase = async (
     update: {
       state: {
         phase: MENTE_COLETIVA_PHASES.COMPARE,
-        updatedAt: Date.now(),
         answersList,
         allAnswers,
       },
@@ -195,7 +187,6 @@ export const prepareResolutionPhase = async (
     update: {
       state: {
         phase: MENTE_COLETIVA_PHASES.RESOLUTION,
-        updatedAt: Date.now(),
         ranking,
         pastureChangeStr: JSON.stringify(pastureChange),
         usedSave: state?.usedSave || (isGameOver && !state?.usedSave),

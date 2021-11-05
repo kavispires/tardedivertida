@@ -70,6 +70,9 @@ export const nextTestemunhaOcularPhase = async (
 
   // RULES -> SETUP
   if (nextPhase === TESTEMUNHA_OCULAR_PHASES.SETUP) {
+    // Enter setup phase before doing anything
+    await firebaseUtils.triggerSetupPhase(sessionRef);
+
     // Request data
     const additionalData = await getQuestions(store.language);
     const newPhase = await prepareSetupPhase(additionalData);
