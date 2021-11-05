@@ -1,7 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
-import { Typography, Layout, Space, Card, Image, Divider, Tag } from 'antd';
+import { Typography, Layout, Space, Card, Image, Divider, Tag, PageHeader, Button, message } from 'antd';
+// API
+import { signOut } from '../adapters/auth';
 // Hooks
 import { useDimensions, useGlobalState, useLanguage, useLocalStorage } from '../hooks';
 // Utils
@@ -11,6 +13,8 @@ import { orderBy } from '../utils';
 // Components
 import { CreateGameModal, RulesModal } from '../components/modals';
 import { LanguageSwitch, Translate, translate } from '../components/shared';
+import { DatabaseFilled } from '@ant-design/icons';
+import { useHistory } from 'react-router';
 
 function GameCard({ game, language }) {
   const [width] = useDimensions();
@@ -88,7 +92,8 @@ function Hub() {
   const language = useLanguage();
   const [getLocalStorage] = useLocalStorage();
   const [, setLanguage] = useGlobalState('language');
-  const sortedGameList = orderBy(Object.values(gameList), ['available', 'title'], ['desc', 'asc']);
+  const [, setIsAuthenticated] = useGlobalState('isAuthenticated');
+  const history = useHistory();
 
   useEffect(() => {
     const prevLanguage = getLocalStorage('language');
@@ -97,30 +102,53 @@ function Hub() {
     }
   }, []); // eslint-disable-line
 
-  const { availableGames, comingSoonGames } = sortedGameList.reduce(
-    (acc, game) => {
-      if (game.available[language]) {
-        acc.availableGames.push(game);
-      } else {
-        acc.comingSoonGames.push(game);
-      }
-      return acc;
-    },
-    {
-      availableGames: [],
-      comingSoonGames: [],
+  const onSignOut = async () => {
+    try {
+      await signOut();
+      setIsAuthenticated(false);
+
+      history.push('/');
+    } catch (error) {
+      message.error('Something went wrong', error);
     }
-  );
+  };
+
+  const { availableGames, comingSoonGames } = useMemo(() => {
+    const sortedGameList = orderBy(Object.values(gameList), ['available', 'title'], ['desc', 'asc']);
+
+    return sortedGameList.reduce(
+      (acc, game) => {
+        if (game.available[language]) {
+          acc.availableGames.push(game);
+        } else {
+          acc.comingSoonGames.push(game);
+        }
+        return acc;
+      },
+      {
+        availableGames: [],
+        comingSoonGames: [],
+      }
+    );
+  }, [language]);
 
   return (
     <Layout.Content className="container">
-      <Typography.Title>
-        Hub <LanguageSwitch />
-      </Typography.Title>
-
-      <Typography.Paragraph>
-        <Translate pt="Selecione um jogo para começar" en="Select a game to start" />
-      </Typography.Paragraph>
+      <PageHeader
+        title={
+          <>
+            <DatabaseFilled /> Hub
+          </>
+        }
+        subTitle={<Translate pt="Selecione um jogo para começar" en="Select a game to start" />}
+        extra={[
+          <LanguageSwitch />,
+          <Button type="danger" ghost onClick={onSignOut}>
+            Logout
+          </Button>,
+        ]}
+      />
+      <Divider />
       <Space size={[8, 16]} wrap align="start">
         {availableGames.map((game) => (
           <GameCard key={game.code} game={game} language={language} />
