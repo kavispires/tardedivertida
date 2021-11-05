@@ -41,7 +41,7 @@ function Login() {
       const response = await signIn(email, password);
       if (response?.user?.uid) {
         setIsAuthenticated(true);
-        history.push('/admin');
+        history.push('/hub');
       }
     } catch (error) {
       setError(error.message);
