@@ -179,7 +179,7 @@ export const saveGame = async (
     }
 
     if (saveContent?.set?.state) {
-      await sessionRef.doc('state').set(saveContent.set.state ?? {});
+      await sessionRef.doc('state').set({ ...saveContent.set.state, updatedAt: Date.now() } ?? {});
     }
 
     if (saveContent?.update?.store) {
@@ -191,7 +191,7 @@ export const saveGame = async (
     }
 
     if (saveContent?.update?.state) {
-      await sessionRef.doc('state').update(saveContent.update.state);
+      await sessionRef.doc('state').update({ ...saveContent.update.state, updatedAt: Date.now() });
     }
 
     if (saveContent?.update?.meta) {
@@ -200,6 +200,19 @@ export const saveGame = async (
   } catch (error) {
     throwException(error, 'update game');
   }
+
+  return true;
+};
+
+/**
+ * Triggers setup phase so game ui stops in the setup window while stuff gets set up
+ * @param sessionRef
+ * @returns
+ */
+export const triggerSetupPhase = async (
+  sessionRef: FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData>
+) => {
+  await sessionRef.doc('state').update({ phase: 'SETUP', updatedAt: Date.now() });
 
   return true;
 };

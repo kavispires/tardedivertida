@@ -48,9 +48,6 @@ export const prepareSetupPhase = async (
         pastDrawings: [],
         currentCards: [],
       },
-      state: {
-        phase: ARTE_RUIM_PHASES.SETUP,
-      },
     },
   };
 };
@@ -76,7 +73,6 @@ export const prepareDrawPhase = async (
       },
       state: {
         phase: ARTE_RUIM_PHASES.DRAW,
-        updatedAt: Date.now(),
         round: utils.increaseRound(state?.round, MAX_ROUNDS),
       },
     },
@@ -103,11 +99,11 @@ export const prepareEvaluationPhase = async (
   return {
     update: {
       store: {
+        // TODO: is this necessary?
         ...store,
       },
       state: {
         phase: ARTE_RUIM_PHASES.EVALUATION,
-        updatedAt: Date.now(),
         cards: shuffledCards,
         drawings: shuffledDrawings,
       },
@@ -144,7 +140,6 @@ export const prepareGalleryPhase = async (
       players,
       state: {
         phase: ARTE_RUIM_PHASES.GALLERY,
-        updatedAt: Date.now(),
         round: state.round,
         gallery,
         cards: store.currentCards,
@@ -165,9 +160,6 @@ export const prepareGameOverPhase = async (
 
   return {
     update: {
-      store: {
-        ...store,
-      },
       meta: {
         isComplete: true,
       },

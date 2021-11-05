@@ -80,7 +80,6 @@ export const prepareHintGivingPhase = async (
     update: {
       state: {
         phase: INSTRUMENTOS_CODIFICADOS_PHASES.HINT_GIVING,
-        updatedAt: Date.now(),
         round: utils.increaseRound(state?.round, TOTAL_ROUNDS),
         theme,
       },
@@ -102,7 +101,6 @@ export const prepareHintReceivingPhase = async (
     update: {
       state: {
         phase: INSTRUMENTOS_CODIFICADOS_PHASES.HINT_RECEIVING,
-        updatedAt: Date.now(),
       },
       players,
     },
@@ -122,7 +120,6 @@ export const prepareGuessTheCodePhase = async (
     update: {
       state: {
         phase: INSTRUMENTOS_CODIFICADOS_PHASES.GUESS_THE_CODE,
-        updatedAt: Date.now(),
       },
       players,
     },
@@ -142,7 +139,6 @@ export const prepareSolutionPhase = async (
     update: {
       state: {
         phase: INSTRUMENTOS_CODIFICADOS_PHASES.GUESS_THE_CODE,
-        updatedAt: Date.now(),
       },
       players,
     },
@@ -158,9 +154,6 @@ export const prepareGameOverPhase = async (
 
   return {
     update: {
-      store: {
-        ...store,
-      },
       meta: {
         isComplete: true,
       },

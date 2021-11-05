@@ -1,6 +1,6 @@
 // Constants
 import { GAME_COLLECTIONS } from '../../utils/constants';
-import { CONTADORES_HISTORIAS_PHASES, PLAYER_COUNT } from './constants';
+import { CONTADORES_HISTORIAS_PHASES, MAX_ROUNDS, PLAYER_COUNT } from './constants';
 // Interfaces
 import { GameId, Language, Players } from '../../utils/interfaces';
 // Utils
@@ -38,7 +38,7 @@ export const getInitialState = (
     language,
     playerCount: PLAYER_COUNT,
     initialPhase: CONTADORES_HISTORIAS_PHASES.LOBBY,
-    totalRounds: 0,
+    totalRounds: MAX_ROUNDS,
     store: {
       language,
       gameOrder: [],
@@ -69,11 +69,13 @@ export const nextContadoresHistoriasPhase = async (
 
   // RULES -> SETUP
   if (nextPhase === CONTADORES_HISTORIAS_PHASES.SETUP) {
+    // Enter setup phase before doing anything
+    await firebaseUtils.triggerSetupPhase(sessionRef);
+
     const newPhase = await prepareSetupPhase(store, state, players);
     await firebaseUtils.saveGame(sessionRef, newPhase);
-    const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
-    const newPlayers = playersDoc.data() ?? {};
-    return nextContadoresHistoriasPhase(collectionName, gameId, newPlayers);
+
+    return nextContadoresHistoriasPhase(collectionName, gameId, newPhase.update?.players ?? {});
   }
 
   // * -> STORY

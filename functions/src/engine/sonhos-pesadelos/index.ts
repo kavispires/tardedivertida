@@ -69,14 +69,15 @@ export const nextSonhosPesadelosPhase = async (
 
   // RULES -> SETUP
   if (nextPhase === SONHOS_PESADELOS_PHASES.SETUP) {
+    // Enter setup phase before doing anything
+    await firebaseUtils.triggerSetupPhase(sessionRef);
+
     // Request data
     const additionalData = await getThemes(store.language);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await firebaseUtils.saveGame(sessionRef, newPhase);
 
-    const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
-    const newPlayers = playersDoc.data() ?? {};
-    return nextSonhosPesadelosPhase(collectionName, gameId, newPlayers);
+    return nextSonhosPesadelosPhase(collectionName, gameId, newPhase.update?.players ?? {});
   }
 
   // * -> TELL_DREAM

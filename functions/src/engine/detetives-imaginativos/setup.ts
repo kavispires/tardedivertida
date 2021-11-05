@@ -83,7 +83,6 @@ export const prepareSecretCluePhase = async (
     update: {
       state: {
         phase: DETETIVES_IMAGINATIVOS_PHASES.SECRET_CLUE,
-        updatedAt: Date.now(),
         round: utils.increaseRound(state.round),
         leader,
         impostor,
@@ -106,7 +105,6 @@ export const prepareCardPlayPhase = async (
     update: {
       state: {
         phase: DETETIVES_IMAGINATIVOS_PHASES.CARD_PLAY,
-        updatedAt: Date.now(),
         clue: store.clue,
         phaseOrder,
         phaseIndex: 0,
@@ -130,7 +128,6 @@ export const prepareDefensePhase = async (
     update: {
       state: {
         phase: DETETIVES_IMAGINATIVOS_PHASES.DEFENSE,
-        updatedAt: Date.now(),
         phaseOrder,
         phaseIndex: 0,
         currentPlayerId: phaseOrder[0],
@@ -153,7 +150,6 @@ export const prepareVotingPhase = async (
       players: newPlayers,
       state: {
         phase: DETETIVES_IMAGINATIVOS_PHASES.VOTING,
-        updatedAt: Date.now(),
       },
     },
   };
@@ -189,7 +185,6 @@ export const prepareRevealPhase = async (
       players,
       state: {
         phase: DETETIVES_IMAGINATIVOS_PHASES.REVEAL,
-        updatedAt: Date.now(),
         ranking,
         impostorVotes,
       },

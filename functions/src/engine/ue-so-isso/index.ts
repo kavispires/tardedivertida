@@ -75,6 +75,9 @@ export const nextUeSoIssoPhase = async (
 
   // RULES -> SETUP
   if (nextPhase === UE_SO_ISSO_PHASES.SETUP) {
+    // Enter setup phase before doing anything
+    await firebaseUtils.triggerSetupPhase(sessionRef);
+
     // Request data
     const additionalData = await getWords(store.language);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
