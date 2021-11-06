@@ -170,12 +170,12 @@ export const dealCards = (players: Players, store: FirebaseStoreData) => {
 export const buildGallery = (drawings: ArteRuimDrawing[], players: Players) =>
   drawings.map((drawingEntry) => {
     const correctAnswer = `${drawingEntry.id}`;
-    const artist = drawingEntry.playerId;
+    const artistId = drawingEntry.playerId;
 
     const newGalleryEntry = {
       id: drawingEntry.id,
       drawing: drawingEntry.drawing,
-      artist: drawingEntry.playerId,
+      artistId: drawingEntry.playerId,
       level: drawingEntry.level,
       text: drawingEntry.text,
       playersSay: {},
@@ -186,9 +186,9 @@ export const buildGallery = (drawings: ArteRuimDrawing[], players: Players) =>
     const playersPoints = {};
 
     Object.entries(<PlainObject>players).forEach(([playerId, pObject]) => {
-      if (artist === playerId) return;
+      if (artistId === playerId) return;
 
-      if (artist) {
+      if (artistId) {
         // Calculate what players say
         const currentVote = pObject.votes[correctAnswer];
         if (playersSay[currentVote] === undefined) {
@@ -199,13 +199,13 @@ export const buildGallery = (drawings: ArteRuimDrawing[], players: Players) =>
         if (playersPoints[playerId] === undefined) {
           playersPoints[playerId] = 0;
         }
-        if (playersPoints?.[artist] === undefined) {
-          playersPoints[artist] = 0;
+        if (playersPoints?.[artistId] === undefined) {
+          playersPoints[artistId] = 0;
         }
 
         if (currentVote === correctAnswer) {
           playersPoints[playerId] += 2;
-          playersPoints[artist] += 1;
+          playersPoints[artistId] += 1;
         }
       }
     });
