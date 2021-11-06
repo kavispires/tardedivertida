@@ -414,3 +414,13 @@ export const getActivePlayer = (turnOrder: GameOrder | TurnOrder, currentRound: 
  */
 export const flattenArray = (twoDimensionalArray: any[]) =>
   twoDimensionalArray.reduce((acc, arr) => [...acc, ...arr], []);
+
+/**
+ * Function to simulate calls when developing
+ * @param duration
+ */
+export const wait = async (duration = 3000) => {
+  if (process.env.FUNCTIONS_EMULATOR) {
+    await new Promise((resolve) => setTimeout(resolve, duration));
+  }
+};
