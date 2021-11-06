@@ -37,14 +37,14 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
 
 /**
  * Determines the order for the current phase
- * @param leader
+ * @param leaderId
  * @param gameOrder
  * @param players
  * @param repeat
  * @returns
  */
 export const determinePhaseOrder = (
-  leader: PlayerId,
+  leaderId: PlayerId,
   gameOrder: PlayerId[],
   players: Players,
   repeat?: boolean
@@ -52,7 +52,7 @@ export const determinePhaseOrder = (
   const result: PlayerId[] = [];
   const playerIds = Object.values(players);
   const tempGameOrder = [...gameOrder, ...gameOrder];
-  const leaderIndex = tempGameOrder.indexOf(leader);
+  const leaderIndex = tempGameOrder.indexOf(leaderId);
 
   for (let i = 0; i < playerIds.length; i++) {
     result.push(tempGameOrder[leaderIndex + i]);
@@ -64,15 +64,14 @@ export const determinePhaseOrder = (
 /**
  * Count impostor votes
  * @param players
- * @param impostor
+ * @param impostorId
  * @returns
  */
-export const countImpostorVotes = (players: Players, impostor: PlayerId): number =>
+export const countImpostorVotes = (players: Players, impostorId: PlayerId): number =>
   Object.values(players).reduce((total: number, player: Player) => {
-    if (player.vote === impostor) {
+    if (player.vote === impostorId) {
       total += 1;
     }
-
     return total;
   }, 0);
 
@@ -80,17 +79,17 @@ export const countImpostorVotes = (players: Players, impostor: PlayerId): number
  *
  * @param players
  * @param impostorVotes
- * @param impostor
- * @param leader
+ * @param impostorId
+ * @param leaderId
  * @returns
  */
 export const calculateNewScores = (
   players: Players,
   impostorVotes: number,
-  impostor: PlayerId,
-  leader: PlayerId
+  impostorId: PlayerId,
+  leaderId: PlayerId
 ): PlainObject => {
-  const relevantPlayers = [impostor, leader];
+  const relevantPlayers = [impostorId, leaderId];
 
   return Object.values(players).reduce((result, player) => {
     const currentScore = player.score;
@@ -98,16 +97,16 @@ export const calculateNewScores = (
     // If detectives won
     if (impostorVotes > 1 && !relevantPlayers.includes(player.id)) {
       // If the player voted for the impostor
-      if (player.vote === impostor) {
+      if (player.vote === impostorId) {
         addedScore += 3;
       }
     }
     // If relevant players won
     if (impostorVotes <= 1) {
-      if (impostor === player.id) {
+      if (impostorId === player.id) {
         addedScore += 5;
       }
-      if (leader === player.id) {
+      if (leaderId === player.id) {
         addedScore += 4;
       }
     }

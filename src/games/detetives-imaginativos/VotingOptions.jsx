@@ -7,14 +7,14 @@ import { Avatar, AvatarName } from '../../components/avatars';
 import { ButtonContainer, Translate } from '../../components/shared';
 import { orderBy } from '../../utils';
 
-export function VotingOptions({ players, leader, user, onVote, isLoading, isAllDisabled }) {
+export function VotingOptions({ players, leaderId, user, onVote, isLoading, isAllDisabled }) {
   const votingOptions = useMemo(
     () =>
       orderBy(
-        Object.values(players).filter((player) => player.id !== leader),
+        Object.values(players).filter((player) => player.id !== leaderId),
         'name'
       ),
-    [players, leader]
+    [players, leaderId]
   );
 
   return (
@@ -49,7 +49,7 @@ export function VotingOptions({ players, leader, user, onVote, isLoading, isAllD
 VotingOptions.propTypes = {
   isAllDisabled: PropTypes.any,
   isLoading: PropTypes.bool,
-  leader: PropTypes.string,
+  leaderId: PropTypes.string,
   onVote: PropTypes.func,
   players: PropTypes.object,
   user: PropTypes.shape({

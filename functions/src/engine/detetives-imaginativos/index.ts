@@ -127,21 +127,15 @@ export const submitAction = async (data: DetetivesImaginativosSubmitAction) => {
 
   switch (action) {
     case 'SUBMIT_CLUE':
-      if (!data.clue) {
-        firebaseUtils.throwException('Missing `clue` value', 'submit clue');
-      }
+      firebaseUtils.validateSubmitActionProperties(data, ['clue'], 'submit clue');
       return handleSubmitClue(collectionName, gameId, playerId, data.clue);
     case 'PLAY_CARD':
-      if (!data.cardId) {
-        firebaseUtils.throwException('Missing `cardId` value', 'play card');
-      }
+      firebaseUtils.validateSubmitActionProperties(data, ['cardId'], 'play card');
       return handlePlayCard(collectionName, gameId, playerId, data.cardId);
     case 'DEFEND':
       return handleDefend(collectionName, gameId, playerId);
     case 'SUBMIT_VOTE':
-      if (!data.vote) {
-        firebaseUtils.throwException('Missing `vote` value', 'submit vote');
-      }
+      firebaseUtils.validateSubmitActionProperties(data, ['vote'], 'submit vote');
       return handleSubmitVote(collectionName, gameId, playerId, data.vote);
     default:
       firebaseUtils.throwException(`Given action ${action} is not allowed`);
