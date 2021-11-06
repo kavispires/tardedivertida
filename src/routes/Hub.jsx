@@ -142,16 +142,16 @@ function Hub() {
         }
         subTitle={<Translate pt="Selecione um jogo para começar" en="Select a game to start" />}
         extra={[
-          <LanguageSwitch />,
-          <Button type="danger" ghost onClick={onSignOut}>
+          <LanguageSwitch key="language-switch" />,
+          <Button type="danger" ghost onClick={onSignOut} key="logout-button">
             Logout
           </Button>,
         ]}
       />
       <Divider />
       <Space size={[8, 16]} wrap align="start">
-        {availableGames.map((game) => (
-          <GameCard key={game.code} game={game} language={language} />
+        {availableGames.map((game, index) => (
+          <GameCard key={`${game.code}-${index}`} game={game} language={language} />
         ))}
       </Space>
       <Divider />
@@ -159,8 +159,8 @@ function Hub() {
         <Translate pt="Em Breve" en="Coming Soon" />
       </Typography.Title>
       <Space size={[8, 16]} wrap align="start">
-        {comingSoonGames.map((game) => (
-          <GameCard key={game.code} game={game} language={language} />
+        {comingSoonGames.map((game, index) => (
+          <GameCard key={`${game.code}-${index}`} game={game} language={language} />
         ))}
       </Space>
     </Layout.Content>
