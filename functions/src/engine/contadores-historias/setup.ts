@@ -76,8 +76,8 @@ export const prepareStoryPhase = async (
   players = utils.removePropertiesFromPlayers(players, ['vote', 'cardId']);
 
   // Determine active player based on current round
-  const storyteller = utils.getActivePlayer(store.gameOrder, state.round.current + 1);
-  const nextStoryteller = utils.getActivePlayer(store.gameOrder, state.round.current + 2);
+  const storytellerId = utils.getActivePlayer(store.gameOrder, state.round.current + 1);
+  const nextStorytellerId = utils.getActivePlayer(store.gameOrder, state.round.current + 2);
 
   // Save
   return {
@@ -90,8 +90,8 @@ export const prepareStoryPhase = async (
       state: {
         phase: CONTADORES_HISTORIAS_PHASES.STORY,
         round: utils.increaseRound(state.round),
-        storyteller,
-        nextStoryteller,
+        storytellerId,
+        nextStorytellerId,
         outcome: firebaseUtils.deleteValue(),
         ranking: firebaseUtils.deleteValue(),
         table: firebaseUtils.deleteValue(),
@@ -108,11 +108,11 @@ export const prepareCardPlayPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Unready players to play cards
-  utils.unReadyPlayers(players, state.storyteller);
+  utils.unReadyPlayers(players, state.storytellerId);
 
   // Add card solution to storyteller
-  players[state.storyteller].cardId = store.solutionCardId;
-  players[state.storyteller].vote = store.solutionCardId;
+  players[state.storytellerId].cardId = store.solutionCardId;
+  players[state.storytellerId].vote = store.solutionCardId;
 
   // Save
   return {
@@ -136,10 +136,10 @@ export const prepareVotingPhase = async (
   // Get N cards from tableDeck
   const tableCards = getTableCards(store.tableDeck, store.tableDeckIndex, tableCardsCount);
 
-  const table = buildTable(players, tableCards, state.storyteller);
+  const table = buildTable(players, tableCards, state.storytellerId);
 
   // Unready players to vote
-  utils.unReadyPlayers(players, state.storyteller);
+  utils.unReadyPlayers(players, state.storytellerId);
 
   // Save
   return {
@@ -162,7 +162,7 @@ export const prepareResolutionPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Gather votes
-  const { ranking, outcome, table } = scoreRound(players, state.table, state.storyteller);
+  const { ranking, outcome, table } = scoreRound(players, state.table, state.storytellerId);
 
   // Save
   return {
@@ -195,9 +195,9 @@ export const prepareGameOverPhase = async (
       players,
       state: {
         phase: CONTADORES_HISTORIAS_PHASES.GAME_OVER,
-        winners,
-        gameEndedAt: Date.now(),
         round: state.round,
+        gameEndedAt: Date.now(),
+        winners,
       },
     },
   };

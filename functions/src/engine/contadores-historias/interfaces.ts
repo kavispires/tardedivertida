@@ -11,10 +11,19 @@ export interface ContadoresHistoriasStore extends DefaultStore {
   gameOrder: PlayerId[];
   tableDeck: ImageCard[];
   deckIndex: number;
+  solutionCardId?: string;
+  story?: string;
   [key: string]: any;
 }
 
 export interface ContadoresHistoriasState extends DefaultState {
+  storytellerId?: PlayerId;
+  nextStorytellerId?: PlayerId;
+  story?: string;
+  table?: any;
+  outcome?: any;
+  ranking?: any;
+  winners?: any;
   [key: string]: any;
 }
 
