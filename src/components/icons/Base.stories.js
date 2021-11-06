@@ -119,6 +119,10 @@ const components = [
     name: 'Painting',
   },
   {
+    component: <icons.Panic />,
+    name: 'Panic',
+  },
+  {
     component: <icons.Picture />,
     name: 'Picture',
   },
