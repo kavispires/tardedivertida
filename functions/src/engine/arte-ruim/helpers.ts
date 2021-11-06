@@ -42,7 +42,7 @@ export const determineNextPhase = (
  * @param players
  * @returns
  */
-export const determineGameOver = (players: Players) => {
+export const determineGameOver = (players: Players): boolean => {
   return Object.values(players).some((player) => player.score >= GAME_OVER_SCORE_THRESHOLD);
 };
 

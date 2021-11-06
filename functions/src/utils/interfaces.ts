@@ -64,6 +64,7 @@ export interface DefaultState {
   phase: string;
   round: Round;
   updatedAt: DateMilliseconds;
+  gameEndedAt?: DateMilliseconds;
 }
 
 export interface DefaultStore {
