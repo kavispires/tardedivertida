@@ -24,7 +24,7 @@ function PhaseVoting({ state, players, info }) {
   const language = useLanguage();
   const [isLoading] = useLoading();
   const user = useUser(players);
-  const isUserTheLeader = useIsUserThe('leader', state);
+  const isUserTheLeader = useIsUserThe('leaderId', state);
   const [step, setStep] = useState(0);
 
   const onSubmitVote = useAPICall({
@@ -110,7 +110,7 @@ function PhaseVoting({ state, players, info }) {
 
           <VotingOptions
             players={players}
-            leader={state.leader}
+            leaderId={state.leaderId}
             user={user}
             onVote={onVote}
             isLoading={isLoading}

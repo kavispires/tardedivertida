@@ -23,7 +23,7 @@ import VotingOptions from './VotingOptions';
 
 function PhaseReveal({ state, players, info }) {
   const language = useLanguage();
-  const impostor = useWhichPlayerIsThe('impostor', state, players);
+  const impostor = useWhichPlayerIsThe('impostorId', state, players);
   const [step, setStep] = useState(0);
 
   return (
@@ -92,7 +92,7 @@ function PhaseReveal({ state, players, info }) {
               />
             )}
           </Instruction>
-          <VotingOptions players={players} isAllDisabled={true} leader={state.leader} />
+          <VotingOptions players={players} isAllDisabled={true} leader={state.leaderId} />
           <RankingBoard players={players} ranking={state.ranking} />
 
           <RoundsLeftInstruction round={state?.round} />

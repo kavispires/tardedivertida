@@ -120,7 +120,7 @@
     },
     "recommended": "5+",
     "min": 3,
-    "max": 8,
+    "max": 10,
     "tags": ["competitive", "turn-based", "traitor", "discussion", "images"],
     "available": {
       "pt": true,

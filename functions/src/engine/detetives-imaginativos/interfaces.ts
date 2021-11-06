@@ -15,6 +15,15 @@ export interface DetetivesImaginativosStore extends DefaultStore {
 }
 
 export interface DetetivesImaginativosState extends DefaultState {
+  leaderId?: PlayerId;
+  impostorId?: PlayerId;
+  phaseOrder?: PlayerId[];
+  phaseIndex?: number;
+  currentPlayerId?: PlayerId;
+  table?: any;
+  ranking?: any;
+  impostorVotes?: any;
+  winners?: any;
   [key: string]: any;
 }
 

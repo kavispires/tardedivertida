@@ -1,5 +1,5 @@
 // Constants
-import { CARDS_PER_PLAYER, DETETIVES_IMAGINATIVOS_PHASES, HAND_LIMIT } from './constants';
+import { DETETIVES_IMAGINATIVOS_PHASES, HAND_LIMIT } from './constants';
 // Interfaces
 import { FirebaseStateData, FirebaseStoreData } from './interfaces';
 import { Players, SaveGamePayload } from '../../utils/interfaces';
@@ -29,7 +29,7 @@ export const prepareSetupPhase = async (
   // Assigned cards to players depending on player count
   // We build the used cards deck all at once to avoid having to generate and
   // get unique ones every time
-  const cardsPerPlayer = CARDS_PER_PLAYER[playerIds.length];
+  const cardsPerPlayer = gameOrder.length * 2 + HAND_LIMIT;
   const minNumCards = playerIds.length * cardsPerPlayer;
   const numDecks = Math.ceil(minNumCards / imageCards.IMAGE_CARDS_PER_DECK);
   const cards = gameUtils.shuffle(imageCards.getImageCards(numDecks));
@@ -74,9 +74,9 @@ export const prepareSecretCluePhase = async (
   players = utils.removePropertiesFromPlayers(players, ['vote']);
 
   // Determine the leader
-  const leader = store.gameOrder[state.round.current];
+  const leaderId = store.gameOrder[state.round.current];
   // Determine the impostor
-  const impostor = gameUtils.shuffle(Object.keys(players).filter((playerId) => playerId !== leader))[0];
+  const impostorId = gameUtils.shuffle(Object.keys(players).filter((playerId) => playerId !== leaderId))[0];
 
   // Save
   return {
@@ -84,8 +84,8 @@ export const prepareSecretCluePhase = async (
       state: {
         phase: DETETIVES_IMAGINATIVOS_PHASES.SECRET_CLUE,
         round: utils.increaseRound(state.round),
-        leader,
-        impostor,
+        leaderId,
+        impostorId,
       },
       players,
     },
@@ -98,7 +98,7 @@ export const prepareCardPlayPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Build phase order (from leader forward once)
-  const phaseOrder = determinePhaseOrder(state.leader, store.gameOrder, players, true);
+  const phaseOrder = determinePhaseOrder(state.leaderId, store.gameOrder, players, true);
 
   // Save
   return {
@@ -121,7 +121,7 @@ export const prepareDefensePhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Build phase order (from leader forward once)
-  const phaseOrder = determinePhaseOrder(state.leader, store.gameOrder, players);
+  const phaseOrder = determinePhaseOrder(state.leaderId, store.gameOrder, players);
 
   // Save
   return {
@@ -142,7 +142,7 @@ export const prepareVotingPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Unready players
-  const newPlayers = utils.unReadyPlayers(players, state.leader);
+  const newPlayers = utils.unReadyPlayers(players, state.leaderId);
 
   // Save
   return {
@@ -161,11 +161,11 @@ export const prepareRevealPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Check how many votes impostor got
-  const impostorVotes = countImpostorVotes(players, state.impostor);
+  const impostorVotes = countImpostorVotes(players, state.impostorId);
 
   // -- Ranking Stuff Start
   // Format <playerId>: [<old score>, <addition points>, <new score>]
-  const newScores = calculateNewScores(players, impostorVotes, state.impostor, state.leader);
+  const newScores = calculateNewScores(players, impostorVotes, state.impostorId, state.leaderId);
 
   const ranking = Object.entries(newScores)
     .map(([playerId, scores]) => {
