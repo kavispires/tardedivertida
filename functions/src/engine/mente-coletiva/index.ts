@@ -130,25 +130,16 @@ export const submitAction = async (data: MenteColetivaSubmitAction) => {
 
   switch (action) {
     case 'SUBMIT_QUESTION':
-      if (!data.questionId) {
-        firebaseUtils.throwException('Missing `questionId` value', 'submit question');
-      }
+      firebaseUtils.validateSubmitActionProperties(data, ['questionId'], 'submit question');
       return handleSubmitQuestion(collectionName, gameId, playerId, data.questionId);
     case 'SUBMIT_ANSWERS':
-      if (!data.answers) {
-        firebaseUtils.throwException('Missing `answers` value', 'submit answers');
-      }
-
+      firebaseUtils.validateSubmitActionProperties(data, ['answers'], 'submit answers');
       return handleSubmitAnswers(collectionName, gameId, playerId, data.answers);
     case 'NEXT_ANSWERS':
-      if (!data.allowedList) {
-        firebaseUtils.throwException('Missing `allowedList` value', 'advance answers');
-      }
+      firebaseUtils.validateSubmitActionProperties(data, ['allowedList'], 'advance answers');
       return handleNextAnswers(collectionName, gameId, playerId, data.allowedList);
     case 'ADD_ANSWER':
-      if (!data.answer) {
-        firebaseUtils.throwException('Missing `answer` value', 'add answer');
-      }
+      firebaseUtils.validateSubmitActionProperties(data, ['answer'], 'add answer');
       return handleAddAnswer(collectionName, gameId, playerId, data.answer);
     default:
       firebaseUtils.throwException(`Given action ${action} is not allowed`);
