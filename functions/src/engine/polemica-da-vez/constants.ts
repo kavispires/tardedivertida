@@ -10,7 +10,7 @@ export const POLEMICA_DA_VEZ_PHASES = {
 
 export const PLAYER_COUNT = {
   MIN: 3,
-  MAX: 8,
+  MAX: 10,
 };
 
 export const SCORE_GOAL = 4;

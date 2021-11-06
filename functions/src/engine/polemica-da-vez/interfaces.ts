@@ -16,6 +16,9 @@ export type CustomDeck = CustomTopic[];
 export interface Decks {
   deck: Deck;
   customDeck: CustomDeck;
+  deckIndex?: number;
+  customDeckIndex?: number;
+  pastTopics?: any[];
 }
 
 export interface PolemicaDaVezStore extends DefaultStore {
@@ -23,7 +26,15 @@ export interface PolemicaDaVezStore extends DefaultStore {
 }
 
 export interface PolemicaDaVezState extends DefaultState {
-  activePlayer?: PlayerId;
+  activePlayerId?: PlayerId;
+  gameOrder?: PlayerId[];
+  currentTopics?: any;
+  currentCustomTopic?: any;
+  currentTopic?: any;
+  customTopic?: any;
+  totalLikes?: any;
+  ranking?: any;
+  winners?: any;
   [key: string]: any;
 }
 

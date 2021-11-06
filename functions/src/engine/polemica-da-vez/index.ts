@@ -114,17 +114,10 @@ export const submitAction = async (data: PolemicaDaVezSubmitAction) => {
 
   switch (action) {
     case 'SUBMIT_TOPIC':
-      if (!data.topicId) {
-        firebaseUtils.throwException('Missing `topicId` value', 'submit topic');
-      }
+      firebaseUtils.validateSubmitActionProperties(data, ['topicId'], 'submit topic');
       return handleSubmitTopic(collectionName, gameId, playerId, data.topicId, data?.customTopic);
     case 'SUBMIT_REACTION':
-      if (data.reaction === undefined) {
-        firebaseUtils.throwException('Missing `reaction` value', 'submit reaction');
-      }
-      if (data.likesGuess === undefined) {
-        firebaseUtils.throwException('Missing `likesGuess` value', 'submit reaction');
-      }
+      firebaseUtils.validateSubmitActionProperties(data, ['reaction', 'likesGuess'], 'submit reaction');
       return handleSubmitReaction(collectionName, gameId, playerId, data.reaction, data.likesGuess);
     default:
       firebaseUtils.throwException(`Given action ${action} is not allowed`);
