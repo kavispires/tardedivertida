@@ -10,7 +10,7 @@ export const ARTE_RUIM_PHASES = {
 
 export const PLAYER_COUNT = {
   MIN: 3,
-  MAX: 8,
+  MAX: 10,
 };
 
 export const MAX_ROUNDS = 10;
@@ -66,6 +66,24 @@ export const CARDS_PER_PLAYER_COUNT = {
     },
   },
   8: {
+    perRound: 10,
+    total: 100,
+    perLevel: {
+      1: 40,
+      2: 30,
+      3: 30,
+    },
+  },
+  9: {
+    perRound: 10,
+    total: 100,
+    perLevel: {
+      1: 40,
+      2: 30,
+      3: 30,
+    },
+  },
+  10: {
     perRound: 10,
     total: 100,
     perLevel: {
