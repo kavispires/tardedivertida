@@ -5,6 +5,7 @@ import {
   FirebaseContext,
   GameId,
   GameName,
+  PlainObject,
   PlayerId,
   SaveGamePayload,
   StateAndStoreReferences,
@@ -46,6 +47,16 @@ export function validateSubmitActionPayload(
   verifyPayload(collectionName, 'collectionName', actionText);
   verifyPayload(playerId, 'playerId', actionText);
   verifyPayload(action, 'action', actionText);
+}
+
+/**
+ * Verify if data object has all properties in the the properties array
+ * @param data
+ * @param properties
+ * @param action
+ */
+export function validateSubmitActionProperties(data: PlainObject, properties: string[], action: string) {
+  properties.forEach((propertyName) => verifyPayload(data[propertyName], propertyName, action));
 }
 
 /**
