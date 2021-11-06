@@ -122,22 +122,13 @@ export const submitAction = async (data: ContadoresHistoriasSubmitAction) => {
 
   switch (action) {
     case 'SUBMIT_STORY':
-      if (!data.story) {
-        firebaseUtils.throwException('Missing `story` value', 'submit story');
-      }
-      if (!data.cardId) {
-        firebaseUtils.throwException('Missing `cardId` value', 'submit story');
-      }
+      firebaseUtils.validateSubmitActionProperties(data, ['story', 'cardId'], 'submit story');
       return handleSubmitStory(collectionName, gameId, playerId, data.story, data.cardId);
     case 'PLAY_CARD':
-      if (!data.cardId) {
-        firebaseUtils.throwException('Missing `cardId` value', 'play card');
-      }
+      firebaseUtils.validateSubmitActionProperties(data, ['cardId'], 'play card');
       return handlePlayCard(collectionName, gameId, playerId, data.cardId);
     case 'SUBMIT_VOTE':
-      if (!data.vote) {
-        firebaseUtils.throwException('Missing `vote` value', 'submit vote');
-      }
+      firebaseUtils.validateSubmitActionProperties(data, ['vote'], 'submit vote');
       return handleSubmitVote(collectionName, gameId, playerId, data.vote);
     default:
       firebaseUtils.throwException(`Given action ${action} is not allowed`);

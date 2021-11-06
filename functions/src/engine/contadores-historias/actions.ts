@@ -76,7 +76,7 @@ export const handlePlayCard = async (
   const players = playersDoc.data() ?? {};
   const state = stateDoc.data() ?? {};
 
-  if (state.storyteller === playerId) {
+  if (state.storytellerId === playerId) {
     firebaseUtils.throwException('You are the storyteller!', 'Failed to play card.');
   }
 
