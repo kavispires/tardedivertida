@@ -18,8 +18,8 @@ const deleteDuplicate = (votes, target) => {
  * @param {number} completeCount
  * @returns
  */
-export function useVotingMatch(keyType, allowDuplicates = true, completeCount = null) {
-  const [votes, setVotes] = useState({});
+export function useVotingMatch(keyType, allowDuplicates = true, completeCount = null, initialState = {}) {
+  const [votes, setVotes] = useState({ ...initialState });
   const [activeItem, setActiveItem] = useState(null);
   const [isVotingComplete, setIsVotingComplete] = useState(false);
 
@@ -73,11 +73,16 @@ export function useVotingMatch(keyType, allowDuplicates = true, completeCount = 
     [activeItem, keyType, allowDuplicates]
   );
 
+  const resetVoting = (newInitialState) => {
+    setVotes(newInitialState ?? initialState);
+    setActiveItem(null);
+  };
+
   useEffect(() => {
     if (completeCount) {
       setIsVotingComplete(Object.keys(votes).length === completeCount);
     }
   }, [completeCount, votes]);
 
-  return { votes, setVotes, activeItem, activateItem, isVotingComplete };
+  return { votes, setVotes, activeItem, activateItem, isVotingComplete, resetVoting };
 }
