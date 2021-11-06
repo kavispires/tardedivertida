@@ -29,8 +29,8 @@ function PhaseQuestioning({ state, players, info }) {
   const [isLoading] = useLoading();
   const [step, setStep] = useState(0);
 
-  const witness = useWhichPlayerIsThe('witness', state, players);
-  const isUserTheWitness = useIsUserThe('witness', state);
+  const witness = useWhichPlayerIsThe('witnessId', state, players);
+  const isUserTheWitness = useIsUserThe('witnessId', state);
 
   const onAnswerRequest = useAPICall({
     apiFunction: TESTEMUNHA_OCULAR_API.submitAction,

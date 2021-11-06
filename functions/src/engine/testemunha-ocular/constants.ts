@@ -11,7 +11,7 @@ export const TESTEMUNHA_OCULAR_PHASES = {
 
 export const PLAYER_COUNT = {
   MIN: 2,
-  MAX: 8,
+  MAX: 10,
 };
 
 export const MAX_ROUNDS = 11;

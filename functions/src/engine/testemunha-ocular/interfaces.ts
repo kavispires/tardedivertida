@@ -22,9 +22,23 @@ export interface TestemunhaOcularStore extends DefaultStore {
   pastQuestions: TestemunhaOcularEntry[];
   gameOrder: PlayerId[];
   turnOrder: PlayerId[];
+  deck: any;
+  questionIndex?: number;
+  questionerIndex?: number;
 }
 
 export interface TestemunhaOcularState extends DefaultState {
+  suspects?: any;
+  perpetrator?: any;
+  groupScore?: any;
+  questionerId?: any;
+  questions?: any;
+  question?: any;
+  witnessId?: PlayerId;
+  testimony?: any;
+  eliminatedSuspects?: any;
+  previouslyEliminatedSuspects?: any;
+  outcome?: any;
   [key: string]: any;
 }
 

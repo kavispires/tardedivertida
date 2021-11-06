@@ -41,7 +41,7 @@ function PhaseWitnessSelection({ state, players, info }) {
   const onWitnessButtonClick = (witnessId) => {
     onSelectWitness({
       action: 'SELECT_WITNESS',
-      witness: witnessId,
+      witnessId,
     });
   };
 

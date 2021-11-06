@@ -355,7 +355,7 @@
     },
     "recommended": "2+",
     "min": 2,
-    "max": 8,
+    "max": 10,
     "tags": ["cooperative", "turn-based", "guessing"],
     "available": {
       "pt": true,

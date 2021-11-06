@@ -3,12 +3,18 @@ import * as firebaseUtils from '../../utils/firebase';
 import * as gameUtils from '../../utils/game-utils';
 import * as utils from '../../utils/helpers';
 import { PlainObject, Players, SaveGamePayload } from '../../utils/interfaces';
-import { QUESTION_COUNT, SUSPECTS_IDS, SUSPECT_COUNT, TESTEMUNHA_OCULAR_PHASES } from './constants';
+import {
+  MAX_ROUNDS,
+  QUESTION_COUNT,
+  SUSPECTS_IDS,
+  SUSPECT_COUNT,
+  TESTEMUNHA_OCULAR_PHASES,
+} from './constants';
 import {
   calculateScore,
   determineTurnOrder,
   filterAvailableCards,
-  getQuestioner,
+  getQuestionerId,
   getQuestions,
 } from './helpers';
 import {
@@ -53,6 +59,10 @@ export const prepareSetupPhase = async (additionalData: PlainObject): Promise<Sa
     set: {
       state: {
         phase: TESTEMUNHA_OCULAR_PHASES.SETUP,
+        round: {
+          current: 0,
+          total: MAX_ROUNDS,
+        },
         suspects,
         perpetrator,
         groupScore: 0,
@@ -67,7 +77,6 @@ export const prepareWitnessSelectionPhase = async (): Promise<SaveGamePayload> =
     update: {
       state: {
         phase: TESTEMUNHA_OCULAR_PHASES.WITNESS_SELECTION,
-        updatedAt: Date.now(),
       },
     },
   };
@@ -82,11 +91,11 @@ export const prepareQuestionSelectionPhase = async (
   const turnOrder =
     store.turnOrder.length > 0
       ? store.turnOrder
-      : determineTurnOrder(players, additionalPayload?.witness ?? state.witness);
+      : determineTurnOrder(players, additionalPayload?.witnessId ?? state.witnessId);
 
   // Determine questioner player
   const questionerIndex = store.questionerIndex + 1;
-  const questioner = getQuestioner(turnOrder, questionerIndex);
+  const questionerId = getQuestionerId(turnOrder, questionerIndex);
   // Determine questions
   const questionIndex = store.questionIndex + 2;
   const questions = getQuestions(store.deck, questionIndex);
@@ -128,10 +137,10 @@ export const prepareQuestionSelectionPhase = async (
       state: {
         phase: TESTEMUNHA_OCULAR_PHASES.QUESTION_SELECTION,
         round: utils.increaseRound(state.round),
-        questioner,
+        questionerId,
         questions,
         question: firebaseUtils.deleteValue(),
-        witness: additionalPayload?.witness ?? state.witness,
+        witnessId: additionalPayload?.witnessId ?? state.witnessId,
         testimony: firebaseUtils.deleteValue(),
         eliminatedSuspects: firebaseUtils.deleteValue(),
         previouslyEliminatedSuspects: previouslyEliminatedSuspects,
@@ -190,8 +199,8 @@ export const prepareGameOverPhase = async (
     set: {
       state: {
         phase: TESTEMUNHA_OCULAR_PHASES.GAME_OVER,
-        gameEndedAt: Date.now(),
         round: state.round,
+        gameEndedAt: Date.now(),
         perpetrator: state.perpetrator,
         groupScore: state.groupScore,
         outcome: additionalPayload?.win ? 'WIN' : 'LOSE',
