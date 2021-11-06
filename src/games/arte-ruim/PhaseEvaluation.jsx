@@ -262,7 +262,7 @@ function EvaluationPhase({ players, state, info }) {
             players={players}
             title={translate('Pronto!', 'Done!', language)}
             instruction={translate(
-              'Vamos aguardar enquanto os outros jogadores terminam seus desenhos!',
+              'Vamos aguardar enquanto os outros jogadores terminam de avaliar!',
               'Please wait while other players finish their evaluations!',
               language
             )}
