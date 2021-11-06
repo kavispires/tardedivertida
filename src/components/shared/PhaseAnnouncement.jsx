@@ -63,6 +63,8 @@ const getIconType = (type) => {
       return IconIllustrations.Opinions;
     case 'painting':
       return IconIllustrations.Painting;
+    case 'panic':
+      return IconIllustrations.Panic;
     case 'picture':
       return IconIllustrations.Picture;
     case 'rank':

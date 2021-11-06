@@ -29,6 +29,7 @@ export * from './Multitask';
 export * from './Newspaper';
 export * from './Opinions';
 export * from './Painting';
+export * from './Panic';
 export * from './Picture';
 export * from './Rank';
 export * from './Review';
