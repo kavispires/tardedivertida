@@ -24,7 +24,7 @@ function StepMatchDreams({ players, user, table, onSubmitDream, clues, currentRo
   const language = useLanguage();
   const { votes, setVotes, activeItem, activateItem, isVotingComplete } = useVotingMatch(
     'clue',
-    true,
+    false,
     clues.length
   );
 
