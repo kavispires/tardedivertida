@@ -7,7 +7,6 @@ import { useLanguage } from '../../hooks';
 // Components
 import {
   ButtonContainer,
-  Instruction,
   RankingBoard,
   Step,
   StepSwitcher,
@@ -34,12 +33,8 @@ function ResolutionStep({ ranking, players, totalLikes, customTopic, currentTopi
       <StepSwitcher step={step}>
         <Step key={0}>
           <Title>
-            <Topic topic={customTopic ?? currentTopic?.text} />
+            <Topic topic={customTopic ?? currentTopic?.text} likes={totalLikes} />
           </Title>
-
-          <Instruction contained className="p-total-likes">
-            {totalLikes} <LikeFilled className="p-icon-like" />
-          </Instruction>
 
           <ul className="p-players-reactions">
             {Object.values(players).map((player) => {
@@ -72,7 +67,7 @@ function ResolutionStep({ ranking, players, totalLikes, customTopic, currentTopi
 
           <ButtonContainer>
             <TimedButton
-              duration={24}
+              duration={25}
               showTimer
               onExpire={() => setStep(1)}
               onClick={() => setStep(1)}
