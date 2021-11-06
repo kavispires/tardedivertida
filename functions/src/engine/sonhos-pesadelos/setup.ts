@@ -114,7 +114,6 @@ export const prepareResolutionPhase = async (
     update: {
       state: {
         phase: SONHOS_PESADELOS_PHASES.RESOLUTION,
-        updatedAt: Date.now(),
         results,
       },
       store: {
@@ -140,8 +139,8 @@ export const prepareLastChancePhase = async (
     update: {
       state: {
         phase: SONHOS_PESADELOS_PHASES.LAST_CHANCE,
-        isLastChance: true,
         round: utils.increaseRound(state?.round, TOTAL_ROUNDS),
+        isLastChance: true,
       },
       players,
     },
@@ -174,9 +173,9 @@ export const prepareGameOverPhase = async (
       players,
       state: {
         phase: SONHOS_PESADELOS_PHASES.GAME_OVER,
-        winners,
-        gameEndedAt: Date.now(),
         round: state.round,
+        gameEndedAt: Date.now(),
+        winners,
       },
     },
   };

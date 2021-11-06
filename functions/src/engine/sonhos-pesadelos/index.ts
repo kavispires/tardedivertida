@@ -33,7 +33,7 @@ export const getInitialState = (
 ): SonhosPesadelosInitialState => {
   return utils.getDefaultInitialState({
     gameId,
-    gameName: GAME_COLLECTIONS.POLEMICA_DA_VEZ,
+    gameName: GAME_COLLECTIONS.SONHOS_PESADELOS,
     uid,
     language,
     playerCount: PLAYER_COUNT,
@@ -41,9 +41,6 @@ export const getInitialState = (
     totalRounds: TOTAL_ROUNDS,
     store: {
       language,
-
-      deck: [],
-      deckIndex: -1,
     },
   });
 };
@@ -125,14 +122,10 @@ export const submitAction = async (data: SonhosPesadelosSubmitAction) => {
 
   switch (action) {
     case 'SUBMIT_DREAMS':
-      if (!data.dreams) {
-        firebaseUtils.throwException('Missing `dreams` value', 'submit dreams');
-      }
+      firebaseUtils.validateSubmitActionProperties(data, ['dreams'], 'submit dreams');
       return handleSubmitDreams(collectionName, gameId, playerId, data.dreams);
     case 'SUBMIT_VOTING':
-      if (!data.votes) {
-        firebaseUtils.throwException('Missing `votes` value', 'submit votes');
-      }
+      firebaseUtils.validateSubmitActionProperties(data, ['votes'], 'submit votes');
       return handleSubmitVoting(collectionName, gameId, playerId, data.votes);
     default:
       firebaseUtils.throwException(`Given action ${action} is not allowed`);

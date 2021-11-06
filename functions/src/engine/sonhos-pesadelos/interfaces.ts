@@ -9,12 +9,20 @@ import {
 } from '../../utils/interfaces';
 
 export interface SonhosPesadelosStore extends DefaultStore {
-  deck: ImageCard[];
-  deckIndex: number;
+  themes?: any;
+  results?: any;
   [key: string]: any;
 }
 
 export interface SonhosPesadelosState extends DefaultState {
+  table?: any;
+  dreamsCount?: number;
+  nightmaresCount?: number;
+  theme?: any;
+  clues?: any;
+  results?: any;
+  isLastChance?: boolean;
+  winners?: any;
   [key: string]: any;
 }
 
