@@ -27,7 +27,19 @@ export interface MenteColetivaStore extends DefaultStore {
 }
 
 export interface MenteColetivaState extends DefaultState {
-  activePlayer?: PlayerId;
+  gameOrder?: PlayerId[];
+  roundType?: string;
+  activePlayerId?: PlayerId;
+  currentQuestions?: any;
+  currentQuestion?: any;
+  answersList?: any;
+  allAnswers?: any;
+  ranking?: any;
+  pastureChangeStr?: string;
+  usedSave?: any;
+  announceSave?: any;
+  winners?: any;
+  losers?: any;
   [key: string]: any;
 }
 

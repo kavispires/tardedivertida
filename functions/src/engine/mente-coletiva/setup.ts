@@ -70,14 +70,14 @@ export const prepareQuestionSelectionPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Determine active player based on current round
-  const activePlayer = utils.getActivePlayer(store.gameOrder, state.round.current + 1);
+  const activePlayerId = utils.getActivePlayer(store.gameOrder, state.round.current + 1);
 
   // Modify player
   utils.addPropertiesFromPlayers(players, {
     score: 0,
     answers: [],
   });
-  utils.unReadyPlayer(players, activePlayer);
+  utils.unReadyPlayer(players, activePlayerId);
 
   // Get questions
   const currentQuestions = Array(QUESTIONS_PER_ROUND)
@@ -94,7 +94,7 @@ export const prepareQuestionSelectionPhase = async (
         phase: MENTE_COLETIVA_PHASES.QUESTION_SELECTION,
         round: utils.increaseRound(state.round),
         roundType: determineRoundType(store.gameOrder.length, state.round.current + 1),
-        activePlayer,
+        activePlayerId,
         currentQuestions,
       },
       players,

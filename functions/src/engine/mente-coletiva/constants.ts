@@ -11,7 +11,7 @@ export const MENTE_COLETIVA_PHASES = {
 
 export const PLAYER_COUNT = {
   MIN: 3,
-  MAX: 8,
+  MAX: 12,
 };
 
 export const MAX_ROUNDS = 15;
