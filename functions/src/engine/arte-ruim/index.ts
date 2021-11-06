@@ -113,14 +113,10 @@ export const submitAction = async (data: ArteRuimSubmitAction) => {
 
   switch (action) {
     case 'SUBMIT_DRAWING':
-      if (!data.drawing) {
-        firebaseUtils.throwException('Missing `drawing` value', 'submit drawing');
-      }
+      firebaseUtils.validateSubmitActionProperties(data, ['drawing'], 'submit drawing');
       return handleSubmitDrawing(collectionName, gameId, playerId, data.drawing);
     case 'SUBMIT_VOTING':
-      if (!data.votes) {
-        firebaseUtils.throwException('Missing `reaction` value', 'submit votes');
-      }
+      firebaseUtils.validateSubmitActionProperties(data, ['votes'], 'submit votes');
       return handleSubmitVoting(collectionName, gameId, playerId, data.votes);
     default:
       firebaseUtils.throwException(`Given action ${action} is not allowed`);
