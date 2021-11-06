@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 // Design Resources
 import { Button } from 'antd';
 import { PictureOutlined } from '@ant-design/icons';
 // State & Hooks
-import { useGlobalState, useLanguage } from '../../hooks';
+import { useLanguage } from '../../hooks';
 // Resources and Utils
 import { PHASES } from '../../utils/constants';
 // Components
@@ -52,18 +52,6 @@ function PhaseGallery({ players, state, info }) {
   const language = useLanguage();
   const [activeIndex, setActiveIndex] = useState(0);
   const [step, setStep] = useState(0);
-  const [canvasSize, setCanvasSize] = useGlobalState('canvasSize');
-  const [cachedCanvasSize, setCachedCanvasSize] = useGlobalState('cachedCanvasSize');
-
-  // The gallery needs a bigger image, its annoying that we are changing the users settings but whatever
-  useEffect(() => {
-    if (step === 1) {
-      setCachedCanvasSize(canvasSize);
-      setCanvasSize(Math.min(window.innerWidth / 2 - 100, 500));
-    } else {
-      setCanvasSize(cachedCanvasSize);
-    }
-  }, [step]); // eslint-disable-line
 
   const isGameOver = Object.values(players).some((player) => player.score > 50);
 

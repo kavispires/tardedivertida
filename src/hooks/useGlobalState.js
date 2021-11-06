@@ -20,8 +20,7 @@ const initialState = {
   blurredCards: {},
   blurEnabled: false,
   // Arte-Ruim
-  canvasSize: 250,
-  cachedCanvasSize: 250,
+  canvasSize: 0,
   // Espiao-entre-nos
   espiaoEntreNosCache: {},
 };

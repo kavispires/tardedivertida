@@ -12,6 +12,7 @@ import {
   useUser,
   useLoading,
   useVotingMatch,
+  useCardWidth,
 } from '../../hooks';
 // Utils
 import { ARTE_RUIM_API } from '../../adapters';
@@ -76,8 +77,8 @@ function EvaluationPhase({ players, state, info }) {
   const language = useLanguage();
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
+  const canvasWidth = useCardWidth(Math.min(Object.keys(players).length, 6), 16, 150, 500);
   const [canvasSize, setCanvasSize] = useGlobalState('canvasSize');
-  const [cachedCanvasSize] = useGlobalState('cachedCanvasSize');
   const [step, setStep] = useState(0);
 
   const { votes, setVotes, activeItem, activateItem, resetVoting } = useVotingMatch(
@@ -131,8 +132,11 @@ function EvaluationPhase({ players, state, info }) {
   }, [state?.cards, state?.drawings, votes, setVotes]);
 
   useEffect(() => {
-    setCanvasSize(cachedCanvasSize);
-  }, []); // eslint-disable-line
+    if (!canvasSize) {
+      // Round to increments of 50
+      setCanvasSize(Math.floor(canvasWidth / 50) * 50);
+    }
+  }, [canvasSize, canvasWidth]); // eslint-disable-line
 
   const selectOwnDrawing = useCallback(() => {
     const playersDrawing = (state?.drawings ?? []).find((drawing) => drawing.playerId === user.id);
@@ -175,7 +179,9 @@ function EvaluationPhase({ players, state, info }) {
         {/* Step 1 */}
         <Step className="a-evaluation-step">
           <CanvasResizer numPlayers={Object.keys(players).length} />
-          <Title>{translate('Adivinhação', 'Match the Pairs', language)}</Title>
+          <Title>
+            <Translate pt="Adivinhação" en="Match the Pairs" />
+          </Title>
           <CollapsibleRule>
             <EvaluationRules />
           </CollapsibleRule>
