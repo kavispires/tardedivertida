@@ -59,11 +59,11 @@ export const filterAvailableCards = (
 /**
  * Determine turn order by shuffling players, excluding the witness
  * @param players
- * @param witness
+ * @param witnessId
  * @returns
  */
-export const determineTurnOrder = (players: Players, witness: PlayerId): PlayerId[] => {
-  const availablePlayers = Object.keys(players).filter((id) => id !== witness);
+export const determineTurnOrder = (players: Players, witnessId: PlayerId): PlayerId[] => {
+  const availablePlayers = Object.keys(players).filter((id) => id !== witnessId);
   return gameUtils.shuffle(availablePlayers);
 };
 
@@ -73,7 +73,7 @@ export const determineTurnOrder = (players: Players, witness: PlayerId): PlayerI
  * @param questionerIndex
  * @returns
  */
-export const getQuestioner = (turnOrder: PlayerId[], questionerIndex: number): PlayerId => {
+export const getQuestionerId = (turnOrder: PlayerId[], questionerIndex: number): PlayerId => {
   return turnOrder[questionerIndex % turnOrder.length];
 };
 

@@ -134,30 +134,22 @@ export const submitAction = async (data: TestemunhaOcularSubmitAction) => {
   switch (action) {
     case 'SELECT_WITNESS':
       actionText = 'select witness';
-      if (!data.witness) {
-        firebaseUtils.throwException('Missing `witness` value', actionText);
-      }
-      return handleExtraAction(collectionName, gameId, actionText, { playerId, witness: data.witness });
+      firebaseUtils.validateSubmitActionProperties(data, ['witnessId'], actionText);
+      return handleExtraAction(collectionName, gameId, actionText, { playerId, witnessId: data.witnessId });
 
     case 'SELECT_QUESTION':
       actionText = 'select question';
-      if (!data.questionId) {
-        firebaseUtils.throwException('Missing `questionId` value', actionText);
-      }
+      firebaseUtils.validateSubmitActionProperties(data, ['questionId'], actionText);
       return handleExtraAction(collectionName, gameId, actionText, { playerId, questionId: data.questionId });
 
     case 'GIVE_TESTIMONY':
       actionText = 'give testimony';
-      if (data.testimony === undefined) {
-        firebaseUtils.throwException('Missing `testimony` value', actionText);
-      }
+      firebaseUtils.validateSubmitActionProperties(data, ['testimony'], actionText);
       return handleExtraAction(collectionName, gameId, actionText, { playerId, testimony: data.testimony });
 
     case 'ELIMINATE_SUSPECT':
       actionText = 'eliminate suspect';
-      if (!data.suspectId && !data.pass) {
-        firebaseUtils.throwException('Missing `suspectId` value', actionText);
-      }
+      firebaseUtils.validateSubmitActionProperties(data, ['suspectId', 'pass'], actionText);
       return handleElimination(collectionName, gameId, actionText, {
         playerId,
         suspectId: data?.suspectId,
