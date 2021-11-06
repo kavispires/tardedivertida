@@ -4,7 +4,15 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { Button } from 'antd';
 import { CloudUploadOutlined, ThunderboltOutlined } from '@ant-design/icons';
 // Hooks
-import { useIsUserReady, useGlobalState, useAPICall, useLanguage, useUser, useLoading } from '../../hooks';
+import {
+  useIsUserReady,
+  useGlobalState,
+  useAPICall,
+  useLanguage,
+  useUser,
+  useLoading,
+  useVotingMatch,
+} from '../../hooks';
 // Utils
 import { ARTE_RUIM_API } from '../../adapters';
 import { LETTERS, PHASES, SEPARATOR } from '../../utils/constants';
@@ -71,8 +79,12 @@ function EvaluationPhase({ players, state, info }) {
   const [canvasSize, setCanvasSize] = useGlobalState('canvasSize');
   const [cachedCanvasSize] = useGlobalState('cachedCanvasSize');
   const [step, setStep] = useState(0);
-  const [votes, setVotes] = useState({});
-  const [activeItem, setActiveItem] = useState(null);
+
+  const { votes, setVotes, activeItem, activateItem, resetVoting } = useVotingMatch(
+    'drawing',
+    true,
+    state?.drawings.length || 2
+  );
 
   const onSubmitVotingAPIRequest = useAPICall({
     apiFunction: ARTE_RUIM_API.submitAction,
@@ -116,7 +128,11 @@ function EvaluationPhase({ players, state, info }) {
       }
     });
     setVotes(newVotes);
-  }, [state?.cards, state?.drawings, votes]);
+  }, [state?.cards, state?.drawings, votes, setVotes]);
+
+  useEffect(() => {
+    setCanvasSize(cachedCanvasSize);
+  }, []); // eslint-disable-line
 
   const selectOwnDrawing = useCallback(() => {
     const playersDrawing = (state?.drawings ?? []).find((drawing) => drawing.playerId === user.id);
@@ -127,57 +143,16 @@ function EvaluationPhase({ players, state, info }) {
       const vote = { [drawingKey]: cardKey };
       return vote;
     }
+    return {};
   }, [user, state?.drawings, state?.cards]);
 
-  const onClearSelections = useCallback(() => {
-    const selection = selectOwnDrawing();
-    if (selection) {
-      setVotes(selection);
-    }
-  }, [selectOwnDrawing]);
-
-  useEffect(() => {
-    setCanvasSize(cachedCanvasSize);
-  }, []); // eslint-disable-line
-
-  // Auto select the players own drawing and word
+  // Auto-select the players own drawing and word
   useEffect(() => {
     const selection = selectOwnDrawing();
     if (selection) {
       setVotes((s) => ({ ...s, ...selection }));
     }
-  }, [selectOwnDrawing]);
-
-  const onActivateItem = useCallback(
-    (entryId) => {
-      if (entryId === activeItem) {
-        return setActiveItem(null);
-      }
-
-      const [type] = entryId.split(SEPARATOR);
-      if (!activeItem || activeItem.startsWith(type)) {
-        setActiveItem(entryId);
-      } else {
-        if (type === 'card') {
-          setVotes((prevVotes) => {
-            return {
-              ...prevVotes,
-              [activeItem]: entryId,
-            };
-          });
-        } else {
-          setVotes((prevVotes) => {
-            return {
-              ...prevVotes,
-              [entryId]: activeItem,
-            };
-          });
-        }
-        setActiveItem(null);
-      }
-    },
-    [activeItem]
-  );
+  }, [selectOwnDrawing, setVotes]);
 
   return (
     <PhaseContainer
@@ -209,7 +184,7 @@ function EvaluationPhase({ players, state, info }) {
             <Button
               type="default"
               icon={<ThunderboltOutlined />}
-              onClick={onClearSelections}
+              onClick={() => resetVoting(selectOwnDrawing())}
               disabled={isLoading}
             >
               <Translate pt="Limpar seleções" en="Clear selections" />
@@ -235,7 +210,7 @@ function EvaluationPhase({ players, state, info }) {
           <EvaluationAllDrawings
             drawings={state?.drawings ?? []}
             activeItem={activeItem}
-            onActivateItem={onActivateItem}
+            onActivateItem={activateItem}
             votes={votes}
             canvasSize={canvasSize}
             players={players}
@@ -244,7 +219,7 @@ function EvaluationPhase({ players, state, info }) {
           <EvaluationAllCards
             cards={state?.cards ?? []}
             activeItem={activeItem}
-            onActivateItem={onActivateItem}
+            onActivateItem={activateItem}
             votes={votes}
           />
 
