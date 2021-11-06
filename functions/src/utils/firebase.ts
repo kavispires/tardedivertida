@@ -243,11 +243,15 @@ export const updatePlayer = async ({
   for (const key in change) {
     playerChange[`${playerId}.${key}`] = change[key];
   }
+  // Ready player if so
+  if (shouldReady) {
+    playerChange[`${playerId}.ready`] = true;
+  }
 
   try {
     await sessionRef.doc('players').update({ ...playerChange });
   } catch (error) {
-    throwException(error, actionText);
+    return throwException(error, actionText);
   }
   if (shouldReady && nextPhaseFunction) {
     const playersDoc = await getSessionDoc(collectionName, gameId, 'players', actionText);
@@ -284,7 +288,7 @@ export const updateStore = async ({
   try {
     await sessionRef.doc('store').update({ ...change });
   } catch (error) {
-    throwException(error, actionText);
+    return throwException(error, actionText);
   }
 
   if (nextPhaseFunction) {
@@ -318,7 +322,7 @@ export const updateState = async ({
   try {
     await sessionRef.doc('state').update({ ...change });
   } catch (error) {
-    throwException(error, actionText);
+    return throwException(error, actionText);
   }
 
   if (nextPhaseFunction) {
