@@ -129,34 +129,22 @@ export const submitAction = async (data: UeSoIssoSubmitAction) => {
 
   switch (action) {
     case 'SUBMIT_VOTES':
-      if (!data.votes) {
-        firebaseUtils.throwException('Missing `votes` value', 'submit votes');
-      }
+      firebaseUtils.validateSubmitActionProperties(data, ['votes'], 'submit votes');
       return handleSubmitWordSelectionVotes(collectionName, gameId, playerId, data.votes);
     case 'SUBMIT_SUGGESTIONS':
-      if (!data.suggestions) {
-        firebaseUtils.throwException('Missing `suggestions` value', 'submit suggestions');
-      }
+      firebaseUtils.validateSubmitActionProperties(data, ['suggestions'], 'submit suggestions');
       return handleSubmitSuggestions(collectionName, gameId, playerId, data.suggestions);
     case 'SUBMIT_VALIDATION':
-      if (!data.validSuggestions) {
-        firebaseUtils.throwException('Missing `validSuggestions` value', 'submit valid suggestions');
-      }
+      firebaseUtils.validateSubmitActionProperties(data, ['validSuggestions'], 'submit valid suggestions');
       return handleSubmitValidation(collectionName, gameId, playerId, data.validSuggestions);
     case 'SUBMIT_OUTCOME':
-      if (!data.outcome) {
-        firebaseUtils.throwException('Missing `outcome` value', 'submit outcome');
-      }
+      firebaseUtils.validateSubmitActionProperties(data, ['outcome'], 'submit outcome');
       return handleConfirmGuess(collectionName, gameId, playerId, data.outcome);
     case 'VALIDATE_SUGGESTION':
-      if (!data.suggestions) {
-        firebaseUtils.throwException('Missing `suggestions` value', 'submit suggestions');
-      }
+      firebaseUtils.validateSubmitActionProperties(data, ['suggestions'], 'validate suggestions');
       return handleUpdateValidSuggestions(collectionName, gameId, playerId, data.suggestions);
     case 'SEND_GUESS':
-      if (!data.guess) {
-        firebaseUtils.throwException('Missing `guess` value', 'send guess');
-      }
+      firebaseUtils.validateSubmitActionProperties(data, ['guess'], 'send guess');
       return handleSendGuess(collectionName, gameId, playerId, data.guess);
     default:
       firebaseUtils.throwException(`Given action ${action} is not allowed`);
