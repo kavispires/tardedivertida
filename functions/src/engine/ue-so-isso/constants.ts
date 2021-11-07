@@ -11,7 +11,7 @@ export const UE_SO_ISSO_PHASES = {
 
 export const PLAYER_COUNT = {
   MIN: 3,
-  MAX: 8,
+  MAX: 10,
 };
 
 export const DOUBLE_ROUNDS_THRESHOLD = 6;

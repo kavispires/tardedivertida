@@ -393,9 +393,9 @@
         "If they guess correctly the group gets 1 point, if incorrect the group loses 1 point. Nothing happens if passing. The group wins the game if it scores over 70%!"
       ]
     },
-    "recommended": "6-8",
+    "recommended": "6-7",
     "min": 4,
-    "max": 8,
+    "max": 10,
     "tags": ["cooperative", "guessing", "writing"],
     "cooperative": true,
     "available": {

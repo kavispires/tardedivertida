@@ -30,10 +30,10 @@ function PhaseGuess({ state, players, info }) {
   const language = useLanguage();
   const [isAdmin] = useGlobalState('isAdmin');
   const [step, setStep] = useState(0);
-  const guesser = useWhichPlayerIsThe('guesser', state, players);
-  const controller = useWhichPlayerIsThe('controller', state, players);
-  const isUserTheController = useIsUserThe('controller', state);
-  const isUserTheGuesser = useIsUserThe('guesser', state);
+  const guesser = useWhichPlayerIsThe('guesserId', state, players);
+  const isUserTheGuesser = useIsUserThe('guesserId', state);
+  const controller = useWhichPlayerIsThe('controllerId', state, players);
+  const isUserTheController = useIsUserThe('controllerId', state);
 
   const onSubmitOutcomeAPIRequest = useAPICall({
     apiFunction: UE_SO_ISSO_API.submitAction,

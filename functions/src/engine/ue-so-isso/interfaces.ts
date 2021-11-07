@@ -37,10 +37,24 @@ export interface UeSoIssoStore extends DefaultStore {
   usedWords: UsedWords;
   currentWords: Word[];
   currentSuggestions: PlainObject[];
+  currentWord?: any;
+  guess?: any;
+  validSuggestions?: any;
+  outcome?: any;
 }
 
 export interface UeSoIssoState extends DefaultState {
-  guesser?: PlayerId;
+  gameOrder;
+  guesserId?: PlayerId;
+  controllerId?: PlayerId;
+  groupScore?: any;
+  words?: any;
+  guess?: any;
+  secretWord?: any;
+  suggestions?: any;
+  validSuggestions?: any;
+  group?: any;
+
   [key: string]: any;
 }
 
