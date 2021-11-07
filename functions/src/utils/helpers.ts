@@ -244,12 +244,12 @@ export const removePropertiesFromPlayers = (players: Players, properties: string
 };
 
 /**
- * Set all players as not ready
+ * Add properties to players
  * @param players
  * @param butThisOne
  * @returns
  */
-export const addPropertiesFromPlayers = (players: Players, properties: PlainObject): Players => {
+export const addPropertiesToPlayers = (players: Players, properties: PlainObject): Players => {
   for (const playerId in players) {
     players[playerId] = {
       ...players[playerId],

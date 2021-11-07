@@ -192,7 +192,7 @@ export const nextEspiaoEntreNosPhase = async (
   }
 
   // * -> GAME_OVER
-  if (nextPhase === PHASES.ONDA_TELEPATICA.GAME_OVER) {
+  if (nextPhase === PHASES.ESPIAO_ENTRE_NOS.GAME_OVER) {
     return prepareGameOverPhase(sessionRef, players);
   }
 

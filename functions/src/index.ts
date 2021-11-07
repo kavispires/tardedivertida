@@ -66,41 +66,29 @@ exports.playAgain = functions.https.onCall(commonEngine.playAgain);
  */
 exports.rateGame = functions.https.onCall(commonEngine.rateGame);
 
-// ARTE_RUIM HTTP CALLS
+/**
+ * Submit Actions
+ */
 
 exports.arteRuimSubmitAction = functions.https.onCall(arteRuimEngine.submitAction);
 
-// CONTADORES_HISTORIAS HTTP CALLS
-
 exports.contadoresHistoriasSubmitAction = functions.https.onCall(contadoresHistoriasEngine.submitAction);
 
-// DETETIVES_IMAGINATIVOS HTTP CALLS
-
 exports.detetivesImaginativosSubmitAction = functions.https.onCall(detetivesImaginativosEngine.submitAction);
-
-// INSTRUMENTOS_CODIFICADOS HTTP CALLS
 
 exports.instrumentosCodificadosSubmitAction = functions.https.onCall(
   instrumentosCodificadosEngine.submitAction
 );
 
-// MENTE_COLETIVA HTTP CALLS
-
 exports.menteColetivaSubmitAction = functions.https.onCall(menteColetivaEngine.submitAction);
 
-// POLEMICA_DA_VEZ HTTP CALLS
+exports.ondaTelepaticaSubmitAction = functions.https.onCall(ondaTelepaticaEngine.submitAction);
 
 exports.polemicaDaVezSubmitAction = functions.https.onCall(polemicaDaVezEngine.submitAction);
 
-// SONHOS_PESADELOS HTTP CALLS
-
 exports.sonhosPesadelosSubmitAction = functions.https.onCall(sonhosPesadelosEngine.submitAction);
 
-// TESTEMUNHA_OCULAR HTTP CALLS
-
 exports.testemunhaOcularSubmitAction = functions.https.onCall(testemunhaOcularEngine.submitAction);
-
-// UE_SO_ISSO HTTP CALLS
 
 exports.ueSoIssoSubmitAction = functions.https.onCall(ueSoIssoEngine.submitAction);
 
@@ -127,25 +115,3 @@ exports.espiaoEntreNosGuessLocation = functions.https.onCall(espiaoEntreNosEngin
  * Submit individual voting, if it's the last player to be ready, move to the next phase
  */
 exports.espiaoEntreNosSubmitVoting = functions.https.onCall(espiaoEntreNosEngine.submitVoting);
-
-// ONDA_TELEPATICA HTTP CALLS
-
-/**
- * Submit dial sides and final clue and move to the next phase
- */
-exports.ondaTelepaticaSubmitSides = functions.https.onCall(ondaTelepaticaEngine.submitSides);
-
-/**
- * Submit dial sides and final clue and move to the next phase
- */
-exports.ondaTelepaticaSubmitClue = functions.https.onCall(ondaTelepaticaEngine.submitClue);
-
-/**
- * Submit team guess and move to the next phase
- */
-exports.ondaTelepaticaSubmitGuess = functions.https.onCall(ondaTelepaticaEngine.submitGuess);
-
-/**
- * Submit rival team guess and move to the next phase
- */
-exports.ondaTelepaticaSubmitRivalGuess = functions.https.onCall(ondaTelepaticaEngine.submitRivalGuess);

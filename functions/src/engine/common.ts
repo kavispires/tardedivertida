@@ -423,6 +423,9 @@ const feedEmulatorDB = async () => {
 
   await firebaseUtils.getGlobalRef().doc(GLOBAL_USED_DOCUMENTS.MENTE_COLETIVA).set(sample);
 
+  // ONDA_TELEPATICA
+  await firebaseUtils.getGlobalRef().doc(GLOBAL_USED_DOCUMENTS.ONDA_TELEPATICA).set(sample);
+
   // TESTEMUNHA_OCULAR
 
   await firebaseUtils.getGlobalRef().doc(GLOBAL_USED_DOCUMENTS.TESTEMUNHA_OCULAR).set(sample);

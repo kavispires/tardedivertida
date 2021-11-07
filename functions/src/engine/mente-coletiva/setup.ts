@@ -41,7 +41,7 @@ export const prepareSetupPhase = async (
   const deck = buildDeck(additionalData.allQuestions, additionalData.usedQuestions);
 
   // Add level to players
-  utils.addPropertiesFromPlayers(players, {
+  utils.addPropertiesToPlayers(players, {
     level: 0,
     answers: [],
   });
@@ -73,7 +73,7 @@ export const prepareQuestionSelectionPhase = async (
   const activePlayerId = utils.getActivePlayer(store.gameOrder, state.round.current + 1);
 
   // Modify player
-  utils.addPropertiesFromPlayers(players, {
+  utils.addPropertiesToPlayers(players, {
     score: 0,
     answers: [],
   });

@@ -55,7 +55,7 @@ export const prepareTopicSelectionPhase = async (
   const activePlayerId = utils.getActivePlayer(store.gameOrder, state.round.current + 1);
 
   // Modify player
-  utils.addPropertiesFromPlayers(players, {
+  utils.addPropertiesToPlayers(players, {
     reaction: null,
     likesGuess: null,
   });

@@ -1,0 +1,21 @@
+export const ONDA_TELEPATICA_PHASES = {
+  LOBBY: 'LOBBY',
+  RULES: 'RULES',
+  SETUP: 'SETUP',
+  DIAL_SIDES: 'DIAL_SIDES',
+  DIAL_CLUE: 'DIAL_CLUE',
+  GUESS: 'GUESS',
+  REVEAL: 'REVEAL',
+  GAME_OVER: 'GAME_OVER',
+};
+
+export const PLAYER_COUNT = {
+  MIN: 3,
+  MAX: 10,
+};
+
+export const MAX_ROUNDS = 10;
+
+export const GAME_OVER_SCORE_THRESHOLD = 20;
+
+export const CATEGORIES_PER_ROUND = 2;
