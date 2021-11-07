@@ -45,48 +45,12 @@ export const GAME_COLLECTIONS = {
 };
 
 export const GAME_PLAYERS_LIMIT = {
-  ARTE_RUIM: {
-    min: 3,
-    max: 8,
-  },
-  CONTADORES_HISTORIAS: {
-    min: 3,
-    max: 8,
-  },
-  DETETIVES_IMAGINATIVOS: {
-    min: 4,
-    max: 8,
-  },
   ESPIAO_ENTRE_NOS: {
     min: 4,
     max: 8,
   },
-  INSTRUMENTOS_CODIFICADOS: {
-    min: 2,
-    max: 8,
-  },
-  MENTE_COLETIVA: {
-    min: 3,
-    max: 8,
-  },
   ONDA_TELEPATICA: {
     min: 4,
-    max: 8,
-  },
-  POLEMICA_DA_VEZ: {
-    min: 3,
-    max: 8,
-  },
-  SONHOS_PESADELOS: {
-    min: 2,
-    max: 8,
-  },
-  TESTEMUNHA_OCULAR: {
-    min: 2,
-    max: 8,
-  },
-  UE_SO_ISSO: {
-    min: 3,
     max: 8,
   },
 };
@@ -97,6 +61,7 @@ export const GLOBAL_USED_DOCUMENTS = {
   ARTE_RUIM: 'usedArteRuimCards',
   MENTE_COLETIVA: 'usedMenteColetivaQuestions',
   TESTEMUNHA_OCULAR: 'usedTestemunhaOcularCards',
+  ONDA_TELEPATICA: 'usedOndaTelepaticaCategories',
 };
 
 /**
@@ -111,16 +76,6 @@ export const PHASES = {
     ASSESSMENT: 'ASSESSMENT',
     FINAL_ASSESSMENT: 'FINAL_ASSESSMENT',
     RESOLUTION: 'RESOLUTION',
-    GAME_OVER: 'GAME_OVER',
-  },
-  ONDA_TELEPATICA: {
-    LOBBY: 'LOBBY',
-    RULES: 'RULES',
-    DIAL_SIDES: 'DIAL_SIDES',
-    DIAL_CLUE: 'DIAL_CLUE',
-    GUESS: 'GUESS',
-    RIVAL_GUESS: 'RIVAL_GUESS',
-    REVEAL: 'REVEAL',
     GAME_OVER: 'GAME_OVER',
   },
 };
@@ -145,7 +100,3 @@ export const ESPIAO_ENTRE_NOS_CONSTANTS = {
     SPY_FOUND: 'SPY_FOUND',
   },
 };
-
-// ONDA_TELEPATICA
-
-export const ONDA_TELEPATICA_GOAL = 10;

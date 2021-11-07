@@ -267,7 +267,7 @@
     "max": 12,
     "tags": ["competitive", "real-time", "guessing"],
     "available": {
-      "pt": true,
+      "pt": false,
       "en": false
     }
   },

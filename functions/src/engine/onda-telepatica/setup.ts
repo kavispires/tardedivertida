@@ -1,0 +1,178 @@
+// Constants
+import { CATEGORIES_PER_ROUND, ONDA_TELEPATICA_PHASES } from './constants';
+// Interfaces
+import { CategoryCard, FirebaseStateData, FirebaseStoreData, ResourceData } from './interfaces';
+import { Players, SaveGamePayload } from '../../utils/interfaces';
+// Utils
+import * as firebaseUtils from '../../utils/firebase';
+import * as gameUtils from '../../utils/game-utils';
+import * as utils from '../../utils/helpers';
+// Internal
+import { buildDeck, buildRanking } from './helpers';
+
+/**
+ * Setup
+ * Build the card deck
+ * Resets previous changes to the store
+ * @returns
+ */
+export const prepareSetupPhase = async (
+  store: FirebaseStoreData,
+  state: FirebaseStateData,
+  players: Players,
+  additionalData: ResourceData
+): Promise<SaveGamePayload> => {
+  // Determine turn order
+  const gameOrder = gameUtils.shuffle(Object.keys(players));
+
+  // Build deck
+  const deck = buildDeck(additionalData);
+
+  // Save
+  return {
+    update: {
+      store: {
+        gameOrder,
+        deck,
+        deckIndex: -1,
+        pastCategories: [],
+      },
+      state: {
+        phase: ONDA_TELEPATICA_PHASES.SETUP,
+        gameOrder,
+      },
+    },
+  };
+};
+
+export const prepareDialSidesPhase = async (
+  store: FirebaseStoreData,
+  state: FirebaseStateData
+): Promise<SaveGamePayload> => {
+  // Determine active player based on current round
+  const psychicId = utils.getActivePlayer(store.gameOrder, state.round.current + 1);
+
+  // Get categories
+  const currentCategories = Array(CATEGORIES_PER_ROUND)
+    .fill(store.deckIndex)
+    .map((deckIndex, index) => store.deck[deckIndex + index]);
+
+  // Save
+  return {
+    update: {
+      store: {
+        deckIndex: store.deckIndex + CATEGORIES_PER_ROUND,
+      },
+      state: {
+        phase: ONDA_TELEPATICA_PHASES.DIAL_SIDES,
+        round: utils.increaseRound(state.round),
+        psychicId,
+        currentCategories,
+      },
+    },
+  };
+};
+
+export const prepareDialCluePhase = async (store: FirebaseStoreData): Promise<SaveGamePayload> => {
+  const selectedCategory = store.deck.find((category: CategoryCard) => category.id === store.categoryId);
+
+  const currentCategory = {
+    ...selectedCategory,
+    target: gameUtils.getRandomNumber(-10, 10),
+  };
+
+  // Save
+  return {
+    update: {
+      store: {
+        deckIndex: store.deckIndex + CATEGORIES_PER_ROUND,
+      },
+      state: {
+        phase: ONDA_TELEPATICA_PHASES.DIAL_CLUE,
+        currentCategory,
+        currentCategories: firebaseUtils.deleteValue(),
+      },
+    },
+  };
+};
+
+export const prepareGuessPhase = async (
+  store: FirebaseStoreData,
+  state: FirebaseStateData,
+  players: Players
+): Promise<SaveGamePayload> => {
+  // Unready players
+  utils.unReadyPlayers(players);
+
+  // Modify player
+  utils.addPropertiesToPlayers(players, {
+    needle: 0,
+  });
+
+  const currentCategory = {
+    ...state.currentCategory,
+    clue: store.clue,
+  };
+
+  // Save
+  return {
+    update: {
+      store: {
+        deckIndex: store.deckIndex + CATEGORIES_PER_ROUND,
+      },
+      state: {
+        phase: ONDA_TELEPATICA_PHASES.GUESS,
+        currentCategory,
+      },
+      players,
+    },
+  };
+};
+
+export const prepareRevealPhase = async (
+  store: FirebaseStoreData,
+  state: FirebaseStateData,
+  players: Players
+): Promise<SaveGamePayload> => {
+  // Gather votes
+  const ranking = buildRanking(players, state.currentCategory, state.psychicId);
+
+  // Save
+  return {
+    update: {
+      store: {
+        deckIndex: store.deckIndex + CATEGORIES_PER_ROUND,
+      },
+      state: {
+        phase: ONDA_TELEPATICA_PHASES.REVEAL,
+        ranking,
+      },
+      players,
+    },
+  };
+};
+
+export const prepareGameOverPhase = async (
+  store: FirebaseStoreData,
+  state: FirebaseStateData,
+  players: Players
+): Promise<SaveGamePayload> => {
+  const winners = utils.determineWinners(players);
+
+  return {
+    update: {
+      meta: {
+        isComplete: true,
+      },
+    },
+    set: {
+      players,
+      state: {
+        phase: ONDA_TELEPATICA_PHASES.GAME_OVER,
+        round: state.round,
+        gameEndedAt: Date.now(),
+        winners,
+      },
+    },
+  };
+};

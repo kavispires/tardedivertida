@@ -15,7 +15,7 @@ export const getQuestions = async (language: string) => {
   // Get full deck
   const allCards = await resourceUtils.fetchResource(resourceName);
   // Get used deck
-  const usedCards = await globalUtils.getGlobalFirebaseDocData('usedTestemunhaOcularCards', {});
+  const usedCards = await globalUtils.getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.TESTEMUNHA_OCULAR, {});
   return {
     allCards,
     usedCards: Object.keys(usedCards),
@@ -23,7 +23,7 @@ export const getQuestions = async (language: string) => {
 };
 
 /**
- * Save use questions to the global document
+ * Save used questions to the global document
  * @param pastQuestions
  */
 export const saveUsedQUestions = async (pastQuestions: TestemunhaOcularEntry[]) => {

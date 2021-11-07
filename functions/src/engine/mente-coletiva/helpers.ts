@@ -113,6 +113,11 @@ export const gatherAllAnswers = (players: Players): AnswerEntry[] => {
   return answersObj;
 };
 
+/**
+ *
+ * @param players
+ * @returns
+ */
 export const extendPlayerAnswers = (players: Players) => {
   Object.values(players).forEach((player) => {
     const answers: PlainObject = player.answers;

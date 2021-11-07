@@ -20,20 +20,16 @@ export const handleSubmitQuestion = async (
   playerId: PlayerId,
   questionId: string
 ) => {
-  const actionText = 'submit the question';
-
-  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
-  const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
-
-  const players = playersDoc.data() ?? {};
-
-  try {
-    await sessionRef.doc('store').update({ questionId });
-  } catch (error) {
-    firebaseUtils.throwException(error, actionText);
-  }
-
-  return nextMenteColetivaPhase(collectionName, gameId, players);
+  return await firebaseUtils.updateStore({
+    collectionName,
+    gameId,
+    playerId,
+    actionText: 'submit question',
+    change: {
+      questionId,
+    },
+    nextPhaseFunction: nextMenteColetivaPhase,
+  });
 };
 
 /**
