@@ -224,7 +224,7 @@ export const triggerSetupPhase = async (
   sessionRef: FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData>
 ) => {
   await sessionRef.doc('state').update({ phase: 'SETUP', updatedAt: Date.now() });
-
+  // await utils.wait();
   return true;
 };
 

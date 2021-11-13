@@ -55,7 +55,12 @@ export const getInitialState = (gameId: GameId, uid: string, language: string): 
   });
 };
 
-export const nextUeSoIssoPhase = async (
+/**
+ * Exposes min and max player count
+ */
+export const playerCount = PLAYER_COUNT;
+
+export const getNextPhase = async (
   collectionName: string,
   gameId: string,
   players: Players
@@ -82,7 +87,7 @@ export const nextUeSoIssoPhase = async (
     const additionalData = await getWords(store.language);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await firebaseUtils.saveGame(sessionRef, newPhase);
-    return nextUeSoIssoPhase(collectionName, gameId, players);
+    return getNextPhase(collectionName, gameId, players);
   }
 
   // SETUP/* -> WORD_SELECTION

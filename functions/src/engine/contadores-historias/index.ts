@@ -48,7 +48,12 @@ export const getInitialState = (
   });
 };
 
-export const nextContadoresHistoriasPhase = async (
+/**
+ * Exposes min and max player count
+ */
+export const playerCount = PLAYER_COUNT;
+
+export const getNextPhase = async (
   collectionName: string,
   gameId: string,
   players: Players
@@ -75,7 +80,7 @@ export const nextContadoresHistoriasPhase = async (
     const newPhase = await prepareSetupPhase(store, state, players);
     await firebaseUtils.saveGame(sessionRef, newPhase);
 
-    return nextContadoresHistoriasPhase(collectionName, gameId, newPhase.update?.players ?? {});
+    return getNextPhase(collectionName, gameId, newPhase.update?.players ?? {});
   }
 
   // * -> STORY

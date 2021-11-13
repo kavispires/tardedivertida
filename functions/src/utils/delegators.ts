@@ -1,43 +1,16 @@
 import { GAME_CODES, GAME_COLLECTIONS, GAME_KEYS } from './constants';
-import { GameCode, GameId } from '../utils/interfaces';
-import { getInitialState as arteRuimGetInitialState, nextArteRuimPhase } from '../engine/arte-ruim';
-import {
-  getInitialState as ContadoresHistoriasInitialState,
-  nextContadoresHistoriasPhase,
-} from '../engine/contadores-historias';
-import {
-  getInitialState as detetivesImaginativosGetInitialState,
-  nextDetetivesImaginativosPhase,
-} from '../engine/detetives-imaginativos';
-import {
-  getInitialState as espiaoEntreNosGetInitialState,
-  nextEspiaoEntreNosPhase,
-} from '../engine/espiao-entre-nos';
-import {
-  getInitialState as instrumentosCodificadosGetInitialState,
-  nextInstrumentosCodificadosPhase,
-} from '../engine/instrumentos-codificados';
-import {
-  getInitialState as menteColetivaGetInitialState,
-  nextMenteColetivaPhase,
-} from '../engine/mente-coletiva';
-import {
-  getInitialState as ondaTelepaticaGetInitialState,
-  nextOndaTelepaticaPhase,
-} from '../engine/onda-telepatica';
-import {
-  getInitialState as polemicaDaVezGetInitialState,
-  nextPolemicaDaVezPhase,
-} from '../engine/polemica-da-vez';
-import {
-  getInitialState as sonhosPesadelosGetInitialState,
-  nextSonhosPesadelosPhase,
-} from '../engine/sonhos-pesadelos';
-import {
-  getInitialState as testemunhaOcularGetInitialState,
-  nextTestemunhaOcularPhase,
-} from '../engine/testemunha-ocular';
-import { getInitialState as ueSoIssoGetInitialState, nextUeSoIssoPhase } from '../engine/ue-so-isso';
+import { Engine, GameCode, GameId } from '../utils/interfaces';
+import * as arteRuimEngine from '../engine/arte-ruim';
+import * as contadoresHistoriasEngine from '../engine/contadores-historias';
+import * as detetivesImaginativosEngine from '../engine/detetives-imaginativos';
+import * as espiaoEntreNosEngine from '../engine/espiao-entre-nos';
+import * as instrumentosCodificadosEngine from '../engine/instrumentos-codificados';
+import * as menteColetivaEngine from '../engine/mente-coletiva';
+import * as ondaTelepaticaEngine from '../engine/onda-telepatica';
+import * as polemicaDaVezEngine from '../engine/polemica-da-vez';
+import * as sonhosPesadelosEngine from '../engine/sonhos-pesadelos';
+import * as testemunhaOcularEngine from '../engine/testemunha-ocular';
+import * as ueSoIssoEngine from '../engine/ue-so-isso';
 
 /**
  * Get collection name by single letter game code
@@ -115,70 +88,31 @@ export const getCollectionNameByGameId = (gameId: GameId): string | null => {
   return getCollectionNameByGameCode(gameId[0]);
 };
 
-/**
- * Get the initial state from game collection
- * @param collectionName
- * @returns
- */
-export const getInitialStateForCollection = (collectionName: string) => {
+export const getEngine = (collectionName: string): Engine => {
   switch (collectionName) {
     case GAME_COLLECTIONS.ARTE_RUIM:
-      return arteRuimGetInitialState;
+      return arteRuimEngine;
     case GAME_COLLECTIONS.CONTADORES_HISTORIAS:
-      return ContadoresHistoriasInitialState;
+      return contadoresHistoriasEngine;
     case GAME_COLLECTIONS.DETETIVES_IMAGINATIVOS:
-      return detetivesImaginativosGetInitialState;
+      return detetivesImaginativosEngine;
     case GAME_COLLECTIONS.ESPIAO_ENTRE_NOS:
-      return espiaoEntreNosGetInitialState;
+      return espiaoEntreNosEngine;
     case GAME_COLLECTIONS.INSTRUMENTOS_CODIFICADOS:
-      return instrumentosCodificadosGetInitialState;
+      return instrumentosCodificadosEngine;
     case GAME_COLLECTIONS.MENTE_COLETIVA:
-      return menteColetivaGetInitialState;
+      return menteColetivaEngine;
     case GAME_COLLECTIONS.ONDA_TELEPATICA:
-      return ondaTelepaticaGetInitialState;
+      return ondaTelepaticaEngine;
     case GAME_COLLECTIONS.POLEMICA_DA_VEZ:
-      return polemicaDaVezGetInitialState;
+      return polemicaDaVezEngine;
     case GAME_COLLECTIONS.SONHOS_PESADELOS:
-      return sonhosPesadelosGetInitialState;
+      return sonhosPesadelosEngine;
     case GAME_COLLECTIONS.TESTEMUNHA_OCULAR:
-      return testemunhaOcularGetInitialState;
+      return testemunhaOcularEngine;
     case GAME_COLLECTIONS.UE_SO_ISSO:
-      return ueSoIssoGetInitialState;
+      return ueSoIssoEngine;
     default:
       throw new Error(`Collection '${collectionName}' initial state does not exist`);
-  }
-};
-
-/**
- * Get the next phase delegator from game collection
- * @param collectionName
- * @returns
- */
-export const getNextPhaseForCollection = (collectionName: string) => {
-  switch (collectionName) {
-    case GAME_KEYS.ARTE_RUIM:
-      return nextArteRuimPhase;
-    case GAME_KEYS.CONTADORES_HISTORIAS:
-      return nextContadoresHistoriasPhase;
-    case GAME_KEYS.DETETIVES_IMAGINATIVOS:
-      return nextDetetivesImaginativosPhase;
-    case GAME_KEYS.ESPIAO_ENTRE_NOS:
-      return nextEspiaoEntreNosPhase;
-    case GAME_KEYS.INSTRUMENTOS_CODIFICADOS:
-      return nextInstrumentosCodificadosPhase;
-    case GAME_KEYS.MENTE_COLETIVA:
-      return nextMenteColetivaPhase;
-    case GAME_KEYS.ONDA_TELEPATICA:
-      return nextOndaTelepaticaPhase;
-    case GAME_KEYS.POLEMICA_DA_VEZ:
-      return nextPolemicaDaVezPhase;
-    case GAME_KEYS.SONHOS_PESADELOS:
-      return nextSonhosPesadelosPhase;
-    case GAME_KEYS.TESTEMUNHA_OCULAR:
-      return nextTestemunhaOcularPhase;
-    case GAME_KEYS.UE_SO_ISSO:
-      return nextUeSoIssoPhase;
-    default:
-      throw new Error(`Collection '${collectionName}' phase delegator does not exist`);
   }
 };

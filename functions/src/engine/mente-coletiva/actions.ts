@@ -3,7 +3,7 @@ import { GameId, PlayerId, GameName, PlainObject } from '../../utils/interfaces'
 // Utils
 import * as firebaseUtils from '../../utils/firebase';
 // Internal
-import { nextMenteColetivaPhase } from '.';
+import { getNextPhase } from '.';
 import { buildListOfAnswers } from './helpers';
 
 /**
@@ -28,7 +28,7 @@ export const handleSubmitQuestion = async (
     change: {
       questionId,
     },
-    nextPhaseFunction: nextMenteColetivaPhase,
+    nextPhaseFunction: getNextPhase,
   });
 };
 
@@ -53,7 +53,7 @@ export const handleSubmitAnswers = async (
     actionText: 'submit the answers',
     shouldReady: true,
     change: { answers },
-    nextPhaseFunction: nextMenteColetivaPhase,
+    nextPhaseFunction: getNextPhase,
   });
 };
 
@@ -110,7 +110,7 @@ export const handleNextAnswers = async (
   const answersList = buildListOfAnswers(allAnswers);
 
   if (answersList.length === 0) {
-    return nextMenteColetivaPhase(collectionName, gameId, players);
+    return getNextPhase(collectionName, gameId, players);
   }
 
   try {

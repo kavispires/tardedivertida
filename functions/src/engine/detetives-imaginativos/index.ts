@@ -48,7 +48,12 @@ export const getInitialState = (
   });
 };
 
-export const nextDetetivesImaginativosPhase = async (
+/**
+ * Exposes min and max player count
+ */
+export const playerCount = PLAYER_COUNT;
+
+export const getNextPhase = async (
   collectionName: string,
   gameId: string,
   players: Players
@@ -73,7 +78,7 @@ export const nextDetetivesImaginativosPhase = async (
     const newPhase = await prepareSetupPhase(store, state, players);
     await firebaseUtils.saveGame(sessionRef, newPhase);
 
-    return nextDetetivesImaginativosPhase(collectionName, gameId, newPhase.update?.players ?? {});
+    return getNextPhase(collectionName, gameId, newPhase.update?.players ?? {});
   }
 
   // * -> SECRET_CLUE

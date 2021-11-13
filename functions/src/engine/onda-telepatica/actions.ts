@@ -3,39 +3,14 @@ import { GameId, PlayerId, GameName } from '../../utils/interfaces';
 // Utils
 import * as firebaseUtils from '../../utils/firebase';
 // Internal
-import { nextOndaTelepaticaPhase } from '.';
-
-/**
- * When psychic chooses the round's category
- * @param collectionName
- * @param gameId
- * @param playerId
- * @param categoryId
- * @returns
- */
-export const handleSubmitCategory = async (
-  collectionName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
-  categoryId: string
-) => {
-  return await firebaseUtils.updateStore({
-    collectionName,
-    gameId,
-    playerId,
-    actionText: 'submit category',
-    change: {
-      categoryId,
-    },
-    nextPhaseFunction: nextOndaTelepaticaPhase,
-  });
-};
+import { getNextPhase } from '.';
 
 /**
  * When psychic submits the round's clue
  * @param collectionName
  * @param gameId
  * @param playerId
+ * @param categoryId
  * @param clue
  * @returns
  */
@@ -43,6 +18,7 @@ export const handleSubmitClue = async (
   collectionName: GameName,
   gameId: GameId,
   playerId: PlayerId,
+  categoryId: string,
   clue: string
 ) => {
   return await firebaseUtils.updateStore({
@@ -52,8 +28,9 @@ export const handleSubmitClue = async (
     actionText: 'submit clue',
     change: {
       clue,
+      categoryId,
     },
-    nextPhaseFunction: nextOndaTelepaticaPhase,
+    nextPhaseFunction: getNextPhase,
   });
 };
 
@@ -78,6 +55,6 @@ export const handleSubmitGuess = async (
     actionText: 'submit guess',
     shouldReady: true,
     change: { guess },
-    nextPhaseFunction: nextOndaTelepaticaPhase,
+    nextPhaseFunction: getNextPhase,
   });
 };

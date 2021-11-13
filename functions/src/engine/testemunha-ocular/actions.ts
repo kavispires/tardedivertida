@@ -2,7 +2,7 @@
 import { GameName, GameId } from '../../utils/interfaces';
 // Utils
 import * as firebaseUtils from '../../utils/firebase';
-import { nextTestemunhaOcularPhase } from './index';
+import { getNextPhase } from './index';
 import { SUSPECT_COUNT } from './constants';
 
 /**
@@ -24,7 +24,7 @@ export const handleExtraAction = async (
   try {
     const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
     const players = playersDoc.data() ?? {};
-    return nextTestemunhaOcularPhase(collectionName, gameId, players, additionalPayload);
+    return getNextPhase(collectionName, gameId, players, additionalPayload);
   } catch (error) {
     firebaseUtils.throwException(error, `Failed to ${actionText}`);
   }
@@ -91,7 +91,7 @@ export const handleElimination = async (
     try {
       const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
       const players = playersDoc.data() ?? {};
-      return nextTestemunhaOcularPhase(collectionName, gameId, players, { lose, win });
+      return getNextPhase(collectionName, gameId, players, { lose, win });
     } catch (error) {
       firebaseUtils.throwException(error, `Failed to ${actionText}`);
     }

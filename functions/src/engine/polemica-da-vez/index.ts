@@ -47,7 +47,12 @@ export const getInitialState = (
   });
 };
 
-export const nextPolemicaDaVezPhase = async (
+/**
+ * Exposes min and max player count
+ */
+export const playerCount = PLAYER_COUNT;
+
+export const getNextPhase = async (
   collectionName: string,
   gameId: string,
   players: Players
@@ -72,7 +77,7 @@ export const nextPolemicaDaVezPhase = async (
     const additionalData = await getTopics(store.language);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await firebaseUtils.saveGame(sessionRef, newPhase);
-    return nextPolemicaDaVezPhase(collectionName, gameId, players);
+    return getNextPhase(collectionName, gameId, players);
   }
 
   // * -> TOPIC_SELECTION

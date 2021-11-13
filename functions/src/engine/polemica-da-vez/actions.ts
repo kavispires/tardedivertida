@@ -3,7 +3,7 @@ import { GameId, PlayerId, GameName } from '../../utils/interfaces';
 // Utils
 import * as firebaseUtils from '../../utils/firebase';
 // Internal
-import { nextPolemicaDaVezPhase } from '.';
+import { getNextPhase } from '.';
 
 /**
  * When active player chooses the round's topic
@@ -29,7 +29,7 @@ export const handleSubmitTopic = async (
       topicId,
       customTopic: customTopic ?? null,
     },
-    nextPhaseFunction: nextPolemicaDaVezPhase,
+    nextPhaseFunction: getNextPhase,
   });
 };
 
@@ -55,6 +55,6 @@ export const handleSubmitReaction = async (
     actionText: 'submit the answers',
     shouldReady: true,
     change: { reaction, likesGuess },
-    nextPhaseFunction: nextPolemicaDaVezPhase,
+    nextPhaseFunction: getNextPhase,
   });
 };

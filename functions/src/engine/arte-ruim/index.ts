@@ -45,7 +45,19 @@ export const getInitialState = (gameId: GameId, uid: string, language: Language)
   });
 };
 
-export const nextArteRuimPhase = async (
+/**
+ * Exposes min and max player count
+ */
+export const playerCount = PLAYER_COUNT;
+
+/**
+ *
+ * @param collectionName
+ * @param gameId
+ * @param players
+ * @returns
+ */
+export const getNextPhase = async (
   collectionName: GameName,
   gameId: GameId,
   players: Players
@@ -70,7 +82,7 @@ export const nextArteRuimPhase = async (
     const additionalData = await getCards(store.language);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await firebaseUtils.saveGame(sessionRef, newPhase);
-    return nextArteRuimPhase(collectionName, gameId, players);
+    return getNextPhase(collectionName, gameId, players);
   }
 
   // SETUP -> DRAW

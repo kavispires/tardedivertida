@@ -22,10 +22,10 @@ export interface CurrentCategory extends CategoryCard {
 }
 
 export interface OndaTelepaticaStore extends DefaultStore {
-  gameOrder: PlayerId[];
-  deck: Deck;
-  deckIndex: number;
-  pastCategories: PastCategories;
+  gameOrder?: PlayerId[];
+  deck?: Deck;
+  deckIndex?: number;
+  pastCategories?: PastCategories;
 
   [key: string]: any;
 }
