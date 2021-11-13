@@ -3,7 +3,7 @@ import { GameId, PlayerId, GameName } from '../../utils/interfaces';
 // Utils
 import * as firebaseUtils from '../../utils/firebase';
 import * as playerHandUtils from '../../utils/player-hand-utils';
-import { nextDetetivesImaginativosPhase } from './index';
+import { getNextPhase } from './index';
 import { HAND_LIMIT } from './constants';
 
 /**
@@ -65,7 +65,7 @@ export const handlePlayCard = async (
     // If it is the last player to play, go to the next phase
     if (newPhaseIndex === state.phaseOrder.length) {
       await sessionRef.doc('state').update({ table });
-      nextDetetivesImaginativosPhase(collectionName, gameId, players);
+      getNextPhase(collectionName, gameId, players);
     } else {
       await sessionRef.doc('state').update({
         table,
@@ -107,7 +107,7 @@ export const handleDefend = async (collectionName: GameName, gameId: GameId, pla
     if (newPhaseIndex === state.phaseOrder.length) {
       const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
       const players = playersDoc.data() ?? {};
-      nextDetetivesImaginativosPhase(collectionName, gameId, players);
+      getNextPhase(collectionName, gameId, players);
     } else {
       await sessionRef.doc('state').update({
         phaseIndex: newPhaseIndex,
@@ -142,7 +142,7 @@ export const handleSubmitVote = async (
     actionText: 'submit vote',
     shouldReady: true,
     change: { vote },
-    nextPhaseFunction: nextDetetivesImaginativosPhase,
+    nextPhaseFunction: getNextPhase,
   });
 };
 
@@ -168,6 +168,6 @@ export const handleSubmitClue = async (
     change: {
       clue,
     },
-    nextPhaseFunction: nextDetetivesImaginativosPhase,
+    nextPhaseFunction: getNextPhase,
   });
 };

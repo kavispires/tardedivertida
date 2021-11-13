@@ -49,7 +49,12 @@ export const getInitialState = (
   });
 };
 
-export const nextMenteColetivaPhase = async (
+/**
+ * Exposes min and max player count
+ */
+export const playerCount = PLAYER_COUNT;
+
+export const getNextPhase = async (
   collectionName: string,
   gameId: string,
   players: Players
@@ -79,7 +84,7 @@ export const nextMenteColetivaPhase = async (
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await firebaseUtils.saveGame(sessionRef, newPhase);
 
-    return nextMenteColetivaPhase(collectionName, gameId, players);
+    return getNextPhase(collectionName, gameId, players);
   }
 
   // SETUP/* -> QUESTION_SELECTION

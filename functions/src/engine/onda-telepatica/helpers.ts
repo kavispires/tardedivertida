@@ -18,15 +18,15 @@ import * as gameUtils from '../../utils/game-utils';
  * @returns
  */
 export const determineNextPhase = (currentPhase: string, round: Round, isGameOver?: boolean): string => {
-  const { RULES, DIAL_SIDES, DIAL_CLUE, GUESS, REVEAL, GAME_OVER } = ONDA_TELEPATICA_PHASES;
-  const order = [RULES, DIAL_SIDES, DIAL_CLUE, GUESS, REVEAL, GAME_OVER];
+  const { RULES, SETUP, DIAL_CLUE, GUESS, REVEAL, GAME_OVER } = ONDA_TELEPATICA_PHASES;
+  const order = [RULES, SETUP, DIAL_CLUE, GUESS, REVEAL, GAME_OVER];
 
   if (isGameOver) {
     return GAME_OVER;
   }
 
   if (currentPhase === REVEAL) {
-    return round.current > 0 && round.current === round.total ? GAME_OVER : DIAL_SIDES;
+    return round.current > 0 && round.current === round.total ? GAME_OVER : DIAL_CLUE;
   }
 
   const currentPhaseIndex = order.indexOf(currentPhase);
@@ -35,7 +35,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, isGameOve
     return order[currentPhaseIndex + 1];
   }
   console.warn('Missing phase check');
-  return DIAL_SIDES;
+  return DIAL_CLUE;
 };
 
 /**
@@ -133,13 +133,16 @@ export const buildRanking = (players: Players, currentCategory: CurrentCategory,
 
   // If psychic predicted the win
   const isMoreThanHalf = psychicPoints >= (Object.keys(players).length - 1) / 2;
+  // Psychic gets a maximum of 3 points for other players votes
+  psychicPoints = psychicPoints > 3 ? 3 : psychicPoints;
+  // Psychic gets 2 points if he bet on the guess amount correctly
   psychicPoints += players[psychicId].guess === isMoreThanHalf ? 2 : 0;
   // Add psychic points
   players[psychicId].score += psychicPoints;
   newScores[psychicId][1] += psychicPoints;
   newScores[psychicId][2] += psychicPoints;
 
-  const ranking = Object.entries(newScores)
+  return Object.entries(newScores)
     .map(([playerId, scores]) => {
       return {
         playerId,
@@ -150,6 +153,4 @@ export const buildRanking = (players: Players, currentCategory: CurrentCategory,
       };
     })
     .sort((a, b) => (a.newScore > b.newScore ? 1 : -1));
-
-  return ranking;
 };

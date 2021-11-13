@@ -11,14 +11,13 @@ import { determineGameOver, determineNextPhase } from './helpers';
 import { OndaTelepaticaInitialState, OndaTelepaticaSubmitAction } from './interfaces';
 import {
   prepareDialCluePhase,
-  prepareDialSidesPhase,
   prepareGameOverPhase,
   prepareGuessPhase,
   prepareRevealPhase,
   prepareSetupPhase,
 } from './setup';
 import { getCategories } from './data';
-import { handleSubmitCategory, handleSubmitClue, handleSubmitGuess } from './actions';
+import { handleSubmitClue, handleSubmitGuess } from './actions';
 
 /**
  * Get Initial Game State
@@ -49,7 +48,12 @@ export const getInitialState = (
   });
 };
 
-export const nextOndaTelepaticaPhase = async (
+/**
+ * Exposes min and max player count
+ */
+export const playerCount = PLAYER_COUNT;
+
+export const getNextPhase = async (
   collectionName: string,
   gameId: string,
   players: Players
@@ -65,7 +69,7 @@ export const nextOndaTelepaticaPhase = async (
   const isGameOver = determineGameOver(players);
   // Determine next phase
   const nextPhase = determineNextPhase(state?.phase, state?.round, isGameOver);
-
+  console.log({ nextPhase });
   // RULES -> SETUP
   if (nextPhase === ONDA_TELEPATICA_PHASES.SETUP) {
     // Enter setup phase before doing anything
@@ -75,18 +79,12 @@ export const nextOndaTelepaticaPhase = async (
     const additionalData = await getCategories(store.language);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await firebaseUtils.saveGame(sessionRef, newPhase);
-    return nextOndaTelepaticaPhase(collectionName, gameId, players);
-  }
-
-  // SETUP/REVEAL -> DIAL_SIDES
-  if (nextPhase === ONDA_TELEPATICA_PHASES.DIAL_SIDES) {
-    const newPhase = await prepareDialSidesPhase(store, state);
-    return firebaseUtils.saveGame(sessionRef, newPhase);
+    return getNextPhase(collectionName, gameId, players);
   }
 
   // DIAL_SIDES -> DIAL_CLUE
   if (nextPhase === ONDA_TELEPATICA_PHASES.DIAL_CLUE) {
-    const newPhase = await prepareDialCluePhase(store);
+    const newPhase = await prepareDialCluePhase(store, state);
     return firebaseUtils.saveGame(sessionRef, newPhase);
   }
 
@@ -121,12 +119,9 @@ export const submitAction = async (data: OndaTelepaticaSubmitAction) => {
   firebaseUtils.validateSubmitActionPayload(gameId, collectionName, playerId, action);
 
   switch (action) {
-    case 'SUBMIT_CATEGORY':
-      firebaseUtils.validateSubmitActionProperties(data, ['categoryId'], 'submit category');
-      return handleSubmitCategory(collectionName, gameId, playerId, data.categoryId);
     case 'SUBMIT_CLUE':
-      firebaseUtils.validateSubmitActionProperties(data, ['clue'], 'submit clue');
-      return handleSubmitClue(collectionName, gameId, playerId, data.clue);
+      firebaseUtils.validateSubmitActionProperties(data, ['categoryId', 'clue'], 'submit category');
+      return handleSubmitClue(collectionName, gameId, playerId, data.categoryId, data.clue);
     case 'SUBMIT_GUESS':
       firebaseUtils.validateSubmitActionProperties(data, ['guess'], 'submit guess');
       return handleSubmitGuess(collectionName, gameId, playerId, data.guess);

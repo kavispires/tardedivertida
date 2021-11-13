@@ -6,7 +6,7 @@ import { HAND_LIMIT } from './constants';
 import * as firebaseUtils from '../../utils/firebase';
 import * as playerHandUtils from '../../utils/player-hand-utils';
 // Internal
-import { nextContadoresHistoriasPhase } from './index';
+import { getNextPhase } from './index';
 
 /**
  *
@@ -52,7 +52,7 @@ export const handleSubmitStory = async (
   }
 
   // If all players are ready, trigger next phase
-  return nextContadoresHistoriasPhase(collectionName, gameId, players);
+  return getNextPhase(collectionName, gameId, players);
 };
 
 /**
@@ -93,7 +93,7 @@ export const handlePlayCard = async (
       deckIndex,
       cardId,
     },
-    nextPhaseFunction: nextContadoresHistoriasPhase,
+    nextPhaseFunction: getNextPhase,
   });
 };
 
@@ -118,6 +118,6 @@ export const handleSubmitVote = async (
     actionText: 'submit vote',
     shouldReady: true,
     change: { vote },
-    nextPhaseFunction: nextContadoresHistoriasPhase,
+    nextPhaseFunction: getNextPhase,
   });
 };

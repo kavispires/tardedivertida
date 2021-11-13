@@ -3,7 +3,7 @@ import { GameId, PlayerId, GameName, PlainObject } from '../../utils/interfaces'
 // Helpers
 import * as firebaseUtils from '../../utils/firebase';
 // Internal functions
-import { nextArteRuimPhase } from './index';
+import { getNextPhase } from './index';
 
 export const handleSubmitDrawing = async (
   collectionName: GameName,
@@ -18,7 +18,7 @@ export const handleSubmitDrawing = async (
     actionText: 'submit your drawing',
     shouldReady: true,
     change: { 'currentCard.drawing': drawing },
-    nextPhaseFunction: nextArteRuimPhase,
+    nextPhaseFunction: getNextPhase,
   });
 };
 
@@ -35,6 +35,6 @@ export const handleSubmitVoting = async (
     actionText: 'submit your votes',
     shouldReady: true,
     change: { votes },
-    nextPhaseFunction: nextArteRuimPhase,
+    nextPhaseFunction: getNextPhase,
   });
 };

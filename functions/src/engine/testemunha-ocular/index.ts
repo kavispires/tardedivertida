@@ -48,7 +48,12 @@ export const getInitialState = (
   });
 };
 
-export const nextTestemunhaOcularPhase = async (
+/**
+ * Exposes min and max player count
+ */
+export const playerCount = PLAYER_COUNT;
+
+export const getNextPhase = async (
   collectionName: string,
   gameId: string,
   players: Players,
@@ -77,7 +82,7 @@ export const nextTestemunhaOcularPhase = async (
     const additionalData = await getQuestions(store.language);
     const newPhase = await prepareSetupPhase(additionalData);
     await firebaseUtils.saveGame(sessionRef, newPhase);
-    return nextTestemunhaOcularPhase(collectionName, gameId, players);
+    return getNextPhase(collectionName, gameId, players);
   }
 
   // SETUP -> WITNESS_SELECTION

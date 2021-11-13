@@ -3,7 +3,7 @@ import { GameId, PlayerId, GameName, PlainObject } from '../../utils/interfaces'
 // Helpers
 import * as firebaseUtils from '../../utils/firebase';
 import * as utils from '../../utils/helpers';
-import { nextInstrumentosCodificadosPhase } from './index';
+import { getNextPhase } from './index';
 
 export const handleSubmitHint = async (
   collectionName: GameName,
@@ -26,7 +26,7 @@ export const handleSubmitHint = async (
     actionText: 'submit hint',
     shouldReady: true,
     change: { currentHint },
-    nextPhaseFunction: nextInstrumentosCodificadosPhase,
+    nextPhaseFunction: getNextPhase,
   });
 };
 
@@ -53,7 +53,7 @@ export const handleSubmitConclusions = async (
     actionText,
     shouldReady: true,
     change: { conclusions: updatedConclusions },
-    nextPhaseFunction: nextInstrumentosCodificadosPhase,
+    nextPhaseFunction: getNextPhase,
   });
 };
 
@@ -81,7 +81,7 @@ export const handleSubmitCode = async (
 
   // If all players are ready, trigger next phase
   if (utils.isEverybodyReady(updatedPlayers)) {
-    return nextInstrumentosCodificadosPhase(collectionName, gameId, players);
+    return getNextPhase(collectionName, gameId, players);
   }
 
   return true;

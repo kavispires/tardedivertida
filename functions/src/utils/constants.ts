@@ -49,10 +49,6 @@ export const GAME_PLAYERS_LIMIT = {
     min: 4,
     max: 8,
   },
-  ONDA_TELEPATICA: {
-    min: 4,
-    max: 8,
-  },
 };
 
 export const SEPARATOR = ';;';
@@ -78,6 +74,16 @@ export const PHASES = {
     RESOLUTION: 'RESOLUTION',
     GAME_OVER: 'GAME_OVER',
   },
+  ONDA_TELEPATICA: {
+    LOBBY: 'LOBBY',
+    RULES: 'RULES',
+    DIAL_SIDES: 'DIAL_SIDES',
+    DIAL_CLUE: 'DIAL_CLUE',
+    GUESS: 'GUESS',
+    RIVAL_GUESS: 'RIVAL_GUESS',
+    REVEAL: 'REVEAL',
+    GAME_OVER: 'GAME_OVER',
+  },
 };
 
 // ESPIAO_ENTRE_NOS
@@ -100,3 +106,7 @@ export const ESPIAO_ENTRE_NOS_CONSTANTS = {
     SPY_FOUND: 'SPY_FOUND',
   },
 };
+
+// ONDA_TELEPATICA
+
+export const ONDA_TELEPATICA_GOAL = 10;

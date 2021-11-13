@@ -12,7 +12,7 @@ import {
   Payload,
   ExtendedPayload,
 } from '../utils/interfaces';
-import { GAME_PLAYERS_LIMIT, GLOBAL_USED_DOCUMENTS } from '../utils/constants';
+import { GLOBAL_USED_DOCUMENTS } from '../utils/constants';
 
 /**
  * Creates a new game instance
@@ -70,10 +70,9 @@ export const createGame = async (data: CreateGamePayload, context: FirebaseConte
   let response = {};
   try {
     const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
-    const getInitialState = delegatorUtils.getInitialStateForCollection(collectionName);
+    const { getInitialState } = delegatorUtils.getEngine(collectionName);
 
     const uid = context?.auth?.uid ?? 'admin?';
-
     const { meta, players, state, store } = getInitialState(gameId, uid, data.language ?? 'pt');
 
     await sessionRef.doc('meta').set(meta);
@@ -155,12 +154,12 @@ export const addPlayer = async (data: AddPlayerPayload) => {
   }
 
   // Verify maximum number of players
-  const collectionKey = delegatorUtils.getCollectionKeyByGameCode(gameId[0]) ?? '';
+  const { playerCount } = delegatorUtils.getEngine(collectionName);
   const numPlayers = Object.keys(players).length;
-  const maximum = GAME_PLAYERS_LIMIT[collectionKey].max;
-  if (numPlayers === maximum) {
+
+  if (numPlayers === playerCount.MAX) {
     firebaseUtils.throwException(
-      `Sorry, you can't join. Game ${gameId} already has the maximum number of players: ${maximum}`,
+      `Sorry, you can't join. Game ${gameId} already has the maximum number of players: ${playerCount.MIN}`,
       actionText
     );
   }
@@ -203,12 +202,19 @@ export const lockGame = async (data: BasicGamePayload, context: FirebaseContext)
   const players: Players = playersDoc.data() ?? {};
 
   // Verify minimum number of players
-  const collectionKey = delegatorUtils.getCollectionKeyByGameCode(gameId[0]) ?? '';
   const numPlayers = Object.keys(players).length;
-  const minimum = GAME_PLAYERS_LIMIT[collectionKey].min;
-  if (numPlayers < minimum) {
+  const { playerCount } = delegatorUtils.getEngine(collectionName);
+
+  if (numPlayers < playerCount.MIN) {
     firebaseUtils.throwException(
-      `Game ${gameId} has an insufficient number of players: Minimum ${minimum} players, has ${numPlayers}`,
+      `Game ${gameId} has an insufficient number of players: Minimum ${playerCount.MIN} players, but has ${numPlayers}`,
+      actionText
+    );
+  }
+
+  if (numPlayers > playerCount.MAX) {
+    firebaseUtils.throwException(
+      `Game ${gameId} has more players than it supports: Maximum ${playerCount.MAX} players, but has ${numPlayers}`,
       actionText
     );
   }
@@ -217,12 +223,8 @@ export const lockGame = async (data: BasicGamePayload, context: FirebaseContext)
     // Set info with players object and isLocked
     await sessionRef.doc('meta').update({ isLocked: true });
     // Set state with new Phase: Rules
-    await sessionRef.doc('state').set({
+    await sessionRef.doc('state').update({
       phase: 'RULES',
-      round: {
-        current: 0,
-        total: 0,
-      },
     });
 
     return true;
@@ -264,12 +266,11 @@ export const makePlayerReady = async (data: Payload) => {
     }
   }
 
-  const collectionKey = delegatorUtils.getCollectionKeyByGameCode(gameId[0]) ?? '';
-  const nextPhaseDelegator = delegatorUtils.getNextPhaseForCollection(collectionKey);
+  const { getNextPhase } = delegatorUtils.getEngine(collectionName);
 
   // If all players are ready, trigger next phase
   try {
-    return nextPhaseDelegator(collectionName, gameId, players);
+    return getNextPhase(collectionName, gameId, players);
   } catch (error) {
     firebaseUtils.throwException(error, actionText);
   }
@@ -293,10 +294,9 @@ export const goToNextPhase = async (data: BasicGamePayload, context: FirebaseCon
 
   const players = playersDoc.data() ?? {};
 
-  const collectionKey = delegatorUtils.getCollectionKeyByGameCode(gameId[0]) ?? '';
-  const nextPhaseDelegator = delegatorUtils.getNextPhaseForCollection(collectionKey);
+  const { getNextPhase } = delegatorUtils.getEngine(collectionName);
 
-  return nextPhaseDelegator(collectionName, gameId, players);
+  return getNextPhase(collectionName, gameId, players);
 };
 
 /**

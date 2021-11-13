@@ -3,7 +3,7 @@ import { GameId, PlayerId, GameName, PlainObject } from '../../utils/interfaces'
 // Helpers
 import * as firebaseUtils from '../../utils/firebase';
 // Internal
-import { nextSonhosPesadelosPhase } from './index';
+import { getNextPhase } from './index';
 
 /**
  *
@@ -42,7 +42,7 @@ export const handleSubmitDreams = async (
     change: {
       dreams: newDreams,
     },
-    nextPhaseFunction: nextSonhosPesadelosPhase,
+    nextPhaseFunction: getNextPhase,
   });
 };
 
@@ -67,6 +67,6 @@ export const handleSubmitVoting = async (
     actionText: 'submit votes',
     shouldReady: true,
     change: { votes },
-    nextPhaseFunction: nextSonhosPesadelosPhase,
+    nextPhaseFunction: getNextPhase,
   });
 };

@@ -34,7 +34,7 @@ export const prepareSetupPhase = async (
       store: {
         gameOrder,
         deck,
-        deckIndex: -1,
+        deckIndex: 0,
         pastCategories: [],
       },
       state: {
@@ -45,7 +45,7 @@ export const prepareSetupPhase = async (
   };
 };
 
-export const prepareDialSidesPhase = async (
+export const prepareDialCluePhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData
 ): Promise<SaveGamePayload> => {
@@ -64,33 +64,11 @@ export const prepareDialSidesPhase = async (
         deckIndex: store.deckIndex + CATEGORIES_PER_ROUND,
       },
       state: {
-        phase: ONDA_TELEPATICA_PHASES.DIAL_SIDES,
+        phase: ONDA_TELEPATICA_PHASES.DIAL_CLUE,
         round: utils.increaseRound(state.round),
         psychicId,
         currentCategories,
-      },
-    },
-  };
-};
-
-export const prepareDialCluePhase = async (store: FirebaseStoreData): Promise<SaveGamePayload> => {
-  const selectedCategory = store.deck.find((category: CategoryCard) => category.id === store.categoryId);
-
-  const currentCategory = {
-    ...selectedCategory,
-    target: gameUtils.getRandomNumber(-10, 10),
-  };
-
-  // Save
-  return {
-    update: {
-      store: {
-        deckIndex: store.deckIndex + CATEGORIES_PER_ROUND,
-      },
-      state: {
-        phase: ONDA_TELEPATICA_PHASES.DIAL_CLUE,
-        currentCategory,
-        currentCategories: firebaseUtils.deleteValue(),
+        target: gameUtils.getRandomNumber(-10, 10),
       },
     },
   };
@@ -109,8 +87,11 @@ export const prepareGuessPhase = async (
     needle: 0,
   });
 
+  const selectedCategory = store.deck.find((category: CategoryCard) => category.id === store.categoryId);
+
   const currentCategory = {
-    ...state.currentCategory,
+    ...selectedCategory,
+    target: state.target,
     clue: store.clue,
   };
 
@@ -123,6 +104,8 @@ export const prepareGuessPhase = async (
       state: {
         phase: ONDA_TELEPATICA_PHASES.GUESS,
         currentCategory,
+        currentCategories: firebaseUtils.deleteValue(),
+        target: firebaseUtils.deleteValue(),
       },
       players,
     },

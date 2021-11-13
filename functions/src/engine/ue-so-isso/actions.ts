@@ -3,7 +3,7 @@ import { GameId, PlayerId, GameName, PlainObject } from '../../utils/interfaces'
 // Utils
 import * as firebaseUtils from '../../utils/firebase';
 // Internal
-import { nextUeSoIssoPhase } from '.';
+import { getNextPhase } from '.';
 
 /**
  *
@@ -26,7 +26,7 @@ export const handleSubmitWordSelectionVotes = async (
     actionText: 'submit your word selection votes',
     shouldReady: true,
     change: { votes },
-    nextPhaseFunction: nextUeSoIssoPhase,
+    nextPhaseFunction: getNextPhase,
   });
 };
 
@@ -51,7 +51,7 @@ export const handleSubmitSuggestions = async (
     actionText: 'submit your suggestions',
     shouldReady: true,
     change: { suggestions },
-    nextPhaseFunction: nextUeSoIssoPhase,
+    nextPhaseFunction: getNextPhase,
   });
 };
 
@@ -77,7 +77,7 @@ export const handleSubmitValidation = async (
     change: {
       validSuggestions,
     },
-    nextPhaseFunction: nextUeSoIssoPhase,
+    nextPhaseFunction: getNextPhase,
   });
 };
 
@@ -103,7 +103,7 @@ export const handleConfirmGuess = async (
     change: {
       outcome,
     },
-    nextPhaseFunction: nextUeSoIssoPhase,
+    nextPhaseFunction: getNextPhase,
   });
 };
 
