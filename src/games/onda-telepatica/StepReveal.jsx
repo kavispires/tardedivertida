@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 // Components
-import { Instruction, Step, TimedButton, Title, Translate } from '../../components/shared';
+import { Instruction, StarPoints, Step, TimedButton, Title, Translate } from '../../components/shared';
 import Dial from './Dial';
 import { Avatar, AvatarName } from '../../components/avatars';
 import clsx from 'clsx';
@@ -25,6 +25,13 @@ const getGuessResultClass = (guess, target) => {
   if (Math.abs(target - guess) === 1) return `${base}--orange`;
   if (Math.abs(target - guess) === 2) return `${base}--yellow`;
   return '';
+};
+
+const getPoints = (guess, target) => {
+  if (target - guess === 0) return 4;
+  if (Math.abs(target - guess) === 1) return 3;
+  if (Math.abs(target - guess) === 2) return 2;
+  return 0;
 };
 
 function StepReveal({ setStep, currentCategory, players, psychic }) {
@@ -67,6 +74,10 @@ function StepReveal({ setStep, currentCategory, players, psychic }) {
               </span>
               <Avatar id={player.avatarId} className="o-player-guess__avatar" />
               <span className="o-player-guess__name">{player.name}</span>
+              <StarPoints
+                quantity={getPoints(player.guess, currentCategory.target)}
+                prefix={`${player.id}-points`}
+              />
             </li>
           );
         })}

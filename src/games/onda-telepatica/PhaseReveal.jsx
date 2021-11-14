@@ -12,6 +12,7 @@ import {
   RankingBoard,
   Step,
   StepSwitcher,
+  Title,
   translate,
   Translate,
 } from '../../components/shared';
@@ -58,6 +59,10 @@ function PhaseReveal({ players, state, info }) {
 
         {/* Step 2 */}
         <Step fullWidth>
+          <Title level={1}>
+            <Translate pt="Resultado" en="Results" />
+          </Title>
+
           <RankingBoard ranking={state.ranking} players={players} />
           <AdminForceNextPhase
             buttonText={translate(
