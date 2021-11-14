@@ -66,7 +66,14 @@ function PhaseDraw({ players, state, info }) {
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.ARTE_RUIM.DRAW} className="a-phase">
       <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady, !isUserReady]}>
         {/* Step 0 */}
-        <RoundAnnouncement round={state?.round} onPressButton={() => setStep(1)} buttonText=" " time={5} />
+        <RoundAnnouncement round={state?.round} onPressButton={() => setStep(1)} buttonText=" " time={5}>
+          <Instruction contained>
+            <Translate
+              pt={`Essa rodada usará cartas de nível ${state?.level || '?'}`}
+              en={`This round uses cards of level ${state?.level || '?'}`}
+            />
+          </Instruction>
+        </RoundAnnouncement>
 
         {/* Step 1 */}
         <PhaseAnnouncement

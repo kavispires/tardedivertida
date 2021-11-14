@@ -65,6 +65,7 @@ export const prepareDrawPhase = async (
       state: {
         phase: ARTE_RUIM_PHASES.DRAW,
         round: utils.increaseRound(state?.round, MAX_ROUNDS),
+        level: Object.values(players)?.[0]?.currentCard?.level ?? 0,
       },
     },
     set: {
