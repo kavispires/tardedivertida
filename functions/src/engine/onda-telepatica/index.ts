@@ -69,7 +69,7 @@ export const getNextPhase = async (
   const isGameOver = determineGameOver(players);
   // Determine next phase
   const nextPhase = determineNextPhase(state?.phase, state?.round, isGameOver);
-  console.log({ nextPhase });
+
   // RULES -> SETUP
   if (nextPhase === ONDA_TELEPATICA_PHASES.SETUP) {
     // Enter setup phase before doing anything

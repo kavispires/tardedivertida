@@ -134,13 +134,9 @@ export const buildDeck = (
     }
   });
 
-  console.log('DONE WITH SEPARATION');
-
   const roundLevels = level4Deck.length > 0 ? DECK_ORDER_BY_LEVEL_WITH_4 : DECK_ORDER_BY_LEVEL;
   const cardsNeeded =
     level4Deck.length > 0 ? CARDS_PER_PLAYER_COUNT_WITH_4[playerCount] : CARDS_PER_PLAYER_COUNT[playerCount];
-
-  console.log('DONE GETTING LEVELS');
 
   // Check Levels Availability requirement
   if (availableCards['1'].length < cardsNeeded.perLevel['1'].length) {
@@ -151,15 +147,11 @@ export const buildDeck = (
   }
   if (availableCards['3'].length < cardsNeeded.perLevel['3'].length) {
     availableCards['3'] = cardsPerLevel['3'];
-
-    console.log('DONE WITH AVAILABILITY');
   }
   // Shuffle available decls
   availableCards['1'] = gameUtils.shuffle(availableCards['1']);
   availableCards['2'] = gameUtils.shuffle(availableCards['2']);
   availableCards['3'] = gameUtils.shuffle(availableCards['3']);
-
-  console.log('DONE WITH SHUFFLING');
 
   const usedCardIdDict = {};
   const shuffledLevel4Deck = gameUtils.shuffle(level4Deck);
@@ -173,7 +165,6 @@ export const buildDeck = (
       if (level === 4) {
         if (level4Hand.length === 0) {
           level4Hand = getEnoughUnusedLevel4Cards(shuffledLevel4Deck, usedCardIdDict, cardsNeeded.perRound);
-          console.log({ level4Hand });
         }
         const cardId = level4Hand.pop();
         if (cardId) {
@@ -183,7 +174,6 @@ export const buildDeck = (
           };
         }
       } else {
-        console.log({ level });
         const card = availableCards[level].pop();
         if (card) {
           usedCardIdDict[card.id] = true;

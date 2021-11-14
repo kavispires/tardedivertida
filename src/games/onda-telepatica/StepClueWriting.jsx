@@ -49,7 +49,6 @@ function StepClueWriting({ players, currentCategories, target, onSendChosenSide 
   };
 
   const onSendClue = (clue) => {
-    console.log({ clue });
     onSendChosenSide(input);
     setView('sending');
   };
