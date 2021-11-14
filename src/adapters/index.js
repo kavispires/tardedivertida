@@ -40,10 +40,7 @@ export const MENTE_COLETIVA_API = {
 };
 
 export const ONDA_TELEPATICA_API = {
-  submitSides: functions.httpsCallable('ondaTelepaticaSubmitSides'),
-  submitClue: functions.httpsCallable('ondaTelepaticaSubmitClue'),
-  submitGuess: functions.httpsCallable('ondaTelepaticaSubmitGuess'),
-  submitRivalGuess: functions.httpsCallable('ondaTelepaticaSubmitRivalGuess'),
+  submitAction: functions.httpsCallable('ondaTelepaticaSubmitAction'),
 };
 
 export const POLEMICA_DA_VEZ_API = {
