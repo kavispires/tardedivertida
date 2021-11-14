@@ -19,7 +19,7 @@ export const GAME_OVER_SCORE_THRESHOLD = 50;
 
 export const DECK_ORDER_BY_LEVEL = [1, 1, 2, 3, 1, 2, 3, 1, 2, 3];
 
-export const DECK_ORDER_BY_LEVEL_WITH_4 = [1, 1, 2, 3, 4, 1, 2, 3, 4, 4];
+export const DECK_ORDER_BY_LEVEL_WITH_4 = [1, 2, 3, 4, 1, 2, 3, 4, 1, 4];
 
 export const CARDS_PER_PLAYER_COUNT_WITH_4 = {
   3: {
