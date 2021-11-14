@@ -60,7 +60,7 @@ function StepClueWriting({ players, currentCategories, target, onSendChosenSide 
       <View key="card">
         <div className="o-card-selection">
           <Title>
-            <Translate pt="Você é Medium da rodada" en="You are the Psychic for this round" />
+            <Translate pt="Você é o(a) Medium da rodada" en="You are the Psychic for this round" />
           </Title>
           <Instruction contained>
             <Translate
