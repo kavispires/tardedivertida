@@ -1,8 +1,23 @@
 // Interfaces
 import { PlainObject, Players } from '../../utils/interfaces';
-import { ArteRuimCard, ArteRuimCardsDatabase, ArteRuimDrawing, FirebaseStoreData } from './interfaces';
+import {
+  ArteRuimCard,
+  ArteRuimCardsDatabase,
+  ArteRuimDrawing,
+  ArteRuimLevel4Card,
+  FirebaseStoreData,
+  PerLevelCards,
+} from './interfaces';
 // Constants
-import { ARTE_RUIM_PHASES, MAX_ROUNDS, DECK_ORDER_BY_LEVEL, GAME_OVER_SCORE_THRESHOLD } from './constants';
+import {
+  ARTE_RUIM_PHASES,
+  MAX_ROUNDS,
+  DECK_ORDER_BY_LEVEL,
+  GAME_OVER_SCORE_THRESHOLD,
+  DECK_ORDER_BY_LEVEL_WITH_4,
+  CARDS_PER_PLAYER_COUNT_WITH_4,
+  CARDS_PER_PLAYER_COUNT,
+} from './constants';
 // Helpers
 import * as gameUtils from '../../utils/game-utils';
 
@@ -46,6 +61,30 @@ export const determineGameOver = (players: Players): boolean => {
   return Object.values(players).some((player) => player.score >= GAME_OVER_SCORE_THRESHOLD);
 };
 
+const getEnoughUnusedLevel4Cards = (deck, usedCards: PlainObject, cardsNeeded: number): string[] => {
+  let tries = 0;
+  const discarded: string[] = [];
+  const reserved: string[] = [];
+
+  while (reserved.length < cardsNeeded) {
+    // Makes sure the look is not infinite
+    tries++;
+    if (tries > 100) {
+      return gameUtils.sliceIntoChunks(discarded, cardsNeeded)[0];
+    }
+
+    const cards = Object.keys(deck.pop().cards);
+    // Check if any has been used
+    if (cards.some((cardId) => usedCards[cardId])) {
+      cards.forEach((cardId) => discarded.push(cardId));
+    } else {
+      cards.forEach((cardId) => reserved.push(cardId));
+    }
+  }
+
+  return gameUtils.shuffle(reserved).slice(0, cardsNeeded);
+};
+
 /**
  * Filters used cards off the deck
  * @param fullDeck
@@ -66,61 +105,179 @@ export const filterAvailableCards = (
  * @returns
  */
 export const buildDeck = (
-  deckData: ArteRuimCard[],
-  perLevel: PlainObject,
-  perRound: number
+  allCards: PlainObject,
+  level4Deck: ArteRuimLevel4Card[],
+  usedCardsIds: ArteRuimCard[],
+  playerCount: number
 ): ArteRuimCard[] => {
-  // Split in levels
-  const cardsPerLevel = deckData.reduce(
-    (acc, entry: any) => {
-      acc[entry.level].push(entry);
-      return acc;
-    },
-    {
-      1: [],
-      2: [],
-      3: [],
-    }
-  );
-
-  // Shuffle decks and verify if number of cards will be sufficient
-  const willLevelNeedExtraCards = {};
-  Object.keys(cardsPerLevel).forEach((level) => {
-    cardsPerLevel[level] = gameUtils.shuffle(cardsPerLevel[level]);
-    willLevelNeedExtraCards[level] = cardsPerLevel[level] < perLevel[level];
-  });
-
-  const getAvailableDeck = (deck: ArteRuimCard[], level: number, decks) => {
-    let activeDeck = deck;
-    let activeLevel = level;
-    while (activeDeck.length === 0) {
-      activeLevel = decks[level - 1].length ? level - 1 : 3;
-      activeDeck = decks[activeLevel];
-    }
-    return activeDeck;
+  const cardsPerLevel: PerLevelCards = {
+    0: [],
+    1: [],
+    2: [],
+    3: [],
+    4: [],
   };
 
-  const distributedCards = [3, 2, 1].map((level) => {
-    let cards = cardsPerLevel[level];
-    const newDeck = new Array(perLevel[level]).fill(0).map(() => {
-      if (!cards.length) {
-        cards = getAvailableDeck(cards, level, cardsPerLevel);
-      }
-      return cards.pop();
-    });
-    return newDeck;
-  });
+  const availableCards: PerLevelCards = {
+    0: [],
+    1: [],
+    2: [],
+    3: [],
+    4: [],
+  };
 
-  const deck: ArteRuimCard[] = [];
-
-  DECK_ORDER_BY_LEVEL.forEach((deckLevel) => {
-    const distributedCardsIndex = Math.abs(deckLevel - 3);
-    for (let i = 0; i < perRound; i++) {
-      deck.push(distributedCards[distributedCardsIndex].pop());
+  // Split in levels
+  Object.values(allCards).forEach((entry: ArteRuimCard) => {
+    cardsPerLevel[entry.level].push(entry);
+    if (usedCardsIds[entry.id] === undefined) {
+      availableCards[entry.level].push(entry);
     }
   });
 
-  return deck;
+  console.log('DONE WITH SEPARATION');
+
+  const roundLevels = level4Deck.length > 0 ? DECK_ORDER_BY_LEVEL_WITH_4 : DECK_ORDER_BY_LEVEL;
+  const cardsNeeded =
+    level4Deck.length > 0 ? CARDS_PER_PLAYER_COUNT_WITH_4[playerCount] : CARDS_PER_PLAYER_COUNT[playerCount];
+
+  console.log('DONE GETTING LEVELS');
+
+  // Check Levels Availability requirement
+  if (availableCards['1'].length < cardsNeeded.perLevel['1'].length) {
+    availableCards['1'] = cardsPerLevel['1'];
+  }
+  if (availableCards['2'].length < cardsNeeded.perLevel['2'].length) {
+    availableCards['2'] = cardsPerLevel['2'];
+  }
+  if (availableCards['3'].length < cardsNeeded.perLevel['3'].length) {
+    availableCards['3'] = cardsPerLevel['3'];
+
+    console.log('DONE WITH AVAILABILITY');
+  }
+  // Shuffle available decls
+  availableCards['1'] = gameUtils.shuffle(availableCards['1']);
+  availableCards['2'] = gameUtils.shuffle(availableCards['2']);
+  availableCards['3'] = gameUtils.shuffle(availableCards['3']);
+
+  console.log('DONE WITH SHUFFLING');
+
+  const usedCardIdDict = {};
+  const shuffledLevel4Deck = gameUtils.shuffle(level4Deck);
+  let level4Hand: string[] = [];
+
+  return Array(cardsNeeded.total)
+    .fill(0)
+    .map((e, i) => {
+      const level = roundLevels[Math.floor((e + i) / cardsNeeded.perRound)];
+
+      if (level === 4) {
+        if (level4Hand.length === 0) {
+          level4Hand = getEnoughUnusedLevel4Cards(shuffledLevel4Deck, usedCardIdDict, cardsNeeded.perRound);
+          console.log({ level4Hand });
+        }
+        const cardId = level4Hand.pop();
+        if (cardId) {
+          return {
+            ...allCards[cardId],
+            level: 4,
+          };
+        }
+      } else {
+        console.log({ level });
+        const card = availableCards[level].pop();
+        if (card) {
+          usedCardIdDict[card.id] = true;
+          return card;
+        }
+      }
+
+      return {
+        id: '0',
+        text: 'error',
+        level: 1,
+      };
+    })
+    .reverse();
+
+  // const availableCards = Object.values(allCards).reduce(
+  //   (acc, entry: ArteRuimCard) => {
+  //     if (usedCardsIds[entry.id] === undefined) {
+  //       acc[entry.level].push(entry);
+  //     }
+  //     return acc;
+  //   },
+  //   {
+  //     1: [],
+  //     2: [],
+  //     3: [],
+  //   }
+  // );
+
+  // const perLevel = CARDS_PER_PLAYER_COUNT[playerCount].perLevel;
+  // const perRound = CARDS_PER_PLAYER_COUNT[playerCount].perRound;
+
+  // // Split in levels
+  // const cardsPerLevel = deckData.reduce(
+  //   (acc, entry: any) => {
+  //     acc[entry.level].push(entry);
+  //     return acc;
+  //   },
+  //   {
+  //     1: [],
+  //     2: [],
+  //     3: [],
+  //   }
+  // );
+
+  // // Level 4 is only available to PT at the moment so
+  // if (language === 'en') {
+  //   // Shuffle decks and verify if number of cards will be sufficient
+  //   const willLevelNeedExtraCards = {};
+  //   Object.keys(cardsPerLevel).forEach((level) => {
+  //     cardsPerLevel[level] = gameUtils.shuffle(cardsPerLevel[level]);
+  //     willLevelNeedExtraCards[level] = cardsPerLevel[level] < perLevel[level];
+  //   });
+
+  //   const getAvailableDeck = (deck: ArteRuimCard[], level: number, decks) => {
+  //     let activeDeck = deck;
+  //     let activeLevel = level;
+  //     while (activeDeck.length === 0) {
+  //       activeLevel = decks[level - 1].length ? level - 1 : 3;
+  //       activeDeck = decks[activeLevel];
+  //     }
+  //     return activeDeck;
+  //   };
+
+  //   const distributedCards = [3, 2, 1].map((level) => {
+  //     let cards = cardsPerLevel[level];
+  //     const newDeck = new Array(perLevel[level]).fill(0).map(() => {
+  //       if (!cards.length) {
+  //         cards = getAvailableDeck(cards, level, cardsPerLevel);
+  //       }
+  //       return cards.pop();
+  //     });
+  //     return newDeck;
+  //   });
+
+  //   const deck: ArteRuimCard[] = [];
+
+  //   DECK_ORDER_BY_LEVEL.forEach((deckLevel) => {
+  //     const distributedCardsIndex = Math.abs(deckLevel - 3);
+  //     for (let i = 0; i < perRound; i++) {
+  //       deck.push(distributedCards[distributedCardsIndex].pop());
+  //     }
+  //   });
+
+  //   return deck;
+  // }
+
+  // const shuffledLevel4Cards = gameUtils.shuffle(level4Deck);
+  // const selectedFromLevel4 = {}
+
+  // // Level 4
+  // const deck = Array(MAX_ROUNDS * perRound).fill(0).map((entry) => {
+  //   const level =
+  // })
 };
 
 /**

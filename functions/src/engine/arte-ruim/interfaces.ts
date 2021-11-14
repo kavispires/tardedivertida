@@ -1,9 +1,26 @@
-import { DefaultState, DefaultStore, InitialState, Payload, PlayerId } from '../../utils/interfaces';
+import {
+  DefaultState,
+  DefaultStore,
+  InitialState,
+  Payload,
+  PlainObject,
+  PlayerId,
+} from '../../utils/interfaces';
 
 export interface ArteRuimCard {
   id: string;
   text: string;
-  level: string;
+  level: number;
+}
+
+export interface ArteRuimLevel4Card {
+  id: string;
+  theme: string;
+  cards: PlainObject;
+}
+
+export interface PerLevelCards {
+  [key: string]: ArteRuimCard[];
 }
 
 export interface ArteRuimCardsDatabase {
