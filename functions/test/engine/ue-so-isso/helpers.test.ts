@@ -9,7 +9,6 @@ describe('ue-so-isso/helpers', () => {
   describe('buildDeck', () => {
     test('it buils the correct number of words per card', () => {
       result = helpers.buildDeck(mockUseSoIssoCardDatabase, 2);
-      console.log(result);
       expect(result).toHaveLength(2);
       expect(JSON.parse(result[0])).toHaveLength(5);
       expect(JSON.parse(result[1])).toHaveLength(5);

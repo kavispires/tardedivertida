@@ -2,18 +2,11 @@
 import { PlainObject, Players, SaveGamePayload } from '../../utils/interfaces';
 import { FirebaseStateData, FirebaseStoreData } from './interfaces';
 // Constants
-import { ARTE_RUIM_PHASES, MAX_ROUNDS, CARDS_PER_PLAYER_COUNT } from './constants';
+import { ARTE_RUIM_PHASES, MAX_ROUNDS } from './constants';
 // Helpers
 import * as gameUtils from '../../utils/game-utils';
 import * as utils from '../../utils/helpers';
-import {
-  buildDeck,
-  buildGallery,
-  buildRanking,
-  dealCards,
-  filterAvailableCards,
-  getNewPastDrawings,
-} from './helpers';
+import { buildDeck, buildGallery, buildRanking, dealCards, getNewPastDrawings } from './helpers';
 
 /**
  * Setup
@@ -29,16 +22,14 @@ export const prepareSetupPhase = async (
 ): Promise<SaveGamePayload> => {
   // Get number of cards per level
   const playerCount = Object.keys(players).length;
-  const totalCardsNeeded = CARDS_PER_PLAYER_COUNT[playerCount].total;
-  const perLevelNeeded = CARDS_PER_PLAYER_COUNT[playerCount].perLevel;
-  const perRoundNeeded = CARDS_PER_PLAYER_COUNT[playerCount].perRound;
-
-  // Filter used cards, if not enough cards, just use the full deck
-  const filteredCards = filterAvailableCards(additionalData.allCards, additionalData.usedCards);
-  const availableCards = filteredCards.length < totalCardsNeeded ? additionalData.allCards : filteredCards;
 
   // Build deck
-  const deck = buildDeck(availableCards, perLevelNeeded, perRoundNeeded);
+  const deck = buildDeck(
+    additionalData.allCards,
+    additionalData.level4Cards,
+    additionalData.usedCardsId,
+    playerCount
+  );
 
   // Save
   return {
