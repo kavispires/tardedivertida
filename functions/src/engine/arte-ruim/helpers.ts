@@ -64,9 +64,9 @@ export const determineGameOver = (players: Players): boolean => {
 const getEnoughUnusedLevel4Cards = (deck, usedCards: PlainObject, cardsNeeded: number): string[] => {
   let tries = 0;
   const discarded: string[] = [];
-  const reserved: string[] = [];
+  const reserved: PlainObject = [];
 
-  while (reserved.length < cardsNeeded) {
+  while (Object.keys(reserved).length < cardsNeeded) {
     // Makes sure the look is not infinite
     tries++;
     if (tries > 100) {
@@ -75,14 +75,14 @@ const getEnoughUnusedLevel4Cards = (deck, usedCards: PlainObject, cardsNeeded: n
 
     const cards = Object.keys(deck.pop().cards);
     // Check if any has been used
-    if (cards.some((cardId) => usedCards[cardId])) {
+    if (cards.some((cardId) => usedCards[cardId]) && cards.some((cardId) => reserved[cardId])) {
       cards.forEach((cardId) => discarded.push(cardId));
     } else {
-      cards.forEach((cardId) => reserved.push(cardId));
+      cards.forEach((cardId) => (reserved[cardId] = true));
     }
   }
 
-  return gameUtils.shuffle(reserved).slice(0, cardsNeeded);
+  return gameUtils.shuffle(Object.keys(reserved)).slice(0, cardsNeeded);
 };
 
 /**
