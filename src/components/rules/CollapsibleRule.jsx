@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 // Design Resources
 import { Collapse } from 'antd';
@@ -18,3 +19,8 @@ export function CollapsibleRule({ children, title }) {
     </Instruction>
   );
 }
+
+CollapsibleRule.propTypes = {
+  children: PropTypes.any,
+  title: PropTypes.any,
+};

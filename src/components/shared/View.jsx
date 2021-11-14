@@ -43,10 +43,10 @@ View.propTypes = {
 
 ViewIf.propTypes = {
   children: PropTypes.any.isRequired,
-  isVisible: PropTypes.bool,
+  isVisible: PropTypes.bool.isRequired,
 };
 
-ViewIf.propTypes = {
+ViewSwitch.propTypes = {
   children: PropTypes.any.isRequired,
-  cases: PropTypes.arrayOf(PropTypes.bool),
+  cases: PropTypes.arrayOf(PropTypes.bool).isRequired,
 };
