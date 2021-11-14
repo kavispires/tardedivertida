@@ -99,7 +99,7 @@ export const prepareGuessPhase = async (
   return {
     update: {
       store: {
-        deckIndex: store.deckIndex + CATEGORIES_PER_ROUND,
+        pastCategories: [...store.pastCategories, currentCategory],
       },
       state: {
         phase: ONDA_TELEPATICA_PHASES.GUESS,
@@ -123,9 +123,6 @@ export const prepareRevealPhase = async (
   // Save
   return {
     update: {
-      store: {
-        deckIndex: store.deckIndex + CATEGORIES_PER_ROUND,
-      },
       state: {
         phase: ONDA_TELEPATICA_PHASES.REVEAL,
         ranking,

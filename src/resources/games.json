@@ -263,11 +263,11 @@
       "en": ["TBD"]
     },
     "recommended": "6+",
-    "min": 4,
-    "max": 12,
+    "min": 3,
+    "max": 10,
     "tags": ["competitive", "real-time", "guessing"],
     "available": {
-      "pt": false,
+      "pt": true,
       "en": false
     }
   },

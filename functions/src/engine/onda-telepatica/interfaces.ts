@@ -4,6 +4,8 @@ export interface CategoryCard {
   id: string;
   left: string;
   right: string;
+  target?: number;
+  clue?: string;
 }
 
 export interface ResourceData {
@@ -15,11 +17,6 @@ export interface ResourceData {
 export type PastCategories = CategoryCard[];
 
 export type Deck = CategoryCard[];
-
-export interface CurrentCategory extends CategoryCard {
-  target?: number;
-  clue?: string;
-}
 
 export interface OndaTelepaticaStore extends DefaultStore {
   gameOrder?: PlayerId[];

@@ -1,5 +1,5 @@
 // Interfaces
-import { CurrentCategory, Deck, PastCategories, ResourceData } from './interfaces';
+import { CategoryCard, Deck, PastCategories, ResourceData } from './interfaces';
 import { PlainObject, PlayerId, Players, Round } from '../../utils/interfaces';
 // Constants
 import {
@@ -109,7 +109,7 @@ const determineScore = (guess: number, target: number): number => {
  * @param gallery
  * @returns
  */
-export const buildRanking = (players: Players, currentCategory: CurrentCategory, psychicId: PlayerId) => {
+export const buildRanking = (players: Players, currentCategory: CategoryCard, psychicId: PlayerId) => {
   // Format <player>: [<old score>, <addition points>, <new score>]
   const newScores: PlainObject = {};
 
