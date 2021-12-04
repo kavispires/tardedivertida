@@ -2,6 +2,8 @@ import { AVATAR_IDS, LETTERS } from './constants';
 import {
   GameCode,
   GameOrder,
+  InitialState,
+  InitialStateArgs,
   PlainObject,
   Player,
   PlayerAvatarId,
@@ -55,6 +57,50 @@ export const generateGameId = (gameCode: GameCode, usedIds: string[] = [], lengt
  */
 export function stringRemoveAccents(str: string): string {
   return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+}
+
+/**
+ * Builds default initial state to be extended by game engines
+ * @param dataObject
+ * @returns
+ */
+export function getDefaultInitialState({
+  gameId,
+  gameName,
+  uid,
+  language,
+  playerCount,
+  initialPhase,
+  totalRounds,
+  store,
+}: InitialStateArgs): InitialState {
+  return {
+    meta: {
+      gameId,
+      gameName: gameName,
+      createdAt: Date.now(),
+      createdBy: uid,
+      min: playerCount.MIN,
+      max: playerCount.MAX,
+      isLocked: false,
+      isComplete: false,
+      language,
+      replay: 0,
+    },
+    players: {},
+    store: {
+      language,
+      ...store,
+    },
+    state: {
+      phase: initialPhase,
+      round: {
+        current: 0,
+        total: totalRounds,
+      },
+      updatedAt: Date.now(),
+    },
+  };
 }
 
 /**
@@ -198,12 +244,12 @@ export const removePropertiesFromPlayers = (players: Players, properties: string
 };
 
 /**
- * Set all players as not ready
+ * Add properties to players
  * @param players
  * @param butThisOne
  * @returns
  */
-export const addPropertiesFromPlayers = (players: Players, properties: PlainObject): Players => {
+export const addPropertiesToPlayers = (players: Players, properties: PlainObject): Players => {
   for (const playerId in players) {
     players[playerId] = {
       ...players[playerId],
@@ -368,3 +414,13 @@ export const getActivePlayer = (turnOrder: GameOrder | TurnOrder, currentRound: 
  */
 export const flattenArray = (twoDimensionalArray: any[]) =>
   twoDimensionalArray.reduce((acc, arr) => [...acc, ...arr], []);
+
+/**
+ * Function to simulate calls when developing
+ * @param duration
+ */
+export const wait = async (duration = 3000) => {
+  if (process.env.FUNCTIONS_EMULATOR) {
+    await new Promise((resolve) => setTimeout(resolve, duration));
+  }
+};

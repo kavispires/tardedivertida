@@ -1,16 +1,53 @@
+// Constants
+import { GLOBAL_USED_DOCUMENTS } from '../../utils/constants';
+// Interfaces
+import { Language } from '../../utils/interfaces';
+import { ArteRuimDrawing } from './interfaces';
 // Helpers
 import * as globalUtils from '../global';
-// Resources
-import arteRuimCardsPt from '../../resources/arte-ruim-pt.json';
-import arteRuimCardsEn from '../../resources/arte-ruim-en.json';
+import * as publicUtils from '../public';
+import * as resourceUtils from '../resource';
+import { buildPastDrawingsDict, buildUsedCardsIdsDict } from './helpers';
 
+/**
+ * Get expression cards resource based on the game's language
+ * @param language
+ * @returns
+ */
 export const getCards = async (language: string) => {
+  const resourceName = `arte-ruim-${language}`;
   // Get full deck
-  const allCards = language === 'en' ? arteRuimCardsEn : arteRuimCardsPt;
+  const allCards = await resourceUtils.fetchResource(resourceName);
+
+  let allLevel4 = {};
+  try {
+    allLevel4 = await resourceUtils.fetchResource(`arte-ruim-extra-${language}`);
+  } catch (e) {
+    // console.error(e);
+    // Do nothing
+  }
+
   // Get used deck
-  const usedCards = await globalUtils.getGlobalFirebaseDocData('usedArteRuimCards', {});
+  const usedCardsId = await globalUtils.getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.ARTE_RUIM, {});
   return {
     allCards,
-    usedCards: Object.keys(usedCards),
+    usedCardsId: usedCardsId,
+    level4Cards: Object.values(allLevel4),
   };
+};
+
+/**
+ * Saves past drawings into a public document depending on the language
+ * @param pastDrawings
+ * @param language
+ */
+export const saveUsedCards = async (pastDrawings: ArteRuimDrawing[], language: Language) => {
+  // Save usedArteRuimCards to global
+  const usedArteRuimCards = buildUsedCardsIdsDict(pastDrawings);
+  await globalUtils.updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.ARTE_RUIM, usedArteRuimCards);
+  // Save drawings to public gallery
+  const drawingDocumentName = language === 'pt' ? 'arteRuimDrawingsPt' : 'arteRuimDrawingsEn';
+  const publicDrawings = await publicUtils.getPublicFirebaseDocData(drawingDocumentName, {});
+  const newArteRuimDrawings = buildPastDrawingsDict(pastDrawings, publicDrawings);
+  await publicUtils.updatePublicFirebaseDoc(drawingDocumentName, newArteRuimDrawings);
 };

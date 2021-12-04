@@ -2,9 +2,9 @@
 import { CONTADORES_HISTORIAS_PHASES, GAME_OVER_SCORE_THRESHOLD, OUTCOME } from './constants';
 // Interfaces
 import { ImageCard, PlainObject, PlayerId, Players, Round } from '../../utils/interfaces';
+import { Table } from './interfaces';
 // Utils
 import * as gameUtils from '../../utils/game-utils';
-import { Table } from './interfaces';
 
 /**
  * Determine the next phase based on the current one

@@ -21,8 +21,8 @@ import { ImageCardPreloadHand } from '../../components/cards';
 function PhaseVoting({ state, players, info }) {
   const language = useLanguage();
   const user = useUser(players);
-  const storyteller = useWhichPlayerIsThe('storyteller', state, players);
-  const isUserTheStoryTeller = useIsUserThe('storyteller', state);
+  const storyteller = useWhichPlayerIsThe('storytellerId', state, players);
+  const isUserTheStoryTeller = useIsUserThe('storytellerId', state);
   const [step, setStep] = useState(0);
 
   const onSubmitVote = useAPICall({

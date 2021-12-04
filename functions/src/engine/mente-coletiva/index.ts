@@ -1,14 +1,14 @@
 // Constants
-import { GAME_COLLECTIONS, GAME_PLAYERS_LIMIT } from '../../utils/constants';
-import { MAX_NUMBER_OF_ROUNDS, MENTE_COLETIVA_PHASES } from './constants';
+import { GAME_COLLECTIONS } from '../../utils/constants';
+import { MENTE_COLETIVA_PHASES, MAX_ROUNDS, PLAYER_COUNT } from './constants';
 // Interfaces
-import { GameId, Players } from '../../utils/interfaces';
+import { GameId, Language, Players } from '../../utils/interfaces';
 import { MenteColetivaInitialState, MenteColetivaSubmitAction } from './interfaces';
 // Utilities
 import * as firebaseUtils from '../../utils/firebase';
-import * as globalUtils from '../global';
+import * as utils from '../../utils/helpers';
 // Internal Functions
-import { determineNextPhase, determineGameOver, buildUsedQuestionIdsDict } from './helpers';
+import { determineNextPhase, determineGameOver } from './helpers';
 import {
   prepareSetupPhase,
   prepareGameOverPhase,
@@ -17,7 +17,7 @@ import {
   prepareComparePhase,
   prepareResolutionPhase,
 } from './setup';
-import { getQuestions } from './data';
+import { getQuestions, saveUsedQuestions } from './data';
 import { handleAddAnswer, handleNextAnswers, handleSubmitAnswers, handleSubmitQuestion } from './actions';
 
 /**
@@ -30,38 +30,31 @@ import { handleAddAnswer, handleNextAnswers, handleSubmitAnswers, handleSubmitQu
 export const getInitialState = (
   gameId: GameId,
   uid: string,
-  language: string
-): MenteColetivaInitialState => ({
-  meta: {
+  language: Language
+): MenteColetivaInitialState => {
+  return utils.getDefaultInitialState({
     gameId,
     gameName: GAME_COLLECTIONS.MENTE_COLETIVA,
-    createdAt: Date.now(),
-    createdBy: uid,
-    min: GAME_PLAYERS_LIMIT.MENTE_COLETIVA.min,
-    max: GAME_PLAYERS_LIMIT.MENTE_COLETIVA.max,
-    isLocked: false,
-    isComplete: false,
+    uid,
     language,
-    replay: 0,
-  },
-  players: {},
-  store: {
-    language,
-    deck: [],
-    gameOrder: [],
-    pastQuestions: [],
-  },
-  state: {
-    phase: MENTE_COLETIVA_PHASES.LOBBY,
-    round: {
-      current: 0,
-      total: MAX_NUMBER_OF_ROUNDS,
+    playerCount: PLAYER_COUNT,
+    initialPhase: MENTE_COLETIVA_PHASES.LOBBY,
+    totalRounds: MAX_ROUNDS,
+    store: {
+      language,
+      deck: [],
+      gameOrder: [],
+      pastQuestions: [],
     },
-    updatedAt: Date.now(),
-  },
-});
+  });
+};
 
-export const nextMenteColetivaPhase = async (
+/**
+ * Exposes min and max player count
+ */
+export const playerCount = PLAYER_COUNT;
+
+export const getNextPhase = async (
   collectionName: string,
   gameId: string,
   players: Players
@@ -83,11 +76,15 @@ export const nextMenteColetivaPhase = async (
 
   // RULES -> SETUP
   if (nextPhase === MENTE_COLETIVA_PHASES.SETUP) {
+    // Enter setup phase before doing anything
+    await firebaseUtils.triggerSetupPhase(sessionRef);
+
     // Request data
     const additionalData = await getQuestions(store.language);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await firebaseUtils.saveGame(sessionRef, newPhase);
-    return nextMenteColetivaPhase(collectionName, gameId, players);
+
+    return getNextPhase(collectionName, gameId, players);
   }
 
   // SETUP/* -> QUESTION_SELECTION
@@ -119,8 +116,7 @@ export const nextMenteColetivaPhase = async (
     const newPhase = await prepareGameOverPhase(store, state, players);
 
     // Save usedMenteColetivaQuestions to global
-    const usedMenteColetivaQuestions = buildUsedQuestionIdsDict(store.pastQuestions);
-    await globalUtils.updateGlobalFirebaseDoc('usedMenteColetivaQuestions', usedMenteColetivaQuestions);
+    await saveUsedQuestions(store.pastQuestions);
 
     return firebaseUtils.saveGame(sessionRef, newPhase);
   }
@@ -135,33 +131,20 @@ export const nextMenteColetivaPhase = async (
 export const submitAction = async (data: MenteColetivaSubmitAction) => {
   const { gameId, gameName: collectionName, playerId, action } = data;
 
-  const actionText = 'submit action';
-  firebaseUtils.verifyPayload(gameId, 'gameId', actionText);
-  firebaseUtils.verifyPayload(collectionName, 'collectionName', actionText);
-  firebaseUtils.verifyPayload(playerId, 'playerId', actionText);
-  firebaseUtils.verifyPayload(action, 'action', actionText);
+  firebaseUtils.validateSubmitActionPayload(gameId, collectionName, playerId, action);
 
   switch (action) {
     case 'SUBMIT_QUESTION':
-      if (!data.questionId) {
-        firebaseUtils.throwException('Missing `questionId` value', 'submit question');
-      }
+      firebaseUtils.validateSubmitActionProperties(data, ['questionId'], 'submit question');
       return handleSubmitQuestion(collectionName, gameId, playerId, data.questionId);
     case 'SUBMIT_ANSWERS':
-      if (!data.answers) {
-        firebaseUtils.throwException('Missing `answers` value', 'submit answers');
-      }
-
+      firebaseUtils.validateSubmitActionProperties(data, ['answers'], 'submit answers');
       return handleSubmitAnswers(collectionName, gameId, playerId, data.answers);
     case 'NEXT_ANSWERS':
-      if (!data.allowedList) {
-        firebaseUtils.throwException('Missing `allowedList` value', 'advance answers');
-      }
+      firebaseUtils.validateSubmitActionProperties(data, ['allowedList'], 'advance answers');
       return handleNextAnswers(collectionName, gameId, playerId, data.allowedList);
     case 'ADD_ANSWER':
-      if (!data.answer) {
-        firebaseUtils.throwException('Missing `answer` value', 'add answer');
-      }
+      firebaseUtils.validateSubmitActionProperties(data, ['answer'], 'add answer');
       return handleAddAnswer(collectionName, gameId, playerId, data.answer);
     default:
       firebaseUtils.throwException(`Given action ${action} is not allowed`);

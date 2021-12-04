@@ -34,8 +34,8 @@ function PhaseSecretClue({ state, players, info }) {
   const language = useLanguage();
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
-  const leader = useWhichPlayerIsThe('leader', state, players);
-  const isUserTheLeader = useIsUserThe('leader', state);
+  const leader = useWhichPlayerIsThe('leaderId', state, players);
+  const isUserTheLeader = useIsUserThe('leaderId', state);
   const [step, setStep] = useState(0);
 
   const onSubmitSecretClue = useAPICall({

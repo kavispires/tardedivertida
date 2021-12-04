@@ -1,10 +1,11 @@
 // Constants
-import { GAME_COLLECTIONS, GAME_PLAYERS_LIMIT } from '../../utils/constants';
-import { SONHOS_PESADELOS_PHASES } from './constants';
+import { GAME_COLLECTIONS } from '../../utils/constants';
+import { PLAYER_COUNT, SONHOS_PESADELOS_PHASES, TOTAL_ROUNDS } from './constants';
 // Interfaces
 import { GameId, Language, Players } from '../../utils/interfaces';
 // Utils
 import * as firebaseUtils from '../../utils/firebase';
+import * as utils from '../../utils/helpers';
 import { determineGameOver, determineNextPhase } from './helpers';
 import { SonhosPesadelosInitialState, SonhosPesadelosSubmitAction } from './interfaces';
 import {
@@ -15,7 +16,7 @@ import {
   prepareTellDreamPhase,
   prepareLastChancePhase,
 } from './setup';
-import { getCards } from './data';
+import { getThemes } from './data';
 import { handleSubmitDreams, handleSubmitVoting } from './actions';
 
 /**
@@ -29,35 +30,27 @@ export const getInitialState = (
   gameId: GameId,
   uid: string,
   language: Language
-): SonhosPesadelosInitialState => ({
-  meta: {
+): SonhosPesadelosInitialState => {
+  return utils.getDefaultInitialState({
     gameId,
     gameName: GAME_COLLECTIONS.SONHOS_PESADELOS,
-    createdAt: Date.now(),
-    createdBy: uid,
-    min: GAME_PLAYERS_LIMIT.SONHOS_PESADELOS.min,
-    max: GAME_PLAYERS_LIMIT.SONHOS_PESADELOS.max,
-    isLocked: false,
-    isComplete: false,
+    uid,
     language,
-    replay: 0,
-  },
-  players: {},
-  store: {
-    language,
-    deck: [],
-    deckIndex: -1,
-  },
-  state: {
-    phase: SONHOS_PESADELOS_PHASES.LOBBY,
-    round: {
-      current: 0,
-      total: 0,
+    playerCount: PLAYER_COUNT,
+    initialPhase: SONHOS_PESADELOS_PHASES.LOBBY,
+    totalRounds: TOTAL_ROUNDS,
+    store: {
+      language,
     },
-  },
-});
+  });
+};
 
-export const nextSonhosPesadelosPhase = async (
+/**
+ * Exposes min and max player count
+ */
+export const playerCount = PLAYER_COUNT;
+
+export const getNextPhase = async (
   collectionName: string,
   gameId: string,
   players: Players
@@ -65,12 +58,11 @@ export const nextSonhosPesadelosPhase = async (
   const actionText = 'prepare next phase';
 
   // Gather docs and references
-  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
-  const stateDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'state', actionText);
-  const storeDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'store', actionText);
-
-  const state = stateDoc.data() ?? {};
-  const store = { ...(storeDoc.data() ?? {}) };
+  const { sessionRef, state, store } = await firebaseUtils.getStateAndStoreReferences(
+    collectionName,
+    gameId,
+    actionText
+  );
 
   // Determine if it's game over
   const isGameOver = determineGameOver(store.results);
@@ -79,14 +71,15 @@ export const nextSonhosPesadelosPhase = async (
 
   // RULES -> SETUP
   if (nextPhase === SONHOS_PESADELOS_PHASES.SETUP) {
+    // Enter setup phase before doing anything
+    await firebaseUtils.triggerSetupPhase(sessionRef);
+
     // Request data
-    const additionalData = await getCards(store.language);
+    const additionalData = await getThemes(store.language);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await firebaseUtils.saveGame(sessionRef, newPhase);
 
-    const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
-    const newPlayers = playersDoc.data() ?? {};
-    return nextSonhosPesadelosPhase(collectionName, gameId, newPlayers);
+    return getNextPhase(collectionName, gameId, newPhase.update?.players ?? {});
   }
 
   // * -> TELL_DREAM
@@ -130,22 +123,14 @@ export const nextSonhosPesadelosPhase = async (
 export const submitAction = async (data: SonhosPesadelosSubmitAction) => {
   const { gameId, gameName: collectionName, playerId, action } = data;
 
-  const actionText = 'submit action';
-  firebaseUtils.verifyPayload(gameId, 'gameId', actionText);
-  firebaseUtils.verifyPayload(collectionName, 'collectionName', actionText);
-  firebaseUtils.verifyPayload(playerId, 'playerId', actionText);
-  firebaseUtils.verifyPayload(action, 'action', actionText);
+  firebaseUtils.validateSubmitActionPayload(gameId, collectionName, playerId, action);
 
   switch (action) {
     case 'SUBMIT_DREAMS':
-      if (!data.dreams) {
-        firebaseUtils.throwException('Missing `dreams` value', 'submit dreams');
-      }
+      firebaseUtils.validateSubmitActionProperties(data, ['dreams'], 'submit dreams');
       return handleSubmitDreams(collectionName, gameId, playerId, data.dreams);
     case 'SUBMIT_VOTING':
-      if (!data.votes) {
-        firebaseUtils.throwException('Missing `votes` value', 'submit votes');
-      }
+      firebaseUtils.validateSubmitActionProperties(data, ['votes'], 'submit votes');
       return handleSubmitVoting(collectionName, gameId, playerId, data.votes);
     default:
       firebaseUtils.throwException(`Given action ${action} is not allowed`);

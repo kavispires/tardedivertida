@@ -1,4 +1,4 @@
-import { Meta, Payload, PlayerId, Players, Round } from '../../utils/interfaces';
+import { DefaultState, DefaultStore, InitialState, Payload, PlayerId } from '../../utils/interfaces';
 
 export type SuspectId = string;
 
@@ -18,30 +18,37 @@ export interface TestemunhaOcularEntry {
   fit?: SuspectId[];
 }
 
-export interface TestemunhaOcularStore {
+export interface TestemunhaOcularStore extends DefaultStore {
   pastQuestions: TestemunhaOcularEntry[];
   gameOrder: PlayerId[];
   turnOrder: PlayerId[];
+  deck: any;
+  questionIndex?: number;
+  questionerIndex?: number;
+}
+
+export interface TestemunhaOcularState extends DefaultState {
+  suspects?: any;
+  perpetrator?: any;
+  groupScore?: any;
+  questionerId?: any;
+  questions?: any;
+  question?: any;
+  witnessId?: PlayerId;
+  testimony?: any;
+  eliminatedSuspects?: any;
+  previouslyEliminatedSuspects?: any;
+  outcome?: any;
   [key: string]: any;
 }
 
-export interface TestemunhaOcularState {
-  phase: string;
-  round: Round;
-  [key: string]: any;
-}
-
-export interface TestemunhaOcularInitialState {
-  meta: Meta;
-  players: Players;
+export interface TestemunhaOcularInitialState extends InitialState {
   store: TestemunhaOcularStore;
   state: TestemunhaOcularState;
 }
 
-// TODO
 export interface TestemunhaOcularSubmitAction extends Payload {
   action: 'SELECT_WITNESS' | 'SELECT_QUESTION' | 'GIVE_TESTIMONY' | 'ELIMINATE_SUSPECT';
-  [key: string]: any;
 }
 
 export type FirebaseStateData = FirebaseFirestore.DocumentData | TestemunhaOcularState;

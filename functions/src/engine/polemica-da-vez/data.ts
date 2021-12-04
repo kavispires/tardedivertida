@@ -1,12 +1,12 @@
-// Resources
-import polemicaDaVezTopicsPt from '../../resources/polemica-da-vez-pt.json';
-import polemicaDaVezTopicsEn from '../../resources/polemica-da-vez-en.json';
+// Helpers
+import * as resourceUtils from '../resource';
 
+/**
+ * Get word cards resource based on the game's language
+ * @param language
+ * @returns
+ */
 export const getTopics = async (language: string) => {
-  // Get full deck
-  const allTopics = language === 'en' ? polemicaDaVezTopicsEn : polemicaDaVezTopicsPt;
-
-  return {
-    allTopics,
-  };
+  const resourceName = `polemica-da-vez-${language}`;
+  return await resourceUtils.fetchResource(resourceName);
 };

@@ -2,9 +2,8 @@
 import { GameId, PlayerId, GameName } from '../../utils/interfaces';
 // Utils
 import * as firebaseUtils from '../../utils/firebase';
-import * as utils from '../../utils/helpers';
 import * as playerHandUtils from '../../utils/player-hand-utils';
-import { nextDetetivesImaginativosPhase } from './index';
+import { getNextPhase } from './index';
 import { HAND_LIMIT } from './constants';
 
 /**
@@ -33,13 +32,20 @@ export const handlePlayCard = async (
     firebaseUtils.throwException('You are not the current player!', 'Failed to play card.');
   }
 
-  // Remove card from player's hand and add new card
-  try {
-    const newPlayers = playerHandUtils.discardPlayerCard(players, cardId, playerId, HAND_LIMIT);
-    await sessionRef.doc('players').update(newPlayers);
-  } catch (error) {
-    firebaseUtils.throwException(error, 'Failed to update player with new card');
-  }
+  const { hand, deckIndex } = playerHandUtils.discardPlayerCard(players, cardId, playerId, HAND_LIMIT);
+
+  await firebaseUtils.updatePlayer({
+    collectionName,
+    gameId,
+    playerId,
+    actionText,
+    shouldReady: false,
+    change: {
+      hand,
+      deckIndex,
+      cardId,
+    },
+  });
 
   // Add card to table
   try {
@@ -59,7 +65,7 @@ export const handlePlayCard = async (
     // If it is the last player to play, go to the next phase
     if (newPhaseIndex === state.phaseOrder.length) {
       await sessionRef.doc('state').update({ table });
-      nextDetetivesImaginativosPhase(collectionName, gameId, players);
+      getNextPhase(collectionName, gameId, players);
     } else {
       await sessionRef.doc('state').update({
         table,
@@ -101,7 +107,7 @@ export const handleDefend = async (collectionName: GameName, gameId: GameId, pla
     if (newPhaseIndex === state.phaseOrder.length) {
       const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
       const players = playersDoc.data() ?? {};
-      nextDetetivesImaginativosPhase(collectionName, gameId, players);
+      getNextPhase(collectionName, gameId, players);
     } else {
       await sessionRef.doc('state').update({
         phaseIndex: newPhaseIndex,
@@ -129,27 +135,15 @@ export const handleSubmitVote = async (
   playerId: PlayerId,
   vote: PlayerId
 ) => {
-  const actionText = 'vote';
-  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
-  const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
-
-  // Make player ready and attach vote
-  const players = playersDoc.data() ?? {};
-  const updatedPlayers = utils.readyPlayer(players, playerId);
-  updatedPlayers[playerId].vote = vote;
-
-  try {
-    await sessionRef.doc('players').update({ [playerId]: updatedPlayers[playerId] });
-  } catch (error) {
-    firebaseUtils.throwException(error, actionText);
-  }
-
-  if (!utils.isEverybodyReady(updatedPlayers)) {
-    return true;
-  }
-
-  // If all players are ready, trigger next phase
-  return nextDetetivesImaginativosPhase(collectionName, gameId, updatedPlayers);
+  return await firebaseUtils.updatePlayer({
+    collectionName,
+    gameId,
+    playerId,
+    actionText: 'submit vote',
+    shouldReady: true,
+    change: { vote },
+    nextPhaseFunction: getNextPhase,
+  });
 };
 
 /**
@@ -166,19 +160,14 @@ export const handleSubmitClue = async (
   playerId: PlayerId,
   clue: string
 ) => {
-  // Get 'players' from given game session
-  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
-  const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', 'submit clue');
-
-  // Submit clue
-  try {
-    await sessionRef.doc('store').update({ clue });
-  } catch (error) {
-    firebaseUtils.throwException(error, 'Failed to save clue to store');
-  }
-
-  const players = playersDoc.data() ?? {};
-
-  // If all players are ready, trigger next phase
-  return nextDetetivesImaginativosPhase(collectionName, gameId, players);
+  return await firebaseUtils.updateStore({
+    collectionName,
+    gameId,
+    playerId,
+    actionText: 'submit clue',
+    change: {
+      clue,
+    },
+    nextPhaseFunction: getNextPhase,
+  });
 };

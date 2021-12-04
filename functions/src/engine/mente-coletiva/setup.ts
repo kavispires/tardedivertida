@@ -2,7 +2,7 @@
 import { PlainObject, Players, SaveGamePayload } from '../../utils/interfaces';
 import { FirebaseStateData, FirebaseStoreData } from './interfaces';
 // Constants
-import { MAX_NUMBER_OF_ROUNDS, MENTE_COLETIVA_PHASES, QUESTIONS_PER_ROUND } from './constants';
+import { MENTE_COLETIVA_PHASES, QUESTIONS_PER_ROUND } from './constants';
 // Utils
 import * as gameUtils from '../../utils/game-utils';
 import * as firebaseUtils from '../../utils/firebase';
@@ -41,7 +41,7 @@ export const prepareSetupPhase = async (
   const deck = buildDeck(additionalData.allQuestions, additionalData.usedQuestions);
 
   // Add level to players
-  utils.addPropertiesFromPlayers(players, {
+  utils.addPropertiesToPlayers(players, {
     level: 0,
     answers: [],
   });
@@ -57,12 +57,7 @@ export const prepareSetupPhase = async (
       },
       state: {
         phase: MENTE_COLETIVA_PHASES.SETUP,
-        updatedAt: Date.now(),
         gameOrder,
-        round: {
-          current: 0,
-          total: MAX_NUMBER_OF_ROUNDS,
-        },
       },
       players,
     },
@@ -75,14 +70,14 @@ export const prepareQuestionSelectionPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Determine active player based on current round
-  const activePlayer = utils.getActivePlayer(store.gameOrder, state.round.current + 1);
+  const activePlayerId = utils.getActivePlayer(store.gameOrder, state.round.current + 1);
 
   // Modify player
-  utils.addPropertiesFromPlayers(players, {
+  utils.addPropertiesToPlayers(players, {
     score: 0,
     answers: [],
   });
-  utils.unReadyPlayer(players, activePlayer);
+  utils.unReadyPlayer(players, activePlayerId);
 
   // Get questions
   const currentQuestions = Array(QUESTIONS_PER_ROUND)
@@ -97,10 +92,9 @@ export const prepareQuestionSelectionPhase = async (
       },
       state: {
         phase: MENTE_COLETIVA_PHASES.QUESTION_SELECTION,
-        updatedAt: Date.now(),
         round: utils.increaseRound(state.round),
         roundType: determineRoundType(store.gameOrder.length, state.round.current + 1),
-        activePlayer,
+        activePlayerId,
         currentQuestions,
       },
       players,
@@ -123,7 +117,6 @@ export const prepareEverybodyWritesPhase = async (
     update: {
       state: {
         phase: MENTE_COLETIVA_PHASES.EVERYBODY_WRITES,
-        updatedAt: Date.now(),
         currentQuestion,
         currentQuestions: firebaseUtils.deleteValue(),
       },
@@ -151,7 +144,6 @@ export const prepareComparePhase = async (
     update: {
       state: {
         phase: MENTE_COLETIVA_PHASES.COMPARE,
-        updatedAt: Date.now(),
         answersList,
         allAnswers,
       },
@@ -195,7 +187,6 @@ export const prepareResolutionPhase = async (
     update: {
       state: {
         phase: MENTE_COLETIVA_PHASES.RESOLUTION,
-        updatedAt: Date.now(),
         ranking,
         pastureChangeStr: JSON.stringify(pastureChange),
         usedSave: state?.usedSave || (isGameOver && !state?.usedSave),

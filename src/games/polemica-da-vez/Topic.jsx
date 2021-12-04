@@ -1,11 +1,16 @@
 import PropTypes from 'prop-types';
-import { RiseOutlined, TwitterOutlined } from '@ant-design/icons';
+import { LikeFilled, RiseOutlined, TwitterOutlined } from '@ant-design/icons';
 import React from 'react';
 
-export function Topic({ topic }) {
+export function Topic({ topic, likes }) {
   return (
     <div className="p-trending-topic">
-      <TwitterOutlined /> {topic} <RiseOutlined />
+      <TwitterOutlined /> {topic} <RiseOutlined />{' '}
+      {Boolean(likes) && (
+        <span className="p-trending-topic__likes">
+          {likes} <LikeFilled className="p-icon-like" />
+        </span>
+      )}
     </div>
   );
 }

@@ -1,7 +1,7 @@
 // Constants
 import {
   CUSTOM_TOPICS_PER_ROUND,
-  MAX_NUMBER_OF_ROUNDS,
+  MAX_ROUNDS,
   POLEMICA_DA_VEZ_PHASES,
   SCORE_GOAL,
   TOPICS_PER_ROUND,
@@ -30,7 +30,7 @@ export const determineNextPhase = (
     return GAME_OVER;
   }
 
-  if (currentPhase === RESOLUTION && currentRound === MAX_NUMBER_OF_ROUNDS) {
+  if (currentPhase === RESOLUTION && currentRound === MAX_ROUNDS) {
     return GAME_OVER;
   }
 
@@ -70,8 +70,8 @@ export const buildDeck = (allTopics): Decks => {
   );
 
   return {
-    deck: gameUtils.getRandomItems(deck, MAX_NUMBER_OF_ROUNDS * TOPICS_PER_ROUND),
-    customDeck: gameUtils.getRandomItems(customDeck, MAX_NUMBER_OF_ROUNDS * CUSTOM_TOPICS_PER_ROUND),
+    deck: gameUtils.getRandomItems(deck, MAX_ROUNDS * TOPICS_PER_ROUND),
+    customDeck: gameUtils.getRandomItems(customDeck, MAX_ROUNDS * CUSTOM_TOPICS_PER_ROUND),
   };
 };
 

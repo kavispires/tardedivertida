@@ -8,9 +8,14 @@ export const POLEMICA_DA_VEZ_PHASES = {
   GAME_OVER: 'GAME_OVER',
 };
 
+export const PLAYER_COUNT = {
+  MIN: 3,
+  MAX: 10,
+};
+
 export const SCORE_GOAL = 4;
 
-export const MAX_NUMBER_OF_ROUNDS = 15;
+export const MAX_ROUNDS = 15;
 
 export const TOPICS_PER_ROUND = 4;
 

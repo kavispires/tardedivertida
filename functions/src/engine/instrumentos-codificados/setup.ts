@@ -9,10 +9,11 @@ import {
   TOTAL_IMAGE_CARDS,
   TOTAL_ROUNDS,
 } from './constants';
-// Helpers
+// Utils
 import * as gameUtils from '../../utils/game-utils';
 import * as imageCards from '../../utils/image-cards';
 import * as utils from '../../utils/helpers';
+// Internal
 import { buildCode, buildCodeFragment, buildTable } from './helpers';
 
 /**
@@ -79,7 +80,6 @@ export const prepareHintGivingPhase = async (
     update: {
       state: {
         phase: INSTRUMENTOS_CODIFICADOS_PHASES.HINT_GIVING,
-        updatedAt: Date.now(),
         round: utils.increaseRound(state?.round, TOTAL_ROUNDS),
         theme,
       },
@@ -101,7 +101,6 @@ export const prepareHintReceivingPhase = async (
     update: {
       state: {
         phase: INSTRUMENTOS_CODIFICADOS_PHASES.HINT_RECEIVING,
-        updatedAt: Date.now(),
       },
       players,
     },
@@ -121,7 +120,6 @@ export const prepareGuessTheCodePhase = async (
     update: {
       state: {
         phase: INSTRUMENTOS_CODIFICADOS_PHASES.GUESS_THE_CODE,
-        updatedAt: Date.now(),
       },
       players,
     },
@@ -141,7 +139,6 @@ export const prepareSolutionPhase = async (
     update: {
       state: {
         phase: INSTRUMENTOS_CODIFICADOS_PHASES.GUESS_THE_CODE,
-        updatedAt: Date.now(),
       },
       players,
     },
@@ -157,9 +154,6 @@ export const prepareGameOverPhase = async (
 
   return {
     update: {
-      store: {
-        ...store,
-      },
       meta: {
         isComplete: true,
       },

@@ -26,10 +26,10 @@ function PhaseQuestionSelection({ state, players, info }) {
   const [isLoading] = useLoading();
   const [step, setStep] = useState(0);
 
-  const witness = useWhichPlayerIsThe('witness', state, players);
-  const isUserTheWitness = useIsUserThe('witness', state);
-  const questioner = useWhichPlayerIsThe('questioner', state, players);
-  const isUserTheQuestioner = useIsUserThe('questioner', state);
+  const witness = useWhichPlayerIsThe('witnessId', state, players);
+  const isUserTheWitness = useIsUserThe('witnessId', state);
+  const questioner = useWhichPlayerIsThe('questionerId', state, players);
+  const isUserTheQuestioner = useIsUserThe('questionerId', state);
 
   const onSelectQuestionCall = useAPICall({
     apiFunction: TESTEMUNHA_OCULAR_API.submitAction,
@@ -49,7 +49,7 @@ function PhaseQuestionSelection({ state, players, info }) {
     });
   };
 
-  const roundsLeft = (state?.round?.total ?? 0 - state?.round?.current ?? 0) || 11;
+  const roundsLeft = (state?.round?.total ?? 0) - (state?.round?.current ?? 0) || 11;
 
   return (
     <PhaseContainer

@@ -9,7 +9,12 @@ export const TESTEMUNHA_OCULAR_PHASES = {
   GAME_OVER: 'GAME_OVER',
 };
 
-export const MAX_NUMBER_OF_ROUNDS = 11;
+export const PLAYER_COUNT = {
+  MIN: 2,
+  MAX: 10,
+};
+
+export const MAX_ROUNDS = 11;
 
 export const SUSPECT_COUNT = 12;
 

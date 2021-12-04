@@ -8,19 +8,23 @@ import { Step, translate } from '../../components/shared';
 import { Card } from '../../components/cards';
 import { DrawingCanvas } from '../../components/canvas';
 import { useLanguage } from '../../hooks';
+import { Panic } from '../../components/icons';
 
 function DrawPhaseDrawStep({ secretCard, onSubmitDrawing }) {
   const language = useLanguage();
   const [lines, setLines] = useState([]);
+  const [isTimesUp, setTimesUp] = useState(false);
 
   const { seconds } = useTimer({
     expiryTimestamp: inNSeconds(11),
     autoStart: true,
-    onExpire: () =>
+    onExpire: () => {
+      setTimesUp(true);
       onSubmitDrawing({
         drawing: JSON.stringify(lines),
         cardId: secretCard.id,
-      }),
+      });
+    },
   });
 
   return (
@@ -35,7 +39,11 @@ function DrawPhaseDrawStep({ secretCard, onSubmitDrawing }) {
         {secretCard?.text}
         <span className="a-draw-step__timer">{seconds > 0 ? seconds - 1 : 0}</span>
       </Card>
-      <DrawingCanvas lines={lines} setLines={setLines} />
+      {isTimesUp ? (
+        <Panic style={{ background: 'white', width: '500px', padding: '2em' }} />
+      ) : (
+        <DrawingCanvas lines={lines} setLines={setLines} />
+      )}
     </Step>
   );
 }

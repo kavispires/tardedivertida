@@ -34,9 +34,9 @@ function PhaseStory({ state, players, info }) {
   const language = useLanguage();
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
-  const storyteller = useWhichPlayerIsThe('storyteller', state, players);
-  const nextStoryteller = useWhichPlayerIsThe('nextStoryteller', state, players);
-  const isUserTheStoryTeller = useIsUserThe('storyteller', state);
+  const storyteller = useWhichPlayerIsThe('storytellerId', state, players);
+  const nextStoryteller = useWhichPlayerIsThe('nextStorytellerId', state, players);
+  const isUserTheStoryTeller = useIsUserThe('storytellerId', state);
   const [step, setStep] = useState(0);
 
   const onSubmitStory = useAPICall({

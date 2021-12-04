@@ -1,6 +1,6 @@
 import * as gameUtils from '../../utils/game-utils';
 import { PlainObject, PlayerId, Players } from '../../utils/interfaces';
-import { MAX_NUMBER_OF_ROUNDS, TESTEMUNHA_OCULAR_PHASES } from './constants';
+import { MAX_ROUNDS, TESTEMUNHA_OCULAR_PHASES } from './constants';
 import { TestemunhaOcularCard, TestemunhaOcularCardsDatabase, TestemunhaOcularEntry } from './interfaces';
 
 /**
@@ -31,7 +31,7 @@ export const determineNextPhase = (
   }
 
   if (currentPhase === TRIAL) {
-    return currentRound >= MAX_NUMBER_OF_ROUNDS ? GAME_OVER : QUESTION_SELECTION;
+    return currentRound >= MAX_ROUNDS ? GAME_OVER : QUESTION_SELECTION;
   }
 
   const currentPhaseIndex = order.indexOf(currentPhase);
@@ -59,11 +59,11 @@ export const filterAvailableCards = (
 /**
  * Determine turn order by shuffling players, excluding the witness
  * @param players
- * @param witness
+ * @param witnessId
  * @returns
  */
-export const determineTurnOrder = (players: Players, witness: PlayerId): PlayerId[] => {
-  const availablePlayers = Object.keys(players).filter((id) => id !== witness);
+export const determineTurnOrder = (players: Players, witnessId: PlayerId): PlayerId[] => {
+  const availablePlayers = Object.keys(players).filter((id) => id !== witnessId);
   return gameUtils.shuffle(availablePlayers);
 };
 
@@ -73,7 +73,7 @@ export const determineTurnOrder = (players: Players, witness: PlayerId): PlayerI
  * @param questionerIndex
  * @returns
  */
-export const getQuestioner = (turnOrder: PlayerId[], questionerIndex: number): PlayerId => {
+export const getQuestionerId = (turnOrder: PlayerId[], questionerIndex: number): PlayerId => {
   return turnOrder[questionerIndex % turnOrder.length];
 };
 

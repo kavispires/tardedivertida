@@ -1,9 +1,10 @@
 // Interfaces
+import { PlainObject, Player, Players } from '../../utils/interfaces';
+import { AllWords, CurrentSuggestions, UsedWord, UsedWords, Word } from './interfaces';
+// Constants
 import { UE_SO_ISSO_PHASES, WORDS_PER_CARD } from './constants';
 // Utilities
 import * as gameUtils from '../../utils/game-utils';
-import { PlainObject, Player, Players } from '../../utils/interfaces';
-import { AllWords, CurrentSuggestions, UsedWord, UsedWords, Word } from './interfaces';
 
 /**
  * Determine the next phase based on the current one

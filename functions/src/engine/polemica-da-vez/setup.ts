@@ -1,10 +1,5 @@
 // Constants
-import {
-  CUSTOM_TOPICS_PER_ROUND,
-  MAX_NUMBER_OF_ROUNDS,
-  POLEMICA_DA_VEZ_PHASES,
-  TOPICS_PER_ROUND,
-} from './constants';
+import { CUSTOM_TOPICS_PER_ROUND, POLEMICA_DA_VEZ_PHASES, TOPICS_PER_ROUND } from './constants';
 // Interfaces
 import { PlainObject, Players, SaveGamePayload } from '../../utils/interfaces';
 import { FirebaseStateData, FirebaseStoreData } from './interfaces';
@@ -24,13 +19,13 @@ export const prepareSetupPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
-  additionalData: PlainObject
+  allTopics: PlainObject
 ): Promise<SaveGamePayload> => {
   // Determine turn order
   const gameOrder = gameUtils.shuffle(Object.keys(players));
 
   // Build deck
-  const { deck, customDeck } = buildDeck(additionalData.allTopics);
+  const { deck, customDeck } = buildDeck(allTopics);
 
   // Save
   return {
@@ -45,12 +40,7 @@ export const prepareSetupPhase = async (
       },
       state: {
         phase: POLEMICA_DA_VEZ_PHASES.SETUP,
-        updatedAt: Date.now(),
         gameOrder,
-        round: {
-          current: 0,
-          total: MAX_NUMBER_OF_ROUNDS,
-        },
       },
     },
   };
@@ -62,14 +52,14 @@ export const prepareTopicSelectionPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Determine active player based on current round
-  const activePlayer = utils.getActivePlayer(store.gameOrder, state.round.current + 1);
+  const activePlayerId = utils.getActivePlayer(store.gameOrder, state.round.current + 1);
 
   // Modify player
-  utils.addPropertiesFromPlayers(players, {
+  utils.addPropertiesToPlayers(players, {
     reaction: null,
     likesGuess: null,
   });
-  utils.unReadyPlayer(players, activePlayer);
+  utils.unReadyPlayer(players, activePlayerId);
 
   // Get questions
   const currentTopics = Array(TOPICS_PER_ROUND)
@@ -87,9 +77,8 @@ export const prepareTopicSelectionPhase = async (
       },
       state: {
         phase: POLEMICA_DA_VEZ_PHASES.TOPIC_SELECTION,
-        updatedAt: Date.now(),
         round: utils.increaseRound(state.round),
-        activePlayer,
+        activePlayerId,
         currentTopics,
         currentCustomTopic,
       },
@@ -119,7 +108,6 @@ export const prepareReactPhase = async (
     update: {
       state: {
         phase: POLEMICA_DA_VEZ_PHASES.REACT,
-        updatedAt: Date.now(),
         currentTopic,
         customTopic,
         currentTopics: firebaseUtils.deleteValue(),
@@ -146,7 +134,6 @@ export const prepareResolutionPhase = async (
     update: {
       state: {
         phase: POLEMICA_DA_VEZ_PHASES.RESOLUTION,
-        updatedAt: Date.now(),
         currentTopics: firebaseUtils.deleteValue(),
         currentCustomTopic: firebaseUtils.deleteValue(),
         totalLikes,
@@ -174,9 +161,9 @@ export const prepareGameOverPhase = async (
       players,
       state: {
         phase: POLEMICA_DA_VEZ_PHASES.GAME_OVER,
-        winners,
-        gameEndedAt: Date.now(),
         round: state.round,
+        gameEndedAt: Date.now(),
+        winners,
       },
     },
   };

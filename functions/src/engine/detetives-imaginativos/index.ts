@@ -1,11 +1,12 @@
 // Constants
-import { GAME_COLLECTIONS, GAME_PLAYERS_LIMIT } from '../../utils/constants';
-import { DETETIVES_IMAGINATIVOS_PHASES } from './constants';
+import { GAME_COLLECTIONS } from '../../utils/constants';
+import { DETETIVES_IMAGINATIVOS_PHASES, PLAYER_COUNT } from './constants';
 // Interfaces
-import { GameId, Players } from '../../utils/interfaces';
+import { GameId, Language, Players } from '../../utils/interfaces';
 import { DetetivesImaginativosInitialState, DetetivesImaginativosSubmitAction } from './interfaces';
 // Utils
 import * as firebaseUtils from '../../utils/firebase';
+import * as utils from '../../utils/helpers';
 import {
   prepareCardPlayPhase,
   prepareDefensePhase,
@@ -28,36 +29,31 @@ import { determineNextPhase } from './helpers';
 export const getInitialState = (
   gameId: GameId,
   uid: string,
-  language: string
-): DetetivesImaginativosInitialState => ({
-  meta: {
+  language: Language
+): DetetivesImaginativosInitialState => {
+  return utils.getDefaultInitialState({
     gameId,
     gameName: GAME_COLLECTIONS.DETETIVES_IMAGINATIVOS,
-    createdAt: Date.now(),
-    createdBy: uid,
-    min: GAME_PLAYERS_LIMIT.DETETIVES_IMAGINATIVOS.min,
-    max: GAME_PLAYERS_LIMIT.DETETIVES_IMAGINATIVOS.max,
-    isLocked: false,
-    isComplete: false,
+    uid,
     language,
-    replay: 0,
-  },
-  players: {},
-  store: {
-    usedCards: [],
-    gameOrder: [],
-    turnOrder: [],
-  },
-  state: {
-    phase: DETETIVES_IMAGINATIVOS_PHASES.LOBBY,
-    round: {
-      current: 0,
-      total: 0,
+    playerCount: PLAYER_COUNT,
+    initialPhase: DETETIVES_IMAGINATIVOS_PHASES.LOBBY,
+    totalRounds: 0,
+    store: {
+      language,
+      usedCards: [],
+      gameOrder: [],
+      turnOrder: [],
     },
-  },
-});
+  });
+};
 
-export const nextDetetivesImaginativosPhase = async (
+/**
+ * Exposes min and max player count
+ */
+export const playerCount = PLAYER_COUNT;
+
+export const getNextPhase = async (
   collectionName: string,
   gameId: string,
   players: Players
@@ -65,23 +61,24 @@ export const nextDetetivesImaginativosPhase = async (
   const actionText = 'prepare next phase';
 
   // Gather docs and references
-  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
-  const stateDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'state', actionText);
-  const storeDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'store', actionText);
-
-  const state = stateDoc.data() ?? {};
-  const store = { ...(storeDoc.data() ?? {}) };
+  const { sessionRef, state, store } = await firebaseUtils.getStateAndStoreReferences(
+    collectionName,
+    gameId,
+    actionText
+  );
 
   // Determine next phase
   const nextPhase = determineNextPhase(state?.phase, state?.round);
 
   // RULES -> SETUP
   if (nextPhase === DETETIVES_IMAGINATIVOS_PHASES.SETUP) {
+    // Enter setup phase before doing anything
+    await firebaseUtils.triggerSetupPhase(sessionRef);
+
     const newPhase = await prepareSetupPhase(store, state, players);
     await firebaseUtils.saveGame(sessionRef, newPhase);
-    const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
-    const newPlayers = playersDoc.data() ?? {};
-    return nextDetetivesImaginativosPhase(collectionName, gameId, newPlayers);
+
+    return getNextPhase(collectionName, gameId, newPhase.update?.players ?? {});
   }
 
   // * -> SECRET_CLUE
@@ -131,29 +128,19 @@ export const nextDetetivesImaginativosPhase = async (
 export const submitAction = async (data: DetetivesImaginativosSubmitAction) => {
   const { gameId, gameName: collectionName, playerId, action } = data;
 
-  const actionText = 'submit action';
-  firebaseUtils.verifyPayload(gameId, 'gameId', actionText);
-  firebaseUtils.verifyPayload(collectionName, 'collectionName', actionText);
-  firebaseUtils.verifyPayload(playerId, 'playerId', actionText);
-  firebaseUtils.verifyPayload(action, 'action', actionText);
+  firebaseUtils.validateSubmitActionPayload(gameId, collectionName, playerId, action);
 
   switch (action) {
     case 'SUBMIT_CLUE':
-      if (!data.clue) {
-        firebaseUtils.throwException('Missing `clue` value', 'submit clue');
-      }
+      firebaseUtils.validateSubmitActionProperties(data, ['clue'], 'submit clue');
       return handleSubmitClue(collectionName, gameId, playerId, data.clue);
     case 'PLAY_CARD':
-      if (!data.cardId) {
-        firebaseUtils.throwException('Missing `cardId` value', 'play card');
-      }
+      firebaseUtils.validateSubmitActionProperties(data, ['cardId'], 'play card');
       return handlePlayCard(collectionName, gameId, playerId, data.cardId);
     case 'DEFEND':
       return handleDefend(collectionName, gameId, playerId);
     case 'SUBMIT_VOTE':
-      if (!data.vote) {
-        firebaseUtils.throwException('Missing `vote` value', 'submit vote');
-      }
+      firebaseUtils.validateSubmitActionProperties(data, ['vote'], 'submit vote');
       return handleSubmitVote(collectionName, gameId, playerId, data.vote);
     default:
       firebaseUtils.throwException(`Given action ${action} is not allowed`);

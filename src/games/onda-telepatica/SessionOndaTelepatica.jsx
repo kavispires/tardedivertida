@@ -2,15 +2,13 @@ import React from 'react';
 // Hooks
 import { GAME_COLLECTION, PHASES } from '../../utils/constants';
 // Components
-import { GameOverPhase, Session, SetupScreen } from '../../components/shared';
+import { GameOverWrapper, Session, SetupScreen } from '../../components/shared';
 import Lobby from '../../components/lobby/Lobby';
 import { Rules } from '../../components/rules';
 import { PageError } from '../../components/errors/PageError';
-import DialSidesPhase from './DialSidesPhase';
-import DialCluePhase from './DialCluePhase';
-import GuessPhase from './GuessPhase';
-import RivalPhase from './RivalPhase';
-import RevealPhase from './RevealPhase';
+import PhaseDialClue from './PhaseDialClue';
+import PhaseGuess from './PhaseGuess';
+import PhaseReveal from './PhaseReveal';
 
 function SessionOndaTelepatica({ gameId }) {
   function getActiveComponent(phase) {
@@ -21,18 +19,14 @@ function SessionOndaTelepatica({ gameId }) {
         return Rules;
       case PHASES.ONDA_TELEPATICA.SETUP:
         return SetupScreen;
-      case PHASES.ONDA_TELEPATICA.DIAL_SIDES:
-        return DialSidesPhase;
       case PHASES.ONDA_TELEPATICA.DIAL_CLUE:
-        return DialCluePhase;
+        return PhaseDialClue;
       case PHASES.ONDA_TELEPATICA.GUESS:
-        return GuessPhase;
-      case PHASES.ONDA_TELEPATICA.RIVAL_GUESS:
-        return RivalPhase;
+        return PhaseGuess;
       case PHASES.ONDA_TELEPATICA.REVEAL:
-        return RevealPhase;
+        return PhaseReveal;
       case PHASES.ONDA_TELEPATICA.GAME_OVER:
-        return GameOverPhase;
+        return GameOverWrapper;
       default:
         return PageError;
     }

@@ -119,6 +119,10 @@ const components = [
     name: 'Painting',
   },
   {
+    component: <icons.Panic />,
+    name: 'Panic',
+  },
+  {
     component: <icons.Picture />,
     name: 'Picture',
   },
@@ -143,8 +147,16 @@ const components = [
     name: 'Sheep',
   },
   {
+    component: <icons.SoundWave />,
+    name: 'SoundWave',
+  },
+  {
     component: <icons.TheEnd />,
     name: 'TheEnd',
+  },
+  {
+    component: <icons.Timer />,
+    name: 'Timer',
   },
   {
     component: <icons.Trending />,
@@ -153,6 +165,10 @@ const components = [
   {
     component: <icons.Trophy />,
     name: 'Trophy',
+  },
+  {
+    component: <icons.Turban />,
+    name: 'Turban',
   },
   {
     component: <icons.VerifyList />,

@@ -143,7 +143,12 @@ const checkResolution = (state: FirebaseFirestore.DocumentData, players: Players
   };
 };
 
-export const nextEspiaoEntreNosPhase = async (
+export const playerCount = {
+  MIN: GAME_PLAYERS_LIMIT.ESPIAO_ENTRE_NOS.min,
+  MAX: GAME_PLAYERS_LIMIT.ESPIAO_ENTRE_NOS.max,
+};
+
+export const getNextPhase = async (
   collectionName: string,
   gameId: string,
   players: Players,
@@ -192,7 +197,7 @@ export const nextEspiaoEntreNosPhase = async (
   }
 
   // * -> GAME_OVER
-  if (nextPhase === PHASES.ONDA_TELEPATICA.GAME_OVER) {
+  if (nextPhase === PHASES.ESPIAO_ENTRE_NOS.GAME_OVER) {
     return prepareGameOverPhase(sessionRef, players);
   }
 
@@ -499,28 +504,28 @@ export const handleAdminAction = async (data: EspiaoEntreNosAdminPayload, contex
 
   // round => starts new round with new assignment phase
   if (typeof action === 'string' && action === 'round') {
-    return nextEspiaoEntreNosPhase(collectionName, gameId, players, {
+    return getNextPhase(collectionName, gameId, players, {
       forcePhase: PHASES.ESPIAO_ENTRE_NOS.ASSIGNMENT,
     });
   }
 
   // final => goes to game over
   if (typeof action === 'string' && action === 'end') {
-    return nextEspiaoEntreNosPhase(collectionName, gameId, players, {
+    return getNextPhase(collectionName, gameId, players, {
       forcePhase: PHASES.ESPIAO_ENTRE_NOS.GAME_OVER,
     });
   }
 
   // end => goes to final assessment
   if (typeof action === 'string' && action === 'final') {
-    return nextEspiaoEntreNosPhase(collectionName, gameId, players, {
+    return getNextPhase(collectionName, gameId, players, {
       forcePhase: PHASES.ESPIAO_ENTRE_NOS.FINAL_ASSESSMENT,
       lastPlayer: data.lastPlayer,
     });
   }
 
   // final-assessment voting
-  return nextEspiaoEntreNosPhase(collectionName, gameId, players, {
+  return getNextPhase(collectionName, gameId, players, {
     target: action.vote,
     accuser: action.accuser,
     forcePhase: PHASES.ESPIAO_ENTRE_NOS.RESOLUTION,
@@ -543,7 +548,7 @@ export const makeAccusation = async (data: SubmitVotePayload) => {
   // Make player ready and attach drawing
   const players = playersDoc.data() ?? {};
 
-  return nextEspiaoEntreNosPhase(collectionName, gameId, players, {
+  return getNextPhase(collectionName, gameId, players, {
     accuser: playerId,
     target: vote,
     pausedAt,
@@ -578,7 +583,7 @@ export const submitVoting = async (data: SubmitVotePayload) => {
   }
 
   // If all players are ready, trigger next phase
-  return nextEspiaoEntreNosPhase(collectionName, gameId, players);
+  return getNextPhase(collectionName, gameId, players);
 };
 
 export const guessLocation = async (data: SubmitGuessPayload) => {
@@ -595,9 +600,11 @@ export const guessLocation = async (data: SubmitGuessPayload) => {
   // Make player ready and attach drawing
   const players = playersDoc.data() ?? {};
 
-  return nextEspiaoEntreNosPhase(collectionName, gameId, players, {
+  return getNextPhase(collectionName, gameId, players, {
     spy: playerId,
     guess,
     forcePhase: PHASES.ESPIAO_ENTRE_NOS.RESOLUTION,
   });
 };
+
+export const submitAction = () => ({});

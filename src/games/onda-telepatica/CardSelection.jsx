@@ -14,7 +14,7 @@ function CardSelection({ onSendChosenSide, cards }) {
           <button
             key={`card-button-${card.id}`}
             className="o-card-selection__button"
-            onClick={() => onSendChosenSide({ cardId: card.id })}
+            onClick={() => onSendChosenSide(card.id)}
           >
             <Card left={card.left} right={card.right} />
           </button>

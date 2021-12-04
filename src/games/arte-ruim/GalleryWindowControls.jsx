@@ -16,7 +16,7 @@ import { inNSeconds } from '../../utils';
 import { Translate } from '../../components/shared';
 
 function GalleryWindowControls({ galleryLength, activeIndex, setActiveIndex, setStep }) {
-  const { seconds, isRunning, pause, resume } = useTimer({
+  const { minutes, seconds, isRunning, pause, resume } = useTimer({
     expiryTimestamp: inNSeconds(10 * galleryLength),
     autoStart: true,
     onExpire: () => setStep(2),
@@ -40,7 +40,7 @@ function GalleryWindowControls({ galleryLength, activeIndex, setActiveIndex, set
   return (
     <div className="a-gallery-window__controls">
       <div className="a-gallery-window__timer-bar">
-        <span style={{ width: `${Math.abs((10 * seconds) / galleryLength - 100)}%` }}></span>
+        <span style={{ width: `${Math.abs((10 * (minutes * 60 + seconds)) / galleryLength - 100)}%` }}></span>
       </div>
       <Space>
         <Button

@@ -2,18 +2,11 @@
 import { PlainObject, Players, SaveGamePayload } from '../../utils/interfaces';
 import { FirebaseStateData, FirebaseStoreData } from './interfaces';
 // Constants
-import { ARTE_RUIM_PHASES, ARTE_RUIM_TOTAL_ROUNDS, CARDS_PER_PLAYER_COUNT } from './constants';
+import { ARTE_RUIM_PHASES, MAX_ROUNDS } from './constants';
 // Helpers
 import * as gameUtils from '../../utils/game-utils';
 import * as utils from '../../utils/helpers';
-import {
-  buildDeck,
-  buildGallery,
-  buildRanking,
-  dealCards,
-  filterAvailableCards,
-  getNewPastDrawings,
-} from './helpers';
+import { buildDeck, buildGallery, buildRanking, dealCards, getNewPastDrawings } from './helpers';
 
 /**
  * Setup
@@ -29,16 +22,14 @@ export const prepareSetupPhase = async (
 ): Promise<SaveGamePayload> => {
   // Get number of cards per level
   const playerCount = Object.keys(players).length;
-  const totalCardsNeeded = CARDS_PER_PLAYER_COUNT[playerCount].total;
-  const perLevelNeeded = CARDS_PER_PLAYER_COUNT[playerCount].perLevel;
-  const perRoundNeeded = CARDS_PER_PLAYER_COUNT[playerCount].perRound;
-
-  // Filter used cards, if not enough cards, just use the full deck
-  const filteredCards = filterAvailableCards(additionalData.allCards, additionalData.usedCards);
-  const availableCards = filteredCards.length < totalCardsNeeded ? additionalData.allCards : filteredCards;
 
   // Build deck
-  const deck = buildDeck(availableCards, perLevelNeeded, perRoundNeeded);
+  const deck = buildDeck(
+    additionalData.allCards,
+    additionalData.level4Cards,
+    additionalData.usedCardsId,
+    playerCount
+  );
 
   // Save
   return {
@@ -47,9 +38,6 @@ export const prepareSetupPhase = async (
         deck,
         pastDrawings: [],
         currentCards: [],
-      },
-      state: {
-        phase: ARTE_RUIM_PHASES.SETUP,
       },
     },
   };
@@ -76,8 +64,8 @@ export const prepareDrawPhase = async (
       },
       state: {
         phase: ARTE_RUIM_PHASES.DRAW,
-        updatedAt: Date.now(),
-        round: utils.increaseRound(state?.round, ARTE_RUIM_TOTAL_ROUNDS),
+        round: utils.increaseRound(state?.round, MAX_ROUNDS),
+        level: Object.values(players)?.[0]?.currentCard?.level ?? 0,
       },
     },
     set: {
@@ -103,11 +91,11 @@ export const prepareEvaluationPhase = async (
   return {
     update: {
       store: {
+        // TODO: is this necessary?
         ...store,
       },
       state: {
         phase: ARTE_RUIM_PHASES.EVALUATION,
-        updatedAt: Date.now(),
         cards: shuffledCards,
         drawings: shuffledDrawings,
       },
@@ -144,7 +132,6 @@ export const prepareGalleryPhase = async (
       players,
       state: {
         phase: ARTE_RUIM_PHASES.GALLERY,
-        updatedAt: Date.now(),
         round: state.round,
         gallery,
         cards: store.currentCards,
@@ -165,9 +152,6 @@ export const prepareGameOverPhase = async (
 
   return {
     update: {
-      store: {
-        ...store,
-      },
       meta: {
         isComplete: true,
       },
@@ -176,9 +160,9 @@ export const prepareGameOverPhase = async (
       players,
       state: {
         phase: ARTE_RUIM_PHASES.GAME_OVER,
-        winners,
-        gameEndedAt: Date.now(),
         round: state.round,
+        gameEndedAt: Date.now(),
+        winners,
         drawings: finalGallery,
       },
     },

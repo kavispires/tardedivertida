@@ -1,29 +1,28 @@
 import PropTypes from 'prop-types';
 import React, { memo } from 'react';
 // Hooks
-import { useGlobalState } from '../../hooks';
+import { useCardWidth } from '../../hooks';
 // Components
-import { CanvasSVG, CanvasResizer } from '../../components/canvas';
+import { CanvasSVG } from '../../components/canvas';
 import GalleryWindowCredits from './GalleryWindowCredits';
 import GalleryWindowGuesses from './GalleryWindowGuesses';
 import GalleryWindowControls from './GalleryWindowControls';
 import GalleryWindowResult from './GalleryWindowResult';
 
 function GalleryWindow({ window, galleryLength, players, activeIndex, setActiveIndex, setStep, cards }) {
-  const [canvasSize] = useGlobalState('canvasSize');
+  const canvasWidth = useCardWidth(2, 16, 200, 500);
 
-  const { drawing, artist, id, text, level, playersPoints, playersSay } = window;
+  const { drawing, artistId, id, text, level, playersPoints, playersSay } = window;
 
-  const playerArtist = players[artist];
+  const playerArtist = players[artistId];
 
   return (
     <div className="a-gallery-window">
-      <CanvasResizer numPlayers={Object.keys(players).length} />
       <div className="a-gallery-window__drawing-container">
         <CanvasSVG
           key={window.correctAnswer}
           drawing={drawing}
-          size={canvasSize}
+          size={canvasWidth}
           className="a-gallery-window__drawing"
         />
       </div>
@@ -60,7 +59,7 @@ GalleryWindow.propTypes = {
   setActiveIndex: PropTypes.func,
   setStep: PropTypes.func,
   window: PropTypes.shape({
-    artist: PropTypes.string,
+    artistId: PropTypes.string,
     correctAnswer: PropTypes.string,
     drawing: PropTypes.string,
     id: PropTypes.string,

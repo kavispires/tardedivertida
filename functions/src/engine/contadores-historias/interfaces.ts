@@ -1,22 +1,33 @@
-import { ImageCard, Language, Meta, Payload, PlayerId, Players, Round } from '../../utils/interfaces';
+import {
+  DefaultState,
+  DefaultStore,
+  ImageCard,
+  InitialState,
+  Payload,
+  PlayerId,
+} from '../../utils/interfaces';
 
-export interface ContadoresHistoriasStore {
-  language: Language;
+export interface ContadoresHistoriasStore extends DefaultStore {
   gameOrder: PlayerId[];
   tableDeck: ImageCard[];
   deckIndex: number;
+  solutionCardId?: string;
+  story?: string;
   [key: string]: any;
 }
 
-export interface ContadoresHistoriasState {
-  phase: string;
-  round: Round;
+export interface ContadoresHistoriasState extends DefaultState {
+  storytellerId?: PlayerId;
+  nextStorytellerId?: PlayerId;
+  story?: string;
+  table?: any;
+  outcome?: any;
+  ranking?: any;
+  winners?: any;
   [key: string]: any;
 }
 
-export interface ContadoresHistoriasInitialState {
-  meta: Meta;
-  players: Players;
+export interface ContadoresHistoriasInitialState extends InitialState {
   store: ContadoresHistoriasStore;
   state: ContadoresHistoriasState;
 }
@@ -32,7 +43,6 @@ export type Table = TableEntry[];
 
 export interface ContadoresHistoriasSubmitAction extends Payload {
   action: 'SUBMIT_STORY' | 'PLAY_CARD' | 'SUBMIT_VOTE';
-  [key: string]: any;
 }
 
 export type FirebaseStateData = FirebaseFirestore.DocumentData | ContadoresHistoriasState;

@@ -1,5 +1,5 @@
 // Interfaces
-import { PlayerId, Players } from './interfaces';
+import { PlainObject, PlayerId, Players } from './interfaces';
 // Utils
 import * as gameUtils from './game-utils';
 
@@ -49,7 +49,7 @@ export const discardPlayerCard = (
   cardId: string,
   playerId: PlayerId,
   handLimit: number
-): Players => {
+): PlainObject => {
   const player = players[playerId];
   const currentHand = gameUtils.removeItem(player?.hand ?? [], cardId);
 
@@ -63,5 +63,9 @@ export const discardPlayerCard = (
   player.hand = currentHand;
   player.deckIndex = currentDeckIndex;
 
-  return players;
+  return {
+    hand: currentHand,
+    deckIndex: currentDeckIndex,
+    players,
+  };
 };

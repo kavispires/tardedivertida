@@ -9,6 +9,11 @@ export const SONHOS_PESADELOS_PHASES = {
   GAME_OVER: 'GAME_OVER',
 };
 
+export const PLAYER_COUNT = {
+  MIN: 2,
+  MAX: 10,
+};
+
 export const TOTAL_ROUNDS = 5;
 
 export const COUNTS_BY_PLAYER = {
@@ -52,6 +57,18 @@ export const COUNTS_BY_PLAYER = {
     dreams: 1,
     nightmares: 1,
     extra: 4,
+    cards: 12,
+  },
+  9: {
+    dreams: 1,
+    nightmares: 1,
+    extra: 3,
+    cards: 12,
+  },
+  10: {
+    dreams: 1,
+    nightmares: 1,
+    extra: 2,
     cards: 12,
   },
 };

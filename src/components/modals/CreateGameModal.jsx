@@ -42,7 +42,7 @@ export function CreateGameModal({ gameInfo }) {
       } catch (e) {
         notification.error({
           message: translate(
-            'Applicativo encontrou um erro ao tentar criar o jogo',
+            'Aplicativo encontrou um erro ao tentar criar o jogo',
             'The application found an error while trying to create a game',
             language
           ),

@@ -24,16 +24,16 @@ import { GuesserWaitingRoom } from './GuesserWaitingRoom';
 function PhaseCompare({ state, players, info }) {
   const language = useLanguage();
   const [step, setStep] = useState(0);
-  const isUserTheGuesser = useIsUserThe('guesser', state);
-  const isUserTheController = useIsUserThe('controller', state);
-  const controller = useWhichPlayerIsThe('controller', state, players);
+  const isUserTheGuesser = useIsUserThe('guesserId', state);
+  const isUserTheController = useIsUserThe('controllerId', state);
+  const controller = useWhichPlayerIsThe('controllerId', state, players);
 
   const onValidateSuggestionsAPIRequest = useAPICall({
     apiFunction: UE_SO_ISSO_API.submitAction,
     actionName: 'validate-suggestions',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
-    successMessage: translate('Validação enviada com successo!', 'Validation sent successfully!', language),
+    successMessage: translate('Validação enviada com sucesso!', 'Validation sent successfully!', language),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar a validação das sugestões',
       'Oops, the application failed to send the validation',

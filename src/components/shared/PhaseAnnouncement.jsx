@@ -63,6 +63,8 @@ const getIconType = (type) => {
       return IconIllustrations.Opinions;
     case 'painting':
       return IconIllustrations.Painting;
+    case 'panic':
+      return IconIllustrations.Panic;
     case 'picture':
       return IconIllustrations.Picture;
     case 'rank':
@@ -75,12 +77,18 @@ const getIconType = (type) => {
       return IconIllustrations.Secret;
     case 'sheep':
       return IconIllustrations.Sheep;
+    case 'sound-wave':
+      return IconIllustrations.SoundWave;
     case 'the-end':
       return IconIllustrations.TheEnd;
+    case 'timer':
+      return IconIllustrations.Timer;
     case 'trending':
       return IconIllustrations.Trending;
     case 'trophy':
       return IconIllustrations.Trophy;
+    case 'turban':
+      return IconIllustrations.Turban;
     case 'verify-list':
       return IconIllustrations.VerifyList;
     case 'vote':

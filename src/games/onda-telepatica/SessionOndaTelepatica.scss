@@ -8,3 +8,56 @@
     text-transform: uppercase;
   }
 }
+
+.o-player-guesses {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+}
+
+.o-player-guess {
+  display: flex;
+  flex-direction: column;
+  margin: get-unit(1 2);
+  align-items: center;
+
+  &__avatar {
+    margin-top: get-unit(2);
+  }
+
+  &__guess {
+    display: inline;
+    padding: get-unit(1 3);
+    position: relative;
+    background: #ffffff;
+    border-radius: 0.4em;
+
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border: 0.375em solid transparent;
+      border-top-color: #ffffff;
+      border-bottom: 0;
+      margin-left: -0.375em;
+      margin-bottom: -0.375em;
+    }
+
+    &--blue {
+      color: get-color(blue, 5);
+      font-weight: bolder;
+    }
+
+    &--orange {
+      color: get-color(orange, 5);
+    }
+
+    &--yellow {
+      color: get-color(yellow, 5);
+    }
+  }
+}
