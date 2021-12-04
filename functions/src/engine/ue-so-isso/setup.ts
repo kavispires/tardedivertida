@@ -7,6 +7,7 @@ import { DOUBLE_ROUNDS_THRESHOLD, UE_SO_ISSO_PHASES } from './constants';
 import * as firebaseUtils from '../../utils/firebase';
 import * as gameUtils from '../../utils/game-utils';
 import * as utils from '../../utils/helpers';
+// Internal
 import {
   buildCurrentWords,
   buildDeck,
@@ -54,12 +55,11 @@ export const prepareSetupPhase = async (
       },
       state: {
         phase: UE_SO_ISSO_PHASES.SETUP,
-        updatedAt: Date.now(),
-        gameOrder: store.gameOrder,
         round: {
           current: 0,
           total: turnOrder.length,
         },
+        gameOrder: store.gameOrder,
       },
     },
   };
@@ -70,21 +70,21 @@ export const prepareWordSelectionPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
-  // Count points if any:
-  if (state.guesser && store.outcome) {
-    players[state.guesser].score += determineScore(store.outcome);
+  // Count points if an outcome was given:
+  if (state.guesserId && store.outcome) {
+    players[state.guesserId].score += determineScore(store.outcome);
   }
 
   const roundIndex = state.round.current;
   // Determine guesser based on round and turnOrder
-  const guesser = store.turnOrder[roundIndex];
-  const controller = store.turnOrder?.[roundIndex + 1] ?? store.turnOrder?.[0];
+  const guesserId = store.turnOrder[roundIndex];
+  const controllerId = store.turnOrder?.[roundIndex + 1] ?? store.turnOrder?.[0];
 
   // Get current words
   const currentWords = buildCurrentWords(JSON.parse(store.deck[roundIndex]));
 
   // Unready players and remove any previously used game keys
-  const unReadiedPlayers = utils.unReadyPlayers(players, guesser);
+  const unReadiedPlayers = utils.unReadyPlayers(players, guesserId);
   const removedPropsPlayers = utils.removePropertiesFromPlayers(unReadiedPlayers, ['suggestions', 'votes']);
 
   const groupScore = determineGroupScore(players, state.round.total);
@@ -100,12 +100,11 @@ export const prepareWordSelectionPhase = async (
       },
       state: {
         phase: UE_SO_ISSO_PHASES.WORD_SELECTION,
-        updatedAt: Date.now(),
         round: utils.increaseRound(state.round),
         gameOrder: store.gameOrder,
         groupScore,
-        guesser,
-        controller,
+        guesserId,
+        controllerId,
         words: Object.values(currentWords),
         guess: firebaseUtils.deleteValue(),
       },
@@ -139,14 +138,13 @@ export const prepareSuggestPhase = async (
       },
       state: {
         phase: UE_SO_ISSO_PHASES.SUGGEST,
-        updatedAt: Date.now(),
         secretWord,
         suggestionsNumber,
         words: firebaseUtils.deleteValue(),
       },
     },
     set: {
-      players: utils.unReadyPlayers(players, state.guesser),
+      players: utils.unReadyPlayers(players, state.guesserId),
     },
   };
 };
@@ -169,7 +167,6 @@ export const prepareComparePhase = async (
       // store: {},
       state: {
         phase: UE_SO_ISSO_PHASES.COMPARE,
-        updatedAt: Date.now(),
         suggestions: shuffledSuggestions,
         suggestionsNumber: firebaseUtils.deleteValue(),
       },
@@ -183,7 +180,6 @@ export const prepareGuessPhase = async (store: FirebaseStoreData): Promise<SaveG
     update: {
       state: {
         phase: UE_SO_ISSO_PHASES.GUESS,
-        updatedAt: Date.now(),
         validSuggestions: store.validSuggestions,
         suggestions: firebaseUtils.deleteValue(),
       },
@@ -197,8 +193,8 @@ export const prepareGameOverPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Count points if any:
-  if (state.guesser && store.outcome) {
-    players[state.guesser].score += determineScore(store.outcome);
+  if (state.guesserId && store.outcome) {
+    players[state.guesserId].score += determineScore(store.outcome);
   }
 
   const groupScore = determineGroupScore(players, state.round.total);

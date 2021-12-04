@@ -3,7 +3,6 @@ import {
   CARDS_PER_PLAYER,
   CONTADORES_HISTORIAS_PHASES,
   HAND_LIMIT,
-  MAX_ROUNDS,
   TABLE_CARDS_BY_PLAYER_COUNT,
 } from './constants';
 // Interfaces
@@ -15,14 +14,8 @@ import * as gameUtils from '../../utils/game-utils';
 import * as imageCards from '../../utils/image-cards';
 import * as utils from '../../utils/helpers';
 import * as playerHandUtils from '../../utils/player-hand-utils';
+// Internal
 import { buildTable, buildTableDeck, getTableCards, scoreRound } from './helpers';
-
-// prepareSetupPhase
-// prepareWriteStoryPhase
-// preparePlayCardPhase
-// prepareVotingPhase
-// prepareResolutionPhase
-// prepareGameOverPhase
 
 /**
  * Setup
@@ -61,13 +54,6 @@ export const prepareSetupPhase = async (
         tableDeck,
         tableDeckIndex: -1,
       },
-      state: {
-        phase: CONTADORES_HISTORIAS_PHASES.SETUP,
-        round: {
-          current: 0,
-          total: MAX_ROUNDS,
-        },
-      },
       players,
     },
   };
@@ -90,8 +76,8 @@ export const prepareStoryPhase = async (
   players = utils.removePropertiesFromPlayers(players, ['vote', 'cardId']);
 
   // Determine active player based on current round
-  const storyteller = utils.getActivePlayer(store.gameOrder, state.round.current + 1);
-  const nextStoryteller = utils.getActivePlayer(store.gameOrder, state.round.current + 2);
+  const storytellerId = utils.getActivePlayer(store.gameOrder, state.round.current + 1);
+  const nextStorytellerId = utils.getActivePlayer(store.gameOrder, state.round.current + 2);
 
   // Save
   return {
@@ -103,10 +89,9 @@ export const prepareStoryPhase = async (
       },
       state: {
         phase: CONTADORES_HISTORIAS_PHASES.STORY,
-        updatedAt: Date.now(),
         round: utils.increaseRound(state.round),
-        storyteller,
-        nextStoryteller,
+        storytellerId,
+        nextStorytellerId,
         outcome: firebaseUtils.deleteValue(),
         ranking: firebaseUtils.deleteValue(),
         table: firebaseUtils.deleteValue(),
@@ -123,18 +108,17 @@ export const prepareCardPlayPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Unready players to play cards
-  utils.unReadyPlayers(players, state.storyteller);
+  utils.unReadyPlayers(players, state.storytellerId);
 
   // Add card solution to storyteller
-  players[state.storyteller].cardId = store.solutionCardId;
-  players[state.storyteller].vote = store.solutionCardId;
+  players[state.storytellerId].cardId = store.solutionCardId;
+  players[state.storytellerId].vote = store.solutionCardId;
 
   // Save
   return {
     update: {
       state: {
         phase: CONTADORES_HISTORIAS_PHASES.CARD_PLAY,
-        updatedAt: Date.now(),
         story: store.story,
       },
       players,
@@ -152,10 +136,10 @@ export const prepareVotingPhase = async (
   // Get N cards from tableDeck
   const tableCards = getTableCards(store.tableDeck, store.tableDeckIndex, tableCardsCount);
 
-  const table = buildTable(players, tableCards, state.storyteller);
+  const table = buildTable(players, tableCards, state.storytellerId);
 
   // Unready players to vote
-  utils.unReadyPlayers(players, state.storyteller);
+  utils.unReadyPlayers(players, state.storytellerId);
 
   // Save
   return {
@@ -165,7 +149,6 @@ export const prepareVotingPhase = async (
       },
       state: {
         phase: CONTADORES_HISTORIAS_PHASES.VOTING,
-        updatedAt: Date.now(),
         table,
       },
       players,
@@ -179,14 +162,13 @@ export const prepareResolutionPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Gather votes
-  const { ranking, outcome, table } = scoreRound(players, state.table, state.storyteller);
+  const { ranking, outcome, table } = scoreRound(players, state.table, state.storytellerId);
 
   // Save
   return {
     update: {
       state: {
         phase: CONTADORES_HISTORIAS_PHASES.RESOLUTION,
-        updatedAt: Date.now(),
         outcome,
         ranking,
         table,
@@ -213,9 +195,9 @@ export const prepareGameOverPhase = async (
       players,
       state: {
         phase: CONTADORES_HISTORIAS_PHASES.GAME_OVER,
-        winners,
-        gameEndedAt: Date.now(),
         round: state.round,
+        gameEndedAt: Date.now(),
+        winners,
       },
     },
   };

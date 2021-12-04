@@ -1,6 +1,6 @@
 // Constants
-import { GAME_COLLECTIONS, GAME_PLAYERS_LIMIT } from '../../utils/constants';
-import { UE_SO_ISSO_PHASES } from './constants';
+import { GAME_COLLECTIONS } from '../../utils/constants';
+import { PLAYER_COUNT, UE_SO_ISSO_PHASES } from './constants';
 // Interfaces
 import { Players, GameId } from '../../utils/interfaces';
 import { UeSoIssoInitialState, UeSoIssoSubmitAction } from './interfaces';
@@ -34,52 +34,43 @@ import {
  * @param language
  * @returns
  */
-export const getInitialState = (gameId: GameId, uid: string, language: string): UeSoIssoInitialState => ({
-  meta: {
+export const getInitialState = (gameId: GameId, uid: string, language: string): UeSoIssoInitialState => {
+  return utils.getDefaultInitialState({
     gameId,
     gameName: GAME_COLLECTIONS.UE_SO_ISSO,
-    createdAt: Date.now(),
-    createdBy: uid,
-    min: GAME_PLAYERS_LIMIT.UE_SO_ISSO.min,
-    max: GAME_PLAYERS_LIMIT.UE_SO_ISSO.max,
-    isLocked: false,
-    isComplete: false,
+    uid,
     language,
-    replay: 0,
-  },
-  players: {},
-  store: {
-    language,
-    deck: [],
-    turnOrder: [],
-    gameOrder: [],
-    usedWords: {},
-    currentWords: [],
-    currentSuggestions: [],
-  },
-  state: {
-    phase: UE_SO_ISSO_PHASES.LOBBY,
-    round: {
-      current: 0,
-      total: 0,
+    playerCount: PLAYER_COUNT,
+    initialPhase: UE_SO_ISSO_PHASES.LOBBY,
+    totalRounds: 0,
+    store: {
+      language,
+      deck: [],
+      turnOrder: [],
+      gameOrder: [],
+      usedWords: {},
+      currentWords: [],
+      currentSuggestions: [],
     },
-  },
-});
+  });
+};
 
-export const nextUeSoIssoPhase = async (
+/**
+ * Exposes min and max player count
+ */
+export const playerCount = PLAYER_COUNT;
+
+export const getNextPhase = async (
   collectionName: string,
   gameId: string,
   players: Players
 ): Promise<boolean> => {
-  const actionText = 'prepare next phase';
-
   // Gather docs and references
-  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
-  const stateDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'state', actionText);
-  const storeDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'store', actionText);
-
-  const state = stateDoc.data() ?? {};
-  const store = { ...(storeDoc.data() ?? {}) };
+  const { sessionRef, state, store } = await firebaseUtils.getStateAndStoreReferences(
+    collectionName,
+    gameId,
+    'prepare next phase'
+  );
 
   // Calculate remaining rounds to end game
   const roundsToEndGame = utils.getRoundsToEndGame(state.round.current, state.round.total);
@@ -89,11 +80,14 @@ export const nextUeSoIssoPhase = async (
 
   // RULES -> SETUP
   if (nextPhase === UE_SO_ISSO_PHASES.SETUP) {
+    // Enter setup phase before doing anything
+    await firebaseUtils.triggerSetupPhase(sessionRef);
+
     // Request data
     const additionalData = await getWords(store.language);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await firebaseUtils.saveGame(sessionRef, newPhase);
-    return nextUeSoIssoPhase(collectionName, gameId, players);
+    return getNextPhase(collectionName, gameId, players);
   }
 
   // SETUP/* -> WORD_SELECTION
@@ -136,42 +130,26 @@ export const nextUeSoIssoPhase = async (
 export const submitAction = async (data: UeSoIssoSubmitAction) => {
   const { gameId, gameName: collectionName, playerId, action } = data;
 
-  const actionText = 'submit action';
-  firebaseUtils.verifyPayload(gameId, 'gameId', actionText);
-  firebaseUtils.verifyPayload(collectionName, 'collectionName', actionText);
-  firebaseUtils.verifyPayload(playerId, 'playerId', actionText);
-  firebaseUtils.verifyPayload(action, 'action', actionText);
+  firebaseUtils.validateSubmitActionPayload(gameId, collectionName, playerId, action);
 
   switch (action) {
     case 'SUBMIT_VOTES':
-      if (!data.votes) {
-        firebaseUtils.throwException('Missing `votes` value', 'submit votes');
-      }
+      firebaseUtils.validateSubmitActionProperties(data, ['votes'], 'submit votes');
       return handleSubmitWordSelectionVotes(collectionName, gameId, playerId, data.votes);
     case 'SUBMIT_SUGGESTIONS':
-      if (!data.suggestions) {
-        firebaseUtils.throwException('Missing `suggestions` value', 'submit suggestions');
-      }
+      firebaseUtils.validateSubmitActionProperties(data, ['suggestions'], 'submit suggestions');
       return handleSubmitSuggestions(collectionName, gameId, playerId, data.suggestions);
     case 'SUBMIT_VALIDATION':
-      if (!data.validSuggestions) {
-        firebaseUtils.throwException('Missing `validSuggestions` value', 'submit valid suggestions');
-      }
+      firebaseUtils.validateSubmitActionProperties(data, ['validSuggestions'], 'submit valid suggestions');
       return handleSubmitValidation(collectionName, gameId, playerId, data.validSuggestions);
     case 'SUBMIT_OUTCOME':
-      if (!data.outcome) {
-        firebaseUtils.throwException('Missing `outcome` value', 'submit outcome');
-      }
+      firebaseUtils.validateSubmitActionProperties(data, ['outcome'], 'submit outcome');
       return handleConfirmGuess(collectionName, gameId, playerId, data.outcome);
     case 'VALIDATE_SUGGESTION':
-      if (!data.suggestions) {
-        firebaseUtils.throwException('Missing `suggestions` value', 'submit suggestions');
-      }
+      firebaseUtils.validateSubmitActionProperties(data, ['suggestions'], 'validate suggestions');
       return handleUpdateValidSuggestions(collectionName, gameId, playerId, data.suggestions);
     case 'SEND_GUESS':
-      if (!data.guess) {
-        firebaseUtils.throwException('Missing `guess` value', 'send guess');
-      }
+      firebaseUtils.validateSubmitActionProperties(data, ['guess'], 'send guess');
       return handleSendGuess(collectionName, gameId, playerId, data.guess);
     default:
       firebaseUtils.throwException(`Given action ${action} is not allowed`);

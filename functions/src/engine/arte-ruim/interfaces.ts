@@ -1,9 +1,26 @@
-import { Meta, Payload, PlayerId, Players, Round } from '../../utils/interfaces';
+import {
+  DefaultState,
+  DefaultStore,
+  InitialState,
+  Payload,
+  PlainObject,
+  PlayerId,
+} from '../../utils/interfaces';
 
 export interface ArteRuimCard {
   id: string;
   text: string;
-  level: string;
+  level: number;
+}
+
+export interface ArteRuimLevel4Card {
+  id: string;
+  theme: string;
+  cards: PlainObject;
+}
+
+export interface PerLevelCards {
+  [key: string]: ArteRuimCard[];
 }
 
 export interface ArteRuimCardsDatabase {
@@ -16,47 +33,28 @@ export interface ArteRuimDrawing extends ArteRuimCard {
   successRate: number;
 }
 
-// OLD STUFF
-
-export interface UsedCard {
-  id: string;
-  playerId: PlayerId | null;
-  drawing: string | null;
-  successRate: number;
-  [key: string]: any;
-}
-
-export interface ArteRuimStore {
-  language: string;
+export interface ArteRuimStore extends DefaultStore {
   deck: ArteRuimCardsDatabase[];
   currentCards: string[];
-  pastDrawings: UsedCard[];
-  [key: string]: any;
+  pastDrawings: ArteRuimDrawing[];
 }
 
-export interface ArteRuimState {
-  phase: string;
-  round: Round;
+export interface ArteRuimState extends DefaultState {
+  drawings?: any;
+  gallery?: any;
+  cards?: any;
+  ranking?: any;
+  winners?: any;
   [key: string]: any;
 }
-
-export type FirebaseStateData = FirebaseFirestore.DocumentData | ArteRuimState;
-export type FirebaseStoreData = FirebaseFirestore.DocumentData | ArteRuimStore;
-
-export interface ArteRuimInitialState {
-  meta: Meta;
-  players: Players;
+export interface ArteRuimInitialState extends InitialState {
   store: ArteRuimStore;
   state: ArteRuimState;
 }
 
-export interface DrawingEntry {
-  cardId: string | number;
-  drawing: string;
-  playerId: string;
-}
-
 export interface ArteRuimSubmitAction extends Payload {
   action: 'SUBMIT_DRAWING' | 'SUBMIT_VOTING';
-  [key: string]: any;
 }
+
+export type FirebaseStateData = FirebaseFirestore.DocumentData | ArteRuimState;
+export type FirebaseStoreData = FirebaseFirestore.DocumentData | ArteRuimStore;

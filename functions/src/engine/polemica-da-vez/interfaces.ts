@@ -1,4 +1,4 @@
-import { Meta, Payload, PlayerId, Players, Round } from '../../utils/interfaces';
+import { DefaultState, DefaultStore, InitialState, Payload, PlayerId } from '../../utils/interfaces';
 
 export interface Topic {
   id: string;
@@ -16,32 +16,36 @@ export type CustomDeck = CustomTopic[];
 export interface Decks {
   deck: Deck;
   customDeck: CustomDeck;
+  deckIndex?: number;
+  customDeckIndex?: number;
+  pastTopics?: any[];
 }
 
-export interface PolemicaDaVezStore {
-  language: string;
+export interface PolemicaDaVezStore extends DefaultStore {
   gameOrder: PlayerId[];
+}
+
+export interface PolemicaDaVezState extends DefaultState {
+  activePlayerId?: PlayerId;
+  gameOrder?: PlayerId[];
+  currentTopics?: any;
+  currentCustomTopic?: any;
+  currentTopic?: any;
+  customTopic?: any;
+  totalLikes?: any;
+  ranking?: any;
+  winners?: any;
   [key: string]: any;
 }
 
-export interface PolemicaDaVezState {
-  phase: string;
-  round: Round;
-  activePlayer?: PlayerId;
-  [key: string]: any;
-}
-
-export interface PolemicaDaVezInitialState {
-  meta: Meta;
-  players: Players;
+export interface PolemicaDaVezInitialState extends InitialState {
   store: PolemicaDaVezStore;
   state: PolemicaDaVezState;
 }
 
-export type FirebaseStateData = FirebaseFirestore.DocumentData | PolemicaDaVezState;
-export type FirebaseStoreData = FirebaseFirestore.DocumentData | PolemicaDaVezStore;
-
 export interface PolemicaDaVezSubmitAction extends Payload {
   action: 'SUBMIT_TOPIC' | 'SUBMIT_REACTION';
-  [key: string]: any;
 }
+
+export type FirebaseStateData = FirebaseFirestore.DocumentData | PolemicaDaVezState;
+export type FirebaseStoreData = FirebaseFirestore.DocumentData | PolemicaDaVezStore;

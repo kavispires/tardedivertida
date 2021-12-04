@@ -47,8 +47,8 @@ function RoundAnnouncementText({ guesser, gameOrder, groupScore, round }) {
 function PhaseWordSelection({ state, players, info }) {
   const isUserReady = useIsUserReady(players, state);
   const language = useLanguage();
-  const guesser = useWhichPlayerIsThe('guesser', state, players);
-  const isUserTheGuesser = useIsUserThe('guesser', state);
+  const guesser = useWhichPlayerIsThe('guesserId', state, players);
+  const isUserTheGuesser = useIsUserThe('guesserId', state);
   const [step, setStep] = useState(0);
 
   const onSendSelectedWordsAPIRequest = useAPICall({

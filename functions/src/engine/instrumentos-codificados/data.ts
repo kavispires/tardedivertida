@@ -1,8 +1,12 @@
-// Resources
-import themeCardsPt from '../../resources/themes-pt.json';
-import themeCardsEn from '../../resources/themes-en.json';
+// Helpers
+import * as resourceUtils from '../resource';
 
-export const getCards = async (language: string) => {
-  // Get full deck
-  return language === 'en' ? themeCardsEn : themeCardsPt;
+/**
+ * Get theme cards resource based on the game's language
+ * @param language
+ * @returns
+ */
+export const getThemes = async (language: string) => {
+  const resourceName = `themes-${language}`;
+  return await resourceUtils.fetchResource(resourceName);
 };

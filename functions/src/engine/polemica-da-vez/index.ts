@@ -1,11 +1,12 @@
 // Constants
-import { GAME_COLLECTIONS, GAME_PLAYERS_LIMIT } from '../../utils/constants';
-import { POLEMICA_DA_VEZ_PHASES } from './constants';
+import { GAME_COLLECTIONS } from '../../utils/constants';
+import { MAX_ROUNDS, PLAYER_COUNT, POLEMICA_DA_VEZ_PHASES } from './constants';
 // Interfaces
-import { GameId, Players } from '../../utils/interfaces';
+import { GameId, Language, Players } from '../../utils/interfaces';
 import { PolemicaDaVezInitialState, PolemicaDaVezSubmitAction } from './interfaces';
 // Utils
 import * as firebaseUtils from '../../utils/firebase';
+import * as utils from '../../utils/helpers';
 // Internal Functions
 import { determineGameOver, determineNextPhase } from './helpers';
 import { getTopics } from './data';
@@ -28,49 +29,39 @@ import { handleSubmitReaction, handleSubmitTopic } from './actions';
 export const getInitialState = (
   gameId: GameId,
   uid: string,
-  language: string
-): PolemicaDaVezInitialState => ({
-  meta: {
+  language: Language
+): PolemicaDaVezInitialState => {
+  return utils.getDefaultInitialState({
     gameId,
     gameName: GAME_COLLECTIONS.POLEMICA_DA_VEZ,
-    createdAt: Date.now(),
-    createdBy: uid,
-    min: GAME_PLAYERS_LIMIT.POLEMICA_DA_VEZ.min,
-    max: GAME_PLAYERS_LIMIT.POLEMICA_DA_VEZ.max,
-    isLocked: false,
-    isComplete: false,
+    uid,
     language,
-    replay: 0,
-  },
-  players: {},
-  store: {
-    usedTopics: [],
-    gameOrder: [],
-    language,
-  },
-  state: {
-    phase: POLEMICA_DA_VEZ_PHASES.LOBBY,
-    round: {
-      current: 0,
-      total: 0,
+    playerCount: PLAYER_COUNT,
+    initialPhase: POLEMICA_DA_VEZ_PHASES.LOBBY,
+    totalRounds: MAX_ROUNDS,
+    store: {
+      language,
+      usedTopics: [],
+      gameOrder: [],
     },
-  },
-});
+  });
+};
 
-export const nextPolemicaDaVezPhase = async (
+/**
+ * Exposes min and max player count
+ */
+export const playerCount = PLAYER_COUNT;
+
+export const getNextPhase = async (
   collectionName: string,
   gameId: string,
   players: Players
 ): Promise<boolean> => {
-  const actionText = 'prepare next phase';
-
-  // Gather docs and references
-  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
-  const stateDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'state', actionText);
-  const storeDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'store', actionText);
-
-  const state = stateDoc.data() ?? {};
-  const store = { ...(storeDoc.data() ?? {}) };
+  const { sessionRef, state, store } = await firebaseUtils.getStateAndStoreReferences(
+    collectionName,
+    gameId,
+    'prepare next phase'
+  );
 
   // Determine if it's game over
   const isGameOver = determineGameOver(players);
@@ -79,11 +70,14 @@ export const nextPolemicaDaVezPhase = async (
 
   // RULES -> SETUP
   if (nextPhase === POLEMICA_DA_VEZ_PHASES.SETUP) {
+    // Enter setup phase before doing anything
+    await firebaseUtils.triggerSetupPhase(sessionRef);
+
     // Request data
     const additionalData = await getTopics(store.language);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await firebaseUtils.saveGame(sessionRef, newPhase);
-    return nextPolemicaDaVezPhase(collectionName, gameId, players);
+    return getNextPhase(collectionName, gameId, players);
   }
 
   // * -> TOPIC_SELECTION
@@ -121,25 +115,14 @@ export const nextPolemicaDaVezPhase = async (
 export const submitAction = async (data: PolemicaDaVezSubmitAction) => {
   const { gameId, gameName: collectionName, playerId, action } = data;
 
-  const actionText = 'submit action';
-  firebaseUtils.verifyPayload(gameId, 'gameId', actionText);
-  firebaseUtils.verifyPayload(collectionName, 'collectionName', actionText);
-  firebaseUtils.verifyPayload(playerId, 'playerId', actionText);
-  firebaseUtils.verifyPayload(action, 'action', actionText);
+  firebaseUtils.validateSubmitActionPayload(gameId, collectionName, playerId, action);
 
   switch (action) {
     case 'SUBMIT_TOPIC':
-      if (!data.topicId) {
-        firebaseUtils.throwException('Missing `topicId` value', 'submit topic');
-      }
+      firebaseUtils.validateSubmitActionProperties(data, ['topicId'], 'submit topic');
       return handleSubmitTopic(collectionName, gameId, playerId, data.topicId, data?.customTopic);
     case 'SUBMIT_REACTION':
-      if (data.reaction === undefined) {
-        firebaseUtils.throwException('Missing `reaction` value', 'submit reaction');
-      }
-      if (data.likesGuess === undefined) {
-        firebaseUtils.throwException('Missing `likesGuess` value', 'submit reaction');
-      }
+      firebaseUtils.validateSubmitActionProperties(data, ['reaction', 'likesGuess'], 'submit reaction');
       return handleSubmitReaction(collectionName, gameId, playerId, data.reaction, data.likesGuess);
     default:
       firebaseUtils.throwException(`Given action ${action} is not allowed`);

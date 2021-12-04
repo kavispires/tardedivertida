@@ -1,3 +1,4 @@
+import { message } from 'antd';
 import { auth } from '../services/firebase';
 
 /**
@@ -26,6 +27,6 @@ export function signIn(email, password) {
  */
 export async function signOut() {
   return auth.signOut().then(() => {
-    alert(`You've been signed out`);
+    message.warn(`You've been signed out`);
   });
 }

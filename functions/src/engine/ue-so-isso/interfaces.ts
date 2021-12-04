@@ -1,4 +1,12 @@
-import { Meta, Payload, PlainObject, PlayerId, PlayerName, Players, Round } from '../../utils/interfaces';
+import {
+  DefaultState,
+  DefaultStore,
+  InitialState,
+  Payload,
+  PlainObject,
+  PlayerId,
+  PlayerName,
+} from '../../utils/interfaces';
 
 export interface Word {
   id: string;
@@ -22,33 +30,38 @@ export interface UsedWords {
   [key: string]: UsedWord;
 }
 
-export interface UeSoIssoStore {
-  language: string;
+export interface UeSoIssoStore extends DefaultStore {
   deck: Word[];
   turnOrder: PlayerId[];
   gameOrder: PlayerId[];
   usedWords: UsedWords;
   currentWords: Word[];
   currentSuggestions: PlainObject[];
+  currentWord?: any;
+  guess?: any;
+  validSuggestions?: any;
+  outcome?: any;
+}
+
+export interface UeSoIssoState extends DefaultState {
+  gameOrder;
+  guesserId?: PlayerId;
+  controllerId?: PlayerId;
+  groupScore?: any;
+  words?: any;
+  guess?: any;
+  secretWord?: any;
+  suggestions?: any;
+  validSuggestions?: any;
+  group?: any;
+
   [key: string]: any;
 }
 
-export interface UeSoIssoState {
-  phase: string;
-  round: Round;
-  guesser?: PlayerId;
-  [key: string]: any;
-}
-
-export interface UeSoIssoInitialState {
-  meta: Meta;
-  players: Players;
+export interface UeSoIssoInitialState extends InitialState {
   store: UeSoIssoStore;
   state: UeSoIssoState;
 }
-
-export type FirebaseStateData = FirebaseFirestore.DocumentData | UeSoIssoState;
-export type FirebaseStoreData = FirebaseFirestore.DocumentData | UeSoIssoStore;
 
 export interface SubmitSuggestionsPayload extends Payload {
   suggestions: string[];
@@ -74,5 +87,7 @@ export interface UeSoIssoSubmitAction extends Payload {
     | 'SUBMIT_OUTCOME'
     | 'VALIDATE_SUGGESTION'
     | 'SEND_GUESS';
-  [key: string]: any;
 }
+
+export type FirebaseStateData = FirebaseFirestore.DocumentData | UeSoIssoState;
+export type FirebaseStoreData = FirebaseFirestore.DocumentData | UeSoIssoStore;

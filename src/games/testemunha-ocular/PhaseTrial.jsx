@@ -30,10 +30,10 @@ function PhaseTrial({ state, players, info }) {
   const [isLoading] = useLoading();
   const [step, setStep] = useState(0);
 
-  const witness = useWhichPlayerIsThe('witness', state, players);
-  const isUserTheWitness = useIsUserThe('witness', state);
-  const questioner = useWhichPlayerIsThe('questioner', state, players);
-  const isUserTheQuestioner = useIsUserThe('questioner', state);
+  const witness = useWhichPlayerIsThe('witnessId', state, players);
+  const isUserTheWitness = useIsUserThe('witnessId', state);
+  const questioner = useWhichPlayerIsThe('questionerId', state, players);
+  const isUserTheQuestioner = useIsUserThe('questionerId', state);
 
   const onEliminateSuspectRequest = useAPICall({
     apiFunction: TESTEMUNHA_OCULAR_API.submitAction,
@@ -54,12 +54,14 @@ function PhaseTrial({ state, players, info }) {
     onEliminateSuspectRequest({
       action: 'ELIMINATE_SUSPECT',
       suspectId,
+      pass: false,
     });
   };
 
   const onPass = () => {
     onEliminateSuspectRequest({
       action: 'ELIMINATE_SUSPECT',
+      suspectId: '',
       pass: true,
     });
   };

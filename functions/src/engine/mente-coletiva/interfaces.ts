@@ -1,4 +1,4 @@
-import { Meta, Payload, PlayerId, Players, Round } from '../../utils/interfaces';
+import { DefaultState, DefaultStore, InitialState, Payload, PlayerId } from '../../utils/interfaces';
 
 export interface Question {
   id: string;
@@ -18,8 +18,7 @@ export interface PastQuestions {
 
 export type Deck = Question[];
 
-export interface MenteColetivaStore {
-  language: string;
+export interface MenteColetivaStore extends DefaultStore {
   deck: Deck;
   gameOrder: PlayerId[];
   pastQuestions: PastQuestions[];
@@ -27,26 +26,26 @@ export interface MenteColetivaStore {
   [key: string]: any;
 }
 
-export interface MenteColetivaState {
-  phase: string;
-  round: Round;
-  activePlayer?: PlayerId;
+export interface MenteColetivaState extends DefaultState {
+  gameOrder?: PlayerId[];
+  roundType?: string;
+  activePlayerId?: PlayerId;
+  currentQuestions?: any;
+  currentQuestion?: any;
+  answersList?: any;
+  allAnswers?: any;
+  ranking?: any;
+  pastureChangeStr?: string;
+  usedSave?: any;
+  announceSave?: any;
+  winners?: any;
+  losers?: any;
   [key: string]: any;
 }
 
-export interface MenteColetivaInitialState {
-  meta: Meta;
-  players: Players;
+export interface MenteColetivaInitialState extends InitialState {
   store: MenteColetivaStore;
   state: MenteColetivaState;
-}
-
-export type FirebaseStateData = FirebaseFirestore.DocumentData | MenteColetivaState;
-export type FirebaseStoreData = FirebaseFirestore.DocumentData | MenteColetivaStore;
-
-export interface MenteColetivaSubmitAction extends Payload {
-  action: 'SUBMIT_QUESTION' | 'SUBMIT_ANSWERS' | 'NEXT_ANSWERS' | 'ADD_ANSWER';
-  [key: string]: any;
 }
 
 export interface AnswerEntry {
@@ -56,3 +55,10 @@ export interface AnswerEntry {
   parsedAnswer: string;
   isLocked: boolean;
 }
+
+export interface MenteColetivaSubmitAction extends Payload {
+  action: 'SUBMIT_QUESTION' | 'SUBMIT_ANSWERS' | 'NEXT_ANSWERS' | 'ADD_ANSWER';
+}
+
+export type FirebaseStateData = FirebaseFirestore.DocumentData | MenteColetivaState;
+export type FirebaseStoreData = FirebaseFirestore.DocumentData | MenteColetivaStore;

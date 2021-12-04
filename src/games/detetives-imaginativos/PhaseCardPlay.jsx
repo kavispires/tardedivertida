@@ -30,7 +30,7 @@ function PhaseCardPlay({ state, players, info }) {
   const [isLoading] = useLoading();
   const user = useUser(players);
   const currentPlayer = useWhichPlayerIsThe('currentPlayerId', state, players);
-  const isUserTheImpostor = useIsUserThe('impostor', state);
+  const isUserTheImpostor = useIsUserThe('impostorId', state);
   const isUserTheCurrentPlayer = useIsUserThe('currentPlayerId', state);
   const [step, setStep] = useState(0);
 

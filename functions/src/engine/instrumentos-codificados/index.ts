@@ -1,11 +1,11 @@
 // Constants
-import { GAME_COLLECTIONS, GAME_PLAYERS_LIMIT } from '../../utils/constants';
-import { INSTRUMENTOS_CODIFICADOS_PHASES } from './constants';
+import { GAME_COLLECTIONS } from '../../utils/constants';
+import { INSTRUMENTOS_CODIFICADOS_PHASES, PLAYER_COUNT, TOTAL_ROUNDS } from './constants';
 // Interfaces
 import { GameId, Language, Players } from '../../utils/interfaces';
 // Utils
 import * as firebaseUtils from '../../utils/firebase';
-// import { determineGameOver, determineNextPhase } from './helpers';
+import * as utils from '../../utils/helpers';
 import { InstrumentosCodificadosInitialState, InstrumentosCodificadosSubmitAction } from './interfaces';
 import {
   prepareGameOverPhase,
@@ -14,10 +14,9 @@ import {
   prepareHintReceivingPhase,
   prepareGuessTheCodePhase,
 } from './setup';
-import { getCards } from './data';
+import { getThemes } from './data';
 import { determineNextPhase } from './helpers';
 import { handleSubmitCode, handleSubmitConclusions, handleSubmitHint } from './actions';
-// import { handleSubmitDreams, handleSubmitVoting } from './actions';
 
 /**
  * Get Initial Game State
@@ -30,33 +29,27 @@ export const getInitialState = (
   gameId: GameId,
   uid: string,
   language: Language
-): InstrumentosCodificadosInitialState => ({
-  meta: {
+): InstrumentosCodificadosInitialState => {
+  return utils.getDefaultInitialState({
     gameId,
     gameName: GAME_COLLECTIONS.INSTRUMENTOS_CODIFICADOS,
-    createdAt: Date.now(),
-    createdBy: uid,
-    min: GAME_PLAYERS_LIMIT.INSTRUMENTOS_CODIFICADOS.min,
-    max: GAME_PLAYERS_LIMIT.INSTRUMENTOS_CODIFICADOS.max,
-    isLocked: false,
-    isComplete: false,
+    uid,
     language,
-    replay: 0,
-  },
-  players: {},
-  store: {
-    language,
-  },
-  state: {
-    phase: INSTRUMENTOS_CODIFICADOS_PHASES.LOBBY,
-    round: {
-      current: 0,
-      total: 0,
+    playerCount: PLAYER_COUNT,
+    initialPhase: INSTRUMENTOS_CODIFICADOS_PHASES.LOBBY,
+    totalRounds: TOTAL_ROUNDS,
+    store: {
+      language,
     },
-  },
-});
+  });
+};
 
-export const nextInstrumentosCodificadosPhase = async (
+/**
+ * Exposes min and max player count
+ */
+export const playerCount = PLAYER_COUNT;
+
+export const getNextPhase = async (
   collectionName: string,
   gameId: string,
   players: Players
@@ -64,26 +57,26 @@ export const nextInstrumentosCodificadosPhase = async (
   const actionText = 'prepare next phase';
 
   // Gather docs and references
-  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
-  const stateDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'state', actionText);
-  const storeDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'store', actionText);
-
-  const state = stateDoc.data() ?? {};
-  const store = { ...(storeDoc.data() ?? {}) };
+  const { sessionRef, state, store } = await firebaseUtils.getStateAndStoreReferences(
+    collectionName,
+    gameId,
+    actionText
+  );
 
   // Determine next phase
   const nextPhase = determineNextPhase(state?.phase, state?.round?.current);
 
   // RULES -> SETUP
   if (nextPhase === INSTRUMENTOS_CODIFICADOS_PHASES.SETUP) {
+    // Enter setup phase before doing anything
+    await firebaseUtils.triggerSetupPhase(sessionRef);
+
     // Request data
-    const additionalData = await getCards(store.language);
+    const additionalData = await getThemes(store.language);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await firebaseUtils.saveGame(sessionRef, newPhase);
 
-    const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
-    const newPlayers = playersDoc.data() ?? {};
-    return nextInstrumentosCodificadosPhase(collectionName, gameId, newPlayers);
+    return getNextPhase(collectionName, gameId, newPhase.update?.players ?? {});
   }
 
   // * -> HINT_GIVING
@@ -121,11 +114,7 @@ export const nextInstrumentosCodificadosPhase = async (
 export const submitAction = async (data: InstrumentosCodificadosSubmitAction) => {
   const { gameId, gameName: collectionName, playerId, action } = data;
 
-  const actionText = 'submit action';
-  firebaseUtils.verifyPayload(gameId, 'gameId', actionText);
-  firebaseUtils.verifyPayload(collectionName, 'collectionName', actionText);
-  firebaseUtils.verifyPayload(playerId, 'playerId', actionText);
-  firebaseUtils.verifyPayload(action, 'action', actionText);
+  firebaseUtils.validateSubmitActionPayload(gameId, collectionName, playerId, action);
 
   switch (action) {
     case 'SUBMIT_HINT':

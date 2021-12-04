@@ -24,8 +24,8 @@ import TopicSelectionStep from './TopicSelectionStep';
 
 function PhaseTopicSelection({ state, players, info }) {
   const language = useLanguage();
-  const activePlayer = useWhichPlayerIsThe('activePlayer', state, players);
-  const isUserTheActivePlayer = useIsUserThe('activePlayer', state);
+  const activePlayer = useWhichPlayerIsThe('activePlayerId', state, players);
+  const isUserTheActivePlayer = useIsUserThe('activePlayerId', state);
   const [step, setStep] = useState(0);
 
   const onSubmitTopicAPIRequest = useAPICall({

@@ -2,8 +2,8 @@
 import { GameId, PlayerId, GameName } from '../../utils/interfaces';
 // Utils
 import * as firebaseUtils from '../../utils/firebase';
-import * as utils from '../../utils/helpers';
-import { nextPolemicaDaVezPhase } from '.';
+// Internal
+import { getNextPhase } from '.';
 
 /**
  * When active player chooses the round's topic
@@ -20,20 +20,17 @@ export const handleSubmitTopic = async (
   topicId: string,
   customTopic?: string
 ) => {
-  const actionText = 'submit the question';
-
-  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
-  const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
-
-  const players = playersDoc.data() ?? {};
-
-  try {
-    await sessionRef.doc('store').update({ topicId, customTopic: customTopic ?? null });
-  } catch (error) {
-    firebaseUtils.throwException(error, actionText);
-  }
-
-  return nextPolemicaDaVezPhase(collectionName, gameId, players);
+  return await firebaseUtils.updateStore({
+    collectionName,
+    gameId,
+    playerId,
+    actionText: 'submit the question',
+    change: {
+      topicId,
+      customTopic: customTopic ?? null,
+    },
+    nextPhaseFunction: getNextPhase,
+  });
 };
 
 /**
@@ -51,27 +48,13 @@ export const handleSubmitReaction = async (
   reaction: boolean,
   likesGuess: number
 ) => {
-  const actionText = 'submit the answers';
-
-  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
-  const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
-
-  const players = playersDoc.data() ?? {};
-
-  const updatedPlayers = utils.readyPlayer(players, playerId);
-  updatedPlayers[playerId].reaction = reaction;
-  updatedPlayers[playerId].likesGuess = likesGuess;
-
-  try {
-    await sessionRef.doc('players').update({ [playerId]: updatedPlayers[playerId] });
-  } catch (error) {
-    firebaseUtils.throwException(error, actionText);
-  }
-
-  // If all players are ready, trigger next phase
-  if (utils.isEverybodyReady(updatedPlayers)) {
-    return nextPolemicaDaVezPhase(collectionName, gameId, players);
-  }
-
-  return true;
+  return await firebaseUtils.updatePlayer({
+    collectionName,
+    gameId,
+    playerId,
+    actionText: 'submit the answers',
+    shouldReady: true,
+    change: { reaction, likesGuess },
+    nextPhaseFunction: getNextPhase,
+  });
 };

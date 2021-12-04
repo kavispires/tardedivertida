@@ -25,15 +25,15 @@ function PhaseSuggest({ state, players, info }) {
   const isUserReady = useIsUserReady(players, state);
   const language = useLanguage();
   const [step, setStep] = useState(0);
-  const guesser = useWhichPlayerIsThe('guesser', state, players);
-  const isUserTheGuesser = useIsUserThe('guesser', state);
+  const guesser = useWhichPlayerIsThe('guesserId', state, players);
+  const isUserTheGuesser = useIsUserThe('guesserId', state);
 
   const onSendSuggestionsAPIRequest = useAPICall({
     apiFunction: UE_SO_ISSO_API.submitAction,
     actionName: 'submit-suggestion',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
-    successMessage: translate('Dicas enviada com successo!', 'Suggestion sent successfully!', language),
+    successMessage: translate('Dicas enviada com sucesso!', 'Suggestion sent successfully!', language),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar suas dicas',
       'Oops, the application failed to send your votes',
