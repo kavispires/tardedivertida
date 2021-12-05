@@ -15,6 +15,7 @@ import Game from './Game';
 import TestingZone from './TestingZone';
 import Gallery from './Gallery';
 import { LoadingBar, LoadingPage } from '../components/loaders';
+import Draw from './Draw';
 
 function PrivateRoute({ component: Component, authenticated, ...rest }) {
   return (
@@ -78,6 +79,7 @@ function App() {
             <PublicRoute path="/login" authenticated={isAuthenticated} component={Login} />
             <PrivateRoute path="/testing-zone" authenticated={isAuthenticated} component={TestingZone} />
             <Route path="/gallery" component={Gallery} />
+            <Route path="/draw" component={Draw} />
 
             <Route path="*" component={Game} />
           </Switch>
