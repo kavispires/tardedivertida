@@ -52,7 +52,7 @@ export function GameCard({ game, language }) {
       </Space>
       <Divider />
       <Space>
-        <RulesModal gameInfo={game} />
+        {Boolean(game.rules?.[language]?.length > 1) && <RulesModal gameInfo={game} />}
         {Boolean(game.available[language]) && <CreateGameModal gameInfo={game} />}
       </Space>
     </Card>
@@ -70,6 +70,10 @@ GameCard.propTypes = {
     max: PropTypes.number,
     min: PropTypes.number,
     recommended: PropTypes.string,
+    rules: PropTypes.shape({
+      en: PropTypes.array,
+      pt: PropTypes.array,
+    }),
     summary: PropTypes.shape({
       en: PropTypes.string,
       pt: PropTypes.string,
