@@ -21,28 +21,36 @@ export const TAG_DICT = {
     label: 'cooperativo',
     color: 'green',
   },
+  'same-time': {
+    label: 'todos juntos',
+    color: 'volcano',
+  },
+  'turn-based': {
+    label: 'um por vez',
+    color: 'volcano',
+  },
   traitor: {
     label: 'inimigo',
     color: 'volcano',
   },
-  'real-time': {
-    label: 'juntos',
-    color: 'volcano',
-  },
-  'turn-based': {
-    label: 'vez',
-    color: 'volcano',
-  },
   timed: {
-    label: 'tempo',
+    label: 'cronometrado',
     color: 'orange',
   },
   drawing: {
-    label: 'desenho',
+    label: 'desenhar',
     color: 'gold',
   },
   guessing: {
     label: 'adivinhar',
+    color: 'cyan',
+  },
+  voting: {
+    label: 'votação ',
+    color: 'cyan',
+  },
+  pairing: {
+    label: 'parear',
     color: 'cyan',
   },
   writing: {
