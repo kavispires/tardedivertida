@@ -31,7 +31,7 @@
     "recommended": "4-6",
     "min": 3,
     "max": 10,
-    "tags": ["competitive", "real-time", "drawing", "guessing", "timed"],
+    "tags": ["competitive", "same-time", "drawing", "pairing", "timed"],
     "available": {
       "pt": true,
       "en": true
@@ -86,7 +86,7 @@
     "recommended": "4-6",
     "min": 3,
     "max": 10,
-    "tags": ["competitive", "turn-based", "guessing", "images"],
+    "tags": ["competitive", "turn-based", "images", "writing", "guessing"],
     "available": {
       "pt": true,
       "en": true
@@ -121,7 +121,7 @@
     "recommended": "5+",
     "min": 3,
     "max": 10,
-    "tags": ["competitive", "turn-based", "traitor", "discussion", "images"],
+    "tags": ["competitive", "turn-based", "traitor", "discussion", "images", "writing"],
     "available": {
       "pt": true,
       "en": true
@@ -153,9 +153,33 @@
     "recommended": "6",
     "min": 4,
     "max": 8,
-    "tags": ["competitive", "real-time", "traitor", "discussion"],
+    "tags": ["competitive", "same-time", "traitor", "discussion", "timed"],
     "available": {
       "pt": true,
+      "en": false
+    }
+  },
+  "H": {
+    "gameCode": "H",
+    "gameName": "crimes-hediondos",
+    "title": {
+      "pt": "Crimes Hediondos",
+      "en": "Horrific Crimes"
+    },
+    "summary": {
+      "pt": "Numa convenção anual de Serial Killers, você e seus amigos tem que descrever o seu crime para que os outros jogadores adivinhem qual arma você usou e qual lembrancinha você levou pra casa",
+      "en": "In a Serial Killers Annual Convention, you and your friends must describe your crime so the other players can guess what weapon and what souvenir you took home"
+    },
+    "rules": {
+      "pt": ["TBD"],
+      "en": ["TBD"]
+    },
+    "recommended": "",
+    "min": 0,
+    "max": 10,
+    "tags": ["competitive", "guessing"],
+    "available": {
+      "pt": false,
       "en": false
     }
   },
@@ -183,6 +207,30 @@
       "en": false
     }
   },
+  "K": {
+    "gameCode": "K",
+    "gameName": "palheta-cores",
+    "title": {
+      "pt": "Palheta de Cores",
+      "en": "Color Palette"
+    },
+    "summary": {
+      "pt": "Em cada rodada escolha a cor que mais combina com as palavras. Quanto mais combinações iguais você faz com outros jogadores, mais pontos você ganha",
+      "en": "Each round you choose a color to match each of the words. For every match with other players, you get points!"
+    },
+    "rules": {
+      "pt": ["TBD"],
+      "en": ["TBD"]
+    },
+    "recommended": "4+",
+    "min": 3,
+    "max": 10,
+    "tags": ["competitive", "pairing"],
+    "available": {
+      "pt": false,
+      "en": false
+    }
+  },
   "L": {
     "gameCode": "L",
     "gameName": "linhas-cruzadas",
@@ -191,16 +239,16 @@
       "en": "Mis...communication"
     },
     "summary": {
-      "pt": "TBD",
-      "en": "TBD"
+      "pt": "Desenhe... adivinhar... repita...",
+      "en": "Draw... guess... repeat..."
     },
     "rules": {
       "pt": ["TBD"],
       "en": ["TBD"]
     },
-    "recommended": "4+",
+    "recommended": "6+",
     "min": 4,
-    "max": 8,
+    "max": 10,
     "tags": ["cooperative", "drawing", "guessing"],
     "available": {
       "pt": false,
@@ -232,7 +280,7 @@
     "recommended": "4+",
     "min": 3,
     "max": 12,
-    "tags": ["competitive", "real-time", "writing"],
+    "tags": ["competitive", "same-time", "writing"],
     "available": {
       "pt": true,
       "en": true
@@ -252,7 +300,7 @@
     "rules": {
       "pt": [
         "Em Onda Telepática, os jogadores competem para ver quem consegue se comunicar melhor telepaticamente! E como medimos isso? Através de um medidor de ondas telepáticas!",
-        "Em cada rodada, um jogador é o medium e escolhe uma carta com dois conceitos opostos que será usada na rodada. Por exemplo: \"Quente vs Frio\", \"Seco vs Molhado\".",
+        "Em cada rodada, um jogador é o medium e escolhe uma carta com dois conceitos opostos que será usada na rodada. Por exemplo: \"Quente vs Frio\", \"Seco vs Molhado\".",
         "O medium secretamente tem acesso ao medidor de ondas! Nele o resultado será marcado de azul! O objetivo da rodada é fazer com que os outros jogadores coloquem o ponteiro exatamente naquela posição.",
         "Para isso, o medium tem que escrever uma dica! Se a carta é Quente vs Frio e o ponteiro está no 4 pro lado \"Quente\", será que \"Café\" é uma boa dica? Será que alguns vão achar que 4 não é quente o suficiente para um café? E se eles preferirem café gelado?",
         "Baseado na dica, os jogadores tentam desvendar onde o ponteiro do resultado deve estar. Será que suas ondas telepáticas estão em sintonia? Será que o medium gosta de café pelando?",
@@ -261,7 +309,7 @@
       ],
       "en": [
         "In Telepathic Waves, players compete to see who can communicate the best telepathically. And how do we measure that? Using a Telepathic Waves Measuring Device, of course!",
-        "Each turn one player is the psychic and will choose a card with two opposing concepts, like \"Hot vs Cold\", \"Dry vs Wet\".",
+        "Each turn one player is the psychic and will choose a card with two opposing concepts, like \"Hot vs Cold\", \"Dry vs Wet\".",
         "The Psychic will see the Telepathic Waves Measuring Device pointing at one of the numbers in its scale. That's the answer! The goal is to write a clue that will help the other players to select the correct number in the device.",
         "The Psychic must write a clue to accomplish that! If the card is \"Hot vs Cold\" and the needle is pointing to 4 towards \"Hot\", maybe \"Coffee\" is a good clue. Or maybe players will think it's not hot enough, or maybe they prefer iced coffee?",
         "Based on the clue, players must try to guess the answer. Do you think your telepathic waves are in sync? Maybe the Psychic likes room temperature coffee?",
@@ -269,7 +317,7 @@
         "The game ends when someone gets 20 points or within 15 rounds, whatever comes first"
       ]
     },
-    "recommended": "6+",
+    "recommended": "4+",
     "min": 3,
     "max": 10,
     "tags": ["competitive", "guessing"],
@@ -301,10 +349,58 @@
     "recommended": "5+",
     "min": 3,
     "max": 10,
-    "tags": ["competitive", "guessing"],
+    "tags": ["competitive", "voting", "guessing"],
     "available": {
       "pt": true,
       "en": true
+    }
+  },
+  "Q": {
+    "gameCode": "Q",
+    "gameName": "quem-sou-eu",
+    "title": {
+      "pt": "Quem Sou Eu?",
+      "en": "Who Am I?"
+    },
+    "summary": {
+      "pt": "?",
+      "en": "?"
+    },
+    "rules": {
+      "pt": ["TBD"],
+      "en": ["TBD"]
+    },
+    "recommended": "",
+    "min": 1,
+    "max": 10,
+    "tags": ["cooperative", "discussion", "guessing"],
+    "available": {
+      "pt": false,
+      "en": false
+    }
+  },
+  "R": {
+    "gameCode": "R",
+    "gameName": "retrato-falado",
+    "title": {
+      "pt": "Retrato Falado",
+      "en": "Monster Sketch"
+    },
+    "summary": {
+      "pt": "?",
+      "en": "?"
+    },
+    "rules": {
+      "pt": ["TBD"],
+      "en": ["TBD"]
+    },
+    "recommended": "",
+    "min": 1,
+    "max": 10,
+    "tags": ["competitive", "drawing", "voting", "discussion", "timed"],
+    "available": {
+      "pt": false,
+      "en": false
     }
   },
   "S": {
@@ -332,7 +428,7 @@
     "recommended": "2+",
     "min": 2,
     "max": 10,
-    "tags": ["competitive", "images", "guessing"],
+    "tags": ["competitive", "images", "pairing"],
     "available": {
       "pt": true,
       "en": true
@@ -408,6 +504,54 @@
     "available": {
       "pt": true,
       "en": true
+    }
+  },
+  "V": {
+    "gameCode": "V",
+    "gameName": "toro-palpite",
+    "title": {
+      "pt": "Toró de Palpite",
+      "en": "Brainstorm"
+    },
+    "summary": {
+      "pt": "?",
+      "en": "?"
+    },
+    "rules": {
+      "pt": ["TBD"],
+      "en": ["TBD"]
+    },
+    "recommended": "",
+    "min": 1,
+    "max": 10,
+    "tags": ["cooperative", "writing", "guessing"],
+    "available": {
+      "pt": false,
+      "en": false
+    }
+  },
+  "X": {
+    "gameCode": "X",
+    "gameName": "cruza-palavras",
+    "title": {
+      "pt": "Cruza Palavras",
+      "en": "Mixed Clues"
+    },
+    "summary": {
+      "pt": "?",
+      "en": "?"
+    },
+    "rules": {
+      "pt": ["TBD"],
+      "en": ["TBD"]
+    },
+    "recommended": "",
+    "min": 1,
+    "max": 10,
+    "tags": ["competitive"],
+    "available": {
+      "pt": false,
+      "en": false
     }
   }
 }
