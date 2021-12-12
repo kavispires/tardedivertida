@@ -1,60 +1,61 @@
 import { functions } from '../services/firebase';
+import { httpsCallable } from 'firebase/functions';
 
 export const GAME_API = {
-  initializeGame: functions.httpsCallable('initializeGame'),
-  loadGame: functions.httpsCallable('loadGame'),
-  addPlayer: functions.httpsCallable('addPlayer'),
-  lockGame: functions.httpsCallable('lockGame'),
-  makePlayerReady: functions.httpsCallable('makePlayerReady'),
-  playAgain: functions.httpsCallable('playAgain'),
-  goToNextPhase: functions.httpsCallable('goToNextPhase'),
-  forceStateProperty: functions.httpsCallable('forceStateProperty'),
-  rateGame: functions.httpsCallable('rateGame'),
+  initializeGame: httpsCallable(functions, 'initializeGame'),
+  loadGame: httpsCallable(functions, 'loadGame'),
+  addPlayer: httpsCallable(functions, 'addPlayer'),
+  lockGame: httpsCallable(functions, 'lockGame'),
+  makePlayerReady: httpsCallable(functions, 'makePlayerReady'),
+  playAgain: httpsCallable(functions, 'playAgain'),
+  goToNextPhase: httpsCallable(functions, 'goToNextPhase'),
+  forceStateProperty: httpsCallable(functions, 'forceStateProperty'),
+  rateGame: httpsCallable(functions, 'rateGame'),
 };
 
 export const ARTE_RUIM_API = {
-  submitAction: functions.httpsCallable('arteRuimSubmitAction'),
+  submitAction: httpsCallable(functions, 'arteRuimSubmitAction'),
 };
 
 export const CONTADORES_HISTORIAS_API = {
-  submitAction: functions.httpsCallable('contadoresHistoriasSubmitAction'),
+  submitAction: httpsCallable(functions, 'contadoresHistoriasSubmitAction'),
 };
 
 export const DETETIVES_IMAGINATIVOS_API = {
-  submitAction: functions.httpsCallable('detetivesImaginativosSubmitAction'),
+  submitAction: httpsCallable(functions, 'detetivesImaginativosSubmitAction'),
 };
 
 export const ESPIAO_ENTRE_NOS_API = {
-  handleAdminAction: functions.httpsCallable('espiaoEntreNosHandleAdminAction'),
-  makeAccusation: functions.httpsCallable('espiaoEntreNosMakeAccusation'),
-  guessLocation: functions.httpsCallable('espiaoEntreNosGuessLocation'),
-  submitVoting: functions.httpsCallable('espiaoEntreNosSubmitVoting'),
+  handleAdminAction: httpsCallable(functions, 'espiaoEntreNosHandleAdminAction'),
+  makeAccusation: httpsCallable(functions, 'espiaoEntreNosMakeAccusation'),
+  guessLocation: httpsCallable(functions, 'espiaoEntreNosGuessLocation'),
+  submitVoting: httpsCallable(functions, 'espiaoEntreNosSubmitVoting'),
 };
 
 export const INSTRUMENTOS_CODIFICADOS_API = {
-  submitAction: functions.httpsCallable('instrumentosCodificadosSubmitAction'),
+  submitAction: httpsCallable(functions, 'instrumentosCodificadosSubmitAction'),
 };
 
 export const MENTE_COLETIVA_API = {
-  submitAction: functions.httpsCallable('menteColetivaSubmitAction'),
+  submitAction: httpsCallable(functions, 'menteColetivaSubmitAction'),
 };
 
 export const ONDA_TELEPATICA_API = {
-  submitAction: functions.httpsCallable('ondaTelepaticaSubmitAction'),
+  submitAction: httpsCallable(functions, 'ondaTelepaticaSubmitAction'),
 };
 
 export const POLEMICA_DA_VEZ_API = {
-  submitAction: functions.httpsCallable('polemicaDaVezSubmitAction'),
+  submitAction: httpsCallable(functions, 'polemicaDaVezSubmitAction'),
 };
 
 export const SONHOS_PESADELOS_API = {
-  submitAction: functions.httpsCallable('sonhosPesadelosSubmitAction'),
+  submitAction: httpsCallable(functions, 'sonhosPesadelosSubmitAction'),
 };
 
 export const TESTEMUNHA_OCULAR_API = {
-  submitAction: functions.httpsCallable('testemunhaOcularSubmitAction'),
+  submitAction: httpsCallable(functions, 'testemunhaOcularSubmitAction'),
 };
 
 export const UE_SO_ISSO_API = {
-  submitAction: functions.httpsCallable('ueSoIssoSubmitAction'),
+  submitAction: httpsCallable(functions, 'ueSoIssoSubmitAction'),
 };

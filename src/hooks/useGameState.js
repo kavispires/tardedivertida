@@ -1,10 +1,12 @@
 import { notification } from 'antd';
 import { useDocument } from 'react-firebase-hooks/firestore';
+import { doc } from 'firebase/firestore';
 // Services
 import { firestore } from '../services/firebase';
 
 export function useGameState(gameId, gameName) {
-  const [snapshot, loading, error] = useDocument(firestore.doc(`${gameName}/${gameId}/session/state`), {
+  const docPath = `${gameName}/${gameId}/session/state`;
+  const [snapshot, loading, error] = useDocument(doc(firestore, docPath), {
     snapshotListenOptions: { includeMetadataChanges: true },
   });
 
