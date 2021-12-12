@@ -6,17 +6,35 @@ import { Image, Modal, message, Button, notification } from 'antd';
 // Adapters
 import { GAME_API } from '../../adapters';
 // Hooks
-import { useGlobalState, useLanguage, useLoading } from '../../hooks';
+import { useGlobalState, useLanguage, useLoading, useLocalStorage } from '../../hooks';
 // Constants
-import { PUBLIC_URL } from '../../utils/constants';
+import { LATEST_GAME_IDS, PUBLIC_URL } from '../../utils/constants';
 // Components
 import { Loading } from '../loaders';
 import { Instruction, Title, Translate, translate } from '../shared';
 
+const updateLocal24hGameIds = (latestGameIds, newId) => {
+  console.log({ newId });
+  const now = Date.now();
+  const past24Hours = now - 1000 * 60 * 60 * 24;
+  const cleanedUpIds = Object.entries(latestGameIds ?? {}).reduce((acc, [key, timestamp]) => {
+    if (timestamp > past24Hours) {
+      acc[key] = timestamp;
+    }
+    return acc;
+  }, {});
+  return {
+    [LATEST_GAME_IDS]: {
+      ...cleanedUpIds,
+      [newId]: now,
+    },
+  };
+};
 export function CreateGameModal({ gameInfo }) {
   const history = useHistory();
   const language = useLanguage();
   const [, setLoader] = useLoading();
+  const [getLocalStorage, setLocalStorage] = useLocalStorage();
   const [isVisible, setVisibility] = useState(false);
   const [isLoading, setLoading] = useState(true);
   const [gameId, setGameId] = useState(null);
@@ -38,6 +56,7 @@ export function CreateGameModal({ gameInfo }) {
           setUserId(null);
           setUserName('');
           setUserAvatarId('');
+          setLocalStorage(updateLocal24hGameIds(getLocalStorage(LATEST_GAME_IDS), response.data.gameId));
         }
       } catch (e) {
         notification.error({

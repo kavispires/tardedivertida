@@ -196,6 +196,8 @@ export const LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
 export const SEPARATOR = ';;';
 
+export const LATEST_GAME_IDS = 'latestGameIds';
+
 /**
  * Random names used during Dev
  */
