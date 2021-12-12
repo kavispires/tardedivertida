@@ -1,7 +1,7 @@
-import firebase from 'firebase/app';
-import 'firebase/firestore';
-import 'firebase/auth';
-import 'firebase/functions';
+import { initializeApp } from 'firebase/app';
+import { getFirestore, connectFirestoreEmulator } from 'firebase/firestore';
+import { getAuth } from 'firebase/auth';
+import { getFunctions, connectFunctionsEmulator } from 'firebase/functions';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -13,16 +13,17 @@ const firebaseConfig = {
   appId: process.env.REACT_APP_FIREBASE_API_ID,
 };
 
-firebase.initializeApp(firebaseConfig);
+const firebaseApp = initializeApp(firebaseConfig);
+
 // firebase.analytics();
 
-export const auth = firebase.auth();
-export const firestore = firebase.firestore();
-export const functions = firebase.functions();
+export const auth = getAuth(firebaseApp);
+export const firestore = getFirestore(firebaseApp);
+export const functions = getFunctions(firebaseApp);
 
 if (window.location.hostname.includes('localhost')) {
-  firestore.useEmulator('localhost', 8091);
-  functions.useEmulator('localhost', 5001);
+  connectFirestoreEmulator(firestore, 'localhost', 8091);
+  connectFunctionsEmulator(functions, 'localhost', 5001);
 }
 
-export default firebase;
+export default firebaseApp;
