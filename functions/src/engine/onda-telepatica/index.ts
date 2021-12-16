@@ -17,7 +17,7 @@ import {
   prepareSetupPhase,
 } from './setup';
 import { getCategories } from './data';
-import { handleSubmitClue, handleSubmitGuess } from './actions';
+import { handleSubmitCategory, handleSubmitClue, handleSubmitGuess } from './actions';
 
 /**
  * Get Initial Game State
@@ -119,9 +119,12 @@ export const submitAction = async (data: OndaTelepaticaSubmitAction) => {
   firebaseUtils.validateSubmitActionPayload(gameId, collectionName, playerId, action);
 
   switch (action) {
+    case 'SUBMIT_CATEGORY':
+      firebaseUtils.validateSubmitActionProperties(data, ['categoryId'], 'submit category');
+      return handleSubmitCategory(collectionName, gameId, playerId, data.categoryId);
     case 'SUBMIT_CLUE':
-      firebaseUtils.validateSubmitActionProperties(data, ['categoryId', 'clue'], 'submit category');
-      return handleSubmitClue(collectionName, gameId, playerId, data.categoryId, data.clue);
+      firebaseUtils.validateSubmitActionProperties(data, ['clue'], 'submit clue');
+      return handleSubmitClue(collectionName, gameId, playerId, data.clue);
     case 'SUBMIT_GUESS':
       firebaseUtils.validateSubmitActionProperties(data, ['guess'], 'submit guess');
       return handleSubmitGuess(collectionName, gameId, playerId, data.guess);
