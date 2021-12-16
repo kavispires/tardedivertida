@@ -5,7 +5,7 @@ import { FirebaseStateData, FirebaseStoreData, Results } from './interfaces';
 import { COUNTS_BY_PLAYER, SONHOS_PESADELOS_PHASES, TOTAL_ROUNDS } from './constants';
 // Helpers
 import * as gameUtils from '../../utils/game-utils';
-import * as imageCards from '../../utils/image-cards';
+import * as imageCardsUtils from '../../utils/image-cards';
 import * as utils from '../../utils/helpers';
 import { buildTable, determineDreams, determineNightmares, gatherClues, tallyScore } from './helpers';
 
@@ -26,7 +26,7 @@ export const prepareSetupPhase = async (
 
   const playerCount = Object.keys(players).length;
   const counts = COUNTS_BY_PLAYER[playerCount];
-  const allImages = gameUtils.getRandomItems(imageCards.getImageCards(1), counts.cards);
+  const allImages = await imageCardsUtils.getImageCards(counts.cards);
   const table = buildTable(allImages);
 
   // Determine players dreams
