@@ -87,7 +87,9 @@ export const prepareGuessPhase = async (
     needle: 0,
   });
 
-  const selectedCategory = store.deck.find((category: CategoryCard) => category.id === store.categoryId);
+  const selectedCategory = store.deck.find(
+    (category: CategoryCard) => category.id === state.currentCategoryId
+  );
 
   const currentCategory = {
     ...selectedCategory,
@@ -105,6 +107,7 @@ export const prepareGuessPhase = async (
         phase: ONDA_TELEPATICA_PHASES.GUESS,
         currentCategory,
         currentCategories: firebaseUtils.deleteValue(),
+        currentCategoryId: firebaseUtils.deleteValue(),
         target: firebaseUtils.deleteValue(),
       },
       players,

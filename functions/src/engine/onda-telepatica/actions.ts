@@ -6,6 +6,31 @@ import * as firebaseUtils from '../../utils/firebase';
 import { getNextPhase } from '.';
 
 /**
+ *
+ * @param collectionName
+ * @param gameId
+ * @param playerId
+ * @param guess
+ * @returns
+ */
+export const handleSubmitCategory = async (
+  collectionName: GameName,
+  gameId: GameId,
+  playerId: PlayerId,
+  categoryId: string
+) => {
+  return await firebaseUtils.updateState({
+    collectionName,
+    gameId,
+    playerId,
+    actionText: 'submit category',
+    change: {
+      currentCategoryId: categoryId,
+    },
+  });
+};
+
+/**
  * When psychic submits the round's clue
  * @param collectionName
  * @param gameId
@@ -18,7 +43,6 @@ export const handleSubmitClue = async (
   collectionName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  categoryId: string,
   clue: string
 ) => {
   return await firebaseUtils.updateStore({
@@ -28,7 +52,6 @@ export const handleSubmitClue = async (
     actionText: 'submit clue',
     change: {
       clue,
-      categoryId,
     },
     nextPhaseFunction: getNextPhase,
   });

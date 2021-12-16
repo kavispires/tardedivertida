@@ -21,6 +21,7 @@ import {
 import { AvatarName } from '../../components/avatars';
 import StepClueWriting from './StepClueWriting';
 import StepClueWaiting from './StepClueWaiting';
+import StepCategorySelection from './StepCategorySelection';
 
 function PhaseDialClue({ players, state, info }) {
   const isUserReady = useIsUserReady(players, state);
@@ -28,6 +29,17 @@ function PhaseDialClue({ players, state, info }) {
   const [step, setStep] = useState(0);
   const psychic = useWhichPlayerIsThe('psychicId', state, players);
   const isUserThePsychic = useIsUserThe('psychicId', state);
+
+  const onSubmitCategoryRequest = useAPICall({
+    apiFunction: ONDA_TELEPATICA_API.submitAction,
+    actionName: 'submit-category',
+    successMessage: translate('Categoria enviada com sucesso!', 'Category submitted successfully!', language),
+    errorMessage: translate(
+      'Vixi, o aplicativo encontrou um erro ao tentar enviar a categoria',
+      'Oops, the application failed to submit the category',
+      language
+    ),
+  });
 
   const onSubmitClueRequest = useAPICall({
     apiFunction: ONDA_TELEPATICA_API.submitAction,
@@ -43,6 +55,13 @@ function PhaseDialClue({ players, state, info }) {
   });
 
   const onSendChosenSide = (payload) => {
+    onSubmitCategoryRequest({
+      action: 'SUBMIT_CATEGORY',
+      ...payload,
+    });
+  };
+
+  const onSendClue = (payload) => {
     onSubmitClueRequest({
       action: 'SUBMIT_CLUE',
       ...payload,
@@ -91,17 +110,29 @@ function PhaseDialClue({ players, state, info }) {
 
         {/* Step 2 */}
         <Step fullWidth>
-          <ViewIf isVisible={isUserThePsychic}>
-            <StepClueWriting
-              players={players}
+          <ViewIf isVisible={isUserThePsychic && !state.currentCategoryId}>
+            <StepCategorySelection
               currentCategories={state.currentCategories}
-              target={state.target}
               onSendChosenSide={onSendChosenSide}
             />
           </ViewIf>
 
+          <ViewIf isVisible={isUserThePsychic && state.currentCategoryId}>
+            <StepClueWriting
+              currentCategories={state.currentCategories}
+              currentCategoryId={state.currentCategoryId}
+              target={state.target}
+              onSendClue={onSendClue}
+            />
+          </ViewIf>
+
           <ViewIf isVisible={!isUserThePsychic}>
-            <StepClueWaiting players={players} psychic={psychic} />
+            <StepClueWaiting
+              players={players}
+              psychic={psychic}
+              currentCategories={state.currentCategories}
+              currentCategoryId={state.currentCategoryId}
+            />
           </ViewIf>
         </Step>
 
