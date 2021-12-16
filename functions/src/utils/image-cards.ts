@@ -1,36 +1,47 @@
+import fetch from 'cross-fetch';
 import * as gameUtils from './game-utils';
+import * as firebaseUtils from './firebase';
 import { ImageCard } from './interfaces';
-
-const DECKS = [
-  'dc-b1',
-  'dc-b2',
-  'dx-dd',
-  'dx-hm',
-  'dx-mm',
-  'dx-mr',
-  'dx-od',
-  'dx-or',
-  'dx-rv',
-  'mu-aw',
-  'my-bs',
-  'my-pr',
-];
-
-export const IMAGE_CARDS_PER_DECK = 84;
 
 const deckCache = {};
 
-export const getImageCards = (numDecks = 1): ImageCard[] => {
-  if (numDecks > DECKS.length) {
-    throw Error(`${numDecks} image decks were requested while game only has ${DECKS.length} available`);
+const requestTDIInfo = async (): Promise<any> => {
+  try {
+    const response = await fetch(`${firebaseUtils.config().td_url.data}info.json`);
+    return response.json();
+  } catch (e) {
+    firebaseUtils.throwException(`${e}`, 'Failed to get images data');
+  }
+};
+
+/**
+ * Gets cards from decks of image cards
+ * @param quantity the number of cards needed
+ * @returns
+ */
+export const getImageCards = async (quantity: number): Promise<ImageCard[]> => {
+  const cardInfo: any = await requestTDIInfo();
+
+  const decks = Object.keys(cardInfo);
+  const totalCards = Number(Object.values(cardInfo ?? {}).reduce((acc: any, num: any) => acc + num, 0));
+  if (quantity > totalCards) {
+    firebaseUtils.throwException(
+      `${quantity} image cards were requested but the game only has ${totalCards} available`
+    );
   }
 
-  const decks = gameUtils.shuffle(DECKS);
-  const selectedDecks = new Array(numDecks).fill('').map((item, index) => `${item}${decks[index]}`);
+  const shuffledDecks = gameUtils.shuffle(decks);
+  const selectedDecks: string[] = [];
+  let selectedCardQuantity = 0;
+  while (selectedCardQuantity < quantity) {
+    const currentDeck = shuffledDecks.pop();
+    selectedDecks.push(currentDeck);
+    selectedCardQuantity += cardInfo[currentDeck];
+  }
 
   const cards = selectedDecks.map((deckPrefix) => {
     if (deckCache[deckPrefix] === undefined) {
-      deckCache[deckPrefix] = new Array(IMAGE_CARDS_PER_DECK).fill(1).map((item, index) => {
+      deckCache[deckPrefix] = new Array(cardInfo[deckPrefix]).fill(1).map((item, index) => {
         const tempId = item + index;
         const id = tempId < 10 ? `0${tempId}` : tempId;
         return `${deckPrefix}-${id}`;

@@ -11,7 +11,7 @@ import {
 } from './constants';
 // Utils
 import * as gameUtils from '../../utils/game-utils';
-import * as imageCards from '../../utils/image-cards';
+import * as imageCardsUtils from '../../utils/image-cards';
 import * as utils from '../../utils/helpers';
 // Internal
 import { buildCode, buildCodeFragment, buildTable } from './helpers';
@@ -45,7 +45,7 @@ export const prepareSetupPhase = async (
 
   const code = buildCode(players, playerCount);
 
-  const allCards = gameUtils.getRandomItems(imageCards.getImageCards(1), TOTAL_IMAGE_CARDS);
+  const allCards = await imageCardsUtils.getImageCards(TOTAL_IMAGE_CARDS);
   const table = buildTable(allCards);
 
   // Save
