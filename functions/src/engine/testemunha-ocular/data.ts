@@ -10,14 +10,18 @@ import { TestemunhaOcularEntry } from './interfaces';
  * @param language
  * @returns
  */
-export const getQuestions = async (language: string) => {
+export const getQuestionsAndSuspects = async (language: string) => {
   const resourceName = `testemunha-ocular-${language}`;
   // Get full deck
   const allCards = await resourceUtils.fetchResource(resourceName);
   // Get used deck
   const usedCards = await globalUtils.getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.TESTEMUNHA_OCULAR, {});
+  // Get images info
+  const allSuspects = await resourceUtils.fetchTDIData('us/info');
+
   return {
     allCards,
+    allSuspects: Object.values(allSuspects),
     usedCards: Object.keys(usedCards),
   };
 };

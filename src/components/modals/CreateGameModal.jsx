@@ -14,7 +14,6 @@ import { Loading } from '../loaders';
 import { Instruction, Title, Translate, translate } from '../shared';
 
 const updateLocal24hGameIds = (latestGameIds, newId) => {
-  console.log({ newId });
   const now = Date.now();
   const past24Hours = now - 1000 * 60 * 60 * 24;
   const cleanedUpIds = Object.entries(latestGameIds ?? {}).reduce((acc, [key, timestamp]) => {
