@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 // Hooks
 import { useLanguage } from '../../hooks';
-// Resources & Utils
-import { SUSPECTS_NAMES } from './suspects-names';
 // Components
 import { GameOverWrapper, Instruction, Translate, translate } from '../../components/shared';
 import { ImageCard } from '../../components/cards';
@@ -36,11 +34,11 @@ function PhaseGameOver({ state, info }) {
 
         <div className="t-suspects-table__suspect">
           <ImageCard
-            imageId={state.perpetrator}
+            imageId={state.perpetrator.id}
             className="t-suspects-table__suspect-image"
             cardWidth={150}
           />
-          <div className="t-suspects-table__suspect-name">{SUSPECTS_NAMES[state.perpetrator][language]}</div>
+          <div className="t-suspects-table__suspect-name">{state.perpetrator[language]}</div>
         </div>
       </Instruction>
     </GameOverWrapper>
@@ -71,7 +69,12 @@ PhaseGameOver.propTypes = {
   state: PropTypes.shape({
     groupScore: PropTypes.number,
     outcome: PropTypes.string,
-    perpetrator: PropTypes.string,
+    perpetrator: PropTypes.shape({
+      id: PropTypes.string,
+      pt: PropTypes.string,
+      en: PropTypes.string,
+      gender: PropTypes.string,
+    }),
     phase: PropTypes.string,
     round: PropTypes.shape({
       current: PropTypes.number,

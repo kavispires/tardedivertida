@@ -18,7 +18,7 @@ import {
   prepareWitnessSelectionPhase,
 } from './setup';
 import { handleElimination, handleExtraAction } from './actions';
-import { getQuestions, saveUsedQUestions } from './data';
+import { getQuestionsAndSuspects, saveUsedQUestions } from './data';
 
 /**
  * Get Initial Game State
@@ -79,7 +79,7 @@ export const getNextPhase = async (
     await firebaseUtils.triggerSetupPhase(sessionRef);
 
     // Request data
-    const additionalData = await getQuestions(store.language);
+    const additionalData = await getQuestionsAndSuspects(store.language);
     const newPhase = await prepareSetupPhase(additionalData);
     await firebaseUtils.saveGame(sessionRef, newPhase);
     return getNextPhase(collectionName, gameId, players);

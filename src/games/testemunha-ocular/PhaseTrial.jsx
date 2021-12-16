@@ -155,7 +155,10 @@ function PhaseTrial({ state, players, info }) {
           </Title>
           {isUserTheQuestioner && (
             <Instruction contained>
-              <Translate pt="Clique no suspeito para eliminá-lo" en="Click on a suspect card to release it" />
+              <Translate
+                pt="Clique em um suspeito para liberá-lo(a)"
+                en="Click on a suspect card to release it"
+              />
               <br />
               {Boolean(state?.eliminatedSuspects?.length && isUserTheQuestioner) && (
                 <ButtonContainer>
@@ -190,7 +193,12 @@ PhaseTrial.propTypes = {
   players: PropTypes.object,
   state: PropTypes.shape({
     eliminatedSuspects: PropTypes.arrayOf(PropTypes.string),
-    perpetrator: PropTypes.string,
+    perpetrator: PropTypes.shape({
+      id: PropTypes.string,
+      pt: PropTypes.string,
+      en: PropTypes.string,
+      gender: PropTypes.string,
+    }),
     phase: PropTypes.string,
     previouslyEliminatedSuspects: PropTypes.arrayOf(PropTypes.string),
     question: PropTypes.shape({
@@ -199,7 +207,14 @@ PhaseTrial.propTypes = {
     round: PropTypes.shape({
       current: PropTypes.number,
     }),
-    suspects: PropTypes.arrayOf(PropTypes.string),
+    suspects: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string,
+        pt: PropTypes.string,
+        en: PropTypes.string,
+        gender: PropTypes.string,
+      })
+    ),
     testimony: PropTypes.bool,
   }),
 };

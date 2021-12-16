@@ -2,6 +2,13 @@ import { DefaultState, DefaultStore, InitialState, Payload, PlayerId } from '../
 
 export type SuspectId = string;
 
+export type Suspect = {
+  id: SuspectId;
+  pt: string;
+  en: string;
+  gender: string;
+};
+
 export interface TestemunhaOcularCard {
   id: string;
   question: string;
@@ -28,7 +35,7 @@ export interface TestemunhaOcularStore extends DefaultStore {
 }
 
 export interface TestemunhaOcularState extends DefaultState {
-  suspects?: any;
+  suspects?: Suspect[];
   perpetrator?: any;
   groupScore?: any;
   questionerId?: any;

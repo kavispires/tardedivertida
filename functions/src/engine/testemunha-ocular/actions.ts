@@ -63,7 +63,7 @@ export const handleElimination = async (
   const suspectId = additionalPayload?.suspectId;
   // Check if suspect is innocent
   if (suspectId) {
-    if (suspectId === state.perpetrator) {
+    if (suspectId === state.perpetrator.id) {
       shouldGoToNextPhase = true;
       lose = true;
     } else {
