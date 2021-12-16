@@ -3,8 +3,6 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 // Hooks
 import { useGlobalState, useLanguage } from '../../hooks';
-// Utils
-import { isDevEnv } from '../../utils';
 // Components
 import { LoadingPage } from '../loaders';
 import { PageError } from '../errors/PageError';
@@ -18,7 +16,6 @@ import { translate } from './Translate';
 export function PhaseContainer({ info, phase, allowedPhase, children, className, fullScreen, white }) {
   const language = useLanguage();
   const screenRef = useRef(null);
-  const [username] = useGlobalState('username');
   const [, setScreenSize] = useGlobalState('screenSize');
 
   useEffect(() => {
@@ -54,10 +51,6 @@ export function PhaseContainer({ info, phase, allowedPhase, children, className,
       id="screen"
       ref={screenRef}
     >
-      <span className={`${baseClass}__title`}>
-        {info.title[language]}
-        {isDevEnv && Boolean(username) && `| ${username}`}
-      </span>
       {children}
     </main>
   );
