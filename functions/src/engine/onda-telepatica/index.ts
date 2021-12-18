@@ -1,14 +1,14 @@
 // Constants
 import { GAME_COLLECTIONS } from '../../utils/constants';
 import { MAX_ROUNDS, ONDA_TELEPATICA_PHASES, PLAYER_COUNT } from './constants';
-// Interfaces
-import { GameId, Language, Players } from '../../utils/interfaces';
+// Types
+import { GameId, Language, Players } from '../../utils/types';
 // Utils
 import * as firebaseUtils from '../../utils/firebase';
 import * as utils from '../../utils/helpers';
 // Internal Functions
 import { determineGameOver, determineNextPhase } from './helpers';
-import { OndaTelepaticaInitialState, OndaTelepaticaSubmitAction } from './interfaces';
+import { OndaTelepaticaInitialState, OndaTelepaticaSubmitAction } from './types';
 import {
   prepareDialCluePhase,
   prepareGameOverPhase,

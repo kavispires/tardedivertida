@@ -6,9 +6,9 @@ import {
   SCORE_GOAL,
   TOPICS_PER_ROUND,
 } from './constants';
-// Interfaces
-import { PlainObject, Players } from '../../utils/interfaces';
-import { Decks } from './interfaces';
+// Types
+import { PlainObject, Players } from '../../utils/types';
+import { Decks } from './types';
 // Utils
 import * as gameUtils from '../../utils/game-utils';
 

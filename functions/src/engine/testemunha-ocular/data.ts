@@ -3,7 +3,7 @@ import { GLOBAL_USED_DOCUMENTS } from '../../utils/constants';
 import * as globalUtils from '../global';
 import * as resourceUtils from '../resource';
 import { buildUsedCardsIdsDict } from './helpers';
-import { TestemunhaOcularEntry } from './interfaces';
+import { TestemunhaOcularEntry } from './types';
 
 /**
  * Get question resource based on the game's language

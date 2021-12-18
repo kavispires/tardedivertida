@@ -1,8 +1,8 @@
-// Interfaces
+// Types
 import * as firebaseUtils from '../../utils/firebase';
 import * as gameUtils from '../../utils/game-utils';
 import * as utils from '../../utils/helpers';
-import { PlainObject, Players, SaveGamePayload } from '../../utils/interfaces';
+import { PlainObject, Players, SaveGamePayload } from '../../utils/types';
 import { MAX_ROUNDS, QUESTION_COUNT, SUSPECT_COUNT, TESTEMUNHA_OCULAR_PHASES } from './constants';
 import {
   calculateScore,
@@ -11,12 +11,7 @@ import {
   getQuestionerId,
   getQuestions,
 } from './helpers';
-import {
-  FirebaseStateData,
-  FirebaseStoreData,
-  TestemunhaOcularCard,
-  TestemunhaOcularEntry,
-} from './interfaces';
+import { FirebaseStateData, FirebaseStoreData, TestemunhaOcularCard, TestemunhaOcularEntry } from './types';
 
 /**
  * Setup

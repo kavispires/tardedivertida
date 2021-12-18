@@ -1,9 +1,9 @@
 // Constants
 import { GAME_COLLECTIONS } from '../../utils/constants';
 import { ARTE_RUIM_PHASES, PLAYER_COUNT, MAX_ROUNDS } from './constants';
-// Interfaces
-import { GameId, GameName, Language, Players } from '../../utils/interfaces';
-import { ArteRuimInitialState, ArteRuimSubmitAction } from './interfaces';
+// Types
+import { GameId, GameName, Language, Players } from '../../utils/types';
+import { ArteRuimInitialState, ArteRuimSubmitAction } from './types';
 // Utilities
 import * as firebaseUtils from '../../utils/firebase';
 import * as utils from '../../utils/helpers';

@@ -1,4 +1,4 @@
-import { Players, Primitive } from './interfaces';
+import { Players, Primitive } from './types';
 
 // Shuffling
 

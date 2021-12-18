@@ -5,9 +5,9 @@ import {
   HAND_LIMIT,
   TABLE_CARDS_BY_PLAYER_COUNT,
 } from './constants';
-// Interfaces
-import { FirebaseStateData, FirebaseStoreData } from './interfaces';
-import { Players, SaveGamePayload } from '../../utils/interfaces';
+// Types
+import { FirebaseStateData, FirebaseStoreData } from './types';
+import { Players, SaveGamePayload } from '../../utils/types';
 // Utils
 import * as firebaseUtils from '../../utils/firebase';
 import * as gameUtils from '../../utils/game-utils';

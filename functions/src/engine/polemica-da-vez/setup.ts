@@ -1,8 +1,8 @@
 // Constants
 import { CUSTOM_TOPICS_PER_ROUND, POLEMICA_DA_VEZ_PHASES, TOPICS_PER_ROUND } from './constants';
-// Interfaces
-import { PlainObject, Players, SaveGamePayload } from '../../utils/interfaces';
-import { FirebaseStateData, FirebaseStoreData } from './interfaces';
+// Types
+import { PlainObject, Players, SaveGamePayload } from '../../utils/types';
+import { FirebaseStateData, FirebaseStoreData } from './types';
 // Utils
 import * as firebaseUtils from '../../utils/firebase';
 import * as utils from '../../utils/helpers';

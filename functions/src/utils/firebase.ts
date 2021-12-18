@@ -1,6 +1,6 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
-// Interfaces
+// Types
 import {
   FirebaseContext,
   GameId,
@@ -11,7 +11,7 @@ import {
   StateAndStoreReferences,
   UpdatePlayerArgs,
   UpdateStoreArgs,
-} from '../utils/interfaces';
+} from './types';
 // Utils
 import * as utils from '../utils/helpers';
 

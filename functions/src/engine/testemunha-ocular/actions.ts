@@ -1,5 +1,5 @@
-// Interfaces
-import { GameName, GameId } from '../../utils/interfaces';
+// Types
+import { GameName, GameId } from '../../utils/types';
 // Utils
 import * as firebaseUtils from '../../utils/firebase';
 import { getNextPhase } from './index';

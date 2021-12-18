@@ -1,5 +1,5 @@
-import { ArteRuimCardsDatabase } from '../../src/engine/arte-ruim/interfaces';
-import { PlainObject } from '../../src/utils/interfaces';
+import { ArteRuimCardsDatabase } from '../../src/engine/arte-ruim/types';
+import { PlainObject } from '../../src/utils/types';
 
 export const mockArteRuimCardDatabase: ArteRuimCardsDatabase = Array(120)
   .fill(1)
