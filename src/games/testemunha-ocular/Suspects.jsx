@@ -21,7 +21,7 @@ export function Suspects({ suspects, perpetrator, onCardClick, eliminatedSuspect
       <div className="t-suspects-table">
         {suspects.map((suspect) => {
           const wasEliminated = eliminatedSuspects.includes(suspect.id);
-          const name = suspect[language];
+          const name = suspect.name[language];
 
           return (
             <Popconfirm
@@ -72,7 +72,7 @@ export function Suspects({ suspects, perpetrator, onCardClick, eliminatedSuspect
               )}
               cardWidth={cardWidth}
             />
-            {!wasEliminated && <div className="t-suspects-table__suspect-name">{suspect[language]}</div>}
+            {!wasEliminated && <div className="t-suspects-table__suspect-name">{suspect.name[language]}</div>}
           </div>
         );
       })}
@@ -85,15 +85,19 @@ Suspects.propTypes = {
   onCardClick: PropTypes.func,
   perpetrator: PropTypes.shape({
     id: PropTypes.string,
-    pt: PropTypes.string,
-    en: PropTypes.string,
+    name: PropTypes.shape({
+      pt: PropTypes.string,
+      en: PropTypes.string,
+    }),
     gender: PropTypes.string,
   }),
   suspects: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,
-      pt: PropTypes.string,
-      en: PropTypes.string,
+      name: PropTypes.shape({
+        pt: PropTypes.string,
+        en: PropTypes.string,
+      }),
       gender: PropTypes.string,
     })
   ).isRequired,
