@@ -1,7 +1,7 @@
 import fetch from 'cross-fetch';
 import * as gameUtils from './game-utils';
 import * as firebaseUtils from './firebase';
-import { ImageCard } from './interfaces';
+import { ImageCard } from './types';
 
 const deckCache = {};
 

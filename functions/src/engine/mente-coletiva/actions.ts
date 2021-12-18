@@ -1,5 +1,5 @@
-// Interfaces
-import { GameId, PlayerId, GameName, PlainObject } from '../../utils/interfaces';
+// Types
+import { GameId, PlayerId, GameName, PlainObject } from '../../utils/types';
 // Utils
 import * as firebaseUtils from '../../utils/firebase';
 // Internal

@@ -1,5 +1,5 @@
-// Interfaces
-import { PlainObject, PlayerId, Players } from './interfaces';
+// Types
+import { PlainObject, PlayerId, Players } from './types';
 // Utils
 import * as gameUtils from './game-utils';
 

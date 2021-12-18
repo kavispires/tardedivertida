@@ -1,9 +1,9 @@
 // Constants
 import { GAME_COLLECTIONS } from '../../utils/constants';
 import { MAX_ROUNDS, PLAYER_COUNT, POLEMICA_DA_VEZ_PHASES } from './constants';
-// Interfaces
-import { GameId, Language, Players } from '../../utils/interfaces';
-import { PolemicaDaVezInitialState, PolemicaDaVezSubmitAction } from './interfaces';
+// Types
+import { GameId, Language, Players } from '../../utils/types';
+import { PolemicaDaVezInitialState, PolemicaDaVezSubmitAction } from './types';
 // Utils
 import * as firebaseUtils from '../../utils/firebase';
 import * as utils from '../../utils/helpers';

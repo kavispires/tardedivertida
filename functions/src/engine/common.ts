@@ -11,7 +11,7 @@ import {
   Players,
   Payload,
   ExtendedPayload,
-} from '../utils/interfaces';
+} from '../utils/types';
 import { GLOBAL_USED_DOCUMENTS } from '../utils/constants';
 
 /**

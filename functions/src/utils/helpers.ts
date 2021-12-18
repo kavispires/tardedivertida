@@ -13,7 +13,7 @@ import {
   Round,
   Teams,
   TurnOrder,
-} from '../utils/interfaces';
+} from './types';
 import { shuffle, getRandomUniqueItem } from './game-utils';
 
 /**

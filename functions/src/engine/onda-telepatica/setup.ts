@@ -1,8 +1,8 @@
 // Constants
 import { CATEGORIES_PER_ROUND, ONDA_TELEPATICA_PHASES } from './constants';
-// Interfaces
-import { CategoryCard, FirebaseStateData, FirebaseStoreData, ResourceData } from './interfaces';
-import { Players, SaveGamePayload } from '../../utils/interfaces';
+// Types
+import { CategoryCard, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
+import { Players, SaveGamePayload } from '../../utils/types';
 // Utils
 import * as firebaseUtils from '../../utils/firebase';
 import * as gameUtils from '../../utils/game-utils';

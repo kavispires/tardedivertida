@@ -1,6 +1,6 @@
-// Interfaces
-import { PlainObject, Players, SaveGamePayload } from '../../utils/interfaces';
-import { FirebaseStateData, FirebaseStoreData } from './interfaces';
+// Types
+import { PlainObject, Players, SaveGamePayload } from '../../utils/types';
+import { FirebaseStateData, FirebaseStoreData } from './types';
 // Constants
 import { MENTE_COLETIVA_PHASES, QUESTIONS_PER_ROUND } from './constants';
 // Utils

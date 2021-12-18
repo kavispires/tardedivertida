@@ -1,6 +1,6 @@
-// Interfaces
-import { PlainObject, Player, Players, SaveGamePayload } from '../../utils/interfaces';
-import { FirebaseStateData, FirebaseStoreData, Results } from './interfaces';
+// Types
+import { PlainObject, Player, Players, SaveGamePayload } from '../../utils/types';
+import { FirebaseStateData, FirebaseStoreData, Results } from './types';
 // Constants
 import { COUNTS_BY_PLAYER, SONHOS_PESADELOS_PHASES, TOTAL_ROUNDS } from './constants';
 // Helpers

@@ -1,9 +1,9 @@
 // Constants
 import { GAME_COLLECTIONS } from '../../utils/constants';
 import { MENTE_COLETIVA_PHASES, MAX_ROUNDS, PLAYER_COUNT } from './constants';
-// Interfaces
-import { GameId, Language, Players } from '../../utils/interfaces';
-import { MenteColetivaInitialState, MenteColetivaSubmitAction } from './interfaces';
+// Types
+import { GameId, Language, Players } from '../../utils/types';
+import { MenteColetivaInitialState, MenteColetivaSubmitAction } from './types';
 // Utilities
 import * as firebaseUtils from '../../utils/firebase';
 import * as utils from '../../utils/helpers';

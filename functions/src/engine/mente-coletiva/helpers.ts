@@ -5,9 +5,9 @@ import {
   PASTURE_GAME_OVER_THRESHOLD,
   QUESTIONS_PER_ROUND,
 } from './constants';
-// Interfaces
-import { PlainObject, PlayerId, Players } from '../../utils/interfaces';
-import { AllQuestions, AnswerEntry, Deck } from './interfaces';
+// Types
+import { PlainObject, PlayerId, Players } from '../../utils/types';
+import { AllQuestions, AnswerEntry, Deck } from './types';
 // Utils
 import * as gameUtils from '../../utils/game-utils';
 import * as utils from '../../utils/helpers';

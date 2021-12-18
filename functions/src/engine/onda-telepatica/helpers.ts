@@ -1,6 +1,6 @@
-// Interfaces
-import { CategoryCard, Deck, PastCategories, ResourceData } from './interfaces';
-import { PlainObject, PlayerId, Players, Round } from '../../utils/interfaces';
+// Types
+import { CategoryCard, Deck, PastCategories, ResourceData } from './types';
+import { PlainObject, PlayerId, Players, Round } from '../../utils/types';
 // Constants
 import {
   CATEGORIES_PER_ROUND,

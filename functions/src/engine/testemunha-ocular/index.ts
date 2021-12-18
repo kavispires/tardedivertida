@@ -1,9 +1,9 @@
 // Constants
 import { GAME_COLLECTIONS } from '../../utils/constants';
 import { MAX_ROUNDS, PLAYER_COUNT, TESTEMUNHA_OCULAR_PHASES } from './constants';
-// Interfaces
-import { GameId, PlainObject, Players } from '../../utils/interfaces';
-import { TestemunhaOcularInitialState, TestemunhaOcularSubmitAction } from './interfaces';
+// Types
+import { GameId, PlainObject, Players } from '../../utils/types';
+import { TestemunhaOcularInitialState, TestemunhaOcularSubmitAction } from './types';
 // Utils
 import * as firebaseUtils from '../../utils/firebase';
 import * as utils from '../../utils/helpers';

@@ -6,7 +6,7 @@ import {
   PlainObject,
   PlayerId,
   PlayerName,
-} from '../../utils/interfaces';
+} from '../../utils/types';
 
 export interface Word {
   id: string;
