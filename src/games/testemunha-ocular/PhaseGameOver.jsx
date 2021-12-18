@@ -38,7 +38,7 @@ function PhaseGameOver({ state, info }) {
             className="t-suspects-table__suspect-image"
             cardWidth={150}
           />
-          <div className="t-suspects-table__suspect-name">{state.perpetrator[language]}</div>
+          <div className="t-suspects-table__suspect-name">{state.perpetrator.name[language]}</div>
         </div>
       </Instruction>
     </GameOverWrapper>
@@ -71,8 +71,10 @@ PhaseGameOver.propTypes = {
     outcome: PropTypes.string,
     perpetrator: PropTypes.shape({
       id: PropTypes.string,
-      pt: PropTypes.string,
-      en: PropTypes.string,
+      name: PropTypes.shape({
+        pt: PropTypes.string,
+        en: PropTypes.string,
+      }),
       gender: PropTypes.string,
     }),
     phase: PropTypes.string,
