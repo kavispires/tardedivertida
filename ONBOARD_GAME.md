@@ -23,8 +23,7 @@ All file paths here are relative to `/functions/src`.
 
 - Add entry to `getCollectionNameByGameCode`.
 - Add entry to `getCollectionKeyByGameCode`.
-- Add entry to `getInitialStateForCollection`.
-- Add entry to `getNextPhaseForCollection`.
+- Add entry to `getEngine`.
 
 ### Add submitAction to `/index.ts`
 
@@ -43,7 +42,7 @@ All file paths here are relative to `/src`.
 ### Banner
 
 - Add a banner image for your game in `../public/images/banners/`.
-- The naming convention is `game-image-<game-name>.jpg`.
+- The naming convention is `game-image-<game-name>-<language>.jpg`.
 
 ### Rules Images
 

@@ -11,6 +11,7 @@ import * as polemicaDaVezEngine from '../engine/polemica-da-vez';
 import * as sonhosPesadelosEngine from '../engine/sonhos-pesadelos';
 import * as testemunhaOcularEngine from '../engine/testemunha-ocular';
 import * as ueSoIssoEngine from '../engine/ue-so-isso';
+import * as cruzaPalavrasEngine from '../engine/cruza-palavras';
 
 /**
  * Get collection name by single letter game code
@@ -41,6 +42,8 @@ export const getCollectionNameByGameCode = (gameCode: GameCode): string | null =
       return GAME_COLLECTIONS.TESTEMUNHA_OCULAR;
     case GAME_CODES.U:
       return GAME_COLLECTIONS.UE_SO_ISSO;
+    case GAME_CODES.X:
+      return GAME_COLLECTIONS.CRUZA_PALAVRAS;
     default:
       return null;
   }
@@ -75,6 +78,8 @@ export const getCollectionKeyByGameCode = (gameCode: GameCode): string | null =>
       return GAME_KEYS.TESTEMUNHA_OCULAR;
     case GAME_CODES.U:
       return GAME_KEYS.UE_SO_ISSO;
+    case GAME_CODES.X:
+      return GAME_KEYS.CRUZA_PALAVRAS;
     default:
       return null;
   }
@@ -88,6 +93,11 @@ export const getCollectionNameByGameId = (gameId: GameId): string | null => {
   return getCollectionNameByGameCode(gameId[0]);
 };
 
+/**
+ *
+ * @param collectionName
+ * @returns
+ */
 export const getEngine = (collectionName: string): Engine => {
   switch (collectionName) {
     case GAME_COLLECTIONS.ARTE_RUIM:
@@ -112,6 +122,8 @@ export const getEngine = (collectionName: string): Engine => {
       return testemunhaOcularEngine;
     case GAME_COLLECTIONS.UE_SO_ISSO:
       return ueSoIssoEngine;
+    case GAME_COLLECTIONS.CRUZA_PALAVRAS:
+      return cruzaPalavrasEngine;
     default:
       throw new Error(`Collection '${collectionName}' initial state does not exist`);
   }
