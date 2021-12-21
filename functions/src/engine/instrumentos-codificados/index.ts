@@ -1,12 +1,12 @@
 // Constants
 import { GAME_COLLECTIONS } from '../../utils/constants';
 import { INSTRUMENTOS_CODIFICADOS_PHASES, PLAYER_COUNT, TOTAL_ROUNDS } from './constants';
-// Interfaces
-import { GameId, Language, Players } from '../../utils/interfaces';
+// Types
+import { GameId, Language, Players } from '../../utils/types';
 // Utils
 import * as firebaseUtils from '../../utils/firebase';
 import * as utils from '../../utils/helpers';
-import { InstrumentosCodificadosInitialState, InstrumentosCodificadosSubmitAction } from './interfaces';
+import { InstrumentosCodificadosInitialState, InstrumentosCodificadosSubmitAction } from './types';
 import {
   prepareGameOverPhase,
   prepareSetupPhase,

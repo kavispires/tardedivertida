@@ -1,4 +1,4 @@
-import { DefaultState, DefaultStore, InitialState, Payload, PlayerId } from '../../utils/interfaces';
+import { DefaultState, DefaultStore, InitialState, Payload, PlayerId } from '../../utils/types';
 
 export interface Question {
   id: string;

@@ -1,9 +1,9 @@
 // Constants
 import { GAME_COLLECTIONS } from '../../utils/constants';
 import { PLAYER_COUNT, UE_SO_ISSO_PHASES } from './constants';
-// Interfaces
-import { Players, GameId } from '../../utils/interfaces';
-import { UeSoIssoInitialState, UeSoIssoSubmitAction } from './interfaces';
+// Types
+import { Players, GameId } from '../../utils/types';
+import { UeSoIssoInitialState, UeSoIssoSubmitAction } from './types';
 // Utilities
 import * as firebaseUtils from '../../utils/firebase';
 import * as utils from '../../utils/helpers';

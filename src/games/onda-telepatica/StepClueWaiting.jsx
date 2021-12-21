@@ -1,30 +1,59 @@
 import PropTypes from 'prop-types';
 import { AvatarName } from '../../components/avatars';
-import { Translate, WaitingRoom } from '../../components/shared';
+import { ButtonContainer, Translate, WaitingRoom } from '../../components/shared';
+import Card from './Card';
 
-function StepClueWaiting({ players, psychic }) {
+function StepClueWaiting({ players, psychic, currentCategories, currentCategoryId }) {
+  const card = currentCategories.find((c) => c.id === currentCategoryId);
+
   return (
     <WaitingRoom
       players={players}
       title={<Translate pt={'Concentração...'} en={'Focus...'} />}
       instruction=""
     >
-      <p>
-        <AvatarName player={psychic} />
-        <Translate
-          pt={
-            'escolherá uma carta com duas ideias opostas, e então terá que escrever uma dica que ajude você e os outros jogadores a escolher a posição correta do ponteiro no medidor de ondas telepáticas.'
-          }
-          en={
-            'is choosing a card with two opposing ideas, then they will write a clue that will help you and the other players to find the correct position of the needle in the Wavelength measuring device...'
-          }
-        />
-      </p>
+      {Boolean(!currentCategoryId) ? (
+        <p>
+          <AvatarName player={psychic} />
+          <Translate
+            pt={
+              'escolherá uma carta com duas ideias opostas, e então terá que escrever uma dica que ajude você e os outros jogadores a escolher a posição correta do ponteiro no medidor de ondas telepáticas.'
+            }
+            en={
+              'is choosing a card with two opposing ideas, then they will write a clue that will help you and the other players to find the correct position of the needle in the Wavelength measuring device...'
+            }
+          />
+        </p>
+      ) : (
+        <div>
+          <p>
+            <AvatarName player={psychic} />
+            <Translate pt={'escolheu:'} en={'chose:'} />
+          </p>
+          <ButtonContainer>
+            <Card left={card.left} right={card.right} />
+          </ButtonContainer>
+          <p>
+            <Translate
+              pt={`Agora, é uma boa ideia pra discutir com o grupo em voz alta o que vocês acham ser super pra esquerda "${card.left}" e super pra direita "${card.right}". Isso ajuda o medium!`}
+              en={`Now it's a good idea to discuss with the group out loud what you guys think it's extreme left "${card.left}" and extreme right "${card.right}". This might help the psychic!`}
+            />
+          </p>
+        </div>
+      )}
     </WaitingRoom>
   );
 }
 
 StepClueWaiting.propTypes = {
+  currentCategories: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      left: PropTypes.string,
+      right: PropTypes.string,
+    })
+  ),
+  currentCategoryId: PropTypes.string,
   players: PropTypes.object,
   psychic: PropTypes.object,
 };

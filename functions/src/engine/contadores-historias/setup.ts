@@ -5,13 +5,13 @@ import {
   HAND_LIMIT,
   TABLE_CARDS_BY_PLAYER_COUNT,
 } from './constants';
-// Interfaces
-import { FirebaseStateData, FirebaseStoreData } from './interfaces';
-import { Players, SaveGamePayload } from '../../utils/interfaces';
+// Types
+import { FirebaseStateData, FirebaseStoreData } from './types';
+import { Players, SaveGamePayload } from '../../utils/types';
 // Utils
 import * as firebaseUtils from '../../utils/firebase';
 import * as gameUtils from '../../utils/game-utils';
-import * as imageCards from '../../utils/image-cards';
+import * as imageCardsUtils from '../../utils/image-cards';
 import * as utils from '../../utils/helpers';
 import * as playerHandUtils from '../../utils/player-hand-utils';
 // Internal
@@ -35,9 +35,8 @@ export const prepareSetupPhase = async (
   // We build the used cards deck all at once to avoid having to generate and
   // get unique ones every time
   // Also add 1 deck (with the double amount of cards) to be used as the table deck
-  const minNumCards = (gameOrder.length + 2) * CARDS_PER_PLAYER;
-  const numDecks = Math.ceil(minNumCards / imageCards.IMAGE_CARDS_PER_DECK);
-  const cards = gameUtils.shuffle(imageCards.getImageCards(numDecks));
+  const minimumNumberOfCards = (gameOrder.length + 2) * CARDS_PER_PLAYER;
+  const cards = await imageCardsUtils.getImageCards(minimumNumberOfCards);
 
   // Get table deck removing them from the original list of cards
   const tableDeck = buildTableDeck(cards, 2 * CARDS_PER_PLAYER);

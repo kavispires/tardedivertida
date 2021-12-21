@@ -1,5 +1,5 @@
-// Interfaces
-import { ImageCard, Players } from '../../utils/interfaces';
+// Types
+import { ImageCard, Players } from '../../utils/types';
 // Constantes
 import { DIGITS, INSTRUMENTOS_CODIFICADOS_PHASES, TOTAL_ROUNDS } from './constants';
 // Helpers

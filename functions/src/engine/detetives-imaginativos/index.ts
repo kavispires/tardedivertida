@@ -1,9 +1,9 @@
 // Constants
 import { GAME_COLLECTIONS } from '../../utils/constants';
 import { DETETIVES_IMAGINATIVOS_PHASES, PLAYER_COUNT } from './constants';
-// Interfaces
-import { GameId, Language, Players } from '../../utils/interfaces';
-import { DetetivesImaginativosInitialState, DetetivesImaginativosSubmitAction } from './interfaces';
+// Types
+import { GameId, Language, Players } from '../../utils/types';
+import { DetetivesImaginativosInitialState, DetetivesImaginativosSubmitAction } from './types';
 // Utils
 import * as firebaseUtils from '../../utils/firebase';
 import * as utils from '../../utils/helpers';

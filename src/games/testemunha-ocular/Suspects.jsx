@@ -6,7 +6,6 @@ import { useDimensions, useLanguage, useLoading } from '../../hooks';
 // Components
 import { ImageCard } from '../../components/cards';
 // Utils
-import { SUSPECTS_NAMES } from './suspects-names';
 import { Popconfirm } from 'antd';
 import { translate } from '../../components/shared';
 
@@ -20,18 +19,19 @@ export function Suspects({ suspects, perpetrator, onCardClick, eliminatedSuspect
   if (onCardClick) {
     return (
       <div className="t-suspects-table">
-        {suspects.map((suspectId) => {
-          const wasEliminated = eliminatedSuspects.includes(suspectId);
-          const name = SUSPECTS_NAMES[suspectId][language];
+        {suspects.map((suspect) => {
+          const wasEliminated = eliminatedSuspects.includes(suspect.id);
+          const name = suspect.name[language];
+
           return (
             <Popconfirm
-              key={suspectId}
+              key={suspect.id}
               title={translate(
-                `Tem certeza que quer eliminar ${name}?`,
-                `Are you sure to eliminate ${name}?`,
+                `Tem certeza que quer liberar ${name}?`,
+                `Are you sure you want to release ${name}?`,
                 language
               )}
-              onConfirm={() => onCardClick(suspectId)}
+              onConfirm={() => onCardClick(suspect.id)}
               okText={translate('Sim', 'Yes', language)}
               cancelText={translate('Não', 'No', language)}
             >
@@ -40,10 +40,10 @@ export function Suspects({ suspects, perpetrator, onCardClick, eliminatedSuspect
                 disabled={wasEliminated || isLoading}
               >
                 <ImageCard
-                  imageId={wasEliminated ? 'us-00' : suspectId}
+                  imageId={wasEliminated ? 'us-00' : suspect.id}
                   className={clsx(
                     't-suspects-table__suspect-image',
-                    perpetrator === suspectId && 't-suspects-table__suspect-image--active',
+                    perpetrator?.id === suspect.id && 't-suspects-table__suspect-image--active',
                     wasEliminated && 't-suspects-table__suspect-image--disabled'
                   )}
                   cardWidth={cardWidth}
@@ -60,21 +60,19 @@ export function Suspects({ suspects, perpetrator, onCardClick, eliminatedSuspect
 
   return (
     <div className="t-suspects-table">
-      {suspects.map((suspectId) => {
-        const wasEliminated = eliminatedSuspects.includes(suspectId);
+      {suspects.map((suspect) => {
+        const wasEliminated = eliminatedSuspects.includes(suspect.id);
         return (
-          <div className="t-suspects-table__suspect" key={suspectId}>
+          <div className="t-suspects-table__suspect" key={suspect.id}>
             <ImageCard
-              imageId={wasEliminated ? 'us-00' : suspectId}
+              imageId={wasEliminated ? 'us-00' : suspect.id}
               className={clsx(
                 't-suspects-table__suspect-image',
-                perpetrator === suspectId && 't-suspects-table__suspect-image--active'
+                perpetrator?.id === suspect.id && 't-suspects-table__suspect-image--active'
               )}
               cardWidth={cardWidth}
             />
-            {!wasEliminated && (
-              <div className="t-suspects-table__suspect-name">{SUSPECTS_NAMES[suspectId][language]}</div>
-            )}
+            {!wasEliminated && <div className="t-suspects-table__suspect-name">{suspect.name[language]}</div>}
           </div>
         );
       })}
@@ -85,6 +83,22 @@ export function Suspects({ suspects, perpetrator, onCardClick, eliminatedSuspect
 Suspects.propTypes = {
   eliminatedSuspects: PropTypes.arrayOf(PropTypes.string),
   onCardClick: PropTypes.func,
-  perpetrator: PropTypes.string,
-  suspects: PropTypes.arrayOf(PropTypes.string),
+  perpetrator: PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.shape({
+      pt: PropTypes.string,
+      en: PropTypes.string,
+    }),
+    gender: PropTypes.string,
+  }),
+  suspects: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      name: PropTypes.shape({
+        pt: PropTypes.string,
+        en: PropTypes.string,
+      }),
+      gender: PropTypes.string,
+    })
+  ).isRequired,
 };

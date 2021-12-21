@@ -1,11 +1,4 @@
-import {
-  DefaultState,
-  DefaultStore,
-  InitialState,
-  Payload,
-  PlainObject,
-  PlayerId,
-} from '../../utils/interfaces';
+import { DefaultState, DefaultStore, InitialState, Payload, PlainObject, PlayerId } from '../../utils/types';
 
 export interface ArteRuimCard {
   id: string;

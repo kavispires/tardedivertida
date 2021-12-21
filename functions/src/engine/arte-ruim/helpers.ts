@@ -1,5 +1,5 @@
-// Interfaces
-import { PlainObject, Players } from '../../utils/interfaces';
+// Types
+import { PlainObject, Players } from '../../utils/types';
 import {
   ArteRuimCard,
   ArteRuimCardsDatabase,
@@ -7,7 +7,7 @@ import {
   ArteRuimLevel4Card,
   FirebaseStoreData,
   PerLevelCards,
-} from './interfaces';
+} from './types';
 // Constants
 import {
   ARTE_RUIM_PHASES,

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Fragment, useState } from 'react';
 // Design Resources
 import { Affix, Button, Divider, Drawer } from 'antd';
-import { InfoCircleFilled } from '@ant-design/icons';
+import { InfoCircleOutlined } from '@ant-design/icons';
 // Hooks
 import { useLanguage } from '../../hooks';
 // Components
@@ -12,6 +12,7 @@ import { SectionMeta } from './_internal/SectionMeta';
 import { SectionTeams } from './_internal/SectionTeams';
 import { SectionRankedPlayers } from './_internal/SectionRankedPlayers';
 import { SectionSettings } from './_internal/SectionSettings';
+import { isDevEnv } from '../../utils';
 
 export function GameInfoDrawer({ players, state, info, userId }) {
   const language = useLanguage();
@@ -33,15 +34,11 @@ export function GameInfoDrawer({ players, state, info, userId }) {
 
   return (
     <Fragment>
-      <Affix offsetTop={10} className="game-info-drawer__affix-button">
-        <Button
-          type="primary"
-          shape="circle"
-          size="large"
-          className="game-info-drawer__button"
-          onClick={showDrawer}
-          icon={<InfoCircleFilled style={{ color: 'white' }} />}
-        />
+      <Affix offsetTop={0}>
+        <Button size="small" className="game-info-drawer__button" onClick={showDrawer}>
+          {info.title?.[language] ?? '?'} <InfoCircleOutlined />
+          {isDevEnv && Boolean(userId) && `${userId}`}
+        </Button>
       </Affix>
 
       <Drawer

@@ -76,7 +76,7 @@ function StepReveal({ setStep, currentCategory, players, psychic }) {
               <span className="o-player-guess__name">{player.name}</span>
               <StarPoints
                 quantity={getPoints(player.guess, currentCategory.target)}
-                prefix={`${player.id}-points`}
+                keyPrefix={`${player.id}-points`}
               />
             </li>
           );

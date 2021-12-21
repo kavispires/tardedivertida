@@ -1,7 +1,7 @@
 // Constants
 import { GLOBAL_USED_DOCUMENTS } from '../../utils/constants';
-// Interfaces
-import { PastCategories, ResourceData } from './interfaces';
+// Types
+import { PastCategories, ResourceData } from './types';
 // Utils
 import * as globalUtils from '../global';
 import * as resourceUtils from '../resource';

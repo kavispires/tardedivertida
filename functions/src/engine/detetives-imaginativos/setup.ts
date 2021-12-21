@@ -1,11 +1,11 @@
 // Constants
 import { DETETIVES_IMAGINATIVOS_PHASES, HAND_LIMIT } from './constants';
-// Interfaces
-import { FirebaseStateData, FirebaseStoreData } from './interfaces';
-import { Players, SaveGamePayload } from '../../utils/interfaces';
+// Types
+import { FirebaseStateData, FirebaseStoreData } from './types';
+import { Players, SaveGamePayload } from '../../utils/types';
 // Utils
 import * as gameUtils from '../../utils/game-utils';
-import * as imageCards from '../../utils/image-cards';
+import * as imageCardsUtils from '../../utils/image-cards';
 import * as utils from '../../utils/helpers';
 import * as playerHandUtils from '../../utils/player-hand-utils';
 // Internal
@@ -30,9 +30,8 @@ export const prepareSetupPhase = async (
   // We build the used cards deck all at once to avoid having to generate and
   // get unique ones every time
   const cardsPerPlayer = gameOrder.length * 2 + HAND_LIMIT;
-  const minNumCards = playerIds.length * cardsPerPlayer;
-  const numDecks = Math.ceil(minNumCards / imageCards.IMAGE_CARDS_PER_DECK);
-  const cards = gameUtils.shuffle(imageCards.getImageCards(numDecks));
+  const minimumNumberOfCards = playerIds.length * cardsPerPlayer;
+  const cards = await imageCardsUtils.getImageCards(minimumNumberOfCards);
 
   // Split cards equally between players
   players = gameUtils.dealList(cards, players, cardsPerPlayer, 'deck');

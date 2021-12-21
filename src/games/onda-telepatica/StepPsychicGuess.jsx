@@ -21,9 +21,6 @@ function StepPsychicGuess({ currentCategory, onSendGuess }) {
           en="You as the Psychic can now try to guess how many people will get points with your clue. Remember that players get points by getting the right number or any of the two neighboring numbers."
         />
       </Instruction>
-
-      <Dial card={currentCategory} target={currentCategory.target} showTarget />
-
       <ButtonContainer>
         <Button
           type="primary"
@@ -37,6 +34,8 @@ function StepPsychicGuess({ currentCategory, onSendGuess }) {
           <Translate pt="A metade ou mais" en="Half or more" />
         </Button>
       </ButtonContainer>
+
+      <Dial card={currentCategory} target={currentCategory.target} showTarget />
     </Step>
   );
 }
