@@ -58,15 +58,40 @@
     color: get-color(gray);
   }
 
-  &__cell-points-plus {
-    font-size: 1.5em;
+  &__cell-gained-points {
+    display: flex;
+  }
+
+  &__gained-point {
+    font-size: 1em;
     min-width: 2em;
     border-radius: get-unit(8);
-    background: get-color(yellow, 3);
+    background: get-color(gray, 1);
     padding: get-unit(1);
     align-self: flex-end;
     margin: get-unit(0 2);
-    animation: fade-in 500ms;
+    opacity: 0;
+    animation: fade-in 3000ms forwards;
+
+    &--plus {
+      background: get-color(yellow, 3);
+    }
+
+    &--minus {
+      background: get-color(red, 3);
+    }
+
+    &--0 {
+      animation-delay: 0ms;
+    }
+
+    &--1 {
+      animation-delay: 300ms;
+    }
+
+    &--2 {
+      animation-delay: 600ms;
+    }
   }
 
   &__cell-points-total {
