@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo } from 'react';
+import { useHistory } from 'react-router-dom';
 // Design Resources
 import { Typography, Layout, Space, Divider, PageHeader, Button, message } from 'antd';
 // API
@@ -10,7 +11,6 @@ import gameList from '../resources/games.json';
 // Components
 import { LanguageSwitch, Translate } from '../components/shared';
 import { DatabaseFilled } from '@ant-design/icons';
-import { useHistory } from 'react-router';
 import { GameCard, RecentlyCreatedGames } from '../components/hub';
 
 function Hub() {
