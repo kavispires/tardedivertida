@@ -1,0 +1,99 @@
+.x-grid {
+  display: grid;
+  gap: 0.25rem;
+  margin-bottom: get-unit(4);
+}
+
+.x-grid-cell {
+  border: 1px solid white;
+  min-width: 80px;
+  min-height: 4rem;
+  border-radius: get-unit(1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: get-unit(0.5);
+
+  &--header {
+    background: black;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: get-unit(1);
+    border: 1px solid transparent;
+  }
+
+  &--x {
+    border: 1px solid transparent;
+  }
+}
+
+.x-grid-cell-target {
+  color: get-color(yellow);
+}
+
+.x-clue-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.x-clue-card-li {
+  margin: get-unit(1);
+  border-radius: get-unit(1);
+}
+
+.x-clue-card-button {
+  background: none;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+}
+
+.x-clue-card {
+  height: 3rem;
+  border: get-color(black) 2px solid;
+  border-radius: get-unit(1);
+  background: get-color(white);
+  padding: 0;
+  display: flex;
+  align-items: center;
+
+  &--selected {
+    border: get-color(yellow) 2px solid;
+    border-style: outset;
+  }
+
+  &__clue {
+    text-transform: uppercase;
+    padding: get-unit(1 2);
+
+    &--matched {
+      text-decoration: line-through;
+    }
+  }
+
+  &__icon {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: get-unit(1);
+  }
+}
+
+.x-previous-clue {
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  color: get-color(gray, 6);
+  font-style: italic;
+}
+
+.x-players-in-cell-player {
+  &--correct {
+    background: get-color(white, 5, -0.5);
+    border-radius: get-unit(1);
+    padding: 1px;
+    margin: get-unit(0.5);
+  }
+}

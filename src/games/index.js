@@ -9,6 +9,7 @@ import PolemicaDaVez from './polemica-da-vez/SessionPolemicaDaVez';
 import SonhosPesadelos from './sonhos-pesadelos/SessionSonhosPesadelos';
 import TestemunhaOcular from './testemunha-ocular/SessionTestemunhaOcular';
 import UeSoIsso from './ue-so-isso/SessionUeSoIsso';
+import CruzaPalavras from './cruza-palavras/SessionCruzaPalavras';
 
 const games = {
   ArteRuim,
@@ -22,6 +23,7 @@ const games = {
   SonhosPesadelos,
   TestemunhaOcular,
   UeSoIsso,
+  CruzaPalavras,
 };
 
 export default games;
