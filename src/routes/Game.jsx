@@ -122,6 +122,8 @@ function Game() {
         return <GameSessions.TestemunhaOcular gameId={gameId} />;
       case GAME_COLLECTION.UE_SO_ISSO:
         return <GameSessions.UeSoIsso gameId={gameId} />;
+      case GAME_COLLECTION.CRUZA_PALAVRAS:
+        return <GameSessions.CruzaPalavras gameId={gameId} />;
       default:
         console.warn('Wrong game library provided');
     }

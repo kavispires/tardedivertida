@@ -550,8 +550,8 @@
     "max": 10,
     "tags": ["competitive"],
     "available": {
-      "pt": false,
-      "en": false
+      "pt": true,
+      "en": true
     }
   }
 }

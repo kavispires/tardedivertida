@@ -32,7 +32,7 @@
  * Determines color and available shades
  * Each color has 9 levels and 5 is the default mid color one
 */
-@function get-color($color-name, $shade: 5) {
+@function get-color($color-name, $shade: 5, $alpha-value: 1) {
   $colors: (
     blue: #598ffd,
     gray: #6f7273,
@@ -79,5 +79,5 @@
     @error "Invalid shade value: `#{$shade}`.";
   }
 
-  @return adjust-color($color, $lightness: $shade-level);
+  @return adjust-color($color, $lightness: $shade-level, $alpha: $alpha-value);
 }

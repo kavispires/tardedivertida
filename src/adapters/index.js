@@ -59,3 +59,7 @@ export const TESTEMUNHA_OCULAR_API = {
 export const UE_SO_ISSO_API = {
   submitAction: httpsCallable(functions, 'ueSoIssoSubmitAction'),
 };
+
+export const CRUZA_PALAVRAS_API = {
+  submitAction: httpsCallable(functions, 'cruzaPalavrasSubmitAction'),
+};
