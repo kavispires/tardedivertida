@@ -1,19 +1,19 @@
 import { DefaultState, DefaultStore, InitialState, Payload, PlayerId } from '../../utils/types';
 
-export interface Topic {
+interface Topic {
   id: string;
   text: string;
   custom?: boolean;
 }
 
-export interface CustomTopic extends Topic {
+interface CustomTopic extends Topic {
   custom: boolean;
 }
 
-export type Deck = Topic[];
-export type CustomDeck = CustomTopic[];
+type Deck = Topic[];
+type CustomDeck = CustomTopic[];
 
-export interface Decks {
+interface Decks {
   deck: Deck;
   customDeck: CustomDeck;
   deckIndex?: number;
@@ -21,11 +21,11 @@ export interface Decks {
   pastTopics?: any[];
 }
 
-export interface PolemicaDaVezStore extends DefaultStore {
+interface PolemicaDaVezStore extends DefaultStore {
   gameOrder: PlayerId[];
 }
 
-export interface PolemicaDaVezState extends DefaultState {
+interface PolemicaDaVezState extends DefaultState {
   activePlayerId?: PlayerId;
   gameOrder?: PlayerId[];
   currentTopics?: any;
@@ -38,14 +38,14 @@ export interface PolemicaDaVezState extends DefaultState {
   [key: string]: any;
 }
 
-export interface PolemicaDaVezInitialState extends InitialState {
+interface PolemicaDaVezInitialState extends InitialState {
   store: PolemicaDaVezStore;
   state: PolemicaDaVezState;
 }
 
-export interface PolemicaDaVezSubmitAction extends Payload {
+interface PolemicaDaVezSubmitAction extends Payload {
   action: 'SUBMIT_TOPIC' | 'SUBMIT_REACTION';
 }
 
-export type FirebaseStateData = FirebaseFirestore.DocumentData | PolemicaDaVezState;
-export type FirebaseStoreData = FirebaseFirestore.DocumentData | PolemicaDaVezStore;
+type FirebaseStateData = FirebaseFirestore.DocumentData | PolemicaDaVezState;
+type FirebaseStoreData = FirebaseFirestore.DocumentData | PolemicaDaVezStore;

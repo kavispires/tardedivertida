@@ -1,12 +1,12 @@
 import { DefaultState, DefaultStore, ImageCard, Meta, Payload, PlayerId, Players } from '../../utils/types';
 
-export interface SonhosPesadelosStore extends DefaultStore {
+interface SonhosPesadelosStore extends DefaultStore {
   themes?: any;
   results?: any;
   [key: string]: any;
 }
 
-export interface SonhosPesadelosState extends DefaultState {
+interface SonhosPesadelosState extends DefaultState {
   table?: any;
   dreamsCount?: number;
   nightmaresCount?: number;
@@ -18,22 +18,22 @@ export interface SonhosPesadelosState extends DefaultState {
   [key: string]: any;
 }
 
-export interface SonhosPesadelosInitialState {
+interface SonhosPesadelosInitialState {
   meta: Meta;
   players: Players;
   store: SonhosPesadelosStore;
   state: SonhosPesadelosState;
 }
 
-export interface TableEntry {
+interface TableEntry {
   cardId: ImageCard;
   dreamer: PlayerId | null;
   nightmares: PlayerId[];
 }
 
-export type Table = TableEntry[];
+type Table = TableEntry[];
 
-export type Result = {
+type Result = {
   playerId: PlayerId;
   dreamGuesses: {
     [key: string]: boolean;
@@ -44,13 +44,13 @@ export type Result = {
   previousScore: number;
 };
 
-export type Results = {
+type Results = {
   [key: string]: Result;
 };
 
-export interface SonhosPesadelosSubmitAction extends Payload {
+interface SonhosPesadelosSubmitAction extends Payload {
   action: 'SUBMIT_DREAMS' | 'SUBMIT_VOTING';
 }
 
-export type FirebaseStateData = FirebaseFirestore.DocumentData | SonhosPesadelosState;
-export type FirebaseStoreData = FirebaseFirestore.DocumentData | SonhosPesadelosStore;
+type FirebaseStateData = FirebaseFirestore.DocumentData | SonhosPesadelosState;
+type FirebaseStoreData = FirebaseFirestore.DocumentData | SonhosPesadelosStore;
