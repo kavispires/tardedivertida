@@ -8,16 +8,16 @@ import {
   PlayerName,
 } from '../../utils/types';
 
-export interface Word {
+interface Word {
   id: string;
   text: string;
 }
 
-export interface AllWords {
+interface AllWords {
   [key: string]: Word;
 }
 
-export interface UsedWord {
+interface UsedWord {
   id: string;
   text: string;
   playerName?: PlayerName | null;
@@ -26,11 +26,11 @@ export interface UsedWord {
   votes: 0;
 }
 
-export interface UsedWords {
+interface UsedWords {
   [key: string]: UsedWord;
 }
 
-export interface UeSoIssoStore extends DefaultStore {
+interface UeSoIssoStore extends DefaultStore {
   deck: Word[];
   turnOrder: PlayerId[];
   gameOrder: PlayerId[];
@@ -43,7 +43,7 @@ export interface UeSoIssoStore extends DefaultStore {
   outcome?: any;
 }
 
-export interface UeSoIssoState extends DefaultState {
+interface UeSoIssoState extends DefaultState {
   gameOrder;
   guesserId?: PlayerId;
   controllerId?: PlayerId;
@@ -58,28 +58,28 @@ export interface UeSoIssoState extends DefaultState {
   [key: string]: any;
 }
 
-export interface UeSoIssoInitialState extends InitialState {
+interface UeSoIssoInitialState extends InitialState {
   store: UeSoIssoStore;
   state: UeSoIssoState;
 }
 
-export interface SubmitSuggestionsPayload extends Payload {
+interface SubmitSuggestionsPayload extends Payload {
   suggestions: string[];
 }
 
-export interface CurrentSuggestions {
+interface CurrentSuggestions {
   [key: string]: string[];
 }
 
-export interface SubmitSuggestionsValidationPayload extends Payload {
+interface SubmitSuggestionsValidationPayload extends Payload {
   validSuggestions: PlainObject[];
 }
 
-export interface ConfirmGuessPayload extends Payload {
+interface ConfirmGuessPayload extends Payload {
   guess: string;
 }
 
-export interface UeSoIssoSubmitAction extends Payload {
+interface UeSoIssoSubmitAction extends Payload {
   action:
     | 'SUBMIT_VOTES'
     | 'SUBMIT_SUGGESTIONS'
@@ -89,5 +89,5 @@ export interface UeSoIssoSubmitAction extends Payload {
     | 'SEND_GUESS';
 }
 
-export type FirebaseStateData = FirebaseFirestore.DocumentData | UeSoIssoState;
-export type FirebaseStoreData = FirebaseFirestore.DocumentData | UeSoIssoStore;
+type FirebaseStateData = FirebaseFirestore.DocumentData | UeSoIssoState;
+type FirebaseStoreData = FirebaseFirestore.DocumentData | UeSoIssoStore;

@@ -10,7 +10,8 @@
     "allowJs": true,
     "noImplicitAny": false,
     "resolveJsonModule": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "typeRoots": ["node_modules/@types"]
   },
   "compileOnSave": true,
   "include": ["src", "src/*", "test", "test/*", "jest.config.js"]

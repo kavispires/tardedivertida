@@ -1,31 +1,31 @@
 import { DefaultState, DefaultStore, InitialState, Payload, PlayerId } from '../../utils/types';
 
-export type SuspectId = string;
+type SuspectId = string;
 
-export type Suspect = {
+type Suspect = {
   id: SuspectId;
   pt: string;
   en: string;
   gender: string;
 };
 
-export interface TestemunhaOcularCard {
+interface TestemunhaOcularCard {
   id: string;
   question: string;
 }
 
-export interface TestemunhaOcularCardsDatabase {
+interface TestemunhaOcularCardsDatabase {
   [key: string]: TestemunhaOcularCard;
 }
 
-export interface TestemunhaOcularEntry {
+interface TestemunhaOcularEntry {
   id: string;
   question: string;
   unfit?: SuspectId[];
   fit?: SuspectId[];
 }
 
-export interface TestemunhaOcularStore extends DefaultStore {
+interface TestemunhaOcularStore extends DefaultStore {
   pastQuestions: TestemunhaOcularEntry[];
   gameOrder: PlayerId[];
   turnOrder: PlayerId[];
@@ -34,7 +34,7 @@ export interface TestemunhaOcularStore extends DefaultStore {
   questionerIndex?: number;
 }
 
-export interface TestemunhaOcularState extends DefaultState {
+interface TestemunhaOcularState extends DefaultState {
   suspects?: Suspect[];
   perpetrator?: any;
   groupScore?: any;
@@ -49,14 +49,14 @@ export interface TestemunhaOcularState extends DefaultState {
   [key: string]: any;
 }
 
-export interface TestemunhaOcularInitialState extends InitialState {
+interface TestemunhaOcularInitialState extends InitialState {
   store: TestemunhaOcularStore;
   state: TestemunhaOcularState;
 }
 
-export interface TestemunhaOcularSubmitAction extends Payload {
+interface TestemunhaOcularSubmitAction extends Payload {
   action: 'SELECT_WITNESS' | 'SELECT_QUESTION' | 'GIVE_TESTIMONY' | 'ELIMINATE_SUSPECT';
 }
 
-export type FirebaseStateData = FirebaseFirestore.DocumentData | TestemunhaOcularState;
-export type FirebaseStoreData = FirebaseFirestore.DocumentData | TestemunhaOcularStore;
+type FirebaseStateData = FirebaseFirestore.DocumentData | TestemunhaOcularState;
+type FirebaseStoreData = FirebaseFirestore.DocumentData | TestemunhaOcularStore;
