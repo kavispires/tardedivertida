@@ -12,6 +12,7 @@ import * as polemicaDaVezEngine from './engine/polemica-da-vez';
 import * as sonhosPesadelosEngine from './engine/sonhos-pesadelos';
 import * as testemunhaOcularEngine from './engine/testemunha-ocular';
 import * as ueSoIssoEngine from './engine/ue-so-isso';
+import * as cruzaPalavrasEngine from './engine/cruza-palavras';
 
 admin.initializeApp();
 
@@ -91,6 +92,8 @@ exports.sonhosPesadelosSubmitAction = functions.https.onCall(sonhosPesadelosEngi
 exports.testemunhaOcularSubmitAction = functions.https.onCall(testemunhaOcularEngine.submitAction);
 
 exports.ueSoIssoSubmitAction = functions.https.onCall(ueSoIssoEngine.submitAction);
+
+exports.cruzaPalavrasSubmitAction = functions.https.onCall(cruzaPalavrasEngine.submitAction);
 
 // TODO: MIGRATE ENGINES BELOW
 

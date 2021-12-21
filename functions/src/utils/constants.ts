@@ -14,6 +14,7 @@ export const GAME_CODES = {
   S: 'S', // sonhos-pesadelos
   T: 'T', // testemunha-ocular
   U: 'U', // ue-so-isso
+  X: 'X', // cruza-palavras
 };
 
 export const GAME_KEYS = {
@@ -28,6 +29,7 @@ export const GAME_KEYS = {
   SONHOS_PESADELOS: 'SONHOS_PESADELOS',
   TESTEMUNHA_OCULAR: 'TESTEMUNHA_OCULAR',
   UE_SO_ISSO: 'UE_SO_ISSO',
+  CRUZA_PALAVRAS: 'CRUZA_PALAVRAS',
 };
 
 export const GAME_COLLECTIONS = {
@@ -42,6 +44,7 @@ export const GAME_COLLECTIONS = {
   SONHOS_PESADELOS: 'sonhos-pesadelos',
   TESTEMUNHA_OCULAR: 'testemunha-ocular',
   UE_SO_ISSO: 'ue-so-isso',
+  CRUZA_PALAVRAS: 'cruza-palavras',
 };
 
 export const GAME_PLAYERS_LIMIT = {
