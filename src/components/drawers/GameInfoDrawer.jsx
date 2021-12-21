@@ -36,7 +36,7 @@ export function GameInfoDrawer({ players, state, info, userId }) {
     <Fragment>
       <Affix offsetTop={0}>
         <Button size="small" className="game-info-drawer__button" onClick={showDrawer}>
-          {info.title[language]} <InfoCircleOutlined />
+          {info.title?.[language] ?? '?'} <InfoCircleOutlined />
           {isDevEnv && Boolean(userId) && `${userId}`}
         </Button>
       </Affix>
