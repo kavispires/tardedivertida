@@ -7,7 +7,6 @@ import { signOut } from '../adapters/auth';
 import { useGlobalState, useLanguage, useLocalStorage } from '../hooks';
 // Utils
 import gameList from '../resources/games.json';
-import { orderBy } from '../utils';
 // Components
 import { LanguageSwitch, Translate } from '../components/shared';
 import { DatabaseFilled } from '@ant-design/icons';
@@ -40,7 +39,9 @@ function Hub() {
   };
 
   const { availableGames, comingSoonGames } = useMemo(() => {
-    const sortedGameList = orderBy(Object.values(gameList), ['available', 'title'], ['desc', 'asc']);
+    const sortedGameList = Object.values(gameList).sort((a, b) =>
+      a.title[language] > b.title[language] ? 1 : -1
+    );
 
     return sortedGameList.reduce(
       (acc, game) => {

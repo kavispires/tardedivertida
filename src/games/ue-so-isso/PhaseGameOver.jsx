@@ -3,13 +3,12 @@ import React from 'react';
 // Components
 import { GameOverWrapper } from '../../components/shared';
 
-function PhaseGameOver({ state, players, info }) {
+function PhaseGameOver({ state, info }) {
   return <GameOverWrapper info={info} state={state} announcementIcon="flag" />;
 }
 
 PhaseGameOver.propTypes = {
   info: PropTypes.object,
-  players: PropTypes.object,
   state: PropTypes.object,
 };
 

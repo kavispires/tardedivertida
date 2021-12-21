@@ -1,12 +1,4 @@
-import {
-  DefaultState,
-  DefaultStore,
-  ImageCard,
-  Meta,
-  Payload,
-  PlayerId,
-  Players,
-} from '../../utils/interfaces';
+import { DefaultState, DefaultStore, ImageCard, Meta, Payload, PlayerId, Players } from '../../utils/types';
 
 export interface SonhosPesadelosStore extends DefaultStore {
   themes?: any;

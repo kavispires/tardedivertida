@@ -1,14 +1,14 @@
 // Constants
 import { GAME_COLLECTIONS } from '../../utils/constants';
 import { CONTADORES_HISTORIAS_PHASES, MAX_ROUNDS, PLAYER_COUNT } from './constants';
-// Interfaces
-import { GameId, Language, Players } from '../../utils/interfaces';
+// Types
+import { GameId, Language, Players } from '../../utils/types';
 // Utils
 import * as firebaseUtils from '../../utils/firebase';
 import * as utils from '../../utils/helpers';
 // Internal Functions
 import { determineGameOver, determineNextPhase } from './helpers';
-import { ContadoresHistoriasInitialState, ContadoresHistoriasSubmitAction } from './interfaces';
+import { ContadoresHistoriasInitialState, ContadoresHistoriasSubmitAction } from './types';
 import {
   prepareCardPlayPhase,
   prepareGameOverPhase,

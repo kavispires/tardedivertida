@@ -1,5 +1,5 @@
-// Interfaces
-import { GameName, GameId } from '../../utils/interfaces';
+// Types
+import { GameName, GameId } from '../../utils/types';
 // Utils
 import * as firebaseUtils from '../../utils/firebase';
 import { getNextPhase } from './index';
@@ -63,7 +63,7 @@ export const handleElimination = async (
   const suspectId = additionalPayload?.suspectId;
   // Check if suspect is innocent
   if (suspectId) {
-    if (suspectId === state.perpetrator) {
+    if (suspectId === state.perpetrator.id) {
       shouldGoToNextPhase = true;
       lose = true;
     } else {

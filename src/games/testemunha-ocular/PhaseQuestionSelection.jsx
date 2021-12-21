@@ -141,7 +141,12 @@ PhaseQuestionSelection.propTypes = {
   info: PropTypes.object,
   players: PropTypes.object,
   state: PropTypes.shape({
-    perpetrator: PropTypes.string,
+    perpetrator: PropTypes.shape({
+      id: PropTypes.string,
+      pt: PropTypes.string,
+      en: PropTypes.string,
+      gender: PropTypes.string,
+    }),
     phase: PropTypes.string,
     previouslyEliminatedSuspects: PropTypes.arrayOf(PropTypes.string),
     questions: PropTypes.any,
@@ -149,7 +154,14 @@ PhaseQuestionSelection.propTypes = {
       current: PropTypes.number,
       total: PropTypes.number,
     }),
-    suspects: PropTypes.arrayOf(PropTypes.string),
+    suspects: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string,
+        pt: PropTypes.string,
+        en: PropTypes.string,
+        gender: PropTypes.string,
+      })
+    ),
   }),
 };
 

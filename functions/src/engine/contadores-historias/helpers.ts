@@ -1,8 +1,8 @@
 // Constants
 import { CONTADORES_HISTORIAS_PHASES, GAME_OVER_SCORE_THRESHOLD, OUTCOME } from './constants';
-// Interfaces
-import { ImageCard, PlainObject, PlayerId, Players, Round } from '../../utils/interfaces';
-import { Table } from './interfaces';
+// Types
+import { ImageCard, PlainObject, PlayerId, Players, Round } from '../../utils/types';
+import { Table } from './types';
 // Utils
 import * as gameUtils from '../../utils/game-utils';
 

@@ -16,7 +16,7 @@ import {
   PlainObject,
   SubmitVotePayload,
   SubmitGuessPayload,
-} from '../utils/interfaces';
+} from '../utils/types';
 // Resources
 import { allLocationsBR } from '../resources/espiao-entre-nos';
 

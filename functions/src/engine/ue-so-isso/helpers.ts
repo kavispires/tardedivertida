@@ -1,6 +1,6 @@
-// Interfaces
-import { PlainObject, Player, Players } from '../../utils/interfaces';
-import { AllWords, CurrentSuggestions, UsedWord, UsedWords, Word } from './interfaces';
+// Types
+import { PlainObject, Player, Players } from '../../utils/types';
+import { AllWords, CurrentSuggestions, UsedWord, UsedWords, Word } from './types';
 // Constants
 import { UE_SO_ISSO_PHASES, WORDS_PER_CARD } from './constants';
 // Utilities

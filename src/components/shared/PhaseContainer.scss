@@ -1,6 +1,4 @@
 .phase-container {
-  border: 1px solid get-color(white);
-  border-radius: get-unit(1);
   margin: get-unit(4);
   padding: get-unit(4);
   display: flex;
@@ -19,15 +17,5 @@
 
   &--white {
     background: rgba($color: #ffffff, $alpha: 0.7);
-  }
-
-  &__title {
-    border: 1px solid get-color(white);
-    border-radius: get-unit(5);
-    padding: get-unit(0 2);
-    position: absolute;
-    top: get-unit(1);
-    background: rgba($color: #ffffff, $alpha: 0.9);
-    z-index: 150;
   }
 }

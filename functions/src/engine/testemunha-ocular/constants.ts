@@ -19,11 +19,3 @@ export const MAX_ROUNDS = 11;
 export const SUSPECT_COUNT = 12;
 
 export const QUESTION_COUNT = 22;
-
-export const SUSPECTS_IDS = Array(70)
-  .fill(1)
-  .map((e, i) => {
-    const id = e + i;
-    const stringId = id < 10 ? `0${id}` : `${id}`;
-    return `us-${stringId}`;
-  });

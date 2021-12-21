@@ -1,8 +1,8 @@
 // Constants
 import { GLOBAL_USED_DOCUMENTS } from '../../utils/constants';
-// Interfaces
-import { Language } from '../../utils/interfaces';
-import { ArteRuimDrawing } from './interfaces';
+// Types
+import { Language } from '../../utils/types';
+import { ArteRuimDrawing } from './types';
 // Helpers
 import * as globalUtils from '../global';
 import * as publicUtils from '../public';

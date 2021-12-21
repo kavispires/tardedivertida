@@ -228,6 +228,7 @@ export const GAME_COLLECTION = {
   SONHOS_PESADELOS: 'sonhos-pesadelos',
   TESTEMUNHA_OCULAR: 'testemunha-ocular',
   UE_SO_ISSO: 'ue-so-isso',
+  CRUZA_PALAVRAS: 'cruza-palavras',
 };
 
 /**
@@ -342,6 +343,15 @@ export const PHASES = {
     SUGGEST: 'SUGGEST',
     COMPARE: 'COMPARE',
     GUESS: 'GUESS',
+    GAME_OVER: 'GAME_OVER',
+  },
+  CRUZA_PALAVRAS: {
+    LOBBY: 'LOBBY',
+    RULES: 'RULES',
+    SETUP: 'SETUP',
+    CLUE_WRITING: 'CLUE_WRITING',
+    GUESSING: 'GUESSING',
+    REVEAL: 'REVEAL',
     GAME_OVER: 'GAME_OVER',
   },
 };

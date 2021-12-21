@@ -72,3 +72,78 @@
     background: get-color(lime);
   }
 }
+
+.color-border {
+  $self: &;
+  &--red {
+    border-color: get-color(red);
+  }
+
+  &--blue {
+    border-color: get-color(blue);
+  }
+
+  &--green {
+    border-color: get-color(green);
+  }
+
+  &--yellow {
+    border-color: get-color(yellow);
+  }
+
+  &--pink {
+    border-color: get-color(pink);
+  }
+
+  &--purple {
+    border-color: get-color(purple);
+  }
+
+  &--teal {
+    border-color: get-color(teal);
+  }
+
+  &--orange {
+    border-color: get-color(orange);
+  }
+
+  &--fur {
+    border-color: get-color(red, 4);
+  }
+
+  &--navy {
+    border-color: get-color(blue, 8);
+  }
+
+  &--light-green {
+    border-color: get-color(green, 4);
+  }
+
+  &--hot-pink {
+    border-color: get-color(pink, 6);
+  }
+
+  &--brown {
+    border-color: get-color(orange, 7);
+  }
+
+  &--forest {
+    border-color: get-color(teal, 6);
+  }
+
+  &--violet {
+    border-color: get-color(purple, 7);
+  }
+
+  &--cream {
+    border-color: get-color(orange, 4);
+  }
+
+  &--none {
+    border-color: get-color(gray);
+  }
+
+  &--lime {
+    border-color: get-color(lime);
+  }
+}

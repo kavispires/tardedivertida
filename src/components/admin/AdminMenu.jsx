@@ -38,7 +38,7 @@ export const AdminMenu = ({ state }) => {
 
   return (
     <Fragment>
-      <Affix offsetBottom={10} className="admin-menu__affix-button">
+      <Affix offsetBottom={10} className="admin-menu__affix">
         <Popover
           placement="topLeft"
           title="Admin Actions"
@@ -68,7 +68,7 @@ export const AdminMenu = ({ state }) => {
             danger
             shape="circle"
             size="large"
-            className="game-info-drawer__button"
+            className="admin-menu__affix-button"
             onClick={showMenu}
             disabled={isLoading}
             icon={isLoading ? <Spin /> : <FireFilled />}

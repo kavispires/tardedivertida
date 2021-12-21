@@ -1,8 +1,8 @@
 // Constants
 import { CATEGORIES_PER_ROUND, ONDA_TELEPATICA_PHASES } from './constants';
-// Interfaces
-import { CategoryCard, FirebaseStateData, FirebaseStoreData, ResourceData } from './interfaces';
-import { Players, SaveGamePayload } from '../../utils/interfaces';
+// Types
+import { CategoryCard, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
+import { Players, SaveGamePayload } from '../../utils/types';
 // Utils
 import * as firebaseUtils from '../../utils/firebase';
 import * as gameUtils from '../../utils/game-utils';
@@ -87,7 +87,9 @@ export const prepareGuessPhase = async (
     needle: 0,
   });
 
-  const selectedCategory = store.deck.find((category: CategoryCard) => category.id === store.categoryId);
+  const selectedCategory = store.deck.find(
+    (category: CategoryCard) => category.id === state.currentCategoryId
+  );
 
   const currentCategory = {
     ...selectedCategory,
@@ -105,6 +107,7 @@ export const prepareGuessPhase = async (
         phase: ONDA_TELEPATICA_PHASES.GUESS,
         currentCategory,
         currentCategories: firebaseUtils.deleteValue(),
+        currentCategoryId: firebaseUtils.deleteValue(),
         target: firebaseUtils.deleteValue(),
       },
       players,

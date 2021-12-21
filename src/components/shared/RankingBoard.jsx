@@ -9,6 +9,44 @@ import { useDimensions } from '../../hooks';
 import { inNSeconds, orderBy } from '../../utils';
 // Components
 import { Avatar } from '../avatars';
+import clsx from 'clsx';
+
+function GainedPoint({ gainedPoint, order }) {
+  return (
+    <li
+      className={clsx(
+        'ranking-board__gained-point',
+        gainedPoint > 0 && 'ranking-board__gained-point--plus',
+        gainedPoint < 0 && 'ranking-board__gained-point--minus',
+        `ranking-board__gained-point--${order}`
+      )}
+    >
+      {gainedPoint > 0 ? '+' : ''}
+      {gainedPoint}
+    </li>
+  );
+}
+
+GainedPoint.propTypes = {
+  gainedPoint: PropTypes.number,
+  order: PropTypes.number,
+};
+
+function GainedPoints({ gainedPoints, playerId }) {
+  const points = Array.isArray(gainedPoints) ? gainedPoints : [gainedPoints];
+  return (
+    <ul className="ranking-board__cell-gained-points">
+      {points.map((gainedPoint, index) => (
+        <GainedPoint key={`gained-point-${playerId}-${index}`} gainedPoint={gainedPoint} order={index} />
+      ))}
+    </ul>
+  );
+}
+
+GainedPoints.propTypes = {
+  gainedPoints: PropTypes.arrayOf(PropTypes.number),
+  playerId: PropTypes.string,
+};
 
 export function RankingBoard({ players, ranking }) {
   const [displayStep, setDisplayStep] = useState(0);
@@ -19,7 +57,7 @@ export function RankingBoard({ players, ranking }) {
   const maxPoints = ranking[0].newScore;
 
   const { seconds } = useTimer({
-    expiryTimestamp: inNSeconds(4),
+    expiryTimestamp: inNSeconds(5),
     autoStart: true,
     onExpire: () => setReRank(1),
   });
@@ -69,7 +107,7 @@ export function RankingBoard({ players, ranking }) {
 
   // Show gained points
   useEffect(() => {
-    if (seconds === 3) {
+    if (seconds === 4) {
       setDisplayStep(1);
     } else if (seconds === 2) {
       setDisplayStep(2);
@@ -105,7 +143,7 @@ export function RankingBoard({ players, ranking }) {
             </div>
             <div className="ranking-board__cell-points">{previousScore}</div>
             {displayStep >= 1 && gainedPoints !== undefined && (
-              <div className="ranking-board__cell-points-plus">+{gainedPoints}</div>
+              <GainedPoints gainedPoints={gainedPoints} playerId={playerId} />
             )}
             {displayStep >= 2 && <div className="ranking-board__cell-points-total">{newScore}</div>}
           </div>
@@ -121,7 +159,7 @@ RankingBoard.propTypes = {
     PropTypes.shape({
       playerId: PropTypes.string,
       previousScore: PropTypes.number,
-      gainedPoints: PropTypes.number,
+      gainedPoints: PropTypes.oneOfType(PropTypes.number, PropTypes.array),
       newScore: PropTypes.number,
     })
   ),

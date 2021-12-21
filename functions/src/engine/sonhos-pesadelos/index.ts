@@ -1,13 +1,13 @@
 // Constants
 import { GAME_COLLECTIONS } from '../../utils/constants';
 import { PLAYER_COUNT, SONHOS_PESADELOS_PHASES, TOTAL_ROUNDS } from './constants';
-// Interfaces
-import { GameId, Language, Players } from '../../utils/interfaces';
+// Types
+import { GameId, Language, Players } from '../../utils/types';
 // Utils
 import * as firebaseUtils from '../../utils/firebase';
 import * as utils from '../../utils/helpers';
 import { determineGameOver, determineNextPhase } from './helpers';
-import { SonhosPesadelosInitialState, SonhosPesadelosSubmitAction } from './interfaces';
+import { SonhosPesadelosInitialState, SonhosPesadelosSubmitAction } from './types';
 import {
   prepareGameOverPhase,
   prepareResolutionPhase,

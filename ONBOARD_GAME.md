@@ -13,7 +13,7 @@ All file paths here are relative to `/functions/src`.
 ### Create engine
 
 - Create a folder with the game name under `/engine/`.
-- Create the files: `touch actions.ts constants.ts data.ts helpers.ts index.ts interfaces.ts setup.ts`
+- Create the files: `touch actions.ts constants.ts data.ts helpers.ts index.ts setup.ts types.d.ts`
 - Add `<game-name>_PHASES` in `/.../constants.ts`.
 - In `index.ts`, create a function that will output the initial state called `getInitialState`
 - In `index.ts`, create a function named `next<game-name>Phase`
@@ -23,8 +23,7 @@ All file paths here are relative to `/functions/src`.
 
 - Add entry to `getCollectionNameByGameCode`.
 - Add entry to `getCollectionKeyByGameCode`.
-- Add entry to `getInitialStateForCollection`.
-- Add entry to `getNextPhaseForCollection`.
+- Add entry to `getEngine`.
 
 ### Add submitAction to `/index.ts`
 
@@ -43,7 +42,7 @@ All file paths here are relative to `/src`.
 ### Banner
 
 - Add a banner image for your game in `../public/images/banners/`.
-- The naming convention is `game-image-<game-name>.jpg`.
+- The naming convention is `game-image-<game-name>-<language>.jpg`.
 
 ### Rules Images
 

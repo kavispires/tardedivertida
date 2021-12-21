@@ -1,6 +1,6 @@
-// Interfaces
-import { PlainObject, Players } from '../../utils/interfaces';
-import { Results, Table } from './interfaces';
+// Types
+import { PlainObject, Players } from '../../utils/types';
+import { Results, Table } from './types';
 // Constants
 import { SEPARATOR } from '../../utils/constants';
 import { SONHOS_PESADELOS_PHASES, TOTAL_ROUNDS } from './constants';

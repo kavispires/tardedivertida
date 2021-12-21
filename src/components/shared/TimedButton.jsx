@@ -8,7 +8,7 @@ import { useTimer } from 'react-timer-hook';
 import { inNSeconds } from '../../utils';
 
 export function TimedButton({ duration, label, onExpire, showTimer, ...props }) {
-  const { seconds } = useTimer({
+  const { minutes, seconds } = useTimer({
     expiryTimestamp: inNSeconds(duration),
     autoStart: true,
     onExpire: showTimer ? onExpire : undefined,
@@ -18,7 +18,10 @@ export function TimedButton({ duration, label, onExpire, showTimer, ...props }) 
 
   return (
     <Button {...props}>
-      {label} {showTimer && <span className={clsx(timeClass, `${timeClass}--${props.type}`)}>{seconds}</span>}
+      {label}{' '}
+      {showTimer && (
+        <span className={clsx(timeClass, `${timeClass}--${props.type}`)}>{minutes * 60 + seconds}</span>
+      )}
     </Button>
   );
 }

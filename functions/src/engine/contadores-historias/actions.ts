@@ -1,5 +1,5 @@
-// Interfaces
-import { GameId, PlayerId, GameName } from '../../utils/interfaces';
+// Types
+import { GameId, PlayerId, GameName } from '../../utils/types';
 // Constants
 import { HAND_LIMIT } from './constants';
 // Utils

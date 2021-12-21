@@ -1,9 +1,34 @@
-// Interfaces
-import { GameId, PlayerId, GameName } from '../../utils/interfaces';
+// Types
+import { GameId, PlayerId, GameName } from '../../utils/types';
 // Utils
 import * as firebaseUtils from '../../utils/firebase';
 // Internal
 import { getNextPhase } from '.';
+
+/**
+ *
+ * @param collectionName
+ * @param gameId
+ * @param playerId
+ * @param guess
+ * @returns
+ */
+export const handleSubmitCategory = async (
+  collectionName: GameName,
+  gameId: GameId,
+  playerId: PlayerId,
+  categoryId: string
+) => {
+  return await firebaseUtils.updateState({
+    collectionName,
+    gameId,
+    playerId,
+    actionText: 'submit category',
+    change: {
+      currentCategoryId: categoryId,
+    },
+  });
+};
 
 /**
  * When psychic submits the round's clue
@@ -18,7 +43,6 @@ export const handleSubmitClue = async (
   collectionName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  categoryId: string,
   clue: string
 ) => {
   return await firebaseUtils.updateStore({
@@ -28,7 +52,6 @@ export const handleSubmitClue = async (
     actionText: 'submit clue',
     change: {
       clue,
-      categoryId,
     },
     nextPhaseFunction: getNextPhase,
   });
