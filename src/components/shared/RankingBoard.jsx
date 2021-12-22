@@ -6,7 +6,7 @@ import { CrownFilled } from '@ant-design/icons';
 // Hooks
 import { useDimensions } from '../../hooks';
 // Utils
-import { inNSeconds, orderBy } from '../../utils';
+import { inNSeconds, orderBy } from '../../utils/helpers';
 // Components
 import { Avatar } from '../avatars';
 import clsx from 'clsx';

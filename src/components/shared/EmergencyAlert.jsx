@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Modal } from 'antd';
 import { useTimer } from 'react-timer-hook';
 // Utils
-import { inNSeconds } from '../../utils';
+import { inNSeconds } from '../../utils/helpers';
 
 export function EmergencyAlert({ children, duration = 2 }) {
   const [isVisible, setVisible] = useState(true);

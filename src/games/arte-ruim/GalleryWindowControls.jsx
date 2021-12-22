@@ -11,7 +11,7 @@ import {
   TrophyOutlined,
 } from '@ant-design/icons';
 // Utils
-import { inNSeconds } from '../../utils';
+import { inNSeconds } from '../../utils/helpers';
 // Components
 import { Translate } from '../../components/shared';
 

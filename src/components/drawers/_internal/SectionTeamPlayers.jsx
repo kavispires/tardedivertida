@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { useMemo } from 'react';
 // Utils
 import { AVATARS } from '../../../utils/constants';
-import { orderBy } from '../../../utils';
+import { orderBy } from '../../../utils/helpers';
 // Components
 import { Avatar } from '../../avatars';
 import { Translate } from '../../shared';

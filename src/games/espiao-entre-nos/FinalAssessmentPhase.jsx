@@ -7,7 +7,7 @@ import { useUser, useAPICall } from '../../hooks';
 // Resources & Utils
 import { ESPIAO_ENTRE_NOS_API } from '../../adapters';
 import { PHASES } from '../../utils/constants';
-import { getPlayersFromIds } from '../../utils';
+import { getPlayersFromIds } from '../../utils/helpers';
 // Components
 import { AdminOnly } from '../../components/admin/index';
 import { ButtonContainer, Instruction, PhaseContainer, Title } from '../../components/shared';

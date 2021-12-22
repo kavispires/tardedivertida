@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { getColorFromLetter } from '../../utils';
+import { getColorFromLetter } from '../../utils/helpers';
 
 export const Card = memo(function ({
   children,

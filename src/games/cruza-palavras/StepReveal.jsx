@@ -18,7 +18,7 @@ import { AVATARS } from '../../utils/constants';
 import clsx from 'clsx';
 import { Table } from 'antd';
 import { useLanguage } from '../../hooks';
-import { orderBy } from '../../utils';
+import { orderBy } from '../../utils/helpers';
 
 function PlayersInCell({ cellPlayers, players }) {
   return (

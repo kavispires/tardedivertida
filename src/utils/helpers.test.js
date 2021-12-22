@@ -1,4 +1,4 @@
-import * as utils from './index';
+import * as utils from './helpers';
 
 describe('/utils', function () {
   describe('getGameIdFromURL', function () {

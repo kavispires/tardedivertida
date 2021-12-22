@@ -5,7 +5,7 @@ import { Button } from 'antd';
 // Hooks
 import { useLanguage, useLoading } from '../../hooks';
 // Utils
-import { isDevEnv, shuffle } from '../../utils';
+import { isDevEnv, shuffle } from '../../utils/helpers';
 // Components
 import { Card } from '../../components/cards';
 import {

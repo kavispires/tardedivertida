@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import { Button } from 'antd';
 // Hook and Utils
 import { useTimer } from 'react-timer-hook';
-import { inNSeconds } from '../../utils';
+import { inNSeconds } from '../../utils/helpers';
 
 export function TimedButton({ duration, label, onExpire, showTimer, ...props }) {
   const { minutes, seconds } = useTimer({

@@ -33,7 +33,7 @@ import {
 } from '../../components/shared';
 import EvaluationAllDrawings from './EvaluationAllDrawings';
 import EvaluationAllCards from './EvaluationAllCards';
-import { getEntryId, shuffle } from '../../utils';
+import { getEntryId, shuffle } from '../../utils/helpers';
 import { CollapsibleRule } from '../../components/rules';
 import { CanvasResizer } from '../../components/canvas';
 

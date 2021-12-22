@@ -9,7 +9,7 @@ import { useLoading, useIsUserReady, useAPICall, useLanguage } from '../../hooks
 import { RulesCarousel } from './index';
 import { LoadingPage } from '../loaders';
 import { ReadyPlayersBar, Translate, translate } from '../shared';
-import { isDevEnv } from '../../utils';
+import { isDevEnv } from '../../utils/helpers';
 
 export function Rules({ players, info }) {
   const [isLoading] = useLoading();

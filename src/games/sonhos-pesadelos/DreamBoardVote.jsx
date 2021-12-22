@@ -6,7 +6,7 @@ import { CaretUpOutlined } from '@ant-design/icons';
 // Hooks
 import { useCardWidth } from '../../hooks';
 // Utils
-import { getEntryId } from '../../utils';
+import { getEntryId } from '../../utils/helpers';
 // Components
 import { Translate } from '../../components/shared';
 import Ribbon from '../arte-ruim/Ribbon';

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 //Design Resources
 import { Button, Input, Space } from 'antd';
 // Utils
-import { isDevEnv } from '../../utils';
+import { isDevEnv } from '../../utils/helpers';
 // Components
 import { Translate } from '../../components/shared';
 

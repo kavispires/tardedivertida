@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import { Avatar as AntAvatar } from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
 // Utils
-import { getColorFromIndex } from '../../utils';
+import { getColorFromIndex } from '../../utils/helpers';
 import { LETTERS } from '../../utils/constants';
 // Components
 import BasicCard from '../../components/cards/Card';

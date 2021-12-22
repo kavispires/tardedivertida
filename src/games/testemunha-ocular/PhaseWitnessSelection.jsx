@@ -32,7 +32,7 @@ function PhaseWitnessSelection({ state, players, info }) {
     actionName: 'select-witness',
     successMessage: translate('Testemunha enviada com sucesso', 'Witness submitted successfully', language),
     errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar selectionar a testemunha',
+      'Vixi, o aplicativo encontrou um erro ao tentar selecionar a testemunha',
       'Oops, the application found an error while trying to submit the witness',
       language
     ),
