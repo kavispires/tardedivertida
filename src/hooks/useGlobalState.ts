@@ -2,7 +2,7 @@ import { createGlobalState } from 'react-hooks-global-state';
 
 const initialState = {
   isLoading: false,
-  loaders: false,
+  loaders: {},
   appStartedAt: Date.now(),
   screenSize: [],
   // Language

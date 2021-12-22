@@ -1,6 +1,11 @@
 import { useEffect, useState } from 'react';
 
-export function useIsGameStale(gameCreatedAt) {
+/**
+ * Check if game is too old
+ * @param gameCreatedAt
+ * @returns
+ */
+export function useIsGameStale(gameCreatedAt: DateMilliseconds): boolean {
   const [isGameStale, setGameStale] = useState(false);
 
   useEffect(() => {

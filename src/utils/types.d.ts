@@ -25,5 +25,11 @@ interface Players {
   [key: string]: Player;
 }
 
+interface State {
+  phase?: string;
+  updatedAt?: DateMilliseconds;
+  [key: string]: any;
+}
+
 type GameOrder = PlayerId[];
 type TurnOrder = PlayerId[];

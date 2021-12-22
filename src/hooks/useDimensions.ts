@@ -2,10 +2,10 @@ import { useGlobalState } from './index';
 
 /**
  * Get width and height of given element or from the screen
- * @param {string} [elementId]
- * @returns [number, number] representing width and height of the element
+ * @param [elementId]
+ * @returns representing width and height of the element
  */
-export function useDimensions(elementId) {
+export function useDimensions(elementId?: string): [number, number] {
   const [[sWidth, sHeight]] = useGlobalState('screenSize');
 
   if (!elementId) {

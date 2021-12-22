@@ -3,11 +3,11 @@ import { useGlobalState } from './useGlobalState';
 
 /**
  * Check if the current user is associated with given property
- * @param {string} propertyName - the property to be check in the state
- * @param {*} state - the game state
- * @returns {boolean}
+ * @param propertyName - the property to be check in the state
+ * @param state - the game state
+ * @returns
  */
-export function useIsUserThe(propertyName = 'activePlayer', state = {}) {
+export function useIsUserThe(propertyName = 'activePlayer', state: State = {}): boolean {
   const [userId] = useGlobalState('userId');
   const [isUser, setIsUser] = useState(false);
 

@@ -2,9 +2,9 @@ import { useGlobalState } from './index';
 
 /**
  * Returns current selected language
- * @returns {string}
+ * @returns
  */
-export function useLanguage() {
+export function useLanguage(): string {
   const [language] = useGlobalState('language');
   return language;
 }
