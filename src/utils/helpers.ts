@@ -2,70 +2,69 @@ import { SEPARATOR } from './constants';
 
 /**
  * Creates a copy of given object
- * @param {object} obj
- * @returns {object}
+ * @param obj
+ * @returns
  */
-export const deepCopy = (obj) => JSON.parse(JSON.stringify(obj));
+export const deepCopy = (obj: PlainObject): PlainObject => JSON.parse(JSON.stringify(obj));
 
 /**
  * Extract the gameId from react history
- * @param {object} history
- * @returns {string}
+ * @param history
+ * @returns
  */
-export const getGameIdFromURL = (history) => {
+export const getGameIdFromURL = (history: PlainObject): string => {
   const { pathname = '/' } = history?.location ?? {};
   return pathname.substring(1);
 };
 
 /**
  * Extract the gameId from react history.location
- * @param {object} history
- * @returns {string}
+ * @param history
+ * @returns
  */
-export const getGameIdFromLocation = (location) => {
+export const getGameIdFromLocation = (location: PlainObject): string => {
   const { pathname = '/' } = location ?? {};
   return pathname.substring(1);
 };
 
 /**
  * Get random element/item from a list
- * @param {array} list
+ * @param list
  * @returns one random item
  */
-export const getRandomItem = (list) => {
+export const getRandomItem = (list: any[]): any => {
   return list[Math.floor(Math.random() * list.length)];
 };
 
 /**
  * Get date from now within the given seconds
- * @param {number} seconds
+ * @param seconds
  * @returns
  */
-export const inNSeconds = (seconds) => {
+export const inNSeconds = (seconds: number): DateMilliseconds => {
   return Date.now() + seconds * 1000;
 };
 
 /**
  * Flag indicating if the environment is for development and not storybook
- * @type {boolean}
  */
-export const isDevEnv = process.env.NODE_ENV === 'development' && window.location.port !== '6006';
+export const isDevEnv: boolean = process.env.NODE_ENV === 'development' && window.location.port !== '6006';
 
 /**
  * Verify if the game id exists and has the correct length
- * @param {string} gameId
+ * @param gameId
  * @returns
  */
-export const isValidGameId = (gameId) => {
-  return gameId && gameId.length === 4;
+export const isValidGameId = (gameId: GameId): boolean => {
+  return Boolean(gameId) && gameId.length === 4;
 };
 
 /**
  * Gets color name from index
- * @param {number} letter
+ * @param index
  * @returns
  */
-export const getColorFromIndex = (letter) => {
+export const getColorFromIndex = (index: number): string => {
   return (
     [
       'red',
@@ -84,16 +83,16 @@ export const getColorFromIndex = (letter) => {
       'violet',
       'forest',
       'cream',
-    ][letter] ?? 'none'
+    ][index] ?? 'none'
   );
 };
 
 /**
  * Get color name from letter
- * @param {string} letter
+ * @param letter
  * @returns
  */
-export const getColorFromLetter = (letter) => {
+export const getColorFromLetter = (letter: string): string => {
   return (
     {
       A: 'red',
@@ -130,11 +129,12 @@ export const getColorFromLetter = (letter) => {
 
 /**
  * Get the team name that is not active
- * @param {object|array} teams
- * @param {string} activeTeam
- * @returns {string}
+ * @param teams
+ * @param activeTeam
+ * @returns
+ * @deprecated
  */
-export const getOppositeTeam = (teams, activeTeam) => {
+export const getOppositeTeam = (teams: PlainObject | any[], activeTeam: string) => {
   if (!teams || !activeTeam || teams?.length < 2 || teams?.length > 2) return '?';
 
   const teamsNames = Array.isArray(teams) ? teams : Object.keys(teams);
@@ -144,12 +144,16 @@ export const getOppositeTeam = (teams, activeTeam) => {
 
 /**
  * Get given players from list of ids
- * @param {string[]} playerIds
- * @param {object} players
- * @param {boolean} justNames if true, only return names
+ * @param  playerIds
+ * @param players
+ * @param justNames if true, only return names
  * @returns
  */
-export const getPlayersFromIds = (playerIds, players, justNames = false) => {
+export const getPlayersFromIds = (
+  playerIds: PlayerId[],
+  players: Players,
+  justNames = false
+): (Player | PlayerName)[] => {
   return playerIds.map((playerId) => {
     const player = players[playerId];
     if (justNames) return player.name;
@@ -164,43 +168,46 @@ export const getPlayersFromIds = (playerIds, players, justNames = false) => {
  * @param {string|string[]} orders
  * @returns {object[]}
  */
-export const orderBy = (list, properties, orders) => {
-  function sortBy(_key, _cb) {
-    if (!_cb) _cb = () => 0;
-    return (a, b) => (a[_key] > b[_key] ? 1 : b[_key] > a[_key] ? -1 : _cb(a, b));
-  }
+export const orderBy = (list: PlainObject[], properties: string[], orders: string[]): PlainObject[] => {
+  // function sortBy(_key, _cb) {
+  //   if (!_cb) _cb = () => 0;
+  //   return (a, b) => (a[_key] > b[_key] ? 1 : b[_key] > a[_key] ? -1 : _cb(a, b));
+  // }
 
-  function sortByDesc(key, _cb) {
-    if (!_cb) _cb = () => 0;
-    return (b, a) => (a[key] > b[key] ? 1 : b[key] > a[key] ? -1 : _cb(b, a));
-  }
+  // function sortByDesc(key, _cb) {
+  //   if (!_cb) _cb = () => 0;
+  //   return (b, a) => (a[key] > b[key] ? 1 : b[key] > a[key] ? -1 : _cb(b, a));
+  // }
 
-  let cb = () => 0;
-  const p = Array.isArray(properties) ? properties.reverse() : [properties];
-  const o = Array.isArray(orders) ? orders.reverse() : [orders];
+  // let cb = () => 0;
+  // const p = Array.isArray(properties) ? properties.reverse() : [properties];
+  // const o = Array.isArray(orders) ? orders.reverse() : [orders];
 
-  for (const [i, key] of p.entries()) {
-    const order = o[i] ?? o[0] ?? 'asc';
-    if (order === 'asc') {
-      cb = sortBy(key, cb);
-    } else if (order === 'desc') {
-      cb = sortByDesc(key, cb);
-    } else {
-      throw new Error(`Unsupported order "${order}"`);
-    }
-  }
+  // for (const [i, key] of p.entries()) {
+  //   const order = o[i] ?? o[0] ?? 'asc';
+  //   if (order === 'asc') {
+  //     cb = sortBy(key, cb);
+  //   } else if (order === 'desc') {
+  //     cb = sortByDesc(key, cb);
+  //   } else {
+  //     throw new Error(`Unsupported order "${order}"`);
+  //   }
+  // }
 
-  return [...list].sort(cb);
+  // return [...list].sort(cb);
+  console.log(properties);
+  console.log(orders);
+  return list;
 };
 
 /**
  * Determines if it should output the singular or plural argument depending on given quantity
- * @param {number} quantity
- * @param {string} singular
- * @param {string} plural
+ * @param quantity
+ * @param singular
+ * @param plural
  * @returns
  */
-export const pluralize = (quantity, singular, plural) => {
+export const pluralize = (quantity: number, singular: string, plural: string): string => {
   if (!plural) return singular;
   return quantity === 1 ? singular : plural;
 };
@@ -210,7 +217,7 @@ export const pluralize = (quantity, singular, plural) => {
  * @param {any[]} list
  * @returns
  */
-export const shuffle = (list) => {
+export const shuffle = (list: any[]): any[] => {
   const result = [...list];
   result.sort(() => Math.random() - 0.5);
   return result;
@@ -218,16 +225,16 @@ export const shuffle = (list) => {
 
 /**
  * Builds entry id from array elements separated by the separator
- * @param {string[]} arr
+ * @param arr
  * @returns
  */
-export const getEntryId = (arr) => arr.join(SEPARATOR);
+export const getEntryId = (arr: string[]): string => arr.join(SEPARATOR);
 
 /**
  * Check if array has duplicates
- * @param {*} arr
+ * @param arr
  * @returns
  */
-export const hasDuplicates = (arr) => {
+export const hasDuplicates = (arr: any): boolean => {
   return new Set(arr).size !== arr.length;
 };

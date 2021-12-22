@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
 import { WarningOutlined } from '@ant-design/icons';
-import { getColorFromLetter } from '../../utils';
+import { getColorFromLetter } from '../../utils/helpers';
 // Components
 import { Card } from './index';
 

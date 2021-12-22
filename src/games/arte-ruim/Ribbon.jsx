@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 // Utils
-import { getColorFromLetter } from '../../utils';
+import { getColorFromLetter } from '../../utils/helpers';
 import { SEPARATOR } from '../../utils/constants';
 
 function Ribbon({ cardEntryId }) {

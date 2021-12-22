@@ -9,7 +9,7 @@ import { ButtonContainer, Title, translate, Translate } from '../../components/s
 import { Pasture } from './Pasture';
 import { RoundType } from './RoundType';
 import { Question } from './Question';
-import { getEntryId, isDevEnv, shuffle } from '../../utils';
+import { getEntryId, isDevEnv, shuffle } from '../../utils/helpers';
 
 const mockAnswers = (userId, numAnswers) => {
   const list = ['agua', 'bola', 'coco', 'dedo', 'egua', 'flauta', 'gatilho', 'hélio', 'jaguar'];

@@ -3,7 +3,7 @@ import clsx from 'clsx';
 // Design Resources
 import { CheckCircleFilled, PlusCircleFilled } from '@ant-design/icons';
 // Utils
-import { getColorFromIndex } from '../../utils';
+import { getColorFromIndex } from '../../utils/helpers';
 import { Avatar } from '../../components/avatars';
 
 function ClueCard({ isMatched, isSelected, clue, indexColor, color, player, strikeMatches = false }) {

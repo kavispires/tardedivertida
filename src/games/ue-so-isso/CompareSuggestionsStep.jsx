@@ -6,7 +6,7 @@ import { CloudUploadOutlined } from '@ant-design/icons';
 // Hooks
 import { useGlobalState, useLoading } from '../../hooks';
 // Utils
-import { deepCopy } from '../../utils';
+import { deepCopy } from '../../utils/helpers';
 // Components
 import { AdminOnlyButton } from '../../components/admin/index';
 import { Step, Title, Translate } from '../../components/shared';

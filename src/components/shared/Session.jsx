@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { useGameState, useGlobalState, useGamePlayers } from '../../hooks';
 // Utils
 import gameList from '../../resources/games.json';
-import { isDevEnv } from '../../utils';
+import { isDevEnv } from '../../utils/helpers';
 // Components
 import Lobby from '../lobby/Lobby';
 import { GameInfoDrawer } from '../drawers';

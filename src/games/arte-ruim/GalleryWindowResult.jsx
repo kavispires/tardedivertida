@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Avatar as AntAvatar, Typography } from 'antd';
 import { CrownFilled, DeleteFilled } from '@ant-design/icons';
 // Utils
-import { getPlayersFromIds } from '../../utils';
+import { getPlayersFromIds } from '../../utils/helpers';
 // Components
 import { Avatar } from '../../components/avatars';
 import { StarPoints, Translate } from '../../components/shared';

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useTimer } from 'react-timer-hook';
 // Utils
-import { inNSeconds } from '../../utils';
+import { inNSeconds } from '../../utils/helpers';
 // Components
 import { Step, translate } from '../../components/shared';
 import { Card } from '../../components/cards';

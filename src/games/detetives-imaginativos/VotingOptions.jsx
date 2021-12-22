@@ -5,7 +5,7 @@ import { Button } from 'antd';
 // Components
 import { Avatar, AvatarName } from '../../components/avatars';
 import { ButtonContainer, Translate } from '../../components/shared';
-import { orderBy } from '../../utils';
+import { orderBy } from '../../utils/helpers';
 
 export function VotingOptions({ players, leaderId, user, onVote, isLoading, isAllDisabled }) {
   const votingOptions = useMemo(

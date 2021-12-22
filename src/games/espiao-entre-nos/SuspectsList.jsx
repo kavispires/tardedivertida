@@ -7,7 +7,7 @@ import { AimOutlined, ClearOutlined, IssuesCloseOutlined } from '@ant-design/ico
 // Hooks
 import { useGlobalState } from '../../hooks';
 // Utils
-import { orderBy } from '../../utils';
+import { orderBy } from '../../utils/helpers';
 
 function SuspectsList({ players }) {
   const [cache, setCache] = useGlobalState('espiaoEntreNosCache');

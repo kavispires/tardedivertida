@@ -2,7 +2,7 @@ import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 // Utils
-import { getEntryId } from '../../utils';
+import { getEntryId } from '../../utils/helpers';
 // Components
 import { CanvasSVG } from '../../components/canvas';
 import Ribbon from './Ribbon';

@@ -7,7 +7,7 @@ import { GAME_API } from '../adapters';
 // Hooks
 import { useIsGameStale, useLoading, useGlobalState, useLocalStorage } from '../hooks';
 // Utils
-import { getGameIdFromURL, getGameIdFromLocation, isValidGameId, isDevEnv } from '../utils';
+import { getGameIdFromURL, getGameIdFromLocation, isValidGameId, isDevEnv } from '../utils/helpers';
 import { GAME_COLLECTION } from '../utils/constants';
 // Components
 import { LoadingPage } from '../components/loaders';

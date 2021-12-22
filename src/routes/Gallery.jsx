@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 // Design Resources
 import { Card, Layout, Progress, Space } from 'antd';
 // Utils
-import { orderBy } from '../utils';
+import { orderBy } from '../utils/helpers';
 import { PUBLIC_URL } from '../utils/constants';
 // Components
 import { LoadingPage } from '../components/loaders';

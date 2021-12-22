@@ -12,7 +12,7 @@ import avatars from '../../../images/avatars.svg';
 import localStorage from '../../../services/localStorage';
 // Utils
 import { AVATARS, PUBLIC_URL, RANDOM_NAMES } from '../../../utils/constants';
-import { getRandomItem, isDevEnv } from '../../../utils/index';
+import { getRandomItem, isDevEnv } from '../../../utils/helpers';
 // Components
 import { Translate, translate } from '../../shared';
 

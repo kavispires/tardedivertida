@@ -6,7 +6,7 @@ import { Badge } from 'antd';
 import { useLanguage } from '../../../hooks';
 // Utils
 import { AVATARS } from '../../../utils/constants';
-import { orderBy } from '../../../utils';
+import { orderBy } from '../../../utils/helpers';
 // Components
 import { Avatar } from '../../avatars';
 

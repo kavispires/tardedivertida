@@ -5,7 +5,7 @@ import { useTimer } from 'react-timer-hook';
 import { HeartFilled } from '@ant-design/icons';
 // Hooks
 import { useLanguage } from '../../hooks';
-import { inNSeconds } from '../../utils';
+import { inNSeconds } from '../../utils/helpers';
 // Components
 import {
   Instruction,

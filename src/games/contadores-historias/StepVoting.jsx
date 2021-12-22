@@ -5,7 +5,7 @@ import { Button } from 'antd';
 import { DownSquareOutlined } from '@ant-design/icons';
 // Hooks & Utils
 import { useCardWidth, useLanguage, useLoading } from '../../hooks';
-import { isDevEnv } from '../../utils';
+import { isDevEnv } from '../../utils/helpers';
 // Components
 import { ReadyPlayersBar, Title, translate, Translate } from '../../components/shared';
 import { Card, ImageBlurButton, ImageCard } from '../../components/cards';

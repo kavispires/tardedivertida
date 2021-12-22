@@ -9,7 +9,7 @@ import { GAME_API } from '../../adapters';
 import { useTimer } from 'react-timer-hook';
 import { useAPICall, useGlobalState, useLanguage, useLoading } from '../../hooks';
 // Utils
-import { inNSeconds } from '../../utils';
+import { inNSeconds } from '../../utils/helpers';
 // Components
 import { translate, Translate } from '.';
 

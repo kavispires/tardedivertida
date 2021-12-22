@@ -12,7 +12,7 @@ import { SectionMeta } from './_internal/SectionMeta';
 import { SectionTeams } from './_internal/SectionTeams';
 import { SectionRankedPlayers } from './_internal/SectionRankedPlayers';
 import { SectionSettings } from './_internal/SectionSettings';
-import { isDevEnv } from '../../utils';
+import { isDevEnv } from '../../utils/helpers';
 
 export function GameInfoDrawer({ players, state, info, userId }) {
   const language = useLanguage();
