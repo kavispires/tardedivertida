@@ -1,4 +1,8 @@
 class LocalStorage {
+  private appName: string;
+  notLoaded: boolean;
+  store: PlainObject;
+
   constructor() {
     this.store = {};
     this.notLoaded = true;
@@ -7,12 +11,33 @@ class LocalStorage {
     this.init();
   }
 
+  /**
+   * Initialize local storage and get all values
+   * @returns the store
+   */
   init() {
     this.load();
     return this.get();
   }
 
-  get(key) {
+  /**
+   * Load local storage from the browser
+   */
+  load() {
+    const localStorage: PlainObject = JSON.parse(window.localStorage.getItem(this.appName) ?? '');
+
+    if (localStorage) {
+      this.store = localStorage;
+      this.notLoaded = false;
+    }
+  }
+
+  /**
+   * Get value by key or all values
+   * @param key
+   * @returns
+   */
+  get(key?: string) {
     if (this.notLoaded) {
       this.load();
     }
@@ -23,23 +48,19 @@ class LocalStorage {
     return this.store;
   }
 
-  load() {
-    const localStorage = JSON.parse(window.localStorage.getItem(this.appName));
-    if (localStorage) {
-      this.store = localStorage;
-      this.notLoaded = false;
-    }
-  }
-
-  // To Remove a property, you can use the set method, but passing an object with the key and value
-  // null, the property will be removed from local storage
-  set(value) {
+  /**
+   * Set a property to local storage
+   * To remove/unset a property, pass an object with the desired key and value null
+   * @param value
+   * @returns
+   */
+  set(value: string | PlainObject) {
     if (this.notLoaded) {
       this.load();
     }
 
     const type = typeof value;
-    if (type !== 'string' && type !== 'object') {
+    if (['string', 'object'].includes(type)) {
       console.error('localStorage set value must be a string or a key-value object');
       return;
     }
@@ -64,6 +85,7 @@ class LocalStorage {
     this.save();
   }
 
+  // Save the store to the browser local storage
   save() {
     if (this.notLoaded) {
       this.load();
