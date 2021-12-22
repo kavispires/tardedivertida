@@ -1,7 +1,12 @@
 import { useCallback, useEffect, useState } from 'react';
 import { SEPARATOR } from '../utils/constants';
 
-const deleteDuplicate = (votes, target) => {
+/**
+ * Delete duplicated votes on the 'value' side of the votes object
+ * @param votes
+ * @param target
+ */
+const deleteDuplicate = (votes: PlainObject, target: string) => {
   const votesArray = Object.entries(votes);
   const duplicateIndex = votesArray.findIndex((el) => el[1] === target);
   if (duplicateIndex > -1) {
@@ -10,24 +15,40 @@ const deleteDuplicate = (votes, target) => {
   }
 };
 
+type Votes = {
+  [key: string]: string;
+};
+
 /**
  * Keeps track of an object with votes following the schema:
  * {<typeSEPARATORid...>: <typeSEPARATORid...>
- * @param {string} keyType the type of the entry that will work as the key of the voting object
- * @param {boolean} uniqueOnly Indicates if it is allow to voting duplicates
- * @param {number} completeCount
+ * @param keyType the type of the entry that will work as the key of the voting object
+ * @param uniqueOnly Indicates if it is allow to voting duplicates
+ * @param completeCount
  * @returns
  */
-export function useVotingMatch(keyType, allowDuplicates = true, completeCount = null, initialState = {}) {
-  const [votes, setVotes] = useState({ ...initialState });
-  const [activeItem, setActiveItem] = useState(null);
-  const [isVotingComplete, setIsVotingComplete] = useState(false);
+export function useVotingMatch(
+  keyType: string,
+  allowDuplicates = true,
+  completeCount = null,
+  initialState: Votes = {}
+): {
+  votes: Votes;
+  setVotes: React.Dispatch<any>;
+  activeItem: string;
+  activateItem: (entryId: string) => void;
+  isVotingComplete: boolean;
+  resetVoting: (newInitialState: Votes) => void;
+} {
+  const [votes, setVotes]: [Votes, React.Dispatch<any>] = useState({ ...initialState });
+  const [activeItem, setActiveItem]: [string, React.Dispatch<any>] = useState('');
+  const [isVotingComplete, setIsVotingComplete]: [boolean, React.Dispatch<any>] = useState(false);
 
   const activateItem = useCallback(
-    (entryId) => {
+    (entryId: string) => {
       // When new Item is already the active item, deselect it
       if (entryId === activeItem) {
-        return setActiveItem(null);
+        return setActiveItem('');
       }
 
       const [type] = entryId.split(SEPARATOR);
@@ -39,7 +60,7 @@ export function useVotingMatch(keyType, allowDuplicates = true, completeCount = 
 
       // When new item type is a key
       if (type === keyType) {
-        setVotes((prevVotes) => {
+        setVotes((prevVotes: Votes) => {
           const copy = { ...prevVotes };
           // Find and clear any previous vote if uniqueOnly
           if (!allowDuplicates) {
@@ -51,11 +72,11 @@ export function useVotingMatch(keyType, allowDuplicates = true, completeCount = 
             [entryId]: activeItem,
           };
         });
-        return setActiveItem(null);
+        return setActiveItem('');
       }
 
       // When new item is a value
-      setVotes((prevVotes) => {
+      setVotes((prevVotes: Votes) => {
         const copy = { ...prevVotes };
         // Find and clear any previous vote if uniqueOnly
         if (!allowDuplicates) {
@@ -68,14 +89,14 @@ export function useVotingMatch(keyType, allowDuplicates = true, completeCount = 
         };
       });
 
-      return setActiveItem(null);
+      return setActiveItem('');
     },
     [activeItem, keyType, allowDuplicates]
   );
 
-  const resetVoting = (newInitialState) => {
+  const resetVoting = (newInitialState: Votes) => {
     setVotes(newInitialState ?? initialState);
-    setActiveItem(null);
+    setActiveItem('');
   };
 
   useEffect(() => {

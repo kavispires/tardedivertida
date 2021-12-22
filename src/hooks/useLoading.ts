@@ -2,11 +2,13 @@ import { useEffect } from 'react';
 
 import { useGlobalState } from './index';
 
+type UseLoading = [boolean, (key: string, value: boolean) => void, object];
+
 /**
  * Aggregate loading states into a single object, and single isLoading state
- * @returns [boolean, function, object]
+ * @returns
  */
-export function useLoading() {
+export function useLoading(): UseLoading {
   const [isLoading, setLoading] = useGlobalState('isLoading');
   const [loaders, setLoaders] = useGlobalState('loaders');
 
@@ -14,7 +16,7 @@ export function useLoading() {
     setLoading(Object.values(loaders).some((v) => v));
   }, [loaders, setLoading]);
 
-  const setLoader = (key, value) => {
+  const setLoader = (key: string, value: boolean) => {
     setLoaders((values) => ({
       ...values,
       [key]: value,

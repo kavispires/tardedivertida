@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useGlobalState } from './useGlobalState';
 
-export function useIsUserReady(players, state = {}) {
+// Check if user is ready
+export function useIsUserReady(players: Players, state: State = {}) {
   const [userId] = useGlobalState('userId');
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
     // Check if user is ready and check if user has been ready after the last state change
-    if (players[userId].ready === false) {
+    if (userId && players?.[userId].ready === false) {
       setIsReady(false);
       return;
     }
@@ -18,7 +19,7 @@ export function useIsUserReady(players, state = {}) {
     }
 
     // If state was updated after the player was updated, data might not be synced
-    if (players[userId]?.updatedAt < state?.updatedAt) {
+    if (userId && players?.[userId]?.updatedAt < state?.updatedAt) {
       setIsReady(false);
       return;
     }
