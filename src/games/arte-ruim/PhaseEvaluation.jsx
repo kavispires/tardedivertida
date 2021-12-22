@@ -17,6 +17,7 @@ import {
 // Utils
 import { ARTE_RUIM_API } from '../../adapters';
 import { LETTERS, PHASES, SEPARATOR } from '../../utils/constants';
+import { getEntryId, shuffle } from '../../utils/helpers';
 // Components
 import {
   ButtonContainer,
@@ -33,7 +34,6 @@ import {
 } from '../../components/shared';
 import EvaluationAllDrawings from './EvaluationAllDrawings';
 import EvaluationAllCards from './EvaluationAllCards';
-import { getEntryId, shuffle } from '../../utils/helpers';
 import { CollapsibleRule } from '../../components/rules';
 import { CanvasResizer } from '../../components/canvas';
 

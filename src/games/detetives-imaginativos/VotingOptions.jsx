@@ -1,18 +1,19 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
+import { orderBy } from 'lodash';
 // Design Resources
 import { Button } from 'antd';
 // Components
 import { Avatar, AvatarName } from '../../components/avatars';
 import { ButtonContainer, Translate } from '../../components/shared';
-import { orderBy } from '../../utils/helpers';
 
 export function VotingOptions({ players, leaderId, user, onVote, isLoading, isAllDisabled }) {
   const votingOptions = useMemo(
     () =>
       orderBy(
         Object.values(players).filter((player) => player.id !== leaderId),
-        'name'
+        ['name'],
+        ['asc']
       ),
     [players, leaderId]
   );

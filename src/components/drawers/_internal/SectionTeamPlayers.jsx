@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { useMemo } from 'react';
+import { orderBy } from 'lodash';
 // Utils
 import { AVATARS } from '../../../utils/constants';
-import { orderBy } from '../../../utils/helpers';
 // Components
 import { Avatar } from '../../avatars';
 import { Translate } from '../../shared';
@@ -17,7 +17,8 @@ export function SectionTeamPlayers({ team, players }) {
         team.members.map((playerId) => {
           return players[playerId];
         }),
-        'name'
+        ['name'],
+        ['asc']
       ),
     [players, team]
   );
