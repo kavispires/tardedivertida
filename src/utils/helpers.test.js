@@ -158,44 +158,6 @@ describe('/utils', function () {
     });
   });
 
-  describe('orderBy', function () {
-    const list = [
-      { name: 'Bob', age: 30 },
-      { name: 'Andy', age: 10 },
-      { name: 'Adam', age: 20 },
-    ];
-
-    it('orders list by property', function () {
-      expect(utils.orderBy(list, 'name')).toStrictEqual([
-        { age: 20, name: 'Adam' },
-        { age: 10, name: 'Andy' },
-        { age: 30, name: 'Bob' },
-      ]);
-
-      expect(utils.orderBy(list, 'age')).toStrictEqual([
-        { age: 10, name: 'Andy' },
-        { age: 20, name: 'Adam' },
-        { age: 30, name: 'Bob' },
-      ]);
-    });
-
-    it('orders list by two or more properties', function () {
-      expect(utils.orderBy(list, ['age', 'name'])).toStrictEqual([
-        { age: 10, name: 'Andy' },
-        { age: 20, name: 'Adam' },
-        { age: 30, name: 'Bob' },
-      ]);
-    });
-
-    it('orders list in descending order', function () {
-      expect(utils.orderBy(list, 'name', 'desc')).toStrictEqual([
-        { age: 30, name: 'Bob' },
-        { age: 10, name: 'Andy' },
-        { age: 20, name: 'Adam' },
-      ]);
-    });
-  });
-
   describe('pluralize', function () {
     it('pluralizes word', function () {
       expect(utils.pluralize(1, 'mouse', 'mice')).toBe('mouse');

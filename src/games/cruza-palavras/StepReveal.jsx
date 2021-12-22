@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { orderBy } from 'lodash';
 //Design Resources
 import { CheckSquareFilled, CloseSquareFilled, WarningOutlined } from '@ant-design/icons';
 // Components
@@ -18,7 +19,6 @@ import { AVATARS } from '../../utils/constants';
 import clsx from 'clsx';
 import { Table } from 'antd';
 import { useLanguage } from '../../hooks';
-import { orderBy } from '../../utils/helpers';
 
 function PlayersInCell({ cellPlayers, players }) {
   return (

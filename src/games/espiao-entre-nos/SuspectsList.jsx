@@ -1,17 +1,16 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
+import { orderBy } from 'lodash';
 import clsx from 'clsx';
 // Design Resources
 import { Button, Tooltip } from 'antd';
 import { AimOutlined, ClearOutlined, IssuesCloseOutlined } from '@ant-design/icons';
 // Hooks
 import { useGlobalState } from '../../hooks';
-// Utils
-import { orderBy } from '../../utils/helpers';
 
 function SuspectsList({ players }) {
   const [cache, setCache] = useGlobalState('espiaoEntreNosCache');
-  const sortedPlayers = orderBy(Object.values(players), 'name');
+  const sortedPlayers = orderBy(Object.values(players), ['name'], ['asc']);
 
   const onCross = (item) => {
     setCache((s) => {

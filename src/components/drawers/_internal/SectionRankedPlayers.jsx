@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 import React, { useMemo } from 'react';
+import { orderBy } from 'lodash';
 // Design Resources
 import { Badge } from 'antd';
 // Hooks
 import { useLanguage } from '../../../hooks';
 // Utils
 import { AVATARS } from '../../../utils/constants';
-import { orderBy } from '../../../utils/helpers';
 // Components
 import { Avatar } from '../../avatars';
 

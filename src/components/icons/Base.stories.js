@@ -11,6 +11,10 @@ export default {
 
 const components = [
   {
+    component: <icons.Arrow />,
+    name: 'Arrow',
+  },
+  {
     component: <icons.Chat />,
     name: 'Chat',
   },

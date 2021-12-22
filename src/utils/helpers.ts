@@ -162,45 +162,6 @@ export const getPlayersFromIds = (
 };
 
 /**
- * Orders array by a value its item object
- * @param {object[]} list
- * @param {string|string[]} properties
- * @param {string|string[]} orders
- * @returns {object[]}
- */
-export const orderBy = (list: PlainObject[], properties: string[], orders: string[]): PlainObject[] => {
-  // function sortBy(_key, _cb) {
-  //   if (!_cb) _cb = () => 0;
-  //   return (a, b) => (a[_key] > b[_key] ? 1 : b[_key] > a[_key] ? -1 : _cb(a, b));
-  // }
-
-  // function sortByDesc(key, _cb) {
-  //   if (!_cb) _cb = () => 0;
-  //   return (b, a) => (a[key] > b[key] ? 1 : b[key] > a[key] ? -1 : _cb(b, a));
-  // }
-
-  // let cb = () => 0;
-  // const p = Array.isArray(properties) ? properties.reverse() : [properties];
-  // const o = Array.isArray(orders) ? orders.reverse() : [orders];
-
-  // for (const [i, key] of p.entries()) {
-  //   const order = o[i] ?? o[0] ?? 'asc';
-  //   if (order === 'asc') {
-  //     cb = sortBy(key, cb);
-  //   } else if (order === 'desc') {
-  //     cb = sortByDesc(key, cb);
-  //   } else {
-  //     throw new Error(`Unsupported order "${order}"`);
-  //   }
-  // }
-
-  // return [...list].sort(cb);
-  console.log(properties);
-  console.log(orders);
-  return list;
-};
-
-/**
  * Determines if it should output the singular or plural argument depending on given quantity
  * @param quantity
  * @param singular
