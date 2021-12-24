@@ -1,5 +1,6 @@
 import { useCallback } from 'react';
 import { message, notification } from 'antd';
+import { HttpsCallable } from 'firebase/functions';
 import { useGlobalState, useLoading } from './index';
 
 const debounce = (func: any, timeout = 1000): ((...args: any[]) => any) => {
@@ -13,14 +14,14 @@ const debounce = (func: any, timeout = 1000): ((...args: any[]) => any) => {
 };
 
 type useAPICallArgs = {
-  apiFunction: (...args: any) => Promise<any>;
+  apiFunction: HttpsCallable<unknown, unknown>;
   actionName: string;
-  onBeforeCall: (...args: any) => any;
-  onAfterCall: (...args: any) => any;
-  onError: (...args: any) => any;
-  onSuccess: (...args: any) => any;
-  successMessage: string;
-  errorMessage: string;
+  onBeforeCall?: (...args: any) => any;
+  onAfterCall?: (...args: any) => any;
+  onError?: (...args: any) => any;
+  onSuccess?: (...args: any) => any;
+  successMessage?: string;
+  errorMessage?: string;
 };
 
 /**
