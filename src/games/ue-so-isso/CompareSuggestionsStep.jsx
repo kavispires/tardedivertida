@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 import { Button, message, Space } from 'antd';
 import { CloudUploadOutlined } from '@ant-design/icons';
 // Hooks
-import { useGlobalState, useLoading } from '../../hooks';
+import { useGlobalState, useLanguage, useLoading } from '../../hooks';
 // Utils
 import { deepCopy } from '../../utils/helpers';
 // Components
 import { AdminOnlyButton } from '../../components/admin/index';
-import { Step, Title, Translate } from '../../components/shared';
+import { Step, Title, translate, Translate } from '../../components/shared';
 import { UeSoIssoCard as Card } from '../../components/cards';
 import { messageContent } from '../../components/modals/messageContent';
 import SuggestionCard from './SuggestionCard';
@@ -25,6 +25,7 @@ function CompareSuggestionsStep({
   secretWord,
   suggestions,
 }) {
+  const language = useLanguage();
   const [isLoading] = useLoading();
   const [myRecommendation, setMyRecommendation] = useState(deepCopy(suggestions));
   const [isAdmin] = useGlobalState('isAdmin');
@@ -50,8 +51,8 @@ function CompareSuggestionsStep({
     if (isUserTheController) {
       message.info(
         messageContent(
-          <Translate pt="Você controla!" en="You control!" string />,
-          <Translate pt="Siga as instruções na página" en="Follow the instructions on the page" string />,
+          translate('Você controla!', 'You control!', language),
+          translate('Siga as instruções na página', 'Follow the instructions on the page', language),
           controller.id,
           3
         )
@@ -132,7 +133,7 @@ function CompareSuggestionsStep({
             validSuggestions: suggestionsValues.filter((suggestion) => !suggestion.invalid),
           })
         }
-        label={<Translate pt="Confirmar dicas válidas como Admin" en="Confirm valid clues as Admin" string />}
+        label={translate('Confirmar dicas válidas como Admin', 'Confirm valid clues as Admin', language)}
       />
     </Step>
   );

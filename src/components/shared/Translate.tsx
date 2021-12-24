@@ -1,21 +1,29 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { ReactElement } from 'react';
 // Design Resources
 import { message } from 'antd';
 // Hooks
 import { useLanguage } from '../../hooks';
 
+type LanguageEntry = ReactElement | string;
+
 /**
  * Delegate between two strings depending on the active language
- * @param {*} pt
- * @param {*} en
- * @param {*} [custom] text that will override anything else
+ * @param pt
+ * @param en
+ * @param [custom] text that will override anything else
  * @returns a fragment
  */
-export function Translate({ pt, en, custom = null, string = false }) {
+export function Translate({
+  pt,
+  en,
+  custom,
+}: {
+  pt: LanguageEntry;
+  en: LanguageEntry;
+  custom?: LanguageEntry;
+}): ReactElement {
   const language = useLanguage();
-
-  if (string) return translate(pt, en, language, custom);
 
   if (!language) {
     const errorMessage = 'Could not reach the useLanguage hook';
@@ -47,13 +55,13 @@ Translate.propTypes = {
 
 /**
  * Delegate between two strings depending on the active language
- * @param {string} pt
- * @param {string} en
- * @param {string} language
- * @param {*} [custom] text that will override anything else
- * @returns {string}
+ * @param pt
+ * @param en
+ * @param language
+ * @param [custom] text that will override anything else
+ * @returns
  */
-export function translate(pt, en, language, custom = null) {
+export function translate(pt: string, en: string, language: Language, custom?: string): string {
   if (!language) {
     const errorMessage = 'Could not reach the language global state';
     console.error(errorMessage);

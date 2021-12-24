@@ -2,16 +2,19 @@ type PlainObject = {
   [key: string]: any;
 };
 
-type GameId = string;
-type GameName = string;
-type GameCode = string;
-type GameLanguage = string;
 type DateMilliseconds = number;
+type GameCode = string;
+type GameId = string;
+type GameLanguage = string;
+type GameName = string;
+type GameOrder = PlayerId[];
+type ImageCard = string;
+type Language = 'en' | 'pt';
+type PlayerAvatarId = string;
 type PlayerId = string;
 type PlayerName = string;
-type PlayerAvatarId = string;
 type Primitive = string | number | boolean | symbol | null;
-type ImageCard = string;
+type TurnOrder = PlayerId[];
 
 interface Player {
   id: PlayerId;
@@ -30,6 +33,3 @@ interface State {
   updatedAt?: DateMilliseconds;
   [key: string]: any;
 }
-
-type GameOrder = PlayerId[];
-type TurnOrder = PlayerId[];
