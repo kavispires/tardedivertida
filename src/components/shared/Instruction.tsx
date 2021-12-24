@@ -1,10 +1,20 @@
-import React, { memo } from 'react';
-import PropTypes from 'prop-types';
-// Design Resources
 import { Typography } from 'antd';
 import clsx from 'clsx';
 
-export const Instruction = memo(function ({ children, white, className, contained }) {
+type InstructionsProps = {
+  children: any;
+  white?: boolean;
+  className?: boolean;
+  contained?: boolean;
+  fullWidth?: boolean;
+};
+
+/**
+ * Typography container for instructions
+ * @param props
+ * @returns
+ */
+export const Instruction = ({ children, white, className, contained, fullWidth }: InstructionsProps) => {
   const baseClass = 'instruction';
 
   return (
@@ -13,6 +23,7 @@ export const Instruction = memo(function ({ children, white, className, containe
         baseClass,
         contained && `${baseClass}--contained`,
         white && `${baseClass}--white`,
+        fullWidth && `${baseClass}--full-width`,
         className
       )}
       data-testid="instruction"
@@ -20,10 +31,4 @@ export const Instruction = memo(function ({ children, white, className, containe
       {children}
     </Typography.Text>
   );
-});
-
-Instruction.propTypes = {
-  children: PropTypes.any.isRequired,
-  white: PropTypes.bool,
-  className: PropTypes.string,
 };
