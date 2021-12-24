@@ -126,7 +126,7 @@ function PhaseGuess({ state, players, info }) {
         {/* Step 3 */}
         <WaitingRoom
           players={players}
-          title={<Translate pt="Enviando..." en="Submitting..." string />}
+          title={<Translate pt="Enviando..." en="Submitting..." stringify />}
           instruction="..."
         />
       </StepSwitcher>

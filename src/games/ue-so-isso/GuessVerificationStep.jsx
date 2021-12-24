@@ -5,11 +5,20 @@ import clsx from 'clsx';
 import { Button, message, Space } from 'antd';
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 // Components
-import { Instruction, Step, Title, TitleHighlight, Translate, ViewIf } from '../../components/shared';
+import {
+  Instruction,
+  Step,
+  Title,
+  TitleHighlight,
+  translate,
+  Translate,
+  ViewIf,
+} from '../../components/shared';
 import { UeSoIssoCard as Card } from '../../components/cards';
 import { AvatarName } from '../../components/avatars';
 import { messageContent } from '../../components/modals/messageContent';
 import SuggestionEasel from './SuggestionEasel';
+import { useLanguage } from '../../hooks';
 
 function GuessVerificationStep({
   guess,
@@ -23,16 +32,14 @@ function GuessVerificationStep({
   onSubmitOutcome,
   validSuggestions,
 }) {
+  const language = useLanguage();
+
   useEffect(() => {
     if (isUserTheController) {
       message.info(
         messageContent(
-          <Translate pt="Você controla!" en="You control!" string />,
-          <Translate
-            pt="Selecione se o adivinhador acertou ou não"
-            en="Select if the guesser got it right or not"
-            string
-          />,
+          translate('Você controla!', 'You control!'),
+          translate('Selecione se o adivinhador acertou ou não', 'Select if the guesser got it right or not'),
           controller.id,
           3
         )

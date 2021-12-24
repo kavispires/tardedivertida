@@ -120,7 +120,7 @@ function PhaseCompare({ state, players, info }) {
         {/* Step 2 */}
         <WaitingRoom
           players={players}
-          title={<Translate pt="Enviando a confirmação de dicas" en="Sending confirmation" string />}
+          title={translate('Enviando a confirmação de dicas', 'Sending confirmation', language)}
           instruction="..."
         />
       </StepSwitcher>
