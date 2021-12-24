@@ -417,16 +417,10 @@ const feedEmulatorDB = async () => {
   await firebaseUtils.getPublicRef().doc('arteRuimDrawingsPt').set(sample);
   await firebaseUtils.getPublicRef().doc('arteRuimDrawingsEn').set(sample);
   await firebaseUtils.getPublicRef().doc('ratings').set(sample);
-  await firebaseUtils.getGlobalRef().doc(GLOBAL_USED_DOCUMENTS.ARTE_RUIM).set(sample);
 
-  // MENTE_COLETIVA
+  const usedEntries = Object.values(GLOBAL_USED_DOCUMENTS).map((usedEntryName) =>
+    firebaseUtils.getGlobalRef().doc(usedEntryName).set(sample)
+  );
 
-  await firebaseUtils.getGlobalRef().doc(GLOBAL_USED_DOCUMENTS.MENTE_COLETIVA).set(sample);
-
-  // ONDA_TELEPATICA
-  await firebaseUtils.getGlobalRef().doc(GLOBAL_USED_DOCUMENTS.ONDA_TELEPATICA).set(sample);
-
-  // TESTEMUNHA_OCULAR
-
-  await firebaseUtils.getGlobalRef().doc(GLOBAL_USED_DOCUMENTS.TESTEMUNHA_OCULAR).set(sample);
+  await Promise.all(usedEntries);
 };

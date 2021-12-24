@@ -1,8 +1,8 @@
 // Helpers
 import { GLOBAL_USED_DOCUMENTS } from '../../utils/constants';
+import * as utils from '../../utils/helpers';
 import * as globalUtils from '../global';
 import * as resourceUtils from '../resource';
-import { buildUsedCardsIdsDict } from './helpers';
 import { TestemunhaOcularEntry } from './types';
 
 /**
@@ -32,7 +32,7 @@ export const getQuestionsAndSuspects = async (language: string) => {
  */
 export const saveUsedQUestions = async (pastQuestions: TestemunhaOcularEntry[]) => {
   // Save usedTestemunhaOcularCards to global
-  const usedTestemunhaOcularCards = buildUsedCardsIdsDict(pastQuestions);
+  const usedTestemunhaOcularCards = utils.buildUsedCardsIdsDict(pastQuestions);
   await globalUtils.updateGlobalFirebaseDoc(
     GLOBAL_USED_DOCUMENTS.TESTEMUNHA_OCULAR,
     usedTestemunhaOcularCards

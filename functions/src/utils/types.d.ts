@@ -2,7 +2,7 @@ export type GameId = string;
 export type GameName = string;
 export type GameCode = string;
 export type DateMilliseconds = number;
-export type Language = string;
+export type Language = 'en' | 'pt';
 export type PlayerId = string;
 export type PlayerName = string;
 export type PlayerAvatarId = string;
@@ -15,6 +15,10 @@ export type TurnOrder = PlayerId[];
 
 export interface PlainObject {
   [key: string]: any;
+}
+
+export interface BooleanDictionary {
+  [key: string]: boolean;
 }
 
 export interface FirebaseContext {
@@ -212,6 +216,24 @@ export interface UsedWord {
   uniqueSuggestions?: string[] | [];
   commonSuggestions?: string[] | [];
   votes: 0;
+}
+
+interface NewScores {
+  [key: string]: {
+    playerId: PlayerId;
+    name: PlayerName;
+    previousScore: number;
+    gainedPoints: number[];
+    newScore: number;
+  };
+}
+
+interface RankingEntry {
+  playerId: PlayerId;
+  name: PlayerName;
+  previousScore: number;
+  gainedPoints: number[];
+  newScore: number;
 }
 
 // ESPIAO_ENTRE_NOS

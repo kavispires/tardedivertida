@@ -1,6 +1,6 @@
 // Interfaces
-import { AllWords, ClueEntry, Deck, GridCell, NewScores, RankingEntry } from './types';
-import { PlayerId, Players, Round } from '../../utils/types';
+import { AllWords, ClueEntry, Deck, GridCell } from './types';
+import { NewScores, PlayerId, Players, RankingEntry, Round } from '../../utils/types';
 // Constants
 import { WORDS_PER_PLAYER_COUNT, CRUZA_PALAVRAS_PHASES } from './constants';
 // Utils
@@ -200,12 +200,13 @@ export const getPlayerClues = (players: Players): ClueEntry[] => {
  * @returns
  */
 export const buildRanking = (players: Players, clues: ClueEntry[]) => {
-  // Format <player>: [<old score>, <addition points>, <new score>]
   const newScores: NewScores = {};
 
   // Build score object
   Object.values(players).forEach((player) => {
     newScores[player.id] = {
+      playerId: player.id,
+      name: player.name,
       previousScore: player.score,
       gainedPoints: [0, 0, 0], // from guesses, from others, lost points
       newScore: player.score,
@@ -222,7 +223,7 @@ export const buildRanking = (players: Players, clues: ClueEntry[]) => {
   const gotPassivePoints = {};
 
   // Collect points
-  Object.values(players).map((player) => {
+  Object.values(players).forEach((player) => {
     Object.entries(player.guesses).forEach(([guessPlayerId, coordinate]) => {
       if (guessPlayerId === player.id) {
         return;

@@ -7,7 +7,8 @@ import { ArteRuimDrawing } from './types';
 import * as globalUtils from '../global';
 import * as publicUtils from '../public';
 import * as resourceUtils from '../resource';
-import { buildPastDrawingsDict, buildUsedCardsIdsDict } from './helpers';
+import { buildPastDrawingsDict } from './helpers';
+import { buildUsedCardsIdsDict } from '../../utils/helpers';
 
 /**
  * Get expression cards resource based on the game's language
