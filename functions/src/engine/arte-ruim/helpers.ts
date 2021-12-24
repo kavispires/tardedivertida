@@ -421,18 +421,6 @@ export const getNewPastDrawings = (players: Players, gallery) => {
   });
 };
 
-/**
- * Creates a dictionary with used card ids
- * @param drawings
- * @returns
- */
-export const buildUsedCardsIdsDict = (drawings: ArteRuimDrawing[]) => {
-  return drawings.reduce((acc, drawing) => {
-    acc[drawing.id] = true;
-    return acc;
-  }, {});
-};
-
 export const buildPastDrawingsDict = (drawings, publicDrawings) => {
   const newDrawings = { ...publicDrawings };
 

@@ -1,5 +1,6 @@
 import { AVATAR_IDS, LETTERS } from './constants';
 import {
+  BooleanDictionary,
   GameCode,
   GameOrder,
   InitialState,
@@ -423,4 +424,16 @@ export const wait = async (duration = 3000) => {
   if (process.env.FUNCTIONS_EMULATOR) {
     await new Promise((resolve) => setTimeout(resolve, duration));
   }
+};
+
+/**
+ * Creates a dictionary with used card ids
+ * @param dataList
+ * @returns
+ */
+export const buildUsedCardsIdsDict = (dataList: PlainObject[]): BooleanDictionary => {
+  return dataList.reduce((acc, entry) => {
+    acc[entry.id] = true;
+    return acc;
+  }, {});
 };

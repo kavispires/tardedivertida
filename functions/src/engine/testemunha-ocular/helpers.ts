@@ -1,7 +1,7 @@
 import * as gameUtils from '../../utils/game-utils';
-import { PlainObject, PlayerId, Players } from '../../utils/types';
+import { PlayerId, Players } from '../../utils/types';
 import { MAX_ROUNDS, TESTEMUNHA_OCULAR_PHASES } from './constants';
-import { TestemunhaOcularCard, TestemunhaOcularCardsDatabase, TestemunhaOcularEntry } from './types';
+import { TestemunhaOcularCard, TestemunhaOcularCardsDatabase } from './types';
 
 /**
  * Determine the next phase based on the current one
@@ -15,15 +15,8 @@ export const determineNextPhase = (
   lose?: boolean,
   win?: boolean
 ): string => {
-  const {
-    RULES,
-    SETUP,
-    WITNESS_SELECTION,
-    QUESTION_SELECTION,
-    QUESTIONING,
-    TRIAL,
-    GAME_OVER,
-  } = TESTEMUNHA_OCULAR_PHASES;
+  const { RULES, SETUP, WITNESS_SELECTION, QUESTION_SELECTION, QUESTIONING, TRIAL, GAME_OVER } =
+    TESTEMUNHA_OCULAR_PHASES;
   const order = [RULES, SETUP, WITNESS_SELECTION, QUESTION_SELECTION, QUESTIONING, TRIAL];
 
   if (currentPhase === TRIAL && (lose || win)) {
@@ -105,11 +98,4 @@ export const calculateScore = (
   if (currentRound === 0) return 0;
 
   return currentScore + currentRound * eliminatedSuspectsCount;
-};
-
-export const buildUsedCardsIdsDict = (pastQuestions: TestemunhaOcularEntry[]): PlainObject => {
-  return pastQuestions.reduce((acc, question) => {
-    acc[question.id] = true;
-    return acc;
-  }, {});
 };

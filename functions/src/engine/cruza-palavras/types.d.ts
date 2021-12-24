@@ -1,4 +1,4 @@
-import { DefaultState, DefaultStore, InitialState, Payload, PlayerId, PlayerName } from '../../utils/types';
+import { DefaultState, DefaultStore, InitialState, Payload, PlayerId } from '../../utils/types';
 
 interface WordCard {
   id: string;
@@ -33,22 +33,6 @@ interface GridCell {
   yText?: string;
   writable?: boolean;
   playerId?: string | null;
-}
-
-interface NewScores {
-  [key: string]: {
-    previousScore: number;
-    gainedPoints: number[];
-    newScore: number;
-  };
-}
-
-interface RankingEntry {
-  playerId: PlayerId;
-  name: PlayerName;
-  previousScore: number;
-  gainedPoints: number[];
-  newScore: number;
 }
 
 interface CruzaPalavrasStore extends DefaultStore {
