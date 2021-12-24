@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 // Hooks
-import { useIsUserThe, useWhichPlayerIsThe, useAPICall, useUser, useLanguage } from '../../hooks';
+import { useWhichPlayerIsThe, useAPICall, useUser, useLanguage } from '../../hooks';
 // Resources & Utils
 import { CONTADORES_HISTORIAS_API } from '../../adapters';
 import { PHASES } from '../../utils/constants';
@@ -21,8 +21,7 @@ import { ImageCardPreloadHand } from '../../components/cards';
 function PhaseVoting({ state, players, info }) {
   const language = useLanguage();
   const user = useUser(players);
-  const storyteller = useWhichPlayerIsThe('storytellerId', state, players);
-  const isUserTheStoryTeller = useIsUserThe('storytellerId', state);
+  const [storyteller, isUserTheStoryTeller] = useWhichPlayerIsThe('storytellerId', state, players);
   const [step, setStep] = useState(0);
 
   const onSubmitVote = useAPICall({

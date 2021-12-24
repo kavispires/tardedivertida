@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 // Hooks
-import { useIsUserThe, useAPICall, useUser, useLoading, useLanguage } from '../../hooks';
+import { useAPICall, useUser, useLoading, useLanguage, useWhichPlayerIsThe } from '../../hooks';
 // Resources & Utils
 import { DETETIVES_IMAGINATIVOS_API } from '../../adapters';
 import { PHASES } from '../../utils/constants';
@@ -24,7 +24,7 @@ function PhaseVoting({ state, players, info }) {
   const language = useLanguage();
   const [isLoading] = useLoading();
   const user = useUser(players);
-  const isUserTheLeader = useIsUserThe('leaderId', state);
+  const [, isUserTheLeader] = useWhichPlayerIsThe('leaderId', state, players);
   const [step, setStep] = useState(0);
 
   const onSubmitVote = useAPICall({

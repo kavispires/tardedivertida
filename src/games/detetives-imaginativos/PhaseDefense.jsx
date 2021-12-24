@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 // Design Resources
 import { Button, message } from 'antd';
 // Hooks
-import { useIsUserThe, useWhichPlayerIsThe, useAPICall, useLoading, useLanguage } from '../../hooks';
+import { useWhichPlayerIsThe, useAPICall, useLoading, useLanguage } from '../../hooks';
 // Resources & Utils
 import { DETETIVES_IMAGINATIVOS_API } from '../../adapters';
 import { PHASES } from '../../utils/constants';
@@ -27,8 +27,7 @@ import TableFocus from './TableFocus';
 function PhaseDefense({ state, players, info }) {
   const language = useLanguage();
   const [isLoading] = useLoading();
-  const currentPlayer = useWhichPlayerIsThe('currentPlayerId', state, players);
-  const isUserTheCurrentPlayer = useIsUserThe('currentPlayerId', state);
+  const [currentPlayer, isUserTheCurrentPlayer] = useWhichPlayerIsThe('currentPlayerId', state, players);
   const [step, setStep] = useState(0);
 
   const onFinishDefense = useAPICall({

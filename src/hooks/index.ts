@@ -7,7 +7,6 @@ export * from './useGameState';
 export * from './useGlobalState';
 export * from './useIsGameStale';
 export * from './useIsUserReady';
-export * from './useIsUserThe';
 export * from './useLanguage';
 export * from './useLoading';
 export * from './useLocalStorage';

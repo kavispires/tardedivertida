@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 // Hooks
-import { useIsUserReady, useIsUserThe, useWhichPlayerIsThe, useAPICall, useLanguage } from '../../hooks';
+import { useIsUserReady, useWhichPlayerIsThe, useAPICall, useLanguage } from '../../hooks';
 // Resources & Utils
 import { UE_SO_ISSO_API } from '../../adapters';
 import { PHASES } from '../../utils/constants';
@@ -47,8 +47,7 @@ function RoundAnnouncementText({ guesser, gameOrder, groupScore, round }) {
 function PhaseWordSelection({ state, players, info }) {
   const isUserReady = useIsUserReady(players, state);
   const language = useLanguage();
-  const guesser = useWhichPlayerIsThe('guesserId', state, players);
-  const isUserTheGuesser = useIsUserThe('guesserId', state);
+  const [guesser, isUserTheGuesser] = useWhichPlayerIsThe('guesserId', state, players);
   const [step, setStep] = useState(0);
 
   const onSendSelectedWordsAPIRequest = useAPICall({

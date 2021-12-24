@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 // Hooks
-import { useIsUserThe, useWhichPlayerIsThe, useAPICall, useLoading, useLanguage } from '../../hooks';
+import { useWhichPlayerIsThe, useAPICall, useLoading, useLanguage } from '../../hooks';
 // Resources & Utils
 import { TESTEMUNHA_OCULAR_API } from '../../adapters';
 import { PHASES } from '../../utils/constants';
@@ -26,10 +26,8 @@ function PhaseQuestionSelection({ state, players, info }) {
   const [isLoading] = useLoading();
   const [step, setStep] = useState(0);
 
-  const witness = useWhichPlayerIsThe('witnessId', state, players);
-  const isUserTheWitness = useIsUserThe('witnessId', state);
-  const questioner = useWhichPlayerIsThe('questionerId', state, players);
-  const isUserTheQuestioner = useIsUserThe('questionerId', state);
+  const [witness, isUserTheWitness] = useWhichPlayerIsThe('witnessId', state, players);
+  const [questioner, isUserTheQuestioner] = useWhichPlayerIsThe('questionerId', state, players);
 
   const onSelectQuestionCall = useAPICall({
     apiFunction: TESTEMUNHA_OCULAR_API.submitAction,

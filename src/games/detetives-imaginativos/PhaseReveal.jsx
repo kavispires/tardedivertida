@@ -23,7 +23,7 @@ import VotingOptions from './VotingOptions';
 
 function PhaseReveal({ state, players, info }) {
   const language = useLanguage();
-  const impostor = useWhichPlayerIsThe('impostorId', state, players);
+  const [impostor] = useWhichPlayerIsThe('impostorId', state, players);
   const [step, setStep] = useState(0);
 
   return (

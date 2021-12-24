@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 // Hooks
-import { useAPICall, useLanguage, useWhichPlayerIsThe, useIsUserThe } from '../../hooks';
+import { useAPICall, useLanguage, useWhichPlayerIsThe } from '../../hooks';
 // Resources & Utils
 import { MENTE_COLETIVA_API } from '../../adapters';
 import { PHASES } from '../../utils/constants';
@@ -25,8 +25,7 @@ import QuestionSelection from './QuestionSelection';
 
 function PhaseQuestionSelection({ state, players, info }) {
   const language = useLanguage();
-  const activePlayer = useWhichPlayerIsThe('activePlayerId', state, players);
-  const isUserTheActivePlayer = useIsUserThe('activePlayerId', state);
+  const [activePlayer, isUserTheActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
   const [step, setStep] = useState(0);
 
   const onSubmitQuestionAPIRequest = useAPICall({

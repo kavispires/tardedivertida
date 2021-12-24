@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 // Hooks
-import { useIsUserReady, useWhichPlayerIsThe, useIsUserThe, useAPICall, useLanguage } from '../../hooks';
+import { useIsUserReady, useWhichPlayerIsThe, useAPICall, useLanguage } from '../../hooks';
 // Resources & Utils
 import { UE_SO_ISSO_API } from '../../adapters';
 import { PHASES } from '../../utils/constants';
@@ -25,8 +25,7 @@ function PhaseSuggest({ state, players, info }) {
   const isUserReady = useIsUserReady(players, state);
   const language = useLanguage();
   const [step, setStep] = useState(0);
-  const guesser = useWhichPlayerIsThe('guesserId', state, players);
-  const isUserTheGuesser = useIsUserThe('guesserId', state);
+  const [guesser, isUserTheGuesser] = useWhichPlayerIsThe('guesserId', state, players);
 
   const onSendSuggestionsAPIRequest = useAPICall({
     apiFunction: UE_SO_ISSO_API.submitAction,

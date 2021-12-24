@@ -1,14 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 // Hooks
-import {
-  useGlobalState,
-  useLoading,
-  useWhichPlayerIsThe,
-  useIsUserThe,
-  useAPICall,
-  useLanguage,
-} from '../../hooks';
+import { useGlobalState, useLoading, useWhichPlayerIsThe, useAPICall, useLanguage } from '../../hooks';
 // Resources & Utils
 import { UE_SO_ISSO_API } from '../../adapters';
 import { PHASES } from '../../utils/constants';
@@ -30,10 +23,8 @@ function PhaseGuess({ state, players, info }) {
   const language = useLanguage();
   const [isAdmin] = useGlobalState('isAdmin');
   const [step, setStep] = useState(0);
-  const guesser = useWhichPlayerIsThe('guesserId', state, players);
-  const isUserTheGuesser = useIsUserThe('guesserId', state);
-  const controller = useWhichPlayerIsThe('controllerId', state, players);
-  const isUserTheController = useIsUserThe('controllerId', state);
+  const [guesser, isUserTheGuesser] = useWhichPlayerIsThe('guesserId', state, players);
+  const [controller, isUserTheController] = useWhichPlayerIsThe('controllerId', state, players);
 
   const onSubmitOutcomeAPIRequest = useAPICall({
     apiFunction: UE_SO_ISSO_API.submitAction,
