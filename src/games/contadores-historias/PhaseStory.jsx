@@ -1,14 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 // Hooks
-import {
-  useIsUserReady,
-  useIsUserThe,
-  useWhichPlayerIsThe,
-  useAPICall,
-  useUser,
-  useLanguage,
-} from '../../hooks';
+import { useIsUserReady, useWhichPlayerIsThe, useAPICall, useUser, useLanguage } from '../../hooks';
 // Resources & Utils
 import { CONTADORES_HISTORIAS_API } from '../../adapters';
 import { PHASES } from '../../utils/constants';
@@ -34,9 +27,8 @@ function PhaseStory({ state, players, info }) {
   const language = useLanguage();
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
-  const storyteller = useWhichPlayerIsThe('storytellerId', state, players);
-  const nextStoryteller = useWhichPlayerIsThe('nextStorytellerId', state, players);
-  const isUserTheStoryTeller = useIsUserThe('storytellerId', state);
+  const [storyteller, isUserTheStoryTeller] = useWhichPlayerIsThe('storytellerId', state, players);
+  const [nextStoryteller] = useWhichPlayerIsThe('nextStorytellerId', state, players);
   const [step, setStep] = useState(0);
 
   const onSubmitStory = useAPICall({

@@ -24,7 +24,7 @@ function PhaseReveal({ players, state, info }) {
   const isUserReady = useIsUserReady(players, state);
   const language = useLanguage();
   const [step, setStep] = useState(0);
-  const psychic = useWhichPlayerIsThe('psychicId', state, players);
+  const [psychic] = useWhichPlayerIsThe('psychicId', state, players);
 
   return (
     <PhaseContainer

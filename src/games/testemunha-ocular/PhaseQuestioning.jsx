@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 // Design Resources
 import { Button } from 'antd';
 // Hooks
-import { useIsUserThe, useWhichPlayerIsThe, useAPICall, useLoading, useLanguage } from '../../hooks';
+import { useWhichPlayerIsThe, useAPICall, useLoading, useLanguage } from '../../hooks';
 // Resources & Utils
 import { TESTEMUNHA_OCULAR_API } from '../../adapters';
 import { PHASES } from '../../utils/constants';
@@ -28,9 +28,7 @@ function PhaseQuestioning({ state, players, info }) {
   const language = useLanguage();
   const [isLoading] = useLoading();
   const [step, setStep] = useState(0);
-
-  const witness = useWhichPlayerIsThe('witnessId', state, players);
-  const isUserTheWitness = useIsUserThe('witnessId', state);
+  const [witness, isUserTheWitness] = useWhichPlayerIsThe('witnessId', state, players);
 
   const onAnswerRequest = useAPICall({
     apiFunction: TESTEMUNHA_OCULAR_API.submitAction,

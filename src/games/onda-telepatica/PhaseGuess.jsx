@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 // State & Hooks
-import { useIsUserReady, useAPICall, useLanguage, useIsUserThe } from '../../hooks';
+import { useIsUserReady, useAPICall, useLanguage, useWhichPlayerIsThe } from '../../hooks';
 // Resources & Utils
 import { ONDA_TELEPATICA_API } from '../../adapters';
 import { PHASES } from '../../utils/constants';
@@ -24,7 +24,7 @@ function PhaseGuess({ players, state, info }) {
   const isUserReady = useIsUserReady(players, state);
   const language = useLanguage();
   const [step, setStep] = useState(0);
-  const isUserThePsychic = useIsUserThe('psychicId', state);
+  const [, isUserThePsychic] = useWhichPlayerIsThe('psychicId', state, players);
 
   const onSubmitGuessRequest = useAPICall({
     apiFunction: ONDA_TELEPATICA_API.submitAction,

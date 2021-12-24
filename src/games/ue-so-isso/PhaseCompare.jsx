@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 // Hooks
-import { useIsUserThe, useAPICall, useWhichPlayerIsThe, useLanguage } from '../../hooks';
+import { useAPICall, useWhichPlayerIsThe, useLanguage } from '../../hooks';
 // Resources & Utils
 import { UE_SO_ISSO_API } from '../../adapters';
 import { PHASES } from '../../utils/constants';
@@ -24,9 +24,8 @@ import { GuesserWaitingRoom } from './GuesserWaitingRoom';
 function PhaseCompare({ state, players, info }) {
   const language = useLanguage();
   const [step, setStep] = useState(0);
-  const isUserTheGuesser = useIsUserThe('guesserId', state);
-  const isUserTheController = useIsUserThe('controllerId', state);
-  const controller = useWhichPlayerIsThe('controllerId', state, players);
+  const [, isUserTheGuesser] = useWhichPlayerIsThe('guesserId', state, players);
+  const [controller, isUserTheController] = useWhichPlayerIsThe('controllerId', state, players);
 
   const onValidateSuggestionsAPIRequest = useAPICall({
     apiFunction: UE_SO_ISSO_API.submitAction,

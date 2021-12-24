@@ -1,14 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 // Hooks
-import {
-  useIsUserReady,
-  useIsUserThe,
-  useWhichPlayerIsThe,
-  useAPICall,
-  useUser,
-  useLanguage,
-} from '../../hooks';
+import { useIsUserReady, useWhichPlayerIsThe, useAPICall, useUser, useLanguage } from '../../hooks';
 // Resources & Utils
 import { DETETIVES_IMAGINATIVOS_API } from '../../adapters';
 import { PHASES } from '../../utils/constants';
@@ -34,8 +27,7 @@ function PhaseSecretClue({ state, players, info }) {
   const language = useLanguage();
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
-  const leader = useWhichPlayerIsThe('leaderId', state, players);
-  const isUserTheLeader = useIsUserThe('leaderId', state);
+  const [leader, isUserTheLeader] = useWhichPlayerIsThe('leaderId', state, players);
   const [step, setStep] = useState(0);
 
   const onSubmitSecretClue = useAPICall({

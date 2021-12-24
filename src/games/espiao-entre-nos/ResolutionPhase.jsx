@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 // Design Resources
 import { message } from 'antd';
 // Hooks
-import { useAPICall, useIsUserThe, useWhichPlayerIsThe } from '../../hooks';
+import { useAPICall, useWhichPlayerIsThe } from '../../hooks';
 // Resources & Utils
 import { ESPIAO_ENTRE_NOS_API } from '../../adapters';
 import { PHASES } from '../../utils/constants';
@@ -23,9 +23,8 @@ const determineView = (resolutionType, spyWin, isUserTheSpy, timeRemaining) => {
 };
 
 function ResolutionPhase({ state, players, info }) {
-  const isUserTheSpy = useIsUserThe('currentSpy', state);
-  const currentSpy = useWhichPlayerIsThe('currentSpy', state, players);
-  const target = useWhichPlayerIsThe('target', state, players);
+  const [currentSpy, isUserTheSpy] = useWhichPlayerIsThe('currentSpy', state, players);
+  const [target] = useWhichPlayerIsThe('target', state, players);
 
   const onAdminControl = useAPICall({
     apiFunction: ESPIAO_ENTRE_NOS_API.handleAdminAction,

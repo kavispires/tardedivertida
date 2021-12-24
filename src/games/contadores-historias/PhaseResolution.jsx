@@ -20,7 +20,7 @@ import StepRanking from './StepRanking';
 
 function PhaseResolution({ state, players, info }) {
   const language = useLanguage();
-  const storyteller = useWhichPlayerIsThe('storytellerId', state, players);
+  const [storyteller] = useWhichPlayerIsThe('storytellerId', state, players);
   const [step, setStep] = useState(0);
 
   return (
