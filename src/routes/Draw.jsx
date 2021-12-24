@@ -13,7 +13,7 @@ function Draw() {
       <Title>Draw</Title>
 
       <Space wrap className="gallery">
-        <DrawingCanvas lines={lines} setLines={setLines} />
+        <DrawingCanvas lines={lines} setLines={setLines} showControls strokeWidth="small" />
       </Space>
     </Layout.Content>
   );
