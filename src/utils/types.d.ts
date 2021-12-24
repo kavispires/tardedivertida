@@ -21,6 +21,7 @@ interface Player {
   name: PlayerName;
   avatarId: PlayerAvatarId;
   updatedAt: DateMilliseconds;
+  ready: boolean;
   [key: string]: any;
 }
 
@@ -32,4 +33,46 @@ interface State {
   phase?: string;
   updatedAt?: DateMilliseconds;
   [key: string]: any;
+}
+
+type GameSession = {
+  gameId: GameId;
+};
+
+interface GameInfo {
+  gameCode: GameCode;
+  gameName: GameName;
+  title: {
+    pt: string;
+    en: string;
+  };
+  summary: {
+    pt: string;
+    en: string;
+  };
+  rules: {
+    pt: string[];
+    en: string[];
+  };
+  recommended: string;
+  min: number;
+  max: number;
+  tags: string[];
+  available: {
+    pt: boolean;
+    en: boolean;
+  };
+}
+
+interface GameState {
+  phase: string;
+  round: {
+    current: number;
+    total: number;
+  };
+  [key: string]: any;
+}
+
+interface GamePlayers {
+  [key: string]: Player;
 }
