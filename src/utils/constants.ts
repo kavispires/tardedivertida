@@ -209,9 +209,8 @@ export const LATEST_GAME_IDS = 'latestGameIds';
 /**
  * Random names used during Dev
  */
-export const RANDOM_NAMES = 'Abe,Bob,Cam,Dan,Eva,Fin,Gus,Hal,Ian,Jan,Kim,Leo,Max,Nic,Ole,Pat,Quinn,Roy,Tim'.split(
-  ','
-);
+export const RANDOM_NAMES =
+  'Abe,Bob,Cam,Dan,Eva,Fin,Gus,Hal,Ian,Jan,Kim,Leo,Max,Nic,Ole,Pat,Quinn,Roy,Tim'.split(',');
 
 /**
  * Enum of available games
@@ -225,6 +224,7 @@ export const GAME_COLLECTION = {
   MENTE_COLETIVA: 'mente-coletiva',
   ONDA_TELEPATICA: 'onda-telepatica',
   POLEMICA_DA_VEZ: 'polemica-da-vez',
+  RETRATO_FALADO: 'retrato-falado',
   SONHOS_PESADELOS: 'sonhos-pesadelos',
   TESTEMUNHA_OCULAR: 'testemunha-ocular',
   UE_SO_ISSO: 'ue-so-isso',
@@ -313,6 +313,15 @@ export const PHASES = {
     TOPIC_SELECTION: 'TOPIC_SELECTION',
     REACT: 'REACT',
     RESOLUTION: 'RESOLUTION',
+    GAME_OVER: 'GAME_OVER',
+  },
+  RETRATO_FALADO: {
+    LOBBY: 'LOBBY',
+    RULES: 'RULES',
+    SETUP: 'SETUP',
+    COMPOSITE_SKETCH: 'COMPOSITE_SKETCH',
+    EVALUATION: 'EVALUATION',
+    REVEAL: 'REVEAL',
     GAME_OVER: 'GAME_OVER',
   },
   SONHOS_PESADELOS: {
