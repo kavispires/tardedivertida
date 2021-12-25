@@ -22,7 +22,7 @@ export function Translate({
   pt: LanguageEntry;
   en: LanguageEntry;
   custom?: LanguageEntry;
-}): ReactElement {
+}): any {
   const language = useLanguage();
 
   if (!language) {
