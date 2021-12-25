@@ -24,7 +24,7 @@ class LocalStorage {
    * Load local storage from the browser
    */
   load() {
-    const localStorage: PlainObject = JSON.parse(window.localStorage.getItem(this.appName) ?? '');
+    const localStorage: PlainObject = JSON.parse(window.localStorage.getItem(this.appName) ?? '{}');
 
     if (localStorage) {
       this.store = localStorage;
@@ -60,7 +60,7 @@ class LocalStorage {
     }
 
     const type = typeof value;
-    if (['string', 'object'].includes(type)) {
+    if (!['string', 'object'].includes(type)) {
       console.error('localStorage set value must be a string or a key-value object');
       return;
     }
