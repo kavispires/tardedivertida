@@ -76,3 +76,7 @@ interface GameState {
 interface GamePlayers {
   [key: string]: Player;
 }
+
+type CanvasLine = number[];
+type CanvasSetLine = React.Dispatch<React.SetStateAction<CanvasLine[]>>;
+type GenericFunction = (...args: any) => void;

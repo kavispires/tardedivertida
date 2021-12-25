@@ -41,7 +41,7 @@ export const getRandomItem = (list: any[]): any => {
  * @param seconds
  * @returns
  */
-export const inNSeconds = (seconds: number): DateMilliseconds => {
+export const inNSeconds = (seconds: number): any => {
   return Date.now() + seconds * 1000;
 };
 
