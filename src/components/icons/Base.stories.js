@@ -1,5 +1,3 @@
-import React from 'react';
-
 import * as icons from './index';
 import { Base } from './Base';
 
