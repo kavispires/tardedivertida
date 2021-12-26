@@ -1,5 +1,4 @@
-import React, { Fragment, useState } from 'react';
-import PropTypes from 'prop-types';
+import { Fragment, useState } from 'react';
 // Design Resources
 import { Affix, Button, Popover, Spin } from 'antd';
 import { FireFilled } from '@ant-design/icons';
@@ -10,7 +9,17 @@ import { useAPICall, useGlobalState, useLoading } from '../../hooks';
 import { ForceNextPhaseButton } from './ForceNextPhaseButton';
 import { ForceStateForm } from './ForceStateForm';
 
-export const AdminMenu = ({ state }) => {
+type AdminMenuProps = {
+  state: GameState;
+  players: GamePlayers;
+};
+
+type PlayerStatus = {
+  readyPlayers: PlayerName[];
+  pendingPlayers: PlayerName[];
+};
+
+export const AdminMenu = ({ state, players }: AdminMenuProps) => {
   const [isLoading] = useLoading();
   const [isAdmin] = useGlobalState('isAdmin');
   const [visible, setVisible] = useState(false);
@@ -33,8 +42,24 @@ export const AdminMenu = ({ state }) => {
 
   if (!isAdmin) return <span></span>;
 
-  const handleVisibility = (isVisible) => setVisible(isVisible);
+  const handleVisibility = (isVisible: boolean) => setVisible(isVisible);
   const showMenu = () => setVisible(true);
+
+  const { readyPlayers, pendingPlayers }: PlayerStatus = Object.values(players).reduce(
+    (acc: PlayerStatus, player) => {
+      if (player.ready) {
+        acc.readyPlayers.push(player.name);
+      } else {
+        acc.pendingPlayers.push(player.name);
+      }
+
+      return acc;
+    },
+    {
+      readyPlayers: [],
+      pendingPlayers: [],
+    }
+  );
 
   return (
     <Fragment>
@@ -44,6 +69,11 @@ export const AdminMenu = ({ state }) => {
           title="Admin Actions"
           content={
             <ul>
+              <li>Ready Players: {readyPlayers.join(', ')}</li>
+              <li>Pending Players: {pendingPlayers.join(', ')}</li>
+              <li>
+                <hr />
+              </li>
               <li>
                 <ForceNextPhaseButton isLoading={isLoading} onGoToNextPhase={onGoToNextPhase} />
               </li>
@@ -77,8 +107,4 @@ export const AdminMenu = ({ state }) => {
       </Affix>
     </Fragment>
   );
-};
-
-AdminMenu.propTypes = {
-  state: PropTypes.object,
 };

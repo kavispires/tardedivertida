@@ -25,6 +25,8 @@ interface Player {
   [key: string]: any;
 }
 
+type GamePlayer = Player | PlainObject;
+
 interface Players {
   [key: string]: Player;
 }
@@ -80,3 +82,9 @@ interface GamePlayers {
 type CanvasLine = number[];
 type CanvasSetLine = React.Dispatch<React.SetStateAction<CanvasLine[]>>;
 type GenericFunction = (...args: any) => void;
+
+type PhaseProps = {
+  players: GamePlayers;
+  state: GameState;
+  info: GameInfo;
+};

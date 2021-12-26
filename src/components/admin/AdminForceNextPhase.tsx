@@ -1,6 +1,4 @@
-import React from 'react';
 import clsx from 'clsx';
-import PropTypes from 'prop-types';
 // Design Resources
 import { Button, Space } from 'antd';
 import { FireFilled } from '@ant-design/icons';
@@ -9,7 +7,12 @@ import { useAPICall, useGlobalState, useLanguage, useLoading } from '../../hooks
 import { GAME_API } from '../../adapters';
 import { translate } from '../shared';
 
-export function AdminForceNextPhase({ buttonText, className = '' }) {
+type AdminForceNextPhaseProps = {
+  buttonText?: string;
+  className?: string;
+};
+
+export function AdminForceNextPhase({ buttonText, className = '' }: AdminForceNextPhaseProps) {
   const language = useLanguage();
   const [isLoading] = useLoading();
   const [isAdmin] = useGlobalState('isAdmin');
@@ -41,8 +44,3 @@ export function AdminForceNextPhase({ buttonText, className = '' }) {
     </Space>
   );
 }
-
-AdminForceNextPhase.propTypes = {
-  buttonText: PropTypes.string,
-  className: PropTypes.string,
-};
