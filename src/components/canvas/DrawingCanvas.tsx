@@ -7,14 +7,12 @@ import { DeleteOutlined, UndoOutlined } from '@ant-design/icons';
 // Components
 import { Translate } from '../shared';
 
-type Line = number[];
-type SetLineFunction = React.Dispatch<React.SetStateAction<Line[]>>;
 type DrawingCanvasProps = {
-  lines: Line[];
-  setLines: SetLineFunction;
+  lines: CanvasLine[];
+  setLines: CanvasSetLine;
   className?: string;
   showControls?: boolean;
-  strokeWidth: 'small' | 'medium' | 'large';
+  strokeWidth?: 'small' | 'medium' | 'large';
 };
 
 /**
@@ -29,7 +27,7 @@ export const DrawingCanvas = ({
   showControls = true,
   strokeWidth = 'medium',
 }: DrawingCanvasProps) => {
-  const [drawingHistory, setDrawingHistory] = useState<Line[]>([]);
+  const [drawingHistory, setDrawingHistory] = useState<CanvasLine[]>([]);
   const isDrawing = useRef(false);
 
   const handleMouseDown = (e: any) => {
@@ -77,7 +75,7 @@ export const DrawingCanvas = ({
   const onUndo = () => {
     const linesCopy = [...lines];
     const drawingHistoryCopy = [...drawingHistory];
-    const lastLine: Line | undefined = linesCopy.pop();
+    const lastLine: CanvasLine | undefined = linesCopy.pop();
     if (lastLine) {
       drawingHistoryCopy.push(lastLine);
       setLines(linesCopy);
@@ -104,7 +102,7 @@ export const DrawingCanvas = ({
     }?.[strokeWidth] ?? 5;
 
   return (
-    <Space direction="vertical">
+    <Space direction="vertical" align="center">
       <Stage
         width={500}
         height={500}
