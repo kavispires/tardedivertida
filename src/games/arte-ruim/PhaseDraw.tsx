@@ -6,7 +6,6 @@ import { useIsUserReady, useAPICall, useUser, useLanguage } from '../../hooks';
 // Resources & Utils
 import { ARTE_RUIM_API } from '../../adapters';
 import { PHASES } from '../../utils/constants';
-import arteRuimTimer from '../../sounds/arte-ruim-timer.mp3';
 // Components
 import {
   Instruction,
@@ -18,10 +17,12 @@ import {
   translate,
   Translate,
   WaitingRoom,
-} from '../../components/shared';
-import DrawPhaseDrawStep from './DrawPhaseDrawStep';
+} from '../../components';
+import StepDraw from './StepDraw';
+// Sound
+const arteRuimTimer = require('../../sounds/arte-ruim-timer.mp3');
 
-function PhaseDraw({ players, state, info }) {
+function PhaseDraw({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
   const language = useLanguage();
   const user = useUser(players);
@@ -50,7 +51,7 @@ function PhaseDraw({ players, state, info }) {
     ),
   });
 
-  const onSubmitDrawing = (payload) => {
+  const onSubmitDrawing = (payload: any) => {
     onSubmitDrawingAPIRequest({
       action: 'SUBMIT_DRAWING',
       ...payload,
@@ -63,7 +64,7 @@ function PhaseDraw({ players, state, info }) {
   };
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.ARTE_RUIM.DRAW} className="a-phase">
+    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.ARTE_RUIM.DRAW}>
       <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady, !isUserReady]}>
         {/* Step 0 */}
         <RoundAnnouncement round={state?.round} onPressButton={() => setStep(1)} buttonText=" " time={5}>
@@ -113,7 +114,7 @@ function PhaseDraw({ players, state, info }) {
         </PhaseAnnouncement>
 
         {/* Step 2 */}
-        <DrawPhaseDrawStep secretCard={secretCard} onSubmitDrawing={onSubmitDrawing} />
+        <StepDraw secretCard={secretCard} onSubmitDrawing={onSubmitDrawing} />
 
         {/* Step 3 */}
         <Step fullWidth>

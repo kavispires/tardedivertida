@@ -1,18 +1,21 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import { useState } from 'react';
 import { useTimer } from 'react-timer-hook';
 // Utils
+import { useLanguage } from '../../hooks';
 import { inNSeconds } from '../../utils/helpers';
 // Components
-import { Step, translate } from '../../components/shared';
-import { Card } from '../../components/cards';
+import { Card, Step, translate } from '../../components';
 import { DrawingCanvas } from '../../components/canvas';
-import { useLanguage } from '../../hooks';
 import { Panic } from '../../components/icons';
 
-function DrawPhaseDrawStep({ secretCard, onSubmitDrawing }) {
+type StepDrawProps = {
+  secretCard: ArteRuimCard | PlainObject;
+  onSubmitDrawing: GenericFunction;
+};
+
+function StepDraw({ secretCard, onSubmitDrawing }: StepDrawProps) {
   const language = useLanguage();
-  const [lines, setLines] = useState([]);
+  const [lines, setLines] = useState<any>([]);
   const [isTimesUp, setTimesUp] = useState(false);
 
   const { seconds } = useTimer({
@@ -48,13 +51,4 @@ function DrawPhaseDrawStep({ secretCard, onSubmitDrawing }) {
   );
 }
 
-DrawPhaseDrawStep.propTypes = {
-  onSubmitDrawing: PropTypes.func.isRequired,
-  secretCard: PropTypes.shape({
-    id: PropTypes.string,
-    level: PropTypes.number,
-    text: PropTypes.string,
-  }).isRequired,
-};
-
-export default DrawPhaseDrawStep;
+export default StepDraw;

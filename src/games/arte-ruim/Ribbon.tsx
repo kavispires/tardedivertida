@@ -1,10 +1,12 @@
-import PropTypes from 'prop-types';
-import React from 'react';
 // Utils
 import { getColorFromLetter } from '../../utils/helpers';
 import { SEPARATOR } from '../../utils/constants';
 
-function Ribbon({ cardEntryId }) {
+type RibbonProps = {
+  cardEntryId: string;
+};
+
+function Ribbon({ cardEntryId }: RibbonProps) {
   const [, , letter] = cardEntryId.split(SEPARATOR);
   return (
     <div className="a-ribbon">
@@ -18,9 +20,5 @@ function Ribbon({ cardEntryId }) {
     </div>
   );
 }
-
-Ribbon.propTypes = {
-  cardEntryId: PropTypes.string,
-};
 
 export default Ribbon;

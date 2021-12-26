@@ -1,18 +1,15 @@
-import React from 'react';
 // Hooks
 import { GAME_COLLECTION, PHASES } from '../../utils/constants';
 // Components
-import { Session, SetupScreen } from '../../components/shared';
+import { Session, SetupScreen, Rules, PageError } from '../../components';
 import Lobby from '../../components/lobby/Lobby';
-import { Rules } from '../../components/rules';
-import { PageError } from '../../components/errors/PageError';
 import PhaseDraw from './PhaseDraw';
 import PhaseEvaluation from './PhaseEvaluation';
 import PhaseGallery from './PhaseGallery';
 import PhaseGameOver from './PhaseGameOver';
 
-function SessionArteRuim({ gameId }) {
-  function getActiveComponent(phase) {
+function SessionArteRuim({ gameId }: GameSession) {
+  function getActiveComponent(phase: string) {
     switch (phase) {
       case PHASES.ARTE_RUIM.LOBBY:
         return Lobby;

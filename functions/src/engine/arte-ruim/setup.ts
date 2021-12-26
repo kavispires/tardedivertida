@@ -117,7 +117,7 @@ export const prepareGalleryPhase = async (
   // Build gallery
   const gallery = buildGallery(state.drawings, players);
 
-  const ranking = buildRanking(players, gallery);
+  const ranking = buildRanking(state.drawings, players);
 
   const pastDrawings = getNewPastDrawings(players, gallery);
 

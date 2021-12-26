@@ -6,8 +6,16 @@ import { CrownFilled, DeleteFilled } from '@ant-design/icons';
 // Utils
 import { getPlayersFromIds } from '../../utils/helpers';
 // Components
-import { Avatar } from '../../components/avatars';
-import { StarPoints, Translate } from '../../components/shared';
+import { Avatar, StarPoints, Translate } from '../../components';
+
+type GalleryWindowResultProps = {
+  playerArtist: any;
+  correctAnswerId: any;
+  correctAnswerText: any;
+  playersPoints: any;
+  playersSay: PlayersSay;
+  players: Players;
+};
 
 function GalleryWindowResult({
   playerArtist,
@@ -16,7 +24,7 @@ function GalleryWindowResult({
   playersPoints,
   playersSay,
   players,
-}) {
+}: GalleryWindowResultProps) {
   const correctGuesses = Object.values(playersSay?.[correctAnswerId] ?? {});
 
   return (

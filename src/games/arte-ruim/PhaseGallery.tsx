@@ -1,5 +1,4 @@
-import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import { useState } from 'react';
 // Design Resources
 import { Button } from 'antd';
 import { PictureOutlined } from '@ant-design/icons';
@@ -8,8 +7,8 @@ import { useLanguage } from '../../hooks';
 // Resources and Utils
 import { PHASES } from '../../utils/constants';
 // Components
-import { AdminForceNextPhase } from '../../components/admin/index';
 import {
+  AdminForceNextPhase,
   Instruction,
   PhaseContainer,
   RankingBoard,
@@ -20,7 +19,7 @@ import {
   translate,
   Translate,
   RoundsLeftInstruction,
-} from '../../components/shared';
+} from '../../components';
 import GalleryWindow from './GalleryWindow';
 
 const GalleryRules = () => (
@@ -48,7 +47,7 @@ const GalleryRules = () => (
   </Instruction>
 );
 
-function PhaseGallery({ players, state, info }) {
+function PhaseGallery({ players, state, info }: PhaseProps) {
   const language = useLanguage();
   const [activeIndex, setActiveIndex] = useState(0);
   const [step, setStep] = useState(0);
@@ -122,16 +121,5 @@ function PhaseGallery({ players, state, info }) {
     </PhaseContainer>
   );
 }
-
-PhaseGallery.propTypes = {
-  info: PropTypes.object,
-  players: PropTypes.object,
-  state: PropTypes.shape({
-    cards: PropTypes.array,
-    gallery: PropTypes.array,
-    phase: PropTypes.string,
-    ranking: PropTypes.array,
-  }),
-};
 
 export default PhaseGallery;

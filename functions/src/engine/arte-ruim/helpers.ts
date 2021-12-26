@@ -1,5 +1,5 @@
 // Types
-import { PlainObject, Players } from '../../utils/types';
+import { NewScores, PlainObject, Players } from '../../utils/types';
 import {
   ArteRuimCard,
   ArteRuimCardsDatabase,
@@ -363,42 +363,47 @@ export const buildGallery = (drawings: ArteRuimDrawing[], players: Players) =>
 
 /**
  * Build round ranking
- * @param players - it modifies players
- * @param gallery
+ * @param drawings
+ * @param players
  * @returns
  */
-export const buildRanking = (players: Players, gallery: PlainObject) => {
+export const buildRanking = (drawings: ArteRuimDrawing[], players: Players) => {
   // Format <player>: [<old score>, <addition points>, <new score>]
-  const newScores: PlainObject = {};
+  const newScores: NewScores = {};
 
   // Build score object
   Object.values(players).forEach((player) => {
-    newScores[player.id] = [player.score, 0, player.score];
+    newScores[player.id] = {
+      playerId: player.id,
+      name: player.name,
+      previousScore: player.score,
+      gainedPoints: [0, 0],
+      newScore: player.score,
+    };
   });
 
-  gallery.forEach((window) => {
-    Object.entries(window.playersPoints).forEach(([playerId, value]) => {
-      const points = Number(value ?? 0);
-      newScores[playerId][1] += points;
-      newScores[playerId][2] += points;
+  drawings.forEach((drawingEntry) => {
+    const correctAnswer = `${drawingEntry.id}`;
+    const artistId = drawingEntry.playerId;
 
-      players[playerId].score += points;
+    Object.entries(<PlainObject>players).forEach(([playerId, pObject]) => {
+      if (artistId === playerId) return;
+
+      if (artistId) {
+        // Calculate what players say
+        const currentVote = pObject.votes[correctAnswer];
+        // Calculate player points
+        if (currentVote === correctAnswer) {
+          newScores[playerId].gainedPoints[0] += 2;
+          newScores[playerId].newScore += 2;
+          newScores[artistId].gainedPoints[1] += 1;
+          newScores[artistId].newScore += 1;
+        }
+      }
     });
   });
 
-  const ranking = Object.entries(newScores)
-    .map(([playerId, scores]) => {
-      return {
-        playerId,
-        name: players[playerId].name,
-        previousScore: scores[0],
-        gainedPoints: scores[1],
-        newScore: scores[2],
-      };
-    })
-    .sort((a, b) => (a.newScore > b.newScore ? 1 : -1));
-
-  return ranking;
+  return Object.values(newScores).sort((a, b) => (a.newScore > b.newScore ? 1 : -1));
 };
 
 /**

@@ -1,16 +1,18 @@
-import React, { memo } from 'react';
 import clsx from 'clsx';
-import PropTypes from 'prop-types';
 // Design Resources
 import { Avatar, Tooltip } from 'antd';
 // Hooks
 import { useLanguage } from '../../hooks';
 // Components
-import { translate } from '../../components/shared';
+import { translate } from '../../components';
 
 const GRADES = ['F', 'D', 'D+', 'C-', 'C', 'C+', 'B-', 'B', 'B+', 'A-', 'A', 'A+'];
 
-const DrawingGrade = ({ value }) => {
+type DrawingGradeProps = {
+  value: number;
+};
+
+const DrawingGrade = ({ value }: DrawingGradeProps) => {
   const language = useLanguage();
   const grade = GRADES[Math.floor(value / 0.084)];
 
@@ -29,8 +31,4 @@ const DrawingGrade = ({ value }) => {
   );
 };
 
-DrawingGrade.propTypes = {
-  value: PropTypes.number.isRequired,
-};
-
-export default memo(DrawingGrade);
+export default DrawingGrade;
