@@ -387,8 +387,8 @@
       "en": "Monster Sketch"
     },
     "summary": {
-      "pt": "?",
-      "en": "?"
+      "pt": "Um monstro atacou a pobre testemunha. Será que ela vai conseguir descrever o criminoso",
+      "en": "A monster has attacked a poor witness. Will she be able to describe the perpetrator"
     },
     "rules": {
       "pt": ["TBD"],
@@ -399,8 +399,8 @@
     "max": 10,
     "tags": ["competitive", "drawing", "voting", "discussion", "timed"],
     "available": {
-      "pt": false,
-      "en": false
+      "pt": true,
+      "en": true
     }
   },
   "S": {

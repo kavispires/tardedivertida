@@ -6,6 +6,7 @@ import InstrumentosCodificados from './instrumentos-codificados/SessionInstrumen
 import MenteColetiva from './mente-coletiva/SessionMenteColetiva';
 import OndaTelepatica from './onda-telepatica/SessionOndaTelepatica';
 import PolemicaDaVez from './polemica-da-vez/SessionPolemicaDaVez';
+import RetratoFalado from './retrato-falado/SessionRetratoFalado';
 import SonhosPesadelos from './sonhos-pesadelos/SessionSonhosPesadelos';
 import TestemunhaOcular from './testemunha-ocular/SessionTestemunhaOcular';
 import UeSoIsso from './ue-so-isso/SessionUeSoIsso';
@@ -20,6 +21,7 @@ const games = {
   MenteColetiva,
   OndaTelepatica,
   PolemicaDaVez,
+  RetratoFalado,
   SonhosPesadelos,
   TestemunhaOcular,
   UeSoIsso,

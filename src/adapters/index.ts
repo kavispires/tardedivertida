@@ -48,6 +48,10 @@ export const POLEMICA_DA_VEZ_API = {
   submitAction: httpsCallable(functions, 'polemicaDaVezSubmitAction'),
 };
 
+export const RETRATO_FALADO_API = {
+  submitAction: httpsCallable(functions, 'retratoFaladoSubmitAction'),
+};
+
 export const SONHOS_PESADELOS_API = {
   submitAction: httpsCallable(functions, 'sonhosPesadelosSubmitAction'),
 };

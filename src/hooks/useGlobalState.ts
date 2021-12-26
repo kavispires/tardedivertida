@@ -23,6 +23,8 @@ const initialState = {
   canvasSize: 0,
   // Espiao-entre-nos
   espiaoEntreNosCache: {},
+  // Retrato-Falado
+  monsterOrientation: 'vertical',
 };
 
 const { useGlobalState, setGlobalState, getGlobalState } = createGlobalState(initialState);
