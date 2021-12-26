@@ -33,6 +33,9 @@ function Guess({ onSubmitOutcome, onSendGuess }) {
       >
         <Translate pt="Enviar" en="Submit" />
       </Button>
+      <span>
+        <Translate pt="OU" en="OR" />
+      </span>
       <Button
         icon={<MinusOutlined />}
         type="default"

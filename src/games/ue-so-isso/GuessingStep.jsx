@@ -36,6 +36,7 @@ function GuessingStep({
         <Instruction contained>
           <Translate pt="Escreva seu chute no campo abaixo" en="Write your guess below" />
         </Instruction>
+        <Guess onSubmitOutcome={onSubmitOutcome} onSendGuess={onSendGuess} />
 
         <Space className="u-word-guess-phase__suggestions">
           {validSuggestions.map((suggestionEntry, index) => {
@@ -43,8 +44,6 @@ function GuessingStep({
             return <SuggestionEasel key={id} id={id} value={suggestionEntry.suggestion} />;
           })}
         </Space>
-
-        <Guess onSubmitOutcome={onSubmitOutcome} onSendGuess={onSendGuess} />
       </ViewIf>
 
       <ViewIf isVisible={!isUserTheGuesser}>
