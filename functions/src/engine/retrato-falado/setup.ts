@@ -52,10 +52,11 @@ export const prepareCompositeSketchPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
+  const witnessId = state.gameOrder[state.round.current];
   const deck = [...store.deck];
   const currentMonster = deck.pop();
 
-  utils.unReadyPlayers(players);
+  utils.unReadyPlayers(players, witnessId);
   utils.removePropertiesFromPlayers(players, ['vote', 'drawing']);
   // Save
   return {
@@ -66,7 +67,7 @@ export const prepareCompositeSketchPhase = async (
       state: {
         phase: RETRATO_FALADO_PHASES.COMPOSITE_SKETCH,
         currentMonster,
-        witnessId: state.gameOrder[state.round],
+        witnessId,
         round: utils.increaseRound(state.round),
       },
       players,
@@ -80,7 +81,7 @@ export const prepareEvaluationPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Gather all drawings
-  const sketches = gatherSketches(players, state.currentMonster);
+  const sketches = gatherSketches(players, state.currentMonster, state.witnessId);
 
   utils.unReadyPlayers(players);
 
