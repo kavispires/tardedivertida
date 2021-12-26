@@ -1,5 +1,4 @@
 import clsx from 'clsx';
-
 // Design Resource
 import { Button } from 'antd';
 // Hooks
@@ -22,12 +21,12 @@ const kebabToPascal = (str: string): string => startCase(camelCase(str)).replace
 
 type PhaseAnnouncementProps = {
   buttonText?: string;
-  children: any;
+  children?: any;
   className?: string;
   currentRound?: number;
   duration?: number;
   onClose: GenericFunction;
-  title: string;
+  title: any;
   type?: string;
   unskippable?: boolean;
   withoutTimer?: boolean;

@@ -30,7 +30,8 @@ export function TimedButton({
 
   return (
     <Button {...props}>
-      {label}{' '}
+      {label}
+      {Boolean(label) && ' '}
       {showTimer && (
         <span className={clsx(timeClass, `${timeClass}--${type}`)}>{minutes * 60 + seconds}</span>
       )}

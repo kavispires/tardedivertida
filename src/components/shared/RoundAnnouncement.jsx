@@ -42,6 +42,7 @@ export function RoundAnnouncement({
   players,
   className,
   children,
+  unskippable = false,
 }) {
   const language = useLanguage();
 
@@ -79,6 +80,7 @@ export function RoundAnnouncement({
             onExpire={onPressButton}
             duration={time}
             showTimer
+            disabled={unskippable}
           />
         )}
       </div>
