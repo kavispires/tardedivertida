@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
-import { Button } from 'antd';
+import { Button, Avatar } from 'antd';
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 // Hooks
 import { useWhichPlayerIsThe, useAPICall, useLoading, useLanguage } from '../../hooks';
@@ -22,8 +22,7 @@ import {
 } from '../../components/shared';
 import { AvatarName } from '../../components/avatars';
 import { Suspects } from './Suspects';
-import Card from '../../components/cards/Card';
-import Avatar from 'antd/lib/avatar/avatar';
+import { Card } from '../../components';
 
 function PhaseTrial({ state, players, info }) {
   const language = useLanguage();

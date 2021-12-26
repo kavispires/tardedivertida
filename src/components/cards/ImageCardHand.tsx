@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
 // Design Resources
 import { Button } from 'antd';
@@ -10,17 +9,29 @@ import { useCardWidth, useLanguage } from '../../hooks';
 import { ImageBlurButton, ImageCard } from '.';
 import { translate } from '../shared';
 
+type ImageCardHandProps = {
+  hand: string[];
+  onSelectCard?: GenericFunction;
+  selectButtonLabel?: string;
+  className?: string;
+  selectButtonClass?: string;
+  sizeRatio?: number;
+  cardSize: number;
+  minCardSize?: number;
+  disabledSelectButton?: boolean;
+};
+
 export function ImageCardHand({
   hand = [],
-  onSelectCard,
+  onSelectCard = () => {},
   selectButtonLabel,
-  className,
-  selectButtonClass,
-  sizeRatio,
+  className = '',
+  selectButtonClass = '',
+  sizeRatio = 8,
   cardSize,
-  minCardSize,
-  disabledSelectButton,
-}) {
+  minCardSize = 120,
+  disabledSelectButton = false,
+}: ImageCardHandProps) {
   const language = useLanguage();
   // Prefers cardSize otherwise calculates width based on screen and ratio
   const cardWidth = useCardWidth(sizeRatio, 32, minCardSize);
@@ -50,25 +61,3 @@ export function ImageCardHand({
     </div>
   );
 }
-
-ImageCardHand.propTypes = {
-  cardSize: PropTypes.number,
-  className: PropTypes.string,
-  disabledSelectButton: PropTypes.bool,
-  disabledSelectButtons: PropTypes.arrayOf(PropTypes.bool),
-  hand: PropTypes.arrayOf(PropTypes.string),
-  onSelectCard: PropTypes.func,
-  selectButtonClass: PropTypes.string,
-  selectButtonLabel: PropTypes.string,
-  sizeRatio: PropTypes.number,
-};
-
-ImageCardHand.defaultProps = {
-  className: '',
-  disabledSelectButton: false,
-  hand: [],
-  onSelectCard: null,
-  selectButtonClass: '',
-  sizeRatio: 8,
-  minCardSize: 120,
-};

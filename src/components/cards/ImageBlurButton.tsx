@@ -1,12 +1,17 @@
-import PropTypes from 'prop-types';
-import { EyeInvisibleOutlined } from '@ant-design/icons';
-import { Button, Tooltip } from 'antd';
-import React from 'react';
-import { useBlurCards } from '../../hooks';
-import { Translate } from '../shared';
 import clsx from 'clsx';
+// Design Resources
+import { Button, Tooltip } from 'antd';
+import { EyeInvisibleOutlined } from '@ant-design/icons';
+// Utils
+import { useBlurCards } from '../../hooks';
+// Components
+import { Translate } from '../shared';
 
-export function ImageBlurButton({ cardId }) {
+type ImageBlurButtonProps = {
+  cardId: string;
+};
+
+export function ImageBlurButton({ cardId }: ImageBlurButtonProps) {
   const [, addBlurCard, blurEnabled] = useBlurCards();
 
   return blurEnabled ? (
@@ -28,11 +33,19 @@ export function ImageBlurButton({ cardId }) {
   );
 }
 
-ImageBlurButton.propTypes = {
-  cardId: PropTypes.string,
+type ImageBlurButtonContainerProps = {
+  cardId: string;
+  className?: string;
+  children: any;
+  [key: string]: any;
 };
 
-export function ImageBlurButtonContainer({ cardId, className, children, ...props }) {
+export function ImageBlurButtonContainer({
+  cardId,
+  className,
+  children,
+  ...props
+}: ImageBlurButtonContainerProps) {
   return (
     <div className={clsx('image-blur-button-container', className)} {...props}>
       {children}
@@ -40,6 +53,3 @@ export function ImageBlurButtonContainer({ cardId, className, children, ...props
     </div>
   );
 }
-ImageBlurButtonContainer.propTypes = {
-  children: PropTypes.any,
-};

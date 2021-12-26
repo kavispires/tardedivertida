@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { LETTERS } from '../../utils/constants';
 import { getEntryId } from '../../utils/helpers';
 // Components
-import { ArteRuimCard as Card } from '../../components/cards';
+import Card from './Card';
 
 function EvaluationAllCards({ cards, activeItem, onActivateItem, votes }) {
   const liButtonBaseClass = 'a-evaluation-all-cards__li-card-button';
