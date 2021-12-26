@@ -8,6 +8,7 @@
   flex-direction: column;
   min-height: 90vh;
   box-sizing: border-box;
+  position: relative;
 
   &--full-screen {
     width: calc(100vw - #{get-unit(8)});
