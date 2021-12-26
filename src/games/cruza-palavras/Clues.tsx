@@ -1,12 +1,18 @@
-import PropTypes from 'prop-types';
 // Components
 import ClueCard from './ClueCard';
 import { getClueKey } from './helpers';
 
-function Clues({ clues, onSelectClue, active, guesses }) {
+type CluesProps = {
+  clues: CruzaPalavrasClue[];
+  onSelectClue: GenericFunction;
+  active: any;
+  guesses: PlainObject;
+};
+
+function Clues({ clues, onSelectClue, active, guesses }: CluesProps) {
   return (
     <ul className="x-clue-cards">
-      {clues.map((clueObj, index) => {
+      {clues.map((clueObj, index: number) => {
         const isSelected = clueObj.coordinate === active?.coordinate;
         const isMatched = Boolean(guesses[getClueKey(clueObj)]);
         return (
@@ -26,16 +32,5 @@ function Clues({ clues, onSelectClue, active, guesses }) {
     </ul>
   );
 }
-
-Clues.propTypes = {
-  active: PropTypes.shape({
-    coordinate: PropTypes.any,
-  }),
-  clues: PropTypes.shape({
-    map: PropTypes.func,
-  }),
-  guesses: PropTypes.any,
-  onSelectClue: PropTypes.func,
-};
 
 export default Clues;

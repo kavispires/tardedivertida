@@ -1,11 +1,9 @@
-import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import { useState } from 'react';
 // State & Hooks
 import { useIsUserReady, useAPICall, useUser, useLanguage } from '../../hooks';
 // Resources & Utils
 import { CRUZA_PALAVRAS_API } from '../../adapters';
 import { PHASES } from '../../utils/constants';
-
 // Components
 import {
   Instruction,
@@ -17,10 +15,10 @@ import {
   translate,
   Translate,
   WaitingRoom,
-} from '../../components/shared';
+} from '../../components';
 import StepClueWriting from './StepClueWriting';
 
-function PhaseClueWriting({ players, state, info }) {
+function PhaseClueWriting({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
   const language = useLanguage();
   const user = useUser(players);
@@ -39,7 +37,7 @@ function PhaseClueWriting({ players, state, info }) {
     ),
   });
 
-  const onSubmitClue = (payload) => {
+  const onSubmitClue = (payload: string) => {
     onSubmitClueAPIRequest({
       action: 'SUBMIT_CLUE',
       clue: payload,
@@ -106,18 +104,5 @@ function PhaseClueWriting({ players, state, info }) {
     </PhaseContainer>
   );
 }
-
-PhaseClueWriting.propTypes = {
-  info: PropTypes.object,
-  players: PropTypes.object,
-  state: PropTypes.shape({
-    grid: PropTypes.any,
-    phase: PropTypes.string,
-    round: PropTypes.shape({
-      current: PropTypes.number,
-      total: PropTypes.number,
-    }),
-  }),
-};
 
 export default PhaseClueWriting;

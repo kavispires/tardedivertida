@@ -1,12 +1,17 @@
-import PropTypes from 'prop-types';
 // Hooks
 import { useLoading } from '../../hooks';
 // Components
-import { Instruction, Title, Translate } from '../../components/shared';
+import { Instruction, Title, Translate } from '../../components';
 import WordGrid from './WordGrid';
 import WritingCell from './WritingCell';
 
-function StepClueWriting({ grid, user, onSubmitClue }) {
+type StepClueWritingProps = {
+  grid: any;
+  user: GamePlayer;
+  onSubmitClue: GenericFunction;
+};
+
+function StepClueWriting({ grid, user, onSubmitClue }: StepClueWritingProps) {
   const [isLoading] = useLoading();
 
   return (
@@ -31,11 +36,5 @@ function StepClueWriting({ grid, user, onSubmitClue }) {
     </div>
   );
 }
-
-StepClueWriting.propTypes = {
-  grid: PropTypes.any,
-  onSubmitClue: PropTypes.func,
-  user: PropTypes.any,
-};
 
 export default StepClueWriting;

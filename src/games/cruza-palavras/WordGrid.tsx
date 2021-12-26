@@ -1,7 +1,13 @@
 import clsx from 'clsx';
-import PropTypes from 'prop-types';
 
-function WordGrid({ grid, user, CellComponent, cellComponentProps = {} }) {
+type WordGridProps = {
+  grid: CruzaPalavraGrid;
+  user: GamePlayer;
+  CellComponent: any;
+  cellComponentProps: any;
+};
+
+function WordGrid({ grid, user, CellComponent, cellComponentProps = {} }: WordGridProps) {
   const length = Math.sqrt(grid.length);
 
   const gridStyle = {
@@ -21,21 +27,5 @@ function WordGrid({ grid, user, CellComponent, cellComponentProps = {} }) {
     </div>
   );
 }
-
-WordGrid.propTypes = {
-  CellComponent: PropTypes.any,
-  cellComponentProps: PropTypes.object,
-  grid: PropTypes.arrayOf(
-    PropTypes.shape({
-      length: PropTypes.any,
-      map: PropTypes.func,
-    })
-  ),
-  user: PropTypes.shape({
-    id: PropTypes.string,
-    avatarId: PropTypes.string,
-    name: PropTypes.string,
-  }),
-};
 
 export default WordGrid;

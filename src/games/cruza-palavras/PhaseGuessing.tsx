@@ -1,5 +1,4 @@
-import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import { useState } from 'react';
 // State & Hooks
 import { useIsUserReady, useAPICall, useUser, useLanguage } from '../../hooks';
 // Resources & Utils
@@ -15,10 +14,10 @@ import {
   translate,
   Translate,
   WaitingRoom,
-} from '../../components/shared';
+} from '../../components';
 import StepGuessing from './StepGuessing';
 
-function PhaseGuessing({ players, state, info }) {
+function PhaseGuessing({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
   const language = useLanguage();
   const user = useUser(players);
@@ -37,7 +36,7 @@ function PhaseGuessing({ players, state, info }) {
     ),
   });
 
-  const onSubmitGuesses = (payload) => {
+  const onSubmitGuesses = (payload: any) => {
     onSubmitGuessesAPIRequest({
       action: 'SUBMIT_GUESSES',
       guesses: payload,
@@ -93,19 +92,5 @@ function PhaseGuessing({ players, state, info }) {
     </PhaseContainer>
   );
 }
-
-PhaseGuessing.propTypes = {
-  info: PropTypes.object,
-  players: PropTypes.object,
-  state: PropTypes.shape({
-    clues: PropTypes.any,
-    grid: PropTypes.any,
-    phase: PropTypes.string,
-    round: PropTypes.shape({
-      current: PropTypes.number,
-      total: PropTypes.number,
-    }),
-  }),
-};
 
 export default PhaseGuessing;

@@ -1,12 +1,30 @@
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
 // Design Resources
 import { CheckCircleFilled, PlusCircleFilled } from '@ant-design/icons';
 // Utils
 import { getColorFromIndex } from '../../utils/helpers';
-import { Avatar } from '../../components/avatars';
+// Components
+import { Avatar } from '../../components';
 
-function ClueCard({ isMatched, isSelected, clue, indexColor, color, player, strikeMatches = false }) {
+type ClueCardProps = {
+  isMatched?: boolean;
+  isSelected?: boolean;
+  clue?: string;
+  indexColor?: number;
+  color?: string;
+  player?: GamePlayer;
+  strikeMatches?: boolean;
+};
+
+function ClueCard({
+  isMatched,
+  isSelected,
+  clue,
+  indexColor = 0,
+  color,
+  player,
+  strikeMatches = false,
+}: ClueCardProps) {
   const colorClass = getColorFromIndex(indexColor);
   return (
     <div
@@ -23,7 +41,7 @@ function ClueCard({ isMatched, isSelected, clue, indexColor, color, player, stri
       >
         {isMatched ? (
           Boolean(player) ? (
-            <Avatar id={player.avatarId} />
+            <Avatar id={player?.avatarId} />
           ) : (
             <CheckCircleFilled />
           )
@@ -37,17 +55,5 @@ function ClueCard({ isMatched, isSelected, clue, indexColor, color, player, stri
     </div>
   );
 }
-
-ClueCard.propTypes = {
-  clue: PropTypes.string,
-  color: PropTypes.string,
-  indexColor: PropTypes.number,
-  isMatched: PropTypes.bool,
-  isSelected: PropTypes.string,
-  player: PropTypes.shape({
-    avatarId: PropTypes.string,
-  }),
-  strikeMatches: PropTypes.bool,
-};
 
 export default ClueCard;

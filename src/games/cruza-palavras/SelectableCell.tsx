@@ -1,13 +1,21 @@
-import PropTypes from 'prop-types';
 //Design Resources
 import { Button } from 'antd';
 import { PlusCircleFilled } from '@ant-design/icons';
+// Utils
+import { getClueFromKey } from './helpers';
 // Components
 import ClueCard from './ClueCard';
 import PreviousClue from './PreviousClue';
-import { getClueFromKey } from './helpers';
 
-function SelectableCell({ onSelectCell, cell, active, guesses, clues }) {
+type SelectableCellProps = {
+  onSelectCell: GenericFunction;
+  cell: CruzaPalavrasGridCell;
+  active: any;
+  guesses: any;
+  clues: CruzaPalavrasClue[];
+};
+
+function SelectableCell({ onSelectCell, cell, active, guesses, clues }: SelectableCellProps) {
   const isSelected = cell.index === active;
   const matchEntry = Object.entries(guesses).find((arr) => arr[1] === cell.index);
   const [clueKey, coordinate] = matchEntry ?? [];
@@ -30,17 +38,5 @@ function SelectableCell({ onSelectCell, cell, active, guesses, clues }) {
     </Button>
   );
 }
-
-SelectableCell.propTypes = {
-  active: PropTypes.any,
-  cell: PropTypes.shape({
-    index: PropTypes.any,
-  }),
-  clues: PropTypes.shape({
-    findIndex: PropTypes.func,
-  }),
-  guesses: PropTypes.any,
-  onSelectCell: PropTypes.func,
-};
 
 export default SelectableCell;

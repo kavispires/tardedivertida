@@ -5,12 +5,19 @@ import { Button, Input, Space } from 'antd';
 // Utils
 import { isDevEnv } from '../../utils/helpers';
 // Components
-import { Translate } from '../../components/shared';
+import { Translate } from '../../components';
 
-function WordForm({ x, y, onSubmit, disabled }) {
+type WordFormProps = {
+  x: string;
+  y: string;
+  onSubmit: GenericFunction;
+  disabled?: boolean;
+};
+
+function WordForm({ x, y, onSubmit, disabled }: WordFormProps) {
   const [clue, setClue] = useState('');
 
-  const onChange = (e) => {
+  const onChange = (e: any) => {
     setClue(e.target.value);
   };
 

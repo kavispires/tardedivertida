@@ -1,18 +1,15 @@
-import React from 'react';
 // Hooks
 import { GAME_COLLECTION, PHASES } from '../../utils/constants';
 // Components
-import { Session, SetupScreen } from '../../components/shared';
+import { Session, SetupScreen, Rules, PageError } from '../../components';
 import Lobby from '../../components/lobby/Lobby';
-import { Rules } from '../../components/rules';
-import { PageError } from '../../components/errors/PageError';
 import PhaseClueWriting from './PhaseClueWriting';
 import PhaseGuessing from './PhaseGuessing';
 import PhaseReveal from './PhaseReveal';
 import PhaseGameOver from './PhaseGameOver';
 
-function SessionCruzaPalavras({ gameId }) {
-  function getActiveComponent(phase) {
+function SessionCruzaPalavras({ gameId }: GameSession) {
+  function getActiveComponent(phase: string) {
     switch (phase) {
       case PHASES.CRUZA_PALAVRAS.LOBBY:
         return Lobby;

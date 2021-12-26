@@ -1,31 +1,45 @@
-import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import { orderBy } from 'lodash';
 //Design Resources
+import { Table } from 'antd';
 import { CheckSquareFilled, CloseSquareFilled, WarningOutlined } from '@ant-design/icons';
+// Utils
+import { AVATARS as avatars } from '../../utils/constants';
+import { useLanguage } from '../../hooks';
 // Components
 import {
+  AvatarName,
   ButtonContainer,
   Instruction,
   TimedButton,
   Title,
   translate,
   Translate,
-} from '../../components/shared';
+} from '../../components';
 import WordGrid from './WordGrid';
 import ClueCard from './ClueCard';
-import { AvatarName } from '../../components/avatars';
 import PreviousClue from './PreviousClue';
-import { AVATARS } from '../../utils/constants';
-import clsx from 'clsx';
-import { Table } from 'antd';
-import { useLanguage } from '../../hooks';
 
-function PlayersInCell({ cellPlayers, players }) {
+const AVATARS: PlainObject = avatars;
+
+type PlayersInCellProps = {
+  cellPlayers: {
+    playerId: PlayerId;
+    isCorrect?: boolean;
+    color?: string;
+  }[];
+  players: GamePlayers;
+};
+
+function PlayersInCell({ cellPlayers, players }: PlayersInCellProps) {
   return (
     <ul>
-      {cellPlayers.map(({ playerId, color, isCorrect }) =>
+      {cellPlayers.map(({ playerId, color, isCorrect }: any) =>
         isCorrect ? (
-          <li className={clsx(isCorrect && 'x-players-in-cell-player--correct')}>
+          <li
+            key={`players-in-cell-${playerId}`}
+            className={clsx(isCorrect && 'x-players-in-cell-player--correct')}
+          >
             <AvatarName player={players[playerId]} size="small" />
           </li>
         ) : (
@@ -36,7 +50,15 @@ function PlayersInCell({ cellPlayers, players }) {
   );
 }
 
-function ResultCell({ cell, clues, players, playerPerVotedCell, colorCodedCluesPerPlayer }) {
+type ResultCellProps = {
+  cell: any;
+  clues: CruzaPalavrasClue[];
+  players: GamePlayers;
+  playerPerVotedCell: any;
+  colorCodedCluesPerPlayer: any;
+};
+
+function ResultCell({ cell, clues, players, playerPerVotedCell, colorCodedCluesPerPlayer }: ResultCellProps) {
   const clue = clues.find((c) => c.coordinate === cell.index);
   const cellPlayers = playerPerVotedCell[cell.index] ?? [];
 
@@ -46,8 +68,8 @@ function ResultCell({ cell, clues, players, playerPerVotedCell, colorCodedCluesP
         <ClueCard
           isMatched
           clue={clue.clue}
-          color={colorCodedCluesPerPlayer[clue.playerId]}
-          player={players[clue.playerId]}
+          color={colorCodedCluesPerPlayer[clue.playerId!]}
+          player={players[clue.playerId!]}
         />
         {Boolean(cellPlayers.length) && <PlayersInCell cellPlayers={cellPlayers} players={players} />}
       </div>
@@ -60,14 +82,18 @@ function ResultCell({ cell, clues, players, playerPerVotedCell, colorCodedCluesP
 
   return (
     <span>
-      {Boolean(cellPlayers.length) && (
-        <PlayersInCell cellPlayers={cellPlayers} players={players} shouldColor />
-      )}
+      {Boolean(cellPlayers.length) && <PlayersInCell cellPlayers={cellPlayers} players={players} />}
     </span>
   );
 }
 
-function AnswersList({ players, grid, correctCoordinatesPerPlayer }) {
+type AnswersListProps = {
+  players: GamePlayers;
+  grid: CruzaPalavraGrid;
+  correctCoordinatesPerPlayer: any;
+};
+
+function AnswersList({ players, grid, correctCoordinatesPerPlayer }: AnswersListProps) {
   const language = useLanguage();
 
   const columns = [
@@ -75,7 +101,7 @@ function AnswersList({ players, grid, correctCoordinatesPerPlayer }) {
       title: translate('Jogador', 'Player', language),
       dataIndex: 'player',
       key: 'player',
-      render: (data) => <AvatarName player={data} addressUser />,
+      render: (data: any) => <AvatarName player={data} addressUser />,
     },
     {
       title: translate('Achou que', 'Thought that', language),
@@ -91,7 +117,7 @@ function AnswersList({ players, grid, correctCoordinatesPerPlayer }) {
       title: translate('Resultado', 'Result', language),
       dataIndex: 'result',
       key: 'result',
-      render: (value) =>
+      render: (value: any) =>
         value ? (
           <CheckSquareFilled style={{ color: 'green' }} />
         ) : (
@@ -101,54 +127,70 @@ function AnswersList({ players, grid, correctCoordinatesPerPlayer }) {
   ];
 
   const parsedData = Object.values(players).map((player) => {
-    return Object.entries(player?.guesses ?? {}).reduce((acc, [guessedPlayerId, guessedCoordinate]) => {
-      if (guessedPlayerId === player.id) return acc;
+    return Object.entries(player?.guesses ?? {}).reduce(
+      (acc: PlainObject, [guessedPlayerId, guessedCoordinate]: any) => {
+        if (guessedPlayerId === player.id) return acc;
 
-      const cell = grid[guessedCoordinate];
+        const cell = grid[guessedCoordinate];
 
-      acc.push({
-        playerName: player.name,
-        player,
-        clue: `${cell.yText} + ${cell.xText}`,
-        guess: players[guessedPlayerId].clue,
-        result: correctCoordinatesPerPlayer?.[guessedCoordinate] === guessedPlayerId,
-      });
+        acc.push({
+          playerName: player.name,
+          player,
+          clue: `${cell.yText} + ${cell.xText}`,
+          guess: players[guessedPlayerId].clue,
+          result: correctCoordinatesPerPlayer?.[guessedCoordinate] === guessedPlayerId,
+        });
 
-      return acc;
-    }, []);
+        return acc;
+      },
+      []
+    );
   });
 
-  const dataSource = orderBy(parsedData.flat(), ['guess', 'playerName'], ['asc', 'asc']);
+  const dataSource: any = orderBy(parsedData.flat(), ['guess', 'playerName'], ['asc', 'asc']);
 
-  return <Table size="small" columns={columns} dataSource={dataSource} pagination={false} sorter />;
+  return <Table size="small" columns={columns} dataSource={dataSource} pagination={false} />;
 }
 
-function BadCluesPlayersList({ badCluesPlayersList }) {
+type BadCluesPlayersListProps = {
+  badCluesPlayersList: GamePlayer[];
+};
+
+function BadCluesPlayersList({ badCluesPlayersList }: BadCluesPlayersListProps) {
   return (
-    <span className="a">
+    <span>
       {badCluesPlayersList.map((player, index) => (
-        <>
+        <span key={`bad-clue-${player.id}-${index}`}>
           <AvatarName player={player} key={`bad-clue-${player.id}`} size="small" />
           {badCluesPlayersList.length > 0 && index < badCluesPlayersList.length - 1 ? ', ' : ''}
-        </>
+        </span>
       ))}
     </span>
   );
 }
 
-function StepReveal({ grid, user, players, clues, nextStep, whoGotNoPoints }) {
-  const correctCoordinatesPerPlayer = clues.reduce((acc, clue) => {
+type StepRevealProps = {
+  players: GamePlayers;
+  grid: CruzaPalavraGrid;
+  user: GamePlayer;
+  clues: CruzaPalavrasClue[];
+  nextStep: GenericFunction;
+  whoGotNoPoints: PlayerId[];
+};
+
+function StepReveal({ grid, user, players, clues, nextStep, whoGotNoPoints }: StepRevealProps) {
+  const correctCoordinatesPerPlayer = clues.reduce((acc: PlainObject, clue) => {
     acc[clue.coordinate] = clue.playerId;
     return acc;
   }, {});
 
-  const colorCodedCluesPerPlayer = clues.reduce((acc, clue) => {
-    acc[clue.playerId] = AVATARS[players[clue.playerId].avatarId].color;
+  const colorCodedCluesPerPlayer = clues.reduce((acc: PlainObject, clue) => {
+    acc[clue.playerId!] = AVATARS[players[clue.playerId!].avatarId].color;
     return acc;
   }, {});
 
-  const playerPerVotedCell = Object.values(players).reduce((acc, player) => {
-    Object.entries(player.guesses ?? {}).forEach(([playerId, coordinate]) => {
+  const playerPerVotedCell = Object.values(players).reduce((acc: PlainObject, player) => {
+    Object.entries(player.guesses ?? {}).forEach(([playerId, coordinate]: any) => {
       if (playerId !== player.id) {
         if (acc[coordinate] === undefined) {
           acc[coordinate] = [];
@@ -214,15 +256,5 @@ function StepReveal({ grid, user, players, clues, nextStep, whoGotNoPoints }) {
     </div>
   );
 }
-
-StepReveal.propTypes = {
-  clues: PropTypes.shape({
-    find: PropTypes.func,
-    length: PropTypes.any,
-  }),
-  grid: PropTypes.any,
-  onSubmitGuesses: PropTypes.func,
-  user: PropTypes.any,
-};
 
 export default StepReveal;

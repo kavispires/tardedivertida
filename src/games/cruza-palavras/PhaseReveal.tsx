@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { useState } from 'react';
 // State & Hooks
 import { useIsUserReady, useUser, useLanguage } from '../../hooks';
@@ -6,6 +5,7 @@ import { useIsUserReady, useUser, useLanguage } from '../../hooks';
 import { PHASES } from '../../utils/constants';
 // Components
 import {
+  AdminForceNextPhase,
   Instruction,
   PhaseAnnouncement,
   PhaseContainer,
@@ -15,11 +15,10 @@ import {
   Title,
   translate,
   Translate,
-} from '../../components/shared';
-import { AdminForceNextPhase } from '../../components/admin';
+} from '../../components';
 import StepReveal from './StepReveal';
 
-function PhaseReveal({ players, state, info }) {
+function PhaseReveal({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
   const language = useLanguage();
   const user = useUser(players);
@@ -90,21 +89,5 @@ function PhaseReveal({ players, state, info }) {
     </PhaseContainer>
   );
 }
-
-PhaseReveal.propTypes = {
-  info: PropTypes.object,
-  players: PropTypes.object,
-  state: PropTypes.shape({
-    clues: PropTypes.any,
-    grid: PropTypes.any,
-    phase: PropTypes.string,
-    ranking: PropTypes.any,
-    round: PropTypes.shape({
-      current: PropTypes.number,
-      total: PropTypes.number,
-    }),
-    whoGotNoPoints: PropTypes.array,
-  }),
-};
 
 export default PhaseReveal;
