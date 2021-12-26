@@ -1,5 +1,3 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
 // Design Resources
 import { Button, Tag } from 'antd';
@@ -12,7 +10,23 @@ import { TimedButton } from './index';
 import { useLanguage } from '../../hooks';
 import { translate, Translate } from './Translate';
 
-function Team({ team, players, className }) {
+type Teams = {
+  A: TeamObj;
+  B: TeamObj;
+};
+type TeamObj = {
+  name: string;
+  score: number;
+  members: string[];
+};
+
+type TeamProps = {
+  players: GamePlayers;
+  className?: string;
+  team: TeamObj;
+};
+
+function Team({ team, players, className }: TeamProps) {
   return (
     <div className={className}>
       <h1>
@@ -33,23 +47,35 @@ function Team({ team, players, className }) {
   );
 }
 
+type RoundAnnouncementProps = {
+  round: GameRound;
+  onPressButton?: GenericFunction;
+  buttonText: string;
+  time: number;
+  teams?: Teams;
+  players?: Players;
+  className?: string;
+  children?: any;
+  unskippable?: boolean;
+};
+
 export function RoundAnnouncement({
   round,
   onPressButton,
   buttonText,
-  time,
+  time = 0,
   teams,
   players,
   className,
   children,
   unskippable = false,
-}) {
+}: RoundAnnouncementProps) {
   const language = useLanguage();
 
   return (
     <div className={clsx('round-announcement', className)}>
-      {Boolean(teams?.A) && (
-        <Team className="round-announcement__team-left" team={teams.A} players={players} />
+      {Boolean(teams?.A && players) && (
+        <Team className="round-announcement__team-left" team={teams!.A} players={players!} />
       )}
 
       <div className="round-announcement__main">
@@ -85,26 +111,9 @@ export function RoundAnnouncement({
         )}
       </div>
 
-      {Boolean(teams?.B) && (
-        <Team className="round-announcement__team-right" team={teams.B} players={players} />
+      {Boolean(teams?.B && players) && (
+        <Team className="round-announcement__team-right" team={teams!.B} players={players!} />
       )}
     </div>
   );
 }
-
-RoundAnnouncement.propTypes = {
-  round: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.shape({ current: PropTypes.number, total: PropTypes.number }),
-  ]),
-  onPressButton: PropTypes.func,
-  buttonText: PropTypes.string,
-  time: PropTypes.number,
-  players: PropTypes.object,
-  teams: PropTypes.object,
-  className: PropTypes.string,
-};
-
-RoundAnnouncement.defaultProps = {
-  time: 0,
-};
