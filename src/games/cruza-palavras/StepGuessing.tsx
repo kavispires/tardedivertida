@@ -1,5 +1,4 @@
 import { useState, useCallback, useEffect } from 'react';
-import PropTypes from 'prop-types';
 //Design Resources
 import { Button } from 'antd';
 // Utils
@@ -11,7 +10,14 @@ import WordGrid from './WordGrid';
 import SelectableCell from './SelectableCell';
 import Clues from './Clues';
 
-function StepGuessing({ grid, user, clues, onSubmitGuesses }) {
+type StepGuessingProps = {
+  grid: CruzaPalavraGrid;
+  user: GamePlayer;
+  clues: CruzaPalavrasClue[];
+  onSubmitGuesses: GenericFunction;
+};
+
+function StepGuessing({ grid, user, clues, onSubmitGuesses }: StepGuessingProps) {
   const [active, setActive] = useState(null);
   const [guesses, setGuesses] = useState({});
 
@@ -36,14 +42,14 @@ function StepGuessing({ grid, user, clues, onSubmitGuesses }) {
         setActive(cellCoordinate);
       } else {
         setGuesses((state) => {
-          const newState = Object.entries(state).reduce((acc, [key, value]) => {
+          const newState = Object.entries(state).reduce((acc: PlainObject, [key, value]) => {
             if (key && value && value !== cellCoordinate) {
               acc[key] = value;
             }
             return acc;
           }, {});
 
-          newState[getClueKey(active)] = cellCoordinate;
+          newState[getClueKey(active!)] = cellCoordinate;
 
           setActive(null);
           return newState;
@@ -54,9 +60,8 @@ function StepGuessing({ grid, user, clues, onSubmitGuesses }) {
   );
 
   const prepareSubmitGuesses = useCallback(() => {
-    const result = Object.entries(guesses).reduce((acc, [clueKey, value]) => {
+    const result = Object.entries(guesses).reduce((acc: PlainObject, [clueKey, value]) => {
       const [, playerId] = getClueFromKey(clueKey);
-      // const playerId = clues.find((clue) => clue.clue === clueKey).playerId;
       acc[playerId] = value;
       return acc;
     }, {});
@@ -69,14 +74,14 @@ function StepGuessing({ grid, user, clues, onSubmitGuesses }) {
     const playersOwnClue = clues.find((clue) => clue.playerId === user.id);
 
     setGuesses({
-      [getClueKey(playersOwnClue)]: playersOwnClue.coordinate,
+      [getClueKey(playersOwnClue)]: playersOwnClue?.coordinate,
     });
 
     if (isDevEnv) {
       const availableCells = shuffle(grid.filter((cell) => cell.available && cell.playerId !== user.id));
 
       setGuesses(
-        clues.reduce((acc, clueObj, index) => {
+        clues.reduce((acc: PlainObject, clueObj, index) => {
           if (clueObj.playerId === user.id) {
             acc[getClueKey(clueObj)] = clueObj.coordinate;
           } else {
@@ -120,15 +125,5 @@ function StepGuessing({ grid, user, clues, onSubmitGuesses }) {
     </div>
   );
 }
-
-StepGuessing.propTypes = {
-  clues: PropTypes.shape({
-    find: PropTypes.func,
-    length: PropTypes.any,
-  }),
-  grid: PropTypes.any,
-  onSubmitGuesses: PropTypes.func,
-  user: PropTypes.any,
-};
 
 export default StepGuessing;
