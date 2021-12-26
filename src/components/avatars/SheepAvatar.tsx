@@ -1,10 +1,22 @@
-import React, { memo } from 'react';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
 // Images
 import sheep from '../../images/sheep.svg';
 
-export const SheepAvatar = memo(function ({ id = '25', animate, className = '', width = 100, ...props }) {
+type SheepAvatarProps = {
+  id?: string;
+  animate?: boolean;
+  className?: string;
+  width?: number;
+  [key: string]: any;
+};
+
+export const SheepAvatar = ({
+  id = '25',
+  animate = false,
+  className = '',
+  width = 100,
+  ...props
+}: SheepAvatarProps) => {
   const baseClass = 'sheep-avatar';
   return (
     <svg
@@ -16,11 +28,4 @@ export const SheepAvatar = memo(function ({ id = '25', animate, className = '', 
       <use href={sheep + `#sheep-avatar-${id}`}></use>
     </svg>
   );
-});
-
-SheepAvatar.propTypes = {
-  id: PropTypes.string,
-  animate: PropTypes.bool,
-  width: PropTypes.number,
-  className: PropTypes.string,
 };

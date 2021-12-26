@@ -1,12 +1,17 @@
-import React, { memo } from 'react';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
 // Components
 import { Avatar } from './Avatar';
 // Utils
 import { Translate } from '../shared';
 
-export const AvatarEntry = memo(function ({ id, name, animate, className }) {
+type AvatarEntryProps = {
+  id?: string;
+  name?: string;
+  animate?: boolean;
+  className?: string;
+};
+
+export const AvatarEntry = ({ id, name, animate = false, className = '' }: AvatarEntryProps) => {
   return (
     <div className={clsx('avatar-entry', animate && 'avatar-entry--floating', className)}>
       <Avatar id={id} className="avatar-entry__avatar" size="large" />
@@ -15,17 +20,4 @@ export const AvatarEntry = memo(function ({ id, name, animate, className }) {
       </div>
     </div>
   );
-});
-
-Avatar.propTypes = {
-  animate: PropTypes.bool,
-  className: PropTypes.string,
-  id: PropTypes.string,
-  name: PropTypes.string,
-};
-
-Avatar.defaultProps = {
-  animate: false,
-  className: '',
-  id: '25',
 };
