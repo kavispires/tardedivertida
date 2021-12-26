@@ -13,7 +13,7 @@ import * as resourceUtils from '../resource';
  */
 export const getMonsterCards = async (): Promise<RetratoFaladoAdditionalData> => {
   // Get images info
-  const allMonsters = await resourceUtils.fetchTDIData('dm/cards');
+  const allMonsters = await resourceUtils.fetchTDIData('md/cards');
   // Get used deck
   const usedCards = await globalUtils.getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.RETRATO_FALADO, {});
 
