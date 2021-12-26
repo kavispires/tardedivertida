@@ -1,22 +1,31 @@
-import React, { memo } from 'react';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
 // Resources
-import { AVATARS } from '../../utils/constants';
+import { AVATARS as avatars } from '../../utils/constants';
 // Hooks
 import { useGlobalState, useLanguage } from '../../hooks';
 // Components
 import { Avatar } from './Avatar';
 import { translate } from '../shared';
 
-export const AvatarName = memo(function ({
+type AvatarNameProps = {
+  player: GamePlayer;
+  size?: 'small' | 'default' | 'large';
+  className?: string;
+  withDescription?: boolean;
+  uppercase?: boolean;
+  addressUser?: boolean;
+};
+
+const AVATARS: PlainObject = avatars;
+
+export const AvatarName = ({
   player,
-  size,
-  className,
-  withDescription,
-  uppercase,
-  addressUser,
-}) {
+  size = 'default',
+  className = '',
+  withDescription = false,
+  uppercase = false,
+  addressUser = false,
+}: AvatarNameProps) => {
   const [userId] = useGlobalState('userId');
   const language = useLanguage();
 
@@ -36,25 +45,4 @@ export const AvatarName = memo(function ({
       )}
     </span>
   );
-});
-
-AvatarName.propTypes = {
-  addressUser: PropTypes.bool,
-  className: PropTypes.string,
-  player: PropTypes.shape({
-    avatarId: PropTypes.string,
-    id: PropTypes.any,
-    name: PropTypes.string,
-  }).isRequired,
-  size: PropTypes.oneOf(['small', 'default', 'large']),
-  uppercase: PropTypes.bool,
-  withDescription: PropTypes.bool,
-};
-
-AvatarName.defaultProps = {
-  addressUser: false,
-  className: '',
-  size: 'default',
-  uppercase: false,
-  withDescription: false,
 };
