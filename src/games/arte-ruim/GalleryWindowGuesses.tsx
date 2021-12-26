@@ -1,15 +1,18 @@
-import React, { memo } from 'react';
-import PropTypes from 'prop-types';
 // Design Resources
 import { Avatar as AntAvatar } from 'antd';
 import { MessageFilled } from '@ant-design/icons';
 // Utils
 import { getPlayersFromIds } from '../../utils/helpers';
 // Components
-import { Avatar } from '../../components/avatars';
-import { Translate } from '../../components/shared';
+import { Avatar, Translate } from '../../components';
 
-function GalleryWindowGuesses({ playersSay, players, cards }) {
+type GalleryWindowGuessesProps = {
+  playersSay: PlayersSay;
+  players: GamePlayers;
+  cards: ArteRuimCard[];
+};
+
+function GalleryWindowGuesses({ playersSay, players, cards }: GalleryWindowGuessesProps) {
   return (
     <div className="a-gallery-window__guesses">
       <div className="a-gallery-window__label">
@@ -20,7 +23,7 @@ function GalleryWindowGuesses({ playersSay, players, cards }) {
         return (
           <div key={`guess-${cardId}-${index}`} className="a-gallery-window__guess">
             <div className="a-gallery-window__speech-bubble">
-              <MessageFilled className="a-gallery-window__speech-bubble-icon" /> {card.text}
+              <MessageFilled className="a-gallery-window__speech-bubble-icon" /> {card?.text}
             </div>
             <div className="a-gallery-window__players">
               <AntAvatar.Group>
@@ -42,15 +45,4 @@ function GalleryWindowGuesses({ playersSay, players, cards }) {
   );
 }
 
-GalleryWindowGuesses.propTypes = {
-  cards: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string,
-      text: PropTypes.string,
-    })
-  ),
-  players: PropTypes.object,
-  playersSay: PropTypes.object,
-};
-
-export default memo(GalleryWindowGuesses);
+export default GalleryWindowGuesses;

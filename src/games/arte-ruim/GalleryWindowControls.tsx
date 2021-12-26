@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
+import { useEffect } from 'react';
 import { useTimer } from 'react-timer-hook';
 // Design Resources
 import { Button, Space } from 'antd';
@@ -15,7 +14,19 @@ import { inNSeconds } from '../../utils/helpers';
 // Components
 import { Translate } from '../../components/shared';
 
-function GalleryWindowControls({ galleryLength, activeIndex, setActiveIndex, setStep }) {
+type GalleryWindowControlsProps = {
+  galleryLength: number;
+  activeIndex: number;
+  setActiveIndex: GenericFunction;
+  setStep: GenericFunction;
+};
+
+function GalleryWindowControls({
+  galleryLength,
+  activeIndex,
+  setActiveIndex,
+  setStep,
+}: GalleryWindowControlsProps) {
   const { minutes, seconds, isRunning, pause, resume } = useTimer({
     expiryTimestamp: inNSeconds(10 * galleryLength),
     autoStart: true,
@@ -25,16 +36,16 @@ function GalleryWindowControls({ galleryLength, activeIndex, setActiveIndex, set
   // Automatically go to the next window every 10 seconds
   useEffect(() => {
     if (seconds < 10 * galleryLength && seconds > 0 && seconds % 10 === 0) {
-      setActiveIndex((s) => Math.min(s + 1, galleryLength - 1));
+      setActiveIndex((s: any) => Math.min(s + 1, galleryLength - 1));
     }
   }, [seconds, setActiveIndex, galleryLength]);
 
   const previousStep = () => {
-    setActiveIndex((s) => Math.max(s - 1, 0));
+    setActiveIndex((s: any) => Math.max(s - 1, 0));
   };
 
   const nextStep = () => {
-    setActiveIndex((s) => Math.min(s + 1, galleryLength - 1));
+    setActiveIndex((s: any) => Math.min(s + 1, galleryLength - 1));
   };
 
   return (
@@ -66,12 +77,5 @@ function GalleryWindowControls({ galleryLength, activeIndex, setActiveIndex, set
     </div>
   );
 }
-
-GalleryWindowControls.propTypes = {
-  activeIndex: PropTypes.number,
-  galleryLength: PropTypes.number,
-  setActiveIndex: PropTypes.func,
-  setStep: PropTypes.func,
-};
 
 export default GalleryWindowControls;

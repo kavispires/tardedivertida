@@ -1,5 +1,3 @@
-import PropTypes from 'prop-types';
-import React, { memo } from 'react';
 // Hooks
 import { useCardWidth } from '../../hooks';
 // Components
@@ -9,10 +7,28 @@ import GalleryWindowGuesses from './GalleryWindowGuesses';
 import GalleryWindowControls from './GalleryWindowControls';
 import GalleryWindowResult from './GalleryWindowResult';
 
-function GalleryWindow({ window, galleryLength, players, activeIndex, setActiveIndex, setStep, cards }) {
+type GalleryWindowProps = {
+  window: ArteRuimWindow;
+  galleryLength: number;
+  players: GamePlayers;
+  activeIndex: number;
+  setActiveIndex: GenericFunction;
+  setStep: GenericFunction;
+  cards: ArteRuimCard[];
+};
+
+function GalleryWindow({
+  window,
+  galleryLength,
+  players,
+  activeIndex,
+  setActiveIndex,
+  setStep,
+  cards,
+}: GalleryWindowProps) {
   const canvasWidth = useCardWidth(2, 16, 200, 500);
 
-  const { drawing, artistId, id, text, level, playersPoints, playersSay } = window;
+  const { drawing, artistId, id, text, playersPoints, playersSay } = window;
 
   const playerArtist = players[artistId];
 
@@ -35,7 +51,6 @@ function GalleryWindow({ window, galleryLength, players, activeIndex, setActiveI
         playerArtist={playerArtist}
         correctAnswerId={id}
         correctAnswerText={text}
-        correctAnswerLevel={level}
         playersPoints={playersPoints}
         playersSay={playersSay}
         players={players}
@@ -51,23 +66,4 @@ function GalleryWindow({ window, galleryLength, players, activeIndex, setActiveI
   );
 }
 
-GalleryWindow.propTypes = {
-  activeIndex: PropTypes.number,
-  cards: PropTypes.array,
-  galleryLength: PropTypes.number,
-  players: PropTypes.object,
-  setActiveIndex: PropTypes.func,
-  setStep: PropTypes.func,
-  window: PropTypes.shape({
-    artistId: PropTypes.string,
-    correctAnswer: PropTypes.string,
-    drawing: PropTypes.string,
-    id: PropTypes.string,
-    level: PropTypes.number,
-    playersPoints: PropTypes.object,
-    playersSay: PropTypes.object,
-    text: PropTypes.string,
-  }),
-};
-
-export default memo(GalleryWindow);
+export default GalleryWindow;

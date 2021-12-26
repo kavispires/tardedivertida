@@ -1,13 +1,26 @@
-import React from 'react';
 import clsx from 'clsx';
-import PropTypes from 'prop-types';
 // Utils
 import { getEntryId } from '../../utils/helpers';
 // Components
-import { CanvasSVG } from '../../components/canvas';
+import { CanvasSVG } from '../../components';
 import Ribbon from './Ribbon';
 
-function EvaluationAllDrawings({ drawings, activeItem, onActivateItem, votes, canvasSize, players }) {
+type EvaluationAllDrawingsProps = {
+  drawings: ArteRuimDrawing[];
+  activeItem: string;
+  onActivateItem: GenericFunction;
+  votes: PlainObject;
+  canvasSize: number;
+  players: GamePlayers;
+};
+function EvaluationAllDrawings({
+  drawings,
+  activeItem,
+  onActivateItem,
+  votes,
+  canvasSize,
+  players,
+}: EvaluationAllDrawingsProps) {
   const liButtonBaseClass = 'a-evaluation-all-drawings__li-drawing-button';
 
   return (
@@ -34,21 +47,5 @@ function EvaluationAllDrawings({ drawings, activeItem, onActivateItem, votes, ca
     </ul>
   );
 }
-
-EvaluationAllDrawings.propTypes = {
-  activeItem: PropTypes.string,
-  canvasSize: PropTypes.number,
-  drawings: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string,
-      drawing: PropTypes.string,
-      playerId: PropTypes.string,
-    })
-  ),
-  onActivateItem: PropTypes.func,
-  onActiveItem: PropTypes.func,
-  votes: PropTypes.object,
-  players: PropTypes.object,
-};
 
 export default EvaluationAllDrawings;

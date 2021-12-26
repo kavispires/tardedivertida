@@ -1,13 +1,18 @@
-import React from 'react';
 import clsx from 'clsx';
-import PropTypes from 'prop-types';
 // Utils
 import { LETTERS } from '../../utils/constants';
 import { getEntryId } from '../../utils/helpers';
 // Components
 import Card from './Card';
 
-function EvaluationAllCards({ cards, activeItem, onActivateItem, votes }) {
+type EvaluationAllCardsProps = {
+  cards: ArteRuimCard[];
+  activeItem: string;
+  onActivateItem: GenericFunction;
+  votes: PlainObject;
+};
+
+function EvaluationAllCards({ cards, activeItem, onActivateItem, votes }: EvaluationAllCardsProps) {
   const liButtonBaseClass = 'a-evaluation-all-cards__li-card-button';
 
   return (
@@ -36,17 +41,5 @@ function EvaluationAllCards({ cards, activeItem, onActivateItem, votes }) {
     </ul>
   );
 }
-
-EvaluationAllCards.propTypes = {
-  activeItem: PropTypes.string,
-  cards: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string,
-    })
-  ),
-  onActivateItem: PropTypes.func,
-  onActiveItem: PropTypes.func,
-  votes: PropTypes.object,
-};
 
 export default EvaluationAllCards;
