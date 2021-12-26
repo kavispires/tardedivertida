@@ -1,23 +1,28 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import { useState } from 'react';
 // Design Resources
 import { Button, Form, Select, AutoComplete, message } from 'antd';
 // Components
 import { ValueFormItem } from './ValueFormItem';
 
-export const ForceStateForm = ({ isLoading, state, onForceStateProperty }) => {
+type ForceStateFormProps = {
+  isLoading?: boolean;
+  state: GameState;
+  onForceStateProperty: GenericFunction;
+};
+
+export const ForceStateForm = ({ isLoading, state, onForceStateProperty }: ForceStateFormProps) => {
   const [form] = Form.useForm();
   const [valueType, setValueType] = useState('string');
   const stateKeys = Object.keys(state).map((k) => ({ label: k, value: k }));
 
-  const onValueTypeSelectChange = (newType) => {
+  const onValueTypeSelectChange = (newType: any) => {
     if (['boolean', 'nullish'].includes(newType)) form.setFieldsValue({ value: true });
     if (newType === 'number') form.setFieldsValue({ value: 0 });
     if (newType === 'string') form.setFieldsValue({ value: '' });
     setValueType(newType);
   };
 
-  const onFinish = async (e) => {
+  const onFinish = async (e: any) => {
     let parsedValue = e.value;
 
     try {
@@ -38,7 +43,7 @@ export const ForceStateForm = ({ isLoading, state, onForceStateProperty }) => {
         form.resetFields();
         setValueType('string');
       }
-    } catch (e) {
+    } catch (e: any) {
       message.error('Something went wrong', e);
     }
   };
@@ -65,10 +70,4 @@ export const ForceStateForm = ({ isLoading, state, onForceStateProperty }) => {
       </Button>
     </Form>
   );
-};
-
-ForceStateForm.propTypes = {
-  isLoading: PropTypes.bool,
-  onForceStateProperty: PropTypes.func.isRequired,
-  state: PropTypes.object,
 };

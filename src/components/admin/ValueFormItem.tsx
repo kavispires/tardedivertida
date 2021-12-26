@@ -1,9 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 // Design Resources
 import { Input, Form, InputNumber, Switch } from 'antd';
 
-export const ValueFormItem = ({ valueType }) => {
+type ValueFormItemProps = {
+  valueType?: string;
+};
+
+export const ValueFormItem = ({ valueType }: ValueFormItemProps) => {
   switch (valueType) {
     case 'number':
       return (
@@ -30,7 +32,4 @@ export const ValueFormItem = ({ valueType }) => {
         </Form.Item>
       );
   }
-};
-ValueFormItem.propTypes = {
-  valueType: PropTypes.string,
 };

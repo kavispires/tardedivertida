@@ -16,15 +16,17 @@ export function Session({ gameId, gameCollection, getActiveComponent }) {
   const [userId] = useGlobalState('userId');
   const [info, setInfo] = useState({});
 
+  useEffect(() => {
+    if (isDevEnv) {
+      console.table(players);
+      console.log({ state });
+    }
+  }, [players, state]);
+
   // Update game description as the gameId comes in
   useEffect(() => {
     setInfo(gameId?.[0] ? gameList[gameId[0]] : {});
   }, [gameId]);
-
-  if (isDevEnv) {
-    console.table(players);
-    console.log({ state });
-  }
 
   if (!userId) {
     return <Lobby players={players} state={state} info={info} />;
@@ -36,7 +38,7 @@ export function Session({ gameId, gameCollection, getActiveComponent }) {
     <Fragment>
       <GameInfoDrawer players={players} state={state} info={info} userId={userId} />
       <ActiveComponent players={players} state={state} info={info} />
-      <AdminMenu state={state} />
+      <AdminMenu state={state} players={players} />
     </Fragment>
   );
 }

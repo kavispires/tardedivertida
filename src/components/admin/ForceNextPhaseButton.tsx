@@ -1,10 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 // Design Resources
 import { Button } from 'antd';
 import { FireFilled } from '@ant-design/icons';
 
-export const ForceNextPhaseButton = ({ isLoading, onGoToNextPhase }) => (
+type ForceNextPhaseButtonProps = {
+  isLoading?: boolean;
+  onGoToNextPhase: GenericFunction;
+};
+export const ForceNextPhaseButton = ({ isLoading = false, onGoToNextPhase }: ForceNextPhaseButtonProps) => (
   <Button
     icon={<FireFilled />}
     type="primary"
@@ -17,8 +19,3 @@ export const ForceNextPhaseButton = ({ isLoading, onGoToNextPhase }) => (
     Force Next Phase
   </Button>
 );
-
-ForceNextPhaseButton.propTypes = {
-  isLoading: PropTypes.bool,
-  onGoToNextPhase: PropTypes.func.isRequired,
-};
