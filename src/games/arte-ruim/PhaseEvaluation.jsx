@@ -178,7 +178,7 @@ function EvaluationPhase({ players, state, info }) {
 
         {/* Step 1 */}
         <Step className="a-evaluation-step">
-          <CanvasResizer numPlayers={Object.keys(players).length} />
+          <CanvasResizer />
           <Title>
             <Translate pt="Adivinhação" en="Match the Pairs" />
           </Title>

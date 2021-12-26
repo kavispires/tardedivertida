@@ -6,7 +6,7 @@ import { useGlobalState } from './useGlobalState';
  * @param players
  * @returns
  */
-export function useUser(players: Players): Player | {} {
+export function useUser(players: Players): GamePlayer {
   const [userId] = useGlobalState('userId');
   const [user, setUser] = useState({});
 
