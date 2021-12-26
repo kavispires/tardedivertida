@@ -24,7 +24,7 @@ export const DrawingCanvas = ({
   lines,
   setLines,
   className = '',
-  showControls = true,
+  showControls = false,
   strokeWidth = 'medium',
 }: DrawingCanvasProps) => {
   const [drawingHistory, setDrawingHistory] = useState<CanvasLine[]>([]);
