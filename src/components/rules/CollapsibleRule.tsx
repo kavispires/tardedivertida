@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 // Design Resources
 import { Button, Collapse, Popover } from 'antd';
 // Hooks
@@ -26,10 +26,16 @@ export function CollapsibleRule({ children, title }: CollapsibleRuleProps) {
 
 type PopoverRuleProps = {
   content: any;
+  showLabel?: boolean;
 };
 
-export function PopoverRule({ content }: PopoverRuleProps) {
+export function PopoverRule({ content, showLabel = false }: PopoverRuleProps) {
   const [isActive, setActive] = useState(false);
+
+  useEffect(() => {
+    console.log('here');
+    setActive(showLabel);
+  }, []); // eslint-disable-line
 
   return (
     <div className="popover-rule">
@@ -38,7 +44,7 @@ export function PopoverRule({ content }: PopoverRuleProps) {
           shape={'round'}
           size="large"
           onMouseOver={() => setActive(true)}
-          onMouseLeave={() => setActive(false)}
+          onMouseLeave={() => setActive(showLabel ?? false)}
         >
           <ReadOutlined />
           {isActive && <Translate pt=" Regras" en=" Rules" />}
