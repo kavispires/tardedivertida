@@ -29,8 +29,8 @@ type Votes = {
  */
 export function useVotingMatch(
   keyType: string,
-  allowDuplicates = true,
-  completeCount = null,
+  allowDuplicates: boolean = true,
+  completeCount?: number,
   initialState: Votes = {}
 ): {
   votes: Votes;
