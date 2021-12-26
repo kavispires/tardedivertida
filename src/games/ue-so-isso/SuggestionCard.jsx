@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import { memo } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 // Design Resources
@@ -8,12 +8,11 @@ import { CloseOutlined } from '@ant-design/icons';
 import { getColorFromIndex } from '../../utils/helpers';
 import { LETTERS } from '../../utils/constants';
 // Components
-import BasicCard from '../../components/cards/Card';
-import { Avatar } from '../../components/avatars';
+import { Avatar, Card } from '../../components';
 
 function SuggestionCard({ avatarId, playerName, index, invalid, suggestion }) {
   return (
-    <BasicCard
+    <Card
       size="medium"
       color={getColorFromIndex(index)}
       className={clsx(invalid && 'u-suggestion-card__invalid')}
@@ -27,7 +26,7 @@ function SuggestionCard({ avatarId, playerName, index, invalid, suggestion }) {
         <Avatar id={avatarId} size="small" className="u-suggestion-card__suggestion-avatar" />
       )}
       {suggestion}
-    </BasicCard>
+    </Card>
   );
 }
 

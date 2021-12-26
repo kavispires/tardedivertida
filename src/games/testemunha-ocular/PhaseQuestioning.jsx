@@ -20,7 +20,7 @@ import {
 } from '../../components/shared';
 import { AvatarName } from '../../components/avatars';
 import { Suspects } from './Suspects';
-import Card from '../../components/cards/Card';
+import { Card } from '../../components';
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 import Avatar from 'antd/lib/avatar/avatar';
 

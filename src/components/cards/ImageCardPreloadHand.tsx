@@ -1,9 +1,10 @@
-import PropTypes from 'prop-types';
-import React from 'react';
 // Components
 import ImageCard from './ImageCard';
 
-export function ImageCardPreloadHand({ hand }) {
+type ImageCardPreloadHandProps = {
+  hand: string[];
+};
+export function ImageCardPreloadHand({ hand }: ImageCardPreloadHandProps) {
   if (!hand) return <span></span>;
   return (
     <div className="image-card-preload-hand">
@@ -13,7 +14,3 @@ export function ImageCardPreloadHand({ hand }) {
     </div>
   );
 }
-
-ImageCardPreloadHand.propTypes = {
-  hand: PropTypes.arrayOf(PropTypes.string),
-};
