@@ -8,13 +8,11 @@ import { useGlobalState, useLanguage, useLoading } from '../../hooks';
 // Utils
 import { deepCopy } from '../../utils/helpers';
 // Components
-import { AdminOnlyButton } from '../../components/admin/index';
-import { Step, Title, translate, Translate } from '../../components/shared';
+import { AdminOnlyButton, Step, Title, translate, Translate, PopoverRule } from '../../components';
 import { UeSoIssoCard as Card } from '../../components/cards';
 import { messageContent } from '../../components/modals/messageContent';
 import SuggestionCard from './SuggestionCard';
 import { ComparisonDetailedRules, ComparisonPhaseRules } from './RulesBlobs';
-import { CollapsibleRule } from '../../components/rules';
 
 function CompareSuggestionsStep({
   isUserTheController,
@@ -58,7 +56,7 @@ function CompareSuggestionsStep({
         )
       );
     }
-  }, [isUserTheController, controller.id]);
+  }, [isUserTheController, controller.id, language]);
 
   const suggestionsValues = Object.values(myRecommendation);
 
@@ -70,9 +68,8 @@ function CompareSuggestionsStep({
 
       <Card word={secretWord.text} />
 
-      <CollapsibleRule>
-        <ComparisonDetailedRules />
-      </CollapsibleRule>
+      <PopoverRule content={<ComparisonDetailedRules />} showLabel />
+
       <ComparisonPhaseRules controller={controller} />
 
       <Space className="u-word-compare-suggestions-step__suggestions">
