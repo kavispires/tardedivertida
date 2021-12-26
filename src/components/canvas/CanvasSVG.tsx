@@ -1,7 +1,9 @@
-import React, { memo } from 'react';
-import PropTypes from 'prop-types';
-
-const getPathFromKonvaLines = (lines) => {
+/**
+ * Builds paths from canvas lines
+ * @param lines
+ * @returns
+ */
+const getPathFromKonvaLines = (lines: CanvasLine[]) => {
   const result = lines.map((lineArr) => {
     let path = '';
     for (let x = 0, y = 1; y < lineArr.length; x += 2, y += 2) {
@@ -16,7 +18,13 @@ const getPathFromKonvaLines = (lines) => {
   return result;
 };
 
-export const CanvasSVG = memo(function ({ drawing = '', className = '', size = 250 }) {
+type CanvasSVGProps = {
+  drawing: string;
+  className?: string;
+  size?: number;
+};
+
+export const CanvasSVG = ({ drawing = '', className = '', size = 250 }: CanvasSVGProps) => {
   const konvaLines = JSON.parse(drawing);
   const paths = getPathFromKonvaLines(konvaLines);
 
@@ -43,14 +51,4 @@ export const CanvasSVG = memo(function ({ drawing = '', className = '', size = 2
       ))}
     </svg>
   );
-});
-
-CanvasSVG.propTypes = {
-  className: PropTypes.string,
-  drawing: PropTypes.string.isRequired,
-  size: PropTypes.number,
-};
-
-CanvasSVG.defaultProps = {
-  size: 250,
 };

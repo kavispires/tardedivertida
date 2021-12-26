@@ -1,5 +1,3 @@
-import PropTypes from 'prop-types';
-import React from 'react';
 // Design Resources
 import { Slider } from 'antd';
 // State & Hooks
@@ -7,6 +5,10 @@ import { useGlobalState } from '../../hooks';
 // Components
 import { Translate } from '../shared';
 
+/**
+ * Floating canvas resizer bar positioned on the top-left of the page
+ * @returns
+ */
 export const CanvasResizer = () => {
   const [canvasSize, setCanvasSize] = useGlobalState('canvasSize');
 
@@ -25,8 +27,4 @@ export const CanvasResizer = () => {
       />
     </div>
   );
-};
-
-CanvasResizer.propTypes = {
-  numPlayers: PropTypes.number,
 };
