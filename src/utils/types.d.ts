@@ -66,12 +66,14 @@ interface GameInfo {
   };
 }
 
+type GameRound = {
+  current: number;
+  total: number;
+};
+
 interface GameState {
   phase: string;
-  round: {
-    current: number;
-    total: number;
-  };
+  round: GameRound;
   [key: string]: any;
 }
 
