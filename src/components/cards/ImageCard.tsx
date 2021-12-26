@@ -1,13 +1,24 @@
-import React, { memo } from 'react';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { Image } from 'antd';
 import { PUBLIC_URL } from '../../utils/constants';
 import placeholder from '../../images/placeholder.jpg';
 import { useBlurCards } from '../../hooks';
 
-export const ImageCard = memo(function ({ imageId, size, cardWidth, className, preview }) {
-  const [blurredCards, blurEnabled] = useBlurCards();
+type ImageCardProps = {
+  imageId: string;
+  size?: 'small' | 'medium' | 'large';
+  cardWidth?: number;
+  className?: string;
+  preview?: Boolean;
+};
+export const ImageCard = ({
+  imageId,
+  size = 'medium',
+  cardWidth = 200,
+  className = '',
+  preview = true,
+}: ImageCardProps) => {
+  const [blurredCards, , blurEnabled] = useBlurCards();
 
   const baseClass = 'image-card';
 
@@ -34,23 +45,6 @@ export const ImageCard = memo(function ({ imageId, size, cardWidth, className, p
       />
     </div>
   );
-});
-
-ImageCard.propTypes = {
-  bordered: PropTypes.bool,
-  cardWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  className: PropTypes.string,
-  imageId: PropTypes.string.isRequired,
-  preview: PropTypes.bool,
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
 };
 
-ImageCard.defaultProps = {
-  size: 'medium',
-  className: '',
-  bordered: false,
-  cardWidth: 200,
-  preview: true,
-};
-
-export default memo(ImageCard);
+export default ImageCard;
