@@ -47,14 +47,20 @@ export const buildDeck = (allMonsters: AllMonsters, usedCardsIds: string[], play
  * @param currentMonster
  * @returns
  */
-export const gatherSketches = (players: Players, currentMonster: MonsterCard): MonsterSketch[] => {
+export const gatherSketches = (
+  players: Players,
+  currentMonster: MonsterCard,
+  witnessId: PlayerId
+): MonsterSketch[] => {
   const gathering = Object.values(players).reduce((acc: MonsterSketch[], player: Player) => {
-    acc.push({
-      playerId: player.id,
-      sketch: player.sketch,
-      id: currentMonster.id,
-      orientation: currentMonster.orientation,
-    });
+    if (player.id !== witnessId) {
+      acc.push({
+        playerId: player.id,
+        sketch: player.sketch,
+        id: currentMonster.id,
+        orientation: currentMonster.orientation,
+      });
+    }
     return acc;
   }, []);
 
@@ -68,9 +74,10 @@ export const gatherSketches = (players: Players, currentMonster: MonsterCard): M
  * @returns
  */
 export const getMostVotes = (players: Players, witnessId: PlayerId): PlayerId[] => {
-  const votes = Object.values(players).reduce((acc: any, player: Player) => {
+  type MostVotesAcc = { [key: string]: number };
+  const votes = Object.values(players).reduce((acc: MostVotesAcc, player: Player) => {
     if (player.id !== witnessId) {
-      if (acc[player.vote] !== undefined) {
+      if (acc[player.vote] === undefined) {
         acc[player.vote] = 1;
       } else {
         acc[player.vote] += 1;
@@ -79,7 +86,12 @@ export const getMostVotes = (players: Players, witnessId: PlayerId): PlayerId[] 
     return acc;
   }, {});
 
-  return Object.keys(votes);
+  const max = Math.max(...Object.values(votes));
+
+  return Object.entries(votes).reduce((acc: PlayerId[], [playerId, voteCount]: [PlayerId, number]) => {
+    if (voteCount === max) acc.push(playerId);
+    return acc;
+  }, []);
 };
 
 /**
@@ -103,7 +115,7 @@ export const buildRanking = (
       playerId: player.id,
       name: player.name,
       previousScore: player.score,
-      gainedPoints: [0, 0],
+      gainedPoints: [0, 0, 0],
       newScore: player.score,
     };
   });
@@ -116,12 +128,16 @@ export const buildRanking = (
 
   // Add witness vote
   if (mostVotes.includes(witnessVote)) {
-    newScores[witnessId].gainedPoints[0] += 2;
+    newScores[witnessId].gainedPoints[1] += 2;
     newScores[witnessId].newScore += 2;
   } else {
-    newScores[witnessVote].gainedPoints[0] += 1;
+    newScores[witnessVote].gainedPoints[2] += 1;
     newScores[witnessVote].newScore += 1;
   }
+
+  Object.values(newScores).forEach((score) => {
+    players[score.playerId].score = score.newScore;
+  });
 
   return Object.values(newScores);
 };

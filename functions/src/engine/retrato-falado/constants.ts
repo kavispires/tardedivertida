@@ -9,7 +9,7 @@ export const RETRATO_FALADO_PHASES = {
 };
 
 export const PLAYER_COUNT = {
-  MIN: 3,
+  MIN: 4,
   MAX: 10,
 };
 
