@@ -19,9 +19,14 @@ export function Session({ gameId, gameCollection, getActiveComponent }) {
   useEffect(() => {
     if (isDevEnv) {
       console.table(players);
-      console.log({ state });
     }
   }, [players, state]);
+
+  useEffect(() => {
+    if (isDevEnv) {
+      console.log({ state });
+    }
+  }, [state]);
 
   // Update game description as the gameId comes in
   useEffect(() => {
