@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 // Design Resources
 import { Image, Modal, message, Button, notification } from 'antd';
 // Adapters
-import { GAME_API } from '../../adapters';
+import { ADMIN_API } from '../../adapters';
 // Hooks
 import { useGlobalState, useLanguage, useLoading, useLocalStorage } from '../../hooks';
 // Constants
@@ -49,7 +49,7 @@ export function CreateGameModal({ gameInfo }) {
     async function createGame() {
       try {
         setLoader('create', true);
-        const response = await GAME_API.initializeGame({ gameCode: gameInfo.gameCode, language });
+        const response = await ADMIN_API.createGame({ gameCode: gameInfo.gameCode, language });
         if (response.data.gameId) {
           setGameId(response.data.gameId);
           setUserId(null);

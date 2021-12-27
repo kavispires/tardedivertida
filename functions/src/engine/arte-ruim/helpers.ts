@@ -396,8 +396,10 @@ export const buildRanking = (drawings: ArteRuimDrawing[], players: Players) => {
         if (currentVote === correctAnswer) {
           newScores[playerId].gainedPoints[0] += 2;
           newScores[playerId].newScore += 2;
+          players[playerId].score += 2;
           newScores[artistId].gainedPoints[1] += 1;
           newScores[artistId].newScore += 1;
+          players[artistId].score += 1;
         }
       }
     });

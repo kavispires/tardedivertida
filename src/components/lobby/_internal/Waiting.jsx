@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 // Design Resources
 import { Button, Image, message, notification, Typography } from 'antd';
 // API & Hooks
-import { GAME_API } from '../../../adapters';
+import { ADMIN_API } from '../../../adapters';
 import { useLoading, useGlobalState, useLanguage } from '../../../hooks';
 // Images
 import avatars from '../../../images/avatars.svg';
@@ -25,7 +25,7 @@ function Waiting({ info, players }) {
   const onLockGameAndStart = useCallback(async () => {
     try {
       setLoader('lock-game', true);
-      const response = await GAME_API.lockGame({
+      const response = await ADMIN_API.lockGame({
         gameId,
         gameName,
       });

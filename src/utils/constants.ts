@@ -206,6 +206,13 @@ export const SEPARATOR = ';;';
 
 export const LATEST_GAME_IDS = 'latestGameIds';
 
+export const ADMIN_ACTIONS = {
+  GO_TO_NEXT_PHASE: 'GO_TO_NEXT_PHASE',
+  FORCE_STATE_PROPERTY: 'FORCE_STATE_PROPERTY',
+  PLAY_AGAIN: 'PLAY_AGAIN',
+  FORCE_END_GAME: 'FORCE_END_GAME',
+};
+
 /**
  * Random names used during Dev
  */

@@ -2,15 +2,29 @@ import { functions } from '../services/firebase';
 import { httpsCallable } from 'firebase/functions';
 
 export const GAME_API = {
-  initializeGame: httpsCallable(functions, 'initializeGame'),
   loadGame: httpsCallable(functions, 'loadGame'),
   addPlayer: httpsCallable(functions, 'addPlayer'),
-  lockGame: httpsCallable(functions, 'lockGame'),
   makePlayerReady: httpsCallable(functions, 'makePlayerReady'),
   playAgain: httpsCallable(functions, 'playAgain'),
   goToNextPhase: httpsCallable(functions, 'goToNextPhase'),
   forceStateProperty: httpsCallable(functions, 'forceStateProperty'),
   rateGame: httpsCallable(functions, 'rateGame'),
+};
+
+// export const GAME_API = {
+//   loadGame: httpsCallable(functions, 'loadGame'),
+//   addPlayer: httpsCallable(functions, 'addPlayer'),
+//   makePlayerReady: httpsCallable(functions, 'makePlayerReady'),
+//   rateGame: httpsCallable(functions, 'rateGame'),
+//   // playAgain: httpsCallable(functions, 'playAgain'),
+//   // goToNextPhase: httpsCallable(functions, 'goToNextPhase'),
+//   // forceStateProperty: httpsCallable(functions, 'forceStateProperty'),
+// };
+
+export const ADMIN_API = {
+  createGame: httpsCallable(functions, 'createGame'),
+  lockGame: httpsCallable(functions, 'lockGame'),
+  performAdminAction: httpsCallable(functions, 'performAdminAction'),
 };
 
 export const ARTE_RUIM_API = {

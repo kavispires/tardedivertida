@@ -30,6 +30,24 @@ export function verifyPayload(property?: any, propertyName = 'unknown property',
 }
 
 /**
+ * Validate payload data for an action
+ * @param gameId
+ * @param collectionName
+ * @param action
+ * @param actionText
+ */
+export function validateActionPayload(
+  gameId: GameId,
+  collectionName: GameName,
+  action: string,
+  actionText: string
+) {
+  verifyPayload(gameId, 'gameId', actionText);
+  verifyPayload(collectionName, 'collectionName', actionText);
+  verifyPayload(action, 'action', actionText);
+}
+
+/**
  * Validate payload data for a submit action
  * @param gameId
  * @param collectionName
