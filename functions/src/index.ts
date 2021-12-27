@@ -1,6 +1,7 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import * as commonEngine from './engine/common';
+import * as adminEngine from './engine/admin';
 import * as arteRuimEngine from './engine/arte-ruim';
 import * as contadoresHistoriasEngine from './engine/contadores-historias';
 import * as detetivesImaginativosEngine from './engine/detetives-imaginativos';
@@ -20,12 +21,24 @@ admin.initializeApp();
 // Start writing Firebase Functions
 // https://firebase.google.com/docs/functions/typescript
 
-// COMMON HTTP CALLS
+// ADMIN HTTP CALLS (require auth)
 
 /**
  * Create a new game instance returning its meta data with gameId
  */
-exports.initializeGame = functions.https.onCall(commonEngine.createGame);
+exports.createGame = functions.https.onCall(adminEngine.createGame);
+
+/**
+ * Lock game so new players cannot join
+ */
+exports.lockGame = functions.https.onCall(adminEngine.lockGame);
+
+/**
+ * Collection of admin actions like `nextPhase`, `playAgain`, `endGame`, etc
+ */
+exports.performAdminAction = functions.https.onCall(adminEngine.performAdminAction);
+
+// COMMON HTTP CALLS
 
 /**
  * Load an existing game
@@ -38,30 +51,9 @@ exports.loadGame = functions.https.onCall(commonEngine.loadGame);
 exports.addPlayer = functions.https.onCall(commonEngine.addPlayer);
 
 /**
- * Lock game so new players cannot join
- */
-exports.lockGame = functions.https.onCall(commonEngine.lockGame);
-
-/**
  * Make player ready and go to next game phase if all players are ready
  */
 exports.makePlayerReady = functions.https.onCall(commonEngine.makePlayerReady);
-
-/**
- * Action to force game to go to its next phase.
- * It may be using by players during a specific time during the game, or by the admin at any phase
- */
-exports.goToNextPhase = functions.https.onCall(commonEngine.goToNextPhase);
-
-/**
- * Admin action to force game certain state property and value
- */
-exports.forceStateProperty = functions.https.onCall(commonEngine.forceStateProperty);
-
-/**
- * Play game again within the same session
- */
-exports.playAgain = functions.https.onCall(commonEngine.playAgain);
 
 /**
  * Rate game

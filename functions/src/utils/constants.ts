@@ -50,8 +50,6 @@ export const GAME_COLLECTIONS = {
   CRUZA_PALAVRAS: 'cruza-palavras',
 };
 
-export const SEPARATOR = ';;';
-
 export const GLOBAL_USED_DOCUMENTS = {
   ARTE_RUIM: 'usedArteRuimCards',
   MENTE_COLETIVA: 'usedMenteColetivaQuestions',
@@ -59,6 +57,12 @@ export const GLOBAL_USED_DOCUMENTS = {
   RETRATO_FALADO: 'usedRetratoFaladoCards',
   TESTEMUNHA_OCULAR: 'usedTestemunhaOcularCards',
 };
+
+export const SEPARATOR = ';;';
+
+export const USED_GAME_IDS = 'usedGameIds';
+
+// DEPRECATED FROM HERE BELOW
 
 export const GAME_PLAYERS_LIMIT = {
   ESPIAO_ENTRE_NOS: {
