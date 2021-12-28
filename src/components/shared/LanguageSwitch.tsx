@@ -1,4 +1,3 @@
-import React from 'react';
 // Design Resources
 import { Switch } from 'antd';
 // Hooks
@@ -8,7 +7,7 @@ export function LanguageSwitch() {
   const [language, setLanguage] = useGlobalState('language');
   const [, setLocalStorage] = useLocalStorage();
 
-  const onSwitchClick = (e) => {
+  const onSwitchClick = (e: any) => {
     const value = e ? 'pt' : 'en';
     setLanguage(value);
     setLocalStorage({ language: value });
