@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import { useState } from 'react';
 import { Modal } from 'antd';
 import { useTimer } from 'react-timer-hook';
 // Utils
 import { inNSeconds } from '../../utils/helpers';
 
-export function EmergencyAlert({ children, duration = 2 }) {
+type EmergencyAlertProps = {
+  children: any;
+  duration?: number;
+};
+export function EmergencyAlert({ children, duration = 2 }: EmergencyAlertProps) {
   const [isVisible, setVisible] = useState(true);
 
   useTimer({
@@ -20,8 +23,3 @@ export function EmergencyAlert({ children, duration = 2 }) {
     </Modal>
   );
 }
-
-EmergencyAlert.propTypes = {
-  children: PropTypes.any,
-  duration: PropTypes.number,
-};
