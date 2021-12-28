@@ -90,3 +90,13 @@ type PhaseProps = {
   state: GameState;
   info: GameInfo;
 };
+
+type GameTeam = {
+  name?: string;
+  score: number;
+  members: PlayerId[];
+};
+
+type GameTeams = {
+  [key: string]: GameTeam;
+};
