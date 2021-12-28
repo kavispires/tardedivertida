@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 // Design Resources
 import { message, notification } from 'antd';
@@ -10,8 +10,7 @@ import { useIsGameStale, useLoading, useGlobalState, useLocalStorage } from '../
 import { getGameIdFromURL, getGameIdFromLocation, isValidGameId, isDevEnv } from '../utils/helpers';
 import { GAME_COLLECTION } from '../utils/constants';
 // Components
-import { LoadingPage } from '../components/loaders';
-import { PageError } from '../components/errors/PageError';
+import { LoadingPage, PageError } from '../components';
 import GameSessions from '../games';
 
 function Game() {

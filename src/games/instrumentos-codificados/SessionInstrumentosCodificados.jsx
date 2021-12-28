@@ -1,11 +1,8 @@
-import React from 'react';
 // Hooks
 import { GAME_COLLECTION, PHASES } from '../../utils/constants';
 // Components
-import { PhasePlaceholder, Session, SetupScreen } from '../../components/shared';
+import { Session, SetupScreen, Rules, PageError, PhasePlaceholder } from '../../components';
 import Lobby from '../../components/lobby/Lobby';
-import { Rules } from '../../components/rules';
-import { PageError } from '../../components/errors/PageError';
 
 function SessionInstrumentosCodificados({ gameId }) {
   function getActiveComponent(phase) {

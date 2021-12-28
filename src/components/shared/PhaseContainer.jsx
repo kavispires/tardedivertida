@@ -1,12 +1,11 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 // Hooks
 import { useGlobalState, useLanguage } from '../../hooks';
 // Components
-import { LoadingPage } from '../loaders';
-import { PageError } from '../errors/PageError';
-import { translate } from './Translate';
+import { LoadingPage, PageError } from '..';
+import { translate } from '.';
 
 /**
  * Wrapping container around a game screen

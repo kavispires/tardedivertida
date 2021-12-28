@@ -1,13 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 // Design Resources
 import { Alert } from 'antd';
 // Hooks
 import { useLanguage } from '../../hooks';
 // Components
-import { translate } from '../shared';
+import { translate } from '..';
 
-export function PageError({ message, description }) {
+type PageErrorProps = {
+  message?: string;
+  description?: string;
+};
+
+export function PageError({ message, description }: PageErrorProps): JSX.Element {
   const language = useLanguage();
 
   return (
@@ -26,8 +29,3 @@ export function PageError({ message, description }) {
     </div>
   );
 }
-
-PageError.propTypes = {
-  message: PropTypes.string,
-  description: PropTypes.string,
-};
