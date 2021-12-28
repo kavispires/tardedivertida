@@ -1,11 +1,8 @@
-import React from 'react';
 // Hooks
 import { GAME_COLLECTION, PHASES } from '../../utils/constants';
 // Components
-import { Session, SetupScreen } from '../../components/shared';
+import { Session, SetupScreen, Rules, PageError } from '../../components';
 import Lobby from '../../components/lobby/Lobby';
-import { Rules } from '../../components/rules';
-import { PageError } from '../../components/errors/PageError';
 import PhaseGameOver from './PhaseGameOver';
 import PhaseTopicSelection from './PhaseTopicSelection';
 import PhaseReact from './PhaseReact';
