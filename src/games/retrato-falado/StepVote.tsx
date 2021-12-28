@@ -5,9 +5,16 @@ import { Button, Space } from 'antd';
 import { useCardWidth, useGlobalState } from '../../hooks';
 import { Monster, Sketch } from './retrato-falado';
 // Components
-import { Avatar } from '../../components/avatars';
-import { CanvasResizer, CanvasSVG } from '../../components/canvas';
-import { ButtonContainer, Instruction, Title, Translate } from '../../components/shared';
+import {
+  Avatar,
+  CanvasResizer,
+  CanvasSVG,
+  ButtonContainer,
+  Instruction,
+  Title,
+  Translate,
+} from '../../components';
+
 import MonsterCard from './MonsterCard';
 
 type StepVoteProps = {

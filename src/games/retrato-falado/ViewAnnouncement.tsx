@@ -1,4 +1,4 @@
-import { PhaseAnnouncement, Translate } from '../../components/shared';
+import { PhaseAnnouncement, Translate } from '../../components';
 
 type ViewAnnouncementProps = {
   isUserTheWitness: boolean;

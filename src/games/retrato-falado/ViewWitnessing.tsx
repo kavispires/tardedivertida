@@ -3,8 +3,7 @@ import { TIMES } from './constants';
 // Types
 import { Monster } from './retrato-falado';
 // Components
-import { DrawingCanvas } from '../../components/canvas';
-import { Instruction, TimerBar, Title, Translate } from '../../components/shared';
+import { DrawingCanvas, Instruction, TimerBar, Title, Translate } from '../../components';
 import MonsterCard from './MonsterCard';
 
 type ViewWitnessingProps = {

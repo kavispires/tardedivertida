@@ -5,7 +5,7 @@ import { TIMES, VIEWS } from './constants';
 import { Monster } from './retrato-falado';
 import { inNSeconds } from '../../utils/helpers';
 // Components
-import { ViewSwitch } from '../../components/shared';
+import { ViewSwitch } from '../../components';
 import ViewAnnouncement from './ViewAnnouncement';
 import ViewLastSeconds from './ViewLastSeconds';
 import ViewSketching from './ViewSketching';

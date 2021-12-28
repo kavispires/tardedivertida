@@ -2,10 +2,17 @@
 import { Monster, Sketch } from './retrato-falado';
 import { useCardWidth, useGlobalState } from '../../hooks';
 // Components
-import { ButtonContainer, Instruction, Step, TimedButton, Title, Translate } from '../../components/shared';
+import {
+  AvatarName,
+  ButtonContainer,
+  Instruction,
+  Step,
+  TimedButton,
+  Title,
+  Translate,
+} from '../../components';
 import MonsterCard from './MonsterCard';
 import MonsterSketches from './MonsterSketches';
-import { AvatarName } from '../../components/avatars';
 
 type StepResultsProps = {
   currentMonster: Monster;
