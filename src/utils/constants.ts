@@ -1,7 +1,7 @@
 /**
  * List of urls residing in the public folder
  */
-export const PUBLIC_URL = {
+export const PUBLIC_URL: PlainObject = {
   BANNERS: `${process.env.PUBLIC_URL}/images/banners/`,
   RULES: `${process.env.PUBLIC_URL}/images/rules/`,
   CARDS: `${process.env.PUBLIC_URL}/images/cards/`,
@@ -9,10 +9,17 @@ export const PUBLIC_URL = {
   RESOURCES: `${process.env.PUBLIC_URL}/resources/`,
 };
 
+type TagDict = {
+  [key: string]: {
+    label: string;
+    color: string;
+  };
+};
+
 /**
  * List of tags translation and color
  */
-export const TAG_DICT = {
+export const TAG_DICT: TagDict = {
   competitive: {
     label: 'competitivo',
     color: 'red',
@@ -67,10 +74,21 @@ export const TAG_DICT = {
   },
 };
 
+type AvatarDict = {
+  [key: string]: {
+    id: string;
+    description: {
+      pt: string;
+      en: string;
+    };
+    color: string;
+  };
+};
+
 /**
  * List of avatar ids
  */
-export const AVATARS = {
+export const AVATARS: AvatarDict = {
   0: {
     id: '0',
     description: { pt: 'o axolote', en: 'the axolotl' },
@@ -198,13 +216,13 @@ export const AVATARS = {
   },
 };
 
-export const AVAILABLE_AVATAR_IDS = Object.keys(AVATARS);
+export const AVAILABLE_AVATAR_IDS: string[] = Object.keys(AVATARS);
 
-export const LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+export const LETTERS: string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-export const SEPARATOR = ';;';
+export const SEPARATOR: string = ';;';
 
-export const LATEST_GAME_IDS = 'latestGameIds';
+export const LATEST_GAME_IDS: string = 'latestGameIds';
 
 export const ADMIN_ACTIONS = {
   GO_TO_NEXT_PHASE: 'GO_TO_NEXT_PHASE',
@@ -216,13 +234,13 @@ export const ADMIN_ACTIONS = {
 /**
  * Random names used during Dev
  */
-export const RANDOM_NAMES =
+export const RANDOM_NAMES: string[] =
   'Abe,Bob,Cam,Dan,Eva,Fin,Gus,Hal,Ian,Jan,Kim,Leo,Max,Nic,Ole,Pat,Quinn,Roy,Tim'.split(',');
 
 /**
  * Enum of available games
  */
-export const GAME_COLLECTION = {
+export const GAME_COLLECTION: PlainObject = {
   ARTE_RUIM: 'arte-ruim',
   CONTADORES_HISTORIAS: 'contadores-historias',
   DETETIVES_IMAGINATIVOS: 'detetives-imaginativos',
@@ -241,7 +259,7 @@ export const GAME_COLLECTION = {
 /**
  * Enum of Game Phases
  */
-export const PHASES = {
+export const PHASES: PlainObject = {
   ARTE_RUIM: {
     LOBBY: 'LOBBY',
     RULES: 'RULES',
