@@ -13,7 +13,7 @@ import {
   StepSwitcher,
   translate,
   Translate,
-} from '../../components/shared';
+} from '../../components';
 import StepResults from './StepResults';
 import StepRanking from './StepRanking';
 

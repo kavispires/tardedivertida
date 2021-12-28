@@ -6,6 +6,7 @@ import { RETRATO_FALADO_API } from '../../adapters';
 import { PHASES } from '../../utils/constants';
 // Components
 import {
+  AvatarName,
   DefaultWaitingRoom,
   Instruction,
   PhaseAnnouncement,
@@ -15,8 +16,7 @@ import {
   StepSwitcher,
   translate,
   Translate,
-} from '../../components/shared';
-import { AvatarName } from '../../components/avatars';
+} from '../../components';
 import StepTestimonial from './StepTestimonial';
 import { TIMES } from './constants';
 

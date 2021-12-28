@@ -1,5 +1,5 @@
 import { AdminForceNextPhase } from '../../components/admin';
-import { Instruction, RankingBoard, Step, Title, translate, Translate } from '../../components/shared';
+import { Instruction, RankingBoard, Step, Title, translate, Translate } from '../../components';
 
 type StepRankingProps = {
   ranking: any;

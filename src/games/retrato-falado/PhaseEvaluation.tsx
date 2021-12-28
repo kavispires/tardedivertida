@@ -14,7 +14,7 @@ import {
   StepSwitcher,
   translate,
   Translate,
-} from '../../components/shared';
+} from '../../components';
 import StepVote from './StepVote';
 
 function PhaseEvaluation({ players, state, info }: PhaseProps) {

@@ -3,8 +3,7 @@ import { Space } from 'antd';
 // Utils
 import { Sketch } from './retrato-falado';
 // Components
-import { Avatar } from '../../components/avatars';
-import { CanvasSVG } from '../../components/canvas';
+import { Avatar, CanvasSVG } from '../../components';
 
 type MonsterSketchesProps = {
   sketches: Sketch[];

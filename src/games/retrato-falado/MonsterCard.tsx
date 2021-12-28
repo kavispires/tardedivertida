@@ -5,7 +5,7 @@ import { RotateLeftOutlined, RotateRightOutlined } from '@ant-design/icons';
 // Hooks
 import { useCardWidth, useGlobalState } from '../../hooks';
 // Components
-import { ImageCard } from '../../components/cards';
+import { ImageCard } from '../../components';
 import { Monster } from './retrato-falado';
 
 type MonsterCardProps = {
