@@ -12,11 +12,9 @@ import {
   PhaseAnnouncement,
   PhaseContainer,
   RoundAnnouncement,
-  Step,
   StepSwitcher,
   translate,
   Translate,
-  WaitingRoom,
 } from '../../components';
 import StepDraw from './StepDraw';
 // Sound
@@ -65,7 +63,16 @@ function PhaseDraw({ players, state, info }: PhaseProps) {
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.ARTE_RUIM.DRAW}>
-      <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady, !isUserReady]}>
+      <StepSwitcher
+        step={step}
+        conditions={[!isUserReady, !isUserReady, !isUserReady]}
+        players={players}
+        waitingRoomInstruction={translate(
+          'Vamos aguardar enquanto os outros jogadores terminam seus desenhos!',
+          'Please wait while other players finish their artwork!',
+          language
+        )}
+      >
         {/* Step 0 */}
         <RoundAnnouncement round={state?.round} onPressButton={() => setStep(1)} buttonText=" " time={5}>
           <Instruction contained>
@@ -75,7 +82,6 @@ function PhaseDraw({ players, state, info }: PhaseProps) {
             />
           </Instruction>
         </RoundAnnouncement>
-
         {/* Step 1 */}
         <PhaseAnnouncement
           type="painting"
@@ -112,22 +118,8 @@ function PhaseDraw({ players, state, info }: PhaseProps) {
             />
           </Instruction>
         </PhaseAnnouncement>
-
         {/* Step 2 */}
         <StepDraw secretCard={secretCard} onSubmitDrawing={onSubmitDrawing} />
-
-        {/* Step 3 */}
-        <Step fullWidth>
-          <WaitingRoom
-            players={players}
-            title={translate('Pronto!', 'Done!', language)}
-            instruction={translate(
-              'Vamos aguardar enquanto os outros jogadores terminam seus desenhos!',
-              'Please wait while other players finish their artwork!',
-              language
-            )}
-          />
-        </Step>
       </StepSwitcher>
     </PhaseContainer>
   );
