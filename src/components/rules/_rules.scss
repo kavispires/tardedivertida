@@ -1,3 +1,30 @@
+.rules {
+  border-radius: get-unit(1);
+  margin: get-unit(4);
+  padding: get-unit(4);
+
+  &__carousel {
+    background: rgba($color: #000, $alpha: 0.2);
+  }
+
+  &__rule .rules-carousel__rule-text {
+    color: get-color(white);
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: center;
+    margin-top: get-unit(3);
+    padding: get-unit(4);
+    background: rgba($color: #000, $alpha: 0.2);
+  }
+
+  &__rule-actions-ready {
+    background: get-color(green);
+    font-style: italic;
+  }
+}
+
 .rules-carousel {
   background: rgb(116, 83, 171);
   display: flex;
@@ -61,4 +88,10 @@
   // background: white;
   // padding: get-unit(5);
   // display: block;
+}
+
+.popover-rule {
+  position: absolute;
+  top: get-unit(1);
+  left: get-unit(1);
 }

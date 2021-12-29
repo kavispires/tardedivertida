@@ -1,17 +1,17 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 // Design Resources
 import { Button, Layout, Space, Typography } from 'antd';
 import { CheckCircleFilled, MehFilled, RobotFilled, SmileFilled } from '@ant-design/icons';
-// State
+// Utils
 import { GAME_API } from '../../adapters';
 import { useLoading, useIsUserReady, useAPICall, useLanguage } from '../../hooks';
+import { isDevEnv } from '../../utils/helpers';
 // Components
 import { RulesCarousel } from './index';
 import { LoadingPage } from '../loaders';
 import { ReadyPlayersBar, Translate, translate } from '../shared';
-import { isDevEnv } from '../../utils/helpers';
 
-export function Rules({ players, info }) {
+export function PhaseRules({ players, info }) {
   const [isLoading] = useLoading();
   const language = useLanguage();
   const isUserReady = useIsUserReady(players);

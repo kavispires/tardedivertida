@@ -9,11 +9,11 @@ import {
   mockPlayers,
 } from '../../mocks';
 
-import { Rules } from './Rules';
+import { PhaseRules } from './PhaseRules';
 
 export default {
-  title: 'rules/Rules',
-  component: Rules,
+  title: 'PhaseRules/PhaseRules',
+  component: PhaseRules,
   argTypes: {
     ...getLanguageControl(),
     ...getLoadingControls(),
@@ -24,7 +24,7 @@ const Template = (args) => {
   mockGlobalUser();
   mockLanguageHook(args);
   mockLoadingHook(args);
-  return <Rules {...args} />;
+  return <PhaseRules {...args} />;
 };
 
 export const Default = Template.bind({});

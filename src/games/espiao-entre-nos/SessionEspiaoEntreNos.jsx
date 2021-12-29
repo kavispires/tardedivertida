@@ -1,7 +1,7 @@
 // Hooks
 import { GAME_COLLECTION, PHASES } from '../../utils/constants';
 // Components
-import { GameOver, Session, SetupScreen, Rules, PageError, PhaseLobby } from '../../components';
+import { GameOver, Session, SetupScreen, PhaseRules, PageError, PhaseLobby } from '../../components';
 import AssignmentPhase from './AssignmentPhase';
 import InvestigationPhase from './InvestigationPhase';
 import AssessmentPhase from './AssessmentPhase';
@@ -14,7 +14,7 @@ function SessionEspiaoEntreNos({ gameId }) {
       case PHASES.ESPIAO_ENTRE_NOS.LOBBY:
         return PhaseLobby;
       case PHASES.ESPIAO_ENTRE_NOS.RULES:
-        return Rules;
+        return PhaseRules;
       case PHASES.ESPIAO_ENTRE_NOS.SETUP:
         return SetupScreen;
       case PHASES.ESPIAO_ENTRE_NOS.ASSIGNMENT:

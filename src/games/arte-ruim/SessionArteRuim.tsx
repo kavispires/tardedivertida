@@ -1,7 +1,7 @@
 // Hooks
 import { GAME_COLLECTION, PHASES } from '../../utils/constants';
 // Components
-import { Session, SetupScreen, Rules, PageError, PhaseLobby } from '../../components';
+import { Session, SetupScreen, PhaseRules, PageError, PhaseLobby } from '../../components';
 import PhaseDraw from './PhaseDraw';
 import PhaseEvaluation from './PhaseEvaluation';
 import PhaseGallery from './PhaseGallery';
@@ -13,7 +13,7 @@ function SessionArteRuim({ gameId }: GameSession) {
       case PHASES.ARTE_RUIM.LOBBY:
         return PhaseLobby;
       case PHASES.ARTE_RUIM.RULES:
-        return Rules;
+        return PhaseRules;
       case PHASES.ARTE_RUIM.SETUP:
         return SetupScreen;
       case PHASES.ARTE_RUIM.DRAW:
