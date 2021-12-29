@@ -1,7 +1,7 @@
 // Hooks
 import { GAME_COLLECTION, PHASES } from '../../utils/constants';
 // Components
-import { Session, SetupScreen, Rules, PageError, PhaseLobby } from '../../components';
+import { Session, SetupScreen, PhaseRules, PageError, PhaseLobby } from '../../components';
 import PhaseWitnessSelection from './PhaseWitnessSelection';
 import PhaseQuestionSelection from './PhaseQuestionSelection';
 import PhaseQuestioning from './PhaseQuestioning';
@@ -14,7 +14,7 @@ function SessionTestemunhaOcular({ gameId }) {
       case PHASES.TESTEMUNHA_OCULAR.LOBBY:
         return PhaseLobby;
       case PHASES.TESTEMUNHA_OCULAR.RULES:
-        return Rules;
+        return PhaseRules;
       case PHASES.TESTEMUNHA_OCULAR.SETUP:
         return SetupScreen;
       case PHASES.TESTEMUNHA_OCULAR.WITNESS_SELECTION:

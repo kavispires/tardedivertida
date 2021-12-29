@@ -1,9 +1,7 @@
 // Hooks
 import { GAME_COLLECTION, PHASES } from '../../utils/constants';
 // Components
-import { GameOverWrapper, Session, SetupScreen } from '../../components/shared';
-import { Rules } from '../../components/rules';
-import { PageError } from '../../components/errors/PageError';
+import { GameOverWrapper, Session, SetupScreen, PhaseRules, PageError } from '../../components';
 import PhaseDialClue from './PhaseDialClue';
 import PhaseGuess from './PhaseGuess';
 import PhaseReveal from './PhaseReveal';
@@ -15,7 +13,7 @@ function SessionOndaTelepatica({ gameId }) {
       case PHASES.ONDA_TELEPATICA.LOBBY:
         return PhaseLobby;
       case PHASES.ONDA_TELEPATICA.RULES:
-        return Rules;
+        return PhaseRules;
       case PHASES.ONDA_TELEPATICA.SETUP:
         return SetupScreen;
       case PHASES.ONDA_TELEPATICA.DIAL_CLUE:

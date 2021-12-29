@@ -1,3 +1,3 @@
 export * from './CollapsibleRule';
-export * from './Rules';
+export * from './PhaseRules';
 export * from './RulesCarousel';

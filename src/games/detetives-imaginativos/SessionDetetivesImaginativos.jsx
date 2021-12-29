@@ -1,7 +1,7 @@
 // Hooks
 import { GAME_COLLECTION, PHASES } from '../../utils/constants';
 // Components
-import { Session, SetupScreen, Rules, PageError, PhaseLobby } from '../../components';
+import { Session, SetupScreen, PhaseRules, PageError, PhaseLobby } from '../../components';
 import PhaseSecretClue from './PhaseSecretClue';
 import PhaseCardPlay from './PhaseCardPlay';
 import PhaseDefense from './PhaseDefense';
@@ -15,7 +15,7 @@ function SessionDetetivesImaginativos({ gameId }) {
       case PHASES.DETETIVES_IMAGINATIVOS.LOBBY:
         return PhaseLobby;
       case PHASES.DETETIVES_IMAGINATIVOS.RULES:
-        return Rules;
+        return PhaseRules;
       case PHASES.DETETIVES_IMAGINATIVOS.SETUP:
         return SetupScreen;
       case PHASES.DETETIVES_IMAGINATIVOS.SECRET_CLUE:

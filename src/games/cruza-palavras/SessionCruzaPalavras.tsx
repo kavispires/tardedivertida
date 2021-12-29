@@ -1,7 +1,7 @@
 // Hooks
 import { GAME_COLLECTION, PHASES } from '../../utils/constants';
 // Components
-import { Session, SetupScreen, Rules, PageError, PhaseLobby } from '../../components';
+import { Session, SetupScreen, PhaseRules, PageError, PhaseLobby } from '../../components';
 import PhaseClueWriting from './PhaseClueWriting';
 import PhaseGuessing from './PhaseGuessing';
 import PhaseReveal from './PhaseReveal';
@@ -13,7 +13,7 @@ function SessionCruzaPalavras({ gameId }: GameSession) {
       case PHASES.CRUZA_PALAVRAS.LOBBY:
         return PhaseLobby;
       case PHASES.CRUZA_PALAVRAS.RULES:
-        return Rules;
+        return PhaseRules;
       case PHASES.CRUZA_PALAVRAS.SETUP:
         return SetupScreen;
       case PHASES.CRUZA_PALAVRAS.CLUE_WRITING:
