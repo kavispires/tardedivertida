@@ -1,5 +1,3 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
 // Design Resources
 import { Typography, Image, Carousel, Button } from 'antd';
@@ -9,7 +7,13 @@ import { useLanguage } from '../../hooks';
 import { PUBLIC_URL } from '../../utils/constants';
 import { DoubleLeftOutlined, DoubleRightOutlined } from '@ant-design/icons';
 
-export function RulesCarousel({ info, className, ruleClass }) {
+type RulesCarouselProps = {
+  info: GameInfo;
+  className?: string;
+  ruleClass?: string;
+};
+
+export function RulesCarousel({ info, className = '', ruleClass = '' }: RulesCarouselProps) {
   const language = useLanguage();
   const settings = {
     prevArrow: (
@@ -52,21 +56,3 @@ export function RulesCarousel({ info, className, ruleClass }) {
     </Carousel>
   );
 }
-
-RulesCarousel.propTypes = {
-  info: PropTypes.shape({
-    gameName: PropTypes.string,
-    rules: PropTypes.arrayOf(PropTypes.string),
-    title: PropTypes.shape({
-      pt: PropTypes.string,
-      en: PropTypes.string,
-    }),
-  }),
-  className: PropTypes.string,
-  ruleClass: PropTypes.string,
-};
-
-RulesCarousel.defaultProps = {
-  className: '',
-  ruleClass: '',
-};
