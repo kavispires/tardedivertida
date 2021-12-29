@@ -10,7 +10,7 @@ import { useGlobalState } from '.';
  */
 export function useWhichPlayerIsThe(
   propertyName = 'activePlayer',
-  state: State = {},
+  state: PlainObject = {},
   players: Players = {}
 ): [Player | {}, boolean] {
   const [userId] = useGlobalState('userId');

@@ -4,7 +4,7 @@ import { doc } from 'firebase/firestore';
 // Services
 import { firestore } from '../services/firebase';
 
-export function useGameState(gameId: GameId, gameName: GameName): State | {} {
+export function useGameState(gameId: GameId, gameName: GameName): GameState {
   const docPath = `${gameName}/${gameId}/session/state`;
   const [snapshot, loading, error] = useDocument(doc(firestore, docPath), {
     snapshotListenOptions: { includeMetadataChanges: true },
@@ -12,7 +12,7 @@ export function useGameState(gameId: GameId, gameName: GameName): State | {} {
 
   if (error) {
     notification.error({
-      message: 'Aplicativo encontrou um erro ao tentar atualizar o estado do jogo',
+      message: 'The application found an error while trying to update the game state',
       description: JSON.stringify(error),
       placement: 'bottomLeft',
     });
@@ -23,5 +23,5 @@ export function useGameState(gameId: GameId, gameName: GameName): State | {} {
     console.log('%cRefreshing state...', 'color:tomato');
   }
 
-  return snapshot?.data() ?? {};
+  return snapshot?.data() as GameState;
 }
