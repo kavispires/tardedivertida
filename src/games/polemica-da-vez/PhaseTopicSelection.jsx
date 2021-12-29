@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 // Hooks
 import { useAPICall, useLanguage, useWhichPlayerIsThe } from '../../hooks';
@@ -7,7 +7,6 @@ import { POLEMICA_DA_VEZ_API } from '../../adapters';
 import { PHASES } from '../../utils/constants';
 // Components
 import {
-  DefaultWaitingRoom,
   Instruction,
   PhaseAnnouncement,
   PhaseContainer,
@@ -132,7 +131,7 @@ function PhaseTopicSelection({ state, players, info }) {
 
         {/* Step 3 */}
         <Step fullWidth>
-          <DefaultWaitingRoom players={players} />
+          <WaitingRoom players={players} />
         </Step>
       </StepSwitcher>
     </PhaseContainer>

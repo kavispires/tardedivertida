@@ -7,7 +7,7 @@ import { SONHOS_PESADELOS_API } from '../../adapters';
 import { PHASES } from '../../utils/constants';
 // Components
 import {
-  DefaultWaitingRoom,
+  WaitingRoom,
   Instruction,
   PhaseAnnouncement,
   PhaseContainer,
@@ -107,7 +107,7 @@ function PhaseTellDream({ state, players, info }) {
 
         {/* Step 3 */}
         <Step fullWidth>
-          <DefaultWaitingRoom players={players} />
+          <WaitingRoom players={players} />
           <DreamBoard user={user} table={state.table} />
         </Step>
       </StepSwitcher>

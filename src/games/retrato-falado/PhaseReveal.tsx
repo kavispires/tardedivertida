@@ -5,7 +5,7 @@ import { useIsUserReady, useLanguage, useWhichPlayerIsThe, useUser } from '../..
 import { PHASES } from '../../utils/constants';
 // Components
 import {
-  DefaultWaitingRoom,
+  WaitingRoom,
   Instruction,
   PhaseAnnouncement,
   PhaseContainer,
@@ -58,7 +58,7 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
 
         {/* Step 3 */}
         <Step fullWidth>
-          <DefaultWaitingRoom players={players} />
+          <WaitingRoom players={players} />
         </Step>
       </StepSwitcher>
     </PhaseContainer>
