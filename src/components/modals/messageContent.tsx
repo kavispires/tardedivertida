@@ -1,17 +1,17 @@
-import React from 'react';
+// Design Resources
 import { message } from 'antd';
-import { Translate } from '../shared';
-import { VideoGameController } from '../icons';
+// Components
+import { Icons, Translate } from '..';
 
 /**
  * Pops up a modal with a confirmation button but also closing timeout
- * @param {string} title
- * @param {string} description
- * @param {string} id
- * @param {number} duration
+ * @param title
+ * @param description
+ * @param id
+ * @param duration
  * @returns
  */
-export const messageContent = (title, description, id, duration = 30) => {
+export const messageContent = (title: string, description: string, id: string, duration = 30) => {
   const key = `${id} - ${title}`;
 
   return {
@@ -32,7 +32,7 @@ export const messageContent = (title, description, id, duration = 30) => {
     top: window.innerWidth / 2 - 100,
     duration,
     key,
-    icon: <VideoGameController style={{ width: '64px' }} />,
+    icon: <Icons.VideoGameController style={{ width: '64px' }} />,
     onClick: () => message.destroy(key),
   };
 };

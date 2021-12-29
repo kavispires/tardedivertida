@@ -1,6 +1,5 @@
-import React, { Fragment, useCallback, useEffect, useState } from 'react';
+import { Fragment, useCallback, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import PropTypes from 'prop-types';
 // Design Resources
 import { Image, Modal, message, Button, notification } from 'antd';
 // Adapters
@@ -13,10 +12,10 @@ import { LATEST_GAME_IDS, PUBLIC_URL } from '../../utils/constants';
 import { Loading } from '../loaders';
 import { Instruction, Title, Translate, translate } from '../shared';
 
-const updateLocal24hGameIds = (latestGameIds, newId) => {
+const updateLocal24hGameIds = (latestGameIds: PlainObject, newId: GameId) => {
   const now = Date.now();
   const past24Hours = now - 1000 * 60 * 60 * 24;
-  const cleanedUpIds = Object.entries(latestGameIds ?? {}).reduce((acc, [key, timestamp]) => {
+  const cleanedUpIds = Object.entries(latestGameIds ?? {}).reduce((acc: PlainObject, [key, timestamp]) => {
     if (timestamp > past24Hours) {
       acc[key] = timestamp;
     }
@@ -29,7 +28,12 @@ const updateLocal24hGameIds = (latestGameIds, newId) => {
     },
   };
 };
-export function CreateGameModal({ gameInfo }) {
+
+type CreateGameModalProps = {
+  gameInfo: GameInfo;
+};
+
+export function CreateGameModal({ gameInfo }: CreateGameModalProps): JSX.Element {
   const history = useHistory();
   const language = useLanguage();
   const [, setLoader] = useLoading();
@@ -49,7 +53,10 @@ export function CreateGameModal({ gameInfo }) {
     async function createGame() {
       try {
         setLoader('create', true);
-        const response = await ADMIN_API.createGame({ gameCode: gameInfo.gameCode, language });
+        const response: PlainObject = await ADMIN_API.createGame({
+          gameCode: gameInfo.gameCode,
+          language,
+        });
         if (response.data.gameId) {
           setGameId(response.data.gameId);
           setUserId(null);
@@ -57,7 +64,7 @@ export function CreateGameModal({ gameInfo }) {
           setUserAvatarId('');
           setLocalStorage(updateLocal24hGameIds(getLocalStorage(LATEST_GAME_IDS), response.data.gameId));
         }
-      } catch (e) {
+      } catch (e: any) {
         notification.error({
           message: translate(
             'Aplicativo encontrou um erro ao tentar criar o jogo',
@@ -104,7 +111,7 @@ export function CreateGameModal({ gameInfo }) {
         >
           <Fragment>
             <Image
-              alt={gameInfo.title}
+              alt={gameInfo.title[language]}
               src={`${PUBLIC_URL.BANNERS}game-image-${gameInfo.gameName}-${language}.jpg`}
               fallback={`${PUBLIC_URL.BANNERS}/game-image-em-breve-${language}.jpg`}
             />
@@ -135,14 +142,3 @@ export function CreateGameModal({ gameInfo }) {
     </Fragment>
   );
 }
-
-CreateGameModal.propTypes = {
-  gameInfo: PropTypes.shape({
-    gameCode: PropTypes.string.isRequired,
-    gameName: PropTypes.string,
-    title: PropTypes.shape({
-      pt: PropTypes.string,
-      en: PropTypes.string,
-    }),
-  }),
-};
