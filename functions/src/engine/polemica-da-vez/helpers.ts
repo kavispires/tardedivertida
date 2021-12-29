@@ -16,12 +16,15 @@ import * as gameUtils from '../../utils/game-utils';
  * Determine the next phase based on the current one
  * @param currentPhase
  * @param currentRound
+ * @param isGameOver
+ * @param triggerLastRound
  * @returns
  */
 export const determineNextPhase = (
   currentPhase: string,
   currentRound: number,
-  isGameOver?: boolean
+  isGameOver?: boolean,
+  triggerLastRound?: boolean
 ): string => {
   const { RULES, SETUP, TOPIC_SELECTION, REACT, RESOLUTION, GAME_OVER } = POLEMICA_DA_VEZ_PHASES;
   const order = [RULES, SETUP, TOPIC_SELECTION, REACT, RESOLUTION];
@@ -35,7 +38,7 @@ export const determineNextPhase = (
   }
 
   if (currentPhase === RESOLUTION) {
-    return TOPIC_SELECTION;
+    return triggerLastRound ? GAME_OVER : TOPIC_SELECTION;
   }
 
   const currentPhaseIndex = order.indexOf(currentPhase);

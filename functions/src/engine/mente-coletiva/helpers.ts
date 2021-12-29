@@ -16,22 +16,18 @@ import * as utils from '../../utils/helpers';
  * Determine the next phase based on the current one
  * @param currentPhase
  * @param currentRound
+ * @param isGameOver
+ * @param triggerLastRound
  * @returns
  */
 export const determineNextPhase = (
   currentPhase: string,
   currentRound: number,
-  isGameOver?: boolean
+  isGameOver?: boolean,
+  triggerLastRound?: boolean
 ): string => {
-  const {
-    RULES,
-    SETUP,
-    QUESTION_SELECTION,
-    EVERYBODY_WRITES,
-    COMPARE,
-    RESOLUTION,
-    GAME_OVER,
-  } = MENTE_COLETIVA_PHASES;
+  const { RULES, SETUP, QUESTION_SELECTION, EVERYBODY_WRITES, COMPARE, RESOLUTION, GAME_OVER } =
+    MENTE_COLETIVA_PHASES;
   const order = [RULES, SETUP, QUESTION_SELECTION, EVERYBODY_WRITES, COMPARE, RESOLUTION];
 
   if (isGameOver || currentRound === MAX_ROUNDS) {
@@ -39,7 +35,7 @@ export const determineNextPhase = (
   }
 
   if (currentPhase === RESOLUTION) {
-    return QUESTION_SELECTION;
+    return triggerLastRound ? GAME_OVER : QUESTION_SELECTION;
   }
 
   const currentPhaseIndex = order.indexOf(currentPhase);

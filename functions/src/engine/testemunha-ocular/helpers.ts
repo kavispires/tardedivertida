@@ -7,13 +7,17 @@ import { TestemunhaOcularCard, TestemunhaOcularCardsDatabase } from './types';
  * Determine the next phase based on the current one
  * @param currentPhase
  * @param currentRound
+ * @param lose
+ * @param win
+ * @param triggerLastRound
  * @returns
  */
 export const determineNextPhase = (
   currentPhase: string,
   currentRound: number,
   lose?: boolean,
-  win?: boolean
+  win?: boolean,
+  triggerLastRound?: boolean
 ): string => {
   const { RULES, SETUP, WITNESS_SELECTION, QUESTION_SELECTION, QUESTIONING, TRIAL, GAME_OVER } =
     TESTEMUNHA_OCULAR_PHASES;
@@ -24,7 +28,7 @@ export const determineNextPhase = (
   }
 
   if (currentPhase === TRIAL) {
-    return currentRound >= MAX_ROUNDS ? GAME_OVER : QUESTION_SELECTION;
+    return triggerLastRound || currentRound >= MAX_ROUNDS ? GAME_OVER : QUESTION_SELECTION;
   }
 
   const currentPhaseIndex = order.indexOf(currentPhase);

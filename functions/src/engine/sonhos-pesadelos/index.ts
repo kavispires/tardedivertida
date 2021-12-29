@@ -67,7 +67,7 @@ export const getNextPhase = async (
   // Determine if it's game over
   const isGameOver = determineGameOver(store.results);
   // Determine next phase
-  const nextPhase = determineNextPhase(state?.phase, state?.round?.current, isGameOver);
+  const nextPhase = determineNextPhase(state?.phase, state?.round?.current, isGameOver, state?.lastRound);
 
   // RULES -> SETUP
   if (nextPhase === SONHOS_PESADELOS_PHASES.SETUP) {

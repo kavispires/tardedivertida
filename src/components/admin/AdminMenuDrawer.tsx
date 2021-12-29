@@ -90,7 +90,9 @@ export const AdminMenuDrawer = ({ state, players }: AdminMenuDrawerProps) => {
               onConfirm={() => onPerformAdminAction({ action: ADMIN_ACTIONS.FORCE_END_GAME })}
             >
               <AdminPerformActionButton
-                disabled={isLoading || ['LOBBY', 'RULES', 'GAME_OVER'].includes(state.phase)}
+                disabled={
+                  state?.lastRound || isLoading || ['LOBBY', 'RULES', 'GAME_OVER'].includes(state.phase)
+                }
                 label="Make it last round"
                 className="admin-menu-drawer__button"
               />

@@ -25,12 +25,15 @@ import * as gameUtils from '../../utils/game-utils';
  * Determine the next phase based on the current one
  * @param currentPhase
  * @param currentRound
+ * @param isGameOver
+ * @param triggerLastRound
  * @returns
  */
 export const determineNextPhase = (
   currentPhase: string,
   currentRound: number,
-  isGameOver?: boolean
+  isGameOver?: boolean,
+  triggerLastRound?: boolean
 ): string => {
   const { RULES, SETUP, DRAW, EVALUATION, GALLERY, GAME_OVER } = ARTE_RUIM_PHASES;
   const order = [RULES, SETUP, DRAW, EVALUATION, GALLERY];
@@ -40,7 +43,7 @@ export const determineNextPhase = (
   }
 
   if (currentPhase === GALLERY) {
-    return currentRound >= MAX_ROUNDS ? GAME_OVER : DRAW;
+    return triggerLastRound || currentRound >= MAX_ROUNDS ? GAME_OVER : DRAW;
   }
 
   const currentPhaseIndex = order.indexOf(currentPhase);
