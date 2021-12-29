@@ -1,10 +1,11 @@
-import PropTypes from 'prop-types';
-import React from 'react';
 // Components
-import { Instruction } from './Instruction';
-import { Translate } from './Translate';
+import { Instruction, Translate } from '..';
 
-export function RoundsLeftInstruction({ round }) {
+type RoundsLeftInstructionProps = {
+  round: GameRound;
+};
+
+export function RoundsLeftInstruction({ round }: RoundsLeftInstructionProps) {
   return (
     <Instruction contained>
       <Translate
@@ -23,9 +24,3 @@ export function RoundsLeftInstruction({ round }) {
     </Instruction>
   );
 }
-RoundsLeftInstruction.propTypes = {
-  round: PropTypes.shape({
-    current: PropTypes.number,
-    total: PropTypes.number,
-  }),
-};
