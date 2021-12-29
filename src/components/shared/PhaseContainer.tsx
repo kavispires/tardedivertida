@@ -1,20 +1,38 @@
 import { useEffect, useRef } from 'react';
 import clsx from 'clsx';
-import PropTypes from 'prop-types';
 // Hooks
 import { useGlobalState, useLanguage } from '../../hooks';
 // Components
-import { LoadingPage, PageError } from '..';
-import { translate } from '.';
+import { LoadingPage } from '../loaders';
+import { PageError } from '../errors/PageError';
+import { translate } from './Translate';
+
+type PhaseContainerProps = {
+  info?: GameInfo;
+  phase?: string;
+  allowedPhase?: string;
+  children: any;
+  className?: string;
+  fullScreen?: boolean;
+  white?: boolean;
+};
 
 /**
  * Wrapping container around a game screen
- * @param {*} props
+ * @param props
  * @returns
  */
-export function PhaseContainer({ info, phase, allowedPhase, children, className, fullScreen, white }) {
+export function PhaseContainer({
+  info,
+  phase,
+  allowedPhase = '',
+  children,
+  className = '',
+  fullScreen = false,
+  white = false,
+}: PhaseContainerProps) {
   const language = useLanguage();
-  const screenRef = useRef(null);
+  const screenRef = useRef<HTMLScriptElement>(null);
   const [, setScreenSize] = useGlobalState('screenSize');
 
   useEffect(() => {
@@ -54,27 +72,3 @@ export function PhaseContainer({ info, phase, allowedPhase, children, className,
     </main>
   );
 }
-
-PhaseContainer.propTypes = {
-  allowedPhase: PropTypes.string,
-  children: PropTypes.any.isRequired,
-  className: PropTypes.string,
-  fullScreen: PropTypes.bool,
-  info: PropTypes.shape({
-    gameName: PropTypes.string,
-    title: PropTypes.shape({
-      pt: PropTypes.string,
-      en: PropTypes.string,
-    }),
-  }),
-  phase: PropTypes.string,
-  white: PropTypes.bool,
-};
-
-PhaseContainer.defaultProps = {
-  allowedPhase: '',
-  className: '',
-  fullScreen: false,
-  phase: '',
-  white: false,
-};
