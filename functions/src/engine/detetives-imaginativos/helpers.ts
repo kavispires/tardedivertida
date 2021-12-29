@@ -6,24 +6,21 @@ import { PlainObject, Player, PlayerId, Players, Round } from '../../utils/types
 /**
  * Determine the next phase based on the current one
  * @param currentPhase
- * @param roundsToEndGame
+ * @param round
+ * @param triggerLastRound
  * @returns
  */
-export const determineNextPhase = (currentPhase: string, round: Round): string => {
-  const {
-    RULES,
-    SETUP,
-    SECRET_CLUE,
-    CARD_PLAY,
-    DEFENSE,
-    VOTING,
-    REVEAL,
-    GAME_OVER,
-  } = DETETIVES_IMAGINATIVOS_PHASES;
+export const determineNextPhase = (
+  currentPhase: string,
+  round: Round,
+  triggerLastRound?: boolean
+): string => {
+  const { RULES, SETUP, SECRET_CLUE, CARD_PLAY, DEFENSE, VOTING, REVEAL, GAME_OVER } =
+    DETETIVES_IMAGINATIVOS_PHASES;
   const order = [RULES, SETUP, SECRET_CLUE, CARD_PLAY, DEFENSE, VOTING, REVEAL, GAME_OVER];
 
   if (currentPhase === REVEAL) {
-    return round.current > 0 && round.current === round.total ? GAME_OVER : SECRET_CLUE;
+    return triggerLastRound || (round.current > 0 && round.current === round.total) ? GAME_OVER : SECRET_CLUE;
   }
 
   const currentPhaseIndex = order.indexOf(currentPhase);

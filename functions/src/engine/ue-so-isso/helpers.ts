@@ -10,14 +10,19 @@ import * as gameUtils from '../../utils/game-utils';
  * Determine the next phase based on the current one
  * @param currentPhase
  * @param roundsToEndGame
+ * @param triggerLastRound
  * @returns
  */
-export const determineNextPhase = (currentPhase: string, roundsToEndGame: number): string => {
+export const determineNextPhase = (
+  currentPhase: string,
+  roundsToEndGame: number,
+  triggerLastRound?: boolean
+): string => {
   const { RULES, SETUP, WORD_SELECTION, SUGGEST, COMPARE, GUESS, GAME_OVER } = UE_SO_ISSO_PHASES;
   const order = [RULES, SETUP, WORD_SELECTION, SUGGEST, COMPARE, GUESS, GAME_OVER];
 
   if (currentPhase === GUESS) {
-    return roundsToEndGame <= 0 ? GAME_OVER : WORD_SELECTION;
+    return triggerLastRound || roundsToEndGame <= 0 ? GAME_OVER : WORD_SELECTION;
   }
 
   const currentPhaseIndex = order.indexOf(currentPhase);

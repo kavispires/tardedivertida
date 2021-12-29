@@ -10,15 +10,22 @@ import { SEPARATOR } from '../../utils/constants';
 /**
  * Determine the next phase based on the current one
  * @param currentPhase
- * @param pointsToVictory
+ * @param round
+ * @param triggerLastRound
  * @returns
  */
-export const determineNextPhase = (currentPhase: string, round: Round): string => {
+export const determineNextPhase = (
+  currentPhase: string,
+  round: Round,
+  triggerLastRound?: boolean
+): string => {
   const { RULES, SETUP, CLUE_WRITING, GUESSING, REVEAL, GAME_OVER } = CRUZA_PALAVRAS_PHASES;
   const order = [RULES, SETUP, CLUE_WRITING, GUESSING, REVEAL, GAME_OVER];
 
   if (currentPhase === REVEAL) {
-    return round.current > 0 && round.current === round.total ? GAME_OVER : CLUE_WRITING;
+    return triggerLastRound || (round.current > 0 && round.current === round.total)
+      ? GAME_OVER
+      : CLUE_WRITING;
   }
 
   const currentPhaseIndex = order.indexOf(currentPhase);

@@ -10,14 +10,21 @@ import * as gameUtils from '../../utils/game-utils';
  * Determine the next phase based on the current one
  * @param currentPhase
  * @param round
+ * @param triggerLastRound
  * @returns
  */
-export const determineNextPhase = (currentPhase: string, round: Round): string => {
+export const determineNextPhase = (
+  currentPhase: string,
+  round: Round,
+  triggerLastRound?: boolean
+): string => {
   const { RULES, SETUP, COMPOSITE_SKETCH, EVALUATION, REVEAL, GAME_OVER } = RETRATO_FALADO_PHASES;
   const order = [RULES, SETUP, COMPOSITE_SKETCH, EVALUATION, REVEAL, GAME_OVER];
 
   if (currentPhase === REVEAL) {
-    return round.current > 0 && round.current === round.total ? GAME_OVER : COMPOSITE_SKETCH;
+    return triggerLastRound || (round.current > 0 && round.current === round.total)
+      ? GAME_OVER
+      : COMPOSITE_SKETCH;
   }
 
   const currentPhaseIndex = order.indexOf(currentPhase);
