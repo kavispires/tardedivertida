@@ -1,7 +1,7 @@
 // Hooks
 import { GAME_COLLECTION, PHASES } from '../../utils/constants';
 // Components
-import { Session, SetupScreen, PhaseRules, PageError, PhaseLobby } from '../../components';
+import { Session, PhaseSetup, PhaseRules, PageError, PhaseLobby } from '../../components';
 import PhaseWordSelection from './PhaseWordSelection';
 import PhaseSuggest from './PhaseSuggest';
 import PhaseCompare from './PhaseCompare';
@@ -16,7 +16,7 @@ function SessionUeSoIsso({ gameId }) {
       case PHASES.UE_SO_ISSO.RULES:
         return PhaseRules;
       case PHASES.UE_SO_ISSO.SETUP:
-        return SetupScreen;
+        return PhaseSetup;
       case PHASES.UE_SO_ISSO.WORD_SELECTION:
         return PhaseWordSelection;
       case PHASES.UE_SO_ISSO.SUGGEST:
