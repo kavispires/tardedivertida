@@ -1,4 +1,4 @@
-import React, { useMemo, useState, Fragment } from 'react';
+import { useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 //Design Resources
@@ -58,7 +58,7 @@ function LikingStep({ currentTopic, customTopic, onSubmitReaction, players }) {
       </div>
 
       {like !== null && (
-        <Fragment>
+        <>
           <Instruction contained>
             <Translate
               pt="Quantas curtidas esse assunto vai receber?"
@@ -83,7 +83,7 @@ function LikingStep({ currentTopic, customTopic, onSubmitReaction, players }) {
               );
             })}
           </ul>
-        </Fragment>
+        </>
       )}
     </div>
   );

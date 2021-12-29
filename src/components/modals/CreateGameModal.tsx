@@ -1,4 +1,4 @@
-import { Fragment, useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 // Design Resources
 import { Image, Modal, message, Button, notification } from 'antd';
@@ -98,7 +98,7 @@ export function CreateGameModal({ gameInfo }: CreateGameModalProps): JSX.Element
   };
 
   return (
-    <Fragment>
+    <>
       <Button type="primary" onClick={() => setVisibility(true)}>
         <Translate pt="Criar Jogo" en="Create Game" />
       </Button>
@@ -109,7 +109,7 @@ export function CreateGameModal({ gameInfo }: CreateGameModalProps): JSX.Element
           onCancel={onCloseModal}
           onOk={onConfirmGame}
         >
-          <Fragment>
+          <>
             <Image
               alt={gameInfo.title[language]}
               src={`${PUBLIC_URL.BANNERS}game-image-${gameInfo.gameName}-${language}.jpg`}
@@ -117,12 +117,12 @@ export function CreateGameModal({ gameInfo }: CreateGameModalProps): JSX.Element
             />
 
             {isLoading ? (
-              <Fragment>
+              <>
                 <Instruction>
                   <Translate pt="O jogo está sendo criado..." en="The game session is being created" />
                 </Instruction>
                 <Loading message={translate('Gerando...', 'Generating...', language)} margin />
-              </Fragment>
+              </>
             ) : (
               <div>
                 <Title className="center">
@@ -136,9 +136,9 @@ export function CreateGameModal({ gameInfo }: CreateGameModalProps): JSX.Element
                 </Instruction>
               </div>
             )}
-          </Fragment>
+          </>
         </Modal>
       )}
-    </Fragment>
+    </>
   );
 }

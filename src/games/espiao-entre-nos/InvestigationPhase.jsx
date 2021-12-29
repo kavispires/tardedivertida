@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
 import { notification } from 'antd';
@@ -85,7 +85,7 @@ function InvestigationPhase({ state, players, info }) {
       </div>
 
       {isAccusationSelectVisible && (
-        <Fragment>
+        <>
           {isUserTheSpy && <LocationSelect locations={state.possibleLocations} onSend={onGuessLocation} />}
 
           {!user?.usedAccusation ? (
@@ -93,7 +93,7 @@ function InvestigationPhase({ state, players, info }) {
           ) : (
             <Instruction className="e-phase-instruction">Você já usou sua chance de acusar</Instruction>
           )}
-        </Fragment>
+        </>
       )}
 
       <Instruction className="e-lists">
