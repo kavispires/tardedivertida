@@ -100,3 +100,11 @@ type GameTeam = {
 type GameTeams = {
   [key: string]: GameTeam;
 };
+
+type GameRanking = {
+  playerId: string;
+  previousScore: number;
+  gainedPoints: number | number[];
+  newScore: number;
+  [key: string]: any;
+}[];
