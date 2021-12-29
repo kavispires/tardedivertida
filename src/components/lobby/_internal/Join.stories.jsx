@@ -1,4 +1,3 @@
-import React from 'react';
 import { getLanguageControl, mockInfo, mockLanguageHook, mockPlayers } from '../../../mocks';
 
 import Join from './Join';

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
 import { DislikeFilled, FallOutlined, LikeFilled, RiseOutlined } from '@ant-design/icons';

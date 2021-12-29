@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useTimer } from 'react-timer-hook';
 // Design Resources
 import { Button, message, Modal } from 'antd';

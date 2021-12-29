@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
-import React from 'react';
+
 import { AvatarName } from '../../components/avatars';
 import { Instruction, Translate } from '../../components/shared';
 

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import { useState } from 'react';
 // State & Hooks
 import { useIsUserReady, useAPICall, useLanguage, useWhichPlayerIsThe } from '../../hooks';
 // Resources & Utils

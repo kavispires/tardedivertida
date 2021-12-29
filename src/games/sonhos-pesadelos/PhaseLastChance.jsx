@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 // Hooks
 import { useIsUserReady, useAPICall, useUser, useLanguage } from '../../hooks';

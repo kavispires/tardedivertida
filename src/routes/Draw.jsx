@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 // Design Resources
 import { Layout, Space } from 'antd';
 // Components
