@@ -1,14 +1,24 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
 // Hooks
 import { useLanguage, useLoading } from '../../hooks';
 // Design Resources
 import { Button, Input } from 'antd';
 // Components
-import { ButtonContainer, Instruction, Title, translate, Translate } from '../../components/shared';
-import { ImageCardHand as Hand } from '../../components/cards';
+import {
+  ButtonContainer,
+  ImageCardHand as Hand,
+  Instruction,
+  Title,
+  translate,
+  Translate,
+} from '../../components';
 
-function SecretClueWrite({ user, onSubmitClue }) {
+type SecretClueWriteProps = {
+  onSubmitClue: GenericFunction;
+  user: GamePlayer;
+};
+
+function SecretClueWrite({ user, onSubmitClue }: SecretClueWriteProps) {
   const language = useLanguage();
   const [isLoading] = useLoading();
   const [clue, setClue] = useState('');
@@ -20,7 +30,7 @@ function SecretClueWrite({ user, onSubmitClue }) {
     });
   };
 
-  const onEnterInput = (e) => {
+  const onEnterInput = (e: any) => {
     if (e.key === 'Enter') {
       onButtonClick();
     }
@@ -41,7 +51,7 @@ function SecretClueWrite({ user, onSubmitClue }) {
           </li>
           <li>
             <Translate
-              pt="A pista pode ser qualquer coisa que você quiser. Não há restricões!"
+              pt="A pista pode ser qualquer coisa que você quiser. Não há restrições!"
               en="The clue can be anything you want. There are no restrictions!"
             />
           </li>
@@ -68,12 +78,5 @@ function SecretClueWrite({ user, onSubmitClue }) {
     </div>
   );
 }
-
-SecretClueWrite.propTypes = {
-  onSubmitClue: PropTypes.func,
-  user: PropTypes.shape({
-    hand: PropTypes.arrayOf(PropTypes.string),
-  }),
-};
 
 export default SecretClueWrite;

@@ -1,9 +1,7 @@
-// Design Resources
-import { Spin } from 'antd';
 // Hooks
 import { useLanguage } from '../../hooks';
 // Components
-import { Instruction, ReadyPlayersBar, Title, Translate, translate } from '..';
+import { Icons, Instruction, ReadyPlayersBar, Title, Translate, translate } from '..';
 
 type WaitingRoomProps = {
   players: GamePlayers;
@@ -17,7 +15,7 @@ export function WaitingRoom({ players, title, instruction, children }: WaitingRo
   return (
     <div className="waiting-room">
       <Title>{translate('Pronto!', 'Done!', language, title)}</Title>
-      <Spin />
+      <Icons.WaitingRoom style={{ width: '6rem' }} />
       <Instruction>
         {Boolean(instruction) ? (
           instruction

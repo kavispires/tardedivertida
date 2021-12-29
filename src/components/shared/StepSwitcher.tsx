@@ -1,14 +1,31 @@
 import clsx from 'clsx';
 // Components
-import { Loading } from '../loaders';
+import { Translate, WaitingRoom } from '.';
+import { Loading } from '..';
 
 type StepSwitcherProps = {
   children: any;
   step: number;
   conditions?: boolean[];
+  players?: GamePlayers;
 };
 
-export function StepSwitcher({ children, step, conditions }: StepSwitcherProps) {
+export function StepSwitcher({ children, step, conditions, players }: StepSwitcherProps) {
+  if (players && step === children.length) {
+    return (
+      <WaitingRoom
+        players={players}
+        title={<Translate pt="Pronto!" en="Done!" />}
+        instruction={
+          <Translate
+            pt="Aguardando o servidor dar sinal de vida"
+            en="Waiting for the server to resuscitate"
+          />
+        }
+      />
+    );
+  }
+
   if (!children[step]) {
     return <Loading />;
   }

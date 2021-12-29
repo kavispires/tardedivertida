@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 // Design Resources
-import { Button, message } from 'antd';
+import { message } from 'antd';
 // Hooks
 import { useWhichPlayerIsThe, useAPICall, useLoading, useLanguage } from '../../hooks';
 // Resources & Utils
@@ -9,22 +8,19 @@ import { DETETIVES_IMAGINATIVOS_API } from '../../adapters';
 import { PHASES } from '../../utils/constants';
 // Components
 import {
-  ButtonContainer,
   Instruction,
+  messageContent,
   PhaseAnnouncement,
   PhaseContainer,
-  Step,
   StepSwitcher,
   Title,
   TitleHighlight,
   Translate,
   translate,
-} from '../../components/shared';
-import { AvatarName } from '../../components/avatars';
-import { messageContent } from '../../components/modals';
-import TableFocus from './TableFocus';
+} from '../../components';
+import StepDefending from './StepDefending';
 
-function PhaseDefense({ state, players, info }) {
+function PhaseDefense({ state, players, info }: PhaseProps) {
   const language = useLanguage();
   const [isLoading] = useLoading();
   const [currentPlayer, isUserTheCurrentPlayer] = useWhichPlayerIsThe('currentPlayerId', state, players);
@@ -79,7 +75,7 @@ function PhaseDefense({ state, players, info }) {
           title={translate('Defensa', 'Defense', language)}
           onClose={() => setStep(1)}
           currentRound={state?.round?.current}
-          time={5}
+          duration={5}
         >
           <Title>
             <Translate pt="Pista Secreta era: " en="The Secret Clue was: " />
@@ -94,52 +90,17 @@ function PhaseDefense({ state, players, info }) {
         </PhaseAnnouncement>
 
         {/* Step 1 */}
-        <Step key={1}>
-          <Title>
-            <Translate pt="Pista Secreta era: " en="The Secret Clue was: " />
-            <TitleHighlight>{state.clue}</TitleHighlight>
-          </Title>
-          <Instruction>
-            <AvatarName player={currentPlayer} />,{' '}
-            <Translate pt="explique porque você escolheu as cartas." en="explain why you chose your cards." />
-            {isUserTheCurrentPlayer && (
-              <>
-                <Translate
-                  pt=" Quando terminar sua defesa, aperte concluir."
-                  en=" When you're done, press 'End Defense'"
-                />
-              </>
-            )}
-          </Instruction>
-
-          <TableFocus table={state.table} currentPlayer={currentPlayer} />
-
-          {isUserTheCurrentPlayer && (
-            <ButtonContainer>
-              <Button type="primary" onClick={onFinishDefenseClick} disabled={isLoading} size="large">
-                <Translate pt="Concluir Defesa" en="End Defense" />
-              </Button>
-            </ButtonContainer>
-          )}
-        </Step>
+        <StepDefending
+          clue={state.clue}
+          currentPlayer={currentPlayer}
+          isUserTheCurrentPlayer={isUserTheCurrentPlayer}
+          table={state.table}
+          onFinishDefenseClick={onFinishDefenseClick}
+          isLoading={isLoading}
+        />
       </StepSwitcher>
     </PhaseContainer>
   );
 }
-
-PhaseDefense.propTypes = {
-  info: PropTypes.object,
-  players: PropTypes.object,
-  state: PropTypes.shape({
-    clue: PropTypes.string,
-    phase: PropTypes.string,
-    table: PropTypes.arrayOf(
-      PropTypes.shape({
-        playerId: PropTypes.string,
-        cards: PropTypes.arrayOf(PropTypes.string),
-      })
-    ),
-  }),
-};
 
 export default PhaseDefense;

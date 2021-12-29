@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
 // Hooks
 import { useIsUserReady, useWhichPlayerIsThe, useAPICall, useUser, useLanguage } from '../../hooks';
 // Resources & Utils
@@ -7,6 +6,8 @@ import { DETETIVES_IMAGINATIVOS_API } from '../../adapters';
 import { PHASES } from '../../utils/constants';
 // Components
 import {
+  AvatarName,
+  ImageCardPreloadHand,
   Instruction,
   PhaseAnnouncement,
   PhaseContainer,
@@ -16,14 +17,11 @@ import {
   Translate,
   translate,
   ViewIf,
-  WaitingRoom,
-} from '../../components/shared';
-import { AvatarName } from '../../components/avatars';
-import { ImageCardPreloadHand } from '../../components/cards';
-import SecretClueWrite from './SecretClueWrite';
-import SecretClueWaiting from './SecretClueWaiting';
+} from '../../components';
+import StepSecretClueWrite from './StepSecretClueWrite';
+import StepSecretClueWaiting from './StepSecretClueWaiting';
 
-function PhaseSecretClue({ state, players, info }) {
+function PhaseSecretClue({ state, players, info }: PhaseProps) {
   const language = useLanguage();
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
@@ -54,7 +52,7 @@ function PhaseSecretClue({ state, players, info }) {
       allowedPhase={PHASES.DETETIVES_IMAGINATIVOS.SECRET_CLUE}
       className="d-secret-clue-phase"
     >
-      <StepSwitcher step={step} conditions={[!isUserReady]}>
+      <StepSwitcher step={step} conditions={[!isUserReady]} players={players}>
         {/* Step 0 */}
         <RoundAnnouncement
           round={state.round}
@@ -90,36 +88,16 @@ function PhaseSecretClue({ state, players, info }) {
         {/* Step 2 */}
         <Step fullWidth>
           <ViewIf isVisible={!isUserTheLeader}>
-            <SecretClueWaiting user={user} leader={leader} />
+            <StepSecretClueWaiting user={user} leader={leader} />
           </ViewIf>
 
           <ViewIf isVisible={isUserTheLeader}>
-            <SecretClueWrite user={user} onSubmitClue={onSubmitSecretClue} />
+            <StepSecretClueWrite user={user} onSubmitClue={onSubmitSecretClue} />
           </ViewIf>
         </Step>
-
-        {/* Step 3 */}
-        <WaitingRoom
-          players={players}
-          title={translate('Pronto!', 'Done!', language)}
-          instruction={translate(
-            'Aguardando o servidor dar sinal de vida',
-            'Waiting for the server to resuscitate',
-            language
-          )}
-        />
       </StepSwitcher>
     </PhaseContainer>
   );
 }
-
-PhaseSecretClue.propTypes = {
-  info: PropTypes.object,
-  players: PropTypes.object,
-  state: PropTypes.shape({
-    phase: PropTypes.string,
-    round: PropTypes.shape({ current: PropTypes.number, total: PropTypes.number }),
-  }),
-};
 
 export default PhaseSecretClue;

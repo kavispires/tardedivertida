@@ -1,13 +1,27 @@
 import { useMemo } from 'react';
-import PropTypes from 'prop-types';
 import { orderBy } from 'lodash';
 // Design Resources
 import { Button } from 'antd';
 // Components
-import { Avatar, AvatarName } from '../../components/avatars';
-import { ButtonContainer, Translate } from '../../components/shared';
+import { Avatar, AvatarName, ButtonContainer, Translate } from '../../components';
 
-export function VotingOptions({ players, leaderId, user, onVote, isLoading, isAllDisabled }) {
+type VotingOptionsProps = {
+  isAllDisabled: boolean;
+  leaderId: PlayerId;
+  players: GamePlayers;
+  user?: GamePlayer;
+  onVote: GenericFunction;
+  isLoading?: boolean;
+};
+
+export function VotingOptions({
+  players,
+  leaderId,
+  user,
+  onVote,
+  isLoading = false,
+  isAllDisabled = false,
+}: VotingOptionsProps) {
   const votingOptions = useMemo(
     () =>
       orderBy(
@@ -28,7 +42,7 @@ export function VotingOptions({ players, leaderId, user, onVote, isLoading, isAl
               onClick={() => onVote(playerOption.id)}
               ghost
               size="large"
-              disabled={isAllDisabled || user.vote || isLoading || user.name === playerOption.name}
+              disabled={isAllDisabled || user?.vote || isLoading || user?.name === playerOption.name}
             >
               <AvatarName player={playerOption} uppercase />
             </Button>
@@ -46,17 +60,5 @@ export function VotingOptions({ players, leaderId, user, onVote, isLoading, isAl
     </ButtonContainer>
   );
 }
-
-VotingOptions.propTypes = {
-  isAllDisabled: PropTypes.any,
-  isLoading: PropTypes.bool,
-  leaderId: PropTypes.string,
-  onVote: PropTypes.func,
-  players: PropTypes.object,
-  user: PropTypes.shape({
-    name: PropTypes.string,
-    vote: PropTypes.any,
-  }),
-};
 
 export default VotingOptions;
