@@ -1,7 +1,8 @@
-import React, { useEffect, useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useHistory } from 'react-router-dom';
 // Design Resources
 import { Typography, Layout, Space, Divider, PageHeader, Button, message } from 'antd';
+import { DatabaseFilled } from '@ant-design/icons';
 // API
 import { signOut } from '../adapters/auth';
 // Hooks
@@ -9,9 +10,7 @@ import { useGlobalState, useLanguage, useLocalStorage } from '../hooks';
 // Utils
 import gameList from '../resources/games.json';
 // Components
-import { LanguageSwitch, Translate } from '../components/shared';
-import { DatabaseFilled } from '@ant-design/icons';
-import { GameCard, RecentlyCreatedGames } from '../components/hub';
+import { GameCard, LanguageSwitch, RecentlyCreatedGames, Translate } from '../components';
 
 function Hub() {
   const language = useLanguage();

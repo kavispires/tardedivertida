@@ -10,16 +10,16 @@ import { LATEST_GAME_IDS } from '../../utils/constants';
 // Components
 import { Translate } from '../shared';
 
-export function RecentlyCreatedGames() {
+export function RecentlyCreatedGames(): JSX.Element {
   const [getLocalStorage] = useLocalStorage();
   const history = useHistory();
-  const [ids, setIds] = useState([]);
+  const [ids, setIds] = useState<string[]>([]);
 
   const refreshIds = () => {
     setIds(Object.keys(getLocalStorage(LATEST_GAME_IDS) ?? {}).sort());
   };
 
-  const goTo = (gameId) => {
+  const goTo = (gameId: GameId) => {
     history.push(gameId);
   };
 

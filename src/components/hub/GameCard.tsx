@@ -1,5 +1,3 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 // Design Resources
 import { Space, Card, Image, Divider, Tag } from 'antd';
 // Hooks
@@ -10,7 +8,12 @@ import { PUBLIC_URL, TAG_DICT } from '../../utils/constants';
 import { CreateGameModal, RulesModal } from '../modals';
 import { translate } from '../shared';
 
-export function GameCard({ game, language }) {
+type GameCardProps = {
+  game: GameInfo;
+  language: Language;
+};
+
+export function GameCard({ game, language }: GameCardProps) {
   const [width] = useDimensions();
 
   return (
@@ -58,31 +61,3 @@ export function GameCard({ game, language }) {
     </Card>
   );
 }
-
-GameCard.propTypes = {
-  game: PropTypes.shape({
-    available: PropTypes.shape({
-      en: PropTypes.bool,
-      pt: PropTypes.bool,
-    }),
-    gameCode: PropTypes.string,
-    gameName: PropTypes.string,
-    max: PropTypes.number,
-    min: PropTypes.number,
-    recommended: PropTypes.string,
-    rules: PropTypes.shape({
-      en: PropTypes.array,
-      pt: PropTypes.array,
-    }),
-    summary: PropTypes.shape({
-      en: PropTypes.string,
-      pt: PropTypes.string,
-    }),
-    tags: PropTypes.arrayOf(PropTypes.string),
-    title: PropTypes.shape({
-      en: PropTypes.string,
-      pt: PropTypes.string,
-    }),
-  }),
-  language: PropTypes.string,
-};
