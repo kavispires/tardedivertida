@@ -7,11 +7,15 @@ import { GAME_API } from '../../adapters';
 import { useLoading, useIsUserReady, useAPICall, useLanguage } from '../../hooks';
 import { isDevEnv } from '../../utils/helpers';
 // Components
-import { RulesCarousel } from './index';
-import { LoadingPage } from '../loaders';
-import { ReadyPlayersBar, Translate, translate } from '../shared';
+import { LoadingPage, ReadyPlayersBar, Translate, translate } from '..';
+import { RulesCarousel } from '.';
 
-export function PhaseRules({ players, info }) {
+type PhaseRulesProps = {
+  players: GamePlayers;
+  info: GameInfo;
+};
+
+export function PhaseRules({ players, info }: PhaseRulesProps) {
   const [isLoading] = useLoading();
   const language = useLanguage();
   const isUserReady = useIsUserReady(players);
