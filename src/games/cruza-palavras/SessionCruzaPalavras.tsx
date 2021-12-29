@@ -1,8 +1,7 @@
 // Hooks
 import { GAME_COLLECTION, PHASES } from '../../utils/constants';
 // Components
-import { Session, SetupScreen, Rules, PageError } from '../../components';
-import Lobby from '../../components/lobby/Lobby';
+import { Session, SetupScreen, Rules, PageError, PhaseLobby } from '../../components';
 import PhaseClueWriting from './PhaseClueWriting';
 import PhaseGuessing from './PhaseGuessing';
 import PhaseReveal from './PhaseReveal';
@@ -12,7 +11,7 @@ function SessionCruzaPalavras({ gameId }: GameSession) {
   function getActiveComponent(phase: string) {
     switch (phase) {
       case PHASES.CRUZA_PALAVRAS.LOBBY:
-        return Lobby;
+        return PhaseLobby;
       case PHASES.CRUZA_PALAVRAS.RULES:
         return Rules;
       case PHASES.CRUZA_PALAVRAS.SETUP:

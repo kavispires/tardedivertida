@@ -7,6 +7,7 @@ export * from './errors';
 export * from './hub';
 export * as Icons from './icons';
 export * from './loaders';
+export * from './lobby';
 export * from './modals';
 export * from './rules';
 export * from './shared';

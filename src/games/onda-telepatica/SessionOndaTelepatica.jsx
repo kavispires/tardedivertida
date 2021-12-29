@@ -1,20 +1,19 @@
-import React from 'react';
 // Hooks
 import { GAME_COLLECTION, PHASES } from '../../utils/constants';
 // Components
 import { GameOverWrapper, Session, SetupScreen } from '../../components/shared';
-import Lobby from '../../components/lobby/Lobby';
 import { Rules } from '../../components/rules';
 import { PageError } from '../../components/errors/PageError';
 import PhaseDialClue from './PhaseDialClue';
 import PhaseGuess from './PhaseGuess';
 import PhaseReveal from './PhaseReveal';
+import { PhaseLobby } from '../../components';
 
 function SessionOndaTelepatica({ gameId }) {
   function getActiveComponent(phase) {
     switch (phase) {
       case PHASES.ONDA_TELEPATICA.LOBBY:
-        return Lobby;
+        return PhaseLobby;
       case PHASES.ONDA_TELEPATICA.RULES:
         return Rules;
       case PHASES.ONDA_TELEPATICA.SETUP:

@@ -6,7 +6,7 @@ import { useGameState, useGlobalState, useGamePlayers } from '../../hooks';
 import gameList from '../../resources/games.json';
 import { isDevEnv } from '../../utils/helpers';
 // Components
-import Lobby from '../lobby/Lobby';
+import { PhaseLobby } from '../../components';
 import { GameInfoDrawer } from '../drawers';
 import { AdminMenu } from '../admin/index';
 
@@ -34,7 +34,7 @@ export function Session({ gameId, gameCollection, getActiveComponent }) {
   }, [gameId]);
 
   if (!userId) {
-    return <Lobby players={players} state={state} info={info} />;
+    return <PhaseLobby players={players} state={state} info={info} />;
   }
 
   const ActiveComponent = getActiveComponent(state.phase);

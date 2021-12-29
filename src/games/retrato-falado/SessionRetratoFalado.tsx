@@ -1,8 +1,7 @@
 // Hooks
 import { GAME_COLLECTION, PHASES } from '../../utils/constants';
 // Components
-import { Session, SetupScreen, Rules, PageError } from '../../components';
-import Lobby from '../../components/lobby/Lobby';
+import { Session, SetupScreen, Rules, PageError, PhaseLobby } from '../../components';
 import PhaseCompositeSketch from './PhaseCompositeSketch';
 import PhaseEvaluation from './PhaseEvaluation';
 import PhaseReveal from './PhaseReveal';
@@ -12,7 +11,7 @@ function SessionRetratoFalado({ gameId }: GameSession) {
   function getActiveComponent(phase: string) {
     switch (phase) {
       case PHASES.RETRATO_FALADO.LOBBY:
-        return Lobby;
+        return PhaseLobby;
       case PHASES.RETRATO_FALADO.RULES:
         return Rules;
       case PHASES.RETRATO_FALADO.SETUP:
