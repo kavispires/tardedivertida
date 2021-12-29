@@ -15,7 +15,7 @@ import { translate, Translate } from '.';
 
 const { TextArea } = Input;
 
-export function RateGameWidget() {
+export function RateGameWidget(): JSX.Element {
   const [isLoading] = useLoading();
   const language = useLanguage();
   const [userId] = useGlobalState('userId');
@@ -80,5 +80,3 @@ export function RateGameWidget() {
     </div>
   );
 }
-
-export default RateGameWidget;
