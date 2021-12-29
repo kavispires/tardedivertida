@@ -1,6 +1,4 @@
-import React, { Fragment, useState } from 'react';
-import PropTypes from 'prop-types';
-
+import { useState } from 'react';
 // Design Resources
 import { Button, Modal } from 'antd';
 import { ReadOutlined } from '@ant-design/icons';
@@ -9,7 +7,11 @@ import { RulesCarousel } from '../rules/index';
 import { useLanguage } from '../../hooks';
 import { Translate, translate } from '../shared';
 
-export function RulesModal({ gameInfo }) {
+type RulesModalProps = {
+  gameInfo: GameInfo;
+};
+
+export function RulesModal({ gameInfo }: RulesModalProps): JSX.Element {
   const language = useLanguage();
   const [isVisible, setVisibility] = useState(false);
 
@@ -18,7 +20,7 @@ export function RulesModal({ gameInfo }) {
   };
 
   return (
-    <Fragment>
+    <>
       <Button type="default" onClick={() => setVisibility(true)} icon={<ReadOutlined />}>
         <Translate pt="Regras" en="Rules" />
       </Button>
@@ -37,20 +39,6 @@ export function RulesModal({ gameInfo }) {
           <RulesCarousel info={gameInfo} />
         </Modal>
       )}
-    </Fragment>
+    </>
   );
 }
-
-RulesModal.propTypes = {
-  gameInfo: PropTypes.shape({
-    gameName: PropTypes.string,
-    rules: PropTypes.shape({
-      pt: PropTypes.arrayOf(PropTypes.string),
-      en: PropTypes.arrayOf(PropTypes.string),
-    }),
-    title: PropTypes.shape({
-      pt: PropTypes.string,
-      en: PropTypes.string,
-    }),
-  }),
-};
