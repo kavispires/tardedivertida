@@ -1,7 +1,7 @@
 // Hooks
 import { GAME_COLLECTION, PHASES } from '../../utils/constants';
 // Components
-import { Session, SetupScreen, PhaseRules, PageError, PhaseLobby } from '../../components';
+import { Session, PhaseSetup, PhaseRules, PageError, PhaseLobby } from '../../components';
 import PhaseTellDream from './PhaseTellDream';
 import PhaseMatch from './PhaseMatch';
 import PhaseResolution from './PhaseResolution';
@@ -16,7 +16,7 @@ function SessionSonhosPesadelos({ gameId }) {
       case PHASES.SONHOS_PESADELOS.RULES:
         return PhaseRules;
       case PHASES.SONHOS_PESADELOS.SETUP:
-        return SetupScreen;
+        return PhaseSetup;
       case PHASES.SONHOS_PESADELOS.TELL_DREAM:
         return PhaseTellDream;
       case PHASES.SONHOS_PESADELOS.MATCH:

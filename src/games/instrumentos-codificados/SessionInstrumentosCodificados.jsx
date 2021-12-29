@@ -1,7 +1,7 @@
 // Hooks
 import { GAME_COLLECTION, PHASES } from '../../utils/constants';
 // Components
-import { Session, SetupScreen, PhaseRules, PageError, PhasePlaceholder, PhaseLobby } from '../../components';
+import { Session, PhaseSetup, PhaseRules, PageError, PhasePlaceholder, PhaseLobby } from '../../components';
 
 function SessionInstrumentosCodificados({ gameId }) {
   function getActiveComponent(phase) {
@@ -11,7 +11,7 @@ function SessionInstrumentosCodificados({ gameId }) {
       case PHASES.INSTRUMENTOS_CODIFICADOS.RULES:
         return PhaseRules;
       case PHASES.INSTRUMENTOS_CODIFICADOS.SETUP:
-        return SetupScreen;
+        return PhaseSetup;
       case PHASES.INSTRUMENTOS_CODIFICADOS.HINT_GIVING:
         return PhasePlaceholder;
       case PHASES.INSTRUMENTOS_CODIFICADOS.HINT_RECEIVING:
