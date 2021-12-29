@@ -1,14 +1,16 @@
 import PropTypes from 'prop-types';
-// Hooks
-import { useLanguage } from '../../hooks';
+
 // Components
-import { Instruction, RankingBoard, Title, translate, Translate } from '../../components/shared';
-import { AdminForceNextPhase } from '../../components/admin';
-import { AvatarName } from '../../components/avatars';
+import {
+  AdminNextRoundButton,
+  AvatarName,
+  Instruction,
+  RankingBoard,
+  Title,
+  Translate,
+} from '../../components';
 
-function StepRanking({ players, ranking, outcome, storyteller }) {
-  const language = useLanguage();
-
+function StepRanking({ players, ranking, outcome, storyteller, round }) {
   return (
     <div className="c-step-ranking">
       <Title level={1}>
@@ -63,7 +65,7 @@ function StepRanking({ players, ranking, outcome, storyteller }) {
 
       <RankingBoard ranking={ranking} players={players} />
 
-      <AdminForceNextPhase buttonText={translate('Próxima Rodada', 'Go to Next Round', language)} />
+      <AdminNextRoundButton round={round} />
     </div>
   );
 }

@@ -18,7 +18,7 @@ import {
   Translate,
   translate,
 } from '../../components/shared';
-import { AdminOnly } from '../../components/admin';
+import { AdminOnlyContainer } from '../../components/admin';
 import { LoadingClock } from '../../components/icons';
 import { AvatarName } from '../../components/avatars';
 
@@ -101,7 +101,7 @@ function PhaseWitnessSelection({ state, players, info }) {
             <Translate pt="O administrator selecionará a testemunha" en="The VIP will select the witness" />)
           </Instruction>
 
-          <AdminOnly>
+          <AdminOnlyContainer>
             {Object.values(players).map((player) => (
               <Button
                 key={`p-bt-${player.id}`}
@@ -111,7 +111,7 @@ function PhaseWitnessSelection({ state, players, info }) {
                 {player.name}
               </Button>
             ))}
-          </AdminOnly>
+          </AdminOnlyContainer>
         </Step>
       </StepSwitcher>
     </PhaseContainer>

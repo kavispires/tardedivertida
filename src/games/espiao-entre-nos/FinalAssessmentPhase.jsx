@@ -9,7 +9,7 @@ import { ESPIAO_ENTRE_NOS_API } from '../../adapters';
 import { PHASES } from '../../utils/constants';
 import { getPlayersFromIds } from '../../utils/helpers';
 // Components
-import { AdminOnly } from '../../components/admin/index';
+import { AdminOnlyContainer } from '../../components/admin/index';
 import { ButtonContainer, Instruction, PhaseContainer, Title } from '../../components/shared';
 import { EspiaoEntreNosCard as Card } from '../../components/cards';
 import LocationsList from './LocationsList';
@@ -121,7 +121,7 @@ function FinalAssessmentPhase({ state, players, info }) {
 
       <Notes />
 
-      <AdminOnly className="e-admin-final-assessment">
+      <AdminOnlyContainer className="e-admin-final-assessment">
         <span>Acusador:</span>
         <Select onChange={setAccuser} className="e-select" placeholder="Acusador">
           {Object.values(players).map((player) => (
@@ -152,7 +152,7 @@ function FinalAssessmentPhase({ state, players, info }) {
         >
           Enviar decisão final
         </Button>
-      </AdminOnly>
+      </AdminOnlyContainer>
     </PhaseContainer>
   );
 }

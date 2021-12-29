@@ -18,7 +18,7 @@ import {
 } from '../../components/shared';
 
 import StepReveal from './StepReveal';
-import { AdminForceNextPhase } from '../../components/admin';
+import { AdminNextRoundButton } from '../../components/admin';
 
 function PhaseReveal({ players, state, info }) {
   const isUserReady = useIsUserReady(players, state);
@@ -64,13 +64,7 @@ function PhaseReveal({ players, state, info }) {
           </Title>
 
           <RankingBoard ranking={state.ranking} players={players} />
-          <AdminForceNextPhase
-            buttonText={translate(
-              'Ir para próxima rodada ou game over',
-              'Go to next round or Game Over',
-              language
-            )}
-          />
+          <AdminNextRoundButton round={state.round} />
         </Step>
       </StepSwitcher>
     </PhaseContainer>

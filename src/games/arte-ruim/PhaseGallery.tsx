@@ -8,7 +8,7 @@ import { useLanguage } from '../../hooks';
 import { PHASES } from '../../utils/constants';
 // Components
 import {
-  AdminForceNextPhase,
+  AdminNextRoundButton,
   Instruction,
   PhaseContainer,
   RankingBoard,
@@ -109,13 +109,7 @@ function PhaseGallery({ players, state, info }: PhaseProps) {
             <Translate pt="Ver Galeria De Novo" en="See Gallery Again" />
           </Button>
 
-          <AdminForceNextPhase
-            buttonText={translate(
-              'Ir para próxima rodada ou game over',
-              'Go to next round or Game Over',
-              language
-            )}
-          />
+          <AdminNextRoundButton round={state.round} />
         </Step>
       </StepSwitcher>
     </PhaseContainer>

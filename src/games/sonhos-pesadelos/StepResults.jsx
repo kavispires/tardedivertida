@@ -7,11 +7,11 @@ import { useLanguage } from '../../hooks';
 import { LETTERS, SEPARATOR } from '../../utils/constants';
 // Components
 import { Instruction, Title, translate, Translate } from '../../components/shared';
-import { AdminForceNextPhase } from '../../components/admin';
+import { AdminNextRoundButton } from '../../components/admin';
 import DreamBoard from './DreamBoard';
 import DreamCard from './DreamCard';
 
-function StepResults({ results, user, clues, table }) {
+function StepResults({ results, user, clues, table, round }) {
   const language = useLanguage();
   const playerResults = results[user.id];
 
@@ -76,7 +76,7 @@ function StepResults({ results, user, clues, table }) {
 
       <DreamBoard table={table} user={user} className="s-dream-board-results" />
 
-      <AdminForceNextPhase buttonText={translate('Próxima Rodada', 'Go to Next Round', language)} />
+      <AdminNextRoundButton round={round} />
     </div>
   );
 }

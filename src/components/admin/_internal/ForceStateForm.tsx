@@ -3,14 +3,15 @@ import { useState } from 'react';
 import { Button, Form, Select, AutoComplete, message } from 'antd';
 // Components
 import { ValueFormItem } from './ValueFormItem';
+import { ADMIN_ACTIONS } from '../../../utils/constants';
 
 type ForceStateFormProps = {
   isLoading?: boolean;
   state: GameState;
-  onForceStateProperty: GenericFunction;
+  onPerformAdminAction: GenericFunction;
 };
 
-export const ForceStateForm = ({ isLoading, state, onForceStateProperty }: ForceStateFormProps) => {
+export const ForceStateForm = ({ isLoading, state, onPerformAdminAction }: ForceStateFormProps) => {
   const [form] = Form.useForm();
   const [valueType, setValueType] = useState('string');
   const stateKeys = Object.keys(state).map((k) => ({ label: k, value: k }));
@@ -38,7 +39,7 @@ export const ForceStateForm = ({ isLoading, state, onForceStateProperty }: Force
       };
 
       if (window.confirm(`Tem certeza que quer forçar o estado ${JSON.stringify(payload)}`)) {
-        await onForceStateProperty({ state: payload });
+        await onPerformAdminAction({ state: payload, action: ADMIN_ACTIONS.FORCE_STATE_PROPERTY });
 
         form.resetFields();
         setValueType('string');

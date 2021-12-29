@@ -1,13 +1,14 @@
-import { AdminForceNextPhase } from '../../components/admin';
-import { Instruction, RankingBoard, Step, Title, translate, Translate } from '../../components';
+import { AdminNextRoundButton } from '../../components/admin';
+import { Instruction, RankingBoard, Step, Title, Translate } from '../../components';
 
 type StepRankingProps = {
   ranking: any;
   players: Players;
   language: Language;
+  round: GameRound;
 };
 
-function StepRanking({ ranking, players, language }: StepRankingProps) {
+function StepRanking({ ranking, players, round }: StepRankingProps) {
   return (
     <Step fullWidth>
       <Title>Ranking</Title>
@@ -19,7 +20,7 @@ function StepRanking({ ranking, players, language }: StepRankingProps) {
       </Instruction>
 
       <RankingBoard ranking={ranking} players={players} />
-      <AdminForceNextPhase buttonText={translate('Próxima Rodada', 'Go to Next Round', language)} />
+      <AdminNextRoundButton round={round} />
     </Step>
   );
 }
