@@ -1,5 +1,6 @@
+// Design Resources
+import { Avatar } from 'antd';
 // Components
-import Avatar from 'antd/lib/avatar/avatar';
 import { AvatarName, ImageCardHand as Hand, Icons, Instruction, Title, Translate } from '../../components';
 
 type StoryWaitingProps = {

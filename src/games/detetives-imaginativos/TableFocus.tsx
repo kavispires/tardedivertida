@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
 // Design Resources
 import { Spin } from 'antd';
@@ -7,10 +6,14 @@ import { useCardWidth } from '../../hooks';
 // Utils
 import { AVATARS } from '../../utils/constants';
 // Components
-import { ImageBlurButtonContainer, ImageCard } from '../../components/cards';
-import { Avatar } from '../../components/avatars';
+import { Avatar, ImageBlurButtonContainer, ImageCard } from '../../components';
 
-export function TableFocus({ table, currentPlayer }) {
+type TableFocusProps = {
+  currentPlayer: GamePlayer;
+  table: DetetivesImaginativosCardEntry[];
+};
+
+export function TableFocus({ table, currentPlayer }: TableFocusProps) {
   const cardWidth = useCardWidth(6, 32, 250);
 
   const tableEntry = table.find((entry) => entry.playerId === currentPlayer.id);
@@ -30,14 +33,18 @@ export function TableFocus({ table, currentPlayer }) {
         <div className="d-table__cards">
           {tableEntry?.cards.map((cardId) => {
             return (
-              <ImageBlurButtonContainer cardId={cardId} className="d-table__card">
+              <ImageBlurButtonContainer
+                cardId={cardId}
+                className="d-table__card"
+                key={`table-focus-${cardId}`}
+              >
                 <ImageCard key={`table-focus-${cardId}`} imageId={cardId} cardWidth={cardWidth} />
               </ImageBlurButtonContainer>
             );
           })}
         </div>
         <div className="d-table__player-info">
-          <Avatar id={currentPlayer.avatarId} className="d-table__player-avatar" size="medium" />
+          <Avatar id={currentPlayer.avatarId} className="d-table__player-avatar" size="default" />
           <span
             className="d-table__player-bar"
             style={{ backgroundColor: AVATARS[currentPlayer.avatarId].color }}
@@ -48,18 +55,5 @@ export function TableFocus({ table, currentPlayer }) {
     </div>
   );
 }
-
-TableFocus.propTypes = {
-  currentPlayer: PropTypes.shape({
-    avatarId: PropTypes.string,
-    name: PropTypes.string,
-  }),
-  table: PropTypes.arrayOf(
-    PropTypes.shape({
-      playerId: PropTypes.string,
-      cards: PropTypes.arrayOf(PropTypes.string),
-    })
-  ),
-};
 
 export default TableFocus;

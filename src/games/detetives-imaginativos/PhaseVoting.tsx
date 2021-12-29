@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
 // Hooks
 import { useAPICall, useUser, useLoading, useLanguage, useWhichPlayerIsThe } from '../../hooks';
 // Resources & Utils
@@ -10,17 +9,13 @@ import {
   Instruction,
   PhaseAnnouncement,
   PhaseContainer,
-  Step,
   StepSwitcher,
-  Title,
   Translate,
   translate,
-} from '../../components/shared';
-import Table from './Table';
-import VotingOptions from './VotingOptions';
-import { LoadingClock } from '../../components/icons';
+} from '../../components';
+import StepVoting from './StepVoting';
 
-function PhaseVoting({ state, players, info }) {
+function PhaseVoting({ state, players, info }: PhaseProps) {
   const language = useLanguage();
   const [isLoading] = useLoading();
   const user = useUser(players);
@@ -38,7 +33,7 @@ function PhaseVoting({ state, players, info }) {
     ),
   });
 
-  const onVote = (playerId) => {
+  const onVote = (playerId: string) => {
     onSubmitVote({
       action: 'SUBMIT_VOTE',
       vote: playerId,
@@ -81,62 +76,18 @@ function PhaseVoting({ state, players, info }) {
         </PhaseAnnouncement>
 
         {/* Step 1 */}
-        <Step key={1}>
-          <Title>
-            {isLoading ? <LoadingClock /> : <Translate pt="Quem é o impostor?" en="Who is the impostor?" />}
-          </Title>
-          <Instruction>
-            {isUserTheLeader && (
-              <Translate
-                pt="Aguarde enquanto os outros jogadorem votam em quem eles acham ser o impostor. Como Líder, você não vota."
-                en="Wait while the other detectives vote. As Lead Detective, you don't vote."
-              />
-            )}
-
-            {!isUserTheLeader && !user.vote && (
-              <Translate
-                pt="Vote para quem você acha que pode ser o impostor! Lembre-se, o impostor só perde se 2 ou mais detetives votarem nele."
-                en="Vote for who you think can be the impostor! Remember, the impostor only goes down if they get 2 or more votes."
-              />
-            )}
-
-            {!isUserTheLeader && user.vote && (
-              <Translate
-                pt="Aguarde enquanto os outros jogadores votam..."
-                en="Wait while other detectives finish voting..."
-              />
-            )}
-          </Instruction>
-
-          <VotingOptions
-            players={players}
-            leaderId={state.leaderId}
-            user={user}
-            onVote={onVote}
-            isLoading={isLoading}
-            isAllDisabled={isUserTheLeader}
-          />
-
-          <Table table={state.table} players={players} />
-        </Step>
+        <StepVoting
+          players={players}
+          leaderId={state.leaderId}
+          user={user}
+          onVote={onVote}
+          isLoading={isLoading}
+          isUserTheLeader={isUserTheLeader}
+          table={state.table}
+        />
       </StepSwitcher>
     </PhaseContainer>
   );
 }
-
-PhaseVoting.propTypes = {
-  info: PropTypes.object,
-  players: PropTypes.object,
-  state: PropTypes.shape({
-    leader: PropTypes.string,
-    phase: PropTypes.string,
-    table: PropTypes.arrayOf(
-      PropTypes.shape({
-        playerId: PropTypes.string,
-        cards: PropTypes.arrayOf(PropTypes.string),
-      })
-    ),
-  }),
-};
 
 export default PhaseVoting;

@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
-import { Button } from 'antd';
+import { Avatar, Button } from 'antd';
+import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 // Hooks
 import { useWhichPlayerIsThe, useAPICall, useLoading, useLanguage } from '../../hooks';
 // Resources & Utils
@@ -21,8 +22,6 @@ import {
 import { AvatarName } from '../../components/avatars';
 import { Suspects } from './Suspects';
 import { Card } from '../../components';
-import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
-import Avatar from 'antd/lib/avatar/avatar';
 
 function PhaseQuestioning({ state, players, info }) {
   const language = useLanguage();

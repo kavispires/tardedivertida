@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
 // Design Resources
 import { Spin } from 'antd';
@@ -7,10 +6,14 @@ import { useCardWidth } from '../../hooks';
 // Utils
 import { AVATARS } from '../../utils/constants';
 // Components
-import { ImageBlurButtonContainer, ImageCard } from '../../components/cards';
-import { Avatar } from '../../components/avatars';
+import { Avatar, ImageBlurButtonContainer, ImageCard } from '../../components';
 
-export function Table({ table, players }) {
+type TableProps = {
+  table: DetetivesImaginativosCardEntry[];
+  players: GamePlayers;
+};
+
+export function Table({ table, players }: TableProps) {
   const cardWidth = useCardWidth(12, 16);
   const baseClass = 'd-table';
 
@@ -49,7 +52,7 @@ export function Table({ table, players }) {
               })}
             </div>
             <div className="d-table__player-info">
-              <Avatar id={players[playerId].avatarId} className="d-table__player-avatar" size="medium" />
+              <Avatar id={players[playerId].avatarId} className="d-table__player-avatar" size="default" />
               <span
                 className="d-table__player-bar"
                 style={{ backgroundColor: AVATARS[players[playerId].avatarId].color }}
@@ -62,15 +65,5 @@ export function Table({ table, players }) {
     </div>
   );
 }
-
-Table.propTypes = {
-  players: PropTypes.any,
-  table: PropTypes.arrayOf(
-    PropTypes.shape({
-      playerId: PropTypes.string,
-      cards: PropTypes.arrayOf(PropTypes.string),
-    })
-  ),
-};
 
 export default Table;
