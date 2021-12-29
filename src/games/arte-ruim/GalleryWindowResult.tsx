@@ -1,4 +1,4 @@
-import React, { Fragment, memo } from 'react';
+import { memo } from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
 import { Avatar as AntAvatar, Typography } from 'antd';
@@ -37,7 +37,7 @@ function GalleryWindowResult({
         {correctAnswerText}
       </div>
       {correctGuesses.length ? (
-        <Fragment>
+        <>
           <div className="a-gallery-window__players">
             <AntAvatar.Group>
               {correctGuesses.map((playerId) => {
@@ -57,7 +57,7 @@ function GalleryWindowResult({
             />{' '}
             <span className="a-gallery-window__players-names">{playerArtist.name}</span>
           </div>
-        </Fragment>
+        </>
       ) : (
         <Typography.Text className="a-gallery-window__no-wins">
           <DeleteFilled />{' '}

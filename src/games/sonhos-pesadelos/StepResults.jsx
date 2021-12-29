@@ -1,4 +1,3 @@
-import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
 import { Alert } from 'antd';
@@ -45,7 +44,7 @@ function StepResults({ results, user, clues, table }) {
                 <ul className="s-results-clues">
                   {entry.clue.map((clueText, index) => {
                     return (
-                      <Fragment>
+                      <>
                         {index === 1 && (
                           <li key={`label-${index}`} className="s-results-clues-label">
                             <Translate pt="Dicas no mesmo grupo:" en="Clues on the same group:" />
@@ -54,7 +53,7 @@ function StepResults({ results, user, clues, table }) {
                         <li key={clueText} className="s-results-clues-item">
                           {clueText}
                         </li>
-                      </Fragment>
+                      </>
                     );
                   })}
                 </ul>

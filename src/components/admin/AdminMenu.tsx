@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react';
+import { useState } from 'react';
 // Design Resources
 import { Affix, Button, Popover, Spin } from 'antd';
 import { FireFilled } from '@ant-design/icons';
@@ -62,7 +62,7 @@ export const AdminMenu = ({ state, players }: AdminMenuProps) => {
   );
 
   return (
-    <Fragment>
+    <>
       <Affix offsetBottom={10} className="admin-menu__affix">
         <Popover
           placement="topLeft"
@@ -105,6 +105,6 @@ export const AdminMenu = ({ state, players }: AdminMenuProps) => {
           />
         </Popover>
       </Affix>
-    </Fragment>
+    </>
   );
 };

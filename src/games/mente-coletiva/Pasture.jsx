@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import React, { Fragment, memo, useMemo } from 'react';
+import { memo, useMemo } from 'react';
 import { useDimensions } from '../../hooks';
 
 import pastureBackground from '../../images/m-pasture-background.png';
@@ -27,7 +27,7 @@ export const Pasture = memo(function ({ players }) {
   }, [players]);
 
   return (
-    <Fragment>
+    <>
       <div className="m-pasture" style={{ width: `${pastureWidth}px`, height: `${pastureHeight}px` }}>
         <img src={pastureBackground} alt="pasture background" className="m-pasture__background" />
 
@@ -77,7 +77,7 @@ export const Pasture = memo(function ({ players }) {
           })}
         </div>
       </div>
-    </Fragment>
+    </>
   );
 });
 
