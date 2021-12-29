@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
 import { Space } from 'antd';

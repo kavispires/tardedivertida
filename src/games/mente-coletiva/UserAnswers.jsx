@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 // Components
 import { ButtonContainer, Instruction, Translate } from '../../components/shared';

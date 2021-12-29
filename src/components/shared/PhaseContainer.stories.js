@@ -1,4 +1,3 @@
-import React from 'react';
 import { getLanguageControl, mockHooks, mockInfo, mockLanguageHook } from '../../mocks';
 
 import { PhaseContainer } from './PhaseContainer';

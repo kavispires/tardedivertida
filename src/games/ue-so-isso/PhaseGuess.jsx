@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 // Hooks
 import { useGlobalState, useLoading, useWhichPlayerIsThe, useAPICall, useLanguage } from '../../hooks';

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
 import { Button, Popconfirm, Select, Space } from 'antd';

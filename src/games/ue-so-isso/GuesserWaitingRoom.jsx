@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+
 import { useLanguage } from '../../hooks';
 // Components
 import { translate, WaitingRoom } from '../../components/shared';

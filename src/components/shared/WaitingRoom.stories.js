@@ -1,4 +1,3 @@
-import React from 'react';
 import { mockPlayers } from '../../mocks';
 
 import { WaitingRoom } from './WaitingRoom';

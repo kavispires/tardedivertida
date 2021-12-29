@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+
 // Components
 import { GameOverWrapper } from '../../components/shared';
 

@@ -1,4 +1,4 @@
-// import React from 'react';
+//
 // import { getLanguageControl, mockGlobalUser, mockLanguageHook, mockPlayer } from '../../mocks';
 
 // import { AvatarName } from './AvatarName';

@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
+
 // import { Image, Layout } from 'antd';
 import gameList from '../resources/games.json';
 import { Avatar, AvatarEntry } from '../components/avatars';

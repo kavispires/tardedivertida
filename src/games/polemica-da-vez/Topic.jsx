@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import { LikeFilled, RiseOutlined, TwitterOutlined } from '@ant-design/icons';
-import React from 'react';
 
 export function Topic({ topic, likes }) {
   return (

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+
 // Design Resources
 import { Divider } from 'antd';
 // Components
