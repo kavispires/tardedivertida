@@ -6,7 +6,7 @@ import Join from './_internal/Join';
 import Waiting from './_internal/Waiting';
 import { CloudBackground } from './_internal/CloudBackground';
 
-const backgroundType = {
+const backgroundType: PlainObject = {
   A: 'artsy-cloud',
   E: 'cyber-cloud',
   O: 'funky-cloud',
@@ -14,7 +14,12 @@ const backgroundType = {
   U: 'cloud',
 };
 
-export function PhaseLobby({ players, info }) {
+type PhaseLobbyProps = {
+  players: GamePlayers;
+  info: GameInfo;
+};
+
+export function PhaseLobby({ players, info }: PhaseLobbyProps) {
   const [userId] = useGlobalState('userId');
   const [username] = useGlobalState('username');
   const [userAvatarId] = useGlobalState('userAvatarId');
