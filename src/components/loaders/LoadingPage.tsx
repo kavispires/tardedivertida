@@ -1,10 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 // Design Resources
 import { Layout, Spin, Typography } from 'antd';
-import { Translate } from '../shared';
+// Components
+import { Translate } from '..';
 
-export function LoadingPage({ message }) {
+type LoadingPageProps = {
+  message?: string;
+};
+
+export function LoadingPage({ message }: LoadingPageProps) {
   return (
     <Layout.Content className="loading-page">
       <Spin size="large" />
@@ -14,7 +17,3 @@ export function LoadingPage({ message }) {
     </Layout.Content>
   );
 }
-
-LoadingPage.propTypes = {
-  message: PropTypes.string,
-};
