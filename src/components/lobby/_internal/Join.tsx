@@ -14,13 +14,18 @@ import localStorage from '../../../services/localStorage';
 import { AVATARS, PUBLIC_URL, RANDOM_NAMES } from '../../../utils/constants';
 import { getRandomItem, isDevEnv } from '../../../utils/helpers';
 // Components
-import { Translate, translate } from '../../shared';
+import { Translate, translate } from '../..';
 
 const randomName = isDevEnv ? getRandomItem(RANDOM_NAMES) : undefined;
 
 const AVATAR_IDS = Object.keys(AVATARS);
 
-function Join({ players, info }) {
+type JoinProps = {
+  info: GameInfo;
+  players: GamePlayers;
+};
+
+function Join({ players, info }: JoinProps) {
   const language = useLanguage();
   const [isLoading, setLoader] = useLoading();
   const [gameId] = useGlobalState('gameId');
@@ -38,7 +43,7 @@ function Join({ players, info }) {
 
   // Calculate available avatars and monitor if user chose a non-available one
   useEffect(() => {
-    const usedAvatars = Object.values(players).reduce((acc, { avatarId }) => {
+    const usedAvatars = Object.values(players).reduce((acc: PlainObject, { avatarId }) => {
       acc[avatarId] = true;
       return acc;
     }, {});
@@ -84,7 +89,7 @@ function Join({ players, info }) {
   const onAddPlayer = useCallback(async () => {
     try {
       setLoader('add-player', true);
-      const response = await GAME_API.addPlayer({
+      const response: PlainObject = await GAME_API.addPlayer({
         gameId,
         gameName,
         playerName: tempUsername,
@@ -100,12 +105,12 @@ function Join({ players, info }) {
         avatarId: response.data.avatarId,
         gameId,
       });
-    } catch (e) {
+    } catch (e: any) {
       notification.error({
         message: translate(
           'Vixi, o aplicativo encontrou um erro ao tentar te adicionar como jogador',
           'Oops, the application failed when trying to add you as a player',
-          translate
+          language
         ),
         description: JSON.stringify(e.message),
         placement: 'bottomLeft',
@@ -116,7 +121,7 @@ function Join({ players, info }) {
     }
   }, [gameId, gameName, tempUsername, tempAvatar]); // eslint-disable-line
 
-  const onEnterInput = (e) => {
+  const onEnterInput = (e: any) => {
     if (e.key === 'Enter') {
       onAddPlayer();
     }
@@ -166,7 +171,7 @@ function Join({ players, info }) {
             className="lobby-join__avatar-alert"
             type="warning"
             message={translate(
-              'Se alguém selecionar um mesmo avatar, um avatar aleatório será atribuido à você.',
+              'Se alguém selecionar um mesmo avatar, um avatar aleatório será atribuído à você.',
               'If you selected the same avatar of someone else, a new random avatar will be given to you.',
               language
             )}
