@@ -68,7 +68,7 @@ export const AdminMenuDrawer = ({ state, players }: AdminMenuDrawerProps) => {
               onConfirm={() => onPerformAdminAction({ action: ADMIN_ACTIONS.GO_TO_NEXT_PHASE })}
             >
               <AdminPerformActionButton
-                disabled={isLoading}
+                disabled={isLoading || state.phase === 'GAME_OVER'}
                 label="Force Next Phase"
                 className="admin-menu-drawer__button"
               />
