@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react';
 import { orderBy } from 'lodash';
 import { useTimer } from 'react-timer-hook';
 // Design Resources
@@ -12,7 +11,12 @@ import { inNSeconds } from '../../utils/helpers';
 import { Avatar } from '../avatars';
 import clsx from 'clsx';
 
-function GainedPoint({ gainedPoint, order }) {
+type GainedPointProps = {
+  gainedPoint: number;
+  order: number;
+};
+
+function GainedPoint({ gainedPoint, order }: GainedPointProps): JSX.Element {
   return (
     <li
       className={clsx(
@@ -28,12 +32,12 @@ function GainedPoint({ gainedPoint, order }) {
   );
 }
 
-GainedPoint.propTypes = {
-  gainedPoint: PropTypes.number,
-  order: PropTypes.number,
+type GainedPointsProps = {
+  gainedPoints: number[] | number;
+  playerId: PlayerId;
 };
 
-function GainedPoints({ gainedPoints, playerId }) {
+function GainedPoints({ gainedPoints, playerId }: GainedPointsProps): JSX.Element {
   const points = Array.isArray(gainedPoints) ? gainedPoints : [gainedPoints];
   return (
     <ul className="ranking-board__cell-gained-points">
@@ -44,14 +48,14 @@ function GainedPoints({ gainedPoints, playerId }) {
   );
 }
 
-GainedPoints.propTypes = {
-  gainedPoints: PropTypes.arrayOf(PropTypes.number),
-  playerId: PropTypes.string,
+type RankingBoardProps = {
+  players: GamePlayers;
+  ranking: GameRanking;
 };
 
-export function RankingBoard({ players, ranking }) {
+export function RankingBoard({ players, ranking }: RankingBoardProps): JSX.Element {
   const [displayStep, setDisplayStep] = useState(0);
-  const [sortedRanking, setSortedRanking] = useState([]);
+  const [sortedRanking, setSortedRanking] = useState<GameRanking>([]);
   const [reRank, setReRank] = useState(0);
   const [, height] = useDimensions('ranking-row-0');
 
@@ -65,15 +69,15 @@ export function RankingBoard({ players, ranking }) {
 
   // Rank by previousScore
   useEffect(() => {
-    const positions = {};
+    const positions: PlainObject = {};
     let lastPosition = 0;
-    let lastPoints = null;
+    let lastPoints = 0;
 
     const rankByFinalScoreDict = orderBy(ranking, ['newScore', 'name'], ['desc', 'asc']).reduce(
-      (acc, entry, index) => {
+      (acc: PlainObject, entry, index) => {
         acc[entry.playerId] = index;
         // Calculate position
-        if (lastPoints === null || entry.newScore < lastPoints) {
+        if (lastPoints === 0 || entry.newScore < lastPoints) {
           lastPoints = entry.newScore;
           lastPosition += 1;
         }
@@ -87,15 +91,15 @@ export function RankingBoard({ players, ranking }) {
 
     // Reset position trackers
     lastPosition = 0;
-    lastPoints = null;
+    lastPoints = 0;
 
-    const tempSortedRanking = rankByPreviousScore.map((entry, index) => {
+    const tempSortedRanking: GameRanking = rankByPreviousScore.map((entry, index) => {
       const newEntry = { ...entry };
 
       newEntry.order = [index, rankByFinalScoreDict[newEntry.playerId]];
       newEntry.position = positions[newEntry.playerId];
       // Calculate position
-      if (lastPoints === null || entry.previousScore < lastPoints) {
+      if (lastPoints === 0 || entry.previousScore < lastPoints) {
         lastPoints = entry.previousScore;
         lastPosition += 1;
       }
@@ -153,17 +157,5 @@ export function RankingBoard({ players, ranking }) {
     </div>
   );
 }
-
-RankingBoard.propTypes = {
-  players: PropTypes.object,
-  ranking: PropTypes.arrayOf(
-    PropTypes.shape({
-      playerId: PropTypes.string,
-      previousScore: PropTypes.number,
-      gainedPoints: PropTypes.oneOfType(PropTypes.number, PropTypes.array),
-      newScore: PropTypes.number,
-    })
-  ),
-};
 
 export default RankingBoard;
