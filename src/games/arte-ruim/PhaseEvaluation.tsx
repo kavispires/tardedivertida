@@ -5,14 +5,7 @@ import { useIsUserReady, useAPICall, useLanguage } from '../../hooks';
 import { ARTE_RUIM_API } from '../../adapters';
 import { PHASES } from '../../utils/constants';
 // Components
-import {
-  PhaseContainer,
-  StepSwitcher,
-  Step,
-  WaitingRoom,
-  PhaseAnnouncement,
-  translate,
-} from '../../components';
+import { PhaseContainer, StepSwitcher, PhaseAnnouncement, translate } from '../../components';
 
 import StepEvaluation from './StepEvaluation';
 import RulesEvaluation from './RulesEvaluation';
@@ -50,7 +43,16 @@ function EvaluationPhase({ players, state, info }: PhaseProps) {
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.ARTE_RUIM.EVALUATION}>
-      <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady]}>
+      <StepSwitcher
+        step={step}
+        conditions={[!isUserReady, !isUserReady]}
+        players={players}
+        waitingRoomInstruction={translate(
+          'Vamos aguardar enquanto os outros jogadores terminam de avaliar!',
+          'Please wait while other players finish their evaluations!',
+          language
+        )}
+      >
         {/*Step 0 */}
         <PhaseAnnouncement
           type="evaluate"
@@ -68,19 +70,6 @@ function EvaluationPhase({ players, state, info }: PhaseProps) {
           players={players}
           onSubmitVoting={onSubmitVoting}
         />
-
-        {/*Step 2 */}
-        <Step fullWidth>
-          <WaitingRoom
-            players={players}
-            title={translate('Pronto!', 'Done!', language)}
-            instruction={translate(
-              'Vamos aguardar enquanto os outros jogadores terminam de avaliar!',
-              'Please wait while other players finish their evaluations!',
-              language
-            )}
-          />
-        </Step>
       </StepSwitcher>
     </PhaseContainer>
   );

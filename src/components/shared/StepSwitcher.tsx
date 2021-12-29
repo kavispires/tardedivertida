@@ -8,9 +8,16 @@ type StepSwitcherProps = {
   step: number;
   conditions?: boolean[];
   players?: GamePlayers;
+  waitingRoomInstruction?: any;
 };
 
-export function StepSwitcher({ children, step, conditions, players }: StepSwitcherProps) {
+export function StepSwitcher({
+  children,
+  step,
+  conditions,
+  players,
+  waitingRoomInstruction,
+}: StepSwitcherProps) {
   if (players && step === children.length) {
     return (
       <WaitingRoom
@@ -18,8 +25,9 @@ export function StepSwitcher({ children, step, conditions, players }: StepSwitch
         title={<Translate pt="Pronto!" en="Done!" />}
         instruction={
           <Translate
-            pt="Aguardando o servidor dar sinal de vida"
-            en="Waiting for the server to resuscitate"
+            pt="Aguardando algo acontecer..."
+            en="Waiting for something..."
+            custom={waitingRoomInstruction}
           />
         }
       />
