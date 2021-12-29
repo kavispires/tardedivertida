@@ -31,9 +31,10 @@ interface Players {
   [key: string]: Player;
 }
 
-interface State {
-  phase?: string;
+interface GameState {
+  phase: string;
   updatedAt?: DateMilliseconds;
+  round: GameRound;
   [key: string]: any;
 }
 
@@ -70,12 +71,6 @@ type GameRound = {
   current: number;
   total: number;
 };
-
-interface GameState {
-  phase: string;
-  round: GameRound;
-  [key: string]: any;
-}
 
 interface GamePlayers {
   [key: string]: Player;

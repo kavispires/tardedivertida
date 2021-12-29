@@ -1,20 +1,27 @@
-import React, { Fragment, useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react';
 // Hooks
 import { useGameState, useGlobalState, useGamePlayers } from '../../hooks';
 // Utils
 import gameList from '../../resources/games.json';
 import { isDevEnv } from '../../utils/helpers';
 // Components
-import { PhaseLobby } from '../../components';
-import { GameInfoDrawer } from '../drawers';
-import { AdminMenu } from '../admin/index';
+import { PhaseLobby, GameInfoDrawer, AdminMenu } from '../../components';
 
-export function Session({ gameId, gameCollection, getActiveComponent }) {
+const GAME_LIST: {
+  [key: string]: GameInfo;
+} = gameList;
+
+type SessionProps = {
+  gameId: GameId;
+  gameCollection: GameName;
+  getActiveComponent: (args: any) => any;
+};
+
+export function Session({ gameId, gameCollection, getActiveComponent }: SessionProps) {
   const players = useGamePlayers(gameId, gameCollection);
   const state = useGameState(gameId, gameCollection);
   const [userId] = useGlobalState('userId');
-  const [info, setInfo] = useState({});
+  const [info, setInfo] = useState<any>({});
 
   useEffect(() => {
     if (isDevEnv) {
@@ -30,26 +37,20 @@ export function Session({ gameId, gameCollection, getActiveComponent }) {
 
   // Update game description as the gameId comes in
   useEffect(() => {
-    setInfo(gameId?.[0] ? gameList[gameId[0]] : {});
+    setInfo(gameId?.[0] ? GAME_LIST[gameId[0]] : {});
   }, [gameId]);
 
   if (!userId) {
-    return <PhaseLobby players={players} state={state} info={info} />;
+    return <PhaseLobby players={players} info={info} />;
   }
 
-  const ActiveComponent = getActiveComponent(state.phase);
+  const ActiveComponent: any = getActiveComponent(state.phase);
 
   return (
-    <Fragment>
+    <>
       <GameInfoDrawer players={players} state={state} info={info} userId={userId} />
       <ActiveComponent players={players} state={state} info={info} />
       <AdminMenu state={state} players={players} />
-    </Fragment>
+    </>
   );
 }
-
-Session.propTypes = {
-  gameId: PropTypes.string.isRequired,
-  gameCollection: PropTypes.string.isRequired,
-  getActiveComponent: PropTypes.func.isRequired,
-};

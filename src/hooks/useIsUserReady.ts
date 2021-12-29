@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useGlobalState } from './useGlobalState';
 
 // Check if user is ready
-export function useIsUserReady(players: Players, state: State = {}) {
+export function useIsUserReady(players: Players, state?: GameState) {
   const [userId] = useGlobalState('userId');
   const [isReady, setIsReady] = useState(false);
 
