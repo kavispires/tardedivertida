@@ -4,12 +4,12 @@ import { Space } from 'antd';
 // State
 import { useGlobalState } from '../../hooks';
 
-type AdminOnlyProps = {
+type AdminOnlyContainerProps = {
   children: any;
   className?: string;
 };
 
-export const AdminOnly = ({ children, className = '' }: AdminOnlyProps) => {
+export const AdminOnlyContainer = ({ children, className = '' }: AdminOnlyContainerProps) => {
   const [isAdmin] = useGlobalState('isAdmin');
 
   if (!isAdmin) return <span></span>;

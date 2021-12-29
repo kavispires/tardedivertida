@@ -5,7 +5,8 @@ import { useGameState, useGlobalState, useGamePlayers } from '../../hooks';
 import gameList from '../../resources/games.json';
 import { isDevEnv } from '../../utils/helpers';
 // Components
-import { PhaseLobby, GameInfoDrawer, AdminMenu } from '../../components';
+import { PhaseLobby, GameInfoDrawer } from '../../components';
+import { AdminMenuDrawer } from '../admin';
 
 const GAME_LIST: {
   [key: string]: GameInfo;
@@ -50,7 +51,7 @@ export function Session({ gameId, gameCollection, getActiveComponent }: SessionP
     <>
       <GameInfoDrawer players={players} state={state} info={info} userId={userId} />
       <ActiveComponent players={players} state={state} info={info} />
-      <AdminMenu state={state} players={players} />
+      <AdminMenuDrawer state={state} players={players} />
     </>
   );
 }

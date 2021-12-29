@@ -9,7 +9,7 @@ import avatars from '../../../images/avatars.svg';
 // Utils and Resources
 import { PUBLIC_URL } from '../../../utils/constants';
 // Components
-import { AdminOnly, Translate, translate } from '../..';
+import { AdminOnlyContainer, Translate, translate } from '../..';
 
 type WaitingProps = {
   info: GameInfo;
@@ -78,7 +78,7 @@ function Waiting({ info, players }: WaitingProps) {
             en="Please, wait while other players join..."
           />
         </h3>
-        <AdminOnly className="lobby-waiting__lock-button">
+        <AdminOnlyContainer className="lobby-waiting__lock-button">
           <Typography.Text className="center padding">
             <Translate pt="Jogadores necessários" en="Players needed" />: {numPlayers}/{gameMeta.min}
           </Typography.Text>
@@ -91,7 +91,7 @@ function Waiting({ info, players }: WaitingProps) {
           >
             <Translate pt="Trancar e Iniciar Jogo" en="Lock and Start Game" />
           </Button>
-        </AdminOnly>
+        </AdminOnlyContainer>
       </div>
     </div>
   );

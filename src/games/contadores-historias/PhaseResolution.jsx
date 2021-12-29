@@ -93,6 +93,7 @@ function PhaseResolution({ state, players, info }) {
             ranking={state.ranking}
             outcome={state.outcome}
             storyteller={storyteller}
+            round={state.round}
           />
         </Step>
       </StepSwitcher>

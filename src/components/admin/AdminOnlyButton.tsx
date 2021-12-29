@@ -1,5 +1,5 @@
 // Components
-import { AdminOnly, AdminButton } from './index';
+import { AdminOnlyContainer, AdminButton } from './index';
 
 type AdminOnlyButtonProps = {
   action: GenericFunction;
@@ -8,8 +8,8 @@ type AdminOnlyButtonProps = {
 
 export function AdminOnlyButton({ action, label }: AdminOnlyButtonProps) {
   return (
-    <AdminOnly>
+    <AdminOnlyContainer>
       <AdminButton action={action} label={label} />
-    </AdminOnly>
+    </AdminOnlyContainer>
   );
 }

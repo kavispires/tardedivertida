@@ -4,21 +4,32 @@ import { Button, Space } from 'antd';
 import { FireFilled } from '@ant-design/icons';
 // State & Hooks
 import { useAPICall, useGlobalState, useLanguage, useLoading } from '../../hooks';
-import { GAME_API } from '../../adapters';
-import { translate } from '../shared';
+import { ADMIN_API } from '../../adapters';
+import { ADMIN_ACTIONS } from '../../utils/constants';
+// Components
+import { translate, Translate } from '..';
 
-type AdminForceNextPhaseProps = {
+function ButtonLabel({ round }: { round?: GameRound }) {
+  return !round || round.current === round.total ? (
+    <Translate pt="Tela de Game Over" en="Game Over Screen" />
+  ) : (
+    <Translate pt="Próxima rodada" en="Next Round" />
+  );
+}
+
+type AdminNextRoundButtonProps = {
   buttonText?: string;
   className?: string;
+  round?: GameRound;
 };
 
-export function AdminForceNextPhase({ buttonText, className = '' }: AdminForceNextPhaseProps) {
+export function AdminNextRoundButton({ buttonText, className = '', round }: AdminNextRoundButtonProps) {
   const language = useLanguage();
   const [isLoading] = useLoading();
   const [isAdmin] = useGlobalState('isAdmin');
 
   const onGoToNextPhase = useAPICall({
-    apiFunction: GAME_API.goToNextPhase,
+    apiFunction: ADMIN_API.performAdminAction,
     actionName: 'force-next-phase',
     successMessage: translate('Funcionou, próxima fase!', 'It worked, next phase!', language),
     errorMessage: translate(
@@ -36,10 +47,10 @@ export function AdminForceNextPhase({ buttonText, className = '' }: AdminForceNe
         icon={<FireFilled />}
         type="primary"
         danger
-        onClick={() => onGoToNextPhase({})}
+        onClick={() => onGoToNextPhase({ action: ADMIN_ACTIONS.GO_TO_NEXT_PHASE })}
         disabled={isLoading}
       >
-        {buttonText ?? <>Force Next Phase</>}
+        {buttonText ?? <ButtonLabel round={round} />}
       </Button>
     </Space>
   );

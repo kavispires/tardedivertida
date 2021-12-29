@@ -18,7 +18,7 @@ import {
   translate,
 } from '../../components/shared';
 import { AvatarName } from '../../components/avatars';
-import { AdminForceNextPhase } from '../../components/admin/index';
+import { AdminNextRoundButton } from '../../components/admin/index';
 import VotingOptions from './VotingOptions';
 
 function PhaseReveal({ state, players, info }) {
@@ -97,13 +97,7 @@ function PhaseReveal({ state, players, info }) {
 
           <RoundsLeftInstruction round={state?.round} />
 
-          <AdminForceNextPhase
-            buttonText={translate(
-              'Ir para próxima rodada ou game over',
-              'Go to next round or Game Over',
-              language
-            )}
-          />
+          <AdminNextRoundButton round={state.round} />
         </Step>
       </StepSwitcher>
     </PhaseContainer>

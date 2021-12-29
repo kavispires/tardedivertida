@@ -5,21 +5,8 @@ export const GAME_API = {
   loadGame: httpsCallable(functions, 'loadGame'),
   addPlayer: httpsCallable(functions, 'addPlayer'),
   makePlayerReady: httpsCallable(functions, 'makePlayerReady'),
-  playAgain: httpsCallable(functions, 'playAgain'),
-  goToNextPhase: httpsCallable(functions, 'goToNextPhase'),
-  forceStateProperty: httpsCallable(functions, 'forceStateProperty'),
   rateGame: httpsCallable(functions, 'rateGame'),
 };
-
-// export const GAME_API = {
-//   loadGame: httpsCallable(functions, 'loadGame'),
-//   addPlayer: httpsCallable(functions, 'addPlayer'),
-//   makePlayerReady: httpsCallable(functions, 'makePlayerReady'),
-//   rateGame: httpsCallable(functions, 'rateGame'),
-//   // playAgain: httpsCallable(functions, 'playAgain'),
-//   // goToNextPhase: httpsCallable(functions, 'goToNextPhase'),
-//   // forceStateProperty: httpsCallable(functions, 'forceStateProperty'),
-// };
 
 export const ADMIN_API = {
   createGame: httpsCallable(functions, 'createGame'),

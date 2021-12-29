@@ -5,7 +5,7 @@ import { useIsUserReady, useUser, useLanguage } from '../../hooks';
 import { PHASES } from '../../utils/constants';
 // Components
 import {
-  AdminForceNextPhase,
+  AdminNextRoundButton,
   Instruction,
   PhaseAnnouncement,
   PhaseContainer,
@@ -83,7 +83,7 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
           </Instruction>
 
           <RankingBoard ranking={state.ranking} players={players} />
-          <AdminForceNextPhase buttonText={translate('Próxima Rodada', 'Go to Next Round', language)} />
+          <AdminNextRoundButton round={state.round} />
         </Step>
       </StepSwitcher>
     </PhaseContainer>

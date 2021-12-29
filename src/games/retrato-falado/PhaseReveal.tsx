@@ -54,7 +54,7 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
         />
 
         {/* Step 2 */}
-        <StepRanking ranking={state.ranking} players={players} language={language} />
+        <StepRanking ranking={state.ranking} players={players} language={language} round={state.round} />
 
         {/* Step 3 */}
         <Step fullWidth>

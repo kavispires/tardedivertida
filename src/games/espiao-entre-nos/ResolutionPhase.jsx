@@ -8,7 +8,7 @@ import { useAPICall, useWhichPlayerIsThe } from '../../hooks';
 import { ESPIAO_ENTRE_NOS_API } from '../../adapters';
 import { PHASES } from '../../utils/constants';
 // Components
-import { AdminOnly, AdminButton } from '../../components/admin/index';
+import { AdminOnlyContainer, AdminButton } from '../../components/admin/index';
 import { Instruction, PhaseContainer, Title } from '../../components/shared';
 
 const determineView = (resolutionType, spyWin, isUserTheSpy, timeRemaining) => {
@@ -95,10 +95,10 @@ function ResolutionPhase({ state, players, info }) {
         ))}
       </Instruction>
 
-      <AdminOnly>
+      <AdminOnlyContainer>
         <AdminButton action={() => onAdminControl({ action: 'round' })} label="Iniciar nova rodada" />
         <AdminButton action={() => onAdminControl({ action: 'end' })} label="Terminar o jogo" />
-      </AdminOnly>
+      </AdminOnlyContainer>
     </PhaseContainer>
   );
 }

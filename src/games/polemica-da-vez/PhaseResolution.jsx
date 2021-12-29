@@ -64,6 +64,7 @@ function PhaseReact({ state, players, info }) {
             customTopic={state.customTopic}
             currentTopic={state.currentTopic}
             totalLikes={state.totalLikes}
+            round={state.round}
           />
         </Step>
 
