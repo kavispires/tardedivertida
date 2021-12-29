@@ -6,7 +6,7 @@ import { useIsUserReady, useUser, useLanguage } from '../../hooks';
 import { PHASES } from '../../utils/constants';
 // Components
 import {
-  DefaultWaitingRoom,
+  WaitingRoom,
   Instruction,
   PhaseAnnouncement,
   PhaseContainer,
@@ -76,7 +76,7 @@ function PhaseResolution({ state, players, info }) {
 
         {/* Step 2 */}
         <Step fullWidth>
-          <DefaultWaitingRoom players={players} />
+          <WaitingRoom players={players} />
           <DreamBoard user={user} table={state.table} />
         </Step>
       </StepSwitcher>

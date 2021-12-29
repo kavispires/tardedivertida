@@ -7,7 +7,7 @@ import { PHASES } from '../../utils/constants';
 // Components
 import {
   AvatarName,
-  DefaultWaitingRoom,
+  WaitingRoom,
   Instruction,
   PhaseAnnouncement,
   PhaseContainer,
@@ -153,7 +153,7 @@ function PhaseCompositeSketch({ players, state, info }: PhaseProps) {
 
         {/* Step 3 */}
         <Step fullWidth>
-          <DefaultWaitingRoom players={players} />
+          <WaitingRoom players={players} />
         </Step>
       </StepSwitcher>
     </PhaseContainer>

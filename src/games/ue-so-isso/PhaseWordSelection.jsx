@@ -16,7 +16,7 @@ import {
   Translate,
   translate,
   ViewIf,
-  DefaultWaitingRoom,
+  WaitingRoom,
 } from '../../components/shared';
 import WordSelectionStep from './WordSelectionStep';
 import { AvatarName } from '../../components/avatars';
@@ -162,7 +162,7 @@ function PhaseWordSelection({ state, players, info }) {
 
         {/* Step 3 */}
         <Step fullWidth>
-          <DefaultWaitingRoom players={players} />
+          <WaitingRoom players={players} />
         </Step>
       </StepSwitcher>
     </PhaseContainer>

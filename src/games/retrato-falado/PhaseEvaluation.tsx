@@ -6,7 +6,7 @@ import { RETRATO_FALADO_API } from '../../adapters';
 import { PHASES } from '../../utils/constants';
 // Components
 import {
-  DefaultWaitingRoom,
+  WaitingRoom,
   Instruction,
   PhaseAnnouncement,
   PhaseContainer,
@@ -75,7 +75,7 @@ function PhaseEvaluation({ players, state, info }: PhaseProps) {
 
         {/* Step 2 */}
         <Step fullWidth>
-          <DefaultWaitingRoom players={players} />
+          <WaitingRoom players={players} />
         </Step>
       </StepSwitcher>
     </PhaseContainer>

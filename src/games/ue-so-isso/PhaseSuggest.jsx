@@ -15,7 +15,7 @@ import {
   Translate,
   translate,
   ViewIf,
-  DefaultWaitingRoom,
+  WaitingRoom,
 } from '../../components/shared';
 import SuggestionStep from './SuggestionStep';
 import { WritingRules } from './RulesBlobs';
@@ -96,7 +96,7 @@ function PhaseSuggest({ state, players, info }) {
         </Step>
 
         {/* Step 2 */}
-        <DefaultWaitingRoom players={players} />
+        <WaitingRoom players={players} />
       </StepSwitcher>
     </PhaseContainer>
   );

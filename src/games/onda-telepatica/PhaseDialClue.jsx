@@ -7,7 +7,7 @@ import { ONDA_TELEPATICA_API } from '../../adapters';
 import { PHASES } from '../../utils/constants';
 // Components
 import {
-  DefaultWaitingRoom,
+  WaitingRoom,
   Instruction,
   PhaseAnnouncement,
   PhaseContainer,
@@ -137,7 +137,7 @@ function PhaseDialClue({ players, state, info }) {
 
         {/* Step 3 */}
         <Step fullWidth>
-          <DefaultWaitingRoom players={players} />
+          <WaitingRoom players={players} />
         </Step>
       </StepSwitcher>
     </PhaseContainer>
