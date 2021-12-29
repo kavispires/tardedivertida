@@ -83,7 +83,7 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
           </Instruction>
 
           <RankingBoard ranking={state.ranking} players={players} />
-          <AdminNextRoundButton round={state.round} />
+          <AdminNextRoundButton round={state.round} lastRound={state?.lastRound} />
         </Step>
       </StepSwitcher>
     </PhaseContainer>

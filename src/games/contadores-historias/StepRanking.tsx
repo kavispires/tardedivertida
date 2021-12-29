@@ -16,9 +16,10 @@ type StepRankingProps = {
   outcome: 'EVERYBODY_GOT' | 'NOBODY_GOT' | 'NORMAL';
   ranking: GameRanking;
   round: GameRound;
+  lastRound?: boolean;
 };
 
-function StepRanking({ players, ranking, outcome, storyteller, round }: StepRankingProps) {
+function StepRanking({ players, ranking, outcome, storyteller, round, lastRound = false }: StepRankingProps) {
   return (
     <div className="c-step-ranking">
       <Title level={1}>
@@ -74,7 +75,7 @@ function StepRanking({ players, ranking, outcome, storyteller, round }: StepRank
 
       <RankingBoard ranking={ranking} players={players} />
 
-      <AdminNextRoundButton round={round} />
+      <AdminNextRoundButton round={round} lastRound={lastRound} />
     </div>
   );
 }
