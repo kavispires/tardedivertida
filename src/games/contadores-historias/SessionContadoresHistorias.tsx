@@ -8,8 +8,8 @@ import PhaseVoting from './PhaseVoting';
 import PhaseResolution from './PhaseResolution';
 import PhaseGameOver from './PhaseGameOver';
 
-function SessionDetetivesImaginativos({ gameId }) {
-  function getActiveComponent(phase) {
+function SessionDetetivesImaginativos({ gameId }: GameSession) {
+  function getActiveComponent(phase: string) {
     switch (phase) {
       case PHASES.CONTADORES_HISTORIAS.LOBBY:
         return PhaseLobby;

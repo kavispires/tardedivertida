@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
 // Hooks
 import { useIsUserReady, useWhichPlayerIsThe, useAPICall, useUser, useLanguage } from '../../hooks';
 // Resources & Utils
@@ -7,6 +6,8 @@ import { CONTADORES_HISTORIAS_API } from '../../adapters';
 import { PHASES } from '../../utils/constants';
 // Components
 import {
+  AvatarName,
+  ImageCardPreloadHand,
   Instruction,
   PhaseAnnouncement,
   PhaseContainer,
@@ -17,13 +18,11 @@ import {
   translate,
   ViewIf,
   WaitingRoom,
-} from '../../components/shared';
-import { AvatarName } from '../../components/avatars';
-import { ImageCardPreloadHand } from '../../components/cards';
+} from '../../components';
 import StoryWaiting from './StoryWaiting';
 import StoryWriting from './StoryWriting';
 
-function PhaseStory({ state, players, info }) {
+function PhaseStory({ state, players, info }: PhaseProps) {
   const language = useLanguage();
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
@@ -45,34 +44,25 @@ function PhaseStory({ state, players, info }) {
   });
 
   return (
-    <PhaseContainer
-      info={info}
-      phase={state?.phase}
-      allowedPhase={PHASES.CONTADORES_HISTORIAS.STORY}
-      className="c-phase"
-    >
+    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.CONTADORES_HISTORIAS.STORY}>
       <StepSwitcher step={step} conditions={[!isUserReady]}>
         {/* Step 0 */}
-        <RoundAnnouncement
-          round={state.round}
-          buttonText=" "
-          onPressButton={() => setStep(1)}
-          time={5}
-        ></RoundAnnouncement>
+        <RoundAnnouncement round={state.round} onPressButton={() => setStep(1)} time={5} />
 
         {/* Step 1 */}
         <PhaseAnnouncement
-          type="fairytale"
+          type="fairy-tale"
           title={translate('Conte-nos uma história', 'Tell us a story...', language)}
           onClose={() => setStep(2)}
           currentRound={state?.round?.current}
+          buttonText=""
         >
           <Instruction>
             <Translate
               pt={
                 <>
-                  Para essa rodada, <AvatarName player={storyteller} addressUser /> será o(a) Contador(a) de
-                  Histórias.
+                  Para essa rodada, <AvatarName player={storyteller} addressUser size="small" /> será o(a)
+                  Contador(a) de Histórias.
                   <br />
                   Para a próxima rodada, será: {nextStoryteller.name}
                 </>
@@ -85,8 +75,8 @@ function PhaseStory({ state, players, info }) {
                 </>
               }
             />
+            <ImageCardPreloadHand hand={user?.hand} />
           </Instruction>
-          <ImageCardPreloadHand hand={user?.hand} />
         </PhaseAnnouncement>
 
         {/* Step 2 */}
@@ -114,17 +104,5 @@ function PhaseStory({ state, players, info }) {
     </PhaseContainer>
   );
 }
-
-PhaseStory.propTypes = {
-  info: PropTypes.object,
-  players: PropTypes.object,
-  state: PropTypes.shape({
-    phase: PropTypes.string,
-    round: PropTypes.shape({
-      current: PropTypes.number,
-      total: PropTypes.number,
-    }),
-  }),
-};
 
 export default PhaseStory;

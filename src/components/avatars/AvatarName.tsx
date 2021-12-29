@@ -20,7 +20,7 @@ const AVATARS: PlainObject = avatars;
 
 export const AvatarName = ({
   player,
-  size = 'default',
+  size = 'small',
   className = '',
   withDescription = false,
   uppercase = false,
@@ -35,9 +35,7 @@ export const AvatarName = ({
   const addressedUser = translate('VOCÊ', 'YOU', language);
 
   return (
-    <span
-      className={clsx(baseClass, `${baseClass}--${size}`, uppercase && `${baseClass}--uppercase`, className)}
-    >
+    <span className={clsx(baseClass, uppercase && `${baseClass}--uppercase`, className)}>
       <Avatar id={player.avatarId} className="avatar-name__avatar" size={size} />
       <span className="avatar-name__name">{addressUser && isUser ? addressedUser : player.name}</span>
       {withDescription && (

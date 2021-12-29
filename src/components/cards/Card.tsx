@@ -7,7 +7,7 @@ type CardProps = {
   header?: string;
   footer?: string;
   color?: string;
-  size: 'small' | 'medium' | 'large';
+  size?: 'small' | 'medium' | 'large';
   randomColor?: boolean;
   className?: string;
   headerClassName?: string;

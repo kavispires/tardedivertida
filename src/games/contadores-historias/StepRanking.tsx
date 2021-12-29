@@ -1,21 +1,30 @@
-import PropTypes from 'prop-types';
-
 // Components
 import {
   AdminNextRoundButton,
   AvatarName,
   Instruction,
+  PopoverRule,
   RankingBoard,
   Title,
   Translate,
 } from '../../components';
+import { ScoringRules } from './RulesBlogs';
 
-function StepRanking({ players, ranking, outcome, storyteller, round }) {
+type StepRankingProps = {
+  players: GamePlayers;
+  storyteller: GamePlayer;
+  outcome: 'EVERYBODY_GOT' | 'NOBODY_GOT' | 'NORMAL';
+  ranking: GameRanking;
+  round: GameRound;
+};
+
+function StepRanking({ players, ranking, outcome, storyteller, round }: StepRankingProps) {
   return (
     <div className="c-step-ranking">
       <Title level={1}>
         <Translate pt="Resultado" en="Results" />
       </Title>
+      <PopoverRule content={<ScoringRules storyteller={storyteller} />} />
 
       <Instruction contained>
         {outcome === 'EVERYBODY_GOT' && (
@@ -69,12 +78,5 @@ function StepRanking({ players, ranking, outcome, storyteller, round }) {
     </div>
   );
 }
-
-StepRanking.propTypes = {
-  outcome: PropTypes.string,
-  players: PropTypes.object,
-  ranking: PropTypes.array,
-  storyteller: PropTypes.object,
-};
 
 export default StepRanking;

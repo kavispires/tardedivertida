@@ -10,7 +10,8 @@ import {
   PhaseContainer,
   RoundAnnouncement,
   Title,
-} from '../components/shared';
+  Icons,
+} from '../components';
 // Resources
 import { CheckCircleFilled, CheckCircleOutlined } from '@ant-design/icons';
 import { Button, Input } from 'antd';

@@ -50,7 +50,7 @@ function Team({ team, players, className }: TeamProps) {
 type RoundAnnouncementProps = {
   round: GameRound;
   onPressButton?: GenericFunction;
-  buttonText: string;
+  buttonText?: string;
   time: number;
   teams?: Teams;
   players?: Players;

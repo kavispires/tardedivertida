@@ -20,13 +20,13 @@ const IconIllustrationsComponents: any = IconIllustrations;
 const kebabToPascal = (str: string): string => startCase(camelCase(str)).replace(/ /g, '');
 
 type PhaseAnnouncementProps = {
+  title: any;
+  onClose: GenericFunction;
   buttonText?: string;
   children?: any;
   className?: string;
   currentRound?: number;
   duration?: number;
-  onClose: GenericFunction;
-  title: any;
   type?: string;
   unskippable?: boolean;
   withoutTimer?: boolean;
@@ -44,7 +44,7 @@ export function PhaseAnnouncement({
   unskippable,
 }: PhaseAnnouncementProps) {
   const language = useLanguage();
-  const durationPerRound = [15, 15, 10, 5, 4]?.[currentRound] ?? 4;
+  const durationPerRound = [15, 10, 8, 5, 4]?.[currentRound] ?? 4;
   const Icon: any = IconIllustrationsComponents[kebabToPascal(type ?? 'multitask')];
 
   return (

@@ -12,7 +12,7 @@ type ViewIfProps = {
 };
 
 export function ViewIf({ isVisible = false, children }: ViewIfProps) {
-  return isVisible && <>{children}</>;
+  return isVisible ? <>{children}</> : <></>;
 }
 
 type ViewSwitchProps = {
