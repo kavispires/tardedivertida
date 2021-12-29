@@ -1,8 +1,7 @@
 // Hooks
 import { GAME_COLLECTION, PHASES } from '../../utils/constants';
 // Components
-import { Session, SetupScreen, Rules, PageError } from '../../components';
-import Lobby from '../../components/lobby/Lobby';
+import { Session, SetupScreen, Rules, PageError, PhaseLobby } from '../../components';
 import PhaseWitnessSelection from './PhaseWitnessSelection';
 import PhaseQuestionSelection from './PhaseQuestionSelection';
 import PhaseQuestioning from './PhaseQuestioning';
@@ -13,7 +12,7 @@ function SessionTestemunhaOcular({ gameId }) {
   function getActiveComponent(phase) {
     switch (phase) {
       case PHASES.TESTEMUNHA_OCULAR.LOBBY:
-        return Lobby;
+        return PhaseLobby;
       case PHASES.TESTEMUNHA_OCULAR.RULES:
         return Rules;
       case PHASES.TESTEMUNHA_OCULAR.SETUP:

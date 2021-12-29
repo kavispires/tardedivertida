@@ -1,12 +1,10 @@
-import React from 'react';
 // Hooks
 import useGlobalState from '../../hooks/useGlobalState';
 // Components
-import { PhaseContainer } from '../shared';
+import { AvatarEntry, PhaseContainer } from '..';
 import Join from './_internal/Join';
 import Waiting from './_internal/Waiting';
 import CloudBackground from './_internal/CloudBackground';
-import { AvatarEntry } from '../avatars';
 
 const backgroundType = {
   A: 'artsy-cloud',
@@ -16,7 +14,7 @@ const backgroundType = {
   U: 'cloud',
 };
 
-function Lobby({ players, info }) {
+export function PhaseLobby({ players, info }) {
   const [userId] = useGlobalState('userId');
   const [username] = useGlobalState('username');
   const [userAvatarId] = useGlobalState('userAvatarId');
@@ -45,5 +43,3 @@ function Lobby({ players, info }) {
     </PhaseContainer>
   );
 }
-
-export default Lobby;

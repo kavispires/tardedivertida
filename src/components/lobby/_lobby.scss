@@ -1,0 +1,170 @@
+.lobby {
+  border: 1px solid white;
+  border-radius: get-unit(1);
+  margin: get-unit(4);
+  padding: get-unit(4);
+  height: 100%;
+  display: flex;
+
+  &__room {
+    flex: 1;
+    display: grid;
+    gap: get-unit(1);
+    grid-template-columns: repeat(9, 1fr [col]);
+    grid-template-rows: repeat(6, 1fr [row]);
+    z-index: 3;
+  }
+
+  &__seat {
+    &--0 {
+      grid-column: col 2;
+      grid-row: row 3;
+    }
+
+    &--1 {
+      grid-column: col 6;
+      grid-row: row 3;
+    }
+
+    &--2 {
+      grid-column: col 1;
+      grid-row: row 4;
+    }
+
+    &--3 {
+      grid-column: col 7;
+      grid-row: row 4;
+    }
+
+    &--4 {
+      grid-column: col 1;
+      grid-row: row 2;
+    }
+
+    &--5 {
+      grid-column: col 7;
+      grid-row: row 2;
+    }
+
+    &--6 {
+      grid-column: col 2;
+      grid-row: row 5;
+    }
+
+    &--7 {
+      grid-column: col 6;
+      grid-row: row 5;
+    }
+
+    &--8 {
+      grid-column: col 2;
+      grid-row: row 1;
+    }
+
+    &--9 {
+      grid-column: col 6;
+      grid-row: row 1;
+    }
+
+    &--10 {
+      grid-column: col 1;
+      grid-row: row -7;
+    }
+
+    &--11 {
+      grid-column: col 7;
+      grid-row: row -7;
+    }
+  }
+}
+
+.lobby-waiting {
+  grid-column: col 4;
+  grid-row: row -7 / row 6;
+  justify-self: center;
+
+  @include vertical-centered-container;
+
+  width: 260px;
+  margin: get-unit(8 0);
+
+  &__card {
+    background: white;
+    @include box-shadow;
+    padding: get-unit(3);
+    border-radius: get-unit(1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__avatar {
+    border-radius: 50%;
+    width: 50%;
+    min-width: 100px;
+    margin: get-unit(2 auto);
+  }
+
+  &__lock-button {
+    width: calc(100% - #{get-unit(6)});
+    bottom: get-unit(3);
+    flex-direction: column;
+  }
+}
+
+.lobby-join {
+  grid-column: col 4;
+  grid-row: row -7 / row 6;
+  justify-self: center;
+  width: 300px;
+  @include vertical-centered-container;
+  margin: get-unit(8 0);
+
+  &__card {
+    background: white;
+    @include box-shadow;
+    padding: get-unit(3);
+    border-radius: get-unit(1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__game-image {
+    max-width: 360px;
+  }
+
+  &__title {
+    text-align: center;
+  }
+
+  &__avatar-selection {
+    display: flex;
+    align-items: center;
+    max-width: 250px;
+    justify-content: center;
+  }
+
+  &__avatar-nav-button {
+    height: 100px;
+    flex: 1;
+  }
+
+  &__avatar-selection-image {
+    width: 200px;
+    border-radius: get-unit(1);
+    margin: get-unit(0 2);
+  }
+
+  &__avatar-alert {
+    margin: get-unit(2 0);
+  }
+
+  &__name-input {
+    margin-bottom: get-unit(2);
+  }
+
+  &__join-button {
+    width: 100%;
+  }
+}

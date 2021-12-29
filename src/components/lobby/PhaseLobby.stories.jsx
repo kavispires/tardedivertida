@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   getHooksControls,
   getLanguageControl,
@@ -8,11 +7,11 @@ import {
   mockLanguageHook,
 } from '../../mocks';
 
-import Lobby from './Lobby';
+import PhaseLobby from './PhaseLobby';
 
 export default {
-  title: 'lobby/Lobby',
-  component: Lobby,
+  title: 'PhaseLobby/PhaseLobby',
+  component: PhaseLobby,
   argTypes: {
     ...getLanguageControl(),
     ...getHooksControls(),
@@ -23,7 +22,7 @@ const Template = (args) => {
   mockLanguageHook(args);
   mockGameMeta();
   const hookedArgs = mockHooks(args);
-  return <Lobby {...hookedArgs} />;
+  return <PhaseLobby {...hookedArgs} />;
 };
 
 export const Join = Template.bind({});

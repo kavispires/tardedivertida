@@ -1,8 +1,7 @@
 // Hooks
 import { GAME_COLLECTION, PHASES } from '../../utils/constants';
 // Components
-import { Session, SetupScreen, Rules, PageError } from '../../components';
-import Lobby from '../../components/lobby/Lobby';
+import { Session, SetupScreen, Rules, PageError, PhaseLobby } from '../../components';
 import PhaseDraw from './PhaseDraw';
 import PhaseEvaluation from './PhaseEvaluation';
 import PhaseGallery from './PhaseGallery';
@@ -12,7 +11,7 @@ function SessionArteRuim({ gameId }: GameSession) {
   function getActiveComponent(phase: string) {
     switch (phase) {
       case PHASES.ARTE_RUIM.LOBBY:
-        return Lobby;
+        return PhaseLobby;
       case PHASES.ARTE_RUIM.RULES:
         return Rules;
       case PHASES.ARTE_RUIM.SETUP:

@@ -1,8 +1,7 @@
 // Hooks
 import { GAME_COLLECTION, PHASES } from '../../utils/constants';
 // Components
-import { Session, SetupScreen, Rules, PageError } from '../../components';
-import Lobby from '../../components/lobby/Lobby';
+import { Session, SetupScreen, Rules, PageError, PhaseLobby } from '../../components';
 import PhaseQuestionSelection from './PhaseQuestionSelection';
 import PhaseEverybodyWrites from './PhaseEverybodyWrites';
 import PhaseCompare from './PhaseCompare';
@@ -13,7 +12,7 @@ function SessionMenteColetiva({ gameId }) {
   function getActiveComponent(phase) {
     switch (phase) {
       case PHASES.MENTE_COLETIVA.LOBBY:
-        return Lobby;
+        return PhaseLobby;
       case PHASES.MENTE_COLETIVA.RULES:
         return Rules;
       case PHASES.MENTE_COLETIVA.SETUP:

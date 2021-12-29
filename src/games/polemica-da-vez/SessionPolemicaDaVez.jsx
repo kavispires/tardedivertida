@@ -1,8 +1,7 @@
 // Hooks
 import { GAME_COLLECTION, PHASES } from '../../utils/constants';
 // Components
-import { Session, SetupScreen, Rules, PageError } from '../../components';
-import Lobby from '../../components/lobby/Lobby';
+import { Session, SetupScreen, Rules, PageError, PhaseLobby } from '../../components';
 import PhaseGameOver from './PhaseGameOver';
 import PhaseTopicSelection from './PhaseTopicSelection';
 import PhaseReact from './PhaseReact';
@@ -12,7 +11,7 @@ function SessionPolemicaDaVez({ gameId }) {
   function getActiveComponent(phase) {
     switch (phase) {
       case PHASES.POLEMICA_DA_VEZ.LOBBY:
-        return Lobby;
+        return PhaseLobby;
       case PHASES.POLEMICA_DA_VEZ.RULES:
         return Rules;
       case PHASES.POLEMICA_DA_VEZ.SETUP:
