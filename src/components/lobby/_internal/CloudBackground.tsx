@@ -1,6 +1,4 @@
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import React from 'react';
 import { PUBLIC_URL } from '../../../utils/constants';
 
 function Cloud() {
@@ -73,7 +71,7 @@ function DetectiveCloud() {
   );
 }
 
-function ArtsyCloud({ index }) {
+function ArtsyCloud({ index }: { index: number }) {
   return (
     <div className="cloud-background__cloud cloud-background__body-mark">
       <img src={`${PUBLIC_URL.ROOT}cloud-arte-ruim-${index}.jpg`} alt="cloud" />
@@ -81,7 +79,7 @@ function ArtsyCloud({ index }) {
   );
 }
 
-function getTypeComponent(type) {
+function getTypeComponent(type: string) {
   switch (type) {
     case 'cloud':
       return Cloud;
@@ -98,7 +96,11 @@ function getTypeComponent(type) {
   }
 }
 
-function CloudBackground({ type = 'cloud' }) {
+type CloudBackgroundProps = {
+  type?: 'cloud' | 'cyber-cloud' | 'funky-cloud' | 'detective-cloud' | 'artsy-cloud';
+};
+
+export function CloudBackground({ type = 'cloud' }: CloudBackgroundProps) {
   const TypeComponent = getTypeComponent(type);
 
   const baseClass = 'cloud-background';
@@ -127,9 +129,3 @@ function CloudBackground({ type = 'cloud' }) {
     </div>
   );
 }
-
-CloudBackground.propTypes = {
-  type: PropTypes.oneOf(['cloud', 'cyber-cloud', 'funky-cloud', 'detective-cloud', 'artsy-cloud']),
-};
-
-export default CloudBackground;

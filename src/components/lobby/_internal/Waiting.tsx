@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 // Design Resources
 import { Button, Image, message, notification, Typography } from 'antd';
 // API & Hooks
@@ -9,10 +9,14 @@ import avatars from '../../../images/avatars.svg';
 // Utils and Resources
 import { PUBLIC_URL } from '../../../utils/constants';
 // Components
-import { AdminOnly } from '../../admin/index';
-import { Translate, translate } from '../../shared';
+import { AdminOnly, Translate, translate } from '../..';
 
-function Waiting({ info, players }) {
+type WaitingProps = {
+  info: GameInfo;
+  players: GamePlayers;
+};
+
+function Waiting({ info, players }: WaitingProps) {
   const language = useLanguage();
   const [isLoading, setLoader] = useLoading();
   const [gameId] = useGlobalState('gameId');
@@ -25,7 +29,7 @@ function Waiting({ info, players }) {
   const onLockGameAndStart = useCallback(async () => {
     try {
       setLoader('lock-game', true);
-      const response = await ADMIN_API.lockGame({
+      const response: PlainObject = await ADMIN_API.lockGame({
         gameId,
         gameName,
       });
@@ -38,7 +42,7 @@ function Waiting({ info, players }) {
           )
         );
       }
-    } catch (e) {
+    } catch (e: any) {
       notification.error({
         message: translate(
           'Vixi, o aplicativo encontrou um erro ao tentar trancar e iniciar o jogo',

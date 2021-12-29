@@ -4,7 +4,7 @@ import useGlobalState from '../../hooks/useGlobalState';
 import { AvatarEntry, PhaseContainer } from '..';
 import Join from './_internal/Join';
 import Waiting from './_internal/Waiting';
-import CloudBackground from './_internal/CloudBackground';
+import { CloudBackground } from './_internal/CloudBackground';
 
 const backgroundType = {
   A: 'artsy-cloud',
