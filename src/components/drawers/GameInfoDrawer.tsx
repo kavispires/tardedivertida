@@ -1,10 +1,10 @@
-import PropTypes from 'prop-types';
-import React, { Fragment, useState } from 'react';
+import { useState } from 'react';
 // Design Resources
 import { Affix, Button, Divider, Drawer } from 'antd';
 import { InfoCircleOutlined } from '@ant-design/icons';
-// Hooks
+// Utils
 import { useLanguage } from '../../hooks';
+import { isDevEnv } from '../../utils/helpers';
 // Components
 import { RulesModal } from '../modals';
 import { SectionMe } from './_internal/SectionMe';
@@ -12,9 +12,15 @@ import { SectionMeta } from './_internal/SectionMeta';
 import { SectionTeams } from './_internal/SectionTeams';
 import { SectionRankedPlayers } from './_internal/SectionRankedPlayers';
 import { SectionSettings } from './_internal/SectionSettings';
-import { isDevEnv } from '../../utils/helpers';
 
-export function GameInfoDrawer({ players, state, info, userId }) {
+type GameInfoDrawerProps = {
+  players: GamePlayers;
+  info: GameInfo;
+  state: GameState;
+  userId: string;
+};
+
+export function GameInfoDrawer({ players, state, info, userId }: GameInfoDrawerProps) {
   const language = useLanguage();
   const [visible, setVisible] = useState(false);
 
@@ -33,7 +39,7 @@ export function GameInfoDrawer({ players, state, info, userId }) {
   const isTeamGame = Boolean(completeMe?.team) && Boolean(state.teams);
 
   return (
-    <Fragment>
+    <>
       <Affix offsetTop={0}>
         <Button size="small" className="game-info-drawer__button" onClick={showDrawer}>
           {info.title?.[language] ?? '?'} <InfoCircleOutlined />
@@ -62,7 +68,6 @@ export function GameInfoDrawer({ players, state, info, userId }) {
 
         <SectionMeta
           round={state?.round || 0}
-          roundsToEndGame={state?.roundsToEndGame}
           groupScore={state?.groupScore}
           pointsToVictory={state?.pointsToVictory}
           isTeamGame={isTeamGame}
@@ -77,39 +82,6 @@ export function GameInfoDrawer({ players, state, info, userId }) {
           <SectionRankedPlayers players={players} />
         )}
       </Drawer>
-    </Fragment>
+    </>
   );
 }
-
-GameInfoDrawer.propTypes = {
-  info: PropTypes.shape({
-    title: PropTypes.shape({
-      pt: PropTypes.string,
-      en: PropTypes.string,
-    }),
-  }),
-  players: PropTypes.objectOf(
-    PropTypes.shape({
-      id: PropTypes.string,
-      name: PropTypes.string,
-      avatarId: PropTypes.string,
-    })
-  ),
-  state: PropTypes.shape({
-    groupScore: PropTypes.number,
-    phase: PropTypes.string,
-    pointsToVictory: PropTypes.number,
-    round: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.shape({ current: PropTypes.number, total: PropTypes.number }),
-    ]),
-    roundsToEndGame: PropTypes.number,
-    teams: PropTypes.objectOf(
-      PropTypes.shape({
-        members: PropTypes.arrayOf(PropTypes.string),
-        name: PropTypes.string,
-      })
-    ),
-  }),
-  userId: PropTypes.string,
-};
