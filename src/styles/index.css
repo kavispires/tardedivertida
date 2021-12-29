@@ -112,7 +112,8 @@ body {
 .avatar-name {
   display: inline-block;
   padding: 0 4px;
-  font-weight: bolder; }
+  font-weight: bolder;
+  font-size: inherit; }
   .avatar-name--uppercase {
     text-transform: uppercase; }
   .avatar-name--small {
@@ -2758,165 +2759,165 @@ body {
       animation-timing-function: linear;
       animation-iteration-count: infinite; }
       .home__background span:nth-child(1) {
-        color: #3a7ca5;
-        top: 20%;
-        left: 14%;
-        animation-duration: 10.4s;
-        animation-delay: -5.3s;
-        transform-origin: 8vw 21vh;
-        box-shadow: -40vmin 0 14.28153vmin currentColor; }
-      .home__background span:nth-child(2) {
-        color: #3a7ca5;
-        top: 60%;
-        left: 9%;
-        animation-duration: 10.1s;
-        animation-delay: -10.5s;
-        transform-origin: -7vw 12vh;
-        box-shadow: -40vmin 0 7.83063vmin currentColor; }
-      .home__background span:nth-child(3) {
-        color: #f45b69;
+        color: #44bba4;
         top: 84%;
-        left: 70%;
-        animation-duration: 12.9s;
-        animation-delay: -15.7s;
-        transform-origin: 20vw 24vh;
-        box-shadow: 40vmin 0 10.6069vmin currentColor; }
-      .home__background span:nth-child(4) {
-        color: #f45b69;
-        top: 82%;
-        left: 56%;
-        animation-duration: 12.1s;
-        animation-delay: -1.7s;
-        transform-origin: -13vw -19vh;
-        box-shadow: -40vmin 0 14.15845vmin currentColor; }
-      .home__background span:nth-child(5) {
-        color: #f45b69;
-        top: 77%;
-        left: 17%;
-        animation-duration: 10.2s;
-        animation-delay: -13s;
-        transform-origin: 14vw -22vh;
-        box-shadow: -40vmin 0 8.58753vmin currentColor; }
-      .home__background span:nth-child(6) {
-        color: #f2e863;
-        top: 23%;
-        left: 21%;
+        left: 41%;
         animation-duration: 15.1s;
-        animation-delay: -3s;
-        transform-origin: 19vw -22vh;
-        box-shadow: 40vmin 0 6.81057vmin currentColor; }
-      .home__background span:nth-child(7) {
+        animation-delay: -6.3s;
+        transform-origin: 6vw -23vh;
+        box-shadow: -40vmin 0 14.89432vmin currentColor; }
+      .home__background span:nth-child(2) {
         color: #f2e863;
-        top: 57%;
-        left: 10%;
+        top: 18%;
+        left: 47%;
+        animation-duration: 10.2s;
+        animation-delay: -5.3s;
+        transform-origin: 17vw 12vh;
+        box-shadow: 40vmin 0 5.79708vmin currentColor; }
+      .home__background span:nth-child(3) {
+        color: #f2e863;
+        top: 12%;
+        left: 69%;
+        animation-duration: 12.6s;
+        animation-delay: -6.7s;
+        transform-origin: 5vw 13vh;
+        box-shadow: 40vmin 0 8.10913vmin currentColor; }
+      .home__background span:nth-child(4) {
+        color: #44bba4;
+        top: 79%;
+        left: 99%;
         animation-duration: 12.2s;
-        animation-delay: -9.9s;
-        transform-origin: -6vw -20vh;
-        box-shadow: 40vmin 0 9.56991vmin currentColor; }
-      .home__background span:nth-child(8) {
+        animation-delay: -5.3s;
+        transform-origin: -7vw 17vh;
+        box-shadow: -40vmin 0 12.31322vmin currentColor; }
+      .home__background span:nth-child(5) {
         color: #f2e863;
-        top: 86%;
-        left: 76%;
-        animation-duration: 11.8s;
-        animation-delay: -7.5s;
-        transform-origin: 0vw 25vh;
-        box-shadow: 40vmin 0 14.06269vmin currentColor; }
+        top: 77%;
+        left: 57%;
+        animation-duration: 10.5s;
+        animation-delay: -12.3s;
+        transform-origin: -10vw 9vh;
+        box-shadow: 40vmin 0 12.86245vmin currentColor; }
+      .home__background span:nth-child(6) {
+        color: #44bba4;
+        top: 38%;
+        left: 88%;
+        animation-duration: 15.3s;
+        animation-delay: -14.8s;
+        transform-origin: 20vw 2vh;
+        box-shadow: -40vmin 0 7.08732vmin currentColor; }
+      .home__background span:nth-child(7) {
+        color: #3a7ca5;
+        top: 14%;
+        left: 100%;
+        animation-duration: 10.7s;
+        animation-delay: -12.3s;
+        transform-origin: 22vw 10vh;
+        box-shadow: -40vmin 0 9.29283vmin currentColor; }
+      .home__background span:nth-child(8) {
+        color: #f45b69;
+        top: 15%;
+        left: 19%;
+        animation-duration: 11.4s;
+        animation-delay: -11.4s;
+        transform-origin: -3vw -16vh;
+        box-shadow: 40vmin 0 10.42044vmin currentColor; }
       .home__background span:nth-child(9) {
         color: #44bba4;
-        top: 35%;
-        left: 2%;
-        animation-duration: 12s;
-        animation-delay: -1.6s;
-        transform-origin: 23vw 22vh;
-        box-shadow: -40vmin 0 13.75vmin currentColor; }
+        top: 86%;
+        left: 27%;
+        animation-duration: 15.7s;
+        animation-delay: -13.9s;
+        transform-origin: -13vw -15vh;
+        box-shadow: -40vmin 0 7.60573vmin currentColor; }
       .home__background span:nth-child(10) {
-        color: #3a7ca5;
-        top: 39%;
-        left: 85%;
-        animation-duration: 12.8s;
-        animation-delay: -4.6s;
-        transform-origin: -24vw 6vh;
-        box-shadow: 40vmin 0 10.49309vmin currentColor; }
+        color: #f45b69;
+        top: 87%;
+        left: 90%;
+        animation-duration: 12s;
+        animation-delay: -0.7s;
+        transform-origin: -17vw 23vh;
+        box-shadow: -40vmin 0 5.39394vmin currentColor; }
       .home__background span:nth-child(11) {
-        color: #44bba4;
-        top: 53%;
-        left: 61%;
-        animation-duration: 11.3s;
-        animation-delay: -5.5s;
-        transform-origin: -24vw 21vh;
-        box-shadow: 40vmin 0 8.09755vmin currentColor; }
-      .home__background span:nth-child(12) {
         color: #3a7ca5;
-        top: 56%;
-        left: 89%;
-        animation-duration: 15.2s;
-        animation-delay: -11.8s;
-        transform-origin: -19vw -10vh;
-        box-shadow: -40vmin 0 11.13129vmin currentColor; }
+        top: 10%;
+        left: 2%;
+        animation-duration: 15.7s;
+        animation-delay: -6s;
+        transform-origin: -5vw -12vh;
+        box-shadow: -40vmin 0 12.4633vmin currentColor; }
+      .home__background span:nth-child(12) {
+        color: #44bba4;
+        top: 89%;
+        left: 88%;
+        animation-duration: 13.3s;
+        animation-delay: -4.7s;
+        transform-origin: 14vw -24vh;
+        box-shadow: 40vmin 0 12.18751vmin currentColor; }
       .home__background span:nth-child(13) {
-        color: #f2e863;
-        top: 57%;
-        left: 28%;
-        animation-duration: 14.8s;
-        animation-delay: -9s;
-        transform-origin: -23vw -24vh;
-        box-shadow: -40vmin 0 11.95693vmin currentColor; }
+        color: #44bba4;
+        top: 37%;
+        left: 25%;
+        animation-duration: 15.2s;
+        animation-delay: -7.5s;
+        transform-origin: -16vw -13vh;
+        box-shadow: -40vmin 0 10.55077vmin currentColor; }
       .home__background span:nth-child(14) {
         color: #f45b69;
-        top: 45%;
-        left: 93%;
-        animation-duration: 13.1s;
-        animation-delay: -14.7s;
-        transform-origin: -9vw 17vh;
-        box-shadow: 40vmin 0 6.21913vmin currentColor; }
+        top: 83%;
+        left: 87%;
+        animation-duration: 11.1s;
+        animation-delay: -11s;
+        transform-origin: 24vw -22vh;
+        box-shadow: -40vmin 0 12.31129vmin currentColor; }
       .home__background span:nth-child(15) {
         color: #f45b69;
-        top: 72%;
-        left: 51%;
-        animation-duration: 11.2s;
-        animation-delay: -15.1s;
-        transform-origin: 10vw 15vh;
-        box-shadow: -40vmin 0 14.15464vmin currentColor; }
+        top: 27%;
+        left: 2%;
+        animation-duration: 12s;
+        animation-delay: -0.8s;
+        transform-origin: 19vw 13vh;
+        box-shadow: -40vmin 0 14.76428vmin currentColor; }
       .home__background span:nth-child(16) {
-        color: #44bba4;
-        top: 2%;
-        left: 43%;
-        animation-duration: 15.5s;
-        animation-delay: -14.6s;
-        transform-origin: 9vw -20vh;
-        box-shadow: -40vmin 0 12.38141vmin currentColor; }
-      .home__background span:nth-child(17) {
-        color: #f45b69;
-        top: 60%;
-        left: 87%;
-        animation-duration: 10.1s;
-        animation-delay: -11.9s;
-        transform-origin: -11vw -16vh;
-        box-shadow: -40vmin 0 11.92041vmin currentColor; }
-      .home__background span:nth-child(18) {
-        color: #f45b69;
-        top: 90%;
-        left: 16%;
-        animation-duration: 13.7s;
-        animation-delay: -5.1s;
-        transform-origin: 9vw 5vh;
-        box-shadow: 40vmin 0 5.42564vmin currentColor; }
-      .home__background span:nth-child(19) {
         color: #3a7ca5;
-        top: 9%;
-        left: 14%;
-        animation-duration: 14.8s;
-        animation-delay: -12.6s;
-        transform-origin: 17vw 18vh;
-        box-shadow: -40vmin 0 8.86594vmin currentColor; }
+        top: 23%;
+        left: 79%;
+        animation-duration: 12.3s;
+        animation-delay: -3s;
+        transform-origin: 8vw 3vh;
+        box-shadow: -40vmin 0 9.9439vmin currentColor; }
+      .home__background span:nth-child(17) {
+        color: #3a7ca5;
+        top: 68%;
+        left: 75%;
+        animation-duration: 14.1s;
+        animation-delay: -4.1s;
+        transform-origin: 9vw -16vh;
+        box-shadow: 40vmin 0 13.47343vmin currentColor; }
+      .home__background span:nth-child(18) {
+        color: #f2e863;
+        top: 38%;
+        left: 45%;
+        animation-duration: 13.8s;
+        animation-delay: -6.5s;
+        transform-origin: -1vw 1vh;
+        box-shadow: -40vmin 0 5.2321vmin currentColor; }
+      .home__background span:nth-child(19) {
+        color: #f2e863;
+        top: 12%;
+        left: 34%;
+        animation-duration: 15.9s;
+        animation-delay: -7.1s;
+        transform-origin: -1vw 13vh;
+        box-shadow: -40vmin 0 14.59624vmin currentColor; }
       .home__background span:nth-child(20) {
         color: #f45b69;
-        top: 92%;
-        left: 7%;
-        animation-duration: 16s;
-        animation-delay: -11.5s;
-        transform-origin: 25vw -5vh;
-        box-shadow: -40vmin 0 6.7908vmin currentColor; }
+        top: 49%;
+        left: 85%;
+        animation-duration: 14.4s;
+        animation-delay: -13.2s;
+        transform-origin: 9vw 1vh;
+        box-shadow: -40vmin 0 8.52818vmin currentColor; }
 
 @keyframes move {
   100% {

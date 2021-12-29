@@ -1,15 +1,32 @@
-import PropTypes from 'prop-types';
 // Design Resources
 import { Avatar as AntAvatar } from 'antd';
 // Hooks
 import { useCardWidth, useLanguage } from '../../hooks';
 // Components
-import { Avatar, AvatarName } from '../../components/avatars';
-import { ImageBlurButton, ImageCard } from '../../components/cards';
-import { ButtonContainer, TimedButton, Title, translate, Translate } from '../../components/shared';
+import {
+  Avatar,
+  AvatarName,
+  ButtonContainer,
+  ImageBlurButton,
+  ImageCard,
+  PopoverRule,
+  TimedButton,
+  Title,
+  translate,
+  Translate,
+} from '../../components';
 import BookPages from './BookPages';
+import { ScoringRules } from './RulesBlogs';
 
-function StepResolution({ players, story, storyteller, table, setStep }) {
+type StepResolutionProps = {
+  players: GamePlayers;
+  story: string;
+  storyteller: GamePlayer;
+  table: TableEntry[];
+  setStep: GenericFunction;
+};
+
+function StepResolution({ players, story, storyteller, table, setStep }: StepResolutionProps) {
   const language = useLanguage();
   const cardWidth = useCardWidth(10, 32, 75);
 
@@ -21,6 +38,8 @@ function StepResolution({ players, story, storyteller, table, setStep }) {
       <Title>
         <Translate pt="Solução" en="Solution" />
       </Title>
+      <PopoverRule content={<ScoringRules storyteller={storyteller} />} />
+
       <div className="c-story-book">
         <BookPages
           leftPage={
@@ -39,8 +58,8 @@ function StepResolution({ players, story, storyteller, table, setStep }) {
                 <Translate pt="Votaram corretamente:" en="Voted correctly:" />
                 <ul className="c-story-book__correct-players">
                   {solution &&
-                    solution.votes
-                      .filter((entry) => entry !== storyteller.id)
+                    solution
+                      .votes!.filter((entry) => entry !== storyteller.id)
                       .map((playerId) => {
                         return (
                           <li key={`correct-vote-player-${playerId}`}>
@@ -48,7 +67,7 @@ function StepResolution({ players, story, storyteller, table, setStep }) {
                           </li>
                         );
                       })}
-                  {solution?.votes?.length < 2 && (
+                  {(solution?.votes?.length ?? 0) < 2 && (
                     <li className="c-story-book__nobody">
                       <Translate pt="Vixi, ninguém acertou..." en="Well, nobody got it..." />
                     </li>
@@ -60,7 +79,7 @@ function StepResolution({ players, story, storyteller, table, setStep }) {
         />
       </div>
       <ul className="c-other-cards">
-        {otherCards.map((cardEntry, index) => {
+        {otherCards.map((cardEntry: TableEntry, index) => {
           return (
             <li className="c-other-cards__entry" key={`other-card-votes-${cardEntry.playerId}-${index}`}>
               <div className="c-other-cards__player">
@@ -76,7 +95,7 @@ function StepResolution({ players, story, storyteller, table, setStep }) {
 
               <div className="c-other-cards__votes">
                 <AntAvatar.Group size="small">
-                  {cardEntry.votes.map((votePlayerId) => {
+                  {(cardEntry?.votes ?? []).map((votePlayerId) => {
                     return (
                       <Avatar
                         id={players[votePlayerId].avatarId}
@@ -101,21 +120,5 @@ function StepResolution({ players, story, storyteller, table, setStep }) {
     </div>
   );
 }
-
-StepResolution.propTypes = {
-  players: PropTypes.object,
-  setStep: PropTypes.func,
-  story: PropTypes.string,
-  storyteller: PropTypes.shape({
-    id: PropTypes.string,
-  }),
-  table: PropTypes.arrayOf(
-    PropTypes.shape({
-      playerId: PropTypes.string,
-      cardId: PropTypes.string,
-      votes: PropTypes.arrayOf(PropTypes.string),
-    })
-  ),
-};
 
 export default StepResolution;

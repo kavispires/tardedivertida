@@ -12,9 +12,9 @@ export function useWhichPlayerIsThe(
   propertyName = 'activePlayer',
   state: PlainObject = {},
   players: Players = {}
-): [Player | {}, boolean] {
+): [GamePlayer, boolean] {
   const [userId] = useGlobalState('userId');
-  const [activePlayer, setActivePlayer] = useState({});
+  const [activePlayer, setActivePlayer] = useState<GamePlayer>({});
   const [isUser, setIsUser] = useState(false);
 
   // Determine if user is active as the guesser, the clue giver, the psychic, the storyteller, etc

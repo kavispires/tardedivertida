@@ -2,6 +2,7 @@ export * from './LoadingCircles';
 export * from './LoadingBox';
 export * from './LoadingClock';
 
+export * from './AnimatedClock';
 export * from './Arrow';
 export * from './Chat';
 export * from './Clock';
@@ -49,5 +50,6 @@ export * from './Turban';
 export * from './VerifyList';
 export * from './VideoGameController';
 export * from './Vote';
+export * from './WaitingRoom';
 export * from './Witness';
 export * from './Writing';

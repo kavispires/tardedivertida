@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
 // Hooks
 import { useWhichPlayerIsThe, useAPICall, useUser, useLanguage } from '../../hooks';
 // Resources & Utils
@@ -14,10 +13,10 @@ import {
   StepSwitcher,
   Translate,
   translate,
-} from '../../components/shared';
+} from '../../components';
 import StepPlayCard from './StepPlayCard';
 
-function PhaseCardPlay({ state, players, info }) {
+function PhaseCardPlay({ state, players, info }: PhaseProps) {
   const language = useLanguage();
   const user = useUser(players);
   const [storyteller, isUserTheStoryTeller] = useWhichPlayerIsThe('storytellerId', state, players);
@@ -36,12 +35,7 @@ function PhaseCardPlay({ state, players, info }) {
   });
 
   return (
-    <PhaseContainer
-      info={info}
-      phase={state?.phase}
-      allowedPhase={PHASES.CONTADORES_HISTORIAS.CARD_PLAY}
-      className="c-phase"
-    >
+    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.CONTADORES_HISTORIAS.CARD_PLAY}>
       <StepSwitcher step={step}>
         {/* Step 0 */}
         <PhaseAnnouncement
@@ -84,18 +78,5 @@ function PhaseCardPlay({ state, players, info }) {
     </PhaseContainer>
   );
 }
-
-PhaseCardPlay.propTypes = {
-  info: PropTypes.object,
-  players: PropTypes.object,
-  state: PropTypes.shape({
-    phase: PropTypes.string,
-    round: PropTypes.shape({
-      current: PropTypes.number,
-      total: PropTypes.number,
-    }),
-    story: PropTypes.string,
-  }),
-};
 
 export default PhaseCardPlay;

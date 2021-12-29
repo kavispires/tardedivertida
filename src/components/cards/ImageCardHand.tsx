@@ -15,14 +15,14 @@ type ImageCardHandProps = {
   className?: string;
   selectButtonClass?: string;
   sizeRatio?: number;
-  cardSize: number;
+  cardSize?: number;
   minCardSize?: number;
   disabledSelectButton?: boolean;
 };
 
 export function ImageCardHand({
   hand = [],
-  onSelectCard = () => {},
+  onSelectCard,
   selectButtonLabel,
   className = '',
   selectButtonClass = '',
@@ -44,7 +44,7 @@ export function ImageCardHand({
               <Button
                 icon={<DownSquareOutlined />}
                 className={selectButtonClass}
-                onClick={() => onSelectCard(cardId)}
+                onClick={() => onSelectCard!(cardId)}
                 size="small"
                 ghost
                 disabled={disabledSelectButton}

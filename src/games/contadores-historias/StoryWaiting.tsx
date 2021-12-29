@@ -1,15 +1,18 @@
-import PropTypes from 'prop-types';
 // Components
-import { Instruction, Title, Translate } from '../../components/shared';
-import { AvatarName } from '../../components/avatars';
-import { ImageCardHand as Hand } from '../../components/cards';
-import { LoadingClock } from '../../components/icons';
+import Avatar from 'antd/lib/avatar/avatar';
+import { AvatarName, ImageCardHand as Hand, Icons, Instruction, Title, Translate } from '../../components';
 
-function StoryWaiting({ storyteller, user }) {
+type StoryWaitingProps = {
+  storyteller: GamePlayer;
+  user: GamePlayer;
+};
+
+function StoryWaiting({ storyteller, user }: StoryWaitingProps) {
   return (
     <div className="c-story-waiting">
       <Title>
-        <LoadingClock /> <Translate pt="Aguarde..." en="Please wait..." />
+        <Avatar src={<Icons.AnimatedClock />} size="large" />{' '}
+        <Translate pt="Aguarde..." en="Please wait..." />
       </Title>
       <Instruction contained>
         <AvatarName player={storyteller} addressUser />{' '}
@@ -27,14 +30,5 @@ function StoryWaiting({ storyteller, user }) {
     </div>
   );
 }
-
-StoryWaiting.propTypes = {
-  storyteller: PropTypes.shape({
-    name: PropTypes.string,
-  }),
-  user: PropTypes.shape({
-    hand: PropTypes.arrayOf(PropTypes.string),
-  }),
-};
 
 export default StoryWaiting;

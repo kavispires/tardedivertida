@@ -1,9 +1,13 @@
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
 // Components
-import { ImageCardBack } from '../../components/cards';
+import { ImageCardBack } from '../../components';
 
-function TableFaceDown({ players, user }) {
+type TableFaceDownProps = {
+  players: GamePlayers;
+  user: GamePlayer;
+};
+
+function TableFaceDown({ players, user }: TableFaceDownProps) {
   const baseClass = 'c-table-face-down-card';
 
   return (
@@ -27,12 +31,5 @@ function TableFaceDown({ players, user }) {
     </div>
   );
 }
-
-TableFaceDown.propTypes = {
-  players: PropTypes.object,
-  user: PropTypes.shape({
-    id: PropTypes.string,
-  }),
-};
 
 export default TableFaceDown;

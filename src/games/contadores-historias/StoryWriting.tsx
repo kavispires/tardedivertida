@@ -1,15 +1,25 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
 // Hooks
 import { useLanguage, useLoading } from '../../hooks';
 // Design Resources
 import { Button, Input } from 'antd';
 // Components
-import { ButtonContainer, Title, translate, Translate } from '../../components/shared';
-import { ImageCard, ImageCardHand as Hand } from '../../components/cards';
+import {
+  ButtonContainer,
+  ImageCard,
+  ImageCardHand as Hand,
+  Title,
+  translate,
+  Translate,
+} from '../../components';
 import BookPages from './BookPages';
 
-function StoryWriting({ user, onSubmitStory }) {
+type StoryWritingProps = {
+  user: GamePlayer,
+  onSubmitStory: GenericFunction,
+};
+
+function StoryWriting({ user, onSubmitStory }: StoryWritingProps) {
   const language = useLanguage();
   const [isLoading] = useLoading();
   const [story, setStory] = useState('');
@@ -86,12 +96,5 @@ function StoryWriting({ user, onSubmitStory }) {
     </div>
   );
 }
-
-StoryWriting.propTypes = {
-  onSubmitClue: PropTypes.func,
-  user: PropTypes.shape({
-    hand: PropTypes.arrayOf(PropTypes.string),
-  }),
-};
 
 export default StoryWriting;
