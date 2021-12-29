@@ -9,8 +9,8 @@ import { ADMIN_ACTIONS } from '../../utils/constants';
 // Components
 import { translate, Translate } from '..';
 
-function ButtonLabel({ round }: { round?: GameRound }) {
-  return !round || round.current === round.total ? (
+function ButtonLabel({ round, lastRound }: { round?: GameRound; lastRound: boolean }) {
+  return lastRound || !round || round.current === round.total ? (
     <Translate pt="Tela de Game Over" en="Game Over Screen" />
   ) : (
     <Translate pt="Próxima rodada" en="Next Round" />
@@ -21,9 +21,15 @@ type AdminNextRoundButtonProps = {
   buttonText?: string;
   className?: string;
   round?: GameRound;
+  lastRound?: boolean;
 };
 
-export function AdminNextRoundButton({ buttonText, className = '', round }: AdminNextRoundButtonProps) {
+export function AdminNextRoundButton({
+  buttonText,
+  className = '',
+  round,
+  lastRound = false,
+}: AdminNextRoundButtonProps) {
   const language = useLanguage();
   const [isLoading] = useLoading();
   const [isAdmin] = useGlobalState('isAdmin');
@@ -50,7 +56,7 @@ export function AdminNextRoundButton({ buttonText, className = '', round }: Admi
         onClick={() => onGoToNextPhase({ action: ADMIN_ACTIONS.GO_TO_NEXT_PHASE })}
         disabled={isLoading}
       >
-        {buttonText ?? <ButtonLabel round={round} />}
+        {buttonText ?? <ButtonLabel round={round} lastRound={lastRound} />}
       </Button>
     </Space>
   );

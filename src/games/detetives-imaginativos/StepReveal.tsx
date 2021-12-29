@@ -18,9 +18,18 @@ type StepRevealProps = {
   leaderId: PlayerId;
   round: GameRound;
   ranking: GameRanking;
+  lastRound?: boolean;
 };
 
-function StepReveal({ impostor, impostorVotes, players, leaderId, round, ranking }: StepRevealProps) {
+function StepReveal({
+  impostor,
+  impostorVotes,
+  players,
+  leaderId,
+  round,
+  ranking,
+  lastRound = false,
+}: StepRevealProps) {
   return (
     <Step>
       <Title>
@@ -55,7 +64,7 @@ function StepReveal({ impostor, impostorVotes, players, leaderId, round, ranking
 
       <RoundsLeftInstruction round={round} />
 
-      <AdminNextRoundButton round={round} />
+      <AdminNextRoundButton round={round} lastRound={lastRound} />
     </Step>
   );
 }

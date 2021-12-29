@@ -109,7 +109,7 @@ function PhaseGallery({ players, state, info }: PhaseProps) {
             <Translate pt="Ver Galeria De Novo" en="See Gallery Again" />
           </Button>
 
-          <AdminNextRoundButton round={state.round} />
+          <AdminNextRoundButton round={state.round} lastRound={state?.lastRound} />
         </Step>
       </StepSwitcher>
     </PhaseContainer>
