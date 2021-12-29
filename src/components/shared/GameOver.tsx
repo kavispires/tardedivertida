@@ -1,53 +1,32 @@
-import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import { useState } from 'react';
 // Design Resources
-import { Button, Popconfirm, Progress } from 'antd';
-import { RocketFilled } from '@ant-design/icons';
+import { Progress } from 'antd';
 // Images
 import gameOverTitle from '../../images/game-over-title.svg';
 // Utils
-import { useAPICall, useLanguage, useLoading } from '../../hooks';
-import { GAME_API } from '../../adapters';
+import { useLanguage } from '../../hooks';
 import { AVATARS } from '../../utils/constants';
 // Components
-import { Avatar } from '../avatars';
-import { AdminOnly } from '../admin/index';
-import { PhaseContainer, RateGameWidget } from './index';
-import { translate, Translate } from './Translate';
-import { StepSwitcher } from './StepSwitcher';
-import { PhaseAnnouncement } from './PhaseAnnouncement';
+import {
+  Avatar,
+  PhaseAnnouncement,
+  PhaseContainer,
+  RateGameWidget,
+  StepSwitcher,
+  translate,
+  Translate,
+} from '..';
 
 const GameOverText = () => <Translate pt="Jogo concluído" en="The game is over" />;
 
-export function GameOverPhase({ info, state, children }) {
-  return (
-    <PhaseContainer
-      info={info}
-      phase={state?.phase}
-      allowedPhase="GAME_OVER"
-      className="game-over__container"
-    >
-      <GameOver info={info} state={state}>
-        {children}
-      </GameOver>
-    </PhaseContainer>
-  );
-}
+type GameOverProps = {
+  state: GameState;
+  children: any;
+  className?: string;
+};
 
-export function GameOver({ state, children, className }) {
+export function GameOver({ state, children, className }: GameOverProps) {
   const language = useLanguage();
-  const [isLoading] = useLoading();
-
-  const onPlayAgain = useAPICall({
-    apiFunction: GAME_API.playAgain,
-    actionName: 'play-=again',
-    successMessage: translate('Jogando novamente o mesmo jogo!', 'Restarting the same game', language),
-    errorMessage: translate(
-      'Vixi, ocorreu um erro ao tentar ir reiniciar o jogo',
-      'Oops, the application found an error while trying to restart the game',
-      language
-    ),
-  });
 
   return (
     <div className={className}>
@@ -67,7 +46,7 @@ export function GameOver({ state, children, className }) {
             :
           </div>
           <ul className="game-over__winners">
-            {state.winners.map((winner) => {
+            {state.winners.map((winner: GamePlayer) => {
               return (
                 <li className="game-over__winner" key={`winner-${winner.name}`}>
                   <Avatar className="game-over__avatar" id={winner.avatarId ?? 25} />
@@ -145,52 +124,29 @@ export function GameOver({ state, children, className }) {
       <RateGameWidget />
 
       {children}
-
-      <AdminOnly>
-        <Popconfirm
-          title={translate(
-            'Tem certeza que que jogar este jogo novamente?',
-            'Are you sure you want to play this game again?',
-            language
-          )}
-          onConfirm={() => onPlayAgain({})}
-          okText={translate('Sim', 'Yes', language)}
-          cancelText={translate('Não', 'No', language)}
-        >
-          <Button icon={<RocketFilled />} danger type="primary" disabled={isLoading}>
-            <Translate pt="Jogar novamente" en="Play again" />
-          </Button>
-        </Popconfirm>
-      </AdminOnly>
     </div>
   );
 }
 
-GameOver.propTypes = {
-  children: PropTypes.any,
-  className: PropTypes.any,
-  state: PropTypes.shape({
-    group: PropTypes.shape({
-      score: PropTypes.number,
-      victory: PropTypes.any,
-    }),
-    team: PropTypes.shape({
-      score: PropTypes.number,
-      victory: PropTypes.any,
-    }),
-    winners: PropTypes.array,
-  }),
+type GameOverWrapperProps = {
+  info: GameInfo;
+  state: GameState;
+  children?: any;
+  announcementIcon?: 'trophy' | 'the-end' | 'flag' | 'criminal' | 'newspaper';
+  announcementTitle?: string;
+  announcementDuration?: number;
+  announcementContent?: any;
 };
 
 export function GameOverWrapper({
   info,
   state,
-  announcementIcon,
+  announcementIcon = 'the-end',
   announcementTitle,
-  announcementDuration,
+  announcementDuration = 3,
   announcementContent,
-  children,
-}) {
+  children = <></>,
+}: GameOverWrapperProps) {
   const [step, setStep] = useState(0);
   const language = useLanguage();
 
@@ -204,7 +160,7 @@ export function GameOverWrapper({
       <StepSwitcher step={step}>
         {/*Step 0 */}
         <PhaseAnnouncement
-          type={announcementIcon ?? 'the-end'}
+          type={announcementIcon}
           title={translate(
             'E o jogo chegou ao fim...',
             'And the game is over...',
@@ -213,30 +169,13 @@ export function GameOverWrapper({
           )}
           onClose={() => setStep(1)}
           currentRound={state?.round?.current}
-          duration={announcementDuration || 3}
+          duration={announcementDuration}
         >
-          {announcementContent}
+          {Boolean(announcementContent) && announcementContent}
         </PhaseAnnouncement>
 
-        <GameOver info={info} state={state}>
-          {children}
-        </GameOver>
+        <GameOver state={state}>{children}</GameOver>
       </StepSwitcher>
     </PhaseContainer>
   );
 }
-
-GameOverWrapper.propTypes = {
-  announcementContent: PropTypes.any,
-  announcementDuration: PropTypes.number,
-  announcementIcon: PropTypes.oneOf(['trophy', 'the-end', 'flag', 'criminal', 'newspaper']),
-  announcementTitle: PropTypes.string,
-  children: PropTypes.any,
-  info: PropTypes.object,
-  state: PropTypes.shape({
-    phase: PropTypes.string,
-    round: PropTypes.shape({
-      current: PropTypes.number,
-    }),
-  }),
-};
