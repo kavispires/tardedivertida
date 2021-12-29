@@ -1,13 +1,22 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 // Design Resources
 import { Avatar as AntAvatar, Typography } from 'antd';
 import { LikeFilled } from '@ant-design/icons';
 // Components
-import { Avatar } from '../avatars';
-import { Translate } from './Translate';
+import { Avatar, Translate } from '..';
 
-export function ReadyPlayersBar({ players, readyText, readyTextPlural, showNames }) {
+type ReadyPlayersBarProps = {
+  players: GamePlayers;
+  readyText?: string;
+  readyTextPlural?: string;
+  showNames?: boolean;
+};
+
+export function ReadyPlayersBar({
+  players,
+  readyText,
+  readyTextPlural,
+  showNames = false,
+}: ReadyPlayersBarProps) {
   const readyPlayers = Object.values(players).filter((player) => player.ready);
   if (readyPlayers.length === 0) {
     return <span></span>;
@@ -40,14 +49,3 @@ export function ReadyPlayersBar({ players, readyText, readyTextPlural, showNames
     </div>
   );
 }
-
-ReadyPlayersBar.propTypes = {
-  players: PropTypes.object.isRequired,
-  readyText: PropTypes.string,
-  readyTextPlural: PropTypes.string,
-  showNames: PropTypes.bool,
-};
-
-ReadyPlayersBar.defaultProps = {
-  showNames: false,
-};
