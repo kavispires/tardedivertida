@@ -28,6 +28,7 @@ export function RateGameWidget(): JSX.Element {
   const { start } = useTimer({
     expiryTimestamp: inNSeconds(3),
     onExpire: () => setHideWidget(true),
+    autoStart: false,
   });
 
   const onSendRating = useAPICall({
