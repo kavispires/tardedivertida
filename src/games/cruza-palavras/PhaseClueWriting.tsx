@@ -6,17 +6,14 @@ import { CRUZA_PALAVRAS_API } from '../../adapters';
 import { PHASES } from '../../utils/constants';
 // Components
 import {
-  Instruction,
   PhaseAnnouncement,
   PhaseContainer,
   RoundAnnouncement,
-  Step,
   StepSwitcher,
   translate,
-  Translate,
-  WaitingRoom,
 } from '../../components';
 import StepClueWriting from './StepClueWriting';
+import { WritingCluesRule } from './RulesBlobs';
 
 function PhaseClueWriting({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
@@ -40,13 +37,22 @@ function PhaseClueWriting({ players, state, info }: PhaseProps) {
   const onSubmitClue = (payload: string) => {
     onSubmitClueAPIRequest({
       action: 'SUBMIT_CLUE',
-      clue: payload,
+      clue: payload.trim().toLowerCase(),
     });
   };
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.CRUZA_PALAVRAS.CLUE_WRITING}>
-      <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady, !isUserReady]}>
+      <StepSwitcher
+        step={step}
+        conditions={[!isUserReady, !isUserReady, !isUserReady]}
+        players={players}
+        waitingRoomInstruction={translate(
+          'Vamos aguardar enquanto os outros jogadores terminam!',
+          'Please wait while other players finish!',
+          language
+        )}
+      >
         {/* Step 0 */}
         <RoundAnnouncement round={state?.round} onPressButton={() => setStep(1)} buttonText=" " time={5} />
 
@@ -57,49 +63,11 @@ function PhaseClueWriting({ players, state, info }: PhaseProps) {
           onClose={() => setStep(2)}
           currentRound={state?.round?.current}
         >
-          <Instruction>
-            <Translate
-              pt={
-                <>
-                  Você tem uma coordenada específica e única na grade de palavras.
-                  <br />
-                  Escreva uma dica (palavra única) que conecte as palavras da linha e da coluna assinalada a
-                  você.
-                  <br />
-                  Escreva algo bem simples e óbvio porque se ninguém entender você perderá{' '}
-                  {Object.keys(players).length} pontos.
-                </>
-              }
-              en={
-                <>
-                  You will get an unique coordinate in the word grid.
-                  <br />
-                  You must write a single word clue that connects the word in the column and in the row of
-                  your coordinate.
-                  <br />
-                  Write something simple and obvious because if nobody gets your clue you will lose{' '}
-                  {Object.keys(players).length} points.
-                </>
-              }
-            />
-          </Instruction>
+          <WritingCluesRule playerCount={Object.keys(players).length} />
         </PhaseAnnouncement>
 
         {/* Step 2 */}
-        <StepClueWriting user={user} grid={state.grid} onSubmitClue={onSubmitClue} />
-
-        {/* Step 3 */}
-        <Step fullWidth>
-          <WaitingRoom
-            players={players}
-            title={translate('Pronto!', 'Done!', language)}
-            instruction={translate(
-              'Vamos aguardar enquanto os outros jogadores terminam!',
-              'Please wait while other players finish!',
-              language
-            )}
-          />
-        </Step>
+        <StepClueWriting user={user} grid={state.grid} onSubmitClue={onSubmitClue} players={players} />
       </StepSwitcher>
     </PhaseContainer>
   );

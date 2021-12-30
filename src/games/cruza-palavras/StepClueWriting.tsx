@@ -1,17 +1,19 @@
 // Hooks
 import { useLoading } from '../../hooks';
 // Components
-import { Instruction, Title, Translate } from '../../components';
+import { Instruction, PopoverRule, ReadyPlayersBar, Title, Translate } from '../../components';
 import WordGrid from './WordGrid';
 import WritingCell from './WritingCell';
+import { WritingCluesRule } from './RulesBlobs';
 
 type StepClueWritingProps = {
-  grid: any;
+  grid: CruzaPalavraGrid;
   user: GamePlayer;
   onSubmitClue: GenericFunction;
+  players: GamePlayers;
 };
 
-function StepClueWriting({ grid, user, onSubmitClue }: StepClueWritingProps) {
+function StepClueWriting({ grid, user, onSubmitClue, players }: StepClueWritingProps) {
   const [isLoading] = useLoading();
 
   return (
@@ -20,9 +22,11 @@ function StepClueWriting({ grid, user, onSubmitClue }: StepClueWritingProps) {
         <Translate pt="Escreva sua dica" en="Write your clue" />
       </Title>
 
+      <PopoverRule content={<WritingCluesRule playerCount={Object.keys(players).length} />} />
+
       <Instruction contained>
         <Translate
-          pt="Clique no icone azul e escreva sua dica. Sua dica deve conter apenas uma palavra."
+          pt="Clique no ícone azul e escreva sua dica. Sua dica deve conter apenas uma palavra."
           en="Click on the blue icon and write your clue. Your clue must be a single word clue."
         />
       </Instruction>
@@ -33,6 +37,8 @@ function StepClueWriting({ grid, user, onSubmitClue }: StepClueWritingProps) {
         CellComponent={WritingCell}
         cellComponentProps={{ onSubmitClue, disabled: isLoading }}
       />
+
+      <ReadyPlayersBar players={players} showNames />
     </div>
   );
 }

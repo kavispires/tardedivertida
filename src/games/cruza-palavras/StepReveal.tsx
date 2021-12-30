@@ -241,7 +241,7 @@ function StepReveal({ grid, user, players, clues, nextStep, whoGotNoPoints }: St
 
       <ButtonContainer>
         <TimedButton
-          duration={120}
+          duration={60}
           label={<Translate pt="Ver Ranking" en="See ranking" />}
           onExpire={nextStep}
           showTimer
