@@ -14,9 +14,18 @@ type SelectableCellProps = {
   active: any;
   guesses: any;
   clues: CruzaPalavrasClue[];
+  user: GamePlayer;
 };
 
-function SelectableCell({ onSelectCell, onClearCell, cell, active, guesses, clues }: SelectableCellProps) {
+function SelectableCell({
+  onSelectCell,
+  onClearCell,
+  cell,
+  active,
+  guesses,
+  clues,
+  user,
+}: SelectableCellProps) {
   const isSelected = cell.index === active;
   const matchEntry = Object.entries(guesses).find((arr) => arr[1] === cell.index);
   const [clueKey, coordinate] = matchEntry ?? [];
@@ -27,7 +36,11 @@ function SelectableCell({ onSelectCell, onClearCell, cell, active, guesses, clue
   if (isMatched) {
     const clueIndexColor = clues.findIndex((c) => c.clue === clue && c.playerId === playerId);
     return (
-      <Button onClick={() => onClearCell(clueKey)} type="text" style={{ height: 'auto' }}>
+      <Button
+        onClick={user.id !== playerId ? () => onClearCell(clueKey) : () => {}}
+        type="text"
+        style={{ height: 'auto' }}
+      >
         <ClueCard isMatched={isMatched} isSelected={isSelected} clue={clue} indexColor={clueIndexColor} />
       </Button>
     );

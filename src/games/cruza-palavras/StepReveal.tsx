@@ -101,17 +101,22 @@ function AnswersList({ players, grid, correctCoordinatesPerPlayer }: AnswersList
       title: translate('Jogador', 'Player', language),
       dataIndex: 'player',
       key: 'player',
-      render: (data: any) => <AvatarName player={data} addressUser />,
+      render: (data: any) => <AvatarName player={data} />,
+      sorter: (a: any, b: any) => (a.name > b.name ? -1 : 1),
     },
     {
       title: translate('Achou que', 'Thought that', language),
       dataIndex: 'guess',
       key: 'guess',
+      render: (guess: string) => guess.toUpperCase(),
+      sorter: (a: any, b: any) => (a > b ? -1 : 1),
     },
     {
       title: translate('Era', 'Was', language),
       dataIndex: 'clue',
       key: 'clue',
+      render: (clue: string) => clue.toUpperCase(),
+      sorter: (a: any, b: any) => (a > b ? -1 : 1),
     },
     {
       title: translate('Resultado', 'Result', language),
@@ -123,6 +128,7 @@ function AnswersList({ players, grid, correctCoordinatesPerPlayer }: AnswersList
         ) : (
           <CloseSquareFilled style={{ color: 'red' }} />
         ),
+      sorter: (a: any, b: any) => (a > b ? -1 : 1),
     },
   ];
 
@@ -147,7 +153,7 @@ function AnswersList({ players, grid, correctCoordinatesPerPlayer }: AnswersList
     );
   });
 
-  const dataSource: any = orderBy(parsedData.flat(), ['guess', 'playerName'], ['asc', 'asc']);
+  const dataSource: any = orderBy(parsedData.flat(), ['playerName', 'guess'], ['asc', 'asc']);
 
   return <Table size="small" columns={columns} dataSource={dataSource} pagination={false} />;
 }

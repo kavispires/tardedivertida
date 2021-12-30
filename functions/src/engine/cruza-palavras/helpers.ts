@@ -44,17 +44,31 @@ export const determineNextPhase = (
  * @returns
  */
 export const buildDeck = (words: AllWords, playerCount: number): Deck => {
-  return gameUtils.getRandomItems(Object.values(words), WORDS_PER_PLAYER_COUNT[playerCount]);
+  return gameUtils.getRandomItems(Object.values(words), WORDS_PER_PLAYER_COUNT[playerCount] + 2);
+};
+
+/**
+ * Determine if there are enough cells for the players
+ * @param grid
+ * @param playerCount
+ * @returns
+ */
+export const checkForAvailableCells = (grid: GridCell[] = [], playerCount: number): boolean => {
+  const availableCells = grid.filter((cell) => cell.available);
+  return availableCells.length >= playerCount;
 };
 
 export const buildGrid = (
   words: Deck,
   playersClues: string[],
   wordsPerCoordinate: number,
-  currentRound: number
+  shouldUsePlayersClues: boolean
 ): GridCell[] => {
   const playersCluesDeck = gameUtils.shuffle(playersClues);
-  const currentDeck = currentRound === 4 ? playersCluesDeck : words;
+  const currentDeck =
+    shouldUsePlayersClues && playersCluesDeck.length >= wordsPerCoordinate * 2
+      ? playersCluesDeck
+      : gameUtils.shuffle(words);
 
   const x: Deck = [
     {
@@ -154,22 +168,9 @@ export const buildCoordinates = (coordinatesLength: number): string[] => {
  * Distribute the available coordinates among players, returning a list of modified grid
  * @param players - this function modifies players
  * @param grid
- * @returns modified grid cell
+ * @returns the modified grid
  */
-export const distributeCoordinates = (
-  players: Players,
-  grid: GridCell[],
-  currentRound: number
-): GridCell[] => {
-  // Write previous clues
-  if (currentRound !== 1 && currentRound !== 4) {
-    Object.values(players).forEach((player) => {
-      grid[player.coordinate].available = false;
-      grid[player.coordinate].writable = false;
-      grid[player.coordinate].text = player.clue;
-    });
-  }
-
+export const distributeCoordinates = (players: Players, grid: GridCell[]): GridCell[] => {
   const available = grid.filter((entry: GridCell) => entry.available);
   const shuffledCoordinates = gameUtils.shuffle(available);
 
@@ -182,6 +183,24 @@ export const distributeCoordinates = (
     // update grid
     grid[cell.index].playerId = player.id;
     grid[cell.index].writable = true;
+  });
+
+  return grid;
+};
+
+/**
+ * Update grid with players clues
+ * @param players
+ * @param grid
+ * @returns the modified grid
+ */
+export const updateGridWithPlayersClues = (players: Players, grid: GridCell[]): GridCell[] => {
+  Object.values(players).forEach((player) => {
+    if (player.coordinate) {
+      grid[player.coordinate].available = false;
+      grid[player.coordinate].writable = false;
+      grid[player.coordinate].text = player.clue;
+    }
   });
 
   return grid;

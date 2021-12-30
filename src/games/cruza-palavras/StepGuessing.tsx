@@ -61,7 +61,6 @@ function StepGuessing({ grid, user, clues, onSubmitGuesses, players }: StepGuess
   );
 
   const onClearCell = (clueKey: string) => {
-    console.log({ clueKey });
     setGuesses((state: PlainObject) => {
       const newState = { ...state };
       delete newState[clueKey];
@@ -91,7 +90,7 @@ function StepGuessing({ grid, user, clues, onSubmitGuesses, players }: StepGuess
   const randomGuessThem = () => {
     const usedCells = Object.values(guesses);
     const usedClues = Object.keys(guesses);
-    console.log(usedCells);
+
     const availableCells = shuffle(
       grid.filter((cell) => cell.available && cell.playerId !== user.id && !usedCells.includes(cell.index))
     );
@@ -142,7 +141,7 @@ function StepGuessing({ grid, user, clues, onSubmitGuesses, players }: StepGuess
         grid={grid}
         user={user}
         CellComponent={SelectableCell}
-        cellComponentProps={{ onSelectCell, onClearCell, active, guesses, clues }}
+        cellComponentProps={{ onSelectCell, onClearCell, active, guesses, clues, user }}
       />
 
       <ReadyPlayersBar players={players} showNames />

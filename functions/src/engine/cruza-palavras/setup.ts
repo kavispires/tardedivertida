@@ -7,7 +7,15 @@ import { Players, SaveGamePayload } from '../../utils/types';
 import * as utils from '../../utils/helpers';
 import * as firebaseUtils from '../../utils/firebase';
 // Internal
-import { buildDeck, buildGrid, buildRanking, distributeCoordinates, getPlayerClues } from './helpers';
+import {
+  buildDeck,
+  buildGrid,
+  buildRanking,
+  checkForAvailableCells,
+  distributeCoordinates,
+  getPlayerClues,
+  updateGridWithPlayersClues,
+} from './helpers';
 
 /**
  * Setup
@@ -31,6 +39,7 @@ export const prepareSetupPhase = async (
         deck,
         playersClues: [],
         availableCoordinates: {},
+        gridRebuilds: 0,
       },
       state: {
         phase: CRUZA_PALAVRAS_PHASES.SETUP,
@@ -49,26 +58,30 @@ export const prepareClueWritingPhase = async (
 
   const round = utils.increaseRound(state.round);
   const playerCount = Object.keys(players).length;
-  const coordinateLength = WORDS_PER_PLAYER_COUNT[playerCount] / 2;
+  const coordinateLength = WORDS_PER_PLAYER_COUNT[playerCount] / 2 + store.gridRebuilds;
 
-  // Build grid if rounds 1 or 4
-  const shouldBuildGrid = round.current === 1 || round.current === 4;
+  // Build grid if rounds 1 or if there is not enough available cells for all players
+  const shouldBuildGrid = !checkForAvailableCells(state.grid, playerCount);
   const grid = shouldBuildGrid
-    ? buildGrid(store.deck, store.playersClues, coordinateLength, round.current)
+    ? buildGrid(store.deck, store.playersClues, coordinateLength, shouldBuildGrid)
     : state.grid;
 
   // Remove clues before the distribution of coordinates
-  if (round.current === 4) {
-    utils.removePropertiesFromPlayers(players, ['clue', 'guesses']);
+  if (shouldBuildGrid) {
+    utils.removePropertiesFromPlayers(players, ['clue', 'guesses', 'coordinate']);
   }
 
-  const updatedGrid = distributeCoordinates(players, grid, round.current);
+  const updatedGrid = distributeCoordinates(players, grid);
 
   utils.removePropertiesFromPlayers(players, ['clue', 'guesses']);
 
   // Save
   return {
     update: {
+      store: {
+        playersClues: shouldBuildGrid ? [] : store.playersClues,
+        gridRebuilds: shouldBuildGrid ? store.gridRebuilds + 1 : store.gridRebuilds,
+      },
       state: {
         phase: CRUZA_PALAVRAS_PHASES.CLUE_WRITING,
         round,
@@ -121,6 +134,7 @@ export const prepareRevealPhase = async (
     update: {
       state: {
         phase: CRUZA_PALAVRAS_PHASES.REVEAL,
+        grid: updateGridWithPlayersClues(players, state.grid),
         ranking,
         whoGotNoPoints,
       },
