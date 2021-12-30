@@ -1,26 +1,39 @@
 import { useEffect } from 'react';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
 // Design Resources
 import { Button, message, Space } from 'antd';
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
+// Hooks
+import { useLanguage } from '../../hooks';
 // Components
 import {
+  AvatarName,
   Instruction,
+  messageContent,
   Step,
   Title,
   TitleHighlight,
   translate,
   Translate,
   ViewIf,
-} from '../../components/shared';
-import { UeSoIssoCard as Card } from '../../components/cards';
-import { AvatarName } from '../../components/avatars';
-import { messageContent } from '../../components/modals/messageContent';
+} from '../../components';
+import Card from './UeSoIssoCard';
 import SuggestionEasel from './SuggestionEasel';
-import { useLanguage } from '../../hooks';
 
-function GuessVerificationStep({
+type StepGuessVerificationProps = {
+  guess: string;
+  guesser: GamePlayer;
+  isAdmin: boolean;
+  isLoading: boolean;
+  isUserTheGuesser: boolean;
+  isUserTheController: boolean;
+  controller: GamePlayer;
+  secretWord: UeSoIssoCard;
+  onSubmitOutcome: GenericFunction;
+  validSuggestions: UseSoIssoSuggestion[];
+};
+
+function StepGuessVerification({
   guess,
   guesser,
   isAdmin,
@@ -31,21 +44,24 @@ function GuessVerificationStep({
   secretWord,
   onSubmitOutcome,
   validSuggestions,
-}) {
+}: StepGuessVerificationProps) {
   const language = useLanguage();
-
   useEffect(() => {
     if (isUserTheController) {
       message.info(
         messageContent(
-          translate('Você controla!', 'You control!'),
-          translate('Selecione se o adivinhador acertou ou não', 'Select if the guesser got it right or not'),
+          translate('Você controla!', 'You control!', language),
+          translate(
+            'Selecione se o adivinhador acertou ou não',
+            'Select if the guesser got it right or not',
+            language
+          ),
           controller.id,
           3
         )
       );
     }
-  }, [isUserTheController, controller.id]);
+  }, [isUserTheController, controller.id, language]);
 
   return (
     <Step>
@@ -137,33 +153,4 @@ function GuessVerificationStep({
   );
 }
 
-GuessVerificationStep.propTypes = {
-  controller: PropTypes.shape({
-    id: PropTypes.string,
-  }),
-  guess: PropTypes.string,
-  guesser: PropTypes.shape({
-    avatarId: PropTypes.string,
-    name: PropTypes.string,
-  }),
-  isAdmin: PropTypes.bool,
-  isLoading: PropTypes.bool,
-  isUserTheController: PropTypes.bool,
-  isUserTheGuesser: PropTypes.bool,
-  isUserTheNextGuesser: PropTypes.bool,
-  nextGuesser: PropTypes.shape({
-    avatarId: PropTypes.string,
-    name: PropTypes.string,
-  }),
-  onSubmitOutcome: PropTypes.func,
-  secretWord: PropTypes.shape({
-    text: PropTypes.string,
-  }),
-  validSuggestions: PropTypes.arrayOf(
-    PropTypes.shape({
-      suggestion: PropTypes.string,
-    })
-  ),
-};
-
-export default GuessVerificationStep;
+export default StepGuessVerification;

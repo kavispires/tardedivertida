@@ -6,4 +6,3 @@ export * from './ImageCardHand';
 export * from './ImageCardBack';
 export * from './ImageCardPreloadHand';
 export * from './SonhosPesadelosCard';
-export * from './UeSoIssoCard';

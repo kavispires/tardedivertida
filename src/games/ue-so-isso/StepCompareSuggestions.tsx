@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 // Design Resources
 import { Button, message, Space } from 'antd';
 import { CloudUploadOutlined } from '@ant-design/icons';
@@ -8,13 +7,29 @@ import { useGlobalState, useLanguage, useLoading } from '../../hooks';
 // Utils
 import { deepCopy } from '../../utils/helpers';
 // Components
-import { AdminOnlyButton, Step, Title, translate, Translate, PopoverRule } from '../../components';
-import { UeSoIssoCard as Card } from '../../components/cards';
-import { messageContent } from '../../components/modals/messageContent';
+import {
+  AdminOnlyButton,
+  Step,
+  Title,
+  translate,
+  Translate,
+  PopoverRule,
+  messageContent,
+} from '../../components';
+import Card from './UeSoIssoCard';
 import SuggestionCard from './SuggestionCard';
 import { ComparisonDetailedRules, ComparisonPhaseRules } from './RulesBlobs';
 
-function CompareSuggestionsStep({
+type StepCompareSuggestionsProps = {
+  isUserTheController: boolean;
+  controller: GamePlayer;
+  onValidateSuggestions: GenericFunction;
+  onUpdateSuggestions: GenericFunction;
+  players: GamePlayers;
+  secretWord: UeSoIssoCard;
+  suggestions: UseSoIssoSuggestion[];
+};
+function StepCompareSuggestions({
   isUserTheController,
   controller,
   onValidateSuggestions,
@@ -22,13 +37,13 @@ function CompareSuggestionsStep({
   players,
   secretWord,
   suggestions,
-}) {
+}: StepCompareSuggestionsProps) {
   const language = useLanguage();
   const [isLoading] = useLoading();
-  const [myRecommendation, setMyRecommendation] = useState(deepCopy(suggestions));
+  const [myRecommendation, setMyRecommendation] = useState<UseSoIssoSuggestion[]>(deepCopy(suggestions));
   const [isAdmin] = useGlobalState('isAdmin');
 
-  const onSetValidation = (index, suggestionEntry, notAllowed) => {
+  const onSetValidation = (index: number, suggestionEntry: UseSoIssoSuggestion, notAllowed?: boolean) => {
     if (notAllowed) return;
 
     const newRecommendation = [...myRecommendation];
@@ -136,26 +151,4 @@ function CompareSuggestionsStep({
   );
 }
 
-CompareSuggestionsStep.propTypes = {
-  controller: PropTypes.shape({
-    avatarId: PropTypes.string,
-    id: PropTypes.string,
-    name: PropTypes.string,
-  }),
-  isUserTheController: PropTypes.bool,
-  onUpdateSuggestions: PropTypes.func,
-  onValidateSuggestions: PropTypes.func,
-  players: PropTypes.object,
-  secretWord: PropTypes.shape({
-    text: PropTypes.string,
-  }),
-  suggestions: PropTypes.arrayOf(
-    PropTypes.shape({
-      suggestion: PropTypes.string,
-      invalid: PropTypes.bool,
-      playerId: PropTypes.string,
-    })
-  ),
-};
-
-export default CompareSuggestionsStep;
+export default StepCompareSuggestions;

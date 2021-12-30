@@ -1,11 +1,15 @@
-import PropTypes from 'prop-types';
 // Design Resources
 import { Progress } from 'antd';
 // Components
-import { Translate } from '../../components/shared';
+import { Translate } from '../../components';
 
-export function GameProgressBar({ groupScore, currentRound, totalRounds }) {
-  const totalProgress = Math.round((100 * (currentRound - 1)) / totalRounds);
+type GameProgressBarProps = {
+  groupScore: number;
+  round: GameRound;
+};
+
+export function GameProgressBar({ groupScore, round }: GameProgressBarProps) {
+  const totalProgress = Math.round((100 * (round.current - 1)) / round.total);
 
   return (
     <div className="u-word-selection-phase__game-progress-bar">
@@ -20,9 +24,3 @@ export function GameProgressBar({ groupScore, currentRound, totalRounds }) {
     </div>
   );
 }
-
-GameProgressBar.propTypes = {
-  currentRound: PropTypes.number,
-  groupScore: PropTypes.number,
-  totalRounds: PropTypes.number,
-};

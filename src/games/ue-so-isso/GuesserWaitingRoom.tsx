@@ -1,10 +1,17 @@
-import PropTypes from 'prop-types';
-
+// Hooks
 import { useLanguage } from '../../hooks';
 // Components
 import { translate, WaitingRoom } from '../../components/shared';
 
-export function GuesserWaitingRoom({ players, instructionSuffix }) {
+type GuesserWaitingRoomProps = {
+  players: GamePlayers;
+  instructionSuffix: {
+    pt: string;
+    en: string;
+  };
+};
+
+export function GuesserWaitingRoom({ players, instructionSuffix }: GuesserWaitingRoomProps) {
   const language = useLanguage();
 
   const instructionPrefix = translate(
@@ -21,11 +28,3 @@ export function GuesserWaitingRoom({ players, instructionSuffix }) {
     />
   );
 }
-
-GuesserWaitingRoom.propTypes = {
-  instructionSuffix: PropTypes.shape({
-    pt: PropTypes.string,
-    en: PropTypes.string,
-  }),
-  players: PropTypes.object,
-};

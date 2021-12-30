@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
 // Hooks
 import { useIsUserReady, useWhichPlayerIsThe, useAPICall, useLanguage } from '../../hooks';
 // Resources & Utils
@@ -15,13 +14,12 @@ import {
   Translate,
   translate,
   ViewIf,
-  WaitingRoom,
-} from '../../components/shared';
-import SuggestionStep from './SuggestionStep';
+} from '../../components';
+import StepSuggestion from './StepSuggestion';
 import { WritingRules } from './RulesBlobs';
 import { GuesserWaitingRoom } from './GuesserWaitingRoom';
 
-function PhaseSuggest({ state, players, info }) {
+function PhaseSuggest({ state, players, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
   const language = useLanguage();
   const [step, setStep] = useState(0);
@@ -40,7 +38,7 @@ function PhaseSuggest({ state, players, info }) {
     ),
   });
 
-  const onSendSuggestions = (payload) => {
+  const onSendSuggestions = (payload: PlainObject) => {
     onSendSuggestionsAPIRequest({
       action: 'SUBMIT_SUGGESTIONS',
       ...payload,
@@ -54,7 +52,16 @@ function PhaseSuggest({ state, players, info }) {
       allowedPhase={PHASES.UE_SO_ISSO.SUGGEST}
       className="word-selection-phase"
     >
-      <StepSwitcher step={step} conditions={[!isUserReady]}>
+      <StepSwitcher
+        step={step}
+        conditions={[!isUserReady]}
+        players={players}
+        waitingRoomInstruction={translate(
+          'Aguarde os outros jogadores',
+          'Wait for the other players',
+          language
+        )}
+      >
         {/* Step 0 */}
         <PhaseAnnouncement
           type="writing"
@@ -86,7 +93,7 @@ function PhaseSuggest({ state, players, info }) {
           </ViewIf>
 
           <ViewIf isVisible={!isUserTheGuesser}>
-            <SuggestionStep
+            <StepSuggestion
               guesser={guesser}
               onSendSuggestions={onSendSuggestions}
               secretWord={state.secretWord}
@@ -94,26 +101,9 @@ function PhaseSuggest({ state, players, info }) {
             />
           </ViewIf>
         </Step>
-
-        {/* Step 2 */}
-        <WaitingRoom players={players} />
       </StepSwitcher>
     </PhaseContainer>
   );
 }
-
-PhaseSuggest.propTypes = {
-  info: PropTypes.object,
-  players: PropTypes.object,
-  state: PropTypes.shape({
-    phase: PropTypes.string,
-    round: PropTypes.shape({
-      current: PropTypes.number,
-      total: PropTypes.number,
-    }),
-    secretWord: PropTypes.any,
-    suggestionsNumber: PropTypes.any,
-  }),
-};
 
 export default PhaseSuggest;

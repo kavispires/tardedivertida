@@ -1,24 +1,34 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
 // Design Resources
 import { Button, Space } from 'antd';
 import { CloudUploadOutlined } from '@ant-design/icons';
 // Components
-import { Instruction, Step, Title, Translate } from '../../components/shared';
-import { UeSoIssoCard as Card } from '../../components/cards';
-import { AvatarName } from '../../components/avatars';
+import { AvatarName, Instruction, Step, Title, Translate } from '../../components';
 import SuggestionEasel from './SuggestionEasel';
 import { WritingRules } from './RulesBlobs';
+import Card from './UeSoIssoCard';
 
-function SuggestionStep({ guesser, onSendSuggestions, secretWord, suggestionsNumber = 1 }) {
+type StepSuggestionProps = {
+  guesser: GamePlayer;
+  onSendSuggestions: GenericFunction;
+  secretWord: UeSoIssoCard;
+  suggestionsNumber?: number;
+};
+
+function StepSuggestion({
+  guesser,
+  onSendSuggestions,
+  secretWord,
+  suggestionsNumber = 1,
+}: StepSuggestionProps) {
   const [suggestions, setSuggestions] = useState([]);
 
-  const onChangeInput = (e) => {
+  const onChangeInput = (e: any) => {
     const { id, value } = e.target;
     if (id && value?.length > 1) {
       const indexStr = id.split('-')[1];
       const index = Number(indexStr) - 1;
-      setSuggestions((s) => {
+      setSuggestions((s: any) => {
         const newState = { ...s };
         newState[index] = value.toUpperCase().trim();
         return newState;
@@ -94,20 +104,4 @@ function SuggestionStep({ guesser, onSendSuggestions, secretWord, suggestionsNum
   );
 }
 
-SuggestionStep.propTypes = {
-  guesser: PropTypes.shape({
-    avatarId: PropTypes.string,
-    name: PropTypes.string,
-  }),
-  onSendSuggestions: PropTypes.func,
-  secretWord: PropTypes.shape({
-    text: PropTypes.string,
-  }),
-  suggestionsNumber: PropTypes.number,
-};
-
-SuggestionStep.defaultProps = {
-  suggestionsNumber: 1,
-};
-
-export default SuggestionStep;
+export default StepSuggestion;

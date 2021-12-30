@@ -1,10 +1,9 @@
-import PropTypes from 'prop-types';
+// Design Resources
 import { ExclamationCircleOutlined } from '@ant-design/icons';
+// Components
+import { AvatarName, Instruction, Translate } from '../../components';
 
-import { AvatarName } from '../../components/avatars';
-import { Instruction, Translate } from '../../components/shared';
-
-export function WritingRules() {
+export function WritingRules(): JSX.Element {
   return (
     <Instruction contained>
       <Translate
@@ -35,14 +34,14 @@ export function WritingRules() {
   );
 }
 
-export function ComparisonRules() {
+export function ComparisonRules(): JSX.Element {
   return (
     <Instruction>
       <Translate
         pt={
           <>
             Hora de comparar as dicas e eliminar as similares!
-            <br />O aplicativo elimina automaticamente todas as paralavas idênticas, mas os jogadores precisam
+            <br />O aplicativo elimina automaticamente todas as palavras idênticas, mas os jogadores precisam
             eliminar as inválidas e similares.
           </>
         }
@@ -58,7 +57,7 @@ export function ComparisonRules() {
   );
 }
 
-export function ComparisonDetailedRules() {
+export function ComparisonDetailedRules(): JSX.Element {
   return (
     <Instruction contained>
       <Translate
@@ -68,7 +67,7 @@ export function ComparisonDetailedRules() {
             <br />
             Lembre-se que são consideradas dicas iguais palavras derivadas e conjugações:{' '}
             <code>piloto = pilotar = pilotando</code>. Variações como pluralidade, gênero e erros ortográficos
-            também devem ser eliminadas: <code>príncipe = princesa = principes = pryncipi</code>.
+            também devem ser eliminadas: <code>príncipe = princesa = príncipes = pryncipi</code>.
           </>
         }
         en={
@@ -88,7 +87,7 @@ export function ComparisonDetailedRules() {
     </Instruction>
   );
 }
-export function ComparisonPhaseRules({ controller }) {
+export function ComparisonPhaseRules({ controller }: { controller: GamePlayer }): JSX.Element {
   return (
     <Instruction contained>
       <Translate
@@ -119,11 +118,7 @@ export function ComparisonPhaseRules({ controller }) {
   );
 }
 
-ComparisonPhaseRules.propTypes = {
-  controller: PropTypes.object,
-};
-
-export function GuessingRules({ guesserName }) {
+export function GuessingRules({ guesserName }: { guesserName: string }): JSX.Element {
   return (
     <Instruction>
       <Translate
@@ -149,7 +144,3 @@ export function GuessingRules({ guesserName }) {
     </Instruction>
   );
 }
-
-GuessingRules.propTypes = {
-  guesserName: PropTypes.string,
-};

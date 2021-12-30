@@ -5,7 +5,7 @@ import { SEPARATOR } from './constants';
  * @param obj
  * @returns
  */
-export const deepCopy = (obj: PlainObject): PlainObject => JSON.parse(JSON.stringify(obj));
+export const deepCopy = (obj: any): any => JSON.parse(JSON.stringify(obj));
 
 /**
  * Extract the gameId from react history

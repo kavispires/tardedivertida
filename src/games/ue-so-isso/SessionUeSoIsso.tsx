@@ -8,8 +8,8 @@ import PhaseCompare from './PhaseCompare';
 import PhaseGuess from './PhaseGuess';
 import PhaseGameOver from './PhaseGameOver';
 
-function SessionUeSoIsso({ gameId }) {
-  function getActiveComponent(phase) {
+function SessionUeSoIsso({ gameId }: GameSession) {
+  function getActiveComponent(phase: string) {
     switch (phase) {
       case PHASES.UE_SO_ISSO.LOBBY:
         return PhaseLobby;

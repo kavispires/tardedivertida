@@ -1,14 +1,19 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
 // Design Resources
 import { CheckCircleFilled, CloudUploadOutlined } from '@ant-design/icons';
-// Components
-import { Instruction, Step, TimedButton, Title, translate, Translate } from '../../components/shared';
-import { AvatarName } from '../../components/avatars';
+// Hooks
 import { useLanguage } from '../../hooks';
+// Components
+import { AvatarName, Instruction, Step, TimedButton, Title, translate, Translate } from '../../components';
 
-function WordSelectionStep({ guesser, onSendSelectedWords, words = [] }) {
-  const [selectedWords, setSelectedWords] = useState({});
+type StepWordSelectionProps = {
+  guesser: GamePlayer;
+  onSendSelectedWords: GenericFunction;
+  words: UeSoIssoCard[];
+};
+
+function StepWordSelection({ guesser, onSendSelectedWords, words = [] }: StepWordSelectionProps) {
+  const [selectedWords, setSelectedWords] = useState<PlainObject>({});
   const language = useLanguage();
 
   const selectedWordsArray = Object.keys(selectedWords);
@@ -19,8 +24,8 @@ function WordSelectionStep({ guesser, onSendSelectedWords, words = [] }) {
     onSendSelectedWords({ votes: [randomSelection] });
   };
 
-  const onSelectWord = (wordId) => {
-    setSelectedWords((s) => {
+  const onSelectWord = (wordId: string) => {
+    setSelectedWords((s: PlainObject) => {
       const newState = { ...s };
       if (newState[wordId]) {
         delete newState[wordId];
@@ -70,7 +75,9 @@ function WordSelectionStep({ guesser, onSendSelectedWords, words = [] }) {
             <li className="u-word-card__word" key={word.id}>
               <button className="u-word-card__button" onClick={() => onSelectWord(word.id)}>
                 <span className="u-word-card__text">{word.text}</span>
-                <span className="u-word-card__icon">{selectedWords[word.id] && <CheckCircleFilled />}</span>
+                <span className="u-word-card__icon">
+                  {Boolean(selectedWords[word.id]) && <CheckCircleFilled />}
+                </span>
               </button>
             </li>
           );
@@ -91,18 +98,4 @@ function WordSelectionStep({ guesser, onSendSelectedWords, words = [] }) {
   );
 }
 
-WordSelectionStep.propTypes = {
-  guesser: PropTypes.shape({
-    avatarId: PropTypes.string,
-    name: PropTypes.string,
-  }),
-  onSendSelectedWords: PropTypes.func.isRequired,
-  words: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string,
-      text: PropTypes.string,
-    })
-  ),
-};
-
-export default WordSelectionStep;
+export default StepWordSelection;

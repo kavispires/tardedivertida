@@ -1,5 +1,3 @@
-import { memo } from 'react';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
 // Design Resources
 import { Avatar as AntAvatar } from 'antd';
@@ -10,7 +8,15 @@ import { LETTERS } from '../../utils/constants';
 // Components
 import { Avatar, Card } from '../../components';
 
-function SuggestionCard({ avatarId, playerName, index, invalid, suggestion }) {
+type SuggestionCardProps = {
+  avatarId: string;
+  index: number;
+  playerName?: PlayerName;
+  invalid?: boolean;
+  suggestion: string;
+};
+
+function SuggestionCard({ avatarId, playerName, index, invalid, suggestion }: SuggestionCardProps) {
   return (
     <Card
       size="medium"
@@ -30,12 +36,4 @@ function SuggestionCard({ avatarId, playerName, index, invalid, suggestion }) {
   );
 }
 
-SuggestionCard.propTypes = {
-  avatarId: PropTypes.number.isRequired,
-  index: PropTypes.number.isRequired,
-  invalid: PropTypes.bool,
-  playerName: PropTypes.string,
-  suggestion: PropTypes.string.isRequired,
-};
-
-export default memo(SuggestionCard);
+export default SuggestionCard;

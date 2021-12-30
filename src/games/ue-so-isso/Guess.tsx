@@ -1,13 +1,18 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
 // Design Resources
 import { Button, Input, Space } from 'antd';
 import { CloudUploadOutlined, MinusOutlined } from '@ant-design/icons';
 // Hooks
 import { useLanguage, useLoading } from '../../hooks';
-import { translate, Translate } from '../../components/shared';
+// Components
+import { translate, Translate } from '../../components';
 
-function Guess({ onSubmitOutcome, onSendGuess }) {
+type GuessProps = {
+  onSubmitOutcome: GenericFunction;
+  onSendGuess: GenericFunction;
+};
+
+function Guess({ onSubmitOutcome, onSendGuess }: GuessProps) {
   const language = useLanguage();
   const [isLoading] = useLoading();
   const [guess, setGuess] = useState('');
@@ -24,12 +29,14 @@ function Guess({ onSubmitOutcome, onSendGuess }) {
         placeholder={translate('Digite aqui seu chute', 'Type your guess here', language)}
         onChange={(e) => setGuess(e.target.value)}
         onPressEnter={onPressEnter}
+        size="large"
       />
       <Button
         icon={<CloudUploadOutlined />}
         type="primary"
         onClick={() => onSendGuess({ guess })}
         disabled={guess.length < 3 || isLoading}
+        size="large"
       >
         <Translate pt="Enviar" en="Submit" />
       </Button>
@@ -47,10 +54,5 @@ function Guess({ onSubmitOutcome, onSendGuess }) {
     </Space>
   );
 }
-
-Guess.propTypes = {
-  onSendGuess: PropTypes.func.isRequired,
-  onSubmitOutcome: PropTypes.func.isRequired,
-};
 
 export default Guess;
