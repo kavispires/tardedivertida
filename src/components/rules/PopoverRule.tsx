@@ -14,7 +14,6 @@ export function PopoverRule({ content, showLabel = false }: PopoverRuleProps) {
   const [isActive, setActive] = useState(false);
 
   useEffect(() => {
-    console.log('here');
     setActive(showLabel);
   }, []); // eslint-disable-line
 

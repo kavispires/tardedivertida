@@ -67,6 +67,10 @@ interface GameInfo {
     pt: boolean;
     en: boolean;
   };
+  options?: {
+    label: string;
+    key: string;
+  }[];
 }
 
 type GameRound = {
