@@ -1,5 +1,3 @@
-import React from 'react';
-
 import CloudBackground from './CloudBackground';
 
 export default {

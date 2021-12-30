@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 // Design Resources
 import { Layout, Space } from 'antd';
 // Components
@@ -13,7 +13,7 @@ function Draw() {
       <Title>Draw</Title>
 
       <Space wrap className="gallery">
-        <DrawingCanvas lines={lines} setLines={setLines} />
+        <DrawingCanvas lines={lines} setLines={setLines} showControls strokeWidth="small" />
       </Space>
     </Layout.Content>
   );

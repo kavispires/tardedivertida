@@ -1,4 +1,3 @@
-import React, { Fragment } from 'react';
 // Design Resources
 import { Button, Input, Popover } from 'antd';
 import { CaretUpOutlined } from '@ant-design/icons';
@@ -31,11 +30,11 @@ function DreamButton({ cardId, clue, previousClues, onClueChange }) {
         {clue ? (
           clue
         ) : (
-          <Fragment>
+          <>
             <CaretUpOutlined />
             {title}
             <CaretUpOutlined />
-          </Fragment>
+          </>
         )}
       </Button>
     </Popover>

@@ -5,6 +5,7 @@ import { FirebaseStateData, FirebaseStoreData } from './types';
 import { ARTE_RUIM_PHASES, MAX_ROUNDS } from './constants';
 // Helpers
 import * as gameUtils from '../../utils/game-utils';
+import * as firebaseUtils from '../../utils/firebase';
 import * as utils from '../../utils/helpers';
 import { buildDeck, buildGallery, buildRanking, dealCards, getNewPastDrawings } from './helpers';
 
@@ -117,7 +118,7 @@ export const prepareGalleryPhase = async (
   // Build gallery
   const gallery = buildGallery(state.drawings, players);
 
-  const ranking = buildRanking(players, gallery);
+  const ranking = buildRanking(state.drawings, players);
 
   const pastDrawings = getNewPastDrawings(players, gallery);
 
@@ -127,8 +128,6 @@ export const prepareGalleryPhase = async (
         ...store,
         pastDrawings: [...store.pastDrawings, ...pastDrawings],
       },
-    },
-    set: {
       players,
       state: {
         phase: ARTE_RUIM_PHASES.GALLERY,
@@ -136,6 +135,7 @@ export const prepareGalleryPhase = async (
         gallery,
         cards: store.currentCards,
         ranking,
+        drawings: firebaseUtils.deleteValue(),
       },
     },
   };

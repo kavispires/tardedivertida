@@ -1,6 +1,6 @@
 import { DefaultState, DefaultStore, InitialState, Payload, PlayerId } from '../../utils/types';
 
-export interface CategoryCard {
+interface CategoryCard {
   id: string;
   left: string;
   right: string;
@@ -8,17 +8,17 @@ export interface CategoryCard {
   clue?: string;
 }
 
-export interface ResourceData {
+interface ResourceData {
   allCategories: {
     [key: string]: CategoryCard;
   };
   usedCategories: string[];
 }
-export type PastCategories = CategoryCard[];
+type PastCategories = CategoryCard[];
 
-export type Deck = CategoryCard[];
+type Deck = CategoryCard[];
 
-export interface OndaTelepaticaStore extends DefaultStore {
+interface OndaTelepaticaStore extends DefaultStore {
   gameOrder?: PlayerId[];
   deck?: Deck;
   deckIndex?: number;
@@ -27,18 +27,18 @@ export interface OndaTelepaticaStore extends DefaultStore {
   [key: string]: any;
 }
 
-export interface OndaTelepaticaState extends DefaultState {
+interface OndaTelepaticaState extends DefaultState {
   [key: string]: any;
 }
 
-export interface OndaTelepaticaInitialState extends InitialState {
+interface OndaTelepaticaInitialState extends InitialState {
   store: OndaTelepaticaStore;
   state: OndaTelepaticaState;
 }
 
-export interface OndaTelepaticaSubmitAction extends Payload {
+interface OndaTelepaticaSubmitAction extends Payload {
   action: 'SUBMIT_CATEGORY' | 'SUBMIT_CLUE' | 'SUBMIT_GUESS';
 }
 
-export type FirebaseStateData = FirebaseFirestore.DocumentData | OndaTelepaticaState;
-export type FirebaseStoreData = FirebaseFirestore.DocumentData | OndaTelepaticaStore;
+type FirebaseStateData = FirebaseFirestore.DocumentData | OndaTelepaticaState;
+type FirebaseStoreData = FirebaseFirestore.DocumentData | OndaTelepaticaStore;

@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
 import { Button, Space } from 'antd';
 // Hooks
-import { useUser, useAPICall, useIsUserThe, useWhichPlayerIsThe } from '../../hooks';
+import { useUser, useAPICall, useWhichPlayerIsThe } from '../../hooks';
 // Resources & Utils
 import { ESPIAO_ENTRE_NOS_API } from '../../adapters';
 import { PHASES } from '../../utils/constants';
@@ -25,11 +25,9 @@ import LocationsList from './LocationsList';
 
 function AssessmentPhase({ state, players, info }) {
   const user = useUser(players);
-  const isUserTheTarget = useIsUserThe('target', state);
-  const isUserTheAccuser = useIsUserThe('accuser', state);
   const [submittedAction, setSubmitAction] = useState(false);
-  const accuser = useWhichPlayerIsThe('accuser', state, players);
-  const target = useWhichPlayerIsThe('target', state, players);
+  const [accuser, isUserTheAccuser] = useWhichPlayerIsThe('accuser', state, players);
+  const [target, isUserTheTarget] = useWhichPlayerIsThe('target', state, players);
 
   const onSubmitVoting = useAPICall({
     apiFunction: ESPIAO_ENTRE_NOS_API.submitVoting,

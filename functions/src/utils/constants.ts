@@ -11,6 +11,7 @@ export const GAME_CODES = {
   M: 'M', // mente-coletiva
   O: 'O', // onda-telepatica
   P: 'P', // polemica-da-vez
+  R: 'R', // retrato-falado
   S: 'S', // sonhos-pesadelos
   T: 'T', // testemunha-ocular
   U: 'U', // ue-so-isso
@@ -26,6 +27,7 @@ export const GAME_KEYS = {
   MENTE_COLETIVA: 'MENTE_COLETIVA',
   ONDA_TELEPATICA: 'ONDA_TELEPATICA',
   POLEMICA_DA_VEZ: 'POLEMICA_DA_VEZ',
+  RETRATO_FALADO: 'RETRATO_FALADO',
   SONHOS_PESADELOS: 'SONHOS_PESADELOS',
   TESTEMUNHA_OCULAR: 'TESTEMUNHA_OCULAR',
   UE_SO_ISSO: 'UE_SO_ISSO',
@@ -41,26 +43,32 @@ export const GAME_COLLECTIONS = {
   MENTE_COLETIVA: 'mente-coletiva',
   ONDA_TELEPATICA: 'onda-telepatica',
   POLEMICA_DA_VEZ: 'polemica-da-vez',
+  RETRATO_FALADO: 'retrato-falado',
   SONHOS_PESADELOS: 'sonhos-pesadelos',
   TESTEMUNHA_OCULAR: 'testemunha-ocular',
   UE_SO_ISSO: 'ue-so-isso',
   CRUZA_PALAVRAS: 'cruza-palavras',
 };
 
+export const GLOBAL_USED_DOCUMENTS = {
+  ARTE_RUIM: 'usedArteRuimCards',
+  MENTE_COLETIVA: 'usedMenteColetivaQuestions',
+  ONDA_TELEPATICA: 'usedOndaTelepaticaCategories',
+  RETRATO_FALADO: 'usedRetratoFaladoCards',
+  TESTEMUNHA_OCULAR: 'usedTestemunhaOcularCards',
+};
+
+export const SEPARATOR = ';;';
+
+export const USED_GAME_IDS = 'usedGameIds';
+
+// DEPRECATED FROM HERE BELOW
+
 export const GAME_PLAYERS_LIMIT = {
   ESPIAO_ENTRE_NOS: {
     min: 4,
     max: 8,
   },
-};
-
-export const SEPARATOR = ';;';
-
-export const GLOBAL_USED_DOCUMENTS = {
-  ARTE_RUIM: 'usedArteRuimCards',
-  MENTE_COLETIVA: 'usedMenteColetivaQuestions',
-  TESTEMUNHA_OCULAR: 'usedTestemunhaOcularCards',
-  ONDA_TELEPATICA: 'usedOndaTelepaticaCategories',
 };
 
 /**

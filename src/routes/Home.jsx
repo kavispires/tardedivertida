@@ -1,4 +1,3 @@
-import React from 'react';
 import { Image, Layout } from 'antd';
 
 import logo from '../images/tarde-divertida-logo.svg';

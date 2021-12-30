@@ -11,20 +11,21 @@ import * as gameUtils from '../../utils/game-utils';
  * @param currentRound
  * @returns
  */
-export const determineNextPhase = (currentPhase: string, currentRound: number): string => {
-  const {
-    RULES,
-    SETUP,
-    HINT_GIVING,
-    HINT_RECEIVING,
-    GUESS_THE_CODE,
-    SOLUTION,
-    GAME_OVER,
-  } = INSTRUMENTOS_CODIFICADOS_PHASES;
+export const determineNextPhase = (
+  currentPhase: string,
+  currentRound: number,
+  triggerLastRound?: boolean
+): string => {
+  const { RULES, SETUP, HINT_GIVING, HINT_RECEIVING, GUESS_THE_CODE, SOLUTION, GAME_OVER } =
+    INSTRUMENTOS_CODIFICADOS_PHASES;
   const order = [RULES, SETUP, HINT_GIVING, HINT_RECEIVING, GUESS_THE_CODE, SOLUTION, GAME_OVER];
 
   if (currentPhase === HINT_RECEIVING && currentRound === TOTAL_ROUNDS) {
     return GUESS_THE_CODE;
+  }
+
+  if (currentPhase === GUESS_THE_CODE && triggerLastRound) {
+    return GAME_OVER;
   }
 
   const currentPhaseIndex = order.indexOf(currentPhase);

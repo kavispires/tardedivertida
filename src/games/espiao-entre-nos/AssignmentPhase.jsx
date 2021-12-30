@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
 // Hooks
-import { useIsUserReady, useUser, useIsUserThe } from '../../hooks';
+import { useIsUserReady, useUser, useWhichPlayerIsThe } from '../../hooks';
 // Resources & Utils
 import { PHASES } from '../../utils/constants';
 // Components
@@ -15,7 +15,7 @@ import LocationsList from './LocationsList';
 function AssignmentPhase({ state, players, info }) {
   const isUserReady = useIsUserReady(players, state);
   const user = useUser(players);
-  const isUserTheSpy = useIsUserThe('currentSpy', state);
+  const [, isUserTheSpy] = useWhichPlayerIsThe('currentSpy', state, players);
   const [step, setStep] = useState(0);
 
   return (

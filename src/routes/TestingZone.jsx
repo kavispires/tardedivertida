@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
+
 // import { Image, Layout } from 'antd';
 import gameList from '../resources/games.json';
 import { Avatar, AvatarEntry } from '../components/avatars';
@@ -10,13 +10,15 @@ import {
   PhaseContainer,
   RoundAnnouncement,
   Title,
-} from '../components/shared';
+  Icons,
+} from '../components';
 // Resources
 import { CheckCircleFilled, CheckCircleOutlined } from '@ant-design/icons';
 import { Button, Input } from 'antd';
 import { LETTERS } from '../utils/constants';
 import Card from '../components/cards/Card';
-import { getColorFromLetter } from '../utils';
+import { getColorFromLetter } from '../utils/helpers';
+import * as icons from '../components/icons';
 
 function TestingZone() {
   const info = gameList['U'];
@@ -89,12 +91,38 @@ function TestingZone() {
   console.log({ splitQuestions });
 
   // return <GameOver info={info} state={state} players={players} />;
+  // return (
+  //   <PhaseContainer info={info} phase={state.phase} allowedPhase="WORD_SELECTION" className="" fullScreen>
+  //     <PhaseAnnouncement title="Drawing!" round={state.round.current} onClose={onRun}>
+  //       <Instruction>Do this and that and the other thing</Instruction>
+  //     </PhaseAnnouncement>
+  //   </PhaseContainer>
+  // );
+  console.log({ icons });
+  console.log(typeof icons, Array.isArray(icons));
+
+  const styles = {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(15, 1fr)',
+    gap: '1rem',
+  };
+  const stylesLi = {
+    border: '1px solid black',
+    margin: '1fr',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  };
   return (
-    <PhaseContainer info={info} phase={state.phase} allowedPhase="WORD_SELECTION" className="" fullScreen>
-      <PhaseAnnouncement title="Drawing!" round={state.round.current} onClose={onRun}>
-        <Instruction>Do this and that and the other thing</Instruction>
-      </PhaseAnnouncement>
-    </PhaseContainer>
+    <ul style={styles}>
+      {Object.entries(icons).map(([key, Icon], index) => (
+        <li key={key} style={stylesLi}>
+          <Icon key={index} />
+          <div>{key}</div>
+        </li>
+      ))}
+    </ul>
   );
 }
 

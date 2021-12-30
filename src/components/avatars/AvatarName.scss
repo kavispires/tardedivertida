@@ -2,6 +2,7 @@
   display: inline-block;
   padding: get-unit(0 1);
   font-weight: bolder;
+  font-size: inherit;
 
   &--uppercase {
     text-transform: uppercase;

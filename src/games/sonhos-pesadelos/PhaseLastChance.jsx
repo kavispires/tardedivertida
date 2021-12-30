@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 // Hooks
 import { useIsUserReady, useAPICall, useUser, useLanguage } from '../../hooks';
@@ -7,7 +7,7 @@ import { SONHOS_PESADELOS_API } from '../../adapters';
 import { PHASES } from '../../utils/constants';
 // Components
 import {
-  DefaultWaitingRoom,
+  WaitingRoom,
   Instruction,
   PhaseAnnouncement,
   PhaseContainer,
@@ -100,7 +100,7 @@ function PhaseLastChance({ state, players, info }) {
 
         {/* Step 3 */}
         <Step fullWidth>
-          <DefaultWaitingRoom players={players} />
+          <WaitingRoom players={players} />
           <DreamBoard user={user} table={state.table} />
         </Step>
       </StepSwitcher>

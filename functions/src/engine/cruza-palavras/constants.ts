@@ -16,12 +16,12 @@ export const PLAYER_COUNT = {
 export const TOTAL_ROUNDS = 6;
 
 export const WORDS_PER_PLAYER_COUNT = {
-  3: 8,
-  4: 8,
+  3: 6,
+  4: 6,
   5: 8,
-  6: 10,
-  7: 10,
-  8: 10,
-  9: 12,
-  10: 12,
+  6: 8,
+  7: 8,
+  8: 8,
+  9: 10,
+  10: 10,
 };

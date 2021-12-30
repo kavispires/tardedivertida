@@ -1,9 +1,8 @@
-import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 // Utils
 import { LETTERS } from '../../utils/constants';
-import { getEntryId } from '../../utils';
+import { getEntryId } from '../../utils/helpers';
 // Components
 import { SonhosPesadelosCard as Card } from '../../components/cards';
 

@@ -1,9 +1,9 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
 import { notification } from 'antd';
 // Hooks
-import { useUser, useAPICall, useIsUserThe, useWhichPlayerIsThe } from '../../hooks';
+import { useUser, useAPICall, useWhichPlayerIsThe } from '../../hooks';
 // Resources & Utils
 import { ESPIAO_ENTRE_NOS_API } from '../../adapters';
 import { PHASES } from '../../utils/constants';
@@ -20,8 +20,8 @@ import LocationsList from './LocationsList';
 
 function InvestigationPhase({ state, players, info }) {
   const user = useUser(players);
-  const isUserTheSpy = useIsUserThe('currentSpy', state);
-  const startingPlayer = useWhichPlayerIsThe('startingPlayer', state, players);
+  const [, isUserTheSpy] = useWhichPlayerIsThe('currentSpy', state, players);
+  const [startingPlayer] = useWhichPlayerIsThe('startingPlayer', state, players);
   const [isAccusationSelectVisible, setAccusationSelectVisible] = useState(true);
 
   const onMakeAccusation = useAPICall({
@@ -85,7 +85,7 @@ function InvestigationPhase({ state, players, info }) {
       </div>
 
       {isAccusationSelectVisible && (
-        <Fragment>
+        <>
           {isUserTheSpy && <LocationSelect locations={state.possibleLocations} onSend={onGuessLocation} />}
 
           {!user?.usedAccusation ? (
@@ -93,7 +93,7 @@ function InvestigationPhase({ state, players, info }) {
           ) : (
             <Instruction className="e-phase-instruction">Você já usou sua chance de acusar</Instruction>
           )}
-        </Fragment>
+        </>
       )}
 
       <Instruction className="e-lists">

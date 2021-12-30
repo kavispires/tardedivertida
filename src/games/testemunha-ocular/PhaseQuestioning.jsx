@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
-import { Button } from 'antd';
+import { Avatar, Button } from 'antd';
+import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 // Hooks
-import { useIsUserThe, useWhichPlayerIsThe, useAPICall, useLoading, useLanguage } from '../../hooks';
+import { useWhichPlayerIsThe, useAPICall, useLoading, useLanguage } from '../../hooks';
 // Resources & Utils
 import { TESTEMUNHA_OCULAR_API } from '../../adapters';
 import { PHASES } from '../../utils/constants';
@@ -20,17 +21,13 @@ import {
 } from '../../components/shared';
 import { AvatarName } from '../../components/avatars';
 import { Suspects } from './Suspects';
-import Card from '../../components/cards/Card';
-import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
-import Avatar from 'antd/lib/avatar/avatar';
+import { Card } from '../../components';
 
 function PhaseQuestioning({ state, players, info }) {
   const language = useLanguage();
   const [isLoading] = useLoading();
   const [step, setStep] = useState(0);
-
-  const witness = useWhichPlayerIsThe('witnessId', state, players);
-  const isUserTheWitness = useIsUserThe('witnessId', state);
+  const [witness, isUserTheWitness] = useWhichPlayerIsThe('witnessId', state, players);
 
   const onAnswerRequest = useAPICall({
     apiFunction: TESTEMUNHA_OCULAR_API.submitAction,

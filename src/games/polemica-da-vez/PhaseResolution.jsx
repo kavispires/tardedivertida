@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 // Hooks
 import { useLanguage } from '../../hooks';
@@ -6,7 +6,7 @@ import { useLanguage } from '../../hooks';
 import { PHASES } from '../../utils/constants';
 // Components
 import {
-  DefaultWaitingRoom,
+  WaitingRoom,
   Instruction,
   PhaseAnnouncement,
   PhaseContainer,
@@ -64,12 +64,13 @@ function PhaseReact({ state, players, info }) {
             customTopic={state.customTopic}
             currentTopic={state.currentTopic}
             totalLikes={state.totalLikes}
+            round={state.round}
           />
         </Step>
 
         {/* Step 2 */}
         <Step fullWidth>
-          <DefaultWaitingRoom players={players} />
+          <WaitingRoom players={players} />
         </Step>
       </StepSwitcher>
     </PhaseContainer>

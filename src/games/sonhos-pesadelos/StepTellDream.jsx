@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
 import { Button } from 'antd';
 // Hooks
 import { useLanguage, useLoading } from '../../hooks';
 // Utils
-import { isDevEnv, shuffle } from '../../utils';
+import { isDevEnv, shuffle } from '../../utils/helpers';
 // Components
 import { Card } from '../../components/cards';
 import {

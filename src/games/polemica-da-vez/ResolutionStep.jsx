@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import clsx from 'clsx';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
 import { DislikeFilled, FallOutlined, LikeFilled, RiseOutlined } from '@ant-design/icons';
 // Hooks
-import { useLanguage } from '../../hooks';
+
 // Components
 import {
   ButtonContainer,
@@ -12,16 +13,13 @@ import {
   StepSwitcher,
   TimedButton,
   Title,
-  translate,
   Translate,
 } from '../../components/shared';
-import { AdminForceNextPhase } from '../../components/admin';
+import { AdminNextRoundButton } from '../../components/admin';
 import { Topic } from './Topic';
 import { Avatar } from '../../components/avatars';
-import clsx from 'clsx';
 
-function ResolutionStep({ ranking, players, totalLikes, customTopic, currentTopic }) {
-  const language = useLanguage();
+function ResolutionStep({ ranking, players, totalLikes, customTopic, currentTopic, round }) {
   const [step, setStep] = useState(0);
 
   return (
@@ -78,7 +76,7 @@ function ResolutionStep({ ranking, players, totalLikes, customTopic, currentTopi
 
         <Step key={1}>
           <RankingBoard ranking={ranking} players={players} />
-          <AdminForceNextPhase buttonText={translate('Próxima Rodada', 'Go to Next Round', language)} />
+          <AdminNextRoundButton round={round} />
         </Step>
       </StepSwitcher>
     </div>

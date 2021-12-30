@@ -1,14 +1,14 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
 import { message } from 'antd';
 // Hooks
-import { useAPICall, useIsUserThe, useWhichPlayerIsThe } from '../../hooks';
+import { useAPICall, useWhichPlayerIsThe } from '../../hooks';
 // Resources & Utils
 import { ESPIAO_ENTRE_NOS_API } from '../../adapters';
 import { PHASES } from '../../utils/constants';
 // Components
-import { AdminOnly, AdminButton } from '../../components/admin/index';
+import { AdminOnlyContainer, AdminButton } from '../../components/admin/index';
 import { Instruction, PhaseContainer, Title } from '../../components/shared';
 
 const determineView = (resolutionType, spyWin, isUserTheSpy, timeRemaining) => {
@@ -23,9 +23,8 @@ const determineView = (resolutionType, spyWin, isUserTheSpy, timeRemaining) => {
 };
 
 function ResolutionPhase({ state, players, info }) {
-  const isUserTheSpy = useIsUserThe('currentSpy', state);
-  const currentSpy = useWhichPlayerIsThe('currentSpy', state, players);
-  const target = useWhichPlayerIsThe('target', state, players);
+  const [currentSpy, isUserTheSpy] = useWhichPlayerIsThe('currentSpy', state, players);
+  const [target] = useWhichPlayerIsThe('target', state, players);
 
   const onAdminControl = useAPICall({
     apiFunction: ESPIAO_ENTRE_NOS_API.handleAdminAction,
@@ -96,10 +95,10 @@ function ResolutionPhase({ state, players, info }) {
         ))}
       </Instruction>
 
-      <AdminOnly>
+      <AdminOnlyContainer>
         <AdminButton action={() => onAdminControl({ action: 'round' })} label="Iniciar nova rodada" />
         <AdminButton action={() => onAdminControl({ action: 'end' })} label="Terminar o jogo" />
-      </AdminOnly>
+      </AdminOnlyContainer>
     </PhaseContainer>
   );
 }

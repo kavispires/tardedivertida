@@ -1,7 +1,7 @@
 import { Modal } from 'antd';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useTimer } from 'react-timer-hook';
-import { inNSeconds } from '../../utils';
+import { inNSeconds } from '../../utils/helpers';
 
 function EmergencyAlertSVG() {
   return (

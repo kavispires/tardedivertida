@@ -18,16 +18,11 @@
 @import '../components/avatars/AvatarEntry.scss';
 @import '../components/avatars/AvatarName.scss';
 @import '../components/avatars/SheepAvatar.scss';
-@import '../components/loaders/Loading.scss';
-@import '../components/loaders/LoadingBar.scss';
-@import '../components/loaders/LoadingPage.scss';
-@import '../components/lobby/Lobby.scss';
-@import '../components/lobby/_internal/Join.scss';
-@import '../components/lobby/_internal/Waiting.scss';
+@import '../components/loaders/loaders.scss';
+@import '../components/lobby/lobby.scss';
 @import '../components/lobby/_internal/CloudBackground.scss';
 @import '../components/modals/RulesModal.scss';
-@import '../components/rules/RulesCarousel.scss';
-@import '../components/rules/Rules.scss';
+@import '../components/rules/_rules.scss';
 @import '../components/shared/PhaseAnnouncement.scss';
 @import '../components/shared/PhaseContainer.scss';
 @import '../components/shared/RoundAnnouncement.scss';
@@ -58,7 +53,7 @@
 @import '../games/arte-ruim/GalleryWindow.scss';
 
 // ContadoresHistorias
-@import '../games//contadores-historias/SessionContadoresHistorias.scss';
+@import '../games/contadores-historias/SessionContadoresHistorias.scss';
 
 // DetetivesImaginativos Components
 @import '../games/detetives-imaginativos/SessionDetetivesImaginativos.scss';
@@ -78,6 +73,9 @@
 // PolemicaDaVez
 @import '../games/polemica-da-vez/SessionPolemicaDaVez.scss';
 
+// RetratoFalado
+@import '../games/retrato-falado/SessionRetratoFalado.scss';
+
 // SonhosPesadelos
 @import '../games/sonhos-pesadelos/SessionSonhosPesadelos.scss';
 
@@ -86,7 +84,6 @@
 
 // UeSoIsso Components
 @import '../games/ue-so-isso/SessionUseSoIsso.scss';
-@import '../games/ue-so-isso/SuggestionCard.scss';
 
 // CruzaPalavras
 @import '../games/cruza-palavras/SessionCruzaPalavras.scss';

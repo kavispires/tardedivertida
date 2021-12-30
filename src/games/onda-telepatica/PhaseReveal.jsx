@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import { useState } from 'react';
 // State & Hooks
 import { useIsUserReady, useLanguage, useWhichPlayerIsThe } from '../../hooks';
 // Resources & Utils
@@ -18,13 +18,13 @@ import {
 } from '../../components/shared';
 
 import StepReveal from './StepReveal';
-import { AdminForceNextPhase } from '../../components/admin';
+import { AdminNextRoundButton } from '../../components/admin';
 
 function PhaseReveal({ players, state, info }) {
   const isUserReady = useIsUserReady(players, state);
   const language = useLanguage();
   const [step, setStep] = useState(0);
-  const psychic = useWhichPlayerIsThe('psychicId', state, players);
+  const [psychic] = useWhichPlayerIsThe('psychicId', state, players);
 
   return (
     <PhaseContainer
@@ -64,13 +64,7 @@ function PhaseReveal({ players, state, info }) {
           </Title>
 
           <RankingBoard ranking={state.ranking} players={players} />
-          <AdminForceNextPhase
-            buttonText={translate(
-              'Ir para próxima rodada ou game over',
-              'Go to next round or Game Over',
-              language
-            )}
-          />
+          <AdminNextRoundButton round={state.round} lastRound={state?.lastRound} />
         </Step>
       </StepSwitcher>
     </PhaseContainer>
