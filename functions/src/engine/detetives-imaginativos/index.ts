@@ -68,7 +68,7 @@ export const getNextPhase = async (
   );
 
   // Determine next phase
-  const nextPhase = determineNextPhase(state?.phase, state?.round);
+  const nextPhase = determineNextPhase(state?.phase, state?.round, state?.lastRound);
 
   // RULES -> SETUP
   if (nextPhase === DETETIVES_IMAGINATIVOS_PHASES.SETUP) {

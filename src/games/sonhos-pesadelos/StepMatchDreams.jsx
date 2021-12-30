@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
 import { Button } from 'antd';
 // Hooks
 import { useLanguage, useLoading, useVotingMatch } from '../../hooks';
 // Utils
-import { getEntryId, isDevEnv, shuffle } from '../../utils';
+import { getEntryId, isDevEnv, shuffle } from '../../utils/helpers';
 import { LETTERS } from '../../utils/constants';
 // Components
 import {

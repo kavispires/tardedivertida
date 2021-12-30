@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
 import { Button } from 'antd';
@@ -8,7 +8,7 @@ import { useLanguage, useLoading } from '../../hooks';
 // Components
 import { translate } from '../../components/shared';
 import { Avatar } from '../../components/avatars';
-import { AdminButton, AdminOnly } from '../../components/admin';
+import { AdminButton, AdminOnlyContainer } from '../../components/admin';
 
 function AdminAnswerControl({ answerGroup, allAnswers, players, onNextAnswer, allowedList }) {
   const language = useLanguage();
@@ -28,7 +28,7 @@ function AdminAnswerControl({ answerGroup, allAnswers, players, onNextAnswer, al
   );
 
   return (
-    <AdminOnly className="m-admin">
+    <AdminOnlyContainer className="m-admin">
       <AdminButton
         action={() => onNextAnswer(Object.keys(allowedList))}
         label={translate('Confirmar e ir para próxima resposta', 'Confirm and go to next answer', language)}
@@ -49,7 +49,7 @@ function AdminAnswerControl({ answerGroup, allAnswers, players, onNextAnswer, al
           );
         })}
       </ul>
-    </AdminOnly>
+    </AdminOnlyContainer>
   );
 }
 

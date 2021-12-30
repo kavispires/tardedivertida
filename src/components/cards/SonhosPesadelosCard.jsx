@@ -1,7 +1,7 @@
-import React, { memo } from 'react';
+import { memo } from 'react';
 import PropTypes from 'prop-types';
 // Utils
-import { getColorFromLetter } from '../../utils';
+import { getColorFromLetter } from '../../utils/helpers';
 // Components
 import { Card } from './index';
 

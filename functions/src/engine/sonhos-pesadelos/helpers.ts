@@ -11,12 +11,14 @@ import * as gameUtils from '../../utils/game-utils';
  * Determine the next phase based on the current one
  * @param currentPhase
  * @param currentRound
+ * @param triggerLastRound
  * @returns
  */
 export const determineNextPhase = (
   currentPhase: string,
   currentRound: number,
-  isGameOver?: boolean
+  isGameOver?: boolean,
+  triggerLastRound?: boolean
 ): string => {
   const { RULES, SETUP, TELL_DREAM, MATCH, RESOLUTION, LAST_CHANCE, GAME_OVER } = SONHOS_PESADELOS_PHASES;
   const order = [RULES, SETUP, TELL_DREAM, MATCH, RESOLUTION];
@@ -26,6 +28,9 @@ export const determineNextPhase = (
   }
 
   if (currentPhase === RESOLUTION) {
+    if (triggerLastRound) {
+      return GAME_OVER;
+    }
     if (currentRound < TOTAL_ROUNDS) {
       return TELL_DREAM;
     }

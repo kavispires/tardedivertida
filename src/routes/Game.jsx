@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 // Design Resources
 import { message, notification } from 'antd';
@@ -7,11 +7,10 @@ import { GAME_API } from '../adapters';
 // Hooks
 import { useIsGameStale, useLoading, useGlobalState, useLocalStorage } from '../hooks';
 // Utils
-import { getGameIdFromURL, getGameIdFromLocation, isValidGameId, isDevEnv } from '../utils';
+import { getGameIdFromURL, getGameIdFromLocation, isValidGameId, isDevEnv } from '../utils/helpers';
 import { GAME_COLLECTION } from '../utils/constants';
 // Components
-import { LoadingPage } from '../components/loaders';
-import { PageError } from '../components/errors/PageError';
+import { LoadingPage, PageError } from '../components';
 import GameSessions from '../games';
 
 function Game() {
@@ -116,6 +115,8 @@ function Game() {
         return <GameSessions.OndaTelepatica gameId={gameId} />;
       case GAME_COLLECTION.POLEMICA_DA_VEZ:
         return <GameSessions.PolemicaDaVez gameId={gameId} />;
+      case GAME_COLLECTION.RETRATO_FALADO:
+        return <GameSessions.RetratoFalado gameId={gameId} />;
       case GAME_COLLECTION.SONHOS_PESADELOS:
         return <GameSessions.SonhosPesadelos gameId={gameId} />;
       case GAME_COLLECTION.TESTEMUNHA_OCULAR:

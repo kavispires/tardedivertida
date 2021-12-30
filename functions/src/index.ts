@@ -1,6 +1,7 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import * as commonEngine from './engine/common';
+import * as adminEngine from './engine/admin';
 import * as arteRuimEngine from './engine/arte-ruim';
 import * as contadoresHistoriasEngine from './engine/contadores-historias';
 import * as detetivesImaginativosEngine from './engine/detetives-imaginativos';
@@ -9,6 +10,7 @@ import * as instrumentosCodificadosEngine from './engine/instrumentos-codificado
 import * as menteColetivaEngine from './engine/mente-coletiva';
 import * as ondaTelepaticaEngine from './engine/onda-telepatica';
 import * as polemicaDaVezEngine from './engine/polemica-da-vez';
+import * as retratoFaladoEngine from './engine/retrato-falado';
 import * as sonhosPesadelosEngine from './engine/sonhos-pesadelos';
 import * as testemunhaOcularEngine from './engine/testemunha-ocular';
 import * as ueSoIssoEngine from './engine/ue-so-isso';
@@ -19,12 +21,24 @@ admin.initializeApp();
 // Start writing Firebase Functions
 // https://firebase.google.com/docs/functions/typescript
 
-// COMMON HTTP CALLS
+// ADMIN HTTP CALLS (require auth)
 
 /**
  * Create a new game instance returning its meta data with gameId
  */
-exports.initializeGame = functions.https.onCall(commonEngine.createGame);
+exports.createGame = functions.https.onCall(adminEngine.createGame);
+
+/**
+ * Lock game so new players cannot join
+ */
+exports.lockGame = functions.https.onCall(adminEngine.lockGame);
+
+/**
+ * Collection of admin actions like `nextPhase`, `playAgain`, `endGame`, etc
+ */
+exports.performAdminAction = functions.https.onCall(adminEngine.performAdminAction);
+
+// COMMON HTTP CALLS
 
 /**
  * Load an existing game
@@ -37,30 +51,9 @@ exports.loadGame = functions.https.onCall(commonEngine.loadGame);
 exports.addPlayer = functions.https.onCall(commonEngine.addPlayer);
 
 /**
- * Lock game so new players cannot join
- */
-exports.lockGame = functions.https.onCall(commonEngine.lockGame);
-
-/**
  * Make player ready and go to next game phase if all players are ready
  */
 exports.makePlayerReady = functions.https.onCall(commonEngine.makePlayerReady);
-
-/**
- * Action to force game to go to its next phase.
- * It may be using by players during a specific time during the game, or by the admin at any phase
- */
-exports.goToNextPhase = functions.https.onCall(commonEngine.goToNextPhase);
-
-/**
- * Admin action to force game certain state property and value
- */
-exports.forceStateProperty = functions.https.onCall(commonEngine.forceStateProperty);
-
-/**
- * Play game again within the same session
- */
-exports.playAgain = functions.https.onCall(commonEngine.playAgain);
 
 /**
  * Rate game
@@ -86,6 +79,8 @@ exports.menteColetivaSubmitAction = functions.https.onCall(menteColetivaEngine.s
 exports.ondaTelepaticaSubmitAction = functions.https.onCall(ondaTelepaticaEngine.submitAction);
 
 exports.polemicaDaVezSubmitAction = functions.https.onCall(polemicaDaVezEngine.submitAction);
+
+exports.retratoFaladoSubmitAction = functions.https.onCall(retratoFaladoEngine.submitAction);
 
 exports.sonhosPesadelosSubmitAction = functions.https.onCall(sonhosPesadelosEngine.submitAction);
 

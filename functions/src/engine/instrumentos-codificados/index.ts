@@ -64,7 +64,7 @@ export const getNextPhase = async (
   );
 
   // Determine next phase
-  const nextPhase = determineNextPhase(state?.phase, state?.round?.current);
+  const nextPhase = determineNextPhase(state?.phase, state?.round?.current, state?.lastRound);
 
   // RULES -> SETUP
   if (nextPhase === INSTRUMENTOS_CODIFICADOS_PHASES.SETUP) {

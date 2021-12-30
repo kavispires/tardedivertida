@@ -1,4 +1,3 @@
-import React from 'react';
 import { getLanguageControl, mockLanguageHook, mockPlayers, mockTeams } from '../../../mocks';
 
 import { SectionTeamPlayers } from './SectionTeamPlayers';

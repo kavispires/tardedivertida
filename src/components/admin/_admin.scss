@@ -8,45 +8,38 @@
   justify-content: center;
 }
 
-.admin-menu {
+.admin-menu-drawer {
   &__affix {
-    position: absolute;
-    bottom: -8px;
-    left: 8px;
-    transform: translateY(-50%);
     z-index: 100;
   }
 
-  &__affix-button {
-    background: rgba(white, 0.5);
-    border: 1px solid get-color(white);
-    color: get-color(black);
+  &__buttons {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+  }
 
-    &:hover {
-      transform: scale(1.2);
-    }
+  &__button {
+    margin: get-unit(1 0);
   }
 }
 
-// &__affix-button {
-//   position: absolute;
-//   top: 10px;
-//   right: 10px;
-//   z-index: 100;
-// }
+.admin-players-ready-state {
+  &__entry {
+    display: flex;
+    margin: get-unit(1 0);
+    border-bottom: 1px get-color(gray, 1) dashed;
+  }
 
-// &__button {
-//   background: rgba(white, 0.5);
-//   border: 1px solid get-color(white);
-//   color: get-color(black);
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    line-height: 1rem;
+  }
 
-//   &:hover {
-//     transform: scale(1.2);
-//   }
-// }
+  &__item {
+    background: get-color(gray, 1);
+    padding: get-unit(0 1);
+    margin: get-unit(0 1);
+    border-radius: get-unit(1);
+  }
+}

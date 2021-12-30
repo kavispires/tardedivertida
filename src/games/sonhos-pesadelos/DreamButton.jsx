@@ -1,4 +1,3 @@
-import React from 'react';
 // Design Resources
 import { Button } from 'antd';
 import { CaretUpOutlined } from '@ant-design/icons';

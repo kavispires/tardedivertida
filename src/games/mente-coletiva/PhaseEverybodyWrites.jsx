@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 // Hooks
 import { useAPICall, useLanguage, useUser } from '../../hooks';
@@ -7,7 +7,7 @@ import { MENTE_COLETIVA_API } from '../../adapters';
 import { PHASES } from '../../utils/constants';
 // Components
 import {
-  DefaultWaitingRoom,
+  WaitingRoom,
   Instruction,
   PhaseAnnouncement,
   PhaseContainer,
@@ -101,7 +101,7 @@ function PhaseEverybodyWrites({ state, players, info }) {
 
         {/* Step 2 */}
         <Step fullWidth>
-          <DefaultWaitingRoom players={players} />
+          <WaitingRoom players={players} />
         </Step>
       </StepSwitcher>
     </PhaseContainer>

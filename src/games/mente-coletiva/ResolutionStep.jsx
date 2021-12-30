@@ -1,27 +1,17 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useTimer } from 'react-timer-hook';
 // Design Resources
 import { HeartFilled } from '@ant-design/icons';
 // Hooks
-import { useLanguage } from '../../hooks';
-import { inNSeconds } from '../../utils';
+import { inNSeconds } from '../../utils/helpers';
 // Components
-import {
-  Instruction,
-  RankingBoard,
-  Step,
-  StepSwitcher,
-  Title,
-  translate,
-  Translate,
-} from '../../components/shared';
+import { Instruction, RankingBoard, Step, StepSwitcher, Title, Translate } from '../../components/shared';
 import { Pasture } from './Pasture';
 import { RoundType } from './RoundType';
-import { AdminForceNextPhase } from '../../components/admin';
+import { AdminNextRoundButton } from '../../components/admin';
 
-function ResolutionStep({ ranking, players, roundType, pastureChangeStr, announceSave = false }) {
-  const language = useLanguage();
+function ResolutionStep({ ranking, players, roundType, pastureChangeStr, round, announceSave = false }) {
   const [step, setStep] = useState(0);
   const [pastureIndex, setPastureIndex] = useState(0);
   const [showAnnounceSave, setShowAnnounceSave] = useState(false);
@@ -75,7 +65,7 @@ function ResolutionStep({ ranking, players, roundType, pastureChangeStr, announc
             </Instruction>
           )}
           <Pasture players={pastureChange[pastureIndex]} />
-          <AdminForceNextPhase buttonText={translate('Próxima Rodada', 'Go to Next Round', language)} />
+          <AdminNextRoundButton round={round} />
         </Step>
       </StepSwitcher>
     </div>

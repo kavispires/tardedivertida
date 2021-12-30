@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 // Design Resources
 import { Button, Space } from 'antd';
@@ -18,7 +18,7 @@ import {
   Translate,
   translate,
 } from '../../components/shared';
-import { AdminOnly } from '../../components/admin';
+import { AdminOnlyContainer } from '../../components/admin';
 import { LoadingClock } from '../../components/icons';
 import { AvatarName } from '../../components/avatars';
 
@@ -32,7 +32,7 @@ function PhaseWitnessSelection({ state, players, info }) {
     actionName: 'select-witness',
     successMessage: translate('Testemunha enviada com sucesso', 'Witness submitted successfully', language),
     errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar selectionar a testemunha',
+      'Vixi, o aplicativo encontrou um erro ao tentar selecionar a testemunha',
       'Oops, the application found an error while trying to submit the witness',
       language
     ),
@@ -101,7 +101,7 @@ function PhaseWitnessSelection({ state, players, info }) {
             <Translate pt="O administrator selecionará a testemunha" en="The VIP will select the witness" />)
           </Instruction>
 
-          <AdminOnly>
+          <AdminOnlyContainer>
             {Object.values(players).map((player) => (
               <Button
                 key={`p-bt-${player.id}`}
@@ -111,7 +111,7 @@ function PhaseWitnessSelection({ state, players, info }) {
                 {player.name}
               </Button>
             ))}
-          </AdminOnly>
+          </AdminOnlyContainer>
         </Step>
       </StepSwitcher>
     </PhaseContainer>

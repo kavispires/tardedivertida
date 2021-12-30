@@ -2,7 +2,7 @@ export type GameId = string;
 export type GameName = string;
 export type GameCode = string;
 export type DateMilliseconds = number;
-export type Language = string;
+export type Language = 'en' | 'pt';
 export type PlayerId = string;
 export type PlayerName = string;
 export type PlayerAvatarId = string;
@@ -15,6 +15,10 @@ export type TurnOrder = PlayerId[];
 
 export interface PlainObject {
   [key: string]: any;
+}
+
+export interface BooleanDictionary {
+  [key: string]: boolean;
 }
 
 export interface FirebaseContext {
@@ -214,6 +218,24 @@ export interface UsedWord {
   votes: 0;
 }
 
+interface NewScores {
+  [key: string]: {
+    playerId: PlayerId;
+    name: PlayerName;
+    previousScore: number;
+    gainedPoints: number[];
+    newScore: number;
+  };
+}
+
+interface RankingEntry {
+  playerId: PlayerId;
+  name: PlayerName;
+  previousScore: number;
+  gainedPoints: number[];
+  newScore: number;
+}
+
 // ESPIAO_ENTRE_NOS
 
 export type LocationId = string;
@@ -251,57 +273,3 @@ export interface EspiaoEntreNosAdminPayload extends Payload {
   action: string | any;
   [key: string]: any;
 }
-
-// // ONDA_TELEPATICA
-// export interface OndaTelepaticaCard {
-//   id: string;
-//   left: string;
-//   right: string;
-//   target: number;
-//   needle: number;
-//   clue: string;
-//   rival: number;
-// }
-
-// export interface OndaTelepaticaCards {
-//   [key: string]: UsedWord;
-// }
-
-// export interface OndaTelepaticaStore {
-//   teams: PlainObject;
-//   usedCards: OndaTelepaticaCards;
-//   currentCard: string[];
-//   [key: string]: any;
-// }
-
-// export interface OndaTelepaticaState {
-//   phase: string;
-//   round: number;
-//   teams: PlainObject;
-//   psychic?: PlayerName;
-//   rivalPsychic?: PlayerName;
-//   [key: string]: any;
-// }
-
-// export interface OndaTelepaticaInitialState {
-//   meta: Meta;
-//   players: Players;
-//   store: OndaTelepaticaStore;
-//   state: OndaTelepaticaState;
-// }
-
-// export interface OndaTelepaticaSubmitSidesPayload extends Payload {
-//   cardId: string;
-// }
-
-// export interface OndaTelepaticaSubmitCluePayload extends Payload {
-//   clue: string;
-// }
-
-// export interface OndaTelepaticaSubmitGuessPayload extends Payload {
-//   guess: number;
-// }
-
-// export interface OndaTelepaticaSubmitRivalGuessPayload extends Payload {
-//   rivalGuess: number;
-// }

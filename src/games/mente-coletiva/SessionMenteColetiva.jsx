@@ -1,11 +1,7 @@
-import React from 'react';
 // Hooks
 import { GAME_COLLECTION, PHASES } from '../../utils/constants';
 // Components
-import { Session, SetupScreen } from '../../components/shared';
-import Lobby from '../../components/lobby/Lobby';
-import { Rules } from '../../components/rules';
-import { PageError } from '../../components/errors/PageError';
+import { Session, PhaseSetup, PhaseRules, PageError, PhaseLobby } from '../../components';
 import PhaseQuestionSelection from './PhaseQuestionSelection';
 import PhaseEverybodyWrites from './PhaseEverybodyWrites';
 import PhaseCompare from './PhaseCompare';
@@ -16,11 +12,11 @@ function SessionMenteColetiva({ gameId }) {
   function getActiveComponent(phase) {
     switch (phase) {
       case PHASES.MENTE_COLETIVA.LOBBY:
-        return Lobby;
+        return PhaseLobby;
       case PHASES.MENTE_COLETIVA.RULES:
-        return Rules;
+        return PhaseRules;
       case PHASES.MENTE_COLETIVA.SETUP:
-        return SetupScreen;
+        return PhaseSetup;
       case PHASES.MENTE_COLETIVA.QUESTION_SELECTION:
         return PhaseQuestionSelection;
       case PHASES.MENTE_COLETIVA.EVERYBODY_WRITES:

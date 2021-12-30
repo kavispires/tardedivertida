@@ -1,11 +1,7 @@
-import React from 'react';
 // Hooks
 import { GAME_COLLECTION, PHASES } from '../../utils/constants';
 // Components
-import { GameOver, Session, SetupScreen } from '../../components/shared';
-import Lobby from '../../components/lobby/Lobby';
-import { Rules } from '../../components/rules';
-import { PageError } from '../../components/errors/PageError';
+import { GameOver, Session, PhaseSetup, PhaseRules, PageError, PhaseLobby } from '../../components';
 import AssignmentPhase from './AssignmentPhase';
 import InvestigationPhase from './InvestigationPhase';
 import AssessmentPhase from './AssessmentPhase';
@@ -16,11 +12,11 @@ function SessionEspiaoEntreNos({ gameId }) {
   function getActiveComponent(phase) {
     switch (phase) {
       case PHASES.ESPIAO_ENTRE_NOS.LOBBY:
-        return Lobby;
+        return PhaseLobby;
       case PHASES.ESPIAO_ENTRE_NOS.RULES:
-        return Rules;
+        return PhaseRules;
       case PHASES.ESPIAO_ENTRE_NOS.SETUP:
-        return SetupScreen;
+        return PhaseSetup;
       case PHASES.ESPIAO_ENTRE_NOS.ASSIGNMENT:
         return AssignmentPhase;
       case PHASES.ESPIAO_ENTRE_NOS.INVESTIGATION:

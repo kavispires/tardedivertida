@@ -1,6 +1,6 @@
 import { DefaultState, DefaultStore, ImageCard, InitialState, Payload, PlayerId } from '../../utils/types';
 
-export interface ContadoresHistoriasStore extends DefaultStore {
+interface ContadoresHistoriasStore extends DefaultStore {
   gameOrder: PlayerId[];
   tableDeck: ImageCard[];
   deckIndex: number;
@@ -9,7 +9,7 @@ export interface ContadoresHistoriasStore extends DefaultStore {
   [key: string]: any;
 }
 
-export interface ContadoresHistoriasState extends DefaultState {
+interface ContadoresHistoriasState extends DefaultState {
   storytellerId?: PlayerId;
   nextStorytellerId?: PlayerId;
   story?: string;
@@ -20,23 +20,23 @@ export interface ContadoresHistoriasState extends DefaultState {
   [key: string]: any;
 }
 
-export interface ContadoresHistoriasInitialState extends InitialState {
+interface ContadoresHistoriasInitialState extends InitialState {
   store: ContadoresHistoriasStore;
   state: ContadoresHistoriasState;
 }
 
-export interface TableEntry {
+interface TableEntry {
   cardId: ImageCard;
   playerId: PlayerId;
   votes: PlayerId[];
   isSolution: boolean;
 }
 
-export type Table = TableEntry[];
+type Table = TableEntry[];
 
-export interface ContadoresHistoriasSubmitAction extends Payload {
+interface ContadoresHistoriasSubmitAction extends Payload {
   action: 'SUBMIT_STORY' | 'PLAY_CARD' | 'SUBMIT_VOTE';
 }
 
-export type FirebaseStateData = FirebaseFirestore.DocumentData | ContadoresHistoriasState;
-export type FirebaseStoreData = FirebaseFirestore.DocumentData | ContadoresHistoriasStore;
+type FirebaseStateData = FirebaseFirestore.DocumentData | ContadoresHistoriasState;
+type FirebaseStoreData = FirebaseFirestore.DocumentData | ContadoresHistoriasStore;

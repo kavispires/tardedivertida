@@ -1,4 +1,3 @@
-import React from 'react';
 import { mockLoading } from '../../mocks';
 
 import { LoadingBar } from './LoadingBar';

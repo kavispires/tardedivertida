@@ -1,4 +1,4 @@
-import { CollapsibleRule } from '../../components/rules';
+import { PopoverRule } from '../../components';
 import { useLanguage } from '../../hooks';
 
 function RulesPt() {
@@ -32,7 +32,7 @@ function RulesEn() {
 
 function ClueWritingRules() {
   const language = useLanguage();
-  return <CollapsibleRule>{language === 'pt' ? <RulesPt /> : <RulesEn />}</CollapsibleRule>;
+  return <PopoverRule content={language === 'pt' ? <RulesPt /> : <RulesEn />} />;
 }
 
 export default ClueWritingRules;

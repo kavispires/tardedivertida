@@ -1,6 +1,6 @@
 // Interfaces
-import { AllWords, ClueEntry, Deck, GridCell, NewScores, RankingEntry } from './types';
-import { PlayerId, Players, Round } from '../../utils/types';
+import { AllWords, ClueEntry, Deck, GridCell } from './types';
+import { NewScores, PlayerId, Players, RankingEntry, Round } from '../../utils/types';
 // Constants
 import { WORDS_PER_PLAYER_COUNT, CRUZA_PALAVRAS_PHASES } from './constants';
 // Utils
@@ -10,15 +10,22 @@ import { SEPARATOR } from '../../utils/constants';
 /**
  * Determine the next phase based on the current one
  * @param currentPhase
- * @param pointsToVictory
+ * @param round
+ * @param triggerLastRound
  * @returns
  */
-export const determineNextPhase = (currentPhase: string, round: Round): string => {
+export const determineNextPhase = (
+  currentPhase: string,
+  round: Round,
+  triggerLastRound?: boolean
+): string => {
   const { RULES, SETUP, CLUE_WRITING, GUESSING, REVEAL, GAME_OVER } = CRUZA_PALAVRAS_PHASES;
   const order = [RULES, SETUP, CLUE_WRITING, GUESSING, REVEAL, GAME_OVER];
 
   if (currentPhase === REVEAL) {
-    return round.current > 0 && round.current === round.total ? GAME_OVER : CLUE_WRITING;
+    return triggerLastRound || (round.current > 0 && round.current === round.total)
+      ? GAME_OVER
+      : CLUE_WRITING;
   }
 
   const currentPhaseIndex = order.indexOf(currentPhase);
@@ -37,17 +44,31 @@ export const determineNextPhase = (currentPhase: string, round: Round): string =
  * @returns
  */
 export const buildDeck = (words: AllWords, playerCount: number): Deck => {
-  return gameUtils.getRandomItems(Object.values(words), WORDS_PER_PLAYER_COUNT[playerCount]);
+  return gameUtils.getRandomItems(Object.values(words), WORDS_PER_PLAYER_COUNT[playerCount] + 2);
+};
+
+/**
+ * Determine if there are enough cells for the players
+ * @param grid
+ * @param playerCount
+ * @returns
+ */
+export const checkForAvailableCells = (grid: GridCell[] = [], playerCount: number): boolean => {
+  const availableCells = grid.filter((cell) => cell.available);
+  return availableCells.length >= playerCount;
 };
 
 export const buildGrid = (
   words: Deck,
   playersClues: string[],
   wordsPerCoordinate: number,
-  currentRound: number
+  shouldUsePlayersClues: boolean
 ): GridCell[] => {
   const playersCluesDeck = gameUtils.shuffle(playersClues);
-  const currentDeck = currentRound === 4 ? playersCluesDeck : words;
+  const currentDeck =
+    shouldUsePlayersClues && playersCluesDeck.length >= wordsPerCoordinate * 2
+      ? playersCluesDeck
+      : gameUtils.shuffle(words);
 
   const x: Deck = [
     {
@@ -147,22 +168,9 @@ export const buildCoordinates = (coordinatesLength: number): string[] => {
  * Distribute the available coordinates among players, returning a list of modified grid
  * @param players - this function modifies players
  * @param grid
- * @returns modified grid cell
+ * @returns the modified grid
  */
-export const distributeCoordinates = (
-  players: Players,
-  grid: GridCell[],
-  currentRound: number
-): GridCell[] => {
-  // Write previous clues
-  if (currentRound !== 1 && currentRound !== 4) {
-    Object.values(players).forEach((player) => {
-      grid[player.coordinate].available = false;
-      grid[player.coordinate].writable = false;
-      grid[player.coordinate].text = player.clue;
-    });
-  }
-
+export const distributeCoordinates = (players: Players, grid: GridCell[]): GridCell[] => {
   const available = grid.filter((entry: GridCell) => entry.available);
   const shuffledCoordinates = gameUtils.shuffle(available);
 
@@ -175,6 +183,24 @@ export const distributeCoordinates = (
     // update grid
     grid[cell.index].playerId = player.id;
     grid[cell.index].writable = true;
+  });
+
+  return grid;
+};
+
+/**
+ * Update grid with players clues
+ * @param players
+ * @param grid
+ * @returns the modified grid
+ */
+export const updateGridWithPlayersClues = (players: Players, grid: GridCell[]): GridCell[] => {
+  Object.values(players).forEach((player) => {
+    if (player.coordinate) {
+      grid[player.coordinate].available = false;
+      grid[player.coordinate].writable = false;
+      grid[player.coordinate].text = player.clue;
+    }
   });
 
   return grid;
@@ -200,12 +226,13 @@ export const getPlayerClues = (players: Players): ClueEntry[] => {
  * @returns
  */
 export const buildRanking = (players: Players, clues: ClueEntry[]) => {
-  // Format <player>: [<old score>, <addition points>, <new score>]
   const newScores: NewScores = {};
 
   // Build score object
   Object.values(players).forEach((player) => {
     newScores[player.id] = {
+      playerId: player.id,
+      name: player.name,
       previousScore: player.score,
       gainedPoints: [0, 0, 0], // from guesses, from others, lost points
       newScore: player.score,
@@ -222,7 +249,7 @@ export const buildRanking = (players: Players, clues: ClueEntry[]) => {
   const gotPassivePoints = {};
 
   // Collect points
-  Object.values(players).map((player) => {
+  Object.values(players).forEach((player) => {
     Object.entries(player.guesses).forEach(([guessPlayerId, coordinate]) => {
       if (guessPlayerId === player.id) {
         return;

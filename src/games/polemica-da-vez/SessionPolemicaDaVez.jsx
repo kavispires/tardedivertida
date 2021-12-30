@@ -1,11 +1,7 @@
-import React from 'react';
 // Hooks
 import { GAME_COLLECTION, PHASES } from '../../utils/constants';
 // Components
-import { Session, SetupScreen } from '../../components/shared';
-import Lobby from '../../components/lobby/Lobby';
-import { Rules } from '../../components/rules';
-import { PageError } from '../../components/errors/PageError';
+import { Session, PhaseSetup, PhaseRules, PageError, PhaseLobby } from '../../components';
 import PhaseGameOver from './PhaseGameOver';
 import PhaseTopicSelection from './PhaseTopicSelection';
 import PhaseReact from './PhaseReact';
@@ -15,11 +11,11 @@ function SessionPolemicaDaVez({ gameId }) {
   function getActiveComponent(phase) {
     switch (phase) {
       case PHASES.POLEMICA_DA_VEZ.LOBBY:
-        return Lobby;
+        return PhaseLobby;
       case PHASES.POLEMICA_DA_VEZ.RULES:
-        return Rules;
+        return PhaseRules;
       case PHASES.POLEMICA_DA_VEZ.SETUP:
-        return SetupScreen;
+        return PhaseSetup;
       case PHASES.POLEMICA_DA_VEZ.TOPIC_SELECTION:
         return PhaseTopicSelection;
       case PHASES.POLEMICA_DA_VEZ.REACT:

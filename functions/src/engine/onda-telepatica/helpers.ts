@@ -17,7 +17,12 @@ import * as gameUtils from '../../utils/game-utils';
  * @param pointsToVictory
  * @returns
  */
-export const determineNextPhase = (currentPhase: string, round: Round, isGameOver?: boolean): string => {
+export const determineNextPhase = (
+  currentPhase: string,
+  round: Round,
+  isGameOver?: boolean,
+  triggerLastRound?: boolean
+): string => {
   const { RULES, SETUP, DIAL_CLUE, GUESS, REVEAL, GAME_OVER } = ONDA_TELEPATICA_PHASES;
   const order = [RULES, SETUP, DIAL_CLUE, GUESS, REVEAL, GAME_OVER];
 
@@ -26,7 +31,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, isGameOve
   }
 
   if (currentPhase === REVEAL) {
-    return round.current > 0 && round.current === round.total ? GAME_OVER : DIAL_CLUE;
+    return triggerLastRound || (round.current > 0 && round.current === round.total) ? GAME_OVER : DIAL_CLUE;
   }
 
   const currentPhaseIndex = order.indexOf(currentPhase);

@@ -1,4 +1,3 @@
-import React from 'react';
 import { getLanguageControl, mockLanguageHook, mockPlayer } from '../../../mocks';
 
 import { SectionMe } from './SectionMe';

@@ -1,4 +1,3 @@
-import React from 'react';
 // Utils
 import { LETTERS } from '../../utils/constants';
 // Components

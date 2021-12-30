@@ -1,13 +1,13 @@
 import { DefaultState, DefaultStore, ImageCard, InitialState, Payload, PlayerId } from '../../utils/types';
 
-export interface DetetivesImaginativosStore extends DefaultStore {
+interface DetetivesImaginativosStore extends DefaultStore {
   usedCards: ImageCard[];
   gameOrder: PlayerId[];
   turnOrder: PlayerId[];
   [key: string]: any;
 }
 
-export interface DetetivesImaginativosState extends DefaultState {
+interface DetetivesImaginativosState extends DefaultState {
   leaderId?: PlayerId;
   impostorId?: PlayerId;
   phaseOrder?: PlayerId[];
@@ -20,14 +20,14 @@ export interface DetetivesImaginativosState extends DefaultState {
   [key: string]: any;
 }
 
-export interface DetetivesImaginativosInitialState extends InitialState {
+interface DetetivesImaginativosInitialState extends InitialState {
   store: DetetivesImaginativosStore;
   state: DetetivesImaginativosState;
 }
 
-export interface DetetivesImaginativosSubmitAction extends Payload {
+interface DetetivesImaginativosSubmitAction extends Payload {
   action: 'SUBMIT_CLUE' | 'PLAY_CARD' | 'DEFEND' | 'SUBMIT_VOTE';
 }
 
-export type FirebaseStateData = FirebaseFirestore.DocumentData | DetetivesImaginativosState;
-export type FirebaseStoreData = FirebaseFirestore.DocumentData | DetetivesImaginativosStore;
+type FirebaseStateData = FirebaseFirestore.DocumentData | DetetivesImaginativosState;
+type FirebaseStoreData = FirebaseFirestore.DocumentData | DetetivesImaginativosStore;

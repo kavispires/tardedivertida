@@ -1,24 +1,24 @@
 import { DefaultState, DefaultStore, InitialState, Payload, PlayerId } from '../../utils/types';
 
-export interface Question {
+interface Question {
   id: string;
   number: number;
   prefix: string;
   suffix: string;
 }
 
-export interface AllQuestions {
+interface AllQuestions {
   [key: string]: Question;
 }
 
-export interface PastQuestions {
+interface PastQuestions {
   id: string;
   answers: string[];
 }
 
-export type Deck = Question[];
+type Deck = Question[];
 
-export interface MenteColetivaStore extends DefaultStore {
+interface MenteColetivaStore extends DefaultStore {
   deck: Deck;
   gameOrder: PlayerId[];
   pastQuestions: PastQuestions[];
@@ -26,7 +26,7 @@ export interface MenteColetivaStore extends DefaultStore {
   [key: string]: any;
 }
 
-export interface MenteColetivaState extends DefaultState {
+interface MenteColetivaState extends DefaultState {
   gameOrder?: PlayerId[];
   roundType?: string;
   activePlayerId?: PlayerId;
@@ -43,12 +43,12 @@ export interface MenteColetivaState extends DefaultState {
   [key: string]: any;
 }
 
-export interface MenteColetivaInitialState extends InitialState {
+interface MenteColetivaInitialState extends InitialState {
   store: MenteColetivaStore;
   state: MenteColetivaState;
 }
 
-export interface AnswerEntry {
+interface AnswerEntry {
   id: string;
   playerId: PlayerId;
   answer: string;
@@ -56,9 +56,9 @@ export interface AnswerEntry {
   isLocked: boolean;
 }
 
-export interface MenteColetivaSubmitAction extends Payload {
+interface MenteColetivaSubmitAction extends Payload {
   action: 'SUBMIT_QUESTION' | 'SUBMIT_ANSWERS' | 'NEXT_ANSWERS' | 'ADD_ANSWER';
 }
 
-export type FirebaseStateData = FirebaseFirestore.DocumentData | MenteColetivaState;
-export type FirebaseStoreData = FirebaseFirestore.DocumentData | MenteColetivaStore;
+type FirebaseStateData = FirebaseFirestore.DocumentData | MenteColetivaState;
+type FirebaseStoreData = FirebaseFirestore.DocumentData | MenteColetivaStore;

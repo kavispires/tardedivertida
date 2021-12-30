@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { orderBy } from 'lodash';
 // Design Resources
 import { Card, Layout, Progress, Space } from 'antd';
 // Utils
-import { orderBy } from '../utils';
 import { PUBLIC_URL } from '../utils/constants';
 // Components
 import { LoadingPage } from '../components/loaders';

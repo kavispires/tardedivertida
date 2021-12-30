@@ -48,12 +48,12 @@ function StepClueWriting({ currentCategories, currentCategoryId, target, onSendC
             target,
             card,
             language
-          )}. Escreva uma dica que ajude os outros jogadores a escolher exatamente esse número! Revise as regras de quais dicas são válidas:`}
+          )}. Escreva uma dica que ajude os outros jogadores a escolher exatamente esse número! Revise as regras de quais dicas são válidas clicando no Icone de Livrinho.`}
           en={`The needle is point at ${Math.abs(target)} ${getTargetSide(
             target,
             card,
             language
-          )}. Write a clue that will help the other players to choose this exact number! Revise the rules for clue writing:`}
+          )}. Write a clue that will help the other players to choose this exact number! Revise the rules for clue writing by clicking on the Book Icon.`}
         />
         <ClueWritingRules />
       </Instruction>

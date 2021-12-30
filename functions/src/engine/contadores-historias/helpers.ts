@@ -9,10 +9,17 @@ import * as gameUtils from '../../utils/game-utils';
 /**
  * Determine the next phase based on the current one
  * @param currentPhase
- * @param roundsToEndGame
+ * @param round
+ * @param isGameOver
+ * @param triggerLastRound
  * @returns
  */
-export const determineNextPhase = (currentPhase: string, round: Round, isGameOver?: boolean): string => {
+export const determineNextPhase = (
+  currentPhase: string,
+  round: Round,
+  isGameOver?: boolean,
+  triggerLastRound?: boolean
+): string => {
   const { RULES, SETUP, STORY, CARD_PLAY, VOTING, RESOLUTION, GAME_OVER } = CONTADORES_HISTORIAS_PHASES;
   const order = [RULES, SETUP, STORY, CARD_PLAY, VOTING, RESOLUTION, GAME_OVER];
 
@@ -21,7 +28,7 @@ export const determineNextPhase = (currentPhase: string, round: Round, isGameOve
   }
 
   if (currentPhase === RESOLUTION) {
-    return round.current > 0 && round.current === round.total ? GAME_OVER : STORY;
+    return triggerLastRound || (round.current > 0 && round.current) === round.total ? GAME_OVER : STORY;
   }
 
   const currentPhaseIndex = order.indexOf(currentPhase);

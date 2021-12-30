@@ -1,27 +1,27 @@
-import { DefaultState, DefaultStore, InitialState, Payload, PlayerId, PlayerName } from '../../utils/types';
+import { DefaultState, DefaultStore, InitialState, Payload, PlayerId } from '../../utils/types';
 
-export interface WordCard {
+interface WordCard {
   id: string;
   text: string;
 }
 
-export interface AllWords {
+interface AllWords {
   [key: string]: WordCard;
 }
 
-export interface ResourceData {
+interface ResourceData {
   allWords: AllWords;
 }
 
-export type Deck = WordCard[];
+type Deck = WordCard[];
 
-export interface ClueEntry {
+interface ClueEntry {
   playerId: PlayerId;
   clue: string;
   coordinate: number;
 }
 
-export interface GridCell {
+interface GridCell {
   index: number;
   kind: string;
   text: string;
@@ -35,39 +35,23 @@ export interface GridCell {
   playerId?: string | null;
 }
 
-export interface NewScores {
-  [key: string]: {
-    previousScore: number;
-    gainedPoints: number[];
-    newScore: number;
-  };
-}
-
-export interface RankingEntry {
-  playerId: PlayerId;
-  name: PlayerName;
-  previousScore: number;
-  gainedPoints: number[];
-  newScore: number;
-}
-
-export interface CruzaPalavrasStore extends DefaultStore {
+interface CruzaPalavrasStore extends DefaultStore {
   deck?: Deck;
   [key: string]: any;
 }
 
-export interface CruzaPalavrasState extends DefaultState {
+interface CruzaPalavrasState extends DefaultState {
   [key: string]: any;
 }
 
-export interface XTudoPalavrasInitialState extends InitialState {
+interface XTudoPalavrasInitialState extends InitialState {
   store: CruzaPalavrasStore;
   state: CruzaPalavrasState;
 }
 
-export interface XTudoPalavrasSubmitAction extends Payload {
+interface XTudoPalavrasSubmitAction extends Payload {
   action: 'SUBMIT_CLUE' | 'SUBMIT_GUESSES';
 }
 
-export type FirebaseStateData = FirebaseFirestore.DocumentData | CruzaPalavrasState;
-export type FirebaseStoreData = FirebaseFirestore.DocumentData | CruzaPalavrasStore;
+type FirebaseStateData = FirebaseFirestore.DocumentData | CruzaPalavrasState;
+type FirebaseStoreData = FirebaseFirestore.DocumentData | CruzaPalavrasStore;

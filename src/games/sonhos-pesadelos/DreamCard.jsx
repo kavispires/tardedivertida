@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import React, { Fragment } from 'react';
 import clsx from 'clsx';
 // Components
 import ImageCard from '../../components/cards/ImageCard';
@@ -20,7 +19,7 @@ function DreamCard({
   }
 
   return (
-    <Fragment>
+    <>
       <ImageCard
         imageId={cardId}
         bordered
@@ -32,7 +31,7 @@ function DreamCard({
         )}
       />
       {!hideBlurButton && <ImageBlurButton cardId={cardId} />}
-    </Fragment>
+    </>
   );
 }
 
