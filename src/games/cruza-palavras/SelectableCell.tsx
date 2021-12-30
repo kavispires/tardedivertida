@@ -9,13 +9,14 @@ import PreviousClue from './PreviousClue';
 
 type SelectableCellProps = {
   onSelectCell: GenericFunction;
+  onClearCell: GenericFunction;
   cell: CruzaPalavrasGridCell;
   active: any;
   guesses: any;
   clues: CruzaPalavrasClue[];
 };
 
-function SelectableCell({ onSelectCell, cell, active, guesses, clues }: SelectableCellProps) {
+function SelectableCell({ onSelectCell, onClearCell, cell, active, guesses, clues }: SelectableCellProps) {
   const isSelected = cell.index === active;
   const matchEntry = Object.entries(guesses).find((arr) => arr[1] === cell.index);
   const [clueKey, coordinate] = matchEntry ?? [];
@@ -25,7 +26,11 @@ function SelectableCell({ onSelectCell, cell, active, guesses, clues }: Selectab
 
   if (isMatched) {
     const clueIndexColor = clues.findIndex((c) => c.clue === clue && c.playerId === playerId);
-    return <ClueCard isMatched={isMatched} isSelected={isSelected} clue={clue} indexColor={clueIndexColor} />;
+    return (
+      <Button onClick={() => onClearCell(clueKey)} type="text" style={{ height: 'auto' }}>
+        <ClueCard isMatched={isMatched} isSelected={isSelected} clue={clue} indexColor={clueIndexColor} />
+      </Button>
+    );
   }
 
   if (cell.text) {

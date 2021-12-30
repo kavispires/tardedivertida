@@ -6,6 +6,7 @@ import { PHASES } from '../../utils/constants';
 // Components
 import {
   AdminNextRoundButton,
+  ButtonContainer,
   Instruction,
   PhaseAnnouncement,
   PhaseContainer,
@@ -17,6 +18,7 @@ import {
   Translate,
 } from '../../components';
 import StepReveal from './StepReveal';
+import { Button } from 'antd';
 
 function PhaseReveal({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
@@ -83,6 +85,12 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
           </Instruction>
 
           <RankingBoard ranking={state.ranking} players={players} />
+
+          <ButtonContainer>
+            <Button onClick={() => setStep(1)}>
+              <Translate pt="Ver resultado novamente" en="See results again" />
+            </Button>
+          </ButtonContainer>
           <AdminNextRoundButton round={state.round} lastRound={state?.lastRound} />
         </Step>
       </StepSwitcher>

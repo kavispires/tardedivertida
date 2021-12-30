@@ -9,11 +9,9 @@ import {
   Instruction,
   PhaseAnnouncement,
   PhaseContainer,
-  Step,
   StepSwitcher,
   translate,
   Translate,
-  WaitingRoom,
 } from '../../components';
 import StepGuessing from './StepGuessing';
 
@@ -45,7 +43,16 @@ function PhaseGuessing({ players, state, info }: PhaseProps) {
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.CRUZA_PALAVRAS.GUESSING}>
-      <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady, !isUserReady]}>
+      <StepSwitcher
+        step={step}
+        conditions={[!isUserReady, !isUserReady]}
+        players={players}
+        waitingRoomInstruction={translate(
+          'Vamos aguardar enquanto os outros jogadores terminam!',
+          'Please wait while other players finish!',
+          language
+        )}
+      >
         {/* Step 0 */}
         <PhaseAnnouncement
           type="guess"
@@ -73,21 +80,14 @@ function PhaseGuessing({ players, state, info }: PhaseProps) {
           </Instruction>
         </PhaseAnnouncement>
 
-        {/* Step 2 */}
-        <StepGuessing user={user} grid={state.grid} clues={state.clues} onSubmitGuesses={onSubmitGuesses} />
-
-        {/* Step 3 */}
-        <Step fullWidth>
-          <WaitingRoom
-            players={players}
-            title={translate('Pronto!', 'Done!', language)}
-            instruction={translate(
-              'Vamos aguardar enquanto os outros jogadores terminam!',
-              'Please wait while other players finish!',
-              language
-            )}
-          />
-        </Step>
+        {/* Step 1 */}
+        <StepGuessing
+          user={user}
+          grid={state.grid}
+          clues={state.clues}
+          onSubmitGuesses={onSubmitGuesses}
+          players={players}
+        />
       </StepSwitcher>
     </PhaseContainer>
   );
