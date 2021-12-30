@@ -37,7 +37,11 @@
     "available": {
       "pt": true,
       "en": true
-    }
+    },
+    "options": [
+      { "label": "Use All Cards", "key": "ALL_CARDS" },
+      { "label": "Level 4", "key": "LEVEL_4" }
+    ]
   },
   "B": {
     "gameCode": "B",
@@ -271,7 +275,11 @@
     "available": {
       "pt": false,
       "en": false
-    }
+    },
+    "options": [
+      { "label": "Normal", "key": "NORMAL" },
+      { "label": "Arte Ruim Cards", "key": "ARTE_RUIM_CARDS" }
+    ]
   },
   "M": {
     "gameCode": "M",
@@ -377,7 +385,11 @@
     "available": {
       "pt": true,
       "en": true
-    }
+    },
+    "options": [
+      { "label": "Short (3 points)", "key": "SHORT_GAME" },
+      { "label": "Long (5 points)", "key": "LONG_GAME" }
+    ]
   },
   "Q": {
     "gameCode": "Q",
@@ -409,7 +421,7 @@
     "gameCode": "R",
     "gameName": "retrato-falado",
     "title": {
-      "pt": "Retrato Falado",
+      "pt": "Retrato Falado Monstruoso",
       "en": "Monster Sketch"
     },
     "summary": {
@@ -574,22 +586,26 @@
       "en": "Mixed Clues"
     },
     "summary": {
-      "pt": "?",
-      "en": "?"
+      "pt": "Uma grade de palavras e várias coordenadas... você consegue associar todas as palavras?",
+      "en": "A word grid and many coordinates... are you able to match all words?"
     },
     "rules": {
       "pt": ["TBD"],
       "en": ["TBD"]
     },
     "playerCount": {
-      "recommended": "",
-      "min": 1,
+      "recommended": "4-6",
+      "min": 3,
       "max": 10
     },
     "tags": ["competitive"],
     "available": {
       "pt": true,
       "en": true
-    }
+    },
+    "options": [
+      { "label": "Normal", "key": "NORMAL" },
+      { "label": "Hard", "key": "HARD" }
+    ]
   }
 }
