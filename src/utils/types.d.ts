@@ -57,9 +57,11 @@ interface GameInfo {
     pt: string[];
     en: string[];
   };
-  recommended: string;
-  min: number;
-  max: number;
+  playerCount: {
+    recommended: string;
+    min: number;
+    max: number;
+  };
   tags: string[];
   available: {
     pt: boolean;

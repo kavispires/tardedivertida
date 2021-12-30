@@ -14,7 +14,7 @@
       "pt": [
         "Arte Ruim Pra Dedéu é um jogo competitivo que os jogadores tentam adivinhar o maior número de desenhos possíveis",
         "Em cada rodada, jogadores recebem uma carta com uma expressão e tem 10 segundos para desenhá-la.",
-        "Após todos jogadores terminarem suas obras de arte, embaralha-se as cartas e os desenhos e todos tem que identificar qual desenho corresponde a cada expressão.",
+        "Após todos jogadores terminarem suas obras de arte, embaralha-se as cartas e os desenhos e todos tem que identificar qual desenho corresponde a cada expressão.",
         "Respostas corretas ganham 2 pontos e cada voto que seu desenho recebe também te dá 1 ponto.",
         "Quanto mais próximo do final do jogo, mais difíceis as expressões ficam! Fique esperto!",
         "Após 10 rodadas, o jogador com mais pontos é o vencedor!"
@@ -28,9 +28,11 @@
         "After 10 rounds, the game is over and the player with the most points wins!"
       ]
     },
-    "recommended": "4-6",
-    "min": 3,
-    "max": 10,
+    "playerCount": {
+      "recommended": "4-6",
+      "min": 3,
+      "max": 10
+    },
     "tags": ["competitive", "same-time", "drawing", "pairing", "timed"],
     "available": {
       "pt": true,
@@ -52,16 +54,18 @@
       "pt": [
         "Jogadores são agentes tentando desarmar uma bomba e pra isso têm que cortar todos os fios coloridos. Mas entre os agentes, pode haver um ou mais terroristas que querem que a bomba exploda.",
         "Cada rodada os jogadores recebem cartas que podem conter um fio colorido a ser cortado ou um fio cinza que não serve pra nada. Eles examinam suas cartas e colocam-as a sua frente embaralhadas. Você sabe todas as cartas que você tem, mas não exatamente qual é qual.",
-        "Jogadores, então, declaram o que vieram. \"Eu tenho um fio colorido\", ou \"Eu não tenho nada\", ou até mesmo \"Eu tenho a bomba!\" (sim, existe uma bomba). Essa é a hora de tentar descobrir quem pode estar mentindo. O número de fios coloridos é igual ao número de jogadores, será que a quantidade declarada pelos jogadores corresponde mesmo a esse número?",
-        "Agora, uma pessoa se torna o investigador e tem que escolher outro jogador e virar uma de duas cartas. Se for um fio comum, nada acontece. Se for um fio colorido, maravilha, estamos mais próximos de desarmar a bomba. Se for a bomba, CABUM!!! - Os terroristas ganham... Após virar uma cara, o jogador selecionado se torna o investigador e escolhe outro jogador e repete o mesmo processo.",
+        "Jogadores, então, declaram o que vieram. \"Eu tenho um fio colorido\", ou \"Eu não tenho nada\", ou até mesmo \"Eu tenho a bomba!\" (sim, existe uma bomba). Essa é a hora de tentar descobrir quem pode estar mentindo. O número de fios coloridos é igual ao número de jogadores, será que a quantidade declarada pelos jogadores corresponde mesmo a esse número?",
+        "Agora, uma pessoa se torna o investigador e tem que escolher outro jogador e virar uma de duas cartas. Se for um fio comum, nada acontece. Se for um fio colorido, maravilha, estamos mais próximos de desarmar a bomba. Se for a bomba, CABUM!!! - Os terroristas ganham... Após virar uma cara, o jogador selecionado se torna o investigador e escolhe outro jogador e repete o mesmo processo.",
         "Mas como ganha ou perde? Se os agentes encontram todos os fios coloridos, eles ganham! Os terroristas ganham se a qualquer momento a bomba é revelada, ou se, ao final de 4 rodadas, os não conseguiram encontrar todos os fios coloridos",
-        "Uma rodada termina qdo as cartas reveladas são iguais ao número de jogadores, a partir dai, todas as cartas são embaralhadas novamente e os jogadores recebem uma nova mão, agora com uma carta a menos que a rodada anterior e por ai vai."
+        "Uma rodada termina qdo as cartas reveladas são iguais ao número de jogadores, a partir dai, todas as cartas são embaralhadas novamente e os jogadores recebem uma nova mão, agora com uma carta a menos que a rodada anterior e por ai vai."
       ],
       "en": ["TBD"]
     },
-    "recommended": "6",
-    "min": 5,
-    "max": 8,
+    "playerCount": {
+      "recommended": "6",
+      "min": 5,
+      "max": 8
+    },
     "tags": ["cooperative", "turn-based", "traitor", "discussion"],
     "available": {
       "pt": false,
@@ -83,9 +87,11 @@
       "pt": ["TBD"],
       "en": ["TBD"]
     },
-    "recommended": "4-6",
-    "min": 3,
-    "max": 10,
+    "playerCount": {
+      "recommended": "4-6",
+      "min": 3,
+      "max": 10
+    },
     "tags": ["competitive", "turn-based", "images", "writing", "guessing"],
     "available": {
       "pt": true,
@@ -118,9 +124,11 @@
       ],
       "en": ["TBD"]
     },
-    "recommended": "5+",
-    "min": 3,
-    "max": 10,
+    "playerCount": {
+      "recommended": "5+",
+      "min": 3,
+      "max": 10
+    },
     "tags": ["competitive", "turn-based", "traitor", "discussion", "images", "writing"],
     "available": {
       "pt": true,
@@ -142,17 +150,19 @@
       "pt": [
         "Espião Entre Nós é um jogo competitivo jogado em uma ou mais rodadas. Cada rodada dura no máximo 10 minutos e jogo pode ser jogado em apenas uma rodada ou várias",
         "Somos todos agentes do departamento de segurança e inteligência do governo, vamos nos encontrar em um local secreto combinado e estaremos infiltrados como pessoas comuns",
-        "Mas existe um espião entre nós! O espião não sabe onde estaremos e, claro, nós não sabemos quem é o espião",
-        "Temos apenas 10 minutos para descobrir quem é o espião e, para isso, nos alternaremos fazendo perguntas uns aos outros. Mas não seja óbvio, se o espião descobre o local, a missão falha e todos perdemos",
+        "Mas existe um espião entre nós! O espião não sabe onde estaremos e, claro, nós não sabemos quem é o espião",
+        "Temos apenas 10 minutos para descobrir quem é o espião e, para isso, nos alternaremos fazendo perguntas uns aos outros. Mas não seja óbvio, se o espião descobre o local, a missão falha e todos perdemos",
         "Se você acabou de responder uma pergunta é a sua vez de perguntar, mas você não pode perguntar quem acabou de ter fazer uma pergunta. Você não pode repetir perguntas numa mesma rodada!",
-        "A qualquer momento, mas uma única vez por rodada, você pode acusar alguém, daí todos têm que votar e se a votação for unânime, revelam-se os papéis e prendemos o espião! Ou será que não? Tenha certeza antes de acusar alguém!",
+        "A qualquer momento, mas uma única vez por rodada, você pode acusar alguém, daí todos têm que votar e se a votação for unânime, revelam-se os papéis e prendemos o espião! Ou será que não? Tenha certeza antes de acusar alguém!",
         "O espião também pode parar o jogo e tentar adivinhar onde é o local! Se em 10 minutos, nada for descoberto, temos uma última change, mas explicamos isso quando a hora chegar"
       ],
       "en": ["TBD"]
     },
-    "recommended": "6",
-    "min": 4,
-    "max": 8,
+    "playerCount": {
+      "recommended": "6",
+      "min": 4,
+      "max": 8
+    },
     "tags": ["competitive", "same-time", "traitor", "discussion", "timed"],
     "available": {
       "pt": true,
@@ -174,9 +184,11 @@
       "pt": ["TBD"],
       "en": ["TBD"]
     },
-    "recommended": "",
-    "min": 0,
-    "max": 10,
+    "playerCount": {
+      "recommended": "",
+      "min": 0,
+      "max": 10
+    },
     "tags": ["competitive", "guessing"],
     "available": {
       "pt": false,
@@ -198,9 +210,11 @@
       "pt": ["TBD"],
       "en": ["TBD"]
     },
-    "recommended": "2+",
-    "min": 2,
-    "max": 8,
+    "playerCount": {
+      "recommended": "2+",
+      "min": 2,
+      "max": 8
+    },
     "tags": ["cooperative", "competitive", "guessing", "images"],
     "available": {
       "pt": false,
@@ -222,9 +236,11 @@
       "pt": ["TBD"],
       "en": ["TBD"]
     },
-    "recommended": "4+",
-    "min": 3,
-    "max": 10,
+    "playerCount": {
+      "recommended": "4+",
+      "min": 3,
+      "max": 10
+    },
     "tags": ["competitive", "pairing"],
     "available": {
       "pt": false,
@@ -246,9 +262,11 @@
       "pt": ["TBD"],
       "en": ["TBD"]
     },
-    "recommended": "6+",
-    "min": 4,
-    "max": 10,
+    "playerCount": {
+      "recommended": "6+",
+      "min": 4,
+      "max": 10
+    },
     "tags": ["cooperative", "drawing", "guessing"],
     "available": {
       "pt": false,
@@ -277,9 +295,11 @@
       ],
       "en": ["TBD"]
     },
-    "recommended": "4+",
-    "min": 3,
-    "max": 12,
+    "playerCount": {
+      "recommended": "4+",
+      "min": 3,
+      "max": 12
+    },
     "tags": ["competitive", "same-time", "writing"],
     "available": {
       "pt": true,
@@ -317,9 +337,11 @@
         "The game ends when someone gets 20 points or within 15 rounds, whatever comes first"
       ]
     },
-    "recommended": "4+",
-    "min": 3,
-    "max": 10,
+    "playerCount": {
+      "recommended": "4+",
+      "min": 3,
+      "max": 10
+    },
     "tags": ["competitive", "guessing"],
     "available": {
       "pt": true,
@@ -346,9 +368,11 @@
       ],
       "en": ["TBD"]
     },
-    "recommended": "5+",
-    "min": 3,
-    "max": 10,
+    "playerCount": {
+      "recommended": "5+",
+      "min": 3,
+      "max": 10
+    },
     "tags": ["competitive", "voting", "guessing"],
     "available": {
       "pt": true,
@@ -370,9 +394,11 @@
       "pt": ["TBD"],
       "en": ["TBD"]
     },
-    "recommended": "",
-    "min": 1,
-    "max": 10,
+    "playerCount": {
+      "recommended": "",
+      "min": 1,
+      "max": 10
+    },
     "tags": ["cooperative", "discussion", "guessing"],
     "available": {
       "pt": false,
@@ -394,9 +420,11 @@
       "pt": ["TBD"],
       "en": ["TBD"]
     },
-    "recommended": "",
-    "min": 1,
-    "max": 10,
+    "playerCount": {
+      "recommended": "",
+      "min": 1,
+      "max": 10
+    },
     "tags": ["competitive", "drawing", "voting", "discussion", "timed"],
     "available": {
       "pt": true,
@@ -425,9 +453,11 @@
       ],
       "en": ["TBD"]
     },
-    "recommended": "2+",
-    "min": 2,
-    "max": 10,
+    "playerCount": {
+      "recommended": "2+",
+      "min": 2,
+      "max": 10
+    },
     "tags": ["competitive", "images", "pairing"],
     "available": {
       "pt": true,
@@ -456,9 +486,11 @@
       ],
       "en": ["TBD"]
     },
-    "recommended": "2+",
-    "min": 2,
-    "max": 10,
+    "playerCount": {
+      "recommended": "2+",
+      "min": 2,
+      "max": 10
+    },
     "tags": ["cooperative", "turn-based", "guessing"],
     "available": {
       "pt": true,
@@ -482,7 +514,7 @@
         "Cada rodada todos os jogadores, menos o Adivinhador, votam em qual palavra secreta usar.",
         "Então, em segredo e sem conversar, cada um deles escreve uma dica. Importante: Esta dica DEVE ser uma palavra única, nem conter parte ou variações da palavra secreta",
         "Quando todas as dicas forem enviadas, todas as iguais são automaticamente eliminadas. Porém, os jogadores devem decidir entre eles quais dicas adicionais também devem ser removidas",
-        "São consideradas dicas iguais palavras derivadas, conjugações: piloto = pilotar = pilotando. Variações como pluralidade, gênero e erros ortográficos: príncipe = princesa = principes = pryncipe. Então, tente não ser muito óbvio ao escrever sua dica.",
+        "São consideradas dicas iguais palavras derivadas, conjugações: piloto = pilotar = pilotando. Variações como pluralidade, gênero e erros ortográficos: príncipe = princesa = principes = pryncipe. Então, tente não ser muito óbvio ao escrever sua dica.",
         "Após as dicas terem sido selecionadas, o Adivinhador tem uma única chance de adivinhar (ou passar, se for um covarde).",
         "Se a palavra estiver correta, ganha-se 1 ponto, se estiver errada perde-se 1 ponto. Mas se tiver passado a vez, nada acontece. Ganha-se o jogo se os jogadores acertarem 70% ou mais das Palavras Secretas!"
       ],
@@ -496,9 +528,11 @@
         "If they guess correctly the group gets 1 point, if incorrect the group loses 1 point. Nothing happens if passing. The group wins the game if it scores over 70%!"
       ]
     },
-    "recommended": "6-7",
-    "min": 4,
-    "max": 10,
+    "playerCount": {
+      "recommended": "6-7",
+      "min": 4,
+      "max": 10
+    },
     "tags": ["cooperative", "guessing", "writing"],
     "cooperative": true,
     "available": {
@@ -521,9 +555,11 @@
       "pt": ["TBD"],
       "en": ["TBD"]
     },
-    "recommended": "",
-    "min": 1,
-    "max": 10,
+    "playerCount": {
+      "recommended": "",
+      "min": 1,
+      "max": 10
+    },
     "tags": ["cooperative", "writing", "guessing"],
     "available": {
       "pt": false,
@@ -545,9 +581,11 @@
       "pt": ["TBD"],
       "en": ["TBD"]
     },
-    "recommended": "",
-    "min": 1,
-    "max": 10,
+    "playerCount": {
+      "recommended": "",
+      "min": 1,
+      "max": 10
+    },
     "tags": ["competitive"],
     "available": {
       "pt": true,
