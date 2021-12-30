@@ -33,15 +33,15 @@ export function GameCard({ game, language }: GameCardProps) {
       <Divider />
       <Card.Meta
         description={translate(
-          `Para ${game.min}-${game.max} jogadores`,
-          `For ${game.min}-${game.max} players`,
+          `Para ${game.playerCount.min}-${game.playerCount.max} jogadores`,
+          `For ${game.playerCount.min}-${game.playerCount.max} players`,
           language
         )}
       />
       <Card.Meta
         description={translate(
-          `Recomendado jogar com ${game.recommended}`,
-          `Recommended with ${game.recommended}`,
+          `Recomendado jogar com ${game.playerCount.recommended}`,
+          `Recommended with ${game.playerCount.recommended}`,
           language
         )}
       />
