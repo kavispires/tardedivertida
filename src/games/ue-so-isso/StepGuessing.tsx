@@ -1,22 +1,29 @@
-import PropTypes from 'prop-types';
 // Design Resources
 import { Space } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 // Components
-import { Instruction, Step, Title, Translate, ViewIf } from '../../components/shared';
-import { UeSoIssoCard as Card } from '../../components/cards';
-import { AvatarName } from '../../components/avatars';
+import { AvatarName, Instruction, Step, Title, Translate, ViewIf } from '../../components';
+import Card from './UeSoIssoCard';
 import Guess from './Guess';
 import SuggestionEasel from './SuggestionEasel';
 
-function GuessingStep({
+type StepGuessingProps = {
+  guesser: GamePlayer;
+  isUserTheGuesser: boolean;
+  secretWord: UeSoIssoCard;
+  onSendGuess: GenericFunction;
+  onSubmitOutcome: GenericFunction;
+  validSuggestions: UseSoIssoSuggestion[];
+};
+
+function StepGuessing({
   guesser,
   isUserTheGuesser,
   secretWord,
   onSendGuess,
   onSubmitOutcome,
   validSuggestions,
-}) {
+}: StepGuessingProps) {
   return (
     <Step>
       <ViewIf isVisible={isUserTheGuesser}>
@@ -86,22 +93,4 @@ function GuessingStep({
   );
 }
 
-GuessingStep.propTypes = {
-  guesser: PropTypes.shape({
-    avatarId: PropTypes.string,
-    name: PropTypes.string,
-  }),
-  isUserTheGuesser: PropTypes.bool,
-  onSendGuess: PropTypes.func,
-  onSubmitOutcome: PropTypes.func,
-  secretWord: PropTypes.shape({
-    text: PropTypes.string,
-  }),
-  validSuggestions: PropTypes.arrayOf(
-    PropTypes.shape({
-      suggestion: PropTypes.string,
-    })
-  ),
-};
-
-export default GuessingStep;
+export default StepGuessing;

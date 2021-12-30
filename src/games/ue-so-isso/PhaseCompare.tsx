@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
 // Hooks
 import { useAPICall, useWhichPlayerIsThe, useLanguage } from '../../hooks';
 // Resources & Utils
@@ -16,12 +15,12 @@ import {
   translate,
   ViewIf,
   WaitingRoom,
-} from '../../components/shared';
-import CompareSuggestionsStep from './CompareSuggestionsStep';
+} from '../../components';
+import StepCompareSuggestions from './StepCompareSuggestions';
 import { ComparisonRules } from './RulesBlobs';
 import { GuesserWaitingRoom } from './GuesserWaitingRoom';
 
-function PhaseCompare({ state, players, info }) {
+function PhaseCompare({ state, players, info }: PhaseProps) {
   const language = useLanguage();
   const [step, setStep] = useState(0);
   const [, isUserTheGuesser] = useWhichPlayerIsThe('guesserId', state, players);
@@ -51,14 +50,14 @@ function PhaseCompare({ state, players, info }) {
     ),
   });
 
-  const onValidateSuggestions = (payload) => {
+  const onValidateSuggestions = (payload: PlainObject) => {
     onValidateSuggestionsAPIRequest({
       action: 'SUBMIT_VALIDATION',
       ...payload,
     });
   };
 
-  const onUpdateSuggestions = (payload) => {
+  const onUpdateSuggestions = (payload: PlainObject) => {
     onUpdateValidSuggestionsAPIRequest({
       action: 'VALIDATE_SUGGESTION',
       ...payload,
@@ -66,12 +65,7 @@ function PhaseCompare({ state, players, info }) {
   };
 
   return (
-    <PhaseContainer
-      info={info}
-      phase={state?.phase}
-      allowedPhase={PHASES.UE_SO_ISSO.COMPARE}
-      className="u-compare-phase"
-    >
+    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.UE_SO_ISSO.COMPARE}>
       <StepSwitcher step={step}>
         {/* Step 0 */}
         <PhaseAnnouncement
@@ -104,7 +98,7 @@ function PhaseCompare({ state, players, info }) {
           </ViewIf>
 
           <ViewIf isVisible={!isUserTheGuesser}>
-            <CompareSuggestionsStep
+            <StepCompareSuggestions
               controller={controller}
               isUserTheController={isUserTheController}
               secretWord={state.secretWord}
@@ -126,19 +120,5 @@ function PhaseCompare({ state, players, info }) {
     </PhaseContainer>
   );
 }
-
-PhaseCompare.propTypes = {
-  info: PropTypes.object,
-  players: PropTypes.object,
-  state: PropTypes.shape({
-    phase: PropTypes.string,
-    round: PropTypes.shape({
-      current: PropTypes.number,
-      total: PropTypes.number,
-    }),
-    secretWord: PropTypes.any,
-    suggestions: PropTypes.any,
-  }),
-};
 
 export default PhaseCompare;

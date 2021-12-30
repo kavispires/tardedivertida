@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
 // Hooks
 import { useIsUserReady, useWhichPlayerIsThe, useAPICall, useLanguage } from '../../hooks';
 // Resources & Utils
@@ -7,6 +6,7 @@ import { UE_SO_ISSO_API } from '../../adapters';
 import { PHASES } from '../../utils/constants';
 // Components
 import {
+  AvatarName,
   Instruction,
   PhaseAnnouncement,
   PhaseContainer,
@@ -16,14 +16,18 @@ import {
   Translate,
   translate,
   ViewIf,
-  WaitingRoom,
-} from '../../components/shared';
-import WordSelectionStep from './WordSelectionStep';
-import { AvatarName } from '../../components/avatars';
+} from '../../components';
+import StepWordSelection from './StepWordSelection';
 import { GameProgressBar } from './GameProgressBar';
 import { GuesserWaitingRoom } from './GuesserWaitingRoom';
 
-function RoundAnnouncementText({ guesser, gameOrder, groupScore, round }) {
+type RoundAnnouncementTextProps = {
+  guesser: GamePlayer;
+  groupScore: number;
+  round: GameRound;
+};
+
+function RoundAnnouncementText({ guesser, groupScore, round }: RoundAnnouncementTextProps) {
   return (
     <Instruction contained>
       <Translate
@@ -39,12 +43,12 @@ function RoundAnnouncementText({ guesser, gameOrder, groupScore, round }) {
         }
       />
       <br />
-      <GameProgressBar groupScore={groupScore} currentRound={round.current} totalRounds={round.total} />
+      <GameProgressBar groupScore={groupScore} round={round} />
     </Instruction>
   );
 }
 
-function PhaseWordSelection({ state, players, info }) {
+function PhaseWordSelection({ state, players, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
   const language = useLanguage();
   const [guesser, isUserTheGuesser] = useWhichPlayerIsThe('guesserId', state, players);
@@ -63,7 +67,7 @@ function PhaseWordSelection({ state, players, info }) {
     ),
   });
 
-  const onSendSelectedWords = (payload) => {
+  const onSendSelectedWords = (payload: PlainObject) => {
     onSendSelectedWordsAPIRequest({
       action: 'SUBMIT_VOTES',
       ...payload,
@@ -77,15 +81,19 @@ function PhaseWordSelection({ state, players, info }) {
       allowedPhase={PHASES.UE_SO_ISSO.WORD_SELECTION}
       className="u-word-selection-phase"
     >
-      <StepSwitcher step={step} conditions={[!isUserReady]}>
+      <StepSwitcher
+        step={step}
+        conditions={[!isUserReady]}
+        players={players}
+        waitingRoomInstruction={translate(
+          'Aguarde os outros jogadores',
+          'Wait for the other players',
+          language
+        )}
+      >
         {/* Step 0 */}
         <RoundAnnouncement round={state.round} onPressButton={() => setStep(1)} time={7}>
-          <RoundAnnouncementText
-            guesser={guesser}
-            groupScore={state.groupScore}
-            gameOrder={state.gameOrder}
-            round={state.round}
-          />
+          <RoundAnnouncementText guesser={guesser} groupScore={state.groupScore} round={state.round} />
         </RoundAnnouncement>
 
         {/* Step 1 */}
@@ -152,37 +160,16 @@ function PhaseWordSelection({ state, players, info }) {
           </ViewIf>
 
           <ViewIf isVisible={!isUserTheGuesser}>
-            <WordSelectionStep
+            <StepWordSelection
               words={state?.words}
               onSendSelectedWords={onSendSelectedWords}
               guesser={guesser}
             />
           </ViewIf>
         </Step>
-
-        {/* Step 3 */}
-        <Step fullWidth>
-          <WaitingRoom players={players} />
-        </Step>
       </StepSwitcher>
     </PhaseContainer>
   );
 }
-
-PhaseWordSelection.propTypes = {
-  info: PropTypes.object,
-  players: PropTypes.object,
-  state: PropTypes.shape({
-    gameOrder: PropTypes.any,
-    groupScore: PropTypes.number,
-    nextGuesser: PropTypes.string,
-    phase: PropTypes.string,
-    round: PropTypes.shape({
-      current: PropTypes.number,
-      total: PropTypes.number,
-    }),
-    words: PropTypes.any,
-  }),
-};
 
 export default PhaseWordSelection;

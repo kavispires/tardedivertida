@@ -1,24 +1,16 @@
 import { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 // Hooks
 import { useGlobalState, useLoading, useWhichPlayerIsThe, useAPICall, useLanguage } from '../../hooks';
 // Resources & Utils
 import { UE_SO_ISSO_API } from '../../adapters';
 import { PHASES } from '../../utils/constants';
 // Components
-import {
-  PhaseAnnouncement,
-  PhaseContainer,
-  StepSwitcher,
-  Translate,
-  translate,
-  WaitingRoom,
-} from '../../components/shared';
-import GuessingStep from './GuessingStep';
-import GuessVerificationStep from './GuessVerificationStep';
+import { PhaseAnnouncement, PhaseContainer, StepSwitcher, translate } from '../../components';
+import StepGuessing from './StepGuessing';
+import StepGuessVerification from './StepGuessVerification';
 import { GuessingRules } from './RulesBlobs';
 
-function PhaseGuess({ state, players, info }) {
+function PhaseGuess({ state, players, info }: PhaseProps) {
   const [isLoading] = useLoading();
   const language = useLanguage();
   const [isAdmin] = useGlobalState('isAdmin');
@@ -50,14 +42,14 @@ function PhaseGuess({ state, players, info }) {
     ),
   });
 
-  const onSubmitOutcome = (payload) => {
+  const onSubmitOutcome = (payload: PlainObject) => {
     onSubmitOutcomeAPIRequest({
       action: 'SUBMIT_OUTCOME',
       ...payload,
     });
   };
 
-  const onSendGuess = (payload) => {
+  const onSendGuess = (payload: PlainObject) => {
     onSendGuessAPIRequest({
       action: 'SEND_GUESS',
       ...payload,
@@ -72,13 +64,8 @@ function PhaseGuess({ state, players, info }) {
   }, [state]);
 
   return (
-    <PhaseContainer
-      info={info}
-      phase={state?.phase}
-      allowedPhase={PHASES.UE_SO_ISSO.GUESS}
-      className="u-word-guess-phase"
-    >
-      <StepSwitcher step={step}>
+    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.UE_SO_ISSO.GUESS}>
+      <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
           type="guess"
@@ -90,18 +77,17 @@ function PhaseGuess({ state, players, info }) {
         </PhaseAnnouncement>
 
         {/* Step 1 */}
-        <GuessingStep
+        <StepGuessing
           guesser={guesser}
           isUserTheGuesser={isUserTheGuesser}
           onSubmitOutcome={onSubmitOutcome}
           onSendGuess={onSendGuess}
           validSuggestions={state.validSuggestions}
           secretWord={state.secretWord}
-          players={players}
         />
 
         {/* Step 2 */}
-        <GuessVerificationStep
+        <StepGuessVerification
           guesser={guesser}
           guess={state.guess}
           isUserTheGuesser={isUserTheGuesser}
@@ -113,31 +99,9 @@ function PhaseGuess({ state, players, info }) {
           isAdmin={isAdmin}
           isLoading={isLoading}
         />
-
-        {/* Step 3 */}
-        <WaitingRoom
-          players={players}
-          title={<Translate pt="Enviando..." en="Submitting..." stringify />}
-          instruction="..."
-        />
       </StepSwitcher>
     </PhaseContainer>
   );
 }
-
-PhaseGuess.propTypes = {
-  info: PropTypes.object,
-  players: PropTypes.object,
-  state: PropTypes.shape({
-    guess: PropTypes.string,
-    phase: PropTypes.string,
-    round: PropTypes.shape({
-      current: PropTypes.number,
-      total: PropTypes.number,
-    }),
-    secretWord: PropTypes.any,
-    validSuggestions: PropTypes.any,
-  }),
-};
 
 export default PhaseGuess;
