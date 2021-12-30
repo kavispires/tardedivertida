@@ -5,6 +5,7 @@ export const PUBLIC_URL: PlainObject = {
   BANNERS: `${process.env.PUBLIC_URL}/images/banners/`,
   RULES: `${process.env.PUBLIC_URL}/images/rules/`,
   CARDS: `${process.env.PUBLIC_URL}/images/cards/`,
+  CLOUDS: `${process.env.PUBLIC_URL}/images/clouds/`,
   ROOT: `${process.env.PUBLIC_URL}/images/`,
   RESOURCES: `${process.env.PUBLIC_URL}/resources/`,
 };

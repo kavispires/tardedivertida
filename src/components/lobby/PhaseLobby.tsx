@@ -6,14 +6,6 @@ import Join from './_internal/Join';
 import Waiting from './_internal/Waiting';
 import { CloudBackground } from './_internal/CloudBackground';
 
-const backgroundType: PlainObject = {
-  A: 'artsy-cloud',
-  E: 'cyber-cloud',
-  O: 'funky-cloud',
-  D: 'detective-cloud',
-  U: 'cloud',
-};
-
 type PhaseLobbyProps = {
   players: GamePlayers;
   info: GameInfo;
@@ -44,7 +36,7 @@ export function PhaseLobby({ players, info }: PhaseLobbyProps) {
         )}
       </div>
 
-      <CloudBackground type={backgroundType?.[info.gameCode]} />
+      <CloudBackground gameCode={info.gameCode} />
     </PhaseContainer>
   );
 }
