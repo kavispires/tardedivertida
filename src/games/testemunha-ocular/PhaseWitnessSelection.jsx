@@ -6,7 +6,7 @@ import { Button, Space } from 'antd';
 import { useAPICall, useLoading, useLanguage } from '../../hooks';
 // Resources & Utils
 import { TESTEMUNHA_OCULAR_API } from '../../adapters';
-import { PHASES } from '../../utils/constants';
+import { PHASES } from '../../utils/phases';
 // Components
 import {
   Instruction,

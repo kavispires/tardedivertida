@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 // Hooks
 import { useIsUserReady, useUser, useWhichPlayerIsThe } from '../../hooks';
 // Resources & Utils
-import { PHASES } from '../../utils/constants';
+import { PHASES } from '../../utils/phases';
 // Components
 import { Instruction, PhaseContainer, RoundAnnouncement, StepSwitcher, Title } from '../../components/shared';
 import { EspiaoEntreNosCard as Card } from '../../components/cards';

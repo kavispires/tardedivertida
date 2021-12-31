@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useIsUserReady, useAPICall, useLanguage } from '../../hooks';
 // Utils
 import { ARTE_RUIM_API } from '../../adapters';
-import { PHASES } from '../../utils/constants';
+import { PHASES } from '../../utils/phases';
 // Components
 import { PhaseContainer, StepSwitcher, PhaseAnnouncement, translate } from '../../components';
 

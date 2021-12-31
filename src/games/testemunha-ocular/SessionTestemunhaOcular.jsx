@@ -1,5 +1,6 @@
-// Hooks
-import { GAME_COLLECTION, PHASES } from '../../utils/constants';
+// Constants
+import { GAME_COLLECTION } from '../../utils/constants';
+import { PHASES } from '../../utils/phases';
 // Components
 import { Session, PhaseSetup, PhaseRules, PageError, PhaseLobby } from '../../components';
 import PhaseWitnessSelection from './PhaseWitnessSelection';
@@ -11,11 +12,11 @@ import PhaseGameOver from './PhaseGameOver';
 function SessionTestemunhaOcular({ gameId }) {
   function getActiveComponent(phase) {
     switch (phase) {
-      case PHASES.TESTEMUNHA_OCULAR.LOBBY:
+      case PHASES.DEFAULT.LOBBY:
         return PhaseLobby;
-      case PHASES.TESTEMUNHA_OCULAR.RULES:
+      case PHASES.DEFAULT.RULES:
         return PhaseRules;
-      case PHASES.TESTEMUNHA_OCULAR.SETUP:
+      case PHASES.DEFAULT.SETUP:
         return PhaseSetup;
       case PHASES.TESTEMUNHA_OCULAR.WITNESS_SELECTION:
         return PhaseWitnessSelection;
@@ -25,7 +26,7 @@ function SessionTestemunhaOcular({ gameId }) {
         return PhaseQuestioning;
       case PHASES.TESTEMUNHA_OCULAR.TRIAL:
         return PhaseTrial;
-      case PHASES.TESTEMUNHA_OCULAR.GAME_OVER:
+      case PHASES.DEFAULT.GAME_OVER:
         return PhaseGameOver;
       default:
         return PageError;

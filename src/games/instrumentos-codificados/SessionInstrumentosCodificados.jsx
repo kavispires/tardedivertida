@@ -1,16 +1,17 @@
-// Hooks
-import { GAME_COLLECTION, PHASES } from '../../utils/constants';
+// Constants
+import { GAME_COLLECTION } from '../../utils/constants';
+import { PHASES } from '../../utils/phases';
 // Components
 import { Session, PhaseSetup, PhaseRules, PageError, PhasePlaceholder, PhaseLobby } from '../../components';
 
 function SessionInstrumentosCodificados({ gameId }) {
   function getActiveComponent(phase) {
     switch (phase) {
-      case PHASES.INSTRUMENTOS_CODIFICADOS.LOBBY:
+      case PHASES.DEFAULT.LOBBY:
         return PhaseLobby;
-      case PHASES.INSTRUMENTOS_CODIFICADOS.RULES:
+      case PHASES.DEFAULT.RULES:
         return PhaseRules;
-      case PHASES.INSTRUMENTOS_CODIFICADOS.SETUP:
+      case PHASES.DEFAULT.SETUP:
         return PhaseSetup;
       case PHASES.INSTRUMENTOS_CODIFICADOS.HINT_GIVING:
         return PhasePlaceholder;
@@ -20,7 +21,7 @@ function SessionInstrumentosCodificados({ gameId }) {
         return PhasePlaceholder;
       case PHASES.INSTRUMENTOS_CODIFICADOS.SOLUTION:
         return PhasePlaceholder;
-      case PHASES.INSTRUMENTOS_CODIFICADOS.GAME_OVER:
+      case PHASES.DEFAULT.GAME_OVER:
         return PhasePlaceholder;
       default:
         return PageError;

@@ -6,7 +6,7 @@ import { notification } from 'antd';
 import { useUser, useAPICall, useWhichPlayerIsThe } from '../../hooks';
 // Resources & Utils
 import { ESPIAO_ENTRE_NOS_API } from '../../adapters';
-import { PHASES } from '../../utils/constants';
+import { PHASES } from '../../utils/phases';
 // Components
 import { Instruction, PhaseContainer, Title } from '../../components/shared';
 import { EspiaoEntreNosCard as Card } from '../../components/cards';

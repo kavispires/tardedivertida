@@ -6,7 +6,7 @@ import { Button, Modal, notification, Select } from 'antd';
 import { useUser, useAPICall } from '../../hooks';
 // Resources & Utils
 import { ESPIAO_ENTRE_NOS_API } from '../../adapters';
-import { PHASES } from '../../utils/constants';
+import { PHASES } from '../../utils/phases';
 import { getPlayersFromIds } from '../../utils/helpers';
 // Components
 import { AdminOnlyContainer } from '../../components/admin/index';

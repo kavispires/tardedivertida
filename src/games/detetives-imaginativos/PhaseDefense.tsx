@@ -5,7 +5,7 @@ import { message } from 'antd';
 import { useWhichPlayerIsThe, useAPICall, useLoading, useLanguage } from '../../hooks';
 // Resources & Utils
 import { DETETIVES_IMAGINATIVOS_API } from '../../adapters';
-import { PHASES } from '../../utils/constants';
+import { PHASES } from '../../utils/phases';
 // Components
 import {
   Instruction,

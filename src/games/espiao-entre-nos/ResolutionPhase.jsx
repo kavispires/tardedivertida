@@ -6,7 +6,7 @@ import { message } from 'antd';
 import { useAPICall, useWhichPlayerIsThe } from '../../hooks';
 // Resources & Utils
 import { ESPIAO_ENTRE_NOS_API } from '../../adapters';
-import { PHASES } from '../../utils/constants';
+import { PHASES } from '../../utils/phases';
 // Components
 import { AdminOnlyContainer, AdminButton } from '../../components/admin/index';
 import { Instruction, PhaseContainer, Title } from '../../components/shared';

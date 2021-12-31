@@ -5,7 +5,7 @@ import { PictureOutlined } from '@ant-design/icons';
 // State & Hooks
 import { useLanguage } from '../../hooks';
 // Resources and Utils
-import { PHASES } from '../../utils/constants';
+import { PHASES } from '../../utils/phases';
 // Components
 import {
   AdminNextRoundButton,
