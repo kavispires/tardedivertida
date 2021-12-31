@@ -1,4 +1,4 @@
-// Interfaces
+// Types
 import { AllWords, ClueEntry, Deck, GridCell } from './types';
 import { NewScores, PlayerId, Players, RankingEntry, Round } from '../../utils/types';
 // Constants

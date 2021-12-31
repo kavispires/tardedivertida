@@ -1,8 +1,9 @@
-export const CRUZA_PALAVRAS_PHASES = {
+export const CRIMES_HEDIONDOS_PHASES = {
   LOBBY: 'LOBBY',
   RULES: 'RULES',
   SETUP: 'SETUP',
-  CLUE_WRITING: 'CLUE_WRITING',
+  CRIME_SELECTION: 'CRIME_SELECTION',
+  SCENE_MARKING: 'SCENE_MARKING',
   GUESSING: 'GUESSING',
   REVEAL: 'REVEAL',
   GAME_OVER: 'GAME_OVER',
@@ -14,14 +15,4 @@ export const PLAYER_COUNT = {
 };
 
 export const TOTAL_ROUNDS = 6;
-
-export const WORDS_PER_PLAYER_COUNT = {
-  3: 6,
-  4: 6,
-  5: 8,
-  6: 8,
-  7: 8,
-  8: 8,
-  9: 10,
-  10: 10,
-};
+export const SCENE_TILES = 6;

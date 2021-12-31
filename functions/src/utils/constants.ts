@@ -7,6 +7,7 @@ export const GAME_CODES = {
   C: 'C', // contadores-historias
   D: 'D', // detetives-imaginativos
   E: 'E', // espiao-entre-nos
+  H: 'H', // crimes-hediondos
   I: 'I', // instrumentos-codificados
   M: 'M', // mente-coletiva
   O: 'O', // onda-telepatica
@@ -23,6 +24,7 @@ export const GAME_KEYS = {
   CONTADORES_HISTORIAS: 'CONTADORES_HISTORIAS',
   DETETIVES_IMAGINATIVOS: 'DETETIVES_IMAGINATIVOS',
   ESPIAO_ENTRE_NOS: 'ESPIAO_ENTRE_NOS',
+  CRIMES_HEDIONDOS: 'CRIMES_HEDIONDOS',
   INSTRUMENTOS_CODIFICADOS: 'INSTRUMENTOS_CODIFICADOS',
   MENTE_COLETIVA: 'MENTE_COLETIVA',
   ONDA_TELEPATICA: 'ONDA_TELEPATICA',
@@ -39,6 +41,7 @@ export const GAME_COLLECTIONS = {
   CONTADORES_HISTORIAS: 'contadores-historias',
   DETETIVES_IMAGINATIVOS: 'detetives-imaginativos',
   ESPIAO_ENTRE_NOS: 'espiao-entre-nos',
+  CRIMES_HEDIONDOS: 'crimes-hediondos',
   INSTRUMENTOS_CODIFICADOS: 'instrumentos-codificados',
   MENTE_COLETIVA: 'mente-coletiva',
   ONDA_TELEPATICA: 'onda-telepatica',

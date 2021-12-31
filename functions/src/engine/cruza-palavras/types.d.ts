@@ -44,12 +44,12 @@ interface CruzaPalavrasState extends DefaultState {
   [key: string]: any;
 }
 
-interface XTudoPalavrasInitialState extends InitialState {
+interface CruzaPalavrasInitialState extends InitialState {
   store: CruzaPalavrasStore;
   state: CruzaPalavrasState;
 }
 
-interface XTudoPalavrasSubmitAction extends Payload {
+interface CruzaPalavrasSubmitAction extends Payload {
   action: 'SUBMIT_CLUE' | 'SUBMIT_GUESSES';
 }
 
