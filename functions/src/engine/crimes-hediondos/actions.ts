@@ -5,19 +5,44 @@ import * as firebaseUtils from '../../utils/firebase';
 // Internal functions
 import { getNextPhase } from './index';
 
-export const handleSubmitClue = async (
+export const handleSubmitCrime = async (
   collectionName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  clue: string
+  data: PlainObject
 ) => {
   return await firebaseUtils.updatePlayer({
     collectionName,
     gameId,
     playerId,
-    actionText: 'submit your clue',
+    actionText: 'submit your guesses',
     shouldReady: true,
-    change: { clue },
+    change: {
+      weaponId: data.weaponId,
+      evidenceId: data.evidenceId,
+      causeOfDeath: data.causeOfDeath,
+      reasonForEvidence: data.reasonForEvidence,
+      locationTile: data.locationTile,
+      locationIndex: data.locationIndex,
+    },
+    nextPhaseFunction: getNextPhase,
+  });
+};
+
+export const handleSubmitMark = async (
+  collectionName: GameName,
+  gameId: GameId,
+  playerId: PlayerId,
+  sceneId: string,
+  sceneIndex: number
+) => {
+  return await firebaseUtils.updatePlayer({
+    collectionName,
+    gameId,
+    playerId,
+    actionText: 'submit your guesses',
+    shouldReady: true,
+    change: { [`scenes.${sceneId}`]: sceneIndex },
     nextPhaseFunction: getNextPhase,
   });
 };

@@ -1,6 +1,6 @@
 // Constants
 import { GAME_COLLECTIONS } from '../../utils/constants';
-import { CRUZA_PALAVRAS_PHASES, PLAYER_COUNT, TOTAL_ROUNDS } from './constants';
+import { CRIMES_HEDIONDOS_PHASES, PLAYER_COUNT, TOTAL_ROUNDS } from './constants';
 // Types
 import { GameId, Language, Players } from '../../utils/types';
 // Utils
@@ -8,16 +8,17 @@ import * as firebaseUtils from '../../utils/firebase';
 import * as utils from '../../utils/helpers';
 // Internal Functions
 import { determineNextPhase } from './helpers';
-import { CruzaPalavrasInitialState, CruzaPalavrasSubmitAction } from './types';
+import { CrimesHediondosInitialState, CrimesHediondosSubmitAction } from './types';
 import {
-  prepareClueWritingPhase,
+  prepareCrimeSelectionPhase,
+  prepareSceneMarkingPhase,
   prepareGuessingPhase,
   prepareGameOverPhase,
   prepareRevealPhase,
   prepareSetupPhase,
 } from './setup';
-import { getWords } from './data';
-import { handleSubmitClue, handleSubmitGuesses } from './actions';
+import { getData } from './data';
+import { handleSubmitCrime, handleSubmitMark, handleSubmitGuesses } from './actions';
 
 /**
  * Get Initial Game State
@@ -30,18 +31,18 @@ export const getInitialState = (
   gameId: GameId,
   uid: string,
   language: Language
-): CruzaPalavrasInitialState => {
+): CrimesHediondosInitialState => {
   return utils.getDefaultInitialState({
     gameId,
-    gameName: GAME_COLLECTIONS.CRUZA_PALAVRAS,
+    gameName: GAME_COLLECTIONS.CRIMES_HEDIONDOS,
     uid,
     language,
     playerCount: PLAYER_COUNT,
-    initialPhase: CRUZA_PALAVRAS_PHASES.LOBBY,
+    initialPhase: CRIMES_HEDIONDOS_PHASES.LOBBY,
     totalRounds: TOTAL_ROUNDS,
     store: {
       language,
-      deck: [],
+      scenes: [],
     },
   });
 };
@@ -67,37 +68,43 @@ export const getNextPhase = async (
   const nextPhase = determineNextPhase(state?.phase, state?.round, state?.lastRound);
 
   // RULES -> SETUP
-  if (nextPhase === CRUZA_PALAVRAS_PHASES.SETUP) {
+  if (nextPhase === CRIMES_HEDIONDOS_PHASES.SETUP) {
     // Enter setup phase before doing anything
     await firebaseUtils.triggerSetupPhase(sessionRef);
 
     // Request data
-    const additionalData = await getWords(store.language);
+    const additionalData = await getData();
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await firebaseUtils.saveGame(sessionRef, newPhase);
     return getNextPhase(collectionName, gameId, players);
   }
 
-  // * -> CLUE_WRITING
-  if (nextPhase === CRUZA_PALAVRAS_PHASES.CLUE_WRITING) {
-    const newPhase = await prepareClueWritingPhase(store, state, players);
+  // SETUP -> CRIME_SELECTION
+  if (nextPhase === CRIMES_HEDIONDOS_PHASES.CRIME_SELECTION) {
+    const newPhase = await prepareCrimeSelectionPhase(store, state, players);
     return firebaseUtils.saveGame(sessionRef, newPhase);
   }
 
-  // CLUE_WRITING -> GUESSING
-  if (nextPhase === CRUZA_PALAVRAS_PHASES.GUESSING) {
+  // * -> SCENE_MARKING
+  if (nextPhase === CRIMES_HEDIONDOS_PHASES.SCENE_MARKING) {
+    const newPhase = await prepareSceneMarkingPhase(store, state, players);
+    return firebaseUtils.saveGame(sessionRef, newPhase);
+  }
+
+  // SCENE_MARKING -> GUESSING
+  if (nextPhase === CRIMES_HEDIONDOS_PHASES.GUESSING) {
     const newPhase = await prepareGuessingPhase(store, state, players);
     return firebaseUtils.saveGame(sessionRef, newPhase);
   }
 
   // GUESSING -> REVEAL
-  if (nextPhase === CRUZA_PALAVRAS_PHASES.REVEAL) {
+  if (nextPhase === CRIMES_HEDIONDOS_PHASES.REVEAL) {
     const newPhase = await prepareRevealPhase(store, state, players);
     return firebaseUtils.saveGame(sessionRef, newPhase);
   }
 
   // REVEAL -> GAME_OVER
-  if (nextPhase === CRUZA_PALAVRAS_PHASES.GAME_OVER) {
+  if (nextPhase === CRIMES_HEDIONDOS_PHASES.GAME_OVER) {
     const newPhase = await prepareGameOverPhase(store, state, players);
     return firebaseUtils.saveGame(sessionRef, newPhase);
   }
@@ -106,18 +113,25 @@ export const getNextPhase = async (
 };
 
 /**
- * Handles clue and guesses submissions
+ * Handles player action submissions
  * May trigger next phase
  */
-export const submitAction = async (data: CruzaPalavrasSubmitAction) => {
+export const submitAction = async (data: CrimesHediondosSubmitAction) => {
   const { gameId, gameName: collectionName, playerId, action } = data;
 
   firebaseUtils.validateSubmitActionPayload(gameId, collectionName, playerId, action);
 
   switch (action) {
-    case 'SUBMIT_CLUE':
-      firebaseUtils.validateSubmitActionProperties(data, ['clue'], 'submit category');
-      return handleSubmitClue(collectionName, gameId, playerId, data.clue);
+    case 'SUBMIT_CRIME':
+      firebaseUtils.validateSubmitActionProperties(
+        data,
+        ['weaponId', 'evidenceId', 'causeOfDeath', 'reasonForEvidence', 'locationTile', 'locationIndex'],
+        'submit crime'
+      );
+      return handleSubmitCrime(collectionName, gameId, playerId, data);
+    case 'SUBMIT_MARK':
+      firebaseUtils.validateSubmitActionProperties(data, ['sceneId', 'sceneIndex'], 'submit scene mark');
+      return handleSubmitMark(collectionName, gameId, playerId, data.sceneId, data.sceneIndex);
     case 'SUBMIT_GUESSES':
       firebaseUtils.validateSubmitActionProperties(data, ['guesses'], 'submit guess');
       return handleSubmitGuesses(collectionName, gameId, playerId, data.guesses);
