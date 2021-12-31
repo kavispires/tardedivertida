@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useIsUserReady, useAPICall, useLanguage, useWhichPlayerIsThe, useUser } from '../../hooks';
 // Resources & Utils
 import { RETRATO_FALADO_API } from '../../adapters';
-import { PHASES } from '../../utils/constants';
+import { PHASES } from '../../utils/phases';
 // Components
 import {
   WaitingRoom,

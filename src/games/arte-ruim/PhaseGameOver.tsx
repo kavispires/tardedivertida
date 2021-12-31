@@ -1,5 +1,3 @@
-import PropTypes from 'prop-types';
-
 // Components
 import { CanvasSVG, GameOverWrapper, Translate } from '../../components';
 import DrawingGrade from './DrawingGrade';
@@ -23,13 +21,5 @@ function PhaseGameOver({ state, players, info }: PhaseProps) {
     </GameOverWrapper>
   );
 }
-
-PhaseGameOver.propTypes = {
-  info: PropTypes.object,
-  players: PropTypes.object,
-  state: PropTypes.shape({
-    drawings: PropTypes.array,
-  }),
-};
 
 export default PhaseGameOver;

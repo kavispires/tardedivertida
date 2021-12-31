@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 // Hooks
 import { useLanguage } from '../../hooks';
 // Resources & Utils
-import { PHASES } from '../../utils/constants';
+import { PHASES } from '../../utils/phases';
 // Components
 import {
   WaitingRoom,

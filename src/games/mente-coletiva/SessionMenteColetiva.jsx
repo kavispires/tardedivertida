@@ -1,5 +1,6 @@
-// Hooks
-import { GAME_COLLECTION, PHASES } from '../../utils/constants';
+// Constants
+import { GAME_COLLECTION } from '../../utils/constants';
+import { PHASES } from '../../utils/phases';
 // Components
 import { Session, PhaseSetup, PhaseRules, PageError, PhaseLobby } from '../../components';
 import PhaseQuestionSelection from './PhaseQuestionSelection';
@@ -11,11 +12,11 @@ import PhaseGameOver from './PhaseGameOver';
 function SessionMenteColetiva({ gameId }) {
   function getActiveComponent(phase) {
     switch (phase) {
-      case PHASES.MENTE_COLETIVA.LOBBY:
+      case PHASES.DEFAULT.LOBBY:
         return PhaseLobby;
-      case PHASES.MENTE_COLETIVA.RULES:
+      case PHASES.DEFAULT.RULES:
         return PhaseRules;
-      case PHASES.MENTE_COLETIVA.SETUP:
+      case PHASES.DEFAULT.SETUP:
         return PhaseSetup;
       case PHASES.MENTE_COLETIVA.QUESTION_SELECTION:
         return PhaseQuestionSelection;
@@ -25,7 +26,7 @@ function SessionMenteColetiva({ gameId }) {
         return PhaseCompare;
       case PHASES.MENTE_COLETIVA.RESOLUTION:
         return PhaseResolution;
-      case PHASES.MENTE_COLETIVA.GAME_OVER:
+      case PHASES.DEFAULT.GAME_OVER:
         return PhaseGameOver;
       default:
         return PageError;

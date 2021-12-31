@@ -1,5 +1,6 @@
-// Hooks
-import { GAME_COLLECTION, PHASES } from '../../utils/constants';
+// Constants
+import { GAME_COLLECTION } from '../../utils/constants';
+import { PHASES } from '../../utils/phases';
 // Components
 import { Session, PhaseSetup, PhaseRules, PageError, PhaseLobby } from '../../components';
 import PhaseStory from './PhaseStory';
@@ -11,11 +12,11 @@ import PhaseGameOver from './PhaseGameOver';
 function SessionDetetivesImaginativos({ gameId }: GameSession) {
   function getActiveComponent(phase: string) {
     switch (phase) {
-      case PHASES.CONTADORES_HISTORIAS.LOBBY:
+      case PHASES.DEFAULT.LOBBY:
         return PhaseLobby;
-      case PHASES.CONTADORES_HISTORIAS.RULES:
+      case PHASES.DEFAULT.RULES:
         return PhaseRules;
-      case PHASES.CONTADORES_HISTORIAS.SETUP:
+      case PHASES.DEFAULT.SETUP:
         return PhaseSetup;
       case PHASES.CONTADORES_HISTORIAS.STORY:
         return PhaseStory;
@@ -25,7 +26,7 @@ function SessionDetetivesImaginativos({ gameId }: GameSession) {
         return PhaseVoting;
       case PHASES.CONTADORES_HISTORIAS.RESOLUTION:
         return PhaseResolution;
-      case PHASES.CONTADORES_HISTORIAS.GAME_OVER:
+      case PHASES.DEFAULT.GAME_OVER:
         return PhaseGameOver;
       default:
         return PageError;

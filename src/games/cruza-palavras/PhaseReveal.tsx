@@ -2,7 +2,7 @@ import { useState } from 'react';
 // State & Hooks
 import { useIsUserReady, useUser, useLanguage } from '../../hooks';
 // Resources & Utils
-import { PHASES } from '../../utils/constants';
+import { PHASES } from '../../utils/phases';
 // Components
 import {
   AdminNextRoundButton,

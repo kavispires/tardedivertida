@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useIsUserReady, useWhichPlayerIsThe, useAPICall, useUser, useLanguage } from '../../hooks';
 // Resources & Utils
 import { DETETIVES_IMAGINATIVOS_API } from '../../adapters';
-import { PHASES } from '../../utils/constants';
+import { PHASES } from '../../utils/phases';
 // Components
 import {
   AvatarName,

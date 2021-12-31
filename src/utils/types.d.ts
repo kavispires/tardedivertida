@@ -1,6 +1,9 @@
 type PlainObject = {
   [key: string]: any;
 };
+type FirebaseContext = {
+  [key: string]: any;
+};
 
 type DateMilliseconds = number;
 type GameCode = string;

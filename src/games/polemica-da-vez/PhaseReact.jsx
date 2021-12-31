@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { useAPICall, useLanguage } from '../../hooks';
 // Resources & Utils
 import { POLEMICA_DA_VEZ_API } from '../../adapters';
-import { PHASES } from '../../utils/constants';
+import { PHASES } from '../../utils/phases';
 // Components
 import {
   WaitingRoom,

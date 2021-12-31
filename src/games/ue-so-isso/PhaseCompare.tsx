@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useAPICall, useWhichPlayerIsThe, useLanguage } from '../../hooks';
 // Resources & Utils
 import { UE_SO_ISSO_API } from '../../adapters';
-import { PHASES } from '../../utils/constants';
+import { PHASES } from '../../utils/phases';
 // Components
 import {
   Instruction,

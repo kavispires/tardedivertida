@@ -16,6 +16,7 @@ import {
   translate,
   Translate,
 } from '..';
+import { PHASES } from '../../utils/phases';
 
 const GameOverText = () => <Translate pt="Jogo concluído" en="The game is over" />;
 
@@ -154,7 +155,7 @@ export function GameOverWrapper({
     <PhaseContainer
       info={info}
       phase={state?.phase}
-      allowedPhase="GAME_OVER"
+      allowedPhase={PHASES.DEFAULT.GAME_OVER}
       className="game-over__container"
     >
       <StepSwitcher step={step}>
