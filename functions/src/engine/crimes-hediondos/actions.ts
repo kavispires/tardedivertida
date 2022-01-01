@@ -15,7 +15,7 @@ export const handleSubmitCrime = async (
     collectionName,
     gameId,
     playerId,
-    actionText: 'submit your guesses',
+    actionText: 'submit your crime',
     shouldReady: true,
     change: {
       weaponId: data.weaponId,
@@ -40,7 +40,7 @@ export const handleSubmitMark = async (
     collectionName,
     gameId,
     playerId,
-    actionText: 'submit your guesses',
+    actionText: 'submit your mark',
     shouldReady: true,
     change: { [`scenes.${sceneId}`]: sceneIndex },
     nextPhaseFunction: getNextPhase,

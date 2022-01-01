@@ -195,8 +195,8 @@
     },
     "tags": ["competitive", "guessing"],
     "available": {
-      "pt": false,
-      "en": false
+      "pt": true,
+      "en": true
     }
   },
   "I": {

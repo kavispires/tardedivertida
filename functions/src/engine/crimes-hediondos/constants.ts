@@ -14,5 +14,10 @@ export const PLAYER_COUNT = {
   MAX: 10,
 };
 
-export const TOTAL_ROUNDS = 6;
-export const SCENE_TILES = 6;
+export const TOTAL_ROUNDS = 7;
+export const SCENE_TILES_COUNT = 6;
+
+export const CARDS_PER_GAME = 12;
+
+export const ITEMS_GROUP_COUNT = 4;
+export const ITEMS_PER_GROUP = 3;
