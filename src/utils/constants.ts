@@ -246,6 +246,7 @@ export const GAME_COLLECTION: PlainObject = {
   CONTADORES_HISTORIAS: 'contadores-historias',
   DETETIVES_IMAGINATIVOS: 'detetives-imaginativos',
   ESPIAO_ENTRE_NOS: 'espiao-entre-nos',
+  CRIMES_HEDIONDOS: 'crimes-hediondos',
   INSTRUMENTOS_CODIFICADOS: 'instrumentos-codificados',
   MENTE_COLETIVA: 'mente-coletiva',
   ONDA_TELEPATICA: 'onda-telepatica',

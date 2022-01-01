@@ -7,13 +7,7 @@ import {
   PlayerId,
 } from '../../utils/types';
 
-type WeaponCard = {
-  id: string;
-  type: string;
-  name: DualLanguageValue;
-};
-
-type EvidenceCard = {
+type CrimesHediondosCard = {
   id: string;
   type: string;
   name: DualLanguageValue;
@@ -37,11 +31,9 @@ interface Crime {
 }
 
 interface ResourceData {
-  allWeapons: WeaponCard[];
-  allEvidence: EvidenceCard[];
-  allScenes: {
-    [key: string]: SceneTile[];
-  };
+  allWeapons: CrimesHediondosCard[];
+  allEvidence: CrimesHediondosCard[];
+  allScenes: SceneTile[];
 }
 
 interface CrimesHediondosStore extends DefaultStore {

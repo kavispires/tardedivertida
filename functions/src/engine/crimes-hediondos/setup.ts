@@ -1,10 +1,12 @@
 // Constants
-import { CRIMES_HEDIONDOS_PHASES } from './constants';
+import { CARDS_PER_GAME, CRIMES_HEDIONDOS_PHASES } from './constants';
 // Types
 import { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 import { Players, SaveGamePayload } from '../../utils/types';
 // Utils
 import * as utils from '../../utils/helpers';
+import * as gameUtils from '../../utils/game-utils';
+import { dealItemGroups, groupItems, parseTiles } from './helpers';
 // import * as firebaseUtils from '../../utils/firebase';
 // Internal
 
@@ -21,15 +23,27 @@ export const prepareSetupPhase = async (
   resourceData: ResourceData
 ): Promise<SaveGamePayload> => {
   // Build weapon and evidence decks
-  console.log(resourceData);
+  const weapons = gameUtils.getRandomItems(resourceData.allWeapons, CARDS_PER_GAME);
+  const evidence = gameUtils.getRandomItems(resourceData.allEvidence, CARDS_PER_GAME);
+
   // Build scene decks
+  const { causeOfDeathTile, reasonForEvidenceTile, locationTiles, sceneTiles } = parseTiles(
+    resourceData.allScenes
+  );
 
   // Save
   return {
     update: {
-      store: {},
+      store: {
+        scenes: sceneTiles,
+        weapons,
+        evidence,
+      },
       state: {
         phase: CRIMES_HEDIONDOS_PHASES.SETUP,
+        causeOfDeathTile,
+        reasonForEvidenceTile,
+        locationTiles,
       },
     },
   };
@@ -40,16 +54,24 @@ export const prepareCrimeSelectionPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
-  // Assign groups of weapon and evidence to each player
+  // Group weapons
+  const { groupedItems, items } = groupItems(store.weapons, store.evidence);
 
-  // Set starting scene tiles
+  // Assign groups of weapon and evidence to each player
+  dealItemGroups(players);
+
+  // Unready players
+  utils.unReadyPlayers(players);
 
   return {
     update: {
       state: {
         phase: CRIMES_HEDIONDOS_PHASES.CRIME_SELECTION,
+        round: utils.increaseRound(state.round),
+        items,
+        groupedItems,
       },
-      players: players,
+      players,
     },
   };
 };
@@ -59,15 +81,14 @@ export const prepareSceneMarkingPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
-  // Assign groups of weapon and evidence to each player
-
-  // Set starting scene tiles
+  // Set  new scene scene tiles
 
   return {
     update: {
       store: {},
       state: {
         phase: CRIMES_HEDIONDOS_PHASES.SCENE_MARKING,
+        round: utils.increaseRound(state.round),
       },
       players: players,
     },
@@ -79,9 +100,7 @@ export const prepareGuessingPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
-  // Assign groups of weapon and evidence to each player
-
-  // Set starting scene tiles
+  // Gather responses
 
   return {
     update: {
@@ -98,9 +117,9 @@ export const prepareRevealPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
-  // Assign groups of weapon and evidence to each player
+  // Reveal stuff
 
-  // Set starting scene tiles
+  // Make ranking
 
   return {
     update: {

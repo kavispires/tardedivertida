@@ -4,6 +4,9 @@ type PlainObject = {
 type FirebaseContext = {
   [key: string]: any;
 };
+interface BooleanDictionary {
+  [key: string]: boolean;
+}
 
 type DateMilliseconds = number;
 type GameCode = string;
@@ -18,6 +21,10 @@ type PlayerId = string;
 type PlayerName = string;
 type Primitive = string | number | boolean | symbol | null;
 type TurnOrder = PlayerId[];
+type DualLanguageValue = {
+  en: string;
+  pt: string;
+};
 
 interface Player {
   id: PlayerId;
