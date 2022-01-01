@@ -8,7 +8,7 @@ type GroupedItems = {
   [key: string]: string[];
 };
 
-type Items = {
+type ItemsDict = {
   [key: string]: CrimesHediondosCard;
 };
 
@@ -20,7 +20,20 @@ type SceneTile = {
   specific?: string | null;
 };
 
+type ScenesDict = {
+  [key: string]: SceneTile;
+};
+
 type SceneTilePayload = {
   tileId: string;
   value: number;
+};
+
+type Crime = {
+  playerId: PlayerId;
+  weaponId: string;
+  evidenceId: string;
+  scenes: {
+    [key: string]: number;
+  };
 };

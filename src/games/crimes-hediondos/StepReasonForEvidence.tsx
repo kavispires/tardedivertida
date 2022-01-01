@@ -5,7 +5,7 @@ import { SceneTile } from './SceneTile';
 import { SelectedItems } from './SelectedItems';
 
 type StepReasonForEvidenceProps = {
-  items: Items;
+  items: ItemsDict;
   selections: PlainObject;
   updateSelections: GenericFunction;
   reasonForEvidenceTile: SceneTile;

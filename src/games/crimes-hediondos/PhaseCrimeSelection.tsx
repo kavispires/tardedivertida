@@ -6,6 +6,7 @@ import { CRIMES_HEDIONDOS_API } from '../../adapters';
 import { PHASES } from '../../utils/phases';
 // Components
 import {
+  Instruction,
   PhaseAnnouncement,
   PhaseContainer,
   RoundAnnouncement,
@@ -13,7 +14,7 @@ import {
   Translate,
   translate,
 } from '../../components';
-import { GenericMessage, WelcomeMessage } from './RulesBlobs';
+import { WelcomeMessage } from './RulesBlobs';
 import { StepItemsSelection } from './StepItemsSelection';
 import { StepCauseOfDeathSelection } from './StepCauseOfDeathSelection';
 import { StepLocationSelection } from './StepLocationSelection';
@@ -95,7 +96,9 @@ function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
           onClose={increaseStep}
           duration={5}
         >
-          <Translate pt="Como a vítima morreu?" en="How did the victim die?" />
+          <Instruction>
+            <Translate pt="Como a vítima morreu?" en="How did the victim die?" />
+          </Instruction>
         </PhaseAnnouncement>
 
         {/* Step 4 */}
@@ -113,7 +116,12 @@ function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
           onClose={increaseStep}
           duration={5}
         >
-          <GenericMessage />
+          <Instruction>
+            <Translate
+              pt="Conte-nos sobre o objeto que você escolheu."
+              en="Tell us about the object you selected."
+            />
+          </Instruction>
         </PhaseAnnouncement>
 
         {/* Step 6 */}
@@ -131,7 +139,9 @@ function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
           onClose={increaseStep}
           duration={5}
         >
-          <GenericMessage />
+          <Instruction>
+            <Translate pt="Onde que foi?" en="Where was it?" />
+          </Instruction>
         </PhaseAnnouncement>
 
         {/* Step 8 */}

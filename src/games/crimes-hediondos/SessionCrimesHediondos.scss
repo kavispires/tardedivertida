@@ -16,12 +16,9 @@
     font-weight: bold;
     font-size: 0.7rem;
     margin: 0;
-    overflow-y: hidden;
+    overflow: hidden;
     text-align: center;
-
-    span {
-      overflow-y: scroll;
-    }
+    text-overflow: ellipsis;
   }
 }
 
@@ -66,6 +63,25 @@
   background: get-color(black, 5);
   border-radius: get-unit(2);
   padding: get-unit(2);
+}
+
+.h-grouped-items-board {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: get-unit(1);
+  background: get-color(black, 5);
+  border-radius: get-unit(2);
+  padding: get-unit(2);
+
+  &__group {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: get-unit(1);
+
+    border: 2px solid get-color(brown);
+    border-radius: get-unit(2);
+    padding: get-unit(2);
+  }
 }
 
 .h-scene-tile {
@@ -144,4 +160,90 @@
       color: get-color(green, 5);
     }
   }
+
+  &--scene {
+    border: 5px solid get-color(orange, 8);
+
+    #{ $self }__title {
+      color: get-color(orange, 5);
+    }
+
+    #{ $self }__button {
+      border-color: get-color(orange);
+    }
+
+    #{ $self }__icon {
+      color: get-color(orange, 5);
+    }
+  }
+}
+
+.h-crime {
+  background: get-color(black, 5);
+  display: grid;
+  grid-template-columns: [player] 2.5rem [info] auto [selections] 216px [done] 2.5rem;
+  min-height: 200px;
+  margin: get-unit(2);
+  border-radius: get-unit(1);
+  color: get-color(white);
+
+  &__player {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__player-name {
+    display: block;
+    transform: rotate(-90deg) translateX(-40%);
+  }
+
+  &__scenes {
+    padding: get-unit(2);
+  }
+}
+
+.h-crime-scene {
+  // background: pink;
+  display: grid;
+  grid-template-columns: 3fr 7fr;
+  // flex-wrap: nowrap;
+  margin-bottom: get-unit(1);
+
+  &__label {
+    white-space: nowrap;
+    padding: get-unit(0 1);
+    margin-right: get-unit(1);
+
+    &--cause {
+      background: get-color(violet, 6);
+    }
+
+    &--evidence {
+      background: get-color(red, 6);
+    }
+
+    &--location {
+      background: get-color(green, 6);
+    }
+
+    &--scene {
+      background: get-color(orange, 6);
+    }
+  }
+
+  &__value {
+    padding: get-unit(0 1);
+  }
+}
+
+.h-crime-selections {
+  display: flex;
+  padding: get-unit(1);
+}
+
+.h-item-selector {
+  width: 100px;
+  margin-left: get-unit(1);
 }

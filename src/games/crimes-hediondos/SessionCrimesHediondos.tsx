@@ -4,6 +4,8 @@ import { PHASES } from '../../utils/phases';
 // Components
 import { Session, PhaseSetup, PhaseRules, PageError, PhasePlaceholder, PhaseLobby } from '../../components';
 import PhaseCrimeSelection from './PhaseCrimeSelection';
+import PhaseSceneMarking from './PhaseSceneMarking';
+import PhaseGuessing from './PhaseGuessing';
 
 function SessionCrimesHediondos({ gameId }: GameSession) {
   function getActiveComponent(phase: string) {
@@ -17,9 +19,9 @@ function SessionCrimesHediondos({ gameId }: GameSession) {
       case PHASES.CRIMES_HEDIONDOS.CRIME_SELECTION:
         return PhaseCrimeSelection;
       case PHASES.CRIMES_HEDIONDOS.SCENE_MARKING:
-        return PhasePlaceholder;
+        return PhaseSceneMarking;
       case PHASES.CRIMES_HEDIONDOS.GUESSING:
-        return PhasePlaceholder;
+        return PhaseGuessing;
       case PHASES.CRIMES_HEDIONDOS.REVEAL:
         return PhasePlaceholder;
       case PHASES.DEFAULT.GAME_OVER:

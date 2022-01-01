@@ -4,7 +4,7 @@ import { useCardWidth } from '../../hooks';
 import { ItemCard } from './ItemCard';
 
 type SelectedItemsProps = {
-  items: Items;
+  items: ItemsDict;
   weaponId: string;
   evidenceId: string;
   fadeWeapon?: boolean;

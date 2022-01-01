@@ -34,6 +34,33 @@ export function WelcomeMessage(): JSX.Element {
   );
 }
 
+export function GuessMessage(): JSX.Element {
+  return (
+    <Instruction contained>
+      <Translate
+        pt={
+          <>
+            Baseado nas informações dadas pelos jogadores, tente adivinhar qual arma e objeto cada jogador
+            usou em seu crime.
+            <br />
+            Você ganha pontos se adivinhar uma das cartas ou ambas as cartas, e você também ganha pontos se os
+            outros adivinharem as suas cartas.
+          </>
+        }
+        en={
+          <>
+            Based on the information given by other players, try to guess the weapon and object used on their
+            crimes.
+            <br />
+            You get points for getting one or both cards correctly, and you get points when other players get
+            yours correctly.
+          </>
+        }
+      />
+    </Instruction>
+  );
+}
+
 export function GenericMessage(): JSX.Element {
   return (
     <Instruction contained>
