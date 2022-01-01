@@ -5,6 +5,7 @@ import {
   GameOrder,
   InitialState,
   InitialStateArgs,
+  NewScores,
   PlainObject,
   Player,
   PlayerAvatarId,
@@ -436,4 +437,27 @@ export const buildUsedCardsIdsDict = (dataList: PlainObject[]): BooleanDictionar
     acc[entry.id] = true;
     return acc;
   }, {});
+};
+
+/**
+ * Builds new scoring object used by ranking builders
+ * @param players
+ * @param gainedPointsInitialState
+ * @returns
+ */
+export const buildNewScoreObject = (players: Players, gainedPointsInitialState?: number[]): NewScores => {
+  const newScores: NewScores = {};
+
+  // Build score object
+  Object.values(players).forEach((player) => {
+    newScores[player.id] = {
+      playerId: player.id,
+      name: player.name,
+      previousScore: player.score,
+      gainedPoints: gainedPointsInitialState || [0],
+      newScore: player.score,
+    };
+  });
+
+  return newScores;
 };

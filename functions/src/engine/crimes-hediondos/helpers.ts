@@ -1,11 +1,12 @@
 // Types
-import { PlainObject, Players, Round } from '../../utils/types';
+import { PlainObject, Players, RankingEntry, Round } from '../../utils/types';
 // Constants
 import { CRIMES_HEDIONDOS_PHASES, ITEMS_GROUP_COUNT, ITEMS_PER_GROUP, SCENE_TILES_COUNT } from './constants';
-import { CrimesHediondosCard, SceneTile } from './types';
+import { Crime, CrimesHediondosCard, SceneTile } from './types';
 // Utils
 // import * as utils from '../../utils/helpers';
 import * as gameUtils from '../../utils/game-utils';
+import { buildNewScoreObject } from '../../utils/helpers';
 
 /**
  * Determine the next phase based on the current one
@@ -113,4 +114,147 @@ export const dealItemGroups = (players: Players) => {
   gameOrder.forEach((playerId, index) => {
     players[playerId].itemGroupIndex = index % ITEMS_GROUP_COUNT;
   });
+};
+
+export const buildCrimes = (
+  players: Players,
+  causeOfDeathTile: SceneTile,
+  reasonForEvidenceTile: SceneTile
+): Crime[] => {
+  return Object.values(players).map((player) => {
+    return {
+      playerId: player.id,
+      weaponId: player.weaponId,
+      evidenceId: player.evidenceId,
+      scenes: {
+        [causeOfDeathTile.id]: player.causeOfDeath,
+        [reasonForEvidenceTile.id]: player.reasonForEvidence,
+        [player.locationTile]: player.locationIndex,
+      },
+    };
+  });
+};
+
+type BuiltScenes = {
+  scenes: {
+    [key: string]: SceneTile;
+  };
+  order: string[];
+};
+
+export const buildScenes = (
+  causeOfDeathTile: SceneTile,
+  reasonForEvidenceTile: SceneTile,
+  locationTiles: SceneTile[],
+  players: Players
+): BuiltScenes => {
+  const locationsUsedByPlayers = Object.values(players).map((player) => player.locationTile);
+  const locations = locationTiles.filter((locationTile) => locationsUsedByPlayers.includes(locationTile.id));
+
+  const order = [causeOfDeathTile.id, reasonForEvidenceTile.id, ...locations.map((location) => location.id)];
+
+  const scenes = {
+    [causeOfDeathTile.id]: causeOfDeathTile,
+    [reasonForEvidenceTile.id]: reasonForEvidenceTile,
+  };
+
+  locations.forEach((location) => (scenes[location.id] = location));
+
+  return { scenes, order };
+};
+
+export const updateCrime = (crimes: Crime[], players: Players, currentScene: SceneTile): Crime[] => {
+  return crimes.map((crime) => {
+    crime.scenes[currentScene.id] = players[crime.playerId].sceneIndex;
+    return crime;
+  });
+};
+
+type Counts = {
+  [key: string]: {
+    bothCorrect: number;
+    correctItems: number;
+    win: boolean;
+  };
+};
+
+type BuiltRanking = {
+  ranking: RankingEntry[];
+  counts: Counts;
+};
+
+export const buildRanking = (players: Players): BuiltRanking => {
+  const newScores = buildNewScoreObject(players, [0, 0]);
+
+  const counts: Counts = {};
+
+  Object.keys(players).forEach((playerId) => {
+    counts[playerId] = {
+      bothCorrect: 0,
+      correctItems: 0,
+      win: false,
+    };
+  });
+
+  Object.values(players).forEach((player) => {
+    Object.entries(player.guesses).forEach(([playerId, guessObj]: [any, any]) => {
+      const gotWeaponCorrect = players[playerId].weaponId === guessObj.weapon;
+      const gotEvidenceCorrect = players[playerId].evidenceId === guessObj.evidence;
+      const gotBothCorrect = gotWeaponCorrect && gotEvidenceCorrect;
+
+      // Getting correct points
+      if (gotWeaponCorrect) {
+        newScores[player.id].gainedPoints[0] += 1;
+        newScores[player.id].newScore += 1;
+
+        newScores[playerId].gainedPoints[1] += 1;
+        newScores[playerId].newScore += 1;
+
+        counts[player.id].correctItems += 1;
+      }
+
+      if (gotEvidenceCorrect) {
+        newScores[player.id].gainedPoints[0] += 1;
+        newScores[player.id].newScore += 1;
+
+        newScores[playerId].gainedPoints[1] += 1;
+        newScores[playerId].newScore += 1;
+
+        counts[player.id].correctItems += 1;
+      }
+
+      if (gotBothCorrect) {
+        newScores[player.id].gainedPoints[0] += 1;
+        newScores[player.id].newScore += 1;
+
+        counts[player.id].bothCorrect += 1;
+      }
+    });
+  });
+
+  const playerCount = Object.keys(players).length;
+  // Verify if anybody won
+  Object.keys(counts).forEach((playerId) => {
+    counts[playerId].win = counts[playerId].bothCorrect === playerCount - 1;
+  });
+
+  const ranking: RankingEntry[] = Object.entries(newScores)
+    .map(([playerId, scores]) => {
+      // Update player score
+      players[playerId].score = scores.newScore;
+
+      return {
+        playerId,
+        name: players[playerId].name,
+        previousScore: scores.previousScore,
+        gainedPoints: scores.gainedPoints,
+        newScore: scores.newScore,
+      };
+    })
+    .sort((a, b) => (a.newScore > b.newScore ? 1 : -1));
+
+  return {
+    ranking,
+    counts,
+  };
 };

@@ -1,10 +1,11 @@
 // Constants
 import { RETRATO_FALADO_PHASES } from './constants';
 // Types
-import { NewScores, Player, PlayerId, Players, RankingEntry, Round } from '../../utils/types';
+import { Player, PlayerId, Players, RankingEntry, Round } from '../../utils/types';
 import { AllMonsters, MonsterCard, MonsterSketch } from './types';
 // Helpers
 import * as gameUtils from '../../utils/game-utils';
+import { buildNewScoreObject } from '../../utils/helpers';
 
 /**
  * Determine the next phase based on the current one
@@ -114,18 +115,7 @@ export const buildRanking = (
   mostVotes: PlayerId[],
   witnessVote: PlayerId
 ): RankingEntry[] => {
-  const newScores: NewScores = {};
-
-  // Build score object
-  Object.values(players).forEach((player) => {
-    newScores[player.id] = {
-      playerId: player.id,
-      name: player.name,
-      previousScore: player.score,
-      gainedPoints: [0, 0, 0],
-      newScore: player.score,
-    };
-  });
+  const newScores = buildNewScoreObject(players, [0, 0, 0]);
 
   // Add points for mostVotes
   mostVotes.forEach((playerId) => {

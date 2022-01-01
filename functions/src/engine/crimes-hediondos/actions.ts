@@ -42,7 +42,8 @@ export const handleSubmitMark = async (
     playerId,
     actionText: 'submit your mark',
     shouldReady: true,
-    change: { [`scenes.${sceneId}`]: sceneIndex },
+    // change: { [`scenes.${sceneId}`]: sceneIndex },
+    change: { sceneIndex },
     nextPhaseFunction: getNextPhase,
   });
 };

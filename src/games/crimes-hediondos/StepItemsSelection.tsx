@@ -7,7 +7,7 @@ import { ItemCard } from './ItemCard';
 type StepItemsSelectionProps = {
   user: GamePlayer;
   groupedItems: GroupedItems;
-  items: Items;
+  items: ItemsDict;
   selections: PlainObject;
   updateSelections: GenericFunction;
 };

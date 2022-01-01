@@ -5,7 +5,7 @@ import { ItemsBoard } from './ItemsBoard';
 import { SceneTile } from './SceneTile';
 
 type StepLocationSelectionProps = {
-  items: Items;
+  items: ItemsDict;
   selections: PlainObject;
   updateSelections: GenericFunction;
   locationTiles: SceneTile[];
@@ -61,6 +61,7 @@ export function StepLocationSelection({
       <div className="h-scene-tiles-list">
         {locationTiles.map((tile) => (
           <SceneTile
+            key={tile.id}
             tile={tile}
             onSelectValue={onSelectItem}
             index={location?.tileId === tile.id ? location?.value : undefined}

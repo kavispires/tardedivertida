@@ -5,7 +5,7 @@ import { SceneTile } from './SceneTile';
 import { SelectedItems } from './SelectedItems';
 
 type StepReviewCrimeProps = {
-  items: Items;
+  items: ItemsDict;
   selections: PlainObject;
   onSubmitCrime: GenericFunction;
   locationTiles: SceneTile[];

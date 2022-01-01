@@ -1,11 +1,12 @@
 // Types
 import { AllWords, ClueEntry, Deck, GridCell } from './types';
-import { NewScores, PlayerId, Players, RankingEntry, Round } from '../../utils/types';
+import { PlayerId, Players, RankingEntry, Round } from '../../utils/types';
 // Constants
 import { WORDS_PER_PLAYER_COUNT, CRUZA_PALAVRAS_PHASES } from './constants';
 // Utils
 import * as gameUtils from '../../utils/game-utils';
 import { SEPARATOR } from '../../utils/constants';
+import { buildNewScoreObject } from '../../utils/helpers';
 
 /**
  * Determine the next phase based on the current one
@@ -226,18 +227,7 @@ export const getPlayerClues = (players: Players): ClueEntry[] => {
  * @returns
  */
 export const buildRanking = (players: Players, clues: ClueEntry[]) => {
-  const newScores: NewScores = {};
-
-  // Build score object
-  Object.values(players).forEach((player) => {
-    newScores[player.id] = {
-      playerId: player.id,
-      name: player.name,
-      previousScore: player.score,
-      gainedPoints: [0, 0, 0], // from guesses, from others, lost points
-      newScore: player.score,
-    };
-  });
+  const newScores = buildNewScoreObject(players, [0, 0, 0]); // from guesses, from others, lost points
 
   const answers = clues.reduce((acc, entry) => {
     acc[entry.playerId] = entry.coordinate;

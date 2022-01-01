@@ -1,5 +1,5 @@
 // Types
-import { NewScores, PlainObject, Players } from '../../utils/types';
+import { PlainObject, Players } from '../../utils/types';
 import {
   ArteRuimCard,
   ArteRuimCardsDatabase,
@@ -20,6 +20,7 @@ import {
 } from './constants';
 // Helpers
 import * as gameUtils from '../../utils/game-utils';
+import { buildNewScoreObject } from '../../utils/helpers';
 
 /**
  * Determine the next phase based on the current one
@@ -371,19 +372,7 @@ export const buildGallery = (drawings: ArteRuimDrawing[], players: Players) =>
  * @returns
  */
 export const buildRanking = (drawings: ArteRuimDrawing[], players: Players) => {
-  // Format <player>: [<old score>, <addition points>, <new score>]
-  const newScores: NewScores = {};
-
-  // Build score object
-  Object.values(players).forEach((player) => {
-    newScores[player.id] = {
-      playerId: player.id,
-      name: player.name,
-      previousScore: player.score,
-      gainedPoints: [0, 0],
-      newScore: player.score,
-    };
-  });
+  const newScores = buildNewScoreObject(players, [0, 0]);
 
   drawings.forEach((drawingEntry) => {
     const correctAnswer = `${drawingEntry.id}`;
