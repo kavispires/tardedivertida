@@ -7,7 +7,7 @@ import {
 } from '@ant-design/icons';
 import { Select } from 'antd';
 import clsx from 'clsx';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Avatar, Translate } from '../../components';
 import { useLanguage } from '../../hooks';
 import { AVATARS } from '../../utils/constants';
@@ -19,9 +19,11 @@ type CrimeProps = {
   scenes: ScenesDict;
   scenesOrder: string[];
   crime: Crime;
+  items: ItemsDict;
   evidences: CrimesHediondosCard[];
   weapons: CrimesHediondosCard[];
-  onUpdateGuesses: GenericFunction;
+  onUpdateGuesses?: GenericFunction;
+  showAnswers?: boolean;
 };
 
 export function Crime({
@@ -30,9 +32,11 @@ export function Crime({
   scenesOrder,
   scenes,
   user,
+  items,
   weapons,
   evidences,
   onUpdateGuesses,
+  showAnswers = false,
 }: CrimeProps) {
   const player = players[crime.playerId];
   const language = useLanguage();
@@ -45,7 +49,7 @@ export function Crime({
     };
 
     setSelections(newSelections);
-    onUpdateGuesses({ ...newSelections, playerId: player.id });
+    onUpdateGuesses!({ ...newSelections, playerId: player.id });
   };
 
   const isComplete = selections.weapon && selections.evidence;
@@ -79,19 +83,26 @@ export function Crime({
       <div className="h-crime-selections">
         <ItemSelector
           user={user}
-          items={weapons}
+          items={items}
+          itemsList={weapons}
           type={'weapon'}
           onSelect={onSelect}
           language={language}
           playerId={player.id}
+          hideSelector={!Boolean(onUpdateGuesses)}
+          itemId={showAnswers ? crime.weaponId : undefined}
         />
+
         <ItemSelector
           user={user}
-          items={evidences}
+          items={items}
+          itemsList={evidences}
           type={'evidence'}
           onSelect={onSelect}
           language={language}
           playerId={player.id}
+          hideSelector={!Boolean(onUpdateGuesses)}
+          itemId={showAnswers ? crime.evidenceId : undefined}
         />
       </div>
 
@@ -138,20 +149,46 @@ function CrimeSceneIcon({ type }: CrimeSceneIconProps) {
       return <ExceptionOutlined />;
   }
 }
+
 type ItemSelectorProps = {
   user: GamePlayer;
-  items: CrimesHediondosCard[];
+  items: ItemsDict;
+  itemsList: CrimesHediondosCard[];
   type: 'weapon' | 'evidence';
   onSelect: GenericFunction;
   language: Language;
   playerId: PlayerId;
+  hideSelector?: boolean;
+  itemId?: string;
 };
 
-function ItemSelector({ items, user, type, onSelect, language, playerId }: ItemSelectorProps) {
+function ItemSelector({
+  items,
+  itemsList,
+  user,
+  type,
+  onSelect,
+  language,
+  playerId,
+  hideSelector = false,
+  itemId,
+}: ItemSelectorProps) {
   const [selectedItem, setSelected] = useState<CrimesHediondosCard>();
 
+  useEffect(() => {
+    if (itemId) {
+      setSelected(items[itemId]);
+    } else {
+      if (user.id === playerId) {
+        setSelected(items[user[`${type}Id`]]);
+      } else {
+        setSelected(items[user.guesses?.[playerId]?.[type]]);
+      }
+    }
+  }, []); //eslint-disable-line
+
   const onSetSelected = (itemId: string) => {
-    setSelected(items.find((i) => i.id === itemId));
+    setSelected(itemsList.find((i) => i.id === itemId));
     onSelect({
       playerId,
       type,
@@ -160,20 +197,27 @@ function ItemSelector({ items, user, type, onSelect, language, playerId }: ItemS
   };
   return (
     <div className="h-item-selector">
-      <Select defaultValue="" onChange={onSetSelected} style={{ width: '100px' }}>
-        <Select.Option value="" disabled>
-          {type === 'weapon' ? (
-            <Translate pt="Arma" en="Weapon" />
-          ) : (
-            <Translate pt="Evidência" en="Evidence" />
-          )}
-        </Select.Option>
-        {items.map((item) => (
-          <Select.Option key={item.id} value={item.id}>
-            {item.name[language].toUpperCase()}
+      {!hideSelector && (
+        <Select
+          defaultValue={user.guesses?.[playerId]?.[type] || ''}
+          onChange={onSetSelected}
+          style={{ width: '100px' }}
+        >
+          <Select.Option value="" disabled>
+            {type === 'weapon' ? (
+              <Translate pt="Arma" en="Weapon" />
+            ) : (
+              <Translate pt="Evidência" en="Evidence" />
+            )}
           </Select.Option>
-        ))}
-      </Select>
+          {itemsList.map((item) => (
+            <Select.Option key={item.id} value={item.id}>
+              {item.name[language].toUpperCase()}
+            </Select.Option>
+          ))}
+        </Select>
+      )}
+
       {selectedItem && <ItemCard item={selectedItem} cardWidth={100} preview />}
     </div>
   );

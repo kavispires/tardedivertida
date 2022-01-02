@@ -44,7 +44,8 @@ export function StepCauseOfDeathSelection({
         fadeEvidence
       />
 
-      <SceneTile tile={causeOfDeathTile} onSelectValue={onSelectItem} />
+      <SceneTile tile={causeOfDeathTile} onSelectValue={onSelectItem} index={causeOfDeathIndex} />
+
       <ButtonContainer>
         <Button
           type="primary"

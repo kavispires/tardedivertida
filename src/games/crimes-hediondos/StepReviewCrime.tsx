@@ -11,6 +11,7 @@ type StepReviewCrimeProps = {
   locationTiles: SceneTile[];
   causeOfDeathTile: SceneTile;
   reasonForEvidenceTile: SceneTile;
+  updateSelection: GenericFunction;
 };
 
 export function StepReviewCrime({
@@ -20,34 +21,39 @@ export function StepReviewCrime({
   locationTiles,
   selections,
   onSubmitCrime,
+  updateSelection,
 }: StepReviewCrimeProps) {
   const locationTile = locationTiles.find((location) => location.id === selections.locationTile);
 
   return (
     <Step>
       <Title>
-        <Translate pt="Onde foi o crime?" en="Where was the crime?" />
+        <Translate pt="Seu crime tá bom?" en="Is your crime alright?" />
       </Title>
       <Instruction contained>
-        <Translate
-          pt={
-            <>Revise seu crime. Não dá pra mudar nada mais, o crime foi cometido. É só pra revisar mesmo.</>
-          }
-          en={
-            <>
-              Recap your crime. You can't change anything, the crime has been already committed, so you can
-              only recap anyway.
-            </>
-          }
-        />
+        <Translate pt={<>Revise seu crime.</>} en={<>Recap your crime.</>} />
       </Instruction>
 
       <SelectedItems items={items} weaponId={selections.weaponId} evidenceId={selections.evidenceId} />
 
       <div className="h-scene-tiles-list">
-        <SceneTile tile={causeOfDeathTile} index={selections.causeOfDeath} />
-        <SceneTile tile={reasonForEvidenceTile} index={selections.reasonForEvidence} />
-        <SceneTile tile={locationTile!} index={selections.locationIndex} />
+        <SceneTile
+          tile={causeOfDeathTile}
+          index={selections.causeOfDeath}
+          onSelectValue={(payload) => updateSelection({ causeOfDeath: payload.value })}
+        />
+        <SceneTile
+          tile={reasonForEvidenceTile}
+          index={selections.reasonForEvidence}
+          onSelectValue={(payload) => updateSelection({ reasonForEvidence: payload.value })}
+        />
+        <SceneTile
+          tile={locationTile!}
+          index={selections.locationIndex}
+          onSelectValue={(payload) =>
+            updateSelection({ locationTile: payload.tileId, locationIndex: payload.value })
+          }
+        />
       </div>
 
       <ButtonContainer>

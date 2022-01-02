@@ -454,7 +454,7 @@ export const buildNewScoreObject = (players: Players, gainedPointsInitialState?:
       playerId: player.id,
       name: player.name,
       previousScore: player.score,
-      gainedPoints: gainedPointsInitialState || [0],
+      gainedPoints: gainedPointsInitialState ? [...gainedPointsInitialState] : new Array(1).fill(0),
       newScore: player.score,
     };
   });

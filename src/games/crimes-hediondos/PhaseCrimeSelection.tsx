@@ -31,7 +31,7 @@ function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
   const onSubmitCrimeAPIRequest = useAPICall({
     apiFunction: CRIMES_HEDIONDOS_API.submitAction,
     actionName: 'submit-crime',
-    onBeforeCall: () => setStep(10),
+    onBeforeCall: () => setStep(11),
     onError: () => setStep(9),
     successMessage: translate('Crime enviado com sucesso', 'Crime submitted successfully', language),
     errorMessage: translate(
@@ -55,6 +55,10 @@ function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
     increaseStep();
   };
 
+  const updateSelection = (payload: PlainObject) => {
+    setSelections((s: PlainObject) => ({ ...s, ...payload }));
+  };
+
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.CRIMES_HEDIONDOS.CRIME_SELECTION}>
       <StepSwitcher
@@ -72,10 +76,11 @@ function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
 
         {/* Step 1 */}
         <PhaseAnnouncement
-          type="multitask"
+          type="event"
           title={translate('A Convenção', 'The Convention', language)}
           onClose={increaseStep}
           currentRound={state?.round?.current}
+          duration={30}
         >
           <WelcomeMessage />
         </PhaseAnnouncement>
@@ -91,7 +96,7 @@ function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
 
         {/* Step 3 */}
         <PhaseAnnouncement
-          type="multitask"
+          type="skull"
           title={translate('Causa da Morte', 'Cause of Death', language)}
           onClose={increaseStep}
           duration={5}
@@ -111,7 +116,7 @@ function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
 
         {/* Step 5 */}
         <PhaseAnnouncement
-          type="multitask"
+          type="crime-scene"
           title={translate('Evidências?', 'Evidence?', language)}
           onClose={increaseStep}
           duration={5}
@@ -134,7 +139,7 @@ function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
 
         {/* Step 7 */}
         <PhaseAnnouncement
-          type="multitask"
+          type="location"
           title={translate('Local do Crime', 'Crime Location', language)}
           onClose={increaseStep}
           duration={5}
@@ -147,12 +152,21 @@ function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
         {/* Step 8 */}
         <StepLocationSelection
           items={state.items}
+          groupedItems={state.groupedItems}
           locationTiles={state.locationTiles}
           selections={selections}
           updateSelections={updateSelections}
         />
 
         {/* Step 9 */}
+        <PhaseAnnouncement
+          type="crime-tape"
+          title={translate('Revisão', 'Review', language)}
+          onClose={increaseStep}
+          duration={5}
+        ></PhaseAnnouncement>
+
+        {/* Step 10 */}
         <StepReviewCrime
           items={state.items}
           causeOfDeathTile={state.causeOfDeathTile}
@@ -160,6 +174,7 @@ function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
           locationTiles={state.locationTiles}
           selections={selections}
           onSubmitCrime={onSubmitCrime}
+          updateSelection={updateSelection}
         />
       </StepSwitcher>
     </PhaseContainer>

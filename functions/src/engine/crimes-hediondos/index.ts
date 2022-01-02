@@ -130,7 +130,7 @@ export const submitAction = async (data: CrimesHediondosSubmitAction) => {
       );
       return handleSubmitCrime(collectionName, gameId, playerId, data);
     case 'SUBMIT_MARK':
-      firebaseUtils.validateSubmitActionProperties(data, ['sceneId', 'sceneIndex'], 'submit scene mark');
+      firebaseUtils.validateSubmitActionProperties(data, ['sceneIndex'], 'submit scene mark');
       return handleSubmitMark(collectionName, gameId, playerId, data.sceneId, data.sceneIndex);
     case 'SUBMIT_GUESSES':
       firebaseUtils.validateSubmitActionProperties(data, ['guesses'], 'submit guess');

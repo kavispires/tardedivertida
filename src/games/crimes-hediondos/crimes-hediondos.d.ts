@@ -16,6 +16,7 @@ type SceneTile = {
   id: string;
   type: string;
   title: DualLanguageValue;
+  description: DualLanguageValue;
   values: DualLanguageValue[];
   specific?: string | null;
 };
