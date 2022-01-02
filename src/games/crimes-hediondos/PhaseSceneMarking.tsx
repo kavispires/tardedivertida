@@ -9,25 +9,24 @@ import {
   Instruction,
   PhaseAnnouncement,
   PhaseContainer,
+  RoundAnnouncement,
   StepSwitcher,
   Translate,
   translate,
 } from '../../components';
-import { GuessMessage } from './RulesBlobs';
-import { StepItemsSelection } from './StepItemsSelection';
+import { StepNewScene } from './StepNewScene';
 
 function PhaseSceneMarking({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
   const language = useLanguage();
   const user = useUser(players);
   const [step, setStep] = useState(0);
-  const [selections, setSelections] = useState<PlainObject>({});
 
   const onSubmitSceneMarkingAPIRequest = useAPICall({
     apiFunction: CRIMES_HEDIONDOS_API.submitAction,
     actionName: 'submit-mark',
-    onBeforeCall: () => setStep(2),
-    onError: () => setStep(1),
+    onBeforeCall: () => setStep(3),
+    onError: () => setStep(2),
     successMessage: translate('Respostas enviadas com sucesso', 'Guesses submitted successfully', language),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar suas respostas',
@@ -36,19 +35,14 @@ function PhaseSceneMarking({ players, state, info }: PhaseProps) {
     ),
   });
 
-  const onSubmitMark = () => {
+  const onSubmitMark = (payload: PlainObject) => {
     onSubmitSceneMarkingAPIRequest({
       action: 'SUBMIT_MARK',
-      ...selections,
+      ...payload,
     });
   };
 
   const increaseStep = () => setStep((s: number) => ++s);
-
-  const updateSelections = (payload: PlainObject) => {
-    setSelections((s: PlainObject) => ({ ...s, ...payload }));
-    increaseStep();
-  };
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.CRIMES_HEDIONDOS.SCENE_MARKING}>
@@ -63,28 +57,37 @@ function PhaseSceneMarking({ players, state, info }: PhaseProps) {
         )}
       >
         {/* Step 0 */}
+        <RoundAnnouncement round={state?.round} onPressButton={increaseStep} buttonText=" " time={5} />
+
+        {/* Step 1 */}
         <PhaseAnnouncement
-          type="multitask"
+          type="loupe"
           title={translate('Nova pista', 'New clue', language)}
           onClose={increaseStep}
           currentRound={state?.round?.current}
         >
           <Instruction>
             <Translate
-              en="Compartilhe mais uma pista sobre seu crime"
-              pt="Share one more piece of information about your crime"
+              en="Compartilhe mais uma pista sobre seu crime:"
+              pt="Share one more piece of information about your crime:"
             />
+            <br />
+            {state.currentScene.description[language]}
           </Instruction>
         </PhaseAnnouncement>
 
-        {/* Step 1 */}
-        {/* <Step
+        {/* Step 2 */}
+        <StepNewScene
           user={user}
           groupedItems={state.groupedItems}
           items={state.items}
-          selections={selections}
-          updateSelections={updateSelections}
-        /> */}
+          onSubmitMark={onSubmitMark}
+          sceneTile={state.currentScene}
+          scenes={state.scenes}
+          scenesOrder={state.scenesOrder}
+          crimes={state.crimes}
+          players={players}
+        />
       </StepSwitcher>
     </PhaseContainer>
   );

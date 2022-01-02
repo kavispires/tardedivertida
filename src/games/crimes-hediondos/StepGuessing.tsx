@@ -1,8 +1,11 @@
 import { Button, Collapse } from 'antd';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { ButtonContainer, Instruction, Step, Title, Translate } from '../../components';
+import { useLanguage } from '../../hooks';
+import { isDevEnv, shuffle } from '../../utils/helpers';
 import { Crime } from './Crime';
 import { GroupedItemsBoard } from './GroupedItemsBoard';
+import { splitWeaponsAndEvidence } from './helpers';
 
 type StepGuessingProps = {
   user: GamePlayer;
@@ -26,6 +29,7 @@ export function StepGuessing({
   onSubmitGuesses,
 }: StepGuessingProps) {
   const [guesses, setGuesses] = useState<PlainObject>({});
+  const language = useLanguage();
 
   const onUpdateGuesses = (payload: PlainObject) => {
     setGuesses((s: PlainObject) => ({
@@ -38,34 +42,36 @@ export function StepGuessing({
     }));
   };
 
-  const { weapons, evidences } = useMemo(
-    () =>
-      Object.values(items).reduce(
-        (acc: PlainObject, item) => {
-          if (item.type === 'weapon') {
-            acc.weapons.push(item);
-          } else {
-            acc.evidences.push(item);
-          }
-          return acc;
-        },
-        {
-          weapons: [],
-          evidences: [],
-        }
-      ),
-    [items]
-  );
+  const { weapons, evidences } = useMemo(() => splitWeaponsAndEvidence(items, language), [items, language]);
 
   const playerCount = Object.keys(players).length;
   const isAllComplete =
     Object.values(guesses).length === playerCount - 1 &&
     Object.values(guesses).every((guess) => guess.isComplete);
 
+  useEffect(() => {
+    if (isDevEnv) {
+      const shuffledWeapons = shuffle(weapons);
+      const shuffledEvidences = shuffle(evidences);
+      const devGuesses = Object.values(players).reduce((acc: any, player, index) => {
+        if (player.id !== user.id) {
+          acc[player.id] = {
+            weapon: shuffledWeapons[index].id,
+            evidence: shuffledEvidences[index].id,
+            isComplete: true,
+          };
+        }
+        return acc;
+      }, {});
+
+      setGuesses(devGuesses);
+    }
+  }, []); // eslint-disable-line
+
   return (
     <Step>
       <Title>
-        <Translate pt="Qual foi seu último crime?" en="How was your last crime?" />
+        <Translate pt="Quais foram os crimes?" en="What were the crimes?" />
       </Title>
       <Instruction contained>
         <Translate
@@ -128,6 +134,7 @@ export function StepGuessing({
               players={players}
               scenes={scenes}
               scenesOrder={scenesOrder}
+              items={items}
               weapons={weapons}
               evidences={evidences}
               onUpdateGuesses={onUpdateGuesses}
@@ -142,7 +149,7 @@ export function StepGuessing({
           disabled={!isAllComplete}
           onClick={() => onSubmitGuesses(guesses)}
         >
-          <Translate en="Enviar Respostas" pt="Send Guesses" />
+          <Translate pt="Enviar Respostas" en="Send Guesses" />
         </Button>
       </ButtonContainer>
     </Step>

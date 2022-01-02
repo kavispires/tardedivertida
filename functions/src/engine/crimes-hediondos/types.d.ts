@@ -17,6 +17,7 @@ type SceneTile = {
   id: string;
   type: string;
   title: DualLanguageValue;
+  description: DualLanguageValue;
   values: DualLanguageValue[];
   specific?: string | null;
 };
@@ -59,3 +60,13 @@ interface CrimesHediondosSubmitAction extends Payload {
 
 type FirebaseStateData = FirebaseFirestore.DocumentData | CrimesHediondosState;
 type FirebaseStoreData = FirebaseFirestore.DocumentData | CrimesHediondosStore;
+
+type Count = {
+  bothCorrect: number;
+  correctItems: number;
+  win: boolean;
+};
+
+type Counts = {
+  [key: string]: Count;
+};

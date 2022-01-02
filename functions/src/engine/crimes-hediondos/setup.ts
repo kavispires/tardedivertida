@@ -1,7 +1,7 @@
 // Constants
 import { CARDS_PER_GAME, CRIMES_HEDIONDOS_PHASES } from './constants';
 // Types
-import { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
+import { Counts, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 import { Players, SaveGamePayload } from '../../utils/types';
 // Utils
 import * as utils from '../../utils/helpers';
@@ -187,6 +187,7 @@ export const prepareRevealPhase = async (
   const { ranking, counts } = buildRanking(players);
 
   // Make ranking
+  const win = Object.values(counts).some((count) => count.win);
 
   return {
     update: {
@@ -194,6 +195,7 @@ export const prepareRevealPhase = async (
         phase: CRIMES_HEDIONDOS_PHASES.REVEAL,
         ranking,
         counts,
+        lastRound: win,
       },
       players: players,
     },
@@ -205,7 +207,16 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
-  const winners = utils.determineWinners(players);
+  const counts: Counts = state.counts;
+  // Check if anybody has won, if so, from those, get the highest score, otherwise, any higher score
+  const winningPlayers = Object.entries(counts).reduce((acc: any, [playerId, count]) => {
+    if (count.win) {
+      acc[playerId] = players[playerId];
+    }
+    return acc;
+  }, {});
+
+  const winners = utils.determineWinners(Object.keys(winningPlayers).length > 0 ? winningPlayers : players);
 
   return {
     update: {
@@ -220,6 +231,11 @@ export const prepareGameOverPhase = async (
         round: state.round,
         gameEndedAt: Date.now(),
         winners,
+        scenes: state.scenes,
+        scenesOrder: state.scenesOrder,
+        items: state.items,
+        groupedItems: state.groupedItems,
+        crimes: state.crimes,
       },
     },
   };

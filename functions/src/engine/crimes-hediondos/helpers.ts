@@ -2,7 +2,7 @@
 import { PlainObject, Players, RankingEntry, Round } from '../../utils/types';
 // Constants
 import { CRIMES_HEDIONDOS_PHASES, ITEMS_GROUP_COUNT, ITEMS_PER_GROUP, SCENE_TILES_COUNT } from './constants';
-import { Crime, CrimesHediondosCard, SceneTile } from './types';
+import { Counts, Crime, CrimesHediondosCard, SceneTile } from './types';
 // Utils
 // import * as utils from '../../utils/helpers';
 import * as gameUtils from '../../utils/game-utils';
@@ -168,14 +168,6 @@ export const updateCrime = (crimes: Crime[], players: Players, currentScene: Sce
     crime.scenes[currentScene.id] = players[crime.playerId].sceneIndex;
     return crime;
   });
-};
-
-type Counts = {
-  [key: string]: {
-    bothCorrect: number;
-    correctItems: number;
-    win: boolean;
-  };
 };
 
 type BuiltRanking = {

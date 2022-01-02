@@ -86,7 +86,7 @@
 
 .h-scene-tile {
   $self: &;
-  font-family: 'Courier New', Courier, monospace;
+  // font-family: 'Courier New', Courier, monospace;
 
   background: get-color(black, 5);
   padding: get-unit(2);
@@ -95,6 +95,10 @@
 
   &__title {
     text-align: center;
+  }
+
+  &__button {
+    color: get-color(white);
   }
 
   &__options {
@@ -121,7 +125,8 @@
     }
 
     #{ $self }__button {
-      border-color: get-color(violet, 5);
+      background: get-color(violet, 7);
+      border-color: get-color(violet, 7);
     }
 
     #{ $self }__icon {
@@ -137,7 +142,8 @@
     }
 
     #{ $self }__button {
-      border-color: get-color(red);
+      background: get-color(red, 7);
+      border-color: get-color(red, 7);
     }
 
     #{ $self }__icon {
@@ -153,7 +159,8 @@
     }
 
     #{ $self }__button {
-      border-color: get-color(green);
+      background: get-color(green, 7);
+      border-color: get-color(green, 7);
     }
 
     #{ $self }__icon {
@@ -169,7 +176,8 @@
     }
 
     #{ $self }__button {
-      border-color: get-color(orange);
+      background: get-color(orange, 7);
+      border-color: get-color(orange, 7);
     }
 
     #{ $self }__icon {

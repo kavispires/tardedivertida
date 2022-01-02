@@ -61,6 +61,33 @@ export function GuessMessage(): JSX.Element {
   );
 }
 
+export function ScoringMessage(): JSX.Element {
+  return (
+    <Instruction contained>
+      <Translate
+        pt={
+          <>
+            Você ganha 1 ponto para cada arma e objeto que você acertar.
+            <br />
+            Você ganha 1 ponto bônus se acertar as duas cartas de um mesmo jogador.
+            <br />
+            Você ganha 1 ponto para cada carta que outros jogadores acertaram sua.
+          </>
+        }
+        en={
+          <>
+            You get 1 point for each weapon or evidence you get correctly.
+            <br />
+            You gain 1 extra point if you got both cards correctly for the same player.
+            <br />
+            You get 1 point for each of the player who got one for your cards correctly.
+          </>
+        }
+      />
+    </Instruction>
+  );
+}
+
 export function GenericMessage(): JSX.Element {
   return (
     <Instruction contained>
