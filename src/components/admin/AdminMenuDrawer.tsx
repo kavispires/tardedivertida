@@ -98,7 +98,7 @@ export const AdminMenuDrawer = ({ state, players }: AdminMenuDrawerProps) => {
                   disabled={
                     state?.lastRound || isLoading || ['LOBBY', 'RULES', 'GAME_OVER'].includes(state.phase)
                   }
-                  label="Make it last round"
+                  label="Make this the last round"
                   className="admin-menu-drawer__button"
                 />
               </Popconfirm>

@@ -6,6 +6,7 @@ import { Button, Input } from 'antd';
 // Components
 import {
   ButtonContainer,
+  FloatingHand,
   ImageCardHand as Hand,
   Instruction,
   Title,
@@ -74,7 +75,9 @@ function SecretClueWrite({ user, onSubmitClue }: SecretClueWriteProps) {
           <Translate pt="Enviar pista secreta" en="Send secret clue" />
         </Button>
       </ButtonContainer>
-      <Hand hand={user.hand} sizeRatio={6} />
+      <FloatingHand>
+        <Hand hand={user.hand} sizeRatio={6} />
+      </FloatingHand>
     </div>
   );
 }

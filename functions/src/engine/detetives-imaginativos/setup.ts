@@ -50,6 +50,7 @@ export const prepareSetupPhase = async (
           current: 0,
           total: gameOrder.length,
         },
+        turnOrder: playerIds,
       },
       players,
     },

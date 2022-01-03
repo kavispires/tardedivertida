@@ -4,6 +4,7 @@ import { QuestionCircleFilled } from '@ant-design/icons';
 // Components
 import {
   AvatarName,
+  FloatingHand,
   Icons,
   ImageCardHand,
   Instruction,
@@ -95,12 +96,14 @@ function StepPlayCard({
         </ViewIf>
       </Instruction>
       <Table table={table} players={players} />
-      <ImageCardHand
-        hand={user.hand}
-        onSelectCard={isUserTheCurrentPlayer ? onSelectCard : undefined}
-        disabledSelectButton={isLoading}
-        sizeRatio={6}
-      />
+      <FloatingHand>
+        <ImageCardHand
+          hand={user.hand}
+          onSelectCard={isUserTheCurrentPlayer ? onSelectCard : undefined}
+          disabledSelectButton={isLoading}
+          sizeRatio={6}
+        />
+      </FloatingHand>
     </Step>
   );
 }
