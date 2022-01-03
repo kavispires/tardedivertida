@@ -3,6 +3,7 @@ import { useLoading } from '../../hooks';
 // Components
 import {
   Card,
+  FloatingHand,
   ImageCardHand as Hand,
   Instruction,
   ReadyPlayersBar,
@@ -64,12 +65,14 @@ function StepPlayCard({
       </ViewIf>
       <TableFaceDown players={players} user={user} />
       <ReadyPlayersBar players={players} />
-      <Hand
-        hand={user.hand}
-        onSelectCard={hasPlayedCardAlready ? undefined : onSelectCard}
-        disabledSelectButton={isLoading || hasPlayedCardAlready}
-        sizeRatio={user.hand.length}
-      />
+      <FloatingHand>
+        <Hand
+          hand={user.hand}
+          onSelectCard={hasPlayedCardAlready ? undefined : onSelectCard}
+          disabledSelectButton={isLoading || hasPlayedCardAlready}
+          sizeRatio={user.hand.length}
+        />
+      </FloatingHand>
     </div>
   );
 }

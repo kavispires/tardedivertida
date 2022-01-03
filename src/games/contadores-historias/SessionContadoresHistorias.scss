@@ -105,7 +105,6 @@
     overflow: hidden;
 
     top: -100%;
-    // opacity: 0;
     transform: translateX(-50%) rotate(-180deg);
   }
 
@@ -116,7 +115,6 @@
     position: absolute;
 
     top: 100%;
-    // opacity: 0;
     transform: translateX(-50%) rotate(-180deg);
   }
 }
@@ -126,9 +124,11 @@
   font-size: 1.25rem;
   max-width: 720px;
   margin: 0.5em auto;
+
   .card__text {
-    font-family: 'Architects Daughter', cursive;
+    font-family: 'Dancing Script', cursive;
     text-transform: none;
+    font-size: 1.5rem;
   }
 }
 
@@ -142,13 +142,15 @@
   padding: get-unit(2);
   color: white;
   background: get-color(brown, 6);
+  border-radius: get-unit(1);
+  border: get-color(brown, 7) get-unit(1) groove;
+  @include box-shadow;
 
   &__card-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: get-unit(1);
-    background: rgba($color: black, $alpha: 0.1);
   }
 
   &--vote {

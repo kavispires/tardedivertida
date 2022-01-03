@@ -1,7 +1,15 @@
 // Design Resources
 import { Avatar } from 'antd';
 // Components
-import { AvatarName, ImageCardHand as Hand, Icons, Instruction, Title, Translate } from '../../components';
+import {
+  AvatarName,
+  FloatingHand,
+  ImageCardHand as Hand,
+  Icons,
+  Instruction,
+  Title,
+  Translate,
+} from '../../components';
 
 type StoryWaitingProps = {
   storyteller: GamePlayer;
@@ -27,7 +35,9 @@ function StoryWaiting({ storyteller, user }: StoryWaitingProps) {
           en="In the meantime, examine your cards. You're gonna use them this round."
         />
       </Instruction>
-      <Hand hand={user.hand} sizeRatio={user.hand.length} />
+      <FloatingHand>
+        <Hand hand={user.hand} sizeRatio={user.hand.length} />
+      </FloatingHand>
     </div>
   );
 }
