@@ -88,7 +88,12 @@ function PhaseSecretClue({ state, players, info }: PhaseProps) {
         {/* Step 2 */}
         <Step fullWidth>
           <ViewIf isVisible={!isUserTheLeader}>
-            <StepSecretClueWaiting user={user} leader={leader} />
+            <StepSecretClueWaiting
+              user={user}
+              leader={leader}
+              players={players}
+              turnOrder={state.turnOrder}
+            />
           </ViewIf>
 
           <ViewIf isVisible={isUserTheLeader}>

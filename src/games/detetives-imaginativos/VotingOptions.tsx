@@ -50,7 +50,12 @@ export function VotingOptions({
               <Translate pt="Votos" en="Votes" />: {votedForPlayer.length}
               <ul className="d-voting-options__votes">
                 {votedForPlayer.map((vPlayer) => (
-                  <Avatar id={vPlayer.avatarId} size="small" alt={vPlayer.name} />
+                  <Avatar
+                    key={`voted-for-player-${vPlayer.id}`}
+                    id={vPlayer.avatarId}
+                    size="small"
+                    alt={vPlayer.name}
+                  />
                 ))}
               </ul>
             </div>
