@@ -19,5 +19,6 @@ export * from './TimerBar';
 export * from './TimedButton';
 export * from './Title';
 export * from './Translate';
+export * from './TurnOrder';
 export * from './View';
 export * from './WaitingRoom';
