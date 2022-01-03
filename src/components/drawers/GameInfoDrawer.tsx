@@ -1,6 +1,6 @@
 import { useState } from 'react';
 // Design Resources
-import { Affix, Button, Divider, Drawer } from 'antd';
+import { Button, Divider, Drawer } from 'antd';
 import { InfoCircleOutlined } from '@ant-design/icons';
 // Utils
 import { useLanguage } from '../../hooks';
@@ -40,48 +40,48 @@ export function GameInfoDrawer({ players, state, info, userId }: GameInfoDrawerP
 
   return (
     <>
-      <Affix offsetTop={0}>
+      <div className="game-info-drawer">
         <Button size="small" className="game-info-drawer__button" onClick={showDrawer}>
           {info.title?.[language] ?? '?'} <InfoCircleOutlined />
           {isDevEnv && Boolean(userId) && `${userId}`}
         </Button>
-      </Affix>
 
-      <Drawer
-        title={info?.title?.[language]}
-        placement="right"
-        closable={false}
-        onClose={onClose}
-        visible={visible}
-      >
-        {completeMe && <SectionMe player={completeMe} isTeamGame={isTeamGame} />}
+        <Drawer
+          title={info?.title?.[language]}
+          placement="right"
+          closable={false}
+          onClose={onClose}
+          visible={visible}
+        >
+          {completeMe && <SectionMe player={completeMe} isTeamGame={isTeamGame} />}
 
-        <Divider />
+          <Divider />
 
-        <SectionSettings />
+          <SectionSettings />
 
-        <Divider />
+          <Divider />
 
-        <RulesModal gameInfo={info} />
+          <RulesModal gameInfo={info} />
 
-        <Divider />
+          <Divider />
 
-        <SectionMeta
-          round={state?.round || 0}
-          groupScore={state?.groupScore}
-          pointsToVictory={state?.pointsToVictory}
-          isTeamGame={isTeamGame}
-          teams={state?.teams}
-        />
+          <SectionMeta
+            round={state?.round || 0}
+            groupScore={state?.groupScore}
+            pointsToVictory={state?.pointsToVictory}
+            isTeamGame={isTeamGame}
+            teams={state?.teams}
+          />
 
-        <Divider />
+          <Divider />
 
-        {isTeamGame ? (
-          <SectionTeams players={players} teams={state?.teams} />
-        ) : (
-          <SectionRankedPlayers players={players} />
-        )}
-      </Drawer>
+          {isTeamGame ? (
+            <SectionTeams players={players} teams={state?.teams} />
+          ) : (
+            <SectionRankedPlayers players={players} />
+          )}
+        </Drawer>
+      </div>
     </>
   );
 }
