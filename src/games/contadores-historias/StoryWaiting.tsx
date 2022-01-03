@@ -9,14 +9,17 @@ import {
   Instruction,
   Title,
   Translate,
+  TurnOrder,
 } from '../../components';
 
 type StoryWaitingProps = {
   storyteller: GamePlayer;
   user: GamePlayer;
+  players: GamePlayers;
+  gameOrder: PlayerId[];
 };
 
-function StoryWaiting({ storyteller, user }: StoryWaitingProps) {
+function StoryWaiting({ storyteller, user, players, gameOrder }: StoryWaitingProps) {
   return (
     <div className="c-story-waiting">
       <Title>
@@ -35,6 +38,7 @@ function StoryWaiting({ storyteller, user }: StoryWaitingProps) {
           en="In the meantime, examine your cards. You're gonna use them this round."
         />
       </Instruction>
+      <TurnOrder players={players} activePlayerId={storyteller.id} order={gameOrder} />
       <FloatingHand>
         <Hand hand={user.hand} sizeRatio={user.hand.length} />
       </FloatingHand>
