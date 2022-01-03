@@ -82,7 +82,12 @@ function PhaseStory({ state, players, info }: PhaseProps) {
         {/* Step 2 */}
         <Step fullWidth>
           <ViewIf isVisible={!isUserTheStoryTeller}>
-            <StoryWaiting user={user} storyteller={storyteller} />
+            <StoryWaiting
+              user={user}
+              storyteller={storyteller}
+              players={players}
+              gameOrder={state.gameOrder}
+            />
           </ViewIf>
 
           <ViewIf isVisible={isUserTheStoryTeller}>
