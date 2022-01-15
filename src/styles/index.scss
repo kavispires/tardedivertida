@@ -15,9 +15,7 @@
 @import './global';
 
 // Shared Components
-@import '../components/avatars/AvatarEntry.scss';
-@import '../components/avatars/AvatarName.scss';
-@import '../components/avatars/SheepAvatar.scss';
+@import '../components/avatars/avatars.scss';
 @import '../components/loaders/loaders.scss';
 @import '../components/lobby/lobby.scss';
 @import '../components/lobby/_internal/CloudBackground.scss';

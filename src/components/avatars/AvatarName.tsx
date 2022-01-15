@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 // Resources
-import { AVATARS as avatars } from '../../utils/constants';
+import { AVATARS } from '../../utils/constants';
 // Hooks
 import { useGlobalState, useLanguage } from '../../hooks';
 // Components
@@ -15,8 +15,6 @@ type AvatarNameProps = {
   uppercase?: boolean;
   addressUser?: boolean;
 };
-
-const AVATARS: PlainObject = avatars;
 
 export const AvatarName = ({
   player,
