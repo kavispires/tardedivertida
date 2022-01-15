@@ -1,14 +1,19 @@
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
+// Design Resources
+import { Popconfirm } from 'antd';
 // Hooks
 import { useDimensions, useLanguage, useLoading } from '../../hooks';
 // Components
-import { ImageCard } from '../../components/cards';
-// Utils
-import { Popconfirm } from 'antd';
-import { translate } from '../../components/shared';
+import { ImageCard, translate } from '../../components';
 
-export function Suspects({ suspects, perpetrator, onCardClick, eliminatedSuspects = [] }) {
+type SuspectsProps = {
+  suspects: Suspect[];
+  perpetrator?: Suspect;
+  onCardClick?: GenericFunction;
+  eliminatedSuspects?: string[];
+};
+
+export function Suspects({ suspects, perpetrator, onCardClick, eliminatedSuspects = [] }: SuspectsProps) {
   const language = useLanguage();
   const [isLoading] = useLoading();
   const [width] = useDimensions();
@@ -78,26 +83,3 @@ export function Suspects({ suspects, perpetrator, onCardClick, eliminatedSuspect
     </div>
   );
 }
-
-Suspects.propTypes = {
-  eliminatedSuspects: PropTypes.arrayOf(PropTypes.string),
-  onCardClick: PropTypes.func,
-  perpetrator: PropTypes.shape({
-    id: PropTypes.string,
-    name: PropTypes.shape({
-      pt: PropTypes.string,
-      en: PropTypes.string,
-    }),
-    gender: PropTypes.string,
-  }),
-  suspects: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string,
-      name: PropTypes.shape({
-        pt: PropTypes.string,
-        en: PropTypes.string,
-      }),
-      gender: PropTypes.string,
-    })
-  ).isRequired,
-};

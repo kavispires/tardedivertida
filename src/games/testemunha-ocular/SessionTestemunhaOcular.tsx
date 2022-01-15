@@ -9,8 +9,8 @@ import PhaseQuestioning from './PhaseQuestioning';
 import PhaseTrial from './PhaseTrial';
 import PhaseGameOver from './PhaseGameOver';
 
-function SessionTestemunhaOcular({ gameId }) {
-  function getActiveComponent(phase) {
+function SessionTestemunhaOcular({ gameId }: GameSession) {
+  function getActiveComponent(phase: string) {
     switch (phase) {
       case PHASES.DEFAULT.LOBBY:
         return PhaseLobby;
