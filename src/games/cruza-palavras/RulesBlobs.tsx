@@ -30,3 +30,34 @@ export function WritingCluesRule({ playerCount }: { playerCount: number }) {
     </Instruction>
   );
 }
+
+export function ScoringRule({ playerCount }: { playerCount: number }) {
+  return (
+    <Instruction>
+      <Translate
+        pt={
+          <>
+            Você ganha 2 pontos para cada célula com uma resposta correta sua.
+            <br />
+            + 1 ponto para cada célula com uma dica mas uma resposta errada sua.
+            <br />
+            + 1 ponto para cada voto correto que sua dica recebeu.
+            <br />
+            Mas se ninguém acertar sua dica, você perde {playerCount} pontos.
+          </>
+        }
+        en={
+          <>
+            You get 2 points for each cell with your correct answer.
+            <br />
+            + 1 point for each cell with a clue but with a wrong answer of yours.
+            <br />
+            + 1 point for each correct vote your clue received.
+            <br />
+            But if nobody gets your clue correctly, you lose {playerCount} points.
+          </>
+        }
+      />
+    </Instruction>
+  );
+}

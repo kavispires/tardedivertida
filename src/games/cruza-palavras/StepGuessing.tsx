@@ -75,7 +75,7 @@ function StepGuessing({ grid, user, clues, onSubmitGuesses, players }: StepGuess
       return acc;
     }, {});
 
-    onSubmitGuesses(result);
+    onSubmitGuesses({ guesses: result });
   }, [guesses, onSubmitGuesses]);
 
   // Select player's own clue

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 // State & Hooks
-import { useIsUserReady, useAPICall, useUser, useLanguage } from '../../hooks';
+import { useIsUserReady, useUser, useLanguage } from '../../hooks';
+import { useOnSubmitClueAPIRequest } from './api-requests';
 // Resources & Utils
-import { CRUZA_PALAVRAS_API } from '../../adapters';
 import { PHASES } from '../../utils/phases';
 // Components
 import {
@@ -21,25 +21,7 @@ function PhaseClueWriting({ players, state, info }: PhaseProps) {
   const user = useUser(players);
   const [step, setStep] = useState(0);
 
-  const onSubmitClueAPIRequest = useAPICall({
-    apiFunction: CRUZA_PALAVRAS_API.submitAction,
-    actionName: 'submit-clue',
-    onBeforeCall: () => setStep(3),
-    onError: () => setStep(1),
-    successMessage: translate('Dica enviada com sucesso', 'Clue submitted successfully', language),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua dica',
-      'Oops, the application failed to send your clue',
-      language
-    ),
-  });
-
-  const onSubmitClue = (payload: string) => {
-    onSubmitClueAPIRequest({
-      action: 'SUBMIT_CLUE',
-      clue: payload.trim().toLowerCase(),
-    });
-  };
+  const onSubmitClue = useOnSubmitClueAPIRequest(setStep);
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.CRUZA_PALAVRAS.CLUE_WRITING}>

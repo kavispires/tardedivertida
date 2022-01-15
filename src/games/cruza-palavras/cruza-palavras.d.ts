@@ -18,3 +18,11 @@ type CruzaPalavrasGridCell = {
 };
 
 type CruzaPalavraGrid = CruzaPalavrasGridCell[];
+
+type SubmitCluePayload = {
+  clue: string;
+};
+
+type SubmitGuessesPayload = {
+  guesses: PlainObject;
+};
