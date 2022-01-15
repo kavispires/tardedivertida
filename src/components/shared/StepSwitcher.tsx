@@ -39,6 +39,8 @@ export function StepSwitcher({
   waitingRoomInstruction,
   waitingRoomInstructionType = 'PLAYERS',
 }: StepSwitcherProps) {
+  if (!players) console.warn('SetSwitcher is being used without `players`, please add it.');
+
   if (players && step === children.length) {
     return (
       <WaitingRoom
