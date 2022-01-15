@@ -26,7 +26,6 @@ function SecretClueWrite({ user, onSubmitClue }: SecretClueWriteProps) {
 
   const onButtonClick = () => {
     onSubmitClue({
-      action: 'SUBMIT_CLUE',
       clue,
     });
   };

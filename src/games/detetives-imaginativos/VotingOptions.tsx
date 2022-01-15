@@ -39,7 +39,7 @@ export function VotingOptions({
         return (
           <div className="d-voting-options__container" key={`voting-button-${playerOption.name}`}>
             <Button
-              onClick={() => onVote(playerOption.id)}
+              onClick={() => onVote({ vote: playerOption.id })}
               ghost
               size="large"
               disabled={isAllDisabled || user?.vote || isLoading || user?.name === playerOption.name}

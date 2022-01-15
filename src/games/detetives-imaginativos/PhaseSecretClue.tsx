@@ -1,8 +1,8 @@
 import { useState } from 'react';
 // Hooks
-import { useIsUserReady, useWhichPlayerIsThe, useAPICall, useUser, useLanguage } from '../../hooks';
+import { useIsUserReady, useWhichPlayerIsThe, useUser, useLanguage } from '../../hooks';
+import { useOnSubmitSecretClueAPIRequest } from './api-requests';
 // Resources & Utils
-import { DETETIVES_IMAGINATIVOS_API } from '../../adapters';
 import { PHASES } from '../../utils/phases';
 // Components
 import {
@@ -28,22 +28,7 @@ function PhaseSecretClue({ state, players, info }: PhaseProps) {
   const [leader, isUserTheLeader] = useWhichPlayerIsThe('leaderId', state, players);
   const [step, setStep] = useState(0);
 
-  const onSubmitSecretClue = useAPICall({
-    apiFunction: DETETIVES_IMAGINATIVOS_API.submitAction,
-    actionName: 'submit-secret-clue',
-    onBeforeCall: () => setStep(3),
-    onError: () => setStep(0),
-    successMessage: translate(
-      'Pista Secreta submetida com sucesso',
-      'Secret clue submitted successfully',
-      language
-    ),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua pista secreta',
-      'Oops, the application found an error while trying to submit your secret clue',
-      language
-    ),
-  });
+  const onSubmitSecretClue = useOnSubmitSecretClueAPIRequest(setStep);
 
   return (
     <PhaseContainer
@@ -54,12 +39,7 @@ function PhaseSecretClue({ state, players, info }: PhaseProps) {
     >
       <StepSwitcher step={step} conditions={[!isUserReady]} players={players}>
         {/* Step 0 */}
-        <RoundAnnouncement
-          round={state.round}
-          buttonText=" "
-          onPressButton={() => setStep(1)}
-          time={5}
-        ></RoundAnnouncement>
+        <RoundAnnouncement round={state.round} buttonText=" " onPressButton={() => setStep(1)} time={5} />
 
         {/* Step 1 */}
         <PhaseAnnouncement
