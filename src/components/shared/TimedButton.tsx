@@ -29,7 +29,7 @@ export function TimedButton({
   const timeClass = 'timed-button__time';
 
   return (
-    <Button {...props}>
+    <Button {...props} type={type}>
       {label}
       {Boolean(label) && ' '}
       {showTimer && (

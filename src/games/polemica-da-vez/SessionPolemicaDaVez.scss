@@ -1,6 +1,7 @@
 .p-step {
   min-width: 50vw;
 }
+
 .p-topics-card {
   background: get-color(white);
   font-size: 1rem;
@@ -147,6 +148,8 @@
   background: get-color(white);
   padding: get-unit(2 8);
   position: relative;
+  font-size: 2rem;
+  margin: get-unit(2 0 6 0);
 
   &__likes {
     background: get-color(white);
@@ -158,7 +161,12 @@
     padding: get-unit(1 2);
     border-radius: get-unit(1);
     right: 0;
-    transform: translate(80%, -100%);
+    transform: translate(85%, -95%);
+    line-height: 1.5em;
+  }
+
+  &__icon-like {
+    margin-right: get-unit(2);
   }
 }
 
@@ -166,7 +174,7 @@
   display: flex;
   width: 100%;
   justify-content: space-around;
-  margin-bottom: get-unit(10);
+  margin: get-unit(10 0);
 }
 
 .p-player-reaction {
@@ -187,20 +195,6 @@
     position: relative;
     background: #ffffff;
     border-radius: 0.4em;
-
-    &:after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      width: 0;
-      height: 0;
-      border: 0.375em solid transparent;
-      border-top-color: #ffffff;
-      border-bottom: 0;
-      margin-left: -0.375em;
-      margin-bottom: -0.375em;
-    }
   }
 
   &__likes {
@@ -231,12 +225,9 @@
   padding: get-unit(2 6);
 }
 
-.p-icon-like {
-  color: get-color(blue);
-}
-
-.p-icon-dislike {
-  color: get-color(red);
+.p-like-icon {
+  display: inline-block;
+  margin: get-unit(0 2);
 }
 
 .p-icon-correct {

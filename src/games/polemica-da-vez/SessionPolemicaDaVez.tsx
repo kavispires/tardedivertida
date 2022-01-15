@@ -3,13 +3,13 @@ import { GAME_COLLECTION } from '../../utils/constants';
 import { PHASES } from '../../utils/phases';
 // Components
 import { Session, PhaseSetup, PhaseRules, PageError, PhaseLobby } from '../../components';
-import PhaseGameOver from './PhaseGameOver';
 import PhaseTopicSelection from './PhaseTopicSelection';
 import PhaseReact from './PhaseReact';
 import PhaseResolution from './PhaseResolution';
+import PhaseGameOver from './PhaseGameOver';
 
-function SessionPolemicaDaVez({ gameId }) {
-  function getActiveComponent(phase) {
+function SessionPolemicaDaVez({ gameId }: GameSession) {
+  function getActiveComponent(phase: string) {
     switch (phase) {
       case PHASES.DEFAULT.LOBBY:
         return PhaseLobby;

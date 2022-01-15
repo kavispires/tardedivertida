@@ -1,12 +1,22 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
 //Design Resources
 import { Button, Input } from 'antd';
-// Components
-import { Instruction, Title, translate, Translate } from '../../components/shared';
+// Hooks
 import { useLanguage } from '../../hooks';
+// Components
+import { Instruction, Title, translate, Translate } from '../../components';
 
-function TopicSelectionStep({ currentTopics, currentCustomTopic, onSubmitTopic }) {
+type StepTopicSelectionProps = {
+  currentTopics: Topic[];
+  currentCustomTopic: Topic;
+  onSubmitTopic: GenericFunction;
+};
+
+export function StepTopicSelection({
+  currentTopics,
+  currentCustomTopic,
+  onSubmitTopic,
+}: StepTopicSelectionProps) {
   const language = useLanguage();
 
   const [customTopic, setCustomTopic] = useState('');
@@ -22,18 +32,15 @@ function TopicSelectionStep({ currentTopics, currentCustomTopic, onSubmitTopic }
       <Title>
         <Translate pt="Selecione uma assunto" en="Select one topic" />
       </Title>
-      <Instruction level={3}>
+
+      <Instruction contained>
         <Translate pt="Ou escreva um de acordo com o tema" en="Or write one according to the given theme" />
       </Instruction>
 
       <ul className="p-topics-card">
         {currentTopics.map((topic) => (
           <li className="p-topics-card__item" key={topic.id}>
-            <button
-              onClick={() => onSubmitTopic({ topicId: topic.id })}
-              className="p-topic p-topic--button"
-              size="large"
-            >
+            <button onClick={() => onSubmitTopic({ topicId: topic.id })} className="p-topic p-topic--button">
               {topic.text}
             </button>
           </li>
@@ -59,19 +66,3 @@ function TopicSelectionStep({ currentTopics, currentCustomTopic, onSubmitTopic }
     </div>
   );
 }
-
-TopicSelectionStep.propTypes = {
-  currentCustomTopic: PropTypes.shape({
-    id: PropTypes.string,
-    text: PropTypes.string,
-  }),
-  currentTopics: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string,
-      text: PropTypes.string,
-    })
-  ),
-  onSubmitTopic: PropTypes.func,
-};
-
-export default TopicSelectionStep;

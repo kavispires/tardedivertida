@@ -6,7 +6,6 @@ import { useLanguage } from '../../hooks';
 import { PHASES } from '../../utils/phases';
 // Components
 import {
-  WaitingRoom,
   Instruction,
   PhaseAnnouncement,
   PhaseContainer,
@@ -14,21 +13,27 @@ import {
   StepSwitcher,
   Translate,
   translate,
-} from '../../components/shared';
-import ResolutionStep from './ResolutionStep';
+  Title,
+  RankingBoard,
+  AdminNextRoundButton,
+} from '../../components';
+import { StepResolution } from './StepResolution';
 
-function PhaseReact({ state, players, info }) {
+function PhaseReact({ state, players, info }: PhaseProps) {
   const language = useLanguage();
   const [step, setStep] = useState(0);
 
   return (
-    <PhaseContainer
-      info={info}
-      phase={state?.phase}
-      allowedPhase={PHASES.POLEMICA_DA_VEZ.RESOLUTION}
-      className="p-phase"
-    >
-      <StepSwitcher step={step}>
+    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.POLEMICA_DA_VEZ.RESOLUTION}>
+      <StepSwitcher
+        step={step}
+        players={players}
+        waitingRoomInstruction={translate(
+          'Vamos aguardar enquanto os outros jogadores terminam!',
+          'Please wait while other players finish!',
+          language
+        )}
+      >
         {/* Step 0 */}
         <PhaseAnnouncement
           type="review"
@@ -58,19 +63,19 @@ function PhaseReact({ state, players, info }) {
 
         {/* Step 1 */}
         <Step fullWidth>
-          <ResolutionStep
-            ranking={state.ranking}
+          <StepResolution
             players={players}
             customTopic={state.customTopic}
             currentTopic={state.currentTopic}
             totalLikes={state.totalLikes}
-            round={state.round}
+            setStep={setStep}
           />
         </Step>
 
-        {/* Step 2 */}
         <Step fullWidth>
-          <WaitingRoom players={players} />
+          <Title>Ranking</Title>
+          <RankingBoard ranking={state.ranking} players={players} />
+          <AdminNextRoundButton round={state.round} />
         </Step>
       </StepSwitcher>
     </PhaseContainer>

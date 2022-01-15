@@ -1,17 +1,22 @@
 import { useMemo, useState } from 'react';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
 //Design Resources
-import { Button } from 'antd';
-import { DislikeFilled, LikeFilled } from '@ant-design/icons';
+import { Avatar, Button } from 'antd';
 // Components
-import { Instruction, Title, Translate } from '../../components/shared';
+import { Icons, Instruction, Step, Title, Translate } from '../../components';
 import { Topic } from './Topic';
 
-function LikingStep({ currentTopic, customTopic, onSubmitReaction, players }) {
-  const [like, setLike] = useState(null);
+type StepLikingProps = {
+  currentTopic: Topic;
+  customTopic: string;
+  onSubmitReaction: GenericFunction;
+  players: GamePlayers;
+};
 
-  const onSubmitReactions = (likes) => {
+export function StepLiking({ currentTopic, customTopic, onSubmitReaction, players }: StepLikingProps) {
+  const [like, setLike] = useState<boolean | null>(null);
+
+  const onSubmitReactions = (likes: number) => {
     onSubmitReaction({ reaction: like, likesGuess: likes });
   };
 
@@ -24,23 +29,21 @@ function LikingStep({ currentTopic, customTopic, onSubmitReaction, players }) {
   );
 
   return (
-    <div className="p-step">
+    <Step fullWidth className="p-step">
       <Title>
-        <Topic topic={customTopic ?? currentTopic?.text} />
+        <Translate pt="O que você acha da polêmica da vez?" en="What do you think of this trending topic?" />
       </Title>
 
-      <Instruction>
-        <Translate pt="O que você acha da polêmica da vez?" en="What do you think of the trending topic?" />
-      </Instruction>
+      <Topic topic={customTopic ?? currentTopic?.text} />
 
       <div className="p-reaction-buttons">
         <Button
           className={clsx('p-reaction-buttons__like', like === true && 'p-reaction-buttons__like--active')}
           size="large"
           type="primary"
-          icon={<LikeFilled />}
           onClick={() => setLike(true)}
         >
+          <Avatar src={<Icons.SpeechBubbleThumbsUp />} shape="square" className="p-like-icon" />
           <Translate pt="Curtir" en="Like" />
         </Button>
         <Button
@@ -50,9 +53,9 @@ function LikingStep({ currentTopic, customTopic, onSubmitReaction, players }) {
           )}
           size="large"
           type="primary"
-          icon={<DislikeFilled />}
           onClick={() => setLike(false)}
         >
+          <Avatar src={<Icons.SpeechBubbleThumbsDown />} shape="square" className="p-like-icon" />
           <Translate pt="Não curto" en="Dislike" />
         </Button>
       </div>
@@ -85,17 +88,6 @@ function LikingStep({ currentTopic, customTopic, onSubmitReaction, players }) {
           </ul>
         </>
       )}
-    </div>
+    </Step>
   );
 }
-
-LikingStep.propTypes = {
-  currentTopic: PropTypes.shape({
-    text: PropTypes.string,
-  }),
-  customTopic: PropTypes.string,
-  onSubmitReaction: PropTypes.func,
-  players: PropTypes.object,
-};
-
-export default LikingStep;
