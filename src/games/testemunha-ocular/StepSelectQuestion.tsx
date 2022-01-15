@@ -1,16 +1,30 @@
 // Utils
 import { LETTERS } from '../../utils/constants';
 // Components
-import { Card } from '../../components/cards';
-import { ButtonContainer, Instruction, Title, Translate } from '../../components/shared';
+import { ButtonContainer, Card, Instruction, Step, Title, Translate } from '../../components';
+import { Suspects } from './Suspects';
 
-export function SelectQuestion({ questions, onSelectQuestion, isLoading }) {
+type StepSelectQuestionProps = {
+  questions: Question[];
+  onSelectQuestion: GenericFunction;
+  isLoading: boolean;
+  suspects: Suspect[];
+  previouslyEliminatedSuspects: string[];
+};
+
+export function StepSelectQuestion({
+  questions,
+  onSelectQuestion,
+  isLoading,
+  suspects,
+  previouslyEliminatedSuspects,
+}: StepSelectQuestionProps) {
   return (
-    <div>
+    <Step>
       <Title>
-        <Translate pt="Selecione uma pergunta!" en="Select a question" />
+        <Translate pt="Selecione uma pergunta" en="Select a question" />
       </Title>
-      <Instruction>
+      <Instruction contained>
         <Translate
           pt="A testemunha responderá a pergunta sobre o  sobre criminoso. A pergunta que você não escolher será descartada."
           en="The witness will answer the question about the perpetrator. The unchosen question will be discarded."
@@ -22,10 +36,8 @@ export function SelectQuestion({ questions, onSelectQuestion, isLoading }) {
           return (
             <button
               key={id}
-              type="text"
               className="t-select-question__button"
-              size="large"
-              onClick={() => onSelectQuestion(id)}
+              onClick={() => onSelectQuestion({ questionId: id })}
               disabled={isLoading}
             >
               <Card header={LETTERS[index]} randomColor className="t-card">
@@ -35,6 +47,8 @@ export function SelectQuestion({ questions, onSelectQuestion, isLoading }) {
           );
         })}
       </ButtonContainer>
-    </div>
+
+      <Suspects suspects={suspects} eliminatedSuspects={previouslyEliminatedSuspects} />
+    </Step>
   );
 }

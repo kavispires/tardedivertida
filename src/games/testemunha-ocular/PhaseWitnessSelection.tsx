@@ -1,49 +1,33 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
 // Design Resources
-import { Button, Space } from 'antd';
+import { Avatar, Space } from 'antd';
 // Hooks
-import { useAPICall, useLoading, useLanguage } from '../../hooks';
+import { useLoading, useLanguage, useGlobalState } from '../../hooks';
+import { useOnSelectWitnessAPIRequest } from './api-requests';
 // Resources & Utils
-import { TESTEMUNHA_OCULAR_API } from '../../adapters';
 import { PHASES } from '../../utils/phases';
 // Components
 import {
+  AvatarCard,
   Instruction,
   PhaseAnnouncement,
   PhaseContainer,
   Step,
+  Icons,
   StepSwitcher,
   Title,
   Translate,
   translate,
-} from '../../components/shared';
-import { AdminOnlyContainer } from '../../components/admin';
-import { LoadingClock } from '../../components/icons';
-import { AvatarName } from '../../components/avatars';
+} from '../../components';
+import { WitnessRules } from './TextBlobs';
 
-function PhaseWitnessSelection({ state, players, info }) {
+function PhaseWitnessSelection({ state, players, info }: PhaseProps) {
   const language = useLanguage();
   const [isLoading] = useLoading();
   const [step, setStep] = useState(0);
+  const [isAdmin] = useGlobalState('isAdmin');
 
-  const onSelectWitness = useAPICall({
-    apiFunction: TESTEMUNHA_OCULAR_API.submitAction,
-    actionName: 'select-witness',
-    successMessage: translate('Testemunha enviada com sucesso', 'Witness submitted successfully', language),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar selecionar a testemunha',
-      'Oops, the application found an error while trying to submit the witness',
-      language
-    ),
-  });
-
-  const onWitnessButtonClick = (witnessId) => {
-    onSelectWitness({
-      action: 'SELECT_WITNESS',
-      witnessId,
-    });
-  };
+  const onWitnessButtonClick = useOnSelectWitnessAPIRequest();
 
   return (
     <PhaseContainer
@@ -83,16 +67,31 @@ function PhaseWitnessSelection({ state, players, info }) {
         {/* Step 1 */}
         <Step key={1}>
           <Title>
-            <LoadingClock />
+            <Avatar src={<Icons.AnimatedClock />} size="large" />
             <br />
             <Translate pt="Quem quer ser a testemunha ocular?" en="Who wants to be the eye witness?" />
           </Title>
 
+          <WitnessRules />
+
           <Instruction contained>
             <Space>
-              {Object.values(players).map((player) => (
-                <AvatarName key={`p-a-${player.id}`} player={player} />
-              ))}
+              {Object.values(players).map((player) => {
+                if (isAdmin) {
+                  return (
+                    <button
+                      key={`p-bt-${player.id}`}
+                      disabled={isLoading}
+                      onClick={() => onWitnessButtonClick({ witnessId: player.id })}
+                      className="reset-button invisible-button"
+                    >
+                      <AvatarCard key={`p-a-${player.id}`} player={player} withName addressUser />
+                    </button>
+                  );
+                }
+
+                return <AvatarCard key={`p-a-${player.id}`} player={player} withName addressUser />;
+              })}
             </Space>
           </Instruction>
 
@@ -100,34 +99,10 @@ function PhaseWitnessSelection({ state, players, info }) {
             (
             <Translate pt="O administrator selecionará a testemunha" en="The VIP will select the witness" />)
           </Instruction>
-
-          <AdminOnlyContainer>
-            {Object.values(players).map((player) => (
-              <Button
-                key={`p-bt-${player.id}`}
-                disabled={isLoading}
-                onClick={() => onWitnessButtonClick(player.id)}
-              >
-                {player.name}
-              </Button>
-            ))}
-          </AdminOnlyContainer>
         </Step>
       </StepSwitcher>
     </PhaseContainer>
   );
 }
-
-PhaseWitnessSelection.propTypes = {
-  info: PropTypes.object,
-  players: PropTypes.object,
-  state: PropTypes.shape({
-    phase: PropTypes.string,
-    round: PropTypes.shape({
-      current: PropTypes.number,
-      total: PropTypes.number,
-    }),
-  }),
-};
 
 export default PhaseWitnessSelection;
