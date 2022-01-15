@@ -29,7 +29,6 @@ function StoryWriting({ user, onSubmitStory }: StoryWritingProps) {
   const onButtonClick = () => {
     if (cardId && story) {
       onSubmitStory({
-        action: 'SUBMIT_STORY',
         story: story.trim(),
         cardId,
       });
