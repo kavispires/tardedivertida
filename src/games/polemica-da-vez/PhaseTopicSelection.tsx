@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
 // Hooks
-import { useAPICall, useLanguage, useWhichPlayerIsThe } from '../../hooks';
+import { useLanguage, useWhichPlayerIsThe } from '../../hooks';
+import { useOnSubmitTopicAPIRequest } from './api-requests';
 // Resources & Utils
-import { POLEMICA_DA_VEZ_API } from '../../adapters';
 import { PHASES } from '../../utils/phases';
 // Components
 import {
+  AvatarName,
   Instruction,
   PhaseAnnouncement,
   PhaseContainer,
@@ -17,43 +17,27 @@ import {
   translate,
   ViewIf,
   WaitingRoom,
-} from '../../components/shared';
-import { AvatarName } from '../../components/avatars';
-import TopicSelectionStep from './TopicSelectionStep';
+} from '../../components';
+import { StepTopicSelection } from './StepTopicSelection';
 
-function PhaseTopicSelection({ state, players, info }) {
+function PhaseTopicSelection({ state, players, info }: PhaseProps) {
   const language = useLanguage();
   const [activePlayer, isUserTheActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
   const [step, setStep] = useState(0);
 
-  const onSubmitTopicAPIRequest = useAPICall({
-    apiFunction: POLEMICA_DA_VEZ_API.submitAction,
-    actionName: 'submit-topic',
-    onBeforeCall: () => setStep(3),
-    onError: () => setStep(2),
-    successMessage: translate('Assunto enviada com sucesso!', 'Topic send successfully!', language),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar seu assunto',
-      'Oops, the application failed to submit the topic',
-      language
-    ),
-  });
-
-  const onSubmitTopic = (payload) => {
-    onSubmitTopicAPIRequest({
-      action: 'SUBMIT_TOPIC',
-      ...payload,
-    });
-  };
+  const onSubmitTopic = useOnSubmitTopicAPIRequest(setStep);
 
   return (
-    <PhaseContainer
-      info={info}
-      phase={state?.phase}
-      allowedPhase={PHASES.POLEMICA_DA_VEZ.TOPIC_SELECTION}
-      className="p-phase"
-    >
-      <StepSwitcher step={step}>
+    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.POLEMICA_DA_VEZ.TOPIC_SELECTION}>
+      <StepSwitcher
+        step={step}
+        players={players}
+        waitingRoomInstruction={translate(
+          'Vamos aguardar enquanto os outros jogadores terminam!',
+          'Please wait while other players finish!',
+          language
+        )}
+      >
         {/* Step 0 */}
         <RoundAnnouncement round={state.round} onPressButton={() => setStep(1)} time={4}>
           <Instruction contained>
@@ -105,7 +89,7 @@ function PhaseTopicSelection({ state, players, info }) {
         {/* Step 2 */}
         <Step fullWidth>
           <ViewIf isVisible={isUserTheActivePlayer}>
-            <TopicSelectionStep
+            <StepTopicSelection
               currentTopics={state.currentTopics}
               currentCustomTopic={state.currentCustomTopic}
               onSubmitTopic={onSubmitTopic}
@@ -128,28 +112,9 @@ function PhaseTopicSelection({ state, players, info }) {
             />
           </ViewIf>
         </Step>
-
-        {/* Step 3 */}
-        <Step fullWidth>
-          <WaitingRoom players={players} />
-        </Step>
       </StepSwitcher>
     </PhaseContainer>
   );
 }
-
-PhaseTopicSelection.propTypes = {
-  info: PropTypes.object,
-  players: PropTypes.object,
-  state: PropTypes.shape({
-    currentCustomTopic: PropTypes.object,
-    currentTopics: PropTypes.object,
-    phase: PropTypes.string,
-    round: PropTypes.shape({
-      current: PropTypes.number,
-      total: PropTypes.number,
-    }),
-  }),
-};
 
 export default PhaseTopicSelection;
