@@ -1,8 +1,8 @@
 import { useState } from 'react';
 // Hooks
-import { useIsUserReady, useWhichPlayerIsThe, useAPICall, useUser, useLanguage } from '../../hooks';
+import { useIsUserReady, useWhichPlayerIsThe, useUser, useLanguage } from '../../hooks';
+import { useOnSubmitStoryAPIRequest } from './api-requests';
 // Resources & Utils
-import { CONTADORES_HISTORIAS_API } from '../../adapters';
 import { PHASES } from '../../utils/phases';
 // Components
 import {
@@ -30,18 +30,7 @@ function PhaseStory({ state, players, info }: PhaseProps) {
   const [nextStoryteller] = useWhichPlayerIsThe('nextStorytellerId', state, players);
   const [step, setStep] = useState(0);
 
-  const onSubmitStory = useAPICall({
-    apiFunction: CONTADORES_HISTORIAS_API.submitAction,
-    actionName: 'submit-story',
-    onBeforeCall: () => setStep(3),
-    onError: () => setStep(0),
-    successMessage: translate('História submetida com sucesso', 'Story submitted successfully', language),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua história',
-      'Oops, the application found an error while trying to submit your story',
-      language
-    ),
-  });
+  const onSubmitStory = useOnSubmitStoryAPIRequest(setStep);
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.CONTADORES_HISTORIAS.STORY}>

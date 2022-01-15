@@ -36,7 +36,6 @@ function StepVoting({ players, story, user, onSubmitVote, storyteller, table }: 
 
   const onSelectCard = (vote: string) => {
     onSubmitVote({
-      action: 'SUBMIT_VOTE',
       vote,
     });
   };

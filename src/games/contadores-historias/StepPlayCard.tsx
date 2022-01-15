@@ -35,7 +35,6 @@ function StepPlayCard({
 
   const onSelectCard = (cardId: string) => {
     onPlayCard({
-      action: 'PLAY_CARD',
       cardId,
     });
   };
