@@ -44,7 +44,6 @@ function StepEvaluation({ drawings, cards, players, onSubmitVoting }: StepEvalua
   const user = useUser(players);
   const canvasWidth = useCardWidth(Math.min(Object.keys(players).length, 6), 16, 150, 500);
   const [canvasSize, setCanvasSize] = useGlobalState('canvasSize');
-
   const { votes, setVotes, activeItem, activateItem, resetVoting } = useVotingMatch(
     'drawing',
     true,
@@ -97,6 +96,7 @@ function StepEvaluation({ drawings, cards, players, onSubmitVoting }: StepEvalua
       setVotes((s: any) => ({ ...s, ...selection }));
     }
   }, [selectOwnDrawing, setVotes]);
+
   return (
     <Step className="a-evaluation-step">
       <PopoverRule content={<RulesEvaluation />} />

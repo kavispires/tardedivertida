@@ -2,9 +2,9 @@ import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import useSound from 'use-sound';
 // State & Hooks
-import { useIsUserReady, useAPICall, useUser, useLanguage } from '../../hooks';
+import { useIsUserReady, useUser, useLanguage } from '../../hooks';
+import { useOnSubmitDrawingAPIRequest } from './api-requests';
 // Resources & Utils
-import { ARTE_RUIM_API } from '../../adapters';
 import { PHASES } from '../../utils/phases';
 // Components
 import {
@@ -17,6 +17,7 @@ import {
   Translate,
 } from '../../components';
 import StepDraw from './StepDraw';
+
 // Sound
 const arteRuimTimer = require('../../sounds/arte-ruim-timer.mp3');
 
@@ -32,29 +33,7 @@ function PhaseDraw({ players, state, info }: PhaseProps) {
     setSecretCard(players[user?.id]?.currentCard ?? {});
   }, [players, user?.id]);
 
-  const onSubmitDrawingAPIRequest = useAPICall({
-    apiFunction: ARTE_RUIM_API.submitAction,
-    actionName: 'submit-drawing',
-    onBeforeCall: () => setStep(3),
-    onError: () => setStep(1),
-    successMessage: translate(
-      'Acabou o tempo! Aguarde enquanto os outros participantes desenham',
-      "Time's up! Wait for the other players to finish their art",
-      language
-    ),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar o desenho',
-      'Oops, the application failed to send your art',
-      language
-    ),
-  });
-
-  const onSubmitDrawing = (payload: any) => {
-    onSubmitDrawingAPIRequest({
-      action: 'SUBMIT_DRAWING',
-      ...payload,
-    });
-  };
+  const onSubmitDrawing = useOnSubmitDrawingAPIRequest(setStep);
 
   const onStartDrawing = () => {
     play();
