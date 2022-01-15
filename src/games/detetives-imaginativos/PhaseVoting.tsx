@@ -1,8 +1,8 @@
 import { useState } from 'react';
 // Hooks
-import { useAPICall, useUser, useLoading, useLanguage, useWhichPlayerIsThe } from '../../hooks';
+import { useUser, useLoading, useLanguage, useWhichPlayerIsThe } from '../../hooks';
+import { useOnSubmitVoteAPIRequest } from './api-requests';
 // Resources & Utils
-import { DETETIVES_IMAGINATIVOS_API } from '../../adapters';
 import { PHASES } from '../../utils/phases';
 // Components
 import {
@@ -22,23 +22,7 @@ function PhaseVoting({ state, players, info }: PhaseProps) {
   const [, isUserTheLeader] = useWhichPlayerIsThe('leaderId', state, players);
   const [step, setStep] = useState(0);
 
-  const onSubmitVote = useAPICall({
-    apiFunction: DETETIVES_IMAGINATIVOS_API.submitAction,
-    actionName: 'submit-vote',
-    successMessage: translate('Voto enviado com sucesso', 'Vote submitted successfully', language),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar seu voto',
-      'Oops, the application found an error while trying to submit your vote',
-      language
-    ),
-  });
-
-  const onVote = (playerId: string) => {
-    onSubmitVote({
-      action: 'SUBMIT_VOTE',
-      vote: playerId,
-    });
-  };
+  const onSubmitVote = useOnSubmitVoteAPIRequest();
 
   return (
     <PhaseContainer
@@ -80,7 +64,7 @@ function PhaseVoting({ state, players, info }: PhaseProps) {
           players={players}
           leaderId={state.leaderId}
           user={user}
-          onVote={onVote}
+          onVote={onSubmitVote}
           isLoading={isLoading}
           isUserTheLeader={isUserTheLeader}
           table={state.table}

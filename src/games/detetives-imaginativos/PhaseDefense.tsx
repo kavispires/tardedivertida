@@ -2,9 +2,8 @@ import { useEffect, useState } from 'react';
 // Design Resources
 import { message } from 'antd';
 // Hooks
-import { useWhichPlayerIsThe, useAPICall, useLoading, useLanguage } from '../../hooks';
+import { useWhichPlayerIsThe, useLoading, useLanguage } from '../../hooks';
 // Resources & Utils
-import { DETETIVES_IMAGINATIVOS_API } from '../../adapters';
 import { PHASES } from '../../utils/phases';
 // Components
 import {
@@ -19,6 +18,7 @@ import {
   translate,
 } from '../../components';
 import StepDefending from './StepDefending';
+import { useOnFinishDefenseRequest } from './api-requests';
 
 function PhaseDefense({ state, players, info }: PhaseProps) {
   const language = useLanguage();
@@ -26,22 +26,7 @@ function PhaseDefense({ state, players, info }: PhaseProps) {
   const [currentPlayer, isUserTheCurrentPlayer] = useWhichPlayerIsThe('currentPlayerId', state, players);
   const [step, setStep] = useState(0);
 
-  const onFinishDefense = useAPICall({
-    apiFunction: DETETIVES_IMAGINATIVOS_API.submitAction,
-    actionName: 'submit-secret-clue',
-    successMessage: translate('Defesa concluída com sucesso', 'Defense concluded successfully', language),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar concluir sua defesa',
-      'Oops, the application found an error while trying to conclude your defense',
-      language
-    ),
-  });
-
-  const onFinishDefenseClick = () => {
-    onFinishDefense({
-      action: 'DEFEND',
-    });
-  };
+  const onFinishDefense = useOnFinishDefenseRequest();
 
   useEffect(() => {
     if (isUserTheCurrentPlayer && step > 0) {
@@ -95,7 +80,7 @@ function PhaseDefense({ state, players, info }: PhaseProps) {
           currentPlayer={currentPlayer}
           isUserTheCurrentPlayer={isUserTheCurrentPlayer}
           table={state.table}
-          onFinishDefenseClick={onFinishDefenseClick}
+          onFinishDefenseClick={onFinishDefense}
           isLoading={isLoading}
         />
       </StepSwitcher>

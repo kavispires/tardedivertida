@@ -24,7 +24,7 @@ type StepPlayCardProps = {
   table: DetetivesImaginativosCardEntry[];
   players: GamePlayers;
   user: GamePlayer;
-  onSelectCard: GenericFunction;
+  onPlayCard: GenericFunction;
   isLoading: boolean;
 };
 
@@ -36,9 +36,11 @@ function StepPlayCard({
   table,
   players,
   user,
-  onSelectCard,
+  onPlayCard,
   isLoading,
 }: StepPlayCardProps) {
+  const onSelectCard = (cardId: string) => onPlayCard({ cardId });
+
   return (
     <Step key={1}>
       <Title>
