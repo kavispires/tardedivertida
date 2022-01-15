@@ -25,15 +25,7 @@ function PhaseReact({ state, players, info }: PhaseProps) {
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.POLEMICA_DA_VEZ.RESOLUTION}>
-      <StepSwitcher
-        step={step}
-        players={players}
-        waitingRoomInstruction={translate(
-          'Vamos aguardar enquanto os outros jogadores terminam!',
-          'Please wait while other players finish!',
-          language
-        )}
-      >
+      <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
           type="review"
