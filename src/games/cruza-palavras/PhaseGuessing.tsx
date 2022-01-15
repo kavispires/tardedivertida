@@ -25,16 +25,7 @@ function PhaseGuessing({ players, state, info }: PhaseProps) {
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.CRUZA_PALAVRAS.GUESSING}>
-      <StepSwitcher
-        step={step}
-        conditions={[!isUserReady, !isUserReady]}
-        players={players}
-        waitingRoomInstruction={translate(
-          'Vamos aguardar enquanto os outros jogadores terminam!',
-          'Please wait while other players finish!',
-          language
-        )}
-      >
+      <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady]} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
           type="guess"

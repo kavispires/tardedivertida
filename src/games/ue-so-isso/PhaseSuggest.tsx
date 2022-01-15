@@ -52,16 +52,7 @@ function PhaseSuggest({ state, players, info }: PhaseProps) {
       allowedPhase={PHASES.UE_SO_ISSO.SUGGEST}
       className="word-selection-phase"
     >
-      <StepSwitcher
-        step={step}
-        conditions={[!isUserReady]}
-        players={players}
-        waitingRoomInstruction={translate(
-          'Aguarde os outros jogadores',
-          'Wait for the other players',
-          language
-        )}
-      >
+      <StepSwitcher step={step} conditions={[!isUserReady]} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
           type="writing"

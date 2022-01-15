@@ -29,15 +29,7 @@ function PhaseTopicSelection({ state, players, info }: PhaseProps) {
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.POLEMICA_DA_VEZ.TOPIC_SELECTION}>
-      <StepSwitcher
-        step={step}
-        players={players}
-        waitingRoomInstruction={translate(
-          'Vamos aguardar enquanto os outros jogadores terminam!',
-          'Please wait while other players finish!',
-          language
-        )}
-      >
+      <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <RoundAnnouncement round={state.round} onPressButton={() => setStep(1)} time={4}>
           <Instruction contained>

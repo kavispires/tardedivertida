@@ -17,7 +17,6 @@ import {
   Translate,
   translate,
   ViewIf,
-  WaitingRoom,
 } from '../../components';
 import StoryWaiting from './StoryWaiting';
 import StoryWriting from './StoryWriting';
@@ -83,17 +82,6 @@ function PhaseStory({ state, players, info }: PhaseProps) {
             <StoryWriting user={user} onSubmitStory={onSubmitStory} />
           </ViewIf>
         </Step>
-
-        {/* Step 3 */}
-        <WaitingRoom
-          players={players}
-          title={translate('Pronto!', 'Done!', language)}
-          instruction={translate(
-            'Aguardando o servidor dar sinal de vida',
-            'Waiting for the server to resuscitate',
-            language
-          )}
-        />
       </StepSwitcher>
     </PhaseContainer>
   );
