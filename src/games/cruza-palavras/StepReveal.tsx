@@ -11,6 +11,7 @@ import {
   AvatarName,
   ButtonContainer,
   Instruction,
+  PopoverRule,
   TimedButton,
   Title,
   translate,
@@ -19,6 +20,7 @@ import {
 import WordGrid from './WordGrid';
 import ClueCard from './ClueCard';
 import PreviousClue from './PreviousClue';
+import { ScoringRule } from './RulesBlobs';
 
 const AVATARS: PlainObject = avatars;
 
@@ -213,12 +215,15 @@ function StepReveal({ grid, user, players, clues, nextStep, whoGotNoPoints }: St
   }, {});
 
   const whoGotNoPointsNames = whoGotNoPoints.map((playerId) => players[playerId]);
+  const playerCount = Object.keys(players).length;
 
   return (
     <div className="x-step">
       <Title>
-        <Translate pt="Resultado" en="Resultado" />
+        <Translate pt="Resultado" en="Results" />
       </Title>
+
+      <PopoverRule content={<ScoringRule playerCount={playerCount} />} />
 
       {Boolean(whoGotNoPoints.length) && (
         <Instruction contained>
@@ -228,12 +233,16 @@ function StepReveal({ grid, user, players, clues, nextStep, whoGotNoPoints }: St
               <>
                 Ninguém acertou a(s) dica(s) dadas por
                 <BadCluesPlayersList badCluesPlayersList={whoGotNoPointsNames} />, então ele(s) perde(m){' '}
-                {Object.keys(players).length} pontos.
+                {playerCount} pontos.
               </>
             }
-            en={`Nobody got the clues given by ${(
-              <BadCluesPlayersList badCluesPlayersList={whoGotNoPointsNames} />
-            )}, so they lost ${Object.keys(players).length} points.`}
+            en={
+              <>
+                Nobody got the clues given by
+                <BadCluesPlayersList badCluesPlayersList={whoGotNoPointsNames} />, so they lose {playerCount}{' '}
+                points.
+              </>
+            }
           />
         </Instruction>
       )}

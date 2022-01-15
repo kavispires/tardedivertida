@@ -10,6 +10,7 @@ import {
   Instruction,
   PhaseAnnouncement,
   PhaseContainer,
+  PopoverRule,
   RankingBoard,
   Step,
   StepSwitcher,
@@ -19,12 +20,14 @@ import {
 } from '../../components';
 import StepReveal from './StepReveal';
 import { Button } from 'antd';
+import { ScoringRule } from './RulesBlobs';
 
 function PhaseReveal({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
   const language = useLanguage();
   const user = useUser(players);
   const [step, setStep] = useState(0);
+  const playerCount = Object.keys(players).length;
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.CRUZA_PALAVRAS.REVEAL}>
@@ -36,32 +39,7 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
           onClose={() => setStep(1)}
           currentRound={state?.round?.current}
         >
-          <Instruction>
-            <Translate
-              pt={
-                <>
-                  Você ganha 2 pontos para cada célula com uma resposta correta sua.
-                  <br />
-                  + 1 ponto para cada célula com uma dica mas uma resposta errada sua.
-                  <br />
-                  + 1 ponto para cada voto correto que sua dica recebeu.
-                  <br />
-                  Mas se ninguém acertar sua dica, você perde {Object.keys(players).length} pontos.
-                </>
-              }
-              en={
-                <>
-                  You get 2 points for each cell with your correct answer.
-                  <br />
-                  + 1 point for each cell with a clue but with a wrong answer of yours.
-                  <br />
-                  + 1 point for each correct vote your clue received.
-                  <br />
-                  But if nobody gets your clue correctly, you lose ${Object.keys(players).length} points.
-                </>
-              }
-            />
-          </Instruction>
+          <ScoringRule playerCount={playerCount} />
         </PhaseAnnouncement>
 
         {/* Step 1 */}
@@ -83,6 +61,8 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
               en="Points Distribution: Correct guesses | Received votes | Penalty for nobody getting your clue correctly"
             />
           </Instruction>
+
+          <PopoverRule content={<ScoringRule playerCount={playerCount} />} />
 
           <RankingBoard ranking={state.ranking} players={players} />
 
