@@ -1,5 +1,3 @@
-export * from './LoadingCircles';
-export * from './LoadingBox';
 export * from './LoadingClock';
 
 export * from './AnimatedClock';
@@ -48,6 +46,10 @@ export * from './Sheep';
 export * from './Sketch';
 export * from './Skull';
 export * from './SoundWave';
+export * from './SpeechBubbleAccepted';
+export * from './SpeechBubbleDeclined';
+export * from './SpeechBubbleThumbsDown';
+export * from './SpeechBubbleThumbsUp';
 export * from './TheEnd';
 export * from './Timer';
 export * from './Trending';
