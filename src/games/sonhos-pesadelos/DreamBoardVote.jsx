@@ -7,8 +7,7 @@ import { useCardWidth } from '../../hooks';
 // Utils
 import { getEntryId } from '../../utils/helpers';
 // Components
-import { Translate } from '../../components/shared';
-import Ribbon from '../arte-ruim/Ribbon';
+import { Translate, Ribbon } from '../../components';
 import DreamButton from './DreamButton';
 import DreamCard from './DreamCard';
 
@@ -49,7 +48,7 @@ function DreamBoardVote({ table, user, activeItem, onActivateItem, votes }) {
             key={`board-${entry.cardId}`}
             style={{ maxWidth: `${cardWidth + 20}px` }}
           >
-            {ribbonId && <Ribbon cardEntryId={ribbonId} />}
+            {ribbonId && <Ribbon label={ribbonId.charAt(ribbonId.length - 1)} />}
             <DreamCard
               cardId={entry.cardId}
               cardWidth={cardWidth}

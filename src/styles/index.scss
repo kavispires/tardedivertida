@@ -34,6 +34,7 @@
 @import '../components/shared/TimedButton.scss';
 @import '../components/shared/Title.scss';
 @import '../components/shared/TurnOrder.scss';
+@import '../components/shared/Ribbon.scss';
 @import '../components/shared/StepSwitcher.scss';
 @import '../components/shared/EmergencyAlert.scss';
 @import '../components/shared/RateGameWidget.scss';
@@ -44,12 +45,8 @@
 @import '../components/canvas/DrawingCanvas.scss';
 @import '../components/admin/admin';
 
-// ArteRuim Components
-@import '../games/arte-ruim/SessionArteRuim.scss';
-@import '../games/arte-ruim/EvaluationAllDrawings.scss';
-@import '../games/arte-ruim/EvaluationAllCards.scss';
-@import '../games/arte-ruim/Ribbon.scss';
-@import '../games/arte-ruim/GalleryWindow.scss';
+// Game Styles
+@import '../games/arte-ruim/arte-ruim';
 
 // ContadoresHistorias
 @import '../games/contadores-historias/SessionContadoresHistorias.scss';

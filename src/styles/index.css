@@ -804,6 +804,24 @@ body {
   .game-order__arrow {
     margin: 0 4px; }
 
+.ribbon {
+  z-index: 100;
+  position: absolute;
+  right: var(--right, 16px);
+  top: var(--top, 0px);
+  filter: drop-shadow(2px 3px 2px rgba(0, 0, 0, 0.5)); }
+  .ribbon__content {
+    color: white;
+    font-size: 1.25rem;
+    text-align: center;
+    font-weight: 400;
+    background: #6f7273;
+    padding: 6px 2px 8px;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 50% calc(100% - 8px), 0 100%);
+    width: var(--width, 32px);
+    min-height: var(--height, 36px);
+    transition: clip-path 1s, padding 1s, background 1s; }
+
 .step {
   display: flex;
   flex-direction: column;
@@ -1232,6 +1250,29 @@ body {
   .a-drawing-grade--F {
     background: #d14949; }
 
+.a-evaluation-all-cards {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  overflow-x: auto; }
+  .a-evaluation-all-cards__li-card-button {
+    box-sizing: border-box;
+    cursor: pointer;
+    background-color: transparent;
+    border-radius: 8px;
+    border: 2px solid transparent;
+    transition: background-color 250ms, transform 250ms; }
+    .a-evaluation-all-cards__li-card-button:hover {
+      transform: scale(0.95);
+      background-color: #d14949; }
+    .a-evaluation-all-cards__li-card-button--active {
+      transform: scale(0.9);
+      background-color: #fea245;
+      border: 2px solid white; }
+    .a-evaluation-all-cards__li-card-button--used {
+      opacity: 0.5; }
+
 .a-evaluation-all-drawings {
   width: 100%;
   display: flex;
@@ -1273,47 +1314,6 @@ body {
     font-size: 0.9em;
     transform: perspective(30px);
     box-shadow: 0 8px 5px rgba(0, 0, 0, 0.1); }
-
-.a-evaluation-all-cards {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  overflow-x: auto; }
-  .a-evaluation-all-cards__li-card-button {
-    box-sizing: border-box;
-    cursor: pointer;
-    background-color: transparent;
-    border-radius: 8px;
-    border: 2px solid transparent;
-    transition: background-color 250ms, transform 250ms; }
-    .a-evaluation-all-cards__li-card-button:hover {
-      transform: scale(0.95);
-      background-color: #d14949; }
-    .a-evaluation-all-cards__li-card-button--active {
-      transform: scale(0.9);
-      background-color: #fea245;
-      border: 2px solid white; }
-    .a-evaluation-all-cards__li-card-button--used {
-      opacity: 0.5; }
-
-.a-ribbon {
-  z-index: 100;
-  position: absolute;
-  right: var(--right, 16px);
-  top: var(--top, 0px);
-  filter: drop-shadow(2px 3px 2px rgba(0, 0, 0, 0.5)); }
-  .a-ribbon__content {
-    color: white;
-    font-size: 1.25rem;
-    text-align: center;
-    font-weight: 400;
-    background: #6f7273;
-    padding: 6px 2px 8px;
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 50% calc(100% - 8px), 0 100%);
-    width: var(--width, 32px);
-    min-height: var(--height, 36px);
-    transition: clip-path 1s, padding 1s, background 1s; }
 
 .a-gallery-window {
   display: grid;
@@ -2998,165 +2998,165 @@ body {
       animation-timing-function: linear;
       animation-iteration-count: infinite; }
       .home__background span:nth-child(1) {
-        color: #f45b69;
-        top: 88%;
-        left: 5%;
-        animation-duration: 11.7s;
-        animation-delay: -3.4s;
-        transform-origin: -1vw 4vh;
-        box-shadow: -40vmin 0 13.82712vmin currentColor; }
-      .home__background span:nth-child(2) {
         color: #3a7ca5;
-        top: 9%;
-        left: 15%;
-        animation-duration: 15.1s;
-        animation-delay: -1s;
-        transform-origin: 17vw 5vh;
-        box-shadow: 40vmin 0 11.53264vmin currentColor; }
+        top: 28%;
+        left: 50%;
+        animation-duration: 11s;
+        animation-delay: -9.8s;
+        transform-origin: 12vw 11vh;
+        box-shadow: 40vmin 0 5.80652vmin currentColor; }
+      .home__background span:nth-child(2) {
+        color: #f45b69;
+        top: 40%;
+        left: 5%;
+        animation-duration: 15.2s;
+        animation-delay: -11.5s;
+        transform-origin: 9vw -13vh;
+        box-shadow: 40vmin 0 8.8565vmin currentColor; }
       .home__background span:nth-child(3) {
-        color: #f45b69;
-        top: 20%;
-        left: 64%;
-        animation-duration: 13.8s;
-        animation-delay: -15.5s;
-        transform-origin: -16vw 9vh;
-        box-shadow: 40vmin 0 5.39335vmin currentColor; }
+        color: #44bba4;
+        top: 36%;
+        left: 78%;
+        animation-duration: 13.9s;
+        animation-delay: -13.2s;
+        transform-origin: 20vw 14vh;
+        box-shadow: -40vmin 0 14.15481vmin currentColor; }
       .home__background span:nth-child(4) {
-        color: #f45b69;
-        top: 5%;
-        left: 8%;
-        animation-duration: 11.2s;
-        animation-delay: -9.9s;
-        transform-origin: -17vw 20vh;
-        box-shadow: 40vmin 0 13.1378vmin currentColor; }
+        color: #44bba4;
+        top: 77%;
+        left: 52%;
+        animation-duration: 13.5s;
+        animation-delay: -7.1s;
+        transform-origin: -12vw 12vh;
+        box-shadow: 40vmin 0 10.04171vmin currentColor; }
       .home__background span:nth-child(5) {
-        color: #f2e863;
-        top: 81%;
-        left: 33%;
-        animation-duration: 10.1s;
-        animation-delay: -7.3s;
-        transform-origin: 17vw 5vh;
-        box-shadow: 40vmin 0 10.89139vmin currentColor; }
+        color: #3a7ca5;
+        top: 24%;
+        left: 49%;
+        animation-duration: 15.5s;
+        animation-delay: -9.1s;
+        transform-origin: 1vw 19vh;
+        box-shadow: -40vmin 0 9.56107vmin currentColor; }
       .home__background span:nth-child(6) {
         color: #44bba4;
-        top: 34%;
-        left: 82%;
-        animation-duration: 13s;
-        animation-delay: -6.4s;
-        transform-origin: 1vw -6vh;
-        box-shadow: 40vmin 0 8.26442vmin currentColor; }
+        top: 26%;
+        left: 55%;
+        animation-duration: 14.6s;
+        animation-delay: -6.8s;
+        transform-origin: 17vw -2vh;
+        box-shadow: 40vmin 0 9.35122vmin currentColor; }
       .home__background span:nth-child(7) {
-        color: #44bba4;
-        top: 17%;
-        left: 51%;
-        animation-duration: 13.6s;
-        animation-delay: -2.6s;
-        transform-origin: -14vw -21vh;
-        box-shadow: -40vmin 0 10.37908vmin currentColor; }
+        color: #3a7ca5;
+        top: 75%;
+        left: 22%;
+        animation-duration: 10.8s;
+        animation-delay: -1.9s;
+        transform-origin: 18vw -20vh;
+        box-shadow: 40vmin 0 7.0202vmin currentColor; }
       .home__background span:nth-child(8) {
         color: #3a7ca5;
-        top: 59%;
-        left: 8%;
-        animation-duration: 15.4s;
-        animation-delay: -11.9s;
-        transform-origin: -14vw 22vh;
-        box-shadow: -40vmin 0 12.44569vmin currentColor; }
+        top: 7%;
+        left: 80%;
+        animation-duration: 14.2s;
+        animation-delay: -1.8s;
+        transform-origin: 10vw 19vh;
+        box-shadow: -40vmin 0 7.17172vmin currentColor; }
       .home__background span:nth-child(9) {
         color: #44bba4;
-        top: 54%;
-        left: 36%;
-        animation-duration: 11.2s;
-        animation-delay: -2.2s;
-        transform-origin: 13vw 14vh;
-        box-shadow: -40vmin 0 9.66062vmin currentColor; }
+        top: 78%;
+        left: 91%;
+        animation-duration: 11s;
+        animation-delay: -7.6s;
+        transform-origin: 23vw -4vh;
+        box-shadow: 40vmin 0 14.02277vmin currentColor; }
       .home__background span:nth-child(10) {
-        color: #f2e863;
-        top: 56%;
-        left: 39%;
-        animation-duration: 10.3s;
-        animation-delay: -10.7s;
-        transform-origin: 12vw -7vh;
-        box-shadow: -40vmin 0 7.99394vmin currentColor; }
+        color: #3a7ca5;
+        top: 16%;
+        left: 58%;
+        animation-duration: 12.1s;
+        animation-delay: -6.9s;
+        transform-origin: -14vw 20vh;
+        box-shadow: -40vmin 0 6.41239vmin currentColor; }
       .home__background span:nth-child(11) {
-        color: #f45b69;
-        top: 30%;
-        left: 3%;
-        animation-duration: 13.5s;
-        animation-delay: -12s;
-        transform-origin: 5vw -4vh;
-        box-shadow: 40vmin 0 14.66072vmin currentColor; }
-      .home__background span:nth-child(12) {
         color: #f2e863;
-        top: 48%;
-        left: 51%;
-        animation-duration: 12.3s;
-        animation-delay: -5.3s;
-        transform-origin: 7vw 18vh;
-        box-shadow: 40vmin 0 5.68156vmin currentColor; }
+        top: 79%;
+        left: 92%;
+        animation-duration: 15.9s;
+        animation-delay: -14.1s;
+        transform-origin: -1vw -14vh;
+        box-shadow: 40vmin 0 8.39013vmin currentColor; }
+      .home__background span:nth-child(12) {
+        color: #f45b69;
+        top: 2%;
+        left: 23%;
+        animation-duration: 10.2s;
+        animation-delay: -6.4s;
+        transform-origin: 20vw 14vh;
+        box-shadow: -40vmin 0 9.84958vmin currentColor; }
       .home__background span:nth-child(13) {
         color: #f45b69;
-        top: 56%;
-        left: 30%;
-        animation-duration: 12.5s;
-        animation-delay: -2.4s;
-        transform-origin: 25vw -13vh;
-        box-shadow: 40vmin 0 14.54287vmin currentColor; }
+        top: 84%;
+        left: 45%;
+        animation-duration: 12.4s;
+        animation-delay: -5.5s;
+        transform-origin: -6vw 14vh;
+        box-shadow: 40vmin 0 13.11987vmin currentColor; }
       .home__background span:nth-child(14) {
-        color: #f45b69;
-        top: 80%;
-        left: 70%;
-        animation-duration: 15s;
-        animation-delay: -1.2s;
-        transform-origin: 18vw -2vh;
-        box-shadow: -40vmin 0 8.16252vmin currentColor; }
+        color: #3a7ca5;
+        top: 71%;
+        left: 91%;
+        animation-duration: 11.3s;
+        animation-delay: -2.3s;
+        transform-origin: 17vw 21vh;
+        box-shadow: 40vmin 0 5.54908vmin currentColor; }
       .home__background span:nth-child(15) {
-        color: #44bba4;
-        top: 7%;
-        left: 32%;
-        animation-duration: 14.6s;
-        animation-delay: -7.2s;
-        transform-origin: -17vw 22vh;
-        box-shadow: -40vmin 0 13.77809vmin currentColor; }
+        color: #f45b69;
+        top: 47%;
+        left: 46%;
+        animation-duration: 12.5s;
+        animation-delay: -15.3s;
+        transform-origin: -8vw 10vh;
+        box-shadow: 40vmin 0 12.21693vmin currentColor; }
       .home__background span:nth-child(16) {
         color: #3a7ca5;
-        top: 52%;
-        left: 15%;
-        animation-duration: 12.4s;
-        animation-delay: -4.6s;
-        transform-origin: 1vw 25vh;
-        box-shadow: -40vmin 0 6.79985vmin currentColor; }
+        top: 26%;
+        left: 34%;
+        animation-duration: 14.1s;
+        animation-delay: -14.9s;
+        transform-origin: -20vw 19vh;
+        box-shadow: -40vmin 0 14.68292vmin currentColor; }
       .home__background span:nth-child(17) {
         color: #f2e863;
-        top: 78%;
-        left: 30%;
-        animation-duration: 15.6s;
-        animation-delay: -2.1s;
-        transform-origin: -5vw -14vh;
-        box-shadow: -40vmin 0 5.70426vmin currentColor; }
+        top: 70%;
+        left: 73%;
+        animation-duration: 15s;
+        animation-delay: -14.5s;
+        transform-origin: -21vw 18vh;
+        box-shadow: 40vmin 0 12.44548vmin currentColor; }
       .home__background span:nth-child(18) {
-        color: #f45b69;
-        top: 6%;
-        left: 33%;
-        animation-duration: 11.2s;
-        animation-delay: -9.2s;
-        transform-origin: -21vw -21vh;
-        box-shadow: 40vmin 0 9.82823vmin currentColor; }
+        color: #44bba4;
+        top: 80%;
+        left: 11%;
+        animation-duration: 14.8s;
+        animation-delay: -12.6s;
+        transform-origin: 10vw -7vh;
+        box-shadow: -40vmin 0 14.10893vmin currentColor; }
       .home__background span:nth-child(19) {
         color: #3a7ca5;
-        top: 89%;
-        left: 92%;
-        animation-duration: 12.7s;
-        animation-delay: -6.7s;
-        transform-origin: 21vw 10vh;
-        box-shadow: -40vmin 0 11.36898vmin currentColor; }
+        top: 44%;
+        left: 13%;
+        animation-duration: 12.5s;
+        animation-delay: -8.1s;
+        transform-origin: -15vw -21vh;
+        box-shadow: 40vmin 0 13.56864vmin currentColor; }
       .home__background span:nth-child(20) {
         color: #3a7ca5;
-        top: 30%;
-        left: 39%;
-        animation-duration: 12.2s;
-        animation-delay: -9s;
-        transform-origin: -23vw -17vh;
-        box-shadow: -40vmin 0 11.03723vmin currentColor; }
+        top: 12%;
+        left: 23%;
+        animation-duration: 15.6s;
+        animation-delay: -14.6s;
+        transform-origin: 4vw -20vh;
+        box-shadow: 40vmin 0 5.38424vmin currentColor; }
 
 @keyframes move {
   100% {
