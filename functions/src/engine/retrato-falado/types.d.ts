@@ -33,7 +33,7 @@ interface RetratoFaladoInitialState extends InitialState {
 }
 
 interface RetratoFaladoSubmitAction extends Payload {
-  action: 'SUBMIT_SKETCH' | 'SUBMIT_VOTE';
+  action: 'SUBMIT_ORIENTATION' | 'SUBMIT_SKETCH' | 'SUBMIT_VOTE';
 }
 
 type FirebaseStoreData = FirebaseFirestore.DocumentData | RetratoFaladoStore;

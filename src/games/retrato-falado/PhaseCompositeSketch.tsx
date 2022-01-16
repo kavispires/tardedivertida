@@ -1,59 +1,35 @@
 import { useState } from 'react';
 // State & Hooks
-import { useIsUserReady, useAPICall, useLanguage, useWhichPlayerIsThe } from '../../hooks';
+import { useIsUserReady, useLanguage, useWhichPlayerIsThe } from '../../hooks';
+import { useOnSubmitOrientationAPIRequest, useOnSubmitSketchAPIRequest } from './api-requests';
 // Resources & Utils
-import { RETRATO_FALADO_API } from '../../adapters';
 import { PHASES } from '../../utils/phases';
+import { TIMES } from './constants';
 // Components
 import {
   AvatarName,
-  WaitingRoom,
   Instruction,
   PhaseAnnouncement,
   PhaseContainer,
   RoundAnnouncement,
-  Step,
   StepSwitcher,
   translate,
   Translate,
 } from '../../components';
 import StepTestimonial from './StepTestimonial';
-import { TIMES } from './constants';
 
 function PhaseCompositeSketch({ players, state, info }: PhaseProps) {
   const language = useLanguage();
-
   const isUserReady = useIsUserReady(players, state);
   const [step, setStep] = useState(0);
   const [witness, isUserTheWitness] = useWhichPlayerIsThe('witnessId', state, players);
 
-  const onSubmitSketchAPIRequest = useAPICall({
-    apiFunction: RETRATO_FALADO_API.submitAction,
-    actionName: 'submit-sketch',
-    onBeforeCall: () => setStep(3),
-    onError: () => setStep(1),
-    successMessage: translate(
-      'Acabou o tempo! Desenho enviado com sucesso',
-      "Time's up! Sketch submitted successfully",
-      language
-    ),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar o desenho',
-      'Oops, the application failed to send your sketch',
-      language
-    ),
-  });
-
-  const onSubmitSketch = (payload: any) => {
-    onSubmitSketchAPIRequest({
-      action: 'SUBMIT_SKETCH',
-      ...payload,
-    });
-  };
+  const onSubmitSketch = useOnSubmitSketchAPIRequest(setStep);
+  const onSubmitOrientation = useOnSubmitOrientationAPIRequest(setStep);
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.RETRATO_FALADO.COMPOSITE_SKETCH}>
-      <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady, !isUserReady]}>
+      <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady, !isUserReady]} players={players}>
         {/* Step 0 */}
         <RoundAnnouncement
           round={state?.round}
@@ -149,12 +125,8 @@ function PhaseCompositeSketch({ players, state, info }: PhaseProps) {
           isUserTheWitness={isUserTheWitness}
           currentMonster={state.currentMonster}
           onSubmitSketch={onSubmitSketch}
+          onSubmitOrientation={onSubmitOrientation}
         />
-
-        {/* Step 3 */}
-        <Step fullWidth>
-          <WaitingRoom players={players} />
-        </Step>
       </StepSwitcher>
     </PhaseContainer>
   );
