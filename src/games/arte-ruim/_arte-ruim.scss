@@ -1,0 +1,323 @@
+.a-draw-step {
+  &__card {
+    margin-bottom: get-unit(2);
+    position: relative;
+  }
+
+  &__timer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 3em;
+    width: 2em;
+    background: get-color(white);
+    border-radius: 50%;
+    border: 10px solid get-color(orange);
+    aspect-ratio: 1 / 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: monospace;
+    box-shadow: 0 5px 7px 0px rgba($color: #fff, $alpha: 0.5);
+    animation: timer-pulse 1s ease-in-out infinite;
+  }
+}
+
+@keyframes timer-pulse {
+  0% {
+    transform: translate(50%, -50%) rotate(35deg) scale(1.2);
+  }
+  50% {
+    transform: translate(50%, -50%) rotate(10deg) scale(0.75);
+  }
+  100% {
+    transform: translate(50%, -50%) rotate(35deg) scale(1.2);
+  }
+}
+
+.a-evaluation-step {
+  background: get-color(yellow, 2);
+  padding: get-unit(4);
+  flex: 1;
+  position: relative;
+}
+
+.a-gallery-phase {
+  &__windows {
+    position: relative;
+    width: 100%;
+    flex: 1;
+  }
+}
+
+.a-game-over {
+  &__gallery {
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: auto;
+    justify-content: center;
+    max-width: 94vw;
+  }
+
+  &__gallery-item {
+    margin: get-unit(3 2);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  &__gallery-canvas {
+    background: white;
+    border: 2px solid get-color(brown);
+    border-radius: get-unit(1);
+  }
+
+  &__credits {
+    font-style: italic;
+  }
+}
+
+.a-drawing-grade {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(30%, -30%);
+
+  &--A {
+    background: get-color(green);
+  }
+
+  &--B {
+    background: get-color(yellow);
+  }
+
+  &--C {
+    background: get-color(orange);
+  }
+
+  &--D {
+    background: get-color(pink);
+  }
+
+  &--F {
+    background: get-color(red);
+  }
+}
+
+.a-evaluation-all-cards {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  overflow-x: auto;
+
+  &__li-card-button {
+    box-sizing: border-box;
+    cursor: pointer;
+    background-color: transparent;
+    border-radius: get-unit(2);
+    border: 2px solid transparent;
+
+    transition: background-color 250ms, transform 250ms;
+
+    &:hover {
+      transform: scale(0.95);
+      background-color: get-color(red);
+    }
+
+    &--active {
+      transform: scale(0.9);
+      background-color: get-color(orange);
+      border: 2px solid get-color(white);
+    }
+
+    &--used {
+      opacity: 0.5;
+    }
+  }
+}
+
+.a-evaluation-all-drawings {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+  padding: get-unit(4 0);
+  flex-wrap: wrap;
+
+  max-width: 90vw;
+
+  &__li-drawing-button {
+    box-sizing: border-box;
+    cursor: pointer;
+    border-radius: get-unit(2);
+    transition: background-color 250ms, transform 250ms;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid transparent;
+    position: relative;
+
+    &:hover {
+      transform: scale(0.95);
+      background: get-color(red);
+    }
+
+    &--active {
+      transform: scale(0.95);
+      background: get-color(orange);
+      border: 2px solid get-color(white);
+
+      svg {
+        transform: scale(0.9);
+      }
+    }
+  }
+
+  &__drawing {
+    width: 300px;
+    background: get-color(white);
+    border: 8px inset get-color(brown);
+    margin: get-unit(1);
+    border-radius: get-unit(1);
+  }
+
+  &__artist {
+    background: get-color(white);
+    padding: get-unit(0 1);
+    position: absolute;
+    top: get-unit(-3);
+    font-size: 0.9em;
+    transform: perspective(30px);
+    @include box-shadow;
+  }
+}
+
+.a-gallery-window {
+  display: grid;
+  width: calc(100% - #{get-unit(4)});
+  gap: get-unit(4);
+  padding: get-unit(2);
+  border-radius: get-unit(1);
+
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 90px auto 165px auto;
+  grid-template-areas:
+    'canvas credits'
+    'canvas guesses'
+    'canvas result'
+    'controls controls';
+
+  &__drawing-container {
+    grid-area: canvas;
+    place-self: center;
+  }
+
+  &__drawing {
+    background: get-color(white);
+    border-radius: get-unit(1);
+
+    border: 8px inset get-color(brown);
+  }
+
+  &__credits {
+    grid-area: credits;
+
+    background: get-color(white);
+    border-radius: get-unit(1);
+    padding: get-unit(2 3);
+  }
+
+  &__label {
+    font-size: 1.25em;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: get-unit(1);
+  }
+
+  &__artist-name {
+    text-transform: uppercase;
+  }
+
+  &__guesses {
+    grid-area: guesses;
+
+    background: get-color(white);
+    border-radius: get-unit(1);
+    padding: get-unit(2 3);
+  }
+
+  &__guess {
+    margin-top: get-unit(1);
+  }
+
+  &__speech-bubble {
+    background: get-color(white);
+    box-shadow: 0 3px 5px 2px rgba($color: #000, $alpha: 0.5);
+    padding: get-unit(2 4);
+    text-transform: uppercase;
+    border-radius: 1.5em;
+  }
+
+  &__speech-bubble-icon {
+    margin-right: get-unit(2);
+    color: get-color(gray);
+  }
+
+  &__players {
+    transform: translateY(get-unit(-1));
+    display: flex;
+    align-items: center;
+  }
+
+  &__players-names {
+    margin-left: get-unit(2);
+    color: get-color(gray);
+  }
+
+  &__result {
+    grid-area: result;
+
+    background: get-color(white);
+    border-radius: get-unit(1);
+    padding: get-unit(2 3);
+  }
+
+  &__artist-points {
+    display: flex;
+    align-items: center;
+  }
+
+  &__no-wins {
+    color: get-color(red);
+    font-size: 1.2em;
+    padding-top: get-unit(2);
+    display: block;
+  }
+
+  &__controls {
+    grid-area: controls;
+
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  &__timer-bar {
+    width: 100%;
+    height: get-unit(2);
+    margin: get-unit(0 0 4 0);
+    background: get-color(white);
+    border-radius: get-unit(2);
+    flex-grow: 1;
+
+    & > span {
+      height: get-unit(2);
+      border-radius: get-unit(2);
+      background: get-color(purple);
+      display: block;
+      transition: width 1s;
+    }
+  }
+}

@@ -20,7 +20,6 @@ import {
 } from '../../components';
 import EvaluationAllDrawings from './EvaluationAllDrawings';
 import EvaluationAllCards from './EvaluationAllCards';
-
 import RulesEvaluation from './RulesEvaluation';
 
 function prepareVotes(votes: PlainObject) {
