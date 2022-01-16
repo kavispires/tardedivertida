@@ -5,11 +5,9 @@ import { useIsUserReady, useLanguage, useWhichPlayerIsThe, useUser } from '../..
 import { PHASES } from '../../utils/phases';
 // Components
 import {
-  WaitingRoom,
   Instruction,
   PhaseAnnouncement,
   PhaseContainer,
-  Step,
   StepSwitcher,
   translate,
   Translate,
@@ -27,7 +25,7 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.RETRATO_FALADO.REVEAL}>
-      <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady, !isUserReady]}>
+      <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady, !isUserReady]} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
           type="quality-seal"
@@ -55,11 +53,6 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
 
         {/* Step 2 */}
         <StepRanking ranking={state.ranking} players={players} language={language} round={state.round} />
-
-        {/* Step 3 */}
-        <Step fullWidth>
-          <WaitingRoom players={players} />
-        </Step>
       </StepSwitcher>
     </PhaseContainer>
   );

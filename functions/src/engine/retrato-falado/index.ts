@@ -17,7 +17,7 @@ import {
   prepareGameOverPhase,
 } from './setup';
 import { getMonsterCards, saveUsedCards } from './data';
-import { handleSubmitSketch, handleSubmitVote } from './actions';
+import { handleSubmitOrientation, handleSubmitSketch, handleSubmitVote } from './actions';
 
 /**
  * Get Initial Game State
@@ -124,6 +124,9 @@ export const submitAction = async (data: RetratoFaladoSubmitAction) => {
   firebaseUtils.validateSubmitActionPayload(gameId, collectionName, playerId, action);
 
   switch (action) {
+    case 'SUBMIT_ORIENTATION':
+      firebaseUtils.validateSubmitActionProperties(data, ['orientation'], 'submit orientation');
+      return handleSubmitOrientation(collectionName, gameId, playerId, data.orientation);
     case 'SUBMIT_SKETCH':
       firebaseUtils.validateSubmitActionProperties(data, ['sketch'], 'submit sketch');
       return handleSubmitSketch(collectionName, gameId, playerId, data.sketch);

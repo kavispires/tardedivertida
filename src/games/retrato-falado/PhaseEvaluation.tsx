@@ -1,16 +1,14 @@
 import { useState } from 'react';
 // State & Hooks
-import { useIsUserReady, useAPICall, useLanguage, useWhichPlayerIsThe, useUser } from '../../hooks';
+import { useIsUserReady, useLanguage, useWhichPlayerIsThe, useUser } from '../../hooks';
+import { useOnSubmitVoteAPIRequest } from './api-requests';
 // Resources & Utils
-import { RETRATO_FALADO_API } from '../../adapters';
 import { PHASES } from '../../utils/phases';
 // Components
 import {
-  WaitingRoom,
   Instruction,
   PhaseAnnouncement,
   PhaseContainer,
-  Step,
   StepSwitcher,
   translate,
   Translate,
@@ -25,29 +23,11 @@ function PhaseEvaluation({ players, state, info }: PhaseProps) {
   const [step, setStep] = useState(0);
   const [, isUserTheWitness] = useWhichPlayerIsThe('witnessId', state, players);
 
-  const onSubmitVoteAPIRequest = useAPICall({
-    apiFunction: RETRATO_FALADO_API.submitAction,
-    actionName: 'submit-vote',
-    onBeforeCall: () => setStep(2),
-    onError: () => setStep(1),
-    successMessage: translate('Voto enviado com sucesso', 'Vote submitted successfully', language),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar seu voto',
-      'Oops, the application failed to send your vote',
-      language
-    ),
-  });
-
-  const onSubmitVote = (payload: any) => {
-    onSubmitVoteAPIRequest({
-      action: 'SUBMIT_VOTE',
-      ...payload,
-    });
-  };
+  const onSubmitVote = useOnSubmitVoteAPIRequest(setStep);
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.RETRATO_FALADO.EVALUATION}>
-      <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady, !isUserReady]}>
+      <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady, !isUserReady]} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
           type="choice"
@@ -72,11 +52,6 @@ function PhaseEvaluation({ players, state, info }: PhaseProps) {
           user={user}
           players={players}
         />
-
-        {/* Step 2 */}
-        <Step fullWidth>
-          <WaitingRoom players={players} />
-        </Step>
       </StepSwitcher>
     </PhaseContainer>
   );

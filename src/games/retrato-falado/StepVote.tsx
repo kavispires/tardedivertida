@@ -3,7 +3,6 @@ import { useEffect } from 'react';
 import { Button, Space } from 'antd';
 // Utils
 import { useCardWidth, useGlobalState } from '../../hooks';
-import { Monster, Sketch } from './retrato-falado';
 // Components
 import {
   Avatar,
@@ -96,7 +95,7 @@ function StepVote({
         {sketches.map((sketchObj) => {
           const player = players[sketchObj.playerId];
           return (
-            <Space direction="vertical" align="center">
+            <Space direction="vertical" align="center" key={`sketch-for-player-${sketchObj.playerId}`}>
               <CanvasSVG
                 key={`sketch-${sketchObj.playerId}`}
                 size={canvasSize || canvasWidth}
