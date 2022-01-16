@@ -1534,6 +1534,176 @@ body {
     justify-content: center;
     transform: scale(0.8); }
 
+.h-item-card {
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+  justify-content: center; }
+  .h-item-card--selected {
+    border: 2px dashed gold;
+    background: #b39700;
+    border-radius: 4px; }
+  .h-item-card__name {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 0.7rem;
+    margin: 0;
+    overflow: hidden;
+    text-align: center;
+    text-overflow: ellipsis; }
+
+.h-items-selection {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 4px;
+  justify-items: center;
+  background: #222222;
+  border-radius: 8px;
+  padding: 8px; }
+  .h-items-selection__button {
+    border: 2px solid transparent;
+    background: none;
+    cursor: pointer;
+    padding: 0; }
+
+.h-items-crime-selection {
+  display: flex;
+  background: #222222;
+  border-radius: 8px;
+  padding: 8px;
+  align-items: center; }
+  .h-items-crime-selection__faded {
+    opacity: 0.25; }
+
+.h-scene-tiles-list {
+  display: flex;
+  overflow-y: auto; }
+
+.h-items-board {
+  display: grid;
+  grid-template-columns: repeat(6, auto);
+  gap: 4px;
+  background: #222222;
+  border-radius: 8px;
+  padding: 8px; }
+
+.h-grouped-items-board {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 4px;
+  background: #222222;
+  border-radius: 8px;
+  padding: 8px; }
+  .h-grouped-items-board__group {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 4px;
+    border: 2px solid #875131;
+    border-radius: 8px;
+    padding: 8px; }
+
+.h-scene-tile {
+  background: #222222;
+  padding: 8px;
+  border-radius: 8px;
+  margin: 8px; }
+  .h-scene-tile__title {
+    text-align: center; }
+  .h-scene-tile__button {
+    color: white; }
+  .h-scene-tile__options {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; }
+    .h-scene-tile__options li {
+      margin-bottom: 4px;
+      width: 100%; }
+      .h-scene-tile__options li .h-scene-tile__button {
+        width: 100%; }
+  .h-scene-tile--cause {
+    border: 5px solid #932aef; }
+    .h-scene-tile--cause .h-scene-tile__title {
+      color: #b771f4; }
+    .h-scene-tile--cause .h-scene-tile__button {
+      background: #6c0fbd;
+      border-color: #6c0fbd; }
+    .h-scene-tile--cause .h-scene-tile__icon {
+      color: #b771f4; }
+  .h-scene-tile--evidence {
+    border: 5px solid #3e1010; }
+    .h-scene-tile--evidence .h-scene-tile__title {
+      color: #d14949; }
+    .h-scene-tile--evidence .h-scene-tile__button {
+      background: #671a1a;
+      border-color: #671a1a; }
+    .h-scene-tile--evidence .h-scene-tile__icon {
+      color: #d14949; }
+  .h-scene-tile--location {
+    border: 5px solid #103e14; }
+    .h-scene-tile--location .h-scene-tile__title {
+      color: #49d156; }
+    .h-scene-tile--location .h-scene-tile__button {
+      background: #1a6721;
+      border-color: #1a6721; }
+    .h-scene-tile--location .h-scene-tile__icon {
+      color: #49d156; }
+  .h-scene-tile--scene {
+    border: 5px solid #763c01; }
+    .h-scene-tile--scene .h-scene-tile__title {
+      color: #fea245; }
+    .h-scene-tile--scene .h-scene-tile__button {
+      background: #a95501;
+      border-color: #a95501; }
+    .h-scene-tile--scene .h-scene-tile__icon {
+      color: #fea245; }
+
+.h-crime {
+  background: #222222;
+  display: grid;
+  grid-template-columns: [player] 2.5rem [info] auto [selections] 216px [done] 2.5rem;
+  min-height: 200px;
+  margin: 8px;
+  border-radius: 4px;
+  color: white; }
+  .h-crime__player {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; }
+  .h-crime__player-name {
+    display: block;
+    transform: rotate(-90deg) translateX(-40%); }
+  .h-crime__scenes {
+    padding: 8px; }
+
+.h-crime-scene {
+  display: grid;
+  grid-template-columns: 3fr 7fr;
+  margin-bottom: 4px; }
+  .h-crime-scene__label {
+    white-space: nowrap;
+    padding: 0 4px;
+    margin-right: 4px; }
+    .h-crime-scene__label--cause {
+      background: #932aef; }
+    .h-crime-scene__label--evidence {
+      background: #a42929; }
+    .h-crime-scene__label--location {
+      background: #29a435; }
+    .h-crime-scene__label--scene {
+      background: #f57c01; }
+  .h-crime-scene__value {
+    padding: 0 4px; }
+
+.h-crime-selections {
+  display: flex;
+  padding: 4px; }
+
+.h-item-selector {
+  width: 100px;
+  margin-left: 4px; }
+
 .d-table {
   flex: 1;
   display: flex;
@@ -1734,176 +1904,6 @@ body {
     .e-list__item--crossed {
       text-decoration: line-through;
       color: #d14949; }
-
-.h-item-card {
-  display: flex;
-  flex-direction: column;
-  align-items: space-between;
-  justify-content: center; }
-  .h-item-card--selected {
-    border: 2px dashed gold;
-    background: #b39700;
-    border-radius: 4px; }
-  .h-item-card__name {
-    text-transform: uppercase;
-    font-weight: bold;
-    font-size: 0.7rem;
-    margin: 0;
-    overflow: hidden;
-    text-align: center;
-    text-overflow: ellipsis; }
-
-.h-items-selection {
-  display: grid;
-  grid-template-columns: repeat(3, auto);
-  gap: 4px;
-  justify-items: center;
-  background: #222222;
-  border-radius: 8px;
-  padding: 8px; }
-  .h-items-selection__button {
-    border: 2px solid transparent;
-    background: none;
-    cursor: pointer;
-    padding: 0; }
-
-.h-items-crime-selection {
-  display: flex;
-  background: #222222;
-  border-radius: 8px;
-  padding: 8px;
-  align-items: center; }
-  .h-items-crime-selection__faded {
-    opacity: 0.25; }
-
-.h-scene-tiles-list {
-  display: flex;
-  overflow-y: auto; }
-
-.h-items-board {
-  display: grid;
-  grid-template-columns: repeat(6, auto);
-  gap: 4px;
-  background: #222222;
-  border-radius: 8px;
-  padding: 8px; }
-
-.h-grouped-items-board {
-  display: grid;
-  grid-template-columns: repeat(2, auto);
-  gap: 4px;
-  background: #222222;
-  border-radius: 8px;
-  padding: 8px; }
-  .h-grouped-items-board__group {
-    display: grid;
-    grid-template-columns: repeat(3, auto);
-    gap: 4px;
-    border: 2px solid #875131;
-    border-radius: 8px;
-    padding: 8px; }
-
-.h-scene-tile {
-  background: #222222;
-  padding: 8px;
-  border-radius: 8px;
-  margin: 8px; }
-  .h-scene-tile__title {
-    text-align: center; }
-  .h-scene-tile__button {
-    color: white; }
-  .h-scene-tile__options {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center; }
-    .h-scene-tile__options li {
-      margin-bottom: 4px;
-      width: 100%; }
-      .h-scene-tile__options li .h-scene-tile__button {
-        width: 100%; }
-  .h-scene-tile--cause {
-    border: 5px solid #932aef; }
-    .h-scene-tile--cause .h-scene-tile__title {
-      color: #b771f4; }
-    .h-scene-tile--cause .h-scene-tile__button {
-      background: #6c0fbd;
-      border-color: #6c0fbd; }
-    .h-scene-tile--cause .h-scene-tile__icon {
-      color: #b771f4; }
-  .h-scene-tile--evidence {
-    border: 5px solid #3e1010; }
-    .h-scene-tile--evidence .h-scene-tile__title {
-      color: #d14949; }
-    .h-scene-tile--evidence .h-scene-tile__button {
-      background: #671a1a;
-      border-color: #671a1a; }
-    .h-scene-tile--evidence .h-scene-tile__icon {
-      color: #d14949; }
-  .h-scene-tile--location {
-    border: 5px solid #103e14; }
-    .h-scene-tile--location .h-scene-tile__title {
-      color: #49d156; }
-    .h-scene-tile--location .h-scene-tile__button {
-      background: #1a6721;
-      border-color: #1a6721; }
-    .h-scene-tile--location .h-scene-tile__icon {
-      color: #49d156; }
-  .h-scene-tile--scene {
-    border: 5px solid #763c01; }
-    .h-scene-tile--scene .h-scene-tile__title {
-      color: #fea245; }
-    .h-scene-tile--scene .h-scene-tile__button {
-      background: #a95501;
-      border-color: #a95501; }
-    .h-scene-tile--scene .h-scene-tile__icon {
-      color: #fea245; }
-
-.h-crime {
-  background: #222222;
-  display: grid;
-  grid-template-columns: [player] 2.5rem [info] auto [selections] 216px [done] 2.5rem;
-  min-height: 200px;
-  margin: 8px;
-  border-radius: 4px;
-  color: white; }
-  .h-crime__player {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center; }
-  .h-crime__player-name {
-    display: block;
-    transform: rotate(-90deg) translateX(-40%); }
-  .h-crime__scenes {
-    padding: 8px; }
-
-.h-crime-scene {
-  display: grid;
-  grid-template-columns: 3fr 7fr;
-  margin-bottom: 4px; }
-  .h-crime-scene__label {
-    white-space: nowrap;
-    padding: 0 4px;
-    margin-right: 4px; }
-    .h-crime-scene__label--cause {
-      background: #932aef; }
-    .h-crime-scene__label--evidence {
-      background: #a42929; }
-    .h-crime-scene__label--location {
-      background: #29a435; }
-    .h-crime-scene__label--scene {
-      background: #f57c01; }
-  .h-crime-scene__value {
-    padding: 0 4px; }
-
-.h-crime-selections {
-  display: flex;
-  padding: 4px; }
-
-.h-item-selector {
-  width: 100px;
-  margin-left: 4px; }
 
 .m-step {
   width: 100%;
@@ -2872,83 +2872,6 @@ body {
   text-decoration: line-through;
   background: #e08686; }
 
-.x-grid {
-  display: grid;
-  gap: 0.25rem;
-  margin-bottom: 16px; }
-
-.x-grid-cell {
-  border: 1px solid white;
-  min-width: 80px;
-  min-height: 4rem;
-  border-radius: 4px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 2px; }
-  .x-grid-cell--header {
-    background: black;
-    color: white;
-    font-weight: bold;
-    text-transform: uppercase;
-    padding: 4px;
-    border: 1px solid transparent; }
-  .x-grid-cell--x {
-    border: 1px solid transparent; }
-
-.x-grid-cell-target {
-  color: gold; }
-
-.x-clue-cards {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center; }
-
-.x-clue-card-li {
-  margin: 4px;
-  border-radius: 4px; }
-
-.x-clue-card-button {
-  background: none;
-  padding: 0;
-  border: none;
-  cursor: pointer; }
-
-.x-clue-card {
-  height: 3rem;
-  border: #222222 2px solid;
-  border-radius: 4px;
-  background: white;
-  padding: 0;
-  display: flex;
-  align-items: center; }
-  .x-clue-card--selected {
-    border: gold 2px solid;
-    border-style: outset; }
-  .x-clue-card__clue {
-    text-transform: uppercase;
-    padding: 4px 8px; }
-    .x-clue-card__clue--matched {
-      text-decoration: line-through; }
-  .x-clue-card__icon {
-    flex: 1;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    padding: 4px; }
-
-.x-previous-clue {
-  text-transform: uppercase;
-  font-size: 0.7rem;
-  color: #494b4c;
-  font-style: italic; }
-
-.x-players-in-cell-player--correct {
-  background: rgba(255, 255, 255, 0.5);
-  border-radius: 4px;
-  padding: 1px;
-  margin: 2px; }
-
 .app {
   width: 100%;
   min-height: 100vh !important;
@@ -2998,165 +2921,165 @@ body {
       animation-timing-function: linear;
       animation-iteration-count: infinite; }
       .home__background span:nth-child(1) {
-        color: #3a7ca5;
-        top: 28%;
-        left: 50%;
-        animation-duration: 11s;
-        animation-delay: -9.8s;
-        transform-origin: 12vw 11vh;
-        box-shadow: 40vmin 0 5.80652vmin currentColor; }
+        color: #f2e863;
+        top: 46%;
+        left: 77%;
+        animation-duration: 12.3s;
+        animation-delay: -12.4s;
+        transform-origin: 4vw -15vh;
+        box-shadow: 40vmin 0 10.57301vmin currentColor; }
       .home__background span:nth-child(2) {
-        color: #f45b69;
-        top: 40%;
-        left: 5%;
-        animation-duration: 15.2s;
-        animation-delay: -11.5s;
-        transform-origin: 9vw -13vh;
-        box-shadow: 40vmin 0 8.8565vmin currentColor; }
+        color: #44bba4;
+        top: 23%;
+        left: 6%;
+        animation-duration: 15.9s;
+        animation-delay: -10.9s;
+        transform-origin: 6vw -18vh;
+        box-shadow: -40vmin 0 14.28323vmin currentColor; }
       .home__background span:nth-child(3) {
         color: #44bba4;
-        top: 36%;
-        left: 78%;
-        animation-duration: 13.9s;
-        animation-delay: -13.2s;
-        transform-origin: 20vw 14vh;
-        box-shadow: -40vmin 0 14.15481vmin currentColor; }
+        top: 96%;
+        left: 92%;
+        animation-duration: 13.2s;
+        animation-delay: -15.6s;
+        transform-origin: 8vw 24vh;
+        box-shadow: -40vmin 0 12.91002vmin currentColor; }
       .home__background span:nth-child(4) {
         color: #44bba4;
-        top: 77%;
-        left: 52%;
-        animation-duration: 13.5s;
-        animation-delay: -7.1s;
-        transform-origin: -12vw 12vh;
-        box-shadow: 40vmin 0 10.04171vmin currentColor; }
+        top: 12%;
+        left: 8%;
+        animation-duration: 16s;
+        animation-delay: -12.4s;
+        transform-origin: -3vw 3vh;
+        box-shadow: 40vmin 0 9.33444vmin currentColor; }
       .home__background span:nth-child(5) {
-        color: #3a7ca5;
-        top: 24%;
-        left: 49%;
-        animation-duration: 15.5s;
-        animation-delay: -9.1s;
-        transform-origin: 1vw 19vh;
-        box-shadow: -40vmin 0 9.56107vmin currentColor; }
+        color: #f45b69;
+        top: 91%;
+        left: 8%;
+        animation-duration: 10.9s;
+        animation-delay: -11.6s;
+        transform-origin: 23vw 25vh;
+        box-shadow: 40vmin 0 11.15453vmin currentColor; }
       .home__background span:nth-child(6) {
-        color: #44bba4;
-        top: 26%;
-        left: 55%;
-        animation-duration: 14.6s;
-        animation-delay: -6.8s;
-        transform-origin: 17vw -2vh;
-        box-shadow: 40vmin 0 9.35122vmin currentColor; }
+        color: #f2e863;
+        top: 39%;
+        left: 14%;
+        animation-duration: 15.5s;
+        animation-delay: -2.3s;
+        transform-origin: -15vw 18vh;
+        box-shadow: 40vmin 0 6.16378vmin currentColor; }
       .home__background span:nth-child(7) {
         color: #3a7ca5;
-        top: 75%;
-        left: 22%;
-        animation-duration: 10.8s;
-        animation-delay: -1.9s;
-        transform-origin: 18vw -20vh;
-        box-shadow: 40vmin 0 7.0202vmin currentColor; }
+        top: 58%;
+        left: 82%;
+        animation-duration: 10.7s;
+        animation-delay: -5.2s;
+        transform-origin: -20vw 10vh;
+        box-shadow: 40vmin 0 9.31017vmin currentColor; }
       .home__background span:nth-child(8) {
-        color: #3a7ca5;
-        top: 7%;
-        left: 80%;
-        animation-duration: 14.2s;
-        animation-delay: -1.8s;
-        transform-origin: 10vw 19vh;
-        box-shadow: -40vmin 0 7.17172vmin currentColor; }
+        color: #f45b69;
+        top: 64%;
+        left: 61%;
+        animation-duration: 16s;
+        animation-delay: -3.7s;
+        transform-origin: 19vw 12vh;
+        box-shadow: 40vmin 0 11.14459vmin currentColor; }
       .home__background span:nth-child(9) {
         color: #44bba4;
-        top: 78%;
-        left: 91%;
-        animation-duration: 11s;
-        animation-delay: -7.6s;
-        transform-origin: 23vw -4vh;
-        box-shadow: 40vmin 0 14.02277vmin currentColor; }
+        top: 19%;
+        left: 56%;
+        animation-duration: 13.5s;
+        animation-delay: -4.9s;
+        transform-origin: 1vw 16vh;
+        box-shadow: 40vmin 0 12.63018vmin currentColor; }
       .home__background span:nth-child(10) {
-        color: #3a7ca5;
-        top: 16%;
-        left: 58%;
-        animation-duration: 12.1s;
-        animation-delay: -6.9s;
-        transform-origin: -14vw 20vh;
-        box-shadow: -40vmin 0 6.41239vmin currentColor; }
-      .home__background span:nth-child(11) {
         color: #f2e863;
-        top: 79%;
-        left: 92%;
-        animation-duration: 15.9s;
-        animation-delay: -14.1s;
-        transform-origin: -1vw -14vh;
-        box-shadow: 40vmin 0 8.39013vmin currentColor; }
-      .home__background span:nth-child(12) {
-        color: #f45b69;
-        top: 2%;
-        left: 23%;
-        animation-duration: 10.2s;
-        animation-delay: -6.4s;
-        transform-origin: 20vw 14vh;
-        box-shadow: -40vmin 0 9.84958vmin currentColor; }
-      .home__background span:nth-child(13) {
-        color: #f45b69;
-        top: 84%;
-        left: 45%;
-        animation-duration: 12.4s;
-        animation-delay: -5.5s;
-        transform-origin: -6vw 14vh;
-        box-shadow: 40vmin 0 13.11987vmin currentColor; }
-      .home__background span:nth-child(14) {
-        color: #3a7ca5;
-        top: 71%;
+        top: 51%;
         left: 91%;
-        animation-duration: 11.3s;
-        animation-delay: -2.3s;
-        transform-origin: 17vw 21vh;
-        box-shadow: 40vmin 0 5.54908vmin currentColor; }
+        animation-duration: 12.6s;
+        animation-delay: -2.6s;
+        transform-origin: 7vw -12vh;
+        box-shadow: 40vmin 0 7.28551vmin currentColor; }
+      .home__background span:nth-child(11) {
+        color: #f45b69;
+        top: 62%;
+        left: 41%;
+        animation-duration: 11.8s;
+        animation-delay: -5s;
+        transform-origin: -11vw -16vh;
+        box-shadow: -40vmin 0 7.78853vmin currentColor; }
+      .home__background span:nth-child(12) {
+        color: #f2e863;
+        top: 84%;
+        left: 16%;
+        animation-duration: 14.8s;
+        animation-delay: -12.7s;
+        transform-origin: 4vw -17vh;
+        box-shadow: 40vmin 0 14.52894vmin currentColor; }
+      .home__background span:nth-child(13) {
+        color: #3a7ca5;
+        top: 55%;
+        left: 83%;
+        animation-duration: 10.7s;
+        animation-delay: -8.9s;
+        transform-origin: 19vw 14vh;
+        box-shadow: -40vmin 0 14.48712vmin currentColor; }
+      .home__background span:nth-child(14) {
+        color: #f2e863;
+        top: 20%;
+        left: 85%;
+        animation-duration: 15.2s;
+        animation-delay: -11.8s;
+        transform-origin: -3vw 16vh;
+        box-shadow: -40vmin 0 14.58511vmin currentColor; }
       .home__background span:nth-child(15) {
         color: #f45b69;
-        top: 47%;
-        left: 46%;
-        animation-duration: 12.5s;
-        animation-delay: -15.3s;
-        transform-origin: -8vw 10vh;
-        box-shadow: 40vmin 0 12.21693vmin currentColor; }
+        top: 76%;
+        left: 59%;
+        animation-duration: 12.3s;
+        animation-delay: -12.6s;
+        transform-origin: 25vw 17vh;
+        box-shadow: 40vmin 0 6.23996vmin currentColor; }
       .home__background span:nth-child(16) {
         color: #3a7ca5;
-        top: 26%;
-        left: 34%;
-        animation-duration: 14.1s;
-        animation-delay: -14.9s;
-        transform-origin: -20vw 19vh;
-        box-shadow: -40vmin 0 14.68292vmin currentColor; }
+        top: 91%;
+        left: 35%;
+        animation-duration: 11.7s;
+        animation-delay: -0.6s;
+        transform-origin: -4vw 3vh;
+        box-shadow: 40vmin 0 13.65671vmin currentColor; }
       .home__background span:nth-child(17) {
-        color: #f2e863;
-        top: 70%;
-        left: 73%;
-        animation-duration: 15s;
-        animation-delay: -14.5s;
-        transform-origin: -21vw 18vh;
-        box-shadow: 40vmin 0 12.44548vmin currentColor; }
+        color: #f45b69;
+        top: 78%;
+        left: 47%;
+        animation-duration: 11.8s;
+        animation-delay: -1.4s;
+        transform-origin: 2vw -2vh;
+        box-shadow: 40vmin 0 10.9996vmin currentColor; }
       .home__background span:nth-child(18) {
-        color: #44bba4;
-        top: 80%;
-        left: 11%;
-        animation-duration: 14.8s;
-        animation-delay: -12.6s;
-        transform-origin: 10vw -7vh;
-        box-shadow: -40vmin 0 14.10893vmin currentColor; }
-      .home__background span:nth-child(19) {
         color: #3a7ca5;
-        top: 44%;
-        left: 13%;
-        animation-duration: 12.5s;
-        animation-delay: -8.1s;
-        transform-origin: -15vw -21vh;
-        box-shadow: 40vmin 0 13.56864vmin currentColor; }
+        top: 75%;
+        left: 57%;
+        animation-duration: 13.4s;
+        animation-delay: -13s;
+        transform-origin: 20vw 21vh;
+        box-shadow: 40vmin 0 8.74384vmin currentColor; }
+      .home__background span:nth-child(19) {
+        color: #f45b69;
+        top: 32%;
+        left: 76%;
+        animation-duration: 13.9s;
+        animation-delay: -3.4s;
+        transform-origin: -14vw -14vh;
+        box-shadow: -40vmin 0 12.56021vmin currentColor; }
       .home__background span:nth-child(20) {
         color: #3a7ca5;
-        top: 12%;
-        left: 23%;
-        animation-duration: 15.6s;
-        animation-delay: -14.6s;
-        transform-origin: 4vw -20vh;
-        box-shadow: 40vmin 0 5.38424vmin currentColor; }
+        top: 82%;
+        left: 88%;
+        animation-duration: 11.2s;
+        animation-delay: -13.8s;
+        transform-origin: 9vw -24vh;
+        box-shadow: 40vmin 0 12.14417vmin currentColor; }
 
 @keyframes move {
   100% {
