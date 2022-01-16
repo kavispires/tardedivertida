@@ -17,11 +17,9 @@ export const MAX_ROUNDS = 10;
 
 export const GAME_OVER_SCORE_THRESHOLD = 50;
 
-export const DECK_ORDER_BY_LEVEL = [1, 1, 2, 3, 1, 2, 3, 1, 2, 3];
+export const DECK_ORDER_BY_LEVEL = [1, 2, 3, 4, 1, 2, 3, 4, 1, 4];
 
-export const DECK_ORDER_BY_LEVEL_WITH_4 = [1, 2, 3, 4, 1, 2, 3, 4, 1, 4];
-
-export const CARDS_PER_PLAYER_COUNT_WITH_4 = {
+export const CARDS_PER_PLAYER_COUNT = {
   3: {
     perRound: 7,
     total: 70,
@@ -100,81 +98,6 @@ export const CARDS_PER_PLAYER_COUNT_WITH_4 = {
       2: 20,
       3: 20,
       4: 30,
-    },
-  },
-};
-
-export const CARDS_PER_PLAYER_COUNT = {
-  3: {
-    perRound: 7,
-    total: 70,
-    perLevel: {
-      1: 28,
-      2: 21,
-      3: 21,
-    },
-  },
-  4: {
-    perRound: 7,
-    total: 70,
-    perLevel: {
-      1: 28,
-      2: 21,
-      3: 21,
-    },
-  },
-  5: {
-    perRound: 7,
-    total: 70,
-    perLevel: {
-      1: 28,
-      2: 21,
-      3: 21,
-    },
-  },
-  6: {
-    perRound: 8,
-    total: 80,
-    perLevel: {
-      1: 32,
-      2: 24,
-      3: 24,
-    },
-  },
-  7: {
-    perRound: 9,
-    total: 90,
-    perLevel: {
-      1: 36,
-      2: 27,
-      3: 27,
-    },
-  },
-  8: {
-    perRound: 10,
-    total: 100,
-    perLevel: {
-      1: 40,
-      2: 30,
-      3: 30,
-    },
-  },
-  9: {
-    perRound: 10,
-    total: 100,
-    perLevel: {
-      1: 40,
-      2: 30,
-      3: 30,
-    },
-  },
-  10: {
-    perRound: 10,
-    total: 100,
-    perLevel: {
-      1: 40,
-      2: 30,
-      3: 30,
     },
   },
 };
