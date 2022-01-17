@@ -43,7 +43,7 @@ export function StepItemsSelection({
               Selecione uma arma do crime (carta azul) e um objeto (carta vermelha).
               <br />
               Elas representam a arma usada em seu último crime e um objeto da cena do crime.
-              <br />O jogo contém 12 armas e 12 objetos, mas para essa parte, você vê apenas 3 opções.
+              <br />O jogo contém 16 armas e 16 objetos, mas para essa parte, você vê apenas 4 opções.
             </>
           }
           en={
@@ -52,7 +52,7 @@ export function StepItemsSelection({
               <br />
               They represent the weapon used in your latest crime and an object that was in the crime scene.
               <br />
-              The game has 12 weapons and 12 objects, but for this phase, you only see 3 options.
+              The game has 16 weapons and 16 objects, but for this phase, you only see 4 options.
             </>
           }
         />

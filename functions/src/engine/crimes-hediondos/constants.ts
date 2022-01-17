@@ -17,7 +17,7 @@ export const PLAYER_COUNT = {
 export const TOTAL_ROUNDS = 7;
 export const SCENE_TILES_COUNT = 6;
 
-export const CARDS_PER_GAME = 12;
+export const CARDS_PER_GAME = 16;
 
 export const ITEMS_GROUP_COUNT = 4;
-export const ITEMS_PER_GROUP = 3;
+export const ITEMS_PER_GROUP = 4;

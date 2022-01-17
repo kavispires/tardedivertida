@@ -109,10 +109,8 @@ export const groupItems = (weapons: CrimesHediondosCard[], evidence: CrimesHedio
 };
 
 export const dealItemGroups = (players: Players) => {
-  const gameOrder = gameUtils.shuffle(Object.keys(players));
-
-  gameOrder.forEach((playerId, index) => {
-    players[playerId].itemGroupIndex = index % ITEMS_GROUP_COUNT;
+  Object.keys(players).forEach((playerId) => {
+    players[playerId].itemGroupIndex = Math.round(Math.random() * 100) % ITEMS_GROUP_COUNT;
   });
 };
 

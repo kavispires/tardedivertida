@@ -12,7 +12,7 @@ export function WelcomeMessage(): JSX.Element {
             Você e os outros serial killers decidiram fazer um jogo de adivinhação.
             <br />
             O objetivo é todos darem dicas sobre as circunstâncias que seus últimos crimes aconteceram para
-            ajudar os outros jogadores a descobrirem qual arma e qual objeto foram usados em seu último crime.
+            ajudar os outros jogadores a descobrirem qual arma e qual objeto foram usados durante o crime.
             <br />
             Prontos para aterrorizar?
           </>
