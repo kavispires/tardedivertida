@@ -8,7 +8,7 @@ import * as firebaseUtils from '../../utils/firebase';
 import * as utils from '../../utils/helpers';
 // Internal Functions
 import { determineNextPhase } from './helpers';
-import { CruzaPalavrasInitialState, CruzaPalavrasSubmitAction } from './types';
+import { CruzaPalavrasInitialState, CruzaPalavrasOptions, CruzaPalavrasSubmitAction } from './types';
 import {
   prepareClueWritingPhase,
   prepareGuessingPhase,
@@ -29,7 +29,8 @@ import { handleSubmitClue, handleSubmitGuesses } from './actions';
 export const getInitialState = (
   gameId: GameId,
   uid: string,
-  language: Language
+  language: Language,
+  options: CruzaPalavrasOptions
 ): CruzaPalavrasInitialState => {
   return utils.getDefaultInitialState({
     gameId,
@@ -43,6 +44,7 @@ export const getInitialState = (
       language,
       deck: [],
     },
+    options,
   });
 };
 

@@ -42,21 +42,30 @@ export const determineNextPhase = (
  * Gets the correct number of word cards based on player count
  * @param words
  * @param playerCount
+ * @param largerGridCount
  * @returns
  */
-export const buildDeck = (words: AllWords, playerCount: number): Deck => {
-  return gameUtils.getRandomItems(Object.values(words), WORDS_PER_PLAYER_COUNT[playerCount] + 2);
+export const buildDeck = (words: AllWords, playerCount: number, largerGridCount: number): Deck => {
+  return gameUtils.getRandomItems(
+    Object.values(words),
+    WORDS_PER_PLAYER_COUNT[playerCount] + 2 + largerGridCount
+  );
 };
 
 /**
  * Determine if there are enough cells for the players
  * @param grid
  * @param playerCount
+ * @param largerGridCount
  * @returns
  */
-export const checkForAvailableCells = (grid: GridCell[] = [], playerCount: number): boolean => {
+export const checkForAvailableCells = (
+  grid: GridCell[] = [],
+  playerCount: number,
+  largerGridCount
+): boolean => {
   const availableCells = grid.filter((cell) => cell.available);
-  return availableCells.length >= playerCount;
+  return availableCells.length >= playerCount + largerGridCount;
 };
 
 export const buildGrid = (
