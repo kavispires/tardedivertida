@@ -1,5 +1,6 @@
-// Hooks
-import { GAME_COLLECTION, PHASES } from '../../utils/constants';
+// Constants
+import { GAME_COLLECTION } from '../../utils/constants';
+import { PHASES } from '../../utils/phases';
 // Components
 import { Session, PhaseSetup, PhaseRules, PageError, PhaseLobby } from '../../components';
 import PhaseSecretClue from './PhaseSecretClue';
@@ -12,11 +13,11 @@ import PhaseGameOver from './PhaseGameOver';
 function SessionDetetivesImaginativos({ gameId }: GameSession) {
   function getActiveComponent(phase: string) {
     switch (phase) {
-      case PHASES.DETETIVES_IMAGINATIVOS.LOBBY:
+      case PHASES.DEFAULT.LOBBY:
         return PhaseLobby;
-      case PHASES.DETETIVES_IMAGINATIVOS.RULES:
+      case PHASES.DEFAULT.RULES:
         return PhaseRules;
-      case PHASES.DETETIVES_IMAGINATIVOS.SETUP:
+      case PHASES.DEFAULT.SETUP:
         return PhaseSetup;
       case PHASES.DETETIVES_IMAGINATIVOS.SECRET_CLUE:
         return PhaseSecretClue;
@@ -28,7 +29,7 @@ function SessionDetetivesImaginativos({ gameId }: GameSession) {
         return PhaseVoting;
       case PHASES.DETETIVES_IMAGINATIVOS.REVEAL:
         return PhaseReveal;
-      case PHASES.DETETIVES_IMAGINATIVOS.GAME_OVER:
+      case PHASES.DEFAULT.GAME_OVER:
         return PhaseGameOver;
       default:
         return PageError;

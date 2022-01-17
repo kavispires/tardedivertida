@@ -1,11 +1,12 @@
 .game-info-drawer {
+  position: fixed;
+  top: -1px;
+  right: 50%;
+  transform: translateX(50%);
+  z-index: 150;
+
   &__button {
     @include box-shadow;
-
-    position: absolute;
-    top: -1;
-    right: 50%;
-    transform: translateX(50%);
 
     border: 1px solid get-color(white);
     border-radius: get-unit(0 0 4 4);

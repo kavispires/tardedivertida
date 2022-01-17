@@ -1,14 +1,25 @@
 // Design Resources
 import { Avatar } from 'antd';
 // Components
-import { AvatarName, Icons, ImageCardHand, Instruction, Title, Translate } from '../../components';
+import {
+  AvatarName,
+  FloatingHand,
+  Icons,
+  ImageCardHand,
+  Instruction,
+  Title,
+  Translate,
+  TurnOrder,
+} from '../../components';
 
 type StepSecretClueWaitingProps = {
   leader: GamePlayer;
   user: GamePlayer;
+  players: GamePlayers;
+  turnOrder: PlayerId[];
 };
 
-function StepSecretClueWaiting({ leader, user }: StepSecretClueWaitingProps) {
+function StepSecretClueWaiting({ leader, user, players, turnOrder }: StepSecretClueWaitingProps) {
   return (
     <div className="d-secret-clue-write">
       <Title>
@@ -24,7 +35,10 @@ function StepSecretClueWaiting({ leader, user }: StepSecretClueWaitingProps) {
           en="In the meantime, examine your cards. You're gonna use them this turn."
         />
       </Instruction>
-      <ImageCardHand hand={user.hand} sizeRatio={6} />
+      <TurnOrder players={players} activePlayerId={leader.id} order={turnOrder} />
+      <FloatingHand>
+        <ImageCardHand hand={user.hand} sizeRatio={6} />
+      </FloatingHand>
     </div>
   );
 }

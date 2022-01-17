@@ -118,7 +118,7 @@ function TestingZone() {
     <ul style={styles}>
       {Object.entries(icons).map(([key, Icon], index) => (
         <li key={key} style={stylesLi}>
-          <Icon key={index} />
+          <Icon key={index} style={{ width: '100px' }} />
           <div>{key}</div>
         </li>
       ))}

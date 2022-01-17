@@ -1,5 +1,4 @@
 // Utils
-import { Monster, Sketch } from './retrato-falado';
 import { useCardWidth, useGlobalState } from '../../hooks';
 // Components
 import {
@@ -79,7 +78,7 @@ function StepResults({
       </Instruction>
 
       <div className="r-monster-list">
-        <MonsterCard currentMonster={currentMonster} />
+        <MonsterCard currentMonster={currentMonster} style={{ width: `${canvasWidth * 1.5}px` }} />
         <MonsterSketches
           sketches={mostVotedSketches}
           players={players}
@@ -124,7 +123,7 @@ function StepResults({
 
       <TimedButton label="Ranking" duration={30} onExpire={() => setStep(2)} onClick={() => setStep(2)} />
 
-      <Title level={3}>
+      <Title level={3} className="r-other-sketches-title">
         <Translate pt="Outros desenhos" en="Other sketches" />
       </Title>
 

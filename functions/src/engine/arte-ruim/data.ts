@@ -20,16 +20,11 @@ export const getCards = async (language: string) => {
   // Get full deck
   const allCards = await resourceUtils.fetchResource(resourceName);
 
-  let allLevel4 = {};
-  try {
-    allLevel4 = await resourceUtils.fetchResource(`arte-ruim-extra-${language}`);
-  } catch (e) {
-    // console.error(e);
-    // Do nothing
-  }
+  const allLevel4 = await resourceUtils.fetchResource(`arte-ruim-extra-${language}`);
 
   // Get used deck
   const usedCardsId = await globalUtils.getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.ARTE_RUIM, {});
+
   return {
     allCards,
     usedCardsId: usedCardsId,

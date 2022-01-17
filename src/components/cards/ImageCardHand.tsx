@@ -28,7 +28,7 @@ export function ImageCardHand({
   selectButtonClass = '',
   sizeRatio = 8,
   cardSize,
-  minCardSize = 120,
+  minCardSize = 80,
   disabledSelectButton = false,
 }: ImageCardHandProps) {
   const language = useLanguage();

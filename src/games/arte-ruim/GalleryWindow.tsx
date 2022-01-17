@@ -1,5 +1,7 @@
 // Hooks
 import { useCardWidth } from '../../hooks';
+// Constants
+import { AVATARS } from '../../utils/constants';
 // Components
 import { CanvasSVG } from '../../components/canvas';
 import GalleryWindowCredits from './GalleryWindowCredits';
@@ -15,6 +17,7 @@ type GalleryWindowProps = {
   setActiveIndex: GenericFunction;
   setStep: GenericFunction;
   cards: ArteRuimCard[];
+  disableControls: boolean;
 };
 
 function GalleryWindow({
@@ -25,27 +28,30 @@ function GalleryWindow({
   setActiveIndex,
   setStep,
   cards,
+  disableControls,
 }: GalleryWindowProps) {
   const canvasWidth = useCardWidth(2, 16, 200, 500);
 
   const { drawing, artistId, id, text, playersPoints, playersSay } = window;
 
   const playerArtist = players[artistId];
+  const currentColor = AVATARS[playerArtist.avatarId].color;
 
   return (
     <div className="a-gallery-window">
       <div className="a-gallery-window__drawing-container">
-        <CanvasSVG
-          key={window.correctAnswer}
-          drawing={drawing}
-          size={canvasWidth}
-          className="a-gallery-window__drawing"
-        />
+        <CanvasSVG drawing={drawing} size={canvasWidth} className="a-gallery-window__drawing" />
       </div>
 
       <GalleryWindowCredits artistName={playerArtist.name} artistAvatarId={playerArtist.avatarId} />
 
-      <GalleryWindowGuesses players={players} playersSay={playersSay} cards={cards} />
+      <GalleryWindowGuesses
+        players={players}
+        playersSay={playersSay}
+        cards={cards}
+        windowCardId={window.id}
+        artistColor={currentColor}
+      />
 
       <GalleryWindowResult
         playerArtist={playerArtist}
@@ -61,6 +67,8 @@ function GalleryWindow({
         activeIndex={activeIndex}
         setActiveIndex={setActiveIndex}
         setStep={setStep}
+        disableControls={disableControls}
+        barColor={currentColor}
       />
     </div>
   );

@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { useTimer } from 'react-timer-hook';
 // Utils
 import { TIMES, VIEWS } from './constants';
-import { Monster } from './retrato-falado';
 import { inNSeconds } from '../../utils/helpers';
 // Components
 import { ViewSwitch } from '../../components';
@@ -10,18 +9,30 @@ import ViewAnnouncement from './ViewAnnouncement';
 import ViewLastSeconds from './ViewLastSeconds';
 import ViewSketching from './ViewSketching';
 import ViewWitnessing from './ViewWitnessing';
+import { useGlobalState } from '../../hooks';
 
 type StepTestimonialProps = {
   isUserTheWitness: boolean;
   currentMonster: Monster;
   onSubmitSketch: GenericFunction;
+  onSubmitOrientation: GenericFunction;
 };
 
-function StepTestimonial({ isUserTheWitness, currentMonster, onSubmitSketch }: StepTestimonialProps) {
+function StepTestimonial({
+  isUserTheWitness,
+  currentMonster,
+  onSubmitSketch,
+  onSubmitOrientation,
+}: StepTestimonialProps) {
+  const [monsterOrientation] = useGlobalState('monsterOrientation');
   const [view, setView] = useState(VIEWS.WITNESSING);
   const [lines, setLines] = useState<any>([]);
 
   const onEnd = () => {
+    if (isUserTheWitness && monsterOrientation === 'horizontal') {
+      // Submit orientation change if any
+      onSubmitOrientation({ orientation: monsterOrientation });
+    }
     onSubmitSketch({ sketch: JSON.stringify(lines) });
   };
 

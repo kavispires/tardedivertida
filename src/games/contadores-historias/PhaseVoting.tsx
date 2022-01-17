@@ -1,9 +1,9 @@
 import { useState } from 'react';
 // Hooks
-import { useWhichPlayerIsThe, useAPICall, useUser, useLanguage } from '../../hooks';
+import { useWhichPlayerIsThe, useUser, useLanguage } from '../../hooks';
+import { useOnSubmitVoteAPIRequest } from './api-requests';
 // Resources & Utils
-import { CONTADORES_HISTORIAS_API } from '../../adapters';
-import { PHASES } from '../../utils/constants';
+import { PHASES } from '../../utils/phases';
 // Components
 import {
   ImageCardPreloadHand,
@@ -22,17 +22,7 @@ function PhaseVoting({ state, players, info }: PhaseProps) {
   const [storyteller] = useWhichPlayerIsThe('storytellerId', state, players);
   const [step, setStep] = useState(0);
 
-  const onSubmitVote = useAPICall({
-    apiFunction: CONTADORES_HISTORIAS_API.submitAction,
-    actionName: 'submit-vote',
-    onError: () => setStep(1),
-    successMessage: translate('Voto submetido com sucesso', 'Vote submitted successfully', language),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar seu voto',
-      'Oops, the application found an error while trying to submit your card',
-      language
-    ),
-  });
+  const onSubmitVote = useOnSubmitVoteAPIRequest(setStep);
 
   return (
     <PhaseContainer

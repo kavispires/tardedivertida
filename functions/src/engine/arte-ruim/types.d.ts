@@ -1,24 +1,29 @@
 import { DefaultState, DefaultStore, InitialState, Payload, PlainObject, PlayerId } from '../../utils/types';
 
-interface ArteRuimCard {
+type ArteRuimGameOptions = {
+  useAllCards: boolean;
+  shortGame: boolean;
+};
+
+type ArteRuimCard = {
   id: string;
   text: string;
   level: number;
-}
+};
 
-interface ArteRuimLevel4Card {
+type ArteRuimLevel4Card = {
   id: string;
   theme: string;
   cards: PlainObject;
-}
+};
 
-interface PerLevelCards {
+type PerLevelCards = {
   [key: string]: ArteRuimCard[];
-}
+};
 
-interface ArteRuimCardsDatabase {
+type ArteRuimCardsDatabase = {
   [key: string]: ArteRuimCard;
-}
+};
 
 interface ArteRuimDrawing extends ArteRuimCard {
   playerId: PlayerId | null;

@@ -39,8 +39,8 @@
       "en": true
     },
     "options": [
-      { "label": "Use All Cards", "key": "ALL_CARDS" },
-      { "label": "Level 4", "key": "LEVEL_4" }
+      { "label": "Use All Cards", "key": "useAllCards" },
+      { "label": "Short Game (5 rounds)", "key": "shortGame" }
     ]
   },
   "B": {
@@ -189,14 +189,14 @@
       "en": ["TBD"]
     },
     "playerCount": {
-      "recommended": "",
-      "min": 0,
+      "recommended": "4-6",
+      "min": 3,
       "max": 10
     },
     "tags": ["competitive", "guessing"],
     "available": {
-      "pt": false,
-      "en": false
+      "pt": true,
+      "en": true
     }
   },
   "I": {
@@ -433,8 +433,8 @@
       "en": ["TBD"]
     },
     "playerCount": {
-      "recommended": "",
-      "min": 1,
+      "recommended": "5-6",
+      "min": 4,
       "max": 10
     },
     "tags": ["competitive", "drawing", "voting", "discussion", "timed"],
@@ -603,9 +603,6 @@
       "pt": true,
       "en": true
     },
-    "options": [
-      { "label": "Normal", "key": "NORMAL" },
-      { "label": "Hard", "key": "HARD" }
-    ]
+    "options": [{ "label": "Larger Grid", "key": "largerGrid" }]
   }
 }

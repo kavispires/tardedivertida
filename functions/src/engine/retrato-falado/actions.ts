@@ -6,6 +6,29 @@ import * as firebaseUtils from '../../utils/firebase';
 import { getNextPhase } from './index';
 
 /**
+ * Update store with the current orientation
+ * @param collectionName
+ * @param gameId
+ * @param playerId
+ * @param vote
+ * @returns
+ */
+export const handleSubmitOrientation = async (
+  collectionName: GameName,
+  gameId: GameId,
+  playerId: PlayerId,
+  orientation: string
+) => {
+  return await firebaseUtils.updateStore({
+    collectionName,
+    gameId,
+    playerId,
+    actionText: 'submit orientation',
+    change: { currentOrientation: orientation },
+  });
+};
+
+/**
  * Update player with their sketch
  * @param collectionName
  * @param gameId

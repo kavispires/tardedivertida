@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useIsUserReady, useAPICall, useLanguage, useWhichPlayerIsThe } from '../../hooks';
 // Resources & Utils
 import { ONDA_TELEPATICA_API } from '../../adapters';
-import { PHASES } from '../../utils/constants';
+import { PHASES } from '../../utils/phases';
 // Components
 import {
   WaitingRoom,

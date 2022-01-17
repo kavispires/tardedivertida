@@ -1,0 +1,297 @@
+.o-dial-guess-selection {
+  &__clue {
+    background: get-color(white);
+    font-weight: bolder;
+    padding: get-unit(1);
+    margin: get-unit(0 1);
+    border-radius: get-unit(1);
+    text-transform: uppercase;
+  }
+}
+
+.o-player-guesses {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+}
+
+.o-player-guess {
+  display: flex;
+  flex-direction: column;
+  margin: get-unit(1 2);
+  align-items: center;
+
+  &__avatar {
+    margin-top: get-unit(2);
+  }
+
+  &__guess {
+    display: inline;
+    padding: get-unit(1 3);
+    position: relative;
+    background: #ffffff;
+    border-radius: 0.4em;
+
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border: 0.375em solid transparent;
+      border-top-color: #ffffff;
+      border-bottom: 0;
+      margin-left: -0.375em;
+      margin-bottom: -0.375em;
+    }
+
+    &--blue {
+      color: get-color(blue, 5);
+      font-weight: bolder;
+    }
+
+    &--orange {
+      color: get-color(orange, 5);
+    }
+
+    &--yellow {
+      color: get-color(yellow, 5);
+    }
+  }
+}
+
+$o-card-width: 300px;
+
+.o-card {
+  width: $o-card-width;
+  height: $o-card-width / 3;
+  border-radius: get-unit(2);
+  text-align: center;
+  @include box-shadow;
+
+  display: flex;
+
+  &__side {
+    width: $o-card-width / 2;
+    flex: 1;
+    padding: get-unit(2);
+
+    &--left {
+      border-radius: get-unit(2 0 0 2);
+    }
+
+    &--right {
+      border-radius: get-unit(0 2 2 0);
+    }
+
+    &--button {
+      cursor: pointer;
+      transition: all 500ms;
+
+      &:hover {
+        // transform: scale(1.05);
+        background: get-color(white);
+      }
+    }
+
+    &--L0 {
+      background: #2cbb95;
+    }
+
+    &--L1 {
+      background: #efc783;
+    }
+
+    &--L2 {
+      background: #f55e3d;
+    }
+
+    &--L3 {
+      background: #797484;
+    }
+
+    &--L4 {
+      background: #dbe0d0;
+    }
+
+    &--R0 {
+      background: #c2e7ce;
+    }
+
+    &--R1 {
+      background: #ebc4c2;
+    }
+
+    &--R2 {
+      background: #009fdb;
+    }
+
+    &--R3 {
+      background: #7fc4cd;
+    }
+
+    &--R4 {
+      background: #e9b700;
+    }
+  }
+
+  &__arrow {
+    font-size: 0.8em;
+    display: block;
+  }
+
+  &__text {
+    display: block;
+    margin-top: get-unit(2);
+  }
+}
+
+.o-card-selection {
+  &__container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 250ms;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}
+
+.o-dial {
+  width: 60vw;
+  position: relative;
+  margin: get-unit(2 auto);
+
+  &__needle {
+    fill: #e22929;
+    transform-origin: bottom center;
+    transition: transform 1250ms ease-in-out;
+  }
+
+  &__target {
+    fill: #29abe2;
+    transform-origin: bottom center;
+  }
+
+  &__card {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &__points {
+    animation: bounce 1.5s infinite ease;
+  }
+}
+
+.o-dial-numbers {
+  transition: all 5s ease;
+
+  .o-dial--animated & > path {
+    animation: fan-out 2s;
+    transition: all 5s ease;
+  }
+
+  .o-dial--clickable & > path {
+    cursor: pointer;
+    &:hover {
+      fill: #ffffa8;
+    }
+  }
+
+  &--odd {
+    fill: #e6e6e6;
+    transform-origin: bottom center;
+  }
+
+  &--even {
+    fill: #f2f2f2;
+    transform-origin: bottom center;
+  }
+
+  &--active {
+    fill: #e7c3c3;
+  }
+
+  &--target {
+    fill: #29abe2;
+  }
+}
+
+$base-angle: 8deg;
+
+@for $i from 1 through 10 {
+  #bracket-number-#{$i}-r {
+    transform: rotate($i * $base-angle);
+  }
+
+  #bracket-number-#{$i}-l {
+    transform: rotate($i * $base-angle * -1);
+  }
+}
+
+.o-dial-points {
+  &--animated {
+    opacity: 0;
+    animation: fade-in 4s;
+    // animation-delay: 1.5s;
+    animation-fill-mode: forwards;
+  }
+
+  &--animated-1 {
+    opacity: 0;
+    animation: fade-in 4s;
+    // animation-delay: 0.5s;
+    animation-fill-mode: forwards;
+  }
+
+  &--animated-2 {
+    opacity: 0;
+    animation: fade-in 4s;
+    // animation-delay: 2.5s;
+    animation-fill-mode: forwards;
+  }
+}
+
+@keyframes fan-out {
+  from {
+    opacity: 0;
+    transform: rotate(0);
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: rotate(0);
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

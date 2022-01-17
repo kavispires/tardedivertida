@@ -1,14 +1,14 @@
 // Constants
 import { GAME_COLLECTIONS } from '../../utils/constants';
 import { CRUZA_PALAVRAS_PHASES, PLAYER_COUNT, TOTAL_ROUNDS } from './constants';
-// Interfaces
+// Types
 import { GameId, Language, Players } from '../../utils/types';
 // Utils
 import * as firebaseUtils from '../../utils/firebase';
 import * as utils from '../../utils/helpers';
 // Internal Functions
 import { determineNextPhase } from './helpers';
-import { XTudoPalavrasInitialState, XTudoPalavrasSubmitAction } from './types';
+import { CruzaPalavrasInitialState, CruzaPalavrasOptions, CruzaPalavrasSubmitAction } from './types';
 import {
   prepareClueWritingPhase,
   prepareGuessingPhase,
@@ -29,8 +29,9 @@ import { handleSubmitClue, handleSubmitGuesses } from './actions';
 export const getInitialState = (
   gameId: GameId,
   uid: string,
-  language: Language
-): XTudoPalavrasInitialState => {
+  language: Language,
+  options: CruzaPalavrasOptions
+): CruzaPalavrasInitialState => {
   return utils.getDefaultInitialState({
     gameId,
     gameName: GAME_COLLECTIONS.CRUZA_PALAVRAS,
@@ -43,6 +44,7 @@ export const getInitialState = (
       language,
       deck: [],
     },
+    options,
   });
 };
 
@@ -109,7 +111,7 @@ export const getNextPhase = async (
  * Handles clue and guesses submissions
  * May trigger next phase
  */
-export const submitAction = async (data: XTudoPalavrasSubmitAction) => {
+export const submitAction = async (data: CruzaPalavrasSubmitAction) => {
   const { gameId, gameName: collectionName, playerId, action } = data;
 
   firebaseUtils.validateSubmitActionPayload(gameId, collectionName, playerId, action);

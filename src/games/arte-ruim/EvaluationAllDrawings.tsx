@@ -2,8 +2,7 @@ import clsx from 'clsx';
 // Utils
 import { getEntryId } from '../../utils/helpers';
 // Components
-import { CanvasSVG } from '../../components';
-import Ribbon from './Ribbon';
+import { CanvasSVG, Ribbon } from '../../components';
 
 type EvaluationAllDrawingsProps = {
   drawings: ArteRuimDrawing[];
@@ -28,13 +27,14 @@ function EvaluationAllDrawings({
       {drawings?.map((drawingEntry) => {
         const canvasEntryId = getEntryId(['drawing', drawingEntry.id]);
         const isActive = activeItem === canvasEntryId;
+        const vote = votes[canvasEntryId];
         return (
           <li
             key={canvasEntryId}
             className={clsx(liButtonBaseClass, isActive && `${liButtonBaseClass}--active`)}
             onClick={() => onActivateItem(canvasEntryId)}
           >
-            {votes?.[canvasEntryId] && <Ribbon cardEntryId={votes[canvasEntryId]} />}
+            {votes?.[canvasEntryId] && <Ribbon label={vote.charAt(vote.length - 1)} />}
             <CanvasSVG
               drawing={drawingEntry.drawing}
               className="a-evaluation-all-drawings__drawing"

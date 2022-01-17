@@ -1,0 +1,23 @@
+export const CRIMES_HEDIONDOS_PHASES = {
+  LOBBY: 'LOBBY',
+  RULES: 'RULES',
+  SETUP: 'SETUP',
+  CRIME_SELECTION: 'CRIME_SELECTION',
+  SCENE_MARKING: 'SCENE_MARKING',
+  GUESSING: 'GUESSING',
+  REVEAL: 'REVEAL',
+  GAME_OVER: 'GAME_OVER',
+};
+
+export const PLAYER_COUNT = {
+  MIN: 3,
+  MAX: 10,
+};
+
+export const TOTAL_ROUNDS = 7;
+export const SCENE_TILES_COUNT = 6;
+
+export const CARDS_PER_GAME = 16;
+
+export const ITEMS_GROUP_COUNT = 4;
+export const ITEMS_PER_GROUP = 4;

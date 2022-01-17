@@ -1,4 +1,4 @@
-// Interfaces
+// Types
 import { GameId, PlayerId, GameName, PlainObject } from '../../utils/types';
 // Helpers
 import * as firebaseUtils from '../../utils/firebase';

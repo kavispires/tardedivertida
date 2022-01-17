@@ -27,3 +27,12 @@ type ArteRuimWindow = {
   playersSay: PlayersSay;
   text: string;
 };
+
+type SubmitDrawingPayload = {
+  drawing: string;
+  cardId: string;
+};
+
+type SubmitVotingPayload = {
+  votes: PlainObject;
+};

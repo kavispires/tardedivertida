@@ -3,11 +3,31 @@ import clsx from 'clsx';
 import { Translate, WaitingRoom } from '.';
 import { Loading } from '..';
 
+const getWaitingRoomInstruction = (kind: string) => {
+  switch (kind) {
+    case 'SERVER':
+      return (
+        <Translate pt="Aguardando o servidor dar sinal de vida" en="Waiting for the server to resuscitate" />
+      );
+    case 'PLAYERS':
+      return (
+        <Translate
+          pt="Vamos aguardar enquanto os outros jogadores terminam!"
+          en="Please wait while other players finish!"
+        />
+      );
+
+    default:
+      return <Translate pt="Aguardando algo acontecer..." en="Waiting for something..." />;
+  }
+};
+
 type StepSwitcherProps = {
   children: any;
   step: number;
   conditions?: boolean[];
   players?: GamePlayers;
+  waitingRoomInstructionType?: 'SERVER' | 'PLAYERS';
   waitingRoomInstruction?: any;
 };
 
@@ -17,19 +37,16 @@ export function StepSwitcher({
   conditions,
   players,
   waitingRoomInstruction,
+  waitingRoomInstructionType = 'PLAYERS',
 }: StepSwitcherProps) {
+  if (!players) console.warn('SetSwitcher is being used without `players`, please add it.');
+
   if (players && step === children.length) {
     return (
       <WaitingRoom
         players={players}
         title={<Translate pt="Pronto!" en="Done!" />}
-        instruction={
-          <Translate
-            pt="Aguardando algo acontecer..."
-            en="Waiting for something..."
-            custom={waitingRoomInstruction}
-          />
-        }
+        instruction={waitingRoomInstruction ?? getWaitingRoomInstruction(waitingRoomInstructionType)}
       />
     );
   }

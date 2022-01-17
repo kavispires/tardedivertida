@@ -1,3 +1,5 @@
+// Constants
+import { PHASES } from '../../utils/phases';
 // Hooks
 import useGlobalState from '../../hooks/useGlobalState';
 // Components
@@ -17,7 +19,7 @@ export function PhaseLobby({ players, info }: PhaseLobbyProps) {
   const [userAvatarId] = useGlobalState('userAvatarId');
 
   return (
-    <PhaseContainer phase="LOBBY" allowedPhase="LOBBY" info={info}>
+    <PhaseContainer phase="LOBBY" allowedPhase={PHASES.DEFAULT.LOBBY} info={info}>
       <div className="lobby__room">
         {Object.values(players).map((player, index) => (
           <AvatarEntry

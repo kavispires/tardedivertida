@@ -10,6 +10,10 @@ export type Primitive = string | number | boolean | symbol | null;
 export type ImageCard = string;
 export type GameOrder = PlayerId[];
 export type TurnOrder = PlayerId[];
+export type DualLanguageValue = {
+  en: string;
+  pt: string;
+};
 
 // COMMON INTERFACES
 
@@ -28,6 +32,7 @@ export interface FirebaseContext {
 export interface CreateGamePayload {
   gameCode: GameCode;
   language: string;
+  options?: PlainObject;
 }
 
 export interface LoadGamePayload {
@@ -64,6 +69,7 @@ export interface Meta {
   isComplete: boolean;
   language: string;
   replay: number;
+  options?: PlainObject;
 }
 
 export interface PlayerCount {
@@ -99,6 +105,7 @@ export interface InitialStateArgs {
   initialPhase: string;
   totalRounds: number;
   store: PlainObject;
+  options?: PlainObject;
 }
 
 export interface Round {

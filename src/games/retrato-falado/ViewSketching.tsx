@@ -35,7 +35,7 @@ function ViewSketching({ isUserTheWitness, remainingSketchingTime, lines, setLin
         {remainingSketchingTime > 0 ? (
           <Translate
             pt="Você pode também fazer perguntas à testemunha."
-            en="You may also ask questions to the witness"
+            en="You may also ask the witness questions"
           />
         ) : (
           <Translate pt="Últimos segundos para os retoques finais" en="A few seconds more to finish" />
