@@ -10,7 +10,7 @@ type PopoverRuleProps = {
   showLabel?: boolean;
 };
 
-export function PopoverRule({ content, showLabel = false }: PopoverRuleProps) {
+export function PopoverRule({ content, showLabel = true }: PopoverRuleProps) {
   const [isActive, setActive] = useState(false);
 
   useEffect(() => {
