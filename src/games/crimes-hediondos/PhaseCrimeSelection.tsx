@@ -1,8 +1,7 @@
 import { useState } from 'react';
 // State & Hooks
-import { useIsUserReady, useAPICall, useUser, useLanguage } from '../../hooks';
+import { useIsUserReady, useUser, useLanguage } from '../../hooks';
 // Resources & Utils
-import { CRIMES_HEDIONDOS_API } from '../../adapters';
 import { PHASES } from '../../utils/phases';
 // Components
 import {
@@ -20,43 +19,30 @@ import { StepCauseOfDeathSelection } from './StepCauseOfDeathSelection';
 import { StepLocationSelection } from './StepLocationSelection';
 import { StepReviewCrime } from './StepReviewCrime';
 import { StepReasonForEvidence } from './StepReasonForEvidence';
+import { useOnSubmitCrimeAPIRequest } from './_api-requests';
 
 function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
   const language = useLanguage();
   const user = useUser(players);
   const [step, setStep] = useState(0);
-  const [selections, setSelections] = useState<PlainObject>({});
+  const [selections, setSelections] = useState<SubmitCrimePayload>({});
 
-  const onSubmitCrimeAPIRequest = useAPICall({
-    apiFunction: CRIMES_HEDIONDOS_API.submitAction,
-    actionName: 'submit-crime',
-    onBeforeCall: () => setStep(11),
-    onError: () => setStep(9),
-    successMessage: translate('Crime enviado com sucesso', 'Crime submitted successfully', language),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar seu crime',
-      'Oops, the application failed to send your crime',
-      language
-    ),
-  });
+  const onSubmitCrimeRequest = useOnSubmitCrimeAPIRequest(setStep);
 
   const onSubmitCrime = () => {
-    onSubmitCrimeAPIRequest({
-      action: 'SUBMIT_CRIME',
-      ...selections,
-    });
+    onSubmitCrimeRequest(selections);
   };
 
   const increaseStep = () => setStep((s: number) => ++s);
 
   const updateSelections = (payload: PlainObject) => {
-    setSelections((s: PlainObject) => ({ ...s, ...payload }));
+    setSelections((s: SubmitCrimePayload) => ({ ...s, ...payload }));
     increaseStep();
   };
 
   const updateSelection = (payload: PlainObject) => {
-    setSelections((s: PlainObject) => ({ ...s, ...payload }));
+    setSelections((s: SubmitCrimePayload) => ({ ...s, ...payload }));
   };
 
   return (

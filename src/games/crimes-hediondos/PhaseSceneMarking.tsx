@@ -1,8 +1,7 @@
 import { useState } from 'react';
 // State & Hooks
-import { useIsUserReady, useAPICall, useUser, useLanguage } from '../../hooks';
+import { useIsUserReady, useUser, useLanguage } from '../../hooks';
 // Resources & Utils
-import { CRIMES_HEDIONDOS_API } from '../../adapters';
 import { PHASES } from '../../utils/phases';
 // Components
 import {
@@ -15,6 +14,7 @@ import {
   translate,
 } from '../../components';
 import { StepNewScene } from './StepNewScene';
+import { useOnSubmitMarkAPIRequest } from './_api-requests';
 
 function PhaseSceneMarking({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
@@ -22,25 +22,7 @@ function PhaseSceneMarking({ players, state, info }: PhaseProps) {
   const user = useUser(players);
   const [step, setStep] = useState(0);
 
-  const onSubmitSceneMarkingAPIRequest = useAPICall({
-    apiFunction: CRIMES_HEDIONDOS_API.submitAction,
-    actionName: 'submit-mark',
-    onBeforeCall: () => setStep(3),
-    onError: () => setStep(2),
-    successMessage: translate('Respostas enviadas com sucesso', 'Guesses submitted successfully', language),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar suas respostas',
-      'Oops, the application failed to send your guesses',
-      language
-    ),
-  });
-
-  const onSubmitMark = (payload: PlainObject) => {
-    onSubmitSceneMarkingAPIRequest({
-      action: 'SUBMIT_MARK',
-      ...payload,
-    });
-  };
+  const onSubmitMark = useOnSubmitMarkAPIRequest(setStep);
 
   const increaseStep = () => setStep((s: number) => ++s);
 

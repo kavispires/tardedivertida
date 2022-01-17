@@ -147,7 +147,7 @@ export function StepGuessing({
           size="large"
           type="primary"
           disabled={!isAllComplete}
-          onClick={() => onSubmitGuesses(guesses)}
+          onClick={() => onSubmitGuesses({ guesses })}
         >
           <Translate pt="Enviar Respostas" en="Send Guesses" />
         </Button>

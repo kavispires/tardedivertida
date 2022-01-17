@@ -38,3 +38,20 @@ type Crime = {
     [key: string]: number;
   };
 };
+
+type SubmitCrimePayload = {
+  weaponId?: string;
+  evidenceId?: string;
+  causeOfDeath?: number;
+  reasonForEvidence?: number;
+  locationTile?: string;
+  locationIndex?: string;
+};
+
+type SubmitMarkPayload = {
+  sceneIndex: number;
+};
+
+type SubmitGuessesPayload = {
+  guesses: PlainObject;
+};
