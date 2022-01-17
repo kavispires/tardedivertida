@@ -2,6 +2,7 @@ import { Button } from 'antd';
 import { useState } from 'react';
 import { ButtonContainer, Instruction, Step, Title, Translate } from '../../components';
 import { useCardWidth } from '../../hooks';
+import { shuffle } from '../../utils/helpers';
 import { ItemCard } from './ItemCard';
 
 type StepItemsSelectionProps = {
@@ -23,12 +24,28 @@ export function StepItemsSelection({
   const [evidenceId, setEvidenceId] = useState<string>(selections.evidenceId);
   const cardWidth = useCardWidth(12, 8, 50, 200);
 
+  const userItems = groupedItems[user.itemGroupIndex];
+
   const onSelectItem = (item: CrimesHediondosCard) => {
     if (item.type === 'weapon') {
       setWeaponId(item.id);
     } else {
       setEvidenceId(item.id);
     }
+  };
+
+  const onRandomSelect = () => {
+    let randomWeaponId = '';
+    let randomEvidenceId = '';
+    shuffle(userItems).forEach((itemId) => {
+      if (items[itemId].type === 'weapon') {
+        randomWeaponId = itemId;
+      } else {
+        randomEvidenceId = itemId;
+      }
+    });
+    setWeaponId(randomWeaponId);
+    setEvidenceId(randomEvidenceId);
   };
 
   return (
@@ -57,8 +74,15 @@ export function StepItemsSelection({
           }
         />
       </Instruction>
+
+      <ButtonContainer>
+        <Button onClick={onRandomSelect}>
+          <Translate pt="Selecionar aleatoriamente" en="Random picks" />
+        </Button>
+      </ButtonContainer>
+
       <ul className="h-items-selection">
-        {groupedItems[user.itemGroupIndex].map((itemId) => (
+        {userItems.map((itemId) => (
           <li key={itemId} className="h-items-selection__item">
             <button className="h-items-selection__button" onClick={() => onSelectItem(items[itemId])}>
               <ItemCard
