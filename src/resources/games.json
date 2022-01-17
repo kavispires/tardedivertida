@@ -603,9 +603,6 @@
       "pt": true,
       "en": true
     },
-    "options": [
-      { "label": "Normal", "key": "NORMAL" },
-      { "label": "Hard", "key": "HARD" }
-    ]
+    "options": [{ "label": "Larger Grid", "key": "largerGrid" }]
   }
 }
