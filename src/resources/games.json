@@ -39,8 +39,8 @@
       "en": true
     },
     "options": [
-      { "label": "Use All Cards", "key": "ALL_CARDS" },
-      { "label": "Level 4", "key": "LEVEL_4" }
+      { "label": "Use All Cards", "key": "useAllCards" },
+      { "label": "Short Game (5 rounds)", "key": "shortGame" }
     ]
   },
   "B": {

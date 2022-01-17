@@ -1,20 +1,12 @@
 // Types
-import { PlainObject, Players } from '../../utils/types';
-import {
-  ArteRuimCard,
-  ArteRuimCardsDatabase,
-  ArteRuimDrawing,
-  ArteRuimLevel4Card,
-  FirebaseStoreData,
-  PerLevelCards,
-} from './types';
+import { PlainObject, Players, Round } from '../../utils/types';
+import { ArteRuimCard, ArteRuimDrawing, ArteRuimLevel4Card, FirebaseStoreData, PerLevelCards } from './types';
 // Constants
 import {
   ARTE_RUIM_PHASES,
-  MAX_ROUNDS,
-  DECK_ORDER_BY_LEVEL,
+  REGULAR_GAME_OPTIONS,
+  SHORT_GAME_OPTIONS,
   GAME_OVER_SCORE_THRESHOLD,
-  CARDS_PER_PLAYER_COUNT,
 } from './constants';
 // Helpers
 import * as gameUtils from '../../utils/game-utils';
@@ -30,7 +22,7 @@ import { buildNewScoreObject } from '../../utils/helpers';
  */
 export const determineNextPhase = (
   currentPhase: string,
-  currentRound: number,
+  round: Round,
   isGameOver?: boolean,
   triggerLastRound?: boolean
 ): string => {
@@ -42,7 +34,7 @@ export const determineNextPhase = (
   }
 
   if (currentPhase === GALLERY) {
-    return triggerLastRound || currentRound >= MAX_ROUNDS ? GAME_OVER : DRAW;
+    return triggerLastRound || round.current >= round.total ? GAME_OVER : DRAW;
   }
 
   const currentPhaseIndex = order.indexOf(currentPhase);
@@ -88,19 +80,6 @@ const getEnoughUnusedLevel4Cards = (deck, usedCards: PlainObject, cardsNeeded: n
 };
 
 /**
- * Filters used cards off the deck
- * @param fullDeck
- * @param usedCardsIds
- * @returns
- */
-export const filterAvailableCards = (
-  fullDeck: ArteRuimCardsDatabase,
-  usedCardsIds: string[]
-): ArteRuimCard[] => {
-  return Object.values(fullDeck).filter((entry) => !usedCardsIds.includes(entry.id));
-};
-
-/**
  * Builds the deck as evenly as possible with cards needed per level
  * @param fullDeckData
  * @param perLevel
@@ -110,7 +89,9 @@ export const buildDeck = (
   allCards: PlainObject,
   level4Deck: ArteRuimLevel4Card[],
   usedCardsIds: ArteRuimCard[],
-  playerCount: number
+  playerCount: number,
+  useAllCards: boolean,
+  gameType: string
 ): ArteRuimCard[] => {
   const cardsPerLevel: PerLevelCards = {
     0: [],
@@ -131,13 +112,15 @@ export const buildDeck = (
   // Split in levels
   Object.values(allCards).forEach((entry: ArteRuimCard) => {
     cardsPerLevel[entry.level].push(entry);
-    if (usedCardsIds[entry.id] === undefined) {
+    if (useAllCards || usedCardsIds[entry.id] === undefined) {
       availableCards[entry.level].push(entry);
     }
   });
 
-  const roundLevels = DECK_ORDER_BY_LEVEL;
-  const cardsNeeded = CARDS_PER_PLAYER_COUNT[playerCount];
+  const gameOptions = gameType === 'SHORT_GAME' ? SHORT_GAME_OPTIONS : REGULAR_GAME_OPTIONS;
+
+  const roundLevels = gameOptions.DECK_ORDER_BY_LEVEL;
+  const cardsNeeded = gameOptions.CARDS_PER_PLAYER_COUNT[playerCount];
 
   // Check Levels Availability requirement
   if (availableCards['1'].length < cardsNeeded.perLevel['1'].length) {

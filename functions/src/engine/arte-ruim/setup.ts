@@ -2,7 +2,7 @@
 import { PlainObject, Players, SaveGamePayload } from '../../utils/types';
 import { FirebaseStateData, FirebaseStoreData } from './types';
 // Constants
-import { ARTE_RUIM_PHASES, MAX_ROUNDS } from './constants';
+import { ARTE_RUIM_PHASES, REGULAR_GAME_OPTIONS, SHORT_GAME_OPTIONS } from './constants';
 // Helpers
 import * as gameUtils from '../../utils/game-utils';
 import * as firebaseUtils from '../../utils/firebase';
@@ -29,7 +29,9 @@ export const prepareSetupPhase = async (
     additionalData.allCards,
     additionalData.level4Cards,
     additionalData.usedCardsId,
-    playerCount
+    playerCount,
+    store.options?.useAllCards ?? false,
+    store.options?.shortGame ? 'SHORT_GAME' : 'REGULAR_GAME'
   );
 
   // Save
@@ -58,6 +60,11 @@ export const prepareDrawPhase = async (
   // Deal cards
   dealCards(players, store);
 
+  // Update rounds
+  const maxRounds = store.options?.shortGame
+    ? SHORT_GAME_OPTIONS.MAX_ROUNDS
+    : REGULAR_GAME_OPTIONS.MAX_ROUNDS;
+
   return {
     update: {
       store: {
@@ -65,7 +72,7 @@ export const prepareDrawPhase = async (
       },
       state: {
         phase: ARTE_RUIM_PHASES.DRAW,
-        round: utils.increaseRound(state?.round, MAX_ROUNDS),
+        round: utils.increaseRound(state?.round, maxRounds),
         level: Object.values(players)?.[0]?.currentCard?.level ?? 0,
       },
     },

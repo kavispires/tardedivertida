@@ -1,7 +1,7 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 // Design Resources
-import { Image, Modal, message, Button, notification } from 'antd';
+import { Image, Modal, message, Button, notification, Divider, Typography, Switch } from 'antd';
 // Adapters
 import { ADMIN_API } from '../../adapters';
 // Hooks
@@ -10,7 +10,7 @@ import { useGlobalState, useLanguage, useLoading, useLocalStorage } from '../../
 import { LATEST_GAME_IDS, PUBLIC_URL } from '../../utils/constants';
 // Components
 import { Loading } from '../loaders';
-import { Instruction, Title, Translate, translate } from '../shared';
+import { ButtonContainer, Instruction, Title, Translate, translate } from '../shared';
 
 const updateLocal24hGameIds = (latestGameIds: PlainObject, newId: GameId) => {
   const now = Date.now();
@@ -39,53 +39,57 @@ export function CreateGameModal({ gameInfo }: CreateGameModalProps): JSX.Element
   const [, setLoader] = useLoading();
   const [getLocalStorage, setLocalStorage] = useLocalStorage();
   const [isVisible, setVisibility] = useState(false);
-  const [isLoading, setLoading] = useState(true);
+  const [isLoading, setLoading] = useState(false);
   const [gameId, setGameId] = useState(null);
   const [, setUserId] = useGlobalState('userId');
   const [, setUserName] = useGlobalState('username');
   const [, setUserAvatarId] = useGlobalState('userAvatarId');
+  const [options, setOptions] = useState({});
 
   const onCloseModal = useCallback(() => {
     setVisibility(false);
   }, []);
 
-  useEffect(() => {
-    async function createGame() {
-      try {
-        setLoader('create', true);
-        const response: PlainObject = await ADMIN_API.createGame({
-          gameCode: gameInfo.gameCode,
-          language,
-        });
-        if (response.data.gameId) {
-          setGameId(response.data.gameId);
-          setUserId(null);
-          setUserName('');
-          setUserAvatarId('');
-          setLocalStorage(updateLocal24hGameIds(getLocalStorage(LATEST_GAME_IDS), response.data.gameId));
-        }
-      } catch (e: any) {
-        notification.error({
-          message: translate(
-            'Aplicativo encontrou um erro ao tentar criar o jogo',
-            'The application found an error while trying to create a game',
-            language
-          ),
-          description: JSON.stringify(e.message),
-          placement: 'bottomLeft',
-        });
-        console.error(e);
-        setVisibility(false);
-      } finally {
-        setLoading(false);
-        setLoader('create', false);
-      }
-    }
+  const onChangeOptions = (key: string, value: boolean) => {
+    setOptions((s) => ({
+      ...s,
+      [key]: value,
+    }));
+  };
 
-    if (isVisible) {
-      createGame();
+  const createGame = async () => {
+    try {
+      setLoader('create', true);
+      setLoading(true);
+      const response: PlainObject = await ADMIN_API.createGame({
+        gameCode: gameInfo.gameCode,
+        language,
+        options,
+      });
+      if (response.data.gameId) {
+        setGameId(response.data.gameId);
+        setUserId(null);
+        setUserName('');
+        setUserAvatarId('');
+        setLocalStorage(updateLocal24hGameIds(getLocalStorage(LATEST_GAME_IDS), response.data.gameId));
+      }
+    } catch (e: any) {
+      notification.error({
+        message: translate(
+          'Aplicativo encontrou um erro ao tentar criar o jogo',
+          'The application found an error while trying to create a game',
+          language
+        ),
+        description: JSON.stringify(e.message),
+        placement: 'bottomLeft',
+      });
+      console.error(e);
+      setVisibility(false);
+    } finally {
+      setLoading(false);
+      setLoader('create', false);
     }
-  }, [isVisible]); // eslint-disable-line
+  };
 
   const onConfirmGame = () => {
     if (gameId) {
@@ -104,26 +108,56 @@ export function CreateGameModal({ gameInfo }: CreateGameModalProps): JSX.Element
       </Button>
       {isVisible && (
         <Modal
-          title={`${translate('Criando jogo', 'Creating game', language)}: ${gameInfo.title[language]}`}
+          title={`${translate('Criando novo jogo', 'Creating new game', language)}: ${
+            gameInfo.title[language]
+          }`}
           visible={isVisible}
           onCancel={onCloseModal}
           onOk={onConfirmGame}
+          okButtonProps={{ disabled: Boolean(!gameId) }}
         >
           <>
+            {console.log({ gameInfo })}
             <Image
               alt={gameInfo.title[language]}
               src={`${PUBLIC_URL.BANNERS}game-image-${gameInfo.gameName}-${language}.jpg`}
               fallback={`${PUBLIC_URL.BANNERS}/game-image-em-breve-${language}.jpg`}
             />
 
-            {isLoading ? (
+            {Boolean(gameInfo.options) ? (
+              <div className="create-game-modal-options">
+                <Typography.Title level={4}>
+                  <Translate pt="Opções:" en="Options:" />
+                </Typography.Title>
+
+                {gameInfo.options!.map((option, index) => (
+                  <Typography.Paragraph key={`option-${option.label}`}>
+                    <Switch
+                      disabled={isLoading || Boolean(gameId)}
+                      onChange={(e) => onChangeOptions(option.key, e)}
+                    />{' '}
+                    {option.label}
+                  </Typography.Paragraph>
+                ))}
+              </div>
+            ) : (
+              <Typography.Text>
+                <Translate pt="Este jogo não possui customizações" en="This game has no customizations" />
+              </Typography.Text>
+            )}
+
+            <Divider />
+
+            {isLoading && (
               <>
                 <Instruction>
                   <Translate pt="O jogo está sendo criado..." en="The game session is being created" />
                 </Instruction>
                 <Loading message={translate('Gerando...', 'Generating...', language)} margin />
               </>
-            ) : (
+            )}
+
+            {Boolean(gameId) ? (
               <div>
                 <Title className="center">
                   <Translate pt="Jogo inicializado" en="Game Initialized" />: {gameId}
@@ -135,6 +169,12 @@ export function CreateGameModal({ gameInfo }: CreateGameModalProps): JSX.Element
                   />
                 </Instruction>
               </div>
+            ) : (
+              <ButtonContainer>
+                <Button type="primary" size="large" disabled={isLoading} onClick={createGame}>
+                  <Translate pt="Criar Jogo" en="Create Game" />
+                </Button>
+              </ButtonContainer>
             )}
           </>
         </Modal>
