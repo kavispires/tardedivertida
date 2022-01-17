@@ -75,6 +75,7 @@ export function getDefaultInitialState({
   initialPhase,
   totalRounds,
   store,
+  options = {},
 }: InitialStateArgs): InitialState {
   return {
     meta: {
@@ -88,10 +89,12 @@ export function getDefaultInitialState({
       isComplete: false,
       language,
       replay: 0,
+      options,
     },
     players: {},
     store: {
       language,
+      options,
       ...store,
     },
     state: {
