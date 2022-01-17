@@ -6,9 +6,8 @@ import { useOnSubmitVotingAPIRequest } from './api-requests';
 import { PHASES } from '../../utils/phases';
 // Components
 import { PhaseContainer, StepSwitcher, PhaseAnnouncement, translate } from '../../components';
-
 import StepEvaluation from './StepEvaluation';
-import RulesEvaluation from './RulesEvaluation';
+import { EvaluationRules } from './TextBlobs';
 
 function EvaluationPhase({ players, state, info }: PhaseProps) {
   const language = useLanguage();
@@ -35,7 +34,7 @@ function EvaluationPhase({ players, state, info }: PhaseProps) {
           onClose={() => setStep(1)}
           currentRound={state?.round?.current}
         >
-          <RulesEvaluation />
+          <EvaluationRules />
         </PhaseAnnouncement>
 
         {/* Step 1 */}

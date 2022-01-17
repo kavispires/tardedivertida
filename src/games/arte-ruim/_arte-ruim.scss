@@ -311,13 +311,12 @@
     background: get-color(white);
     border-radius: get-unit(2);
     flex-grow: 1;
-
-    & > span {
-      height: get-unit(2);
-      border-radius: get-unit(2);
-      background: get-color(purple);
-      display: block;
-      transition: width 1s;
-    }
+  }
+  &__timer-bar-pill {
+    height: get-unit(2);
+    border-radius: get-unit(2);
+    background: get-color(gray);
+    display: block;
+    transition: all 1.5s;
   }
 }

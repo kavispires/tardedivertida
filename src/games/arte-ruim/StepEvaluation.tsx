@@ -20,7 +20,7 @@ import {
 } from '../../components';
 import EvaluationAllDrawings from './EvaluationAllDrawings';
 import EvaluationAllCards from './EvaluationAllCards';
-import RulesEvaluation from './RulesEvaluation';
+import { EvaluationRules } from './TextBlobs';
 
 function prepareVotes(votes: PlainObject) {
   return Object.entries(votes).reduce((acc: PlainObject, [drawingEntryId, cardEntryId]) => {
@@ -98,7 +98,7 @@ function StepEvaluation({ drawings, cards, players, onSubmitVoting }: StepEvalua
 
   return (
     <Step className="a-evaluation-step">
-      <PopoverRule content={<RulesEvaluation />} />
+      <PopoverRule content={<EvaluationRules />} />
       <CanvasResizer />
       <Title>
         <Translate pt="Adivinhação" en="Match the Pairs" />
