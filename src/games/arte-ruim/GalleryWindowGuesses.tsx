@@ -1,6 +1,7 @@
+import { orderBy } from 'lodash';
 // Design Resources
 import { Avatar as AntAvatar } from 'antd';
-import { MessageFilled } from '@ant-design/icons';
+import { CrownFilled, MessageFilled } from '@ant-design/icons';
 // Utils
 import { getPlayersFromIds } from '../../utils/helpers';
 // Components
@@ -10,24 +11,53 @@ type GalleryWindowGuessesProps = {
   playersSay: PlayersSay;
   players: GamePlayers;
   cards: ArteRuimCard[];
+  windowCardId: string;
+  artistColor: string;
 };
 
-function GalleryWindowGuesses({ playersSay, players, cards }: GalleryWindowGuessesProps) {
+function GalleryWindowGuesses({
+  playersSay,
+  players,
+  cards,
+  windowCardId,
+  artistColor,
+}: GalleryWindowGuessesProps) {
+  const entries = orderBy(
+    Object.entries(playersSay).map(([cardId, playersIds]) => {
+      return {
+        cardId,
+        card: cards.find((i) => i.id === cardId),
+        playersIds,
+        count: playersIds.length,
+        isCorrect: windowCardId === cardId,
+      };
+    }),
+    ['isCorrect', 'count', 'card.text'],
+    ['desc', 'desc', 'asc']
+  );
+
   return (
     <div className="a-gallery-window__guesses">
       <div className="a-gallery-window__label">
         <Translate pt="Participantes votaram" en="Players voted" />
       </div>
-      {Object.entries(playersSay).map(([cardId, playerIds], index) => {
-        const card = cards.find((i) => i.id === cardId);
+      {entries.map((entry, index) => {
         return (
-          <div key={`guess-${cardId}-${index}`} className="a-gallery-window__guess">
-            <div className="a-gallery-window__speech-bubble">
-              <MessageFilled className="a-gallery-window__speech-bubble-icon" /> {card?.text}
+          <div key={`guess-${entry.cardId}-${index}`} className="a-gallery-window__guess">
+            <div
+              className="a-gallery-window__speech-bubble"
+              style={entry.isCorrect ? { backgroundColor: artistColor, color: 'white' } : {}}
+            >
+              {entry.isCorrect ? (
+                <CrownFilled className="a-gallery-window__speech-bubble-icon" style={{ color: 'white' }} />
+              ) : (
+                <MessageFilled className="a-gallery-window__speech-bubble-icon" />
+              )}
+              {entry.card?.text}
             </div>
             <div className="a-gallery-window__players">
               <AntAvatar.Group>
-                {playerIds.map((playerId) => (
+                {entry.playersIds.map((playerId) => (
                   <Avatar
                     id={players[playerId].avatarId}
                     key={`guess-avatar-${players[playerId].avatarId}`}
@@ -35,7 +65,7 @@ function GalleryWindowGuesses({ playersSay, players, cards }: GalleryWindowGuess
                 ))}
               </AntAvatar.Group>
               <span className="a-gallery-window__players-names">
-                {getPlayersFromIds(playerIds, players, true).join(', ')}
+                {getPlayersFromIds(entry.playersIds, players, true).join(', ')}
               </span>
             </div>
           </div>

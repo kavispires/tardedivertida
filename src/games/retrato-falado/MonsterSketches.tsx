@@ -1,7 +1,5 @@
 // Design Resources
 import { Space } from 'antd';
-// Utils
-import { Sketch } from './retrato-falado';
 // Components
 import { Avatar, CanvasSVG } from '../../components';
 

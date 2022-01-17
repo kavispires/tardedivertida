@@ -1,0 +1,256 @@
+.h-item-card {
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+  justify-content: center;
+
+  &--selected {
+    border: 2px dashed get-color(yellow);
+    background: get-color(yellow, 6);
+    border-radius: get-unit(1);
+  }
+
+  &__name {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 0.7rem;
+    margin: 0;
+    overflow: hidden;
+    text-align: center;
+    text-overflow: ellipsis;
+  }
+}
+
+.h-items-selection {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  gap: get-unit(1);
+  justify-items: center;
+  background: get-color(black, 5);
+  border-radius: get-unit(2);
+  padding: get-unit(2);
+
+  &__button {
+    border: 2px solid transparent;
+    background: none;
+    cursor: pointer;
+    padding: 0;
+  }
+}
+
+.h-items-crime-selection {
+  display: flex;
+  background: get-color(black, 5);
+  border-radius: get-unit(2);
+  padding: get-unit(2);
+  align-items: center;
+
+  &__faded {
+    opacity: 0.25;
+  }
+}
+
+.h-scene-tiles-list {
+  display: flex;
+  overflow-y: auto;
+}
+
+.h-items-board {
+  display: grid;
+  grid-template-columns: repeat(6, auto);
+  gap: get-unit(1);
+  background: get-color(black, 5);
+  border-radius: get-unit(2);
+  padding: get-unit(2);
+}
+
+.h-grouped-items-board {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: get-unit(1);
+  background: get-color(black, 5);
+  border-radius: get-unit(2);
+  padding: get-unit(2);
+
+  &__group {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    gap: get-unit(1);
+
+    border: 2px solid get-color(brown);
+    border-radius: get-unit(2);
+    padding: get-unit(2);
+  }
+}
+
+.h-scene-tile {
+  $self: &;
+  // font-family: 'Courier New', Courier, monospace;
+
+  background: get-color(black, 5);
+  padding: get-unit(2);
+  border-radius: get-unit(2);
+  margin: get-unit(2);
+
+  &__title {
+    text-align: center;
+  }
+
+  &__button {
+    color: get-color(white);
+  }
+
+  &__options {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    li {
+      margin-bottom: get-unit(1);
+      width: 100%;
+
+      #{ $self }__button {
+        width: 100%;
+      }
+    }
+  }
+
+  &--cause {
+    border: 5px solid get-color(violet, 6);
+
+    #{ $self }__title {
+      color: get-color(violet, 5);
+    }
+
+    #{ $self }__button {
+      background: get-color(violet, 7);
+      border-color: get-color(violet, 7);
+    }
+
+    #{ $self }__icon {
+      color: get-color(violet, 5);
+    }
+  }
+
+  &--evidence {
+    border: 5px solid get-color(red, 8);
+
+    #{ $self }__title {
+      color: get-color(red, 5);
+    }
+
+    #{ $self }__button {
+      background: get-color(red, 7);
+      border-color: get-color(red, 7);
+    }
+
+    #{ $self }__icon {
+      color: get-color(red, 5);
+    }
+  }
+
+  &--location {
+    border: 5px solid get-color(green, 8);
+
+    #{ $self }__title {
+      color: get-color(green, 5);
+    }
+
+    #{ $self }__button {
+      background: get-color(green, 7);
+      border-color: get-color(green, 7);
+    }
+
+    #{ $self }__icon {
+      color: get-color(green, 5);
+    }
+  }
+
+  &--scene {
+    border: 5px solid get-color(orange, 8);
+
+    #{ $self }__title {
+      color: get-color(orange, 5);
+    }
+
+    #{ $self }__button {
+      background: get-color(orange, 7);
+      border-color: get-color(orange, 7);
+    }
+
+    #{ $self }__icon {
+      color: get-color(orange, 5);
+    }
+  }
+}
+
+.h-crime {
+  background: get-color(black, 5);
+  display: grid;
+  grid-template-columns: [player] 2.5rem [info] auto [selections] 216px [done] 2.5rem;
+  min-height: 200px;
+  margin: get-unit(2);
+  border-radius: get-unit(1);
+  color: get-color(white);
+
+  &__player {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__player-name {
+    display: block;
+    transform: rotate(-90deg) translateX(-40%);
+  }
+
+  &__scenes {
+    padding: get-unit(2);
+  }
+}
+
+.h-crime-scene {
+  // background: pink;
+  display: grid;
+  grid-template-columns: 3fr 7fr;
+  // flex-wrap: nowrap;
+  margin-bottom: get-unit(1);
+
+  &__label {
+    white-space: nowrap;
+    padding: get-unit(0 1);
+    margin-right: get-unit(1);
+
+    &--cause {
+      background: get-color(violet, 6);
+    }
+
+    &--evidence {
+      background: get-color(red, 6);
+    }
+
+    &--location {
+      background: get-color(green, 6);
+    }
+
+    &--scene {
+      background: get-color(orange, 6);
+    }
+  }
+
+  &__value {
+    padding: get-unit(0 1);
+  }
+}
+
+.h-crime-selections {
+  display: flex;
+  padding: get-unit(1);
+}
+
+.h-item-selector {
+  width: 100px;
+  margin-left: get-unit(1);
+}

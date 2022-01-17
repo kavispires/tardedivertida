@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 // Design Resources
 import { message } from 'antd';
 // Hooks
-import { useWhichPlayerIsThe, useAPICall, useUser, useLoading, useLanguage } from '../../hooks';
+import { useWhichPlayerIsThe, useUser, useLoading, useLanguage } from '../../hooks';
+import { useOnPlayCardAPIRequest } from './api-requests';
 // Resources & Utils
-import { DETETIVES_IMAGINATIVOS_API } from '../../adapters';
-import { PHASES } from '../../utils/constants';
+import { PHASES } from '../../utils/phases';
 // Components
 import {
   Instruction,
@@ -25,26 +25,9 @@ function PhaseCardPlay({ state, players, info }: PhaseProps) {
   const user = useUser(players);
   const [currentPlayer, isUserTheCurrentPlayer] = useWhichPlayerIsThe('currentPlayerId', state, players);
   const [, isUserTheImpostor] = useWhichPlayerIsThe('impostorId', state, players);
-
   const [step, setStep] = useState(0);
 
-  const onPlayCard = useAPICall({
-    apiFunction: DETETIVES_IMAGINATIVOS_API.submitAction,
-    actionName: 'play-card',
-    successMessage: translate('Carta enviada com sucesso', 'Card submitted successfully', language),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua carta',
-      'Oops, the application found an error while trying to submit your card',
-      language
-    ),
-  });
-
-  const onSelectCard = (cardId: string) => {
-    onPlayCard({
-      action: 'PLAY_CARD',
-      cardId,
-    });
-  };
+  const onPlayCard = useOnPlayCardAPIRequest();
 
   useEffect(() => {
     if (isUserTheCurrentPlayer && step > 0) {
@@ -94,7 +77,7 @@ function PhaseCardPlay({ state, players, info }: PhaseProps) {
           isLoading={isLoading}
           isUserTheImpostor={isUserTheImpostor}
           isUserTheCurrentPlayer={isUserTheCurrentPlayer}
-          onSelectCard={onSelectCard}
+          onPlayCard={onPlayCard}
           players={players}
           table={state.table}
           user={user}

@@ -1,9 +1,8 @@
 import { useState } from 'react';
 // Hooks
-import { useWhichPlayerIsThe, useAPICall, useUser, useLanguage } from '../../hooks';
+import { useWhichPlayerIsThe, useUser, useLanguage } from '../../hooks';
 // Resources & Utils
-import { CONTADORES_HISTORIAS_API } from '../../adapters';
-import { PHASES } from '../../utils/constants';
+import { PHASES } from '../../utils/phases';
 // Components
 import {
   Instruction,
@@ -15,6 +14,7 @@ import {
   translate,
 } from '../../components';
 import StepPlayCard from './StepPlayCard';
+import { useOnPlayCardAPIRequest } from './api-requests';
 
 function PhaseCardPlay({ state, players, info }: PhaseProps) {
   const language = useLanguage();
@@ -22,17 +22,7 @@ function PhaseCardPlay({ state, players, info }: PhaseProps) {
   const [storyteller, isUserTheStoryTeller] = useWhichPlayerIsThe('storytellerId', state, players);
   const [step, setStep] = useState(0);
 
-  const onPlayCard = useAPICall({
-    apiFunction: CONTADORES_HISTORIAS_API.submitAction,
-    actionName: 'play-card',
-    onError: () => setStep(1),
-    successMessage: translate('Carta submetida com sucesso', 'Card submitted successfully', language),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua carta',
-      'Oops, the application found an error while trying to submit your card',
-      language
-    ),
-  });
+  const onPlayCard = useOnPlayCardAPIRequest(setStep);
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.CONTADORES_HISTORIAS.CARD_PLAY}>

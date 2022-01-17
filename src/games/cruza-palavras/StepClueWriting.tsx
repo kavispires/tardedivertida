@@ -16,6 +16,12 @@ type StepClueWritingProps = {
 function StepClueWriting({ grid, user, onSubmitClue, players }: StepClueWritingProps) {
   const [isLoading] = useLoading();
 
+  const onSubmitClueClick = (payload: string) => {
+    onSubmitClue({
+      clue: payload.trim().toLowerCase(),
+    });
+  };
+
   return (
     <div className="x-step">
       <Title>
@@ -35,7 +41,7 @@ function StepClueWriting({ grid, user, onSubmitClue, players }: StepClueWritingP
         grid={grid}
         user={user}
         CellComponent={WritingCell}
-        cellComponentProps={{ onSubmitClue, disabled: isLoading }}
+        cellComponentProps={{ onSubmitClue: onSubmitClueClick, disabled: isLoading }}
       />
 
       <ReadyPlayersBar players={players} showNames />

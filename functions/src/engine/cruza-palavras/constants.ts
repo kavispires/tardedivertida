@@ -10,7 +10,7 @@ export const CRUZA_PALAVRAS_PHASES = {
 
 export const PLAYER_COUNT = {
   MIN: 3,
-  MAX: 8,
+  MAX: 10,
 };
 
 export const TOTAL_ROUNDS = 6;

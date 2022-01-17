@@ -19,6 +19,7 @@ function WritingCell({ onSubmitClue, cell, user, disabled }: WritingCellProps) {
       <Popover
         content={<WordForm x={cell.xText ?? ''} y={cell.yText ?? ''} onSubmit={onSubmitClue} />}
         title={<Translate pt="Escreva" en="Write" />}
+        trigger="click"
       >
         <Button shape="circle" type="primary" disabled={disabled}>
           <FormOutlined />

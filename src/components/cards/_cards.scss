@@ -150,3 +150,43 @@
   flex-direction: column;
   align-items: center;
 }
+
+.floating-hand-added-white-space {
+  width: 1px;
+  height: 50px;
+}
+
+.floating-hand {
+  $self: &;
+  position: fixed;
+  bottom: get-unit(-3);
+  left: 50%;
+  background: green;
+  border-radius: get-unit(3 3 0 0);
+  background: rgba($color: #f0f0f0, $alpha: 0.9);
+  padding: get-unit(2 2 0 2);
+  z-index: 149;
+
+  transition: 500ms all;
+  transform: translate(-50%, 50%) scale(50%);
+  box-shadow: 0px -5px 15px rgba(0, 0, 0, 0.4);
+
+  &--expanded {
+    transform: translate(-50%) scale(100%);
+    background: rgba($color: get-color(grey, 3), $alpha: 1);
+    box-shadow: 0px -15px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  &__label {
+    color: get-color(black, 1);
+    text-align: center;
+    width: 100%;
+    display: block;
+    transition: all 500ms;
+    font-size: 1.5rem;
+
+    #{$self}--expanded & {
+      font-size: 0rem;
+    }
+  }
+}

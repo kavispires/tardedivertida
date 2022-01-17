@@ -2,6 +2,7 @@ import ArteRuim from './arte-ruim/SessionArteRuim';
 import ContadoresHistorias from './contadores-historias/SessionContadoresHistorias';
 import DetetivesImaginativos from './detetives-imaginativos/SessionDetetivesImaginativos';
 import EspiaoEntreNos from './espiao-entre-nos/SessionEspiaoEntreNos';
+import CrimesHediondos from './crimes-hediondos/SessionCrimesHediondos';
 import InstrumentosCodificados from './instrumentos-codificados/SessionInstrumentosCodificados';
 import MenteColetiva from './mente-coletiva/SessionMenteColetiva';
 import OndaTelepatica from './onda-telepatica/SessionOndaTelepatica';
@@ -17,6 +18,7 @@ const games = {
   ContadoresHistorias,
   DetetivesImaginativos,
   EspiaoEntreNos,
+  CrimesHediondos,
   InstrumentosCodificados,
   MenteColetiva,
   OndaTelepatica,

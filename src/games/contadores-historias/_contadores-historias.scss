@@ -1,0 +1,192 @@
+.c-book-pages {
+  filter: drop-shadow(2px 4px 4px rgba(#000, 0.3));
+}
+
+.c-story-book {
+  width: 700px;
+  margin: get-unit(2 auto);
+
+  &__selected-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__instructions {
+    font-family: 'Dancing Script', cursive;
+    padding: get-unit(3 2 2 4);
+    text-indent: 1.5em;
+  }
+
+  &__solution {
+    font-family: 'Dancing Script', cursive;
+    font-size: 0.75rem;
+    padding: get-unit(3 2 2 4);
+  }
+
+  &__story {
+    font-size: 1rem;
+    color: get-color(blue, 8);
+    margin: get-unit(3);
+  }
+
+  &__nobody {
+    color: get-color(red);
+    margin: get-unit(3);
+  }
+
+  &__correct-players {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+.c-story-writing-input {
+  border: none;
+  border-bottom: 1px dashed get-color(blue, 4);
+  color: get-color(blue);
+}
+
+.c-table-face-down {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  min-height: 300px;
+}
+
+.c-table-face-down-card {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  filter: drop-shadow(2px 4px 4px rgba(#000, 0.3));
+  transition: all 500ms;
+  opacity: 1;
+
+  &--0 {
+    position: static;
+    transform: rotate(3deg);
+    z-index: 120;
+  }
+
+  &--1 {
+    transform: translateX(-50%) rotate(-165deg);
+  }
+
+  &--2 {
+    transform: translateX(-50%) rotate(70deg);
+  }
+
+  &--3 {
+    transform: translateX(-60%) rotate(-60deg);
+  }
+
+  &--4 {
+    transform: translateX(-45%) rotate(-10deg);
+  }
+
+  &--5 {
+    transform: translateX(-55%) rotate(-20deg);
+  }
+
+  &--6 {
+    transform: translateX(-30%) rotate(12deg);
+  }
+
+  &--7 {
+    transform: translateX(-50%) rotate(-9deg);
+  }
+
+  &--hidden {
+    width: 1px;
+    height: 1px;
+    position: absolute;
+    overflow: hidden;
+
+    top: -100%;
+    transform: translateX(-50%) rotate(-180deg);
+  }
+
+  &--hidden-user {
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+
+    top: 100%;
+    transform: translateX(-50%) rotate(-180deg);
+  }
+}
+
+.c-story-card {
+  width: 70%;
+  font-size: 1.25rem;
+  max-width: 720px;
+  margin: 0.5em auto;
+
+  .card__text {
+    font-family: 'Dancing Script', cursive;
+    text-transform: none;
+    font-size: 1.5rem;
+  }
+}
+
+.c-game-table {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  max-width: 94vw;
+  overflow-x: auto;
+  padding: get-unit(2);
+  color: white;
+  background: get-color(brown, 6);
+  border-radius: get-unit(1);
+  border: get-color(brown, 7) get-unit(1) groove;
+  @include box-shadow;
+
+  &__card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: get-unit(1);
+  }
+
+  &--vote {
+    border: 2px solid get-color(yellow);
+  }
+}
+
+.c-other-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  &__entry {
+    display: flex;
+    flex-direction: column;
+    border-radius: get-unit(1);
+    padding: get-unit(1);
+    margin: get-unit(1);
+  }
+
+  &__player {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__votes {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__points {
+    grid-column: column1 / columnEnd;
+    grid-row: row3 / rowEnd;
+
+    display: flex;
+    justify-content: center;
+    transform: scale(0.8);
+  }
+}

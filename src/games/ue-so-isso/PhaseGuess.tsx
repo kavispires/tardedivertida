@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useGlobalState, useLoading, useWhichPlayerIsThe, useAPICall, useLanguage } from '../../hooks';
 // Resources & Utils
 import { UE_SO_ISSO_API } from '../../adapters';
-import { PHASES } from '../../utils/constants';
+import { PHASES } from '../../utils/phases';
 // Components
 import { PhaseAnnouncement, PhaseContainer, StepSwitcher, translate } from '../../components';
 import StepGuessing from './StepGuessing';

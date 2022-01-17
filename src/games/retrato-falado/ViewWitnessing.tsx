@@ -1,7 +1,5 @@
 // Utils
 import { TIMES } from './constants';
-// Types
-import { Monster } from './retrato-falado';
 // Components
 import { DrawingCanvas, Instruction, TimerBar, Title, Translate } from '../../components';
 import MonsterCard from './MonsterCard';

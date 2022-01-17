@@ -1,3 +1,5 @@
+// Constants
+import { PHASES } from '../../utils/phases';
 // Components
 import { Instruction, PhaseContainer, Title, Translate, Icons } from '..';
 
@@ -8,7 +10,7 @@ type PhaseSetupProps = {
 
 export function PhaseSetup({ info, state }: PhaseSetupProps) {
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase="SETUP" className="setup">
+    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.DEFAULT.SETUP} className="setup">
       <div className="phase-announcement">
         <Title>
           <Translate pt="Preparando o jogo..." en="Setting up...." />

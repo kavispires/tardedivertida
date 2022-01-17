@@ -1,15 +1,14 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 // Design Resources
 import { Button } from 'antd';
 import { PictureOutlined } from '@ant-design/icons';
 // State & Hooks
 import { useLanguage } from '../../hooks';
 // Resources and Utils
-import { PHASES } from '../../utils/constants';
+import { PHASES } from '../../utils/phases';
 // Components
 import {
   AdminNextRoundButton,
-  Instruction,
   PhaseContainer,
   RankingBoard,
   StepSwitcher,
@@ -19,38 +18,23 @@ import {
   translate,
   Translate,
   RoundsLeftInstruction,
+  PopoverRule,
 } from '../../components';
 import GalleryWindow from './GalleryWindow';
-
-const GalleryRules = () => (
-  <Instruction>
-    <Translate
-      pt={
-        <>
-          Agora, mostraremos cada arte, o que os jogadores votaram e a resposta final.
-          <br />
-          Se você votou na expressão correta, você ganha 2 pontos.
-          <br />
-          Quando for a sua arte, você ganha 1 ponto para cada pessoa que votou corretamente.
-        </>
-      }
-      en={
-        <>
-          Now we show each art, what players voted, and the final answer.
-          <br />
-          You get 2 points if you selected the right card.
-          <br />
-          When players selected the correct card for your artwork, you get 1 point for each match!
-        </>
-      }
-    />
-  </Instruction>
-);
+import { GalleryRules, ScoringRules } from './TextBlobs';
 
 function PhaseGallery({ players, state, info }: PhaseProps) {
   const language = useLanguage();
   const [activeIndex, setActiveIndex] = useState(0);
   const [step, setStep] = useState(0);
+  const [isFirstGalleryRunThrough, setIsFirstGalleryRunThrough] = useState(true);
+
+  // Changes isFirstGalleryRunThrough property which disables controls, after the first gallery run through
+  useEffect(() => {
+    if (isFirstGalleryRunThrough && step > 1) {
+      setIsFirstGalleryRunThrough(false);
+    }
+  }, [step, isFirstGalleryRunThrough]);
 
   const isGameOver = Object.values(players).some((player) => player.score > 50);
 
@@ -61,8 +45,8 @@ function PhaseGallery({ players, state, info }: PhaseProps) {
       allowedPhase={PHASES.ARTE_RUIM.GALLERY}
       className="a-gallery-phase"
     >
-      <StepSwitcher step={step}>
-        {/*Step 1 */}
+      <StepSwitcher step={step} players={players}>
+        {/*Step 0 */}
         <PhaseAnnouncement
           type="picture"
           title={translate('Galeria de Arte', 'Art Gallery', language)}
@@ -73,11 +57,14 @@ function PhaseGallery({ players, state, info }: PhaseProps) {
           <GalleryRules />
         </PhaseAnnouncement>
 
-        {/* Step 2 */}
+        {/* Step 1 */}
         <Step className="a-gallery-phase__windows">
           <Title>
             <Translate pt="Galeria de Arte" en="Art Gallery" />
           </Title>
+
+          <PopoverRule content={<ScoringRules />} />
+
           {state?.gallery && (
             <GalleryWindow
               window={state.gallery[activeIndex]}
@@ -87,14 +74,17 @@ function PhaseGallery({ players, state, info }: PhaseProps) {
               activeIndex={activeIndex}
               setActiveIndex={setActiveIndex}
               setStep={setStep}
+              disableControls={isFirstGalleryRunThrough}
             />
           )}
         </Step>
 
-        {/* Step 3 */}
+        {/* Step 2 */}
         <Step>
           <Title>Ranking</Title>
           <RankingBoard players={players} ranking={state.ranking} />
+
+          <PopoverRule content={<ScoringRules />} />
 
           {!isGameOver && <RoundsLeftInstruction round={state?.round} />}
 

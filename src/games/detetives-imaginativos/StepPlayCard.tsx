@@ -4,6 +4,7 @@ import { QuestionCircleFilled } from '@ant-design/icons';
 // Components
 import {
   AvatarName,
+  FloatingHand,
   Icons,
   ImageCardHand,
   Instruction,
@@ -23,7 +24,7 @@ type StepPlayCardProps = {
   table: DetetivesImaginativosCardEntry[];
   players: GamePlayers;
   user: GamePlayer;
-  onSelectCard: GenericFunction;
+  onPlayCard: GenericFunction;
   isLoading: boolean;
 };
 
@@ -35,9 +36,11 @@ function StepPlayCard({
   table,
   players,
   user,
-  onSelectCard,
+  onPlayCard,
   isLoading,
 }: StepPlayCardProps) {
+  const onSelectCard = (cardId: string) => onPlayCard({ cardId });
+
   return (
     <Step key={1}>
       <Title>
@@ -95,12 +98,14 @@ function StepPlayCard({
         </ViewIf>
       </Instruction>
       <Table table={table} players={players} />
-      <ImageCardHand
-        hand={user.hand}
-        onSelectCard={isUserTheCurrentPlayer ? onSelectCard : undefined}
-        disabledSelectButton={isLoading}
-        sizeRatio={6}
-      />
+      <FloatingHand>
+        <ImageCardHand
+          hand={user.hand}
+          onSelectCard={isUserTheCurrentPlayer ? onSelectCard : undefined}
+          disabledSelectButton={isLoading}
+          sizeRatio={6}
+        />
+      </FloatingHand>
     </Step>
   );
 }

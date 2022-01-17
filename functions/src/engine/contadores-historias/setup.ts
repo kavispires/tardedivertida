@@ -48,10 +48,13 @@ export const prepareSetupPhase = async (
   return {
     update: {
       store: {
-        gameOrder,
         usedCards: [],
         tableDeck,
         tableDeckIndex: -1,
+      },
+      state: {
+        phase: CONTADORES_HISTORIAS_PHASES.SETUP,
+        gameOrder,
       },
       players,
     },
@@ -75,8 +78,8 @@ export const prepareStoryPhase = async (
   players = utils.removePropertiesFromPlayers(players, ['vote', 'cardId']);
 
   // Determine active player based on current round
-  const storytellerId = utils.getActivePlayer(store.gameOrder, state.round.current + 1);
-  const nextStorytellerId = utils.getActivePlayer(store.gameOrder, state.round.current + 2);
+  const storytellerId = utils.getActivePlayer(state.gameOrder, state.round.current + 1);
+  const nextStorytellerId = utils.getActivePlayer(state.gameOrder, state.round.current + 2);
 
   // Save
   return {

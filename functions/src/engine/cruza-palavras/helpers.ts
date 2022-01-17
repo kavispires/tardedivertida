@@ -1,11 +1,12 @@
-// Interfaces
+// Types
 import { AllWords, ClueEntry, Deck, GridCell } from './types';
-import { NewScores, PlayerId, Players, RankingEntry, Round } from '../../utils/types';
+import { PlayerId, Players, RankingEntry, Round } from '../../utils/types';
 // Constants
 import { WORDS_PER_PLAYER_COUNT, CRUZA_PALAVRAS_PHASES } from './constants';
 // Utils
 import * as gameUtils from '../../utils/game-utils';
 import { SEPARATOR } from '../../utils/constants';
+import { buildNewScoreObject } from '../../utils/helpers';
 
 /**
  * Determine the next phase based on the current one
@@ -41,21 +42,30 @@ export const determineNextPhase = (
  * Gets the correct number of word cards based on player count
  * @param words
  * @param playerCount
+ * @param largerGridCount
  * @returns
  */
-export const buildDeck = (words: AllWords, playerCount: number): Deck => {
-  return gameUtils.getRandomItems(Object.values(words), WORDS_PER_PLAYER_COUNT[playerCount] + 2);
+export const buildDeck = (words: AllWords, playerCount: number, largerGridCount: number): Deck => {
+  return gameUtils.getRandomItems(
+    Object.values(words),
+    WORDS_PER_PLAYER_COUNT[playerCount] + 2 + largerGridCount
+  );
 };
 
 /**
  * Determine if there are enough cells for the players
  * @param grid
  * @param playerCount
+ * @param largerGridCount
  * @returns
  */
-export const checkForAvailableCells = (grid: GridCell[] = [], playerCount: number): boolean => {
+export const checkForAvailableCells = (
+  grid: GridCell[] = [],
+  playerCount: number,
+  largerGridCount
+): boolean => {
   const availableCells = grid.filter((cell) => cell.available);
-  return availableCells.length >= playerCount;
+  return availableCells.length >= playerCount + largerGridCount;
 };
 
 export const buildGrid = (
@@ -226,18 +236,7 @@ export const getPlayerClues = (players: Players): ClueEntry[] => {
  * @returns
  */
 export const buildRanking = (players: Players, clues: ClueEntry[]) => {
-  const newScores: NewScores = {};
-
-  // Build score object
-  Object.values(players).forEach((player) => {
-    newScores[player.id] = {
-      playerId: player.id,
-      name: player.name,
-      previousScore: player.score,
-      gainedPoints: [0, 0, 0], // from guesses, from others, lost points
-      newScore: player.score,
-    };
-  });
+  const newScores = buildNewScoreObject(players, [0, 0, 0]); // from guesses, from others, lost points
 
   const answers = clues.reduce((acc, entry) => {
     acc[entry.playerId] = entry.coordinate;

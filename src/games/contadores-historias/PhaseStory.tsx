@@ -1,9 +1,9 @@
 import { useState } from 'react';
 // Hooks
-import { useIsUserReady, useWhichPlayerIsThe, useAPICall, useUser, useLanguage } from '../../hooks';
+import { useIsUserReady, useWhichPlayerIsThe, useUser, useLanguage } from '../../hooks';
+import { useOnSubmitStoryAPIRequest } from './api-requests';
 // Resources & Utils
-import { CONTADORES_HISTORIAS_API } from '../../adapters';
-import { PHASES } from '../../utils/constants';
+import { PHASES } from '../../utils/phases';
 // Components
 import {
   AvatarName,
@@ -17,7 +17,6 @@ import {
   Translate,
   translate,
   ViewIf,
-  WaitingRoom,
 } from '../../components';
 import StoryWaiting from './StoryWaiting';
 import StoryWriting from './StoryWriting';
@@ -30,18 +29,7 @@ function PhaseStory({ state, players, info }: PhaseProps) {
   const [nextStoryteller] = useWhichPlayerIsThe('nextStorytellerId', state, players);
   const [step, setStep] = useState(0);
 
-  const onSubmitStory = useAPICall({
-    apiFunction: CONTADORES_HISTORIAS_API.submitAction,
-    actionName: 'submit-story',
-    onBeforeCall: () => setStep(3),
-    onError: () => setStep(0),
-    successMessage: translate('História submetida com sucesso', 'Story submitted successfully', language),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua história',
-      'Oops, the application found an error while trying to submit your story',
-      language
-    ),
-  });
+  const onSubmitStory = useOnSubmitStoryAPIRequest(setStep);
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.CONTADORES_HISTORIAS.STORY}>
@@ -82,24 +70,18 @@ function PhaseStory({ state, players, info }: PhaseProps) {
         {/* Step 2 */}
         <Step fullWidth>
           <ViewIf isVisible={!isUserTheStoryTeller}>
-            <StoryWaiting user={user} storyteller={storyteller} />
+            <StoryWaiting
+              user={user}
+              storyteller={storyteller}
+              players={players}
+              gameOrder={state.gameOrder}
+            />
           </ViewIf>
 
           <ViewIf isVisible={isUserTheStoryTeller}>
             <StoryWriting user={user} onSubmitStory={onSubmitStory} />
           </ViewIf>
         </Step>
-
-        {/* Step 3 */}
-        <WaitingRoom
-          players={players}
-          title={translate('Pronto!', 'Done!', language)}
-          instruction={translate(
-            'Aguardando o servidor dar sinal de vida',
-            'Waiting for the server to resuscitate',
-            language
-          )}
-        />
       </StepSwitcher>
     </PhaseContainer>
   );

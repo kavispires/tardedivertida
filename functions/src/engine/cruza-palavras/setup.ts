@@ -1,6 +1,6 @@
 // Constants
 import { WORDS_PER_PLAYER_COUNT, CRUZA_PALAVRAS_PHASES } from './constants';
-// Interfaces
+// Types
 import { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 import { Players, SaveGamePayload } from '../../utils/types';
 // Utils
@@ -29,8 +29,9 @@ export const prepareSetupPhase = async (
   players: Players,
   resourceData: ResourceData
 ): Promise<SaveGamePayload> => {
+  const largerGridCount = store.options.largerGrid ? 2 : 0;
   // Build deck
-  const deck = buildDeck(resourceData.allWords, Object.keys(players).length);
+  const deck = buildDeck(resourceData.allWords, Object.keys(players).length, largerGridCount);
 
   // Save
   return {
@@ -58,10 +59,12 @@ export const prepareClueWritingPhase = async (
 
   const round = utils.increaseRound(state.round);
   const playerCount = Object.keys(players).length;
-  const coordinateLength = WORDS_PER_PLAYER_COUNT[playerCount] / 2 + store.gridRebuilds;
+  const largerGridCount = store.options.largerGrid ? 1 : 0;
+  const coordinateLength = WORDS_PER_PLAYER_COUNT[playerCount] / 2 + store.gridRebuilds + largerGridCount;
 
   // Build grid if rounds 1 or if there is not enough available cells for all players
-  const shouldBuildGrid = !checkForAvailableCells(state.grid, playerCount);
+  const largerGridAvailability = store.options.largerGrid ? 2 : 0;
+  const shouldBuildGrid = !checkForAvailableCells(state.grid, playerCount, largerGridAvailability);
   const grid = shouldBuildGrid
     ? buildGrid(store.deck, store.playersClues, coordinateLength, shouldBuildGrid)
     : state.grid;

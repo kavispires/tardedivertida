@@ -9,7 +9,7 @@ function ViewAnnouncement({ isUserTheWitness }: ViewAnnouncementProps) {
     <PhaseAnnouncement
       title={
         isUserTheWitness ? (
-          <Translate pt="Memorize!" en="Memorize!" />
+          <Translate pt="Descreva!" en="Describe!" />
         ) : (
           <Translate pt="Hora de desenhar!" en="Time to draw!" />
         )

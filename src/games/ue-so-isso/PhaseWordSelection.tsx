@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useIsUserReady, useWhichPlayerIsThe, useAPICall, useLanguage } from '../../hooks';
 // Resources & Utils
 import { UE_SO_ISSO_API } from '../../adapters';
-import { PHASES } from '../../utils/constants';
+import { PHASES } from '../../utils/phases';
 // Components
 import {
   AvatarName,
@@ -81,16 +81,7 @@ function PhaseWordSelection({ state, players, info }: PhaseProps) {
       allowedPhase={PHASES.UE_SO_ISSO.WORD_SELECTION}
       className="u-word-selection-phase"
     >
-      <StepSwitcher
-        step={step}
-        conditions={[!isUserReady]}
-        players={players}
-        waitingRoomInstruction={translate(
-          'Aguarde os outros jogadores',
-          'Wait for the other players',
-          language
-        )}
-      >
+      <StepSwitcher step={step} conditions={[!isUserReady]} players={players}>
         {/* Step 0 */}
         <RoundAnnouncement round={state.round} onPressButton={() => setStep(1)} time={7}>
           <RoundAnnouncementText guesser={guesser} groupScore={state.groupScore} round={state.round} />

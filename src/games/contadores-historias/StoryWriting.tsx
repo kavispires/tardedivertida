@@ -6,6 +6,7 @@ import { Button, Input } from 'antd';
 // Components
 import {
   ButtonContainer,
+  FloatingHand,
   ImageCard,
   ImageCardHand as Hand,
   Title,
@@ -15,8 +16,8 @@ import {
 import BookPages from './BookPages';
 
 type StoryWritingProps = {
-  user: GamePlayer,
-  onSubmitStory: GenericFunction,
+  user: GamePlayer;
+  onSubmitStory: GenericFunction;
 };
 
 function StoryWriting({ user, onSubmitStory }: StoryWritingProps) {
@@ -28,7 +29,6 @@ function StoryWriting({ user, onSubmitStory }: StoryWritingProps) {
   const onButtonClick = () => {
     if (cardId && story) {
       onSubmitStory({
-        action: 'SUBMIT_STORY',
         story: story.trim(),
         cardId,
       });
@@ -87,12 +87,14 @@ function StoryWriting({ user, onSubmitStory }: StoryWritingProps) {
           <Translate pt="Enviar pista secreta e carta" en="Send secret clue and card" />
         </Button>
       </ButtonContainer>
-      <Hand
-        hand={user.hand}
-        onSelectCard={setCardId}
-        disabledSelectButton={isLoading}
-        sizeRatio={user.hand.length}
-      />
+      <FloatingHand>
+        <Hand
+          hand={user.hand}
+          onSelectCard={setCardId}
+          disabledSelectButton={isLoading}
+          sizeRatio={user.hand.length}
+        />
+      </FloatingHand>
     </div>
   );
 }

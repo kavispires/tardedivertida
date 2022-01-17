@@ -1,9 +1,21 @@
-export type Monster = {
+type Monster = {
   id: string;
   orientation: string;
 };
 
-export interface Sketch extends Monster {
+interface Sketch extends Monster {
   sketch: string;
   playerId: PlayerId;
 }
+
+type SubmitOrientationPayload = {
+  orientation: string;
+};
+
+type SubmitSketchPayload = {
+  sketch: string;
+};
+
+type SubmitVotePayload = {
+  vote: PlayerId;
+};

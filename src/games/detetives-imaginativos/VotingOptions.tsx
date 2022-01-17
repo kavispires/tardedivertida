@@ -39,7 +39,7 @@ export function VotingOptions({
         return (
           <div className="d-voting-options__container" key={`voting-button-${playerOption.name}`}>
             <Button
-              onClick={() => onVote(playerOption.id)}
+              onClick={() => onVote({ vote: playerOption.id })}
               ghost
               size="large"
               disabled={isAllDisabled || user?.vote || isLoading || user?.name === playerOption.name}
@@ -50,7 +50,12 @@ export function VotingOptions({
               <Translate pt="Votos" en="Votes" />: {votedForPlayer.length}
               <ul className="d-voting-options__votes">
                 {votedForPlayer.map((vPlayer) => (
-                  <Avatar id={vPlayer.avatarId} size="small" alt={vPlayer.name} />
+                  <Avatar
+                    key={`voted-for-player-${vPlayer.id}`}
+                    id={vPlayer.avatarId}
+                    size="small"
+                    alt={vPlayer.name}
+                  />
                 ))}
               </ul>
             </div>

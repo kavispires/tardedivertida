@@ -15,9 +15,7 @@
 @import './global';
 
 // Shared Components
-@import '../components/avatars/AvatarEntry.scss';
-@import '../components/avatars/AvatarName.scss';
-@import '../components/avatars/SheepAvatar.scss';
+@import '../components/avatars/avatars.scss';
 @import '../components/loaders/loaders.scss';
 @import '../components/lobby/lobby.scss';
 @import '../components/lobby/_internal/CloudBackground.scss';
@@ -35,6 +33,8 @@
 @import '../components/shared/Instruction.scss';
 @import '../components/shared/TimedButton.scss';
 @import '../components/shared/Title.scss';
+@import '../components/shared/TurnOrder.scss';
+@import '../components/shared/Ribbon.scss';
 @import '../components/shared/StepSwitcher.scss';
 @import '../components/shared/EmergencyAlert.scss';
 @import '../components/shared/RateGameWidget.scss';
@@ -45,48 +45,20 @@
 @import '../components/canvas/DrawingCanvas.scss';
 @import '../components/admin/admin';
 
-// ArteRuim Components
-@import '../games/arte-ruim/SessionArteRuim.scss';
-@import '../games/arte-ruim/EvaluationAllDrawings.scss';
-@import '../games/arte-ruim/EvaluationAllCards.scss';
-@import '../games/arte-ruim/Ribbon.scss';
-@import '../games/arte-ruim/GalleryWindow.scss';
-
-// ContadoresHistorias
-@import '../games/contadores-historias/SessionContadoresHistorias.scss';
-
-// DetetivesImaginativos Components
-@import '../games/detetives-imaginativos/SessionDetetivesImaginativos.scss';
-
-// EspiaoEntreNos Components
-@import '../games/espiao-entre-nos/SessionEspiaoEntreNos.scss';
-
-// MenteColetiva Components
-@import '../games/mente-coletiva/SessionMenteColetiva.scss';
-
-// OndaTelepatica Components
-@import '../games/onda-telepatica/SessionOndaTelepatica.scss';
-@import '../games/onda-telepatica/Card.scss';
-@import '../games/onda-telepatica/CardSelection.scss';
-@import '../games/onda-telepatica/Dial.scss';
-
-// PolemicaDaVez
-@import '../games/polemica-da-vez/SessionPolemicaDaVez.scss';
-
-// RetratoFalado
-@import '../games/retrato-falado/SessionRetratoFalado.scss';
-
-// SonhosPesadelos
-@import '../games/sonhos-pesadelos/SessionSonhosPesadelos.scss';
-
-// TestemunhaOcular Components
-@import '../games/testemunha-ocular/SessionTestemunhaOcular.scss';
-
-// UeSoIsso Components
-@import '../games/ue-so-isso/SessionUseSoIsso.scss';
-
-// CruzaPalavras
-@import '../games/cruza-palavras/SessionCruzaPalavras.scss';
+// Game Styles
+@import '../games/arte-ruim/arte-ruim';
+@import '../games/contadores-historias/contadores-historias';
+@import '../games/crimes-hediondos/crimes-hediondos';
+@import '../games//cruza-palavras/cruza-palavras';
+@import '../games/detetives-imaginativos/detetives-imaginativos';
+@import '../games/espiao-entre-nos/espiao-entre-nos';
+@import '../games/mente-coletiva/mente-coletiva';
+@import '../games/onda-telepatica/onda-telepatica';
+@import '../games/polemica-da-vez/polemica-da-vez';
+@import '../games/retrato-falado/retrato-falado';
+@import '../games/sonhos-pesadelos/sonhos-pesadelos';
+@import '../games/testemunha-ocular/testemunha-ocular';
+@import '../games/ue-so-isso/ue-so-isso';
 
 // Pages
 @import '../routes/App.scss';

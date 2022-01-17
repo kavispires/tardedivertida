@@ -1,9 +1,10 @@
 // Types
 import { Players, SaveGamePayload } from '../../utils/types';
-import { FirebaseStateData, FirebaseStoreData, RetratoFaladoAdditionalData } from './types';
+import { FirebaseStateData, FirebaseStoreData, MonsterSketch, RetratoFaladoAdditionalData } from './types';
 // Constants
 import { RETRATO_FALADO_PHASES } from './constants';
-// Helpers
+// Helpers1
+import * as firebaseUtils from '../../utils/firebase';
 import * as gameUtils from '../../utils/game-utils';
 import * as utils from '../../utils/helpers';
 import { buildDeck, buildRanking, gatherSketches, getMostVotes } from './helpers';
@@ -58,11 +59,13 @@ export const prepareCompositeSketchPhase = async (
 
   utils.unReadyPlayers(players, witnessId);
   utils.removePropertiesFromPlayers(players, ['vote', 'drawing']);
+
   // Save
   return {
     update: {
       store: {
         deck,
+        currentOrientation: firebaseUtils.deleteValue(),
       },
       state: {
         phase: RETRATO_FALADO_PHASES.COMPOSITE_SKETCH,
@@ -80,8 +83,13 @@ export const prepareEvaluationPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
+  const currentMonster = { ...state.currentMonster };
+  if (store.currentOrientation) {
+    currentMonster.orientation = store.currentOrientation;
+  }
+
   // Gather all drawings
-  const sketches = gatherSketches(players, state.currentMonster, state.witnessId);
+  const sketches = gatherSketches(players, currentMonster, state.witnessId);
 
   utils.unReadyPlayers(players);
 
@@ -91,6 +99,7 @@ export const prepareEvaluationPhase = async (
       state: {
         phase: RETRATO_FALADO_PHASES.EVALUATION,
         sketches,
+        currentMonster,
       },
       players,
     },
@@ -109,11 +118,15 @@ export const prepareRevealPhase = async (
   // Create ranking
   const ranking = buildRanking(players, state.witnessId, mostVotes, witnessVote);
 
+  const selectedSketches = state.sketches.filter(
+    (sketch: MonsterSketch) => sketch.playerId && mostVotes.includes(sketch.playerId)
+  );
+
   // Save
   return {
     update: {
       store: {
-        pastSketches: [...store.pastSketches, ...state.sketches],
+        pastSketches: [...store.pastSketches, ...selectedSketches],
       },
       state: {
         phase: RETRATO_FALADO_PHASES.REVEAL,

@@ -1,4 +1,4 @@
-// Interfaces
+// Types
 import { ResourceData } from './types';
 // Utils
 import * as resourceUtils from '../resource';

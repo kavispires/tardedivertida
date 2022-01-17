@@ -3,7 +3,7 @@ import { GAME_COLLECTIONS } from '../../utils/constants';
 import { ARTE_RUIM_PHASES, PLAYER_COUNT, MAX_ROUNDS } from './constants';
 // Types
 import { GameId, GameName, Language, Players } from '../../utils/types';
-import { ArteRuimInitialState, ArteRuimSubmitAction } from './types';
+import { ArteRuimGameOptions, ArteRuimInitialState, ArteRuimSubmitAction } from './types';
 // Utilities
 import * as firebaseUtils from '../../utils/firebase';
 import * as utils from '../../utils/helpers';
@@ -26,7 +26,12 @@ import { handleSubmitDrawing, handleSubmitVoting } from './actions';
  * @param language
  * @returns
  */
-export const getInitialState = (gameId: GameId, uid: string, language: Language): ArteRuimInitialState => {
+export const getInitialState = (
+  gameId: GameId,
+  uid: string,
+  language: Language,
+  options: ArteRuimGameOptions
+): ArteRuimInitialState => {
   return utils.getDefaultInitialState({
     gameId,
     gameName: GAME_COLLECTIONS.ARTE_RUIM,
@@ -42,6 +47,7 @@ export const getInitialState = (gameId: GameId, uid: string, language: Language)
       currentCards: [],
       pastDrawings: [],
     },
+    options,
   });
 };
 
@@ -71,12 +77,7 @@ export const getNextPhase = async (
   // Determine if it's game over
   const isGameOver = determineGameOver(players);
   // Determine next phase
-  const nextPhase = determineNextPhase(
-    state?.phase,
-    state?.round?.current ?? 0,
-    isGameOver,
-    state?.lastRound
-  );
+  const nextPhase = determineNextPhase(state?.phase, state?.round, isGameOver, state?.lastRound);
 
   // RULES -> SETUP
   if (nextPhase === ARTE_RUIM_PHASES.SETUP) {

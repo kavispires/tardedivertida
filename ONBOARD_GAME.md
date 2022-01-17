@@ -36,8 +36,8 @@ All file paths here are relative to `/src`.
 ### Constants
 
 - Add your game to `/resources/games.json`, make sure to use an unique game code letter and the available flag.
-- Update `GAME_COLLECTION` in `/utils/constants.js`.
-- Update `PHASES` in `/utils/constants.js`.
+- Update `GAME_COLLECTION` in `/utils/constants.ts`.
+- Update `PHASES` in `/utils/phases.ts`.
 
 ### Banner
 

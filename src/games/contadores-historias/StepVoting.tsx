@@ -36,7 +36,6 @@ function StepVoting({ players, story, user, onSubmitVote, storyteller, table }: 
 
   const onSelectCard = (vote: string) => {
     onSubmitVote({
-      action: 'SUBMIT_VOTE',
       vote,
     });
   };
@@ -80,7 +79,7 @@ function StepVoting({ players, story, user, onSubmitVote, storyteller, table }: 
         })}
       </div>
 
-      <ReadyPlayersBar players={players} />
+      <ReadyPlayersBar players={players} showNames />
     </div>
   );
 }

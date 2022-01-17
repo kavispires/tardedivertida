@@ -17,7 +17,22 @@ export function ReadyPlayersBar({
   readyTextPlural,
   showNames = false,
 }: ReadyPlayersBarProps) {
-  const readyPlayers = Object.values(players).filter((player) => player.ready);
+  const { readyPlayers, notReadyPlayers }: { readyPlayers: GamePlayer[]; notReadyPlayers: string[] } =
+    Object.values(players).reduce(
+      (acc: any, player: GamePlayer) => {
+        if (player.ready) {
+          acc.readyPlayers.push(player);
+        } else {
+          acc.notReadyPlayers.push(player.name);
+        }
+        return acc;
+      },
+      {
+        readyPlayers: [],
+        notReadyPlayers: [],
+      }
+    );
+
   if (readyPlayers.length === 0) {
     return <span></span>;
   }
@@ -43,7 +58,7 @@ export function ReadyPlayersBar({
       </div>
       {showNames && (
         <span className="ready-player-bar__names">
-          ({readyPlayers.map((player) => player.name).join(', ')})
+          <Translate pt="Esperando" en="Waiting for" custom={readyText} />: {notReadyPlayers.join(', ')}
         </span>
       )}
     </div>

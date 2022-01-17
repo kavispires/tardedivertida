@@ -1,27 +1,30 @@
 import { DefaultState, DefaultStore, InitialState, Payload, PlayerId } from '../../utils/types';
 
-interface WordCard {
+type CruzaPalavrasOptions = {
+  largerGrid: boolean;
+};
+type WordCard = {
   id: string;
   text: string;
-}
+};
 
-interface AllWords {
+type AllWords = {
   [key: string]: WordCard;
-}
+};
 
-interface ResourceData {
+type ResourceData = {
   allWords: AllWords;
-}
+};
 
 type Deck = WordCard[];
 
-interface ClueEntry {
+type ClueEntry = {
   playerId: PlayerId;
   clue: string;
   coordinate: number;
-}
+};
 
-interface GridCell {
+type GridCell = {
   index: number;
   kind: string;
   text: string;
@@ -33,7 +36,7 @@ interface GridCell {
   yText?: string;
   writable?: boolean;
   playerId?: string | null;
-}
+};
 
 interface CruzaPalavrasStore extends DefaultStore {
   deck?: Deck;
@@ -44,12 +47,12 @@ interface CruzaPalavrasState extends DefaultState {
   [key: string]: any;
 }
 
-interface XTudoPalavrasInitialState extends InitialState {
+interface CruzaPalavrasInitialState extends InitialState {
   store: CruzaPalavrasStore;
   state: CruzaPalavrasState;
 }
 
-interface XTudoPalavrasSubmitAction extends Payload {
+interface CruzaPalavrasSubmitAction extends Payload {
   action: 'SUBMIT_CLUE' | 'SUBMIT_GUESSES';
 }
 
