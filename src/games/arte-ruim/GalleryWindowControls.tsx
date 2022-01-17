@@ -39,19 +39,21 @@ function GalleryWindowControls({
     onExpire: () => setStep(2),
   });
 
+  const time = minutes * 60 + seconds;
+
   // Automatically go to the next window every 10 seconds
   useEffect(() => {
-    if (seconds < WINDOW_DURATION * galleryLength && seconds > 0 && seconds % WINDOW_DURATION === 0) {
-      setActiveIndex((s: any) => Math.min(s + 1, galleryLength - 1));
+    if (time < WINDOW_DURATION * galleryLength && time > 0 && time % WINDOW_DURATION === 0) {
+      setActiveIndex((s: number) => Math.min(s + 1, galleryLength - 1));
     }
-  }, [seconds, setActiveIndex, galleryLength]);
+  }, [time, setActiveIndex, galleryLength]);
 
   const previousStep = () => {
-    setActiveIndex((s: any) => Math.max(s - 1, 0));
+    setActiveIndex((s: number) => Math.max(s - 1, 0));
   };
 
   const nextStep = () => {
-    setActiveIndex((s: any) => Math.min(s + 1, galleryLength - 1));
+    setActiveIndex((s: number) => Math.min(s + 1, galleryLength - 1));
   };
 
   return (
@@ -60,7 +62,7 @@ function GalleryWindowControls({
         <span
           className="a-gallery-window__timer-bar-pill"
           style={{
-            width: `${Math.abs((WINDOW_DURATION * (minutes * 60 + seconds)) / galleryLength - 100)}%`,
+            width: `${Math.abs((WINDOW_DURATION * time) / galleryLength - 100)}%`,
             backgroundColor: barColor ?? 'gray',
           }}
         ></span>

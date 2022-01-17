@@ -246,6 +246,8 @@
     background: get-color(white);
     border-radius: get-unit(1);
     padding: get-unit(2 3);
+    max-height: 52vh;
+    overflow-y: auto;
   }
 
   &__guess {

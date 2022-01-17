@@ -40,17 +40,18 @@ function GalleryWindow({
   return (
     <div className="a-gallery-window">
       <div className="a-gallery-window__drawing-container">
-        <CanvasSVG
-          key={window.correctAnswer}
-          drawing={drawing}
-          size={canvasWidth}
-          className="a-gallery-window__drawing"
-        />
+        <CanvasSVG drawing={drawing} size={canvasWidth} className="a-gallery-window__drawing" />
       </div>
 
       <GalleryWindowCredits artistName={playerArtist.name} artistAvatarId={playerArtist.avatarId} />
 
-      <GalleryWindowGuesses players={players} playersSay={playersSay} cards={cards} />
+      <GalleryWindowGuesses
+        players={players}
+        playersSay={playersSay}
+        cards={cards}
+        windowCardId={window.id}
+        artistColor={currentColor}
+      />
 
       <GalleryWindowResult
         playerArtist={playerArtist}

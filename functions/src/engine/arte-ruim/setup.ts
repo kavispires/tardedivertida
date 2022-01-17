@@ -116,7 +116,7 @@ export const prepareGalleryPhase = async (
   utils.unReadyPlayers(players);
 
   // Build gallery
-  const gallery = buildGallery(state.drawings, players);
+  const gallery = gameUtils.shuffle(buildGallery(state.drawings, players));
 
   const ranking = buildRanking(state.drawings, players);
 
