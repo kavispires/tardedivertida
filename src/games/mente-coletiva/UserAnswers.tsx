@@ -1,16 +1,23 @@
-import PropTypes from 'prop-types';
-// Components
-import { ButtonContainer, Instruction, Translate } from '../../components/shared';
+// Design Resources
 import { Button } from 'antd';
-import { useLoading } from '../../hooks';
 import { LockFilled, PlusCircleFilled } from '@ant-design/icons';
+// Hooks
+import { useLoading } from '../../hooks';
+// Components
+import { ButtonContainer, Instruction, Translate } from '../../components';
 
-function UserAnswers({ answerGroup, user, onAddAnswer }) {
+type UserAnswersProps = {
+  answerGroup: any;
+  user: GamePlayer;
+  onAddAnswer: GenericFunction;
+};
+
+export function UserAnswers({ answerGroup, user, onAddAnswer }: UserAnswersProps) {
   const [isLoading] = useLoading();
 
-  const alreadyHasAnswer = answerGroup.entries.some((entry) => entry.playerId === user.id);
+  const alreadyHasAnswer = answerGroup.entries.some((entry: any) => entry.playerId === user.id);
 
-  const points = Object.values(user.answers).reduce((acc, answer) => {
+  const points = Object.values(user.answers).reduce((acc, answer: any) => {
     return acc + (answer?.score ?? 0);
   }, 0);
 
@@ -27,7 +34,7 @@ function UserAnswers({ answerGroup, user, onAddAnswer }) {
         </Instruction>
 
         <ButtonContainer className="m-user-answers">
-          {Object.entries(user.answers).map(([key, answerObj]) => {
+          {Object.entries(user.answers).map(([key, answerObj]: any) => {
             return (
               <Button
                 key={`a-b-${key}`}
@@ -45,16 +52,3 @@ function UserAnswers({ answerGroup, user, onAddAnswer }) {
     </div>
   );
 }
-
-UserAnswers.propTypes = {
-  answerGroup: PropTypes.shape({
-    entries: PropTypes.any,
-  }),
-  onAddAnswer: PropTypes.func,
-  user: PropTypes.shape({
-    answers: PropTypes.any,
-    id: PropTypes.any,
-  }),
-};
-
-export default UserAnswers;

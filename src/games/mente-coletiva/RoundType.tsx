@@ -1,18 +1,20 @@
-import PropTypes from 'prop-types';
-// Components
-import { Translate } from '../../components/shared';
-import { Arrow } from '../../components/icons';
 import clsx from 'clsx';
+// Components
+import { Icons, Translate } from '../../components';
 
-export function RoundType({ roundType }) {
+type RoundTypeProps = {
+  roundType: Number;
+};
+
+export function RoundType({ roundType }: RoundTypeProps) {
   const arrowBaseClass = 'm-round-type__arrow';
   return (
     <div className="m-round-type">
       <div className="m-round-type__arrows">
-        {roundType === 0 && <Arrow className={clsx(arrowBaseClass, `${arrowBaseClass}--0`)} />}
-        <Arrow className={clsx(arrowBaseClass, `${arrowBaseClass}--1`)} />
-        {roundType >= 2 && <Arrow className={clsx(arrowBaseClass, `${arrowBaseClass}--2`)} />}
-        {roundType === 3 && <Arrow className={clsx(arrowBaseClass, `${arrowBaseClass}--3`)} />}
+        {roundType === 0 && <Icons.Arrow className={clsx(arrowBaseClass, `${arrowBaseClass}--0`)} />}
+        <Icons.Arrow className={clsx(arrowBaseClass, `${arrowBaseClass}--1`)} />
+        {roundType >= 2 && <Icons.Arrow className={clsx(arrowBaseClass, `${arrowBaseClass}--2`)} />}
+        {roundType === 3 && <Icons.Arrow className={clsx(arrowBaseClass, `${arrowBaseClass}--3`)} />}
       </div>
 
       <div>
@@ -75,7 +77,3 @@ export function RoundType({ roundType }) {
     </div>
   );
 }
-
-RoundType.propTypes = {
-  roundType: PropTypes.number.isRequired,
-};

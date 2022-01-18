@@ -4,7 +4,7 @@ import clsx from 'clsx';
 type InstructionsProps = {
   children: any;
   white?: boolean;
-  className?: boolean;
+  className?: string;
   contained?: boolean;
   fullWidth?: boolean;
 };

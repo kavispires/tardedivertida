@@ -5,20 +5,12 @@ import { useLanguage, useUser } from '../../hooks';
 // Resources & Utils
 import { PHASES } from '../../utils/phases';
 // Components
-import {
-  WaitingRoom,
-  Instruction,
-  PhaseAnnouncement,
-  PhaseContainer,
-  Step,
-  StepSwitcher,
-  Translate,
-  translate,
-} from '../../components/shared';
+import { PhaseAnnouncement, PhaseContainer, StepSwitcher, translate } from '../../components/shared';
 import { CompareStep } from './CompareStep';
 import { useOnAddAnswerAPIRequest, useOnNextAnswersAPIRequest } from './api-requests';
+import { ComparingRules } from './RulesBlobs';
 
-function PhaseCompare({ state, players, info }) {
+function PhaseCompare({ state, players, info }: PhaseProps) {
   const language = useLanguage();
   const [step, setStep] = useState(0);
   const user = useUser(players);
@@ -36,7 +28,7 @@ function PhaseCompare({ state, players, info }) {
       allowedPhase={PHASES.MENTE_COLETIVA.COMPARE}
       className="u-word-selection-phase"
     >
-      <StepSwitcher step={step}>
+      <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
           type="discussion"
@@ -45,32 +37,7 @@ function PhaseCompare({ state, players, info }) {
           currentRound={state?.round?.current}
           duration={state?.round?.current < 3 ? 20 : undefined}
         >
-          <Instruction>
-            <Translate
-              pt={
-                <>
-                  Hora de comparar respostas!
-                  <br />
-                  O jogo agrupará todas as respostas iguais, mas agora vocês tem a chance de adicionar
-                  palavras que o jogo não agrupou por conta de erro gramatical, acento ou plural.
-                  <br />
-                  Lembre-se gêneros são considerados diferentes <code>príncipe ≠ princesa</code>, assim como
-                  geral vs específico <code>caminhão ≠ caminhão de mudança</code>.
-                </>
-              }
-              en={
-                <>
-                  Time to compare answers!
-                  <br />
-                  The game will group all identical answers, but now the group has a chance to add answers
-                  that it missed because of typo, accents, or pluralization.
-                  <br />
-                  Remember that genders are considered different <code>prince ≠ princess</code>, as well as
-                  general vs specific <code>truck ≠ fire truck</code>.
-                </>
-              }
-            />
-          </Instruction>
+          <ComparingRules />
         </PhaseAnnouncement>
 
         {/* Step 1 */}
@@ -86,11 +53,6 @@ function PhaseCompare({ state, players, info }) {
           allowedList={allowedList}
           setAllowedList={setAllowedList}
         />
-
-        {/* Step 2 */}
-        <Step fullWidth>
-          <WaitingRoom players={players} />
-        </Step>
       </StepSwitcher>
     </PhaseContainer>
   );

@@ -9,8 +9,8 @@ import PhaseCompare from './PhaseCompare';
 import PhaseResolution from './PhaseResolution';
 import PhaseGameOver from './PhaseGameOver';
 
-function SessionMenteColetiva({ gameId }) {
-  function getActiveComponent(phase) {
+function SessionMenteColetiva({ gameId }: GameSession) {
+  function getActiveComponent(phase: string) {
     switch (phase) {
       case PHASES.DEFAULT.LOBBY:
         return PhaseLobby;

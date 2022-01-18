@@ -1,17 +1,39 @@
 import { useEffect, useMemo, useState } from 'react';
-import PropTypes from 'prop-types';
 import { useTimer } from 'react-timer-hook';
 // Design Resources
 import { HeartFilled } from '@ant-design/icons';
 // Hooks
 import { inNSeconds } from '../../utils/helpers';
 // Components
-import { Instruction, RankingBoard, Step, StepSwitcher, Title, Translate } from '../../components/shared';
+import {
+  AdminNextRoundButton,
+  Instruction,
+  RankingBoard,
+  Step,
+  StepSwitcher,
+  Title,
+  Translate,
+} from '../../components';
 import { Pasture } from './Pasture';
 import { RoundType } from './RoundType';
-import { AdminNextRoundButton } from '../../components/admin';
 
-function ResolutionStep({ ranking, players, roundType, pastureChangeStr, round, announceSave = false }) {
+type ResolutionStepProps = {
+  ranking: GameRanking;
+  players: GamePlayers;
+  roundType: number;
+  pastureChangeStr: string;
+  round: GameRound;
+  announceSave: boolean;
+};
+
+export function ResolutionStep({
+  ranking,
+  players,
+  roundType,
+  pastureChangeStr,
+  round,
+  announceSave = false,
+}: ResolutionStepProps) {
   const [step, setStep] = useState(0);
   const [pastureIndex, setPastureIndex] = useState(0);
   const [showAnnounceSave, setShowAnnounceSave] = useState(false);
@@ -40,7 +62,7 @@ function ResolutionStep({ ranking, players, roundType, pastureChangeStr, round, 
   }, [seconds]); // eslint-disable-line
 
   return (
-    <div className="m-step">
+    <Step fullWidth>
       <Title level={1}>
         <Translate pt="Resultado" en="Results" />
       </Title>
@@ -68,22 +90,6 @@ function ResolutionStep({ ranking, players, roundType, pastureChangeStr, round, 
           <AdminNextRoundButton round={round} />
         </Step>
       </StepSwitcher>
-    </div>
+    </Step>
   );
 }
-
-ResolutionStep.propTypes = {
-  currentQuestion: PropTypes.shape({
-    number: PropTypes.number,
-    prefix: PropTypes.string,
-    suffix: PropTypes.string,
-  }),
-  onSubmitAnswers: PropTypes.func,
-  players: PropTypes.object,
-  roundType: PropTypes.number,
-  user: PropTypes.shape({
-    id: PropTypes.string,
-  }),
-};
-
-export default ResolutionStep;
