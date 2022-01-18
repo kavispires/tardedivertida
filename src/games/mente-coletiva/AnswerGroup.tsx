@@ -10,7 +10,21 @@ import { Question } from './Question';
 import { SheepAvatar } from '../../components/avatars';
 import { Card } from '../../components/cards/Card';
 
-function AnswerGroup({ answerGroup, currentQuestion, players, allowUserAnswer, remainingGroupsCount }) {
+type AnswerGroupProps = {
+  currentQuestion: MQuestion;
+  answerGroup: AnswerGroup;
+  players: GamePlayers;
+  remainingGroupsCount: number;
+  allowUserAnswer: GenericFunction;
+};
+
+export function AnswerGroup({
+  answerGroup,
+  currentQuestion,
+  players,
+  allowUserAnswer,
+  remainingGroupsCount,
+}: AnswerGroupProps) {
   const language = useLanguage();
   const [isAdmin] = useGlobalState('isAdmin');
 

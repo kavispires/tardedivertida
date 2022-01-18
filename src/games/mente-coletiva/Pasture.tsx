@@ -1,13 +1,18 @@
-import PropTypes from 'prop-types';
+import { useMemo } from 'react';
 import clsx from 'clsx';
-import { memo, useMemo } from 'react';
+// Hooks
 import { useDimensions } from '../../hooks';
-
+// Images
 import pastureBackground from '../../images/m-pasture-background.png';
 import pastureFence from '../../images/m-pasture-fence.svg';
+// Components
 import { SheepAvatar } from '../../components/avatars';
 
-export const Pasture = memo(function ({ players }) {
+type PastureProps = {
+  players: GamePlayers;
+};
+
+export function Pasture({ players }: PastureProps) {
   const [width] = useDimensions();
 
   const pastureWidth = Math.min(width, 1360) - 36;
@@ -37,7 +42,7 @@ export const Pasture = memo(function ({ players }) {
             return (
               <div className={clsx('m-enclosure', enclosureKey)} key={enclosureKey}>
                 {sheepPlayers &&
-                  sheepPlayers.map((player, index) => {
+                  sheepPlayers.map((player: GamePlayer, index: number) => {
                     const sheepKey = `${enclosureKey}-${player.id}`;
                     const sheepClassName = `m-sheep--pos-${index}`;
 
@@ -68,7 +73,7 @@ export const Pasture = memo(function ({ players }) {
       <div className="m-pasture-names" style={{ width: `${Math.min(pastureWidth, 1360)}px` }}>
         <div className="m-enclosures m-enclosures--names">
           {sheepPerEnclosure.map((sheepPlayers, index) => {
-            const names = sheepPlayers?.map((p) => p.name)?.join(',\n') ?? '';
+            const names = sheepPlayers?.map((p: GamePlayer) => p.name)?.join(',\n') ?? '';
             return (
               <span key={`m-enclosure-${index}`} className="m-enclosure-names">
                 {names}
@@ -79,8 +84,4 @@ export const Pasture = memo(function ({ players }) {
       </div>
     </>
   );
-});
-
-Pasture.propTypes = {
-  players: PropTypes.object,
-};
+}

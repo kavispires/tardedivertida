@@ -1,17 +1,18 @@
 import { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 // Design Resources
 import { Button, Input } from 'antd';
 // Hooks
 import { useLanguage } from '../../hooks';
+// Utils
+import { getEntryId, isDevEnv, shuffle } from '../../utils/helpers';
 // Components
-import { ButtonContainer, Title, translate, Translate } from '../../components/shared';
+import { ButtonContainer, PopoverRule, Step, Title, translate, Translate } from '../../components';
 import { Pasture } from './Pasture';
 import { RoundType } from './RoundType';
 import { Question } from './Question';
-import { getEntryId, isDevEnv, shuffle } from '../../utils/helpers';
+import { AnsweringRules } from './RulesBlobs';
 
-const mockAnswers = (userId, numAnswers) => {
+const mockAnswers = (userId: PlayerId, numAnswers: number) => {
   const list = ['agua', 'bola', 'coco', 'dedo', 'egua', 'flauta', 'gatilho', 'hélio', 'jaguar'];
   const list2 = ['água', 'bola', 'cocô', 'dedo', 'égua', 'flauta', 'gatilho', 'helio', 'jipe'];
   // const list = ['abacaxi', 'maça', 'pera', 'mamão', 'manga', 'tomate'];
@@ -21,14 +22,28 @@ const mockAnswers = (userId, numAnswers) => {
 
   return Array(numAnswers)
     .fill(0)
-    .map((i, index) => ({ [getEntryId(['answer', index, userId])]: shuffled[i + index] }))
+    .map((i, index) => ({ [getEntryId(['answer', `${index}`, userId])]: shuffled[i + index] }))
     .reduce((acc, item) => {
       acc = { ...acc, ...item };
       return acc;
     }, {});
 };
 
-function AnsweringStep({ user, currentQuestion, players, roundType, onSubmitAnswers }) {
+type AnsweringStepProps = {
+  currentQuestion: MQuestion;
+  onSubmitAnswers: GenericFunction;
+  players: GamePlayers;
+  roundType: number;
+  user: GamePlayer;
+};
+
+export function AnsweringStep({
+  user,
+  currentQuestion,
+  players,
+  roundType,
+  onSubmitAnswers,
+}: AnsweringStepProps) {
   const language = useLanguage();
   const [answers, setAnswers] = useState({});
 
@@ -38,7 +53,7 @@ function AnsweringStep({ user, currentQuestion, players, roundType, onSubmitAnsw
     }
   }, []); // eslint-disable-line
 
-  const onWriteAnswer = (e) => {
+  const onWriteAnswer = (e: any) => {
     setAnswers((s) => ({
       ...s,
       [e.target.id]: e.target.value.toUpperCase().trim(),
@@ -56,12 +71,14 @@ function AnsweringStep({ user, currentQuestion, players, roundType, onSubmitAnsw
   };
 
   return (
-    <div className="m-step">
+    <Step fullWidth>
       <div className="m-step__contained-content">
         <Title level={3}>
           <Translate pt="Responda a pergunta:" en="Answer the question:" />
           <Question question={currentQuestion} />
         </Title>
+
+        <PopoverRule content={<AnsweringRules />} />
 
         <ol className="m-answers">
           {Array(currentQuestion.number)
@@ -98,22 +115,6 @@ function AnsweringStep({ user, currentQuestion, players, roundType, onSubmitAnsw
       <RoundType roundType={roundType} />
 
       <Pasture players={players} />
-    </div>
+    </Step>
   );
 }
-
-AnsweringStep.propTypes = {
-  currentQuestion: PropTypes.shape({
-    number: PropTypes.number,
-    prefix: PropTypes.string,
-    suffix: PropTypes.string,
-  }),
-  onSubmitAnswers: PropTypes.func,
-  players: PropTypes.object,
-  roundType: PropTypes.number,
-  user: PropTypes.shape({
-    id: PropTypes.string,
-  }),
-};
-
-export default AnsweringStep;

@@ -2,11 +2,11 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 // Hooks
 import { useLanguage, useWhichPlayerIsThe } from '../../hooks';
+import { useOnSubmitQuestionAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from '../../utils/phases';
 // Components
 import {
-  WaitingRoom,
   Instruction,
   PhaseAnnouncement,
   PhaseContainer,
@@ -17,12 +17,11 @@ import {
   translate,
   ViewIf,
 } from '../../components/shared';
-import { AvatarName } from '../../components/avatars';
-import QuestionSelectionWaiting from './QuestionSelectionWaiting';
-import QuestionSelection from './QuestionSelection';
-import { useOnSubmitQuestionAPIRequest } from './api-requests';
+import { QuestionSelectionWaiting } from './QuestionSelectionWaiting';
+import { QuestionSelection } from './QuestionSelection';
+import { GamePremiseRules } from './RulesBlobs';
 
-function PhaseQuestionSelection({ state, players, info }) {
+function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
   const language = useLanguage();
   const [activePlayer, isUserTheActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
   const [step, setStep] = useState(0);
@@ -36,7 +35,7 @@ function PhaseQuestionSelection({ state, players, info }) {
       allowedPhase={PHASES.MENTE_COLETIVA.QUESTION_SELECTION}
       className="u-word-selection-phase"
     >
-      <StepSwitcher step={step}>
+      <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <RoundAnnouncement round={state.round} onPressButton={() => setStep(1)} time={3}>
           <Instruction contained>
@@ -55,40 +54,7 @@ function PhaseQuestionSelection({ state, players, info }) {
           currentRound={state?.round?.current}
           duration={state?.round?.current < 3 ? 40 : 10}
         >
-          <Instruction>
-            <Translate
-              pt={
-                <>
-                  Precisamos reduzir essa população! Vamos fazer uma pergunta em que todos tem que escrever
-                  uma certa quantidade de respostas. Você ganha um ponto para cada resposta igual a de outra
-                  ovelha. Quem receber o menor número de pontos move uma seção para a direita.
-                  <br />
-                  Se você já está no último pasto e tiver que mover pra direita, você cai no precipício e
-                  morre. O pasto fica menos lotado e todos mais felizes.
-                  <br />
-                  <Instruction contained>
-                    <AvatarName player={activePlayer} /> escolherá uma pergunta para essa rodada.
-                  </Instruction>
-                </>
-              }
-              en={
-                <>
-                  We are sheep and our pasture is overcrowded! We need to decide who should leave.
-                  <br />
-                  Let's ask a question and everyone has to give a certain number of answers. You are trying to
-                  match answers with other sheep to get points. Whoever gets the fewest points moves one
-                  section to the right.
-                  <br />
-                  If you are already in the last pasture and have to move to the right, you fall off the cliff
-                  and die. The pasture is less crowded and everyone is happier.
-                  <br />
-                  <Instruction contained>
-                    <AvatarName player={activePlayer} /> will choose a question for this round.
-                  </Instruction>
-                </>
-              }
-            />
-          </Instruction>
+          <GamePremiseRules activePlayer={activePlayer} />
         </PhaseAnnouncement>
 
         {/* Step 2 */}
@@ -99,6 +65,7 @@ function PhaseQuestionSelection({ state, players, info }) {
               currentQuestions={state.currentQuestions}
               onSubmitQuestion={onSubmitQuestion}
               roundType={state.roundType}
+              activePlayer={activePlayer}
             />
           </ViewIf>
 
@@ -109,11 +76,6 @@ function PhaseQuestionSelection({ state, players, info }) {
               roundType={state.roundType}
             />
           </ViewIf>
-        </Step>
-
-        {/* Step 3 */}
-        <Step fullWidth>
-          <WaitingRoom players={players} />
         </Step>
       </StepSwitcher>
     </PhaseContainer>

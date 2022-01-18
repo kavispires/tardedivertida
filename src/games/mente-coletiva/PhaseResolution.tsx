@@ -1,23 +1,20 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
 // Hooks
 import { useLanguage } from '../../hooks';
 // Resources & Utils
 import { PHASES } from '../../utils/phases';
 // Components
 import {
-  WaitingRoom,
   Instruction,
   PhaseAnnouncement,
   PhaseContainer,
-  Step,
   StepSwitcher,
   Translate,
   translate,
-} from '../../components/shared';
-import ResolutionStep from './ResolutionStep';
+} from '../../components';
+import { ResolutionStep } from './ResolutionStep';
 
-function PhaseResolution({ state, players, info }) {
+function PhaseResolution({ state, players, info }: PhaseProps) {
   const language = useLanguage();
   const [step, setStep] = useState(0);
 
@@ -28,7 +25,7 @@ function PhaseResolution({ state, players, info }) {
       allowedPhase={PHASES.MENTE_COLETIVA.RESOLUTION}
       className="u-word-selection-phase"
     >
-      <StepSwitcher step={step}>
+      <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
           type="customer-review"
@@ -40,7 +37,7 @@ function PhaseResolution({ state, players, info }) {
             <Translate
               pt={
                 <>
-                  Agora podemos saber quem deve ser linxado porque não combina com o grupo!
+                  Agora podemos saber quem deve ser linchado porque não combina com o grupo!
                   <br />
                   Graças a Deus, mais espaço!
                 </>
@@ -57,35 +54,17 @@ function PhaseResolution({ state, players, info }) {
         </PhaseAnnouncement>
 
         {/* Step 1 */}
-        <Step fullWidth>
-          <ResolutionStep
-            ranking={state.ranking}
-            players={players}
-            pastureChangeStr={state.pastureChangeStr}
-            roundType={state.roundType}
-            announceSave={state?.announceSave}
-          />
-        </Step>
-
-        {/* Step 2 */}
-        <Step fullWidth>
-          <WaitingRoom players={players} />
-        </Step>
+        <ResolutionStep
+          ranking={state.ranking}
+          players={players}
+          pastureChangeStr={state.pastureChangeStr}
+          roundType={state.roundType}
+          announceSave={state?.announceSave}
+          round={state.round}
+        />
       </StepSwitcher>
     </PhaseContainer>
   );
 }
-
-PhaseResolution.propTypes = {
-  info: PropTypes.object,
-  players: PropTypes.object,
-  state: PropTypes.shape({
-    phase: PropTypes.string,
-    round: PropTypes.shape({
-      current: PropTypes.number,
-      total: PropTypes.number,
-    }),
-  }),
-};
 
 export default PhaseResolution;

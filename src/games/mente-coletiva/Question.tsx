@@ -1,6 +1,8 @@
-import PropTypes from 'prop-types';
+type QuestionProps = {
+  question: MQuestion;
+};
 
-export function Question({ question }) {
+export function Question({ question }: QuestionProps) {
   return (
     <span className="m-question m-question--span">
       <span className="m-question__prefix">{question.prefix}</span>
@@ -9,9 +11,3 @@ export function Question({ question }) {
     </span>
   );
 }
-
-Question.propTypes = {
-  number: PropTypes.number,
-  prefix: PropTypes.string,
-  suffix: PropTypes.string,
-};

@@ -4,9 +4,22 @@ import PropTypes from 'prop-types';
 import { Divider } from 'antd';
 // Components
 import { Step } from '../../components/shared';
-import AdminAnswerControl from './AdminAnswerControl';
-import AnswerGroup from './AnswerGroup';
-import UserAnswers from './UserAnswers';
+import { AdminAnswerControl } from './AdminAnswerControl';
+import { AnswerGroup } from './AnswerGroup';
+import { UserAnswers } from './UserAnswers';
+
+type CompareStepProps = {
+  currentQuestion: MQuestion;
+  answerGroup: AnswerGroup;
+  players: GamePlayers;
+  user: GamePlayer;
+  allAnswers: MAnswer[];
+  onAddAnswer: GenericFunction;
+  onNextAnswer: GenericFunction;
+  remainingGroupsCount: number;
+  allowedList: AllowedList;
+  setAllowedList: GenericFunction;
+};
 
 export function CompareStep({
   currentQuestion,
@@ -19,8 +32,8 @@ export function CompareStep({
   remainingGroupsCount,
   allowedList,
   setAllowedList,
-}) {
-  const allowUserAnswer = (isAllowed, answerId) => {
+}: CompareStepProps) {
+  const allowUserAnswer = (isAllowed: boolean, answerId: string) => {
     const allowedListCopy = { ...allowedList };
     if (!isAllowed) {
       delete allowedListCopy?.[answerId];
@@ -50,7 +63,6 @@ export function CompareStep({
         answerGroup={answerGroup}
         allAnswers={allAnswers}
         players={players}
-        onAddAnswer={onAddAnswer}
         onNextAnswer={onNextAnswer}
         allowedList={allowedList}
       />
