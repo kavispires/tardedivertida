@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 // Hooks
-import { useAPICall, useLanguage, useUser } from '../../hooks';
+import { useLanguage, useUser } from '../../hooks';
 // Resources & Utils
-import { MENTE_COLETIVA_API } from '../../adapters';
 import { PHASES } from '../../utils/phases';
 // Components
 import {
@@ -17,31 +16,14 @@ import {
   translate,
 } from '../../components/shared';
 import AnsweringStep from './AnsweringStep';
+import { useOnSubmitAnswersAPIRequest } from './api-requests';
 
 function PhaseEverybodyWrites({ state, players, info }) {
   const language = useLanguage();
   const [step, setStep] = useState(0);
   const user = useUser(players);
 
-  const onSubmitAnswersAPIRequest = useAPICall({
-    apiFunction: MENTE_COLETIVA_API.submitAction,
-    actionName: 'submit-answers',
-    onBeforeCall: () => setStep(2),
-    onError: () => setStep(1),
-    successMessage: translate('Respostas enviadas com sucesso!', 'Answers send successfully!', language),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar respostas',
-      'Oops, the application failed to submit answers',
-      language
-    ),
-  });
-
-  const onSubmitAnswers = (payload) => {
-    onSubmitAnswersAPIRequest({
-      action: 'SUBMIT_ANSWERS',
-      ...payload,
-    });
-  };
+  const onSubmitAnswers = useOnSubmitAnswersAPIRequest(setStep);
 
   return (
     <PhaseContainer
