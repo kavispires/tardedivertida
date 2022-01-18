@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 // Hooks
-import { useAPICall, useLanguage, useWhichPlayerIsThe } from '../../hooks';
+import { useLanguage, useWhichPlayerIsThe } from '../../hooks';
 // Resources & Utils
-import { MENTE_COLETIVA_API } from '../../adapters';
 import { PHASES } from '../../utils/phases';
 // Components
 import {
@@ -18,35 +17,17 @@ import {
   translate,
   ViewIf,
 } from '../../components/shared';
-
 import { AvatarName } from '../../components/avatars';
 import QuestionSelectionWaiting from './QuestionSelectionWaiting';
 import QuestionSelection from './QuestionSelection';
+import { useOnSubmitQuestionAPIRequest } from './api-requests';
 
 function PhaseQuestionSelection({ state, players, info }) {
   const language = useLanguage();
   const [activePlayer, isUserTheActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
   const [step, setStep] = useState(0);
 
-  const onSubmitQuestionAPIRequest = useAPICall({
-    apiFunction: MENTE_COLETIVA_API.submitAction,
-    actionName: 'submit-question',
-    onBeforeCall: () => setStep(3),
-    onError: () => setStep(1),
-    successMessage: translate('Pergunta enviada com sucesso!', 'Question send successfully!', language),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar a pergunta',
-      'Oops, the application failed to submit the question',
-      language
-    ),
-  });
-
-  const onSubmitQuestion = (payload) => {
-    onSubmitQuestionAPIRequest({
-      action: 'SUBMIT_QUESTION',
-      ...payload,
-    });
-  };
+  const onSubmitQuestion = useOnSubmitQuestionAPIRequest(setStep);
 
   return (
     <PhaseContainer
@@ -69,7 +50,7 @@ function PhaseQuestionSelection({ state, players, info }) {
         {/* Step 1 */}
         <PhaseAnnouncement
           type="sheep"
-          title={translate('O Pasto Superlotado', 'A Overcroweded Pasture', language)}
+          title={translate('O Pasto Superlotado', 'A Overcrowded Pasture', language)}
           onClose={() => setStep(2)}
           currentRound={state?.round?.current}
           duration={state?.round?.current < 3 ? 40 : 10}

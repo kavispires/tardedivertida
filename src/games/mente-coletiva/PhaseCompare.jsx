@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 // Hooks
-import { useAPICall, useLanguage, useUser } from '../../hooks';
+import { useLanguage, useUser } from '../../hooks';
 // Resources & Utils
-import { MENTE_COLETIVA_API } from '../../adapters';
 import { PHASES } from '../../utils/phases';
 // Components
 import {
@@ -17,6 +16,7 @@ import {
   translate,
 } from '../../components/shared';
 import { CompareStep } from './CompareStep';
+import { useOnAddAnswerAPIRequest, useOnNextAnswersAPIRequest } from './api-requests';
 
 function PhaseCompare({ state, players, info }) {
   const language = useLanguage();
@@ -24,46 +24,8 @@ function PhaseCompare({ state, players, info }) {
   const user = useUser(players);
   const [allowedList, setAllowedList] = useState({});
 
-  const onAddAnswerAPIRequest = useAPICall({
-    apiFunction: MENTE_COLETIVA_API.submitAction,
-    actionName: 'add-answer',
-    successMessage: translate('Resposta adicionada com sucesso!', 'Answer added successfully!', language),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar adicionar respostar',
-      'Oops, the application failed to add answer',
-      language
-    ),
-  });
-
-  const onNextQuestionAPIRequest = useAPICall({
-    apiFunction: MENTE_COLETIVA_API.submitAction,
-    actionName: 'next-answers',
-    onSuccess: () => setAllowedList({}),
-    successMessage: translate(
-      'Próximas respostas acionadas com sucesso!',
-      'Next answers triggered successfully!',
-      language
-    ),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar avançar',
-      'Oops, the application failed to advance',
-      language
-    ),
-  });
-
-  const onAddAnswer = (answer) => {
-    onAddAnswerAPIRequest({
-      action: 'ADD_ANSWER',
-      answer,
-    });
-  };
-
-  const onNextAnswer = (allowedList) => {
-    onNextQuestionAPIRequest({
-      action: 'NEXT_ANSWERS',
-      allowedList,
-    });
-  };
+  const onAddAnswer = useOnAddAnswerAPIRequest();
+  const onNextAnswer = useOnNextAnswersAPIRequest(() => setAllowedList({}));
 
   const answerGroup = state.answersList[0];
 
