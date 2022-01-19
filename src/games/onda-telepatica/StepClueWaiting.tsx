@@ -1,8 +1,19 @@
-import PropTypes from 'prop-types';
 import { AvatarName, ButtonContainer, Translate, WaitingRoom } from '../../components';
 import { Card } from './Card';
 
-export function StepClueWaiting({ players, psychic, currentCategories, currentCategoryId }) {
+type StepClueWaitingProps = {
+  players: GamePlayers;
+  psychic: GamePlayer;
+  currentCategories: OCategoryCard[];
+  currentCategoryId: string;
+};
+
+export function StepClueWaiting({
+  players,
+  psychic,
+  currentCategories,
+  currentCategoryId,
+}: StepClueWaitingProps) {
   const card = currentCategories.find((c) => c.id === currentCategoryId);
 
   return (
@@ -30,12 +41,16 @@ export function StepClueWaiting({ players, psychic, currentCategories, currentCa
             <Translate pt={'escolheu:'} en={'chose:'} />
           </p>
           <ButtonContainer>
-            <Card left={card.left} right={card.right} />
+            <Card left={card!.left} right={card!.right} />
           </ButtonContainer>
           <p>
             <Translate
-              pt={`Agora, é uma boa ideia pra discutir com o grupo em voz alta o que vocês acham ser super pra esquerda "${card.left}" e super pra direita "${card.right}". Isso ajuda o medium!`}
-              en={`Now it's a good idea to discuss with the group out loud what you guys think it's extreme left "${card.left}" and extreme right "${card.right}". This might help the psychic!`}
+              pt={`Agora, é uma boa ideia pra discutir com o grupo em voz alta o que vocês acham ser super pra esquerda "${
+                card!.left
+              }" e super pra direita "${card!.right}". Isso ajuda o medium!`}
+              en={`Now it's a good idea to discuss with the group out loud what you guys think it's extreme left "${
+                card!.left
+              }" and extreme right "${card!.right}". This might help the psychic!`}
             />
           </p>
         </div>
@@ -43,16 +58,3 @@ export function StepClueWaiting({ players, psychic, currentCategories, currentCa
     </WaitingRoom>
   );
 }
-
-StepClueWaiting.propTypes = {
-  currentCategories: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string,
-      left: PropTypes.string,
-      right: PropTypes.string,
-    })
-  ),
-  currentCategoryId: PropTypes.string,
-  players: PropTypes.object,
-  psychic: PropTypes.object,
-};

@@ -1,9 +1,13 @@
-import PropTypes from 'prop-types';
 // Components
 import { Instruction, Title } from '../../components';
 import { Card } from './Card';
 
-export function CardSelection({ onSendChosenSide, cards }) {
+type CardSelectionProps = {
+  cards: OCategoryCard[];
+  onSendChosenSide: GenericFunction;
+};
+
+export function CardSelection({ onSendChosenSide, cards }: CardSelectionProps) {
   return (
     <div className="o-card-selection">
       <Title>Selecione a carta que será usada nessa rodada!</Title>
@@ -22,14 +26,3 @@ export function CardSelection({ onSendChosenSide, cards }) {
     </div>
   );
 }
-
-CardSelection.propTypes = {
-  onSendChosenSide: PropTypes.func.isRequired,
-  cards: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string,
-      left: PropTypes.string,
-      right: PropTypes.string,
-    })
-  ).isRequired,
-};

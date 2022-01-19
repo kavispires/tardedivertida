@@ -1,22 +1,28 @@
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
 // Design Resources
 import { ArrowLeftOutlined, ArrowRightOutlined, MinusOutlined } from '@ant-design/icons';
 // Helpers
 import { getColorModifier } from './helpers';
 
-export function Card({ left, right, className, setNeedle }) {
+type CardProps = {
+  left: string;
+  right: string;
+  className?: string;
+  setNeedle?: GenericFunction;
+};
+
+export function Card({ left, right, className = '', setNeedle }: CardProps) {
   const leftColor = getColorModifier(left[0]);
   const rightColor = getColorModifier(right[0]);
   const cardSideClass = 'o-card__side';
   const isButton = Boolean(setNeedle);
 
-  const onSetNeedle = (direction) => {
+  const onSetNeedle = (direction: number) => {
     if (setNeedle) {
       if (direction === 1) {
-        setNeedle((n) => Math.min(n + direction, 10));
+        setNeedle((n: number) => Math.min(n + direction, 10));
       } else {
-        setNeedle((n) => Math.max(n + direction, -10));
+        setNeedle((n: number) => Math.max(n + direction, -10));
       }
     }
   };
@@ -54,13 +60,3 @@ export function Card({ left, right, className, setNeedle }) {
     </div>
   );
 }
-
-Card.propTypes = {
-  left: PropTypes.string.isRequired,
-  right: PropTypes.string.isRequired,
-  className: PropTypes.string,
-};
-
-Card.defaultProps = {
-  cardName: '',
-};

@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 // Design Resources
 import { Spin } from 'antd';
 // Hooks
@@ -7,7 +6,12 @@ import { useLoading } from '../../hooks';
 import { Instruction, Title, Translate } from '../../components';
 import { Card } from './Card';
 
-export function StepCategorySelection({ currentCategories, onSendChosenSide }) {
+type StepCategorySelectionProps = {
+  currentCategories: OCategoryCard[];
+  onSendChosenSide: GenericFunction;
+};
+
+export function StepCategorySelection({ currentCategories, onSendChosenSide }: StepCategorySelectionProps) {
   const [isLoading] = useLoading();
 
   return (
@@ -45,14 +49,3 @@ export function StepCategorySelection({ currentCategories, onSendChosenSide }) {
     </div>
   );
 }
-
-StepCategorySelection.propTypes = {
-  currentCategories: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string,
-      left: PropTypes.string,
-      right: PropTypes.string,
-    })
-  ),
-  onSendChosenSide: PropTypes.func,
-};

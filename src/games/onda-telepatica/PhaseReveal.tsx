@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { useState } from 'react';
 // State & Hooks
 import { useIsUserReady, useLanguage, useWhichPlayerIsThe } from '../../hooks';
@@ -19,7 +18,7 @@ import {
 } from '../../components';
 import { StepReveal } from './StepReveal';
 
-function PhaseReveal({ players, state, info }) {
+function PhaseReveal({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
   const language = useLanguage();
   const [step, setStep] = useState(0);
@@ -69,17 +68,5 @@ function PhaseReveal({ players, state, info }) {
     </PhaseContainer>
   );
 }
-
-PhaseReveal.propTypes = {
-  info: PropTypes.object,
-  players: PropTypes.object,
-  state: PropTypes.shape({
-    phase: PropTypes.string,
-    round: PropTypes.shape({
-      current: PropTypes.number,
-      total: PropTypes.number,
-    }),
-  }),
-};
 
 export default PhaseReveal;
