@@ -5,8 +5,8 @@ import { Button, Slider } from 'antd';
 // Hooks
 import { useLoading } from '../../hooks';
 // Components
-import { ButtonContainer, Instruction, Step, Title, Translate } from '../../components/shared';
-import Dial from './Dial';
+import { ButtonContainer, Instruction, Step, Title, Translate } from '../../components';
+import { Dial } from './Dial';
 
 function Prompt({ card }) {
   return (
@@ -27,7 +27,7 @@ function Prompt({ card }) {
   );
 }
 
-function StepGuess({ currentCategory, onSendGuess }) {
+export function StepGuess({ currentCategory, onSendGuess }) {
   const [isLoading] = useLoading();
   const [needle, setNeedle] = useState(0);
 
@@ -76,5 +76,3 @@ StepGuess.propTypes = {
   }),
   onSendGuess: PropTypes.func,
 };
-
-export default StepGuess;

@@ -1,10 +1,18 @@
+import clsx from 'clsx';
 import PropTypes from 'prop-types';
 // Components
-import { Instruction, StarPoints, Step, TimedButton, Title, Translate } from '../../components/shared';
-import Dial from './Dial';
-import { Avatar, AvatarName } from '../../components/avatars';
-import clsx from 'clsx';
-import { CollapsibleRule } from '../../components/rules';
+import {
+  Avatar,
+  AvatarName,
+  PopoverRule,
+  Instruction,
+  StarPoints,
+  Step,
+  TimedButton,
+  Title,
+  Translate,
+} from '../../components';
+import { Dial } from './Dial';
 
 function Sentence({ card }) {
   return (
@@ -34,7 +42,7 @@ const getPoints = (guess, target) => {
   return 0;
 };
 
-function StepReveal({ setStep, currentCategory, players, psychic }) {
+export function StepReveal({ setStep, currentCategory, players, psychic }) {
   const regularPlayers = Object.values(players).filter((p) => p.id !== psychic.id);
 
   return (
@@ -83,14 +91,17 @@ function StepReveal({ setStep, currentCategory, players, psychic }) {
         })}
       </ul>
 
-      <CollapsibleRule title={<Translate pt="Como a pontuação funciona?" en="How does scoring work?" />}>
-        <Instruction contained>
-          <Translate
-            pt="Jogadores ganham 4 pontos se acertarem na mosca! Mas 3 e 2 pontos se votaram 1 ou 2 espaços de distância. O Medium ganha 1 ponto para cada jogador que ganhou ponto, num máximo de 3 pontos e se ele(a) chutou a quantidade certa de jogadores que iam acertar, ele ganha mais 2 pontos."
-            en="Players get 4 points if they get it exactly right! If one or two spaces away from the needle, they get 3 and 2 points respectively. The psychic gets 1 point for every player that got points this turn (maximum of 3 points) and may get 2 extra points if they guessed the correct number of player who would get the clue right."
-          />
-        </Instruction>
-      </CollapsibleRule>
+      <PopoverRule
+        label={<Translate pt="Como a pontuação funciona?" en="How does scoring work?" />}
+        content={
+          <Instruction contained>
+            <Translate
+              pt="Jogadores ganham 4 pontos se acertarem na mosca! Mas 3 e 2 pontos se votaram 1 ou 2 espaços de distância. O Medium ganha 1 ponto para cada jogador que ganhou ponto, num máximo de 3 pontos e se ele(a) chutou a quantidade certa de jogadores que iam acertar, ele ganha mais 2 pontos."
+              en="Players get 4 points if they get it exactly right! If one or two spaces away from the needle, they get 3 and 2 points respectively. The psychic gets 1 point for every player that got points this turn (maximum of 3 points) and may get 2 extra points if they guessed the correct number of player who would get the clue right."
+            />
+          </Instruction>
+        }
+      />
 
       <TimedButton
         duration={30}
@@ -110,5 +121,3 @@ StepReveal.propTypes = {
   }),
   onSendGuess: PropTypes.func,
 };
-
-export default StepReveal;

@@ -7,6 +7,7 @@ import { ONDA_TELEPATICA_API } from '../../adapters';
 import { PHASES } from '../../utils/phases';
 // Components
 import {
+  AvatarName,
   WaitingRoom,
   Instruction,
   PhaseAnnouncement,
@@ -17,11 +18,10 @@ import {
   translate,
   Translate,
   ViewIf,
-} from '../../components/shared';
-import { AvatarName } from '../../components/avatars';
-import StepClueWriting from './StepClueWriting';
-import StepClueWaiting from './StepClueWaiting';
-import StepCategorySelection from './StepCategorySelection';
+} from '../../components';
+import { StepClueWriting } from './StepClueWriting';
+import { StepClueWaiting } from './StepClueWaiting';
+import { StepCategorySelection } from './StepCategorySelection';
 
 function PhaseDialClue({ players, state, info }) {
   const isUserReady = useIsUserReady(players, state);

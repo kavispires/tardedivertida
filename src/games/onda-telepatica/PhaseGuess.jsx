@@ -16,9 +16,9 @@ import {
   translate,
   Translate,
   ViewIf,
-} from '../../components/shared';
-import StepGuess from './StepGuess';
-import StepPsychicGuess from './StepPsychicGuess';
+} from '../../components';
+import { StepGuess } from './StepGuess';
+import { StepPsychicGuess } from './StepPsychicGuess';
 
 function PhaseGuess({ players, state, info }) {
   const isUserReady = useIsUserReady(players, state);

@@ -4,10 +4,10 @@ import { Spin } from 'antd';
 // Hooks
 import { useLoading } from '../../hooks';
 // Components
-import { Instruction, Title, Translate } from '../../components/shared';
-import Card from './Card';
+import { Instruction, Title, Translate } from '../../components';
+import { Card } from './Card';
 
-function StepCategorySelection({ currentCategories, onSendChosenSide }) {
+export function StepCategorySelection({ currentCategories, onSendChosenSide }) {
   const [isLoading] = useLoading();
 
   return (
@@ -56,5 +56,3 @@ StepCategorySelection.propTypes = {
   ),
   onSendChosenSide: PropTypes.func,
 };
-
-export default StepCategorySelection;
