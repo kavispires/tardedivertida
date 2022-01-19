@@ -1,14 +1,13 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 // State & Hooks
-import { useIsUserReady, useAPICall, useLanguage, useWhichPlayerIsThe } from '../../hooks';
+import { useIsUserReady, useLanguage, useWhichPlayerIsThe } from '../../hooks';
+import { useOnSubmitCategoryAPIRequest, useOnSubmitClueAPIRequest } from './api-requests';
 // Resources & Utils
-import { ONDA_TELEPATICA_API } from '../../adapters';
 import { PHASES } from '../../utils/phases';
 // Components
 import {
   AvatarName,
-  WaitingRoom,
   Instruction,
   PhaseAnnouncement,
   PhaseContainer,
@@ -29,43 +28,9 @@ function PhaseDialClue({ players, state, info }) {
   const [step, setStep] = useState(0);
   const [psychic, isUserThePsychic] = useWhichPlayerIsThe('psychicId', state, players);
 
-  const onSubmitCategoryRequest = useAPICall({
-    apiFunction: ONDA_TELEPATICA_API.submitAction,
-    actionName: 'submit-category',
-    successMessage: translate('Categoria enviada com sucesso!', 'Category submitted successfully!', language),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar a categoria',
-      'Oops, the application failed to submit the category',
-      language
-    ),
-  });
+  const onSendChosenSide = useOnSubmitCategoryAPIRequest();
 
-  const onSubmitClueRequest = useAPICall({
-    apiFunction: ONDA_TELEPATICA_API.submitAction,
-    actionName: 'submit-clue',
-    onBeforeCall: () => setStep(3),
-    onError: () => setStep(1),
-    successMessage: translate('Dica enviado com sucesso!', 'Clue submitted successfully!', language),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua dica',
-      'Oops, the application failed to submit your clue',
-      language
-    ),
-  });
-
-  const onSendChosenSide = (payload) => {
-    onSubmitCategoryRequest({
-      action: 'SUBMIT_CATEGORY',
-      ...payload,
-    });
-  };
-
-  const onSendClue = (payload) => {
-    onSubmitClueRequest({
-      action: 'SUBMIT_CLUE',
-      ...payload,
-    });
-  };
+  const onSendClue = useOnSubmitClueAPIRequest();
 
   return (
     <PhaseContainer
@@ -74,7 +39,7 @@ function PhaseDialClue({ players, state, info }) {
       allowedPhase={PHASES.ONDA_TELEPATICA.DIAL_CLUE}
       className="o-phase"
     >
-      <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady, !isUserReady]}>
+      <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady, !isUserReady]} players={players}>
         {/* Step 0 */}
         <RoundAnnouncement
           round={state.round}
@@ -133,11 +98,6 @@ function PhaseDialClue({ players, state, info }) {
               currentCategoryId={state.currentCategoryId}
             />
           </ViewIf>
-        </Step>
-
-        {/* Step 3 */}
-        <Step fullWidth>
-          <WaitingRoom players={players} />
         </Step>
       </StepSwitcher>
     </PhaseContainer>
