@@ -12,11 +12,12 @@ import {
   ButtonContainer,
   Instruction,
   ReadyPlayersBar,
+  Step,
   Title,
   translate,
   Translate,
-} from '../../components/shared';
-import DreamBoardWrite from './DreamBoardWrite';
+} from '../../components';
+import { DreamBoardWrite } from './DreamBoardWrite';
 
 const mockedClues = [
   'água',
@@ -37,7 +38,7 @@ const mockedClues = [
   'amargo',
 ];
 
-function StepTellDream({ players, theme, user, table, onSubmitDream, dreamsCount, currentRound }) {
+export function StepTellDream({ players, theme, user, table, onSubmitDream, dreamsCount, currentRound }) {
   const [isLoading] = useLoading();
   const language = useLanguage();
   const [localClues, setLocalClues] = useState({});
@@ -71,7 +72,7 @@ function StepTellDream({ players, theme, user, table, onSubmitDream, dreamsCount
   };
 
   return (
-    <div className="s-tell-dream-step">
+    <Step fullWidth className="s-tell-dream-step">
       <Title center>
         <Card
           header={translate('Tema', 'Theme', language)}
@@ -105,7 +106,7 @@ function StepTellDream({ players, theme, user, table, onSubmitDream, dreamsCount
       />
 
       <ReadyPlayersBar players={players} />
-    </div>
+    </Step>
   );
 }
 
@@ -117,5 +118,3 @@ StepTellDream.propTypes = {
   theme: PropTypes.string,
   user: PropTypes.object,
 };
-
-export default StepTellDream;

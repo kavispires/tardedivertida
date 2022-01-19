@@ -3,11 +3,11 @@ import clsx from 'clsx';
 // Hooks
 import { useCardWidth } from '../../hooks';
 // Components
-import NightmareButton from './NightmareButton';
-import DreamButton from './DreamButton';
-import DreamCard from './DreamCard';
+import { NightmareButton } from './NightmareButton';
+import { DreamButton } from './DreamButton';
+import { DreamCard } from './DreamCard';
 
-function DreamBoard({ table, user, className }) {
+export function DreamBoard({ table, user, className }) {
   const cardWidth = useCardWidth(table.length / 2, 40);
 
   return (
@@ -47,5 +47,3 @@ DreamBoard.propTypes = {
     nightmares: PropTypes.array,
   }),
 };
-
-export default DreamBoard;

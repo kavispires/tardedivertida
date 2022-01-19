@@ -1,10 +1,9 @@
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 // Components
-import ImageCard from '../../components/cards/ImageCard';
-import { ImageBlurButton, ImageCardBack } from '../../components/cards';
+import { ImageCard, ImageBlurButton, ImageCardBack } from '../../components';
 
-function DreamCard({
+export function DreamCard({
   cardId,
   cardWidth,
   isDream = false,
@@ -43,5 +42,3 @@ DreamCard.propTypes = {
   isDream: PropTypes.bool,
   isNightmare: PropTypes.bool,
 };
-
-export default DreamCard;

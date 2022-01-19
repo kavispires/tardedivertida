@@ -6,7 +6,7 @@ import { getEntryId } from '../../utils/helpers';
 // Components
 import { SonhosPesadelosCard as Card } from '../../components/cards';
 
-function AllClues({ clues, activeItem, onActivateItem, votes, players, currentRound }) {
+export function AllClues({ clues, activeItem, onActivateItem, votes, players, currentRound }) {
   const liButtonBaseClass = 'a-evaluation-all-cards__li-card-button';
 
   return (
@@ -55,5 +55,3 @@ AllClues.propTypes = {
   players: PropTypes.object,
   votes: PropTypes.object,
 };
-
-export default AllClues;

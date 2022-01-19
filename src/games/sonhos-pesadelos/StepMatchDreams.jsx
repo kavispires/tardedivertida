@@ -12,14 +12,15 @@ import {
   ButtonContainer,
   Instruction,
   ReadyPlayersBar,
+  Step,
   Title,
   translate,
   Translate,
-} from '../../components/shared';
-import AllClues from './AllClues';
-import DreamBoardVote from './DreamBoardVote';
+} from '../../components';
+import { AllClues } from './AllClues';
+import { DreamBoardVote } from './DreamBoardVote';
 
-function StepMatchDreams({ players, user, table, onSubmitDream, clues, currentRound }) {
+export function StepMatchDreams({ players, user, table, onSubmitDream, clues, currentRound }) {
   const [isLoading] = useLoading();
   const language = useLanguage();
   const { votes, setVotes, activeItem, activateItem, isVotingComplete } = useVotingMatch(
@@ -71,7 +72,7 @@ function StepMatchDreams({ players, user, table, onSubmitDream, clues, currentRo
   };
 
   return (
-    <div className="s-tell-dream-step">
+    <Step fullWidth className="s-tell-dream-step">
       <Title>{translate('Adivinhação', 'Match the Pairs', language)}</Title>
       <Instruction contained>
         <Translate
@@ -106,7 +107,7 @@ function StepMatchDreams({ players, user, table, onSubmitDream, clues, currentRo
       />
 
       <ReadyPlayersBar players={players} />
-    </div>
+    </Step>
   );
 }
 
@@ -119,5 +120,3 @@ StepMatchDreams.propTypes = {
   table: PropTypes.array,
   user: PropTypes.object,
 };
-
-export default StepMatchDreams;

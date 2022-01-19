@@ -1,16 +1,8 @@
-import PropTypes from 'prop-types';
-
 // Components
-import { GameOverWrapper } from '../../components/shared';
+import { GameOverWrapper } from '../../components';
 
 function PhaseGameOver({ state, players, info }) {
   return <GameOverWrapper info={info} state={state} announcementIcon="trophy" />;
 }
-
-PhaseGameOver.propTypes = {
-  info: PropTypes.object,
-  players: PropTypes.object,
-  state: PropTypes.object,
-};
 
 export default PhaseGameOver;

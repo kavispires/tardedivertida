@@ -8,8 +8,8 @@ import { useCardWidth } from '../../hooks';
 import { getEntryId } from '../../utils/helpers';
 // Components
 import { Translate, Ribbon } from '../../components';
-import DreamButton from './DreamButton';
-import DreamCard from './DreamCard';
+import { DreamButton } from './DreamButton';
+import { DreamCard } from './DreamCard';
 
 function SelectButton({ onActivateItem, cardEntryId }) {
   return (
@@ -25,7 +25,7 @@ const getClueId = (votes, cardEntryId) => {
   return Object.keys(votes).find((key) => votes[key] === cardEntryId);
 };
 
-function DreamBoardVote({ table, user, activeItem, onActivateItem, votes }) {
+export function DreamBoardVote({ table, user, activeItem, onActivateItem, votes }) {
   const cardWidth = useCardWidth(table.length / 2, 40);
   const liButtonBaseClass = 'a-evaluation-all-drawings__li-drawing-button';
 
@@ -67,5 +67,3 @@ function DreamBoardVote({ table, user, activeItem, onActivateItem, votes }) {
     </ul>
   );
 }
-
-export default DreamBoardVote;

@@ -7,19 +7,17 @@ import { SONHOS_PESADELOS_API } from '../../adapters';
 import { PHASES } from '../../utils/phases';
 // Components
 import {
-  WaitingRoom,
+  ImageCardPreloadHand,
   Instruction,
   PhaseAnnouncement,
   PhaseContainer,
   RoundAnnouncement,
-  Step,
   StepSwitcher,
   Translate,
   translate,
-} from '../../components/shared';
-import { ImageCardPreloadHand } from '../../components/cards';
-import StepTellDream from './StepTellDream';
-import DreamBoard from './DreamBoard';
+} from '../../components';
+import { StepTellDream } from './StepTellDream';
+import { DreamBoard } from './DreamBoard';
 
 function PhaseTellDream({ state, players, info }) {
   const language = useLanguage();
@@ -41,13 +39,13 @@ function PhaseTellDream({ state, players, info }) {
   });
 
   return (
-    <PhaseContainer
-      info={info}
-      phase={state?.phase}
-      allowedPhase={PHASES.SONHOS_PESADELOS.TELL_DREAM}
-      className="s-tell-dream-phase"
-    >
-      <StepSwitcher step={step} conditions={[!isUserReady]}>
+    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.SONHOS_PESADELOS.TELL_DREAM}>
+      <StepSwitcher
+        step={step}
+        conditions={[!isUserReady]}
+        players={players}
+        waitingRoomContent={<DreamBoard user={user} table={state.table} />}
+      >
         {/* Step 0 */}
         <RoundAnnouncement round={state.round} buttonText="" onPressButton={() => setStep(1)} time={5}>
           <Instruction contained>
@@ -93,23 +91,15 @@ function PhaseTellDream({ state, players, info }) {
         </PhaseAnnouncement>
 
         {/* Step 2 */}
-        <Step fullWidth>
-          <StepTellDream
-            players={players}
-            theme={state.theme}
-            user={user}
-            table={state.table}
-            onSubmitDream={onSubmitDream}
-            dreamsCount={state.dreamsCount}
-            currentRound={state.round.current}
-          />
-        </Step>
-
-        {/* Step 3 */}
-        <Step fullWidth>
-          <WaitingRoom players={players} />
-          <DreamBoard user={user} table={state.table} />
-        </Step>
+        <StepTellDream
+          players={players}
+          theme={state.theme}
+          user={user}
+          table={state.table}
+          onSubmitDream={onSubmitDream}
+          dreamsCount={state.dreamsCount}
+          currentRound={state.round.current}
+        />
       </StepSwitcher>
     </PhaseContainer>
   );

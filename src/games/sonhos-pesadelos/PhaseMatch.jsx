@@ -7,17 +7,15 @@ import { SONHOS_PESADELOS_API } from '../../adapters';
 import { PHASES } from '../../utils/phases';
 // Components
 import {
-  WaitingRoom,
   Instruction,
   PhaseAnnouncement,
   PhaseContainer,
-  Step,
   StepSwitcher,
   Translate,
   translate,
-} from '../../components/shared';
-import DreamBoard from './DreamBoard';
-import StepMatchDreams from './StepMatchDreams';
+} from '../../components';
+import { DreamBoard } from './DreamBoard';
+import { StepMatchDreams } from './StepMatchDreams';
 
 function PhaseMatch({ state, players, info }) {
   const language = useLanguage();
@@ -39,13 +37,13 @@ function PhaseMatch({ state, players, info }) {
   });
 
   return (
-    <PhaseContainer
-      info={info}
-      phase={state?.phase}
-      allowedPhase={PHASES.SONHOS_PESADELOS.MATCH}
-      className="s-phase"
-    >
-      <StepSwitcher step={step} conditions={[!isUserReady]}>
+    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.SONHOS_PESADELOS.MATCH}>
+      <StepSwitcher
+        step={step}
+        conditions={[!isUserReady]}
+        players={players}
+        waitingRoomContent={<DreamBoard user={user} table={state.table} />}
+      >
         {/* Step 0 */}
         <PhaseAnnouncement
           type="evaluate"
@@ -78,24 +76,16 @@ function PhaseMatch({ state, players, info }) {
         </PhaseAnnouncement>
 
         {/* Step 1 */}
-        <Step fullWidth>
-          <StepMatchDreams
-            players={players}
-            theme={state.theme}
-            user={user}
-            table={state.table}
-            onSubmitDream={onSubmitDream}
-            dreamsCount={state.dreamsCount}
-            clues={state.clues}
-            currentRound={state?.round?.current}
-          />
-        </Step>
-
-        {/* Step 2 */}
-        <Step fullWidth>
-          <WaitingRoom players={players} />
-          <DreamBoard user={user} table={state.table} />
-        </Step>
+        <StepMatchDreams
+          players={players}
+          theme={state.theme}
+          user={user}
+          table={state.table}
+          onSubmitDream={onSubmitDream}
+          dreamsCount={state.dreamsCount}
+          clues={state.clues}
+          currentRound={state?.round?.current}
+        />
       </StepSwitcher>
     </PhaseContainer>
   );

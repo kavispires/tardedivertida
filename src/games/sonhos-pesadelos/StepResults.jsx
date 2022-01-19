@@ -6,12 +6,11 @@ import { useLanguage } from '../../hooks';
 // Utils
 import { LETTERS, SEPARATOR } from '../../utils/constants';
 // Components
-import { Instruction, Title, translate, Translate } from '../../components/shared';
-import { AdminNextRoundButton } from '../../components/admin';
-import DreamBoard from './DreamBoard';
-import DreamCard from './DreamCard';
+import { AdminNextRoundButton, Instruction, Step, Title, translate, Translate } from '../../components';
+import { DreamBoard } from './DreamBoard';
+import { DreamCard } from './DreamCard';
 
-function StepResults({ results, user, clues, table, round }) {
+export function StepResults({ results, user, clues, table, round }) {
   const language = useLanguage();
   const playerResults = results[user.id];
 
@@ -29,7 +28,7 @@ function StepResults({ results, user, clues, table, round }) {
   }, []);
 
   return (
-    <div className="s-results-step">
+    <Step fullWidth className="s-results-step">
       <Title>{translate('Resultado', 'Results', language)}</Title>
       <Instruction contained>
         <div className="s-result-correct">{playerResults.correct}</div>
@@ -77,7 +76,7 @@ function StepResults({ results, user, clues, table, round }) {
       <DreamBoard table={table} user={user} className="s-dream-board-results" />
 
       <AdminNextRoundButton round={round} />
-    </div>
+    </Step>
   );
 }
 
@@ -90,5 +89,3 @@ StepResults.propTypes = {
     votes: PropTypes.any,
   }),
 };
-
-export default StepResults;
