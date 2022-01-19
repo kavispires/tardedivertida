@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 // Hooks
-import { useIsUserReady, useAPICall, useUser, useLanguage } from '../../hooks';
+import { useIsUserReady, useUser, useLanguage } from '../../hooks';
+import { useOnSubmitVotesAPIRequest } from './api-requests';
 // Resources & Utils
-import { SONHOS_PESADELOS_API } from '../../adapters';
 import { PHASES } from '../../utils/phases';
 // Components
 import {
@@ -24,18 +24,7 @@ function PhaseLastChance({ state, players, info }) {
   const isUserReady = useIsUserReady(players, state);
   const [step, setStep] = useState(0);
 
-  const onSubmitDream = useAPICall({
-    apiFunction: SONHOS_PESADELOS_API.submitAction,
-    actionName: 'submit-dreams',
-    onBeforeCall: () => setStep(3),
-    onError: () => setStep(1),
-    successMessage: translate('Sonhos submetidos com sucesso', 'Dreams submitted successfully', language),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar seus sonhos',
-      'Oops, the application found an error while trying to submit your dreams',
-      language
-    ),
-  });
+  const onSubmitVotes = useOnSubmitVotesAPIRequest(setStep);
 
   return (
     <PhaseContainer
@@ -93,7 +82,7 @@ function PhaseLastChance({ state, players, info }) {
           theme={state.theme}
           user={user}
           table={state.table}
-          onSubmitDream={onSubmitDream}
+          onSubmitVotes={onSubmitVotes}
           dreamsCount={state.dreamsCount}
           clues={state.clues}
           currentRound={state?.round?.current}

@@ -38,7 +38,7 @@ const mockedClues = [
   'amargo',
 ];
 
-export function StepTellDream({ players, theme, user, table, onSubmitDream, dreamsCount, currentRound }) {
+export function StepTellDream({ players, theme, user, table, onSubmitDreams, dreamsCount, currentRound }) {
   const [isLoading] = useLoading();
   const language = useLanguage();
   const [localClues, setLocalClues] = useState({});
@@ -64,9 +64,8 @@ export function StepTellDream({ players, theme, user, table, onSubmitDream, drea
     }
   }, []); // eslint-disable-line
 
-  const onSubmitDreams = () => {
-    onSubmitDream({
-      action: 'SUBMIT_DREAMS',
+  const onSubmitDreamsClick = () => {
+    onSubmitDreams({
       dreams: localClues,
     });
   };
@@ -92,7 +91,7 @@ export function StepTellDream({ players, theme, user, table, onSubmitDream, drea
       </Instruction>
 
       <ButtonContainer>
-        <Button type="primary" disabled={isLoading || !hasClues} onClick={onSubmitDreams}>
+        <Button type="primary" disabled={isLoading || !hasClues} onClick={onSubmitDreamsClick}>
           <Translate pt="Enviar" en="Submit" />
         </Button>
       </ButtonContainer>
