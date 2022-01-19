@@ -1,9 +1,8 @@
 import PropTypes from 'prop-types';
-import { AvatarName } from '../../components/avatars';
-import { ButtonContainer, Translate, WaitingRoom } from '../../components/shared';
-import Card from './Card';
+import { AvatarName, ButtonContainer, Translate, WaitingRoom } from '../../components';
+import { Card } from './Card';
 
-function StepClueWaiting({ players, psychic, currentCategories, currentCategoryId }) {
+export function StepClueWaiting({ players, psychic, currentCategories, currentCategoryId }) {
   const card = currentCategories.find((c) => c.id === currentCategoryId);
 
   return (
@@ -57,5 +56,3 @@ StepClueWaiting.propTypes = {
   players: PropTypes.object,
   psychic: PropTypes.object,
 };
-
-export default StepClueWaiting;

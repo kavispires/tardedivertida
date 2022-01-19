@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 // Components
-import { Instruction, Title } from '../../components/shared';
-import Card from './Card';
+import { Instruction, Title } from '../../components';
+import { Card } from './Card';
 
-function CardSelection({ onSendChosenSide, cards }) {
+export function CardSelection({ onSendChosenSide, cards }) {
   return (
     <div className="o-card-selection">
       <Title>Selecione a carta que será usada nessa rodada!</Title>
@@ -33,5 +33,3 @@ CardSelection.propTypes = {
     })
   ).isRequired,
 };
-
-export default CardSelection;

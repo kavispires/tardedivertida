@@ -1,21 +1,11 @@
-import { memo } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+// Utils
+import { getBracketClass } from './helpers';
 // Components
-import Card from './Card';
+import { Card } from './Card';
 
-const getBracketClass = (number, showNeedle, needle, showTarget, target) => {
-  const baseBracketClass = 'o-dial-numbers';
-  const modifier = number % 2 === 0 ? 'even' : 'odd';
-  return clsx(
-    baseBracketClass,
-    `${baseBracketClass}--${modifier}`,
-    showNeedle && needle === number && `${baseBracketClass}--active`,
-    showTarget && target === number && `${baseBracketClass}--target`
-  );
-};
-
-function Dial({
+export function Dial({
   card,
   needle = 0,
   showNeedle = false,
@@ -229,5 +219,3 @@ Dial.defaultProps = {
   showTarget: false,
   animate: false,
 };
-
-export default memo(Dial);

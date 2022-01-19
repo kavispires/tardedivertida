@@ -1,16 +1,11 @@
-import { memo } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 // Design Resources
 import { ArrowLeftOutlined, ArrowRightOutlined, MinusOutlined } from '@ant-design/icons';
-import { LETTERS } from '../../utils/constants';
+// Helpers
+import { getColorModifier } from './helpers';
 
-const getColorModifier = (letter) => {
-  const index = LETTERS.indexOf(letter);
-  return Math.abs(index) % 4;
-};
-
-function Card({ left, right, className, setNeedle }) {
+export function Card({ left, right, className, setNeedle }) {
   const leftColor = getColorModifier(left[0]);
   const rightColor = getColorModifier(right[0]);
   const cardSideClass = 'o-card__side';
@@ -69,5 +64,3 @@ Card.propTypes = {
 Card.defaultProps = {
   cardName: '',
 };
-
-export default memo(Card);

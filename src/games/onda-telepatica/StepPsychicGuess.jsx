@@ -4,10 +4,10 @@ import { Button } from 'antd';
 // Hooks
 import { useLoading } from '../../hooks';
 // Components
-import { ButtonContainer, Instruction, Step, Title, Translate } from '../../components/shared';
-import Dial from './Dial';
+import { ButtonContainer, Instruction, Step, Title, Translate } from '../../components';
+import { Dial } from './Dial';
 
-function StepPsychicGuess({ currentCategory, onSendGuess }) {
+export function StepPsychicGuess({ currentCategory, onSendGuess }) {
   const [isLoading] = useLoading();
 
   return (
@@ -48,5 +48,3 @@ StepPsychicGuess.propTypes = {
   }),
   onSendGuess: PropTypes.func,
 };
-
-export default StepPsychicGuess;

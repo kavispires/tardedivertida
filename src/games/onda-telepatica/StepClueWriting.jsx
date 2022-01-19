@@ -4,25 +4,14 @@ import { useState } from 'react';
 import { Button, Input } from 'antd';
 // Hooks
 import { useLanguage, useLoading } from '../../hooks';
+// HUtils
+import { getTargetSide } from './helpers';
 // Components
 import { ButtonContainer, Instruction, Title, translate, Translate } from '../../components/shared';
-import ClueWritingRules from './ClueWritingRules';
-import Dial from './Dial';
+import { ClueWritingRules } from './ClueWritingRules';
+import { Dial } from './Dial';
 
-const getTargetSide = (target, card, language) => {
-  if (!card) {
-    return '';
-  }
-  if (target === 0) {
-    return language === 'pt' ? 'exatamente entre os dois' : 'exactly in between both ideas';
-  }
-
-  const side = target < 0 ? card.left : card.right;
-
-  return language === 'pt' ? `do lado "${side}"` : `on the "${side}" side`;
-};
-
-function StepClueWriting({ currentCategories, currentCategoryId, target, onSendClue }) {
+export function StepClueWriting({ currentCategories, currentCategoryId, target, onSendClue }) {
   const language = useLanguage();
   const [isLoading] = useLoading();
   const [clue, setClue] = useState('');
@@ -86,5 +75,3 @@ StepClueWriting.propTypes = {
 
   target: PropTypes.number,
 };
-
-export default StepClueWriting;

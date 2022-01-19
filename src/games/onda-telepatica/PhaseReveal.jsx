@@ -6,6 +6,7 @@ import { useIsUserReady, useLanguage, useWhichPlayerIsThe } from '../../hooks';
 import { PHASES } from '../../utils/phases';
 // Components
 import {
+  AdminNextRoundButton,
   Instruction,
   PhaseAnnouncement,
   PhaseContainer,
@@ -15,10 +16,8 @@ import {
   Title,
   translate,
   Translate,
-} from '../../components/shared';
-
-import StepReveal from './StepReveal';
-import { AdminNextRoundButton } from '../../components/admin';
+} from '../../components';
+import { StepReveal } from './StepReveal';
 
 function PhaseReveal({ players, state, info }) {
   const isUserReady = useIsUserReady(players, state);
