@@ -32,7 +32,7 @@ function PhaseReveal({ players, state, info }) {
       allowedPhase={PHASES.ONDA_TELEPATICA.REVEAL}
       className="o-phase"
     >
-      <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady, !isUserReady]}>
+      <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady, !isUserReady]} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
           type="timer"

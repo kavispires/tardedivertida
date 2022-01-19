@@ -1,13 +1,12 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 // State & Hooks
-import { useIsUserReady, useAPICall, useLanguage, useWhichPlayerIsThe } from '../../hooks';
+import { useIsUserReady, useLanguage, useWhichPlayerIsThe } from '../../hooks';
+import { useOnSubmitGuessAPIRequest } from './api-requests';
 // Resources & Utils
-import { ONDA_TELEPATICA_API } from '../../adapters';
 import { PHASES } from '../../utils/phases';
 // Components
 import {
-  WaitingRoom,
   Instruction,
   PhaseAnnouncement,
   PhaseContainer,
@@ -26,25 +25,7 @@ function PhaseGuess({ players, state, info }) {
   const [step, setStep] = useState(0);
   const [, isUserThePsychic] = useWhichPlayerIsThe('psychicId', state, players);
 
-  const onSubmitGuessRequest = useAPICall({
-    apiFunction: ONDA_TELEPATICA_API.submitAction,
-    actionName: 'submit-guess',
-    onBeforeCall: () => setStep(2),
-    onError: () => setStep(1),
-    successMessage: translate('Dica enviado com sucesso!', 'Clue submitted successfully!', language),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua dica',
-      'Oops, the application failed to submit your clue',
-      language
-    ),
-  });
-
-  const onSendGuess = (payload) => {
-    onSubmitGuessRequest({
-      action: 'SUBMIT_GUESS',
-      ...payload,
-    });
-  };
+  const onSendGuess = useOnSubmitGuessAPIRequest(setStep);
 
   return (
     <PhaseContainer
@@ -53,7 +34,7 @@ function PhaseGuess({ players, state, info }) {
       allowedPhase={PHASES.ONDA_TELEPATICA.GUESS}
       className="o-phase"
     >
-      <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady, !isUserReady]}>
+      <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady, !isUserReady]} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
           type="sound-wave"
@@ -76,11 +57,6 @@ function PhaseGuess({ players, state, info }) {
           <ViewIf isVisible={!isUserThePsychic}>
             <StepGuess currentCategory={state.currentCategory} onSendGuess={onSendGuess} />
           </ViewIf>
-        </Step>
-
-        {/* Step 2 */}
-        <Step fullWidth>
-          <WaitingRoom players={players} />
         </Step>
       </StepSwitcher>
     </PhaseContainer>
