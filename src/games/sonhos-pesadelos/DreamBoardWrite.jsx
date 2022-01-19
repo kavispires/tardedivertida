@@ -4,9 +4,9 @@ import { CaretUpOutlined } from '@ant-design/icons';
 // Hooks
 import { useCardWidth, useLanguage } from '../../hooks';
 // Components
-import { translate, Translate } from '../../components/shared';
-import NightmareButton from './NightmareButton';
-import DreamCard from './DreamCard';
+import { translate, Translate } from '../../components';
+import { NightmareButton } from './NightmareButton';
+import { DreamCard } from './DreamCard';
 
 function DreamButton({ cardId, clue, previousClues, onClueChange }) {
   const language = useLanguage();
@@ -66,7 +66,7 @@ const shouldDisplayCard = (currentRound, entry, userId) => {
   return currentRound > 1 || entry.dreamer === userId || entry.nightmares.includes(userId);
 };
 
-function DreamBoardWrite({ table, user, localClues, setLocalClues, currentRound }) {
+export function DreamBoardWrite({ table, user, localClues, setLocalClues, currentRound }) {
   const cardWidth = useCardWidth(table.length / 2, 40);
 
   const onClueChange = ({ target }) => {
@@ -116,5 +116,3 @@ function DreamBoardWrite({ table, user, localClues, setLocalClues, currentRound 
     </ul>
   );
 }
-
-export default DreamBoardWrite;

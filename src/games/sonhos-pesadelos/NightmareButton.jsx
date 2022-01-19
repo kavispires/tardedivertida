@@ -2,9 +2,9 @@
 import { Button } from 'antd';
 import { CaretUpOutlined } from '@ant-design/icons';
 // Components
-import { Translate } from '../../components/shared';
+import { Translate } from '../../components';
 
-function NightmareButton() {
+export function NightmareButton() {
   return (
     <Button disabled className="s-dream-board-entry-nightmare">
       <CaretUpOutlined />
@@ -13,5 +13,3 @@ function NightmareButton() {
     </Button>
   );
 }
-
-export default NightmareButton;

@@ -29,6 +29,7 @@ type StepSwitcherProps = {
   players?: GamePlayers;
   waitingRoomInstructionType?: 'SERVER' | 'PLAYERS';
   waitingRoomInstruction?: any;
+  waitingRoomContent?: any;
 };
 
 export function StepSwitcher({
@@ -38,6 +39,7 @@ export function StepSwitcher({
   players,
   waitingRoomInstruction,
   waitingRoomInstructionType = 'PLAYERS',
+  waitingRoomContent = '',
 }: StepSwitcherProps) {
   if (!players) console.warn('SetSwitcher is being used without `players`, please add it.');
 
@@ -47,7 +49,9 @@ export function StepSwitcher({
         players={players}
         title={<Translate pt="Pronto!" en="Done!" />}
         instruction={waitingRoomInstruction ?? getWaitingRoomInstruction(waitingRoomInstructionType)}
-      />
+      >
+        {waitingRoomContent}
+      </WaitingRoom>
     );
   }
 

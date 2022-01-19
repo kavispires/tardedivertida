@@ -6,17 +6,15 @@ import { useIsUserReady, useUser, useLanguage } from '../../hooks';
 import { PHASES } from '../../utils/phases';
 // Components
 import {
-  WaitingRoom,
   Instruction,
   PhaseAnnouncement,
   PhaseContainer,
-  Step,
   StepSwitcher,
   Translate,
   translate,
-} from '../../components/shared';
-import DreamBoard from './DreamBoard';
-import StepResults from './StepResults';
+} from '../../components';
+import { DreamBoard } from './DreamBoard';
+import { StepResults } from './StepResults';
 
 function PhaseResolution({ state, players, info }) {
   const language = useLanguage();
@@ -25,13 +23,13 @@ function PhaseResolution({ state, players, info }) {
   const [step, setStep] = useState(0);
 
   return (
-    <PhaseContainer
-      info={info}
-      phase={state?.phase}
-      allowedPhase={PHASES.SONHOS_PESADELOS.RESOLUTION}
-      className="s-phase"
-    >
-      <StepSwitcher step={step} conditions={[!isUserReady]}>
+    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.SONHOS_PESADELOS.RESOLUTION}>
+      <StepSwitcher
+        step={step}
+        conditions={[!isUserReady]}
+        players={players}
+        waitingRoomContent={<DreamBoard user={user} table={state.table} />}
+      >
         {/* Step 0 */}
         <PhaseAnnouncement
           type="countdown"
@@ -63,23 +61,15 @@ function PhaseResolution({ state, players, info }) {
         </PhaseAnnouncement>
 
         {/* Step 1 */}
-        <Step fullWidth>
-          <StepResults
-            players={players}
-            user={user}
-            results={state.results}
-            dreamsCount={state.dreamsCount}
-            clues={state.clues}
-            table={state.table}
-            round={state.round}
-          />
-        </Step>
-
-        {/* Step 2 */}
-        <Step fullWidth>
-          <WaitingRoom players={players} />
-          <DreamBoard user={user} table={state.table} />
-        </Step>
+        <StepResults
+          players={players}
+          user={user}
+          results={state.results}
+          dreamsCount={state.dreamsCount}
+          clues={state.clues}
+          table={state.table}
+          round={state.round}
+        />
       </StepSwitcher>
     </PhaseContainer>
   );
