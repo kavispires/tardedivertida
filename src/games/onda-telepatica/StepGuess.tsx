@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { useState } from 'react';
 // Design Resources
 import { Button, Slider } from 'antd';
@@ -8,14 +7,18 @@ import { useLoading } from '../../hooks';
 import { ButtonContainer, Instruction, Step, Title, Translate } from '../../components';
 import { Dial } from './Dial';
 
-function Prompt({ card }) {
+type PromptProps = {
+  currentCategory: OCurrentCategory;
+};
+
+function Prompt({ currentCategory }: PromptProps) {
   return (
     <Instruction contained>
       <Translate pt="Qual número melhor indica" en="What number best translates" />
-      <span className="o-dial-guess-selection__clue">{card.clue}</span>{' '}
+      <span className="o-dial-guess-selection__clue">{currentCategory.clue}</span>{' '}
       <Translate pt="na escala" en="on the scale" />{' '}
       <strong>
-        {card.left}-{card.right}
+        {currentCategory.left}-{currentCategory.right}
       </strong>
       ?
       <br />
@@ -27,7 +30,12 @@ function Prompt({ card }) {
   );
 }
 
-export function StepGuess({ currentCategory, onSendGuess }) {
+type StepGuessProps = {
+  currentCategory: OCurrentCategory;
+  onSendGuess: GenericFunction;
+};
+
+export function StepGuess({ currentCategory, onSendGuess }: StepGuessProps) {
   const [isLoading] = useLoading();
   const [needle, setNeedle] = useState(0);
 
@@ -36,7 +44,7 @@ export function StepGuess({ currentCategory, onSendGuess }) {
       <Title>
         <Translate pt="Hora de brilhar telepaticamente!" en="Time to shine telepathically!" />
       </Title>
-      <Prompt card={currentCategory} />
+      <Prompt currentCategory={currentCategory} />
       <Dial
         card={currentCategory}
         target={currentCategory.target}
@@ -67,12 +75,3 @@ export function StepGuess({ currentCategory, onSendGuess }) {
     </Step>
   );
 }
-
-StepGuess.propTypes = {
-  currentCategory: PropTypes.shape({
-    left: PropTypes.string,
-    right: PropTypes.string,
-    target: PropTypes.number,
-  }),
-  onSendGuess: PropTypes.func,
-};

@@ -22,7 +22,7 @@ import { StepClueWriting } from './StepClueWriting';
 import { StepClueWaiting } from './StepClueWaiting';
 import { StepCategorySelection } from './StepCategorySelection';
 
-function PhaseDialClue({ players, state, info }) {
+function PhaseDialClue({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
   const language = useLanguage();
   const [step, setStep] = useState(0);

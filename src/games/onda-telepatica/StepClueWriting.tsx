@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { useState } from 'react';
 // Design Resources
 import { Button, Input } from 'antd';
@@ -11,12 +10,24 @@ import { ButtonContainer, Instruction, Title, translate, Translate } from '../..
 import { ClueWritingRules } from './ClueWritingRules';
 import { Dial } from './Dial';
 
-export function StepClueWriting({ currentCategories, currentCategoryId, target, onSendClue }) {
+type StepClueWritingProps = {
+  currentCategories: OCategoryCard[];
+  currentCategoryId: string;
+  target: number;
+  onSendClue: GenericFunction;
+};
+
+export function StepClueWriting({
+  currentCategories,
+  currentCategoryId,
+  target,
+  onSendClue,
+}: StepClueWritingProps) {
   const language = useLanguage();
   const [isLoading] = useLoading();
   const [clue, setClue] = useState('');
 
-  const onChangeInput = (e) => {
+  const onChangeInput = (e: any) => {
     setClue(e.target.value);
   };
 
@@ -37,7 +48,7 @@ export function StepClueWriting({ currentCategories, currentCategoryId, target, 
             target,
             card,
             language
-          )}. Escreva uma dica que ajude os outros jogadores a escolher exatamente esse número! Revise as regras de quais dicas são válidas clicando no Icone de Livrinho.`}
+          )}. Escreva uma dica que ajude os outros jogadores a escolher exatamente esse número! Revise as regras de quais dicas são válidas clicando no Ícone de Livrinho.`}
           en={`The needle is point at ${Math.abs(target)} ${getTargetSide(
             target,
             card,
@@ -46,7 +57,7 @@ export function StepClueWriting({ currentCategories, currentCategoryId, target, 
         />
         <ClueWritingRules />
       </Instruction>
-      <Dial target={target} card={card} showTarget />
+      <Dial target={target} card={card!} showTarget />
       <ButtonContainer>
         <Input
           onChange={onChangeInput}
@@ -60,18 +71,3 @@ export function StepClueWriting({ currentCategories, currentCategoryId, target, 
     </div>
   );
 }
-
-StepClueWriting.propTypes = {
-  currentCategories: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string,
-      left: PropTypes.string,
-      right: PropTypes.string,
-    })
-  ),
-  currentCategoryId: PropTypes.string,
-  onSendChosenSide: PropTypes.func,
-  onSendClue: PropTypes.func,
-
-  target: PropTypes.number,
-};

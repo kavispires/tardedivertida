@@ -1,9 +1,18 @@
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
 // Utils
 import { getBracketClass } from './helpers';
 // Components
 import { Card } from './Card';
+
+type DialProps = {
+  card: OCategoryCard;
+  needle?: number;
+  showNeedle?: boolean;
+  target?: number;
+  showTarget?: boolean;
+  animate?: boolean;
+  setNeedle?: GenericFunction;
+};
 
 export function Dial({
   card,
@@ -13,11 +22,11 @@ export function Dial({
   showTarget = false,
   animate = false,
   setNeedle,
-}) {
+}: DialProps) {
   const baseClass = 'o-dial';
   const basePointsClass = 'o-dial-points';
 
-  const onSetNeedle = setNeedle ? (value) => setNeedle(value) : () => {};
+  const onSetNeedle = setNeedle ? (value: number) => setNeedle(value) : () => {};
 
   return (
     <div
@@ -198,24 +207,3 @@ export function Dial({
     </div>
   );
 }
-
-Dial.propTypes = {
-  card: PropTypes.shape({
-    id: PropTypes.string,
-    left: PropTypes.string,
-    right: PropTypes.string,
-  }).isRequired,
-  needle: PropTypes.number,
-  showNeedle: PropTypes.bool,
-  target: PropTypes.number,
-  showTarget: PropTypes.bool,
-  animate: PropTypes.bool,
-};
-
-Dial.defaultProps = {
-  needle: 0,
-  showNeedle: false,
-  target: 0,
-  showTarget: false,
-  animate: false,
-};

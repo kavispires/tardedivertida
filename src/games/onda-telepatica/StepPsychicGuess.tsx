@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 // Design Resources
 import { Button } from 'antd';
 // Hooks
@@ -7,7 +6,12 @@ import { useLoading } from '../../hooks';
 import { ButtonContainer, Instruction, Step, Title, Translate } from '../../components';
 import { Dial } from './Dial';
 
-export function StepPsychicGuess({ currentCategory, onSendGuess }) {
+type StepPsychicGuessProps = {
+  currentCategory: OCurrentCategory;
+  onSendGuess: GenericFunction;
+};
+
+export function StepPsychicGuess({ currentCategory, onSendGuess }: StepPsychicGuessProps) {
   const [isLoading] = useLoading();
 
   return (
@@ -39,12 +43,3 @@ export function StepPsychicGuess({ currentCategory, onSendGuess }) {
     </Step>
   );
 }
-
-StepPsychicGuess.propTypes = {
-  currentCategory: PropTypes.shape({
-    left: PropTypes.string,
-    right: PropTypes.string,
-    target: PropTypes.number,
-  }),
-  onSendGuess: PropTypes.func,
-};

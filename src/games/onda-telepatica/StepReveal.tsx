@@ -1,5 +1,4 @@
 import clsx from 'clsx';
-import PropTypes from 'prop-types';
 // Components
 import {
   Avatar,
@@ -13,42 +12,39 @@ import {
   Translate,
 } from '../../components';
 import { Dial } from './Dial';
+import { getGuessResultClass, getPoints } from './helpers';
 
-function Sentence({ card }) {
+type SentenceProps = {
+  currentCategory: OCurrentCategory;
+};
+
+function Sentence({ currentCategory }: SentenceProps) {
   return (
     <>
       <Translate pt="O resultado para" en="The answer for" />
-      <span className="o-dial-guess-selection__clue">{card.clue}</span>{' '}
+      <span className="o-dial-guess-selection__clue">{currentCategory.clue}</span>{' '}
       <Translate pt="na escala" en="on the scale" />{' '}
       <strong>
-        {card.left}-{card.right}
+        {currentCategory.left}-{currentCategory.right}
       </strong>{' '}
     </>
   );
 }
 
-const getGuessResultClass = (guess, target) => {
-  const base = 'o-player-guess__guess';
-  if (target - guess === 0) return `${base}--blue`;
-  if (Math.abs(target - guess) === 1) return `${base}--orange`;
-  if (Math.abs(target - guess) === 2) return `${base}--yellow`;
-  return '';
+type StepRevealProps = {
+  currentCategory: OCurrentCategory;
+  players: GamePlayers;
+  psychic: GamePlayer;
+  setStep: GenericFunction;
 };
 
-const getPoints = (guess, target) => {
-  if (target - guess === 0) return 4;
-  if (Math.abs(target - guess) === 1) return 3;
-  if (Math.abs(target - guess) === 2) return 2;
-  return 0;
-};
-
-export function StepReveal({ setStep, currentCategory, players, psychic }) {
+export function StepReveal({ setStep, currentCategory, players, psychic }: StepRevealProps) {
   const regularPlayers = Object.values(players).filter((p) => p.id !== psychic.id);
 
   return (
     <Step className="o-dial-guess-selection">
       <Title level={2}>
-        <Sentence card={currentCategory} />
+        <Sentence currentCategory={currentCategory} />
       </Title>
 
       <Dial card={currentCategory} target={currentCategory.target} showTarget animate />
@@ -73,7 +69,7 @@ export function StepReveal({ setStep, currentCategory, players, psychic }) {
               <span
                 className={clsx(
                   'o-player-guess__guess',
-                  getGuessResultClass(player.guess, currentCategory.target)
+                  getGuessResultClass(player.guess, currentCategory.target!)
                 )}
               >
                 {player.guess < 0 && '«'}
@@ -83,7 +79,7 @@ export function StepReveal({ setStep, currentCategory, players, psychic }) {
               <Avatar id={player.avatarId} className="o-player-guess__avatar" />
               <span className="o-player-guess__name">{player.name}</span>
               <StarPoints
-                quantity={getPoints(player.guess, currentCategory.target)}
+                quantity={getPoints(player.guess, currentCategory.target!)}
                 keyPrefix={`${player.id}-points`}
               />
             </li>
@@ -92,7 +88,11 @@ export function StepReveal({ setStep, currentCategory, players, psychic }) {
       </ul>
 
       <PopoverRule
-        label={<Translate pt="Como a pontuação funciona?" en="How does scoring work?" />}
+        label={
+          <span>
+            <Translate pt="Como a pontuação funciona?" en="How does scoring work?" />
+          </span>
+        }
         content={
           <Instruction contained>
             <Translate
@@ -101,6 +101,7 @@ export function StepReveal({ setStep, currentCategory, players, psychic }) {
             />
           </Instruction>
         }
+        showLabel={false}
       />
 
       <TimedButton
@@ -112,12 +113,3 @@ export function StepReveal({ setStep, currentCategory, players, psychic }) {
     </Step>
   );
 }
-
-StepReveal.propTypes = {
-  currentCategory: PropTypes.shape({
-    left: PropTypes.string,
-    right: PropTypes.string,
-    target: PropTypes.number,
-  }),
-  onSendGuess: PropTypes.func,
-};

@@ -7,8 +7,8 @@ import PhaseDialClue from './PhaseDialClue';
 import PhaseGuess from './PhaseGuess';
 import PhaseReveal from './PhaseReveal';
 
-function SessionOndaTelepatica({ gameId }) {
-  function getActiveComponent(phase) {
+function SessionOndaTelepatica({ gameId }: GameSession) {
+  function getActiveComponent(phase: string) {
     switch (phase) {
       case PHASES.DEFAULT.LOBBY:
         return PhaseLobby;

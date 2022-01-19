@@ -1,3 +1,17 @@
+type OCategoryCard = {
+  id: string;
+  left: string;
+  right: string;
+};
+
+type OCurrentCategory = {
+  id: string;
+  left: string;
+  right: string;
+  clue?: string;
+  target?: number;
+};
+
 type SubmitCategoryPayload = {
   categoryId: string;
 };
