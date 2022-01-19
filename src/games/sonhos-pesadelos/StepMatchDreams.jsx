@@ -20,7 +20,7 @@ import {
 import { AllClues } from './AllClues';
 import { DreamBoardVote } from './DreamBoardVote';
 
-export function StepMatchDreams({ players, user, table, onSubmitDream, clues, currentRound }) {
+export function StepMatchDreams({ players, user, table, onSubmitVotes, clues, currentRound }) {
   const [isLoading] = useLoading();
   const language = useLanguage();
   const { votes, setVotes, activeItem, activateItem, isVotingComplete } = useVotingMatch(
@@ -65,8 +65,7 @@ export function StepMatchDreams({ players, user, table, onSubmitDream, clues, cu
   };
 
   const onSubmitDreams = () => {
-    onSubmitDream({
-      action: 'SUBMIT_VOTING',
+    onSubmitVotes({
       votes,
     });
   };
