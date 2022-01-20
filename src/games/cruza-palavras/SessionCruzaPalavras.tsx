@@ -8,7 +8,7 @@ import PhaseGuessing from './PhaseGuessing';
 import PhaseReveal from './PhaseReveal';
 import PhaseGameOver from './PhaseGameOver';
 
-function SessionCruzaPalavras({ gameId }: GameSession) {
+function SessionCruzaPalavras({ gameId }: SessionProps) {
   function getActiveComponent(phase: string) {
     switch (phase) {
       case PHASES.DEFAULT.LOBBY:

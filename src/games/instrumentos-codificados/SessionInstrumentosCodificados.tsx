@@ -4,8 +4,8 @@ import { PHASES } from '../../utils/phases';
 // Components
 import { Session, PhaseSetup, PhaseRules, PageError, PhasePlaceholder, PhaseLobby } from '../../components';
 
-function SessionInstrumentosCodificados({ gameId }) {
-  function getActiveComponent(phase) {
+function SessionInstrumentosCodificados({ gameId }: SessionProps) {
+  function getActiveComponent(phase: string) {
     switch (phase) {
       case PHASES.DEFAULT.LOBBY:
         return PhaseLobby;

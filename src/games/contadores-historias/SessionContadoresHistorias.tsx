@@ -9,7 +9,7 @@ import PhaseVoting from './PhaseVoting';
 import PhaseResolution from './PhaseResolution';
 import PhaseGameOver from './PhaseGameOver';
 
-function SessionDetetivesImaginativos({ gameId }: GameSession) {
+function SessionDetetivesImaginativos({ gameId }: SessionProps) {
   function getActiveComponent(phase: string) {
     switch (phase) {
       case PHASES.DEFAULT.LOBBY:

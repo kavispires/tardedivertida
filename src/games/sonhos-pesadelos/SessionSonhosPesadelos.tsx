@@ -9,7 +9,7 @@ import PhaseResolution from './PhaseResolution';
 import PhaseGameOver from './PhaseGameOver';
 import PhaseLastChance from './PhaseLastChance';
 
-function SessionSonhosPesadelos({ gameId }: GameSession) {
+function SessionSonhosPesadelos({ gameId }: SessionProps) {
   function getActiveComponent(phase: string) {
     switch (phase) {
       case PHASES.DEFAULT.LOBBY:

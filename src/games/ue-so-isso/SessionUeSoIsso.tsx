@@ -9,7 +9,7 @@ import PhaseCompare from './PhaseCompare';
 import PhaseGuess from './PhaseGuess';
 import PhaseGameOver from './PhaseGameOver';
 
-function SessionUeSoIsso({ gameId }: GameSession) {
+function SessionUeSoIsso({ gameId }: SessionProps) {
   function getActiveComponent(phase: string) {
     switch (phase) {
       case PHASES.DEFAULT.LOBBY:
