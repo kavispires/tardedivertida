@@ -22,11 +22,11 @@ function Login() {
   const history = useHistory();
   const [, setIsAuthenticated] = useGlobalState('isAuthenticated');
 
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | object | null>(null);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const onValuesChange = (data) => {
+  const onValuesChange = (data: PlainObject) => {
     if (data.email) {
       setEmail(data.email.trim());
     }
@@ -43,7 +43,7 @@ function Login() {
         setIsAuthenticated(true);
         history.push('/hub');
       }
-    } catch (error) {
+    } catch (error: any) {
       setError(error.message);
     }
   };

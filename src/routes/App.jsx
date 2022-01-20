@@ -8,7 +8,7 @@ import { auth } from '../services/firebase';
 // State
 import { useGlobalState, useLocalStorage } from '../hooks';
 // Components
-import { LoadingBar, LoadingPage } from '../components/loaders';
+import { LoadingBar, LoadingPage } from '../components';
 // Pages
 import Home from './Home';
 import Hub from './Hub';

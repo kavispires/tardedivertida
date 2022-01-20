@@ -41,7 +41,7 @@ function Game() {
 
   // Keeps track of url changes
   useEffect(() => {
-    return history.listen((location) => {
+    return history.listen((location: PlainObject) => {
       const urlGameId = getGameIdFromLocation(location);
       if (isValidGameId(urlGameId)) {
         setGameId(urlGameId);
@@ -62,7 +62,7 @@ function Game() {
     async function loadGameSession() {
       try {
         setLoader('load', true);
-        const meta = await GAME_API.loadGame({ gameId });
+        const meta: PlainObject = await GAME_API.loadGame({ gameId });
         if (isDevEnv) {
           console.log({ meta: meta.data });
         }
@@ -70,7 +70,7 @@ function Game() {
         setGameMeta(meta.data);
         setLanguage(meta.data?.language ?? 'pt');
         setLocalStorage({ language: meta.data?.language ?? 'pt' });
-      } catch (e) {
+      } catch (e: any) {
         console.error(e);
         notification.error({
           message: 'Failed to load game',
