@@ -5,7 +5,7 @@ import { ButtonContainer, Card, Instruction, Step, Title, Translate } from '../.
 import { Suspects } from './Suspects';
 
 type StepSelectQuestionProps = {
-  questions: Question[];
+  questions: TQuestion[];
   onSelectQuestion: GenericFunction;
   isLoading: boolean;
   suspects: Suspect[];

@@ -8,7 +8,7 @@ import PhaseEvaluation from './PhaseEvaluation';
 import PhaseGallery from './PhaseGallery';
 import PhaseGameOver from './PhaseGameOver';
 
-function SessionArteRuim({ gameId }: GameSession) {
+function SessionArteRuim({ gameId }: SessionProps) {
   function getActiveComponent(phase: string) {
     switch (phase) {
       case PHASES.DEFAULT.LOBBY:

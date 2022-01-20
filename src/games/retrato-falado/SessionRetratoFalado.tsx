@@ -8,7 +8,7 @@ import PhaseEvaluation from './PhaseEvaluation';
 import PhaseReveal from './PhaseReveal';
 import PhaseGameOver from './PhaseGameOver';
 
-function SessionRetratoFalado({ gameId }: GameSession) {
+function SessionRetratoFalado({ gameId }: SessionProps) {
   function getActiveComponent(phase: string) {
     switch (phase) {
       case PHASES.DEFAULT.LOBBY:

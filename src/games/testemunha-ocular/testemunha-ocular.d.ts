@@ -21,7 +21,7 @@ type Suspect = {
   gender: string;
 };
 
-type Question = {
+type TQuestion = {
   id: string;
   question: string;
 };

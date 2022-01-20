@@ -8,7 +8,7 @@ import PhaseReact from './PhaseReact';
 import PhaseResolution from './PhaseResolution';
 import PhaseGameOver from './PhaseGameOver';
 
-function SessionPolemicaDaVez({ gameId }: GameSession) {
+function SessionPolemicaDaVez({ gameId }: SessionProps) {
   function getActiveComponent(phase: string) {
     switch (phase) {
       case PHASES.DEFAULT.LOBBY:
