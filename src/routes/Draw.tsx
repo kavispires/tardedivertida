@@ -6,7 +6,7 @@ import { DrawingCanvas } from '../components/canvas';
 import { Title } from '../components/shared';
 
 function Draw() {
-  const [lines, setLines] = useState([]);
+  const [lines, setLines] = useState<any>([]);
 
   return (
     <Layout.Content className="container">

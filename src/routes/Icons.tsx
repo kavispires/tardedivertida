@@ -1,5 +1,6 @@
-// Components
+// Design Resources
 import { Layout } from 'antd';
+// Components
 import * as icons from '../components/icons';
 
 function Icons() {
