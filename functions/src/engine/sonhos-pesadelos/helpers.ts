@@ -57,8 +57,8 @@ export const determineGameOver = (results: PlainObject) => {
   return Object.values(results ?? {}).some((result) => result.win);
 };
 
-export const buildTable = (images: string[]): Table => {
-  return images.map((cardId) => ({
+export const buildTable = (images: string[], quantity: number): Table => {
+  return images.slice(0, quantity).map((cardId) => ({
     cardId,
     dreamer: null,
     nightmares: [],

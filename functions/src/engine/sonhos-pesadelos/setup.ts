@@ -21,13 +21,13 @@ export const prepareSetupPhase = async (
   players: Players,
   cards: PlainObject
 ): Promise<SaveGamePayload> => {
-  // Get 4 themes
+  // Get a theme for each round
   const themes = gameUtils.getRandomItems(Object.values(cards), TOTAL_ROUNDS);
 
   const playerCount = Object.keys(players).length;
   const counts = COUNTS_BY_PLAYER[playerCount];
   const allImages = await imageCardsUtils.getImageCards(counts.cards);
-  const table = buildTable(allImages);
+  const table = buildTable(allImages, counts.cards);
 
   // Determine players dreams
   determineDreams(players, table, counts.dreams);
