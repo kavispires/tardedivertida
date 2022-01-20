@@ -7,14 +7,16 @@ import { Layout, message } from 'antd';
 import { auth } from '../services/firebase';
 // State
 import { useGlobalState, useLocalStorage } from '../hooks';
+// Components
+import { LoadingBar, LoadingPage } from '../components/loaders';
 // Pages
 import Home from './Home';
 import Hub from './Hub';
 import Login from './Login';
 import Game from './Game';
+import Icons from './Icons';
 import TestingZone from './TestingZone';
 import Gallery from './Gallery';
-import { LoadingBar, LoadingPage } from '../components/loaders';
 import Draw from './Draw';
 
 function PrivateRoute({ component: Component, authenticated, ...rest }) {
@@ -77,6 +79,7 @@ function App() {
             <Route exact path="/" component={Home}></Route>
             <PrivateRoute path="/hub" authenticated={isAuthenticated} component={Hub} />
             <PublicRoute path="/login" authenticated={isAuthenticated} component={Login} />
+            <PrivateRoute path="/icons" authenticated={isAuthenticated} component={Icons} />
             <PrivateRoute path="/testing-zone" authenticated={isAuthenticated} component={TestingZone} />
             <Route path="/gallery" component={Gallery} />
             <Route path="/draw" component={Draw} />
