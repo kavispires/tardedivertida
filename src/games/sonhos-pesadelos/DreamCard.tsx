@@ -1,7 +1,15 @@
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
 // Components
 import { ImageCard, ImageBlurButton, ImageCardBack } from '../../components';
+
+type DreamCardProps = {
+  cardId: string;
+  cardWidth: number;
+  isDream?: boolean;
+  isNightmare?: boolean;
+  flipped?: boolean;
+  hideBlurButton?: boolean;
+};
 
 export function DreamCard({
   cardId,
@@ -10,7 +18,7 @@ export function DreamCard({
   isNightmare = false,
   flipped = false,
   hideBlurButton = false,
-}) {
+}: DreamCardProps) {
   const baseClass = 's-dream-board-card';
 
   if (flipped) {
@@ -21,7 +29,6 @@ export function DreamCard({
     <>
       <ImageCard
         imageId={cardId}
-        bordered
         cardWidth={cardWidth}
         className={clsx(
           baseClass,
@@ -33,12 +40,3 @@ export function DreamCard({
     </>
   );
 }
-
-DreamCard.propTypes = {
-  cardId: PropTypes.string,
-  cardWidth: PropTypes.number,
-  flipped: PropTypes.bool,
-  hideBlurButton: PropTypes.bool,
-  isDream: PropTypes.bool,
-  isNightmare: PropTypes.bool,
-};

@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 // Design Resources
 import { Button } from 'antd';
 // Hooks
@@ -38,10 +37,28 @@ const mockedClues = [
   'amargo',
 ];
 
-export function StepTellDream({ players, theme, user, table, onSubmitDreams, dreamsCount, currentRound }) {
+type StepTellDreamProps = {
+  currentRound: number;
+  dreamsCount: Number;
+  onSubmitDreams: GenericFunction;
+  players: GamePlayers;
+  table: STable;
+  theme: STheme;
+  user: GamePlayer;
+};
+
+export function StepTellDream({
+  players,
+  theme,
+  user,
+  table,
+  onSubmitDreams,
+  dreamsCount,
+  currentRound,
+}: StepTellDreamProps) {
   const [isLoading] = useLoading();
   const language = useLanguage();
-  const [localClues, setLocalClues] = useState({});
+  const [localClues, setLocalClues] = useState<PlainObject>({});
   const [hasClues, setHasClues] = useState(false);
 
   // Verify if player has completed all his clues
@@ -56,7 +73,7 @@ export function StepTellDream({ players, theme, user, table, onSubmitDreams, dre
     if (isDevEnv) {
       const shuffledMockedClues = shuffle(mockedClues);
       setLocalClues(
-        Object.keys(user.dreams).reduce((acc, cardId, index) => {
+        Object.keys(user.dreams).reduce((acc: PlainObject, cardId, index) => {
           acc[cardId] = shuffledMockedClues[index];
           return acc;
         }, {})
@@ -72,7 +89,7 @@ export function StepTellDream({ players, theme, user, table, onSubmitDreams, dre
 
   return (
     <Step fullWidth className="s-tell-dream-step">
-      <Title center>
+      <Title>
         <Card
           header={translate('Tema', 'Theme', language)}
           className="s-theme-card"
@@ -108,12 +125,3 @@ export function StepTellDream({ players, theme, user, table, onSubmitDreams, dre
     </Step>
   );
 }
-
-StepTellDream.propTypes = {
-  dreamsCount: PropTypes.number,
-  onSubmitDream: PropTypes.func,
-  players: PropTypes.object,
-  table: PropTypes.array,
-  theme: PropTypes.string,
-  user: PropTypes.object,
-};

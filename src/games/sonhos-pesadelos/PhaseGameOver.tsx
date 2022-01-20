@@ -1,7 +1,7 @@
 // Components
 import { GameOverWrapper } from '../../components';
 
-function PhaseGameOver({ state, players, info }) {
+function PhaseGameOver({ state, info }: PhaseProps) {
   return <GameOverWrapper info={info} state={state} announcementIcon="trophy" />;
 }
 

@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
 // Hooks
 import { useIsUserReady, useUser, useLanguage } from '../../hooks';
 import { useOnSubmitDreamsAPIRequest } from './api-requests';
@@ -19,7 +18,7 @@ import {
 import { StepTellDream } from './StepTellDream';
 import { DreamBoard } from './DreamBoard';
 
-function PhaseTellDream({ state, players, info }) {
+function PhaseTellDream({ state, players, info }: PhaseProps) {
   const language = useLanguage();
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
@@ -76,7 +75,7 @@ function PhaseTellDream({ state, players, info }) {
               }
             />
           </Instruction>
-          <ImageCardPreloadHand hand={state.table.map((e) => e.cardId)} />
+          <ImageCardPreloadHand hand={state.table.map((e: SClue) => e.cardId)} />
         </PhaseAnnouncement>
 
         {/* Step 2 */}
@@ -93,17 +92,5 @@ function PhaseTellDream({ state, players, info }) {
     </PhaseContainer>
   );
 }
-
-PhaseTellDream.propTypes = {
-  info: PropTypes.object,
-  players: PropTypes.object,
-  state: PropTypes.shape({
-    phase: PropTypes.string,
-    round: PropTypes.shape({
-      current: PropTypes.number,
-      total: PropTypes.number,
-    }),
-  }),
-};
 
 export default PhaseTellDream;

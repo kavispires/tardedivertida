@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 // Design Resources
 import { Alert } from 'antd';
 // Hooks
@@ -10,22 +9,32 @@ import { AdminNextRoundButton, Instruction, Step, Title, translate, Translate } 
 import { DreamBoard } from './DreamBoard';
 import { DreamCard } from './DreamCard';
 
-export function StepResults({ results, user, clues, table, round }) {
+type StepResultsProps = {
+  results: SResults;
+  user: GamePlayer;
+  clues: SClue[];
+  table: STable;
+  round: GameRound;
+};
+export function StepResults({ results, user, clues, table, round }: StepResultsProps) {
   const language = useLanguage();
   const playerResults = results[user.id];
 
-  const currentVotes = Object.entries(user?.votes ?? {}).reduce((acc, [clueEntryId, cardEntryId]) => {
-    const cardId = cardEntryId.split(SEPARATOR)[1];
-    if (Boolean(user.dreams[cardId])) return acc;
+  const currentVotes = Object.entries<PlainObject>(user?.votes ?? {}).reduce(
+    (acc: PlainObject[], [clueEntryId, cardEntryId]) => {
+      const cardId = cardEntryId.split(SEPARATOR)[1];
+      if (Boolean(user.dreams[cardId])) return acc;
 
-    const letter = clueEntryId.split(SEPARATOR)[2];
-    acc.push({
-      cardId,
-      clue: clues[LETTERS.indexOf(letter)].clue,
-    });
+      const letter = clueEntryId.split(SEPARATOR)[2];
+      acc.push({
+        cardId,
+        clue: clues[LETTERS.indexOf(letter)].clue,
+      });
 
-    return acc;
-  }, []);
+      return acc;
+    },
+    []
+  );
 
   return (
     <Step fullWidth className="s-results-step">
@@ -41,7 +50,7 @@ export function StepResults({ results, user, clues, table, round }) {
               <li key={`current-votes-${entry.cardId}`} className="s-results-current-vote">
                 <DreamCard cardId={entry.cardId} cardWidth={80} hideBlurButton />
                 <ul className="s-results-clues">
-                  {entry.clue.map((clueText, index) => {
+                  {entry.clue.map((clueText: string, index: number) => {
                     return (
                       <>
                         {index === 1 && (
@@ -79,13 +88,3 @@ export function StepResults({ results, user, clues, table, round }) {
     </Step>
   );
 }
-
-StepResults.propTypes = {
-  clues: PropTypes.any,
-  results: PropTypes.any,
-  user: PropTypes.shape({
-    dreams: PropTypes.any,
-    id: PropTypes.any,
-    votes: PropTypes.any,
-  }),
-};

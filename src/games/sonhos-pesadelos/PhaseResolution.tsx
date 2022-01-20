@@ -16,7 +16,7 @@ import {
 import { DreamBoard } from './DreamBoard';
 import { StepResults } from './StepResults';
 
-function PhaseResolution({ state, players, info }) {
+function PhaseResolution({ state, players, info }: PhaseProps) {
   const language = useLanguage();
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
@@ -62,10 +62,8 @@ function PhaseResolution({ state, players, info }) {
 
         {/* Step 1 */}
         <StepResults
-          players={players}
           user={user}
           results={state.results}
-          dreamsCount={state.dreamsCount}
           clues={state.clues}
           table={state.table}
           round={state.round}

@@ -6,12 +6,18 @@ import { CaretUpOutlined } from '@ant-design/icons';
 import { useCardWidth } from '../../hooks';
 // Utils
 import { getEntryId } from '../../utils/helpers';
+import { getClueId } from './helpers';
 // Components
 import { Translate, Ribbon } from '../../components';
 import { DreamButton } from './DreamButton';
 import { DreamCard } from './DreamCard';
 
-function SelectButton({ onActivateItem, cardEntryId }) {
+type SelectButtonProps = {
+  onActivateItem: GenericFunction;
+  cardEntryId: string;
+};
+
+function SelectButton({ onActivateItem, cardEntryId }: SelectButtonProps) {
   return (
     <Button ghost block size="small" onClick={() => onActivateItem(cardEntryId)}>
       <CaretUpOutlined />
@@ -21,11 +27,15 @@ function SelectButton({ onActivateItem, cardEntryId }) {
   );
 }
 
-const getClueId = (votes, cardEntryId) => {
-  return Object.keys(votes).find((key) => votes[key] === cardEntryId);
+type DreamBoardVoteProps = {
+  table: STable;
+  user: GamePlayer;
+  activeItem: string;
+  onActivateItem: GenericFunction;
+  votes: PlainObject;
 };
 
-export function DreamBoardVote({ table, user, activeItem, onActivateItem, votes }) {
+export function DreamBoardVote({ table, user, activeItem, onActivateItem, votes }: DreamBoardVoteProps) {
   const cardWidth = useCardWidth(table.length / 2, 40);
   const liButtonBaseClass = 'a-evaluation-all-drawings__li-drawing-button';
 

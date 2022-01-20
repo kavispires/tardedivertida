@@ -3,12 +3,21 @@ import { Button, Input, Popover } from 'antd';
 import { CaretUpOutlined } from '@ant-design/icons';
 // Hooks
 import { useCardWidth, useLanguage } from '../../hooks';
+// Utils
+import { shouldDisplayCard } from './helpers';
 // Components
 import { translate, Translate } from '../../components';
 import { NightmareButton } from './NightmareButton';
 import { DreamCard } from './DreamCard';
 
-function DreamButton({ cardId, clue, previousClues, onClueChange }) {
+type DreamButtonProps = {
+  cardId: string;
+  clue: string;
+  previousClues: string[];
+  onClueChange: GenericFunction;
+};
+
+function DreamButton({ cardId, clue, previousClues, onClueChange }: DreamButtonProps) {
   const language = useLanguage();
 
   const title = `${translate('Sonho', 'Dream', language)}`;
@@ -41,7 +50,14 @@ function DreamButton({ cardId, clue, previousClues, onClueChange }) {
   );
 }
 
-function DreamCluePopover({ cardId, clue, previousClues, onClueChange }) {
+type DreamCluePopoverProps = {
+  cardId: string;
+  clue: string;
+  previousClues: string[];
+  onClueChange: GenericFunction;
+};
+
+function DreamCluePopover({ cardId, clue, previousClues, onClueChange }: DreamCluePopoverProps) {
   return (
     <div className="s-dream-clue-popover">
       <Input defaultValue={clue} onChange={onClueChange} data-card={cardId} />
@@ -62,17 +78,27 @@ function DreamCluePopover({ cardId, clue, previousClues, onClueChange }) {
   );
 }
 
-const shouldDisplayCard = (currentRound, entry, userId) => {
-  return currentRound > 1 || entry.dreamer === userId || entry.nightmares.includes(userId);
+type DreamBoardWriteProps = {
+  table: STable;
+  user: GamePlayer;
+  localClues: PlainObject;
+  setLocalClues: GenericFunction;
+  currentRound: number;
 };
 
-export function DreamBoardWrite({ table, user, localClues, setLocalClues, currentRound }) {
+export function DreamBoardWrite({
+  table,
+  user,
+  localClues,
+  setLocalClues,
+  currentRound,
+}: DreamBoardWriteProps) {
   const cardWidth = useCardWidth(table.length / 2, 40);
 
-  const onClueChange = ({ target }) => {
+  const onClueChange = ({ target }: any) => {
     const { value, dataset } = target;
 
-    setLocalClues((s) => {
+    setLocalClues((s: any) => {
       const newState = { ...(s ?? {}) };
       newState[dataset.card] = value;
 

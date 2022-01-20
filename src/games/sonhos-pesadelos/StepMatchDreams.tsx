@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import PropTypes from 'prop-types';
 // Design Resources
 import { Button } from 'antd';
 // Hooks
@@ -20,7 +19,24 @@ import {
 import { AllClues } from './AllClues';
 import { DreamBoardVote } from './DreamBoardVote';
 
-export function StepMatchDreams({ players, user, table, onSubmitVotes, clues, currentRound }) {
+type StepMatchDreamsProps = {
+  clues: SClue[];
+  currentRound: number;
+  dreamsCount: Number;
+  onSubmitVotes: GenericFunction;
+  players: GamePlayers;
+  table: STable;
+  user: GamePlayer;
+};
+
+export function StepMatchDreams({
+  players,
+  user,
+  table,
+  onSubmitVotes,
+  clues,
+  currentRound,
+}: StepMatchDreamsProps) {
   const [isLoading] = useLoading();
   const language = useLanguage();
   const { votes, setVotes, activeItem, activateItem, isVotingComplete } = useVotingMatch(
@@ -31,7 +47,7 @@ export function StepMatchDreams({ players, user, table, onSubmitVotes, clues, cu
 
   // Auto-select own clues
   useEffect(() => {
-    const userClues = clues.reduce((acc, entry, index) => {
+    const userClues = clues.reduce((acc: PlainObject, entry, index) => {
       if (entry.playerId === user.id) {
         const clueEntryId = getEntryId(['clue', entry.cardId, LETTERS[index]]);
         const cardEntryId = getEntryId(['card', entry.cardId]);
@@ -40,7 +56,7 @@ export function StepMatchDreams({ players, user, table, onSubmitVotes, clues, cu
       return acc;
     }, {});
     if (userClues) {
-      setVotes((s) => ({ ...s, ...userClues }));
+      setVotes((s: PlainObject) => ({ ...s, ...userClues }));
     }
   }, []); //eslint-disable-line
 
@@ -60,7 +76,7 @@ export function StepMatchDreams({ players, user, table, onSubmitVotes, clues, cu
     }, {});
 
     if (devRes) {
-      setVotes((s) => ({ ...s, ...devRes }));
+      setVotes((s: PlainObject) => ({ ...s, ...devRes }));
     }
   };
 
@@ -102,20 +118,9 @@ export function StepMatchDreams({ players, user, table, onSubmitVotes, clues, cu
         activeItem={activeItem}
         onActivateItem={activateItem}
         votes={votes}
-        players={players}
       />
 
       <ReadyPlayersBar players={players} />
     </Step>
   );
 }
-
-StepMatchDreams.propTypes = {
-  clues: PropTypes.array,
-  currentRound: PropTypes.number,
-  dreamsCount: PropTypes.number,
-  onSubmitDream: PropTypes.func,
-  players: PropTypes.object,
-  table: PropTypes.array,
-  user: PropTypes.object,
-};
