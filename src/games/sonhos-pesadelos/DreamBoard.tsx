@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
 // Hooks
 import { useCardWidth } from '../../hooks';
@@ -7,7 +6,13 @@ import { NightmareButton } from './NightmareButton';
 import { DreamButton } from './DreamButton';
 import { DreamCard } from './DreamCard';
 
-export function DreamBoard({ table, user, className }) {
+type DreamBoardProps = {
+  table: any[];
+  user: GamePlayer;
+  className?: string;
+};
+
+export function DreamBoard({ table, user, className }: DreamBoardProps) {
   const cardWidth = useCardWidth(table.length / 2, 40);
 
   return (
@@ -38,12 +43,3 @@ export function DreamBoard({ table, user, className }) {
     </ul>
   );
 }
-
-DreamBoard.propTypes = {
-  className: PropTypes.string,
-  table: PropTypes.array,
-  user: PropTypes.shape({
-    dreams: PropTypes.object,
-    nightmares: PropTypes.array,
-  }),
-};

@@ -17,7 +17,7 @@ import {
 import { DreamBoard } from './DreamBoard';
 import { StepMatchDreams } from './StepMatchDreams';
 
-function PhaseMatch({ state, players, info }) {
+function PhaseMatch({ state, players, info }: PhaseProps) {
   const language = useLanguage();
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
@@ -67,7 +67,6 @@ function PhaseMatch({ state, players, info }) {
         {/* Step 1 */}
         <StepMatchDreams
           players={players}
-          theme={state.theme}
           user={user}
           table={state.table}
           onSubmitVotes={onSubmitVotes}

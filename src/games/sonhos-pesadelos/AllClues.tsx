@@ -1,12 +1,20 @@
 import clsx from 'clsx';
-import PropTypes from 'prop-types';
 // Utils
 import { LETTERS } from '../../utils/constants';
 import { getEntryId } from '../../utils/helpers';
 // Components
-import { SonhosPesadelosCard as Card } from '../../components/cards';
+import { SonhosPesadelosCard as Card } from './Card';
 
-export function AllClues({ clues, activeItem, onActivateItem, votes, players, currentRound }) {
+type AllCluesProps = {
+  clues: SClue[];
+  activeItem: any;
+  onActivateItem: GenericFunction;
+  votes: any;
+  players: GamePlayers;
+  currentRound: number;
+};
+
+export function AllClues({ clues, activeItem, onActivateItem, votes, players, currentRound }: AllCluesProps) {
   const liButtonBaseClass = 'a-evaluation-all-cards__li-card-button';
 
   return (
@@ -32,7 +40,7 @@ export function AllClues({ clues, activeItem, onActivateItem, votes, players, cu
               clue={clue[0]}
               header={letter}
               footer={players[playerId].name}
-              previousClues={currentRound > 3 ? clue.slice(1) : []}
+              previousClues={currentRound > 3 ? [clue.slice(1)] : []}
             />
           </li>
         );
@@ -40,18 +48,3 @@ export function AllClues({ clues, activeItem, onActivateItem, votes, players, cu
     </ul>
   );
 }
-
-AllClues.propTypes = {
-  activeItem: PropTypes.string,
-  clues: PropTypes.arrayOf(
-    PropTypes.shape({
-      cardId: PropTypes.string,
-      clue: PropTypes.array,
-    })
-  ),
-  currentRound: PropTypes.number,
-  onActivateItem: PropTypes.func,
-  onActiveItem: PropTypes.func,
-  players: PropTypes.object,
-  votes: PropTypes.object,
-};

@@ -1,11 +1,21 @@
-import { memo } from 'react';
-import PropTypes from 'prop-types';
 // Utils
 import { getColorFromLetter } from '../../utils/helpers';
+import { Card } from '../../components';
 // Components
-import { Card } from './index';
 
-export const SonhosPesadelosCard = memo(function ({ clue, footer, header = 'X', previousClues = ['bola'] }) {
+type SonhosPesadelosCardProps = {
+  clue: string;
+  footer: string;
+  header: string;
+  previousClues: string[];
+};
+
+export function SonhosPesadelosCard({
+  clue,
+  footer,
+  header = 'X',
+  previousClues = ['bola'],
+}: SonhosPesadelosCardProps) {
   return (
     <Card
       color={getColorFromLetter(header)}
@@ -23,11 +33,4 @@ export const SonhosPesadelosCard = memo(function ({ clue, footer, header = 'X', 
       </ul>
     </Card>
   );
-});
-
-SonhosPesadelosCard.propTypes = {
-  clue: PropTypes.string.isRequired,
-  footer: PropTypes.string,
-  header: PropTypes.string,
-  previousClues: PropTypes.array,
-};
+}

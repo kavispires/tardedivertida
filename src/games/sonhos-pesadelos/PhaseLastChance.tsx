@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
 // Hooks
 import { useIsUserReady, useUser, useLanguage } from '../../hooks';
 import { useOnSubmitVotesAPIRequest } from './api-requests';
@@ -18,7 +17,7 @@ import {
 import { DreamBoard } from './DreamBoard';
 import { StepMatchDreams } from './StepMatchDreams';
 
-function PhaseLastChance({ state, players, info }) {
+function PhaseLastChance({ state, players, info }: PhaseProps) {
   const language = useLanguage();
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
@@ -79,7 +78,6 @@ function PhaseLastChance({ state, players, info }) {
         {/* Step 2 */}
         <StepMatchDreams
           players={players}
-          theme={state.theme}
           user={user}
           table={state.table}
           onSubmitVotes={onSubmitVotes}
@@ -91,17 +89,5 @@ function PhaseLastChance({ state, players, info }) {
     </PhaseContainer>
   );
 }
-
-PhaseLastChance.propTypes = {
-  info: PropTypes.object,
-  players: PropTypes.object,
-  state: PropTypes.shape({
-    phase: PropTypes.string,
-    round: PropTypes.shape({
-      current: PropTypes.number,
-      total: PropTypes.number,
-    }),
-  }),
-};
 
 export default PhaseLastChance;
