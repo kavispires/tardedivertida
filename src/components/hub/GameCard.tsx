@@ -46,7 +46,7 @@ export function GameCard({ game, language }: GameCardProps) {
         )}
       />
       <Divider />
-      <Space wrap size={[1, 6]}>
+      <Space wrap size={[1, 6]} prefixCls={game.gameName}>
         {game.tags.map((tag) => (
           <Tag key={`${game.gameCode}-${tag}`} color={TAG_DICT[tag]?.color}>
             {language === 'pt' ? TAG_DICT[tag]?.label : tag}

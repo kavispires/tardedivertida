@@ -48,7 +48,7 @@ interface GameState {
   [key: string]: any;
 }
 
-type GameSession = {
+type SessionProps = {
   gameId: GameId;
 };
 

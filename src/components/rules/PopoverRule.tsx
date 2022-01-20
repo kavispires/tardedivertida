@@ -8,9 +8,10 @@ import { Translate } from '../shared';
 type PopoverRuleProps = {
   content: any;
   showLabel?: boolean;
+  label?: any;
 };
 
-export function PopoverRule({ content, showLabel = true }: PopoverRuleProps) {
+export function PopoverRule({ content, label, showLabel = true }: PopoverRuleProps) {
   const [isActive, setActive] = useState(false);
 
   useEffect(() => {
@@ -27,7 +28,7 @@ export function PopoverRule({ content, showLabel = true }: PopoverRuleProps) {
           onMouseLeave={() => setActive(showLabel ?? false)}
         >
           <ReadOutlined />
-          {isActive && <Translate pt=" Regras" en=" Rules" />}
+          {isActive && Boolean(label) ? label : <Translate pt=" Regras" en=" Rules" />}
         </Button>
       </Popover>
     </div>

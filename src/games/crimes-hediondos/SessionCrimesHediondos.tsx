@@ -9,7 +9,7 @@ import PhaseGuessing from './PhaseGuessing';
 import PhaseReveal from './PhaseReveal';
 import PhaseGameOver from './PhaseGameOver';
 
-function SessionCrimesHediondos({ gameId }: GameSession) {
+function SessionCrimesHediondos({ gameId }: SessionProps) {
   function getActiveComponent(phase: string) {
     switch (phase) {
       case PHASES.DEFAULT.LOBBY:
