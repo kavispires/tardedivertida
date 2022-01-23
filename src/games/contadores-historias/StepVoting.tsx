@@ -27,7 +27,7 @@ type StepVotingProps = {
   table: TableEntry[];
 };
 
-function StepVoting({ players, story, user, onSubmitVote, storyteller, table }: StepVotingProps) {
+export function StepVoting({ players, story, user, onSubmitVote, storyteller, table }: StepVotingProps) {
   const language = useLanguage();
   const [isLoading] = useLoading();
   const cardWidth = useCardWidth(Math.max(Object.keys(players).length, 6), 32, 150);
@@ -83,5 +83,3 @@ function StepVoting({ players, story, user, onSubmitVote, storyteller, table }: 
     </div>
   );
 }
-
-export default StepVoting;

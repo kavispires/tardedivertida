@@ -13,14 +13,14 @@ import {
   translate,
   Translate,
 } from '../../components';
-import BookPages from './BookPages';
+import { BookPages } from './BookPages';
 
 type StoryWritingProps = {
   user: GamePlayer;
   onSubmitStory: GenericFunction;
 };
 
-function StoryWriting({ user, onSubmitStory }: StoryWritingProps) {
+export function StoryWriting({ user, onSubmitStory }: StoryWritingProps) {
   const language = useLanguage();
   const [isLoading] = useLoading();
   const [story, setStory] = useState('');
@@ -98,5 +98,3 @@ function StoryWriting({ user, onSubmitStory }: StoryWritingProps) {
     </div>
   );
 }
-
-export default StoryWriting;

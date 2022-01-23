@@ -5,8 +5,8 @@ import { useWhichPlayerIsThe, useLanguage } from '../../hooks';
 import { PHASES } from '../../utils/phases';
 // Components
 import { PhaseAnnouncement, PhaseContainer, Step, StepSwitcher, translate } from '../../components';
-import StepResolution from './StepResolution';
-import StepRanking from './StepRanking';
+import { StepResolution } from './StepResolution';
+import { StepRanking } from './StepRanking';
 import { ScoringRules } from './RulesBlogs';
 
 function PhaseResolution({ state, players, info }: PhaseProps) {
