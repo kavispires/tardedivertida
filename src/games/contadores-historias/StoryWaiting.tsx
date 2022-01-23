@@ -19,7 +19,7 @@ type StoryWaitingProps = {
   gameOrder: PlayerId[];
 };
 
-function StoryWaiting({ storyteller, user, players, gameOrder }: StoryWaitingProps) {
+export function StoryWaiting({ storyteller, user, players, gameOrder }: StoryWaitingProps) {
   return (
     <div className="c-story-waiting">
       <Title>
@@ -45,5 +45,3 @@ function StoryWaiting({ storyteller, user, players, gameOrder }: StoryWaitingPro
     </div>
   );
 }
-
-export default StoryWaiting;

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 // Hooks
 import { useWhichPlayerIsThe, useUser, useLanguage } from '../../hooks';
+import { useOnPlayCardAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from '../../utils/phases';
 // Components
@@ -13,8 +14,7 @@ import {
   Translate,
   translate,
 } from '../../components';
-import StepPlayCard from './StepPlayCard';
-import { useOnPlayCardAPIRequest } from './api-requests';
+import { StepPlayCard } from './StepPlayCard';
 
 function PhaseCardPlay({ state, players, info }: PhaseProps) {
   const language = useLanguage();

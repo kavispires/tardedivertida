@@ -18,8 +18,8 @@ import {
   translate,
   ViewIf,
 } from '../../components';
-import StoryWaiting from './StoryWaiting';
-import StoryWriting from './StoryWriting';
+import { StoryWaiting } from './StoryWaiting';
+import { StoryWriting } from './StoryWriting';
 
 function PhaseStory({ state, players, info }: PhaseProps) {
   const language = useLanguage();

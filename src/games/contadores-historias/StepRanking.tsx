@@ -19,7 +19,14 @@ type StepRankingProps = {
   lastRound?: boolean;
 };
 
-function StepRanking({ players, ranking, outcome, storyteller, round, lastRound = false }: StepRankingProps) {
+export function StepRanking({
+  players,
+  ranking,
+  outcome,
+  storyteller,
+  round,
+  lastRound = false,
+}: StepRankingProps) {
   return (
     <div className="c-step-ranking">
       <Title level={1}>
@@ -79,5 +86,3 @@ function StepRanking({ players, ranking, outcome, storyteller, round, lastRound 
     </div>
   );
 }
-
-export default StepRanking;

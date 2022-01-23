@@ -13,7 +13,7 @@ import {
   StepSwitcher,
   translate,
 } from '../../components';
-import StepVoting from './StepVoting';
+import { StepVoting } from './StepVoting';
 import { VotingRules } from './RulesBlogs';
 
 function PhaseVoting({ state, players, info }: PhaseProps) {

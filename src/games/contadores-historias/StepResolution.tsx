@@ -15,7 +15,7 @@ import {
   translate,
   Translate,
 } from '../../components';
-import BookPages from './BookPages';
+import { BookPages } from './BookPages';
 import { ScoringRules } from './RulesBlogs';
 
 type StepResolutionProps = {
@@ -26,7 +26,7 @@ type StepResolutionProps = {
   setStep: GenericFunction;
 };
 
-function StepResolution({ players, story, storyteller, table, setStep }: StepResolutionProps) {
+export function StepResolution({ players, story, storyteller, table, setStep }: StepResolutionProps) {
   const language = useLanguage();
   const cardWidth = useCardWidth(10, 32, 75);
 
@@ -120,5 +120,3 @@ function StepResolution({ players, story, storyteller, table, setStep }: StepRes
     </div>
   );
 }
-
-export default StepResolution;
