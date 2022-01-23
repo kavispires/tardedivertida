@@ -4,9 +4,6 @@ type PlainObject = {
 type FirebaseContext = {
   [key: string]: any;
 };
-interface BooleanDictionary {
-  [key: string]: boolean;
-}
 
 type DateMilliseconds = number;
 type GameCode = string;
@@ -55,6 +52,7 @@ type SessionProps = {
 interface GameInfo {
   gameCode: GameCode;
   gameName: GameName;
+  version: string;
   title: {
     pt: string;
     en: string;
