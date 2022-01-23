@@ -25,7 +25,7 @@ type GalleryWindowControlsProps = {
   barColor: string;
 };
 
-function GalleryWindowControls({
+export function GalleryWindowControls({
   galleryLength,
   activeIndex,
   setActiveIndex,
@@ -103,5 +103,3 @@ function GalleryWindowControls({
     </div>
   );
 }
-
-export default GalleryWindowControls;

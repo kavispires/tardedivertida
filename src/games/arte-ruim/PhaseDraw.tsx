@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import useSound from 'use-sound';
 // State & Hooks
@@ -16,7 +15,7 @@ import {
   translate,
   Translate,
 } from '../../components';
-import StepDraw from './StepDraw';
+import { StepDraw } from './StepDraw';
 
 // Sound
 const arteRuimTimer = require('../../sounds/arte-ruim-timer.mp3');
@@ -103,14 +102,5 @@ function PhaseDraw({ players, state, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-PhaseDraw.propTypes = {
-  info: PropTypes.object,
-  players: PropTypes.object,
-  state: PropTypes.shape({
-    phase: PropTypes.string,
-    round: PropTypes.shape({ current: PropTypes.number, total: PropTypes.number }),
-  }),
-};
 
 export default PhaseDraw;

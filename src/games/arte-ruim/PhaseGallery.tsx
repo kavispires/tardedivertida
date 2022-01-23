@@ -20,7 +20,7 @@ import {
   RoundsLeftInstruction,
   PopoverRule,
 } from '../../components';
-import GalleryWindow from './GalleryWindow';
+import { GalleryWindow } from './GalleryWindow';
 import { GalleryRules, ScoringRules } from './TextBlobs';
 
 function PhaseGallery({ players, state, info }: PhaseProps) {

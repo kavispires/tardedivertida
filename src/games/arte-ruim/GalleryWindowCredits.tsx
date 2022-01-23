@@ -6,7 +6,7 @@ type GalleryWindowCreditsProps = {
   artistAvatarId: string;
 };
 
-function GalleryWindowCredits({ artistName, artistAvatarId }: GalleryWindowCreditsProps) {
+export function GalleryWindowCredits({ artistName, artistAvatarId }: GalleryWindowCreditsProps) {
   return (
     <div className="a-gallery-window__credits">
       <div className="a-gallery-window__label">
@@ -18,5 +18,3 @@ function GalleryWindowCredits({ artistName, artistAvatarId }: GalleryWindowCredi
     </div>
   );
 }
-
-export default GalleryWindowCredits;

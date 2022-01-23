@@ -12,7 +12,7 @@ type DrawingGradeProps = {
   value: number;
 };
 
-const DrawingGrade = ({ value }: DrawingGradeProps) => {
+export const DrawingGrade = ({ value }: DrawingGradeProps) => {
   const language = useLanguage();
   const grade = GRADES[Math.floor(value / 0.084)];
 
@@ -30,5 +30,3 @@ const DrawingGrade = ({ value }: DrawingGradeProps) => {
     </Tooltip>
   );
 };
-
-export default DrawingGrade;
