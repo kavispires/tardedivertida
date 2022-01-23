@@ -13,7 +13,7 @@ type StepDrawProps = {
   onSubmitDrawing: GenericFunction;
 };
 
-function StepDraw({ secretCard, onSubmitDrawing }: StepDrawProps) {
+export function StepDraw({ secretCard, onSubmitDrawing }: StepDrawProps) {
   const language = useLanguage();
   const [lines, setLines] = useState<any>([]);
   const [isTimesUp, setTimesUp] = useState(false);
@@ -50,5 +50,3 @@ function StepDraw({ secretCard, onSubmitDrawing }: StepDrawProps) {
     </Step>
   );
 }
-
-export default StepDraw;

@@ -18,8 +18,8 @@ import {
   Translate,
   PopoverRule,
 } from '../../components';
-import EvaluationAllDrawings from './EvaluationAllDrawings';
-import EvaluationAllCards from './EvaluationAllCards';
+import { EvaluationAllDrawings } from './EvaluationAllDrawings';
+import { EvaluationAllCards } from './EvaluationAllCards';
 import { EvaluationRules } from './TextBlobs';
 
 function prepareVotes(votes: PlainObject) {
@@ -37,7 +37,8 @@ type StepEvaluationProps = {
   players: GamePlayers;
   onSubmitVoting: GenericFunction;
 };
-function StepEvaluation({ drawings, cards, players, onSubmitVoting }: StepEvaluationProps) {
+
+export function StepEvaluation({ drawings, cards, players, onSubmitVoting }: StepEvaluationProps) {
   const [isLoading] = useLoading();
   const language = useLanguage();
   const user = useUser(players);
@@ -156,5 +157,3 @@ function StepEvaluation({ drawings, cards, players, onSubmitVoting }: StepEvalua
     </Step>
   );
 }
-
-export default StepEvaluation;

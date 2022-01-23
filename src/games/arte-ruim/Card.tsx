@@ -10,7 +10,7 @@ type ArteRuimCardProps = {
   header?: string;
 };
 
-const ArteRuimCard = ({ text, level, header = 'X' }: ArteRuimCardProps) => {
+export const ArteRuimCard = ({ text, level, header = 'X' }: ArteRuimCardProps) => {
   return (
     <Card
       color={getColorFromLetter(header)}
@@ -22,5 +22,3 @@ const ArteRuimCard = ({ text, level, header = 'X' }: ArteRuimCardProps) => {
     </Card>
   );
 };
-
-export default ArteRuimCard;

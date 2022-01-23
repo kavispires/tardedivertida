@@ -6,7 +6,7 @@ import { useOnSubmitVotingAPIRequest } from './api-requests';
 import { PHASES } from '../../utils/phases';
 // Components
 import { PhaseContainer, StepSwitcher, PhaseAnnouncement, translate } from '../../components';
-import StepEvaluation from './StepEvaluation';
+import { StepEvaluation } from './StepEvaluation';
 import { EvaluationRules } from './TextBlobs';
 
 function EvaluationPhase({ players, state, info }: PhaseProps) {
