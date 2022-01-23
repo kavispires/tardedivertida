@@ -5,6 +5,22 @@ type FirebaseContext = {
   [key: string]: any;
 };
 
+type BooleanDictionary = {
+  [key: string]: boolean;
+};
+
+type NumberDictionary = {
+  [key: string]: number;
+};
+
+type StringDictionary = {
+  [key: string]: string;
+};
+
+type ObjectDictionary = {
+  [key: string]: PlainObject;
+};
+
 type DateMilliseconds = number;
 type GameCode = string;
 type GameId = string;
@@ -93,6 +109,7 @@ interface GamePlayers {
 type CanvasLine = number[];
 type CanvasSetLine = React.Dispatch<React.SetStateAction<CanvasLine[]>>;
 type GenericFunction = (...args: any) => void;
+type BooleanFunction = (...args: any) => boolean;
 
 type PhaseProps = {
   players: GamePlayers;
