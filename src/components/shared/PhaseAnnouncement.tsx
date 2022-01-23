@@ -44,8 +44,9 @@ export function PhaseAnnouncement({
   unskippable,
 }: PhaseAnnouncementProps) {
   const language = useLanguage();
-  const durationPerRound = [15, 10, 8, 5, 4]?.[currentRound] ?? 4;
-  const Icon: any = IconIllustrationsComponents[kebabToPascal(type ?? 'multitask')];
+  const durationPerRound = [15, 15, 10, 5, 5, 5]?.[currentRound] ?? 5;
+  const Icon: any =
+    IconIllustrationsComponents[kebabToPascal(type ?? 'multitask')] ?? IconIllustrationsComponents.Multitask;
 
   return (
     <div className={clsx('phase-announcement', className)}>
