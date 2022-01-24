@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 // Design Resources
 import { Checkbox } from 'antd';
 import { LockFilled, QuestionCircleFilled } from '@ant-design/icons';
@@ -92,23 +91,5 @@ export function AnswerGroup({
     </div>
   );
 }
-
-AnswerGroup.propTypes = {
-  allowUserAnswer: PropTypes.func,
-  answerGroup: PropTypes.shape({
-    answer: PropTypes.string,
-    entries: PropTypes.any,
-    parsedAnswer: PropTypes.string,
-  }),
-  currentQuestion: PropTypes.shape({
-    id: PropTypes.string,
-    number: PropTypes.number,
-    prefix: PropTypes.string,
-    suffix: PropTypes.string,
-  }),
-  onQuestionSelection: PropTypes.func,
-  players: PropTypes.object,
-  remainingGroupsCount: PropTypes.number,
-};
 
 export default AnswerGroup;

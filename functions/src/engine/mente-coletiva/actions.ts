@@ -146,7 +146,7 @@ export const handleAddAnswer = async (
   playerId: PlayerId,
   answer: PlainObject
 ) => {
-  const actionText = 'advance answers';
+  const actionText = 'add answer';
 
   const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
 

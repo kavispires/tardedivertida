@@ -117,7 +117,6 @@ export function CreateGameModal({ gameInfo }: CreateGameModalProps): JSX.Element
           okButtonProps={{ disabled: Boolean(!gameId) }}
         >
           <>
-            {console.log({ gameInfo })}
             <Image
               alt={gameInfo.title[language]}
               src={`${PUBLIC_URL.BANNERS}game-image-${gameInfo.gameName}-${language}.jpg`}
