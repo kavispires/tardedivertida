@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
 // Hooks
 import { useLanguage, useWhichPlayerIsThe } from '../../hooks';
 import { useOnSubmitQuestionAPIRequest } from './api-requests';
@@ -81,17 +80,5 @@ function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-PhaseQuestionSelection.propTypes = {
-  info: PropTypes.object,
-  players: PropTypes.object,
-  state: PropTypes.shape({
-    phase: PropTypes.string,
-    round: PropTypes.shape({
-      current: PropTypes.number,
-      total: PropTypes.number,
-    }),
-  }),
-};
 
 export default PhaseQuestionSelection;

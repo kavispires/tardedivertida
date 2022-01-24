@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 //Design Resources
 import { Button, Input, Space } from 'antd';
 // Utils
@@ -37,11 +36,5 @@ function WordForm({ x, y, onSubmit, disabled }: WordFormProps) {
     </Space>
   );
 }
-
-WordForm.propTypes = {
-  onSubmit: PropTypes.func,
-  x: PropTypes.any,
-  y: PropTypes.any,
-};
 
 export default WordForm;

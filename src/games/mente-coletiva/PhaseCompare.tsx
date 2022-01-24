@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
 // Hooks
 import { useLanguage, useUser } from '../../hooks';
 // Resources & Utils
@@ -57,17 +56,5 @@ function PhaseCompare({ state, players, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-PhaseCompare.propTypes = {
-  info: PropTypes.object,
-  players: PropTypes.object,
-  state: PropTypes.shape({
-    phase: PropTypes.string,
-    round: PropTypes.shape({
-      current: PropTypes.number,
-      total: PropTypes.number,
-    }),
-  }),
-};
 
 export default PhaseCompare;

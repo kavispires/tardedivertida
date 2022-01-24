@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { useState } from 'react';
 // State & Hooks
 import { useIsUserReady, useLanguage, useWhichPlayerIsThe } from '../../hooks';
@@ -103,19 +102,5 @@ function PhaseDialClue({ players, state, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-PhaseDialClue.propTypes = {
-  info: PropTypes.object,
-  players: PropTypes.object,
-  state: PropTypes.shape({
-    currentCategories: PropTypes.array,
-    phase: PropTypes.string,
-    round: PropTypes.shape({
-      current: PropTypes.number,
-      total: PropTypes.number,
-    }),
-    target: PropTypes.number,
-  }),
-};
 
 export default PhaseDialClue;

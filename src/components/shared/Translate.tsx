@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { ReactElement } from 'react';
 // Design Resources
 import { message } from 'antd';
@@ -45,13 +44,6 @@ export function Translate({
 
   return language === 'pt' ? <span>{pt}</span> : <span>{en}</span>;
 }
-
-Translate.propTypes = {
-  custom: PropTypes.any,
-  en: PropTypes.any.isRequired,
-  pt: PropTypes.any.isRequired,
-  string: PropTypes.bool,
-};
 
 /**
  * Delegate between two strings depending on the active language
