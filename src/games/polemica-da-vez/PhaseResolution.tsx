@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
 // Hooks
 import { useLanguage } from '../../hooks';
 // Resources & Utils
@@ -73,21 +72,5 @@ function PhaseReact({ state, players, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-PhaseReact.propTypes = {
-  info: PropTypes.object,
-  players: PropTypes.object,
-  state: PropTypes.shape({
-    currentTopic: PropTypes.object,
-    customTopic: PropTypes.string,
-    phase: PropTypes.string,
-    ranking: PropTypes.array,
-    round: PropTypes.shape({
-      current: PropTypes.number,
-      total: PropTypes.number,
-    }),
-    totalLikes: PropTypes.number,
-  }),
-};
 
 export default PhaseReact;
