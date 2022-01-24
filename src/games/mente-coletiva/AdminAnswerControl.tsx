@@ -11,16 +11,18 @@ type AdminAnswerControlProps = {
   allAnswers: MAnswer[];
   allowedList: AllowedList;
   answerGroup: AnswerGroup;
+  onAddAnswer: GenericFunction;
   onNextAnswer: GenericFunction;
   players: GamePlayers;
 };
 
 export function AdminAnswerControl({
-  answerGroup,
   allAnswers,
-  players,
-  onNextAnswer,
   allowedList,
+  answerGroup,
+  onNextAnswer,
+  onAddAnswer,
+  players,
 }: AdminAnswerControlProps) {
   const language = useLanguage();
   const [isLoading] = useLoading();
@@ -54,6 +56,7 @@ export function AdminAnswerControl({
               className="m-admin__answer"
               icon={<PlusCircleFilled />}
               key={`admin-${answer.id}`}
+              onClick={() => onAddAnswer({ answer: { ...answer } })}
             >
               <Avatar id={players[answer.playerId].avatarId} /> {answer.answer}
             </Button>

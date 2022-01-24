@@ -41,7 +41,7 @@ export function UserAnswers({ answerGroup, user, onAddAnswer }: UserAnswersProps
                 disabled={answerObj?.isLocked || alreadyHasAnswer || isLoading}
                 className="m-user-answer"
                 icon={answerObj.isLocked ? <LockFilled /> : <PlusCircleFilled />}
-                onClick={() => onAddAnswer({ id: key, playerId: user.id, ...answerObj })}
+                onClick={() => onAddAnswer({ answer: { id: key, playerId: user.id, ...answerObj } })}
               >
                 {answerObj.answer} {Boolean(answerObj.score) && `(${answerObj.score})`}
               </Button>

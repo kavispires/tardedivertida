@@ -63,6 +63,7 @@ export function CompareStep({
         answerGroup={answerGroup}
         allAnswers={allAnswers}
         players={players}
+        onAddAnswer={onAddAnswer}
         onNextAnswer={onNextAnswer}
         allowedList={allowedList}
       />
