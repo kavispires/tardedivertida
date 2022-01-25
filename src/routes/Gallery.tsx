@@ -12,7 +12,7 @@ import { Title } from '../components/shared';
 function Gallery() {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [dataSource, setDataSource] = useState([]);
+  const [dataSource, setDataSource] = useState<PlainObject[]>([]);
 
   const getData = () => {
     setIsLoading(true);
@@ -37,14 +37,14 @@ function Gallery() {
 
   useEffect(() => {
     const sortedDataSource = orderBy(
-      Object.values(data).reduce((acc, entry) => {
+      Object.values(data).reduce((acc: PlainObject[], entry: PlainObject) => {
         const data = {
           id: entry.id,
           text: entry.text,
           level: entry.level,
         };
 
-        entry.entries.forEach((drawingEntry) => {
+        entry.entries.forEach((drawingEntry: PlainObject) => {
           const date = new Date(drawingEntry.createdAt).toLocaleString();
           acc.push({
             ...data,
