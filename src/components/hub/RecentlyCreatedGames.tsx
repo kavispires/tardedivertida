@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 // Design Resources
 import { Button, Space, Tooltip } from 'antd';
 import { RedoOutlined } from '@ant-design/icons';
@@ -11,8 +11,8 @@ import { LATEST_GAME_IDS } from '../../utils/constants';
 import { Translate } from '../shared';
 
 export function RecentlyCreatedGames(): JSX.Element {
+  const navigate = useNavigate();
   const [getLocalStorage] = useLocalStorage();
-  const history = useHistory();
   const [ids, setIds] = useState<string[]>([]);
 
   const refreshIds = () => {
@@ -20,7 +20,7 @@ export function RecentlyCreatedGames(): JSX.Element {
   };
 
   const goTo = (gameId: GameId) => {
-    history.push(gameId);
+    navigate(gameId);
   };
 
   useEffect(() => {

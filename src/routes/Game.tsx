@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 // Design Resources
 import { message, notification } from 'antd';
 // Adapters
@@ -7,14 +7,15 @@ import { GAME_API } from '../adapters';
 // Hooks
 import { useIsGameStale, useLoading, useGlobalState, useLocalStorage } from '../hooks';
 // Utils
-import { getGameIdFromURL, getGameIdFromLocation, isValidGameId, isDevEnv } from '../utils/helpers';
+import { isValidGameId, isDevEnv, getGameIdFromPathname } from '../utils/helpers';
 import { GAME_COLLECTION } from '../utils/constants';
 // Components
 import { LoadingPage, PageError } from '../components';
 import GameSessions from '../games';
 
 function Game() {
-  const history = useHistory();
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
   const [, setLoader] = useLoading();
   const [gameId, setGameId] = useGlobalState('gameId');
   const [gameName, setGameName] = useGlobalState('gameName');
@@ -30,31 +31,29 @@ function Game() {
 
   // Verify url game code
   useEffect(() => {
-    const urlGameId = getGameIdFromURL(history);
+    const urlGameId = getGameIdFromPathname(pathname);
     if (isValidGameId(urlGameId)) {
       setGameId(urlGameId);
     } else {
       message.error('Vixi, a id do jogo na barra de endereços tá errada');
-      history.push('/');
+      navigate('/');
     }
-  }, [history, setGameId, setUsername, setUserAvatarId]);
+  }, [pathname, navigate, setGameId, setUsername, setUserAvatarId]);
 
-  // Keeps track of url changes
+  // // Keeps track of url changes
   useEffect(() => {
-    return history.listen((location: PlainObject) => {
-      const urlGameId = getGameIdFromLocation(location);
-      if (isValidGameId(urlGameId)) {
-        setGameId(urlGameId);
-        setUserId(null);
-        setUsername('');
-        setUserAvatarId('');
-        message.info('New id provided');
-      } else {
-        message.error('Oops, the game id in the address bar is incorrect');
-        history.push('/');
-      }
-    });
-  }, [history, setGameId, setUsername, setUserAvatarId, setUserId]);
+    const urlGameId = getGameIdFromPathname(pathname);
+    if (isValidGameId(urlGameId)) {
+      setGameId(urlGameId);
+      setUserId(null);
+      setUsername('');
+      setUserAvatarId('');
+      message.info('New id provided');
+    } else {
+      message.error('Oops, the game id in the address bar is incorrect');
+      navigate('/');
+    }
+  }, [pathname, navigate, setGameId, setUsername, setUserAvatarId, setUserId]);
 
   // Load game
   useEffect(() => {

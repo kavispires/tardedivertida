@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 // Design Resources
 import { Image, Modal, message, Button, notification, Divider, Typography, Switch } from 'antd';
 // Adapters
@@ -34,7 +34,7 @@ type CreateGameModalProps = {
 };
 
 export function CreateGameModal({ gameInfo }: CreateGameModalProps): JSX.Element {
-  const history = useHistory();
+  const navigate = useNavigate();
   const language = useLanguage();
   const [, setLoader] = useLoading();
   const [getLocalStorage, setLocalStorage] = useLocalStorage();
@@ -93,7 +93,7 @@ export function CreateGameModal({ gameInfo }: CreateGameModalProps): JSX.Element
 
   const onConfirmGame = () => {
     if (gameId) {
-      history.push(`/${gameId}`);
+      navigate(`/${gameId}`);
     } else {
       message.info(
         translate('Péra! O jogo ainda não foi inicializado.', 'Wait! The game has not been created', language)

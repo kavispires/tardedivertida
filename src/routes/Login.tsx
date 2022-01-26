@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 // Design Resources
 import { Layout, Button, Form, Input, Alert, Image } from 'antd';
@@ -19,7 +19,8 @@ const tailLayout = {
 };
 
 function Login() {
-  const history = useHistory();
+  // const history = useHistory();
+  const navigate = useNavigate();
   const [, setIsAuthenticated] = useGlobalState('isAuthenticated');
 
   const [error, setError] = useState<string | object | null>(null);
@@ -41,7 +42,7 @@ function Login() {
       const response = await signIn(email, password);
       if (response?.user?.uid) {
         setIsAuthenticated(true);
-        history.push('/hub');
+        navigate('/hub');
       }
     } catch (error: any) {
       setError(error.message);
