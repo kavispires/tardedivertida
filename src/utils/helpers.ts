@@ -12,8 +12,7 @@ export const deepCopy = (obj: any): any => JSON.parse(JSON.stringify(obj));
  * @param history
  * @returns
  */
-export const getGameIdFromURL = (history: PlainObject): string => {
-  const { pathname = '/' } = history?.location ?? {};
+export const getGameIdFromPathname = (pathname: string): string => {
   return pathname.substring(1);
 };
 

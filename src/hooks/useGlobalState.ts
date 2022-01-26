@@ -17,7 +17,7 @@ type InitialState = {
   userAvatarId: string;
   isAuthenticated: boolean;
   isAdmin: boolean;
-  blurredCards: PlainObject;
+  blurredCards: BooleanDictionary;
   blurEnabled: boolean;
   // Arte-Ruim
   canvasSize: number;
