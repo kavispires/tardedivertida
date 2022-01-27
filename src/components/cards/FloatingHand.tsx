@@ -1,7 +1,10 @@
 import clsx from 'clsx';
 import { useState } from 'react';
+// Hooks
+import { useLanguage } from '../../hooks';
 // Components
-import { Translate } from '../shared';
+import { AvatarIcon } from '..';
+import { Translate, translate } from '../shared';
 
 type FloatingHandProps = {
   children: any;
@@ -10,6 +13,7 @@ type FloatingHandProps = {
 
 export function FloatingHand({ children, subtitle = '' }: FloatingHandProps) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const language = useLanguage();
 
   return (
     <>
@@ -20,6 +24,12 @@ export function FloatingHand({ children, subtitle = '' }: FloatingHandProps) {
         onMouseLeave={() => setIsExpanded(false)}
       >
         <span className="floating-hand__label">
+          <AvatarIcon
+            type="hand-of-cards"
+            size={isExpanded ? 40 : 60}
+            className="floating-hand__icon"
+            alt={translate('Mão de Cartas', 'Hand of Cards', language)}
+          />
           <Translate pt="Passe o mouse para expandir " en="Hover to expand " />
           {subtitle}
         </span>
