@@ -3,21 +3,15 @@ import clsx from 'clsx';
 import { Button } from 'antd';
 // Hooks
 import { useLanguage } from '../../hooks';
+// Utils
+import { kebabToPascal } from '../../utils/helpers';
 // Components
 import { TimedButton } from './index';
 import { translate } from './Translate';
 import { Title } from './Title';
 import * as IconIllustrations from '../icons';
-import { camelCase, startCase } from 'lodash';
 
 const IconIllustrationsComponents: any = IconIllustrations;
-
-/**
- * Converts a string from kebab case to pascal base
- * @param str
- * @returns
- */
-const kebabToPascal = (str: string): string => startCase(camelCase(str)).replace(/ /g, '');
 
 type PhaseAnnouncementProps = {
   title: any;

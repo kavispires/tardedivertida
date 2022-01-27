@@ -1,7 +1,5 @@
-// Design Components
-import { Avatar } from 'antd';
 // Components
-import { AvatarName, Icons, Instruction, Title, Translate } from '../../components';
+import { AvatarIcon, AvatarName, Instruction, Title, Translate } from '../../components';
 import { Pasture } from './Pasture';
 import { RoundType } from './RoundType';
 
@@ -19,8 +17,7 @@ export function QuestionSelectionWaiting({
   return (
     <div className="m-step">
       <Title>
-        <Avatar src={<Icons.AnimatedClock />} size="large" />{' '}
-        <Translate pt="Aguarde..." en="Please wait..." />
+        <AvatarIcon type="animated-clock" size="large" /> <Translate pt="Aguarde..." en="Please wait..." />
       </Title>
 
       <RoundType roundType={roundType} />

@@ -1,3 +1,4 @@
+import { camelCase, startCase } from 'lodash';
 import { SEPARATOR } from './constants';
 
 /**
@@ -198,3 +199,10 @@ export const getEntryId = (arr: string[]): string => arr.join(SEPARATOR);
 export const hasDuplicates = (arr: any): boolean => {
   return new Set(arr).size !== arr.length;
 };
+
+/**
+ * Converts a string from kebab case to pascal base
+ * @param str
+ * @returns
+ */
+export const kebabToPascal = (str: string): string => startCase(camelCase(str)).replace(/ /g, '');

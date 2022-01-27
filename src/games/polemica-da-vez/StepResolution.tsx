@@ -2,7 +2,7 @@ import clsx from 'clsx';
 // Design Resources
 import { FallOutlined, RiseOutlined } from '@ant-design/icons';
 // Components
-import { Avatar, ButtonContainer, Icons, Step, TimedButton, Title, Translate } from '../../components';
+import { Avatar, AvatarIcon, ButtonContainer, Step, TimedButton, Title, Translate } from '../../components';
 import { Topic } from './Topic';
 
 type StepResolutionProps = {
@@ -38,9 +38,9 @@ export function StepResolution({
               <div>
                 <div className="p-player-reaction__reaction">
                   {player.reaction ? (
-                    <Avatar src={<Icons.SpeechBubbleThumbsUp />} shape="square" size="large" />
+                    <AvatarIcon type="speech-bubble-thumbs-up" shape="square" className="p-like-icon" />
                   ) : (
-                    <Avatar src={<Icons.SpeechBubbleThumbsDown />} shape="square" size="large" />
+                    <AvatarIcon type="speech-bubble-thumbs-down" shape="square" className="p-like-icon" />
                   )}
                 </div>
               </div>

@@ -1,11 +1,10 @@
 // Design Resources
-import { Avatar } from 'antd';
 import { QuestionCircleFilled } from '@ant-design/icons';
 // Components
 import {
+  AvatarIcon,
   AvatarName,
   FloatingHand,
-  Icons,
   ImageCardHand,
   Instruction,
   Step,
@@ -62,7 +61,7 @@ function StepPlayCard({
       <Instruction>
         <ViewIf isVisible={isUserTheCurrentPlayer && !isUserTheImpostor}>
           <>
-            <Avatar src={<Icons.ImageCards />} size="small" shape="square" />{' '}
+            <AvatarIcon type="image-cards" size="large" shape="square" />{' '}
             <Translate
               pt="Selecione uma carta que mais combine com a pista secreta."
               en="Select a card that best fits the secret clue."
@@ -71,7 +70,7 @@ function StepPlayCard({
         </ViewIf>
         <ViewIf isVisible={isUserTheCurrentPlayer && isUserTheImpostor}>
           <>
-            <Avatar src={<Icons.ImageCards />} size="small" shape="square" />{' '}
+            <AvatarIcon type="image-cards" size="large" shape="square" />{' '}
             <Translate
               pt="Selecione uma carta que mais combine com as cartas que os outros
                 jogadores estão usando."
@@ -81,7 +80,7 @@ function StepPlayCard({
         </ViewIf>
         <ViewIf isVisible={!isUserTheCurrentPlayer}>
           <>
-            <Avatar src={<Icons.AnimatedClock />} size="small" />{' '}
+            <AvatarIcon type="animated-clock" size="large" />{' '}
             <Translate
               pt={
                 <>

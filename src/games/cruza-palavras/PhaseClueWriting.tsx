@@ -31,7 +31,7 @@ function PhaseClueWriting({ players, state, info }: PhaseProps) {
 
         {/* Step 1 */}
         <PhaseAnnouncement
-          type="writing"
+          type="grid"
           title={translate('Escreva!', 'Write!', language)}
           onClose={() => setStep(2)}
           currentRound={state?.round?.current}

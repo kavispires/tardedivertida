@@ -1,7 +1,5 @@
-// Design Resources
-import { Avatar } from 'antd';
 // Components
-import { AvatarName, Icons, Instruction, Step, Title, Translate } from '../../components';
+import { AvatarIcon, AvatarName, Instruction, Step, Title, Translate } from '../../components';
 import { Suspects } from './Suspects';
 
 type StepQuestionWaitingProps = {
@@ -22,7 +20,7 @@ export function StepQuestionWaiting({
   return (
     <Step>
       <Title>
-        <Avatar src={<Icons.AnimatedClock />} size="large" />
+        <AvatarIcon type="animated-clock" size="large" />
         <br />
         <Translate pt={<>Examine os suspeitos</>} en={<>Examine the suspects</>} />
       </Title>
