@@ -133,7 +133,17 @@ type GameOverWrapperProps = {
   info: GameInfo;
   state: GameState;
   children?: any;
-  announcementIcon?: 'trophy' | 'the-end' | 'flag' | 'criminal' | 'newspaper';
+  announcementIcon?:
+    | 'trophy'
+    | 'the-end'
+    | 'flag'
+    | 'crown'
+    | 'ladder'
+    | 'medal'
+    | 'criminal'
+    | 'newspaper'
+    | 'spy'
+    | 'nuclear-explosion';
   announcementTitle?: string;
   announcementDuration?: number;
   announcementContent?: any;
