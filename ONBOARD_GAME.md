@@ -52,10 +52,12 @@ All file paths here are relative to `/src`.
 ### Setup Basic Game files
 
 - Create a folder with the game name under `/games/`.
-- Create a session file `Session<game-name>.jsx` with basic placeholder stuff.
-- Update `/games/index.js` to include the new game.
-- Update `/routes/Game.jsx` to include the new Game Session.
+- Create a session file `Session<game-name>.tsx` with basic placeholder stuff.
+- Create a api file `api-requests.ts` for api calls for the game.
+- Create a `<game-name>.d.ts` for game specific types.
+- Update `/games/index.ts` to include the new game.
+- Update `/routes/Game.tsx` to include the new Game Session.
 
 # Add cloud functions Adapter
 
-- Update `/adapters/index.js` with the new cloud functions
+- Update `/adapters/index.ts` with the new cloud functions

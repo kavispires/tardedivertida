@@ -1,7 +1,7 @@
 /**
  * List of urls residing in the public folder
  */
-export const PUBLIC_URL: PlainObject = {
+export const PUBLIC_URL: StringDictionary = {
   BANNERS: `${process.env.PUBLIC_URL}/images/banners/`,
   RULES: `${process.env.PUBLIC_URL}/images/rules/`,
   CARDS: `${process.env.PUBLIC_URL}/images/cards/`,
@@ -225,7 +225,7 @@ export const SEPARATOR: string = ';;';
 
 export const LATEST_GAME_IDS: string = 'latestGameIds';
 
-export const ADMIN_ACTIONS = {
+export const ADMIN_ACTIONS: StringDictionary = {
   GO_TO_NEXT_PHASE: 'GO_TO_NEXT_PHASE',
   FORCE_STATE_PROPERTY: 'FORCE_STATE_PROPERTY',
   PLAY_AGAIN: 'PLAY_AGAIN',
@@ -241,11 +241,12 @@ export const RANDOM_NAMES: string[] =
 /**
  * Enum of available games
  */
-export const GAME_COLLECTION: PlainObject = {
+export const GAME_COLLECTION: StringDictionary = {
   ARTE_RUIM: 'arte-ruim',
   CONTADORES_HISTORIAS: 'contadores-historias',
   DETETIVES_IMAGINATIVOS: 'detetives-imaginativos',
   ESPIAO_ENTRE_NOS: 'espiao-entre-nos',
+  GALERIA_DE_SONHOS: 'galeria-de-sonhos',
   CRIMES_HEDIONDOS: 'crimes-hediondos',
   INSTRUMENTOS_CODIFICADOS: 'instrumentos-codificados',
   MENTE_COLETIVA: 'mente-coletiva',

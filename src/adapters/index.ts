@@ -33,6 +33,10 @@ export const ESPIAO_ENTRE_NOS_API = {
   submitVoting: httpsCallable(functions, 'espiaoEntreNosSubmitVoting'),
 };
 
+export const GALERIA_DE_SONHOS_API = {
+  submitAction: httpsCallable(functions, 'galeriaDeSonhosSubmitAction'),
+};
+
 export const CRIMES_HEDIONDOS_API = {
   submitAction: httpsCallable(functions, 'crimesHediondosSubmitAction'),
 };
