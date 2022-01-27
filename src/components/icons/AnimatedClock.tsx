@@ -30,7 +30,6 @@ export function AnimatedClock(props: any): JSX.Element {
           attributeName="transform"
           dur="2s"
           from="0 256 256"
-          // by="360"
           repeatCount="indefinite"
           to="360 256 256"
           type="rotate"
