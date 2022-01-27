@@ -24,14 +24,14 @@ export function TurnOrder({ players, order, activePlayerId }: TurnOrderProps) {
           return (
             <>
               <span
-                className={clsx('game-order__player', isActive && 'game-order__player--active')}
                 key={`turn-order-player-${playerId}`}
+                className={clsx('game-order__player', isActive && 'game-order__player--active')}
                 style={isActive ? { backgroundColor: AVATARS[player.avatarId].color } : undefined}
               >
                 <AvatarName player={player} />
               </span>
               {index < order.length - 1 && (
-                <span className="game-order__arrow" key={`turn-order-player-${playerId}-arrow`}>
+                <span key={`turn-order-player-${playerId}-arrow`} className="game-order__arrow">
                   <ForwardFilled />
                 </span>
               )}
