@@ -1,15 +1,13 @@
-// Design Resources
-import { Avatar } from 'antd';
 // Components
 import {
   AvatarName,
   FloatingHand,
   ImageCardHand as Hand,
-  Icons,
   Instruction,
   Title,
   Translate,
   TurnOrder,
+  AvatarIcon,
 } from '../../components';
 
 type StoryWaitingProps = {
@@ -23,8 +21,7 @@ export function StoryWaiting({ storyteller, user, players, gameOrder }: StoryWai
   return (
     <div className="c-story-waiting">
       <Title>
-        <Avatar src={<Icons.AnimatedClock />} size="large" />{' '}
-        <Translate pt="Aguarde..." en="Please wait..." />
+        <AvatarIcon type="animated-clock" size="large" /> <Translate pt="Aguarde..." en="Please wait..." />
       </Title>
       <Instruction contained>
         <AvatarName player={storyteller} addressUser />{' '}

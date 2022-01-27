@@ -1,6 +1,6 @@
 import { useState } from 'react';
 // Design Resources
-import { Avatar, Space } from 'antd';
+import { Space } from 'antd';
 // Hooks
 import { useLoading, useLanguage, useGlobalState } from '../../hooks';
 import { useOnSelectWitnessAPIRequest } from './api-requests';
@@ -13,11 +13,11 @@ import {
   PhaseAnnouncement,
   PhaseContainer,
   Step,
-  Icons,
   StepSwitcher,
   Title,
   Translate,
   translate,
+  AvatarIcon,
 } from '../../components';
 import { WitnessRules } from './TextBlobs';
 
@@ -67,7 +67,7 @@ function PhaseWitnessSelection({ state, players, info }: PhaseProps) {
         {/* Step 1 */}
         <Step key={1}>
           <Title>
-            <Avatar src={<Icons.AnimatedClock />} size="large" />
+            <AvatarIcon type="animated-clock" size="large" />
             <br />
             <Translate pt="Quem quer ser a testemunha ocular?" en="Who wants to be the eye witness?" />
           </Title>

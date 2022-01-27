@@ -1,7 +1,5 @@
-// Design Resources
-import { Avatar } from 'antd';
 // Components
-import { Icons, Instruction, Step, Title, Translate, ViewIf } from '../../components';
+import { AvatarIcon, Instruction, Step, Title, Translate, ViewIf } from '../../components';
 import Table from './Table';
 import VotingOptions from './VotingOptions';
 
@@ -20,7 +18,7 @@ function StepVoting({ isLoading, isUserTheLeader, user, leaderId, players, onVot
     <Step>
       <Title>
         {isLoading ? (
-          <Avatar src={<Icons.AnimatedClock />} size="large" />
+          <AvatarIcon type="animated-clock" size="large" />
         ) : (
           <Translate pt="Quem é o impostor?" en="Who is the impostor?" />
         )}
