@@ -21,9 +21,21 @@ export interface PlainObject {
   [key: string]: any;
 }
 
-export interface BooleanDictionary {
+export type BooleanDictionary = {
   [key: string]: boolean;
-}
+};
+
+export type NumberDictionary = {
+  [key: string]: number;
+};
+
+export type StringDictionary = {
+  [key: string]: string;
+};
+
+export type ObjectDictionary = {
+  [key: string]: PlainObject;
+};
 
 export interface FirebaseContext {
   [key: string]: any;

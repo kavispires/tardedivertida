@@ -4,6 +4,7 @@ import * as arteRuimEngine from '../engine/arte-ruim';
 import * as contadoresHistoriasEngine from '../engine/contadores-historias';
 import * as detetivesImaginativosEngine from '../engine/detetives-imaginativos';
 import * as espiaoEntreNosEngine from '../engine/espiao-entre-nos';
+import * as galeriaDeSonhosEngine from '../engine/galeria-de-sonhos';
 import * as crimesHediondosEngine from '../engine/crimes-hediondos';
 import * as instrumentosCodificadosEngine from '../engine/instrumentos-codificados';
 import * as menteColetivaEngine from '../engine/mente-coletiva';
@@ -30,6 +31,8 @@ export const getCollectionNameByGameCode = (gameCode: GameCode): string | null =
       return GAME_COLLECTIONS.DETETIVES_IMAGINATIVOS;
     case GAME_CODES.E:
       return GAME_COLLECTIONS.ESPIAO_ENTRE_NOS;
+    case GAME_CODES.G:
+      return GAME_COLLECTIONS.GALERIA_DE_SONHOS;
     case GAME_CODES.H:
       return GAME_COLLECTIONS.CRIMES_HEDIONDOS;
     case GAME_CODES.I:
@@ -70,6 +73,8 @@ export const getCollectionKeyByGameCode = (gameCode: GameCode): string | null =>
       return GAME_KEYS.DETETIVES_IMAGINATIVOS;
     case GAME_CODES.E:
       return GAME_KEYS.ESPIAO_ENTRE_NOS;
+    case GAME_CODES.G:
+      return GAME_KEYS.GALERIA_DE_SONHOS;
     case GAME_CODES.H:
       return GAME_KEYS.CRIMES_HEDIONDOS;
     case GAME_CODES.I:
@@ -118,6 +123,8 @@ export const getEngine = (collectionName: string): Engine => {
       return detetivesImaginativosEngine;
     case GAME_COLLECTIONS.ESPIAO_ENTRE_NOS:
       return espiaoEntreNosEngine;
+    case GAME_COLLECTIONS.GALERIA_DE_SONHOS:
+      return galeriaDeSonhosEngine;
     case GAME_COLLECTIONS.CRIMES_HEDIONDOS:
       return crimesHediondosEngine;
     case GAME_COLLECTIONS.INSTRUMENTOS_CODIFICADOS:

@@ -106,6 +106,8 @@ function Game() {
         return <GameSessions.DetetivesImaginativos gameId={gameId} />;
       case GAME_COLLECTION.ESPIAO_ENTRE_NOS:
         return <GameSessions.EspiaoEntreNos gameId={gameId} />;
+      case GAME_COLLECTION.GALERIA_DE_SONHOS:
+        return <GameSessions.GaleriaDeSonhos gameId={gameId} />;
       case GAME_COLLECTION.CRIMES_HEDIONDOS:
         return <GameSessions.CrimesHediondos gameId={gameId} />;
       case GAME_COLLECTION.INSTRUMENTOS_CODIFICADOS:

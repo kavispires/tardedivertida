@@ -6,6 +6,7 @@ import * as arteRuimEngine from './engine/arte-ruim';
 import * as contadoresHistoriasEngine from './engine/contadores-historias';
 import * as detetivesImaginativosEngine from './engine/detetives-imaginativos';
 import * as espiaoEntreNosEngine from './engine/espiao-entre-nos';
+import * as galeriaDeSonhosEngine from './engine/galeria-de-sonhos';
 import * as crimesHediondosEngine from './engine/crimes-hediondos';
 import * as instrumentosCodificadosEngine from './engine/instrumentos-codificados';
 import * as menteColetivaEngine from './engine/mente-coletiva';
@@ -70,6 +71,8 @@ exports.arteRuimSubmitAction = functions.https.onCall(arteRuimEngine.submitActio
 exports.contadoresHistoriasSubmitAction = functions.https.onCall(contadoresHistoriasEngine.submitAction);
 
 exports.detetivesImaginativosSubmitAction = functions.https.onCall(detetivesImaginativosEngine.submitAction);
+
+exports.galeriaDeSonhosSubmitAction = functions.https.onCall(galeriaDeSonhosEngine.submitAction);
 
 exports.crimesHediondosSubmitAction = functions.https.onCall(crimesHediondosEngine.submitAction);
 
