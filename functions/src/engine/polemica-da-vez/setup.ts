@@ -6,7 +6,6 @@ import { FirebaseStateData, FirebaseStoreData } from './types';
 // Utils
 import * as firebaseUtils from '../../utils/firebase';
 import * as utils from '../../utils/helpers';
-import * as gameUtils from '../../utils/game-utils';
 import { buildDeck, countLikes, rankAndScore } from './helpers';
 
 /**
@@ -22,7 +21,7 @@ export const prepareSetupPhase = async (
   allTopics: PlainObject
 ): Promise<SaveGamePayload> => {
   // Determine turn order
-  const gameOrder = gameUtils.shuffle(Object.keys(players));
+  const { gameOrder } = utils.buildGameOrder(players);
 
   // Build deck
   const { deck, customDeck } = buildDeck(allTopics);

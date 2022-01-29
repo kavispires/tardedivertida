@@ -29,13 +29,13 @@ export const prepareSetupPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Determine player order
-  const gameOrder = gameUtils.shuffle(Object.keys(players));
+  const { gameOrder, playerCount } = utils.buildGameOrder(players);
 
   // Assigned cards to players
   // We build the used cards deck all at once to avoid having to generate and
   // get unique ones every time
   // Also add 1 deck (with the double amount of cards) to be used as the table deck
-  const minimumNumberOfCards = (gameOrder.length + 2) * CARDS_PER_PLAYER;
+  const minimumNumberOfCards = (playerCount + 2) * CARDS_PER_PLAYER;
   const cards = await imageCardsUtils.getImageCards(minimumNumberOfCards);
 
   // Get table deck removing them from the original list of cards
