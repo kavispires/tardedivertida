@@ -156,7 +156,7 @@
     "version": "0.9",
     "title": {
       "pt": "Espião Entre Nós",
-      "en": "The Spy Among Us"
+      "en": "The Spy Convention"
     },
     "summary": {
       "pt": "Todos nós, agentes de bem, estamos num mesmo local, mas um de nós é um espião! Será que conseguimos descobrir quem é o impostor antes dele descobrir que local estamos?",
@@ -383,6 +383,33 @@
     "available": {
       "pt": true,
       "en": true
+    }
+  },
+  "N": {
+    "gameCode": "N",
+    "gameName": "na-rua-do-medo",
+    "version": "none",
+    "title": {
+      "pt": "Na Rua do Medo",
+      "en": "Fear Street"
+    },
+    "summary": {
+      "pt": "Jogadores são crianças recolhendo doces durante o Halloween, mas se você ver o mesmo monstro mais de uma vez...",
+      "en": "Players are trick-or-treaters collecting candy, but if you see the same monster twice..."
+    },
+    "rules": {
+      "pt": [],
+      "en": []
+    },
+    "playerCount": {
+      "recommended": "4-6",
+      "min": 3,
+      "max": 10
+    },
+    "tags": ["competitive"],
+    "available": {
+      "pt": false,
+      "en": false
     }
   },
   "O": {
@@ -642,11 +669,11 @@
   },
   "V": {
     "gameCode": "V",
-    "gameName": "toro-palpite",
+    "gameName": "vendaval-de-palpite",
     "version": "none",
     "title": {
-      "pt": "Toró de Palpite",
-      "en": "Brainstorm"
+      "pt": "Vendaval de Palpite",
+      "en": "Brainy Storm"
     },
     "summary": {
       "pt": "Uma palavra secreta que sabemos apenas o tema. Consegue descobri-la fazendo associação de palavras?",
