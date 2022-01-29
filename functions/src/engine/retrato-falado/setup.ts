@@ -5,7 +5,6 @@ import { FirebaseStateData, FirebaseStoreData, MonsterSketch, RetratoFaladoAddit
 import { RETRATO_FALADO_PHASES } from './constants';
 // Helpers1
 import * as firebaseUtils from '../../utils/firebase';
-import * as gameUtils from '../../utils/game-utils';
 import * as utils from '../../utils/helpers';
 import { buildDeck, buildRanking, gatherSketches, getMostVotes } from './helpers';
 
@@ -22,9 +21,7 @@ export const prepareSetupPhase = async (
   additionalData: RetratoFaladoAdditionalData
 ): Promise<SaveGamePayload> => {
   // Determine player order
-  const gameOrder = gameUtils.shuffle(Object.keys(players));
-
-  const playerCount = Object.keys(players).length;
+  const { gameOrder, playerCount } = utils.buildGameOrder(players);
 
   // Build deck
   const deck = buildDeck(additionalData.allMonsters, additionalData.usedCardsId, playerCount);

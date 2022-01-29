@@ -24,7 +24,7 @@ export const prepareSetupPhase = async (
   resourceData: ResourceData
 ): Promise<SaveGamePayload> => {
   // Determine player order
-  const gameOrder = gameUtils.shuffle(Object.keys(players));
+  const { gameOrder } = utils.buildGameOrder(players);
 
   // Build Image Cards deck
   const imageCardIds = await imageCardsUtils.getImageCards(TABLE_DECK_TOTAL);
