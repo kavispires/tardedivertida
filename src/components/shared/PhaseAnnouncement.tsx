@@ -10,6 +10,7 @@ import { TimedButton } from './index';
 import { translate } from './Translate';
 import { Title } from './Title';
 import * as IconIllustrations from '../icons';
+import { useEffect } from 'react';
 
 const IconIllustrationsComponents: any = IconIllustrations;
 
@@ -65,4 +66,27 @@ export function PhaseAnnouncement({
       )}
     </div>
   );
+}
+
+type PhaseTimerResetProps = {
+  setStep: GenericFunction;
+};
+
+/**
+ * Component to be place in between sequential PhaseAnnouncement to reset the automatic timer
+ * @param props
+ * @returns
+ */
+export function PhaseTimerReset({ setStep }: PhaseTimerResetProps) {
+  useEffect(() => {
+    const delay = () => new Promise((res) => setTimeout(res, 100));
+    const next = async () => {
+      await delay();
+      setStep((s: number) => s + 1);
+    };
+
+    next();
+  }, []); // eslint-disable-line
+
+  return <div></div>;
 }
