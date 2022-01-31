@@ -34,6 +34,7 @@ export * from './Goals';
 export * from './Grid';
 export * from './Guess';
 export * from './Hand';
+export * from './Handcuffs';
 export * from './HandOfCards';
 export * from './HangingPhotograph';
 export * from './IdCard';
