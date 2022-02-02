@@ -1,8 +1,7 @@
 import { useState } from 'react';
 // Hooks
-import { useIsUserReady, useWhichPlayerIsThe, useAPICall, useLanguage } from '../../hooks';
+import { useIsUserReady, useWhichPlayerIsThe, useLanguage } from '../../hooks';
 // Resources & Utils
-import { UE_SO_ISSO_API } from '../../adapters';
 import { PHASES } from '../../utils/phases';
 // Components
 import {
@@ -17,6 +16,7 @@ import {
 import StepSuggestion from './StepSuggestion';
 import { WritingRules } from './RulesBlobs';
 import { GuesserWaitingRoom } from './GuesserWaitingRoom';
+import { useOnSubmitSuggestionsAPIRequest } from './api-requests';
 
 function PhaseSuggest({ state, players, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
@@ -24,24 +24,7 @@ function PhaseSuggest({ state, players, info }: PhaseProps) {
   const [step, setStep] = useState(0);
   const [guesser, isUserTheGuesser] = useWhichPlayerIsThe('guesserId', state, players);
 
-  const onSendSuggestionsAPIRequest = useAPICall({
-    apiFunction: UE_SO_ISSO_API.submitAction,
-    actionName: 'submit-suggestion',
-    onBeforeCall: () => setStep(2),
-    onError: () => setStep(1),
-    successMessage: translate('Dicas enviada com sucesso!', 'Suggestion sent successfully!'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar suas dicas',
-      'Oops, the application failed to send your votes'
-    ),
-  });
-
-  const onSendSuggestions = (payload: PlainObject) => {
-    onSendSuggestionsAPIRequest({
-      action: 'SUBMIT_SUGGESTIONS',
-      ...payload,
-    });
-  };
+  const onSendSuggestions = useOnSubmitSuggestionsAPIRequest(setStep);
 
   return (
     <PhaseContainer

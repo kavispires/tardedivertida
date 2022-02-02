@@ -1,8 +1,7 @@
 import { useState } from 'react';
 // Hooks
-import { useIsUserReady, useWhichPlayerIsThe, useAPICall, useLanguage } from '../../hooks';
+import { useIsUserReady, useWhichPlayerIsThe, useLanguage } from '../../hooks';
 // Resources & Utils
-import { UE_SO_ISSO_API } from '../../adapters';
 import { PHASES } from '../../utils/phases';
 // Components
 import {
@@ -19,6 +18,7 @@ import {
 import StepWordSelection from './StepWordSelection';
 import { GameProgressBar } from './GameProgressBar';
 import { GuesserWaitingRoom } from './GuesserWaitingRoom';
+import { useOnSubmitVotesAPIRequest } from './api-requests';
 
 type RoundAnnouncementTextProps = {
   guesser: GamePlayer;
@@ -53,24 +53,7 @@ function PhaseWordSelection({ state, players, info }: PhaseProps) {
   const [guesser, isUserTheGuesser] = useWhichPlayerIsThe('guesserId', state, players);
   const [step, setStep] = useState(0);
 
-  const onSendSelectedWordsAPIRequest = useAPICall({
-    apiFunction: UE_SO_ISSO_API.submitAction,
-    actionName: 'submit-votes',
-    onBeforeCall: () => setStep(3),
-    onError: () => setStep(1),
-    successMessage: translate('Votos enviados com sucesso!', 'Votes send successfully!'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar seus votos',
-      'Oops, the application failed to send your votes'
-    ),
-  });
-
-  const onSendSelectedWords = (payload: PlainObject) => {
-    onSendSelectedWordsAPIRequest({
-      action: 'SUBMIT_VOTES',
-      ...payload,
-    });
-  };
+  const onSendSelectedWords = useOnSubmitVotesAPIRequest(setStep);
 
   return (
     <PhaseContainer
