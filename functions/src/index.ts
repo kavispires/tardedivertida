@@ -72,6 +72,8 @@ exports.contadoresHistoriasSubmitAction = functions.https.onCall(contadoresHisto
 
 exports.detetivesImaginativosSubmitAction = functions.https.onCall(detetivesImaginativosEngine.submitAction);
 
+exports.espiaoEntreNosSubmitAction = functions.https.onCall(espiaoEntreNosEngine.submitAction);
+
 exports.galeriaDeSonhosSubmitAction = functions.https.onCall(galeriaDeSonhosEngine.submitAction);
 
 exports.crimesHediondosSubmitAction = functions.https.onCall(crimesHediondosEngine.submitAction);
@@ -95,27 +97,3 @@ exports.testemunhaOcularSubmitAction = functions.https.onCall(testemunhaOcularEn
 exports.ueSoIssoSubmitAction = functions.https.onCall(ueSoIssoEngine.submitAction);
 
 exports.cruzaPalavrasSubmitAction = functions.https.onCall(cruzaPalavrasEngine.submitAction);
-
-// TODO: MIGRATE ENGINES BELOW
-
-// ESPIAO_ENTRE_NOS HTTP CALLS
-
-/**
- * handles admin actions
- */
-exports.espiaoEntreNosHandleAdminAction = functions.https.onCall(espiaoEntreNosEngine.handleAdminAction);
-
-/**
- * Pause game and accuse someone
- */
-exports.espiaoEntreNosMakeAccusation = functions.https.onCall(espiaoEntreNosEngine.makeAccusation);
-
-/**
- * Pause game and guess location
- */
-exports.espiaoEntreNosGuessLocation = functions.https.onCall(espiaoEntreNosEngine.guessLocation);
-
-/**
- * Submit individual voting, if it's the last player to be ready, move to the next phase
- */
-exports.espiaoEntreNosSubmitVoting = functions.https.onCall(espiaoEntreNosEngine.submitVoting);

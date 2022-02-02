@@ -70,60 +70,60 @@ export const USED_GAME_IDS = 'usedGameIds';
 
 // DEPRECATED FROM HERE BELOW
 
-export const GAME_PLAYERS_LIMIT = {
-  ESPIAO_ENTRE_NOS: {
-    min: 4,
-    max: 8,
-  },
-};
+// export const GAME_PLAYERS_LIMIT = {
+//   ESPIAO_ENTRE_NOS: {
+//     min: 4,
+//     max: 8,
+//   },
+// };
 
-/**
- * Enum of Game Phases
- */
-export const PHASES = {
-  ESPIAO_ENTRE_NOS: {
-    LOBBY: 'LOBBY',
-    RULES: 'RULES',
-    ASSIGNMENT: 'ASSIGNMENT',
-    INVESTIGATION: 'INVESTIGATION',
-    ASSESSMENT: 'ASSESSMENT',
-    FINAL_ASSESSMENT: 'FINAL_ASSESSMENT',
-    RESOLUTION: 'RESOLUTION',
-    GAME_OVER: 'GAME_OVER',
-  },
-  ONDA_TELEPATICA: {
-    LOBBY: 'LOBBY',
-    RULES: 'RULES',
-    DIAL_SIDES: 'DIAL_SIDES',
-    DIAL_CLUE: 'DIAL_CLUE',
-    GUESS: 'GUESS',
-    RIVAL_GUESS: 'RIVAL_GUESS',
-    REVEAL: 'REVEAL',
-    GAME_OVER: 'GAME_OVER',
-  },
-};
+// /**
+//  * Enum of Game Phases
+//  */
+// export const PHASES = {
+//   ESPIAO_ENTRE_NOS: {
+//     LOBBY: 'LOBBY',
+//     RULES: 'RULES',
+//     ASSIGNMENT: 'ASSIGNMENT',
+//     INVESTIGATION: 'INVESTIGATION',
+//     ASSESSMENT: 'ASSESSMENT',
+//     FINAL_ASSESSMENT: 'FINAL_ASSESSMENT',
+//     RESOLUTION: 'RESOLUTION',
+//     GAME_OVER: 'GAME_OVER',
+//   },
+//   ONDA_TELEPATICA: {
+//     LOBBY: 'LOBBY',
+//     RULES: 'RULES',
+//     DIAL_SIDES: 'DIAL_SIDES',
+//     DIAL_CLUE: 'DIAL_CLUE',
+//     GUESS: 'GUESS',
+//     RIVAL_GUESS: 'RIVAL_GUESS',
+//     REVEAL: 'REVEAL',
+//     GAME_OVER: 'GAME_OVER',
+//   },
+// };
 
-// ESPIAO_ENTRE_NOS
+// // ESPIAO_ENTRE_NOS
 
-export const ESPIAO_ENTRE_NOS_CONSTANTS = {
-  SPY: 'SPY',
-  GAME_TIME: 10 * 60 * 1000,
-  TIMER_STATUS: {
-    RUNNING: 'RUNNING',
-    STOPPED: 'STOPPED',
-    PAUSED: 'PAUSED',
-  },
-  OUTCOME: {
-    VOTE_SUCCESS: 'VOTE_SUCCESS',
-    VOTE_FAIL: 'VOTE_FAIL',
-    CONTINUE: 'CONTINUE',
-  },
-  RESOLUTION: {
-    SPY_GUESS: 'SPY_GUESS',
-    SPY_FOUND: 'SPY_FOUND',
-  },
-};
+// export const ESPIAO_ENTRE_NOS_CONSTANTS = {
+//   SPY: 'SPY',
+//   GAME_TIME: 10 * 60 * 1000,
+//   TIMER_STATUS: {
+//     RUNNING: 'RUNNING',
+//     STOPPED: 'STOPPED',
+//     PAUSED: 'PAUSED',
+//   },
+//   OUTCOME: {
+//     VOTE_SUCCESS: 'VOTE_SUCCESS',
+//     VOTE_FAIL: 'VOTE_FAIL',
+//     CONTINUE: 'CONTINUE',
+//   },
+//   RESOLUTION: {
+//     SPY_GUESS: 'SPY_GUESS',
+//     SPY_FOUND: 'SPY_FOUND',
+//   },
+// };
 
-// ONDA_TELEPATICA
+// // ONDA_TELEPATICA
 
-export const ONDA_TELEPATICA_GOAL = 10;
+// export const ONDA_TELEPATICA_GOAL = 10;

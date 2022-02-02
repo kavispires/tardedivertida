@@ -153,7 +153,7 @@
   "E": {
     "gameCode": "E",
     "gameName": "espiao-entre-nos",
-    "version": "0.9",
+    "version": "beta",
     "title": {
       "pt": "Espião Entre Nós",
       "en": "The Spy Convention"
@@ -177,12 +177,12 @@
     "playerCount": {
       "recommended": "6",
       "min": 4,
-      "max": 8
+      "max": 10
     },
     "tags": ["competitive", "same-time", "traitor", "discussion", "timed"],
     "available": {
-      "pt": false,
-      "en": false
+      "pt": true,
+      "en": true
     }
   },
   "F": {

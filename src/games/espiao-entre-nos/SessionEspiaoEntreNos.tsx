@@ -3,14 +3,14 @@ import { GAME_COLLECTION } from '../../utils/constants';
 import { PHASES } from '../../utils/phases';
 // Components
 import { GameOver, Session, PhaseSetup, PhaseRules, PageError, PhaseLobby } from '../../components';
-import AssignmentPhase from './AssignmentPhase';
-import InvestigationPhase from './InvestigationPhase';
-import AssessmentPhase from './AssessmentPhase';
-import ResolutionPhase from './ResolutionPhase';
-import FinalAssessmentPhase from './FinalAssessmentPhase';
+import PhaseAssignment from './PhaseAssignment';
+import PhaseInvestigation from './PhaseInvestigation';
+import PhaseAssessment from './PhaseAssessment';
+import PhaseResolution from './PhaseResolution';
+import PhaseFinalAssessment from './PhaseFinalAssessment';
 
-function SessionEspiaoEntreNos({ gameId }) {
-  function getActiveComponent(phase) {
+function SessionEspiaoEntreNos({ gameId }: SessionProps) {
+  function getActiveComponent(phase: string) {
     switch (phase) {
       case PHASES.DEFAULT.LOBBY:
         return PhaseLobby;
@@ -19,15 +19,15 @@ function SessionEspiaoEntreNos({ gameId }) {
       case PHASES.DEFAULT.SETUP:
         return PhaseSetup;
       case PHASES.ESPIAO_ENTRE_NOS.ASSIGNMENT:
-        return AssignmentPhase;
+        return PhaseAssignment;
       case PHASES.ESPIAO_ENTRE_NOS.INVESTIGATION:
-        return InvestigationPhase;
+        return PhaseInvestigation;
       case PHASES.ESPIAO_ENTRE_NOS.ASSESSMENT:
-        return AssessmentPhase;
+        return PhaseAssessment;
       case PHASES.ESPIAO_ENTRE_NOS.FINAL_ASSESSMENT:
-        return FinalAssessmentPhase;
+        return PhaseFinalAssessment;
       case PHASES.ESPIAO_ENTRE_NOS.RESOLUTION:
-        return ResolutionPhase;
+        return PhaseResolution;
       case PHASES.DEFAULT.GAME_OVER:
         return GameOver;
       default:
