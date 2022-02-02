@@ -5,14 +5,14 @@ import { ReadOutlined } from '@ant-design/icons';
 // Components
 import { RulesCarousel } from '../rules/index';
 import { useLanguage } from '../../hooks';
-import { Translate, translate } from '../shared';
+import { Translate } from '../shared';
 
 type RulesModalProps = {
   gameInfo: GameInfo;
 };
 
 export function RulesModal({ gameInfo }: RulesModalProps): JSX.Element {
-  const language = useLanguage();
+  const { language, translate } = useLanguage();
   const [isVisible, setVisibility] = useState(false);
 
   const onCloseModal = () => {
@@ -26,7 +26,7 @@ export function RulesModal({ gameInfo }: RulesModalProps): JSX.Element {
       </Button>
       {isVisible && (
         <Modal
-          title={`${translate('Regras', 'Rules', language)}: ${gameInfo.title[language]}`}
+          title={`${translate('Regras', 'Rules')}: ${gameInfo.title[language]}`}
           visible={isVisible}
           onCancel={onCloseModal}
           className="rules-modal"

@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useLanguage } from '../../hooks';
 // Components
 import { AvatarIcon } from '..';
-import { Translate, translate } from '../shared';
+import { Translate } from '../shared';
 
 type FloatingHandProps = {
   children: any;
@@ -13,7 +13,7 @@ type FloatingHandProps = {
 
 export function FloatingHand({ children, subtitle = '' }: FloatingHandProps) {
   const [isExpanded, setIsExpanded] = useState(false);
-  const language = useLanguage();
+  const { translate } = useLanguage();
 
   return (
     <>
@@ -28,7 +28,7 @@ export function FloatingHand({ children, subtitle = '' }: FloatingHandProps) {
             type="hand-of-cards"
             size={isExpanded ? 40 : 60}
             className="floating-hand__icon"
-            alt={translate('Mão de Cartas', 'Hand of Cards', language)}
+            alt={translate('Mão de Cartas', 'Hand of Cards')}
           />
           <Translate pt="Passe o mouse para expandir " en="Hover to expand " />
           {subtitle}

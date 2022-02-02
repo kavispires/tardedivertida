@@ -14,7 +14,6 @@ import {
   Step,
   StepSwitcher,
   Title,
-  translate,
   Translate,
 } from '../../components';
 import { StepReveal } from './StepReveal';
@@ -23,7 +22,7 @@ import { ScoringMessage } from './RulesBlobs';
 
 function PhaseReveal({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const user = useUser(players);
   const [step, setStep] = useState(0);
 
@@ -35,7 +34,7 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           type="rank"
-          title={translate('Resultado', 'Results', language)}
+          title={translate('Resultado', 'Results')}
           onClose={() => setStep(1)}
           currentRound={state?.round?.current}
         >

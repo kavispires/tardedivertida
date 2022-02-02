@@ -16,13 +16,12 @@ import {
   StepSwitcher,
   Title,
   Translate,
-  translate,
   AvatarIcon,
 } from '../../components';
 import { WitnessRules } from './TextBlobs';
 
 function PhaseWitnessSelection({ state, players, info }: PhaseProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const [isLoading] = useLoading();
   const [step, setStep] = useState(0);
   const [isAdmin] = useGlobalState('isAdmin');
@@ -40,7 +39,7 @@ function PhaseWitnessSelection({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           type="crime-scene"
-          title={translate('O Caso', 'The Case', language)}
+          title={translate('O Caso', 'The Case')}
           onClose={() => setStep(1)}
           currentRound={state?.round?.current}
         >

@@ -5,12 +5,12 @@ import { useOnSubmitAnswersAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from '../../utils/phases';
 // Components
-import { PhaseAnnouncement, PhaseContainer, StepSwitcher, translate } from '../../components';
+import { PhaseAnnouncement, PhaseContainer, StepSwitcher } from '../../components';
 import { AnsweringStep } from './AnsweringStep';
 import { AnsweringRules } from './RulesBlobs';
 
 function PhaseEverybodyWrites({ state, players, info }: PhaseProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const [step, setStep] = useState(0);
   const user = useUser(players);
 
@@ -27,7 +27,7 @@ function PhaseEverybodyWrites({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           type="writing"
-          title={translate('Todos Respondem', 'Everybody Writes', language)}
+          title={translate('Todos Respondem', 'Everybody Writes')}
           onClose={() => setStep(1)}
           currentRound={state?.round?.current}
           duration={state?.round?.current < 3 ? 20 : undefined}

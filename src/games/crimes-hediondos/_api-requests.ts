@@ -1,20 +1,18 @@
 import { CRIMES_HEDIONDOS_API } from '../../adapters';
-import { translate } from '../../components';
 import { useAPICall, useLanguage } from '../../hooks';
 
 export function useOnSubmitCrimeAPIRequest(setStep: GenericFunction) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
 
   const request = useAPICall({
     apiFunction: CRIMES_HEDIONDOS_API.submitAction,
     actionName: 'submit-crime',
     onBeforeCall: () => setStep(11),
     onError: () => setStep(9),
-    successMessage: translate('Crime enviado com sucesso', 'Crime submitted successfully', language),
+    successMessage: translate('Crime enviado com sucesso', 'Crime submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar seu crime',
-      'Oops, the application failed to send your crime',
-      language
+      'Oops, the application failed to send your crime'
     ),
   });
 
@@ -27,7 +25,7 @@ export function useOnSubmitCrimeAPIRequest(setStep: GenericFunction) {
 }
 
 export function useOnSubmitMarkAPIRequest(setStep: GenericFunction) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
 
   const request = useAPICall({
     apiFunction: CRIMES_HEDIONDOS_API.submitAction,
@@ -36,13 +34,11 @@ export function useOnSubmitMarkAPIRequest(setStep: GenericFunction) {
     onError: () => setStep(2),
     successMessage: translate(
       'Nova informação enviadas com sucesso',
-      'New information submitted successfully',
-      language
+      'New information submitted successfully'
     ),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar a nova informação',
-      'Oops, the application failed to send the new information',
-      language
+      'Oops, the application failed to send the new information'
     ),
   });
 
@@ -55,18 +51,17 @@ export function useOnSubmitMarkAPIRequest(setStep: GenericFunction) {
 }
 
 export function useOnSubmitGuessesAPIRequest(setStep: GenericFunction) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
 
   const request = useAPICall({
     apiFunction: CRIMES_HEDIONDOS_API.submitAction,
     actionName: 'submit-guesses',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
-    successMessage: translate('Respostas enviadas com sucesso', 'Guesses submitted successfully', language),
+    successMessage: translate('Respostas enviadas com sucesso', 'Guesses submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar suas respostas',
-      'Oops, the application failed to send your guesses',
-      language
+      'Oops, the application failed to send your guesses'
     ),
   });
 

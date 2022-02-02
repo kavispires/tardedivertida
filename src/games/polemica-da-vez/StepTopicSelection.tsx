@@ -4,7 +4,7 @@ import { Button, Input } from 'antd';
 // Hooks
 import { useLanguage } from '../../hooks';
 // Components
-import { Instruction, Title, translate, Translate } from '../../components';
+import { Instruction, Title, Translate } from '../../components';
 
 type StepTopicSelectionProps = {
   currentTopics: Topic[];
@@ -17,7 +17,7 @@ export function StepTopicSelection({
   currentCustomTopic,
   onSubmitTopic,
 }: StepTopicSelectionProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
 
   const [customTopic, setCustomTopic] = useState('');
 
@@ -52,7 +52,7 @@ export function StepTopicSelection({
           <div className="p-topic">{currentCustomTopic.text}</div>
           <Input
             className="p-custom-topic__input"
-            placeholder={translate('Escreva aqui', 'Write here', language)}
+            placeholder={translate('Escreva aqui', 'Write here')}
             onChange={(e) => setCustomTopic(e.target.value)}
             onPressEnter={onSubmitCustomTopic}
           />

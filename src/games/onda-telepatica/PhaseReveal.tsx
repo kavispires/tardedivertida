@@ -13,14 +13,13 @@ import {
   Step,
   StepSwitcher,
   Title,
-  translate,
   Translate,
 } from '../../components';
 import { StepReveal } from './StepReveal';
 
 function PhaseReveal({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const [step, setStep] = useState(0);
   const [psychic] = useWhichPlayerIsThe('psychicId', state, players);
 
@@ -35,7 +34,7 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           type="timer"
-          title={translate('Resultado', 'Results', language)}
+          title={translate('Resultado', 'Results')}
           onClose={() => setStep(1)}
           currentRound={state?.round?.current}
           duration={7}

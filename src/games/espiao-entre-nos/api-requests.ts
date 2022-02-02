@@ -1,21 +1,19 @@
 import { ADMIN_API, ESPIAO_ENTRE_NOS_API } from '../../adapters';
-import { translate } from '../../components';
 import { useAPICall, useLanguage } from '../../hooks';
 import { ADMIN_ACTIONS } from '../../utils/constants';
 
 export function useOnGuessLocationAPIRequest(setStep: GenericFunction) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
 
   const request = useAPICall({
     apiFunction: ESPIAO_ENTRE_NOS_API.submitAction,
     actionName: 'submit-guess',
     onBeforeCall: () => setStep(3),
     onError: () => setStep(0),
-    successMessage: translate('Chute submetido com sucesso', 'Guess submitted successfully', language),
+    successMessage: translate('Chute submetido com sucesso', 'Guess submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar seu chute',
-      'Oops, the application found an error while trying to submit your guess',
-      language
+      'Oops, the application found an error while trying to submit your guess'
     ),
   });
 
@@ -28,22 +26,17 @@ export function useOnGuessLocationAPIRequest(setStep: GenericFunction) {
 }
 
 export function useOnMakeAccusationAPIRequest(setStep: GenericFunction) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
 
   const request = useAPICall({
     apiFunction: ESPIAO_ENTRE_NOS_API.submitAction,
     actionName: 'make-accusation',
     onBeforeCall: () => setStep(3),
     onError: () => setStep(0),
-    successMessage: translate(
-      'Acusação submetida com sucesso',
-      'Accusation submitted successfully',
-      language
-    ),
+    successMessage: translate('Acusação submetida com sucesso', 'Accusation submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar sua acusação',
-      'Oops, the application found an error while trying to submit your acusação',
-      language
+      'Oops, the application found an error while trying to submit your acusação'
     ),
   });
 
@@ -56,17 +49,16 @@ export function useOnMakeAccusationAPIRequest(setStep: GenericFunction) {
 }
 
 export function useOnSubmitVoteAPIRequest(setStep: GenericFunction) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
 
   const request = useAPICall({
     apiFunction: ESPIAO_ENTRE_NOS_API.submitAction,
     actionName: 'submit-vote',
     onError: () => setStep(1),
-    successMessage: translate('Voto submetido com sucesso', 'Vote submitted successfully', language),
+    successMessage: translate('Voto submetido com sucesso', 'Vote submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar seu voto',
-      'Oops, the application found an error while trying to submit your vote',
-      language
+      'Oops, the application found an error while trying to submit your vote'
     ),
   });
 
@@ -79,7 +71,7 @@ export function useOnSubmitVoteAPIRequest(setStep: GenericFunction) {
 }
 
 export function useOnSendLastQuestionerAPIRequest(setStep: GenericFunction) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
 
   const request = useAPICall({
     apiFunction: ESPIAO_ENTRE_NOS_API.submitAction,
@@ -87,13 +79,11 @@ export function useOnSendLastQuestionerAPIRequest(setStep: GenericFunction) {
     onError: () => setStep(1),
     successMessage: translate(
       'Último perguntador submetido com sucesso',
-      'Last questioner submitted successfully',
-      language
+      'Last questioner submitted successfully'
     ),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar o último perguntador',
-      'Oops, the application found an error while trying to submit the last questioner',
-      language
+      'Oops, the application found an error while trying to submit the last questioner'
     ),
   });
 
@@ -106,17 +96,16 @@ export function useOnSendLastQuestionerAPIRequest(setStep: GenericFunction) {
 }
 
 export function useOnProgressGameAPIRequest(setStep: GenericFunction) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
 
   const request = useAPICall({
     apiFunction: ADMIN_API.performAdminAction,
     actionName: 'progress-game',
     onError: () => setStep(1),
-    successMessage: translate('Jogo progredido com sucesso', 'Game progressed successfully', language),
+    successMessage: translate('Jogo progredido com sucesso', 'Game progressed successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar continuar',
-      'Oops, the application found an error while trying to continue',
-      language
+      'Oops, the application found an error while trying to continue'
     ),
   });
 

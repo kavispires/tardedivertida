@@ -13,13 +13,12 @@ import {
   PhaseContainer,
   RoundAnnouncement,
   StepSwitcher,
-  translate,
   Translate,
 } from '../../components';
 import StepTestimonial from './StepTestimonial';
 
 function PhaseCompositeSketch({ players, state, info }: PhaseProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const isUserReady = useIsUserReady(players, state);
   const [step, setStep] = useState(0);
   const [witness, isUserTheWitness] = useWhichPlayerIsThe('witnessId', state, players);
@@ -61,7 +60,7 @@ function PhaseCompositeSketch({ players, state, info }: PhaseProps) {
         {/* Step 1 */}
         <PhaseAnnouncement
           type="monster"
-          title={translate('Memorize! Descreva! Desenhe!', 'Memorize! Describe! Sketch!', language)}
+          title={translate('Memorize! Descreva! Desenhe!', 'Memorize! Describe! Sketch!')}
           onClose={() => setStep(2)}
           currentRound={state?.round?.current}
           duration={20}

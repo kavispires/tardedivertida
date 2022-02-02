@@ -7,7 +7,7 @@ import { useAPICall, useGlobalState, useLanguage, useLoading } from '../../hooks
 import { ADMIN_API } from '../../adapters';
 import { ADMIN_ACTIONS } from '../../utils/constants';
 // Components
-import { translate, Translate } from '..';
+import { Translate } from '..';
 
 function ButtonLabel({ round, lastRound }: { round?: GameRound; lastRound: boolean }) {
   return lastRound || !round || round.current === round.total ? (
@@ -30,18 +30,17 @@ export function AdminNextRoundButton({
   round,
   lastRound = false,
 }: AdminNextRoundButtonProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const [isLoading] = useLoading();
   const [isAdmin] = useGlobalState('isAdmin');
 
   const onGoToNextPhase = useAPICall({
     apiFunction: ADMIN_API.performAdminAction,
     actionName: 'force-next-phase',
-    successMessage: translate('Funcionou, próxima fase!', 'It worked, next phase!', language),
+    successMessage: translate('Funcionou, próxima fase!', 'It worked, next phase!'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar ir para a próxima fase',
-      'The application found an error while trying to go to the next phase',
-      language
+      'The application found an error while trying to go to the next phase'
     ),
   });
 

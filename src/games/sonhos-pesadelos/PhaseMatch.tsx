@@ -5,19 +5,12 @@ import { useOnSubmitVotesAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from '../../utils/phases';
 // Components
-import {
-  Instruction,
-  PhaseAnnouncement,
-  PhaseContainer,
-  StepSwitcher,
-  Translate,
-  translate,
-} from '../../components';
+import { Instruction, PhaseAnnouncement, PhaseContainer, StepSwitcher, Translate } from '../../components';
 import { DreamBoard } from './DreamBoard';
 import { StepMatchDreams } from './StepMatchDreams';
 
 function PhaseMatch({ state, players, info }: PhaseProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
   const [step, setStep] = useState(0);
@@ -35,7 +28,7 @@ function PhaseMatch({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           type="evaluate"
-          title={translate('Selecione os pares', 'Match the dreams', language)}
+          title={translate('Selecione os pares', 'Match the dreams')}
           onClose={() => setStep(1)}
           currentRound={state?.round?.current}
         >

@@ -5,7 +5,7 @@ import { PlusCircleFilled } from '@ant-design/icons';
 // Hooks
 import { useLanguage, useLoading } from '../../hooks';
 // Components
-import { AdminButton, AdminOnlyContainer, Avatar, translate } from '../../components';
+import { AdminButton, AdminOnlyContainer, Avatar } from '../../components';
 
 type AdminAnswerControlProps = {
   allAnswers: MAnswer[];
@@ -24,7 +24,7 @@ export function AdminAnswerControl({
   onAddAnswer,
   players,
 }: AdminAnswerControlProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const [isLoading] = useLoading();
 
   const filteredAnswers = useMemo(
@@ -44,7 +44,7 @@ export function AdminAnswerControl({
     <AdminOnlyContainer className="m-admin">
       <AdminButton
         action={() => onNextAnswer({ allowedList: Object.keys(allowedList) })}
-        label={translate('Confirmar e ir para próxima resposta', 'Confirm and go to next answer', language)}
+        label={translate('Confirmar e ir para próxima resposta', 'Confirm and go to next answer')}
       />
 
       <ul className="m-admin__players-answers">

@@ -11,7 +11,6 @@ import {
   RoundAnnouncement,
   StepSwitcher,
   Translate,
-  translate,
 } from '../../components';
 import { WelcomeMessage } from './RulesBlobs';
 import { StepItemsSelection } from './StepItemsSelection';
@@ -23,7 +22,7 @@ import { useOnSubmitCrimeAPIRequest } from './_api-requests';
 
 function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const user = useUser(players);
   const [step, setStep] = useState(0);
   const [selections, setSelections] = useState<SubmitCrimePayload>({});
@@ -54,7 +53,7 @@ function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
         {/* Step 1 */}
         <PhaseAnnouncement
           type="event"
-          title={translate('A Convenção', 'The Convention', language)}
+          title={translate('A Convenção', 'The Convention')}
           onClose={increaseStep}
           currentRound={state?.round?.current}
           duration={30}
@@ -74,7 +73,7 @@ function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
         {/* Step 3 */}
         <PhaseAnnouncement
           type="skull"
-          title={translate('Causa da Morte', 'Cause of Death', language)}
+          title={translate('Causa da Morte', 'Cause of Death')}
           onClose={increaseStep}
           duration={5}
         >
@@ -94,7 +93,7 @@ function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
         {/* Step 5 */}
         <PhaseAnnouncement
           type="crime-scene"
-          title={translate('Evidências?', 'Evidence?', language)}
+          title={translate('Evidências?', 'Evidence?')}
           onClose={increaseStep}
           duration={5}
         >
@@ -117,7 +116,7 @@ function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
         {/* Step 7 */}
         <PhaseAnnouncement
           type="location"
-          title={translate('Local do Crime', 'Crime Location', language)}
+          title={translate('Local do Crime', 'Crime Location')}
           onClose={increaseStep}
           duration={5}
         >
@@ -138,7 +137,7 @@ function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
         {/* Step 9 */}
         <PhaseAnnouncement
           type="crime-tape"
-          title={translate('Revisão', 'Review', language)}
+          title={translate('Revisão', 'Review')}
           onClose={increaseStep}
           duration={5}
         ></PhaseAnnouncement>

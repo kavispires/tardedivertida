@@ -4,11 +4,11 @@ import { useIsUserReady, useLanguage } from '../../hooks';
 // Resources & Utils
 import { PHASES } from '../../utils/phases';
 // Components
-import { PhaseAnnouncement, PhaseContainer, StepSwitcher, translate } from '../../components';
+import { PhaseAnnouncement, PhaseContainer, StepSwitcher } from '../../components';
 
 function PhaseResolution({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const [step, setStep] = useState(0);
 
   return (
@@ -22,7 +22,7 @@ function PhaseResolution({ players, state, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           type="sleep"
-          title={translate('Tema dos Sonhos', 'The Dream Theme', language)}
+          title={translate('Tema dos Sonhos', 'The Dream Theme')}
           onClose={() => setStep(2)}
           currentRound={state?.round?.current}
         >

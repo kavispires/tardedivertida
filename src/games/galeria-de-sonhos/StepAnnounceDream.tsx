@@ -14,7 +14,6 @@ import {
   Step,
   TimedButton,
   Title,
-  translate,
   Translate,
 } from '../../components';
 import { CardPlayRules } from './RulesBlobs';
@@ -35,7 +34,7 @@ export function StepAnnounceDream({
   setStep,
   players,
 }: StepAnnounceDreamProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const cardWidth = useCardWidth(5, 8, 140, 150);
 
   console.log({ activePlayer });

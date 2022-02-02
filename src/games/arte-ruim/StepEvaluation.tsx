@@ -14,7 +14,6 @@ import {
   Step,
   Title,
   ReadyPlayersBar,
-  translate,
   Translate,
   PopoverRule,
 } from '../../components';
@@ -40,7 +39,7 @@ type StepEvaluationProps = {
 
 export function StepEvaluation({ drawings, cards, players, onSubmitVoting }: StepEvaluationProps) {
   const [isLoading] = useLoading();
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const user = useUser(players);
   const canvasWidth = useCardWidth(Math.min(Object.keys(players).length, 6), 16, 150, 500);
   const [canvasSize, setCanvasSize] = useGlobalState('canvasSize');
@@ -150,8 +149,8 @@ export function StepEvaluation({ drawings, cards, players, onSubmitVoting }: Ste
 
       <ReadyPlayersBar
         players={players}
-        readyText={translate('Já acabei, anda logo!', "I'm done, hurry up!", language)}
-        readyTextPlural={translate('Já acabamos, anda logo!', "We're done, hurry up!", language)}
+        readyText={translate('Já acabei, anda logo!', "I'm done, hurry up!")}
+        readyTextPlural={translate('Já acabamos, anda logo!', "We're done, hurry up!")}
         showNames
       />
     </Step>

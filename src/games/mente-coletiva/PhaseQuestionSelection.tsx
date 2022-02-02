@@ -13,7 +13,6 @@ import {
   Step,
   StepSwitcher,
   Translate,
-  translate,
   ViewIf,
 } from '../../components/shared';
 import { QuestionSelectionWaiting } from './QuestionSelectionWaiting';
@@ -21,7 +20,7 @@ import { QuestionSelection } from './QuestionSelection';
 import { GamePremiseRules } from './RulesBlobs';
 
 function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const [activePlayer, isUserTheActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
   const [step, setStep] = useState(0);
 
@@ -48,7 +47,7 @@ function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
         {/* Step 1 */}
         <PhaseAnnouncement
           type="sheep"
-          title={translate('O Pasto Superlotado', 'A Overcrowded Pasture', language)}
+          title={translate('O Pasto Superlotado', 'A Overcrowded Pasture')}
           onClose={() => setStep(2)}
           currentRound={state?.round?.current}
           duration={state?.round?.current < 3 ? 40 : 10}

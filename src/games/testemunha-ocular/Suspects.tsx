@@ -4,7 +4,7 @@ import { Popconfirm } from 'antd';
 // Hooks
 import { useDimensions, useLanguage, useLoading } from '../../hooks';
 // Components
-import { ImageCard, translate } from '../../components';
+import { ImageCard } from '../../components';
 
 type SuspectsProps = {
   suspects: Suspect[];
@@ -14,7 +14,7 @@ type SuspectsProps = {
 };
 
 export function Suspects({ suspects, perpetrator, onCardClick, eliminatedSuspects = [] }: SuspectsProps) {
-  const language = useLanguage();
+  const { language, translate } = useLanguage();
   const [isLoading] = useLoading();
   const [width] = useDimensions();
 
@@ -32,12 +32,11 @@ export function Suspects({ suspects, perpetrator, onCardClick, eliminatedSuspect
               key={suspect.id}
               title={translate(
                 `Tem certeza que quer liberar ${name}?`,
-                `Are you sure you want to release ${name}?`,
-                language
+                `Are you sure you want to release ${name}?`
               )}
               onConfirm={() => onCardClick(suspect.id)}
-              okText={translate('Sim', 'Yes', language)}
-              cancelText={translate('Não', 'No', language)}
+              okText={translate('Sim', 'Yes')}
+              cancelText={translate('Não', 'No')}
             >
               <button
                 className="t-suspects-table__suspect t-suspects-table__suspect-button"

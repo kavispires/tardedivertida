@@ -5,18 +5,11 @@ import { useOnSubmitVoteAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from '../../utils/phases';
 // Components
-import {
-  Instruction,
-  PhaseAnnouncement,
-  PhaseContainer,
-  StepSwitcher,
-  Translate,
-  translate,
-} from '../../components';
+import { Instruction, PhaseAnnouncement, PhaseContainer, StepSwitcher, Translate } from '../../components';
 import { StepVoting } from './StepVoting';
 
 function PhaseAssessment({ state, players, info }: PhaseProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const isUserReady = useIsUserReady(players, state);
   const user = useUser(players);
   const [accuser, isUserTheAccuser] = useWhichPlayerIsThe('accuserId', state, players);
@@ -36,7 +29,7 @@ function PhaseAssessment({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           type="alert"
-          title={translate('Acusação!', 'Accusation!', language)}
+          title={translate('Acusação!', 'Accusation!')}
           onClose={() => setStep(1)}
           currentRound={state?.round?.current}
           buttonText=""

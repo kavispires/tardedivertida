@@ -14,14 +14,13 @@ import {
   Step,
   StepSwitcher,
   Translate,
-  translate,
   ViewIf,
   WaitingRoom,
 } from '../../components';
 import { StepTopicSelection } from './StepTopicSelection';
 
 function PhaseTopicSelection({ state, players, info }: PhaseProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const [activePlayer, isUserTheActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
   const [step, setStep] = useState(0);
 
@@ -43,7 +42,7 @@ function PhaseTopicSelection({ state, players, info }: PhaseProps) {
         {/* Step 1 */}
         <PhaseAnnouncement
           type="trending"
-          title={translate('Qual a polêmica da vez?', "What's trending now?", language)}
+          title={translate('Qual a polêmica da vez?', "What's trending now?")}
           onClose={() => setStep(2)}
           currentRound={state?.round?.current}
           duration={state?.round?.current < 3 ? 30 : undefined}
@@ -90,7 +89,7 @@ function PhaseTopicSelection({ state, players, info }: PhaseProps) {
 
           <ViewIf isVisible={!isUserTheActivePlayer}>
             <WaitingRoom
-              title={translate('Aguarde...', 'Please wait...', language)}
+              title={translate('Aguarde...', 'Please wait...')}
               instruction={
                 <>
                   <AvatarName player={activePlayer} addressUser />{' '}

@@ -4,7 +4,7 @@ import { useTimer } from 'react-timer-hook';
 import { useLanguage } from '../../hooks';
 import { inNSeconds } from '../../utils/helpers';
 // Components
-import { Card, Step, translate } from '../../components';
+import { Card, Step } from '../../components';
 import { DrawingCanvas } from '../../components/canvas';
 import { Panic } from '../../components/icons';
 
@@ -14,7 +14,7 @@ type StepDrawProps = {
 };
 
 export function StepDraw({ secretCard, onSubmitDrawing }: StepDrawProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const [lines, setLines] = useState<any>([]);
   const [isTimesUp, setTimesUp] = useState(false);
 
@@ -34,7 +34,7 @@ export function StepDraw({ secretCard, onSubmitDrawing }: StepDrawProps) {
     <Step>
       <Card
         size="large"
-        header={translate('Desenhe', 'Draw', language)}
+        header={translate('Desenhe', 'Draw')}
         footer={Array(secretCard?.level).fill('•').join('')}
         className="a-draw-step__card"
         color="yellow"

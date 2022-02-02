@@ -1,20 +1,19 @@
 import { MENTE_COLETIVA_API } from '../../adapters';
-import { translate } from '../../components';
+
 import { useAPICall, useLanguage } from '../../hooks';
 
 export function useOnSubmitQuestionAPIRequest(setStep: GenericFunction) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
 
   const request = useAPICall({
     apiFunction: MENTE_COLETIVA_API.submitAction,
     actionName: 'submit-question',
     onBeforeCall: () => setStep(3),
     onError: () => setStep(1),
-    successMessage: translate('Pergunta enviada com sucesso!', 'Question send successfully!', language),
+    successMessage: translate('Pergunta enviada com sucesso!', 'Question send successfully!'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar a pergunta',
-      'Oops, the application failed to submit the question',
-      language
+      'Oops, the application failed to submit the question'
     ),
   });
 
@@ -27,18 +26,17 @@ export function useOnSubmitQuestionAPIRequest(setStep: GenericFunction) {
 }
 
 export function useOnSubmitAnswersAPIRequest(setStep: GenericFunction) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
 
   const request = useAPICall({
     apiFunction: MENTE_COLETIVA_API.submitAction,
     actionName: 'submit-answers',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
-    successMessage: translate('Respostas enviadas com sucesso!', 'Answers send successfully!', language),
+    successMessage: translate('Respostas enviadas com sucesso!', 'Answers send successfully!'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar respostas',
-      'Oops, the application failed to submit answers',
-      language
+      'Oops, the application failed to submit answers'
     ),
   });
 
@@ -51,16 +49,15 @@ export function useOnSubmitAnswersAPIRequest(setStep: GenericFunction) {
 }
 
 export function useOnAddAnswerAPIRequest() {
-  const language = useLanguage();
+  const { translate } = useLanguage();
 
   const request = useAPICall({
     apiFunction: MENTE_COLETIVA_API.submitAction,
     actionName: 'add-answer',
-    successMessage: translate('Resposta adicionada com sucesso!', 'Answer added successfully!', language),
+    successMessage: translate('Resposta adicionada com sucesso!', 'Answer added successfully!'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar adicionar respostar',
-      'Oops, the application failed to add answer',
-      language
+      'Oops, the application failed to add answer'
     ),
   });
 
@@ -73,7 +70,7 @@ export function useOnAddAnswerAPIRequest() {
 }
 
 export function useOnNextAnswersAPIRequest(clearAllowList: GenericFunction) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
 
   const request = useAPICall({
     apiFunction: MENTE_COLETIVA_API.submitAction,
@@ -81,13 +78,11 @@ export function useOnNextAnswersAPIRequest(clearAllowList: GenericFunction) {
     onSuccess: clearAllowList,
     successMessage: translate(
       'Próximas respostas acionadas com sucesso!',
-      'Next answers triggered successfully!',
-      language
+      'Next answers triggered successfully!'
     ),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar avançar',
-      'Oops, the application failed to advance',
-      language
+      'Oops, the application failed to advance'
     ),
   });
 

@@ -11,7 +11,6 @@ import {
   Step,
   StepSwitcher,
   Translate,
-  translate,
   Title,
   RankingBoard,
   AdminNextRoundButton,
@@ -19,7 +18,7 @@ import {
 import { StepResolution } from './StepResolution';
 
 function PhaseReact({ state, players, info }: PhaseProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const [step, setStep] = useState(0);
 
   return (
@@ -28,7 +27,7 @@ function PhaseReact({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           type="review"
-          title={translate('Qual a polêmica da vez?', "What's trending now?", language)}
+          title={translate('Qual a polêmica da vez?', "What's trending now?")}
           onClose={() => setStep(1)}
           currentRound={state?.round?.current}
         >

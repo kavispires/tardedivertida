@@ -12,7 +12,6 @@ import {
   PhaseContainer,
   StepSwitcher,
   Translate,
-  translate,
 } from '../../components';
 import { CardPlayRules } from './RulesBlobs';
 import { StepPlayDream } from './StepPlayDream';
@@ -20,7 +19,7 @@ import { StepAnnounceDream } from './StepAnnounceDream';
 
 function PhaseCardPlay({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const user = useUser(players);
   const [step, setStep] = useState(0);
   const [activePlayer, isActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
@@ -41,7 +40,7 @@ function PhaseCardPlay({ players, state, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           type="door-sign"
-          title={translate('Hora do Bingo dos Sonhos!', 'Time for the Dream Bingo!', language)}
+          title={translate('Hora do Bingo dos Sonhos!', 'Time for the Dream Bingo!')}
           onClose={() => setStep(playerInTheDark.id ? 1 : 2)}
           duration={state.round.current < 3 ? 20 : 5}
         >

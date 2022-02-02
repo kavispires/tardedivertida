@@ -10,7 +10,6 @@ import {
   ImageCardHand as Hand,
   Instruction,
   Title,
-  translate,
   Translate,
 } from '../../components';
 
@@ -20,7 +19,7 @@ type SecretClueWriteProps = {
 };
 
 function SecretClueWrite({ user, onSubmitClue }: SecretClueWriteProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const [isLoading] = useLoading();
   const [clue, setClue] = useState('');
 
@@ -66,7 +65,7 @@ function SecretClueWrite({ user, onSubmitClue }: SecretClueWriteProps) {
       <ButtonContainer className="d-input-container">
         <Input
           className="uppercase-input"
-          placeholder={translate('Escreva sua pista aqui', 'Write your clue here', language)}
+          placeholder={translate('Escreva sua pista aqui', 'Write your clue here')}
           onChange={(e) => setClue(e.target.value)}
           onKeyPress={onEnterInput}
         />

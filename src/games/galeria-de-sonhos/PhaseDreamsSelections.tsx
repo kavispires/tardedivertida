@@ -5,13 +5,13 @@ import { useOnSubmitCardsAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from '../../utils/phases';
 // Components
-import { PhaseAnnouncement, PhaseContainer, StepSwitcher, translate } from '../../components';
+import { PhaseAnnouncement, PhaseContainer, StepSwitcher } from '../../components';
 import { DreamSelectionRules } from './RulesBlobs';
 import { StepDreamsSelection } from './StepDreamsSelection';
 
 function PhaseDreamsSelections({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const [step, setStep] = useState(0);
 
   const onSubmitCards = useOnSubmitCardsAPIRequest(setStep);
@@ -26,7 +26,7 @@ function PhaseDreamsSelections({ players, state, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           type="dream"
-          title={translate('Visite sonhos!', 'Visit dreams!', language)}
+          title={translate('Visite sonhos!', 'Visit dreams!')}
           onClose={() => setStep(1)}
           currentRound={state?.round?.current}
         >

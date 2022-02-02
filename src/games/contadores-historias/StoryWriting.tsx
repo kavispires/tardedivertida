@@ -10,7 +10,6 @@ import {
   ImageCard,
   ImageCardHand as Hand,
   Title,
-  translate,
   Translate,
 } from '../../components';
 import { BookPages } from './BookPages';
@@ -21,7 +20,7 @@ type StoryWritingProps = {
 };
 
 export function StoryWriting({ user, onSubmitStory }: StoryWritingProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const [isLoading] = useLoading();
   const [story, setStory] = useState('');
   const [cardId, setCardId] = useState('');
@@ -71,7 +70,7 @@ export function StoryWriting({ user, onSubmitStory }: StoryWritingProps) {
                 <li>
                   <Input
                     className="c-story-writing-input"
-                    placeholder={translate('Escreva aqui', 'Write your clue here', language)}
+                    placeholder={translate('Escreva aqui', 'Write your clue here')}
                     onChange={(e) => setStory(e.target.value)}
                     onPressEnter={onButtonClick}
                   />

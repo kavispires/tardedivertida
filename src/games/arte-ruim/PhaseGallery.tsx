@@ -15,7 +15,6 @@ import {
   Step,
   Title,
   PhaseAnnouncement,
-  translate,
   Translate,
   RoundsLeftInstruction,
   PopoverRule,
@@ -24,7 +23,7 @@ import { GalleryWindow } from './GalleryWindow';
 import { GalleryRules, ScoringRules } from './TextBlobs';
 
 function PhaseGallery({ players, state, info }: PhaseProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const [activeIndex, setActiveIndex] = useState(0);
   const [step, setStep] = useState(0);
   const [isFirstGalleryRunThrough, setIsFirstGalleryRunThrough] = useState(true);
@@ -49,7 +48,7 @@ function PhaseGallery({ players, state, info }: PhaseProps) {
         {/*Step 0 */}
         <PhaseAnnouncement
           type="picture"
-          title={translate('Galeria de Arte', 'Art Gallery', language)}
+          title={translate('Galeria de Arte', 'Art Gallery')}
           onClose={() => setStep(1)}
           currentRound={state?.round?.current}
           unskippable

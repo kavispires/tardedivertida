@@ -3,7 +3,6 @@ import { Input } from 'antd';
 // Hooks
 import { useLanguage } from '../../hooks';
 // Components
-import { translate } from '../../components';
 
 type SuggestionEaselProps = {
   id: string;
@@ -13,7 +12,7 @@ type SuggestionEaselProps = {
 };
 
 function SuggestionEasel({ id, onChangeInput, onPressEnter, value }: SuggestionEaselProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -28,7 +27,7 @@ function SuggestionEasel({ id, onChangeInput, onPressEnter, value }: SuggestionE
       <foreignObject x="32.6" y="13.9" width="185" height="300">
         <div>
           <Input
-            placeholder={translate('Escreva dica aqui', 'Write here', language)}
+            placeholder={translate('Escreva dica aqui', 'Write here')}
             key={id}
             id={id}
             value={value}

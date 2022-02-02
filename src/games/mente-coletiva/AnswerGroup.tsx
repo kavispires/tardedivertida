@@ -4,7 +4,7 @@ import { LockFilled, QuestionCircleFilled } from '@ant-design/icons';
 // Hooks
 import { useGlobalState, useLanguage } from '../../hooks';
 // Components
-import { Instruction, Title, translate, Translate } from '../../components/shared';
+import { Instruction, Title, Translate } from '../../components/shared';
 import { Question } from './Question';
 import { SheepAvatar } from '../../components/avatars';
 import { Card } from '../../components/cards/Card';
@@ -24,7 +24,7 @@ export function AnswerGroup({
   allowUserAnswer,
   remainingGroupsCount,
 }: AnswerGroupProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const [isAdmin] = useGlobalState('isAdmin');
 
   return (
@@ -32,7 +32,7 @@ export function AnswerGroup({
       <Title level={3}>
         <Translate pt="Comparar Respostas" en="Compare Answers" />
         <Card
-          header={translate('Pergunta', 'Question', language)}
+          header={translate('Pergunta', 'Question')}
           color={['yellow', 'orange', 'green', 'blue', 'purple'][remainingGroupsCount % 5]}
           className="m-question-card"
           footer={Array(remainingGroupsCount).fill('•').join('')}

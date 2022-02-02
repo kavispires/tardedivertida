@@ -1,5 +1,5 @@
 import { RETRATO_FALADO_API } from '../../adapters';
-import { translate } from '../../components';
+
 import { useAPICall, useLanguage } from '../../hooks';
 
 export function useOnSubmitOrientationAPIRequest(setStep: GenericFunction) {
@@ -18,7 +18,7 @@ export function useOnSubmitOrientationAPIRequest(setStep: GenericFunction) {
 }
 
 export function useOnSubmitSketchAPIRequest(setStep: GenericFunction) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
 
   const request = useAPICall({
     apiFunction: RETRATO_FALADO_API.submitAction,
@@ -27,13 +27,11 @@ export function useOnSubmitSketchAPIRequest(setStep: GenericFunction) {
     onError: () => setStep(1),
     successMessage: translate(
       'Acabou o tempo! Desenho enviado com sucesso',
-      "Time's up! Sketch submitted successfully",
-      language
+      "Time's up! Sketch submitted successfully"
     ),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar o desenho',
-      'Oops, the application failed to send your sketch',
-      language
+      'Oops, the application failed to send your sketch'
     ),
   });
 
@@ -46,18 +44,17 @@ export function useOnSubmitSketchAPIRequest(setStep: GenericFunction) {
 }
 
 export function useOnSubmitVoteAPIRequest(setStep: GenericFunction) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
 
   const request = useAPICall({
     apiFunction: RETRATO_FALADO_API.submitAction,
     actionName: 'submit-vote',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
-    successMessage: translate('Voto enviado com sucesso', 'Vote submitted successfully', language),
+    successMessage: translate('Voto enviado com sucesso', 'Vote submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar seu voto',
-      'Oops, the application failed to send your vote',
-      language
+      'Oops, the application failed to send your vote'
     ),
   });
 

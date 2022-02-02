@@ -13,7 +13,6 @@ import {
   RoundAnnouncement,
   StepSwitcher,
   Translate,
-  translate,
   ViewSwitch,
   WaitingRoom,
 } from '../../components';
@@ -22,7 +21,7 @@ import { GeneralRules, WordSelectionRules } from './RulesBlobs';
 
 function PhaseWordSelection({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const [step, setStep] = useState(0);
   const [scout, isUserTheScout] = useWhichPlayerIsThe('scoutId', state, players);
 
@@ -49,7 +48,7 @@ function PhaseWordSelection({ players, state, info }: PhaseProps) {
         {/* Step 1 */}
         <PhaseAnnouncement
           type="sleep"
-          title={translate('Tema dos Sonhos', 'The Dream Theme', language)}
+          title={translate('Tema dos Sonhos', 'The Dream Theme')}
           onClose={() => setStep(2)}
           currentRound={state?.round?.current}
         >

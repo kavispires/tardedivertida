@@ -1,10 +1,8 @@
 // Hooks
 import { useLanguage } from '../../hooks';
-// Components
-import { translate } from '../../components';
 
 export function Notes() {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   return (
     <textarea
       name=""
@@ -14,8 +12,7 @@ export function Notes() {
       className="e-notes"
       placeholder={translate(
         'Escreva anotações aqui se quiser, mas cuidado com o teclado fazendo muito barulho',
-        "Write your notes here, but don't make too much noise with those key strokes",
-        language
+        "Write your notes here, but don't make too much noise with those key strokes"
       )}
     />
   );

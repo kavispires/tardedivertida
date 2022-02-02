@@ -12,13 +12,12 @@ import {
   PhaseContainer,
   StepSwitcher,
   Translate,
-  translate,
 } from '../../components';
 import { StepSelectQuestion } from './StepSelectQuestion';
 import { StepQuestionWaiting } from './StepQuestionWaiting';
 
 function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const [isLoading] = useLoading();
   const [step, setStep] = useState(0);
   const [witness, isUserTheWitness] = useWhichPlayerIsThe('witnessId', state, players);
@@ -38,7 +37,7 @@ function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           type="investigation"
-          title={translate('Seleção da Pergunta', 'Question Selection', language)}
+          title={translate('Seleção da Pergunta', 'Question Selection')}
           onClose={() => setStep(1)}
           currentRound={state?.round?.current}
         >

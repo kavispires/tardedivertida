@@ -3,7 +3,6 @@ import { Alert } from 'antd';
 // Hooks
 import { useLanguage } from '../../hooks';
 // Components
-import { translate } from '..';
 
 type PageErrorProps = {
   message?: string;
@@ -11,16 +10,16 @@ type PageErrorProps = {
 };
 
 export function PageError({ message, description }: PageErrorProps): JSX.Element {
-  const language = useLanguage();
+  const { translate } = useLanguage();
 
   return (
     <div className="container container--center">
       <Alert
-        message={translate('Algo errado não está certo', 'Something wrong is not right', language, message)}
+        message={translate('Algo errado não está certo', 'Something wrong is not right', message)}
         description={translate(
           'Não era pra você estar vendo esta mensagem.',
           'You were not supposed to see this message.',
-          language,
+
           description
         )}
         type="error"

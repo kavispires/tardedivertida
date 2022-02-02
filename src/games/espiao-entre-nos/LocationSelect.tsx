@@ -5,7 +5,7 @@ import { LoadingOutlined } from '@ant-design/icons';
 // Hooks
 import { useLanguage, useLoading } from '../../hooks';
 // Components
-import { Translate, translate } from '../../components';
+import { Translate } from '../../components';
 
 type LocationSelectProps = {
   locations: ELocation[];
@@ -13,7 +13,7 @@ type LocationSelectProps = {
 };
 
 export function LocationSelect({ locations, onSend }: LocationSelectProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const [isLoading] = useLoading();
   const [selectedLocationId, setSelectedLocationId] = useState<string>('');
 
@@ -25,10 +25,7 @@ export function LocationSelect({ locations, onSend }: LocationSelectProps) {
 
   return (
     <Space className="e-select-container e-select-container--locations">
-      <Select
-        onChange={onSelectLocation}
-        placeholder={translate('Chute um local', 'Guess location', language)}
-      >
+      <Select onChange={onSelectLocation} placeholder={translate('Chute um local', 'Guess location')}>
         {locations.map((location) => (
           <Select.Option key={`select-${location.id}`} value={location.id}>
             {location.name}
@@ -38,8 +35,7 @@ export function LocationSelect({ locations, onSend }: LocationSelectProps) {
       <Popconfirm
         title={translate(
           `Você só pode chutar uma vez durante o jogo! Tem certeza que quer chutar ${selectedLocationName}?`,
-          `You may guess the location only once! Are you sure you want to guess ${selectedLocationName}?`,
-          language
+          `You may guess the location only once! Are you sure you want to guess ${selectedLocationName}?`
         )}
         onConfirm={() => onSend({ locationId: selectedLocationId })}
         okText="Sim"

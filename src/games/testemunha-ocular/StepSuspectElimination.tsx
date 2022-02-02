@@ -11,7 +11,6 @@ import {
   Instruction,
   Step,
   Title,
-  translate,
   Translate,
 } from '../../components';
 import { Suspects } from './Suspects';
@@ -43,7 +42,7 @@ export function StepSuspectElimination({
   question,
   testimony,
 }: StepSuspectEliminationProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
 
   const onEliminateSuspect = (suspectId: string) => onEliminate({ suspectId, pass: false });
   const onPass = () => onEliminate({ suspectId: '', pass: true });
@@ -70,7 +69,7 @@ export function StepSuspectElimination({
         <br />
         <ButtonContainer>
           <Card
-            header={translate('O suspeito...', 'The perpetrator...', language)}
+            header={translate('O suspeito...', 'The perpetrator...')}
             color={testimony ? 'green' : 'red'}
             className="t-card"
           >

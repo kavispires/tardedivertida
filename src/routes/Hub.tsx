@@ -18,7 +18,7 @@ const GAME_LIST: {
 
 function Hub() {
   const navigate = useNavigate();
-  const language = useLanguage();
+  const { language } = useLanguage();
   const [getLocalStorage] = useLocalStorage();
   const [, setLanguage] = useGlobalState('language');
   const [, setIsAuthenticated] = useGlobalState('isAuthenticated');
@@ -83,7 +83,7 @@ function Hub() {
       <Divider />
       <Space size={[8, 16]} wrap align="start">
         {availableGames.map((game: GameInfo, index: number) => (
-          <GameCard key={`${game.gameCode}-${index}`} game={game} language={language} />
+          <GameCard key={`${game.gameCode}-${index}`} game={game} />
         ))}
       </Space>
       <Divider />
@@ -92,7 +92,7 @@ function Hub() {
       </Typography.Title>
       <Space size={[8, 16]} wrap align="start">
         {comingSoonGames.map((game: GameInfo, index: number) => (
-          <GameCard key={`${game.gameCode}-${index}`} game={game} language={language} />
+          <GameCard key={`${game.gameCode}-${index}`} game={game} />
         ))}
       </Space>
     </Layout.Content>

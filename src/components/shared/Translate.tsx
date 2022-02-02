@@ -22,7 +22,7 @@ export function Translate({
   en: LanguageEntry;
   custom?: LanguageEntry;
 }): any {
-  const language = useLanguage();
+  const { language } = useLanguage();
 
   if (!language) {
     const errorMessage = 'Could not reach the useLanguage hook';
@@ -43,34 +43,4 @@ export function Translate({
   }
 
   return language === 'pt' ? <span>{pt}</span> : <span>{en}</span>;
-}
-
-/**
- * Delegate between two strings depending on the active language
- * @param pt
- * @param en
- * @param language
- * @param [custom] text that will override anything else
- * @returns
- */
-export function translate(pt: string, en: string, language: Language, custom?: string): string {
-  if (!language) {
-    const errorMessage = 'Could not reach the language global state';
-    console.error(errorMessage);
-
-    return '?';
-  }
-
-  if (custom) {
-    return custom;
-  }
-
-  if (!pt || !en) {
-    const errorMessage = 'PT or EN translation was not provided';
-    console.error(errorMessage);
-
-    return '?';
-  }
-
-  return language === 'pt' ? pt : en;
 }

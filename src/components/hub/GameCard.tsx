@@ -1,12 +1,11 @@
 // Design Resources
 import { Space, Card, Image, Divider, Tag, Badge } from 'antd';
 // Hooks
-import { useDimensions } from '../../hooks';
+import { useDimensions, useLanguage } from '../../hooks';
 // Utils
 import { PUBLIC_URL, TAG_DICT } from '../../utils/constants';
 // Components
 import { CreateGameModal, RulesModal } from '../modals';
-import { translate } from '../shared';
 
 const getVersionColor = (version: string) => {
   if (version.endsWith('alpha')) {
@@ -27,11 +26,11 @@ const getVersionColor = (version: string) => {
 
 type GameCardProps = {
   game: GameInfo;
-  language: Language;
 };
 
-export function GameCard({ game, language }: GameCardProps) {
+export function GameCard({ game }: GameCardProps) {
   const [width] = useDimensions();
+  const { language, translate } = useLanguage();
 
   return (
     <Badge.Ribbon text={game.version} color={getVersionColor(game.version)}>
@@ -52,15 +51,13 @@ export function GameCard({ game, language }: GameCardProps) {
         <Card.Meta
           description={translate(
             `Para ${game.playerCount.min}-${game.playerCount.max} jogadores`,
-            `For ${game.playerCount.min}-${game.playerCount.max} players`,
-            language
+            `For ${game.playerCount.min}-${game.playerCount.max} players`
           )}
         />
         <Card.Meta
           description={translate(
             `Recomendado jogar com ${game.playerCount.recommended}`,
-            `Recommended with ${game.playerCount.recommended}`,
-            language
+            `Recommended with ${game.playerCount.recommended}`
           )}
         />
         <Divider />

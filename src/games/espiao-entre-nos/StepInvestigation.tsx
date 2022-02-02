@@ -2,7 +2,7 @@
 import { notification } from 'antd';
 import { useEffect, useState } from 'react';
 // Components
-import { ButtonContainer, Instruction, Step, Title, translate, Translate } from '../../components';
+import { ButtonContainer, Instruction, Step, Title, Translate } from '../../components';
 import { useLanguage } from '../../hooks';
 import { EspiaoEntreNosCard as Card } from './Card';
 import { LocationSelect } from './LocationSelect';
@@ -37,13 +37,13 @@ export function StepInvestigation({
   outcome,
   setStep,
 }: StepInvestigationProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const [isAccusationSelectVisible, setAccusationSelectVisible] = useState(true);
 
   useEffect(() => {
     if (outcome?.type === 'VOTE_FAIL') {
       notification.info({
-        message: translate('A votação não foi unânime', 'The voting was not unanimous', language),
+        message: translate('A votação não foi unânime', 'The voting was not unanimous'),
         description: outcome.votedYes ? `Votaram sim: ${outcome.votedYes}` : 'Ninguém votou sim',
         duration: 10,
       });

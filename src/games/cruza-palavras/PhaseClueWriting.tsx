@@ -5,19 +5,13 @@ import { useOnSubmitClueAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from '../../utils/phases';
 // Components
-import {
-  PhaseAnnouncement,
-  PhaseContainer,
-  RoundAnnouncement,
-  StepSwitcher,
-  translate,
-} from '../../components';
+import { PhaseAnnouncement, PhaseContainer, RoundAnnouncement, StepSwitcher } from '../../components';
 import StepClueWriting from './StepClueWriting';
 import { WritingCluesRule } from './RulesBlobs';
 
 function PhaseClueWriting({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const user = useUser(players);
   const [step, setStep] = useState(0);
 
@@ -32,7 +26,7 @@ function PhaseClueWriting({ players, state, info }: PhaseProps) {
         {/* Step 1 */}
         <PhaseAnnouncement
           type="grid"
-          title={translate('Escreva!', 'Write!', language)}
+          title={translate('Escreva!', 'Write!')}
           onClose={() => setStep(2)}
           currentRound={state?.round?.current}
         >

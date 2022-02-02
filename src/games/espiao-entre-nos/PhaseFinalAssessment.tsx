@@ -5,18 +5,11 @@ import { useOnMakeAccusationAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from '../../utils/phases';
 // Components
-import {
-  Instruction,
-  PhaseAnnouncement,
-  PhaseContainer,
-  StepSwitcher,
-  Translate,
-  translate,
-} from '../../components';
+import { Instruction, PhaseAnnouncement, PhaseContainer, StepSwitcher, Translate } from '../../components';
 import { StepFinalAssessment } from './StepFinalAssessment';
 
 function PhaseFinalAssessment({ state, players, info }: PhaseProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const isUserReady = useIsUserReady(players, state);
   const user = useUser(players);
   const [step, setStep] = useState(0);
@@ -38,7 +31,7 @@ function PhaseFinalAssessment({ state, players, info }: PhaseProps) {
         {state.finalAssessment.playerOrderIndex === 0 ? (
           <PhaseAnnouncement
             type="people-assessment"
-            title={translate('O tempo acabou!', "Time's up!", language)}
+            title={translate('O tempo acabou!', "Time's up!")}
             onClose={() => setStep(1)}
             currentRound={state?.round?.current}
             buttonText=""
@@ -48,7 +41,7 @@ function PhaseFinalAssessment({ state, players, info }: PhaseProps) {
         ) : (
           <PhaseAnnouncement
             type="opinions"
-            title={translate('A avaliação final continua', 'The final assessment continues', language)}
+            title={translate('A avaliação final continua', 'The final assessment continues')}
             onClose={() => setStep(1)}
             currentRound={state?.round?.current}
             buttonText=""

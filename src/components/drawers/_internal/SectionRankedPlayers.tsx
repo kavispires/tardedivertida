@@ -14,7 +14,7 @@ type SectionRankedPlayersProps = {
 };
 
 export function SectionRankedPlayers({ players }: SectionRankedPlayersProps) {
-  const language = useLanguage();
+  const { language } = useLanguage();
 
   const rankedPlayers = useMemo(
     () => orderBy(Object.values(players), ['score', 'name'], ['desc', 'asc']),

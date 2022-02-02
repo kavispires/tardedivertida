@@ -13,13 +13,12 @@ import {
   RoundAnnouncement,
   StepSwitcher,
   Translate,
-  translate,
 } from '../../components';
 import { StepTellDream } from './StepTellDream';
 import { DreamBoard } from './DreamBoard';
 
 function PhaseTellDream({ state, players, info }: PhaseProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
   const [step, setStep] = useState(0);
@@ -47,7 +46,7 @@ function PhaseTellDream({ state, players, info }: PhaseProps) {
         {/* Step 1 */}
         <PhaseAnnouncement
           type="dream"
-          title={translate('Conte-nos sobre seu sonho', 'Tell us about your dream...', language)}
+          title={translate('Conte-nos sobre seu sonho', 'Tell us about your dream...')}
           onClose={() => setStep(2)}
           currentRound={state?.round?.current}
         >

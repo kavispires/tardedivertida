@@ -12,7 +12,6 @@ import {
   PopoverRule,
   Step,
   Title,
-  translate,
   Translate,
 } from '../../components';
 import { CardPlayRules } from './RulesBlobs';
@@ -35,31 +34,30 @@ export function StepPlayDream({
   activePlayer,
   isActivePlayer,
 }: StepDreamsSelectionProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
 
   useEffect(() => {
     if (isActivePlayer) {
       message.info(
         messageContent(
-          translate('Você controla!', 'You control!', language),
+          translate('Você controla!', 'You control!'),
           translate(
             'Selecione a carta-sonho que você acha que pelo menos um jogador vai dar match!',
-            'Select the dream card you think will match at least one player',
-            language
+            'Select the dream card you think will match at least one player'
           ),
           activePlayer.id,
           3
         )
       );
     }
-  }, [isActivePlayer, activePlayer.id, language]);
+  }, [isActivePlayer, activePlayer.id, translate]);
 
   return (
     <Step fullWidth>
       <Title level={2}>
         <Translate pt="Bingo dos Sonhos" en="Dream Bingo" />
       </Title>
-      <Card header={translate('Tema', 'Theme', language)} randomColor>
+      <Card header={translate('Tema', 'Theme')} randomColor>
         {word.text}
       </Card>
 

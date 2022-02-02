@@ -7,15 +7,7 @@ import gameOverTitle from '../../images/game-over-title.svg';
 import { useLanguage } from '../../hooks';
 import { AVATARS } from '../../utils/constants';
 // Components
-import {
-  Avatar,
-  PhaseAnnouncement,
-  PhaseContainer,
-  RateGameWidget,
-  StepSwitcher,
-  translate,
-  Translate,
-} from '..';
+import { Avatar, PhaseAnnouncement, PhaseContainer, RateGameWidget, StepSwitcher, Translate } from '..';
 import { PHASES } from '../../utils/phases';
 
 const GameOverText = () => <Translate pt="Jogo concluído" en="The game is over" />;
@@ -27,7 +19,7 @@ type GameOverProps = {
 };
 
 export function GameOver({ state, children, className }: GameOverProps) {
-  const language = useLanguage();
+  const { language } = useLanguage();
 
   return (
     <div className={className}>
@@ -159,7 +151,7 @@ export function GameOverWrapper({
   children = <></>,
 }: GameOverWrapperProps) {
   const [step, setStep] = useState(0);
-  const language = useLanguage();
+  const { translate } = useLanguage();
 
   return (
     <PhaseContainer
@@ -172,12 +164,7 @@ export function GameOverWrapper({
         {/*Step 0 */}
         <PhaseAnnouncement
           type={announcementIcon}
-          title={translate(
-            'E o jogo chegou ao fim...',
-            'And the game is over...',
-            language,
-            announcementTitle
-          )}
+          title={translate('E o jogo chegou ao fim...', 'And the game is over...', announcementTitle)}
           onClose={() => setStep(1)}
           currentRound={state?.round?.current}
           duration={announcementDuration}

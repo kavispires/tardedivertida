@@ -1,10 +1,39 @@
 import { useGlobalState } from './index';
 
 /**
- * Returns current selected language
+ * Translate text
  * @returns
  */
-export function useLanguage(): Language {
+export function useLanguage(): {
+  language: Language;
+  translate: (pt: string, en: string, custom?: string) => string;
+} {
   const [language] = useGlobalState('language');
-  return language === 'pt' ? 'pt' : 'en';
+
+  function translate(pt: string, en: string, custom?: string): string {
+    if (!language) {
+      const errorMessage = 'Could not reach the language global state';
+      console.error(errorMessage);
+
+      return '?';
+    }
+
+    if (custom) {
+      return custom;
+    }
+
+    if (!pt || !en) {
+      const errorMessage = 'PT or EN translation was not provided';
+      console.error(errorMessage);
+
+      return '?';
+    }
+
+    return language === 'pt' ? pt : en;
+  }
+
+  return {
+    language: language === 'pt' ? 'pt' : 'en',
+    translate,
+  };
 }

@@ -14,7 +14,7 @@ import localStorage from '../../../services/localStorage';
 import { AVATARS, PUBLIC_URL, RANDOM_NAMES } from '../../../utils/constants';
 import { getRandomItem, isDevEnv } from '../../../utils/helpers';
 // Components
-import { Translate, translate } from '../..';
+import { Translate } from '../..';
 
 const randomName = isDevEnv ? getRandomItem(RANDOM_NAMES) : undefined;
 
@@ -26,7 +26,7 @@ type JoinProps = {
 };
 
 function Join({ players, info }: JoinProps) {
-  const language = useLanguage();
+  const { language, translate } = useLanguage();
   const [isLoading, setLoader] = useLoading();
   const [gameId] = useGlobalState('gameId');
   const [gameName] = useGlobalState('gameName');
@@ -109,8 +109,7 @@ function Join({ players, info }: JoinProps) {
       notification.error({
         message: translate(
           'Vixi, o aplicativo encontrou um erro ao tentar te adicionar como jogador',
-          'Oops, the application failed when trying to add you as a player',
-          language
+          'Oops, the application failed when trying to add you as a player'
         ),
         description: JSON.stringify(e.message),
         placement: 'bottomLeft',
@@ -162,8 +161,7 @@ function Join({ players, info }: JoinProps) {
             type="success"
             message={translate(
               'Você está de volta! Lembramos seu nome e avatar!',
-              "You're back! We saved your name and avatar!",
-              language
+              "You're back! We saved your name and avatar!"
             )}
           />
         ) : (
@@ -172,8 +170,7 @@ function Join({ players, info }: JoinProps) {
             type="warning"
             message={translate(
               'Se alguém selecionar um mesmo avatar, um avatar aleatório será atribuído à você.',
-              'If you selected the same avatar of someone else, a new random avatar will be given to you.',
-              language
+              'If you selected the same avatar of someone else, a new random avatar will be given to you.'
             )}
           />
         )}
@@ -184,8 +181,7 @@ function Join({ players, info }: JoinProps) {
             type="error"
             message={translate(
               'Se você está retornando a um jogo, NÃO mude seu apelido! Se o apelido for modificado, você será adicionado como um novo jogador e tudo pode bugar.',
-              'If you are returning to a game, DO NOT change your nickname else the game might crash.',
-              language
+              'If you are returning to a game, DO NOT change your nickname else the game might crash.'
             )}
           />
         )}
@@ -193,11 +189,11 @@ function Join({ players, info }: JoinProps) {
         <Input
           className="lobby-join__name-input"
           onChange={(e) => setTempUsername(e.target.value.trim())}
-          placeholder={translate('Digite seu nome', 'Insert your name', language)}
+          placeholder={translate('Digite seu nome', 'Insert your name')}
           value={tempUsername || randomName}
           maxLength={10}
           suffix={
-            <Tooltip title={translate('Máximo de 10 caracteres', '10 characters max', language)}>
+            <Tooltip title={translate('Máximo de 10 caracteres', '10 characters max')}>
               <InfoCircleOutlined />
             </Tooltip>
           }
@@ -210,7 +206,7 @@ function Join({ players, info }: JoinProps) {
           onClick={onAddPlayer}
           loading={isLoading}
         >
-          {translate('Entrar no jogo', 'Enter', language)}
+          {translate('Entrar no jogo', 'Enter')}
         </Button>
       </div>
     </div>

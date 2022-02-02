@@ -11,7 +11,6 @@ import {
   PhaseContainer,
   Step,
   StepSwitcher,
-  translate,
   Translate,
   ViewIf,
 } from '../../components';
@@ -20,7 +19,7 @@ import { StepPsychicGuess } from './StepPsychicGuess';
 
 function PhaseGuess({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const [step, setStep] = useState(0);
   const [, isUserThePsychic] = useWhichPlayerIsThe('psychicId', state, players);
 
@@ -37,7 +36,7 @@ function PhaseGuess({ players, state, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           type="sound-wave"
-          title={translate('Adivinhação', 'Guessing', language)}
+          title={translate('Adivinhação', 'Guessing')}
           onClose={() => setStep(1)}
           currentRound={state?.round?.current}
           duration={7}

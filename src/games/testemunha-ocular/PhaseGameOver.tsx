@@ -1,11 +1,11 @@
 // Hooks
 import { useLanguage } from '../../hooks';
 // Components
-import { GameOverWrapper, ImageCard, Instruction, Translate, translate } from '../../components';
+import { GameOverWrapper, ImageCard, Instruction, Translate } from '../../components';
 import { AnnouncementContent } from './TextBlobs';
 
 function PhaseGameOver({ state, info }: PhaseProps) {
-  const language = useLanguage();
+  const { language, translate } = useLanguage();
 
   const didUserWin = state.outcome === 'WIN';
 
@@ -17,8 +17,8 @@ function PhaseGameOver({ state, info }: PhaseProps) {
       announcementDuration={15}
       announcementTitle={
         didUserWin
-          ? translate('Capturado!', 'Arrested!', language)
-          : translate('O criminoso escapou!', 'They got away!', language)
+          ? translate('Capturado!', 'Arrested!')
+          : translate('O criminoso escapou!', 'They got away!')
       }
       announcementContent={<AnnouncementContent didUserWin={didUserWin} />}
     >

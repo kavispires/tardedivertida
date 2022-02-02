@@ -12,7 +12,6 @@ import {
   Step,
   StepSwitcher,
   Translate,
-  translate,
   ViewIf,
 } from '../../components';
 import StepSuggestion from './StepSuggestion';
@@ -21,7 +20,7 @@ import { GuesserWaitingRoom } from './GuesserWaitingRoom';
 
 function PhaseSuggest({ state, players, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const [step, setStep] = useState(0);
   const [guesser, isUserTheGuesser] = useWhichPlayerIsThe('guesserId', state, players);
 
@@ -30,11 +29,10 @@ function PhaseSuggest({ state, players, info }: PhaseProps) {
     actionName: 'submit-suggestion',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
-    successMessage: translate('Dicas enviada com sucesso!', 'Suggestion sent successfully!', language),
+    successMessage: translate('Dicas enviada com sucesso!', 'Suggestion sent successfully!'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar suas dicas',
-      'Oops, the application failed to send your votes',
-      language
+      'Oops, the application failed to send your votes'
     ),
   });
 
@@ -56,7 +54,7 @@ function PhaseSuggest({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           type="writing"
-          title={translate('Escreva uma dica!', 'Write a Clue!', language)}
+          title={translate('Escreva uma dica!', 'Write a Clue!')}
           onClose={() => setStep(1)}
           currentRound={state?.round?.current}
         >
