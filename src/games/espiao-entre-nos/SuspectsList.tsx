@@ -1,36 +1,51 @@
-import { memo } from 'react';
-import PropTypes from 'prop-types';
 import { orderBy } from 'lodash';
 import clsx from 'clsx';
 // Design Resources
 import { Button, Tooltip } from 'antd';
 import { AimOutlined, ClearOutlined, IssuesCloseOutlined } from '@ant-design/icons';
 // Hooks
-import { useGlobalState } from '../../hooks';
+import { useGlobalState, useLanguage } from '../../hooks';
+// Components
+import { translate, Translate } from '../../components';
 
-function SuspectsList({ players }) {
-  const [cache, setCache] = useGlobalState('espiaoEntreNosCache');
-  const sortedPlayers = orderBy(Object.values(players), ['name'], ['asc']);
+type SuspectsListProps = {
+  players: GamePlayers;
+};
 
-  const onCross = (item) => {
+export function SuspectsList({ players }: SuspectsListProps) {
+  const language = useLanguage();
+  const [cache, setCache] = useGlobalState('cache');
+  const sortedPlayers: Player[] = orderBy(Object.values(players), ['name'], ['asc']);
+
+  const onCross = (playerId: string) => {
     setCache((s) => {
       const newState = { ...s };
-      if (newState[item]) {
-        delete newState[item];
+      if (newState[playerId]) {
+        delete newState[playerId];
       } else {
-        newState[item] = true;
+        newState[playerId] = true;
       }
       return newState;
     });
   };
 
-  const onClearCrossed = () => setCache({});
+  const onClearCrossed = () => {
+    setCache((s) => {
+      const newState = { ...s };
+      Object.keys(newState).forEach((key) => {
+        if (key.startsWith('_')) {
+          delete newState[key];
+        }
+      });
+      return newState;
+    });
+  };
 
   return (
-    <div className={clsx('e-list')}>
+    <div className="e-list">
       <h3 className="e-list__title">
-        <AimOutlined /> Suspeitos
-        <Tooltip title="Deselecionar todos">
+        <AimOutlined /> <Translate pt="Suspeitos" en="Suspects" />
+        <Tooltip title={translate('Desmarcar todos', 'Unselect all', language)}>
           <Button
             shape="circle"
             ghost
@@ -53,7 +68,7 @@ function SuspectsList({ players }) {
             {player.name}{' '}
             {player.usedAccusation && (
               <Tooltip title="Já usou acusação">
-                <IssuesCloseOutlined size="small" />
+                <IssuesCloseOutlined size={12} />
               </Tooltip>
             )}
           </li>
@@ -62,15 +77,3 @@ function SuspectsList({ players }) {
     </div>
   );
 }
-
-SuspectsList.propTypes = {
-  players: PropTypes.objectOf(
-    PropTypes.shape({
-      id: PropTypes.string,
-      name: PropTypes.string,
-      usedAccusation: PropTypes.bool,
-    })
-  ),
-};
-
-export default memo(SuspectsList);

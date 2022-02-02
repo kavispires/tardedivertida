@@ -27,10 +27,7 @@ export const DETETIVES_IMAGINATIVOS_API = {
 };
 
 export const ESPIAO_ENTRE_NOS_API = {
-  handleAdminAction: httpsCallable(functions, 'espiaoEntreNosHandleAdminAction'),
-  makeAccusation: httpsCallable(functions, 'espiaoEntreNosMakeAccusation'),
-  guessLocation: httpsCallable(functions, 'espiaoEntreNosGuessLocation'),
-  submitVoting: httpsCallable(functions, 'espiaoEntreNosSubmitVoting'),
+  submitAction: httpsCallable(functions, 'espiaoEntreNosSubmitAction'),
 };
 
 export const GALERIA_DE_SONHOS_API = {

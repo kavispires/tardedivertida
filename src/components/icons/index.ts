@@ -87,6 +87,7 @@ export * from './Star';
 export * from './StarOutline';
 export * from './Success';
 export * from './TheEnd';
+export * from './Thief';
 export * from './Timer';
 export * from './Trending';
 export * from './Trophy';
