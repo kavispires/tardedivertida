@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 // Hooks
-import { useGlobalState, useLoading, useWhichPlayerIsThe, useAPICall, useLanguage } from '../../hooks';
+import { useGlobalState, useLoading, useWhichPlayerIsThe, useLanguage } from '../../hooks';
 // Resources & Utils
-import { UE_SO_ISSO_API } from '../../adapters';
 import { PHASES } from '../../utils/phases';
 // Components
 import { PhaseAnnouncement, PhaseContainer, StepSwitcher } from '../../components';
 import StepGuessing from './StepGuessing';
 import StepGuessVerification from './StepGuessVerification';
 import { GuessingRules } from './RulesBlobs';
+import { useOnSendGuessAPIRequest, useOnSubmitOutcomeAPIRequest } from './api-requests';
 
 function PhaseGuess({ state, players, info }: PhaseProps) {
   const [isLoading] = useLoading();
@@ -18,41 +18,9 @@ function PhaseGuess({ state, players, info }: PhaseProps) {
   const [guesser, isUserTheGuesser] = useWhichPlayerIsThe('guesserId', state, players);
   const [controller, isUserTheController] = useWhichPlayerIsThe('controllerId', state, players);
 
-  const onSubmitOutcomeAPIRequest = useAPICall({
-    apiFunction: UE_SO_ISSO_API.submitAction,
-    actionName: 'outcome',
-    onBeforeCall: () => setStep(3),
-    onError: () => setStep(0),
-    successMessage: translate('Resultado enviado com sucesso!', 'Outcome sent successfully!'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar o resultado',
-      'Oops, the application failed to submit the outcome'
-    ),
-  });
+  const onSubmitOutcome = useOnSubmitOutcomeAPIRequest(setStep);
 
-  const onSendGuessAPIRequest = useAPICall({
-    apiFunction: UE_SO_ISSO_API.submitAction,
-    actionName: 'validate-suggestions',
-    successMessage: translate('Chute enviado!', 'Guess sent!'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar atualizar',
-      'Oops, the application failed to update'
-    ),
-  });
-
-  const onSubmitOutcome = (payload: PlainObject) => {
-    onSubmitOutcomeAPIRequest({
-      action: 'SUBMIT_OUTCOME',
-      ...payload,
-    });
-  };
-
-  const onSendGuess = (payload: PlainObject) => {
-    onSendGuessAPIRequest({
-      action: 'SEND_GUESS',
-      ...payload,
-    });
-  };
+  const onSendGuess = useOnSendGuessAPIRequest();
 
   // If guess is present in the state, move to the next step
   useEffect(() => {
