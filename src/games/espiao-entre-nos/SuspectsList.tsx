@@ -6,14 +6,14 @@ import { AimOutlined, ClearOutlined, IssuesCloseOutlined } from '@ant-design/ico
 // Hooks
 import { useGlobalState, useLanguage } from '../../hooks';
 // Components
-import { translate, Translate } from '../../components';
+import { Translate } from '../../components';
 
 type SuspectsListProps = {
   players: GamePlayers;
 };
 
 export function SuspectsList({ players }: SuspectsListProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const [cache, setCache] = useGlobalState('cache');
   const sortedPlayers: Player[] = orderBy(Object.values(players), ['name'], ['asc']);
 
@@ -45,7 +45,7 @@ export function SuspectsList({ players }: SuspectsListProps) {
     <div className="e-list">
       <h3 className="e-list__title">
         <AimOutlined /> <Translate pt="Suspeitos" en="Suspects" />
-        <Tooltip title={translate('Desmarcar todos', 'Unselect all', language)}>
+        <Tooltip title={translate('Desmarcar todos', 'Unselect all')}>
           <Button
             shape="circle"
             ghost

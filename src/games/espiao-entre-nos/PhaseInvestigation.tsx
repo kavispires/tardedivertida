@@ -11,19 +11,12 @@ import {
 // Resources & Utils
 import { PHASES } from '../../utils/phases';
 // Components
-import {
-  Instruction,
-  PhaseAnnouncement,
-  PhaseContainer,
-  StepSwitcher,
-  Translate,
-  translate,
-} from '../../components';
+import { Instruction, PhaseAnnouncement, PhaseContainer, StepSwitcher, Translate } from '../../components';
 import { StepInvestigation } from './StepInvestigation';
 import { FinalAssessmentPreparationModal } from './FinalAssessmentPreparationModal';
 
 function PhaseInvestigation({ state, players, info }: PhaseProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const isUserReady = useIsUserReady(players, state);
   const user = useUser(players);
   const [, isUserTheSpy] = useWhichPlayerIsThe('currentSpyId', state, players);
@@ -37,11 +30,10 @@ function PhaseInvestigation({ state, players, info }: PhaseProps) {
   useEffect(() => {
     if (state.timeRemaining > 590000 && startingPlayer.name) {
       notification.info({
-        message: translate('10 minutos!', '10 minutes!', language),
+        message: translate('10 minutos!', '10 minutes!'),
         description: translate(
           `${startingPlayer.name} começa perguntando!`,
-          `${startingPlayer.name} starts questioning!`,
-          language
+          `${startingPlayer.name} starts questioning!`
         ),
         duration: 10,
       });
@@ -60,7 +52,7 @@ function PhaseInvestigation({ state, players, info }: PhaseProps) {
         {state?.outcome?.type !== 'VOTE_FAIL' ? (
           <PhaseAnnouncement
             type="loupe"
-            title={translate('Investigação', 'Investigation', language)}
+            title={translate('Investigação', 'Investigation')}
             onClose={() => setStep(1)}
             currentRound={state?.round?.current}
             buttonText=""
@@ -70,7 +62,7 @@ function PhaseInvestigation({ state, players, info }: PhaseProps) {
         ) : (
           <PhaseAnnouncement
             type="opinions"
-            title={translate('A investigação continua', 'The investigation continues', language)}
+            title={translate('A investigação continua', 'The investigation continues')}
             onClose={() => setStep(1)}
             currentRound={state?.round?.current}
             buttonText=""
@@ -100,7 +92,7 @@ function PhaseInvestigation({ state, players, info }: PhaseProps) {
         {/* Step 2 */}
         <PhaseAnnouncement
           type="timer"
-          title={translate('O tempo acabou!!!', "Time's up!!!", language)}
+          title={translate('O tempo acabou!!!', "Time's up!!!")}
           unskippable
           duration={300}
           onClose={() => {}}

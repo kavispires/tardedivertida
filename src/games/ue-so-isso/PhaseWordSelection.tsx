@@ -14,7 +14,6 @@ import {
   Step,
   StepSwitcher,
   Translate,
-  translate,
   ViewIf,
 } from '../../components';
 import StepWordSelection from './StepWordSelection';
@@ -50,7 +49,7 @@ function RoundAnnouncementText({ guesser, groupScore, round }: RoundAnnouncement
 
 function PhaseWordSelection({ state, players, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const [guesser, isUserTheGuesser] = useWhichPlayerIsThe('guesserId', state, players);
   const [step, setStep] = useState(0);
 
@@ -59,11 +58,10 @@ function PhaseWordSelection({ state, players, info }: PhaseProps) {
     actionName: 'submit-votes',
     onBeforeCall: () => setStep(3),
     onError: () => setStep(1),
-    successMessage: translate('Votos enviados com sucesso!', 'Votes send successfully!', language),
+    successMessage: translate('Votos enviados com sucesso!', 'Votes send successfully!'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar seus votos',
-      'Oops, the application failed to send your votes',
-      language
+      'Oops, the application failed to send your votes'
     ),
   });
 
@@ -90,7 +88,7 @@ function PhaseWordSelection({ state, players, info }: PhaseProps) {
         {/* Step 1 */}
         <PhaseAnnouncement
           type="opinions"
-          title={translate('Seleção da Palavra Secreta', 'Secret Word Selection', language)}
+          title={translate('Seleção da Palavra Secreta', 'Secret Word Selection')}
           onClose={() => setStep(2)}
           currentRound={state?.round?.current}
         >

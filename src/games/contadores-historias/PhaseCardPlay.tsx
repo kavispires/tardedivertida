@@ -12,12 +12,11 @@ import {
   Step,
   StepSwitcher,
   Translate,
-  translate,
 } from '../../components';
 import { StepPlayCard } from './StepPlayCard';
 
 function PhaseCardPlay({ state, players, info }: PhaseProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const user = useUser(players);
   const [storyteller, isUserTheStoryTeller] = useWhichPlayerIsThe('storytellerId', state, players);
   const [step, setStep] = useState(0);
@@ -30,7 +29,7 @@ function PhaseCardPlay({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           type="image-cards"
-          title={translate('Selecione uma carta', 'Play a card...', language)}
+          title={translate('Selecione uma carta', 'Play a card...')}
           onClose={() => setStep(1)}
           currentRound={state?.round?.current}
         >

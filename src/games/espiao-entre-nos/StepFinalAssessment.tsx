@@ -1,4 +1,4 @@
-import { Instruction, Step, Title, translate, Translate } from '../../components';
+import { Instruction, Step, Title, Translate } from '../../components';
 import { FinalAssessmentInstruction } from './RulesBlobs';
 import { EspiaoEntreNosCard as Card } from './Card';
 import { LocationsList } from './LocationsList';
@@ -28,12 +28,12 @@ export function StepFinalAssessment({
   onMakeAccusation,
   outcome,
 }: StepFinalAssessmentProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
 
   useEffect(() => {
     if (outcome?.type === 'VOTE_FAIL') {
       notification.info({
-        message: translate('A votação não foi unânime', 'The voting was not unanimous', language),
+        message: translate('A votação não foi unânime', 'The voting was not unanimous'),
         description: outcome.votedYes ? `Votaram sim: ${outcome.votedYes}` : 'Ninguém votou sim',
         duration: 10,
       });

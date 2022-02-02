@@ -1,7 +1,7 @@
 // Design Resources
 import { Modal } from 'antd';
 // Components
-import { ButtonContainer, translate, Translate } from '../../components';
+import { ButtonContainer, Translate } from '../../components';
 import { useLanguage } from '../../hooks';
 import { PlayerSelect } from './PlayerSelect';
 import { FinalAssessmentInstruction } from './RulesBlobs';
@@ -19,12 +19,12 @@ export function FinalAssessmentModal({
   players,
   finalAssessment,
 }: FinalAssessmentModalProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
 
   return (
     <Modal
       visible={isModalVisible}
-      title={translate('Quem você vai acusar?', 'Who are you gonna accuse?', language)}
+      title={translate('Quem você vai acusar?', 'Who are you gonna accuse?')}
       footer={null}
       closable={false}
       className="e-modal"

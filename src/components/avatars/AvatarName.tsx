@@ -5,7 +5,6 @@ import { AVATARS } from '../../utils/constants';
 import { useGlobalState, useLanguage } from '../../hooks';
 // Components
 import { Avatar } from './Avatar';
-import { translate } from '../shared';
 
 type AvatarNameProps = {
   player: GamePlayer;
@@ -25,12 +24,12 @@ export const AvatarName = ({
   addressUser = false,
 }: AvatarNameProps) => {
   const [userId] = useGlobalState('userId');
-  const language = useLanguage();
+  const { language, translate } = useLanguage();
 
   const baseClass = 'avatar-name';
 
   const isUser = player.id === userId;
-  const addressedUser = translate('VOCÊ', 'YOU', language);
+  const addressedUser = translate('VOCÊ', 'YOU');
 
   return (
     <span className={clsx(baseClass, uppercase && `${baseClass}--uppercase`, className)}>

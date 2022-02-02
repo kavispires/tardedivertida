@@ -12,12 +12,11 @@ import {
   RoundAnnouncement,
   StepSwitcher,
   Translate,
-  translate,
 } from '../../components';
 import { StepAssignment } from './StepAssignment';
 
 function PhaseAssignment({ state, players, info }: PhaseProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const isUserReady = useIsUserReady(players, state);
   const user = useUser(players);
   const [, isUserTheSpy] = useWhichPlayerIsThe('currentSpyId', state, players);
@@ -46,7 +45,7 @@ function PhaseAssignment({ state, players, info }: PhaseProps) {
         {/* Step 1 */}
         <PhaseAnnouncement
           type="spy-newspaper"
-          title={translate('Prólogo', 'Prologue', language)}
+          title={translate('Prólogo', 'Prologue')}
           onClose={() => setStep(2)}
           currentRound={state?.round?.current}
           buttonText=""
@@ -81,7 +80,7 @@ function PhaseAssignment({ state, players, info }: PhaseProps) {
         {/* Step 3 */}
         <PhaseAnnouncement
           type="secret"
-          title={translate('Você tem uma missão', 'You have one mission', language)}
+          title={translate('Você tem uma missão', 'You have one mission')}
           onClose={() => setStep(4)}
           currentRound={state?.round?.current}
           buttonText=""
@@ -114,7 +113,7 @@ function PhaseAssignment({ state, players, info }: PhaseProps) {
         {/* Step 5 */}
         <PhaseAnnouncement
           type="passport"
-          title={translate('Mais detalhes', 'More details', language)}
+          title={translate('Mais detalhes', 'More details')}
           onClose={() => setStep(6)}
           currentRound={state?.round?.current}
           buttonText=""

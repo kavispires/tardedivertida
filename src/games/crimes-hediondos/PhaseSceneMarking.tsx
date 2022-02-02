@@ -11,14 +11,13 @@ import {
   RoundAnnouncement,
   StepSwitcher,
   Translate,
-  translate,
 } from '../../components';
 import { StepNewScene } from './StepNewScene';
 import { useOnSubmitMarkAPIRequest } from './_api-requests';
 
 function PhaseSceneMarking({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
-  const language = useLanguage();
+  const { language, translate } = useLanguage();
   const user = useUser(players);
   const [step, setStep] = useState(0);
 
@@ -35,7 +34,7 @@ function PhaseSceneMarking({ players, state, info }: PhaseProps) {
         {/* Step 1 */}
         <PhaseAnnouncement
           type="loupe"
-          title={translate('Nova pista', 'New clue', language)}
+          title={translate('Nova pista', 'New clue')}
           onClose={increaseStep}
           currentRound={state?.round?.current}
         >

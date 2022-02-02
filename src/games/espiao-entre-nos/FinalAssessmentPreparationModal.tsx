@@ -4,7 +4,7 @@ import { UserOutlined } from '@ant-design/icons';
 // Hooks and API
 import { useGlobalState, useLanguage } from '../../hooks';
 // Components
-import { ButtonContainer, Translate, translate } from '../../components';
+import { ButtonContainer, Translate } from '../../components';
 
 type FinalAssessmentModalProps = {
   // isModalVisible: boolean;
@@ -18,12 +18,12 @@ export function FinalAssessmentPreparationModal({
   players,
 }: FinalAssessmentModalProps) {
   const [isAdmin] = useGlobalState('isAdmin');
-  const language = useLanguage();
+  const { translate } = useLanguage();
 
   return (
     <Modal
       visible={isAdmin}
-      title={translate('O Tempo Acabou!', "Time's up", language)}
+      title={translate('O Tempo Acabou!', "Time's up")}
       footer={null}
       closable={false}
       className="e-modal"

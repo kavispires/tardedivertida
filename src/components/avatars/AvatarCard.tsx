@@ -5,7 +5,6 @@ import { AVATARS } from '../../utils/constants';
 import { useGlobalState, useLanguage } from '../../hooks';
 // Components
 import { Avatar } from './Avatar';
-import { translate } from '../shared';
 
 type AvatarCardProps = {
   player: GamePlayer;
@@ -27,12 +26,12 @@ export const AvatarCard = ({
   addressUser = false,
 }: AvatarCardProps) => {
   const [userId] = useGlobalState('userId');
-  const language = useLanguage();
+  const { language, translate } = useLanguage();
 
   const baseClass = 'avatar-card';
 
   const isUser = player.id === userId;
-  const addressedUser = translate('Você', 'You', language);
+  const addressedUser = translate('Você', 'You');
 
   const sizes = getSize(size);
 

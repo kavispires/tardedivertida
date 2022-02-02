@@ -6,17 +6,11 @@ import { useOnProgressGameAPIRequest } from './api-requests';
 import { PHASES } from '../../utils/phases';
 import { determineView } from './helpers';
 // Components
-import {
-  PhaseAnnouncement,
-  PhaseContainer,
-  PhaseTimerReset,
-  StepSwitcher,
-  translate,
-} from '../../components';
+import { PhaseAnnouncement, PhaseContainer, PhaseTimerReset, StepSwitcher } from '../../components';
 import { StepResolution } from './StepResolution';
 
 function PhaseResolution({ state, players, info }: PhaseProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const isUserReady = useIsUserReady(players, state);
   const [currentSpy, isUserTheSpy] = useWhichPlayerIsThe('currentSpyId', state, players);
   const [target] = useWhichPlayerIsThe('targetId', state, players);
@@ -41,11 +35,7 @@ function PhaseResolution({ state, players, info }: PhaseProps) {
         {resolutionStatus.didSpyGuess ? (
           <PhaseAnnouncement
             type="map-location"
-            title={translate(
-              'O espião tentou adivinhar o local',
-              'The spy tried to guess the location',
-              language
-            )}
+            title={translate('O espião tentou adivinhar o local', 'The spy tried to guess the location')}
             onClose={() => setStep(1)}
             currentRound={state?.round?.current}
             buttonText=""
@@ -55,7 +45,7 @@ function PhaseResolution({ state, players, info }: PhaseProps) {
         ) : (
           <PhaseAnnouncement
             type="thief"
-            title={translate('A votação foi unanime!', 'The vote was unanimous!', language)}
+            title={translate('A votação foi unanime!', 'The vote was unanimous!')}
             onClose={() => setStep(1)}
             currentRound={state?.round?.current}
             buttonText=""
@@ -70,7 +60,7 @@ function PhaseResolution({ state, players, info }: PhaseProps) {
         {/* Step 2 */}
         <PhaseAnnouncement
           type={resolutionStatus.phaseIcon}
-          title={translate('O fim chegou!', 'The end is here!', language)}
+          title={translate('O fim chegou!', 'The end is here!')}
           onClose={() => setStep(3)}
           currentRound={state?.round?.current}
           buttonText=""

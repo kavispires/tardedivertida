@@ -5,14 +5,14 @@ import { useGlobalState, useLoading, useWhichPlayerIsThe, useAPICall, useLanguag
 import { UE_SO_ISSO_API } from '../../adapters';
 import { PHASES } from '../../utils/phases';
 // Components
-import { PhaseAnnouncement, PhaseContainer, StepSwitcher, translate } from '../../components';
+import { PhaseAnnouncement, PhaseContainer, StepSwitcher } from '../../components';
 import StepGuessing from './StepGuessing';
 import StepGuessVerification from './StepGuessVerification';
 import { GuessingRules } from './RulesBlobs';
 
 function PhaseGuess({ state, players, info }: PhaseProps) {
   const [isLoading] = useLoading();
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const [isAdmin] = useGlobalState('isAdmin');
   const [step, setStep] = useState(0);
   const [guesser, isUserTheGuesser] = useWhichPlayerIsThe('guesserId', state, players);
@@ -23,22 +23,20 @@ function PhaseGuess({ state, players, info }: PhaseProps) {
     actionName: 'outcome',
     onBeforeCall: () => setStep(3),
     onError: () => setStep(0),
-    successMessage: translate('Resultado enviado com sucesso!', 'Outcome sent successfully!', language),
+    successMessage: translate('Resultado enviado com sucesso!', 'Outcome sent successfully!'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar o resultado',
-      'Oops, the application failed to submit the outcome',
-      language
+      'Oops, the application failed to submit the outcome'
     ),
   });
 
   const onSendGuessAPIRequest = useAPICall({
     apiFunction: UE_SO_ISSO_API.submitAction,
     actionName: 'validate-suggestions',
-    successMessage: translate('Chute enviado!', 'Guess sent!', language),
+    successMessage: translate('Chute enviado!', 'Guess sent!'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar atualizar',
-      'Oops, the application failed to update',
-      language
+      'Oops, the application failed to update'
     ),
   });
 
@@ -69,7 +67,7 @@ function PhaseGuess({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           type="guess"
-          title={translate('Adivinhação', 'Guessing', language)}
+          title={translate('Adivinhação', 'Guessing')}
           onClose={() => setStep(1)}
           currentRound={state?.round?.current}
         >

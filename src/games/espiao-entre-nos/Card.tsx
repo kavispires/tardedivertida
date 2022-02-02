@@ -3,7 +3,7 @@ import { QuestionCircleFilled } from '@ant-design/icons';
 // Hooks
 import { useLanguage } from '../../hooks';
 // Components
-import { Card, translate } from '../../components';
+import { Card } from '../../components';
 
 type EspiaoEntreNosCardProps = {
   location: string;
@@ -12,11 +12,11 @@ type EspiaoEntreNosCardProps = {
 };
 
 export const EspiaoEntreNosCard = ({ location, role, header }: EspiaoEntreNosCardProps) => {
-  const language = useLanguage();
+  const { translate } = useLanguage();
 
-  const spyHeader = translate('Local Desconhecido', 'Unknown Location', language);
-  const spyFooter = translate('Você é o espião', 'You are the spy', language);
-  const agentFooter = translate(`Você é um(a) ${role}`, `You are a ${role}`, language);
+  const spyHeader = translate('Local Desconhecido', 'Unknown Location');
+  const spyFooter = translate('Você é o espião', 'You are the spy');
+  const agentFooter = translate(`Você é um(a) ${role}`, `You are a ${role}`);
 
   return (
     <Card

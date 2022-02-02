@@ -39,7 +39,6 @@ export function Crime({
   showAnswers = false,
 }: CrimeProps) {
   const player = players[crime.playerId];
-  const language = useLanguage();
   const [selections, setSelections] = useState<PlainObject>({});
 
   const onSelect = (e: any) => {
@@ -74,7 +73,6 @@ export function Crime({
                 key={`crime-scene-${sceneId}-by-${crime.playerId}`}
                 scene={scene}
                 playerIndex={crime.scenes[sceneId]}
-                language={language}
               />
             );
           })}
@@ -87,7 +85,6 @@ export function Crime({
           itemsList={weapons}
           type={'weapon'}
           onSelect={onSelect}
-          language={language}
           playerId={player.id}
           hideSelector={!Boolean(onUpdateGuesses)}
           itemId={showAnswers ? crime.weaponId : undefined}
@@ -99,7 +96,6 @@ export function Crime({
           itemsList={evidences}
           type={'evidence'}
           onSelect={onSelect}
-          language={language}
           playerId={player.id}
           hideSelector={!Boolean(onUpdateGuesses)}
           itemId={showAnswers ? crime.evidenceId : undefined}
@@ -119,10 +115,10 @@ export function Crime({
 type CrimeSceneProps = {
   scene: SceneTile;
   playerIndex: number;
-  language: Language;
 };
 
-function CrimeScene({ scene, playerIndex, language }: CrimeSceneProps) {
+function CrimeScene({ scene, playerIndex }: CrimeSceneProps) {
+  const { language } = useLanguage();
   return (
     <li className={clsx('h-crime-scene', `h-crime-scene--${scene.type}`)}>
       <div className={clsx('h-crime-scene__label', `h-crime-scene__label--${scene.type}`)}>
@@ -156,7 +152,6 @@ type ItemSelectorProps = {
   itemsList: CrimesHediondosCard[];
   type: 'weapon' | 'evidence';
   onSelect: GenericFunction;
-  language: Language;
   playerId: PlayerId;
   hideSelector?: boolean;
   itemId?: string;
@@ -168,12 +163,12 @@ function ItemSelector({
   user,
   type,
   onSelect,
-  language,
   playerId,
   hideSelector = false,
   itemId,
 }: ItemSelectorProps) {
   const [selectedItem, setSelected] = useState<CrimesHediondosCard>();
+  const { language } = useLanguage();
 
   useEffect(() => {
     if (itemId) {
@@ -195,6 +190,7 @@ function ItemSelector({
       itemId,
     });
   };
+
   return (
     <div className="h-item-selector">
       {!hideSelector && (

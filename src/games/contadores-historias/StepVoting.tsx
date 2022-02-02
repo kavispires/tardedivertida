@@ -13,7 +13,6 @@ import {
   PopoverRule,
   ReadyPlayersBar,
   Title,
-  translate,
   Translate,
 } from '../../components';
 import { VotingRules } from './RulesBlogs';
@@ -28,7 +27,7 @@ type StepVotingProps = {
 };
 
 export function StepVoting({ players, story, user, onSubmitVote, storyteller, table }: StepVotingProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const [isLoading] = useLoading();
   const cardWidth = useCardWidth(Math.max(Object.keys(players).length, 6), 32, 150);
 
@@ -63,7 +62,7 @@ export function StepVoting({ players, story, user, onSubmitVote, storyteller, ta
                   size="small"
                   disabled={isLoading || isUserCard}
                 >
-                  {isUserCard ? translate('Sua', 'Yours', language) : translate('Votar', 'Vote', language)}
+                  {isUserCard ? translate('Sua', 'Yours') : translate('Votar', 'Vote')}
                 </Button>
               )}
               <ImageCard

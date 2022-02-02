@@ -5,14 +5,14 @@ import { ClearOutlined, EnvironmentOutlined } from '@ant-design/icons';
 // Hooks
 import { useGlobalState, useLanguage } from '../../hooks';
 // Components
-import { Translate, translate } from '../../components';
+import { Translate } from '../../components';
 
 type LocationsListProps = {
   locations: ELocation[];
 };
 
 export function LocationsList({ locations }: LocationsListProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const [cache, setCache] = useGlobalState('cache');
 
   const onCross = (locationId: string) => {
@@ -43,7 +43,7 @@ export function LocationsList({ locations }: LocationsListProps) {
     <div className="e-list">
       <h3 className="e-list__title">
         <EnvironmentOutlined /> <Translate pt="Possíveis Locais" en="Possible Locations" />
-        <Tooltip title={translate('Desmarcar todos', 'Unselect all', language)}>
+        <Tooltip title={translate('Desmarcar todos', 'Unselect all')}>
           <Button
             shape="circle"
             ghost

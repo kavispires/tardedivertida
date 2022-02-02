@@ -15,14 +15,13 @@ import {
   Step,
   StepSwitcher,
   Translate,
-  translate,
   ViewIf,
 } from '../../components';
 import { StoryWaiting } from './StoryWaiting';
 import { StoryWriting } from './StoryWriting';
 
 function PhaseStory({ state, players, info }: PhaseProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
   const [storyteller, isUserTheStoryTeller] = useWhichPlayerIsThe('storytellerId', state, players);
@@ -40,7 +39,7 @@ function PhaseStory({ state, players, info }: PhaseProps) {
         {/* Step 1 */}
         <PhaseAnnouncement
           type="fairy-tale"
-          title={translate('Conte-nos uma história', 'Tell us a story...', language)}
+          title={translate('Conte-nos uma história', 'Tell us a story...')}
           onClose={() => setStep(2)}
           currentRound={state?.round?.current}
           buttonText=""

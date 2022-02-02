@@ -13,7 +13,6 @@ import {
   RoundAnnouncement,
   Step,
   StepSwitcher,
-  translate,
   Translate,
   ViewIf,
 } from '../../components';
@@ -23,7 +22,7 @@ import { StepCategorySelection } from './StepCategorySelection';
 
 function PhaseDialClue({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const [step, setStep] = useState(0);
   const [psychic, isUserThePsychic] = useWhichPlayerIsThe('psychicId', state, players);
 
@@ -50,7 +49,7 @@ function PhaseDialClue({ players, state, info }: PhaseProps) {
         {/* Step 1 */}
         <PhaseAnnouncement
           type="turban"
-          title={translate('Concentração', 'Focus', language)}
+          title={translate('Concentração', 'Focus')}
           onClose={() => setStep(2)}
           currentRound={state?.round?.current}
           duration={7}

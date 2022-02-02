@@ -9,7 +9,7 @@ import avatars from '../../../images/avatars.svg';
 // Utils and Resources
 import { PUBLIC_URL } from '../../../utils/constants';
 // Components
-import { AdminOnlyContainer, Translate, translate } from '../..';
+import { AdminOnlyContainer, Translate } from '../..';
 
 type WaitingProps = {
   info: GameInfo;
@@ -17,7 +17,7 @@ type WaitingProps = {
 };
 
 function Waiting({ info, players }: WaitingProps) {
-  const language = useLanguage();
+  const { language, translate } = useLanguage();
   const [isLoading, setLoader] = useLoading();
   const [gameId] = useGlobalState('gameId');
   const [gameName] = useGlobalState('gameName');
@@ -35,19 +35,14 @@ function Waiting({ info, players }: WaitingProps) {
       });
       if (response.data.isLocked) {
         message.success(
-          translate(
-            'Jogo trancado e iniciado com sucesso!',
-            'Game locked and initialized successfully',
-            language
-          )
+          translate('Jogo trancado e iniciado com sucesso!', 'Game locked and initialized successfully')
         );
       }
     } catch (e: any) {
       notification.error({
         message: translate(
           'Vixi, o aplicativo encontrou um erro ao tentar trancar e iniciar o jogo',
-          'Oops, the application found an error while trying to lock and start the game',
-          language
+          'Oops, the application found an error while trying to lock and start the game'
         ),
         description: JSON.stringify(e.message),
         placement: 'bottomLeft',
@@ -56,7 +51,7 @@ function Waiting({ info, players }: WaitingProps) {
     } finally {
       setLoader('lock-game', false);
     }
-  }, [gameId, gameName, setLoader, language]);
+  }, [gameId, gameName, setLoader, translate]);
 
   const numPlayers = Object.keys(players).length;
   return (

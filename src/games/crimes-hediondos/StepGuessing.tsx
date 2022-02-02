@@ -29,7 +29,7 @@ export function StepGuessing({
   onSubmitGuesses,
 }: StepGuessingProps) {
   const [guesses, setGuesses] = useState<PlainObject>({});
-  const language = useLanguage();
+  const { language } = useLanguage();
 
   const onUpdateGuesses = (payload: PlainObject) => {
     setGuesses((s: PlainObject) => ({

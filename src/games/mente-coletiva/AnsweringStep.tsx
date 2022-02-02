@@ -6,7 +6,7 @@ import { useLanguage } from '../../hooks';
 // Utils
 import { getEntryId, isDevEnv, shuffle } from '../../utils/helpers';
 // Components
-import { ButtonContainer, PopoverRule, Step, Title, translate, Translate } from '../../components';
+import { ButtonContainer, PopoverRule, Step, Title, Translate } from '../../components';
 import { Pasture } from './Pasture';
 import { RoundType } from './RoundType';
 import { Question } from './Question';
@@ -44,7 +44,7 @@ export function AnsweringStep({
   roundType,
   onSubmitAnswers,
 }: AnsweringStepProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const [answers, setAnswers] = useState({});
 
   useEffect(() => {
@@ -92,11 +92,7 @@ export function AnsweringStep({
                   <Input
                     className="m-answers__input"
                     id={id}
-                    placeholder={translate(
-                      `Escreva a resposta ${num} aqui`,
-                      `Write answer ${num} here`,
-                      language
-                    )}
+                    placeholder={translate(`Escreva a resposta ${num} aqui`, `Write answer ${num} here`)}
                     autoComplete="off"
                     onChange={onWriteAnswer}
                     onPressEnter={onPressEnter}

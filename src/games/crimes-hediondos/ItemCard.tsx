@@ -18,7 +18,7 @@ export function ItemCard({
   isSelected = false,
   className = '',
 }: ItemCardProps) {
-  const language = useLanguage();
+  const { language } = useLanguage();
   return (
     <div className={clsx('h-item-card', isSelected && 'h-item-card--selected', className)}>
       <Popover content={item.name[language].toUpperCase()}>

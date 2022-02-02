@@ -14,13 +14,12 @@ import {
   PhaseContainer,
   StepSwitcher,
   Translate,
-  translate,
 } from '../../components';
 
 import StepPlayCard from './StepPlayCard';
 
 function PhaseCardPlay({ state, players, info }: PhaseProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const [isLoading] = useLoading();
   const user = useUser(players);
   const [currentPlayer, isUserTheCurrentPlayer] = useWhichPlayerIsThe('currentPlayerId', state, players);
@@ -33,11 +32,10 @@ function PhaseCardPlay({ state, players, info }: PhaseProps) {
     if (isUserTheCurrentPlayer && step > 0) {
       message.info(
         messageContent(
-          translate('Escolha uma carta!', 'Choose a card to play', language),
+          translate('Escolha uma carta!', 'Choose a card to play'),
           translate(
             'Aperte o botão Selecionar acima da carta escolhida',
-            'Press the select button above each card',
-            language
+            'Press the select button above each card'
           ),
 
           currentPlayer.id,
@@ -45,7 +43,7 @@ function PhaseCardPlay({ state, players, info }: PhaseProps) {
         )
       );
     }
-  }, [isUserTheCurrentPlayer, currentPlayer.id, language, step]);
+  }, [isUserTheCurrentPlayer, currentPlayer.id, step]);
 
   return (
     <PhaseContainer
@@ -58,7 +56,7 @@ function PhaseCardPlay({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           type="hanging-photograph"
-          title={translate('Apresentação das Evidências', 'Evidence', language)}
+          title={translate('Apresentação das Evidências', 'Evidence')}
           onClose={() => setStep(1)}
           currentRound={state?.round?.current}
         >

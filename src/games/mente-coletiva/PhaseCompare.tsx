@@ -4,13 +4,13 @@ import { useLanguage, useUser } from '../../hooks';
 // Resources & Utils
 import { PHASES } from '../../utils/phases';
 // Components
-import { PhaseAnnouncement, PhaseContainer, StepSwitcher, translate } from '../../components/shared';
+import { PhaseAnnouncement, PhaseContainer, StepSwitcher } from '../../components/shared';
 import { CompareStep } from './CompareStep';
 import { useOnAddAnswerAPIRequest, useOnNextAnswersAPIRequest } from './api-requests';
 import { ComparingRules } from './RulesBlobs';
 
 function PhaseCompare({ state, players, info }: PhaseProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const [step, setStep] = useState(0);
   const user = useUser(players);
   const [allowedList, setAllowedList] = useState({});
@@ -31,7 +31,7 @@ function PhaseCompare({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           type="discussion"
-          title={translate('Respostas', 'Answers', language)}
+          title={translate('Respostas', 'Answers')}
           onClose={() => setStep(1)}
           currentRound={state?.round?.current}
           duration={state?.round?.current < 3 ? 20 : undefined}

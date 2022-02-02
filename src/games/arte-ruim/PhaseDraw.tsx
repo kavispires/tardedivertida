@@ -12,7 +12,6 @@ import {
   PhaseContainer,
   RoundAnnouncement,
   StepSwitcher,
-  translate,
   Translate,
 } from '../../components';
 import { StepDraw } from './StepDraw';
@@ -22,7 +21,7 @@ const arteRuimTimer = require('../../sounds/arte-ruim-timer.mp3');
 
 function PhaseDraw({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const user = useUser(players);
   const [step, setStep] = useState(0);
   const [secretCard, setSecretCard] = useState({});
@@ -47,8 +46,7 @@ function PhaseDraw({ players, state, info }: PhaseProps) {
         players={players}
         waitingRoomInstruction={translate(
           'Vamos aguardar enquanto os outros jogadores terminam seus desenhos!',
-          'Please wait while other players finish their artwork!',
-          language
+          'Please wait while other players finish their artwork!'
         )}
       >
         {/* Step 0 */}
@@ -63,8 +61,8 @@ function PhaseDraw({ players, state, info }: PhaseProps) {
         {/* Step 1 */}
         <PhaseAnnouncement
           type="painting"
-          title={translate('Desenhe!', 'Draw!', language)}
-          buttonText={translate('Um dó, lá, si... vamos ir... já!', 'Ready! Set! Go!', language)}
+          title={translate('Desenhe!', 'Draw!')}
+          buttonText={translate('Um dó, lá, si... vamos ir... já!', 'Ready! Set! Go!')}
           onClose={onStartDrawing}
           currentRound={state?.round?.current}
           withoutTimer

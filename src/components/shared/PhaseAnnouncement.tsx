@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import clsx from 'clsx';
 // Design Resource
 import { Button } from 'antd';
@@ -7,10 +8,8 @@ import { useLanguage } from '../../hooks';
 import { kebabToPascal } from '../../utils/helpers';
 // Components
 import { TimedButton } from './index';
-import { translate } from './Translate';
 import { Title } from './Title';
 import * as IconIllustrations from '../icons';
-import { useEffect } from 'react';
 
 const IconIllustrationsComponents: any = IconIllustrations;
 
@@ -38,7 +37,7 @@ export function PhaseAnnouncement({
   withoutTimer = false,
   unskippable,
 }: PhaseAnnouncementProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const durationPerRound = [15, 15, 10, 5, 5, 5]?.[currentRound] ?? 5;
   const Icon: any =
     IconIllustrationsComponents[kebabToPascal(type ?? 'multitask')] ?? IconIllustrationsComponents.Multitask;
@@ -52,13 +51,13 @@ export function PhaseAnnouncement({
 
       {withoutTimer ? (
         <Button type="primary" onClick={onClose}>
-          {translate('Prosseguir', 'Continue', language, buttonText)}
+          {translate('Prosseguir', 'Continue', buttonText)}
         </Button>
       ) : (
         <TimedButton
           duration={duration || durationPerRound}
           type="text"
-          label={translate('Prosseguir', 'Continue', language, buttonText)}
+          label={translate('Prosseguir', 'Continue', buttonText)}
           onClick={onClose}
           onExpire={onClose}
           disabled={unskippable}

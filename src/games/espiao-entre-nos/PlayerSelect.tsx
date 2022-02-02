@@ -5,7 +5,7 @@ import { LoadingOutlined } from '@ant-design/icons';
 // Hooks
 import { useGlobalState, useLanguage, useLoading } from '../../hooks';
 // Components
-import { translate, Translate } from '../../components';
+import { Translate } from '../../components';
 
 type PlayersElectProps = {
   players: GamePlayers;
@@ -14,7 +14,7 @@ type PlayersElectProps = {
 };
 
 export function PlayerSelect({ players, onSend, isFinalAssessment = false }: PlayersElectProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const [isLoading] = useLoading();
   const [userId] = useGlobalState('userId');
 
@@ -29,7 +29,7 @@ export function PlayerSelect({ players, onSend, isFinalAssessment = false }: Pla
       <Select
         onChange={onSelectPlayerId}
         className="e-select"
-        placeholder={translate('Acuse um jogador', 'Accuse a player', language)}
+        placeholder={translate('Acuse um jogador', 'Accuse a player')}
       >
         {playersWithoutMe.map((player) => (
           <Select.Option key={player.id} value={player.id}>
@@ -43,15 +43,14 @@ export function PlayerSelect({ players, onSend, isFinalAssessment = false }: Pla
             ? ''
             : translate(
                 'Você só pode acusar uma vez durante o jogo! ',
-                'You may only make one accusation during the game!',
-                language
+                'You may only make one accusation during the game!'
               )
-        } ${translate('Tem certeza que quer acusar', 'Are you sure you want to accuse', language)} ${
+        } ${translate('Tem certeza que quer acusar', 'Are you sure you want to accuse')} ${
           players[selectedPlayerId!]?.name
         }?`}
         onConfirm={() => onSend({ targetId: selectedPlayerId })}
-        okText={translate('Sim', 'Yes', language)}
-        cancelText={translate('Não', 'No', language)}
+        okText={translate('Sim', 'Yes')}
+        cancelText={translate('Não', 'No')}
       >
         <Button
           type="primary"

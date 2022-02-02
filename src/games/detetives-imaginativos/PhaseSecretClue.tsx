@@ -15,14 +15,13 @@ import {
   Step,
   StepSwitcher,
   Translate,
-  translate,
   ViewIf,
 } from '../../components';
 import StepSecretClueWrite from './StepSecretClueWrite';
 import StepSecretClueWaiting from './StepSecretClueWaiting';
 
 function PhaseSecretClue({ state, players, info }: PhaseProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
   const [leader, isUserTheLeader] = useWhichPlayerIsThe('leaderId', state, players);
@@ -44,7 +43,7 @@ function PhaseSecretClue({ state, players, info }: PhaseProps) {
         {/* Step 1 */}
         <PhaseAnnouncement
           type="secret"
-          title={translate('Pista Secreta', 'Secret Clue', language)}
+          title={translate('Pista Secreta', 'Secret Clue')}
           onClose={() => setStep(2)}
           currentRound={state?.round?.current}
         >

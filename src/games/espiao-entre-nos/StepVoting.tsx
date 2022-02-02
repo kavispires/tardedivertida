@@ -3,16 +3,7 @@ import { Button, Space } from 'antd';
 // Hooks
 import { useLanguage, useLoading } from '../../hooks';
 // Components
-import {
-  Instruction,
-  ReadyPlayersBar,
-  Step,
-  Title,
-  translate,
-  Translate,
-  View,
-  ViewSwitch,
-} from '../../components';
+import { Instruction, ReadyPlayersBar, Step, Title, Translate, View, ViewSwitch } from '../../components';
 import { EspiaoEntreNosCard as Card } from './Card';
 import { LocationsList } from './LocationsList';
 import { Notes } from './Notes';
@@ -39,7 +30,7 @@ export function StepVoting({
   target,
   isUserTheTarget,
 }: StepVotingProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const [isLoading] = useLoading();
 
   return (
@@ -92,8 +83,8 @@ export function StepVoting({
 
       <ReadyPlayersBar
         players={players}
-        readyText={translate('Votei', 'I voted', language)}
-        readyTextPlural={translate('Votamos', 'We voted', language)}
+        readyText={translate('Votei', 'I voted')}
+        readyTextPlural={translate('Votamos', 'We voted')}
       />
 
       <Instruction className="e-lists">

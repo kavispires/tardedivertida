@@ -4,19 +4,12 @@ import { useIsUserReady, useLanguage, useWhichPlayerIsThe, useUser } from '../..
 // Resources & Utils
 import { PHASES } from '../../utils/phases';
 // Components
-import {
-  Instruction,
-  PhaseAnnouncement,
-  PhaseContainer,
-  StepSwitcher,
-  translate,
-  Translate,
-} from '../../components';
+import { Instruction, PhaseAnnouncement, PhaseContainer, StepSwitcher, Translate } from '../../components';
 import StepResults from './StepResults';
 import StepRanking from './StepRanking';
 
 function PhaseReveal({ players, state, info }: PhaseProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const user = useUser(players);
 
   const isUserReady = useIsUserReady(players, state);
@@ -29,7 +22,7 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           type="quality-seal"
-          title={translate('Resultado', 'Results', language)}
+          title={translate('Resultado', 'Results')}
           onClose={() => setStep(1)}
           currentRound={state?.round?.current}
           duration={5}
@@ -52,7 +45,7 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
         />
 
         {/* Step 2 */}
-        <StepRanking ranking={state.ranking} players={players} language={language} round={state.round} />
+        <StepRanking ranking={state.ranking} players={players} round={state.round} />
       </StepSwitcher>
     </PhaseContainer>
   );

@@ -12,7 +12,6 @@ import {
   Step,
   StepSwitcher,
   Translate,
-  translate,
   ViewIf,
   WaitingRoom,
 } from '../../components';
@@ -21,7 +20,7 @@ import { ComparisonRules } from './RulesBlobs';
 import { GuesserWaitingRoom } from './GuesserWaitingRoom';
 
 function PhaseCompare({ state, players, info }: PhaseProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const [step, setStep] = useState(0);
   const [, isUserTheGuesser] = useWhichPlayerIsThe('guesserId', state, players);
   const [controller, isUserTheController] = useWhichPlayerIsThe('controllerId', state, players);
@@ -31,22 +30,20 @@ function PhaseCompare({ state, players, info }: PhaseProps) {
     actionName: 'validate-suggestions',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
-    successMessage: translate('Validação enviada com sucesso!', 'Validation sent successfully!', language),
+    successMessage: translate('Validação enviada com sucesso!', 'Validation sent successfully!'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar a validação das sugestões',
-      'Oops, the application failed to send the validation',
-      language
+      'Oops, the application failed to send the validation'
     ),
   });
 
   const onUpdateValidSuggestionsAPIRequest = useAPICall({
     apiFunction: UE_SO_ISSO_API.submitAction,
     actionName: 'validate-suggestions',
-    successMessage: translate('Atualizado!', 'Updated!', language),
+    successMessage: translate('Atualizado!', 'Updated!'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar atualizar',
-      'Oops, the application failed to update',
-      language
+      'Oops, the application failed to update'
     ),
   });
 
@@ -70,7 +67,7 @@ function PhaseCompare({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           type="verify-list"
-          title={translate('Comparação de dicas!', 'Clue Check!', language)}
+          title={translate('Comparação de dicas!', 'Clue Check!')}
           onClose={() => setStep(1)}
           currentRound={state?.round?.current}
         >
@@ -113,7 +110,7 @@ function PhaseCompare({ state, players, info }: PhaseProps) {
         {/* Step 2 */}
         <WaitingRoom
           players={players}
-          title={translate('Enviando a confirmação de dicas', 'Sending confirmation', language)}
+          title={translate('Enviando a confirmação de dicas', 'Sending confirmation')}
           instruction="..."
         />
       </StepSwitcher>

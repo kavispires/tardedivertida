@@ -2,15 +2,7 @@ import clsx from 'clsx';
 // Hooks
 import { useLanguage, useLoading } from '../../hooks';
 // Components
-import {
-  AdminButton,
-  AdminOnlyContainer,
-  Instruction,
-  Step,
-  Title,
-  translate,
-  Translate,
-} from '../../components';
+import { AdminButton, AdminOnlyContainer, Instruction, Step, Title, Translate } from '../../components';
 
 type StepVotingProps = {
   players: GamePlayers;
@@ -27,7 +19,7 @@ export function StepResolution({
   currentSpy,
   onProgressGame,
 }: StepVotingProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const [isLoading] = useLoading();
 
   return (
@@ -119,12 +111,12 @@ export function StepResolution({
         <AdminOnlyContainer>
           <AdminButton
             action={() => onProgressGame({ continue: true })}
-            label={translate('Jogar mais uma rodada', 'Play another round', language)}
+            label={translate('Jogar mais uma rodada', 'Play another round')}
             disabled={isLoading}
           />
           <AdminButton
             action={() => onProgressGame({ end: true })}
-            label={translate('Terminar Jogo', 'End Game', language)}
+            label={translate('Terminar Jogo', 'End Game')}
             disabled={isLoading}
           />
         </AdminOnlyContainer>

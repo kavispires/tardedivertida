@@ -9,7 +9,6 @@ import {
   Step,
   TimedButton,
   Title,
-  translate,
   Translate,
 } from '../../components';
 import { useLanguage } from '../../hooks';
@@ -41,7 +40,7 @@ export function StepReveal({
   counts,
   onSeeRanking,
 }: StepRevealProps) {
-  const language = useLanguage();
+  const { language, translate } = useLanguage();
 
   const { weapons, evidences } = useMemo(() => splitWeaponsAndEvidence(items, language), [items, language]);
 
@@ -49,26 +48,26 @@ export function StepReveal({
 
   const columns = [
     {
-      title: translate('Jogador', 'Player', language),
+      title: translate('Jogador', 'Player'),
       dataIndex: 'player',
       key: 'player',
       render: (data: any) => <AvatarName player={data} />,
       sorter: (a: any, b: any) => (a.name > b.name ? -1 : 1),
     },
     {
-      title: translate('Itens corretos', 'Correct items', language),
+      title: translate('Itens corretos', 'Correct items'),
       dataIndex: 'correctItems',
       key: 'correctItems',
       sorter: (a: any, b: any) => (a.correctItems > b.correctItems ? -1 : 1),
     },
     {
-      title: translate('Pares corretos', 'Correct pairs', language),
+      title: translate('Pares corretos', 'Correct pairs'),
       dataIndex: 'bothCorrect',
       key: 'bothCorrect',
       sorter: (a: any, b: any) => (a.bothCorrect > b.bothCorrect ? -1 : 1),
     },
     {
-      title: translate('Ganhou?', 'Won?', language),
+      title: translate('Ganhou?', 'Won?'),
       dataIndex: 'win',
       key: 'win',
       render: (value: any) =>
