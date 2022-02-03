@@ -11,6 +11,7 @@
     "@types/react": "^17.0.37",
     "@types/react-dom": "^17.0.11",
     "@types/react-router-dom": "^5.3.3",
+    "animate.css": "^4.1.1",
     "antd": "^4.17.4",
     "clsx": "^1.1.1",
     "firebase": "^9.6.1",
