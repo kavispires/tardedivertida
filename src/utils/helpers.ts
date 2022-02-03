@@ -22,7 +22,7 @@ export const getGameIdFromPathname = (pathname: string): string => {
  * @param history
  * @returns
  */
-export const getGameIdFromLocation = (location: PlainObject): string => {
+export const getGameIdFromLocation = (location?: PlainObject): string => {
   const { pathname = '/' } = location ?? {};
   return pathname.substring(1);
 };
@@ -138,21 +138,6 @@ export const getColorFromLetter = (letter: string): string => {
       Z: 'coffee',
     }[letter] ?? 'none'
   );
-};
-
-/**
- * Get the team name that is not active
- * @param teams
- * @param activeTeam
- * @returns
- * @deprecated
- */
-export const getOppositeTeam = (teams: PlainObject | any[], activeTeam: string) => {
-  if (!teams || !activeTeam || teams?.length < 2 || teams?.length > 2) return '?';
-
-  const teamsNames = Array.isArray(teams) ? teams : Object.keys(teams);
-  if (teamsNames[0] === activeTeam) return teamsNames[1];
-  else return teamsNames[0];
 };
 
 /**
