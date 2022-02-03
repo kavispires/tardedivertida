@@ -21,7 +21,13 @@ function PhaseClueWriting({ players, state, info }: PhaseProps) {
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.CRUZA_PALAVRAS.CLUE_WRITING}>
       <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady, !isUserReady]} players={players}>
         {/* Step 0 */}
-        <RoundAnnouncement round={state?.round} onPressButton={() => setStep(1)} buttonText=" " time={5} />
+        <RoundAnnouncement
+          round={state?.round}
+          onPressButton={() => setStep(1)}
+          buttonText=" "
+          time={5}
+          circleColor="forest"
+        />
 
         {/* Step 1 */}
         <PhaseAnnouncement

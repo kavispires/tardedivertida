@@ -35,7 +35,7 @@ function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
     >
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
-        <RoundAnnouncement round={state.round} onPressButton={() => setStep(1)} time={3}>
+        <RoundAnnouncement round={state.round} onPressButton={() => setStep(1)} time={3} circleColor="white">
           <Instruction contained>
             <Translate
               pt="Somos ovelhinhas e nosso pasto está superlotado!"

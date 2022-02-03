@@ -38,7 +38,13 @@ function PhaseSecretClue({ state, players, info }: PhaseProps) {
     >
       <StepSwitcher step={step} conditions={[!isUserReady]} players={players}>
         {/* Step 0 */}
-        <RoundAnnouncement round={state.round} buttonText=" " onPressButton={() => setStep(1)} time={5} />
+        <RoundAnnouncement
+          round={state.round}
+          buttonText=" "
+          onPressButton={() => setStep(1)}
+          time={5}
+          circleColor="grey"
+        />
 
         {/* Step 1 */}
         <PhaseAnnouncement

@@ -36,6 +36,7 @@ function PhaseAssignment({ state, players, info }: PhaseProps) {
           onPressButton={() => setStep(1)}
           time={5}
           className="e-round-announcement"
+          circleColor="lime"
         >
           <Instruction className="e-phase-instruction">
             <Translate pt="Há um espião entre nós!" en="There's a spy among us!" />
