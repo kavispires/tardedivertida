@@ -1,27 +1,6 @@
 import * as utils from './helpers';
 
 describe('/utils', function () {
-  describe('getGameIdFromURL', function () {
-    const history = {
-      location: {
-        pathname: '/ABCD',
-      },
-    };
-
-    it('gets gameId from the history object', function () {
-      expect(utils.getGameIdFromURL(history)).toBe('ABCD');
-    });
-
-    it('gets gameId from the history object with an empty pathname', function () {
-      history.location.pathname = '';
-      expect(utils.getGameIdFromURL(history)).toBe('');
-    });
-
-    it('gets empty string if history is not provided', function () {
-      expect(utils.getGameIdFromURL()).toBe('');
-    });
-  });
-
   describe('getGameIdFromLocation', function () {
     const location = {
       pathname: '/ABCD',
@@ -57,7 +36,6 @@ describe('/utils', function () {
       expect(utils.isValidGameId('ABC')).toBeFalsy();
       expect(utils.isValidGameId('?')).toBeFalsy();
       expect(utils.isValidGameId('')).toBeFalsy();
-      expect(utils.isValidGameId()).toBeFalsy();
     });
   });
 
@@ -80,7 +58,6 @@ describe('/utils', function () {
       expect(utils.getColorFromIndex(14)).toBe('forest');
       expect(utils.getColorFromIndex(15)).toBe('cream');
       expect(utils.getColorFromIndex(16)).toBe('none');
-      expect(utils.getColorFromIndex()).toBe('none');
     });
   });
 
@@ -112,35 +89,24 @@ describe('/utils', function () {
       expect(utils.getColorFromLetter('X')).toBe('none');
       expect(utils.getColorFromLetter('Y')).toBe('orange');
       expect(utils.getColorFromLetter('Z')).toBe('coffee');
-
-      expect(utils.getColorFromIndex()).toBe('none');
-    });
-  });
-
-  describe('getOppositeTeam', function () {
-    it('gets the opposite team', function () {
-      const teams = ['A', 'B'];
-      expect(utils.getOppositeTeam(teams, 'A')).toBe('B');
-      expect(utils.getOppositeTeam(teams, 'B')).toBe('A');
-    });
-
-    it('returns `?` with odd cases', function () {
-      expect(utils.getOppositeTeam()).toBe('?');
-      expect(utils.getOppositeTeam(['A', 'B', 'C'], 'A')).toBe('?');
-      expect(utils.getOppositeTeam(['A'])).toBe('?');
-      expect(utils.getOppositeTeam(null, 'A')).toBe('?');
     });
   });
 
   describe('getPlayersFromIds', function () {
-    const players = {
+    const players: Players = {
       _adam: {
         id: '_adam',
         name: 'Adam',
+        avatarId: '1',
+        updatedAt: 0,
+        ready: false,
       },
       _bob: {
         id: '_bob',
         name: 'Bob',
+        avatarId: '2',
+        updatedAt: 0,
+        ready: false,
       },
     };
 
@@ -163,7 +129,6 @@ describe('/utils', function () {
       expect(utils.pluralize(1, 'mouse', 'mice')).toBe('mouse');
       expect(utils.pluralize(2, 'mouse', 'mice')).toBe('mice');
       expect(utils.pluralize(0, 'mouse', 'mice')).toBe('mice');
-      expect(utils.pluralize(null, 'mouse', 'mice')).toBe('mice');
     });
   });
 });
