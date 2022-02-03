@@ -135,7 +135,7 @@ export function GuessingRules({ guesserName }: { guesserName: string }): JSX.Ele
           <>
             It's time to shine, {guesserName}!
             <br />
-            You have a single change to guess the secret word!
+            You have a single chance to guess the secret word!
             <br />
             Think out loud! (It's more entertaining to the other players)
           </>
