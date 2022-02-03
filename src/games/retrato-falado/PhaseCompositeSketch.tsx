@@ -36,6 +36,7 @@ function PhaseCompositeSketch({ players, state, info }: PhaseProps) {
           buttonText=" "
           time={7}
           unskippable
+          circleColor="green"
         >
           <Instruction contained>
             <Translate
@@ -63,7 +64,7 @@ function PhaseCompositeSketch({ players, state, info }: PhaseProps) {
           title={translate('Memorize! Descreva! Desenhe!', 'Memorize! Describe! Sketch!')}
           onClose={() => setStep(2)}
           currentRound={state?.round?.current}
-          duration={20}
+          duration={state?.round?.current < 2 ? 20 : 5}
           unskippable
         >
           <Instruction>

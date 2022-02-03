@@ -37,7 +37,7 @@ export function StoryWriting({ user, onSubmitStory }: StoryWritingProps) {
   return (
     <div className="c-story-writing">
       <Title>
-        <Translate pt="Escreva uma história" en="Tell a story" />
+        <Translate pt="Escreva uma história" en="Tell us a story" />
       </Title>
       <div className="c-story-book">
         <BookPages

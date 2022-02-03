@@ -64,12 +64,21 @@
     background: get-color(orange, 4);
   }
 
-  &--none {
+  &--none,
+  &--grey {
     background: get-color(gray);
   }
 
   &--lime {
     background: get-color(lime);
+  }
+
+  &--black {
+    background: get-color(black, 4);
+  }
+
+  &--white {
+    background: get-color(white);
   }
 }
 
@@ -132,18 +141,27 @@
   }
 
   &--violet {
-    border-color: get-color(purple, 7);
+    border-color: get-color(purple, 6);
   }
 
   &--cream {
     border-color: get-color(orange, 4);
   }
 
-  &--none {
+  &--none,
+  &--grey {
     border-color: get-color(gray);
   }
 
   &--lime {
     border-color: get-color(lime);
+  }
+
+  &--black {
+    border-color: get-color(black, 4);
+  }
+
+  &--white {
+    border-color: get-color(white);
   }
 }

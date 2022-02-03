@@ -44,6 +44,7 @@ function PhaseDialClue({ players, state, info }: PhaseProps) {
           buttonText=" "
           onPressButton={() => setStep(1)}
           time={5}
+          circleColor="pink"
         ></RoundAnnouncement>
 
         {/* Step 1 */}

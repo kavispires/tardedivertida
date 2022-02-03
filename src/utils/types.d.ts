@@ -38,6 +38,28 @@ type DualLanguageValue = {
   en: string;
   pt: string;
 };
+type Color =
+  | 'red'
+  | 'blue'
+  | 'green'
+  | 'yellow'
+  | 'pink'
+  | 'purple'
+  | 'teal'
+  | 'orange'
+  | 'fur'
+  | 'navy'
+  | 'light-green'
+  | 'hot-pink'
+  | 'brown'
+  | 'forest'
+  | 'violet'
+  | 'cream'
+  | 'none'
+  | 'lime'
+  | 'black'
+  | 'white'
+  | 'grey';
 
 interface Player {
   id: PlayerId;

@@ -48,7 +48,13 @@ function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.CRIMES_HEDIONDOS.CRIME_SELECTION}>
       <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady, !isUserReady]} players={players}>
         {/* Step 0 */}
-        <RoundAnnouncement round={state?.round} onPressButton={increaseStep} buttonText=" " time={5} />
+        <RoundAnnouncement
+          round={state?.round}
+          onPressButton={increaseStep}
+          buttonText=" "
+          time={5}
+          circleColor="black"
+        />
 
         {/* Step 1 */}
         <PhaseAnnouncement

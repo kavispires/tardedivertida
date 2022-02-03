@@ -64,7 +64,7 @@ function PhaseWordSelection({ state, players, info }: PhaseProps) {
     >
       <StepSwitcher step={step} conditions={[!isUserReady]} players={players}>
         {/* Step 0 */}
-        <RoundAnnouncement round={state.round} onPressButton={() => setStep(1)} time={7}>
+        <RoundAnnouncement round={state.round} onPressButton={() => setStep(1)} time={7} circleColor="cream">
           <RoundAnnouncementText guesser={guesser} groupScore={state.groupScore} round={state.round} />
         </RoundAnnouncement>
 
