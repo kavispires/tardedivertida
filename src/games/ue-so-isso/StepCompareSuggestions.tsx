@@ -34,6 +34,7 @@ function StepCompareSuggestions({
   const [isLoading] = useLoading();
   const [myRecommendation, setMyRecommendation] = useState<UseSoIssoSuggestion[]>(deepCopy(suggestions));
   const [isAdmin] = useGlobalState('isAdmin');
+  const [wasMessageShown, setWasMessageShown] = useState(false);
 
   const onSetValidation = (index: number, suggestionEntry: UseSoIssoSuggestion, notAllowed?: boolean) => {
     if (notAllowed) return;
@@ -53,7 +54,7 @@ function StepCompareSuggestions({
   };
 
   useEffect(() => {
-    if (isUserTheController) {
+    if (isUserTheController && !wasMessageShown) {
       message.info(
         messageContent(
           translate('Você controla!', 'You control!'),
@@ -62,8 +63,9 @@ function StepCompareSuggestions({
           3
         )
       );
+      setWasMessageShown(true);
     }
-  }, [isUserTheController, controller.id, translate]);
+  }, [isUserTheController, controller.id, translate, wasMessageShown]);
 
   const suggestionsValues = Object.values(myRecommendation);
 

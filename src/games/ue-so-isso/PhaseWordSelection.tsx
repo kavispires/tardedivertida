@@ -102,7 +102,7 @@ function PhaseWordSelection({ state, players, info }: PhaseProps) {
                     Selecione a palavra secreta para essa rodada.
                     <br />
                     Você pode selecionar quantas quiser.
-                    <br />A palavra mais votada será selecionada!
+                    <br />A palavra mais votada será usada nessa rodada!
                   </>
                 }
                 en={
@@ -111,7 +111,7 @@ function PhaseWordSelection({ state, players, info }: PhaseProps) {
                     <br />
                     You may select as many as you wish.
                     <br />
-                    The most voted word would be selected!
+                    The most voted word would be used this round!
                   </>
                 }
               />
