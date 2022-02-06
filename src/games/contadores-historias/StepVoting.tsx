@@ -78,7 +78,7 @@ export function StepVoting({ players, story, user, onSubmitVote, storyteller, ta
         })}
       </div>
 
-      <ReadyPlayersBar players={players} showNames />
+      <ReadyPlayersBar players={players} />
     </div>
   );
 }

@@ -8,14 +8,14 @@ type ReadyPlayersBarProps = {
   players: GamePlayers;
   readyText?: string;
   readyTextPlural?: string;
-  showNames?: boolean;
+  hideNames?: boolean;
 };
 
 export function ReadyPlayersBar({
   players,
   readyText,
   readyTextPlural,
-  showNames = false,
+  hideNames = false,
 }: ReadyPlayersBarProps) {
   const { readyPlayers, notReadyPlayers }: { readyPlayers: GamePlayer[]; notReadyPlayers: string[] } =
     Object.values(players).reduce(
@@ -56,7 +56,7 @@ export function ReadyPlayersBar({
           <LikeFilled className="ready-player-bar__speech-bubble-icon" />
         </span>
       </div>
-      {showNames && (
+      {!hideNames && notReadyPlayers.length > 0 && (
         <span className="ready-player-bar__names">
           <Translate pt="Esperando" en="Waiting for" custom={readyText} />: {notReadyPlayers.join(', ')}
         </span>

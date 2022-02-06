@@ -85,6 +85,7 @@ export function StepVoting({
         players={players}
         readyText={translate('Votei', 'I voted')}
         readyTextPlural={translate('Votamos', 'We voted')}
+        hideNames
       />
 
       <Instruction className="e-lists">

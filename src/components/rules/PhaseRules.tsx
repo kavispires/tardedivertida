@@ -97,7 +97,7 @@ export function PhaseRules({ players, info }: PhaseRulesProps) {
           <Translate pt="Quê?" en="What?" />
         </Button>
       </Space>
-      <ReadyPlayersBar players={players} showNames />
+      <ReadyPlayersBar players={players} />
     </Layout.Content>
   );
 }

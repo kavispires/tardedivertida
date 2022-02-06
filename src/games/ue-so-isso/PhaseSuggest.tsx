@@ -70,6 +70,7 @@ function PhaseSuggest({ state, players, info }: PhaseProps) {
               onSendSuggestions={onSendSuggestions}
               secretWord={state.secretWord}
               suggestionsNumber={state.suggestionsNumber}
+              players={players}
             />
           </ViewIf>
         </Step>
