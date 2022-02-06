@@ -1,9 +1,11 @@
 import clsx from 'clsx';
 // Design Resources
 import { ForwardFilled } from '@ant-design/icons';
+// Helpers
+import { getAvatarColorById } from '../../utils/helpers';
+// Components
 import { Translate } from '.';
 import { AvatarName } from '..';
-import { AVATARS } from '../../utils/constants';
 
 type TurnOrderProps = {
   players: GamePlayers;
@@ -26,7 +28,7 @@ export function TurnOrder({ players, order, activePlayerId }: TurnOrderProps) {
               <span
                 key={`turn-order-player-${playerId}`}
                 className={clsx('game-order__player', isActive && 'game-order__player--active')}
-                style={isActive ? { backgroundColor: AVATARS[player.avatarId].color } : undefined}
+                style={isActive ? { backgroundColor: getAvatarColorById(player.avatarId) } : undefined}
               >
                 <AvatarName player={player} />
               </span>

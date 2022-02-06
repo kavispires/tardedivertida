@@ -10,7 +10,7 @@ import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 import { Avatar, Translate } from '../../components';
 import { useLanguage } from '../../hooks';
-import { AVATARS } from '../../utils/constants';
+import { getAvatarColorById } from '../../utils/helpers';
 import { ItemCard } from './ItemCard';
 
 type CrimeProps = {
@@ -55,7 +55,7 @@ export function Crime({
 
   return (
     <div className="h-crime">
-      <div className="h-crime__player" style={{ backgroundColor: AVATARS[player.avatarId].color }}>
+      <div className="h-crime__player" style={{ backgroundColor: getAvatarColorById(player.avatarId) }}>
         <span className="h-crime__player-avatar">
           <Avatar id={player.avatarId} />
         </span>
@@ -104,7 +104,7 @@ export function Crime({
 
       <div
         className="h-crime__player"
-        style={{ backgroundColor: isComplete ? AVATARS[player.avatarId].color : undefined }}
+        style={{ backgroundColor: isComplete ? getAvatarColorById(player.avatarId) : undefined }}
       >
         {isComplete && <CheckCircleFilled />}
       </div>
