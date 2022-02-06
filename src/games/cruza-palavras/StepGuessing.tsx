@@ -144,7 +144,7 @@ function StepGuessing({ grid, user, clues, onSubmitGuesses, players }: StepGuess
         cellComponentProps={{ onSelectCell, onClearCell, active, guesses, clues, user }}
       />
 
-      <ReadyPlayersBar players={players} showNames />
+      <ReadyPlayersBar players={players} />
     </div>
   );
 }

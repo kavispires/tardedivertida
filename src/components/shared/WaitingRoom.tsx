@@ -24,7 +24,7 @@ export function WaitingRoom({ players, title, instruction, children }: WaitingRo
         )}
       </Instruction>
       {children}
-      <ReadyPlayersBar players={players} showNames />
+      <ReadyPlayersBar players={players} />
     </div>
   );
 }

@@ -151,7 +151,6 @@ export function StepEvaluation({ drawings, cards, players, onSubmitVoting }: Ste
         players={players}
         readyText={translate('Já acabei, anda logo!', "I'm done, hurry up!")}
         readyTextPlural={translate('Já acabamos, anda logo!', "We're done, hurry up!")}
-        showNames
       />
     </Step>
   );
