@@ -50,7 +50,7 @@ function PhaseDraw({ players, state, info }: PhaseProps) {
         )}
       >
         {/* Step 0 */}
-        <RoundAnnouncement round={state?.round} onPressButton={() => setStep(1)} buttonText=" " time={555}>
+        <RoundAnnouncement round={state?.round} onPressButton={() => setStep(1)} buttonText=" " time={5}>
           <Instruction contained>
             <Translate
               pt={`Essa rodada usará cartas de nível ${state?.level || '?'}`}
