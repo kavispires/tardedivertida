@@ -1,12 +1,12 @@
 import { useState } from 'react';
 // Hooks
 import { useLanguage, useUser } from '../../hooks';
+import { useOnAddAnswerAPIRequest, useOnNextAnswersAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from '../../utils/phases';
 // Components
-import { PhaseAnnouncement, PhaseContainer, StepSwitcher } from '../../components/shared';
+import { PhaseAnnouncement, PhaseContainer, StepSwitcher } from '../../components';
 import { CompareStep } from './CompareStep';
-import { useOnAddAnswerAPIRequest, useOnNextAnswersAPIRequest } from './api-requests';
 import { ComparingRules } from './RulesBlobs';
 
 function PhaseCompare({ state, players, info }: PhaseProps) {

@@ -12,7 +12,7 @@ import {
 // Utils
 import { inNSeconds } from '../../utils/helpers';
 // Components
-import { Translate } from '../../components/shared';
+import { Translate } from '../../components';
 
 const WINDOW_DURATION = 10;
 

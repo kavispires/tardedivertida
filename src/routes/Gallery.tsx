@@ -5,9 +5,7 @@ import { Card, Layout, Progress, Space } from 'antd';
 // Utils
 import { PUBLIC_URL } from '../utils/constants';
 // Components
-import { LoadingPage } from '../components/loaders';
-import { CanvasSVG } from '../components/canvas';
-import { Title } from '../components/shared';
+import { CanvasSVG, LoadingPage, Title } from '../components';
 
 function Gallery() {
   const [data, setData] = useState([]);
