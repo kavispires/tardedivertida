@@ -1,5 +1,5 @@
 import { camelCase, startCase } from 'lodash';
-import { SEPARATOR } from './constants';
+import { AVATARS, SEPARATOR } from './constants';
 
 /**
  * Creates a copy of given object
@@ -204,3 +204,10 @@ export const hasDuplicates = (arr: any): boolean => {
  * @returns
  */
 export const kebabToPascal = (str: string): string => startCase(camelCase(str)).replace(/ /g, '');
+
+/**
+ * Gets avatar color by it
+ * @param avatarId
+ * @returns
+ */
+export const getAvatarColorById = (avatarId: string) => AVATARS?.[avatarId]?.color ?? 'grey';
