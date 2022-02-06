@@ -5,7 +5,7 @@ import { Button } from 'antd';
 import { shuffle } from '../../utils/helpers';
 import { getClueFromKey, getClueKey, isClue } from './helpers';
 // Components
-import { ButtonContainer, Instruction, ReadyPlayersBar, Title, Translate } from '../../components/shared';
+import { ButtonContainer, Instruction, ReadyPlayersBar, Title, Translate } from '../../components';
 import WordGrid from './WordGrid';
 import SelectableCell from './SelectableCell';
 import Clues from './Clues';

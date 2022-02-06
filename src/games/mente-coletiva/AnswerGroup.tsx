@@ -4,10 +4,8 @@ import { LockFilled, QuestionCircleFilled } from '@ant-design/icons';
 // Hooks
 import { useGlobalState, useLanguage } from '../../hooks';
 // Components
-import { Instruction, Title, Translate } from '../../components/shared';
+import { Card, Instruction, SheepAvatar, Title, Translate } from '../../components';
 import { Question } from './Question';
-import { SheepAvatar } from '../../components/avatars';
-import { Card } from '../../components/cards/Card';
 
 type AnswerGroupProps = {
   currentQuestion: MQuestion;

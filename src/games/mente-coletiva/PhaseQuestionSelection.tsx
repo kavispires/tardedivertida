@@ -14,7 +14,7 @@ import {
   StepSwitcher,
   Translate,
   ViewIf,
-} from '../../components/shared';
+} from '../../components';
 import { QuestionSelectionWaiting } from './QuestionSelectionWaiting';
 import { QuestionSelection } from './QuestionSelection';
 import { GamePremiseRules } from './RulesBlobs';

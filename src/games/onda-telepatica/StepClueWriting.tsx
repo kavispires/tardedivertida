@@ -6,7 +6,7 @@ import { useLanguage, useLoading } from '../../hooks';
 // HUtils
 import { getTargetSide } from './helpers';
 // Components
-import { ButtonContainer, Instruction, Title, Translate } from '../../components/shared';
+import { ButtonContainer, Instruction, Title, Translate } from '../../components';
 import { ClueWritingRules } from './ClueWritingRules';
 import { Dial } from './Dial';
 
