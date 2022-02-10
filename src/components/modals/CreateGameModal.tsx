@@ -113,6 +113,7 @@ export function CreateGameModal({ gameInfo }: CreateGameModalProps): JSX.Element
           onCancel={onCloseModal}
           onOk={onConfirmGame}
           okButtonProps={{ disabled: Boolean(!gameId) }}
+          maskClosable={false}
         >
           <>
             <Image
