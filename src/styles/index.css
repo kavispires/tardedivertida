@@ -117,6 +117,28 @@ body {
     white-space: nowrap;
     word-break: keep-all; }
 
+.avatar-strip {
+  padding: 0 4px 8px 4px;
+  font-weight: bolder;
+  font-size: inherit;
+  color: white;
+  text-align: center;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+  .avatar-strip--uppercase {
+    text-transform: uppercase; }
+  .avatar-strip__name {
+    display: block;
+    width: 10ch;
+    white-space: nowrap;
+    word-break: keep-all;
+    transform: rotate(-90deg) translateX(-45%);
+    text-align: right; }
+
 .avatar-entry {
   position: relative; }
   .avatar-entry--floating {
@@ -2372,6 +2394,201 @@ ul.g-fallen-players-list {
     transform: scale(0.1) translateY(700%);
     opacity: 0; } }
 
+.n-street {
+  display: flex;
+  width: 95vw;
+  height: 270px;
+  overflow-y: auto;
+  padding-top: 45px;
+  padding-right: 16px;
+  background-image: url("/public/images/other/n-street.png");
+  background-repeat: repeat-x; }
+
+.n-house-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4px; }
+  .n-house-card--collapsed {
+    border-radius: 4px;
+    width: 30px;
+    overflow: hidden;
+    margin-right: 8px; }
+  .n-house-card__card {
+    display: flex;
+    border-radius: 4px;
+    flex-direction: column;
+    align-items: center;
+    background: #ffb1b4;
+    width: 80px;
+    height: 120px;
+    margin: 8px 1px 0 1px; }
+    .n-house-card--collapsed .n-house-card__card {
+      overflow: hidden; }
+    .n-house-card--horror .n-house-card__card {
+      background: #875131; }
+    .n-house-card--jackpot .n-house-card__card {
+      background: gold; }
+  .n-house-card__name {
+    width: 80px;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 0.8em;
+    background: #ffb1b4;
+    margin-top: 8px; }
+    .n-house-card--horror .n-house-card__name {
+      background: #875131; }
+    .n-house-card--jackpot .n-house-card__name {
+      background: gold; }
+  .n-house-card__sidewalk {
+    min-height: 25px;
+    text-align: center;
+    width: 100%; }
+
+.n-player-stats {
+  background: white;
+  height: 160px;
+  width: 80vw;
+  display: flex;
+  flex-direction: row;
+  margin: 4px 0 20px 0; }
+  .n-player-stats__decision {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 160px;
+    padding: 8px;
+    flex: 1;
+    text-transform: uppercase; }
+  .n-player-stats__title {
+    color: #959899;
+    display: block;
+    font-size: 1.1em; }
+  .n-player-stats__container {
+    border-left: 1px solid #d6d7d8;
+    display: flex;
+    flex-direction: column;
+    padding: 8px; }
+    .n-player-stats__container--candy {
+      width: 160px; }
+  .n-player-stats__count-label {
+    color: #6f7273;
+    display: block; }
+  .n-player-stats__count-value {
+    display: block;
+    background: #d6d7d8;
+    font-size: 1.1em;
+    border-radius: 4px;
+    padding: 4px 8px;
+    margin: 4px;
+    text-align: center; }
+  .n-player-stats__jackpots {
+    display: flex; }
+  .n-player-stats__no-jackpot {
+    font-style: italic;
+    color: #bcbebf; }
+
+.n-decision-buttons-container {
+  width: 60%;
+  display: flex;
+  justify-content: space-around; }
+
+.n-decision-button {
+  padding: 8px 16px;
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  transition: all 250ms; }
+  .n-decision-button:hover {
+    transform: scale(1.05); }
+  .n-decision-button--home:hover {
+    background: #a5c2fe; }
+  .n-decision-button--continue:hover {
+    background: #ffe34d; }
+
+.n-players-decision-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+  transform: scale(75%);
+  margin: 0 auto 8px auto; }
+  .n-players-decision-list__title {
+    background: rgba(255, 255, 255, 0.6);
+    margin: 0;
+    padding: 4px 8px 0 8px;
+    border-radius: 20px 20px 0 0; }
+  .n-players-decision-list__players {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.6);
+    padding: 4px;
+    border-radius: 20px;
+    flex-wrap: wrap; }
+  .n-players-decision-list__player {
+    padding: 4px 8px;
+    border-radius: 20px;
+    white-space: nowrap; }
+
+.n-players-decision-result {
+  background: rgba(255, 255, 255, 0.6);
+  padding: 8px;
+  border-radius: 4px;
+  display: grid;
+  max-width: 70vw;
+  grid-template-columns: 1fr 1px 1fr;
+  margin-bottom: 8px;
+  border-radius: 8px; }
+  .n-players-decision-result__section {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 30vw; }
+  .n-players-decision-result__divider {
+    background: #a2a2a2; }
+  .n-players-decision-result__title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; }
+  .n-players-decision-result__players {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 8px; }
+    .n-players-decision-result__players--nobody {
+      font-style: italic;
+      color: #6f6f6f; }
+  .n-players-decision-result__info {
+    margin: 12px 0 4px 0;
+    font-style: italic; }
+
+.n-game-over-players {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); }
+
+.n-game-over-player {
+  background: rgba(255, 255, 255, 0.6);
+  padding: 8px;
+  border-radius: 4px;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  margin: 4px;
+  padding: 8px;
+  justify-items: center;
+  align-items: center;
+  text-align: center; }
+
 .o-dial-guess-selection__clue {
   background: white;
   font-weight: bolder;
@@ -3107,164 +3324,164 @@ ul.g-fallen-players-list {
       animation-iteration-count: infinite; }
       .home__background span:nth-child(1) {
         color: #3a7ca5;
-        top: 40%;
-        left: 86%;
-        animation-duration: 14.2s;
-        animation-delay: -15.1s;
-        transform-origin: -7vw 9vh;
-        box-shadow: -40vmin 0 6.42412vmin currentColor; }
+        top: 90%;
+        left: 25%;
+        animation-duration: 10.8s;
+        animation-delay: -14.3s;
+        transform-origin: 5vw 5vh;
+        box-shadow: 40vmin 0 6.90691vmin currentColor; }
       .home__background span:nth-child(2) {
-        color: #3a7ca5;
-        top: 52%;
-        left: 60%;
-        animation-duration: 12.4s;
-        animation-delay: -1.2s;
-        transform-origin: 0vw -2vh;
-        box-shadow: -40vmin 0 13.02651vmin currentColor; }
-      .home__background span:nth-child(3) {
         color: #44bba4;
-        top: 86%;
-        left: 18%;
-        animation-duration: 11.9s;
-        animation-delay: -7.8s;
-        transform-origin: 6vw 9vh;
-        box-shadow: 40vmin 0 9.66018vmin currentColor; }
+        top: 99%;
+        left: 23%;
+        animation-duration: 11.3s;
+        animation-delay: -14.7s;
+        transform-origin: -6vw 18vh;
+        box-shadow: -40vmin 0 9.26538vmin currentColor; }
+      .home__background span:nth-child(3) {
+        color: #f45b69;
+        top: 75%;
+        left: 5%;
+        animation-duration: 13s;
+        animation-delay: -11.9s;
+        transform-origin: -3vw 10vh;
+        box-shadow: -40vmin 0 12.70177vmin currentColor; }
       .home__background span:nth-child(4) {
         color: #3a7ca5;
-        top: 18%;
-        left: 84%;
-        animation-duration: 13.7s;
-        animation-delay: -11.2s;
-        transform-origin: 11vw 22vh;
-        box-shadow: -40vmin 0 7.13542vmin currentColor; }
+        top: 99%;
+        left: 91%;
+        animation-duration: 12.2s;
+        animation-delay: -12.5s;
+        transform-origin: 11vw -1vh;
+        box-shadow: 40vmin 0 7.84371vmin currentColor; }
       .home__background span:nth-child(5) {
-        color: #f2e863;
-        top: 48%;
-        left: 75%;
-        animation-duration: 15.8s;
-        animation-delay: -12.8s;
-        transform-origin: 10vw 25vh;
-        box-shadow: 40vmin 0 6.14888vmin currentColor; }
+        color: #44bba4;
+        top: 63%;
+        left: 100%;
+        animation-duration: 12s;
+        animation-delay: -1.6s;
+        transform-origin: -3vw -7vh;
+        box-shadow: -40vmin 0 7.2164vmin currentColor; }
       .home__background span:nth-child(6) {
         color: #44bba4;
-        top: 9%;
-        left: 4%;
-        animation-duration: 15.2s;
-        animation-delay: -7s;
-        transform-origin: -9vw -23vh;
-        box-shadow: 40vmin 0 5.40532vmin currentColor; }
+        top: 64%;
+        left: 6%;
+        animation-duration: 11.6s;
+        animation-delay: -2.3s;
+        transform-origin: 14vw 5vh;
+        box-shadow: 40vmin 0 12.23602vmin currentColor; }
       .home__background span:nth-child(7) {
-        color: #44bba4;
-        top: 46%;
-        left: 22%;
-        animation-duration: 15.8s;
-        animation-delay: -8.9s;
-        transform-origin: 22vw -5vh;
-        box-shadow: -40vmin 0 9.73166vmin currentColor; }
+        color: #f45b69;
+        top: 48%;
+        left: 69%;
+        animation-duration: 12.2s;
+        animation-delay: -13.7s;
+        transform-origin: 14vw -22vh;
+        box-shadow: 40vmin 0 8.70267vmin currentColor; }
       .home__background span:nth-child(8) {
-        color: #3a7ca5;
-        top: 19%;
-        left: 90%;
-        animation-duration: 10.4s;
-        animation-delay: -13.4s;
-        transform-origin: -23vw 22vh;
-        box-shadow: 40vmin 0 11.21425vmin currentColor; }
+        color: #f45b69;
+        top: 99%;
+        left: 11%;
+        animation-duration: 12.8s;
+        animation-delay: -10.4s;
+        transform-origin: 13vw -10vh;
+        box-shadow: -40vmin 0 7.87422vmin currentColor; }
       .home__background span:nth-child(9) {
-        color: #f2e863;
-        top: 11%;
-        left: 38%;
-        animation-duration: 12s;
-        animation-delay: -13.1s;
-        transform-origin: 15vw 17vh;
-        box-shadow: 40vmin 0 6.30278vmin currentColor; }
+        color: #44bba4;
+        top: 31%;
+        left: 33%;
+        animation-duration: 10.7s;
+        animation-delay: -10.5s;
+        transform-origin: 9vw 16vh;
+        box-shadow: -40vmin 0 9.94522vmin currentColor; }
       .home__background span:nth-child(10) {
-        color: #3a7ca5;
-        top: 49%;
-        left: 13%;
-        animation-duration: 11.4s;
-        animation-delay: -16s;
-        transform-origin: -24vw 21vh;
-        box-shadow: 40vmin 0 8.87367vmin currentColor; }
+        color: #44bba4;
+        top: 92%;
+        left: 55%;
+        animation-duration: 14.4s;
+        animation-delay: -4.2s;
+        transform-origin: -5vw 11vh;
+        box-shadow: 40vmin 0 14.96283vmin currentColor; }
       .home__background span:nth-child(11) {
         color: #f2e863;
-        top: 48%;
-        left: 20%;
-        animation-duration: 11.7s;
-        animation-delay: -4.6s;
-        transform-origin: 14vw 13vh;
-        box-shadow: 40vmin 0 8.74781vmin currentColor; }
+        top: 34%;
+        left: 98%;
+        animation-duration: 11.2s;
+        animation-delay: -11s;
+        transform-origin: 22vw 19vh;
+        box-shadow: -40vmin 0 12.16945vmin currentColor; }
       .home__background span:nth-child(12) {
         color: #f2e863;
-        top: 38%;
-        left: 85%;
-        animation-duration: 10.3s;
-        animation-delay: -10.7s;
-        transform-origin: 8vw 19vh;
-        box-shadow: -40vmin 0 14.76003vmin currentColor; }
+        top: 18%;
+        left: 34%;
+        animation-duration: 14.3s;
+        animation-delay: -8.3s;
+        transform-origin: 16vw 23vh;
+        box-shadow: 40vmin 0 7.84225vmin currentColor; }
       .home__background span:nth-child(13) {
         color: #44bba4;
-        top: 42%;
-        left: 72%;
-        animation-duration: 15.7s;
-        animation-delay: -2.9s;
-        transform-origin: -22vw 16vh;
-        box-shadow: -40vmin 0 8.57583vmin currentColor; }
+        top: 75%;
+        left: 76%;
+        animation-duration: 13.3s;
+        animation-delay: -0.4s;
+        transform-origin: -13vw -10vh;
+        box-shadow: -40vmin 0 12.57099vmin currentColor; }
       .home__background span:nth-child(14) {
-        color: #44bba4;
-        top: 39%;
-        left: 84%;
-        animation-duration: 14.2s;
-        animation-delay: -8.8s;
-        transform-origin: 0vw 1vh;
-        box-shadow: 40vmin 0 5.69308vmin currentColor; }
+        color: #f45b69;
+        top: 41%;
+        left: 76%;
+        animation-duration: 16s;
+        animation-delay: -3.8s;
+        transform-origin: -5vw -20vh;
+        box-shadow: 40vmin 0 14.07966vmin currentColor; }
       .home__background span:nth-child(15) {
-        color: #f2e863;
-        top: 68%;
-        left: 90%;
-        animation-duration: 12.3s;
-        animation-delay: -10.3s;
-        transform-origin: 3vw -23vh;
-        box-shadow: -40vmin 0 9.60778vmin currentColor; }
+        color: #f45b69;
+        top: 24%;
+        left: 56%;
+        animation-duration: 15.2s;
+        animation-delay: -0.9s;
+        transform-origin: -2vw 3vh;
+        box-shadow: -40vmin 0 14.55463vmin currentColor; }
       .home__background span:nth-child(16) {
         color: #f45b69;
-        top: 1%;
-        left: 88%;
-        animation-duration: 10.5s;
-        animation-delay: -10.8s;
-        transform-origin: -10vw -23vh;
-        box-shadow: -40vmin 0 14.56849vmin currentColor; }
+        top: 52%;
+        left: 83%;
+        animation-duration: 13.3s;
+        animation-delay: -4.3s;
+        transform-origin: 6vw 10vh;
+        box-shadow: 40vmin 0 10.8948vmin currentColor; }
       .home__background span:nth-child(17) {
-        color: #f2e863;
-        top: 35%;
-        left: 51%;
-        animation-duration: 10.7s;
-        animation-delay: -15.5s;
-        transform-origin: -2vw 2vh;
-        box-shadow: 40vmin 0 14.97515vmin currentColor; }
+        color: #3a7ca5;
+        top: 7%;
+        left: 50%;
+        animation-duration: 12.6s;
+        animation-delay: -8.6s;
+        transform-origin: 11vw 16vh;
+        box-shadow: 40vmin 0 5.51568vmin currentColor; }
       .home__background span:nth-child(18) {
         color: #f45b69;
-        top: 16%;
-        left: 16%;
-        animation-duration: 12.4s;
-        animation-delay: -12.8s;
-        transform-origin: -4vw 10vh;
-        box-shadow: 40vmin 0 5.86698vmin currentColor; }
+        top: 88%;
+        left: 26%;
+        animation-duration: 15.7s;
+        animation-delay: -6.4s;
+        transform-origin: 15vw 3vh;
+        box-shadow: -40vmin 0 14.92882vmin currentColor; }
       .home__background span:nth-child(19) {
-        color: #f2e863;
-        top: 57%;
-        left: 97%;
-        animation-duration: 15.6s;
-        animation-delay: -14.7s;
-        transform-origin: 14vw -3vh;
-        box-shadow: 40vmin 0 12.45214vmin currentColor; }
+        color: #44bba4;
+        top: 75%;
+        left: 78%;
+        animation-duration: 14.1s;
+        animation-delay: -11.5s;
+        transform-origin: 11vw -4vh;
+        box-shadow: 40vmin 0 7.85468vmin currentColor; }
       .home__background span:nth-child(20) {
-        color: #f45b69;
-        top: 59%;
-        left: 96%;
-        animation-duration: 13.7s;
-        animation-delay: -9.8s;
-        transform-origin: -11vw 7vh;
-        box-shadow: -40vmin 0 5.43687vmin currentColor; }
+        color: #44bba4;
+        top: 4%;
+        left: 68%;
+        animation-duration: 12s;
+        animation-delay: -0.8s;
+        transform-origin: 2vw 24vh;
+        box-shadow: -40vmin 0 6.19402vmin currentColor; }
 
 @keyframes move {
   100% {
