@@ -8,10 +8,11 @@ import { Translate } from '../shared';
 
 type FloatingHandProps = {
   children: any;
+  type?: 'hand' | 'stats';
   subtitle?: any;
 };
 
-export function FloatingHand({ children, subtitle = '' }: FloatingHandProps) {
+export function FloatingHand({ children, subtitle = '', type = 'hand' }: FloatingHandProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const { translate } = useLanguage();
 
@@ -25,7 +26,7 @@ export function FloatingHand({ children, subtitle = '' }: FloatingHandProps) {
       >
         <span className="floating-hand__label">
           <AvatarIcon
-            type="hand-of-cards"
+            type={type === 'hand' ? 'hand-of-cards' : 'user-stats'}
             size={isExpanded ? 40 : 60}
             className="floating-hand__icon"
             alt={translate('Mão de Cartas', 'Hand of Cards')}
