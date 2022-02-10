@@ -99,6 +99,7 @@ export function StepResolution({
       )}
 
       <Instruction className="e-phase-instruction">
+        <h4>{resolutionStatus.currentLocation!.name}</h4>
         <Translate pt="Disfarces dos infiltrados:" en="Agent's roles:" />
         {Object.values(players).map(({ id, name, role }) => (
           <li key={`role-list-${id}`}>
