@@ -1,0 +1,274 @@
+.n-street {
+  display: flex;
+  width: 95vw;
+  height: 270px;
+  overflow-y: auto;
+  // background: get-color(gray, 6);
+  // padding: get-unit(1 0);
+  padding-top: 45px;
+  padding-right: get-unit(4);
+  background-image: url('/public/images/other/n-street.png');
+  background-repeat: repeat-x;
+}
+
+$card-width: 80px;
+$n-pink: #ffb1b4;
+
+.n-house-card {
+  $self: &;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: get-unit(1);
+
+  &--collapsed {
+    border-radius: get-unit(1);
+    width: 30px;
+    overflow: hidden;
+    margin-right: get-unit(2);
+  }
+
+  &__card {
+    display: flex;
+    border-radius: get-unit(1);
+    flex-direction: column;
+    align-items: center;
+    background: $n-pink;
+    width: $card-width;
+    height: 120px;
+    margin: 8px 1px 0 1px;
+
+    #{$self}--collapsed & {
+      overflow: hidden;
+    }
+
+    #{$self}--horror & {
+      background: get-color(brown);
+    }
+
+    #{$self}--jackpot & {
+      background: get-color(yellow);
+    }
+  }
+
+  &__name {
+    width: $card-width;
+    border-radius: get-unit(1);
+    text-align: center;
+    font-size: 0.8em;
+    background: $n-pink;
+    margin-top: get-unit(2);
+
+    #{$self}--horror & {
+      background: get-color(brown);
+    }
+
+    #{$self}--jackpot & {
+      background: get-color(yellow);
+    }
+  }
+
+  &__sidewalk {
+    min-height: 25px;
+    text-align: center;
+    width: 100%;
+  }
+}
+
+$stats-height: get-unit(40);
+
+.n-player-stats {
+  background: get-color(white);
+  height: $stats-height;
+  width: 80vw;
+  display: flex;
+  flex-direction: row;
+  margin: get-unit(1 0 5 0);
+
+  &__decision {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: $stats-height;
+    padding: get-unit(2);
+    flex: 1;
+    text-transform: uppercase;
+  }
+
+  &__title {
+    color: get-color(gray, 4);
+    display: block;
+    font-size: 1.1em;
+  }
+
+  &__container {
+    border-left: 1px solid get-color(gray, 2);
+    display: flex;
+    flex-direction: column;
+    padding: get-unit(2);
+
+    &--candy {
+      width: $stats-height;
+    }
+  }
+
+  &__count-label {
+    color: get-color(gray);
+    display: block;
+  }
+
+  &__count-value {
+    display: block;
+    background: get-color(gray, 2);
+    font-size: 1.1em;
+    border-radius: get-unit(1);
+    padding: get-unit(1 2);
+    margin: get-unit(1);
+    text-align: center;
+  }
+
+  &__jackpots {
+    display: flex;
+  }
+
+  &__no-jackpot {
+    font-style: italic;
+    color: get-color(gray, 3);
+  }
+}
+
+// .n-players-decisions-list {
+//   display: flex;
+
+//   &__ul {
+//     display: flex;
+//   }
+// }
+
+.n-decision-buttons-container {
+  width: 60%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.n-decision-button {
+  padding: get-unit(2 4);
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: get-color(white);
+  transition: all 250ms;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  &--home:hover {
+    background: get-color(blue, 4);
+  }
+
+  &--continue:hover {
+    background: get-color(yellow, 4);
+  }
+}
+
+.n-players-decision-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+  transform: scale(75%);
+  margin: get-unit(0 auto 2 auto);
+
+  &__title {
+    background: rgba($color: white, $alpha: 0.6);
+    margin: 0;
+    padding: get-unit(1 2 0 2);
+    border-radius: get-unit(5 5 0 0);
+  }
+
+  &__players {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba($color: white, $alpha: 0.6);
+    padding: get-unit(1);
+    border-radius: get-unit(5);
+    flex-wrap: wrap;
+  }
+
+  &__player {
+    padding: get-unit(1 2);
+    border-radius: get-unit(5);
+    white-space: nowrap;
+  }
+}
+
+.n-players-decision-result {
+  @include contained;
+  display: grid;
+  max-width: 70vw;
+  grid-template-columns: 1fr 1px 1fr;
+  margin-bottom: get-unit(2);
+  border-radius: get-unit(2);
+
+  &__section {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 30vw;
+  }
+
+  &__divider {
+    background: get-color(black, 1);
+  }
+
+  &__title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__players {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: get-unit(2);
+
+    &--nobody {
+      font-style: italic;
+      color: get-color(black, 3);
+    }
+  }
+
+  &__info {
+    margin: get-unit(3 0 1 0);
+    font-style: italic;
+  }
+}
+
+.n-game-over-players {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.n-game-over-player {
+  @include contained;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  margin: get-unit(1);
+  padding: get-unit(2);
+  justify-items: center;
+  align-items: center;
+  text-align: center;
+}

@@ -156,7 +156,7 @@
     "version": "beta",
     "title": {
       "pt": "Espião Entre Nós",
-      "en": "The Spy Convention"
+      "en": "The Spy the Spies"
     },
     "summary": {
       "pt": "Todos nós, agentes de bem, estamos num mesmo local, mas um de nós é um espião! Será que conseguimos descobrir quem é o impostor antes dele descobrir que local estamos?",
@@ -388,7 +388,7 @@
   "N": {
     "gameCode": "N",
     "gameName": "na-rua-do-medo",
-    "version": "none",
+    "version": "beta",
     "title": {
       "pt": "Na Rua do Medo",
       "en": "Fear Street"
@@ -398,8 +398,22 @@
       "en": "Players are trick-or-treaters collecting candy, but if you see the same monster twice..."
     },
     "rules": {
-      "pt": [],
-      "en": []
+      "pt": [
+        "É Halloween e somos um bando de crianças medrosas indo coletar gostosuras de ponta em porta nas Ruas do Medo",
+        "Nós combinamos que dividiremos todos os doces igualmente e qualquer sobra deixaremos no passeio",
+        "Se encontramos alguém fantasiado de monstro, sem problemas, a gente aguenta uma vez, mas se um mesmo mostro aparece uma segunda vez, a gente entra em desespero, jogamos os doces pra cima e saímos correndo",
+        "Mas andaremos de vagar, e após cada carta casa é revelada (mostrando doces ou monstros), você escolher se deseja continuar ou voltar pra casa",
+        "Se você decide voltar pra casa, você coleta os doces que ficaram no passeio e garante os doces... que são pontos!",
+        "O jogo dura 5 (ou 3) rodadas (ruas), e o jogador com mais doces ganha!"
+      ],
+      "en": [
+        "It's Halloween and we are a bunch of scared kids going trick or treating in the Fear Streets",
+        "We go door to door to get candy. If we get treats, we agreed that all the candy must be shared equally and any candy that can't be shared will be left behind",
+        "If we encounter someone dressed as a monster, no problem, we can handle it once, but in the second time we face same monster, we drop all of our candy and run back home",
+        "But we're going slow and steady, after every house card is revealing (showing candy or a monster), you get to decide if you want to continue or go back home",
+        "When you go back home you collect all candy left behind and secure your candy, those are points!",
+        "The game is played in 5 (or 3) rounds (streets), and the player with the most candy wins!"
+      ]
     },
     "playerCount": {
       "recommended": "4-6",
@@ -408,9 +422,10 @@
     },
     "tags": ["competitive"],
     "available": {
-      "pt": false,
-      "en": false
-    }
+      "pt": true,
+      "en": true
+    },
+    "options": [{ "label": "Short Game (3 rounds instead of 5)", "key": "shortGame" }]
   },
   "O": {
     "gameCode": "O",

@@ -46,6 +46,10 @@ export const MENTE_COLETIVA_API = {
   submitAction: httpsCallable(functions, 'menteColetivaSubmitAction'),
 };
 
+export const NA_RUA_DO_MEDO_API = {
+  submitAction: httpsCallable(functions, 'naRuaDoMedoSubmitAction'),
+};
+
 export const ONDA_TELEPATICA_API = {
   submitAction: httpsCallable(functions, 'ondaTelepaticaSubmitAction'),
 };

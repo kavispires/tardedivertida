@@ -10,6 +10,7 @@ import * as galeriaDeSonhosEngine from './engine/galeria-de-sonhos';
 import * as crimesHediondosEngine from './engine/crimes-hediondos';
 import * as instrumentosCodificadosEngine from './engine/instrumentos-codificados';
 import * as menteColetivaEngine from './engine/mente-coletiva';
+import * as naRuaDoMedoEngine from './engine/na-rua-do-medo';
 import * as ondaTelepaticaEngine from './engine/onda-telepatica';
 import * as polemicaDaVezEngine from './engine/polemica-da-vez';
 import * as retratoFaladoEngine from './engine/retrato-falado';
@@ -83,6 +84,8 @@ exports.instrumentosCodificadosSubmitAction = functions.https.onCall(
 );
 
 exports.menteColetivaSubmitAction = functions.https.onCall(menteColetivaEngine.submitAction);
+
+exports.naRuaDoMedoSubmitAction = functions.https.onCall(naRuaDoMedoEngine.submitAction);
 
 exports.ondaTelepaticaSubmitAction = functions.https.onCall(ondaTelepaticaEngine.submitAction);
 

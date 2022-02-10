@@ -114,6 +114,8 @@ function Game() {
         return <GameSessions.InstrumentosCodificados gameId={gameId} />;
       case GAME_COLLECTION.MENTE_COLETIVA:
         return <GameSessions.MenteColetiva gameId={gameId} />;
+      case GAME_COLLECTION.NA_RUA_DO_MEDO:
+        return <GameSessions.NaRuaDoMedo gameId={gameId} />;
       case GAME_COLLECTION.ONDA_TELEPATICA:
         return <GameSessions.OndaTelepatica gameId={gameId} />;
       case GAME_COLLECTION.POLEMICA_DA_VEZ:
