@@ -16,9 +16,10 @@ type GameOverProps = {
   state: GameState;
   children: any;
   className?: string;
+  showRateWidgetAfterContent?: boolean;
 };
 
-export function GameOver({ state, children, className }: GameOverProps) {
+export function GameOver({ state, children, className, showRateWidgetAfterContent }: GameOverProps) {
   const { language } = useLanguage();
 
   return (
@@ -114,9 +115,11 @@ export function GameOver({ state, children, className }: GameOverProps) {
         </div>
       )}
 
-      <RateGameWidget />
+      {!showRateWidgetAfterContent && <RateGameWidget />}
 
       {children}
+
+      {showRateWidgetAfterContent && <RateGameWidget />}
     </div>
   );
 }
@@ -126,19 +129,21 @@ type GameOverWrapperProps = {
   state: GameState;
   children?: any;
   announcementIcon?:
-    | 'trophy'
-    | 'the-end'
-    | 'flag'
+    | 'criminal'
     | 'crown'
+    | 'flag'
     | 'ladder'
     | 'medal'
-    | 'criminal'
     | 'newspaper'
+    | 'nuclear-explosion'
+    | 'poop'
     | 'spy'
-    | 'nuclear-explosion';
+    | 'the-end'
+    | 'trophy';
   announcementTitle?: string;
   announcementDuration?: number;
   announcementContent?: any;
+  showRateWidgetAfterContent?: boolean;
 };
 
 export function GameOverWrapper({
@@ -149,6 +154,7 @@ export function GameOverWrapper({
   announcementDuration = 3,
   announcementContent,
   children = <></>,
+  showRateWidgetAfterContent = false,
 }: GameOverWrapperProps) {
   const [step, setStep] = useState(0);
   const { translate } = useLanguage();
@@ -172,7 +178,9 @@ export function GameOverWrapper({
           {Boolean(announcementContent) && announcementContent}
         </PhaseAnnouncement>
 
-        <GameOver state={state}>{children}</GameOver>
+        <GameOver state={state} showRateWidgetAfterContent={showRateWidgetAfterContent}>
+          {children}
+        </GameOver>
       </StepSwitcher>
     </PhaseContainer>
   );

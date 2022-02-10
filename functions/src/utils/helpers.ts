@@ -192,9 +192,10 @@ export const unReadyPlayer = (players: Players, playerId: PlayerId): Players => 
  * @param butThisOne
  * @returns
  */
-export const unReadyPlayers = (players: Players, butThisOne: PlayerId = ''): Players => {
+export const unReadyPlayers = (players: Players, butThisOne?: PlayerId, butThose?: PlayerId[]): Players => {
+  const excludeList: PlayerId[] = butThisOne ? [butThisOne] : butThose ? butThose : [];
   for (const playerKey in players) {
-    players[playerKey].ready = playerKey === butThisOne ? true : false;
+    players[playerKey].ready = excludeList.includes(playerKey);
   }
   return players;
 };

@@ -6,6 +6,7 @@ import GaleriaDeSonhos from './galeria-de-sonhos/SessionGaleriaDeSonhos';
 import CrimesHediondos from './crimes-hediondos/SessionCrimesHediondos';
 import InstrumentosCodificados from './instrumentos-codificados/SessionInstrumentosCodificados';
 import MenteColetiva from './mente-coletiva/SessionMenteColetiva';
+import NaRuaDoMedo from './na-rua-do-medo/SessionNaRuaDoMedo';
 import OndaTelepatica from './onda-telepatica/SessionOndaTelepatica';
 import PolemicaDaVez from './polemica-da-vez/SessionPolemicaDaVez';
 import RetratoFalado from './retrato-falado/SessionRetratoFalado';
@@ -23,6 +24,7 @@ const games = {
   CrimesHediondos,
   InstrumentosCodificados,
   MenteColetiva,
+  NaRuaDoMedo,
   OndaTelepatica,
   PolemicaDaVez,
   RetratoFalado,

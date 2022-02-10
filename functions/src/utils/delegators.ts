@@ -8,6 +8,7 @@ import * as galeriaDeSonhosEngine from '../engine/galeria-de-sonhos';
 import * as crimesHediondosEngine from '../engine/crimes-hediondos';
 import * as instrumentosCodificadosEngine from '../engine/instrumentos-codificados';
 import * as menteColetivaEngine from '../engine/mente-coletiva';
+import * as naRuaDoMedoEngine from '../engine/na-rua-do-medo';
 import * as ondaTelepaticaEngine from '../engine/onda-telepatica';
 import * as polemicaDaVezEngine from '../engine/polemica-da-vez';
 import * as retratoFaladoEngine from '../engine/retrato-falado';
@@ -39,6 +40,8 @@ export const getCollectionNameByGameCode = (gameCode: GameCode): string | null =
       return GAME_COLLECTIONS.INSTRUMENTOS_CODIFICADOS;
     case GAME_CODES.M:
       return GAME_COLLECTIONS.MENTE_COLETIVA;
+    case GAME_CODES.N:
+      return GAME_COLLECTIONS.NA_RUA_DO_MEDO;
     case GAME_CODES.O:
       return GAME_COLLECTIONS.ONDA_TELEPATICA;
     case GAME_CODES.P:
@@ -81,6 +84,8 @@ export const getCollectionKeyByGameCode = (gameCode: GameCode): string | null =>
       return GAME_KEYS.INSTRUMENTOS_CODIFICADOS;
     case GAME_CODES.M:
       return GAME_KEYS.MENTE_COLETIVA;
+    case GAME_CODES.N:
+      return GAME_KEYS.NA_RUA_DO_MEDO;
     case GAME_CODES.O:
       return GAME_KEYS.ONDA_TELEPATICA;
     case GAME_CODES.P:
@@ -131,6 +136,8 @@ export const getEngine = (collectionName: string): Engine => {
       return instrumentosCodificadosEngine;
     case GAME_COLLECTIONS.MENTE_COLETIVA:
       return menteColetivaEngine;
+    case GAME_COLLECTIONS.NA_RUA_DO_MEDO:
+      return naRuaDoMedoEngine;
     case GAME_COLLECTIONS.ONDA_TELEPATICA:
       return ondaTelepaticaEngine;
     case GAME_COLLECTIONS.POLEMICA_DA_VEZ:
