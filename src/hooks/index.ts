@@ -11,6 +11,7 @@ export * from './useIsUserReady';
 export * from './useLanguage';
 export * from './useLoading';
 export * from './useLocalStorage';
+export * from './useMock';
 export * from './useUser';
 export * from './useVotingMatch';
 export * from './useWhichPlayerIsThe';
