@@ -68,6 +68,11 @@
   color: get-color(lime);
   padding: get-unit(1 4);
   margin: get-unit(2 5);
+
+  h4 {
+    color: get-color(lime);
+    border-bottom: 1px solid get-color(lime);
+  }
 }
 
 .e-phase-section {
