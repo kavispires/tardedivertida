@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 // Design Resources
 import { Button, Input } from 'antd';
 // Hooks
-import { useLanguage } from '../../hooks';
+import { useLanguage, useMock } from '../../hooks';
 // Utils
-import { getEntryId, isDevEnv, shuffle } from '../../utils/helpers';
+import { getEntryId, shuffle } from '../../utils/helpers';
 // Components
 import { ButtonContainer, PopoverRule, Step, Title, Translate } from '../../components';
 import { Pasture } from './Pasture';
@@ -47,11 +47,10 @@ export function AnsweringStep({
   const { translate } = useLanguage();
   const [answers, setAnswers] = useState({});
 
-  useEffect(() => {
-    if (isDevEnv) {
-      onSubmitAnswers({ answers: mockAnswers(user.id, currentQuestion.number) });
-    }
-  }, []); // eslint-disable-line
+  // DEV: Mock answers
+  useMock(() => {
+    onSubmitAnswers({ answers: mockAnswers(user.id, currentQuestion.number) });
+  }, []);
 
   const onWriteAnswer = (e: any) => {
     setAnswers((s) => ({

@@ -2,12 +2,19 @@ import { useState, useEffect } from 'react';
 // Design Resources
 import { Button } from 'antd';
 // Hooks
-import { useLanguage, useLoading } from '../../hooks';
+import { useLanguage, useLoading, useMock } from '../../hooks';
 // Utils
-import { isDevEnv, shuffle } from '../../utils/helpers';
+import { shuffle } from '../../utils/helpers';
 // Components
-import { Card } from '../../components/cards';
-import { ButtonContainer, Instruction, ReadyPlayersBar, Step, Title, Translate } from '../../components';
+import {
+  Card,
+  ButtonContainer,
+  Instruction,
+  ReadyPlayersBar,
+  Step,
+  Title,
+  Translate,
+} from '../../components';
 import { DreamBoardWrite } from './DreamBoardWrite';
 
 const mockedClues = [
@@ -61,17 +68,16 @@ export function StepTellDream({
     );
   }, [localClues, dreamsCount]);
 
-  useEffect(() => {
-    if (isDevEnv) {
-      const shuffledMockedClues = shuffle(mockedClues);
-      setLocalClues(
-        Object.keys(user.dreams).reduce((acc: PlainObject, cardId, index) => {
-          acc[cardId] = shuffledMockedClues[index];
-          return acc;
-        }, {})
-      );
-    }
-  }, []); // eslint-disable-line
+  // DEV: mocks clues
+  useMock(() => {
+    const shuffledMockedClues = shuffle(mockedClues);
+    setLocalClues(
+      Object.keys(user.dreams).reduce((acc: PlainObject, cardId, index) => {
+        acc[cardId] = shuffledMockedClues[index];
+        return acc;
+      }, {})
+    );
+  }, []);
 
   const onSubmitDreamsClick = () => {
     onSubmitDreams({

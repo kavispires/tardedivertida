@@ -1,11 +1,9 @@
-import { useEffect } from 'react';
 // Design Resources
 import { Button, Layout, Space, Typography } from 'antd';
 import { CheckCircleFilled, MehFilled, RobotFilled, SmileFilled } from '@ant-design/icons';
 // Utils
 import { GAME_API } from '../../adapters';
-import { useLoading, useIsUserReady, useAPICall, useLanguage } from '../../hooks';
-import { isDevEnv } from '../../utils/helpers';
+import { useLoading, useIsUserReady, useAPICall, useLanguage, useMock } from '../../hooks';
 // Components
 import { LoadingPage, ReadyPlayersBar, Translate } from '..';
 import { RulesCarousel } from '.';
@@ -47,11 +45,7 @@ export function PhaseRules({ players, info }: PhaseRulesProps) {
   });
 
   // DEV: Auto-ready
-  useEffect(() => {
-    if (isDevEnv) {
-      onBeReady({});
-    }
-  }, []); // eslint-disable-line
+  useMock(() => onBeReady({}), []);
 
   if (!info?.gameName) {
     return <LoadingPage />;

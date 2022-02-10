@@ -2,9 +2,9 @@ import { useEffect } from 'react';
 // Design Resources
 import { Button } from 'antd';
 // Hooks
-import { useLanguage, useLoading, useVotingMatch } from '../../hooks';
+import { useLanguage, useLoading, useMock, useVotingMatch } from '../../hooks';
 // Utils
-import { getEntryId, isDevEnv, shuffle } from '../../utils/helpers';
+import { getEntryId, shuffle } from '../../utils/helpers';
 import { LETTERS } from '../../utils/constants';
 // Components
 import { ButtonContainer, Instruction, ReadyPlayersBar, Step, Title, Translate } from '../../components';
@@ -52,7 +52,8 @@ export function StepMatchDreams({
     }
   }, []); //eslint-disable-line
 
-  const devRandomVoting = () => {
+  // DEV: Random vote
+  useMock(() => {
     const devCards = table
       .filter((entry) => entry.dreamer && entry.dreamer !== user.id)
       .map((entry) => getEntryId(['card', entry.cardId]));
@@ -70,7 +71,7 @@ export function StepMatchDreams({
     if (devRes) {
       setVotes((s: PlainObject) => ({ ...s, ...devRes }));
     }
-  };
+  }, []);
 
   const onSubmitDreams = () => {
     onSubmitVotes({
@@ -92,7 +93,6 @@ export function StepMatchDreams({
         <Button type="primary" disabled={isLoading || !isVotingComplete} onClick={onSubmitDreams}>
           <Translate pt="Enviar" en="Submit" />
         </Button>
-        {isDevEnv && <Button onClick={devRandomVoting}>Dev Random Vote</Button>}
       </ButtonContainer>
 
       <AllClues
