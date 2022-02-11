@@ -10,7 +10,7 @@ import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 import { Avatar, Translate } from '../../components';
 import { useLanguage } from '../../hooks';
-import { AVATARS } from '../../utils/constants';
+import { getAvatarColorById } from '../../utils/helpers';
 import { ItemCard } from './ItemCard';
 
 type CrimeProps = {
@@ -39,7 +39,6 @@ export function Crime({
   showAnswers = false,
 }: CrimeProps) {
   const player = players[crime.playerId];
-  const language = useLanguage();
   const [selections, setSelections] = useState<PlainObject>({});
 
   const onSelect = (e: any) => {
@@ -56,7 +55,7 @@ export function Crime({
 
   return (
     <div className="h-crime">
-      <div className="h-crime__player" style={{ backgroundColor: AVATARS[player.avatarId].color }}>
+      <div className="h-crime__player" style={{ backgroundColor: getAvatarColorById(player.avatarId) }}>
         <span className="h-crime__player-avatar">
           <Avatar id={player.avatarId} />
         </span>
@@ -74,7 +73,6 @@ export function Crime({
                 key={`crime-scene-${sceneId}-by-${crime.playerId}`}
                 scene={scene}
                 playerIndex={crime.scenes[sceneId]}
-                language={language}
               />
             );
           })}
@@ -87,7 +85,6 @@ export function Crime({
           itemsList={weapons}
           type={'weapon'}
           onSelect={onSelect}
-          language={language}
           playerId={player.id}
           hideSelector={!Boolean(onUpdateGuesses)}
           itemId={showAnswers ? crime.weaponId : undefined}
@@ -99,7 +96,6 @@ export function Crime({
           itemsList={evidences}
           type={'evidence'}
           onSelect={onSelect}
-          language={language}
           playerId={player.id}
           hideSelector={!Boolean(onUpdateGuesses)}
           itemId={showAnswers ? crime.evidenceId : undefined}
@@ -108,7 +104,7 @@ export function Crime({
 
       <div
         className="h-crime__player"
-        style={{ backgroundColor: isComplete ? AVATARS[player.avatarId].color : undefined }}
+        style={{ backgroundColor: isComplete ? getAvatarColorById(player.avatarId) : undefined }}
       >
         {isComplete && <CheckCircleFilled />}
       </div>
@@ -119,10 +115,10 @@ export function Crime({
 type CrimeSceneProps = {
   scene: SceneTile;
   playerIndex: number;
-  language: Language;
 };
 
-function CrimeScene({ scene, playerIndex, language }: CrimeSceneProps) {
+function CrimeScene({ scene, playerIndex }: CrimeSceneProps) {
+  const { language } = useLanguage();
   return (
     <li className={clsx('h-crime-scene', `h-crime-scene--${scene.type}`)}>
       <div className={clsx('h-crime-scene__label', `h-crime-scene__label--${scene.type}`)}>
@@ -156,7 +152,6 @@ type ItemSelectorProps = {
   itemsList: CrimesHediondosCard[];
   type: 'weapon' | 'evidence';
   onSelect: GenericFunction;
-  language: Language;
   playerId: PlayerId;
   hideSelector?: boolean;
   itemId?: string;
@@ -168,12 +163,12 @@ function ItemSelector({
   user,
   type,
   onSelect,
-  language,
   playerId,
   hideSelector = false,
   itemId,
 }: ItemSelectorProps) {
   const [selectedItem, setSelected] = useState<CrimesHediondosCard>();
+  const { language } = useLanguage();
 
   useEffect(() => {
     if (itemId) {
@@ -195,6 +190,7 @@ function ItemSelector({
       itemId,
     });
   };
+
   return (
     <div className="h-item-selector">
       {!hideSelector && (

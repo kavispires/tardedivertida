@@ -5,8 +5,6 @@ import { Avatar as AntAvatar, AvatarProps } from 'antd';
 import avatars from '../../images/avatars.svg';
 // Hooks
 import { useLanguage } from '../../hooks';
-// Utils
-import { translate } from '../shared/Translate';
 
 interface TDAvatarProps extends AvatarProps {
   id?: string;
@@ -18,14 +16,14 @@ interface TDAvatarProps extends AvatarProps {
  * @returns
  */
 export const Avatar = ({ id, size, shape, alt, className, ...props }: TDAvatarProps) => {
-  const language = useLanguage();
+  const { translate } = useLanguage();
 
   return (
     <AntAvatar
       className={clsx('avatar', className)}
       size={size}
       shape={shape}
-      alt={alt ?? translate('Fulano', 'John Doe', language)}
+      alt={alt ?? translate('Fulano', 'John Doe')}
       src={
         <svg viewBox="0 0 100 100">
           <use href={avatars + `#avatar-${id}`}></use>

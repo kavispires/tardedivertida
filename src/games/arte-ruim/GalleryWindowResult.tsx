@@ -1,5 +1,3 @@
-import { memo } from 'react';
-import PropTypes from 'prop-types';
 // Design Resources
 import { Avatar as AntAvatar, Typography } from 'antd';
 import { CrownFilled, DeleteFilled } from '@ant-design/icons';
@@ -17,7 +15,7 @@ type GalleryWindowResultProps = {
   players: Players;
 };
 
-function GalleryWindowResult({
+export function GalleryWindowResult({
   playerArtist,
   correctAnswerId,
   correctAnswerText,
@@ -70,15 +68,3 @@ function GalleryWindowResult({
     </div>
   );
 }
-
-GalleryWindowResult.propTypes = {
-  correctAnswer: PropTypes.string,
-  correctAnswerId: PropTypes.string,
-  correctAnswerText: PropTypes.string,
-  playerArtist: PropTypes.object,
-  players: PropTypes.object,
-  playersPoints: PropTypes.object,
-  playersSay: PropTypes.object,
-};
-
-export default memo(GalleryWindowResult);

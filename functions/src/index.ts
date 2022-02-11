@@ -6,9 +6,11 @@ import * as arteRuimEngine from './engine/arte-ruim';
 import * as contadoresHistoriasEngine from './engine/contadores-historias';
 import * as detetivesImaginativosEngine from './engine/detetives-imaginativos';
 import * as espiaoEntreNosEngine from './engine/espiao-entre-nos';
+import * as galeriaDeSonhosEngine from './engine/galeria-de-sonhos';
 import * as crimesHediondosEngine from './engine/crimes-hediondos';
 import * as instrumentosCodificadosEngine from './engine/instrumentos-codificados';
 import * as menteColetivaEngine from './engine/mente-coletiva';
+import * as naRuaDoMedoEngine from './engine/na-rua-do-medo';
 import * as ondaTelepaticaEngine from './engine/onda-telepatica';
 import * as polemicaDaVezEngine from './engine/polemica-da-vez';
 import * as retratoFaladoEngine from './engine/retrato-falado';
@@ -71,6 +73,10 @@ exports.contadoresHistoriasSubmitAction = functions.https.onCall(contadoresHisto
 
 exports.detetivesImaginativosSubmitAction = functions.https.onCall(detetivesImaginativosEngine.submitAction);
 
+exports.espiaoEntreNosSubmitAction = functions.https.onCall(espiaoEntreNosEngine.submitAction);
+
+exports.galeriaDeSonhosSubmitAction = functions.https.onCall(galeriaDeSonhosEngine.submitAction);
+
 exports.crimesHediondosSubmitAction = functions.https.onCall(crimesHediondosEngine.submitAction);
 
 exports.instrumentosCodificadosSubmitAction = functions.https.onCall(
@@ -78,6 +84,8 @@ exports.instrumentosCodificadosSubmitAction = functions.https.onCall(
 );
 
 exports.menteColetivaSubmitAction = functions.https.onCall(menteColetivaEngine.submitAction);
+
+exports.naRuaDoMedoSubmitAction = functions.https.onCall(naRuaDoMedoEngine.submitAction);
 
 exports.ondaTelepaticaSubmitAction = functions.https.onCall(ondaTelepaticaEngine.submitAction);
 
@@ -92,27 +100,3 @@ exports.testemunhaOcularSubmitAction = functions.https.onCall(testemunhaOcularEn
 exports.ueSoIssoSubmitAction = functions.https.onCall(ueSoIssoEngine.submitAction);
 
 exports.cruzaPalavrasSubmitAction = functions.https.onCall(cruzaPalavrasEngine.submitAction);
-
-// TODO: MIGRATE ENGINES BELOW
-
-// ESPIAO_ENTRE_NOS HTTP CALLS
-
-/**
- * handles admin actions
- */
-exports.espiaoEntreNosHandleAdminAction = functions.https.onCall(espiaoEntreNosEngine.handleAdminAction);
-
-/**
- * Pause game and accuse someone
- */
-exports.espiaoEntreNosMakeAccusation = functions.https.onCall(espiaoEntreNosEngine.makeAccusation);
-
-/**
- * Pause game and guess location
- */
-exports.espiaoEntreNosGuessLocation = functions.https.onCall(espiaoEntreNosEngine.guessLocation);
-
-/**
- * Submit individual voting, if it's the last player to be ready, move to the next phase
- */
-exports.espiaoEntreNosSubmitVoting = functions.https.onCall(espiaoEntreNosEngine.submitVoting);

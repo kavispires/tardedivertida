@@ -1,23 +1,17 @@
+import { useEffect } from 'react';
 import clsx from 'clsx';
 // Design Resource
 import { Button } from 'antd';
 // Hooks
 import { useLanguage } from '../../hooks';
+// Utils
+import { kebabToPascal } from '../../utils/helpers';
 // Components
 import { TimedButton } from './index';
-import { translate } from './Translate';
 import { Title } from './Title';
 import * as IconIllustrations from '../icons';
-import { camelCase, startCase } from 'lodash';
 
 const IconIllustrationsComponents: any = IconIllustrations;
-
-/**
- * Converts a string from kebab case to pascal base
- * @param str
- * @returns
- */
-const kebabToPascal = (str: string): string => startCase(camelCase(str)).replace(/ /g, '');
 
 type PhaseAnnouncementProps = {
   title: any;
@@ -30,6 +24,7 @@ type PhaseAnnouncementProps = {
   type?: string;
   unskippable?: boolean;
   withoutTimer?: boolean;
+  animated?: boolean;
 };
 export function PhaseAnnouncement({
   buttonText,
@@ -42,13 +37,23 @@ export function PhaseAnnouncement({
   className,
   withoutTimer = false,
   unskippable,
+  animated = true,
 }: PhaseAnnouncementProps) {
-  const language = useLanguage();
-  const durationPerRound = [15, 10, 8, 5, 4]?.[currentRound] ?? 4;
-  const Icon: any = IconIllustrationsComponents[kebabToPascal(type ?? 'multitask')];
+  const { translate } = useLanguage();
+  const durationPerRound = [15, 15, 10, 5, 5, 5]?.[currentRound] ?? 5;
+  const Icon: any =
+    IconIllustrationsComponents[kebabToPascal(type ?? 'multitask')] ?? IconIllustrationsComponents.Multitask;
 
   return (
-    <div className={clsx('phase-announcement', className)}>
+    <div
+      className={clsx(
+        'phase-announcement',
+        animated && 'animate__animated',
+        animated && 'animate__backInDown',
+        // animated && 'animate__backInRight',
+        className
+      )}
+    >
       <Title>{title}</Title>
       <Icon className="phase-announcement__icon" />
 
@@ -56,13 +61,13 @@ export function PhaseAnnouncement({
 
       {withoutTimer ? (
         <Button type="primary" onClick={onClose}>
-          {translate('Prosseguir', 'Continue', language, buttonText)}
+          {translate('Prosseguir', 'Continue', buttonText)}
         </Button>
       ) : (
         <TimedButton
           duration={duration || durationPerRound}
           type="text"
-          label={translate('Prosseguir', 'Continue', language, buttonText)}
+          label={translate('Prosseguir', 'Continue', buttonText)}
           onClick={onClose}
           onExpire={onClose}
           disabled={unskippable}
@@ -70,4 +75,27 @@ export function PhaseAnnouncement({
       )}
     </div>
   );
+}
+
+type PhaseTimerResetProps = {
+  setStep: GenericFunction;
+};
+
+/**
+ * Component to be place in between sequential PhaseAnnouncement to reset the automatic timer
+ * @param props
+ * @returns
+ */
+export function PhaseTimerReset({ setStep }: PhaseTimerResetProps) {
+  useEffect(() => {
+    const delay = () => new Promise((res) => setTimeout(res, 100));
+    const next = async () => {
+      await delay();
+      setStep((s: number) => s + 1);
+    };
+
+    next();
+  }, []); // eslint-disable-line
+
+  return <div></div>;
 }

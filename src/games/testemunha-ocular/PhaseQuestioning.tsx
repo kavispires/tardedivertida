@@ -12,12 +12,11 @@ import {
   PhaseContainer,
   StepSwitcher,
   Translate,
-  translate,
 } from '../../components';
 import { StepQuestioning } from './StepQuestioning';
 
 function PhaseQuestioning({ state, players, info }: PhaseProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const [isLoading] = useLoading();
   const [step, setStep] = useState(0);
   const [witness, isUserTheWitness] = useWhichPlayerIsThe('witnessId', state, players);
@@ -35,7 +34,7 @@ function PhaseQuestioning({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           type="eye"
-          title={translate('Questionamento', 'Questioning', language)}
+          title={translate('Questionamento', 'Questioning')}
           onClose={() => setStep(1)}
           currentRound={state?.round?.current}
         >

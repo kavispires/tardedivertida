@@ -11,13 +11,13 @@ import { useAPICall, useGlobalState, useLanguage, useLoading } from '../../hooks
 // Utils
 import { inNSeconds } from '../../utils/helpers';
 // Components
-import { translate, Translate } from '.';
+import { Translate } from '.';
 
 const { TextArea } = Input;
 
 export function RateGameWidget(): JSX.Element {
   const [isLoading] = useLoading();
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const [userId] = useGlobalState('userId');
   const [gameId] = useGlobalState('gameId');
   const [rating, setRating] = useState(0);
@@ -34,8 +34,8 @@ export function RateGameWidget(): JSX.Element {
   const onSendRating = useAPICall({
     apiFunction: GAME_API.rateGame,
     actionName: 'rating',
-    successMessage: translate('Obrigado por avaliar o jogo', 'Thanks for rating the game', language),
-    errorMessage: translate('Envio de avaliação falhou', 'Rating submission has failed', language),
+    successMessage: translate('Obrigado por avaliar o jogo', 'Thanks for rating the game'),
+    errorMessage: translate('Envio de avaliação falhou', 'Rating submission has failed'),
     onSuccess: () => setThankYouMessage(true),
     onError: () => setThankYouMessage(true),
     onAfterCall: start,
@@ -62,7 +62,7 @@ export function RateGameWidget(): JSX.Element {
       )}
     >
       {thankYouMessage ? (
-        <Alert message={translate('Obrigado', 'Thank you', language)} type="success" showIcon />
+        <Alert message={translate('Obrigado', 'Thank you')} type="success" showIcon />
       ) : (
         <>
           <h3>

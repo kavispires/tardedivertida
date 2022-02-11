@@ -7,15 +7,7 @@ import gameOverTitle from '../../images/game-over-title.svg';
 import { useLanguage } from '../../hooks';
 import { AVATARS } from '../../utils/constants';
 // Components
-import {
-  Avatar,
-  PhaseAnnouncement,
-  PhaseContainer,
-  RateGameWidget,
-  StepSwitcher,
-  translate,
-  Translate,
-} from '..';
+import { Avatar, PhaseAnnouncement, PhaseContainer, RateGameWidget, StepSwitcher, Translate } from '..';
 import { PHASES } from '../../utils/phases';
 
 const GameOverText = () => <Translate pt="Jogo concluído" en="The game is over" />;
@@ -24,10 +16,11 @@ type GameOverProps = {
   state: GameState;
   children: any;
   className?: string;
+  showRateWidgetAfterContent?: boolean;
 };
 
-export function GameOver({ state, children, className }: GameOverProps) {
-  const language = useLanguage();
+export function GameOver({ state, children, className, showRateWidgetAfterContent }: GameOverProps) {
+  const { language } = useLanguage();
 
   return (
     <div className={className}>
@@ -122,9 +115,11 @@ export function GameOver({ state, children, className }: GameOverProps) {
         </div>
       )}
 
-      <RateGameWidget />
+      {!showRateWidgetAfterContent && <RateGameWidget />}
 
       {children}
+
+      {showRateWidgetAfterContent && <RateGameWidget />}
     </div>
   );
 }
@@ -133,10 +128,22 @@ type GameOverWrapperProps = {
   info: GameInfo;
   state: GameState;
   children?: any;
-  announcementIcon?: 'trophy' | 'the-end' | 'flag' | 'criminal' | 'newspaper';
+  announcementIcon?:
+    | 'criminal'
+    | 'crown'
+    | 'flag'
+    | 'ladder'
+    | 'medal'
+    | 'newspaper'
+    | 'nuclear-explosion'
+    | 'poop'
+    | 'spy'
+    | 'the-end'
+    | 'trophy';
   announcementTitle?: string;
   announcementDuration?: number;
   announcementContent?: any;
+  showRateWidgetAfterContent?: boolean;
 };
 
 export function GameOverWrapper({
@@ -147,9 +154,10 @@ export function GameOverWrapper({
   announcementDuration = 3,
   announcementContent,
   children = <></>,
+  showRateWidgetAfterContent = false,
 }: GameOverWrapperProps) {
   const [step, setStep] = useState(0);
-  const language = useLanguage();
+  const { translate } = useLanguage();
 
   return (
     <PhaseContainer
@@ -162,12 +170,7 @@ export function GameOverWrapper({
         {/*Step 0 */}
         <PhaseAnnouncement
           type={announcementIcon}
-          title={translate(
-            'E o jogo chegou ao fim...',
-            'And the game is over...',
-            language,
-            announcementTitle
-          )}
+          title={translate('E o jogo chegou ao fim...', 'And the game is over...', announcementTitle)}
           onClose={() => setStep(1)}
           currentRound={state?.round?.current}
           duration={announcementDuration}
@@ -175,7 +178,9 @@ export function GameOverWrapper({
           {Boolean(announcementContent) && announcementContent}
         </PhaseAnnouncement>
 
-        <GameOver state={state}>{children}</GameOver>
+        <GameOver state={state} showRateWidgetAfterContent={showRateWidgetAfterContent}>
+          {children}
+        </GameOver>
       </StepSwitcher>
     </PhaseContainer>
   );

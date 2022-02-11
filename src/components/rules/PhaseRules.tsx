@@ -1,13 +1,11 @@
-import { useEffect } from 'react';
 // Design Resources
 import { Button, Layout, Space, Typography } from 'antd';
 import { CheckCircleFilled, MehFilled, RobotFilled, SmileFilled } from '@ant-design/icons';
 // Utils
 import { GAME_API } from '../../adapters';
-import { useLoading, useIsUserReady, useAPICall, useLanguage } from '../../hooks';
-import { isDevEnv } from '../../utils/helpers';
+import { useLoading, useIsUserReady, useAPICall, useLanguage, useMock } from '../../hooks';
 // Components
-import { LoadingPage, ReadyPlayersBar, Translate, translate } from '..';
+import { LoadingPage, ReadyPlayersBar, Translate } from '..';
 import { RulesCarousel } from '.';
 
 type PhaseRulesProps = {
@@ -17,7 +15,7 @@ type PhaseRulesProps = {
 
 export function PhaseRules({ players, info }: PhaseRulesProps) {
   const [isLoading] = useLoading();
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const isUserReady = useIsUserReady(players);
 
   const onBeReady = useAPICall({
@@ -25,13 +23,11 @@ export function PhaseRules({ players, info }: PhaseRulesProps) {
     actionName: 'be-ready',
     successMessage: translate(
       'Pronto! Aguarde os outros jogadores estarem prontos',
-      'Done! Now wait for the other players',
-      language
+      'Done! Now wait for the other players'
     ),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar continuar',
-      'Oh no! The application found an error when trying to continue',
-      language
+      'Oh no! The application found an error when trying to continue'
     ),
   });
 
@@ -40,22 +36,16 @@ export function PhaseRules({ players, info }: PhaseRulesProps) {
     actionName: 'be-ready',
     successMessage: translate(
       'Vixi, se fudeu então, porque o jogo vai começar!',
-      'Sorry, you are screwed because the game is starting anyway!',
-      language
+      'Sorry, you are screwed because the game is starting anyway!'
     ),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar continuar',
-      'Oh no! The application found an error when trying to continue',
-      language
+      'Oh no! The application found an error when trying to continue'
     ),
   });
 
   // DEV: Auto-ready
-  useEffect(() => {
-    if (isDevEnv) {
-      onBeReady({});
-    }
-  }, []); // eslint-disable-line
+  useMock(() => onBeReady({}), []);
 
   if (!info?.gameName) {
     return <LoadingPage />;
@@ -101,7 +91,7 @@ export function PhaseRules({ players, info }: PhaseRulesProps) {
           <Translate pt="Quê?" en="What?" />
         </Button>
       </Space>
-      <ReadyPlayersBar players={players} showNames />
+      <ReadyPlayersBar players={players} />
     </Layout.Content>
   );
 }

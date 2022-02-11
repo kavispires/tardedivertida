@@ -1,5 +1,5 @@
 import { useEffect, useMemo } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 // Design Resources
 import { Typography, Layout, Space, Divider, PageHeader, Button, message } from 'antd';
 import { DatabaseFilled } from '@ant-design/icons';
@@ -17,11 +17,11 @@ const GAME_LIST: {
 } = gameList;
 
 function Hub() {
-  const language = useLanguage();
+  const navigate = useNavigate();
+  const { language } = useLanguage();
   const [getLocalStorage] = useLocalStorage();
   const [, setLanguage] = useGlobalState('language');
   const [, setIsAuthenticated] = useGlobalState('isAuthenticated');
-  const history = useHistory();
 
   useEffect(() => {
     const prevLanguage = getLocalStorage('language');
@@ -35,7 +35,7 @@ function Hub() {
       await signOut();
       setIsAuthenticated(false);
 
-      history.push('/');
+      navigate('/');
     } catch (error: any) {
       message.error('Something went wrong', error);
     }
@@ -83,7 +83,7 @@ function Hub() {
       <Divider />
       <Space size={[8, 16]} wrap align="start">
         {availableGames.map((game: GameInfo, index: number) => (
-          <GameCard key={`${game.gameCode}-${index}`} game={game} language={language} />
+          <GameCard key={`${game.gameCode}-${index}`} game={game} />
         ))}
       </Space>
       <Divider />
@@ -92,7 +92,7 @@ function Hub() {
       </Typography.Title>
       <Space size={[8, 16]} wrap align="start">
         {comingSoonGames.map((game: GameInfo, index: number) => (
-          <GameCard key={`${game.gameCode}-${index}`} game={game} language={language} />
+          <GameCard key={`${game.gameCode}-${index}`} game={game} />
         ))}
       </Space>
     </Layout.Content>

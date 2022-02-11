@@ -10,18 +10,17 @@ import {
   ImageCard,
   ImageCardHand as Hand,
   Title,
-  translate,
   Translate,
 } from '../../components';
-import BookPages from './BookPages';
+import { BookPages } from './BookPages';
 
 type StoryWritingProps = {
   user: GamePlayer;
   onSubmitStory: GenericFunction;
 };
 
-function StoryWriting({ user, onSubmitStory }: StoryWritingProps) {
-  const language = useLanguage();
+export function StoryWriting({ user, onSubmitStory }: StoryWritingProps) {
+  const { translate } = useLanguage();
   const [isLoading] = useLoading();
   const [story, setStory] = useState('');
   const [cardId, setCardId] = useState('');
@@ -38,7 +37,7 @@ function StoryWriting({ user, onSubmitStory }: StoryWritingProps) {
   return (
     <div className="c-story-writing">
       <Title>
-        <Translate pt="Escreva uma história" en="Tell a story" />
+        <Translate pt="Escreva uma história" en="Tell us a story" />
       </Title>
       <div className="c-story-book">
         <BookPages
@@ -71,7 +70,7 @@ function StoryWriting({ user, onSubmitStory }: StoryWritingProps) {
                 <li>
                   <Input
                     className="c-story-writing-input"
-                    placeholder={translate('Escreva aqui', 'Write your clue here', language)}
+                    placeholder={translate('Escreva aqui', 'Write your clue here')}
                     onChange={(e) => setStory(e.target.value)}
                     onPressEnter={onButtonClick}
                   />
@@ -98,5 +97,3 @@ function StoryWriting({ user, onSubmitStory }: StoryWritingProps) {
     </div>
   );
 }
-
-export default StoryWriting;

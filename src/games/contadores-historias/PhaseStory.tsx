@@ -15,14 +15,13 @@ import {
   Step,
   StepSwitcher,
   Translate,
-  translate,
   ViewIf,
 } from '../../components';
-import StoryWaiting from './StoryWaiting';
-import StoryWriting from './StoryWriting';
+import { StoryWaiting } from './StoryWaiting';
+import { StoryWriting } from './StoryWriting';
 
 function PhaseStory({ state, players, info }: PhaseProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
   const [storyteller, isUserTheStoryTeller] = useWhichPlayerIsThe('storytellerId', state, players);
@@ -33,14 +32,19 @@ function PhaseStory({ state, players, info }: PhaseProps) {
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.CONTADORES_HISTORIAS.STORY}>
-      <StepSwitcher step={step} conditions={[!isUserReady]}>
+      <StepSwitcher step={step} conditions={[!isUserReady]} players={players}>
         {/* Step 0 */}
-        <RoundAnnouncement round={state.round} onPressButton={() => setStep(1)} time={5} />
+        <RoundAnnouncement
+          round={state.round}
+          onPressButton={() => setStep(1)}
+          time={5}
+          circleColor="purple"
+        />
 
         {/* Step 1 */}
         <PhaseAnnouncement
           type="fairy-tale"
-          title={translate('Conte-nos uma história', 'Tell us a story...', language)}
+          title={translate('Conte-nos uma história', 'Tell us a story...')}
           onClose={() => setStep(2)}
           currentRound={state?.round?.current}
           buttonText=""

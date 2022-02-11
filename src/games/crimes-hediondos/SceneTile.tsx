@@ -10,7 +10,7 @@ type SceneTileProps = {
 };
 
 export function SceneTile({ tile, index, onSelectValue }: SceneTileProps) {
-  const language = useLanguage();
+  const { language } = useLanguage();
   return (
     <div className={clsx('h-scene-tile', `h-scene-tile--${tile.type}`)}>
       <Popover content={tile.description[language]}>

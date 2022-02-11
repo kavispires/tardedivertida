@@ -1,7 +1,5 @@
-// Hooks
-import { useLanguage } from '../../hooks';
 // Components
-import { PopoverRule } from '../../components';
+import { PopoverRule, Translate } from '../../components';
 
 function RulesPt() {
   return (
@@ -33,6 +31,5 @@ function RulesEn() {
 }
 
 export function ClueWritingRules() {
-  const language = useLanguage();
-  return <PopoverRule content={language === 'pt' ? <RulesPt /> : <RulesEn />} />;
+  return <PopoverRule content={<Translate pt={<RulesPt />} en={<RulesEn />} />} />;
 }

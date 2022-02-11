@@ -33,8 +33,10 @@ export const prepareSetupPhase = async (
   allWords: AllWords
 ): Promise<SaveGamePayload> => {
   // Determine turn order
-  const gameOrder = gameUtils.shuffle(Object.keys(players));
-  const turnOrder = gameOrder.length <= DOUBLE_ROUNDS_THRESHOLD ? [...gameOrder, ...gameOrder] : gameOrder;
+  const { gameOrder: turnOrder, playerIds: gameOrder } = utils.buildGameOrder(
+    players,
+    DOUBLE_ROUNDS_THRESHOLD
+  );
 
   // Build deck
   const numberOfRounds = turnOrder.length;

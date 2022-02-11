@@ -6,7 +6,7 @@ import { useCardWidth, useLanguage } from '../../hooks';
 // Utils
 import { shouldDisplayCard } from './helpers';
 // Components
-import { translate, Translate } from '../../components';
+import { Translate } from '../../components';
 import { NightmareButton } from './NightmareButton';
 import { DreamCard } from './DreamCard';
 
@@ -18,9 +18,9 @@ type DreamButtonProps = {
 };
 
 function DreamButton({ cardId, clue, previousClues, onClueChange }: DreamButtonProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
 
-  const title = `${translate('Sonho', 'Dream', language)}`;
+  const title = `${translate('Sonho', 'Dream')}`;
 
   return (
     <Popover

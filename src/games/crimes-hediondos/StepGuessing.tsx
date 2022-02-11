@@ -1,8 +1,8 @@
 import { Button, Collapse } from 'antd';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { ButtonContainer, Instruction, Step, Title, Translate } from '../../components';
-import { useLanguage } from '../../hooks';
-import { isDevEnv, shuffle } from '../../utils/helpers';
+import { useLanguage, useMock } from '../../hooks';
+import { shuffle } from '../../utils/helpers';
 import { Crime } from './Crime';
 import { GroupedItemsBoard } from './GroupedItemsBoard';
 import { splitWeaponsAndEvidence } from './helpers';
@@ -29,7 +29,7 @@ export function StepGuessing({
   onSubmitGuesses,
 }: StepGuessingProps) {
   const [guesses, setGuesses] = useState<PlainObject>({});
-  const language = useLanguage();
+  const { language } = useLanguage();
 
   const onUpdateGuesses = (payload: PlainObject) => {
     setGuesses((s: PlainObject) => ({
@@ -49,24 +49,23 @@ export function StepGuessing({
     Object.values(guesses).length === playerCount - 1 &&
     Object.values(guesses).every((guess) => guess.isComplete);
 
-  useEffect(() => {
-    if (isDevEnv) {
-      const shuffledWeapons = shuffle(weapons);
-      const shuffledEvidences = shuffle(evidences);
-      const devGuesses = Object.values(players).reduce((acc: any, player, index) => {
-        if (player.id !== user.id) {
-          acc[player.id] = {
-            weapon: shuffledWeapons[index].id,
-            evidence: shuffledEvidences[index].id,
-            isComplete: true,
-          };
-        }
-        return acc;
-      }, {});
+  // DEV: Auto guesses
+  useMock(() => {
+    const shuffledWeapons = shuffle(weapons);
+    const shuffledEvidences = shuffle(evidences);
+    const devGuesses = Object.values(players).reduce((acc: any, player, index) => {
+      if (player.id !== user.id) {
+        acc[player.id] = {
+          weapon: shuffledWeapons[index].id,
+          evidence: shuffledEvidences[index].id,
+          isComplete: true,
+        };
+      }
+      return acc;
+    }, {});
 
-      setGuesses(devGuesses);
-    }
-  }, []); // eslint-disable-line
+    setGuesses(devGuesses);
+  }, []);
 
   return (
     <Step>

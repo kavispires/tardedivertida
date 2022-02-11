@@ -4,7 +4,7 @@ import { CheckCircleFilled, CloudUploadOutlined } from '@ant-design/icons';
 // Hooks
 import { useLanguage } from '../../hooks';
 // Components
-import { AvatarName, Instruction, Step, TimedButton, Title, translate, Translate } from '../../components';
+import { AvatarName, Instruction, Step, TimedButton, Title, Translate } from '../../components';
 
 type StepWordSelectionProps = {
   guesser: GamePlayer;
@@ -14,7 +14,7 @@ type StepWordSelectionProps = {
 
 function StepWordSelection({ guesser, onSendSelectedWords, words = [] }: StepWordSelectionProps) {
   const [selectedWords, setSelectedWords] = useState<PlainObject>({});
-  const language = useLanguage();
+  const { translate } = useLanguage();
 
   const selectedWordsArray = Object.keys(selectedWords);
   const noSelection = selectedWordsArray.length === 0;
@@ -85,7 +85,7 @@ function StepWordSelection({ guesser, onSendSelectedWords, words = [] }: StepWor
       </ul>
 
       <TimedButton
-        label={translate('Enviar votos', 'Send votes', language)}
+        label={translate('Enviar votos', 'Send votes')}
         icon={<CloudUploadOutlined />}
         type="primary"
         onClick={() => onSendSelectedWords({ votes: selectedWordsArray })}

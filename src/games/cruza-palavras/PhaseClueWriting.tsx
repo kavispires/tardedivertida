@@ -5,19 +5,13 @@ import { useOnSubmitClueAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from '../../utils/phases';
 // Components
-import {
-  PhaseAnnouncement,
-  PhaseContainer,
-  RoundAnnouncement,
-  StepSwitcher,
-  translate,
-} from '../../components';
+import { PhaseAnnouncement, PhaseContainer, RoundAnnouncement, StepSwitcher } from '../../components';
 import StepClueWriting from './StepClueWriting';
 import { WritingCluesRule } from './RulesBlobs';
 
 function PhaseClueWriting({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const user = useUser(players);
   const [step, setStep] = useState(0);
 
@@ -27,12 +21,18 @@ function PhaseClueWriting({ players, state, info }: PhaseProps) {
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.CRUZA_PALAVRAS.CLUE_WRITING}>
       <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady, !isUserReady]} players={players}>
         {/* Step 0 */}
-        <RoundAnnouncement round={state?.round} onPressButton={() => setStep(1)} buttonText=" " time={5} />
+        <RoundAnnouncement
+          round={state?.round}
+          onPressButton={() => setStep(1)}
+          buttonText=" "
+          time={5}
+          circleColor="forest"
+        />
 
         {/* Step 1 */}
         <PhaseAnnouncement
-          type="writing"
-          title={translate('Escreva!', 'Write!', language)}
+          type="grid"
+          title={translate('Escreva!', 'Write!')}
           onClose={() => setStep(2)}
           currentRound={state?.round?.current}
         >

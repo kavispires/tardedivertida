@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
 // Hooks
 import { useLanguage, useWhichPlayerIsThe } from '../../hooks';
 import { useOnSubmitQuestionAPIRequest } from './api-requests';
@@ -14,15 +13,14 @@ import {
   Step,
   StepSwitcher,
   Translate,
-  translate,
   ViewIf,
-} from '../../components/shared';
+} from '../../components';
 import { QuestionSelectionWaiting } from './QuestionSelectionWaiting';
 import { QuestionSelection } from './QuestionSelection';
 import { GamePremiseRules } from './RulesBlobs';
 
 function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const [activePlayer, isUserTheActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
   const [step, setStep] = useState(0);
 
@@ -37,7 +35,7 @@ function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
     >
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
-        <RoundAnnouncement round={state.round} onPressButton={() => setStep(1)} time={3}>
+        <RoundAnnouncement round={state.round} onPressButton={() => setStep(1)} time={3} circleColor="white">
           <Instruction contained>
             <Translate
               pt="Somos ovelhinhas e nosso pasto está superlotado!"
@@ -49,7 +47,7 @@ function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
         {/* Step 1 */}
         <PhaseAnnouncement
           type="sheep"
-          title={translate('O Pasto Superlotado', 'A Overcrowded Pasture', language)}
+          title={translate('O Pasto Superlotado', 'A Overcrowded Pasture')}
           onClose={() => setStep(2)}
           currentRound={state?.round?.current}
           duration={state?.round?.current < 3 ? 40 : 10}
@@ -81,17 +79,5 @@ function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-PhaseQuestionSelection.propTypes = {
-  info: PropTypes.object,
-  players: PropTypes.object,
-  state: PropTypes.shape({
-    phase: PropTypes.string,
-    round: PropTypes.shape({
-      current: PropTypes.number,
-      total: PropTypes.number,
-    }),
-  }),
-};
 
 export default PhaseQuestionSelection;

@@ -1,0 +1,75 @@
+.g-table {
+  display: grid;
+  grid-template-columns: repeat(5, auto);
+}
+
+.g-table-item {
+  background: black;
+  // display: flex;
+  // flex-direction: column;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.g-table-item-button {
+  position: absolute;
+  bottom: get-unit(4);
+  left: 50%;
+  transform: translateX(-50%);
+
+  &:hover.ant-btn {
+    background: get-color(white);
+  }
+}
+
+.g-star-points {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translate(-50%, -50%);
+}
+
+.g-star {
+  width: get-unit(7);
+
+  &--super-spark {
+    width: get-unit(10);
+  }
+}
+
+.g-table-image {
+  border: 3px solid transparent;
+  box-sizing: border-box;
+
+  &--selected {
+    border-color: get-color(yellow);
+  }
+}
+
+h2.g-announce-title {
+  margin-top: get-unit(1);
+  font-size: 1.25rem;
+}
+
+ul.g-matched-players-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+ul.g-fallen-players-list {
+  list-style-type: none;
+  margin: 0;
+  padding: get-unit(2);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  background: get-color(red, 4);
+  border-radius: get-unit(1);
+}

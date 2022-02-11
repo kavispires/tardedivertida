@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Button, Space } from 'antd';
 import { CloudUploadOutlined } from '@ant-design/icons';
 // Components
-import { AvatarName, Instruction, Step, Title, Translate } from '../../components';
+import { AvatarName, Instruction, ReadyPlayersBar, Step, Title, Translate } from '../../components';
 import SuggestionEasel from './SuggestionEasel';
 import { WritingRules } from './RulesBlobs';
 import Card from './UeSoIssoCard';
@@ -13,12 +13,14 @@ type StepSuggestionProps = {
   onSendSuggestions: GenericFunction;
   secretWord: UeSoIssoCard;
   suggestionsNumber?: number;
+  players: GamePlayers;
 };
 
 function StepSuggestion({
   guesser,
   onSendSuggestions,
   secretWord,
+  players,
   suggestionsNumber = 1,
 }: StepSuggestionProps) {
   const [suggestions, setSuggestions] = useState([]);
@@ -100,6 +102,8 @@ function StepSuggestion({
           {suggestionsNumber > 1 && 's'}
         </Button>
       </Space>
+
+      <ReadyPlayersBar players={players} />
     </Step>
   );
 }

@@ -5,18 +5,11 @@ import { useOnSubmitVoteAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from '../../utils/phases';
 // Components
-import {
-  Instruction,
-  PhaseAnnouncement,
-  PhaseContainer,
-  StepSwitcher,
-  translate,
-  Translate,
-} from '../../components';
+import { Instruction, PhaseAnnouncement, PhaseContainer, StepSwitcher, Translate } from '../../components';
 import StepVote from './StepVote';
 
 function PhaseEvaluation({ players, state, info }: PhaseProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const user = useUser(players);
 
   const isUserReady = useIsUserReady(players, state);
@@ -31,7 +24,7 @@ function PhaseEvaluation({ players, state, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           type="choice"
-          title={translate('Vote!', 'Vote!', language)}
+          title={translate('Vote!', 'Vote!')}
           onClose={() => setStep(1)}
           currentRound={state?.round?.current}
         >

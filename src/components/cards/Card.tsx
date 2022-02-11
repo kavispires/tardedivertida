@@ -27,7 +27,13 @@ export const Card = ({
   const baseClass = 'card';
 
   const bgColor = randomColor
-    ? getColorFromLetter(typeof children === 'string' ? children[0] : header !== 'Carta' ? header[0] : 'X')
+    ? getColorFromLetter(
+        typeof children === 'string'
+          ? children[0].toUpperCase()
+          : header !== 'Carta'
+          ? header[0].toUpperCase()
+          : 'X'
+      )
     : color;
 
   return (

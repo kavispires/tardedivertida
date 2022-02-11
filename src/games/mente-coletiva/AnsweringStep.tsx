@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 // Design Resources
 import { Button, Input } from 'antd';
 // Hooks
-import { useLanguage } from '../../hooks';
+import { useLanguage, useMock } from '../../hooks';
 // Utils
-import { getEntryId, isDevEnv, shuffle } from '../../utils/helpers';
+import { getEntryId, shuffle } from '../../utils/helpers';
 // Components
-import { ButtonContainer, PopoverRule, Step, Title, translate, Translate } from '../../components';
+import { ButtonContainer, PopoverRule, Step, Title, Translate } from '../../components';
 import { Pasture } from './Pasture';
 import { RoundType } from './RoundType';
 import { Question } from './Question';
@@ -44,14 +44,13 @@ export function AnsweringStep({
   roundType,
   onSubmitAnswers,
 }: AnsweringStepProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const [answers, setAnswers] = useState({});
 
-  useEffect(() => {
-    if (isDevEnv) {
-      onSubmitAnswers({ answers: mockAnswers(user.id, currentQuestion.number) });
-    }
-  }, []); // eslint-disable-line
+  // DEV: Mock answers
+  useMock(() => {
+    onSubmitAnswers({ answers: mockAnswers(user.id, currentQuestion.number) });
+  }, []);
 
   const onWriteAnswer = (e: any) => {
     setAnswers((s) => ({
@@ -92,11 +91,7 @@ export function AnsweringStep({
                   <Input
                     className="m-answers__input"
                     id={id}
-                    placeholder={translate(
-                      `Escreva a resposta ${num} aqui`,
-                      `Write answer ${num} here`,
-                      language
-                    )}
+                    placeholder={translate(`Escreva a resposta ${num} aqui`, `Write answer ${num} here`)}
                     autoComplete="off"
                     onChange={onWriteAnswer}
                     onPressEnter={onPressEnter}

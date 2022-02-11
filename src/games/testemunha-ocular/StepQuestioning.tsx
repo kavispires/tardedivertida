@@ -3,7 +3,7 @@ import { Avatar, Button } from 'antd';
 // Hooks
 import { useLanguage } from '../../hooks';
 // Components
-import { AvatarName, Card, Icons, Step, Title, translate, Translate } from '../../components';
+import { AvatarName, Card, Icons, Step, Title, Translate } from '../../components';
 import { Suspects } from './Suspects';
 
 type StepQuestioningProps = {
@@ -27,7 +27,7 @@ export function StepQuestioning({
   onAnswer,
   question,
 }: StepQuestioningProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
 
   return (
     <Step>
@@ -68,11 +68,7 @@ export function StepQuestioning({
             <div></div>
           )}
 
-          <Card
-            header={translate('O suspeito...', 'The perpetrator...', language)}
-            randomColor
-            className="t-card"
-          >
+          <Card header={translate('O suspeito...', 'The perpetrator...')} randomColor className="t-card">
             {question.question}
           </Card>
           {isUserTheWitness ? (

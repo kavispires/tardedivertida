@@ -28,14 +28,29 @@
 
   &__circle {
     display: block;
+    position: absolute;
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    padding: 2.5px;
+    padding: 10px;
     background-clip: content-box;
     animation: spin 10s linear infinite;
-    background-color: rgba($color: #fff, $alpha: 0.5);
-    border: get-unit(5) dashed get-color(yellow);
+    background-color: rgba($color: #fff, $alpha: 0.3);
+    border: get-unit(3) dashed get-color(yellow);
+  }
+
+  &__circle-2 {
+    display: block;
+    position: absolute;
+    top: 2.5%;
+    right: 2.5%;
+    width: 95%;
+    height: 95%;
+    border-radius: 50%;
+    background-clip: content-box;
+    animation: spin-reverse 10s linear infinite;
+    // background-color: rgba($color: #fff, $alpha: 0.3);
+    border: get-unit(3) dashed get-color(yellow);
   }
 
   &__number {
@@ -78,5 +93,11 @@
 @keyframes spin {
   100% {
     transform: rotateZ(360deg);
+  }
+}
+
+@keyframes spin-reverse {
+  100% {
+    transform: rotateZ(-360deg);
   }
 }

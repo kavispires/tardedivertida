@@ -2,6 +2,7 @@
   "A": {
     "gameCode": "A",
     "gameName": "arte-ruim",
+    "version": "2.2.1",
     "title": {
       "pt": "Arte Ruim Pra Dedéu",
       "en": "Questionable Art"
@@ -46,6 +47,7 @@
   "B": {
     "gameCode": "B",
     "gameName": "bomba-relogio",
+    "version": "none",
     "title": {
       "pt": "Bomba Relógio",
       "en": "Time Bomb"
@@ -79,6 +81,7 @@
   "C": {
     "gameCode": "C",
     "gameName": "contadores-historias",
+    "version": "2.0",
     "title": {
       "pt": "Contadores de Histórias",
       "en": "Storytellers"
@@ -89,7 +92,14 @@
     },
     "rules": {
       "pt": ["TBD"],
-      "en": ["TBD"]
+      "en": [
+        "Every round someone will be the storyteller and will pick one of their cards in hands and write a story about it.",
+        "The story can be anything they want, a word, a sentence, etc. The goal is to have some players guessing the correct card but not all.",
+        "If at least one but not all players choose the right card, the storyteller will score points.",
+        "But watch out, before anybody can vote, everyone will see the story and also play a card to trick the other players",
+        "If your trick-card gets picked by any other player, you get a point",
+        "The game ends when someone score over 30 points."
+      ]
     },
     "playerCount": {
       "recommended": "4-6",
@@ -105,6 +115,7 @@
   "D": {
     "gameCode": "D",
     "gameName": "detetives-imaginativos",
+    "version": "2.0",
     "title": {
       "pt": "Detetives Imaginativos",
       "en": "Imaginative Detectives"
@@ -142,9 +153,10 @@
   "E": {
     "gameCode": "E",
     "gameName": "espiao-entre-nos",
+    "version": "beta",
     "title": {
       "pt": "Espião Entre Nós",
-      "en": "The Spy Among Us"
+      "en": "The Spy the Spies"
     },
     "summary": {
       "pt": "Todos nós, agentes de bem, estamos num mesmo local, mas um de nós é um espião! Será que conseguimos descobrir quem é o impostor antes dele descobrir que local estamos?",
@@ -165,17 +177,18 @@
     "playerCount": {
       "recommended": "6",
       "min": 4,
-      "max": 8
+      "max": 10
     },
     "tags": ["competitive", "same-time", "traitor", "discussion", "timed"],
     "available": {
-      "pt": false,
-      "en": false
+      "pt": true,
+      "en": true
     }
   },
   "F": {
     "gameCode": "F",
     "gameName": "desenho-rapidao",
+    "version": "none",
     "title": {
       "pt": "Desenho Rapidão",
       "en": "Fast Draw"
@@ -202,6 +215,7 @@
   "G": {
     "gameCode": "G",
     "gameName": "galeria-sonhos",
+    "version": "pre-alpha",
     "title": {
       "pt": "Galeria de sonhos",
       "en": "Dream Gallery"
@@ -221,13 +235,14 @@
     },
     "tags": ["competitive", "turn-based", "images"],
     "available": {
-      "pt": false,
-      "en": false
+      "pt": true,
+      "en": true
     }
   },
   "H": {
     "gameCode": "H",
     "gameName": "crimes-hediondos",
+    "version": "pre-alpha",
     "title": {
       "pt": "Crimes Hediondos",
       "en": "Horrific Crimes"
@@ -254,6 +269,7 @@
   "I": {
     "gameCode": "I",
     "gameName": "instrumentos-codificados",
+    "version": "none",
     "title": {
       "pt": "Instrumentos Codificados",
       "en": "Instrumental Cyphers"
@@ -280,6 +296,7 @@
   "K": {
     "gameCode": "K",
     "gameName": "palheta-cores",
+    "version": "none",
     "title": {
       "pt": "Palheta de Cores",
       "en": "Color Palette"
@@ -306,6 +323,7 @@
   "L": {
     "gameCode": "L",
     "gameName": "linhas-cruzadas",
+    "version": "none",
     "title": {
       "pt": "Linhas Cruzadas",
       "en": "Mis...communication"
@@ -336,6 +354,7 @@
   "M": {
     "gameCode": "M",
     "gameName": "mente-coletiva",
+    "version": "1.1",
     "title": {
       "pt": "Mente Coletiva",
       "en": "Herd Mentality"
@@ -366,9 +385,52 @@
       "en": true
     }
   },
+  "N": {
+    "gameCode": "N",
+    "gameName": "na-rua-do-medo",
+    "version": "beta",
+    "title": {
+      "pt": "Na Rua do Medo",
+      "en": "Fear Street"
+    },
+    "summary": {
+      "pt": "Jogadores são crianças recolhendo doces durante o Halloween, mas se você ver o mesmo monstro mais de uma vez...",
+      "en": "Players are trick-or-treaters collecting candy, but if you see the same monster twice..."
+    },
+    "rules": {
+      "pt": [
+        "É Halloween e somos um bando de crianças medrosas indo coletar gostosuras de ponta em porta nas Ruas do Medo",
+        "Nós combinamos que dividiremos todos os doces igualmente e qualquer sobra deixaremos no passeio",
+        "Se encontramos alguém fantasiado de monstro, sem problemas, a gente aguenta uma vez, mas se um mesmo mostro aparece uma segunda vez, a gente entra em desespero, jogamos os doces pra cima e saímos correndo",
+        "Mas andaremos de vagar, e após cada carta casa é revelada (mostrando doces ou monstros), você escolher se deseja continuar ou voltar pra casa",
+        "Se você decide voltar pra casa, você coleta os doces que ficaram no passeio e garante os doces... que são pontos!",
+        "O jogo dura 5 (ou 3) rodadas (ruas), e o jogador com mais doces ganha!"
+      ],
+      "en": [
+        "It's Halloween and we are a bunch of scared kids going trick or treating in the Fear Streets",
+        "We go door to door to get candy. If we get treats, we agreed that all the candy must be shared equally and any candy that can't be shared will be left behind",
+        "If we encounter someone dressed as a monster, no problem, we can handle it once, but in the second time we face same monster, we drop all of our candy and run back home",
+        "But we're going slow and steady, after every house card is revealing (showing candy or a monster), you get to decide if you want to continue or go back home",
+        "When you go back home you collect all candy left behind and secure your candy, those are points!",
+        "The game is played in 5 (or 3) rounds (streets), and the player with the most candy wins!"
+      ]
+    },
+    "playerCount": {
+      "recommended": "4-6",
+      "min": 3,
+      "max": 10
+    },
+    "tags": ["competitive"],
+    "available": {
+      "pt": true,
+      "en": true
+    },
+    "options": [{ "label": "Short Game (3 rounds instead of 5)", "key": "shortGame" }]
+  },
   "O": {
     "gameCode": "O",
     "gameName": "onda-telepatica",
+    "version": "2.0",
     "title": {
       "pt": "Onda Telepática",
       "en": "Telepathic Waves"
@@ -394,7 +456,7 @@
         "The Psychic must write a clue to accomplish that! If the card is \"Hot vs Cold\" and the needle is pointing to 4 towards \"Hot\", maybe \"Coffee\" is a good clue. Or maybe players will think it's not hot enough, or maybe they prefer iced coffee?",
         "Based on the clue, players must try to guess the answer. Do you think your telepathic waves are in sync? Maybe the Psychic likes room temperature coffee?",
         "The answer is then revealed and players get points depending on their guess. A correct guess gets 4 points, an almost correct gets less. The psychic gets 1 point for every player who got some points this round (max 3) and also has the change to guess how many players will get it correctly or not.",
-        "The game ends when someone gets 20 points or within 15 rounds, whatever comes first"
+        "The game ends when someone gets 15 points or within 10 rounds, whatever comes first"
       ]
     },
     "playerCount": {
@@ -411,6 +473,7 @@
   "P": {
     "gameCode": "P",
     "gameName": "polemica-vez",
+    "version": "2.0",
     "title": {
       "pt": "Polêmica da Vez",
       "en": "That's Polemic"
@@ -426,7 +489,12 @@
         "Ao mesmo tempo, você tem que tentar adivinhar quantas curtidas o assunto vai ganhar",
         "Se você acertar o número de curtidas, você ganha 1 ponto! O primeiro jogador a chegar a 4 pontos ganha o jogo (ou 15 rodadas)"
       ],
-      "en": ["TBD"]
+      "en": [
+        "Can you predict the trending topic? Every round a player will select a topic",
+        "Every player then chooses if they like or dislike that topic",
+        "And immediately tries to guess how many likes that topic will get",
+        "If you get the right number of likes, you get 1 point. The game ends when a player gets 4 points (or 15 rounds)."
+      ]
     },
     "playerCount": {
       "recommended": "5+",
@@ -446,6 +514,7 @@
   "Q": {
     "gameCode": "Q",
     "gameName": "quem-sou-eu",
+    "version": "none",
     "title": {
       "pt": "Quem Sou Eu?",
       "en": "Who Am I?"
@@ -472,6 +541,7 @@
   "R": {
     "gameCode": "R",
     "gameName": "retrato-falado",
+    "version": "1.5",
     "title": {
       "pt": "Retrato Falado Monstruoso",
       "en": "Monster Sketch"
@@ -482,7 +552,12 @@
     },
     "rules": {
       "pt": ["TBD"],
-      "en": ["TBD"]
+      "en": [
+        "Every round a player will be the witness, they have seen a monster around doing monstrous criminal activities",
+        "They have 20 seconds to memorize the monster's features. Immediately after they have 2 minutes to describe the monster to the other players",
+        "Then each player including the witness vote for the sketch the best matches the original monster, that artist will get 1 point.",
+        "If the witness voted with the group, it is a credible witness and it also gets a point, otherwise whoever the witness voted for gets 1 point"
+      ]
     },
     "playerCount": {
       "recommended": "5-6",
@@ -498,6 +573,7 @@
   "S": {
     "gameCode": "S",
     "gameName": "sonhos-pesadelos",
+    "version": "beta",
     "title": {
       "pt": "Sonhos e Pesadelos",
       "en": "Dreams and Nightmares"
@@ -531,6 +607,7 @@
   "T": {
     "gameCode": "T",
     "gameName": "testemunha-ocular",
+    "version": "2.0",
     "title": {
       "pt": "Testemunha Ocular",
       "en": "Eye Witness"
@@ -564,6 +641,7 @@
   "U": {
     "gameCode": "U",
     "gameName": "ue-so-isso",
+    "version": "2.0.1",
     "title": {
       "pt": "Ué, Só Isso?",
       "en": "That's It?"
@@ -606,10 +684,11 @@
   },
   "V": {
     "gameCode": "V",
-    "gameName": "toro-palpite",
+    "gameName": "vendaval-de-palpite",
+    "version": "none",
     "title": {
-      "pt": "Toró de Palpite",
-      "en": "Brainstorm"
+      "pt": "Vendaval de Palpite",
+      "en": "Brainy Storm"
     },
     "summary": {
       "pt": "Uma palavra secreta que sabemos apenas o tema. Consegue descobri-la fazendo associação de palavras?",
@@ -633,6 +712,7 @@
   "X": {
     "gameCode": "X",
     "gameName": "cruza-palavras",
+    "version": "2.1",
     "title": {
       "pt": "Cruza Palavras",
       "en": "Mixed Clues"
@@ -643,7 +723,14 @@
     },
     "rules": {
       "pt": ["TBD"],
-      "en": ["TBD"]
+      "en": [
+        "You will get a coordinate in a grid of with words in their header columns and header rows. You must write a single word clue that connects both coordinates headers",
+        "After everybody is done, everybody has to match the clues with the coordinates",
+        "Getting the exact clue coordinate gets you 2 points, but if you get a right coordinate with a wrong clue, you still get 1 point",
+        "Watch out, if nobody gets your clue, you lose points equal to the number of players, ouch",
+        "A new bigger board will show up when there are not enough clues for each player and... will use the clues written by the players as coordinates",
+        "The game ends after 6 rounds"
+      ]
     },
     "playerCount": {
       "recommended": "4-6",
@@ -660,6 +747,7 @@
   "Y": {
     "gameCode": "Y",
     "gameName": "te-conheco",
+    "version": "none",
     "title": {
       "pt": "Te conheço?",
       "en": "You don't know me"

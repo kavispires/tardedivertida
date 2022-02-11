@@ -2,20 +2,12 @@ import { useEffect } from 'react';
 // Design Resources
 import { Button } from 'antd';
 // Hooks
-import { useLanguage, useLoading, useVotingMatch } from '../../hooks';
+import { useLanguage, useLoading, useMock, useVotingMatch } from '../../hooks';
 // Utils
-import { getEntryId, isDevEnv, shuffle } from '../../utils/helpers';
+import { getEntryId, shuffle } from '../../utils/helpers';
 import { LETTERS } from '../../utils/constants';
 // Components
-import {
-  ButtonContainer,
-  Instruction,
-  ReadyPlayersBar,
-  Step,
-  Title,
-  translate,
-  Translate,
-} from '../../components';
+import { ButtonContainer, Instruction, ReadyPlayersBar, Step, Title, Translate } from '../../components';
 import { AllClues } from './AllClues';
 import { DreamBoardVote } from './DreamBoardVote';
 
@@ -38,7 +30,7 @@ export function StepMatchDreams({
   currentRound,
 }: StepMatchDreamsProps) {
   const [isLoading] = useLoading();
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const { votes, setVotes, activeItem, activateItem, isVotingComplete } = useVotingMatch(
     'clue',
     false,
@@ -60,7 +52,8 @@ export function StepMatchDreams({
     }
   }, []); //eslint-disable-line
 
-  const devRandomVoting = () => {
+  // DEV: Random vote
+  useMock(() => {
     const devCards = table
       .filter((entry) => entry.dreamer && entry.dreamer !== user.id)
       .map((entry) => getEntryId(['card', entry.cardId]));
@@ -78,7 +71,7 @@ export function StepMatchDreams({
     if (devRes) {
       setVotes((s: PlainObject) => ({ ...s, ...devRes }));
     }
-  };
+  }, []);
 
   const onSubmitDreams = () => {
     onSubmitVotes({
@@ -88,7 +81,7 @@ export function StepMatchDreams({
 
   return (
     <Step fullWidth className="s-tell-dream-step">
-      <Title>{translate('Adivinhação', 'Match the Pairs', language)}</Title>
+      <Title>{translate('Adivinhação', 'Match the Pairs')}</Title>
       <Instruction contained>
         <Translate
           pt="Clique em uma carta e então uma botão da imagem correspondente ou vice e versa. Aperte enviar quando terminar te combinar todas as dicas."
@@ -100,7 +93,6 @@ export function StepMatchDreams({
         <Button type="primary" disabled={isLoading || !isVotingComplete} onClick={onSubmitDreams}>
           <Translate pt="Enviar" en="Submit" />
         </Button>
-        {isDevEnv && <Button onClick={devRandomVoting}>Dev Random Vote</Button>}
       </ButtonContainer>
 
       <AllClues

@@ -14,7 +14,6 @@ import {
   PopoverRule,
   TimedButton,
   Title,
-  translate,
   Translate,
 } from '../../components';
 import WordGrid from './WordGrid';
@@ -36,7 +35,7 @@ type PlayersInCellProps = {
 function PlayersInCell({ cellPlayers, players }: PlayersInCellProps) {
   return (
     <ul>
-      {cellPlayers.map(({ playerId, color, isCorrect }: any) =>
+      {cellPlayers.map(({ playerId, isCorrect }: any) =>
         isCorrect ? (
           <li
             key={`players-in-cell-${playerId}`}
@@ -96,32 +95,32 @@ type AnswersListProps = {
 };
 
 function AnswersList({ players, grid, correctCoordinatesPerPlayer }: AnswersListProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
 
   const columns = [
     {
-      title: translate('Jogador', 'Player', language),
+      title: translate('Jogador', 'Player'),
       dataIndex: 'player',
       key: 'player',
       render: (data: any) => <AvatarName player={data} />,
       sorter: (a: any, b: any) => (a.name > b.name ? -1 : 1),
     },
     {
-      title: translate('Achou que', 'Thought that', language),
+      title: translate('Achou que', 'Thought that'),
       dataIndex: 'guess',
       key: 'guess',
       render: (guess: string) => guess.toUpperCase(),
       sorter: (a: any, b: any) => (a > b ? -1 : 1),
     },
     {
-      title: translate('Era', 'Was', language),
+      title: translate('Era', 'Was'),
       dataIndex: 'clue',
       key: 'clue',
       render: (clue: string) => clue.toUpperCase(),
       sorter: (a: any, b: any) => (a > b ? -1 : 1),
     },
     {
-      title: translate('Resultado', 'Result', language),
+      title: translate('Resultado', 'Result'),
       dataIndex: 'result',
       key: 'result',
       render: (value: any) =>

@@ -4,7 +4,6 @@ import { FirebaseStateData, FirebaseStoreData } from './types';
 // Constants
 import { MENTE_COLETIVA_PHASES, QUESTIONS_PER_ROUND } from './constants';
 // Utils
-import * as gameUtils from '../../utils/game-utils';
 import * as firebaseUtils from '../../utils/firebase';
 import * as utils from '../../utils/helpers';
 import {
@@ -35,7 +34,7 @@ export const prepareSetupPhase = async (
   additionalData: PlainObject
 ): Promise<SaveGamePayload> => {
   // Determine turn order
-  const gameOrder = gameUtils.shuffle(Object.keys(players));
+  const { gameOrder } = utils.buildGameOrder(players);
 
   // Build deck
   const deck = buildDeck(additionalData.allQuestions, additionalData.usedQuestions);

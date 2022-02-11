@@ -1,9 +1,9 @@
 import { useMemo, useState } from 'react';
 import clsx from 'clsx';
 //Design Resources
-import { Avatar, Button } from 'antd';
+import { Button } from 'antd';
 // Components
-import { Icons, Instruction, Step, Title, Translate } from '../../components';
+import { AvatarIcon, Instruction, Step, Title, Translate } from '../../components';
 import { Topic } from './Topic';
 
 type StepLikingProps = {
@@ -43,7 +43,7 @@ export function StepLiking({ currentTopic, customTopic, onSubmitReaction, player
           type="primary"
           onClick={() => setLike(true)}
         >
-          <Avatar src={<Icons.SpeechBubbleThumbsUp />} shape="square" className="p-like-icon" />
+          <AvatarIcon type="speech-bubble-thumbs-up" shape="square" className="p-like-icon" />
           <Translate pt="Curtir" en="Like" />
         </Button>
         <Button
@@ -55,7 +55,7 @@ export function StepLiking({ currentTopic, customTopic, onSubmitReaction, player
           type="primary"
           onClick={() => setLike(false)}
         >
-          <Avatar src={<Icons.SpeechBubbleThumbsDown />} shape="square" className="p-like-icon" />
+          <AvatarIcon type="speech-bubble-thumbs-down" shape="square" className="p-like-icon" />
           <Translate pt="Não curto" en="Dislike" />
         </Button>
       </div>
@@ -79,6 +79,7 @@ export function StepLiking({ currentTopic, customTopic, onSubmitReaction, player
                     disabled={like === null}
                     onClick={() => onSubmitReactions(option)}
                     size="large"
+                    shape="circle"
                   >
                     {option}
                   </Button>

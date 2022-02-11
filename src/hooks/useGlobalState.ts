@@ -17,11 +17,12 @@ type InitialState = {
   userAvatarId: string;
   isAuthenticated: boolean;
   isAdmin: boolean;
-  blurredCards: PlainObject;
+  blurredCards: BooleanDictionary;
   blurEnabled: boolean;
-  // Arte-Ruim
+  // Drawing Games
   canvasSize: number;
   // Espiao-entre-nos
+  cache: PlainObject;
   espiaoEntreNosCache: PlainObject;
   // Retrato-Falado
   monsterOrientation: 'vertical' | 'horizontal';
@@ -46,10 +47,11 @@ const initialState: InitialState = {
   isAdmin: false,
   blurredCards: {},
   blurEnabled: false,
-  // Arte-Ruim
+  // Drawing games
   canvasSize: 0,
   // Espiao-entre-nos
-  espiaoEntreNosCache: {},
+  cache: {},
+  espiaoEntreNosCache: {}, // deprecated
   // Retrato-Falado
   monsterOrientation: 'vertical',
 };

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 // Design Resources
-import { Avatar, Space } from 'antd';
+import { Space } from 'antd';
 // Hooks
 import { useLoading, useLanguage, useGlobalState } from '../../hooks';
 import { useOnSelectWitnessAPIRequest } from './api-requests';
@@ -13,16 +13,15 @@ import {
   PhaseAnnouncement,
   PhaseContainer,
   Step,
-  Icons,
   StepSwitcher,
   Title,
   Translate,
-  translate,
+  AvatarIcon,
 } from '../../components';
 import { WitnessRules } from './TextBlobs';
 
 function PhaseWitnessSelection({ state, players, info }: PhaseProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const [isLoading] = useLoading();
   const [step, setStep] = useState(0);
   const [isAdmin] = useGlobalState('isAdmin');
@@ -40,7 +39,7 @@ function PhaseWitnessSelection({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           type="crime-scene"
-          title={translate('O Caso', 'The Case', language)}
+          title={translate('O Caso', 'The Case')}
           onClose={() => setStep(1)}
           currentRound={state?.round?.current}
         >
@@ -67,7 +66,7 @@ function PhaseWitnessSelection({ state, players, info }: PhaseProps) {
         {/* Step 1 */}
         <Step key={1}>
           <Title>
-            <Avatar src={<Icons.AnimatedClock />} size="large" />
+            <AvatarIcon type="animated-clock" size="large" />
             <br />
             <Translate pt="Quem quer ser a testemunha ocular?" en="Who wants to be the eye witness?" />
           </Title>

@@ -4,53 +4,77 @@ export const LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
 export const GAME_CODES = {
   A: 'A', // arte-ruim
+  B: 'B', // bomba-relogio
   C: 'C', // contadores-historias
   D: 'D', // detetives-imaginativos
   E: 'E', // espiao-entre-nos
+  F: 'F', // desenho-rapidao
+  G: 'G', // galeria-de-sonhos
   H: 'H', // crimes-hediondos
   I: 'I', // instrumentos-codificados
+  K: 'K', // palheta-de-cores
+  L: 'L', // linhas-cruzadas
   M: 'M', // mente-coletiva
+  N: 'N', // na-rua-do-medo
   O: 'O', // onda-telepatica
   P: 'P', // polemica-da-vez
+  Q: 'Q', // quem-sou-eu
   R: 'R', // retrato-falado
   S: 'S', // sonhos-pesadelos
   T: 'T', // testemunha-ocular
   U: 'U', // ue-so-isso
   X: 'X', // cruza-palavras
+  Y: 'Y', // te-conheco
 };
 
 export const GAME_KEYS = {
   ARTE_RUIM: 'ARTE_RUIM',
+  BOMBA_RELOGIO: 'BOMBA_RELOGIO',
   CONTADORES_HISTORIAS: 'CONTADORES_HISTORIAS',
   DETETIVES_IMAGINATIVOS: 'DETETIVES_IMAGINATIVOS',
   ESPIAO_ENTRE_NOS: 'ESPIAO_ENTRE_NOS',
+  DESENHO_RAPIDAO: 'DESENHO_RAPIDAO',
+  GALERIA_DE_SONHOS: 'GALERIA_DE_SONHOS',
   CRIMES_HEDIONDOS: 'CRIMES_HEDIONDOS',
   INSTRUMENTOS_CODIFICADOS: 'INSTRUMENTOS_CODIFICADOS',
+  PALHETA_DE_CORES: 'PALHETA_DE_CORES',
+  LINHAS_CRUZADAS: 'LINHAS_CRUZADAS',
   MENTE_COLETIVA: 'MENTE_COLETIVA',
+  NA_RUA_DO_MEDO: 'NA_RUA_DO_MEDO',
   ONDA_TELEPATICA: 'ONDA_TELEPATICA',
   POLEMICA_DA_VEZ: 'POLEMICA_DA_VEZ',
+  QUEM_SOU_EU: 'QUEM_SOU_EU',
   RETRATO_FALADO: 'RETRATO_FALADO',
   SONHOS_PESADELOS: 'SONHOS_PESADELOS',
   TESTEMUNHA_OCULAR: 'TESTEMUNHA_OCULAR',
   UE_SO_ISSO: 'UE_SO_ISSO',
   CRUZA_PALAVRAS: 'CRUZA_PALAVRAS',
+  TE_CONHECO: 'TE_CONHECO',
 };
 
 export const GAME_COLLECTIONS = {
   ARTE_RUIM: 'arte-ruim',
+  BOMBA_RELOGIO: 'bomba-relogio',
   CONTADORES_HISTORIAS: 'contadores-historias',
   DETETIVES_IMAGINATIVOS: 'detetives-imaginativos',
   ESPIAO_ENTRE_NOS: 'espiao-entre-nos',
+  DESENHO_RAPIDAO: 'desenho-rapidao',
+  GALERIA_DE_SONHOS: 'galeria-de-sonhos',
   CRIMES_HEDIONDOS: 'crimes-hediondos',
   INSTRUMENTOS_CODIFICADOS: 'instrumentos-codificados',
+  PALHETA_DE_CORES: 'palheta-de-cores',
+  LINHAS_CRUZADAS: 'linhas-cruzadas',
   MENTE_COLETIVA: 'mente-coletiva',
+  NA_RUA_DO_MEDO: 'na-rua-do-medo',
   ONDA_TELEPATICA: 'onda-telepatica',
   POLEMICA_DA_VEZ: 'polemica-da-vez',
+  QUEM_SOU_EU: 'quem-sou-eu',
   RETRATO_FALADO: 'retrato-falado',
   SONHOS_PESADELOS: 'sonhos-pesadelos',
   TESTEMUNHA_OCULAR: 'testemunha-ocular',
   UE_SO_ISSO: 'ue-so-isso',
   CRUZA_PALAVRAS: 'cruza-palavras',
+  TE_CONHECO: 'te-conheco',
 };
 
 export const GLOBAL_USED_DOCUMENTS = {
@@ -64,63 +88,3 @@ export const GLOBAL_USED_DOCUMENTS = {
 export const SEPARATOR = ';;';
 
 export const USED_GAME_IDS = 'usedGameIds';
-
-// DEPRECATED FROM HERE BELOW
-
-export const GAME_PLAYERS_LIMIT = {
-  ESPIAO_ENTRE_NOS: {
-    min: 4,
-    max: 8,
-  },
-};
-
-/**
- * Enum of Game Phases
- */
-export const PHASES = {
-  ESPIAO_ENTRE_NOS: {
-    LOBBY: 'LOBBY',
-    RULES: 'RULES',
-    ASSIGNMENT: 'ASSIGNMENT',
-    INVESTIGATION: 'INVESTIGATION',
-    ASSESSMENT: 'ASSESSMENT',
-    FINAL_ASSESSMENT: 'FINAL_ASSESSMENT',
-    RESOLUTION: 'RESOLUTION',
-    GAME_OVER: 'GAME_OVER',
-  },
-  ONDA_TELEPATICA: {
-    LOBBY: 'LOBBY',
-    RULES: 'RULES',
-    DIAL_SIDES: 'DIAL_SIDES',
-    DIAL_CLUE: 'DIAL_CLUE',
-    GUESS: 'GUESS',
-    RIVAL_GUESS: 'RIVAL_GUESS',
-    REVEAL: 'REVEAL',
-    GAME_OVER: 'GAME_OVER',
-  },
-};
-
-// ESPIAO_ENTRE_NOS
-
-export const ESPIAO_ENTRE_NOS_CONSTANTS = {
-  SPY: 'SPY',
-  GAME_TIME: 10 * 60 * 1000,
-  TIMER_STATUS: {
-    RUNNING: 'RUNNING',
-    STOPPED: 'STOPPED',
-    PAUSED: 'PAUSED',
-  },
-  OUTCOME: {
-    VOTE_SUCCESS: 'VOTE_SUCCESS',
-    VOTE_FAIL: 'VOTE_FAIL',
-    CONTINUE: 'CONTINUE',
-  },
-  RESOLUTION: {
-    SPY_GUESS: 'SPY_GUESS',
-    SPY_FOUND: 'SPY_FOUND',
-  },
-};
-
-// ONDA_TELEPATICA
-
-export const ONDA_TELEPATICA_GOAL = 10;

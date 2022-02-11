@@ -14,12 +14,11 @@ import {
   Step,
   Title,
   ReadyPlayersBar,
-  translate,
   Translate,
   PopoverRule,
 } from '../../components';
-import EvaluationAllDrawings from './EvaluationAllDrawings';
-import EvaluationAllCards from './EvaluationAllCards';
+import { EvaluationAllDrawings } from './EvaluationAllDrawings';
+import { EvaluationAllCards } from './EvaluationAllCards';
 import { EvaluationRules } from './TextBlobs';
 
 function prepareVotes(votes: PlainObject) {
@@ -37,9 +36,10 @@ type StepEvaluationProps = {
   players: GamePlayers;
   onSubmitVoting: GenericFunction;
 };
-function StepEvaluation({ drawings, cards, players, onSubmitVoting }: StepEvaluationProps) {
+
+export function StepEvaluation({ drawings, cards, players, onSubmitVoting }: StepEvaluationProps) {
   const [isLoading] = useLoading();
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const user = useUser(players);
   const canvasWidth = useCardWidth(Math.min(Object.keys(players).length, 6), 16, 150, 500);
   const [canvasSize, setCanvasSize] = useGlobalState('canvasSize');
@@ -149,12 +149,9 @@ function StepEvaluation({ drawings, cards, players, onSubmitVoting }: StepEvalua
 
       <ReadyPlayersBar
         players={players}
-        readyText={translate('Já acabei, anda logo!', "I'm done, hurry up!", language)}
-        readyTextPlural={translate('Já acabamos, anda logo!', "We're done, hurry up!", language)}
-        showNames
+        readyText={translate('Já acabei, anda logo!', "I'm done, hurry up!")}
+        readyTextPlural={translate('Já acabamos, anda logo!', "We're done, hurry up!")}
       />
     </Step>
   );
 }
-
-export default StepEvaluation;

@@ -13,7 +13,7 @@ type SectionTeamPlayersProp = {
 };
 
 export function SectionTeamPlayers({ team, players }: SectionTeamPlayersProp) {
-  const language = useLanguage();
+  const { language } = useLanguage();
 
   const sortedPlayers = useMemo(
     () =>

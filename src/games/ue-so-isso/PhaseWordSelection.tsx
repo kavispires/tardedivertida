@@ -1,8 +1,7 @@
 import { useState } from 'react';
 // Hooks
-import { useIsUserReady, useWhichPlayerIsThe, useAPICall, useLanguage } from '../../hooks';
+import { useIsUserReady, useWhichPlayerIsThe, useLanguage } from '../../hooks';
 // Resources & Utils
-import { UE_SO_ISSO_API } from '../../adapters';
 import { PHASES } from '../../utils/phases';
 // Components
 import {
@@ -14,12 +13,12 @@ import {
   Step,
   StepSwitcher,
   Translate,
-  translate,
   ViewIf,
 } from '../../components';
 import StepWordSelection from './StepWordSelection';
 import { GameProgressBar } from './GameProgressBar';
 import { GuesserWaitingRoom } from './GuesserWaitingRoom';
+import { useOnSubmitVotesAPIRequest } from './api-requests';
 
 type RoundAnnouncementTextProps = {
   guesser: GamePlayer;
@@ -50,29 +49,11 @@ function RoundAnnouncementText({ guesser, groupScore, round }: RoundAnnouncement
 
 function PhaseWordSelection({ state, players, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const [guesser, isUserTheGuesser] = useWhichPlayerIsThe('guesserId', state, players);
   const [step, setStep] = useState(0);
 
-  const onSendSelectedWordsAPIRequest = useAPICall({
-    apiFunction: UE_SO_ISSO_API.submitAction,
-    actionName: 'submit-votes',
-    onBeforeCall: () => setStep(3),
-    onError: () => setStep(1),
-    successMessage: translate('Votos enviados com sucesso!', 'Votes send successfully!', language),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar seus votos',
-      'Oops, the application failed to send your votes',
-      language
-    ),
-  });
-
-  const onSendSelectedWords = (payload: PlainObject) => {
-    onSendSelectedWordsAPIRequest({
-      action: 'SUBMIT_VOTES',
-      ...payload,
-    });
-  };
+  const onSendSelectedWords = useOnSubmitVotesAPIRequest(setStep);
 
   return (
     <PhaseContainer
@@ -83,14 +64,14 @@ function PhaseWordSelection({ state, players, info }: PhaseProps) {
     >
       <StepSwitcher step={step} conditions={[!isUserReady]} players={players}>
         {/* Step 0 */}
-        <RoundAnnouncement round={state.round} onPressButton={() => setStep(1)} time={7}>
+        <RoundAnnouncement round={state.round} onPressButton={() => setStep(1)} time={7} circleColor="cream">
           <RoundAnnouncementText guesser={guesser} groupScore={state.groupScore} round={state.round} />
         </RoundAnnouncement>
 
         {/* Step 1 */}
         <PhaseAnnouncement
           type="opinions"
-          title={translate('Seleção da Palavra Secreta', 'Secret Word Selection', language)}
+          title={translate('Seleção da Palavra Secreta', 'Secret Word Selection')}
           onClose={() => setStep(2)}
           currentRound={state?.round?.current}
         >
@@ -121,7 +102,7 @@ function PhaseWordSelection({ state, players, info }: PhaseProps) {
                     Selecione a palavra secreta para essa rodada.
                     <br />
                     Você pode selecionar quantas quiser.
-                    <br />A palavra mais votada será selecionada!
+                    <br />A palavra mais votada será usada nessa rodada!
                   </>
                 }
                 en={
@@ -130,7 +111,7 @@ function PhaseWordSelection({ state, players, info }: PhaseProps) {
                     <br />
                     You may select as many as you wish.
                     <br />
-                    The most voted word would be selected!
+                    The most voted word would be used this round!
                   </>
                 }
               />

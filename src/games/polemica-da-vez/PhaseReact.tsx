@@ -5,18 +5,11 @@ import { useOnSubmitReactionAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from '../../utils/phases';
 // Components
-import {
-  Instruction,
-  PhaseAnnouncement,
-  PhaseContainer,
-  StepSwitcher,
-  Translate,
-  translate,
-} from '../../components';
+import { Instruction, PhaseAnnouncement, PhaseContainer, StepSwitcher, Translate } from '../../components';
 import { StepLiking } from './StepLiking';
 
 function PhaseReact({ state, players, info }: PhaseProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const [step, setStep] = useState(0);
 
   const onSubmitReaction = useOnSubmitReactionAPIRequest(setStep);
@@ -27,7 +20,7 @@ function PhaseReact({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           type="feedback"
-          title={translate('Qual a polêmica da vez?', "What's trending now?", language)}
+          title={translate('Qual a polêmica da vez?', "What's trending now?")}
           onClose={() => setStep(1)}
           currentRound={state?.round?.current}
           duration={state?.round?.current < 3 ? 30 : undefined}

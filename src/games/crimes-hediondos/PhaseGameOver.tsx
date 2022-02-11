@@ -6,7 +6,7 @@ import { Crime } from './Crime';
 import { splitWeaponsAndEvidence } from './helpers';
 
 function PhaseGameOver({ state, players, info }: PhaseProps) {
-  const language = useLanguage();
+  const { language } = useLanguage();
   const crimes: Crime[] = state.crimes;
   const user = useUser(players);
 

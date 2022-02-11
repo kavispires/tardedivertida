@@ -15,7 +15,7 @@ type GalleryWindowGuessesProps = {
   artistColor: string;
 };
 
-function GalleryWindowGuesses({
+export function GalleryWindowGuesses({
   playersSay,
   players,
   cards,
@@ -74,5 +74,3 @@ function GalleryWindowGuesses({
     </div>
   );
 }
-
-export default GalleryWindowGuesses;

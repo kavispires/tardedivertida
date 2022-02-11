@@ -1,10 +1,8 @@
-// Design Resources
-import { Avatar } from 'antd';
 // Components
 import {
+  AvatarIcon,
   AvatarName,
   FloatingHand,
-  Icons,
   ImageCardHand,
   Instruction,
   Title,
@@ -23,8 +21,7 @@ function StepSecretClueWaiting({ leader, user, players, turnOrder }: StepSecretC
   return (
     <div className="d-secret-clue-write">
       <Title>
-        <Avatar src={<Icons.AnimatedClock />} size="large" />{' '}
-        <Translate pt="Aguarde..." en="Please wait..." />
+        <AvatarIcon type="animated-clock" size="large" /> <Translate pt="Aguarde..." en="Please wait..." />
       </Title>
       <Instruction contained>
         <AvatarName player={leader} addressUser />{' '}

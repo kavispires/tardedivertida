@@ -23,7 +23,7 @@ export const prepareSetupPhase = async (
   additionalData: ResourceData
 ): Promise<SaveGamePayload> => {
   // Determine turn order
-  const gameOrder = gameUtils.shuffle(Object.keys(players));
+  const { gameOrder } = utils.buildGameOrder(players);
 
   // Build deck
   const deck = buildDeck(additionalData);

@@ -1,20 +1,18 @@
 import { CONTADORES_HISTORIAS_API } from '../../adapters';
-import { translate } from '../../components';
 import { useAPICall, useLanguage } from '../../hooks';
 
 export function useOnSubmitStoryAPIRequest(setStep: GenericFunction) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
 
   const request = useAPICall({
     apiFunction: CONTADORES_HISTORIAS_API.submitAction,
     actionName: 'submit-story',
     onBeforeCall: () => setStep(3),
     onError: () => setStep(0),
-    successMessage: translate('História submetida com sucesso', 'Story submitted successfully', language),
+    successMessage: translate('História submetida com sucesso', 'Story submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar sua história',
-      'Oops, the application found an error while trying to submit your story',
-      language
+      'Oops, the application found an error while trying to submit your story'
     ),
   });
 
@@ -27,17 +25,16 @@ export function useOnSubmitStoryAPIRequest(setStep: GenericFunction) {
 }
 
 export function useOnPlayCardAPIRequest(setStep: GenericFunction) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
 
   const request = useAPICall({
     apiFunction: CONTADORES_HISTORIAS_API.submitAction,
     actionName: 'play-card',
     onError: () => setStep(1),
-    successMessage: translate('Carta submetida com sucesso', 'Card submitted successfully', language),
+    successMessage: translate('Carta submetida com sucesso', 'Card submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar sua carta',
-      'Oops, the application found an error while trying to submit your card',
-      language
+      'Oops, the application found an error while trying to submit your card'
     ),
   });
 
@@ -50,17 +47,16 @@ export function useOnPlayCardAPIRequest(setStep: GenericFunction) {
 }
 
 export function useOnSubmitVoteAPIRequest(setStep: GenericFunction) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
 
   const request = useAPICall({
     apiFunction: CONTADORES_HISTORIAS_API.submitAction,
     actionName: 'submit-vote',
     onError: () => setStep(1),
-    successMessage: translate('Voto submetido com sucesso', 'Vote submitted successfully', language),
+    successMessage: translate('Voto submetido com sucesso', 'Vote submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar seu voto',
-      'Oops, the application found an error while trying to submit your vote',
-      language
+      'Oops, the application found an error while trying to submit your vote'
     ),
   });
 

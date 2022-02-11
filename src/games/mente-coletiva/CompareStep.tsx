@@ -1,9 +1,7 @@
-import PropTypes from 'prop-types';
-
 // Design Resources
 import { Divider } from 'antd';
 // Components
-import { Step } from '../../components/shared';
+import { Step } from '../../components';
 import { AdminAnswerControl } from './AdminAnswerControl';
 import { AnswerGroup } from './AnswerGroup';
 import { UserAnswers } from './UserAnswers';
@@ -63,41 +61,10 @@ export function CompareStep({
         answerGroup={answerGroup}
         allAnswers={allAnswers}
         players={players}
+        onAddAnswer={onAddAnswer}
         onNextAnswer={onNextAnswer}
         allowedList={allowedList}
       />
     </Step>
   );
 }
-
-CompareStep.propTypes = {
-  allAnswers: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string,
-      isLocked: PropTypes.bool,
-      playerId: PropTypes.string,
-      answer: PropTypes.string,
-    })
-  ),
-  allowedList: PropTypes.object,
-  answerGroup: PropTypes.shape({
-    answer: PropTypes.string,
-    entries: PropTypes.any,
-    parsedAnswer: PropTypes.string,
-  }),
-  currentQuestion: PropTypes.shape({
-    id: PropTypes.string,
-    number: PropTypes.number,
-    prefix: PropTypes.string,
-    suffix: PropTypes.string,
-  }),
-  onAddAnswer: PropTypes.func,
-  onNextAnswer: PropTypes.func,
-  players: PropTypes.object,
-  remainingGroupsCount: PropTypes.number,
-  setAllowedList: PropTypes.func,
-  user: PropTypes.shape({
-    answers: PropTypes.any,
-    id: PropTypes.any,
-  }),
-};

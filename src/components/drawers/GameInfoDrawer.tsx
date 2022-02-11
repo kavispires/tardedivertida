@@ -21,7 +21,7 @@ type GameInfoDrawerProps = {
 };
 
 export function GameInfoDrawer({ players, state, info, userId }: GameInfoDrawerProps) {
-  const language = useLanguage();
+  const { language } = useLanguage();
   const [visible, setVisible] = useState(false);
 
   if (state.phase === 'LOBBY') {

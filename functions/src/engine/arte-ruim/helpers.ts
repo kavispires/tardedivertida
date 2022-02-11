@@ -51,7 +51,10 @@ export const determineNextPhase = (
  * @param players
  * @returns
  */
-export const determineGameOver = (players: Players): boolean => {
+export const determineGameOver = (players: Players, round: Round): boolean => {
+  // In a short game, the points threshold doesn't count
+  if (round.total === 5) return false;
+
   return Object.values(players).some((player) => player.score >= GAME_OVER_SCORE_THRESHOLD);
 };
 

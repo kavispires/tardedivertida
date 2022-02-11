@@ -1,5 +1,6 @@
 export * from './useAPICall';
 export * from './useBlurCards';
+export * from './useBooleanDictionary';
 export * from './useCardWidth';
 export * from './useDimensions';
 export * from './useGamePlayers';
@@ -10,6 +11,7 @@ export * from './useIsUserReady';
 export * from './useLanguage';
 export * from './useLoading';
 export * from './useLocalStorage';
+export * from './useMock';
 export * from './useUser';
 export * from './useVotingMatch';
 export * from './useWhichPlayerIsThe';

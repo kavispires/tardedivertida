@@ -2,18 +2,17 @@ import { useState, useEffect } from 'react';
 // Design Resources
 import { Button } from 'antd';
 // Hooks
-import { useLanguage, useLoading } from '../../hooks';
+import { useLanguage, useLoading, useMock } from '../../hooks';
 // Utils
-import { isDevEnv, shuffle } from '../../utils/helpers';
+import { shuffle } from '../../utils/helpers';
 // Components
-import { Card } from '../../components/cards';
 import {
+  Card,
   ButtonContainer,
   Instruction,
   ReadyPlayersBar,
   Step,
   Title,
-  translate,
   Translate,
 } from '../../components';
 import { DreamBoardWrite } from './DreamBoardWrite';
@@ -57,7 +56,7 @@ export function StepTellDream({
   currentRound,
 }: StepTellDreamProps) {
   const [isLoading] = useLoading();
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const [localClues, setLocalClues] = useState<PlainObject>({});
   const [hasClues, setHasClues] = useState(false);
 
@@ -69,17 +68,16 @@ export function StepTellDream({
     );
   }, [localClues, dreamsCount]);
 
-  useEffect(() => {
-    if (isDevEnv) {
-      const shuffledMockedClues = shuffle(mockedClues);
-      setLocalClues(
-        Object.keys(user.dreams).reduce((acc: PlainObject, cardId, index) => {
-          acc[cardId] = shuffledMockedClues[index];
-          return acc;
-        }, {})
-      );
-    }
-  }, []); // eslint-disable-line
+  // DEV: mocks clues
+  useMock(() => {
+    const shuffledMockedClues = shuffle(mockedClues);
+    setLocalClues(
+      Object.keys(user.dreams).reduce((acc: PlainObject, cardId, index) => {
+        acc[cardId] = shuffledMockedClues[index];
+        return acc;
+      }, {})
+    );
+  }, []);
 
   const onSubmitDreamsClick = () => {
     onSubmitDreams({
@@ -91,7 +89,7 @@ export function StepTellDream({
     <Step fullWidth className="s-tell-dream-step">
       <Title>
         <Card
-          header={translate('Tema', 'Theme', language)}
+          header={translate('Tema', 'Theme')}
           className="s-theme-card"
           randomColor
           footer={theme.description}
