@@ -5,19 +5,12 @@ import { useOnSubmitGuessesAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from '../../utils/phases';
 // Components
-import {
-  Instruction,
-  PhaseAnnouncement,
-  PhaseContainer,
-  StepSwitcher,
-  translate,
-  Translate,
-} from '../../components';
+import { Instruction, PhaseAnnouncement, PhaseContainer, StepSwitcher, Translate } from '../../components';
 import StepGuessing from './StepGuessing';
 
 function PhaseGuessing({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const user = useUser(players);
   const [step, setStep] = useState(0);
 
@@ -29,7 +22,7 @@ function PhaseGuessing({ players, state, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           type="guess"
-          title={translate('Match!', 'Combine!', language)}
+          title={translate('Match!', 'Combine!')}
           onClose={() => setStep(1)}
           currentRound={state?.round?.current}
         >

@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { useState } from 'react';
 // State & Hooks
 import { useIsUserReady, useLanguage, useWhichPlayerIsThe } from '../../hooks';
@@ -14,7 +13,6 @@ import {
   RoundAnnouncement,
   Step,
   StepSwitcher,
-  translate,
   Translate,
   ViewIf,
 } from '../../components';
@@ -24,7 +22,7 @@ import { StepCategorySelection } from './StepCategorySelection';
 
 function PhaseDialClue({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const [step, setStep] = useState(0);
   const [psychic, isUserThePsychic] = useWhichPlayerIsThe('psychicId', state, players);
 
@@ -46,12 +44,13 @@ function PhaseDialClue({ players, state, info }: PhaseProps) {
           buttonText=" "
           onPressButton={() => setStep(1)}
           time={5}
+          circleColor="pink"
         ></RoundAnnouncement>
 
         {/* Step 1 */}
         <PhaseAnnouncement
           type="turban"
-          title={translate('Concentração', 'Focus', language)}
+          title={translate('Concentração', 'Focus')}
           onClose={() => setStep(2)}
           currentRound={state?.round?.current}
           duration={7}
@@ -103,19 +102,5 @@ function PhaseDialClue({ players, state, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-PhaseDialClue.propTypes = {
-  info: PropTypes.object,
-  players: PropTypes.object,
-  state: PropTypes.shape({
-    currentCategories: PropTypes.array,
-    phase: PropTypes.string,
-    round: PropTypes.shape({
-      current: PropTypes.number,
-      total: PropTypes.number,
-    }),
-    target: PropTypes.number,
-  }),
-};
 
 export default PhaseDialClue;

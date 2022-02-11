@@ -6,7 +6,6 @@ import { DownSquareOutlined } from '@ant-design/icons';
 import { useCardWidth, useLanguage } from '../../hooks';
 // Components
 import { ImageBlurButton, ImageCard } from '.';
-import { translate } from '../shared';
 
 type ImageCardHandProps = {
   hand: string[];
@@ -31,7 +30,7 @@ export function ImageCardHand({
   minCardSize = 80,
   disabledSelectButton = false,
 }: ImageCardHandProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   // Prefers cardSize otherwise calculates width based on screen and ratio
   const cardWidth = useCardWidth(sizeRatio, 32, minCardSize);
 
@@ -49,7 +48,7 @@ export function ImageCardHand({
                 ghost
                 disabled={disabledSelectButton}
               >
-                {translate('Selecionar', 'Select', language, selectButtonLabel)}
+                {translate('Selecionar', 'Select', selectButtonLabel)}
               </Button>
             )}
             <ImageCard imageId={cardId} cardWidth={cardSize || cardWidth} />

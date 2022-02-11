@@ -1,9 +1,8 @@
-import { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import { useState } from 'react';
 //Design Resources
 import { Button, Input, Space } from 'antd';
-// Utils
-import { isDevEnv } from '../../utils/helpers';
+// Hooks
+import { useMock } from '../../hooks';
 // Components
 import { Translate } from '../../components';
 
@@ -21,12 +20,10 @@ function WordForm({ x, y, onSubmit, disabled }: WordFormProps) {
     setClue(e.target.value);
   };
 
-  // TODO: DEV-ONLY - REMOVE
-  useEffect(() => {
-    if (isDevEnv) {
-      onSubmit(`${x.substring(0, x.length / 2)}${y.substring(y.length / 2)}`);
-    }
-  }, []); // eslint-disable-line
+  // DEV: Submit made-up words
+  useMock(() => {
+    onSubmit(`${x.substring(0, x.length / 2)}${y.substring(y.length / 2)}`);
+  }, []);
 
   return (
     <Space direction="vertical">
@@ -37,11 +34,5 @@ function WordForm({ x, y, onSubmit, disabled }: WordFormProps) {
     </Space>
   );
 }
-
-WordForm.propTypes = {
-  onSubmit: PropTypes.func,
-  x: PropTypes.any,
-  y: PropTypes.any,
-};
 
 export default WordForm;

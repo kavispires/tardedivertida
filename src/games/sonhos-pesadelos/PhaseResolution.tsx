@@ -1,23 +1,15 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
 // Hooks
 import { useIsUserReady, useUser, useLanguage } from '../../hooks';
 // Resources & Utils
 import { PHASES } from '../../utils/phases';
 // Components
-import {
-  Instruction,
-  PhaseAnnouncement,
-  PhaseContainer,
-  StepSwitcher,
-  Translate,
-  translate,
-} from '../../components';
+import { Instruction, PhaseAnnouncement, PhaseContainer, StepSwitcher, Translate } from '../../components';
 import { DreamBoard } from './DreamBoard';
 import { StepResults } from './StepResults';
 
 function PhaseResolution({ state, players, info }: PhaseProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
   const [step, setStep] = useState(0);
@@ -33,7 +25,7 @@ function PhaseResolution({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           type="countdown"
-          title={translate('Resultado', 'Results', language)}
+          title={translate('Resultado', 'Results')}
           onClose={() => setStep(1)}
           currentRound={state?.round?.current}
         >
@@ -72,17 +64,5 @@ function PhaseResolution({ state, players, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-PhaseResolution.propTypes = {
-  info: PropTypes.object,
-  players: PropTypes.object,
-  state: PropTypes.shape({
-    phase: PropTypes.string,
-    round: PropTypes.shape({
-      current: PropTypes.number,
-      total: PropTypes.number,
-    }),
-  }),
-};
 
 export default PhaseResolution;

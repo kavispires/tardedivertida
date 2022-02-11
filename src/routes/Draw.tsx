@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Layout, Space } from 'antd';
 // Components
 import { DrawingCanvas } from '../components/canvas';
-import { Title } from '../components/shared';
+import { Title } from '../components';
 
 function Draw() {
   const [lines, setLines] = useState<any>([]);

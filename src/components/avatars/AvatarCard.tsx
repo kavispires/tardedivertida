@@ -5,7 +5,6 @@ import { AVATARS } from '../../utils/constants';
 import { useGlobalState, useLanguage } from '../../hooks';
 // Components
 import { Avatar } from './Avatar';
-import { translate } from '../shared';
 
 type AvatarCardProps = {
   player: GamePlayer;
@@ -27,19 +26,21 @@ export const AvatarCard = ({
   addressUser = false,
 }: AvatarCardProps) => {
   const [userId] = useGlobalState('userId');
-  const language = useLanguage();
+  const { language, translate } = useLanguage();
 
   const baseClass = 'avatar-card';
 
   const isUser = player.id === userId;
-  const addressedUser = translate('Você', 'You', language);
+  const addressedUser = translate('Você', 'You');
 
   const sizes = getSize(size);
+
+  const avatar = AVATARS[player.avatarId];
 
   return (
     <div
       className={clsx(baseClass, uppercase && `${baseClass}--uppercase`, `${baseClass}--${size}`, className)}
-      style={{ backgroundColor: AVATARS[player.avatarId].color, width: sizes.width }}
+      style={{ backgroundColor: avatar.color, width: sizes.width }}
     >
       <Avatar
         id={player.avatarId}
@@ -51,7 +52,7 @@ export const AvatarCard = ({
         <>
           <div className="avatar-card__name">{addressUser && isUser ? addressedUser : player.name}</div>
           {size !== 'small' && withDescription && (
-            <div className="avatar-card__description">{AVATARS[player.avatarId].description[language]}</div>
+            <div className="avatar-card__description">{avatar.description[language]}</div>
           )}
         </>
       )}

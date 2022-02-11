@@ -11,7 +11,7 @@ import {
   Translate,
   ViewIf,
 } from '../../components';
-import TableFaceDown from './TableFaceDown';
+import { TableFaceDown } from './TableFaceDown';
 
 type StepPlayCardProps = {
   players: GamePlayers;
@@ -22,7 +22,7 @@ type StepPlayCardProps = {
   isUserTheStoryTeller: boolean;
 };
 
-function StepPlayCard({
+export function StepPlayCard({
   players,
   story,
   user,
@@ -75,5 +75,3 @@ function StepPlayCard({
     </div>
   );
 }
-
-export default StepPlayCard;

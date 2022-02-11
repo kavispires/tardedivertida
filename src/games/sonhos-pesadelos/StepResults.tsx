@@ -5,7 +5,7 @@ import { useLanguage } from '../../hooks';
 // Utils
 import { LETTERS, SEPARATOR } from '../../utils/constants';
 // Components
-import { AdminNextRoundButton, Instruction, Step, Title, translate, Translate } from '../../components';
+import { AdminNextRoundButton, Instruction, Step, Title, Translate } from '../../components';
 import { DreamBoard } from './DreamBoard';
 import { DreamCard } from './DreamCard';
 
@@ -17,7 +17,7 @@ type StepResultsProps = {
   round: GameRound;
 };
 export function StepResults({ results, user, clues, table, round }: StepResultsProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const playerResults = results[user.id];
 
   const currentVotes = Object.entries<PlainObject>(user?.votes ?? {}).reduce(
@@ -38,7 +38,7 @@ export function StepResults({ results, user, clues, table, round }: StepResultsP
 
   return (
     <Step fullWidth className="s-results-step">
-      <Title>{translate('Resultado', 'Results', language)}</Title>
+      <Title>{translate('Resultado', 'Results')}</Title>
       <Instruction contained>
         <div className="s-result-correct">{playerResults.correct}</div>
         <div>
@@ -75,8 +75,7 @@ export function StepResults({ results, user, clues, table, round }: StepResultsP
             showIcon
             message={translate(
               `Seus pesadelos foram selecionados ${playerResults.nightmareHits.length} veze(s) por um ou mais jogadores achando que eles eram seus sonhos. Você não pode ganhar nessa rodada quando isso acontece.`,
-              `You dreams were selected ${playerResults.nightmareHits.length} time(s) by one or more players thinking they match one of your clues. You can't win this round when this happens.`,
-              language
+              `You dreams were selected ${playerResults.nightmareHits.length} time(s) by one or more players thinking they match one of your clues. You can't win this round when this happens.`
             )}
           />
         )}

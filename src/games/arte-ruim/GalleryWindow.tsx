@@ -4,10 +4,10 @@ import { useCardWidth } from '../../hooks';
 import { AVATARS } from '../../utils/constants';
 // Components
 import { CanvasSVG } from '../../components/canvas';
-import GalleryWindowCredits from './GalleryWindowCredits';
-import GalleryWindowGuesses from './GalleryWindowGuesses';
-import GalleryWindowControls from './GalleryWindowControls';
-import GalleryWindowResult from './GalleryWindowResult';
+import { GalleryWindowCredits } from './GalleryWindowCredits';
+import { GalleryWindowGuesses } from './GalleryWindowGuesses';
+import { GalleryWindowControls } from './GalleryWindowControls';
+import { GalleryWindowResult } from './GalleryWindowResult';
 
 type GalleryWindowProps = {
   window: ArteRuimWindow;
@@ -20,7 +20,7 @@ type GalleryWindowProps = {
   disableControls: boolean;
 };
 
-function GalleryWindow({
+export function GalleryWindow({
   window,
   galleryLength,
   players,
@@ -73,5 +73,3 @@ function GalleryWindow({
     </div>
   );
 }
-
-export default GalleryWindow;

@@ -73,7 +73,7 @@ function StepVote({
                 Vote no desenho que mais se aproxima do monstro.
                 <br />
                 Você não pode votar em si mesmo.
-                <br />O desenho (ou desenhos) mais votado receberá pontos!
+                <br />O desenho (ou desenhos) mais votado receberá 1 ponto!
               </>
             }
             en={
@@ -82,7 +82,7 @@ function StepVote({
                 <br />
                 You cannot vote for yourself.
                 <br />
-                The sketch (or sketches) with the most votes gets 3 points.
+                The sketch (or sketches) with the most votes gets 1 point.
               </>
             }
           />

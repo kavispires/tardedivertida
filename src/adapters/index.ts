@@ -27,10 +27,11 @@ export const DETETIVES_IMAGINATIVOS_API = {
 };
 
 export const ESPIAO_ENTRE_NOS_API = {
-  handleAdminAction: httpsCallable(functions, 'espiaoEntreNosHandleAdminAction'),
-  makeAccusation: httpsCallable(functions, 'espiaoEntreNosMakeAccusation'),
-  guessLocation: httpsCallable(functions, 'espiaoEntreNosGuessLocation'),
-  submitVoting: httpsCallable(functions, 'espiaoEntreNosSubmitVoting'),
+  submitAction: httpsCallable(functions, 'espiaoEntreNosSubmitAction'),
+};
+
+export const GALERIA_DE_SONHOS_API = {
+  submitAction: httpsCallable(functions, 'galeriaDeSonhosSubmitAction'),
 };
 
 export const CRIMES_HEDIONDOS_API = {
@@ -43,6 +44,10 @@ export const INSTRUMENTOS_CODIFICADOS_API = {
 
 export const MENTE_COLETIVA_API = {
   submitAction: httpsCallable(functions, 'menteColetivaSubmitAction'),
+};
+
+export const NA_RUA_DO_MEDO_API = {
+  submitAction: httpsCallable(functions, 'naRuaDoMedoSubmitAction'),
 };
 
 export const ONDA_TELEPATICA_API = {

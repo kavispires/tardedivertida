@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { LETTERS } from '../../utils/constants';
 import { getEntryId } from '../../utils/helpers';
 // Components
-import Card from './Card';
+import { ArteRuimCard as Card } from './Card';
 
 type EvaluationAllCardsProps = {
   cards: ArteRuimCard[];
@@ -12,7 +12,7 @@ type EvaluationAllCardsProps = {
   votes: PlainObject;
 };
 
-function EvaluationAllCards({ cards, activeItem, onActivateItem, votes }: EvaluationAllCardsProps) {
+export function EvaluationAllCards({ cards, activeItem, onActivateItem, votes }: EvaluationAllCardsProps) {
   const liButtonBaseClass = 'a-evaluation-all-cards__li-card-button';
 
   return (
@@ -41,5 +41,3 @@ function EvaluationAllCards({ cards, activeItem, onActivateItem, votes }: Evalua
     </ul>
   );
 }
-
-export default EvaluationAllCards;

@@ -12,7 +12,8 @@ type EvaluationAllDrawingsProps = {
   canvasSize: number;
   players: GamePlayers;
 };
-function EvaluationAllDrawings({
+
+export function EvaluationAllDrawings({
   drawings,
   activeItem,
   onActivateItem,
@@ -47,5 +48,3 @@ function EvaluationAllDrawings({
     </ul>
   );
 }
-
-export default EvaluationAllDrawings;

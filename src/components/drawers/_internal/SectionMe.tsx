@@ -14,7 +14,7 @@ type SectionMeProps = {
 };
 
 export function SectionMe({ player, isTeamGame = false }: SectionMeProps) {
-  const language = useLanguage();
+  const { language } = useLanguage();
 
   return (
     <div className="game-info-drawer__section-me">

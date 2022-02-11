@@ -12,10 +12,9 @@ import {
   PopoverRule,
   TimedButton,
   Title,
-  translate,
   Translate,
 } from '../../components';
-import BookPages from './BookPages';
+import { BookPages } from './BookPages';
 import { ScoringRules } from './RulesBlogs';
 
 type StepResolutionProps = {
@@ -26,8 +25,8 @@ type StepResolutionProps = {
   setStep: GenericFunction;
 };
 
-function StepResolution({ players, story, storyteller, table, setStep }: StepResolutionProps) {
-  const language = useLanguage();
+export function StepResolution({ players, story, storyteller, table, setStep }: StepResolutionProps) {
+  const { translate } = useLanguage();
   const cardWidth = useCardWidth(10, 32, 75);
 
   const solution = table.find((entry) => entry.playerId === storyteller.id);
@@ -114,11 +113,9 @@ function StepResolution({ players, story, storyteller, table, setStep }: StepRes
           onClick={() => setStep(2)}
           onExpire={() => setStep(2)}
           duration={20}
-          label={translate('Continuar', 'Continue', language)}
+          label={translate('Continuar', 'Continue')}
         />
       </ButtonContainer>
     </div>
   );
 }
-
-export default StepResolution;

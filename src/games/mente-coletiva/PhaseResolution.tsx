@@ -4,18 +4,11 @@ import { useLanguage } from '../../hooks';
 // Resources & Utils
 import { PHASES } from '../../utils/phases';
 // Components
-import {
-  Instruction,
-  PhaseAnnouncement,
-  PhaseContainer,
-  StepSwitcher,
-  Translate,
-  translate,
-} from '../../components';
+import { Instruction, PhaseAnnouncement, PhaseContainer, StepSwitcher, Translate } from '../../components';
 import { ResolutionStep } from './ResolutionStep';
 
 function PhaseResolution({ state, players, info }: PhaseProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const [step, setStep] = useState(0);
 
   return (
@@ -29,7 +22,7 @@ function PhaseResolution({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           type="customer-review"
-          title={translate('Resultado', 'And who moves is...', language)}
+          title={translate('Resultado', 'And who moves is...')}
           onClose={() => setStep(1)}
           currentRound={state?.round?.current}
         >

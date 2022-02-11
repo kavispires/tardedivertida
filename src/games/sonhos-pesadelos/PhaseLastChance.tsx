@@ -12,13 +12,12 @@ import {
   RoundAnnouncement,
   StepSwitcher,
   Translate,
-  translate,
 } from '../../components';
 import { DreamBoard } from './DreamBoard';
 import { StepMatchDreams } from './StepMatchDreams';
 
 function PhaseLastChance({ state, players, info }: PhaseProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
   const [step, setStep] = useState(0);
@@ -51,7 +50,7 @@ function PhaseLastChance({ state, players, info }: PhaseProps) {
         {/* Step 1 */}
         <PhaseAnnouncement
           type="knowledge"
-          title={translate('Última Chance!', 'Last Chance', language)}
+          title={translate('Última Chance!', 'Last Chance')}
           onClose={() => setStep(2)}
           currentRound={state?.round?.current}
         >

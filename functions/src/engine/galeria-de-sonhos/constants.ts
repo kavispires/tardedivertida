@@ -1,0 +1,23 @@
+export const GALERIA_DE_SONHOS_PHASES = {
+  LOBBY: 'LOBBY',
+  RULES: 'RULES',
+  SETUP: 'SETUP',
+  WORD_SELECTION: 'WORD_SELECTION',
+  DREAMS_SELECTION: 'DREAMS_SELECTION',
+  CARD_PLAY: 'CARD_PLAY',
+  RESOLUTION: 'RESOLUTION',
+  GAME_OVER: 'GAME_OVER',
+};
+
+export const PLAYER_COUNT = {
+  MIN: 3,
+  MAX: 10,
+};
+
+export const TOTAL_ROUNDS = 4;
+
+export const TABLE_DECK_TOTAL = 30;
+
+export const WORD_DECK_TOTAL = 6;
+
+export const INITIAL_TABLE_SIZE = 15;

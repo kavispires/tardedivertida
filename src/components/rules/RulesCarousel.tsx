@@ -14,7 +14,7 @@ type RulesCarouselProps = {
 };
 
 export function RulesCarousel({ info, className = '', ruleClass = '' }: RulesCarouselProps) {
-  const language = useLanguage();
+  const { language } = useLanguage();
   const settings = {
     prevArrow: (
       <Button>

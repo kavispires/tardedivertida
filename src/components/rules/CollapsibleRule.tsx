@@ -3,18 +3,18 @@ import { Collapse } from 'antd';
 // Hooks
 import { useLanguage } from '../../hooks';
 // Components
-import { Instruction, translate } from '../shared';
+import { Instruction } from '../shared';
 
 type CollapsibleRuleProps = {
   children: any;
   title?: string;
 };
 export function CollapsibleRule({ children, title }: CollapsibleRuleProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   return (
     <Instruction contained>
       <Collapse ghost>
-        <Collapse.Panel header={translate('Regras', 'Rules', language, title)} key="1">
+        <Collapse.Panel header={translate('Regras', 'Rules', title)} key="1">
           {children}
         </Collapse.Panel>
       </Collapse>

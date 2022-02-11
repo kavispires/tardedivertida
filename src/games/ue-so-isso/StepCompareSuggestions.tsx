@@ -7,15 +7,7 @@ import { useGlobalState, useLanguage, useLoading } from '../../hooks';
 // Utils
 import { deepCopy } from '../../utils/helpers';
 // Components
-import {
-  AdminOnlyButton,
-  Step,
-  Title,
-  translate,
-  Translate,
-  PopoverRule,
-  messageContent,
-} from '../../components';
+import { AdminOnlyButton, Step, Title, Translate, PopoverRule, messageContent } from '../../components';
 import Card from './UeSoIssoCard';
 import SuggestionCard from './SuggestionCard';
 import { ComparisonDetailedRules, ComparisonPhaseRules } from './RulesBlobs';
@@ -38,10 +30,11 @@ function StepCompareSuggestions({
   secretWord,
   suggestions,
 }: StepCompareSuggestionsProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const [isLoading] = useLoading();
   const [myRecommendation, setMyRecommendation] = useState<UseSoIssoSuggestion[]>(deepCopy(suggestions));
   const [isAdmin] = useGlobalState('isAdmin');
+  const [wasMessageShown, setWasMessageShown] = useState(false);
 
   const onSetValidation = (index: number, suggestionEntry: UseSoIssoSuggestion, notAllowed?: boolean) => {
     if (notAllowed) return;
@@ -61,17 +54,18 @@ function StepCompareSuggestions({
   };
 
   useEffect(() => {
-    if (isUserTheController) {
+    if (isUserTheController && !wasMessageShown) {
       message.info(
         messageContent(
-          translate('Você controla!', 'You control!', language),
-          translate('Siga as instruções na página', 'Follow the instructions on the page', language),
+          translate('Você controla!', 'You control!'),
+          translate('Siga as instruções na página', 'Follow the instructions on the page'),
           controller.id,
           3
         )
       );
+      setWasMessageShown(true);
     }
-  }, [isUserTheController, controller.id, language]);
+  }, [isUserTheController, controller.id, translate, wasMessageShown]);
 
   const suggestionsValues = Object.values(myRecommendation);
 
@@ -145,7 +139,7 @@ function StepCompareSuggestions({
             validSuggestions: suggestionsValues.filter((suggestion) => !suggestion.invalid),
           })
         }
-        label={translate('Confirmar dicas válidas como Admin', 'Confirm valid clues as Admin', language)}
+        label={translate('Confirmar dicas válidas como Admin', 'Confirm valid clues as Admin')}
       />
     </Step>
   );

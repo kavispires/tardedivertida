@@ -11,13 +11,12 @@ import {
   PhaseContainer,
   Step,
   StepSwitcher,
-  translate,
 } from '../../components';
-import StepVoting from './StepVoting';
+import { StepVoting } from './StepVoting';
 import { VotingRules } from './RulesBlogs';
 
 function PhaseVoting({ state, players, info }: PhaseProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const user = useUser(players);
   const [storyteller] = useWhichPlayerIsThe('storytellerId', state, players);
   const [step, setStep] = useState(0);
@@ -35,7 +34,7 @@ function PhaseVoting({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           type="vote"
-          title={translate('Votação', 'Voting', language)}
+          title={translate('Votação', 'Voting')}
           onClose={() => setStep(1)}
           currentRound={state?.round?.current}
         >

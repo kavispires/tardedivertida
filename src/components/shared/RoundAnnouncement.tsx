@@ -8,7 +8,7 @@ import roundTitlePt from '../../images/round-title-pt.svg';
 import { AvatarName } from '../avatars';
 import { TimedButton } from './index';
 import { useLanguage } from '../../hooks';
-import { translate, Translate } from './Translate';
+import { Translate } from './Translate';
 
 type Teams = {
   A: TeamObj;
@@ -57,6 +57,7 @@ type RoundAnnouncementProps = {
   className?: string;
   children?: any;
   unskippable?: boolean;
+  circleColor?: Color;
 };
 
 export function RoundAnnouncement({
@@ -69,8 +70,9 @@ export function RoundAnnouncement({
   className,
   children,
   unskippable = false,
+  circleColor = 'yellow',
 }: RoundAnnouncementProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
 
   return (
     <div className={clsx('round-announcement', className)}>
@@ -80,13 +82,11 @@ export function RoundAnnouncement({
 
       <div className="round-announcement__main">
         <div className="round-announcement__title">
-          <img
-            src={translate(roundTitlePt, roundTitleEn, language)}
-            alt={translate('Rodada', 'Round', language)}
-          />
+          <img src={translate(roundTitlePt, roundTitleEn)} alt={translate('Rodada', 'Round')} />
         </div>
-        <div className="round-announcement__round-wrapper">
-          <div className="round-announcement__circle"></div>
+        <div className={clsx('round-announcement__round-wrapper', 'animate__animated animate__zoomIn')}>
+          <div className={clsx('round-announcement__circle', `color-border--${circleColor}`)}></div>
+          <div className={clsx('round-announcement__circle-2', `color-border--${circleColor}`)}></div>
           <div className="round-announcement__number">{round?.current ?? round ?? 0}</div>
         </div>
 
@@ -100,7 +100,7 @@ export function RoundAnnouncement({
 
         {Boolean(onPressButton) && Boolean(time) && (
           <TimedButton
-            label={buttonText || translate('Prosseguir', 'Continue', language)}
+            label={buttonText || translate('Prosseguir', 'Continue')}
             type="primary"
             onClick={onPressButton}
             onExpire={onPressButton}

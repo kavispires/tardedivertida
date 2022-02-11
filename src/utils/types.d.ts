@@ -4,9 +4,22 @@ type PlainObject = {
 type FirebaseContext = {
   [key: string]: any;
 };
-interface BooleanDictionary {
+
+type BooleanDictionary = {
   [key: string]: boolean;
-}
+};
+
+type NumberDictionary = {
+  [key: string]: number;
+};
+
+type StringDictionary = {
+  [key: string]: string;
+};
+
+type ObjectDictionary = {
+  [key: string]: PlainObject;
+};
 
 type DateMilliseconds = number;
 type GameCode = string;
@@ -25,6 +38,28 @@ type DualLanguageValue = {
   en: string;
   pt: string;
 };
+type Color =
+  | 'red'
+  | 'blue'
+  | 'green'
+  | 'yellow'
+  | 'pink'
+  | 'purple'
+  | 'teal'
+  | 'orange'
+  | 'fur'
+  | 'navy'
+  | 'light-green'
+  | 'hot-pink'
+  | 'brown'
+  | 'forest'
+  | 'violet'
+  | 'cream'
+  | 'none'
+  | 'lime'
+  | 'black'
+  | 'white'
+  | 'grey';
 
 interface Player {
   id: PlayerId;
@@ -55,6 +90,7 @@ type SessionProps = {
 interface GameInfo {
   gameCode: GameCode;
   gameName: GameName;
+  version: string;
   title: {
     pt: string;
     en: string;
@@ -95,6 +131,7 @@ interface GamePlayers {
 type CanvasLine = number[];
 type CanvasSetLine = React.Dispatch<React.SetStateAction<CanvasLine[]>>;
 type GenericFunction = (...args: any) => void;
+type BooleanFunction = (...args: any) => boolean;
 
 type PhaseProps = {
   players: GamePlayers;

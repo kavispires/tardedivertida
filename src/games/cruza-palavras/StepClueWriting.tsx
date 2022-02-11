@@ -44,7 +44,7 @@ function StepClueWriting({ grid, user, onSubmitClue, players }: StepClueWritingP
         cellComponentProps={{ onSubmitClue: onSubmitClueClick, disabled: isLoading }}
       />
 
-      <ReadyPlayersBar players={players} showNames />
+      <ReadyPlayersBar players={players} />
     </div>
   );
 }

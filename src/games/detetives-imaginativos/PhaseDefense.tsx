@@ -15,13 +15,12 @@ import {
   Title,
   TitleHighlight,
   Translate,
-  translate,
 } from '../../components';
 import StepDefending from './StepDefending';
 import { useOnFinishDefenseRequest } from './api-requests';
 
 function PhaseDefense({ state, players, info }: PhaseProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const [isLoading] = useLoading();
   const [currentPlayer, isUserTheCurrentPlayer] = useWhichPlayerIsThe('currentPlayerId', state, players);
   const [step, setStep] = useState(0);
@@ -32,11 +31,10 @@ function PhaseDefense({ state, players, info }: PhaseProps) {
     if (isUserTheCurrentPlayer && step > 0) {
       message.info(
         messageContent(
-          translate('Sua vez de defender suas escolhas!', "It's your turn to defend your choices", language),
+          translate('Sua vez de defender suas escolhas!', "It's your turn to defend your choices"),
           translate(
             'Aperte o botão Concluir Defesa quando terminar',
-            "Press the button End Defense when you're done",
-            language
+            "Press the button End Defense when you're done"
           ),
 
           currentPlayer?.id,
@@ -44,7 +42,7 @@ function PhaseDefense({ state, players, info }: PhaseProps) {
         )
       );
     }
-  }, [isUserTheCurrentPlayer, currentPlayer?.id, language, step]);
+  }, [isUserTheCurrentPlayer, currentPlayer?.id, step]);
 
   return (
     <PhaseContainer
@@ -57,7 +55,7 @@ function PhaseDefense({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           type="defense"
-          title={translate('Defensa', 'Defense', language)}
+          title={translate('Defensa', 'Defense')}
           onClose={() => setStep(1)}
           currentRound={state?.round?.current}
           duration={5}

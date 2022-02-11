@@ -4,7 +4,6 @@ import { Instruction, RankingBoard, Step, Title, Translate } from '../../compone
 type StepRankingProps = {
   ranking: any;
   players: Players;
-  language: Language;
   round: GameRound;
 };
 

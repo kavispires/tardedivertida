@@ -7,7 +7,7 @@ type TableFaceDownProps = {
   user: GamePlayer;
 };
 
-function TableFaceDown({ players, user }: TableFaceDownProps) {
+export function TableFaceDown({ players, user }: TableFaceDownProps) {
   const baseClass = 'c-table-face-down-card';
 
   return (
@@ -31,5 +31,3 @@ function TableFaceDown({ players, user }: TableFaceDownProps) {
     </div>
   );
 }
-
-export default TableFaceDown;

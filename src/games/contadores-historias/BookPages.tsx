@@ -3,7 +3,7 @@ type BookPagesProps = {
   rightPage: any;
 };
 
-function BookPages({ leftPage, rightPage }: BookPagesProps) {
+export function BookPages({ leftPage, rightPage }: BookPagesProps) {
   return (
     <svg viewBox="0 0 590 320" className="c-book-pages">
       <path
@@ -21,5 +21,3 @@ function BookPages({ leftPage, rightPage }: BookPagesProps) {
     </svg>
   );
 }
-
-export default BookPages;

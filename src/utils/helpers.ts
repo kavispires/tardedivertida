@@ -1,4 +1,5 @@
-import { SEPARATOR } from './constants';
+import { camelCase, startCase } from 'lodash';
+import { AVATARS, SEPARATOR } from './constants';
 
 /**
  * Creates a copy of given object
@@ -12,8 +13,7 @@ export const deepCopy = (obj: any): any => JSON.parse(JSON.stringify(obj));
  * @param history
  * @returns
  */
-export const getGameIdFromURL = (history: PlainObject): string => {
-  const { pathname = '/' } = history?.location ?? {};
+export const getGameIdFromPathname = (pathname: string): string => {
   return pathname.substring(1);
 };
 
@@ -22,7 +22,7 @@ export const getGameIdFromURL = (history: PlainObject): string => {
  * @param history
  * @returns
  */
-export const getGameIdFromLocation = (location: PlainObject): string => {
+export const getGameIdFromLocation = (location?: PlainObject): string => {
   const { pathname = '/' } = location ?? {};
   return pathname.substring(1);
 };
@@ -41,8 +41,21 @@ export const getRandomItem = (list: any[]): any => {
  * @param seconds
  * @returns
  */
-export const inNSeconds = (seconds: number): any => {
-  return Date.now() + seconds * 1000;
+export const inNSeconds = (seconds: number): Date => {
+  const date = new Date();
+  date.setSeconds(date.getSeconds() + seconds);
+  return date;
+};
+
+/**
+ * Same as inNSeconds but not just seconds
+ * @param seconds
+ * @returns
+ */
+export const inNTime = (time: number): Date => {
+  const date = new Date();
+  date.setTime(date.getTime() + time);
+  return date;
 };
 
 /**
@@ -128,21 +141,6 @@ export const getColorFromLetter = (letter: string): string => {
 };
 
 /**
- * Get the team name that is not active
- * @param teams
- * @param activeTeam
- * @returns
- * @deprecated
- */
-export const getOppositeTeam = (teams: PlainObject | any[], activeTeam: string) => {
-  if (!teams || !activeTeam || teams?.length < 2 || teams?.length > 2) return '?';
-
-  const teamsNames = Array.isArray(teams) ? teams : Object.keys(teams);
-  if (teamsNames[0] === activeTeam) return teamsNames[1];
-  else return teamsNames[0];
-};
-
-/**
  * Get given players from list of ids
  * @param  playerIds
  * @param players
@@ -199,3 +197,17 @@ export const getEntryId = (arr: string[]): string => arr.join(SEPARATOR);
 export const hasDuplicates = (arr: any): boolean => {
   return new Set(arr).size !== arr.length;
 };
+
+/**
+ * Converts a string from kebab case to pascal base
+ * @param str
+ * @returns
+ */
+export const kebabToPascal = (str: string): string => startCase(camelCase(str)).replace(/ /g, '');
+
+/**
+ * Gets avatar color by it
+ * @param avatarId
+ * @returns
+ */
+export const getAvatarColorById = (avatarId: string) => AVATARS?.[avatarId]?.color ?? 'grey';

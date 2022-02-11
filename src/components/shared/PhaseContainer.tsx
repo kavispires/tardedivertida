@@ -5,7 +5,6 @@ import { useGlobalState, useLanguage } from '../../hooks';
 // Components
 import { LoadingPage } from '../loaders';
 import { PageError } from '../errors/PageError';
-import { translate } from './Translate';
 
 type PhaseContainerProps = {
   info?: GameInfo;
@@ -31,7 +30,7 @@ export function PhaseContainer({
   fullScreen = false,
   white = false,
 }: PhaseContainerProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const screenRef = useRef<HTMLScriptElement>(null);
   const [, setScreenSize] = useGlobalState('screenSize');
 
@@ -49,9 +48,7 @@ export function PhaseContainer({
 
   if (!phase) {
     return (
-      <PageError
-        description={translate('Estado do jogo não está correto', 'Game state is not correct', language)}
-      />
+      <PageError description={translate('Estado do jogo não está correto', 'Game state is not correct')} />
     );
   }
 

@@ -13,7 +13,6 @@ import {
   Step,
   Title,
   TitleHighlight,
-  translate,
   Translate,
   ViewIf,
 } from '../../components';
@@ -45,23 +44,19 @@ function StepGuessVerification({
   onSubmitOutcome,
   validSuggestions,
 }: StepGuessVerificationProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   useEffect(() => {
     if (isUserTheController) {
       message.info(
         messageContent(
-          translate('Você controla!', 'You control!', language),
-          translate(
-            'Selecione se o adivinhador acertou ou não',
-            'Select if the guesser got it right or not',
-            language
-          ),
+          translate('Você controla!', 'You control!'),
+          translate('Selecione se o adivinhador acertou ou não', 'Select if the guesser got it right or not'),
           controller.id,
           3
         )
       );
     }
-  }, [isUserTheController, controller.id, language]);
+  }, [isUserTheController, controller.id, translate]);
 
   return (
     <Step>
@@ -88,7 +83,7 @@ function StepGuessVerification({
               <>
                 <AvatarName player={controller} /> is in charge of confirming if you got it right or not.
                 <br />
-                It's 3 points if you got it right but -1 if you got it wrong. <br />
+                It's 3 points if you get it right but -1 if you get it wrong. <br />
                 The clues were:
               </>
             }

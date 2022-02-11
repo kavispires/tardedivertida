@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 // Design Resources
 import { Image, Modal, message, Button, notification, Divider, Typography, Switch } from 'antd';
 // Adapters
@@ -10,7 +10,7 @@ import { useGlobalState, useLanguage, useLoading, useLocalStorage } from '../../
 import { LATEST_GAME_IDS, PUBLIC_URL } from '../../utils/constants';
 // Components
 import { Loading } from '../loaders';
-import { ButtonContainer, Instruction, Title, Translate, translate } from '../shared';
+import { ButtonContainer, Instruction, Title, Translate } from '../shared';
 
 const updateLocal24hGameIds = (latestGameIds: PlainObject, newId: GameId) => {
   const now = Date.now();
@@ -34,8 +34,8 @@ type CreateGameModalProps = {
 };
 
 export function CreateGameModal({ gameInfo }: CreateGameModalProps): JSX.Element {
-  const history = useHistory();
-  const language = useLanguage();
+  const navigate = useNavigate();
+  const { language, translate } = useLanguage();
   const [, setLoader] = useLoading();
   const [getLocalStorage, setLocalStorage] = useLocalStorage();
   const [isVisible, setVisibility] = useState(false);
@@ -93,10 +93,10 @@ export function CreateGameModal({ gameInfo }: CreateGameModalProps): JSX.Element
 
   const onConfirmGame = () => {
     if (gameId) {
-      history.push(`/${gameId}`);
+      navigate(`/${gameId}`);
     } else {
       message.info(
-        translate('Péra! O jogo ainda não foi inicializado.', 'Wait! The game has not been created', language)
+        translate('Péra! O jogo ainda não foi inicializado.', 'Wait! The game has not been created')
       );
     }
   };
@@ -108,16 +108,14 @@ export function CreateGameModal({ gameInfo }: CreateGameModalProps): JSX.Element
       </Button>
       {isVisible && (
         <Modal
-          title={`${translate('Criando novo jogo', 'Creating new game', language)}: ${
-            gameInfo.title[language]
-          }`}
+          title={`${translate('Criando novo jogo', 'Creating new game')}: ${gameInfo.title[language]}`}
           visible={isVisible}
           onCancel={onCloseModal}
           onOk={onConfirmGame}
           okButtonProps={{ disabled: Boolean(!gameId) }}
+          maskClosable={false}
         >
           <>
-            {console.log({ gameInfo })}
             <Image
               alt={gameInfo.title[language]}
               src={`${PUBLIC_URL.BANNERS}game-image-${gameInfo.gameName}-${language}.jpg`}
@@ -153,7 +151,7 @@ export function CreateGameModal({ gameInfo }: CreateGameModalProps): JSX.Element
                 <Instruction>
                   <Translate pt="O jogo está sendo criado..." en="The game session is being created" />
                 </Instruction>
-                <Loading message={translate('Gerando...', 'Generating...', language)} margin />
+                <Loading message={translate('Gerando...', 'Generating...')} margin />
               </>
             )}
 

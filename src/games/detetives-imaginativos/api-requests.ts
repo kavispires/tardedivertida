@@ -1,24 +1,18 @@
 import { DETETIVES_IMAGINATIVOS_API } from '../../adapters';
-import { translate } from '../../components';
 import { useAPICall, useLanguage } from '../../hooks';
 
 export function useOnSubmitSecretClueAPIRequest(setStep: GenericFunction) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
 
   const request = useAPICall({
     apiFunction: DETETIVES_IMAGINATIVOS_API.submitAction,
     actionName: 'submit-secret-clue',
     onBeforeCall: () => setStep(3),
     onError: () => setStep(0),
-    successMessage: translate(
-      'Pista Secreta submetida com sucesso',
-      'Secret clue submitted successfully',
-      language
-    ),
+    successMessage: translate('Pista Secreta submetida com sucesso', 'Secret clue submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar sua pista secreta',
-      'Oops, the application found an error while trying to submit your secret clue',
-      language
+      'Oops, the application found an error while trying to submit your secret clue'
     ),
   });
 
@@ -31,16 +25,15 @@ export function useOnSubmitSecretClueAPIRequest(setStep: GenericFunction) {
 }
 
 export function useOnPlayCardAPIRequest() {
-  const language = useLanguage();
+  const { translate } = useLanguage();
 
   const request = useAPICall({
     apiFunction: DETETIVES_IMAGINATIVOS_API.submitAction,
     actionName: 'play-card',
-    successMessage: translate('Carta enviada com sucesso', 'Card submitted successfully', language),
+    successMessage: translate('Carta enviada com sucesso', 'Card submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar sua carta',
-      'Oops, the application found an error while trying to submit your card',
-      language
+      'Oops, the application found an error while trying to submit your card'
     ),
   });
 
@@ -53,16 +46,15 @@ export function useOnPlayCardAPIRequest() {
 }
 
 export function useOnFinishDefenseRequest() {
-  const language = useLanguage();
+  const { translate } = useLanguage();
 
   const request = useAPICall({
     apiFunction: DETETIVES_IMAGINATIVOS_API.submitAction,
     actionName: 'finish-defense',
-    successMessage: translate('Defesa concluída com sucesso', 'Defense concluded successfully', language),
+    successMessage: translate('Defesa concluída com sucesso', 'Defense concluded successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar concluir sua defesa',
-      'Oops, the application found an error while trying to conclude your defense',
-      language
+      'Oops, the application found an error while trying to conclude your defense'
     ),
   });
 
@@ -74,16 +66,15 @@ export function useOnFinishDefenseRequest() {
 }
 
 export function useOnSubmitVoteAPIRequest() {
-  const language = useLanguage();
+  const { translate } = useLanguage();
 
   const request = useAPICall({
     apiFunction: DETETIVES_IMAGINATIVOS_API.submitAction,
     actionName: 'submit-vote',
-    successMessage: translate('Voto enviado com sucesso', 'Vote submitted successfully', language),
+    successMessage: translate('Voto enviado com sucesso', 'Vote submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar seu voto',
-      'Oops, the application found an error while trying to submit your vote',
-      language
+      'Oops, the application found an error while trying to submit your vote'
     ),
   });
 

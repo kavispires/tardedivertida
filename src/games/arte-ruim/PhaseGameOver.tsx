@@ -1,6 +1,6 @@
 // Components
 import { CanvasSVG, GameOverWrapper, Translate } from '../../components';
-import DrawingGrade from './DrawingGrade';
+import { DrawingGrade } from './DrawingGrade';
 
 function PhaseGameOver({ state, players, info }: PhaseProps) {
   return (

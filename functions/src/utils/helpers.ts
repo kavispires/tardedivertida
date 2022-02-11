@@ -192,9 +192,10 @@ export const unReadyPlayer = (players: Players, playerId: PlayerId): Players => 
  * @param butThisOne
  * @returns
  */
-export const unReadyPlayers = (players: Players, butThisOne: PlayerId = ''): Players => {
+export const unReadyPlayers = (players: Players, butThisOne?: PlayerId, butThose?: PlayerId[]): Players => {
+  const excludeList: PlayerId[] = butThisOne ? [butThisOne] : butThose ? butThose : [];
   for (const playerKey in players) {
-    players[playerKey].ready = playerKey === butThisOne ? true : false;
+    players[playerKey].ready = excludeList.includes(playerKey);
   }
   return players;
 };
@@ -413,6 +414,20 @@ export const getActivePlayer = (turnOrder: GameOrder | TurnOrder, currentRound: 
 };
 
 /**
+ * Get next player after the current player
+ * @param turnOrder
+ * @param activePlayerId
+ * @returns
+ */
+export const getNextPlayer = (turnOrder: GameOrder | TurnOrder, activePlayerId: PlayerId): PlayerId => {
+  const index = turnOrder.indexOf(activePlayerId);
+
+  if (index === -1) return turnOrder[0];
+
+  return turnOrder[(index + 1) % turnOrder.length];
+};
+
+/**
  * Flattens a two dimensional array
  * @param twoDimensionalArray
  * @returns
@@ -463,4 +478,19 @@ export const buildNewScoreObject = (players: Players, gainedPointsInitialState?:
   });
 
   return newScores;
+};
+
+/**
+ * Randomizes player ids
+ * @param players
+ * @param doublingThreshold - doubles the order player count is lower than this
+ * @returns
+ */
+export const buildGameOrder = (
+  players: Players,
+  doublingThreshold = 0
+): { gameOrder: PlayerId[]; playerIds: PlayerId[]; playerCount: number } => {
+  const playerIds = shuffle(Object.keys(players));
+  const gameOrder = playerIds.length < doublingThreshold ? [...playerIds, ...playerIds] : playerIds;
+  return { gameOrder, playerIds, playerCount: playerIds.length };
 };

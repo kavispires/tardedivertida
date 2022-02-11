@@ -31,7 +31,7 @@ type SubmitAnswersPayload = {
 };
 
 type AddAnswerPayload = {
-  answer: string;
+  answer: MAnswer;
 };
 
 type NextAnswersPayload = {

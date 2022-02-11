@@ -4,14 +4,14 @@ import { useIsUserReady, useUser, useLanguage } from '../../hooks';
 // Resources & Utils
 import { PHASES } from '../../utils/phases';
 // Components
-import { PhaseAnnouncement, PhaseContainer, StepSwitcher, translate } from '../../components';
+import { PhaseAnnouncement, PhaseContainer, StepSwitcher } from '../../components';
 import { GuessMessage } from './RulesBlobs';
 import { StepGuessing } from './StepGuessing';
 import { useOnSubmitGuessesAPIRequest } from './_api-requests';
 
 function PhaseGuessing({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const user = useUser(players);
   const [step, setStep] = useState(0);
 
@@ -25,7 +25,7 @@ function PhaseGuessing({ players, state, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           type="guess"
-          title={translate('Tente Adivinhar', 'Try to guess', language)}
+          title={translate('Tente Adivinhar', 'Try to guess')}
           onClose={increaseStep}
           currentRound={state?.round?.current}
         >

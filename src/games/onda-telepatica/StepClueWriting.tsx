@@ -6,7 +6,7 @@ import { useLanguage, useLoading } from '../../hooks';
 // HUtils
 import { getTargetSide } from './helpers';
 // Components
-import { ButtonContainer, Instruction, Title, translate, Translate } from '../../components/shared';
+import { ButtonContainer, Instruction, Title, Translate } from '../../components';
 import { ClueWritingRules } from './ClueWritingRules';
 import { Dial } from './Dial';
 
@@ -23,7 +23,7 @@ export function StepClueWriting({
   target,
   onSendClue,
 }: StepClueWritingProps) {
-  const language = useLanguage();
+  const { language, translate } = useLanguage();
   const [isLoading] = useLoading();
   const [clue, setClue] = useState('');
 
@@ -62,7 +62,7 @@ export function StepClueWriting({
         <Input
           onChange={onChangeInput}
           onPressEnter={onSubmitClue}
-          placeholder={translate('Escreva aqui', 'Write here', language)}
+          placeholder={translate('Escreva aqui', 'Write here')}
         />
         <Button type="primary" onClick={onSubmitClue} disabled={isLoading}>
           <Translate pt="Enviar" en="Send" />

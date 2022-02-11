@@ -1,16 +1,65 @@
 .e-phase {
-  border: 1px solid get-color(lime);
+  margin: 0;
+  padding: get-unit(10 8 8 8);
   background: rgba($color: black, $alpha: 0.9);
+  border-radius: get-unit(1);
   font-family: 'Courier New', monospace;
-  justify-content: flex-start;
 
   &--center {
     justify-content: center;
   }
 }
 
+.e-phase-announcement {
+  font-family: 'Courier New', monospace;
+  background: get-color(white);
+
+  &--animated {
+    .title {
+      overflow: hidden; /* Ensures the content is not revealed until the animation */
+      border-right: 0.15em solid get-color(lime); /* The typewriter cursor */
+      white-space: nowrap; /* Keeps the content on a single line */
+      margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+      letter-spacing: 0.15em; /* Adjust as needed */
+      animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+    }
+  }
+
+  &--alert {
+    background: red;
+    .phase-announcement__icon {
+      animation: 500ms emergency-pulse infinite;
+    }
+  }
+}
+
+/* The typing effect */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: get-color(lime);
+  }
+}
+
 .e-phase-title.e-phase-title {
   color: get-color(lime);
+
+  &--fail {
+    color: get-color(red);
+  }
 }
 
 .e-phase-instruction.e-phase-instruction {
@@ -19,6 +68,11 @@
   color: get-color(lime);
   padding: get-unit(1 4);
   margin: get-unit(2 5);
+
+  h4 {
+    color: get-color(lime);
+    border-bottom: 1px solid get-color(lime);
+  }
 }
 
 .e-phase-section {
@@ -42,7 +96,7 @@
   width: 100%;
   resize: vertical;
   border-radius: get-unit(1);
-  padding: get-unit(1);
+  padding: get-unit(1 2);
 }
 
 .e-card {
@@ -117,19 +171,6 @@
   }
 }
 
-.e-emergency-alert {
-  background: transparent;
-
-  .ant-modal-content {
-    background: transparent;
-  }
-
-  &__svg {
-    max-height: 80vh;
-    animation: 500ms emergency-pulse infinite;
-  }
-}
-
 @keyframes emergency-pulse {
   0% {
     transform: scale(1);
@@ -181,7 +222,7 @@
     text-align: left;
 
     &--column {
-      grid-template-rows: repeat(8, 1fr);
+      grid-template-rows: repeat(5, 1fr);
       grid-auto-flow: column;
     }
   }

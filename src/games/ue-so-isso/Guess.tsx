@@ -5,7 +5,7 @@ import { CloudUploadOutlined, MinusOutlined } from '@ant-design/icons';
 // Hooks
 import { useLanguage, useLoading } from '../../hooks';
 // Components
-import { translate, Translate } from '../../components';
+import { Translate } from '../../components';
 
 type GuessProps = {
   onSubmitOutcome: GenericFunction;
@@ -13,7 +13,7 @@ type GuessProps = {
 };
 
 function Guess({ onSubmitOutcome, onSendGuess }: GuessProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const [isLoading] = useLoading();
   const [guess, setGuess] = useState('');
 
@@ -26,7 +26,7 @@ function Guess({ onSubmitOutcome, onSendGuess }: GuessProps) {
   return (
     <Space className="u-word-guess-phase__suggestions">
       <Input
-        placeholder={translate('Digite aqui seu chute', 'Type your guess here', language)}
+        placeholder={translate('Digite aqui seu chute', 'Type your guess here')}
         onChange={(e) => setGuess(e.target.value)}
         onPressEnter={onPressEnter}
         size="large"

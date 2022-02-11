@@ -12,12 +12,11 @@ import {
   PhaseContainer,
   StepSwitcher,
   Translate,
-  translate,
 } from '../../components';
 import { StepSuspectElimination } from './StepSuspectElimination';
 
 function PhaseTrial({ state, players, info }: PhaseProps) {
-  const language = useLanguage();
+  const { translate } = useLanguage();
   const [isLoading] = useLoading();
   const [step, setStep] = useState(0);
 
@@ -37,7 +36,7 @@ function PhaseTrial({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           type="law"
-          title={translate('Julgamento', 'Trial', language)}
+          title={translate('Julgamento', 'Trial')}
           onClose={() => setStep(1)}
           currentRound={state?.round?.current}
         >
