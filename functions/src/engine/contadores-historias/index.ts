@@ -8,7 +8,11 @@ import * as firebaseUtils from '../../utils/firebase';
 import * as utils from '../../utils/helpers';
 // Internal Functions
 import { determineGameOver, determineNextPhase } from './helpers';
-import { ContadoresHistoriasInitialState, ContadoresHistoriasSubmitAction } from './types';
+import {
+  ContadoresHistoriasInitialState,
+  ContadoresHistoriasOptions,
+  ContadoresHistoriasSubmitAction,
+} from './types';
 import {
   prepareCardPlayPhase,
   prepareGameOverPhase,
@@ -29,7 +33,8 @@ import { handlePlayCard, handleSubmitStory, handleSubmitVote } from './actions';
 export const getInitialState = (
   gameId: GameId,
   uid: string,
-  language: Language
+  language: Language,
+  options: ContadoresHistoriasOptions
 ): ContadoresHistoriasInitialState => {
   return utils.getDefaultInitialState({
     gameId,
@@ -45,6 +50,7 @@ export const getInitialState = (
       tableDeck: [],
       deckIndex: -1,
     },
+    options,
   });
 };
 
@@ -68,7 +74,7 @@ export const getNextPhase = async (
   );
 
   // Determine if it's game over
-  const isGameOver = determineGameOver(players);
+  const isGameOver = determineGameOver(players, store.options, state.round);
   // Determine next phase
   const nextPhase = determineNextPhase(state?.phase, state?.round, isGameOver, state?.lastRound);
 

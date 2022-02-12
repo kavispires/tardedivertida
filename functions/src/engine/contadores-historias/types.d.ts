@@ -1,5 +1,9 @@
 import { DefaultState, DefaultStore, ImageCard, InitialState, Payload, PlayerId } from '../../utils/types';
 
+type ContadoresHistoriasOptions = {
+  forPoints: boolean;
+};
+
 interface ContadoresHistoriasStore extends DefaultStore {
   gameOrder: PlayerId[];
   tableDeck: ImageCard[];

@@ -2,7 +2,7 @@
 import { CONTADORES_HISTORIAS_PHASES, GAME_OVER_SCORE_THRESHOLD, OUTCOME } from './constants';
 // Types
 import { ImageCard, PlainObject, PlayerId, Players, Round } from '../../utils/types';
-import { Table } from './types';
+import { ContadoresHistoriasOptions, Table } from './types';
 // Utils
 import * as gameUtils from '../../utils/game-utils';
 
@@ -176,10 +176,24 @@ export const scoreRound = (players: Players, table: Table, storyteller: PlayerId
 };
 
 /**
- * Determine if a player has passed 30 points and it should be game over
+ * Determine if a game should be over
+ * If "for points", if a player has passed 30 points
+ * If "normal", if a player has been the storyteller twice (1-6p) or once (7p+)
  * @param players
  * @returns
  */
-export const determineGameOver = (players: Players): boolean => {
-  return Object.values(players).some((player) => player.score >= GAME_OVER_SCORE_THRESHOLD);
+export const determineGameOver = (
+  players: Players,
+  options: ContadoresHistoriasOptions,
+  round: Round
+): boolean => {
+  if (options.forPoints) {
+    return Object.values(players).some((player) => player.score >= GAME_OVER_SCORE_THRESHOLD);
+  }
+  const playerCount = Object.keys(players).length;
+  if (playerCount <= 6) {
+    return round.current >= playerCount * 2;
+  }
+
+  return round.current >= playerCount;
 };
