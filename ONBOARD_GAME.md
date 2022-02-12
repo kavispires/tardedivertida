@@ -61,3 +61,7 @@ All file paths here are relative to `/src`.
 # Add cloud functions Adapter
 
 - Update `/adapters/index.ts` with the new cloud functions
+
+# Customize the Lobby "clouds" background
+
+- By changing the settings here: `src/components/lobby/_internal/CloudBackground.tsx`

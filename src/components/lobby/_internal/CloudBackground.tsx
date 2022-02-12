@@ -10,11 +10,33 @@ function SingleCloud({ type, index }: { type: string; index?: number }) {
   );
 }
 
-function MultiCloud({ type, index }: { type: string; index?: number }) {
+const cloudData = [
+  {
+    backgroundPositionX: '0',
+  },
+  {
+    backgroundPositionX: '-300px',
+  },
+  {
+    backgroundPositionX: '-600px',
+  },
+  {
+    backgroundPositionX: '-900px',
+  },
+  {
+    backgroundPositionX: '-1200px',
+  },
+];
+
+function MultiCloud({ type, index }: { type: string; index: number }) {
   return (
-    <div className={`"cloud-background__cloud cloud-background__cloud--${index}`}>
-      <img src={`${PUBLIC_URL.CLOUDS}${type}-${index}.png`} alt="cloud" />
-    </div>
+    <div
+      className="cloud-background__cloud"
+      style={{
+        backgroundImage: `url('${PUBLIC_URL.CLOUDS}${type}.png')`,
+        ...cloudData[index],
+      }}
+    ></div>
   );
 }
 
@@ -26,12 +48,13 @@ function getCloudComponent(type: string) {
     case 'sheep-cloud':
     case 'speech-cloud':
       return SingleCloud;
-    case 'artsy-cloud':
-    case 'book-cloud':
-    case 'detective-cloud':
-    case 'letter-cloud':
-    case 'one-cloud':
-    case 'sky-cloud':
+    case 'artsy-clouds':
+    case 'book-clouds':
+    case 'crime-clouds':
+    case 'halloween-clouds':
+    case 'letter-clouds':
+    case 'one-clouds':
+    case 'sky-clouds':
       return MultiCloud;
     default:
       return SingleCloud;
@@ -41,18 +64,21 @@ function getCloudComponent(type: string) {
 function getCloudFileName(gameCode: string) {
   return (
     {
-      A: 'artsy-cloud',
-      C: 'book-cloud',
-      D: 'detective-cloud',
+      A: 'artsy-clouds',
+      C: 'book-clouds',
+      D: 'crime-clouds',
       E: 'cyber-cloud',
+      G: 'sky-clouds',
+      H: 'crime-clouds',
       M: 'sheep-cloud',
+      N: 'halloween-clouds',
       O: 'retro-cloud',
       P: 'speech-cloud',
       R: 'monster-eye-cloud',
-      S: 'sky-cloud',
+      S: 'sky-clouds',
       T: 'eye-cloud',
-      U: 'one-cloud',
-      X: 'letter-cloud',
+      U: 'one-clouds',
+      X: 'letter-clouds',
     }[gameCode] ?? 'cloud'
   );
 }
@@ -63,30 +89,30 @@ type CloudBackgroundProps = {
 
 export function CloudBackground({ gameCode = 'Z' }: CloudBackgroundProps) {
   const cloudType = getCloudFileName(gameCode);
-  const TypeComponent = getCloudComponent(cloudType);
+  const CloudTypeComponent = getCloudComponent(cloudType);
 
   const baseClass = 'cloud-background';
 
   return (
     <div className={clsx(baseClass, `${baseClass}--${cloudType}`)}>
+      <div className="cloud-background__animation-0">
+        <CloudTypeComponent index={0} type={cloudType} />
+      </div>
+
       <div className="cloud-background__animation-1">
-        <TypeComponent index={0} type={cloudType} />
+        <CloudTypeComponent index={1} type={cloudType} />
       </div>
 
       <div className="cloud-background__animation-2">
-        <TypeComponent index={1} type={cloudType} />
+        <CloudTypeComponent index={2} type={cloudType} />
       </div>
 
       <div className="cloud-background__animation-3">
-        <TypeComponent index={2} type={cloudType} />
+        <CloudTypeComponent index={3} type={cloudType} />
       </div>
 
       <div className="cloud-background__animation-4">
-        <TypeComponent index={3} type={cloudType} />
-      </div>
-
-      <div className="cloud-background__animation-5">
-        <TypeComponent index={4} type={cloudType} />
+        <CloudTypeComponent index={4} type={cloudType} />
       </div>
     </div>
   );
