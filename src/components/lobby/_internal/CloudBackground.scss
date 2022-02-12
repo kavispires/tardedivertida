@@ -6,37 +6,42 @@
   right: 0;
   top: 0;
   z-index: 1;
+  height: 100vh;
+
+  // ANIMATION
 
   &__animation-0 {
     animation: animateCloud 35s linear infinite;
-    transform: scale(0.65);
+    transform: scale(0.35) translateY(75vh);
   }
 
   &__animation-1 {
     animation: animateCloud 20s linear infinite;
-    transform: scale(0.3);
+    transform: scale(0.3) translateY(250vh);
   }
 
   &__animation-2 {
     animation: animateCloud 30s linear infinite;
-    transform: scale(0.5);
+    transform: scale(0.35) translateY(100vh);
   }
 
   &__animation-3 {
     animation: animateCloud 18s linear infinite;
-    transform: scale(0.4);
+    transform: scale(0.4) translateY(10vh);
   }
 
   &__animation-4 {
     animation: animateCloud 25s linear infinite;
-    transform: scale(0.55);
+    transform: scale(0.55) translateY(100vh);
   }
 
-  &--artsy-cloud {
+  // THEMING RECOLORING
+
+  &--artsy-clouds {
     background: rgba(255, 238, 111, 0.5);
   }
 
-  &--book-cloud {
+  &--book-clouds {
     background: rgba(76, 210, 244, 0.5);
   }
 
@@ -44,7 +49,7 @@
     background: rgba(209, 70, 81, 0.5);
   }
 
-  &--one-cloud {
+  &--one-clouds {
     background: rgba(233, 185, 81, 0.5);
   }
 
@@ -60,7 +65,7 @@
     background: rgba(196, 246, 255, 0.75);
   }
 
-  &--sky-cloud {
+  &--sky-clouds {
     background: rgba(0, 4, 31, 0.75);
   }
 
@@ -72,57 +77,23 @@
     background: rgba(37, 37, 37, 0.95);
   }
 
-  &--detective-cloud {
+  &--crime-clouds {
     background: rgba(35, 35, 35, 0.8);
   }
 
-  &__cloud {
-    position: relative;
+  &--halloween-clouds {
+    background: rgba(27, 7, 57, 0.8);
   }
 
-  // &__cloud-basic {
-  //   background: get-color(white);
-  //   background: linear-gradient(top, #fff 5%, #f1f1f1 100%);
-  //   border-radius: 100px;
-  //   box-shadow: 0 8px 5px rgba(0, 0, 0, 0.1);
+  // The cloud itself
 
-  //   position: relative;
-  //   width: 350px;
-  //   height: 120px;
-
-  //   &:after,
-  //   &:before {
-  //     background: #fff;
-  //     content: '';
-  //     position: absolute;
-  //     z-index: -1;
-  //   }
-
-  //   &:after {
-  //     border-radius: 100px;
-
-  //     height: 100px;
-  //     left: 50px;
-  //     top: -50px;
-  //     width: 100px;
-  //   }
-
-  //   &:before {
-  //     border-radius: 200px;
-
-  //     width: 180px;
-  //     height: 180px;
-  //     right: 50px;
-  //     top: -90px;
-  //   }
-  // }
-
-  // &__cyber-cloud,
-  // &__funky-cloud,
-  // &__body-mark {
-  //   width: 350px;
-  //   height: 120px;
-  // }
+  &__cloud {
+    position: absolute;
+    width: 300px;
+    background-repeat: no-repeat;
+    height: 400px;
+    min-height: 300px;
+  }
 }
 
 @keyframes animateCloud {
