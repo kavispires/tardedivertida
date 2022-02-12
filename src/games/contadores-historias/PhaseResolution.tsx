@@ -52,6 +52,7 @@ function PhaseResolution({ state, players, info }: PhaseProps) {
             storyteller={storyteller}
             round={state.round}
             lastRound={state.lastRound}
+            setStep={setStep}
           />
         </Step>
       </StepSwitcher>

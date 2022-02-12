@@ -1,13 +1,16 @@
 // Components
+import { Button } from 'antd';
 import {
   AdminNextRoundButton,
   AvatarName,
+  ButtonContainer,
   Instruction,
   PopoverRule,
   RankingBoard,
   Title,
   Translate,
 } from '../../components';
+import { useLanguage } from '../../hooks';
 import { ScoringRules } from './RulesBlogs';
 
 type StepRankingProps = {
@@ -17,6 +20,7 @@ type StepRankingProps = {
   ranking: GameRanking;
   round: GameRound;
   lastRound?: boolean;
+  setStep: GenericFunction;
 };
 
 export function StepRanking({
@@ -26,7 +30,10 @@ export function StepRanking({
   storyteller,
   round,
   lastRound = false,
+  setStep,
 }: StepRankingProps) {
+  const { translate } = useLanguage();
+
   return (
     <div className="c-step-ranking">
       <Title level={1}>
@@ -81,6 +88,10 @@ export function StepRanking({
       </Instruction>
 
       <RankingBoard ranking={ranking} players={players} />
+
+      <ButtonContainer>
+        <Button onClick={() => setStep(1)}>{translate('Voltar para Solução', 'Back to Solution')}</Button>
+      </ButtonContainer>
 
       <AdminNextRoundButton round={round} lastRound={lastRound} />
     </div>
