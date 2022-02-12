@@ -7,6 +7,7 @@
       "pt": "Arte Ruim Pra Dedéu",
       "en": "Questionable Art"
     },
+    "basedOn": "trA daB yllaeR",
     "summary": {
       "pt": "Tente identificar as obras-primas criadas por seus oponentes!",
       "en": "Try to guess the masterpieces created by your opponents"
@@ -52,6 +53,7 @@
       "pt": "Bomba Relógio",
       "en": "Time Bomb"
     },
+    "basedOn": "bmoB emiT/uhluhtC htiw ssem t'noD",
     "summary": {
       "pt": "Uns são agentes, outros terroristas. Você será capaz de parar a bomba antes que ela detone?",
       "en": "Some are agents, some are terrorists. Are you capable to stop the bomb before it goes kaboom?"
@@ -86,6 +88,7 @@
       "pt": "Contadores de Histórias",
       "en": "Storytellers"
     },
+    "basedOn": "tixiD",
     "summary": {
       "pt": "Uma imagem vale mesmo mais que mil palavras? Tente descobrir de qual imagem o contador de histórias está falando",
       "en": "Is an image really worth a thousand words? Try to find out what image is the storyteller referring to"
@@ -126,6 +129,7 @@
       "pt": "Detetives Imaginativos",
       "en": "Imaginative Detectives"
     },
+    "basedOn": "bulC evitceteD",
     "summary": {
       "pt": "Existe um impostor entre nós, mas será que ele tem boa lábia para se safar?",
       "en": "There is an impostor among us, but will they be able to fool us all?"
@@ -164,6 +168,7 @@
       "pt": "Espião Entre Nós",
       "en": "The Spy the Spies"
     },
+    "basedOn": "llafypS",
     "summary": {
       "pt": "Todos nós, agentes de bem, estamos num mesmo local, mas um de nós é um espião! Será que conseguimos descobrir quem é o impostor antes dele descobrir que local estamos?",
       "en": "We, all good agents, are meeting in the same place, but there's a spy among us. Can we find the impostor before they find out where we're supposed to meet?"
@@ -199,6 +204,7 @@
       "pt": "Desenho Rapidão",
       "en": "Fast Draw"
     },
+    "basedOn": "hsaD eldooD",
     "summary": {
       "pt": "Uma palavra secreta, uma corrida, vários desenhos! Quem consegue desenhar o mais rápido possível?",
       "en": "One secret word, a race, many drawings! Who can draw as fast as possible?"
@@ -226,6 +232,7 @@
       "pt": "Galeria de sonhos",
       "en": "Dream Gallery"
     },
+    "basedOn": "alletS",
     "summary": {
       "pt": "Você consegue associar imagens com uma palavra? E você consegue associar essas imagens como os outros jogadores?",
       "en": "Can you match the most images with the associated word? Can you match other players?"
@@ -253,6 +260,7 @@
       "pt": "Crimes Hediondos",
       "en": "Horrific Crimes"
     },
+    "basedOn": "gnoK gnoH ni redruM :noitpeceD",
     "summary": {
       "pt": "Numa convenção anual de Serial Killers, você e seus amigos tem que descrever o seu crime para que os outros jogadores adivinhem qual arma você usou e qual lembrancinha você levou pra casa",
       "en": "In a Serial Killers Annual Convention, you and your friends must describe your crime so the other players can guess what weapon and what souvenir you took home"
@@ -280,6 +288,7 @@
       "pt": "Instrumentos Codificados",
       "en": "Instrumental Cyphers"
     },
+    "basedOn": "maJ retteL",
     "summary": {
       "pt": "TBD",
       "en": "TBD"
@@ -307,6 +316,7 @@
       "pt": "Palheta de Cores",
       "en": "Color Palette"
     },
+    "basedOn": "enotnaP",
     "summary": {
       "pt": "Em cada rodada escolha a cor que mais combina com as palavras. Quanto mais combinações iguais você faz com outros jogadores, mais pontos você ganha",
       "en": "Each round you choose a color to match each of the words. For every match with other players, you get points!"
@@ -334,6 +344,7 @@
       "pt": "Linhas Cruzadas",
       "en": "Mis...communication"
     },
+    "basedOn": "snoitartseleT",
     "summary": {
       "pt": "Desenhe... adivinhar... repita...",
       "en": "Draw... guess... repeat..."
@@ -365,6 +376,7 @@
       "pt": "Mente Coletiva",
       "en": "Herd Mentality"
     },
+    "basedOn": "dniM eviH",
     "summary": {
       "pt": "Você é capaz de pensar como o grupo para não correr o risco de ser expulso?",
       "en": "Do you think like the group or are you the sheep about to be kicked out?"
@@ -399,6 +411,7 @@
       "pt": "Na Rua do Medo",
       "en": "Fear Street"
     },
+    "basedOn": "tnamaiD/dloG nacnI",
     "summary": {
       "pt": "Jogadores são crianças recolhendo doces durante o Halloween, mas se você ver o mesmo monstro mais de uma vez...",
       "en": "Players are trick-or-treaters collecting candy, but if you see the same monster twice..."
@@ -441,6 +454,7 @@
       "pt": "Onda Telepática",
       "en": "Telepathic Waves"
     },
+    "basedOn": "htgnelevaW",
     "summary": {
       "pt": "Jogadores tentam comunicar através de ondas telepáticas",
       "en": "Players try to communicate using their telepathic waves"
@@ -484,6 +498,7 @@
       "pt": "Polêmica da Vez",
       "en": "That's Polemic"
     },
+    "basedOn": "cimeloP",
     "summary": {
       "pt": "Um tópico... Polêmico. Você sabe a sua opinião, mas consegue descobrir a dos seus oponentes?",
       "en": "One... polemic... subject... You know your opinion, but can do guess the opponents' ones?"
@@ -525,6 +540,7 @@
       "pt": "Quem Sou Eu?",
       "en": "Who Am I?"
     },
+    "basedOn": "znabdeH/ytirbeleC",
     "summary": {
       "pt": "Cada jogador é uma celebridade, você consegue adivinhar quem você é com 20 perguntas?",
       "en": "Can you guess who you are with 20 questions?"
@@ -552,6 +568,7 @@
       "pt": "Retrato Falado Monstruoso",
       "en": "Monster Sketch"
     },
+    "basedOn": "ytiswardsnoM",
     "summary": {
       "pt": "Um monstro atacou a pobre testemunha. Será que ela vai conseguir descrever o criminoso",
       "en": "A monster has attacked a poor witness. Will she be able to describe the perpetrator"
@@ -584,6 +601,7 @@
       "pt": "Sonhos e Pesadelos",
       "en": "Dreams and Nightmares"
     },
+    "basedOn": "lanigirO",
     "summary": {
       "pt": "Às vezes, sonhos são bem difíceis de contar porque você só consegue lembrar fragmentos e colocar todas ideias juntas pode ser um desafio",
       "en": "Sometimes dreams are very hard to tell because you can only remember so many things among the fragments of your memory and trying to put your ideas together can be a challenge"
@@ -618,6 +636,7 @@
       "pt": "Testemunha Ocular",
       "en": "Eye Witness"
     },
+    "basedOn": "stcepsuS lausunU",
     "summary": {
       "pt": "Um crime. Uma testemunha. Desde quando julgando por aparência não se desvenda um crime?",
       "en": "One crime. One witness... that judge people by their appearances. What could go wrong?"
@@ -652,6 +671,7 @@
       "pt": "Ué, Só Isso?",
       "en": "That's It?"
     },
+    "basedOn": "enO tsuJ",
     "summary": {
       "pt": "Tente adivinhar a palavra secreta com as dicas de seus amigos, mas dicas repetidas são eliminadas... ferrou! Ué, só isso?",
       "en": "Try to guess the secret word from clues given by the players, but there's a catch: similar clues are thrown out and all you have left are... that's it?"
@@ -696,6 +716,7 @@
       "pt": "Vendaval de Palpite",
       "en": "Brainy Storm"
     },
+    "basedOn": "droW retsaM",
     "summary": {
       "pt": "Uma palavra secreta que sabemos apenas o tema. Consegue descobri-la fazendo associação de palavras?",
       "en": "A secret work with a known category. Can you guess that word by just associating words?"
@@ -723,6 +744,7 @@
       "pt": "Cruza Palavras",
       "en": "Mixed Clues"
     },
+    "basedOn": "seulC ssorC",
     "summary": {
       "pt": "Uma grade de palavras e várias coordenadas... você consegue associar todas as palavras?",
       "en": "A word grid and many coordinates... are you able to match all words?"
@@ -758,6 +780,7 @@
       "pt": "Te conheço?",
       "en": "You don't know me"
     },
+    "basedOn": "eiL enO shturT owT",
     "summary": {
       "pt": "Você conhece os outros jogadores? Consegue descobrir uma mentira ou adivinhar quem disse o que?",
       "en": "Do you know the other players? Can you spot a lie? Can you match the player with a sentence?"

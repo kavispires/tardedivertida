@@ -46,7 +46,11 @@ export function GameCard({ game }: GameCardProps) {
           />
         }
       >
-        <Card.Meta title={game.title[language]} description={game.summary[language]} />
+        <Card.Meta
+          title={game.title[language]}
+          description={`${translate('Baseado em', 'Based on')} ${game.basedOn.split('').reverse().join('')}`}
+        />
+        <Card.Meta style={{ marginTop: '24px' }} description={game.summary[language]} />
         <Divider />
         <Card.Meta
           description={translate(
