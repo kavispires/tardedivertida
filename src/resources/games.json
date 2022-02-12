@@ -81,7 +81,7 @@
   "C": {
     "gameCode": "C",
     "gameName": "contadores-historias",
-    "version": "2.0",
+    "version": "2.1",
     "title": {
       "pt": "Contadores de Histórias",
       "en": "Storytellers"
@@ -110,7 +110,13 @@
     "available": {
       "pt": true,
       "en": true
-    }
+    },
+    "options": [
+      {
+        "label": "For (30) points INSTEAD OF Each player twice (1-6p) or once (7p+)",
+        "key": "forPoints"
+      }
+    ]
   },
   "D": {
     "gameCode": "D",

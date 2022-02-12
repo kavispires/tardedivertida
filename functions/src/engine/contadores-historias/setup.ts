@@ -3,6 +3,7 @@ import {
   CARDS_PER_PLAYER,
   CONTADORES_HISTORIAS_PHASES,
   HAND_LIMIT,
+  MAX_ROUNDS,
   TABLE_CARDS_BY_PLAYER_COUNT,
 } from './constants';
 // Types
@@ -31,6 +32,9 @@ export const prepareSetupPhase = async (
   // Determine player order
   const { gameOrder, playerCount } = utils.buildGameOrder(players);
 
+  const { gameOrder: roundsIfRoundFixed } = utils.buildGameOrder(players, 7);
+  const totalRounds = store.options.forPoints ? MAX_ROUNDS : roundsIfRoundFixed.length;
+
   // Assigned cards to players
   // We build the used cards deck all at once to avoid having to generate and
   // get unique ones every time
@@ -55,6 +59,10 @@ export const prepareSetupPhase = async (
       state: {
         phase: CONTADORES_HISTORIAS_PHASES.SETUP,
         gameOrder,
+        round: {
+          current: 0,
+          total: totalRounds,
+        },
       },
       players,
     },
