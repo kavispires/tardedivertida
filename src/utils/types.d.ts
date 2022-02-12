@@ -95,6 +95,7 @@ interface GameInfo {
     pt: string;
     en: string;
   };
+  basedOn: string;
   summary: {
     pt: string;
     en: string;
