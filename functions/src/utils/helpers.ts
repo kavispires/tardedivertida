@@ -414,7 +414,7 @@ export const getActivePlayer = (turnOrder: GameOrder | TurnOrder, currentRound: 
 };
 
 /**
- * Get next player after the current player
+ * Get next player in a turn order after the current player
  * @param turnOrder
  * @param activePlayerId
  * @returns
@@ -425,6 +425,20 @@ export const getNextPlayer = (turnOrder: GameOrder | TurnOrder, activePlayerId: 
   if (index === -1) return turnOrder[0];
 
   return turnOrder[(index + 1) % turnOrder.length];
+};
+
+/**
+ * Get previous player in a turn order before the current player
+ * @param turnOrder
+ * @param activePlayerId
+ * @returns
+ */
+export const getPreviousPlayer = (turnOrder: GameOrder | TurnOrder, activePlayerId: PlayerId): PlayerId => {
+  const index = turnOrder.indexOf(activePlayerId);
+
+  if (index === -1 || index === 0) return turnOrder[turnOrder.length - 1];
+
+  return turnOrder[(index - 1) % turnOrder.length];
 };
 
 /**

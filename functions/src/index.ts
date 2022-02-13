@@ -9,6 +9,7 @@ import * as espiaoEntreNosEngine from './engine/espiao-entre-nos';
 import * as galeriaDeSonhosEngine from './engine/galeria-de-sonhos';
 import * as crimesHediondosEngine from './engine/crimes-hediondos';
 import * as instrumentosCodificadosEngine from './engine/instrumentos-codificados';
+import * as linhasCruzadasEngine from './engine/linhas-cruzadas';
 import * as menteColetivaEngine from './engine/mente-coletiva';
 import * as naRuaDoMedoEngine from './engine/na-rua-do-medo';
 import * as ondaTelepaticaEngine from './engine/onda-telepatica';
@@ -82,6 +83,8 @@ exports.crimesHediondosSubmitAction = functions.https.onCall(crimesHediondosEngi
 exports.instrumentosCodificadosSubmitAction = functions.https.onCall(
   instrumentosCodificadosEngine.submitAction
 );
+
+exports.linhasCruzadasSubmitAction = functions.https.onCall(linhasCruzadasEngine.submitAction);
 
 exports.menteColetivaSubmitAction = functions.https.onCall(menteColetivaEngine.submitAction);
 
