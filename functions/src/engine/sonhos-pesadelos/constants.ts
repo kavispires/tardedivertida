@@ -9,7 +9,7 @@ export const SONHOS_PESADELOS_PHASES = {
   GAME_OVER: 'GAME_OVER',
 };
 
-export const PLAYER_COUNT = {
+export const PLAYER_COUNTS = {
   MIN: 2,
   MAX: 10,
 };

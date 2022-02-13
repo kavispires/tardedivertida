@@ -1,6 +1,6 @@
 // Constants
 import { GAME_COLLECTIONS } from '../../utils/constants';
-import { DETETIVES_IMAGINATIVOS_PHASES, PLAYER_COUNT } from './constants';
+import { DETETIVES_IMAGINATIVOS_PHASES, PLAYER_COUNTS } from './constants';
 // Types
 import { GameId, Language, Players } from '../../utils/types';
 import { DetetivesImaginativosInitialState, DetetivesImaginativosSubmitAction } from './types';
@@ -36,7 +36,7 @@ export const getInitialState = (
     gameName: GAME_COLLECTIONS.DETETIVES_IMAGINATIVOS,
     uid,
     language,
-    playerCount: PLAYER_COUNT,
+    playerCounts: PLAYER_COUNTS,
     initialPhase: DETETIVES_IMAGINATIVOS_PHASES.LOBBY,
     totalRounds: 0,
     store: {
@@ -51,7 +51,7 @@ export const getInitialState = (
 /**
  * Exposes min and max player count
  */
-export const playerCount = PLAYER_COUNT;
+export const playerCounts = PLAYER_COUNTS;
 
 export const getNextPhase = async (
   collectionName: string,

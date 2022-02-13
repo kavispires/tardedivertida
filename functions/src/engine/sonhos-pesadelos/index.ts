@@ -1,6 +1,6 @@
 // Constants
 import { GAME_COLLECTIONS } from '../../utils/constants';
-import { PLAYER_COUNT, SONHOS_PESADELOS_PHASES, TOTAL_ROUNDS } from './constants';
+import { PLAYER_COUNTS, SONHOS_PESADELOS_PHASES, TOTAL_ROUNDS } from './constants';
 // Types
 import { GameId, Language, Players } from '../../utils/types';
 // Utils
@@ -36,7 +36,7 @@ export const getInitialState = (
     gameName: GAME_COLLECTIONS.SONHOS_PESADELOS,
     uid,
     language,
-    playerCount: PLAYER_COUNT,
+    playerCounts: PLAYER_COUNTS,
     initialPhase: SONHOS_PESADELOS_PHASES.LOBBY,
     totalRounds: TOTAL_ROUNDS,
     store: {
@@ -48,7 +48,7 @@ export const getInitialState = (
 /**
  * Exposes min and max player count
  */
-export const playerCount = PLAYER_COUNT;
+export const playerCounts = PLAYER_COUNTS;
 
 export const getNextPhase = async (
   collectionName: string,

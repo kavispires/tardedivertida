@@ -1,6 +1,6 @@
 // Constants
 import { GAME_COLLECTIONS } from '../../utils/constants';
-import { MAX_ROUNDS, PLAYER_COUNT, POLEMICA_DA_VEZ_PHASES } from './constants';
+import { MAX_ROUNDS, PLAYER_COUNTS, POLEMICA_DA_VEZ_PHASES } from './constants';
 // Types
 import { GameId, Language, Players } from '../../utils/types';
 import { PolemicaDaVezInitialState, PolemicaDaVezSubmitAction } from './types';
@@ -36,7 +36,7 @@ export const getInitialState = (
     gameName: GAME_COLLECTIONS.POLEMICA_DA_VEZ,
     uid,
     language,
-    playerCount: PLAYER_COUNT,
+    playerCounts: PLAYER_COUNTS,
     initialPhase: POLEMICA_DA_VEZ_PHASES.LOBBY,
     totalRounds: MAX_ROUNDS,
     store: {
@@ -50,7 +50,7 @@ export const getInitialState = (
 /**
  * Exposes min and max player count
  */
-export const playerCount = PLAYER_COUNT;
+export const playerCounts = PLAYER_COUNTS;
 
 export const getNextPhase = async (
   collectionName: string,
