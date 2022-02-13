@@ -8,7 +8,7 @@ export const RETRATO_FALADO_PHASES = {
   GAME_OVER: 'GAME_OVER',
 };
 
-export const PLAYER_COUNT = {
+export const PLAYER_COUNTS = {
   MIN: 4,
   MAX: 10,
 };

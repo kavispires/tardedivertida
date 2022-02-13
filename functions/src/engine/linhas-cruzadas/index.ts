@@ -1,6 +1,6 @@
 // Constants
 import { GAME_COLLECTIONS } from '../../utils/constants';
-import { LINHAS_CRUZADAS_PHASES, PLAYER_COUNT, TOTAL_ROUNDS } from './constants';
+import { LINHAS_CRUZADAS_PHASES, PLAYER_COUNTS, TOTAL_ROUNDS } from './constants';
 // Types
 import { GameId, Language, Players } from '../../utils/types';
 // Utils
@@ -37,7 +37,7 @@ export const getInitialState = (
     gameName: GAME_COLLECTIONS.LINHAS_CRUZADAS,
     uid,
     language,
-    playerCount: PLAYER_COUNT,
+    playerCounts: PLAYER_COUNTS,
     initialPhase: LINHAS_CRUZADAS_PHASES.LOBBY,
     totalRounds: TOTAL_ROUNDS,
     store: {
@@ -50,7 +50,7 @@ export const getInitialState = (
 /**
  * Exposes min and max player count
  */
-export const playerCount = PLAYER_COUNT;
+export const playerCounts = PLAYER_COUNTS;
 
 export const getNextPhase = async (
   collectionName: string,

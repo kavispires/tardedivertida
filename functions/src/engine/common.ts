@@ -60,12 +60,12 @@ export const addPlayer = async (data: AddPlayerPayload) => {
   }
 
   // Verify maximum number of players
-  const { playerCount } = delegatorUtils.getEngine(collectionName);
+  const { playerCounts } = delegatorUtils.getEngine(collectionName);
   const numPlayers = Object.keys(players).length;
 
-  if (numPlayers === playerCount.MAX) {
+  if (numPlayers === playerCounts.MAX) {
     firebaseUtils.throwException(
-      `Sorry, you can't join. Game ${gameId} already has the maximum number of players: ${playerCount.MIN}`,
+      `Sorry, you can't join. Game ${gameId} already has the maximum number of players: ${playerCounts.MIN}`,
       actionText
     );
   }

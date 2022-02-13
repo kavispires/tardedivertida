@@ -11,7 +11,7 @@ export const LINHAS_CRUZADAS_PHASES = {
 
 export const TOTAL_ROUNDS = 1;
 
-export const PLAYER_COUNT = {
+export const PLAYER_COUNTS = {
   MIN: 4,
   MAX: 10,
 };

@@ -8,7 +8,7 @@ export const NA_RUA_DO_MEDO_PHASES = {
   GAME_OVER: 'GAME_OVER',
 };
 
-export const PLAYER_COUNT = {
+export const PLAYER_COUNTS = {
   MIN: 3,
   MAX: 10,
 };

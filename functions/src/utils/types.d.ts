@@ -54,7 +54,7 @@ export interface LoadGamePayload {
 export interface Engine {
   getInitialState: any;
   getNextPhase: any;
-  playerCount: PlayerCount;
+  playerCounts: PlayerCounts;
   submitAction: any;
 }
 
@@ -84,7 +84,7 @@ export interface Meta {
   options?: PlainObject;
 }
 
-export interface PlayerCount {
+export interface PlayerCounts {
   MIN: number;
   MAX: number;
 }
@@ -113,7 +113,7 @@ export interface InitialStateArgs {
   gameName: GameName;
   uid: string;
   language: string;
-  playerCount: PlayerCount;
+  playerCounts: PlayerCounts;
   initialPhase: string;
   totalRounds: number;
   store: PlainObject;
