@@ -5,7 +5,7 @@ import { Button } from 'antd';
 // Hooks
 import { useLanguage } from '../../hooks';
 // Utils
-import { kebabToPascal } from '../../utils/helpers';
+import { getAnimationClass, kebabToPascal } from '../../utils/helpers';
 // Components
 import { TimedButton } from './index';
 import { Title } from './Title';
@@ -45,15 +45,7 @@ export function PhaseAnnouncement({
     IconIllustrationsComponents[kebabToPascal(type ?? 'multitask')] ?? IconIllustrationsComponents.Multitask;
 
   return (
-    <div
-      className={clsx(
-        'phase-announcement',
-        animated && 'animate__animated',
-        animated && 'animate__backInDown',
-        // animated && 'animate__backInRight',
-        className
-      )}
-    >
+    <div className={clsx('phase-announcement', getAnimationClass('backInDown'), className)}>
       <Title>{title}</Title>
       <Icon className="phase-announcement__icon" />
 

@@ -9,6 +9,7 @@ import { AvatarName } from '../avatars';
 import { TimedButton } from './index';
 import { useLanguage } from '../../hooks';
 import { Translate } from './Translate';
+import { getAnimationClass } from '../../utils/helpers';
 
 type Teams = {
   A: TeamObj;
@@ -84,7 +85,7 @@ export function RoundAnnouncement({
         <div className="round-announcement__title">
           <img src={translate(roundTitlePt, roundTitleEn)} alt={translate('Rodada', 'Round')} />
         </div>
-        <div className={clsx('round-announcement__round-wrapper', 'animate__animated animate__zoomIn')}>
+        <div className={clsx('round-announcement__round-wrapper', getAnimationClass('zoomIn'))}>
           <div className={clsx('round-announcement__circle', `color-border--${circleColor}`)}></div>
           <div className={clsx('round-announcement__circle-2', `color-border--${circleColor}`)}></div>
           <div className="round-announcement__number">{round?.current ?? round ?? 0}</div>
