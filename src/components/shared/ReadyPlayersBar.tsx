@@ -58,7 +58,7 @@ export function ReadyPlayersBar({
       </div>
       {!hideNames && notReadyPlayers.length > 0 && (
         <span className="ready-player-bar__names">
-          <Translate pt="Esperando" en="Waiting for" custom={readyText} />: {notReadyPlayers.join(', ')}
+          <Translate pt="Esperando" en="Waiting for" />: {notReadyPlayers.join(', ')}
         </span>
       )}
     </div>
