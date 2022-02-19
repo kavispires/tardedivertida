@@ -1,9 +1,9 @@
 import { useMemo, useState } from 'react';
 import clsx from 'clsx';
 //Design Resources
-import { Button } from 'antd';
+import { Button, Divider } from 'antd';
 // Components
-import { AvatarIcon, Instruction, Step, Title, Translate } from '../../components';
+import { AvatarIcon, Instruction, ReadyPlayersBar, Step, Title, Translate } from '../../components';
 import { Topic } from './Topic';
 
 type StepLikingProps = {
@@ -34,9 +34,8 @@ export function StepLiking({ currentTopic, customTopic, onSubmitReaction, player
         <Translate pt="O que você acha da polêmica da vez?" en="What do you think of this trending topic?" />
       </Title>
 
-      <Topic topic={customTopic ?? currentTopic?.text} />
-
       <div className="p-reaction-buttons">
+        <Topic topic={customTopic ?? currentTopic?.text} className="p-reaction-buttons__topic" />
         <Button
           className={clsx('p-reaction-buttons__like', like === true && 'p-reaction-buttons__like--active')}
           size="large"
@@ -89,6 +88,9 @@ export function StepLiking({ currentTopic, customTopic, onSubmitReaction, player
           </ul>
         </>
       )}
+      <Divider />
+
+      <ReadyPlayersBar players={players} />
     </Step>
   );
 }

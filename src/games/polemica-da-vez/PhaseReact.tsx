@@ -20,10 +20,9 @@ function PhaseReact({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           type="feedback"
-          title={translate('Qual a polêmica da vez?', "What's trending now?")}
+          title={translate('O que você acha?', 'What do you think?')}
           onClose={() => setStep(1)}
           currentRound={state?.round?.current}
-          duration={state?.round?.current < 3 ? 30 : undefined}
         >
           <Instruction>
             <Translate
