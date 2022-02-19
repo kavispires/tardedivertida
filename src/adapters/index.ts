@@ -42,6 +42,10 @@ export const INSTRUMENTOS_CODIFICADOS_API = {
   submitAction: httpsCallable(functions, 'instrumentosCodificadosSubmitAction'),
 };
 
+export const LINHAS_CRUZADAS_API = {
+  submitAction: httpsCallable(functions, 'linhasCruzadasSubmitAction'),
+};
+
 export const MENTE_COLETIVA_API = {
   submitAction: httpsCallable(functions, 'menteColetivaSubmitAction'),
 };

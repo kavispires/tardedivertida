@@ -339,14 +339,14 @@
   "L": {
     "gameCode": "L",
     "gameName": "linhas-cruzadas",
-    "version": "none",
+    "version": "beta",
     "title": {
       "pt": "Linhas Cruzadas",
       "en": "Mis...communication"
     },
     "basedOn": "snoitartseleT",
     "summary": {
-      "pt": "Desenhe... adivinhar... repita...",
+      "pt": "Desenhe... adivinhe... repita...",
       "en": "Draw... guess... repeat..."
     },
     "rules": {
@@ -360,12 +360,12 @@
     },
     "tags": ["cooperative", "drawing", "guessing"],
     "available": {
-      "pt": false,
-      "en": false
+      "pt": true,
+      "en": true
     },
     "options": [
-      { "label": "Normal", "key": "NORMAL" },
-      { "label": "Arte Ruim Cards", "key": "ARTE_RUIM_CARDS" }
+      { "label": "Only Single Word Cards", "key": "singleWordOnly" },
+      { "label": "Evenly Distribute Cards", "key": "evenDistribution" }
     ]
   },
   "M": {

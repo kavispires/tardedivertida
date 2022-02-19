@@ -112,6 +112,8 @@ function Game() {
         return <GameSessions.CrimesHediondos gameId={gameId} />;
       case GAME_COLLECTION.INSTRUMENTOS_CODIFICADOS:
         return <GameSessions.InstrumentosCodificados gameId={gameId} />;
+      case GAME_COLLECTION.LINHAS_CRUZADAS:
+        return <GameSessions.LinhasCruzadas gameId={gameId} />;
       case GAME_COLLECTION.MENTE_COLETIVA:
         return <GameSessions.MenteColetiva gameId={gameId} />;
       case GAME_COLLECTION.NA_RUA_DO_MEDO:

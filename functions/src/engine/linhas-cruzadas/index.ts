@@ -8,7 +8,7 @@ import * as firebaseUtils from '../../utils/firebase';
 import * as utils from '../../utils/helpers';
 // Internal Functions
 import { determineNextPhase } from './helpers';
-import { LinhasCruzadasInitialState, LinhasCruzadasSubmitAction } from './types';
+import { LinhasCruzadasInitialState, LinhasCruzadasOptions, LinhasCruzadasSubmitAction } from './types';
 import {
   prepareDrawingPhase,
   prepareGameOverPhase,
@@ -18,7 +18,7 @@ import {
   prepareSetupPhase,
 } from './setup';
 import { getData } from './data';
-import { handleSubmitDrawing, handleSubmitGuess } from './actions';
+import { handleSubmitDrawing, handleSubmitGuess, handleSubmitPrompt } from './actions';
 
 /**
  * Get Initial Game State
@@ -30,7 +30,8 @@ import { handleSubmitDrawing, handleSubmitGuess } from './actions';
 export const getInitialState = (
   gameId: GameId,
   uid: string,
-  language: Language
+  language: Language,
+  options: LinhasCruzadasOptions
 ): LinhasCruzadasInitialState => {
   return utils.getDefaultInitialState({
     gameId,
@@ -42,8 +43,8 @@ export const getInitialState = (
     totalRounds: TOTAL_ROUNDS,
     store: {
       language,
-      deck: [],
     },
+    options,
   });
 };
 
@@ -65,12 +66,7 @@ export const getNextPhase = async (
   );
 
   // Determine next phase
-  const nextPhase = determineNextPhase(
-    state?.phase,
-    Object.keys(players).length,
-    store.album,
-    state?.lastRound
-  );
+  const nextPhase = determineNextPhase(state.phase, state.round, state?.lastRound);
 
   // RULES -> SETUP
   if (nextPhase === LINHAS_CRUZADAS_PHASES.SETUP) {
@@ -127,6 +123,9 @@ export const submitAction = async (data: LinhasCruzadasSubmitAction) => {
   firebaseUtils.validateSubmitActionPayload(gameId, collectionName, playerId, action);
 
   switch (action) {
+    case 'SUBMIT_PROMPT':
+      firebaseUtils.validateSubmitActionProperties(data, ['promptId'], 'submit prompt');
+      return handleSubmitPrompt(collectionName, gameId, playerId, data.promptId);
     case 'SUBMIT_DRAWING':
       firebaseUtils.validateSubmitActionProperties(data, ['drawing'], 'submit drawing');
       return handleSubmitDrawing(collectionName, gameId, playerId, data.drawing);
