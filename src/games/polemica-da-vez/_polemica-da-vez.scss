@@ -87,63 +87,6 @@
   }
 }
 
-.p-reaction-buttons {
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  margin: get-unit(3 2);
-
-  &__like {
-    width: 40%;
-    background: get-color(blue);
-    border-color: get-color(blue);
-
-    &:hover {
-      background: get-color(blue, 4);
-      border-color: get-color(blue, 4);
-    }
-
-    &:active,
-    &:focus {
-      background: get-color(blue, 4);
-      border-color: get-color(yellow, 5);
-    }
-
-    &--active {
-      border-color: get-color(yellow, 5);
-    }
-  }
-
-  &__dislike {
-    width: 40%;
-    background: get-color(red, 5);
-    border-color: get-color(red, 5);
-
-    &:hover {
-      background: get-color(red, 4);
-      border-color: get-color(red, 4);
-    }
-
-    &:active,
-    &:focus {
-      background: get-color(red, 4);
-      border-color: get-color(yellow, 5);
-    }
-
-    &--active {
-      border-color: get-color(yellow, 5);
-    }
-  }
-}
-
-.p-votes {
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  margin: get-unit(3 2);
-}
-
 .p-trending-topic {
   background: get-color(white);
   padding: get-unit(2 8);
@@ -168,6 +111,71 @@
   &__icon-like {
     margin-right: get-unit(2);
   }
+}
+
+.p-reaction-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+    'topic topic'
+    'like dislike';
+
+  &__topic {
+    grid-area: topic;
+    padding: get-unit(10);
+    margin: get-unit(0);
+  }
+
+  &__like {
+    grid-area: like;
+    background: get-color(blue);
+    border-color: get-color(blue);
+
+    &:hover {
+      background: get-color(blue, 4);
+      border-color: get-color(blue, 4);
+    }
+
+    &:active,
+    &:focus {
+      background: get-color(blue, 4);
+      border-color: get-color(yellow, 5);
+    }
+
+    &--active {
+      border-color: get-color(yellow, 5);
+    }
+  }
+
+  &__dislike {
+    grid-area: dislike;
+    background: get-color(red, 5);
+    border-color: get-color(red, 5);
+
+    &:hover {
+      background: get-color(red, 4);
+      border-color: get-color(red, 4);
+    }
+
+    &:active,
+    &:focus {
+      background: get-color(red, 4);
+      border-color: get-color(yellow, 5);
+    }
+
+    &--active {
+      border-color: get-color(yellow, 5);
+    }
+  }
+}
+
+.p-votes {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: get-unit(8);
+  margin: get-unit(0 2 3 2);
 }
 
 .p-players-reactions {
