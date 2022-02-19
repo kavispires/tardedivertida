@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 // Design Resources
-import { Space, Spin, Typography } from 'antd';
+import { Space, Typography } from 'antd';
+import { AvatarIcon } from '..';
 
 type LoadingProps = {
   message?: string;
@@ -9,7 +10,7 @@ type LoadingProps = {
 export function Loading({ message, margin = false }: LoadingProps) {
   return (
     <Space className={clsx('loading', margin && 'loading--margin')}>
-      <Spin />
+      <AvatarIcon type="animated-loader" style={{ display: 'block' }} />
       {Boolean(message) && <Typography.Text>{message}</Typography.Text>}
     </Space>
   );
