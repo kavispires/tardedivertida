@@ -211,3 +211,34 @@ export const kebabToPascal = (str: string): string => startCase(camelCase(str)).
  * @returns
  */
 export const getAvatarColorById = (avatarId: string) => AVATARS?.[avatarId]?.color ?? 'grey';
+
+/**
+ * Return the correct animation class from animate.css
+ * @param type
+ * @returns
+ */
+export const getAnimationClass = (
+  type: AnimationType,
+  delayInSeconds?: number,
+  speed?: 'slow' | 'slower' | 'fast' | 'faster',
+  infinite?: boolean,
+  repeat?: number
+) => {
+  const result = ['animate__animated', `animate__${type}`];
+
+  if (delayInSeconds) {
+    result.push(`animate__delay-${delayInSeconds}s`);
+  }
+
+  if (speed) {
+    result.push(`animate__${speed}`);
+  }
+
+  if (infinite) {
+    result.push(`animate__infinite`);
+  } else if (repeat) {
+    result.push(`animate__repeat-${repeat}`);
+  }
+
+  return result.join(' ');
+};

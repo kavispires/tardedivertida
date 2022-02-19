@@ -157,3 +157,17 @@ type GameRanking = {
   newScore: number;
   [key: string]: any;
 }[];
+
+type AnimationType =
+  | 'bounce'
+  | 'flash'
+  | 'pulse'
+  | 'rubberBand'
+  | 'shakeX'
+  | 'shakeY'
+  | 'tada'
+  | 'heartBeat'
+  | 'backInDown'
+  | 'backInRight'
+  | 'zoomIn'
+  | 'flipInY';
