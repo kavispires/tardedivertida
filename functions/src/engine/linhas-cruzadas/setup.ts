@@ -2,13 +2,13 @@
 import { LINHAS_CRUZADAS_PHASES } from './constants';
 // Types
 import { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
-import { Players, SaveGamePayload } from '../../utils/types';
+import { PlayerId, Players, SaveGamePayload } from '../../utils/types';
 // Utils
 import * as utils from '../../utils/helpers';
-// import * as firebaseUtils from '../../utils/firebase';
 import * as gameUtils from '../../utils/game-utils';
-import { addSlideToAlbum, assignSlideToPlayers, buildAlbum, dealPromptOptions } from './helpers';
+import * as firebaseUtils from '../../utils/firebase';
 // Internal
+import { addSlideToAlbum, assignSlideToPlayers, buildAlbum, dealPromptOptions } from './helpers';
 
 /**
  * Setup
@@ -24,8 +24,14 @@ export const prepareSetupPhase = async (
 ): Promise<SaveGamePayload> => {
   const { gameOrder, playerCount } = utils.buildGameOrder(players);
 
-  const expressionsDeck = gameUtils.getRandomItems(resourceData.allExpressions, playerCount);
-  const wordsDeck = gameUtils.getRandomItems(resourceData.allWords, playerCount);
+  const expressionsDeck = gameUtils.getRandomItems(
+    resourceData.allExpressions,
+    playerCount * (store.options.singleWordOnly ? 0 : 3)
+  );
+  const wordsDeck = gameUtils.getRandomItems(
+    resourceData.allWords,
+    playerCount * (store.options.singleWordOnly ? 6 : 3)
+  );
 
   // Save
   return {
@@ -38,6 +44,10 @@ export const prepareSetupPhase = async (
       state: {
         phase: LINHAS_CRUZADAS_PHASES.SETUP,
         gameOrder,
+        round: {
+          current: 0,
+          total: Math.floor(playerCount % 2 === 0 ? playerCount / 2 : playerCount - 1),
+        },
       },
     },
   };
@@ -51,11 +61,15 @@ export const preparePromptSelectionPhase = async (
   // Unready players
   utils.unReadyPlayers(players);
 
-  dealPromptOptions(players, store.expressionsDeck, store.wordsDeck);
+  dealPromptOptions(players, store.expressionsDeck, store.wordsDeck, store.options);
 
   // Save
   return {
     update: {
+      store: {
+        expressionsDeck: firebaseUtils.deleteValue(),
+        wordsDeck: firebaseUtils.deleteValue(),
+      },
       state: {
         phase: LINHAS_CRUZADAS_PHASES.PROMPT_SELECTION,
       },
@@ -74,7 +88,7 @@ export const prepareDrawingPhase = async (
 
   // If it is the first drawing phase create album otherwise add naming entry
   if (Object.keys(album).length === 0) {
-    album = buildAlbum(players, store.expressionsDeck, store.wordsDeck);
+    album = buildAlbum(players);
     isFirstSlide = true;
   } else {
     album = addSlideToAlbum(album, players);
@@ -90,8 +104,12 @@ export const prepareDrawingPhase = async (
   // Save
   return {
     update: {
+      store: {
+        album,
+      },
       state: {
-        phase: LINHAS_CRUZADAS_PHASES.NAMING,
+        phase: LINHAS_CRUZADAS_PHASES.DRAWING,
+        round: utils.increaseRound(state.round),
       },
       players,
     },
@@ -115,6 +133,9 @@ export const prepareNamingPhase = async (
   // Save
   return {
     update: {
+      store: {
+        album: store.album,
+      },
       state: {
         phase: LINHAS_CRUZADAS_PHASES.NAMING,
       },
@@ -132,12 +153,17 @@ export const preparePresentationPhase = async (
 
   utils.removePropertiesFromPlayers(players, ['guess']);
 
+  const orderedAlbum = state.gameOrder.map((playerId: PlayerId) => album[playerId]);
+
   // Save
   return {
     update: {
+      store: {
+        album,
+      },
       state: {
-        phase: LINHAS_CRUZADAS_PHASES.NAMING,
-        album: Object.values(album),
+        phase: LINHAS_CRUZADAS_PHASES.PRESENTATION,
+        album: orderedAlbum,
       },
       players,
     },

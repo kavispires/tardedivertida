@@ -1,15 +1,22 @@
 import { DefaultState, DefaultStore, InitialState, Payload, PlayerId } from '../../utils/types';
 
+type LinhasCruzadasOptions = {
+  singleWordOnly: boolean;
+  evenDistribution: boolean;
+};
+
 type ExpressionCard = {
   id: string;
   text: string;
-  level: number;
+  level?: number;
 };
 
 type WordCard = {
   id: string;
   text: string;
 };
+
+type Card = ExpressionCard | WordCard;
 
 type ResourceData = {
   allWords: WordCard[];
@@ -18,15 +25,16 @@ type ResourceData = {
 
 type Prompt = {
   id: PlayerId; // the album entry id
-  createdBy: PlayerId; // the player who created the prompt
+  author: PlayerId; // the player who created the prompt
   content: string;
   type: 'title' | 'drawing';
+  wordCount?: number;
 };
 
 type Slide = {
-  playerId: PlayerId;
+  author: PlayerId;
   content: string;
-  type: 'title' | 'drawing';
+  type: 'title' | 'drawing' | 'cover';
 };
 
 type AlbumEntry = {
