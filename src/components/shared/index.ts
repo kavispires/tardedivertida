@@ -19,6 +19,7 @@ export * from './StepSwitcher';
 export * from './TimerBar';
 export * from './TimedButton';
 export * from './Title';
+export * from './TransparentButton';
 export * from './Translate';
 export * from './TurnOrder';
 export * from './View';
