@@ -1,8 +1,8 @@
 import { orderBy } from 'lodash';
 
 type SplitWeaponsAndEvidence = {
-  weapons: CrimesHediondosCard[];
-  evidences: CrimesHediondosCard[];
+  weapons: HCard[];
+  evidences: HCard[];
 };
 export const splitWeaponsAndEvidence = (items: ItemsDict, language: Language): SplitWeaponsAndEvidence => {
   const { weapons, evidences } = Object.values(items).reduce(

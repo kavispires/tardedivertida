@@ -159,15 +159,16 @@ type GameRanking = {
 }[];
 
 type AnimationType =
+  | 'backInDown'
+  | 'backInRight'
   | 'bounce'
   | 'flash'
+  | 'flipInY'
+  | 'heartBeat'
   | 'pulse'
   | 'rubberBand'
   | 'shakeX'
   | 'shakeY'
+  | 'slideInUp'
   | 'tada'
-  | 'heartBeat'
-  | 'backInDown'
-  | 'backInRight'
-  | 'zoomIn'
-  | 'flipInY';
+  | 'zoomIn';
