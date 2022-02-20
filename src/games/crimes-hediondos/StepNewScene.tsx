@@ -70,6 +70,8 @@ export function StepNewScene({
       <div className="">
         <Crime
           key={`crime-by-${crime!.playerId}`}
+          user={user}
+          items={items}
           crime={crime!}
           players={players}
           scenes={scenes}

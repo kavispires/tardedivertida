@@ -24,11 +24,15 @@ export const mockGuesses = (weapons: HCard[], evidences: HCard[], players: GameP
   return Object.values(players).reduce((acc: any, player, index) => {
     if (player.id !== user.id) {
       acc[player.id] = {
-        weapon: shuffledWeapons[index].id,
-        evidence: shuffledEvidences[index].id,
+        weaponId: shuffledWeapons[index].id,
+        evidenceId: shuffledEvidences[index].id,
         isComplete: true,
       };
     }
     return acc;
   }, {});
+};
+
+export const mockSceneMark = () => {
+  return getRandomItem([0, 1, 2, 3, 4, 5]);
 };

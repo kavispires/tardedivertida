@@ -136,8 +136,8 @@ export function StepGuessing({
 
       <SelectableGroupedItemsBoard
         items={items}
-        weaponId={activePlayerGuesses.weapon}
-        evidenceId={activePlayerGuesses.evidence}
+        weaponId={activePlayerGuesses.weaponId}
+        evidenceId={activePlayerGuesses.evidenceId}
         groupedItems={groupedItems}
         onSelectItem={onUpdateGuesses}
         activeColor={getAvatarColorById(players[activePlayerId]?.avatarId)}
@@ -149,12 +149,12 @@ export function StepGuessing({
         <FloatingHand type="stats">
           <Crime
             key={`crime-by-${activeCrime.playerId}`}
-            // user={user}
+            user={user}
             crime={activeCrime}
             players={players}
             scenes={scenes}
             scenesOrder={scenesOrder}
-            // items={items}
+            items={items}
             weapons={weapons}
             evidences={evidences}
             selections={activePlayerGuesses}
