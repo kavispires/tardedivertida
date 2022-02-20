@@ -63,13 +63,6 @@ export function StepAlbum({ players, album }: StepAlbumProps) {
     }
   }, [time, isRunning, currentAlbumLastPageIndex]); // eslint-disable-line
 
-  console.log(
-    currentAlbumEntry.id,
-    currentAlbumEntry?.slides?.[currentPage].author,
-    currentPage,
-    currentAlbumLastPageIndex
-  );
-
   return (
     <Step className="l-step-album">
       <Title>

@@ -5,7 +5,15 @@ import { useLoading, useMock } from '../../hooks';
 // Utils
 import { shuffle } from '../../utils/helpers';
 // Components
-import { ButtonContainer, Card, Instruction, Step, Title, Translate } from '../../components';
+import {
+  ButtonContainer,
+  Card,
+  Instruction,
+  Step,
+  Title,
+  Translate,
+  TransparentButton,
+} from '../../components';
 
 type StepSelectPromptProps = {
   prompts: PromptCard[];
@@ -37,14 +45,13 @@ export function StepSelectPrompt({ prompts, onSubmitPrompt }: StepSelectPromptPr
       <div className="l-cards">
         {prompts.map((prompt) => {
           return (
-            <button
-              className="reset-button invisible-button"
+            <TransparentButton
               key={prompt.id}
               onClick={() => onSubmitPrompt({ promptId: prompt.id })}
               disabled={isLoading}
             >
               <Card>{prompt.text}</Card>
-            </button>
+            </TransparentButton>
           );
         })}
       </div>

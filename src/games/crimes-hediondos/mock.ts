@@ -2,7 +2,6 @@ import { getRandomItem, shuffle } from '../../utils/helpers';
 
 export const mockCrime = (itemsGroup: string[]): SubmitCrimePayload => {
   const shuffledItems = shuffle(itemsGroup);
-  console.log(shuffledItems);
   const weapon = shuffledItems.find((e) => e?.includes('wp'));
   const evidence = shuffledItems.find((e) => e?.includes('ev'));
   const locationTileId = `location-tile-${getRandomItem([1, 2, 3, 4])}`;

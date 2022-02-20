@@ -17,6 +17,7 @@ import {
   Title,
   Translate,
   AvatarIcon,
+  TransparentButton,
 } from '../../components';
 import { WitnessRules } from './TextBlobs';
 
@@ -78,14 +79,13 @@ function PhaseWitnessSelection({ state, players, info }: PhaseProps) {
               {Object.values(players).map((player) => {
                 if (isAdmin) {
                   return (
-                    <button
+                    <TransparentButton
                       key={`p-bt-${player.id}`}
                       disabled={isLoading}
                       onClick={() => onWitnessButtonClick({ witnessId: player.id })}
-                      className="reset-button invisible-button"
                     >
                       <AvatarCard key={`p-a-${player.id}`} player={player} withName addressUser />
-                    </button>
+                    </TransparentButton>
                   );
                 }
 

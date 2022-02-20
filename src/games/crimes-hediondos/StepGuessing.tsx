@@ -85,8 +85,6 @@ export function StepGuessing({
 
   const activeCrime = crimes.find((crime) => crime.playerId === activePlayerId);
 
-  console.log(guesses);
-
   const activePlayerGuesses = guesses?.[activePlayerId] ?? {};
 
   return (
