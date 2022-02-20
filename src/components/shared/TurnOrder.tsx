@@ -11,16 +11,20 @@ type TurnOrderProps = {
   players: GamePlayers;
   order: PlayerId[];
   activePlayerId?: PlayerId;
+  className?: string;
+  reorderByUser?: PlayerId;
 };
 
-export function TurnOrder({ players, order, activePlayerId }: TurnOrderProps) {
+export function TurnOrder({ players, order, activePlayerId, reorderByUser, className = '' }: TurnOrderProps) {
+  const orderList = Boolean(reorderByUser) ? reorder(order, reorderByUser!) : order;
+
   return (
-    <div className="game-order">
-      <h4 className="game-order__title">
+    <div className={clsx('game-order', className)}>
+      <header className="game-order__title">
         <Translate en="Turn Order" pt="Ordem dos Jogadores" />
-      </h4>
+      </header>
       <ul className="game-order__players">
-        {order.map((playerId, index) => {
+        {orderList.map((playerId, index) => {
           const player = players[playerId];
           const isActive = activePlayerId === playerId;
           return (
@@ -43,4 +47,10 @@ export function TurnOrder({ players, order, activePlayerId }: TurnOrderProps) {
       </ul>
     </div>
   );
+}
+
+function reorder(order: PlayerId[], startWith: PlayerId): PlayerId[] {
+  const starterIndex = order.indexOf(startWith);
+
+  return [...order.slice(starterIndex), ...order.slice(0, starterIndex)];
 }
