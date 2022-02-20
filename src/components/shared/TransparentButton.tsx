@@ -18,7 +18,7 @@ export const TransparentButton = ({
     <button
       className={clsx(
         'transparent-button',
-        active && (activeClass || 'transparent-button__active'),
+        active && (activeClass || 'transparent-button--active'),
         className
       )}
       {...props}
