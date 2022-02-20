@@ -26,11 +26,11 @@ export const prepareSetupPhase = async (
 
   const expressionsDeck = gameUtils.getRandomItems(
     resourceData.allExpressions,
-    playerCount * (store.options.singleWordOnly ? 0 : 3)
+    playerCount * (store.options.singleWordOnly ? 0 : 4)
   );
   const wordsDeck = gameUtils.getRandomItems(
     resourceData.allWords,
-    playerCount * (store.options.singleWordOnly ? 6 : 3)
+    playerCount * (store.options.singleWordOnly ? 6 : 2)
   );
 
   // Save

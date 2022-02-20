@@ -3,8 +3,6 @@ import { useState } from 'react';
 import { Button, Input } from 'antd';
 // Hooks
 import { useLanguage, useMock } from '../../hooks';
-// Utils
-import { pluralize } from '../../utils/helpers';
 // Components
 import {
   AvatarName,
@@ -54,16 +52,11 @@ export function StepNameDrawing({
           pt={
             <>
               <AvatarName player={author} /> desenhou isso, o que é?
-              <br />A carta contém {currentPrompt.wordCount}{' '}
-              {pluralize(currentPrompt.wordCount ?? 0, 'palavra', 'palavras')}.
             </>
           }
           en={
             <>
               <AvatarName player={author} /> draw this, so what is it?
-              <br />
-              The card has {currentPrompt.wordCount}{' '}
-              {pluralize(currentPrompt.wordCount ?? 0, 'letter', 'letters')}.
             </>
           }
         />

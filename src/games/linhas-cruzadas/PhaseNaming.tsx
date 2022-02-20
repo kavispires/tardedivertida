@@ -5,7 +5,14 @@ import { useOnSubmitGuessAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from '../../utils/phases';
 // Components
-import { Instruction, PhaseAnnouncement, PhaseContainer, StepSwitcher, Translate } from '../../components';
+import {
+  Instruction,
+  PhaseAnnouncement,
+  PhaseContainer,
+  StepSwitcher,
+  Translate,
+  TurnOrder,
+} from '../../components';
 import { StepNameDrawing } from './StepNameDrawing';
 
 function PhaseNaming({ players, state, info }: PhaseProps) {
@@ -28,6 +35,14 @@ function PhaseNaming({ players, state, info }: PhaseProps) {
         >
           <Instruction>
             <Translate pt="Tente adivinhar o que é a obra" en="Try to guess what the artwork is" />
+
+            <TurnOrder
+              players={players}
+              order={state.gameOrder}
+              className="l-turn-order"
+              activePlayerId={user.currentPrompt?.id}
+              reorderByUser={user.id}
+            />
           </Instruction>
         </PhaseAnnouncement>
 

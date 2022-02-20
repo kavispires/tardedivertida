@@ -82,6 +82,7 @@
 .l-timer-bar {
   width: 100%;
   height: get-unit(2);
+  max-height: get-unit(2);
   margin: get-unit(4 0);
   background: get-color(white);
   border-radius: get-unit(2);
@@ -94,4 +95,8 @@
     display: block;
     transition: all 6s;
   }
+}
+
+.l-turn-order {
+  margin: 0;
 }

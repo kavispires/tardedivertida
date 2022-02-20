@@ -6,7 +6,14 @@ import { useOnSubmitDrawingAPIRequest } from './api-requests';
 import { PHASES } from '../../utils/phases';
 import { DRAWING_TIME_IN_SECONDS } from './constants';
 // Components
-import { Instruction, PhaseAnnouncement, PhaseContainer, StepSwitcher, Translate } from '../../components';
+import {
+  Instruction,
+  PhaseAnnouncement,
+  PhaseContainer,
+  StepSwitcher,
+  Translate,
+  TurnOrder,
+} from '../../components';
 import { StepTimedDrawing } from './StepTimedDrawing';
 
 function PhaseDrawing({ players, state, info }: PhaseProps) {
@@ -45,6 +52,14 @@ function PhaseDrawing({ players, state, info }: PhaseProps) {
                   Draw it the best way possible, you have {DRAWING_TIME_IN_SECONDS} seconds.
                 </>
               }
+            />
+
+            <TurnOrder
+              players={players}
+              order={state.gameOrder}
+              className="l-turn-order"
+              activePlayerId={user.currentPrompt?.id}
+              reorderByUser={user.id}
             />
           </Instruction>
         </PhaseAnnouncement>
