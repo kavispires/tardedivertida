@@ -1,5 +1,6 @@
 // Components
 import { AvatarIcon, AvatarName, Instruction, Step, Title, Translate } from '../../components';
+import { QuestionsHistory } from './QuestionsHistory';
 import { Suspects } from './Suspects';
 
 type StepQuestionWaitingProps = {
@@ -8,6 +9,7 @@ type StepQuestionWaitingProps = {
   perpetrator: Suspect;
   questioner: GamePlayer;
   isUserTheWitness: boolean;
+  history: THistoryEntry[];
 };
 
 export function StepQuestionWaiting({
@@ -16,6 +18,7 @@ export function StepQuestionWaiting({
   perpetrator,
   questioner,
   isUserTheWitness,
+  history,
 }: StepQuestionWaitingProps) {
   return (
     <Step>
@@ -50,6 +53,8 @@ export function StepQuestionWaiting({
         perpetrator={isUserTheWitness ? perpetrator : undefined}
         eliminatedSuspects={previouslyEliminatedSuspects}
       />
+
+      <QuestionsHistory history={history} />
     </Step>
   );
 }

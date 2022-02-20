@@ -3,6 +3,7 @@ import { useLanguage } from '../../hooks';
 // Components
 import { GameOverWrapper, ImageCard, Instruction, Translate } from '../../components';
 import { AnnouncementContent } from './TextBlobs';
+import { QuestionsHistory } from './QuestionsHistory';
 
 function PhaseGameOver({ state, info }: PhaseProps) {
   const { language, translate } = useLanguage();
@@ -39,6 +40,8 @@ function PhaseGameOver({ state, info }: PhaseProps) {
           <div className="t-suspects-table__suspect-name">{state.perpetrator.name[language]}</div>
         </div>
       </Instruction>
+
+      <QuestionsHistory history={state.history} />
     </GameOverWrapper>
   );
 }

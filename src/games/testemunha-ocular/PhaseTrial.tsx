@@ -32,7 +32,7 @@ function PhaseTrial({ state, players, info }: PhaseProps) {
       allowedPhase={PHASES.TESTEMUNHA_OCULAR.TRIAL}
       className="t-phase"
     >
-      <StepSwitcher step={step}>
+      <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
           type="law"
@@ -78,6 +78,7 @@ function PhaseTrial({ state, players, info }: PhaseProps) {
           eliminatedSuspects={state.eliminatedSuspects}
           isUserTheQuestioner={isUserTheQuestioner}
           testimony={state.testimony}
+          history={state.history}
         />
       </StepSwitcher>
     </PhaseContainer>
