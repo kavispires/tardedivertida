@@ -1,6 +1,6 @@
 import { Button } from 'antd';
 import { useState } from 'react';
-import { ButtonContainer, Instruction, Step, Title, Translate } from '../../components';
+import { ButtonContainer, Instruction, Step, Title, Translate, TransparentButton } from '../../components';
 import { useCardWidth } from '../../hooks';
 import { shuffle } from '../../utils/helpers';
 import { ItemCard } from './ItemCard';
@@ -26,7 +26,7 @@ export function StepItemsSelection({
 
   const userItems = groupedItems[user.itemGroupIndex];
 
-  const onSelectItem = (item: CrimesHediondosCard) => {
+  const onSelectItem = (item: HCard) => {
     if (item.type === 'weapon') {
       setWeaponId(item.id);
     } else {
@@ -60,7 +60,7 @@ export function StepItemsSelection({
               Selecione uma arma do crime (carta azul) e um objeto (carta vermelha).
               <br />
               Elas representam a arma usada em seu último crime e um objeto da cena do crime.
-              <br />O jogo contém 16 armas e 16 objetos, mas para essa parte, você vê apenas 4 opções.
+              <br />O jogo contém 16 armas e 16 objetos, mas para essa parte, você vê apenas 4 opções de cada.
             </>
           }
           en={
@@ -69,7 +69,7 @@ export function StepItemsSelection({
               <br />
               They represent the weapon used in your latest crime and an object that was in the crime scene.
               <br />
-              The game has 16 weapons and 16 objects, but for this phase, you only see 4 options.
+              The game has 16 weapons and 16 objects, but for this phase, you only see 4 options of each.
             </>
           }
         />
@@ -84,17 +84,18 @@ export function StepItemsSelection({
       <ul className="h-items-selection">
         {userItems.map((itemId) => (
           <li key={itemId} className="h-items-selection__item">
-            <button className="h-items-selection__button" onClick={() => onSelectItem(items[itemId])}>
+            <TransparentButton onClick={() => onSelectItem(items[itemId])}>
               <ItemCard
                 item={items[itemId]}
                 cardWidth={cardWidth}
                 preview={false}
                 isSelected={[weaponId, evidenceId].includes(itemId)}
               />
-            </button>
+            </TransparentButton>
           </li>
         ))}
       </ul>
+
       <ButtonContainer>
         <Button
           type="primary"

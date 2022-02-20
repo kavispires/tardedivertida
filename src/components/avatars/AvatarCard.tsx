@@ -14,6 +14,7 @@ type AvatarCardProps = {
   withDescription?: boolean;
   uppercase?: boolean;
   addressUser?: boolean;
+  replacementAvatar?: any;
 };
 
 export const AvatarCard = ({
@@ -24,6 +25,7 @@ export const AvatarCard = ({
   withDescription = false,
   uppercase = false,
   addressUser = false,
+  replacementAvatar,
 }: AvatarCardProps) => {
   const [userId] = useGlobalState('userId');
   const { language, translate } = useLanguage();
@@ -42,12 +44,16 @@ export const AvatarCard = ({
       className={clsx(baseClass, uppercase && `${baseClass}--uppercase`, `${baseClass}--${size}`, className)}
       style={{ backgroundColor: avatar.color, width: sizes.width }}
     >
-      <Avatar
-        id={player.avatarId}
-        className="avatar-card__avatar"
-        shape="square"
-        style={{ width: sizes.avatarSize, height: sizes.avatarSize }}
-      />
+      {replacementAvatar ? (
+        replacementAvatar
+      ) : (
+        <Avatar
+          id={player.avatarId}
+          className="avatar-card__avatar"
+          shape="square"
+          style={{ width: sizes.avatarSize, height: sizes.avatarSize }}
+        />
+      )}
       {withName && (
         <>
           <div className="avatar-card__name">{addressUser && isUser ? addressedUser : player.name}</div>

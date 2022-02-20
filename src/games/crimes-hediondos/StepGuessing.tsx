@@ -1,11 +1,22 @@
-import { Button, Collapse } from 'antd';
+import { Button } from 'antd';
 import { useMemo, useState } from 'react';
-import { ButtonContainer, Instruction, Step, Title, Translate } from '../../components';
+import {
+  ButtonContainer,
+  FloatingHand,
+  Instruction,
+  ReadyPlayersBar,
+  Step,
+  Title,
+  Translate,
+} from '../../components';
 import { useLanguage, useMock } from '../../hooks';
-import { shuffle } from '../../utils/helpers';
+import { getAvatarColorById } from '../../utils/helpers';
 import { Crime } from './Crime';
 import { GroupedItemsBoard } from './GroupedItemsBoard';
 import { splitWeaponsAndEvidence } from './helpers';
+import { mockGuesses } from './mock';
+import { PlayersCards } from './PlayersCards';
+import { SelectableGroupedItemsBoard } from './SelectableGroupedItemsBoard';
 
 type StepGuessingProps = {
   user: GamePlayer;
@@ -28,18 +39,36 @@ export function StepGuessing({
   crimes,
   onSubmitGuesses,
 }: StepGuessingProps) {
-  const [guesses, setGuesses] = useState<PlainObject>({});
   const { language } = useLanguage();
+  const [guesses, setGuesses] = useState<PlainObject>({});
+  const [activePlayerId, setActivePlayerId] = useState<string>('');
 
-  const onUpdateGuesses = (payload: PlainObject) => {
-    setGuesses((s: PlainObject) => ({
-      ...s,
-      [payload.playerId]: {
-        weapon: payload?.weapon,
-        evidence: payload?.evidence,
-        isComplete: Boolean(payload?.weapon && payload?.evidence),
-      },
-    }));
+  const onUpdateGuesses = (itemId: string) => {
+    if (activePlayerId && itemId) {
+      const guessObj = {
+        ...(guesses[activePlayerId] ?? {
+          weaponId: undefined,
+          evidenceId: undefined,
+          isComplete: false,
+        }),
+      };
+
+      const isWeapon = itemId.includes('wp');
+
+      if (isWeapon) {
+        guessObj.weaponId = itemId;
+      } else {
+        guessObj.evidenceId = itemId;
+      }
+
+      setGuesses((s: PlainObject) => ({
+        ...s,
+        [activePlayerId]: {
+          ...guessObj,
+          isComplete: Boolean(guessObj?.weaponId && guessObj?.evidenceId),
+        },
+      }));
+    }
   };
 
   const { weapons, evidences } = useMemo(() => splitWeaponsAndEvidence(items, language), [items, language]);
@@ -51,21 +80,14 @@ export function StepGuessing({
 
   // DEV: Auto guesses
   useMock(() => {
-    const shuffledWeapons = shuffle(weapons);
-    const shuffledEvidences = shuffle(evidences);
-    const devGuesses = Object.values(players).reduce((acc: any, player, index) => {
-      if (player.id !== user.id) {
-        acc[player.id] = {
-          weapon: shuffledWeapons[index].id,
-          evidence: shuffledEvidences[index].id,
-          isComplete: true,
-        };
-      }
-      return acc;
-    }, {});
-
-    setGuesses(devGuesses);
+    setGuesses(mockGuesses(weapons, evidences, players, user));
   }, []);
+
+  const activeCrime = crimes.find((crime) => crime.playerId === activePlayerId);
+
+  console.log(guesses);
+
+  const activePlayerGuesses = guesses?.[activePlayerId] ?? {};
 
   return (
     <Step>
@@ -76,81 +98,70 @@ export function StepGuessing({
         <Translate
           pt={
             <>
-              Para cada crime abaixo, selecione a resposta que você acha correta
+              Para cada crime, selecione as respostas que você acha correta.
               <br />
               Cada jogador tem o seu par de arma e objeto.
             </>
           }
           en={
             <>
-              For each crime below, select the answer you think best matches the clues.
+              For each crime, select the answer you think best matches the clues.
               <br />
               Each player has their weapon and object.
             </>
           }
         />
-        {playerCount > 4 && (
-          <Translate
-            pt={
-              <>
-                <br />
-                Em um jogo com {playerCount} jogadores, dois ou mais jogadores podem ter escolhido a mesma
-                arma e objeto.
-              </>
-            }
-            en={
-              <>
-                In a game with {playerCount} players, two or more players might have chosen the same weapon
-                and object.
-              </>
-            }
-          />
-        )}
       </Instruction>
 
-      <Collapse>
-        <Collapse.Panel
-          key="weapons-evidences"
-          header={<Translate pt="Armas e Evidências" en="Weapons and Evidence" />}
-        >
-          <GroupedItemsBoard
-            items={items}
-            weaponId={user.weaponId}
-            evidenceId={user.evidenceId}
-            groupedItems={groupedItems}
+      <PlayersCards
+        user={user}
+        activePlayerId={activePlayerId}
+        setActivePlayerId={setActivePlayerId}
+        players={players}
+        guesses={guesses}
+      />
+
+      {isAllComplete && (
+        <ButtonContainer>
+          <Button
+            size="large"
+            type="primary"
+            disabled={!isAllComplete}
+            onClick={() => onSubmitGuesses({ guesses })}
+          >
+            <Translate pt="Enviar Respostas" en="Send Guesses" />
+          </Button>
+        </ButtonContainer>
+      )}
+
+      <SelectableGroupedItemsBoard
+        items={items}
+        weaponId={activePlayerGuesses.weapon}
+        evidenceId={activePlayerGuesses.evidence}
+        groupedItems={groupedItems}
+        onSelectItem={onUpdateGuesses}
+        activeColor={getAvatarColorById(players[activePlayerId]?.avatarId)}
+      />
+
+      <ReadyPlayersBar players={players} />
+
+      {activeCrime && (
+        <FloatingHand type="stats">
+          <Crime
+            key={`crime-by-${activeCrime.playerId}`}
+            // user={user}
+            crime={activeCrime}
+            players={players}
+            scenes={scenes}
+            scenesOrder={scenesOrder}
+            // items={items}
+            weapons={weapons}
+            evidences={evidences}
+            selections={activePlayerGuesses}
+            // onUpdateGuesses={onUpdateGuesses}
           />
-        </Collapse.Panel>
-      </Collapse>
-
-      <ul>
-        {crimes
-          .filter((crime) => crime.playerId !== user.id)
-          .map((crime) => (
-            <Crime
-              key={`crime-by-${crime.playerId}`}
-              user={user}
-              crime={crime}
-              players={players}
-              scenes={scenes}
-              scenesOrder={scenesOrder}
-              items={items}
-              weapons={weapons}
-              evidences={evidences}
-              onUpdateGuesses={onUpdateGuesses}
-            />
-          ))}
-      </ul>
-
-      <ButtonContainer>
-        <Button
-          size="large"
-          type="primary"
-          disabled={!isAllComplete}
-          onClick={() => onSubmitGuesses({ guesses })}
-        >
-          <Translate pt="Enviar Respostas" en="Send Guesses" />
-        </Button>
-      </ButtonContainer>
+        </FloatingHand>
+      )}
     </Step>
   );
 }

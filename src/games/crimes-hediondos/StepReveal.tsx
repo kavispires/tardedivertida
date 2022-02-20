@@ -144,7 +144,7 @@ export function StepReveal({
           />
         </Collapse.Panel>
         <Collapse.Panel key="crimes" header={<Translate pt="Crimes por jogador" en="Crimes per player" />}>
-          <ul>
+          {/* <ul>
             {crimes
               .filter((crime) => crime.playerId !== user.id)
               .map((crime) => (
@@ -160,7 +160,7 @@ export function StepReveal({
                   evidences={evidences}
                 />
               ))}
-          </ul>
+          </ul> */}
         </Collapse.Panel>
       </Collapse>
 
