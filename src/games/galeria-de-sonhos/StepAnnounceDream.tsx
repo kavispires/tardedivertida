@@ -37,8 +37,6 @@ export function StepAnnounceDream({
   const { translate } = useLanguage();
   const cardWidth = useCardWidth(5, 8, 140, 150);
 
-  console.log({ activePlayer });
-
   return (
     <Step fullWidth>
       <Title level={2}>

@@ -3,7 +3,15 @@ import { useLanguage, useMock } from '../../hooks';
 // Utils
 import { mockPlayerDecision } from './mock';
 // Components
-import { AvatarIcon, Instruction, ReadyPlayersBar, Step, Title, Translate } from '../../components';
+import {
+  AvatarIcon,
+  Instruction,
+  ReadyPlayersBar,
+  Step,
+  Title,
+  Translate,
+  TransparentButton,
+} from '../../components';
 import { CandyCount } from './CandyCount';
 import { PlayersDecisionList } from './PlayersDecisionList';
 import { PlayerStats } from './PlayerStats';
@@ -106,20 +114,20 @@ export function StepMakeDecision({
 
       {user.isTrickOrTreating && (
         <div className="n-decision-buttons-container">
-          <button
-            className="reset-button n-decision-button n-decision-button--home"
+          <TransparentButton
+            className="n-decision-button n-decision-button--home"
             onClick={() => onSubmitDecision({ decision: 'GO_HOME' })}
           >
             <AvatarIcon type="house" size="large" />
             <Translate pt="Voltar pra casa" en="Go back home" />
-          </button>
-          <button
-            className="reset-button n-decision-button n-decision-button--continue"
+          </TransparentButton>
+          <TransparentButton
+            className="n-decision-button n-decision-button--continue"
             onClick={() => onSubmitDecision({ decision: 'CONTINUE' })}
           >
             <AvatarIcon type="walk" size="large" />
             <Translate pt="Continuar para a próxima casa" en="Continue trick or treating" />
-          </button>
+          </TransparentButton>
         </div>
       )}
 
