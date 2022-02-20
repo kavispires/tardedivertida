@@ -39,18 +39,24 @@ export function StepAlbum({ players, album }: StepAlbumProps) {
   const onPrevAlbum = () => {
     setCurrentEntry(currentEntry - 1);
     setCurrentPage(0);
-    setBarSize((s) => s + 1);
+    if (areControlsLocked) {
+      setBarSize((s) => s + 1);
+    }
   };
   const onPrevPage = () => setCurrentPage((c) => c - 1);
   const onNextPage = useCallback(() => {
     setCurrentPage((c) => c + 1);
-    setBarSize((s) => s + 1);
-  }, []);
+    if (areControlsLocked) {
+      setBarSize((s) => s + 1);
+    }
+  }, [areControlsLocked]);
   const onNextAlbum = useCallback(() => {
     setCurrentEntry((c) => c + 1);
     setCurrentPage(0);
-    setBarSize((s) => s + 1);
-  }, []);
+    if (areControlsLocked) {
+      setBarSize((s) => s + 1);
+    }
+  }, [areControlsLocked]);
 
   useEffect(() => {
     if (isRunning && time < totalTime && time % PAGE_DURATION === 0) {
