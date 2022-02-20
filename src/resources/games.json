@@ -418,7 +418,7 @@
     },
     "rules": {
       "pt": [
-        "É Halloween e somos um bando de crianças medrosas indo coletar gostosuras de ponta em porta nas Ruas do Medo",
+        "É Halloween e somos um bando de crianças medrosas indo coletar gostosuras de porta em porta nas Ruas do Medo",
         "Nós combinamos que dividiremos todos os doces igualmente e qualquer sobra deixaremos no passeio",
         "Se encontramos alguém fantasiado de monstro, sem problemas, a gente aguenta uma vez, mas se um mesmo mostro aparece uma segunda vez, a gente entra em desespero, jogamos os doces pra cima e saímos correndo",
         "Mas andaremos de vagar, e após cada carta casa é revelada (mostrando doces ou monstros), você escolher se deseja continuar ou voltar pra casa",
@@ -631,7 +631,7 @@
   "T": {
     "gameCode": "T",
     "gameName": "testemunha-ocular",
-    "version": "2.0",
+    "version": "2.1.1",
     "title": {
       "pt": "Testemunha Ocular",
       "en": "Eye Witness"

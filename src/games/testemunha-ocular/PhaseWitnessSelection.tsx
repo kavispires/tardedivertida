@@ -36,7 +36,7 @@ function PhaseWitnessSelection({ state, players, info }: PhaseProps) {
       allowedPhase={PHASES.TESTEMUNHA_OCULAR.WITNESS_SELECTION}
       className="t-phase"
     >
-      <StepSwitcher step={step}>
+      <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
           type="crime-scene"

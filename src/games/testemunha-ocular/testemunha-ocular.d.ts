@@ -25,3 +25,9 @@ type TQuestion = {
   id: string;
   question: string;
 };
+
+type THistoryEntry = {
+  id: string;
+  question: string;
+  answer: boolean;
+};

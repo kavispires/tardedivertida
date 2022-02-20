@@ -3,6 +3,7 @@ import { LETTERS } from '../../utils/constants';
 // Components
 import { ButtonContainer, Card, Instruction, Step, Title, Translate } from '../../components';
 import { Suspects } from './Suspects';
+import { QuestionsHistory } from './QuestionsHistory';
 
 type StepSelectQuestionProps = {
   questions: TQuestion[];
@@ -10,6 +11,7 @@ type StepSelectQuestionProps = {
   isLoading: boolean;
   suspects: Suspect[];
   previouslyEliminatedSuspects: string[];
+  history: THistoryEntry[];
 };
 
 export function StepSelectQuestion({
@@ -18,6 +20,7 @@ export function StepSelectQuestion({
   isLoading,
   suspects,
   previouslyEliminatedSuspects,
+  history,
 }: StepSelectQuestionProps) {
   return (
     <Step>
@@ -49,6 +52,8 @@ export function StepSelectQuestion({
       </ButtonContainer>
 
       <Suspects suspects={suspects} eliminatedSuspects={previouslyEliminatedSuspects} />
+
+      <QuestionsHistory history={history} />
     </Step>
   );
 }

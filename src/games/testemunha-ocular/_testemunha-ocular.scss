@@ -84,3 +84,18 @@
   width: 40vw;
   max-width: 400px;
 }
+
+.t-history {
+  &__entry {
+    display: flex;
+    text-align: left;
+  }
+
+  &__question {
+    width: 90%;
+  }
+
+  &__icon {
+    margin-left: get-unit(2);
+  }
+}

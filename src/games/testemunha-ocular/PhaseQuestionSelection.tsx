@@ -24,7 +24,7 @@ function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
   const [questioner, isUserTheQuestioner] = useWhichPlayerIsThe('questionerId', state, players);
   const onSelectQuestion = useOnSelectQuestionAPIRequest();
 
-  const roundsLeft = (state?.round?.total ?? 0) - (state?.round?.current ?? 0) || 11;
+  const roundsLeft = (state?.round?.total ?? 0) - (state?.round?.current ?? 0) + 1 || 11;
 
   return (
     <PhaseContainer
@@ -33,7 +33,7 @@ function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
       allowedPhase={PHASES.TESTEMUNHA_OCULAR.QUESTION_SELECTION}
       className="t-phase"
     >
-      <StepSwitcher step={step}>
+      <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
           type="investigation"
@@ -73,6 +73,7 @@ function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
             previouslyEliminatedSuspects={state.previouslyEliminatedSuspects}
             questions={state.questions}
             suspects={state.suspects}
+            history={state.history}
           />
         ) : (
           <StepQuestionWaiting
@@ -81,6 +82,7 @@ function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
             previouslyEliminatedSuspects={state.previouslyEliminatedSuspects}
             questioner={questioner}
             suspects={state.suspects}
+            history={state.history}
           />
         )}
       </StepSwitcher>

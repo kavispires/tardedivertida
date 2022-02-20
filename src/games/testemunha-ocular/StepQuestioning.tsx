@@ -5,6 +5,7 @@ import { useLanguage } from '../../hooks';
 // Components
 import { AvatarName, Card, Icons, Step, Title, Translate } from '../../components';
 import { Suspects } from './Suspects';
+import { QuestionsHistory } from './QuestionsHistory';
 
 type StepQuestioningProps = {
   suspects: Suspect[];
@@ -15,6 +16,7 @@ type StepQuestioningProps = {
   isLoading: boolean;
   onAnswer: GenericFunction;
   question: GamePlayer;
+  history: THistoryEntry[];
 };
 
 export function StepQuestioning({
@@ -26,6 +28,7 @@ export function StepQuestioning({
   isLoading,
   onAnswer,
   question,
+  history,
 }: StepQuestioningProps) {
   const { translate } = useLanguage();
 
@@ -100,6 +103,8 @@ export function StepQuestioning({
         perpetrator={isUserTheWitness ? perpetrator : undefined}
         eliminatedSuspects={previouslyEliminatedSuspects}
       />
+
+      <QuestionsHistory history={history} />
     </Step>
   );
 }
