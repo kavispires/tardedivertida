@@ -52,19 +52,12 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
           scenes={state.scenes}
           scenesOrder={state.scenesOrder}
           crimes={state.crimes}
-          counts={state.counts}
           onSeeRanking={increaseStep}
         />
 
         {/* Step 2 */}
         <Step fullWidth>
           <Title>Ranking</Title>
-          <Instruction contained>
-            <Translate
-              pt="Distribuição de pontos: Chutes corretos | Chutes recebidos de outros jogadores"
-              en="Points Distribution: Correct guesses | Received correct guesses | "
-            />
-          </Instruction>
 
           <RankingBoard ranking={state.ranking} players={players} />
 

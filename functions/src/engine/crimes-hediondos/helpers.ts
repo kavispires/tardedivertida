@@ -1,12 +1,11 @@
 // Types
-import { PlainObject, Players, RankingEntry, Round } from '../../utils/types';
+import { PlainObject, PlayerId, Players, RankingEntry, Round } from '../../utils/types';
 // Constants
 import { CRIMES_HEDIONDOS_PHASES, ITEMS_GROUP_COUNT, ITEMS_PER_GROUP, SCENE_TILES_COUNT } from './constants';
-import { Counts, Crime, CrimesHediondosCard, SceneTile } from './types';
+import { Crime, CrimesHediondosCard, SceneTile } from './types';
 // Utils
 // import * as utils from '../../utils/helpers';
 import * as gameUtils from '../../utils/game-utils';
-import { buildNewScoreObject } from '../../utils/helpers';
 
 /**
  * Determine the next phase based on the current one
@@ -168,83 +167,76 @@ export const updateCrime = (crimes: Crime[], players: Players, currentScene: Sce
   });
 };
 
-type BuiltRanking = {
-  ranking: RankingEntry[];
-  counts: Counts;
-};
-
-export const buildRanking = (players: Players): BuiltRanking => {
-  const newScores = buildNewScoreObject(players, [0, 0]);
-
-  const counts: Counts = {};
-
-  Object.keys(players).forEach((playerId) => {
-    counts[playerId] = {
-      bothCorrect: 0,
-      correctItems: 0,
-      win: false,
-    };
-  });
-
+export const updateOrCreateGuessHistory = (crimes: Crime[], players: Players) => {
   Object.values(players).forEach((player) => {
-    Object.entries(player.guesses).forEach(([playerId, guessObj]: [any, any]) => {
-      const gotWeaponCorrect = players[playerId].weaponId === guessObj.weapon;
-      const gotEvidenceCorrect = players[playerId].evidenceId === guessObj.evidence;
-      const gotBothCorrect = gotWeaponCorrect && gotEvidenceCorrect;
+    player.history = player.history ?? {};
+    player.correctCrimes = 0;
+    console.log('=======');
+    console.log({ playerId: player.id });
 
-      // Getting correct points
-      if (gotWeaponCorrect) {
-        newScores[player.id].gainedPoints[0] += 1;
-        newScores[player.id].newScore += 1;
+    crimes.forEach((crime) => {
+      if (crime.playerId !== player.id) {
+        if (player.history[crime.playerId] === undefined) {
+          player.history[crime.playerId] = [];
+        }
+        const guess = player.guesses[crime.playerId];
 
-        newScores[playerId].gainedPoints[1] += 1;
-        newScores[playerId].newScore += 1;
-
-        counts[player.id].correctItems += 1;
-      }
-
-      if (gotEvidenceCorrect) {
-        newScores[player.id].gainedPoints[0] += 1;
-        newScores[player.id].newScore += 1;
-
-        newScores[playerId].gainedPoints[1] += 1;
-        newScores[playerId].newScore += 1;
-
-        counts[player.id].correctItems += 1;
-      }
-
-      if (gotBothCorrect) {
-        newScores[player.id].gainedPoints[0] += 1;
-        newScores[player.id].newScore += 1;
-
-        counts[player.id].bothCorrect += 1;
+        console.log({ guess });
+        const isWeaponCorrect = crime.weaponId === guess.weaponId;
+        const isEvidenceCorrect = crime.evidenceId === guess.evidenceId;
+        const isCorrect = isWeaponCorrect && isEvidenceCorrect;
+        player.history[crime.playerId].push({
+          weaponId: guess.weaponId,
+          evidenceId: guess.evidenceId,
+          correct: isCorrect,
+        });
+        // Scoring
+        player.correctCrimes += isCorrect ? 1 : 0;
+        player.secretScore += isWeaponCorrect ? 1 : 0;
+        player.secretScore += isEvidenceCorrect ? 1 : 0;
+        player.secretScore += isCorrect ? 3 : 0;
+        // Crime author score
+        players[crime.playerId].secretScore += isWeaponCorrect ? 1 : 0;
+        players[crime.playerId].secretScore += isEvidenceCorrect ? 1 : 0;
+        players[crime.playerId].secretScore += isCorrect ? 1 : 0;
       }
     });
   });
+};
+
+type BuiltRanking = {
+  ranking: RankingEntry[];
+  winners: PlayerId[];
+};
+
+export const buildRanking = (players: Players): BuiltRanking => {
+  const winners: PlayerId[] = [];
 
   const playerCount = Object.keys(players).length;
-  // Verify if anybody won
-  Object.keys(counts).forEach((playerId) => {
-    counts[playerId].win = counts[playerId].bothCorrect === playerCount - 1;
-  });
 
-  const ranking: RankingEntry[] = Object.entries(newScores)
-    .map(([playerId, scores]) => {
+  const ranking: RankingEntry[] = Object.values(players)
+    .map((player) => {
       // Update player score
-      players[playerId].score = scores.newScore;
+      const win = playerCount - 1 === player.correctCrimes;
+      if (win) {
+        winners.push(player.id);
+      }
+
+      const pastCorrectCrimes = player.correctCrimes ?? 0;
+      const correctCrimes = player.correctCrimes ?? 0;
 
       return {
-        playerId,
-        name: players[playerId].name,
-        previousScore: scores.previousScore,
-        gainedPoints: scores.gainedPoints,
-        newScore: scores.newScore,
+        playerId: player.id,
+        name: player.name,
+        previousScore: pastCorrectCrimes ?? 0,
+        gainedPoints: [correctCrimes - pastCorrectCrimes],
+        newScore: correctCrimes,
       };
     })
     .sort((a, b) => (a.newScore > b.newScore ? 1 : -1));
 
   return {
     ranking,
-    counts,
+    winners,
   };
 };

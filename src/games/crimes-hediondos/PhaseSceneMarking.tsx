@@ -1,6 +1,6 @@
 import { useState } from 'react';
 // State & Hooks
-import { useIsUserReady, useUser, useLanguage } from '../../hooks';
+import { useIsUserReady, useUser, useLanguage, useMock } from '../../hooks';
 // Resources & Utils
 import { PHASES } from '../../utils/phases';
 // Components
@@ -14,6 +14,7 @@ import {
 } from '../../components';
 import { StepNewScene } from './StepNewScene';
 import { useOnSubmitMarkAPIRequest } from './_api-requests';
+import { mockSceneMark } from './mock';
 
 function PhaseSceneMarking({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
@@ -24,6 +25,10 @@ function PhaseSceneMarking({ players, state, info }: PhaseProps) {
   const onSubmitMark = useOnSubmitMarkAPIRequest(setStep);
 
   const increaseStep = () => setStep((s: number) => ++s);
+
+  useMock(() => {
+    onSubmitMark({ sceneIndex: mockSceneMark() });
+  }, []);
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.CRIMES_HEDIONDOS.SCENE_MARKING}>

@@ -1,3 +1,4 @@
+import { orderBy } from 'lodash';
 import { AvatarCard, AvatarIcon, TransparentButton } from '../../components';
 
 type PlayersCardsProps = {
@@ -17,7 +18,7 @@ export function PlayersCards({
 }: PlayersCardsProps) {
   return (
     <ul className="h-players-cards">
-      {Object.values(players).map((player) => {
+      {orderBy(Object.values(players), ['name']).map((player) => {
         const isActive = activePlayerId === player.id;
         const isComplete = user.id === player.id || Boolean(guesses[player.id]?.isComplete);
         return (
