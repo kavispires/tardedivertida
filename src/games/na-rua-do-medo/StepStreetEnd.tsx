@@ -5,6 +5,7 @@ import { AdminNextRoundButton, Instruction, PopoverRule, Step, Title, Translate 
 import { PlayerStats } from './PlayerStats';
 import { Street } from './Street';
 import { CardCountExplanation } from './RulesBlobs';
+import { PlayersDecisionList } from './PlayersDecisionList';
 
 type StepStreetEndProps = {
   street: NStreet;
@@ -14,6 +15,8 @@ type StepStreetEndProps = {
   user: GamePlayer;
   isDoubleHorror: boolean;
   round: GameRound;
+  players: GamePlayers;
+  alreadyAtHomePlayerIds: PlayerId[];
 };
 
 export function StepStreetEnd({
@@ -24,6 +27,8 @@ export function StepStreetEnd({
   totalCandyInSidewalk,
   isDoubleHorror,
   round,
+  players,
+  alreadyAtHomePlayerIds,
 }: StepStreetEndProps) {
   const { language, translate } = useLanguage();
 
@@ -75,10 +80,18 @@ export function StepStreetEnd({
         )}
       </Instruction>
       <Street street={street} currentCard={currentCard} candySidewalk={candySidewalk} />
-      <PlayerStats user={user} />
+
+      <PlayersDecisionList
+        playersIdsList={isDoubleHorror ? alreadyAtHomePlayerIds : Object.keys(players)}
+        type="home"
+        players={players}
+      />
+
       <AdminNextRoundButton
         buttonText={round.current < round.total ? translate('Próxima Casa', 'Next House') : 'Game Over'}
       />
+
+      <PlayerStats user={user} />
     </Step>
   );
 }
