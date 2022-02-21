@@ -6,6 +6,7 @@ import { mockPlayerDecision } from './mock';
 import {
   AvatarIcon,
   Instruction,
+  PopoverRule,
   ReadyPlayersBar,
   Step,
   Title,
@@ -15,7 +16,7 @@ import {
 import { CandyCount } from './CandyCount';
 import { PlayersDecisionList } from './PlayersDecisionList';
 import { PlayerStats } from './PlayerStats';
-import { DecisionExplanation } from './RulesBlobs';
+import { CardCountExplanation, DecisionExplanation } from './RulesBlobs';
 import { Street } from './Street';
 
 type StepMakeDecisionProps = {
@@ -84,6 +85,8 @@ export function StepMakeDecision({
           />
         )}
       </Title>
+
+      <PopoverRule content={<CardCountExplanation />} />
 
       <PlayersDecisionList players={players} type="walk" playersIdsList={continuingPlayerIds} />
 

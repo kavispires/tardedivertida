@@ -8,6 +8,17 @@ import { Avatar, GameOverWrapper, Instruction, Translate } from '../../component
 import { CandyCount } from './CandyCount';
 import { PlayerStats } from './PlayerStats';
 
+const GRID_REPEAT: NumberDictionary = {
+  3: 3,
+  4: 4,
+  5: 5,
+  6: 3,
+  7: 4,
+  8: 4,
+  9: 5,
+  10: 5,
+};
+
 function PhaseGameOver({ state, players, info }: PhaseProps) {
   const { language } = useLanguage();
   const user = useUser(players);
@@ -17,11 +28,14 @@ function PhaseGameOver({ state, players, info }: PhaseProps) {
       info={info}
       state={state}
       announcementIcon="poop"
+      announcementDuration={6}
       announcementContent={
-        <Translate
-          pt="O jogador que comeu mais doces, teve uma caganeira horrível, mas é o campeão é..."
-          en="The player who ate candy the most, had a terrible diarrhea, but it's the winner is..."
-        />
+        <Instruction>
+          <Translate
+            pt="O jogador que comeu mais doces, teve uma caganeira horrível, mas é o campeão é..."
+            en="The player who ate candy the most, had a terrible diarrhea, but it's the winner is..."
+          />
+        </Instruction>
       }
       showRateWidgetAfterContent
     >
@@ -30,7 +44,10 @@ function PhaseGameOver({ state, players, info }: PhaseProps) {
         <CandyCount candyCount={state.winners[0].score} size="default" />
       </Instruction>
 
-      <ul className="n-game-over-players">
+      <ul
+        className="n-game-over-players"
+        style={{ gridTemplateColumns: `repeat(${GRID_REPEAT?.[Object.keys(players).length] ?? 5}, 1fr)` }}
+      >
         {orderBy(Object.values(players), 'score', 'desc').map((player) => (
           <li className="n-game-over-player" key={`game-over-player-${player.id}`}>
             <Avatar className="n-game-over-player__avatar" id={player.avatarId} />

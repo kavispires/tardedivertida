@@ -1,9 +1,10 @@
 // Hooks
 import { useLanguage } from '../../hooks';
 // Components
-import { AdminNextRoundButton, Instruction, Step, Title, Translate } from '../../components';
+import { AdminNextRoundButton, Instruction, PopoverRule, Step, Title, Translate } from '../../components';
 import { PlayerStats } from './PlayerStats';
 import { Street } from './Street';
+import { CardCountExplanation } from './RulesBlobs';
 
 type StepStreetEndProps = {
   street: NStreet;
@@ -25,7 +26,9 @@ export function StepStreetEnd({
   round,
 }: StepStreetEndProps) {
   const { language, translate } = useLanguage();
-  const monsterName = currentCard.name[language];
+
+  const monsterName = currentCard?.name?.[language] ?? '';
+
   return (
     <Step fullWidth>
       <Title>
@@ -35,9 +38,12 @@ export function StepStreetEnd({
             en={<>A second {monsterName} came out of nowhere!</>}
           />
         ) : (
-          <Translate pt="Todo mundo voltou pra casa" en="Everybody went back home for now" />
+          <Translate pt="Todo mundo voltou pra casa..." en="Everybody went back home for now..." />
         )}
       </Title>
+
+      <PopoverRule content={<CardCountExplanation />} />
+
       <Instruction contained>
         {isDoubleHorror && (
           <>
@@ -48,7 +54,7 @@ export function StepStreetEnd({
             <br />
           </>
         )}
-        {round.current < round.total ? (
+        {round.current < round.total && monsterName && (
           <>
             <Translate
               pt={<>Uma carta do {monsterName} será removida, menos chances dele aparece novamente!</>}
@@ -57,11 +63,15 @@ export function StepStreetEnd({
             <br />
             <Translate pt="Prontos pra próxima rua?" en="Ready for the next street?" />
           </>
-        ) : (
+        )}
+
+        {round.current === round.total ? (
           <Translate
             pt="E a noite chegou ao fim... Hora de comer gostosuras!"
             en="And the night is over... Time to eat candy!"
           />
+        ) : (
+          <Translate pt="Próxima rua?" en="Let's hit the next street?" />
         )}
       </Instruction>
       <Street street={street} currentCard={currentCard} candySidewalk={candySidewalk} />

@@ -6,7 +6,7 @@ const MORE_HOME = ['GO_HOME', 'GO_HOME', 'CONTINUE', 'CONTINUE', 'CONTINUE'];
 export const mockPlayerDecision = (horrorLength: number, hand: number) => {
   let decision = getRandomItem(MORE_CONTINUE);
 
-  if (hand < 2 || horrorLength < 3) {
+  if (hand < 2 || horrorLength < 2) {
     decision = 'CONTINUE';
   } else if (horrorLength >= 3 && hand > 4) {
     decision = getRandomItem(MORE_HOME);
