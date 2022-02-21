@@ -44,3 +44,34 @@ export function DecisionExplanation({ user, totalCandyInSidewalk }: DecisionExpl
     </Instruction>
   );
 }
+
+export function CardCountExplanation() {
+  return (
+    <Translate
+      pt={
+        <>
+          O baralho de cartas contém 21 cartas Gostosuras que variam de 1 a 19 doces.
+          <br />
+          Também contém 5 tipos de monstros com 3 cartas para cada.
+          <br />
+          Cada vez que um monstro aparece duas vezes e causa pânico, uma de suas cartas é removida do baralho.
+          <br />
+          Cada rua adiciona um iPad indivisível, somente uma pessoa pode tê-lo, se ninguém conseguir pegar o
+          iPad a rua, ele fica no baralho para a próxima rodada.
+        </>
+      }
+      en={
+        <>
+          The deck has 21 Candy cards varying from 1 to 19 candies.
+          <br />
+          It also has 5 types of monsters with 3 cards each.
+          <br />
+          When a second monster of the same type shows up, one of its cards is remove for the next round.
+          <br />
+          Each street adds an unshareable iPad, only one person get get it, if nobody has gotten the iPad on
+          the current street, it will remain in the deck for the next round.
+        </>
+      }
+    />
+  );
+}
