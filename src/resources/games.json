@@ -41,8 +41,8 @@
       "en": true
     },
     "options": [
-      { "label": "Use All Cards", "key": "useAllCards" },
-      { "label": "Short Game (5 rounds)", "key": "shortGame" }
+      { "label": "Cards", "key": "useAllCards", "off": "Unique cards", "on": "All cards" },
+      { "label": "Duration", "key": "shortGame", "off": "50 points/10 rounds", "on": "5 rounds" }
     ]
   },
   "B": {
@@ -116,8 +116,10 @@
     },
     "options": [
       {
-        "label": "For (30) points INSTEAD OF Each player twice (1-6p) or once (7p+)",
-        "key": "forPoints"
+        "label": "Duration",
+        "key": "fixedRounds",
+        "off": "30 points/15 rounds",
+        "on": "Each player once (7+) or twice (1-6)"
       }
     ]
   },
@@ -364,8 +366,13 @@
       "en": true
     },
     "options": [
-      { "label": "Only Single Word Cards", "key": "singleWordOnly" },
-      { "label": "Evenly Distribute Cards", "key": "evenDistribution" }
+      {
+        "label": "Cards Type",
+        "key": "singleWordOnly",
+        "off": "Words and Expressions",
+        "on": "Only Single Words"
+      },
+      { "label": "Card Distribution", "key": "evenDistribution", "off": "Random", "on": "Even" }
     ]
   },
   "M": {
@@ -444,7 +451,7 @@
       "pt": true,
       "en": true
     },
-    "options": [{ "label": "Short Game (3 rounds instead of 5)", "key": "shortGame" }]
+    "options": [{ "label": "Game Length", "key": "shortGame", "off": "5 streets", "on": "3 streets" }]
   },
   "O": {
     "gameCode": "O",
@@ -526,11 +533,7 @@
     "available": {
       "pt": true,
       "en": true
-    },
-    "options": [
-      { "label": "Short (3 points)", "key": "SHORT_GAME" },
-      { "label": "Long (5 points)", "key": "LONG_GAME" }
-    ]
+    }
   },
   "Q": {
     "gameCode": "Q",
@@ -770,7 +773,7 @@
       "pt": true,
       "en": true
     },
-    "options": [{ "label": "Larger Grid", "key": "largerGrid" }]
+    "options": [{ "label": "Grid", "key": "largerGrid", "off": "Normal", "on": "Larger" }]
   },
   "Y": {
     "gameCode": "Y",

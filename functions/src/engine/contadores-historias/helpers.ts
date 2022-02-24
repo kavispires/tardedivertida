@@ -187,7 +187,7 @@ export const determineGameOver = (
   options: ContadoresHistoriasOptions,
   round: Round
 ): boolean => {
-  if (options.forPoints) {
+  if (options.fixedRounds) {
     return Object.values(players).some((player) => player.score >= GAME_OVER_SCORE_THRESHOLD);
   }
   const playerCount = Object.keys(players).length;
