@@ -33,7 +33,7 @@ export const prepareSetupPhase = async (
   const { gameOrder, playerCount } = utils.buildGameOrder(players);
 
   const { gameOrder: roundsIfRoundFixed } = utils.buildGameOrder(players, 7);
-  const totalRounds = store.options.forPoints ? MAX_ROUNDS : roundsIfRoundFixed.length;
+  const totalRounds = store.options.fixedRounds ? MAX_ROUNDS : roundsIfRoundFixed.length;
 
   // Assigned cards to players
   // We build the used cards deck all at once to avoid having to generate and

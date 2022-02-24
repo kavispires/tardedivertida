@@ -87,7 +87,7 @@ type SessionProps = {
   gameId: GameId;
 };
 
-interface GameInfo {
+type GameInfo = {
   gameCode: GameCode;
   gameName: GameName;
   version: string;
@@ -117,8 +117,10 @@ interface GameInfo {
   options?: {
     label: string;
     key: string;
+    on?: string;
+    off?: string;
   }[];
-}
+};
 
 type GameRound = {
   current: number;
