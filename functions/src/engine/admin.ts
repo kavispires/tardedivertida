@@ -117,18 +117,18 @@ export const lockGame = async (data: BasicGamePayload, context: FirebaseContext)
 
   // Verify minimum number of players
   const numPlayers = Object.keys(players).length;
-  const { playerCount } = delegatorUtils.getEngine(collectionName);
+  const { playerCounts } = delegatorUtils.getEngine(collectionName);
 
-  if (numPlayers < playerCount.MIN) {
+  if (numPlayers < playerCounts.MIN) {
     firebaseUtils.throwException(
-      `Game ${gameId} has an insufficient number of players: Minimum ${playerCount.MIN} players, but has ${numPlayers}`,
+      `Game ${gameId} has an insufficient number of players: Minimum ${playerCounts.MIN} players, but has ${numPlayers}`,
       actionText
     );
   }
 
-  if (numPlayers > playerCount.MAX) {
+  if (numPlayers > playerCounts.MAX) {
     firebaseUtils.throwException(
-      `Game ${gameId} has more players than it supports: Maximum ${playerCount.MAX} players, but has ${numPlayers}`,
+      `Game ${gameId} has more players than it supports: Maximum ${playerCounts.MAX} players, but has ${numPlayers}`,
       actionText
     );
   }

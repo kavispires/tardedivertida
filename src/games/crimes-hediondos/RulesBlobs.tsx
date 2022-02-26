@@ -67,20 +67,24 @@ export function ScoringMessage(): JSX.Element {
       <Translate
         pt={
           <>
-            Você ganha 1 ponto para cada arma e objeto que você acertar.
+            Você ganha 1 ponto para cada arma ou objeto que você acertar.
             <br />
-            Você ganha 1 ponto bônus se acertar as duas cartas de um mesmo jogador.
+            Você ganha 3 pontos bônus se acertar as duas cartas de um mesmo jogador.
             <br />
-            Você ganha 1 ponto para cada carta que outros jogadores acertaram sua.
+            Para todos os seus acertos, seus respectivos autores ganham 1 ponto (ou 3 se você acertou ambos).
+            <br />
+            Mas tem um segredinho... você só vê os seus pontos.
           </>
         }
         en={
           <>
             You get 1 point for each weapon or evidence you get correctly.
             <br />
-            You gain 1 extra point if you got both cards correctly for the same player.
+            You gain 3 extra points if you got both cards correctly for the same player.
             <br />
-            You get 1 point for each of the player who got one for your cards correctly.
+            All of your correct guesses grant 1 extra point to the authors (or 3 if you got both).
+            <br />
+            But there's a secret... you only see your scoring, not others'.
           </>
         }
       />

@@ -4,23 +4,28 @@ import { ImageCard } from '../../components';
 import { useLanguage } from '../../hooks';
 
 type ItemCardProps = {
-  item: CrimesHediondosCard;
+  item: HCard;
   cardWidth: number;
   preview?: boolean;
   isSelected?: boolean;
   className?: string;
+  activeColor?: string;
 };
 
 export function ItemCard({
   item,
   cardWidth,
+  activeColor,
   preview = true,
   isSelected = false,
   className = '',
 }: ItemCardProps) {
   const { language } = useLanguage();
   return (
-    <div className={clsx('h-item-card', isSelected && 'h-item-card--selected', className)}>
+    <div
+      className={clsx('h-item-card', isSelected && 'h-item-card--selected', className)}
+      style={activeColor && isSelected ? { borderColor: 'black', backgroundColor: activeColor } : {}}
+    >
       <Popover content={item.name[language].toUpperCase()}>
         <Tag
           className="h-item-card__name"

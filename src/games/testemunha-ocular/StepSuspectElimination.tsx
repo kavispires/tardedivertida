@@ -14,6 +14,7 @@ import {
   Translate,
 } from '../../components';
 import { Suspects } from './Suspects';
+import { QuestionsHistory } from './QuestionsHistory';
 
 type StepSuspectEliminationProps = {
   suspects: Suspect[];
@@ -27,6 +28,7 @@ type StepSuspectEliminationProps = {
   onEliminate: GenericFunction;
   question: GamePlayer;
   testimony: boolean;
+  history: THistoryEntry[];
 };
 
 export function StepSuspectElimination({
@@ -41,6 +43,7 @@ export function StepSuspectElimination({
   onEliminate,
   question,
   testimony,
+  history,
 }: StepSuspectEliminationProps) {
   const { translate } = useLanguage();
 
@@ -103,6 +106,8 @@ export function StepSuspectElimination({
         onCardClick={isUserTheQuestioner ? onEliminateSuspect : undefined}
         eliminatedSuspects={[...(eliminatedSuspects ?? []), ...(previouslyEliminatedSuspects ?? [])]}
       />
+
+      <QuestionsHistory history={history} />
     </Step>
   );
 }

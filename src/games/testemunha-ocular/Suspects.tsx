@@ -37,6 +37,7 @@ export function Suspects({ suspects, perpetrator, onCardClick, eliminatedSuspect
               onConfirm={() => onCardClick(suspect.id)}
               okText={translate('Sim', 'Yes')}
               cancelText={translate('Não', 'No')}
+              disabled={wasEliminated || isLoading}
             >
               <button
                 className="t-suspects-table__suspect t-suspects-table__suspect-button"

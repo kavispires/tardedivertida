@@ -1,7 +1,7 @@
 // Utils
 import { LETTERS } from '../../utils/constants';
 // Components
-import { ButtonContainer, Card, Step, Title, Translate } from '../../components';
+import { ButtonContainer, Card, Step, Title, Translate, TransparentButton } from '../../components';
 import { GeneralRules } from './RulesBlobs';
 
 type StepWordSelectionProps = {
@@ -19,15 +19,11 @@ export function StepWordSelection({ onSubmitWord, words }: StepWordSelectionProp
       <ButtonContainer>
         {words.map((word, index) => {
           return (
-            <button
-              key={word.id}
-              className="reset-button invisible-button"
-              onClick={() => onSubmitWord({ wordId: word.id })}
-            >
+            <TransparentButton key={word.id} onClick={() => onSubmitWord({ wordId: word.id })}>
               <Card header={LETTERS[index]} randomColor>
                 {word.text}
               </Card>
-            </button>
+            </TransparentButton>
           );
         })}
       </ButtonContainer>

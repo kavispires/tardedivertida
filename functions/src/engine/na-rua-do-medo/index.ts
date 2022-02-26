@@ -1,6 +1,6 @@
 // Constants
 import { GAME_COLLECTIONS } from '../../utils/constants';
-import { NA_RUA_DO_MEDO_PHASES, PLAYER_COUNT, MAX_ROUNDS } from './constants';
+import { NA_RUA_DO_MEDO_PHASES, PLAYER_COUNTS, MAX_ROUNDS } from './constants';
 // Types
 import { GameId, GameName, Language, Players } from '../../utils/types';
 import { NoRuaDoMedoInitialState, NoRuaDoMedoOptions, NaRuaDoMedoSubmitAction } from './types';
@@ -36,7 +36,7 @@ export const getInitialState = (
     gameName: GAME_COLLECTIONS.NA_RUA_DO_MEDO,
     uid,
     language,
-    playerCount: PLAYER_COUNT,
+    playerCounts: PLAYER_COUNTS,
     initialPhase: NA_RUA_DO_MEDO_PHASES.LOBBY,
     totalRounds: MAX_ROUNDS,
     store: {
@@ -52,7 +52,7 @@ export const getInitialState = (
 /**
  * Exposes min and max player count
  */
-export const playerCount = PLAYER_COUNT;
+export const playerCounts = PLAYER_COUNTS;
 
 /**
  *

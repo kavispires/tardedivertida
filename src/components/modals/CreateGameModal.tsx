@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // Design Resources
@@ -122,27 +123,12 @@ export function CreateGameModal({ gameInfo }: CreateGameModalProps): JSX.Element
               fallback={`${PUBLIC_URL.BANNERS}/game-image-em-breve-${language}.jpg`}
             />
 
-            {Boolean(gameInfo.options) ? (
-              <div className="create-game-modal-options">
-                <Typography.Title level={4}>
-                  <Translate pt="Opções:" en="Options:" />
-                </Typography.Title>
-
-                {gameInfo.options!.map((option, index) => (
-                  <Typography.Paragraph key={`option-${option.label}`}>
-                    <Switch
-                      disabled={isLoading || Boolean(gameId)}
-                      onChange={(e) => onChangeOptions(option.key, e)}
-                    />{' '}
-                    {option.label}
-                  </Typography.Paragraph>
-                ))}
-              </div>
-            ) : (
-              <Typography.Text>
-                <Translate pt="Este jogo não possui customizações" en="This game has no customizations" />
-              </Typography.Text>
-            )}
+            <Options
+              options={gameInfo.options}
+              disabled={isLoading || Boolean(gameId)}
+              onChangeOptions={onChangeOptions}
+              selectedOptions={options}
+            />
 
             <Divider />
 
@@ -178,5 +164,55 @@ export function CreateGameModal({ gameInfo }: CreateGameModalProps): JSX.Element
         </Modal>
       )}
     </>
+  );
+}
+
+type OptionsProps = {
+  options?: {
+    label: string;
+    key: string;
+    on?: string;
+    off?: string;
+  }[];
+  disabled: boolean;
+  onChangeOptions: GenericFunction;
+  selectedOptions: PlainObject;
+};
+function Options({ options, disabled, onChangeOptions, selectedOptions }: OptionsProps) {
+  return Boolean(options) ? (
+    <div className="create-game-modal-options">
+      <Typography.Title level={5} className="create-game-modal-options__title">
+        <Translate pt="Opções:" en="Options:" />
+      </Typography.Title>
+
+      {options!.map((option, index) => (
+        <Typography.Paragraph key={`option-${option.label}`} className="create-game-modal-options__option">
+          <span className="create-game-modal-options__label">{option.label}</span>
+          <span
+            className={clsx(
+              'create-game-modal-options__off',
+              !selectedOptions[option.key] && 'create-game-modal-options__selected'
+            )}
+          >
+            {option?.off ?? ''}
+          </span>
+          <Switch disabled={disabled} onChange={(e) => onChangeOptions(option.key, e)} />
+          <span
+            className={clsx(
+              'create-game-modal-options__on',
+              selectedOptions[option.key] && 'create-game-modal-options__selected'
+            )}
+          >
+            {option?.on ?? ''}
+          </span>
+        </Typography.Paragraph>
+      ))}
+    </div>
+  ) : (
+    <div className="create-game-modal-options create-game-modal-options__no-options">
+      <Typography.Text>
+        <Translate pt="Este jogo não possui customizações" en="This game has no customizations" />
+      </Typography.Text>
+    </div>
   );
 }

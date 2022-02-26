@@ -1,6 +1,8 @@
 // Components
-import { Instruction, Translate } from '../../components';
+import { Instruction, RulesList, Translate } from '../../components';
 import { CandyCount } from './CandyCount';
+
+const CANDY_VALUES = [1, 2, 3, 4, 5, 5, 5, 7, 7, 7, 8, 9, 10, 11, 11, 12, 13, 14, 15, 17, 19];
 
 type DecisionExplanationProps = {
   user: GamePlayer;
@@ -40,6 +42,48 @@ export function DecisionExplanation({ user, totalCandyInSidewalk }: DecisionExpl
       <Translate
         pt="Lembre-se que se dois monstros iguais aparecerem, todos entram em pânico, derrubam todos os doces em mãos e correm pra casa."
         en="Remember that if two of the same monster show up, you lose all candy in hand because you freaked out, dropped everything, and ran home."
+      />
+    </Instruction>
+  );
+}
+
+export function CardCountExplanation() {
+  return (
+    <Instruction>
+      <Translate
+        pt={
+          <RulesList>
+            <li>
+              O baralho de cartas contém {CANDY_VALUES.length} cartas Gostosuras que variam de 1 a 19 doces.{' '}
+              <br />({CANDY_VALUES.join(', ')})
+            </li>
+            <li>Também contém 5 tipos de monstros com 3 cartas para cada (Total: 15).</li>
+            <li>
+              Cada vez que um monstro aparece duas vezes e causa pânico, uma de suas cartas é removida do
+              baralho.
+            </li>
+            <li>
+              Cada rua adiciona um iPad indivisível ao baralho, somente uma pessoa pode tê-lo, se ninguém
+              conseguir pegar o iPad a rua, ele fica no baralho para a próxima rodada.
+            </li>
+          </RulesList>
+        }
+        en={
+          <RulesList>
+            <li>
+              The deck has {CANDY_VALUES.length} Candy cards varying from 1 to 19 candies.
+              <br />({CANDY_VALUES.join(', ')})
+            </li>
+            <li>It also has 5 types of monsters with 3 cards each (15 total).</li>
+            <li>
+              When a second monster of the same type shows up, one of its cards is remove for the next round.
+            </li>
+            <li>
+              Each street adds an unshareable iPad to the deck, only one person get get it, if nobody has
+              gotten the iPad on the current street, it will remain in the deck for the next round.
+            </li>
+          </RulesList>
+        }
       />
     </Instruction>
   );

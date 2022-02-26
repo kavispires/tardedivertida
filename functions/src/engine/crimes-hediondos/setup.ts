@@ -16,6 +16,7 @@ import {
   groupItems,
   parseTiles,
   updateCrime,
+  updateOrCreateGuessHistory,
 } from './helpers';
 // Internal
 
@@ -71,6 +72,7 @@ export const prepareCrimeSelectionPhase = async (
 
   // Unready players
   utils.unReadyPlayers(players);
+  utils.addPropertiesToPlayers(players, { secretScore: 0, pastCorrectCrimes: 0 });
 
   return {
     update: {
@@ -100,6 +102,10 @@ export const prepareSceneMarkingPhase = async (
 
   // Unready players
   utils.unReadyPlayers(players);
+  // Update pastCorrectCrimes
+  Object.values(players).forEach((player) => {
+    player.pastCorrectCrimes += player.correctCrimes ?? 0;
+  });
 
   return {
     update: {
@@ -183,19 +189,18 @@ export const prepareRevealPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
-  // Reveal stuff
-  const { ranking, counts } = buildRanking(players);
+  // Update or create guess history
+  updateOrCreateGuessHistory(state.crimes, players);
 
-  // Make ranking
-  const win = Object.values(counts).some((count) => count.win);
+  // Reveal stuff
+  const { ranking, winners } = buildRanking(players);
 
   return {
     update: {
       state: {
         phase: CRIMES_HEDIONDOS_PHASES.REVEAL,
         ranking,
-        counts,
-        lastRound: win,
+        lastRound: winners.length > 0,
       },
       players: players,
     },
@@ -207,6 +212,7 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
+  // TODO: Fix scoring
   const counts: Counts = state.counts;
   // Check if anybody has won, if so, from those, get the highest score, otherwise, any higher score
   const winningPlayers = Object.entries(counts).reduce((acc: any, [playerId, count]) => {

@@ -46,18 +46,17 @@ export function StepNewScene({
         <Translate
           pt={
             <>
-              Baseado em suas cartas (bordas amarelas), selecione uma opção na nova carta de Cena do Crime
-              abaixo.
+              Baseado em suas cartas, selecione uma opção na nova carta de detalhes da Cena do Crime abaixo.
             </>
           }
-          en={<>Based on your cards (yellow borders), select an option in the new Scene card below.</>}
+          en={<>Based on your cards, select an option in the new Scene card below.</>}
         />
       </Instruction>
 
       <Collapse>
         <Collapse.Panel
           key="weapons-evidences"
-          header={<Translate pt="Armas e Evidências" en="Weapons and Evidence" />}
+          header={<Translate pt="Ver todas Armas e Evidências" en="See all Weapons and Evidence" />}
         >
           <GroupedItemsBoard
             groupedItems={groupedItems}
@@ -72,13 +71,18 @@ export function StepNewScene({
         <Crime
           key={`crime-by-${crime!.playerId}`}
           user={user}
+          items={items}
           crime={crime!}
           players={players}
           scenes={scenes}
           scenesOrder={scenesOrder}
-          items={items}
           weapons={itemsList}
           evidences={itemsList}
+          selections={{
+            weaponId: crime!.weaponId,
+            evidenceId: crime!.evidenceId,
+            isComplete: true,
+          }}
         />
       </div>
 

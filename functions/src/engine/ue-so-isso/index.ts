@@ -1,6 +1,6 @@
 // Constants
 import { GAME_COLLECTIONS } from '../../utils/constants';
-import { PLAYER_COUNT, UE_SO_ISSO_PHASES } from './constants';
+import { PLAYER_COUNTS, UE_SO_ISSO_PHASES } from './constants';
 // Types
 import { Players, GameId } from '../../utils/types';
 import { UeSoIssoInitialState, UeSoIssoSubmitAction } from './types';
@@ -40,7 +40,7 @@ export const getInitialState = (gameId: GameId, uid: string, language: string): 
     gameName: GAME_COLLECTIONS.UE_SO_ISSO,
     uid,
     language,
-    playerCount: PLAYER_COUNT,
+    playerCounts: PLAYER_COUNTS,
     initialPhase: UE_SO_ISSO_PHASES.LOBBY,
     totalRounds: 0,
     store: {
@@ -58,7 +58,7 @@ export const getInitialState = (gameId: GameId, uid: string, language: string): 
 /**
  * Exposes min and max player count
  */
-export const playerCount = PLAYER_COUNT;
+export const playerCounts = PLAYER_COUNTS;
 
 export const getNextPhase = async (
   collectionName: string,

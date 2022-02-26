@@ -1,6 +1,6 @@
 // Constants
 import { GAME_COLLECTIONS } from '../../utils/constants';
-import { ESPIAO_ENTRE_NOS_PHASES, PLAYER_COUNT } from './constants';
+import { ESPIAO_ENTRE_NOS_PHASES, PLAYER_COUNTS } from './constants';
 // Types
 import { GameId, Language, Players } from '../../utils/types';
 import { EspiaoEntreNosInitialState, EspiaoEntreNosSubmitAction } from './types';
@@ -37,7 +37,7 @@ export const getInitialState = (
     gameName: GAME_COLLECTIONS.ESPIAO_ENTRE_NOS,
     uid,
     language,
-    playerCount: PLAYER_COUNT,
+    playerCounts: PLAYER_COUNTS,
     initialPhase: ESPIAO_ENTRE_NOS_PHASES.LOBBY,
     totalRounds: 0,
     store: {
@@ -52,7 +52,7 @@ export const getInitialState = (
 /**
  * Exposes min and max player count
  */
-export const playerCount = PLAYER_COUNT;
+export const playerCounts = PLAYER_COUNTS;
 
 export const getNextPhase = async (
   collectionName: string,

@@ -5,6 +5,7 @@ import EspiaoEntreNos from './espiao-entre-nos/SessionEspiaoEntreNos';
 import GaleriaDeSonhos from './galeria-de-sonhos/SessionGaleriaDeSonhos';
 import CrimesHediondos from './crimes-hediondos/SessionCrimesHediondos';
 import InstrumentosCodificados from './instrumentos-codificados/SessionInstrumentosCodificados';
+import LinhasCruzadas from './linhas-cruzadas/SessionLinhasCruzadas';
 import MenteColetiva from './mente-coletiva/SessionMenteColetiva';
 import NaRuaDoMedo from './na-rua-do-medo/SessionNaRuaDoMedo';
 import OndaTelepatica from './onda-telepatica/SessionOndaTelepatica';
@@ -23,6 +24,7 @@ const games = {
   GaleriaDeSonhos,
   CrimesHediondos,
   InstrumentosCodificados,
+  LinhasCruzadas,
   MenteColetiva,
   NaRuaDoMedo,
   OndaTelepatica,

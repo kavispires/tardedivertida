@@ -30,7 +30,7 @@ function PhaseQuestioning({ state, players, info }: PhaseProps) {
       allowedPhase={PHASES.TESTEMUNHA_OCULAR.QUESTIONING}
       className="t-phase"
     >
-      <StepSwitcher step={step}>
+      <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
           type="eye"
@@ -68,6 +68,7 @@ function PhaseQuestioning({ state, players, info }: PhaseProps) {
           isLoading={isLoading}
           onAnswer={onAnswer}
           question={state.question}
+          history={state.history}
         />
       </StepSwitcher>
     </PhaseContainer>

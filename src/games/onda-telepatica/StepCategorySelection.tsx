@@ -1,9 +1,7 @@
-// Design Resources
-import { Spin } from 'antd';
 // Hooks
 import { useLoading } from '../../hooks';
 // Components
-import { Instruction, Title, Translate } from '../../components';
+import { AvatarIcon, Instruction, Title, Translate } from '../../components';
 import { Card } from './Card';
 
 type StepCategorySelectionProps = {
@@ -29,7 +27,7 @@ export function StepCategorySelection({ currentCategories, onSendChosenSide }: S
         />
         {isLoading && (
           <div>
-            <Spin />
+            <AvatarIcon type="animated-loader" size="small" />
           </div>
         )}
       </Instruction>

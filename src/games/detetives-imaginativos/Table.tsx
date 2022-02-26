@@ -1,12 +1,10 @@
 import clsx from 'clsx';
-// Design Resources
-import { Spin } from 'antd';
 // Hooks
 import { useCardWidth } from '../../hooks';
 // Utils
 import { AVATARS } from '../../utils/constants';
 // Components
-import { Avatar, ImageBlurButtonContainer, ImageCard } from '../../components';
+import { Avatar, AvatarIcon, ImageBlurButtonContainer, ImageCard } from '../../components';
 
 type TableProps = {
   table: DetetivesImaginativosCardEntry[];
@@ -20,7 +18,7 @@ export function Table({ table, players }: TableProps) {
   if (!table || !table?.length) {
     return (
       <div className={clsx(baseClass, `${baseClass}--center`)}>
-        <Spin size="large" />
+        <AvatarIcon type="animated-loader" />
       </div>
     );
   }

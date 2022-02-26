@@ -42,7 +42,7 @@ function PhaseDefense({ state, players, info }: PhaseProps) {
         )
       );
     }
-  }, [isUserTheCurrentPlayer, currentPlayer?.id, step]);
+  }, [isUserTheCurrentPlayer, currentPlayer?.id, step, translate]);
 
   return (
     <PhaseContainer

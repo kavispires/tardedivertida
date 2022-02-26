@@ -42,7 +42,7 @@ function PhaseTopicSelection({ state, players, info }: PhaseProps) {
         {/* Step 1 */}
         <PhaseAnnouncement
           type="trending"
-          title={translate('Qual a polêmica da vez?', "What's trending now?")}
+          title={translate('Você sabe qual a polêmica da vez?', "Do you know what's trending now?")}
           onClose={() => setStep(2)}
           currentRound={state?.round?.current}
           duration={state?.round?.current < 3 ? 30 : undefined}
@@ -57,7 +57,7 @@ function PhaseTopicSelection({ state, players, info }: PhaseProps) {
                   O primeiro jogador a receber 4 pontos ganha o jogo (ou no máximo 15 rodadas)
                   <br />
                   <Instruction contained>
-                    <AvatarName player={activePlayer} /> escolherá o assunto para essa rodada.
+                    <AvatarName player={activePlayer} addressUser /> escolherá o assunto para essa rodada.
                   </Instruction>
                 </>
               }
@@ -69,7 +69,7 @@ function PhaseTopicSelection({ state, players, info }: PhaseProps) {
                   The first player to get 4 points wins the game (or a maximum of 15 rounds)
                   <br />
                   <Instruction contained>
-                    <AvatarName player={activePlayer} /> will choose the topic for this round.
+                    <AvatarName player={activePlayer} addressUser /> will choose the topic for this round.
                   </Instruction>
                 </>
               }

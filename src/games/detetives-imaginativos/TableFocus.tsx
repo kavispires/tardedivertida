@@ -1,12 +1,10 @@
 import clsx from 'clsx';
-// Design Resources
-import { Spin } from 'antd';
 // Hooks
 import { useCardWidth } from '../../hooks';
 // Utils
 import { AVATARS } from '../../utils/constants';
 // Components
-import { Avatar, ImageBlurButtonContainer, ImageCard } from '../../components';
+import { Avatar, AvatarIcon, ImageBlurButtonContainer, ImageCard } from '../../components';
 
 type TableFocusProps = {
   currentPlayer: GamePlayer;
@@ -22,7 +20,7 @@ export function TableFocus({ table, currentPlayer }: TableFocusProps) {
   if (!currentPlayer || !tableEntry?.cards) {
     return (
       <div className={clsx(baseClass, `${baseClass}--center`)}>
-        <Spin />
+        <AvatarIcon type="animated-loader" />
       </div>
     );
   }

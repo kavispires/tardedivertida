@@ -1,6 +1,7 @@
 import { CloudUploadOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
-import { ButtonContainer, Instruction, Step, Title, Translate } from '../../components';
+import { ButtonContainer, Instruction, ReadyPlayersBar, Step, Title, Translate } from '../../components';
+import { useLanguage } from '../../hooks';
 import { SceneTile } from './SceneTile';
 import { SelectedItems } from './SelectedItems';
 
@@ -12,6 +13,7 @@ type StepReviewCrimeProps = {
   causeOfDeathTile: SceneTile;
   reasonForEvidenceTile: SceneTile;
   updateSelection: GenericFunction;
+  players: GamePlayers;
 };
 
 export function StepReviewCrime({
@@ -22,7 +24,10 @@ export function StepReviewCrime({
   selections,
   onSubmitCrime,
   updateSelection,
+  players,
 }: StepReviewCrimeProps) {
+  const { translate } = useLanguage();
+
   const locationTile = locationTiles.find((location) => location.id === selections.locationTile);
 
   return (
@@ -61,6 +66,12 @@ export function StepReviewCrime({
           <Translate pt="Enviar" en="Submit" />
         </Button>
       </ButtonContainer>
+
+      <ReadyPlayersBar
+        players={players}
+        readyText={translate('Já cometi meu crime', "I'm done committing my crime")}
+        readyTextPlural={translate('Já cometemos nossos crimes', "We're done committing our crimes")}
+      />
     </Step>
   );
 }

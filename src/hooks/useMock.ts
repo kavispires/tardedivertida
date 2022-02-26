@@ -11,7 +11,6 @@ export function useMock(whatToDo: GenericFunction, conditions: any[] = []) {
   const [isAdmin] = useGlobalState('isAdmin');
 
   useEffect(() => {
-    console.log({ isDevEnv, isAdmin });
     if (isDevEnv && !isAdmin) {
       whatToDo();
     }

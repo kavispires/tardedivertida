@@ -15,6 +15,7 @@ import {
   Translate,
 } from '../../components';
 import { StepMakeDecision } from './StepMakeDecision';
+import { PlayerStats } from './PlayerStats';
 
 function PhaseTrickOrTreat({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -28,7 +29,12 @@ function PhaseTrickOrTreat({ state, players, info }: PhaseProps) {
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.NA_RUA_DO_MEDO.TRICK_OR_TREAT}>
-      <StepSwitcher step={step} conditions={[!isUserReady]} players={players}>
+      <StepSwitcher
+        step={step}
+        conditions={[!isUserReady]}
+        players={players}
+        waitingRoomContent={<PlayerStats user={user} />}
+      >
         {/* Step 0 */}
         <RoundAnnouncement
           round={state.round}

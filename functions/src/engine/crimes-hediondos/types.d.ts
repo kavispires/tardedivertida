@@ -31,6 +31,10 @@ interface Crime {
   };
 }
 
+type GuessHistory = {
+  [key: string]: { weaponId: string; evidenceId: string; correct?: boolean }[];
+};
+
 interface ResourceData {
   allWeapons: CrimesHediondosCard[];
   allEvidence: CrimesHediondosCard[];

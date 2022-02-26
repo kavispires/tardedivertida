@@ -40,8 +40,12 @@ export function PlayerStats({ user, omitDecision = false }: PlayerStatsProps) {
           {user.jackpots?.length > 0 ? (
             <ul className="n-player-stats__jackpots">
               {user.jackpots.map((jackpot: NCard) => (
-                <ImageCard imageId={jackpot.key} cardWidth={60} className="n-player-stats__jackpot" />
-                // <li className="n-player-stats__jackpot">{jackpot.value}</li>
+                <ImageCard
+                  key={jackpot.id}
+                  imageId={jackpot.key}
+                  cardWidth={60}
+                  className="n-player-stats__jackpot"
+                />
               ))}
             </ul>
           ) : (

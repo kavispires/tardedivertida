@@ -1,10 +1,12 @@
 import { Button } from 'antd';
 import { useState } from 'react';
 import { ButtonContainer, Instruction, Step, Title, Translate } from '../../components';
-import { GroupedItemsBoard } from './GroupedItemsBoard';
+import { useCardWidth } from '../../hooks';
+import { ItemCard } from './ItemCard';
 import { SceneTile } from './SceneTile';
 
 type StepLocationSelectionProps = {
+  user: GamePlayer;
   items: ItemsDict;
   selections: PlainObject;
   updateSelections: GenericFunction;
@@ -13,13 +15,17 @@ type StepLocationSelectionProps = {
 };
 
 export function StepLocationSelection({
+  user,
   items,
   selections,
   updateSelections,
   locationTiles,
   groupedItems,
 }: StepLocationSelectionProps) {
+  const cardWidth = useCardWidth(12, 8, 50, 200);
   const [location, setLocation] = useState<PlainObject>();
+
+  const userItems = groupedItems[user.itemGroupIndex];
 
   const onSelectItem = (payload: SceneTilePayload) => {
     setLocation(payload);
@@ -37,27 +43,29 @@ export function StepLocationSelection({
               Baseado em qualquer uma das suas cartas (ou ambas), selecione o local onde o crime aconteceu.
               Lembre-se que você está tentando ajudar os outros jogadores adivinhar o seu crime, seja
               inteligente!
-              <br />
-              Como é importante saber os outros objetos no jogo, agora você pode ver todos.
             </>
           }
           en={
             <>
               Based on any card (or both), select where the crime occurred. Remember you are trying to help
               the players guess your crime, so be smart!
-              <br />
-              Since it's important to know the other items in the game, here they are.
             </>
           }
         />
       </Instruction>
 
-      <GroupedItemsBoard
-        items={items}
-        weaponId={selections.weaponId}
-        evidenceId={selections.evidenceId}
-        groupedItems={groupedItems}
-      />
+      <ul className="h-items-selection">
+        {userItems.map((itemId) => (
+          <li key={itemId} className="h-items-selection__item">
+            <ItemCard
+              item={items[itemId]}
+              cardWidth={cardWidth}
+              preview={false}
+              isSelected={[selections.weaponId, selections.evidenceId].includes(itemId)}
+            />
+          </li>
+        ))}
+      </ul>
 
       <div className="h-scene-tiles-list">
         {locationTiles.map((tile) => (
