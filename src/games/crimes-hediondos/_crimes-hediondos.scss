@@ -13,7 +13,7 @@
   &__name {
     text-transform: uppercase;
     font-weight: bold;
-    font-size: 0.7rem;
+    font-size: 0.6rem;
     margin: 0;
     overflow: hidden;
     text-align: center;
@@ -253,4 +253,17 @@
 .h-item-selector {
   width: 100px;
   margin-left: get-unit(1);
+}
+
+.h-players-cards {
+  display: flex;
+  margin-bottom: get-unit(2);
+
+  &__seal {
+    margin: 0 auto;
+    height: 6ch;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+  }
 }

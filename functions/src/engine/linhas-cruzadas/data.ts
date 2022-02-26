@@ -1,0 +1,23 @@
+// Types
+import { ResourceData } from './types';
+// Utils
+import * as resourceUtils from '../resource';
+
+/**
+ * Get words resource based on the game's language
+ * @param language
+ * @returns
+ */
+export const getData = async (language: string): Promise<ResourceData> => {
+  const resourceNameLC = `linhas-cruzadas-${language}`;
+  const allWords = await resourceUtils.fetchResource(resourceNameLC);
+
+  const resourceNameAR = `arte-ruim-${language}`;
+  // Get full deck
+  const allExpressions = await resourceUtils.fetchResource(resourceNameAR);
+
+  return {
+    allWords: Object.values(allWords),
+    allExpressions: Object.values(allExpressions),
+  };
+};

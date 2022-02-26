@@ -38,7 +38,10 @@ export const Card = ({
 
   return (
     <div className={clsx(baseClass, `${baseClass}--${size}`, className)}>
-      <span className={clsx(`${baseClass}__header`, `color-background--${bgColor}`, headerClassName)}>
+      <span
+        className={clsx(`${baseClass}__header`, `color-background--${bgColor}`, headerClassName)}
+        style={color.startsWith('#') ? { backgroundColor: color } : {}}
+      >
         {header}
       </span>
       <span className={`${baseClass}__text`}>{children}</span>

@@ -3,6 +3,7 @@ import { DefaultState, DefaultStore, InitialState, Payload, PlayerId } from '../
 type CruzaPalavrasOptions = {
   largerGrid: boolean;
 };
+
 type WordCard = {
   id: string;
   text: string;

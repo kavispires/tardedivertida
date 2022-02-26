@@ -1,6 +1,6 @@
 // Constants
 import { GAME_COLLECTIONS } from '../../utils/constants';
-import { CONTADORES_HISTORIAS_PHASES, MAX_ROUNDS, PLAYER_COUNT } from './constants';
+import { CONTADORES_HISTORIAS_PHASES, MAX_ROUNDS, PLAYER_COUNTS } from './constants';
 // Types
 import { GameId, Language, Players } from '../../utils/types';
 // Utils
@@ -41,7 +41,7 @@ export const getInitialState = (
     gameName: GAME_COLLECTIONS.CONTADORES_HISTORIAS,
     uid,
     language,
-    playerCount: PLAYER_COUNT,
+    playerCounts: PLAYER_COUNTS,
     initialPhase: CONTADORES_HISTORIAS_PHASES.LOBBY,
     totalRounds: MAX_ROUNDS,
     store: {
@@ -57,7 +57,7 @@ export const getInitialState = (
 /**
  * Exposes min and max player count
  */
-export const playerCount = PLAYER_COUNT;
+export const playerCounts = PLAYER_COUNTS;
 
 export const getNextPhase = async (
   collectionName: string,

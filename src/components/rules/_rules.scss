@@ -95,3 +95,8 @@
   top: get-unit(1);
   left: get-unit(1);
 }
+
+.rules-list {
+  list-style-type: disc;
+  padding-inline-start: get-unit(5);
+}

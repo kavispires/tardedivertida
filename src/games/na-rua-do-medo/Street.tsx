@@ -1,4 +1,7 @@
+import clsx from 'clsx';
 import { useEffect } from 'react';
+// Helpers
+import { getAnimationClass } from '../../utils/helpers';
 // Components
 import { HouseCard } from './HouseCard';
 
@@ -26,7 +29,7 @@ export function Street({ street, currentCard, candySidewalk }: StreetProps) {
         <HouseCard
           card={currentCard}
           candyLeftover={candySidewalk[candySidewalk.length - 1].leftover}
-          className="n-current-card animate__animated animate__flipInY"
+          className={clsx('n-current-card', getAnimationClass('flipInY'))}
           id="current-card"
         />
       )}

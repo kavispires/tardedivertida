@@ -20,7 +20,7 @@
 @import '../components/loaders/loaders.scss';
 @import '../components/lobby/lobby.scss';
 @import '../components/lobby/_internal/CloudBackground.scss';
-@import '../components/modals/RulesModal.scss';
+@import '../components/modals/modals';
 @import '../components/rules/_rules.scss';
 @import '../components/shared/PhaseAnnouncement.scss';
 @import '../components/shared/PhaseContainer.scss';
@@ -34,6 +34,7 @@
 @import '../components/shared/Instruction.scss';
 @import '../components/shared/TimedButton.scss';
 @import '../components/shared/Title.scss';
+@import '../components/shared/TransparentButton.scss';
 @import '../components/shared/TurnOrder.scss';
 @import '../components/shared/Ribbon.scss';
 @import '../components/shared/StepSwitcher.scss';
@@ -54,6 +55,7 @@
 @import '../games/detetives-imaginativos/detetives-imaginativos';
 @import '../games/espiao-entre-nos/espiao-entre-nos';
 @import '../games/galeria-de-sonhos/galeria-de-sonhos';
+@import '../games/linhas-cruzadas/linhas-cruzadas';
 @import '../games/mente-coletiva/mente-coletiva';
 @import '../games/na-rua-do-medo/na-rua-do-medo';
 @import '../games/onda-telepatica/onda-telepatica';

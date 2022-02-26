@@ -54,6 +54,7 @@ export const prepareSetupPhase = async (additionalData: PlainObject): Promise<Sa
         suspects,
         perpetrator,
         groupScore: 0,
+        history: [],
       },
     },
   };
@@ -161,12 +162,21 @@ export const prepareTrialPhase = async (
   state: FirebaseStateData,
   additionalPayload: PlainObject
 ): Promise<SaveGamePayload> => {
+  const testimony = additionalPayload?.testimony ?? state.testimony;
+
+  const history = [...state.history];
+  history.push({
+    ...state.question,
+    answer: testimony,
+  });
+
   // Save
   return {
     update: {
       state: {
         phase: TESTEMUNHA_OCULAR_PHASES.TRIAL,
         testimony: additionalPayload?.testimony ?? state.testimony,
+        history,
       },
     },
   };
@@ -177,6 +187,14 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   additionalPayload: PlainObject
 ): Promise<SaveGamePayload> => {
+  const testimony = additionalPayload?.testimony ?? state.testimony;
+
+  const history = [...state.history];
+  history.push({
+    ...state.question,
+    answer: testimony,
+  });
+
   // Save
   return {
     update: {
@@ -192,6 +210,7 @@ export const prepareGameOverPhase = async (
         perpetrator: state.perpetrator,
         groupScore: state.groupScore,
         outcome: additionalPayload?.win ? 'WIN' : 'LOSE',
+        history,
       },
     },
   };

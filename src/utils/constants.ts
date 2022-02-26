@@ -73,6 +73,10 @@ export const TAG_DICT: TagDict = {
     label: 'discussão/fala',
     color: 'geekblue',
   },
+  'push-your-luck': {
+    label: 'sorte',
+    color: 'pink',
+  },
 };
 
 type AvatarDict = {

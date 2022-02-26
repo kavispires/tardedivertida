@@ -101,10 +101,6 @@ const components = [
     name: 'Law',
   },
   {
-    component: <icons.LoadingClock />,
-    name: 'LoadingClock',
-  },
-  {
     component: <icons.Multitask />,
     name: 'Multitask',
   },

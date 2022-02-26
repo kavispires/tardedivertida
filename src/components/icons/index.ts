@@ -1,8 +1,7 @@
-export * from './LoadingClock';
-
 export * from './AlarmClock';
 export * from './Alert';
 export * from './AnimatedClock';
+export * from './AnimatedLoader';
 export * from './AnimatedVideoConference';
 export * from './Anonymous';
 export * from './Arrow';

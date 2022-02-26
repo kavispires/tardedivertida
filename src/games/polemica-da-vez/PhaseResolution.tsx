@@ -14,8 +14,10 @@ import {
   Title,
   RankingBoard,
   AdminNextRoundButton,
+  ButtonContainer,
 } from '../../components';
 import { StepResolution } from './StepResolution';
+import { Button } from 'antd';
 
 function PhaseReact({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -27,7 +29,7 @@ function PhaseReact({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           type="review"
-          title={translate('Qual a polêmica da vez?', "What's trending now?")}
+          title={translate('Resultado', 'Results')}
           onClose={() => setStep(1)}
           currentRound={state?.round?.current}
         >
@@ -65,6 +67,11 @@ function PhaseReact({ state, players, info }: PhaseProps) {
         <Step fullWidth>
           <Title>Ranking</Title>
           <RankingBoard ranking={state.ranking} players={players} />
+          <ButtonContainer>
+            <Button onClick={() => setStep(1)} ghost>
+              <Translate pt="Ver resultado novamente" en="See results again" />
+            </Button>
+          </ButtonContainer>
           <AdminNextRoundButton round={state.round} />
         </Step>
       </StepSwitcher>

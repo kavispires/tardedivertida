@@ -1,11 +1,12 @@
 // Hooks
 import { useLanguage } from '../../hooks';
 // Components
-import { AdminNextRoundButton, Step, Title, Translate } from '../../components';
+import { AdminNextRoundButton, PopoverRule, Step, Title, Translate } from '../../components';
 import { PlayersDecisionList } from './PlayersDecisionList';
 import { PlayersDecisionResult } from './PlayersDecisionResult';
 import { PlayerStats } from './PlayerStats';
 import { Street } from './Street';
+import { CardCountExplanation } from './RulesBlobs';
 
 type StepResultProps = {
   players: GamePlayers;
@@ -38,6 +39,8 @@ export function StepResult({
       <Title>
         <Translate pt="Decisões" en="Decisions" />
       </Title>
+
+      <PopoverRule content={<CardCountExplanation />} />
 
       <PlayersDecisionResult
         players={players}

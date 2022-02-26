@@ -18,7 +18,7 @@ function PhaseGameOver({ state, players, info }: PhaseProps) {
   return (
     <GameOverWrapper info={info} state={state} announcementIcon="trophy">
       <ul>
-        {crimes.map((crime) => (
+        {/* {crimes.map((crime) => (
           <Crime
             key={`crime-by-${crime.playerId}`}
             user={user}
@@ -30,7 +30,7 @@ function PhaseGameOver({ state, players, info }: PhaseProps) {
             weapons={weapons}
             evidences={evidences}
           />
-        ))}
+        ))} */}
       </ul>
     </GameOverWrapper>
   );

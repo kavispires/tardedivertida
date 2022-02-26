@@ -17,6 +17,7 @@ import {
   Title,
   Translate,
   AvatarIcon,
+  TransparentButton,
 } from '../../components';
 import { WitnessRules } from './TextBlobs';
 
@@ -35,7 +36,7 @@ function PhaseWitnessSelection({ state, players, info }: PhaseProps) {
       allowedPhase={PHASES.TESTEMUNHA_OCULAR.WITNESS_SELECTION}
       className="t-phase"
     >
-      <StepSwitcher step={step}>
+      <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
           type="crime-scene"
@@ -78,14 +79,13 @@ function PhaseWitnessSelection({ state, players, info }: PhaseProps) {
               {Object.values(players).map((player) => {
                 if (isAdmin) {
                   return (
-                    <button
+                    <TransparentButton
                       key={`p-bt-${player.id}`}
                       disabled={isLoading}
                       onClick={() => onWitnessButtonClick({ witnessId: player.id })}
-                      className="reset-button invisible-button"
                     >
                       <AvatarCard key={`p-a-${player.id}`} player={player} withName addressUser />
-                    </button>
+                    </TransparentButton>
                   );
                 }
 

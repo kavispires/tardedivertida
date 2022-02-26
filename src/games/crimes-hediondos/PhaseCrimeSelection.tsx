@@ -1,6 +1,6 @@
 import { useState } from 'react';
 // State & Hooks
-import { useIsUserReady, useUser, useLanguage } from '../../hooks';
+import { useIsUserReady, useUser, useLanguage, useMock } from '../../hooks';
 // Resources & Utils
 import { PHASES } from '../../utils/phases';
 // Components
@@ -19,6 +19,7 @@ import { StepLocationSelection } from './StepLocationSelection';
 import { StepReviewCrime } from './StepReviewCrime';
 import { StepReasonForEvidence } from './StepReasonForEvidence';
 import { useOnSubmitCrimeAPIRequest } from './_api-requests';
+import { mockCrime } from './mock';
 
 function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
@@ -43,6 +44,12 @@ function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
   const updateSelection = (payload: PlainObject) => {
     setSelections((s: SubmitCrimePayload) => ({ ...s, ...payload }));
   };
+
+  useMock(() => {
+    if (step === 1) {
+      onSubmitCrimeRequest(mockCrime(state.groupedItems[user.itemGroupIndex]));
+    }
+  }, [step]);
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.CRIMES_HEDIONDOS.CRIME_SELECTION}>
@@ -133,6 +140,7 @@ function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
 
         {/* Step 8 */}
         <StepLocationSelection
+          user={user}
           items={state.items}
           groupedItems={state.groupedItems}
           locationTiles={state.locationTiles}
@@ -157,6 +165,7 @@ function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
           selections={selections}
           onSubmitCrime={onSubmitCrime}
           updateSelection={updateSelection}
+          players={players}
         />
       </StepSwitcher>
     </PhaseContainer>

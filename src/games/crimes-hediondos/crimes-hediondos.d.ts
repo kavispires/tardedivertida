@@ -1,4 +1,4 @@
-type CrimesHediondosCard = {
+type HCard = {
   id: string;
   type: string;
   name: DualLanguageValue;
@@ -9,7 +9,7 @@ type GroupedItems = {
 };
 
 type ItemsDict = {
-  [key: string]: CrimesHediondosCard;
+  [key: string]: HCard;
 };
 
 type SceneTile = {
@@ -54,4 +54,10 @@ type SubmitMarkPayload = {
 
 type SubmitGuessesPayload = {
   guesses: PlainObject;
+};
+
+type Guess = {
+  weaponId: string;
+  evidenceId: string;
+  isComplete: boolean;
 };

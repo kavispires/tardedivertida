@@ -1,6 +1,6 @@
 // Constants
 import { GAME_COLLECTIONS } from '../../utils/constants';
-import { ARTE_RUIM_PHASES, PLAYER_COUNT, MAX_ROUNDS } from './constants';
+import { ARTE_RUIM_PHASES, PLAYER_COUNTS, MAX_ROUNDS } from './constants';
 // Types
 import { GameId, GameName, Language, Players } from '../../utils/types';
 import { ArteRuimGameOptions, ArteRuimInitialState, ArteRuimSubmitAction } from './types';
@@ -37,7 +37,7 @@ export const getInitialState = (
     gameName: GAME_COLLECTIONS.ARTE_RUIM,
     uid,
     language,
-    playerCount: PLAYER_COUNT,
+    playerCounts: PLAYER_COUNTS,
     initialPhase: ARTE_RUIM_PHASES.LOBBY,
     totalRounds: MAX_ROUNDS,
     store: {
@@ -54,7 +54,7 @@ export const getInitialState = (
 /**
  * Exposes min and max player count
  */
-export const playerCount = PLAYER_COUNT;
+export const playerCounts = PLAYER_COUNTS;
 
 /**
  *

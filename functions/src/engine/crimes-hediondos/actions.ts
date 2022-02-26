@@ -42,7 +42,6 @@ export const handleSubmitMark = async (
     playerId,
     actionText: 'submit your mark',
     shouldReady: true,
-    // change: { [`scenes.${sceneId}`]: sceneIndex },
     change: { sceneIndex },
     nextPhaseFunction: getNextPhase,
   });
@@ -54,6 +53,8 @@ export const handleSubmitGuesses = async (
   playerId: PlayerId,
   guesses: PlainObject
 ) => {
+  // TODO, update guessing history
+
   return await firebaseUtils.updatePlayer({
     collectionName,
     gameId,

@@ -1,6 +1,6 @@
 // Constants
 import { GAME_COLLECTIONS } from '../../utils/constants';
-import { MAX_ROUNDS, PLAYER_COUNT, TESTEMUNHA_OCULAR_PHASES } from './constants';
+import { MAX_ROUNDS, PLAYER_COUNTS, TESTEMUNHA_OCULAR_PHASES } from './constants';
 // Types
 import { GameId, PlainObject, Players } from '../../utils/types';
 import { TestemunhaOcularInitialState, TestemunhaOcularSubmitAction } from './types';
@@ -37,7 +37,7 @@ export const getInitialState = (
     gameName: GAME_COLLECTIONS.TESTEMUNHA_OCULAR,
     uid,
     language,
-    playerCount: PLAYER_COUNT,
+    playerCounts: PLAYER_COUNTS,
     initialPhase: TESTEMUNHA_OCULAR_PHASES.LOBBY,
     totalRounds: MAX_ROUNDS,
     store: {
@@ -51,7 +51,7 @@ export const getInitialState = (
 /**
  * Exposes min and max player count
  */
-export const playerCount = PLAYER_COUNT;
+export const playerCounts = PLAYER_COUNTS;
 
 export const getNextPhase = async (
   collectionName: string,

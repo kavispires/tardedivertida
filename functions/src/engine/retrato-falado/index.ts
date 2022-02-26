@@ -1,6 +1,6 @@
 // Constants
 import { GAME_COLLECTIONS } from '../../utils/constants';
-import { MAX_ROUNDS, PLAYER_COUNT, RETRATO_FALADO_PHASES } from './constants';
+import { MAX_ROUNDS, PLAYER_COUNTS, RETRATO_FALADO_PHASES } from './constants';
 // Types
 import { GameId, GameName, Language, Players } from '../../utils/types';
 import { RetratoFaladoInitialState, RetratoFaladoSubmitAction } from './types';
@@ -36,7 +36,7 @@ export const getInitialState = (
     gameName: GAME_COLLECTIONS.RETRATO_FALADO,
     uid,
     language,
-    playerCount: PLAYER_COUNT,
+    playerCounts: PLAYER_COUNTS,
     initialPhase: RETRATO_FALADO_PHASES.LOBBY,
     totalRounds: MAX_ROUNDS,
     store: {
@@ -50,7 +50,7 @@ export const getInitialState = (
 /**
  * Exposes min and max player count
  */
-export const playerCount = PLAYER_COUNT;
+export const playerCounts = PLAYER_COUNTS;
 
 /**
  *

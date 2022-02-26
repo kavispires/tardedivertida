@@ -250,7 +250,7 @@ export const parseDecisions = (
   let leftover = goingHomeCount ? totalCandy % goingHomeCount : totalCandy;
 
   goingHomePlayers.forEach((player) => {
-    player.totalCandy = player.hand + candyPerPlayer;
+    player.totalCandy += player.hand + candyPerPlayer;
     player.hand = 0;
     player.isTrickOrTreating = false;
   });

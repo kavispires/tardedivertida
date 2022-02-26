@@ -44,11 +44,6 @@ All file paths here are relative to `/src`.
 - Add a banner image for your game in `../public/images/banners/`.
 - The naming convention is `game-image-<game-name>-<language>.jpg`.
 
-### Rules Images
-
-- Add rules images in `../public/images/rules/` following the same array of rules in games.json.
-- The naming convention is `game-rule-<game-name>-<rule-index>.jpg`.
-
 ### Setup Basic Game files
 
 - Create a folder with the game name under `/games/`.
@@ -65,3 +60,8 @@ All file paths here are relative to `/src`.
 # Customize the Lobby "clouds" background
 
 - By changing the settings here: `src/components/lobby/_internal/CloudBackground.tsx`
+
+### Rules Images
+
+- Add rules images in `../public/images/rules/` following the same array of rules in games.json.
+- The naming convention is `game-rule-<game-name>-<rule-index>.jpg`.

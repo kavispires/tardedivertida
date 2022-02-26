@@ -41,8 +41,8 @@
       "en": true
     },
     "options": [
-      { "label": "Use All Cards", "key": "useAllCards" },
-      { "label": "Short Game (5 rounds)", "key": "shortGame" }
+      { "label": "Cards", "key": "useAllCards", "off": "Unique cards", "on": "All cards" },
+      { "label": "Duration", "key": "shortGame", "off": "50 points/10 rounds", "on": "5 rounds" }
     ]
   },
   "B": {
@@ -116,8 +116,10 @@
     },
     "options": [
       {
-        "label": "For (30) points INSTEAD OF Each player twice (1-6p) or once (7p+)",
-        "key": "forPoints"
+        "label": "Duration",
+        "key": "fixedRounds",
+        "off": "30 points/15 rounds",
+        "on": "Each player once (7+) or twice (1-6)"
       }
     ]
   },
@@ -154,7 +156,7 @@
       "min": 3,
       "max": 10
     },
-    "tags": ["competitive", "turn-based", "traitor", "discussion", "images", "writing"],
+    "tags": ["competitive", "turn-based", "traitor", "discussion", "images", "writing", "voting"],
     "available": {
       "pt": true,
       "en": true
@@ -190,7 +192,7 @@
       "min": 4,
       "max": 10
     },
-    "tags": ["competitive", "same-time", "traitor", "discussion", "timed"],
+    "tags": ["competitive", "same-time", "traitor", "discussion", "timed", "voting"],
     "available": {
       "pt": true,
       "en": true
@@ -218,7 +220,7 @@
       "min": 4,
       "max": 10
     },
-    "tags": ["competitive", "turn-based", "drawing", "guessing"],
+    "tags": ["competitive", "turn-based", "drawing", "guessing", "timed"],
     "available": {
       "pt": false,
       "en": false
@@ -274,7 +276,7 @@
       "min": 3,
       "max": 10
     },
-    "tags": ["competitive", "guessing"],
+    "tags": ["competitive", "same-time", "pairing"],
     "available": {
       "pt": true,
       "en": true
@@ -339,14 +341,14 @@
   "L": {
     "gameCode": "L",
     "gameName": "linhas-cruzadas",
-    "version": "none",
+    "version": "beta",
     "title": {
       "pt": "Linhas Cruzadas",
       "en": "Mis...communication"
     },
     "basedOn": "snoitartseleT",
     "summary": {
-      "pt": "Desenhe... adivinhar... repita...",
+      "pt": "Desenhe... adivinhe... repita...",
       "en": "Draw... guess... repeat..."
     },
     "rules": {
@@ -360,12 +362,17 @@
     },
     "tags": ["cooperative", "drawing", "guessing"],
     "available": {
-      "pt": false,
-      "en": false
+      "pt": true,
+      "en": true
     },
     "options": [
-      { "label": "Normal", "key": "NORMAL" },
-      { "label": "Arte Ruim Cards", "key": "ARTE_RUIM_CARDS" }
+      {
+        "label": "Cards Type",
+        "key": "singleWordOnly",
+        "off": "Words and Expressions",
+        "on": "Only Single Words"
+      },
+      { "label": "Card Distribution", "key": "evenDistribution", "off": "Random", "on": "Even" }
     ]
   },
   "M": {
@@ -406,7 +413,7 @@
   "N": {
     "gameCode": "N",
     "gameName": "na-rua-do-medo",
-    "version": "beta",
+    "version": "1.0",
     "title": {
       "pt": "Na Rua do Medo",
       "en": "Fear Street"
@@ -418,7 +425,7 @@
     },
     "rules": {
       "pt": [
-        "É Halloween e somos um bando de crianças medrosas indo coletar gostosuras de ponta em porta nas Ruas do Medo",
+        "É Halloween e somos um bando de crianças medrosas indo coletar gostosuras de porta em porta nas Ruas do Medo",
         "Nós combinamos que dividiremos todos os doces igualmente e qualquer sobra deixaremos no passeio",
         "Se encontramos alguém fantasiado de monstro, sem problemas, a gente aguenta uma vez, mas se um mesmo mostro aparece uma segunda vez, a gente entra em desespero, jogamos os doces pra cima e saímos correndo",
         "Mas andaremos de vagar, e após cada carta casa é revelada (mostrando doces ou monstros), você escolher se deseja continuar ou voltar pra casa",
@@ -439,12 +446,12 @@
       "min": 3,
       "max": 10
     },
-    "tags": ["competitive"],
+    "tags": ["competitive", "same-time", "push-your-luck"],
     "available": {
       "pt": true,
       "en": true
     },
-    "options": [{ "label": "Short Game (3 rounds instead of 5)", "key": "shortGame" }]
+    "options": [{ "label": "Game Length", "key": "shortGame", "off": "5 streets", "on": "3 streets" }]
   },
   "O": {
     "gameCode": "O",
@@ -484,7 +491,7 @@
       "min": 3,
       "max": 10
     },
-    "tags": ["competitive", "guessing"],
+    "tags": ["competitive", "turn-based", "writing", "guessing"],
     "available": {
       "pt": true,
       "en": true
@@ -493,7 +500,7 @@
   "P": {
     "gameCode": "P",
     "gameName": "polemica-vez",
-    "version": "2.0",
+    "version": "2.1",
     "title": {
       "pt": "Polêmica da Vez",
       "en": "That's Polemic"
@@ -526,11 +533,7 @@
     "available": {
       "pt": true,
       "en": true
-    },
-    "options": [
-      { "label": "Short (3 points)", "key": "SHORT_GAME" },
-      { "label": "Long (5 points)", "key": "LONG_GAME" }
-    ]
+    }
   },
   "Q": {
     "gameCode": "Q",
@@ -622,7 +625,7 @@
       "min": 2,
       "max": 10
     },
-    "tags": ["competitive", "images", "pairing"],
+    "tags": ["competitive", "images", "writing", "pairing"],
     "available": {
       "pt": true,
       "en": true
@@ -631,7 +634,7 @@
   "T": {
     "gameCode": "T",
     "gameName": "testemunha-ocular",
-    "version": "2.0",
+    "version": "2.1.1",
     "title": {
       "pt": "Testemunha Ocular",
       "en": "Eye Witness"
@@ -730,7 +733,7 @@
       "min": 4,
       "max": 10
     },
-    "tags": ["cooperative", "writing", "guessing"],
+    "tags": ["cooperative", "same-time", "writing", "guessing"],
     "available": {
       "pt": false,
       "en": false
@@ -765,12 +768,12 @@
       "min": 3,
       "max": 10
     },
-    "tags": ["competitive"],
+    "tags": ["competitive", "same-time", "writing", "pairing"],
     "available": {
       "pt": true,
       "en": true
     },
-    "options": [{ "label": "Larger Grid", "key": "largerGrid" }]
+    "options": [{ "label": "Grid", "key": "largerGrid", "off": "Normal", "on": "Larger" }]
   },
   "Y": {
     "gameCode": "Y",
@@ -794,7 +797,7 @@
       "min": 3,
       "max": 10
     },
-    "tags": ["competitive", "turn-based", "images"],
+    "tags": ["competitive", "writing", "turn-based", "images"],
     "available": {
       "pt": false,
       "en": false

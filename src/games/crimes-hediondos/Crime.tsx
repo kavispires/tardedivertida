@@ -5,53 +5,26 @@ import {
   GiftOutlined,
   SafetyOutlined,
 } from '@ant-design/icons';
-import { Select } from 'antd';
 import clsx from 'clsx';
-import { useEffect, useState } from 'react';
-import { Avatar, Translate } from '../../components';
+import { Avatar } from '../../components';
 import { useLanguage } from '../../hooks';
 import { getAvatarColorById } from '../../utils/helpers';
 import { ItemCard } from './ItemCard';
 
 type CrimeProps = {
   user: GamePlayer;
+  crime: Crime;
+  items: ItemsDict;
   players: GamePlayers;
   scenes: ScenesDict;
   scenesOrder: string[];
-  crime: Crime;
-  items: ItemsDict;
-  evidences: CrimesHediondosCard[];
-  weapons: CrimesHediondosCard[];
-  onUpdateGuesses?: GenericFunction;
-  showAnswers?: boolean;
+  selections: Guess;
+  weapons: HCard[];
+  evidences: HCard[];
 };
 
-export function Crime({
-  crime,
-  players,
-  scenesOrder,
-  scenes,
-  user,
-  items,
-  weapons,
-  evidences,
-  onUpdateGuesses,
-  showAnswers = false,
-}: CrimeProps) {
+export function Crime({ crime, players, scenesOrder, scenes, selections, user, items }: CrimeProps) {
   const player = players[crime.playerId];
-  const [selections, setSelections] = useState<PlainObject>({});
-
-  const onSelect = (e: any) => {
-    const newSelections = {
-      ...selections,
-      [e.type]: e.itemId,
-    };
-
-    setSelections(newSelections);
-    onUpdateGuesses!({ ...newSelections, playerId: player.id });
-  };
-
-  const isComplete = selections.weapon && selections.evidence;
 
   return (
     <div className="h-crime">
@@ -79,34 +52,16 @@ export function Crime({
       </div>
 
       <div className="h-crime-selections">
-        <ItemSelector
-          user={user}
-          items={items}
-          itemsList={weapons}
-          type={'weapon'}
-          onSelect={onSelect}
-          playerId={player.id}
-          hideSelector={!Boolean(onUpdateGuesses)}
-          itemId={showAnswers ? crime.weaponId : undefined}
-        />
+        <ItemCard item={items[selections?.weaponId ?? user.weaponId]} cardWidth={100} preview />
 
-        <ItemSelector
-          user={user}
-          items={items}
-          itemsList={evidences}
-          type={'evidence'}
-          onSelect={onSelect}
-          playerId={player.id}
-          hideSelector={!Boolean(onUpdateGuesses)}
-          itemId={showAnswers ? crime.evidenceId : undefined}
-        />
+        <ItemCard item={items[selections?.evidenceId ?? user.evidenceId]} cardWidth={100} preview />
       </div>
 
       <div
         className="h-crime__player"
-        style={{ backgroundColor: isComplete ? getAvatarColorById(player.avatarId) : undefined }}
+        style={{ backgroundColor: selections?.isComplete ? getAvatarColorById(player.avatarId) : undefined }}
       >
-        {isComplete && <CheckCircleFilled />}
+        {selections?.isComplete && <CheckCircleFilled />}
       </div>
     </div>
   );
@@ -144,77 +99,4 @@ function CrimeSceneIcon({ type }: CrimeSceneIconProps) {
     default:
       return <ExceptionOutlined />;
   }
-}
-
-type ItemSelectorProps = {
-  user: GamePlayer;
-  items: ItemsDict;
-  itemsList: CrimesHediondosCard[];
-  type: 'weapon' | 'evidence';
-  onSelect: GenericFunction;
-  playerId: PlayerId;
-  hideSelector?: boolean;
-  itemId?: string;
-};
-
-function ItemSelector({
-  items,
-  itemsList,
-  user,
-  type,
-  onSelect,
-  playerId,
-  hideSelector = false,
-  itemId,
-}: ItemSelectorProps) {
-  const [selectedItem, setSelected] = useState<CrimesHediondosCard>();
-  const { language } = useLanguage();
-
-  useEffect(() => {
-    if (itemId) {
-      setSelected(items[itemId]);
-    } else {
-      if (user.id === playerId) {
-        setSelected(items[user[`${type}Id`]]);
-      } else {
-        setSelected(items[user.guesses?.[playerId]?.[type]]);
-      }
-    }
-  }, []); //eslint-disable-line
-
-  const onSetSelected = (itemId: string) => {
-    setSelected(itemsList.find((i) => i.id === itemId));
-    onSelect({
-      playerId,
-      type,
-      itemId,
-    });
-  };
-
-  return (
-    <div className="h-item-selector">
-      {!hideSelector && (
-        <Select
-          defaultValue={user.guesses?.[playerId]?.[type] || ''}
-          onChange={onSetSelected}
-          style={{ width: '100px' }}
-        >
-          <Select.Option value="" disabled>
-            {type === 'weapon' ? (
-              <Translate pt="Arma" en="Weapon" />
-            ) : (
-              <Translate pt="Evidência" en="Evidence" />
-            )}
-          </Select.Option>
-          {itemsList.map((item) => (
-            <Select.Option key={item.id} value={item.id}>
-              {item.name[language].toUpperCase()}
-            </Select.Option>
-          ))}
-        </Select>
-      )}
-
-      {selectedItem && <ItemCard item={selectedItem} cardWidth={100} preview />}
-    </div>
-  );
 }
