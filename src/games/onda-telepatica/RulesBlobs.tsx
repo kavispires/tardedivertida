@@ -1,5 +1,4 @@
-// Components
-import { PopoverRule, Translate } from '../../components';
+import { Instruction, PopoverRule, Translate } from '../../components';
 
 function RulesPt() {
   return (
@@ -32,4 +31,32 @@ function RulesEn() {
 
 export function ClueWritingRules() {
   return <PopoverRule content={<Translate pt={<RulesPt />} en={<RulesEn />} />} />;
+}
+
+export function ScoringRules() {
+  return (
+    <Instruction contained>
+      <Translate
+        pt={
+          <>
+            Jogadores ganham 4 pontos se acertarem na mosca!
+            <br />
+            Mas 3 e 2 pontos se votaram 1 ou 2 espaços de distância.
+            <br />O Medium ganha 1 ponto para cada jogador que ganhou ponto (máximo 3 pontos) e se ele(a)
+            chutou a quantidade certa de jogadores que iam acertar, ele ganha mais 2 pontos.
+          </>
+        }
+        en={
+          <>
+            Players get 4 points if they get it exactly right!
+            <br />
+            If one or two spaces away from the needle, they get 3 and 2 points respectively.
+            <br />
+            The psychic gets 1 point for every player that got points this turn (maximum of 3 points) and may
+            get 2 extra points if they guessed the correct number of player who would get the clue right.
+          </>
+        }
+      />
+    </Instruction>
+  );
 }

@@ -22,7 +22,7 @@ export function StepPsychicGuess({ currentCategory, onSendGuess }: StepPsychicGu
       <Instruction contained>
         <Translate
           pt="Você como Medium agora pode tentar adivinhar quantas pessoas irão ganhar pontos com sua dica. Lembre-se que ganhar pontos significa acertar o numero ou qualquer um dos dois espaços em cada lado do ponteiro."
-          en="You as the Psychic can now try to guess how many people will get points with your clue. Remember that players get points by getting the right number or any of the two neighboring numbers."
+          en="You as the Psychic can now try to guess how many people will get points with your clue. Remember that players get points by getting the right number or any of the two neighboring numbers on each side."
         />
       </Instruction>
       <ButtonContainer>

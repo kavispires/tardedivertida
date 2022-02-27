@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { orderBy } from 'lodash';
 // Components
 import {
   Avatar,
@@ -13,6 +14,7 @@ import {
 } from '../../components';
 import { Dial } from './Dial';
 import { getGuessResultClass, getPoints } from './helpers';
+import { ScoringRules } from './RulesBlobs';
 
 type SentenceProps = {
   currentCategory: OCurrentCategory;
@@ -26,7 +28,8 @@ function Sentence({ currentCategory }: SentenceProps) {
       <Translate pt="na escala" en="on the scale" />{' '}
       <strong>
         {currentCategory.left}-{currentCategory.right}
-      </strong>{' '}
+      </strong>
+      :
     </>
   );
 }
@@ -42,8 +45,8 @@ export function StepReveal({ setStep, currentCategory, players, psychic }: StepR
   const regularPlayers = Object.values(players).filter((p) => p.id !== psychic.id);
 
   return (
-    <Step className="o-dial-guess-selection">
-      <Title level={2}>
+    <Step>
+      <Title level={2} className="o-step-reveal-title">
         <Sentence currentCategory={currentCategory} />
       </Title>
 
@@ -57,13 +60,15 @@ export function StepReveal({ setStep, currentCategory, players, psychic }: StepR
               {psychic.guess ? 'sim' : 'não'}
             </>
           }
-          en={`Are you in sync? ${(<AvatarName player={psychic} />)} ${
-            psychic.guess ? 'does' : "doesn't"
-          } think so`}
+          en={
+            <>
+              Are you in sync? <AvatarName player={psychic} /> {psychic.guess ? 'does' : "doesn't"} think so
+            </>
+          }
         />
       </Instruction>
       <ul className="o-player-guesses">
-        {regularPlayers.map((player) => {
+        {orderBy(regularPlayers, ['guess', 'name']).map((player) => {
           return (
             <li className="o-player-guess" key={player.id}>
               <span
@@ -88,20 +93,8 @@ export function StepReveal({ setStep, currentCategory, players, psychic }: StepR
       </ul>
 
       <PopoverRule
-        label={
-          <span>
-            <Translate pt="Como a pontuação funciona?" en="How does scoring work?" />
-          </span>
-        }
-        content={
-          <Instruction contained>
-            <Translate
-              pt="Jogadores ganham 4 pontos se acertarem na mosca! Mas 3 e 2 pontos se votaram 1 ou 2 espaços de distância. O Medium ganha 1 ponto para cada jogador que ganhou ponto, num máximo de 3 pontos e se ele(a) chutou a quantidade certa de jogadores que iam acertar, ele ganha mais 2 pontos."
-              en="Players get 4 points if they get it exactly right! If one or two spaces away from the needle, they get 3 and 2 points respectively. The psychic gets 1 point for every player that got points this turn (maximum of 3 points) and may get 2 extra points if they guessed the correct number of player who would get the clue right."
-            />
-          </Instruction>
-        }
-        showLabel={false}
+        // label={<Translate pt="Como a pontuação funciona?" en="How does scoring work?" />}
+        content={<ScoringRules />}
       />
 
       <TimedButton

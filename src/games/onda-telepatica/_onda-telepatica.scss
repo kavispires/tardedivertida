@@ -264,6 +264,10 @@ $base-angle: 8deg;
   }
 }
 
+.o-step-reveal-title {
+  max-width: 60vw;
+}
+
 @keyframes fan-out {
   from {
     opacity: 0;
