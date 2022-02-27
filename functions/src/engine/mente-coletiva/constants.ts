@@ -20,6 +20,8 @@ export const QUESTIONS_PER_ROUND = 3;
 
 export const PASTURE_GAME_OVER_THRESHOLD = 5;
 
+export const SHORT_PASTURE_GAME_OVER_THRESHOLD = 3;
+
 export const ROUND_TYPES = {
   0: 'ONE_IN_ONE_OUT',
   1: 'ONE_OUT',

@@ -378,7 +378,7 @@
   "M": {
     "gameCode": "M",
     "gameName": "mente-coletiva",
-    "version": "1.1",
+    "version": "2.0",
     "title": {
       "pt": "Mente Coletiva",
       "en": "Herd Mentality"
@@ -408,7 +408,8 @@
     "available": {
       "pt": true,
       "en": true
-    }
+    },
+    "options": [{ "label": "Duration", "key": "shortPasture", "off": "5 Pastures", "on": "3 Pastures" }]
   },
   "N": {
     "gameCode": "N",

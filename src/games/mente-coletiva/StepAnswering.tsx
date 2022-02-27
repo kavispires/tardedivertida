@@ -4,46 +4,31 @@ import { Button, Input } from 'antd';
 // Hooks
 import { useLanguage, useMock } from '../../hooks';
 // Utils
-import { getEntryId, shuffle } from '../../utils/helpers';
+import { getEntryId } from '../../utils/helpers';
+import { mockAnswers } from './mock';
 // Components
 import { ButtonContainer, PopoverRule, Step, Title, Translate } from '../../components';
 import { Pasture } from './Pasture';
-import { RoundType } from './RoundType';
 import { Question } from './Question';
 import { AnsweringRules } from './RulesBlobs';
 
-const mockAnswers = (userId: PlayerId, numAnswers: number) => {
-  const list = ['agua', 'bola', 'coco', 'dedo', 'egua', 'flauta', 'gatilho', 'hélio', 'jaguar'];
-  const list2 = ['água', 'bola', 'cocô', 'dedo', 'égua', 'flauta', 'gatilho', 'helio', 'jipe'];
-  // const list = ['abacaxi', 'maça', 'pera', 'mamão', 'manga', 'tomate'];
-  // const list2 = ['abacaxi', 'macã', 'pêra', 'pêssego', 'manga', 'melancia'];
-
-  const shuffled = shuffle(Math.random() > 0.5 ? list : list2);
-
-  return Array(numAnswers)
-    .fill(0)
-    .map((i, index) => ({ [getEntryId(['answer', `${index}`, userId])]: shuffled[i + index] }))
-    .reduce((acc, item) => {
-      acc = { ...acc, ...item };
-      return acc;
-    }, {});
-};
-
-type AnsweringStepProps = {
+type StepAnsweringProps = {
   currentQuestion: MQuestion;
   onSubmitAnswers: GenericFunction;
   players: GamePlayers;
   roundType: number;
   user: GamePlayer;
+  pastureSize: number;
 };
 
-export function AnsweringStep({
+export function StepAnswering({
   user,
   currentQuestion,
   players,
   roundType,
   onSubmitAnswers,
-}: AnsweringStepProps) {
+  pastureSize,
+}: StepAnsweringProps) {
   const { translate } = useLanguage();
   const [answers, setAnswers] = useState({});
 
@@ -107,9 +92,7 @@ export function AnsweringStep({
         </ButtonContainer>
       </div>
 
-      <RoundType roundType={roundType} />
-
-      <Pasture players={players} />
+      <Pasture players={players} pastureSize={pastureSize} roundType={roundType} />
     </Step>
   );
 }

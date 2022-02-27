@@ -3,7 +3,7 @@ import { GAME_COLLECTIONS } from '../../utils/constants';
 import { MENTE_COLETIVA_PHASES, MAX_ROUNDS, PLAYER_COUNTS } from './constants';
 // Types
 import { GameId, Language, Players } from '../../utils/types';
-import { MenteColetivaInitialState, MenteColetivaSubmitAction } from './types';
+import { MenteColetivaInitialState, MenteColetivaOptions, MenteColetivaSubmitAction } from './types';
 // Utilities
 import * as firebaseUtils from '../../utils/firebase';
 import * as utils from '../../utils/helpers';
@@ -30,7 +30,8 @@ import { handleAddAnswer, handleNextAnswers, handleSubmitAnswers, handleSubmitQu
 export const getInitialState = (
   gameId: GameId,
   uid: string,
-  language: Language
+  language: Language,
+  options: MenteColetivaOptions
 ): MenteColetivaInitialState => {
   return utils.getDefaultInitialState({
     gameId,
@@ -46,6 +47,7 @@ export const getInitialState = (
       gameOrder: [],
       pastQuestions: [],
     },
+    options,
   });
 };
 
@@ -70,7 +72,7 @@ export const getNextPhase = async (
   const store = { ...(storeDoc.data() ?? {}) };
 
   // Determine if it's game over
-  const isGameOver = determineGameOver(players);
+  const isGameOver = determineGameOver(players, store.options?.shortPasture);
   // Determine next phase
   const nextPhase = determineNextPhase(state?.phase, state.round.current, isGameOver, state?.lastRound);
 

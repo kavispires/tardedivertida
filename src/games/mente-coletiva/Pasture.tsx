@@ -5,19 +5,26 @@ import { useDimensions } from '../../hooks';
 // Utils
 import { PUBLIC_URL } from '../../utils/constants';
 // Components
-import { SheepAvatar } from '../../components/avatars';
+import { SheepAvatar } from '../../components';
+import { RoundType } from './RoundType';
 
 type PastureProps = {
   players: GamePlayers;
-  pastureSize?: 3 | 5;
+  pastureSize?: number;
+  roundType?: number;
 };
 
-export function Pasture({ players, pastureSize = 5 }: PastureProps) {
+export function Pasture({ players, pastureSize = 5, roundType }: PastureProps) {
   const [width] = useDimensions();
+  const isShortPasture = pastureSize === 3;
 
-  const pastureWidth = Math.min(width, 1360) - 36;
-  const pastureHeight = pastureWidth / 4;
+  const pastureBase = Math.min(width, 1360) - 36;
+  const pastureWidth = pastureBase * (isShortPasture ? 0.65 : 1);
+  const pastureHeight = pastureBase / 4;
   const sheepWidth = Math.min(width, 1360) / 22;
+  const gridStyleDistribution = {
+    gridTemplateColumns: isShortPasture ? '1fr 1fr 1fr 0.65fr' : '1fr 1fr 1fr 1fr 1fr 0.65fr',
+  };
 
   const sheepPerEnclosure = useMemo(() => {
     const spe = Array(pastureSize + 1).fill(null);
@@ -32,15 +39,17 @@ export function Pasture({ players, pastureSize = 5 }: PastureProps) {
   }, [players, pastureSize]);
 
   return (
-    <>
-      <div className="m-pasture" style={{ width: `${pastureWidth}px`, height: `${pastureHeight}px` }}>
+    <div className="m-pasture-container" style={{ width: `${pastureWidth}px` }}>
+      {roundType !== undefined && <RoundType roundType={roundType} className="m-pasture-round-type" />}
+
+      <div className="m-pasture" style={{ height: `${pastureHeight}px` }}>
         <img
           src={`${PUBLIC_URL.IN_GAME}m-pasture-${pastureSize}.png`}
           alt="pasture background"
           className="m-pasture__background"
         />
 
-        <div className="m-enclosures">
+        <div className="m-enclosures" style={gridStyleDistribution}>
           {sheepPerEnclosure.map((sheepPlayers, enclosureId) => {
             const enclosureKey = `m-enclosure-${enclosureId}`;
             return (
@@ -77,19 +86,22 @@ export function Pasture({ players, pastureSize = 5 }: PastureProps) {
           alt="fence"
           className="m-pasture__fence"
         />
-      </div>
-      <div className="m-pasture-names" style={{ width: `${Math.min(pastureWidth, 1360)}px` }}>
-        <div className="m-enclosures m-enclosures--names">
-          {sheepPerEnclosure.map((sheepPlayers, index) => {
-            const names = sheepPlayers?.map((p: GamePlayer) => p.name)?.join(',\n') ?? '';
-            return (
-              <span key={`m-enclosure-${index}`} className="m-enclosure-names">
-                {names}
-              </span>
-            );
-          })}
+        <div className="m-pasture-names">
+          <div className="m-enclosures m-enclosures--names" style={gridStyleDistribution}>
+            {sheepPerEnclosure.map((sheepPlayers, index) => {
+              const names = sheepPlayers?.map((p: GamePlayer) => p.name)?.join(',\n') ?? '';
+              return (
+                <span
+                  key={`m-enclosure-${index}`}
+                  className={clsx('m-enclosure-names', names && 'm-enclosure-names--has-names')}
+                >
+                  {names}
+                </span>
+              );
+            })}
+          </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

@@ -1,26 +1,27 @@
 // Components
-import { PopoverRule, Title, Translate } from '../../components';
+import { PopoverRule, Step, Title, Translate } from '../../components';
 import { Pasture } from './Pasture';
-import { RoundType } from './RoundType';
 import { GamePremiseRules } from './RulesBlobs';
 
-type QuestionSelectionProps = {
+type StepQuestionSelectionProps = {
   activePlayer: GamePlayer;
   currentQuestions: MQuestion[];
   onSubmitQuestion: GenericFunction;
   players: GamePlayers;
   roundType: number;
+  pastureSize: number;
 };
 
-export function QuestionSelection({
+export function StepQuestionSelection({
   currentQuestions,
   onSubmitQuestion,
   players,
   roundType,
   activePlayer,
-}: QuestionSelectionProps) {
+  pastureSize,
+}: StepQuestionSelectionProps) {
   return (
-    <div className="m-step">
+    <Step fullWidth className="m-step">
       <Title>
         <Translate pt="Selecione uma das perguntas" en="Select one of the questions" />
       </Title>
@@ -42,9 +43,7 @@ export function QuestionSelection({
         ))}
       </ul>
 
-      <RoundType roundType={roundType} />
-
-      <Pasture players={players} />
-    </div>
+      <Pasture players={players} pastureSize={pastureSize} roundType={roundType} />
+    </Step>
   );
 }

@@ -1,4 +1,16 @@
-import { DefaultState, DefaultStore, InitialState, Payload, PlayerId } from '../../utils/types';
+import {
+  DefaultState,
+  DefaultStore,
+  InitialState,
+  Payload,
+  PlayerAvatarId,
+  PlayerId,
+  PlayerName,
+} from '../../utils/types';
+
+type MenteColetivaOptions = {
+  shortPasture: boolean;
+};
 
 interface Question {
   id: string;
@@ -62,3 +74,16 @@ interface MenteColetivaSubmitAction extends Payload {
 
 type FirebaseStateData = FirebaseFirestore.DocumentData | MenteColetivaState;
 type FirebaseStoreData = FirebaseFirestore.DocumentData | MenteColetivaStore;
+
+type SheepAnimation = {
+  animateRight?: boolean;
+  animateLeft?: boolean;
+};
+
+interface PastureChangeEntry extends SheepAnimation {
+  id: PlayerId;
+  name: PlayerName;
+  avatarId: PlayerAvatarId;
+  level: number;
+  [key: string]: any;
+}
