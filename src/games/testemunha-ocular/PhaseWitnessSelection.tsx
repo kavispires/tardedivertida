@@ -23,7 +23,7 @@ import { WitnessRules } from './TextBlobs';
 
 function PhaseWitnessSelection({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
-  const [isLoading] = useLoading();
+  const { isLoading } = useLoading();
   const [step, setStep] = useState(0);
   const [isAdmin] = useGlobalState('isAdmin');
 

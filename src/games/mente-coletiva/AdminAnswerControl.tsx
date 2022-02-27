@@ -25,7 +25,7 @@ export function AdminAnswerControl({
   players,
 }: AdminAnswerControlProps) {
   const { translate } = useLanguage();
-  const [isLoading] = useLoading();
+  const { isLoading } = useLoading();
 
   const filteredAnswers = useMemo(
     () =>

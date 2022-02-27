@@ -11,7 +11,7 @@ interface AdminButtonProps extends ButtonProps {
 }
 
 export function AdminButton({ action, label, ...props }: AdminButtonProps) {
-  const [isLoading] = useLoading();
+  const { isLoading } = useLoading();
 
   return (
     <Button icon={<RocketFilled />} danger type="primary" onClick={action} disabled={isLoading} {...props}>

@@ -17,7 +17,7 @@ type AdminMenuDrawerProps = {
 };
 
 export const AdminMenuDrawer = ({ state, players }: AdminMenuDrawerProps) => {
-  const [isLoading] = useLoading();
+  const { isLoading } = useLoading();
   const [isAdmin] = useGlobalState('isAdmin');
   const [visible, setVisible] = useState(false);
 

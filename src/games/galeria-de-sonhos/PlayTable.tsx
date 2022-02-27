@@ -13,7 +13,7 @@ type PlayTableProps = {
 
 export function PlayTable({ table, onPlayCard, userCards, isPlayAvailable }: PlayTableProps) {
   const cardWidth = useCardWidth(5, 8, 140, 150);
-  const [isLoading] = useLoading();
+  const { isLoading } = useLoading();
 
   return (
     <ul className="g-table">

@@ -28,7 +28,7 @@ type StepVotingProps = {
 
 export function StepVoting({ players, story, user, onSubmitVote, storyteller, table }: StepVotingProps) {
   const { translate } = useLanguage();
-  const [isLoading] = useLoading();
+  const { isLoading } = useLoading();
   const cardWidth = useCardWidth(Math.max(Object.keys(players).length, 6), 32, 150);
 
   const hasPlayedCardAlready = Boolean(user.vote);

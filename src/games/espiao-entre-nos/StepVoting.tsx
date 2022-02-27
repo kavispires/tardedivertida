@@ -31,7 +31,7 @@ export function StepVoting({
   isUserTheTarget,
 }: StepVotingProps) {
   const { translate } = useLanguage();
-  const [isLoading] = useLoading();
+  const { isLoading } = useLoading();
 
   return (
     <Step className="e-phase-step">

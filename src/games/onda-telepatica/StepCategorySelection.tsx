@@ -10,7 +10,7 @@ type StepCategorySelectionProps = {
 };
 
 export function StepCategorySelection({ currentCategories, onSendChosenSide }: StepCategorySelectionProps) {
-  const [isLoading] = useLoading();
+  const { isLoading } = useLoading();
 
   return (
     <Step className="o-card-selection">

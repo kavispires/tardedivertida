@@ -16,7 +16,7 @@ import { Translate } from '.';
 const { TextArea } = Input;
 
 export function RateGameWidget(): JSX.Element {
-  const [isLoading] = useLoading();
+  const { isLoading } = useLoading();
   const { translate } = useLanguage();
   const [userId] = useGlobalState('userId');
   const [gameId] = useGlobalState('gameId');

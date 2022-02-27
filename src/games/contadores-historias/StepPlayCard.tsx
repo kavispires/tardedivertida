@@ -30,7 +30,7 @@ export function StepPlayCard({
   storyteller,
   isUserTheStoryTeller,
 }: StepPlayCardProps) {
-  const [isLoading] = useLoading();
+  const { isLoading } = useLoading();
   const hasPlayedCardAlready = Boolean(user.cardId);
 
   const onSelectCard = (cardId: string) => {

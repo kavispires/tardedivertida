@@ -14,7 +14,7 @@ type LocationSelectProps = {
 
 export function LocationSelect({ locations, onSend }: LocationSelectProps) {
   const { translate } = useLanguage();
-  const [isLoading] = useLoading();
+  const { isLoading } = useLoading();
   const [selectedLocationId, setSelectedLocationId] = useState<string>('');
 
   const onSelectLocation = (locationId: string) => setSelectedLocationId(locationId);

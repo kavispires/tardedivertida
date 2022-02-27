@@ -16,7 +16,7 @@ import GameSessions from '../games';
 function Game() {
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const [, setLoader] = useLoading();
+  const { setLoader } = useLoading();
   const [gameId, setGameId] = useGlobalState('gameId');
   const [gameName, setGameName] = useGlobalState('gameName');
   const [gameMeta, setGameMeta] = useGlobalState('gameMeta');

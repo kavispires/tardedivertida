@@ -22,7 +22,7 @@ type StoryWritingProps = {
 
 export function StoryWriting({ user, onSubmitStory }: StoryWritingProps) {
   const { translate } = useLanguage();
-  const [isLoading] = useLoading();
+  const { isLoading } = useLoading();
   const [story, setStory] = useState('');
   const [cardId, setCardId] = useState('');
 

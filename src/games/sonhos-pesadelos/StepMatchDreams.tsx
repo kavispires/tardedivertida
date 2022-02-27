@@ -29,7 +29,7 @@ export function StepMatchDreams({
   clues,
   currentRound,
 }: StepMatchDreamsProps) {
-  const [isLoading] = useLoading();
+  const { isLoading } = useLoading();
   const { translate } = useLanguage();
   const { votes, setVotes, activeItem, activateItem, isVotingComplete } = useVotingMatch(
     'clue',

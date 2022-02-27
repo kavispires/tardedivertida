@@ -20,7 +20,7 @@ type SecretClueWriteProps = {
 
 function SecretClueWrite({ user, onSubmitClue }: SecretClueWriteProps) {
   const { translate } = useLanguage();
-  const [isLoading] = useLoading();
+  const { isLoading } = useLoading();
   const [clue, setClue] = useState('');
 
   const onButtonClick = () => {

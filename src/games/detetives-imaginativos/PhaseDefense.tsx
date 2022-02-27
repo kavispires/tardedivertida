@@ -21,7 +21,7 @@ import { useOnFinishDefenseRequest } from './api-requests';
 
 function PhaseDefense({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
-  const [isLoading] = useLoading();
+  const { isLoading } = useLoading();
   const [currentPlayer, isUserTheCurrentPlayer] = useWhichPlayerIsThe('currentPlayerId', state, players);
   const [step, setStep] = useState(0);
 
