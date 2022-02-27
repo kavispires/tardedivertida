@@ -1,86 +1,28 @@
 import { setGlobalState } from '../hooks';
 
-const names = ['Abe', 'Bob', 'Cam', 'Doc', 'Eva', 'Fred', 'Gus', 'Hal'];
-const random = (array) => array[Math.floor(Math.random() * array.length)];
+const names = ['Abe', 'Bob', 'Cam', 'Doc', 'Eva', 'Fred', 'Gus', 'Hal', 'Ira', 'Jay'];
+const random = <T>(array: T[]): T => array[Math.floor(Math.random() * array.length)];
 
-export const getLanguageControl = () => ({
-  _withLanguage: {
-    control: 'inline-radio',
-    options: ['pt', 'en'],
-    defaultValue: 'pt',
-    description: '[internal] Changes language',
-  },
-});
-
-export const getUserControls = () => ({
-  _withUser: {
-    control: 'boolean',
-    defaultValue: false,
-    description: '[internal] Mocks active user',
-  },
-});
-
-export const getAdminControls = () => ({
-  _withAdmin: {
-    control: 'boolean',
-    defaultValue: false,
-    description: '[internal] Mocks admin user',
-  },
-});
-
-export const getLoadingControls = () => ({
-  _withLoading: {
-    control: 'boolean',
-    defaultValue: false,
-    description: '[internal] Mocks app loading state',
-  },
-});
-
-export const getPlayersControls = () => ({
-  _withPlayers: {
-    control: {
-      type: 'range',
-      min: 0,
-      max: 8,
-      step: 1,
-    },
-    defaultValue: 0,
-    description: '[internal] Mocks given number of players',
-  },
-});
-
-export const getHooksControls = () => ({
-  ...getUserControls(),
-  ...getAdminControls(),
-  ...getLoadingControls(),
-  ...getPlayersControls(),
-});
-
-export const mockLanguageHook = (args) => {
-  mockLanguage(args?._withLanguage ?? 'pt');
-};
-
-export const mockLoadingHook = (args) => {
-  mockLoading(args?._withLoading ?? false);
-};
-
-export const mockHooks = (args) => {
-  mockLoading(args._withLoading);
-  mockGlobalUser({}, !args._withUser);
-  mockAdmin(args._withAdmin);
-  const players = args._withPlayers ? mockPlayers(args._withPlayers) : {};
-  return { ...args, players };
+type PlayerArgs = {
+  id?: string;
+  avatarId?: string;
+  name?: string;
+  ready?: boolean;
+  score?: number;
+  updatedAt?: number;
+  [key: string]: any;
 };
 
 class Player {
-  constructor(data) {
-    this.id = data.id ?? '_bob';
-    this.avatarId = data.avatarId ? `${data.avatarId}` : '1';
-    this.name = data.name ?? 'Bob';
-    this.ready = data.ready ?? false;
-    this.score = data.score ?? 0;
-    this.updatedAt = data.updatedAt ?? Date.now();
+  id: string = '_bob';
+  avatarId: string = '1';
+  name: string = 'Bob';
+  ready: boolean = false;
+  score: number = 0;
+  updatedAt: number = Date.now();
+  [key: string]: any;
 
+  constructor(data: PlayerArgs) {
     // Build id or name if either is not available
     if (data.id && !data.name) {
       this.id = data.id;
@@ -93,7 +35,7 @@ class Player {
     this.extend(data);
   }
 
-  extend(data) {
+  extend(data: PlayerArgs) {
     for (const property in data) {
       this[property] = data[property];
     }
@@ -116,9 +58,9 @@ export const mockPlayer = (overrideData = {}) => new Player(overrideData);
 
 /**
  * Mocks up to 8 players
- * @param {number} quantity
- * @param {boolean} randomize
- * @param {boolean} withTeams
+ * @param quantity
+ * @param randomize
+ * @param withTeams
  * @returns
  */
 export const mockPlayers = (quantity = 2, randomize = false, withTeams = false) => {
@@ -140,7 +82,7 @@ export const mockPlayers = (quantity = 2, randomize = false, withTeams = false) 
       }
       return newPlayer;
     })
-    .reduce((acc, item) => {
+    .reduce((acc: PlainObject, item: PlainObject) => {
       acc[item.id] = item;
       return acc;
     }, {});
@@ -149,8 +91,8 @@ export const mockPlayers = (quantity = 2, randomize = false, withTeams = false) 
 /**
  * Mock Teams
  * Only works with even number of team players
- * @param {number} quantity
- * @param {number} playersPerTeam
+ * @param quantity
+ * @param playersPerTeam
  * @returns
  */
 export const mockTeams = (quantity = 2, playersPerTeam = 2) => {
@@ -166,7 +108,7 @@ export const mockTeams = (quantity = 2, playersPerTeam = 2) => {
         score: random([1, 3, 7, 11]),
       };
     })
-    .reduce((acc, item) => {
+    .reduce((acc: PlainObject, item: PlainObject) => {
       acc[item.name] = item;
       return acc;
     }, {});
@@ -174,14 +116,14 @@ export const mockTeams = (quantity = 2, playersPerTeam = 2) => {
 
 /**
  * Mock Global User
- * @param {*} overrideData
- * @param {boolean} reset
+ * @param overrideData
+ * @param reset
  */
-export const mockGlobalUser = (overrideData = {}, reset = false) => {
+export const mockGlobalUser = (overrideData: PlainObject = {}, reset = false) => {
   if (reset) {
     setGlobalState('userId', null);
-    setGlobalState('username', null);
-    setGlobalState('userAvatarId', null);
+    setGlobalState('username', '');
+    setGlobalState('userAvatarId', '');
   } else {
     setGlobalState('userId', overrideData.userId ?? '_bob');
     setGlobalState('username', overrideData.username ?? 'Bob');
@@ -210,14 +152,14 @@ export const mockAdmin = (value = true) => {
  * @param {string} propertyName
  * @param {*} value
  */
-export const mockGlobalProperty = (propertyName, value) => {
+export const mockGlobalProperty = (propertyName: keyof Primitive, value: any) => {
   setGlobalState(propertyName, value);
 };
 
 /**
  * Mocks language
  */
-export const mockLanguage = (value = 'pt') => {
+export const mockLanguage = (value: 'pt' | 'en' = 'pt') => {
   setGlobalState('language', value);
 };
 
@@ -230,7 +172,7 @@ export const mockLoading = (value = true) => {
 
 /**
  * Mock Game Meta (firebase)
- * @returns {object}
+ * @returns
  */
 export const mockGameMeta = () => {
   setGlobalState('gameMeta', {
@@ -241,7 +183,7 @@ export const mockGameMeta = () => {
 
 /**
  * Mock Game Info (static)
- * @returns  {object}
+ * @returns
  */
 export const mockInfo = () => ({
   title: {
