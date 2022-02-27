@@ -4,6 +4,7 @@ import { DETETIVES_IMAGINATIVOS_PHASES, HAND_LIMIT } from './constants';
 import { FirebaseStateData, FirebaseStoreData } from './types';
 import { Players, SaveGamePayload } from '../../utils/types';
 // Utils
+import * as firebaseUtils from '../../utils/firebase';
 import * as gameUtils from '../../utils/game-utils';
 import * as imageCardsUtils from '../../utils/image-cards';
 import * as utils from '../../utils/helpers';
@@ -149,6 +150,9 @@ export const prepareVotingPhase = async (
       players: newPlayers,
       state: {
         phase: DETETIVES_IMAGINATIVOS_PHASES.VOTING,
+        phaseOrder: firebaseUtils.deleteValue(),
+        phaseIndex: firebaseUtils.deleteValue(),
+        currentPlayerId: firebaseUtils.deleteValue(),
       },
     },
   };

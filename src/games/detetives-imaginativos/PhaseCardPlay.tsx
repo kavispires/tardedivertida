@@ -27,9 +27,10 @@ function PhaseCardPlay({ state, players, info }: PhaseProps) {
   const [step, setStep] = useState(0);
 
   const onPlayCard = useOnPlayCardAPIRequest();
+  // const onPlayCard = (e: any) => console.log(e);
 
   useEffect(() => {
-    if (isUserTheCurrentPlayer && step > 0) {
+    if (isUserTheCurrentPlayer && step === 1 && !isLoading) {
       message.info(
         messageContent(
           translate('Escolha uma carta!', 'Choose a card to play'),
@@ -43,7 +44,7 @@ function PhaseCardPlay({ state, players, info }: PhaseProps) {
         )
       );
     }
-  }, [isUserTheCurrentPlayer, currentPlayer.id, step, translate]);
+  }, [isUserTheCurrentPlayer, currentPlayer.id, step, translate, isLoading]);
 
   return (
     <PhaseContainer
@@ -52,7 +53,7 @@ function PhaseCardPlay({ state, players, info }: PhaseProps) {
       allowedPhase={PHASES.DETETIVES_IMAGINATIVOS.CARD_PLAY}
       className="d-phase d-play-card-phase"
     >
-      <StepSwitcher step={step}>
+      <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
           type="hanging-photograph"

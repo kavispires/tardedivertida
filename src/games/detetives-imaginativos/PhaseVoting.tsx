@@ -24,7 +24,7 @@ function PhaseVoting({ state, players, info }: PhaseProps) {
       allowedPhase={PHASES.DETETIVES_IMAGINATIVOS.VOTING}
       className="d-voting-phase"
     >
-      <StepSwitcher step={step}>
+      <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
           type="vote"
