@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 // Design Resources
-import { Button } from 'antd';
+import { Button, Image } from 'antd';
 import { DownSquareOutlined } from '@ant-design/icons';
 // Hooks
 import { useCardWidth, useLanguage } from '../../hooks';
@@ -35,27 +35,29 @@ export function ImageCardHand({
   const cardWidth = useCardWidth(sizeRatio, 32, minCardSize);
 
   return (
-    <div className={clsx('image-card-hand', className)}>
-      {hand.map((cardId) => {
-        return (
-          <div key={`hand-${cardId}`} className="image-card-hand__card-container">
-            {Boolean(onSelectCard) && (
-              <Button
-                icon={<DownSquareOutlined />}
-                className={selectButtonClass}
-                onClick={() => onSelectCard!(cardId)}
-                size="small"
-                ghost
-                disabled={disabledSelectButton}
-              >
-                {translate('Selecionar', 'Select', selectButtonLabel)}
-              </Button>
-            )}
-            <ImageCard imageId={cardId} cardWidth={cardSize || cardWidth} />
-            <ImageBlurButton cardId={cardId} />
-          </div>
-        );
-      })}
-    </div>
+    <Image.PreviewGroup>
+      <div className={clsx('image-card-hand', className)}>
+        {hand.map((cardId) => {
+          return (
+            <div key={`hand-${cardId}`} className="image-card-hand__card-container">
+              {Boolean(onSelectCard) && (
+                <Button
+                  icon={<DownSquareOutlined />}
+                  className={selectButtonClass}
+                  onClick={() => onSelectCard!(cardId)}
+                  size="small"
+                  ghost
+                  disabled={disabledSelectButton}
+                >
+                  {translate('Selecionar', 'Select', selectButtonLabel)}
+                </Button>
+              )}
+              <ImageCard imageId={cardId} cardWidth={cardSize || cardWidth} />
+              <ImageBlurButton cardId={cardId} />
+            </div>
+          );
+        })}
+      </div>
+    </Image.PreviewGroup>
   );
 }
