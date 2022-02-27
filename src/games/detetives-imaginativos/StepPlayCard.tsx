@@ -1,5 +1,7 @@
 // Design Resources
 import { QuestionCircleFilled } from '@ant-design/icons';
+import { message } from 'antd';
+import { useEffect } from 'react';
 // Components
 import {
   AvatarIcon,
@@ -7,12 +9,14 @@ import {
   FloatingHand,
   ImageCardHand,
   Instruction,
+  messageContent,
   Step,
   Title,
   TitleHighlight,
   Translate,
   ViewIf,
 } from '../../components';
+import { useLanguage } from '../../hooks';
 import Table from './Table';
 
 type StepPlayCardProps = {
@@ -38,7 +42,25 @@ function StepPlayCard({
   onPlayCard,
   isLoading,
 }: StepPlayCardProps) {
+  const { translate } = useLanguage();
   const onSelectCard = (cardId: string) => onPlayCard({ cardId });
+
+  useEffect(() => {
+    if (isUserTheCurrentPlayer && !isLoading) {
+      message.info(
+        messageContent(
+          translate('Escolha uma carta!', 'Choose a card to play'),
+          translate(
+            'Aperte o botão Selecionar acima da carta escolhida',
+            'Press the select button above each card'
+          ),
+
+          currentPlayer.id,
+          3
+        )
+      );
+    }
+  }, [isUserTheCurrentPlayer, currentPlayer.id, translate, isLoading]);
 
   return (
     <Step key={1}>

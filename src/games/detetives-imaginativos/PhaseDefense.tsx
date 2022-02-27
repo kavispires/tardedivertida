@@ -28,7 +28,7 @@ function PhaseDefense({ state, players, info }: PhaseProps) {
   const onFinishDefense = useOnFinishDefenseRequest();
 
   useEffect(() => {
-    if (isUserTheCurrentPlayer && step > 0) {
+    if (isUserTheCurrentPlayer && step === 1 && !isLoading) {
       message.info(
         messageContent(
           translate('Sua vez de defender suas escolhas!', "It's your turn to defend your choices"),
@@ -42,7 +42,7 @@ function PhaseDefense({ state, players, info }: PhaseProps) {
         )
       );
     }
-  }, [isUserTheCurrentPlayer, currentPlayer?.id, step, translate]);
+  }, [isUserTheCurrentPlayer, currentPlayer?.id, step, translate, isLoading]);
 
   return (
     <PhaseContainer
@@ -51,7 +51,7 @@ function PhaseDefense({ state, players, info }: PhaseProps) {
       allowedPhase={PHASES.DETETIVES_IMAGINATIVOS.DEFENSE}
       className="d-defense-phase"
     >
-      <StepSwitcher step={step}>
+      <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
           type="defense"
