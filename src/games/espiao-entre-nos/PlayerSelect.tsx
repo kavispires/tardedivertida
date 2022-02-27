@@ -15,7 +15,7 @@ type PlayersElectProps = {
 
 export function PlayerSelect({ players, onSend, isFinalAssessment = false }: PlayersElectProps) {
   const { translate } = useLanguage();
-  const [isLoading] = useLoading();
+  const { isLoading } = useLoading();
   const [userId] = useGlobalState('userId');
 
   const [selectedPlayerId, setSelectedPlayerId] = useState<string>('');

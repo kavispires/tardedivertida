@@ -15,7 +15,7 @@ type SuspectsProps = {
 
 export function Suspects({ suspects, perpetrator, onCardClick, eliminatedSuspects = [] }: SuspectsProps) {
   const { language, translate } = useLanguage();
-  const [isLoading] = useLoading();
+  const { isLoading } = useLoading();
   const [width] = useDimensions();
 
   const cardWidth = Math.floor(width / 7);

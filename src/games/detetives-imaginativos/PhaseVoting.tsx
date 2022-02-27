@@ -10,7 +10,7 @@ import StepVoting from './StepVoting';
 
 function PhaseVoting({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
-  const [isLoading] = useLoading();
+  const { isLoading } = useLoading();
   const user = useUser(players);
   const [, isUserTheLeader] = useWhichPlayerIsThe('leaderId', state, players);
   const [step, setStep] = useState(0);

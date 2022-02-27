@@ -13,7 +13,7 @@ type UserAnswersProps = {
 };
 
 export function UserAnswers({ answerGroup, user, onAddAnswer }: UserAnswersProps) {
-  const [isLoading] = useLoading();
+  const { isLoading } = useLoading();
 
   const alreadyHasAnswer = answerGroup.entries.some((entry: any) => entry.playerId === user.id);
 

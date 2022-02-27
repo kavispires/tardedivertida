@@ -31,7 +31,7 @@ export function AdminNextRoundButton({
   lastRound = false,
 }: AdminNextRoundButtonProps) {
   const { translate } = useLanguage();
-  const [isLoading] = useLoading();
+  const { isLoading } = useLoading();
   const [isAdmin] = useGlobalState('isAdmin');
 
   const onGoToNextPhase = useAPICall({

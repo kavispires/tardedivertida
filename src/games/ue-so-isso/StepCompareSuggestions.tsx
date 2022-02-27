@@ -31,7 +31,7 @@ function StepCompareSuggestions({
   suggestions,
 }: StepCompareSuggestionsProps) {
   const { translate } = useLanguage();
-  const [isLoading] = useLoading();
+  const { isLoading } = useLoading();
   const [myRecommendation, setMyRecommendation] = useState<UseSoIssoSuggestion[]>(deepCopy(suggestions));
   const [isAdmin] = useGlobalState('isAdmin');
   const [wasMessageShown, setWasMessageShown] = useState(false);

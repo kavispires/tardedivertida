@@ -38,7 +38,7 @@ type StepGuessProps = {
 };
 
 export function StepGuess({ currentCategory, onSendGuess }: StepGuessProps) {
-  const [isLoading] = useLoading();
+  const { isLoading } = useLoading();
   const [needle, setNeedle] = useState(0);
 
   useMock(() => onSendGuess({ guess: mockGuess(currentCategory.target ?? 0) }), []);

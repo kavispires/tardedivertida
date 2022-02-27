@@ -14,7 +14,7 @@ type GuessProps = {
 
 function Guess({ onSubmitOutcome, onSendGuess }: GuessProps) {
   const { translate } = useLanguage();
-  const [isLoading] = useLoading();
+  const { isLoading } = useLoading();
   const [guess, setGuess] = useState('');
 
   const onPressEnter = () => {

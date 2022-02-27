@@ -18,7 +18,7 @@ type WaitingProps = {
 
 function Waiting({ info, players }: WaitingProps) {
   const { language, translate } = useLanguage();
-  const [isLoading, setLoader] = useLoading();
+  const { isLoading, setLoader } = useLoading();
   const [gameId] = useGlobalState('gameId');
   const [gameName] = useGlobalState('gameName');
   const [gameMeta] = useGlobalState('gameMeta');

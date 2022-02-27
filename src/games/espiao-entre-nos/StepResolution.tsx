@@ -20,7 +20,7 @@ export function StepResolution({
   onProgressGame,
 }: StepVotingProps) {
   const { translate } = useLanguage();
-  const [isLoading] = useLoading();
+  const { isLoading } = useLoading();
 
   return (
     <Step className="e-phase-step">

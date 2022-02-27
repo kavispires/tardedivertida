@@ -24,7 +24,7 @@ export function StepClueWriting({
   onSendClue,
 }: StepClueWritingProps) {
   const { language, translate } = useLanguage();
-  const [isLoading] = useLoading();
+  const { isLoading } = useLoading();
   const [clue, setClue] = useState('');
 
   const onChangeInput = (e: any) => {

@@ -55,7 +55,7 @@ export function StepTellDream({
   dreamsCount,
   currentRound,
 }: StepTellDreamProps) {
-  const [isLoading] = useLoading();
+  const { isLoading } = useLoading();
   const { translate } = useLanguage();
   const [localClues, setLocalClues] = useState<PlainObject>({});
   const [hasClues, setHasClues] = useState(false);

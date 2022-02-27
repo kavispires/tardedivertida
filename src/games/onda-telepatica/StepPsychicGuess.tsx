@@ -12,7 +12,7 @@ type StepPsychicGuessProps = {
 };
 
 export function StepPsychicGuess({ currentCategory, onSendGuess }: StepPsychicGuessProps) {
-  const [isLoading] = useLoading();
+  const { isLoading } = useLoading();
 
   return (
     <Step className="o-dial-guess-selection">

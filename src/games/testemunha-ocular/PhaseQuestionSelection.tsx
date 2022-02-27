@@ -18,7 +18,7 @@ import { StepQuestionWaiting } from './StepQuestionWaiting';
 
 function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
-  const [isLoading] = useLoading();
+  const { isLoading } = useLoading();
   const [step, setStep] = useState(0);
   const [witness, isUserTheWitness] = useWhichPlayerIsThe('witnessId', state, players);
   const [questioner, isUserTheQuestioner] = useWhichPlayerIsThe('questionerId', state, players);

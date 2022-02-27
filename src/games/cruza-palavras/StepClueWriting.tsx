@@ -14,7 +14,7 @@ type StepClueWritingProps = {
 };
 
 function StepClueWriting({ grid, user, onSubmitClue, players }: StepClueWritingProps) {
-  const [isLoading] = useLoading();
+  const { isLoading } = useLoading();
 
   const onSubmitClueClick = (payload: string) => {
     onSubmitClue({

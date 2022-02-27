@@ -20,7 +20,7 @@ import StepPlayCard from './StepPlayCard';
 
 function PhaseCardPlay({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
-  const [isLoading] = useLoading();
+  const { isLoading } = useLoading();
   const user = useUser(players);
   const [currentPlayer, isUserTheCurrentPlayer] = useWhichPlayerIsThe('currentPlayerId', state, players);
   const [, isUserTheImpostor] = useWhichPlayerIsThe('impostorId', state, players);

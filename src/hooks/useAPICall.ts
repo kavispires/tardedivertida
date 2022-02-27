@@ -53,7 +53,7 @@ export function useAPICall({
   successMessage = 'API call was successful',
   errorMessage = 'API call has failed',
 }: useAPICallArgs): (...args: any[]) => any {
-  const [, setLoader] = useLoading();
+  const { setLoader } = useLoading();
   const [gameId] = useGlobalState('gameId');
   const [gameName] = useGlobalState('gameName');
   const [userId] = useGlobalState('userId');

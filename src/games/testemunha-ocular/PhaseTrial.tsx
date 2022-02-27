@@ -17,7 +17,7 @@ import { StepSuspectElimination } from './StepSuspectElimination';
 
 function PhaseTrial({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
-  const [isLoading] = useLoading();
+  const { isLoading } = useLoading();
   const [step, setStep] = useState(0);
 
   const [witness, isUserTheWitness] = useWhichPlayerIsThe('witnessId', state, players);

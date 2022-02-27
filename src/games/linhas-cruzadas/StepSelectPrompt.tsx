@@ -21,7 +21,7 @@ type StepSelectPromptProps = {
 };
 
 export function StepSelectPrompt({ prompts, onSubmitPrompt }: StepSelectPromptProps) {
-  const [isLoading] = useLoading();
+  const { isLoading } = useLoading();
 
   const onRandomSelect = () => {
     onSubmitPrompt({ promptId: shuffle(prompts.map((prompt) => prompt.id))[0] });

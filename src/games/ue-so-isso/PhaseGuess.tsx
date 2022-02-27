@@ -11,7 +11,7 @@ import { GuessingRules } from './RulesBlobs';
 import { useOnSendGuessAPIRequest, useOnSubmitOutcomeAPIRequest } from './api-requests';
 
 function PhaseGuess({ state, players, info }: PhaseProps) {
-  const [isLoading] = useLoading();
+  const { isLoading } = useLoading();
   const { translate } = useLanguage();
   const [isAdmin] = useGlobalState('isAdmin');
   const [step, setStep] = useState(0);

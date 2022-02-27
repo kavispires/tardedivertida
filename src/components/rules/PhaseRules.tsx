@@ -14,7 +14,7 @@ type PhaseRulesProps = {
 };
 
 export function PhaseRules({ players, info }: PhaseRulesProps) {
-  const [isLoading] = useLoading();
+  const { isLoading } = useLoading();
   const { translate } = useLanguage();
   const isUserReady = useIsUserReady(players);
 

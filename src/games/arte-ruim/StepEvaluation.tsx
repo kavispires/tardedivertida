@@ -38,7 +38,7 @@ type StepEvaluationProps = {
 };
 
 export function StepEvaluation({ drawings, cards, players, onSubmitVoting }: StepEvaluationProps) {
-  const [isLoading] = useLoading();
+  const { isLoading } = useLoading();
   const { translate } = useLanguage();
   const user = useUser(players);
   const canvasWidth = useCardWidth(Math.min(Object.keys(players).length, 6), 16, 150, 500);
