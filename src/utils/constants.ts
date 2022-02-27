@@ -8,6 +8,7 @@ export const PUBLIC_URL: StringDictionary = {
   CLOUDS: `${process.env.PUBLIC_URL}/images/clouds/`,
   ROOT: `${process.env.PUBLIC_URL}/images/`,
   RESOURCES: `${process.env.PUBLIC_URL}/resources/`,
+  IN_GAME: `${process.env.PUBLIC_URL}/images/in-game/`,
 };
 
 type TagDict = {
