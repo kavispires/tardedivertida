@@ -4,12 +4,13 @@ import { Icons, Translate } from '../../components';
 
 type RoundTypeProps = {
   roundType: Number;
+  className?: string;
 };
 
-export function RoundType({ roundType }: RoundTypeProps) {
+export function RoundType({ roundType, className = '' }: RoundTypeProps) {
   const arrowBaseClass = 'm-round-type__arrow';
   return (
-    <div className="m-round-type">
+    <div className={clsx('m-round-type', className)}>
       <div className="m-round-type__arrows">
         {roundType === 0 && <Icons.Arrow className={clsx(arrowBaseClass, `${arrowBaseClass}--0`)} />}
         <Icons.Arrow className={clsx(arrowBaseClass, `${arrowBaseClass}--1`)} />

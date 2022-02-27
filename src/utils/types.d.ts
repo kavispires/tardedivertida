@@ -173,4 +173,5 @@ type AnimationType =
   | 'shakeY'
   | 'slideInUp'
   | 'tada'
-  | 'zoomIn';
+  | 'zoomIn'
+  | 'zoomInDown';

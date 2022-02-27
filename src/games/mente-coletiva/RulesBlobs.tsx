@@ -34,7 +34,7 @@ export function GamePremiseRules({ activePlayer }: GamePremiseRulesProps) {
             die. The pasture is less crowded and everyone is happier.
             <br />
             <Instruction contained>
-              <AvatarName player={activePlayer} /> will choose a question for this round.
+              <AvatarName player={activePlayer} addressUser /> will choose a question for this round.
             </Instruction>
           </>
         }
@@ -65,7 +65,7 @@ export function AnsweringRules() {
             <br />
             Think of common answers that will help you match the largest number of players.
             <br />
-            You get 1 point for each of your answers PLUS 1 point for each match with other players.
+            You get 1 point for each of your answers + 1 point for each match with other players.
             <br />
             For example, if 3 players write 'chicken', each of those players get 3 points.
           </>

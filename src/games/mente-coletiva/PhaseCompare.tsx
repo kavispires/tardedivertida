@@ -6,7 +6,7 @@ import { useOnAddAnswerAPIRequest, useOnNextAnswersAPIRequest } from './api-requ
 import { PHASES } from '../../utils/phases';
 // Components
 import { PhaseAnnouncement, PhaseContainer, StepSwitcher } from '../../components';
-import { CompareStep } from './CompareStep';
+import { StepCompare } from './StepCompare';
 import { ComparingRules } from './RulesBlobs';
 
 function PhaseCompare({ state, players, info }: PhaseProps) {
@@ -40,7 +40,7 @@ function PhaseCompare({ state, players, info }: PhaseProps) {
         </PhaseAnnouncement>
 
         {/* Step 1 */}
-        <CompareStep
+        <StepCompare
           currentQuestion={state.currentQuestion}
           answerGroup={answerGroup}
           players={players}

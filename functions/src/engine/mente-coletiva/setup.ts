@@ -2,7 +2,12 @@
 import { PlainObject, Players, SaveGamePayload } from '../../utils/types';
 import { FirebaseStateData, FirebaseStoreData } from './types';
 // Constants
-import { MENTE_COLETIVA_PHASES, QUESTIONS_PER_ROUND } from './constants';
+import {
+  MENTE_COLETIVA_PHASES,
+  PASTURE_GAME_OVER_THRESHOLD,
+  QUESTIONS_PER_ROUND,
+  SHORT_PASTURE_GAME_OVER_THRESHOLD,
+} from './constants';
 // Utils
 import * as firebaseUtils from '../../utils/firebase';
 import * as utils from '../../utils/helpers';
@@ -57,6 +62,9 @@ export const prepareSetupPhase = async (
       state: {
         phase: MENTE_COLETIVA_PHASES.SETUP,
         gameOrder,
+        pastureSize: store.options?.shortPasture
+          ? SHORT_PASTURE_GAME_OVER_THRESHOLD
+          : PASTURE_GAME_OVER_THRESHOLD,
       },
       players,
     },
@@ -175,9 +183,10 @@ export const prepareResolutionPhase = async (
   // Fixed up level based on pastureChange
   updateLevelsForPlayers(players, pastureChange[2]);
 
-  const isGameOver = determineGameOver(players);
-  if (isGameOver && !state?.usedSave) {
-    recalculateLastPasture(pastureChange);
+  const isGameOver = determineGameOver(players, store.options?.shortPasture);
+  const shouldSave = isGameOver && !state?.usedSave;
+  if (shouldSave) {
+    recalculateLastPasture(pastureChange, state.pastureSize);
     updateLevelsForPlayers(players, pastureChange[2]);
   }
 
@@ -188,8 +197,8 @@ export const prepareResolutionPhase = async (
         phase: MENTE_COLETIVA_PHASES.RESOLUTION,
         ranking,
         pastureChangeStr: JSON.stringify(pastureChange),
-        usedSave: state?.usedSave || (isGameOver && !state?.usedSave),
-        announceSave: isGameOver && !state?.usedSave,
+        usedSave: Boolean(state?.usedSave) || shouldSave,
+        announceSave: shouldSave,
       },
       players,
     },
@@ -201,9 +210,9 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
-  const winners = Object.values(players).filter((player) => player.level < 5);
+  const winners = Object.values(players).filter((player) => player.level < state.pastureSize);
 
-  const losers = Object.values(players).filter((player) => player.level === 5);
+  const losers = Object.values(players).filter((player) => player.level === state.pastureSize);
 
   // Save
   return {

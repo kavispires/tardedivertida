@@ -1,26 +1,25 @@
 // Components
-import { AvatarIcon, AvatarName, Instruction, Title, Translate } from '../../components';
+import { AvatarIcon, AvatarName, Instruction, Step, Title, Translate } from '../../components';
 import { Pasture } from './Pasture';
-import { RoundType } from './RoundType';
 
-type QuestionSelectionWaitingProps = {
+type StepQuestionSelectionWaitingProps = {
   activePlayer: GamePlayer;
   players: GamePlayers;
   roundType: number;
+  pastureSize: number;
 };
 
-export function QuestionSelectionWaiting({
+export function StepQuestionSelectionWaiting({
   activePlayer,
   players,
   roundType,
-}: QuestionSelectionWaitingProps) {
+  pastureSize,
+}: StepQuestionSelectionWaitingProps) {
   return (
-    <div className="m-step">
+    <Step fullWidth className="m-step">
       <Title>
         <AvatarIcon type="animated-clock" size="large" /> <Translate pt="Aguarde..." en="Please wait..." />
       </Title>
-
-      <RoundType roundType={roundType} />
 
       <Instruction contained>
         <AvatarName player={activePlayer} addressUser />{' '}
@@ -28,7 +27,7 @@ export function QuestionSelectionWaiting({
         <br />
       </Instruction>
 
-      <Pasture players={players} />
-    </div>
+      <Pasture players={players} pastureSize={pastureSize} roundType={roundType} />
+    </Step>
   );
 }

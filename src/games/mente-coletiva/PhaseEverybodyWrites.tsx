@@ -6,7 +6,7 @@ import { useOnSubmitAnswersAPIRequest } from './api-requests';
 import { PHASES } from '../../utils/phases';
 // Components
 import { PhaseAnnouncement, PhaseContainer, StepSwitcher } from '../../components';
-import { AnsweringStep } from './AnsweringStep';
+import { StepAnswering } from './StepAnswering';
 import { AnsweringRules } from './RulesBlobs';
 
 function PhaseEverybodyWrites({ state, players, info }: PhaseProps) {
@@ -36,12 +36,13 @@ function PhaseEverybodyWrites({ state, players, info }: PhaseProps) {
         </PhaseAnnouncement>
 
         {/* Step 1 */}
-        <AnsweringStep
+        <StepAnswering
           currentQuestion={state.currentQuestion}
           players={players}
           roundType={state.roundType}
           onSubmitAnswers={onSubmitAnswers}
           user={user}
+          pastureSize={state.pastureSize}
         />
       </StepSwitcher>
     </PhaseContainer>

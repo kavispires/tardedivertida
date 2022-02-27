@@ -8,10 +8,16 @@
   }
 }
 
+.m-pasture-container {
+  position: relative;
+  padding-top: 5rem;
+}
+
 .m-pasture {
   width: 100%;
   position: relative;
   min-height: 10vh;
+  margin: 0 auto;
 
   &__background {
     width: 100%;
@@ -32,6 +38,7 @@
 
 .m-pasture-names {
   display: block;
+  margin: 0 auto;
 }
 
 .m-enclosure-names {
@@ -42,6 +49,11 @@
   margin: get-unit(1 2);
   padding: get-unit(0 1);
   border-radius: get-unit(1);
+  transform: translateY(-50%);
+
+  &--has-names {
+    background: rgba(255, 255, 255, 0.9);
+  }
 }
 
 .m-enclosures {
@@ -131,8 +143,8 @@
   width: 100%;
   font-size: 1.25em;
   border-radius: get-unit(5);
-  margin: get-unit(1 0);
-  padding: get-unit(1 2);
+  margin: get-unit(2 0 3 0);
+  padding: get-unit(1 5);
 
   &--button {
     cursor: pointer;
@@ -179,6 +191,20 @@
       transform: rotate(182deg);
     }
   }
+}
+
+.m-pasture-round-type {
+  max-width: 60vw;
+  width: 80%;
+  margin: get-unit(auto);
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 20%);
+  display: block;
+  position: absolute;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.9);
+  padding: get-unit(0 4 2 4);
 }
 
 .m-answers {
@@ -292,10 +318,6 @@
   margin: get-unit(2 auto);
 }
 
-.m-save-card {
-  animation: scale-in-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-}
-
 .m-game-over-in-memoriam {
   margin-top: get-unit(6);
 }
@@ -346,17 +368,6 @@
   }
   100% {
     transform: scale(1, 1) translate(0);
-  }
-}
-
-@keyframes scale-in-top {
-  0% {
-    transform: scale(0);
-    transform-origin: 50% 0%;
-  }
-  100% {
-    transform: scale(1);
-    transform-origin: 50% 0%;
   }
 }
 

@@ -4,10 +4,11 @@ import {
   MENTE_COLETIVA_PHASES,
   PASTURE_GAME_OVER_THRESHOLD,
   QUESTIONS_PER_ROUND,
+  SHORT_PASTURE_GAME_OVER_THRESHOLD,
 } from './constants';
 // Types
-import { PlainObject, PlayerId, Players } from '../../utils/types';
-import { AllQuestions, AnswerEntry, Deck } from './types';
+import { BooleanDictionary, PlainObject, PlayerId, Players, RankingEntry } from '../../utils/types';
+import { AllQuestions, AnswerEntry, Deck, PastureChangeEntry, SheepAnimation } from './types';
 // Utils
 import * as gameUtils from '../../utils/game-utils';
 import * as utils from '../../utils/helpers';
@@ -167,19 +168,17 @@ export const buildListOfAnswers = (allAnswers: PlainObject) => {
  * @param players - it modifies players
  * @returns
  */
-export const buildRanking = (players: Players): PlainObject[] => {
-  // Format <player>: [<old score>, <addition points>, <new score>]
+export const buildRanking = (players: Players): RankingEntry[] => {
   // Build score array
-  const ranking = Object.values(players)
+  return Object.values(players)
     .map((player) => ({
       playerId: player.id,
       name: player.name,
       previousScore: 0,
+      gainedPoints: [0],
       newScore: player.score,
     }))
     .sort((a, b) => (a.newScore > b.newScore ? 1 : -1));
-
-  return ranking;
 };
 
 /**
@@ -188,8 +187,8 @@ export const buildRanking = (players: Players): PlainObject[] => {
  * @param roundType
  * @returns
  */
-export const determineLowestScores = (ranking, roundType: number) => {
-  const scores = ranking.reduce((acc, entry) => {
+export const determineLowestScores = (ranking: RankingEntry[], roundType: number) => {
+  const scores = ranking.reduce((acc: any[], entry) => {
     if (acc[entry.newScore] === undefined) {
       acc[entry.newScore] = [];
     }
@@ -220,10 +219,10 @@ export const determineLowestScores = (ranking, roundType: number) => {
  * @param roundType
  * @returns
  */
-export const determineHighestScores = (ranking, roundType: number) => {
+export const determineHighestScores = (ranking: RankingEntry[], roundType: number) => {
   if (roundType > 0) return [];
 
-  const scores = ranking.reduce((acc, entry) => {
+  const scores = ranking.reduce((acc: any, entry) => {
     if (acc[entry.newScore] === undefined) {
       acc[entry.newScore] = [];
     }
@@ -242,7 +241,7 @@ export const determineHighestScores = (ranking, roundType: number) => {
  * @returns
  */
 export const buildPastureChange = (players: Players, lowestScores: PlayerId[], highestScores: PlayerId[]) => {
-  const change: PlainObject[] = [];
+  const change: PastureChangeEntry[][] = [];
 
   // First change: previous levels
   change.push(
@@ -275,11 +274,12 @@ export const buildPastureChange = (players: Players, lowestScores: PlayerId[], h
 /**
  * Recalculate pasture change if player is given a second chance
  * @param pastureChange
+ * @param pastureSize
  */
-export const recalculateLastPasture = (pastureChange) => {
+export const recalculateLastPasture = (pastureChange: PastureChangeEntry[][], pastureSize: number) => {
   pastureChange[2].forEach((player, index) => {
-    if (player.level === 5) {
-      player.level = 4;
+    if (player.level === pastureSize) {
+      player.level = pastureSize - 1;
       pastureChange[1][index].animateRight = false;
       pastureChange[1][index].animateRebound = true;
     }
@@ -299,7 +299,7 @@ const determineAnimation = (
   lowestScores: PlayerId[],
   highestScores: PlayerId[],
   level: number
-): PlainObject => {
+): SheepAnimation => {
   const isLowest = lowestScores.includes(playerId);
   const isHighest = highestScores.includes(playerId);
 
@@ -353,7 +353,7 @@ const getNewLevel = (
  * @param pastureChange
  * @returns
  */
-export const updateLevelsForPlayers = (players: Players, pastureChange) => {
+export const updateLevelsForPlayers = (players: Players, pastureChange: PastureChangeEntry[]) => {
   pastureChange.forEach((change) => {
     players[change.id].level = change.level;
   });
@@ -363,10 +363,14 @@ export const updateLevelsForPlayers = (players: Players, pastureChange) => {
 /**
  * Determine if a player has passed level 4 and it should be game over
  * @param players
+ * @param isShortPasture
  * @returns
  */
-export const determineGameOver = (players: Players) => {
-  return Object.values(players).some((player) => player.level >= PASTURE_GAME_OVER_THRESHOLD);
+export const determineGameOver = (players: Players, isShortPasture: boolean) => {
+  return Object.values(players).some(
+    (player) =>
+      player.level >= (isShortPasture ? SHORT_PASTURE_GAME_OVER_THRESHOLD : PASTURE_GAME_OVER_THRESHOLD)
+  );
 };
 
 /**
@@ -374,7 +378,7 @@ export const determineGameOver = (players: Players) => {
  * @param pastQuestions
  * @returns
  */
-export const buildUsedQuestionIdsDict = (pastQuestions: string[]): PlainObject => {
+export const buildUsedQuestionIdsDict = (pastQuestions: string[]): BooleanDictionary => {
   return pastQuestions.reduce((acc, id) => {
     acc[id] = true;
     return acc;

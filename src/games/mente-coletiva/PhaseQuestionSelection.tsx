@@ -10,13 +10,12 @@ import {
   PhaseAnnouncement,
   PhaseContainer,
   RoundAnnouncement,
-  Step,
   StepSwitcher,
   Translate,
-  ViewIf,
+  ViewOr,
 } from '../../components';
-import { QuestionSelectionWaiting } from './QuestionSelectionWaiting';
-import { QuestionSelection } from './QuestionSelection';
+import { StepQuestionSelection } from './StepQuestionSelection';
+import { StepQuestionSelectionWaiting } from './StepQuestionSelectionWaiting';
 import { GamePremiseRules } from './RulesBlobs';
 
 function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
@@ -56,25 +55,23 @@ function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
         </PhaseAnnouncement>
 
         {/* Step 2 */}
-        <Step fullWidth>
-          <ViewIf isVisible={isUserTheActivePlayer}>
-            <QuestionSelection
-              players={players}
-              currentQuestions={state.currentQuestions}
-              onSubmitQuestion={onSubmitQuestion}
-              roundType={state.roundType}
-              activePlayer={activePlayer}
-            />
-          </ViewIf>
+        <ViewOr orCondition={isUserTheActivePlayer}>
+          <StepQuestionSelection
+            players={players}
+            currentQuestions={state.currentQuestions}
+            onSubmitQuestion={onSubmitQuestion}
+            roundType={state.roundType}
+            activePlayer={activePlayer}
+            pastureSize={state.pastureSize}
+          />
 
-          <ViewIf isVisible={!isUserTheActivePlayer}>
-            <QuestionSelectionWaiting
-              activePlayer={activePlayer}
-              players={players}
-              roundType={state.roundType}
-            />
-          </ViewIf>
-        </Step>
+          <StepQuestionSelectionWaiting
+            activePlayer={activePlayer}
+            players={players}
+            roundType={state.roundType}
+            pastureSize={state.pastureSize}
+          />
+        </ViewOr>
       </StepSwitcher>
     </PhaseContainer>
   );

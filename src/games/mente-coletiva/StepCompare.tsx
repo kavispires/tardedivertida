@@ -6,7 +6,7 @@ import { AdminAnswerControl } from './AdminAnswerControl';
 import { AnswerGroup } from './AnswerGroup';
 import { UserAnswers } from './UserAnswers';
 
-type CompareStepProps = {
+type StepCompareProps = {
   currentQuestion: MQuestion;
   answerGroup: AnswerGroup;
   players: GamePlayers;
@@ -19,7 +19,7 @@ type CompareStepProps = {
   setAllowedList: GenericFunction;
 };
 
-export function CompareStep({
+export function StepCompare({
   currentQuestion,
   answerGroup,
   players,
@@ -30,7 +30,7 @@ export function CompareStep({
   remainingGroupsCount,
   allowedList,
   setAllowedList,
-}: CompareStepProps) {
+}: StepCompareProps) {
   const allowUserAnswer = (isAllowed: boolean, answerId: string) => {
     const allowedListCopy = { ...allowedList };
     if (!isAllowed) {

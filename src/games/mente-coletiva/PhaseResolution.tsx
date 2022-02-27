@@ -5,7 +5,7 @@ import { useLanguage } from '../../hooks';
 import { PHASES } from '../../utils/phases';
 // Components
 import { Instruction, PhaseAnnouncement, PhaseContainer, StepSwitcher, Translate } from '../../components';
-import { ResolutionStep } from './ResolutionStep';
+import { StepResolution } from './StepResolution';
 
 function PhaseResolution({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -47,13 +47,14 @@ function PhaseResolution({ state, players, info }: PhaseProps) {
         </PhaseAnnouncement>
 
         {/* Step 1 */}
-        <ResolutionStep
+        <StepResolution
           ranking={state.ranking}
           players={players}
           pastureChangeStr={state.pastureChangeStr}
           roundType={state.roundType}
           announceSave={state?.announceSave}
           round={state.round}
+          pastureSize={state.pastureSize}
         />
       </StepSwitcher>
     </PhaseContainer>
