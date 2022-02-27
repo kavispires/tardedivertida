@@ -2,7 +2,9 @@ import { useState } from 'react';
 // Design Resources
 import { Button, Slider } from 'antd';
 // Hooks
-import { useLoading } from '../../hooks';
+import { useLoading, useMock } from '../../hooks';
+// Utils
+import { mockGuess } from './mock';
 // Components
 import { ButtonContainer, Instruction, Step, Title, Translate } from '../../components';
 import { Dial } from './Dial';
@@ -23,8 +25,8 @@ function Prompt({ currentCategory }: PromptProps) {
       ?
       <br />
       <Translate
-        pt="Clique no número ou use a barra, então aperte Enviar."
-        en="Click on the number or use the slider, then press Send."
+        pt="Clique no número ou use a barra abaixo para alinhar o ponteiro na sua resposta, então aperte Enviar."
+        en="Click on the number or use the slider below to position the pointer on your guess, then press Send."
       />
     </Instruction>
   );
@@ -38,6 +40,8 @@ type StepGuessProps = {
 export function StepGuess({ currentCategory, onSendGuess }: StepGuessProps) {
   const [isLoading] = useLoading();
   const [needle, setNeedle] = useState(0);
+
+  useMock(() => onSendGuess({ guess: mockGuess(currentCategory.target ?? 0) }), []);
 
   return (
     <Step className="o-dial-guess-selection">

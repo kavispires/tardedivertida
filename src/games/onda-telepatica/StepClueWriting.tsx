@@ -6,9 +6,9 @@ import { useLanguage, useLoading } from '../../hooks';
 // HUtils
 import { getTargetSide } from './helpers';
 // Components
-import { ButtonContainer, Instruction, Title, Translate } from '../../components';
-import { ClueWritingRules } from './ClueWritingRules';
+import { ButtonContainer, Instruction, Step, Title, Translate } from '../../components';
 import { Dial } from './Dial';
+import { ClueWritingRules } from './RulesBlobs';
 
 type StepClueWritingProps = {
   currentCategories: OCategoryCard[];
@@ -38,7 +38,7 @@ export function StepClueWriting({
   const card = currentCategories.find((c) => c.id === currentCategoryId);
 
   return (
-    <div>
+    <Step fullWidth>
       <Title>
         <Translate pt="Escreva sua dica" en="Write your clue" />
       </Title>
@@ -68,6 +68,6 @@ export function StepClueWriting({
           <Translate pt="Enviar" en="Send" />
         </Button>
       </ButtonContainer>
-    </div>
+    </Step>
   );
 }

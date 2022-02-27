@@ -1,4 +1,4 @@
-import { AvatarName, ButtonContainer, Translate, WaitingRoom } from '../../components';
+import { AvatarName, ButtonContainer, Instruction, Translate, WaitingRoom } from '../../components';
 import { Card } from './Card';
 
 type StepClueWaitingProps = {
@@ -35,7 +35,7 @@ export function StepClueWaiting({
           />
         </p>
       ) : (
-        <div>
+        <Instruction contained>
           <p>
             <AvatarName player={psychic} />
             <Translate pt={'escolheu:'} en={'chose:'} />
@@ -53,7 +53,7 @@ export function StepClueWaiting({
               }" and extreme right "${card!.right}". This might help the psychic!`}
             />
           </p>
-        </div>
+        </Instruction>
       )}
     </WaitingRoom>
   );

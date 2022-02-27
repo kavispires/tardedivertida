@@ -9,10 +9,9 @@ import {
   Instruction,
   PhaseAnnouncement,
   PhaseContainer,
-  Step,
   StepSwitcher,
   Translate,
-  ViewIf,
+  ViewOr,
 } from '../../components';
 import { StepGuess } from './StepGuess';
 import { StepPsychicGuess } from './StepPsychicGuess';
@@ -47,15 +46,10 @@ function PhaseGuess({ players, state, info }: PhaseProps) {
         </PhaseAnnouncement>
 
         {/* Step 1 */}
-        <Step fullWidth>
-          <ViewIf isVisible={isUserThePsychic}>
-            <StepPsychicGuess currentCategory={state.currentCategory} onSendGuess={onSendGuess} />
-          </ViewIf>
-
-          <ViewIf isVisible={!isUserThePsychic}>
-            <StepGuess currentCategory={state.currentCategory} onSendGuess={onSendGuess} />
-          </ViewIf>
-        </Step>
+        <ViewOr orCondition={isUserThePsychic}>
+          <StepPsychicGuess currentCategory={state.currentCategory} onSendGuess={onSendGuess} />
+          <StepGuess currentCategory={state.currentCategory} onSendGuess={onSendGuess} />
+        </ViewOr>
       </StepSwitcher>
     </PhaseContainer>
   );

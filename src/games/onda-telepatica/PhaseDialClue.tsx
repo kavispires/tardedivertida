@@ -11,10 +11,9 @@ import {
   PhaseAnnouncement,
   PhaseContainer,
   RoundAnnouncement,
-  Step,
   StepSwitcher,
   Translate,
-  ViewIf,
+  ViewOr,
 } from '../../components';
 import { StepClueWriting } from './StepClueWriting';
 import { StepClueWaiting } from './StepClueWaiting';
@@ -72,32 +71,26 @@ function PhaseDialClue({ players, state, info }: PhaseProps) {
         </PhaseAnnouncement>
 
         {/* Step 2 */}
-        <Step fullWidth>
-          <ViewIf isVisible={isUserThePsychic && !state.currentCategoryId}>
+        <ViewOr orCondition={isUserThePsychic}>
+          <ViewOr orCondition={!state.currentCategoryId}>
             <StepCategorySelection
               currentCategories={state.currentCategories}
               onSendChosenSide={onSendChosenSide}
             />
-          </ViewIf>
-
-          <ViewIf isVisible={isUserThePsychic && state.currentCategoryId}>
             <StepClueWriting
               currentCategories={state.currentCategories}
               currentCategoryId={state.currentCategoryId}
               target={state.target}
               onSendClue={onSendClue}
             />
-          </ViewIf>
-
-          <ViewIf isVisible={!isUserThePsychic}>
-            <StepClueWaiting
-              players={players}
-              psychic={psychic}
-              currentCategories={state.currentCategories}
-              currentCategoryId={state.currentCategoryId}
-            />
-          </ViewIf>
-        </Step>
+          </ViewOr>
+          <StepClueWaiting
+            players={players}
+            psychic={psychic}
+            currentCategories={state.currentCategories}
+            currentCategoryId={state.currentCategoryId}
+          />
+        </ViewOr>
       </StepSwitcher>
     </PhaseContainer>
   );

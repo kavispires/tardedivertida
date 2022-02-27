@@ -1,4 +1,6 @@
 import { useState } from 'react';
+// Design Resources
+import { Button } from 'antd';
 // State & Hooks
 import { useIsUserReady, useLanguage, useWhichPlayerIsThe } from '../../hooks';
 // Resources & Utils
@@ -6,9 +8,11 @@ import { PHASES } from '../../utils/phases';
 // Components
 import {
   AdminNextRoundButton,
+  ButtonContainer,
   Instruction,
   PhaseAnnouncement,
   PhaseContainer,
+  PopoverRule,
   RankingBoard,
   Step,
   StepSwitcher,
@@ -16,6 +20,7 @@ import {
   Translate,
 } from '../../components';
 import { StepReveal } from './StepReveal';
+import { ScoringRules } from './RulesBlobs';
 
 function PhaseReveal({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
@@ -56,11 +61,19 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
 
         {/* Step 2 */}
         <Step fullWidth>
-          <Title level={1}>
-            <Translate pt="Resultado" en="Results" />
-          </Title>
+          <Title level={1}>Ranking</Title>
+
+          <PopoverRule
+            label={<Translate pt="Como a pontuação funciona?" en="How does scoring work?" />}
+            content={<ScoringRules />}
+          />
 
           <RankingBoard ranking={state.ranking} players={players} />
+          <ButtonContainer>
+            <Button onClick={() => setStep(1)}>
+              <Translate pt="Ver resultado novamente" en="See results again" />
+            </Button>
+          </ButtonContainer>
           <AdminNextRoundButton round={state.round} lastRound={state?.lastRound} />
         </Step>
       </StepSwitcher>

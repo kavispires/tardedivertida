@@ -16,6 +16,6 @@ export const PLAYER_COUNTS = {
 
 export const MAX_ROUNDS = 10;
 
-export const GAME_OVER_SCORE_THRESHOLD = 15;
+export const GAME_OVER_SCORE_THRESHOLD = 10;
 
 export const CATEGORIES_PER_ROUND = 2;

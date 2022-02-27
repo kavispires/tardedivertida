@@ -1,7 +1,7 @@
 // Hooks
 import { useLoading } from '../../hooks';
 // Components
-import { AvatarIcon, Instruction, Title, Translate } from '../../components';
+import { AvatarIcon, Instruction, Step, Title, Translate } from '../../components';
 import { Card } from './Card';
 
 type StepCategorySelectionProps = {
@@ -13,7 +13,7 @@ export function StepCategorySelection({ currentCategories, onSendChosenSide }: S
   const [isLoading] = useLoading();
 
   return (
-    <div className="o-card-selection">
+    <Step className="o-card-selection">
       <Title>
         <Translate
           pt="Medium, selecione uma das duas categorias"
@@ -44,6 +44,6 @@ export function StepCategorySelection({ currentCategories, onSendChosenSide }: S
           </button>
         ))}
       </div>
-    </div>
+    </Step>
   );
 }
