@@ -6,7 +6,7 @@ import { Layout, message } from 'antd';
 // Firebase
 import { auth } from '../services/firebase';
 // State
-import { useGlobalState, useLocalStorage } from '../hooks';
+import { useGlobalState, useLanguage, useLocalStorage } from '../hooks';
 // Components
 import { LoadingBar, LoadingPage } from '../components';
 // Pages
@@ -21,6 +21,7 @@ import Draw from './Draw';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const { translate } = useLanguage();
   const [isAuthenticated, setIsAuthenticated] = useGlobalState('isAuthenticated');
   const [, setBlurEnabled] = useGlobalState('blurEnabled');
   const [, setIsAdmin] = useGlobalState('isAdmin');
@@ -32,7 +33,9 @@ function App() {
         setIsAuthenticated(true);
         setIsAdmin(true);
         setIsLoading(false);
-        message.info('Você foi logado de volta automaticamente.');
+        message.info(
+          translate('Você foi logado de volta automaticamente.', "You've been logged back in automatically")
+        );
       } else {
         setIsAuthenticated(false);
         setIsAdmin(false);
@@ -48,7 +51,7 @@ function App() {
       <LoadingBar />
       <HashRouter>
         {isLoading ? (
-          <LoadingPage />
+          <LoadingPage message="..." />
         ) : (
           <Routes>
             <Route path="/" element={<Home />} />
