@@ -45,8 +45,9 @@ function StepGuessVerification({
   validSuggestions,
 }: StepGuessVerificationProps) {
   const { translate } = useLanguage();
+
   useEffect(() => {
-    if (isUserTheController) {
+    if (isUserTheController && !isLoading) {
       message.info(
         messageContent(
           translate('Você controla!', 'You control!'),
@@ -56,7 +57,7 @@ function StepGuessVerification({
         )
       );
     }
-  }, [isUserTheController, controller.id, translate]);
+  }, [isUserTheController, controller.id, translate, isLoading]);
 
   return (
     <Step>

@@ -54,7 +54,7 @@ function StepCompareSuggestions({
   };
 
   useEffect(() => {
-    if (isUserTheController && !wasMessageShown) {
+    if (isUserTheController && !wasMessageShown && !isLoading) {
       message.info(
         messageContent(
           translate('Você controla!', 'You control!'),
@@ -65,7 +65,7 @@ function StepCompareSuggestions({
       );
       setWasMessageShown(true);
     }
-  }, [isUserTheController, controller.id, translate, wasMessageShown]);
+  }, [isUserTheController, controller.id, translate, wasMessageShown, isLoading]);
 
   const suggestionsValues = Object.values(myRecommendation);
 
