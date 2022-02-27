@@ -8,6 +8,7 @@ import {
   Translate,
   TurnOrder,
   AvatarIcon,
+  Step,
 } from '../../components';
 
 type StoryWaitingProps = {
@@ -19,7 +20,7 @@ type StoryWaitingProps = {
 
 export function StoryWaiting({ storyteller, user, players, gameOrder }: StoryWaitingProps) {
   return (
-    <div className="c-story-waiting">
+    <Step fullWidth className="c-story-waiting">
       <Title>
         <AvatarIcon type="animated-clock" size="large" /> <Translate pt="Aguarde..." en="Please wait..." />
       </Title>
@@ -39,6 +40,6 @@ export function StoryWaiting({ storyteller, user, players, gameOrder }: StoryWai
       <FloatingHand>
         <Hand hand={user.hand} sizeRatio={user.hand.length} />
       </FloatingHand>
-    </div>
+    </Step>
   );
 }

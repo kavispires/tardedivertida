@@ -12,10 +12,10 @@ import {
   PhaseAnnouncement,
   PhaseContainer,
   RoundAnnouncement,
-  Step,
   StepSwitcher,
   Translate,
-  ViewIf,
+  TurnOrder,
+  ViewOr,
 } from '../../components';
 import { StoryWaiting } from './StoryWaiting';
 import { StoryWriting } from './StoryWriting';
@@ -25,7 +25,6 @@ function PhaseStory({ state, players, info }: PhaseProps) {
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
   const [storyteller, isUserTheStoryTeller] = useWhichPlayerIsThe('storytellerId', state, players);
-  const [nextStoryteller] = useWhichPlayerIsThe('nextStorytellerId', state, players);
   const [step, setStep] = useState(0);
 
   const onSubmitStory = useOnSubmitStoryAPIRequest(setStep);
@@ -55,37 +54,24 @@ function PhaseStory({ state, players, info }: PhaseProps) {
                 <>
                   Para essa rodada, <AvatarName player={storyteller} addressUser size="small" /> será o(a)
                   Contador(a) de Histórias.
-                  <br />
-                  Para a próxima rodada, será: {nextStoryteller.name}
                 </>
               }
               en={
                 <>
                   For this round, <AvatarName player={storyteller} addressUser /> will be the Storyteller.
-                  <br />
-                  For the next round we will have: {nextStoryteller.name}
                 </>
               }
             />
+            <TurnOrder players={players} order={state.gameOrder} activePlayerId={state.storytellerId} />
             <ImageCardPreloadHand hand={user?.hand} />
           </Instruction>
         </PhaseAnnouncement>
 
         {/* Step 2 */}
-        <Step fullWidth>
-          <ViewIf isVisible={!isUserTheStoryTeller}>
-            <StoryWaiting
-              user={user}
-              storyteller={storyteller}
-              players={players}
-              gameOrder={state.gameOrder}
-            />
-          </ViewIf>
-
-          <ViewIf isVisible={isUserTheStoryTeller}>
-            <StoryWriting user={user} onSubmitStory={onSubmitStory} />
-          </ViewIf>
-        </Step>
+        <ViewOr orCondition={isUserTheStoryTeller}>
+          <StoryWriting user={user} onSubmitStory={onSubmitStory} />
+          <StoryWaiting user={user} storyteller={storyteller} players={players} gameOrder={state.gameOrder} />
+        </ViewOr>
       </StepSwitcher>
     </PhaseContainer>
   );

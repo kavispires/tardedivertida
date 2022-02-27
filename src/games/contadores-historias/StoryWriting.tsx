@@ -9,6 +9,7 @@ import {
   FloatingHand,
   ImageCard,
   ImageCardHand as Hand,
+  Step,
   Title,
   Translate,
 } from '../../components';
@@ -35,7 +36,7 @@ export function StoryWriting({ user, onSubmitStory }: StoryWritingProps) {
   };
 
   return (
-    <div className="c-story-writing">
+    <Step fullWidth className="c-story-writing">
       <Title>
         <Translate pt="Escreva uma história" en="Tell us a story" />
       </Title>
@@ -94,6 +95,6 @@ export function StoryWriting({ user, onSubmitStory }: StoryWritingProps) {
           sizeRatio={user.hand.length}
         />
       </FloatingHand>
-    </div>
+    </Step>
   );
 }
