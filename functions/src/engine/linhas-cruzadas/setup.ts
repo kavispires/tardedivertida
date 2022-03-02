@@ -30,7 +30,7 @@ export const prepareSetupPhase = async (
   );
   const wordsDeck = gameUtils.getRandomItems(
     resourceData.allWords,
-    playerCount * (store.options.singleWordOnly ? 6 : 2)
+    playerCount * (store.options.singleWordOnly ? 3 : 3)
   );
 
   // Save
