@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 // Design Resources
 import { message, notification } from 'antd';
@@ -11,7 +11,30 @@ import { isValidGameId, isDevEnv, getGameIdFromPathname } from '../utils/helpers
 import { GAME_COLLECTION } from '../utils/constants';
 // Components
 import { LoadingPage, PageError } from '../components';
-import GameSessions from '../games';
+// Game lazy imports
+const SessionArteRuim = lazy(() => import('../games/arte-ruim/SessionArteRuim'));
+const SessionContadoresHistorias = lazy(
+  () => import('../games/contadores-historias/SessionContadoresHistorias')
+);
+const SessionCrimesHediondos = lazy(() => import('../games/crimes-hediondos/SessionCrimesHediondos'));
+const SessionCruzaPalavras = lazy(() => import('../games/cruza-palavras/SessionCruzaPalavras'));
+const SessionDetetivesImaginativos = lazy(
+  () => import('../games/detetives-imaginativos/SessionDetetivesImaginativos')
+);
+const SessionEspiaoEntreNos = lazy(() => import('../games/espiao-entre-nos/SessionEspiaoEntreNos'));
+const SessionGaleriaDeSonhos = lazy(() => import('../games/galeria-de-sonhos/SessionGaleriaDeSonhos'));
+const SessionInstrumentosCodificados = lazy(
+  () => import('../games/instrumentos-codificados/SessionInstrumentosCodificados')
+);
+const SessionLinhasCruzadas = lazy(() => import('../games/linhas-cruzadas/SessionLinhasCruzadas'));
+const SessionMenteColetiva = lazy(() => import('../games/mente-coletiva/SessionMenteColetiva'));
+const SessionNaRuaDoMedo = lazy(() => import('../games/na-rua-do-medo/SessionNaRuaDoMedo'));
+const SessionOndaTelepatica = lazy(() => import('../games/onda-telepatica/SessionOndaTelepatica'));
+const SessionPolemicaDaVez = lazy(() => import('../games/polemica-da-vez/SessionPolemicaDaVez'));
+const SessionRetratoFalado = lazy(() => import('../games/retrato-falado/SessionRetratoFalado'));
+const SessionSonhosPesadelos = lazy(() => import('../games/sonhos-pesadelos/SessionSonhosPesadelos'));
+const SessionTestemunhaOcular = lazy(() => import('../games/testemunha-ocular/SessionTestemunhaOcular'));
+const SessionUeSoIsso = lazy(() => import('../games/ue-so-isso/SessionUeSoIsso'));
 
 function Game() {
   const navigate = useNavigate();
@@ -99,39 +122,107 @@ function Game() {
   if (gameId && gameName) {
     switch (gameName) {
       case GAME_COLLECTION.ARTE_RUIM:
-        return <GameSessions.ArteRuim gameId={gameId} />;
+        return (
+          <Suspense fallback={<LoadingPage message={''} />}>
+            <SessionArteRuim gameId={gameId} />;
+          </Suspense>
+        );
       case GAME_COLLECTION.CONTADORES_HISTORIAS:
-        return <GameSessions.ContadoresHistorias gameId={gameId} />;
+        return (
+          <Suspense fallback={<LoadingPage message={''} />}>
+            <SessionContadoresHistorias gameId={gameId} />;
+          </Suspense>
+        );
       case GAME_COLLECTION.DETETIVES_IMAGINATIVOS:
-        return <GameSessions.DetetivesImaginativos gameId={gameId} />;
+        return (
+          <Suspense fallback={<LoadingPage message={''} />}>
+            <SessionDetetivesImaginativos gameId={gameId} />;
+          </Suspense>
+        );
       case GAME_COLLECTION.ESPIAO_ENTRE_NOS:
-        return <GameSessions.EspiaoEntreNos gameId={gameId} />;
+        return (
+          <Suspense fallback={<LoadingPage message={''} />}>
+            <SessionEspiaoEntreNos gameId={gameId} />;
+          </Suspense>
+        );
       case GAME_COLLECTION.GALERIA_DE_SONHOS:
-        return <GameSessions.GaleriaDeSonhos gameId={gameId} />;
+        return (
+          <Suspense fallback={<LoadingPage message={''} />}>
+            <SessionGaleriaDeSonhos gameId={gameId} />;
+          </Suspense>
+        );
       case GAME_COLLECTION.CRIMES_HEDIONDOS:
-        return <GameSessions.CrimesHediondos gameId={gameId} />;
+        return (
+          <Suspense fallback={<LoadingPage message={''} />}>
+            <SessionCrimesHediondos gameId={gameId} />;
+          </Suspense>
+        );
       case GAME_COLLECTION.INSTRUMENTOS_CODIFICADOS:
-        return <GameSessions.InstrumentosCodificados gameId={gameId} />;
+        return (
+          <Suspense fallback={<LoadingPage message={''} />}>
+            <SessionInstrumentosCodificados gameId={gameId} />;
+          </Suspense>
+        );
       case GAME_COLLECTION.LINHAS_CRUZADAS:
-        return <GameSessions.LinhasCruzadas gameId={gameId} />;
+        return (
+          <Suspense fallback={<LoadingPage message={''} />}>
+            <SessionLinhasCruzadas gameId={gameId} />;
+          </Suspense>
+        );
       case GAME_COLLECTION.MENTE_COLETIVA:
-        return <GameSessions.MenteColetiva gameId={gameId} />;
+        return (
+          <Suspense fallback={<LoadingPage message={''} />}>
+            <SessionMenteColetiva gameId={gameId} />;
+          </Suspense>
+        );
       case GAME_COLLECTION.NA_RUA_DO_MEDO:
-        return <GameSessions.NaRuaDoMedo gameId={gameId} />;
+        return (
+          <Suspense fallback={<LoadingPage message={''} />}>
+            <SessionNaRuaDoMedo gameId={gameId} />;
+          </Suspense>
+        );
       case GAME_COLLECTION.ONDA_TELEPATICA:
-        return <GameSessions.OndaTelepatica gameId={gameId} />;
+        return (
+          <Suspense fallback={<LoadingPage message={''} />}>
+            <SessionOndaTelepatica gameId={gameId} />;
+          </Suspense>
+        );
       case GAME_COLLECTION.POLEMICA_DA_VEZ:
-        return <GameSessions.PolemicaDaVez gameId={gameId} />;
+        return (
+          <Suspense fallback={<LoadingPage message={''} />}>
+            <SessionPolemicaDaVez gameId={gameId} />;
+          </Suspense>
+        );
       case GAME_COLLECTION.RETRATO_FALADO:
-        return <GameSessions.RetratoFalado gameId={gameId} />;
+        return (
+          <Suspense fallback={<LoadingPage message={''} />}>
+            <SessionRetratoFalado gameId={gameId} />;
+          </Suspense>
+        );
       case GAME_COLLECTION.SONHOS_PESADELOS:
-        return <GameSessions.SonhosPesadelos gameId={gameId} />;
+        return (
+          <Suspense fallback={<LoadingPage message={''} />}>
+            <SessionSonhosPesadelos gameId={gameId} />;
+          </Suspense>
+        );
       case GAME_COLLECTION.TESTEMUNHA_OCULAR:
-        return <GameSessions.TestemunhaOcular gameId={gameId} />;
+        return (
+          <Suspense fallback={<LoadingPage message={''} />}>
+            <SessionTestemunhaOcular gameId={gameId} />;
+          </Suspense>
+        );
       case GAME_COLLECTION.UE_SO_ISSO:
-        return <GameSessions.UeSoIsso gameId={gameId} />;
+        return (
+          <Suspense fallback={<LoadingPage message={''} />}>
+            <SessionUeSoIsso gameId={gameId} />;
+          </Suspense>
+        );
       case GAME_COLLECTION.CRUZA_PALAVRAS:
-        return <GameSessions.CruzaPalavras gameId={gameId} />;
+        return (
+          <Suspense fallback={<LoadingPage message={''} />}>
+            <SessionCruzaPalavras gameId={gameId} />;
+          </Suspense>
+        );
       default:
         console.warn('Wrong game library provided');
     }
