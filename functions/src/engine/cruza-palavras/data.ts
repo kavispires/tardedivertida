@@ -9,7 +9,7 @@ import * as resourceUtils from '../resource';
  * @returns
  */
 export const getWords = async (language: string): Promise<ResourceData> => {
-  const resourceName = `linhas-cruzadas-${language}`;
+  const resourceName = `single-word-${language}`;
   // Get full deck
   const allWords = await resourceUtils.fetchResource(resourceName);
 
