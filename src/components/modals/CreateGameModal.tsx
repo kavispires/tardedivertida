@@ -211,7 +211,7 @@ function Options({ options, disabled, onChangeOptions, selectedOptions }: Option
   ) : (
     <div className="create-game-modal-options create-game-modal-options__no-options">
       <Typography.Text>
-        <Translate pt="Este jogo não possui customizações" en="This game has no customizations" />
+        <Translate pt="Este jogo não possui customizações" en="This game does not support customizations" />
       </Typography.Text>
     </div>
   );
