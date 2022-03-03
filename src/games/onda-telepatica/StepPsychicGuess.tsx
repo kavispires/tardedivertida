@@ -32,7 +32,7 @@ export function StepPsychicGuess({ currentCategory, onSendGuess }: StepPsychicGu
           size="large"
           disabled={isLoading}
         >
-          <Translate pt="Menos da metade" en="Less the half" />
+          <Translate pt="Menos da metade" en="Less than half" />
         </Button>
         <Button type="primary" onClick={() => onSendGuess({ guess: true })} size="large" disabled={isLoading}>
           <Translate pt="A metade ou mais" en="Half or more" />
