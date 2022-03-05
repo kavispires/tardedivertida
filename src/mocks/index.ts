@@ -1,4 +1,4 @@
-import { setGlobalState } from '../hooks';
+import { setGlobalState } from 'hooks';
 
 const names = ['Abe', 'Bob', 'Cam', 'Doc', 'Eva', 'Fred', 'Gus', 'Hal', 'Ira', 'Jay'];
 const random = <T>(array: T[]): T => array[Math.floor(Math.random() * array.length)];

@@ -1,5 +1,5 @@
 // Components
-import { AvatarIcon, AvatarName, Instruction, Step, Title, Translate } from '../../components';
+import { AvatarIcon, AvatarName, Instruction, Step, Title, Translate } from 'components';
 import { QuestionsHistory } from './QuestionsHistory';
 import { Suspects } from './Suspects';
 

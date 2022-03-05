@@ -4,9 +4,9 @@ import clsx from 'clsx';
 import { Button, Tooltip } from 'antd';
 import { AimOutlined, ClearOutlined, IssuesCloseOutlined } from '@ant-design/icons';
 // Hooks
-import { useGlobalState, useLanguage } from '../../hooks';
+import { useGlobalState, useLanguage } from 'hooks';
 // Components
-import { Translate } from '../../components';
+import { Translate } from 'components';
 
 type SuspectsListProps = {
   players: GamePlayers;

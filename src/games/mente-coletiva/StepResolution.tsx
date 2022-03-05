@@ -3,7 +3,7 @@ import { useTimer } from 'react-timer-hook';
 // Design Resources
 import { HeartFilled } from '@ant-design/icons';
 // Hooks
-import { getAnimationClass, inNSeconds } from '../../utils/helpers';
+import { getAnimationClass, inNSeconds } from 'utils/helpers';
 // Components
 import {
   AdminNextRoundButton,
@@ -13,7 +13,7 @@ import {
   StepSwitcher,
   Title,
   Translate,
-} from '../../components';
+} from 'components';
 import { Pasture } from './Pasture';
 import { RoundType } from './RoundType';
 import clsx from 'clsx';

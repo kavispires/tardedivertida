@@ -4,11 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import { Button, Space, Tooltip } from 'antd';
 import { RedoOutlined } from '@ant-design/icons';
 // Hooks
-import { useLocalStorage } from '../../hooks';
+import { useLocalStorage } from 'hooks';
 // Utils
-import { LATEST_GAME_IDS } from '../../utils/constants';
+import { LATEST_GAME_IDS } from 'utils/constants';
 // Components
-import { Translate } from '../shared';
+import { Translate } from 'components';
 
 export function RecentlyCreatedGames(): JSX.Element {
   const navigate = useNavigate();

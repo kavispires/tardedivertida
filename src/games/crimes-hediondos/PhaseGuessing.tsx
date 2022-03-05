@@ -1,10 +1,10 @@
 import { useState } from 'react';
 // State & Hooks
-import { useIsUserReady, useUser, useLanguage } from '../../hooks';
+import { useIsUserReady, useUser, useLanguage } from 'hooks';
 // Resources & Utils
-import { PHASES } from '../../utils/phases';
+import { PHASES } from 'utils/phases';
 // Components
-import { PhaseAnnouncement, PhaseContainer, StepSwitcher } from '../../components';
+import { PhaseAnnouncement, PhaseContainer, StepSwitcher } from 'components';
 import { GuessMessage } from './RulesBlobs';
 import { StepGuessing } from './StepGuessing';
 import { useOnSubmitGuessesAPIRequest } from './_api-requests';

@@ -2,9 +2,9 @@ import clsx from 'clsx';
 // Design Resources
 import { Tooltip } from 'antd';
 // Hooks
-import { useLanguage } from '../../hooks';
+import { useLanguage } from 'hooks';
 // Components
-import { ImageCard, Translate } from '../../components';
+import { ImageCard, Translate } from 'components';
 import { CandyCount } from './CandyCount';
 
 type HouseCardProps = {

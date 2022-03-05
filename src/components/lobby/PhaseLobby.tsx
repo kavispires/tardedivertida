@@ -1,7 +1,7 @@
 // Constants
-import { PHASES } from '../../utils/phases';
+import { PHASES } from 'utils/phases';
 // Hooks
-import useGlobalState from '../../hooks/useGlobalState';
+import useGlobalState from 'hooks/useGlobalState';
 // Components
 import { AvatarEntry, PhaseContainer } from '..';
 import Join from './_internal/Join';

@@ -1,9 +1,9 @@
 import { useState } from 'react';
 // Hooks
-import { useWhichPlayerIsThe, useLoading, useLanguage } from '../../hooks';
+import { useWhichPlayerIsThe, useLoading, useLanguage } from 'hooks';
 import { useOnSubmitTestimonyAPIRequest } from './api-requests';
 // Utils
-import { PHASES } from '../../utils/phases';
+import { PHASES } from 'utils/phases';
 // Components
 import {
   AvatarName,
@@ -12,7 +12,7 @@ import {
   PhaseContainer,
   StepSwitcher,
   Translate,
-} from '../../components';
+} from 'components';
 import { StepQuestioning } from './StepQuestioning';
 
 function PhaseQuestioning({ state, players, info }: PhaseProps) {

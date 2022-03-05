@@ -3,9 +3,9 @@ import { useMemo } from 'react';
 // Design Resources
 import { Avatar as AntAvatar } from 'antd';
 // Utils
-import { getAnimationClass } from '../../utils/helpers';
+import { getAnimationClass } from 'utils/helpers';
 // Componentes
-import { Avatar, AvatarName, CanvasSVG, Card, Translate } from '../../components';
+import { Avatar, AvatarName, CanvasSVG, Card, Translate } from 'components';
 
 type PageProps = {
   slide: LSlide;

@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 // Components
-import { Icons, Translate } from '../../components';
+import { Icons, Translate } from 'components';
 
 type RoundTypeProps = {
   roundType: Number;

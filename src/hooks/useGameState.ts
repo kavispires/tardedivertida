@@ -2,7 +2,7 @@ import { notification } from 'antd';
 import { useDocument } from 'react-firebase-hooks/firestore';
 import { doc } from 'firebase/firestore';
 // Services
-import { firestore } from '../services/firebase';
+import { firestore } from 'services/firebase';
 
 export function useGameState(gameId: GameId, gameName: GameName): GameState {
   const docPath = `${gameName}/${gameId}/session/state`;

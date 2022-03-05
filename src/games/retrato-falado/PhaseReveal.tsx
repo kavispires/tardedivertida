@@ -1,10 +1,10 @@
 import { useState } from 'react';
 // State & Hooks
-import { useIsUserReady, useLanguage, useWhichPlayerIsThe, useUser } from '../../hooks';
+import { useIsUserReady, useLanguage, useWhichPlayerIsThe, useUser } from 'hooks';
 // Resources & Utils
-import { PHASES } from '../../utils/phases';
+import { PHASES } from 'utils/phases';
 // Components
-import { Instruction, PhaseAnnouncement, PhaseContainer, StepSwitcher, Translate } from '../../components';
+import { Instruction, PhaseAnnouncement, PhaseContainer, StepSwitcher, Translate } from 'components';
 import StepResults from './StepResults';
 import StepRanking from './StepRanking';
 

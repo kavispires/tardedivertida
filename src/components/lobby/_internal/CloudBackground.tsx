@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 // Utils
-import { PUBLIC_URL } from '../../../utils/constants';
+import { PUBLIC_URL } from 'utils/constants';
 
 function SingleCloud({ type, index }: { type: string; index?: number }) {
   return (

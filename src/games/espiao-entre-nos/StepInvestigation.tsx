@@ -2,8 +2,8 @@
 import { notification } from 'antd';
 import { useEffect, useState } from 'react';
 // Components
-import { ButtonContainer, Instruction, Step, Title, Translate } from '../../components';
-import { useLanguage } from '../../hooks';
+import { ButtonContainer, Instruction, Step, Title, Translate } from 'components';
+import { useLanguage } from 'hooks';
 import { EspiaoEntreNosCard as Card } from './Card';
 import { LocationSelect } from './LocationSelect';
 import { LocationsList } from './LocationsList';

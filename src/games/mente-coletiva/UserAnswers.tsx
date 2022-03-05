@@ -2,9 +2,9 @@
 import { Button } from 'antd';
 import { LockFilled, PlusCircleFilled } from '@ant-design/icons';
 // Hooks
-import { useLoading } from '../../hooks';
+import { useLoading } from 'hooks';
 // Components
-import { ButtonContainer, Instruction, Translate } from '../../components';
+import { ButtonContainer, Instruction, Translate } from 'components';
 
 type UserAnswersProps = {
   answerGroup: any;

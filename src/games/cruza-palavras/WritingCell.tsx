@@ -2,7 +2,7 @@
 import { Button, Popover } from 'antd';
 import { FormOutlined } from '@ant-design/icons';
 // Components
-import { Translate } from '../../components';
+import { Translate } from 'components';
 import PreviousClue from './PreviousClue';
 import WordForm from './WordForm';
 

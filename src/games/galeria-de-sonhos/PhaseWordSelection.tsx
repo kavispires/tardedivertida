@@ -1,9 +1,9 @@
 import { useState } from 'react';
 // State & Hooks
-import { useIsUserReady, useLanguage, useWhichPlayerIsThe } from '../../hooks';
+import { useIsUserReady, useLanguage, useWhichPlayerIsThe } from 'hooks';
 import { useOnSubmitWordAPIRequest } from './api-requests';
 // Resources & Utils
-import { PHASES } from '../../utils/phases';
+import { PHASES } from 'utils/phases';
 // Components
 import {
   AvatarName,
@@ -15,7 +15,7 @@ import {
   Translate,
   ViewSwitch,
   WaitingRoom,
-} from '../../components';
+} from 'components';
 import { StepWordSelection } from './StepWordSelection';
 import { GeneralRules, WordSelectionRules } from './RulesBlobs';
 

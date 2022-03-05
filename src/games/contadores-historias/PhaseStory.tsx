@@ -1,9 +1,9 @@
 import { useState } from 'react';
 // Hooks
-import { useIsUserReady, useWhichPlayerIsThe, useUser, useLanguage } from '../../hooks';
+import { useIsUserReady, useWhichPlayerIsThe, useUser, useLanguage } from 'hooks';
 import { useOnSubmitStoryAPIRequest } from './api-requests';
 // Resources & Utils
-import { PHASES } from '../../utils/phases';
+import { PHASES } from 'utils/phases';
 // Components
 import {
   AvatarName,
@@ -16,7 +16,7 @@ import {
   Translate,
   TurnOrder,
   ViewOr,
-} from '../../components';
+} from 'components';
 import { StoryWaiting } from './StoryWaiting';
 import { StoryWriting } from './StoryWriting';
 

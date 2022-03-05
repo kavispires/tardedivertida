@@ -1,9 +1,9 @@
 // Design Resources
 import { Avatar, Button } from 'antd';
 // Hooks
-import { useLanguage } from '../../hooks';
+import { useLanguage } from 'hooks';
 // Components
-import { AvatarName, Card, Icons, Step, Title, Translate } from '../../components';
+import { AvatarName, Card, Icons, Step, Title, Translate } from 'components';
 import { Suspects } from './Suspects';
 import { QuestionsHistory } from './QuestionsHistory';
 

@@ -1,7 +1,7 @@
 // Design Resources
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 // Components
-import { AvatarName, Instruction, Translate } from '../../components';
+import { AvatarName, Instruction, Translate } from 'components';
 
 export function WritingRules(): JSX.Element {
   return (

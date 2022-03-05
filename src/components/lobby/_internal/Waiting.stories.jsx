@@ -7,7 +7,7 @@ import {
   mockLanguageHook,
   mockLoading,
   mockPlayers,
-} from '../../../mocks';
+} from 'mocks';
 
 import Waiting from './Waiting';
 

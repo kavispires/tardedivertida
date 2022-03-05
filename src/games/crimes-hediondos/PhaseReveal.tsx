@@ -1,8 +1,8 @@
 import { useState } from 'react';
 // State & Hooks
-import { useIsUserReady, useUser, useLanguage } from '../../hooks';
+import { useIsUserReady, useUser, useLanguage } from 'hooks';
 // Resources & Utils
-import { PHASES } from '../../utils/phases';
+import { PHASES } from 'utils/phases';
 // Components
 import {
   AdminNextRoundButton,
@@ -15,7 +15,7 @@ import {
   StepSwitcher,
   Title,
   Translate,
-} from '../../components';
+} from 'components';
 import { StepReveal } from './StepReveal';
 import { Button } from 'antd';
 import { ScoringMessage } from './RulesBlobs';

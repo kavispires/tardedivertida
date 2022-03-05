@@ -1,7 +1,7 @@
 // Hooks
-import { useLanguage } from '../../hooks';
+import { useLanguage } from 'hooks';
 // Components
-import { AdminNextRoundButton, Instruction, PopoverRule, Step, Title, Translate } from '../../components';
+import { AdminNextRoundButton, Instruction, PopoverRule, Step, Title, Translate } from 'components';
 import { PlayerStats } from './PlayerStats';
 import { Street } from './Street';
 import { CardCountExplanation } from './RulesBlobs';

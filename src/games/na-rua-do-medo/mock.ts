@@ -1,4 +1,4 @@
-import { getRandomItem } from '../../utils/helpers';
+import { getRandomItem } from 'utils/helpers';
 
 const MORE_CONTINUE = ['CONTINUE', 'CONTINUE', 'CONTINUE', 'CONTINUE', 'GO_HOME'];
 const MORE_HOME = ['GO_HOME', 'GO_HOME', 'CONTINUE', 'CONTINUE', 'CONTINUE'];

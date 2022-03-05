@@ -1,7 +1,7 @@
 // Design Resources
 import { Progress } from 'antd';
 // Components
-import { Translate } from '../../components';
+import { Translate } from 'components';
 
 type GameProgressBarProps = {
   groupScore: number;

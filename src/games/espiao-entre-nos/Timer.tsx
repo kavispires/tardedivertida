@@ -1,6 +1,6 @@
 import { useTimer } from 'react-timer-hook';
 // Utils
-import { inNTime } from '../../utils/helpers';
+import { inNTime } from 'utils/helpers';
 
 type TimerProps = {
   timer: Timer;

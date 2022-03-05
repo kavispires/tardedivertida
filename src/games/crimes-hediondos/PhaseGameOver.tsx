@@ -1,7 +1,7 @@
 // Components
 import { useMemo } from 'react';
-import { GameOverWrapper } from '../../components';
-import { useLanguage, useUser } from '../../hooks';
+import { GameOverWrapper } from 'components';
+import { useLanguage, useUser } from 'hooks';
 import { Crime } from './Crime';
 import { splitWeaponsAndEvidence } from './helpers';
 

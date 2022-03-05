@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Button, Space } from 'antd';
 import { CloudUploadOutlined } from '@ant-design/icons';
 // Components
-import { AvatarName, Instruction, ReadyPlayersBar, Step, Title, Translate } from '../../components';
+import { AvatarName, Instruction, ReadyPlayersBar, Step, Title, Translate } from 'components';
 import SuggestionEasel from './SuggestionEasel';
 import { WritingRules } from './RulesBlobs';
 import Card from './UeSoIssoCard';

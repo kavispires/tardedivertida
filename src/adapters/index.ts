@@ -1,4 +1,4 @@
-import { functions } from '../services/firebase';
+import { functions } from 'services/firebase';
 import { httpsCallable } from 'firebase/functions';
 
 export const GAME_API = {

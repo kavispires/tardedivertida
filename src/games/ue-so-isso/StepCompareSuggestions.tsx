@@ -3,11 +3,11 @@ import { useEffect, useState } from 'react';
 import { Button, message, Space } from 'antd';
 import { CloudUploadOutlined } from '@ant-design/icons';
 // Hooks
-import { useGlobalState, useLanguage, useLoading } from '../../hooks';
+import { useGlobalState, useLanguage, useLoading } from 'hooks';
 // Utils
-import { deepCopy } from '../../utils/helpers';
+import { deepCopy } from 'utils/helpers';
 // Components
-import { AdminOnlyButton, Step, Title, Translate, PopoverRule, messageContent } from '../../components';
+import { AdminOnlyButton, Step, Title, Translate, PopoverRule, messageContent } from 'components';
 import Card from './UeSoIssoCard';
 import SuggestionCard from './SuggestionCard';
 import { ComparisonDetailedRules, ComparisonPhaseRules } from './RulesBlobs';

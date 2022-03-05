@@ -3,10 +3,10 @@ import clsx from 'clsx';
 import { Avatar as AntAvatar } from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
 // Utils
-import { getColorFromIndex } from '../../utils/helpers';
-import { LETTERS } from '../../utils/constants';
+import { getColorFromIndex } from 'utils/helpers';
+import { LETTERS } from 'utils/constants';
 // Components
-import { Avatar, Card } from '../../components';
+import { Avatar, Card } from 'components';
 
 type SuggestionCardProps = {
   avatarId: string;

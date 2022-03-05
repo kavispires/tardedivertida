@@ -6,9 +6,9 @@ import {
   SafetyOutlined,
 } from '@ant-design/icons';
 import clsx from 'clsx';
-import { Avatar } from '../../components';
-import { useLanguage } from '../../hooks';
-import { getAvatarColorById } from '../../utils/helpers';
+import { Avatar } from 'components';
+import { useLanguage } from 'hooks';
+import { getAvatarColorById } from 'utils/helpers';
 import { ItemCard } from './ItemCard';
 
 type CrimeProps = {

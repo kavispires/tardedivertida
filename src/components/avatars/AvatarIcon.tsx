@@ -1,9 +1,9 @@
 // Design Resources
 import { Avatar, AvatarProps } from 'antd';
 // Helpers
-import { kebabToPascal } from '../../utils/helpers';
+import { kebabToPascal } from 'utils/helpers';
 // Components
-import * as IconIllustrations from '../icons';
+import * as IconIllustrations from 'components';
 
 const IconIllustrationsComponents: any = IconIllustrations;
 

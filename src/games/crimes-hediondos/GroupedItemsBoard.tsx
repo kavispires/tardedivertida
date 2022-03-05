@@ -1,4 +1,4 @@
-import { useCardWidth } from '../../hooks';
+import { useCardWidth } from 'hooks';
 import { ItemCard } from './ItemCard';
 
 type GroupedItemsBoardProps = {

@@ -1,15 +1,15 @@
+import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 import { orderBy } from 'lodash';
 import { useTimer } from 'react-timer-hook';
 // Design Resources
 import { CrownFilled } from '@ant-design/icons';
 // Hooks
-import { useDimensions } from '../../hooks';
+import { useDimensions } from 'hooks';
 // Utils
-import { inNSeconds } from '../../utils/helpers';
+import { inNSeconds } from 'utils/helpers';
 // Components
-import { Avatar } from '../avatars';
-import clsx from 'clsx';
+import { Avatar } from 'components';
 
 type GainedPointProps = {
   gainedPoint: number;

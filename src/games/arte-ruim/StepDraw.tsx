@@ -1,12 +1,10 @@
 import { useState } from 'react';
 import { useTimer } from 'react-timer-hook';
 // Utils
-import { useLanguage } from '../../hooks';
-import { inNSeconds } from '../../utils/helpers';
+import { useLanguage } from 'hooks';
+import { inNSeconds } from 'utils/helpers';
 // Components
-import { Card, Step } from '../../components';
-import { DrawingCanvas } from '../../components/canvas';
-import { Panic } from '../../components/icons';
+import { Card, DrawingCanvas, Icons, Step } from 'components';
 
 type StepDrawProps = {
   secretCard: ArteRuimCard | PlainObject;
@@ -43,7 +41,7 @@ export function StepDraw({ secretCard, onSubmitDrawing }: StepDrawProps) {
         <span className="a-draw-step__timer">{seconds > 0 ? seconds - 1 : 0}</span>
       </Card>
       {isTimesUp ? (
-        <Panic style={{ background: 'white', width: '500px', padding: '2em' }} />
+        <Icons.Panic style={{ background: 'white', width: '500px', padding: '2em' }} />
       ) : (
         <DrawingCanvas lines={lines} setLines={setLines} />
       )}

@@ -1,8 +1,8 @@
 import clsx from 'clsx';
 import { Image } from 'antd';
-import { PUBLIC_URL } from '../../utils/constants';
-import placeholder from '../../images/placeholder.jpg';
-import { useBlurCards } from '../../hooks';
+import { PUBLIC_URL } from 'utils/constants';
+import placeholder from 'images/placeholder.jpg';
+import { useBlurCards } from 'hooks';
 
 type ImageCardProps = {
   imageId: string;

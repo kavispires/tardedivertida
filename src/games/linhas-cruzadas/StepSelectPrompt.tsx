@@ -1,19 +1,11 @@
 // Design Resources
 import { Button } from 'antd';
 // Hooks
-import { useLoading, useMock } from '../../hooks';
+import { useLoading, useMock } from 'hooks';
 // Utils
-import { shuffle } from '../../utils/helpers';
+import { shuffle } from 'utils/helpers';
 // Components
-import {
-  ButtonContainer,
-  Card,
-  Instruction,
-  Step,
-  Title,
-  Translate,
-  TransparentButton,
-} from '../../components';
+import { ButtonContainer, Card, Instruction, Step, Title, Translate, TransparentButton } from 'components';
 
 type StepSelectPromptProps = {
   prompts: PromptCard[];

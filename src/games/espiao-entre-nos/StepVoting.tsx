@@ -1,9 +1,9 @@
 // Design Resources
 import { Button, Space } from 'antd';
 // Hooks
-import { useLanguage, useLoading } from '../../hooks';
+import { useLanguage, useLoading } from 'hooks';
 // Components
-import { Instruction, ReadyPlayersBar, Step, Title, Translate, View, ViewSwitch } from '../../components';
+import { Instruction, ReadyPlayersBar, Step, Title, Translate, View, ViewSwitch } from 'components';
 import { EspiaoEntreNosCard as Card } from './Card';
 import { LocationsList } from './LocationsList';
 import { Notes } from './Notes';

@@ -1,4 +1,4 @@
-import { getLanguageControl, mockLanguageHook, mockLoading } from '../../mocks';
+import { getLanguageControl, mockLanguageHook, mockLoading } from 'mocks';
 
 import { PageError } from './PageError';
 

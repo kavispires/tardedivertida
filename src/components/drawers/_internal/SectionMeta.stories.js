@@ -1,4 +1,4 @@
-import { getLanguageControl, mockLanguageHook } from '../../../mocks';
+import { getLanguageControl, mockLanguageHook } from 'mocks';
 
 import { SectionMeta } from './SectionMeta';
 

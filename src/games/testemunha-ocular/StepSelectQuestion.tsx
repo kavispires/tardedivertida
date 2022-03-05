@@ -1,7 +1,7 @@
 // Utils
-import { LETTERS } from '../../utils/constants';
+import { LETTERS } from 'utils/constants';
 // Components
-import { ButtonContainer, Card, Instruction, Step, Title, Translate } from '../../components';
+import { ButtonContainer, Card, Instruction, Step, Title, Translate } from 'components';
 import { Suspects } from './Suspects';
 import { QuestionsHistory } from './QuestionsHistory';
 

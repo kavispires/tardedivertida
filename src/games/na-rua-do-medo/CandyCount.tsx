@@ -1,7 +1,7 @@
 // Design Resources
 import { Avatar } from 'antd';
 // Components
-import { AvatarIcon } from '../../components';
+import { AvatarIcon } from 'components';
 
 type CandyCountProps = {
   candyCount: number;

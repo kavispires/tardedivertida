@@ -1,5 +1,5 @@
 // Hooks
-import { useLanguage } from '../../hooks';
+import { useLanguage } from 'hooks';
 
 export function Notes() {
   const { translate } = useLanguage();

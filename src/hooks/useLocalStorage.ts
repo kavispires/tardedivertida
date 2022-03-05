@@ -1,4 +1,4 @@
-import localStorage from '../services/localStorage';
+import localStorage from 'services/localStorage';
 
 /**
  * Aids getting and setting localStorage values

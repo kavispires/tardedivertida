@@ -1,8 +1,8 @@
 import clsx from 'clsx';
 // Resources
-import { AVATARS } from '../../utils/constants';
+import { AVATARS } from 'utils/constants';
 // Hooks
-import { useGlobalState, useLanguage } from '../../hooks';
+import { useGlobalState, useLanguage } from 'hooks';
 // Components
 import { Avatar } from './Avatar';
 

@@ -1,4 +1,4 @@
-import { Avatar, Instruction, Translate } from '../../components';
+import { Avatar, Instruction, Translate } from 'components';
 
 export function VotingRules(): JSX.Element {
   return (

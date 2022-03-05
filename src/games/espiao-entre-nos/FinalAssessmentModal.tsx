@@ -1,8 +1,8 @@
 // Design Resources
 import { Modal } from 'antd';
 // Components
-import { ButtonContainer, Translate } from '../../components';
-import { useLanguage } from '../../hooks';
+import { ButtonContainer, Translate } from 'components';
+import { useLanguage } from 'hooks';
 import { PlayerSelect } from './PlayerSelect';
 import { FinalAssessmentInstruction } from './RulesBlobs';
 

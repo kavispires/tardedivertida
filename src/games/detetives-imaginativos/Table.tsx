@@ -1,10 +1,10 @@
 import clsx from 'clsx';
 // Hooks
-import { useCardWidth } from '../../hooks';
+import { useCardWidth } from 'hooks';
 // Utils
-import { AVATARS } from '../../utils/constants';
+import { AVATARS } from 'utils/constants';
 // Components
-import { Avatar, AvatarIcon, ImageBlurButtonContainer, ImageCard } from '../../components';
+import { Avatar, AvatarIcon, ImageBlurButtonContainer, ImageCard } from 'components';
 
 type TableProps = {
   table: DetetivesImaginativosCardEntry[];

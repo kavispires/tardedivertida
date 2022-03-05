@@ -3,9 +3,9 @@ import clsx from 'clsx';
 import { Button, Space, SpaceProps } from 'antd';
 import { RotateLeftOutlined, RotateRightOutlined } from '@ant-design/icons';
 // Hooks
-import { useCardWidth, useGlobalState } from '../../hooks';
+import { useCardWidth, useGlobalState } from 'hooks';
 // Components
-import { ImageCard, Translate } from '../../components';
+import { ImageCard, Translate } from 'components';
 import { useEffect } from 'react';
 
 interface MonsterCardProps extends SpaceProps {

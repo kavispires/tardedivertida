@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { useEffect } from 'react';
 // Helpers
-import { getAnimationClass } from '../../utils/helpers';
+import { getAnimationClass } from 'utils/helpers';
 // Components
 import { HouseCard } from './HouseCard';
 

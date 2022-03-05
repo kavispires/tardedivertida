@@ -2,12 +2,12 @@ import { useState } from 'react';
 // Design Resources
 import { Button, Input } from 'antd';
 // Hooks
-import { useLanguage, useMock } from '../../hooks';
+import { useLanguage, useMock } from 'hooks';
 // Utils
-import { getEntryId } from '../../utils/helpers';
+import { getEntryId } from 'utils/helpers';
 import { mockAnswers } from './mock';
 // Components
-import { ButtonContainer, PopoverRule, Step, Title, Translate } from '../../components';
+import { ButtonContainer, PopoverRule, Step, Title, Translate } from 'components';
 import { Pasture } from './Pasture';
 import { Question } from './Question';
 import { AnsweringRules } from './RulesBlobs';

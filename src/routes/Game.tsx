@@ -3,38 +3,38 @@ import { useLocation, useNavigate } from 'react-router-dom';
 // Design Resources
 import { message, notification } from 'antd';
 // Adapters
-import { GAME_API } from '../adapters';
+import { GAME_API } from 'adapters';
 // Hooks
-import { useIsGameStale, useLoading, useGlobalState, useLocalStorage } from '../hooks';
+import { useIsGameStale, useLoading, useGlobalState, useLocalStorage } from 'hooks';
 // Utils
-import { isValidGameId, isDevEnv, getGameIdFromPathname } from '../utils/helpers';
-import { GAME_COLLECTION } from '../utils/constants';
+import { isValidGameId, isDevEnv, getGameIdFromPathname } from 'utils/helpers';
+import { GAME_COLLECTION } from 'utils/constants';
 // Components
-import { LoadingPage, PageError } from '../components';
+import { LoadingPage, PageError } from 'components';
 // Game lazy imports
-const SessionArteRuim = lazy(() => import('../games/arte-ruim/SessionArteRuim'));
+const SessionArteRuim = lazy(() => import('games/arte-ruim/SessionArteRuim'));
 const SessionContadoresHistorias = lazy(
-  () => import('../games/contadores-historias/SessionContadoresHistorias')
+  () => import('games/contadores-historias/SessionContadoresHistorias')
 );
-const SessionCrimesHediondos = lazy(() => import('../games/crimes-hediondos/SessionCrimesHediondos'));
-const SessionCruzaPalavras = lazy(() => import('../games/cruza-palavras/SessionCruzaPalavras'));
+const SessionCrimesHediondos = lazy(() => import('games/crimes-hediondos/SessionCrimesHediondos'));
+const SessionCruzaPalavras = lazy(() => import('games/cruza-palavras/SessionCruzaPalavras'));
 const SessionDetetivesImaginativos = lazy(
-  () => import('../games/detetives-imaginativos/SessionDetetivesImaginativos')
+  () => import('games/detetives-imaginativos/SessionDetetivesImaginativos')
 );
-const SessionEspiaoEntreNos = lazy(() => import('../games/espiao-entre-nos/SessionEspiaoEntreNos'));
-const SessionGaleriaDeSonhos = lazy(() => import('../games/galeria-de-sonhos/SessionGaleriaDeSonhos'));
+const SessionEspiaoEntreNos = lazy(() => import('games/espiao-entre-nos/SessionEspiaoEntreNos'));
+const SessionGaleriaDeSonhos = lazy(() => import('games/galeria-de-sonhos/SessionGaleriaDeSonhos'));
 const SessionInstrumentosCodificados = lazy(
-  () => import('../games/instrumentos-codificados/SessionInstrumentosCodificados')
+  () => import('games/instrumentos-codificados/SessionInstrumentosCodificados')
 );
-const SessionLinhasCruzadas = lazy(() => import('../games/linhas-cruzadas/SessionLinhasCruzadas'));
-const SessionMenteColetiva = lazy(() => import('../games/mente-coletiva/SessionMenteColetiva'));
-const SessionNaRuaDoMedo = lazy(() => import('../games/na-rua-do-medo/SessionNaRuaDoMedo'));
-const SessionOndaTelepatica = lazy(() => import('../games/onda-telepatica/SessionOndaTelepatica'));
-const SessionPolemicaDaVez = lazy(() => import('../games/polemica-da-vez/SessionPolemicaDaVez'));
-const SessionRetratoFalado = lazy(() => import('../games/retrato-falado/SessionRetratoFalado'));
-const SessionSonhosPesadelos = lazy(() => import('../games/sonhos-pesadelos/SessionSonhosPesadelos'));
-const SessionTestemunhaOcular = lazy(() => import('../games/testemunha-ocular/SessionTestemunhaOcular'));
-const SessionUeSoIsso = lazy(() => import('../games/ue-so-isso/SessionUeSoIsso'));
+const SessionLinhasCruzadas = lazy(() => import('games/linhas-cruzadas/SessionLinhasCruzadas'));
+const SessionMenteColetiva = lazy(() => import('games/mente-coletiva/SessionMenteColetiva'));
+const SessionNaRuaDoMedo = lazy(() => import('games/na-rua-do-medo/SessionNaRuaDoMedo'));
+const SessionOndaTelepatica = lazy(() => import('games/onda-telepatica/SessionOndaTelepatica'));
+const SessionPolemicaDaVez = lazy(() => import('games/polemica-da-vez/SessionPolemicaDaVez'));
+const SessionRetratoFalado = lazy(() => import('games/retrato-falado/SessionRetratoFalado'));
+const SessionSonhosPesadelos = lazy(() => import('games/sonhos-pesadelos/SessionSonhosPesadelos'));
+const SessionTestemunhaOcular = lazy(() => import('games/testemunha-ocular/SessionTestemunhaOcular'));
+const SessionUeSoIsso = lazy(() => import('games/ue-so-isso/SessionUeSoIsso'));
 
 function Game() {
   const navigate = useNavigate();

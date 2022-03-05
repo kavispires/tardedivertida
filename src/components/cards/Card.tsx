@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 // Utils
-import { getColorFromLetter } from '../../utils/helpers';
+import { getColorFromLetter } from 'utils/helpers';
 
 type CardProps = {
   children: any;

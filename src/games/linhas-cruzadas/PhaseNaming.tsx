@@ -1,9 +1,9 @@
 import { useState } from 'react';
 // State & Hooks
-import { useIsUserReady, useUser, useLanguage } from '../../hooks';
+import { useIsUserReady, useUser, useLanguage } from 'hooks';
 import { useOnSubmitGuessAPIRequest } from './api-requests';
 // Resources & Utils
-import { PHASES } from '../../utils/phases';
+import { PHASES } from 'utils/phases';
 // Components
 import {
   Instruction,
@@ -12,7 +12,7 @@ import {
   StepSwitcher,
   Translate,
   TurnOrder,
-} from '../../components';
+} from 'components';
 import { StepNameDrawing } from './StepNameDrawing';
 
 function PhaseNaming({ players, state, info }: PhaseProps) {

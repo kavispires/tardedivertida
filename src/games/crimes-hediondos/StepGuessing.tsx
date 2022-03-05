@@ -8,9 +8,9 @@ import {
   Step,
   Title,
   Translate,
-} from '../../components';
-import { useLanguage, useMock } from '../../hooks';
-import { getAvatarColorById } from '../../utils/helpers';
+} from 'components';
+import { useLanguage, useMock } from 'hooks';
+import { getAvatarColorById } from 'utils/helpers';
 import { Crime } from './Crime';
 import { GroupedItemsBoard } from './GroupedItemsBoard';
 import { splitWeaponsAndEvidence } from './helpers';

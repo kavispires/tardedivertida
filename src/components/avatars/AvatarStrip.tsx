@@ -1,9 +1,9 @@
 import clsx from 'clsx';
 // Hooks
-import { useGlobalState, useLanguage } from '../../hooks';
+import { useGlobalState, useLanguage } from 'hooks';
 // Components
 import { Avatar } from './Avatar';
-import { getAvatarColorById } from '../../utils/helpers';
+import { getAvatarColorById } from 'utils/helpers';
 
 type AvatarStripProps = {
   player: GamePlayer;

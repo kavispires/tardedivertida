@@ -3,11 +3,11 @@ import { useTimer } from 'react-timer-hook';
 // Design Resources
 import { Button } from 'antd';
 // Utils
-import { AVATARS } from '../../utils/constants';
+import { AVATARS } from 'utils/constants';
 import { DRAWING_TIME_IN_SECONDS } from './constants';
-import { inNSeconds } from '../../utils/helpers';
+import { inNSeconds } from 'utils/helpers';
 // Components
-import { ButtonContainer, Card, DrawingCanvas, Icons, Step, TimerBar, Translate } from '../../components';
+import { ButtonContainer, Card, DrawingCanvas, Icons, Step, TimerBar, Translate } from 'components';
 
 type StepTimedDrawingProps = {
   currentPrompt: Prompt;

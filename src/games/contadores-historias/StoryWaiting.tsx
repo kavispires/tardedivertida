@@ -9,7 +9,7 @@ import {
   TurnOrder,
   AvatarIcon,
   Step,
-} from '../../components';
+} from 'components';
 
 type StoryWaitingProps = {
   storyteller: GamePlayer;

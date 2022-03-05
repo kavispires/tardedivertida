@@ -1,5 +1,5 @@
 // Hooks
-import { useLanguage, useMock } from '../../hooks';
+import { useLanguage, useMock } from 'hooks';
 // Utils
 import { mockPlayerDecision } from './mock';
 // Components
@@ -12,7 +12,7 @@ import {
   Title,
   Translate,
   TransparentButton,
-} from '../../components';
+} from 'components';
 import { CandyCount } from './CandyCount';
 import { PlayersDecisionList } from './PlayersDecisionList';
 import { PlayerStats } from './PlayerStats';

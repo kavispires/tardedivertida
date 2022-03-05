@@ -1,11 +1,11 @@
 import { useState } from 'react';
 // Hooks
-import { useLanguage, useUser } from '../../hooks';
+import { useLanguage, useUser } from 'hooks';
 import { useOnSubmitAnswersAPIRequest } from './api-requests';
 // Resources & Utils
-import { PHASES } from '../../utils/phases';
+import { PHASES } from 'utils/phases';
 // Components
-import { PhaseAnnouncement, PhaseContainer, StepSwitcher } from '../../components';
+import { PhaseAnnouncement, PhaseContainer, StepSwitcher } from 'components';
 import { StepAnswering } from './StepAnswering';
 import { AnsweringRules } from './RulesBlobs';
 

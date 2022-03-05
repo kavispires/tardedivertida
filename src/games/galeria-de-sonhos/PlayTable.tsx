@@ -1,8 +1,8 @@
 import { UpCircleOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import clsx from 'clsx';
-import { Icons, ImageBlurButton, ImageCard, ImageCardBack, Translate } from '../../components';
-import { useCardWidth, useLoading } from '../../hooks';
+import { Icons, ImageBlurButton, ImageCard, ImageCardBack, Translate } from 'components';
+import { useCardWidth, useLoading } from 'hooks';
 
 type PlayTableProps = {
   table: GImageCard[];

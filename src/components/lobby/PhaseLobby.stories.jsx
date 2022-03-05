@@ -5,7 +5,7 @@ import {
   mockHooks,
   mockInfo,
   mockLanguageHook,
-} from '../../mocks';
+} from 'mocks';
 
 import PhaseLobby from './PhaseLobby';
 

@@ -2,10 +2,10 @@ import { useState } from 'react';
 // Design Resources
 import { Button, Modal } from 'antd';
 import { ReadOutlined } from '@ant-design/icons';
+// Hooks
+import { useLanguage } from 'hooks';
 // Components
-import { RulesCarousel } from '../rules/index';
-import { useLanguage } from '../../hooks';
-import { Translate } from '../shared';
+import { RulesCarousel, Translate } from 'components';
 
 type RulesModalProps = {
   gameInfo: GameInfo;

@@ -1,4 +1,4 @@
-import { getRandomItem, shuffle } from '../../utils/helpers';
+import { getRandomItem, shuffle } from 'utils/helpers';
 
 export const mockCrime = (itemsGroup: string[]): SubmitCrimePayload => {
   const shuffledItems = shuffle(itemsGroup);

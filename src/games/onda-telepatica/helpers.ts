@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { LETTERS } from '../../utils/constants';
+import { LETTERS } from 'utils/constants';
 
 export const getColorModifier = (letter: string) => {
   const index = LETTERS.indexOf(letter);

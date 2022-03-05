@@ -1,4 +1,4 @@
-import { getLanguageControl, mockHooks, mockInfo, mockLanguageHook } from '../../mocks';
+import { getLanguageControl, mockHooks, mockInfo, mockLanguageHook } from 'mocks';
 
 import { PhaseContainer } from './PhaseContainer';
 

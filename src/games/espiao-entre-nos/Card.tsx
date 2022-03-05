@@ -1,9 +1,9 @@
 // Design Resources
 import { QuestionCircleFilled } from '@ant-design/icons';
 // Hooks
-import { useLanguage } from '../../hooks';
+import { useLanguage } from 'hooks';
 // Components
-import { Card } from '../../components';
+import { Card } from 'components';
 
 type EspiaoEntreNosCardProps = {
   location: string;

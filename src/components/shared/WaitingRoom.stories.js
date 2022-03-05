@@ -1,4 +1,4 @@
-import { mockPlayers } from '../../mocks';
+import { mockPlayers } from 'mocks';
 
 import { WaitingRoom } from './WaitingRoom';
 

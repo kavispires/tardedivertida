@@ -2,7 +2,7 @@ import { ReactElement } from 'react';
 // Design Resources
 import { message } from 'antd';
 // Hooks
-import { useLanguage } from '../../hooks';
+import { useLanguage } from 'hooks';
 
 type LanguageEntry = ReactElement | string;
 

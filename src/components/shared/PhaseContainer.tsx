@@ -1,10 +1,9 @@
 import { useEffect, useRef } from 'react';
 import clsx from 'clsx';
 // Hooks
-import { useGlobalState, useLanguage } from '../../hooks';
+import { useGlobalState, useLanguage } from 'hooks';
 // Components
-import { LoadingPage } from '../loaders';
-import { PageError } from '../errors/PageError';
+import { LoadingPage, PageError } from 'components';
 
 type PhaseContainerProps = {
   info?: GameInfo;

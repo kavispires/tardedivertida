@@ -1,5 +1,5 @@
 // Hooks
-import { useLoading } from '../../hooks';
+import { useLoading } from 'hooks';
 
 export function LoadingBar(): JSX.Element {
   const { isLoading } = useLoading();

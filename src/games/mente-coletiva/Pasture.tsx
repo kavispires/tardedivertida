@@ -1,11 +1,11 @@
 import { useMemo } from 'react';
 import clsx from 'clsx';
 // Hooks
-import { useDimensions } from '../../hooks';
+import { useDimensions } from 'hooks';
 // Utils
-import { PUBLIC_URL } from '../../utils/constants';
+import { PUBLIC_URL } from 'utils/constants';
 // Components
-import { SheepAvatar } from '../../components';
+import { SheepAvatar } from 'components';
 import { RoundType } from './RoundType';
 
 type PastureProps = {

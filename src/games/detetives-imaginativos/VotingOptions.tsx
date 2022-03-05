@@ -3,7 +3,7 @@ import { orderBy } from 'lodash';
 // Design Resources
 import { Button } from 'antd';
 // Components
-import { Avatar, AvatarName, ButtonContainer, Translate } from '../../components';
+import { Avatar, AvatarName, ButtonContainer, Translate } from 'components';
 
 type VotingOptionsProps = {
   isAllDisabled: boolean;

@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { Button, message, Space } from 'antd';
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 // Hooks
-import { useLanguage } from '../../hooks';
+import { useLanguage } from 'hooks';
 // Components
 import {
   AvatarName,
@@ -15,7 +15,7 @@ import {
   TitleHighlight,
   Translate,
   ViewIf,
-} from '../../components';
+} from 'components';
 import Card from './UeSoIssoCard';
 import SuggestionEasel from './SuggestionEasel';
 

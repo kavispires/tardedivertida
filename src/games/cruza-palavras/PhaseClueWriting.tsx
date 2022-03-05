@@ -1,11 +1,11 @@
 import { useState } from 'react';
 // State & Hooks
-import { useIsUserReady, useUser, useLanguage } from '../../hooks';
+import { useIsUserReady, useUser, useLanguage } from 'hooks';
 import { useOnSubmitClueAPIRequest } from './api-requests';
 // Resources & Utils
-import { PHASES } from '../../utils/phases';
+import { PHASES } from 'utils/phases';
 // Components
-import { PhaseAnnouncement, PhaseContainer, RoundAnnouncement, StepSwitcher } from '../../components';
+import { PhaseAnnouncement, PhaseContainer, RoundAnnouncement, StepSwitcher } from 'components';
 import StepClueWriting from './StepClueWriting';
 import { WritingCluesRule } from './RulesBlobs';
 

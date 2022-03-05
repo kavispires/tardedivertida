@@ -1,10 +1,10 @@
 // Design Resources
 import { Button, Switch, Tooltip } from 'antd';
-// Hooks
-import { useGlobalState, useLocalStorage } from '../../../hooks';
-// Components
-import { LanguageSwitch, Translate } from '../../shared';
 import { InfoCircleOutlined } from '@ant-design/icons';
+// Hooks
+import { useGlobalState, useLocalStorage } from 'hooks';
+// Components
+import { LanguageSwitch, Translate } from 'components';
 
 export function SectionSettings() {
   const [blurEnabled, setBlurEnabled] = useGlobalState('blurEnabled');

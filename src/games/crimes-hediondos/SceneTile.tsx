@@ -1,7 +1,7 @@
 import { CheckCircleFilled } from '@ant-design/icons';
 import { Button, Popover } from 'antd';
 import clsx from 'clsx';
-import { useLanguage } from '../../hooks';
+import { useLanguage } from 'hooks';
 
 type SceneTileProps = {
   tile: SceneTile;

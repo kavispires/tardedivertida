@@ -1,7 +1,7 @@
 // Hooks
-import { useLanguage } from '../../hooks';
+import { useLanguage } from 'hooks';
 // Components
-import { WaitingRoom } from '../../components';
+import { WaitingRoom } from 'components';
 
 type GuesserWaitingRoomProps = {
   players: GamePlayers;

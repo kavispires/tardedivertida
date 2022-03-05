@@ -2,7 +2,7 @@ import clsx from 'clsx';
 // Design Resources
 import { Avatar, Tooltip } from 'antd';
 // Hooks
-import { useLanguage } from '../../hooks';
+import { useLanguage } from 'hooks';
 
 const GRADES = ['F', 'D', 'D+', 'C-', 'C', 'C+', 'B-', 'B', 'B+', 'A-', 'A', 'A+'];
 

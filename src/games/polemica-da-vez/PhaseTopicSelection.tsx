@@ -1,9 +1,9 @@
 import { useState } from 'react';
 // Hooks
-import { useLanguage, useWhichPlayerIsThe } from '../../hooks';
+import { useLanguage, useWhichPlayerIsThe } from 'hooks';
 import { useOnSubmitTopicAPIRequest } from './api-requests';
 // Resources & Utils
-import { PHASES } from '../../utils/phases';
+import { PHASES } from 'utils/phases';
 // Components
 import {
   AvatarName,
@@ -16,7 +16,7 @@ import {
   Translate,
   ViewIf,
   WaitingRoom,
-} from '../../components';
+} from 'components';
 import { StepTopicSelection } from './StepTopicSelection';
 
 function PhaseTopicSelection({ state, players, info }: PhaseProps) {

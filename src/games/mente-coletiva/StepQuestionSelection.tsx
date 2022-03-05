@@ -1,5 +1,5 @@
 // Components
-import { PopoverRule, Step, Title, Translate } from '../../components';
+import { PopoverRule, Step, Title, Translate } from 'components';
 import { Pasture } from './Pasture';
 import { GamePremiseRules } from './RulesBlobs';
 

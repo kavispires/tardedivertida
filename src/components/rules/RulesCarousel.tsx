@@ -2,9 +2,9 @@ import clsx from 'clsx';
 // Design Resources
 import { Typography, Image, Carousel, Button } from 'antd';
 // Hooks
-import { useLanguage } from '../../hooks';
+import { useLanguage } from 'hooks';
 // Constants
-import { PUBLIC_URL } from '../../utils/constants';
+import { PUBLIC_URL } from 'utils/constants';
 import { DoubleLeftOutlined, DoubleRightOutlined } from '@ant-design/icons';
 
 type RulesCarouselProps = {

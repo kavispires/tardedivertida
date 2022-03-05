@@ -1,12 +1,12 @@
 import { useMemo, useState } from 'react';
 // Hooks
-import { useIsUserReady, useWhichPlayerIsThe, useLanguage } from '../../hooks';
+import { useIsUserReady, useWhichPlayerIsThe, useLanguage } from 'hooks';
 import { useOnProgressGameAPIRequest } from './api-requests';
 // Resources & Utils
-import { PHASES } from '../../utils/phases';
+import { PHASES } from 'utils/phases';
 import { determineView } from './helpers';
 // Components
-import { PhaseAnnouncement, PhaseContainer, PhaseTimerReset, StepSwitcher } from '../../components';
+import { PhaseAnnouncement, PhaseContainer, PhaseTimerReset, StepSwitcher } from 'components';
 import { StepResolution } from './StepResolution';
 
 function PhaseResolution({ state, players, info }: PhaseProps) {

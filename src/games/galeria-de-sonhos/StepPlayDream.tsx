@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 // Design Resources
 import { message } from 'antd';
 // Hooks
-import { useLanguage } from '../../hooks';
+import { useLanguage } from 'hooks';
 // Components
 import {
   AvatarName,
@@ -13,7 +13,7 @@ import {
   Step,
   Title,
   Translate,
-} from '../../components';
+} from 'components';
 import { CardPlayRules } from './RulesBlobs';
 import { PlayTable } from './PlayTable';
 

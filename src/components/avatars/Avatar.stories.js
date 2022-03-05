@@ -1,6 +1,6 @@
-import { AVAILABLE_AVATAR_IDS } from '../../utils/constants';
+import { AVAILABLE_AVATAR_IDS } from 'utils/constants';
 import { Avatar } from './Avatar';
-import { getLanguageControl, mockLanguageHook } from '../../mocks/storybook-helpers';
+import { getLanguageControl, mockLanguageHook } from 'mocks/storybook-helpers';
 
 export default {
   title: 'avatar/Avatar',

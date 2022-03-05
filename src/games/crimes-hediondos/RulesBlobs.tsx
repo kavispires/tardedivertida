@@ -1,5 +1,5 @@
 // Components
-import { Instruction, Translate } from '../../components';
+import { Instruction, Translate } from 'components';
 
 export function WelcomeMessage(): JSX.Element {
   return (

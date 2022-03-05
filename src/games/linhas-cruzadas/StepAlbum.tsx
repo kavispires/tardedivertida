@@ -1,8 +1,8 @@
 import { Button } from 'antd';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTimer } from 'react-timer-hook';
-import { AdminNextRoundButton, ButtonContainer, Step, Title, Translate } from '../../components';
-import { inNSeconds } from '../../utils/helpers';
+import { AdminNextRoundButton, ButtonContainer, Step, Title, Translate } from 'components';
+import { inNSeconds } from 'utils/helpers';
 import { Album } from './Album';
 import { PAGE_DURATION } from './constants';
 

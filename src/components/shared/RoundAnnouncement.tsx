@@ -2,14 +2,14 @@ import clsx from 'clsx';
 // Design Resources
 import { Button, Tag } from 'antd';
 // Images
-import roundTitleEn from '../../images/round-title-en.svg';
-import roundTitlePt from '../../images/round-title-pt.svg';
+import roundTitleEn from 'images/round-title-en.svg';
+import roundTitlePt from 'images/round-title-pt.svg';
+// Utils
+import { getAnimationClass } from 'utils/helpers';
+// Hooks
+import { useLanguage } from 'hooks';
 // Components
-import { AvatarName } from '../avatars';
-import { TimedButton } from './index';
-import { useLanguage } from '../../hooks';
-import { Translate } from './Translate';
-import { getAnimationClass } from '../../utils/helpers';
+import { AvatarName, TimedButton, Translate } from 'components';
 
 type Teams = {
   A: TeamObj;

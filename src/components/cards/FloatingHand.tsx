@@ -1,10 +1,9 @@
 import clsx from 'clsx';
 import { useState } from 'react';
 // Hooks
-import { useLanguage } from '../../hooks';
+import { useLanguage } from 'hooks';
 // Components
-import { AvatarIcon } from '..';
-import { Translate } from '../shared';
+import { AvatarIcon, Translate } from 'components';
 
 type FloatingHandProps = {
   children: any;

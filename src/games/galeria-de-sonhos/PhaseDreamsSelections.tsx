@@ -1,11 +1,11 @@
 import { useState } from 'react';
 // State & Hooks
-import { useIsUserReady, useLanguage } from '../../hooks';
+import { useIsUserReady, useLanguage } from 'hooks';
 import { useOnSubmitCardsAPIRequest } from './api-requests';
 // Resources & Utils
-import { PHASES } from '../../utils/phases';
+import { PHASES } from 'utils/phases';
 // Components
-import { PhaseAnnouncement, PhaseContainer, StepSwitcher } from '../../components';
+import { PhaseAnnouncement, PhaseContainer, StepSwitcher } from 'components';
 import { DreamSelectionRules } from './RulesBlobs';
 import { StepDreamsSelection } from './StepDreamsSelection';
 

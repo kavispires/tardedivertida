@@ -3,12 +3,12 @@ import clsx from 'clsx';
 import { Button } from 'antd';
 import { CaretUpOutlined } from '@ant-design/icons';
 // Hooks
-import { useCardWidth } from '../../hooks';
+import { useCardWidth } from 'hooks';
 // Utils
-import { getEntryId } from '../../utils/helpers';
+import { getEntryId } from 'utils/helpers';
 import { getClueId } from './helpers';
 // Components
-import { Translate, Ribbon } from '../../components';
+import { Translate, Ribbon } from 'components';
 import { DreamButton } from './DreamButton';
 import { DreamCard } from './DreamCard';
 

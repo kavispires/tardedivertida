@@ -1,4 +1,4 @@
-import { Instruction, Step, Title, Translate } from '../../components';
+import { Instruction, Step, Title, Translate } from 'components';
 import { FinalAssessmentInstruction } from './RulesBlobs';
 import { EspiaoEntreNosCard as Card } from './Card';
 import { LocationsList } from './LocationsList';
@@ -7,7 +7,7 @@ import { SuspectsList } from './SuspectsList';
 import { FinalAssessmentModal } from './FinalAssessmentModal';
 import { useEffect } from 'react';
 import { notification } from 'antd';
-import { useLanguage } from '../../hooks';
+import { useLanguage } from 'hooks';
 
 type StepFinalAssessmentProps = {
   onMakeAccusation: GenericFunction;

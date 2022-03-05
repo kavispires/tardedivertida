@@ -1,5 +1,5 @@
-import { CRIMES_HEDIONDOS_API } from '../../adapters';
-import { useAPICall, useLanguage } from '../../hooks';
+import { CRIMES_HEDIONDOS_API } from 'adapters';
+import { useAPICall, useLanguage } from 'hooks';
 
 export function useOnSubmitCrimeAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();

@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 // Images
-import sheep from '../../images/sheep.svg';
+import sheep from 'images/sheep.svg';
 
 type SheepAvatarProps = {
   id?: string;

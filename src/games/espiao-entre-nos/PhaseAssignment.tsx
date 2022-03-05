@@ -1,8 +1,8 @@
 import { useState } from 'react';
 // Hooks
-import { useIsUserReady, useWhichPlayerIsThe, useUser, useLanguage } from '../../hooks';
+import { useIsUserReady, useWhichPlayerIsThe, useUser, useLanguage } from 'hooks';
 // Resources & Utils
-import { PHASES } from '../../utils/phases';
+import { PHASES } from 'utils/phases';
 // Components
 import {
   Instruction,
@@ -12,7 +12,7 @@ import {
   RoundAnnouncement,
   StepSwitcher,
   Translate,
-} from '../../components';
+} from 'components';
 import { StepAssignment } from './StepAssignment';
 
 function PhaseAssignment({ state, players, info }: PhaseProps) {

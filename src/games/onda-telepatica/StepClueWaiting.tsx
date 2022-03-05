@@ -1,4 +1,4 @@
-import { AvatarName, ButtonContainer, Instruction, Translate, WaitingRoom } from '../../components';
+import { AvatarName, ButtonContainer, Instruction, Translate, WaitingRoom } from 'components';
 import { Card } from './Card';
 
 type StepClueWaitingProps = {

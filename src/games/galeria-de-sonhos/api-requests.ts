@@ -1,5 +1,5 @@
-import { GALERIA_DE_SONHOS_API } from '../../adapters';
-import { useAPICall, useLanguage } from '../../hooks';
+import { GALERIA_DE_SONHOS_API } from 'adapters';
+import { useAPICall, useLanguage } from 'hooks';
 
 export function useOnSubmitWordAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();

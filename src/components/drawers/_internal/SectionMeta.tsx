@@ -1,6 +1,7 @@
 // Design Resources
 import { Avatar as AntAvatar, Table } from 'antd';
-import { Translate } from '../../shared';
+// Components
+import { Translate } from 'components';
 
 type SectionMetaProps = {
   round: GameRound;

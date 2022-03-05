@@ -1,5 +1,5 @@
 // Components
-import { Instruction, Title } from '../../components';
+import { Instruction, Title } from 'components';
 import { Card } from './Card';
 
 type CardSelectionProps = {

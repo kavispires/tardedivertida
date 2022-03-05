@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 // Utils
-import { LETTERS } from '../../utils/constants';
-import { getEntryId } from '../../utils/helpers';
+import { LETTERS } from 'utils/constants';
+import { getEntryId } from 'utils/helpers';
 // Components
 import { ArteRuimCard as Card } from './Card';
 

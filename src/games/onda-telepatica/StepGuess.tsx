@@ -2,11 +2,11 @@ import { useState } from 'react';
 // Design Resources
 import { Button, Slider } from 'antd';
 // Hooks
-import { useLoading, useMock } from '../../hooks';
+import { useLoading, useMock } from 'hooks';
 // Utils
 import { mockGuess } from './mock';
 // Components
-import { ButtonContainer, Instruction, ReadyPlayersBar, Step, Title, Translate } from '../../components';
+import { ButtonContainer, Instruction, ReadyPlayersBar, Step, Title, Translate } from 'components';
 import { Dial } from './Dial';
 
 type PromptProps = {

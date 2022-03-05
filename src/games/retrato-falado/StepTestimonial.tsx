@@ -2,14 +2,14 @@ import { useEffect, useState } from 'react';
 import { useTimer } from 'react-timer-hook';
 // Utils
 import { TIMES, VIEWS } from './constants';
-import { inNSeconds } from '../../utils/helpers';
+import { inNSeconds } from 'utils/helpers';
 // Components
-import { ViewSwitch } from '../../components';
+import { ViewSwitch } from 'components';
 import ViewAnnouncement from './ViewAnnouncement';
 import ViewLastSeconds from './ViewLastSeconds';
 import ViewSketching from './ViewSketching';
 import ViewWitnessing from './ViewWitnessing';
-import { useGlobalState } from '../../hooks';
+import { useGlobalState } from 'hooks';
 
 type StepTestimonialProps = {
   isUserTheWitness: boolean;

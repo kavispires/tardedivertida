@@ -1,7 +1,7 @@
 // Design Resources
 import { Avatar as AntAvatar } from 'antd';
 // Hooks
-import { useCardWidth, useLanguage } from '../../hooks';
+import { useCardWidth, useLanguage } from 'hooks';
 // Components
 import {
   Avatar,
@@ -13,7 +13,7 @@ import {
   TimedButton,
   Title,
   Translate,
-} from '../../components';
+} from 'components';
 import { BookPages } from './BookPages';
 import { ScoringRules } from './RulesBlogs';
 

@@ -15,12 +15,16 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "outDir": "./dist/", // path to output directory
-    "sourceMap": true, // allow sourcemap support
+    "outDir": "./dist/",
+    "sourceMap": true,
     "strictNullChecks": true,
     "noImplicitAny": true,
     "noImplicitThis": true,
-    "alwaysStrict": true
+    "alwaysStrict": true,
+    "baseUrl": "src",
+    "paths": {
+      "@*": ["src/*"]
+    }
   },
   "include": ["src"]
 }

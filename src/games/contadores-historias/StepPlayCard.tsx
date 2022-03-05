@@ -1,5 +1,5 @@
 // Hooks
-import { useLoading } from '../../hooks';
+import { useLoading } from 'hooks';
 // Components
 import {
   Card,
@@ -10,7 +10,7 @@ import {
   Title,
   Translate,
   ViewIf,
-} from '../../components';
+} from 'components';
 import { TableFaceDown } from './TableFaceDown';
 
 type StepPlayCardProps = {

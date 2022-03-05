@@ -9,8 +9,8 @@ import {
   RankingBoard,
   Title,
   Translate,
-} from '../../components';
-import { useLanguage } from '../../hooks';
+} from 'components';
+import { useLanguage } from 'hooks';
 import { ScoringRules } from './RulesBlogs';
 
 type StepRankingProps = {

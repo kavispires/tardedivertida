@@ -1,6 +1,6 @@
 import { Button, Collapse } from 'antd';
 import { useState } from 'react';
-import { ButtonContainer, Instruction, Step, Title, Translate } from '../../components';
+import { ButtonContainer, Instruction, Step, Title, Translate } from 'components';
 import { Crime } from './Crime';
 import { GroupedItemsBoard } from './GroupedItemsBoard';
 import { SceneTile } from './SceneTile';

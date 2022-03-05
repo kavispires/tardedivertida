@@ -2,11 +2,11 @@ import { useState } from 'react';
 // Design Resources
 import { Button, Input } from 'antd';
 // Hooks
-import { useLanguage, useLoading } from '../../hooks';
+import { useLanguage, useLoading } from 'hooks';
 // HUtils
 import { getTargetSide } from './helpers';
 // Components
-import { ButtonContainer, Instruction, Step, Title, Translate } from '../../components';
+import { ButtonContainer, Instruction, Step, Title, Translate } from 'components';
 import { Dial } from './Dial';
 import { ClueWritingRules } from './RulesBlobs';
 

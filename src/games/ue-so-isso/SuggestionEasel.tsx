@@ -1,7 +1,7 @@
 // Design Resources
 import { Input } from 'antd';
 // Hooks
-import { useLanguage } from '../../hooks';
+import { useLanguage } from 'hooks';
 // Components
 
 type SuggestionEaselProps = {

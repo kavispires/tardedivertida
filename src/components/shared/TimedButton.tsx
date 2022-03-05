@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { Button, ButtonProps } from 'antd';
 // Hook and Utils
 import { useTimer } from 'react-timer-hook';
-import { inNSeconds } from '../../utils/helpers';
+import { inNSeconds } from 'utils/helpers';
 
 interface TimedButtonProps extends ButtonProps {
   duration?: number;

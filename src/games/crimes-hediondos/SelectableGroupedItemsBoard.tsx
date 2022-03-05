@@ -1,5 +1,5 @@
-import { TransparentButton } from '../../components';
-import { useCardWidth } from '../../hooks';
+import { TransparentButton } from 'components';
+import { useCardWidth } from 'hooks';
 import { ItemCard } from './ItemCard';
 
 type SelectableGroupedItemsBoardProps = {

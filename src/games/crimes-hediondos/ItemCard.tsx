@@ -1,7 +1,7 @@
 import { Popover, Tag } from 'antd';
 import clsx from 'clsx';
-import { ImageCard } from '../../components';
-import { useLanguage } from '../../hooks';
+import { ImageCard } from 'components';
+import { useLanguage } from 'hooks';
 
 type ItemCardProps = {
   item: HCard;

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 // Hooks
-import { useIsUserReady, useWhichPlayerIsThe, useLanguage } from '../../hooks';
+import { useIsUserReady, useWhichPlayerIsThe, useLanguage } from 'hooks';
 // Resources & Utils
-import { PHASES } from '../../utils/phases';
+import { PHASES } from 'utils/phases';
 // Components
 import {
   AvatarName,
@@ -14,7 +14,7 @@ import {
   StepSwitcher,
   Translate,
   ViewIf,
-} from '../../components';
+} from 'components';
 import StepWordSelection from './StepWordSelection';
 import { GameProgressBar } from './GameProgressBar';
 import { GuesserWaitingRoom } from './GuesserWaitingRoom';

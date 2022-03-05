@@ -2,9 +2,9 @@ import clsx from 'clsx';
 // Design Resources
 import { Popconfirm } from 'antd';
 // Hooks
-import { useDimensions, useLanguage, useLoading } from '../../hooks';
+import { useDimensions, useLanguage, useLoading } from 'hooks';
 // Components
-import { ImageCard } from '../../components';
+import { ImageCard } from 'components';
 
 type SuspectsProps = {
   suspects: Suspect[];

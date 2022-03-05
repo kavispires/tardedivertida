@@ -1,6 +1,6 @@
 // Utils
-import { getColorFromLetter } from '../../utils/helpers';
-import { Card } from '../../components';
+import { getColorFromLetter } from 'utils/helpers';
+import { Card } from 'components';
 // Components
 
 type SonhosPesadelosCardProps = {

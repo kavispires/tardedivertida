@@ -1,7 +1,7 @@
 // Hooks
-import { useLanguage } from '../../hooks';
+import { useLanguage } from 'hooks';
 // Components
-import { AdminNextRoundButton, PopoverRule, Step, Title, Translate } from '../../components';
+import { AdminNextRoundButton, PopoverRule, Step, Title, Translate } from 'components';
 import { PlayersDecisionList } from './PlayersDecisionList';
 import { PlayersDecisionResult } from './PlayersDecisionResult';
 import { PlayerStats } from './PlayerStats';

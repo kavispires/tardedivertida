@@ -2,9 +2,9 @@ import clsx from 'clsx';
 // Design Resources
 import { Avatar as AntAvatar, AvatarProps } from 'antd';
 // Images
-import avatars from '../../images/avatars.svg';
+import avatars from 'images/avatars.svg';
 // Hooks
-import { useLanguage } from '../../hooks';
+import { useLanguage } from 'hooks';
 
 interface TDAvatarProps extends AvatarProps {
   id?: string;

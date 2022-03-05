@@ -1,6 +1,6 @@
-import { ONDA_TELEPATICA_API } from '../../adapters';
+import { ONDA_TELEPATICA_API } from 'adapters';
 
-import { useAPICall, useLanguage } from '../../hooks';
+import { useAPICall, useLanguage } from 'hooks';
 
 export function useOnSubmitCategoryAPIRequest() {
   const { translate } = useLanguage();

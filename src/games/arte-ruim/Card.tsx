@@ -1,8 +1,9 @@
 // Design Resources
 import { WarningOutlined } from '@ant-design/icons';
-import { getColorFromLetter } from '../../utils/helpers';
+// Helpers
+import { getColorFromLetter } from 'utils/helpers';
 // Components
-import { Card } from '../../components';
+import { Card } from 'components';
 
 type ArteRuimCardProps = {
   text?: any;

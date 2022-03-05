@@ -1,4 +1,4 @@
-import { getLanguageControl, mockLanguageHook, mockPlayers } from '../../../mocks';
+import { getLanguageControl, mockLanguageHook, mockPlayers } from 'mocks';
 
 import { SectionRankedPlayers } from './SectionRankedPlayers';
 

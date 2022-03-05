@@ -2,10 +2,10 @@ import { useState, useCallback, useEffect } from 'react';
 //Design Resources
 import { Button } from 'antd';
 // Utils
-import { shuffle } from '../../utils/helpers';
+import { shuffle } from 'utils/helpers';
 import { getClueFromKey, getClueKey, isClue } from './helpers';
 // Components
-import { ButtonContainer, Instruction, ReadyPlayersBar, Title, Translate } from '../../components';
+import { ButtonContainer, Instruction, ReadyPlayersBar, Title, Translate } from 'components';
 import WordGrid from './WordGrid';
 import SelectableCell from './SelectableCell';
 import Clues from './Clues';

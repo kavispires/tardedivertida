@@ -1,5 +1,5 @@
 // Components
-import { AvatarIcon, AvatarStrip, FloatingHand, ImageCard, Translate } from '../../components';
+import { AvatarIcon, AvatarStrip, FloatingHand, ImageCard, Translate } from 'components';
 
 type PlayerStatsProps = {
   user: GamePlayer;

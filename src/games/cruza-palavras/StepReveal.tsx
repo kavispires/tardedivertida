@@ -4,8 +4,8 @@ import { orderBy } from 'lodash';
 import { Table } from 'antd';
 import { CheckSquareFilled, CloseSquareFilled, WarningOutlined } from '@ant-design/icons';
 // Utils
-import { AVATARS as avatars } from '../../utils/constants';
-import { useLanguage } from '../../hooks';
+import { AVATARS as avatars } from 'utils/constants';
+import { useLanguage } from 'hooks';
 // Components
 import {
   AvatarName,
@@ -15,7 +15,7 @@ import {
   TimedButton,
   Title,
   Translate,
-} from '../../components';
+} from 'components';
 import WordGrid from './WordGrid';
 import ClueCard from './ClueCard';
 import PreviousClue from './PreviousClue';

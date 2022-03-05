@@ -3,10 +3,10 @@ import { useState } from 'react';
 import { Button, Divider, Drawer } from 'antd';
 import { InfoCircleOutlined } from '@ant-design/icons';
 // Utils
-import { useLanguage } from '../../hooks';
-import { isDevEnv } from '../../utils/helpers';
+import { useLanguage } from 'hooks';
+import { isDevEnv } from 'utils/helpers';
 // Components
-import { RulesModal } from '../modals';
+import { RulesModal } from 'components';
 import { SectionMe } from './_internal/SectionMe';
 import { SectionMeta } from './_internal/SectionMeta';
 import { SectionTeams } from './_internal/SectionTeams';

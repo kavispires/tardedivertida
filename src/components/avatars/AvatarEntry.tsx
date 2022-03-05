@@ -2,7 +2,7 @@ import clsx from 'clsx';
 // Components
 import { Avatar } from './Avatar';
 // Utils
-import { Translate } from '../shared';
+import { Translate } from 'components';
 
 type AvatarEntryProps = {
   id?: string;

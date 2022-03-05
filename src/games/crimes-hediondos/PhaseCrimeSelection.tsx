@@ -1,8 +1,8 @@
 import { useState } from 'react';
 // State & Hooks
-import { useIsUserReady, useUser, useLanguage, useMock } from '../../hooks';
+import { useIsUserReady, useUser, useLanguage, useMock } from 'hooks';
 // Resources & Utils
-import { PHASES } from '../../utils/phases';
+import { PHASES } from 'utils/phases';
 // Components
 import {
   Instruction,
@@ -11,7 +11,7 @@ import {
   RoundAnnouncement,
   StepSwitcher,
   Translate,
-} from '../../components';
+} from 'components';
 import { WelcomeMessage } from './RulesBlobs';
 import { StepItemsSelection } from './StepItemsSelection';
 import { StepCauseOfDeathSelection } from './StepCauseOfDeathSelection';
