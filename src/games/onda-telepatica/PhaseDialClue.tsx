@@ -13,6 +13,7 @@ import {
   RoundAnnouncement,
   StepSwitcher,
   Translate,
+  TurnOrder,
   ViewOr,
 } from '../../components';
 import { StepClueWriting } from './StepClueWriting';
@@ -67,6 +68,7 @@ function PhaseDialClue({ players, state, info }: PhaseProps) {
                 </>
               }
             />
+            <TurnOrder players={players} order={state.gameOrder} activePlayerId={state.psychicId} />
           </Instruction>
         </PhaseAnnouncement>
 

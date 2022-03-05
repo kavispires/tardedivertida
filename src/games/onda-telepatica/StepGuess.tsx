@@ -6,7 +6,7 @@ import { useLoading, useMock } from '../../hooks';
 // Utils
 import { mockGuess } from './mock';
 // Components
-import { ButtonContainer, Instruction, Step, Title, Translate } from '../../components';
+import { ButtonContainer, Instruction, ReadyPlayersBar, Step, Title, Translate } from '../../components';
 import { Dial } from './Dial';
 
 type PromptProps = {
@@ -35,9 +35,10 @@ function Prompt({ currentCategory }: PromptProps) {
 type StepGuessProps = {
   currentCategory: OCurrentCategory;
   onSendGuess: GenericFunction;
+  players: GamePlayers;
 };
 
-export function StepGuess({ currentCategory, onSendGuess }: StepGuessProps) {
+export function StepGuess({ currentCategory, onSendGuess, players }: StepGuessProps) {
   const { isLoading } = useLoading();
   const [needle, setNeedle] = useState(0);
 
@@ -76,6 +77,8 @@ export function StepGuess({ currentCategory, onSendGuess }: StepGuessProps) {
           {Math.abs(needle)}
         </Button>
       </ButtonContainer>
+
+      <ReadyPlayersBar players={players} />
     </Step>
   );
 }

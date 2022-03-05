@@ -3,15 +3,16 @@ import { Button } from 'antd';
 // Hooks
 import { useLoading } from '../../hooks';
 // Components
-import { ButtonContainer, Instruction, Step, Title, Translate } from '../../components';
+import { ButtonContainer, Instruction, ReadyPlayersBar, Step, Title, Translate } from '../../components';
 import { Dial } from './Dial';
 
 type StepPsychicGuessProps = {
   currentCategory: OCurrentCategory;
   onSendGuess: GenericFunction;
+  players: GamePlayers;
 };
 
-export function StepPsychicGuess({ currentCategory, onSendGuess }: StepPsychicGuessProps) {
+export function StepPsychicGuess({ currentCategory, onSendGuess, players }: StepPsychicGuessProps) {
   const { isLoading } = useLoading();
 
   return (
@@ -40,6 +41,8 @@ export function StepPsychicGuess({ currentCategory, onSendGuess }: StepPsychicGu
       </ButtonContainer>
 
       <Dial card={currentCategory} target={currentCategory.target} showTarget />
+
+      <ReadyPlayersBar players={players} />
     </Step>
   );
 }
