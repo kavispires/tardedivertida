@@ -47,8 +47,12 @@ function PhaseGuess({ players, state, info }: PhaseProps) {
 
         {/* Step 1 */}
         <ViewOr orCondition={isUserThePsychic}>
-          <StepPsychicGuess currentCategory={state.currentCategory} onSendGuess={onSendGuess} />
-          <StepGuess currentCategory={state.currentCategory} onSendGuess={onSendGuess} />
+          <StepPsychicGuess
+            currentCategory={state.currentCategory}
+            onSendGuess={onSendGuess}
+            players={players}
+          />
+          <StepGuess currentCategory={state.currentCategory} onSendGuess={onSendGuess} players={players} />
         </ViewOr>
       </StepSwitcher>
     </PhaseContainer>
