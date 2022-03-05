@@ -3,9 +3,9 @@ import { useState } from 'react';
 import { Button, Popconfirm, Select, Space } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 // Hooks
-import { useGlobalState, useLanguage, useLoading } from '../../hooks';
+import { useGlobalState, useLanguage, useLoading } from 'hooks';
 // Components
-import { Translate } from '../../components';
+import { Translate } from 'components';
 
 type PlayersElectProps = {
   players: GamePlayers;

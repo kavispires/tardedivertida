@@ -1,10 +1,10 @@
 import { useState } from 'react';
 // State & Hooks
-import { useIsUserReady, useLanguage } from '../../hooks';
+import { useIsUserReady, useLanguage } from 'hooks';
 // Resources & Utils
-import { PHASES } from '../../utils/phases';
+import { PHASES } from 'utils/phases';
 // Components
-import { PhaseAnnouncement, PhaseContainer, StepSwitcher } from '../../components';
+import { PhaseAnnouncement, PhaseContainer, StepSwitcher } from 'components';
 
 function PhaseResolution({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);

@@ -1,5 +1,5 @@
-import { getLanguageControl, mockLanguageHook } from '../../mocks';
-import { AVAILABLE_AVATAR_IDS } from '../../utils/constants';
+import { getLanguageControl, mockLanguageHook } from 'mocks';
+import { AVAILABLE_AVATAR_IDS } from 'utils/constants';
 
 import { AvatarEntry } from './AvatarEntry';
 

@@ -3,9 +3,9 @@ import { orderBy } from 'lodash';
 import { Avatar as AntAvatar } from 'antd';
 import { CrownFilled, MessageFilled } from '@ant-design/icons';
 // Utils
-import { getPlayersFromIds } from '../../utils/helpers';
+import { getPlayersFromIds } from 'utils/helpers';
 // Components
-import { Avatar, Translate } from '../../components';
+import { Avatar, Translate } from 'components';
 
 type GalleryWindowGuessesProps = {
   playersSay: PlayersSay;

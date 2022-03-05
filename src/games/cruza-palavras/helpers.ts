@@ -1,4 +1,4 @@
-import { SEPARATOR } from '../../utils/constants';
+import { SEPARATOR } from 'utils/constants';
 
 /**
  * Checks if an instance is a clue

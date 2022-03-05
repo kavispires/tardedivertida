@@ -1,9 +1,9 @@
 import { useState } from 'react';
 // Hooks
-import { useIsUserReady, useUser, useLanguage } from '../../hooks';
+import { useIsUserReady, useUser, useLanguage } from 'hooks';
 import { useOnSubmitDreamsAPIRequest } from './api-requests';
 // Resources & Utils
-import { PHASES } from '../../utils/phases';
+import { PHASES } from 'utils/phases';
 // Components
 import {
   ImageCardPreloadHand,
@@ -13,7 +13,7 @@ import {
   RoundAnnouncement,
   StepSwitcher,
   Translate,
-} from '../../components';
+} from 'components';
 import { StepTellDream } from './StepTellDream';
 import { DreamBoard } from './DreamBoard';
 

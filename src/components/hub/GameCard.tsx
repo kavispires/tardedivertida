@@ -1,11 +1,11 @@
 // Design Resources
 import { Space, Card, Image, Divider, Tag, Badge } from 'antd';
 // Hooks
-import { useDimensions, useLanguage } from '../../hooks';
+import { useDimensions, useLanguage } from 'hooks';
 // Utils
-import { PUBLIC_URL, TAG_DICT } from '../../utils/constants';
+import { PUBLIC_URL, TAG_DICT } from 'utils/constants';
 // Components
-import { CreateGameModal, RulesModal } from '../modals';
+import { CreateGameModal, RulesModal } from 'components';
 
 const getVersionColor = (version: string) => {
   if (version.endsWith('alpha')) {

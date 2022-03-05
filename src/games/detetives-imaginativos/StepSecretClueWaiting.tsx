@@ -8,7 +8,7 @@ import {
   Title,
   Translate,
   TurnOrder,
-} from '../../components';
+} from 'components';
 
 type StepSecretClueWaitingProps = {
   leader: GamePlayer;

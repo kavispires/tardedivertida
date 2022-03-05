@@ -1,7 +1,7 @@
 // Hooks
-import { useLoading } from '../../hooks';
+import { useLoading } from 'hooks';
 // Components
-import { Instruction, PopoverRule, ReadyPlayersBar, Title, Translate } from '../../components';
+import { Instruction, PopoverRule, ReadyPlayersBar, Title, Translate } from 'components';
 import WordGrid from './WordGrid';
 import WritingCell from './WritingCell';
 import { WritingCluesRule } from './RulesBlobs';

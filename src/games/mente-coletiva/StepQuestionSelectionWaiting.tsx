@@ -1,5 +1,5 @@
 // Components
-import { AvatarIcon, AvatarName, Instruction, Step, Title, Translate } from '../../components';
+import { AvatarIcon, AvatarName, Instruction, Step, Title, Translate } from 'components';
 import { Pasture } from './Pasture';
 
 type StepQuestionSelectionWaitingProps = {

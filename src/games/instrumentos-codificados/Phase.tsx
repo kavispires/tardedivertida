@@ -1,10 +1,10 @@
 import { useState } from 'react';
 // State & Hooks
-import { useIsUserReady, useUser, useLanguage } from '../../hooks';
+import { useIsUserReady, useUser, useLanguage } from 'hooks';
 // Resources & Utils
-import { PHASES } from '../../utils/phases';
+import { PHASES } from 'utils/phases';
 // Components
-import { Instruction, PhaseAnnouncement, PhaseContainer, StepSwitcher } from '../../components';
+import { Instruction, PhaseAnnouncement, PhaseContainer, StepSwitcher } from 'components';
 
 function PhasePromptSelection({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);

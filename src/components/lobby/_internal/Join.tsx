@@ -3,18 +3,18 @@ import { useCallback, useEffect, useState } from 'react';
 import { Alert, Button, Image, Input, notification, Tooltip } from 'antd';
 import { CaretLeftOutlined, CaretRightOutlined, InfoCircleOutlined } from '@ant-design/icons';
 // API & Hooks
-import { GAME_API } from '../../../adapters';
-import { useLanguage, useLoading } from '../../../hooks';
-import useGlobalState from '../../../hooks/useGlobalState';
+import { GAME_API } from 'adapters';
+import { useLanguage, useLoading } from 'hooks';
+import useGlobalState from 'hooks/useGlobalState';
 // Images
-import avatars from '../../../images/avatars.svg';
+import avatars from 'images/avatars.svg';
 // Services
-import localStorage from '../../../services/localStorage';
+import localStorage from 'services/localStorage';
 // Utils
-import { AVATARS, PUBLIC_URL, RANDOM_NAMES } from '../../../utils/constants';
-import { getRandomItem, isDevEnv } from '../../../utils/helpers';
+import { AVATARS, PUBLIC_URL, RANDOM_NAMES } from 'utils/constants';
+import { getRandomItem, isDevEnv } from 'utils/helpers';
 // Components
-import { Translate } from '../..';
+import { Translate } from 'components';
 
 const randomName = isDevEnv ? getRandomItem(RANDOM_NAMES) : undefined;
 

@@ -15,8 +15,8 @@ import {
   TitleHighlight,
   Translate,
   ViewIf,
-} from '../../components';
-import { useLanguage } from '../../hooks';
+} from 'components';
+import { useLanguage } from 'hooks';
 import Table from './Table';
 
 type StepPlayCardProps = {

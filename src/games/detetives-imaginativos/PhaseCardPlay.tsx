@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 // Design Resources
 import { message } from 'antd';
 // Hooks
-import { useWhichPlayerIsThe, useUser, useLoading, useLanguage } from '../../hooks';
+import { useWhichPlayerIsThe, useUser, useLoading, useLanguage } from 'hooks';
 import { useOnPlayCardAPIRequest } from './api-requests';
 // Resources & Utils
-import { PHASES } from '../../utils/phases';
+import { PHASES } from 'utils/phases';
 // Components
 import {
   Instruction,
@@ -14,7 +14,7 @@ import {
   PhaseContainer,
   StepSwitcher,
   Translate,
-} from '../../components';
+} from 'components';
 
 import StepPlayCard from './StepPlayCard';
 

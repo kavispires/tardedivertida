@@ -1,15 +1,7 @@
 // Design Resources
 import { Button } from 'antd';
 // Components
-import {
-  AvatarName,
-  ButtonContainer,
-  Instruction,
-  Step,
-  Title,
-  TitleHighlight,
-  Translate,
-} from '../../components';
+import { AvatarName, ButtonContainer, Instruction, Step, Title, TitleHighlight, Translate } from 'components';
 import TableFocus from './TableFocus';
 
 type StepDefendingProps = {

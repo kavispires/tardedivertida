@@ -1,9 +1,9 @@
 import { useState } from 'react';
 // State & Hooks
-import { useIsUserReady, useUser, useLanguage } from '../../hooks';
+import { useIsUserReady, useUser, useLanguage } from 'hooks';
 import { useOnSubmitDrawingAPIRequest } from './api-requests';
 // Resources & Utils
-import { PHASES } from '../../utils/phases';
+import { PHASES } from 'utils/phases';
 import { DRAWING_TIME_IN_SECONDS } from './constants';
 // Components
 import {
@@ -13,7 +13,7 @@ import {
   StepSwitcher,
   Translate,
   TurnOrder,
-} from '../../components';
+} from 'components';
 import { StepTimedDrawing } from './StepTimedDrawing';
 
 function PhaseDrawing({ players, state, info }: PhaseProps) {

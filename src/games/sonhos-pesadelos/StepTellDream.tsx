@@ -2,19 +2,11 @@ import { useState, useEffect } from 'react';
 // Design Resources
 import { Button } from 'antd';
 // Hooks
-import { useLanguage, useLoading, useMock } from '../../hooks';
+import { useLanguage, useLoading, useMock } from 'hooks';
 // Utils
-import { shuffle } from '../../utils/helpers';
+import { shuffle } from 'utils/helpers';
 // Components
-import {
-  Card,
-  ButtonContainer,
-  Instruction,
-  ReadyPlayersBar,
-  Step,
-  Title,
-  Translate,
-} from '../../components';
+import { Card, ButtonContainer, Instruction, ReadyPlayersBar, Step, Title, Translate } from 'components';
 import { DreamBoardWrite } from './DreamBoardWrite';
 
 const mockedClues = [

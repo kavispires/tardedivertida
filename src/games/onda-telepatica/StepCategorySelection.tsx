@@ -1,7 +1,7 @@
 // Hooks
-import { useLoading } from '../../hooks';
+import { useLoading } from 'hooks';
 // Components
-import { AvatarIcon, Instruction, Step, Title, Translate } from '../../components';
+import { AvatarIcon, Instruction, Step, Title, Translate } from 'components';
 import { Card } from './Card';
 
 type StepCategorySelectionProps = {

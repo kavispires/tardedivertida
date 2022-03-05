@@ -1,7 +1,7 @@
 // Design Resources
 import { Layout } from 'antd';
 // Components
-import * as icons from '../components/icons';
+import * as icons from 'components/icons';
 
 function Icons() {
   const styles: React.CSSProperties = {

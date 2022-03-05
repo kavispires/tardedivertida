@@ -1,8 +1,8 @@
 // Design Resources
 import { WarningOutlined } from '@ant-design/icons';
 // Components
-import { useLanguage } from '../../hooks';
-import { Card } from '../../components';
+import { useLanguage } from 'hooks';
+import { Card } from 'components';
 
 type UeSoIssoCardProps = {
   word?: any;

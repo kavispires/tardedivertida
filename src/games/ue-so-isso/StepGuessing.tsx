@@ -2,7 +2,7 @@
 import { Space } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 // Components
-import { AvatarName, Instruction, Step, Title, Translate, ViewIf } from '../../components';
+import { AvatarName, Instruction, Step, Title, Translate, ViewIf } from 'components';
 import Card from './UeSoIssoCard';
 import Guess from './Guess';
 import SuggestionEasel from './SuggestionEasel';

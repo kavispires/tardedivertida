@@ -3,10 +3,10 @@ import { useCallback, useEffect } from 'react';
 import { Button } from 'antd';
 import { CloudUploadOutlined, ThunderboltOutlined } from '@ant-design/icons';
 // Hooks
-import { useGlobalState, useLanguage, useUser, useLoading, useVotingMatch, useCardWidth } from '../../hooks';
+import { useGlobalState, useLanguage, useUser, useLoading, useVotingMatch, useCardWidth } from 'hooks';
 // Utils
-import { LETTERS, SEPARATOR } from '../../utils/constants';
-import { getEntryId, shuffle } from '../../utils/helpers';
+import { LETTERS, SEPARATOR } from 'utils/constants';
+import { getEntryId, shuffle } from 'utils/helpers';
 // Components
 import {
   ButtonContainer,
@@ -16,7 +16,7 @@ import {
   ReadyPlayersBar,
   Translate,
   PopoverRule,
-} from '../../components';
+} from 'components';
 import { EvaluationAllDrawings } from './EvaluationAllDrawings';
 import { EvaluationAllCards } from './EvaluationAllCards';
 import { EvaluationRules } from './TextBlobs';

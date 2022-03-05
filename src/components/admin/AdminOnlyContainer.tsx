@@ -2,7 +2,7 @@ import clsx from 'clsx';
 // Design Resources
 import { Space } from 'antd';
 // State
-import { useGlobalState } from '../../hooks';
+import { useGlobalState } from 'hooks';
 
 type AdminOnlyContainerProps = {
   children: any;

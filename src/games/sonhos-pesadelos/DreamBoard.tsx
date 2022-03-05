@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 // Hooks
-import { useCardWidth } from '../../hooks';
+import { useCardWidth } from 'hooks';
 // Components
 import { NightmareButton } from './NightmareButton';
 import { DreamButton } from './DreamButton';

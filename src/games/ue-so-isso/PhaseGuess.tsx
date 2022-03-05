@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 // Hooks
-import { useGlobalState, useLoading, useWhichPlayerIsThe, useLanguage } from '../../hooks';
+import { useGlobalState, useLoading, useWhichPlayerIsThe, useLanguage } from 'hooks';
 // Resources & Utils
-import { PHASES } from '../../utils/phases';
+import { PHASES } from 'utils/phases';
 // Components
-import { PhaseAnnouncement, PhaseContainer, StepSwitcher } from '../../components';
+import { PhaseAnnouncement, PhaseContainer, StepSwitcher } from 'components';
 import StepGuessing from './StepGuessing';
 import StepGuessVerification from './StepGuessVerification';
 import { GuessingRules } from './RulesBlobs';

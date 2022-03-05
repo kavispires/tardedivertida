@@ -1,6 +1,6 @@
-import { POLEMICA_DA_VEZ_API } from '../../adapters';
+import { POLEMICA_DA_VEZ_API } from 'adapters';
 
-import { useAPICall, useLanguage } from '../../hooks';
+import { useAPICall, useLanguage } from 'hooks';
 
 export function useOnSubmitTopicAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();

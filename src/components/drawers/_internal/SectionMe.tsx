@@ -1,12 +1,11 @@
 // Design Resources
 import { Badge } from 'antd';
 // Utils
-import { AVATARS } from '../../../utils/constants';
+import { AVATARS } from 'utils/constants';
 // Hooks
-import { useLanguage } from '../../../hooks';
+import { useLanguage } from 'hooks';
 // Components
-import { Avatar } from '../../avatars';
-import { Translate } from '../../shared';
+import { Avatar, Translate } from 'components';
 
 type SectionMeProps = {
   player: Player;

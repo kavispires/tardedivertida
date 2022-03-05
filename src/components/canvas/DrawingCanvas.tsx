@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import { Button, Space } from 'antd';
 import { DeleteOutlined, UndoOutlined } from '@ant-design/icons';
 // Components
-import { Translate } from '../shared';
+import { Translate } from 'components';
 
 type DrawingCanvasProps = {
   lines: CanvasLine[];

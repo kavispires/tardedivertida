@@ -1,5 +1,5 @@
 import { orderBy } from 'lodash';
-import { AvatarCard, AvatarIcon, TransparentButton } from '../../components';
+import { AvatarCard, AvatarIcon, TransparentButton } from 'components';
 
 type PlayersCardsProps = {
   activePlayerId: PlayerId;

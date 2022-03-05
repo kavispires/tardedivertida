@@ -10,9 +10,9 @@ import {
   TrophyOutlined,
 } from '@ant-design/icons';
 // Utils
-import { inNSeconds } from '../../utils/helpers';
+import { inNSeconds } from 'utils/helpers';
 // Components
-import { Translate } from '../../components';
+import { Translate } from 'components';
 
 const WINDOW_DURATION = 10;
 

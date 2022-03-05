@@ -3,7 +3,7 @@ import clsx from 'clsx';
 //Design Resources
 import { Button, Divider } from 'antd';
 // Components
-import { AvatarIcon, Instruction, ReadyPlayersBar, Step, Title, Translate } from '../../components';
+import { AvatarIcon, Instruction, ReadyPlayersBar, Step, Title, Translate } from 'components';
 import { Topic } from './Topic';
 
 type StepLikingProps = {

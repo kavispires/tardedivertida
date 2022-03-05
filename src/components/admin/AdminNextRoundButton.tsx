@@ -3,9 +3,9 @@ import clsx from 'clsx';
 import { Button, Space } from 'antd';
 import { FireFilled } from '@ant-design/icons';
 // State & Hooks
-import { useAPICall, useGlobalState, useLanguage, useLoading } from '../../hooks';
-import { ADMIN_API } from '../../adapters';
-import { ADMIN_ACTIONS } from '../../utils/constants';
+import { useAPICall, useGlobalState, useLanguage, useLoading } from 'hooks';
+import { ADMIN_API } from 'adapters';
+import { ADMIN_ACTIONS } from 'utils/constants';
 // Components
 import { Translate } from '..';
 

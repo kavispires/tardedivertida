@@ -1,6 +1,6 @@
-import { MENTE_COLETIVA_API } from '../../adapters';
+import { MENTE_COLETIVA_API } from 'adapters';
 
-import { useAPICall, useLanguage } from '../../hooks';
+import { useAPICall, useLanguage } from 'hooks';
 
 export function useOnSubmitQuestionAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();

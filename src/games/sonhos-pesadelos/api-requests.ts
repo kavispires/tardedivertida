@@ -1,5 +1,5 @@
-import { SONHOS_PESADELOS_API } from '../../adapters';
-import { useAPICall, useLanguage } from '../../hooks';
+import { SONHOS_PESADELOS_API } from 'adapters';
+import { useAPICall, useLanguage } from 'hooks';
 
 export function useOnSubmitDreamsAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();

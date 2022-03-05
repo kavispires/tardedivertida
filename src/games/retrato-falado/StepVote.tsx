@@ -2,17 +2,9 @@ import { useEffect } from 'react';
 // Design Resources
 import { Button, Space } from 'antd';
 // Utils
-import { useCardWidth, useGlobalState } from '../../hooks';
+import { useCardWidth, useGlobalState } from 'hooks';
 // Components
-import {
-  Avatar,
-  CanvasResizer,
-  CanvasSVG,
-  ButtonContainer,
-  Instruction,
-  Title,
-  Translate,
-} from '../../components';
+import { Avatar, CanvasResizer, CanvasSVG, ButtonContainer, Instruction, Title, Translate } from 'components';
 
 import MonsterCard from './MonsterCard';
 

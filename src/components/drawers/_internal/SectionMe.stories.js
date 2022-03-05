@@ -1,4 +1,4 @@
-import { getLanguageControl, mockLanguageHook, mockPlayer } from '../../../mocks';
+import { getLanguageControl, mockLanguageHook, mockPlayer } from 'mocks';
 
 import { SectionMe } from './SectionMe';
 

@@ -1,9 +1,9 @@
 // Design Resources
 import { Collapse } from 'antd';
 // Hooks
-import { useLanguage } from '../../hooks';
+import { useLanguage } from 'hooks';
 // Components
-import { Instruction } from '../shared';
+import { Instruction } from 'components';
 
 type CollapsibleRuleProps = {
   children: any;

@@ -2,12 +2,12 @@ import { useEffect } from 'react';
 // Design Resources
 import { Button } from 'antd';
 // Hooks
-import { useLanguage, useLoading, useMock, useVotingMatch } from '../../hooks';
+import { useLanguage, useLoading, useMock, useVotingMatch } from 'hooks';
 // Utils
-import { getEntryId, shuffle } from '../../utils/helpers';
-import { LETTERS } from '../../utils/constants';
+import { getEntryId, shuffle } from 'utils/helpers';
+import { LETTERS } from 'utils/constants';
 // Components
-import { ButtonContainer, Instruction, ReadyPlayersBar, Step, Title, Translate } from '../../components';
+import { ButtonContainer, Instruction, ReadyPlayersBar, Step, Title, Translate } from 'components';
 import { AllClues } from './AllClues';
 import { DreamBoardVote } from './DreamBoardVote';
 

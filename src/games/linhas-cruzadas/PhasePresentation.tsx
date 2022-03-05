@@ -1,8 +1,8 @@
 import { useState } from 'react';
 // State & Hooks
-import { useIsUserReady, useLanguage } from '../../hooks';
+import { useIsUserReady, useLanguage } from 'hooks';
 // Resources & Utils
-import { PHASES } from '../../utils/phases';
+import { PHASES } from 'utils/phases';
 // Components
 import {
   Instruction,
@@ -11,7 +11,7 @@ import {
   StepSwitcher,
   Translate,
   TurnOrder,
-} from '../../components';
+} from 'components';
 import { StepAlbum } from './StepAlbum';
 
 function PhasePresentation({ players, state, info }: PhaseProps) {

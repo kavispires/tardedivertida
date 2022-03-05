@@ -1,4 +1,4 @@
-import { getLanguageControl, mockInfo, mockLanguageHook, mockPlayers } from '../../../mocks';
+import { getLanguageControl, mockInfo, mockLanguageHook, mockPlayers } from 'mocks';
 
 import Join from './Join';
 

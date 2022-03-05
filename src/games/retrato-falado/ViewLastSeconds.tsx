@@ -1,7 +1,7 @@
 // Utils
 import { TIMES } from './constants';
 // Components
-import { DrawingCanvas, Instruction, TimerBar, Title, Translate } from '../../components';
+import { DrawingCanvas, Instruction, TimerBar, Title, Translate } from 'components';
 
 type ViewSketchingProps = {
   isUserTheWitness: boolean;

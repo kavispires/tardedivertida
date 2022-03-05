@@ -4,12 +4,12 @@ import clsx from 'clsx';
 import { Alert, Button, Rate } from 'antd';
 import { Input } from 'antd';
 // Adapters
-import { GAME_API } from '../../adapters';
+import { GAME_API } from 'adapters';
 // Hooks
 import { useTimer } from 'react-timer-hook';
-import { useAPICall, useGlobalState, useLanguage, useLoading } from '../../hooks';
+import { useAPICall, useGlobalState, useLanguage, useLoading } from 'hooks';
 // Utils
-import { inNSeconds } from '../../utils/helpers';
+import { inNSeconds } from 'utils/helpers';
 // Components
 import { Translate } from '.';
 

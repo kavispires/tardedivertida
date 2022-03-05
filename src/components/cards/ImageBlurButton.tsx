@@ -3,9 +3,9 @@ import clsx from 'clsx';
 import { Button, Tooltip } from 'antd';
 import { EyeInvisibleOutlined } from '@ant-design/icons';
 // Utils
-import { useBlurCards } from '../../hooks';
+import { useBlurCards } from 'hooks';
 // Components
-import { Translate } from '../shared';
+import { Translate } from 'components';
 
 type ImageBlurButtonProps = {
   cardId: string;

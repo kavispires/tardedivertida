@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { isDevEnv } from '../utils/helpers';
+import { isDevEnv } from 'utils/helpers';
 import { useGlobalState } from './index';
 
 /**

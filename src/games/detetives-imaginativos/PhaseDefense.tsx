@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 // Design Resources
 import { message } from 'antd';
 // Hooks
-import { useWhichPlayerIsThe, useLoading, useLanguage } from '../../hooks';
+import { useWhichPlayerIsThe, useLoading, useLanguage } from 'hooks';
 // Resources & Utils
-import { PHASES } from '../../utils/phases';
+import { PHASES } from 'utils/phases';
 // Components
 import {
   Instruction,
@@ -15,7 +15,7 @@ import {
   Title,
   TitleHighlight,
   Translate,
-} from '../../components';
+} from 'components';
 import StepDefending from './StepDefending';
 import { useOnFinishDefenseRequest } from './api-requests';
 

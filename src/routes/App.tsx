@@ -4,11 +4,11 @@ import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
 // Design Resources
 import { Layout, message } from 'antd';
 // Firebase
-import { auth } from '../services/firebase';
+import { auth } from 'services/firebase';
 // State
-import { useGlobalState, useLanguage, useLocalStorage } from '../hooks';
+import { useGlobalState, useLanguage, useLocalStorage } from 'hooks';
 // Components
-import { LoadingBar, LoadingPage } from '../components';
+import { LoadingBar, LoadingPage } from 'components';
 // Pages
 import Home from './Home';
 import Hub from './Hub';

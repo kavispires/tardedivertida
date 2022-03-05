@@ -2,9 +2,9 @@ import { useState } from 'react';
 //Design Resources
 import { Button, Input } from 'antd';
 // Hooks
-import { useLanguage } from '../../hooks';
+import { useLanguage } from 'hooks';
 // Components
-import { Instruction, Title, Translate } from '../../components';
+import { Instruction, Title, Translate } from 'components';
 
 type StepTopicSelectionProps = {
   currentTopics: Topic[];

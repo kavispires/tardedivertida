@@ -6,7 +6,7 @@ import {
   mockLanguageHook,
   mockLoadingHook,
   mockPlayers,
-} from '../../mocks';
+} from 'mocks';
 
 import { PhaseRules } from './PhaseRules';
 

@@ -1,7 +1,7 @@
 // Design Resources
 import { Tooltip } from 'antd';
 // Components
-import { AvatarIcon, AvatarName, Translate } from '../../components';
+import { AvatarIcon, AvatarName, Translate } from 'components';
 
 type PlayersDecisionListProps = {
   players: GamePlayers;

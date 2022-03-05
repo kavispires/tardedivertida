@@ -1,6 +1,6 @@
-import { ADMIN_API, ESPIAO_ENTRE_NOS_API } from '../../adapters';
-import { useAPICall, useLanguage } from '../../hooks';
-import { ADMIN_ACTIONS } from '../../utils/constants';
+import { ADMIN_API, ESPIAO_ENTRE_NOS_API } from 'adapters';
+import { useAPICall, useLanguage } from 'hooks';
+import { ADMIN_ACTIONS } from 'utils/constants';
 
 export function useOnGuessLocationAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();

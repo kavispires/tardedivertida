@@ -4,14 +4,13 @@ import { useNavigate } from 'react-router-dom';
 // Design Resources
 import { Image, Modal, message, Button, notification, Divider, Typography, Switch } from 'antd';
 // Adapters
-import { ADMIN_API } from '../../adapters';
+import { ADMIN_API } from 'adapters';
 // Hooks
-import { useGlobalState, useLanguage, useLoading, useLocalStorage } from '../../hooks';
+import { useGlobalState, useLanguage, useLoading, useLocalStorage } from 'hooks';
 // Constants
-import { LATEST_GAME_IDS, PUBLIC_URL } from '../../utils/constants';
+import { LATEST_GAME_IDS, PUBLIC_URL } from 'utils/constants';
 // Components
-import { Loading } from '../loaders';
-import { ButtonContainer, Instruction, Title, Translate } from '../shared';
+import { ButtonContainer, Instruction, Loading, Title, Translate } from 'components';
 
 const updateLocal24hGameIds = (latestGameIds: PlainObject, newId: GameId) => {
   const now = Date.now();

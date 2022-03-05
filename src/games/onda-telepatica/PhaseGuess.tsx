@@ -1,18 +1,11 @@
 import { useState } from 'react';
 // State & Hooks
-import { useIsUserReady, useLanguage, useWhichPlayerIsThe } from '../../hooks';
+import { useIsUserReady, useLanguage, useWhichPlayerIsThe } from 'hooks';
 import { useOnSubmitGuessAPIRequest } from './api-requests';
 // Resources & Utils
-import { PHASES } from '../../utils/phases';
+import { PHASES } from 'utils/phases';
 // Components
-import {
-  Instruction,
-  PhaseAnnouncement,
-  PhaseContainer,
-  StepSwitcher,
-  Translate,
-  ViewOr,
-} from '../../components';
+import { Instruction, PhaseAnnouncement, PhaseContainer, StepSwitcher, Translate, ViewOr } from 'components';
 import { StepGuess } from './StepGuess';
 import { StepPsychicGuess } from './StepPsychicGuess';
 

@@ -4,13 +4,13 @@ import { useNavigate } from 'react-router-dom';
 import { Typography, Layout, Space, Divider, PageHeader, Button, message } from 'antd';
 import { DatabaseFilled } from '@ant-design/icons';
 // API
-import { signOut } from '../adapters/auth';
+import { signOut } from 'adapters/auth';
 // Hooks
-import { useGlobalState, useLanguage, useLocalStorage } from '../hooks';
+import { useGlobalState, useLanguage, useLocalStorage } from 'hooks';
 // Utils
-import gameList from '../resources/games.json';
+import gameList from 'resources/games.json';
 // Components
-import { GameCard, LanguageSwitch, RecentlyCreatedGames, Translate } from '../components';
+import { GameCard, LanguageSwitch, RecentlyCreatedGames, Translate } from 'components';
 
 const GAME_LIST: {
   [key: string]: GameInfo;

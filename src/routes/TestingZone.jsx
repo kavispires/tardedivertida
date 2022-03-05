@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 
 // import { Image, Layout } from 'antd';
-import gameList from '../resources/games.json';
-import { Avatar, AvatarEntry } from '../components/avatars';
+import gameList from 'resources/games.json';
+import { Avatar, AvatarEntry } from 'components/avatars';
 import {
   GameOver,
   Instruction,
@@ -11,14 +11,14 @@ import {
   RoundAnnouncement,
   Title,
   Icons,
-} from '../components';
+} from 'components';
 // Resources
 import { CheckCircleFilled, CheckCircleOutlined } from '@ant-design/icons';
 import { Button, Input } from 'antd';
-import { LETTERS } from '../utils/constants';
-import Card from '../components/cards/Card';
-import { getColorFromLetter } from '../utils/helpers';
-import * as icons from '../components/icons';
+import { LETTERS } from 'utils/constants';
+import Card from 'components/cards/Card';
+import { getColorFromLetter } from 'utils/helpers';
+import * as icons from 'components/icons';
 
 function TestingZone() {
   const info = gameList['U'];

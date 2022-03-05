@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import useSound from 'use-sound';
 // State & Hooks
-import { useIsUserReady, useUser, useLanguage } from '../../hooks';
+import { useIsUserReady, useUser, useLanguage } from 'hooks';
 import { useOnSubmitDrawingAPIRequest } from './api-requests';
 // Resources & Utils
-import { PHASES } from '../../utils/phases';
+import { PHASES } from 'utils/phases';
 // Components
 import {
   Instruction,
@@ -13,11 +13,11 @@ import {
   RoundAnnouncement,
   StepSwitcher,
   Translate,
-} from '../../components';
+} from 'components';
 import { StepDraw } from './StepDraw';
 
 // Sound
-const arteRuimTimer = require('../../sounds/arte-ruim-timer.mp3');
+const arteRuimTimer = require('sounds/arte-ruim-timer.mp3');
 
 function PhaseDraw({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);

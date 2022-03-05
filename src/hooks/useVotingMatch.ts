@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { SEPARATOR } from '../utils/constants';
+import { SEPARATOR } from 'utils/constants';
 
 /**
  * Delete duplicated votes on the 'value' side of the votes object

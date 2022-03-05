@@ -2,14 +2,14 @@ import { useCallback } from 'react';
 // Design Resources
 import { Button, Image, message, notification, Typography } from 'antd';
 // API & Hooks
-import { ADMIN_API } from '../../../adapters';
-import { useLoading, useGlobalState, useLanguage } from '../../../hooks';
+import { ADMIN_API } from 'adapters';
+import { useLoading, useGlobalState, useLanguage } from 'hooks';
 // Images
-import avatars from '../../../images/avatars.svg';
+import avatars from 'images/avatars.svg';
 // Utils and Resources
-import { PUBLIC_URL } from '../../../utils/constants';
+import { PUBLIC_URL } from 'utils/constants';
 // Components
-import { AdminOnlyContainer, Translate } from '../..';
+import { AdminOnlyContainer, Translate } from 'components';
 
 type WaitingProps = {
   info: GameInfo;

@@ -1,4 +1,4 @@
-import { useLanguage } from '../../hooks';
+import { useLanguage } from 'hooks';
 
 import { LanguageSwitch } from './LanguageSwitch';
 

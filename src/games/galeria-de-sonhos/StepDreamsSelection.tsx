@@ -1,9 +1,9 @@
 // Design Resources
 import { Button } from 'antd';
 // Hooks
-import { useBooleanDictionary } from '../../hooks';
+import { useBooleanDictionary } from 'hooks';
 // Components
-import { ButtonContainer, Card, PopoverRule, Step, Title, Translate } from '../../components';
+import { ButtonContainer, Card, PopoverRule, Step, Title, Translate } from 'components';
 import { DreamSelectionExtendedRules, DreamSelectionRules } from './RulesBlobs';
 import { SelectTable } from './SelectTable';
 

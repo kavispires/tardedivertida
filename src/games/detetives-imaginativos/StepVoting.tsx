@@ -1,5 +1,5 @@
 // Components
-import { AvatarIcon, Instruction, Step, Title, Translate, ViewIf } from '../../components';
+import { AvatarIcon, Instruction, Step, Title, Translate, ViewIf } from 'components';
 import Table from './Table';
 import VotingOptions from './VotingOptions';
 

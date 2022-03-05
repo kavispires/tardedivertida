@@ -1,9 +1,9 @@
 // Design Resources
 import { Tooltip } from 'antd';
 // Hooks
-import { useLanguage } from '../../hooks';
+import { useLanguage } from 'hooks';
 // Components
-import { AvatarIcon, CollapsibleRule } from '../../components';
+import { AvatarIcon, CollapsibleRule } from 'components';
 
 type QuestionsHistoryProps = {
   history: THistoryEntry[];

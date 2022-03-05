@@ -3,9 +3,9 @@ import { useState } from 'react';
 import { Button, Input, Space } from 'antd';
 import { CloudUploadOutlined, MinusOutlined } from '@ant-design/icons';
 // Hooks
-import { useLanguage, useLoading } from '../../hooks';
+import { useLanguage, useLoading } from 'hooks';
 // Components
-import { Translate } from '../../components';
+import { Translate } from 'components';
 
 type GuessProps = {
   onSubmitOutcome: GenericFunction;

@@ -1,4 +1,4 @@
-import { Instruction, Translate } from '../../components';
+import { Instruction, Translate } from 'components';
 
 export function WitnessRules() {
   return (

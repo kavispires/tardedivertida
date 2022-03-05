@@ -1,11 +1,11 @@
 import { useMemo } from 'react';
 import { orderBy } from 'lodash';
+// Hooks
+import { useLanguage } from 'hooks';
 // Utils
-import { AVATARS } from '../../../utils/constants';
+import { AVATARS } from 'utils/constants';
 // Components
-import { Avatar } from '../../avatars';
-import { Translate } from '../../shared';
-import { useLanguage } from '../../../hooks';
+import { Avatar, Translate } from 'components';
 
 type SectionTeamPlayersProp = {
   team: GameTeam;

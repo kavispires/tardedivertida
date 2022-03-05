@@ -2,7 +2,7 @@ import clsx from 'clsx';
 // Design Resources
 import { ForwardFilled } from '@ant-design/icons';
 // Helpers
-import { getAvatarColorById } from '../../utils/helpers';
+import { getAvatarColorById } from 'utils/helpers';
 // Components
 import { Translate } from '.';
 import { AvatarName } from '..';

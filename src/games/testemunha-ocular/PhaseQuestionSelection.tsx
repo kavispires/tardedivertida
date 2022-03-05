@@ -1,9 +1,9 @@
 import { useState } from 'react';
 // Hooks
-import { useWhichPlayerIsThe, useLoading, useLanguage } from '../../hooks';
+import { useWhichPlayerIsThe, useLoading, useLanguage } from 'hooks';
 import { useOnSelectQuestionAPIRequest } from './api-requests';
 // Resources & Utils
-import { PHASES } from '../../utils/phases';
+import { PHASES } from 'utils/phases';
 // Components
 import {
   AvatarName,
@@ -12,7 +12,7 @@ import {
   PhaseContainer,
   StepSwitcher,
   Translate,
-} from '../../components';
+} from 'components';
 import { StepSelectQuestion } from './StepSelectQuestion';
 import { StepQuestionWaiting } from './StepQuestionWaiting';
 

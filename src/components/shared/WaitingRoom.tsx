@@ -1,5 +1,5 @@
 // Hooks
-import { useLanguage } from '../../hooks';
+import { useLanguage } from 'hooks';
 // Components
 import { Icons, Instruction, ReadyPlayersBar, Title, Translate } from '..';
 

@@ -2,9 +2,9 @@
 import { Avatar as AntAvatar, Typography } from 'antd';
 import { CrownFilled, DeleteFilled } from '@ant-design/icons';
 // Utils
-import { getPlayersFromIds } from '../../utils/helpers';
+import { getPlayersFromIds } from 'utils/helpers';
 // Components
-import { Avatar, StarPoints, Translate } from '../../components';
+import { Avatar, StarPoints, Translate } from 'components';
 
 type GalleryWindowResultProps = {
   playerArtist: any;

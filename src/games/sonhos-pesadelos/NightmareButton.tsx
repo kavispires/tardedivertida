@@ -2,7 +2,7 @@
 import { Button } from 'antd';
 import { CaretUpOutlined } from '@ant-design/icons';
 // Components
-import { Translate } from '../../components';
+import { Translate } from 'components';
 
 export function NightmareButton() {
   return (

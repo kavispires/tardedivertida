@@ -2,9 +2,9 @@ import { useState } from 'react';
 // Design Resources
 import { Button } from 'antd';
 // State & Hooks
-import { useIsUserReady, useLanguage, useWhichPlayerIsThe } from '../../hooks';
+import { useIsUserReady, useLanguage, useWhichPlayerIsThe } from 'hooks';
 // Resources & Utils
-import { PHASES } from '../../utils/phases';
+import { PHASES } from 'utils/phases';
 // Components
 import {
   AdminNextRoundButton,
@@ -18,7 +18,7 @@ import {
   StepSwitcher,
   Title,
   Translate,
-} from '../../components';
+} from 'components';
 import { StepReveal } from './StepReveal';
 import { ScoringRules } from './RulesBlobs';
 

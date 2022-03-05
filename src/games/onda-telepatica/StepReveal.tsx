@@ -11,7 +11,7 @@ import {
   TimedButton,
   Title,
   Translate,
-} from '../../components';
+} from 'components';
 import { Dial } from './Dial';
 import { getGuessResultClass, getPoints } from './helpers';
 import { ScoringRules } from './RulesBlobs';

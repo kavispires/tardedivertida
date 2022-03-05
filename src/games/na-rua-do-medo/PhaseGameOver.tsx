@@ -1,10 +1,10 @@
 import { orderBy } from 'lodash';
 // Hooks
-import { useLanguage, useUser } from '../../hooks';
+import { useLanguage, useUser } from 'hooks';
 // Utils
-import { AVATARS } from '../../utils/constants';
+import { AVATARS } from 'utils/constants';
 // Components
-import { Avatar, GameOverWrapper, Instruction, Translate } from '../../components';
+import { Avatar, GameOverWrapper, Instruction, Translate } from 'components';
 import { CandyCount } from './CandyCount';
 import { PlayerStats } from './PlayerStats';
 

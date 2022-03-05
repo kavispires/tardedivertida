@@ -1,7 +1,7 @@
 // Design Resources
 import { Switch } from 'antd';
 // Hooks
-import { useGlobalState, useLocalStorage } from '../../hooks';
+import { useGlobalState, useLocalStorage } from 'hooks';
 
 export function LanguageSwitch() {
   const [language, setLanguage] = useGlobalState('language');

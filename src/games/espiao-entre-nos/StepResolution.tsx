@@ -1,8 +1,8 @@
 import clsx from 'clsx';
 // Hooks
-import { useLanguage, useLoading } from '../../hooks';
+import { useLanguage, useLoading } from 'hooks';
 // Components
-import { AdminButton, AdminOnlyContainer, Instruction, Step, Title, Translate } from '../../components';
+import { AdminButton, AdminOnlyContainer, Instruction, Step, Title, Translate } from 'components';
 
 type StepVotingProps = {
   players: GamePlayers;

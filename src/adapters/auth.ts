@@ -1,6 +1,6 @@
 import { message } from 'antd';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, UserCredential } from 'firebase/auth';
-import { auth } from '../services/firebase';
+import { auth } from 'services/firebase';
 
 /**
  * Sign up user via email through firebase auth

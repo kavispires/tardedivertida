@@ -1,7 +1,7 @@
 // Design Resources
 import { Divider } from 'antd';
 // Components
-import { Step } from '../../components';
+import { Step } from 'components';
 import { AdminAnswerControl } from './AdminAnswerControl';
 import { AnswerGroup } from './AnswerGroup';
 import { UserAnswers } from './UserAnswers';

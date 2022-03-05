@@ -1,4 +1,4 @@
-import { AvatarName, Instruction, Translate } from '../../components';
+import { AvatarName, Instruction, Translate } from 'components';
 
 type GamePremiseRulesProps = {
   activePlayer: GamePlayer;

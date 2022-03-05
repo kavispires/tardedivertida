@@ -1,7 +1,7 @@
 // Hooks
-import { useLanguage } from '../../hooks';
+import { useLanguage } from 'hooks';
 // Components
-import { GameOverWrapper, ImageCard, Instruction, Translate } from '../../components';
+import { GameOverWrapper, ImageCard, Instruction, Translate } from 'components';
 import { AnnouncementContent } from './TextBlobs';
 import { QuestionsHistory } from './QuestionsHistory';
 

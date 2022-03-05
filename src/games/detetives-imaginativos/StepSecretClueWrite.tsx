@@ -1,6 +1,6 @@
 import { useState } from 'react';
 // Hooks
-import { useLanguage, useLoading } from '../../hooks';
+import { useLanguage, useLoading } from 'hooks';
 // Design Resources
 import { Button, Input } from 'antd';
 // Components
@@ -11,7 +11,7 @@ import {
   Instruction,
   Title,
   Translate,
-} from '../../components';
+} from 'components';
 
 type SecretClueWriteProps = {
   onSubmitClue: GenericFunction;

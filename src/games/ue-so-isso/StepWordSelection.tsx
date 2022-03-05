@@ -2,9 +2,9 @@ import { useState } from 'react';
 // Design Resources
 import { CheckCircleFilled, CloudUploadOutlined } from '@ant-design/icons';
 // Hooks
-import { useLanguage } from '../../hooks';
+import { useLanguage } from 'hooks';
 // Components
-import { AvatarName, Instruction, Step, TimedButton, Title, Translate } from '../../components';
+import { AvatarName, Instruction, Step, TimedButton, Title, Translate } from 'components';
 
 type StepWordSelectionProps = {
   guesser: GamePlayer;

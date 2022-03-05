@@ -1,15 +1,7 @@
 // Utils
-import { useCardWidth, useGlobalState } from '../../hooks';
+import { useCardWidth, useGlobalState } from 'hooks';
 // Components
-import {
-  AvatarName,
-  ButtonContainer,
-  Instruction,
-  Step,
-  TimedButton,
-  Title,
-  Translate,
-} from '../../components';
+import { AvatarName, ButtonContainer, Instruction, Step, TimedButton, Title, Translate } from 'components';
 import MonsterCard from './MonsterCard';
 import MonsterSketches from './MonsterSketches';
 

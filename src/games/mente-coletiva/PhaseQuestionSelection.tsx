@@ -1,9 +1,9 @@
 import { useState } from 'react';
 // Hooks
-import { useLanguage, useWhichPlayerIsThe } from '../../hooks';
+import { useLanguage, useWhichPlayerIsThe } from 'hooks';
 import { useOnSubmitQuestionAPIRequest } from './api-requests';
 // Resources & Utils
-import { PHASES } from '../../utils/phases';
+import { PHASES } from 'utils/phases';
 // Components
 import {
   Instruction,
@@ -13,7 +13,7 @@ import {
   StepSwitcher,
   Translate,
   ViewOr,
-} from '../../components';
+} from 'components';
 import { StepQuestionSelection } from './StepQuestionSelection';
 import { StepQuestionSelectionWaiting } from './StepQuestionSelectionWaiting';
 import { GamePremiseRules } from './RulesBlobs';

@@ -1,7 +1,7 @@
 import { Button } from 'antd';
 import { useState } from 'react';
-import { ButtonContainer, Instruction, Step, Title, Translate } from '../../components';
-import { useCardWidth } from '../../hooks';
+import { ButtonContainer, Instruction, Step, Title, Translate } from 'components';
+import { useCardWidth } from 'hooks';
 import { ItemCard } from './ItemCard';
 import { SceneTile } from './SceneTile';
 

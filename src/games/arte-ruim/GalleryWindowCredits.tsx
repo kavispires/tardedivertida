@@ -1,5 +1,5 @@
 // Components
-import { AvatarEntry, Translate } from '../../components';
+import { AvatarEntry, Translate } from 'components';
 
 type GalleryWindowCreditsProps = {
   artistName: string;

@@ -1,9 +1,9 @@
 import { useState } from 'react';
 // Hooks
-import { useWhichPlayerIsThe, useLanguage } from '../../hooks';
+import { useWhichPlayerIsThe, useLanguage } from 'hooks';
 // Resources & Utils
 
-import { PHASES } from '../../utils/phases';
+import { PHASES } from 'utils/phases';
 // Components
 import {
   Instruction,
@@ -14,7 +14,7 @@ import {
   Translate,
   ViewIf,
   WaitingRoom,
-} from '../../components';
+} from 'components';
 import StepCompareSuggestions from './StepCompareSuggestions';
 import { ComparisonRules } from './RulesBlobs';
 import { GuesserWaitingRoom } from './GuesserWaitingRoom';

@@ -1,7 +1,7 @@
 // Hooks
-import { useCardWidth } from '../../hooks';
+import { useCardWidth } from 'hooks';
 // Components
-import { GameOverWrapper, Title, Translate } from '../../components';
+import { GameOverWrapper, Title, Translate } from 'components';
 import MonsterSketches from './MonsterSketches';
 
 function PhaseGameOver({ state, info, players }: PhaseProps) {

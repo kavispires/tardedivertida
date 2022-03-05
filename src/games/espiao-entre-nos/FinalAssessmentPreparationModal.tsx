@@ -2,9 +2,9 @@
 import { Button, Modal } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 // Hooks and API
-import { useGlobalState, useLanguage } from '../../hooks';
+import { useGlobalState, useLanguage } from 'hooks';
 // Components
-import { ButtonContainer, Translate } from '../../components';
+import { ButtonContainer, Translate } from 'components';
 
 type FinalAssessmentModalProps = {
   // isModalVisible: boolean;

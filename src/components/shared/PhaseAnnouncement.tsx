@@ -3,15 +3,13 @@ import clsx from 'clsx';
 // Design Resource
 import { Button } from 'antd';
 // Hooks
-import { useLanguage } from '../../hooks';
+import { useLanguage } from 'hooks';
 // Utils
-import { getAnimationClass, kebabToPascal } from '../../utils/helpers';
+import { getAnimationClass, kebabToPascal } from 'utils/helpers';
 // Components
-import { TimedButton } from './index';
-import { Title } from './Title';
-import * as IconIllustrations from '../icons';
+import { Icons, TimedButton, Title } from 'components';
 
-const IconIllustrationsComponents: any = IconIllustrations;
+const IconIllustrationsComponents: any = Icons;
 
 type PhaseAnnouncementProps = {
   title: any;

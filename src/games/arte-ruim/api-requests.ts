@@ -1,5 +1,5 @@
-import { ARTE_RUIM_API } from '../../adapters';
-import { useAPICall, useLanguage } from '../../hooks';
+import { ARTE_RUIM_API } from 'adapters';
+import { useAPICall, useLanguage } from 'hooks';
 
 export function useOnSubmitDrawingAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();

@@ -1,11 +1,11 @@
 // Design Resources
 import { Alert } from 'antd';
 // Hooks
-import { useLanguage } from '../../hooks';
+import { useLanguage } from 'hooks';
 // Utils
-import { LETTERS, SEPARATOR } from '../../utils/constants';
+import { LETTERS, SEPARATOR } from 'utils/constants';
 // Components
-import { AdminNextRoundButton, Instruction, Step, Title, Translate } from '../../components';
+import { AdminNextRoundButton, Instruction, Step, Title, Translate } from 'components';
 import { DreamBoard } from './DreamBoard';
 import { DreamCard } from './DreamCard';
 

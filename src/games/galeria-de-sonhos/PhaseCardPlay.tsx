@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 // State & Hooks
-import { useIsUserReady, useUser, useLanguage, useWhichPlayerIsThe } from '../../hooks';
+import { useIsUserReady, useUser, useLanguage, useWhichPlayerIsThe } from 'hooks';
 import { useOnPlayCardAPIRequest } from './api-requests';
 // Resources & Utils
-import { PHASES } from '../../utils/phases';
+import { PHASES } from 'utils/phases';
 // Components
 import {
   AvatarName,
@@ -12,7 +12,7 @@ import {
   PhaseContainer,
   StepSwitcher,
   Translate,
-} from '../../components';
+} from 'components';
 import { CardPlayRules } from './RulesBlobs';
 import { StepPlayDream } from './StepPlayDream';
 import { StepAnnounceDream } from './StepAnnounceDream';

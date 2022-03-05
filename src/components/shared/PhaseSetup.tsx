@@ -1,5 +1,5 @@
 // Constants
-import { PHASES } from '../../utils/phases';
+import { PHASES } from 'utils/phases';
 // Components
 import { Instruction, PhaseContainer, Title, Translate, Icons } from '..';
 

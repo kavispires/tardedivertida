@@ -1,4 +1,4 @@
-import { getRandomItem } from '../../utils/helpers';
+import { getRandomItem } from 'utils/helpers';
 
 export const mockGuess = (target: number) => {
   return getRandomItem([

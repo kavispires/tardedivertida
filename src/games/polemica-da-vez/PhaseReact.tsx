@@ -1,11 +1,11 @@
 import { useState } from 'react';
 // Hooks
-import { useLanguage } from '../../hooks';
+import { useLanguage } from 'hooks';
 import { useOnSubmitReactionAPIRequest } from './api-requests';
 // Resources & Utils
-import { PHASES } from '../../utils/phases';
+import { PHASES } from 'utils/phases';
 // Components
-import { Instruction, PhaseAnnouncement, PhaseContainer, StepSwitcher, Translate } from '../../components';
+import { Instruction, PhaseAnnouncement, PhaseContainer, StepSwitcher, Translate } from 'components';
 import { StepLiking } from './StepLiking';
 
 function PhaseReact({ state, players, info }: PhaseProps) {

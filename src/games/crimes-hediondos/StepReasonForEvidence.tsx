@@ -1,6 +1,6 @@
 import { Button } from 'antd';
 import { useState } from 'react';
-import { ButtonContainer, Instruction, Step, Title, Translate } from '../../components';
+import { ButtonContainer, Instruction, Step, Title, Translate } from 'components';
 import { SceneTile } from './SceneTile';
 import { SelectedItems } from './SelectedItems';
 

@@ -1,11 +1,11 @@
 import { useState } from 'react';
 // State & Hooks
-import { useIsUserReady, useLanguage, useWhichPlayerIsThe, useUser } from '../../hooks';
+import { useIsUserReady, useLanguage, useWhichPlayerIsThe, useUser } from 'hooks';
 import { useOnSubmitVoteAPIRequest } from './api-requests';
 // Resources & Utils
-import { PHASES } from '../../utils/phases';
+import { PHASES } from 'utils/phases';
 // Components
-import { Instruction, PhaseAnnouncement, PhaseContainer, StepSwitcher, Translate } from '../../components';
+import { Instruction, PhaseAnnouncement, PhaseContainer, StepSwitcher, Translate } from 'components';
 import StepVote from './StepVote';
 
 function PhaseEvaluation({ players, state, info }: PhaseProps) {

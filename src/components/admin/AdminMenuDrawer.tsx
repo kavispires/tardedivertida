@@ -3,9 +3,9 @@ import { Fragment, useState } from 'react';
 import { Button, Drawer, Popconfirm, Spin } from 'antd';
 import { FireFilled } from '@ant-design/icons';
 // Hooks and API
-import { ADMIN_API } from '../../adapters';
-import { useAPICall, useGlobalState, useLoading } from '../../hooks';
-import { ADMIN_ACTIONS } from '../../utils/constants';
+import { ADMIN_API } from 'adapters';
+import { useAPICall, useGlobalState, useLoading } from 'hooks';
+import { ADMIN_ACTIONS } from 'utils/constants';
 // Components
 import { ForceStateForm } from './_internal/ForceStateForm';
 import { PlayersReadyState } from './_internal/PlayersReadyState';

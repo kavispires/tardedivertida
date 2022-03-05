@@ -1,9 +1,9 @@
 // Design Resources
 import { Button } from 'antd';
 // Hooks
-import { useLoading } from '../../hooks';
+import { useLoading } from 'hooks';
 // Components
-import { ButtonContainer, Instruction, ReadyPlayersBar, Step, Title, Translate } from '../../components';
+import { ButtonContainer, Instruction, ReadyPlayersBar, Step, Title, Translate } from 'components';
 import { Dial } from './Dial';
 
 type StepPsychicGuessProps = {

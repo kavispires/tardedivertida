@@ -3,9 +3,9 @@ import { useEffect, useState } from 'react';
 import { Button } from 'antd';
 import { PictureOutlined } from '@ant-design/icons';
 // State & Hooks
-import { useLanguage } from '../../hooks';
+import { useLanguage } from 'hooks';
 // Resources and Utils
-import { PHASES } from '../../utils/phases';
+import { PHASES } from 'utils/phases';
 // Components
 import {
   AdminNextRoundButton,
@@ -18,7 +18,7 @@ import {
   Translate,
   RoundsLeftInstruction,
   PopoverRule,
-} from '../../components';
+} from 'components';
 import { GalleryWindow } from './GalleryWindow';
 import { GalleryRules, ScoringRules } from './TextBlobs';
 

@@ -2,11 +2,11 @@
 import { Button, Input, Popover } from 'antd';
 import { CaretUpOutlined } from '@ant-design/icons';
 // Hooks
-import { useCardWidth, useLanguage } from '../../hooks';
+import { useCardWidth, useLanguage } from 'hooks';
 // Utils
 import { shouldDisplayCard } from './helpers';
 // Components
-import { Translate } from '../../components';
+import { Translate } from 'components';
 import { NightmareButton } from './NightmareButton';
 import { DreamCard } from './DreamCard';
 

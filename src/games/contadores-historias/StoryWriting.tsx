@@ -1,6 +1,6 @@
 import { useState } from 'react';
 // Hooks
-import { useLanguage, useLoading } from '../../hooks';
+import { useLanguage, useLoading } from 'hooks';
 // Design Resources
 import { Button, Input } from 'antd';
 // Components
@@ -12,7 +12,7 @@ import {
   Step,
   Title,
   Translate,
-} from '../../components';
+} from 'components';
 import { BookPages } from './BookPages';
 
 type StoryWritingProps = {

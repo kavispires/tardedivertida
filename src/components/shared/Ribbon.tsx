@@ -1,5 +1,5 @@
 // Utils
-import { getColorFromLetter } from '../../utils/helpers';
+import { getColorFromLetter } from 'utils/helpers';
 
 type RibbonProps = {
   label: string;

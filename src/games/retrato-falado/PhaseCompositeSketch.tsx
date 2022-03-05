@@ -1,9 +1,9 @@
 import { useState } from 'react';
 // State & Hooks
-import { useIsUserReady, useLanguage, useWhichPlayerIsThe } from '../../hooks';
+import { useIsUserReady, useLanguage, useWhichPlayerIsThe } from 'hooks';
 import { useOnSubmitOrientationAPIRequest, useOnSubmitSketchAPIRequest } from './api-requests';
 // Resources & Utils
-import { PHASES } from '../../utils/phases';
+import { PHASES } from 'utils/phases';
 import { TIMES } from './constants';
 // Components
 import {
@@ -14,7 +14,7 @@ import {
   RoundAnnouncement,
   StepSwitcher,
   Translate,
-} from '../../components';
+} from 'components';
 import StepTestimonial from './StepTestimonial';
 
 function PhaseCompositeSketch({ players, state, info }: PhaseProps) {

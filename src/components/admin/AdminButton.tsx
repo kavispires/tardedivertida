@@ -2,7 +2,7 @@
 import { Button, ButtonProps } from 'antd';
 import { RocketFilled } from '@ant-design/icons';
 // State
-import { useLoading } from '../../hooks';
+import { useLoading } from 'hooks';
 
 interface AdminButtonProps extends ButtonProps {
   action: GenericFunction;

@@ -1,8 +1,8 @@
 import { UpCircleOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import clsx from 'clsx';
-import { ImageBlurButton, ImageCard, Translate } from '../../components';
-import { useCardWidth } from '../../hooks';
+import { ImageBlurButton, ImageCard, Translate } from 'components';
+import { useCardWidth } from 'hooks';
 
 type SelectTableProps = {
   table: GImageCard[];

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Button, Popover } from 'antd';
 import { ReadOutlined } from '@ant-design/icons';
 // Components
-import { Translate } from '../shared';
+import { Translate } from 'components';
 
 type PopoverRuleProps = {
   content: any;

@@ -1,9 +1,9 @@
 // Design Resources
 import { Slider } from 'antd';
 // State & Hooks
-import { useGlobalState } from '../../hooks';
+import { useGlobalState } from 'hooks';
 // Components
-import { Translate } from '../shared';
+import { Translate } from 'components';
 
 /**
  * Floating canvas resizer bar positioned on the top-left of the page

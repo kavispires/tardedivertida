@@ -2,16 +2,16 @@ import { useEffect, useState } from 'react';
 // Design Resources
 import { notification } from 'antd';
 // Hooks
-import { useIsUserReady, useWhichPlayerIsThe, useUser, useLanguage } from '../../hooks';
+import { useIsUserReady, useWhichPlayerIsThe, useUser, useLanguage } from 'hooks';
 import {
   useOnGuessLocationAPIRequest,
   useOnMakeAccusationAPIRequest,
   useOnSendLastQuestionerAPIRequest,
 } from './api-requests';
 // Resources & Utils
-import { PHASES } from '../../utils/phases';
+import { PHASES } from 'utils/phases';
 // Components
-import { Instruction, PhaseAnnouncement, PhaseContainer, StepSwitcher, Translate } from '../../components';
+import { Instruction, PhaseAnnouncement, PhaseContainer, StepSwitcher, Translate } from 'components';
 import { StepInvestigation } from './StepInvestigation';
 import { FinalAssessmentPreparationModal } from './FinalAssessmentPreparationModal';
 

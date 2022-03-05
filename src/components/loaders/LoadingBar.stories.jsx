@@ -1,4 +1,4 @@
-import { mockLoading } from '../../mocks';
+import { mockLoading } from 'mocks';
 
 import { LoadingBar } from './LoadingBar';
 

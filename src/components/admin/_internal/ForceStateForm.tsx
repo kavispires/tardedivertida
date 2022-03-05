@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Button, Form, Select, AutoComplete, message } from 'antd';
 // Components
 import { ValueFormItem } from './ValueFormItem';
-import { ADMIN_ACTIONS } from '../../../utils/constants';
+import { ADMIN_ACTIONS } from 'utils/constants';
 
 type ForceStateFormProps = {
   isLoading?: boolean;

@@ -3,18 +3,10 @@ import clsx from 'clsx';
 import { Button } from 'antd';
 import { DownSquareOutlined } from '@ant-design/icons';
 // Hooks & Utils
-import { useCardWidth, useLanguage, useLoading } from '../../hooks';
-import { isDevEnv } from '../../utils/helpers';
+import { useCardWidth, useLanguage, useLoading } from 'hooks';
+import { isDevEnv } from 'utils/helpers';
 // Components
-import {
-  Card,
-  ImageBlurButton,
-  ImageCard,
-  PopoverRule,
-  ReadyPlayersBar,
-  Title,
-  Translate,
-} from '../../components';
+import { Card, ImageBlurButton, ImageCard, PopoverRule, ReadyPlayersBar, Title, Translate } from 'components';
 import { VotingRules } from './RulesBlogs';
 
 type StepVotingProps = {

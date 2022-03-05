@@ -3,9 +3,9 @@ import { orderBy } from 'lodash';
 // Design Resources
 import { Card, Layout, Progress, Space } from 'antd';
 // Utils
-import { PUBLIC_URL } from '../utils/constants';
+import { PUBLIC_URL } from 'utils/constants';
 // Components
-import { CanvasSVG, LoadingPage, Title } from '../components';
+import { CanvasSVG, LoadingPage, Title } from 'components';
 
 function Gallery() {
   const [data, setData] = useState([]);

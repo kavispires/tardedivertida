@@ -1,5 +1,5 @@
-import { Instruction, Translate } from '../../components';
-import { getPlayersFromIds } from '../../utils/helpers';
+import { Instruction, Translate } from 'components';
+import { getPlayersFromIds } from 'utils/helpers';
 
 type FinalAssessmentInstructionProps = {
   finalAssessment: FinalAssessment;

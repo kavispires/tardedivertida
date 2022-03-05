@@ -1,5 +1,5 @@
-import { UE_SO_ISSO_API } from '../../adapters';
-import { useAPICall, useLanguage } from '../../hooks';
+import { UE_SO_ISSO_API } from 'adapters';
+import { useAPICall, useLanguage } from 'hooks';
 
 export function useOnSubmitVotesAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();

@@ -1,10 +1,10 @@
 import { useState } from 'react';
 // Hooks
-import { useWhichPlayerIsThe, useLanguage } from '../../hooks';
+import { useWhichPlayerIsThe, useLanguage } from 'hooks';
 // Resources & Utils
-import { PHASES } from '../../utils/phases';
+import { PHASES } from 'utils/phases';
 // Components
-import { Instruction, PhaseAnnouncement, PhaseContainer, StepSwitcher, Translate } from '../../components';
+import { Instruction, PhaseAnnouncement, PhaseContainer, StepSwitcher, Translate } from 'components';
 import StepReveal from './StepReveal';
 
 function PhaseReveal({ state, players, info }: PhaseProps) {

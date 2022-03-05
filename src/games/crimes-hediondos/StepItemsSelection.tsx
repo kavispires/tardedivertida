@@ -1,8 +1,8 @@
 import { Button } from 'antd';
 import { useState } from 'react';
-import { ButtonContainer, Instruction, Step, Title, Translate, TransparentButton } from '../../components';
-import { useCardWidth } from '../../hooks';
-import { shuffle } from '../../utils/helpers';
+import { ButtonContainer, Instruction, Step, Title, Translate, TransparentButton } from 'components';
+import { useCardWidth } from 'hooks';
+import { shuffle } from 'utils/helpers';
 import { ItemCard } from './ItemCard';
 
 type StepItemsSelectionProps = {

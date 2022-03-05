@@ -3,11 +3,11 @@ import { orderBy } from 'lodash';
 // Design Resources
 import { Badge } from 'antd';
 // Hooks
-import { useLanguage } from '../../../hooks';
+import { useLanguage } from 'hooks';
 // Utils
-import { AVATARS } from '../../../utils/constants';
+import { AVATARS } from 'utils/constants';
 // Components
-import { Avatar } from '../../avatars';
+import { Avatar } from 'components';
 
 type SectionRankedPlayersProps = {
   players: GamePlayers;

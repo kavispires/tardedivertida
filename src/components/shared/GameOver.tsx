@@ -2,13 +2,13 @@ import { useState } from 'react';
 // Design Resources
 import { Progress } from 'antd';
 // Images
-import gameOverTitle from '../../images/game-over-title.svg';
+import gameOverTitle from 'images/game-over-title.svg';
 // Utils
-import { useLanguage } from '../../hooks';
-import { AVATARS } from '../../utils/constants';
+import { useLanguage } from 'hooks';
+import { AVATARS } from 'utils/constants';
 // Components
 import { Avatar, PhaseAnnouncement, PhaseContainer, RateGameWidget, StepSwitcher, Translate } from '..';
-import { PHASES } from '../../utils/phases';
+import { PHASES } from 'utils/phases';
 
 const GameOverText = () => <Translate pt="Jogo concluído" en="The game is over" />;
 

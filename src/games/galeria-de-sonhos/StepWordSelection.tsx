@@ -1,7 +1,7 @@
 // Utils
-import { LETTERS } from '../../utils/constants';
+import { LETTERS } from 'utils/constants';
 // Components
-import { ButtonContainer, Card, Step, Title, Translate, TransparentButton } from '../../components';
+import { ButtonContainer, Card, Step, Title, Translate, TransparentButton } from 'components';
 import { GeneralRules } from './RulesBlobs';
 
 type StepWordSelectionProps = {

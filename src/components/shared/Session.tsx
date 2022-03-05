@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
 // Hooks
-import { useGameState, useGlobalState, useGamePlayers } from '../../hooks';
+import { useGameState, useGlobalState, useGamePlayers } from 'hooks';
 // Utils
-import gameList from '../../resources/games.json';
-import { isDevEnv } from '../../utils/helpers';
+import gameList from 'resources/games.json';
+import { isDevEnv } from 'utils/helpers';
 // Components
-import { PhaseLobby, GameInfoDrawer } from '../../components';
-import { AdminMenuDrawer } from '../admin';
+import { AdminMenuDrawer, PhaseLobby, GameInfoDrawer } from 'components';
 
 const GAME_LIST: {
   [key: string]: GameInfo;

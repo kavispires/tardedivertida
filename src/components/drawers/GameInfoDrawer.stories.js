@@ -5,7 +5,7 @@ import {
   mockLanguageHook,
   mockPlayers,
   mockTeams,
-} from '../../mocks';
+} from 'mocks';
 
 import { GameInfoDrawer } from './GameInfoDrawer';
 

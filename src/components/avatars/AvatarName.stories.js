@@ -1,5 +1,5 @@
 //
-// import { getLanguageControl, mockGlobalUser, mockLanguageHook, mockPlayer } from '../../mocks';
+// import { getLanguageControl, mockGlobalUser, mockLanguageHook, mockPlayer } from 'mocks';
 
 // import { AvatarName } from './AvatarName';
 

@@ -1,8 +1,8 @@
 // Constants
-import { GAME_COLLECTION } from '../../utils/constants';
-import { PHASES } from '../../utils/phases';
+import { GAME_COLLECTION } from 'utils/constants';
+import { PHASES } from 'utils/phases';
 // Components
-import { GameOverWrapper, Session, PhaseSetup, PhaseRules, PageError, PhaseLobby } from '../../components';
+import { GameOverWrapper, Session, PhaseSetup, PhaseRules, PageError, PhaseLobby } from 'components';
 import PhaseDialClue from './PhaseDialClue';
 import PhaseGuess from './PhaseGuess';
 import PhaseReveal from './PhaseReveal';

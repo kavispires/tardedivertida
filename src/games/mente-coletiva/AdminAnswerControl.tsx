@@ -3,9 +3,9 @@ import { useMemo } from 'react';
 import { Button } from 'antd';
 import { PlusCircleFilled } from '@ant-design/icons';
 // Hooks
-import { useLanguage, useLoading } from '../../hooks';
+import { useLanguage, useLoading } from 'hooks';
 // Components
-import { AdminButton, AdminOnlyContainer, Avatar } from '../../components';
+import { AdminButton, AdminOnlyContainer, Avatar } from 'components';
 
 type AdminAnswerControlProps = {
   allAnswers: MAnswer[];

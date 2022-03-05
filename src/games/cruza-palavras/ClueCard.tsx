@@ -2,9 +2,9 @@ import clsx from 'clsx';
 // Design Resources
 import { CheckCircleFilled, PlusCircleFilled } from '@ant-design/icons';
 // Utils
-import { getColorFromIndex } from '../../utils/helpers';
+import { getColorFromIndex } from 'utils/helpers';
 // Components
-import { Avatar } from '../../components';
+import { Avatar } from 'components';
 
 type ClueCardProps = {
   isMatched?: boolean;

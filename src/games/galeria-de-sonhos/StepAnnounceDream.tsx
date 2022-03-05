@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 // Design Resources
 import { Divider, message } from 'antd';
 // Hooks
-import { useCardWidth, useLanguage } from '../../hooks';
+import { useCardWidth, useLanguage } from 'hooks';
 // Components
 import {
   AdminNextRoundButton,
@@ -15,7 +15,7 @@ import {
   TimedButton,
   Title,
   Translate,
-} from '../../components';
+} from 'components';
 import { CardPlayRules } from './RulesBlobs';
 import { PlayTable } from './PlayTable';
 

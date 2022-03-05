@@ -1,18 +1,11 @@
 import { useState } from 'react';
 // Hooks
-import { useWhichPlayerIsThe, useUser, useLanguage } from '../../hooks';
+import { useWhichPlayerIsThe, useUser, useLanguage } from 'hooks';
 import { useOnPlayCardAPIRequest } from './api-requests';
 // Resources & Utils
-import { PHASES } from '../../utils/phases';
+import { PHASES } from 'utils/phases';
 // Components
-import {
-  Instruction,
-  PhaseAnnouncement,
-  PhaseContainer,
-  Step,
-  StepSwitcher,
-  Translate,
-} from '../../components';
+import { Instruction, PhaseAnnouncement, PhaseContainer, Step, StepSwitcher, Translate } from 'components';
 import { StepPlayCard } from './StepPlayCard';
 
 function PhaseCardPlay({ state, players, info }: PhaseProps) {

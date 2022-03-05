@@ -8,7 +8,7 @@ import {
   Step,
   Title,
   Translate,
-} from '../../components';
+} from 'components';
 import VotingOptions from './VotingOptions';
 
 type StepRevealProps = {

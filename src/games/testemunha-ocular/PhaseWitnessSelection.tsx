@@ -2,10 +2,10 @@ import { useState } from 'react';
 // Design Resources
 import { Space } from 'antd';
 // Hooks
-import { useLoading, useLanguage, useGlobalState } from '../../hooks';
+import { useLoading, useLanguage, useGlobalState } from 'hooks';
 import { useOnSelectWitnessAPIRequest } from './api-requests';
 // Resources & Utils
-import { PHASES } from '../../utils/phases';
+import { PHASES } from 'utils/phases';
 // Components
 import {
   AvatarCard,
@@ -18,7 +18,7 @@ import {
   Translate,
   AvatarIcon,
   TransparentButton,
-} from '../../components';
+} from 'components';
 import { WitnessRules } from './TextBlobs';
 
 function PhaseWitnessSelection({ state, players, info }: PhaseProps) {

@@ -3,9 +3,9 @@ import { useMemo, useState } from 'react';
 import { Button, Popconfirm, Select, Space } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 // Hooks
-import { useLanguage, useLoading } from '../../hooks';
+import { useLanguage, useLoading } from 'hooks';
 // Components
-import { Translate } from '../../components';
+import { Translate } from 'components';
 
 type LocationSelectProps = {
   locations: ELocation[];

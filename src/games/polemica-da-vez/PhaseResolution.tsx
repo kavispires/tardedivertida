@@ -1,8 +1,8 @@
 import { useState } from 'react';
 // Hooks
-import { useLanguage } from '../../hooks';
+import { useLanguage } from 'hooks';
 // Resources & Utils
-import { PHASES } from '../../utils/phases';
+import { PHASES } from 'utils/phases';
 // Components
 import {
   Instruction,
@@ -15,7 +15,7 @@ import {
   RankingBoard,
   AdminNextRoundButton,
   ButtonContainer,
-} from '../../components';
+} from 'components';
 import { StepResolution } from './StepResolution';
 import { Button } from 'antd';
 

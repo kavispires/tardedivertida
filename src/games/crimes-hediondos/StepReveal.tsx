@@ -10,8 +10,8 @@ import {
   TimedButton,
   Title,
   Translate,
-} from '../../components';
-import { useLanguage } from '../../hooks';
+} from 'components';
+import { useLanguage } from 'hooks';
 import { Crime } from './Crime';
 import { GroupedItemsBoard } from './GroupedItemsBoard';
 import { splitWeaponsAndEvidence } from './helpers';
