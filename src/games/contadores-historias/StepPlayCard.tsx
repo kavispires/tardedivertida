@@ -7,6 +7,7 @@ import {
   ImageCardHand as Hand,
   Instruction,
   ReadyPlayersBar,
+  Step,
   Title,
   Translate,
   ViewIf,
@@ -40,7 +41,7 @@ export function StepPlayCard({
   };
 
   return (
-    <div className="c-step-play-card">
+    <Step fullWidth>
       <Title>
         <Card header={storyteller.name} className="c-story-card" randomColor>
           {story}
@@ -72,6 +73,6 @@ export function StepPlayCard({
           sizeRatio={user.hand.length}
         />
       </FloatingHand>
-    </div>
+    </Step>
   );
 }
