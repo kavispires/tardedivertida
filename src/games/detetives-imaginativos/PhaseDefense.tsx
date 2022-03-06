@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 // Design Resources
 import { message } from 'antd';
 // Hooks
-import { useWhichPlayerIsThe, useLoading, useLanguage } from 'hooks';
+import { useWhichPlayerIsThe, useLoading, useLanguage, useStep } from 'hooks';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
@@ -22,8 +22,8 @@ import { useOnFinishDefenseRequest } from './api-requests';
 function PhaseDefense({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
   const { isLoading } = useLoading();
+  const { step, nextStep } = useStep(0);
   const [currentPlayer, isUserTheCurrentPlayer] = useWhichPlayerIsThe('currentPlayerId', state, players);
-  const [step, setStep] = useState(0);
 
   const onFinishDefense = useOnFinishDefenseRequest();
 
@@ -56,7 +56,7 @@ function PhaseDefense({ state, players, info }: PhaseProps) {
         <PhaseAnnouncement
           type="defense"
           title={translate('Defensa', 'Defense')}
-          onClose={() => setStep(1)}
+          onClose={nextStep}
           currentRound={state?.round?.current}
           duration={5}
         >
