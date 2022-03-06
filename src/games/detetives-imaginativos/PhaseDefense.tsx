@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { message } from 'antd';
 // Hooks
 import { useWhichPlayerIsThe, useLoading, useLanguage, useStep } from 'hooks';
+import { useOnFinishDefenseRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
@@ -16,8 +17,7 @@ import {
   TitleHighlight,
   Translate,
 } from 'components';
-import StepDefending from './StepDefending';
-import { useOnFinishDefenseRequest } from './api-requests';
+import { StepDefending } from './StepDefending';
 
 function PhaseDefense({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();

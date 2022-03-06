@@ -17,7 +17,7 @@ type StepSecretClueWaitingProps = {
   turnOrder: PlayerId[];
 };
 
-function StepSecretClueWaiting({ leader, user, players, turnOrder }: StepSecretClueWaitingProps) {
+export function StepSecretClueWaiting({ leader, user, players, turnOrder }: StepSecretClueWaitingProps) {
   return (
     <div className="d-secret-clue-write">
       <Title>
@@ -39,5 +39,3 @@ function StepSecretClueWaiting({ leader, user, players, turnOrder }: StepSecretC
     </div>
   );
 }
-
-export default StepSecretClueWaiting;

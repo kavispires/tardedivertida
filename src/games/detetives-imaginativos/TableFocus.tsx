@@ -53,5 +53,3 @@ export function TableFocus({ table, currentPlayer }: TableFocusProps) {
     </div>
   );
 }
-
-export default TableFocus;

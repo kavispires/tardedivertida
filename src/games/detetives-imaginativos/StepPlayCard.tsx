@@ -1,7 +1,9 @@
-// Design Resources
-import { QuestionCircleFilled } from '@ant-design/icons';
-import { message } from 'antd';
 import { useEffect } from 'react';
+// Design Resources
+import { message } from 'antd';
+import { QuestionCircleFilled } from '@ant-design/icons';
+// Hooks
+import { useLanguage } from 'hooks';
 // Components
 import {
   AvatarIcon,
@@ -16,8 +18,7 @@ import {
   Translate,
   ViewIf,
 } from 'components';
-import { useLanguage } from 'hooks';
-import Table from './Table';
+import { Table } from './Table';
 
 type StepPlayCardProps = {
   isUserTheImpostor: boolean;
@@ -31,7 +32,7 @@ type StepPlayCardProps = {
   isLoading: boolean;
 };
 
-function StepPlayCard({
+export function StepPlayCard({
   isUserTheImpostor,
   isUserTheCurrentPlayer,
   clue,
@@ -130,5 +131,3 @@ function StepPlayCard({
     </Step>
   );
 }
-
-export default StepPlayCard;
