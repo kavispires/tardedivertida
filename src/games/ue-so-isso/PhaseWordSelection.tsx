@@ -1,6 +1,5 @@
-import { useState } from 'react';
 // Hooks
-import { useIsUserReady, useWhichPlayerIsThe, useLanguage } from 'hooks';
+import { useIsUserReady, useWhichPlayerIsThe, useLanguage, useStep } from 'hooks';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
@@ -51,7 +50,7 @@ function PhaseWordSelection({ state, players, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
   const { translate } = useLanguage();
   const [guesser, isUserTheGuesser] = useWhichPlayerIsThe('guesserId', state, players);
-  const [step, setStep] = useState(0);
+  const { step, nextStep, setStep } = useStep(0);
 
   const onSendSelectedWords = useOnSubmitVotesAPIRequest(setStep);
 
@@ -72,7 +71,7 @@ function PhaseWordSelection({ state, players, info }: PhaseProps) {
         <PhaseAnnouncement
           type="opinions"
           title={translate('Seleção da Palavra Secreta', 'Secret Word Selection')}
-          onClose={() => setStep(2)}
+          onClose={nextStep}
           currentRound={state?.round?.current}
         >
           {isUserTheGuesser ? (
