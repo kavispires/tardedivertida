@@ -9,7 +9,7 @@ import {
   Title,
   Translate,
 } from 'components';
-import VotingOptions from './VotingOptions';
+import { VotingOptions } from './VotingOptions';
 
 type StepRevealProps = {
   impostor: GamePlayer;
@@ -21,7 +21,7 @@ type StepRevealProps = {
   lastRound?: boolean;
 };
 
-function StepReveal({
+export function StepReveal({
   impostor,
   impostorVotes,
   players,
@@ -68,5 +68,3 @@ function StepReveal({
     </Step>
   );
 }
-
-export default StepReveal;

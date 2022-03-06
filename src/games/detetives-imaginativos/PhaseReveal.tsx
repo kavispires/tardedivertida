@@ -4,7 +4,7 @@ import { useWhichPlayerIsThe, useLanguage, useStep } from 'hooks';
 import { PHASES } from 'utils/phases';
 // Components
 import { Instruction, PhaseAnnouncement, PhaseContainer, StepSwitcher, Translate } from 'components';
-import StepReveal from './StepReveal';
+import { StepReveal } from './StepReveal';
 
 function PhaseReveal({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();

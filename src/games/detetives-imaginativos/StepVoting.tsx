@@ -1,7 +1,7 @@
 // Components
 import { AvatarIcon, Instruction, Step, Title, Translate, ViewIf } from 'components';
-import Table from './Table';
-import VotingOptions from './VotingOptions';
+import { Table } from './Table';
+import { VotingOptions } from './VotingOptions';
 
 type StepVotingProps = {
   isLoading: boolean;
@@ -13,7 +13,15 @@ type StepVotingProps = {
   table: DetetivesImaginativosCardEntry[];
 };
 
-function StepVoting({ isLoading, isUserTheLeader, user, leaderId, players, onVote, table }: StepVotingProps) {
+export function StepVoting({
+  isLoading,
+  isUserTheLeader,
+  user,
+  leaderId,
+  players,
+  onVote,
+  table,
+}: StepVotingProps) {
   return (
     <Step>
       <Title>
@@ -57,5 +65,3 @@ function StepVoting({ isLoading, isUserTheLeader, user, leaderId, players, onVot
     </Step>
   );
 }
-
-export default StepVoting;

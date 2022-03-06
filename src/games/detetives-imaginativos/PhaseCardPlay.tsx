@@ -15,8 +15,7 @@ import {
   StepSwitcher,
   Translate,
 } from 'components';
-
-import StepPlayCard from './StepPlayCard';
+import { StepPlayCard } from './StepPlayCard';
 
 function PhaseCardPlay({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();

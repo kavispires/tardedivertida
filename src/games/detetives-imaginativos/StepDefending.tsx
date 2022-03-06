@@ -2,7 +2,7 @@
 import { Button } from 'antd';
 // Components
 import { AvatarName, ButtonContainer, Instruction, Step, Title, TitleHighlight, Translate } from 'components';
-import TableFocus from './TableFocus';
+import { TableFocus } from './TableFocus';
 
 type StepDefendingProps = {
   clue: string;
@@ -13,7 +13,7 @@ type StepDefendingProps = {
   isLoading: boolean;
 };
 
-function StepDefending({
+export function StepDefending({
   clue,
   currentPlayer,
   isUserTheCurrentPlayer,
@@ -52,5 +52,3 @@ function StepDefending({
     </Step>
   );
 }
-
-export default StepDefending;

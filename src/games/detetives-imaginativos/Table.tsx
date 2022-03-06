@@ -63,5 +63,3 @@ export function Table({ table, players }: TableProps) {
     </div>
   );
 }
-
-export default Table;

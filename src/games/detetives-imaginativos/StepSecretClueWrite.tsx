@@ -18,7 +18,7 @@ type SecretClueWriteProps = {
   user: GamePlayer;
 };
 
-function SecretClueWrite({ user, onSubmitClue }: SecretClueWriteProps) {
+export function StepSecretClueWrite({ user, onSubmitClue }: SecretClueWriteProps) {
   const { translate } = useLanguage();
   const { isLoading } = useLoading();
   const [clue, setClue] = useState('');
@@ -79,5 +79,3 @@ function SecretClueWrite({ user, onSubmitClue }: SecretClueWriteProps) {
     </div>
   );
 }
-
-export default SecretClueWrite;

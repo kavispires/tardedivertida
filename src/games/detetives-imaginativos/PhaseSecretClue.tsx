@@ -16,8 +16,8 @@ import {
   Translate,
   ViewIf,
 } from 'components';
-import StepSecretClueWrite from './StepSecretClueWrite';
-import StepSecretClueWaiting from './StepSecretClueWaiting';
+import { StepSecretClueWrite } from './StepSecretClueWrite';
+import { StepSecretClueWaiting } from './StepSecretClueWaiting';
 
 function PhaseSecretClue({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();

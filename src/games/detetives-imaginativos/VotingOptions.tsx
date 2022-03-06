@@ -65,5 +65,3 @@ export function VotingOptions({
     </ButtonContainer>
   );
 }
-
-export default VotingOptions;
