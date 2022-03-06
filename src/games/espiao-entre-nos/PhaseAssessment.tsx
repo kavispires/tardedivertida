@@ -1,6 +1,5 @@
-import { useState } from 'react';
 // Hooks
-import { useIsUserReady, useWhichPlayerIsThe, useUser, useLanguage } from 'hooks';
+import { useIsUserReady, useWhichPlayerIsThe, useUser, useLanguage, useStep } from 'hooks';
 import { useOnSubmitVoteAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
@@ -10,11 +9,11 @@ import { StepVoting } from './StepVoting';
 
 function PhaseAssessment({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
-  const isUserReady = useIsUserReady(players, state);
+  const { step, nextStep, setStep } = useStep(0);
   const user = useUser(players);
+  const isUserReady = useIsUserReady(players, state);
   const [accuser, isUserTheAccuser] = useWhichPlayerIsThe('accuserId', state, players);
   const [target, isUserTheTarget] = useWhichPlayerIsThe('targetId', state, players);
-  const [step, setStep] = useState(0);
 
   const onSubmitVote = useOnSubmitVoteAPIRequest(setStep);
 
@@ -30,7 +29,7 @@ function PhaseAssessment({ state, players, info }: PhaseProps) {
         <PhaseAnnouncement
           type="alert"
           title={translate('Acusação!', 'Accusation!')}
-          onClose={() => setStep(1)}
+          onClose={nextStep}
           currentRound={state?.round?.current}
           buttonText=""
           className="e-phase-announcement e-phase-announcement--alert"

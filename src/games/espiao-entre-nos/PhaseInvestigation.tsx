@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 // Design Resources
 import { notification } from 'antd';
 // Hooks
-import { useIsUserReady, useWhichPlayerIsThe, useUser, useLanguage } from 'hooks';
+import { useIsUserReady, useWhichPlayerIsThe, useUser, useLanguage, useStep } from 'hooks';
 import {
   useOnGuessLocationAPIRequest,
   useOnMakeAccusationAPIRequest,
@@ -17,11 +17,11 @@ import { FinalAssessmentPreparationModal } from './FinalAssessmentPreparationMod
 
 function PhaseInvestigation({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
-  const isUserReady = useIsUserReady(players, state);
+  const { step, nextStep, setStep } = useStep(0);
   const user = useUser(players);
+  const isUserReady = useIsUserReady(players, state);
   const [, isUserTheSpy] = useWhichPlayerIsThe('currentSpyId', state, players);
   const [startingPlayer] = useWhichPlayerIsThe('startingPlayerId', state, players);
-  const [step, setStep] = useState(0);
 
   const onGuessLocation = useOnGuessLocationAPIRequest(setStep);
   const onMakeAccusation = useOnMakeAccusationAPIRequest(setStep);
@@ -53,7 +53,7 @@ function PhaseInvestigation({ state, players, info }: PhaseProps) {
           <PhaseAnnouncement
             type="loupe"
             title={translate('Investigação', 'Investigation')}
-            onClose={() => setStep(1)}
+            onClose={nextStep}
             currentRound={state?.round?.current}
             buttonText=""
             className="e-phase-announcement"
@@ -63,7 +63,7 @@ function PhaseInvestigation({ state, players, info }: PhaseProps) {
           <PhaseAnnouncement
             type="opinions"
             title={translate('A investigação continua', 'The investigation continues')}
-            onClose={() => setStep(1)}
+            onClose={nextStep}
             currentRound={state?.round?.current}
             buttonText=""
             className="e-phase-announcement"
