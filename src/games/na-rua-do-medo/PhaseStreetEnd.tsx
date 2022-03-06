@@ -1,6 +1,5 @@
-import { useState } from 'react';
 // Hooks
-import { useIsUserReady, useUser, useLanguage } from 'hooks';
+import { useIsUserReady, useUser, useLanguage, useStep } from 'hooks';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
@@ -9,9 +8,9 @@ import { StepStreetEnd } from './StepStreetEnd';
 
 function PhaseStreetEnd({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
+  const { step, nextStep } = useStep(0);
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
-  const [step, setStep] = useState(0);
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.NA_RUA_DO_MEDO.STREET_END}>
@@ -20,7 +19,7 @@ function PhaseStreetEnd({ state, players, info }: PhaseProps) {
         <PhaseAnnouncement
           type={state.isDoubleHorror ? 'scared' : 'house'}
           title={translate('Fim da Rua', 'End of the Street')}
-          onClose={() => setStep(1)}
+          onClose={nextStep}
           currentRound={state?.round?.current}
           duration={3}
         >
