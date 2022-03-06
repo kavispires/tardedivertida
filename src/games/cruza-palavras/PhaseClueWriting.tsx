@@ -1,6 +1,5 @@
-import { useState } from 'react';
 // State & Hooks
-import { useIsUserReady, useUser, useLanguage } from 'hooks';
+import { useIsUserReady, useUser, useLanguage, useStep } from 'hooks';
 import { useOnSubmitClueAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
@@ -10,10 +9,11 @@ import StepClueWriting from './StepClueWriting';
 import { WritingCluesRule } from './RulesBlobs';
 
 function PhaseClueWriting({ players, state, info }: PhaseProps) {
-  const isUserReady = useIsUserReady(players, state);
   const { translate } = useLanguage();
+  const { step, nextStep, setStep } = useStep(0);
+
+  const isUserReady = useIsUserReady(players, state);
   const user = useUser(players);
-  const [step, setStep] = useState(0);
 
   const onSubmitClue = useOnSubmitClueAPIRequest(setStep);
 
@@ -23,7 +23,7 @@ function PhaseClueWriting({ players, state, info }: PhaseProps) {
         {/* Step 0 */}
         <RoundAnnouncement
           round={state?.round}
-          onPressButton={() => setStep(1)}
+          onPressButton={nextStep}
           buttonText=" "
           time={5}
           circleColor="forest"
@@ -33,7 +33,7 @@ function PhaseClueWriting({ players, state, info }: PhaseProps) {
         <PhaseAnnouncement
           type="grid"
           title={translate('Escreva!', 'Write!')}
-          onClose={() => setStep(2)}
+          onClose={nextStep}
           currentRound={state?.round?.current}
         >
           <WritingCluesRule playerCount={Object.keys(players).length} />

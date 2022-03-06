@@ -1,6 +1,5 @@
-import { useState } from 'react';
 // State & Hooks
-import { useIsUserReady, useUser, useLanguage } from 'hooks';
+import { useIsUserReady, useUser, useLanguage, useStep } from 'hooks';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
@@ -22,10 +21,11 @@ import { Button } from 'antd';
 import { ScoringRule } from './RulesBlobs';
 
 function PhaseReveal({ players, state, info }: PhaseProps) {
-  const isUserReady = useIsUserReady(players, state);
   const { translate } = useLanguage();
+  const { step, nextStep, previousStep } = useStep(0);
   const user = useUser(players);
-  const [step, setStep] = useState(0);
+  const isUserReady = useIsUserReady(players, state);
+
   const playerCount = Object.keys(players).length;
 
   return (
@@ -35,7 +35,7 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
         <PhaseAnnouncement
           type="rank"
           title={translate('Resultado', 'Results')}
-          onClose={() => setStep(1)}
+          onClose={nextStep}
           currentRound={state?.round?.current}
         >
           <ScoringRule playerCount={playerCount} />
@@ -46,7 +46,7 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
           user={user}
           grid={state.grid}
           clues={state.clues}
-          nextStep={() => setStep(2)}
+          nextStep={nextStep}
           players={players}
           whoGotNoPoints={state.whoGotNoPoints ?? []}
         />
@@ -66,7 +66,7 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
           <RankingBoard ranking={state.ranking} players={players} />
 
           <ButtonContainer>
-            <Button onClick={() => setStep(1)}>
+            <Button onClick={previousStep}>
               <Translate pt="Ver resultado novamente" en="See results again" />
             </Button>
           </ButtonContainer>
