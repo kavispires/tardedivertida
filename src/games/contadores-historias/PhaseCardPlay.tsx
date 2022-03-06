@@ -1,6 +1,5 @@
-import { useState } from 'react';
 // Hooks
-import { useWhichPlayerIsThe, useUser, useLanguage } from 'hooks';
+import { useWhichPlayerIsThe, useUser, useLanguage, useStep } from 'hooks';
 import { useOnPlayCardAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
@@ -10,9 +9,9 @@ import { StepPlayCard } from './StepPlayCard';
 
 function PhaseCardPlay({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
+  const { step, nextStep, setStep } = useStep(0);
   const user = useUser(players);
   const [storyteller, isUserTheStoryTeller] = useWhichPlayerIsThe('storytellerId', state, players);
-  const [step, setStep] = useState(0);
 
   const onPlayCard = useOnPlayCardAPIRequest(setStep);
 
@@ -23,7 +22,7 @@ function PhaseCardPlay({ state, players, info }: PhaseProps) {
         <PhaseAnnouncement
           type="image-cards"
           title={translate('Selecione uma carta', 'Play a card...')}
-          onClose={() => setStep(1)}
+          onClose={nextStep}
           currentRound={state?.round?.current}
         >
           <Instruction>
