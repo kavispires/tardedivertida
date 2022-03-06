@@ -1,6 +1,5 @@
-import { useState } from 'react';
 // State & Hooks
-import { useIsUserReady, useUser, useLanguage } from 'hooks';
+import { useIsUserReady, useUser, useLanguage, useStep } from 'hooks';
 import { useOnSubmitPromptAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
@@ -9,10 +8,10 @@ import { Instruction, PhaseAnnouncement, PhaseContainer, StepSwitcher, Translate
 import { StepSelectPrompt } from './StepSelectPrompt';
 
 function PhasePromptSelection({ players, state, info }: PhaseProps) {
-  const isUserReady = useIsUserReady(players, state);
   const { translate } = useLanguage();
+  const { step, nextStep, setStep } = useStep(0);
   const user = useUser(players);
-  const [step, setStep] = useState(0);
+  const isUserReady = useIsUserReady(players, state);
 
   const onSubmitPrompt = useOnSubmitPromptAPIRequest(setStep);
 
@@ -23,7 +22,7 @@ function PhasePromptSelection({ players, state, info }: PhaseProps) {
         <PhaseAnnouncement
           type="list"
           title={translate('Seleção da Carta', 'Card Selection')}
-          onClose={() => setStep(1)}
+          onClose={nextStep}
           currentRound={state?.round?.current}
           duration={20}
         >
