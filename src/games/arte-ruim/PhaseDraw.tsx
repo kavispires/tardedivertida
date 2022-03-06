@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import useSound from 'use-sound';
 // State & Hooks
-import { useIsUserReady, useUser, useLanguage } from 'hooks';
+import { useIsUserReady, useUser, useLanguage, useStep } from 'hooks';
 import { useOnSubmitDrawingAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
@@ -20,10 +20,10 @@ import { StepDraw } from './StepDraw';
 const arteRuimTimer = require('sounds/arte-ruim-timer.mp3');
 
 function PhaseDraw({ players, state, info }: PhaseProps) {
-  const isUserReady = useIsUserReady(players, state);
   const { translate } = useLanguage();
+  const { step, nextStep, setStep } = useStep(0);
   const user = useUser(players);
-  const [step, setStep] = useState(0);
+  const isUserReady = useIsUserReady(players, state);
   const [secretCard, setSecretCard] = useState({});
   const [play] = useSound(arteRuimTimer, { volume: 0.4 });
 
@@ -50,7 +50,7 @@ function PhaseDraw({ players, state, info }: PhaseProps) {
         )}
       >
         {/* Step 0 */}
-        <RoundAnnouncement round={state?.round} onPressButton={() => setStep(1)} buttonText=" " time={5}>
+        <RoundAnnouncement round={state?.round} onPressButton={nextStep} buttonText=" " time={5}>
           <Instruction contained>
             <Translate
               pt={`Essa rodada usará cartas de nível ${state?.level || '?'}`}

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Button } from 'antd';
 import { PictureOutlined } from '@ant-design/icons';
 // State & Hooks
-import { useLanguage } from 'hooks';
+import { useLanguage, useStep } from 'hooks';
 // Resources and Utils
 import { PHASES } from 'utils/phases';
 // Components
@@ -24,8 +24,8 @@ import { GalleryRules, ScoringRules } from './TextBlobs';
 
 function PhaseGallery({ players, state, info }: PhaseProps) {
   const { translate } = useLanguage();
+  const { step, nextStep, previousStep, setStep } = useStep(0);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [step, setStep] = useState(0);
   const [isFirstGalleryRunThrough, setIsFirstGalleryRunThrough] = useState(true);
 
   // Changes isFirstGalleryRunThrough property which disables controls, after the first gallery run through
@@ -49,7 +49,7 @@ function PhaseGallery({ players, state, info }: PhaseProps) {
         <PhaseAnnouncement
           type="picture"
           title={translate('Galeria de Arte', 'Art Gallery')}
-          onClose={() => setStep(1)}
+          onClose={nextStep}
           currentRound={state?.round?.current}
           unskippable
         >
@@ -90,7 +90,7 @@ function PhaseGallery({ players, state, info }: PhaseProps) {
           <Button
             size="large"
             onClick={() => {
-              setStep(1);
+              previousStep();
               setActiveIndex(0);
             }}
             icon={<PictureOutlined />}
