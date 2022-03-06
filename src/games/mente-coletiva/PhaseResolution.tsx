@@ -1,6 +1,5 @@
-import { useState } from 'react';
 // Hooks
-import { useLanguage } from 'hooks';
+import { useLanguage, useStep } from 'hooks';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
@@ -9,21 +8,16 @@ import { StepResolution } from './StepResolution';
 
 function PhaseResolution({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
-  const [step, setStep] = useState(0);
+  const { step, nextStep } = useStep(0);
 
   return (
-    <PhaseContainer
-      info={info}
-      phase={state?.phase}
-      allowedPhase={PHASES.MENTE_COLETIVA.RESOLUTION}
-      className="u-word-selection-phase"
-    >
+    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.MENTE_COLETIVA.RESOLUTION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
           type="customer-review"
           title={translate('Resultado', 'And who moves is...')}
-          onClose={() => setStep(1)}
+          onClose={nextStep}
           currentRound={state?.round?.current}
         >
           <Instruction>

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 // Hooks
-import { useLanguage, useUser } from 'hooks';
+import { useLanguage, useStep, useUser } from 'hooks';
 import { useOnAddAnswerAPIRequest, useOnNextAnswersAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
@@ -11,7 +11,7 @@ import { ComparingRules } from './RulesBlobs';
 
 function PhaseCompare({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
-  const [step, setStep] = useState(0);
+  const { step, nextStep } = useStep(0);
   const user = useUser(players);
   const [allowedList, setAllowedList] = useState({});
 
@@ -21,18 +21,13 @@ function PhaseCompare({ state, players, info }: PhaseProps) {
   const answerGroup = state.answersList[0];
 
   return (
-    <PhaseContainer
-      info={info}
-      phase={state?.phase}
-      allowedPhase={PHASES.MENTE_COLETIVA.COMPARE}
-      className="u-word-selection-phase"
-    >
+    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.MENTE_COLETIVA.COMPARE}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
           type="discussion"
           title={translate('Respostas', 'Answers')}
-          onClose={() => setStep(1)}
+          onClose={nextStep}
           currentRound={state?.round?.current}
           duration={state?.round?.current < 3 ? 20 : undefined}
         >
