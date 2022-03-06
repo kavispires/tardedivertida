@@ -1,6 +1,5 @@
-import { useState } from 'react';
 // Hooks
-import { useLanguage, useWhichPlayerIsThe } from 'hooks';
+import { useLanguage, useStep, useWhichPlayerIsThe } from 'hooks';
 import { useOnSubmitQuestionAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
@@ -20,21 +19,16 @@ import { GamePremiseRules } from './RulesBlobs';
 
 function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
+  const { step, nextStep, setStep } = useStep(0);
   const [activePlayer, isUserTheActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
-  const [step, setStep] = useState(0);
 
   const onSubmitQuestion = useOnSubmitQuestionAPIRequest(setStep);
 
   return (
-    <PhaseContainer
-      info={info}
-      phase={state?.phase}
-      allowedPhase={PHASES.MENTE_COLETIVA.QUESTION_SELECTION}
-      className="u-word-selection-phase"
-    >
+    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.MENTE_COLETIVA.QUESTION_SELECTION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
-        <RoundAnnouncement round={state.round} onPressButton={() => setStep(1)} time={3} circleColor="white">
+        <RoundAnnouncement round={state.round} onPressButton={nextStep} time={3} circleColor="white">
           <Instruction contained>
             <Translate
               pt="Somos ovelhinhas e nosso pasto está superlotado!"
@@ -47,7 +41,7 @@ function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
         <PhaseAnnouncement
           type="sheep"
           title={translate('O Pasto Superlotado', 'A Overcrowded Pasture')}
-          onClose={() => setStep(2)}
+          onClose={nextStep}
           currentRound={state?.round?.current}
           duration={state?.round?.current < 3 ? 40 : 10}
         >
