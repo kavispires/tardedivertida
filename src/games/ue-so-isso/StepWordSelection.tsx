@@ -12,7 +12,7 @@ type StepWordSelectionProps = {
   words: UeSoIssoCard[];
 };
 
-function StepWordSelection({ guesser, onSendSelectedWords, words = [] }: StepWordSelectionProps) {
+export function StepWordSelection({ guesser, onSendSelectedWords, words = [] }: StepWordSelectionProps) {
   const [selectedWords, setSelectedWords] = useState<PlainObject>({});
   const { translate } = useLanguage();
 
@@ -97,5 +97,3 @@ function StepWordSelection({ guesser, onSendSelectedWords, words = [] }: StepWor
     </Step>
   );
 }
-
-export default StepWordSelection;

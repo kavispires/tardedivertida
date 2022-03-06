@@ -16,7 +16,7 @@ type SuggestionCardProps = {
   suggestion: string;
 };
 
-function SuggestionCard({ avatarId, playerName, index, invalid, suggestion }: SuggestionCardProps) {
+export function SuggestionCard({ avatarId, playerName, index, invalid, suggestion }: SuggestionCardProps) {
   return (
     <Card
       size="medium"
@@ -35,5 +35,3 @@ function SuggestionCard({ avatarId, playerName, index, invalid, suggestion }: Su
     </Card>
   );
 }
-
-export default SuggestionCard;

@@ -8,8 +8,8 @@ import { useGlobalState, useLanguage, useLoading } from 'hooks';
 import { deepCopy } from 'utils/helpers';
 // Components
 import { AdminOnlyButton, Step, Title, Translate, PopoverRule, messageContent } from 'components';
-import Card from './UeSoIssoCard';
-import SuggestionCard from './SuggestionCard';
+import { UeSoIssoCard as Card } from './UeSoIssoCard';
+import { SuggestionCard } from './SuggestionCard';
 import { ComparisonDetailedRules, ComparisonPhaseRules } from './RulesBlobs';
 
 type StepCompareSuggestionsProps = {
@@ -21,7 +21,8 @@ type StepCompareSuggestionsProps = {
   secretWord: UeSoIssoCard;
   suggestions: UseSoIssoSuggestion[];
 };
-function StepCompareSuggestions({
+
+export function StepCompareSuggestions({
   isUserTheController,
   controller,
   onValidateSuggestions,
@@ -144,5 +145,3 @@ function StepCompareSuggestions({
     </Step>
   );
 }
-
-export default StepCompareSuggestions;

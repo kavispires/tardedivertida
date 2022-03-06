@@ -12,7 +12,7 @@ type GuessProps = {
   onSendGuess: GenericFunction;
 };
 
-function Guess({ onSubmitOutcome, onSendGuess }: GuessProps) {
+export function Guess({ onSubmitOutcome, onSendGuess }: GuessProps) {
   const { translate } = useLanguage();
   const { isLoading } = useLoading();
   const [guess, setGuess] = useState('');
@@ -54,5 +54,3 @@ function Guess({ onSubmitOutcome, onSendGuess }: GuessProps) {
     </Space>
   );
 }
-
-export default Guess;
