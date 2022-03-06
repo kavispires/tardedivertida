@@ -157,5 +157,3 @@ export function RankingBoard({ players, ranking }: RankingBoardProps): JSX.Eleme
     </div>
   );
 }
-
-export default RankingBoard;

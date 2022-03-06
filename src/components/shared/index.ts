@@ -5,7 +5,6 @@ export * from './LanguageSwitch';
 export * from './PhaseContainer';
 export * from './PhaseAnnouncement';
 export * from './PhasePlaceholder';
-export * from './RankingBoard';
 export * from './RateGameWidget';
 export * from './ReadyPlayersBar';
 export * from './RoundAnnouncement';
