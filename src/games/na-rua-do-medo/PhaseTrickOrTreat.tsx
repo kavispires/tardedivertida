@@ -1,6 +1,5 @@
-import { useState } from 'react';
 // Hooks
-import { useIsUserReady, useUser, useLanguage } from 'hooks';
+import { useIsUserReady, useUser, useLanguage, useStep } from 'hooks';
 import { useOnSubmitDecisionAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
@@ -22,8 +21,7 @@ function PhaseTrickOrTreat({ state, players, info }: PhaseProps) {
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
   const isNewStreet = state.street.length === 0;
-
-  const [step, setStep] = useState(isNewStreet ? 0 : 1);
+  const { step, nextStep, setStep } = useStep(isNewStreet ? 0 : 1);
 
   const onSubmitDecision = useOnSubmitDecisionAPIRequest(setStep);
 
@@ -39,7 +37,7 @@ function PhaseTrickOrTreat({ state, players, info }: PhaseProps) {
         <RoundAnnouncement
           round={state.round}
           buttonText=" "
-          onPressButton={() => setStep(1)}
+          onPressButton={nextStep}
           time={5}
           circleColor="black"
         >
@@ -56,7 +54,7 @@ function PhaseTrickOrTreat({ state, players, info }: PhaseProps) {
         <PhaseAnnouncement
           type={isNewStreet ? 'street' : 'trick-or-treat'}
           title={translate('Gostosuras ou Travessuras?', 'Trick or Treat?')}
-          onClose={() => setStep(2)}
+          onClose={nextStep}
           currentRound={state?.round?.current}
           duration={isNewStreet ? 6 : 3}
         >
