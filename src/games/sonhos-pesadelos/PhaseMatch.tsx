@@ -1,6 +1,5 @@
-import { useState } from 'react';
 // Hooks
-import { useIsUserReady, useUser, useLanguage } from 'hooks';
+import { useIsUserReady, useUser, useLanguage, useStep } from 'hooks';
 import { useOnSubmitVotesAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
@@ -11,9 +10,9 @@ import { StepMatchDreams } from './StepMatchDreams';
 
 function PhaseMatch({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
+  const { step, nextStep, setStep } = useStep(0);
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
-  const [step, setStep] = useState(0);
 
   const onSubmitVotes = useOnSubmitVotesAPIRequest(setStep);
 
@@ -29,7 +28,7 @@ function PhaseMatch({ state, players, info }: PhaseProps) {
         <PhaseAnnouncement
           type="evaluate"
           title={translate('Selecione os pares', 'Match the dreams')}
-          onClose={() => setStep(1)}
+          onClose={nextStep}
           currentRound={state?.round?.current}
         >
           <Instruction>

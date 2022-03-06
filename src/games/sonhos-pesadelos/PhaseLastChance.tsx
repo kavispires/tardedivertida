@@ -1,6 +1,5 @@
-import { useState } from 'react';
 // Hooks
-import { useIsUserReady, useUser, useLanguage } from 'hooks';
+import { useIsUserReady, useUser, useLanguage, useStep } from 'hooks';
 import { useOnSubmitVotesAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
@@ -20,17 +19,12 @@ function PhaseLastChance({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
-  const [step, setStep] = useState(0);
+  const { step, nextStep, setStep } = useStep(0);
 
   const onSubmitVotes = useOnSubmitVotesAPIRequest(setStep);
 
   return (
-    <PhaseContainer
-      info={info}
-      phase={state?.phase}
-      allowedPhase={PHASES.SONHOS_PESADELOS.LAST_CHANCE}
-      className="s-phase"
-    >
+    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.SONHOS_PESADELOS.LAST_CHANCE}>
       <StepSwitcher
         step={step}
         conditions={[!isUserReady]}
@@ -38,7 +32,7 @@ function PhaseLastChance({ state, players, info }: PhaseProps) {
         waitingRoomContent={<DreamBoard user={user} table={state.table} />}
       >
         {/* Step 0 */}
-        <RoundAnnouncement round={state.round} buttonText="" onPressButton={() => setStep(1)} time={5}>
+        <RoundAnnouncement round={state.round} buttonText="" onPressButton={nextStep} time={5}>
           <Instruction contained>
             <Translate
               pt="E não era pra ter somente 5 rodadas?"

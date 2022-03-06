@@ -1,6 +1,5 @@
-import { useState } from 'react';
 // Hooks
-import { useIsUserReady, useUser, useLanguage } from 'hooks';
+import { useIsUserReady, useUser, useLanguage, useStep } from 'hooks';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
@@ -10,9 +9,9 @@ import { StepResults } from './StepResults';
 
 function PhaseResolution({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
+  const { step, nextStep } = useStep(0);
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
-  const [step, setStep] = useState(0);
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.SONHOS_PESADELOS.RESOLUTION}>
@@ -26,7 +25,7 @@ function PhaseResolution({ state, players, info }: PhaseProps) {
         <PhaseAnnouncement
           type="countdown"
           title={translate('Resultado', 'Results')}
-          onClose={() => setStep(1)}
+          onClose={nextStep}
           currentRound={state?.round?.current}
         >
           <Instruction>

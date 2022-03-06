@@ -1,6 +1,5 @@
-import { useState } from 'react';
 // Hooks
-import { useIsUserReady, useUser, useLanguage } from 'hooks';
+import { useIsUserReady, useUser, useLanguage, useStep } from 'hooks';
 import { useOnSubmitDreamsAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
@@ -19,9 +18,9 @@ import { DreamBoard } from './DreamBoard';
 
 function PhaseTellDream({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
+  const { step, nextStep, setStep } = useStep(0);
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
-  const [step, setStep] = useState(0);
 
   const onSubmitDreams = useOnSubmitDreamsAPIRequest(setStep);
 
@@ -34,7 +33,7 @@ function PhaseTellDream({ state, players, info }: PhaseProps) {
         waitingRoomContent={<DreamBoard user={user} table={state.table} />}
       >
         {/* Step 0 */}
-        <RoundAnnouncement round={state.round} buttonText="" onPressButton={() => setStep(1)} time={5}>
+        <RoundAnnouncement round={state.round} buttonText="" onPressButton={nextStep} time={5}>
           <Instruction contained>
             <Translate
               pt="Somos paranormais tentando adivinhar os sonhos dos outros..."
@@ -47,7 +46,7 @@ function PhaseTellDream({ state, players, info }: PhaseProps) {
         <PhaseAnnouncement
           type="dream"
           title={translate('Conte-nos sobre seu sonho', 'Tell us about your dream...')}
-          onClose={() => setStep(2)}
+          onClose={nextStep}
           currentRound={state?.round?.current}
         >
           <Instruction>
