@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import clsx from 'clsx';
 // Design Resources
 import { Button, Space, SpaceProps } from 'antd';
@@ -6,14 +7,13 @@ import { RotateLeftOutlined, RotateRightOutlined } from '@ant-design/icons';
 import { useCardWidth, useGlobalState } from 'hooks';
 // Components
 import { ImageCard, Translate } from 'components';
-import { useEffect } from 'react';
 
 interface MonsterCardProps extends SpaceProps {
   currentMonster: Monster;
   showControls?: boolean;
 }
 
-function MonsterCard({ currentMonster, showControls = true, ...props }: MonsterCardProps) {
+export function MonsterCard({ currentMonster, showControls = true, ...props }: MonsterCardProps) {
   const [monsterOrientation, setMonsterOrientation] = useGlobalState('monsterOrientation');
   const cardWidth = useCardWidth(5, 16, 120, 360);
 
@@ -48,5 +48,3 @@ function MonsterCard({ currentMonster, showControls = true, ...props }: MonsterC
     </Space>
   );
 }
-
-export default MonsterCard;

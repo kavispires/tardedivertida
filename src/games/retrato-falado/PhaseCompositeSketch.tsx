@@ -14,7 +14,7 @@ import {
   StepSwitcher,
   Translate,
 } from 'components';
-import StepTestimonial from './StepTestimonial';
+import { StepTestimonial } from './StepTestimonial';
 
 function PhaseCompositeSketch({ players, state, info }: PhaseProps) {
   const { translate } = useLanguage();

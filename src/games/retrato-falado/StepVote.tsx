@@ -5,8 +5,7 @@ import { Button, Space } from 'antd';
 import { useCardWidth, useGlobalState } from 'hooks';
 // Components
 import { Avatar, CanvasResizer, CanvasSVG, ButtonContainer, Instruction, Title, Translate } from 'components';
-
-import MonsterCard from './MonsterCard';
+import { MonsterCard } from './MonsterCard';
 
 type StepVoteProps = {
   isUserTheWitness: boolean;
@@ -17,7 +16,7 @@ type StepVoteProps = {
   players: Players;
 };
 
-function StepVote({
+export function StepVote({
   isUserTheWitness,
   currentMonster,
   sketches,
@@ -112,5 +111,3 @@ function StepVote({
     </div>
   );
 }
-
-export default StepVote;

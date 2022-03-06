@@ -2,7 +2,7 @@
 import { TIMES } from './constants';
 // Components
 import { DrawingCanvas, Instruction, TimerBar, Title, Translate } from 'components';
-import MonsterCard from './MonsterCard';
+import { MonsterCard } from './MonsterCard';
 
 type ViewSketchingProps = {
   isUserTheWitness: boolean;
@@ -11,7 +11,12 @@ type ViewSketchingProps = {
   setLines: CanvasSetLine;
 };
 
-function ViewSketching({ isUserTheWitness, remainingSketchingTime, lines, setLines }: ViewSketchingProps) {
+export function ViewSketching({
+  isUserTheWitness,
+  remainingSketchingTime,
+  lines,
+  setLines,
+}: ViewSketchingProps) {
   return isUserTheWitness ? (
     <div className="r-view">
       <Title>
@@ -46,4 +51,3 @@ function ViewSketching({ isUserTheWitness, remainingSketchingTime, lines, setLin
     </div>
   );
 }
-export default ViewSketching;

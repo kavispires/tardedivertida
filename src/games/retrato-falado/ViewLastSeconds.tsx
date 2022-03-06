@@ -10,7 +10,7 @@ type ViewSketchingProps = {
   setLines: CanvasSetLine;
 };
 
-function ViewLastSeconds({ isUserTheWitness, remainingTime, lines, setLines }: ViewSketchingProps) {
+export function ViewLastSeconds({ isUserTheWitness, remainingTime, lines, setLines }: ViewSketchingProps) {
   return isUserTheWitness ? (
     <div className="r-view">
       <Title>
@@ -37,4 +37,3 @@ function ViewLastSeconds({ isUserTheWitness, remainingTime, lines, setLines }: V
     </div>
   );
 }
-export default ViewLastSeconds;

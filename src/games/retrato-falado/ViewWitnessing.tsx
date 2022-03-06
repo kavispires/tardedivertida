@@ -2,7 +2,7 @@
 import { TIMES } from './constants';
 // Components
 import { DrawingCanvas, Instruction, TimerBar, Title, Translate } from 'components';
-import MonsterCard from './MonsterCard';
+import { MonsterCard } from './MonsterCard';
 
 type ViewWitnessingProps = {
   isUserTheWitness: boolean;
@@ -12,7 +12,7 @@ type ViewWitnessingProps = {
   currentMonster: Monster;
 };
 
-function ViewWitnessing({
+export function ViewWitnessing({
   isUserTheWitness,
   currentMonster,
   remainingWitnessingTime,
@@ -43,5 +43,3 @@ function ViewWitnessing({
     </div>
   );
 }
-
-export default ViewWitnessing;

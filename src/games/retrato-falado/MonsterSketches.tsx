@@ -10,7 +10,7 @@ type MonsterSketchesProps = {
   canvasWidth: number;
 };
 
-function MonsterSketches({ sketches, players, canvasSize, canvasWidth }: MonsterSketchesProps) {
+export function MonsterSketches({ sketches, players, canvasSize, canvasWidth }: MonsterSketchesProps) {
   return (
     <>
       {sketches.map((sketchObj) => {
@@ -37,5 +37,3 @@ function MonsterSketches({ sketches, players, canvasSize, canvasWidth }: Monster
     </>
   );
 }
-
-export default MonsterSketches;
