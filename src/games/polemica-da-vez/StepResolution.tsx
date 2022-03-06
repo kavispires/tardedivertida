@@ -10,14 +10,14 @@ type StepResolutionProps = {
   totalLikes: number;
   customTopic: string;
   currentTopic: Topic;
-  setStep: GenericFunction;
+  nextStep: GenericFunction;
 };
 export function StepResolution({
   players,
   totalLikes,
   customTopic,
   currentTopic,
-  setStep,
+  nextStep,
 }: StepResolutionProps) {
   return (
     <Step className="p-step">
@@ -59,13 +59,7 @@ export function StepResolution({
       </ul>
 
       <ButtonContainer>
-        <TimedButton
-          duration={25}
-          showTimer
-          onExpire={() => setStep(2)}
-          onClick={() => setStep(2)}
-          label="Ranking"
-        />
+        <TimedButton duration={25} showTimer onExpire={nextStep} onClick={nextStep} label="Ranking" />
       </ButtonContainer>
     </Step>
   );

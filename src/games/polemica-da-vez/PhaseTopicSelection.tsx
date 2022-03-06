@@ -1,6 +1,5 @@
-import { useState } from 'react';
 // Hooks
-import { useLanguage, useWhichPlayerIsThe } from 'hooks';
+import { useLanguage, useStep, useWhichPlayerIsThe } from 'hooks';
 import { useOnSubmitTopicAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
@@ -21,8 +20,8 @@ import { StepTopicSelection } from './StepTopicSelection';
 
 function PhaseTopicSelection({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
+  const { step, nextStep, setStep } = useStep(0);
   const [activePlayer, isUserTheActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
-  const [step, setStep] = useState(0);
 
   const onSubmitTopic = useOnSubmitTopicAPIRequest(setStep);
 
@@ -30,7 +29,7 @@ function PhaseTopicSelection({ state, players, info }: PhaseProps) {
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.POLEMICA_DA_VEZ.TOPIC_SELECTION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
-        <RoundAnnouncement round={state.round} onPressButton={() => setStep(1)} time={4} circleColor="blue">
+        <RoundAnnouncement round={state.round} onPressButton={nextStep} time={4} circleColor="blue">
           <Instruction contained>
             <Translate
               pt="Cada rodada um novo assunto, a sua opinião e a opinião dos outros."
@@ -43,7 +42,7 @@ function PhaseTopicSelection({ state, players, info }: PhaseProps) {
         <PhaseAnnouncement
           type="trending"
           title={translate('Você sabe qual a polêmica da vez?', "Do you know what's trending now?")}
-          onClose={() => setStep(2)}
+          onClose={nextStep}
           currentRound={state?.round?.current}
           duration={state?.round?.current < 3 ? 30 : undefined}
         >

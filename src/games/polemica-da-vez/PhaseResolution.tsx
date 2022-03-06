@@ -1,6 +1,5 @@
-import { useState } from 'react';
 // Hooks
-import { useLanguage } from 'hooks';
+import { useLanguage, useStep } from 'hooks';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
@@ -21,7 +20,7 @@ import { Button } from 'antd';
 
 function PhaseReact({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
-  const [step, setStep] = useState(0);
+  const { step, nextStep, previousStep } = useStep(0);
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.POLEMICA_DA_VEZ.RESOLUTION}>
@@ -30,7 +29,7 @@ function PhaseReact({ state, players, info }: PhaseProps) {
         <PhaseAnnouncement
           type="review"
           title={translate('Resultado', 'Results')}
-          onClose={() => setStep(1)}
+          onClose={nextStep}
           currentRound={state?.round?.current}
         >
           <Instruction>
@@ -60,7 +59,7 @@ function PhaseReact({ state, players, info }: PhaseProps) {
             customTopic={state.customTopic}
             currentTopic={state.currentTopic}
             totalLikes={state.totalLikes}
-            setStep={setStep}
+            nextStep={nextStep}
           />
         </Step>
 
@@ -68,7 +67,7 @@ function PhaseReact({ state, players, info }: PhaseProps) {
           <Title>Ranking</Title>
           <RankingBoard ranking={state.ranking} players={players} />
           <ButtonContainer>
-            <Button onClick={() => setStep(1)} ghost>
+            <Button onClick={previousStep} ghost>
               <Translate pt="Ver resultado novamente" en="See results again" />
             </Button>
           </ButtonContainer>
