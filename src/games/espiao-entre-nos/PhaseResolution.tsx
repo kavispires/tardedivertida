@@ -1,6 +1,6 @@
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 // Hooks
-import { useIsUserReady, useWhichPlayerIsThe, useLanguage } from 'hooks';
+import { useIsUserReady, useWhichPlayerIsThe, useLanguage, useStep } from 'hooks';
 import { useOnProgressGameAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
@@ -11,10 +11,10 @@ import { StepResolution } from './StepResolution';
 
 function PhaseResolution({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
+  const { step, nextStep, setStep } = useStep(0);
   const isUserReady = useIsUserReady(players, state);
   const [currentSpy, isUserTheSpy] = useWhichPlayerIsThe('currentSpyId', state, players);
   const [target] = useWhichPlayerIsThe('targetId', state, players);
-  const [step, setStep] = useState(0);
 
   const onProgressGame = useOnProgressGameAPIRequest(setStep);
 
@@ -36,7 +36,7 @@ function PhaseResolution({ state, players, info }: PhaseProps) {
           <PhaseAnnouncement
             type="map-location"
             title={translate('O espião tentou adivinhar o local', 'The spy tried to guess the location')}
-            onClose={() => setStep(1)}
+            onClose={nextStep}
             currentRound={state?.round?.current}
             buttonText=""
             className="e-phase-announcement"
@@ -46,7 +46,7 @@ function PhaseResolution({ state, players, info }: PhaseProps) {
           <PhaseAnnouncement
             type="thief"
             title={translate('A votação foi unanime!', 'The vote was unanimous!')}
-            onClose={() => setStep(1)}
+            onClose={nextStep}
             currentRound={state?.round?.current}
             buttonText=""
             className="e-phase-announcement"
@@ -55,13 +55,13 @@ function PhaseResolution({ state, players, info }: PhaseProps) {
         )}
 
         {/* Step 1 */}
-        <PhaseTimerReset setStep={setStep} />
+        <PhaseTimerReset nextStep={nextStep} />
 
         {/* Step 2 */}
         <PhaseAnnouncement
           type={resolutionStatus.phaseIcon}
           title={translate('O fim chegou!', 'The end is here!')}
-          onClose={() => setStep(3)}
+          onClose={nextStep}
           currentRound={state?.round?.current}
           buttonText=""
           className="e-phase-announcement"

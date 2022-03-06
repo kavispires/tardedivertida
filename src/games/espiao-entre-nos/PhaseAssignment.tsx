@@ -1,6 +1,5 @@
-import { useState } from 'react';
 // Hooks
-import { useIsUserReady, useWhichPlayerIsThe, useUser, useLanguage } from 'hooks';
+import { useIsUserReady, useWhichPlayerIsThe, useUser, useLanguage, useStep } from 'hooks';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
@@ -17,10 +16,10 @@ import { StepAssignment } from './StepAssignment';
 
 function PhaseAssignment({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
-  const isUserReady = useIsUserReady(players, state);
+  const { step, nextStep } = useStep(0);
   const user = useUser(players);
+  const isUserReady = useIsUserReady(players, state);
   const [, isUserTheSpy] = useWhichPlayerIsThe('currentSpyId', state, players);
-  const [step, setStep] = useState(0);
 
   return (
     <PhaseContainer
@@ -33,7 +32,7 @@ function PhaseAssignment({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <RoundAnnouncement
           round={state.round}
-          onPressButton={() => setStep(1)}
+          onPressButton={nextStep}
           time={5}
           className="e-round-announcement"
           circleColor="lime"
@@ -47,7 +46,7 @@ function PhaseAssignment({ state, players, info }: PhaseProps) {
         <PhaseAnnouncement
           type="spy-newspaper"
           title={translate('Prólogo', 'Prologue')}
-          onClose={() => setStep(2)}
+          onClose={nextStep}
           currentRound={state?.round?.current}
           buttonText=""
           className="e-phase-announcement e-phase-announcement--animated"
@@ -76,13 +75,13 @@ function PhaseAssignment({ state, players, info }: PhaseProps) {
         </PhaseAnnouncement>
 
         {/* Step 2 */}
-        <PhaseTimerReset setStep={setStep} />
+        <PhaseTimerReset nextStep={nextStep} />
 
         {/* Step 3 */}
         <PhaseAnnouncement
           type="secret"
           title={translate('Você tem uma missão', 'You have one mission')}
-          onClose={() => setStep(4)}
+          onClose={nextStep}
           currentRound={state?.round?.current}
           buttonText=""
           className="e-phase-announcement e-phase-announcement--animated"
@@ -109,13 +108,13 @@ function PhaseAssignment({ state, players, info }: PhaseProps) {
         </PhaseAnnouncement>
 
         {/* Step 4 */}
-        <PhaseTimerReset setStep={setStep} />
+        <PhaseTimerReset nextStep={nextStep} />
 
         {/* Step 5 */}
         <PhaseAnnouncement
           type="passport"
           title={translate('Mais detalhes', 'More details')}
-          onClose={() => setStep(6)}
+          onClose={nextStep}
           currentRound={state?.round?.current}
           buttonText=""
           className="e-phase-announcement e-phase-announcement--animated"

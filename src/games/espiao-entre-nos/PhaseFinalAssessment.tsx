@@ -1,6 +1,5 @@
-import { useState } from 'react';
 // Hooks
-import { useIsUserReady, useUser, useLanguage } from 'hooks';
+import { useIsUserReady, useUser, useLanguage, useStep } from 'hooks';
 import { useOnMakeAccusationAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
@@ -10,9 +9,9 @@ import { StepFinalAssessment } from './StepFinalAssessment';
 
 function PhaseFinalAssessment({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
+  const { step, nextStep, setStep } = useStep(0);
   const isUserReady = useIsUserReady(players, state);
   const user = useUser(players);
-  const [step, setStep] = useState(0);
 
   const onMakeAccusation = useOnMakeAccusationAPIRequest(setStep);
 
@@ -32,7 +31,7 @@ function PhaseFinalAssessment({ state, players, info }: PhaseProps) {
           <PhaseAnnouncement
             type="people-assessment"
             title={translate('O tempo acabou!', "Time's up!")}
-            onClose={() => setStep(1)}
+            onClose={nextStep}
             currentRound={state?.round?.current}
             buttonText=""
             className="e-phase-announcement"
@@ -42,7 +41,7 @@ function PhaseFinalAssessment({ state, players, info }: PhaseProps) {
           <PhaseAnnouncement
             type="opinions"
             title={translate('A avaliação final continua', 'The final assessment continues')}
-            onClose={() => setStep(1)}
+            onClose={nextStep}
             currentRound={state?.round?.current}
             buttonText=""
             className="e-phase-announcement"
