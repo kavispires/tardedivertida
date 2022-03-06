@@ -37,7 +37,7 @@ export function StepWordSelection({ guesser, onSendSelectedWords, words = [] }: 
   };
 
   return (
-    <Step>
+    <Step fullWidth>
       <Title white>
         <Translate
           pt={

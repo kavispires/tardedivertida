@@ -8,10 +8,9 @@ import {
   Instruction,
   PhaseAnnouncement,
   PhaseContainer,
-  Step,
   StepSwitcher,
   Translate,
-  ViewIf,
+  ViewOr,
   WaitingRoom,
 } from 'components';
 import { StepCompareSuggestions } from './StepCompareSuggestions';
@@ -50,29 +49,25 @@ function PhaseCompare({ state, players, info }: PhaseProps) {
         </PhaseAnnouncement>
 
         {/* Step 1 */}
-        <Step fullWidth>
-          <ViewIf isVisible={isUserTheGuesser}>
-            <GuesserWaitingRoom
-              players={players}
-              instructionSuffix={{
-                pt: 'validam dicas',
-                en: 'validate the clues',
-              }}
-            />
-          </ViewIf>
+        <ViewOr orCondition={isUserTheGuesser}>
+          <GuesserWaitingRoom
+            players={players}
+            instructionSuffix={{
+              pt: 'validam dicas',
+              en: 'validate the clues',
+            }}
+          />
 
-          <ViewIf isVisible={!isUserTheGuesser}>
-            <StepCompareSuggestions
-              controller={controller}
-              isUserTheController={isUserTheController}
-              secretWord={state.secretWord}
-              suggestions={state.suggestions}
-              players={players}
-              onValidateSuggestions={onValidateSuggestions}
-              onUpdateSuggestions={onUpdateSuggestions}
-            />
-          </ViewIf>
-        </Step>
+          <StepCompareSuggestions
+            controller={controller}
+            isUserTheController={isUserTheController}
+            secretWord={state.secretWord}
+            suggestions={state.suggestions}
+            players={players}
+            onValidateSuggestions={onValidateSuggestions}
+            onUpdateSuggestions={onUpdateSuggestions}
+          />
+        </ViewOr>
 
         {/* Step 2 */}
         <WaitingRoom

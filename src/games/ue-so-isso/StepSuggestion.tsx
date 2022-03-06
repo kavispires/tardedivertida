@@ -48,7 +48,7 @@ export function StepSuggestion({
   };
 
   return (
-    <Step>
+    <Step fullWidth>
       <Title>
         <Translate
           pt={
