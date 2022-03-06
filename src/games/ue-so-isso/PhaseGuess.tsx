@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 // Hooks
-import { useGlobalState, useLoading, useWhichPlayerIsThe, useLanguage } from 'hooks';
+import { useGlobalState, useLoading, useWhichPlayerIsThe, useLanguage, useStep } from 'hooks';
+import { useOnSendGuessAPIRequest, useOnSubmitOutcomeAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
@@ -8,13 +9,12 @@ import { PhaseAnnouncement, PhaseContainer, StepSwitcher } from 'components';
 import StepGuessing from './StepGuessing';
 import StepGuessVerification from './StepGuessVerification';
 import { GuessingRules } from './RulesBlobs';
-import { useOnSendGuessAPIRequest, useOnSubmitOutcomeAPIRequest } from './api-requests';
 
 function PhaseGuess({ state, players, info }: PhaseProps) {
   const { isLoading } = useLoading();
   const { translate } = useLanguage();
+  const { step, nextStep, setStep } = useStep(0);
   const [isAdmin] = useGlobalState('isAdmin');
-  const [step, setStep] = useState(0);
   const [guesser, isUserTheGuesser] = useWhichPlayerIsThe('guesserId', state, players);
   const [controller, isUserTheController] = useWhichPlayerIsThe('controllerId', state, players);
 
@@ -27,7 +27,7 @@ function PhaseGuess({ state, players, info }: PhaseProps) {
     if (state?.guess) {
       setStep(2);
     }
-  }, [state]);
+  }, [state, setStep]);
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.UE_SO_ISSO.GUESS}>
@@ -36,7 +36,7 @@ function PhaseGuess({ state, players, info }: PhaseProps) {
         <PhaseAnnouncement
           type="guess"
           title={translate('Adivinhação', 'Guessing')}
-          onClose={() => setStep(1)}
+          onClose={nextStep}
           currentRound={state?.round?.current}
         >
           <GuessingRules guesserName={guesser.name} />

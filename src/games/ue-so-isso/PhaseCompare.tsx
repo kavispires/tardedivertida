@@ -1,6 +1,5 @@
-import { useState } from 'react';
 // Hooks
-import { useWhichPlayerIsThe, useLanguage } from 'hooks';
+import { useWhichPlayerIsThe, useLanguage, useStep } from 'hooks';
 // Resources & Utils
 
 import { PHASES } from 'utils/phases';
@@ -22,7 +21,7 @@ import { useOnSubmitValidationsAPIRequest, useOnValidateSuggestionAPIRequest } f
 
 function PhaseCompare({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
-  const [step, setStep] = useState(0);
+  const { step, nextStep, setStep } = useStep(0);
   const [, isUserTheGuesser] = useWhichPlayerIsThe('guesserId', state, players);
   const [controller, isUserTheController] = useWhichPlayerIsThe('controllerId', state, players);
 
@@ -37,7 +36,7 @@ function PhaseCompare({ state, players, info }: PhaseProps) {
         <PhaseAnnouncement
           type="verify-list"
           title={translate('Comparação de dicas!', 'Clue Check!')}
-          onClose={() => setStep(1)}
+          onClose={nextStep}
           currentRound={state?.round?.current}
         >
           <ComparisonRules />

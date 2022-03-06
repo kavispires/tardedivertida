@@ -1,6 +1,6 @@
-import { useState } from 'react';
 // Hooks
-import { useIsUserReady, useWhichPlayerIsThe, useLanguage } from 'hooks';
+import { useIsUserReady, useWhichPlayerIsThe, useLanguage, useStep } from 'hooks';
+import { useOnSubmitSuggestionsAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
@@ -16,12 +16,11 @@ import {
 import StepSuggestion from './StepSuggestion';
 import { WritingRules } from './RulesBlobs';
 import { GuesserWaitingRoom } from './GuesserWaitingRoom';
-import { useOnSubmitSuggestionsAPIRequest } from './api-requests';
 
 function PhaseSuggest({ state, players, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
   const { translate } = useLanguage();
-  const [step, setStep] = useState(0);
+  const { step, nextStep, setStep } = useStep(0);
   const [guesser, isUserTheGuesser] = useWhichPlayerIsThe('guesserId', state, players);
 
   const onSendSuggestions = useOnSubmitSuggestionsAPIRequest(setStep);
@@ -38,7 +37,7 @@ function PhaseSuggest({ state, players, info }: PhaseProps) {
         <PhaseAnnouncement
           type="writing"
           title={translate('Escreva uma dica!', 'Write a Clue!')}
-          onClose={() => setStep(1)}
+          onClose={nextStep}
           currentRound={state?.round?.current}
         >
           <WritingRules />
