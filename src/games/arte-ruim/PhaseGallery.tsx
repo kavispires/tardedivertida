@@ -62,6 +62,7 @@ function PhaseGallery({ players, state, info }: PhaseProps) {
           round={state.round}
           previousStep={previousStep}
           setActiveIndex={setActiveIndex}
+          isLastRound={state?.lastRound}
         />
       </StepSwitcher>
     </PhaseContainer>

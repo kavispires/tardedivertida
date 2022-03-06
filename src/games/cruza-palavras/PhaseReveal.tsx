@@ -3,22 +3,10 @@ import { useIsUserReady, useUser, useLanguage, useStep } from 'hooks';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import {
-  AdminNextRoundButton,
-  ButtonContainer,
-  Instruction,
-  PhaseAnnouncement,
-  PhaseContainer,
-  PopoverRule,
-  RankingBoard,
-  Step,
-  StepSwitcher,
-  Title,
-  Translate,
-} from 'components';
+import { PhaseAnnouncement, PhaseContainer, StepSwitcher } from 'components';
 import StepReveal from './StepReveal';
-import { Button } from 'antd';
 import { ScoringRule } from './RulesBlobs';
+import { StepRanking } from './StepRanking';
 
 function PhaseReveal({ players, state, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -52,26 +40,14 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
         />
 
         {/* Step 2 */}
-        <Step fullWidth>
-          <Title>Ranking</Title>
-          <Instruction contained>
-            <Translate
-              pt="Distribuição de pontos: Votos corretos | Votos recebidos | Penalidade se ninguém acertou a sua dica"
-              en="Points Distribution: Correct guesses | Received votes | Penalty for nobody getting your clue correctly"
-            />
-          </Instruction>
-
-          <PopoverRule content={<ScoringRule playerCount={playerCount} />} />
-
-          <RankingBoard ranking={state.ranking} players={players} />
-
-          <ButtonContainer>
-            <Button onClick={previousStep}>
-              <Translate pt="Ver resultado novamente" en="See results again" />
-            </Button>
-          </ButtonContainer>
-          <AdminNextRoundButton round={state.round} lastRound={state?.lastRound} />
-        </Step>
+        <StepRanking
+          players={players}
+          playerCount={playerCount}
+          round={state.round}
+          ranking={state.ranking}
+          previousStep={previousStep}
+          isLastRound={state?.lastRound}
+        />
       </StepSwitcher>
     </PhaseContainer>
   );
