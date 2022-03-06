@@ -1,6 +1,5 @@
-import { useState } from 'react';
 // Hooks
-import { useIsUserReady, useLanguage } from 'hooks';
+import { useIsUserReady, useLanguage, useStep } from 'hooks';
 import { useOnSubmitVotingAPIRequest } from './api-requests';
 // Utils
 import { PHASES } from 'utils/phases';
@@ -11,8 +10,8 @@ import { EvaluationRules } from './TextBlobs';
 
 function EvaluationPhase({ players, state, info }: PhaseProps) {
   const { translate } = useLanguage();
+  const { step, nextStep, setStep } = useStep(0);
   const isUserReady = useIsUserReady(players, state);
-  const [step, setStep] = useState(0);
   const onSubmitVoting = useOnSubmitVotingAPIRequest(setStep);
 
   return (
@@ -30,7 +29,7 @@ function EvaluationPhase({ players, state, info }: PhaseProps) {
         <PhaseAnnouncement
           type="evaluate"
           title={translate('Adivinhação', 'Match the Pairs')}
-          onClose={() => setStep(1)}
+          onClose={nextStep}
           currentRound={state?.round?.current}
         >
           <EvaluationRules />
