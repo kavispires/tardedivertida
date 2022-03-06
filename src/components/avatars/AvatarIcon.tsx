@@ -3,9 +3,9 @@ import { Avatar, AvatarProps } from 'antd';
 // Helpers
 import { kebabToPascal } from 'utils/helpers';
 // Components
-import * as IconIllustrations from 'components';
+import { Icons } from 'components';
 
-const IconIllustrationsComponents: any = IconIllustrations;
+const IconIllustrationsComponents: any = Icons;
 
 interface AvatarIconProps extends AvatarProps {
   type: string;
