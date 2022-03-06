@@ -1,8 +1,7 @@
-import { useState } from 'react';
 // Design Resources
 import { Space } from 'antd';
 // Hooks
-import { useLoading, useLanguage, useGlobalState } from 'hooks';
+import { useLoading, useLanguage, useGlobalState, useStep } from 'hooks';
 import { useOnSelectWitnessAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
@@ -24,7 +23,7 @@ import { WitnessRules } from './TextBlobs';
 function PhaseWitnessSelection({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
   const { isLoading } = useLoading();
-  const [step, setStep] = useState(0);
+  const { step, nextStep } = useStep(0);
   const [isAdmin] = useGlobalState('isAdmin');
 
   const onWitnessButtonClick = useOnSelectWitnessAPIRequest();
@@ -41,7 +40,7 @@ function PhaseWitnessSelection({ state, players, info }: PhaseProps) {
         <PhaseAnnouncement
           type="crime-scene"
           title={translate('O Caso', 'The Case')}
-          onClose={() => setStep(1)}
+          onClose={nextStep}
           currentRound={state?.round?.current}
         >
           <Instruction>
