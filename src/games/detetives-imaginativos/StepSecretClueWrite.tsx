@@ -9,6 +9,7 @@ import {
   FloatingHand,
   ImageCardHand as Hand,
   Instruction,
+  Step,
   Title,
   Translate,
 } from 'components';
@@ -36,7 +37,7 @@ export function StepSecretClueWrite({ user, onSubmitClue }: SecretClueWriteProps
   };
 
   return (
-    <div className="d-secret-clue-write">
+    <Step fullWidth>
       <Title>
         <Translate pt="Escreva a Pista!" en="Write a Clue!" />
       </Title>
@@ -76,6 +77,6 @@ export function StepSecretClueWrite({ user, onSubmitClue }: SecretClueWriteProps
       <FloatingHand>
         <Hand hand={user.hand} sizeRatio={6} />
       </FloatingHand>
-    </div>
+    </Step>
   );
 }

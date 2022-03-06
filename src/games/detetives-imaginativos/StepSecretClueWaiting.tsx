@@ -5,6 +5,7 @@ import {
   FloatingHand,
   ImageCardHand,
   Instruction,
+  Step,
   Title,
   Translate,
   TurnOrder,
@@ -19,7 +20,7 @@ type StepSecretClueWaitingProps = {
 
 export function StepSecretClueWaiting({ leader, user, players, turnOrder }: StepSecretClueWaitingProps) {
   return (
-    <div className="d-secret-clue-write">
+    <Step fullWidth>
       <Title>
         <AvatarIcon type="animated-clock" size="large" /> <Translate pt="Aguarde..." en="Please wait..." />
       </Title>
@@ -36,6 +37,6 @@ export function StepSecretClueWaiting({ leader, user, players, turnOrder }: Step
       <FloatingHand>
         <ImageCardHand hand={user.hand} sizeRatio={6} />
       </FloatingHand>
-    </div>
+    </Step>
   );
 }
