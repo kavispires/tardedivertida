@@ -118,8 +118,8 @@
       {
         "label": "Duration",
         "key": "fixedRounds",
-        "off": "30 points/15 rounds",
-        "on": "Each player once (7+) or twice (1-6)"
+        "off": "30 points (15 rounds max)",
+        "on": "Each player once (7+) or twice (1-6)"
       }
     ]
   },

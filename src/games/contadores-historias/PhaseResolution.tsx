@@ -1,6 +1,5 @@
-import { useState } from 'react';
 // Hooks
-import { useWhichPlayerIsThe, useLanguage } from 'hooks';
+import { useWhichPlayerIsThe, useLanguage, useStep } from 'hooks';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
@@ -11,8 +10,8 @@ import { ScoringRules } from './RulesBlogs';
 
 function PhaseResolution({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
+  const { step, nextStep, previousStep } = useStep(0);
   const [storyteller] = useWhichPlayerIsThe('storytellerId', state, players);
-  const [step, setStep] = useState(0);
 
   return (
     <PhaseContainer
@@ -26,7 +25,7 @@ function PhaseResolution({ state, players, info }: PhaseProps) {
         <PhaseAnnouncement
           type="seal"
           title={translate('Solução', 'Solution')}
-          onClose={() => setStep(1)}
+          onClose={nextStep}
           currentRound={state?.round?.current}
         >
           <ScoringRules storyteller={storyteller} />
@@ -39,7 +38,7 @@ function PhaseResolution({ state, players, info }: PhaseProps) {
             story={state.story}
             storyteller={storyteller}
             table={state.table}
-            setStep={setStep}
+            nextStep={nextStep}
           />
         </Step>
 
@@ -52,7 +51,7 @@ function PhaseResolution({ state, players, info }: PhaseProps) {
             storyteller={storyteller}
             round={state.round}
             lastRound={state.lastRound}
-            setStep={setStep}
+            previousStep={previousStep}
           />
         </Step>
       </StepSwitcher>

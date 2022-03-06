@@ -1,6 +1,5 @@
-import { useState } from 'react';
 // Hooks
-import { useWhichPlayerIsThe, useUser, useLanguage } from 'hooks';
+import { useWhichPlayerIsThe, useUser, useLanguage, useStep } from 'hooks';
 import { useOnSubmitVoteAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
@@ -11,9 +10,9 @@ import { VotingRules } from './RulesBlogs';
 
 function PhaseVoting({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
+  const { step, nextStep, setStep } = useStep(0);
   const user = useUser(players);
   const [storyteller] = useWhichPlayerIsThe('storytellerId', state, players);
-  const [step, setStep] = useState(0);
 
   const onSubmitVote = useOnSubmitVoteAPIRequest(setStep);
 
@@ -29,7 +28,7 @@ function PhaseVoting({ state, players, info }: PhaseProps) {
         <PhaseAnnouncement
           type="vote"
           title={translate('Votação', 'Voting')}
-          onClose={() => setStep(1)}
+          onClose={nextStep}
           currentRound={state?.round?.current}
         >
           <VotingRules />
