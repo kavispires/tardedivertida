@@ -3,7 +3,7 @@ import { useWhichPlayerIsThe, useLanguage, useStep } from 'hooks';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import { PhaseAnnouncement, PhaseContainer, Step, StepSwitcher } from 'components';
+import { PhaseAnnouncement, PhaseContainer, StepSwitcher } from 'components';
 import { StepResolution } from './StepResolution';
 import { StepRanking } from './StepRanking';
 import { ScoringRules } from './RulesBlogs';
@@ -14,12 +14,7 @@ function PhaseResolution({ state, players, info }: PhaseProps) {
   const [storyteller] = useWhichPlayerIsThe('storytellerId', state, players);
 
   return (
-    <PhaseContainer
-      info={info}
-      phase={state?.phase}
-      allowedPhase={PHASES.CONTADORES_HISTORIAS.RESOLUTION}
-      className="c-phase"
-    >
+    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.CONTADORES_HISTORIAS.RESOLUTION}>
       <StepSwitcher step={step}>
         {/* Step 0 */}
         <PhaseAnnouncement
@@ -32,28 +27,24 @@ function PhaseResolution({ state, players, info }: PhaseProps) {
         </PhaseAnnouncement>
 
         {/* Step 1 */}
-        <Step fullWidth>
-          <StepResolution
-            players={players}
-            story={state.story}
-            storyteller={storyteller}
-            table={state.table}
-            nextStep={nextStep}
-          />
-        </Step>
+        <StepResolution
+          players={players}
+          story={state.story}
+          storyteller={storyteller}
+          table={state.table}
+          nextStep={nextStep}
+        />
 
         {/* Step 2 */}
-        <Step fullWidth>
-          <StepRanking
-            players={players}
-            ranking={state.ranking}
-            outcome={state.outcome}
-            storyteller={storyteller}
-            round={state.round}
-            lastRound={state.lastRound}
-            previousStep={previousStep}
-          />
-        </Step>
+        <StepRanking
+          players={players}
+          ranking={state.ranking}
+          outcome={state.outcome}
+          storyteller={storyteller}
+          round={state.round}
+          lastRound={state.lastRound}
+          previousStep={previousStep}
+        />
       </StepSwitcher>
     </PhaseContainer>
   );

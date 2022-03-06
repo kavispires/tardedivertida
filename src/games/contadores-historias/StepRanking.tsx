@@ -7,6 +7,7 @@ import {
   Instruction,
   PopoverRule,
   RankingBoard,
+  Step,
   Title,
   Translate,
 } from 'components';
@@ -35,7 +36,7 @@ export function StepRanking({
   const { translate } = useLanguage();
 
   return (
-    <div className="c-step-ranking">
+    <Step fullWidth>
       <Title level={1}>
         <Translate pt="Resultado" en="Results" />
       </Title>
@@ -94,6 +95,6 @@ export function StepRanking({
       </ButtonContainer>
 
       <AdminNextRoundButton round={round} lastRound={lastRound} />
-    </div>
+    </Step>
   );
 }

@@ -4,7 +4,7 @@ import { useOnPlayCardAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import { Instruction, PhaseAnnouncement, PhaseContainer, Step, StepSwitcher, Translate } from 'components';
+import { Instruction, PhaseAnnouncement, PhaseContainer, StepSwitcher, Translate } from 'components';
 import { StepPlayCard } from './StepPlayCard';
 
 function PhaseCardPlay({ state, players, info }: PhaseProps) {
@@ -45,16 +45,14 @@ function PhaseCardPlay({ state, players, info }: PhaseProps) {
         </PhaseAnnouncement>
 
         {/* Step 1 */}
-        <Step fullWidth>
-          <StepPlayCard
-            players={players}
-            user={user}
-            story={state.story}
-            onPlayCard={onPlayCard}
-            storyteller={storyteller}
-            isUserTheStoryTeller={isUserTheStoryTeller}
-          />
-        </Step>
+        <StepPlayCard
+          players={players}
+          user={user}
+          story={state.story}
+          onPlayCard={onPlayCard}
+          storyteller={storyteller}
+          isUserTheStoryTeller={isUserTheStoryTeller}
+        />
       </StepSwitcher>
     </PhaseContainer>
   );

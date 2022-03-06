@@ -10,6 +10,7 @@ import {
   ImageBlurButton,
   ImageCard,
   PopoverRule,
+  Step,
   TimedButton,
   Title,
   Translate,
@@ -33,7 +34,7 @@ export function StepResolution({ players, story, storyteller, table, nextStep }:
   const otherCards = table.filter((entry) => entry.playerId !== storyteller.id);
 
   return (
-    <div className="c-step-play-card">
+    <Step fullWidth className="c-step-play-card">
       <Title>
         <Translate pt="Solução" en="Solution" />
       </Title>
@@ -116,6 +117,6 @@ export function StepResolution({ players, story, storyteller, table, nextStep }:
           label={translate('Continuar', 'Continue')}
         />
       </ButtonContainer>
-    </div>
+    </Step>
   );
 }
