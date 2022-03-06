@@ -1,6 +1,5 @@
-import { useState } from 'react';
 // State & Hooks
-import { useIsUserReady, useLanguage, useWhichPlayerIsThe } from 'hooks';
+import { useIsUserReady, useLanguage, useStep, useWhichPlayerIsThe } from 'hooks';
 import { useOnSubmitGuessAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
@@ -12,24 +11,19 @@ import { StepPsychicGuess } from './StepPsychicGuess';
 function PhaseGuess({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
   const { translate } = useLanguage();
-  const [step, setStep] = useState(0);
+  const { step, nextStep, setStep } = useStep(0);
   const [, isUserThePsychic] = useWhichPlayerIsThe('psychicId', state, players);
 
   const onSendGuess = useOnSubmitGuessAPIRequest(setStep);
 
   return (
-    <PhaseContainer
-      info={info}
-      phase={state?.phase}
-      allowedPhase={PHASES.ONDA_TELEPATICA.GUESS}
-      className="o-phase"
-    >
+    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.ONDA_TELEPATICA.GUESS}>
       <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady, !isUserReady]} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
           type="sound-wave"
           title={translate('Adivinhação', 'Guessing')}
-          onClose={() => setStep(1)}
+          onClose={nextStep}
           currentRound={state?.round?.current}
           duration={7}
         >

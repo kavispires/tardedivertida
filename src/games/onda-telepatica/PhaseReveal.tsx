@@ -1,8 +1,7 @@
-import { useState } from 'react';
 // Design Resources
 import { Button } from 'antd';
 // State & Hooks
-import { useIsUserReady, useLanguage, useWhichPlayerIsThe } from 'hooks';
+import { useIsUserReady, useLanguage, useStep, useWhichPlayerIsThe } from 'hooks';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
@@ -25,22 +24,17 @@ import { ScoringRules } from './RulesBlobs';
 function PhaseReveal({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
   const { translate } = useLanguage();
-  const [step, setStep] = useState(0);
+  const { step, nextStep, previousStep } = useStep(0);
   const [psychic] = useWhichPlayerIsThe('psychicId', state, players);
 
   return (
-    <PhaseContainer
-      info={info}
-      phase={state?.phase}
-      allowedPhase={PHASES.ONDA_TELEPATICA.REVEAL}
-      className="o-phase"
-    >
+    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.ONDA_TELEPATICA.REVEAL}>
       <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady, !isUserReady]} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
           type="timer"
           title={translate('Resultado', 'Results')}
-          onClose={() => setStep(1)}
+          onClose={nextStep}
           currentRound={state?.round?.current}
           duration={7}
         >
@@ -55,7 +49,7 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
             players={players}
             psychic={psychic}
             currentCategory={state.currentCategory}
-            setStep={setStep}
+            nextStep={nextStep}
           />
         </Step>
 
@@ -70,7 +64,7 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
 
           <RankingBoard ranking={state.ranking} players={players} />
           <ButtonContainer>
-            <Button onClick={() => setStep(1)}>
+            <Button onClick={previousStep}>
               <Translate pt="Ver resultado novamente" en="See results again" />
             </Button>
           </ButtonContainer>
