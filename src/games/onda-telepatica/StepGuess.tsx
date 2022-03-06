@@ -1,5 +1,5 @@
 import { useState } from 'react';
-// Design Resources
+// Ant Design Resources
 import { Button, Slider } from 'antd';
 // Hooks
 import { useLoading, useMock } from 'hooks';

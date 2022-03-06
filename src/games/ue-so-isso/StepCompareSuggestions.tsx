@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-// Design Resources
+// Ant Design Resources
 import { Button, message, Space } from 'antd';
 import { CloudUploadOutlined } from '@ant-design/icons';
 // Hooks

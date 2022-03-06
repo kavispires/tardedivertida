@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-// Design Resources
+// Ant Design Resources
 import { Button, Tooltip } from 'antd';
 import { ClearOutlined, EnvironmentOutlined } from '@ant-design/icons';
 // Hooks

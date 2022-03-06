@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-// Design Resources
+// Ant Design Resources
 import { Space, Typography } from 'antd';
 import { AvatarIcon } from '..';
 

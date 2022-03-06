@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-// Design Resources
+// Ant Design Resources
 import { Button, Image, message, notification, Typography } from 'antd';
 // API & Hooks
 import { ADMIN_API } from 'adapters';

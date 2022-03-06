@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-// Design Resources
+// Ant Design Resources
 import { Avatar as AntAvatar } from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
 // Utils

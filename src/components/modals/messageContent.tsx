@@ -1,4 +1,4 @@
-// Design Resources
+// Ant Design Resources
 import { message } from 'antd';
 // Components
 import { Icons, Translate } from '..';

@@ -1,4 +1,4 @@
-// Design Resources
+// Ant Design Resources
 import { Avatar } from 'antd';
 import { RiseOutlined, TwitterOutlined } from '@ant-design/icons';
 // Components

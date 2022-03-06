@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-// Design Resources
+// Ant Design Resources
 import { ForwardFilled } from '@ant-design/icons';
 // Helpers
 import { getAvatarColorById } from 'utils/helpers';

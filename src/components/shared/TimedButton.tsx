@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-// Design Resources
+// Ant Design Resources
 import { Button, ButtonProps } from 'antd';
 // Hook and Utils
 import { useTimer } from 'react-timer-hook';

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-// Design Resources
+// Ant Design Resources
 import { message } from 'antd';
 import { QuestionCircleFilled } from '@ant-design/icons';
 // Hooks

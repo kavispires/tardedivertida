@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-// Design Resources
+// Ant Design Resources
 import { StarFilled } from '@ant-design/icons';
 // Components
 import { Translate } from './Translate';

@@ -1,4 +1,4 @@
-// Design Resources
+// Ant Design Resources
 import { Progress } from 'antd';
 // Components
 import { Translate } from 'components';

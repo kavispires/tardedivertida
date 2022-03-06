@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useTimer } from 'react-timer-hook';
-// Design Resources
+// Ant Design Resources
 import { HeartFilled } from '@ant-design/icons';
 // Hooks
 import { getAnimationClass, inNSeconds } from 'utils/helpers';

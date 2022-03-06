@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-// Design Resources
+// Ant Design Resources
 import { Popconfirm } from 'antd';
 // Hooks
 import { useDimensions, useLanguage, useLoading } from 'hooks';

@@ -1,4 +1,4 @@
-// Design Resources
+// Ant Design Resources
 import { Button, Modal } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 // Hooks and API

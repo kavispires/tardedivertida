@@ -1,4 +1,4 @@
-// Design Resources
+// Ant Design Resources
 import { WarningOutlined } from '@ant-design/icons';
 // Hooks
 import { Card } from 'components';

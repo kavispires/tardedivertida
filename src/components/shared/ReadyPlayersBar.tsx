@@ -1,4 +1,4 @@
-// Design Resources
+// Ant Design Resources
 import { Avatar as AntAvatar, Typography } from 'antd';
 import { LikeFilled } from '@ant-design/icons';
 // Components

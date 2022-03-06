@@ -1,5 +1,5 @@
 import { useState } from 'react';
-// Design Resources
+// Ant Design Resources
 import { Button, Divider, Drawer } from 'antd';
 import { InfoCircleOutlined } from '@ant-design/icons';
 // Utils

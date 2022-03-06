@@ -1,5 +1,5 @@
 import { useState } from 'react';
-// Design Resources
+// Ant Design Resources
 import { Button, Modal } from 'antd';
 import { ReadOutlined } from '@ant-design/icons';
 // Hooks

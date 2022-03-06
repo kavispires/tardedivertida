@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-// Design Resources
+// Ant Design Resources
 import { Button, Space, Tooltip } from 'antd';
 import { RedoOutlined } from '@ant-design/icons';
 // Hooks

@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-// Design Resources
+// Ant Design Resources
 import { FallOutlined, RiseOutlined } from '@ant-design/icons';
 // Components
 import { Avatar, AvatarIcon, ButtonContainer, Step, TimedButton, Title, Translate } from 'components';

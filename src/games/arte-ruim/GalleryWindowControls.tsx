@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useTimer } from 'react-timer-hook';
-// Design Resources
+// Ant Design Resources
 import { Button, Space } from 'antd';
 import {
   PauseOutlined,

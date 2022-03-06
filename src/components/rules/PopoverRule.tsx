@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-// Design Resources
+// Ant Design Resources
 import { Button, Popover } from 'antd';
 import { ReadOutlined } from '@ant-design/icons';
 // Components

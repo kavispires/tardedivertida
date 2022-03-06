@@ -1,4 +1,4 @@
-// Design Resources
+// Ant Design Resources
 import { Tooltip } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks';

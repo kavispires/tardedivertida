@@ -1,5 +1,5 @@
 import { Fragment, useState } from 'react';
-// Design Resources
+// Ant Design Resources
 import { Button, Drawer, Popconfirm, Spin } from 'antd';
 import { FireFilled } from '@ant-design/icons';
 // Hooks and API

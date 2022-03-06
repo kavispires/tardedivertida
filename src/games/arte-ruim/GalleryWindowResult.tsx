@@ -1,4 +1,4 @@
-// Design Resources
+// Ant Design Resources
 import { Avatar as AntAvatar, Typography } from 'antd';
 import { CrownFilled, DeleteFilled } from '@ant-design/icons';
 // Utils

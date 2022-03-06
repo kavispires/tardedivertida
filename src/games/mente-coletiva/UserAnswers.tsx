@@ -1,4 +1,4 @@
-// Design Resources
+// Ant Design Resources
 import { Button } from 'antd';
 import { LockFilled, PlusCircleFilled } from '@ant-design/icons';
 // Hooks

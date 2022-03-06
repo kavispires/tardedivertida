@@ -1,5 +1,5 @@
 import { useState } from 'react';
-// Design Resources
+// Ant Design Resources
 import { Progress } from 'antd';
 // Images
 import gameOverTitle from 'images/game-over-title.svg';

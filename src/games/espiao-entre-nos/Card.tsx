@@ -1,4 +1,4 @@
-// Design Resources
+// Ant Design Resources
 import { QuestionCircleFilled } from '@ant-design/icons';
 // Hooks
 import { useLanguage } from 'hooks';

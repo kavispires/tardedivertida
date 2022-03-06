@@ -1,4 +1,4 @@
-// Design Resources
+// Ant Design Resources
 import { Tooltip } from 'antd';
 // Components
 import { AvatarIcon, AvatarName, Translate } from 'components';

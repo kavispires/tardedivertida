@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { orderBy } from 'lodash';
-// Design Resources
+// Ant Design Resources
 import { Card, Layout, Progress, Space } from 'antd';
 // Utils
 import { PUBLIC_URL } from 'utils/constants';

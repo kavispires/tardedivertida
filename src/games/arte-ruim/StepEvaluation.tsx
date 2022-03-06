@@ -1,5 +1,5 @@
 import { useCallback, useEffect } from 'react';
-// Design Resources
+// Ant Design Resources
 import { Button } from 'antd';
 import { CloudUploadOutlined, ThunderboltOutlined } from '@ant-design/icons';
 // Hooks

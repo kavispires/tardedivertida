@@ -1,4 +1,4 @@
-// Design Resources
+// Ant Design Resources
 import { Avatar as AntAvatar } from 'antd';
 // Hooks
 import { useCardWidth, useLanguage } from 'hooks';

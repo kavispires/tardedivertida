@@ -1,5 +1,5 @@
 import { useState } from 'react';
-// Design Resources
+// Ant Design Resources
 import { Button, Form, Select, AutoComplete, message } from 'antd';
 // Components
 import { ValueFormItem } from './ValueFormItem';

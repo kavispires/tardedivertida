@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-// Design Resources
+// Ant Design Resources
 import { Button, Tag } from 'antd';
 // Images
 import roundTitleEn from 'images/round-title-en.svg';

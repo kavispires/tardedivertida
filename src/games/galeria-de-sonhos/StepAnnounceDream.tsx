@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-// Design Resources
+// Ant Design Resources
 import { Divider, message } from 'antd';
 // Hooks
 import { useCardWidth, useLanguage } from 'hooks';

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-// Design Resources
+// Ant Design Resources
 import { Layout, Button, Form, Input, Alert, Image } from 'antd';
 // API
 import { signIn } from 'adapters/auth';

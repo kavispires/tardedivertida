@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 import { orderBy } from 'lodash';
 import { useTimer } from 'react-timer-hook';
-// Design Resources
+// Ant Design Resources
 import { CrownFilled } from '@ant-design/icons';
 // Hooks
 import { useDimensions } from 'hooks';

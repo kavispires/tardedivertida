@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-// Design Resources
+// Ant Design Resources
 import { Image, Modal, message, Button, notification, Divider, Typography, Switch } from 'antd';
 // Adapters
 import { ADMIN_API } from 'adapters';

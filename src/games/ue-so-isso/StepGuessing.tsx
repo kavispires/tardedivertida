@@ -1,4 +1,4 @@
-// Design Resources
+// Ant Design Resources
 import { Space } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 // Components

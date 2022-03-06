@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-// Design Resources
+// Ant Design Resources
 import { Avatar, Tooltip } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks';
