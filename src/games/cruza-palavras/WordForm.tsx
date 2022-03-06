@@ -13,7 +13,7 @@ type WordFormProps = {
   disabled?: boolean;
 };
 
-function WordForm({ x, y, onSubmit, disabled }: WordFormProps) {
+export function WordForm({ x, y, onSubmit, disabled }: WordFormProps) {
   const [clue, setClue] = useState('');
   const textInput = useRef<Input | null>(null);
 
@@ -42,5 +42,3 @@ function WordForm({ x, y, onSubmit, disabled }: WordFormProps) {
     </Space>
   );
 }
-
-export default WordForm;

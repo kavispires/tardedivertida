@@ -2,8 +2,8 @@
 import { useLoading } from 'hooks';
 // Components
 import { Instruction, PopoverRule, ReadyPlayersBar, Title, Translate } from 'components';
-import WordGrid from './WordGrid';
-import WritingCell from './WritingCell';
+import { WordGrid } from './WordGrid';
+import { WritingCell } from './WritingCell';
 import { WritingCluesRule } from './RulesBlobs';
 
 type StepClueWritingProps = {
@@ -13,7 +13,7 @@ type StepClueWritingProps = {
   players: GamePlayers;
 };
 
-function StepClueWriting({ grid, user, onSubmitClue, players }: StepClueWritingProps) {
+export function StepClueWriting({ grid, user, onSubmitClue, players }: StepClueWritingProps) {
   const { isLoading } = useLoading();
 
   const onSubmitClueClick = (payload: string) => {
@@ -48,5 +48,3 @@ function StepClueWriting({ grid, user, onSubmitClue, players }: StepClueWritingP
     </div>
   );
 }
-
-export default StepClueWriting;

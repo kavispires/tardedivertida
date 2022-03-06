@@ -6,9 +6,9 @@ import { shuffle } from 'utils/helpers';
 import { getClueFromKey, getClueKey, isClue } from './helpers';
 // Components
 import { ButtonContainer, Instruction, ReadyPlayersBar, Title, Translate } from 'components';
-import WordGrid from './WordGrid';
-import SelectableCell from './SelectableCell';
-import Clues from './Clues';
+import { WordGrid } from './WordGrid';
+import { SelectableCell } from './SelectableCell';
+import { Clues } from './Clues';
 
 type StepGuessingProps = {
   grid: CruzaPalavraGrid;
@@ -18,7 +18,7 @@ type StepGuessingProps = {
   players: GamePlayers;
 };
 
-function StepGuessing({ grid, user, clues, onSubmitGuesses, players }: StepGuessingProps) {
+export function StepGuessing({ grid, user, clues, onSubmitGuesses, players }: StepGuessingProps) {
   const [active, setActive] = useState(null);
   const [guesses, setGuesses] = useState({});
 
@@ -148,5 +148,3 @@ function StepGuessing({ grid, user, clues, onSubmitGuesses, players }: StepGuess
     </div>
   );
 }
-
-export default StepGuessing;
