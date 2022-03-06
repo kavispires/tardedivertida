@@ -13,7 +13,7 @@ import {
   Translate,
   ViewIf,
 } from 'components';
-import StepSuggestion from './StepSuggestion';
+import { StepSuggestion } from './StepSuggestion';
 import { WritingRules } from './RulesBlobs';
 import { GuesserWaitingRoom } from './GuesserWaitingRoom';
 

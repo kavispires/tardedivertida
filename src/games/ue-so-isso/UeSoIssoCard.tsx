@@ -1,15 +1,16 @@
 // Design Resources
 import { WarningOutlined } from '@ant-design/icons';
+// Hooks
+import { Card } from 'components';
 // Components
 import { useLanguage } from 'hooks';
-import { Card } from 'components';
 
 type UeSoIssoCardProps = {
   word?: any;
   header?: any;
 };
 
-function UeSoIssoCard({ word, header }: UeSoIssoCardProps) {
+export function UeSoIssoCard({ word, header }: UeSoIssoCardProps) {
   const { translate } = useLanguage();
 
   return (
@@ -18,5 +19,3 @@ function UeSoIssoCard({ word, header }: UeSoIssoCardProps) {
     </Card>
   );
 }
-
-export default UeSoIssoCard;

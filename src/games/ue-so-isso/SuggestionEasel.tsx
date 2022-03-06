@@ -2,7 +2,6 @@
 import { Input } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks';
-// Components
 
 type SuggestionEaselProps = {
   id: string;
@@ -11,7 +10,7 @@ type SuggestionEaselProps = {
   value?: string;
 };
 
-function SuggestionEasel({ id, onChangeInput, onPressEnter, value }: SuggestionEaselProps) {
+export function SuggestionEasel({ id, onChangeInput, onPressEnter, value }: SuggestionEaselProps) {
   const { translate } = useLanguage();
   return (
     <svg
@@ -43,5 +42,3 @@ function SuggestionEasel({ id, onChangeInput, onPressEnter, value }: SuggestionE
     </svg>
   );
 }
-
-export default SuggestionEasel;

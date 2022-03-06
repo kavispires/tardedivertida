@@ -14,7 +14,7 @@ import {
   Translate,
   ViewIf,
 } from 'components';
-import StepWordSelection from './StepWordSelection';
+import { StepWordSelection } from './StepWordSelection';
 import { GameProgressBar } from './GameProgressBar';
 import { GuesserWaitingRoom } from './GuesserWaitingRoom';
 import { useOnSubmitVotesAPIRequest } from './api-requests';

@@ -4,9 +4,9 @@ import { Button, Space } from 'antd';
 import { CloudUploadOutlined } from '@ant-design/icons';
 // Components
 import { AvatarName, Instruction, ReadyPlayersBar, Step, Title, Translate } from 'components';
-import SuggestionEasel from './SuggestionEasel';
+import { SuggestionEasel } from './SuggestionEasel';
 import { WritingRules } from './RulesBlobs';
-import Card from './UeSoIssoCard';
+import { UeSoIssoCard as Card } from './UeSoIssoCard';
 
 type StepSuggestionProps = {
   guesser: GamePlayer;
@@ -16,7 +16,7 @@ type StepSuggestionProps = {
   players: GamePlayers;
 };
 
-function StepSuggestion({
+export function StepSuggestion({
   guesser,
   onSendSuggestions,
   secretWord,
@@ -107,5 +107,3 @@ function StepSuggestion({
     </Step>
   );
 }
-
-export default StepSuggestion;

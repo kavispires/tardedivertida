@@ -1,7 +1,7 @@
 // Hooks
 import { useWhichPlayerIsThe, useLanguage, useStep } from 'hooks';
+import { useOnSubmitValidationsAPIRequest, useOnValidateSuggestionAPIRequest } from './api-requests';
 // Resources & Utils
-
 import { PHASES } from 'utils/phases';
 // Components
 import {
@@ -14,10 +14,9 @@ import {
   ViewIf,
   WaitingRoom,
 } from 'components';
-import StepCompareSuggestions from './StepCompareSuggestions';
+import { StepCompareSuggestions } from './StepCompareSuggestions';
 import { ComparisonRules } from './RulesBlobs';
 import { GuesserWaitingRoom } from './GuesserWaitingRoom';
-import { useOnSubmitValidationsAPIRequest, useOnValidateSuggestionAPIRequest } from './api-requests';
 
 function PhaseCompare({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();

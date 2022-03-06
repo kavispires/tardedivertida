@@ -3,9 +3,9 @@ import { Space } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 // Components
 import { AvatarName, Instruction, Step, Title, Translate, ViewIf } from 'components';
-import Card from './UeSoIssoCard';
-import Guess from './Guess';
-import SuggestionEasel from './SuggestionEasel';
+import { UeSoIssoCard as Card } from './UeSoIssoCard';
+import { Guess } from './Guess';
+import { SuggestionEasel } from './SuggestionEasel';
 
 type StepGuessingProps = {
   guesser: GamePlayer;
@@ -16,7 +16,7 @@ type StepGuessingProps = {
   validSuggestions: UseSoIssoSuggestion[];
 };
 
-function StepGuessing({
+export function StepGuessing({
   guesser,
   isUserTheGuesser,
   secretWord,
@@ -92,5 +92,3 @@ function StepGuessing({
     </Step>
   );
 }
-
-export default StepGuessing;

@@ -16,8 +16,8 @@ import {
   Translate,
   ViewIf,
 } from 'components';
-import Card from './UeSoIssoCard';
-import SuggestionEasel from './SuggestionEasel';
+import { UeSoIssoCard as Card } from './UeSoIssoCard';
+import { SuggestionEasel } from './SuggestionEasel';
 
 type StepGuessVerificationProps = {
   guess: string;
@@ -32,7 +32,7 @@ type StepGuessVerificationProps = {
   validSuggestions: UseSoIssoSuggestion[];
 };
 
-function StepGuessVerification({
+export function StepGuessVerification({
   guess,
   guesser,
   isAdmin,
@@ -148,5 +148,3 @@ function StepGuessVerification({
     </Step>
   );
 }
-
-export default StepGuessVerification;
