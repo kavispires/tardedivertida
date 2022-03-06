@@ -1,6 +1,5 @@
-import { useState } from 'react';
 // State & Hooks
-import { useIsUserReady, useLanguage, useWhichPlayerIsThe } from 'hooks';
+import { useIsUserReady, useLanguage, useStep, useWhichPlayerIsThe } from 'hooks';
 import { useOnSubmitCategoryAPIRequest, useOnSubmitClueAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
@@ -23,7 +22,7 @@ import { StepCategorySelection } from './StepCategorySelection';
 function PhaseDialClue({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
   const { translate } = useLanguage();
-  const [step, setStep] = useState(0);
+  const { step, nextStep } = useStep(0);
   const [psychic, isUserThePsychic] = useWhichPlayerIsThe('psychicId', state, players);
 
   const onSendChosenSide = useOnSubmitCategoryAPIRequest();
@@ -31,18 +30,13 @@ function PhaseDialClue({ players, state, info }: PhaseProps) {
   const onSendClue = useOnSubmitClueAPIRequest();
 
   return (
-    <PhaseContainer
-      info={info}
-      phase={state?.phase}
-      allowedPhase={PHASES.ONDA_TELEPATICA.DIAL_CLUE}
-      className="o-phase"
-    >
+    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.ONDA_TELEPATICA.DIAL_CLUE}>
       <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady, !isUserReady]} players={players}>
         {/* Step 0 */}
         <RoundAnnouncement
           round={state.round}
           buttonText=" "
-          onPressButton={() => setStep(1)}
+          onPressButton={nextStep}
           time={5}
           circleColor="pink"
         ></RoundAnnouncement>
@@ -51,7 +45,7 @@ function PhaseDialClue({ players, state, info }: PhaseProps) {
         <PhaseAnnouncement
           type="turban"
           title={translate('Concentração', 'Focus')}
-          onClose={() => setStep(2)}
+          onClose={nextStep}
           currentRound={state?.round?.current}
           duration={7}
         >

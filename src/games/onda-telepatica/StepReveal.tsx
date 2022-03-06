@@ -38,10 +38,10 @@ type StepRevealProps = {
   currentCategory: OCurrentCategory;
   players: GamePlayers;
   psychic: GamePlayer;
-  setStep: GenericFunction;
+  nextStep: GenericFunction;
 };
 
-export function StepReveal({ setStep, currentCategory, players, psychic }: StepRevealProps) {
+export function StepReveal({ nextStep, currentCategory, players, psychic }: StepRevealProps) {
   const regularPlayers = Object.values(players).filter((p) => p.id !== psychic.id);
 
   return (
@@ -100,8 +100,8 @@ export function StepReveal({ setStep, currentCategory, players, psychic }: StepR
       <TimedButton
         duration={30}
         label={<Translate pt="Continuar" en="Continue" />}
-        onExpire={() => setStep(2)}
-        onClick={() => setStep(2)}
+        onExpire={nextStep}
+        onClick={nextStep}
       />
     </Step>
   );
