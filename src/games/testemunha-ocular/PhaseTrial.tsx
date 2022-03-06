@@ -1,6 +1,5 @@
-import { useState } from 'react';
 // Hooks
-import { useWhichPlayerIsThe, useLoading, useLanguage } from 'hooks';
+import { useWhichPlayerIsThe, useLoading, useLanguage, useStep } from 'hooks';
 import { useOnEliminateSuspectAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
@@ -18,7 +17,7 @@ import { StepSuspectElimination } from './StepSuspectElimination';
 function PhaseTrial({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
   const { isLoading } = useLoading();
-  const [step, setStep] = useState(0);
+  const { step, nextStep } = useStep(0);
 
   const [witness, isUserTheWitness] = useWhichPlayerIsThe('witnessId', state, players);
   const [questioner, isUserTheQuestioner] = useWhichPlayerIsThe('questionerId', state, players);
@@ -37,7 +36,7 @@ function PhaseTrial({ state, players, info }: PhaseProps) {
         <PhaseAnnouncement
           type="law"
           title={translate('Julgamento', 'Trial')}
-          onClose={() => setStep(1)}
+          onClose={nextStep}
           currentRound={state?.round?.current}
         >
           <Instruction>

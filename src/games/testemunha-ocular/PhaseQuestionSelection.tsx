@@ -1,6 +1,5 @@
-import { useState } from 'react';
 // Hooks
-import { useWhichPlayerIsThe, useLoading, useLanguage } from 'hooks';
+import { useWhichPlayerIsThe, useLoading, useLanguage, useStep } from 'hooks';
 import { useOnSelectQuestionAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
@@ -19,7 +18,7 @@ import { StepQuestionWaiting } from './StepQuestionWaiting';
 function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
   const { isLoading } = useLoading();
-  const [step, setStep] = useState(0);
+  const { step, nextStep } = useStep(0);
   const [witness, isUserTheWitness] = useWhichPlayerIsThe('witnessId', state, players);
   const [questioner, isUserTheQuestioner] = useWhichPlayerIsThe('questionerId', state, players);
   const onSelectQuestion = useOnSelectQuestionAPIRequest();
@@ -38,7 +37,7 @@ function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
         <PhaseAnnouncement
           type="investigation"
           title={translate('Seleção da Pergunta', 'Question Selection')}
-          onClose={() => setStep(1)}
+          onClose={nextStep}
           currentRound={state?.round?.current}
         >
           <Instruction>

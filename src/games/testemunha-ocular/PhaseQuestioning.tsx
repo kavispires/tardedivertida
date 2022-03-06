@@ -1,6 +1,5 @@
-import { useState } from 'react';
 // Hooks
-import { useWhichPlayerIsThe, useLoading, useLanguage } from 'hooks';
+import { useWhichPlayerIsThe, useLoading, useLanguage, useStep } from 'hooks';
 import { useOnSubmitTestimonyAPIRequest } from './api-requests';
 // Utils
 import { PHASES } from 'utils/phases';
@@ -18,7 +17,7 @@ import { StepQuestioning } from './StepQuestioning';
 function PhaseQuestioning({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
   const { isLoading } = useLoading();
-  const [step, setStep] = useState(0);
+  const { step, nextStep } = useStep(0);
   const [witness, isUserTheWitness] = useWhichPlayerIsThe('witnessId', state, players);
 
   const onAnswer = useOnSubmitTestimonyAPIRequest();
@@ -35,7 +34,7 @@ function PhaseQuestioning({ state, players, info }: PhaseProps) {
         <PhaseAnnouncement
           type="eye"
           title={translate('Questionamento', 'Questioning')}
-          onClose={() => setStep(1)}
+          onClose={nextStep}
           currentRound={state?.round?.current}
         >
           <Instruction>
