@@ -1,5 +1,5 @@
 import { useState } from 'react';
-// Design Resources
+// Ant Design Resources
 import { Layout, Space } from 'antd';
 // Components
 import { DrawingCanvas, Title } from 'components';

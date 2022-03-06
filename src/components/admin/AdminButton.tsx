@@ -1,4 +1,4 @@
-// Design Resources
+// Ant Design Resources
 import { Button, ButtonProps } from 'antd';
 import { RocketFilled } from '@ant-design/icons';
 // State

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-// Design Resources
+// Ant Design Resources
 import { CheckCircleFilled, CloudUploadOutlined } from '@ant-design/icons';
 // Hooks
 import { useLanguage } from 'hooks';

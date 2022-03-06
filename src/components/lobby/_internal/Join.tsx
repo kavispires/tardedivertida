@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-// Design Resources
+// Ant Design Resources
 import { Alert, Button, Image, Input, notification, Tooltip } from 'antd';
 import { CaretLeftOutlined, CaretRightOutlined, InfoCircleOutlined } from '@ant-design/icons';
 // API & Hooks

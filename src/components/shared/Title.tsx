@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-// Design Resources
+// Ant Design Resources
 import { Typography } from 'antd';
 
 type TitleProps = {

@@ -1,4 +1,4 @@
-// Design Resources
+// Ant Design Resources
 import { Button, ButtonProps } from 'antd';
 import { FireFilled } from '@ant-design/icons';
 

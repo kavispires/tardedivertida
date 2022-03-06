@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import clsx from 'clsx';
-// Design Resources
+// Ant Design Resources
 import { Alert, Button, Rate } from 'antd';
 import { Input } from 'antd';
 // Adapters

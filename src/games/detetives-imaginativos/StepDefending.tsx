@@ -1,4 +1,4 @@
-// Design Resources
+// Ant Design Resources
 import { Button } from 'antd';
 // Components
 import { AvatarName, ButtonContainer, Instruction, Step, Title, TitleHighlight, Translate } from 'components';

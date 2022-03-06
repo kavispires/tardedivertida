@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useTimer } from 'react-timer-hook';
-// Design Resources
+// Ant Design Resources
 import { Button } from 'antd';
 // Utils
 import { AVATARS } from 'utils/constants';

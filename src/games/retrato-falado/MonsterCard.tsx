@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import clsx from 'clsx';
-// Design Resources
+// Ant Design Resources
 import { Button, Space, SpaceProps } from 'antd';
 import { RotateLeftOutlined, RotateRightOutlined } from '@ant-design/icons';
 // Hooks

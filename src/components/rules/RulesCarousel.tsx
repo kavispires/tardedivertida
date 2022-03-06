@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-// Design Resources
+// Ant Design Resources
 import { Typography, Image, Carousel, Button } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks';

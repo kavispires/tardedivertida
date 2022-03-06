@@ -41,7 +41,7 @@
       "en": true
     },
     "options": [
-      { "label": "Cards", "key": "useAllCards", "off": "Unique cards", "on": "All cards" },
+      { "label": "Cards", "key": "useAllCards", "off": "New cards only", "on": "All cards" },
       { "label": "Duration", "key": "shortGame", "off": "50 points/10 rounds", "on": "5 rounds" }
     ]
   },

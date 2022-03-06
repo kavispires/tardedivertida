@@ -1,4 +1,4 @@
-// Design Resources
+// Ant Design Resources
 import { Switch } from 'antd';
 // Hooks
 import { useGlobalState, useLocalStorage } from 'hooks';

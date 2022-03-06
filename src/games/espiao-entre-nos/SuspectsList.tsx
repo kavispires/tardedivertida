@@ -1,6 +1,6 @@
 import { orderBy } from 'lodash';
 import clsx from 'clsx';
-// Design Resources
+// Ant Design Resources
 import { Button, Tooltip } from 'antd';
 import { AimOutlined, ClearOutlined, IssuesCloseOutlined } from '@ant-design/icons';
 // Hooks

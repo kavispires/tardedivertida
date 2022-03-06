@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { orderBy } from 'lodash';
-// Design Resources
+// Ant Design Resources
 import { Badge } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks';

@@ -1,4 +1,4 @@
-// Design Resources
+// Ant Design Resources
 import { Modal } from 'antd';
 // Components
 import { ButtonContainer, Translate } from 'components';

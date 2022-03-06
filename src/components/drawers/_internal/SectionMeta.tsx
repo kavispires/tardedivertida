@@ -1,4 +1,4 @@
-// Design Resources
+// Ant Design Resources
 import { Avatar as AntAvatar, Table } from 'antd';
 // Components
 import { Translate } from 'components';

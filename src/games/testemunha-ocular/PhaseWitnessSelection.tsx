@@ -1,4 +1,4 @@
-// Design Resources
+// Ant Design Resources
 import { Space } from 'antd';
 // Hooks
 import { useLoading, useLanguage, useGlobalState, useStep } from 'hooks';

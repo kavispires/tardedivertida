@@ -1,4 +1,4 @@
-// Design Resources
+// Ant Design Resources
 import { Button } from 'antd';
 import { PictureOutlined } from '@ant-design/icons';
 // Components

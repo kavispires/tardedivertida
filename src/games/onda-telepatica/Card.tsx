@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-// Design Resources
+// Ant Design Resources
 import { ArrowLeftOutlined, ArrowRightOutlined, MinusOutlined } from '@ant-design/icons';
 // Helpers
 import { getColorModifier } from './helpers';

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-// Design Resources
+// Ant Design Resources
 import { Button, Popconfirm, Select, Space } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 // Hooks

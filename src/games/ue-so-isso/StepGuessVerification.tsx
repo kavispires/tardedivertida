@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import clsx from 'clsx';
-// Design Resources
+// Ant Design Resources
 import { Button, message, Space } from 'antd';
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 // Hooks

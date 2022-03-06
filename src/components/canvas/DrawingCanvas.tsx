@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import { Stage, Layer, Line } from 'react-konva';
 import clsx from 'clsx';
-// Design Resources
+// Ant Design Resources
 import { Button, Space } from 'antd';
 import { DeleteOutlined, UndoOutlined } from '@ant-design/icons';
 // Components

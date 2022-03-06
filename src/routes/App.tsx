@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
 
-// Design Resources
+// Ant Design Resources
 import { Layout, message } from 'antd';
 // Firebase
 import { auth } from 'services/firebase';

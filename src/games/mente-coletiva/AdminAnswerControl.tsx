@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-// Design Resources
+// Ant Design Resources
 import { Button } from 'antd';
 import { PlusCircleFilled } from '@ant-design/icons';
 // Hooks

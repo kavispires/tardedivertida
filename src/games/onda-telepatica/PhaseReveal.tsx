@@ -1,4 +1,4 @@
-// Design Resources
+// Ant Design Resources
 import { Button } from 'antd';
 // State & Hooks
 import { useIsUserReady, useLanguage, useStep, useWhichPlayerIsThe } from 'hooks';

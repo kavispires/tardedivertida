@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { orderBy } from 'lodash';
-// Design Resources
+// Ant Design Resources
 import { Button } from 'antd';
 // Components
 import { Avatar, AvatarName, ButtonContainer, Translate } from 'components';

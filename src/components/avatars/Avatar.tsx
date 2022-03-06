@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-// Design Resources
+// Ant Design Resources
 import { Avatar as AntAvatar, AvatarProps } from 'antd';
 // Images
 import avatars from 'images/avatars.svg';

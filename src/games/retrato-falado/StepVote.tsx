@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-// Design Resources
+// Ant Design Resources
 import { Button, Space } from 'antd';
 // Utils
 import { useCardWidth, useGlobalState } from 'hooks';

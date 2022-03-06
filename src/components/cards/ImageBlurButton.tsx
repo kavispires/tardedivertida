@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-// Design Resources
+// Ant Design Resources
 import { Button, Tooltip } from 'antd';
 import { EyeInvisibleOutlined } from '@ant-design/icons';
 // Utils

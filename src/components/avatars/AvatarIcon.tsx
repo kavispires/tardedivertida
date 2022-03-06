@@ -1,4 +1,4 @@
-// Design Resources
+// Ant Design Resources
 import { Avatar, AvatarProps } from 'antd';
 // Helpers
 import { kebabToPascal } from 'utils/helpers';

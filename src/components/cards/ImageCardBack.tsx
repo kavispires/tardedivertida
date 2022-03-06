@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-// Design Resources
+// Ant Design Resources
 import { Image } from 'antd';
 // Resources
 import placeholder from 'images/placeholder.jpg';

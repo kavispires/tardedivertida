@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-// Design Resources
+// Ant Design Resources
 import { CheckCircleFilled, PlusCircleFilled } from '@ant-design/icons';
 // Utils
 import { getColorFromIndex } from 'utils/helpers';

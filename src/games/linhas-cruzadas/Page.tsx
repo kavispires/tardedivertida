@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { useMemo } from 'react';
-// Design Resources
+// Ant Design Resources
 import { Avatar as AntAvatar } from 'antd';
 // Utils
 import { getAnimationClass } from 'utils/helpers';

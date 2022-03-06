@@ -1,5 +1,5 @@
 import { useState } from 'react';
-// Design Resources
+// Ant Design Resources
 import { Button, Space } from 'antd';
 import { CloudUploadOutlined } from '@ant-design/icons';
 // Components

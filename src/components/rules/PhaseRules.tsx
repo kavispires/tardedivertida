@@ -1,4 +1,4 @@
-// Design Resources
+// Ant Design Resources
 import { Button, Layout, Space, Typography } from 'antd';
 import { CheckCircleFilled, MehFilled, RobotFilled, SmileFilled } from '@ant-design/icons';
 // Utils

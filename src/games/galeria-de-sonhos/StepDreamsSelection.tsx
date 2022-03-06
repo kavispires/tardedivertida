@@ -1,4 +1,4 @@
-// Design Resources
+// Ant Design Resources
 import { Button } from 'antd';
 // Hooks
 import { useBooleanDictionary } from 'hooks';

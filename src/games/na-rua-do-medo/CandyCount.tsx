@@ -1,4 +1,4 @@
-// Design Resources
+// Ant Design Resources
 import { Avatar } from 'antd';
 // Components
 import { AvatarIcon } from 'components';

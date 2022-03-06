@@ -1,6 +1,6 @@
 import { lazy, Suspense, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-// Design Resources
+// Ant Design Resources
 import { message, notification } from 'antd';
 // Adapters
 import { GAME_API } from 'adapters';

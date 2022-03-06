@@ -1,4 +1,4 @@
-// Design Resources
+// Ant Design Resources
 import { Checkbox } from 'antd';
 import { LockFilled, QuestionCircleFilled } from '@ant-design/icons';
 // Hooks

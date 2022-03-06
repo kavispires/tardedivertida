@@ -1,5 +1,5 @@
 import { orderBy } from 'lodash';
-// Design Resources
+// Ant Design Resources
 import { Avatar as AntAvatar } from 'antd';
 import { CrownFilled, MessageFilled } from '@ant-design/icons';
 // Utils

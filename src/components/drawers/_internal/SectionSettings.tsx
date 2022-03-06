@@ -1,4 +1,4 @@
-// Design Resources
+// Ant Design Resources
 import { Button, Switch, Tooltip } from 'antd';
 import { InfoCircleOutlined } from '@ant-design/icons';
 // Hooks

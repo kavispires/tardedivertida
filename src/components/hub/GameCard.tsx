@@ -1,4 +1,4 @@
-// Design Resources
+// Ant Design Resources
 import { Space, Card, Image, Divider, Tag, Badge } from 'antd';
 // Hooks
 import { useDimensions, useLanguage } from 'hooks';

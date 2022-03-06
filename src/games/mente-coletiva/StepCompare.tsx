@@ -1,4 +1,4 @@
-// Design Resources
+// Ant Design Resources
 import { Divider } from 'antd';
 // Components
 import { Step } from 'components';

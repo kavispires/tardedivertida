@@ -1,4 +1,4 @@
-// Design Resources
+// Ant Design Resources
 import { Alert } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks';

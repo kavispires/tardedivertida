@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-// Design Resources
+// Ant Design Resources
 import { message } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks';

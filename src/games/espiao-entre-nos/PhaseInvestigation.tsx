@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-// Design Resources
+// Ant Design Resources
 import { notification } from 'antd';
 // Hooks
 import { useIsUserReady, useWhichPlayerIsThe, useUser, useLanguage, useStep } from 'hooks';

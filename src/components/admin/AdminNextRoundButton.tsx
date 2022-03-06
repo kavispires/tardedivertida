@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-// Design Resources
+// Ant Design Resources
 import { Button, Space } from 'antd';
 import { FireFilled } from '@ant-design/icons';
 // State & Hooks

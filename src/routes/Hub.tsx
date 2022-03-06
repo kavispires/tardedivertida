@@ -1,6 +1,6 @@
 import { useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-// Design Resources
+// Ant Design Resources
 import { Typography, Layout, Space, Divider, PageHeader, Button, message } from 'antd';
 import { DatabaseFilled } from '@ant-design/icons';
 // API
