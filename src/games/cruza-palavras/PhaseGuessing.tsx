@@ -1,6 +1,5 @@
-import { useState } from 'react';
 // State & Hooks
-import { useIsUserReady, useUser, useLanguage } from 'hooks';
+import { useIsUserReady, useUser, useLanguage, useStep } from 'hooks';
 import { useOnSubmitGuessesAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
@@ -9,10 +8,10 @@ import { Instruction, PhaseAnnouncement, PhaseContainer, StepSwitcher, Translate
 import StepGuessing from './StepGuessing';
 
 function PhaseGuessing({ players, state, info }: PhaseProps) {
-  const isUserReady = useIsUserReady(players, state);
   const { translate } = useLanguage();
+  const { step, nextStep, setStep } = useStep(0);
   const user = useUser(players);
-  const [step, setStep] = useState(0);
+  const isUserReady = useIsUserReady(players, state);
 
   const onSubmitGuesses = useOnSubmitGuessesAPIRequest(setStep);
 
@@ -23,7 +22,7 @@ function PhaseGuessing({ players, state, info }: PhaseProps) {
         <PhaseAnnouncement
           type="guess"
           title={translate('Match!', 'Combine!')}
-          onClose={() => setStep(1)}
+          onClose={nextStep}
           currentRound={state?.round?.current}
         >
           <Instruction>
