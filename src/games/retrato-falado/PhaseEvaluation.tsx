@@ -1,6 +1,5 @@
-import { useState } from 'react';
 // State & Hooks
-import { useIsUserReady, useLanguage, useWhichPlayerIsThe, useUser } from 'hooks';
+import { useIsUserReady, useLanguage, useWhichPlayerIsThe, useUser, useStep } from 'hooks';
 import { useOnSubmitVoteAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
@@ -13,7 +12,7 @@ function PhaseEvaluation({ players, state, info }: PhaseProps) {
   const user = useUser(players);
 
   const isUserReady = useIsUserReady(players, state);
-  const [step, setStep] = useState(0);
+  const { step, nextStep, setStep } = useStep(0);
   const [, isUserTheWitness] = useWhichPlayerIsThe('witnessId', state, players);
 
   const onSubmitVote = useOnSubmitVoteAPIRequest(setStep);
@@ -25,7 +24,7 @@ function PhaseEvaluation({ players, state, info }: PhaseProps) {
         <PhaseAnnouncement
           type="choice"
           title={translate('Vote!', 'Vote!')}
-          onClose={() => setStep(1)}
+          onClose={nextStep}
           currentRound={state?.round?.current}
         >
           <Instruction>
