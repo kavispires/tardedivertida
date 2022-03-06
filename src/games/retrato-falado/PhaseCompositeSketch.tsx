@@ -1,6 +1,5 @@
-import { useState } from 'react';
 // State & Hooks
-import { useIsUserReady, useLanguage, useWhichPlayerIsThe } from 'hooks';
+import { useIsUserReady, useLanguage, useStep, useWhichPlayerIsThe } from 'hooks';
 import { useOnSubmitOrientationAPIRequest, useOnSubmitSketchAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
@@ -19,8 +18,8 @@ import StepTestimonial from './StepTestimonial';
 
 function PhaseCompositeSketch({ players, state, info }: PhaseProps) {
   const { translate } = useLanguage();
+  const { step, nextStep, setStep } = useStep(0);
   const isUserReady = useIsUserReady(players, state);
-  const [step, setStep] = useState(0);
   const [witness, isUserTheWitness] = useWhichPlayerIsThe('witnessId', state, players);
 
   const onSubmitSketch = useOnSubmitSketchAPIRequest(setStep);
@@ -32,7 +31,7 @@ function PhaseCompositeSketch({ players, state, info }: PhaseProps) {
         {/* Step 0 */}
         <RoundAnnouncement
           round={state?.round}
-          onPressButton={() => setStep(1)}
+          onPressButton={nextStep}
           buttonText=" "
           time={7}
           unskippable
@@ -62,7 +61,7 @@ function PhaseCompositeSketch({ players, state, info }: PhaseProps) {
         <PhaseAnnouncement
           type="monster"
           title={translate('Memorize! Descreva! Desenhe!', 'Memorize! Describe! Sketch!')}
-          onClose={() => setStep(2)}
+          onClose={nextStep}
           currentRound={state?.round?.current}
           duration={state?.round?.current < 2 ? 20 : 5}
           unskippable

@@ -1,6 +1,5 @@
-import { useState } from 'react';
 // State & Hooks
-import { useIsUserReady, useLanguage, useWhichPlayerIsThe, useUser } from 'hooks';
+import { useIsUserReady, useLanguage, useWhichPlayerIsThe, useUser, useStep } from 'hooks';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
@@ -10,10 +9,10 @@ import StepRanking from './StepRanking';
 
 function PhaseReveal({ players, state, info }: PhaseProps) {
   const { translate } = useLanguage();
+  const { step, nextStep } = useStep(0);
   const user = useUser(players);
 
   const isUserReady = useIsUserReady(players, state);
-  const [step, setStep] = useState(0);
   const [witness] = useWhichPlayerIsThe('witnessId', state, players);
 
   return (
@@ -23,7 +22,7 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
         <PhaseAnnouncement
           type="quality-seal"
           title={translate('Resultado', 'Results')}
-          onClose={() => setStep(1)}
+          onClose={nextStep}
           currentRound={state?.round?.current}
           duration={5}
         >
@@ -41,7 +40,7 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
           witnessVote={state.witnessVote}
           user={user}
           players={players}
-          setStep={setStep}
+          nextStep={nextStep}
         />
 
         {/* Step 2 */}
