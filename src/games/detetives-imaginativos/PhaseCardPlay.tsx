@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 // Design Resources
 import { message } from 'antd';
 // Hooks
-import { useWhichPlayerIsThe, useUser, useLoading, useLanguage } from 'hooks';
+import { useWhichPlayerIsThe, useUser, useLoading, useLanguage, useStep } from 'hooks';
 import { useOnPlayCardAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
@@ -21,13 +21,12 @@ import StepPlayCard from './StepPlayCard';
 function PhaseCardPlay({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
   const { isLoading } = useLoading();
+  const { step, nextStep } = useStep(0);
   const user = useUser(players);
   const [currentPlayer, isUserTheCurrentPlayer] = useWhichPlayerIsThe('currentPlayerId', state, players);
   const [, isUserTheImpostor] = useWhichPlayerIsThe('impostorId', state, players);
-  const [step, setStep] = useState(0);
 
   const onPlayCard = useOnPlayCardAPIRequest();
-  // const onPlayCard = (e: any) => console.log(e);
 
   useEffect(() => {
     if (isUserTheCurrentPlayer && step === 1 && !isLoading) {
@@ -58,7 +57,7 @@ function PhaseCardPlay({ state, players, info }: PhaseProps) {
         <PhaseAnnouncement
           type="hanging-photograph"
           title={translate('Apresentação das Evidências', 'Evidence')}
-          onClose={() => setStep(1)}
+          onClose={nextStep}
           currentRound={state?.round?.current}
         >
           <Instruction>

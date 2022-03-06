@@ -1,6 +1,5 @@
-import { useState } from 'react';
 // Hooks
-import { useWhichPlayerIsThe, useLanguage } from 'hooks';
+import { useWhichPlayerIsThe, useLanguage, useStep } from 'hooks';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
@@ -9,8 +8,8 @@ import StepReveal from './StepReveal';
 
 function PhaseReveal({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
+  const { step, nextStep } = useStep(0);
   const [impostor] = useWhichPlayerIsThe('impostorId', state, players);
-  const [step, setStep] = useState(0);
 
   return (
     <PhaseContainer
@@ -24,7 +23,7 @@ function PhaseReveal({ state, players, info }: PhaseProps) {
         <PhaseAnnouncement
           type="rank"
           title={translate('Revelação', 'Reveal')}
-          onClose={() => setStep(1)}
+          onClose={nextStep}
           currentRound={state?.round?.current}
         >
           <Instruction>

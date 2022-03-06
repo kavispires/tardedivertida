@@ -1,6 +1,5 @@
-import { useState } from 'react';
 // Hooks
-import { useIsUserReady, useWhichPlayerIsThe, useUser, useLanguage } from 'hooks';
+import { useIsUserReady, useWhichPlayerIsThe, useUser, useLanguage, useStep } from 'hooks';
 import { useOnSubmitSecretClueAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
@@ -22,10 +21,10 @@ import StepSecretClueWaiting from './StepSecretClueWaiting';
 
 function PhaseSecretClue({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
+  const { step, nextStep, setStep } = useStep(0);
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
   const [leader, isUserTheLeader] = useWhichPlayerIsThe('leaderId', state, players);
-  const [step, setStep] = useState(0);
 
   const onSubmitSecretClue = useOnSubmitSecretClueAPIRequest(setStep);
 
@@ -41,7 +40,7 @@ function PhaseSecretClue({ state, players, info }: PhaseProps) {
         <RoundAnnouncement
           round={state.round}
           buttonText=" "
-          onPressButton={() => setStep(1)}
+          onPressButton={nextStep}
           time={5}
           circleColor="grey"
         />
@@ -50,7 +49,7 @@ function PhaseSecretClue({ state, players, info }: PhaseProps) {
         <PhaseAnnouncement
           type="secret"
           title={translate('Pista Secreta', 'Secret Clue')}
-          onClose={() => setStep(2)}
+          onClose={nextStep}
           currentRound={state?.round?.current}
         >
           <Instruction>
