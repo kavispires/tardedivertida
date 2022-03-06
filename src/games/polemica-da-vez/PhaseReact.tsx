@@ -1,6 +1,5 @@
-import { useState } from 'react';
 // Hooks
-import { useLanguage } from 'hooks';
+import { useLanguage, useStep } from 'hooks';
 import { useOnSubmitReactionAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
@@ -10,7 +9,7 @@ import { StepLiking } from './StepLiking';
 
 function PhaseReact({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
-  const [step, setStep] = useState(0);
+  const { step, nextStep, setStep } = useStep(0);
 
   const onSubmitReaction = useOnSubmitReactionAPIRequest(setStep);
 
@@ -21,7 +20,7 @@ function PhaseReact({ state, players, info }: PhaseProps) {
         <PhaseAnnouncement
           type="feedback"
           title={translate('O que você acha?', 'What do you think?')}
-          onClose={() => setStep(1)}
+          onClose={nextStep}
           currentRound={state?.round?.current}
         >
           <Instruction>
