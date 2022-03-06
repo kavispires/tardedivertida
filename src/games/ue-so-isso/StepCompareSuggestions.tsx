@@ -71,7 +71,7 @@ export function StepCompareSuggestions({
   const suggestionsValues = Object.values(myRecommendation);
 
   return (
-    <Step>
+    <Step fullWidth>
       <Title white>
         <Translate pt="Comparem as Dicas" en="Compare Clues" />
       </Title>

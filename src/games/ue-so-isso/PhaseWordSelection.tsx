@@ -9,10 +9,9 @@ import {
   PhaseAnnouncement,
   PhaseContainer,
   RoundAnnouncement,
-  Step,
   StepSwitcher,
   Translate,
-  ViewIf,
+  ViewOr,
 } from 'components';
 import { StepWordSelection } from './StepWordSelection';
 import { GameProgressBar } from './GameProgressBar';
@@ -119,25 +118,22 @@ function PhaseWordSelection({ state, players, info }: PhaseProps) {
         </PhaseAnnouncement>
 
         {/* Step 2 */}
-        <Step fullWidth>
-          <ViewIf isVisible={isUserTheGuesser}>
-            <GuesserWaitingRoom
-              players={players}
-              instructionSuffix={{
-                pt: 'decidirem a palavra secreta',
-                en: 'choose a secret word',
-              }}
-            />
-          </ViewIf>
 
-          <ViewIf isVisible={!isUserTheGuesser}>
-            <StepWordSelection
-              words={state?.words}
-              onSendSelectedWords={onSendSelectedWords}
-              guesser={guesser}
-            />
-          </ViewIf>
-        </Step>
+        <ViewOr orCondition={isUserTheGuesser}>
+          <GuesserWaitingRoom
+            players={players}
+            instructionSuffix={{
+              pt: 'decidirem a palavra secreta',
+              en: 'choose a secret word',
+            }}
+          />
+
+          <StepWordSelection
+            words={state?.words}
+            onSendSelectedWords={onSendSelectedWords}
+            guesser={guesser}
+          />
+        </ViewOr>
       </StepSwitcher>
     </PhaseContainer>
   );

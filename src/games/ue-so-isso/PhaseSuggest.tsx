@@ -4,15 +4,7 @@ import { useOnSubmitSuggestionsAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import {
-  Instruction,
-  PhaseAnnouncement,
-  PhaseContainer,
-  Step,
-  StepSwitcher,
-  Translate,
-  ViewIf,
-} from 'components';
+import { Instruction, PhaseAnnouncement, PhaseContainer, StepSwitcher, Translate, ViewOr } from 'components';
 import { StepSuggestion } from './StepSuggestion';
 import { WritingRules } from './RulesBlobs';
 import { GuesserWaitingRoom } from './GuesserWaitingRoom';
@@ -52,27 +44,24 @@ function PhaseSuggest({ state, players, info }: PhaseProps) {
         </PhaseAnnouncement>
 
         {/* Step 1 */}
-        <Step fullWidth>
-          <ViewIf isVisible={isUserTheGuesser}>
-            <GuesserWaitingRoom
-              players={players}
-              instructionSuffix={{
-                pt: 'escrevem dicas',
-                en: 'write clues',
-              }}
-            />
-          </ViewIf>
 
-          <ViewIf isVisible={!isUserTheGuesser}>
-            <StepSuggestion
-              guesser={guesser}
-              onSendSuggestions={onSendSuggestions}
-              secretWord={state.secretWord}
-              suggestionsNumber={state.suggestionsNumber}
-              players={players}
-            />
-          </ViewIf>
-        </Step>
+        <ViewOr orCondition={isUserTheGuesser}>
+          <GuesserWaitingRoom
+            players={players}
+            instructionSuffix={{
+              pt: 'escrevem dicas',
+              en: 'write clues',
+            }}
+          />
+
+          <StepSuggestion
+            guesser={guesser}
+            onSendSuggestions={onSendSuggestions}
+            secretWord={state.secretWord}
+            suggestionsNumber={state.suggestionsNumber}
+            players={players}
+          />
+        </ViewOr>
       </StepSwitcher>
     </PhaseContainer>
   );
