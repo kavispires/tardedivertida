@@ -6,7 +6,7 @@ import { useOnProgressGameAPIRequest } from './api-requests';
 import { PHASES } from 'utils/phases';
 import { determineView } from './helpers';
 // Components
-import { PhaseAnnouncement, PhaseContainer, PhaseTimerReset, StepSwitcher } from 'components';
+import { PhaseAnnouncement, PhaseContainer, PhaseTimerReset, StepSwitcher, ViewOr } from 'components';
 import { StepResolution } from './StepResolution';
 
 function PhaseResolution({ state, players, info }: PhaseProps) {
@@ -32,7 +32,7 @@ function PhaseResolution({ state, players, info }: PhaseProps) {
     >
       <StepSwitcher step={step} conditions={[!isUserReady]} players={players}>
         {/* Step 0 */}
-        {resolutionStatus.didSpyGuess ? (
+        <ViewOr orCondition={resolutionStatus.didSpyGuess}>
           <PhaseAnnouncement
             type="map-location"
             title={translate('O espião tentou adivinhar o local', 'The spy tried to guess the location')}
@@ -42,7 +42,7 @@ function PhaseResolution({ state, players, info }: PhaseProps) {
             className="e-phase-announcement"
             duration={5}
           />
-        ) : (
+
           <PhaseAnnouncement
             type="thief"
             title={translate('A votação foi unanime!', 'The vote was unanimous!')}
@@ -52,7 +52,7 @@ function PhaseResolution({ state, players, info }: PhaseProps) {
             className="e-phase-announcement"
             duration={5}
           />
-        )}
+        </ViewOr>
 
         {/* Step 1 */}
         <PhaseTimerReset nextStep={nextStep} />
