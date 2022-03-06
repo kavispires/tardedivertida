@@ -11,10 +11,9 @@ import {
   PhaseAnnouncement,
   PhaseContainer,
   RoundAnnouncement,
-  Step,
   StepSwitcher,
   Translate,
-  ViewIf,
+  ViewOr,
 } from 'components';
 import { StepSecretClueWrite } from './StepSecretClueWrite';
 import { StepSecretClueWaiting } from './StepSecretClueWaiting';
@@ -70,20 +69,11 @@ function PhaseSecretClue({ state, players, info }: PhaseProps) {
         </PhaseAnnouncement>
 
         {/* Step 2 */}
-        <Step fullWidth>
-          <ViewIf isVisible={!isUserTheLeader}>
-            <StepSecretClueWaiting
-              user={user}
-              leader={leader}
-              players={players}
-              turnOrder={state.turnOrder}
-            />
-          </ViewIf>
+        <ViewOr orCondition={isUserTheLeader}>
+          <StepSecretClueWrite user={user} onSubmitClue={onSubmitSecretClue} />
 
-          <ViewIf isVisible={isUserTheLeader}>
-            <StepSecretClueWrite user={user} onSubmitClue={onSubmitSecretClue} />
-          </ViewIf>
-        </Step>
+          <StepSecretClueWaiting user={user} leader={leader} players={players} turnOrder={state.turnOrder} />
+        </ViewOr>
       </StepSwitcher>
     </PhaseContainer>
   );
