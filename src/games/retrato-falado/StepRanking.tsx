@@ -7,7 +7,7 @@ type StepRankingProps = {
   round: GameRound;
 };
 
-function StepRanking({ ranking, players, round }: StepRankingProps) {
+export function StepRanking({ ranking, players, round }: StepRankingProps) {
   return (
     <Step fullWidth>
       <Title>Ranking</Title>
@@ -23,5 +23,3 @@ function StepRanking({ ranking, players, round }: StepRankingProps) {
     </Step>
   );
 }
-
-export default StepRanking;

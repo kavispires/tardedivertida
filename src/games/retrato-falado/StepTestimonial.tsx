@@ -5,10 +5,10 @@ import { TIMES, VIEWS } from './constants';
 import { inNSeconds } from 'utils/helpers';
 // Components
 import { ViewSwitch } from 'components';
-import ViewAnnouncement from './ViewAnnouncement';
-import ViewLastSeconds from './ViewLastSeconds';
-import ViewSketching from './ViewSketching';
-import ViewWitnessing from './ViewWitnessing';
+import { ViewAnnouncement } from './ViewAnnouncement';
+import { ViewLastSeconds } from './ViewLastSeconds';
+import { ViewSketching } from './ViewSketching';
+import { ViewWitnessing } from './ViewWitnessing';
 import { useGlobalState } from 'hooks';
 
 type StepTestimonialProps = {
@@ -18,7 +18,7 @@ type StepTestimonialProps = {
   onSubmitOrientation: GenericFunction;
 };
 
-function StepTestimonial({
+export function StepTestimonial({
   isUserTheWitness,
   currentMonster,
   onSubmitSketch,
@@ -87,5 +87,3 @@ function StepTestimonial({
     </ViewSwitch>
   );
 }
-
-export default StepTestimonial;

@@ -4,7 +4,7 @@ type ViewAnnouncementProps = {
   isUserTheWitness: boolean;
 };
 
-function ViewAnnouncement({ isUserTheWitness }: ViewAnnouncementProps) {
+export function ViewAnnouncement({ isUserTheWitness }: ViewAnnouncementProps) {
   return (
     <PhaseAnnouncement
       title={
@@ -21,5 +21,3 @@ function ViewAnnouncement({ isUserTheWitness }: ViewAnnouncementProps) {
     ></PhaseAnnouncement>
   );
 }
-
-export default ViewAnnouncement;

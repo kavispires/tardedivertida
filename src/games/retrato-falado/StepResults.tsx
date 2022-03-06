@@ -2,8 +2,8 @@
 import { useCardWidth, useGlobalState } from 'hooks';
 // Components
 import { AvatarName, ButtonContainer, Instruction, Step, TimedButton, Title, Translate } from 'components';
-import MonsterCard from './MonsterCard';
-import MonsterSketches from './MonsterSketches';
+import { MonsterCard } from './MonsterCard';
+import { MonsterSketches } from './MonsterSketches';
 
 type StepResultsProps = {
   currentMonster: Monster;
@@ -21,7 +21,7 @@ type Sketches = {
   otherSketches: Sketch[];
 };
 
-function StepResults({
+export function StepResults({
   sketches,
   players,
   currentMonster,
@@ -130,5 +130,3 @@ function StepResults({
     </Step>
   );
 }
-
-export default StepResults;
