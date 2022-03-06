@@ -1,6 +1,5 @@
-import { useState } from 'react';
 // State & Hooks
-import { useIsUserReady, useUser, useLanguage } from 'hooks';
+import { useIsUserReady, useUser, useLanguage, useStep } from 'hooks';
 import { useOnSubmitGuessAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
@@ -16,10 +15,10 @@ import {
 import { StepNameDrawing } from './StepNameDrawing';
 
 function PhaseNaming({ players, state, info }: PhaseProps) {
-  const isUserReady = useIsUserReady(players, state);
+  const { step, nextStep, setStep } = useStep(0);
   const { translate } = useLanguage();
   const user = useUser(players);
-  const [step, setStep] = useState(0);
+  const isUserReady = useIsUserReady(players, state);
 
   const onSubmitGuess = useOnSubmitGuessAPIRequest(setStep);
 
@@ -30,7 +29,7 @@ function PhaseNaming({ players, state, info }: PhaseProps) {
         <PhaseAnnouncement
           type="write-idea"
           title={translate('O que é isso?', 'What is it?')}
-          onClose={() => setStep(1)}
+          onClose={nextStep}
           currentRound={state?.round?.current}
         >
           <Instruction>

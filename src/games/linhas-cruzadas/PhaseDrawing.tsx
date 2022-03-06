@@ -1,6 +1,5 @@
-import { useState } from 'react';
 // State & Hooks
-import { useIsUserReady, useUser, useLanguage } from 'hooks';
+import { useIsUserReady, useUser, useLanguage, useStep } from 'hooks';
 import { useOnSubmitDrawingAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
@@ -17,10 +16,10 @@ import {
 import { StepTimedDrawing } from './StepTimedDrawing';
 
 function PhaseDrawing({ players, state, info }: PhaseProps) {
-  const isUserReady = useIsUserReady(players, state);
+  const { step, nextStep, setStep } = useStep(0);
   const { translate } = useLanguage();
   const user = useUser(players);
-  const [step, setStep] = useState(0);
+  const isUserReady = useIsUserReady(players, state);
 
   const onSubmitDrawing = useOnSubmitDrawingAPIRequest(setStep);
 
@@ -31,7 +30,7 @@ function PhaseDrawing({ players, state, info }: PhaseProps) {
         <PhaseAnnouncement
           type="drawing"
           title={translate('Desenhe', 'Draw')}
-          onClose={() => setStep(1)}
+          onClose={nextStep}
           currentRound={state?.round?.current}
           buttonText={translate('Um dó, lá, si... vamos ir... já!', 'Ready! Set! Go!')}
           withoutTimer
