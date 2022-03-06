@@ -3,8 +3,8 @@ import { Button, Popover } from 'antd';
 import { FormOutlined } from '@ant-design/icons';
 // Components
 import { Translate } from 'components';
-import PreviousClue from './PreviousClue';
-import WordForm from './WordForm';
+import { PreviousClue } from './PreviousClue';
+import { WordForm } from './WordForm';
 
 type WritingCellProps = {
   onSubmitClue: GenericFunction;
@@ -13,7 +13,7 @@ type WritingCellProps = {
   user: GamePlayer;
 };
 
-function WritingCell({ onSubmitClue, cell, user, disabled }: WritingCellProps) {
+export function WritingCell({ onSubmitClue, cell, user, disabled }: WritingCellProps) {
   if (cell.writable && user.id === cell.playerId) {
     return (
       <Popover
@@ -34,5 +34,3 @@ function WritingCell({ onSubmitClue, cell, user, disabled }: WritingCellProps) {
 
   return <></>;
 }
-
-export default WritingCell;

@@ -1,6 +1,7 @@
-// Components
-import ClueCard from './ClueCard';
+// Helpers
 import { getClueKey } from './helpers';
+// Components
+import { ClueCard } from './ClueCard';
 
 type CluesProps = {
   clues: CruzaPalavrasClue[];
@@ -9,7 +10,7 @@ type CluesProps = {
   guesses: PlainObject;
 };
 
-function Clues({ clues, onSelectClue, active, guesses }: CluesProps) {
+export function Clues({ clues, onSelectClue, active, guesses }: CluesProps) {
   return (
     <ul className="x-clue-cards">
       {clues.map((clueObj, index: number) => {
@@ -32,5 +33,3 @@ function Clues({ clues, onSelectClue, active, guesses }: CluesProps) {
     </ul>
   );
 }
-
-export default Clues;

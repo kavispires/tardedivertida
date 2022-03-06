@@ -5,7 +5,7 @@ import { useOnSubmitClueAPIRequest } from './api-requests';
 import { PHASES } from 'utils/phases';
 // Components
 import { PhaseAnnouncement, PhaseContainer, RoundAnnouncement, StepSwitcher } from 'components';
-import StepClueWriting from './StepClueWriting';
+import { StepClueWriting } from './StepClueWriting';
 import { WritingCluesRule } from './RulesBlobs';
 
 function PhaseClueWriting({ players, state, info }: PhaseProps) {

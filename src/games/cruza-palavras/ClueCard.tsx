@@ -16,7 +16,7 @@ type ClueCardProps = {
   strikeMatches?: boolean;
 };
 
-function ClueCard({
+export function ClueCard({
   isMatched,
   isSelected,
   clue,
@@ -55,5 +55,3 @@ function ClueCard({
     </div>
   );
 }
-
-export default ClueCard;

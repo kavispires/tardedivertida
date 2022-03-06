@@ -16,9 +16,9 @@ import {
   Title,
   Translate,
 } from 'components';
-import WordGrid from './WordGrid';
-import ClueCard from './ClueCard';
-import PreviousClue from './PreviousClue';
+import { WordGrid } from './WordGrid';
+import { ClueCard } from './ClueCard';
+import { PreviousClue } from './PreviousClue';
 import { ScoringRule } from './RulesBlobs';
 
 const AVATARS: PlainObject = avatars;
@@ -185,7 +185,7 @@ type StepRevealProps = {
   whoGotNoPoints: PlayerId[];
 };
 
-function StepReveal({ grid, user, players, clues, nextStep, whoGotNoPoints }: StepRevealProps) {
+export function StepReveal({ grid, user, players, clues, nextStep, whoGotNoPoints }: StepRevealProps) {
   const correctCoordinatesPerPlayer = clues.reduce((acc: PlainObject, clue) => {
     acc[clue.coordinate] = clue.playerId;
     return acc;
@@ -270,5 +270,3 @@ function StepReveal({ grid, user, players, clues, nextStep, whoGotNoPoints }: St
     </div>
   );
 }
-
-export default StepReveal;

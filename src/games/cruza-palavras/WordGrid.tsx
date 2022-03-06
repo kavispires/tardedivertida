@@ -7,7 +7,7 @@ type WordGridProps = {
   cellComponentProps: any;
 };
 
-function WordGrid({ grid, user, CellComponent, cellComponentProps = {} }: WordGridProps) {
+export function WordGrid({ grid, user, CellComponent, cellComponentProps = {} }: WordGridProps) {
   const length = Math.sqrt(grid.length);
 
   const gridStyle = {
@@ -27,5 +27,3 @@ function WordGrid({ grid, user, CellComponent, cellComponentProps = {} }: WordGr
     </div>
   );
 }
-
-export default WordGrid;

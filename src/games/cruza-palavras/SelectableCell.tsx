@@ -4,8 +4,8 @@ import { PlusCircleFilled } from '@ant-design/icons';
 // Utils
 import { getClueFromKey } from './helpers';
 // Components
-import ClueCard from './ClueCard';
-import PreviousClue from './PreviousClue';
+import { ClueCard } from './ClueCard';
+import { PreviousClue } from './PreviousClue';
 
 type SelectableCellProps = {
   onSelectCell: GenericFunction;
@@ -17,7 +17,7 @@ type SelectableCellProps = {
   user: GamePlayer;
 };
 
-function SelectableCell({
+export function SelectableCell({
   onSelectCell,
   onClearCell,
   cell,
@@ -56,5 +56,3 @@ function SelectableCell({
     </Button>
   );
 }
-
-export default SelectableCell;
