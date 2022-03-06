@@ -1,26 +1,13 @@
 import { useEffect, useState } from 'react';
-// Design Resources
-import { Button } from 'antd';
-import { PictureOutlined } from '@ant-design/icons';
 // State & Hooks
 import { useLanguage, useStep } from 'hooks';
 // Resources and Utils
 import { PHASES } from 'utils/phases';
 // Components
-import {
-  AdminNextRoundButton,
-  PhaseContainer,
-  RankingBoard,
-  StepSwitcher,
-  Step,
-  Title,
-  PhaseAnnouncement,
-  Translate,
-  RoundsLeftInstruction,
-  PopoverRule,
-} from 'components';
-import { GalleryWindow } from './GalleryWindow';
-import { GalleryRules, ScoringRules } from './TextBlobs';
+import { PhaseContainer, StepSwitcher, PhaseAnnouncement } from 'components';
+import { GalleryRules } from './TextBlobs';
+import { StepGallery } from './StepGallery';
+import { StepRanking } from './StepRanking';
 
 function PhaseGallery({ players, state, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -57,49 +44,25 @@ function PhaseGallery({ players, state, info }: PhaseProps) {
         </PhaseAnnouncement>
 
         {/* Step 1 */}
-        <Step className="a-gallery-phase__windows">
-          <Title>
-            <Translate pt="Galeria de Arte" en="Art Gallery" />
-          </Title>
-
-          <PopoverRule content={<ScoringRules />} />
-
-          {state?.gallery && (
-            <GalleryWindow
-              window={state.gallery[activeIndex]}
-              galleryLength={state.gallery.length}
-              cards={state.cards}
-              players={players}
-              activeIndex={activeIndex}
-              setActiveIndex={setActiveIndex}
-              setStep={setStep}
-              disableControls={isFirstGalleryRunThrough}
-            />
-          )}
-        </Step>
+        <StepGallery
+          gallery={state.gallery}
+          players={players}
+          cards={state.cards}
+          activeIndex={activeIndex}
+          setActiveIndex={setActiveIndex}
+          setStep={setStep}
+          isFirstGalleryRunThrough={isFirstGalleryRunThrough}
+        />
 
         {/* Step 2 */}
-        <Step>
-          <Title>Ranking</Title>
-          <RankingBoard players={players} ranking={state.ranking} />
-
-          <PopoverRule content={<ScoringRules />} />
-
-          {!isGameOver && <RoundsLeftInstruction round={state?.round} />}
-
-          <Button
-            size="large"
-            onClick={() => {
-              previousStep();
-              setActiveIndex(0);
-            }}
-            icon={<PictureOutlined />}
-          >
-            <Translate pt="Ver Galeria De Novo" en="See Gallery Again" />
-          </Button>
-
-          <AdminNextRoundButton round={state.round} lastRound={state?.lastRound} />
-        </Step>
+        <StepRanking
+          players={players}
+          ranking={state.ranking}
+          isGameOver={isGameOver}
+          round={state.round}
+          previousStep={previousStep}
+          setActiveIndex={setActiveIndex}
+        />
       </StepSwitcher>
     </PhaseContainer>
   );

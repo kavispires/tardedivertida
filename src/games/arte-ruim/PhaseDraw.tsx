@@ -94,6 +94,7 @@ function PhaseDraw({ players, state, info }: PhaseProps) {
             />
           </Instruction>
         </PhaseAnnouncement>
+
         {/* Step 2 */}
         <StepDraw secretCard={secretCard} onSubmitDrawing={onSubmitDrawing} />
       </StepSwitcher>
