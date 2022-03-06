@@ -43,7 +43,7 @@ export function StepSwitcher({
 }: StepSwitcherProps) {
   if (!players) console.warn('SetSwitcher is being used without `players`, please add it.');
 
-  if (players && step === children.length) {
+  if (players && step >= children.length) {
     return (
       <WaitingRoom
         players={players}
