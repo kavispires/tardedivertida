@@ -1,6 +1,6 @@
 import { useState } from 'react';
 // Hooks
-import { useLanguage, useLoading } from 'hooks';
+import { useLanguage, useLoading, useMock } from 'hooks';
 // Ant Design Resources
 import { Button, Input } from 'antd';
 // Components
@@ -14,6 +14,7 @@ import {
   Translate,
 } from 'components';
 import { BookPages } from './BookPages';
+import { mockStory } from './mock';
 
 type StoryWritingProps = {
   user: GamePlayer;
@@ -34,6 +35,10 @@ export function StoryWriting({ user, onSubmitStory }: StoryWritingProps) {
       });
     }
   };
+
+  useMock(() => {
+    onSubmitStory(mockStory(user.hand));
+  }, []);
 
   return (
     <Step fullWidth className="c-story-writing">

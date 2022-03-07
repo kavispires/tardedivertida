@@ -3,10 +3,20 @@ import clsx from 'clsx';
 import { Button } from 'antd';
 import { DownSquareOutlined } from '@ant-design/icons';
 // Hooks & Utils
-import { useCardWidth, useDevFeatures, useLanguage, useLoading } from 'hooks';
+import { useCardWidth, useDevFeatures, useLanguage, useLoading, useMock } from 'hooks';
 // Components
-import { Card, ImageBlurButton, ImageCard, PopoverRule, ReadyPlayersBar, Title, Translate } from 'components';
+import {
+  Card,
+  ImageBlurButton,
+  ImageCard,
+  PopoverRule,
+  ReadyPlayersBar,
+  Step,
+  Title,
+  Translate,
+} from 'components';
 import { VotingRules } from './RulesBlogs';
+import { mockVote } from './mock';
 
 type StepVotingProps = {
   players: GamePlayers;
@@ -15,9 +25,18 @@ type StepVotingProps = {
   onSubmitVote: GenericFunction;
   storyteller: GamePlayer;
   table: TableEntry[];
+  isUserTheStoryTeller: boolean;
 };
 
-export function StepVoting({ players, story, user, onSubmitVote, storyteller, table }: StepVotingProps) {
+export function StepVoting({
+  players,
+  story,
+  user,
+  onSubmitVote,
+  storyteller,
+  table,
+  isUserTheStoryTeller,
+}: StepVotingProps) {
   const { translate } = useLanguage();
   const { isLoading } = useLoading();
   const { isDebugEnabled } = useDevFeatures();
@@ -31,8 +50,14 @@ export function StepVoting({ players, story, user, onSubmitVote, storyteller, ta
     });
   };
 
+  useMock(() => {
+    if (!isUserTheStoryTeller) {
+      onSubmitVote(mockVote(table, user.hand));
+    }
+  }, []);
+
   return (
-    <div className="c-step-play-card">
+    <Step fullWidth className="c-step-play-card">
       <Title>
         <Translate pt="Qual carta é a ilustração correta?" en="What card is the correct one?" />
         <Card header={storyteller.name} className="c-story-card" color="yellow">
@@ -71,6 +96,6 @@ export function StepVoting({ players, story, user, onSubmitVote, storyteller, ta
       </div>
 
       <ReadyPlayersBar players={players} />
-    </div>
+    </Step>
   );
 }
