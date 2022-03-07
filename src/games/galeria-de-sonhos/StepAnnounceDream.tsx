@@ -1,23 +1,18 @@
-import { useEffect } from 'react';
 // Ant Design Resources
-import { Divider, message } from 'antd';
+import { Divider } from 'antd';
 // Hooks
-import { useCardWidth, useLanguage } from 'hooks';
+import { useCardWidth } from 'hooks';
 // Components
 import {
   AdminNextRoundButton,
   AvatarName,
-  Card,
   ImageCard,
   Instruction,
-  PopoverRule,
   Step,
   TimedButton,
   Title,
   Translate,
 } from 'components';
-import { CardPlayRules } from './RulesBlobs';
-import { PlayTable } from './PlayTable';
 
 type StepAnnounceDreamProps = {
   latest: LatestInfo;
@@ -34,7 +29,6 @@ export function StepAnnounceDream({
   setStep,
   players,
 }: StepAnnounceDreamProps) {
-  const { translate } = useLanguage();
   const cardWidth = useCardWidth(5, 8, 140, 150);
 
   return (

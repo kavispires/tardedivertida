@@ -29,7 +29,7 @@ export function SelectTable({ table, onSelectCard, selectedCards }: SelectTableP
             <Button
               shape="round"
               size="small"
-              ghost
+              ghost={!isSelected}
               className="g-table-item-button"
               onClick={() => onSelectCard(card.id)}
             >
