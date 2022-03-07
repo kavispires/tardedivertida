@@ -14,6 +14,4 @@ export const PLAYER_COUNTS = {
   MAX: 10,
 };
 
-export const DOUBLE_ROUNDS_THRESHOLD = 6;
-
 export const WORDS_PER_CARD = 5;
