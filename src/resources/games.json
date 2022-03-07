@@ -119,7 +119,7 @@
         "label": "Duration",
         "key": "fixedRounds",
         "off": "30 points (15 rounds max)",
-        "on": "Each player once (7+) or twice (1-6)"
+        "on": "Each player once (6+) or twice (1-5)"
       }
     ]
   },
@@ -496,7 +496,15 @@
     "available": {
       "pt": true,
       "en": true
-    }
+    },
+    "options": [
+      {
+        "label": "End Game",
+        "key": "fixedRounds",
+        "off": "10 points (10 rounds max)",
+        "on": "Each player once (6+) or twice (1-5)"
+      }
+    ]
   },
   "P": {
     "gameCode": "P",
