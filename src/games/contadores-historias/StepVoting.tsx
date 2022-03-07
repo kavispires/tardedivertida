@@ -3,8 +3,7 @@ import clsx from 'clsx';
 import { Button } from 'antd';
 import { DownSquareOutlined } from '@ant-design/icons';
 // Hooks & Utils
-import { useCardWidth, useLanguage, useLoading } from 'hooks';
-import { isDevEnv } from 'utils/helpers';
+import { useCardWidth, useDevFeatures, useLanguage, useLoading } from 'hooks';
 // Components
 import { Card, ImageBlurButton, ImageCard, PopoverRule, ReadyPlayersBar, Title, Translate } from 'components';
 import { VotingRules } from './RulesBlogs';
@@ -21,6 +20,7 @@ type StepVotingProps = {
 export function StepVoting({ players, story, user, onSubmitVote, storyteller, table }: StepVotingProps) {
   const { translate } = useLanguage();
   const { isLoading } = useLoading();
+  const { isDebugEnabled } = useDevFeatures();
   const cardWidth = useCardWidth(Math.max(Object.keys(players).length, 6), 32, 150);
 
   const hasPlayedCardAlready = Boolean(user.vote);
@@ -62,7 +62,7 @@ export function StepVoting({ players, story, user, onSubmitVote, storyteller, ta
                 cardWidth={cardWidth}
                 className={clsx(isUserVote && 'c-game-table--vote')}
               />
-              {isDevEnv && <div>{cardEntry.cardId}</div>}
+              {isDebugEnabled && <div>{cardEntry.cardId}</div>}
 
               <ImageBlurButton cardId={cardEntry.cardId} />
             </div>
