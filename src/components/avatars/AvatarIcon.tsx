@@ -3,7 +3,7 @@ import { Avatar, AvatarProps } from 'antd';
 // Helpers
 import { kebabToPascal } from 'utils/helpers';
 // Components
-import { Icons } from 'components';
+import * as Icons from 'components/icons';
 
 const IconIllustrationsComponents: any = Icons;
 
