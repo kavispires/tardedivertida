@@ -2,7 +2,8 @@
 import { Players, SaveGamePayload } from '../../utils/types';
 import { FirebaseStateData, FirebaseStoreData, AllWords } from './types';
 // Constants
-import { DOUBLE_ROUNDS_THRESHOLD, UE_SO_ISSO_PHASES } from './constants';
+import { UE_SO_ISSO_PHASES } from './constants';
+import { DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
 // Helpers
 import * as firebaseUtils from '../../utils/firebase';
 import * as gameUtils from '../../utils/game-utils';
