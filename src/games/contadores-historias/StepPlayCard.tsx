@@ -1,5 +1,5 @@
 // Hooks
-import { useLoading } from 'hooks';
+import { useLoading, useMock } from 'hooks';
 // Components
 import {
   Card,
@@ -13,6 +13,7 @@ import {
   ViewIf,
 } from 'components';
 import { TableFaceDown } from './TableFaceDown';
+import { mockPlayCard } from './mock';
 
 type StepPlayCardProps = {
   players: GamePlayers;
@@ -39,6 +40,12 @@ export function StepPlayCard({
       cardId,
     });
   };
+
+  useMock(() => {
+    if (!isUserTheStoryTeller) {
+      onPlayCard(mockPlayCard(user.hand));
+    }
+  }, []);
 
   return (
     <Step fullWidth>

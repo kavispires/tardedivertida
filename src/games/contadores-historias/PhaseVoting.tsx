@@ -4,7 +4,7 @@ import { useOnSubmitVoteAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import { ImageCardPreloadHand, PhaseAnnouncement, PhaseContainer, Step, StepSwitcher } from 'components';
+import { ImageCardPreloadHand, PhaseAnnouncement, PhaseContainer, StepSwitcher } from 'components';
 import { StepVoting } from './StepVoting';
 import { VotingRules } from './RulesBlogs';
 
@@ -12,7 +12,7 @@ function PhaseVoting({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
   const { step, nextStep, setStep } = useStep(0);
   const user = useUser(players);
-  const [storyteller] = useWhichPlayerIsThe('storytellerId', state, players);
+  const [storyteller, isUserTheStoryTeller] = useWhichPlayerIsThe('storytellerId', state, players);
 
   const onSubmitVote = useOnSubmitVoteAPIRequest(setStep);
 
@@ -36,16 +36,15 @@ function PhaseVoting({ state, players, info }: PhaseProps) {
         </PhaseAnnouncement>
 
         {/* Step 1 */}
-        <Step fullWidth>
-          <StepVoting
-            players={players}
-            user={user}
-            story={state.story}
-            onSubmitVote={onSubmitVote}
-            storyteller={storyteller}
-            table={state.table}
-          />
-        </Step>
+        <StepVoting
+          players={players}
+          user={user}
+          story={state.story}
+          onSubmitVote={onSubmitVote}
+          storyteller={storyteller}
+          table={state.table}
+          isUserTheStoryTeller={isUserTheStoryTeller}
+        />
       </StepSwitcher>
     </PhaseContainer>
   );
