@@ -1,6 +1,5 @@
-import { useState } from 'react';
 // State & Hooks
-import { useIsUserReady, useLanguage } from 'hooks';
+import { useIsUserReady, useLanguage, useStep } from 'hooks';
 import { useOnSubmitCardsAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
@@ -10,24 +9,20 @@ import { DreamSelectionRules } from './RulesBlobs';
 import { StepDreamsSelection } from './StepDreamsSelection';
 
 function PhaseDreamsSelections({ players, state, info }: PhaseProps) {
-  const isUserReady = useIsUserReady(players, state);
   const { translate } = useLanguage();
-  const [step, setStep] = useState(0);
+  const { step, nextStep, setStep } = useStep();
+  const isUserReady = useIsUserReady(players, state);
 
   const onSubmitCards = useOnSubmitCardsAPIRequest(setStep);
 
   return (
-    <PhaseContainer
-      info={info}
-      phase={state?.phase}
-      allowedPhase={PHASES.GALERIA_DE_SONHOS.DREAMS_SELECTIONS}
-    >
+    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.GALERIA_DE_SONHOS.DREAMS_SELECTION}>
       <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady, !isUserReady]} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
           type="dream"
           title={translate('Visite sonhos!', 'Visit dreams!')}
-          onClose={() => setStep(1)}
+          onClose={nextStep}
           currentRound={state?.round?.current}
         >
           <DreamSelectionRules />

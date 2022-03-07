@@ -1,6 +1,5 @@
-import { useState } from 'react';
 // State & Hooks
-import { useIsUserReady, useLanguage } from 'hooks';
+import { useIsUserReady, useLanguage, useStep } from 'hooks';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
@@ -9,7 +8,7 @@ import { PhaseAnnouncement, PhaseContainer, StepSwitcher } from 'components';
 function PhaseResolution({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
   const { translate } = useLanguage();
-  const [step, setStep] = useState(0);
+  const { step, nextStep } = useStep();
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.GALERIA_DE_SONHOS.RESOLUTION}>
@@ -23,13 +22,14 @@ function PhaseResolution({ players, state, info }: PhaseProps) {
         <PhaseAnnouncement
           type="sleep"
           title={translate('Tema dos Sonhos', 'The Dream Theme')}
-          onClose={() => setStep(2)}
+          onClose={nextStep}
           currentRound={state?.round?.current}
         >
           TODO
         </PhaseAnnouncement>
 
         {/* Step 1 */}
+        <div>Resolution comes here</div>
       </StepSwitcher>
     </PhaseContainer>
   );

@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 // State & Hooks
-import { useIsUserReady, useUser, useLanguage, useWhichPlayerIsThe } from 'hooks';
+import { useIsUserReady, useUser, useLanguage, useWhichPlayerIsThe, useStep } from 'hooks';
 import { useOnPlayCardAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
@@ -10,6 +10,7 @@ import {
   Instruction,
   PhaseAnnouncement,
   PhaseContainer,
+  PhaseTimerReset,
   StepSwitcher,
   Translate,
 } from 'components';
@@ -18,10 +19,11 @@ import { StepPlayDream } from './StepPlayDream';
 import { StepAnnounceDream } from './StepAnnounceDream';
 
 function PhaseCardPlay({ players, state, info }: PhaseProps) {
-  const isUserReady = useIsUserReady(players, state);
   const { translate } = useLanguage();
+  const { step, nextStep, setStep } = useStep();
   const user = useUser(players);
-  const [step, setStep] = useState(0);
+  const isUserReady = useIsUserReady(players, state);
+
   const [activePlayer, isActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
   const [lastActivePlayer] = useWhichPlayerIsThe('lastActivePlayerId', state, players);
   const [playerInTheDark] = useWhichPlayerIsThe('playerHavingNightmareId', state, players);
@@ -32,7 +34,7 @@ function PhaseCardPlay({ players, state, info }: PhaseProps) {
     if (state.turnCount > 0) {
       setStep(3);
     }
-  }, [state.turnCount]);
+  }, [state.turnCount, setStep]);
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.GALERIA_DE_SONHOS.CARD_PLAY}>
@@ -41,11 +43,13 @@ function PhaseCardPlay({ players, state, info }: PhaseProps) {
         <PhaseAnnouncement
           type="door-sign"
           title={translate('Hora do Bingo dos Sonhos!', 'Time for the Dream Bingo!')}
-          onClose={() => setStep(playerInTheDark.id ? 1 : 2)}
+          onClose={() => setStep(playerInTheDark.id ? 1 : 3)}
           duration={state.round.current < 3 ? 20 : 5}
         >
           <CardPlayRules />
         </PhaseAnnouncement>
+
+        <PhaseTimerReset nextStep={nextStep} />
 
         {/* Step 1 */}
         <PhaseAnnouncement
@@ -64,7 +68,7 @@ function PhaseCardPlay({ players, state, info }: PhaseProps) {
               }
             />
           }
-          onClose={() => setStep(2)}
+          onClose={nextStep}
           currentRound={state?.round?.current}
         >
           <Instruction>

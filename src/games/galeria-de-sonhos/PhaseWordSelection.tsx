@@ -1,6 +1,5 @@
-import { useState } from 'react';
 // State & Hooks
-import { useIsUserReady, useLanguage, useWhichPlayerIsThe } from 'hooks';
+import { useIsUserReady, useLanguage, useStep, useWhichPlayerIsThe } from 'hooks';
 import { useOnSubmitWordAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
@@ -20,9 +19,9 @@ import { StepWordSelection } from './StepWordSelection';
 import { GeneralRules, WordSelectionRules } from './RulesBlobs';
 
 function PhaseWordSelection({ players, state, info }: PhaseProps) {
-  const isUserReady = useIsUserReady(players, state);
   const { translate } = useLanguage();
-  const [step, setStep] = useState(0);
+  const { step, nextStep, setStep } = useStep();
+  const isUserReady = useIsUserReady(players, state);
   const [scout, isUserTheScout] = useWhichPlayerIsThe('scoutId', state, players);
 
   const onSubmitWord = useOnSubmitWordAPIRequest(setStep);
@@ -36,7 +35,7 @@ function PhaseWordSelection({ players, state, info }: PhaseProps) {
         waitingRoomInstructionType="SERVER"
       >
         {/* Step 0 */}
-        <RoundAnnouncement round={state?.round} onPressButton={() => setStep(1)} buttonText=" " time={5}>
+        <RoundAnnouncement round={state?.round} onPressButton={nextStep} buttonText=" " time={5}>
           <Instruction contained>
             <Translate
               pt="Somos caçadores de sonhos tentando encontrar uns aos outros..."
@@ -49,7 +48,7 @@ function PhaseWordSelection({ players, state, info }: PhaseProps) {
         <PhaseAnnouncement
           type="sleep"
           title={translate('Tema dos Sonhos', 'The Dream Theme')}
-          onClose={() => setStep(2)}
+          onClose={nextStep}
           currentRound={state?.round?.current}
         >
           <WordSelectionRules scout={scout} />
