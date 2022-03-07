@@ -1,5 +1,9 @@
 import { DefaultState, DefaultStore, InitialState, Payload, PlayerId } from '../../utils/types';
 
+type OndaTelepaticaOptions = {
+  fixedRounds: boolean;
+};
+
 interface CategoryCard {
   id: string;
   left: string;

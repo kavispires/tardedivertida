@@ -1,5 +1,5 @@
 // Types
-import { CategoryCard, Deck, PastCategories, ResourceData } from './types';
+import { CategoryCard, Deck, OndaTelepaticaOptions, PastCategories, ResourceData } from './types';
 import { PlainObject, PlayerId, Players, Round } from '../../utils/types';
 // Constants
 import {
@@ -8,6 +8,7 @@ import {
   MAX_ROUNDS,
   ONDA_TELEPATICA_PHASES,
 } from './constants';
+import { DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
 // Utils
 import * as gameUtils from '../../utils/game-utils';
 
@@ -26,12 +27,10 @@ export const determineNextPhase = (
   const { RULES, SETUP, DIAL_CLUE, GUESS, REVEAL, GAME_OVER } = ONDA_TELEPATICA_PHASES;
   const order = [RULES, SETUP, DIAL_CLUE, GUESS, REVEAL, GAME_OVER];
 
-  if (isGameOver) {
-    return GAME_OVER;
-  }
-
   if (currentPhase === REVEAL) {
-    return triggerLastRound || (round.current > 0 && round.current === round.total) ? GAME_OVER : DIAL_CLUE;
+    return isGameOver || triggerLastRound || (round.current > 0 && round.current === round.total)
+      ? GAME_OVER
+      : DIAL_CLUE;
   }
 
   const currentPhaseIndex = order.indexOf(currentPhase);
@@ -48,8 +47,21 @@ export const determineNextPhase = (
  * @param players
  * @returns
  */
-export const determineGameOver = (players: Players): boolean => {
-  return Object.values(players).some((player) => player.score >= GAME_OVER_SCORE_THRESHOLD);
+export const determineGameOver = (
+  players: Players,
+  options: OndaTelepaticaOptions,
+  round: Round
+): boolean => {
+  if (!options.fixedRounds) {
+    return Object.values(players).some((player) => player.score >= GAME_OVER_SCORE_THRESHOLD);
+  }
+
+  const playerCount = Object.keys(players).length;
+  if (playerCount < DOUBLE_ROUNDS_THRESHOLD) {
+    return round.current >= playerCount * 2;
+  }
+
+  return round.current > playerCount;
 };
 
 /**

@@ -1,5 +1,6 @@
 // Constants
-import { CATEGORIES_PER_ROUND, ONDA_TELEPATICA_PHASES } from './constants';
+import { CATEGORIES_PER_ROUND, MAX_ROUNDS, ONDA_TELEPATICA_PHASES } from './constants';
+import { DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
 // Types
 import { CategoryCard, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 import { Players, SaveGamePayload } from '../../utils/types';
@@ -23,8 +24,11 @@ export const prepareSetupPhase = async (
   additionalData: ResourceData
 ): Promise<SaveGamePayload> => {
   // Determine turn order
-  const { gameOrder } = utils.buildGameOrder(players);
-
+  const { gameOrder, playerIds } = utils.buildGameOrder(
+    players,
+    store.options.fixedRounds ? DOUBLE_ROUNDS_THRESHOLD : undefined
+  );
+  const totalRounds = store.options.fixedRounds ? gameOrder.length : MAX_ROUNDS;
   // Build deck
   const deck = buildDeck(additionalData);
 
@@ -39,7 +43,11 @@ export const prepareSetupPhase = async (
       },
       state: {
         phase: ONDA_TELEPATICA_PHASES.SETUP,
-        gameOrder,
+        gameOrder: playerIds,
+        round: {
+          current: 0,
+          total: totalRounds,
+        },
       },
     },
   };
@@ -47,10 +55,13 @@ export const prepareSetupPhase = async (
 
 export const prepareDialCluePhase = async (
   store: FirebaseStoreData,
-  state: FirebaseStateData
+  state: FirebaseStateData,
+  players: Players
 ): Promise<SaveGamePayload> => {
   // Determine active player based on current round
   const psychicId = utils.getActivePlayer(store.gameOrder, state.round.current + 1);
+
+  utils.readyPlayers(players, psychicId);
 
   // Get categories
   const currentCategories = Array(CATEGORIES_PER_ROUND)
@@ -70,6 +81,7 @@ export const prepareDialCluePhase = async (
         currentCategories,
         target: gameUtils.getRandomNumber(-10, 10),
       },
+      players,
     },
   };
 };

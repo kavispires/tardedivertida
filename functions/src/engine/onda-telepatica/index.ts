@@ -8,7 +8,7 @@ import * as firebaseUtils from '../../utils/firebase';
 import * as utils from '../../utils/helpers';
 // Internal Functions
 import { determineGameOver, determineNextPhase } from './helpers';
-import { OndaTelepaticaInitialState, OndaTelepaticaSubmitAction } from './types';
+import { OndaTelepaticaInitialState, OndaTelepaticaOptions, OndaTelepaticaSubmitAction } from './types';
 import {
   prepareDialCluePhase,
   prepareGameOverPhase,
@@ -29,7 +29,8 @@ import { handleSubmitCategory, handleSubmitClue, handleSubmitGuess } from './act
 export const getInitialState = (
   gameId: GameId,
   uid: string,
-  language: Language
+  language: Language,
+  options: OndaTelepaticaOptions
 ): OndaTelepaticaInitialState => {
   return utils.getDefaultInitialState({
     gameId,
@@ -45,6 +46,7 @@ export const getInitialState = (
       deck: [],
       deckIndex: -1,
     },
+    options,
   });
 };
 
@@ -66,7 +68,7 @@ export const getNextPhase = async (
   );
 
   // Determine if it's game over
-  const isGameOver = determineGameOver(players);
+  const isGameOver = determineGameOver(players, store.options, state.round);
   // Determine next phase
   const nextPhase = determineNextPhase(state?.phase, state?.round, isGameOver, state?.lastRound);
 
@@ -84,7 +86,7 @@ export const getNextPhase = async (
 
   // DIAL_SIDES -> DIAL_CLUE
   if (nextPhase === ONDA_TELEPATICA_PHASES.DIAL_CLUE) {
-    const newPhase = await prepareDialCluePhase(store, state);
+    const newPhase = await prepareDialCluePhase(store, state, players);
     return firebaseUtils.saveGame(sessionRef, newPhase);
   }
 
