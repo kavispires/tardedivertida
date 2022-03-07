@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useTimer } from 'react-timer-hook';
 // Utils
-import { useLanguage } from 'hooks';
+import { useDevFeatures, useLanguage } from 'hooks';
 import { inNSeconds } from 'utils/helpers';
 // Components
 import { Card, DrawingCanvas, Icons, Step } from 'components';
@@ -13,6 +13,7 @@ type StepDrawProps = {
 
 export function StepDraw({ secretCard, onSubmitDrawing }: StepDrawProps) {
   const { translate } = useLanguage();
+  const { isDebugEnabled } = useDevFeatures();
   const [lines, setLines] = useState<any>([]);
   const [isTimesUp, setTimesUp] = useState(false);
 
@@ -32,7 +33,7 @@ export function StepDraw({ secretCard, onSubmitDrawing }: StepDrawProps) {
     <Step>
       <Card
         size="large"
-        header={translate('Desenhe', 'Draw')}
+        header={translate('Desenhe', 'Draw', isDebugEnabled ? secretCard?.id : undefined)}
         footer={Array(secretCard?.level).fill('•').join('')}
         className="a-draw-step__card"
         color="yellow"

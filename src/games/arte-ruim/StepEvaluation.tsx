@@ -3,7 +3,15 @@ import { useCallback, useEffect } from 'react';
 import { Button } from 'antd';
 import { CloudUploadOutlined, ThunderboltOutlined } from '@ant-design/icons';
 // Hooks
-import { useGlobalState, useLanguage, useUser, useLoading, useVotingMatch, useCardWidth } from 'hooks';
+import {
+  useGlobalState,
+  useLanguage,
+  useUser,
+  useLoading,
+  useVotingMatch,
+  useCardWidth,
+  useMock,
+} from 'hooks';
 // Utils
 import { LETTERS, SEPARATOR } from 'utils/constants';
 import { getEntryId, shuffle } from 'utils/helpers';
@@ -95,6 +103,10 @@ export function StepEvaluation({ drawings, cards, players, onSubmitVoting }: Ste
       setVotes((s: any) => ({ ...s, ...selection }));
     }
   }, [selectOwnDrawing, setVotes]);
+
+  useMock(() => {
+    onGuessForMe();
+  }, []);
 
   return (
     <Step className="a-evaluation-step">
