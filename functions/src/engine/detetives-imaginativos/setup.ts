@@ -1,5 +1,6 @@
 // Constants
 import { DETETIVES_IMAGINATIVOS_PHASES, HAND_LIMIT } from './constants';
+import { DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
 // Types
 import { FirebaseStateData, FirebaseStoreData } from './types';
 import { Players, SaveGamePayload } from '../../utils/types';
@@ -24,7 +25,7 @@ export const prepareSetupPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Determine player order
-  const { gameOrder, playerIds, playerCount } = utils.buildGameOrder(players, 6);
+  const { gameOrder, playerIds, playerCount } = utils.buildGameOrder(players, DOUBLE_ROUNDS_THRESHOLD);
 
   // Assigned cards to players depending on player count
   // We build the used cards deck all at once to avoid having to generate and
