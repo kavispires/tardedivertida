@@ -2,12 +2,13 @@
 import { Button, Switch, Tooltip } from 'antd';
 import { InfoCircleOutlined } from '@ant-design/icons';
 // Hooks
-import { useGlobalState, useLocalStorage } from 'hooks';
+import { useDevFeatures, useGlobalState, useLocalStorage } from 'hooks';
 // Components
 import { LanguageSwitch, Translate } from 'components';
 
 export function SectionSettings() {
   const [blurEnabled, setBlurEnabled] = useGlobalState('blurEnabled');
+  const { isDebugEnabled, toggleDevFeatures } = useDevFeatures();
   const [, setLocalStorage] = useLocalStorage();
 
   const onBlurSwitchClick = (value: boolean) => {
@@ -55,6 +56,29 @@ export function SectionSettings() {
           unCheckedChildren="off"
           checked={blurEnabled}
           onClick={onBlurSwitchClick}
+        />
+      </div>
+
+      <div className="game-info-drawer__settings-entry">
+        <div className="game-info-drawer__switch-label">
+          Debug
+          <Tooltip
+            title={
+              <Translate
+                pt="Ativa coisas para ajudar o desenvolvedor a encontrar error. Use apenas quando instruído"
+                en="Activate debug mode. Only turn on when instructed"
+              />
+            }
+          >
+            <Button type="text" shape="circle" icon={<InfoCircleOutlined />} size="small" />
+          </Tooltip>
+        </div>
+
+        <Switch
+          checkedChildren="on"
+          unCheckedChildren="off"
+          checked={isDebugEnabled}
+          onClick={toggleDevFeatures}
         />
       </div>
     </div>

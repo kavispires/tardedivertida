@@ -2,6 +2,7 @@ export * from './useAPICall';
 export * from './useBlurCards';
 export * from './useBooleanDictionary';
 export * from './useCardWidth';
+export * from './useDevFeatures';
 export * from './useDimensions';
 export * from './useGamePlayers';
 export * from './useGameState';
