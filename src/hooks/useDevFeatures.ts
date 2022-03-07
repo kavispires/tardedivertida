@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { isDevEnv } from '../utils/helpers';
 import { useGlobalState } from './index';
 
@@ -7,17 +6,17 @@ import { useGlobalState } from './index';
  * @param whatToDo
  * @param [conditions]
  */
-export function useDevFeatures(whatToDo: GenericFunction, conditions: any[] = []) {
-  const [isAdmin] = useGlobalState('isAdmin');
-  const [isDevFeaturesEnabled, setIsDevFeaturesEnabled] = useGlobalState('isAdmin');
+export function useDevFeatures() {
+  // const [isAdmin] = useGlobalState('isAdmin');
+  const [isDebugEnabled, setIsDebugEnabled] = useGlobalState('isDebugEnabled');
 
   const toggleDevFeatures = () => {
-    setIsDevFeaturesEnabled((s) => !s);
+    setIsDebugEnabled((s) => !s);
   };
 
   return {
     isDevEnv,
-    isDevFeaturesEnabled,
+    isDebugEnabled,
     toggleDevFeatures,
   };
 }
