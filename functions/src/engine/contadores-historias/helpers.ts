@@ -1,5 +1,6 @@
 // Constants
 import { CONTADORES_HISTORIAS_PHASES, GAME_OVER_SCORE_THRESHOLD, OUTCOME } from './constants';
+import { DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
 // Types
 import { ImageCard, PlainObject, PlayerId, Players, Round } from '../../utils/types';
 import { ContadoresHistoriasOptions, Table } from './types';
@@ -23,12 +24,10 @@ export const determineNextPhase = (
   const { RULES, SETUP, STORY, CARD_PLAY, VOTING, RESOLUTION, GAME_OVER } = CONTADORES_HISTORIAS_PHASES;
   const order = [RULES, SETUP, STORY, CARD_PLAY, VOTING, RESOLUTION, GAME_OVER];
 
-  if (isGameOver) {
-    return GAME_OVER;
-  }
-
   if (currentPhase === RESOLUTION) {
-    return triggerLastRound || (round.current > 0 && round.current) === round.total ? GAME_OVER : STORY;
+    return isGameOver || triggerLastRound || (round.current > 0 && round.current) === round.total
+      ? GAME_OVER
+      : STORY;
   }
 
   const currentPhaseIndex = order.indexOf(currentPhase);
@@ -178,7 +177,7 @@ export const scoreRound = (players: Players, table: Table, storyteller: PlayerId
 /**
  * Determine if a game should be over
  * If "for points", if a player has passed 30 points
- * If "normal", if a player has been the storyteller twice (1-6p) or once (7p+)
+ * If "normal", if a player has been the storyteller twice (1-5p) or once (6p+)
  * @param players
  * @returns
  */
@@ -187,11 +186,12 @@ export const determineGameOver = (
   options: ContadoresHistoriasOptions,
   round: Round
 ): boolean => {
-  if (options.fixedRounds) {
+  if (!options.fixedRounds) {
     return Object.values(players).some((player) => player.score >= GAME_OVER_SCORE_THRESHOLD);
   }
+
   const playerCount = Object.keys(players).length;
-  if (playerCount <= 6) {
+  if (playerCount < DOUBLE_ROUNDS_THRESHOLD) {
     return round.current >= playerCount * 2;
   }
 

@@ -88,3 +88,5 @@ export const GLOBAL_USED_DOCUMENTS = {
 export const SEPARATOR = ';;';
 
 export const USED_GAME_IDS = 'usedGameIds';
+
+export const DOUBLE_ROUNDS_THRESHOLD = 6;

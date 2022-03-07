@@ -6,6 +6,7 @@ import {
   MAX_ROUNDS,
   TABLE_CARDS_BY_PLAYER_COUNT,
 } from './constants';
+import { DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
 // Types
 import { FirebaseStateData, FirebaseStoreData } from './types';
 import { Players, SaveGamePayload } from '../../utils/types';
@@ -32,8 +33,8 @@ export const prepareSetupPhase = async (
   // Determine player order
   const { gameOrder, playerCount } = utils.buildGameOrder(players);
 
-  const { gameOrder: roundsIfRoundFixed } = utils.buildGameOrder(players, 7);
-  const totalRounds = store.options.fixedRounds ? MAX_ROUNDS : roundsIfRoundFixed.length;
+  const { gameOrder: roundsIfRoundFixed } = utils.buildGameOrder(players, DOUBLE_ROUNDS_THRESHOLD);
+  const totalRounds = store.options.fixedRounds ? roundsIfRoundFixed.length : MAX_ROUNDS;
 
   // Assigned cards to players
   // We build the used cards deck all at once to avoid having to generate and
