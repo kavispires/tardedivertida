@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { useDevFeatures } from 'hooks';
 // Utils
 import { LETTERS } from 'utils/constants';
 import { getEntryId } from 'utils/helpers';
@@ -13,6 +14,7 @@ type EvaluationAllCardsProps = {
 };
 
 export function EvaluationAllCards({ cards, activeItem, onActivateItem, votes }: EvaluationAllCardsProps) {
+  const { isDebugEnabled } = useDevFeatures();
   const liButtonBaseClass = 'a-evaluation-all-cards__li-card-button';
 
   return (
@@ -34,7 +36,11 @@ export function EvaluationAllCards({ cards, activeItem, onActivateItem, votes }:
             )}
             onClick={() => onActivateItem(cardEntryId)}
           >
-            <Card text={cardEntry.text} level={cardEntry.level} header={letter} />
+            <Card
+              text={cardEntry.text}
+              level={cardEntry.level}
+              header={isDebugEnabled ? cardEntry.id : letter}
+            />
           </li>
         );
       })}
