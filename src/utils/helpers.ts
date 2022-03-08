@@ -10,7 +10,7 @@ export const deepCopy = (obj: any): any => JSON.parse(JSON.stringify(obj));
 
 /**
  * Extract the gameId from react history
- * @param history
+ * @param pathname
  * @returns
  */
 export const getGameIdFromPathname = (pathname: string): string => {
@@ -19,7 +19,7 @@ export const getGameIdFromPathname = (pathname: string): string => {
 
 /**
  * Extract the gameId from react history.location
- * @param history
+ * @param location
  * @returns
  */
 export const getGameIdFromLocation = (location?: PlainObject): string => {
@@ -49,7 +49,7 @@ export const inNSeconds = (seconds: number): Date => {
 
 /**
  * Same as inNSeconds but not just seconds
- * @param seconds
+ * @param time
  * @returns
  */
 export const inNTime = (time: number): Date => {
