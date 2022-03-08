@@ -23,10 +23,10 @@ type StepResolutionProps = {
   story: string;
   storyteller: GamePlayer;
   table: TableEntry[];
-  nextStep: GenericFunction;
+  goToNextStep: GenericFunction;
 };
 
-export function StepResolution({ players, story, storyteller, table, nextStep }: StepResolutionProps) {
+export function StepResolution({ players, story, storyteller, table, goToNextStep }: StepResolutionProps) {
   const { translate } = useLanguage();
   const cardWidth = useCardWidth(10, 32, 75);
 
@@ -111,8 +111,8 @@ export function StepResolution({ players, story, storyteller, table, nextStep }:
       </ul>
       <ButtonContainer>
         <TimedButton
-          onClick={nextStep}
-          onExpire={nextStep}
+          onClick={goToNextStep}
+          onExpire={goToNextStep}
           duration={20}
           label={translate('Continuar', 'Continue')}
         />

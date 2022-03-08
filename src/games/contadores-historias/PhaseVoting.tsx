@@ -10,7 +10,7 @@ import { VotingRules } from './RulesBlogs';
 
 function PhaseVoting({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
-  const { step, nextStep, setStep } = useStep(0);
+  const { step, goToNextStep, setStep } = useStep(0);
   const user = useUser(players);
   const [storyteller, isUserTheStoryTeller] = useWhichPlayerIsThe('storytellerId', state, players);
 
@@ -28,7 +28,7 @@ function PhaseVoting({ state, players, info }: PhaseProps) {
         <PhaseAnnouncement
           type="vote"
           title={translate('Votação', 'Voting')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
         >
           <VotingRules />

@@ -15,7 +15,7 @@ import {
 import { StepNameDrawing } from './StepNameDrawing';
 
 function PhaseNaming({ players, state, info }: PhaseProps) {
-  const { step, nextStep, setStep } = useStep(0);
+  const { step, goToNextStep, setStep } = useStep(0);
   const { translate } = useLanguage();
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
@@ -29,7 +29,7 @@ function PhaseNaming({ players, state, info }: PhaseProps) {
         <PhaseAnnouncement
           type="write-idea"
           title={translate('O que é isso?', 'What is it?')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
         >
           <Instruction>

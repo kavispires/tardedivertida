@@ -21,7 +21,7 @@ import { StoryWriting } from './StoryWriting';
 
 function PhaseStory({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
-  const { step, nextStep, setStep } = useStep(0);
+  const { step, goToNextStep, setStep } = useStep(0);
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
   const [storyteller, isUserTheStoryTeller] = useWhichPlayerIsThe('storytellerId', state, players);
@@ -32,13 +32,13 @@ function PhaseStory({ state, players, info }: PhaseProps) {
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.CONTADORES_HISTORIAS.STORY}>
       <StepSwitcher step={step} conditions={[!isUserReady]} players={players}>
         {/* Step 0 */}
-        <RoundAnnouncement round={state.round} onPressButton={nextStep} time={5} circleColor="purple" />
+        <RoundAnnouncement round={state.round} onPressButton={goToNextStep} time={5} circleColor="purple" />
 
         {/* Step 1 */}
         <PhaseAnnouncement
           type="fairy-tale"
           title={translate('Conte-nos uma história', 'Tell us a story...')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
           buttonText=""
         >

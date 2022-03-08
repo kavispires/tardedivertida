@@ -24,7 +24,7 @@ import { ScoringRules } from './RulesBlobs';
 function PhaseReveal({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
   const { translate } = useLanguage();
-  const { step, nextStep, previousStep } = useStep(0);
+  const { step, goToNextStep, goToPreviousStep } = useStep(0);
   const [psychic] = useWhichPlayerIsThe('psychicId', state, players);
 
   return (
@@ -34,7 +34,7 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
         <PhaseAnnouncement
           type="timer"
           title={translate('Resultado', 'Results')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
           duration={7}
         >
@@ -49,7 +49,7 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
             players={players}
             psychic={psychic}
             currentCategory={state.currentCategory}
-            nextStep={nextStep}
+            goToNextStep={goToNextStep}
           />
         </Step>
 
@@ -64,7 +64,7 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
 
           <RankingBoard ranking={state.ranking} players={players} />
           <ButtonContainer>
-            <Button onClick={previousStep}>
+            <Button onClick={goToPreviousStep}>
               <Translate pt="Ver resultado novamente" en="See results again" />
             </Button>
           </ButtonContainer>

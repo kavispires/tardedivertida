@@ -23,7 +23,7 @@ import { WitnessRules } from './TextBlobs';
 function PhaseWitnessSelection({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
   const { isLoading } = useLoading();
-  const { step, nextStep } = useStep(0);
+  const { step, goToNextStep } = useStep(0);
   const [isAdmin] = useGlobalState('isAdmin');
 
   const onWitnessButtonClick = useOnSelectWitnessAPIRequest();
@@ -40,7 +40,7 @@ function PhaseWitnessSelection({ state, players, info }: PhaseProps) {
         <PhaseAnnouncement
           type="crime-scene"
           title={translate('O Caso', 'The Case')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
         >
           <Instruction>

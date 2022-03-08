@@ -21,7 +21,7 @@ const arteRuimTimer = require('sounds/arte-ruim-timer.mp3');
 
 function PhaseDraw({ players, state, info }: PhaseProps) {
   const { translate } = useLanguage();
-  const { step, nextStep, setStep } = useStep(0);
+  const { step, goToNextStep, setStep } = useStep(0);
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
   const [secretCard, setSecretCard] = useState({});
@@ -50,7 +50,7 @@ function PhaseDraw({ players, state, info }: PhaseProps) {
         )}
       >
         {/* Step 0 */}
-        <RoundAnnouncement round={state?.round} onPressButton={nextStep} buttonText=" " time={5}>
+        <RoundAnnouncement round={state?.round} onPressButton={goToNextStep} buttonText=" " time={5}>
           <Instruction contained>
             <Translate
               pt={`Essa rodada usará cartas de nível ${state?.level || '?'}`}

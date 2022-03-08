@@ -22,7 +22,7 @@ import { StepDefending } from './StepDefending';
 function PhaseDefense({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
   const { isLoading } = useLoading();
-  const { step, nextStep } = useStep(0);
+  const { step, goToNextStep } = useStep(0);
   const [currentPlayer, isUserTheCurrentPlayer] = useWhichPlayerIsThe('currentPlayerId', state, players);
 
   const onFinishDefense = useOnFinishDefenseRequest();
@@ -56,7 +56,7 @@ function PhaseDefense({ state, players, info }: PhaseProps) {
         <PhaseAnnouncement
           type="defense"
           title={translate('Defensa', 'Defense')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
           duration={5}
         >

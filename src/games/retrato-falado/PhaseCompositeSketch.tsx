@@ -18,7 +18,7 @@ import { StepTestimonial } from './StepTestimonial';
 
 function PhaseCompositeSketch({ players, state, info }: PhaseProps) {
   const { translate } = useLanguage();
-  const { step, nextStep, setStep } = useStep(0);
+  const { step, goToNextStep, setStep } = useStep(0);
   const isUserReady = useIsUserReady(players, state);
   const [witness, isUserTheWitness] = useWhichPlayerIsThe('witnessId', state, players);
 
@@ -31,7 +31,7 @@ function PhaseCompositeSketch({ players, state, info }: PhaseProps) {
         {/* Step 0 */}
         <RoundAnnouncement
           round={state?.round}
-          onPressButton={nextStep}
+          onPressButton={goToNextStep}
           buttonText=" "
           time={7}
           unskippable
@@ -61,7 +61,7 @@ function PhaseCompositeSketch({ players, state, info }: PhaseProps) {
         <PhaseAnnouncement
           type="monster"
           title={translate('Memorize! Descreva! Desenhe!', 'Memorize! Describe! Sketch!')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
           duration={state?.round?.current < 2 ? 20 : 5}
           unskippable

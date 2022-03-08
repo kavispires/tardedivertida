@@ -23,7 +23,7 @@ import { StepReasonForEvidence } from './StepReasonForEvidence';
 
 function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
   const { translate } = useLanguage();
-  const { step, setStep, nextStep } = useStep(0);
+  const { step, setStep, goToNextStep } = useStep(0);
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
   const [selections, setSelections] = useState<SubmitCrimePayload>({});
@@ -36,7 +36,7 @@ function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
 
   const updateSelections = (payload: SubmitCrimePayload) => {
     setSelections((s: SubmitCrimePayload) => ({ ...s, ...payload }));
-    nextStep();
+    goToNextStep();
   };
 
   const updateSelection = (payload: SubmitCrimePayload) => {
@@ -55,7 +55,7 @@ function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
         {/* Step 0 */}
         <RoundAnnouncement
           round={state?.round}
-          onPressButton={nextStep}
+          onPressButton={goToNextStep}
           buttonText=" "
           time={5}
           circleColor="black"
@@ -65,7 +65,7 @@ function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
         <PhaseAnnouncement
           type="event"
           title={translate('A Convenção', 'The Convention')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
           duration={30}
         >
@@ -85,7 +85,7 @@ function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
         <PhaseAnnouncement
           type="skull"
           title={translate('Causa da Morte', 'Cause of Death')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           duration={5}
         >
           <Instruction>
@@ -105,7 +105,7 @@ function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
         <PhaseAnnouncement
           type="crime-scene"
           title={translate('Evidências?', 'Evidence?')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           duration={5}
         >
           <Instruction>
@@ -128,7 +128,7 @@ function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
         <PhaseAnnouncement
           type="location"
           title={translate('Local do Crime', 'Crime Location')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           duration={5}
         >
           <Instruction>
@@ -150,7 +150,7 @@ function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
         <PhaseAnnouncement
           type="crime-tape"
           title={translate('Revisão', 'Review')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           duration={5}
         />
 

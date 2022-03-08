@@ -10,7 +10,7 @@ import { EvaluationRules } from './TextBlobs';
 
 function EvaluationPhase({ players, state, info }: PhaseProps) {
   const { translate } = useLanguage();
-  const { step, nextStep, setStep } = useStep(0);
+  const { step, goToNextStep, setStep } = useStep(0);
   const isUserReady = useIsUserReady(players, state);
   const onSubmitVoting = useOnSubmitVotingAPIRequest(setStep);
 
@@ -29,7 +29,7 @@ function EvaluationPhase({ players, state, info }: PhaseProps) {
         <PhaseAnnouncement
           type="evaluate"
           title={translate('Adivinhação', 'Match the Pairs')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
         >
           <EvaluationRules />

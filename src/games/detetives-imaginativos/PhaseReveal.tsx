@@ -8,7 +8,7 @@ import { StepReveal } from './StepReveal';
 
 function PhaseReveal({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
-  const { step, nextStep } = useStep(0);
+  const { step, goToNextStep } = useStep(0);
   const [impostor] = useWhichPlayerIsThe('impostorId', state, players);
 
   return (
@@ -23,7 +23,7 @@ function PhaseReveal({ state, players, info }: PhaseProps) {
         <PhaseAnnouncement
           type="rank"
           title={translate('Revelação', 'Reveal')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
         >
           <Instruction>

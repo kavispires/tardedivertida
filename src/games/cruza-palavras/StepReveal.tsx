@@ -181,11 +181,11 @@ type StepRevealProps = {
   grid: CruzaPalavraGrid;
   user: GamePlayer;
   clues: CruzaPalavrasClue[];
-  nextStep: GenericFunction;
+  goToNextStep: GenericFunction;
   whoGotNoPoints: PlayerId[];
 };
 
-export function StepReveal({ grid, user, players, clues, nextStep, whoGotNoPoints }: StepRevealProps) {
+export function StepReveal({ grid, user, players, clues, goToNextStep, whoGotNoPoints }: StepRevealProps) {
   const correctCoordinatesPerPlayer = clues.reduce((acc: PlainObject, clue) => {
     acc[clue.coordinate] = clue.playerId;
     return acc;
@@ -257,9 +257,9 @@ export function StepReveal({ grid, user, players, clues, nextStep, whoGotNoPoint
         <TimedButton
           duration={60}
           label={<Translate pt="Ver Ranking" en="See ranking" />}
-          onExpire={nextStep}
+          onExpire={goToNextStep}
           showTimer
-          onClick={nextStep}
+          onClick={goToNextStep}
         />
       </ButtonContainer>
 

@@ -9,7 +9,7 @@ import { StepFinalAssessment } from './StepFinalAssessment';
 
 function PhaseFinalAssessment({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
-  const { step, nextStep, setStep } = useStep(0);
+  const { step, goToNextStep, setStep } = useStep(0);
   const isUserReady = useIsUserReady(players, state);
   const user = useUser(players);
 
@@ -31,7 +31,7 @@ function PhaseFinalAssessment({ state, players, info }: PhaseProps) {
           <PhaseAnnouncement
             type="people-assessment"
             title={translate('O tempo acabou!', "Time's up!")}
-            onClose={nextStep}
+            onClose={goToNextStep}
             currentRound={state?.round?.current}
             buttonText=""
             className="e-phase-announcement"
@@ -41,7 +41,7 @@ function PhaseFinalAssessment({ state, players, info }: PhaseProps) {
           <PhaseAnnouncement
             type="opinions"
             title={translate('A avaliação final continua', 'The final assessment continues')}
-            onClose={nextStep}
+            onClose={goToNextStep}
             currentRound={state?.round?.current}
             buttonText=""
             className="e-phase-announcement"

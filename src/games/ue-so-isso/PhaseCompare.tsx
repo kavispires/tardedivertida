@@ -19,7 +19,7 @@ import { GuesserWaitingRoom } from './GuesserWaitingRoom';
 
 function PhaseCompare({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
-  const { step, nextStep, setStep } = useStep(0);
+  const { step, goToNextStep, setStep } = useStep(0);
   const [, isUserTheGuesser] = useWhichPlayerIsThe('guesserId', state, players);
   const [controller, isUserTheController] = useWhichPlayerIsThe('controllerId', state, players);
 
@@ -34,7 +34,7 @@ function PhaseCompare({ state, players, info }: PhaseProps) {
         <PhaseAnnouncement
           type="verify-list"
           title={translate('Comparação de dicas!', 'Clue Check!')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
         >
           <ComparisonRules />

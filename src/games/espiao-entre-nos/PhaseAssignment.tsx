@@ -16,7 +16,7 @@ import { StepAssignment } from './StepAssignment';
 
 function PhaseAssignment({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
-  const { step, nextStep } = useStep(0);
+  const { step, goToNextStep } = useStep(0);
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
   const [, isUserTheSpy] = useWhichPlayerIsThe('currentSpyId', state, players);
@@ -32,7 +32,7 @@ function PhaseAssignment({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <RoundAnnouncement
           round={state.round}
-          onPressButton={nextStep}
+          onPressButton={goToNextStep}
           time={5}
           className="e-round-announcement"
           circleColor="lime"
@@ -46,7 +46,7 @@ function PhaseAssignment({ state, players, info }: PhaseProps) {
         <PhaseAnnouncement
           type="spy-newspaper"
           title={translate('Prólogo', 'Prologue')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
           buttonText=""
           className="e-phase-announcement e-phase-announcement--animated"
@@ -75,13 +75,13 @@ function PhaseAssignment({ state, players, info }: PhaseProps) {
         </PhaseAnnouncement>
 
         {/* Step 2 */}
-        <PhaseTimerReset nextStep={nextStep} />
+        <PhaseTimerReset goToNextStep={goToNextStep} />
 
         {/* Step 3 */}
         <PhaseAnnouncement
           type="secret"
           title={translate('Você tem uma missão', 'You have one mission')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
           buttonText=""
           className="e-phase-announcement e-phase-announcement--animated"
@@ -108,13 +108,13 @@ function PhaseAssignment({ state, players, info }: PhaseProps) {
         </PhaseAnnouncement>
 
         {/* Step 4 */}
-        <PhaseTimerReset nextStep={nextStep} />
+        <PhaseTimerReset goToNextStep={goToNextStep} />
 
         {/* Step 5 */}
         <PhaseAnnouncement
           type="passport"
           title={translate('Mais detalhes', 'More details')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
           buttonText=""
           className="e-phase-announcement e-phase-announcement--animated"

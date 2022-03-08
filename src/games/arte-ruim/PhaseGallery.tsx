@@ -11,7 +11,7 @@ import { StepRanking } from './StepRanking';
 
 function PhaseGallery({ players, state, info }: PhaseProps) {
   const { translate } = useLanguage();
-  const { step, nextStep, previousStep, setStep } = useStep(0);
+  const { step, goToNextStep, goToPreviousStep, setStep } = useStep(0);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isFirstGalleryRunThrough, setIsFirstGalleryRunThrough] = useState(true);
 
@@ -36,7 +36,7 @@ function PhaseGallery({ players, state, info }: PhaseProps) {
         <PhaseAnnouncement
           type="picture"
           title={translate('Galeria de Arte', 'Art Gallery')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
           unskippable
         >
@@ -60,7 +60,7 @@ function PhaseGallery({ players, state, info }: PhaseProps) {
           ranking={state.ranking}
           isGameOver={isGameOver}
           round={state.round}
-          previousStep={previousStep}
+          goToPreviousStep={goToPreviousStep}
           setActiveIndex={setActiveIndex}
           isLastRound={state?.lastRound}
         />

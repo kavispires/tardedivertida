@@ -13,7 +13,7 @@ import { GuessingRules } from './RulesBlobs';
 function PhaseGuess({ state, players, info }: PhaseProps) {
   const { isLoading } = useLoading();
   const { translate } = useLanguage();
-  const { step, nextStep, setStep } = useStep(0);
+  const { step, goToNextStep, setStep } = useStep(0);
   const [isAdmin] = useGlobalState('isAdmin');
   const [guesser, isUserTheGuesser] = useWhichPlayerIsThe('guesserId', state, players);
   const [controller, isUserTheController] = useWhichPlayerIsThe('controllerId', state, players);
@@ -36,7 +36,7 @@ function PhaseGuess({ state, players, info }: PhaseProps) {
         <PhaseAnnouncement
           type="guess"
           title={translate('Adivinhação', 'Guessing')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
         >
           <GuessingRules guesserName={guesser.name} />

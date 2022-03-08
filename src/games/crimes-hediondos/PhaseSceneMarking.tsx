@@ -18,7 +18,7 @@ import { mockSceneMark } from './mock';
 function PhaseSceneMarking({ players, state, info }: PhaseProps) {
   const { language, translate } = useLanguage();
   const user = useUser(players);
-  const { step, setStep, nextStep } = useStep(0);
+  const { step, setStep, goToNextStep } = useStep(0);
 
   const onSubmitMark = useOnSubmitMarkAPIRequest(setStep);
 
@@ -30,13 +30,13 @@ function PhaseSceneMarking({ players, state, info }: PhaseProps) {
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.CRIMES_HEDIONDOS.SCENE_MARKING}>
       <StepSwitcher step={step} conditions={[!user.ready, !user.ready, !user.ready]} players={players}>
         {/* Step 0 */}
-        <RoundAnnouncement round={state?.round} onPressButton={nextStep} buttonText=" " time={5} />
+        <RoundAnnouncement round={state?.round} onPressButton={goToNextStep} buttonText=" " time={5} />
 
         {/* Step 1 */}
         <PhaseAnnouncement
           type="loupe"
           title={translate('Nova pista', 'New clue')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
         >
           <Instruction>

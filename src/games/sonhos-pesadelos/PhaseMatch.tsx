@@ -10,7 +10,7 @@ import { StepMatchDreams } from './StepMatchDreams';
 
 function PhaseMatch({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
-  const { step, nextStep, setStep } = useStep(0);
+  const { step, goToNextStep, setStep } = useStep(0);
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
 
@@ -28,7 +28,7 @@ function PhaseMatch({ state, players, info }: PhaseProps) {
         <PhaseAnnouncement
           type="evaluate"
           title={translate('Selecione os pares', 'Match the dreams')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
         >
           <Instruction>

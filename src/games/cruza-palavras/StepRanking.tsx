@@ -18,7 +18,7 @@ type StepRankingProps = {
   playerCount: number;
   round: GameRound;
   ranking: GameRanking;
-  previousStep: GenericFunction;
+  goToPreviousStep: GenericFunction;
   isLastRound?: boolean;
 };
 
@@ -26,7 +26,7 @@ export function StepRanking({
   players,
   playerCount,
   ranking,
-  previousStep,
+  goToPreviousStep,
   round,
   isLastRound,
 }: StepRankingProps) {
@@ -45,7 +45,7 @@ export function StepRanking({
       <RankingBoard ranking={ranking} players={players} />
 
       <ButtonContainer>
-        <Button onClick={previousStep}>
+        <Button onClick={goToPreviousStep}>
           <Translate pt="Ver resultado novamente" en="See results again" />
         </Button>
       </ButtonContainer>

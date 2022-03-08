@@ -19,7 +19,7 @@ function PhaseLastChance({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
-  const { step, nextStep, setStep } = useStep(0);
+  const { step, goToNextStep, setStep } = useStep(0);
 
   const onSubmitVotes = useOnSubmitVotesAPIRequest(setStep);
 
@@ -32,7 +32,7 @@ function PhaseLastChance({ state, players, info }: PhaseProps) {
         waitingRoomContent={<DreamBoard user={user} table={state.table} />}
       >
         {/* Step 0 */}
-        <RoundAnnouncement round={state.round} buttonText="" onPressButton={nextStep} time={5}>
+        <RoundAnnouncement round={state.round} buttonText="" onPressButton={goToNextStep} time={5}>
           <Instruction contained>
             <Translate
               pt="E não era pra ter somente 5 rodadas?"

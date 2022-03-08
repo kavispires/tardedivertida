@@ -18,7 +18,7 @@ type StepRankingProps = {
   ranking: GameRanking;
   isGameOver: boolean;
   round: GameRound;
-  previousStep: GenericFunction;
+  goToPreviousStep: GenericFunction;
   setActiveIndex: GenericFunction;
   isLastRound?: boolean;
 };
@@ -28,7 +28,7 @@ export function StepRanking({
   ranking,
   isGameOver,
   round,
-  previousStep,
+  goToPreviousStep,
   setActiveIndex,
   isLastRound,
 }: StepRankingProps) {
@@ -44,7 +44,7 @@ export function StepRanking({
       <Button
         size="large"
         onClick={() => {
-          previousStep();
+          goToPreviousStep();
           setActiveIndex(0);
         }}
         icon={<PictureOutlined />}

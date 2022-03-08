@@ -20,7 +20,7 @@ import { StepSecretClueWaiting } from './StepSecretClueWaiting';
 
 function PhaseSecretClue({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
-  const { step, nextStep, setStep } = useStep(0);
+  const { step, goToNextStep, setStep } = useStep(0);
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
   const [leader, isUserTheLeader] = useWhichPlayerIsThe('leaderId', state, players);
@@ -39,7 +39,7 @@ function PhaseSecretClue({ state, players, info }: PhaseProps) {
         <RoundAnnouncement
           round={state.round}
           buttonText=" "
-          onPressButton={nextStep}
+          onPressButton={goToNextStep}
           time={5}
           circleColor="grey"
         />
@@ -48,7 +48,7 @@ function PhaseSecretClue({ state, players, info }: PhaseProps) {
         <PhaseAnnouncement
           type="secret"
           title={translate('Pista Secreta', 'Secret Clue')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
         >
           <Instruction>

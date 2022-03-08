@@ -16,7 +16,7 @@ import { StepAlbum } from './StepAlbum';
 function PhasePresentation({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
   const { translate } = useLanguage();
-  const { step, nextStep } = useStep(0);
+  const { step, goToNextStep } = useStep(0);
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.LINHAS_CRUZADAS.PRESENTATION}>
@@ -25,7 +25,7 @@ function PhasePresentation({ players, state, info }: PhaseProps) {
         <PhaseAnnouncement
           type="photo-album"
           title={translate('Álbum de Fotos', 'Album de Fotos')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
           unskippable
           duration={7}

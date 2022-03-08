@@ -8,7 +8,7 @@ import { StepStreetEnd } from './StepStreetEnd';
 
 function PhaseStreetEnd({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
-  const { step, nextStep } = useStep(0);
+  const { step, goToNextStep } = useStep(0);
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
 
@@ -19,7 +19,7 @@ function PhaseStreetEnd({ state, players, info }: PhaseProps) {
         <PhaseAnnouncement
           type={state.isDoubleHorror ? 'scared' : 'house'}
           title={translate('Fim da Rua', 'End of the Street')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
           duration={3}
         >

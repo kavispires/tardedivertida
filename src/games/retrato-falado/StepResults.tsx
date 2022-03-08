@@ -7,7 +7,7 @@ import { MonsterSketches } from './MonsterSketches';
 
 type StepResultsProps = {
   currentMonster: Monster;
-  nextStep: GenericFunction;
+  goToNextStep: GenericFunction;
   sketches: Sketch[];
   user: Player | PlainObject;
   players: Players;
@@ -25,7 +25,7 @@ export function StepResults({
   sketches,
   players,
   currentMonster,
-  nextStep,
+  goToNextStep,
   mostVotes,
   witnessVote,
   witness,
@@ -113,7 +113,7 @@ export function StepResults({
         )}
       </Instruction>
 
-      <TimedButton label="Ranking" duration={30} onExpire={nextStep} onClick={nextStep} />
+      <TimedButton label="Ranking" duration={30} onExpire={goToNextStep} onClick={goToNextStep} />
 
       <Title level={3} className="r-other-sketches-title">
         <Translate pt="Outros desenhos" en="Other sketches" />

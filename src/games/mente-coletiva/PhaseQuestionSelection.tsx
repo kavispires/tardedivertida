@@ -19,7 +19,7 @@ import { GamePremiseRules } from './RulesBlobs';
 
 function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
-  const { step, nextStep, setStep } = useStep(0);
+  const { step, goToNextStep, setStep } = useStep(0);
   const [activePlayer, isUserTheActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
 
   const onSubmitQuestion = useOnSubmitQuestionAPIRequest(setStep);
@@ -28,7 +28,7 @@ function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.MENTE_COLETIVA.QUESTION_SELECTION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
-        <RoundAnnouncement round={state.round} onPressButton={nextStep} time={3} circleColor="white">
+        <RoundAnnouncement round={state.round} onPressButton={goToNextStep} time={3} circleColor="white">
           <Instruction contained>
             <Translate
               pt="Somos ovelhinhas e nosso pasto está superlotado!"
@@ -41,7 +41,7 @@ function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
         <PhaseAnnouncement
           type="sheep"
           title={translate('O Pasto Superlotado', 'A Overcrowded Pasture')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
           duration={state?.round?.current < 3 ? 40 : 10}
         >

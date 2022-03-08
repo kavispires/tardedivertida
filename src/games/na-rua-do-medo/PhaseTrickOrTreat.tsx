@@ -21,7 +21,7 @@ function PhaseTrickOrTreat({ state, players, info }: PhaseProps) {
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
   const isNewStreet = state.street.length === 0;
-  const { step, nextStep, setStep } = useStep(isNewStreet ? 0 : 1);
+  const { step, goToNextStep, setStep } = useStep(isNewStreet ? 0 : 1);
 
   const onSubmitDecision = useOnSubmitDecisionAPIRequest(setStep);
 
@@ -37,7 +37,7 @@ function PhaseTrickOrTreat({ state, players, info }: PhaseProps) {
         <RoundAnnouncement
           round={state.round}
           buttonText=" "
-          onPressButton={nextStep}
+          onPressButton={goToNextStep}
           time={5}
           circleColor="black"
         >
@@ -54,7 +54,7 @@ function PhaseTrickOrTreat({ state, players, info }: PhaseProps) {
         <PhaseAnnouncement
           type={isNewStreet ? 'street' : 'trick-or-treat'}
           title={translate('Gostosuras ou Travessuras?', 'Trick or Treat?')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
           duration={isNewStreet ? 6 : 3}
         >

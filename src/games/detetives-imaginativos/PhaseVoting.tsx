@@ -10,7 +10,7 @@ import { StepVoting } from './StepVoting';
 function PhaseVoting({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
   const { isLoading } = useLoading();
-  const { step, nextStep } = useStep(0);
+  const { step, goToNextStep } = useStep(0);
   const user = useUser(players);
   const [, isUserTheLeader] = useWhichPlayerIsThe('leaderId', state, players);
 
@@ -28,7 +28,7 @@ function PhaseVoting({ state, players, info }: PhaseProps) {
         <PhaseAnnouncement
           type="vote"
           title={translate('Votação', 'Vote')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
         >
           <Instruction>

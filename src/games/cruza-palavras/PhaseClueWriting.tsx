@@ -10,7 +10,7 @@ import { WritingCluesRule } from './RulesBlobs';
 
 function PhaseClueWriting({ players, state, info }: PhaseProps) {
   const { translate } = useLanguage();
-  const { step, nextStep, setStep } = useStep(0);
+  const { step, goToNextStep, setStep } = useStep(0);
 
   const isUserReady = useIsUserReady(players, state);
   const user = useUser(players);
@@ -23,7 +23,7 @@ function PhaseClueWriting({ players, state, info }: PhaseProps) {
         {/* Step 0 */}
         <RoundAnnouncement
           round={state?.round}
-          onPressButton={nextStep}
+          onPressButton={goToNextStep}
           buttonText=" "
           time={5}
           circleColor="forest"
@@ -33,7 +33,7 @@ function PhaseClueWriting({ players, state, info }: PhaseProps) {
         <PhaseAnnouncement
           type="grid"
           title={translate('Escreva!', 'Write!')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
         >
           <WritingCluesRule playerCount={Object.keys(players).length} />

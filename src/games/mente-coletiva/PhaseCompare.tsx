@@ -11,7 +11,7 @@ import { ComparingRules } from './RulesBlobs';
 
 function PhaseCompare({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
-  const { step, nextStep } = useStep(0);
+  const { step, goToNextStep } = useStep(0);
   const user = useUser(players);
   const [allowedList, setAllowedList] = useState({});
 
@@ -27,7 +27,7 @@ function PhaseCompare({ state, players, info }: PhaseProps) {
         <PhaseAnnouncement
           type="discussion"
           title={translate('Respostas', 'Answers')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
           duration={state?.round?.current < 3 ? 20 : undefined}
         >

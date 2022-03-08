@@ -9,7 +9,7 @@ import { StepSelectPrompt } from './StepSelectPrompt';
 
 function PhasePromptSelection({ players, state, info }: PhaseProps) {
   const { translate } = useLanguage();
-  const { step, nextStep, setStep } = useStep(0);
+  const { step, goToNextStep, setStep } = useStep(0);
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
 
@@ -22,7 +22,7 @@ function PhasePromptSelection({ players, state, info }: PhaseProps) {
         <PhaseAnnouncement
           type="list"
           title={translate('Seleção da Carta', 'Card Selection')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
           duration={20}
         >
