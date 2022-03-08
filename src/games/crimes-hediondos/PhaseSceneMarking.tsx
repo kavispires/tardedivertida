@@ -1,6 +1,5 @@
-import { useState } from 'react';
 // State & Hooks
-import { useIsUserReady, useUser, useLanguage, useMock } from 'hooks';
+import { useUser, useLanguage, useMock, useStep } from 'hooks';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
@@ -13,18 +12,15 @@ import {
   Translate,
 } from 'components';
 import { StepNewScene } from './StepNewScene';
-import { useOnSubmitMarkAPIRequest } from './_api-requests';
+import { useOnSubmitMarkAPIRequest } from './api-requests';
 import { mockSceneMark } from './mock';
 
 function PhaseSceneMarking({ players, state, info }: PhaseProps) {
-  const isUserReady = useIsUserReady(players, state);
   const { language, translate } = useLanguage();
   const user = useUser(players);
-  const [step, setStep] = useState(0);
+  const { step, setStep, nextStep } = useStep(0);
 
   const onSubmitMark = useOnSubmitMarkAPIRequest(setStep);
-
-  const increaseStep = () => setStep((s: number) => ++s);
 
   useMock(() => {
     onSubmitMark({ sceneIndex: mockSceneMark() });
@@ -32,15 +28,15 @@ function PhaseSceneMarking({ players, state, info }: PhaseProps) {
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.CRIMES_HEDIONDOS.SCENE_MARKING}>
-      <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady, !isUserReady]} players={players}>
+      <StepSwitcher step={step} conditions={[!user.ready, !user.ready, !user.ready]} players={players}>
         {/* Step 0 */}
-        <RoundAnnouncement round={state?.round} onPressButton={increaseStep} buttonText=" " time={5} />
+        <RoundAnnouncement round={state?.round} onPressButton={nextStep} buttonText=" " time={5} />
 
         {/* Step 1 */}
         <PhaseAnnouncement
           type="loupe"
           title={translate('Nova pista', 'New clue')}
-          onClose={increaseStep}
+          onClose={nextStep}
           currentRound={state?.round?.current}
         >
           <Instruction>

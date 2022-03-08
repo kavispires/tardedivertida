@@ -1,8 +1,10 @@
 import { useState } from 'react';
 // State & Hooks
-import { useIsUserReady, useUser, useLanguage, useMock } from 'hooks';
+import { useIsUserReady, useUser, useLanguage, useMock, useStep } from 'hooks';
+import { useOnSubmitCrimeAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+import { mockCrime } from './mock';
 // Components
 import {
   Instruction,
@@ -18,14 +20,12 @@ import { StepCauseOfDeathSelection } from './StepCauseOfDeathSelection';
 import { StepLocationSelection } from './StepLocationSelection';
 import { StepReviewCrime } from './StepReviewCrime';
 import { StepReasonForEvidence } from './StepReasonForEvidence';
-import { useOnSubmitCrimeAPIRequest } from './_api-requests';
-import { mockCrime } from './mock';
 
 function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
-  const isUserReady = useIsUserReady(players, state);
   const { translate } = useLanguage();
+  const { step, setStep, nextStep } = useStep(0);
   const user = useUser(players);
-  const [step, setStep] = useState(0);
+  const isUserReady = useIsUserReady(players, state);
   const [selections, setSelections] = useState<SubmitCrimePayload>({});
 
   const onSubmitCrimeRequest = useOnSubmitCrimeAPIRequest(setStep);
@@ -34,14 +34,12 @@ function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
     onSubmitCrimeRequest(selections);
   };
 
-  const increaseStep = () => setStep((s: number) => ++s);
-
-  const updateSelections = (payload: PlainObject) => {
+  const updateSelections = (payload: SubmitCrimePayload) => {
     setSelections((s: SubmitCrimePayload) => ({ ...s, ...payload }));
-    increaseStep();
+    nextStep();
   };
 
-  const updateSelection = (payload: PlainObject) => {
+  const updateSelection = (payload: SubmitCrimePayload) => {
     setSelections((s: SubmitCrimePayload) => ({ ...s, ...payload }));
   };
 
@@ -57,7 +55,7 @@ function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
         {/* Step 0 */}
         <RoundAnnouncement
           round={state?.round}
-          onPressButton={increaseStep}
+          onPressButton={nextStep}
           buttonText=" "
           time={5}
           circleColor="black"
@@ -67,7 +65,7 @@ function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
         <PhaseAnnouncement
           type="event"
           title={translate('A Convenção', 'The Convention')}
-          onClose={increaseStep}
+          onClose={nextStep}
           currentRound={state?.round?.current}
           duration={30}
         >
@@ -87,7 +85,7 @@ function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
         <PhaseAnnouncement
           type="skull"
           title={translate('Causa da Morte', 'Cause of Death')}
-          onClose={increaseStep}
+          onClose={nextStep}
           duration={5}
         >
           <Instruction>
@@ -107,7 +105,7 @@ function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
         <PhaseAnnouncement
           type="crime-scene"
           title={translate('Evidências?', 'Evidence?')}
-          onClose={increaseStep}
+          onClose={nextStep}
           duration={5}
         >
           <Instruction>
@@ -130,7 +128,7 @@ function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
         <PhaseAnnouncement
           type="location"
           title={translate('Local do Crime', 'Crime Location')}
-          onClose={increaseStep}
+          onClose={nextStep}
           duration={5}
         >
           <Instruction>
@@ -152,9 +150,9 @@ function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
         <PhaseAnnouncement
           type="crime-tape"
           title={translate('Revisão', 'Review')}
-          onClose={increaseStep}
+          onClose={nextStep}
           duration={5}
-        ></PhaseAnnouncement>
+        />
 
         {/* Step 10 */}
         <StepReviewCrime
