@@ -22,7 +22,7 @@ type PhaseAnnouncementProps = {
   type?: string;
   unskippable?: boolean;
   withoutTimer?: boolean;
-  animated?: boolean;
+  animationType?: AnimationType;
 };
 export function PhaseAnnouncement({
   buttonText,
@@ -35,7 +35,7 @@ export function PhaseAnnouncement({
   className,
   withoutTimer = false,
   unskippable,
-  animated = true,
+  animationType = 'backInDown',
 }: PhaseAnnouncementProps) {
   const { translate } = useLanguage();
   const durationPerRound = [15, 15, 10, 5, 5, 5]?.[currentRound] ?? 5;
@@ -43,7 +43,7 @@ export function PhaseAnnouncement({
     IconIllustrationsComponents[kebabToPascal(type ?? 'multitask')] ?? IconIllustrationsComponents.Multitask;
 
   return (
-    <div className={clsx('phase-announcement', getAnimationClass('backInDown'), className)}>
+    <div className={clsx('phase-announcement', getAnimationClass(animationType), className)}>
       <Title>{title}</Title>
       <Icon className="phase-announcement__icon" />
 
