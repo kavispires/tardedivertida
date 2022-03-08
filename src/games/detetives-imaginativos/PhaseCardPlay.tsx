@@ -20,7 +20,7 @@ import { StepPlayCard } from './StepPlayCard';
 function PhaseCardPlay({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
   const { isLoading } = useLoading();
-  const { step, nextStep } = useStep(0);
+  const { step, goToNextStep } = useStep(0);
   const user = useUser(players);
   const [currentPlayer, isUserTheCurrentPlayer] = useWhichPlayerIsThe('currentPlayerId', state, players);
   const [, isUserTheImpostor] = useWhichPlayerIsThe('impostorId', state, players);
@@ -56,7 +56,7 @@ function PhaseCardPlay({ state, players, info }: PhaseProps) {
         <PhaseAnnouncement
           type="hanging-photograph"
           title={translate('Apresentação das Evidências', 'Evidence')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
         >
           <Instruction>

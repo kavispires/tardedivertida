@@ -18,7 +18,7 @@ import { DreamBoard } from './DreamBoard';
 
 function PhaseTellDream({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
-  const { step, nextStep, setStep } = useStep(0);
+  const { step, goToNextStep, setStep } = useStep(0);
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
 
@@ -33,7 +33,7 @@ function PhaseTellDream({ state, players, info }: PhaseProps) {
         waitingRoomContent={<DreamBoard user={user} table={state.table} />}
       >
         {/* Step 0 */}
-        <RoundAnnouncement round={state.round} buttonText="" onPressButton={nextStep} time={5}>
+        <RoundAnnouncement round={state.round} buttonText="" onPressButton={goToNextStep} time={5}>
           <Instruction contained>
             <Translate
               pt="Somos paranormais tentando adivinhar os sonhos dos outros..."
@@ -46,7 +46,7 @@ function PhaseTellDream({ state, players, info }: PhaseProps) {
         <PhaseAnnouncement
           type="dream"
           title={translate('Conte-nos sobre seu sonho', 'Tell us about your dream...')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
         >
           <Instruction>

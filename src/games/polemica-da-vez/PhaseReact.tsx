@@ -9,7 +9,7 @@ import { StepLiking } from './StepLiking';
 
 function PhaseReact({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
-  const { step, nextStep, setStep } = useStep(0);
+  const { step, goToNextStep, setStep } = useStep(0);
 
   const onSubmitReaction = useOnSubmitReactionAPIRequest(setStep);
 
@@ -20,7 +20,7 @@ function PhaseReact({ state, players, info }: PhaseProps) {
         <PhaseAnnouncement
           type="feedback"
           title={translate('O que você acha?', 'What do you think?')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
         >
           <Instruction>

@@ -9,7 +9,7 @@ import { StepRanking } from './StepRanking';
 
 function PhaseReveal({ players, state, info }: PhaseProps) {
   const { translate } = useLanguage();
-  const { step, nextStep } = useStep(0);
+  const { step, goToNextStep } = useStep(0);
   const user = useUser(players);
 
   const isUserReady = useIsUserReady(players, state);
@@ -22,7 +22,7 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
         <PhaseAnnouncement
           type="quality-seal"
           title={translate('Resultado', 'Results')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
           duration={5}
         >
@@ -40,7 +40,7 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
           witnessVote={state.witnessVote}
           user={user}
           players={players}
-          nextStep={nextStep}
+          goToNextStep={goToNextStep}
         />
 
         {/* Step 2 */}

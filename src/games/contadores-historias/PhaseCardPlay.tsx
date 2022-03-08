@@ -9,7 +9,7 @@ import { StepPlayCard } from './StepPlayCard';
 
 function PhaseCardPlay({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
-  const { step, nextStep, setStep } = useStep(0);
+  const { step, goToNextStep, setStep } = useStep(0);
   const user = useUser(players);
   const [storyteller, isUserTheStoryTeller] = useWhichPlayerIsThe('storytellerId', state, players);
 
@@ -22,7 +22,7 @@ function PhaseCardPlay({ state, players, info }: PhaseProps) {
         <PhaseAnnouncement
           type="image-cards"
           title={translate('Selecione uma carta', 'Play a card...')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
         >
           <Instruction>

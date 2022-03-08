@@ -48,11 +48,11 @@ export function GalleryWindowControls({
     }
   }, [time, setActiveIndex, galleryLength]);
 
-  const previousStep = () => {
+  const goToPreviousStep = () => {
     setActiveIndex((s: number) => Math.max(s - 1, 0));
   };
 
-  const nextStep = () => {
+  const goToNextStep = () => {
     setActiveIndex((s: number) => Math.min(s + 1, galleryLength - 1));
   };
 
@@ -73,7 +73,7 @@ export function GalleryWindowControls({
           <Button
             size="large"
             icon={<StepBackwardOutlined />}
-            onClick={previousStep}
+            onClick={goToPreviousStep}
             disabled={disableControls || activeIndex === 0}
           >
             <Translate pt="Desenho Anterior" en="Previous Art" />
@@ -85,7 +85,7 @@ export function GalleryWindowControls({
           />
           <Button
             size="large"
-            onClick={nextStep}
+            onClick={goToNextStep}
             disabled={disableControls || activeIndex === galleryLength - 1}
           >
             <Translate pt="Próximo Desenho" en="Next Art" /> <StepForwardOutlined />

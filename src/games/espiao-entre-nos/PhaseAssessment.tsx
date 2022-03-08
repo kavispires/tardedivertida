@@ -9,7 +9,7 @@ import { StepVoting } from './StepVoting';
 
 function PhaseAssessment({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
-  const { step, nextStep, setStep } = useStep(0);
+  const { step, goToNextStep, setStep } = useStep(0);
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
   const [accuser, isUserTheAccuser] = useWhichPlayerIsThe('accuserId', state, players);
@@ -29,7 +29,7 @@ function PhaseAssessment({ state, players, info }: PhaseProps) {
         <PhaseAnnouncement
           type="alert"
           title={translate('Acusação!', 'Accusation!')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
           buttonText=""
           className="e-phase-announcement e-phase-announcement--alert"

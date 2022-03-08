@@ -10,7 +10,7 @@ import { StepGuessing } from './StepGuessing';
 
 function PhaseGuessing({ players, state, info }: PhaseProps) {
   const { translate } = useLanguage();
-  const { step, setStep, nextStep } = useStep(0);
+  const { step, setStep, goToNextStep } = useStep(0);
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
 
@@ -23,7 +23,7 @@ function PhaseGuessing({ players, state, info }: PhaseProps) {
         <PhaseAnnouncement
           type="guess"
           title={translate('Tente Adivinhar', 'Try to guess')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
         >
           <GuessMessage />

@@ -68,7 +68,7 @@ export function PhaseAnnouncement({
 }
 
 type PhaseTimerResetProps = {
-  nextStep: GenericFunction;
+  goToNextStep: GenericFunction;
 };
 
 /**
@@ -76,12 +76,12 @@ type PhaseTimerResetProps = {
  * @param props
  * @returns
  */
-export function PhaseTimerReset({ nextStep }: PhaseTimerResetProps) {
+export function PhaseTimerReset({ goToNextStep }: PhaseTimerResetProps) {
   useEffect(() => {
     const delay = () => new Promise((res) => setTimeout(res, 100));
     const next = async () => {
       await delay();
-      nextStep();
+      goToNextStep();
     };
 
     next();

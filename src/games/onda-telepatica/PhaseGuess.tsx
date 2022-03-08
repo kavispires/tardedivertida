@@ -11,7 +11,7 @@ import { StepPsychicGuess } from './StepPsychicGuess';
 function PhaseGuess({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
   const { translate } = useLanguage();
-  const { step, nextStep, setStep } = useStep(0);
+  const { step, goToNextStep, setStep } = useStep(0);
   const [, isUserThePsychic] = useWhichPlayerIsThe('psychicId', state, players);
 
   const onSendGuess = useOnSubmitGuessAPIRequest(setStep);
@@ -23,7 +23,7 @@ function PhaseGuess({ players, state, info }: PhaseProps) {
         <PhaseAnnouncement
           type="sound-wave"
           title={translate('Adivinhação', 'Guessing')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
           duration={7}
         >

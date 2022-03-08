@@ -8,7 +8,7 @@ import { PhaseAnnouncement, PhaseContainer, StepSwitcher } from 'components';
 function PhaseResolution({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
   const { translate } = useLanguage();
-  const { step, nextStep } = useStep();
+  const { step, goToNextStep } = useStep();
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.GALERIA_DE_SONHOS.RESOLUTION}>
@@ -22,7 +22,7 @@ function PhaseResolution({ players, state, info }: PhaseProps) {
         <PhaseAnnouncement
           type="sleep"
           title={translate('Tema dos Sonhos', 'The Dream Theme')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
         >
           TODO

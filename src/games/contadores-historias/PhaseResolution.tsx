@@ -10,7 +10,7 @@ import { ScoringRules } from './RulesBlogs';
 
 function PhaseResolution({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
-  const { step, nextStep, previousStep } = useStep(0);
+  const { step, goToNextStep, goToPreviousStep } = useStep(0);
   const [storyteller] = useWhichPlayerIsThe('storytellerId', state, players);
 
   return (
@@ -20,7 +20,7 @@ function PhaseResolution({ state, players, info }: PhaseProps) {
         <PhaseAnnouncement
           type="seal"
           title={translate('Solução', 'Solution')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
         >
           <ScoringRules storyteller={storyteller} />
@@ -32,7 +32,7 @@ function PhaseResolution({ state, players, info }: PhaseProps) {
           story={state.story}
           storyteller={storyteller}
           table={state.table}
-          nextStep={nextStep}
+          goToNextStep={goToNextStep}
         />
 
         {/* Step 2 */}
@@ -43,7 +43,7 @@ function PhaseResolution({ state, players, info }: PhaseProps) {
           storyteller={storyteller}
           round={state.round}
           lastRound={state.lastRound}
-          previousStep={previousStep}
+          goToPreviousStep={goToPreviousStep}
         />
       </StepSwitcher>
     </PhaseContainer>

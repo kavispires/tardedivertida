@@ -17,7 +17,7 @@ import { StepSuspectElimination } from './StepSuspectElimination';
 function PhaseTrial({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
   const { isLoading } = useLoading();
-  const { step, nextStep } = useStep(0);
+  const { step, goToNextStep } = useStep(0);
 
   const [witness, isUserTheWitness] = useWhichPlayerIsThe('witnessId', state, players);
   const [questioner, isUserTheQuestioner] = useWhichPlayerIsThe('questionerId', state, players);
@@ -36,7 +36,7 @@ function PhaseTrial({ state, players, info }: PhaseProps) {
         <PhaseAnnouncement
           type="law"
           title={translate('Julgamento', 'Trial')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
         >
           <Instruction>

@@ -17,7 +17,7 @@ import { StepQuestioning } from './StepQuestioning';
 function PhaseQuestioning({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
   const { isLoading } = useLoading();
-  const { step, nextStep } = useStep(0);
+  const { step, goToNextStep } = useStep(0);
   const [witness, isUserTheWitness] = useWhichPlayerIsThe('witnessId', state, players);
 
   const onAnswer = useOnSubmitTestimonyAPIRequest();
@@ -34,7 +34,7 @@ function PhaseQuestioning({ state, players, info }: PhaseProps) {
         <PhaseAnnouncement
           type="eye"
           title={translate('Questionamento', 'Questioning')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
         >
           <Instruction>

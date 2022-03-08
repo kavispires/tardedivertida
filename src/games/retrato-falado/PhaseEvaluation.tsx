@@ -12,7 +12,7 @@ function PhaseEvaluation({ players, state, info }: PhaseProps) {
   const user = useUser(players);
 
   const isUserReady = useIsUserReady(players, state);
-  const { step, nextStep, setStep } = useStep(0);
+  const { step, goToNextStep, setStep } = useStep(0);
   const [, isUserTheWitness] = useWhichPlayerIsThe('witnessId', state, players);
 
   const onSubmitVote = useOnSubmitVoteAPIRequest(setStep);
@@ -24,7 +24,7 @@ function PhaseEvaluation({ players, state, info }: PhaseProps) {
         <PhaseAnnouncement
           type="choice"
           title={translate('Vote!', 'Vote!')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
         >
           <Instruction>

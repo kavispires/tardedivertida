@@ -20,7 +20,7 @@ import { Button } from 'antd';
 
 function PhaseReact({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
-  const { step, nextStep, previousStep } = useStep(0);
+  const { step, goToNextStep, goToPreviousStep } = useStep(0);
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.POLEMICA_DA_VEZ.RESOLUTION}>
@@ -29,7 +29,7 @@ function PhaseReact({ state, players, info }: PhaseProps) {
         <PhaseAnnouncement
           type="review"
           title={translate('Resultado', 'Results')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
         >
           <Instruction>
@@ -59,7 +59,7 @@ function PhaseReact({ state, players, info }: PhaseProps) {
             customTopic={state.customTopic}
             currentTopic={state.currentTopic}
             totalLikes={state.totalLikes}
-            nextStep={nextStep}
+            goToNextStep={goToNextStep}
           />
         </Step>
 
@@ -67,7 +67,7 @@ function PhaseReact({ state, players, info }: PhaseProps) {
           <Title>Ranking</Title>
           <RankingBoard ranking={state.ranking} players={players} />
           <ButtonContainer>
-            <Button onClick={previousStep} ghost>
+            <Button onClick={goToPreviousStep} ghost>
               <Translate pt="Ver resultado novamente" en="See results again" />
             </Button>
           </ButtonContainer>

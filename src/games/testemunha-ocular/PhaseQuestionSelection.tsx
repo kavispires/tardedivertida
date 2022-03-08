@@ -18,7 +18,7 @@ import { StepQuestionWaiting } from './StepQuestionWaiting';
 function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
   const { isLoading } = useLoading();
-  const { step, nextStep } = useStep(0);
+  const { step, goToNextStep } = useStep(0);
   const [witness, isUserTheWitness] = useWhichPlayerIsThe('witnessId', state, players);
   const [questioner, isUserTheQuestioner] = useWhichPlayerIsThe('questionerId', state, players);
   const onSelectQuestion = useOnSelectQuestionAPIRequest();
@@ -37,7 +37,7 @@ function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
         <PhaseAnnouncement
           type="investigation"
           title={translate('Seleção da Pergunta', 'Question Selection')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
         >
           <Instruction>

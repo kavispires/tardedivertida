@@ -17,7 +17,7 @@ import { FinalAssessmentPreparationModal } from './FinalAssessmentPreparationMod
 
 function PhaseInvestigation({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
-  const { step, nextStep, setStep } = useStep(0);
+  const { step, goToNextStep, setStep } = useStep(0);
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
   const [, isUserTheSpy] = useWhichPlayerIsThe('currentSpyId', state, players);
@@ -53,7 +53,7 @@ function PhaseInvestigation({ state, players, info }: PhaseProps) {
           <PhaseAnnouncement
             type="loupe"
             title={translate('Investigação', 'Investigation')}
-            onClose={nextStep}
+            onClose={goToNextStep}
             currentRound={state?.round?.current}
             buttonText=""
             className="e-phase-announcement"
@@ -63,7 +63,7 @@ function PhaseInvestigation({ state, players, info }: PhaseProps) {
           <PhaseAnnouncement
             type="opinions"
             title={translate('A investigação continua', 'The investigation continues')}
-            onClose={nextStep}
+            onClose={goToNextStep}
             currentRound={state?.round?.current}
             buttonText=""
             className="e-phase-announcement"

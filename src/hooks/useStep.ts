@@ -7,19 +7,19 @@ import { useState } from 'react';
 export function useStep(startingStep = 0): {
   step: number;
   setStep: React.Dispatch<React.SetStateAction<number>>;
-  nextStep: GenericFunction;
-  previousStep: GenericFunction;
+  goToNextStep: GenericFunction;
+  goToPreviousStep: GenericFunction;
 } {
   const [step, setStep] = useState<number>(startingStep);
 
-  const nextStep = () => setStep((s) => s + 1);
+  const goToNextStep = () => setStep((s) => s + 1);
 
-  const previousStep = () => setStep((s) => (s - 1 < 0 ? 0 : s - 1));
+  const goToPreviousStep = () => setStep((s) => (s - 1 < 0 ? 0 : s - 1));
 
   return {
     step,
     setStep,
-    nextStep,
-    previousStep,
+    goToNextStep,
+    goToPreviousStep,
   };
 }

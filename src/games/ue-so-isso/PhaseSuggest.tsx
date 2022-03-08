@@ -12,7 +12,7 @@ import { GuesserWaitingRoom } from './GuesserWaitingRoom';
 function PhaseSuggest({ state, players, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
   const { translate } = useLanguage();
-  const { step, nextStep, setStep } = useStep(0);
+  const { step, goToNextStep, setStep } = useStep(0);
   const [guesser, isUserTheGuesser] = useWhichPlayerIsThe('guesserId', state, players);
 
   const onSendSuggestions = useOnSubmitSuggestionsAPIRequest(setStep);
@@ -29,7 +29,7 @@ function PhaseSuggest({ state, players, info }: PhaseProps) {
         <PhaseAnnouncement
           type="writing"
           title={translate('Escreva uma dica!', 'Write a Clue!')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
         >
           <WritingRules />

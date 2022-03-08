@@ -22,7 +22,7 @@ import { StepCategorySelection } from './StepCategorySelection';
 function PhaseDialClue({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
   const { translate } = useLanguage();
-  const { step, nextStep } = useStep(0);
+  const { step, goToNextStep } = useStep(0);
   const [psychic, isUserThePsychic] = useWhichPlayerIsThe('psychicId', state, players);
 
   const onSendChosenSide = useOnSubmitCategoryAPIRequest();
@@ -36,7 +36,7 @@ function PhaseDialClue({ players, state, info }: PhaseProps) {
         <RoundAnnouncement
           round={state.round}
           buttonText=" "
-          onPressButton={nextStep}
+          onPressButton={goToNextStep}
           time={5}
           circleColor="pink"
         ></RoundAnnouncement>
@@ -45,7 +45,7 @@ function PhaseDialClue({ players, state, info }: PhaseProps) {
         <PhaseAnnouncement
           type="turban"
           title={translate('Concentração', 'Focus')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
           duration={7}
         >

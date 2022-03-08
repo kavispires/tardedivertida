@@ -10,7 +10,7 @@ import { StepDreamsSelection } from './StepDreamsSelection';
 
 function PhaseDreamsSelections({ players, state, info }: PhaseProps) {
   const { translate } = useLanguage();
-  const { step, nextStep, setStep } = useStep();
+  const { step, goToNextStep, setStep } = useStep();
   const isUserReady = useIsUserReady(players, state);
 
   const onSubmitCards = useOnSubmitCardsAPIRequest(setStep);
@@ -22,7 +22,7 @@ function PhaseDreamsSelections({ players, state, info }: PhaseProps) {
         <PhaseAnnouncement
           type="dream"
           title={translate('Visite sonhos!', 'Visit dreams!')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
         >
           <DreamSelectionRules />

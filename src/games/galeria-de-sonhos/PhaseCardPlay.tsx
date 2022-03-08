@@ -20,7 +20,7 @@ import { StepAnnounceDream } from './StepAnnounceDream';
 
 function PhaseCardPlay({ players, state, info }: PhaseProps) {
   const { translate } = useLanguage();
-  const { step, nextStep, setStep } = useStep();
+  const { step, goToNextStep, setStep } = useStep();
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
 
@@ -49,7 +49,7 @@ function PhaseCardPlay({ players, state, info }: PhaseProps) {
           <CardPlayRules />
         </PhaseAnnouncement>
 
-        <PhaseTimerReset nextStep={nextStep} />
+        <PhaseTimerReset goToNextStep={goToNextStep} />
 
         {/* Step 1 */}
         <PhaseAnnouncement
@@ -68,7 +68,7 @@ function PhaseCardPlay({ players, state, info }: PhaseProps) {
               }
             />
           }
-          onClose={nextStep}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
         >
           <Instruction>

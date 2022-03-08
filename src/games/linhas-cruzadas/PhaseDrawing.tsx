@@ -16,7 +16,7 @@ import {
 import { StepTimedDrawing } from './StepTimedDrawing';
 
 function PhaseDrawing({ players, state, info }: PhaseProps) {
-  const { step, nextStep, setStep } = useStep(0);
+  const { step, goToNextStep, setStep } = useStep(0);
   const { translate } = useLanguage();
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
@@ -30,7 +30,7 @@ function PhaseDrawing({ players, state, info }: PhaseProps) {
         <PhaseAnnouncement
           type="drawing"
           title={translate('Desenhe', 'Draw')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
           buttonText={translate('Um dó, lá, si... vamos ir... já!', 'Ready! Set! Go!')}
           withoutTimer

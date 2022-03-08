@@ -8,7 +8,7 @@ import { StepResult } from './StepResult';
 
 function PhaseResult({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
-  const { step, nextStep } = useStep(0);
+  const { step, goToNextStep } = useStep(0);
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
 
@@ -19,7 +19,7 @@ function PhaseResult({ state, players, info }: PhaseProps) {
         <PhaseAnnouncement
           type="halloween-balloons"
           title={translate('Resultado', 'Results')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
           duration={3}
         >

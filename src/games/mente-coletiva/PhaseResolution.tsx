@@ -8,7 +8,7 @@ import { StepResolution } from './StepResolution';
 
 function PhaseResolution({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
-  const { step, nextStep } = useStep(0);
+  const { step, goToNextStep } = useStep(0);
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.MENTE_COLETIVA.RESOLUTION}>
@@ -17,7 +17,7 @@ function PhaseResolution({ state, players, info }: PhaseProps) {
         <PhaseAnnouncement
           type="customer-review"
           title={translate('Resultado', 'And who moves is...')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
         >
           <Instruction>

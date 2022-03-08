@@ -10,7 +10,7 @@ import { ScoringRule } from './RulesBlobs';
 
 function PhaseReveal({ players, state, info }: PhaseProps) {
   const { translate } = useLanguage();
-  const { step, nextStep, previousStep } = useStep(0);
+  const { step, goToNextStep, goToPreviousStep } = useStep(0);
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
 
@@ -23,7 +23,7 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
         <PhaseAnnouncement
           type="rank"
           title={translate('Resultado', 'Results')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
         >
           <ScoringRule playerCount={playerCount} />
@@ -34,7 +34,7 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
           user={user}
           grid={state.grid}
           clues={state.clues}
-          nextStep={nextStep}
+          goToNextStep={goToNextStep}
           players={players}
           whoGotNoPoints={state.whoGotNoPoints ?? []}
         />
@@ -45,7 +45,7 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
           playerCount={playerCount}
           round={state.round}
           ranking={state.ranking}
-          previousStep={previousStep}
+          goToPreviousStep={goToPreviousStep}
           isLastRound={state?.lastRound}
         />
       </StepSwitcher>

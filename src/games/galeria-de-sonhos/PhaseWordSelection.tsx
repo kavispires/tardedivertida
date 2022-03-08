@@ -20,7 +20,7 @@ import { GeneralRules, WordSelectionRules } from './RulesBlobs';
 
 function PhaseWordSelection({ players, state, info }: PhaseProps) {
   const { translate } = useLanguage();
-  const { step, nextStep, setStep } = useStep();
+  const { step, goToNextStep, setStep } = useStep();
   const isUserReady = useIsUserReady(players, state);
   const [scout, isUserTheScout] = useWhichPlayerIsThe('scoutId', state, players);
 
@@ -35,7 +35,7 @@ function PhaseWordSelection({ players, state, info }: PhaseProps) {
         waitingRoomInstructionType="SERVER"
       >
         {/* Step 0 */}
-        <RoundAnnouncement round={state?.round} onPressButton={nextStep} buttonText=" " time={5}>
+        <RoundAnnouncement round={state?.round} onPressButton={goToNextStep} buttonText=" " time={5}>
           <Instruction contained>
             <Translate
               pt="Somos caçadores de sonhos tentando encontrar uns aos outros..."
@@ -48,7 +48,7 @@ function PhaseWordSelection({ players, state, info }: PhaseProps) {
         <PhaseAnnouncement
           type="sleep"
           title={translate('Tema dos Sonhos', 'The Dream Theme')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
         >
           <WordSelectionRules scout={scout} />

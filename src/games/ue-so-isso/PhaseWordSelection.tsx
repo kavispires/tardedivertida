@@ -49,7 +49,7 @@ function PhaseWordSelection({ state, players, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
   const { translate } = useLanguage();
   const [guesser, isUserTheGuesser] = useWhichPlayerIsThe('guesserId', state, players);
-  const { step, nextStep, setStep } = useStep(0);
+  const { step, goToNextStep, setStep } = useStep(0);
 
   const onSendSelectedWords = useOnSubmitVotesAPIRequest(setStep);
 
@@ -70,7 +70,7 @@ function PhaseWordSelection({ state, players, info }: PhaseProps) {
         <PhaseAnnouncement
           type="opinions"
           title={translate('Seleção da Palavra Secreta', 'Secret Word Selection')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
         >
           {isUserTheGuesser ? (

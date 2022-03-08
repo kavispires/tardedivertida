@@ -10,7 +10,7 @@ import { AnsweringRules } from './RulesBlobs';
 
 function PhaseEverybodyWrites({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
-  const { step, nextStep, setStep } = useStep(0);
+  const { step, goToNextStep, setStep } = useStep(0);
   const user = useUser(players);
 
   const onSubmitAnswers = useOnSubmitAnswersAPIRequest(setStep);
@@ -22,7 +22,7 @@ function PhaseEverybodyWrites({ state, players, info }: PhaseProps) {
         <PhaseAnnouncement
           type="writing"
           title={translate('Todos Respondem', 'Everybody Writes')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
           duration={state?.round?.current < 3 ? 20 : undefined}
         >

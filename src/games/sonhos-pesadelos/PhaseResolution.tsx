@@ -9,7 +9,7 @@ import { StepResults } from './StepResults';
 
 function PhaseResolution({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
-  const { step, nextStep } = useStep(0);
+  const { step, goToNextStep } = useStep(0);
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
 
@@ -25,7 +25,7 @@ function PhaseResolution({ state, players, info }: PhaseProps) {
         <PhaseAnnouncement
           type="countdown"
           title={translate('Resultado', 'Results')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
         >
           <Instruction>

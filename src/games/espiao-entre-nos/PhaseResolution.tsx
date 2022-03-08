@@ -11,7 +11,7 @@ import { StepResolution } from './StepResolution';
 
 function PhaseResolution({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
-  const { step, nextStep, setStep } = useStep(0);
+  const { step, goToNextStep, setStep } = useStep(0);
   const isUserReady = useIsUserReady(players, state);
   const [currentSpy, isUserTheSpy] = useWhichPlayerIsThe('currentSpyId', state, players);
   const [target] = useWhichPlayerIsThe('targetId', state, players);
@@ -36,7 +36,7 @@ function PhaseResolution({ state, players, info }: PhaseProps) {
           <PhaseAnnouncement
             type="map-location"
             title={translate('O espião tentou adivinhar o local', 'The spy tried to guess the location')}
-            onClose={nextStep}
+            onClose={goToNextStep}
             currentRound={state?.round?.current}
             buttonText=""
             className="e-phase-announcement"
@@ -46,7 +46,7 @@ function PhaseResolution({ state, players, info }: PhaseProps) {
           <PhaseAnnouncement
             type="thief"
             title={translate('A votação foi unanime!', 'The vote was unanimous!')}
-            onClose={nextStep}
+            onClose={goToNextStep}
             currentRound={state?.round?.current}
             buttonText=""
             className="e-phase-announcement"
@@ -55,13 +55,13 @@ function PhaseResolution({ state, players, info }: PhaseProps) {
         </ViewOr>
 
         {/* Step 1 */}
-        <PhaseTimerReset nextStep={nextStep} />
+        <PhaseTimerReset goToNextStep={goToNextStep} />
 
         {/* Step 2 */}
         <PhaseAnnouncement
           type={resolutionStatus.phaseIcon}
           title={translate('O fim chegou!', 'The end is here!')}
-          onClose={nextStep}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
           buttonText=""
           className="e-phase-announcement"
