@@ -1,6 +1,5 @@
-import { useState } from 'react';
 // State & Hooks
-import { useIsUserReady, useUser, useLanguage } from 'hooks';
+import { useIsUserReady, useUser, useLanguage, useStep } from 'hooks';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
@@ -21,12 +20,10 @@ import { Button } from 'antd';
 import { ScoringMessage } from './RulesBlobs';
 
 function PhaseReveal({ players, state, info }: PhaseProps) {
-  const isUserReady = useIsUserReady(players, state);
   const { translate } = useLanguage();
+  const { step, nextStep, previousStep } = useStep(0);
   const user = useUser(players);
-  const [step, setStep] = useState(0);
-
-  const increaseStep = () => setStep((s: number) => ++s);
+  const isUserReady = useIsUserReady(players, state);
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.CRIMES_HEDIONDOS.REVEAL}>
@@ -35,7 +32,7 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
         <PhaseAnnouncement
           type="rank"
           title={translate('Resultado', 'Results')}
-          onClose={() => setStep(1)}
+          onClose={nextStep}
           currentRound={state?.round?.current}
         >
           <Instruction>
@@ -52,7 +49,7 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
           scenes={state.scenes}
           scenesOrder={state.scenesOrder}
           crimes={state.crimes}
-          onSeeRanking={increaseStep}
+          onSeeRanking={nextStep}
         />
 
         {/* Step 2 */}
@@ -62,7 +59,7 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
           <RankingBoard ranking={state.ranking} players={players} />
 
           <ButtonContainer>
-            <Button onClick={() => setStep(1)}>
+            <Button onClick={previousStep}>
               <Translate pt="Ver resultado novamente" en="See results again" />
             </Button>
           </ButtonContainer>
