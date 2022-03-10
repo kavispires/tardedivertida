@@ -1,9 +1,14 @@
-import { Button } from 'antd';
 import { useState } from 'react';
+import { Button } from 'antd';
 import { ButtonContainer, Instruction, Step, Title, Translate, TransparentButton } from 'components';
 import { useCardWidth } from 'hooks';
 import { shuffle } from 'utils/helpers';
 import { ItemCard } from './ItemCard';
+import { ContinueButton } from './ContinueButton';
+// Ant Design Resources
+// Hooks
+// Utils
+// Components
 
 type StepItemsSelectionProps = {
   user: GamePlayer;
@@ -79,6 +84,11 @@ export function StepItemsSelection({
         <Button onClick={onRandomSelect}>
           <Translate pt="Selecionar aleatoriamente" en="Random picks" />
         </Button>
+
+        <ContinueButton
+          disabled={!weaponId || !evidenceId}
+          onClick={() => updateSelections({ weaponId, evidenceId })}
+        />
       </ButtonContainer>
 
       <ul className="h-items-selection">
@@ -95,17 +105,6 @@ export function StepItemsSelection({
           </li>
         ))}
       </ul>
-
-      <ButtonContainer>
-        <Button
-          type="primary"
-          size="large"
-          disabled={!weaponId || !evidenceId}
-          onClick={() => updateSelections({ weaponId, evidenceId })}
-        >
-          »»»
-        </Button>
-      </ButtonContainer>
     </Step>
   );
 }

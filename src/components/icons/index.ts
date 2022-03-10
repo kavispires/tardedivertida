@@ -46,6 +46,7 @@ export * from './Knife';
 export * from './Knowledge';
 export * from './Ladder';
 export * from './Law';
+export * from './Lock';
 export * from './List';
 export * from './Loupe';
 export * from './Location';

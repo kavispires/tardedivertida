@@ -50,6 +50,7 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
           scenesOrder={state.scenesOrder}
           crimes={state.crimes}
           onSeeRanking={goToNextStep}
+          currentRound={state.round.current}
         />
 
         {/* Step 2 */}

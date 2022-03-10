@@ -1,6 +1,6 @@
 import { CheckSquareFilled, CloseSquareFilled } from '@ant-design/icons';
 import { Collapse, Table } from 'antd';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import {
   AvatarName,
   ButtonContainer,
@@ -16,6 +16,13 @@ import { Crime } from './Crime';
 import { GroupedItemsBoard } from './GroupedItemsBoard';
 import { splitWeaponsAndEvidence } from './helpers';
 import { ScoringMessage } from './RulesBlobs';
+import { PlayersCards } from './PlayersCards';
+import { getLastItem } from 'utils/helpers';
+import { CrimeGuessStatus } from './CrimeGuessStatus';
+// Ant Design Resources
+// Hooks
+// Utils
+// Components
 
 type StepRevealProps = {
   user: GamePlayer;
@@ -26,6 +33,7 @@ type StepRevealProps = {
   scenesOrder: string[];
   crimes: Crime[];
   onSeeRanking: GenericFunction;
+  currentRound: number;
 };
 
 export function StepReveal({
@@ -37,12 +45,17 @@ export function StepReveal({
   scenesOrder,
   crimes,
   onSeeRanking,
+  currentRound,
 }: StepRevealProps) {
   const { language, translate } = useLanguage();
-
-  const { weapons, evidences } = useMemo(() => splitWeaponsAndEvidence(items, language), [items, language]);
+  const [activePlayerId, setActivePlayerId] = useState<PlayerId>('');
 
   const playerCount = Object.keys(players).length;
+
+  const activeCrime = crimes.find((crime) => crime.playerId === activePlayerId);
+  const isOwnCrime = activePlayerId === user.id;
+  const history: GuessHistoryEntry[] = user.history?.[(activeCrime! ?? {})?.playerId] ?? [];
+  const latestHistoryEntry = getLastItem(history);
 
   return (
     <Step>
@@ -55,15 +68,14 @@ export function StepReveal({
         <Translate
           pt={
             <>
-              Se você acertou ambos, a gente te fala. Se você acertou so um ou outro... faça a matemática aí
-              com os pontos.
+              Reescrever...
               <br />
               Você acertou {user.correctCrimes} pares e conseguiu um total de {user.secretScore} pontos.
             </>
           }
           en={
             <>
-              For each crime below, select the answer you think best matches the clues.
+              Rewrite
               <br />
               Each player has their weapon and object.
             </>
@@ -71,42 +83,61 @@ export function StepReveal({
         />
       </Instruction>
 
-      <Collapse>
-        <Collapse.Panel
-          key="weapons-evidences"
-          header={<Translate pt=" Ver todas Armas e Evidências" en="See all Weapons and Evidence" />}
-        >
-          <GroupedItemsBoard
-            items={items}
-            weaponId={user.weaponId}
-            evidenceId={user.evidenceId}
-            groupedItems={groupedItems}
-          />
-        </Collapse.Panel>
-      </Collapse>
+      <ButtonContainer>
+        <Collapse>
+          <Collapse.Panel
+            key="weapons-evidences"
+            header={<Translate pt=" Ver todas Armas e Evidências" en="See all Weapons and Evidence" />}
+          >
+            <GroupedItemsBoard
+              items={items}
+              weaponId={user.weaponId}
+              evidenceId={user.evidenceId}
+              groupedItems={groupedItems}
+            />
+          </Collapse.Panel>
+        </Collapse>
+      </ButtonContainer>
 
-      <ul>
-        {crimes.map((crime) => (
-          <Crime
-            key={`crime-by-${crime.playerId}`}
-            user={user}
-            crime={crime}
-            items={items}
-            players={players}
-            scenes={scenes}
-            scenesOrder={scenesOrder}
-            selections={user.guesses[crime.playerId]}
-            weapons={weapons}
-            evidences={evidences}
-          />
-        ))}
-      </ul>
+      <PlayersCards
+        user={user}
+        activePlayerId={activePlayerId}
+        setActivePlayerId={setActivePlayerId}
+        players={players}
+        guesses={{}}
+      />
+
+      {Boolean(activePlayerId) && (
+        <Instruction contained>
+          {Boolean(latestHistoryEntry) ? (
+            <CrimeGuessStatus status={latestHistoryEntry.status} withDescription />
+          ) : isOwnCrime ? (
+            <Translate pt="Este é o seu próprio crime" en="This is your own crime" />
+          ) : (
+            ''
+          )}
+        </Instruction>
+      )}
+
+      {activeCrime && (
+        <Crime
+          key={`crime-by-${activeCrime.playerId}`}
+          crime={activeCrime}
+          scenes={scenes}
+          scenesOrder={scenesOrder}
+          items={items}
+          history={user.history[activeCrime.playerId]}
+          player={players[activeCrime.playerId]}
+          selectedWeaponId={isOwnCrime ? user.weaponId : latestHistoryEntry.weaponId}
+          selectedEvidenceId={isOwnCrime ? user.evidenceId : latestHistoryEntry.evidenceId}
+        />
+      )}
 
       <ButtonContainer>
         <TimedButton
           onClick={onSeeRanking}
           onExpire={onSeeRanking}
-          duration={45}
+          duration={Math.min(playerCount * 10, 60)}
           label={<Translate en="Ver Ranking" pt="See Ranking" />}
         />
       </ButtonContainer>

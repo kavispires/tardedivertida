@@ -32,8 +32,17 @@ export const getGameIdFromLocation = (location?: PlainObject): string => {
  * @param list
  * @returns one random item
  */
-export const getRandomItem = (list: any[]): any => {
+export const getRandomItem = <T>(list: T[]): T => {
   return list[Math.floor(Math.random() * list.length)];
+};
+
+/**
+ * Gets the last item in a list
+ * @param list
+ * @returns
+ */
+export const getLastItem = <T>(list: T[]): T => {
+  return list[list.length - 1];
 };
 
 /**

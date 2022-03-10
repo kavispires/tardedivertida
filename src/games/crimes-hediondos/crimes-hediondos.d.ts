@@ -45,7 +45,7 @@ type SubmitCrimePayload = {
   causeOfDeath?: number;
   reasonForEvidence?: number;
   locationTile?: string;
-  locationIndex?: string;
+  locationIndex?: number;
 };
 
 type SubmitMarkPayload = {
@@ -56,8 +56,18 @@ type SubmitGuessesPayload = {
   guesses: PlainObject;
 };
 
-type Guess = {
+type HGuess = {
   weaponId: string;
   evidenceId: string;
-  isComplete: boolean;
+};
+
+type GuessHistoryEntry = {
+  weaponId: string;
+  evidenceId: string;
+  status: string;
+  groupIndex: number;
+};
+
+type HHistory = {
+  [key: string]: GuessHistoryEntry[];
 };

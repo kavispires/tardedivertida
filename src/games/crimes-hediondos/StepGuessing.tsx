@@ -1,5 +1,13 @@
+import { useState } from 'react';
+// Ant Design Resources
 import { Button } from 'antd';
-import { useMemo, useState } from 'react';
+// Hooks
+import { useMock } from 'hooks';
+// Utils
+import { getAvatarColorById, getLastItem, isDevEnv } from 'utils/helpers';
+import { mockGuesses } from './mock';
+import { getHistory } from './helpers';
+// Components
 import {
   ButtonContainer,
   FloatingHand,
@@ -9,12 +17,7 @@ import {
   Title,
   Translate,
 } from 'components';
-import { useLanguage, useMock } from 'hooks';
-import { getAvatarColorById } from 'utils/helpers';
 import { Crime } from './Crime';
-import { GroupedItemsBoard } from './GroupedItemsBoard';
-import { splitWeaponsAndEvidence } from './helpers';
-import { mockGuesses } from './mock';
 import { PlayersCards } from './PlayersCards';
 import { SelectableGroupedItemsBoard } from './SelectableGroupedItemsBoard';
 
@@ -39,9 +42,8 @@ export function StepGuessing({
   crimes,
   onSubmitGuesses,
 }: StepGuessingProps) {
-  const { language } = useLanguage();
   const [guesses, setGuesses] = useState<PlainObject>({});
-  const [activePlayerId, setActivePlayerId] = useState<string>('');
+  const [activePlayerId, setActivePlayerId] = useState<PlayerId>('');
 
   const onUpdateGuesses = (itemId: string) => {
     if (activePlayerId && itemId) {
@@ -71,21 +73,37 @@ export function StepGuessing({
     }
   };
 
-  const { weapons, evidences } = useMemo(() => splitWeaponsAndEvidence(items, language), [items, language]);
+  // DEV: Auto guesses
+  useMock(() => {
+    onSubmitGuesses({ guesses: mockGuesses(groupedItems, players, user) });
+  }, []);
 
   const playerCount = Object.keys(players).length;
   const isAllComplete =
     Object.values(guesses).length === playerCount - 1 &&
-    Object.values(guesses).every((guess) => guess.isComplete);
-
-  // DEV: Auto guesses
-  useMock(() => {
-    setGuesses(mockGuesses(weapons, evidences, players, user));
-  }, []);
-
+    Object.values(guesses).every((guess) => guess.weaponId && guess.evidenceId);
   const activeCrime = crimes.find((crime) => crime.playerId === activePlayerId);
-
+  const isOwnCrime = activePlayerId === user.id;
   const activePlayerGuesses = guesses?.[activePlayerId] ?? {};
+
+  // TODO: if last guess was CORRECT or LOCK, auto-guess
+  const lastGuessHistory = getLastItem(getHistory(user.history, activePlayerId));
+  const isLocked = ['CORRECT', 'LOCKED'].includes(lastGuessHistory?.status);
+
+  // Active stuff
+  const { activeWeaponId, activeEvidenceId } = getActiveStuff(
+    isOwnCrime,
+    isLocked,
+    user,
+    activePlayerGuesses,
+    lastGuessHistory
+  );
+
+  // useEffect(() => {
+  //   if (!isOwnCrime) {
+
+  //   }
+  // }, [])
 
   return (
     <Step>
@@ -111,6 +129,12 @@ export function StepGuessing({
         />
       </Instruction>
 
+      {isDevEnv && (
+        <Button type="dashed" ghost onClick={() => setGuesses(mockGuesses(groupedItems, players, user))}>
+          Random
+        </Button>
+      )}
+
       <PlayersCards
         user={user}
         activePlayerId={activePlayerId}
@@ -134,11 +158,13 @@ export function StepGuessing({
 
       <SelectableGroupedItemsBoard
         items={items}
-        weaponId={activePlayerGuesses.weaponId}
-        evidenceId={activePlayerGuesses.evidenceId}
+        weaponId={activeWeaponId}
+        evidenceId={activeEvidenceId}
         groupedItems={groupedItems}
         onSelectItem={onUpdateGuesses}
         activeColor={getAvatarColorById(players[activePlayerId]?.avatarId)}
+        isLocked={isOwnCrime || isLocked}
+        wrongGroups={user?.wrongGroups?.[activePlayerId] ?? []}
       />
 
       <ReadyPlayersBar players={players} />
@@ -147,19 +173,44 @@ export function StepGuessing({
         <FloatingHand type="stats">
           <Crime
             key={`crime-by-${activeCrime.playerId}`}
-            user={user}
             crime={activeCrime}
-            players={players}
             scenes={scenes}
             scenesOrder={scenesOrder}
             items={items}
-            weapons={weapons}
-            evidences={evidences}
-            selections={activePlayerGuesses}
-            // onUpdateGuesses={onUpdateGuesses}
+            history={user?.history[activeCrime.playerId] ?? {}}
+            player={players[activeCrime.playerId]}
+            selectedWeaponId={activeWeaponId}
+            selectedEvidenceId={activeEvidenceId}
           />
         </FloatingHand>
       )}
     </Step>
   );
 }
+
+const getActiveStuff = (
+  isOwnCrime: boolean,
+  isLocked: boolean,
+  user: GamePlayer,
+  activePlayerGuesses: any,
+  lastGuessHistory: GuessHistoryEntry
+): { activeWeaponId: string; activeEvidenceId: string } => {
+  if (isOwnCrime) {
+    return {
+      activeWeaponId: user.weaponId,
+      activeEvidenceId: user.evidenceId,
+    };
+  }
+
+  if (isLocked) {
+    return {
+      activeWeaponId: lastGuessHistory.weaponId,
+      activeEvidenceId: lastGuessHistory.evidenceId,
+    };
+  }
+
+  return {
+    activeWeaponId: activePlayerGuesses.weaponId,
+    activeEvidenceId: activePlayerGuesses.evidenceId,
+  };
+};

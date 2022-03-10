@@ -1,31 +1,59 @@
+import clsx from 'clsx';
+// Ant Design Resources
+import { Avatar as AntAvatar, Button } from 'antd';
 import {
   CheckCircleFilled,
+  ClockCircleFilled,
   EnvironmentOutlined,
   ExceptionOutlined,
   GiftOutlined,
   SafetyOutlined,
 } from '@ant-design/icons';
-import clsx from 'clsx';
-import { Avatar } from 'components';
+// Hooks
 import { useLanguage } from 'hooks';
+// Utils
 import { getAvatarColorById } from 'utils/helpers';
+// Components
+import { Avatar, Translate } from 'components';
 import { ItemCard } from './ItemCard';
+import { ItemCardEmpty } from './ItemCardEmpty';
+import { Tooltip } from 'antd';
+import { useState } from 'react';
+import { CrimeGuessStatus } from './CrimeGuessStatus';
+
+const CARD_WIDTH = 100;
 
 type CrimeProps = {
-  user: GamePlayer;
+  history?: GuessHistoryEntry[];
   crime: Crime;
   items: ItemsDict;
-  players: GamePlayers;
+  player: GamePlayer;
   scenes: ScenesDict;
   scenesOrder: string[];
-  selections: Guess;
-  weapons: HCard[];
-  evidences: HCard[];
+  selectedWeaponId?: CardId;
+  selectedEvidenceId?: CardId;
 };
 
-export function Crime({ crime, players, scenesOrder, scenes, selections, user, items }: CrimeProps) {
-  const player = players[crime.playerId];
+export function Crime({
+  crime,
+  player,
+  scenesOrder,
+  scenes,
+  selectedWeaponId,
+  selectedEvidenceId,
+  history,
+  items,
+}: CrimeProps) {
+  const [historyEntryIndex, setHistoryEntryIndex] = useState(-1);
+  const isComplete = Boolean(selectedWeaponId && selectedWeaponId);
 
+  const activeWeaponId =
+    historyEntryIndex >= 0 && history ? history[historyEntryIndex].weaponId : selectedWeaponId;
+
+  const evidenceWeaponId =
+    historyEntryIndex >= 0 && history ? history[historyEntryIndex].evidenceId : selectedEvidenceId;
+
+  //
   return (
     <div className="h-crime">
       <div className="h-crime__player" style={{ backgroundColor: getAvatarColorById(player.avatarId) }}>
@@ -51,17 +79,54 @@ export function Crime({ crime, players, scenesOrder, scenes, selections, user, i
           })}
       </div>
 
-      <div className="h-crime-selections">
-        <ItemCard item={items[selections?.weaponId ?? user.weaponId]} cardWidth={100} preview />
+      <div className="h-crime__history">
+        <Tooltip
+          title={
+            <Translate pt="Histórico: passe o mouse nas rodadas" en="History: hover the round numbers" />
+          }
+        >
+          <ClockCircleFilled />
+        </Tooltip>
+        {history?.map((entry, index) => {
+          return (
+            <Button
+              ghost
+              shape="circle"
+              size="small"
+              onMouseOver={() => setHistoryEntryIndex(index)}
+              onMouseLeave={() => setHistoryEntryIndex(-1)}
+            >
+              {index + 1}
+            </Button>
+          );
+        })}
+      </div>
 
-        <ItemCard item={items[selections?.evidenceId ?? user.evidenceId]} cardWidth={100} preview />
+      <div className="h-crime-selections">
+        {activeWeaponId ? (
+          <ItemCard item={items[activeWeaponId]} cardWidth={CARD_WIDTH} preview />
+        ) : (
+          <ItemCardEmpty cardWidth={CARD_WIDTH} cardType="weapon" />
+        )}
+
+        {evidenceWeaponId ? (
+          <ItemCard item={items[evidenceWeaponId]} cardWidth={CARD_WIDTH} preview />
+        ) : (
+          <ItemCardEmpty cardWidth={CARD_WIDTH} cardType="evidence" />
+        )}
+
+        <div className="h-crime-selections__status">
+          {historyEntryIndex >= 0 && history && history[historyEntryIndex] && (
+            <CrimeGuessStatus status={history[historyEntryIndex].status} />
+          )}
+        </div>
       </div>
 
       <div
         className="h-crime__player"
-        style={{ backgroundColor: selections?.isComplete ? getAvatarColorById(player.avatarId) : undefined }}
+        style={{ backgroundColor: isComplete ? getAvatarColorById(player.avatarId) : undefined }}
       >
-        {selections?.isComplete && <CheckCircleFilled />}
+        {isComplete && <CheckCircleFilled />}
       </div>
     </div>
   );

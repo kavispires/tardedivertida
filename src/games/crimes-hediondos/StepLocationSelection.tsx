@@ -1,9 +1,13 @@
-import { Button } from 'antd';
 import { useState } from 'react';
 import { ButtonContainer, Instruction, Step, Title, Translate } from 'components';
 import { useCardWidth } from 'hooks';
 import { ItemCard } from './ItemCard';
 import { SceneTile } from './SceneTile';
+import { ContinueButton } from './ContinueButton';
+// Ant Design Resources
+// Hooks
+// Utils
+// Components
 
 type StepLocationSelectionProps = {
   user: GamePlayer;
@@ -79,14 +83,10 @@ export function StepLocationSelection({
       </div>
 
       <ButtonContainer>
-        <Button
-          type="primary"
-          size="large"
+        <ContinueButton
           disabled={location?.tileId === undefined}
           onClick={() => updateSelections({ locationTile: location?.tileId, locationIndex: location?.value })}
-        >
-          »»»
-        </Button>
+        />
       </ButtonContainer>
     </Step>
   );

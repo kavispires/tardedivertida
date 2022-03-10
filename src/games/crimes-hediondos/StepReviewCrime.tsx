@@ -4,6 +4,10 @@ import { ButtonContainer, Instruction, ReadyPlayersBar, Step, Title, Translate }
 import { useLanguage } from 'hooks';
 import { SceneTile } from './SceneTile';
 import { SelectedItems } from './SelectedItems';
+// Ant Design Resources
+// Hooks
+// Utils
+// Components
 
 type StepReviewCrimeProps = {
   items: ItemsDict;

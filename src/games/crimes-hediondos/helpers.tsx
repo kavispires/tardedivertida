@@ -28,3 +28,7 @@ export const splitWeaponsAndEvidence = (items: ItemsDict, language: Language): S
     evidences: sortedEvidences,
   };
 };
+
+export const getHistory = (playerHistory: HHistory, activePlayerId: PlayerId) => {
+  return playerHistory?.[activePlayerId] ?? [];
+};
