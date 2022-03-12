@@ -2,14 +2,14 @@
 import { AdminOnlyContainer, AdminButton } from './index';
 
 type AdminOnlyButtonProps = {
-  action: GenericFunction;
-  label: string;
+  onClick: GenericFunction;
+  label: ReactChildren;
 };
 
-export function AdminOnlyButton({ action, label }: AdminOnlyButtonProps) {
+export function AdminOnlyButton({ onClick, label }: AdminOnlyButtonProps) {
   return (
     <AdminOnlyContainer>
-      <AdminButton action={action} label={label} />
+      <AdminButton onClick={onClick}>{label}</AdminButton>
     </AdminOnlyContainer>
   );
 }

@@ -73,7 +73,7 @@ function Waiting({ info, players }: WaitingProps) {
             en="Please, wait while other players join..."
           />
         </h3>
-        <AdminOnlyContainer className="lobby-waiting__lock-button">
+        <AdminOnlyContainer className="lobby-waiting__lock-button" direction="vertical">
           <Typography.Text className="center padding">
             <Translate pt="Jogadores necessários" en="Players needed" />: {numPlayers}/{gameMeta.min}
           </Typography.Text>
@@ -83,6 +83,7 @@ function Waiting({ info, players }: WaitingProps) {
             onClick={onLockGameAndStart}
             disabled={isLoading || numPlayers < gameMeta.min}
             loading={isLoading}
+            block
           >
             <Translate pt="Trancar e Iniciar Jogo" en="Lock and Start Game" />
           </Button>
