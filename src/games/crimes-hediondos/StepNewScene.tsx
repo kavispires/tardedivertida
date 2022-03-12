@@ -1,6 +1,8 @@
-import { Button, Collapse } from 'antd';
 import { useState } from 'react';
-import { ButtonContainer, Instruction, Step, Title, Translate } from 'components';
+// Ant Design Resources
+import { Button, Collapse } from 'antd';
+// Components
+import { ButtonContainer, Instruction, ReadyPlayersBar, Step, Title, Translate } from 'components';
 import { Crime } from './Crime';
 import { GroupedItemsBoard } from './GroupedItemsBoard';
 import { SceneTile } from './SceneTile';
@@ -34,7 +36,6 @@ export function StepNewScene({
     setSceneMarkIndex(payload.value);
   };
 
-  const itemsList = Object.values(items);
   const crime = crimes.find((crime) => crime.playerId === user.id);
 
   return (
@@ -56,7 +57,12 @@ export function StepNewScene({
       <Collapse>
         <Collapse.Panel
           key="weapons-evidences"
-          header={<Translate pt="Ver todas Armas e Evidências" en="See all Weapons and Evidence" />}
+          header={
+            <Translate
+              pt="Clique para ver todas Armas e Evidências"
+              en="Click to see all Weapons and Evidence"
+            />
+          }
         >
           <GroupedItemsBoard
             groupedItems={groupedItems}
@@ -70,19 +76,13 @@ export function StepNewScene({
       <div className="">
         <Crime
           key={`crime-by-${crime!.playerId}`}
-          user={user}
-          items={items}
           crime={crime!}
-          players={players}
           scenes={scenes}
           scenesOrder={scenesOrder}
-          weapons={itemsList}
-          evidences={itemsList}
-          selections={{
-            weaponId: crime!.weaponId,
-            evidenceId: crime!.evidenceId,
-            isComplete: true,
-          }}
+          items={items}
+          player={user}
+          selectedWeaponId={user.weaponId}
+          selectedEvidenceId={user.evidenceId}
         />
       </div>
 
@@ -98,6 +98,8 @@ export function StepNewScene({
           <Translate pt="Enviar" en="Send" />
         </Button>
       </ButtonContainer>
+
+      <ReadyPlayersBar players={players} />
     </Step>
   );
 }

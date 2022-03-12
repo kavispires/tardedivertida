@@ -29,10 +29,31 @@ interface Crime {
   scenes: {
     [key: string]: number;
   };
+  itemGroupIndex: number;
 }
 
+type Guess = {
+  weaponId: string;
+  evidenceId: string;
+};
+
 type GuessHistory = {
-  [key: string]: { weaponId: string; evidenceId: string; correct?: boolean }[];
+  [key: string]: GuessHistoryEntry[];
+};
+
+type GuessHistoryEntry = {
+  weaponId: string;
+  evidenceId: string;
+  status: string;
+  groupIndex: number;
+};
+
+type GroupedItems = {
+  [key: string]: string[];
+};
+
+type WrongGroups = {
+  [key: string]: number[];
 };
 
 interface ResourceData {
@@ -64,13 +85,3 @@ interface CrimesHediondosSubmitAction extends Payload {
 
 type FirebaseStateData = FirebaseFirestore.DocumentData | CrimesHediondosState;
 type FirebaseStoreData = FirebaseFirestore.DocumentData | CrimesHediondosStore;
-
-type Count = {
-  bothCorrect: number;
-  correctItems: number;
-  win: boolean;
-};
-
-type Counts = {
-  [key: string]: Count;
-};

@@ -1,9 +1,14 @@
-import { Button } from 'antd';
 import { useState } from 'react';
-import { ButtonContainer, Instruction, Step, Title, Translate, TransparentButton } from 'components';
+// Ant Design Resources
+import { Button } from 'antd';
+// Hooks
 import { useCardWidth } from 'hooks';
+// Utils
 import { shuffle } from 'utils/helpers';
+// Components
+import { ButtonContainer, Instruction, Step, Title, Translate, TransparentButton } from 'components';
 import { ItemCard } from './ItemCard';
+import { ContinueButton } from './ContinueButton';
 
 type StepItemsSelectionProps = {
   user: GamePlayer;
@@ -57,7 +62,7 @@ export function StepItemsSelection({
         <Translate
           pt={
             <>
-              Selecione uma arma do crime (carta azul) e um objeto (carta vermelha).
+              Selecione uma carta azul e uma carta vermelha.
               <br />
               Elas representam a arma usada em seu último crime e um objeto da cena do crime.
               <br />O jogo contém 16 armas e 16 objetos, mas para essa parte, você vê apenas 4 opções de cada.
@@ -65,7 +70,7 @@ export function StepItemsSelection({
           }
           en={
             <>
-              Select a weapon (blue card) and an object (red card).
+              Select a blue card and a red card.
               <br />
               They represent the weapon used in your latest crime and an object that was in the crime scene.
               <br />
@@ -76,9 +81,14 @@ export function StepItemsSelection({
       </Instruction>
 
       <ButtonContainer>
-        <Button onClick={onRandomSelect}>
+        <Button onClick={onRandomSelect} size="large">
           <Translate pt="Selecionar aleatoriamente" en="Random picks" />
         </Button>
+
+        <ContinueButton
+          disabled={!weaponId || !evidenceId}
+          onClick={() => updateSelections({ weaponId, evidenceId })}
+        />
       </ButtonContainer>
 
       <ul className="h-items-selection">
@@ -95,17 +105,6 @@ export function StepItemsSelection({
           </li>
         ))}
       </ul>
-
-      <ButtonContainer>
-        <Button
-          type="primary"
-          size="large"
-          disabled={!weaponId || !evidenceId}
-          onClick={() => updateSelections({ weaponId, evidenceId })}
-        >
-          »»»
-        </Button>
-      </ButtonContainer>
     </Step>
   );
 }

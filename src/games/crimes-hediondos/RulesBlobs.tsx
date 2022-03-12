@@ -43,8 +43,8 @@ export function GuessMessage(): JSX.Element {
             Baseado nas informações dadas pelos jogadores, tente adivinhar qual arma e objeto cada jogador
             usou em seu crime.
             <br />
-            Você ganha pontos se adivinhar uma das cartas ou ambas as cartas, e você também ganha pontos se os
-            outros adivinharem as suas cartas.
+            Você ganha pontos se adivinhar uma das cartas ou ambas as cartas, e você também ganha 1 ponto para
+            cada uma de suas cartas que os outros adivinharem, mas essa pontuação é secreta.
           </>
         }
         en={
@@ -52,8 +52,8 @@ export function GuessMessage(): JSX.Element {
             Based on the information given by other players, try to guess the weapon and object used on their
             crimes.
             <br />
-            You get points for getting one or both cards correctly, and you get points when other players get
-            yours correctly.
+            You get points for getting one or both cards correctly, and you get 1 point when other players get
+            each of your cards correctly, but these points are kept secret.
           </>
         }
       />
@@ -61,7 +61,8 @@ export function GuessMessage(): JSX.Element {
   );
 }
 
-export function ScoringMessage(): JSX.Element {
+export function ScoringMessage({ round }: { round: GameRound }): JSX.Element {
+  const points = round.total - round.current + 1;
   return (
     <Instruction contained>
       <Translate
@@ -69,22 +70,22 @@ export function ScoringMessage(): JSX.Element {
           <>
             Você ganha 1 ponto para cada arma ou objeto que você acertar.
             <br />
-            Você ganha 3 pontos bônus se acertar as duas cartas de um mesmo jogador.
+            Se você acertar o par de um jogador, você ganha {points} pontos.
             <br />
-            Para todos os seus acertos, seus respectivos autores ganham 1 ponto (ou 3 se você acertou ambos).
+            Para todos os seus acertos, seus respectivos autores ganham 1 ponto.
             <br />
-            Mas tem um segredinho... você só vê os seus pontos.
+            Ganha o jogo o primeiro jogador que acertar tudo.
           </>
         }
         en={
           <>
             You get 1 point for each weapon or evidence you get correctly.
             <br />
-            You gain 3 extra points if you got both cards correctly for the same player.
+            If you get the pair for a player, you get {points} points instead.
             <br />
-            All of your correct guesses grant 1 extra point to the authors (or 3 if you got both).
+            All of your correct guesses grant 1 extra point to the authors.
             <br />
-            But there's a secret... you only see your scoring, not others'.
+            Wins the game the player who get all correctly first.
           </>
         }
       />
