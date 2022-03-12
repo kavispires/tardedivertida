@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import { orderBy } from 'lodash';
 //Design Resources
 import { Table } from 'antd';
-import { CheckSquareFilled, CloseSquareFilled, WarningOutlined } from '@ant-design/icons';
+import { CheckSquareFilled, CloseSquareFilled, TrophyOutlined, WarningOutlined } from '@ant-design/icons';
 // Utils
 import { AVATARS as avatars } from 'utils/constants';
 import { useLanguage } from 'hooks';
@@ -257,6 +257,7 @@ export function StepReveal({ grid, user, players, clues, goToNextStep, whoGotNoP
         <TimedButton
           duration={60}
           label={<Translate pt="Ver Ranking" en="See ranking" />}
+          icon={<TrophyOutlined />}
           onExpire={goToNextStep}
           showTimer
           onClick={goToNextStep}
