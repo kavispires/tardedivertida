@@ -1,10 +1,10 @@
 // Ant Design Resources
 import { Avatar as AntAvatar, Typography } from 'antd';
-import { CrownFilled, DeleteFilled } from '@ant-design/icons';
+import { CrownFilled } from '@ant-design/icons';
 // Utils
 import { getPlayersFromIds } from 'utils/helpers';
 // Components
-import { Avatar, StarPoints, Translate } from 'components';
+import { Avatar, AvatarIcon, StarPoints, Translate } from 'components';
 
 type GalleryWindowResultProps = {
   playerArtist: any;
@@ -58,7 +58,7 @@ export function GalleryWindowResult({
         </>
       ) : (
         <Typography.Text className="a-gallery-window__no-wins">
-          <DeleteFilled />{' '}
+          <AvatarIcon type="garbage" size="large" shape="square" />
           <Translate
             pt="Nossa, ninguém acertou. Esse desenho deve ter sido muito ruim."
             en="Wow, nobody got it. It must have been a very crappy drawing. Shame..."
