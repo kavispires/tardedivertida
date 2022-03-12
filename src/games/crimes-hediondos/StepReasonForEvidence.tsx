@@ -1,8 +1,9 @@
-import { Button } from 'antd';
 import { useState } from 'react';
+// Components
 import { ButtonContainer, Instruction, Step, Title, Translate } from 'components';
 import { SceneTile } from './SceneTile';
 import { SelectedItems } from './SelectedItems';
+import { ContinueButton } from './ContinueButton';
 
 type StepReasonForEvidenceProps = {
   items: ItemsDict;
@@ -41,23 +42,22 @@ export function StepReasonForEvidence({
         />
       </Instruction>
 
-      <SelectedItems
-        items={items}
-        weaponId={selections.weaponId}
-        evidenceId={selections.evidenceId}
-        fadeWeapon
-      />
-
-      <SceneTile tile={reasonForEvidenceTile} onSelectValue={onSelectItem} index={reasonForEvidenceIndex} />
       <ButtonContainer>
-        <Button
-          type="primary"
-          size="large"
+        <SelectedItems
+          items={items}
+          weaponId={selections.weaponId}
+          evidenceId={selections.evidenceId}
+          fadeWeapon
+        />
+
+        <SceneTile tile={reasonForEvidenceTile} onSelectValue={onSelectItem} index={reasonForEvidenceIndex} />
+      </ButtonContainer>
+
+      <ButtonContainer>
+        <ContinueButton
           disabled={reasonForEvidenceIndex === undefined}
           onClick={() => updateSelections({ reasonForEvidence: reasonForEvidenceIndex })}
-        >
-          »»»
-        </Button>
+        />
       </ButtonContainer>
     </Step>
   );

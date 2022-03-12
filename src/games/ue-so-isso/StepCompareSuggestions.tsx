@@ -135,7 +135,7 @@ export function StepCompareSuggestions({
       )}
 
       <AdminOnlyButton
-        action={() =>
+        onClick={() =>
           onValidateSuggestions({
             validSuggestions: suggestionsValues.filter((suggestion) => !suggestion.invalid),
           })

@@ -5,16 +5,16 @@ import { RocketFilled } from '@ant-design/icons';
 import { useLoading } from 'hooks';
 
 interface AdminButtonProps extends ButtonProps {
-  action: GenericFunction;
-  label: string;
+  onClick: GenericFunction;
+  children: ReactChildren;
   [key: string]: any;
 }
 
-export function AdminButton({ action, label, ...props }: AdminButtonProps) {
+export function AdminButton({ onClick, label, ...props }: AdminButtonProps) {
   const { isLoading } = useLoading();
 
   return (
-    <Button icon={<RocketFilled />} danger type="primary" onClick={action} disabled={isLoading} {...props}>
+    <Button icon={<RocketFilled />} danger type="primary" onClick={onClick} disabled={isLoading} {...props}>
       {label}
     </Button>
   );

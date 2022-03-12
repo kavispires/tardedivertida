@@ -1,6 +1,9 @@
-import { PlusSquareFilled } from '@ant-design/icons';
 import clsx from 'clsx';
+// Ant Design Resources
+import { PlusSquareFilled } from '@ant-design/icons';
+// Hooks
 import { useCardWidth } from 'hooks';
+// Components
 import { ItemCard } from './ItemCard';
 
 type SelectedItemsProps = {
