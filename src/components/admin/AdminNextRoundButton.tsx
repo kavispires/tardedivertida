@@ -1,6 +1,5 @@
-import clsx from 'clsx';
 // Ant Design Resources
-import { Button, Space } from 'antd';
+import { Button } from 'antd';
 import { FireFilled } from '@ant-design/icons';
 // State & Hooks
 import { useAPICall, useGlobalState, useLanguage, useLoading } from 'hooks';
@@ -8,6 +7,7 @@ import { ADMIN_API } from 'adapters';
 import { ADMIN_ACTIONS } from 'utils/constants';
 // Components
 import { Translate } from '..';
+import { AdminOnlyContainer } from './AdminOnlyContainer';
 
 function ButtonLabel({ round, lastRound }: { round?: GameRound; lastRound: boolean }) {
   return lastRound || !round || round.current === round.total ? (
@@ -18,7 +18,7 @@ function ButtonLabel({ round, lastRound }: { round?: GameRound; lastRound: boole
 }
 
 type AdminNextRoundButtonProps = {
-  buttonText?: string;
+  buttonText?: ReactChildren;
   className?: string;
   round?: GameRound;
   lastRound?: boolean;
@@ -47,7 +47,7 @@ export function AdminNextRoundButton({
   if (!isAdmin) return <span></span>;
 
   return (
-    <Space className={clsx('admin-only-container', className)}>
+    <AdminOnlyContainer className={className}>
       <Button
         icon={<FireFilled />}
         type="primary"
@@ -57,6 +57,6 @@ export function AdminNextRoundButton({
       >
         {buttonText ?? <ButtonLabel round={round} lastRound={lastRound} />}
       </Button>
-    </Space>
+    </AdminOnlyContainer>
   );
 }

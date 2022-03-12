@@ -11,6 +11,7 @@ import {
   RoundAnnouncement,
   Title,
   Icons,
+  AdminOnlyContainer,
 } from 'components';
 // Resources
 import { CheckCircleFilled, CheckCircleOutlined } from '@ant-design/icons';
@@ -115,14 +116,9 @@ function TestingZone() {
     justifyContent: 'space-between',
   };
   return (
-    <ul style={styles}>
-      {Object.entries(icons).map(([key, Icon], index) => (
-        <li key={key} style={stylesLi}>
-          <Icon key={index} style={{ width: '100px' }} />
-          <div>{key}</div>
-        </li>
-      ))}
-    </ul>
+    <div>
+      <AdminOnlyContainer>Hello</AdminOnlyContainer>
+    </div>
   );
 }
 
