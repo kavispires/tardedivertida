@@ -3,10 +3,11 @@ import clsx from 'clsx';
 import { Button } from 'antd';
 import { DownSquareOutlined } from '@ant-design/icons';
 // Hooks & Utils
-import { useCardWidth, useDevFeatures, useLanguage, useLoading, useMock } from 'hooks';
+import { useCardWidth, useLanguage, useLoading, useMock } from 'hooks';
 // Components
 import {
   Card,
+  DebugOnly,
   ImageBlurButton,
   ImageCard,
   PopoverRule,
@@ -39,7 +40,6 @@ export function StepVoting({
 }: StepVotingProps) {
   const { translate } = useLanguage();
   const { isLoading } = useLoading();
-  const { isDebugEnabled } = useDevFeatures();
   const cardWidth = useCardWidth(Math.max(Object.keys(players).length, 6), 32, 150);
 
   const hasPlayedCardAlready = Boolean(user.vote);
@@ -87,7 +87,7 @@ export function StepVoting({
                 cardWidth={cardWidth}
                 className={clsx(isUserVote && 'c-game-table--vote')}
               />
-              {isDebugEnabled && <div>{cardEntry.cardId}</div>}
+              <DebugOnly div>{cardEntry.cardId}</DebugOnly>
 
               <ImageBlurButton cardId={cardEntry.cardId} />
             </div>
