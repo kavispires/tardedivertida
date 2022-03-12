@@ -1,9 +1,11 @@
-import { Button } from 'antd';
 import { useState } from 'react';
-import { ButtonContainer, Instruction, Step, Title, Translate } from 'components';
+// Hooks
 import { useCardWidth } from 'hooks';
+// Components
+import { ButtonContainer, Instruction, Step, Title, Translate } from 'components';
 import { ItemCard } from './ItemCard';
 import { SceneTile } from './SceneTile';
+import { ContinueButton } from './ContinueButton';
 
 type StepLocationSelectionProps = {
   user: GamePlayer;
@@ -41,14 +43,20 @@ export function StepLocationSelection({
           pt={
             <>
               Baseado em qualquer uma das suas cartas (ou ambas), selecione o local onde o crime aconteceu.
+              <br />
+              Temos 4 colunas de locais agrupador por tema, selecione qualquer um.
+              <br />
               Lembre-se que você está tentando ajudar os outros jogadores adivinhar o seu crime, seja
               inteligente!
             </>
           }
           en={
             <>
-              Based on any card (or both), select where the crime occurred. Remember you are trying to help
-              the players guess your crime, so be smart!
+              Based on any card (or both), select where the crime occurred.
+              <br />
+              There are 4 columns of locations grouped by theme, you may select any.
+              <br />
+              Remember you are trying to help the players guess your crime, so be smart!
             </>
           }
         />
@@ -79,14 +87,10 @@ export function StepLocationSelection({
       </div>
 
       <ButtonContainer>
-        <Button
-          type="primary"
-          size="large"
+        <ContinueButton
           disabled={location?.tileId === undefined}
           onClick={() => updateSelections({ locationTile: location?.tileId, locationIndex: location?.value })}
-        >
-          »»»
-        </Button>
+        />
       </ButtonContainer>
     </Step>
   );

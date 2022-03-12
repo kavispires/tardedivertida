@@ -1,7 +1,9 @@
 // State & Hooks
 import { useUser, useLanguage, useMock, useStep } from 'hooks';
+import { useOnSubmitMarkAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+import { mockSceneMark } from './mock';
 // Components
 import {
   Instruction,
@@ -12,8 +14,6 @@ import {
   Translate,
 } from 'components';
 import { StepNewScene } from './StepNewScene';
-import { useOnSubmitMarkAPIRequest } from './api-requests';
-import { mockSceneMark } from './mock';
 
 function PhaseSceneMarking({ players, state, info }: PhaseProps) {
   const { language, translate } = useLanguage();
@@ -41,8 +41,8 @@ function PhaseSceneMarking({ players, state, info }: PhaseProps) {
         >
           <Instruction>
             <Translate
-              en="Compartilhe mais uma pista sobre seu crime:"
-              pt="Share one more piece of information about your crime:"
+              pt="Compartilhe mais uma pista sobre seu crime:"
+              en="Share one more piece of information about your crime:"
             />
             <br />
             {state.currentScene.description[language]}

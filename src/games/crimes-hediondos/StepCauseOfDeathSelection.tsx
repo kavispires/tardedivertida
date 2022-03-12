@@ -1,8 +1,9 @@
-import { Button } from 'antd';
 import { useState } from 'react';
+// Components
 import { ButtonContainer, Instruction, Step, Title, Translate } from 'components';
 import { SceneTile } from './SceneTile';
 import { SelectedItems } from './SelectedItems';
+import { ContinueButton } from './ContinueButton';
 
 type StepCauseOfDeathSelectionProps = {
   items: ItemsDict;
@@ -37,24 +38,22 @@ export function StepCauseOfDeathSelection({
         />
       </Instruction>
 
-      <SelectedItems
-        items={items}
-        weaponId={selections.weaponId}
-        evidenceId={selections.evidenceId}
-        fadeEvidence
-      />
+      <ButtonContainer>
+        <SelectedItems
+          items={items}
+          weaponId={selections.weaponId}
+          evidenceId={selections.evidenceId}
+          fadeEvidence
+        />
 
-      <SceneTile tile={causeOfDeathTile} onSelectValue={onSelectItem} index={causeOfDeathIndex} />
+        <SceneTile tile={causeOfDeathTile} onSelectValue={onSelectItem} index={causeOfDeathIndex} />
+      </ButtonContainer>
 
       <ButtonContainer>
-        <Button
-          type="primary"
-          size="large"
+        <ContinueButton
           disabled={causeOfDeathIndex === undefined}
           onClick={() => updateSelections({ causeOfDeath: causeOfDeathIndex })}
-        >
-          »»»
-        </Button>
+        />
       </ButtonContainer>
     </Step>
   );

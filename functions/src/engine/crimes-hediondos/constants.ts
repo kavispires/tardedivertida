@@ -21,3 +21,11 @@ export const CARDS_PER_GAME = 16;
 
 export const ITEMS_GROUP_COUNT = 4;
 export const ITEMS_PER_GROUP = 4;
+
+export const GUESS_STATUS = {
+  LOCKED: 'LOCKED',
+  CORRECT: 'CORRECT',
+  HALF: 'HALF',
+  WRONG_GROUP: 'WRONG_GROUP',
+  WRONG: 'WRONG',
+};

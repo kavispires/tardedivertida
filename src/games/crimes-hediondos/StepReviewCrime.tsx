@@ -1,7 +1,10 @@
-import { CloudUploadOutlined } from '@ant-design/icons';
+// Ant Design Resources
 import { Button } from 'antd';
-import { ButtonContainer, Instruction, ReadyPlayersBar, Step, Title, Translate } from 'components';
+import { CloudUploadOutlined } from '@ant-design/icons';
+// Hooks
 import { useLanguage } from 'hooks';
+// Components
+import { ButtonContainer, Instruction, ReadyPlayersBar, Step, Title, Translate } from 'components';
 import { SceneTile } from './SceneTile';
 import { SelectedItems } from './SelectedItems';
 
