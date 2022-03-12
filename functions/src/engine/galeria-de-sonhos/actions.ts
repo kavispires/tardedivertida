@@ -57,7 +57,6 @@ export const handlePlayCard = async (
   cardId: string
 ) => {
   const actionText = 'play a card';
-  console.log({ cardId });
 
   // Get 'players' from given game session
   const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
@@ -75,8 +74,6 @@ export const handlePlayCard = async (
       cardCache[card.cardId].push(player.id);
     });
   });
-
-  console.log({ cardCache });
 
   let didPlayerJustFallen = false;
   const playersWhoGotPoints: PlayerId[] = [];
@@ -105,8 +102,6 @@ export const handlePlayCard = async (
       }
     });
   }
-
-  console.log('done scoring');
 
   // Mark all players matches as used
   cardEntry.forEach((pId: PlayerId) => {

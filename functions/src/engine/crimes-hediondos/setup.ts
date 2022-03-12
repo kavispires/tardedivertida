@@ -1,7 +1,7 @@
 // Constants
 import { CARDS_PER_GAME, CRIMES_HEDIONDOS_PHASES } from './constants';
 // Types
-import { Counts, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
+import { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 import { Players, SaveGamePayload } from '../../utils/types';
 // Utils
 import * as utils from '../../utils/helpers';
@@ -72,7 +72,7 @@ export const prepareCrimeSelectionPhase = async (
 
   // Unready players
   utils.unReadyPlayers(players);
-  utils.addPropertiesToPlayers(players, { secretScore: 0, pastCorrectCrimes: 0 });
+  utils.addPropertiesToPlayers(players, { secretScore: 0, pastCorrectCrimes: 0, history: {} });
 
   return {
     update: {
@@ -118,6 +118,7 @@ export const prepareSceneMarkingPhase = async (
         scenes: updatedScenes,
         scenesOrder: updatedScenesOrder,
         currentScene: newScene,
+        results: firebaseUtils.deleteValue(),
       },
       players: players,
     },
@@ -190,17 +191,19 @@ export const prepareRevealPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Update or create guess history
-  updateOrCreateGuessHistory(state.crimes, players);
+  const results = updateOrCreateGuessHistory(state.crimes, players, state.groupedItems);
 
   // Reveal stuff
-  const { ranking, winners } = buildRanking(players);
+  const { ranking, winners } = buildRanking(players, state.round.current);
 
   return {
     update: {
       state: {
         phase: CRIMES_HEDIONDOS_PHASES.REVEAL,
         ranking,
-        lastRound: winners.length > 0,
+        winners,
+        results,
+        lastRound: state?.lastRound || winners.length > 0 ? true : firebaseUtils.deleteValue(),
       },
       players: players,
     },
@@ -212,15 +215,9 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
-  // TODO: Fix scoring
-  const counts: Counts = state.counts;
   // Check if anybody has won, if so, from those, get the highest score, otherwise, any higher score
-  const winningPlayers = Object.entries(counts).reduce((acc: any, [playerId, count]) => {
-    if (count.win) {
-      acc[playerId] = players[playerId];
-    }
-    return acc;
-  }, {});
+
+  const winningPlayers = state.winners.map((playerId) => players[playerId]);
 
   const winners = utils.determineWinners(Object.keys(winningPlayers).length > 0 ? winningPlayers : players);
 

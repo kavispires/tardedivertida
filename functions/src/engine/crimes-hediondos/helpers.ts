@@ -1,8 +1,24 @@
 // Types
-import { PlainObject, PlayerId, Players, RankingEntry, Round } from '../../utils/types';
+import { PlainObject, PlayerId, Players, RankingEntry, Round, StringDictionary } from '../../utils/types';
 // Constants
-import { CRIMES_HEDIONDOS_PHASES, ITEMS_GROUP_COUNT, ITEMS_PER_GROUP, SCENE_TILES_COUNT } from './constants';
-import { Crime, CrimesHediondosCard, SceneTile } from './types';
+import {
+  CRIMES_HEDIONDOS_PHASES,
+  GUESS_STATUS,
+  ITEMS_GROUP_COUNT,
+  ITEMS_PER_GROUP,
+  SCENE_TILES_COUNT,
+  TOTAL_ROUNDS,
+} from './constants';
+import {
+  Crime,
+  CrimesHediondosCard,
+  GroupedItems,
+  Guess,
+  GuessHistory,
+  GuessHistoryEntry,
+  SceneTile,
+  WrongGroups,
+} from './types';
 // Utils
 // import * as utils from '../../utils/helpers';
 import * as gameUtils from '../../utils/game-utils';
@@ -81,9 +97,7 @@ type GroupItems = {
   items: {
     [key: string]: CrimesHediondosCard;
   };
-  groupedItems: {
-    [key: string]: string[];
-  };
+  groupedItems: GroupedItems;
 };
 
 export const groupItems = (weapons: CrimesHediondosCard[], evidence: CrimesHediondosCard[]): GroupItems => {
@@ -128,6 +142,7 @@ export const buildCrimes = (
         [reasonForEvidenceTile.id]: player.reasonForEvidence,
         [player.locationTile]: player.locationIndex,
       },
+      itemGroupIndex: player.itemGroupIndex,
     };
   });
 };
@@ -167,41 +182,108 @@ export const updateCrime = (crimes: Crime[], players: Players, currentScene: Sce
   });
 };
 
-export const updateOrCreateGuessHistory = (crimes: Crime[], players: Players) => {
+export const updateOrCreateGuessHistory = (
+  crimes: Crime[],
+  players: Players,
+  groupedItems: GroupedItems
+): PlainObject => {
+  const results: PlainObject = {};
+  // Each history entry shows the
   Object.values(players).forEach((player) => {
-    player.history = player.history ?? {};
+    const history: GuessHistory = { ...player.history } ?? {};
+    const wrongGroups: WrongGroups = { ...player.wrongGroups } ?? {};
+    const result: StringDictionary = {};
+    // Count correct crimes
     player.correctCrimes = 0;
-    console.log('=======');
-    console.log({ playerId: player.id });
 
     crimes.forEach((crime) => {
+      // Only score crimes that is not the user's
       if (crime.playerId !== player.id) {
-        if (player.history[crime.playerId] === undefined) {
-          player.history[crime.playerId] = [];
+        if (history[crime.playerId] === undefined) {
+          history[crime.playerId] = [];
         }
+
+        // For all other guesses, parse and score
         const guess = player.guesses[crime.playerId];
 
-        console.log({ guess });
-        const isWeaponCorrect = crime.weaponId === guess.weaponId;
-        const isEvidenceCorrect = crime.evidenceId === guess.evidenceId;
-        const isCorrect = isWeaponCorrect && isEvidenceCorrect;
-        player.history[crime.playerId].push({
+        // Lock a crime if it was previously correct
+        const lastGuess = gameUtils.getLastItem(history[crime.playerId]);
+        if (lastGuess && [GUESS_STATUS.CORRECT, GUESS_STATUS.LOCKED].includes(lastGuess.status)) {
+          history[crime.playerId].push({
+            weaponId: lastGuess.weaponId,
+            evidenceId: lastGuess.evidenceId,
+            status: GUESS_STATUS.LOCKED,
+            groupIndex: lastGuess.groupIndex,
+          });
+          result[crime.playerId] = GUESS_STATUS.LOCKED;
+          return;
+        }
+
+        const status = getCrimeGuessStatus(crime, guess, groupedItems);
+
+        // If wrong group, save the wrong group
+        const groupIndex = findWhatGroupTheItemBelongsTo(guess, groupedItems);
+
+        history[crime.playerId].push({
           weaponId: guess.weaponId,
           evidenceId: guess.evidenceId,
-          correct: isCorrect,
+          status,
+          groupIndex,
         });
-        // Scoring
-        player.correctCrimes += isCorrect ? 1 : 0;
-        player.secretScore += isWeaponCorrect ? 1 : 0;
-        player.secretScore += isEvidenceCorrect ? 1 : 0;
-        player.secretScore += isCorrect ? 3 : 0;
-        // Crime author score
-        players[crime.playerId].secretScore += isWeaponCorrect ? 1 : 0;
-        players[crime.playerId].secretScore += isEvidenceCorrect ? 1 : 0;
-        players[crime.playerId].secretScore += isCorrect ? 1 : 0;
+
+        if (status === GUESS_STATUS.CORRECT) {
+          player.correctCrimes += 1;
+        }
+
+        if (status === GUESS_STATUS.WRONG_GROUP) {
+          if (wrongGroups[crime.playerId] === undefined) {
+            wrongGroups[crime.playerId] = [];
+          }
+          wrongGroups[crime.playerId].push(groupIndex);
+        }
+
+        result[crime.playerId] = status;
+      } else {
+        result[crime.playerId] = 'OWN';
       }
     });
+
+    player.history = history;
+    player.wrongGroups = wrongGroups;
+    results[player.id] = result;
   });
+
+  return results;
+};
+
+const getCrimeGuessStatus = (crime: Crime, guess: Guess, groupedItems: GroupedItems): string => {
+  const isWeaponCorrect = crime.weaponId === guess.weaponId;
+  const isEvidenceCorrect = crime.evidenceId === guess.evidenceId;
+  const bothCorrect = isWeaponCorrect && isEvidenceCorrect;
+  const eitherCorrect = isWeaponCorrect || isEvidenceCorrect;
+
+  if (eitherCorrect) {
+    return bothCorrect ? GUESS_STATUS.CORRECT : eitherCorrect ? GUESS_STATUS.HALF : GUESS_STATUS.WRONG;
+  }
+
+  // Check if the quadrant is wrong
+  const crimeGroup = groupedItems[crime.itemGroupIndex];
+  const isAnyGuessesItemThere = crimeGroup.some((itemId) =>
+    [guess.weaponId, guess.evidenceId].includes(itemId)
+  );
+
+  return isAnyGuessesItemThere ? GUESS_STATUS.WRONG : GUESS_STATUS.WRONG_GROUP;
+};
+
+const findWhatGroupTheItemBelongsTo = (guess: Guess, groupedItems: GroupedItems) => {
+  let foundIndex = -1;
+  Object.entries(groupedItems).forEach(([groupIndex, group]) => {
+    if (group.includes(guess.weaponId) && group.includes(guess.evidenceId)) {
+      foundIndex = Number(groupIndex);
+      return;
+    }
+  });
+  return foundIndex;
 };
 
 type BuiltRanking = {
@@ -209,31 +291,67 @@ type BuiltRanking = {
   winners: PlayerId[];
 };
 
-export const buildRanking = (players: Players): BuiltRanking => {
+type HistoryEntry = [PlayerId, GuessHistoryEntry[]];
+
+export const buildRanking = (players: Players, currentRound: number): BuiltRanking => {
   const winners: PlayerId[] = [];
+  // Points granted in reverse round order 1:7, 2:6, 3:4, 4:3, 5:6, 7:1
+  const pointMultiplier = TOTAL_ROUNDS + 1 - currentRound;
 
   const playerCount = Object.keys(players).length;
 
-  const ranking: RankingEntry[] = Object.values(players)
+  const playersArray = Object.values(players);
+
+  const ranking: RankingEntry[] = playersArray
     .map((player) => {
+      const previousScore = player.score;
+      let gainedPoints = 0;
       // Update player score
-      const win = playerCount - 1 === player.correctCrimes;
+      const win = playerCount - 1 === player.pastCorrectCrimes + player.correctCrimes;
       if (win) {
         winners.push(player.id);
       }
 
-      const pastCorrectCrimes = player.correctCrimes ?? 0;
-      const correctCrimes = player.correctCrimes ?? 0;
+      // Award points
+      const history: GuessHistory = player.history;
+      Object.entries(history).forEach((entry: HistoryEntry) => {
+        const criminalId = entry[0];
+        const lastGuess = gameUtils.getLastItem(entry[1]);
+
+        switch (lastGuess.status) {
+          case GUESS_STATUS.CORRECT:
+            player.score += pointMultiplier;
+            gainedPoints += pointMultiplier;
+            players[criminalId].secretScore += pointMultiplier;
+            break;
+          case GUESS_STATUS.HALF:
+            player.score += 1;
+            gainedPoints += 1;
+            players[criminalId].secretScore += 1;
+            break;
+          default:
+          // do nothing
+        }
+      });
 
       return {
         playerId: player.id,
         name: player.name,
-        previousScore: pastCorrectCrimes ?? 0,
-        gainedPoints: [correctCrimes - pastCorrectCrimes],
-        newScore: correctCrimes,
+        previousScore,
+        gainedPoints: [gainedPoints],
+        newScore: player.score,
       };
     })
     .sort((a, b) => (a.newScore > b.newScore ? 1 : -1));
+
+  // If winner, add secret scores
+  if (winners.length > 0 || currentRound === TOTAL_ROUNDS) {
+    playersArray.forEach((player, index) => {
+      player.score += player.secretScore;
+      ranking[index].gainedPoints.push(player.secretScore);
+      ranking[index].newScore += player.secretScore;
+    });
+  }
 
   return {
     ranking,

@@ -3,9 +3,9 @@ import { useMemo } from 'react';
 import { Button } from 'antd';
 import { PlusCircleFilled } from '@ant-design/icons';
 // Hooks
-import { useLanguage, useLoading } from 'hooks';
+import { useLoading } from 'hooks';
 // Components
-import { AdminButton, AdminOnlyContainer, Avatar } from 'components';
+import { AdminButton, AdminOnlyContainer, Avatar, Translate } from 'components';
 
 type AdminAnswerControlProps = {
   allAnswers: MAnswer[];
@@ -24,7 +24,6 @@ export function AdminAnswerControl({
   onAddAnswer,
   players,
 }: AdminAnswerControlProps) {
-  const { translate } = useLanguage();
   const { isLoading } = useLoading();
 
   const filteredAnswers = useMemo(
@@ -43,9 +42,11 @@ export function AdminAnswerControl({
   return (
     <AdminOnlyContainer className="m-admin">
       <AdminButton
-        action={() => onNextAnswer({ allowedList: Object.keys(allowedList) })}
-        label={translate('Confirmar e ir para próxima resposta', 'Confirm and go to next answer')}
-      />
+        onClick={() => onNextAnswer({ allowedList: Object.keys(allowedList) })}
+        disabled={isLoading}
+      >
+        <Translate pt="Confirmar e ir para próxima resposta" en="Confirm and go to next answer" />
+      </AdminButton>
 
       <ul className="m-admin__players-answers">
         {filteredAnswers.map((answer) => {

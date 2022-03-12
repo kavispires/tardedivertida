@@ -7,6 +7,7 @@ import { PHASES } from 'utils/phases';
 import { mockCrime } from './mock';
 // Components
 import {
+  ImageCardPreloadHand,
   Instruction,
   PhaseAnnouncement,
   PhaseContainer,
@@ -59,7 +60,9 @@ function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
           buttonText=" "
           time={5}
           circleColor="black"
-        />
+        >
+          <ImageCardPreloadHand hand={Object.keys(state.items)} />
+        </RoundAnnouncement>
 
         {/* Step 1 */}
         <PhaseAnnouncement

@@ -112,6 +112,15 @@ export const getPreviousItem = (list: Primitive[], currentItem: Primitive, wrap 
 };
 
 /**
+ * Gets the last item in a list
+ * @param list
+ * @returns
+ */
+export const getLastItem = <T>(list: T[]): T => {
+  return list[list.length - 1];
+};
+
+/**
  * Remove item from list of strings
  * @param list
  * @param target
