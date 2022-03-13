@@ -48,7 +48,7 @@ export function StepGuessing({
 
   // DEV: Auto guesses
   useMock(() => {
-    // onSubmitGuesses({ guesses: mockGuesses(groupedItems, players, user) });
+    onSubmitGuesses({ guesses: mockGuesses(groupedItems, players, user) });
   }, []);
 
   // If last guess was CORRECT or LOCK, auto-guess
