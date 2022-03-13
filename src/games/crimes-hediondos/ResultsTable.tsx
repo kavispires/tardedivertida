@@ -15,7 +15,7 @@ export function ResultsTable({ players, results }: ResultsTableProps) {
     {
       title: '',
       dataIndex: 'playerId',
-      render: (playerId: string) => <AvatarName player={players[playerId]} size="small" />,
+      render: (playerId: string) => <AvatarName player={players[playerId]} size="small" addressUser />,
     },
     ...orderBy(Object.keys(results)).map((playerId) => ({
       title: <Avatar id={players[playerId].avatarId} size="small" />,

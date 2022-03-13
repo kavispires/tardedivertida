@@ -2,7 +2,7 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Popover, Tag } from 'antd';
 // Hooks
-import { useLanguage } from 'hooks';
+import { useDevFeatures, useLanguage } from 'hooks';
 // Components
 import { ImageCard } from 'components';
 
@@ -24,6 +24,7 @@ export function ItemCard({
   className = '',
 }: ItemCardProps) {
   const { language } = useLanguage();
+  const { isDebugEnabled } = useDevFeatures();
   return (
     <div
       className={clsx('h-item-card', isSelected && 'h-item-card--selected', className)}
@@ -35,7 +36,7 @@ export function ItemCard({
           color={item.type === 'weapon' ? 'geekblue' : 'volcano'}
           style={{ maxWidth: `${cardWidth + 16}px` }}
         >
-          <span>{item.name[language]}</span>
+          <span>{isDebugEnabled ? item.id : item.name[language]}</span>
         </Tag>
       </Popover>
       <ImageCard imageId={item.id} cardWidth={cardWidth} className="h-item-card__image" preview={preview} />

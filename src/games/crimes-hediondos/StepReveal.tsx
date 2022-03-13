@@ -1,6 +1,6 @@
 import { useState } from 'react';
 // Ant Design Resources
-import { Collapse } from 'antd';
+import { Button, Collapse } from 'antd';
 import { TrophyOutlined } from '@ant-design/icons';
 // Utils
 import { getAnimationClass, getLastItem } from 'utils/helpers';
@@ -25,6 +25,7 @@ type StepRevealProps = {
   onSeeRanking: GenericFunction;
   round: GameRound;
   results: HResults;
+  isFirstRunThrough: boolean;
 };
 
 export function StepReveal({
@@ -38,6 +39,7 @@ export function StepReveal({
   onSeeRanking,
   round,
   results,
+  isFirstRunThrough,
 }: StepRevealProps) {
   const [activePlayerId, setActivePlayerId] = useState<PlayerId>('');
 
@@ -151,13 +153,19 @@ export function StepReveal({
       )}
 
       <ButtonContainer>
-        <TimedButton
-          onClick={onSeeRanking}
-          onExpire={onSeeRanking}
-          duration={Math.min(playerCount * 10, 60)}
-          icon={<TrophyOutlined />}
-          label={<Translate en="Ver Ranking" pt="See Ranking" />}
-        />
+        {isFirstRunThrough ? (
+          <TimedButton
+            onClick={onSeeRanking}
+            onExpire={onSeeRanking}
+            duration={Math.min(playerCount * 10, 60)}
+            icon={<TrophyOutlined />}
+            label={<Translate pt="Ver Ranking" en="See Ranking" />}
+          />
+        ) : (
+          <Button onClick={onSeeRanking} icon={<TrophyOutlined />}>
+            <Translate pt="Ver Ranking" en="See Ranking" />
+          </Button>
+        )}
       </ButtonContainer>
     </Step>
   );
