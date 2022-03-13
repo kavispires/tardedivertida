@@ -5,7 +5,7 @@ import { useSearchParams } from 'react-router-dom';
 import { Button, Card, Divider, Drawer, Image, Layout, Modal, Radio, Space, Tag, Tooltip } from 'antd';
 import { FilterFilled, InfoCircleOutlined } from '@ant-design/icons';
 // Hooks
-import { useLanguage } from 'hooks';
+import { useDimensions, useLanguage } from 'hooks';
 // Utils
 import gameList from 'resources/games.json';
 import { PUBLIC_URL, TAG_DICT } from 'utils/constants';
@@ -22,6 +22,7 @@ const GAME_LIST: GameInfo[] = Object.values(gameList);
 function Showcase() {
   const { language } = useLanguage();
   const [searchParams, setSearchParams] = useSearchParams();
+  const [width] = useDimensions('app');
 
   const [showFilters, setShowFilters] = useState(false);
   const [showModal, setShowModal] = useState('');
@@ -55,7 +56,7 @@ function Showcase() {
 
   return (
     <Layout.Content className="showcase">
-      <ul className="showcase-list">
+      <ul className="showcase-list" style={{ gridTemplateColumns: `repeat(${width > 450 ? 4 : 2}, 1fr)` }}>
         <li className={clsx('showcase-entry showcase-entry--title', getAnimationClass('zoomIn'))}>
           <h1 className="showcase-title">
             <Translate pt="Vitrine" en="Showcase" />
@@ -98,11 +99,16 @@ function Showcase() {
         title={<Translate pt={<>Filtros ({list.length} jogos)</>} en={<>Filters ({list.length} games)</>} />}
         placement="left"
         onClose={() => setShowFilters(false)}
-        width={600}
+        width={Math.min(width / 0.75, 600)}
         footer={
-          <Button block onClick={() => setFilters({})}>
-            <Translate pt="Resetar filtros" en="Reset filters" />
-          </Button>
+          <ButtonContainer>
+            <Button onClick={() => setFilters({})}>
+              <Translate pt="Resetar filtros" en="Reset filters" />
+            </Button>
+            <Button type="primary" onClick={() => setShowFilters(false)}>
+              OK
+            </Button>
+          </ButtonContainer>
         }
       >
         <div className="showcase-filter-entry">

@@ -48,7 +48,7 @@ function App() {
   }, []); // eslint-disable-line
 
   return (
-    <Layout className="app">
+    <Layout className="app" id="app">
       <LoadingBar />
       <HashRouter>
         {isLoading ? (
