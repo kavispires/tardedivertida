@@ -26,11 +26,11 @@ export const prepareSetupPhase = async (
 
   const expressionsDeck = gameUtils.getRandomItems(
     resourceData.allExpressions,
-    playerCount * (store.options.singleWordOnly ? 0 : 4)
+    playerCount * (store.options.singleWordOnly ? 0 : 2)
   );
   const wordsDeck = gameUtils.getRandomItems(
     resourceData.allWords,
-    playerCount * (store.options.singleWordOnly ? 3 : 3)
+    playerCount * (store.options.singleWordOnly ? 4 : 2)
   );
 
   // Save
@@ -46,7 +46,7 @@ export const prepareSetupPhase = async (
         gameOrder,
         round: {
           current: 0,
-          total: Math.floor(playerCount % 2 === 0 ? playerCount / 2 : playerCount - 1),
+          total: Math.floor(playerCount / 2),
         },
       },
     },

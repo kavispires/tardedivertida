@@ -41,7 +41,7 @@ export function Page({ slide, players, albumColor, currentPage, totalSlides }: P
             <Card>{slide.content}</Card>
           </div>
         ) : (
-          <div className={clsx('l-page__container l-page__text', animationClass)}>{slide.content}</div>
+          <div className={clsx('l-page__container l-page__text', animationClass)}>"{slide.content}"</div>
         ))}
 
       {slide.type === 'drawing' && (

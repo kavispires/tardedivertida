@@ -39,14 +39,14 @@ function PhaseDrawing({ players, state, info }: PhaseProps) {
             <Translate
               pt={
                 <>
-                  Você receberá uma expressão.
+                  Você receberá uma carta.
                   <br />
                   Desenhe-a da melhor maneira possível, você tem {DRAWING_TIME_IN_SECONDS} segundos.
                 </>
               }
               en={
                 <>
-                  You will receive an expression.
+                  You will receive an card.
                   <br />
                   Draw it the best way possible, you have {DRAWING_TIME_IN_SECONDS} seconds.
                 </>
@@ -54,6 +54,7 @@ function PhaseDrawing({ players, state, info }: PhaseProps) {
             />
 
             <TurnOrder
+              title={translate('Ordem dos Álbuns', "Albums' Order")}
               players={players}
               order={state.gameOrder}
               className="l-turn-order"
