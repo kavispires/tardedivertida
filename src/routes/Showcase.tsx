@@ -32,14 +32,16 @@ function Showcase() {
   // Load query params
   useEffect(() => {
     const searchAsObject = Object.fromEntries(new URLSearchParams(searchParams));
-
-    setFilters(searchAsObject);
+    if (Object.keys(searchAsObject).length > 0) {
+      setFilters(searchAsObject);
+    }
   }, []); // eslint-disable-line
 
   useEffect(() => {
     setList(filterGames(GAME_LIST, filters, language));
     const queryString = Object.keys(filters)
-      .map((key) => key + '=' + filters[key])
+      .filter((key) => filters[key] !== 'any')
+      .map((key) => `${key}=${filters[key]}`)
       .join('&');
     setSearchParams(queryString);
   }, [filters, language, setSearchParams]);
@@ -50,7 +52,6 @@ function Showcase() {
       [e.target.name]: e.target.value,
     }));
   };
-  console.log('a');
 
   return (
     <Layout.Content className="showcase">
