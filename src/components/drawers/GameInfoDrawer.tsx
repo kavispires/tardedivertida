@@ -4,9 +4,8 @@ import { Button, Divider, Drawer } from 'antd';
 import { InfoCircleOutlined } from '@ant-design/icons';
 // Utils
 import { useLanguage } from 'hooks';
-import { isDevEnv } from 'utils/helpers';
 // Components
-import { RulesModal } from 'components';
+import { DebugOnly, RulesModal } from 'components';
 import { SectionMe } from './_internal/SectionMe';
 import { SectionMeta } from './_internal/SectionMeta';
 import { SectionTeams } from './_internal/SectionTeams';
@@ -43,7 +42,7 @@ export function GameInfoDrawer({ players, state, info, userId }: GameInfoDrawerP
       <div className="game-info-drawer">
         <Button size="small" className="game-info-drawer__button" onClick={showDrawer}>
           {info.title?.[language] ?? '?'} <InfoCircleOutlined />
-          {isDevEnv && Boolean(userId) && `${userId}`}
+          <DebugOnly devOnly>{userId}</DebugOnly>
         </Button>
 
         <Drawer

@@ -3,12 +3,13 @@
  */
 export const PUBLIC_URL: StringDictionary = {
   BANNERS: `${process.env.PUBLIC_URL}/images/banners/`,
-  RULES: `${process.env.PUBLIC_URL}/images/rules/`,
   CARDS: `${process.env.PUBLIC_URL}/images/cards/`,
   CLOUDS: `${process.env.PUBLIC_URL}/images/clouds/`,
+  EXAMPLES: `${process.env.PUBLIC_URL}/images/examples/`,
+  IN_GAME: `${process.env.PUBLIC_URL}/images/in-game/`,
+  RULES: `${process.env.PUBLIC_URL}/images/rules/`,
   ROOT: `${process.env.PUBLIC_URL}/images/`,
   RESOURCES: `${process.env.PUBLIC_URL}/resources/`,
-  IN_GAME: `${process.env.PUBLIC_URL}/images/in-game/`,
 };
 
 type TagDict = {

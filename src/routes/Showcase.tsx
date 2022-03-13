@@ -58,17 +58,19 @@ function Showcase() {
     <Layout.Content className="showcase">
       <ul className="showcase-list" style={{ gridTemplateColumns: `repeat(${width > 450 ? 4 : 2}, 1fr)` }}>
         <li className={clsx('showcase-entry showcase-entry--title', getAnimationClass('zoomIn'))}>
-          <h1 className="showcase-title">
-            <Translate pt="Vitrine" en="Showcase" />
-          </h1>
-          <ButtonContainer className="showcase-menu">
-            <Button
-              icon={<FilterFilled />}
-              shape="circle"
-              size="small"
-              onClick={() => setShowFilters(true)}
-            />
-          </ButtonContainer>
+          <TransparentButton onClick={() => setShowFilters(true)} className="showcase-image-button">
+            <h1 className="showcase-title">
+              <Translate pt="Vitrine" en="Showcase" />
+            </h1>
+            <ButtonContainer className="showcase-menu">
+              <Button
+                icon={<FilterFilled />}
+                shape="circle"
+                size="small"
+                onClick={() => setShowFilters(true)}
+              />
+            </ButtonContainer>
+          </TransparentButton>
         </li>
 
         {list.map((game, index) => {
@@ -99,11 +101,11 @@ function Showcase() {
         title={<Translate pt={<>Filtros ({list.length} jogos)</>} en={<>Filters ({list.length} games)</>} />}
         placement="left"
         onClose={() => setShowFilters(false)}
-        width={Math.min(width / 0.75, 600)}
+        width={Math.min(width / 1.1, 600)}
         footer={
           <ButtonContainer>
             <Button onClick={() => setFilters({})}>
-              <Translate pt="Resetar filtros" en="Reset filters" />
+              <Translate pt="Limpar filtros" en="Clear filters" />
             </Button>
             <Button type="primary" onClick={() => setShowFilters(false)}>
               OK
@@ -429,7 +431,7 @@ function GameDetailsContent({ game }: { game: GameInfo }) {
     <>
       <Image
         alt={game.title[language]}
-        src={`${PUBLIC_URL.BANNERS}game-image-${game.gameName}-${language}.jpg`}
+        src={`${PUBLIC_URL.EXAMPLES}game-example-${game.gameName}.png`}
         fallback={`${PUBLIC_URL.BANNERS}/game-image-em-breve-${language}.jpg`}
       />
       <Card.Meta style={{ marginTop: '8px' }} description={game.summary[language]} />
@@ -441,6 +443,9 @@ function GameDetailsContent({ game }: { game: GameInfo }) {
           `For ${game.playerCount.min}-${game.playerCount.max} players`
         )}
       />
+
+      <Divider />
+
       <Card.Meta
         description={translate(
           `Recomendado jogar com ${game.playerCount.recommended}`,
