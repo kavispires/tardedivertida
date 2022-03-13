@@ -24,7 +24,6 @@ type InitialState = {
   canvasSize: number;
   // Espiao-entre-nos
   cache: PlainObject;
-  espiaoEntreNosCache: PlainObject;
   // Retrato-Falado
   monsterOrientation: 'vertical' | 'horizontal';
 };
@@ -53,7 +52,6 @@ const initialState: InitialState = {
   canvasSize: 0,
   // Espiao-entre-nos
   cache: {},
-  espiaoEntreNosCache: {}, // deprecated
   // Retrato-Falado
   monsterOrientation: 'vertical',
 };

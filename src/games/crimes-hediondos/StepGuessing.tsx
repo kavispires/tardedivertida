@@ -48,13 +48,12 @@ export function StepGuessing({
 
   // DEV: Auto guesses
   useMock(() => {
-    onSubmitGuesses({ guesses: mockGuesses(groupedItems, players, user) });
+    // onSubmitGuesses({ guesses: mockGuesses(groupedItems, players, user) });
   }, []);
 
-  // TODO: if last guess was CORRECT or LOCK, auto-guess
+  // If last guess was CORRECT or LOCK, auto-guess
   useEffect(() => {
-    console.log('a');
-    setGuesses(autoSelectCorrectGuesses(user.history));
+    setGuesses((g) => ({ ...g, ...autoSelectCorrectGuesses(user.history) }));
   }, [user]);
 
   const onUpdateGuesses = (itemId: string) => {
@@ -139,7 +138,7 @@ export function StepGuessing({
       <DebugOnly dev>
         <ButtonContainer>
           <Button type="dashed" ghost onClick={() => setGuesses(mockGuesses(groupedItems, players, user))}>
-            <Translate pt="Seleção Aleatória Semi-inteligentemente" en="Semi-intelligent Random Selection" />
+            <Translate pt="Seleção Aleatória Semi-inteligente" en="Semi-intelligent Random Selection" />
           </Button>
         </ButtonContainer>
       </DebugOnly>
