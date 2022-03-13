@@ -26,7 +26,6 @@
 }
 
 .rules-carousel {
-  background: rgb(116, 83, 171);
   display: flex;
   justify-content: center;
   border-radius: get-unit(1);
@@ -85,9 +84,6 @@
 .ant-carousel .slick-next:hover {
   font-size: inherit;
   color: currentColor;
-  // background: white;
-  // padding: get-unit(5);
-  // display: block;
 }
 
 .popover-rule {

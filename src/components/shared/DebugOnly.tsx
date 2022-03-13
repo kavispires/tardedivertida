@@ -11,7 +11,11 @@ export function DebugOnly({ children, div = false, dev = false, devOnly = false 
   const { isDebugEnabled, isDevEnv } = useDevFeatures();
 
   if (devOnly) {
-    return isDevEnv ? <div>{children}</div> : <></>;
+    if (div && isDevEnv) {
+      return <div>{children}</div>;
+    }
+
+    return isDevEnv ? <> {children}</> : <></>;
   }
 
   if ((dev && isDevEnv) || isDebugEnabled) {
