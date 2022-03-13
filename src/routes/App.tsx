@@ -18,6 +18,7 @@ import Icons from './Icons';
 import TestingZone from './TestingZone';
 import Gallery from './Gallery';
 import Draw from './Draw';
+import Showcase from './Showcase';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -64,6 +65,7 @@ function App() {
             />
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/draw" element={<Draw />} />
+            <Route path="/showcase" element={<Showcase />} />
             <Route path="*" element={<Game />} />
           </Routes>
         )}

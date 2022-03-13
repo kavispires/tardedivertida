@@ -124,103 +124,103 @@ function Game() {
       case GAME_COLLECTION.ARTE_RUIM:
         return (
           <Suspense fallback={<LoadingPage message={''} />}>
-            <SessionArteRuim gameId={gameId} />;
+            <SessionArteRuim gameId={gameId} />
           </Suspense>
         );
       case GAME_COLLECTION.CONTADORES_HISTORIAS:
         return (
           <Suspense fallback={<LoadingPage message={''} />}>
-            <SessionContadoresHistorias gameId={gameId} />;
+            <SessionContadoresHistorias gameId={gameId} />
           </Suspense>
         );
       case GAME_COLLECTION.DETETIVES_IMAGINATIVOS:
         return (
           <Suspense fallback={<LoadingPage message={''} />}>
-            <SessionDetetivesImaginativos gameId={gameId} />;
+            <SessionDetetivesImaginativos gameId={gameId} />
           </Suspense>
         );
       case GAME_COLLECTION.ESPIAO_ENTRE_NOS:
         return (
           <Suspense fallback={<LoadingPage message={''} />}>
-            <SessionEspiaoEntreNos gameId={gameId} />;
+            <SessionEspiaoEntreNos gameId={gameId} />
           </Suspense>
         );
       case GAME_COLLECTION.GALERIA_DE_SONHOS:
         return (
           <Suspense fallback={<LoadingPage message={''} />}>
-            <SessionGaleriaDeSonhos gameId={gameId} />;
+            <SessionGaleriaDeSonhos gameId={gameId} />
           </Suspense>
         );
       case GAME_COLLECTION.CRIMES_HEDIONDOS:
         return (
           <Suspense fallback={<LoadingPage message={''} />}>
-            <SessionCrimesHediondos gameId={gameId} />;
+            <SessionCrimesHediondos gameId={gameId} />
           </Suspense>
         );
       case GAME_COLLECTION.INSTRUMENTOS_CODIFICADOS:
         return (
           <Suspense fallback={<LoadingPage message={''} />}>
-            <SessionInstrumentosCodificados gameId={gameId} />;
+            <SessionInstrumentosCodificados gameId={gameId} />
           </Suspense>
         );
       case GAME_COLLECTION.LINHAS_CRUZADAS:
         return (
           <Suspense fallback={<LoadingPage message={''} />}>
-            <SessionLinhasCruzadas gameId={gameId} />;
+            <SessionLinhasCruzadas gameId={gameId} />
           </Suspense>
         );
       case GAME_COLLECTION.MENTE_COLETIVA:
         return (
           <Suspense fallback={<LoadingPage message={''} />}>
-            <SessionMenteColetiva gameId={gameId} />;
+            <SessionMenteColetiva gameId={gameId} />
           </Suspense>
         );
       case GAME_COLLECTION.NA_RUA_DO_MEDO:
         return (
           <Suspense fallback={<LoadingPage message={''} />}>
-            <SessionNaRuaDoMedo gameId={gameId} />;
+            <SessionNaRuaDoMedo gameId={gameId} />
           </Suspense>
         );
       case GAME_COLLECTION.ONDA_TELEPATICA:
         return (
           <Suspense fallback={<LoadingPage message={''} />}>
-            <SessionOndaTelepatica gameId={gameId} />;
+            <SessionOndaTelepatica gameId={gameId} />
           </Suspense>
         );
       case GAME_COLLECTION.POLEMICA_DA_VEZ:
         return (
           <Suspense fallback={<LoadingPage message={''} />}>
-            <SessionPolemicaDaVez gameId={gameId} />;
+            <SessionPolemicaDaVez gameId={gameId} />
           </Suspense>
         );
       case GAME_COLLECTION.RETRATO_FALADO:
         return (
           <Suspense fallback={<LoadingPage message={''} />}>
-            <SessionRetratoFalado gameId={gameId} />;
+            <SessionRetratoFalado gameId={gameId} />
           </Suspense>
         );
       case GAME_COLLECTION.SONHOS_PESADELOS:
         return (
           <Suspense fallback={<LoadingPage message={''} />}>
-            <SessionSonhosPesadelos gameId={gameId} />;
+            <SessionSonhosPesadelos gameId={gameId} />
           </Suspense>
         );
       case GAME_COLLECTION.TESTEMUNHA_OCULAR:
         return (
           <Suspense fallback={<LoadingPage message={''} />}>
-            <SessionTestemunhaOcular gameId={gameId} />;
+            <SessionTestemunhaOcular gameId={gameId} />
           </Suspense>
         );
       case GAME_COLLECTION.UE_SO_ISSO:
         return (
           <Suspense fallback={<LoadingPage message={''} />}>
-            <SessionUeSoIsso gameId={gameId} />;
+            <SessionUeSoIsso gameId={gameId} />
           </Suspense>
         );
       case GAME_COLLECTION.CRUZA_PALAVRAS:
         return (
           <Suspense fallback={<LoadingPage message={''} />}>
-            <SessionCruzaPalavras gameId={gameId} />;
+            <SessionCruzaPalavras gameId={gameId} />
           </Suspense>
         );
       default:
