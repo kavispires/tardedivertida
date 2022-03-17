@@ -5,13 +5,14 @@ import { useSearchParams } from 'react-router-dom';
 import { Button, Card, Divider, Drawer, Image, Layout, Modal, Radio, Space, Tag, Tooltip } from 'antd';
 import { FilterFilled, InfoCircleOutlined } from '@ant-design/icons';
 // Hooks
-import { useDimensions, useLanguage } from 'hooks';
+import { useDimensions, useGlobalState, useLanguage } from 'hooks';
 // Utils
 import gameList from 'resources/games.json';
 import { PUBLIC_URL, TAG_DICT } from 'utils/constants';
 import { getAnimationClass } from 'utils/helpers';
 // Components
 import { ButtonContainer, LanguageSwitch, RulesModal, Translate, TransparentButton } from 'components';
+import { orderBy } from 'lodash';
 
 const GAMES: {
   [key: string]: GameInfo;
@@ -23,6 +24,7 @@ function Showcase() {
   const { language } = useLanguage();
   const [searchParams, setSearchParams] = useSearchParams();
   const [width] = useDimensions('app');
+  const [, setLanguage] = useGlobalState('language');
 
   const [showFilters, setShowFilters] = useState(false);
   const [showModal, setShowModal] = useState('');
@@ -34,18 +36,31 @@ function Showcase() {
   useEffect(() => {
     const searchAsObject = Object.fromEntries(new URLSearchParams(searchParams));
     if (Object.keys(searchAsObject).length > 0) {
-      setFilters(searchAsObject);
+      const parsedQP = Object.entries(searchAsObject).reduce((acc: BooleanDictionary, [key, value]) => {
+        if (value === 'false' || value === 'true') {
+          acc[key] = value === 'true';
+        }
+        if (key === 'language' && value === 'en') {
+          setLanguage('en');
+        }
+        return acc;
+      }, {});
+
+      setFilters(parsedQP);
     }
   }, []); // eslint-disable-line
 
   useEffect(() => {
-    setList(filterGames(GAME_LIST, filters, language));
-    const queryString = Object.keys(filters)
+    setList(filterGames(GAME_LIST, filters, language, setLanguage));
+    let queryString = Object.keys(filters)
       .filter((key) => filters[key] !== 'any')
       .map((key) => `${key}=${filters[key]}`)
       .join('&');
+    if (language !== 'pt') {
+      queryString += `&language=${language}`;
+    }
     setSearchParams(queryString);
-  }, [filters, language, setSearchParams]);
+  }, [filters, language, setSearchParams, setLanguage]);
 
   const updateFilters = (e: any) => {
     setFilters((s: PlainObject) => ({
@@ -73,7 +88,7 @@ function Showcase() {
           </TransparentButton>
         </li>
 
-        {list.map((game, index) => {
+        {orderBy(list, `title.${language}`).map((game, index) => {
           return (
             <li
               key={game.gameCode}
@@ -363,7 +378,12 @@ function CustomFilterOptions({
   );
 }
 
-function filterGames(list: GameInfo[], filters: PlainObject, language: Language) {
+function filterGames(
+  list: GameInfo[],
+  filters: PlainObject,
+  language: Language,
+  setLanguage: GenericFunction
+) {
   return list.filter((game) => {
     let result: boolean[] = [];
     // Availability
