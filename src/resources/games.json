@@ -509,7 +509,7 @@
   "P": {
     "gameCode": "P",
     "gameName": "polemica-vez",
-    "version": "2.1",
+    "version": "2.2",
     "title": {
       "pt": "Polêmica da Vez",
       "en": "That's Polemic"
@@ -542,7 +542,15 @@
     "available": {
       "pt": true,
       "en": true
-    }
+    },
+    "options": [
+      {
+        "label": "End Game",
+        "key": "fixedRounds",
+        "off": "4 points (15 rounds max)",
+        "on": "Each player once (6+) or twice (1-5)"
+      }
+    ]
   },
   "Q": {
     "gameCode": "Q",
