@@ -131,6 +131,7 @@ export const buildRanking = (players: Players, currentCategory: CategoryCard, ps
   const newScores: PlainObject = {};
 
   let psychicPoints = 0;
+  let playersMaxPoints = 0;
 
   // Build score object
   Object.values(players).forEach((player) => {
@@ -142,6 +143,7 @@ export const buildRanking = (players: Players, currentCategory: CategoryCard, ps
       newScores[player.id][2] += points;
 
       players[player.id].score += points;
+      playersMaxPoints = points > playersMaxPoints ? points : playersMaxPoints;
 
       // Determine psychic points
       psychicPoints += points > 0 ? 1 : 0;
@@ -152,8 +154,10 @@ export const buildRanking = (players: Players, currentCategory: CategoryCard, ps
   const isMoreThanHalf = psychicPoints >= (Object.keys(players).length - 1) / 2;
   // Psychic gets a maximum of 3 points for other players votes
   psychicPoints = psychicPoints > 3 ? 3 : psychicPoints;
-  // Psychic gets 2 points if he bet on the guess amount correctly
-  psychicPoints += players[psychicId].guess === isMoreThanHalf ? 2 : 0;
+  // Psychic gets 1 points if he bet on the guess amount correctly
+  psychicPoints += players[psychicId].guess === isMoreThanHalf ? 1 : 0;
+  // The psychic can never get more points than the other players
+  psychicPoints = psychicPoints > playersMaxPoints ? playersMaxPoints : psychicPoints;
   // Add psychic points
   players[psychicId].score += psychicPoints;
   newScores[psychicId][1] += psychicPoints;

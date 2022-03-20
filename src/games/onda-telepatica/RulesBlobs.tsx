@@ -43,7 +43,8 @@ export function ScoringRules() {
             <br />
             Mas 3 e 2 pontos se votaram 1 ou 2 espaços de distância.
             <br />O Medium ganha 1 ponto para cada jogador que ganhou ponto (máximo 3 pontos) e se ele(a)
-            chutou a quantidade certa de jogadores que iam acertar, ele ganha mais 2 pontos.
+            chutou a quantidade certa de jogadores que iam acertar, ele ganha mais 1 ponto.
+            <br />O Medium nunca ganha mais pontos que os jogadores.
           </>
         }
         en={
@@ -53,7 +54,9 @@ export function ScoringRules() {
             If one or two spaces away from the needle, they get 3 and 2 points respectively.
             <br />
             The psychic gets 1 point for every player that got points this turn (maximum of 3 points) and may
-            get 2 extra points if they guessed the correct number of player who would get the clue right.
+            get 1 extra point if they guessed the correct number of player who would get the clue right.
+            <br />
+            The psychic may never get more points than the players.
           </>
         }
       />
