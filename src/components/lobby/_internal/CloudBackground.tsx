@@ -44,6 +44,7 @@ function getCloudComponent(type: string) {
   switch (type) {
     case 'eye-cloud':
     case 'monster-eye-cloud':
+    case 'phone-cloud':
     case 'retro-cloud':
     case 'sheep-cloud':
     case 'speech-cloud':
@@ -70,6 +71,7 @@ function getCloudFileName(gameCode: string) {
       E: 'cyber-cloud',
       G: 'sky-clouds',
       H: 'crime-clouds',
+      L: 'phone-cloud',
       M: 'sheep-cloud',
       N: 'halloween-clouds',
       O: 'retro-cloud',
