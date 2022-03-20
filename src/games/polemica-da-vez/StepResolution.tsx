@@ -1,9 +1,9 @@
-import clsx from 'clsx';
 // Ant Design Resources
-import { FallOutlined, RiseOutlined } from '@ant-design/icons';
+import { CommentOutlined, LikeFilled, ShareAltOutlined } from '@ant-design/icons';
 // Components
-import { Avatar, AvatarIcon, ButtonContainer, Step, TimedButton, Title, Translate } from 'components';
+import { ButtonContainer, Step, TimedButton, Title, Translate } from 'components';
 import { Topic } from './Topic';
+import { TweetComment } from './TweetComment';
 
 type StepResolutionProps = {
   players: GamePlayers;
@@ -25,38 +25,37 @@ export function StepResolution({
         <Translate pt="Resultado" en="Results" />
       </Title>
 
-      <Title level={2}>
-        <Topic topic={customTopic ?? currentTopic?.text} likes={totalLikes} />
-      </Title>
+      <div className="p-tweet-container">
+        <div className="p-tweet">
+          <div className="p-tweet__topic">
+            <Topic topic={customTopic ?? currentTopic?.text} />
+          </div>
+          <div className="p-tweet__actions">
+            <div className="p-tweet__action" style={{ color: totalLikes > 0 ? 'DodgerBlue' : 'gray' }}>
+              <LikeFilled className="p-tweet__icon" />
+              {totalLikes}
+            </div>
+            <div className="p-tweet__action p-tweet__action-active">
+              <CommentOutlined className="p-tweet__icon" /> <Translate pt="Comentários" en="Comments" />
+            </div>
+            <div className="p-tweet__action">
+              <ShareAltOutlined className="p-tweet__icon" /> <Translate pt="Compartilhar" en="Share" />
+            </div>
+          </div>
+        </div>
 
-      <ul className="p-players-reactions">
-        {Object.values(players).map((player) => {
-          const key = `player-result-${player.id}`;
-          const isCorrect = player.likesGuess === totalLikes;
-          return (
-            <li className="p-player-reaction" key={key}>
-              <div>
-                <div className="p-player-reaction__reaction">
-                  {player.reaction ? (
-                    <AvatarIcon type="speech-bubble-thumbs-up" shape="square" className="p-like-icon" />
-                  ) : (
-                    <AvatarIcon type="speech-bubble-thumbs-down" shape="square" className="p-like-icon" />
-                  )}
-                </div>
-              </div>
-              <div className="p-player-reaction__player">
-                <Avatar id={player.avatarId} />
-                <div className="p-player-reaction__name">{player.name}</div>
-              </div>
-              <div>
-                <div className={clsx('p-player-reaction__likes', isCorrect && 'p-icon-correct')}>
-                  {isCorrect ? <RiseOutlined /> : <FallOutlined />} {player.likesGuess}
-                </div>
-              </div>
-            </li>
-          );
-        })}
-      </ul>
+        <ul className="p-tweet-comments">
+          {Object.values(players).map((player) => {
+            const key = `player-result-${player.id}`;
+
+            return (
+              <li className="p-player-reaction" key={key}>
+                <TweetComment player={player} totalLikes={totalLikes} />
+              </li>
+            );
+          })}
+        </ul>
+      </div>
 
       <ButtonContainer>
         <TimedButton duration={25} showTimer onExpire={goToNextStep} onClick={goToNextStep} label="Ranking" />

@@ -124,6 +124,20 @@ type GameInfo = {
   }[];
 };
 
+type GameMeta = {
+  createdAt: DateMilliseconds;
+  createdBy: string;
+  gameId: GameId;
+  gameName: GameName;
+  isComplete: boolean;
+  isLocked: boolean;
+  language: GameLanguage;
+  max: number;
+  min: number;
+  options?: BooleanDictionary;
+  replay: number;
+};
+
 type GameRound = {
   current: number;
   total: number;
@@ -142,6 +156,7 @@ type PhaseProps = {
   players: GamePlayers;
   state: GameState;
   info: GameInfo;
+  meta: GameMeta;
 };
 
 type GameTeam = {
