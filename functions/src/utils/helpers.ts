@@ -36,7 +36,7 @@ export const generateGameId = (gameCode: GameCode, usedIds: string[] = [], lengt
    * @param length
    * @returns
    */
-  function generateId(gameCode: GameCode, length: number) {
+  function generateId(gameCode: GameCode, length: number): string {
     let id = `${gameCode}`;
     while (id.length < length) {
       id += LETTERS[Math.floor(Math.random() * LETTERS.length)];
@@ -113,7 +113,7 @@ export function getDefaultInitialState({
  * @param playerName
  * @returns
  */
-export function generatePlayerId(playerName: PlayerName) {
+export function generatePlayerId(playerName: PlayerName): PlayerId {
   return `_${playerName
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '') // Replace characters with accents
@@ -360,13 +360,13 @@ export const determineWinners = (players: Players): Player[] => {
  * @param {string|string[]} orders
  * @returns {object[]}
  */
-export const orderBy = (list: PlainObject[], properties: string | string[], orders: string | string[]) => {
-  function sortBy(_key, _cb) {
+export const orderBy = <T>(list: T[], properties: string | string[], orders: string | string[]): T[] => {
+  function sortBy(_key: string, _cb: any) {
     if (!_cb) _cb = () => 0;
-    return (a, b) => (a[_key] > b[_key] ? 1 : b[_key] > a[_key] ? -1 : _cb(a, b));
+    return (a: any, b: any) => (a[_key] > b[_key] ? 1 : b[_key] > a[_key] ? -1 : _cb(a, b));
   }
 
-  function sortByDesc(key, _cb) {
+  function sortByDesc(key: string, _cb: any) {
     if (!_cb) _cb = () => 0;
     return (b, a) => (a[key] > b[key] ? 1 : b[key] > a[key] ? -1 : _cb(b, a));
   }
@@ -446,7 +446,7 @@ export const getPreviousPlayer = (turnOrder: GameOrder | TurnOrder, activePlayer
  * @param twoDimensionalArray
  * @returns
  */
-export const flattenArray = (twoDimensionalArray: any[]) =>
+export const flattenArray = <T>(twoDimensionalArray: T[][]): T[] =>
   twoDimensionalArray.reduce((acc, arr) => [...acc, ...arr], []);
 
 /**
@@ -464,7 +464,7 @@ export const wait = async (duration = 3000) => {
  * @param dataList
  * @returns
  */
-export const buildUsedCardsIdsDict = (dataList: PlainObject[]): BooleanDictionary => {
+export const buildIdDictionary = (dataList: PlainObject[]): BooleanDictionary => {
   return dataList.reduce((acc, entry) => {
     acc[entry.id] = true;
     return acc;
