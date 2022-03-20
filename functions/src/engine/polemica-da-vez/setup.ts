@@ -1,5 +1,5 @@
 // Constants
-import { CUSTOM_TOPICS_PER_ROUND, POLEMICA_DA_VEZ_PHASES, TOPICS_PER_ROUND } from './constants';
+import { CUSTOM_TOPICS_PER_ROUND, MAX_ROUNDS, POLEMICA_DA_VEZ_PHASES, TOPICS_PER_ROUND } from './constants';
 // Types
 import { PlainObject, Players, SaveGamePayload } from '../../utils/types';
 import { FirebaseStateData, FirebaseStoreData } from './types';
@@ -7,6 +7,7 @@ import { FirebaseStateData, FirebaseStoreData } from './types';
 import * as firebaseUtils from '../../utils/firebase';
 import * as utils from '../../utils/helpers';
 import { buildDeck, countLikes, rankAndScore } from './helpers';
+import { DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
 
 /**
  * Setup
@@ -21,7 +22,12 @@ export const prepareSetupPhase = async (
   allTopics: PlainObject
 ): Promise<SaveGamePayload> => {
   // Determine turn order
-  const { gameOrder } = utils.buildGameOrder(players);
+  // Determine turn order
+  const { gameOrder, playerIds } = utils.buildGameOrder(
+    players,
+    store.options.fixedRounds ? DOUBLE_ROUNDS_THRESHOLD : undefined
+  );
+  const totalRounds = store.options.fixedRounds ? gameOrder.length : MAX_ROUNDS;
 
   // Build deck
   const { deck, customDeck } = buildDeck(allTopics);
@@ -39,7 +45,11 @@ export const prepareSetupPhase = async (
       },
       state: {
         phase: POLEMICA_DA_VEZ_PHASES.SETUP,
-        gameOrder,
+        gameOrder: playerIds,
+        round: {
+          current: 0,
+          total: totalRounds,
+        },
       },
     },
   };

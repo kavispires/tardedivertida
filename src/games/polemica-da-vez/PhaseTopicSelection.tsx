@@ -13,6 +13,7 @@ import {
   Step,
   StepSwitcher,
   Translate,
+  TurnOrder,
   ViewIf,
   WaitingRoom,
 } from 'components';
@@ -73,6 +74,7 @@ function PhaseTopicSelection({ state, players, info }: PhaseProps) {
                 </>
               }
             />
+            <TurnOrder order={state.gameOrder} players={players} activePlayerId={state.activePlayerId} />
           </Instruction>
         </PhaseAnnouncement>
 
@@ -95,6 +97,11 @@ function PhaseTopicSelection({ state, players, info }: PhaseProps) {
                   <Translate
                     pt="está escolhendo a polêmica da rodada."
                     en="is choosing the topic for the round."
+                  />
+                  <TurnOrder
+                    order={state.gameOrder}
+                    players={players}
+                    activePlayerId={state.activePlayerId}
                   />
                 </>
               }

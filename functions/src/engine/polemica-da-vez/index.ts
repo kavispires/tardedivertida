@@ -3,7 +3,7 @@ import { GAME_COLLECTIONS } from '../../utils/constants';
 import { MAX_ROUNDS, PLAYER_COUNTS, POLEMICA_DA_VEZ_PHASES } from './constants';
 // Types
 import { GameId, Language, Players } from '../../utils/types';
-import { PolemicaDaVezInitialState, PolemicaDaVezSubmitAction } from './types';
+import { PolemicaDaVezInitialState, PolemicaDaVezOptions, PolemicaDaVezSubmitAction } from './types';
 // Utils
 import * as firebaseUtils from '../../utils/firebase';
 import * as utils from '../../utils/helpers';
@@ -29,7 +29,8 @@ import { handleSubmitReaction, handleSubmitTopic } from './actions';
 export const getInitialState = (
   gameId: GameId,
   uid: string,
-  language: Language
+  language: Language,
+  options: PolemicaDaVezOptions
 ): PolemicaDaVezInitialState => {
   return utils.getDefaultInitialState({
     gameId,
@@ -44,6 +45,7 @@ export const getInitialState = (
       usedTopics: [],
       gameOrder: [],
     },
+    options,
   });
 };
 
@@ -64,7 +66,7 @@ export const getNextPhase = async (
   );
 
   // Determine if it's game over
-  const isGameOver = determineGameOver(players);
+  const isGameOver = determineGameOver(players, store.options, state.round);
   // Determine next phase
   const nextPhase = determineNextPhase(state?.phase, state.round.current, isGameOver, state?.lastRound);
 

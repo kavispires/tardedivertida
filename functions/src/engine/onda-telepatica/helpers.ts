@@ -78,8 +78,7 @@ export const buildUsedCategoriesIdsDict = (pastCategories: PastCategories): Plai
 
 /**
  * Gets 2 unique categories per round
- * @param allQuestions
- * @param pastQuestionsIds
+ * @param data
  * @returns
  */
 export const buildDeck = (data: ResourceData): Deck => {

@@ -7,10 +7,11 @@ import {
   TOPICS_PER_ROUND,
 } from './constants';
 // Types
-import { PlainObject, Players } from '../../utils/types';
-import { Decks } from './types';
+import { PlainObject, Players, Round } from '../../utils/types';
+import { Decks, PolemicaDaVezOptions } from './types';
 // Utils
 import * as gameUtils from '../../utils/game-utils';
+import { DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
 
 /**
  * Determine the next phase based on the current one
@@ -116,6 +117,15 @@ export const rankAndScore = (players: Players, totalLikes: number): PlainObject 
  * @param players
  * @returns
  */
-export const determineGameOver = (players: Players) => {
-  return Object.values(players).some((player) => player.score >= SCORE_GOAL);
+export const determineGameOver = (players: Players, options: PolemicaDaVezOptions, round: Round) => {
+  if (!options.fixedRounds) {
+    return Object.values(players).some((player) => player.score >= SCORE_GOAL);
+  }
+
+  const playerCount = Object.keys(players).length;
+  if (playerCount < DOUBLE_ROUNDS_THRESHOLD) {
+    return round.current >= playerCount * 2;
+  }
+
+  return round.current > playerCount;
 };
