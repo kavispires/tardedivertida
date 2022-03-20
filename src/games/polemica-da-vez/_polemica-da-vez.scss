@@ -301,3 +301,20 @@
     color: get-color(orange);
   }
 }
+
+.p-all-topics {
+  display: grid;
+  gap: get-unit(2);
+  margin-top: get-unit(10);
+  grid-template-columns: repeat(3, 1fr);
+
+  &__topic {
+    min-width: 20ch;
+    background: white;
+    padding: get-unit(2);
+  }
+
+  &__comment {
+    color: get-color(grey);
+  }
+}

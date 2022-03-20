@@ -42,7 +42,7 @@ export const getInitialState = (
     totalRounds: MAX_ROUNDS,
     store: {
       language,
-      usedTopics: [],
+      pastTopics: [],
       gameOrder: [],
     },
     options,
