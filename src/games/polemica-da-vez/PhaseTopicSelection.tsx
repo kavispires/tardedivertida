@@ -1,8 +1,9 @@
 // Hooks
-import { useLanguage, useStep, useWhichPlayerIsThe } from 'hooks';
+import { useLanguage, useMock, useStep, useWhichPlayerIsThe } from 'hooks';
 import { useOnSubmitTopicAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+import { mockTopicSelection } from './mock';
 // Components
 import {
   AvatarName,
@@ -26,7 +27,12 @@ function PhaseTopicSelection({ state, players, info, meta }: PhaseProps) {
 
   const onSubmitTopic = useOnSubmitTopicAPIRequest(setStep);
   const isFixedRounds = Boolean(meta?.options?.fixedRounds);
-  console.log({ meta });
+
+  useMock(() => {
+    if (step === 1 && isUserTheActivePlayer) {
+      onSubmitTopic(mockTopicSelection(state.currentTopics));
+    }
+  }, [step]);
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.POLEMICA_DA_VEZ.TOPIC_SELECTION}>

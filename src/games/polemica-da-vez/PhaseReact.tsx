@@ -1,8 +1,9 @@
 // Hooks
-import { useLanguage, useStep } from 'hooks';
+import { useLanguage, useMock, useStep } from 'hooks';
 import { useOnSubmitReactionAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+import { mockGuess } from './mock';
 // Components
 import { Instruction, PhaseAnnouncement, PhaseContainer, StepSwitcher, Translate } from 'components';
 import { StepLiking } from './StepLiking';
@@ -12,6 +13,10 @@ function PhaseReact({ state, players, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
 
   const onSubmitReaction = useOnSubmitReactionAPIRequest(setStep);
+
+  useMock(() => {
+    onSubmitReaction(mockGuess(Object.keys(players).length));
+  }, []);
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.POLEMICA_DA_VEZ.REACT}>
