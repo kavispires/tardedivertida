@@ -187,6 +187,7 @@ export const prepareGameOverPhase = async (
         phase: LINHAS_CRUZADAS_PHASES.GAME_OVER,
         round: state.round,
         gameEndedAt: Date.now(),
+        album: state.album,
         group: {
           score: 100,
           victory: 100,

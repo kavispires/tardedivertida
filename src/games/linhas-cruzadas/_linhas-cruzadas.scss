@@ -1,6 +1,8 @@
+$offWhite: #faf8f4;
+
 .l-cards {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .l-drawing {
@@ -18,7 +20,7 @@
 }
 
 .l-album {
-  background: #faf8f4;
+  background: $offWhite;
   width: 600px;
 
   &__owner {
@@ -98,4 +100,43 @@
 
 .l-turn-order {
   margin: 0;
+}
+
+.l-album-strips {
+  max-width: 95vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.l-album-strip-entry {
+  background: get-color(white);
+  padding: get-unit(1);
+  margin: get-unit(2);
+  @include box-shadow;
+
+  &__author {
+    padding-bottom: get-unit(1);
+    border-bottom: 1px solid get-color(grey, 1);
+  }
+}
+
+.l-album-strip {
+  display: grid;
+  max-width: 95vw;
+  overflow-y: auto;
+}
+
+.l-album-strip-square-text {
+  margin: get-unit(1);
+  background: $offWhite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+}
+
+.l-album-strip-square-drawing {
+  margin: get-unit(1);
+  background: $offWhite;
+  display: flex;
 }

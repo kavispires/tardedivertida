@@ -49,7 +49,7 @@ export function StepSelectPrompt({ prompts, onSubmitPrompt }: StepSelectPromptPr
       </div>
 
       <ButtonContainer>
-        <Button onClick={onRandomSelect} disabled={isLoading}>
+        <Button onClick={onRandomSelect} disabled={isLoading} ghost>
           <Translate pt="Escolha pra mim" en="Select for me" />
         </Button>
       </ButtonContainer>
