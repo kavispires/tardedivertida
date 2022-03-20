@@ -3,6 +3,13 @@ type Topic = {
   text: string;
 };
 
+type PastTopic = {
+  id: string;
+  text: string;
+  likes: number;
+  custom?: boolean;
+};
+
 type SubmitTopicPayload = {
   topicId: string;
   customTopic?: string;

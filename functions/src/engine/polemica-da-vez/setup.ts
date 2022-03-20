@@ -138,13 +138,21 @@ export const prepareResolutionPhase = async (
   // Score players
   const ranking = rankAndScore(players, totalLikes);
 
+  const pastTopics = [
+    ...store.pastTopics,
+    state.customTopic
+      ? { ...state.customTopic, likes: totalLikes }
+      : { ...state.currentTopic, likes: totalLikes },
+  ];
+
   // Save
   return {
     update: {
+      store: {
+        pastTopics,
+      },
       state: {
         phase: POLEMICA_DA_VEZ_PHASES.RESOLUTION,
-        currentTopics: firebaseUtils.deleteValue(),
-        currentCustomTopic: firebaseUtils.deleteValue(),
         totalLikes,
         ranking,
       },
@@ -173,6 +181,7 @@ export const prepareGameOverPhase = async (
         round: state.round,
         gameEndedAt: Date.now(),
         winners,
+        allTopics: store.pastTopics,
       },
     },
   };
