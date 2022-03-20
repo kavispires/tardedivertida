@@ -21,6 +21,7 @@ export function Session({ gameId, gameCollection, getActiveComponent }: SessionP
   const players = useGamePlayers(gameId, gameCollection);
   const state = useGameState(gameId, gameCollection);
   const [userId] = useGlobalState('userId');
+  const [gameMeta] = useGlobalState('gameMeta');
   const [info, setInfo] = useState<any>({});
 
   useEffect(() => {
@@ -49,7 +50,7 @@ export function Session({ gameId, gameCollection, getActiveComponent }: SessionP
   return (
     <>
       <GameInfoDrawer players={players} state={state} info={info} userId={userId} />
-      <ActiveComponent players={players} state={state} info={info} />
+      <ActiveComponent players={players} state={state} info={info} meta={gameMeta} />
       <AdminMenuDrawer state={state} players={players} />
     </>
   );

@@ -2,8 +2,18 @@ import { useMemo, useState } from 'react';
 import clsx from 'clsx';
 //Design Resources
 import { Button, Divider } from 'antd';
+// Hooks
+import { useLoading } from 'hooks';
 // Components
-import { AvatarIcon, Instruction, ReadyPlayersBar, Step, Title, Translate } from 'components';
+import {
+  AvatarIcon,
+  Instruction,
+  ReadyPlayersBar,
+  Step,
+  Title,
+  Translate,
+  TransparentButton,
+} from 'components';
 import { Topic } from './Topic';
 
 type StepLikingProps = {
@@ -14,6 +24,7 @@ type StepLikingProps = {
 };
 
 export function StepLiking({ currentTopic, customTopic, onSubmitReaction, players }: StepLikingProps) {
+  const { isLoading } = useLoading();
   const [like, setLike] = useState<boolean | null>(null);
 
   const onSubmitReactions = (likes: number) => {
@@ -36,27 +47,28 @@ export function StepLiking({ currentTopic, customTopic, onSubmitReaction, player
 
       <div className="p-reaction-buttons">
         <Topic topic={customTopic ?? currentTopic?.text} className="p-reaction-buttons__topic" />
-        <Button
-          className={clsx('p-reaction-buttons__like', like === true && 'p-reaction-buttons__like--active')}
-          size="large"
-          type="primary"
+        <TransparentButton
+          className={clsx(
+            'p-reaction-button',
+            'p-reaction-button--like',
+            like === true && 'p-reaction-button--active'
+          )}
           onClick={() => setLike(true)}
         >
           <AvatarIcon type="speech-bubble-thumbs-up" shape="square" className="p-like-icon" />
           <Translate pt="Curtir" en="Like" />
-        </Button>
-        <Button
+        </TransparentButton>
+        <TransparentButton
           className={clsx(
-            'p-reaction-buttons__dislike',
-            like === false && 'p-reaction-buttons__dislike--active'
+            'p-reaction-button',
+            'p-reaction-button--dislike',
+            like === false && 'p-reaction-button--active'
           )}
-          size="large"
-          type="primary"
           onClick={() => setLike(false)}
         >
           <AvatarIcon type="speech-bubble-thumbs-down" shape="square" className="p-like-icon" />
           <Translate pt="Não curto" en="Dislike" />
-        </Button>
+        </TransparentButton>
       </div>
 
       {like !== null && (
@@ -75,7 +87,7 @@ export function StepLiking({ currentTopic, customTopic, onSubmitReaction, player
                 <li key={key}>
                   <Button
                     type="primary"
-                    disabled={like === null}
+                    disabled={isLoading || like === null}
                     onClick={() => onSubmitReactions(option)}
                     size="large"
                     shape="circle"

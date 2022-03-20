@@ -68,7 +68,7 @@ export const getNextPhase = async (
   // Determine if it's game over
   const isGameOver = determineGameOver(players, store.options, state.round);
   // Determine next phase
-  const nextPhase = determineNextPhase(state?.phase, state.round.current, isGameOver, state?.lastRound);
+  const nextPhase = determineNextPhase(state?.phase, state.round, isGameOver, state?.lastRound);
 
   // RULES -> SETUP
   if (nextPhase === POLEMICA_DA_VEZ_PHASES.SETUP) {

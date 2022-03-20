@@ -14,17 +14,19 @@ import {
   StepSwitcher,
   Translate,
   TurnOrder,
-  ViewIf,
+  ViewOr,
   WaitingRoom,
 } from 'components';
 import { StepTopicSelection } from './StepTopicSelection';
 
-function PhaseTopicSelection({ state, players, info }: PhaseProps) {
+function PhaseTopicSelection({ state, players, info, meta }: PhaseProps) {
   const { translate } = useLanguage();
   const { step, goToNextStep, setStep } = useStep(0);
   const [activePlayer, isUserTheActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
 
   const onSubmitTopic = useOnSubmitTopicAPIRequest(setStep);
+  const isFixedRounds = Boolean(meta?.options?.fixedRounds);
+  console.log({ meta });
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.POLEMICA_DA_VEZ.TOPIC_SELECTION}>
@@ -52,9 +54,18 @@ function PhaseTopicSelection({ state, players, info }: PhaseProps) {
               pt={
                 <>
                   Todos vão curtir ou descurtir a polêmica da vez e então devem tentar adivinhar quantas
-                  curtidas o assunto vai ganhar. Se você adivinhar corretamente, você ganha 1 ponto.
+                  curtidas o assunto vai ganhar. Se você adivinhar corretamente, você ganha 3 ponto.
                   <br />
-                  O primeiro jogador a receber 4 pontos ganha o jogo (ou no máximo 15 rodadas)
+                  Se você escolheu um número a menos ou a mais, você ganha 1 ponto.
+                  <br />
+                  {isFixedRounds ? (
+                    <>O jogo tem {state.round.total} rodadas.</>
+                  ) : (
+                    <>
+                      O primeiro jogador a receber 10 pontos ganha o jogo (ou no máximo {state.round.total}{' '}
+                      rodadas)
+                    </>
+                  )}
                   <br />
                   <Instruction contained>
                     <AvatarName player={activePlayer} addressUser /> escolherá o assunto para essa rodada.
@@ -66,7 +77,19 @@ function PhaseTopicSelection({ state, players, info }: PhaseProps) {
                   All players must like or dislike a topic then must vote how trendy it is (how many players
                   liked the topic). If you guess correctly you get 1 point.
                   <br />
-                  The first player to get 4 points wins the game (or a maximum of 15 rounds)
+                  If you got 1 number off (more or less), you get 1 point.
+                  <br />
+                  {isFixedRounds ? (
+                    <>
+                      The game will have
+                      {state.round.total} rounds.
+                    </>
+                  ) : (
+                    <>
+                      The first players to get 10 points wins the game (or a maximum of {state.round.total}{' '}
+                      rounds)
+                    </>
+                  )}
                   <br />
                   <Instruction contained>
                     <AvatarName player={activePlayer} addressUser /> will choose the topic for this round.
@@ -79,16 +102,14 @@ function PhaseTopicSelection({ state, players, info }: PhaseProps) {
         </PhaseAnnouncement>
 
         {/* Step 2 */}
-        <Step fullWidth>
-          <ViewIf isVisible={isUserTheActivePlayer}>
-            <StepTopicSelection
-              currentTopics={state.currentTopics}
-              currentCustomTopic={state.currentCustomTopic}
-              onSubmitTopic={onSubmitTopic}
-            />
-          </ViewIf>
+        <ViewOr orCondition={isUserTheActivePlayer}>
+          <StepTopicSelection
+            currentTopics={state.currentTopics}
+            currentCustomTopic={state.currentCustomTopic}
+            onSubmitTopic={onSubmitTopic}
+          />
 
-          <ViewIf isVisible={!isUserTheActivePlayer}>
+          <Step fullWidth>
             <WaitingRoom
               title={translate('Aguarde...', 'Please wait...')}
               instruction={
@@ -107,8 +128,8 @@ function PhaseTopicSelection({ state, players, info }: PhaseProps) {
               }
               players={players}
             />
-          </ViewIf>
-        </Step>
+          </Step>
+        </ViewOr>
       </StepSwitcher>
     </PhaseContainer>
   );

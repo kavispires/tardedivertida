@@ -13,7 +13,7 @@ export const PLAYER_COUNTS = {
   MAX: 10,
 };
 
-export const SCORE_GOAL = 4;
+export const SCORE_GOAL = 10;
 
 export const MAX_ROUNDS = 15;
 

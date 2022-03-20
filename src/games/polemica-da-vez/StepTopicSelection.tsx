@@ -4,7 +4,7 @@ import { Button, Input } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks';
 // Components
-import { Instruction, Title, Translate } from 'components';
+import { Step, Title, Translate } from 'components';
 
 type StepTopicSelectionProps = {
   currentTopics: Topic[];
@@ -28,14 +28,10 @@ export function StepTopicSelection({
   };
 
   return (
-    <div className="p-step">
+    <Step fullWidth>
       <Title>
         <Translate pt="Selecione uma assunto" en="Select one topic" />
       </Title>
-
-      <Instruction contained>
-        <Translate pt="Ou escreva um de acordo com o tema" en="Or write one according to the given theme" />
-      </Instruction>
 
       <ul className="p-topics-card">
         {currentTopics.map((topic) => (
@@ -63,6 +59,6 @@ export function StepTopicSelection({
           )}
         </li>
       </ul>
-    </div>
+    </Step>
   );
 }

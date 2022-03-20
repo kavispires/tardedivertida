@@ -23,23 +23,17 @@ import { DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
  */
 export const determineNextPhase = (
   currentPhase: string,
-  currentRound: number,
+  round: Round,
   isGameOver?: boolean,
   triggerLastRound?: boolean
 ): string => {
   const { RULES, SETUP, TOPIC_SELECTION, REACT, RESOLUTION, GAME_OVER } = POLEMICA_DA_VEZ_PHASES;
   const order = [RULES, SETUP, TOPIC_SELECTION, REACT, RESOLUTION];
 
-  if (isGameOver) {
-    return GAME_OVER;
-  }
-
-  if (currentPhase === RESOLUTION && currentRound === MAX_ROUNDS) {
-    return GAME_OVER;
-  }
-
   if (currentPhase === RESOLUTION) {
-    return triggerLastRound ? GAME_OVER : TOPIC_SELECTION;
+    return isGameOver || triggerLastRound || (round.current > 0 && round.current === round.total)
+      ? GAME_OVER
+      : TOPIC_SELECTION;
   }
 
   const currentPhaseIndex = order.indexOf(currentPhase);
@@ -93,11 +87,13 @@ export const countLikes = (players: Players): number => {
  */
 export const rankAndScore = (players: Players, totalLikes: number): PlainObject => {
   // Format <player>: [<old score>, <addition points>, <new score>]
+  const oneWayValues = [totalLikes - 1, totalLikes + 1];
   // Build score array
   return Object.values(players)
     .map((player) => {
       const previousScore = player.score;
-      const gainedPoints = player.likesGuess === totalLikes ? 1 : 0;
+      let gainedPoints = player.likesGuess === totalLikes ? 3 : 0;
+      gainedPoints += oneWayValues.includes(player.likesGuess) ? 1 : 0;
       const newScore = player.score + gainedPoints;
 
       player.score = newScore;
