@@ -29,6 +29,6 @@ export const getMonsterCards = async (): Promise<RetratoFaladoAdditionalData> =>
  */
 export const saveUsedCards = async (pastSketches: MonsterSketch[]): Promise<void> => {
   // Save usedRetratoFaladoCards to global
-  const usedRetratoFaladoCards = utils.buildUsedCardsIdsDict(pastSketches);
+  const usedRetratoFaladoCards = utils.buildIdDictionary(pastSketches);
   await globalUtils.updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.RETRATO_FALADO, usedRetratoFaladoCards);
 };

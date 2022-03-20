@@ -35,8 +35,10 @@ export const getImageCards = async (quantity: number): Promise<ImageCard[]> => {
   let selectedCardQuantity = 0;
   while (selectedCardQuantity < quantity) {
     const currentDeck = shuffledDecks.pop();
-    selectedDecks.push(currentDeck);
-    selectedCardQuantity += cardInfo[currentDeck];
+    if (currentDeck) {
+      selectedDecks.push(currentDeck);
+      selectedCardQuantity += cardInfo[currentDeck];
+    }
   }
 
   const cards = selectedDecks.map((deckPrefix) => {

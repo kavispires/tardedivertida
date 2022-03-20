@@ -1,5 +1,5 @@
 // Types
-import { AllWords, ClueEntry, Deck, GridCell } from './types';
+import { AllWords, ClueEntry, Deck, GridCell, WordCard } from './types';
 import { PlayerId, Players, RankingEntry, Round } from '../../utils/types';
 // Constants
 import { WORDS_PER_PLAYER_COUNT, CRUZA_PALAVRAS_PHASES } from './constants';
@@ -70,7 +70,7 @@ export const checkForAvailableCells = (
 
 export const buildGrid = (
   words: Deck,
-  playersClues: string[],
+  playersClues: WordCard[],
   wordsPerCoordinate: number,
   shouldUsePlayersClues: boolean
 ): GridCell[] => {
@@ -186,13 +186,15 @@ export const distributeCoordinates = (players: Players, grid: GridCell[]): GridC
 
   Object.values(players).forEach((player) => {
     const cell = shuffledCoordinates.pop();
-    // Add to player
-    player.coordinate = cell.index;
-    player.x = cell.x;
-    player.y = cell.y;
-    // update grid
-    grid[cell.index].playerId = player.id;
-    grid[cell.index].writable = true;
+    if (cell) {
+      // Add to player
+      player.coordinate = cell.index;
+      player.x = cell.x;
+      player.y = cell.y;
+      // update grid
+      grid[cell.index].playerId = player.id;
+      grid[cell.index].writable = true;
+    }
   });
 
   return grid;

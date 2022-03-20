@@ -7,7 +7,7 @@ import {
   TIMER_STATUS,
 } from './constants';
 // Types
-import { FirebaseStateData, FirebaseStoreData, Outcome, Resolution, ResourceData } from './types';
+import { FirebaseStateData, FirebaseStoreData, Location, Outcome, Resolution, ResourceData } from './types';
 import { PlainObject, Players, SaveGamePayload } from '../../utils/types';
 // Utils
 import * as gameUtils from '../../utils/game-utils';
@@ -67,7 +67,10 @@ export const prepareAssignmentPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Use only 25 locations
-  const availableLocations = gameUtils.getRandomItems(store.allLocations, LOCATIONS_USED_IN_A_ROUND);
+  const availableLocations: Location[] = gameUtils.getRandomItems(
+    store.allLocations,
+    LOCATIONS_USED_IN_A_ROUND
+  );
 
   const locations = utils.orderBy(
     availableLocations.map((location) => ({

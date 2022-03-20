@@ -32,7 +32,7 @@ export const getQuestionsAndSuspects = async (language: string) => {
  */
 export const saveUsedQUestions = async (pastQuestions: TestemunhaOcularEntry[]) => {
   // Save usedTestemunhaOcularCards to global
-  const usedTestemunhaOcularCards = utils.buildUsedCardsIdsDict(pastQuestions);
+  const usedTestemunhaOcularCards = utils.buildIdDictionary(pastQuestions);
   await globalUtils.updateGlobalFirebaseDoc(
     GLOBAL_USED_DOCUMENTS.TESTEMUNHA_OCULAR,
     usedTestemunhaOcularCards

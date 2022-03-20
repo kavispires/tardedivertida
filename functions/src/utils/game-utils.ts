@@ -7,7 +7,7 @@ import { Players, Primitive } from './types';
  * @param list
  * @returns
  */
-export const shuffle = (list: any[]) => {
+export const shuffle = <T>(list: T[]): T[] => {
   const result = [...list];
   result.sort(() => Math.random() - 0.5);
   return result;
@@ -29,7 +29,7 @@ export const getRandomNumber = (min = 0, max = 100): number =>
  * @param list
  * @returns one random item
  */
-export const getRandomItem = (list: any[]) => {
+export const getRandomItem = <T>(list: T[]): T => {
   return list[Math.floor(Math.random() * list.length)];
 };
 
@@ -39,7 +39,7 @@ export const getRandomItem = (list: any[]) => {
  * @param [quantity]
  * @returns random items
  */
-export const getRandomItems = (list: any[], quantity = 1): any[] => {
+export const getRandomItems = <T>(list: T[], quantity = 1): T[] => {
   const shuffledList = shuffle(list);
   if (quantity > shuffledList.length) return shuffledList;
 
@@ -56,7 +56,7 @@ export const getRandomItems = (list: any[], quantity = 1): any[] => {
  * @param used
  * @returns
  */
-export const getRandomUniqueItem = (list: Primitive[], used: Primitive[]) => {
+export const getRandomUniqueItem = <T>(list: T[], used: T[]): T => {
   const availableList = list.filter((i) => !used.includes(i));
   return getRandomItem(availableList);
 };
@@ -68,7 +68,11 @@ export const getRandomUniqueItem = (list: Primitive[], used: Primitive[]) => {
  * @param [quantity]
  * @returns
  */
-export const getRandomUniqueItems = (list: Primitive[], used: Primitive[] = [], quantity = 1) => {
+export const getRandomUniqueItems = (
+  list: Primitive[],
+  used: Primitive[] = [],
+  quantity = 1
+): Primitive[] => {
   const availableList = list.filter((i) => !used.includes(i));
   return getRandomItems(availableList, quantity);
 };
@@ -80,7 +84,7 @@ export const getRandomUniqueItems = (list: Primitive[], used: Primitive[] = [], 
  * @param wrap determine if the result should wrap to the beginning of the array
  * @returns
  */
-export const getNextItem = (list: Primitive[], currentItem: Primitive, wrap = true) => {
+export const getNextItem = (list: Primitive[], currentItem: Primitive, wrap = true): Primitive => {
   const currentIndex = list.findIndex((i) => i === currentItem);
 
   if (currentItem === -1) return null;
@@ -99,7 +103,7 @@ export const getNextItem = (list: Primitive[], currentItem: Primitive, wrap = tr
  * @param wrap determine if the result should wrap to the end of the array
  * @returns
  */
-export const getPreviousItem = (list: Primitive[], currentItem: Primitive, wrap = true) => {
+export const getPreviousItem = (list: Primitive[], currentItem: Primitive, wrap = true): Primitive => {
   const currentIndex = list.findIndex((i) => i === currentItem);
 
   if (currentItem === -1) return null;
@@ -136,8 +140,8 @@ export const removeItem = (list: Primitive[], target: Primitive): Primitive[] =>
  * @param [chunkSize] the size of the chunks the list is being split into
  * @returns
  */
-export const sliceIntoChunks = (list: any[], chunkSize = 2) => {
-  const res: any[] = [];
+export const sliceIntoChunks = <T>(list: T[], chunkSize = 2): T[][] => {
+  const res: T[][] = [];
   for (let i = 0; i < list.length; i += chunkSize) {
     const chunk = list.slice(i, i + chunkSize);
     res.push(chunk);
@@ -151,8 +155,8 @@ export const sliceIntoChunks = (list: any[], chunkSize = 2) => {
  * @param [numParts] how many parts it should be split into
  * @returns
  */
-export const sliceInParts = (list: any[], numParts = 1) => {
-  const res: any[] = [];
+export const sliceInParts = <T>(list: T[], numParts = 1): T[][] => {
+  const res: T[][] = [];
 
   if (numParts === 1) return [list];
   if (numParts < 1) return [];
@@ -183,8 +187,8 @@ export const sliceInParts = (list: any[], numParts = 1) => {
  * @param [recursive] if not enough items, restart from the beginning
  * @returns
  */
-export const dealList = (
-  list: any[],
+export const dealList = <T>(
+  list: T[],
   players: Players,
   quantity = 1,
   propertyName = 'hand',
