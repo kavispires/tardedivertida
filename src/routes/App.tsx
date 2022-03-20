@@ -66,6 +66,7 @@ function App() {
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/draw" element={<Draw />} />
             <Route path="/showcase" element={<Showcase />} />
+            <Route path="/vitrine" element={<Showcase />} />
             <Route path="*" element={<Game />} />
           </Routes>
         )}
