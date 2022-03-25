@@ -4,8 +4,7 @@ import { CONTADORES_HISTORIAS_PHASES, MAX_ROUNDS, PLAYER_COUNTS } from './consta
 // Types
 import { GameId, Language, Players } from '../../utils/types';
 // Utils
-import * as firebaseUtils from '../../utils/firebase';
-import * as utils from '../../utils/helpers';
+import * as utils from '../../utils';
 // Internal Functions
 import { determineGameOver, determineNextPhase } from './helpers';
 import {
@@ -36,7 +35,7 @@ export const getInitialState = (
   language: Language,
   options: ContadoresHistoriasOptions
 ): ContadoresHistoriasInitialState => {
-  return utils.getDefaultInitialState({
+  return utils.helpers.getDefaultInitialState({
     gameId,
     gameName: GAME_COLLECTIONS.CONTADORES_HISTORIAS,
     uid,
@@ -67,7 +66,7 @@ export const getNextPhase = async (
   const actionText = 'prepare next phase';
 
   // Gather docs and references
-  const { sessionRef, state, store } = await firebaseUtils.getStateAndStoreReferences(
+  const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences(
     collectionName,
     gameId,
     actionText
@@ -81,10 +80,10 @@ export const getNextPhase = async (
   // RULES -> SETUP
   if (nextPhase === CONTADORES_HISTORIAS_PHASES.SETUP) {
     // Enter setup phase before doing anything
-    await firebaseUtils.triggerSetupPhase(sessionRef);
+    await utils.firebase.triggerSetupPhase(sessionRef);
 
     const newPhase = await prepareSetupPhase(store, state, players);
-    await firebaseUtils.saveGame(sessionRef, newPhase);
+    await utils.firebase.saveGame(sessionRef, newPhase);
 
     return getNextPhase(collectionName, gameId, newPhase.update?.players ?? {});
   }
@@ -92,31 +91,31 @@ export const getNextPhase = async (
   // * -> STORY
   if (nextPhase === CONTADORES_HISTORIAS_PHASES.STORY) {
     const newPhase = await prepareStoryPhase(store, state, players);
-    return firebaseUtils.saveGame(sessionRef, newPhase);
+    return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   // STORY -> CARD_PLAY
   if (nextPhase === CONTADORES_HISTORIAS_PHASES.CARD_PLAY) {
     const newPhase = await prepareCardPlayPhase(store, state, players);
-    return firebaseUtils.saveGame(sessionRef, newPhase);
+    return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   // CARD_PLAY -> VOTING
   if (nextPhase === CONTADORES_HISTORIAS_PHASES.VOTING) {
     const newPhase = await prepareVotingPhase(store, state, players);
-    return firebaseUtils.saveGame(sessionRef, newPhase);
+    return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   // VOTING -> RESOLUTION
   if (nextPhase === CONTADORES_HISTORIAS_PHASES.RESOLUTION) {
     const newPhase = await prepareResolutionPhase(store, state, players);
-    return firebaseUtils.saveGame(sessionRef, newPhase);
+    return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   // RESOLUTION -> GAME_OVER
   if (nextPhase === CONTADORES_HISTORIAS_PHASES.GAME_OVER) {
     const newPhase = await prepareGameOverPhase(store, state, players);
-    return firebaseUtils.saveGame(sessionRef, newPhase);
+    return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   return true;
@@ -129,19 +128,19 @@ export const getNextPhase = async (
 export const submitAction = async (data: ContadoresHistoriasSubmitAction) => {
   const { gameId, gameName: collectionName, playerId, action } = data;
 
-  firebaseUtils.validateSubmitActionPayload(gameId, collectionName, playerId, action);
+  utils.firebase.validateSubmitActionPayload(gameId, collectionName, playerId, action);
 
   switch (action) {
     case 'SUBMIT_STORY':
-      firebaseUtils.validateSubmitActionProperties(data, ['story', 'cardId'], 'submit story');
+      utils.firebase.validateSubmitActionProperties(data, ['story', 'cardId'], 'submit story');
       return handleSubmitStory(collectionName, gameId, playerId, data.story, data.cardId);
     case 'PLAY_CARD':
-      firebaseUtils.validateSubmitActionProperties(data, ['cardId'], 'play card');
+      utils.firebase.validateSubmitActionProperties(data, ['cardId'], 'play card');
       return handlePlayCard(collectionName, gameId, playerId, data.cardId);
     case 'SUBMIT_VOTE':
-      firebaseUtils.validateSubmitActionProperties(data, ['vote'], 'submit vote');
+      utils.firebase.validateSubmitActionProperties(data, ['vote'], 'submit vote');
       return handleSubmitVote(collectionName, gameId, playerId, data.vote);
     default:
-      firebaseUtils.throwException(`Given action ${action} is not allowed`);
+      utils.firebase.throwException(`Given action ${action} is not allowed`);
   }
 };

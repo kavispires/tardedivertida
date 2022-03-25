@@ -1,9 +1,10 @@
 // Types
-import * as firebaseUtils from '../../utils/firebase';
-import * as gameUtils from '../../utils/game-utils';
-import * as utils from '../../utils/helpers';
 import { PlainObject, Players, SaveGamePayload } from '../../utils/types';
+import { FirebaseStateData, FirebaseStoreData, TestemunhaOcularCard, TestemunhaOcularEntry } from './types';
+// Constants
 import { MAX_ROUNDS, QUESTION_COUNT, SUSPECT_COUNT, TESTEMUNHA_OCULAR_PHASES } from './constants';
+// Helpers
+import * as utils from '../../utils';
 import {
   calculateScore,
   determineTurnOrder,
@@ -11,7 +12,6 @@ import {
   getQuestionerId,
   getQuestions,
 } from './helpers';
-import { FirebaseStateData, FirebaseStoreData, TestemunhaOcularCard, TestemunhaOcularEntry } from './types';
 
 /**
  * Setup
@@ -21,16 +21,16 @@ import { FirebaseStateData, FirebaseStoreData, TestemunhaOcularCard, TestemunhaO
  */
 export const prepareSetupPhase = async (additionalData: PlainObject): Promise<SaveGamePayload> => {
   // Build suspects grid
-  const suspects = gameUtils.getRandomItems(additionalData.allSuspects, SUSPECT_COUNT);
-  const perpetrator = gameUtils.getRandomItem(suspects);
+  const suspects = utils.game.getRandomItems(additionalData.allSuspects, SUSPECT_COUNT);
+  const perpetrator = utils.game.getRandomItem(suspects);
 
   // Filter used cards, if not enough cards, just use the full deck
   const filteredCards = filterAvailableCards(additionalData.allCards, additionalData.usedCards);
   const availableCards = filteredCards.length < QUESTION_COUNT ? additionalData.allCards : filteredCards;
-  const shuffledAvailableCards = gameUtils.shuffle(availableCards);
+  const shuffledAvailableCards = utils.game.shuffle(availableCards);
 
   // Build deck
-  const deck = gameUtils.getRandomItems(shuffledAvailableCards, QUESTION_COUNT);
+  const deck = utils.game.getRandomItems(shuffledAvailableCards, QUESTION_COUNT);
 
   // Save
   return {
@@ -125,13 +125,13 @@ export const prepareQuestionSelectionPhase = async (
       },
       state: {
         phase: TESTEMUNHA_OCULAR_PHASES.QUESTION_SELECTION,
-        round: utils.increaseRound(state.round),
+        round: utils.helpers.increaseRound(state.round),
         questionerId,
         questions,
-        question: firebaseUtils.deleteValue(),
+        question: utils.firebase.deleteValue(),
         witnessId: additionalPayload?.witnessId ?? state.witnessId,
-        testimony: firebaseUtils.deleteValue(),
-        eliminatedSuspects: firebaseUtils.deleteValue(),
+        testimony: utils.firebase.deleteValue(),
+        eliminatedSuspects: utils.firebase.deleteValue(),
         previouslyEliminatedSuspects: previouslyEliminatedSuspects,
         groupScore,
       },
@@ -151,7 +151,7 @@ export const prepareQuestioningPhase = async (
       state: {
         phase: TESTEMUNHA_OCULAR_PHASES.QUESTIONING,
         question,
-        questions: firebaseUtils.deleteValue(),
+        questions: utils.firebase.deleteValue(),
       },
     },
   };

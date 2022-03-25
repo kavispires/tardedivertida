@@ -4,8 +4,7 @@ import { NA_RUA_DO_MEDO_PHASES, OUTCOME_STATUS } from './constants';
 import { FirebaseStateData, FirebaseStoreData, Outcome } from './types';
 import { Players, SaveGamePayload } from '../../utils/types';
 // Utils
-import * as firebaseUtils from '../../utils/firebase';
-import * as utils from '../../utils/helpers';
+import * as utils from '../../utils';
 // Internal
 import {
   buildDecks,
@@ -31,7 +30,7 @@ export const prepareSetupPhase = async (
 ): Promise<SaveGamePayload> => {
   const { horrorDeck, jackpotDeck, candyDeck, horrorCount } = buildDecks(store.options?.shortGame ?? false);
 
-  utils.addPropertiesToPlayers(players, {
+  utils.players.addPropertiesToPlayers(players, {
     totalCandy: 0, // total score
     jackpots: [],
     hand: 0, // current possible score
@@ -55,13 +54,13 @@ export const prepareSetupPhase = async (
         phase: NA_RUA_DO_MEDO_PHASES.SETUP,
         round: { current: 0, total: store.options?.shortGame ? 3 : 5 },
         // RESET
-        street: firebaseUtils.deleteValue(),
-        currentCard: firebaseUtils.deleteValue(),
-        candySidewalk: firebaseUtils.deleteValue(),
-        totalCandyInSidewalk: firebaseUtils.deleteValue(),
-        isEverybodyHome: firebaseUtils.deleteValue(),
-        isDoubleHorror: firebaseUtils.deleteValue(),
-        cashedInCandy: firebaseUtils.deleteValue(),
+        street: utils.firebase.deleteValue(),
+        currentCard: utils.firebase.deleteValue(),
+        candySidewalk: utils.firebase.deleteValue(),
+        totalCandyInSidewalk: utils.firebase.deleteValue(),
+        isEverybodyHome: utils.firebase.deleteValue(),
+        isDoubleHorror: utils.firebase.deleteValue(),
+        cashedInCandy: utils.firebase.deleteValue(),
       },
       players,
     },
@@ -77,14 +76,14 @@ export const prepareTrickOrTreatPhase = async (
   // If new round
   if (outcome.status === OUTCOME_STATUS.NEW_STREET) {
     // Reset players
-    utils.addPropertiesToPlayers(players, {
+    utils.players.addPropertiesToPlayers(players, {
       hand: 0,
       currentJackpots: null,
       isTrickOrTreating: true,
     });
-    utils.unReadyPlayers(players);
+    utils.players.unReadyPlayers(players);
 
-    const round = utils.increaseRound(state.round);
+    const round = utils.helpers.increaseRound(state.round);
     const streetDeck = buildStreetDeck(store, round.current);
     store.streetDeck = streetDeck;
     resetHorrorCount(store.horrorCount);
@@ -111,9 +110,9 @@ export const prepareTrickOrTreatPhase = async (
           candyPerPlayer: candyStatus.perPlayer,
           candyInHand: candyStatus.perPlayer,
           continuingPlayerIds: Object.keys(players).sort(),
-          isEverybodyHome: firebaseUtils.deleteValue(),
-          isDoubleHorror: firebaseUtils.deleteValue(),
-          cashedInCandy: firebaseUtils.deleteValue(),
+          isEverybodyHome: utils.firebase.deleteValue(),
+          isDoubleHorror: utils.firebase.deleteValue(),
+          cashedInCandy: utils.firebase.deleteValue(),
         },
         players,
       },
@@ -121,7 +120,7 @@ export const prepareTrickOrTreatPhase = async (
   }
 
   const atHomePlayerIds = sendPlayersHome(players);
-  utils.unReadyPlayers(players, undefined, atHomePlayerIds);
+  utils.players.unReadyPlayers(players, undefined, atHomePlayerIds);
 
   const { currentCard, candyStatus } = dealNewCard(store, players);
 
@@ -143,7 +142,7 @@ export const prepareTrickOrTreatPhase = async (
         totalCandyInSidewalk,
         candyPerPlayer: candyStatus.perPlayer,
         candyInHand: (state.candyInHand ?? 0) + candyStatus.perPlayer,
-        cashedInCandy: firebaseUtils.deleteValue(),
+        cashedInCandy: utils.firebase.deleteValue(),
       },
       players,
     },
@@ -184,7 +183,7 @@ export const prepareResultPhase = async (
         street,
         candySidewalk,
         totalCandyInSidewalk,
-        currentCard: firebaseUtils.deleteValue(),
+        currentCard: utils.firebase.deleteValue(),
         goingHomePlayerIds: goingHomePlayerIds.sort(),
         continuingPlayerIds: continuingPlayerIds.sort(),
         alreadyAtHomePlayerIds: alreadyAtHomePlayerIds.sort(),
@@ -247,7 +246,7 @@ export const prepareGameOverPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   tallyCandyAsScore(players);
-  const winners = utils.determineWinners(players);
+  const winners = utils.players.determineWinners(players);
 
   return {
     update: {

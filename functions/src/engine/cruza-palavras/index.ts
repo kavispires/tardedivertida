@@ -4,8 +4,7 @@ import { CRUZA_PALAVRAS_PHASES, PLAYER_COUNTS, TOTAL_ROUNDS } from './constants'
 // Types
 import { GameId, Language, Players } from '../../utils/types';
 // Utils
-import * as firebaseUtils from '../../utils/firebase';
-import * as utils from '../../utils/helpers';
+import * as utils from '../../utils';
 // Internal Functions
 import { determineNextPhase } from './helpers';
 import { CruzaPalavrasInitialState, CruzaPalavrasOptions, CruzaPalavrasSubmitAction } from './types';
@@ -32,7 +31,7 @@ export const getInitialState = (
   language: Language,
   options: CruzaPalavrasOptions
 ): CruzaPalavrasInitialState => {
-  return utils.getDefaultInitialState({
+  return utils.helpers.getDefaultInitialState({
     gameId,
     gameName: GAME_COLLECTIONS.CRUZA_PALAVRAS,
     uid,
@@ -59,7 +58,7 @@ export const getNextPhase = async (
   players: Players
 ): Promise<boolean> => {
   // Gather docs and references
-  const { sessionRef, state, store } = await firebaseUtils.getStateAndStoreReferences(
+  const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences(
     collectionName,
     gameId,
     'prepare next phase'
@@ -71,37 +70,37 @@ export const getNextPhase = async (
   // RULES -> SETUP
   if (nextPhase === CRUZA_PALAVRAS_PHASES.SETUP) {
     // Enter setup phase before doing anything
-    await firebaseUtils.triggerSetupPhase(sessionRef);
+    await utils.firebase.triggerSetupPhase(sessionRef);
 
     // Request data
     const additionalData = await getWords(store.language);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
-    await firebaseUtils.saveGame(sessionRef, newPhase);
+    await utils.firebase.saveGame(sessionRef, newPhase);
     return getNextPhase(collectionName, gameId, players);
   }
 
   // * -> CLUE_WRITING
   if (nextPhase === CRUZA_PALAVRAS_PHASES.CLUE_WRITING) {
     const newPhase = await prepareClueWritingPhase(store, state, players);
-    return firebaseUtils.saveGame(sessionRef, newPhase);
+    return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   // CLUE_WRITING -> GUESSING
   if (nextPhase === CRUZA_PALAVRAS_PHASES.GUESSING) {
     const newPhase = await prepareGuessingPhase(store, state, players);
-    return firebaseUtils.saveGame(sessionRef, newPhase);
+    return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   // GUESSING -> REVEAL
   if (nextPhase === CRUZA_PALAVRAS_PHASES.REVEAL) {
     const newPhase = await prepareRevealPhase(store, state, players);
-    return firebaseUtils.saveGame(sessionRef, newPhase);
+    return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   // REVEAL -> GAME_OVER
   if (nextPhase === CRUZA_PALAVRAS_PHASES.GAME_OVER) {
     const newPhase = await prepareGameOverPhase(store, state, players);
-    return firebaseUtils.saveGame(sessionRef, newPhase);
+    return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   return true;
@@ -114,16 +113,16 @@ export const getNextPhase = async (
 export const submitAction = async (data: CruzaPalavrasSubmitAction) => {
   const { gameId, gameName: collectionName, playerId, action } = data;
 
-  firebaseUtils.validateSubmitActionPayload(gameId, collectionName, playerId, action);
+  utils.firebase.validateSubmitActionPayload(gameId, collectionName, playerId, action);
 
   switch (action) {
     case 'SUBMIT_CLUE':
-      firebaseUtils.validateSubmitActionProperties(data, ['clue'], 'submit category');
+      utils.firebase.validateSubmitActionProperties(data, ['clue'], 'submit category');
       return handleSubmitClue(collectionName, gameId, playerId, data.clue);
     case 'SUBMIT_GUESSES':
-      firebaseUtils.validateSubmitActionProperties(data, ['guesses'], 'submit guess');
+      utils.firebase.validateSubmitActionProperties(data, ['guesses'], 'submit guess');
       return handleSubmitGuesses(collectionName, gameId, playerId, data.guesses);
     default:
-      firebaseUtils.throwException(`Given action ${action} is not allowed`);
+      utils.firebase.throwException(`Given action ${action} is not allowed`);
   }
 };

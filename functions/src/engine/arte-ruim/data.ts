@@ -7,8 +7,8 @@ import { ArteRuimDrawing } from './types';
 import * as globalUtils from '../global';
 import * as publicUtils from '../public';
 import * as resourceUtils from '../resource';
+import * as utils from '../../utils';
 import { buildPastDrawingsDict } from './helpers';
-import { buildIdDictionary } from '../../utils/helpers';
 
 /**
  * Get expression cards resource based on the game's language
@@ -39,7 +39,7 @@ export const getCards = async (language: string) => {
  */
 export const saveUsedCards = async (pastDrawings: ArteRuimDrawing[], language: Language) => {
   // Save usedArteRuimCards to global
-  const usedArteRuimCards = buildIdDictionary(pastDrawings);
+  const usedArteRuimCards = utils.helpers.buildIdDictionary(pastDrawings);
   await globalUtils.updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.ARTE_RUIM, usedArteRuimCards);
   // Save drawings to public gallery
   const drawingDocumentName = language === 'pt' ? 'arteRuimDrawingsPt' : 'arteRuimDrawingsEn';

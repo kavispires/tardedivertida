@@ -10,8 +10,7 @@ import {
 import { BooleanDictionary, PlainObject, PlayerId, Players, RankingEntry } from '../../utils/types';
 import { AllQuestions, AnswerEntry, Deck, PastureChangeEntry, SheepAnimation } from './types';
 // Utils
-import * as gameUtils from '../../utils/game-utils';
-import * as utils from '../../utils/helpers';
+import * as utils from '../../utils';
 
 /**
  * Determine the next phase based on the current one
@@ -58,14 +57,14 @@ export const determineRoundType = (playerCount: number, currentRound: number): n
   if (currentRound < 3) return 1;
 
   if (currentRound > 11) {
-    return gameUtils.getRandomItem([2, 2, 3]);
+    return utils.game.getRandomItem([2, 2, 3]);
   }
 
   if (playerCount < 3) {
-    return gameUtils.getRandomItem([1, 1, 1, 1, 1, 2, 0]);
+    return utils.game.getRandomItem([1, 1, 1, 1, 1, 2, 0]);
   }
 
-  return gameUtils.getRandomItem([1, 1, 1, 1, 2, 2, 3, 0]);
+  return utils.game.getRandomItem([1, 1, 1, 1, 2, 2, 3, 0]);
 };
 
 /**
@@ -82,7 +81,7 @@ export const buildDeck = (allQuestions: AllQuestions, pastQuestionsIds: string[]
   const availableQuestions =
     filteredQuestions.length > neededQuestionsAmount ? filteredQuestions : Object.values(allQuestions);
 
-  const shuffledQuestions = gameUtils.shuffle(availableQuestions);
+  const shuffledQuestions = utils.game.shuffle(availableQuestions);
 
   return shuffledQuestions.slice(0, neededQuestionsAmount + 1);
 };
@@ -101,7 +100,7 @@ export const gatherAllAnswers = (players: Players): AnswerEntry[] => {
         id: key,
         playerId: player.id,
         answer,
-        parsedAnswer: utils.stringRemoveAccents(answer),
+        parsedAnswer: utils.helpers.stringRemoveAccents(answer),
         isLocked: false,
         score: 0,
       });
@@ -120,7 +119,7 @@ export const extendPlayerAnswers = (players: Players) => {
     const answers: PlainObject = player.answers;
     Object.entries(answers).forEach(([key, answer]) => {
       player.answers[key] = {
-        parsedAnswer: utils.stringRemoveAccents(answer),
+        parsedAnswer: utils.helpers.stringRemoveAccents(answer),
         answer,
         isLocked: false,
       };
@@ -160,7 +159,7 @@ export const buildListOfAnswers = (allAnswers: PlainObject) => {
   }
 
   // Sort by most matches
-  return utils.orderBy(Object.values(groupedAnswers), ['score', 'answer'], ['desc', 'asc']);
+  return utils.helpers.orderBy(Object.values(groupedAnswers), ['score', 'answer'], ['desc', 'asc']);
 };
 
 /**

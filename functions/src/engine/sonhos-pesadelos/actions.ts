@@ -1,7 +1,7 @@
 // Types
 import { GameId, PlayerId, GameName, PlainObject } from '../../utils/types';
 // Helpers
-import * as firebaseUtils from '../../utils/firebase';
+import * as utils from '../../utils';
 // Internal
 import { getNextPhase } from './index';
 
@@ -21,7 +21,7 @@ export const handleSubmitDreams = async (
 ) => {
   const actionText = 'submit your drawing';
 
-  const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
+  const playersDoc = await utils.firebase.getSessionDoc(collectionName, gameId, 'players', actionText);
 
   const players = playersDoc.data() ?? {};
 
@@ -33,7 +33,7 @@ export const handleSubmitDreams = async (
     newDreams[cardId].push(dreams[cardId]);
   });
 
-  return await firebaseUtils.updatePlayer({
+  return await utils.firebase.updatePlayer({
     collectionName,
     gameId,
     playerId,
@@ -60,7 +60,7 @@ export const handleSubmitVoting = async (
   playerId: PlayerId,
   votes: PlainObject
 ) => {
-  return await firebaseUtils.updatePlayer({
+  return await utils.firebase.updatePlayer({
     collectionName,
     gameId,
     playerId,

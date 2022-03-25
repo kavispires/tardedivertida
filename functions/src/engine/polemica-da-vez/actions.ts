@@ -1,7 +1,7 @@
 // Types
 import { GameId, PlayerId, GameName } from '../../utils/types';
 // Utils
-import * as firebaseUtils from '../../utils/firebase';
+import * as utils from '../../utils';
 // Internal
 import { getNextPhase } from '.';
 
@@ -10,7 +10,8 @@ import { getNextPhase } from '.';
  * @param collectionName
  * @param gameId
  * @param playerId
- * @param questionId
+ * @param topicId
+ * @param customTopic
  * @returns
  */
 export const handleSubmitTopic = async (
@@ -20,7 +21,7 @@ export const handleSubmitTopic = async (
   topicId: string,
   customTopic?: string
 ) => {
-  return await firebaseUtils.updateStore({
+  return await utils.firebase.updateStore({
     collectionName,
     gameId,
     playerId,
@@ -38,7 +39,8 @@ export const handleSubmitTopic = async (
  * @param collectionName
  * @param gameId
  * @param playerId
- * @param answers
+ * @param reaction
+ * @param likesGuess
  * @returns
  */
 export const handleSubmitReaction = async (
@@ -48,7 +50,7 @@ export const handleSubmitReaction = async (
   reaction: boolean,
   likesGuess: number
 ) => {
-  return await firebaseUtils.updatePlayer({
+  return await utils.firebase.updatePlayer({
     collectionName,
     gameId,
     playerId,

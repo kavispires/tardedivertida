@@ -4,9 +4,7 @@ import { CARDS_PER_GAME, CRIMES_HEDIONDOS_PHASES } from './constants';
 import { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 import { Players, SaveGamePayload } from '../../utils/types';
 // Utils
-import * as utils from '../../utils/helpers';
-import * as gameUtils from '../../utils/game-utils';
-import * as firebaseUtils from '../../utils/firebase';
+import * as utils from '../../utils';
 
 import {
   buildCrimes,
@@ -33,8 +31,8 @@ export const prepareSetupPhase = async (
   resourceData: ResourceData
 ): Promise<SaveGamePayload> => {
   // Build weapon and evidence decks
-  const weapons = gameUtils.getRandomItems(resourceData.allWeapons, CARDS_PER_GAME);
-  const evidence = gameUtils.getRandomItems(resourceData.allEvidence, CARDS_PER_GAME);
+  const weapons = utils.game.getRandomItems(resourceData.allWeapons, CARDS_PER_GAME);
+  const evidence = utils.game.getRandomItems(resourceData.allEvidence, CARDS_PER_GAME);
 
   // Build scene decks
   const { causeOfDeathTile, reasonForEvidenceTile, locationTiles, sceneTiles } = parseTiles(
@@ -71,14 +69,14 @@ export const prepareCrimeSelectionPhase = async (
   dealItemGroups(players);
 
   // Unready players
-  utils.unReadyPlayers(players);
-  utils.addPropertiesToPlayers(players, { secretScore: 0, pastCorrectCrimes: 0, history: {} });
+  utils.players.unReadyPlayers(players);
+  utils.players.addPropertiesToPlayers(players, { secretScore: 0, pastCorrectCrimes: 0, history: {} });
 
   return {
     update: {
       state: {
         phase: CRIMES_HEDIONDOS_PHASES.CRIME_SELECTION,
-        round: utils.increaseRound(state.round),
+        round: utils.helpers.increaseRound(state.round),
         items,
         groupedItems,
       },
@@ -101,7 +99,7 @@ export const prepareSceneMarkingPhase = async (
   const updatedScenesOrder = [...state.scenesOrder, newScene.id];
 
   // Unready players
-  utils.unReadyPlayers(players);
+  utils.players.unReadyPlayers(players);
   // Update pastCorrectCrimes
   Object.values(players).forEach((player) => {
     player.pastCorrectCrimes += player.correctCrimes ?? 0;
@@ -114,11 +112,11 @@ export const prepareSceneMarkingPhase = async (
       },
       state: {
         phase: CRIMES_HEDIONDOS_PHASES.SCENE_MARKING,
-        round: utils.increaseRound(state.round),
+        round: utils.helpers.increaseRound(state.round),
         scenes: updatedScenes,
         scenesOrder: updatedScenesOrder,
         currentScene: newScene,
-        results: firebaseUtils.deleteValue(),
+        results: utils.firebase.deleteValue(),
       },
       players: players,
     },
@@ -131,7 +129,7 @@ export const prepareGuessingPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.unReadyPlayers(players);
+  utils.players.unReadyPlayers(players);
 
   if (state.round.current === 1) {
     // Group scenes
@@ -144,7 +142,7 @@ export const prepareGuessingPhase = async (
     // Gather answers and build crimes
     const crimes = buildCrimes(players, state.causeOfDeathTile, state.reasonForEvidenceTile);
     // Cleanup properties from players
-    utils.removePropertiesFromPlayers(players, [
+    utils.players.removePropertiesFromPlayers(players, [
       'causeOfDeath',
       'locationIndex',
       'locationTile',
@@ -158,9 +156,9 @@ export const prepareGuessingPhase = async (
           crimes,
           scenes,
           scenesOrder: order,
-          causeOfDeathTile: firebaseUtils.deleteValue(),
-          reasonForEvidenceTile: firebaseUtils.deleteValue(),
-          locationTiles: firebaseUtils.deleteValue(),
+          causeOfDeathTile: utils.firebase.deleteValue(),
+          reasonForEvidenceTile: utils.firebase.deleteValue(),
+          locationTiles: utils.firebase.deleteValue(),
         },
         players: players,
       },
@@ -171,14 +169,14 @@ export const prepareGuessingPhase = async (
   const updatedCrimes = updateCrime(state.crimes, players, state.currentScene);
 
   // Cleanup properties from players
-  utils.removePropertiesFromPlayers(players, ['sceneIndex']);
+  utils.players.removePropertiesFromPlayers(players, ['sceneIndex']);
 
   return {
     update: {
       state: {
         phase: CRIMES_HEDIONDOS_PHASES.GUESSING,
         crimes: updatedCrimes,
-        currentScene: firebaseUtils.deleteValue(),
+        currentScene: utils.firebase.deleteValue(),
       },
       players: players,
     },
@@ -203,7 +201,7 @@ export const prepareRevealPhase = async (
         ranking,
         winners,
         results,
-        lastRound: state?.lastRound || winners.length > 0 ? true : firebaseUtils.deleteValue(),
+        lastRound: state?.lastRound || winners.length > 0 ? true : utils.firebase.deleteValue(),
       },
       players: players,
     },
@@ -219,7 +217,9 @@ export const prepareGameOverPhase = async (
 
   const winningPlayers = state.winners.map((playerId) => players[playerId]);
 
-  const winners = utils.determineWinners(Object.keys(winningPlayers).length > 0 ? winningPlayers : players);
+  const winners = utils.players.determineWinners(
+    Object.keys(winningPlayers).length > 0 ? winningPlayers : players
+  );
 
   return {
     update: {

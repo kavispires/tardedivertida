@@ -2,11 +2,10 @@
 import { AllWords, ClueEntry, Deck, GridCell, WordCard } from './types';
 import { PlayerId, Players, RankingEntry, Round } from '../../utils/types';
 // Constants
+import { SEPARATOR } from '../../utils/constants';
 import { WORDS_PER_PLAYER_COUNT, CRUZA_PALAVRAS_PHASES } from './constants';
 // Utils
-import * as gameUtils from '../../utils/game-utils';
-import { SEPARATOR } from '../../utils/constants';
-import { buildNewScoreObject } from '../../utils/helpers';
+import * as utils from '../../utils';
 
 /**
  * Determine the next phase based on the current one
@@ -46,7 +45,7 @@ export const determineNextPhase = (
  * @returns
  */
 export const buildDeck = (words: AllWords, playerCount: number, largerGridCount: number): Deck => {
-  return gameUtils.getRandomItems(
+  return utils.game.getRandomItems(
     Object.values(words),
     WORDS_PER_PLAYER_COUNT[playerCount] + 2 + largerGridCount
   );
@@ -74,11 +73,11 @@ export const buildGrid = (
   wordsPerCoordinate: number,
   shouldUsePlayersClues: boolean
 ): GridCell[] => {
-  const playersCluesDeck = gameUtils.shuffle(playersClues);
+  const playersCluesDeck = utils.game.shuffle(playersClues);
   const currentDeck =
     shouldUsePlayersClues && playersCluesDeck.length >= wordsPerCoordinate * 2
       ? playersCluesDeck
-      : gameUtils.shuffle(words);
+      : utils.game.shuffle(words);
 
   const x: Deck = [
     {
@@ -182,7 +181,7 @@ export const buildCoordinates = (coordinatesLength: number): string[] => {
  */
 export const distributeCoordinates = (players: Players, grid: GridCell[]): GridCell[] => {
   const available = grid.filter((entry: GridCell) => entry.available);
-  const shuffledCoordinates = gameUtils.shuffle(available);
+  const shuffledCoordinates = utils.game.shuffle(available);
 
   Object.values(players).forEach((player) => {
     const cell = shuffledCoordinates.pop();
@@ -238,7 +237,7 @@ export const getPlayerClues = (players: Players): ClueEntry[] => {
  * @returns
  */
 export const buildRanking = (players: Players, clues: ClueEntry[]) => {
-  const newScores = buildNewScoreObject(players, [0, 0, 0]); // from guesses, from others, lost points
+  const newScores = utils.helpers.buildNewScoreObject(players, [0, 0, 0]); // from guesses, from others, lost points
 
   const answers = clues.reduce((acc, entry) => {
     acc[entry.playerId] = entry.coordinate;

@@ -5,8 +5,7 @@ import { MAX_ROUNDS, PLAYER_COUNTS, TESTEMUNHA_OCULAR_PHASES } from './constants
 import { GameId, PlainObject, Players } from '../../utils/types';
 import { TestemunhaOcularInitialState, TestemunhaOcularSubmitAction } from './types';
 // Utils
-import * as firebaseUtils from '../../utils/firebase';
-import * as utils from '../../utils/helpers';
+import * as utils from '../../utils';
 // Internal Functions
 import { determineNextPhase } from './helpers';
 import {
@@ -32,7 +31,7 @@ export const getInitialState = (
   uid: string,
   language: string
 ): TestemunhaOcularInitialState => {
-  return utils.getDefaultInitialState({
+  return utils.helpers.getDefaultInitialState({
     gameId,
     gameName: GAME_COLLECTIONS.TESTEMUNHA_OCULAR,
     uid,
@@ -59,7 +58,7 @@ export const getNextPhase = async (
   players: Players,
   additionalPayload?: PlainObject
 ): Promise<boolean> => {
-  const { sessionRef, state, store } = await firebaseUtils.getStateAndStoreReferences(
+  const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences(
     collectionName,
     gameId,
     'prepare next phase'
@@ -77,37 +76,37 @@ export const getNextPhase = async (
   // RULES -> SETUP
   if (nextPhase === TESTEMUNHA_OCULAR_PHASES.SETUP) {
     // Enter setup phase before doing anything
-    await firebaseUtils.triggerSetupPhase(sessionRef);
+    await utils.firebase.triggerSetupPhase(sessionRef);
 
     // Request data
     const additionalData = await getQuestionsAndSuspects(store.language);
     const newPhase = await prepareSetupPhase(additionalData);
-    await firebaseUtils.saveGame(sessionRef, newPhase);
+    await utils.firebase.saveGame(sessionRef, newPhase);
     return getNextPhase(collectionName, gameId, players);
   }
 
   // SETUP -> WITNESS_SELECTION
   if (nextPhase === TESTEMUNHA_OCULAR_PHASES.WITNESS_SELECTION) {
     const newPhase = await prepareWitnessSelectionPhase();
-    return firebaseUtils.saveGame(sessionRef, newPhase);
+    return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   // * -> QUESTION_SELECTION
   if (nextPhase === TESTEMUNHA_OCULAR_PHASES.QUESTION_SELECTION) {
     const newPhase = await prepareQuestionSelectionPhase(store, state, players, additionalPayload ?? {});
-    return firebaseUtils.saveGame(sessionRef, newPhase);
+    return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   // QUESTION_SELECTION -> QUESTIONING
   if (nextPhase === TESTEMUNHA_OCULAR_PHASES.QUESTIONING) {
     const newPhase = await prepareQuestioningPhase(store, additionalPayload ?? {});
-    return firebaseUtils.saveGame(sessionRef, newPhase);
+    return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   // QUESTIONING -> TRIAL
   if (nextPhase === TESTEMUNHA_OCULAR_PHASES.TRIAL) {
     const newPhase = await prepareTrialPhase(store, state, additionalPayload ?? {});
-    return firebaseUtils.saveGame(sessionRef, newPhase);
+    return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   // TRIAL -> GAME_OVER
@@ -119,7 +118,7 @@ export const getNextPhase = async (
 
     // TODO: Save testimonies to public gallery
 
-    return firebaseUtils.saveGame(sessionRef, newPhase);
+    return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   return true;
@@ -133,29 +132,29 @@ export const getNextPhase = async (
 export const submitAction = async (data: TestemunhaOcularSubmitAction) => {
   const { gameId, gameName: collectionName, playerId, action } = data;
 
-  firebaseUtils.validateSubmitActionPayload(gameId, collectionName, playerId, action);
+  utils.firebase.validateSubmitActionPayload(gameId, collectionName, playerId, action);
 
   let actionText = 'submit action';
 
   switch (action) {
     case 'SELECT_WITNESS':
       actionText = 'select witness';
-      firebaseUtils.validateSubmitActionProperties(data, ['witnessId'], actionText);
+      utils.firebase.validateSubmitActionProperties(data, ['witnessId'], actionText);
       return handleExtraAction(collectionName, gameId, actionText, { playerId, witnessId: data.witnessId });
 
     case 'SELECT_QUESTION':
       actionText = 'select question';
-      firebaseUtils.validateSubmitActionProperties(data, ['questionId'], actionText);
+      utils.firebase.validateSubmitActionProperties(data, ['questionId'], actionText);
       return handleExtraAction(collectionName, gameId, actionText, { playerId, questionId: data.questionId });
 
     case 'GIVE_TESTIMONY':
       actionText = 'give testimony';
-      firebaseUtils.validateSubmitActionProperties(data, ['testimony'], actionText);
+      utils.firebase.validateSubmitActionProperties(data, ['testimony'], actionText);
       return handleExtraAction(collectionName, gameId, actionText, { playerId, testimony: data.testimony });
 
     case 'ELIMINATE_SUSPECT':
       actionText = 'eliminate suspect';
-      firebaseUtils.validateSubmitActionProperties(data, ['suspectId', 'pass'], actionText);
+      utils.firebase.validateSubmitActionProperties(data, ['suspectId', 'pass'], actionText);
       return handleElimination(collectionName, gameId, actionText, {
         playerId,
         suspectId: data?.suspectId,
@@ -163,6 +162,6 @@ export const submitAction = async (data: TestemunhaOcularSubmitAction) => {
       });
 
     default:
-      firebaseUtils.throwException(`Given action ${action} is not allowed`);
+      utils.firebase.throwException(`Given action ${action} is not allowed`);
   }
 };

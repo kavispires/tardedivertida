@@ -1,7 +1,7 @@
 // Types
 import { PlainObject, PlayerId, Players } from './types';
-// Utils
-import * as gameUtils from './game-utils';
+// Helpers
+import { removeItem } from './game-utils';
 
 /**
  * Deal cards to players from their own deck
@@ -51,7 +51,7 @@ export const discardPlayerCard = (
   handLimit: number
 ): PlainObject => {
   const player = players[playerId];
-  const currentHand = gameUtils.removeItem(player?.hand ?? [], cardId);
+  const currentHand = removeItem(player?.hand ?? [], cardId);
 
   let currentDeckIndex = player?.deckIndex ?? -1;
   for (let i = currentHand.length; i < handLimit; i++) {

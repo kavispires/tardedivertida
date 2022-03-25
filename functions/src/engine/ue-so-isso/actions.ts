@@ -1,7 +1,7 @@
 // Types
 import { GameId, PlayerId, GameName, PlainObject } from '../../utils/types';
 // Utils
-import * as firebaseUtils from '../../utils/firebase';
+import * as utils from '../../utils';
 // Internal
 import { getNextPhase } from '.';
 
@@ -19,7 +19,7 @@ export const handleSubmitWordSelectionVotes = async (
   playerId: PlayerId,
   votes: PlainObject
 ) => {
-  return await firebaseUtils.updatePlayer({
+  return await utils.firebase.updatePlayer({
     collectionName,
     gameId,
     playerId,
@@ -44,7 +44,7 @@ export const handleSubmitSuggestions = async (
   playerId: PlayerId,
   suggestions: PlainObject
 ) => {
-  return await firebaseUtils.updatePlayer({
+  return await utils.firebase.updatePlayer({
     collectionName,
     gameId,
     playerId,
@@ -69,7 +69,7 @@ export const handleSubmitValidation = async (
   playerId: PlayerId,
   validSuggestions: PlainObject
 ) => {
-  return await firebaseUtils.updateStore({
+  return await utils.firebase.updateStore({
     collectionName,
     gameId,
     playerId,
@@ -95,7 +95,7 @@ export const handleConfirmGuess = async (
   playerId: PlayerId,
   outcome: string
 ) => {
-  return await firebaseUtils.updateStore({
+  return await utils.firebase.updateStore({
     collectionName,
     gameId,
     playerId,
@@ -121,7 +121,7 @@ export const handleUpdateValidSuggestions = async (
   playerId: PlayerId,
   suggestions: PlainObject
 ) => {
-  return await firebaseUtils.updateState({
+  return await utils.firebase.updateState({
     collectionName,
     gameId,
     playerId,
@@ -146,7 +146,7 @@ export const handleSendGuess = async (
   playerId: PlayerId,
   guess: string
 ) => {
-  return await firebaseUtils.updateState({
+  return await utils.firebase.updateState({
     collectionName,
     gameId,
     playerId,

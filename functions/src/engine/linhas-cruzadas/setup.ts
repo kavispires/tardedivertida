@@ -4,9 +4,7 @@ import { LINHAS_CRUZADAS_PHASES } from './constants';
 import { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 import { PlayerId, Players, SaveGamePayload } from '../../utils/types';
 // Utils
-import * as utils from '../../utils/helpers';
-import * as gameUtils from '../../utils/game-utils';
-import * as firebaseUtils from '../../utils/firebase';
+import * as utils from '../../utils';
 // Internal
 import { addSlideToAlbum, assignSlideToPlayers, buildAlbum, dealPromptOptions } from './helpers';
 
@@ -22,13 +20,13 @@ export const prepareSetupPhase = async (
   players: Players,
   resourceData: ResourceData
 ): Promise<SaveGamePayload> => {
-  const { gameOrder, playerCount } = utils.buildGameOrder(players);
+  const { gameOrder, playerCount } = utils.helpers.buildGameOrder(players);
 
-  const expressionsDeck = gameUtils.getRandomItems(
+  const expressionsDeck = utils.game.getRandomItems(
     resourceData.allExpressions,
     playerCount * (store.options.singleWordOnly ? 0 : 2)
   );
-  const wordsDeck = gameUtils.getRandomItems(
+  const wordsDeck = utils.game.getRandomItems(
     resourceData.allWords,
     playerCount * (store.options.singleWordOnly ? 4 : 2)
   );
@@ -59,7 +57,7 @@ export const preparePromptSelectionPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.unReadyPlayers(players);
+  utils.players.unReadyPlayers(players);
 
   dealPromptOptions(players, store.expressionsDeck, store.wordsDeck, store.options);
 
@@ -67,8 +65,8 @@ export const preparePromptSelectionPhase = async (
   return {
     update: {
       store: {
-        expressionsDeck: firebaseUtils.deleteValue(),
-        wordsDeck: firebaseUtils.deleteValue(),
+        expressionsDeck: utils.firebase.deleteValue(),
+        wordsDeck: utils.firebase.deleteValue(),
       },
       state: {
         phase: LINHAS_CRUZADAS_PHASES.PROMPT_SELECTION,
@@ -98,8 +96,8 @@ export const prepareDrawingPhase = async (
   assignSlideToPlayers(album, players, state.gameOrder, isFirstSlide);
 
   // Unready players
-  utils.unReadyPlayers(players);
-  utils.removePropertiesFromPlayers(players, ['prompts', 'promptId', 'guess']);
+  utils.players.unReadyPlayers(players);
+  utils.players.removePropertiesFromPlayers(players, ['prompts', 'promptId', 'guess']);
 
   // Save
   return {
@@ -109,7 +107,7 @@ export const prepareDrawingPhase = async (
       },
       state: {
         phase: LINHAS_CRUZADAS_PHASES.DRAWING,
-        round: utils.increaseRound(state.round),
+        round: utils.helpers.increaseRound(state.round),
       },
       players,
     },
@@ -127,8 +125,8 @@ export const prepareNamingPhase = async (
   assignSlideToPlayers(album, players, state.gameOrder);
 
   // Unready players
-  utils.unReadyPlayers(players);
-  utils.removePropertiesFromPlayers(players, ['drawing']);
+  utils.players.unReadyPlayers(players);
+  utils.players.removePropertiesFromPlayers(players, ['drawing']);
 
   // Save
   return {
@@ -151,7 +149,7 @@ export const preparePresentationPhase = async (
 ): Promise<SaveGamePayload> => {
   const album = addSlideToAlbum(store.album, players);
 
-  utils.removePropertiesFromPlayers(players, ['guess']);
+  utils.players.removePropertiesFromPlayers(players, ['guess']);
 
   const orderedAlbum = state.gameOrder.map((playerId: PlayerId) => album[playerId]);
 

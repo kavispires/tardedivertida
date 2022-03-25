@@ -1,7 +1,7 @@
 // Types
 import { GameId, PlayerId, GameName, PlainObject } from '../../utils/types';
 // Helpers
-import * as firebaseUtils from '../../utils/firebase';
+import * as utils from '../../utils';
 // Internal functions
 import { getNextPhase } from './index';
 
@@ -11,7 +11,7 @@ export const handleSubmitClue = async (
   playerId: PlayerId,
   clue: string
 ) => {
-  return await firebaseUtils.updatePlayer({
+  return await utils.firebase.updatePlayer({
     collectionName,
     gameId,
     playerId,
@@ -28,7 +28,7 @@ export const handleSubmitGuesses = async (
   playerId: PlayerId,
   guesses: PlainObject
 ) => {
-  return await firebaseUtils.updatePlayer({
+  return await utils.firebase.updatePlayer({
     collectionName,
     gameId,
     playerId,

@@ -5,8 +5,7 @@ import { ARTE_RUIM_PHASES, PLAYER_COUNTS, MAX_ROUNDS } from './constants';
 import { GameId, GameName, Language, Players } from '../../utils/types';
 import { ArteRuimGameOptions, ArteRuimInitialState, ArteRuimSubmitAction } from './types';
 // Utilities
-import * as firebaseUtils from '../../utils/firebase';
-import * as utils from '../../utils/helpers';
+import * as utils from '../../utils';
 // Internal Functions
 import { determineGameOver, determineNextPhase } from './helpers';
 import {
@@ -32,7 +31,7 @@ export const getInitialState = (
   language: Language,
   options: ArteRuimGameOptions
 ): ArteRuimInitialState => {
-  return utils.getDefaultInitialState({
+  return utils.helpers.getDefaultInitialState({
     gameId,
     gameName: GAME_COLLECTIONS.ARTE_RUIM,
     uid,
@@ -68,7 +67,7 @@ export const getNextPhase = async (
   gameId: GameId,
   players: Players
 ): Promise<boolean> => {
-  const { sessionRef, state, store } = await firebaseUtils.getStateAndStoreReferences(
+  const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences(
     collectionName,
     gameId,
     'prepare next phase'
@@ -82,38 +81,38 @@ export const getNextPhase = async (
   // RULES -> SETUP
   if (nextPhase === ARTE_RUIM_PHASES.SETUP) {
     // Enter setup phase before doing anything
-    await firebaseUtils.triggerSetupPhase(sessionRef);
+    await utils.firebase.triggerSetupPhase(sessionRef);
 
     // Request data
     const additionalData = await getCards(store.language);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
-    await firebaseUtils.saveGame(sessionRef, newPhase);
+    await utils.firebase.saveGame(sessionRef, newPhase);
     return getNextPhase(collectionName, gameId, players);
   }
 
   // SETUP -> DRAW
   if (nextPhase === ARTE_RUIM_PHASES.DRAW) {
     const newPhase = await prepareDrawPhase(store, state, players);
-    return firebaseUtils.saveGame(sessionRef, newPhase);
+    return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   // DRAW -> EVALUATION
   if (nextPhase === ARTE_RUIM_PHASES.EVALUATION) {
     const newPhase = await prepareEvaluationPhase(store, state, players);
-    return firebaseUtils.saveGame(sessionRef, newPhase);
+    return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   // EVALUATION -> GALLERY
   if (nextPhase === ARTE_RUIM_PHASES.GALLERY) {
     const newPhase = await prepareGalleryPhase(store, state, players);
-    return firebaseUtils.saveGame(sessionRef, newPhase);
+    return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   // GALLERY -> GAME_OVER
   if (nextPhase === ARTE_RUIM_PHASES.GAME_OVER) {
     const newPhase = await prepareGameOverPhase(store, state, players);
     await saveUsedCards(store.pastDrawings, store.language);
-    return firebaseUtils.saveGame(sessionRef, newPhase);
+    return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   return true;
@@ -127,16 +126,16 @@ export const getNextPhase = async (
 export const submitAction = async (data: ArteRuimSubmitAction) => {
   const { gameId, gameName: collectionName, playerId, action } = data;
 
-  firebaseUtils.validateSubmitActionPayload(gameId, collectionName, playerId, action);
+  utils.firebase.validateSubmitActionPayload(gameId, collectionName, playerId, action);
 
   switch (action) {
     case 'SUBMIT_DRAWING':
-      firebaseUtils.validateSubmitActionProperties(data, ['drawing'], 'submit drawing');
+      utils.firebase.validateSubmitActionProperties(data, ['drawing'], 'submit drawing');
       return handleSubmitDrawing(collectionName, gameId, playerId, data.drawing);
     case 'SUBMIT_VOTING':
-      firebaseUtils.validateSubmitActionProperties(data, ['votes'], 'submit votes');
+      utils.firebase.validateSubmitActionProperties(data, ['votes'], 'submit votes');
       return handleSubmitVoting(collectionName, gameId, playerId, data.votes);
     default:
-      firebaseUtils.throwException(`Given action ${action} is not allowed`);
+      utils.firebase.throwException(`Given action ${action} is not allowed`);
   }
 };

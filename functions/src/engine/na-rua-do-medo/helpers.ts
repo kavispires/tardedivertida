@@ -14,8 +14,7 @@ import {
 import { DualLanguageValue, NumberDictionary, Player, PlayerId, Players, Round } from '../../utils/types';
 import { CandyStatus, Card, Decks, FirebaseStateData, FirebaseStoreData, Outcome } from './types';
 // Utils
-import * as utils from '../../utils/helpers';
-import * as gameUtils from '../../utils/game-utils';
+import * as utils from '../../utils';
 
 /**
  * Determine the next phase based on the current one
@@ -68,9 +67,9 @@ export const determineNextPhase = (
 export const buildDecks = (isShortGame: number): Decks => {
   // 1. Build horror deck: get one random horror of each set and make 3 copies of it
   const horrorCount = {};
-  const horrorDeck: Card[] = utils.flattenArray(
+  const horrorDeck: Card[] = utils.helpers.flattenArray(
     HORROR_SETS.map((horrorGroup: DualLanguageValue[]) => {
-      const horrorName = gameUtils.getRandomItem(horrorGroup);
+      const horrorName = utils.game.getRandomItem(horrorGroup);
       const horrorGenericName = horrorName.en.toLowerCase();
       const horrorKey = `${CARD_KEY_PREFIX}-horror-${horrorGenericName}`;
       // This is used to count how many horrors have happen each round
@@ -134,7 +133,7 @@ export const buildStreetDeck = (store: FirebaseStoreData, currentRound: number):
   // Add all candy values
   const streetDeck = [...store.candyDeck, ...horrorDeckWithoutAnyUsedHorrors, ...availableJackpots];
 
-  return gameUtils.shuffle(streetDeck);
+  return utils.game.shuffle(streetDeck);
 };
 
 export const shareCandy = (players: Players, currentCard?: Card): CandyStatus => {

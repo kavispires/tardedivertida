@@ -4,8 +4,7 @@ import { CUSTOM_TOPICS_PER_ROUND, MAX_ROUNDS, POLEMICA_DA_VEZ_PHASES, TOPICS_PER
 import { PlainObject, Players, SaveGamePayload } from '../../utils/types';
 import { FirebaseStateData, FirebaseStoreData } from './types';
 // Utils
-import * as firebaseUtils from '../../utils/firebase';
-import * as utils from '../../utils/helpers';
+import * as utils from '../../utils';
 import { buildDeck, countLikes, rankAndScore } from './helpers';
 import { DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
 
@@ -23,7 +22,7 @@ export const prepareSetupPhase = async (
 ): Promise<SaveGamePayload> => {
   // Determine turn order
   // Determine turn order
-  const { gameOrder, playerIds } = utils.buildGameOrder(
+  const { gameOrder, playerIds } = utils.helpers.buildGameOrder(
     players,
     store.options.fixedRounds ? DOUBLE_ROUNDS_THRESHOLD : undefined
   );
@@ -61,14 +60,14 @@ export const prepareTopicSelectionPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Determine active player based on current round
-  const activePlayerId = utils.getActivePlayer(store.gameOrder, state.round.current + 1);
+  const activePlayerId = utils.players.getActivePlayer(store.gameOrder, state.round.current + 1);
 
   // Modify player
-  utils.addPropertiesToPlayers(players, {
+  utils.players.addPropertiesToPlayers(players, {
     reaction: null,
     likesGuess: null,
   });
-  utils.unReadyPlayer(players, activePlayerId);
+  utils.players.unReadyPlayer(players, activePlayerId);
 
   // Get questions
   const currentTopics = Array(TOPICS_PER_ROUND)
@@ -86,7 +85,7 @@ export const prepareTopicSelectionPhase = async (
       },
       state: {
         phase: POLEMICA_DA_VEZ_PHASES.TOPIC_SELECTION,
-        round: utils.increaseRound(state.round),
+        round: utils.helpers.increaseRound(state.round),
         activePlayerId,
         currentTopics,
         currentCustomTopic,
@@ -102,7 +101,7 @@ export const prepareReactPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Modify players
-  utils.unReadyPlayers(players);
+  utils.players.unReadyPlayers(players);
 
   let currentTopic = {};
   const customTopic = store.customTopic ?? null;
@@ -119,8 +118,8 @@ export const prepareReactPhase = async (
         phase: POLEMICA_DA_VEZ_PHASES.REACT,
         currentTopic,
         customTopic,
-        currentTopics: firebaseUtils.deleteValue(),
-        currentCustomTopic: firebaseUtils.deleteValue(),
+        currentTopics: utils.firebase.deleteValue(),
+        currentCustomTopic: utils.firebase.deleteValue(),
       },
       players,
     },
@@ -166,7 +165,7 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
-  const winners = utils.determineWinners(players);
+  const winners = utils.players.determineWinners(players);
 
   return {
     update: {

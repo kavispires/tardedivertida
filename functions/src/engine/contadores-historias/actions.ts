@@ -3,8 +3,7 @@ import { GameId, PlayerId, GameName } from '../../utils/types';
 // Constants
 import { HAND_LIMIT } from './constants';
 // Utils
-import * as firebaseUtils from '../../utils/firebase';
-import * as playerHandUtils from '../../utils/player-hand-utils';
+import * as utils from '../../utils';
 // Internal
 import { getNextPhase } from './index';
 
@@ -24,14 +23,14 @@ export const handleSubmitStory = async (
   cardId: string
 ) => {
   // Get 'players' from given game session
-  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
-  const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', 'submit story');
+  const sessionRef = utils.firebase.getSessionRef(collectionName, gameId);
+  const playersDoc = await utils.firebase.getSessionDoc(collectionName, gameId, 'players', 'submit story');
 
   const players = playersDoc.data() ?? {};
 
-  const { hand, deckIndex } = playerHandUtils.discardPlayerCard(players, cardId, playerId, HAND_LIMIT);
+  const { hand, deckIndex } = utils.playerHand.discardPlayerCard(players, cardId, playerId, HAND_LIMIT);
 
-  await firebaseUtils.updatePlayer({
+  await utils.firebase.updatePlayer({
     collectionName,
     gameId,
     playerId,
@@ -48,7 +47,7 @@ export const handleSubmitStory = async (
   try {
     await sessionRef.doc('store').update({ story, solutionCardId: cardId });
   } catch (error) {
-    firebaseUtils.throwException(error, 'Failed to save story to store');
+    utils.firebase.throwException(error, 'Failed to save story to store');
   }
 
   // If all players are ready, trigger next phase
@@ -71,18 +70,18 @@ export const handlePlayCard = async (
 ) => {
   const actionText = 'play a card';
 
-  const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
-  const stateDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'state', actionText);
+  const playersDoc = await utils.firebase.getSessionDoc(collectionName, gameId, 'players', actionText);
+  const stateDoc = await utils.firebase.getSessionDoc(collectionName, gameId, 'state', actionText);
   const players = playersDoc.data() ?? {};
   const state = stateDoc.data() ?? {};
 
   if (state.storytellerId === playerId) {
-    firebaseUtils.throwException('You are the storyteller!', 'Failed to play card.');
+    utils.firebase.throwException('You are the storyteller!', 'Failed to play card.');
   }
 
-  const { hand, deckIndex } = playerHandUtils.discardPlayerCard(players, cardId, playerId, HAND_LIMIT);
+  const { hand, deckIndex } = utils.playerHand.discardPlayerCard(players, cardId, playerId, HAND_LIMIT);
 
-  return await firebaseUtils.updatePlayer({
+  return await utils.firebase.updatePlayer({
     collectionName,
     gameId,
     playerId,
@@ -111,7 +110,7 @@ export const handleSubmitVote = async (
   playerId: PlayerId,
   vote: PlayerId
 ) => {
-  return await firebaseUtils.updatePlayer({
+  return await utils.firebase.updatePlayer({
     collectionName,
     gameId,
     playerId,

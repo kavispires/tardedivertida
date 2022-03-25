@@ -1,7 +1,7 @@
 // Types
 import { GameId, PlayerId, GameName } from '../../utils/types';
 // Helpers
-import * as firebaseUtils from '../../utils/firebase';
+import * as utils from '../../utils';
 // Internal functions
 import { getNextPhase } from './index';
 import { Decisions } from './types';
@@ -12,7 +12,7 @@ export const handleSubmitDecision = async (
   playerId: PlayerId,
   decision: Decisions
 ) => {
-  return await firebaseUtils.updatePlayer({
+  return await utils.firebase.updatePlayer({
     collectionName,
     gameId,
     playerId,

@@ -1,10 +1,10 @@
 // Types
 import { GameId, PlayerId, GameName } from '../../utils/types';
-// Utils
-import * as firebaseUtils from '../../utils/firebase';
-import * as playerHandUtils from '../../utils/player-hand-utils';
-import { getNextPhase } from './index';
+// Constants
 import { HAND_LIMIT } from './constants';
+// Utils
+import * as utils from '../../utils';
+import { getNextPhase } from './index';
 
 /**
  *
@@ -22,19 +22,19 @@ export const handlePlayCard = async (
 ) => {
   const actionText = 'play a card';
 
-  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
-  const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
-  const stateDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'state', actionText);
+  const sessionRef = utils.firebase.getSessionRef(collectionName, gameId);
+  const playersDoc = await utils.firebase.getSessionDoc(collectionName, gameId, 'players', actionText);
+  const stateDoc = await utils.firebase.getSessionDoc(collectionName, gameId, 'state', actionText);
   const players = playersDoc.data() ?? {};
   const state = stateDoc.data() ?? {};
 
   if (state.currentPlayerId !== playerId) {
-    firebaseUtils.throwException('You are not the current player!', 'Failed to play card.');
+    utils.firebase.throwException('You are not the current player!', 'Failed to play card.');
   }
 
-  const { hand, deckIndex } = playerHandUtils.discardPlayerCard(players, cardId, playerId, HAND_LIMIT);
+  const { hand, deckIndex } = utils.playerHand.discardPlayerCard(players, cardId, playerId, HAND_LIMIT);
 
-  await firebaseUtils.updatePlayer({
+  await utils.firebase.updatePlayer({
     collectionName,
     gameId,
     playerId,
@@ -74,7 +74,7 @@ export const handlePlayCard = async (
       });
     }
   } catch (error) {
-    firebaseUtils.throwException(error, 'Failed to update table with new card');
+    utils.firebase.throwException(error, 'Failed to update table with new card');
   }
 
   return true;
@@ -90,13 +90,13 @@ export const handlePlayCard = async (
 export const handleDefend = async (collectionName: GameName, gameId: GameId, playerId: PlayerId) => {
   const actionText = 'defend';
 
-  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
-  const stateDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'state', actionText);
+  const sessionRef = utils.firebase.getSessionRef(collectionName, gameId);
+  const stateDoc = await utils.firebase.getSessionDoc(collectionName, gameId, 'state', actionText);
 
   const state = stateDoc.data() ?? {};
 
   if (state.currentPlayerId !== playerId) {
-    firebaseUtils.throwException('You are not the current player!', 'Failed to play card.');
+    utils.firebase.throwException('You are not the current player!', 'Failed to play card.');
   }
 
   // Add card to table
@@ -105,7 +105,7 @@ export const handleDefend = async (collectionName: GameName, gameId: GameId, pla
 
     // If it is the last player to play, go to the next phase
     if (newPhaseIndex === state.phaseOrder.length) {
-      const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
+      const playersDoc = await utils.firebase.getSessionDoc(collectionName, gameId, 'players', actionText);
       const players = playersDoc.data() ?? {};
       getNextPhase(collectionName, gameId, players);
     } else {
@@ -115,7 +115,7 @@ export const handleDefend = async (collectionName: GameName, gameId: GameId, pla
       });
     }
   } catch (error) {
-    firebaseUtils.throwException(error, 'Failed to conclude your defense');
+    utils.firebase.throwException(error, 'Failed to conclude your defense');
   }
 
   return true;
@@ -135,7 +135,7 @@ export const handleSubmitVote = async (
   playerId: PlayerId,
   vote: PlayerId
 ) => {
-  return await firebaseUtils.updatePlayer({
+  return await utils.firebase.updatePlayer({
     collectionName,
     gameId,
     playerId,
@@ -160,7 +160,7 @@ export const handleSubmitClue = async (
   playerId: PlayerId,
   clue: string
 ) => {
-  return await firebaseUtils.updateStore({
+  return await utils.firebase.updateStore({
     collectionName,
     gameId,
     playerId,

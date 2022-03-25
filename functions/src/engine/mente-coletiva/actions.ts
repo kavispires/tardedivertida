@@ -1,7 +1,7 @@
 // Types
 import { GameId, PlayerId, GameName, PlainObject } from '../../utils/types';
 // Utils
-import * as firebaseUtils from '../../utils/firebase';
+import * as utils from '../../utils';
 // Internal
 import { getNextPhase } from '.';
 import { buildListOfAnswers } from './helpers';
@@ -20,7 +20,7 @@ export const handleSubmitQuestion = async (
   playerId: PlayerId,
   questionId: string
 ) => {
-  return await firebaseUtils.updateStore({
+  return await utils.firebase.updateStore({
     collectionName,
     gameId,
     playerId,
@@ -46,7 +46,7 @@ export const handleSubmitAnswers = async (
   playerId: PlayerId,
   answers: PlainObject
 ) => {
-  return await firebaseUtils.updatePlayer({
+  return await utils.firebase.updatePlayer({
     collectionName,
     gameId,
     playerId,
@@ -73,9 +73,9 @@ export const handleNextAnswers = async (
 ) => {
   const actionText = 'advance answers';
 
-  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
-  const stateDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'state', actionText);
-  const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
+  const sessionRef = utils.firebase.getSessionRef(collectionName, gameId);
+  const stateDoc = await utils.firebase.getSessionDoc(collectionName, gameId, 'state', actionText);
+  const playersDoc = await utils.firebase.getSessionDoc(collectionName, gameId, 'players', actionText);
   const state = stateDoc.data() ?? {};
   const players = playersDoc.data() ?? {};
 
@@ -114,7 +114,7 @@ export const handleNextAnswers = async (
   }
 
   try {
-    await firebaseUtils.saveGame(sessionRef, {
+    await utils.firebase.saveGame(sessionRef, {
       update: {
         state: {
           allAnswers,
@@ -126,7 +126,7 @@ export const handleNextAnswers = async (
       },
     });
   } catch (error) {
-    firebaseUtils.throwException(error, actionText);
+    utils.firebase.throwException(error, actionText);
   }
 
   return true;
@@ -148,9 +148,9 @@ export const handleAddAnswer = async (
 ) => {
   const actionText = 'add answer';
 
-  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
+  const sessionRef = utils.firebase.getSessionRef(collectionName, gameId);
 
-  const stateDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'state', actionText);
+  const stateDoc = await utils.firebase.getSessionDoc(collectionName, gameId, 'state', actionText);
   const state = stateDoc.data() ?? {};
 
   const answersList = [...state.answersList];
@@ -159,7 +159,7 @@ export const handleAddAnswer = async (
   try {
     await sessionRef.doc('state').update({ answersList });
   } catch (error) {
-    firebaseUtils.throwException(error, actionText);
+    utils.firebase.throwException(error, actionText);
   }
 
   return true;

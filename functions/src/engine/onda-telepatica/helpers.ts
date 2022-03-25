@@ -10,8 +10,7 @@ import {
 } from './constants';
 import { DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
 // Utils
-import * as gameUtils from '../../utils/game-utils';
-import * as utils from '../../utils/helpers';
+import * as utils from '../../utils';
 
 /**
  * Determine the next phase based on the current one
@@ -57,7 +56,7 @@ export const determineGameOver = (
     return Object.values(players).some((player) => player.score >= GAME_OVER_SCORE_THRESHOLD);
   }
 
-  const playerCount = utils.getPlayerCount(players);
+  const playerCount = utils.players.getPlayerCount(players);
   if (playerCount < DOUBLE_ROUNDS_THRESHOLD) {
     return round.current >= playerCount * 2;
   }
@@ -94,7 +93,7 @@ export const buildDeck = (data: ResourceData): Deck => {
       ? filteredCategories
       : Object.values(data.allCategories);
 
-  const shuffledQuestions = gameUtils.shuffle(availableQuestions);
+  const shuffledQuestions = utils.game.shuffle(availableQuestions);
 
   return shuffledQuestions.slice(0, neededQuestionsAmount + 1);
 };

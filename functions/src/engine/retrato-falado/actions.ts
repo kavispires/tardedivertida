@@ -1,7 +1,7 @@
 // Types
 import { GameId, PlayerId, GameName } from '../../utils/types';
 // Helpers
-import * as firebaseUtils from '../../utils/firebase';
+import * as utils from '../../utils';
 // Internal functions
 import { getNextPhase } from './index';
 
@@ -10,7 +10,7 @@ import { getNextPhase } from './index';
  * @param collectionName
  * @param gameId
  * @param playerId
- * @param vote
+ * @param orientation
  * @returns
  */
 export const handleSubmitOrientation = async (
@@ -19,7 +19,7 @@ export const handleSubmitOrientation = async (
   playerId: PlayerId,
   orientation: string
 ) => {
-  return await firebaseUtils.updateStore({
+  return await utils.firebase.updateStore({
     collectionName,
     gameId,
     playerId,
@@ -33,7 +33,7 @@ export const handleSubmitOrientation = async (
  * @param collectionName
  * @param gameId
  * @param playerId
- * @param vote
+ * @param sketch
  * @returns
  */
 export const handleSubmitSketch = async (
@@ -42,7 +42,7 @@ export const handleSubmitSketch = async (
   playerId: PlayerId,
   sketch: string
 ) => {
-  return await firebaseUtils.updatePlayer({
+  return await utils.firebase.updatePlayer({
     collectionName,
     gameId,
     playerId,
@@ -67,7 +67,7 @@ export const handleSubmitVote = async (
   playerId: PlayerId,
   vote: PlayerId
 ) => {
-  return await firebaseUtils.updatePlayer({
+  return await utils.firebase.updatePlayer({
     collectionName,
     gameId,
     playerId,

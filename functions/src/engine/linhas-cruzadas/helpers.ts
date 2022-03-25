@@ -4,8 +4,7 @@ import { GameOrder, Players, Round } from '../../utils/types';
 // Constants
 import { LINHAS_CRUZADAS_PHASES } from './constants';
 // Utils
-import * as utils from '../../utils/helpers';
-import * as gameUtils from '../../utils/game-utils';
+import * as utils from '../../utils';
 
 /**
  * Determine the next phase based on the current one
@@ -49,12 +48,12 @@ export const dealPromptOptions = (
   wordsDeck: WordCard[],
   options: LinhasCruzadasOptions
 ) => {
-  const playerCount = utils.getPlayerCount(players);
+  const playerCount = utils.players.getPlayerCount(players);
 
   if (options.singleWordOnly) {
     const dealCardEveryNTimes = Math.floor(wordsDeck.length / playerCount);
     Object.values(players).forEach((player, index) => {
-      player.prompts = gameUtils.shuffle(
+      player.prompts = utils.game.shuffle(
         Array(dealCardEveryNTimes)
           .fill(0)
           .map((e, i) => wordsDeck[e + index + i * playerCount])
@@ -64,7 +63,7 @@ export const dealPromptOptions = (
     // On an even distribution all players get the same amount of expressions and single word cards
     const deck = options.evenDistribution
       ? [...expressionDeck, ...wordsDeck]
-      : gameUtils.shuffle([...expressionDeck, ...wordsDeck]);
+      : utils.game.shuffle([...expressionDeck, ...wordsDeck]);
     const dealCardEveryNTimes = Math.floor(deck.length / playerCount);
     Object.values(players).forEach((player, index) => {
       player.prompts = Array(dealCardEveryNTimes)
@@ -128,7 +127,7 @@ export const assignSlideToPlayers = (
     if (isFirstSlide && gameOrder.length % 2 === 0) {
       currentAlbumSlides = album[albumEntryId].slides;
     } else {
-      albumEntryId = utils.getNextPlayer(gameOrder, player.currentPrompt?.id ?? player.id);
+      albumEntryId = utils.players.getNextPlayer(gameOrder, player.currentPrompt?.id ?? player.id);
       currentAlbumSlides = album[albumEntryId].slides;
     }
     const newSlide = currentAlbumSlides[currentAlbumSlides.length - 1];

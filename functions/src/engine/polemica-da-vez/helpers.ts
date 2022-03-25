@@ -11,8 +11,7 @@ import { DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
 import { PlainObject, Players, Round } from '../../utils/types';
 import { Decks, PolemicaDaVezOptions } from './types';
 // Utils
-import * as gameUtils from '../../utils/game-utils';
-import * as utils from '../../utils/helpers';
+import * as utils from '../../utils';
 
 /**
  * Determine the next phase based on the current one
@@ -69,8 +68,8 @@ export const buildDeck = (allTopics): Decks => {
   );
 
   return {
-    deck: gameUtils.getRandomItems(deck, MAX_ROUNDS * TOPICS_PER_ROUND),
-    customDeck: gameUtils.getRandomItems(customDeck, MAX_ROUNDS * CUSTOM_TOPICS_PER_ROUND),
+    deck: utils.game.getRandomItems(deck, MAX_ROUNDS * TOPICS_PER_ROUND),
+    customDeck: utils.game.getRandomItems(customDeck, MAX_ROUNDS * CUSTOM_TOPICS_PER_ROUND),
   };
 };
 
@@ -119,7 +118,7 @@ export const determineGameOver = (players: Players, options: PolemicaDaVezOption
     return Object.values(players).some((player) => player.score >= SCORE_GOAL);
   }
 
-  const playerCount = utils.getPlayerCount(players);
+  const playerCount = utils.players.getPlayerCount(players);
   if (playerCount < DOUBLE_ROUNDS_THRESHOLD) {
     return round.current >= playerCount * 2;
   }

@@ -5,8 +5,7 @@ import { NA_RUA_DO_MEDO_PHASES, PLAYER_COUNTS, MAX_ROUNDS } from './constants';
 import { GameId, GameName, Language, Players } from '../../utils/types';
 import { NoRuaDoMedoInitialState, NoRuaDoMedoOptions, NaRuaDoMedoSubmitAction } from './types';
 // Utilities
-import * as firebaseUtils from '../../utils/firebase';
-import * as utils from '../../utils/helpers';
+import * as utils from '../../utils';
 // Internal Functions
 import { determineOutcome, determineNextPhase } from './helpers';
 import {
@@ -31,7 +30,7 @@ export const getInitialState = (
   language: Language,
   options: NoRuaDoMedoOptions
 ): NoRuaDoMedoInitialState => {
-  return utils.getDefaultInitialState({
+  return utils.helpers.getDefaultInitialState({
     gameId,
     gameName: GAME_COLLECTIONS.NA_RUA_DO_MEDO,
     uid,
@@ -66,7 +65,7 @@ export const getNextPhase = async (
   gameId: GameId,
   players: Players
 ): Promise<boolean> => {
-  const { sessionRef, state, store } = await firebaseUtils.getStateAndStoreReferences(
+  const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences(
     collectionName,
     gameId,
     'prepare next phase'
@@ -80,10 +79,10 @@ export const getNextPhase = async (
   // RULES -> SETUP
   if (nextPhase === NA_RUA_DO_MEDO_PHASES.SETUP) {
     // Enter setup phase before doing anything
-    await firebaseUtils.triggerSetupPhase(sessionRef);
+    await utils.firebase.triggerSetupPhase(sessionRef);
 
     const newPhase = await prepareSetupPhase(store, state, players);
-    await firebaseUtils.saveGame(sessionRef, newPhase);
+    await utils.firebase.saveGame(sessionRef, newPhase);
 
     return getNextPhase(collectionName, gameId, newPhase.update?.players ?? {});
   }
@@ -91,25 +90,25 @@ export const getNextPhase = async (
   // * -> TRICK_OR_TREAT
   if (nextPhase === NA_RUA_DO_MEDO_PHASES.TRICK_OR_TREAT) {
     const newPhase = await prepareTrickOrTreatPhase(store, state, players, outcome);
-    return firebaseUtils.saveGame(sessionRef, newPhase);
+    return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   // TRICK_OR_TREAT -> RESULT
   if (nextPhase === NA_RUA_DO_MEDO_PHASES.RESULT) {
     const newPhase = await prepareResultPhase(store, state, players);
-    return firebaseUtils.saveGame(sessionRef, newPhase);
+    return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   // TRICK_OR_TREAT -> STREET_END
   if (nextPhase === NA_RUA_DO_MEDO_PHASES.STREET_END) {
     const newPhase = await prepareStreetEndPhase(store, state, players, outcome);
-    return firebaseUtils.saveGame(sessionRef, newPhase);
+    return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   // STREET_END -> GAME_OVER
   if (nextPhase === NA_RUA_DO_MEDO_PHASES.GAME_OVER) {
     const newPhase = await prepareGameOverPhase(store, state, players);
-    return firebaseUtils.saveGame(sessionRef, newPhase);
+    return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   return true;
@@ -123,13 +122,13 @@ export const getNextPhase = async (
 export const submitAction = async (data: NaRuaDoMedoSubmitAction) => {
   const { gameId, gameName: collectionName, playerId, action } = data;
 
-  firebaseUtils.validateSubmitActionPayload(gameId, collectionName, playerId, action);
+  utils.firebase.validateSubmitActionPayload(gameId, collectionName, playerId, action);
 
   switch (action) {
     case 'SUBMIT_DECISION':
-      firebaseUtils.validateSubmitActionProperties(data, ['decision'], 'submit decision');
+      utils.firebase.validateSubmitActionProperties(data, ['decision'], 'submit decision');
       return handleSubmitDecision(collectionName, gameId, playerId, data.decision);
     default:
-      firebaseUtils.throwException(`Given action ${action} is not allowed`);
+      utils.firebase.throwException(`Given action ${action} is not allowed`);
   }
 };

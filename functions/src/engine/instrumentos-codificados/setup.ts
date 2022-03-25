@@ -10,9 +10,7 @@ import {
   TOTAL_ROUNDS,
 } from './constants';
 // Utils
-import * as gameUtils from '../../utils/game-utils';
-import * as imageCardsUtils from '../../utils/image-cards';
-import * as utils from '../../utils/helpers';
+import * as utils from '../../utils';
 // Internal
 import { buildCode, buildCodeFragment, buildTable } from './helpers';
 
@@ -29,12 +27,12 @@ export const prepareSetupPhase = async (
   cards: PlainObject
 ): Promise<SaveGamePayload> => {
   // Get 5 (4 regular rounds + 1 order round) themes
-  const themes = gameUtils.getRandomItems(Object.values(cards), TOTAL_ROUNDS);
+  const themes = utils.game.getRandomItems(Object.values(cards), TOTAL_ROUNDS);
 
   // Build final code
   const playerCount = Object.keys(players).length;
 
-  const passCodeOrders = gameUtils.shuffle(DIGITS);
+  const passCodeOrders = utils.game.shuffle(DIGITS);
 
   // Get each player's password fragment, add instrument
   Object.values(players).forEach((player, index) => {
@@ -45,7 +43,7 @@ export const prepareSetupPhase = async (
 
   const code = buildCode(players, playerCount);
 
-  const allCards = await imageCardsUtils.getImageCards(TOTAL_IMAGE_CARDS);
+  const allCards = await utils.imageCards.getImageCards(TOTAL_IMAGE_CARDS);
   const table = buildTable(allCards);
 
   // Save
@@ -71,7 +69,7 @@ export const prepareHintGivingPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.unReadyPlayers(players);
+  utils.players.unReadyPlayers(players);
 
   const theme = store.themes[state.round.current];
 
@@ -80,7 +78,7 @@ export const prepareHintGivingPhase = async (
     update: {
       state: {
         phase: INSTRUMENTOS_CODIFICADOS_PHASES.HINT_GIVING,
-        round: utils.increaseRound(state?.round, TOTAL_ROUNDS),
+        round: utils.helpers.increaseRound(state?.round, TOTAL_ROUNDS),
         theme,
       },
       players,
@@ -94,7 +92,7 @@ export const prepareHintReceivingPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.unReadyPlayers(players);
+  utils.players.unReadyPlayers(players);
 
   // Save
   return {
@@ -113,7 +111,7 @@ export const prepareGuessTheCodePhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.unReadyPlayers(players);
+  utils.players.unReadyPlayers(players);
 
   // Save
   return {
@@ -132,7 +130,7 @@ export const prepareSolutionPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.unReadyPlayers(players);
+  utils.players.unReadyPlayers(players);
 
   // Save
   return {
@@ -150,7 +148,7 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
-  const winners = utils.determineWinners(players);
+  const winners = utils.players.determineWinners(players);
 
   return {
     update: {

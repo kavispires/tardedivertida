@@ -5,7 +5,7 @@ import { Results, Table } from './types';
 import { SEPARATOR } from '../../utils/constants';
 import { SONHOS_PESADELOS_PHASES, TOTAL_ROUNDS } from './constants';
 // Helpers
-import * as gameUtils from '../../utils/game-utils';
+import * as utils from '../../utils';
 
 /**
  * Determine the next phase based on the current one
@@ -72,7 +72,7 @@ export const buildTable = (images: string[], quantity: number): Table => {
  * @param dreamsCount
  */
 export const determineDreams = (players: Players, table: Table, dreamsCount: number) => {
-  const shuffledTableIndexes = gameUtils.shuffle(
+  const shuffledTableIndexes = utils.game.shuffle(
     Array(table.length)
       .fill(0)
       .map((e, i) => e + i)
@@ -107,7 +107,7 @@ export const determineNightmares = (players: Players, table: Table, nightmareCou
   const cardIds = Object.keys(cardIndexDict);
 
   Object.values(players).forEach((player) => {
-    const filteredNightmares = gameUtils.shuffle(
+    const filteredNightmares = utils.game.shuffle(
       cardIds.filter((cardId) => !Object.keys(player.dreams).includes(cardId))
     );
 
@@ -135,7 +135,7 @@ export const gatherClues = (players: Players): PlainObject[] => {
     return acc;
   }, []);
 
-  return gameUtils.shuffle(clues);
+  return utils.game.shuffle(clues);
 };
 
 const parseVote = (voteId: string): string => voteId.split(SEPARATOR)[1];

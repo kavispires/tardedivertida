@@ -1,7 +1,7 @@
 // Types
 import { GameId, PlayerId, GameName } from '../../utils/types';
 // Utils
-import * as firebaseUtils from '../../utils/firebase';
+import * as utils from '../../utils';
 // Internal
 import { getNextPhase } from '.';
 
@@ -19,7 +19,7 @@ export const handleSubmitCategory = async (
   playerId: PlayerId,
   categoryId: string
 ) => {
-  return await firebaseUtils.updateState({
+  return await utils.firebase.updateState({
     collectionName,
     gameId,
     playerId,
@@ -45,7 +45,7 @@ export const handleSubmitClue = async (
   playerId: PlayerId,
   clue: string
 ) => {
-  return await firebaseUtils.updateStore({
+  return await utils.firebase.updateStore({
     collectionName,
     gameId,
     playerId,
@@ -71,7 +71,7 @@ export const handleSubmitGuess = async (
   playerId: PlayerId,
   guess: number | boolean
 ) => {
-  return await firebaseUtils.updatePlayer({
+  return await utils.firebase.updatePlayer({
     collectionName,
     gameId,
     playerId,
