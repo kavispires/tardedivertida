@@ -1,6 +1,6 @@
 import 'jest';
 import * as helpers from '../../../src/engine/testemunha-ocular/helpers';
-import { generatePlayerId } from '../../../src/utils/helpers';
+import { generatePlayerId } from '../../../src/utils/players-utils';
 
 const mockPlayer = ({ name, ready = true, score = 0, additionalInfo }) => ({
   id: generatePlayerId(name),

@@ -4,7 +4,7 @@ import { RETRATO_FALADO_PHASES } from './constants';
 import { Player, PlayerId, Players, RankingEntry, Round } from '../../utils/types';
 import { AllMonsters, MonsterCard, MonsterSketch } from './types';
 // Helpers
-import * as gameUtils from '../../utils/game-utils';
+import * as utils from '../../utils';
 import { buildNewScoreObject } from '../../utils/helpers';
 
 /**
@@ -46,7 +46,7 @@ export const determineNextPhase = (
  */
 export const buildDeck = (allMonsters: AllMonsters, usedCardsIds: string[], playerCount: number) => {
   const availableCards = Object.values(allMonsters).filter((entry) => !usedCardsIds.includes(entry.id));
-  return gameUtils.getRandomItems(availableCards, playerCount);
+  return utils.game.getRandomItems(availableCards, playerCount);
 };
 
 /**
@@ -72,7 +72,7 @@ export const gatherSketches = (
     return acc;
   }, []);
 
-  return gameUtils.shuffle(gathering);
+  return utils.game.shuffle(gathering);
 };
 
 /**

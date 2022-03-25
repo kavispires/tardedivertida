@@ -5,8 +5,7 @@ import { DETETIVES_IMAGINATIVOS_PHASES, PLAYER_COUNTS } from './constants';
 import { GameId, Language, Players } from '../../utils/types';
 import { DetetivesImaginativosInitialState, DetetivesImaginativosSubmitAction } from './types';
 // Utils
-import * as firebaseUtils from '../../utils/firebase';
-import * as utils from '../../utils/helpers';
+import * as utils from '../../utils';
 import {
   prepareCardPlayPhase,
   prepareDefensePhase,
@@ -31,7 +30,7 @@ export const getInitialState = (
   uid: string,
   language: Language
 ): DetetivesImaginativosInitialState => {
-  return utils.getDefaultInitialState({
+  return utils.helpers.getDefaultInitialState({
     gameId,
     gameName: GAME_COLLECTIONS.DETETIVES_IMAGINATIVOS,
     uid,
@@ -61,7 +60,7 @@ export const getNextPhase = async (
   const actionText = 'prepare next phase';
 
   // Gather docs and references
-  const { sessionRef, state, store } = await firebaseUtils.getStateAndStoreReferences(
+  const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences(
     collectionName,
     gameId,
     actionText
@@ -73,10 +72,10 @@ export const getNextPhase = async (
   // RULES -> SETUP
   if (nextPhase === DETETIVES_IMAGINATIVOS_PHASES.SETUP) {
     // Enter setup phase before doing anything
-    await firebaseUtils.triggerSetupPhase(sessionRef);
+    await utils.firebase.triggerSetupPhase(sessionRef);
 
     const newPhase = await prepareSetupPhase(store, state, players);
-    await firebaseUtils.saveGame(sessionRef, newPhase);
+    await utils.firebase.saveGame(sessionRef, newPhase);
 
     return getNextPhase(collectionName, gameId, newPhase.update?.players ?? {});
   }
@@ -84,37 +83,37 @@ export const getNextPhase = async (
   // * -> SECRET_CLUE
   if (nextPhase === DETETIVES_IMAGINATIVOS_PHASES.SECRET_CLUE) {
     const newPhase = await prepareSecretCluePhase(store, state, players);
-    return firebaseUtils.saveGame(sessionRef, newPhase);
+    return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   // SECRET_CLUE -> CARD_PLAY
   if (nextPhase === DETETIVES_IMAGINATIVOS_PHASES.CARD_PLAY) {
     const newPhase = await prepareCardPlayPhase(store, state, players);
-    return firebaseUtils.saveGame(sessionRef, newPhase);
+    return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   // CARD_PLAY -> DEFENSE
   if (nextPhase === DETETIVES_IMAGINATIVOS_PHASES.DEFENSE) {
     const newPhase = await prepareDefensePhase(store, state, players);
-    return firebaseUtils.saveGame(sessionRef, newPhase);
+    return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   // DEFENSE -> VOTING
   if (nextPhase === DETETIVES_IMAGINATIVOS_PHASES.VOTING) {
     const newPhase = await prepareVotingPhase(store, state, players);
-    return firebaseUtils.saveGame(sessionRef, newPhase);
+    return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   // VOTING -> REVEAL
   if (nextPhase === DETETIVES_IMAGINATIVOS_PHASES.REVEAL) {
     const newPhase = await prepareRevealPhase(store, state, players);
-    return firebaseUtils.saveGame(sessionRef, newPhase);
+    return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   // REVEAL --> GAME_OVER
   if (nextPhase === DETETIVES_IMAGINATIVOS_PHASES.GAME_OVER) {
     const newPhase = await prepareGameOverPhase(store, state, players);
-    return firebaseUtils.saveGame(sessionRef, newPhase);
+    return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   return true;
@@ -128,21 +127,21 @@ export const getNextPhase = async (
 export const submitAction = async (data: DetetivesImaginativosSubmitAction) => {
   const { gameId, gameName: collectionName, playerId, action } = data;
 
-  firebaseUtils.validateSubmitActionPayload(gameId, collectionName, playerId, action);
+  utils.firebase.validateSubmitActionPayload(gameId, collectionName, playerId, action);
 
   switch (action) {
     case 'SUBMIT_CLUE':
-      firebaseUtils.validateSubmitActionProperties(data, ['clue'], 'submit clue');
+      utils.firebase.validateSubmitActionProperties(data, ['clue'], 'submit clue');
       return handleSubmitClue(collectionName, gameId, playerId, data.clue);
     case 'PLAY_CARD':
-      firebaseUtils.validateSubmitActionProperties(data, ['cardId'], 'play card');
+      utils.firebase.validateSubmitActionProperties(data, ['cardId'], 'play card');
       return handlePlayCard(collectionName, gameId, playerId, data.cardId);
     case 'DEFEND':
       return handleDefend(collectionName, gameId, playerId);
     case 'SUBMIT_VOTE':
-      firebaseUtils.validateSubmitActionProperties(data, ['vote'], 'submit vote');
+      utils.firebase.validateSubmitActionProperties(data, ['vote'], 'submit vote');
       return handleSubmitVote(collectionName, gameId, playerId, data.vote);
     default:
-      firebaseUtils.throwException(`Given action ${action} is not allowed`);
+      utils.firebase.throwException(`Given action ${action} is not allowed`);
   }
 };

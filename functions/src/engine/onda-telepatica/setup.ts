@@ -5,9 +5,7 @@ import { DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
 import { CategoryCard, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 import { Players, SaveGamePayload } from '../../utils/types';
 // Utils
-import * as firebaseUtils from '../../utils/firebase';
-import * as gameUtils from '../../utils/game-utils';
-import * as utils from '../../utils/helpers';
+import * as utils from '../../utils';
 // Internal
 import { buildDeck, buildRanking } from './helpers';
 
@@ -24,7 +22,7 @@ export const prepareSetupPhase = async (
   additionalData: ResourceData
 ): Promise<SaveGamePayload> => {
   // Determine turn order
-  const { gameOrder, playerIds } = utils.buildGameOrder(
+  const { gameOrder, playerIds } = utils.helpers.buildGameOrder(
     players,
     store.options.fixedRounds ? DOUBLE_ROUNDS_THRESHOLD : undefined
   );
@@ -59,9 +57,9 @@ export const prepareDialCluePhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Determine active player based on current round
-  const psychicId = utils.getActivePlayer(store.gameOrder, state.round.current + 1);
+  const psychicId = utils.players.getActivePlayer(store.gameOrder, state.round.current + 1);
 
-  utils.readyPlayers(players, psychicId);
+  utils.players.readyPlayers(players, psychicId);
 
   // Get categories
   const currentCategories = Array(CATEGORIES_PER_ROUND)
@@ -76,10 +74,10 @@ export const prepareDialCluePhase = async (
       },
       state: {
         phase: ONDA_TELEPATICA_PHASES.DIAL_CLUE,
-        round: utils.increaseRound(state.round),
+        round: utils.helpers.increaseRound(state.round),
         psychicId,
         currentCategories,
-        target: gameUtils.getRandomNumber(-10, 10),
+        target: utils.game.getRandomNumber(-10, 10),
       },
       players,
     },
@@ -92,10 +90,10 @@ export const prepareGuessPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.unReadyPlayers(players);
+  utils.players.unReadyPlayers(players);
 
   // Modify player
-  utils.addPropertiesToPlayers(players, {
+  utils.players.addPropertiesToPlayers(players, {
     needle: 0,
   });
 
@@ -118,9 +116,9 @@ export const prepareGuessPhase = async (
       state: {
         phase: ONDA_TELEPATICA_PHASES.GUESS,
         currentCategory,
-        currentCategories: firebaseUtils.deleteValue(),
-        currentCategoryId: firebaseUtils.deleteValue(),
-        target: firebaseUtils.deleteValue(),
+        currentCategories: utils.firebase.deleteValue(),
+        currentCategoryId: utils.firebase.deleteValue(),
+        target: utils.firebase.deleteValue(),
       },
       players,
     },
@@ -152,7 +150,7 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
-  const winners = utils.determineWinners(players);
+  const winners = utils.players.determineWinners(players);
 
   return {
     update: {

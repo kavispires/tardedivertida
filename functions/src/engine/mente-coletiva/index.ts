@@ -5,8 +5,7 @@ import { MENTE_COLETIVA_PHASES, MAX_ROUNDS, PLAYER_COUNTS } from './constants';
 import { GameId, Language, Players } from '../../utils/types';
 import { MenteColetivaInitialState, MenteColetivaOptions, MenteColetivaSubmitAction } from './types';
 // Utilities
-import * as firebaseUtils from '../../utils/firebase';
-import * as utils from '../../utils/helpers';
+import * as utils from '../../utils';
 // Internal Functions
 import { determineNextPhase, determineGameOver } from './helpers';
 import {
@@ -33,7 +32,7 @@ export const getInitialState = (
   language: Language,
   options: MenteColetivaOptions
 ): MenteColetivaInitialState => {
-  return utils.getDefaultInitialState({
+  return utils.helpers.getDefaultInitialState({
     gameId,
     gameName: GAME_COLLECTIONS.MENTE_COLETIVA,
     uid,
@@ -64,9 +63,9 @@ export const getNextPhase = async (
   const actionText = 'prepare next phase';
 
   // Gather docs and references
-  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
-  const stateDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'state', actionText);
-  const storeDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'store', actionText);
+  const sessionRef = utils.firebase.getSessionRef(collectionName, gameId);
+  const stateDoc = await utils.firebase.getSessionDoc(collectionName, gameId, 'state', actionText);
+  const storeDoc = await utils.firebase.getSessionDoc(collectionName, gameId, 'store', actionText);
 
   const state = stateDoc.data() ?? {};
   const store = { ...(storeDoc.data() ?? {}) };
@@ -79,12 +78,12 @@ export const getNextPhase = async (
   // RULES -> SETUP
   if (nextPhase === MENTE_COLETIVA_PHASES.SETUP) {
     // Enter setup phase before doing anything
-    await firebaseUtils.triggerSetupPhase(sessionRef);
+    await utils.firebase.triggerSetupPhase(sessionRef);
 
     // Request data
     const additionalData = await getQuestions(store.language);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
-    await firebaseUtils.saveGame(sessionRef, newPhase);
+    await utils.firebase.saveGame(sessionRef, newPhase);
 
     return getNextPhase(collectionName, gameId, players);
   }
@@ -92,25 +91,25 @@ export const getNextPhase = async (
   // SETUP/* -> QUESTION_SELECTION
   if (nextPhase === MENTE_COLETIVA_PHASES.QUESTION_SELECTION) {
     const newPhase = await prepareQuestionSelectionPhase(store, state, players);
-    return firebaseUtils.saveGame(sessionRef, newPhase);
+    return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   // QUESTION_SELECTION -> EVERYBODY_WRITES
   if (nextPhase === MENTE_COLETIVA_PHASES.EVERYBODY_WRITES) {
     const newPhase = await prepareEverybodyWritesPhase(store, state, players);
-    return firebaseUtils.saveGame(sessionRef, newPhase);
+    return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   // EVERYBODY_WRITES -> COMPARE
   if (nextPhase === MENTE_COLETIVA_PHASES.COMPARE) {
     const newPhase = await prepareComparePhase(store, state, players);
-    return firebaseUtils.saveGame(sessionRef, newPhase);
+    return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   // COMPARE -> RESOLUTION
   if (nextPhase === MENTE_COLETIVA_PHASES.RESOLUTION) {
     const newPhase = await prepareResolutionPhase(store, state, players);
-    return firebaseUtils.saveGame(sessionRef, newPhase);
+    return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   // GUESS -> GAME_OVER
@@ -120,7 +119,7 @@ export const getNextPhase = async (
     // Save usedMenteColetivaQuestions to global
     await saveUsedQuestions(store.pastQuestions);
 
-    return firebaseUtils.saveGame(sessionRef, newPhase);
+    return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   return true;
@@ -133,22 +132,22 @@ export const getNextPhase = async (
 export const submitAction = async (data: MenteColetivaSubmitAction) => {
   const { gameId, gameName: collectionName, playerId, action } = data;
 
-  firebaseUtils.validateSubmitActionPayload(gameId, collectionName, playerId, action);
+  utils.firebase.validateSubmitActionPayload(gameId, collectionName, playerId, action);
 
   switch (action) {
     case 'SUBMIT_QUESTION':
-      firebaseUtils.validateSubmitActionProperties(data, ['questionId'], 'submit question');
+      utils.firebase.validateSubmitActionProperties(data, ['questionId'], 'submit question');
       return handleSubmitQuestion(collectionName, gameId, playerId, data.questionId);
     case 'SUBMIT_ANSWERS':
-      firebaseUtils.validateSubmitActionProperties(data, ['answers'], 'submit answers');
+      utils.firebase.validateSubmitActionProperties(data, ['answers'], 'submit answers');
       return handleSubmitAnswers(collectionName, gameId, playerId, data.answers);
     case 'NEXT_ANSWERS':
-      firebaseUtils.validateSubmitActionProperties(data, ['allowedList'], 'advance answers');
+      utils.firebase.validateSubmitActionProperties(data, ['allowedList'], 'advance answers');
       return handleNextAnswers(collectionName, gameId, playerId, data.allowedList);
     case 'ADD_ANSWER':
-      firebaseUtils.validateSubmitActionProperties(data, ['answer'], 'add answer');
+      utils.firebase.validateSubmitActionProperties(data, ['answer'], 'add answer');
       return handleAddAnswer(collectionName, gameId, playerId, data.answer);
     default:
-      firebaseUtils.throwException(`Given action ${action} is not allowed`);
+      utils.firebase.throwException(`Given action ${action} is not allowed`);
   }
 };

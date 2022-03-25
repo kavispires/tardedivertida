@@ -20,8 +20,7 @@ import {
   WrongGroups,
 } from './types';
 // Utils
-// import * as utils from '../../utils/helpers';
-import * as gameUtils from '../../utils/game-utils';
+import * as utils from '../../utils';
 
 /**
  * Determine the next phase based on the current one
@@ -88,7 +87,7 @@ export const parseTiles = (sceneTiles: SceneTile[]): ParsedTiles => {
     }
   );
 
-  result.sceneTiles = gameUtils.getRandomItems(result.sceneTiles, SCENE_TILES_COUNT);
+  result.sceneTiles = utils.game.getRandomItems(result.sceneTiles, SCENE_TILES_COUNT);
 
   return result;
 };
@@ -102,9 +101,9 @@ type GroupItems = {
 
 export const groupItems = (weapons: CrimesHediondosCard[], evidence: CrimesHediondosCard[]): GroupItems => {
   // Divide weapons into 4 groups
-  const groupedWeapons = gameUtils.sliceIntoChunks(weapons, ITEMS_PER_GROUP);
+  const groupedWeapons = utils.game.sliceIntoChunks(weapons, ITEMS_PER_GROUP);
   // Add evidence into each weapon group
-  const groupedEvidence = gameUtils.sliceIntoChunks(evidence, ITEMS_PER_GROUP);
+  const groupedEvidence = utils.game.sliceIntoChunks(evidence, ITEMS_PER_GROUP);
   const groupedItems = {};
   groupedEvidence.forEach((evidenceGroup, index) => {
     groupedItems[`${index}`] = [...groupedWeapons[index].map((i) => i.id), ...evidenceGroup.map((i) => i.id)];
@@ -207,7 +206,7 @@ export const updateOrCreateGuessHistory = (
         const guess = player.guesses[crime.playerId];
 
         // Lock a crime if it was previously correct
-        const lastGuess = gameUtils.getLastItem(history[crime.playerId]);
+        const lastGuess = utils.game.getLastItem(history[crime.playerId]);
         if (lastGuess && [GUESS_STATUS.CORRECT, GUESS_STATUS.LOCKED].includes(lastGuess.status)) {
           history[crime.playerId].push({
             weaponId: lastGuess.weaponId,
@@ -316,7 +315,7 @@ export const buildRanking = (players: Players, currentRound: number): BuiltRanki
       const history: GuessHistory = player.history;
       Object.entries(history).forEach((entry: HistoryEntry) => {
         const criminalId = entry[0];
-        const lastGuess = gameUtils.getLastItem(entry[1]);
+        const lastGuess = utils.game.getLastItem(entry[1]);
 
         switch (lastGuess.status) {
           case GUESS_STATUS.CORRECT:

@@ -3,7 +3,7 @@ import { ImageCard, Players } from '../../utils/types';
 // Constantes
 import { DIGITS, INSTRUMENTOS_CODIFICADOS_PHASES, TOTAL_ROUNDS } from './constants';
 // Helpers
-import * as gameUtils from '../../utils/game-utils';
+import * as utils from '../../utils';
 
 /**
  * Determine the next phase based on the current one
@@ -38,7 +38,7 @@ export const determineNextPhase = (
 };
 
 export const buildCodeFragment = () => {
-  return gameUtils.getRandomItems(DIGITS, 3).map((n) => `${n}`);
+  return utils.game.getRandomItems(DIGITS, 3).map((n) => `${n}`);
 };
 
 export const buildCode = (players: Players, playerCount: number): string[] => {

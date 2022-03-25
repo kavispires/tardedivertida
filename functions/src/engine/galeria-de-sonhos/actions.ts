@@ -1,11 +1,10 @@
 // Types
 import { GameId, PlayerId, GameName, PlainObject, Player } from '../../utils/types';
+import { ImageCard } from './types';
 // Helpers
-import * as firebaseUtils from '../../utils/firebase';
+import * as utils from '../../utils';
 // Internal functions
 import { getNextPhase } from './index';
-import * as utils from '../../utils/helpers';
-import { ImageCard } from './types';
 
 export const handleSubmitWord = async (
   collectionName: GameName,
@@ -13,7 +12,7 @@ export const handleSubmitWord = async (
   playerId: PlayerId,
   wordId: string
 ) => {
-  return await firebaseUtils.updateStore({
+  return await utils.firebase.updateStore({
     collectionName,
     gameId,
     playerId,
@@ -39,7 +38,7 @@ export const handleSubmitCards = async (
     return acc;
   }, {});
 
-  return await firebaseUtils.updatePlayer({
+  return await utils.firebase.updatePlayer({
     collectionName,
     gameId,
     playerId,
@@ -59,9 +58,9 @@ export const handlePlayCard = async (
   const actionText = 'play a card';
 
   // Get 'players' from given game session
-  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
-  const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
-  const stateDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'state', actionText);
+  const sessionRef = utils.firebase.getSessionRef(collectionName, gameId);
+  const playersDoc = await utils.firebase.getSessionDoc(collectionName, gameId, 'players', actionText);
+  const stateDoc = await utils.firebase.getSessionDoc(collectionName, gameId, 'state', actionText);
   const players = playersDoc.data() ?? {};
   const state = stateDoc.data() ?? {};
 
@@ -136,7 +135,7 @@ export const handlePlayCard = async (
     return !players[pId].fallen;
   });
 
-  const nextActivePlayerId = utils.getNextPlayer(availableTurnOrder, state.activePlayerId);
+  const nextActivePlayerId = utils.players.getNextPlayer(availableTurnOrder, state.activePlayerId);
   players[playerId].ready = true;
   players[nextActivePlayerId].ready = true;
 
@@ -144,7 +143,7 @@ export const handlePlayCard = async (
   try {
     await sessionRef.doc('players').update(players);
   } catch (error) {
-    firebaseUtils.throwException(error, 'Failed to update players');
+    utils.firebase.throwException(error, 'Failed to update players');
   }
 
   // Shame falling
@@ -153,7 +152,7 @@ export const handlePlayCard = async (
     shameFalling.shameFallenPlayerId = playerId;
   }
 
-  return await firebaseUtils.updateState({
+  return await utils.firebase.updateState({
     collectionName,
     gameId,
     playerId,

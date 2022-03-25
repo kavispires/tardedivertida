@@ -13,7 +13,7 @@ import {
   UpdateStoreArgs,
 } from './types';
 // Utils
-import * as utils from '../utils/helpers';
+import * as utils from '../utils';
 
 export const config = functions.config;
 
@@ -287,7 +287,7 @@ export const updatePlayer = async ({
     const players = playersDoc.data() ?? {};
 
     // If all players are ready, trigger next phase
-    if (utils.isEverybodyReady(players)) {
+    if (utils.players.isEverybodyReady(players)) {
       return nextPhaseFunction(collectionName, gameId, players);
     }
   }

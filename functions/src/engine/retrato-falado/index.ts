@@ -5,8 +5,7 @@ import { MAX_ROUNDS, PLAYER_COUNTS, RETRATO_FALADO_PHASES } from './constants';
 import { GameId, GameName, Language, Players } from '../../utils/types';
 import { RetratoFaladoInitialState, RetratoFaladoSubmitAction } from './types';
 // Utilities
-import * as firebaseUtils from '../../utils/firebase';
-import * as utils from '../../utils/helpers';
+import * as utils from '../../utils';
 // Internal Functions
 import { determineNextPhase } from './helpers';
 import {
@@ -31,7 +30,7 @@ export const getInitialState = (
   uid: string,
   language: Language
 ): RetratoFaladoInitialState => {
-  return utils.getDefaultInitialState({
+  return utils.helpers.getDefaultInitialState({
     gameId,
     gameName: GAME_COLLECTIONS.RETRATO_FALADO,
     uid,
@@ -64,7 +63,7 @@ export const getNextPhase = async (
   gameId: GameId,
   players: Players
 ): Promise<boolean> => {
-  const { sessionRef, state, store } = await firebaseUtils.getStateAndStoreReferences(
+  const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences(
     collectionName,
     gameId,
     'prepare next phase'
@@ -76,38 +75,38 @@ export const getNextPhase = async (
   // RULES -> SETUP
   if (nextPhase === RETRATO_FALADO_PHASES.SETUP) {
     // Enter setup phase before doing anything
-    await firebaseUtils.triggerSetupPhase(sessionRef);
+    await utils.firebase.triggerSetupPhase(sessionRef);
 
     // Request data
     const additionalData = await getMonsterCards();
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
-    await firebaseUtils.saveGame(sessionRef, newPhase);
+    await utils.firebase.saveGame(sessionRef, newPhase);
     return getNextPhase(collectionName, gameId, players);
   }
 
   // SETUP -> COMPOSITE_SKETCH
   if (nextPhase === RETRATO_FALADO_PHASES.COMPOSITE_SKETCH) {
     const newPhase = await prepareCompositeSketchPhase(store, state, players);
-    return firebaseUtils.saveGame(sessionRef, newPhase);
+    return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   // COMPOSITE_SKETCH -> EVALUATION
   if (nextPhase === RETRATO_FALADO_PHASES.EVALUATION) {
     const newPhase = await prepareEvaluationPhase(store, state, players);
-    return firebaseUtils.saveGame(sessionRef, newPhase);
+    return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   // EVALUATION -> REVEAL
   if (nextPhase === RETRATO_FALADO_PHASES.REVEAL) {
     const newPhase = await prepareRevealPhase(store, state, players);
-    return firebaseUtils.saveGame(sessionRef, newPhase);
+    return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   // REVEAL -> GAME_OVER
   if (nextPhase === RETRATO_FALADO_PHASES.GAME_OVER) {
     const newPhase = await prepareGameOverPhase(store, state, players);
     await saveUsedCards(store.pastSketches);
-    return firebaseUtils.saveGame(sessionRef, newPhase);
+    return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   return true;
@@ -121,19 +120,19 @@ export const getNextPhase = async (
 export const submitAction = async (data: RetratoFaladoSubmitAction) => {
   const { gameId, gameName: collectionName, playerId, action } = data;
 
-  firebaseUtils.validateSubmitActionPayload(gameId, collectionName, playerId, action);
+  utils.firebase.validateSubmitActionPayload(gameId, collectionName, playerId, action);
 
   switch (action) {
     case 'SUBMIT_ORIENTATION':
-      firebaseUtils.validateSubmitActionProperties(data, ['orientation'], 'submit orientation');
+      utils.firebase.validateSubmitActionProperties(data, ['orientation'], 'submit orientation');
       return handleSubmitOrientation(collectionName, gameId, playerId, data.orientation);
     case 'SUBMIT_SKETCH':
-      firebaseUtils.validateSubmitActionProperties(data, ['sketch'], 'submit sketch');
+      utils.firebase.validateSubmitActionProperties(data, ['sketch'], 'submit sketch');
       return handleSubmitSketch(collectionName, gameId, playerId, data.sketch);
     case 'SUBMIT_VOTE':
-      firebaseUtils.validateSubmitActionProperties(data, ['vote'], 'submit vote');
+      utils.firebase.validateSubmitActionProperties(data, ['vote'], 'submit vote');
       return handleSubmitVote(collectionName, gameId, playerId, data.vote);
     default:
-      firebaseUtils.throwException(`Given action ${action} is not allowed`);
+      utils.firebase.throwException(`Given action ${action} is not allowed`);
   }
 };

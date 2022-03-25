@@ -1,7 +1,10 @@
-import * as gameUtils from '../../utils/game-utils';
+// Types
 import { PlayerId, Players } from '../../utils/types';
-import { MAX_ROUNDS, TESTEMUNHA_OCULAR_PHASES } from './constants';
 import { TestemunhaOcularCard, TestemunhaOcularCardsDatabase } from './types';
+// Constants
+import { MAX_ROUNDS, TESTEMUNHA_OCULAR_PHASES } from './constants';
+// Utils
+import * as utils from '../../utils';
 
 /**
  * Determine the next phase based on the current one
@@ -61,7 +64,7 @@ export const filterAvailableCards = (
  */
 export const determineTurnOrder = (players: Players, witnessId: PlayerId): PlayerId[] => {
   const availablePlayers = Object.keys(players).filter((id) => id !== witnessId);
-  return gameUtils.shuffle(availablePlayers);
+  return utils.game.shuffle(availablePlayers);
 };
 
 /**

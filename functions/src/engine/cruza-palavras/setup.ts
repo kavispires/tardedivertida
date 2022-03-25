@@ -4,8 +4,7 @@ import { WORDS_PER_PLAYER_COUNT, CRUZA_PALAVRAS_PHASES } from './constants';
 import { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 import { Players, SaveGamePayload } from '../../utils/types';
 // Utils
-import * as utils from '../../utils/helpers';
-import * as firebaseUtils from '../../utils/firebase';
+import * as utils from '../../utils';
 // Internal
 import {
   buildDeck,
@@ -55,9 +54,9 @@ export const prepareClueWritingPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.unReadyPlayers(players);
+  utils.players.unReadyPlayers(players);
 
-  const round = utils.increaseRound(state.round);
+  const round = utils.helpers.increaseRound(state.round);
   const playerCount = Object.keys(players).length;
   const largerGridCount = store.options.largerGrid ? 1 : 0;
   const coordinateLength = WORDS_PER_PLAYER_COUNT[playerCount] / 2 + store.gridRebuilds + largerGridCount;
@@ -71,12 +70,12 @@ export const prepareClueWritingPhase = async (
 
   // Remove clues before the distribution of coordinates
   if (shouldBuildGrid) {
-    utils.removePropertiesFromPlayers(players, ['clue', 'guesses', 'coordinate']);
+    utils.players.removePropertiesFromPlayers(players, ['clue', 'guesses', 'coordinate']);
   }
 
   const updatedGrid = distributeCoordinates(players, grid);
 
-  utils.removePropertiesFromPlayers(players, ['clue', 'guesses']);
+  utils.players.removePropertiesFromPlayers(players, ['clue', 'guesses']);
 
   // Save
   return {
@@ -89,9 +88,9 @@ export const prepareClueWritingPhase = async (
         phase: CRUZA_PALAVRAS_PHASES.CLUE_WRITING,
         round,
         grid: updatedGrid,
-        clues: firebaseUtils.deleteValue(),
-        ranking: firebaseUtils.deleteValue(),
-        whoGotNoPoints: firebaseUtils.deleteValue(),
+        clues: utils.firebase.deleteValue(),
+        ranking: utils.firebase.deleteValue(),
+        whoGotNoPoints: utils.firebase.deleteValue(),
       },
       players,
     },
@@ -104,7 +103,7 @@ export const prepareGuessingPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.unReadyPlayers(players);
+  utils.players.unReadyPlayers(players);
 
   const clues = getPlayerClues(players);
   const playersClues = clues.map((entry) => entry.clue);
@@ -151,7 +150,7 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
-  const winners = utils.determineWinners(players);
+  const winners = utils.players.determineWinners(players);
 
   return {
     update: {

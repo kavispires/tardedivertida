@@ -1,7 +1,7 @@
 // Types
 import { GameName, GameId } from '../../utils/types';
 // Utils
-import * as firebaseUtils from '../../utils/firebase';
+import * as utils from '../../utils';
 import { getNextPhase } from './index';
 import { SUSPECT_COUNT } from './constants';
 
@@ -22,11 +22,11 @@ export const handleExtraAction = async (
 ) => {
   // Save card to store
   try {
-    const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
+    const playersDoc = await utils.firebase.getSessionDoc(collectionName, gameId, 'players', actionText);
     const players = playersDoc.data() ?? {};
     return getNextPhase(collectionName, gameId, players, additionalPayload);
   } catch (error) {
-    firebaseUtils.throwException(error, `Failed to ${actionText}`);
+    utils.firebase.throwException(error, `Failed to ${actionText}`);
   }
 
   return true;
@@ -48,7 +48,7 @@ export const handleElimination = async (
   additionalPayload: any
 ) => {
   // Get state
-  const stateDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'state', actionText);
+  const stateDoc = await utils.firebase.getSessionDoc(collectionName, gameId, 'state', actionText);
   const state = stateDoc.data() ?? {};
 
   let shouldGoToNextPhase = false;
@@ -67,10 +67,10 @@ export const handleElimination = async (
       shouldGoToNextPhase = true;
       lose = true;
     } else {
-      const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
+      const sessionRef = utils.firebase.getSessionRef(collectionName, gameId);
       const eliminatedSuspects = state?.eliminatedSuspects || [];
       eliminatedSuspects.push(suspectId);
-      await firebaseUtils.saveGame(sessionRef, {
+      await utils.firebase.saveGame(sessionRef, {
         update: {
           state: {
             eliminatedSuspects,
@@ -89,11 +89,11 @@ export const handleElimination = async (
   // In case of a pass or win (found all) or a lose (clicked on perpetrator)
   if (shouldGoToNextPhase) {
     try {
-      const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
+      const playersDoc = await utils.firebase.getSessionDoc(collectionName, gameId, 'players', actionText);
       const players = playersDoc.data() ?? {};
       return getNextPhase(collectionName, gameId, players, { lose, win });
     } catch (error) {
-      firebaseUtils.throwException(error, `Failed to ${actionText}`);
+      utils.firebase.throwException(error, `Failed to ${actionText}`);
     }
   }
 

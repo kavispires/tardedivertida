@@ -1,22 +1,17 @@
-import { AVATAR_IDS, LETTERS } from './constants';
+import { LETTERS } from './constants';
 import {
   BooleanDictionary,
   GameCode,
-  GameOrder,
   InitialState,
   InitialStateArgs,
   NewScores,
   PlainObject,
-  Player,
-  PlayerAvatarId,
   PlayerId,
-  PlayerName,
   Players,
   Round,
   Teams,
-  TurnOrder,
 } from './types';
-import { shuffle, getRandomUniqueItem } from './game-utils';
+import { shuffle } from './game-utils';
 
 /**
  * Generates an unique game id starting with the gameCode character
@@ -109,173 +104,6 @@ export function getDefaultInitialState({
 }
 
 /**
- * Generates a player id based of their name
- * @param playerName
- * @returns
- */
-export function generatePlayerId(playerName: PlayerName): PlayerId {
-  return `_${playerName
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '') // Replace characters with accents
-    .toLowerCase()}`;
-}
-
-/**
- * Creates new player object
- * @param name
- * @param avatarId the player's chosen avatar
- * @param players
- * @returns
- */
-export const createPlayer = (
-  id: PlayerId,
-  name: PlayerName,
-  avatarId: PlayerAvatarId,
-  players: Players = {}
-): Player => {
-  const playerList = Object.values(players);
-  const usedAvatars = playerList.map((player) => player.avatarId);
-  const newAvatarId = usedAvatars.includes(avatarId)
-    ? getRandomUniqueItem(AVATAR_IDS, usedAvatars)
-    : avatarId;
-
-  return {
-    id,
-    name,
-    avatarId: newAvatarId,
-    ready: false,
-    score: 0,
-    updatedAt: Date.now(),
-  };
-};
-
-/**
- * Set given player as ready in the players object
- * @param players
- * @param playerId
- * @returns
- */
-export const readyPlayer = (players: Players, playerId: PlayerId): Players => {
-  players[playerId].ready = true;
-  players[playerId].updatedAt = Date.now();
-  return players;
-};
-
-/**
- * Set all players as ready
- * @param players
- * @param butThisOne
- * @returns
- */
-export const readyPlayers = (players: Players, butThisOne: PlayerId = ''): Players => {
-  for (const playerKey in players) {
-    players[playerKey].ready = playerKey === butThisOne ? false : true;
-  }
-  return players;
-};
-
-/**
- * Set given player as ready in the players object
- * @param players
- * @param playerId
- * @returns
- */
-export const unReadyPlayer = (players: Players, playerId: PlayerId): Players => {
-  players[playerId].ready = false;
-  players[playerId].updatedAt = Date.now();
-  return players;
-};
-
-/**
- * Set all players as not ready
- * @param players
- * @param butThisOne
- * @returns
- */
-export const unReadyPlayers = (players: Players, butThisOne?: PlayerId, butThose?: PlayerId[]): Players => {
-  const excludeList: PlayerId[] = butThisOne ? [butThisOne] : butThose ? butThose : [];
-  for (const playerKey in players) {
-    players[playerKey].ready = excludeList.includes(playerKey);
-  }
-  return players;
-};
-
-/**
- * Set a property in all players
- * @param players
- * @param butThisOne
- * @returns
- */
-export const modifyPlayers = (players: Players, property: string, value: any, butThisOne = ''): Players => {
-  for (const playerKey in players) {
-    if (playerKey !== butThisOne) {
-      players[playerKey][property] = value;
-    }
-  }
-  return players;
-};
-
-/**
- * Set all players as not ready
- * @param players
- * @returns
- */
-export const resetPlayers = (players: Players): Players => {
-  for (const playerId in players) {
-    players[playerId] = {
-      id: playerId,
-      avatarId: players[playerId].avatarId,
-      name: players[playerId].name,
-      ready: false,
-      score: 0,
-      updatedAt: Date.now(),
-    };
-  }
-  return players;
-};
-
-/**
- * Set all players as not ready
- * @param players
- * @param butThisOne
- * @returns
- */
-export const removePropertiesFromPlayers = (players: Players, properties: string[]): Players => {
-  for (const playerId in players) {
-    properties.forEach((property) => {
-      delete players[playerId]?.[property];
-    });
-  }
-  return players;
-};
-
-/**
- * Add properties to players
- * @param players
- * @param butThisOne
- * @returns
- */
-export const addPropertiesToPlayers = (players: Players, properties: PlainObject): Players => {
-  for (const playerId in players) {
-    players[playerId] = {
-      ...players[playerId],
-      ...properties,
-      updatedAt: Date.now(),
-    };
-  }
-  return players;
-};
-
-/**
- * Verify if all players are ready
- * @param players
- * @returns
- */
-export const isEverybodyReady = (players: Players): boolean => {
-  return Object.values(players).every((player) => player.ready);
-};
-
-/**
  * Calculates how many points remain to call the end of the game
  * @param players
  * @param victory
@@ -296,61 +124,6 @@ export const getPointsToVictory = (players: Players | Teams, victory: number): n
  */
 export const getRoundsToEndGame = (currentRound: number, totalRounds: number): number => {
   return totalRounds - currentRound;
-};
-
-/**
- * Determine each players teams
- * @param players
- * @param numberOfTeams
- * @returns an object with the teams (the players are modified by reference adding their team Letter)
- */
-export const determineTeams = (
-  players: Players,
-  numberOfTeams: number,
-  extraPoints: number[] = []
-): Teams => {
-  const teams = {};
-  const playerIds = shuffle(Object.keys(players));
-  const playersPerTeam = Math.ceil(playerIds.length / numberOfTeams);
-
-  let currentTeamIndex = 0;
-  let currentTeamCount = 0;
-  playerIds.forEach((playerName) => {
-    if (currentTeamCount >= playersPerTeam) {
-      currentTeamCount = 0;
-      currentTeamIndex += 1;
-    }
-
-    const teamLetter = LETTERS[currentTeamIndex];
-    const extraPoint = extraPoints?.[currentTeamIndex] ?? 0;
-
-    if (teams[teamLetter] === undefined) {
-      teams[teamLetter] = {
-        members: [],
-        name: teamLetter,
-        score: extraPoint,
-      };
-    }
-    teams[teamLetter].members.push(playerName);
-    players[playerName].team = teamLetter;
-    players[playerName].score = extraPoint;
-
-    currentTeamCount += 1;
-  });
-
-  return teams;
-};
-
-/**
- * Determine winners based on who has the highest score
- * @param players
- * @returns array of winning players
- */
-export const determineWinners = (players: Players): Player[] => {
-  const maxScore = Math.max(...Object.values(players).map((player) => player.score));
-  return Object.values(players).filter((player) => {
-    return player.score === maxScore;
-  });
 };
 
 /**
@@ -401,44 +174,6 @@ export const increaseRound = (round: Round, total?: number, current?: number): R
     total: total ?? round.total,
     current: current ?? (round?.current ?? 0) + 1,
   };
-};
-
-/**
- * Get active player
- * @param turnOrder
- * @param currentRound
- * @returns
- */
-export const getActivePlayer = (turnOrder: GameOrder | TurnOrder, currentRound: number) => {
-  return turnOrder[(currentRound - 1) % turnOrder.length];
-};
-
-/**
- * Get next player in a turn order after the current player
- * @param turnOrder
- * @param activePlayerId
- * @returns
- */
-export const getNextPlayer = (turnOrder: GameOrder | TurnOrder, activePlayerId: PlayerId): PlayerId => {
-  const index = turnOrder.indexOf(activePlayerId);
-
-  if (index === -1) return turnOrder[0];
-
-  return turnOrder[(index + 1) % turnOrder.length];
-};
-
-/**
- * Get previous player in a turn order before the current player
- * @param turnOrder
- * @param activePlayerId
- * @returns
- */
-export const getPreviousPlayer = (turnOrder: GameOrder | TurnOrder, activePlayerId: PlayerId): PlayerId => {
-  const index = turnOrder.indexOf(activePlayerId);
-
-  if (index === -1 || index === 0) return turnOrder[turnOrder.length - 1];
-
-  return turnOrder[(index - 1) % turnOrder.length];
 };
 
 /**
@@ -508,10 +243,3 @@ export const buildGameOrder = (
   const gameOrder = playerIds.length < doublingThreshold ? [...playerIds, ...playerIds] : playerIds;
   return { gameOrder, playerIds, playerCount: playerIds.length };
 };
-
-/**
- * Counts how many player keys are in players a.k.a the number of players in the game
- * @param players
- * @returns
- */
-export const getPlayerCount = (players: Players): number => Object.keys(players).length;

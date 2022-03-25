@@ -5,7 +5,7 @@ import { DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
 import { ImageCard, PlainObject, PlayerId, Players, Round } from '../../utils/types';
 import { ContadoresHistoriasOptions, Table } from './types';
 // Utils
-import * as gameUtils from '../../utils/game-utils';
+import * as utils from '../../utils';
 
 /**
  * Determine the next phase based on the current one
@@ -72,7 +72,7 @@ export const buildTable = (players: Players, tableCards: ImageCard[], storytelle
     });
   });
 
-  return gameUtils.shuffle(table);
+  return utils.game.shuffle(table);
 };
 
 export const buildCardIndex = (table: Table) => {

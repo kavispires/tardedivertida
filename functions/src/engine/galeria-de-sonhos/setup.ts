@@ -4,10 +4,7 @@ import { GALERIA_DE_SONHOS_PHASES, TABLE_DECK_TOTAL } from './constants';
 import { FirebaseStateData, FirebaseStoreData, ResourceData, WordCard } from './types';
 import { NumberDictionary, PlainObject, PlayerId, Players, SaveGamePayload } from '../../utils/types';
 // Utils
-import * as firebaseUtils from '../../utils/firebase';
-import * as gameUtils from '../../utils/game-utils';
-import * as imageCardsUtils from '../../utils/image-cards';
-import * as utils from '../../utils/helpers';
+import * as utils from '../../utils';
 // Internal
 import { buildDeck, buildTable, getRoundWords } from './helpers';
 
@@ -24,11 +21,11 @@ export const prepareSetupPhase = async (
   resourceData: ResourceData
 ): Promise<SaveGamePayload> => {
   // Determine player order
-  const { gameOrder } = utils.buildGameOrder(players);
+  const { gameOrder } = utils.helpers.buildGameOrder(players);
 
   // Build Image Cards deck
-  const imageCardIds = await imageCardsUtils.getImageCards(TABLE_DECK_TOTAL);
-  const imageCardsIdsDeck = gameUtils.getRandomItems(imageCardIds, TABLE_DECK_TOTAL);
+  const imageCardIds = await utils.imageCards.getImageCards(TABLE_DECK_TOTAL);
+  const imageCardsIdsDeck = utils.game.getRandomItems(imageCardIds, TABLE_DECK_TOTAL);
   const tableDeck = imageCardsIdsDeck.map((cardId) => ({ id: cardId, used: false }));
 
   // Get word deck
@@ -64,13 +61,13 @@ export const prepareWordSelectionPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
-  const round = utils.increaseRound(state.round);
+  const round = utils.helpers.increaseRound(state.round);
 
   // Make sure everybody has 6 cards in hand
-  players = utils.removePropertiesFromPlayers(players, ['cards']);
+  players = utils.players.removePropertiesFromPlayers(players, ['cards']);
 
   // Determine active player based on current round
-  const scoutId = utils.getActivePlayer(state.gameOrder, round.current);
+  const scoutId = utils.players.getActivePlayer(state.gameOrder, round.current);
 
   // Update table
   const [tableDeck, table] = buildTable(store.tableDeck, [], round.current);
@@ -103,8 +100,8 @@ export const prepareDreamsSelectionPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.unReadyPlayers(players);
-  utils.addPropertiesToPlayers(players, { cards: {} });
+  utils.players.unReadyPlayers(players);
+  utils.players.addPropertiesToPlayers(players, { cards: {} });
 
   const word = state.words.find((w: WordCard) => w.id === store.wordId);
   const leftoverWord = state.words.find((w: WordCard) => w.id !== store.wordId);
@@ -119,7 +116,7 @@ export const prepareDreamsSelectionPhase = async (
       state: {
         phase: GALERIA_DE_SONHOS_PHASES.DREAMS_SELECTION,
         word,
-        words: firebaseUtils.deleteValue(),
+        words: utils.firebase.deleteValue(),
       },
       players,
     },
@@ -132,7 +129,7 @@ export const prepareCardPlayPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.unReadyPlayers(players);
+  utils.players.unReadyPlayers(players);
 
   // Count selected cards per player
   const cardCount = Object.values(players).reduce((acc: NumberDictionary, player: PlainObject) => {
@@ -159,7 +156,7 @@ export const prepareCardPlayPhase = async (
       state: {
         phase: GALERIA_DE_SONHOS_PHASES.CARD_PLAY,
         activePlayerId: state.scoutId,
-        playerHavingNightmareId: playersInMax.length === 1 ? playersInMax[0] : firebaseUtils.deleteValue(),
+        playerHavingNightmareId: playersInMax.length === 1 ? playersInMax[0] : utils.firebase.deleteValue(),
         turnCount: 0,
       },
       players,
@@ -188,7 +185,7 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
-  const winners = utils.determineWinners(players);
+  const winners = utils.players.determineWinners(players);
 
   return {
     update: {

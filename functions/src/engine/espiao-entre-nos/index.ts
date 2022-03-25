@@ -5,8 +5,7 @@ import { ESPIAO_ENTRE_NOS_PHASES, PLAYER_COUNTS } from './constants';
 import { GameId, Language, Players } from '../../utils/types';
 import { EspiaoEntreNosInitialState, EspiaoEntreNosSubmitAction } from './types';
 // Utils
-import * as firebaseUtils from '../../utils/firebase';
-import * as utils from '../../utils/helpers';
+import * as utils from '../../utils';
 import {
   prepareAssessmentPhase,
   prepareAssignmentPhase,
@@ -32,7 +31,7 @@ export const getInitialState = (
   uid: string,
   language: Language
 ): EspiaoEntreNosInitialState => {
-  return utils.getDefaultInitialState({
+  return utils.helpers.getDefaultInitialState({
     gameId,
     gameName: GAME_COLLECTIONS.ESPIAO_ENTRE_NOS,
     uid,
@@ -62,7 +61,7 @@ export const getNextPhase = async (
   const actionText = 'prepare next phase';
 
   // Gather docs and references
-  const { sessionRef, state, store } = await firebaseUtils.getStateAndStoreReferences(
+  const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences(
     collectionName,
     gameId,
     actionText
@@ -77,49 +76,49 @@ export const getNextPhase = async (
   // RULES -> SETUP
   if (nextPhase === ESPIAO_ENTRE_NOS_PHASES.SETUP) {
     // Enter setup phase before doing anything
-    await firebaseUtils.triggerSetupPhase(sessionRef);
+    await utils.firebase.triggerSetupPhase(sessionRef);
 
     // Request data
     const additionalData = await getLocations(store.language);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
-    await firebaseUtils.saveGame(sessionRef, newPhase);
+    await utils.firebase.saveGame(sessionRef, newPhase);
     return getNextPhase(collectionName, gameId, players);
   }
 
   // * -> ASSIGNMENT
   if (nextPhase === ESPIAO_ENTRE_NOS_PHASES.ASSIGNMENT) {
     const newPhase = await prepareAssignmentPhase(store, state, players);
-    return firebaseUtils.saveGame(sessionRef, newPhase);
+    return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   // ASSIGNMENT -> INVESTIGATION
   if (nextPhase === ESPIAO_ENTRE_NOS_PHASES.INVESTIGATION) {
     const newPhase = await prepareInvestigationPhase(store, state, players, outcome);
-    return firebaseUtils.saveGame(sessionRef, newPhase);
+    return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   // INVESTIGATION -> ASSESSMENT
   if (nextPhase === ESPIAO_ENTRE_NOS_PHASES.ASSESSMENT) {
     const newPhase = await prepareAssessmentPhase(store, state, players);
-    return firebaseUtils.saveGame(sessionRef, newPhase);
+    return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   // * -> FINAL_ASSESSMENT
   if (nextPhase === ESPIAO_ENTRE_NOS_PHASES.FINAL_ASSESSMENT) {
     const newPhase = await prepareFinalAssessmentPhase(store, state, players, outcome);
-    return firebaseUtils.saveGame(sessionRef, newPhase);
+    return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   // VOTING -> RESOLUTION
   if (nextPhase === ESPIAO_ENTRE_NOS_PHASES.RESOLUTION) {
     const newPhase = await prepareResolutionPhase(store, state, players);
-    return firebaseUtils.saveGame(sessionRef, newPhase);
+    return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   // * --> GAME_OVER
   if (nextPhase === ESPIAO_ENTRE_NOS_PHASES.GAME_OVER) {
     const newPhase = await prepareGameOverPhase(store, state, players);
-    return firebaseUtils.saveGame(sessionRef, newPhase);
+    return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   return true;
@@ -133,22 +132,22 @@ export const getNextPhase = async (
 export const submitAction = async (data: EspiaoEntreNosSubmitAction) => {
   const { gameId, gameName: collectionName, playerId, action } = data;
 
-  firebaseUtils.validateSubmitActionPayload(gameId, collectionName, playerId, action);
+  utils.firebase.validateSubmitActionPayload(gameId, collectionName, playerId, action);
 
   switch (action) {
     case 'LAST_QUESTIONER':
-      firebaseUtils.validateSubmitActionProperties(data, ['lastPlayerId'], 'change timer');
+      utils.firebase.validateSubmitActionProperties(data, ['lastPlayerId'], 'change timer');
       return handleLastQuestioner(collectionName, gameId, playerId, data.lastPlayerId);
     case 'MAKE_ACCUSATION':
-      firebaseUtils.validateSubmitActionProperties(data, ['targetId'], 'make an accusation');
+      utils.firebase.validateSubmitActionProperties(data, ['targetId'], 'make an accusation');
       return handleMakeAccusation(collectionName, gameId, playerId, data.targetId);
     case 'GUESS_LOCATION':
-      firebaseUtils.validateSubmitActionProperties(data, ['locationId'], 'guess location');
+      utils.firebase.validateSubmitActionProperties(data, ['locationId'], 'guess location');
       return handleGuessLocation(collectionName, gameId, playerId, data.locationId);
     case 'SUBMIT_VOTE':
-      firebaseUtils.validateSubmitActionProperties(data, ['vote'], 'submit vote');
+      utils.firebase.validateSubmitActionProperties(data, ['vote'], 'submit vote');
       return handleSubmitVote(collectionName, gameId, playerId, data.vote);
     default:
-      firebaseUtils.throwException(`Given action ${action} is not allowed`);
+      utils.firebase.throwException(`Given action ${action} is not allowed`);
   }
 };

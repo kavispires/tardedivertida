@@ -9,8 +9,7 @@ import {
   SHORT_PASTURE_GAME_OVER_THRESHOLD,
 } from './constants';
 // Utils
-import * as firebaseUtils from '../../utils/firebase';
-import * as utils from '../../utils/helpers';
+import * as utils from '../../utils';
 import {
   buildDeck,
   buildListOfAnswers,
@@ -39,13 +38,13 @@ export const prepareSetupPhase = async (
   additionalData: PlainObject
 ): Promise<SaveGamePayload> => {
   // Determine turn order
-  const { gameOrder } = utils.buildGameOrder(players);
+  const { gameOrder } = utils.helpers.buildGameOrder(players);
 
   // Build deck
   const deck = buildDeck(additionalData.allQuestions, additionalData.usedQuestions);
 
   // Add level to players
-  utils.addPropertiesToPlayers(players, {
+  utils.players.addPropertiesToPlayers(players, {
     level: 0,
     answers: [],
   });
@@ -77,14 +76,14 @@ export const prepareQuestionSelectionPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Determine active player based on current round
-  const activePlayerId = utils.getActivePlayer(store.gameOrder, state.round.current + 1);
+  const activePlayerId = utils.players.getActivePlayer(store.gameOrder, state.round.current + 1);
 
   // Modify player
-  utils.addPropertiesToPlayers(players, {
+  utils.players.addPropertiesToPlayers(players, {
     score: 0,
     answers: [],
   });
-  utils.unReadyPlayer(players, activePlayerId);
+  utils.players.unReadyPlayer(players, activePlayerId);
 
   // Get questions
   const currentQuestions = Array(QUESTIONS_PER_ROUND)
@@ -99,7 +98,7 @@ export const prepareQuestionSelectionPhase = async (
       },
       state: {
         phase: MENTE_COLETIVA_PHASES.QUESTION_SELECTION,
-        round: utils.increaseRound(state.round),
+        round: utils.helpers.increaseRound(state.round),
         roundType: determineRoundType(store.gameOrder.length, state.round.current + 1),
         activePlayerId,
         currentQuestions,
@@ -115,7 +114,7 @@ export const prepareEverybodyWritesPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Modify players
-  utils.unReadyPlayers(players);
+  utils.players.unReadyPlayers(players);
 
   const currentQuestion = store.deck.find((question) => question.id === store.questionId);
 
@@ -125,7 +124,7 @@ export const prepareEverybodyWritesPhase = async (
       state: {
         phase: MENTE_COLETIVA_PHASES.EVERYBODY_WRITES,
         currentQuestion,
-        currentQuestions: firebaseUtils.deleteValue(),
+        currentQuestions: utils.firebase.deleteValue(),
       },
       store: {
         pastQuestions: [...store.pastQuestions, currentQuestion.id],

@@ -1,7 +1,6 @@
 import * as admin from 'firebase-admin';
 import * as delegatorUtils from '../utils/delegators';
-import * as firebaseUtils from '../utils/firebase';
-import * as utils from '../utils/helpers';
+import * as utils from '../utils';
 import {
   CreateGamePayload,
   FirebaseContext,
@@ -22,19 +21,19 @@ import { GLOBAL_USED_DOCUMENTS, USED_GAME_IDS } from '../utils/constants';
  */
 export const createGame = async (data: CreateGamePayload, context: FirebaseContext) => {
   const actionText = 'create new game';
-  firebaseUtils.verifyAuth(context, actionText);
+  utils.firebase.verifyAuth(context, actionText);
 
   // Get collection name by game code on request
   const { gameCode } = data;
 
   if (!gameCode) {
-    return firebaseUtils.throwException('a gameCode is required', actionText);
+    return utils.firebase.throwException('a gameCode is required', actionText);
   }
 
   const collectionName = delegatorUtils.getCollectionNameByGameCode(gameCode);
 
   if (!collectionName) {
-    return firebaseUtils.throwException(`provided gameCode is invalid ${gameCode}`, actionText);
+    return utils.firebase.throwException(`provided gameCode is invalid ${gameCode}`, actionText);
   }
 
   if (process.env.FUNCTIONS_EMULATOR) {
@@ -42,7 +41,7 @@ export const createGame = async (data: CreateGamePayload, context: FirebaseConte
   }
 
   // Get list of used ids
-  const globalRef = firebaseUtils.getGlobalRef();
+  const globalRef = utils.firebase.getGlobalRef();
   const usedGameIdsDocs = await globalRef.doc(USED_GAME_IDS).get();
   const usedGameIdsData = usedGameIdsDocs.data();
   const usedGameIds = Object.keys(usedGameIdsData ?? {});
@@ -51,12 +50,12 @@ export const createGame = async (data: CreateGamePayload, context: FirebaseConte
   const collectionRef = admin.firestore().collection(collectionName);
 
   // Generate unique 4 digit code starting with game code letter
-  let gameId: string = utils.generateGameId(gameCode, usedGameIds);
+  let gameId: string = utils.helpers.generateGameId(gameCode, usedGameIds);
 
   // Make sure the game does not exist, I do not trust that while loop
   const tempGame = await collectionRef.doc(gameId).get();
   if (tempGame.exists) {
-    return firebaseUtils.throwException(
+    return utils.firebase.throwException(
       `the generated game id ${gameCode} belongs to an existing session`,
       actionText
     );
@@ -69,7 +68,7 @@ export const createGame = async (data: CreateGamePayload, context: FirebaseConte
   // Create game entry in database
   let response = {};
   try {
-    const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
+    const sessionRef = utils.firebase.getSessionRef(collectionName, gameId);
     const { getInitialState } = delegatorUtils.getEngine(collectionName);
 
     const uid = context?.auth?.uid ?? 'admin?';
@@ -82,7 +81,7 @@ export const createGame = async (data: CreateGamePayload, context: FirebaseConte
 
     response = meta;
   } catch (e) {
-    return firebaseUtils.throwException(`${e}`, `${actionText} in the firestore database`);
+    return utils.firebase.throwException(`${e}`, `${actionText} in the firestore database`);
   }
 
   try {
@@ -107,12 +106,12 @@ export const lockGame = async (data: BasicGamePayload, context: FirebaseContext)
   const { gameId, gameName: collectionName } = data;
 
   const actionText = 'lock game';
-  firebaseUtils.verifyPayload(gameId, 'gameId', actionText);
-  firebaseUtils.verifyPayload(collectionName, 'collectionName', actionText);
-  firebaseUtils.verifyAuth(context, actionText);
+  utils.firebase.verifyPayload(gameId, 'gameId', actionText);
+  utils.firebase.verifyPayload(collectionName, 'collectionName', actionText);
+  utils.firebase.verifyAuth(context, actionText);
 
-  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
-  const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
+  const sessionRef = utils.firebase.getSessionRef(collectionName, gameId);
+  const playersDoc = await utils.firebase.getSessionDoc(collectionName, gameId, 'players', actionText);
   const players: Players = playersDoc.data() ?? {};
 
   // Verify minimum number of players
@@ -120,14 +119,14 @@ export const lockGame = async (data: BasicGamePayload, context: FirebaseContext)
   const { playerCounts } = delegatorUtils.getEngine(collectionName);
 
   if (numPlayers < playerCounts.MIN) {
-    firebaseUtils.throwException(
+    utils.firebase.throwException(
       `Game ${gameId} has an insufficient number of players: Minimum ${playerCounts.MIN} players, but has ${numPlayers}`,
       actionText
     );
   }
 
   if (numPlayers > playerCounts.MAX) {
-    firebaseUtils.throwException(
+    utils.firebase.throwException(
       `Game ${gameId} has more players than it supports: Maximum ${playerCounts.MAX} players, but has ${numPlayers}`,
       actionText
     );
@@ -143,7 +142,7 @@ export const lockGame = async (data: BasicGamePayload, context: FirebaseContext)
 
     return true;
   } catch (error) {
-    firebaseUtils.throwException(error, actionText);
+    utils.firebase.throwException(error, actionText);
   }
 
   return false;
@@ -167,8 +166,8 @@ const ADMIN_ACTIONS = {
 export const performAdminAction = async (data: ExtendedPayload, context: FirebaseContext) => {
   const { gameId, gameName: collectionName, action } = data;
 
-  firebaseUtils.verifyAuth(context, action);
-  firebaseUtils.validateActionPayload(gameId, collectionName, action, action);
+  utils.firebase.verifyAuth(context, action);
+  utils.firebase.validateActionPayload(gameId, collectionName, action, action);
 
   switch (action) {
     case ADMIN_ACTIONS.GO_TO_NEXT_PHASE:
@@ -180,7 +179,7 @@ export const performAdminAction = async (data: ExtendedPayload, context: Firebas
     case ADMIN_ACTIONS.FORCE_END_GAME:
       return await forceStateProperty(gameId, collectionName, { lastRound: true });
     default:
-      return firebaseUtils.throwException(
+      return utils.firebase.throwException(
         'Failed to perform admin action',
         `Action ${action} is not allowed`
       );
@@ -195,7 +194,7 @@ export const performAdminAction = async (data: ExtendedPayload, context: Firebas
  */
 const goToNextPhase = async (gameId: GameId, collectionName: GameName) => {
   const actionText = 'go to next phase';
-  const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
+  const playersDoc = await utils.firebase.getSessionDoc(collectionName, gameId, 'players', actionText);
 
   const players = playersDoc.data() ?? {};
 
@@ -214,12 +213,12 @@ const goToNextPhase = async (gameId: GameId, collectionName: GameName) => {
 const forceStateProperty = async (gameId: GameId, collectionName: GameName, stateUpdate: PlainObject) => {
   const actionText = 'force state property';
 
-  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
+  const sessionRef = utils.firebase.getSessionRef(collectionName, gameId);
 
   try {
     await sessionRef.doc('state').update(stateUpdate);
   } catch (error) {
-    return firebaseUtils.throwException(error, actionText);
+    return utils.firebase.throwException(error, actionText);
   }
 
   return false;
@@ -234,14 +233,14 @@ const forceStateProperty = async (gameId: GameId, collectionName: GameName, stat
 const playAgain = async (gameId: GameId, collectionName: GameName) => {
   const actionText = 'play game again';
 
-  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
+  const sessionRef = utils.firebase.getSessionRef(collectionName, gameId);
   // Reset players
-  const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
+  const playersDoc = await utils.firebase.getSessionDoc(collectionName, gameId, 'players', actionText);
   const players: Players = playersDoc.data() ?? {};
-  const newPlayers = utils.resetPlayers(players);
+  const newPlayers = utils.players.resetPlayers(players);
 
   // Update meta
-  const metaDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'meta', actionText);
+  const metaDoc = await utils.firebase.getSessionDoc(collectionName, gameId, 'meta', actionText);
   const meta = metaDoc.data() ?? {};
 
   try {
@@ -263,7 +262,7 @@ const playAgain = async (gameId: GameId, collectionName: GameName) => {
 
     return true;
   } catch (error) {
-    firebaseUtils.throwException(error, actionText);
+    utils.firebase.throwException(error, actionText);
   }
 
   return false;
@@ -276,16 +275,16 @@ const _feedEmulatorDB = async () => {
   const sample = { 'a-a-a': true };
 
   // GLOBAL
-  await firebaseUtils.getGlobalRef().doc(USED_GAME_IDS).set(sample);
+  await utils.firebase.getGlobalRef().doc(USED_GAME_IDS).set(sample);
 
   // ARTE_RUIM
 
-  await firebaseUtils.getPublicRef().doc('arteRuimDrawingsPt').set(sample);
-  await firebaseUtils.getPublicRef().doc('arteRuimDrawingsEn').set(sample);
-  await firebaseUtils.getPublicRef().doc('ratings').set(sample);
+  await utils.firebase.getPublicRef().doc('arteRuimDrawingsPt').set(sample);
+  await utils.firebase.getPublicRef().doc('arteRuimDrawingsEn').set(sample);
+  await utils.firebase.getPublicRef().doc('ratings').set(sample);
 
   const usedEntries = Object.values(GLOBAL_USED_DOCUMENTS).map((usedEntryName) =>
-    firebaseUtils.getGlobalRef().doc(usedEntryName).set(sample)
+    utils.firebase.getGlobalRef().doc(usedEntryName).set(sample)
   );
 
   await Promise.all(usedEntries);

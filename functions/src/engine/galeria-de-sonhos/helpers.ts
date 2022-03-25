@@ -3,7 +3,7 @@ import { Round } from '../../utils/types';
 // Constants
 import { GALERIA_DE_SONHOS_PHASES, WORD_DECK_TOTAL } from './constants';
 // Utils
-import * as gameUtils from '../../utils/game-utils';
+import * as utils from '../../utils';
 import { AllWords, WordCard } from './types';
 
 /**
@@ -59,7 +59,7 @@ export const buildTable = (deck: string[], table: string[], currentRound: number
 };
 
 export const buildDeck = (allWords: AllWords): WordCard[] => {
-  return gameUtils.getRandomItems(Object.values(allWords), WORD_DECK_TOTAL);
+  return utils.game.getRandomItems(Object.values(allWords), WORD_DECK_TOTAL);
 };
 
 export const getRoundWords = (wordsDeck: WordCard[]): [WordCard[], WordCard[]] => {

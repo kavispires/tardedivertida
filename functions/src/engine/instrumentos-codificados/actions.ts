@@ -1,8 +1,7 @@
 // Types
 import { GameId, PlayerId, GameName, PlainObject } from '../../utils/types';
 // Helpers
-import * as firebaseUtils from '../../utils/firebase';
-import * as utils from '../../utils/helpers';
+import * as utils from '../../utils';
 import { getNextPhase } from './index';
 
 export const handleSubmitHint = async (
@@ -19,7 +18,7 @@ export const handleSubmitHint = async (
     position,
   };
 
-  return await firebaseUtils.updatePlayer({
+  return await utils.firebase.updatePlayer({
     collectionName,
     gameId,
     playerId,
@@ -38,7 +37,7 @@ export const handleSubmitConclusions = async (
 ) => {
   const actionText = 'submit conclusions';
 
-  const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
+  const playersDoc = await utils.firebase.getSessionDoc(collectionName, gameId, 'players', actionText);
   const players = playersDoc.data() ?? {};
 
   const updatedConclusions = {
@@ -46,7 +45,7 @@ export const handleSubmitConclusions = async (
     ...conclusions,
   };
 
-  return await firebaseUtils.updatePlayer({
+  return await utils.firebase.updatePlayer({
     collectionName,
     gameId,
     playerId,
@@ -65,22 +64,22 @@ export const handleSubmitCode = async (
 ) => {
   const actionText = 'submit conclusions';
 
-  const sessionRef = firebaseUtils.getSessionRef(collectionName, gameId);
-  const playersDoc = await firebaseUtils.getSessionDoc(collectionName, gameId, 'players', actionText);
+  const sessionRef = utils.firebase.getSessionRef(collectionName, gameId);
+  const playersDoc = await utils.firebase.getSessionDoc(collectionName, gameId, 'players', actionText);
 
   const players = playersDoc.data() ?? {};
-  const updatedPlayers = utils.readyPlayer(players, playerId);
+  const updatedPlayers = utils.players.readyPlayer(players, playerId);
 
   updatedPlayers[playerId].codeGuess = code;
 
   try {
     await sessionRef.doc('players').update({ [playerId]: updatedPlayers[playerId] });
   } catch (error) {
-    firebaseUtils.throwException(error, actionText);
+    utils.firebase.throwException(error, actionText);
   }
 
   // If all players are ready, trigger next phase
-  if (utils.isEverybodyReady(updatedPlayers)) {
+  if (utils.players.isEverybodyReady(updatedPlayers)) {
     return getNextPhase(collectionName, gameId, players);
   }
 

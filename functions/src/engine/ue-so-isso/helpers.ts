@@ -4,7 +4,7 @@ import { AllWords, CurrentSuggestions, UsedWord, UsedWords, Word } from './types
 // Constants
 import { UE_SO_ISSO_PHASES, WORDS_PER_CARD } from './constants';
 // Utilities
-import * as gameUtils from '../../utils/game-utils';
+import * as utils from '../../utils';
 
 /**
  * Determine the next phase based on the current one
@@ -40,7 +40,7 @@ export const determineNextPhase = (
  * @param numberOfRounds
  */
 export const buildDeck = (allWords: AllWords, numberOfRounds: number) => {
-  const shuffledWords = gameUtils.shuffle(Object.values(allWords));
+  const shuffledWords = utils.game.shuffle(Object.values(allWords));
   const deck: string[] = [];
   for (let i = 0; i < numberOfRounds * WORDS_PER_CARD; i += WORDS_PER_CARD) {
     const card: Word[] = [];
@@ -154,7 +154,7 @@ export const determineSecretWord = (currentWords: UsedWords): UsedWord => {
     }
   });
 
-  return gameUtils.shuffle(mostVotes)[0];
+  return utils.game.shuffle(mostVotes)[0];
 };
 
 /**

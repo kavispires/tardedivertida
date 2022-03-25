@@ -9,13 +9,12 @@ import {
   GAME_OVER_SCORE_THRESHOLD,
 } from './constants';
 // Helpers
-import * as gameUtils from '../../utils/game-utils';
-import { buildNewScoreObject } from '../../utils/helpers';
+import * as utils from '../../utils';
 
 /**
  * Determine the next phase based on the current one
  * @param currentPhase
- * @param currentRound
+ * @param round
  * @param isGameOver
  * @param triggerLastRound
  * @returns
@@ -58,6 +57,13 @@ export const determineGameOver = (players: Players, round: Round): boolean => {
   return Object.values(players).some((player) => player.score >= GAME_OVER_SCORE_THRESHOLD);
 };
 
+/**
+ * TODO: Perform before buildDeck
+ * @param deck
+ * @param usedCards
+ * @param cardsNeeded
+ * @returns
+ */
 const getEnoughUnusedLevel4Cards = (deck, usedCards: PlainObject, cardsNeeded: number): string[] => {
   let tries = 0;
   const discarded: string[] = [];
@@ -67,7 +73,7 @@ const getEnoughUnusedLevel4Cards = (deck, usedCards: PlainObject, cardsNeeded: n
     // Makes sure the look is not infinite
     tries++;
     if (tries > 100) {
-      return gameUtils.sliceIntoChunks(discarded, cardsNeeded)[0];
+      return utils.game.sliceIntoChunks(discarded, cardsNeeded)[0];
     }
 
     const cards = Object.keys(deck.pop().cards);
@@ -79,13 +85,17 @@ const getEnoughUnusedLevel4Cards = (deck, usedCards: PlainObject, cardsNeeded: n
     }
   }
 
-  return gameUtils.shuffle(Object.keys(reserved)).slice(0, cardsNeeded);
+  return utils.game.shuffle(Object.keys(reserved)).slice(0, cardsNeeded);
 };
 
 /**
  * Builds the deck as evenly as possible with cards needed per level
- * @param fullDeckData
- * @param perLevel
+ * @param allCards
+ * @param level4Deck
+ * @param usedCardsIds
+ * @param playerCount
+ * @param useAllCards
+ * @param gameType
  * @returns
  */
 export const buildDeck = (
@@ -136,12 +146,12 @@ export const buildDeck = (
     availableCards['3'] = cardsPerLevel['3'];
   }
   // Shuffle available decls
-  availableCards['1'] = gameUtils.shuffle(availableCards['1']);
-  availableCards['2'] = gameUtils.shuffle(availableCards['2']);
-  availableCards['3'] = gameUtils.shuffle(availableCards['3']);
+  availableCards['1'] = utils.game.shuffle(availableCards['1']);
+  availableCards['2'] = utils.game.shuffle(availableCards['2']);
+  availableCards['3'] = utils.game.shuffle(availableCards['3']);
 
   const usedCardIdDict = {};
-  const shuffledLevel4Deck = gameUtils.shuffle(level4Deck);
+  const shuffledLevel4Deck = utils.game.shuffle(level4Deck);
   let level4Hand: string[] = [];
 
   return Array(cardsNeeded.total)
@@ -179,7 +189,7 @@ export const buildDeck = (
 
 /**
  * Determine the number of cards in a round
- * @param players
+ * @param playerCount
  * @returns
  */
 export const determineNumberOfCards = (playerCount: number): number => {
@@ -275,7 +285,7 @@ export const buildGallery = (drawings: ArteRuimDrawing[], players: Players) =>
  * @returns
  */
 export const buildRanking = (drawings: ArteRuimDrawing[], players: Players) => {
-  const newScores = buildNewScoreObject(players, [0, 0]);
+  const newScores = utils.helpers.buildNewScoreObject(players, [0, 0]);
 
   drawings.forEach((drawingEntry) => {
     const correctAnswer = `${drawingEntry.id}`;

@@ -1,16 +1,18 @@
 import fetch from 'cross-fetch';
-import * as gameUtils from './game-utils';
-import * as firebaseUtils from './firebase';
+// Types
 import { ImageCard } from './types';
+// Helpers
+import { config, throwException } from './firebase';
+import { shuffle } from './game-utils';
 
 const deckCache = {};
 
 const requestTDIInfo = async (): Promise<any> => {
   try {
-    const response = await fetch(`${firebaseUtils.config().td_url.data}info.json`);
+    const response = await fetch(`${config().td_url.data}info.json`);
     return response.json();
   } catch (e) {
-    firebaseUtils.throwException(`${e}`, 'Failed to get images data');
+    throwException(`${e}`, 'Failed to get images data');
   }
 };
 
@@ -25,12 +27,10 @@ export const getImageCards = async (quantity: number): Promise<ImageCard[]> => {
   const decks = Object.keys(cardInfo);
   const totalCards = Number(Object.values(cardInfo ?? {}).reduce((acc: any, num: any) => acc + num, 0));
   if (quantity > totalCards) {
-    firebaseUtils.throwException(
-      `${quantity} image cards were requested but the game only has ${totalCards} available`
-    );
+    throwException(`${quantity} image cards were requested but the game only has ${totalCards} available`);
   }
 
-  const shuffledDecks = gameUtils.shuffle(decks);
+  const shuffledDecks = shuffle(decks);
   const selectedDecks: string[] = [];
   let selectedCardQuantity = 0;
   while (selectedCardQuantity < quantity) {

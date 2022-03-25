@@ -4,8 +4,7 @@ import { PLAYER_COUNTS, SONHOS_PESADELOS_PHASES, TOTAL_ROUNDS } from './constant
 // Types
 import { GameId, Language, Players } from '../../utils/types';
 // Utils
-import * as firebaseUtils from '../../utils/firebase';
-import * as utils from '../../utils/helpers';
+import * as utils from '../../utils';
 import { determineGameOver, determineNextPhase } from './helpers';
 import { SonhosPesadelosInitialState, SonhosPesadelosSubmitAction } from './types';
 import {
@@ -31,7 +30,7 @@ export const getInitialState = (
   uid: string,
   language: Language
 ): SonhosPesadelosInitialState => {
-  return utils.getDefaultInitialState({
+  return utils.helpers.getDefaultInitialState({
     gameId,
     gameName: GAME_COLLECTIONS.SONHOS_PESADELOS,
     uid,
@@ -58,7 +57,7 @@ export const getNextPhase = async (
   const actionText = 'prepare next phase';
 
   // Gather docs and references
-  const { sessionRef, state, store } = await firebaseUtils.getStateAndStoreReferences(
+  const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences(
     collectionName,
     gameId,
     actionText
@@ -72,12 +71,12 @@ export const getNextPhase = async (
   // RULES -> SETUP
   if (nextPhase === SONHOS_PESADELOS_PHASES.SETUP) {
     // Enter setup phase before doing anything
-    await firebaseUtils.triggerSetupPhase(sessionRef);
+    await utils.firebase.triggerSetupPhase(sessionRef);
 
     // Request data
     const additionalData = await getThemes(store.language);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
-    await firebaseUtils.saveGame(sessionRef, newPhase);
+    await utils.firebase.saveGame(sessionRef, newPhase);
 
     return getNextPhase(collectionName, gameId, newPhase.update?.players ?? {});
   }
@@ -85,31 +84,31 @@ export const getNextPhase = async (
   // * -> TELL_DREAM
   if (nextPhase === SONHOS_PESADELOS_PHASES.TELL_DREAM) {
     const newPhase = await prepareTellDreamPhase(store, state, players);
-    return firebaseUtils.saveGame(sessionRef, newPhase);
+    return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   // TELL_DREAM -> MATCH
   if (nextPhase === SONHOS_PESADELOS_PHASES.MATCH) {
     const newPhase = await prepareMatchPhase(store, state, players);
-    return firebaseUtils.saveGame(sessionRef, newPhase);
+    return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   // MATCH -> RESOLUTION
   if (nextPhase === SONHOS_PESADELOS_PHASES.RESOLUTION) {
     const newPhase = await prepareResolutionPhase(store, state, players);
-    return firebaseUtils.saveGame(sessionRef, newPhase);
+    return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   // RESOLUTION --> LAST_CHANCE
   if (nextPhase === SONHOS_PESADELOS_PHASES.LAST_CHANCE) {
     const newPhase = await prepareLastChancePhase(store, state, players);
-    return firebaseUtils.saveGame(sessionRef, newPhase);
+    return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   // RESOLUTION --> GAME_OVER
   if (nextPhase === SONHOS_PESADELOS_PHASES.GAME_OVER) {
     const newPhase = await prepareGameOverPhase(store, state, players);
-    return firebaseUtils.saveGame(sessionRef, newPhase);
+    return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   return true;
@@ -123,16 +122,16 @@ export const getNextPhase = async (
 export const submitAction = async (data: SonhosPesadelosSubmitAction) => {
   const { gameId, gameName: collectionName, playerId, action } = data;
 
-  firebaseUtils.validateSubmitActionPayload(gameId, collectionName, playerId, action);
+  utils.firebase.validateSubmitActionPayload(gameId, collectionName, playerId, action);
 
   switch (action) {
     case 'SUBMIT_DREAMS':
-      firebaseUtils.validateSubmitActionProperties(data, ['dreams'], 'submit dreams');
+      utils.firebase.validateSubmitActionProperties(data, ['dreams'], 'submit dreams');
       return handleSubmitDreams(collectionName, gameId, playerId, data.dreams);
     case 'SUBMIT_VOTING':
-      firebaseUtils.validateSubmitActionProperties(data, ['votes'], 'submit votes');
+      utils.firebase.validateSubmitActionProperties(data, ['votes'], 'submit votes');
       return handleSubmitVoting(collectionName, gameId, playerId, data.votes);
     default:
-      firebaseUtils.throwException(`Given action ${action} is not allowed`);
+      utils.firebase.throwException(`Given action ${action} is not allowed`);
   }
 };

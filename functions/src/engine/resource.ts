@@ -1,6 +1,6 @@
 import fetch from 'cross-fetch';
 // Helpers
-import * as firebaseUtils from '../utils/firebase';
+import * as utils from '../utils';
 
 /**
  * Queries a tdr file
@@ -9,10 +9,10 @@ import * as firebaseUtils from '../utils/firebase';
  */
 export const fetchResource = async (resourceName: string): Promise<any> => {
   try {
-    const response = await fetch(`${firebaseUtils.config().td_url.resources}${resourceName}.json`);
+    const response = await fetch(`${utils.firebase.config().td_url.resources}${resourceName}.json`);
     return response.json();
   } catch (e) {
-    return firebaseUtils.throwException(`${e}`, `Failed to get resource for ${resourceName}`);
+    return utils.firebase.throwException(`${e}`, `Failed to get resource for ${resourceName}`);
   }
 };
 
@@ -23,9 +23,9 @@ export const fetchResource = async (resourceName: string): Promise<any> => {
  */
 export const fetchTDIData = async (dataFileName: string): Promise<any> => {
   try {
-    const response = await fetch(`${firebaseUtils.config().td_url.data}${dataFileName}.json`);
+    const response = await fetch(`${utils.firebase.config().td_url.data}${dataFileName}.json`);
     return response.json();
   } catch (e) {
-    return firebaseUtils.throwException(`${e}`, `Failed to get image data for ${dataFileName}`);
+    return utils.firebase.throwException(`${e}`, `Failed to get image data for ${dataFileName}`);
   }
 };

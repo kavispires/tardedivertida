@@ -10,9 +10,7 @@ import {
 import { FirebaseStateData, FirebaseStoreData, Location, Outcome, Resolution, ResourceData } from './types';
 import { PlainObject, Players, SaveGamePayload } from '../../utils/types';
 // Utils
-import * as gameUtils from '../../utils/game-utils';
-import * as firebaseUtils from '../../utils/firebase';
-import * as utils from '../../utils/helpers';
+import * as utils from '../../utils';
 import {
   calculateScore,
   calculateTimeRemaining,
@@ -34,7 +32,7 @@ export const prepareSetupPhase = async (
   resourceData: ResourceData
 ): Promise<SaveGamePayload> => {
   // Determine player order
-  const { gameOrder } = utils.buildGameOrder(players);
+  const { gameOrder } = utils.helpers.buildGameOrder(players);
 
   // Save
   return {
@@ -67,12 +65,12 @@ export const prepareAssignmentPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Use only 25 locations
-  const availableLocations: Location[] = gameUtils.getRandomItems(
+  const availableLocations: Location[] = utils.game.getRandomItems(
     store.allLocations,
     LOCATIONS_USED_IN_A_ROUND
   );
 
-  const locations = utils.orderBy(
+  const locations = utils.helpers.orderBy(
     availableLocations.map((location) => ({
       id: location.id,
       name: location.name,
@@ -81,7 +79,7 @@ export const prepareAssignmentPhase = async (
     'asc'
   );
 
-  const currentLocation = gameUtils.getRandomItem(availableLocations);
+  const currentLocation = utils.game.getRandomItem(availableLocations);
 
   const availableRoles = createRolesPool(currentLocation.roles, Object.keys(players).length);
 
@@ -96,22 +94,22 @@ export const prepareAssignmentPhase = async (
           id: currentLocation.id,
           name: currentLocation.name,
         },
-        guess: firebaseUtils.deleteValue(),
-        lastPlayerId: firebaseUtils.deleteValue(),
+        guess: utils.firebase.deleteValue(),
+        lastPlayerId: utils.firebase.deleteValue(),
       },
       state: {
         phase: ESPIAO_ENTRE_NOS_PHASES.ASSIGNMENT,
-        round: utils.increaseRound(state.round),
+        round: utils.helpers.increaseRound(state.round),
         locations,
         currentSpyId,
         startingPlayerId: store.gameOrder[0],
         // Cleanup
-        resolution: firebaseUtils.deleteValue(),
-        timer: firebaseUtils.deleteValue(),
-        outcome: firebaseUtils.deleteValue(),
-        targetId: firebaseUtils.deleteValue(),
-        accuserId: firebaseUtils.deleteValue(),
-        finalAssessment: firebaseUtils.deleteValue(),
+        resolution: utils.firebase.deleteValue(),
+        timer: utils.firebase.deleteValue(),
+        outcome: utils.firebase.deleteValue(),
+        targetId: utils.firebase.deleteValue(),
+        accuserId: utils.firebase.deleteValue(),
+        finalAssessment: utils.firebase.deleteValue(),
       },
       players,
     },
@@ -143,8 +141,8 @@ export const prepareInvestigationPhase = async (
           status: TIMER_STATUS.RUNNING,
           ...timerUpdate,
         },
-        targetId: firebaseUtils.deleteValue(),
-        accuserId: firebaseUtils.deleteValue(),
+        targetId: utils.firebase.deleteValue(),
+        accuserId: utils.firebase.deleteValue(),
         outcome,
       },
       players,
@@ -163,8 +161,8 @@ export const prepareAssessmentPhase = async (
   const { targetId, accuserId, pausedAt } = store;
 
   // Update players
-  utils.modifyPlayers(players, 'vote', false);
-  utils.unReadyPlayers(players);
+  utils.players.addPropertiesToPlayers(players, { vote: false });
+  utils.players.unReadyPlayers(players);
   // Ready the players who won't need to vote
   players[targetId].ready = true;
   players[accuserId].ready = true;
@@ -175,9 +173,9 @@ export const prepareAssessmentPhase = async (
   return {
     update: {
       store: {
-        targetId: firebaseUtils.deleteValue(),
-        accuserId: firebaseUtils.deleteValue(),
-        pausedAt: firebaseUtils.deleteValue(),
+        targetId: utils.firebase.deleteValue(),
+        accuserId: utils.firebase.deleteValue(),
+        pausedAt: utils.firebase.deleteValue(),
       },
       state: {
         phase: ESPIAO_ENTRE_NOS_PHASES.ASSESSMENT,
@@ -188,7 +186,7 @@ export const prepareAssessmentPhase = async (
           status: TIMER_STATUS.PAUSED,
           timeRemaining,
         },
-        outcome: firebaseUtils.deleteValue(),
+        outcome: utils.firebase.deleteValue(),
       },
       players,
     },
@@ -209,12 +207,12 @@ export const prepareFinalAssessmentPhase = async (
   return {
     update: {
       store: {
-        lastPlayerId: firebaseUtils.deleteValue(),
+        lastPlayerId: utils.firebase.deleteValue(),
       },
       state: {
         phase: ESPIAO_ENTRE_NOS_PHASES.FINAL_ASSESSMENT,
-        targetId: firebaseUtils.deleteValue(),
-        accuserId: firebaseUtils.deleteValue(),
+        targetId: utils.firebase.deleteValue(),
+        accuserId: utils.firebase.deleteValue(),
         timer: {
           status: TIMER_STATUS.STOPPED,
         },
@@ -271,8 +269,8 @@ export const prepareResolutionPhase = async (
         timer: {
           status: TIMER_STATUS.STOPPED,
         },
-        outcome: firebaseUtils.deleteValue(),
-        finalAssessment: firebaseUtils.deleteValue(),
+        outcome: utils.firebase.deleteValue(),
+        finalAssessment: utils.firebase.deleteValue(),
         resolution,
       },
       players,
@@ -285,7 +283,7 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
-  const winners = utils.determineWinners(players);
+  const winners = utils.players.determineWinners(players);
 
   return {
     update: {

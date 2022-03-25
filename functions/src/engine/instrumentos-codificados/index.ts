@@ -4,8 +4,7 @@ import { INSTRUMENTOS_CODIFICADOS_PHASES, PLAYER_COUNTS, TOTAL_ROUNDS } from './
 // Types
 import { GameId, Language, Players } from '../../utils/types';
 // Utils
-import * as firebaseUtils from '../../utils/firebase';
-import * as utils from '../../utils/helpers';
+import * as utils from '../../utils';
 import { InstrumentosCodificadosInitialState, InstrumentosCodificadosSubmitAction } from './types';
 import {
   prepareGameOverPhase,
@@ -30,7 +29,7 @@ export const getInitialState = (
   uid: string,
   language: Language
 ): InstrumentosCodificadosInitialState => {
-  return utils.getDefaultInitialState({
+  return utils.helpers.getDefaultInitialState({
     gameId,
     gameName: GAME_COLLECTIONS.INSTRUMENTOS_CODIFICADOS,
     uid,
@@ -57,7 +56,7 @@ export const getNextPhase = async (
   const actionText = 'prepare next phase';
 
   // Gather docs and references
-  const { sessionRef, state, store } = await firebaseUtils.getStateAndStoreReferences(
+  const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences(
     collectionName,
     gameId,
     actionText
@@ -69,12 +68,12 @@ export const getNextPhase = async (
   // RULES -> SETUP
   if (nextPhase === INSTRUMENTOS_CODIFICADOS_PHASES.SETUP) {
     // Enter setup phase before doing anything
-    await firebaseUtils.triggerSetupPhase(sessionRef);
+    await utils.firebase.triggerSetupPhase(sessionRef);
 
     // Request data
     const additionalData = await getThemes(store.language);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
-    await firebaseUtils.saveGame(sessionRef, newPhase);
+    await utils.firebase.saveGame(sessionRef, newPhase);
 
     return getNextPhase(collectionName, gameId, newPhase.update?.players ?? {});
   }
@@ -82,25 +81,25 @@ export const getNextPhase = async (
   // * -> HINT_GIVING
   if (nextPhase === INSTRUMENTOS_CODIFICADOS_PHASES.HINT_GIVING) {
     const newPhase = await prepareHintGivingPhase(store, state, players);
-    return firebaseUtils.saveGame(sessionRef, newPhase);
+    return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   // HINT_GIVING -> HINT_RECEIVING
   if (nextPhase === INSTRUMENTOS_CODIFICADOS_PHASES.HINT_RECEIVING) {
     const newPhase = await prepareHintReceivingPhase(store, state, players);
-    return firebaseUtils.saveGame(sessionRef, newPhase);
+    return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   // HINT_RECEIVING -> GUESS_THE_CODE
   if (nextPhase === INSTRUMENTOS_CODIFICADOS_PHASES.GUESS_THE_CODE) {
     const newPhase = await prepareGuessTheCodePhase(store, state, players);
-    return firebaseUtils.saveGame(sessionRef, newPhase);
+    return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   // GUESS_THE_CODE --> GAME_OVER
   if (nextPhase === INSTRUMENTOS_CODIFICADOS_PHASES.GAME_OVER) {
     const newPhase = await prepareGameOverPhase(store, state, players);
-    return firebaseUtils.saveGame(sessionRef, newPhase);
+    return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   return true;
@@ -114,31 +113,31 @@ export const getNextPhase = async (
 export const submitAction = async (data: InstrumentosCodificadosSubmitAction) => {
   const { gameId, gameName: collectionName, playerId, action } = data;
 
-  firebaseUtils.validateSubmitActionPayload(gameId, collectionName, playerId, action);
+  utils.firebase.validateSubmitActionPayload(gameId, collectionName, playerId, action);
 
   switch (action) {
     case 'SUBMIT_HINT':
       if (!data.hint) {
-        firebaseUtils.throwException('Missing `hint` value', 'submit hint');
+        utils.firebase.throwException('Missing `hint` value', 'submit hint');
       }
       if (!data.targetId) {
-        firebaseUtils.throwException('Missing `targetId` value', 'submit targetId');
+        utils.firebase.throwException('Missing `targetId` value', 'submit targetId');
       }
       if (!data.position) {
-        firebaseUtils.throwException('Missing `position` value', 'submit position');
+        utils.firebase.throwException('Missing `position` value', 'submit position');
       }
       return handleSubmitHint(collectionName, gameId, playerId, data.hint, data.targetId, data.position);
     case 'SUBMIT_CONCLUSIONS':
       if (!data.conclusions) {
-        firebaseUtils.throwException('Missing `conclusions` value', 'submit conclusions');
+        utils.firebase.throwException('Missing `conclusions` value', 'submit conclusions');
       }
       return handleSubmitConclusions(collectionName, gameId, playerId, data.conclusions);
     case 'SUBMIT_CODE':
       if (!data.code) {
-        firebaseUtils.throwException('Missing `code` value', 'submit code');
+        utils.firebase.throwException('Missing `code` value', 'submit code');
       }
       return handleSubmitCode(collectionName, gameId, playerId, data.code);
     default:
-      firebaseUtils.throwException(`Given action ${action} is not allowed`);
+      utils.firebase.throwException(`Given action ${action} is not allowed`);
   }
 };

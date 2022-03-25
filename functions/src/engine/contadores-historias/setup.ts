@@ -11,11 +11,7 @@ import { DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
 import { FirebaseStateData, FirebaseStoreData } from './types';
 import { Players, SaveGamePayload } from '../../utils/types';
 // Utils
-import * as firebaseUtils from '../../utils/firebase';
-import * as gameUtils from '../../utils/game-utils';
-import * as imageCardsUtils from '../../utils/image-cards';
-import * as utils from '../../utils/helpers';
-import * as playerHandUtils from '../../utils/player-hand-utils';
+import * as utils from '../../utils';
 // Internal
 import { buildTable, buildTableDeck, getTableCards, scoreRound } from './helpers';
 
@@ -31,9 +27,9 @@ export const prepareSetupPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Determine player order
-  const { gameOrder, playerCount } = utils.buildGameOrder(players);
+  const { gameOrder, playerCount } = utils.helpers.buildGameOrder(players);
 
-  const { gameOrder: roundsIfRoundFixed } = utils.buildGameOrder(players, DOUBLE_ROUNDS_THRESHOLD);
+  const { gameOrder: roundsIfRoundFixed } = utils.helpers.buildGameOrder(players, DOUBLE_ROUNDS_THRESHOLD);
   const totalRounds = store.options.fixedRounds ? roundsIfRoundFixed.length : MAX_ROUNDS;
 
   // Assigned cards to players
@@ -41,13 +37,13 @@ export const prepareSetupPhase = async (
   // get unique ones every time
   // Also add 1 deck (with the double amount of cards) to be used as the table deck
   const minimumNumberOfCards = (playerCount + 2) * CARDS_PER_PLAYER;
-  const cards = await imageCardsUtils.getImageCards(minimumNumberOfCards);
+  const cards = await utils.imageCards.getImageCards(minimumNumberOfCards);
 
   // Get table deck removing them from the original list of cards
   const tableDeck = buildTableDeck(cards, 2 * CARDS_PER_PLAYER);
 
   // Split cards equally between players
-  players = gameUtils.dealList(cards, players, CARDS_PER_PLAYER, 'deck');
+  players = utils.game.dealList(cards, players, CARDS_PER_PLAYER, 'deck');
 
   // Save
   return {
@@ -83,30 +79,30 @@ export const prepareStoryPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Make sure everybody has 6 cards in hand
-  players = playerHandUtils.dealPlayersCard(players, HAND_LIMIT);
-  players = utils.removePropertiesFromPlayers(players, ['vote', 'cardId']);
+  players = utils.playerHand.dealPlayersCard(players, HAND_LIMIT);
+  players = utils.players.removePropertiesFromPlayers(players, ['vote', 'cardId']);
 
   // Determine active player based on current round
-  const storytellerId = utils.getActivePlayer(state.gameOrder, state.round.current + 1);
-  const nextStorytellerId = utils.getActivePlayer(state.gameOrder, state.round.current + 2);
+  const storytellerId = utils.players.getActivePlayer(state.gameOrder, state.round.current + 1);
+  const nextStorytellerId = utils.players.getActivePlayer(state.gameOrder, state.round.current + 2);
 
   // Save
   return {
     update: {
       store: {
-        currentTableDictionary: firebaseUtils.deleteValue(),
-        story: firebaseUtils.deleteValue(),
-        solutionCardId: firebaseUtils.deleteValue(),
+        currentTableDictionary: utils.firebase.deleteValue(),
+        story: utils.firebase.deleteValue(),
+        solutionCardId: utils.firebase.deleteValue(),
       },
       state: {
         phase: CONTADORES_HISTORIAS_PHASES.STORY,
-        round: utils.increaseRound(state.round),
+        round: utils.helpers.increaseRound(state.round),
         storytellerId,
         nextStorytellerId,
-        outcome: firebaseUtils.deleteValue(),
-        ranking: firebaseUtils.deleteValue(),
-        table: firebaseUtils.deleteValue(),
-        story: firebaseUtils.deleteValue(),
+        outcome: utils.firebase.deleteValue(),
+        ranking: utils.firebase.deleteValue(),
+        table: utils.firebase.deleteValue(),
+        story: utils.firebase.deleteValue(),
       },
       players,
     },
@@ -119,7 +115,7 @@ export const prepareCardPlayPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Unready players to play cards
-  utils.unReadyPlayers(players, state.storytellerId);
+  utils.players.unReadyPlayers(players, state.storytellerId);
 
   // Add card solution to storyteller
   players[state.storytellerId].cardId = store.solutionCardId;
@@ -150,7 +146,7 @@ export const prepareVotingPhase = async (
   const table = buildTable(players, tableCards, state.storytellerId);
 
   // Unready players to vote
-  utils.unReadyPlayers(players, state.storytellerId);
+  utils.players.unReadyPlayers(players, state.storytellerId);
 
   // Save
   return {
@@ -194,7 +190,7 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
-  const winners = utils.determineWinners(players);
+  const winners = utils.players.determineWinners(players);
 
   return {
     update: {

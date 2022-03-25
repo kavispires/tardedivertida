@@ -3,7 +3,7 @@ import { GLOBAL_USED_DOCUMENTS } from '../../utils/constants';
 // Types
 import { MonsterSketch, RetratoFaladoAdditionalData } from './types';
 // Helpers
-import * as utils from '../../utils/helpers';
+import * as utils from '../../utils';
 import * as globalUtils from '../global';
 import * as resourceUtils from '../resource';
 
@@ -29,6 +29,6 @@ export const getMonsterCards = async (): Promise<RetratoFaladoAdditionalData> =>
  */
 export const saveUsedCards = async (pastSketches: MonsterSketch[]): Promise<void> => {
   // Save usedRetratoFaladoCards to global
-  const usedRetratoFaladoCards = utils.buildIdDictionary(pastSketches);
+  const usedRetratoFaladoCards = utils.helpers.buildIdDictionary(pastSketches);
   await globalUtils.updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.RETRATO_FALADO, usedRetratoFaladoCards);
 };

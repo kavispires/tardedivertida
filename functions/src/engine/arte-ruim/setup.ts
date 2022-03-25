@@ -4,9 +4,7 @@ import { FirebaseStateData, FirebaseStoreData } from './types';
 // Constants
 import { ARTE_RUIM_PHASES, REGULAR_GAME_OPTIONS, SHORT_GAME_OPTIONS } from './constants';
 // Helpers
-import * as gameUtils from '../../utils/game-utils';
-import * as firebaseUtils from '../../utils/firebase';
-import * as utils from '../../utils/helpers';
+import * as utils from '../../utils';
 import { buildDeck, buildGallery, buildRanking, dealCards, getNewPastDrawings } from './helpers';
 
 /**
@@ -52,10 +50,10 @@ export const prepareDrawPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.unReadyPlayers(players);
+  utils.players.unReadyPlayers(players);
 
   // Remove previous 'vote' from players
-  utils.removePropertiesFromPlayers(players, ['vote']);
+  utils.players.removePropertiesFromPlayers(players, ['vote']);
 
   // Deal cards
   dealCards(players, store);
@@ -72,7 +70,7 @@ export const prepareDrawPhase = async (
       },
       state: {
         phase: ARTE_RUIM_PHASES.DRAW,
-        round: utils.increaseRound(state?.round, maxRounds),
+        round: utils.helpers.increaseRound(state?.round, maxRounds),
         level: Object.values(players)?.[0]?.currentCard?.level ?? 0,
       },
     },
@@ -88,13 +86,13 @@ export const prepareEvaluationPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.unReadyPlayers(players);
+  utils.players.unReadyPlayers(players);
 
   // Shuffle cards
-  const shuffledCards = gameUtils.shuffle(store.currentCards);
+  const shuffledCards = utils.game.shuffle(store.currentCards);
 
   // Shuffle drawings
-  const shuffledDrawings = gameUtils.shuffle(Object.values(players).map((player) => player.currentCard));
+  const shuffledDrawings = utils.game.shuffle(Object.values(players).map((player) => player.currentCard));
 
   return {
     update: {
@@ -120,10 +118,10 @@ export const prepareGalleryPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Unready players
-  utils.unReadyPlayers(players);
+  utils.players.unReadyPlayers(players);
 
   // Build gallery
-  const gallery = gameUtils.shuffle(buildGallery(state.drawings, players));
+  const gallery = utils.game.shuffle(buildGallery(state.drawings, players));
 
   const ranking = buildRanking(state.drawings, players);
 
@@ -142,7 +140,7 @@ export const prepareGalleryPhase = async (
         gallery,
         cards: store.currentCards,
         ranking,
-        drawings: firebaseUtils.deleteValue(),
+        drawings: utils.firebase.deleteValue(),
       },
     },
   };
@@ -153,9 +151,9 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
-  const winners = utils.determineWinners(players);
+  const winners = utils.players.determineWinners(players);
 
-  const finalGallery = utils.orderBy(store.pastDrawings, 'successRate', 'desc');
+  const finalGallery = utils.helpers.orderBy(store.pastDrawings, 'successRate', 'desc');
 
   return {
     update: {

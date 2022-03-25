@@ -5,9 +5,7 @@ import { FirebaseStateData, FirebaseStoreData, AllWords } from './types';
 import { UE_SO_ISSO_PHASES } from './constants';
 import { DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
 // Helpers
-import * as firebaseUtils from '../../utils/firebase';
-import * as gameUtils from '../../utils/game-utils';
-import * as utils from '../../utils/helpers';
+import * as utils from '../../utils';
 // Internal
 import {
   buildCurrentWords,
@@ -34,7 +32,7 @@ export const prepareSetupPhase = async (
   allWords: AllWords
 ): Promise<SaveGamePayload> => {
   // Determine turn order
-  const { gameOrder: turnOrder, playerIds: gameOrder } = utils.buildGameOrder(
+  const { gameOrder: turnOrder, playerIds: gameOrder } = utils.helpers.buildGameOrder(
     players,
     DOUBLE_ROUNDS_THRESHOLD
   );
@@ -52,8 +50,8 @@ export const prepareSetupPhase = async (
         gameOrder,
         currentWords: [],
         currentSuggestions: [],
-        currentWord: firebaseUtils.deleteValue(),
-        guess: firebaseUtils.deleteValue(),
+        currentWord: utils.firebase.deleteValue(),
+        guess: utils.firebase.deleteValue(),
         validSuggestions: {},
       },
       state: {
@@ -87,8 +85,11 @@ export const prepareWordSelectionPhase = async (
   const currentWords = buildCurrentWords(JSON.parse(store.deck[roundIndex]));
 
   // Unready players and remove any previously used game keys
-  const unReadiedPlayers = utils.unReadyPlayers(players, guesserId);
-  const removedPropsPlayers = utils.removePropertiesFromPlayers(unReadiedPlayers, ['suggestions', 'votes']);
+  const unReadiedPlayers = utils.players.unReadyPlayers(players, guesserId);
+  const removedPropsPlayers = utils.players.removePropertiesFromPlayers(unReadiedPlayers, [
+    'suggestions',
+    'votes',
+  ]);
 
   const groupScore = determineGroupScore(players, state.round.total);
 
@@ -103,13 +104,13 @@ export const prepareWordSelectionPhase = async (
       },
       state: {
         phase: UE_SO_ISSO_PHASES.WORD_SELECTION,
-        round: utils.increaseRound(state.round),
+        round: utils.helpers.increaseRound(state.round),
         gameOrder: store.gameOrder,
         groupScore,
         guesserId,
         controllerId,
         words: Object.values(currentWords),
-        guess: firebaseUtils.deleteValue(),
+        guess: utils.firebase.deleteValue(),
       },
     },
     set: {
@@ -143,11 +144,11 @@ export const prepareSuggestPhase = async (
         phase: UE_SO_ISSO_PHASES.SUGGEST,
         secretWord,
         suggestionsNumber,
-        words: firebaseUtils.deleteValue(),
+        words: utils.firebase.deleteValue(),
       },
     },
     set: {
-      players: utils.unReadyPlayers(players, state.guesserId),
+      players: utils.players.unReadyPlayers(players, state.guesserId),
     },
   };
 };
@@ -161,7 +162,7 @@ export const prepareComparePhase = async (
 
   const suggestionsArray = validateSuggestions(currentSuggestions);
 
-  const shuffledSuggestions = gameUtils.shuffle(suggestionsArray);
+  const shuffledSuggestions = utils.game.shuffle(suggestionsArray);
 
   // Save
   return {
@@ -171,7 +172,7 @@ export const prepareComparePhase = async (
       state: {
         phase: UE_SO_ISSO_PHASES.COMPARE,
         suggestions: shuffledSuggestions,
-        suggestionsNumber: firebaseUtils.deleteValue(),
+        suggestionsNumber: utils.firebase.deleteValue(),
       },
     },
   };
@@ -184,7 +185,7 @@ export const prepareGuessPhase = async (store: FirebaseStoreData): Promise<SaveG
       state: {
         phase: UE_SO_ISSO_PHASES.GUESS,
         validSuggestions: store.validSuggestions,
-        suggestions: firebaseUtils.deleteValue(),
+        suggestions: utils.firebase.deleteValue(),
       },
     },
   };

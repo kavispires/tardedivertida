@@ -4,8 +4,7 @@ import { FirebaseStateData, FirebaseStoreData, MonsterSketch, RetratoFaladoAddit
 // Constants
 import { RETRATO_FALADO_PHASES } from './constants';
 // Helpers1
-import * as firebaseUtils from '../../utils/firebase';
-import * as utils from '../../utils/helpers';
+import * as utils from '../../utils';
 import { buildDeck, buildRanking, gatherSketches, getMostVotes } from './helpers';
 
 /**
@@ -21,7 +20,7 @@ export const prepareSetupPhase = async (
   additionalData: RetratoFaladoAdditionalData
 ): Promise<SaveGamePayload> => {
   // Determine player order
-  const { gameOrder, playerCount } = utils.buildGameOrder(players);
+  const { gameOrder, playerCount } = utils.helpers.buildGameOrder(players);
 
   // Build deck
   const deck = buildDeck(additionalData.allMonsters, additionalData.usedCardsId, playerCount);
@@ -54,21 +53,21 @@ export const prepareCompositeSketchPhase = async (
   const deck = [...store.deck];
   const currentMonster = deck.pop();
 
-  utils.unReadyPlayers(players, witnessId);
-  utils.removePropertiesFromPlayers(players, ['vote', 'drawing']);
+  utils.players.unReadyPlayers(players, witnessId);
+  utils.players.removePropertiesFromPlayers(players, ['vote', 'drawing']);
 
   // Save
   return {
     update: {
       store: {
         deck,
-        currentOrientation: firebaseUtils.deleteValue(),
+        currentOrientation: utils.firebase.deleteValue(),
       },
       state: {
         phase: RETRATO_FALADO_PHASES.COMPOSITE_SKETCH,
         currentMonster,
         witnessId,
-        round: utils.increaseRound(state.round),
+        round: utils.helpers.increaseRound(state.round),
       },
       players,
     },
@@ -88,7 +87,7 @@ export const prepareEvaluationPhase = async (
   // Gather all drawings
   const sketches = gatherSketches(players, currentMonster, state.witnessId);
 
-  utils.unReadyPlayers(players);
+  utils.players.unReadyPlayers(players);
 
   // Save
   return {
@@ -141,7 +140,7 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
-  const winners = utils.determineWinners(players);
+  const winners = utils.players.determineWinners(players);
 
   // Build gallery
 

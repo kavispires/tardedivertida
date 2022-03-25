@@ -5,11 +5,7 @@ import { DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
 import { FirebaseStateData, FirebaseStoreData } from './types';
 import { Players, SaveGamePayload } from '../../utils/types';
 // Utils
-import * as firebaseUtils from '../../utils/firebase';
-import * as gameUtils from '../../utils/game-utils';
-import * as imageCardsUtils from '../../utils/image-cards';
-import * as utils from '../../utils/helpers';
-import * as playerHandUtils from '../../utils/player-hand-utils';
+import * as utils from '../../utils';
 // Internal
 import { calculateNewScores, countImpostorVotes, determinePhaseOrder } from './helpers';
 
@@ -25,17 +21,20 @@ export const prepareSetupPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Determine player order
-  const { gameOrder, playerIds, playerCount } = utils.buildGameOrder(players, DOUBLE_ROUNDS_THRESHOLD);
+  const { gameOrder, playerIds, playerCount } = utils.helpers.buildGameOrder(
+    players,
+    DOUBLE_ROUNDS_THRESHOLD
+  );
 
   // Assigned cards to players depending on player count
   // We build the used cards deck all at once to avoid having to generate and
   // get unique ones every time
   const cardsPerPlayer = gameOrder.length * 2 + HAND_LIMIT;
   const minimumNumberOfCards = playerCount * cardsPerPlayer;
-  const cards = await imageCardsUtils.getImageCards(minimumNumberOfCards);
+  const cards = await utils.imageCards.getImageCards(minimumNumberOfCards);
 
   // Split cards equally between players
-  players = gameUtils.dealList(cards, players, cardsPerPlayer, 'deck');
+  players = utils.game.dealList(cards, players, cardsPerPlayer, 'deck');
 
   // Save
   return {
@@ -71,20 +70,20 @@ export const prepareSecretCluePhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Make sure everybody has 6 cards in hand
-  players = playerHandUtils.dealPlayersCard(players, HAND_LIMIT);
-  players = utils.removePropertiesFromPlayers(players, ['vote']);
+  players = utils.playerHand.dealPlayersCard(players, HAND_LIMIT);
+  players = utils.players.removePropertiesFromPlayers(players, ['vote']);
 
   // Determine the leader
   const leaderId = store.gameOrder[state.round.current];
   // Determine the impostor
-  const impostorId = gameUtils.shuffle(Object.keys(players).filter((playerId) => playerId !== leaderId))[0];
+  const impostorId = utils.game.shuffle(Object.keys(players).filter((playerId) => playerId !== leaderId))[0];
 
   // Save
   return {
     update: {
       state: {
         phase: DETETIVES_IMAGINATIVOS_PHASES.SECRET_CLUE,
-        round: utils.increaseRound(state.round),
+        round: utils.helpers.increaseRound(state.round),
         leaderId,
         impostorId,
       },
@@ -143,7 +142,7 @@ export const prepareVotingPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Unready players
-  const newPlayers = utils.unReadyPlayers(players, state.leaderId);
+  const newPlayers = utils.players.unReadyPlayers(players, state.leaderId);
 
   // Save
   return {
@@ -151,9 +150,9 @@ export const prepareVotingPhase = async (
       players: newPlayers,
       state: {
         phase: DETETIVES_IMAGINATIVOS_PHASES.VOTING,
-        phaseOrder: firebaseUtils.deleteValue(),
-        phaseIndex: firebaseUtils.deleteValue(),
-        currentPlayerId: firebaseUtils.deleteValue(),
+        phaseOrder: utils.firebase.deleteValue(),
+        phaseIndex: utils.firebase.deleteValue(),
+        currentPlayerId: utils.firebase.deleteValue(),
       },
     },
   };
@@ -201,7 +200,7 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
-  const winners = utils.determineWinners(players);
+  const winners = utils.players.determineWinners(players);
 
   return {
     update: {

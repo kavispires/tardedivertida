@@ -4,7 +4,7 @@ import { ESPIAO_ENTRE_NOS_PHASES, GAME_DURATION, OUTCOMES, SPY } from './constan
 import { FirebaseStateData, FirebaseStoreData, Outcome } from './types';
 import { PlayerId, Players } from '../../utils/types';
 // Utils
-import * as gameUtils from '../../utils/game-utils';
+import * as utils from '../../utils';
 
 /**
  * Determine the next phase based on the current one
@@ -64,7 +64,7 @@ export const determineNextPhase = (
  * @returns
  */
 export const createRolesPool = (roles: string[], playerCount: number): string[] => {
-  const shuffledRoles = gameUtils.shuffle(roles);
+  const shuffledRoles = utils.game.shuffle(roles);
 
   const sessionRoles = new Array(playerCount).fill('').map((newRole, index) => {
     if (index === 0) return SPY;
@@ -74,7 +74,7 @@ export const createRolesPool = (roles: string[], playerCount: number): string[] 
     return shuffledRoles[index - 1];
   });
 
-  return gameUtils.shuffle(sessionRoles);
+  return utils.game.shuffle(sessionRoles);
 };
 
 /**
