@@ -1,9 +1,5 @@
+import { MonsterCard } from '../../utils/tdi';
 import { DefaultState, DefaultStore, InitialState, Payload, PlayerId } from '../../utils/types';
-
-type MonsterCard = {
-  id: string;
-  orientation: string;
-};
 
 interface MonsterSketch extends MonsterCard {
   playerId: PlayerId | null;

@@ -1,12 +1,11 @@
+import { TextCard } from '../../utils/tdr';
 import { DefaultState, DefaultStore, InitialState, Payload, PlayerId } from '../../utils/types';
 
 type PolemicaDaVezOptions = {
   fixedRounds: boolean;
 };
 
-interface Topic {
-  id: string;
-  text: string;
+interface Topic extends TextCard {
   custom?: boolean;
 }
 

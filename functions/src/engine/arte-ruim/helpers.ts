@@ -1,6 +1,7 @@
 // Types
 import { PlainObject, Players, Round } from '../../utils/types';
-import { ArteRuimCard, ArteRuimDrawing, ArteRuimLevel4Card, FirebaseStoreData, PerLevelCards } from './types';
+import { ArteRuimCard, ArteRuimExtraGroup } from '../../utils/tdr';
+import { ArteRuimDrawing, FirebaseStoreData, PerLevelCards } from './types';
 // Constants
 import {
   ARTE_RUIM_PHASES,
@@ -100,7 +101,7 @@ const getEnoughUnusedLevel4Cards = (deck, usedCards: PlainObject, cardsNeeded: n
  */
 export const buildDeck = (
   allCards: PlainObject,
-  level4Deck: ArteRuimLevel4Card[],
+  level4Deck: ArteRuimExtraGroup[],
   usedCardsIds: ArteRuimCard[],
   playerCount: number,
   useAllCards: boolean,

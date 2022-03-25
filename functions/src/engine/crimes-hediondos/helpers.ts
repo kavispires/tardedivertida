@@ -1,5 +1,7 @@
 // Types
 import { PlainObject, PlayerId, Players, RankingEntry, Round, StringDictionary } from '../../utils/types';
+import { CrimesHediondosSceneTile } from '../../utils/tdr';
+import { CrimesHediondosCard } from '../../utils/tdi';
 // Constants
 import {
   CRIMES_HEDIONDOS_PHASES,
@@ -9,16 +11,7 @@ import {
   SCENE_TILES_COUNT,
   TOTAL_ROUNDS,
 } from './constants';
-import {
-  Crime,
-  CrimesHediondosCard,
-  GroupedItems,
-  Guess,
-  GuessHistory,
-  GuessHistoryEntry,
-  SceneTile,
-  WrongGroups,
-} from './types';
+import { Crime, GroupedItems, Guess, GuessHistory, GuessHistoryEntry, WrongGroups } from './types';
 // Utils
 import * as utils from '../../utils';
 
@@ -58,15 +51,15 @@ export const determineNextPhase = (
 };
 
 type ParsedTiles = {
-  causeOfDeathTile: SceneTile;
-  reasonForEvidenceTile: SceneTile;
-  locationTiles: SceneTile[];
-  sceneTiles: SceneTile[];
+  causeOfDeathTile: CrimesHediondosSceneTile;
+  reasonForEvidenceTile: CrimesHediondosSceneTile;
+  locationTiles: CrimesHediondosSceneTile[];
+  sceneTiles: CrimesHediondosSceneTile[];
 };
 
-export const parseTiles = (sceneTiles: SceneTile[]): ParsedTiles => {
+export const parseTiles = (sceneTiles: CrimesHediondosSceneTile[]): ParsedTiles => {
   const result = sceneTiles.reduce(
-    (acc: any, tile: SceneTile) => {
+    (acc: any, tile: CrimesHediondosSceneTile) => {
       if (tile.type === 'cause') {
         acc.causeOfDeathTile = tile;
       } else if (tile.type === 'evidence') {
@@ -83,7 +76,7 @@ export const parseTiles = (sceneTiles: SceneTile[]): ParsedTiles => {
       causeOfDeathTile: {},
       reasonForEvidenceTile: {},
       locationTiles: [],
-      sceneTiles: [],
+      CrimesHediondosSceneTiles: [],
     }
   );
 
@@ -128,8 +121,8 @@ export const dealItemGroups = (players: Players) => {
 
 export const buildCrimes = (
   players: Players,
-  causeOfDeathTile: SceneTile,
-  reasonForEvidenceTile: SceneTile
+  causeOfDeathTile: CrimesHediondosSceneTile,
+  reasonForEvidenceTile: CrimesHediondosSceneTile
 ): Crime[] => {
   return Object.values(players).map((player) => {
     return {
@@ -148,15 +141,15 @@ export const buildCrimes = (
 
 type BuiltScenes = {
   scenes: {
-    [key: string]: SceneTile;
+    [key: string]: CrimesHediondosSceneTile;
   };
   order: string[];
 };
 
 export const buildScenes = (
-  causeOfDeathTile: SceneTile,
-  reasonForEvidenceTile: SceneTile,
-  locationTiles: SceneTile[],
+  causeOfDeathTile: CrimesHediondosSceneTile,
+  reasonForEvidenceTile: CrimesHediondosSceneTile,
+  locationTiles: CrimesHediondosSceneTile[],
   players: Players
 ): BuiltScenes => {
   const locationsUsedByPlayers = Object.values(players).map((player) => player.locationTile);
@@ -174,7 +167,11 @@ export const buildScenes = (
   return { scenes, order };
 };
 
-export const updateCrime = (crimes: Crime[], players: Players, currentScene: SceneTile): Crime[] => {
+export const updateCrime = (
+  crimes: Crime[],
+  players: Players,
+  currentScene: CrimesHediondosSceneTile
+): Crime[] => {
   return crimes.map((crime) => {
     crime.scenes[currentScene.id] = players[crime.playerId].sceneIndex;
     return crime;

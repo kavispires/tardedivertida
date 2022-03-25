@@ -1,23 +1,19 @@
+import { TextCard } from '../../utils/tdr';
 import { DefaultState, DefaultStore, InitialState, Payload, PlayerId } from '../../utils/types';
 
 type CruzaPalavrasOptions = {
   largerGrid: boolean;
 };
 
-type WordCard = {
-  id: string;
-  text: string;
-};
-
 type AllWords = {
-  [key: string]: WordCard;
+  [key: string]: TextCard;
 };
 
 type ResourceData = {
   allWords: AllWords;
 };
 
-type Deck = WordCard[];
+type Deck = TextCard[];
 
 type ClueEntry = {
   playerId: PlayerId;

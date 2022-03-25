@@ -1,20 +1,9 @@
-import { DefaultState, DefaultStore, InitialState, Payload, PlainObject, PlayerId } from '../../utils/types';
+import { ArteRuimCard } from '../../utils/tdr';
+import { DefaultState, DefaultStore, InitialState, Payload, PlayerId } from '../../utils/types';
 
 type ArteRuimGameOptions = {
   useAllCards: boolean;
   shortGame: boolean;
-};
-
-type ArteRuimCard = {
-  id: string;
-  text: string;
-  level: number;
-};
-
-type ArteRuimLevel4Card = {
-  id: string;
-  theme: string;
-  cards: PlainObject;
 };
 
 type PerLevelCards = {

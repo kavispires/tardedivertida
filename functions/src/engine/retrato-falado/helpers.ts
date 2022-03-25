@@ -2,10 +2,11 @@
 import { RETRATO_FALADO_PHASES } from './constants';
 // Types
 import { Player, PlayerId, Players, RankingEntry, Round } from '../../utils/types';
-import { AllMonsters, MonsterCard, MonsterSketch } from './types';
+import { AllMonsters, MonsterSketch } from './types';
 // Helpers
 import * as utils from '../../utils';
 import { buildNewScoreObject } from '../../utils/helpers';
+import { MonsterCard } from '../../utils/tdi';
 
 /**
  * Determine the next phase based on the current one

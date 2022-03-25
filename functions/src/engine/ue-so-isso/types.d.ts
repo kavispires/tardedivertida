@@ -1,3 +1,4 @@
+import { TextCard } from '../../utils/tdr';
 import {
   DefaultState,
   DefaultStore,
@@ -8,13 +9,8 @@ import {
   PlayerName,
 } from '../../utils/types';
 
-interface Word {
-  id: string;
-  text: string;
-}
-
 interface AllWords {
-  [key: string]: Word;
+  [key: string]: TextCard;
 }
 
 interface UsedWord {
@@ -31,11 +27,11 @@ interface UsedWords {
 }
 
 interface UeSoIssoStore extends DefaultStore {
-  deck: Word[];
+  deck: TextCard[];
   turnOrder: PlayerId[];
   gameOrder: PlayerId[];
   usedWords: UsedWords;
-  currentWords: Word[];
+  currentWords: TextCard[];
   currentSuggestions: PlainObject[];
   currentWord?: any;
   guess?: any;
