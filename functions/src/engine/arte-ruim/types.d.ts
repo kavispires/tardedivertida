@@ -21,10 +21,6 @@ type PerLevelCards = {
   [key: string]: ArteRuimCard[];
 };
 
-type ArteRuimCardsDatabase = {
-  [key: string]: ArteRuimCard;
-};
-
 interface ArteRuimDrawing extends ArteRuimCard {
   playerId: PlayerId | null;
   drawing: string | null;
@@ -32,7 +28,7 @@ interface ArteRuimDrawing extends ArteRuimCard {
 }
 
 interface ArteRuimStore extends DefaultStore {
-  deck: ArteRuimCardsDatabase[];
+  deck: Record<string, ArteRuimCard>;
   currentCards: string[];
   pastDrawings: ArteRuimDrawing[];
 }

@@ -14,6 +14,7 @@ export type DualLanguageValue = {
   en: string;
   pt: string;
 };
+export type CardId = string;
 
 // COMMON INTERFACES
 
@@ -81,7 +82,7 @@ export interface Meta {
   isComplete: boolean;
   language: string;
   replay: number;
-  options?: PlainObject;
+  options?: BooleanDictionary;
 }
 
 export interface PlayerCounts {
@@ -93,11 +94,13 @@ export interface DefaultState {
   phase: string;
   round: Round;
   updatedAt: DateMilliseconds;
+  lastRound?: boolean;
   gameEndedAt?: DateMilliseconds;
 }
 
 export interface DefaultStore {
   language: Language;
+  options?: BooleanDictionary;
   [key: string]: any;
 }
 

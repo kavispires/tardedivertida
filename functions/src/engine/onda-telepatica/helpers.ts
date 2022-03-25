@@ -11,6 +11,7 @@ import {
 import { DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
 // Utils
 import * as gameUtils from '../../utils/game-utils';
+import * as utils from '../../utils/helpers';
 
 /**
  * Determine the next phase based on the current one
@@ -56,7 +57,7 @@ export const determineGameOver = (
     return Object.values(players).some((player) => player.score >= GAME_OVER_SCORE_THRESHOLD);
   }
 
-  const playerCount = Object.keys(players).length;
+  const playerCount = utils.getPlayerCount(players);
   if (playerCount < DOUBLE_ROUNDS_THRESHOLD) {
     return round.current >= playerCount * 2;
   }

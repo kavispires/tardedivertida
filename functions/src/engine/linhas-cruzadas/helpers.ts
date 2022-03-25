@@ -49,7 +49,7 @@ export const dealPromptOptions = (
   wordsDeck: WordCard[],
   options: LinhasCruzadasOptions
 ) => {
-  const playerCount = Object.keys(players).length;
+  const playerCount = utils.getPlayerCount(players);
 
   if (options.singleWordOnly) {
     const dealCardEveryNTimes = Math.floor(wordsDeck.length / playerCount);

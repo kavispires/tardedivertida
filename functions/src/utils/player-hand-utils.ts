@@ -39,7 +39,7 @@ export const dealPlayersCard = (
 /**
  * Deal cards to players from their own deck
  * @param players players object
- * @param quantity number of cards to be dealt
+ * @param cardId number of cards to be dealt
  * @param playerId if present, only this player will get cards
  * @param handLimit how many cards a player can have in hand
  * @returns
