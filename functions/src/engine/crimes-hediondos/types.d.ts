@@ -1,26 +1,6 @@
-import {
-  DefaultState,
-  DefaultStore,
-  DualLanguageValue,
-  InitialState,
-  Payload,
-  PlayerId,
-} from '../../utils/types';
-
-type CrimesHediondosCard = {
-  id: string;
-  type: string;
-  name: DualLanguageValue;
-};
-
-type SceneTile = {
-  id: string;
-  type: string;
-  title: DualLanguageValue;
-  description: DualLanguageValue;
-  values: DualLanguageValue[];
-  specific?: string | null;
-};
+import { CrimesHediondosCard } from '../../utils/tdi';
+import { CrimesHediondosSceneTile } from '../../utils/tdr';
+import { DefaultState, DefaultStore, InitialState, Payload, PlayerId } from '../../utils/types';
 
 interface Crime {
   playerId: PlayerId;
@@ -59,17 +39,17 @@ type WrongGroups = {
 interface ResourceData {
   allWeapons: CrimesHediondosCard[];
   allEvidence: CrimesHediondosCard[];
-  allScenes: SceneTile[];
+  allScenes: CrimesHediondosSceneTile[];
 }
 
 interface CrimesHediondosStore extends DefaultStore {
-  scenes: SceneTile[];
+  scenes: CrimesHediondosSceneTile[];
   [key: string]: any;
 }
 
 interface CrimesHediondosState extends DefaultState {
   scenes: {
-    [key: string]: SceneTile;
+    [key: string]: CrimesHediondosSceneTile;
   };
   [key: string]: any;
 }

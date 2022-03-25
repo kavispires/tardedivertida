@@ -1,13 +1,7 @@
-import { DefaultState, DefaultStore, InitialState, Payload, PlayerId } from '../../utils/types';
+import { SuspectCard } from '../../utils/tdi';
+import { CardId, DefaultState, DefaultStore, InitialState, Payload, PlayerId } from '../../utils/types';
 
-type SuspectId = string;
-
-type Suspect = {
-  id: SuspectId;
-  pt: string;
-  en: string;
-  gender: string;
-};
+type SuspectId = CardId;
 
 interface TestemunhaOcularCard {
   id: string;
@@ -35,7 +29,7 @@ interface TestemunhaOcularStore extends DefaultStore {
 }
 
 interface TestemunhaOcularState extends DefaultState {
-  suspects?: Suspect[];
+  suspects?: SuspectCard[];
   perpetrator?: any;
   groupScore?: any;
   questionerId?: any;

@@ -1,3 +1,4 @@
+import { ArteRuimCard, TextCard } from '../../utils/tdr';
 import { DefaultState, DefaultStore, InitialState, Payload, PlayerId } from '../../utils/types';
 
 type LinhasCruzadasOptions = {
@@ -5,22 +6,11 @@ type LinhasCruzadasOptions = {
   evenDistribution: boolean;
 };
 
-type ExpressionCard = {
-  id: string;
-  text: string;
-  level?: number;
-};
-
-type WordCard = {
-  id: string;
-  text: string;
-};
-
-type Card = ExpressionCard | WordCard;
+type Card = ArteRuimCard | TextCard;
 
 type ResourceData = {
-  allWords: WordCard[];
-  allExpressions: ExpressionCard[];
+  allWords: TextCard[];
+  allExpressions: ArteRuimCard[];
 };
 
 type Prompt = {

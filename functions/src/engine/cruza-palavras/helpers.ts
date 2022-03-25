@@ -1,5 +1,6 @@
 // Types
-import { AllWords, ClueEntry, Deck, GridCell, WordCard } from './types';
+import { AllWords, ClueEntry, Deck, GridCell } from './types';
+import { TextCard } from '../../utils/tdr';
 import { PlayerId, Players, RankingEntry, Round } from '../../utils/types';
 // Constants
 import { SEPARATOR } from '../../utils/constants';
@@ -69,7 +70,7 @@ export const checkForAvailableCells = (
 
 export const buildGrid = (
   words: Deck,
-  playersClues: WordCard[],
+  playersClues: TextCard[],
   wordsPerCoordinate: number,
   shouldUsePlayersClues: boolean
 ): GridCell[] => {

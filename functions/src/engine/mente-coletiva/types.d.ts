@@ -1,3 +1,4 @@
+import { MenteColetivaCard } from '../../utils/tdr';
 import {
   DefaultState,
   DefaultStore,
@@ -12,15 +13,8 @@ type MenteColetivaOptions = {
   shortPasture: boolean;
 };
 
-interface Question {
-  id: string;
-  number: number;
-  prefix: string;
-  suffix: string;
-}
-
 interface AllQuestions {
-  [key: string]: Question;
+  [key: string]: MenteColetivaCard;
 }
 
 interface PastQuestions {
@@ -28,13 +22,13 @@ interface PastQuestions {
   answers: string[];
 }
 
-type Deck = Question[];
+type Deck = MenteColetivaCard[];
 
 interface MenteColetivaStore extends DefaultStore {
   deck: Deck;
   gameOrder: PlayerId[];
   pastQuestions: PastQuestions[];
-  currentQuestion?: Question;
+  currentQuestion?: MenteColetivaCard;
   [key: string]: any;
 }
 

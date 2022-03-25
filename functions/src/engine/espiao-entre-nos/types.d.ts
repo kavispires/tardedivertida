@@ -2,12 +2,6 @@ import { DefaultState, DefaultStore, InitialState, Payload, PlayerId } from '../
 
 type TimerAction = 'START' | 'STOP' | 'RESUME' | 'PAUSE';
 
-type Location = {
-  id: string;
-  name: string;
-  roles: string[];
-};
-
 type Outcome = {
   type: string;
   votedYes?: string;

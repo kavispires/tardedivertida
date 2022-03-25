@@ -1,12 +1,8 @@
+import { TextCard } from '../../utils/tdr';
 import { DefaultState, DefaultStore, GameOrder, InitialState, Payload, PlayerId } from '../../utils/types';
 
-type WordCard = {
-  id: string;
-  text: string;
-};
-
 type AllWords = {
-  [key: string]: WordCard;
+  [key: string]: TextCard;
 };
 
 type ResourceData = {
@@ -28,7 +24,7 @@ type PlayerCard = {
 
 interface GaleriaDeSonhosStore extends DefaultStore {
   tableDeck: ImageCard[];
-  deck: WordCard[];
+  deck: TextCard[];
   gameOrder: GameOrder;
   [key: string]: any;
 }

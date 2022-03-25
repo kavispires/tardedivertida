@@ -1,20 +1,18 @@
+import { OndaTelepaticaCard } from '../../utils/tdr';
 import { DefaultState, DefaultStore, InitialState, Payload, PlayerId } from '../../utils/types';
 
 type OndaTelepaticaOptions = {
   fixedRounds: boolean;
 };
 
-interface CategoryCard {
-  id: string;
-  left: string;
-  right: string;
+interface CategoryCard extends OndaTelepaticaCard {
   target?: number;
   clue?: string;
 }
 
 interface ResourceData {
   allCategories: {
-    [key: string]: CategoryCard;
+    [key: string]: OndaTelepaticaCard;
   };
   usedCategories: string[];
 }

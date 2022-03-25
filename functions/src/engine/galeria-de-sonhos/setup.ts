@@ -1,7 +1,8 @@
 // Constants
 import { GALERIA_DE_SONHOS_PHASES, TABLE_DECK_TOTAL } from './constants';
 // Types
-import { FirebaseStateData, FirebaseStoreData, ResourceData, WordCard } from './types';
+import { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
+import { TextCard } from '../../utils/tdr';
 import { NumberDictionary, PlainObject, PlayerId, Players, SaveGamePayload } from '../../utils/types';
 // Utils
 import * as utils from '../../utils';
@@ -103,8 +104,8 @@ export const prepareDreamsSelectionPhase = async (
   utils.players.unReadyPlayers(players);
   utils.players.addPropertiesToPlayers(players, { cards: {} });
 
-  const word = state.words.find((w: WordCard) => w.id === store.wordId);
-  const leftoverWord = state.words.find((w: WordCard) => w.id !== store.wordId);
+  const word = state.words.find((w: TextCard) => w.id === store.wordId);
+  const leftoverWord = state.words.find((w: TextCard) => w.id !== store.wordId);
   const wordsDeck = [leftoverWord, ...store.wordsDeck];
 
   // Save

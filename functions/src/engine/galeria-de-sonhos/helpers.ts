@@ -1,10 +1,11 @@
 // Types
 import { Round } from '../../utils/types';
+import { AllWords } from './types';
+import { TextCard } from '../../utils/tdr';
 // Constants
 import { GALERIA_DE_SONHOS_PHASES, WORD_DECK_TOTAL } from './constants';
 // Utils
 import * as utils from '../../utils';
-import { AllWords, WordCard } from './types';
 
 /**
  * Determine the next phase based on the current one
@@ -58,11 +59,11 @@ export const buildTable = (deck: string[], table: string[], currentRound: number
   return [deck, newTable];
 };
 
-export const buildDeck = (allWords: AllWords): WordCard[] => {
+export const buildDeck = (allWords: AllWords): TextCard[] => {
   return utils.game.getRandomItems(Object.values(allWords), WORD_DECK_TOTAL);
 };
 
-export const getRoundWords = (wordsDeck: WordCard[]): [WordCard[], WordCard[]] => {
+export const getRoundWords = (wordsDeck: TextCard[]): [TextCard[], TextCard[]] => {
   const selectedWords = wordsDeck.splice(0, 2);
   return [wordsDeck, selectedWords];
 };

@@ -1,6 +1,7 @@
 // Types
 import { PlainObject, Player, Players } from '../../utils/types';
-import { AllWords, CurrentSuggestions, UsedWord, UsedWords, Word } from './types';
+import { TextCard } from '../../utils/tdr';
+import { AllWords, CurrentSuggestions, UsedWord, UsedWords } from './types';
 // Constants
 import { UE_SO_ISSO_PHASES, WORDS_PER_CARD } from './constants';
 // Utilities
@@ -43,7 +44,7 @@ export const buildDeck = (allWords: AllWords, numberOfRounds: number) => {
   const shuffledWords = utils.game.shuffle(Object.values(allWords));
   const deck: string[] = [];
   for (let i = 0; i < numberOfRounds * WORDS_PER_CARD; i += WORDS_PER_CARD) {
-    const card: Word[] = [];
+    const card: TextCard[] = [];
     for (let j = i; j < i + WORDS_PER_CARD; j++) {
       card.push(shuffledWords[j]);
     }
@@ -58,7 +59,7 @@ export const buildDeck = (allWords: AllWords, numberOfRounds: number) => {
  * @param currentCard
  * @returns
  */
-export const buildCurrentWords = (currentCard: Word[]) => {
+export const buildCurrentWords = (currentCard: TextCard[]) => {
   return currentCard.reduce((wordObjects, word) => {
     wordObjects[word.id] = {
       ...word,

@@ -1,9 +1,11 @@
-// Helpers
+// Types
+import { TestemunhaOcularEntry } from './types';
+// Constants
 import { GLOBAL_USED_DOCUMENTS } from '../../utils/constants';
+// Helpers
 import * as utils from '../../utils';
 import * as globalUtils from '../global';
 import * as resourceUtils from '../resource';
-import { TestemunhaOcularEntry } from './types';
 
 /**
  * Get question resource based on the game's language

@@ -1,10 +1,11 @@
 // Types
-import { Album, Card, ExpressionCard, LinhasCruzadasOptions, Slide, WordCard } from './types';
+import { Album, Card, LinhasCruzadasOptions, Slide } from './types';
 import { GameOrder, Players, Round } from '../../utils/types';
 // Constants
 import { LINHAS_CRUZADAS_PHASES } from './constants';
 // Utils
 import * as utils from '../../utils';
+import { ArteRuimCard, TextCard } from '../../utils/tdr';
 
 /**
  * Determine the next phase based on the current one
@@ -44,8 +45,8 @@ export const determineNextPhase = (
 
 export const dealPromptOptions = (
   players: Players,
-  expressionDeck: ExpressionCard[],
-  wordsDeck: WordCard[],
+  expressionDeck: ArteRuimCard[],
+  wordsDeck: TextCard[],
   options: LinhasCruzadasOptions
 ) => {
   const playerCount = utils.players.getPlayerCount(players);
