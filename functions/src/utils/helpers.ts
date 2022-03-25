@@ -508,3 +508,10 @@ export const buildGameOrder = (
   const gameOrder = playerIds.length < doublingThreshold ? [...playerIds, ...playerIds] : playerIds;
   return { gameOrder, playerIds, playerCount: playerIds.length };
 };
+
+/**
+ * Counts how many player keys are in players a.k.a the number of players in the game
+ * @param players
+ * @returns
+ */
+export const getPlayerCount = (players: Players): number => Object.keys(players).length;
