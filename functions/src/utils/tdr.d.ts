@@ -12,10 +12,10 @@ export type TextCard = {
 export type ArteRuimCard = {
   id: CardId;
   text: string;
-  level: 0 | 1 | 2 | 3 | 4;
+  level: number;
 };
 
-export type ArteRuimExtraGroup = {
+export type ArteRuimGroup = {
   id: string;
   theme: string;
   cards: Record<CardId, string>;

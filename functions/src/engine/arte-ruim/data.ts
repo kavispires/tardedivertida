@@ -1,34 +1,72 @@
 // Constants
 import { GLOBAL_USED_DOCUMENTS } from '../../utils/constants';
 // Types
-import { Language } from '../../utils/types';
-import { ArteRuimDrawing } from './types';
+import { BooleanDictionary, Language } from '../../utils/types';
+import { ArteRuimData, ArteRuimDrawing } from './types';
 // Helpers
 import * as globalUtils from '../global';
 import * as publicUtils from '../public';
 import * as resourceUtils from '../resource';
 import * as utils from '../../utils';
-import { buildPastDrawingsDict } from './helpers';
+import { buildPastDrawingsDict, distributeCardsByLevel, getAvailableCards, getGameSettings } from './helpers';
+import { ArteRuimCard, ArteRuimGroup } from '../../utils/tdr';
 
 /**
  * Get expression cards resource based on the game's language
  * @param language
+ * @param playerCount
+ * @param isShortGame
+ * @param useAllCards
  * @returns
  */
-export const getCards = async (language: string) => {
+export const getCards = async (
+  language: string,
+  playerCount: number,
+  isShortGame: boolean,
+  useAllCards: boolean
+): Promise<ArteRuimData> => {
   const resourceName = `arte-ruim-${language}`;
-  // Get full deck
-  const allCards = await resourceUtils.fetchResource(resourceName);
+  // Get regular and level 4 cards
+  const allCardsResponse = await resourceUtils.fetchResource(resourceName);
+  const allCards: ArteRuimCard[] = Object.values(allCardsResponse);
 
-  const allLevel4 = await resourceUtils.fetchResource(`arte-ruim-extra-${language}`);
+  const allCardsGroupResponse = await resourceUtils.fetchResource(`arte-ruim-group-${language}`);
+  const cardsGroups: ArteRuimGroup[] = Object.values(allCardsGroupResponse);
+
+  const cardsByLevel = distributeCardsByLevel(allCards);
+
+  // If no need for used cards check
+  if (useAllCards) {
+    return {
+      allCards: allCardsResponse,
+      availableCards: cardsByLevel,
+      cardsGroups,
+    };
+  }
 
   // Get used deck
-  const usedCardsId = await globalUtils.getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.ARTE_RUIM, {});
+  const usedCardsIds: BooleanDictionary = await globalUtils.getGlobalFirebaseDocData(
+    GLOBAL_USED_DOCUMENTS.ARTE_RUIM,
+    {}
+  );
+
+  const settings = getGameSettings(isShortGame);
+
+  const { cards, resetUsedCards } = getAvailableCards(
+    cardsByLevel,
+    usedCardsIds,
+    settings.LEVELS,
+    playerCount
+  );
+
+  if (resetUsedCards) {
+    await utils.firebase.getGlobalRef().doc(GLOBAL_USED_DOCUMENTS.ARTE_RUIM).set({ 'a-a-a': true });
+  }
 
   return {
-    allCards,
-    usedCardsId: usedCardsId,
-    level4Cards: Object.values(allLevel4),
+    allCards: allCardsResponse,
+    availableCards: cards,
+    cardsGroups,
   };
 };
 

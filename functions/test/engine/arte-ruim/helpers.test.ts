@@ -8,7 +8,13 @@ describe('arte-ruim/helpers', () => {
 
   describe('buildDeck', () => {
     test('it builds a deck with the correct number of cards per level', () => {
-      result = helpers.buildDeck(mockArteRuimCardDatabase, [], [], 7, false, 'REGULAR_GAME');
+      const mockCardsByLevel = {
+        1: [],
+        2: [],
+        3: [],
+        4: [],
+      };
+      result = helpers.buildDeck(mockArteRuimCardDatabase, [], mockCardsByLevel, 7, false);
 
       expect(result).toHaveLength(42);
       expect(result[0].level).toBe(3);
