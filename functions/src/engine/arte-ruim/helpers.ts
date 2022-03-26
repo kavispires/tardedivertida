@@ -1,13 +1,13 @@
 // Types
-import { PlainObject, Players, Round } from '../../utils/types';
-import { ArteRuimCard, ArteRuimExtraGroup } from '../../utils/tdr';
-import { ArteRuimDrawing, FirebaseStoreData, PerLevelCards } from './types';
+import { BooleanDictionary, CardId, PlainObject, Players, Round } from '../../utils/types';
+import { ArteRuimCard, ArteRuimGroup } from '../../utils/tdr';
+import { ArteRuimDrawing, FirebaseStoreData, CardsByLevel } from './types';
 // Constants
 import {
   ARTE_RUIM_PHASES,
-  REGULAR_GAME_OPTIONS,
-  SHORT_GAME_OPTIONS,
   GAME_OVER_SCORE_THRESHOLD,
+  REGULAR_GAME_LEVELS,
+  SHORT_GAME_LEVELS,
 } from './constants';
 // Helpers
 import * as utils from '../../utils';
@@ -59,13 +59,106 @@ export const determineGameOver = (players: Players, round: Round): boolean => {
 };
 
 /**
- * TODO: Perform before buildDeck
+ * Get game settings
+ * @param isShortGame
+ * @returns
+ */
+export const getGameSettings = (isShortGame: boolean) => {
+  return {
+    MAX_ROUNDS: isShortGame ? SHORT_GAME_LEVELS.length : REGULAR_GAME_LEVELS.length,
+    LEVELS: isShortGame ? SHORT_GAME_LEVELS : REGULAR_GAME_LEVELS,
+  };
+};
+
+/**
+ * Split cards into respective levels
+ * @param cards
+ * @returns
+ */
+export const distributeCardsByLevel = (cards: ArteRuimCard[]): CardsByLevel => {
+  const cardsPerLevel: CardsByLevel = {
+    0: [],
+    1: [],
+    2: [],
+    3: [],
+    4: [],
+  };
+
+  // Split in levels
+  Object.values(cards).forEach((entry: ArteRuimCard) => {
+    cardsPerLevel[entry.level].push(entry);
+  });
+
+  return cardsPerLevel;
+};
+
+export const getAvailableCards = (
+  cardsByLevel: CardsByLevel,
+  usedCardsIds: BooleanDictionary,
+  roundLevels: number[],
+  playerCount: number
+): {
+  cards: CardsByLevel;
+  resetUsedCards: boolean;
+} => {
+  const cardsNeeded: Record<number, number> = {
+    1: 0,
+    2: 0,
+    3: 0,
+  };
+
+  // Count cards needed by level
+  for (const level in cardsByLevel) {
+    const levelNum = Number(level);
+    if (levelNum > 0 && levelNum < 4) {
+      cardsNeeded[levelNum] =
+        determineNumberOfCards(playerCount) * roundLevels.filter((l) => l === levelNum).length;
+    }
+  }
+
+  const availableCards: CardsByLevel = {
+    0: [],
+    1: [],
+    2: [],
+    3: [],
+    4: [],
+  };
+
+  // Filter only available
+  for (const level in cardsNeeded) {
+    for (const cardId in cardsByLevel[level]) {
+      if (usedCardsIds[cardId] === undefined) {
+        availableCards[level].push(cardsByLevel[level][cardId]);
+      }
+    }
+  }
+
+  let hasEnough = true;
+  // Verify count
+  for (const level in cardsNeeded) {
+    if (availableCards[level].length < cardsNeeded[level]) {
+      hasEnough = false;
+    }
+  }
+
+  return {
+    cards: hasEnough ? availableCards : cardsByLevel,
+    resetUsedCards: !hasEnough,
+  };
+};
+
+/**
+ * Get enough level 4 cards
  * @param deck
  * @param usedCards
  * @param cardsNeeded
  * @returns
  */
-const getEnoughUnusedLevel4Cards = (deck, usedCards: PlainObject, cardsNeeded: number): string[] => {
+const getEnoughUnusedLevel4Cards = (
+  deck: ArteRuimGroup[],
+  usedCards: PlainObject,
+  cardsNeeded: number
+): string[] => {
   let tries = 0;
   const discarded: string[] = [];
   const reserved: PlainObject = [];
@@ -76,13 +169,15 @@ const getEnoughUnusedLevel4Cards = (deck, usedCards: PlainObject, cardsNeeded: n
     if (tries > 100) {
       return utils.game.sliceIntoChunks(discarded, cardsNeeded)[0];
     }
-
-    const cards = Object.keys(deck.pop().cards);
-    // Check if any has been used
-    if (cards.some((cardId) => usedCards[cardId]) && cards.some((cardId) => reserved[cardId])) {
-      cards.forEach((cardId) => discarded.push(cardId));
-    } else {
-      cards.forEach((cardId) => (reserved[cardId] = true));
+    const selected = deck.pop();
+    if (selected) {
+      const cards = Object.keys(selected.cards);
+      // Check if any has been used
+      if (cards.some((cardId) => usedCards[cardId]) && cards.some((cardId) => reserved[cardId])) {
+        cards.forEach((cardId) => discarded.push(cardId));
+      } else {
+        cards.forEach((cardId) => (reserved[cardId] = true));
+      }
     }
   }
 
@@ -92,77 +187,41 @@ const getEnoughUnusedLevel4Cards = (deck, usedCards: PlainObject, cardsNeeded: n
 /**
  * Builds the deck as evenly as possible with cards needed per level
  * @param allCards
- * @param level4Deck
- * @param usedCardsIds
+ * @param cardGroups
+ * @param availableCards
  * @param playerCount
- * @param useAllCards
- * @param gameType
+ * @param isShortGame
  * @returns
  */
 export const buildDeck = (
-  allCards: PlainObject,
-  level4Deck: ArteRuimExtraGroup[],
-  usedCardsIds: ArteRuimCard[],
+  allCards: Record<CardId, ArteRuimCard>,
+  cardGroups: ArteRuimGroup[],
+  availableCards: CardsByLevel,
   playerCount: number,
-  useAllCards: boolean,
-  gameType: string
+  isShortGame: boolean
 ): ArteRuimCard[] => {
-  const cardsPerLevel: PerLevelCards = {
-    0: [],
-    1: [],
-    2: [],
-    3: [],
-    4: [],
-  };
+  const levels = isShortGame ? SHORT_GAME_LEVELS : REGULAR_GAME_LEVELS;
+  const cardsPerRound = determineNumberOfCards(playerCount);
+  const cardsNeeded = levels.length * cardsPerRound;
 
-  const availableCards: PerLevelCards = {
-    0: [],
-    1: [],
-    2: [],
-    3: [],
-    4: [],
-  };
-
-  // Split in levels
-  Object.values(allCards).forEach((entry: ArteRuimCard) => {
-    cardsPerLevel[entry.level].push(entry);
-    if (useAllCards || usedCardsIds[entry.id] === undefined) {
-      availableCards[entry.level].push(entry);
-    }
-  });
-
-  const gameOptions = gameType === 'SHORT_GAME' ? SHORT_GAME_OPTIONS : REGULAR_GAME_OPTIONS;
-
-  const roundLevels = gameOptions.DECK_ORDER_BY_LEVEL;
-  const cardsNeeded = gameOptions.CARDS_PER_PLAYER_COUNT[playerCount];
-
-  // Check Levels Availability requirement
-  if (availableCards['1'].length < cardsNeeded.perLevel['1'].length) {
-    availableCards['1'] = cardsPerLevel['1'];
-  }
-  if (availableCards['2'].length < cardsNeeded.perLevel['2'].length) {
-    availableCards['2'] = cardsPerLevel['2'];
-  }
-  if (availableCards['3'].length < cardsNeeded.perLevel['3'].length) {
-    availableCards['3'] = cardsPerLevel['3'];
-  }
   // Shuffle available decls
-  availableCards['1'] = utils.game.shuffle(availableCards['1']);
-  availableCards['2'] = utils.game.shuffle(availableCards['2']);
-  availableCards['3'] = utils.game.shuffle(availableCards['3']);
+  availableCards[1] = utils.game.shuffle(availableCards[1]);
+  availableCards[2] = utils.game.shuffle(availableCards[2]);
+  availableCards[3] = utils.game.shuffle(availableCards[3]);
 
   const usedCardIdDict = {};
-  const shuffledLevel4Deck = utils.game.shuffle(level4Deck);
-  let level4Hand: string[] = [];
+  const shuffledLevel4Deck = utils.game.shuffle(cardGroups);
+  let level4Hand: CardId[] = [];
 
-  return Array(cardsNeeded.total)
+  return Array(cardsNeeded)
     .fill(0)
     .map((e, i) => {
-      const level = roundLevels[Math.floor((e + i) / cardsNeeded.perRound)];
+      const level = levels[Math.floor((e + i) / cardsPerRound)];
 
       if (level === 4) {
+        // When no level 4 cards are available, fetch a new hand with the minimum needed for a round
         if (level4Hand.length === 0) {
-          level4Hand = getEnoughUnusedLevel4Cards(shuffledLevel4Deck, usedCardIdDict, cardsNeeded.perRound);
+          level4Hand = getEnoughUnusedLevel4Cards(shuffledLevel4Deck, usedCardIdDict, cardsPerRound);
         }
         const cardId = level4Hand.pop();
         if (cardId) {

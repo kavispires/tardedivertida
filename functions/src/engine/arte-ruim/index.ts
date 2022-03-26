@@ -84,8 +84,13 @@ export const getNextPhase = async (
     await utils.firebase.triggerSetupPhase(sessionRef);
 
     // Request data
-    const additionalData = await getCards(store.language);
-    const newPhase = await prepareSetupPhase(store, state, players, additionalData);
+    const data = await getCards(
+      store.language,
+      utils.players.getPlayerCount(players),
+      store.options?.shortGame ?? false,
+      store.options?.useAllCards ?? false
+    );
+    const newPhase = await prepareSetupPhase(store, state, players, data);
     await utils.firebase.saveGame(sessionRef, newPhase);
     return getNextPhase(collectionName, gameId, players);
   }
