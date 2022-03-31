@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 // Hooks
-import { useIsUserReady, useUser, useLanguage, useStep } from 'hooks';
+import { useIsUserReady, useLanguage, useStep } from 'hooks';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
@@ -11,7 +11,7 @@ import { StepRanking } from './StepRanking';
 function PhaseResolution({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
   const { step, goToNextStep, goToPreviousStep, setStep } = useStep(0);
-  const user = useUser(players);
+
   const isUserReady = useIsUserReady(players, state);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isFirstGalleryRunThrough, setIsFirstGalleryRunThrough] = useState(true);
@@ -33,7 +33,12 @@ function PhaseResolution({ state, players, info }: PhaseProps) {
           onClose={goToNextStep}
           currentRound={state?.round?.current}
         >
-          TODO
+          <Instruction>
+            <Translate
+              pt={<>Acertos ganham {state.correctGuessPoints} pontos nessa rodada.</>}
+              en={<>Correct guesses get {state.correctGuessPoints} points this round.</>}
+            />
+          </Instruction>
         </PhaseAnnouncement>
 
         {/* Step 1 */}
@@ -44,6 +49,7 @@ function PhaseResolution({ state, players, info }: PhaseProps) {
           setActiveIndex={setActiveIndex}
           setStep={setStep}
           isFirstGalleryRunThrough={isFirstGalleryRunThrough}
+          correctGuessPoints={state.correctGuessPoints}
         />
 
         {/* Step 2 */}
@@ -53,6 +59,7 @@ function PhaseResolution({ state, players, info }: PhaseProps) {
           round={state.round}
           goToPreviousStep={goToPreviousStep}
           setActiveIndex={setActiveIndex}
+          correctGuessPoints={state.correctGuessPoints}
         />
       </StepSwitcher>
     </PhaseContainer>

@@ -36,7 +36,7 @@ export function StepTellDream({ players, table, user, onSubmitDream }: StepTellD
     <Step fullWidth className="s-tell-dream-step">
       <Title>
         <Card
-          header={translate('Tema', 'Theme')}
+          header={translate('Tema do Sonho', 'Dream Theme')}
           className="s-theme-card"
           randomColor
           footer={Array(user.theme.level).fill('•').join('')}
@@ -47,8 +47,8 @@ export function StepTellDream({ players, table, user, onSubmitDream }: StepTellD
       </Title>
       <Instruction contained>
         <Translate
-          pt="Escreva sua dica abaixo relacionada com o tema. Lembre-se que seu sonho é a carta de borda amarela e seu pesadelo é a carta de borda preta."
-          en="Write a clue in the field below within the given theme. Remember that your dream is the card with yellow border and your nightmare is the card with black border"
+          pt="Dentro do tema acima, escreva sua dica no campo abaixo. Lembre-se que seu sonho é a carta de borda amarela e seu pesadelo é a carta de borda roxa."
+          en="Write a clue in the field below within the given theme. Remember that your dream is the card with the yellow border and your nightmare is the card with the purple border."
         />
       </Instruction>
 

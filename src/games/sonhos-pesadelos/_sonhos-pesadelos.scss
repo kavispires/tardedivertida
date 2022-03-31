@@ -1,9 +1,12 @@
 .s-dream-board {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  background-color: get-color(black);
+  border-radius: get-unit(1);
+  padding: get-unit(2);
 
   &__entry {
-    margin: get-unit(1);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -19,10 +22,14 @@
 
   &__nightmare-label {
     width: 100%;
-    background: get-color(black);
+    background: get-color(purple, 6);
     border-radius: get-unit(2);
     color: get-color(white);
     text-align: center;
+  }
+
+  &__card-container {
+    position: relative;
   }
 }
 
@@ -34,20 +41,20 @@
   }
 
   &--nightmare {
-    border: 5px solid get-color(black);
+    border: 5px solid get-color(purple, 6);
   }
 }
 
 .s-dream-board-entry-nightmare {
-  background: get-color(black);
+  background: get-color(purple, 6);
   border-radius: get-unit(2);
   color: get-color(white);
   text-align: center;
 
   &:disabled {
-    background: get-color(black);
+    background: get-color(purple, 6);
     color: get-color(white);
-    border-color: get-color(black);
+    border-color: get-color(purple, 6);
   }
 }
 
@@ -154,5 +161,7 @@
 
   &__votes {
     min-height: get-unit(6);
+    display: flex;
+    flex-wrap: wrap;
   }
 }
