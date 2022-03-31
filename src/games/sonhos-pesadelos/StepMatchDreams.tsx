@@ -1,81 +1,54 @@
+import clsx from 'clsx';
 import { useEffect } from 'react';
 // Ant Design Resources
 import { Button } from 'antd';
 // Hooks
 import { useLanguage, useLoading, useMock, useVotingMatch } from 'hooks';
 // Utils
-import { getEntryId, shuffle } from 'utils/helpers';
-import { LETTERS } from 'utils/constants';
+import { getAnimationClass } from 'utils/helpers';
 // Components
 import { ButtonContainer, Instruction, ReadyPlayersBar, Step, Title, Translate } from 'components';
-import { AllClues } from './AllClues';
+import { AllDreamsClues } from './AllDreamsClues';
 import { DreamBoardVote } from './DreamBoardVote';
+import { cleanupVotes, selectOwnVote, voteRandomly } from './helpers';
+import { mockVotes } from './mock';
 
 type StepMatchDreamsProps = {
-  clues: SClue[];
-  currentRound: number;
-  dreamsCount: Number;
   onSubmitVotes: GenericFunction;
   players: GamePlayers;
-  table: STable;
+  table: ImageCard[];
   user: GamePlayer;
+  dreams: SDream[];
 };
 
-export function StepMatchDreams({
-  players,
-  user,
-  table,
-  onSubmitVotes,
-  clues,
-  currentRound,
-}: StepMatchDreamsProps) {
+export function StepMatchDreams({ players, user, table, onSubmitVotes, dreams }: StepMatchDreamsProps) {
   const { isLoading } = useLoading();
   const { translate } = useLanguage();
+
   const { votes, setVotes, activeItem, activateItem, isVotingComplete } = useVotingMatch(
-    'clue',
-    false,
-    clues.length
+    'dream',
+    true,
+    dreams.length
   );
 
-  // Auto-select own clues
+  // Auto-select own clue
   useEffect(() => {
-    const userClues = clues.reduce((acc: PlainObject, entry, index) => {
-      if (entry.playerId === user.id) {
-        const clueEntryId = getEntryId(['clue', entry.cardId, LETTERS[index]]);
-        const cardEntryId = getEntryId(['card', entry.cardId]);
-        acc[clueEntryId] = cardEntryId;
-      }
-      return acc;
-    }, {});
+    const userClues = selectOwnVote(dreams, user);
     if (userClues) {
-      setVotes((s: PlainObject) => ({ ...s, ...userClues }));
+      setVotes((s: StringDictionary) => ({ ...s, ...userClues }));
     }
   }, []); //eslint-disable-line
 
   // DEV: Random vote
   useMock(() => {
-    const devCards = table
-      .filter((entry) => entry.dreamer && entry.dreamer !== user.id)
-      .map((entry) => getEntryId(['card', entry.cardId]));
-    const devClues = shuffle(
-      clues
-        .map((entry, index) => getEntryId(['clue', entry.cardId, LETTERS[index]]))
-        .filter((entryId) => !Object.keys(votes).includes(entryId))
-    );
-
-    const devRes = devClues.reduce((acc, clueEntryId, index) => {
-      acc[clueEntryId] = devCards[index];
-      return acc;
-    }, {});
-
-    if (devRes) {
-      setVotes((s: PlainObject) => ({ ...s, ...devRes }));
-    }
+    onSubmitVotes({
+      votes: mockVotes(dreams, table, user),
+    });
   }, []);
 
   const onSubmitDreams = () => {
     onSubmitVotes({
-      votes,
+      votes: cleanupVotes(votes, user),
     });
   };
 
@@ -90,19 +63,25 @@ export function StepMatchDreams({
       </Instruction>
 
       <ButtonContainer>
-        <Button type="primary" disabled={isLoading || !isVotingComplete} onClick={onSubmitDreams}>
+        <Button
+          type="default"
+          disabled={isLoading}
+          onClick={() => setVotes(voteRandomly(votes, dreams, table))}
+          className={clsx(isVotingComplete && getAnimationClass('tada'))}
+          size="large"
+        >
+          <Translate pt="Vote pra mim" en="Vote for me" />
+        </Button>
+        <Button
+          type="primary"
+          disabled={isLoading || !isVotingComplete}
+          onClick={onSubmitDreams}
+          className={clsx(isVotingComplete && getAnimationClass('tada'))}
+          size="large"
+        >
           <Translate pt="Enviar" en="Submit" />
         </Button>
       </ButtonContainer>
-
-      <AllClues
-        clues={clues}
-        activeItem={activeItem}
-        onActivateItem={activateItem}
-        votes={votes}
-        players={players}
-        currentRound={currentRound}
-      />
 
       <DreamBoardVote
         user={user}
@@ -110,6 +89,14 @@ export function StepMatchDreams({
         activeItem={activeItem}
         onActivateItem={activateItem}
         votes={votes}
+      />
+
+      <AllDreamsClues
+        dreams={dreams}
+        activeItem={activeItem}
+        onActivateItem={activateItem}
+        votes={votes}
+        players={players}
       />
 
       <ReadyPlayersBar players={players} />

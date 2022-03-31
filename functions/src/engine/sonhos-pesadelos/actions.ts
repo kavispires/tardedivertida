@@ -1,5 +1,5 @@
 // Types
-import { GameId, PlayerId, GameName, PlainObject } from '../../utils/types';
+import { GameId, PlayerId, GameName, StringDictionary } from '../../utils/types';
 // Helpers
 import * as utils from '../../utils';
 // Internal
@@ -10,38 +10,22 @@ import { getNextPhase } from './index';
  * @param collectionName
  * @param gameId
  * @param playerId
- * @param dreams
+ * @param dream
  * @returns
  */
-export const handleSubmitDreams = async (
+export const handleSubmitDream = async (
   collectionName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  dreams: PlainObject
+  dream: string
 ) => {
-  const actionText = 'submit your drawing';
-
-  const playersDoc = await utils.firebase.getSessionDoc(collectionName, gameId, 'players', actionText);
-
-  const players = playersDoc.data() ?? {};
-
-  const newDreams = {};
-  Object.keys(dreams).forEach((cardId) => {
-    if (newDreams[cardId] === undefined) {
-      newDreams[cardId] = [...(players[playerId]?.dreams?.[cardId] ?? [])];
-    }
-    newDreams[cardId].push(dreams[cardId]);
-  });
-
   return await utils.firebase.updatePlayer({
     collectionName,
     gameId,
     playerId,
-    actionText: 'submit dreams',
+    actionText: 'submit your dream',
     shouldReady: true,
-    change: {
-      dreams: newDreams,
-    },
+    change: { dream },
     nextPhaseFunction: getNextPhase,
   });
 };
@@ -58,7 +42,7 @@ export const handleSubmitVoting = async (
   collectionName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  votes: PlainObject
+  votes: StringDictionary
 ) => {
   return await utils.firebase.updatePlayer({
     collectionName,

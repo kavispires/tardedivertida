@@ -8,8 +8,7 @@ import { useCardWidth } from 'hooks';
 import { getEntryId } from 'utils/helpers';
 import { getClueId } from './helpers';
 // Components
-import { Translate, Ribbon } from 'components';
-import { DreamButton } from './DreamButton';
+import { Translate, Ribbon, RibbonGroup } from 'components';
 import { DreamCard } from './DreamCard';
 
 type SelectButtonProps = {
@@ -28,49 +27,37 @@ function SelectButton({ onActivateItem, cardEntryId }: SelectButtonProps) {
 }
 
 type DreamBoardVoteProps = {
-  table: STable;
+  table: ImageCard[];
   user: GamePlayer;
   activeItem: string;
   onActivateItem: GenericFunction;
   votes: PlainObject;
 };
 
-export function DreamBoardVote({ table, user, activeItem, onActivateItem, votes }: DreamBoardVoteProps) {
-  const cardWidth = useCardWidth(table.length / 2, 40);
+export function DreamBoardVote({ table, activeItem, onActivateItem, votes }: DreamBoardVoteProps) {
+  const cardWidth = useCardWidth(table.length + 1, 20);
   const liButtonBaseClass = 'a-evaluation-all-drawings__li-drawing-button';
 
   return (
     <ul className="s-dream-board">
-      {table.map((entry) => {
-        const isDream = Boolean(user.dreams[entry.cardId]);
-        const isNightmare = user.nightmares.includes(entry.cardId);
-        const cardEntryId = getEntryId(['card', entry.cardId]);
+      {table.map((cardId) => {
+        const cardEntryId = getEntryId(['card', cardId]);
         const isActive = activeItem === cardEntryId;
-        const ribbonId = getClueId(votes, cardEntryId);
+        const ribbonIds = getClueId(votes, cardEntryId);
 
         return (
           <li
             className={clsx(
-              's-dream-board-entry',
+              's-dream-board__entry',
               liButtonBaseClass,
               isActive && `${liButtonBaseClass}--active`
             )}
-            key={`board-${entry.cardId}`}
+            key={`board-${cardId}`}
             style={{ maxWidth: `${cardWidth + 20}px` }}
           >
-            {ribbonId && <Ribbon label={ribbonId.charAt(ribbonId.length - 1)} />}
-            <DreamCard
-              cardId={entry.cardId}
-              cardWidth={cardWidth}
-              isDream={isDream}
-              isNightmare={isNightmare}
-            />
-
-            {isDream ? (
-              <DreamButton />
-            ) : (
-              <SelectButton cardEntryId={cardEntryId} onActivateItem={onActivateItem} />
-            )}
+            <RibbonGroup labels={ribbonIds} />
+            <DreamCard cardId={cardId} cardWidth={cardWidth} />
+            <SelectButton cardEntryId={cardEntryId} onActivateItem={onActivateItem} />
           </li>
         );
       })}

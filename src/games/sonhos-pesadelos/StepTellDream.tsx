@@ -1,79 +1,34 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 // Ant Design Resources
-import { Button } from 'antd';
+import { Button, Input } from 'antd';
 // Hooks
 import { useLanguage, useLoading, useMock } from 'hooks';
 // Utils
-import { shuffle } from 'utils/helpers';
+import { mockDream } from './mock';
 // Components
 import { Card, ButtonContainer, Instruction, ReadyPlayersBar, Step, Title, Translate } from 'components';
-import { DreamBoardWrite } from './DreamBoardWrite';
-
-const mockedClues = [
-  'água',
-  'bola',
-  'calderão do huck',
-  'dedo',
-  'esmalte',
-  'fatídico',
-  'ganhar',
-  'hereditário',
-  'simpático',
-  'abismo',
-  'rola',
-  'a branca de neve',
-  'oops i did it again',
-  'pesquisa',
-  'saborosa',
-  'amargo',
-];
+import { DreamBoard } from './DreamBoard';
 
 type StepTellDreamProps = {
-  currentRound: number;
-  dreamsCount: Number;
-  onSubmitDreams: GenericFunction;
   players: GamePlayers;
-  table: STable;
-  theme: STheme;
+  table: ImageCard[];
   user: GamePlayer;
+  onSubmitDream: GenericFunction;
 };
 
-export function StepTellDream({
-  players,
-  theme,
-  user,
-  table,
-  onSubmitDreams,
-  dreamsCount,
-  currentRound,
-}: StepTellDreamProps) {
+export function StepTellDream({ players, table, user, onSubmitDream }: StepTellDreamProps) {
   const { isLoading } = useLoading();
   const { translate } = useLanguage();
-  const [localClues, setLocalClues] = useState<PlainObject>({});
-  const [hasClues, setHasClues] = useState(false);
-
-  // Verify if player has completed all his clues
-  useEffect(() => {
-    setHasClues(
-      Object.keys(localClues).length === dreamsCount &&
-        Object.values(localClues).every((e) => Boolean(e.trim()))
-    );
-  }, [localClues, dreamsCount]);
+  const [dream, setDream] = useState('');
 
   // DEV: mocks clues
   useMock(() => {
-    const shuffledMockedClues = shuffle(mockedClues);
-    setLocalClues(
-      Object.keys(user.dreams).reduce((acc: PlainObject, cardId, index) => {
-        acc[cardId] = shuffledMockedClues[index];
-        return acc;
-      }, {})
-    );
+    onSubmitDream({ dream: mockDream() });
   }, []);
 
   const onSubmitDreamsClick = () => {
-    onSubmitDreams({
-      dreams: localClues,
+    onSubmitDream({
+      dream,
     });
   };
 
@@ -84,32 +39,35 @@ export function StepTellDream({
           header={translate('Tema', 'Theme')}
           className="s-theme-card"
           randomColor
-          footer={theme.description}
+          footer={Array(user.theme.level).fill('•').join('')}
           footerClassName="s-theme-card__description"
         >
-          {theme.text}
+          {user.theme.text}
         </Card>
       </Title>
       <Instruction contained>
         <Translate
-          pt="Clique nos botões amarelos para escrever sua(s) dica(s). Quando terminar, aperte Enviar"
-          en="Click the yellow buttons to write your clue(s).When you're done, press Submit"
+          pt="Escreva sua dica abaixo relacionada com o tema. Lembre-se que seu sonho é a carta de borda amarela e seu pesadelo é a carta de borda preta."
+          en="Write a clue in the field below within the given theme. Remember that your dream is the card with yellow border and your nightmare is the card with black border"
         />
       </Instruction>
 
+      <DreamBoard table={table} user={user} />
+
       <ButtonContainer>
-        <Button type="primary" disabled={isLoading || !hasClues} onClick={onSubmitDreamsClick}>
-          <Translate pt="Enviar" en="Submit" />
-        </Button>
+        <Input
+          size="large"
+          onPressEnter={onSubmitDreamsClick}
+          onChange={(e) => setDream(e.target.value)}
+          placeholder={translate('Escreva aqui', 'Write here')}
+        />
       </ButtonContainer>
 
-      <DreamBoardWrite
-        user={user}
-        table={table}
-        localClues={localClues}
-        setLocalClues={setLocalClues}
-        currentRound={currentRound}
-      />
+      <ButtonContainer>
+        <Button type="primary" disabled={isLoading || !Boolean(dream)} onClick={onSubmitDreamsClick}>
+          <Translate pt="Enviar Sonho" en="Submit Dream" />
+        </Button>
+      </ButtonContainer>
 
       <ReadyPlayersBar players={players} />
     </Step>

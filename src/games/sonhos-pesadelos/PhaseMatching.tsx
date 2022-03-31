@@ -5,10 +5,9 @@ import { useOnSubmitVotesAPIRequest } from './api-requests';
 import { PHASES } from 'utils/phases';
 // Components
 import { Instruction, PhaseAnnouncement, PhaseContainer, StepSwitcher, Translate } from 'components';
-import { DreamBoard } from './DreamBoard';
 import { StepMatchDreams } from './StepMatchDreams';
 
-function PhaseMatch({ state, players, info }: PhaseProps) {
+function PhaseMatching({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
   const { step, goToNextStep, setStep } = useStep(0);
   const user = useUser(players);
@@ -17,17 +16,12 @@ function PhaseMatch({ state, players, info }: PhaseProps) {
   const onSubmitVotes = useOnSubmitVotesAPIRequest(setStep);
 
   return (
-    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.SONHOS_PESADELOS.MATCH}>
-      <StepSwitcher
-        step={step}
-        conditions={[!isUserReady]}
-        players={players}
-        waitingRoomContent={<DreamBoard user={user} table={state.table} />}
-      >
+    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.SONHOS_PESADELOS.MATCHING}>
+      <StepSwitcher step={step} conditions={[!isUserReady]} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
           type="evaluate"
-          title={translate('Selecione os pares', 'Match the dreams')}
+          title={translate('Combine os sonhos', 'Match the dreams')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
         >
@@ -37,18 +31,14 @@ function PhaseMatch({ state, players, info }: PhaseProps) {
                 <>
                   Selecione os pares de dica e carta.
                   <br />
-                  Se você acertas todas, você ganha o jogo.
-                  <br />
-                  Dica: Seus pesadelos podem ser o sonho de outra pessoa.
+                  Mais de um jogador pode ter o mesmo sonho.
                 </>
               }
               en={
                 <>
                   Match the pairs of cards and clues.
                   <br />
-                  If you match all of them correctly, you win the game.
-                  <br />
-                  Hint: Your nightmares may be the dream of another player.
+                  More than one player may have the same card.
                 </>
               }
             />
@@ -61,13 +51,11 @@ function PhaseMatch({ state, players, info }: PhaseProps) {
           user={user}
           table={state.table}
           onSubmitVotes={onSubmitVotes}
-          dreamsCount={state.dreamsCount}
-          clues={state.clues}
-          currentRound={state?.round?.current}
+          dreams={state.dreams}
         />
       </StepSwitcher>
     </PhaseContainer>
   );
 }
 
-export default PhaseMatch;
+export default PhaseMatching;
