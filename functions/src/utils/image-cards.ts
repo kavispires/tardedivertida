@@ -1,6 +1,6 @@
 import fetch from 'cross-fetch';
 // Types
-import { ImageCard } from './types';
+import { ImageCardId } from './types';
 // Helpers
 import { config, throwException } from './firebase';
 import { shuffle } from './game-utils';
@@ -21,7 +21,7 @@ const requestTDIInfo = async (): Promise<any> => {
  * @param quantity the number of cards needed
  * @returns
  */
-export const getImageCards = async (quantity: number): Promise<ImageCard[]> => {
+export const getImageCards = async (quantity: number): Promise<ImageCardId[]> => {
   const cardInfo: any = await requestTDIInfo();
 
   const decks = Object.keys(cardInfo);
