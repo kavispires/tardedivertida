@@ -2,15 +2,7 @@
 import { Button } from 'antd';
 import { PictureOutlined } from '@ant-design/icons';
 // Components
-import {
-  AdminNextRoundButton,
-  PopoverRule,
-  RankingBoard,
-  RoundsLeftInstruction,
-  Step,
-  Title,
-  Translate,
-} from 'components';
+import { AdminNextRoundButton, RankingBoardStep, RoundsLeftInstruction, Step, Translate } from 'components';
 // import { ScoringRules } from './TextBlobs';
 
 type StepRankingProps = {
@@ -34,8 +26,18 @@ export function StepRanking({
 }: StepRankingProps) {
   return (
     <Step>
-      <Title>Ranking</Title>
-      <RankingBoard players={players} ranking={ranking} />
+      <RankingBoardStep
+        players={players}
+        ranking={ranking}
+        gainedPointsDescriptions={[
+          <Translate pt="Votos corretos" en="Correct guesses" />,
+          <Translate
+            pt="Votos corretos em seu sonho por outros jogadores"
+            en="Correct guesses on your dream by other players"
+          />,
+          <Translate pt="Votos em pesadelos" en="Nightmares selected" />,
+        ]}
+      />
 
       {/* <PopoverRule content={<ScoringRules />} /> */}
 
