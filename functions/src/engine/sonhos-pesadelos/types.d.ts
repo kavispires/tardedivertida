@@ -1,4 +1,4 @@
-import { DefaultState, DefaultStore, ImageCard, Meta, Payload, PlayerId, Players } from '../../utils/types';
+import { DefaultState, DefaultStore, ImageCardId, Meta, Payload, PlayerId, Players } from '../../utils/types';
 
 interface SonhosPesadelosStore extends DefaultStore {
   themes?: any;
@@ -26,7 +26,7 @@ interface SonhosPesadelosInitialState {
 }
 
 interface TableEntry {
-  cardId: ImageCard;
+  cardId: ImageCardId;
   dreamer: PlayerId | null;
   nightmares: PlayerId[];
 }

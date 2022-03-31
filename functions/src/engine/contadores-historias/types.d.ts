@@ -1,4 +1,4 @@
-import { DefaultState, DefaultStore, ImageCard, InitialState, Payload, PlayerId } from '../../utils/types';
+import { DefaultState, DefaultStore, ImageCardId, InitialState, Payload, PlayerId } from '../../utils/types';
 
 type ContadoresHistoriasOptions = {
   fixedRounds: boolean;
@@ -6,7 +6,7 @@ type ContadoresHistoriasOptions = {
 
 interface ContadoresHistoriasStore extends DefaultStore {
   gameOrder: PlayerId[];
-  tableDeck: ImageCard[];
+  tableDeck: ImageCardId[];
   deckIndex: number;
   solutionCardId?: string;
   story?: string;
@@ -30,7 +30,7 @@ interface ContadoresHistoriasInitialState extends InitialState {
 }
 
 interface TableEntry {
-  cardId: ImageCard;
+  cardId: ImageCardId;
   playerId: PlayerId;
   votes: PlayerId[];
   isSolution: boolean;

@@ -2,7 +2,7 @@
 import { CONTADORES_HISTORIAS_PHASES, GAME_OVER_SCORE_THRESHOLD, OUTCOME } from './constants';
 import { DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
 // Types
-import { ImageCard, PlainObject, PlayerId, Players, Round } from '../../utils/types';
+import { ImageCardId, PlainObject, PlayerId, Players, Round } from '../../utils/types';
 import { ContadoresHistoriasOptions, Table } from './types';
 // Utils
 import * as utils from '../../utils';
@@ -39,11 +39,15 @@ export const determineNextPhase = (
   return STORY;
 };
 
-export const buildTableDeck = (allCards: ImageCard[], quantity: number): ImageCard[] => {
+export const buildTableDeck = (allCards: ImageCardId[], quantity: number): ImageCardId[] => {
   return allCards.splice(0, quantity);
 };
 
-export const getTableCards = (tableDeck: ImageCard[], deckIndex: number, quantity: number): ImageCard[] => {
+export const getTableCards = (
+  tableDeck: ImageCardId[],
+  deckIndex: number,
+  quantity: number
+): ImageCardId[] => {
   return Array(quantity)
     .fill(1)
     .map((el, index) => {
@@ -51,7 +55,7 @@ export const getTableCards = (tableDeck: ImageCard[], deckIndex: number, quantit
     });
 };
 
-export const buildTable = (players: Players, tableCards: ImageCard[], storyteller: PlayerId): Table => {
+export const buildTable = (players: Players, tableCards: ImageCardId[], storyteller: PlayerId): Table => {
   const table: Table = [];
 
   Object.values(players).forEach((player) => {
