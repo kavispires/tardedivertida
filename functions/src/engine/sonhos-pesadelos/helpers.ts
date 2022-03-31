@@ -1,47 +1,37 @@
 // Types
-import { PlainObject, Players } from '../../utils/types';
-import { Results, Table } from './types';
+import { PlainObject, Players, Round, StringDictionary } from '../../utils/types';
+import { SonhosPesadelosCards, ThemeDeck } from './types';
 // Constants
-import { SEPARATOR } from '../../utils/constants';
-import { SONHOS_PESADELOS_PHASES, TOTAL_ROUNDS } from './constants';
+import { IMAGE_CARDS_PER_ROUND, SONHOS_PESADELOS_PHASES, THEMES_PER_ROUND } from './constants';
 // Helpers
 import * as utils from '../../utils';
+import { ImageCardId } from '../galeria-de-sonhos/types';
+import { InspirationCard } from '../../utils/tdr';
+import { orderBy } from '../../utils/helpers';
 
 /**
  * Determine the next phase based on the current one
  * @param currentPhase
- * @param currentRound
+ * @param round
  * @param triggerLastRound
  * @returns
  */
 export const determineNextPhase = (
   currentPhase: string,
-  currentRound: number,
-  isGameOver?: boolean,
+  round: Round,
   triggerLastRound?: boolean
 ): string => {
-  const { RULES, SETUP, TELL_DREAM, MATCH, RESOLUTION, LAST_CHANCE, GAME_OVER } = SONHOS_PESADELOS_PHASES;
-  const order = [RULES, SETUP, TELL_DREAM, MATCH, RESOLUTION];
-
-  if (isGameOver) {
-    return GAME_OVER;
-  }
+  const { RULES, SETUP, DREAM_TELLING, MATCHING, RESOLUTION, GAME_OVER } = SONHOS_PESADELOS_PHASES;
+  const order = [RULES, SETUP, DREAM_TELLING, MATCHING, RESOLUTION];
 
   if (currentPhase === RESOLUTION) {
     if (triggerLastRound) {
       return GAME_OVER;
     }
-    if (currentRound < TOTAL_ROUNDS) {
-      return TELL_DREAM;
-    }
-    if (currentRound === TOTAL_ROUNDS) {
-      return LAST_CHANCE;
+    if (round.current < round.total) {
+      return DREAM_TELLING;
     }
     return GAME_OVER;
-  }
-
-  if (currentPhase === LAST_CHANCE) {
-    return RESOLUTION;
   }
 
   const currentPhaseIndex = order.indexOf(currentPhase);
@@ -50,163 +40,175 @@ export const determineNextPhase = (
     return order[currentPhaseIndex + 1];
   }
   console.warn('Missing phase check');
-  return TELL_DREAM;
-};
-
-export const determineGameOver = (results: PlainObject) => {
-  return Object.values(results ?? {}).some((result) => result.win);
-};
-
-export const buildTable = (images: string[], quantity: number): Table => {
-  return images.slice(0, quantity).map((cardId) => ({
-    cardId,
-    dreamer: null,
-    nightmares: [],
-  }));
+  return DREAM_TELLING;
 };
 
 /**
- * Determine dreams for each player and dreamer for each card
- * @param players
- * @param table
- * @param dreamsCount
+ * Distribute 3 themes for each round
+ * Round 1 gets level 2 themes
+ * Round 2 gets level 3 themes
+ * Round 3 gets level 4 themes
+ * Round 4 gets any level themes (within the same level)
+ * Round 4 gets any level themes (within the same level)
  */
-export const determineDreams = (players: Players, table: Table, dreamsCount: number) => {
-  const shuffledTableIndexes = utils.game.shuffle(
-    Array(table.length)
-      .fill(0)
-      .map((e, i) => e + i)
-  );
-  let currentIndex = 0;
+export const getThemeDeck = (cards: SonhosPesadelosCards): ThemeDeck => {
+  const deck: ThemeDeck = {
+    1: [],
+    2: [],
+    3: [],
+    4: [],
+    5: [],
+  };
 
-  Object.values(players).forEach((player) => {
-    for (let d = 0; d < dreamsCount; d++) {
-      if (!player.dreams) {
-        player.dreams = {};
-      }
-      player.dreams[table[shuffledTableIndexes[currentIndex]].cardId] = [];
-      table[shuffledTableIndexes[currentIndex]].dreamer = player.id;
+  // Round 1 gets level 2 themes
+  deck[1] = utils.game.getRandomItems(cards[2], THEMES_PER_ROUND);
 
-      currentIndex++;
-    }
-  });
+  // Round 2 gets level 3 themes
+  deck[2] = utils.game.getRandomItems(cards[3], THEMES_PER_ROUND);
+
+  // Round 3 gets level 4 themes
+  deck[3] = utils.game.getRandomItems(cards[4], THEMES_PER_ROUND);
+
+  const levelOrder = utils.game.shuffle([2, 3, 4]);
+
+  // Round 4 gets any level themes (within the same level)
+  const round4Level = levelOrder[0];
+  deck[4] = utils.game.getRandomUniqueObjects(cards[round4Level], deck[round4Level - 1], THEMES_PER_ROUND);
+
+  // Round 5 gets any level themes (within the same level)
+  const round5Level = levelOrder[1];
+  deck[5] = utils.game.getRandomUniqueObjects(cards[round5Level], deck[round5Level - 1], THEMES_PER_ROUND);
+
+  return deck;
 };
 
 /**
- * Determine nightmares for each player and players for each card nightmares
- * @param players
- * @param table
- * @param nightmareCount
+ * Get images cards for the round, modifies the source list
+ * @param imagesIds
+ * @returns
  */
-export const determineNightmares = (players: Players, table: Table, nightmareCount: number) => {
-  const cardIndexDict = table.reduce((acc, entry, index) => {
-    acc[entry.cardId] = index;
-    return acc;
-  }, {});
+export const buildTable = (imagesIds: ImageCardId[]): ImageCardId[] =>
+  imagesIds.splice(0, IMAGE_CARDS_PER_ROUND);
 
-  const cardIds = Object.keys(cardIndexDict);
+/**
+ * Selects 3 themes for the round and uses them across the distribution
+ * Players with equal dreams will not have the same theme
+ * @param players - modified
+ * @param themesDeck - modified
+ * @param table
+ * @param currentRound
+ * @returns
+ */
+export const determineDreamsNightmaresAndThemes = (
+  players: Players,
+  themesDeck: ThemeDeck,
+  table: ImageCardId[],
+  currentRound: number
+) => {
+  const roundThemesDeck: InspirationCard[] = themesDeck[currentRound];
 
-  Object.values(players).forEach((player) => {
-    const filteredNightmares = utils.game.shuffle(
-      cardIds.filter((cardId) => !Object.keys(player.dreams).includes(cardId))
-    );
+  const shuffledThemes: InspirationCard[] = utils.game.shuffle(roundThemesDeck).slice(0, 3);
+  const shuffledImageCards: ImageCardId[] = utils.game.shuffle(table);
 
-    for (let n = 0; n < nightmareCount; n++) {
-      if (!player.nightmares) {
-        player.nightmares = [];
-      }
-      const cardId = filteredNightmares[n];
-      player.nightmares.push(cardId);
-      table[cardIndexDict[cardId]].nightmares.push(player.id);
-    }
+  const dictionaryPair: any = [];
+  shuffledThemes.forEach((theme) => {
+    shuffledImageCards.forEach((imageCardId) => {
+      dictionaryPair.push([theme, imageCardId]);
+    });
   });
+
+  const shufflePairs: [InspirationCard, ImageCardId][] = utils.game.shuffle(dictionaryPair);
+
+  Object.values(players).forEach((player, index) => {
+    const dreamSelection = shufflePairs[index];
+    player.theme = dreamSelection[0];
+    player.dreamId = dreamSelection[1];
+
+    const reshuffledImages = utils.game.shuffle(shuffledImageCards);
+
+    player.nightmareId =
+      reshuffledImages[0] === dreamSelection[1] ? reshuffledImages[1] : reshuffledImages[0];
+  });
+
+  return players;
 };
 
-export const gatherClues = (players: Players): PlainObject[] => {
-  const clues = Object.values(players).reduce((acc: PlainObject[], player) => {
-    Object.keys(player.dreams).forEach((cardId) => {
-      acc.push({
-        cardId,
-        playerId: player.id,
-        clue: player.dreams[cardId].reverse(),
-      });
+/**
+ *
+ * @param players
+ * @returns
+ */
+export const gatherDreams = (players: Players): PlainObject[] => {
+  const dreams = Object.values(players).reduce((acc: PlainObject[], player) => {
+    acc.push({
+      id: player.id,
+      dream: player.dream,
     });
 
     return acc;
   }, []);
 
-  return utils.game.shuffle(clues);
+  return utils.game.shuffle(dreams);
 };
 
-const parseVote = (voteId: string): string => voteId.split(SEPARATOR)[1];
+/**
+ *
+ * @param players
+ * @returns
+ */
+export const buildRanking = (players: Players) => {
+  // Gained point: correct answers, votes gotten, nightmare selection
+  const newScores = utils.helpers.buildNewScoreObject(players, [0, 0, 0]);
 
-export const tallyScore = (players: Players, previousScore: PlainObject, goal: number): Results => {
-  const results: Results = {};
-  // Build nightmares dict count to add players who voted to user's nightmare
-  const nightmareCount = Object.values(players).reduce((acc, player) => {
-    player.nightmares.forEach((nightmareId: string) => {
-      acc[nightmareId] = {};
-    });
-    return acc;
-  }, {});
-
-  // Build nightmares dictionary cardId: nightmareId[]
-  const dreamNightmaresDict = Object.values(players).reduce((acc, player) => {
-    Object.keys(player.dreams).forEach((dreamId: string) => {
-      acc[dreamId] = player.nightmares;
-    });
-    return acc;
-  }, {});
-
-  // Tally correct votes
   Object.values(players).forEach((player) => {
-    results[player.id] = {
+    const points: number = player.theme.level;
+    Object.entries(<StringDictionary>player.votes).forEach(([playerId, vote]) => {
+      const correctDreamId: string = players[playerId].dreamId;
+      const nightmareId: string = players[playerId].nightmareId;
+
+      if (vote === correctDreamId) {
+        newScores[player.id].gainedPoints[0] += points;
+        newScores[player.id].newScore += points;
+        players[player.id].score += points;
+        newScores[playerId].gainedPoints[1] += points;
+        newScores[playerId].newScore += points;
+        players[playerId].score += points;
+      } else if (vote === nightmareId) {
+        newScores[player.id].gainedPoints[2] -= 1;
+        newScores[player.id].newScore -= 1;
+        players[player.id].score -= 1;
+        newScores[playerId].gainedPoints[2] -= 1;
+        newScores[playerId].newScore -= 1;
+        players[playerId].score -= 1;
+      }
+    });
+  });
+
+  return Object.values(newScores).sort((a, b) => (a.newScore > b.newScore ? 1 : -1));
+};
+
+/**
+ *
+ * @param players
+ * @param table
+ * @returns
+ */
+export const buildGallery = (players: Players, table: ImageCardId[]): PlainObject[] => {
+  return orderBy(Object.values(players), 'name', 'asc').map((player) => {
+    return {
       playerId: player.id,
-      dreamGuesses: {},
-      correct: 0,
-      nightmareHits: [],
-      win: false,
-      previousScore: previousScore?.[player.id]?.correct ?? 0,
+      dreamId: player.dreamId,
+      dream: player.dream,
+      cards: table.map((imageCardId) => {
+        return {
+          cardId: imageCardId,
+          votes: Object.values(players)
+            .filter((p) => p.votes[player.id] === imageCardId)
+            .map((p) => p.id),
+          isDream: imageCardId === player.dreamId,
+          isNightmare: imageCardId === player.nightmareId,
+        };
+      }),
     };
-
-    Object.keys(player.votes).forEach((clueEntryId) => {
-      const clueVoteId = parseVote(clueEntryId);
-      const cardVoteId = parseVote(player.votes[clueEntryId]);
-
-      // Check if its their own card
-      if (player.dreams[cardVoteId]) {
-        return;
-      }
-
-      // Add if correct vote
-      if (cardVoteId === clueVoteId) {
-        results[player.id].dreamGuesses[cardVoteId] = true;
-      } else if (
-        // Add if nightmare and not player's own
-        dreamNightmaresDict[clueVoteId].includes(cardVoteId)
-      ) {
-        nightmareCount[cardVoteId][player.id] = clueVoteId;
-      }
-    });
   });
-
-  // Finish counts
-  Object.values(results).forEach((result) => {
-    const entry = results[result.playerId];
-    // Add correct count
-    results[result.playerId].correct = Object.keys(entry.dreamGuesses).length;
-    // Add nightmareHits
-    players[result.playerId].nightmares.forEach((nightmareId) => {
-      if (Object.keys(nightmareCount[nightmareId]).length) {
-        results[result.playerId].nightmareHits.push(nightmareCount[nightmareId]);
-      }
-    });
-    // Determine win
-    results[result.playerId].win =
-      results[result.playerId].correct === goal && results[result.playerId].nightmareHits.length === 0;
-    // Add player score
-    players[result.playerId].score = results[result.playerId].correct;
-  });
-
-  return results;
 };

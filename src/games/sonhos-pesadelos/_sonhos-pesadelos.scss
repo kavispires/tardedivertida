@@ -1,6 +1,29 @@
 .s-dream-board {
   display: flex;
   flex-wrap: wrap;
+
+  &__entry {
+    margin: get-unit(1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__dream-label {
+    width: 100%;
+    background: get-color(yellow);
+    border-radius: get-unit(2);
+    color: get-color(black);
+    text-align: center;
+  }
+
+  &__nightmare-label {
+    width: 100%;
+    background: get-color(black);
+    border-radius: get-unit(2);
+    color: get-color(white);
+    text-align: center;
+  }
 }
 
 .s-dream-board-card {
@@ -13,12 +36,6 @@
   &--nightmare {
     border: 5px solid get-color(black);
   }
-}
-.s-dream-board-entry {
-  margin: get-unit(1);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 .s-dream-board-entry-nightmare {
@@ -90,4 +107,52 @@
   padding: get-unit(1);
   background: get-color(white);
   border-radius: get-unit(1);
+}
+
+.s-gallery-dream-display {
+  padding: get-unit(1);
+  background-color: get-color(white);
+  @include box-shadow;
+  height: 100%;
+  border-radius: get-unit(1);
+
+  &__theme-container {
+    border-width: 1px;
+    border-style: outset;
+    border-color: get-color(gray, 1);
+    border-radius: get-unit(1);
+    margin: get-unit(2);
+  }
+
+  &__theme {
+    font-style: italic;
+    background: get-color(gray, 1);
+    padding: get-unit(1);
+    color: get-color(gray);
+  }
+
+  &__dream {
+    font-family: 'Architects Daughter', cursive;
+    padding: get-unit(2);
+    font-size: 1rem;
+  }
+
+  &__dream-image-container {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.s-gallery-guesses {
+  padding: get-unit(1);
+  background-color: get-color(white);
+  @include box-shadow;
+  height: 100%;
+  border-radius: get-unit(1);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  &__votes {
+    min-height: get-unit(6);
+  }
 }

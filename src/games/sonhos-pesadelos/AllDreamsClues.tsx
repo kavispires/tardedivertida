@@ -1,27 +1,28 @@
 import clsx from 'clsx';
-// Utils
+// Constants
 import { LETTERS } from 'utils/constants';
-import { getEntryId } from 'utils/helpers';
+// Utils
+import { getColorFromLetter, getEntryId } from 'utils/helpers';
 // Components
-import { SonhosPesadelosCard as Card } from './Card';
+import { Card } from 'components';
 
-type AllCluesProps = {
-  clues: SClue[];
-  activeItem: any;
+type AllDreamsCluesProps = {
+  dreams: SDream[];
+  activeItem: string;
   onActivateItem: GenericFunction;
-  votes: any;
+  votes: StringDictionary;
   players: GamePlayers;
-  currentRound: number;
 };
 
-export function AllClues({ clues, activeItem, onActivateItem, votes, players, currentRound }: AllCluesProps) {
+export function AllDreamsClues({ dreams, activeItem, onActivateItem, votes, players }: AllDreamsCluesProps) {
   const liButtonBaseClass = 'a-evaluation-all-cards__li-card-button';
 
   return (
     <ul className="a-evaluation-all-cards">
-      {clues.map(({ cardId, clue, playerId }, index) => {
+      {dreams.map(({ id, dream }, index) => {
+        const player = players[id];
         const letter = LETTERS[index];
-        const cardEntryId = getEntryId(['clue', cardId, letter]);
+        const cardEntryId = getEntryId(['dream', id, letter]);
         const isActive = activeItem === cardEntryId;
         const isUsed = Object.keys(votes).includes(cardEntryId);
 
@@ -37,11 +38,15 @@ export function AllClues({ clues, activeItem, onActivateItem, votes, players, cu
             onClick={() => onActivateItem(cardEntryId)}
           >
             <Card
-              clue={clue[0]}
+              color={getColorFromLetter(letter)}
               header={letter}
-              footer={players[playerId].name}
-              previousClues={currentRound > 3 ? [clue.slice(1)] : []}
-            />
+              size="medium"
+              footer={player.name}
+              className="s-clue-card"
+              footerClassName="s-clue-card__footer"
+            >
+              {dream}
+            </Card>
           </li>
         );
       })}
