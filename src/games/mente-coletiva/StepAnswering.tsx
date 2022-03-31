@@ -7,7 +7,7 @@ import { useLanguage, useMock } from 'hooks';
 import { getEntryId } from 'utils/helpers';
 import { mockAnswers } from './mock';
 // Components
-import { ButtonContainer, PopoverRule, Step, Title, Translate } from 'components';
+import { ButtonContainer, PopoverRule, ReadyPlayersBar, Step, Title, Translate } from 'components';
 import { Pasture } from './Pasture';
 import { Question } from './Question';
 import { AnsweringRules } from './RulesBlobs';
@@ -93,6 +93,10 @@ export function StepAnswering({
       </div>
 
       <Pasture players={players} pastureSize={pastureSize} roundType={roundType} />
+
+      <ButtonContainer>
+        <ReadyPlayersBar players={players} />
+      </ButtonContainer>
     </Step>
   );
 }
