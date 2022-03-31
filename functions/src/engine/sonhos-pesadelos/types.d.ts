@@ -1,4 +1,19 @@
-import { DefaultState, DefaultStore, ImageCard, Meta, Payload, PlayerId, Players } from '../../utils/types';
+import { InspirationCard } from '../../utils/tdr';
+import { DefaultState, DefaultStore, ImageCardId, Meta, Payload, PlayerId, Players } from '../../utils/types';
+
+type SonhosPesadelosCards = {
+  2: InspirationCard[];
+  3: InspirationCard[];
+  4: InspirationCard[];
+};
+
+type ThemeDeck = {
+  1: InspirationCard[];
+  2: InspirationCard[];
+  3: InspirationCard[];
+  4: InspirationCard[];
+  5: InspirationCard[];
+};
 
 interface SonhosPesadelosStore extends DefaultStore {
   themes?: any;
@@ -26,7 +41,7 @@ interface SonhosPesadelosInitialState {
 }
 
 interface TableEntry {
-  cardId: ImageCard;
+  cardId: ImageCardId;
   dreamer: PlayerId | null;
   nightmares: PlayerId[];
 }
@@ -35,21 +50,18 @@ type Table = TableEntry[];
 
 type Result = {
   playerId: PlayerId;
-  dreamGuesses: {
-    [key: string]: boolean;
-  };
-  correct: number;
-  nightmareHits: string[];
-  win: boolean;
-  previousScore: number;
-};
-
-type Results = {
-  [key: string]: Result;
+  dreamId: ImageCardId;
+  dream: string;
+  cards: {
+    cardId: ImageCardId;
+    votes: PlayerId[];
+    isDream: boolean;
+    isNightmare: boolean;
+  }[];
 };
 
 interface SonhosPesadelosSubmitAction extends Payload {
-  action: 'SUBMIT_DREAMS' | 'SUBMIT_VOTING';
+  action: 'SUBMIT_DREAM' | 'SUBMIT_VOTING';
 }
 
 type FirebaseStateData = FirebaseFirestore.DocumentData | SonhosPesadelosState;

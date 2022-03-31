@@ -190,3 +190,16 @@
     }
   }
 }
+
+.image-card-select-button {
+  position: absolute;
+  bottom: get-unit(4);
+  left: 50%;
+  transform: translateX(-50%);
+
+  &:hover.ant-btn {
+    background: get-color(white);
+    color: get-color(yellow);
+    border-color: get-color(yellow);
+  }
+}

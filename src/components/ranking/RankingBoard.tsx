@@ -3,31 +3,41 @@ import { useEffect, useState } from 'react';
 import { orderBy } from 'lodash';
 import { useTimer } from 'react-timer-hook';
 // Ant Design Resources
+import { Tooltip } from 'antd';
 import { CrownFilled } from '@ant-design/icons';
 // Hooks
 import { useDimensions } from 'hooks';
 // Utils
 import { inNSeconds } from 'utils/helpers';
 // Components
-import { Avatar } from 'components';
+import { Avatar, Translate } from 'components';
+import { Instruction, Step, Title } from 'components/shared';
 
 type GainedPointProps = {
   gainedPoint: number;
   order: number;
+  description?: any;
 };
 
-function GainedPoint({ gainedPoint, order }: GainedPointProps): JSX.Element {
+function GainedPoint({ gainedPoint, order, description }: GainedPointProps): JSX.Element {
+  const isPositive = gainedPoint > 0;
+  const isNegative = gainedPoint < 0;
   return (
     <li
       className={clsx(
         'ranking-board__gained-point',
-        gainedPoint > 0 && 'ranking-board__gained-point--plus',
-        gainedPoint < 0 && 'ranking-board__gained-point--minus',
+        isPositive && 'ranking-board__gained-point--plus',
+        isNegative && 'ranking-board__gained-point--minus',
         `ranking-board__gained-point--${order}`
       )}
     >
-      {gainedPoint > 0 ? '+' : ''}
-      {gainedPoint}
+      <Tooltip
+        title={description ?? <Translate pt="Pontos ganhos" en="Gained Points" />}
+        color={isPositive ? 'gold' : isNegative ? 'red' : 'gray'}
+      >
+        {isPositive ? '+' : ''}
+        {gainedPoint}
+      </Tooltip>
     </li>
   );
 }
@@ -35,14 +45,24 @@ function GainedPoint({ gainedPoint, order }: GainedPointProps): JSX.Element {
 type GainedPointsProps = {
   gainedPoints: number[] | number;
   playerId: PlayerId;
+  gainedPointsDescriptions?: any[];
 };
 
-function GainedPoints({ gainedPoints, playerId }: GainedPointsProps): JSX.Element {
+function GainedPoints({
+  gainedPoints,
+  playerId,
+  gainedPointsDescriptions = [],
+}: GainedPointsProps): JSX.Element {
   const points = Array.isArray(gainedPoints) ? gainedPoints : [gainedPoints];
   return (
     <ul className="ranking-board__cell-gained-points">
       {points.map((gainedPoint, index) => (
-        <GainedPoint key={`gained-point-${playerId}-${index}`} gainedPoint={gainedPoint} order={index} />
+        <GainedPoint
+          key={`gained-point-${playerId}-${index}`}
+          gainedPoint={gainedPoint}
+          order={index}
+          description={gainedPointsDescriptions[index]}
+        />
       ))}
     </ul>
   );
@@ -51,9 +71,10 @@ function GainedPoints({ gainedPoints, playerId }: GainedPointsProps): JSX.Elemen
 type RankingBoardProps = {
   players: GamePlayers;
   ranking: GameRanking;
+  gainedPointsDescriptions?: any[];
 };
 
-export function RankingBoard({ players, ranking }: RankingBoardProps): JSX.Element {
+export function RankingBoard({ players, ranking, gainedPointsDescriptions }: RankingBoardProps): JSX.Element {
   const [displayStep, setDisplayStep] = useState(0);
   const [sortedRanking, setSortedRanking] = useState<GameRanking>([]);
   const [reRank, setReRank] = useState(0);
@@ -146,14 +167,45 @@ export function RankingBoard({ players, ranking }: RankingBoardProps): JSX.Eleme
               </div>
               <div className="ranking-board__name">{players[playerId].name}</div>
             </div>
-            <div className="ranking-board__cell-points">{previousScore}</div>
+            <Tooltip title={<Translate pt="Pontos Anteriores" en="Previous Points" />} color="gray">
+              <div className="ranking-board__cell-points">{previousScore}</div>
+            </Tooltip>
             {displayStep >= 1 && gainedPoints !== undefined && (
-              <GainedPoints gainedPoints={gainedPoints} playerId={playerId} />
+              <GainedPoints
+                gainedPoints={gainedPoints}
+                playerId={playerId}
+                gainedPointsDescriptions={gainedPointsDescriptions}
+              />
             )}
-            {displayStep >= 2 && <div className="ranking-board__cell-points-total">{newScore}</div>}
+            {displayStep >= 2 && (
+              <Tooltip title="Total" color="gold">
+                <div className="ranking-board__cell-points-total">{newScore}</div>
+              </Tooltip>
+            )}
           </div>
         );
       })}
     </div>
+  );
+}
+
+type RankingBoardStepProps = {
+  players: GamePlayers;
+  ranking: GameRanking;
+  gainedPointsDescriptions: any[];
+};
+
+export function RankingBoardStep({ players, ranking, gainedPointsDescriptions }: RankingBoardStepProps) {
+  return (
+    <Step>
+      <Title>Ranking</Title>
+      <Instruction contained>
+        <Translate
+          pt="Passe o mouse em cada um dos pontos para saber como eles foram distribuídos"
+          en="Hover over the scores to learn how they were granted"
+        />
+      </Instruction>
+      <RankingBoard players={players} ranking={ranking} gainedPointsDescriptions={gainedPointsDescriptions} />
+    </Step>
   );
 }

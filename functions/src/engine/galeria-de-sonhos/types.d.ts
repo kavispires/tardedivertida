@@ -9,7 +9,7 @@ type ResourceData = {
   allWords: AllWords;
 };
 
-type ImageCard = {
+type ImageCardId = {
   id: string;
   used: boolean;
   matchedPlayers?: PlayerId[];
@@ -23,7 +23,7 @@ type PlayerCard = {
 };
 
 interface GaleriaDeSonhosStore extends DefaultStore {
-  tableDeck: ImageCard[];
+  tableDeck: ImageCardId[];
   deck: TextCard[];
   gameOrder: GameOrder;
   [key: string]: any;

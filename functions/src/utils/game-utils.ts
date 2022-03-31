@@ -1,4 +1,5 @@
-import { Players, Primitive } from './types';
+import { buildIdDictionary } from './helpers';
+import { PlainObject, Players, Primitive } from './types';
 
 // Shuffling
 
@@ -51,29 +52,43 @@ export const getRandomItems = <T>(list: T[], quantity = 1): T[] => {
 };
 
 /**
+ * Get random unique items from a list
+ * @param list
+ * @param used
+ * @param [quantity]
+ * @returns
+ */
+export const getRandomUniqueItems = <T>(list: T[], used: T[] = [], quantity = 1): T[] => {
+  const availableList = list.filter((i) => !used.includes(i));
+  return getRandomItems(availableList, quantity);
+};
+
+/**
  * Get a random item from list that is not
  * @param list
  * @param used
  * @returns
  */
 export const getRandomUniqueItem = <T>(list: T[], used: T[]): T => {
-  const availableList = list.filter((i) => !used.includes(i));
-  return getRandomItem(availableList);
+  return getRandomUniqueItems(list, used, 1)[0];
 };
 
 /**
- * Get random unique items from a list
+ * Get random unique items from a list of objects
  * @param list
- * @param [used]
- * @param [quantity]
+ * @param used
+ * @param quantity
+ * @param byPropertyName property name
  * @returns
  */
-export const getRandomUniqueItems = (
-  list: Primitive[],
-  used: Primitive[] = [],
-  quantity = 1
-): Primitive[] => {
-  const availableList = list.filter((i) => !used.includes(i));
+export const getRandomUniqueObjects = <T>(
+  list: T[],
+  used: PlainObject[],
+  quantity: number,
+  byPropertyName = 'id'
+): T[] => {
+  const usedIdDict = buildIdDictionary(used);
+  const availableList = list.filter((entry) => !usedIdDict[entry[byPropertyName]]);
   return getRandomItems(availableList, quantity);
 };
 

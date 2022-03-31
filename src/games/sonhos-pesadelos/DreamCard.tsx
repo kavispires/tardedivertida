@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 // Components
-import { ImageCard, ImageBlurButton, ImageCardBack } from 'components';
+import { ImageCard, ImageBlurButton } from 'components';
 
 type DreamCardProps = {
   cardId: string;
@@ -16,14 +16,9 @@ export function DreamCard({
   cardWidth,
   isDream = false,
   isNightmare = false,
-  flipped = false,
   hideBlurButton = false,
 }: DreamCardProps) {
   const baseClass = 's-dream-board-card';
-
-  if (flipped) {
-    return <ImageCardBack className={baseClass} cardWidth={cardWidth} />;
-  }
 
   return (
     <>

@@ -6,6 +6,8 @@ import { useGlobalState, useLanguage } from 'hooks';
 // Components
 import { Card, Instruction, SheepAvatar, Title, Translate } from 'components';
 import { Question } from './Question';
+import clsx from 'clsx';
+import { getAnimationClass } from 'utils/helpers';
 
 type AnswerGroupProps = {
   currentQuestion: MQuestion;
@@ -69,7 +71,7 @@ export function AnswerGroup({
                   {player.name} {isLocked ? <LockFilled /> : <QuestionCircleFilled />}
                 </span>
                 {!isLocked && (
-                  <span className="m-answer-group__speech-bubble-small">
+                  <span className={clsx('m-answer-group__speech-bubble-small', getAnimationClass('tada'))}>
                     {player.answers[entry.id].answer}
                   </span>
                 )}

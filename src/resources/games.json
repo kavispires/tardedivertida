@@ -229,7 +229,7 @@
   "G": {
     "gameCode": "G",
     "gameName": "galeria-sonhos",
-    "version": "pre-alpha",
+    "version": "beta",
     "title": {
       "pt": "Galeria de sonhos",
       "en": "Dream Gallery"
@@ -381,7 +381,7 @@
     "version": "2.0",
     "title": {
       "pt": "Mente Coletiva",
-      "en": "Herd Mentality"
+      "en": "Herd Mind"
     },
     "basedOn": "dniM eviH",
     "summary": {
@@ -397,7 +397,14 @@
         "Quando contarmos todas as respostas, o jogador (ou jogadores) com o menor número de pontos é enviado para o pasto da direita. (Os pontos resetam toda rodada)",
         "Se você tem que mover mais adiante que o pasto 5, você cai no precipício e morre, o pasto fica menos lotado e todos mais felizes. Viva."
       ],
-      "en": ["TBD"]
+      "en": [
+        "We are sheep and our pasture is overcrowded. Are you really part of the herd?",
+        "We need to kick out at least one of us so the pasture is more comfortable. What's the best way to do so? By excluding the minority, of course!",
+        "Each round, everybody answers a simple question, for example: 'Name 3 fruits' or 'Name 4 things you bring on a trip",
+        "After everyone has given their answers we group them. If three players answer 'Apple', each player gets 3 points. The goal is to reply like the majority, so write common simple answers is the way to go.",
+        "After tallying all the points, all the sheep with the least amount of points are kicked to the next pasture.",
+        "When there's no more 'next pasture', they fall off the cliff and die, but at least the pasture is better. Yay."
+      ]
     },
     "playerCount": {
       "recommended": "4+",
