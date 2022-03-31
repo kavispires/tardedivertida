@@ -1,11 +1,7 @@
-// Ant Design Resources
-import { Alert } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks';
-// Utils
-import { LETTERS, SEPARATOR } from 'utils/constants';
 // Components
-import { AdminNextRoundButton, Gallery, Instruction, Step, Title, Translate } from 'components';
+import { Gallery, Step, Title } from 'components';
 import { GalleryDreamDisplay } from './GalleryDreamDisplay';
 import { getAvatarColorById } from 'utils/helpers';
 import { GalleryGuesses } from './GalleryGuesses';
@@ -17,6 +13,7 @@ type StepResultsProps = {
   setActiveIndex: GenericFunction;
   setStep: GenericFunction;
   isFirstGalleryRunThrough: boolean;
+  correctGuessPoints: number;
 };
 
 export function StepResults({
@@ -26,6 +23,7 @@ export function StepResults({
   setActiveIndex,
   setStep,
   isFirstGalleryRunThrough,
+  correctGuessPoints,
 }: StepResultsProps) {
   const { translate } = useLanguage();
 
@@ -47,7 +45,7 @@ export function StepResults({
         windowDuration={10}
       >
         <GalleryDreamDisplay entry={galleryEntry} activePlayer={activePlayer} />
-        <GalleryGuesses entry={galleryEntry} players={players} />
+        <GalleryGuesses entry={galleryEntry} players={players} correctGuessPoints={correctGuessPoints} />
       </Gallery>
     </Step>
   );

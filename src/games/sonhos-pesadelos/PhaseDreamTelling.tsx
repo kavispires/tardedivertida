@@ -31,8 +31,8 @@ function PhaseDreamTelling({ state, players, info }: PhaseProps) {
         <RoundAnnouncement round={state.round} buttonText="" onPressButton={goToNextStep} time={5}>
           <Instruction contained>
             <Translate
-              pt="Somos paranormais tentando adivinhar os sonhos dos outros..."
-              en="We're psychics trying to guess each others dreams..."
+              pt="Sabe quando você sonha com uma coisa, mas não consegue explicar? Então..."
+              en="You know when you dream about something but you can't quite explain? So..."
             />
           </Instruction>
         </RoundAnnouncement>

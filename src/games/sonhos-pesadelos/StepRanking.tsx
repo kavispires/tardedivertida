@@ -20,6 +20,7 @@ type StepRankingProps = {
   goToPreviousStep: GenericFunction;
   setActiveIndex: GenericFunction;
   isLastRound?: boolean;
+  correctGuessPoints: number;
 };
 
 export function StepRanking({
@@ -29,6 +30,7 @@ export function StepRanking({
   goToPreviousStep,
   setActiveIndex,
   isLastRound,
+  correctGuessPoints,
 }: StepRankingProps) {
   return (
     <Step>

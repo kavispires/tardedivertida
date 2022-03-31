@@ -118,6 +118,7 @@ export const prepareResolutionPhase = async (
 ): Promise<SaveGamePayload> => {
   const gallery = buildGallery(players, state.table);
   const ranking = buildRanking(players);
+  const correctGuessPoints = Object.values(players)[0]?.theme?.level ?? 2;
 
   // Save
   return {
@@ -126,6 +127,7 @@ export const prepareResolutionPhase = async (
         phase: SONHOS_PESADELOS_PHASES.RESOLUTION,
         gallery,
         ranking,
+        correctGuessPoints,
       },
       players,
     },
