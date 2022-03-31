@@ -7,14 +7,14 @@ export type PlayerId = string;
 export type PlayerName = string;
 export type PlayerAvatarId = string;
 export type Primitive = string | number | boolean | symbol | null;
-export type ImageCard = string;
+export type CardId = string;
+export type ImageCardId = string;
 export type GameOrder = PlayerId[];
 export type TurnOrder = PlayerId[];
 export type DualLanguageValue = {
   en: string;
   pt: string;
 };
-export type CardId = string;
 
 // COMMON INTERFACES
 

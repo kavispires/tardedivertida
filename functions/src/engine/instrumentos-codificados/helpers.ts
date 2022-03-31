@@ -1,5 +1,5 @@
 // Types
-import { ImageCard, Players } from '../../utils/types';
+import { ImageCardId, Players } from '../../utils/types';
 // Constantes
 import { DIGITS, INSTRUMENTOS_CODIFICADOS_PHASES, TOTAL_ROUNDS } from './constants';
 // Helpers
@@ -57,7 +57,7 @@ export const buildCode = (players: Players, playerCount: number): string[] => {
   }, []);
 };
 
-export const buildTable = (cards: ImageCard[]) => {
+export const buildTable = (cards: ImageCardId[]) => {
   return cards.map((cardId, index) => ({
     digit: index,
     cardId,

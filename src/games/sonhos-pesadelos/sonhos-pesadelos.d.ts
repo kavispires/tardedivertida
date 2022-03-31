@@ -1,10 +1,29 @@
-type SubmitDreamsPayload = {
-  dreams: PlainObject;
+type SubmitDreamPayload = {
+  dream: string;
 };
 
 type SubmitVotesPayload = {
-  votes: PlainObject;
+  votes: StringDictionary;
 };
+
+type SDream = {
+  id: PlayerId;
+  dream: string;
+};
+
+type SGalleryEntry = {
+  playerId: PlayerId;
+  dreamId: ImageCardId;
+  dream: string;
+  cards: {
+    cardId: ImageCardId;
+    votes: PlayerId[];
+    isDream: boolean;
+    isNightmare: boolean;
+  }[];
+};
+
+// Deprecated
 
 type SClue = {
   cardId: string;

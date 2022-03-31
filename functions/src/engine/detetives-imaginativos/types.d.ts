@@ -1,7 +1,7 @@
-import { DefaultState, DefaultStore, ImageCard, InitialState, Payload, PlayerId } from '../../utils/types';
+import { DefaultState, DefaultStore, ImageCardId, InitialState, Payload, PlayerId } from '../../utils/types';
 
 interface DetetivesImaginativosStore extends DefaultStore {
-  usedCards: ImageCard[];
+  usedCards: ImageCardId[];
   gameOrder: PlayerId[];
   turnOrder: PlayerId[];
   [key: string]: any;

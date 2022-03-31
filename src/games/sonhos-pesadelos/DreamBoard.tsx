@@ -2,41 +2,41 @@ import clsx from 'clsx';
 // Hooks
 import { useCardWidth } from 'hooks';
 // Components
-import { NightmareButton } from './NightmareButton';
-import { DreamButton } from './DreamButton';
+import { Translate } from 'components';
 import { DreamCard } from './DreamCard';
 
 type DreamBoardProps = {
-  table: any[];
+  table: ImageCard[];
   user: GamePlayer;
   className?: string;
 };
 
-export function DreamBoard({ table, user, className }: DreamBoardProps) {
-  const cardWidth = useCardWidth(table.length / 2, 40);
+export function DreamBoard({ table, user, className = '' }: DreamBoardProps) {
+  const cardWidth = useCardWidth(table.length + 1, 20);
 
   return (
     <ul className={clsx('s-dream-board', className)}>
-      {table.map((entry) => {
-        const isDream = Boolean(user.dreams[entry.cardId]);
-        const isNightmare = user.nightmares.includes(entry.cardId);
+      {table.map((cardId) => {
+        const isDream = user.dreamId === cardId;
+        const isNightmare = user.nightmareId === cardId;
 
         return (
           <li
-            className="s-dream-board-entry"
-            key={`board-${entry.cardId}`}
+            className="s-dream-board__entry"
+            key={`board-${cardId}`}
             style={{ maxWidth: `${cardWidth + 20}px` }}
           >
-            <DreamCard
-              cardId={entry.cardId}
-              cardWidth={cardWidth}
-              isDream={isDream}
-              isNightmare={isNightmare}
-            />
-
-            {isNightmare && <NightmareButton />}
-
-            {isDream && <DreamButton />}
+            <DreamCard cardId={cardId} cardWidth={cardWidth} isDream={isDream} isNightmare={isNightmare} />
+            {isDream && (
+              <div className="s-dream-board__dream-label" style={{ maxWidth: `${cardWidth}px` }}>
+                <Translate pt="Sonho" en="Pesadelo" />
+              </div>
+            )}
+            {isNightmare && (
+              <div className="s-dream-board__nightmare-label" style={{ maxWidth: `${cardWidth}px` }}>
+                <Translate pt="Pesadelo" en="Nightmare" />
+              </div>
+            )}
           </li>
         );
       })}

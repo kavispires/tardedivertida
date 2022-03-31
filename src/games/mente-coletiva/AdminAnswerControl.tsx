@@ -40,7 +40,7 @@ export function AdminAnswerControl({
   );
 
   return (
-    <AdminOnlyContainer className="m-admin">
+    <AdminOnlyContainer className="m-admin" direction="vertical" align="center">
       <AdminButton
         onClick={() => onNextAnswer({ allowedList: Object.keys(allowedList) })}
         disabled={isLoading}

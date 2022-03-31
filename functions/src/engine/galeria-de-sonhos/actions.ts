@@ -1,6 +1,6 @@
 // Types
 import { GameId, PlayerId, GameName, PlainObject, Player } from '../../utils/types';
-import { ImageCard } from './types';
+import { ImageCardId } from './types';
 // Helpers
 import * as utils from '../../utils';
 // Internal functions
@@ -120,7 +120,7 @@ export const handlePlayCard = async (
   let cardsLeft = 0;
 
   // Mark card in table as used
-  state.table.forEach((tableCardEntry: ImageCard) => {
+  state.table.forEach((tableCardEntry: ImageCardId) => {
     if (tableCardEntry.id === cardId) {
       tableCardEntry.used = true;
       tableCardEntry.matchedPlayers = cardCache[cardId];

@@ -1,7 +1,7 @@
 /**
  * Enum of Game Phases
  */
-export const PHASES: PlainObject = {
+export const PHASES: Record<string, Record<string, string>> = {
   DEFAULT: {
     LOBBY: 'LOBBY',
     RULES: 'RULES',
@@ -106,10 +106,9 @@ export const PHASES: PlainObject = {
     REVEAL: 'REVEAL',
   },
   SONHOS_PESADELOS: {
-    TELL_DREAM: 'TELL_DREAM',
-    MATCH: 'MATCH',
+    DREAM_TELLING: 'DREAM_TELLING',
+    MATCHING: 'MATCHING',
     RESOLUTION: 'RESOLUTION',
-    LAST_CHANCE: 'LAST_CHANCE',
   },
   TESTEMUNHA_OCULAR: {
     WITNESS_SELECTION: 'WITNESS_SELECTION',

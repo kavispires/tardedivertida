@@ -5,18 +5,17 @@ import { PLAYER_COUNTS, SONHOS_PESADELOS_PHASES, TOTAL_ROUNDS } from './constant
 import { GameId, Language, Players } from '../../utils/types';
 // Utils
 import * as utils from '../../utils';
-import { determineGameOver, determineNextPhase } from './helpers';
+import { determineNextPhase } from './helpers';
 import { SonhosPesadelosInitialState, SonhosPesadelosSubmitAction } from './types';
 import {
   prepareGameOverPhase,
   prepareResolutionPhase,
-  prepareMatchPhase,
+  prepareMatchingPhase,
   prepareSetupPhase,
-  prepareTellDreamPhase,
-  prepareLastChancePhase,
+  prepareDreamTellingPhase,
 } from './setup';
-import { getThemes } from './data';
-import { handleSubmitDreams, handleSubmitVoting } from './actions';
+import { handleSubmitDream, handleSubmitVoting } from './actions';
+import { getInspirationThemes } from './data';
 
 /**
  * Get Initial Game State
@@ -63,10 +62,8 @@ export const getNextPhase = async (
     actionText
   );
 
-  // Determine if it's game over
-  const isGameOver = determineGameOver(store.results);
   // Determine next phase
-  const nextPhase = determineNextPhase(state?.phase, state?.round?.current, isGameOver, state?.lastRound);
+  const nextPhase = determineNextPhase(state?.phase, state?.round, state?.lastRound);
 
   // RULES -> SETUP
   if (nextPhase === SONHOS_PESADELOS_PHASES.SETUP) {
@@ -74,34 +71,28 @@ export const getNextPhase = async (
     await utils.firebase.triggerSetupPhase(sessionRef);
 
     // Request data
-    const additionalData = await getThemes(store.language);
+    const additionalData = await getInspirationThemes(store.language);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await utils.firebase.saveGame(sessionRef, newPhase);
 
     return getNextPhase(collectionName, gameId, newPhase.update?.players ?? {});
   }
 
-  // * -> TELL_DREAM
-  if (nextPhase === SONHOS_PESADELOS_PHASES.TELL_DREAM) {
-    const newPhase = await prepareTellDreamPhase(store, state, players);
+  // * -> DREAM_TELLING
+  if (nextPhase === SONHOS_PESADELOS_PHASES.DREAM_TELLING) {
+    const newPhase = await prepareDreamTellingPhase(store, state, players);
     return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
-  // TELL_DREAM -> MATCH
-  if (nextPhase === SONHOS_PESADELOS_PHASES.MATCH) {
-    const newPhase = await prepareMatchPhase(store, state, players);
+  // DREAM_TELLING -> MATCHING
+  if (nextPhase === SONHOS_PESADELOS_PHASES.MATCHING) {
+    const newPhase = await prepareMatchingPhase(store, state, players);
     return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
-  // MATCH -> RESOLUTION
+  // MATCHING -> RESOLUTION
   if (nextPhase === SONHOS_PESADELOS_PHASES.RESOLUTION) {
     const newPhase = await prepareResolutionPhase(store, state, players);
-    return utils.firebase.saveGame(sessionRef, newPhase);
-  }
-
-  // RESOLUTION --> LAST_CHANCE
-  if (nextPhase === SONHOS_PESADELOS_PHASES.LAST_CHANCE) {
-    const newPhase = await prepareLastChancePhase(store, state, players);
     return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
@@ -125,9 +116,9 @@ export const submitAction = async (data: SonhosPesadelosSubmitAction) => {
   utils.firebase.validateSubmitActionPayload(gameId, collectionName, playerId, action);
 
   switch (action) {
-    case 'SUBMIT_DREAMS':
-      utils.firebase.validateSubmitActionProperties(data, ['dreams'], 'submit dreams');
-      return handleSubmitDreams(collectionName, gameId, playerId, data.dreams);
+    case 'SUBMIT_DREAM':
+      utils.firebase.validateSubmitActionProperties(data, ['dream'], 'submit dreams');
+      return handleSubmitDream(collectionName, gameId, playerId, data.dream);
     case 'SUBMIT_VOTING':
       utils.firebase.validateSubmitActionProperties(data, ['votes'], 'submit votes');
       return handleSubmitVoting(collectionName, gameId, playerId, data.votes);

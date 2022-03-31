@@ -2,10 +2,9 @@ export const SONHOS_PESADELOS_PHASES = {
   LOBBY: 'LOBBY',
   RULES: 'RULES',
   SETUP: 'SETUP',
-  TELL_DREAM: 'TELL_DREAM',
-  MATCH: 'MATCH',
+  DREAM_TELLING: 'DREAM_TELLING',
+  MATCHING: 'MATCHING',
   RESOLUTION: 'RESOLUTION',
-  LAST_CHANCE: 'LAST_CHANCE',
   GAME_OVER: 'GAME_OVER',
 };
 
@@ -16,59 +15,6 @@ export const PLAYER_COUNTS = {
 
 export const TOTAL_ROUNDS = 5;
 
-export const COUNTS_BY_PLAYER = {
-  2: {
-    dreams: 4,
-    nightmares: 2,
-    extra: 4,
-    cards: 12,
-  },
-  3: {
-    dreams: 3,
-    nightmares: 2,
-    extra: 3,
-    cards: 12,
-  },
-  4: {
-    dreams: 2,
-    nightmares: 2,
-    extra: 4,
-    cards: 12,
-  },
-  5: {
-    dreams: 2,
-    nightmares: 2,
-    extra: 6,
-    cards: 16,
-  },
-  6: {
-    dreams: 1,
-    nightmares: 1,
-    extra: 6,
-    cards: 12,
-  },
-  7: {
-    dreams: 1,
-    nightmares: 1,
-    extra: 5,
-    cards: 12,
-  },
-  8: {
-    dreams: 1,
-    nightmares: 1,
-    extra: 4,
-    cards: 12,
-  },
-  9: {
-    dreams: 1,
-    nightmares: 1,
-    extra: 3,
-    cards: 12,
-  },
-  10: {
-    dreams: 1,
-    nightmares: 1,
-    extra: 2,
-    cards: 12,
-  },
-};
+export const IMAGE_CARDS_PER_ROUND = 6;
+
+export const THEMES_PER_ROUND = 3;

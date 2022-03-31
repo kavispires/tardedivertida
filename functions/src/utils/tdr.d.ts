@@ -59,3 +59,10 @@ export type ThemeCard = {
   text: string;
   description?: string;
 };
+
+export type InspirationCard = {
+  id: CardId;
+  text: string;
+  set: string;
+  level: number;
+};

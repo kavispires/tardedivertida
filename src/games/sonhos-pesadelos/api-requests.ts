@@ -1,24 +1,24 @@
 import { SONHOS_PESADELOS_API } from 'adapters';
 import { useAPICall, useLanguage } from 'hooks';
 
-export function useOnSubmitDreamsAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitDreamAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
     apiFunction: SONHOS_PESADELOS_API.submitAction,
-    actionName: 'submit-dreams',
+    actionName: 'submit-dream',
     onBeforeCall: () => setStep(3),
     onError: () => setStep(0),
-    successMessage: translate('Sonhos submetidos com sucesso', 'Dreams submitted successfully'),
+    successMessage: translate('Sonho submetido com sucesso', 'Dream submitted successfully'),
     errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar seus sonhos',
-      'Oops, the application found an error while trying to submit your dreams'
+      'Vixi, o aplicativo encontrou um erro ao tentar enviar seu sonho',
+      'Oops, the application found an error while trying to submit your dream'
     ),
   });
 
-  return (payload: SubmitDreamsPayload) => {
+  return (payload: SubmitDreamPayload) => {
     request({
-      action: 'SUBMIT_DREAMS',
+      action: 'SUBMIT_DREAM',
       ...payload,
     });
   };
