@@ -1,0 +1,77 @@
+.gallery {
+  display: grid;
+  width: calc(100% - #{get-unit(4)});
+  gap: get-unit(4);
+  padding: get-unit(2);
+  border-radius: get-unit(1);
+  background-color: get-color(white, 4);
+
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    'left right'
+    'controls controls';
+
+  &__left {
+    // background: hotpink;
+    grid-area: left;
+    min-height: 50vh;
+  }
+
+  &__right {
+    // background: olivedrab;
+    grid-area: right;
+    min-height: 50vh;
+  }
+
+  &__controls {
+    grid-area: controls;
+
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: get-unit(2);
+  }
+
+  &__controls-timer-bar {
+    width: 100%;
+    height: get-unit(2);
+    margin: get-unit(0 0 4 0);
+    background: get-color(gray, 1);
+    border-radius: get-unit(2);
+    flex-grow: 1;
+    position: relative;
+  }
+
+  &__controls-timer-bar-base {
+    width: 100%;
+    height: get-unit(2);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 30;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__controls-timer-bar-node {
+    background-color: get-color(gray, 2);
+    height: get-unit(2);
+    min-width: get-unit(5);
+    border-radius: get-unit(1);
+  }
+
+  &__controls-timer-bar-pill {
+    height: get-unit(2);
+    border-radius: get-unit(2);
+    background: get-color(gray);
+    display: block;
+    transition: all 1s;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 35;
+  }
+}
