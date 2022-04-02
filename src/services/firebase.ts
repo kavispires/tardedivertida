@@ -1,7 +1,14 @@
 import { FirebaseApp, initializeApp } from 'firebase/app';
 import { getFirestore, connectFirestoreEmulator, Firestore } from 'firebase/firestore';
-import { Auth, getAuth } from 'firebase/auth';
+import {
+  Auth,
+  createUserWithEmailAndPassword,
+  getAuth,
+  signInWithEmailAndPassword,
+  UserCredential,
+} from 'firebase/auth';
 import { getFunctions, connectFunctionsEmulator, Functions } from 'firebase/functions';
+import { message } from 'antd';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -27,3 +34,33 @@ if (window.location.hostname.includes('localhost')) {
 }
 
 export default firebaseApp;
+
+/**
+ * Sign up user via email through firebase auth
+ * @param email
+ * @param password
+ * @returns
+ */
+export function signUp(email: string, password: string): Promise<UserCredential> {
+  return createUserWithEmailAndPassword(auth, email, password);
+}
+
+/**
+ * Sign in user via email through firebase auth
+ * @param email
+ * @param password
+ * @returns
+ */
+export function signIn(email: string, password: string): Promise<UserCredential> {
+  return signInWithEmailAndPassword(auth, email, password);
+}
+
+/**
+ * Sign out current user
+ * @returns
+ */
+export async function signOut(): Promise<void> {
+  return auth.signOut().then(() => {
+    message.warn(`You've been signed out`);
+  });
+}
