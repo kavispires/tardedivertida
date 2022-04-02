@@ -10,7 +10,9 @@ import { useGlobalState, useLanguage, useLocalStorage } from 'hooks';
 // Utils
 import gameList from 'assets/data/games.json';
 // Components
-import { GameCard, LanguageSwitch, RecentlyCreatedGames, Translate } from 'components';
+import { LanguageSwitch, Translate } from 'components';
+import { RecentlyCreatedGames } from './components/RecentlyCreatedGames';
+import { GameCard } from './components/GameCard';
 
 const GAME_LIST: {
   [key: string]: GameInfo;
