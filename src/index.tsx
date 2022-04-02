@@ -4,7 +4,7 @@ import reportWebVitals from './reportWebVitals';
 
 import './styles/index.css';
 
-import App from './routes/App';
+import App from './pages/App';
 
 ReactDOM.render(
   <React.StrictMode>
