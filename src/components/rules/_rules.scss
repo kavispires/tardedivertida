@@ -54,6 +54,9 @@
   &__rule-text {
     text-align: center;
     color: get-color(white);
+    background: rgba($color: black, $alpha: 0.8);
+    border-radius: get-unit(1);
+    padding: get-unit(1 2);
   }
 
   &__image {

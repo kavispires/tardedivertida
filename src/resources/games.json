@@ -229,7 +229,7 @@
   "G": {
     "gameCode": "G",
     "gameName": "galeria-sonhos",
-    "version": "beta",
+    "version": "alpha",
     "title": {
       "pt": "Galeria de sonhos",
       "en": "Dream Gallery"
@@ -625,7 +625,7 @@
   "S": {
     "gameCode": "S",
     "gameName": "sonhos-pesadelos",
-    "version": "alpha",
+    "version": "beta",
     "title": {
       "pt": "Sonhos e Pesadelos",
       "en": "Dreams and Nightmares"
