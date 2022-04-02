@@ -1,4 +1,4 @@
-import { ARTE_RUIM_API } from 'adapters';
+import { ARTE_RUIM_API } from 'services/adapters';
 import { useAPICall, useLanguage } from 'hooks';
 
 export function useOnSubmitDrawingAPIRequest(setStep: GenericFunction) {

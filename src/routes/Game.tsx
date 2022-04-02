@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 // Ant Design Resources
 import { message, notification } from 'antd';
 // Adapters
-import { GAME_API } from 'adapters';
+import { GAME_API } from 'services/adapters';
 // Hooks
 import { useIsGameStale, useLoading, useGlobalState, useLocalStorage } from 'hooks';
 // Utils

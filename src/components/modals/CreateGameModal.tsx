@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 // Ant Design Resources
 import { Image, Modal, message, Button, notification, Divider, Typography, Switch } from 'antd';
 // Adapters
-import { ADMIN_API } from 'adapters';
+import { ADMIN_API } from 'services/adapters';
 // Hooks
 import { useGlobalState, useLanguage, useLoading, useLocalStorage } from 'hooks';
 // Constants

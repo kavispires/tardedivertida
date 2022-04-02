@@ -1,4 +1,4 @@
-import { RETRATO_FALADO_API } from 'adapters';
+import { RETRATO_FALADO_API } from 'services/adapters';
 
 import { useAPICall, useLanguage } from 'hooks';
 

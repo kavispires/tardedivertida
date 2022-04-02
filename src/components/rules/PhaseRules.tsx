@@ -2,7 +2,7 @@
 import { Button, Layout, Space, Typography } from 'antd';
 import { CheckCircleFilled, MehFilled, RobotFilled, SmileFilled } from '@ant-design/icons';
 // Utils
-import { GAME_API } from 'adapters';
+import { GAME_API } from 'services/adapters';
 import { useLoading, useIsUserReady, useAPICall, useLanguage, useMock } from 'hooks';
 // Components
 import { LoadingPage, ReadyPlayersBar, Translate } from '..';

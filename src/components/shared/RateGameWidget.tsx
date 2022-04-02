@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { Alert, Button, Rate } from 'antd';
 import { Input } from 'antd';
 // Adapters
-import { GAME_API } from 'adapters';
+import { GAME_API } from 'services/adapters';
 // Hooks
 import { useTimer } from 'react-timer-hook';
 import { useAPICall, useGlobalState, useLanguage, useLoading } from 'hooks';

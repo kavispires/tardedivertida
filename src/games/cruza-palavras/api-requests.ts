@@ -1,4 +1,4 @@
-import { CRUZA_PALAVRAS_API } from 'adapters';
+import { CRUZA_PALAVRAS_API } from 'services/adapters';
 import { useAPICall, useLanguage } from 'hooks';
 
 export function useOnSubmitClueAPIRequest(setStep: GenericFunction) {

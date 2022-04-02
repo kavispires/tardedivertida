@@ -1,4 +1,4 @@
-import { POLEMICA_DA_VEZ_API } from 'adapters';
+import { POLEMICA_DA_VEZ_API } from 'services/adapters';
 
 import { useAPICall, useLanguage } from 'hooks';
 

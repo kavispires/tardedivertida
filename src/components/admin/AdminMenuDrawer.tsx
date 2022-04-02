@@ -3,7 +3,7 @@ import { Fragment, useState } from 'react';
 import { Button, Drawer, Popconfirm, Spin } from 'antd';
 import { FireFilled } from '@ant-design/icons';
 // Hooks and API
-import { ADMIN_API } from 'adapters';
+import { ADMIN_API } from 'services/adapters';
 import { useAPICall, useGlobalState, useLoading } from 'hooks';
 import { ADMIN_ACTIONS } from 'utils/constants';
 // Components
