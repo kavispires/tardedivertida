@@ -10,15 +10,15 @@ import { useGlobalState, useLanguage, useLocalStorage } from 'hooks';
 // Components
 import { LoadingBar, LoadingPage } from 'components';
 // Pages
-import Home from './Home';
-import Hub from './Hub';
-import Login from './Login';
-import Game from './Game';
-import Icons from './Icons';
-import TestingZone from './TestingZone';
-import Gallery from './Gallery';
-import Draw from './Draw';
-import Showcase from './Showcase';
+import Home from './Home/Home';
+import Hub from './Hub/Hub';
+import Login from './Login/Login';
+import Game from './Game/Game';
+import Icons from './Dev/Icons';
+import TestingZone from './Dev/TestingZone';
+import Gallery from './Gallery/Gallery';
+import Draw from './Draw/Draw';
+import Showcase from './Showcase/Showcase';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);

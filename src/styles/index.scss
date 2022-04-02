@@ -66,12 +66,12 @@
 @import '../games/ue-so-isso/ue-so-isso';
 
 // Pages
-@import '../routes/App.scss';
-@import '../routes/Home.scss';
-@import '../routes/Login.scss';
-@import '../routes/Gallery.scss';
-@import '../routes/Showcase.scss';
-@import '../routes/TestingZone.scss';
+@import '../pages/app';
+@import '../pages/Home/home';
+@import '../pages/Login/login';
+@import '../pages/Gallery/gallery';
+@import '../pages/Showcase/showcase';
+@import '../pages/Dev/dev';
 
 // Overridden colors
 @import './colors';

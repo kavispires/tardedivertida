@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { orderBy } from 'lodash';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 // Ant Design Resources
@@ -12,7 +13,6 @@ import { PUBLIC_URL, TAG_DICT } from 'utils/constants';
 import { getAnimationClass } from 'utils/helpers';
 // Components
 import { ButtonContainer, LanguageSwitch, RulesModal, Translate, TransparentButton } from 'components';
-import { orderBy } from 'lodash';
 
 const GAMES: {
   [key: string]: GameInfo;
