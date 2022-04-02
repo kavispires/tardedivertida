@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Typography, Layout, Space, Divider, PageHeader, Button, message } from 'antd';
 import { DatabaseFilled } from '@ant-design/icons';
 // API
-import { signOut } from 'adapters/auth';
+import { signOut } from 'services/firebase';
 // Hooks
 import { useGlobalState, useLanguage, useLocalStorage } from 'hooks';
 // Utils

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 // Ant Design Resources
 import { Layout, Button, Form, Input, Alert, Image } from 'antd';
 // API
-import { signIn } from 'adapters/auth';
+import { signIn } from 'services/firebase';
 // State
 import { useGlobalState } from 'hooks';
 // Image
