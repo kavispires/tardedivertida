@@ -17,7 +17,7 @@ import {
 import { StepDraw } from './StepDraw';
 
 // Sound
-const arteRuimTimer = require('sounds/arte-ruim-timer.mp3');
+const arteRuimTimer = require('assets/sounds/arte-ruim-timer.mp3');
 
 function PhaseDraw({ players, state, info }: PhaseProps) {
   const { translate } = useLanguage();

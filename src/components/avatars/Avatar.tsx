@@ -2,7 +2,7 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Avatar as AntAvatar, AvatarProps } from 'antd';
 // Images
-import avatars from 'images/avatars.svg';
+import avatars from 'assets/images/avatars.svg';
 // Hooks
 import { useLanguage } from 'hooks';
 

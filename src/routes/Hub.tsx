@@ -8,7 +8,7 @@ import { signOut } from 'adapters/auth';
 // Hooks
 import { useGlobalState, useLanguage, useLocalStorage } from 'hooks';
 // Utils
-import gameList from 'resources/games.json';
+import gameList from 'assets/data/games.json';
 // Components
 import { GameCard, LanguageSwitch, RecentlyCreatedGames, Translate } from 'components';
 

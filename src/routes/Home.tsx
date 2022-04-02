@@ -1,6 +1,6 @@
 import { Image, Layout } from 'antd';
 
-import logo from 'images/tarde-divertida-logo.svg';
+import logo from 'assets/images/tarde-divertida-logo.svg';
 
 function Home() {
   return (

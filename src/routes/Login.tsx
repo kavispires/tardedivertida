@@ -8,7 +8,7 @@ import { signIn } from 'adapters/auth';
 // State
 import { useGlobalState } from 'hooks';
 // Image
-import logo from 'images/tarde-divertida-logo.svg';
+import logo from 'assets/images/tarde-divertida-logo.svg';
 
 const layout = {
   labelCol: { span: 8 },

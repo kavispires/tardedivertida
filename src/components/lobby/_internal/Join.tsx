@@ -7,7 +7,7 @@ import { GAME_API } from 'adapters';
 import { useLanguage, useLoading } from 'hooks';
 import useGlobalState from 'hooks/useGlobalState';
 // Images
-import avatars from 'images/avatars.svg';
+import avatars from 'assets/images/avatars.svg';
 // Services
 import localStorage from 'services/localStorage';
 // Utils

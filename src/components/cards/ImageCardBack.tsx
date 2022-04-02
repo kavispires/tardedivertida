@@ -2,7 +2,7 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Image } from 'antd';
 // Resources
-import placeholder from 'images/placeholder.jpg';
+import placeholder from 'assets/images/placeholder.jpg';
 
 type ImageCardBackProps = {
   size?: 'small' | 'medium' | 'large';

@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 
 // import { Image, Layout } from 'antd';
-import gameList from 'resources/games.json';
+import gameList from 'assets/data/games.json';
 import { Avatar, AvatarEntry } from 'components/avatars';
 import {
   GameOver,
