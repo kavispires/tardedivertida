@@ -12,29 +12,66 @@ import { GAME_COLLECTION } from 'utils/constants';
 // Components
 import { LoadingPage, PageError } from 'components';
 // Game lazy imports
-const SessionArteRuim = lazy(() => import('games/arte-ruim/SessionArteRuim'));
+const SessionArteRuim = lazy(
+  () => import('games/arte-ruim/SessionArteRuim' /* webpackChunkName: "arte-ruim" */)
+);
 const SessionContadoresHistorias = lazy(
-  () => import('games/contadores-historias/SessionContadoresHistorias')
+  () =>
+    import(
+      'games/contadores-historias/SessionContadoresHistorias' /* webpackChunkName: "contadores-historias" */
+    )
 );
-const SessionCrimesHediondos = lazy(() => import('games/crimes-hediondos/SessionCrimesHediondos'));
-const SessionCruzaPalavras = lazy(() => import('games/cruza-palavras/SessionCruzaPalavras'));
+const SessionCrimesHediondos = lazy(
+  () => import('games/crimes-hediondos/SessionCrimesHediondos' /* webpackChunkName: "crimes-hediondos" */)
+);
+const SessionCruzaPalavras = lazy(
+  () => import('games/cruza-palavras/SessionCruzaPalavras' /* webpackChunkName: "cruza-palavras" */)
+);
 const SessionDetetivesImaginativos = lazy(
-  () => import('games/detetives-imaginativos/SessionDetetivesImaginativos')
+  () =>
+    import(
+      'games/detetives-imaginativos/SessionDetetivesImaginativos' /* webpackChunkName: "detetives-imaginativos" */
+    )
 );
-const SessionEspiaoEntreNos = lazy(() => import('games/espiao-entre-nos/SessionEspiaoEntreNos'));
-const SessionGaleriaDeSonhos = lazy(() => import('games/galeria-de-sonhos/SessionGaleriaDeSonhos'));
+const SessionEspiaoEntreNos = lazy(
+  () => import('games/espiao-entre-nos/SessionEspiaoEntreNos' /* webpackChunkName: "espiao-entre-nos" */)
+);
+const SessionGaleriaDeSonhos = lazy(
+  () => import('games/galeria-de-sonhos/SessionGaleriaDeSonhos' /* webpackChunkName: "galeria-de-sonhos" */)
+);
 const SessionInstrumentosCodificados = lazy(
-  () => import('games/instrumentos-codificados/SessionInstrumentosCodificados')
+  () =>
+    import(
+      'games/instrumentos-codificados/SessionInstrumentosCodificados' /* webpackChunkName: "instrumentos-codificados" */
+    )
 );
-const SessionLinhasCruzadas = lazy(() => import('games/linhas-cruzadas/SessionLinhasCruzadas'));
-const SessionMenteColetiva = lazy(() => import('games/mente-coletiva/SessionMenteColetiva'));
-const SessionNaRuaDoMedo = lazy(() => import('games/na-rua-do-medo/SessionNaRuaDoMedo'));
-const SessionOndaTelepatica = lazy(() => import('games/onda-telepatica/SessionOndaTelepatica'));
-const SessionPolemicaDaVez = lazy(() => import('games/polemica-da-vez/SessionPolemicaDaVez'));
-const SessionRetratoFalado = lazy(() => import('games/retrato-falado/SessionRetratoFalado'));
-const SessionSonhosPesadelos = lazy(() => import('games/sonhos-pesadelos/SessionSonhosPesadelos'));
-const SessionTestemunhaOcular = lazy(() => import('games/testemunha-ocular/SessionTestemunhaOcular'));
-const SessionUeSoIsso = lazy(() => import('games/ue-so-isso/SessionUeSoIsso'));
+const SessionLinhasCruzadas = lazy(
+  () => import('games/linhas-cruzadas/SessionLinhasCruzadas' /* webpackChunkName: "linhas-cruzadas" */)
+);
+const SessionMenteColetiva = lazy(
+  () => import('games/mente-coletiva/SessionMenteColetiva' /* webpackChunkName: "mente-coletiva" */)
+);
+const SessionNaRuaDoMedo = lazy(
+  () => import('games/na-rua-do-medo/SessionNaRuaDoMedo' /* webpackChunkName: "na-rua-do-medo" */)
+);
+const SessionOndaTelepatica = lazy(
+  () => import('games/onda-telepatica/SessionOndaTelepatica' /* webpackChunkName: "onda-telepatica" */)
+);
+const SessionPolemicaDaVez = lazy(
+  () => import('games/polemica-da-vez/SessionPolemicaDaVez' /* webpackChunkName: "polemica-da-vez" */)
+);
+const SessionRetratoFalado = lazy(
+  () => import('games/retrato-falado/SessionRetratoFalado' /* webpackChunkName: "retrato-falado" */)
+);
+const SessionSonhosPesadelos = lazy(
+  () => import('games/sonhos-pesadelos/SessionSonhosPesadelos' /* webpackChunkName: "sonhos-pesadelos" */)
+);
+const SessionTestemunhaOcular = lazy(
+  () => import('games/testemunha-ocular/SessionTestemunhaOcular' /* webpackChunkName: "testemunha-ocular" */)
+);
+const SessionUeSoIsso = lazy(
+  () => import('games/ue-so-isso/SessionUeSoIsso' /* webpackChunkName: "ue-so-isso" */)
+);
 
 function Game() {
   const navigate = useNavigate();
@@ -63,7 +100,7 @@ function Game() {
     }
   }, [pathname, navigate, setGameId, setUsername, setUserAvatarId]);
 
-  // // Keeps track of url changes
+  // Keep track of url changes
   useEffect(() => {
     const urlGameId = getGameIdFromPathname(pathname);
     if (isValidGameId(urlGameId)) {
