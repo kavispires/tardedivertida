@@ -1,4 +1,4 @@
-import { TESTEMUNHA_OCULAR_API } from 'adapters';
+import { TESTEMUNHA_OCULAR_API } from 'services/adapters';
 
 import { useAPICall, useLanguage } from 'hooks';
 

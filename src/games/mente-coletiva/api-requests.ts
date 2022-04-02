@@ -1,4 +1,4 @@
-import { MENTE_COLETIVA_API } from 'adapters';
+import { MENTE_COLETIVA_API } from 'services/adapters';
 
 import { useAPICall, useLanguage } from 'hooks';
 

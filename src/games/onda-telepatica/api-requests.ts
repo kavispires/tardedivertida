@@ -1,4 +1,4 @@
-import { ONDA_TELEPATICA_API } from 'adapters';
+import { ONDA_TELEPATICA_API } from 'services/adapters';
 
 import { useAPICall, useLanguage } from 'hooks';
 

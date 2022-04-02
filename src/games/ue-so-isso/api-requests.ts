@@ -1,4 +1,4 @@
-import { UE_SO_ISSO_API } from 'adapters';
+import { UE_SO_ISSO_API } from 'services/adapters';
 import { useAPICall, useLanguage } from 'hooks';
 
 export function useOnSubmitVotesAPIRequest(setStep: GenericFunction) {

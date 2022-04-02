@@ -1,4 +1,4 @@
-import { DETETIVES_IMAGINATIVOS_API } from 'adapters';
+import { DETETIVES_IMAGINATIVOS_API } from 'services/adapters';
 import { useAPICall, useLanguage } from 'hooks';
 
 export function useOnSubmitSecretClueAPIRequest(setStep: GenericFunction) {

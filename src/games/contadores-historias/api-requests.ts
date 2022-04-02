@@ -1,4 +1,4 @@
-import { CONTADORES_HISTORIAS_API } from 'adapters';
+import { CONTADORES_HISTORIAS_API } from 'services/adapters';
 import { useAPICall, useLanguage } from 'hooks';
 
 export function useOnSubmitStoryAPIRequest(setStep: GenericFunction) {

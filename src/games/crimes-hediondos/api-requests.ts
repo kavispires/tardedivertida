@@ -1,4 +1,4 @@
-import { CRIMES_HEDIONDOS_API } from 'adapters';
+import { CRIMES_HEDIONDOS_API } from 'services/adapters';
 import { useAPICall, useLanguage } from 'hooks';
 
 export function useOnSubmitCrimeAPIRequest(setStep: GenericFunction) {

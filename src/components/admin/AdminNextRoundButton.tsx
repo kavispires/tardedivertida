@@ -3,7 +3,7 @@ import { Button } from 'antd';
 import { FireFilled } from '@ant-design/icons';
 // State & Hooks
 import { useAPICall, useGlobalState, useLanguage, useLoading } from 'hooks';
-import { ADMIN_API } from 'adapters';
+import { ADMIN_API } from 'services/adapters';
 import { ADMIN_ACTIONS } from 'utils/constants';
 // Components
 import { Translate } from '..';

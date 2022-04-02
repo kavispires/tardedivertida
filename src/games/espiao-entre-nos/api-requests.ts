@@ -1,4 +1,4 @@
-import { ADMIN_API, ESPIAO_ENTRE_NOS_API } from 'adapters';
+import { ADMIN_API, ESPIAO_ENTRE_NOS_API } from 'services/adapters';
 import { useAPICall, useLanguage } from 'hooks';
 import { ADMIN_ACTIONS } from 'utils/constants';
 

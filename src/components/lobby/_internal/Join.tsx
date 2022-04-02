@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { Alert, Button, Image, Input, notification, Tooltip } from 'antd';
 import { CaretLeftOutlined, CaretRightOutlined, InfoCircleOutlined } from '@ant-design/icons';
 // API & Hooks
-import { GAME_API } from 'adapters';
+import { GAME_API } from 'services/adapters';
 import { useLanguage, useLoading } from 'hooks';
 import useGlobalState from 'hooks/useGlobalState';
 // Images

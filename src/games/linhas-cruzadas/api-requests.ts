@@ -1,4 +1,4 @@
-import { LINHAS_CRUZADAS_API } from 'adapters';
+import { LINHAS_CRUZADAS_API } from 'services/adapters';
 
 import { useAPICall, useLanguage } from 'hooks';
 

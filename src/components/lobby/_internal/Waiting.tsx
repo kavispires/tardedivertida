@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 // Ant Design Resources
 import { Button, Image, message, notification, Typography } from 'antd';
 // API & Hooks
-import { ADMIN_API } from 'adapters';
+import { ADMIN_API } from 'services/adapters';
 import { useLoading, useGlobalState, useLanguage } from 'hooks';
 // Images
 import avatars from 'assets/images/avatars.svg';
