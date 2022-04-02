@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 // Hooks
 import { useGameState, useGlobalState, useGamePlayers } from 'hooks';
 // Utils
-import gameList from 'resources/games.json';
+import gameList from 'assets/data/games.json';
 import { isDevEnv } from 'utils/helpers';
 // Components
 import { AdminMenuDrawer, PhaseLobby, GameInfoDrawer } from 'components';

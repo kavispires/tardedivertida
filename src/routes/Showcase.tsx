@@ -7,7 +7,7 @@ import { FilterFilled, InfoCircleOutlined } from '@ant-design/icons';
 // Hooks
 import { useDimensions, useGlobalState, useLanguage } from 'hooks';
 // Utils
-import gameList from 'resources/games.json';
+import gameList from 'assets/data/games.json';
 import { PUBLIC_URL, TAG_DICT } from 'utils/constants';
 import { getAnimationClass } from 'utils/helpers';
 // Components

@@ -2,7 +2,7 @@ import { useState } from 'react';
 // Ant Design Resources
 import { Progress } from 'antd';
 // Images
-import gameOverTitle from 'images/game-over-title.svg';
+import gameOverTitle from 'assets/images/game-over-title.svg';
 // Utils
 import { useLanguage } from 'hooks';
 import { AVATARS } from 'utils/constants';
