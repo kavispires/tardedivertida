@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
 
 // Ant Design Resources
@@ -11,14 +11,42 @@ import { useGlobalState, useLanguage, useLocalStorage } from 'hooks';
 import { LoadingBar, LoadingPage } from 'components';
 // Pages
 import Home from './Home/Home';
-import Hub from './Hub/Hub';
 import Login from './Login/Login';
-import Game from './Game/Game';
-import Icons from './Dev/Icons';
-import TestingZone from './Dev/TestingZone';
-import Gallery from './Gallery/Gallery';
-import Draw from './Draw/Draw';
-import Showcase from './Showcase/Showcase';
+
+// Routes Lazy load
+const Hub = lazy(() => import('pages/Hub/Hub' /* webpackChunkName: "page-hub" */));
+const Game = lazy(() => import('pages/Game/Game' /* webpackChunkName: "page-game" */));
+const Showcase = lazy(() => import('pages/Showcase/Showcase' /* webpackChunkName: "page-showcase" */));
+const DevIcons = lazy(() => import('pages/Dev/Icons' /* webpackChunkName: "page-dev-icons" */));
+const DevTestingZone = lazy(
+  () => import('pages/Dev/TestingZone' /* webpackChunkName: "page-dev-testing-zone" */)
+);
+
+const LazyHub = () => (
+  <Suspense fallback={<LoadingPage message={''} />}>
+    <Hub />
+  </Suspense>
+);
+const LazyGame = () => (
+  <Suspense fallback={<LoadingPage message={''} />}>
+    <Game />
+  </Suspense>
+);
+const LazyShowcase = () => (
+  <Suspense fallback={<LoadingPage message={''} />}>
+    <Showcase />
+  </Suspense>
+);
+const LazyDevIcons = () => (
+  <Suspense fallback={<LoadingPage message={''} />}>
+    <DevIcons />
+  </Suspense>
+);
+const LazyDevTestingZone = () => (
+  <Suspense fallback={<LoadingPage message={''} />}>
+    <DevTestingZone />
+  </Suspense>
+);
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -57,17 +85,15 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/hub" element={isAuthenticated ? <Hub /> : <Navigate to="/login" />} />
-            <Route path="/icons" element={isAuthenticated ? <Icons /> : <Navigate to="/login" />} />
+            <Route path="/hub" element={isAuthenticated ? <LazyHub /> : <Navigate to="/login" />} />
+            <Route path="/icons" element={isAuthenticated ? <LazyDevIcons /> : <Navigate to="/login" />} />
             <Route
               path="/testing-zone"
-              element={isAuthenticated ? <TestingZone /> : <Navigate to="/login" />}
+              element={isAuthenticated ? <LazyDevTestingZone /> : <Navigate to="/login" />}
             />
-            <Route path="/gallery" element={<Gallery />} />
-            <Route path="/draw" element={<Draw />} />
-            <Route path="/showcase" element={<Showcase />} />
-            <Route path="/vitrine" element={<Showcase />} />
-            <Route path="*" element={<Game />} />
+            <Route path="/showcase" element={<LazyShowcase />} />
+            <Route path="/vitrine" element={<LazyShowcase />} />
+            <Route path="*" element={<LazyGame />} />
           </Routes>
         )}
       </HashRouter>

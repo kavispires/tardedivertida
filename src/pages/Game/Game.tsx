@@ -11,6 +11,7 @@ import { isValidGameId, isDevEnv, getGameIdFromPathname } from 'utils/helpers';
 import { GAME_COLLECTION } from 'utils/constants';
 // Components
 import { LoadingPage, PageError } from 'components';
+
 // Game lazy imports
 const SessionArteRuim = lazy(
   () => import('games/arte-ruim/SessionArteRuim' /* webpackChunkName: "arte-ruim" */)
