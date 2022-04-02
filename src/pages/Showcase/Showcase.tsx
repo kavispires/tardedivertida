@@ -3,16 +3,19 @@ import { orderBy } from 'lodash';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 // Ant Design Resources
-import { Button, Card, Divider, Drawer, Image, Layout, Modal, Radio, Space, Tag, Tooltip } from 'antd';
-import { FilterFilled, InfoCircleOutlined } from '@ant-design/icons';
+import { Button, Image, Layout, Modal } from 'antd';
+import { FilterFilled } from '@ant-design/icons';
 // Hooks
 import { useDimensions, useGlobalState, useLanguage } from 'hooks';
 // Utils
 import gameList from 'assets/data/games.json';
-import { PUBLIC_URL, TAG_DICT } from 'utils/constants';
+import { PUBLIC_URL } from 'utils/constants';
 import { getAnimationClass } from 'utils/helpers';
 // Components
-import { ButtonContainer, LanguageSwitch, RulesModal, Translate, TransparentButton } from 'components';
+import { ButtonContainer, Translate, TransparentButton } from 'components';
+import { FiltersDrawer } from './components/FilterDrawers';
+import { GameDetailsContent } from './components/GameDetailsContent';
+import { filterGames } from './helpers';
 
 const GAMES: {
   [key: string]: GameInfo;
@@ -62,13 +65,6 @@ function Showcase() {
     setSearchParams(queryString);
   }, [filters, language, setSearchParams, setLanguage]);
 
-  const updateFilters = (e: any) => {
-    setFilters((s: PlainObject) => ({
-      ...s,
-      [e.target.name]: e.target.value,
-    }));
-  };
-
   return (
     <Layout.Content className="showcase">
       <ul className="showcase-list" style={{ gridTemplateColumns: `repeat(${width > 450 ? 4 : 2}, 1fr)` }}>
@@ -111,187 +107,13 @@ function Showcase() {
         })}
       </ul>
 
-      <Drawer
-        visible={showFilters}
-        title={<Translate pt={<>Filtros ({list.length} jogos)</>} en={<>Filters ({list.length} games)</>} />}
-        placement="left"
-        onClose={() => setShowFilters(false)}
-        width={Math.min(width / 1.1, 600)}
-        footer={
-          <ButtonContainer>
-            <Button onClick={() => setFilters({})}>
-              <Translate pt="Limpar filtros" en="Clear filters" />
-            </Button>
-            <Button type="primary" onClick={() => setShowFilters(false)}>
-              OK
-            </Button>
-          </ButtonContainer>
-        }
-      >
-        <div className="showcase-filter-entry">
-          <label className="showcase-filter-entry__label">
-            <Translate pt="Idioma" en="Language" />{' '}
-            <Tooltip
-              title={
-                <Translate
-                  pt="Mudar língua do aplicativo, as cartas do jogo continuarão em sua língua original"
-                  en="Change app language, the game cards will remain in its original language"
-                />
-              }
-            >
-              <Button type="text" shape="circle" icon={<InfoCircleOutlined />} size="small" />
-            </Tooltip>
-          </label>
-          <div>
-            <LanguageSwitch />
-          </div>
-        </div>
-
-        <Divider />
-
-        <div className="showcase-filter-entry">
-          <label className="showcase-filter-entry__label">
-            <Translate pt="Disponibilidade" en="Availability" />{' '}
-            <Tooltip
-              title={
-                <Translate pt="Somente jogos prontos a serem jogados" en="Only games ready to be played" />
-              }
-            >
-              <Button type="text" shape="circle" icon={<InfoCircleOutlined />} size="small" />
-            </Tooltip>
-          </label>
-          <FilterOptions name="availability" value={filters?.availability} onChange={updateFilters} />
-        </div>
-
-        <Divider />
-
-        <div className="showcase-filter-entry">
-          <label className="showcase-filter-entry__label">
-            <Translate pt="Dinâmica" en="Dynamics" />{' '}
-          </label>
-        </div>
-
-        <div className="showcase-filter-entry">
-          <label className="showcase-filter-entry__label">
-            <Translate pt="Tipo" en="Type" />{' '}
-          </label>
-          <CustomFilterOptions
-            name="type"
-            onChange={updateFilters}
-            value={filters.type}
-            firstOption={{
-              value: 'competitive',
-              text: {
-                en: 'Competitive',
-                pt: 'Competitivo',
-              },
-            }}
-            secondOption={{
-              value: 'cooperative',
-              text: {
-                en: 'Cooperative',
-                pt: 'Cooperativo',
-              },
-            }}
-          />
-        </div>
-
-        <div className="showcase-filter-entry">
-          <label className="showcase-filter-entry__label">
-            <Translate pt="Rodadas" en="Rounds" />{' '}
-          </label>
-          <CustomFilterOptions
-            name="rounds"
-            onChange={updateFilters}
-            value={filters.rounds}
-            firstOption={{
-              value: 'turn-based',
-              text: {
-                en: 'Turn Base',
-                pt: 'Cada vez um',
-              },
-            }}
-            secondOption={{
-              value: 'same-time',
-              text: {
-                en: 'At the same time',
-                pt: 'Todos juntos',
-              },
-            }}
-          />
-        </div>
-
-        <Divider />
-
-        <div className="showcase-filter-entry">
-          <label className="showcase-filter-entry__label">
-            <Translate pt="Mecânica" en="Mechanics" />{' '}
-          </label>
-        </div>
-
-        <div className="showcase-filter-entry">
-          <label className="showcase-filter-entry__label">
-            <Translate pt="De desenhar" en="Drawing" />{' '}
-          </label>
-          <FilterOptions name="drawing" value={filters?.drawing} onChange={updateFilters} />
-        </div>
-
-        <div className="showcase-filter-entry">
-          <label className="showcase-filter-entry__label">
-            <Translate pt="De escrever" en="Writing" />{' '}
-          </label>
-          <FilterOptions name="writing" value={filters?.writing} onChange={updateFilters} />
-        </div>
-
-        <div className="showcase-filter-entry">
-          <label className="showcase-filter-entry__label">
-            <Translate pt="Com cartas imagens" en="With images" />{' '}
-          </label>
-          <FilterOptions name="images" value={filters?.images} onChange={updateFilters} />
-        </div>
-
-        <div className="showcase-filter-entry">
-          <label className="showcase-filter-entry__label">
-            <Translate pt="De adivinhar" en="With guessing" />{' '}
-          </label>
-          <FilterOptions name="guessing" value={filters?.guessing} onChange={updateFilters} />
-        </div>
-
-        <div className="showcase-filter-entry">
-          <label className="showcase-filter-entry__label">
-            <Translate pt="Com votação" en="With voting" />{' '}
-          </label>
-          <FilterOptions name="voting" value={filters?.voting} onChange={updateFilters} />
-        </div>
-
-        <div className="showcase-filter-entry">
-          <label className="showcase-filter-entry__label">
-            <Translate pt="Com tempo" en="Timed" />{' '}
-          </label>
-          <FilterOptions name="timed" value={filters?.timed} onChange={updateFilters} />
-        </div>
-
-        <div className="showcase-filter-entry">
-          <label className="showcase-filter-entry__label">
-            <Translate pt="Fazer Pares" en="Matching" />{' '}
-          </label>
-          <FilterOptions name="pairing" value={filters?.pairing} onChange={updateFilters} />
-        </div>
-
-        <div className="showcase-filter-entry">
-          <label className="showcase-filter-entry__label">
-            <Translate pt="Com inimigo" en="With a traitor" />{' '}
-          </label>
-          <FilterOptions name="traitor" value={filters?.traitor} onChange={updateFilters} />
-        </div>
-
-        <div className="showcase-filter-entry">
-          <label className="showcase-filter-entry__label">
-            <Translate pt="De discussão" en="With discussion" />{' '}
-          </label>
-          <FilterOptions name="discussion" value={filters?.discussion} onChange={updateFilters} />
-        </div>
-      </Drawer>
+      <FiltersDrawer
+        list={list}
+        filters={filters}
+        setFilters={setFilters}
+        showFilters={showFilters}
+        setShowFilters={setShowFilters}
+      />
 
       {Boolean(GAMES?.[showModal]) && (
         <Modal
@@ -305,186 +127,6 @@ function Showcase() {
         </Modal>
       )}
     </Layout.Content>
-  );
-}
-
-type FilterOptionsProps = {
-  name: string;
-  value?: boolean | 'any';
-  onChange: GenericFunction;
-};
-
-function FilterOptions({ name, value, onChange }: FilterOptionsProps) {
-  return (
-    <Radio.Group
-      onChange={onChange}
-      value={value}
-      className="showcase-filter-options"
-      size="small"
-      name={name}
-    >
-      <Radio value={'any'} defaultChecked>
-        <Translate pt="Tanto faz" en="Whatever" />
-      </Radio>
-      <Radio value={true}>
-        <Translate pt="Sim" en="Yes" />
-      </Radio>
-      <Radio value={false}>
-        <Translate pt="Não" en="No" />
-      </Radio>
-    </Radio.Group>
-  );
-}
-
-type CustomFilterOptionsProps = {
-  name: string;
-  value?: string | 'any';
-  onChange: GenericFunction;
-  firstOption: {
-    value: string;
-    text: DualLanguageValue;
-  };
-  secondOption: {
-    value: string;
-    text: DualLanguageValue;
-  };
-};
-
-function CustomFilterOptions({
-  name,
-  value = 'any',
-  firstOption,
-  secondOption,
-  onChange,
-}: CustomFilterOptionsProps) {
-  return (
-    <Radio.Group
-      onChange={onChange}
-      value={value}
-      className="showcase-filter-options"
-      size="small"
-      name={name}
-    >
-      <Radio value={'any'} defaultChecked>
-        <Translate pt="Tanto faz" en="Whatever" />
-      </Radio>
-      <Radio value={firstOption.value}>
-        <Translate pt={firstOption.text.pt} en={firstOption.text.en} />
-      </Radio>
-      <Radio value={secondOption.value}>
-        <Translate pt={secondOption.text.pt} en={secondOption.text.pt} />
-      </Radio>
-    </Radio.Group>
-  );
-}
-
-function filterGames(
-  list: GameInfo[],
-  filters: PlainObject,
-  language: Language,
-  setLanguage: GenericFunction
-) {
-  return list.filter((game) => {
-    let result: boolean[] = [];
-    // Availability
-    if (doesExist(filters.availability)) {
-      const res = game.available[language] && !game.version.endsWith('alpha');
-      result.push(filters.availability ? res : !res);
-    }
-
-    // Drawing
-    evaluateTag(filters, game, 'drawing', result);
-
-    // Writing
-    evaluateTag(filters, game, 'writing', result);
-
-    // Images
-    evaluateTag(filters, game, 'images', result);
-
-    // Voting
-    evaluateTag(filters, game, 'voting', result);
-
-    // Guessing
-    evaluateTag(filters, game, 'guessing', result);
-
-    // Time
-    evaluateTag(filters, game, 'timed', result);
-
-    // Pairing
-    evaluateTag(filters, game, 'pairing', result);
-
-    // Traitor
-    evaluateTag(filters, game, 'traitor', result);
-
-    // Discussion
-    evaluateTag(filters, game, 'discussion', result);
-
-    // Type
-    evaluateCustomTag(filters, game, 'type', result);
-
-    // Rounds
-    evaluateCustomTag(filters, game, 'rounds', result);
-
-    return result.every((r) => r);
-  });
-}
-
-const doesExist = (property: any) => property !== undefined && property !== 'any';
-
-const evaluateTag = (filters: PlainObject, game: GameInfo, tagName: string, result: boolean[]) => {
-  if (doesExist(filters[tagName])) {
-    const res = game.tags.includes(tagName);
-    result.push(filters[tagName] ? res : !res);
-  }
-};
-
-const evaluateCustomTag = (filters: PlainObject, game: GameInfo, tagName: string, result: boolean[]) => {
-  if (doesExist(filters[tagName])) {
-    const res = game.tags.includes(filters[tagName]);
-    result.push(res);
-  }
-};
-
-function GameDetailsContent({ game }: { game: GameInfo }) {
-  const { language, translate } = useLanguage();
-  return (
-    <>
-      <Image
-        alt={game.title[language]}
-        src={`${PUBLIC_URL.EXAMPLES}game-example-${game.gameName}.png`}
-        fallback={`${PUBLIC_URL.BANNERS}/game-image-em-breve-${language}.jpg`}
-      />
-      <Card.Meta style={{ marginTop: '8px' }} description={game.summary[language]} />
-
-      <Card.Meta
-        style={{ marginTop: '8px' }}
-        description={translate(
-          `Para ${game.playerCount.min}-${game.playerCount.max} jogadores`,
-          `For ${game.playerCount.min}-${game.playerCount.max} players`
-        )}
-      />
-
-      <Divider />
-
-      <Card.Meta
-        description={translate(
-          `Recomendado jogar com ${game.playerCount.recommended}`,
-          `Recommended with ${game.playerCount.recommended}`
-        )}
-      />
-
-      <Space wrap size={[1, 6]} prefixCls={game.gameName} style={{ display: 'flex', marginTop: '12px' }}>
-        {game.tags.map((tag) => (
-          <Tag key={`${game.gameCode}-${tag}`} color={TAG_DICT[tag]?.color}>
-            {language === 'pt' ? TAG_DICT[tag]?.label : tag}
-          </Tag>
-        ))}
-      </Space>
-
-      <Space style={{ marginTop: '12px' }}>
-        {Boolean(game.rules?.[language]?.length > 1) && <RulesModal gameInfo={game} />}
-      </Space>
-    </>
   );
 }
 
