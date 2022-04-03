@@ -14,3 +14,4 @@ export * from './shared';
 export * from './typography';
 export * from './buttons';
 export * from './dev';
+export * from './language';

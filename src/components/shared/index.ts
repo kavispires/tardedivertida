@@ -1,6 +1,5 @@
 export * from './ButtonContainer';
 export * from './GameOver';
-export * from './LanguageSwitch';
 export * from './RateGameWidget';
 export * from './ReadyPlayersBar';
 export * from './RoundAnnouncement';
@@ -9,7 +8,6 @@ export * from './Ribbon';
 export * from './StarPoints';
 export * from './StepSwitcher';
 export * from './TimerBar';
-export * from './Translate';
 export * from './TurnOrder';
 export * from './View';
 export * from './WaitingRoom';

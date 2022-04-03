@@ -2,7 +2,7 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { StarFilled } from '@ant-design/icons';
 // Components
-import { Translate } from './Translate';
+import { Translate } from 'components/language';
 
 type StarPointsProps = {
   keyPrefix: string;
