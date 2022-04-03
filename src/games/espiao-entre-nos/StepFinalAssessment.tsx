@@ -1,4 +1,6 @@
-import { Instruction, Step, Title, Translate } from 'components';
+import { Translate } from 'components/language';
+import { Step } from 'components/steps';
+import { Instruction, Title } from 'components/text';
 import { FinalAssessmentInstruction } from './RulesBlobs';
 import { EspiaoEntreNosCard as Card } from './Card';
 import { LocationsList } from './LocationsList';

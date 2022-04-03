@@ -4,9 +4,13 @@ import { useLanguage, useUser } from 'hooks';
 // Utils
 import { AVATARS } from 'utils/constants';
 // Components
-import { Avatar, GameOverWrapper, Instruction, Translate } from 'components';
+
 import { CandyCount } from './CandyCount';
 import { PlayerStats } from './PlayerStats';
+import { GameOverWrapper } from 'components/game-over';
+import { Instruction } from 'components/text';
+import { Translate } from 'components/language';
+import { Avatar } from 'components/avatars';
 
 const GRID_REPEAT: NumberDictionary = {
   3: 3,

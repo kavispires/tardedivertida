@@ -3,7 +3,8 @@ import { useState } from 'react';
 // Hooks
 import { useLanguage } from 'hooks';
 // Components
-import { AvatarIcon, Translate } from 'components';
+import { AvatarIcon } from 'components/avatars';
+import { Translate } from 'components/language';
 
 type FloatingHandProps = {
   children: any;

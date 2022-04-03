@@ -2,7 +2,7 @@ import clsx from 'clsx';
 // Hooks
 import { useCardWidth } from 'hooks';
 // Components
-import { Translate } from 'components';
+import { Translate } from 'components/language';
 import { DreamCard } from './DreamCard';
 
 type DreamBoardProps = {

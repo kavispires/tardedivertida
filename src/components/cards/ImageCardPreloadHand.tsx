@@ -1,5 +1,5 @@
 // Components
-import ImageCard from './ImageCard';
+import { ImageCard } from './ImageCard';
 
 type ImageCardPreloadHandProps = {
   hand: string[];

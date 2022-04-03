@@ -1,9 +1,7 @@
-import clsx from 'clsx';
-// Ant Design Resources
-import { Space, SpaceProps } from 'antd';
-// State
-import { useGlobalState } from 'hooks';
 import { FireFilled } from '@ant-design/icons';
+import { Space, SpaceProps } from 'antd';
+import clsx from 'clsx';
+import { useGlobalState } from 'hooks';
 
 interface AdminOnlyContainerProps extends SpaceProps {
   children: any;

@@ -7,10 +7,15 @@ import { useGlobalState, useLanguage, useLoading } from 'hooks';
 // Utils
 import { deepCopy } from 'utils/helpers';
 // Components
-import { AdminOnlyButton, Step, Title, Translate, PopoverRule, messageContent } from 'components';
 import { UeSoIssoCard as Card } from './UeSoIssoCard';
 import { SuggestionCard } from './SuggestionCard';
 import { ComparisonDetailedRules, ComparisonPhaseRules } from './RulesBlobs';
+import { Step } from 'components/steps';
+import { Title } from 'components/text';
+import { Translate } from 'components/language';
+import { PopoverRule } from 'components/rules';
+import { AdminOnlyButton } from 'components/admin';
+import { messageContent } from 'components/pop-up';
 
 type StepCompareSuggestionsProps = {
   isUserTheController: boolean;

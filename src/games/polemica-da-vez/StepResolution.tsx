@@ -1,8 +1,11 @@
 // Ant Design Resources
 import { CommentOutlined, LikeFilled, ShareAltOutlined } from '@ant-design/icons';
 import { Space } from 'antd';
+import { TimedButton } from 'components/buttons';
+import { Translate } from 'components/language';
+import { Step } from 'components/steps';
+import { Title } from 'components/text';
 // Components
-import { Step, TimedButton, Title, Translate } from 'components';
 import { Topic } from './Topic';
 import { TweetComment } from './TweetComment';
 
@@ -21,7 +24,7 @@ export function StepResolution({
   goToNextStep,
 }: StepResolutionProps) {
   return (
-    <Step className="p-step">
+    <Step fullWidth className="p-step">
       <Title level={1}>
         <Translate pt="Resultado" en="Results" />
       </Title>

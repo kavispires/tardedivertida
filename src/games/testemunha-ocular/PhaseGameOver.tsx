@@ -1,9 +1,13 @@
 // Hooks
 import { useLanguage } from 'hooks';
 // Components
-import { GameOverWrapper, ImageCard, Instruction, Translate } from 'components';
+
 import { AnnouncementContent } from './TextBlobs';
 import { QuestionsHistory } from './QuestionsHistory';
+import { GameOverWrapper } from 'components/game-over';
+import { Instruction } from 'components/text';
+import { Translate } from 'components/language';
+import { ImageCard } from 'components/cards';
 
 function PhaseGameOver({ state, info }: PhaseProps) {
   const { language, translate } = useLanguage();

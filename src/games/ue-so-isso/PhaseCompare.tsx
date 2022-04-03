@@ -4,11 +4,15 @@ import { useOnSubmitValidationsAPIRequest, useOnValidateSuggestionAPIRequest } f
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import { Instruction, StepSwitcher, Translate, ViewOr, WaitingRoom } from 'components';
 import { StepCompareSuggestions } from './StepCompareSuggestions';
 import { ComparisonRules } from './RulesBlobs';
 import { GuesserWaitingRoom } from './GuesserWaitingRoom';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { StepSwitcher } from 'components/steps';
+import { Instruction } from 'components/text';
+import { Translate } from 'components/language';
+import { ViewOr } from 'components/views';
+import { WaitingRoom } from 'components/players';
 
 function PhaseCompare({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();

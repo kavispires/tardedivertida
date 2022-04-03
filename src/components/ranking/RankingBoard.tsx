@@ -9,8 +9,11 @@ import { CrownFilled } from '@ant-design/icons';
 import { useDimensions } from 'hooks';
 // Utils
 import { inNSeconds } from 'utils/helpers';
+import { Translate } from 'components/language';
+import { Avatar } from 'components/avatars';
+import { Step } from 'components/steps';
+import { Instruction, Title } from 'components/text';
 // Components
-import { Avatar, Translate, Instruction, Step, Title } from 'components';
 
 type GainedPointProps = {
   gainedPoint: number;

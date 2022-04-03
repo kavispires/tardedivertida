@@ -1,7 +1,10 @@
 // Ant Design Resources
 import { FallOutlined, RiseOutlined } from '@ant-design/icons';
+import { AvatarIcon } from 'components/avatars';
+import { GameOverWrapper } from 'components/game-over';
+import { Translate } from 'components/language';
 // Components
-import { AvatarIcon, GameOverWrapper, Translate } from 'components';
+
 import { orderBy } from 'lodash';
 
 function PhaseGameOver({ state, players, info }: PhaseProps) {

@@ -5,19 +5,16 @@ import { useOnSubmitTopicAPIRequest } from './api-requests';
 import { PHASES } from 'utils/phases';
 import { mockTopicSelection } from './mock';
 // Components
-import {
-  AvatarName,
-  Instruction,
-  RoundAnnouncement,
-  Step,
-  StepSwitcher,
-  Translate,
-  TurnOrder,
-  ViewOr,
-  WaitingRoom,
-} from 'components';
+
 import { StepTopicSelection } from './StepTopicSelection';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { Step, StepSwitcher } from 'components/steps';
+import { RoundAnnouncement } from 'components/round';
+import { Instruction } from 'components/text';
+import { Translate } from 'components/language';
+import { AvatarName } from 'components/avatars';
+import { ViewOr } from 'components/views';
+import { TurnOrder, WaitingRoom } from 'components/players';
 
 function PhaseTopicSelection({ state, players, info, meta }: PhaseProps) {
   const { translate } = useLanguage();

@@ -1,10 +1,14 @@
 // Utils
 import { LETTERS } from 'utils/constants';
 // Components
-import { Card, Instruction, Step, Title, Translate } from 'components';
+
 import { Suspects } from './Suspects';
 import { QuestionsHistory } from './QuestionsHistory';
 import { Space } from 'antd';
+import { Step } from 'components/steps';
+import { Instruction, Title } from 'components/text';
+import { Translate } from 'components/language';
+import { Card } from 'components/cards';
 
 type StepSelectQuestionProps = {
   questions: TQuestion[];

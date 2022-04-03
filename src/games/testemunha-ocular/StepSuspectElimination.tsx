@@ -3,9 +3,15 @@ import { Avatar, Button, Space } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks';
 // Components
-import { AvatarName, Card, Icons, Instruction, Step, Title, Translate } from 'components';
+
 import { Suspects } from './Suspects';
 import { QuestionsHistory } from './QuestionsHistory';
+import { Step } from 'components/steps';
+import { Instruction, Title } from 'components/text';
+import { AvatarName } from 'components/avatars';
+import { Translate } from 'components/language';
+import { Icons } from 'components/icons';
+import { Card } from 'components/cards';
 
 type StepSuspectEliminationProps = {
   suspects: Suspect[];

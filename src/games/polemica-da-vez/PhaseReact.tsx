@@ -5,7 +5,9 @@ import { useOnSubmitReactionAPIRequest } from './api-requests';
 import { PHASES } from 'utils/phases';
 import { mockGuess } from './mock';
 // Components
-import { Instruction, StepSwitcher, Translate } from 'components';
+import { Translate } from 'components/language';
+import { StepSwitcher } from 'components/steps';
+import { Instruction } from 'components/text';
 import { StepLiking } from './StepLiking';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 

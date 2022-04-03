@@ -4,7 +4,7 @@ import { Button, Input, Space } from 'antd';
 // Hooks
 import { useMock } from 'hooks';
 // Components
-import { Translate } from 'components';
+import { Translate } from 'components/language';
 
 type WordFormProps = {
   x: string;

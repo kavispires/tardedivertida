@@ -2,7 +2,8 @@
 import { Avatar as AntAvatar, Typography } from 'antd';
 import { LikeFilled } from '@ant-design/icons';
 // Components
-import { Avatar, Translate } from '..';
+import { Avatar } from 'components/avatars';
+import { Translate } from 'components/language';
 
 type ReadyPlayersBarProps = {
   players: GamePlayers;

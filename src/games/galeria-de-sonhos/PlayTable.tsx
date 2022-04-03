@@ -1,7 +1,9 @@
 import { UpCircleOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import clsx from 'clsx';
-import { Icons, ImageBlurButton, ImageCard, ImageCardBack, Translate } from 'components';
+import { ImageBlurButton, ImageCard, ImageCardBack } from 'components/cards';
+import { Icons } from 'components/icons';
+import { Translate } from 'components/language';
 import { useCardWidth, useLoading } from 'hooks';
 
 type PlayTableProps = {

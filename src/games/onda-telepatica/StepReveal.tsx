@@ -1,17 +1,14 @@
 import clsx from 'clsx';
+import { Avatar, AvatarName } from 'components/avatars';
+import { TimedButton } from 'components/buttons';
+import { Translate } from 'components/language';
+import { StarPoints } from 'components/points';
+import { PopoverRule } from 'components/rules';
+import { Step } from 'components/steps';
+import { Instruction, Title } from 'components/text';
 import { orderBy } from 'lodash';
 // Components
-import {
-  Avatar,
-  AvatarName,
-  PopoverRule,
-  Instruction,
-  StarPoints,
-  Step,
-  TimedButton,
-  Title,
-  Translate,
-} from 'components';
+
 import { Dial } from './Dial';
 import { getGuessResultClass, getPoints } from './helpers';
 import { ScoringRules } from './RulesBlobs';
@@ -45,7 +42,7 @@ export function StepReveal({ goToNextStep, currentCategory, players, psychic }: 
   const regularPlayers = Object.values(players).filter((p) => p.id !== psychic.id);
 
   return (
-    <Step>
+    <Step fullWidth>
       <Title level={2} className="o-step-reveal-title">
         <Sentence currentCategory={currentCategory} />
       </Title>

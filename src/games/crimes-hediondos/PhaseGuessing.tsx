@@ -4,10 +4,10 @@ import { useOnSubmitGuessesAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import { StepSwitcher } from 'components';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { StepSwitcher } from 'components/steps';
 import { GuessMessage } from './RulesBlobs';
 import { StepGuessing } from './StepGuessing';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 function PhaseGuessing({ players, state, info }: PhaseProps) {
   const { translate } = useLanguage();

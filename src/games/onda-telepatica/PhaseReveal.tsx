@@ -5,19 +5,16 @@ import { useIsUserReady, useLanguage, useStep, useWhichPlayerIsThe } from 'hooks
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import {
-  AdminNextRoundButton,
-  Instruction,
-  PopoverRule,
-  RankingBoard,
-  Step,
-  StepSwitcher,
-  Title,
-  Translate,
-} from 'components';
+
 import { StepReveal } from './StepReveal';
 import { ScoringRules } from './RulesBlobs';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { Step, StepSwitcher } from 'components/steps';
+import { Instruction, Title } from 'components/text';
+import { Translate } from 'components/language';
+import { PopoverRule } from 'components/rules';
+import { RankingBoard } from 'components/ranking';
+import { AdminNextRoundButton } from 'components/admin';
 
 function PhaseReveal({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
@@ -42,18 +39,16 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
         </PhaseAnnouncement>
 
         {/* Step 1 */}
-        <Step fullWidth>
-          <StepReveal
-            players={players}
-            psychic={psychic}
-            currentCategory={state.currentCategory}
-            goToNextStep={goToNextStep}
-          />
-        </Step>
+        <StepReveal
+          players={players}
+          psychic={psychic}
+          currentCategory={state.currentCategory}
+          goToNextStep={goToNextStep}
+        />
 
         {/* Step 2 */}
         <Step fullWidth>
-          <Title level={1}>Ranking</Title>
+          <Title>Ranking</Title>
 
           <PopoverRule
             label={<Translate pt="Como a pontuação funciona?" en="How does scoring work?" />}

@@ -4,7 +4,10 @@ import { useOnSubmitTestimonyAPIRequest } from './api-requests';
 // Utils
 import { PHASES } from 'utils/phases';
 // Components
-import { AvatarName, Instruction, StepSwitcher, Translate } from 'components';
+import { StepSwitcher } from 'components/steps';
+import { Translate } from 'components/language';
+import { AvatarName } from 'components/avatars';
+import { Instruction } from 'components/text';
 import { StepQuestioning } from './StepQuestioning';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 

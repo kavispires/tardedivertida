@@ -3,7 +3,7 @@ import { Slider } from 'antd';
 // State & Hooks
 import { useGlobalState } from 'hooks';
 // Components
-import { Translate } from 'components';
+import { Translate } from 'components/language';
 
 /**
  * Floating canvas resizer bar positioned on the top-left of the page

@@ -1,12 +1,17 @@
 // Hooks
 import { useLanguage } from 'hooks';
 // Components
-import { AdminNextRoundButton, PopoverRule, Step, Title, Translate } from 'components';
+
 import { PlayersDecisionList } from './PlayersDecisionList';
 import { PlayersDecisionResult } from './PlayersDecisionResult';
 import { PlayerStats } from './PlayerStats';
 import { Street } from './Street';
 import { CardCountExplanation } from './RulesBlobs';
+import { Step } from 'components/steps';
+import { Title } from 'components/text';
+import { Translate } from 'components/language';
+import { PopoverRule } from 'components/rules';
+import { AdminNextRoundButton } from 'components/admin';
 
 type StepResultProps = {
   players: GamePlayers;

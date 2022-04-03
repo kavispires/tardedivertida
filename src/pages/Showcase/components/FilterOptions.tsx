@@ -2,7 +2,7 @@
 import { Radio } from 'antd';
 
 // Components
-import { Translate } from 'components';
+import { Translate } from 'components/language';
 
 type FilterOptionsProps = {
   name: string;

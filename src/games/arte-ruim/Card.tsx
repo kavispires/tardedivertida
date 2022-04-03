@@ -3,7 +3,7 @@ import { WarningOutlined } from '@ant-design/icons';
 // Helpers
 import { getColorFromLetter } from 'utils/helpers';
 // Components
-import { Card } from 'components';
+import { Card } from 'components/cards';
 
 type ArteRuimCardProps = {
   text?: any;

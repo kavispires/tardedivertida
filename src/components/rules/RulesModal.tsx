@@ -5,7 +5,8 @@ import { ReadOutlined } from '@ant-design/icons';
 // Hooks
 import { useLanguage } from 'hooks';
 // Components
-import { RulesCarousel, Translate } from 'components';
+import { Translate } from 'components/language';
+import { RulesCarousel } from 'components/rules';
 
 type RulesModalProps = {
   gameInfo: GameInfo;

@@ -7,9 +7,12 @@ import { useOnFinishDefenseRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import { Instruction, messageContent, StepSwitcher, Title, TextHighlight, Translate } from 'components';
-import { StepDefending } from './StepDefending';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { messageContent } from 'components/pop-up';
+import { StepSwitcher } from 'components/steps';
+import { Instruction, TextHighlight, Title } from 'components/text';
+import { Translate } from 'components/language';
+import { StepDefending } from './StepDefending';
 
 function PhaseDefense({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();

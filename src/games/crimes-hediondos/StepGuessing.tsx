@@ -8,10 +8,15 @@ import { getAvatarColorById, getLastItem } from 'utils/helpers';
 import { mockGuesses } from './mock';
 import { autoSelectCorrectGuesses, getHistory } from './helpers';
 // Components
-import { DebugOnly, FloatingHand, Instruction, ReadyPlayersBar, Step, Title, Translate } from 'components';
 import { Crime } from './Crime';
 import { PlayersCards } from './PlayersCards';
 import { SelectableGroupedItemsBoard } from './SelectableGroupedItemsBoard';
+import { Step } from 'components/steps';
+import { Instruction, Title } from 'components/text';
+import { Translate } from 'components/language';
+import { DebugOnly } from 'components/dev';
+import { FloatingHand } from 'components/cards';
+import { ReadyPlayersBar } from 'components/players';
 
 type StepGuessingProps = {
   user: GamePlayer;

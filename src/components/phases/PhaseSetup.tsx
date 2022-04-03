@@ -1,7 +1,8 @@
-// Constants
+import { Icons } from 'components/icons';
+import { Translate } from 'components/language';
+import { Instruction, Title } from 'components/text';
 import { PHASES } from 'utils/phases';
-// Components
-import { Instruction, Title, Translate, Icons } from '..';
+
 import { PhaseContainer } from './PhaseContainer';
 
 type PhaseSetupProps = {

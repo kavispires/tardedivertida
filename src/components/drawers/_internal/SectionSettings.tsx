@@ -4,7 +4,7 @@ import { InfoCircleOutlined } from '@ant-design/icons';
 // Hooks
 import { useDevFeatures, useGlobalState, useLocalStorage } from 'hooks';
 // Components
-import { LanguageSwitch, Translate } from 'components';
+import { LanguageSwitch, Translate } from 'components/language';
 
 export function SectionSettings() {
   const [blurEnabled, setBlurEnabled] = useGlobalState('blurEnabled');

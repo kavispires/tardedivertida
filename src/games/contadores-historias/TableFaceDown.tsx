@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 // Components
-import { ImageCardBack } from 'components';
+import { ImageCardBack } from 'components/cards';
 
 type TableFaceDownProps = {
   players: GamePlayers;

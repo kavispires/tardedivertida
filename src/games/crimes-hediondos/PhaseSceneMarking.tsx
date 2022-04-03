@@ -5,9 +5,12 @@ import { useOnSubmitMarkAPIRequest } from './api-requests';
 import { PHASES } from 'utils/phases';
 import { mockSceneMark } from './mock';
 // Components
-import { Instruction, RoundAnnouncement, StepSwitcher, Translate } from 'components';
-import { StepNewScene } from './StepNewScene';
+import { Translate } from 'components/language';
+import { RoundAnnouncement } from 'components/round';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { StepSwitcher } from 'components/steps';
+import { Instruction } from 'components/text';
+import { StepNewScene } from './StepNewScene';
 
 function PhaseSceneMarking({ players, state, info }: PhaseProps) {
   const { language, translate } = useLanguage();

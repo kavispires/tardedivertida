@@ -3,7 +3,9 @@ import { useIsUserReady, useUser, useLanguage, useStep } from 'hooks';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import { Instruction, StepSwitcher, Translate } from 'components';
+import { Translate } from 'components/language';
+import { StepSwitcher } from 'components/steps';
+import { Instruction } from 'components/text';
 import { StepResult } from './StepResult';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 

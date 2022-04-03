@@ -1,12 +1,10 @@
-// Ant Design Resources
-import { Button } from 'antd';
 import { FireFilled } from '@ant-design/icons';
-// State & Hooks
+import { Button } from 'antd';
+import { Translate } from 'components/language';
 import { useAPICall, useGlobalState, useLanguage, useLoading } from 'hooks';
 import { ADMIN_API } from 'services/adapters';
 import { ADMIN_ACTIONS } from 'utils/constants';
-// Components
-import { Translate } from '..';
+
 import { AdminOnlyContainer } from './AdminOnlyContainer';
 
 function ButtonLabel({ round, lastRound }: { round?: GameRound; lastRound: boolean }) {

@@ -6,8 +6,13 @@ import { Button, Space } from 'antd';
 import { AVATARS } from 'utils/constants';
 import { DRAWING_TIME_IN_SECONDS } from './constants';
 import { inNSeconds } from 'utils/helpers';
+import { Step } from 'components/steps';
+import { Card } from 'components/cards';
+import { TimerBar } from 'components/timers';
+import { Icons } from 'components/icons';
+import { DrawingCanvas } from 'components/canvas';
+import { Translate } from 'components/language';
 // Components
-import { Card, DrawingCanvas, Icons, Step, TimerBar, Translate } from 'components';
 
 type StepTimedDrawingProps = {
   currentPrompt: Prompt;

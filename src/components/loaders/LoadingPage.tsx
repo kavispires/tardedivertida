@@ -1,7 +1,8 @@
 // Ant Design Resources
 import { Layout, Typography } from 'antd';
+import { Icons } from 'components/icons';
+import { Translate } from 'components/language';
 // Components
-import { Icons, Translate } from '..';
 
 type LoadingPageProps = {
   message?: string;

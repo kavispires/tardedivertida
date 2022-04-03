@@ -4,7 +4,8 @@ import { LockFilled, PlusCircleFilled } from '@ant-design/icons';
 // Hooks
 import { useLoading } from 'hooks';
 // Components
-import { Instruction, Translate } from 'components';
+import { Translate } from 'components/language';
+import { Instruction } from 'components/text';
 
 type UserAnswersProps = {
   answerGroup: any;

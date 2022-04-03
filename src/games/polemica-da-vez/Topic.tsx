@@ -2,7 +2,7 @@
 import { Avatar } from 'antd';
 import { RiseOutlined, TwitterOutlined } from '@ant-design/icons';
 // Components
-import { Icons } from 'components';
+import { Icons } from 'components/icons';
 import clsx from 'clsx';
 
 type TopicProps = {

@@ -4,8 +4,10 @@ import { Button } from 'antd';
 import { PlusCircleFilled } from '@ant-design/icons';
 // Hooks
 import { useLoading } from 'hooks';
+import { AdminButton, AdminOnlyContainer } from 'components/admin';
+import { Translate } from 'components/language';
+import { Avatar } from 'components/avatars';
 // Components
-import { AdminButton, AdminOnlyContainer, Avatar, Translate } from 'components';
 
 type AdminAnswerControlProps = {
   allAnswers: MAnswer[];

@@ -7,7 +7,10 @@ import { useLanguage, useLoading, useMock, useVotingMatch } from 'hooks';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
-import { Instruction, ReadyPlayersBar, Step, Title, Translate } from 'components';
+import { Translate } from 'components/language';
+import { ReadyPlayersBar } from 'components/players';
+import { Step } from 'components/steps';
+import { Instruction, Title } from 'components/text';
 import { AllDreamsClues } from './AllDreamsClues';
 import { DreamBoardVote } from './DreamBoardVote';
 import { cleanupVotes, selectOwnVote, voteRandomly } from './helpers';

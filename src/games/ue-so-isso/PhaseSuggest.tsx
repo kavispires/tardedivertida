@@ -4,7 +4,10 @@ import { useOnSubmitSuggestionsAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import { Instruction, StepSwitcher, Translate, ViewOr } from 'components';
+import { StepSwitcher } from 'components/steps';
+import { Instruction } from 'components/text';
+import { Translate } from 'components/language';
+import { ViewOr } from 'components/views';
 import { StepSuggestion } from './StepSuggestion';
 import { WritingRules } from './RulesBlobs';
 import { GuesserWaitingRoom } from './GuesserWaitingRoom';

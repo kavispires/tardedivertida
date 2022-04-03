@@ -4,7 +4,7 @@ import { UserOutlined } from '@ant-design/icons';
 // Hooks and API
 import { useGlobalState, useLanguage } from 'hooks';
 // Components
-import { Translate } from 'components';
+import { Translate } from 'components/language';
 
 type FinalAssessmentModalProps = {
   // isModalVisible: boolean;

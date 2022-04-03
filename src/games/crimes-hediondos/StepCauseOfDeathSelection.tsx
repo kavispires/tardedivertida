@@ -1,10 +1,12 @@
 import { useState } from 'react';
+import { Space } from 'antd';
 // Components
-import { Instruction, Step, Title, Translate } from 'components';
+import { Translate } from 'components/language';
+import { Step } from 'components/steps';
+import { Instruction, Title } from 'components/text';
 import { SceneTile } from './SceneTile';
 import { SelectedItems } from './SelectedItems';
 import { ContinueButton } from './ContinueButton';
-import { Space } from 'antd';
 
 type StepCauseOfDeathSelectionProps = {
   items: ItemsDict;

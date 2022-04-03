@@ -5,7 +5,7 @@ import { useOnAddAnswerAPIRequest, useOnNextAnswersAPIRequest } from './api-requ
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import { StepSwitcher } from 'components';
+import { StepSwitcher } from 'components/steps';
 import { StepCompare } from './StepCompare';
 import { ComparingRules } from './RulesBlobs';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';

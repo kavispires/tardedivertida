@@ -4,7 +4,7 @@ import { Popover, Tag } from 'antd';
 // Hooks
 import { useDevFeatures, useLanguage } from 'hooks';
 // Components
-import { ImageCard } from 'components';
+import { ImageCard } from 'components/cards';
 
 type ItemCardProps = {
   item: HCard;

@@ -5,20 +5,14 @@ import { QuestionCircleFilled } from '@ant-design/icons';
 // Hooks
 import { useLanguage } from 'hooks';
 // Components
-import {
-  AvatarIcon,
-  AvatarName,
-  FloatingHand,
-  ImageCardHand,
-  Instruction,
-  messageContent,
-  Step,
-  Title,
-  TextHighlight,
-  Translate,
-  ViewIf,
-} from 'components';
 import { Table } from './Table';
+import { messageContent } from 'components/pop-up';
+import { Step } from 'components/steps';
+import { Instruction, TextHighlight, Title } from 'components/text';
+import { Translate } from 'components/language';
+import { ViewIf } from 'components/views';
+import { AvatarIcon, AvatarName } from 'components/avatars';
+import { FloatingHand, ImageCardHand } from 'components/cards';
 
 type StepPlayCardProps = {
   isUserTheImpostor: boolean;

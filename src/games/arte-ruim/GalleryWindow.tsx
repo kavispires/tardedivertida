@@ -3,7 +3,7 @@ import { useCardWidth } from 'hooks';
 // Constants
 import { AVATARS } from 'utils/constants';
 // Components
-import { CanvasSVG } from 'components';
+import { CanvasSVG } from 'components/canvas';
 import { GalleryWindowCredits } from './GalleryWindowCredits';
 import { GalleryWindowGuesses } from './GalleryWindowGuesses';
 import { GalleryWindowControls } from './GalleryWindowControls';

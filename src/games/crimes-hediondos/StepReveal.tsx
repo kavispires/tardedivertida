@@ -6,13 +6,18 @@ import { TrophyOutlined } from '@ant-design/icons';
 import { getAnimationClass, getLastItem } from 'utils/helpers';
 import { isEntryLocked } from './helpers';
 // Components
-import { Instruction, PopoverRule, Step, TimedButton, Title, Translate } from 'components';
+
 import { Crime } from './Crime';
 import { GroupedItemsBoard } from './GroupedItemsBoard';
 import { ScoringMessage } from './RulesBlobs';
 import { PlayersCards } from './PlayersCards';
 import { CrimeGuessStatus } from './CrimeGuessStatus';
 import { ResultsTable } from './ResultsTable';
+import { Step } from 'components/steps';
+import { Instruction, Title } from 'components/text';
+import { Translate } from 'components/language';
+import { PopoverRule } from 'components/rules';
+import { TimedButton } from 'components/buttons';
 
 type StepRevealProps = {
   user: GamePlayer;

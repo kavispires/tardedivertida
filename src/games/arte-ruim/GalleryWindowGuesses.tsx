@@ -5,7 +5,8 @@ import { CrownFilled, MessageFilled } from '@ant-design/icons';
 // Utils
 import { getPlayersFromIds } from 'utils/helpers';
 // Components
-import { Avatar, Translate } from 'components';
+import { Avatar } from 'components/avatars';
+import { Translate } from 'components/language';
 
 type GalleryWindowGuessesProps = {
   playersSay: PlayersSay;
