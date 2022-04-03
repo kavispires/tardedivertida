@@ -7,7 +7,7 @@ export * from './errors';
 export * from './gallery';
 export * as Icons from './icons';
 export * from './loaders';
-export * from './modals';
+export * from './pop-up';
 export * from './ranking';
 export * from './rules';
 export * from './shared';
