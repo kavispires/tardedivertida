@@ -1,5 +1,5 @@
 // Components
-import { WaitingRoom } from 'components/shared';
+import { WaitingRoom } from 'components/players';
 import { Loading } from 'components/loaders';
 import { Translate } from 'components/language';
 
