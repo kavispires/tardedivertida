@@ -12,3 +12,4 @@ export * from './ranking';
 export * from './rules';
 export * from './shared';
 export * from './typography';
+export * from './buttons';

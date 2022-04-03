@@ -10,8 +10,6 @@ export * from './Ribbon';
 export * from './StarPoints';
 export * from './StepSwitcher';
 export * from './TimerBar';
-export * from './TimedButton';
-export * from './TransparentButton';
 export * from './Translate';
 export * from './TurnOrder';
 export * from './View';
