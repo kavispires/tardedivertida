@@ -5,9 +5,10 @@ import { useOnAddAnswerAPIRequest, useOnNextAnswersAPIRequest } from './api-requ
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import { PhaseAnnouncement, PhaseContainer, StepSwitcher } from 'components';
+import { StepSwitcher } from 'components';
 import { StepCompare } from './StepCompare';
 import { ComparingRules } from './RulesBlobs';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 function PhaseCompare({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();

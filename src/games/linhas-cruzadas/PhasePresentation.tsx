@@ -3,15 +3,9 @@ import { useIsUserReady, useLanguage, useStep } from 'hooks';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import {
-  Instruction,
-  PhaseAnnouncement,
-  PhaseContainer,
-  StepSwitcher,
-  Translate,
-  TurnOrder,
-} from 'components';
+import { Instruction, StepSwitcher, Translate, TurnOrder } from 'components';
 import { StepAlbum } from './StepAlbum';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 function PhasePresentation({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);

@@ -3,7 +3,8 @@ import { GAME_COLLECTION } from 'utils/constants';
 import { PHASES } from 'utils/phases';
 // Components
 import { Session } from 'components/session';
-import { PhaseSetup, PhaseRules, PageError, PhaseLobby } from 'components';
+import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
+import { PageError } from 'components';
 import PhaseTopicSelection from './PhaseTopicSelection';
 import PhaseReact from './PhaseReact';
 import PhaseResolution from './PhaseResolution';

@@ -4,7 +4,8 @@ import { useIsUserReady, useUser, useLanguage } from 'hooks';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import { Instruction, PhaseAnnouncement, PhaseContainer, StepSwitcher } from 'components';
+import { Instruction, StepSwitcher } from 'components';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 function PhasePromptSelection({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);

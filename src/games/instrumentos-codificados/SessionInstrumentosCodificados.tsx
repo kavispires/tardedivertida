@@ -3,7 +3,8 @@ import { GAME_COLLECTION } from 'utils/constants';
 import { PHASES } from 'utils/phases';
 // Components
 import { Session } from 'components/session';
-import { PhaseSetup, PhaseRules, PageError, PhasePlaceholder, PhaseLobby } from 'components';
+import { PhaseLobby, PhasePlaceholder, PhaseRules, PhaseSetup } from 'components/phases';
+import { PageError } from 'components';
 
 function SessionInstrumentosCodificados({ gameId }: SessionProps) {
   function getActiveComponent(phase: string) {

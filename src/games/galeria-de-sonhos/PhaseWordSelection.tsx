@@ -7,8 +7,6 @@ import { PHASES } from 'utils/phases';
 import {
   AvatarName,
   Instruction,
-  PhaseAnnouncement,
-  PhaseContainer,
   RoundAnnouncement,
   StepSwitcher,
   Translate,
@@ -17,6 +15,7 @@ import {
 } from 'components';
 import { StepWordSelection } from './StepWordSelection';
 import { GeneralRules, WordSelectionRules } from './RulesBlobs';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 function PhaseWordSelection({ players, state, info }: PhaseProps) {
   const { translate } = useLanguage();

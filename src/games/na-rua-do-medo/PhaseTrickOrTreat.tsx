@@ -4,17 +4,10 @@ import { useOnSubmitDecisionAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import {
-  ImageCardPreloadHand,
-  Instruction,
-  PhaseAnnouncement,
-  PhaseContainer,
-  RoundAnnouncement,
-  StepSwitcher,
-  Translate,
-} from 'components';
+import { ImageCardPreloadHand, Instruction, RoundAnnouncement, StepSwitcher, Translate } from 'components';
 import { StepMakeDecision } from './StepMakeDecision';
 import { PlayerStats } from './PlayerStats';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 function PhaseTrickOrTreat({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();

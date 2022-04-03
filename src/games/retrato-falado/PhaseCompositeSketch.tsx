@@ -5,16 +5,9 @@ import { useOnSubmitOrientationAPIRequest, useOnSubmitSketchAPIRequest } from '.
 import { PHASES } from 'utils/phases';
 import { TIMES } from './constants';
 // Components
-import {
-  AvatarName,
-  Instruction,
-  PhaseAnnouncement,
-  PhaseContainer,
-  RoundAnnouncement,
-  StepSwitcher,
-  Translate,
-} from 'components';
+import { AvatarName, Instruction, RoundAnnouncement, StepSwitcher, Translate } from 'components';
 import { StepTestimonial } from './StepTestimonial';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 function PhaseCompositeSketch({ players, state, info }: PhaseProps) {
   const { translate } = useLanguage();

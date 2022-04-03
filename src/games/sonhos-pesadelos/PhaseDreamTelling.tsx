@@ -4,17 +4,10 @@ import { useOnSubmitDreamAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import {
-  ImageCardPreloadHand,
-  Instruction,
-  PhaseAnnouncement,
-  PhaseContainer,
-  RoundAnnouncement,
-  StepSwitcher,
-  Translate,
-} from 'components';
+import { ImageCardPreloadHand, Instruction, RoundAnnouncement, StepSwitcher, Translate } from 'components';
 import { StepTellDream } from './StepTellDream';
 import { DreamTellingRules } from './RulesBlobs';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 function PhaseDreamTelling({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();

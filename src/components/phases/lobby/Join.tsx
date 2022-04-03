@@ -25,7 +25,7 @@ type JoinProps = {
   players: GamePlayers;
 };
 
-function Join({ players, info }: JoinProps) {
+export function Join({ players, info }: JoinProps) {
   const { language, translate } = useLanguage();
   const { isLoading, setLoader } = useLoading();
   const [gameId] = useGlobalState('gameId');
@@ -212,5 +212,3 @@ function Join({ players, info }: JoinProps) {
     </div>
   );
 }
-
-export default Join;

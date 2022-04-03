@@ -3,7 +3,8 @@ import { GAME_COLLECTION } from 'utils/constants';
 import { PHASES } from 'utils/phases';
 // Components
 import { Session } from 'components/session';
-import { GameOver, PhaseSetup, PhaseRules, PageError, PhaseLobby } from 'components';
+import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
+import { GameOver, PageError } from 'components';
 import PhaseAssignment from './PhaseAssignment';
 import PhaseInvestigation from './PhaseInvestigation';
 import PhaseAssessment from './PhaseAssessment';

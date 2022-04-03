@@ -5,15 +5,8 @@ import { useOnPlayCardAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import {
-  AvatarName,
-  Instruction,
-  PhaseAnnouncement,
-  PhaseContainer,
-  PhaseTimerReset,
-  StepSwitcher,
-  Translate,
-} from 'components';
+import { PhaseAnnouncement, PhaseContainer, PhaseTimerReset } from 'components/phases';
+import { AvatarName, Instruction, StepSwitcher, Translate } from 'components';
 import { CardPlayRules } from './RulesBlobs';
 import { StepPlayDream } from './StepPlayDream';
 import { StepAnnounceDream } from './StepAnnounceDream';

@@ -5,10 +5,11 @@ import { useOnSendGuessAPIRequest, useOnSubmitOutcomeAPIRequest } from './api-re
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import { PhaseAnnouncement, PhaseContainer, StepSwitcher } from 'components';
+import { StepSwitcher } from 'components';
 import { StepGuessing } from './StepGuessing';
 import { StepGuessVerification } from './StepGuessVerification';
 import { GuessingRules } from './RulesBlobs';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 function PhaseGuess({ state, players, info }: PhaseProps) {
   const { isLoading } = useLoading();

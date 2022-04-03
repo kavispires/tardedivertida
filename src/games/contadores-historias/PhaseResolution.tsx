@@ -3,10 +3,11 @@ import { useWhichPlayerIsThe, useLanguage, useStep } from 'hooks';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import { PhaseAnnouncement, PhaseContainer, StepSwitcher } from 'components';
+import { StepSwitcher } from 'components';
 import { StepResolution } from './StepResolution';
 import { StepRanking } from './StepRanking';
 import { ScoringRules } from './RulesBlogs';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 function PhaseResolution({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();

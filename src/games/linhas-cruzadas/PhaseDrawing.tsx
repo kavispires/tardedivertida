@@ -5,15 +5,9 @@ import { useOnSubmitDrawingAPIRequest } from './api-requests';
 import { PHASES } from 'utils/phases';
 import { DRAWING_TIME_IN_SECONDS } from './constants';
 // Components
-import {
-  Instruction,
-  PhaseAnnouncement,
-  PhaseContainer,
-  StepSwitcher,
-  Translate,
-  TurnOrder,
-} from 'components';
+import { Instruction, StepSwitcher, Translate, TurnOrder } from 'components';
 import { StepTimedDrawing } from './StepTimedDrawing';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 function PhaseDrawing({ players, state, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);

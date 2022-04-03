@@ -1,7 +1,8 @@
 // Constants
 import { PHASES } from 'utils/phases';
 // Components
-import { Instruction, PhaseContainer, Title, Translate, Icons } from '..';
+import { Instruction, Title, Translate, Icons } from '..';
+import { PhaseContainer } from './PhaseContainer';
 
 type PhaseSetupProps = {
   info: GameInfo;

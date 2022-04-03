@@ -4,9 +4,10 @@ import { useOnSubmitVoteAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import { ImageCardPreloadHand, PhaseAnnouncement, PhaseContainer, StepSwitcher } from 'components';
+import { ImageCardPreloadHand, StepSwitcher } from 'components';
 import { StepVoting } from './StepVoting';
 import { VotingRules } from './RulesBlogs';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 function PhaseVoting({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();

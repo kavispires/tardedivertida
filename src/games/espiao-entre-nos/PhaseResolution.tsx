@@ -6,8 +6,9 @@ import { useOnProgressGameAPIRequest } from './api-requests';
 import { PHASES } from 'utils/phases';
 import { determineView } from './helpers';
 // Components
-import { PhaseAnnouncement, PhaseContainer, PhaseTimerReset, StepSwitcher, ViewOr } from 'components';
+import { StepSwitcher, ViewOr } from 'components';
 import { StepResolution } from './StepResolution';
+import { PhaseAnnouncement, PhaseContainer, PhaseTimerReset } from 'components/phases';
 
 function PhaseResolution({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();

@@ -7,8 +7,9 @@ import gameOverTitle from 'assets/images/game-over-title.svg';
 import { useLanguage } from 'hooks';
 import { AVATARS } from 'utils/constants';
 // Components
-import { Avatar, PhaseAnnouncement, PhaseContainer, RateGameWidget, StepSwitcher, Translate } from '..';
+import { Avatar, RateGameWidget, StepSwitcher, Translate } from '..';
 import { PHASES } from 'utils/phases';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 const GameOverText = () => <Translate pt="Jogo concluído" en="The game is over" />;
 

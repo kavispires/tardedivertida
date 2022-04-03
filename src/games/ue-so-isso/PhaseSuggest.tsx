@@ -4,10 +4,11 @@ import { useOnSubmitSuggestionsAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import { Instruction, PhaseAnnouncement, PhaseContainer, StepSwitcher, Translate, ViewOr } from 'components';
+import { Instruction, StepSwitcher, Translate, ViewOr } from 'components';
 import { StepSuggestion } from './StepSuggestion';
 import { WritingRules } from './RulesBlobs';
 import { GuesserWaitingRoom } from './GuesserWaitingRoom';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 function PhaseSuggest({ state, players, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);

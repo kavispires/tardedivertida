@@ -4,8 +4,9 @@ import { useOnSubmitVoteAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import { Instruction, PhaseAnnouncement, PhaseContainer, StepSwitcher, Translate } from 'components';
+import { Instruction, StepSwitcher, Translate } from 'components';
 import { StepVote } from './StepVote';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 function PhaseEvaluation({ players, state, info }: PhaseProps) {
   const { translate } = useLanguage();

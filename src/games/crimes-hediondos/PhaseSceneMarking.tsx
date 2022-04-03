@@ -5,15 +5,9 @@ import { useOnSubmitMarkAPIRequest } from './api-requests';
 import { PHASES } from 'utils/phases';
 import { mockSceneMark } from './mock';
 // Components
-import {
-  Instruction,
-  PhaseAnnouncement,
-  PhaseContainer,
-  RoundAnnouncement,
-  StepSwitcher,
-  Translate,
-} from 'components';
+import { Instruction, RoundAnnouncement, StepSwitcher, Translate } from 'components';
 import { StepNewScene } from './StepNewScene';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 function PhaseSceneMarking({ players, state, info }: PhaseProps) {
   const { language, translate } = useLanguage();

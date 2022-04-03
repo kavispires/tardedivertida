@@ -4,9 +4,10 @@ import { useOnSubmitAnswersAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import { PhaseAnnouncement, PhaseContainer, StepSwitcher } from 'components';
+import { StepSwitcher } from 'components';
 import { StepAnswering } from './StepAnswering';
 import { AnsweringRules } from './RulesBlobs';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 function PhaseEverybodyWrites({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();

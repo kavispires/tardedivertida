@@ -5,8 +5,6 @@ import { PHASES } from 'utils/phases';
 // Components
 import {
   Instruction,
-  PhaseAnnouncement,
-  PhaseContainer,
   Step,
   StepSwitcher,
   Translate,
@@ -17,6 +15,7 @@ import {
 } from 'components';
 import { StepResolution } from './StepResolution';
 import { Button } from 'antd';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 function PhaseReact({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();

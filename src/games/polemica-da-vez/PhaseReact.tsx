@@ -5,8 +5,9 @@ import { useOnSubmitReactionAPIRequest } from './api-requests';
 import { PHASES } from 'utils/phases';
 import { mockGuess } from './mock';
 // Components
-import { Instruction, PhaseAnnouncement, PhaseContainer, StepSwitcher, Translate } from 'components';
+import { Instruction, StepSwitcher, Translate } from 'components';
 import { StepLiking } from './StepLiking';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 function PhaseReact({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();

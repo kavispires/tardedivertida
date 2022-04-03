@@ -3,8 +3,9 @@ import { useIsUserReady, useUser, useLanguage, useStep } from 'hooks';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import { Instruction, PhaseAnnouncement, PhaseContainer, StepSwitcher, Translate } from 'components';
+import { Instruction, StepSwitcher, Translate } from 'components';
 import { StepStreetEnd } from './StepStreetEnd';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 function PhaseStreetEnd({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();

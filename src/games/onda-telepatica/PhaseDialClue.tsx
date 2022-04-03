@@ -7,8 +7,6 @@ import { PHASES } from 'utils/phases';
 import {
   AvatarName,
   Instruction,
-  PhaseAnnouncement,
-  PhaseContainer,
   RoundAnnouncement,
   StepSwitcher,
   Translate,
@@ -18,6 +16,7 @@ import {
 import { StepClueWriting } from './StepClueWriting';
 import { StepClueWaiting } from './StepClueWaiting';
 import { StepCategorySelection } from './StepCategorySelection';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 function PhaseDialClue({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);

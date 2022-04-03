@@ -4,15 +4,9 @@ import { useOnSubmitGuessAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import {
-  Instruction,
-  PhaseAnnouncement,
-  PhaseContainer,
-  StepSwitcher,
-  Translate,
-  TurnOrder,
-} from 'components';
+import { Instruction, StepSwitcher, Translate, TurnOrder } from 'components';
 import { StepNameDrawing } from './StepNameDrawing';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 function PhaseNaming({ players, state, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);

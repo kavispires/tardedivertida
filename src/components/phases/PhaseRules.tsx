@@ -6,7 +6,7 @@ import { GAME_API } from 'services/adapters';
 import { useLoading, useIsUserReady, useAPICall, useLanguage, useMock } from 'hooks';
 // Components
 import { LoadingPage, ReadyPlayersBar, Translate } from '..';
-import { RulesCarousel } from '.';
+import { RulesCarousel } from '../rules';
 
 type PhaseRulesProps = {
   players: GamePlayers;
@@ -52,14 +52,14 @@ export function PhaseRules({ players, info }: PhaseRulesProps) {
   }
 
   return (
-    <Layout.Content className="rules">
+    <Layout.Content className="phase-rules">
       <Typography.Title className="center">
         <Translate pt="Regras do Jogo" en="Game Rules" />
       </Typography.Title>
 
-      <RulesCarousel info={info} className="rules__carousel" ruleClass="rules__rule" />
+      <RulesCarousel info={info} className="phase-rules__carousel" ruleClass="phase-rules__rule" />
 
-      <Space className="rules__actions">
+      <Space className="phase-rules__actions">
         <Button
           type="primary"
           icon={isUserReady ? <CheckCircleFilled /> : <SmileFilled />}

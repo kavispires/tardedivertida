@@ -16,7 +16,7 @@ type WaitingProps = {
   players: GamePlayers;
 };
 
-function Waiting({ info, players }: WaitingProps) {
+export function Waiting({ info, players }: WaitingProps) {
   const { language, translate } = useLanguage();
   const { isLoading, setLoader } = useLoading();
   const [gameId] = useGlobalState('gameId');
@@ -92,5 +92,3 @@ function Waiting({ info, players }: WaitingProps) {
     </div>
   );
 }
-
-export default Waiting;

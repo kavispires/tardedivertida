@@ -3,10 +3,11 @@ import { PHASES } from 'utils/phases';
 // Hooks
 import useGlobalState from 'hooks/useGlobalState';
 // Components
-import { AvatarEntry, PhaseContainer } from '..';
-import Join from './_internal/Join';
-import Waiting from './_internal/Waiting';
-import { CloudBackground } from './_internal/CloudBackground';
+import { PhaseContainer } from 'components/phases';
+import { AvatarEntry } from 'components/avatars';
+import { Join } from './lobby/Join';
+import { Waiting } from './lobby/Waiting';
+import { CloudBackground } from './lobby/CloudBackground';
 
 type PhaseLobbyProps = {
   players: GamePlayers;

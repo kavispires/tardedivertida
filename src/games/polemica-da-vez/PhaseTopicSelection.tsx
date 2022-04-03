@@ -8,8 +8,6 @@ import { mockTopicSelection } from './mock';
 import {
   AvatarName,
   Instruction,
-  PhaseAnnouncement,
-  PhaseContainer,
   RoundAnnouncement,
   Step,
   StepSwitcher,
@@ -19,6 +17,7 @@ import {
   WaitingRoom,
 } from 'components';
 import { StepTopicSelection } from './StepTopicSelection';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 function PhaseTopicSelection({ state, players, info, meta }: PhaseProps) {
   const { translate } = useLanguage();

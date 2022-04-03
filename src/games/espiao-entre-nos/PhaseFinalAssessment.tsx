@@ -4,8 +4,9 @@ import { useOnMakeAccusationAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import { Instruction, PhaseAnnouncement, PhaseContainer, StepSwitcher, Translate } from 'components';
+import { Instruction, StepSwitcher, Translate } from 'components';
 import { StepFinalAssessment } from './StepFinalAssessment';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 function PhaseFinalAssessment({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
