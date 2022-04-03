@@ -248,12 +248,13 @@ export function StepReveal({ grid, user, players, clues, goToNextStep, whoGotNoP
       <Space className="space-container" align="center">
         <TimedButton
           duration={60}
-          label={<Translate pt="Ver Ranking" en="See ranking" />}
           icon={<TrophyOutlined />}
           onExpire={goToNextStep}
           showTimer
           onClick={goToNextStep}
-        />
+        >
+          <Translate pt="Ver Ranking" en="See Ranking" />
+        </TimedButton>
       </Space>
 
       <Title level={3}>

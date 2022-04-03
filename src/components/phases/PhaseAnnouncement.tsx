@@ -7,6 +7,7 @@ import { useLanguage } from 'hooks';
 import { getAnimationClass, kebabToPascal } from 'utils/helpers';
 // Components
 import { Icons, TimedButton, Title } from 'components';
+import { Translate } from 'components/language';
 
 const IconIllustrationsComponents: any = Icons;
 
@@ -56,11 +57,12 @@ export function PhaseAnnouncement({
         <TimedButton
           duration={duration || durationPerRound}
           type="text"
-          label={translate('Prosseguir', 'Continue', buttonText)}
           onClick={onClose}
           onExpire={onClose}
           disabled={unskippable}
-        />
+        >
+          <Translate pt="Prosseguir" en="Continue" custom={buttonText} />
+        </TimedButton>
       )}
     </div>
   );

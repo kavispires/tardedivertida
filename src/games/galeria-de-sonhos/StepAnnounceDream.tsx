@@ -81,12 +81,9 @@ export function StepAnnounceDream({
       </Instruction>
 
       {latest.cardsLeft > 0 ? (
-        <TimedButton
-          disabled
-          duration={15}
-          onExpire={() => setStep(2)}
-          label={<Translate pt="Continuando em..." en="Continuing in..." />}
-        />
+        <TimedButton disabled duration={15} onExpire={() => setStep(2)}>
+          <Translate pt="Continuando em..." en="Continuing in..." />
+        </TimedButton>
       ) : (
         <AdminNextRoundButton buttonText="Ranking" />
       )}

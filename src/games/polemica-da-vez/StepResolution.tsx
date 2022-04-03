@@ -59,7 +59,9 @@ export function StepResolution({
       </div>
 
       <Space className="space-container" align="center">
-        <TimedButton duration={25} showTimer onExpire={goToNextStep} onClick={goToNextStep} label="Ranking" />
+        <TimedButton duration={25} showTimer onExpire={goToNextStep} onClick={goToNextStep}>
+          <Translate pt="Ver Ranking" en="See Ranking" />
+        </TimedButton>
       </Space>
     </Step>
   );

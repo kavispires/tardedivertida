@@ -159,8 +159,9 @@ export function StepReveal({
             onExpire={onSeeRanking}
             duration={Math.min(playerCount * 10, 60)}
             icon={<TrophyOutlined />}
-            label={<Translate pt="Ver Ranking" en="See Ranking" />}
-          />
+          >
+            <Translate pt="Ver Ranking" en="See Ranking" />
+          </TimedButton>
         ) : (
           <Button onClick={onSeeRanking} icon={<TrophyOutlined />}>
             <Translate pt="Ver Ranking" en="See Ranking" />

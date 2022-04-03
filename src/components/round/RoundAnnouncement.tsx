@@ -101,14 +101,15 @@ export function RoundAnnouncement({
 
         {Boolean(onPressButton) && Boolean(time) && (
           <TimedButton
-            label={buttonText || translate('Prosseguir', 'Continue')}
             type="primary"
             onClick={onPressButton}
             onExpire={onPressButton}
             duration={time}
             showTimer
             disabled={unskippable}
-          />
+          >
+            <Translate pt="Prosseguir" en="Continue" custom={buttonText} />
+          </TimedButton>
         )}
       </div>
 

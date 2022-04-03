@@ -7,14 +7,13 @@ import { inNSeconds } from 'utils/helpers';
 
 interface TimedButtonProps extends ButtonProps {
   duration?: number;
-  label: any;
   onExpire?: GenericFunction;
   showTimer?: boolean;
 }
 
 export function TimedButton({
   duration = 10,
-  label,
+  children,
   onExpire,
   showTimer = true,
   type,
@@ -30,8 +29,8 @@ export function TimedButton({
 
   return (
     <Button {...props} type={type}>
-      {label}
-      {Boolean(label) && ' '}
+      {children}
+      {Boolean(children) && ' '}
       {showTimer && (
         <span className={clsx(timeClass, `${timeClass}--${type}`)}>{minutes * 60 + seconds}</span>
       )}
