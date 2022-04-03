@@ -1,10 +1,10 @@
 // Ant Design Resources
-import { Button } from 'antd';
+import { Button, Space } from 'antd';
 import { CloudUploadOutlined } from '@ant-design/icons';
 // Hooks
 import { useLanguage } from 'hooks';
 // Components
-import { ButtonContainer, Instruction, ReadyPlayersBar, Step, Title, Translate } from 'components';
+import { Instruction, ReadyPlayersBar, Step, Title, Translate } from 'components';
 import { SceneTile } from './SceneTile';
 import { SelectedItems } from './SelectedItems';
 
@@ -64,11 +64,11 @@ export function StepReviewCrime({
         />
       </div>
 
-      <ButtonContainer>
+      <Space className="space-container" align="center">
         <Button type="primary" size="large" onClick={onSubmitCrime} icon={<CloudUploadOutlined />}>
           <Translate pt="Enviar" en="Submit" />
         </Button>
-      </ButtonContainer>
+      </Space>
 
       <ReadyPlayersBar
         players={players}

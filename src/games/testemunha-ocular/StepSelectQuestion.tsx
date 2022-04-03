@@ -1,9 +1,10 @@
 // Utils
 import { LETTERS } from 'utils/constants';
 // Components
-import { ButtonContainer, Card, Instruction, Step, Title, Translate } from 'components';
+import { Card, Instruction, Step, Title, Translate } from 'components';
 import { Suspects } from './Suspects';
 import { QuestionsHistory } from './QuestionsHistory';
+import { Space } from 'antd';
 
 type StepSelectQuestionProps = {
   questions: TQuestion[];
@@ -34,7 +35,7 @@ export function StepSelectQuestion({
         />{' '}
       </Instruction>
 
-      <ButtonContainer className="t-select-question">
+      <Space className="space-container" align="center">
         {questions.map(({ question, id }, index) => {
           return (
             <button
@@ -49,7 +50,7 @@ export function StepSelectQuestion({
             </button>
           );
         })}
-      </ButtonContainer>
+      </Space>
 
       <Suspects suspects={suspects} eliminatedSuspects={previouslyEliminatedSuspects} />
 

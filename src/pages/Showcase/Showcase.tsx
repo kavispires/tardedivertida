@@ -3,7 +3,7 @@ import { orderBy } from 'lodash';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 // Ant Design Resources
-import { Button, Image, Layout, Modal } from 'antd';
+import { Button, Image, Layout, Modal, Space } from 'antd';
 import { FilterFilled } from '@ant-design/icons';
 // Hooks
 import { useDimensions, useGlobalState, useLanguage } from 'hooks';
@@ -12,7 +12,7 @@ import gameList from 'assets/data/games.json';
 import { PUBLIC_URL } from 'utils/constants';
 import { getAnimationClass } from 'utils/helpers';
 // Components
-import { ButtonContainer, Translate, TransparentButton } from 'components';
+import { Translate, TransparentButton } from 'components';
 import { FiltersDrawer } from './components/FilterDrawers';
 import { GameDetailsContent } from './components/GameDetailsContent';
 import { filterGames } from './helpers';
@@ -73,14 +73,14 @@ function Showcase() {
             <h1 className="showcase-title">
               <Translate pt="Vitrine" en="Showcase" />
             </h1>
-            <ButtonContainer className="showcase-menu">
+            <Space className="space-container showcase-menu" align="center">
               <Button
                 icon={<FilterFilled />}
                 shape="circle"
                 size="small"
                 onClick={() => setShowFilters(true)}
               />
-            </ButtonContainer>
+            </Space>
           </TransparentButton>
         </li>
 

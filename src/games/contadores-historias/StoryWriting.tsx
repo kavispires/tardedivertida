@@ -2,17 +2,9 @@ import { useState } from 'react';
 // Hooks
 import { useLanguage, useLoading, useMock } from 'hooks';
 // Ant Design Resources
-import { Button, Input } from 'antd';
+import { Button, Input, Space } from 'antd';
 // Components
-import {
-  ButtonContainer,
-  FloatingHand,
-  ImageCard,
-  ImageCardHand as Hand,
-  Step,
-  Title,
-  Translate,
-} from 'components';
+import { FloatingHand, ImageCard, ImageCardHand as Hand, Step, Title, Translate } from 'components';
 import { BookPages } from './BookPages';
 import { mockStory } from './mock';
 
@@ -87,11 +79,12 @@ export function StoryWriting({ user, onSubmitStory }: StoryWritingProps) {
         />
       </div>
 
-      <ButtonContainer className="c-input-container">
+      <Space className="space-container c-input-container" align="center">
         <Button type="primary" disabled={isLoading || story.length < 1 || !cardId} onClick={onButtonClick}>
           <Translate pt="Enviar pista secreta e carta" en="Send secret clue and card" />
         </Button>
-      </ButtonContainer>
+      </Space>
+
       <FloatingHand>
         <Hand
           hand={user.hand}

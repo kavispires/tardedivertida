@@ -1,12 +1,11 @@
 // Ant Design Resources
-import { Avatar as AntAvatar } from 'antd';
+import { Avatar as AntAvatar, Space } from 'antd';
 // Hooks
 import { useCardWidth, useLanguage } from 'hooks';
 // Components
 import {
   Avatar,
   AvatarName,
-  ButtonContainer,
   ImageBlurButton,
   ImageCard,
   PopoverRule,
@@ -109,14 +108,14 @@ export function StepResolution({ players, story, storyteller, table, goToNextSte
           );
         })}
       </ul>
-      <ButtonContainer>
+      <Space className="space-container" align="center">
         <TimedButton
           onClick={goToNextStep}
           onExpire={goToNextStep}
           duration={20}
           label={translate('Continuar', 'Continue')}
         />
-      </ButtonContainer>
+      </Space>
     </Step>
   );
 }

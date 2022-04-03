@@ -1,10 +1,10 @@
 // Ant Design Resources
-import { Button, Modal } from 'antd';
+import { Button, Modal, Space } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 // Hooks and API
 import { useGlobalState, useLanguage } from 'hooks';
 // Components
-import { ButtonContainer, Translate } from 'components';
+import { Translate } from 'components';
 
 type FinalAssessmentModalProps = {
   // isModalVisible: boolean;
@@ -32,7 +32,7 @@ export function FinalAssessmentPreparationModal({
         pt="Quem foi a última pessoa a responder uma pergunta?"
         en="Who was the last person to answer a question?"
       />
-      <ButtonContainer wrap>
+      <Space className="space-container" align="center" wrap>
         {Object.entries(players).map(([playerId, player]) => (
           <Button
             type="default"
@@ -43,7 +43,7 @@ export function FinalAssessmentPreparationModal({
             {player.name}
           </Button>
         ))}
-      </ButtonContainer>
+      </Space>
     </Modal>
   );
 }

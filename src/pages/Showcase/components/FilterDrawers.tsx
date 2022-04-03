@@ -1,10 +1,10 @@
 // Ant Design Resources
-import { Button, Divider, Drawer, Tooltip } from 'antd';
+import { Button, Divider, Drawer, Space, Tooltip } from 'antd';
 import { InfoCircleOutlined } from '@ant-design/icons';
 // Hooks
 import { useDimensions } from 'hooks';
 // Components
-import { ButtonContainer, LanguageSwitch, Translate } from 'components';
+import { LanguageSwitch, Translate } from 'components';
 import { CustomFilterOptions } from './CustomFilterOptions';
 import { FilterOptions } from './FilterOptions';
 
@@ -40,14 +40,14 @@ export function FiltersDrawer({
       onClose={() => setShowFilters(false)}
       width={Math.min(width / 1.1, 600)}
       footer={
-        <ButtonContainer>
+        <Space className="space-container" align="center">
           <Button onClick={() => setFilters({})}>
             <Translate pt="Limpar filtros" en="Clear filters" />
           </Button>
           <Button type="primary" onClick={() => setShowFilters(false)}>
             OK
           </Button>
-        </ButtonContainer>
+        </Space>
       }
     >
       <div className="showcase-filter-entry">

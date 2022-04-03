@@ -1,12 +1,12 @@
 import { useState } from 'react';
 // Ant Design Resources
-import { Button, Input } from 'antd';
+import { Button, Input, Space } from 'antd';
 // Hooks
 import { useLanguage, useLoading, useMock } from 'hooks';
 // Utils
 import { mockDream } from './mock';
 // Components
-import { Card, ButtonContainer, Instruction, ReadyPlayersBar, Step, Title, Translate } from 'components';
+import { Card, Instruction, ReadyPlayersBar, Step, Title, Translate } from 'components';
 import { DreamBoard } from './DreamBoard';
 
 type StepTellDreamProps = {
@@ -54,20 +54,20 @@ export function StepTellDream({ players, table, user, onSubmitDream }: StepTellD
 
       <DreamBoard table={table} user={user} />
 
-      <ButtonContainer>
+      <Space className="space-container" align="center">
         <Input
           size="large"
           onPressEnter={onSubmitDreamsClick}
           onChange={(e) => setDream(e.target.value)}
           placeholder={translate('Escreva aqui', 'Write here')}
         />
-      </ButtonContainer>
+      </Space>
 
-      <ButtonContainer>
+      <Space className="space-container" align="center">
         <Button type="primary" disabled={isLoading || !Boolean(dream)} onClick={onSubmitDreamsClick}>
           <Translate pt="Enviar Sonho" en="Submit Dream" />
         </Button>
-      </ButtonContainer>
+      </Space>
 
       <ReadyPlayersBar players={players} />
     </Step>

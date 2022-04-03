@@ -1,4 +1,3 @@
-export * from './ButtonContainer';
 export * from './RoundAnnouncement';
 export * from './RoundsLeftInstruction';
 export * from './StarPoints';

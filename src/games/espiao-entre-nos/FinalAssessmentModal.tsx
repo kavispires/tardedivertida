@@ -1,7 +1,7 @@
 // Ant Design Resources
-import { Modal } from 'antd';
+import { Modal, Space } from 'antd';
 // Components
-import { ButtonContainer, Translate } from 'components';
+import { Translate } from 'components';
 import { useLanguage } from 'hooks';
 import { PlayerSelect } from './PlayerSelect';
 import { FinalAssessmentInstruction } from './RulesBlobs';
@@ -35,9 +35,9 @@ export function FinalAssessmentModal({
         en="There's no time to think, just choose someone"
       />
 
-      <ButtonContainer>
+      <Space className="space-container" align="center">
         <PlayerSelect players={players} onSend={onMakeAccusation} isFinalAssessment />
-      </ButtonContainer>
+      </Space>
     </Modal>
   );
 }

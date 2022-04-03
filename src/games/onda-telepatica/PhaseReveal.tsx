@@ -1,5 +1,5 @@
 // Ant Design Resources
-import { Button } from 'antd';
+import { Button, Space } from 'antd';
 // State & Hooks
 import { useIsUserReady, useLanguage, useStep, useWhichPlayerIsThe } from 'hooks';
 // Resources & Utils
@@ -7,7 +7,6 @@ import { PHASES } from 'utils/phases';
 // Components
 import {
   AdminNextRoundButton,
-  ButtonContainer,
   Instruction,
   PopoverRule,
   RankingBoard,
@@ -62,11 +61,11 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
           />
 
           <RankingBoard ranking={state.ranking} players={players} />
-          <ButtonContainer>
+          <Space className="space-container" align="center">
             <Button onClick={goToPreviousStep}>
               <Translate pt="Ver resultado novamente" en="See results again" />
             </Button>
-          </ButtonContainer>
+          </Space>
           <AdminNextRoundButton round={state.round} lastRound={state?.lastRound} />
         </Step>
       </StepSwitcher>

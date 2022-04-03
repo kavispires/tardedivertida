@@ -1,8 +1,8 @@
 import { useState } from 'react';
 // Ant Design Resources
-import { Button, Collapse } from 'antd';
+import { Button, Collapse, Space } from 'antd';
 // Components
-import { ButtonContainer, Instruction, ReadyPlayersBar, Step, Title, Translate } from 'components';
+import { Instruction, ReadyPlayersBar, Step, Title, Translate } from 'components';
 import { Crime } from './Crime';
 import { GroupedItemsBoard } from './GroupedItemsBoard';
 import { SceneTile } from './SceneTile';
@@ -88,7 +88,7 @@ export function StepNewScene({
 
       <SceneTile tile={sceneTile} onSelectValue={onSelectItem} index={sceneMarkIndex} />
 
-      <ButtonContainer>
+      <Space className="space-container" align="center">
         <Button
           type="primary"
           size="large"
@@ -97,7 +97,7 @@ export function StepNewScene({
         >
           <Translate pt="Enviar" en="Send" />
         </Button>
-      </ButtonContainer>
+      </Space>
 
       <ReadyPlayersBar players={players} />
     </Step>

@@ -1,8 +1,8 @@
 // Components
-import { notification } from 'antd';
+import { notification, Space } from 'antd';
 import { useEffect, useState } from 'react';
 // Components
-import { ButtonContainer, Instruction, Step, Title, Translate } from 'components';
+import { Instruction, Step, Title, Translate } from 'components';
 import { useLanguage } from 'hooks';
 import { EspiaoEntreNosCard as Card } from './Card';
 import { LocationSelect } from './LocationSelect';
@@ -75,7 +75,7 @@ export function StepInvestigation({
       </div>
 
       {isAccusationSelectVisible && (
-        <ButtonContainer>
+        <Space className="space-container" align="center">
           {isUserTheSpy && <LocationSelect locations={locations} onSend={onGuessLocation} />}|
           {!user?.usedAccusation ? (
             <PlayerSelect players={players} onSend={onMakeAccusation} />
@@ -84,7 +84,7 @@ export function StepInvestigation({
               <Translate pt="Você já usou sua chance de acusar" en="You already used your accusation" />
             </Instruction>
           )}
-        </ButtonContainer>
+        </Space>
       )}
 
       <Instruction className="e-lists">

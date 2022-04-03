@@ -1,13 +1,13 @@
 import { useState } from 'react';
 // Ant Design Resources
-import { Button, Input } from 'antd';
+import { Button, Input, Space } from 'antd';
 // Hooks
 import { useLanguage, useMock } from 'hooks';
 // Utils
 import { getEntryId } from 'utils/helpers';
 import { mockAnswers } from './mock';
 // Components
-import { ButtonContainer, PopoverRule, ReadyPlayersBar, Step, Title, Translate } from 'components';
+import { PopoverRule, ReadyPlayersBar, Step, Title, Translate } from 'components';
 import { Pasture } from './Pasture';
 import { Question } from './Question';
 import { AnsweringRules } from './RulesBlobs';
@@ -85,18 +85,18 @@ export function StepAnswering({
               );
             })}
         </ol>
-        <ButtonContainer>
+        <Space className="space-container" align="center">
           <Button type="primary" disabled={isDisabled} onClick={() => onSubmitAnswers({ answers })}>
             <Translate pt="Enviar respostas" en="Submit answers" />
           </Button>
-        </ButtonContainer>
+        </Space>
       </div>
 
       <Pasture players={players} pastureSize={pastureSize} roundType={roundType} />
 
-      <ButtonContainer>
+      <Space className="space-container" align="center">
         <ReadyPlayersBar players={players} />
-      </ButtonContainer>
+      </Space>
     </Step>
   );
 }

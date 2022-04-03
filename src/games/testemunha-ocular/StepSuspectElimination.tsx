@@ -1,9 +1,9 @@
 // Ant Design Resources
-import { Avatar, Button } from 'antd';
+import { Avatar, Button, Space } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks';
 // Components
-import { AvatarName, ButtonContainer, Card, Icons, Instruction, Step, Title, Translate } from 'components';
+import { AvatarName, Card, Icons, Instruction, Step, Title, Translate } from 'components';
 import { Suspects } from './Suspects';
 import { QuestionsHistory } from './QuestionsHistory';
 
@@ -61,7 +61,7 @@ export function StepSuspectElimination({
         />{' '}
         <Translate en="to the question" pt="para a pergunta:" />
         <br />
-        <ButtonContainer>
+        <Space className="space-container" align="center">
           <Card
             header={translate('O suspeito...', 'The perpetrator...')}
             color={testimony ? 'green' : 'red'}
@@ -69,7 +69,7 @@ export function StepSuspectElimination({
           >
             {question.question}
           </Card>
-        </ButtonContainer>
+        </Space>
       </Title>
       {isUserTheQuestioner && (
         <Instruction contained>
@@ -79,14 +79,14 @@ export function StepSuspectElimination({
           />
           <br />
           {Boolean(eliminatedSuspects?.length && isUserTheQuestioner) && (
-            <ButtonContainer>
+            <Space className="space-container" align="center">
               <Button type="primary" onClick={onPass} disabled={isLoading}>
                 <Translate
                   pt="Parar de eliminar e ir para a próxima pergunta"
                   en="Stop releasing suspects and go to next question"
                 />
               </Button>
-            </ButtonContainer>
+            </Space>
           )}
         </Instruction>
       )}

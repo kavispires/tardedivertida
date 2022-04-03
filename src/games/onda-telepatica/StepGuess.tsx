@@ -1,12 +1,12 @@
 import { useState } from 'react';
 // Ant Design Resources
-import { Button, Slider } from 'antd';
+import { Button, Slider, Space } from 'antd';
 // Hooks
 import { useLoading, useMock } from 'hooks';
 // Utils
 import { mockGuess } from './mock';
 // Components
-import { ButtonContainer, Instruction, ReadyPlayersBar, Step, Title, Translate } from 'components';
+import { Instruction, ReadyPlayersBar, Step, Title, Translate } from 'components';
 import { Dial } from './Dial';
 
 type PromptProps = {
@@ -66,7 +66,7 @@ export function StepGuess({ currentCategory, onSendGuess, players }: StepGuessPr
         onChange={setNeedle}
         value={needle}
       />
-      <ButtonContainer>
+      <Space className="space-container" align="center">
         <Button
           type="primary"
           onClick={() => onSendGuess({ guess: needle })}
@@ -76,7 +76,7 @@ export function StepGuess({ currentCategory, onSendGuess, players }: StepGuessPr
           <Translate pt="Enviar" en="Send" />: {needle < 0 ? currentCategory.left : currentCategory.right} »{' '}
           {Math.abs(needle)}
         </Button>
-      </ButtonContainer>
+      </Space>
 
       <ReadyPlayersBar players={players} />
     </Step>

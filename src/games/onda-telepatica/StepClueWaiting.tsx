@@ -1,4 +1,5 @@
-import { AvatarName, ButtonContainer, Instruction, Translate, WaitingRoom } from 'components';
+import { Space } from 'antd';
+import { AvatarName, Instruction, Translate, WaitingRoom } from 'components';
 import { Card } from './Card';
 
 type StepClueWaitingProps = {
@@ -41,9 +42,9 @@ export function StepClueWaiting({
               <AvatarName player={psychic} />
               <Translate pt={'escolheu:'} en={'chose:'} />
             </p>
-            <ButtonContainer>
+            <Space className="space-container" align="center">
               <Card left={card!.left} right={card!.right} />
-            </ButtonContainer>
+            </Space>
             <p>
               <Translate
                 pt={`Agora, é uma boa ideia pra discutir com o grupo em voz alta o que vocês acham ser super pra esquerda "${

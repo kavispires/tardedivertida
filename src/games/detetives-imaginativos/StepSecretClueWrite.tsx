@@ -2,17 +2,9 @@ import { useState } from 'react';
 // Hooks
 import { useLanguage, useLoading } from 'hooks';
 // Ant Design Resources
-import { Button, Input } from 'antd';
+import { Button, Input, Space } from 'antd';
 // Components
-import {
-  ButtonContainer,
-  FloatingHand,
-  ImageCardHand as Hand,
-  Instruction,
-  Step,
-  Title,
-  Translate,
-} from 'components';
+import { FloatingHand, ImageCardHand as Hand, Instruction, Step, Title, Translate } from 'components';
 
 type SecretClueWriteProps = {
   onSubmitClue: GenericFunction;
@@ -63,7 +55,7 @@ export function StepSecretClueWrite({ user, onSubmitClue }: SecretClueWriteProps
           </li>
         </ul>
       </Instruction>
-      <ButtonContainer className="d-input-container">
+      <Space className="space-container" align="center">
         <Input
           className="uppercase-input"
           placeholder={translate('Escreva sua pista aqui', 'Write your clue here')}
@@ -73,7 +65,7 @@ export function StepSecretClueWrite({ user, onSubmitClue }: SecretClueWriteProps
         <Button type="primary" disabled={isLoading || clue.length < 1} onClick={onButtonClick}>
           <Translate pt="Enviar pista secreta" en="Send secret clue" />
         </Button>
-      </ButtonContainer>
+      </Space>
       <FloatingHand>
         <Hand hand={user.hand} sizeRatio={6} />
       </FloatingHand>

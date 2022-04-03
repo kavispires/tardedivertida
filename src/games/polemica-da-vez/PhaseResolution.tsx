@@ -11,10 +11,9 @@ import {
   Title,
   RankingBoard,
   AdminNextRoundButton,
-  ButtonContainer,
 } from 'components';
 import { StepResolution } from './StepResolution';
-import { Button } from 'antd';
+import { Button, Space } from 'antd';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 function PhaseReact({ state, players, info }: PhaseProps) {
@@ -65,11 +64,11 @@ function PhaseReact({ state, players, info }: PhaseProps) {
         <Step fullWidth>
           <Title>Ranking</Title>
           <RankingBoard ranking={state.ranking} players={players} />
-          <ButtonContainer>
+          <Space className="space-container" align="center">
             <Button onClick={goToPreviousStep} ghost>
               <Translate pt="Ver resultado novamente" en="See results again" />
             </Button>
-          </ButtonContainer>
+          </Space>
           <AdminNextRoundButton round={state.round} />
         </Step>
       </StepSwitcher>

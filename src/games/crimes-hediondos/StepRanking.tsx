@@ -1,15 +1,7 @@
 // Ant Design Resources
-import { Button } from 'antd';
+import { Button, Space } from 'antd';
 // Components
-import {
-  AdminNextRoundButton,
-  ButtonContainer,
-  Instruction,
-  RankingBoard,
-  Step,
-  Title,
-  Translate,
-} from 'components';
+import { AdminNextRoundButton, Instruction, RankingBoard, Step, Title, Translate } from 'components';
 
 type StepRankingProps = {
   ranking: GameRanking;
@@ -34,11 +26,11 @@ export function StepRanking({ ranking, players, goToPreviousStep, round, lastRou
 
       <RankingBoard ranking={ranking} players={players} />
 
-      <ButtonContainer>
+      <Space className="space-container" align="center">
         <Button onClick={goToPreviousStep}>
           <Translate pt="Ver resultado novamente" en="See results again" />
         </Button>
-      </ButtonContainer>
+      </Space>
       <AdminNextRoundButton round={round} lastRound={lastRound} />
     </Step>
   );

@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from 'react';
 // Ant Design Resources
-import { Button } from 'antd';
+import { Button, Space } from 'antd';
 import { CloudUploadOutlined, ThunderboltOutlined } from '@ant-design/icons';
 // Hooks
 import {
@@ -16,15 +16,7 @@ import {
 import { LETTERS, SEPARATOR } from 'utils/constants';
 import { getEntryId, shuffle } from 'utils/helpers';
 // Components
-import {
-  ButtonContainer,
-  CanvasResizer,
-  Step,
-  Title,
-  ReadyPlayersBar,
-  Translate,
-  PopoverRule,
-} from 'components';
+import { CanvasResizer, Step, Title, ReadyPlayersBar, Translate, PopoverRule } from 'components';
 import { EvaluationAllDrawings } from './EvaluationAllDrawings';
 import { EvaluationAllCards } from './EvaluationAllCards';
 import { EvaluationRules } from './TextBlobs';
@@ -116,7 +108,7 @@ export function StepEvaluation({ drawings, cards, players, onSubmitVoting }: Ste
         <Translate pt="Adivinhação" en="Match the Pairs" />
       </Title>
 
-      <ButtonContainer>
+      <Space className="space-container" align="center">
         <Button
           type="default"
           icon={<ThunderboltOutlined />}
@@ -141,7 +133,7 @@ export function StepEvaluation({ drawings, cards, players, onSubmitVoting }: Ste
         >
           <Translate pt="Enviar sua avaliação" en="Send evaluation" />
         </Button>
-      </ButtonContainer>
+      </Space>
 
       <EvaluationAllDrawings
         drawings={drawings ?? []}

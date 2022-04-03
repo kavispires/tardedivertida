@@ -1,9 +1,10 @@
 // Utils
 import { useCardWidth, useGlobalState } from 'hooks';
 // Components
-import { AvatarName, ButtonContainer, Instruction, Step, TimedButton, Title, Translate } from 'components';
+import { AvatarName, Instruction, Step, TimedButton, Title, Translate } from 'components';
 import { MonsterCard } from './MonsterCard';
 import { MonsterSketches } from './MonsterSketches';
+import { Space } from 'antd';
 
 type StepResultsProps = {
   currentMonster: Monster;
@@ -119,14 +120,14 @@ export function StepResults({
         <Translate pt="Outros desenhos" en="Other sketches" />
       </Title>
 
-      <ButtonContainer>
+      <Space className="space-container" align="center">
         <MonsterSketches
           sketches={otherSketches}
           players={players}
           canvasSize={canvasSize / 1.5}
           canvasWidth={canvasWidth / 1.5}
         />
-      </ButtonContainer>
+      </Space>
     </Step>
   );
 }

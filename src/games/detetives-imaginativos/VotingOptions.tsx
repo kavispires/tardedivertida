@@ -1,9 +1,9 @@
 import { useMemo } from 'react';
 import { orderBy } from 'lodash';
 // Ant Design Resources
-import { Button } from 'antd';
+import { Button, Space } from 'antd';
 // Components
-import { Avatar, AvatarName, ButtonContainer, Translate } from 'components';
+import { Avatar, AvatarName, Translate } from 'components';
 
 type VotingOptionsProps = {
   isAllDisabled: boolean;
@@ -33,7 +33,7 @@ export function VotingOptions({
   );
 
   return (
-    <ButtonContainer className="d-voting-options">
+    <Space className="space-container d-voting-options" align="center">
       {votingOptions?.map((playerOption) => {
         const votedForPlayer = Object.values(players).filter((player) => player?.vote === playerOption.id);
         return (
@@ -62,6 +62,6 @@ export function VotingOptions({
           </div>
         );
       })}
-    </ButtonContainer>
+    </Space>
   );
 }
