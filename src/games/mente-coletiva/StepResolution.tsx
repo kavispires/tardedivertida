@@ -69,9 +69,9 @@ export function StepResolution({
 
       {step === 0 && <RoundType roundType={roundType} />}
 
-      <StepSwitcher step={step}>
+      <StepSwitcher step={step} players={players}>
         <Step key={0}>
-          <RankingBoard ranking={ranking} players={players} />
+          <RankingBoard ranking={ranking} players={players} hideGainedPoints />
         </Step>
 
         <Step key={1}>
