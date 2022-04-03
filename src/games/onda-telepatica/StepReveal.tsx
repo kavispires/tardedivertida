@@ -92,10 +92,7 @@ export function StepReveal({ goToNextStep, currentCategory, players, psychic }: 
         })}
       </ul>
 
-      <PopoverRule
-        // label={<Translate pt="Como a pontuação funciona?" en="How does scoring work?" />}
-        content={<ScoringRules />}
-      />
+      <PopoverRule content={<ScoringRules />} />
 
       <TimedButton
         duration={30}

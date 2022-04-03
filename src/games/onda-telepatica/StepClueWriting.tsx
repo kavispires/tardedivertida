@@ -1,12 +1,12 @@
 import { useState } from 'react';
 // Ant Design Resources
-import { Button, Input } from 'antd';
+import { Button, Input, Space } from 'antd';
 // Hooks
 import { useLanguage, useLoading } from 'hooks';
 // HUtils
 import { getTargetSide } from './helpers';
 // Components
-import { ButtonContainer, Instruction, Step, Title, Translate } from 'components';
+import { Instruction, Step, Title, Translate } from 'components';
 import { Dial } from './Dial';
 import { ClueWritingRules } from './RulesBlobs';
 
@@ -58,7 +58,7 @@ export function StepClueWriting({
         <ClueWritingRules />
       </Instruction>
       <Dial target={target} card={card!} showTarget />
-      <ButtonContainer>
+      <Space className="space-container" align="center">
         <Input
           onChange={onChangeInput}
           onPressEnter={onSubmitClue}
@@ -67,7 +67,7 @@ export function StepClueWriting({
         <Button type="primary" onClick={onSubmitClue} disabled={isLoading}>
           <Translate pt="Enviar" en="Send" />
         </Button>
-      </ButtonContainer>
+      </Space>
     </Step>
   );
 }

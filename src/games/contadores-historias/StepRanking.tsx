@@ -1,9 +1,8 @@
 // Components
-import { Button } from 'antd';
+import { Button, Space } from 'antd';
 import {
   AdminNextRoundButton,
   AvatarName,
-  ButtonContainer,
   Instruction,
   PopoverRule,
   RankingBoard,
@@ -90,9 +89,9 @@ export function StepRanking({
 
       <RankingBoard ranking={ranking} players={players} />
 
-      <ButtonContainer>
+      <Space className="space-container" align="center">
         <Button onClick={goToPreviousStep}>{translate('Voltar para Solução', 'Back to Solution')}</Button>
-      </ButtonContainer>
+      </Space>
 
       <AdminNextRoundButton round={round} lastRound={lastRound} />
     </Step>

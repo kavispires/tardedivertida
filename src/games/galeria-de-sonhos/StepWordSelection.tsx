@@ -1,8 +1,9 @@
 // Utils
 import { LETTERS } from 'utils/constants';
 // Components
-import { ButtonContainer, Card, Step, Title, Translate, TransparentButton } from 'components';
+import { Card, Step, Title, Translate, TransparentButton } from 'components';
 import { GeneralRules } from './RulesBlobs';
+import { Space } from 'antd';
 
 type StepWordSelectionProps = {
   onSubmitWord: GenericFunction;
@@ -16,7 +17,7 @@ export function StepWordSelection({ onSubmitWord, words }: StepWordSelectionProp
         <Translate pt="Selecione o tema" en="Select the theme" />
       </Title>
       <GeneralRules />
-      <ButtonContainer>
+      <Space className="space-container" align="center">
         {words.map((word, index) => {
           return (
             <TransparentButton key={word.id} onClick={() => onSubmitWord({ wordId: word.id })}>
@@ -26,7 +27,7 @@ export function StepWordSelection({ onSubmitWord, words }: StepWordSelectionProp
             </TransparentButton>
           );
         })}
-      </ButtonContainer>
+      </Space>
     </Step>
   );
 }

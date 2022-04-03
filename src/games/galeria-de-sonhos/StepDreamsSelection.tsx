@@ -1,9 +1,9 @@
 // Ant Design Resources
-import { Button } from 'antd';
+import { Button, Space } from 'antd';
 // Hooks
 import { useBooleanDictionary } from 'hooks';
 // Components
-import { ButtonContainer, Card, PopoverRule, Step, Title, Translate } from 'components';
+import { Card, PopoverRule, Step, Title, Translate } from 'components';
 import { DreamSelectionExtendedRules, DreamSelectionRules } from './RulesBlobs';
 import { SelectTable } from './SelectTable';
 
@@ -35,7 +35,7 @@ export function StepDreamsSelection({ table, word, onSubmitCards, currentRound }
       <PopoverRule content={<DreamSelectionExtendedRules />} />
       <SelectTable table={table} onSelectCard={onSelectCard} selectedCards={selectedCards} />
 
-      <ButtonContainer>
+      <Space className="space-container" align="center">
         <Button
           type="primary"
           size="large"
@@ -44,7 +44,7 @@ export function StepDreamsSelection({ table, word, onSubmitCards, currentRound }
         >
           <Translate pt={`Enviar ${selectedCount} cartas-sonho`} en={`Send ${selectedCount} dream cards`} />
         </Button>
-      </ButtonContainer>
+      </Space>
     </Step>
   );
 }

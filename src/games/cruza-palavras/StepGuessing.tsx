@@ -1,11 +1,11 @@
 import { useState, useCallback, useEffect } from 'react';
 //Design Resources
-import { Button } from 'antd';
+import { Button, Space } from 'antd';
 // Utils
 import { shuffle } from 'utils/helpers';
 import { getClueFromKey, getClueKey, isClue } from './helpers';
 // Components
-import { ButtonContainer, Instruction, ReadyPlayersBar, Title, Translate } from 'components';
+import { Instruction, ReadyPlayersBar, Title, Translate } from 'components';
 import { WordGrid } from './WordGrid';
 import { SelectableCell } from './SelectableCell';
 import { Clues } from './Clues';
@@ -123,7 +123,7 @@ export function StepGuessing({ grid, user, clues, onSubmitGuesses, players }: St
         />
       </Instruction>
 
-      <ButtonContainer>
+      <Space className="space-container" align="center">
         <Button
           size="large"
           type="primary"
@@ -135,7 +135,7 @@ export function StepGuessing({ grid, user, clues, onSubmitGuesses, players }: St
         <Button size="large" type="dashed" onClick={randomGuessThem}>
           <Translate pt="Desistir" en="Give up" />
         </Button>
-      </ButtonContainer>
+      </Space>
 
       <WordGrid
         grid={grid}

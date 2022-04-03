@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 // Ant Design Resources
-import { Button } from 'antd';
+import { Button, Space } from 'antd';
 // Hooks
 import { useMock } from 'hooks';
 // Utils
@@ -8,16 +8,7 @@ import { getAvatarColorById, getLastItem } from 'utils/helpers';
 import { mockGuesses } from './mock';
 import { autoSelectCorrectGuesses, getHistory } from './helpers';
 // Components
-import {
-  ButtonContainer,
-  DebugOnly,
-  FloatingHand,
-  Instruction,
-  ReadyPlayersBar,
-  Step,
-  Title,
-  Translate,
-} from 'components';
+import { DebugOnly, FloatingHand, Instruction, ReadyPlayersBar, Step, Title, Translate } from 'components';
 import { Crime } from './Crime';
 import { PlayersCards } from './PlayersCards';
 import { SelectableGroupedItemsBoard } from './SelectableGroupedItemsBoard';
@@ -136,11 +127,11 @@ export function StepGuessing({
       </Instruction>
 
       <DebugOnly dev>
-        <ButtonContainer>
+        <Space className="space-container" align="center">
           <Button type="dashed" ghost onClick={() => setGuesses(mockGuesses(groupedItems, players, user))}>
             <Translate pt="Seleção Aleatória Semi-inteligente" en="Semi-intelligent Random Selection" />
           </Button>
-        </ButtonContainer>
+        </Space>
       </DebugOnly>
 
       <PlayersCards
@@ -153,7 +144,7 @@ export function StepGuessing({
       />
 
       {isAllComplete && (
-        <ButtonContainer>
+        <Space className="space-container" align="center">
           <Button
             size="large"
             type="primary"
@@ -162,7 +153,7 @@ export function StepGuessing({
           >
             <Translate pt="Enviar Respostas" en="Send Guesses" />
           </Button>
-        </ButtonContainer>
+        </Space>
       )}
 
       <SelectableGroupedItemsBoard

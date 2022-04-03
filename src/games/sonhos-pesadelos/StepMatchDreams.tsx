@@ -1,13 +1,13 @@
 import clsx from 'clsx';
 import { useEffect } from 'react';
 // Ant Design Resources
-import { Button } from 'antd';
+import { Button, Space } from 'antd';
 // Hooks
 import { useLanguage, useLoading, useMock, useVotingMatch } from 'hooks';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
-import { ButtonContainer, Instruction, ReadyPlayersBar, Step, Title, Translate } from 'components';
+import { Instruction, ReadyPlayersBar, Step, Title, Translate } from 'components';
 import { AllDreamsClues } from './AllDreamsClues';
 import { DreamBoardVote } from './DreamBoardVote';
 import { cleanupVotes, selectOwnVote, voteRandomly } from './helpers';
@@ -62,7 +62,7 @@ export function StepMatchDreams({ players, user, table, onSubmitVotes, dreams }:
         />
       </Instruction>
 
-      <ButtonContainer>
+      <Space className="space-container" align="center">
         <Button
           type="default"
           disabled={isLoading}
@@ -81,7 +81,7 @@ export function StepMatchDreams({ players, user, table, onSubmitVotes, dreams }:
         >
           <Translate pt="Enviar" en="Submit" />
         </Button>
-      </ButtonContainer>
+      </Space>
 
       <DreamBoardVote
         user={user}

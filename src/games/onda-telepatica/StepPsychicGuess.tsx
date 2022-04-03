@@ -1,9 +1,9 @@
 // Ant Design Resources
-import { Button } from 'antd';
+import { Button, Space } from 'antd';
 // Hooks
 import { useLoading } from 'hooks';
 // Components
-import { ButtonContainer, Instruction, ReadyPlayersBar, Step, Title, Translate } from 'components';
+import { Instruction, ReadyPlayersBar, Step, Title, Translate } from 'components';
 import { Dial } from './Dial';
 
 type StepPsychicGuessProps = {
@@ -26,7 +26,7 @@ export function StepPsychicGuess({ currentCategory, onSendGuess, players }: Step
           en="You as the Psychic can now try to guess how many people will get points with your clue. Remember that players get points by getting the right number or any of the two neighboring numbers on each side."
         />
       </Instruction>
-      <ButtonContainer>
+      <Space className="space-container" align="center">
         <Button
           type="primary"
           onClick={() => onSendGuess({ guess: false })}
@@ -38,7 +38,7 @@ export function StepPsychicGuess({ currentCategory, onSendGuess, players }: Step
         <Button type="primary" onClick={() => onSendGuess({ guess: true })} size="large" disabled={isLoading}>
           <Translate pt="A metade ou mais" en="Half or more" />
         </Button>
-      </ButtonContainer>
+      </Space>
 
       <Dial card={currentCategory} target={currentCategory.target} showTarget />
 

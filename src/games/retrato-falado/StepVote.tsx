@@ -4,7 +4,7 @@ import { Button, Space } from 'antd';
 // Utils
 import { useCardWidth, useGlobalState } from 'hooks';
 // Components
-import { Avatar, CanvasResizer, CanvasSVG, ButtonContainer, Instruction, Title, Translate } from 'components';
+import { Avatar, CanvasResizer, CanvasSVG, Instruction, Title, Translate } from 'components';
 import { MonsterCard } from './MonsterCard';
 
 type StepVoteProps = {
@@ -82,7 +82,7 @@ export function StepVote({
 
       <CanvasResizer />
 
-      <ButtonContainer>
+      <Space className="space-container" align="center">
         {sketches.map((sketchObj) => {
           const player = players[sketchObj.playerId];
           return (
@@ -103,11 +103,11 @@ export function StepVote({
             </Space>
           );
         })}
-      </ButtonContainer>
+      </Space>
 
-      <ButtonContainer>
+      <Space className="space-container" align="center">
         <MonsterCard currentMonster={currentMonster} />
-      </ButtonContainer>
+      </Space>
     </div>
   );
 }

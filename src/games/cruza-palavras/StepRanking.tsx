@@ -1,9 +1,8 @@
 // Ant Design Resources
-import { Button } from 'antd';
+import { Button, Space } from 'antd';
 // Components
 import {
   AdminNextRoundButton,
-  ButtonContainer,
   Instruction,
   PopoverRule,
   RankingBoard,
@@ -44,11 +43,11 @@ export function StepRanking({
 
       <RankingBoard ranking={ranking} players={players} />
 
-      <ButtonContainer>
+      <Space className="space-container" align="center">
         <Button onClick={goToPreviousStep}>
           <Translate pt="Ver resultado novamente" en="See results again" />
         </Button>
-      </ButtonContainer>
+      </Space>
       <AdminNextRoundButton round={round} lastRound={isLastRound} />
     </Step>
   );

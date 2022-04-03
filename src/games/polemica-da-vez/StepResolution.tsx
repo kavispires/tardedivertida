@@ -1,7 +1,8 @@
 // Ant Design Resources
 import { CommentOutlined, LikeFilled, ShareAltOutlined } from '@ant-design/icons';
+import { Space } from 'antd';
 // Components
-import { ButtonContainer, Step, TimedButton, Title, Translate } from 'components';
+import { Step, TimedButton, Title, Translate } from 'components';
 import { Topic } from './Topic';
 import { TweetComment } from './TweetComment';
 
@@ -57,9 +58,9 @@ export function StepResolution({
         </ul>
       </div>
 
-      <ButtonContainer>
+      <Space className="space-container" align="center">
         <TimedButton duration={25} showTimer onExpire={goToNextStep} onClick={goToNextStep} label="Ranking" />
-      </ButtonContainer>
+      </Space>
     </Step>
   );
 }

@@ -1,21 +1,13 @@
 import clsx from 'clsx';
 import { orderBy } from 'lodash';
 //Design Resources
-import { Table } from 'antd';
+import { Space, Table } from 'antd';
 import { CheckSquareFilled, CloseSquareFilled, TrophyOutlined, WarningOutlined } from '@ant-design/icons';
 // Utils
 import { AVATARS as avatars } from 'utils/constants';
 import { useLanguage } from 'hooks';
 // Components
-import {
-  AvatarName,
-  ButtonContainer,
-  Instruction,
-  PopoverRule,
-  TimedButton,
-  Title,
-  Translate,
-} from 'components';
+import { AvatarName, Instruction, PopoverRule, TimedButton, Title, Translate } from 'components';
 import { WordGrid } from './WordGrid';
 import { ClueCard } from './ClueCard';
 import { PreviousClue } from './PreviousClue';
@@ -253,7 +245,7 @@ export function StepReveal({ grid, user, players, clues, goToNextStep, whoGotNoP
         cellComponentProps={{ clues, players, playerPerVotedCell, colorCodedCluesPerPlayer }}
       />
 
-      <ButtonContainer>
+      <Space className="space-container" align="center">
         <TimedButton
           duration={60}
           label={<Translate pt="Ver Ranking" en="See ranking" />}
@@ -262,7 +254,7 @@ export function StepReveal({ grid, user, players, clues, goToNextStep, whoGotNoP
           showTimer
           onClick={goToNextStep}
         />
-      </ButtonContainer>
+      </Space>
 
       <Title level={3}>
         <Translate pt="Todas as respostas" en="All Answers" />

@@ -1,10 +1,10 @@
 import { useState } from 'react';
 // Ant Design Resources
-import { Button, Input } from 'antd';
+import { Button, Input, Space } from 'antd';
 // Hooks
 import { useLanguage, useMock } from 'hooks';
 // Components
-import { AvatarName, ButtonContainer, CanvasSVG, Instruction, Step, Title, Translate } from 'components';
+import { AvatarName, CanvasSVG, Instruction, Step, Title, Translate } from 'components';
 
 type StepNameDrawingProps = {
   currentPrompt: Prompt;
@@ -64,11 +64,11 @@ export function StepNameDrawing({
         onPressEnter={onSubmitTitle}
       />
 
-      <ButtonContainer>
+      <Space className="space-container" align="center">
         <Button type="primary" onClick={onSubmitTitle} size="large" disabled={!title}>
           <Translate pt="Enviar" en="Submit name" />
         </Button>
-      </ButtonContainer>
+      </Space>
     </Step>
   );
 }

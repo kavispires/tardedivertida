@@ -1,7 +1,7 @@
 // Ant Design Resources
-import { Button } from 'antd';
+import { Button, Space } from 'antd';
 // Components
-import { AvatarName, ButtonContainer, Instruction, Step, Title, TextHighlight, Translate } from 'components';
+import { AvatarName, Instruction, Step, Title, TextHighlight, Translate } from 'components';
 import { TableFocus } from './TableFocus';
 
 type StepDefendingProps = {
@@ -41,11 +41,11 @@ export function StepDefending({
       </Instruction>
 
       {isUserTheCurrentPlayer && (
-        <ButtonContainer>
+        <Space className="space-container" align="center">
           <Button type="primary" onClick={onFinishDefenseClick} disabled={isLoading} size="large">
             <Translate pt="Concluir Defesa" en="End Defense" />
           </Button>
-        </ButtonContainer>
+        </Space>
       )}
 
       <TableFocus table={table} currentPlayer={currentPlayer} />

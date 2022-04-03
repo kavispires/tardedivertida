@@ -2,10 +2,11 @@ import { useState } from 'react';
 // Hooks
 import { useCardWidth } from 'hooks';
 // Components
-import { ButtonContainer, Instruction, Step, Title, Translate } from 'components';
+import { Instruction, Step, Title, Translate } from 'components';
 import { ItemCard } from './ItemCard';
 import { SceneTile } from './SceneTile';
 import { ContinueButton } from './ContinueButton';
+import { Space } from 'antd';
 
 type StepLocationSelectionProps = {
   user: GamePlayer;
@@ -86,12 +87,12 @@ export function StepLocationSelection({
         ))}
       </div>
 
-      <ButtonContainer>
+      <Space className="space-container" align="center">
         <ContinueButton
           disabled={location?.tileId === undefined}
           onClick={() => updateSelections({ locationTile: location?.tileId, locationIndex: location?.value })}
         />
-      </ButtonContainer>
+      </Space>
     </Step>
   );
 }

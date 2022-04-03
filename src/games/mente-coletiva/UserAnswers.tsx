@@ -1,10 +1,10 @@
 // Ant Design Resources
-import { Button } from 'antd';
+import { Button, Space } from 'antd';
 import { LockFilled, PlusCircleFilled } from '@ant-design/icons';
 // Hooks
 import { useLoading } from 'hooks';
 // Components
-import { ButtonContainer, Instruction, Translate } from 'components';
+import { Instruction, Translate } from 'components';
 
 type UserAnswersProps = {
   answerGroup: any;
@@ -33,7 +33,7 @@ export function UserAnswers({ answerGroup, user, onAddAnswer }: UserAnswersProps
           <Translate pt={<>Você tem: {points} ponto(s)</>} en={<>You have: {points} point(s)</>} />
         </Instruction>
 
-        <ButtonContainer className="m-user-answers">
+        <Space className="space-container m-user-answers" align="center">
           {Object.entries(user.answers).map(([key, answerObj]: any) => {
             return (
               <Button
@@ -47,7 +47,7 @@ export function UserAnswers({ answerGroup, user, onAddAnswer }: UserAnswersProps
               </Button>
             );
           })}
-        </ButtonContainer>
+        </Space>
       </div>
     </div>
   );

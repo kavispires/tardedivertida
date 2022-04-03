@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { useTimer } from 'react-timer-hook';
 // Ant Design Resources
-import { Button } from 'antd';
+import { Button, Space } from 'antd';
 // Utils
 import { AVATARS } from 'utils/constants';
 import { DRAWING_TIME_IN_SECONDS } from './constants';
 import { inNSeconds } from 'utils/helpers';
 // Components
-import { ButtonContainer, Card, DrawingCanvas, Icons, Step, TimerBar, Translate } from 'components';
+import { Card, DrawingCanvas, Icons, Step, TimerBar, Translate } from 'components';
 
 type StepTimedDrawingProps = {
   currentPrompt: Prompt;
@@ -48,11 +48,11 @@ export function StepTimedDrawing({ currentPrompt, onSubmitDrawing, players }: St
       ) : (
         <DrawingCanvas lines={lines} setLines={setLines} showControls />
       )}
-      <ButtonContainer>
+      <Space className="space-container" align="center">
         <Button type="primary" onClick={() => onSubmit()} size="large">
           <Translate pt="Enviar desenho" en="Submit drawing" />
         </Button>
-      </ButtonContainer>
+      </Space>
     </Step>
   );
 }

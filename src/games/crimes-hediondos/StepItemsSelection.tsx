@@ -1,12 +1,12 @@
 import { useState } from 'react';
 // Ant Design Resources
-import { Button } from 'antd';
+import { Button, Space } from 'antd';
 // Hooks
 import { useCardWidth } from 'hooks';
 // Utils
 import { shuffle } from 'utils/helpers';
 // Components
-import { ButtonContainer, Instruction, Step, Title, Translate, TransparentButton } from 'components';
+import { Instruction, Step, Title, Translate, TransparentButton } from 'components';
 import { ItemCard } from './ItemCard';
 import { ContinueButton } from './ContinueButton';
 
@@ -80,7 +80,7 @@ export function StepItemsSelection({
         />
       </Instruction>
 
-      <ButtonContainer>
+      <Space className="space-container" align="center">
         <Button onClick={onRandomSelect} size="large">
           <Translate pt="Selecionar aleatoriamente" en="Random picks" />
         </Button>
@@ -89,7 +89,7 @@ export function StepItemsSelection({
           disabled={!weaponId || !evidenceId}
           onClick={() => updateSelections({ weaponId, evidenceId })}
         />
-      </ButtonContainer>
+      </Space>
 
       <ul className="h-items-selection">
         {userItems.map((itemId) => (

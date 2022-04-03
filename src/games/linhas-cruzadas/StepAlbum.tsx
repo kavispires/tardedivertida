@@ -1,7 +1,7 @@
-import { Button } from 'antd';
+import { Button, Space } from 'antd';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTimer } from 'react-timer-hook';
-import { AdminNextRoundButton, ButtonContainer, Step, Title, Translate } from 'components';
+import { AdminNextRoundButton, Step, Title, Translate } from 'components';
 import { inNSeconds } from 'utils/helpers';
 import { Album } from './Album';
 import { PAGE_DURATION } from './constants';
@@ -88,7 +88,7 @@ export function StepAlbum({ players, album }: StepAlbumProps) {
           }}
         />
       </div>
-      <ButtonContainer>
+      <Space className="space-container" align="center">
         <Button disabled={areControlsLocked || currentEntry === 0} onClick={onPrevAlbum}>
           Prev Album
         </Button>
@@ -104,7 +104,7 @@ export function StepAlbum({ players, album }: StepAlbumProps) {
         <Button disabled={areControlsLocked || isLastAlbum} onClick={onNextAlbum}>
           Next Album
         </Button>
-      </ButtonContainer>
+      </Space>
       <AdminNextRoundButton />
     </Step>
   );

@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // Ant Design Resources
-import { Image, Modal, message, Button, notification, Divider, Typography, Switch } from 'antd';
+import { Image, Modal, message, Button, notification, Divider, Typography, Switch, Space } from 'antd';
 // Adapters
 import { ADMIN_API } from 'services/adapters';
 // Hooks
@@ -10,7 +10,7 @@ import { useGlobalState, useLanguage, useLoading, useLocalStorage } from 'hooks'
 // Constants
 import { LATEST_GAME_IDS, PUBLIC_URL } from 'utils/constants';
 // Components
-import { ButtonContainer, Instruction, Loading, Title, Translate } from 'components';
+import { Instruction, Loading, Title, Translate } from 'components';
 
 const updateLocal24hGameIds = (latestGameIds: PlainObject, newId: GameId) => {
   const now = Date.now();
@@ -153,11 +153,11 @@ export function CreateGameModal({ gameInfo }: CreateGameModalProps): JSX.Element
                 </Instruction>
               </div>
             ) : (
-              <ButtonContainer>
+              <Space className="space-container" align="center">
                 <Button type="primary" size="large" disabled={isLoading} onClick={createGame}>
                   <Translate pt="Criar Jogo" en="Create Game" />
                 </Button>
-              </ButtonContainer>
+              </Space>
             )}
           </>
         </Modal>

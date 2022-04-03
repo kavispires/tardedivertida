@@ -1,12 +1,12 @@
 import { useState } from 'react';
 // Ant Design Resources
-import { Button, Collapse } from 'antd';
+import { Button, Collapse, Space } from 'antd';
 import { TrophyOutlined } from '@ant-design/icons';
 // Utils
 import { getAnimationClass, getLastItem } from 'utils/helpers';
 import { isEntryLocked } from './helpers';
 // Components
-import { ButtonContainer, Instruction, PopoverRule, Step, TimedButton, Title, Translate } from 'components';
+import { Instruction, PopoverRule, Step, TimedButton, Title, Translate } from 'components';
 import { Crime } from './Crime';
 import { GroupedItemsBoard } from './GroupedItemsBoard';
 import { ScoringMessage } from './RulesBlobs';
@@ -92,7 +92,7 @@ export function StepReveal({
         />
       </Instruction>
 
-      <ButtonContainer>
+      <Space className="space-container" align="center">
         <Collapse>
           <Collapse.Panel
             key="weapons-evidences"
@@ -106,7 +106,7 @@ export function StepReveal({
             />
           </Collapse.Panel>
         </Collapse>
-      </ButtonContainer>
+      </Space>
 
       <PlayersCards
         user={user}
@@ -152,7 +152,7 @@ export function StepReveal({
         </div>
       )}
 
-      <ButtonContainer>
+      <Space className="space-container" align="center">
         {isFirstRunThrough ? (
           <TimedButton
             onClick={onSeeRanking}
@@ -166,7 +166,7 @@ export function StepReveal({
             <Translate pt="Ver Ranking" en="See Ranking" />
           </Button>
         )}
-      </ButtonContainer>
+      </Space>
     </Step>
   );
 }
