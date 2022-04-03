@@ -4,16 +4,10 @@ import { useOnSelectQuestionAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import {
-  AvatarName,
-  Instruction,
-  PhaseAnnouncement,
-  PhaseContainer,
-  StepSwitcher,
-  Translate,
-} from 'components';
+import { AvatarName, Instruction, StepSwitcher, Translate } from 'components';
 import { StepSelectQuestion } from './StepSelectQuestion';
 import { StepQuestionWaiting } from './StepQuestionWaiting';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();

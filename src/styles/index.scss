@@ -18,12 +18,13 @@
 // Shared Components
 @import '../components/avatars/avatars.scss';
 @import '../components/loaders/loaders.scss';
-@import '../components/lobby/lobby.scss';
-@import '../components/lobby/_internal/CloudBackground.scss';
+@import '../components/phases/PhaseAnnouncement.scss';
+@import '../components/phases/PhaseContainer.scss';
+@import '../components/phases/PhaseLobby.scss';
+@import '../components/phases/PhaseRules.scss';
+
 @import '../components/modals/modals';
 @import '../components/rules/_rules.scss';
-@import '../components/shared/PhaseAnnouncement.scss';
-@import '../components/shared/PhaseContainer.scss';
 @import '../components/shared/RoundAnnouncement.scss';
 @import '../components/shared/ButtonContainer.scss';
 @import '../components/shared/StarPoints.scss';

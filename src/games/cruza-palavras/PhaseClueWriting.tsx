@@ -4,9 +4,10 @@ import { useOnSubmitClueAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import { PhaseAnnouncement, PhaseContainer, RoundAnnouncement, StepSwitcher } from 'components';
+import { RoundAnnouncement, StepSwitcher } from 'components';
 import { StepClueWriting } from './StepClueWriting';
 import { WritingCluesRule } from './RulesBlobs';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 function PhaseClueWriting({ players, state, info }: PhaseProps) {
   const { translate } = useLanguage();

@@ -5,7 +5,8 @@ import { useGameState, useGlobalState, useGamePlayers } from 'hooks';
 import gameList from 'assets/data/games.json';
 import { isDevEnv } from 'utils/helpers';
 // Components
-import { AdminMenuDrawer, GameInfoDrawer, PhaseLobby } from 'components';
+import { AdminMenuDrawer, GameInfoDrawer } from 'components';
+import { PhaseLobby } from 'components/phases';
 
 const GAME_LIST: {
   [key: string]: GameInfo;

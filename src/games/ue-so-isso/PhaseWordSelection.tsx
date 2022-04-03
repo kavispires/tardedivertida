@@ -3,20 +3,12 @@ import { useIsUserReady, useWhichPlayerIsThe, useLanguage, useStep } from 'hooks
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import {
-  AvatarName,
-  Instruction,
-  PhaseAnnouncement,
-  PhaseContainer,
-  RoundAnnouncement,
-  StepSwitcher,
-  Translate,
-  ViewOr,
-} from 'components';
+import { AvatarName, Instruction, RoundAnnouncement, StepSwitcher, Translate, ViewOr } from 'components';
 import { StepWordSelection } from './StepWordSelection';
 import { GameProgressBar } from './GameProgressBar';
 import { GuesserWaitingRoom } from './GuesserWaitingRoom';
 import { useOnSubmitVotesAPIRequest } from './api-requests';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 type RoundAnnouncementTextProps = {
   guesser: GamePlayer;

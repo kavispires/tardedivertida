@@ -4,10 +4,11 @@ import { useIsUserReady, useUser, useLanguage, useStep } from 'hooks';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import { Instruction, PhaseAnnouncement, PhaseContainer, StepSwitcher } from 'components';
+import { Instruction, StepSwitcher } from 'components';
 import { StepReveal } from './StepReveal';
 import { ScoringMessage } from './RulesBlobs';
 import { StepRanking } from './StepRanking';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 function PhaseReveal({ players, state, info }: PhaseProps) {
   const { translate } = useLanguage();

@@ -4,18 +4,11 @@ import { useOnSubmitValidationsAPIRequest, useOnValidateSuggestionAPIRequest } f
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import {
-  Instruction,
-  PhaseAnnouncement,
-  PhaseContainer,
-  StepSwitcher,
-  Translate,
-  ViewOr,
-  WaitingRoom,
-} from 'components';
+import { Instruction, StepSwitcher, Translate, ViewOr, WaitingRoom } from 'components';
 import { StepCompareSuggestions } from './StepCompareSuggestions';
 import { ComparisonRules } from './RulesBlobs';
 import { GuesserWaitingRoom } from './GuesserWaitingRoom';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 function PhaseCompare({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();

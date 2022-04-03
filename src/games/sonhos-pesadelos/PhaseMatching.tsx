@@ -4,8 +4,9 @@ import { useOnSubmitVotesAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import { Instruction, PhaseAnnouncement, PhaseContainer, StepSwitcher, Translate } from 'components';
+import { Instruction, StepSwitcher, Translate } from 'components';
 import { StepMatchDreams } from './StepMatchDreams';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 function PhaseMatching({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();

@@ -8,8 +8,6 @@ import {
   AvatarName,
   ImageCardPreloadHand,
   Instruction,
-  PhaseAnnouncement,
-  PhaseContainer,
   RoundAnnouncement,
   StepSwitcher,
   Translate,
@@ -18,6 +16,7 @@ import {
 } from 'components';
 import { StoryWaiting } from './StoryWaiting';
 import { StoryWriting } from './StoryWriting';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 function PhaseStory({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();

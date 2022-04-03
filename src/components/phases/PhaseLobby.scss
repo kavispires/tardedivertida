@@ -168,3 +168,110 @@
     width: 100%;
   }
 }
+
+.cloud-background {
+  bottom: 0;
+  left: 0;
+  padding-top: 50px;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 1;
+  height: 100vh;
+
+  // ANIMATION
+
+  &__animation-0 {
+    animation: animateCloud 35s linear infinite;
+    transform: scale(0.35) translateY(75vh);
+  }
+
+  &__animation-1 {
+    animation: animateCloud 20s linear infinite;
+    transform: scale(0.3) translateY(250vh);
+  }
+
+  &__animation-2 {
+    animation: animateCloud 30s linear infinite;
+    transform: scale(0.35) translateY(100vh);
+  }
+
+  &__animation-3 {
+    animation: animateCloud 18s linear infinite;
+    transform: scale(0.4) translateY(10vh);
+  }
+
+  &__animation-4 {
+    animation: animateCloud 25s linear infinite;
+    transform: scale(0.55) translateY(100vh);
+  }
+
+  // THEMING RECOLORING
+
+  &--artsy-clouds {
+    background: rgba(255, 238, 111, 0.5);
+  }
+
+  &--book-clouds {
+    background: rgba(76, 210, 244, 0.5);
+  }
+
+  &--retro-cloud {
+    background: rgba(209, 70, 81, 0.5);
+  }
+
+  &--one-clouds {
+    background: rgba(233, 185, 81, 0.5);
+  }
+
+  &--monster-eye-cloud {
+    background: rgba(8, 60, 3, 0.5);
+  }
+
+  &--eye-cloud {
+    background: rgba(46, 33, 13, 0.75);
+  }
+
+  &--sheep-cloud {
+    background: rgba(196, 246, 255, 0.75);
+  }
+
+  &--sky-clouds {
+    background: rgba(0, 4, 31, 0.75);
+  }
+
+  &--cloud {
+    background: none;
+  }
+
+  &--cyber-cloud {
+    background: rgba(37, 37, 37, 0.95);
+  }
+
+  &--crime-clouds {
+    background: rgba(35, 35, 35, 0.8);
+  }
+
+  &--halloween-clouds {
+    background: rgba(27, 7, 57, 0.8);
+  }
+
+  // The cloud itself
+
+  &__cloud {
+    position: absolute;
+    width: 300px;
+    background-repeat: no-repeat;
+    height: 400px;
+    min-height: 300px;
+  }
+}
+
+@keyframes animateCloud {
+  0% {
+    margin-left: -1000px;
+  }
+  100% {
+    margin-left: 100%;
+  }
+}

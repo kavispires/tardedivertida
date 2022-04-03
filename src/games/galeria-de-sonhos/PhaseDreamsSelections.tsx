@@ -4,9 +4,10 @@ import { useOnSubmitCardsAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import { PhaseAnnouncement, PhaseContainer, StepSwitcher } from 'components';
+import { StepSwitcher } from 'components';
 import { DreamSelectionRules } from './RulesBlobs';
 import { StepDreamsSelection } from './StepDreamsSelection';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 function PhaseDreamsSelections({ players, state, info }: PhaseProps) {
   const { translate } = useLanguage();

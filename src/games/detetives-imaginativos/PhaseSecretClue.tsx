@@ -8,8 +8,6 @@ import {
   AvatarName,
   ImageCardPreloadHand,
   Instruction,
-  PhaseAnnouncement,
-  PhaseContainer,
   RoundAnnouncement,
   StepSwitcher,
   Translate,
@@ -17,6 +15,7 @@ import {
 } from 'components';
 import { StepSecretClueWrite } from './StepSecretClueWrite';
 import { StepSecretClueWaiting } from './StepSecretClueWaiting';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 function PhaseSecretClue({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();

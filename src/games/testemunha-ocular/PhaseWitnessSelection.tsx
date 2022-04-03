@@ -9,8 +9,6 @@ import { PHASES } from 'utils/phases';
 import {
   AvatarCard,
   Instruction,
-  PhaseAnnouncement,
-  PhaseContainer,
   Step,
   StepSwitcher,
   Title,
@@ -19,6 +17,7 @@ import {
   TransparentButton,
 } from 'components';
 import { WitnessRules } from './TextBlobs';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 function PhaseWitnessSelection({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();

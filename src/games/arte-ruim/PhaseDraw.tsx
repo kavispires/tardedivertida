@@ -6,15 +6,9 @@ import { useOnSubmitDrawingAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import {
-  Instruction,
-  PhaseAnnouncement,
-  PhaseContainer,
-  RoundAnnouncement,
-  StepSwitcher,
-  Translate,
-} from 'components';
+import { Instruction, RoundAnnouncement, StepSwitcher, Translate } from 'components';
 import { StepDraw } from './StepDraw';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 // Sound
 const arteRuimTimer = require('assets/sounds/arte-ruim-timer.mp3');

@@ -9,8 +9,6 @@ import {
   AdminNextRoundButton,
   ButtonContainer,
   Instruction,
-  PhaseAnnouncement,
-  PhaseContainer,
   PopoverRule,
   RankingBoard,
   Step,
@@ -20,6 +18,7 @@ import {
 } from 'components';
 import { StepReveal } from './StepReveal';
 import { ScoringRules } from './RulesBlobs';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 function PhaseReveal({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);

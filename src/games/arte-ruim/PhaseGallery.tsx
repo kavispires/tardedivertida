@@ -4,10 +4,11 @@ import { useLanguage, useStep } from 'hooks';
 // Resources and Utils
 import { PHASES } from 'utils/phases';
 // Components
-import { PhaseContainer, StepSwitcher, PhaseAnnouncement } from 'components';
+import { StepSwitcher } from 'components';
 import { GalleryRules } from './TextBlobs';
 import { StepGallery } from './StepGallery';
 import { StepRanking } from './StepRanking';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 function PhaseGallery({ players, state, info }: PhaseProps) {
   const { translate } = useLanguage();

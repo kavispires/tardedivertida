@@ -3,16 +3,9 @@ import { useIsUserReady, useWhichPlayerIsThe, useUser, useLanguage, useStep } fr
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import {
-  Instruction,
-  PhaseAnnouncement,
-  PhaseContainer,
-  PhaseTimerReset,
-  RoundAnnouncement,
-  StepSwitcher,
-  Translate,
-} from 'components';
+import { Instruction, RoundAnnouncement, StepSwitcher, Translate } from 'components';
 import { StepAssignment } from './StepAssignment';
+import { PhaseAnnouncement, PhaseContainer, PhaseTimerReset } from 'components/phases';
 
 function PhaseAssignment({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();

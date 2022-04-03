@@ -4,15 +4,9 @@ import { useOnEliminateSuspectAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import {
-  AvatarName,
-  Instruction,
-  PhaseAnnouncement,
-  PhaseContainer,
-  StepSwitcher,
-  Translate,
-} from 'components';
+import { AvatarName, Instruction, StepSwitcher, Translate } from 'components';
 import { StepSuspectElimination } from './StepSuspectElimination';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 function PhaseTrial({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
