@@ -69,11 +69,9 @@ export function StepStreetEnd({
               pt={<>Uma carta do {monsterName} será removida, menos chances dele aparece novamente!</>}
               en={<>One of the {monsterName} will be removed, so less chances of it showing up again!</>}
             />
-            <br />
-            <Translate pt="Prontos pra próxima rua?" en="Ready for the next street?" />
           </>
         )}
-
+        <br />
         {round.current === round.total ? (
           <Translate
             pt="E a noite chegou ao fim... Hora de comer gostosuras!"
