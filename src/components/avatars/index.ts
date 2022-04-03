@@ -4,4 +4,3 @@ export * from './AvatarEntry';
 export * from './AvatarIcon';
 export * from './AvatarName';
 export * from './AvatarStrip';
-export * from './SheepAvatar';

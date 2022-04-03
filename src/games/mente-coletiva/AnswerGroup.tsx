@@ -1,13 +1,15 @@
+import clsx from 'clsx';
 // Ant Design Resources
 import { Checkbox } from 'antd';
 import { LockFilled, QuestionCircleFilled } from '@ant-design/icons';
+// Utils
+import { getAnimationClass } from 'utils/helpers';
 // Hooks
 import { useGlobalState, useLanguage } from 'hooks';
 // Components
-import { Card, Instruction, SheepAvatar, Title, Translate } from 'components';
+import { Card, Instruction, Title, Translate } from 'components';
 import { Question } from './Question';
-import clsx from 'clsx';
-import { getAnimationClass } from 'utils/helpers';
+import { SheepAvatar } from './SheepAvatar';
 
 type AnswerGroupProps = {
   currentQuestion: MQuestion;
