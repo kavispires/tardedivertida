@@ -1,7 +1,6 @@
 export * from './ButtonContainer';
 export * from './DebugOnly';
 export * from './GameOver';
-export * from './Instruction';
 export * from './LanguageSwitch';
 export * from './RateGameWidget';
 export * from './ReadyPlayersBar';
@@ -12,7 +11,6 @@ export * from './StarPoints';
 export * from './StepSwitcher';
 export * from './TimerBar';
 export * from './TimedButton';
-export * from './Title';
 export * from './TransparentButton';
 export * from './Translate';
 export * from './TurnOrder';

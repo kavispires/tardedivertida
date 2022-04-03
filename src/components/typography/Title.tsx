@@ -18,11 +18,3 @@ export const Title = ({ children, white, icon, className, level = 1 }: TitleProp
     </Typography.Title>
   );
 };
-
-type TitleHighlightProps = {
-  children: any;
-};
-
-export function TitleHighlight({ children }: TitleHighlightProps) {
-  return <span className="title-highlight">{children}</span>;
-}

@@ -11,3 +11,4 @@ export * from './modals';
 export * from './ranking';
 export * from './rules';
 export * from './shared';
+export * from './typography';

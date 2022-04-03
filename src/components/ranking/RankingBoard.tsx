@@ -10,8 +10,7 @@ import { useDimensions } from 'hooks';
 // Utils
 import { inNSeconds } from 'utils/helpers';
 // Components
-import { Avatar, Translate } from 'components';
-import { Instruction, Step, Title } from 'components/shared';
+import { Avatar, Translate, Instruction, Step, Title } from 'components';
 
 type GainedPointProps = {
   gainedPoint: number;

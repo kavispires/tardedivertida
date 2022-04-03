@@ -7,7 +7,7 @@ import { useOnFinishDefenseRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import { Instruction, messageContent, StepSwitcher, Title, TitleHighlight, Translate } from 'components';
+import { Instruction, messageContent, StepSwitcher, Title, TextHighlight, Translate } from 'components';
 import { StepDefending } from './StepDefending';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
@@ -54,7 +54,7 @@ function PhaseDefense({ state, players, info }: PhaseProps) {
         >
           <Title>
             <Translate pt="Pista Secreta era: " en="The Secret Clue was: " />
-            <TitleHighlight>{state.clue}</TitleHighlight>
+            <TextHighlight>{state.clue}</TextHighlight>
           </Title>
           <Instruction>
             <Translate
