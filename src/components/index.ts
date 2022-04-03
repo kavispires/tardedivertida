@@ -11,7 +11,7 @@ export * from './pop-up';
 export * from './ranking';
 export * from './rules';
 export * from './shared';
-export * from './typography';
+export * from './text';
 export * from './buttons';
 export * from './dev';
 export * from './language';
