@@ -1,5 +1,6 @@
 // Components
-import { GameOverWrapper, Title, SheepAvatar } from 'components';
+import { GameOverWrapper, Title } from 'components';
+import { SheepAvatar } from './SheepAvatar';
 
 function PhaseGameOver({ state, info }: PhaseProps) {
   return (

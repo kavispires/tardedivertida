@@ -5,8 +5,8 @@ import { useDimensions } from 'hooks';
 // Utils
 import { PUBLIC_URL } from 'utils/constants';
 // Components
-import { SheepAvatar } from 'components';
 import { RoundType } from './RoundType';
+import { SheepAvatar } from './SheepAvatar';
 
 type PastureProps = {
   players: GamePlayers;
