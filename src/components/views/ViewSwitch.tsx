@@ -1,29 +1,3 @@
-type ViewProps = {
-  children: any;
-};
-
-export function View({ children }: ViewProps) {
-  return <>{children}</>;
-}
-
-type ViewIfProps = {
-  children: any;
-  isVisible?: boolean;
-};
-
-export function ViewIf({ isVisible = false, children }: ViewIfProps) {
-  return isVisible ? <>{children}</> : <></>;
-}
-
-type ViewOrProps = {
-  children: [any, any];
-  orCondition?: boolean;
-};
-
-export function ViewOr({ orCondition = false, children }: ViewOrProps) {
-  return orCondition ? <>{children[0]}</> : <>{children[1]}</>;
-}
-
 type ViewSwitchProps = {
   cases: boolean[];
   children: any;
