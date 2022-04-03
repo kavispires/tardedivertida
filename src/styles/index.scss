@@ -22,7 +22,8 @@
 @import '../components/phases/PhaseContainer.scss';
 @import '../components/phases/PhaseLobby.scss';
 @import '../components/phases/PhaseRules.scss';
-
+@import '../components/buttons/TimedButton.scss';
+@import '../components/buttons/TransparentButton.scss';
 @import '../components/modals/modals';
 @import '../components/rules/_rules.scss';
 @import '../components/typography/Instruction.scss';
@@ -34,8 +35,6 @@
 @import '../components/shared/WaitingRoom.scss';
 @import '../components/shared/ReadyPlayersBar.scss';
 @import '../components/shared/GameOver.scss';
-@import '../components/shared/TimedButton.scss';
-@import '../components/shared/TransparentButton.scss';
 @import '../components/shared/TurnOrder.scss';
 @import '../components/shared/Ribbon.scss';
 @import '../components/shared/StepSwitcher.scss';
