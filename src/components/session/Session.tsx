@@ -5,7 +5,7 @@ import { useGameState, useGlobalState, useGamePlayers } from 'hooks';
 import gameList from 'assets/data/games.json';
 import { isDevEnv } from 'utils/helpers';
 // Components
-import { AdminMenuDrawer, PhaseLobby, GameInfoDrawer } from 'components';
+import { AdminMenuDrawer, GameInfoDrawer, PhaseLobby } from 'components';
 
 const GAME_LIST: {
   [key: string]: GameInfo;
@@ -32,7 +32,7 @@ export function Session({ gameId, gameCollection, getActiveComponent }: SessionP
 
   useEffect(() => {
     if (isDevEnv) {
-      console.log({ state });
+      console.info({ state });
     }
   }, [state]);
 

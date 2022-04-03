@@ -12,7 +12,6 @@ export * from './RoundAnnouncement';
 export * from './RoundsLeftInstruction';
 export * from './PhaseSetup';
 export * from './Ribbon';
-export * from './Session';
 export * from './StarPoints';
 export * from './StepSwitcher';
 export * from './TimerBar';
