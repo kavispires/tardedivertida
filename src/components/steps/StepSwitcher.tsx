@@ -1,6 +1,5 @@
-import clsx from 'clsx';
 // Components
-import { WaitingRoom } from '.';
+import { WaitingRoom } from 'components/shared';
 import { Loading } from 'components/loaders';
 import { Translate } from 'components/language';
 
@@ -65,14 +64,4 @@ export function StepSwitcher({
   }
 
   return <div></div>;
-}
-
-type StepProps = {
-  children: any;
-  fullWidth?: boolean;
-  className?: string;
-};
-
-export function Step({ children, fullWidth = false, className }: StepProps) {
-  return <div className={clsx('step', fullWidth && 'step--full-width', className)}>{children}</div>;
 }

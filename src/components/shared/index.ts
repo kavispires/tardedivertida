@@ -6,7 +6,6 @@ export * from './RoundAnnouncement';
 export * from './RoundsLeftInstruction';
 export * from './Ribbon';
 export * from './StarPoints';
-export * from './StepSwitcher';
 export * from './TimerBar';
 export * from './TurnOrder';
 export * from './View';
