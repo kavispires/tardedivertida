@@ -34,10 +34,8 @@
 @import '../components/shared/RoundAnnouncement.scss';
 @import '../components/shared/ButtonContainer.scss';
 @import '../components/shared/StarPoints.scss';
-@import '../components/shared/GameOver.scss';
 @import '../components/ribbons/Ribbon.scss';
 @import '../components/steps/Step.scss';
-@import '../components/shared/RateGameWidget.scss';
 @import '../components/ranking/ranking.scss';
 @import '../components/drawers/drawers.scss';
 @import '../components/cards/cards';
@@ -46,6 +44,7 @@
 @import '../components/canvas/DrawingCanvas.scss';
 @import '../components/gallery/gallery';
 @import '../components/admin/admin';
+@import '../components/game-over/game-over';
 
 // Game Styles
 @import '../games/arte-ruim/arte-ruim';
