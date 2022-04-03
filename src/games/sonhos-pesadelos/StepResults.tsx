@@ -1,7 +1,7 @@
 // Hooks
 import { useLanguage } from 'hooks';
 // Components
-import { Gallery, Step, Title } from 'components';
+import { SlideShow, Step, Title } from 'components';
 import { GalleryDreamDisplay } from './GalleryDreamDisplay';
 import { getAvatarColorById } from 'utils/helpers';
 import { GalleryGuesses } from './GalleryGuesses';
@@ -34,7 +34,7 @@ export function StepResults({
     <Step fullWidth className="s-results-step">
       <Title>{translate('Resultado', 'Results')}</Title>
 
-      <Gallery
+      <SlideShow
         players={players}
         galleryLength={gallery.length}
         activeIndex={activeIndex}
@@ -46,7 +46,7 @@ export function StepResults({
       >
         <GalleryDreamDisplay entry={galleryEntry} activePlayer={activePlayer} />
         <GalleryGuesses entry={galleryEntry} players={players} correctGuessPoints={correctGuessPoints} />
-      </Gallery>
+      </SlideShow>
     </Step>
   );
 }

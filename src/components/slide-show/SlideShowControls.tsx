@@ -14,7 +14,7 @@ import { inNSeconds } from 'utils/helpers';
 // Components
 import { Translate } from 'components';
 
-type GalleryControlsProps = {
+type SlideShowControlsProps = {
   galleryLength: number;
   activeIndex: number;
   setActiveIndex: GenericFunction;
@@ -24,7 +24,7 @@ type GalleryControlsProps = {
   windowDuration: number;
 };
 
-export function GalleryControls({
+export function SlideShowControls({
   galleryLength,
   activeIndex,
   setActiveIndex,
@@ -32,7 +32,7 @@ export function GalleryControls({
   disableControls,
   barColor = 'gray',
   windowDuration = 10,
-}: GalleryControlsProps) {
+}: SlideShowControlsProps) {
   const { minutes, seconds, isRunning, pause, resume } = useTimer({
     expiryTimestamp: inNSeconds(windowDuration * galleryLength),
     autoStart: true,

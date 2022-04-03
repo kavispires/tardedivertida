@@ -4,7 +4,7 @@ export * from './canvas';
 export * from './cards';
 export * from './drawers';
 export * from './errors';
-export * from './gallery';
+export * from './slide-show';
 export * as Icons from './icons';
 export * from './loaders';
 export * from './pop-up';
