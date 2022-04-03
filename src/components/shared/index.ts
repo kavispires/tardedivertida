@@ -8,5 +8,5 @@ export * from './Ribbon';
 export * from './StarPoints';
 export * from './TimerBar';
 export * from './TurnOrder';
-export * from './View';
+export * from '../views/View';
 export * from './WaitingRoom';
