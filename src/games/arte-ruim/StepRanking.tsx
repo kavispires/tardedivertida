@@ -2,9 +2,8 @@
 import { Button } from 'antd';
 import { PictureOutlined } from '@ant-design/icons';
 // Components
-import { Step } from 'components/steps';
-import { RoundsLeftInstruction, Title } from 'components/text';
-import { RankingBoard } from 'components/ranking';
+import { RoundsLeftInstruction } from 'components/text';
+import { StepRankingWrapper } from 'components/ranking';
 import { PopoverRule } from 'components/rules';
 import { Translate } from 'components/language';
 import { AdminNextRoundButton } from 'components/admin';
@@ -30,10 +29,17 @@ export function StepRanking({
   isLastRound,
 }: StepRankingProps) {
   return (
-    <Step>
-      <Title>Ranking</Title>
-      <RankingBoard players={players} ranking={ranking} />
-
+    <StepRankingWrapper
+      players={players}
+      ranking={ranking}
+      gainedPointsDescriptions={[
+        <Translate pt="Votos corretos" en="Correct guesses" />,
+        <Translate
+          pt="Votos corretos em seu desenho por outros jogadores"
+          en="Correct guesses on your drawing by other players"
+        />,
+      ]}
+    >
       <PopoverRule content={<ScoringRules />} />
 
       {!isGameOver && <RoundsLeftInstruction round={round} />}
@@ -50,6 +56,6 @@ export function StepRanking({
       </Button>
 
       <AdminNextRoundButton round={round} lastRound={isLastRound} />
-    </Step>
+    </StepRankingWrapper>
   );
 }
