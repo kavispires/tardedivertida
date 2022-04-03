@@ -15,3 +15,4 @@ export * from './typography';
 export * from './buttons';
 export * from './dev';
 export * from './language';
+export * from './steps';
