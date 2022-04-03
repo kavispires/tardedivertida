@@ -14,7 +14,7 @@ import {
   messageContent,
   Step,
   Title,
-  TitleHighlight,
+  TextHighlight,
   Translate,
   ViewIf,
 } from 'components';
@@ -76,8 +76,7 @@ export function StepPlayCard({
           </>
         ) : (
           <>
-            <Translate pt="A pista secreta é" en="The secret clue is" />{' '}
-            <TitleHighlight>{clue}</TitleHighlight>
+            <Translate pt="A pista secreta é" en="The secret clue is" /> <TextHighlight>{clue}</TextHighlight>
           </>
         )}
       </Title>

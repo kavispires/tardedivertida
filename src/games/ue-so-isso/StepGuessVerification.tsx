@@ -12,7 +12,7 @@ import {
   messageContent,
   Step,
   Title,
-  TitleHighlight,
+  TextHighlight,
   Translate,
   ViewIf,
 } from 'components';
@@ -63,7 +63,7 @@ export function StepGuessVerification({
     <Step>
       <Title>
         <AvatarName player={guesser} addressUser /> <Translate pt="disse" en="said" />{' '}
-        <TitleHighlight>{guess}</TitleHighlight>
+        <TextHighlight>{guess}</TextHighlight>
       </Title>
 
       <Card word={secretWord.text} />
