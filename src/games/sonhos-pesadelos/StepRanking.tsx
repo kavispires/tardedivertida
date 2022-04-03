@@ -2,7 +2,7 @@
 import { Button } from 'antd';
 import { PictureOutlined } from '@ant-design/icons';
 import { Step } from 'components/steps';
-import { RankingBoardStep } from 'components/ranking';
+import { StepRankingWrapper } from 'components/ranking';
 import { Translate } from 'components/language';
 import { RoundsLeftInstruction } from 'components/text';
 import { AdminNextRoundButton } from 'components/admin';
@@ -29,7 +29,7 @@ export function StepRanking({
 }: StepRankingProps) {
   return (
     <Step>
-      <RankingBoardStep
+      <StepRankingWrapper
         players={players}
         ranking={ranking}
         gainedPointsDescriptions={[

@@ -9,11 +9,9 @@ import { CrownFilled } from '@ant-design/icons';
 import { useDimensions } from 'hooks';
 // Utils
 import { inNSeconds } from 'utils/helpers';
+// Components
 import { Translate } from 'components/language';
 import { Avatar } from 'components/avatars';
-import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
-// Components
 
 type GainedPointProps = {
   gainedPoint: number;
@@ -188,26 +186,5 @@ export function RankingBoard({ players, ranking, gainedPointsDescriptions }: Ran
         );
       })}
     </div>
-  );
-}
-
-type RankingBoardStepProps = {
-  players: GamePlayers;
-  ranking: GameRanking;
-  gainedPointsDescriptions: any[];
-};
-
-export function RankingBoardStep({ players, ranking, gainedPointsDescriptions }: RankingBoardStepProps) {
-  return (
-    <Step>
-      <Title>Ranking</Title>
-      <Instruction contained>
-        <Translate
-          pt="Passe o mouse em cada um dos pontos para saber como eles foram distribuídos"
-          en="Hover over the scores to learn how they were granted"
-        />
-      </Instruction>
-      <RankingBoard players={players} ranking={ranking} gainedPointsDescriptions={gainedPointsDescriptions} />
-    </Step>
   );
 }
