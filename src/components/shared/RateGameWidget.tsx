@@ -11,7 +11,7 @@ import { useAPICall, useGlobalState, useLanguage, useLoading } from 'hooks';
 // Utils
 import { inNSeconds } from 'utils/helpers';
 // Components
-import { Translate } from '.';
+import { Translate } from 'components/language';
 
 const { TextArea } = Input;
 

@@ -1,7 +1,8 @@
 import clsx from 'clsx';
 // Components
-import { Translate, WaitingRoom } from '.';
-import { Loading } from '..';
+import { WaitingRoom } from '.';
+import { Loading } from 'components/loaders';
+import { Translate } from 'components/language';
 
 const getWaitingRoomInstruction = (kind: string) => {
   switch (kind) {

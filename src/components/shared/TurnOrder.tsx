@@ -4,7 +4,7 @@ import { ForwardFilled } from '@ant-design/icons';
 // Helpers
 import { getAvatarColorById } from 'utils/helpers';
 // Components
-import { Translate } from '.';
+import { Translate } from 'components/language';
 import { AvatarName } from '..';
 
 type TurnOrderProps = {
