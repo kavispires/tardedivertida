@@ -94,12 +94,9 @@ export function StepReveal({ goToNextStep, currentCategory, players, psychic }: 
 
       <PopoverRule content={<ScoringRules />} />
 
-      <TimedButton
-        duration={30}
-        label={<Translate pt="Continuar" en="Continue" />}
-        onExpire={goToNextStep}
-        onClick={goToNextStep}
-      />
+      <TimedButton duration={30} onExpire={goToNextStep} onClick={goToNextStep}>
+        <Translate pt="Continuar" en="Continue" />
+      </TimedButton>
     </Step>
   );
 }

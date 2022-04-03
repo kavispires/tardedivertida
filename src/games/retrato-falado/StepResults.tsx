@@ -114,7 +114,9 @@ export function StepResults({
         )}
       </Instruction>
 
-      <TimedButton label="Ranking" duration={30} onExpire={goToNextStep} onClick={goToNextStep} />
+      <TimedButton duration={30} onExpire={goToNextStep} onClick={goToNextStep}>
+        <Translate pt="Ver Ranking" en="See Ranking" />
+      </TimedButton>
 
       <Title level={3} className="r-other-sketches-title">
         <Translate pt="Outros desenhos" en="Other sketches" />

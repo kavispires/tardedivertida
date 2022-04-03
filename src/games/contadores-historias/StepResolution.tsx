@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Avatar as AntAvatar, Space } from 'antd';
 // Hooks
-import { useCardWidth, useLanguage } from 'hooks';
+import { useCardWidth } from 'hooks';
 // Components
 import {
   Avatar,
@@ -26,7 +26,6 @@ type StepResolutionProps = {
 };
 
 export function StepResolution({ players, story, storyteller, table, goToNextStep }: StepResolutionProps) {
-  const { translate } = useLanguage();
   const cardWidth = useCardWidth(10, 32, 75);
 
   const solution = table.find((entry) => entry.playerId === storyteller.id);
@@ -109,12 +108,9 @@ export function StepResolution({ players, story, storyteller, table, goToNextSte
         })}
       </ul>
       <Space className="space-container" align="center">
-        <TimedButton
-          onClick={goToNextStep}
-          onExpire={goToNextStep}
-          duration={20}
-          label={translate('Continuar', 'Continue')}
-        />
+        <TimedButton onClick={goToNextStep} onExpire={goToNextStep} duration={20}>
+          <Translate pt="Continuar" en="Continue" />
+        </TimedButton>
       </Space>
     </Step>
   );

@@ -1,8 +1,6 @@
 import { useState } from 'react';
 // Ant Design Resources
 import { CheckCircleFilled, CloudUploadOutlined } from '@ant-design/icons';
-// Hooks
-import { useLanguage } from 'hooks';
 // Components
 import { AvatarName, Instruction, Step, TimedButton, Title, Translate } from 'components';
 
@@ -14,7 +12,6 @@ type StepWordSelectionProps = {
 
 export function StepWordSelection({ guesser, onSendSelectedWords, words = [] }: StepWordSelectionProps) {
   const [selectedWords, setSelectedWords] = useState<PlainObject>({});
-  const { translate } = useLanguage();
 
   const selectedWordsArray = Object.keys(selectedWords);
   const noSelection = selectedWordsArray.length === 0;
@@ -85,7 +82,6 @@ export function StepWordSelection({ guesser, onSendSelectedWords, words = [] }: 
       </ul>
 
       <TimedButton
-        label={translate('Enviar votos', 'Send votes')}
         icon={<CloudUploadOutlined />}
         type="primary"
         onClick={() => onSendSelectedWords({ votes: selectedWordsArray })}
@@ -93,7 +89,9 @@ export function StepWordSelection({ guesser, onSendSelectedWords, words = [] }: 
         onExpire={autoSelectRandomWord}
         duration={15}
         showTimer={noSelection}
-      />
+      >
+        <Translate pt="Enviar votos" en="Send votes" />
+      </TimedButton>
     </Step>
   );
 }
