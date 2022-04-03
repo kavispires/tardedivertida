@@ -24,7 +24,6 @@
 @import '../components/phases/PhaseRules.scss';
 @import '../components/buttons/TimedButton.scss';
 @import '../components/buttons/TransparentButton.scss';
-@import '../components/modals/modals';
 @import '../components/rules/_rules.scss';
 @import '../components/typography/Instruction.scss';
 @import '../components/typography/TextHighlight.scss';
@@ -73,6 +72,7 @@
 @import '../pages/Gallery/gallery';
 @import '../pages/Showcase/showcase';
 @import '../pages/Dev/dev';
+@import '../pages/Hub/hub';
 
 // Overridden colors
 @import './colors';

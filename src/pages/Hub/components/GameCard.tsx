@@ -5,7 +5,8 @@ import { useDimensions, useLanguage } from 'hooks';
 // Utils
 import { PUBLIC_URL, TAG_DICT } from 'utils/constants';
 // Components
-import { CreateGameModal, RulesModal } from 'components';
+import { RulesModal } from 'components';
+import { CreateGameModal } from './CreateGameModal';
 
 const getVersionColor = (version: string) => {
   if (version.endsWith('alpha')) {
