@@ -6,7 +6,7 @@ import { AimOutlined, ClearOutlined, IssuesCloseOutlined } from '@ant-design/ico
 // Hooks
 import { useGlobalState, useLanguage } from 'hooks';
 // Components
-import { Translate } from 'components';
+import { Translate } from 'components/language';
 
 type SuspectsListProps = {
   players: GamePlayers;

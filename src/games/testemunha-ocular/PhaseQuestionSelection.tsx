@@ -1,13 +1,17 @@
 // Hooks
-import { useWhichPlayerIsThe, useLoading, useLanguage, useStep } from 'hooks';
+import { useLanguage, useLoading, useStep, useWhichPlayerIsThe } from 'hooks';
 import { useOnSelectQuestionAPIRequest } from './api-requests';
-// Resources & Utils
+// Utils
 import { PHASES } from 'utils/phases';
 // Components
-import { AvatarName, Instruction, StepSwitcher, Translate } from 'components';
-import { StepSelectQuestion } from './StepSelectQuestion';
-import { StepQuestionWaiting } from './StepQuestionWaiting';
+import { StepSwitcher } from 'components/steps';
+import { Instruction } from 'components/text';
+import { Translate } from 'components/language';
+import { AvatarName } from 'components/avatars';
+import { ViewOr } from 'components/views';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { StepQuestionWaiting } from './StepQuestionWaiting';
+import { StepSelectQuestion } from './StepSelectQuestion';
 
 function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -59,7 +63,7 @@ function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
         </PhaseAnnouncement>
 
         {/* Step 1 */}
-        {isUserTheQuestioner ? (
+        <ViewOr orCondition={isUserTheQuestioner}>
           <StepSelectQuestion
             isLoading={isLoading}
             onSelectQuestion={onSelectQuestion}
@@ -68,7 +72,7 @@ function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
             suspects={state.suspects}
             history={state.history}
           />
-        ) : (
+
           <StepQuestionWaiting
             isUserTheWitness={isUserTheWitness}
             perpetrator={state.perpetrator}
@@ -77,7 +81,7 @@ function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
             suspects={state.suspects}
             history={state.history}
           />
-        )}
+        </ViewOr>
       </StepSwitcher>
     </PhaseContainer>
   );

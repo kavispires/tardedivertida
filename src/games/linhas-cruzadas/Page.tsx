@@ -4,8 +4,11 @@ import { useMemo } from 'react';
 import { Avatar as AntAvatar } from 'antd';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
+import { Translate } from 'components/language';
+import { Card } from 'components/cards';
+import { CanvasSVG } from 'components/canvas';
+import { Avatar, AvatarName } from 'components/avatars';
 // Componentes
-import { Avatar, AvatarName, CanvasSVG, Card, Translate } from 'components';
 
 type PageProps = {
   slide: LSlide;

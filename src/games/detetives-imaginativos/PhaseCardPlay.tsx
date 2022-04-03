@@ -7,9 +7,13 @@ import { useOnPlayCardAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import { Instruction, messageContent, StepSwitcher, Translate } from 'components';
-import { StepPlayCard } from './StepPlayCard';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { messageContent } from 'components/pop-up';
+import { StepSwitcher } from 'components/steps';
+import { Instruction } from 'components/text';
+import { Translate } from 'components/language';
+
+import { StepPlayCard } from './StepPlayCard';
 
 function PhaseCardPlay({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();

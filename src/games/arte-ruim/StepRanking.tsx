@@ -2,15 +2,12 @@
 import { Button } from 'antd';
 import { PictureOutlined } from '@ant-design/icons';
 // Components
-import {
-  AdminNextRoundButton,
-  PopoverRule,
-  RankingBoard,
-  RoundsLeftInstruction,
-  Step,
-  Title,
-  Translate,
-} from 'components';
+import { Step } from 'components/steps';
+import { RoundsLeftInstruction, Title } from 'components/text';
+import { RankingBoard } from 'components/ranking';
+import { PopoverRule } from 'components/rules';
+import { Translate } from 'components/language';
+import { AdminNextRoundButton } from 'components/admin';
 import { ScoringRules } from './TextBlobs';
 
 type StepRankingProps = {

@@ -4,7 +4,10 @@ import { CloudUploadOutlined } from '@ant-design/icons';
 // Hooks
 import { useLanguage } from 'hooks';
 // Components
-import { Instruction, ReadyPlayersBar, Step, Title, Translate } from 'components';
+import { Translate } from 'components/language';
+import { ReadyPlayersBar } from 'components/players';
+import { Step } from 'components/steps';
+import { Instruction, Title } from 'components/text';
 import { SceneTile } from './SceneTile';
 import { SelectedItems } from './SelectedItems';
 

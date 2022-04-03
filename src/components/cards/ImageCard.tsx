@@ -1,7 +1,11 @@
 import clsx from 'clsx';
+// Ant Design Resources
 import { Image } from 'antd';
+// Constants
 import { PUBLIC_URL } from 'utils/constants';
+// Assets
 import placeholder from 'assets/images/placeholder.jpg';
+// Hooks
 import { useBlurCards } from 'hooks';
 
 type ImageCardProps = {
@@ -46,5 +50,3 @@ export const ImageCard = ({
     </div>
   );
 };
-
-export default ImageCard;

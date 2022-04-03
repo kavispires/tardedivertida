@@ -4,11 +4,16 @@ import { useOnSubmitQuestionAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import { Instruction, RoundAnnouncement, StepSwitcher, Translate, ViewOr } from 'components';
+
 import { StepQuestionSelection } from './StepQuestionSelection';
 import { StepQuestionSelectionWaiting } from './StepQuestionSelectionWaiting';
 import { GamePremiseRules } from './RulesBlobs';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { StepSwitcher } from 'components/steps';
+import { RoundAnnouncement } from 'components/round';
+import { Instruction } from 'components/text';
+import { Translate } from 'components/language';
+import { ViewOr } from 'components/views';
 
 function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();

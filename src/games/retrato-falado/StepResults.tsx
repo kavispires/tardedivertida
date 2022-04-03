@@ -1,10 +1,15 @@
 // Utils
 import { useCardWidth, useGlobalState } from 'hooks';
 // Components
-import { AvatarName, Instruction, Step, TimedButton, Title, Translate } from 'components';
+
 import { MonsterCard } from './MonsterCard';
 import { MonsterSketches } from './MonsterSketches';
 import { Space } from 'antd';
+import { Instruction, Title } from 'components/text';
+import { Translate } from 'components/language';
+import { Step } from 'components/steps';
+import { AvatarName } from 'components/avatars';
+import { TimedButton } from 'components/buttons';
 
 type StepResultsProps = {
   currentMonster: Monster;

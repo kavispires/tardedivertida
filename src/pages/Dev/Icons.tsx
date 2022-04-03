@@ -1,9 +1,9 @@
 // Ant Design Resources
 import { Layout } from 'antd';
 // Components
-import * as icons from 'components/icons';
+import { Icons } from 'components/icons';
 
-function Icons() {
+function IconsPage() {
   const styles: React.CSSProperties = {
     width: '100%',
     display: 'flex',
@@ -23,7 +23,7 @@ function Icons() {
   return (
     <Layout.Content style={{ padding: '1rem', width: '100%' }}>
       <ul style={styles}>
-        {Object.entries(icons).map(([key, Icon], index) => (
+        {Object.entries(Icons).map(([key, Icon], index) => (
           <li key={key} style={stylesLi}>
             <Icon key={index} style={{ width: '90px' }} />
             <div style={{ width: '90px', overflow: 'hidden', textAlign: 'center' }}>{key}</div>
@@ -34,4 +34,4 @@ function Icons() {
   );
 }
 
-export default Icons;
+export default IconsPage;

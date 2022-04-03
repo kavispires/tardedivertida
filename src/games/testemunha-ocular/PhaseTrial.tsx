@@ -1,12 +1,13 @@
-// Hooks
-import { useWhichPlayerIsThe, useLoading, useLanguage, useStep } from 'hooks';
-import { useOnEliminateSuspectAPIRequest } from './api-requests';
-// Resources & Utils
-import { PHASES } from 'utils/phases';
-// Components
-import { AvatarName, Instruction, StepSwitcher, Translate } from 'components';
-import { StepSuspectElimination } from './StepSuspectElimination';
+import { AvatarName } from 'components/avatars';
+import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { StepSwitcher } from 'components/steps';
+import { Instruction } from 'components/text';
+import { useLanguage, useLoading, useStep, useWhichPlayerIsThe } from 'hooks';
+import { PHASES } from 'utils/phases';
+
+import { useOnEliminateSuspectAPIRequest } from './api-requests';
+import { StepSuspectElimination } from './StepSuspectElimination';
 
 function PhaseTrial({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();

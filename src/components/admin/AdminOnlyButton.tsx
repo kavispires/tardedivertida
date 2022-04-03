@@ -1,5 +1,4 @@
-// Components
-import { AdminOnlyContainer, AdminButton } from './index';
+import { AdminButton, AdminOnlyContainer } from './index';
 
 type AdminOnlyButtonProps = {
   onClick: GenericFunction;

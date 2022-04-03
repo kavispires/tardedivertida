@@ -4,7 +4,9 @@ import { PHASES } from 'utils/phases';
 // Components
 import { Session } from 'components/session';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
-import { GameOverWrapper, PageError } from 'components';
+import { PageError } from 'components/errors';
+import { GameOverWrapper } from 'components/game-over';
+
 import PhaseDialClue from './PhaseDialClue';
 import PhaseGuess from './PhaseGuess';
 import PhaseReveal from './PhaseReveal';

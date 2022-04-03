@@ -3,8 +3,10 @@ import { useState } from 'react';
 import { Button, Input } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks';
+import { Step } from 'components/steps';
+import { Title } from 'components/text';
+import { Translate } from 'components/language';
 // Components
-import { Step, Title, Translate } from 'components';
 
 type StepTopicSelectionProps = {
   currentTopics: Topic[];

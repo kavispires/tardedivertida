@@ -5,7 +5,7 @@ import { CloudUploadOutlined, MinusOutlined } from '@ant-design/icons';
 // Hooks
 import { useLanguage, useLoading } from 'hooks';
 // Components
-import { Translate } from 'components';
+import { Translate } from 'components/language';
 
 type GuessProps = {
   onSubmitOutcome: GenericFunction;

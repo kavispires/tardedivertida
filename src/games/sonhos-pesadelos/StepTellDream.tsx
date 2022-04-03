@@ -6,8 +6,13 @@ import { useLanguage, useLoading, useMock } from 'hooks';
 // Utils
 import { mockDream } from './mock';
 // Components
-import { Card, Instruction, ReadyPlayersBar, Step, Title, Translate } from 'components';
+
 import { DreamBoard } from './DreamBoard';
+import { Step } from 'components/steps';
+import { Instruction, Title } from 'components/text';
+import { Card } from 'components/cards';
+import { Translate } from 'components/language';
+import { ReadyPlayersBar } from 'components/players';
 
 type StepTellDreamProps = {
   players: GamePlayers;

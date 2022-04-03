@@ -4,18 +4,17 @@ import { useOnSubmitWordAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import {
-  AvatarName,
-  Instruction,
-  RoundAnnouncement,
-  StepSwitcher,
-  Translate,
-  ViewSwitch,
-  WaitingRoom,
-} from 'components';
+
 import { StepWordSelection } from './StepWordSelection';
 import { GeneralRules, WordSelectionRules } from './RulesBlobs';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { StepSwitcher } from 'components/steps';
+import { RoundAnnouncement } from 'components/round';
+import { Instruction } from 'components/text';
+import { Translate } from 'components/language';
+import { ViewOr } from 'components/views';
+import { WaitingRoom } from 'components/players';
+import { AvatarName } from 'components/avatars';
 
 function PhaseWordSelection({ players, state, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -54,7 +53,7 @@ function PhaseWordSelection({ players, state, info }: PhaseProps) {
         </PhaseAnnouncement>
 
         {/* Step 2 */}
-        <ViewSwitch cases={[isUserTheScout, !isUserTheScout]}>
+        <ViewOr orCondition={isUserTheScout}>
           <StepWordSelection onSubmitWord={onSubmitWord} words={state.words} />
 
           <WaitingRoom
@@ -77,7 +76,7 @@ function PhaseWordSelection({ players, state, info }: PhaseProps) {
           >
             <GeneralRules />
           </WaitingRoom>
-        </ViewSwitch>
+        </ViewOr>
       </StepSwitcher>
     </PhaseContainer>
   );

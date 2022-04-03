@@ -3,7 +3,10 @@ import { Button, Space } from 'antd';
 // Hooks
 import { useLoading } from 'hooks';
 // Components
-import { Instruction, ReadyPlayersBar, Step, Title, Translate } from 'components';
+import { Translate } from 'components/language';
+import { ReadyPlayersBar } from 'components/players';
+import { Step } from 'components/steps';
+import { Instruction, Title } from 'components/text';
 import { Dial } from './Dial';
 
 type StepPsychicGuessProps = {

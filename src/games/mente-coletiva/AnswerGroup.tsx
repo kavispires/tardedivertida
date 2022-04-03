@@ -7,9 +7,13 @@ import { getAnimationClass } from 'utils/helpers';
 // Hooks
 import { useGlobalState, useLanguage } from 'hooks';
 // Components
-import { Card, Instruction, Title, Translate } from 'components';
+
 import { Question } from './Question';
 import { SheepAvatar } from './SheepAvatar';
+import { Step } from 'components/steps';
+import { Instruction, Title } from 'components/text';
+import { Translate } from 'components/language';
+import { Card } from 'components/cards';
 
 type AnswerGroupProps = {
   currentQuestion: MQuestion;
@@ -30,7 +34,7 @@ export function AnswerGroup({
   const [isAdmin] = useGlobalState('isAdmin');
 
   return (
-    <div className="m-step">
+    <Step className="m-step">
       <Title level={3}>
         <Translate pt="Comparar Respostas" en="Compare Answers" />
         <Card
@@ -90,7 +94,7 @@ export function AnswerGroup({
           })}
         </ul>
       </div>
-    </div>
+    </Step>
   );
 }
 

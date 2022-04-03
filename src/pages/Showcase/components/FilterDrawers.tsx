@@ -4,7 +4,7 @@ import { InfoCircleOutlined } from '@ant-design/icons';
 // Hooks
 import { useDimensions } from 'hooks';
 // Components
-import { LanguageSwitch, Translate } from 'components';
+import { LanguageSwitch, Translate } from 'components/language';
 import { CustomFilterOptions } from './CustomFilterOptions';
 import { FilterOptions } from './FilterOptions';
 

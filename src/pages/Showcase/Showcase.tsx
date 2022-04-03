@@ -11,11 +11,12 @@ import { useDimensions, useGlobalState, useLanguage } from 'hooks';
 import gameList from 'assets/data/games.json';
 import { PUBLIC_URL } from 'utils/constants';
 import { getAnimationClass } from 'utils/helpers';
+import { filterGames } from './helpers';
 // Components
-import { Translate, TransparentButton } from 'components';
 import { FiltersDrawer } from './components/FilterDrawers';
 import { GameDetailsContent } from './components/GameDetailsContent';
-import { filterGames } from './helpers';
+import { TransparentButton } from 'components/buttons';
+import { Translate } from 'components/language';
 
 const GAMES: {
   [key: string]: GameInfo;

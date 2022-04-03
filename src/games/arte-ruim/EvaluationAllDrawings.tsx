@@ -2,7 +2,8 @@ import clsx from 'clsx';
 // Utils
 import { getEntryId } from 'utils/helpers';
 // Components
-import { CanvasSVG, Ribbon } from 'components';
+import { CanvasSVG } from 'components/canvas';
+import { Ribbon } from 'components/ribbons';
 
 type EvaluationAllDrawingsProps = {
   drawings: ArteRuimDrawing[];

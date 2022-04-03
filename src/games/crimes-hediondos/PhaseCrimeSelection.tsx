@@ -6,14 +6,18 @@ import { useOnSubmitCrimeAPIRequest } from './api-requests';
 import { PHASES } from 'utils/phases';
 import { mockCrime } from './mock';
 // Components
-import { ImageCardPreloadHand, Instruction, RoundAnnouncement, StepSwitcher, Translate } from 'components';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { StepSwitcher } from 'components/steps';
+import { RoundAnnouncement } from 'components/round';
+import { ImageCardPreloadHand } from 'components/cards';
+import { Instruction } from 'components/text';
+import { Translate } from 'components/language';
 import { WelcomeMessage } from './RulesBlobs';
 import { StepItemsSelection } from './StepItemsSelection';
 import { StepCauseOfDeathSelection } from './StepCauseOfDeathSelection';
 import { StepLocationSelection } from './StepLocationSelection';
 import { StepReviewCrime } from './StepReviewCrime';
 import { StepReasonForEvidence } from './StepReasonForEvidence';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
   const { translate } = useLanguage();

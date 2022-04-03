@@ -16,7 +16,12 @@ import {
 import { LETTERS, SEPARATOR } from 'utils/constants';
 import { getEntryId, shuffle } from 'utils/helpers';
 // Components
-import { CanvasResizer, Step, Title, ReadyPlayersBar, Translate, PopoverRule } from 'components';
+import { Step } from 'components/steps';
+import { PopoverRule } from 'components/rules';
+import { CanvasResizer } from 'components/canvas';
+import { Title } from 'components/text';
+import { Translate } from 'components/language';
+import { ReadyPlayersBar } from 'components/players';
 import { EvaluationAllDrawings } from './EvaluationAllDrawings';
 import { EvaluationAllCards } from './EvaluationAllCards';
 import { EvaluationRules } from './TextBlobs';

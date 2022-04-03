@@ -6,8 +6,10 @@ import { useLanguage } from 'hooks';
 // Utils
 import { getAnimationClass, kebabToPascal } from 'utils/helpers';
 // Components
-import { Icons, TimedButton, Title } from 'components';
 import { Translate } from 'components/language';
+import { Icons } from 'components/icons';
+import { Title } from 'components/text';
+import { TimedButton } from 'components/buttons';
 
 const IconIllustrationsComponents: any = Icons;
 

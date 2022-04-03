@@ -4,19 +4,18 @@ import { useOnSubmitCategoryAPIRequest, useOnSubmitClueAPIRequest } from './api-
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import {
-  AvatarName,
-  Instruction,
-  RoundAnnouncement,
-  StepSwitcher,
-  Translate,
-  TurnOrder,
-  ViewOr,
-} from 'components';
+
 import { StepClueWriting } from './StepClueWriting';
 import { StepClueWaiting } from './StepClueWaiting';
 import { StepCategorySelection } from './StepCategorySelection';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { StepSwitcher } from 'components/steps';
+import { RoundAnnouncement } from 'components/round';
+import { Instruction } from 'components/text';
+import { Translate } from 'components/language';
+import { AvatarName } from 'components/avatars';
+import { TurnOrder } from 'components/players';
+import { ViewOr } from 'components/views';
 
 function PhaseDialClue({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);

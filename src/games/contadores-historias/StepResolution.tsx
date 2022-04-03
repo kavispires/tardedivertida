@@ -3,17 +3,13 @@ import { Avatar as AntAvatar, Space } from 'antd';
 // Hooks
 import { useCardWidth } from 'hooks';
 // Components
-import {
-  Avatar,
-  AvatarName,
-  ImageBlurButton,
-  ImageCard,
-  PopoverRule,
-  Step,
-  TimedButton,
-  Title,
-  Translate,
-} from 'components';
+import { Avatar, AvatarName } from 'components/avatars';
+import { TimedButton } from 'components/buttons';
+import { ImageBlurButton, ImageCard } from 'components/cards';
+import { Translate } from 'components/language';
+import { PopoverRule } from 'components/rules';
+import { Step } from 'components/steps';
+import { Title } from 'components/text';
 import { BookPages } from './BookPages';
 import { ScoringRules } from './RulesBlogs';
 

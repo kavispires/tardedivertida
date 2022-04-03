@@ -1,4 +1,4 @@
-import * as icons from './index';
+import * as icons from './collection';
 import { Base } from './Base';
 
 export default {

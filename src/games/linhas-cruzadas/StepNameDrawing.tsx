@@ -3,8 +3,12 @@ import { useState } from 'react';
 import { Button, Input, Space } from 'antd';
 // Hooks
 import { useLanguage, useMock } from 'hooks';
+import { Step } from 'components/steps';
+import { Instruction, Title } from 'components/text';
+import { Translate } from 'components/language';
+import { AvatarName } from 'components/avatars';
+import { CanvasSVG } from 'components/canvas';
 // Components
-import { AvatarName, CanvasSVG, Instruction, Step, Title, Translate } from 'components';
 
 type StepNameDrawingProps = {
   currentPrompt: Prompt;

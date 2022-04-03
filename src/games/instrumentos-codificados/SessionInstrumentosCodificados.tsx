@@ -4,7 +4,7 @@ import { PHASES } from 'utils/phases';
 // Components
 import { Session } from 'components/session';
 import { PhaseLobby, PhasePlaceholder, PhaseRules, PhaseSetup } from 'components/phases';
-import { PageError } from 'components';
+import { PageError } from 'components/errors';
 
 function SessionInstrumentosCodificados({ gameId }: SessionProps) {
   function getActiveComponent(phase: string) {

@@ -5,8 +5,10 @@ import { useCardWidth } from 'hooks';
 import { getEntryId } from 'utils/helpers';
 import { getClueId } from './helpers';
 // Components
-import { RibbonGroup, ImageCardSelectButton, ImageBlurButton } from 'components';
+
 import { DreamCard } from './DreamCard';
+import { RibbonGroup } from 'components/ribbons';
+import { ImageBlurButton, ImageCardSelectButton } from 'components/cards';
 
 type DreamBoardVoteProps = {
   table: ImageCard[];

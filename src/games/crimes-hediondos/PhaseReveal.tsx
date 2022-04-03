@@ -4,7 +4,8 @@ import { useIsUserReady, useUser, useLanguage, useStep } from 'hooks';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import { Instruction, StepSwitcher } from 'components';
+import { StepSwitcher } from 'components/steps';
+import { Instruction } from 'components/text';
 import { StepReveal } from './StepReveal';
 import { ScoringMessage } from './RulesBlobs';
 import { StepRanking } from './StepRanking';

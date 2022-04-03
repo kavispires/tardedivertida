@@ -6,9 +6,12 @@ import { useOnSubmitDrawingAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import { Instruction, RoundAnnouncement, StepSwitcher, Translate } from 'components';
-import { StepDraw } from './StepDraw';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { StepSwitcher } from 'components/steps';
+import { RoundAnnouncement } from 'components/round';
+import { Instruction } from 'components/text';
+import { Translate } from 'components/language';
+import { StepDraw } from './StepDraw';
 
 // Sound
 const arteRuimTimer = require('assets/sounds/arte-ruim-timer.mp3');

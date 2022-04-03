@@ -4,18 +4,17 @@ import { useOnSubmitSecretClueAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import {
-  AvatarName,
-  ImageCardPreloadHand,
-  Instruction,
-  RoundAnnouncement,
-  StepSwitcher,
-  Translate,
-  ViewOr,
-} from 'components';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { StepSwitcher } from 'components/steps';
+import { RoundAnnouncement } from 'components/round';
+import { Instruction } from 'components/text';
+import { Translate } from 'components/language';
+import { AvatarName } from 'components/avatars';
+import { ImageCardPreloadHand } from 'components/cards';
+import { ViewOr } from 'components/views';
+
 import { StepSecretClueWrite } from './StepSecretClueWrite';
 import { StepSecretClueWaiting } from './StepSecretClueWaiting';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 function PhaseSecretClue({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();

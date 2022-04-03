@@ -3,7 +3,7 @@ import { useWhichPlayerIsThe, useLanguage, useStep } from 'hooks';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import { StepSwitcher } from 'components';
+import { StepSwitcher } from 'components/steps';
 import { StepResolution } from './StepResolution';
 import { StepRanking } from './StepRanking';
 import { ScoringRules } from './RulesBlogs';

@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Radio } from 'antd';
 // Components
-import { Translate } from 'components';
+import { Translate } from 'components/language';
 
 type CustomFilterOptionsProps = {
   name: string;

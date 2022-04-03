@@ -2,7 +2,7 @@ import { orderBy } from 'lodash';
 // Ant Design Resources
 import { Table, Tooltip } from 'antd';
 // Components
-import { AvatarName, Avatar, AvatarIcon } from 'components';
+import { AvatarName, Avatar, AvatarIcon } from 'components/avatars';
 import { CrimeGuessStatus } from './CrimeGuessStatus';
 
 type ResultsTableProps = {

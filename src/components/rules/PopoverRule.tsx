@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Button, Popover } from 'antd';
 import { ReadOutlined } from '@ant-design/icons';
 // Components
-import { Translate } from 'components';
+import { Translate } from 'components/language';
 
 type PopoverRuleProps = {
   content: any;
@@ -11,7 +11,7 @@ type PopoverRuleProps = {
   label?: any;
 };
 
-export function PopoverRule({ content, label, showLabel = true }: PopoverRuleProps) {
+export function PopoverRule({ content, label, showLabel = true }: PopoverRuleProps): JSX.Element {
   const [isActive, setActive] = useState(false);
 
   useEffect(() => {

@@ -1,11 +1,15 @@
 // Hooks
 import { useLanguage } from 'hooks';
 // Components
-import { AdminNextRoundButton, Instruction, PopoverRule, Step, Title, Translate } from 'components';
 import { PlayerStats } from './PlayerStats';
 import { Street } from './Street';
 import { CardCountExplanation } from './RulesBlobs';
 import { PlayersDecisionList } from './PlayersDecisionList';
+import { Step } from 'components/steps';
+import { Instruction, Title } from 'components/text';
+import { Translate } from 'components/language';
+import { PopoverRule } from 'components/rules';
+import { AdminNextRoundButton } from 'components/admin';
 
 type StepStreetEndProps = {
   street: NStreet;

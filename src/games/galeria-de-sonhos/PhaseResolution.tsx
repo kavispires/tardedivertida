@@ -3,7 +3,7 @@ import { useIsUserReady, useLanguage, useStep } from 'hooks';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import { StepSwitcher } from 'components';
+import { StepSwitcher } from 'components/steps';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 function PhaseResolution({ players, state, info }: PhaseProps) {

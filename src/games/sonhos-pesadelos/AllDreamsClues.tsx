@@ -4,7 +4,7 @@ import { LETTERS } from 'utils/constants';
 // Utils
 import { getColorFromLetter, getEntryId } from 'utils/helpers';
 // Components
-import { Card } from 'components';
+import { Card } from 'components/cards';
 
 type AllDreamsCluesProps = {
   dreams: SDream[];

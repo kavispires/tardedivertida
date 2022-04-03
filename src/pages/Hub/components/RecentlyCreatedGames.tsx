@@ -8,7 +8,7 @@ import { useLocalStorage } from 'hooks';
 // Utils
 import { LATEST_GAME_IDS } from 'utils/constants';
 // Components
-import { Translate } from 'components';
+import { Translate } from 'components/language';
 
 export function RecentlyCreatedGames(): JSX.Element {
   const navigate = useNavigate();

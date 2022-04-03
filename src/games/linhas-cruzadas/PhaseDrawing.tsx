@@ -5,9 +5,13 @@ import { useOnSubmitDrawingAPIRequest } from './api-requests';
 import { PHASES } from 'utils/phases';
 import { DRAWING_TIME_IN_SECONDS } from './constants';
 // Components
-import { Instruction, StepSwitcher, Translate, TurnOrder } from 'components';
-import { StepTimedDrawing } from './StepTimedDrawing';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { TurnOrder } from 'components/players';
+import { Translate } from 'components/language';
+import { Instruction } from 'components/text';
+import { StepSwitcher } from 'components/steps';
+
+import { StepTimedDrawing } from './StepTimedDrawing';
 
 function PhaseDrawing({ players, state, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
