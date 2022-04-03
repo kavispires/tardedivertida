@@ -25,13 +25,13 @@
 @import '../components/buttons/TimedButton.scss';
 @import '../components/buttons/TransparentButton.scss';
 @import '../components/rules/_rules.scss';
-@import '../components/typography/Instruction.scss';
-@import '../components/typography/TextHighlight.scss';
-@import '../components/typography/Title.scss';
+@import '../components/text/Instruction.scss';
+@import '../components/text/TextHighlight.scss';
+@import '../components/text/Title.scss';
 @import '../components/players/WaitingRoom.scss';
 @import '../components/players/ReadyPlayersBar.scss';
 @import '../components/players/TurnOrder.scss';
-@import '../components/round/RoundAnnouncement.scss';
+@import '../components/round/round';
 @import '../components/points/points';
 @import '../components/ribbons/ribbons';
 @import '../components/steps/Step.scss';
@@ -41,7 +41,7 @@
 @import '../components/canvas/Canvas.scss';
 @import '../components/canvas/CanvasReSizer.scss';
 @import '../components/canvas/DrawingCanvas.scss';
-@import '../components/gallery/gallery';
+@import '../components/slide-show/slide-show';
 @import '../components/admin/admin';
 @import '../components/game-over/game-over';
 

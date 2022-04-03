@@ -1,8 +1,8 @@
 import clsx from 'clsx';
 // Components
-import { GalleryControls } from './GalleryControls';
+import { SlideShowControls } from './SlideShowControls';
 
-type GalleryProps = {
+type SlideShowProps = {
   players: GamePlayers;
   children: [ReactChildren, ReactChildren];
   galleryLength: number;
@@ -17,7 +17,7 @@ type GalleryProps = {
   rightClassName?: string;
 };
 
-export function Gallery({
+export function SlideShow({
   children,
   galleryLength,
   activeIndex,
@@ -29,7 +29,7 @@ export function Gallery({
   className = '',
   leftClassName = '',
   rightClassName = '',
-}: GalleryProps) {
+}: SlideShowProps) {
   return (
     <div className={clsx('gallery', className)}>
       <div className={clsx('gallery__left', leftClassName)} id="gallery-left">
@@ -38,7 +38,7 @@ export function Gallery({
       <div className={clsx('gallery__right', rightClassName)} id="gallery-right">
         {children[1]}
       </div>
-      <GalleryControls
+      <SlideShowControls
         galleryLength={galleryLength}
         activeIndex={activeIndex}
         setActiveIndex={setActiveIndex}
