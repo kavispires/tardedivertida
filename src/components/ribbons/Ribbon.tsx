@@ -1,5 +1,5 @@
-// Utils
 import clsx from 'clsx';
+// Utils
 import { getAnimationClass, getColorFromLetter } from 'utils/helpers';
 
 type RibbonProps = {
@@ -20,25 +20,6 @@ export function Ribbon({ label, position = 'absolute' }: RibbonProps): JSX.Eleme
       >
         {label}
       </div>
-    </div>
-  );
-}
-
-type RibbonGroupProps = {
-  labels: string[];
-};
-
-export function RibbonGroup({ labels }: RibbonGroupProps) {
-  return (
-    <div className="ribbon-group ribbon--absolute">
-      {labels.length > 0 &&
-        labels.map((label) => (
-          <Ribbon
-            key={label}
-            label={label.length > 0 ? label.charAt(label.length - 1) : label}
-            position="static"
-          />
-        ))}
     </div>
   );
 }

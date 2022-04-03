@@ -18,3 +18,4 @@ export * from './language';
 export * from './steps';
 export * from './views';
 export * from './players';
+export * from './ribbons';
