@@ -72,9 +72,15 @@ type RankingBoardProps = {
   players: GamePlayers;
   ranking: GameRanking;
   gainedPointsDescriptions?: any[];
+  hideGainedPoints?: boolean;
 };
 
-export function RankingBoard({ players, ranking, gainedPointsDescriptions }: RankingBoardProps): JSX.Element {
+export function RankingBoard({
+  players,
+  ranking,
+  gainedPointsDescriptions,
+  hideGainedPoints = false,
+}: RankingBoardProps): JSX.Element {
   const [displayStep, setDisplayStep] = useState(0);
   const [sortedRanking, setSortedRanking] = useState<GameRanking>([]);
   const [reRank, setReRank] = useState(0);
@@ -170,7 +176,7 @@ export function RankingBoard({ players, ranking, gainedPointsDescriptions }: Ran
             <Tooltip title={<Translate pt="Pontos Anteriores" en="Previous Points" />} color="gray">
               <div className="ranking-board__cell-points">{previousScore}</div>
             </Tooltip>
-            {displayStep >= 1 && gainedPoints !== undefined && (
+            {!hideGainedPoints && displayStep >= 1 && gainedPoints !== undefined && (
               <GainedPoints
                 gainedPoints={gainedPoints}
                 playerId={playerId}
