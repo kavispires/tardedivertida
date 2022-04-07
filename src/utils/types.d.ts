@@ -93,15 +93,10 @@ type GameInfo = {
   gameCode: GameCode;
   gameName: GameName;
   version: string;
-  title: {
-    pt: string;
-    en: string;
-  };
+  title: DualLanguageValue;
+  popularName: DualLanguageValue;
   basedOn: string;
-  summary: {
-    pt: string;
-    en: string;
-  };
+  summary: DualLanguageValue;
   rules: {
     pt: string[];
     en: string[];
