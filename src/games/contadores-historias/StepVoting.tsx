@@ -4,20 +4,16 @@ import { Button } from 'antd';
 import { DownSquareOutlined } from '@ant-design/icons';
 // Hooks & Utils
 import { useCardWidth, useLanguage, useLoading, useMock } from 'hooks';
-// Components
-import {
-  Card,
-  DebugOnly,
-  ImageBlurButton,
-  ImageCard,
-  PopoverRule,
-  ReadyPlayersBar,
-  Step,
-  Title,
-  Translate,
-} from 'components';
-import { VotingRules } from './RulesBlogs';
 import { mockVote } from './mock';
+// Components
+import { Card, ImageBlurButton, ImageCard } from 'components/cards';
+import { Translate } from 'components/language';
+import { PopoverRule } from 'components/rules';
+import { Step } from 'components/steps';
+import { Title } from 'components/text';
+import { VotingRules } from './RulesBlogs';
+import { DebugOnly } from 'components/dev';
+import { ReadyPlayersBar } from 'components/players';
 
 type StepVotingProps = {
   players: GamePlayers;

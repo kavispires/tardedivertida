@@ -1,5 +1,5 @@
-import { Typography } from 'antd';
 import clsx from 'clsx';
+import { Typography } from 'antd';
 
 type InstructionsProps = {
   children: any;

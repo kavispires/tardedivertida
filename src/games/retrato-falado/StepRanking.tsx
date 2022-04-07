@@ -1,5 +1,8 @@
 import { AdminNextRoundButton } from 'components/admin';
-import { Instruction, RankingBoard, Step, Title, Translate } from 'components';
+import { Translate } from 'components/language';
+import { RankingBoard } from 'components/ranking';
+import { Step } from 'components/steps';
+import { Instruction, Title } from 'components/text';
 
 type StepRankingProps = {
   ranking: any;

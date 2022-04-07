@@ -1,7 +1,11 @@
 // Hooks
 import { useLanguage } from 'hooks';
 // Components
-import { AdminNextRoundButton, Instruction, Step, Title, Translate } from 'components';
+import { AdminNextRoundButton } from 'components/admin';
+import { Translate } from 'components/language';
+import { Step } from 'components/steps';
+import { Instruction, Title } from 'components/text';
+
 import { EspiaoEntreNosCard as Card } from './Card';
 import { LocationsList } from './LocationsList';
 import { Notes } from './Notes';

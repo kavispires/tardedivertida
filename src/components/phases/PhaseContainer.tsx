@@ -3,7 +3,8 @@ import clsx from 'clsx';
 // Hooks
 import { useGlobalState, useLanguage } from 'hooks';
 // Components
-import { LoadingPage, PageError } from 'components';
+import { LoadingPage } from 'components/loaders';
+import { PageError } from 'components/errors';
 
 type PhaseContainerProps = {
   info?: GameInfo;

@@ -1,5 +1,8 @@
 // Components
-import { Instruction, RulesList, Translate } from 'components';
+
+import { Translate } from 'components/language';
+import { RulesList } from 'components/rules';
+import { Instruction } from 'components/text';
 import { CandyCount } from './CandyCount';
 
 const CANDY_VALUES = [1, 2, 3, 4, 5, 5, 5, 7, 7, 7, 8, 9, 10, 11, 11, 12, 13, 14, 15, 17, 19];

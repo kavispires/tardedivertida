@@ -1,15 +1,10 @@
 // Components
-import {
-  AvatarName,
-  FloatingHand,
-  ImageCardHand as Hand,
-  Instruction,
-  Title,
-  Translate,
-  TurnOrder,
-  AvatarIcon,
-  Step,
-} from 'components';
+import { AvatarIcon, AvatarName } from 'components/avatars';
+import { FloatingHand, ImageCardHand } from 'components/cards';
+import { Translate } from 'components/language';
+import { TurnOrder } from 'components/players';
+import { Step } from 'components/steps';
+import { Instruction, Title } from 'components/text';
 
 type StoryWaitingProps = {
   storyteller: GamePlayer;
@@ -38,7 +33,7 @@ export function StoryWaiting({ storyteller, user, players, gameOrder }: StoryWai
       </Instruction>
       <TurnOrder players={players} activePlayerId={storyteller.id} order={gameOrder} />
       <FloatingHand>
-        <Hand hand={user.hand} sizeRatio={user.hand.length} />
+        <ImageCardHand hand={user.hand} sizeRatio={user.hand.length} />
       </FloatingHand>
     </Step>
   );

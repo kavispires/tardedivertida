@@ -1,9 +1,12 @@
 // Ant Design Resources
 import { Button } from 'antd';
 import { PictureOutlined } from '@ant-design/icons';
+import { Step } from 'components/steps';
+import { StepRankingWrapper } from 'components/ranking';
+import { Translate } from 'components/language';
+import { RoundsLeftInstruction } from 'components/text';
+import { AdminNextRoundButton } from 'components/admin';
 // Components
-import { AdminNextRoundButton, RankingBoardStep, RoundsLeftInstruction, Step, Translate } from 'components';
-// import { ScoringRules } from './TextBlobs';
 
 type StepRankingProps = {
   players: GamePlayers;
@@ -26,7 +29,7 @@ export function StepRanking({
 }: StepRankingProps) {
   return (
     <Step>
-      <RankingBoardStep
+      <StepRankingWrapper
         players={players}
         ranking={ranking}
         gainedPointsDescriptions={[

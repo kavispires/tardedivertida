@@ -1,9 +1,13 @@
 // Ant Design Resources
 import { Button, Space } from 'antd';
+import { Card } from 'components/cards';
+import { Translate } from 'components/language';
+import { PopoverRule } from 'components/rules';
+import { Step } from 'components/steps';
+import { Title } from 'components/text';
 // Hooks
 import { useBooleanDictionary } from 'hooks';
 // Components
-import { Card, PopoverRule, Step, Title, Translate } from 'components';
 import { DreamSelectionExtendedRules, DreamSelectionRules } from './RulesBlobs';
 import { SelectTable } from './SelectTable';
 

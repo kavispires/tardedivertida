@@ -2,7 +2,9 @@
 import { notification, Space } from 'antd';
 import { useEffect, useState } from 'react';
 // Components
-import { Instruction, Step, Title, Translate } from 'components';
+import { Translate } from 'components/language';
+import { Step } from 'components/steps';
+import { Instruction, Title } from 'components/text';
 import { useLanguage } from 'hooks';
 import { EspiaoEntreNosCard as Card } from './Card';
 import { LocationSelect } from './LocationSelect';

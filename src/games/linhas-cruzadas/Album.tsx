@@ -1,7 +1,9 @@
 // Helpers
 import { getAvatarColorById } from 'utils/helpers';
 // Components
-import { Avatar, Translate } from 'components';
+import { Avatar } from 'components/avatars';
+import { Translate } from 'components/language';
+
 import { Page } from './Page';
 
 type AlbumProps = {

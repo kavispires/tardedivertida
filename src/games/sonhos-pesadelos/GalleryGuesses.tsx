@@ -1,5 +1,6 @@
-import { Avatar, StarPoints } from 'components';
 import { Avatar as AntAvatar } from 'antd';
+import { Avatar } from 'components/avatars';
+import { StarPoints } from 'components/points';
 import { useCardWidth } from 'hooks';
 import { DreamCard } from './DreamCard';
 

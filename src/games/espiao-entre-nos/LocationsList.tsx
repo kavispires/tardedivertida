@@ -5,7 +5,7 @@ import { ClearOutlined, EnvironmentOutlined } from '@ant-design/icons';
 // Hooks
 import { useGlobalState, useLanguage } from 'hooks';
 // Components
-import { Translate } from 'components';
+import { Translate } from 'components/language';
 
 type LocationsListProps = {
   locations: ELocation[];

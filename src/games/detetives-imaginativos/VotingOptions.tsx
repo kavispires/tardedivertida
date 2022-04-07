@@ -3,7 +3,8 @@ import { orderBy } from 'lodash';
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Components
-import { Avatar, AvatarName, Translate } from 'components';
+import { Avatar, AvatarName } from 'components/avatars';
+import { Translate } from 'components/language';
 
 type VotingOptionsProps = {
   isAllDisabled: boolean;

@@ -3,8 +3,10 @@ import { Avatar as AntAvatar, Typography } from 'antd';
 import { CrownFilled } from '@ant-design/icons';
 // Utils
 import { getPlayersFromIds } from 'utils/helpers';
+import { Translate } from 'components/language';
+import { Avatar, AvatarIcon } from 'components/avatars';
+import { StarPoints } from 'components/points';
 // Components
-import { Avatar, AvatarIcon, StarPoints, Translate } from 'components';
 
 type GalleryWindowResultProps = {
   playerArtist: any;

@@ -1,7 +1,10 @@
 // Hooks
 import { useLanguage } from 'hooks';
 // Components
-import { Icons, Instruction, ReadyPlayersBar, Title, Translate } from '..';
+import { Icons } from 'components/icons';
+import { Translate } from 'components/language';
+import { ReadyPlayersBar } from 'components/players';
+import { Instruction, Title } from 'components/text';
 
 type WaitingRoomProps = {
   players: GamePlayers;

@@ -2,15 +2,21 @@
 import { Radio } from 'antd';
 
 // Components
-import { Translate } from 'components';
+import { Translate } from 'components/language';
 
 type FilterOptionsProps = {
   name: string;
-  value?: boolean | 'any';
+  value?: 'on' | 'off' | 'any';
   onChange: GenericFunction;
 };
 
-export function FilterOptions({ name, value, onChange }: FilterOptionsProps) {
+const options = [
+  { label: <Translate pt="Tanto faz" en="Whatever" />, value: 'any' },
+  { label: <Translate pt="Sim" en="Yes" />, value: 'on' },
+  { label: <Translate pt="Não" en="No" />, value: 'off' },
+];
+
+export function FilterOptions({ name, onChange, value = 'any' }: FilterOptionsProps) {
   return (
     <Radio.Group
       onChange={onChange}
@@ -18,16 +24,9 @@ export function FilterOptions({ name, value, onChange }: FilterOptionsProps) {
       className="showcase-filter-options"
       size="small"
       name={name}
-    >
-      <Radio value={'any'} defaultChecked>
-        <Translate pt="Tanto faz" en="Whatever" />
-      </Radio>
-      <Radio value={true}>
-        <Translate pt="Sim" en="Yes" />
-      </Radio>
-      <Radio value={false}>
-        <Translate pt="Não" en="No" />
-      </Radio>
-    </Radio.Group>
+      optionType="button"
+      buttonStyle={value !== 'any' ? 'solid' : 'outline'}
+      options={options}
+    />
   );
 }

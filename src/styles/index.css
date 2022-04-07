@@ -95,7 +95,9 @@ body {
     transform: scale(1.1); }
 
 .space-container {
-  margin: 8px 0; }
+  margin: 8px 0;
+  width: 100%;
+  justify-content: center; }
 
 .avatar-card {
   padding: 0 4px 8px 4px;
@@ -476,8 +478,10 @@ body {
   margin: 0;
   border: 2px solid transparent;
   transition: transform 250ms; }
-  .transparent-button:hover {
+  .transparent-button--scale:hover {
     transform: scale(1.1); }
+  .transparent-button--sepia:hover {
+    filter: sepia(100%); }
   .transparent-button--active {
     border: 2px solid white; }
 
@@ -2389,6 +2393,29 @@ ul.g-fallen-players-list {
 .m-enclosure {
   position: relative; }
 
+.sheep-avatar {
+  width: 100px;
+  border-radius: 4px;
+  margin: 0 8px; }
+  .sheep-avatar--bounce {
+    animation: bounce-sheep 2000ms ease-in-out infinite; }
+
+@keyframes bounce-sheep {
+  0% {
+    transform: scale(1, 1) translateY(0); }
+  10% {
+    transform: scale(1.01, 0.98) translateY(0); }
+  30% {
+    transform: scale(0.98, 1.01) translateY(-6px); }
+  50% {
+    transform: scale(1.05, 0.99) translateY(0); }
+  57% {
+    transform: scale(1, 1) translateY(-3px); }
+  64% {
+    transform: scale(1, 1) translateY(0); }
+  100% {
+    transform: scale(1, 1) translateY(0); } }
+
 .m-sheep {
   width: 50px;
   display: block;
@@ -2628,29 +2655,6 @@ ul.g-fallen-players-list {
   100% {
     transform: scale(0.1) translateY(700%);
     opacity: 0; } }
-
-.sheep-avatar {
-  width: 100px;
-  border-radius: 4px;
-  margin: 0 8px; }
-  .sheep-avatar--bounce {
-    animation: bounce-sheep 2000ms ease-in-out infinite; }
-
-@keyframes bounce-sheep {
-  0% {
-    transform: scale(1, 1) translateY(0); }
-  10% {
-    transform: scale(1.01, 0.98) translateY(0); }
-  30% {
-    transform: scale(0.98, 1.01) translateY(-6px); }
-  50% {
-    transform: scale(1.05, 0.99) translateY(0); }
-  57% {
-    transform: scale(1, 1) translateY(-3px); }
-  64% {
-    transform: scale(1, 1) translateY(0); }
-  100% {
-    transform: scale(1, 1) translateY(0); } }
 
 .n-street {
   display: flex;
@@ -3704,165 +3708,165 @@ ul.g-fallen-players-list {
       animation-timing-function: linear;
       animation-iteration-count: infinite; }
       .home__background span:nth-child(1) {
-        color: #44bba4;
-        top: 50%;
-        left: 11%;
-        animation-duration: 12s;
-        animation-delay: -7.1s;
-        transform-origin: -9vw 8vh;
-        box-shadow: -40vmin 0 5.39139vmin currentColor; }
+        color: #f45b69;
+        top: 48%;
+        left: 73%;
+        animation-duration: 10.7s;
+        animation-delay: -1.4s;
+        transform-origin: -9vw -16vh;
+        box-shadow: -40vmin 0 7.95838vmin currentColor; }
       .home__background span:nth-child(2) {
-        color: #44bba4;
-        top: 34%;
-        left: 97%;
-        animation-duration: 10.1s;
-        animation-delay: -8.7s;
-        transform-origin: -11vw -2vh;
-        box-shadow: 40vmin 0 8.66696vmin currentColor; }
+        color: #f2e863;
+        top: 79%;
+        left: 4%;
+        animation-duration: 13s;
+        animation-delay: -5.9s;
+        transform-origin: -20vw 18vh;
+        box-shadow: -40vmin 0 12.7599vmin currentColor; }
       .home__background span:nth-child(3) {
-        color: #44bba4;
-        top: 98%;
-        left: 17%;
-        animation-duration: 13.6s;
-        animation-delay: -3.1s;
-        transform-origin: -24vw 20vh;
-        box-shadow: 40vmin 0 10.28046vmin currentColor; }
+        color: #f2e863;
+        top: 31%;
+        left: 71%;
+        animation-duration: 12.6s;
+        animation-delay: -13.5s;
+        transform-origin: 5vw -4vh;
+        box-shadow: 40vmin 0 6.56142vmin currentColor; }
       .home__background span:nth-child(4) {
         color: #44bba4;
-        top: 34%;
-        left: 58%;
-        animation-duration: 15.6s;
-        animation-delay: -4.6s;
-        transform-origin: -2vw 25vh;
-        box-shadow: -40vmin 0 8.78181vmin currentColor; }
+        top: 37%;
+        left: 17%;
+        animation-duration: 11.5s;
+        animation-delay: -1.6s;
+        transform-origin: -17vw 8vh;
+        box-shadow: 40vmin 0 14.34762vmin currentColor; }
       .home__background span:nth-child(5) {
-        color: #3a7ca5;
-        top: 24%;
-        left: 38%;
-        animation-duration: 15.3s;
-        animation-delay: -14.8s;
-        transform-origin: -2vw 6vh;
-        box-shadow: -40vmin 0 10.77844vmin currentColor; }
+        color: #f45b69;
+        top: 79%;
+        left: 55%;
+        animation-duration: 12.4s;
+        animation-delay: -14.4s;
+        transform-origin: -17vw 4vh;
+        box-shadow: 40vmin 0 11.90042vmin currentColor; }
       .home__background span:nth-child(6) {
-        color: #3a7ca5;
-        top: 91%;
-        left: 54%;
-        animation-duration: 15.4s;
-        animation-delay: -1.5s;
-        transform-origin: 13vw -14vh;
-        box-shadow: 40vmin 0 8.99886vmin currentColor; }
-      .home__background span:nth-child(7) {
         color: #44bba4;
-        top: 15%;
-        left: 95%;
-        animation-duration: 14.1s;
-        animation-delay: -3.1s;
-        transform-origin: 16vw -1vh;
-        box-shadow: -40vmin 0 8.74212vmin currentColor; }
+        top: 75%;
+        left: 45%;
+        animation-duration: 12.4s;
+        animation-delay: -14.8s;
+        transform-origin: 15vw 8vh;
+        box-shadow: 40vmin 0 5.43023vmin currentColor; }
+      .home__background span:nth-child(7) {
+        color: #f2e863;
+        top: 50%;
+        left: 17%;
+        animation-duration: 12.6s;
+        animation-delay: -7.9s;
+        transform-origin: -9vw -11vh;
+        box-shadow: -40vmin 0 13.23064vmin currentColor; }
       .home__background span:nth-child(8) {
         color: #f2e863;
-        top: 98%;
-        left: 78%;
-        animation-duration: 15.7s;
-        animation-delay: -0.1s;
-        transform-origin: 16vw -9vh;
-        box-shadow: -40vmin 0 8.14824vmin currentColor; }
+        top: 20%;
+        left: 83%;
+        animation-duration: 13.4s;
+        animation-delay: -11s;
+        transform-origin: 25vw -19vh;
+        box-shadow: -40vmin 0 12.03356vmin currentColor; }
       .home__background span:nth-child(9) {
         color: #44bba4;
-        top: 15%;
-        left: 39%;
-        animation-duration: 11.7s;
-        animation-delay: -8.6s;
-        transform-origin: -23vw 14vh;
-        box-shadow: 40vmin 0 9.6146vmin currentColor; }
-      .home__background span:nth-child(10) {
-        color: #3a7ca5;
-        top: 67%;
-        left: 51%;
-        animation-duration: 12.6s;
-        animation-delay: -4.2s;
-        transform-origin: 4vw 10vh;
-        box-shadow: -40vmin 0 8.72625vmin currentColor; }
-      .home__background span:nth-child(11) {
-        color: #f2e863;
-        top: 45%;
-        left: 75%;
-        animation-duration: 14.9s;
-        animation-delay: -2.4s;
-        transform-origin: 12vw -3vh;
-        box-shadow: -40vmin 0 8.80594vmin currentColor; }
-      .home__background span:nth-child(12) {
-        color: #f2e863;
-        top: 36%;
-        left: 57%;
+        top: 29%;
+        left: 37%;
         animation-duration: 14.2s;
-        animation-delay: -2.9s;
-        transform-origin: 4vw 3vh;
-        box-shadow: 40vmin 0 13.81682vmin currentColor; }
+        animation-delay: -12.6s;
+        transform-origin: 1vw 19vh;
+        box-shadow: -40vmin 0 11.18434vmin currentColor; }
+      .home__background span:nth-child(10) {
+        color: #44bba4;
+        top: 88%;
+        left: 28%;
+        animation-duration: 14.2s;
+        animation-delay: -1.6s;
+        transform-origin: 1vw 12vh;
+        box-shadow: 40vmin 0 7.79036vmin currentColor; }
+      .home__background span:nth-child(11) {
+        color: #44bba4;
+        top: 89%;
+        left: 81%;
+        animation-duration: 10.1s;
+        animation-delay: -13.4s;
+        transform-origin: 13vw 22vh;
+        box-shadow: 40vmin 0 5.75418vmin currentColor; }
+      .home__background span:nth-child(12) {
+        color: #3a7ca5;
+        top: 35%;
+        left: 27%;
+        animation-duration: 12.5s;
+        animation-delay: -4.3s;
+        transform-origin: -6vw -4vh;
+        box-shadow: -40vmin 0 11.93261vmin currentColor; }
       .home__background span:nth-child(13) {
         color: #3a7ca5;
-        top: 23%;
-        left: 30%;
-        animation-duration: 11.6s;
-        animation-delay: -0.2s;
-        transform-origin: -9vw -11vh;
-        box-shadow: -40vmin 0 10.15204vmin currentColor; }
+        top: 2%;
+        left: 63%;
+        animation-duration: 15.4s;
+        animation-delay: -8.9s;
+        transform-origin: 23vw 3vh;
+        box-shadow: -40vmin 0 11.44462vmin currentColor; }
       .home__background span:nth-child(14) {
-        color: #44bba4;
-        top: 38%;
-        left: 82%;
-        animation-duration: 10.2s;
-        animation-delay: -14.6s;
-        transform-origin: 24vw -5vh;
-        box-shadow: 40vmin 0 9.55039vmin currentColor; }
+        color: #f2e863;
+        top: 91%;
+        left: 53%;
+        animation-duration: 15.6s;
+        animation-delay: -8.5s;
+        transform-origin: -21vw 13vh;
+        box-shadow: 40vmin 0 13.27025vmin currentColor; }
       .home__background span:nth-child(15) {
-        color: #f2e863;
-        top: 96%;
-        left: 58%;
-        animation-duration: 11.4s;
-        animation-delay: -4s;
-        transform-origin: -12vw 2vh;
-        box-shadow: 40vmin 0 10.60388vmin currentColor; }
-      .home__background span:nth-child(16) {
-        color: #f2e863;
-        top: 74%;
-        left: 79%;
-        animation-duration: 10.3s;
-        animation-delay: -11.1s;
-        transform-origin: 6vw 19vh;
-        box-shadow: -40vmin 0 14.72913vmin currentColor; }
-      .home__background span:nth-child(17) {
-        color: #f45b69;
-        top: 95%;
-        left: 68%;
+        color: #3a7ca5;
+        top: 16%;
+        left: 61%;
         animation-duration: 11s;
         animation-delay: -6.9s;
-        transform-origin: -20vw 1vh;
-        box-shadow: 40vmin 0 9.84562vmin currentColor; }
+        transform-origin: 18vw -22vh;
+        box-shadow: 40vmin 0 7.20807vmin currentColor; }
+      .home__background span:nth-child(16) {
+        color: #f45b69;
+        top: 52%;
+        left: 43%;
+        animation-duration: 12.1s;
+        animation-delay: -8.3s;
+        transform-origin: 1vw -5vh;
+        box-shadow: -40vmin 0 10.85109vmin currentColor; }
+      .home__background span:nth-child(17) {
+        color: #3a7ca5;
+        top: 37%;
+        left: 55%;
+        animation-duration: 13.7s;
+        animation-delay: -11.2s;
+        transform-origin: 17vw -11vh;
+        box-shadow: -40vmin 0 9.50185vmin currentColor; }
       .home__background span:nth-child(18) {
         color: #3a7ca5;
-        top: 54%;
-        left: 51%;
-        animation-duration: 13s;
-        animation-delay: -6.9s;
-        transform-origin: -23vw 0vh;
-        box-shadow: 40vmin 0 6.69858vmin currentColor; }
+        top: 51%;
+        left: 77%;
+        animation-duration: 15.9s;
+        animation-delay: -10.9s;
+        transform-origin: -6vw 21vh;
+        box-shadow: -40vmin 0 14.94774vmin currentColor; }
       .home__background span:nth-child(19) {
-        color: #f2e863;
-        top: 85%;
-        left: 99%;
-        animation-duration: 10.9s;
-        animation-delay: -15.9s;
-        transform-origin: 23vw 17vh;
-        box-shadow: -40vmin 0 9.60109vmin currentColor; }
+        color: #3a7ca5;
+        top: 49%;
+        left: 63%;
+        animation-duration: 10.3s;
+        animation-delay: -1.7s;
+        transform-origin: 14vw -10vh;
+        box-shadow: 40vmin 0 5.18685vmin currentColor; }
       .home__background span:nth-child(20) {
         color: #3a7ca5;
-        top: 74%;
-        left: 35%;
-        animation-duration: 14.1s;
-        animation-delay: -8.1s;
-        transform-origin: 12vw 21vh;
-        box-shadow: 40vmin 0 12.26784vmin currentColor; }
+        top: 9%;
+        left: 58%;
+        animation-duration: 14.2s;
+        animation-delay: -5.2s;
+        transform-origin: -20vw 21vh;
+        box-shadow: -40vmin 0 11.95801vmin currentColor; }
 
 @keyframes move {
   100% {
@@ -3951,6 +3955,16 @@ ul.g-fallen-players-list {
   line-height: 1.75rem;
   text-transform: uppercase; }
 
+.showcase-popular-name {
+  background: rgba(255, 255, 255, 0.5);
+  width: 100%;
+  display: block;
+  position: absolute;
+  bottom: 4px;
+  left: 0;
+  right: 0;
+  font-size: 0.8rem; }
+
 .showcase-menu {
   margin: 0;
   padding: 0; }
@@ -3971,6 +3985,18 @@ ul.g-fallen-players-list {
   margin: 0;
   display: inline-block;
   padding: 0; }
+
+.three-way-toggle {
+  background: red;
+  width: 14ch; }
+  .three-way-toggle input {
+    display: none; }
+  .three-way-toggle label {
+    width: 4ch;
+    display: inline-block;
+    background: orange;
+    text-align: center;
+    border-radius: 2ch; }
 
 .create-game-modal-options__no-options {
   width: 100%;

@@ -3,7 +3,7 @@ import { useIsUserReady, useUser, useLanguage, useStep } from 'hooks';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import { StepSwitcher } from 'components';
+import { StepSwitcher } from 'components/steps';
 import { StepReveal } from './StepReveal';
 import { StepRanking } from './StepRanking';
 import { ScoringRule } from './RulesBlobs';

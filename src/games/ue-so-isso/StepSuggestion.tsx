@@ -3,10 +3,14 @@ import { useState } from 'react';
 import { Button, Space } from 'antd';
 import { CloudUploadOutlined } from '@ant-design/icons';
 // Components
-import { AvatarName, Instruction, ReadyPlayersBar, Step, Title, Translate } from 'components';
 import { SuggestionEasel } from './SuggestionEasel';
 import { WritingRules } from './RulesBlobs';
 import { UeSoIssoCard as Card } from './UeSoIssoCard';
+import { Step } from 'components/steps';
+import { Instruction, Title } from 'components/text';
+import { Translate } from 'components/language';
+import { AvatarName } from 'components/avatars';
+import { ReadyPlayersBar } from 'components/players';
 
 type StepSuggestionProps = {
   guesser: GamePlayer;

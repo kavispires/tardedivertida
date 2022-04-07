@@ -1,9 +1,14 @@
 // Ant Design Resources
 import { Button, Space } from 'antd';
+import { Translate } from 'components/language';
+import { ReadyPlayersBar } from 'components/players';
+import { Step } from 'components/steps';
+import { Instruction, Title } from 'components/text';
+import { View, ViewSwitch } from 'components/views';
 // Hooks
 import { useLanguage, useLoading } from 'hooks';
 // Components
-import { Instruction, ReadyPlayersBar, Step, Title, Translate, View, ViewSwitch } from 'components';
+
 import { EspiaoEntreNosCard as Card } from './Card';
 import { LocationsList } from './LocationsList';
 import { Notes } from './Notes';

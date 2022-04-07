@@ -1,10 +1,13 @@
 // Hooks
 import { useLanguage } from 'hooks';
 // Components
-import { SlideShow, Step, Title } from 'components';
+
 import { GalleryDreamDisplay } from './GalleryDreamDisplay';
 import { getAvatarColorById } from 'utils/helpers';
 import { GalleryGuesses } from './GalleryGuesses';
+import { Step } from 'components/steps';
+import { Title } from 'components/text';
+import { SlideShow } from 'components/slide-show';
 
 type StepResultsProps = {
   players: GamePlayers;

@@ -5,7 +5,8 @@ import { AVATARS } from 'utils/constants';
 // Hooks
 import { useLanguage } from 'hooks';
 // Components
-import { Avatar, Translate } from 'components';
+import { Avatar } from 'components/avatars';
+import { Translate } from 'components/language';
 
 type SectionMeProps = {
   player: Player;

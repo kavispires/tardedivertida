@@ -1,4 +1,5 @@
-import { Instruction, Translate } from 'components';
+import { Translate } from 'components/language';
+import { Instruction } from 'components/text';
 
 export const EvaluationRules = () => (
   <Instruction>

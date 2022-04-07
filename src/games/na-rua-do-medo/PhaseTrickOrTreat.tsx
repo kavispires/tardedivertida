@@ -4,7 +4,11 @@ import { useOnSubmitDecisionAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import { ImageCardPreloadHand, Instruction, RoundAnnouncement, StepSwitcher, Translate } from 'components';
+import { StepSwitcher } from 'components/steps';
+import { RoundAnnouncement } from 'components/round';
+import { ImageCardPreloadHand } from 'components/cards';
+import { Instruction } from 'components/text';
+import { Translate } from 'components/language';
 import { StepMakeDecision } from './StepMakeDecision';
 import { PlayerStats } from './PlayerStats';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';

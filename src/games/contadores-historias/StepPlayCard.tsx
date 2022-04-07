@@ -1,19 +1,14 @@
 // Hooks
 import { useLoading, useMock } from 'hooks';
 // Components
-import {
-  Card,
-  FloatingHand,
-  ImageCardHand as Hand,
-  Instruction,
-  ReadyPlayersBar,
-  Step,
-  Title,
-  Translate,
-  ViewIf,
-} from 'components';
 import { TableFaceDown } from './TableFaceDown';
 import { mockPlayCard } from './mock';
+import { Step } from 'components/steps';
+import { Instruction, Title } from 'components/text';
+import { Card, FloatingHand, ImageCardHand } from 'components/cards';
+import { ViewOr } from 'components/views';
+import { Translate } from 'components/language';
+import { ReadyPlayersBar } from 'components/players';
 
 type StepPlayCardProps = {
   players: GamePlayers;
@@ -54,26 +49,27 @@ export function StepPlayCard({
           {story}
         </Card>
       </Title>
-      <ViewIf isVisible={isUserTheStoryTeller}>
-        <Instruction contained>
+
+      <Instruction contained>
+        <ViewOr orCondition={isUserTheStoryTeller}>
           <Translate
             pt="Agora, cada jogador escolherá uma carta em mão que mais combine com a história que você escreveu."
             en="Now every other player will play a card that best matches the story you wrote."
           />
-        </Instruction>
-      </ViewIf>
-      <ViewIf isVisible={!isUserTheStoryTeller}>
-        <Instruction contained>
+
           <Translate
             pt="Agora, escolha uma carta que mais combine com a história da rodada. Você está tentando convencer os outros jogadores a escolherem sua carta ao invés da carta correta."
             en="Now you select a card that matches the story the best. You are trying to convince other players that your card is the correct one."
           />
-        </Instruction>
-      </ViewIf>
+        </ViewOr>
+      </Instruction>
+
       <TableFaceDown players={players} user={user} />
+
       <ReadyPlayersBar players={players} />
+
       <FloatingHand>
-        <Hand
+        <ImageCardHand
           hand={user.hand}
           onSelectCard={hasPlayedCardAlready ? undefined : onSelectCard}
           disabledSelectButton={isLoading || hasPlayedCardAlready}

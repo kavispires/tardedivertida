@@ -3,7 +3,7 @@ import { QuestionCircleFilled } from '@ant-design/icons';
 // Hooks
 import { useLanguage } from 'hooks';
 // Components
-import { Card } from 'components';
+import { Card } from 'components/cards';
 
 type EspiaoEntreNosCardProps = {
   location: string;

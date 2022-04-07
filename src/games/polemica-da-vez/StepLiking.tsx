@@ -5,16 +5,14 @@ import { Button, Divider } from 'antd';
 // Hooks
 import { useLoading } from 'hooks';
 // Components
-import {
-  AvatarIcon,
-  Instruction,
-  ReadyPlayersBar,
-  Step,
-  Title,
-  Translate,
-  TransparentButton,
-} from 'components';
+
 import { Topic } from './Topic';
+import { Step } from 'components/steps';
+import { Instruction, Title } from 'components/text';
+import { Translate } from 'components/language';
+import { TransparentButton } from 'components/buttons';
+import { AvatarIcon } from 'components/avatars';
+import { ReadyPlayersBar } from 'components/players';
 
 type StepLikingProps = {
   currentTopic: Topic;

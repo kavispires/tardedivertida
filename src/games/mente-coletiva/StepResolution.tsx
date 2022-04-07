@@ -5,18 +5,15 @@ import { HeartFilled } from '@ant-design/icons';
 // Hooks
 import { getAnimationClass, inNSeconds } from 'utils/helpers';
 // Components
-import {
-  AdminNextRoundButton,
-  Instruction,
-  RankingBoard,
-  Step,
-  StepSwitcher,
-  Title,
-  Translate,
-} from 'components';
+
 import { Pasture } from './Pasture';
 import { RoundType } from './RoundType';
 import clsx from 'clsx';
+import { Step, StepSwitcher } from 'components/steps';
+import { Instruction, Title } from 'components/text';
+import { Translate } from 'components/language';
+import { RankingBoard } from 'components/ranking';
+import { AdminNextRoundButton } from 'components/admin';
 
 type StepResolutionProps = {
   ranking: GameRanking;
@@ -72,9 +69,9 @@ export function StepResolution({
 
       {step === 0 && <RoundType roundType={roundType} />}
 
-      <StepSwitcher step={step}>
+      <StepSwitcher step={step} players={players}>
         <Step key={0}>
-          <RankingBoard ranking={ranking} players={players} />
+          <RankingBoard ranking={ranking} players={players} hideGainedPoints />
         </Step>
 
         <Step key={1}>

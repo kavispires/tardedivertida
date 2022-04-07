@@ -1,5 +1,6 @@
 // Components
-import { AvatarIcon, AvatarName, Translate } from 'components';
+import { AvatarIcon, AvatarName } from 'components/avatars';
+import { Translate } from 'components/language';
 
 type PlayersDecisionResultProps = {
   players: GamePlayers;

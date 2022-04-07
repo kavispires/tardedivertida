@@ -1,7 +1,8 @@
 // Ant Design Resources
 import { message } from 'antd';
 // Components
-import { Icons, Translate } from '..';
+import { Icons } from 'components/icons';
+import { Translate } from 'components/language';
 
 /**
  * Pops up a modal with a confirmation button but also closing timeout

@@ -6,18 +6,13 @@ import { useOnSelectWitnessAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import {
-  AvatarCard,
-  Instruction,
-  Step,
-  StepSwitcher,
-  Title,
-  Translate,
-  AvatarIcon,
-  TransparentButton,
-} from 'components';
-import { WitnessRules } from './TextBlobs';
+import { AvatarCard, AvatarIcon } from 'components/avatars';
+import { TransparentButton } from 'components/buttons';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { Step, StepSwitcher } from 'components/steps';
+import { Instruction, Title } from 'components/text';
+import { Translate } from 'components/language';
+import { WitnessRules } from './TextBlobs';
 
 function PhaseWitnessSelection({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();

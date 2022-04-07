@@ -4,8 +4,13 @@ import { Button, Space } from 'antd';
 // Utils
 import { useCardWidth, useGlobalState } from 'hooks';
 // Components
-import { Avatar, CanvasResizer, CanvasSVG, Instruction, Title, Translate } from 'components';
+
 import { MonsterCard } from './MonsterCard';
+import { Instruction, Title } from 'components/text';
+import { Translate } from 'components/language';
+import { ViewOr } from 'components/views';
+import { CanvasResizer, CanvasSVG } from 'components/canvas';
+import { Avatar } from 'components/avatars';
 
 type StepVoteProps = {
   isUserTheWitness: boolean;
@@ -40,7 +45,7 @@ export function StepVote({
         <Translate pt="Vote!" en="Vote!" />
       </Title>
       <Instruction contained>
-        {isUserTheWitness ? (
+        <ViewOr orCondition={isUserTheWitness}>
           <Translate
             pt={
               <>
@@ -57,7 +62,7 @@ export function StepVote({
               </>
             }
           />
-        ) : (
+
           <Translate
             pt={
               <>
@@ -77,7 +82,7 @@ export function StepVote({
               </>
             }
           />
-        )}
+        </ViewOr>
       </Instruction>
 
       <CanvasResizer />

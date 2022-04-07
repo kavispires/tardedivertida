@@ -4,10 +4,14 @@ import { useOnSubmitGuessAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import { Instruction, StepSwitcher, Translate, ViewOr } from 'components';
+import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { StepSwitcher } from 'components/steps';
+import { Instruction } from 'components/text';
+import { Translate } from 'components/language';
+import { ViewOr } from 'components/views';
+
 import { StepGuess } from './StepGuess';
 import { StepPsychicGuess } from './StepPsychicGuess';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 function PhaseGuess({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);

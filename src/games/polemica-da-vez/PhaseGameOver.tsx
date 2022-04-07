@@ -1,8 +1,10 @@
+import { orderBy } from 'lodash';
 // Ant Design Resources
 import { FallOutlined, RiseOutlined } from '@ant-design/icons';
 // Components
-import { AvatarIcon, GameOverWrapper, Translate } from 'components';
-import { orderBy } from 'lodash';
+import { AvatarIcon } from 'components/avatars';
+import { GameOverWrapper } from 'components/game-over';
+import { Translate } from 'components/language';
 
 function PhaseGameOver({ state, players, info }: PhaseProps) {
   const playerCount = Object.keys(players).length;

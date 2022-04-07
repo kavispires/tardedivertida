@@ -5,12 +5,13 @@ import { InfoCircleOutlined } from '@ant-design/icons';
 // Utils
 import { useLanguage } from 'hooks';
 // Components
-import { DebugOnly, RulesModal } from 'components';
 import { SectionMe } from './_internal/SectionMe';
 import { SectionMeta } from './_internal/SectionMeta';
 import { SectionTeams } from './_internal/SectionTeams';
 import { SectionRankedPlayers } from './_internal/SectionRankedPlayers';
 import { SectionSettings } from './_internal/SectionSettings';
+import { DebugOnly } from 'components/dev';
+import { RulesModal } from 'components/rules';
 
 type GameInfoDrawerProps = {
   players: GamePlayers;

@@ -1,5 +1,9 @@
 // Components
-import { PopoverRule, Step, Title, Translate } from 'components';
+
+import { Translate } from 'components/language';
+import { PopoverRule } from 'components/rules';
+import { Step } from 'components/steps';
+import { Title } from 'components/text';
 import { GalleryWindow } from './GalleryWindow';
 import { ScoringRules } from './TextBlobs';
 

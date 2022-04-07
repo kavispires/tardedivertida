@@ -1,15 +1,13 @@
-import { Fragment, useState } from 'react';
-// Ant Design Resources
-import { Button, Drawer, Popconfirm, Spin } from 'antd';
 import { FireFilled } from '@ant-design/icons';
-// Hooks and API
-import { ADMIN_API } from 'services/adapters';
+import { Button, Drawer, Popconfirm, Spin } from 'antd';
 import { useAPICall, useGlobalState, useLoading } from 'hooks';
+import { useState } from 'react';
+import { ADMIN_API } from 'services/adapters';
 import { ADMIN_ACTIONS } from 'utils/constants';
-// Components
+
+import { AdminPerformActionButton } from './_internal/AdminPerformActionButton';
 import { ForceStateForm } from './_internal/ForceStateForm';
 import { PlayersReadyState } from './_internal/PlayersReadyState';
-import { AdminPerformActionButton } from './_internal/AdminPerformActionButton';
 
 type AdminMenuDrawerProps = {
   state: GameState;
@@ -39,7 +37,7 @@ export const AdminMenuDrawer = ({ state, players }: AdminMenuDrawerProps) => {
   if (!isAdmin) return <span></span>;
 
   return (
-    <Fragment>
+    <>
       <div className="admin-menu-drawer">
         <Button
           type="primary"
@@ -109,6 +107,6 @@ export const AdminMenuDrawer = ({ state, players }: AdminMenuDrawerProps) => {
           </ul>
         </Drawer>
       </div>
-    </Fragment>
+    </>
   );
 };

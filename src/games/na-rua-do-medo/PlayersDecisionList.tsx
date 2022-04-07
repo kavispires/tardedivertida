@@ -1,7 +1,8 @@
 // Ant Design Resources
 import { Tooltip } from 'antd';
 // Components
-import { AvatarIcon, AvatarName, Translate } from 'components';
+import { AvatarIcon, AvatarName } from 'components/avatars';
+import { Translate } from 'components/language';
 
 type PlayersDecisionListProps = {
   players: GamePlayers;
@@ -30,13 +31,19 @@ export function PlayersDecisionList({ playersIdsList, players, type }: PlayersDe
         </Tooltip>
       </h4>
       <ul className="n-players-decision-list__players">
-        {playersList.map((player) => {
-          return (
-            <span key={`continuing-player-${player.id}`} className="n-players-decision-list__player">
-              <AvatarName player={player} />
-            </span>
-          );
-        })}
+        {playersList.length > 0 ? (
+          playersList.map((player) => {
+            return (
+              <span key={`continuing-player-${player.id}`} className="n-players-decision-list__player">
+                <AvatarName player={player} />
+              </span>
+            );
+          })
+        ) : (
+          <span className="n-players-decision-list__player">
+            <Translate pt="Ninguém foi pra casa" en="Nobody went home" />
+          </span>
+        )}
       </ul>
     </div>
   );

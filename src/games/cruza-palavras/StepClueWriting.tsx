@@ -1,7 +1,11 @@
 // Hooks
 import { useLoading } from 'hooks';
 // Components
-import { Instruction, PopoverRule, ReadyPlayersBar, Title, Translate } from 'components';
+import { Step } from 'components/steps';
+import { Instruction, Title } from 'components/text';
+import { Translate } from 'components/language';
+import { PopoverRule } from 'components/rules';
+import { ReadyPlayersBar } from 'components/players';
 import { WordGrid } from './WordGrid';
 import { WritingCell } from './WritingCell';
 import { WritingCluesRule } from './RulesBlobs';
@@ -23,7 +27,7 @@ export function StepClueWriting({ grid, user, onSubmitClue, players }: StepClueW
   };
 
   return (
-    <div className="x-step">
+    <Step fullWidth>
       <Title>
         <Translate pt="Escreva sua dica" en="Write your clue" />
       </Title>
@@ -45,6 +49,6 @@ export function StepClueWriting({ grid, user, onSubmitClue, players }: StepClueW
       />
 
       <ReadyPlayersBar players={players} />
-    </div>
+    </Step>
   );
 }

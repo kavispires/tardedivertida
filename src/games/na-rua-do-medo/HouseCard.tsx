@@ -4,7 +4,8 @@ import { Tooltip } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks';
 // Components
-import { ImageCard, Translate } from 'components';
+import { ImageCard } from 'components/cards';
+import { Translate } from 'components/language';
 import { CandyCount } from './CandyCount';
 
 type HouseCardProps = {

@@ -4,7 +4,10 @@ import { useTimer } from 'react-timer-hook';
 import { useDevFeatures, useLanguage } from 'hooks';
 import { inNSeconds } from 'utils/helpers';
 // Components
-import { Card, DrawingCanvas, Icons, Step } from 'components';
+import { Step } from 'components/steps';
+import { Card } from 'components/cards';
+import { Icons } from 'components/icons';
+import { DrawingCanvas } from 'components/canvas';
 
 type StepDrawProps = {
   secretCard: ArteRuimCard | PlainObject;

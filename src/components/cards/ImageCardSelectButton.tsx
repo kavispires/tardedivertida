@@ -2,7 +2,7 @@
 import { Button } from 'antd';
 import { UpCircleOutlined } from '@ant-design/icons';
 // Components
-import { Translate } from 'components';
+import { Translate } from 'components/language';
 
 type ImageCardSelectButtonProps = {
   isSelected?: boolean;

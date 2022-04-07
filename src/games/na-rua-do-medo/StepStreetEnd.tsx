@@ -1,11 +1,15 @@
 // Hooks
 import { useLanguage } from 'hooks';
 // Components
-import { AdminNextRoundButton, Instruction, PopoverRule, Step, Title, Translate } from 'components';
 import { PlayerStats } from './PlayerStats';
 import { Street } from './Street';
 import { CardCountExplanation } from './RulesBlobs';
 import { PlayersDecisionList } from './PlayersDecisionList';
+import { Step } from 'components/steps';
+import { Instruction, Title } from 'components/text';
+import { Translate } from 'components/language';
+import { PopoverRule } from 'components/rules';
+import { AdminNextRoundButton } from 'components/admin';
 
 type StepStreetEndProps = {
   street: NStreet;
@@ -65,11 +69,9 @@ export function StepStreetEnd({
               pt={<>Uma carta do {monsterName} será removida, menos chances dele aparece novamente!</>}
               en={<>One of the {monsterName} will be removed, so less chances of it showing up again!</>}
             />
-            <br />
-            <Translate pt="Prontos pra próxima rua?" en="Ready for the next street?" />
           </>
         )}
-
+        <br />
         {round.current === round.total ? (
           <Translate
             pt="E a noite chegou ao fim... Hora de comer gostosuras!"

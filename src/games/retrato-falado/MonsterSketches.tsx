@@ -1,7 +1,8 @@
 // Ant Design Resources
 import { Space } from 'antd';
 // Components
-import { Avatar, CanvasSVG } from 'components';
+import { Avatar } from 'components/avatars';
+import { CanvasSVG } from 'components/canvas';
 
 type MonsterSketchesProps = {
   sketches: Sketch[];

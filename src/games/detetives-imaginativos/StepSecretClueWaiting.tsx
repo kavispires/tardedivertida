@@ -1,15 +1,10 @@
 // Components
-import {
-  AvatarIcon,
-  AvatarName,
-  FloatingHand,
-  ImageCardHand,
-  Instruction,
-  Step,
-  Title,
-  Translate,
-  TurnOrder,
-} from 'components';
+import { AvatarIcon, AvatarName } from 'components/avatars';
+import { FloatingHand, ImageCardHand } from 'components/cards';
+import { Translate } from 'components/language';
+import { TurnOrder } from 'components/players';
+import { Step } from 'components/steps';
+import { Instruction, Title } from 'components/text';
 
 type StepSecretClueWaitingProps = {
   leader: GamePlayer;

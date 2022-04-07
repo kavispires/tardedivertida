@@ -5,7 +5,7 @@ import { useDimensions, useLanguage } from 'hooks';
 // Utils
 import { PUBLIC_URL, TAG_DICT } from 'utils/constants';
 // Components
-import { RulesModal } from 'components';
+import { RulesModal } from 'components/rules';
 import { CreateGameModal } from './CreateGameModal';
 
 const getVersionColor = (version: string) => {

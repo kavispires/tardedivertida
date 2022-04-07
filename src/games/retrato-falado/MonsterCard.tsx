@@ -6,7 +6,8 @@ import { RotateLeftOutlined, RotateRightOutlined } from '@ant-design/icons';
 // Hooks
 import { useCardWidth, useGlobalState } from 'hooks';
 // Components
-import { ImageCard, Translate } from 'components';
+import { ImageCard } from 'components/cards';
+import { Translate } from 'components/language';
 
 interface MonsterCardProps extends SpaceProps {
   currentMonster: Monster;

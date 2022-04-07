@@ -7,7 +7,7 @@ import { useLanguage } from 'hooks';
 // Utils
 import { AVATARS } from 'utils/constants';
 // Components
-import { Avatar } from 'components';
+import { Avatar } from 'components/avatars';
 
 type SectionRankedPlayersProps = {
   players: GamePlayers;

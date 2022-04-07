@@ -10,7 +10,9 @@ import { useGlobalState, useLanguage, useLoading, useLocalStorage } from 'hooks'
 // Constants
 import { LATEST_GAME_IDS, PUBLIC_URL } from 'utils/constants';
 // Components
-import { Instruction, Loading, Title, Translate } from 'components';
+import { Translate } from 'components/language';
+import { Instruction, Title } from 'components/text';
+import { Loading } from 'components/loaders';
 
 const updateLocal24hGameIds = (latestGameIds: PlainObject, newId: GameId) => {
   const now = Date.now();

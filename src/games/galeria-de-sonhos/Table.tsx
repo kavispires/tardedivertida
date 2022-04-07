@@ -4,8 +4,9 @@ import { Button } from 'antd';
 import { UpCircleOutlined } from '@ant-design/icons';
 // Hooks
 import { useCardWidth } from 'hooks';
+import { ImageBlurButton, ImageCard, ImageCardBack } from 'components/cards';
+import { Translate } from 'components/language';
 // Components
-import { ImageBlurButton, ImageCard, ImageCardBack, Translate } from 'components';
 
 type TableProps = {
   table: GImageCard[];

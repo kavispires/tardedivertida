@@ -7,11 +7,16 @@ import { CheckSquareFilled, CloseSquareFilled, TrophyOutlined, WarningOutlined }
 import { AVATARS as avatars } from 'utils/constants';
 import { useLanguage } from 'hooks';
 // Components
-import { AvatarName, Instruction, PopoverRule, TimedButton, Title, Translate } from 'components';
+import { Step } from 'components/steps';
+import { Instruction, Title } from 'components/text';
+import { Translate } from 'components/language';
+import { PopoverRule } from 'components/rules';
 import { WordGrid } from './WordGrid';
 import { ClueCard } from './ClueCard';
 import { PreviousClue } from './PreviousClue';
 import { ScoringRule } from './RulesBlobs';
+import { AvatarName } from 'components/avatars';
+import { TimedButton } from 'components/buttons';
 
 const AVATARS: PlainObject = avatars;
 
@@ -209,7 +214,7 @@ export function StepReveal({ grid, user, players, clues, goToNextStep, whoGotNoP
   const playerCount = Object.keys(players).length;
 
   return (
-    <div className="x-step">
+    <Step fullWidth>
       <Title>
         <Translate pt="Resultado" en="Results" />
       </Title>
@@ -261,6 +266,6 @@ export function StepReveal({ grid, user, players, clues, goToNextStep, whoGotNoP
         <Translate pt="Todas as respostas" en="All Answers" />
       </Title>
       <AnswersList correctCoordinatesPerPlayer={correctCoordinatesPerPlayer} players={players} grid={grid} />
-    </div>
+    </Step>
   );
 }

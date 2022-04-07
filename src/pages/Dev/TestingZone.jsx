@@ -3,23 +3,13 @@
 // import { Image, Layout } from 'antd';
 import gameList from 'assets/data/games.json';
 import { Avatar, AvatarEntry } from 'components/avatars';
-import {
-  GameOver,
-  Instruction,
-  PhaseAnnouncement,
-  PhaseContainer,
-  RoundAnnouncement,
-  Title,
-  Icons,
-  AdminOnlyContainer,
-} from 'components';
+import { AdminOnlyContainer } from 'components/admin';
 // Resources
 import { CheckCircleFilled, CheckCircleOutlined } from '@ant-design/icons';
 import { Button, Input } from 'antd';
 import { LETTERS } from 'utils/constants';
-import Card from 'components/cards/Card';
+
 import { getColorFromLetter } from 'utils/helpers';
-import * as icons from 'components/icons';
 
 function TestingZone() {
   const info = gameList['U'];
@@ -99,8 +89,6 @@ function TestingZone() {
   //     </PhaseAnnouncement>
   //   </PhaseContainer>
   // );
-  console.log({ icons });
-  console.log(typeof icons, Array.isArray(icons));
 
   const styles = {
     display: 'grid',

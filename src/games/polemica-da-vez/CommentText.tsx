@@ -1,6 +1,8 @@
 import clsx from 'clsx';
+import { AvatarIcon } from 'components/avatars';
+import { Translate } from 'components/language';
+import { StarPoints } from 'components/points';
 // Components
-import { AvatarIcon, StarPoints, Translate } from 'components';
 
 type CommentTextProps = {
   reaction: boolean;

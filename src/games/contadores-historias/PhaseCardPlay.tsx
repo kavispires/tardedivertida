@@ -4,7 +4,9 @@ import { useOnPlayCardAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import { Instruction, StepSwitcher, Translate } from 'components';
+import { Translate } from 'components/language';
+import { StepSwitcher } from 'components/steps';
+import { Instruction } from 'components/text';
 import { StepPlayCard } from './StepPlayCard';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 

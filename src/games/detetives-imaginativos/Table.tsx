@@ -4,7 +4,8 @@ import { useCardWidth } from 'hooks';
 // Utils
 import { AVATARS } from 'utils/constants';
 // Components
-import { Avatar, AvatarIcon, ImageBlurButtonContainer, ImageCard } from 'components';
+import { Avatar, AvatarIcon } from 'components/avatars';
+import { ImageBlurButtonContainer, ImageCard } from 'components/cards';
 
 type TableProps = {
   table: DetetivesImaginativosCardEntry[];

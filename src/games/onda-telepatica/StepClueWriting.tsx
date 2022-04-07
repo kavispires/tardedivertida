@@ -6,7 +6,9 @@ import { useLanguage, useLoading } from 'hooks';
 // HUtils
 import { getTargetSide } from './helpers';
 // Components
-import { Instruction, Step, Title, Translate } from 'components';
+import { Translate } from 'components/language';
+import { Step } from 'components/steps';
+import { Instruction, Title } from 'components/text';
 import { Dial } from './Dial';
 import { ClueWritingRules } from './RulesBlobs';
 
