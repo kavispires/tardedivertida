@@ -33,14 +33,18 @@ function PhaseReact({ state, players, info }: PhaseProps) {
                 <>
                   E aí? Será que o assunto bombou?
                   <br />
-                  Se você acertou a quantidade de curtidas, você ganha 1 ponto
+                  Se você acertou a quantidade de curtidas, você ganha 3 pontos.
+                  <br />
+                  Se você quase acertou, você ganha 1 ponto.
                 </>
               }
               en={
                 <>
                   So... did the topic trend?
                   <br />
-                  If you guess the correct number of likes, you get 1 point
+                  If you guessed the correct number of likes, you get 3 points.
+                  <br />
+                  If you were 1 off, you get 1 point.
                 </>
               }
             />
