@@ -129,7 +129,7 @@ export function FiltersDrawer({
           firstOption={{
             value: 'turn-based',
             text: {
-              en: 'Turn Base',
+              en: 'Turn Based',
               pt: 'Cada vez um',
             },
           }}

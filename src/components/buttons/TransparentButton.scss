@@ -6,8 +6,16 @@
   border: 2px solid transparent;
   transition: transform 250ms;
 
-  &:hover {
-    transform: scale(1.1);
+  &--scale {
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  &--sepia {
+    &:hover {
+      filter: sepia(100%);
+    }
   }
 
   &--active {

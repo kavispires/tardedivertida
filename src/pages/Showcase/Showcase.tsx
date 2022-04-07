@@ -3,7 +3,7 @@ import { orderBy } from 'lodash';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 // Ant Design Resources
-import { Button, Image, Layout, Modal, Space } from 'antd';
+import { Avatar, Image, Layout, Modal, Space } from 'antd';
 import { FilterFilled } from '@ant-design/icons';
 // Hooks
 import { useDimensions, useGlobalState, useLanguage } from 'hooks';
@@ -32,7 +32,7 @@ function Showcase() {
 
   const [showFilters, setShowFilters] = useState(false);
   const [showModal, setShowModal] = useState('');
-  const [filters, setFilters] = useState<PlainObject>({ availability: true });
+  const [filters, setFilters] = useState<PlainObject>({ availability: 'true' });
 
   const [list, setList] = useState<GameInfo[]>([]);
 
@@ -40,9 +40,9 @@ function Showcase() {
   useEffect(() => {
     const searchAsObject = Object.fromEntries(new URLSearchParams(searchParams));
     if (Object.keys(searchAsObject).length > 0) {
-      const parsedQP = Object.entries(searchAsObject).reduce((acc: BooleanDictionary, [key, value]) => {
-        if (value === 'false' || value === 'true') {
-          acc[key] = value === 'true';
+      const parsedQP = Object.entries(searchAsObject).reduce((acc: StringDictionary, [key, value]) => {
+        if (value === 'off' || value === 'on') {
+          acc[key] = value;
         }
         if (key === 'language' && value === 'en') {
           setLanguage('en');
@@ -70,17 +70,16 @@ function Showcase() {
     <Layout.Content className="showcase">
       <ul className="showcase-list" style={{ gridTemplateColumns: `repeat(${width > 450 ? 4 : 2}, 1fr)` }}>
         <li className={clsx('showcase-entry showcase-entry--title', getAnimationClass('zoomIn'))}>
-          <TransparentButton onClick={() => setShowFilters(true)} className="showcase-image-button">
+          <TransparentButton
+            onClick={() => setShowFilters(true)}
+            className="showcase-image-button"
+            hoverType="sepia"
+          >
             <h1 className="showcase-title">
               <Translate pt="Vitrine" en="Showcase" />
             </h1>
             <Space className="space-container showcase-menu" align="center">
-              <Button
-                icon={<FilterFilled />}
-                shape="circle"
-                size="small"
-                onClick={() => setShowFilters(true)}
-              />
+              <Avatar icon={<FilterFilled />} shape="circle" size="small" />
             </Space>
           </TransparentButton>
         </li>
@@ -94,6 +93,7 @@ function Showcase() {
               <TransparentButton
                 onClick={() => setShowModal(game.gameCode)}
                 className="showcase-image-button"
+                hoverType="sepia"
               >
                 <Image
                   alt={game.title[language]}
@@ -102,6 +102,7 @@ function Showcase() {
                   className="showcase-image"
                   preview={false}
                 />
+                <span className="showcase-popular-name">{game.popularName[language]}</span>
               </TransparentButton>
             </li>
           );
