@@ -4,7 +4,7 @@ import { useOnSubmitVotingAPIRequest } from './api-requests';
 // Utils
 import { PHASES } from 'utils/phases';
 // Components
-import { StepSwitcher } from 'components';
+import { StepSwitcher } from 'components/steps';
 import { StepEvaluation } from './StepEvaluation';
 import { EvaluationRules } from './TextBlobs';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';

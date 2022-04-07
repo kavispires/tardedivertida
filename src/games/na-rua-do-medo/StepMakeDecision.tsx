@@ -3,21 +3,19 @@ import { useLanguage, useMock } from 'hooks';
 // Utils
 import { mockPlayerDecision } from './mock';
 // Components
-import {
-  AvatarIcon,
-  Instruction,
-  PopoverRule,
-  ReadyPlayersBar,
-  Step,
-  Title,
-  Translate,
-  TransparentButton,
-} from 'components';
+
 import { CandyCount } from './CandyCount';
 import { PlayersDecisionList } from './PlayersDecisionList';
 import { PlayerStats } from './PlayerStats';
 import { CardCountExplanation, DecisionExplanation } from './RulesBlobs';
 import { Street } from './Street';
+import { Step } from 'components/steps';
+import { Instruction, Title } from 'components/text';
+import { Translate } from 'components/language';
+import { PopoverRule } from 'components/rules';
+import { TransparentButton } from 'components/buttons';
+import { AvatarIcon } from 'components/avatars';
+import { ReadyPlayersBar } from 'components/players';
 
 type StepMakeDecisionProps = {
   players: GamePlayers;

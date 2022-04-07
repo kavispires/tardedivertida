@@ -1,7 +1,8 @@
 import clsx from 'clsx';
 // Ant Design Resources
 import { Space, Typography } from 'antd';
-import { AvatarIcon } from '..';
+// Components
+import { AvatarIcon } from 'components/avatars';
 
 type LoadingProps = {
   message?: string;

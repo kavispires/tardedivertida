@@ -14,7 +14,7 @@ import localStorage from 'services/localStorage';
 import { AVATARS, PUBLIC_URL, RANDOM_NAMES } from 'utils/constants';
 import { getRandomItem, isDevEnv } from 'utils/helpers';
 // Components
-import { Translate } from 'components';
+import { Translate } from 'components/language';
 
 const randomName = isDevEnv ? getRandomItem(RANDOM_NAMES) : undefined;
 

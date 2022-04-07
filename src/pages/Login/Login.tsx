@@ -19,7 +19,6 @@ const tailLayout = {
 };
 
 function Login() {
-  // const history = useHistory();
   const navigate = useNavigate();
   const [, setIsAuthenticated] = useGlobalState('isAuthenticated');
 

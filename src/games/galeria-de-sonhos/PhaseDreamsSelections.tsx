@@ -4,7 +4,7 @@ import { useOnSubmitCardsAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import { StepSwitcher } from 'components';
+import { StepSwitcher } from 'components/steps';
 import { DreamSelectionRules } from './RulesBlobs';
 import { StepDreamsSelection } from './StepDreamsSelection';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';

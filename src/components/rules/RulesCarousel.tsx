@@ -13,7 +13,7 @@ type RulesCarouselProps = {
   ruleClass?: string;
 };
 
-export function RulesCarousel({ info, className = '', ruleClass = '' }: RulesCarouselProps) {
+export function RulesCarousel({ info, className = '', ruleClass = '' }: RulesCarouselProps): JSX.Element {
   const { language } = useLanguage();
   const settings = {
     prevArrow: (

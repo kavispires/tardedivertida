@@ -5,7 +5,7 @@ import { useLanguage } from 'hooks';
 // Utils
 import { PUBLIC_URL, TAG_DICT } from 'utils/constants';
 // Components
-import { RulesModal } from 'components';
+import { RulesModal } from 'components/rules';
 
 export function GameDetailsContent({ game }: { game: GameInfo }) {
   const { language, translate } = useLanguage();

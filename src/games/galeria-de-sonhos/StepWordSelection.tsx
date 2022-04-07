@@ -1,9 +1,14 @@
 // Utils
 import { LETTERS } from 'utils/constants';
 // Components
-import { Card, Step, Title, Translate, TransparentButton } from 'components';
+
 import { GeneralRules } from './RulesBlobs';
 import { Space } from 'antd';
+import { Step } from 'components/steps';
+import { Title } from 'components/text';
+import { Translate } from 'components/language';
+import { TransparentButton } from 'components/buttons';
+import { Card } from 'components/cards';
 
 type StepWordSelectionProps = {
   onSubmitWord: GenericFunction;

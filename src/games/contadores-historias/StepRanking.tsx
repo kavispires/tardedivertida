@@ -1,16 +1,14 @@
-// Components
 import { Button, Space } from 'antd';
-import {
-  AdminNextRoundButton,
-  AvatarName,
-  Instruction,
-  PopoverRule,
-  RankingBoard,
-  Step,
-  Title,
-  Translate,
-} from 'components';
+// Hooks
 import { useLanguage } from 'hooks';
+// Components
+import { AdminNextRoundButton } from 'components/admin';
+import { AvatarName } from 'components/avatars';
+import { Translate } from 'components/language';
+import { RankingBoard } from 'components/ranking';
+import { PopoverRule } from 'components/rules';
+import { Step } from 'components/steps';
+import { Instruction, Title } from 'components/text';
 import { ScoringRules } from './RulesBlogs';
 
 type StepRankingProps = {

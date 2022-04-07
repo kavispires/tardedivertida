@@ -10,7 +10,8 @@ import { useDimensions } from 'hooks';
 // Utils
 import { inNSeconds } from 'utils/helpers';
 // Components
-import { Avatar, Translate, Instruction, Step, Title } from 'components';
+import { Translate } from 'components/language';
+import { Avatar } from 'components/avatars';
 
 type GainedPointProps = {
   gainedPoint: number;
@@ -71,9 +72,15 @@ type RankingBoardProps = {
   players: GamePlayers;
   ranking: GameRanking;
   gainedPointsDescriptions?: any[];
+  hideGainedPoints?: boolean;
 };
 
-export function RankingBoard({ players, ranking, gainedPointsDescriptions }: RankingBoardProps): JSX.Element {
+export function RankingBoard({
+  players,
+  ranking,
+  gainedPointsDescriptions,
+  hideGainedPoints = false,
+}: RankingBoardProps): JSX.Element {
   const [displayStep, setDisplayStep] = useState(0);
   const [sortedRanking, setSortedRanking] = useState<GameRanking>([]);
   const [reRank, setReRank] = useState(0);
@@ -169,7 +176,7 @@ export function RankingBoard({ players, ranking, gainedPointsDescriptions }: Ran
             <Tooltip title={<Translate pt="Pontos Anteriores" en="Previous Points" />} color="gray">
               <div className="ranking-board__cell-points">{previousScore}</div>
             </Tooltip>
-            {displayStep >= 1 && gainedPoints !== undefined && (
+            {!hideGainedPoints && displayStep >= 1 && gainedPoints !== undefined && (
               <GainedPoints
                 gainedPoints={gainedPoints}
                 playerId={playerId}
@@ -185,26 +192,5 @@ export function RankingBoard({ players, ranking, gainedPointsDescriptions }: Ran
         );
       })}
     </div>
-  );
-}
-
-type RankingBoardStepProps = {
-  players: GamePlayers;
-  ranking: GameRanking;
-  gainedPointsDescriptions: any[];
-};
-
-export function RankingBoardStep({ players, ranking, gainedPointsDescriptions }: RankingBoardStepProps) {
-  return (
-    <Step>
-      <Title>Ranking</Title>
-      <Instruction contained>
-        <Translate
-          pt="Passe o mouse em cada um dos pontos para saber como eles foram distribuídos"
-          en="Hover over the scores to learn how they were granted"
-        />
-      </Instruction>
-      <RankingBoard players={players} ranking={ranking} gainedPointsDescriptions={gainedPointsDescriptions} />
-    </Step>
   );
 }

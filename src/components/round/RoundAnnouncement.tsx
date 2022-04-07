@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 // Ant Design Resources
 import { Button, Tag } from 'antd';
-// Images
+// Assets
 import roundTitleEn from 'assets/images/round-title-en.svg';
 import roundTitlePt from 'assets/images/round-title-pt.svg';
 // Utils
@@ -9,7 +9,9 @@ import { getAnimationClass } from 'utils/helpers';
 // Hooks
 import { useLanguage } from 'hooks';
 // Components
-import { AvatarName, TimedButton, Translate } from 'components';
+import { Translate } from 'components/language';
+import { AvatarName } from 'components/avatars';
+import { TimedButton } from 'components/buttons';
 
 type Teams = {
   A: TeamObj;

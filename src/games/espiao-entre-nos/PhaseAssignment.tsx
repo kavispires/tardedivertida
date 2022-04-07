@@ -3,7 +3,10 @@ import { useIsUserReady, useWhichPlayerIsThe, useUser, useLanguage, useStep } fr
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import { Instruction, RoundAnnouncement, StepSwitcher, Translate } from 'components';
+import { Translate } from 'components/language';
+import { RoundAnnouncement } from 'components/round';
+import { StepSwitcher } from 'components/steps';
+import { Instruction } from 'components/text';
 import { StepAssignment } from './StepAssignment';
 import { PhaseAnnouncement, PhaseContainer, PhaseTimerReset } from 'components/phases';
 

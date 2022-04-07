@@ -5,19 +5,16 @@ import { useOnSubmitTopicAPIRequest } from './api-requests';
 import { PHASES } from 'utils/phases';
 import { mockTopicSelection } from './mock';
 // Components
-import {
-  AvatarName,
-  Instruction,
-  RoundAnnouncement,
-  Step,
-  StepSwitcher,
-  Translate,
-  TurnOrder,
-  ViewOr,
-  WaitingRoom,
-} from 'components';
+
 import { StepTopicSelection } from './StepTopicSelection';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { Step, StepSwitcher } from 'components/steps';
+import { RoundAnnouncement } from 'components/round';
+import { Instruction } from 'components/text';
+import { Translate } from 'components/language';
+import { AvatarName } from 'components/avatars';
+import { ViewOr } from 'components/views';
+import { TurnOrder, WaitingRoom } from 'components/players';
 
 function PhaseTopicSelection({ state, players, info, meta }: PhaseProps) {
   const { translate } = useLanguage();
@@ -59,7 +56,7 @@ function PhaseTopicSelection({ state, players, info, meta }: PhaseProps) {
               pt={
                 <>
                   Todos vão curtir ou descurtir a polêmica da vez e então devem tentar adivinhar quantas
-                  curtidas o assunto vai ganhar. Se você adivinhar corretamente, você ganha 3 ponto.
+                  curtidas o assunto vai ganhar. Se você adivinhar corretamente, você ganha 3 pontos.
                   <br />
                   Se você escolheu um número a menos ou a mais, você ganha 1 ponto.
                   <br />
@@ -80,7 +77,7 @@ function PhaseTopicSelection({ state, players, info, meta }: PhaseProps) {
               en={
                 <>
                   All players must like or dislike a topic then must vote how trendy it is (how many players
-                  liked the topic). If you guess correctly you get 1 point.
+                  liked the topic). If you guess correctly you get 3 points.
                   <br />
                   If you got 1 number off (more or less), you get 1 point.
                   <br />

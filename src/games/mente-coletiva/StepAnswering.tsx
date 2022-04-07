@@ -7,10 +7,15 @@ import { useLanguage, useMock } from 'hooks';
 import { getEntryId } from 'utils/helpers';
 import { mockAnswers } from './mock';
 // Components
-import { PopoverRule, ReadyPlayersBar, Step, Title, Translate } from 'components';
+
 import { Pasture } from './Pasture';
 import { Question } from './Question';
 import { AnsweringRules } from './RulesBlobs';
+import { Step } from 'components/steps';
+import { Title } from 'components/text';
+import { Translate } from 'components/language';
+import { PopoverRule } from 'components/rules';
+import { ReadyPlayersBar } from 'components/players';
 
 type StepAnsweringProps = {
   currentQuestion: MQuestion;

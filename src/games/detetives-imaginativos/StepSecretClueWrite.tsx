@@ -3,8 +3,11 @@ import { useState } from 'react';
 import { useLanguage, useLoading } from 'hooks';
 // Ant Design Resources
 import { Button, Input, Space } from 'antd';
+import { Step } from 'components/steps';
+import { Instruction, Title } from 'components/text';
+import { Translate } from 'components/language';
+import { FloatingHand, ImageCardHand } from 'components/cards';
 // Components
-import { FloatingHand, ImageCardHand as Hand, Instruction, Step, Title, Translate } from 'components';
 
 type SecretClueWriteProps = {
   onSubmitClue: GenericFunction;
@@ -67,7 +70,7 @@ export function StepSecretClueWrite({ user, onSubmitClue }: SecretClueWriteProps
         </Button>
       </Space>
       <FloatingHand>
-        <Hand hand={user.hand} sizeRatio={6} />
+        <ImageCardHand hand={user.hand} sizeRatio={6} />
       </FloatingHand>
     </Step>
   );

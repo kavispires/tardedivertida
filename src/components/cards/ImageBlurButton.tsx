@@ -5,7 +5,7 @@ import { EyeInvisibleOutlined } from '@ant-design/icons';
 // Utils
 import { useBlurCards } from 'hooks';
 // Components
-import { Translate } from 'components';
+import { Translate } from 'components/language';
 
 type ImageBlurButtonProps = {
   cardId: string;

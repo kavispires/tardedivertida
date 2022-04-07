@@ -1,12 +1,16 @@
 import { useState } from 'react';
-// Hooks
-import { useLanguage, useLoading, useMock } from 'hooks';
 // Ant Design Resources
 import { Button, Input, Space } from 'antd';
-// Components
-import { FloatingHand, ImageCard, ImageCardHand as Hand, Step, Title, Translate } from 'components';
-import { BookPages } from './BookPages';
+// Hooks
+import { useLanguage, useLoading, useMock } from 'hooks';
+// Utils
 import { mockStory } from './mock';
+// Components
+import { BookPages } from './BookPages';
+import { Step } from 'components/steps';
+import { Title } from 'components/text';
+import { Translate } from 'components/language';
+import { FloatingHand, ImageCard, ImageCardHand } from 'components/cards';
 
 type StoryWritingProps = {
   user: GamePlayer;
@@ -86,7 +90,7 @@ export function StoryWriting({ user, onSubmitStory }: StoryWritingProps) {
       </Space>
 
       <FloatingHand>
-        <Hand
+        <ImageCardHand
           hand={user.hand}
           onSelectCard={setCardId}
           disabledSelectButton={isLoading}

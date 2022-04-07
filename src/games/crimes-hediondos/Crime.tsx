@@ -16,7 +16,8 @@ import { useLanguage } from 'hooks';
 // Utils
 import { getAvatarColorById } from 'utils/helpers';
 // Components
-import { Avatar, Translate } from 'components';
+import { Avatar } from 'components/avatars';
+import { Translate } from 'components/language';
 import { ItemCard } from './ItemCard';
 import { ItemCardEmpty } from './ItemCardEmpty';
 import { CrimeGuessStatus } from './CrimeGuessStatus';

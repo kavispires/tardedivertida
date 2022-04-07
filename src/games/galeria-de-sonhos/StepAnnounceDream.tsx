@@ -3,16 +3,13 @@ import { Divider } from 'antd';
 // Hooks
 import { useCardWidth } from 'hooks';
 // Components
-import {
-  AdminNextRoundButton,
-  AvatarName,
-  ImageCard,
-  Instruction,
-  Step,
-  TimedButton,
-  Title,
-  Translate,
-} from 'components';
+import { Step } from 'components/steps';
+import { Instruction, Title } from 'components/text';
+import { AvatarName } from 'components/avatars';
+import { Translate } from 'components/language';
+import { ImageCard } from 'components/cards';
+import { TimedButton } from 'components/buttons';
+import { AdminNextRoundButton } from 'components/admin';
 
 type StepAnnounceDreamProps = {
   latest: LatestInfo;

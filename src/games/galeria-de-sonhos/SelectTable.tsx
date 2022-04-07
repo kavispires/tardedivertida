@@ -1,7 +1,8 @@
 import { UpCircleOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import clsx from 'clsx';
-import { ImageBlurButton, ImageCard, Translate } from 'components';
+import { ImageBlurButton, ImageCard } from 'components/cards';
+import { Translate } from 'components/language';
 import { useCardWidth } from 'hooks';
 
 type SelectTableProps = {

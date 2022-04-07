@@ -9,7 +9,8 @@ import avatars from 'assets/images/avatars.svg';
 // Utils and Resources
 import { PUBLIC_URL } from 'utils/constants';
 // Components
-import { AdminOnlyContainer, Translate } from 'components';
+import { AdminOnlyContainer } from 'components/admin';
+import { Translate } from 'components/language';
 
 type WaitingProps = {
   info: GameInfo;

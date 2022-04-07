@@ -2,7 +2,7 @@ import { orderBy } from 'lodash';
 // Hooks
 import { useUser } from 'hooks';
 // Components
-import { GameOverWrapper } from 'components';
+import { GameOverWrapper } from 'components/game-over';
 import { Crime } from './Crime';
 
 function PhaseGameOver({ state, players, info }: PhaseProps) {

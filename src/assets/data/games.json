@@ -7,6 +7,10 @@
       "pt": "Arte Ruim Pra Dedéu",
       "en": "Questionable Art"
     },
+    "popularName": {
+      "pt": "ARPD",
+      "en": "The drawing game"
+    },
     "basedOn": "trA daB yllaeR",
     "summary": {
       "pt": "Tente identificar as obras-primas criadas por seus oponentes!",
@@ -53,6 +57,10 @@
       "pt": "Bomba Relógio",
       "en": "Time Bomb"
     },
+    "popularName": {
+      "pt": "",
+      "en": ""
+    },
     "basedOn": "bmoB emiT/uhluhtC htiw ssem t'noD",
     "summary": {
       "pt": "Uns são agentes, outros terroristas. Você será capaz de parar a bomba antes que ela detone?",
@@ -87,6 +95,10 @@
     "title": {
       "pt": "Contadores de Histórias",
       "en": "Storytellers"
+    },
+    "popularName": {
+      "pt": "Das cartas bonitas",
+      "en": ""
     },
     "basedOn": "tixiD",
     "summary": {
@@ -131,6 +143,10 @@
       "pt": "Detetives Imaginativos",
       "en": "Imaginative Detectives"
     },
+    "popularName": {
+      "pt": "De mentir com cartas bonitas",
+      "en": ""
+    },
     "basedOn": "bulC evitceteD",
     "summary": {
       "pt": "Existe um impostor entre nós, mas será que ele tem boa lábia para se safar?",
@@ -170,6 +186,10 @@
       "pt": "Espião Entre Nós",
       "en": "Spy the Spies"
     },
+    "popularName": {
+      "pt": "Do espião",
+      "en": ""
+    },
     "basedOn": "llafypS",
     "summary": {
       "pt": "Todos nós, agentes de bem, estamos num mesmo local, mas um de nós é um espião! Será que conseguimos descobrir quem é o impostor antes dele descobrir que local estamos?",
@@ -206,6 +226,10 @@
       "pt": "Desenho Rapidão",
       "en": "Fast Draw"
     },
+    "popularName": {
+      "pt": "",
+      "en": ""
+    },
     "basedOn": "hsaD eldooD",
     "summary": {
       "pt": "Uma palavra secreta, uma corrida, vários desenhos! Quem consegue desenhar o mais rápido possível?",
@@ -233,6 +257,10 @@
     "title": {
       "pt": "Galeria de sonhos",
       "en": "Dream Gallery"
+    },
+    "popularName": {
+      "pt": "",
+      "en": ""
     },
     "basedOn": "alletS",
     "summary": {
@@ -262,6 +290,10 @@
       "pt": "Crimes Hediondos",
       "en": "Horrific Crimes"
     },
+    "popularName": {
+      "pt": "Jogo da Convenção de Serial Killers",
+      "en": ""
+    },
     "basedOn": "gnoK gnoH ni redruM :noitpeceD",
     "summary": {
       "pt": "Numa convenção anual de Serial Killers, você e seus amigos tem que descrever o seu crime para que os outros jogadores adivinhem qual arma você usou e qual lembrancinha você levou pra casa",
@@ -289,6 +321,10 @@
     "title": {
       "pt": "Instrumentos Codificados",
       "en": "Instrumental Cyphers"
+    },
+    "popularName": {
+      "pt": "",
+      "en": ""
     },
     "basedOn": "maJ retteL",
     "summary": {
@@ -318,6 +354,10 @@
       "pt": "Palheta de Cores",
       "en": "Color Palette"
     },
+    "popularName": {
+      "pt": "",
+      "en": ""
+    },
     "basedOn": "enotnaP",
     "summary": {
       "pt": "Em cada rodada escolha a cor que mais combina com as palavras. Quanto mais combinações iguais você faz com outros jogadores, mais pontos você ganha",
@@ -346,6 +386,10 @@
       "pt": "Linhas Cruzadas",
       "en": "Mis...communication"
     },
+    "popularName": {
+      "pt": "Telefone sem fio de desenhar",
+      "en": ""
+    },
     "basedOn": "snoitartseleT",
     "summary": {
       "pt": "Desenhe... adivinhe... repita...",
@@ -360,7 +404,7 @@
       "min": 4,
       "max": 10
     },
-    "tags": ["cooperative", "drawing", "guessing"],
+    "tags": ["cooperative", "drawing", "guessing", "writing"],
     "available": {
       "pt": true,
       "en": true
@@ -382,6 +426,10 @@
     "title": {
       "pt": "Mente Coletiva",
       "en": "Herd Mind"
+    },
+    "popularName": {
+      "pt": "Da ovelhinha",
+      "en": ""
     },
     "basedOn": "dniM eviH",
     "summary": {
@@ -426,6 +474,10 @@
       "pt": "Na Rua do Medo",
       "en": "Fear Street"
     },
+    "popularName": {
+      "pt": "Dos doces/halloween",
+      "en": ""
+    },
     "basedOn": "tnamaiD/dloG nacnI",
     "summary": {
       "pt": "Jogadores são crianças recolhendo doces durante o Halloween, mas se você ver o mesmo monstro mais de uma vez...",
@@ -468,6 +520,10 @@
     "title": {
       "pt": "Onda Telepática",
       "en": "Telepathic Waves"
+    },
+    "popularName": {
+      "pt": "",
+      "en": ""
     },
     "basedOn": "htgnelevaW",
     "summary": {
@@ -521,6 +577,10 @@
       "pt": "Polêmica da Vez",
       "en": "That's Polemic"
     },
+    "popularName": {
+      "pt": "",
+      "en": ""
+    },
     "basedOn": "cimeloP",
     "summary": {
       "pt": "Um tópico... Polêmico. Você sabe a sua opinião, mas consegue descobrir a dos seus oponentes?",
@@ -569,6 +629,10 @@
       "pt": "Quem Sou Eu?",
       "en": "Who Am I?"
     },
+    "popularName": {
+      "pt": "",
+      "en": ""
+    },
     "basedOn": "znabdeH/ytirbeleC",
     "summary": {
       "pt": "Cada jogador é uma celebridade, você consegue adivinhar quem você é com 20 perguntas?",
@@ -596,6 +660,10 @@
     "title": {
       "pt": "Retrato Falado Monstruoso",
       "en": "Monster Sketch"
+    },
+    "popularName": {
+      "pt": "Do monstro",
+      "en": ""
     },
     "basedOn": "ytiswardsnoM",
     "summary": {
@@ -629,6 +697,10 @@
     "title": {
       "pt": "Sonhos e Pesadelos",
       "en": "Dreams and Nightmares"
+    },
+    "popularName": {
+      "pt": "Das cartas bonitas e sonhos",
+      "en": ""
     },
     "basedOn": "lanigirO",
     "summary": {
@@ -665,6 +737,10 @@
       "pt": "Testemunha Ocular",
       "en": "Eye Witness"
     },
+    "popularName": {
+      "pt": "Do preconceito",
+      "en": ""
+    },
     "basedOn": "stcepsuS lausunU",
     "summary": {
       "pt": "Um crime. Uma testemunha. Desde quando julgando por aparência não se desvenda um crime?",
@@ -699,6 +775,10 @@
     "title": {
       "pt": "Ué, Só Isso?",
       "en": "That's It?"
+    },
+    "popularName": {
+      "pt": "Do colocolo",
+      "en": ""
     },
     "basedOn": "enO tsuJ",
     "summary": {
@@ -745,6 +825,10 @@
       "pt": "Vendaval de Palpite",
       "en": "Brainy Storm"
     },
+    "popularName": {
+      "pt": "",
+      "en": ""
+    },
     "basedOn": "droW retsaM",
     "summary": {
       "pt": "Uma palavra secreta que sabemos apenas o tema. Consegue descobri-la fazendo associação de palavras?",
@@ -772,6 +856,10 @@
     "title": {
       "pt": "Cruza Palavras",
       "en": "Mixed Clues"
+    },
+    "popularName": {
+      "pt": "",
+      "en": ""
     },
     "basedOn": "seulC ssorC",
     "summary": {
@@ -808,6 +896,10 @@
     "title": {
       "pt": "Te conheço?",
       "en": "You don't know me"
+    },
+    "popularName": {
+      "pt": "",
+      "en": ""
     },
     "basedOn": "eiL enO shturT owT",
     "summary": {

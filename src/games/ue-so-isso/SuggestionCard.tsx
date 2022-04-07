@@ -5,8 +5,9 @@ import { CloseOutlined } from '@ant-design/icons';
 // Utils
 import { getColorFromIndex } from 'utils/helpers';
 import { LETTERS } from 'utils/constants';
+import { Card } from 'components/cards';
+import { Avatar } from 'components/avatars';
 // Components
-import { Avatar, Card } from 'components';
 
 type SuggestionCardProps = {
   avatarId: string;

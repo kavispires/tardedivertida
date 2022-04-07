@@ -1,16 +1,13 @@
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Components
-import {
-  AdminNextRoundButton,
-  Instruction,
-  PopoverRule,
-  RankingBoard,
-  Step,
-  Title,
-  Translate,
-} from 'components';
+import { Step } from 'components/steps';
+import { Instruction, Title } from 'components/text';
+import { Translate } from 'components/language';
+import { PopoverRule } from 'components/rules';
 import { ScoringRule } from './RulesBlobs';
+import { RankingBoard } from 'components/ranking';
+import { AdminNextRoundButton } from 'components/admin';
 
 type StepRankingProps = {
   players: GamePlayers;

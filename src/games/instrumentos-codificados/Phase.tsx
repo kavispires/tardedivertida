@@ -4,7 +4,8 @@ import { useIsUserReady, useUser, useLanguage } from 'hooks';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import { Instruction, StepSwitcher } from 'components';
+import { StepSwitcher } from 'components/steps';
+import { Instruction } from 'components/text';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 function PhasePromptSelection({ players, state, info }: PhaseProps) {

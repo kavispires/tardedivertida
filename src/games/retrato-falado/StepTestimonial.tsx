@@ -4,7 +4,7 @@ import { useTimer } from 'react-timer-hook';
 import { TIMES, VIEWS } from './constants';
 import { inNSeconds } from 'utils/helpers';
 // Components
-import { ViewSwitch } from 'components';
+import { ViewSwitch } from 'components/views';
 import { ViewAnnouncement } from './ViewAnnouncement';
 import { ViewLastSeconds } from './ViewLastSeconds';
 import { ViewSketching } from './ViewSketching';

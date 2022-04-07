@@ -4,7 +4,7 @@ import { Popconfirm } from 'antd';
 // Hooks
 import { useDimensions, useLanguage, useLoading } from 'hooks';
 // Components
-import { ImageCard } from 'components';
+import { ImageCard } from 'components/cards';
 
 type SuspectsProps = {
   suspects: Suspect[];

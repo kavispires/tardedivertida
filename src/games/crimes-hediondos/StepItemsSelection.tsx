@@ -6,7 +6,10 @@ import { useCardWidth } from 'hooks';
 // Utils
 import { shuffle } from 'utils/helpers';
 // Components
-import { Instruction, Step, Title, Translate, TransparentButton } from 'components';
+import { Step } from 'components/steps';
+import { Instruction, Title } from 'components/text';
+import { Translate } from 'components/language';
+import { TransparentButton } from 'components/buttons';
 import { ItemCard } from './ItemCard';
 import { ContinueButton } from './ContinueButton';
 

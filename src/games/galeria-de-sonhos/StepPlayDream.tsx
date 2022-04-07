@@ -4,18 +4,16 @@ import { message } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks';
 // Components
-import {
-  AvatarName,
-  Card,
-  Instruction,
-  messageContent,
-  PopoverRule,
-  Step,
-  Title,
-  Translate,
-} from 'components';
+
 import { CardPlayRules } from './RulesBlobs';
 import { PlayTable } from './PlayTable';
+import { messageContent } from 'components/pop-up';
+import { Step } from 'components/steps';
+import { Instruction, Title } from 'components/text';
+import { Translate } from 'components/language';
+import { Card } from 'components/cards';
+import { AvatarName } from 'components/avatars';
+import { PopoverRule } from 'components/rules';
 
 type StepDreamsSelectionProps = {
   table: GImageCard[];

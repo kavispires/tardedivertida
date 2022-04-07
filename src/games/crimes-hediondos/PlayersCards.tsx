@@ -2,7 +2,8 @@ import { orderBy } from 'lodash';
 // Helpers
 import { isHistoryLocked } from './helpers';
 // Components
-import { AvatarCard, AvatarIcon, TransparentButton } from 'components';
+import { AvatarCard, AvatarIcon } from 'components/avatars';
+import { TransparentButton } from 'components/buttons';
 
 type PlayersCardsProps = {
   activePlayerId: PlayerId;

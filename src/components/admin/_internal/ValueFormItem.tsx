@@ -1,5 +1,5 @@
 // Ant Design Resources
-import { Input, Form, InputNumber, Switch } from 'antd';
+import { Form, Input, InputNumber, Switch } from 'antd';
 
 type ValueFormItemProps = {
   valueType?: string;

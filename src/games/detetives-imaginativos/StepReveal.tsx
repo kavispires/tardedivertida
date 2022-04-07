@@ -1,14 +1,10 @@
 // Components
-import {
-  AdminNextRoundButton,
-  AvatarName,
-  Instruction,
-  RankingBoard,
-  RoundsLeftInstruction,
-  Step,
-  Title,
-  Translate,
-} from 'components';
+import { AdminNextRoundButton } from 'components/admin';
+import { AvatarName } from 'components/avatars';
+import { Translate } from 'components/language';
+import { RankingBoard } from 'components/ranking';
+import { Step } from 'components/steps';
+import { Instruction, RoundsLeftInstruction, Title } from 'components/text';
 import { VotingOptions } from './VotingOptions';
 
 type StepRevealProps = {
@@ -34,7 +30,7 @@ export function StepReveal({
     <Step>
       <Title>
         <Translate pt="O impostor era " en="The impostor was " />
-        {<AvatarName player={impostor} />}
+        <AvatarName player={impostor} />
       </Title>
       <Instruction contained>
         {impostorVotes > 1 ? (

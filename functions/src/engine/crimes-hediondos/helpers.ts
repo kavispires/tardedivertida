@@ -76,7 +76,7 @@ export const parseTiles = (sceneTiles: CrimesHediondosSceneTile[]): ParsedTiles 
       causeOfDeathTile: {},
       reasonForEvidenceTile: {},
       locationTiles: [],
-      CrimesHediondosSceneTiles: [],
+      sceneTiles: [],
     }
   );
 

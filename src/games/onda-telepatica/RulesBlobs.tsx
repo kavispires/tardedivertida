@@ -1,4 +1,6 @@
-import { Instruction, PopoverRule, Translate } from 'components';
+import { Translate } from 'components/language';
+import { PopoverRule } from 'components/rules';
+import { Instruction } from 'components/text';
 
 function RulesPt() {
   return (

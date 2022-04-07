@@ -4,7 +4,7 @@ import { CheckCircleFilled, PlusCircleFilled } from '@ant-design/icons';
 // Utils
 import { getColorFromIndex } from 'utils/helpers';
 // Components
-import { Avatar } from 'components';
+import { Avatar } from 'components/avatars';
 
 type ClueCardProps = {
   isMatched?: boolean;

@@ -1,4 +1,5 @@
-import { AvatarName, ImageCard } from 'components';
+import { AvatarName } from 'components/avatars';
+import { ImageCard } from 'components/cards';
 import { useCardWidth } from 'hooks';
 
 type GalleryDreamDisplayProps = {

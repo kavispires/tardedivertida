@@ -1,11 +1,15 @@
 // Ant Design Resources
 import { Button, Space } from 'antd';
+import { TransparentButton } from 'components/buttons';
+import { Card } from 'components/cards';
+import { Translate } from 'components/language';
+import { Step } from 'components/steps';
+import { Instruction, Title } from 'components/text';
 // Hooks
 import { useLoading, useMock } from 'hooks';
 // Utils
 import { shuffle } from 'utils/helpers';
 // Components
-import { Card, Instruction, Step, Title, Translate, TransparentButton } from 'components';
 
 type StepSelectPromptProps = {
   prompts: PromptCard[];

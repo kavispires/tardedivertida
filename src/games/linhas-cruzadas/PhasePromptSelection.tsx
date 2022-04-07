@@ -5,7 +5,9 @@ import { useOnSubmitPromptAPIRequest } from './api-requests';
 import { PHASES } from 'utils/phases';
 // Components
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { Instruction, StepSwitcher, Translate } from 'components';
+import { Translate } from 'components/language';
+import { StepSwitcher } from 'components/steps';
+import { Instruction } from 'components/text';
 import { StepSelectPrompt } from './StepSelectPrompt';
 
 function PhasePromptSelection({ players, state, info }: PhaseProps) {

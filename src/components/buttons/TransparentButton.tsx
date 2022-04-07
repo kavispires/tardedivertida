@@ -5,6 +5,7 @@ interface TransparentButtonProps extends React.ButtonHTMLAttributes<HTMLButtonEl
   active?: boolean;
   activeClass?: string;
   className?: string;
+  hoverType?: 'scale' | 'sepia';
 }
 
 export const TransparentButton = ({
@@ -12,12 +13,14 @@ export const TransparentButton = ({
   active = false,
   activeClass = '',
   className = '',
+  hoverType = 'scale',
   ...props
 }: TransparentButtonProps) => {
   return (
     <button
       className={clsx(
         'transparent-button',
+        `transparent-button--${hoverType}`,
         active && (activeClass || 'transparent-button--active'),
         className
       )}

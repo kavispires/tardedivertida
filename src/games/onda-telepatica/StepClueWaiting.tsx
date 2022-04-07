@@ -1,5 +1,9 @@
 import { Space } from 'antd';
-import { AvatarName, Instruction, Translate, WaitingRoom } from 'components';
+import { AvatarName } from 'components/avatars';
+import { Translate } from 'components/language';
+import { WaitingRoom } from 'components/players';
+import { Instruction } from 'components/text';
+
 import { Card } from './Card';
 
 type StepClueWaitingProps = {

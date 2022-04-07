@@ -3,7 +3,8 @@ import { Tooltip } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks';
 // Components
-import { AvatarIcon, CollapsibleRule } from 'components';
+import { AvatarIcon } from 'components/avatars';
+import { CollapsibleRule } from 'components/rules';
 
 type QuestionsHistoryProps = {
   history: THistoryEntry[];

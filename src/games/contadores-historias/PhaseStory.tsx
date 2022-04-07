@@ -4,19 +4,18 @@ import { useOnSubmitStoryAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import {
-  AvatarName,
-  ImageCardPreloadHand,
-  Instruction,
-  RoundAnnouncement,
-  StepSwitcher,
-  Translate,
-  TurnOrder,
-  ViewOr,
-} from 'components';
+
 import { StoryWaiting } from './StoryWaiting';
 import { StoryWriting } from './StoryWriting';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { StepSwitcher } from 'components/steps';
+import { RoundAnnouncement } from 'components/round';
+import { Instruction } from 'components/text';
+import { Translate } from 'components/language';
+import { AvatarName } from 'components/avatars';
+import { TurnOrder } from 'components/players';
+import { ImageCardPreloadHand } from 'components/cards';
+import { ViewOr } from 'components/views';
 
 function PhaseStory({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();

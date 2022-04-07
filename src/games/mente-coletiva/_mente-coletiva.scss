@@ -66,6 +66,40 @@
   position: relative;
 }
 
+.sheep-avatar {
+  width: 100px;
+  border-radius: get-unit(1);
+  margin: get-unit(0 2);
+
+  &--bounce {
+    animation: bounce-sheep 2000ms ease-in-out infinite;
+  }
+}
+
+@keyframes bounce-sheep {
+  0% {
+    transform: scale(1, 1) translateY(0);
+  }
+  10% {
+    transform: scale(1.01, 0.98) translateY(0);
+  }
+  30% {
+    transform: scale(0.98, 1.01) translateY(-6px);
+  }
+  50% {
+    transform: scale(1.05, 0.99) translateY(0);
+  }
+  57% {
+    transform: scale(1, 1) translateY(-3px);
+  }
+  64% {
+    transform: scale(1, 1) translateY(0);
+  }
+  100% {
+    transform: scale(1, 1) translateY(0);
+  }
+}
+
 .m-sheep {
   width: 50px;
   display: block;
@@ -389,39 +423,5 @@
   100% {
     transform: scale(0.1) translateY(700%);
     opacity: 0;
-  }
-}
-
-.sheep-avatar {
-  width: 100px;
-  border-radius: get-unit(1);
-  margin: get-unit(0 2);
-
-  &--bounce {
-    animation: bounce-sheep 2000ms ease-in-out infinite;
-  }
-}
-
-@keyframes bounce-sheep {
-  0% {
-    transform: scale(1, 1) translateY(0);
-  }
-  10% {
-    transform: scale(1.01, 0.98) translateY(0);
-  }
-  30% {
-    transform: scale(0.98, 1.01) translateY(-6px);
-  }
-  50% {
-    transform: scale(1.05, 0.99) translateY(0);
-  }
-  57% {
-    transform: scale(1, 1) translateY(-3px);
-  }
-  64% {
-    transform: scale(1, 1) translateY(0);
-  }
-  100% {
-    transform: scale(1, 1) translateY(0);
   }
 }

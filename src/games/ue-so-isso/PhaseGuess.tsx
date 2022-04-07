@@ -5,7 +5,7 @@ import { useOnSendGuessAPIRequest, useOnSubmitOutcomeAPIRequest } from './api-re
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import { StepSwitcher } from 'components';
+import { StepSwitcher } from 'components/steps';
 import { StepGuessing } from './StepGuessing';
 import { StepGuessVerification } from './StepGuessVerification';
 import { GuessingRules } from './RulesBlobs';

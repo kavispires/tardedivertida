@@ -1,8 +1,12 @@
 import { useState } from 'react';
 // Ant Design Resources
 import { CheckCircleFilled, CloudUploadOutlined } from '@ant-design/icons';
+import { Step } from 'components/steps';
+import { Instruction, Title } from 'components/text';
+import { Translate } from 'components/language';
+import { AvatarName } from 'components/avatars';
+import { TimedButton } from 'components/buttons';
 // Components
-import { AvatarName, Instruction, Step, TimedButton, Title, Translate } from 'components';
 
 type StepWordSelectionProps = {
   guesser: GamePlayer;
@@ -44,7 +48,6 @@ export function StepWordSelection({ guesser, onSendSelectedWords, words = [] }: 
           }
           en={
             <>
-              {' '}
               Select a Secret Word for <AvatarName player={guesser} />
             </>
           }

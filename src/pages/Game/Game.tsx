@@ -10,7 +10,8 @@ import { useIsGameStale, useLoading, useGlobalState, useLocalStorage } from 'hoo
 import { isValidGameId, isDevEnv, getGameIdFromPathname } from 'utils/helpers';
 import { GAME_COLLECTION } from 'utils/constants';
 // Components
-import { LoadingPage, PageError } from 'components';
+import { PageError } from 'components/errors';
+import { LoadingPage } from 'components/loaders';
 
 // Game lazy imports
 const SessionArteRuim = lazy(

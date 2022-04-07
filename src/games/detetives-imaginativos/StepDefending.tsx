@@ -1,7 +1,11 @@
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Components
-import { AvatarName, Instruction, Step, Title, TextHighlight, Translate } from 'components';
+import { AvatarName } from 'components/avatars';
+import { Translate } from 'components/language';
+import { Step } from 'components/steps';
+import { Instruction, TextHighlight, Title } from 'components/text';
+
 import { TableFocus } from './TableFocus';
 
 type StepDefendingProps = {

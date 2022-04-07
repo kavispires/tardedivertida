@@ -1,7 +1,11 @@
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Components
-import { AdminNextRoundButton, Instruction, RankingBoard, Step, Title, Translate } from 'components';
+import { AdminNextRoundButton } from 'components/admin';
+import { Translate } from 'components/language';
+import { RankingBoard } from 'components/ranking';
+import { Step } from 'components/steps';
+import { Instruction, Title } from 'components/text';
 
 type StepRankingProps = {
   ranking: GameRanking;

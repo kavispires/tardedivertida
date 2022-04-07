@@ -5,7 +5,10 @@ import { Button, Space } from 'antd';
 import { shuffle } from 'utils/helpers';
 import { getClueFromKey, getClueKey, isClue } from './helpers';
 // Components
-import { Instruction, ReadyPlayersBar, Title, Translate } from 'components';
+import { Step } from 'components/steps';
+import { Instruction, Title } from 'components/text';
+import { Translate } from 'components/language';
+import { ReadyPlayersBar } from 'components/players';
 import { WordGrid } from './WordGrid';
 import { SelectableCell } from './SelectableCell';
 import { Clues } from './Clues';
@@ -110,7 +113,7 @@ export function StepGuessing({ grid, user, clues, onSubmitGuesses, players }: St
   };
 
   return (
-    <div className="x-step">
+    <Step fullWidth>
       <Title>
         <Translate pt="Decifre as dicas!" en="Guess the cells!" />
       </Title>
@@ -145,6 +148,6 @@ export function StepGuessing({ grid, user, clues, onSubmitGuesses, players }: St
       />
 
       <ReadyPlayersBar players={players} />
-    </div>
+    </Step>
   );
 }

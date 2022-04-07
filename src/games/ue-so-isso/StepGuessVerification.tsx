@@ -6,18 +6,15 @@ import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 // Hooks
 import { useLanguage } from 'hooks';
 // Components
-import {
-  AvatarName,
-  Instruction,
-  messageContent,
-  Step,
-  Title,
-  TextHighlight,
-  Translate,
-  ViewIf,
-} from 'components';
+
 import { UeSoIssoCard as Card } from './UeSoIssoCard';
 import { SuggestionEasel } from './SuggestionEasel';
+import { messageContent } from 'components/pop-up';
+import { Step } from 'components/steps';
+import { Instruction, TextHighlight, Title } from 'components/text';
+import { AvatarName } from 'components/avatars';
+import { Translate } from 'components/language';
+import { ViewOr } from 'components/views';
 
 type StepGuessVerificationProps = {
   guess: string;
@@ -68,8 +65,8 @@ export function StepGuessVerification({
 
       <Card word={secretWord.text} />
 
-      <ViewIf isVisible={isUserTheGuesser}>
-        <Instruction contained>
+      <Instruction contained>
+        <ViewOr orCondition={isUserTheGuesser}>
           <Translate
             pt={
               <>
@@ -89,11 +86,7 @@ export function StepGuessVerification({
               </>
             }
           />
-        </Instruction>
-      </ViewIf>
 
-      <ViewIf isVisible={!isUserTheGuesser}>
-        <Instruction contained>
           <Translate
             pt={
               <>
@@ -114,8 +107,9 @@ export function StepGuessVerification({
               </>
             }
           />
-        </Instruction>
-      </ViewIf>
+        </ViewOr>
+      </Instruction>
+
       <Space className="u-word-guess-phase__suggestions">
         {validSuggestions.map((suggestionEntry, index) => {
           const id = `${suggestionEntry.suggestion}-${index}`;

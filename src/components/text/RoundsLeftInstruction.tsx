@@ -1,5 +1,6 @@
 // Components
-import { Instruction, Translate } from '..';
+import { Translate } from 'components/language';
+import { Instruction } from 'components/text';
 
 type RoundsLeftInstructionProps = {
   round: GameRound;

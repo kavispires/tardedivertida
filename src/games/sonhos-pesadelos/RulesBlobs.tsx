@@ -1,4 +1,4 @@
-import { Translate } from 'components';
+import { Translate } from 'components/language';
 
 export const DreamTellingRules = () => (
   <Translate

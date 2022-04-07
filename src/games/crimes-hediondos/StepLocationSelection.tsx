@@ -1,12 +1,14 @@
 import { useState } from 'react';
+import { Space } from 'antd';
 // Hooks
 import { useCardWidth } from 'hooks';
 // Components
-import { Instruction, Step, Title, Translate } from 'components';
+import { Translate } from 'components/language';
+import { Step } from 'components/steps';
+import { Instruction, Title } from 'components/text';
 import { ItemCard } from './ItemCard';
 import { SceneTile } from './SceneTile';
 import { ContinueButton } from './ContinueButton';
-import { Space } from 'antd';
 
 type StepLocationSelectionProps = {
   user: GamePlayer;

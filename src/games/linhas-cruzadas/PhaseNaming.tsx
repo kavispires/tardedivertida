@@ -4,7 +4,10 @@ import { useOnSubmitGuessAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import { Instruction, StepSwitcher, Translate, TurnOrder } from 'components';
+import { TurnOrder } from 'components/players';
+import { Translate } from 'components/language';
+import { Instruction } from 'components/text';
+import { StepSwitcher } from 'components/steps';
 import { StepNameDrawing } from './StepNameDrawing';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 

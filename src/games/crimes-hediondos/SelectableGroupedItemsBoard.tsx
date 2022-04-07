@@ -1,7 +1,7 @@
 // Hooks
 import { useCardWidth } from 'hooks';
 // Components
-import { TransparentButton } from 'components';
+import { TransparentButton } from 'components/buttons';
 import { ItemCard } from './ItemCard';
 
 const getEliminatedCard = (cardType: string) => ({

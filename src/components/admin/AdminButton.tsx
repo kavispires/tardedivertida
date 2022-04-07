@@ -1,7 +1,5 @@
-// Ant Design Resources
-import { Button, ButtonProps } from 'antd';
 import { RocketFilled } from '@ant-design/icons';
-// State
+import { Button, ButtonProps } from 'antd';
 import { useLoading } from 'hooks';
 
 interface AdminButtonProps extends ButtonProps {

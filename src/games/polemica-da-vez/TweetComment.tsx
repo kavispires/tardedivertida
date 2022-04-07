@@ -2,7 +2,7 @@ import moment from 'moment';
 // Ant Design Resources
 import { Comment } from 'antd';
 // Components
-import { Avatar } from 'components';
+import { Avatar } from 'components/avatars';
 import { CommentText } from './CommentText';
 
 type TweetCommentProps = {

@@ -5,7 +5,9 @@ import { CheckCircleFilled, MehFilled, RobotFilled, SmileFilled } from '@ant-des
 import { GAME_API } from 'services/adapters';
 import { useLoading, useIsUserReady, useAPICall, useLanguage, useMock } from 'hooks';
 // Components
-import { LoadingPage, ReadyPlayersBar, Translate } from '..';
+import { LoadingPage } from 'components/loaders';
+import { Translate } from 'components/language';
+import { ReadyPlayersBar } from 'components/players';
 import { RulesCarousel } from '../rules';
 
 type PhaseRulesProps = {

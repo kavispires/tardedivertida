@@ -4,7 +4,7 @@ import { PHASES } from 'utils/phases';
 // Components
 import { Session } from 'components/session';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
-import { PageError } from 'components';
+import { PageError } from 'components/errors';
 import PhaseStory from './PhaseStory';
 import PhaseCardPlay from './PhaseCardPlay';
 import PhaseVoting from './PhaseVoting';

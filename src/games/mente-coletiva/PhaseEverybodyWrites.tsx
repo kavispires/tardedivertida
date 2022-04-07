@@ -4,7 +4,7 @@ import { useOnSubmitAnswersAPIRequest } from './api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import { StepSwitcher } from 'components';
+import { StepSwitcher } from 'components/steps';
 import { StepAnswering } from './StepAnswering';
 import { AnsweringRules } from './RulesBlobs';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
