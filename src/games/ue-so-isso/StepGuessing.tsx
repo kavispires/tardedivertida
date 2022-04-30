@@ -38,7 +38,7 @@ export function StepGuessing({
           </Title>
           <Instruction contained>
             <Translate
-              pt="Você tem uma única change de adivinhar a palavra secreta!"
+              pt="Você tem uma única chance de adivinhar a palavra secreta!"
               en="You have a single chance to guess the secret word!"
             />
           </Instruction>
