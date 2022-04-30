@@ -13,6 +13,7 @@ $colors: (#44bba4, #3a7ca5, #f2e863, #f45b69);
     width: 100vw;
     height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     z-index: 1000;
@@ -21,6 +22,21 @@ $colors: (#44bba4, #3a7ca5, #f2e863, #f45b69);
   &__logo {
     max-width: 75vw;
     min-width: 300px;
+  }
+
+  &__input {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    margin-top: get-unit(1);
+
+    input {
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    &--visible {
+      opacity: 1;
+    }
   }
 
   &__background {
