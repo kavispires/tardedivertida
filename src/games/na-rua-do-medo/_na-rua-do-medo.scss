@@ -86,6 +86,15 @@ $stats-height: get-unit(40);
   flex-direction: row;
   margin: get-unit(1 0 5 0);
 
+  @include mobile {
+    width: 100%;
+  }
+
+  @include xs {
+    flex-direction: column;
+    overflow-y: auto;
+  }
+
   &__decision {
     display: flex;
     flex-direction: column;
@@ -138,14 +147,6 @@ $stats-height: get-unit(40);
     color: get-color(gray, 3);
   }
 }
-
-// .n-players-decisions-list {
-//   display: flex;
-
-//   &__ul {
-//     display: flex;
-//   }
-// }
 
 .n-decision-buttons-container {
   width: 60%;
@@ -215,6 +216,10 @@ $stats-height: get-unit(40);
   grid-template-columns: 1fr 1px 1fr;
   margin-bottom: get-unit(2);
   border-radius: get-unit(2);
+
+  @include mobile {
+    display: block;
+  }
 
   &__section {
     display: flex;
