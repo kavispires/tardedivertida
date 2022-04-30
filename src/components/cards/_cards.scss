@@ -161,14 +161,13 @@
   position: fixed;
   bottom: get-unit(-3);
   left: 50%;
-  background: green;
   border-radius: get-unit(3 3 0 0);
   background: rgba($color: #f0f0f0, $alpha: 0.9);
   padding: get-unit(2 2 0 2);
   z-index: 149;
 
   transition: 500ms all;
-  transform: translate(-50%, 50%) scale(50%);
+  transform: translate(-50%, 60%) scale(80%);
   box-shadow: 0px -5px 15px rgba(0, 0, 0, 0.4);
 
   &--expanded {
@@ -187,6 +186,22 @@
 
     #{$self}--expanded & {
       font-size: 0rem;
+    }
+  }
+
+  @include mobile {
+    position: initial;
+
+    transform: none;
+
+    &__label {
+      font-size: 0rem;
+    }
+  }
+
+  @include xs {
+    &__label {
+      font-size: 1rem;
     }
   }
 }
