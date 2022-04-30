@@ -30,9 +30,9 @@ export function StepGuessing({
   validSuggestions,
 }: StepGuessingProps) {
   return (
-    <Step>
+    <Step fullWidth>
       <ViewOr orCondition={isUserTheGuesser}>
-        <div>
+        <Space direction="vertical" align="center">
           <Title>
             <Translate pt="Hora de brilhar" en="Time to shine" />, <AvatarName player={guesser} />!
           </Title>
@@ -56,9 +56,9 @@ export function StepGuessing({
               return <SuggestionEasel key={id} id={id} value={suggestionEntry.suggestion} />;
             })}
           </Space>
-        </div>
+        </Space>
 
-        <div>
+        <Space direction="vertical" align="center">
           <Title>
             <Translate
               pt={
@@ -94,7 +94,7 @@ export function StepGuessing({
               return <SuggestionEasel key={id} id={id} value={suggestionEntry.suggestion} />;
             })}
           </Space>
-        </div>
+        </Space>
       </ViewOr>
     </Step>
   );
