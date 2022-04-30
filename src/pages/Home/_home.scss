@@ -23,7 +23,7 @@ $colors: (#44bba4, #3a7ca5, #f2e863, #f45b69);
     max-width: 75vw;
     min-width: 300px;
 
-    @include md {
+    @include lg {
       width: 40vw;
     }
   }
