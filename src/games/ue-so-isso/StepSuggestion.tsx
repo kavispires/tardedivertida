@@ -2,6 +2,10 @@ import { useState } from 'react';
 // Ant Design Resources
 import { Button, Space } from 'antd';
 import { CloudUploadOutlined } from '@ant-design/icons';
+// Hooks
+import { useMock } from 'hooks';
+// Utils
+import { mockSuggestions } from './utils/mock';
 // Components
 import { SuggestionEasel } from './components/SuggestionEasel';
 import { WritingRules } from './components/RulesBlobs';
@@ -50,6 +54,10 @@ export function StepSuggestion({
       onSendSuggestions({ suggestions: suggestionsValues });
     }
   };
+
+  useMock(() => {
+    onSendSuggestions(mockSuggestions(suggestionsNumber));
+  }, []);
 
   return (
     <Step fullWidth>
