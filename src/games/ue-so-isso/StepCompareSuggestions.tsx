@@ -7,9 +7,9 @@ import { useGlobalState, useLanguage, useLoading } from 'hooks';
 // Utils
 import { deepCopy } from 'utils/helpers';
 // Components
-import { UeSoIssoCard as Card } from './UeSoIssoCard';
-import { SuggestionCard } from './SuggestionCard';
-import { ComparisonDetailedRules, ComparisonPhaseRules } from './RulesBlobs';
+import { UeSoIssoCard as Card } from './components/UeSoIssoCard';
+import { SuggestionCard } from './components/SuggestionCard';
+import { ComparisonDetailedRules, ComparisonPhaseRules } from './components/RulesBlobs';
 import { Step } from 'components/steps';
 import { Title } from 'components/text';
 import { Translate } from 'components/language';

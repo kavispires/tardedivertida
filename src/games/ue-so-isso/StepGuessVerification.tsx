@@ -7,8 +7,8 @@ import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 import { useLanguage } from 'hooks';
 // Components
 
-import { UeSoIssoCard as Card } from './UeSoIssoCard';
-import { SuggestionEasel } from './SuggestionEasel';
+import { UeSoIssoCard as Card } from './components/UeSoIssoCard';
+import { SuggestionEasel } from './components/SuggestionEasel';
 import { messageContent } from 'components/pop-up';
 import { Step } from 'components/steps';
 import { Instruction, TextHighlight, Title } from 'components/text';

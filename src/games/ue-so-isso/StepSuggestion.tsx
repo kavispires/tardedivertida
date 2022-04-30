@@ -3,9 +3,9 @@ import { useState } from 'react';
 import { Button, Space } from 'antd';
 import { CloudUploadOutlined } from '@ant-design/icons';
 // Components
-import { SuggestionEasel } from './SuggestionEasel';
-import { WritingRules } from './RulesBlobs';
-import { UeSoIssoCard as Card } from './UeSoIssoCard';
+import { SuggestionEasel } from './components/SuggestionEasel';
+import { WritingRules } from './components/RulesBlobs';
+import { UeSoIssoCard as Card } from './components/UeSoIssoCard';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
