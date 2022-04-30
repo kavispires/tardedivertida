@@ -815,7 +815,8 @@
     "available": {
       "pt": true,
       "en": true
-    }
+    },
+    "mobileFriendly": true
   },
   "V": {
     "gameCode": "V",

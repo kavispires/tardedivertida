@@ -117,6 +117,7 @@ type GameInfo = {
     on?: string;
     off?: string;
   }[];
+  mobileFriendly?: boolean;
 };
 
 type GameMeta = {
