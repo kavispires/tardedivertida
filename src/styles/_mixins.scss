@@ -57,3 +57,10 @@
     @content;
   }
 }
+
+// Mobile devices
+@mixin mobile {
+  @media (hover: none) and (pointer: coarse) {
+    @content;
+  }
+}
