@@ -5,9 +5,9 @@ import { PHASES } from 'utils/phases';
 // Components
 
 import { StepWordSelection } from './StepWordSelection';
-import { GameProgressBar } from './GameProgressBar';
-import { GuesserWaitingRoom } from './GuesserWaitingRoom';
-import { useOnSubmitVotesAPIRequest } from './api-requests';
+import { GameProgressBar } from './components/GameProgressBar';
+import { GuesserWaitingRoom } from './components/GuesserWaitingRoom';
+import { useOnSubmitVotesAPIRequest } from './utils/api-requests';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Instruction } from 'components/text';
 import { Translate } from 'components/language';

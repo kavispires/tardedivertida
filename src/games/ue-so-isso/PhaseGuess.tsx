@@ -1,14 +1,14 @@
 import { useEffect } from 'react';
 // Hooks
 import { useGlobalState, useLoading, useWhichPlayerIsThe, useLanguage, useStep } from 'hooks';
-import { useOnSendGuessAPIRequest, useOnSubmitOutcomeAPIRequest } from './api-requests';
+import { useOnSendGuessAPIRequest, useOnSubmitOutcomeAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
 import { StepSwitcher } from 'components/steps';
 import { StepGuessing } from './StepGuessing';
 import { StepGuessVerification } from './StepGuessVerification';
-import { GuessingRules } from './RulesBlobs';
+import { GuessingRules } from './components/RulesBlobs';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 function PhaseGuess({ state, players, info }: PhaseProps) {

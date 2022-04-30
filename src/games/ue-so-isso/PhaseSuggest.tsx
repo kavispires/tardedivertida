@@ -1,6 +1,6 @@
 // Hooks
 import { useIsUserReady, useWhichPlayerIsThe, useLanguage, useStep } from 'hooks';
-import { useOnSubmitSuggestionsAPIRequest } from './api-requests';
+import { useOnSubmitSuggestionsAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
@@ -9,8 +9,8 @@ import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
 import { ViewOr } from 'components/views';
 import { StepSuggestion } from './StepSuggestion';
-import { WritingRules } from './RulesBlobs';
-import { GuesserWaitingRoom } from './GuesserWaitingRoom';
+import { WritingRules } from './components/RulesBlobs';
+import { GuesserWaitingRoom } from './components/GuesserWaitingRoom';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 function PhaseSuggest({ state, players, info }: PhaseProps) {

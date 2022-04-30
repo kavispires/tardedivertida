@@ -3,9 +3,9 @@ import { Space } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 // Components
 
-import { UeSoIssoCard as Card } from './UeSoIssoCard';
-import { Guess } from './Guess';
-import { SuggestionEasel } from './SuggestionEasel';
+import { UeSoIssoCard as Card } from './components/UeSoIssoCard';
+import { Guess } from './components/Guess';
+import { SuggestionEasel } from './components/SuggestionEasel';
 import { Step } from 'components/steps';
 import { ViewOr } from 'components/views';
 import { Instruction, Title } from 'components/text';
