@@ -8,13 +8,12 @@ import { useGlobalState, useLanguage, useLoading } from 'hooks';
 import { deepCopy } from 'utils/helpers';
 // Components
 import { UeSoIssoCard as Card } from './components/UeSoIssoCard';
-import { SuggestionCard } from './components/SuggestionCard';
 import { ComparisonDetailedRules, ComparisonPhaseRules } from './components/RulesBlobs';
 import { Step } from 'components/steps';
 import { Title } from 'components/text';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
-import { AdminButton, AdminOnlyButton, AdminOnlyContainer } from 'components/admin';
+import { AdminButton, AdminOnlyContainer } from 'components/admin';
 import { messageContent } from 'components/pop-up';
 import { Cards } from './components/Cards';
 

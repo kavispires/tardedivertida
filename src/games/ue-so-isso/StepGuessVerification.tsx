@@ -6,7 +6,6 @@ import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 // Hooks
 import { useLanguage } from 'hooks';
 // Components
-
 import { UeSoIssoCard as Card } from './components/UeSoIssoCard';
 import { SuggestionEasel } from './components/SuggestionEasel';
 import { messageContent } from 'components/pop-up';
@@ -15,6 +14,7 @@ import { Instruction, TextHighlight, Title } from 'components/text';
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { ViewOr } from 'components/views';
+import { getAnimationClass } from 'utils/helpers';
 
 type StepGuessVerificationProps = {
   guess: string;
@@ -57,8 +57,8 @@ export function StepGuessVerification({
   }, [isUserTheController, controller.id, translate, isLoading]);
 
   return (
-    <Step>
-      <Title>
+    <Step fullWidth>
+      <Title className={getAnimationClass('heartBeat')}>
         <AvatarName player={guesser} addressUser /> <Translate pt="disse" en="said" />{' '}
         <TextHighlight>{guess}</TextHighlight>
       </Title>
