@@ -11,10 +11,10 @@ import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
-import { WordGrid } from './WordGrid';
-import { ClueCard } from './ClueCard';
-import { PreviousClue } from './PreviousClue';
-import { ScoringRule } from './RulesBlobs';
+import { WordGrid } from './components/WordGrid';
+import { ClueCard } from './components/ClueCard';
+import { PreviousClue } from './components/PreviousClue';
+import { ScoringRule } from './components/RulesBlobs';
 import { AvatarName } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
 
