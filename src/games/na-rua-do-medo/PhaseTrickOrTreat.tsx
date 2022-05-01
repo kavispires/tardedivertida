@@ -1,6 +1,6 @@
 // Hooks
 import { useIsUserReady, useUser, useLanguage, useStep } from 'hooks';
-import { useOnSubmitDecisionAPIRequest } from './api-requests';
+import { useOnSubmitDecisionAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
@@ -10,7 +10,7 @@ import { ImageCardPreloadHand } from 'components/cards';
 import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
 import { StepMakeDecision } from './StepMakeDecision';
-import { PlayerStats } from './PlayerStats';
+import { PlayerStats } from './components/PlayerStats';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 function PhaseTrickOrTreat({ state, players, info }: PhaseProps) {
