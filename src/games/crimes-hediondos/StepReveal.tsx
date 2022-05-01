@@ -4,15 +4,15 @@ import { Button, Collapse, Space } from 'antd';
 import { TrophyOutlined } from '@ant-design/icons';
 // Utils
 import { getAnimationClass, getLastItem } from 'utils/helpers';
-import { isEntryLocked } from './helpers';
+import { isEntryLocked } from './utils/helpers';
 // Components
 
-import { Crime } from './Crime';
-import { GroupedItemsBoard } from './GroupedItemsBoard';
-import { ScoringMessage } from './RulesBlobs';
-import { PlayersCards } from './PlayersCards';
-import { CrimeGuessStatus } from './CrimeGuessStatus';
-import { ResultsTable } from './ResultsTable';
+import { Crime } from './components/Crime';
+import { GroupedItemsBoard } from './components/GroupedItemsBoard';
+import { ScoringMessage } from './components/RulesBlobs';
+import { PlayersCards } from './components/PlayersCards';
+import { CrimeGuessStatus } from './components/CrimeGuessStatus';
+import { ResultsTable } from './components/ResultsTable';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';

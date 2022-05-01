@@ -6,9 +6,9 @@ import { useCardWidth } from 'hooks';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
-import { ItemCard } from './ItemCard';
-import { SceneTile } from './SceneTile';
-import { ContinueButton } from './ContinueButton';
+import { ItemCard } from './components/ItemCard';
+import { SceneTile } from './components/SceneTile';
+import { ContinueButton } from './components/ContinueButton';
 
 type StepLocationSelectionProps = {
   user: GamePlayer;

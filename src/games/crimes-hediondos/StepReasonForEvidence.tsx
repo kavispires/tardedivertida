@@ -3,9 +3,9 @@ import { useState } from 'react';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
-import { SceneTile } from './SceneTile';
-import { SelectedItems } from './SelectedItems';
-import { ContinueButton } from './ContinueButton';
+import { SceneTile } from './components/SceneTile';
+import { SelectedItems } from './components/SelectedItems';
+import { ContinueButton } from './components/ContinueButton';
 import { Space } from 'antd';
 
 type StepReasonForEvidenceProps = {

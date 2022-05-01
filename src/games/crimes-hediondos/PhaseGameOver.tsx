@@ -3,7 +3,7 @@ import { orderBy } from 'lodash';
 import { useUser } from 'hooks';
 // Components
 import { GameOverWrapper } from 'components/game-over';
-import { Crime } from './Crime';
+import { Crime } from './components/Crime';
 
 function PhaseGameOver({ state, players, info }: PhaseProps) {
   const crimes: Crime[] = state.crimes;

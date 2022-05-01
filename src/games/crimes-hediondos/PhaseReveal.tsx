@@ -7,7 +7,7 @@ import { PHASES } from 'utils/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { StepReveal } from './StepReveal';
-import { ScoringMessage } from './RulesBlobs';
+import { ScoringMessage } from './components/RulesBlobs';
 import { StepRanking } from './StepRanking';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
