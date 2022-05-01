@@ -288,6 +288,15 @@ export const parseDecisions = (
         };
       }
 
+      if (leftover > 0) {
+        const leftoverCopy = leftover;
+        leftover = 0;
+        return {
+          leftover: leftoverCopy,
+          perPlayer: 0,
+        };
+      }
+
       return {
         leftover,
         perPlayer: 0,
