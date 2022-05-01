@@ -1,5 +1,5 @@
 // Ant Design Resources
-import { Layout } from 'antd';
+import { Layout, PageHeader } from 'antd';
 // Components
 import { Icons } from 'components/icons';
 
@@ -20,10 +20,12 @@ function IconsPage() {
     justifyContent: 'space-between',
     padding: '0.5rem',
   };
+  const iconEntries = Object.entries(Icons);
   return (
     <Layout.Content style={{ padding: '1rem', width: '100%' }}>
+      <PageHeader title={`Icons (${iconEntries.length})`} style={{ backgroundColor: 'white' }} />
       <ul style={styles}>
-        {Object.entries(Icons).map(([key, Icon], index) => (
+        {iconEntries.map(([key, Icon], index) => (
           <li key={key} style={stylesLi}>
             <Icon key={index} style={{ width: '90px' }} />
             <div style={{ width: '90px', overflow: 'hidden', textAlign: 'center' }}>{key}</div>

@@ -44,7 +44,6 @@
 }
 
 .showcase-menu {
-  // transform: ;
   margin: 0;
   padding: 0;
 }
@@ -54,10 +53,15 @@
   padding: 0;
 }
 
+.showcase-filter-section {
+  font-weight: bold;
+  margin-bottom: get-unit(2);
+}
+
 .showcase-filter-entry {
   display: grid;
   grid-template-columns: 40% 60%;
-  padding-bottom: get-unit(2);
+  margin-bottom: get-unit(2);
 
   &:nth-child(even) {
     background: get-color(gray, 1);

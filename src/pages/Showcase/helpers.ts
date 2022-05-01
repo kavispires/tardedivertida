@@ -9,8 +9,11 @@ export const filterGames = (
     // Availability
     if (doesExist(filters.availability)) {
       const res = game.available[language] && !game.version.endsWith('alpha');
-      result.push(filters.availability ? res : !res);
+      result.push(filters.availability === 'on' ? res : !res);
     }
+
+    // Mobile Friendly
+    evaluateTag(filters, game, 'mobile-friendly', result);
 
     // Drawing
     evaluateTag(filters, game, 'drawing', result);
@@ -39,6 +42,9 @@ export const filterGames = (
     // Discussion
     evaluateTag(filters, game, 'discussion', result);
 
+    // Push Your Luck
+    evaluateTag(filters, game, 'push-your-luck', result);
+
     // Type
     evaluateCustomTag(filters, game, 'type', result);
 
@@ -65,13 +71,14 @@ export const doesExist = (property: any) => property !== undefined && property !
  */
 export const evaluateTag = (filters: PlainObject, game: GameInfo, tagName: string, result: boolean[]) => {
   if (doesExist(filters[tagName])) {
+    console.log(game.tags);
     const res = game.tags.includes(tagName);
     result.push(filters[tagName] === 'on' ? res : !res);
   }
 };
 
 /**
- * Verify is a custom tag is selected updating the result array
+ * Verify is a custom tag (which values is not on or off) is selected updating the result array
  */
 export const evaluateCustomTag = (
   filters: PlainObject,
