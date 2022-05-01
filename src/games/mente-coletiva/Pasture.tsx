@@ -19,7 +19,7 @@ export function Pasture({ players, pastureSize = 5, roundType }: PastureProps) {
   const isShortPasture = pastureSize === 3;
 
   const pastureBase = Math.min(width, 1360) - 36;
-  const pastureWidth = pastureBase * (isShortPasture ? 0.65 : 1);
+  const pastureWidth = Math.max(pastureBase * (isShortPasture ? 0.65 : 1), 300);
   const pastureHeight = pastureBase / 4;
   const sheepWidth = Math.min(width, 1360) / 22;
   const gridStyleDistribution = {

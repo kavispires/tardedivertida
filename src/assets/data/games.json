@@ -464,7 +464,8 @@
       "pt": true,
       "en": true
     },
-    "options": [{ "label": "Duration", "key": "shortPasture", "off": "5 Pastures", "on": "3 Pastures" }]
+    "options": [{ "label": "Duration", "key": "shortPasture", "off": "5 Pastures", "on": "3 Pastures" }],
+    "mobileFriendly": true
   },
   "N": {
     "gameCode": "N",
@@ -511,7 +512,8 @@
       "pt": true,
       "en": true
     },
-    "options": [{ "label": "Game Length", "key": "shortGame", "off": "5 streets", "on": "3 streets" }]
+    "options": [{ "label": "Game Length", "key": "shortGame", "off": "5 streets", "on": "3 streets" }],
+    "mobileFriendly": true
   },
   "O": {
     "gameCode": "O",
