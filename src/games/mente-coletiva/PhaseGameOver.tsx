@@ -2,7 +2,7 @@
 
 import { GameOverWrapper } from 'components/game-over';
 import { Title } from 'components/text';
-import { SheepAvatar } from './SheepAvatar';
+import { SheepAvatar } from './components/SheepAvatar';
 
 function PhaseGameOver({ state, info }: PhaseProps) {
   return (
