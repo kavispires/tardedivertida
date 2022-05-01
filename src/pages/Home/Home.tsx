@@ -1,13 +1,18 @@
 import { Image, Input, Layout } from 'antd';
 import logo from 'assets/images/tarde-divertida-logo.svg';
 import clsx from 'clsx';
+import { resetGlobalState } from 'hooks';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function Home() {
   const [showInput, setShowInput] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    resetGlobalState();
+  }, []);
 
   const goToGameId = (e: PlainObject) => {
     const gameId = e.target.value;

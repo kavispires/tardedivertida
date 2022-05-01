@@ -58,6 +58,14 @@ const initialState: InitialState = {
 
 const { useGlobalState, setGlobalState, getGlobalState } = createGlobalState(initialState);
 
-export { setGlobalState, getGlobalState, useGlobalState };
+function resetGlobalState() {
+  setGlobalState('gameId', initialState.gameId);
+  setGlobalState('gameName', initialState.gameName);
+  setGlobalState('gameMeta', initialState.gameMeta);
+  setGlobalState('userId', initialState.userId);
+  setGlobalState('username', initialState.username);
+  setGlobalState('userAvatarId', initialState.userAvatarId);
+}
+export { setGlobalState, getGlobalState, useGlobalState, resetGlobalState };
 
 export default useGlobalState;
