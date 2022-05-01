@@ -4,7 +4,7 @@ import { Button, Input, Space } from 'antd';
 // Hooks
 import { useLanguage, useLoading, useMock } from 'hooks';
 // Utils
-import { mockStory } from './mock';
+import { mockStory } from '../utils/mock';
 // Components
 import { BookPages } from './BookPages';
 import { Step } from 'components/steps';

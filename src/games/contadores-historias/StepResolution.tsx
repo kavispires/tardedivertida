@@ -10,8 +10,8 @@ import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
 import { Step } from 'components/steps';
 import { Title } from 'components/text';
-import { BookPages } from './BookPages';
-import { ScoringRules } from './RulesBlogs';
+import { BookPages } from './components/BookPages';
+import { ScoringRules } from './components/RulesBlobs';
 
 type StepResolutionProps = {
   players: GamePlayers;
@@ -77,7 +77,7 @@ export function StepResolution({ players, story, storyteller, table, goToNextSte
           return (
             <li className="c-other-cards__entry" key={`other-card-votes-${cardEntry.playerId}-${index}`}>
               <div className="c-other-cards__player">
-                {cardEntry.playerId === 'CPU' ? (
+                {cardEntry.playerId === 'NPC' ? (
                   <AvatarNPC size="small" />
                 ) : (
                   <AvatarName player={players[cardEntry.playerId]} size="small" />
