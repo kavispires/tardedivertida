@@ -1,12 +1,12 @@
 // Hooks
 import { useIsUserReady, useWhichPlayerIsThe, useUser, useLanguage, useStep } from 'hooks';
-import { useOnSubmitStoryAPIRequest } from './api-requests';
+import { useOnSubmitStoryAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
 
-import { StoryWaiting } from './StoryWaiting';
-import { StoryWriting } from './StoryWriting';
+import { StoryWaiting } from './components/StoryWaiting';
+import { StoryWriting } from './components/StoryWriting';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { RoundAnnouncement } from 'components/round';
