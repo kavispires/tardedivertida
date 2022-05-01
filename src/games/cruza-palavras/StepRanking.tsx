@@ -5,7 +5,7 @@ import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
-import { ScoringRule } from './RulesBlobs';
+import { ScoringRule } from './components/RulesBlobs';
 import { RankingBoard } from 'components/ranking';
 import { AdminNextRoundButton } from 'components/admin';
 

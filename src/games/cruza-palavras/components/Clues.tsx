@@ -1,5 +1,5 @@
 // Helpers
-import { getClueKey } from './helpers';
+import { getClueKey } from '../utils/helpers';
 // Components
 import { ClueCard } from './ClueCard';
 

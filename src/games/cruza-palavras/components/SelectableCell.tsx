@@ -2,7 +2,7 @@
 import { Button } from 'antd';
 import { PlusCircleFilled } from '@ant-design/icons';
 // Utils
-import { getClueFromKey } from './helpers';
+import { getClueFromKey } from '../utils/helpers';
 // Components
 import { ClueCard } from './ClueCard';
 import { PreviousClue } from './PreviousClue';

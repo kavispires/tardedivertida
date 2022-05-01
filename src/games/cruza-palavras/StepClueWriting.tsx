@@ -6,9 +6,9 @@ import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
 import { ReadyPlayersBar } from 'components/players';
-import { WordGrid } from './WordGrid';
-import { WritingCell } from './WritingCell';
-import { WritingCluesRule } from './RulesBlobs';
+import { WordGrid } from './components/WordGrid';
+import { WritingCell } from './components/WritingCell';
+import { WritingCluesRule } from './components/RulesBlobs';
 
 type StepClueWritingProps = {
   grid: CruzaPalavraGrid;
