@@ -92,7 +92,7 @@
   "C": {
     "gameCode": "C",
     "gameName": "contadores-historias",
-    "version": "2.1",
+    "version": "2.2",
     "title": {
       "pt": "Contadores de Histórias",
       "en": "Storytellers"
@@ -134,7 +134,8 @@
         "off": "30 points (15 rounds max)",
         "on": "Each player once (6+) or twice (1-5)"
       }
-    ]
+    ],
+    "mobileFriendly": true
   },
   "D": {
     "gameCode": "D",
@@ -382,7 +383,7 @@
   "L": {
     "gameCode": "L",
     "gameName": "linhas-cruzadas",
-    "version": "beta",
+    "version": "1.0.1",
     "title": {
       "pt": "Linhas Cruzadas",
       "en": "Mis...communication"
@@ -418,7 +419,8 @@
         "on": "Only Single Words"
       },
       { "label": "Card Distribution", "key": "evenDistribution", "off": "Random", "on": "Even" }
-    ]
+    ],
+    "mobileFriendly": true
   },
   "M": {
     "gameCode": "M",
