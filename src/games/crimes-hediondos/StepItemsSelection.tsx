@@ -10,8 +10,8 @@ import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { TransparentButton } from 'components/buttons';
-import { ItemCard } from './ItemCard';
-import { ContinueButton } from './ContinueButton';
+import { ItemCard } from './components/ItemCard';
+import { ContinueButton } from './components/ContinueButton';
 
 type StepItemsSelectionProps = {
   user: GamePlayer;

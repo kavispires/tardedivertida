@@ -6,9 +6,9 @@ import { Translate } from 'components/language';
 import { ReadyPlayersBar } from 'components/players';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
-import { Crime } from './Crime';
-import { GroupedItemsBoard } from './GroupedItemsBoard';
-import { SceneTile } from './SceneTile';
+import { Crime } from './components/Crime';
+import { GroupedItemsBoard } from './components/GroupedItemsBoard';
+import { SceneTile } from './components/SceneTile';
 
 type StepNewSceneProps = {
   user: GamePlayer;
