@@ -32,7 +32,7 @@ function Showcase() {
 
   const [showFilters, setShowFilters] = useState(false);
   const [showModal, setShowModal] = useState('');
-  const [filters, setFilters] = useState<PlainObject>({ availability: 'true' });
+  const [filters, setFilters] = useState<PlainObject>({ availability: 'on' });
 
   const [list, setList] = useState<GameInfo[]>([]);
 
@@ -47,6 +47,10 @@ function Showcase() {
         if (key === 'language' && value === 'en') {
           setLanguage('en');
         }
+        if (value !== 'any') {
+          acc[key] = value;
+        }
+
         return acc;
       }, {});
 
@@ -56,14 +60,14 @@ function Showcase() {
 
   useEffect(() => {
     setList(filterGames(GAME_LIST, filters, language, setLanguage));
-    let queryString = Object.keys(filters)
+    const queryString = Object.keys(filters)
       .filter((key) => filters[key] !== 'any')
-      .map((key) => `${key}=${filters[key]}`)
-      .join('&');
+      .map((key) => `${key}=${filters[key]}`);
+
     if (language !== 'pt') {
-      queryString += `&language=${language}`;
+      queryString.push(`language=${language}`);
     }
-    setSearchParams(queryString);
+    setSearchParams(queryString.join('&'));
   }, [filters, language, setSearchParams, setLanguage]);
 
   return (

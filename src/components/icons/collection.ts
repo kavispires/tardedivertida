@@ -102,6 +102,7 @@ export * from './Star';
 export * from './StarOutline';
 export * from './Street';
 export * from './Success';
+export * from './TD';
 export * from './TheEnd';
 export * from './Thief';
 export * from './Timer';

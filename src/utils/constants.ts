@@ -79,6 +79,10 @@ export const TAG_DICT: TagDict = {
     label: 'sorte',
     color: 'pink',
   },
+  'mobile-friendly': {
+    label: 'aparelho móvel',
+    color: 'gray',
+  },
 };
 
 type AvatarDict = {

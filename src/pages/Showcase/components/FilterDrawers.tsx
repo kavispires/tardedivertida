@@ -1,12 +1,12 @@
 // Ant Design Resources
-import { Button, Divider, Drawer, Space, Tooltip } from 'antd';
-import { InfoCircleOutlined } from '@ant-design/icons';
+import { Button, Divider, Drawer, Space } from 'antd';
 // Hooks
 import { useDimensions } from 'hooks';
 // Components
 import { LanguageSwitch, Translate } from 'components/language';
 import { CustomFilterOptions } from './CustomFilterOptions';
 import { FilterOptions } from './FilterOptions';
+import { FilterEntry } from './FilterEntry';
 
 type FiltersDrawerProps = {
   list: GameInfo[];
@@ -50,53 +50,48 @@ export function FiltersDrawer({
         </Space>
       }
     >
-      <div className="showcase-filter-entry">
-        <label className="showcase-filter-entry__label">
-          <Translate pt="Idioma" en="Language" />{' '}
-          <Tooltip
-            title={
-              <Translate
-                pt="Mudar língua do aplicativo, as cartas do jogo continuarão em sua língua original"
-                en="Change app language, the game cards will remain in its original language"
-              />
-            }
-          >
-            <Button type="text" shape="circle" icon={<InfoCircleOutlined />} size="small" />
-          </Tooltip>
-        </label>
-        <div>
-          <LanguageSwitch />
-        </div>
-      </div>
+      <FilterEntry
+        label={<Translate pt="Idioma" en="Language" />}
+        tooltip={
+          <Translate
+            pt="Mudar língua do aplicativo, as cartas do jogo continuarão em sua língua original"
+            en="Change app language, the game cards will remain in its original language"
+          />
+        }
+      >
+        <LanguageSwitch />
+      </FilterEntry>
 
       <Divider />
 
-      <div className="showcase-filter-entry">
-        <label className="showcase-filter-entry__label">
-          <Translate pt="Disponibilidade" en="Availability" />{' '}
-          <Tooltip
-            title={
-              <Translate pt="Somente jogos prontos a serem jogados" en="Only games ready to be played" />
-            }
-          >
-            <Button type="text" shape="circle" icon={<InfoCircleOutlined />} size="small" />
-          </Tooltip>
-        </label>
+      <FilterEntry
+        label={<Translate pt="Disponibilidade" en="Availability" />}
+        tooltip={<Translate pt="Somente jogos prontos a serem jogados" en="Only games ready to be played" />}
+      >
         <FilterOptions name="availability" value={filters?.availability} onChange={updateFilters} />
-      </div>
+      </FilterEntry>
+
+      <FilterEntry
+        label={<Translate pt="Aparelho Móvel" en="Mobile Friendly" />}
+        tooltip={
+          <Translate
+            pt="Dá pra jogar no iPad/Tablet e talvez no celular"
+            en="You may play on your tablet and possibly on a phone"
+          />
+        }
+      >
+        <FilterOptions name="mobile-friendly" value={filters?.['mobile-friendly']} onChange={updateFilters} />
+      </FilterEntry>
 
       <Divider />
 
-      <div className="showcase-filter-entry">
+      <div className="showcase-filter-section">
         <label className="showcase-filter-entry__label">
-          <Translate pt="Dinâmica" en="Dynamics" />{' '}
+          <Translate pt="Dinâmicas" en="Dynamics" />{' '}
         </label>
       </div>
 
-      <div className="showcase-filter-entry">
-        <label className="showcase-filter-entry__label">
-          <Translate pt="Tipo" en="Type" />{' '}
-        </label>
+      <FilterEntry label={<Translate pt="Tipo" en="Type" />}>
         <CustomFilterOptions
           name="type"
           onChange={updateFilters}
@@ -116,12 +111,9 @@ export function FiltersDrawer({
             },
           }}
         />
-      </div>
+      </FilterEntry>
 
-      <div className="showcase-filter-entry">
-        <label className="showcase-filter-entry__label">
-          <Translate pt="Rodadas" en="Rounds" />{' '}
-        </label>
+      <FilterEntry label={<Translate pt="Rodadas" en="Rounds" />}>
         <CustomFilterOptions
           name="rounds"
           onChange={updateFilters}
@@ -141,78 +133,55 @@ export function FiltersDrawer({
             },
           }}
         />
-      </div>
+      </FilterEntry>
 
       <Divider />
 
-      <div className="showcase-filter-entry">
+      <div className="showcase-filter-section">
         <label className="showcase-filter-entry__label">
-          <Translate pt="Mecânica" en="Mechanics" />{' '}
+          <Translate pt="Mecânicas" en="Mechanics" />{' '}
         </label>
       </div>
 
-      <div className="showcase-filter-entry">
-        <label className="showcase-filter-entry__label">
-          <Translate pt="De desenhar" en="Drawing" />{' '}
-        </label>
+      <FilterEntry label={<Translate pt="De desenhar" en="Drawing" />}>
         <FilterOptions name="drawing" value={filters?.drawing} onChange={updateFilters} />
-      </div>
+      </FilterEntry>
 
-      <div className="showcase-filter-entry">
-        <label className="showcase-filter-entry__label">
-          <Translate pt="De escrever" en="Writing" />{' '}
-        </label>
+      <FilterEntry label={<Translate pt="De escrever" en="Writing" />}>
         <FilterOptions name="writing" value={filters?.writing} onChange={updateFilters} />
-      </div>
+      </FilterEntry>
 
-      <div className="showcase-filter-entry">
-        <label className="showcase-filter-entry__label">
-          <Translate pt="Com cartas imagens" en="With images" />{' '}
-        </label>
+      <FilterEntry label={<Translate pt="Com cartas imagens" en="With images" />}>
         <FilterOptions name="images" value={filters?.images} onChange={updateFilters} />
-      </div>
+      </FilterEntry>
 
-      <div className="showcase-filter-entry">
-        <label className="showcase-filter-entry__label">
-          <Translate pt="De adivinhar" en="With guessing" />{' '}
-        </label>
+      <FilterEntry label={<Translate pt="De adivinhar" en="With guessing" />}>
         <FilterOptions name="guessing" value={filters?.guessing} onChange={updateFilters} />
-      </div>
+      </FilterEntry>
 
-      <div className="showcase-filter-entry">
-        <label className="showcase-filter-entry__label">
-          <Translate pt="Com votação" en="With voting" />{' '}
-        </label>
+      <FilterEntry label={<Translate pt="Com votação" en="With voting" />}>
         <FilterOptions name="voting" value={filters?.voting} onChange={updateFilters} />
-      </div>
+      </FilterEntry>
 
-      <div className="showcase-filter-entry">
-        <label className="showcase-filter-entry__label">
-          <Translate pt="Com tempo" en="Timed" />{' '}
-        </label>
+      <FilterEntry label={<Translate pt="Com tempo" en="Timed" />}>
         <FilterOptions name="timed" value={filters?.timed} onChange={updateFilters} />
-      </div>
+      </FilterEntry>
 
-      <div className="showcase-filter-entry">
-        <label className="showcase-filter-entry__label">
-          <Translate pt="Fazer Pares" en="Matching" />{' '}
-        </label>
+      <FilterEntry label={<Translate pt="Fazer Pares" en="Matching" />}>
         <FilterOptions name="pairing" value={filters?.pairing} onChange={updateFilters} />
-      </div>
+      </FilterEntry>
 
-      <div className="showcase-filter-entry">
-        <label className="showcase-filter-entry__label">
-          <Translate pt="Com inimigo" en="With a traitor" />{' '}
-        </label>
+      <FilterEntry label={<Translate pt="Com inimigo" en="With a traitor" />}>
         <FilterOptions name="traitor" value={filters?.traitor} onChange={updateFilters} />
-      </div>
+      </FilterEntry>
 
-      <div className="showcase-filter-entry">
-        <label className="showcase-filter-entry__label">
-          <Translate pt="De discussão" en="With discussion" />{' '}
-        </label>
+      <FilterEntry label={<Translate pt="De discussão" en="With discussion" />}>
         <FilterOptions name="discussion" value={filters?.discussion} onChange={updateFilters} />
-      </div>
+      </FilterEntry>
+
+      <FilterEntry label={<Translate pt="De tentar a sorte" en="Push your luck" />}>
+        <FilterOptions name="push-your-luck" value={filters?.discussion} onChange={updateFilters} />
+      </FilterEntry>
     </Drawer>
   );
 }

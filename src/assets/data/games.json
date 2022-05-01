@@ -39,7 +39,7 @@
       "min": 3,
       "max": 10
     },
-    "tags": ["competitive", "same-time", "drawing", "pairing", "timed"],
+    "tags": ["competitive", "same-time", "drawing", "pairing", "timed", "mobile-friendly"],
     "available": {
       "pt": true,
       "en": true
@@ -47,8 +47,7 @@
     "options": [
       { "label": "Cards", "key": "useAllCards", "off": "New cards only", "on": "All cards" },
       { "label": "Duration", "key": "shortGame", "off": "50 points/10 rounds", "on": "5 rounds" }
-    ],
-    "mobileFriendly": true
+    ]
   },
   "B": {
     "gameCode": "B",
@@ -122,7 +121,7 @@
       "min": 3,
       "max": 10
     },
-    "tags": ["competitive", "turn-based", "images", "writing", "guessing"],
+    "tags": ["competitive", "turn-based", "images", "writing", "guessing", "mobile-friendly"],
     "available": {
       "pt": true,
       "en": true
@@ -134,8 +133,7 @@
         "off": "30 points (15 rounds max)",
         "on": "Each player once (6+) or twice (1-5)"
       }
-    ],
-    "mobileFriendly": true
+    ]
   },
   "D": {
     "gameCode": "D",
@@ -293,7 +291,7 @@
       "en": "Horrific Crimes"
     },
     "popularName": {
-      "pt": "Jogo da Convenção de Serial Killers",
+      "pt": "Da Convenção de Serial Killers",
       "en": ""
     },
     "basedOn": "gnoK gnoH ni redruM :noitpeceD",
@@ -406,7 +404,7 @@
       "min": 4,
       "max": 10
     },
-    "tags": ["cooperative", "drawing", "guessing", "writing"],
+    "tags": ["cooperative", "drawing", "guessing", "writing", "mobile-friendly"],
     "available": {
       "pt": true,
       "en": true
@@ -419,8 +417,7 @@
         "on": "Only Single Words"
       },
       { "label": "Card Distribution", "key": "evenDistribution", "off": "Random", "on": "Even" }
-    ],
-    "mobileFriendly": true
+    ]
   },
   "M": {
     "gameCode": "M",
@@ -462,13 +459,12 @@
       "min": 3,
       "max": 12
     },
-    "tags": ["competitive", "same-time", "writing"],
+    "tags": ["competitive", "same-time", "writing", "mobile-friendly"],
     "available": {
       "pt": true,
       "en": true
     },
-    "options": [{ "label": "Duration", "key": "shortPasture", "off": "5 Pastures", "on": "3 Pastures" }],
-    "mobileFriendly": true
+    "options": [{ "label": "Duration", "key": "shortPasture", "off": "5 Pastures", "on": "3 Pastures" }]
   },
   "N": {
     "gameCode": "N",
@@ -510,13 +506,12 @@
       "min": 3,
       "max": 10
     },
-    "tags": ["competitive", "same-time", "push-your-luck"],
+    "tags": ["competitive", "same-time", "push-your-luck", "mobile-friendly"],
     "available": {
       "pt": true,
       "en": true
     },
-    "options": [{ "label": "Game Length", "key": "shortGame", "off": "5 streets", "on": "3 streets" }],
-    "mobileFriendly": true
+    "options": [{ "label": "Game Length", "key": "shortGame", "off": "5 streets", "on": "3 streets" }]
   },
   "O": {
     "gameCode": "O",
@@ -527,7 +522,7 @@
       "en": "Telepathic Waves"
     },
     "popularName": {
-      "pt": "",
+      "pt": "Do treco com ponteiro marcando de 1 a 10",
       "en": ""
     },
     "basedOn": "htgnelevaW",
@@ -583,7 +578,7 @@
       "en": "That's Polemic"
     },
     "popularName": {
-      "pt": "",
+      "pt": "Do quem ganha mais likes",
       "en": ""
     },
     "basedOn": "cimeloP",
@@ -815,13 +810,12 @@
       "min": 4,
       "max": 10
     },
-    "tags": ["cooperative", "guessing", "writing"],
+    "tags": ["cooperative", "guessing", "writing", "mobile-friendly"],
     "cooperative": true,
     "available": {
       "pt": true,
       "en": true
-    },
-    "mobileFriendly": true
+    }
   },
   "V": {
     "gameCode": "V",
@@ -864,7 +858,7 @@
       "en": "Mixed Clues"
     },
     "popularName": {
-      "pt": "",
+      "pt": "Conectar duas palavras da grade",
       "en": ""
     },
     "basedOn": "seulC ssorC",
