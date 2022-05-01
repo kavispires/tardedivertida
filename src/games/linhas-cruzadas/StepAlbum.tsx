@@ -7,8 +7,8 @@ import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Title } from 'components/text';
 import { inNSeconds } from 'utils/helpers';
-import { Album } from './Album';
-import { PAGE_DURATION } from './constants';
+import { Album } from './components/Album';
+import { PAGE_DURATION } from './utils/constants';
 
 type StepAlbumProps = {
   players: GamePlayers;

@@ -4,7 +4,7 @@ import { useTimer } from 'react-timer-hook';
 import { Button, Space } from 'antd';
 // Utils
 import { AVATARS } from 'utils/constants';
-import { DRAWING_TIME_IN_SECONDS } from './constants';
+import { DRAWING_TIME_IN_SECONDS } from './utils/constants';
 import { inNSeconds } from 'utils/helpers';
 import { Step } from 'components/steps';
 import { Card } from 'components/cards';
