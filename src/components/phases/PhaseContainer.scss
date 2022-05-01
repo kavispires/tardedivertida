@@ -11,8 +11,8 @@
   position: relative;
 
   @include xs {
-    margin: get-unit(1);
-    padding: get-unit(1);
+    margin: get-unit(4 1 1 1);
+    padding: get-unit(4 1 1 1);
   }
 
   &--full-screen {

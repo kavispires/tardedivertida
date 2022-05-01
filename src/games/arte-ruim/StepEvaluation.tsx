@@ -113,7 +113,7 @@ export function StepEvaluation({ drawings, cards, players, onSubmitVoting }: Ste
         <Translate pt="Adivinhação" en="Match the Pairs" />
       </Title>
 
-      <Space className="space-container" align="center">
+      <Space className="space-container" align="center" wrap>
         <Button
           type="default"
           icon={<ThunderboltOutlined />}

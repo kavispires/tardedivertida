@@ -188,7 +188,7 @@
     padding: get-unit(0 1);
     position: absolute;
     top: get-unit(-3);
-    font-size: 0.9em;
+    font-size: 0.9rem;
     transform: perspective(30px);
     @include box-shadow;
   }
@@ -230,10 +230,14 @@
   }
 
   &__label {
-    font-size: 1.25em;
+    font-size: 1.25rem;
     font-weight: bold;
     text-transform: uppercase;
     margin-bottom: get-unit(1);
+
+    @include lg {
+      font-size: 0.75rem;
+    }
   }
 
   &__artist-name {
@@ -260,6 +264,10 @@
     padding: get-unit(2 4);
     text-transform: uppercase;
     border-radius: 1.5em;
+
+    @include lg {
+      font-size: 0.75rem;
+    }
   }
 
   &__speech-bubble-icon {
@@ -293,7 +301,7 @@
 
   &__no-wins {
     color: get-color(red);
-    font-size: 1.2em;
+    font-size: 1.2rem;
     padding-top: get-unit(2);
     display: block;
   }

@@ -7,6 +7,10 @@
   top: get-unit(1);
   right: get-unit(1);
 
+  @include xs {
+    position: static;
+  }
+
   &__label {
     font-size: 90%;
     text-transform: uppercase;

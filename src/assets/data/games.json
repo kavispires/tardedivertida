@@ -2,7 +2,7 @@
   "A": {
     "gameCode": "A",
     "gameName": "arte-ruim",
-    "version": "2.2.1",
+    "version": "2.3.0",
     "title": {
       "pt": "Arte Ruim Pra Dedéu",
       "en": "Questionable Art"
@@ -47,7 +47,8 @@
     "options": [
       { "label": "Cards", "key": "useAllCards", "off": "New cards only", "on": "All cards" },
       { "label": "Duration", "key": "shortGame", "off": "50 points/10 rounds", "on": "5 rounds" }
-    ]
+    ],
+    "mobileFriendly": true
   },
   "B": {
     "gameCode": "B",
@@ -422,7 +423,7 @@
   "M": {
     "gameCode": "M",
     "gameName": "mente-coletiva",
-    "version": "2.0",
+    "version": "2.2.0",
     "title": {
       "pt": "Mente Coletiva",
       "en": "Herd Mind"
@@ -470,7 +471,7 @@
   "N": {
     "gameCode": "N",
     "gameName": "na-rua-do-medo",
-    "version": "1.0",
+    "version": "2.1.0",
     "title": {
       "pt": "Na Rua do Medo",
       "en": "Fear Street"
@@ -773,7 +774,7 @@
   "U": {
     "gameCode": "U",
     "gameName": "ue-so-isso",
-    "version": "2.0.1",
+    "version": "2.2.0",
     "title": {
       "pt": "Ué, Só Isso?",
       "en": "That's It?"
