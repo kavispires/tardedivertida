@@ -5,8 +5,8 @@ import { useLanguage, useUser } from 'hooks';
 import { AVATARS } from 'utils/constants';
 // Components
 
-import { CandyCount } from './CandyCount';
-import { PlayerStats } from './PlayerStats';
+import { CandyCount } from './components/CandyCount';
+import { PlayerStats } from './components/PlayerStats';
 import { GameOverWrapper } from 'components/game-over';
 import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
