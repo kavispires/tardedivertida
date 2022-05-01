@@ -1,9 +1,9 @@
 // State & Hooks
 import { useIsUserReady, useUser, useLanguage, useStep } from 'hooks';
-import { useOnSubmitDrawingAPIRequest } from './api-requests';
+import { useOnSubmitDrawingAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
-import { DRAWING_TIME_IN_SECONDS } from './constants';
+import { DRAWING_TIME_IN_SECONDS } from './utils/constants';
 // Components
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { TurnOrder } from 'components/players';
