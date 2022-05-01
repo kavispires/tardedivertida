@@ -4,8 +4,8 @@ import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
 import { Step } from 'components/steps';
 import { Title } from 'components/text';
-import { Pasture } from './Pasture';
-import { GamePremiseRules } from './RulesBlobs';
+import { Pasture } from './components/Pasture';
+import { GamePremiseRules } from './components/RulesBlobs';
 
 type StepQuestionSelectionProps = {
   activePlayer: GamePlayer;

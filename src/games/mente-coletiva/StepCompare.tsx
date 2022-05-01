@@ -2,9 +2,9 @@
 import { Divider } from 'antd';
 // Components
 import { Step } from 'components/steps';
-import { AdminAnswerControl } from './AdminAnswerControl';
-import { AnswerGroup } from './AnswerGroup';
-import { UserAnswers } from './UserAnswers';
+import { AdminAnswerControl } from './components/AdminAnswerControl';
+import { AnswerGroup } from './components/AnswerGroup';
+import { UserAnswers } from './components/UserAnswers';
 
 type StepCompareProps = {
   currentQuestion: MQuestion;
