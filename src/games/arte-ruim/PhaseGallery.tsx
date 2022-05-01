@@ -6,7 +6,7 @@ import { PHASES } from 'utils/phases';
 // Components
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
-import { GalleryRules } from './TextBlobs';
+import { GalleryRules } from './components/TextBlobs';
 import { StepGallery } from './StepGallery';
 import { StepRanking } from './StepRanking';
 

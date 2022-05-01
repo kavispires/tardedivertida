@@ -1,12 +1,12 @@
 // Hooks
 import { useIsUserReady, useLanguage, useStep } from 'hooks';
-import { useOnSubmitVotingAPIRequest } from './api-requests';
+import { useOnSubmitVotingAPIRequest } from './utils/api-requests';
 // Utils
 import { PHASES } from 'utils/phases';
 // Components
 import { StepSwitcher } from 'components/steps';
 import { StepEvaluation } from './StepEvaluation';
-import { EvaluationRules } from './TextBlobs';
+import { EvaluationRules } from './components/TextBlobs';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 function EvaluationPhase({ players, state, info }: PhaseProps) {
