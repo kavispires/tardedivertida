@@ -1,12 +1,12 @@
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
-import { FinalAssessmentInstruction } from './RulesBlobs';
-import { EspiaoEntreNosCard as Card } from './Card';
-import { LocationsList } from './LocationsList';
-import { Notes } from './Notes';
-import { SuspectsList } from './SuspectsList';
-import { FinalAssessmentModal } from './FinalAssessmentModal';
+import { FinalAssessmentInstruction } from './components/RulesBlobs';
+import { EspiaoEntreNosCard as Card } from './components/Card';
+import { LocationsList } from './components/LocationsList';
+import { Notes } from './components/Notes';
+import { SuspectsList } from './components/SuspectsList';
+import { FinalAssessmentModal } from './components/FinalAssessmentModal';
 import { useEffect } from 'react';
 import { notification } from 'antd';
 import { useLanguage } from 'hooks';

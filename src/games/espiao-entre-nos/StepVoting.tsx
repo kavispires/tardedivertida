@@ -9,10 +9,10 @@ import { View, ViewSwitch } from 'components/views';
 import { useLanguage, useLoading } from 'hooks';
 // Components
 
-import { EspiaoEntreNosCard as Card } from './Card';
-import { LocationsList } from './LocationsList';
-import { Notes } from './Notes';
-import { SuspectsList } from './SuspectsList';
+import { EspiaoEntreNosCard as Card } from './components/Card';
+import { LocationsList } from './components/LocationsList';
+import { Notes } from './components/Notes';
+import { SuspectsList } from './components/SuspectsList';
 
 type StepVotingProps = {
   user: GamePlayer;

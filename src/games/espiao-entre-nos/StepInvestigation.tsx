@@ -6,13 +6,13 @@ import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { useLanguage } from 'hooks';
-import { EspiaoEntreNosCard as Card } from './Card';
-import { LocationSelect } from './LocationSelect';
-import { LocationsList } from './LocationsList';
-import { Notes } from './Notes';
-import { PlayerSelect } from './PlayerSelect';
-import { SuspectsList } from './SuspectsList';
-import { Timer } from './Timer';
+import { EspiaoEntreNosCard as Card } from './components/Card';
+import { LocationSelect } from './components/LocationSelect';
+import { LocationsList } from './components/LocationsList';
+import { Notes } from './components/Notes';
+import { PlayerSelect } from './components/PlayerSelect';
+import { SuspectsList } from './components/SuspectsList';
+import { Timer } from './components/Timer';
 
 type StepInvestigationProps = {
   user: GamePlayer;

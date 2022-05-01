@@ -1,10 +1,10 @@
 import { useMemo } from 'react';
 // Hooks
 import { useIsUserReady, useWhichPlayerIsThe, useLanguage, useStep } from 'hooks';
-import { useOnProgressGameAPIRequest } from './api-requests';
+import { useOnProgressGameAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
-import { determineView } from './helpers';
+import { determineView } from './utils/helpers';
 // Components
 import { StepResolution } from './StepResolution';
 import { PhaseAnnouncement, PhaseContainer, PhaseTimerReset } from 'components/phases';

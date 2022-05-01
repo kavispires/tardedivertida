@@ -7,7 +7,7 @@ import {
   useOnGuessLocationAPIRequest,
   useOnMakeAccusationAPIRequest,
   useOnSendLastQuestionerAPIRequest,
-} from './api-requests';
+} from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
@@ -15,7 +15,7 @@ import { Translate } from 'components/language';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { StepInvestigation } from './StepInvestigation';
-import { FinalAssessmentPreparationModal } from './FinalAssessmentPreparationModal';
+import { FinalAssessmentPreparationModal } from './components/FinalAssessmentPreparationModal';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 function PhaseInvestigation({ state, players, info }: PhaseProps) {
