@@ -2,7 +2,7 @@
 import { CanvasSVG } from 'components/canvas';
 import { GameOverWrapper } from 'components/game-over';
 import { Translate } from 'components/language';
-import { DrawingGrade } from './DrawingGrade';
+import { DrawingGrade } from './components/DrawingGrade';
 
 function PhaseGameOver({ state, players, info }: PhaseProps) {
   return (

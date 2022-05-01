@@ -7,7 +7,7 @@ import { StepRankingWrapper } from 'components/ranking';
 import { PopoverRule } from 'components/rules';
 import { Translate } from 'components/language';
 import { AdminNextRoundButton } from 'components/admin';
-import { ScoringRules } from './TextBlobs';
+import { ScoringRules } from './components/TextBlobs';
 
 type StepRankingProps = {
   players: GamePlayers;
