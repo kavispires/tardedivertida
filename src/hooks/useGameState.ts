@@ -20,7 +20,7 @@ export function useGameState(gameId: GameId, gameName: GameName): GameState {
   }
 
   if (loading) {
-    console.log('%cRefreshing state...', 'color:tomato');
+    console.count('Refreshing state...');
   }
 
   return snapshot?.data() as GameState;
