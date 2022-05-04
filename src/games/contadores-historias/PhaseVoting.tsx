@@ -1,6 +1,6 @@
 // Hooks
 import { useWhichPlayerIsThe, useUser, useLanguage, useStep } from 'hooks';
-import { useOnSubmitVoteAPIRequest } from './api-requests';
+import { useOnSubmitVoteAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
@@ -8,7 +8,7 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { ImageCardPreloadHand } from 'components/cards';
 import { StepVoting } from './StepVoting';
-import { VotingRules } from './RulesBlogs';
+import { VotingRules } from './components/RulesBlobs';
 
 function PhaseVoting({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();

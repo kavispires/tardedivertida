@@ -3,15 +3,15 @@ import { Avatar as AntAvatar, Space } from 'antd';
 // Hooks
 import { useCardWidth } from 'hooks';
 // Components
-import { Avatar, AvatarName } from 'components/avatars';
+import { Avatar, AvatarName, AvatarNPC } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
 import { ImageBlurButton, ImageCard } from 'components/cards';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
 import { Step } from 'components/steps';
 import { Title } from 'components/text';
-import { BookPages } from './BookPages';
-import { ScoringRules } from './RulesBlogs';
+import { BookPages } from './components/BookPages';
+import { ScoringRules } from './components/RulesBlobs';
 
 type StepResolutionProps = {
   players: GamePlayers;
@@ -77,8 +77,8 @@ export function StepResolution({ players, story, storyteller, table, goToNextSte
           return (
             <li className="c-other-cards__entry" key={`other-card-votes-${cardEntry.playerId}-${index}`}>
               <div className="c-other-cards__player">
-                {cardEntry.playerId === 'CPU' ? (
-                  'CPU'
+                {cardEntry.playerId === 'NPC' ? (
+                  <AvatarNPC size="small" />
                 ) : (
                   <AvatarName player={players[cardEntry.playerId]} size="small" />
                 )}

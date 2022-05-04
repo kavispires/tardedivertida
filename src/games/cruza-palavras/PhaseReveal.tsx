@@ -6,7 +6,7 @@ import { PHASES } from 'utils/phases';
 import { StepSwitcher } from 'components/steps';
 import { StepReveal } from './StepReveal';
 import { StepRanking } from './StepRanking';
-import { ScoringRule } from './RulesBlobs';
+import { ScoringRule } from './components/RulesBlobs';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 function PhaseReveal({ players, state, info }: PhaseProps) {

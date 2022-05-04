@@ -11,5 +11,13 @@
     flex-direction: column;
     height: 40vh;
     max-height: 200px;
+
+    @include md {
+      max-height: 150px;
+    }
+
+    @include xs {
+      max-height: 100px;
+    }
   }
 }

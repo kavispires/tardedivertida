@@ -7,6 +7,8 @@ import { PUBLIC_URL, TAG_DICT } from 'utils/constants';
 // Components
 import { RulesModal } from 'components/rules';
 import { CreateGameModal } from './CreateGameModal';
+import { MobileFilled } from '@ant-design/icons';
+import { Translate } from 'components/language';
 
 const getVersionColor = (version: string) => {
   if (version.endsWith('alpha')) {
@@ -52,7 +54,9 @@ export function GameCard({ game }: GameCardProps) {
           description={`${translate('Baseado em', 'Based on')} ${game.basedOn.split('').reverse().join('')}`}
         />
         <Card.Meta style={{ marginTop: '24px' }} description={game.summary[language]} />
+
         <Divider />
+
         <Card.Meta
           description={translate(
             `Para ${game.playerCount.min}-${game.playerCount.max} jogadores`,
@@ -65,7 +69,19 @@ export function GameCard({ game }: GameCardProps) {
             `Recommended with ${game.playerCount.recommended}`
           )}
         />
+
+        {game.mobileFriendly && (
+          <Card.Meta
+            description={
+              <>
+                <MobileFilled /> <Translate pt="Funciona em aparelhos móveis" en="Mobile friendly" />
+              </>
+            }
+          />
+        )}
+
         <Divider />
+
         <Space wrap size={[1, 6]} prefixCls={game.gameName} style={{ display: 'flex' }}>
           {game.tags.map((tag) => (
             <Tag key={`${game.gameCode}-${tag}`} color={TAG_DICT[tag]?.color}>
@@ -73,7 +89,9 @@ export function GameCard({ game }: GameCardProps) {
             </Tag>
           ))}
         </Space>
+
         <Divider />
+
         <Space>
           {Boolean(game.rules?.[language]?.length > 1) && <RulesModal gameInfo={game} />}
           {Boolean(game.available[language]) && <CreateGameModal gameInfo={game} />}

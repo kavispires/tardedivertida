@@ -10,6 +10,11 @@
   box-sizing: border-box;
   position: relative;
 
+  @include xs {
+    margin: get-unit(4 1 1 1);
+    padding: get-unit(4 1 1 1);
+  }
+
   &--full-screen {
     width: calc(100vw - #{get-unit(8)});
     height: calc(100vh - #{get-unit(8)});

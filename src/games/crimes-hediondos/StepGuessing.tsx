@@ -5,12 +5,12 @@ import { Button, Space } from 'antd';
 import { useMock } from 'hooks';
 // Utils
 import { getAvatarColorById, getLastItem } from 'utils/helpers';
-import { mockGuesses } from './mock';
-import { autoSelectCorrectGuesses, getHistory } from './helpers';
+import { mockGuesses } from './utils/mock';
+import { autoSelectCorrectGuesses, getHistory } from './utils/helpers';
 // Components
-import { Crime } from './Crime';
-import { PlayersCards } from './PlayersCards';
-import { SelectableGroupedItemsBoard } from './SelectableGroupedItemsBoard';
+import { Crime } from './components/Crime';
+import { PlayersCards } from './components/PlayersCards';
+import { SelectableGroupedItemsBoard } from './components/SelectableGroupedItemsBoard';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';

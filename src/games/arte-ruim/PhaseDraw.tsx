@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import useSound from 'use-sound';
 // State & Hooks
 import { useIsUserReady, useUser, useLanguage, useStep } from 'hooks';
-import { useOnSubmitDrawingAPIRequest } from './api-requests';
+import { useOnSubmitDrawingAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components

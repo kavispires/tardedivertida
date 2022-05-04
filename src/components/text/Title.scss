@@ -6,6 +6,15 @@
 
   &.ant-typography {
     margin-bottom: get-unit(1);
+    font-size: 2.25rem;
+
+    @include md {
+      font-size: 2rem;
+    }
+
+    @include xs {
+      font-size: 1.75rem;
+    }
   }
 
   &#{$self}--white {

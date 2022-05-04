@@ -1,5 +1,5 @@
 // Ant Design Resources
-import { Progress } from 'antd';
+import { Button, Progress, Space } from 'antd';
 // Images
 import gameOverTitle from 'assets/images/game-over-title.svg';
 // Utils
@@ -9,6 +9,8 @@ import { AVATARS } from 'utils/constants';
 import { Translate } from 'components/language';
 import { Avatar } from 'components/avatars';
 import { RateGameWidget } from './RateGameWidget';
+import { useNavigate } from 'react-router-dom';
+import { AdminOnlyButton } from 'components/admin';
 
 const GameOverText = () => <Translate pt="Jogo concluído" en="The game is over" />;
 
@@ -21,6 +23,8 @@ type GameOverProps = {
 
 export function GameOver({ state, children, className, showRateWidgetAfterContent }: GameOverProps) {
   const { language } = useLanguage();
+
+  const navigate = useNavigate();
 
   return (
     <div className={className}>
@@ -120,6 +124,14 @@ export function GameOver({ state, children, className, showRateWidgetAfterConten
       {children}
 
       {showRateWidgetAfterContent && <RateGameWidget />}
+
+      <Space align="center" direction="vertical" className="full-width padding">
+        <Button onClick={() => navigate('/')}>
+          <Translate pt="Página Inicial" en="Home Page" />
+        </Button>
+
+        <AdminOnlyButton onClick={() => navigate('/hub')} label="Hub" />
+      </Space>
     </div>
   );
 }

@@ -1,12 +1,12 @@
 // Hooks
 import { useLanguage, useStep, useUser } from 'hooks';
-import { useOnSubmitAnswersAPIRequest } from './api-requests';
+import { useOnSubmitAnswersAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
 import { StepSwitcher } from 'components/steps';
 import { StepAnswering } from './StepAnswering';
-import { AnsweringRules } from './RulesBlobs';
+import { AnsweringRules } from './components/RulesBlobs';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 function PhaseEverybodyWrites({ state, players, info }: PhaseProps) {

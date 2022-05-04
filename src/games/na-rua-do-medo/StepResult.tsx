@@ -2,11 +2,11 @@
 import { useLanguage } from 'hooks';
 // Components
 
-import { PlayersDecisionList } from './PlayersDecisionList';
-import { PlayersDecisionResult } from './PlayersDecisionResult';
-import { PlayerStats } from './PlayerStats';
-import { Street } from './Street';
-import { CardCountExplanation } from './RulesBlobs';
+import { PlayersDecisionList } from './components/PlayersDecisionList';
+import { PlayersDecisionResult } from './components/PlayersDecisionResult';
+import { PlayerStats } from './components/PlayerStats';
+import { Street } from './components/Street';
+import { CardCountExplanation } from './components/RulesBlobs';
 import { Step } from 'components/steps';
 import { Title } from 'components/text';
 import { Translate } from 'components/language';

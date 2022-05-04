@@ -1,6 +1,6 @@
 // Hooks
 import { useIsUserReady, useUser, useLanguage, useStep } from 'hooks';
-import { useOnMakeAccusationAPIRequest } from './api-requests';
+import { useOnMakeAccusationAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components

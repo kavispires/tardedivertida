@@ -4,14 +4,14 @@ import { Button } from 'antd';
 import { DownSquareOutlined } from '@ant-design/icons';
 // Hooks & Utils
 import { useCardWidth, useLanguage, useLoading, useMock } from 'hooks';
-import { mockVote } from './mock';
+import { mockVote } from './utils/mock';
 // Components
 import { Card, ImageBlurButton, ImageCard } from 'components/cards';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
 import { Step } from 'components/steps';
 import { Title } from 'components/text';
-import { VotingRules } from './RulesBlogs';
+import { VotingRules } from './components/RulesBlobs';
 import { DebugOnly } from 'components/dev';
 import { ReadyPlayersBar } from 'components/players';
 

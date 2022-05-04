@@ -6,8 +6,8 @@ import { HeartFilled } from '@ant-design/icons';
 import { getAnimationClass, inNSeconds } from 'utils/helpers';
 // Components
 
-import { Pasture } from './Pasture';
-import { RoundType } from './RoundType';
+import { Pasture } from './components/Pasture';
+import { RoundType } from './components/RoundType';
 import clsx from 'clsx';
 import { Step, StepSwitcher } from 'components/steps';
 import { Instruction, Title } from 'components/text';

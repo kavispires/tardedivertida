@@ -1,13 +1,13 @@
 // Hooks
 import { useLanguage, useStep, useWhichPlayerIsThe } from 'hooks';
-import { useOnSubmitQuestionAPIRequest } from './api-requests';
+import { useOnSubmitQuestionAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
 
 import { StepQuestionSelection } from './StepQuestionSelection';
 import { StepQuestionSelectionWaiting } from './StepQuestionSelectionWaiting';
-import { GamePremiseRules } from './RulesBlobs';
+import { GamePremiseRules } from './components/RulesBlobs';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { RoundAnnouncement } from 'components/round';

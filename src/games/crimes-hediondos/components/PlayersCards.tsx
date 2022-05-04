@@ -1,6 +1,6 @@
 import { orderBy } from 'lodash';
 // Helpers
-import { isHistoryLocked } from './helpers';
+import { isHistoryLocked } from '../utils/helpers';
 // Components
 import { AvatarCard, AvatarIcon } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';

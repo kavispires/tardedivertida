@@ -3,4 +3,9 @@
   height: $canvas-size;
   background: get-color(white);
   cursor: crosshair;
+  touch-action: none;
+
+  @include xs {
+    transform: scale(0.7);
+  }
 }

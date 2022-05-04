@@ -61,7 +61,7 @@ export function PhaseRules({ players, info }: PhaseRulesProps) {
 
       <RulesCarousel info={info} className="phase-rules__carousel" ruleClass="phase-rules__rule" />
 
-      <Space className="phase-rules__actions">
+      <Space className="phase-rules__actions" wrap>
         <Button
           type="primary"
           icon={isUserReady ? <CheckCircleFilled /> : <SmileFilled />}

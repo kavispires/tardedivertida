@@ -1,12 +1,12 @@
 // State & Hooks
 import { useIsUserReady, useUser, useLanguage, useStep } from 'hooks';
-import { useOnSubmitGuessesAPIRequest } from './api-requests';
+import { useOnSubmitGuessesAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
-import { GuessMessage } from './RulesBlobs';
+import { GuessMessage } from './components/RulesBlobs';
 import { StepGuessing } from './StepGuessing';
 
 function PhaseGuessing({ players, state, info }: PhaseProps) {

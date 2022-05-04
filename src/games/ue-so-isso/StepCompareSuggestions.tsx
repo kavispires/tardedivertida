@@ -7,15 +7,15 @@ import { useGlobalState, useLanguage, useLoading } from 'hooks';
 // Utils
 import { deepCopy } from 'utils/helpers';
 // Components
-import { UeSoIssoCard as Card } from './UeSoIssoCard';
-import { SuggestionCard } from './SuggestionCard';
-import { ComparisonDetailedRules, ComparisonPhaseRules } from './RulesBlobs';
+import { UeSoIssoCard as Card } from './components/UeSoIssoCard';
+import { ComparisonDetailedRules, ComparisonPhaseRules } from './components/RulesBlobs';
 import { Step } from 'components/steps';
 import { Title } from 'components/text';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
-import { AdminOnlyButton } from 'components/admin';
+import { AdminButton, AdminOnlyContainer } from 'components/admin';
 import { messageContent } from 'components/pop-up';
+import { Cards } from './components/Cards';
 
 type StepCompareSuggestionsProps = {
   isUserTheController: boolean;
@@ -87,40 +87,14 @@ export function StepCompareSuggestions({
 
       <ComparisonPhaseRules controller={controller} />
 
-      <Space className="u-word-compare-suggestions-step__suggestions">
-        {suggestions.map((suggestionEntry, index) => {
-          if (!isUserTheController && !isAdmin) {
-            return (
-              <div key={`${suggestionEntry.suggestion}-${index}`}>
-                <SuggestionCard
-                  suggestion={suggestionEntry.suggestion}
-                  invalid={suggestionEntry.invalid}
-                  playerName={players[suggestionEntry.playerId].name}
-                  avatarId={players[suggestionEntry.playerId].avatarId}
-                  index={index}
-                />
-              </div>
-            );
-          }
-
-          return (
-            <button
-              key={`${suggestionEntry.suggestion}-${index}`}
-              className="u-word-compare-suggestions-step__suggestion-button"
-              onClick={() => onSetValidation(index, suggestionEntry)}
-              disabled={isLoading}
-            >
-              <SuggestionCard
-                suggestion={suggestionEntry.suggestion}
-                invalid={myRecommendation?.[index]?.invalid}
-                avatarId={players[suggestionEntry.playerId].avatarId}
-                playerName={players[suggestionEntry.playerId].name}
-                index={index}
-              />
-            </button>
-          );
-        })}
-      </Space>
+      <Cards
+        suggestions={suggestions}
+        readOnly={!isUserTheController}
+        players={players}
+        onSetValidation={onSetValidation}
+        isLoading={isLoading}
+        myRecommendation={myRecommendation}
+      />
 
       {isUserTheController && (
         <Space className="u-word-compare-suggestions-step__submit">
@@ -139,14 +113,25 @@ export function StepCompareSuggestions({
         </Space>
       )}
 
-      <AdminOnlyButton
-        onClick={() =>
-          onValidateSuggestions({
-            validSuggestions: suggestionsValues.filter((suggestion) => !suggestion.invalid),
-          })
-        }
-        label={translate('Confirmar dicas válidas como Admin', 'Confirm valid clues as Admin')}
-      />
+      <AdminOnlyContainer direction="vertical" align="center">
+        <Cards
+          suggestions={suggestions}
+          readOnly={!isAdmin}
+          players={players}
+          onSetValidation={onSetValidation}
+          isLoading={isLoading}
+          myRecommendation={myRecommendation}
+        />
+        <AdminButton
+          onClick={() =>
+            onValidateSuggestions({
+              validSuggestions: suggestionsValues.filter((suggestion) => !suggestion.invalid),
+            })
+          }
+        >
+          <Translate pt="Confirmar dicas válidas como Admin" en="Confirm valid clues as Admin" />
+        </AdminButton>
+      </AdminOnlyContainer>
     </Step>
   );
 }

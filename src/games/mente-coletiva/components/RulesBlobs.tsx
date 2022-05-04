@@ -20,7 +20,7 @@ export function GamePremiseRules({ activePlayer }: GamePremiseRulesProps) {
             pasto fica menos lotado e todos mais felizes.
             <br />
             <Instruction contained>
-              <AvatarName player={activePlayer} /> escolherá uma pergunta para essa rodada.
+              <AvatarName player={activePlayer} addressUser /> escolherá uma pergunta para essa rodada.
             </Instruction>
           </>
         }

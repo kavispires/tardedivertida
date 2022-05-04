@@ -3,15 +3,15 @@ import { useState, useCallback, useEffect } from 'react';
 import { Button, Space } from 'antd';
 // Utils
 import { shuffle } from 'utils/helpers';
-import { getClueFromKey, getClueKey, isClue } from './helpers';
+import { getClueFromKey, getClueKey, isClue } from './utils/helpers';
 // Components
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { ReadyPlayersBar } from 'components/players';
-import { WordGrid } from './WordGrid';
-import { SelectableCell } from './SelectableCell';
-import { Clues } from './Clues';
+import { WordGrid } from './components/WordGrid';
+import { SelectableCell } from './components/SelectableCell';
+import { Clues } from './components/Clues';
 
 type StepGuessingProps = {
   grid: CruzaPalavraGrid;
