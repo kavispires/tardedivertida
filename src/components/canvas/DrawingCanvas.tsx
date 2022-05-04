@@ -33,7 +33,7 @@ export const DrawingCanvas = ({
   const handleMouseDown = (e: any) => {
     isDrawing.current = true;
     const pos = e.target.getStage().getPointerPosition();
-    setLines([...lines, [pos.x, pos.y]]);
+    setLines([...lines, [Math.round(pos.x), Math.round(pos.y)]]);
   };
 
   const handleMouseMove = (e: any) => {
@@ -45,7 +45,7 @@ export const DrawingCanvas = ({
     const point = stage.getPointerPosition();
     let lastLine = lines[lines.length - 1];
     // add end point
-    lastLine = lastLine.concat([point.x, point.y]);
+    lastLine = lastLine.concat([Math.round(point.x), Math.round(point.y)]);
 
     // replace last
     lines.splice(lines.length - 1, 1, lastLine);
@@ -59,10 +59,13 @@ export const DrawingCanvas = ({
     // Add point if it was a point
     const stage = e.target.getStage();
     const point = stage.getPointerPosition();
+    const x = Math.round(point.x);
+    const y = Math.round(point.y);
+
     let lastLineEntry = lines[lines.length - 1];
-    if (lastLineEntry[0] === point.x && lastLineEntry[1] === point.y) {
+    if (lastLineEntry[0] === x && lastLineEntry[1] === y) {
       // add end point
-      lastLineEntry = lastLineEntry.concat([point.x + 0.1, point.y + 0.1]);
+      lastLineEntry = lastLineEntry.concat([x + 0.1, y + 0.1]);
 
       // replace last
       lines.splice(lines.length - 1, 1, lastLineEntry);
