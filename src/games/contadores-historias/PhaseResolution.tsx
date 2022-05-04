@@ -6,7 +6,7 @@ import { PHASES } from 'utils/phases';
 import { StepSwitcher } from 'components/steps';
 import { StepResolution } from './StepResolution';
 import { StepRanking } from './StepRanking';
-import { ScoringRules } from './RulesBlogs';
+import { ScoringRules } from './components/RulesBlobs';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 function PhaseResolution({ state, players, info }: PhaseProps) {

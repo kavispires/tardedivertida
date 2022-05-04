@@ -4,7 +4,7 @@ import { AvatarIcon, AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
-import { Pasture } from './Pasture';
+import { Pasture } from './components/Pasture';
 
 type StepQuestionSelectionWaitingProps = {
   activePlayer: GamePlayer;

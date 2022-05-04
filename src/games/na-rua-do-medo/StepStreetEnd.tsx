@@ -1,10 +1,10 @@
 // Hooks
 import { useLanguage } from 'hooks';
 // Components
-import { PlayerStats } from './PlayerStats';
-import { Street } from './Street';
-import { CardCountExplanation } from './RulesBlobs';
-import { PlayersDecisionList } from './PlayersDecisionList';
+import { PlayerStats } from './components/PlayerStats';
+import { Street } from './components/Street';
+import { CardCountExplanation } from './components/RulesBlobs';
+import { PlayersDecisionList } from './components/PlayersDecisionList';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';

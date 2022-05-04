@@ -20,7 +20,7 @@ export function useGamePlayers(gameId: GameId, gameName: GameName): Players | {}
   }
 
   if (loading) {
-    console.log('%cRefreshing players...', 'color:orange');
+    console.count('Refreshing players...');
   }
 
   return snapshot?.data() ?? {};

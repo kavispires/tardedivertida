@@ -1,9 +1,5 @@
 .round-announcement {
-  display: grid;
   width: 100%;
-  grid-template-columns: 1fr 450px 1fr;
-  grid-template-rows: auto;
-  grid-template-areas: 'team-a main team-b';
 
   &__main {
     grid-area: main;
@@ -24,6 +20,11 @@
     width: $roundSize;
     height: $roundSize;
     margin: get-unit(3);
+
+    @include xs {
+      width: 250px;
+      height: 250px;
+    }
   }
 
   &__circle {
@@ -49,7 +50,6 @@
     border-radius: 50%;
     background-clip: content-box;
     animation: spin-reverse 10s linear infinite;
-    // background-color: rgba($color: #fff, $alpha: 0.3);
     border: get-unit(3) dashed get-color(yellow);
   }
 
@@ -61,28 +61,14 @@
     font-weight: bolder;
     top: 0;
     left: 0;
-    font-size: 15em;
+    font-size: 14rem;
     text-align: center;
-  }
 
-  &__team-left {
-    grid-area: team-a;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  &__team-right {
-    grid-area: team-b;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  &__team-member {
-    margin-bottom: get-unit(1);
+    @include xs {
+      width: 250px;
+      height: 250px;
+      font-size: 10rem;
+    }
   }
 
   &__points {

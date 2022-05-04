@@ -1,10 +1,10 @@
 import { useState } from 'react';
 // State & Hooks
 import { useIsUserReady, useUser, useLanguage, useMock, useStep } from 'hooks';
-import { useOnSubmitCrimeAPIRequest } from './api-requests';
+import { useOnSubmitCrimeAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
-import { mockCrime } from './mock';
+import { mockCrime } from './utils/mock';
 // Components
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
@@ -12,7 +12,7 @@ import { RoundAnnouncement } from 'components/round';
 import { ImageCardPreloadHand } from 'components/cards';
 import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
-import { WelcomeMessage } from './RulesBlobs';
+import { WelcomeMessage } from './components/RulesBlobs';
 import { StepItemsSelection } from './StepItemsSelection';
 import { StepCauseOfDeathSelection } from './StepCauseOfDeathSelection';
 import { StepLocationSelection } from './StepLocationSelection';

@@ -1,9 +1,9 @@
 // State & Hooks
 import { useUser, useLanguage, useMock, useStep } from 'hooks';
-import { useOnSubmitMarkAPIRequest } from './api-requests';
+import { useOnSubmitMarkAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
-import { mockSceneMark } from './mock';
+import { mockSceneMark } from './utils/mock';
 // Components
 import { Translate } from 'components/language';
 import { RoundAnnouncement } from 'components/round';

@@ -1,12 +1,12 @@
 import { useState } from 'react';
 // Ant Design Resources
 import { CheckCircleFilled, CloudUploadOutlined } from '@ant-design/icons';
+// Components
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
-// Components
 
 type StepWordSelectionProps = {
   guesser: GamePlayer;

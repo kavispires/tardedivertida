@@ -6,9 +6,9 @@ import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 
-import { EspiaoEntreNosCard as Card } from './Card';
-import { LocationsList } from './LocationsList';
-import { Notes } from './Notes';
+import { EspiaoEntreNosCard as Card } from './components/Card';
+import { LocationsList } from './components/LocationsList';
+import { Notes } from './components/Notes';
 
 type StepAssignmentProps = {
   user: GamePlayer;

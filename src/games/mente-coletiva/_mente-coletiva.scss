@@ -239,6 +239,14 @@
   z-index: 100;
   background: rgba(255, 255, 255, 0.9);
   padding: get-unit(0 4 2 4);
+
+  @include xs {
+    position: static;
+    top: auto;
+    left: auto;
+    transform: none;
+    margin: get-unit(3 auto);
+  }
 }
 
 .m-answers {

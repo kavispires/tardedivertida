@@ -1,12 +1,12 @@
 // Hooks
 import { useWhichPlayerIsThe, useLanguage, useStep } from 'hooks';
-import { useOnSubmitValidationsAPIRequest, useOnValidateSuggestionAPIRequest } from './api-requests';
+import { useOnSubmitValidationsAPIRequest, useOnValidateSuggestionAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
 import { StepCompareSuggestions } from './StepCompareSuggestions';
-import { ComparisonRules } from './RulesBlobs';
-import { GuesserWaitingRoom } from './GuesserWaitingRoom';
+import { ComparisonRules } from './components/RulesBlobs';
+import { GuesserWaitingRoom } from './components/GuesserWaitingRoom';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';

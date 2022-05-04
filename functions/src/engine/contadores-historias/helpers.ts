@@ -70,7 +70,7 @@ export const buildTable = (players: Players, tableCards: ImageCardId[], storytel
   tableCards.forEach((cardId) => {
     table.push({
       cardId: cardId,
-      playerId: 'CPU',
+      playerId: 'NPC',
       votes: [],
       isSolution: false,
     });

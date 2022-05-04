@@ -22,9 +22,9 @@ import { CanvasResizer } from 'components/canvas';
 import { Title } from 'components/text';
 import { Translate } from 'components/language';
 import { ReadyPlayersBar } from 'components/players';
-import { EvaluationAllDrawings } from './EvaluationAllDrawings';
-import { EvaluationAllCards } from './EvaluationAllCards';
-import { EvaluationRules } from './TextBlobs';
+import { EvaluationAllDrawings } from './components/EvaluationAllDrawings';
+import { EvaluationAllCards } from './components/EvaluationAllCards';
+import { EvaluationRules } from './components/TextBlobs';
 
 function prepareVotes(votes: PlainObject) {
   return Object.entries(votes).reduce((acc: PlainObject, [drawingEntryId, cardEntryId]) => {
@@ -113,7 +113,7 @@ export function StepEvaluation({ drawings, cards, players, onSubmitVoting }: Ste
         <Translate pt="Adivinhação" en="Match the Pairs" />
       </Title>
 
-      <Space className="space-container" align="center">
+      <Space className="space-container" align="center" wrap>
         <Button
           type="default"
           icon={<ThunderboltOutlined />}

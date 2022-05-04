@@ -1,6 +1,6 @@
 // State & Hooks
 import { useIsUserReady, useUser, useLanguage, useStep } from 'hooks';
-import { useOnSubmitClueAPIRequest } from './api-requests';
+import { useOnSubmitClueAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
@@ -8,7 +8,7 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { RoundAnnouncement } from 'components/round';
 import { StepSwitcher } from 'components/steps';
 import { StepClueWriting } from './StepClueWriting';
-import { WritingCluesRule } from './RulesBlobs';
+import { WritingCluesRule } from './components/RulesBlobs';
 
 function PhaseClueWriting({ players, state, info }: PhaseProps) {
   const { translate } = useLanguage();

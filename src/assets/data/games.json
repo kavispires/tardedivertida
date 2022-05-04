@@ -2,7 +2,7 @@
   "A": {
     "gameCode": "A",
     "gameName": "arte-ruim",
-    "version": "2.2.1",
+    "version": "2.3.0",
     "title": {
       "pt": "Arte Ruim Pra Dedéu",
       "en": "Questionable Art"
@@ -39,7 +39,7 @@
       "min": 3,
       "max": 10
     },
-    "tags": ["competitive", "same-time", "drawing", "pairing", "timed"],
+    "tags": ["competitive", "same-time", "drawing", "pairing", "timed", "mobile-friendly"],
     "available": {
       "pt": true,
       "en": true
@@ -91,7 +91,7 @@
   "C": {
     "gameCode": "C",
     "gameName": "contadores-historias",
-    "version": "2.1",
+    "version": "2.2",
     "title": {
       "pt": "Contadores de Histórias",
       "en": "Storytellers"
@@ -121,7 +121,7 @@
       "min": 3,
       "max": 10
     },
-    "tags": ["competitive", "turn-based", "images", "writing", "guessing"],
+    "tags": ["competitive", "turn-based", "images", "writing", "guessing", "mobile-friendly"],
     "available": {
       "pt": true,
       "en": true
@@ -291,7 +291,7 @@
       "en": "Horrific Crimes"
     },
     "popularName": {
-      "pt": "Jogo da Convenção de Serial Killers",
+      "pt": "Da Convenção de Serial Killers",
       "en": ""
     },
     "basedOn": "gnoK gnoH ni redruM :noitpeceD",
@@ -381,7 +381,7 @@
   "L": {
     "gameCode": "L",
     "gameName": "linhas-cruzadas",
-    "version": "beta",
+    "version": "1.0.1",
     "title": {
       "pt": "Linhas Cruzadas",
       "en": "Mis...communication"
@@ -404,7 +404,7 @@
       "min": 4,
       "max": 10
     },
-    "tags": ["cooperative", "drawing", "guessing", "writing"],
+    "tags": ["cooperative", "drawing", "guessing", "writing", "mobile-friendly"],
     "available": {
       "pt": true,
       "en": true
@@ -422,7 +422,7 @@
   "M": {
     "gameCode": "M",
     "gameName": "mente-coletiva",
-    "version": "2.0",
+    "version": "2.2.0",
     "title": {
       "pt": "Mente Coletiva",
       "en": "Herd Mind"
@@ -459,7 +459,7 @@
       "min": 3,
       "max": 12
     },
-    "tags": ["competitive", "same-time", "writing"],
+    "tags": ["competitive", "same-time", "writing", "mobile-friendly"],
     "available": {
       "pt": true,
       "en": true
@@ -469,7 +469,7 @@
   "N": {
     "gameCode": "N",
     "gameName": "na-rua-do-medo",
-    "version": "1.0",
+    "version": "2.1.0",
     "title": {
       "pt": "Na Rua do Medo",
       "en": "Fear Street"
@@ -506,7 +506,7 @@
       "min": 3,
       "max": 10
     },
-    "tags": ["competitive", "same-time", "push-your-luck"],
+    "tags": ["competitive", "same-time", "push-your-luck", "mobile-friendly"],
     "available": {
       "pt": true,
       "en": true
@@ -522,7 +522,7 @@
       "en": "Telepathic Waves"
     },
     "popularName": {
-      "pt": "",
+      "pt": "Do treco com ponteiro marcando de 1 a 10",
       "en": ""
     },
     "basedOn": "htgnelevaW",
@@ -578,7 +578,7 @@
       "en": "That's Polemic"
     },
     "popularName": {
-      "pt": "",
+      "pt": "Do quem ganha mais likes",
       "en": ""
     },
     "basedOn": "cimeloP",
@@ -771,7 +771,7 @@
   "U": {
     "gameCode": "U",
     "gameName": "ue-so-isso",
-    "version": "2.0.1",
+    "version": "2.2.0",
     "title": {
       "pt": "Ué, Só Isso?",
       "en": "That's It?"
@@ -810,7 +810,7 @@
       "min": 4,
       "max": 10
     },
-    "tags": ["cooperative", "guessing", "writing"],
+    "tags": ["cooperative", "guessing", "writing", "mobile-friendly"],
     "cooperative": true,
     "available": {
       "pt": true,
@@ -858,7 +858,7 @@
       "en": "Mixed Clues"
     },
     "popularName": {
-      "pt": "",
+      "pt": "Conectar duas palavras da grade",
       "en": ""
     },
     "basedOn": "seulC ssorC",

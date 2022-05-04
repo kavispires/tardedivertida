@@ -1,6 +1,6 @@
 import { useState } from 'react';
 // Ant Design Resources
-import { Button, Divider, Drawer } from 'antd';
+import { Button, Divider, Drawer, Image } from 'antd';
 import { InfoCircleOutlined } from '@ant-design/icons';
 // Utils
 import { useLanguage } from 'hooks';
@@ -12,6 +12,7 @@ import { SectionRankedPlayers } from './_internal/SectionRankedPlayers';
 import { SectionSettings } from './_internal/SectionSettings';
 import { DebugOnly } from 'components/dev';
 import { RulesModal } from 'components/rules';
+import { PUBLIC_URL } from 'utils/constants';
 
 type GameInfoDrawerProps = {
   players: GamePlayers;
@@ -49,10 +50,19 @@ export function GameInfoDrawer({ players, state, info, userId }: GameInfoDrawerP
         <Drawer
           title={info?.title?.[language]}
           placement="right"
-          closable={false}
+          closable={true}
           onClose={onClose}
           visible={visible}
         >
+          <Image
+            alt={info?.title?.[language]}
+            src={`${PUBLIC_URL.BANNERS}game-image-${info.gameName}-${language}.jpg`}
+            fallback={`${PUBLIC_URL.BANNERS}/game-image-em-breve-${language}.jpg`}
+            preview={false}
+          />
+
+          <Divider />
+
           {completeMe && <SectionMe player={completeMe} isTeamGame={isTeamGame} />}
 
           <Divider />

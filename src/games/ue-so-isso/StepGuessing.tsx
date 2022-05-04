@@ -3,9 +3,9 @@ import { Space } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 // Components
 
-import { UeSoIssoCard as Card } from './UeSoIssoCard';
-import { Guess } from './Guess';
-import { SuggestionEasel } from './SuggestionEasel';
+import { UeSoIssoCard as Card } from './components/UeSoIssoCard';
+import { Guess } from './components/Guess';
+import { SuggestionEasel } from './components/SuggestionEasel';
 import { Step } from 'components/steps';
 import { ViewOr } from 'components/views';
 import { Instruction, Title } from 'components/text';
@@ -30,15 +30,15 @@ export function StepGuessing({
   validSuggestions,
 }: StepGuessingProps) {
   return (
-    <Step>
+    <Step fullWidth>
       <ViewOr orCondition={isUserTheGuesser}>
-        <div>
+        <Space direction="vertical" align="center">
           <Title>
             <Translate pt="Hora de brilhar" en="Time to shine" />, <AvatarName player={guesser} />!
           </Title>
           <Instruction contained>
             <Translate
-              pt="Você tem uma única change de adivinhar a palavra secreta!"
+              pt="Você tem uma única chance de adivinhar a palavra secreta!"
               en="You have a single chance to guess the secret word!"
             />
           </Instruction>
@@ -56,9 +56,9 @@ export function StepGuessing({
               return <SuggestionEasel key={id} id={id} value={suggestionEntry.suggestion} />;
             })}
           </Space>
-        </div>
+        </Space>
 
-        <div>
+        <Space direction="vertical" align="center">
           <Title>
             <Translate
               pt={
@@ -94,7 +94,7 @@ export function StepGuessing({
               return <SuggestionEasel key={id} id={id} value={suggestionEntry.suggestion} />;
             })}
           </Space>
-        </div>
+        </Space>
       </ViewOr>
     </Step>
   );

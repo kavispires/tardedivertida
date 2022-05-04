@@ -1,6 +1,6 @@
 // State & Hooks
 import { useIsUserReady, useUser, useLanguage, useStep } from 'hooks';
-import { useOnSubmitGuessesAPIRequest } from './api-requests';
+import { useOnSubmitGuessesAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components

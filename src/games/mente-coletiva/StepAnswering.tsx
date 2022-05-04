@@ -5,12 +5,12 @@ import { Button, Input, Space } from 'antd';
 import { useLanguage, useMock } from 'hooks';
 // Utils
 import { getEntryId } from 'utils/helpers';
-import { mockAnswers } from './mock';
+import { mockAnswers } from './utils/mock';
 // Components
 
-import { Pasture } from './Pasture';
-import { Question } from './Question';
-import { AnsweringRules } from './RulesBlobs';
+import { Pasture } from './components/Pasture';
+import { Question } from './components/Question';
+import { AnsweringRules } from './components/RulesBlobs';
 import { Step } from 'components/steps';
 import { Title } from 'components/text';
 import { Translate } from 'components/language';

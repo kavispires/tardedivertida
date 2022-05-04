@@ -1,14 +1,14 @@
 // Hooks
 import { useLanguage, useMock } from 'hooks';
 // Utils
-import { mockPlayerDecision } from './mock';
+import { mockPlayerDecision } from './utils/mock';
 // Components
 
-import { CandyCount } from './CandyCount';
-import { PlayersDecisionList } from './PlayersDecisionList';
-import { PlayerStats } from './PlayerStats';
-import { CardCountExplanation, DecisionExplanation } from './RulesBlobs';
-import { Street } from './Street';
+import { CandyCount } from './components/CandyCount';
+import { PlayersDecisionList } from './components/PlayersDecisionList';
+import { PlayerStats } from './components/PlayerStats';
+import { CardCountExplanation, DecisionExplanation } from './components/RulesBlobs';
+import { Street } from './components/Street';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
