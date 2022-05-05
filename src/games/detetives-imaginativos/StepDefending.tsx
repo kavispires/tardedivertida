@@ -6,7 +6,7 @@ import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, TextHighlight, Title } from 'components/text';
 
-import { TableFocus } from './TableFocus';
+import { TableFocus } from './components/TableFocus';
 
 type StepDefendingProps = {
   clue: string;
