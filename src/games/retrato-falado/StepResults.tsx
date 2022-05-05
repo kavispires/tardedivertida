@@ -2,8 +2,8 @@
 import { useCardWidth, useGlobalState } from 'hooks';
 // Components
 
-import { MonsterCard } from './MonsterCard';
-import { MonsterSketches } from './MonsterSketches';
+import { MonsterCard } from './components/MonsterCard';
+import { MonsterSketches } from './components/MonsterSketches';
 import { Space } from 'antd';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';

@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useTimer } from 'react-timer-hook';
 // Utils
-import { TIMES, VIEWS } from './constants';
+import { TIMES, VIEWS } from './utils/constants';
 import { inNSeconds } from 'utils/helpers';
 // Components
 import { ViewSwitch } from 'components/views';
-import { ViewAnnouncement } from './ViewAnnouncement';
-import { ViewLastSeconds } from './ViewLastSeconds';
-import { ViewSketching } from './ViewSketching';
-import { ViewWitnessing } from './ViewWitnessing';
+import { ViewAnnouncement } from './components/ViewAnnouncement';
+import { ViewLastSeconds } from './components/ViewLastSeconds';
+import { ViewSketching } from './components/ViewSketching';
+import { ViewWitnessing } from './components/ViewWitnessing';
 import { useGlobalState } from 'hooks';
 
 type StepTestimonialProps = {
