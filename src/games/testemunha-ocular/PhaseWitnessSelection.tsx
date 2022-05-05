@@ -2,7 +2,7 @@
 import { Space } from 'antd';
 // Hooks
 import { useLoading, useLanguage, useGlobalState, useStep } from 'hooks';
-import { useOnSelectWitnessAPIRequest } from './api-requests';
+import { useOnSelectWitnessAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
@@ -12,7 +12,7 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Step, StepSwitcher } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
-import { WitnessRules } from './TextBlobs';
+import { WitnessRules } from './components/TextBlobs';
 
 function PhaseWitnessSelection({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();

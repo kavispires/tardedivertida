@@ -2,8 +2,8 @@
 import { LETTERS } from 'utils/constants';
 // Components
 
-import { Suspects } from './Suspects';
-import { QuestionsHistory } from './QuestionsHistory';
+import { Suspects } from './components/Suspects';
+import { QuestionsHistory } from './components/QuestionsHistory';
 import { Space } from 'antd';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';

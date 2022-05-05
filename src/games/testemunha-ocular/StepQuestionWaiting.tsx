@@ -4,8 +4,8 @@ import { AvatarIcon, AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
-import { QuestionsHistory } from './QuestionsHistory';
-import { Suspects } from './Suspects';
+import { QuestionsHistory } from './components/QuestionsHistory';
+import { Suspects } from './components/Suspects';
 
 type StepQuestionWaitingProps = {
   suspects: Suspect[];
