@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 // Utils
-import { getBracketClass } from './helpers';
+import { getBracketClass } from '../utils/helpers';
 // Components
 import { Card } from './Card';
 
