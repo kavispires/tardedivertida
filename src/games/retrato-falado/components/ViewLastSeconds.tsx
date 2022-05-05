@@ -4,7 +4,7 @@ import { Translate } from 'components/language';
 import { Instruction, Title } from 'components/text';
 import { TimerBar } from 'components/timers';
 import { ViewOr } from 'components/views';
-import { TIMES } from './constants';
+import { TIMES } from '../utils/constants';
 // Components
 
 type ViewSketchingProps = {

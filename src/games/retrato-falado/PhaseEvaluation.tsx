@@ -1,6 +1,6 @@
 // State & Hooks
 import { useIsUserReady, useLanguage, useWhichPlayerIsThe, useUser, useStep } from 'hooks';
-import { useOnSubmitVoteAPIRequest } from './api-requests';
+import { useOnSubmitVoteAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components

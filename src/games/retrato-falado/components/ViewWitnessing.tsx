@@ -1,5 +1,5 @@
 // Utils
-import { TIMES } from './constants';
+import { TIMES } from '../utils/constants';
 // Components
 import { DrawingCanvas } from 'components/canvas';
 import { Translate } from 'components/language';

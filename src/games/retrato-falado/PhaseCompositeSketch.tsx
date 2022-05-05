@@ -1,9 +1,9 @@
 // State & Hooks
 import { useIsUserReady, useLanguage, useStep, useWhichPlayerIsThe } from 'hooks';
-import { useOnSubmitOrientationAPIRequest, useOnSubmitSketchAPIRequest } from './api-requests';
+import { useOnSubmitOrientationAPIRequest, useOnSubmitSketchAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
-import { TIMES } from './constants';
+import { TIMES } from './utils/constants';
 // Components
 
 import { StepTestimonial } from './StepTestimonial';

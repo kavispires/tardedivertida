@@ -4,7 +4,7 @@ import { Translate } from 'components/language';
 import { Title } from 'components/text';
 import { useCardWidth } from 'hooks';
 // Components
-import { MonsterSketches } from './MonsterSketches';
+import { MonsterSketches } from './components/MonsterSketches';
 
 function PhaseGameOver({ state, info, players }: PhaseProps) {
   const canvasWidth = useCardWidth(6, 16, 150, 500);
