@@ -1,6 +1,6 @@
 // Hooks
 import { useIsUserReady, useWhichPlayerIsThe, useUser, useLanguage, useStep } from 'hooks';
-import { useOnSubmitSecretClueAPIRequest } from './api-requests';
+import { useOnSubmitSecretClueAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components

@@ -5,7 +5,7 @@ import { Translate } from 'components/language';
 import { RankingBoard } from 'components/ranking';
 import { Step } from 'components/steps';
 import { Instruction, RoundsLeftInstruction, Title } from 'components/text';
-import { VotingOptions } from './VotingOptions';
+import { VotingOptions } from './components/VotingOptions';
 
 type StepRevealProps = {
   impostor: GamePlayer;

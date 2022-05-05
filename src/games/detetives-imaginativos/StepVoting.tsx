@@ -4,8 +4,8 @@ import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { ViewIf } from 'components/views';
-import { Table } from './Table';
-import { VotingOptions } from './VotingOptions';
+import { Table } from './components/Table';
+import { VotingOptions } from './components/VotingOptions';
 
 type StepVotingProps = {
   isLoading: boolean;

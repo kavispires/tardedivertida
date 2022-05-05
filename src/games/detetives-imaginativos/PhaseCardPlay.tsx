@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { message } from 'antd';
 // Hooks
 import { useWhichPlayerIsThe, useUser, useLoading, useLanguage, useStep } from 'hooks';
-import { useOnPlayCardAPIRequest } from './api-requests';
+import { useOnPlayCardAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
