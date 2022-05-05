@@ -1,9 +1,9 @@
 // Hooks
 import { useLanguage, useMock, useStep, useWhichPlayerIsThe } from 'hooks';
-import { useOnSubmitTopicAPIRequest } from './api-requests';
+import { useOnSubmitTopicAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
-import { mockTopicSelection } from './mock';
+import { mockTopicSelection } from './utils/mock';
 // Components
 
 import { StepTopicSelection } from './StepTopicSelection';

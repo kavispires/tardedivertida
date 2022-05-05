@@ -7,8 +7,8 @@ import { Step } from 'components/steps';
 import { Title } from 'components/text';
 import { orderBy } from 'lodash';
 // Components
-import { Topic } from './Topic';
-import { TweetComment } from './TweetComment';
+import { Topic } from './components/Topic';
+import { TweetComment } from './components/TweetComment';
 
 type StepResolutionProps = {
   players: GamePlayers;

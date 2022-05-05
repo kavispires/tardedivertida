@@ -1,9 +1,9 @@
 // Hooks
 import { useLanguage, useMock, useStep } from 'hooks';
-import { useOnSubmitReactionAPIRequest } from './api-requests';
+import { useOnSubmitReactionAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
-import { mockGuess } from './mock';
+import { mockGuess } from './utils/mock';
 // Components
 import { Translate } from 'components/language';
 import { StepSwitcher } from 'components/steps';
