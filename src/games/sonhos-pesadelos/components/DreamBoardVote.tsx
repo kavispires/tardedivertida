@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { useCardWidth } from 'hooks';
 // Utils
 import { getEntryId } from 'utils/helpers';
-import { getClueId } from './helpers';
+import { getClueId } from '../utils/helpers';
 // Components
 
 import { DreamCard } from './DreamCard';

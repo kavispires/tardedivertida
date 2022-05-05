@@ -11,10 +11,10 @@ import { Translate } from 'components/language';
 import { ReadyPlayersBar } from 'components/players';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
-import { AllDreamsClues } from './AllDreamsClues';
-import { DreamBoardVote } from './DreamBoardVote';
-import { cleanupVotes, selectOwnVote, voteRandomly } from './helpers';
-import { mockVotes } from './mock';
+import { AllDreamsClues } from './components/AllDreamsClues';
+import { DreamBoardVote } from './components/DreamBoardVote';
+import { cleanupVotes, selectOwnVote, voteRandomly } from './utils/helpers';
+import { mockVotes } from './utils/mock';
 
 type StepMatchDreamsProps = {
   onSubmitVotes: GenericFunction;
