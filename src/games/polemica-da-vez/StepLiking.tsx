@@ -6,7 +6,7 @@ import { Button, Divider } from 'antd';
 import { useLoading } from 'hooks';
 // Components
 
-import { Topic } from './Topic';
+import { Topic } from './components/Topic';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
