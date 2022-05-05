@@ -1,6 +1,6 @@
 // Hooks
 import { useWhichPlayerIsThe, useLoading, useLanguage, useStep } from 'hooks';
-import { useOnSubmitTestimonyAPIRequest } from './api-requests';
+import { useOnSubmitTestimonyAPIRequest } from './utils/api-requests';
 // Utils
 import { PHASES } from 'utils/phases';
 // Components

@@ -2,8 +2,8 @@
 import { useLanguage } from 'hooks';
 // Components
 
-import { AnnouncementContent } from './TextBlobs';
-import { QuestionsHistory } from './QuestionsHistory';
+import { AnnouncementContent } from './components/TextBlobs';
+import { QuestionsHistory } from './components/QuestionsHistory';
 import { GameOverWrapper } from 'components/game-over';
 import { Instruction } from 'components/text';
 import { Translate } from 'components/language';

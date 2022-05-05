@@ -4,8 +4,8 @@ import { Avatar, Button } from 'antd';
 import { useLanguage } from 'hooks';
 // Components
 
-import { Suspects } from './Suspects';
-import { QuestionsHistory } from './QuestionsHistory';
+import { Suspects } from './components/Suspects';
+import { QuestionsHistory } from './components/QuestionsHistory';
 import { Step } from 'components/steps';
 import { Title } from 'components/text';
 import { Translate } from 'components/language';

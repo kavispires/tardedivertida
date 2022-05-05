@@ -6,7 +6,7 @@ import { Instruction } from 'components/text';
 import { useLanguage, useLoading, useStep, useWhichPlayerIsThe } from 'hooks';
 import { PHASES } from 'utils/phases';
 
-import { useOnEliminateSuspectAPIRequest } from './api-requests';
+import { useOnEliminateSuspectAPIRequest } from './utils/api-requests';
 import { StepSuspectElimination } from './StepSuspectElimination';
 
 function PhaseTrial({ state, players, info }: PhaseProps) {
