@@ -6,7 +6,7 @@ import { Instruction, Title } from 'components/text';
 import { useLoading } from 'hooks';
 // Components
 
-import { Card } from './Card';
+import { Card } from './components/Card';
 
 type StepCategorySelectionProps = {
   currentCategories: OCategoryCard[];

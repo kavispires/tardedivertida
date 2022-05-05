@@ -2,7 +2,7 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { ArrowLeftOutlined, ArrowRightOutlined, MinusOutlined } from '@ant-design/icons';
 // Helpers
-import { getColorModifier } from './helpers';
+import { getColorModifier } from '../utils/helpers';
 
 type CardProps = {
   left: string;

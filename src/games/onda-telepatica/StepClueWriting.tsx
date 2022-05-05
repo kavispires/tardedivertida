@@ -4,13 +4,13 @@ import { Button, Input, Space } from 'antd';
 // Hooks
 import { useLanguage, useLoading } from 'hooks';
 // HUtils
-import { getTargetSide } from './helpers';
+import { getTargetSide } from './utils/helpers';
 // Components
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
-import { Dial } from './Dial';
-import { ClueWritingRules } from './RulesBlobs';
+import { Dial } from './components/Dial';
+import { ClueWritingRules } from './components/RulesBlobs';
 
 type StepClueWritingProps = {
   currentCategories: OCategoryCard[];

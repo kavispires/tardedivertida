@@ -4,7 +4,7 @@ import { Translate } from 'components/language';
 import { WaitingRoom } from 'components/players';
 import { Instruction } from 'components/text';
 
-import { Card } from './Card';
+import { Card } from './components/Card';
 
 type StepClueWaitingProps = {
   players: GamePlayers;

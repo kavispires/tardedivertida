@@ -7,7 +7,7 @@ import { Translate } from 'components/language';
 import { ReadyPlayersBar } from 'components/players';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
-import { Dial } from './Dial';
+import { Dial } from './components/Dial';
 
 type StepPsychicGuessProps = {
   currentCategory: OCurrentCategory;

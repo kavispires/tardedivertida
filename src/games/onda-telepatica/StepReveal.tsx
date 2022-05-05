@@ -9,9 +9,9 @@ import { Instruction, Title } from 'components/text';
 import { orderBy } from 'lodash';
 // Components
 
-import { Dial } from './Dial';
-import { getGuessResultClass, getPoints } from './helpers';
-import { ScoringRules } from './RulesBlobs';
+import { Dial } from './components/Dial';
+import { getGuessResultClass, getPoints } from './utils/helpers';
+import { ScoringRules } from './components/RulesBlobs';
 
 type SentenceProps = {
   currentCategory: OCurrentCategory;

@@ -1,6 +1,6 @@
 // State & Hooks
 import { useIsUserReady, useLanguage, useStep, useWhichPlayerIsThe } from 'hooks';
-import { useOnSubmitCategoryAPIRequest, useOnSubmitClueAPIRequest } from './api-requests';
+import { useOnSubmitCategoryAPIRequest, useOnSubmitClueAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
