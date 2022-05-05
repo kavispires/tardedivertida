@@ -2,9 +2,9 @@
 import { useLanguage } from 'hooks';
 // Components
 
-import { GalleryDreamDisplay } from './GalleryDreamDisplay';
+import { GalleryDreamDisplay } from './components/GalleryDreamDisplay';
 import { getAvatarColorById } from 'utils/helpers';
-import { GalleryGuesses } from './GalleryGuesses';
+import { GalleryGuesses } from './components/GalleryGuesses';
 import { Step } from 'components/steps';
 import { Title } from 'components/text';
 import { SlideShow } from 'components/slide-show';

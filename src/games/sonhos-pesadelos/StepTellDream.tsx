@@ -4,10 +4,10 @@ import { Button, Input, Space } from 'antd';
 // Hooks
 import { useLanguage, useLoading, useMock } from 'hooks';
 // Utils
-import { mockDream } from './mock';
+import { mockDream } from './utils/mock';
 // Components
 
-import { DreamBoard } from './DreamBoard';
+import { DreamBoard } from './components/DreamBoard';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Card } from 'components/cards';

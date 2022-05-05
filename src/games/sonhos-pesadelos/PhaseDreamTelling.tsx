@@ -1,6 +1,6 @@
 // Hooks
 import { useIsUserReady, useUser, useLanguage, useStep } from 'hooks';
-import { useOnSubmitDreamAPIRequest } from './api-requests';
+import { useOnSubmitDreamAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
@@ -10,7 +10,7 @@ import { ImageCardPreloadHand } from 'components/cards';
 import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
 import { StepTellDream } from './StepTellDream';
-import { DreamTellingRules } from './RulesBlobs';
+import { DreamTellingRules } from './components/RulesBlobs';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 function PhaseDreamTelling({ state, players, info }: PhaseProps) {
