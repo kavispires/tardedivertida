@@ -1,6 +1,6 @@
 import { RocketFilled } from '@ant-design/icons';
 import { Button, ButtonProps } from 'antd';
-import { useLoading } from 'hooks';
+import { useGlobalState, useLoading } from 'hooks';
 
 interface AdminButtonProps extends ButtonProps {
   onClick: GenericFunction;
@@ -9,6 +9,9 @@ interface AdminButtonProps extends ButtonProps {
 
 export function AdminButton({ onClick, children, ...props }: AdminButtonProps) {
   const { isLoading } = useLoading();
+  const [isAdminEnabled] = useGlobalState('isAdminEnabled');
+
+  if (!isAdminEnabled) return <span></span>;
 
   return (
     <Button icon={<RocketFilled />} danger type="primary" onClick={onClick} disabled={isLoading} {...props}>
