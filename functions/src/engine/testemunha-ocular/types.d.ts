@@ -1,22 +1,21 @@
 import { SuspectCard } from '../../utils/tdi';
+import { TestemunhaOcularCard } from '../../utils/tdr';
 import { CardId, DefaultState, DefaultStore, InitialState, Payload, PlayerId } from '../../utils/types';
 
 type SuspectId = CardId;
-
-interface TestemunhaOcularCard {
-  id: string;
-  question: string;
-}
-
-interface TestemunhaOcularCardsDatabase {
-  [key: string]: TestemunhaOcularCard;
-}
 
 interface TestemunhaOcularEntry {
   id: string;
   question: string;
   unfit?: SuspectId[];
   fit?: SuspectId[];
+}
+
+interface ResourceData {
+  allCards: {
+    [key: string]: TestemunhaOcularCard;
+  };
+  allSuspects: SuspectCard[];
 }
 
 interface TestemunhaOcularStore extends DefaultStore {
