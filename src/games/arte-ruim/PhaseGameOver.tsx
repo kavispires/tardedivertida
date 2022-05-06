@@ -6,7 +6,12 @@ import { DrawingGrade } from './components/DrawingGrade';
 
 function PhaseGameOver({ state, players, info }: PhaseProps) {
   return (
-    <GameOverWrapper info={info} state={state} announcementIcon="trophy">
+    <GameOverWrapper
+      info={info}
+      state={state}
+      announcementIcon="trophy"
+      rateWidgetCustomText={<Translate pt="Alguma sugestão de carta?" en="Any card suggestions?" />}
+    >
       <ul className="a-game-over__gallery">
         {state.drawings.map((entry: ArteRuimDrawing) => {
           return (

@@ -27,6 +27,7 @@ type GameOverWrapperProps = {
   announcementDuration?: number;
   announcementContent?: any;
   showRateWidgetAfterContent?: boolean;
+  rateWidgetCustomText?: any;
 };
 
 export function GameOverWrapper({
@@ -38,6 +39,7 @@ export function GameOverWrapper({
   announcementContent,
   children = <></>,
   showRateWidgetAfterContent = false,
+  rateWidgetCustomText,
 }: GameOverWrapperProps) {
   const [step, setStep] = useState(0);
   const { translate } = useLanguage();
@@ -61,7 +63,11 @@ export function GameOverWrapper({
           {Boolean(announcementContent) && announcementContent}
         </PhaseAnnouncement>
 
-        <GameOver state={state} showRateWidgetAfterContent={showRateWidgetAfterContent}>
+        <GameOver
+          state={state}
+          showRateWidgetAfterContent={showRateWidgetAfterContent}
+          rateWidgetCustomText={rateWidgetCustomText}
+        >
           {children}
         </GameOver>
       </StepSwitcher>

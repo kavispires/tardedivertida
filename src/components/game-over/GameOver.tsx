@@ -16,12 +16,19 @@ const GameOverText = () => <Translate pt="Jogo concluído" en="The game is over"
 
 type GameOverProps = {
   state: GameState;
-  children: any;
+  children: ReactChildren;
   className?: string;
   showRateWidgetAfterContent?: boolean;
+  rateWidgetCustomText?: any;
 };
 
-export function GameOver({ state, children, className, showRateWidgetAfterContent }: GameOverProps) {
+export function GameOver({
+  state,
+  children,
+  className,
+  showRateWidgetAfterContent,
+  rateWidgetCustomText,
+}: GameOverProps) {
   const { language } = useLanguage();
 
   const navigate = useNavigate();
@@ -119,11 +126,11 @@ export function GameOver({ state, children, className, showRateWidgetAfterConten
         </div>
       )}
 
-      {!showRateWidgetAfterContent && <RateGameWidget />}
+      {!showRateWidgetAfterContent && <RateGameWidget customText={rateWidgetCustomText} />}
 
       {children}
 
-      {showRateWidgetAfterContent && <RateGameWidget />}
+      {showRateWidgetAfterContent && <RateGameWidget customText={rateWidgetCustomText} />}
 
       <Space align="center" direction="vertical" className="full-width padding">
         <Button onClick={() => navigate('/')}>

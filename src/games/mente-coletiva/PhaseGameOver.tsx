@@ -1,12 +1,17 @@
 // Components
-
 import { GameOverWrapper } from 'components/game-over';
+import { Translate } from 'components/language';
 import { Title } from 'components/text';
 import { SheepAvatar } from './components/SheepAvatar';
 
 function PhaseGameOver({ state, info }: PhaseProps) {
   return (
-    <GameOverWrapper info={info} state={state} announcementIcon="the-end">
+    <GameOverWrapper
+      info={info}
+      state={state}
+      announcementIcon="the-end"
+      rateWidgetCustomText={<Translate pt="Alguma sugestão de pergunta?" en="Any question suggestions?" />}
+    >
       <div className="m-game-over-in-memoriam">
         <Title>In memoriam</Title>
         <div className="m-sheep-rip">
