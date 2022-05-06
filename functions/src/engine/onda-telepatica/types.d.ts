@@ -14,7 +14,6 @@ interface ResourceData {
   allCategories: {
     [key: string]: OndaTelepaticaCard;
   };
-  usedCategories: string[];
 }
 type PastCategories = CategoryCard[];
 
