@@ -17,6 +17,7 @@ type AdminMenuDrawerProps = {
 export const AdminMenuDrawer = ({ state, players }: AdminMenuDrawerProps) => {
   const { isLoading } = useLoading();
   const [isAdmin] = useGlobalState('isAdmin');
+  const [isAdminEnabled] = useGlobalState('isAdminEnabled');
   const [visible, setVisible] = useState(false);
 
   const showDrawer = () => {
@@ -34,7 +35,7 @@ export const AdminMenuDrawer = ({ state, players }: AdminMenuDrawerProps) => {
     onAfterCall: onClose,
   });
 
-  if (!isAdmin) return <span></span>;
+  if (!isAdmin || !isAdminEnabled) return <span></span>;
 
   return (
     <>

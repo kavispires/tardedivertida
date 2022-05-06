@@ -10,8 +10,9 @@ interface AdminOnlyContainerProps extends SpaceProps {
 
 export const AdminOnlyContainer = ({ children, className = '', ...props }: AdminOnlyContainerProps) => {
   const [isAdmin] = useGlobalState('isAdmin');
+  const [isAdminEnabled] = useGlobalState('isAdminEnabled');
 
-  if (!isAdmin) return <span></span>;
+  if (!isAdmin || !isAdminEnabled) return <span></span>;
 
   return (
     <fieldset className={clsx('admin-only-container', className)}>

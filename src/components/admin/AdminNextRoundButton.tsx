@@ -31,6 +31,7 @@ export function AdminNextRoundButton({
   const { translate } = useLanguage();
   const { isLoading } = useLoading();
   const [isAdmin] = useGlobalState('isAdmin');
+  const [isAdminEnabled] = useGlobalState('isAdminEnabled');
 
   const onGoToNextPhase = useAPICall({
     apiFunction: ADMIN_API.performAdminAction,
@@ -42,7 +43,7 @@ export function AdminNextRoundButton({
     ),
   });
 
-  if (!isAdmin) return <span></span>;
+  if (!isAdmin || !isAdminEnabled) return <span></span>;
 
   return (
     <AdminOnlyContainer className={className}>

@@ -5,9 +5,12 @@ import { InfoCircleOutlined } from '@ant-design/icons';
 import { useDevFeatures, useGlobalState, useLocalStorage } from 'hooks';
 // Components
 import { LanguageSwitch, Translate } from 'components/language';
+import clsx from 'clsx';
 
 export function SectionSettings() {
   const [blurEnabled, setBlurEnabled] = useGlobalState('blurEnabled');
+  const [isAdmin] = useGlobalState('isAdmin');
+  const [isAdminEnabled, setIsAdminEnabled] = useGlobalState('isAdminEnabled');
   const { isDebugEnabled, toggleDevFeatures } = useDevFeatures();
   const [, setLocalStorage] = useLocalStorage();
 
@@ -17,7 +20,12 @@ export function SectionSettings() {
   };
 
   return (
-    <div className="game-info-drawer__section-settings">
+    <div
+      className={clsx(
+        'game-info-drawer__section-settings',
+        isAdmin && 'game-info-drawer__section-settings--4'
+      )}
+    >
       <div className="game-info-drawer__settings-entry">
         <div className="game-info-drawer__switch-label">
           <Translate pt="Idioma" en="Language" />{' '}
@@ -81,6 +89,24 @@ export function SectionSettings() {
           onClick={toggleDevFeatures}
         />
       </div>
+
+      {isAdmin && (
+        <div className="game-info-drawer__settings-entry">
+          <div className="game-info-drawer__switch-label">
+            Admin
+            <Tooltip title={<Translate pt="Ativa recursos para o administrador" en="Activate admin mode" />}>
+              <Button type="text" shape="circle" icon={<InfoCircleOutlined />} size="small" />
+            </Tooltip>
+          </div>
+
+          <Switch
+            checkedChildren="on"
+            unCheckedChildren="off"
+            checked={isAdminEnabled}
+            onClick={() => setIsAdminEnabled((s) => !s)}
+          />
+        </div>
+      )}
     </div>
   );
 }

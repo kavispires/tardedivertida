@@ -34,6 +34,8 @@ if (window.location.hostname.includes(localHost)) {
   console.log(`%cEmulating to ${localHost}`, 'color:dodgerblue');
   connectFirestoreEmulator(firestore, localHost, 8091);
   connectFunctionsEmulator(functions, localHost, 5001);
+  connectFirestoreEmulator(firestore, 'localhost', 8091);
+  connectFunctionsEmulator(functions, 'localhost', 5001);
 }
 
 export default firebaseApp;

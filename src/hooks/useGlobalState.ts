@@ -17,6 +17,7 @@ type InitialState = {
   userAvatarId: string;
   isAuthenticated: boolean;
   isAdmin: boolean;
+  isAdminEnabled: boolean;
   isDebugEnabled: boolean;
   blurredCards: BooleanDictionary;
   blurEnabled: boolean;
@@ -45,6 +46,7 @@ const initialState: InitialState = {
   userAvatarId: '',
   isAuthenticated: false,
   isAdmin: false,
+  isAdminEnabled: false,
   isDebugEnabled: false,
   blurredCards: {},
   blurEnabled: false,

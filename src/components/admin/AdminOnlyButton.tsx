@@ -1,3 +1,4 @@
+import { useGlobalState } from 'hooks';
 import { AdminButton, AdminOnlyContainer } from './index';
 
 type AdminOnlyButtonProps = {
@@ -6,6 +7,10 @@ type AdminOnlyButtonProps = {
 };
 
 export function AdminOnlyButton({ onClick, label }: AdminOnlyButtonProps) {
+  const [isAdminEnabled] = useGlobalState('isAdminEnabled');
+
+  if (!isAdminEnabled) return <span></span>;
+
   return (
     <AdminOnlyContainer>
       <AdminButton onClick={onClick}>{label}</AdminButton>
