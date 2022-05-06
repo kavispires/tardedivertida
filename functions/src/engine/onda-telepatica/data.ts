@@ -1,5 +1,6 @@
 // Constants
 import { GLOBAL_USED_DOCUMENTS } from '../../utils/constants';
+import { PLAYER_COUNTS } from './constants';
 // Types
 import { PastCategories, ResourceData } from './types';
 import { OndaTelepaticaCard } from '../../utils/tdr';
@@ -30,7 +31,7 @@ export const getCategories = async (language: string): Promise<ResourceData> => 
   );
 
   // If not the minimum cards needed, reset and use all
-  if (Object.keys(availableCategories).length < 20) {
+  if (Object.keys(availableCategories).length < PLAYER_COUNTS.MAX * 2) {
     await utils.firebase.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.ONDA_TELEPATICA);
     return { allCategories };
   }
@@ -44,7 +45,7 @@ export const getCategories = async (language: string): Promise<ResourceData> => 
  * Save used categories to the global document
  * @param pastCategories
  */
-export const saveUsedCategories = async (pastCategories: PastCategories) => {
+export const saveUsedCategories = async (pastCategories: PastCategories): Promise<void> => {
   // Save usedTestemunhaOcularCards to global
   const usedOndaTelepaticaCategories = utils.helpers.buildIdDictionary(pastCategories);
   await globalUtils.updateGlobalFirebaseDoc(
