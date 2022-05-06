@@ -1,6 +1,6 @@
 // Types
-import { PlainObject, Players, SaveGamePayload } from '../../utils/types';
-import { FirebaseStateData, FirebaseStoreData } from './types';
+import { Players, SaveGamePayload } from '../../utils/types';
+import { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Constants
 import {
   MENTE_COLETIVA_PHASES,
@@ -35,13 +35,13 @@ export const prepareSetupPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
-  additionalData: PlainObject
+  additionalData: ResourceData
 ): Promise<SaveGamePayload> => {
   // Determine turn order
   const { gameOrder } = utils.helpers.buildGameOrder(players);
 
   // Build deck
-  const deck = buildDeck(additionalData.allQuestions, additionalData.usedQuestions);
+  const deck = buildDeck(additionalData.allQuestions);
 
   // Add level to players
   utils.players.addPropertiesToPlayers(players, {

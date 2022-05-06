@@ -15,6 +15,7 @@ interface ResourceData {
     [key: string]: OndaTelepaticaCard;
   };
 }
+
 type PastCategories = CategoryCard[];
 
 type Deck = CategoryCard[];

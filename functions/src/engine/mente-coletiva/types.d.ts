@@ -13,6 +13,12 @@ type MenteColetivaOptions = {
   shortPasture: boolean;
 };
 
+interface ResourceData {
+  allQuestions: {
+    [key: string]: MenteColetivaCard;
+  };
+}
+
 interface AllQuestions {
   [key: string]: MenteColetivaCard;
 }
