@@ -1,5 +1,5 @@
 import { buildIdDictionary } from './helpers';
-import { PlainObject, Players, Primitive } from './types';
+import { BooleanDictionary, PlainObject, Players, Primitive } from './types';
 
 // Shuffling
 
@@ -219,4 +219,20 @@ export const dealList = <T>(
   });
 
   return players;
+};
+
+/**
+ * Filter out entries that contained any of the used ids
+ * @param dict
+ * @param usedIds
+ * @returns
+ */
+export const filterOutByIds = <T>(dict: Record<string, T>, usedIds: BooleanDictionary): Record<string, T> => {
+  return Object.keys(dict).reduce((acc: Record<string, T>, entryId: string) => {
+    if (!usedIds[entryId]) {
+      acc[entryId] = dict[entryId];
+    }
+
+    return acc;
+  }, {});
 };

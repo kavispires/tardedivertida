@@ -1,5 +1,5 @@
 // Types
-import { CategoryCard, Deck, OndaTelepaticaOptions, PastCategories, ResourceData } from './types';
+import { CategoryCard, Deck, OndaTelepaticaOptions, ResourceData } from './types';
 import { PlainObject, PlayerId, Players, Round } from '../../utils/types';
 // Constants
 import {
@@ -65,18 +65,6 @@ export const determineGameOver = (
 };
 
 /**
- *
- * @param pastCategories
- * @returns
- */
-export const buildUsedCategoriesIdsDict = (pastCategories: PastCategories): PlainObject => {
-  return pastCategories.reduce((acc, category) => {
-    acc[category.id] = true;
-    return acc;
-  }, {});
-};
-
-/**
  * Gets 2 unique categories per round
  * @param data
  * @returns
@@ -84,16 +72,7 @@ export const buildUsedCategoriesIdsDict = (pastCategories: PastCategories): Plai
 export const buildDeck = (data: ResourceData): Deck => {
   const neededQuestionsAmount = MAX_ROUNDS * CATEGORIES_PER_ROUND;
 
-  const filteredCategories = Object.values(data.allCategories).filter(
-    ({ id }) => !data.usedCategories.includes(id)
-  );
-
-  const availableQuestions =
-    filteredCategories.length > neededQuestionsAmount
-      ? filteredCategories
-      : Object.values(data.allCategories);
-
-  const shuffledQuestions = utils.game.shuffle(availableQuestions);
+  const shuffledQuestions = utils.game.shuffle(Object.values(data.allCategories));
 
   return shuffledQuestions.slice(0, neededQuestionsAmount + 1);
 };

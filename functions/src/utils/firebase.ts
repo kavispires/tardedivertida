@@ -362,3 +362,11 @@ export const updateState = async ({
 
   return true;
 };
+
+/**
+ * Resets to default any given global used document
+ * @param documentName
+ */
+export const resetGlobalUsedDocument = async (documentName: string) => {
+  await utils.firebase.getGlobalRef().doc(documentName).set({ 'a-a-a': true });
+};

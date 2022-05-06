@@ -60,7 +60,7 @@ export const getCards = async (
   );
 
   if (resetUsedCards) {
-    await utils.firebase.getGlobalRef().doc(GLOBAL_USED_DOCUMENTS.ARTE_RUIM).set({ 'a-a-a': true });
+    await utils.firebase.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.ARTE_RUIM);
   }
 
   return {
