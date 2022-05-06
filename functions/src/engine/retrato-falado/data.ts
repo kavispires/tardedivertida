@@ -1,7 +1,9 @@
 // Constants
 import { GLOBAL_USED_DOCUMENTS } from '../../utils/constants';
+import { PLAYER_COUNTS } from './constants';
 // Types
-import { MonsterSketch, RetratoFaladoAdditionalData } from './types';
+import { MonsterSketch, ResourceData } from './types';
+import { MonsterCard } from '../../utils/tdi';
 // Helpers
 import * as utils from '../../utils';
 import * as globalUtils from '../global';
@@ -11,15 +13,23 @@ import * as resourceUtils from '../resource';
  * Get monster cards ids
  * @returns
  */
-export const getMonsterCards = async (): Promise<RetratoFaladoAdditionalData> => {
+export const getMonsterCards = async (): Promise<ResourceData> => {
   // Get images info
   const allMonsters = await resourceUtils.fetchTDIData('md/cards');
   // Get used deck
   const usedCards = await globalUtils.getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.RETRATO_FALADO, {});
 
+  // Filter out used cards
+  const availableMonsters: Record<string, MonsterCard> = utils.game.filterOutByIds(allMonsters, usedCards);
+
+  // If not the minimum cards needed, reset and use all
+  if (Object.keys(availableMonsters).length < PLAYER_COUNTS.MAX) {
+    await utils.firebase.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.ONDA_TELEPATICA);
+    return { allMonsters };
+  }
+
   return {
-    allMonsters,
-    usedCardsId: Object.keys(usedCards),
+    allMonsters: availableMonsters,
   };
 };
 
@@ -28,7 +38,7 @@ export const getMonsterCards = async (): Promise<RetratoFaladoAdditionalData> =>
  * @param pastSketches
  */
 export const saveUsedCards = async (pastSketches: MonsterSketch[]): Promise<void> => {
-  // Save usedRetratoFaladoCards to global
   const usedRetratoFaladoCards = utils.helpers.buildIdDictionary(pastSketches);
+
   await globalUtils.updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.RETRATO_FALADO, usedRetratoFaladoCards);
 };

@@ -45,9 +45,8 @@ export const determineNextPhase = (
  * @param playerCount
  * @returns
  */
-export const buildDeck = (allMonsters: AllMonsters, usedCardsIds: string[], playerCount: number) => {
-  const availableCards = Object.values(allMonsters).filter((entry) => !usedCardsIds.includes(entry.id));
-  return utils.game.getRandomItems(availableCards, playerCount);
+export const buildDeck = (allMonsters: AllMonsters, playerCount: number) => {
+  return utils.game.getRandomItems(Object.values(allMonsters), playerCount);
 };
 
 /**

@@ -10,9 +10,8 @@ interface AllMonsters {
   [key: string]: MonsterCard;
 }
 
-interface RetratoFaladoAdditionalData {
+interface ResourceData {
   allMonsters: AllMonsters;
-  usedCardsId: string[];
 }
 
 interface RetratoFaladoStore extends DefaultStore {
