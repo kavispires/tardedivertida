@@ -1,17 +1,12 @@
 // Types
 import { PlainObject, Players, SaveGamePayload } from '../../utils/types';
-import { FirebaseStateData, FirebaseStoreData, TestemunhaOcularCard, TestemunhaOcularEntry } from './types';
+import { FirebaseStateData, FirebaseStoreData, ResourceData, TestemunhaOcularEntry } from './types';
 // Constants
 import { MAX_ROUNDS, QUESTION_COUNT, SUSPECT_COUNT, TESTEMUNHA_OCULAR_PHASES } from './constants';
 // Helpers
 import * as utils from '../../utils';
-import {
-  calculateScore,
-  determineTurnOrder,
-  filterAvailableCards,
-  getQuestionerId,
-  getQuestions,
-} from './helpers';
+import { calculateScore, determineTurnOrder, getQuestionerId, getQuestions } from './helpers';
+import { TestemunhaOcularCard } from '../../utils/tdr';
 
 /**
  * Setup
@@ -19,15 +14,12 @@ import {
  * Resets previous changes to the store
  * @returns
  */
-export const prepareSetupPhase = async (additionalData: PlainObject): Promise<SaveGamePayload> => {
+export const prepareSetupPhase = async (additionalData: ResourceData): Promise<SaveGamePayload> => {
   // Build suspects grid
   const suspects = utils.game.getRandomItems(additionalData.allSuspects, SUSPECT_COUNT);
   const perpetrator = utils.game.getRandomItem(suspects);
 
-  // Filter used cards, if not enough cards, just use the full deck
-  const filteredCards = filterAvailableCards(additionalData.allCards, additionalData.usedCards);
-  const availableCards = filteredCards.length < QUESTION_COUNT ? additionalData.allCards : filteredCards;
-  const shuffledAvailableCards = utils.game.shuffle(availableCards);
+  const shuffledAvailableCards = utils.game.shuffle(Object.values(additionalData.allCards));
 
   // Build deck
   const deck = utils.game.getRandomItems(shuffledAvailableCards, QUESTION_COUNT);

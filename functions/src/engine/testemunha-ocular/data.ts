@@ -1,7 +1,9 @@
 // Types
-import { TestemunhaOcularEntry } from './types';
+import { ResourceData, TestemunhaOcularEntry } from './types';
+import { TestemunhaOcularCard } from '../../utils/tdr';
 // Constants
 import { GLOBAL_USED_DOCUMENTS } from '../../utils/constants';
+import { QUESTION_COUNT } from './constants';
 // Helpers
 import * as utils from '../../utils';
 import * as globalUtils from '../global';
@@ -12,7 +14,7 @@ import * as resourceUtils from '../resource';
  * @param language
  * @returns
  */
-export const getQuestionsAndSuspects = async (language: string) => {
+export const getQuestionsAndSuspects = async (language: string): Promise<ResourceData> => {
   const resourceName = `testemunha-ocular-${language}`;
   // Get full deck
   const allCards = await resourceUtils.fetchResource(resourceName);
@@ -21,10 +23,21 @@ export const getQuestionsAndSuspects = async (language: string) => {
   // Get images info
   const allSuspects = await resourceUtils.fetchTDIData('us/info');
 
+  // Filter out used cards
+  const availableCards: Record<string, TestemunhaOcularCard> = utils.game.filterOutByIds(allCards, usedCards);
+
+  // If not the minimum cards needed, reset and use all
+  if (Object.keys(availableCards).length < QUESTION_COUNT) {
+    await utils.firebase.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.TESTEMUNHA_OCULAR);
+    return {
+      allCards,
+      allSuspects: Object.values(allSuspects),
+    };
+  }
+
   return {
-    allCards,
+    allCards: availableCards,
     allSuspects: Object.values(allSuspects),
-    usedCards: Object.keys(usedCards),
   };
 };
 

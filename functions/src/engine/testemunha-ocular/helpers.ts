@@ -1,10 +1,10 @@
 // Types
 import { PlayerId, Players } from '../../utils/types';
-import { TestemunhaOcularCard, TestemunhaOcularCardsDatabase } from './types';
 // Constants
 import { MAX_ROUNDS, TESTEMUNHA_OCULAR_PHASES } from './constants';
 // Utils
 import * as utils from '../../utils';
+import { TestemunhaOcularCard } from '../../utils/tdr';
 
 /**
  * Determine the next phase based on the current one
@@ -41,19 +41,6 @@ export const determineNextPhase = (
   }
   console.warn('Missing phase check');
   return QUESTION_SELECTION;
-};
-
-/**
- * Filters used cards off the deck
- * @param fullDeck
- * @param usedCardsIds
- * @returns
- */
-export const filterAvailableCards = (
-  fullDeck: TestemunhaOcularCardsDatabase,
-  usedCardsIds: string[]
-): TestemunhaOcularCard[] => {
-  return Object.values(fullDeck).filter((entry) => !usedCardsIds.includes(entry.id));
 };
 
 /**
