@@ -1,25 +1,40 @@
 // Constants
 import { GLOBAL_USED_DOCUMENTS } from '../../utils/constants';
+import { MenteColetivaCard } from '../../utils/tdr';
 // Helpers
 import * as globalUtils from '../global';
 import * as resourceUtils from '../resource';
-// Internal
-import { buildUsedQuestionIdsDict } from './helpers';
+import * as utils from '../../utils';
+import { MAX_ROUNDS, QUESTIONS_PER_ROUND } from './constants';
+import { ResourceData } from './types';
+import { PlainObject } from '../../utils/types';
 
 /**
  * Get question cards resource based on the game's language
  * @param language
  * @returns
  */
-export const getQuestions = async (language: string) => {
+export const getQuestions = async (language: string): Promise<ResourceData> => {
   const resourceName = `mente-coletiva-${language}`;
   // Get full deck
   const allQuestions = await resourceUtils.fetchResource(resourceName);
   // Get used deck
   const usedQuestions = await globalUtils.getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.MENTE_COLETIVA, {});
-  return {
+
+  // Filter out used cards
+  const availableQuestions: Record<string, MenteColetivaCard> = utils.game.filterOutByIds(
     allQuestions,
-    usedQuestions: Object.keys(usedQuestions),
+    usedQuestions
+  );
+
+  // If not the minimum cards needed, reset and use all
+  if (Object.keys(availableQuestions).length < QUESTIONS_PER_ROUND * MAX_ROUNDS) {
+    await utils.firebase.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.ONDA_TELEPATICA);
+    return { allQuestions };
+  }
+
+  return {
+    allQuestions: availableQuestions,
   };
 };
 
@@ -28,7 +43,12 @@ export const getQuestions = async (language: string) => {
  * @param pastQuestions
  */
 export const saveUsedQuestions = async (pastQuestions: string[]) => {
+  const pastQuestionsObj = pastQuestions.reduce((acc: PlainObject[], id: string) => {
+    acc.push({ id });
+    return acc;
+  }, []);
+
   // Save usedMenteColetivaQuestions to global
-  const usedMenteColetivaQuestions = buildUsedQuestionIdsDict(pastQuestions);
+  const usedMenteColetivaQuestions = utils.helpers.buildIdDictionary(pastQuestionsObj);
   await globalUtils.updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.MENTE_COLETIVA, usedMenteColetivaQuestions);
 };

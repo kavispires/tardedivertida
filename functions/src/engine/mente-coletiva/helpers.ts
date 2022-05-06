@@ -7,7 +7,7 @@ import {
   SHORT_PASTURE_GAME_OVER_THRESHOLD,
 } from './constants';
 // Types
-import { BooleanDictionary, PlainObject, PlayerId, Players, RankingEntry } from '../../utils/types';
+import { PlainObject, PlayerId, Players, RankingEntry } from '../../utils/types';
 import { AllQuestions, AnswerEntry, Deck, PastureChangeEntry, SheepAnimation } from './types';
 // Utils
 import * as utils from '../../utils';
@@ -70,18 +70,12 @@ export const determineRoundType = (playerCount: number, currentRound: number): n
 /**
  * Gets 3 unique questions per round
  * @param allQuestions
- * @param pastQuestionsIds
  * @returns
  */
-export const buildDeck = (allQuestions: AllQuestions, pastQuestionsIds: string[]): Deck => {
+export const buildDeck = (allQuestions: AllQuestions): Deck => {
   const neededQuestionsAmount = MAX_ROUNDS * QUESTIONS_PER_ROUND;
 
-  const filteredQuestions = Object.values(allQuestions).filter(({ id }) => !pastQuestionsIds.includes(id));
-
-  const availableQuestions =
-    filteredQuestions.length > neededQuestionsAmount ? filteredQuestions : Object.values(allQuestions);
-
-  const shuffledQuestions = utils.game.shuffle(availableQuestions);
+  const shuffledQuestions = utils.game.shuffle(Object.values(allQuestions));
 
   return shuffledQuestions.slice(0, neededQuestionsAmount + 1);
 };
@@ -370,16 +364,4 @@ export const determineGameOver = (players: Players, isShortPasture: boolean) => 
     (player) =>
       player.level >= (isShortPasture ? SHORT_PASTURE_GAME_OVER_THRESHOLD : PASTURE_GAME_OVER_THRESHOLD)
   );
-};
-
-/**
- * Transform a list of ids into an object of id=true pairs
- * @param pastQuestions
- * @returns
- */
-export const buildUsedQuestionIdsDict = (pastQuestions: string[]): BooleanDictionary => {
-  return pastQuestions.reduce((acc, id) => {
-    acc[id] = true;
-    return acc;
-  }, {});
 };
