@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Hooks
-import { useLoading } from 'hooks';
+import { useLoading, useMock } from 'hooks';
 // Components
 import { Translate } from 'components/language';
 import { ReadyPlayersBar } from 'components/players';
@@ -17,6 +17,11 @@ type StepPsychicGuessProps = {
 
 export function StepPsychicGuess({ currentCategory, onSendGuess, players }: StepPsychicGuessProps) {
   const { isLoading } = useLoading();
+
+  useMock(() => {
+    onSendGuess({ guess: false });
+    alert('StepPsychicGuess');
+  }, []);
 
   return (
     <Step className="o-dial-guess-selection">

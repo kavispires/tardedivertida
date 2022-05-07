@@ -1,6 +1,6 @@
 .o-dial-guess-selection {
   &__clue {
-    background: get-color(white);
+    background-color: get-color(white);
     font-weight: bolder;
     padding: get-unit(1);
     margin: get-unit(0 1);
@@ -30,7 +30,7 @@
     display: inline;
     padding: get-unit(1 3);
     position: relative;
-    background: #ffffff;
+    background-color: #ffffff;
     border-radius: 0.4em;
 
     &:after {
@@ -92,48 +92,48 @@ $o-card-width: 300px;
 
       &:hover {
         // transform: scale(1.05);
-        background: get-color(white);
+        background-color: get-color(white);
       }
     }
 
     &--L0 {
-      background: #2cbb95;
+      background-color: #2cbb95;
     }
 
     &--L1 {
-      background: #efc783;
+      background-color: #efc783;
     }
 
     &--L2 {
-      background: #f55e3d;
+      background-color: #f55e3d;
     }
 
     &--L3 {
-      background: #797484;
+      background-color: #797484;
     }
 
     &--L4 {
-      background: #dbe0d0;
+      background-color: #dbe0d0;
     }
 
     &--R0 {
-      background: #c2e7ce;
+      background-color: #c2e7ce;
     }
 
     &--R1 {
-      background: #ebc4c2;
+      background-color: #ebc4c2;
     }
 
     &--R2 {
-      background: #009fdb;
+      background-color: #009fdb;
     }
 
     &--R3 {
-      background: #7fc4cd;
+      background-color: #7fc4cd;
     }
 
     &--R4 {
-      background: #e9b700;
+      background-color: #e9b700;
     }
   }
 
@@ -156,7 +156,7 @@ $o-card-width: 300px;
   }
 
   &__button {
-    background: none;
+    background-color: none;
     border: none;
     cursor: pointer;
     transition: transform 250ms;
@@ -297,5 +297,48 @@ $base-angle: 8deg;
   }
   100% {
     transform: translateY(0);
+  }
+}
+
+.o-past-category {
+  width: 100%;
+
+  justify-content: center;
+}
+
+.o-past-category-entry {
+  background-color: get-color(teal);
+  padding: get-unit(2 1);
+  display: block;
+  max-width: 300px;
+  width: 25ch;
+  text-align: center;
+  font-size: 0.8rem;
+  border-radius: get-unit(1);
+
+  &__category {
+    background-color: get-color(teal, 4);
+    padding: get-unit(1);
+  }
+
+  &__number {
+    font-size: 2rem;
+    background-color: get-color(teal, 2);
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: get-unit(1 auto);
+  }
+
+  &__clue {
+    background-color: get-color(white);
+  }
+
+  &__author {
+    font-style: italic;
+    color: get-color(black, 4);
   }
 }

@@ -5,11 +5,10 @@ import { PHASES } from 'utils/phases';
 import { Session } from 'components/session';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { PageError } from 'components/errors';
-import { GameOverWrapper } from 'components/game-over';
-
 import PhaseDialClue from './PhaseDialClue';
 import PhaseGuess from './PhaseGuess';
 import PhaseReveal from './PhaseReveal';
+import PhaseGameOver from './PhaseGameOver';
 
 function SessionOndaTelepatica({ gameId }: SessionProps) {
   function getActiveComponent(phase: string) {
@@ -27,7 +26,7 @@ function SessionOndaTelepatica({ gameId }: SessionProps) {
       case PHASES.ONDA_TELEPATICA.REVEAL:
         return PhaseReveal;
       case PHASES.DEFAULT.GAME_OVER:
-        return GameOverWrapper;
+        return PhaseGameOver;
       default:
         return PageError;
     }

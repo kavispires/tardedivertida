@@ -2,9 +2,10 @@ import { useState } from 'react';
 // Ant Design Resources
 import { Button, Input, Space } from 'antd';
 // Hooks
-import { useLanguage, useLoading } from 'hooks';
-// HUtils
+import { useLanguage, useLoading, useMock } from 'hooks';
+// Utils
 import { getTargetSide } from './utils/helpers';
+import { mockHint } from './utils/mock';
 // Components
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
@@ -38,6 +39,12 @@ export function StepClueWriting({
   };
 
   const card = currentCategories.find((c) => c.id === currentCategoryId);
+
+  useMock(() => {
+    if (card) {
+      onSendClue({ clue: mockHint(card, target) });
+    }
+  }, [card]);
 
   return (
     <Step fullWidth>

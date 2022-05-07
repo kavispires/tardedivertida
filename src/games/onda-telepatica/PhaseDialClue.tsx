@@ -4,7 +4,6 @@ import { useOnSubmitCategoryAPIRequest, useOnSubmitClueAPIRequest } from './util
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-
 import { StepClueWriting } from './StepClueWriting';
 import { StepClueWaiting } from './StepClueWaiting';
 import { StepCategorySelection } from './StepCategorySelection';

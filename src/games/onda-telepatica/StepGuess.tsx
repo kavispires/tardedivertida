@@ -45,7 +45,10 @@ export function StepGuess({ currentCategory, onSendGuess, players }: StepGuessPr
   const { isLoading } = useLoading();
   const [needle, setNeedle] = useState(0);
 
-  useMock(() => onSendGuess({ guess: mockGuess(currentCategory.target ?? 0) }), []);
+  useMock(() => {
+    onSendGuess({ guess: mockGuess(currentCategory.target ?? 0) });
+    alert('StepGuess');
+  }, []);
 
   return (
     <Step className="o-dial-guess-selection">
