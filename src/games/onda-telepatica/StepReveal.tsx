@@ -1,4 +1,6 @@
 import clsx from 'clsx';
+import { orderBy } from 'lodash';
+// Components
 import { Avatar, AvatarName } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
 import { Translate } from 'components/language';
@@ -6,8 +8,6 @@ import { StarPoints } from 'components/points';
 import { PopoverRule } from 'components/rules';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
-import { orderBy } from 'lodash';
-// Components
 
 import { Dial } from './components/Dial';
 import { getGuessResultClass, getPoints } from './utils/helpers';

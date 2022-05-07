@@ -105,6 +105,7 @@ export const prepareGuessPhase = async (
     ...selectedCategory,
     target: state.target,
     clue: store.clue,
+    psychicId: state.psychicId,
   };
 
   // Save
@@ -165,6 +166,7 @@ export const prepareGameOverPhase = async (
         round: state.round,
         gameEndedAt: Date.now(),
         winners,
+        pastCategories: store.pastCategories,
       },
     },
   };

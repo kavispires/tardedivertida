@@ -8,6 +8,7 @@ type OndaTelepaticaOptions = {
 interface CategoryCard extends OndaTelepaticaCard {
   target?: number;
   clue?: string;
+  psychicId?: string;
 }
 
 interface ResourceData {

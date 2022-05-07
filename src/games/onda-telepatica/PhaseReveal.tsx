@@ -5,9 +5,6 @@ import { useIsUserReady, useLanguage, useStep, useWhichPlayerIsThe } from 'hooks
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-
-import { StepReveal } from './StepReveal';
-import { ScoringRules } from './components/RulesBlobs';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Step, StepSwitcher } from 'components/steps';
 import { Instruction, Title } from 'components/text';
@@ -15,6 +12,8 @@ import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
 import { RankingBoard } from 'components/ranking';
 import { AdminNextRoundButton } from 'components/admin';
+import { StepReveal } from './StepReveal';
+import { ScoringRules } from './components/RulesBlobs';
 
 function PhaseReveal({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
@@ -27,7 +26,7 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
       <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady, !isUserReady]} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
-          type="timer"
+          type="wavelength-device"
           title={translate('Resultado', 'Results')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}

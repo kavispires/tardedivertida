@@ -1,10 +1,10 @@
 // Hooks
+import { useLoading, useMock } from 'hooks';
+// Components
 import { AvatarIcon } from 'components/avatars';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
-import { useLoading } from 'hooks';
-// Components
 
 import { Card } from './components/Card';
 
@@ -15,6 +15,10 @@ type StepCategorySelectionProps = {
 
 export function StepCategorySelection({ currentCategories, onSendChosenSide }: StepCategorySelectionProps) {
   const { isLoading } = useLoading();
+
+  useMock(() => {
+    onSendChosenSide({ categoryId: currentCategories[0].id });
+  }, []);
 
   return (
     <Step className="o-card-selection">
