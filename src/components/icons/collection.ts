@@ -117,5 +117,6 @@ export * from './VideoGameController';
 export * from './Vote';
 export * from './WaitingRoom';
 export * from './Walk';
+export * from './WavelengthDevice';
 export * from './WriteIdea';
 export * from './Writing';
