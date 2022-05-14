@@ -159,13 +159,24 @@
         "O Líder escreverá uma dica secreta que corresponda a duas cartas em sua mão. O Líder ganha mais pontos se escrever algo fácil que ajude o Impostor se safar",
         "Todos os jogadores receberão a dica secreta, menos um... esse jogador será o Impostor da rodada",
         "Começando pelo líder, os jogadores selecionarão uma carta que eles acham que melhor representa a dica secreta incluindo o Impostor. Mas ele não sabe qual é a dica secreta! Então, baseando-se nas cartas colocadas pelos outros jogadores, ele deve tentar fingir que ele sabe o que é!",
-        "Todos os jogadores selecional uma outra carta seguindo o mesmo critério",
+        "Todos os jogadores selecionam mais uma outra carta seguindo o mesmo critério",
         "Após todos os jogadores terem colocado duas cartas, revela-se a palavra secreta e novamente um a um, os jogadores devem explicar porque escolheram as cartas que escolheram",
         "Quando todos tiverem apresentado suas defesas, todos, menos o Líder, votam em quem eles acham ser o Impostor",
         "Se mais de uma pessoa escolher o correto Impostor, todos os Detetives ganham 3 pontos. Se o Impostor receber um ou nenhum voto, ele ganha 5 pontos e o líder ganha 4 pontos",
         "O jogo procede com um novo Líder até todos os jogadores tenham sido o líder uma ou duas vezes (menos de 6 jogadores)"
       ],
-      "en": ["TBD"]
+      "en": [
+        "The Detective Club is hiring! And to choose the new member they are testing your skills to analyze and persuade your peers",
+        "Each turn, one player is the Lead Detective, and another is the Secret Impostor, everybody else is just detectives, and everybody gets 6 random image cards.",
+        "The Lead Detetive writes a secret clue that matches two of his cards in hand. And they get more points when they write something simple enough that will help the Impostor.",
+        "Every other player will see the secret clue but the impostor",
+        "Starting with the Lead Detective, players will play a card from their hand the best match the secret clue, including the Impostor who will have to make their decision based on the cards from other players",
+        "All players then select one more card following the same criteria",
+        "After two cards per player have been played, the secret word is revealed then starting with the Lead Detective, players have to explain their choices. The Impostor must bs their way out",
+        "When all explanations are complete, everybody but the Lead Detective vote for who they think the Impostor is",
+        "If more than one player choses the Imposter, the Detectives get 3 points. If the Impostor gets less than 2 votes, he gets 5 points and the Lead Detective 4.",
+        "The game continues until all players have been the Lead Detective once (or twice)"
+      ]
     },
     "playerCount": {
       "recommended": "5+",
