@@ -19,6 +19,7 @@ export function StepSecretClueWaiting({ leader, user, players, turnOrder }: Step
       <Title>
         <AvatarIcon type="animated-clock" size="large" /> <Translate pt="Aguarde..." en="Please wait..." />
       </Title>
+
       <Instruction contained>
         <AvatarName player={leader} addressUser />{' '}
         <Translate pt="está escrevendo a pista secreta." en="is writing the secret clue." />
@@ -28,7 +29,9 @@ export function StepSecretClueWaiting({ leader, user, players, turnOrder }: Step
           en="In the meantime, examine your cards. You're gonna use them this turn."
         />
       </Instruction>
+
       <TurnOrder players={players} activePlayerId={leader.id} order={turnOrder} />
+
       <FloatingHand>
         <ImageCardHand hand={user.hand} sizeRatio={6} />
       </FloatingHand>
