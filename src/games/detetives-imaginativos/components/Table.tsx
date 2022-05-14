@@ -39,7 +39,7 @@ export function Table({ table, players }: TableProps) {
                     <div
                       key={`${playerEntryKey}-placeholder`}
                       className="d-table__card d-table__card-placeholder"
-                      style={{ width: 1 }}
+                      style={{ width: '1px' }}
                     />
                   );
                 }
