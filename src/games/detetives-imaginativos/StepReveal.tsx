@@ -5,6 +5,7 @@ import { Translate } from 'components/language';
 import { RankingBoard } from 'components/ranking';
 import { Step } from 'components/steps';
 import { Instruction, RoundsLeftInstruction, Title } from 'components/text';
+import { TableFocus } from './components/TableFocus';
 import { VotingOptions } from './components/VotingOptions';
 
 type StepRevealProps = {
@@ -14,6 +15,7 @@ type StepRevealProps = {
   leaderId: PlayerId;
   round: GameRound;
   ranking: GameRanking;
+  table: DetetivesImaginativosCardEntry[];
   lastRound?: boolean;
 };
 
@@ -24,6 +26,7 @@ export function StepReveal({
   leaderId,
   round,
   ranking,
+  table,
   lastRound = false,
 }: StepRevealProps) {
   return (
@@ -59,6 +62,8 @@ export function StepReveal({
       <RankingBoard players={players} ranking={ranking} />
 
       <RoundsLeftInstruction round={round} />
+
+      <TableFocus table={table} currentPlayer={impostor} />
 
       <AdminNextRoundButton round={round} lastRound={lastRound} />
     </Step>

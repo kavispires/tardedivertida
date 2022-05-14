@@ -1,6 +1,3 @@
-import { useEffect } from 'react';
-// Ant Design Resources
-import { message } from 'antd';
 // Hooks
 import { useWhichPlayerIsThe, useLoading, useLanguage, useStep } from 'hooks';
 import { useOnFinishDefenseRequest } from './utils/api-requests';
@@ -8,7 +5,6 @@ import { useOnFinishDefenseRequest } from './utils/api-requests';
 import { PHASES } from 'utils/phases';
 // Components
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { messageContent } from 'components/pop-up';
 import { StepSwitcher } from 'components/steps';
 import { Instruction, TextHighlight, Title } from 'components/text';
 import { Translate } from 'components/language';
@@ -21,23 +17,6 @@ function PhaseDefense({ state, players, info }: PhaseProps) {
   const [currentPlayer, isUserTheCurrentPlayer] = useWhichPlayerIsThe('currentPlayerId', state, players);
 
   const onFinishDefense = useOnFinishDefenseRequest();
-
-  useEffect(() => {
-    if (isUserTheCurrentPlayer && step === 1 && !isLoading) {
-      message.info(
-        messageContent(
-          translate('Sua vez de defender suas escolhas!', "It's your turn to defend your choices"),
-          translate(
-            'Aperte o botão Concluir Defesa quando terminar',
-            "Press the button End Defense when you're done"
-          ),
-
-          currentPlayer?.id,
-          4
-        )
-      );
-    }
-  }, [isUserTheCurrentPlayer, currentPlayer?.id, step, translate, isLoading]);
 
   return (
     <PhaseContainer

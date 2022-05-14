@@ -138,7 +138,7 @@
   "D": {
     "gameCode": "D",
     "gameName": "detetives-imaginativos",
-    "version": "2.0",
+    "version": "2.1",
     "title": {
       "pt": "Detetives Imaginativos",
       "en": "Imaginative Detectives"
@@ -166,7 +166,7 @@
         "O jogo procede com um novo Líder até todos os jogadores tenham sido o líder uma ou duas vezes (menos de 6 jogadores)"
       ],
       "en": [
-        "The Detective Club is hiring! And to choose the new member they are testing your skills to analyze and persuade your peers",
+        "The Detective Association is hiring! And to choose the new member they are testing your skills to analyze and persuade your peers",
         "Each turn, one player is the Lead Detective, and another is the Secret Impostor, everybody else is just detectives, and everybody gets 6 random image cards.",
         "The Lead Detetive writes a secret clue that matches two of his cards in hand. And they get more points when they write something simple enough that will help the Impostor.",
         "Every other player will see the secret clue but the impostor",
