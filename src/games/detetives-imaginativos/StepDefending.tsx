@@ -8,6 +8,7 @@ import { Step } from 'components/steps';
 import { Instruction, TextHighlight, Title } from 'components/text';
 import { useLanguage } from 'hooks';
 import { useEffect } from 'react';
+import { getAnimationClass } from 'utils/helpers';
 
 import { TableFocus } from './components/TableFocus';
 
@@ -54,7 +55,7 @@ export function StepDefending({
         <TextHighlight>{clue}</TextHighlight>
       </Title>
       <Instruction contained>
-        <AvatarName player={currentPlayer} />,{' '}
+        <AvatarName key={currentPlayer.id} player={currentPlayer} className={getAnimationClass('tada')} />,{' '}
         <Translate pt="explique porque você escolheu as cartas." en="explain why you chose your cards." />
         {isUserTheCurrentPlayer && (
           <>
