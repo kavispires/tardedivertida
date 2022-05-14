@@ -51,7 +51,7 @@ All file paths here are relative to `/src`.
 - Create a api file `api-requests.ts` for api calls for the game.
 - Create a `<game-name>.d.ts` for game specific types.
 - Update `/games/index.ts` to include the new game.
-- Update `/routes/Game.tsx` to include the new Game Session.
+- Update `/pages/Game.tsx` to include the new Game Session.
 
 # Add cloud functions Adapter
 
