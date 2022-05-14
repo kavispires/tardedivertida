@@ -13,6 +13,7 @@ import { Translate } from 'components/language';
 import { ViewIf } from 'components/views';
 import { AvatarIcon, AvatarName } from 'components/avatars';
 import { FloatingHand, ImageCardHand } from 'components/cards';
+import { TurnOrder } from 'components/players';
 
 type StepPlayCardProps = {
   isUserTheImpostor: boolean;
@@ -24,6 +25,7 @@ type StepPlayCardProps = {
   user: GamePlayer;
   onPlayCard: GenericFunction;
   isLoading: boolean;
+  turnOrder: TurnOrder;
 };
 
 export function StepPlayCard({
@@ -36,6 +38,7 @@ export function StepPlayCard({
   user,
   onPlayCard,
   isLoading,
+  turnOrder,
 }: StepPlayCardProps) {
   const { translate } = useLanguage();
   const onSelectCard = (cardId: string) => onPlayCard({ cardId });
@@ -74,6 +77,7 @@ export function StepPlayCard({
           </>
         )}
       </Title>
+
       <Instruction>
         <ViewIf isVisible={isUserTheCurrentPlayer && !isUserTheImpostor}>
           <>
@@ -112,7 +116,11 @@ export function StepPlayCard({
           </>
         </ViewIf>
       </Instruction>
+
       <Table table={table} players={players} />
+
+      <TurnOrder players={players} activePlayerId={currentPlayer.id} order={turnOrder} />
+
       <FloatingHand>
         <ImageCardHand
           hand={user.hand}

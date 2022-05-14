@@ -44,7 +44,7 @@ function PhaseDrawing({ players, state, info }: PhaseProps) {
               }
               en={
                 <>
-                  You will receive an card.
+                  You will receive a card.
                   <br />
                   Draw it the best way possible, you have {DRAWING_TIME_IN_SECONDS} seconds.
                 </>

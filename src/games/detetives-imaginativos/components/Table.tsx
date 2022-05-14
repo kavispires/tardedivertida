@@ -6,6 +6,7 @@ import { AVATARS } from 'utils/constants';
 // Components
 import { Avatar, AvatarIcon } from 'components/avatars';
 import { ImageBlurButtonContainer, ImageCard } from 'components/cards';
+import { getAnimationClass } from 'utils/helpers';
 
 type TableProps = {
   table: DetetivesImaginativosCardEntry[];
@@ -44,7 +45,10 @@ export function Table({ table, players }: TableProps) {
                 }
 
                 return (
-                  <ImageBlurButtonContainer cardId={cardId} className="d-table__card">
+                  <ImageBlurButtonContainer
+                    cardId={cardId}
+                    className={clsx('d-table__card', getAnimationClass('flipInY'))}
+                  >
                     <ImageCard key={`${playerEntryKey}${cardId}`} imageId={cardId} cardWidth={cardWidth} />
                   </ImageBlurButtonContainer>
                 );

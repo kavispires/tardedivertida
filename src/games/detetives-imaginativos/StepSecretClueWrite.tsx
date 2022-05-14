@@ -58,6 +58,7 @@ export function StepSecretClueWrite({ user, onSubmitClue }: SecretClueWriteProps
           </li>
         </ul>
       </Instruction>
+
       <Space className="space-container" align="center">
         <Input
           className="uppercase-input"
@@ -65,10 +66,12 @@ export function StepSecretClueWrite({ user, onSubmitClue }: SecretClueWriteProps
           onChange={(e) => setClue(e.target.value)}
           onKeyPress={onEnterInput}
         />
+
         <Button type="primary" disabled={isLoading || clue.length < 1} onClick={onButtonClick}>
           <Translate pt="Enviar pista secreta" en="Send secret clue" />
         </Button>
       </Space>
+
       <FloatingHand>
         <ImageCardHand hand={user.hand} sizeRatio={6} />
       </FloatingHand>

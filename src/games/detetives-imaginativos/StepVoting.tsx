@@ -1,6 +1,7 @@
 // Components
 import { AvatarIcon } from 'components/avatars';
 import { Translate } from 'components/language';
+import { ReadyPlayersBar } from 'components/players';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { ViewIf } from 'components/views';
@@ -66,6 +67,8 @@ export function StepVoting({
       />
 
       <Table table={table} players={players} />
+
+      <ReadyPlayersBar players={players} />
     </Step>
   );
 }

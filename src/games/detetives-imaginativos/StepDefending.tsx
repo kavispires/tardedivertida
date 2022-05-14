@@ -1,10 +1,13 @@
 // Ant Design Resources
-import { Button, Space } from 'antd';
+import { Button, message, Space } from 'antd';
 // Components
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
+import { messageContent } from 'components/pop-up';
 import { Step } from 'components/steps';
 import { Instruction, TextHighlight, Title } from 'components/text';
+import { useLanguage } from 'hooks';
+import { useEffect } from 'react';
 
 import { TableFocus } from './components/TableFocus';
 
@@ -25,6 +28,25 @@ export function StepDefending({
   onFinishDefenseClick,
   isLoading,
 }: StepDefendingProps) {
+  const { translate } = useLanguage();
+
+  useEffect(() => {
+    if (isUserTheCurrentPlayer && !isLoading) {
+      message.info(
+        messageContent(
+          translate('Sua vez de defender suas escolhas!', "It's your turn to defend your choices"),
+          translate(
+            'Aperte o botão Concluir Defesa quando terminar',
+            "Press the button End Defense when you're done"
+          ),
+
+          currentPlayer?.id,
+          4
+        )
+      );
+    }
+  }, [isUserTheCurrentPlayer, currentPlayer?.id, translate, isLoading]);
+
   return (
     <Step>
       <Title>

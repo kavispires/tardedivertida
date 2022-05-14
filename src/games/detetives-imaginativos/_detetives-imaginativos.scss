@@ -46,6 +46,8 @@
 
   &__player-bar {
     width: 100%;
+    max-width: 100%;
+    transition: width 1s;
     height: 3px;
     grid-area: bar;
   }

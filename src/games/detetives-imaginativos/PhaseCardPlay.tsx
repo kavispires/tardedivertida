@@ -1,6 +1,3 @@
-import { useEffect } from 'react';
-// Ant Design Resources
-import { message } from 'antd';
 // Hooks
 import { useWhichPlayerIsThe, useUser, useLoading, useLanguage, useStep } from 'hooks';
 import { useOnPlayCardAPIRequest } from './utils/api-requests';
@@ -8,11 +5,9 @@ import { useOnPlayCardAPIRequest } from './utils/api-requests';
 import { PHASES } from 'utils/phases';
 // Components
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { messageContent } from 'components/pop-up';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
-
 import { StepPlayCard } from './StepPlayCard';
 
 function PhaseCardPlay({ state, players, info }: PhaseProps) {
@@ -24,23 +19,6 @@ function PhaseCardPlay({ state, players, info }: PhaseProps) {
   const [, isUserTheImpostor] = useWhichPlayerIsThe('impostorId', state, players);
 
   const onPlayCard = useOnPlayCardAPIRequest();
-
-  useEffect(() => {
-    if (isUserTheCurrentPlayer && step === 1 && !isLoading) {
-      message.info(
-        messageContent(
-          translate('Escolha uma carta!', 'Choose a card to play'),
-          translate(
-            'Aperte o botão Selecionar acima da carta escolhida',
-            'Press the select button above each card'
-          ),
-
-          currentPlayer.id,
-          3
-        )
-      );
-    }
-  }, [isUserTheCurrentPlayer, currentPlayer.id, step, translate, isLoading]);
 
   return (
     <PhaseContainer
@@ -76,6 +54,7 @@ function PhaseCardPlay({ state, players, info }: PhaseProps) {
           players={players}
           table={state.table}
           user={user}
+          turnOrder={state.turnOrder}
         />
       </StepSwitcher>
     </PhaseContainer>
