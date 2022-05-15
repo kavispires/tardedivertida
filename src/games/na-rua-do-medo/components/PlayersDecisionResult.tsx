@@ -1,6 +1,7 @@
 // Components
-import { AvatarIcon, AvatarName } from 'components/avatars';
+import { AvatarIcon } from 'components/avatars';
 import { Translate } from 'components/language';
+import { CostumeAvatar } from './CostumeAvatar';
 
 type PlayersDecisionResultProps = {
   players: GamePlayers;
@@ -31,7 +32,8 @@ export function PlayersDecisionResult({
               const player = players[playerId];
               return (
                 <span key={`going-home-player-${player.id}`} className="n-players-decision-result__player">
-                  <AvatarName player={player} />
+                  <CostumeAvatar id={player.avatarId} costumeId={player.costumeId} />
+                  {player.name}
                 </span>
               );
             })
@@ -72,7 +74,8 @@ export function PlayersDecisionResult({
               const player = players[playerId];
               return (
                 <span key={`continuing-player-${player.id}`} className="n-players-decision-result__player">
-                  <AvatarName player={player} />
+                  <CostumeAvatar id={player.avatarId} costumeId={player.costumeId} />
+                  {player.name}
                 </span>
               );
             })

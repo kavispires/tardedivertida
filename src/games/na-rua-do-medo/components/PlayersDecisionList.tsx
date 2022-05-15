@@ -3,6 +3,7 @@ import { Tooltip } from 'antd';
 // Components
 import { AvatarIcon, AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
+import { CostumeAvatar } from './CostumeAvatar';
 
 type PlayersDecisionListProps = {
   players: GamePlayers;
@@ -34,9 +35,10 @@ export function PlayersDecisionList({ playersIdsList, players, type }: PlayersDe
         {playersList.length > 0 ? (
           playersList.map((player) => {
             return (
-              <span key={`continuing-player-${player.id}`} className="n-players-decision-list__player">
-                <AvatarName player={player} />
-              </span>
+              <div key={`continuing-player-${player.id}`} className="n-players-decision-list__player">
+                <CostumeAvatar id={player.avatarId} costumeId={player.costumeId} />
+                {player.name}
+              </div>
             );
           })
         ) : (

@@ -39,6 +39,8 @@ export const prepareSetupPhase = async (
     isTrickOrTreating: true,
   });
 
+  utils.players.distributeNumberIds(players, 0, 14, 'costumeId');
+
   // Save
   return {
     update: {
