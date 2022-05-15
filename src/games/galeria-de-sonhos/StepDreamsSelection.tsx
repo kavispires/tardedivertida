@@ -6,7 +6,8 @@ import { PopoverRule } from 'components/rules';
 import { Step } from 'components/steps';
 import { Title } from 'components/text';
 // Hooks
-import { useBooleanDictionary } from 'hooks';
+import { useBooleanDictionary, useMock } from 'hooks';
+import { mockDreamSelection } from './mock';
 // Components
 import { DreamSelectionExtendedRules, DreamSelectionRules } from './RulesBlobs';
 import { SelectTable } from './SelectTable';
@@ -27,6 +28,10 @@ export function StepDreamsSelection({ table, word, onSubmitCards, currentRound }
 
   const selectedCount = Object.keys(selectedCards).length;
 
+  useMock(() => {
+    onSubmitCards({ cardsIds: mockDreamSelection(table) });
+  }, []);
+
   return (
     <Step fullWidth>
       <Title level={2}>
@@ -34,7 +39,7 @@ export function StepDreamsSelection({ table, word, onSubmitCards, currentRound }
       </Title>
       <Card randomColor>{word.text}</Card>
       <DreamSelectionRules contained />
-      {currentRound === 1 && <DreamSelectionExtendedRules />}
+      {/* {currentRound === 1 && <DreamSelectionExtendedRules />} */}
 
       <PopoverRule content={<DreamSelectionExtendedRules />} />
       <SelectTable table={table} onSelectCard={onSelectCard} selectedCards={selectedCards} />
@@ -46,7 +51,7 @@ export function StepDreamsSelection({ table, word, onSubmitCards, currentRound }
           disabled={selectedCount < 1 || selectedCount > 10}
           onClick={() => onSubmitCards({ cardsIds: Object.keys(selectedCards) })}
         >
-          <Translate pt={`Enviar ${selectedCount} cartas-sonho`} en={`Send ${selectedCount} dream cards`} />
+          <Translate pt={`Visitar ${selectedCount} sonhos`} en={`Visit ${selectedCount} dreams`} />
         </Button>
       </Space>
     </Step>
