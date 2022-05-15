@@ -69,6 +69,7 @@ export function AnswerGroup({
               <li className="m-answer-group__player" key={key}>
                 <SheepAvatar
                   id={player.avatarId}
+                  sheepId={player.sheepId}
                   className="m-answer-group__sheep-avatar"
                   width={40}
                   animate

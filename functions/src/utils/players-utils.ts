@@ -12,7 +12,7 @@ import {
 // Constants
 import { AVATAR_IDS } from './constants';
 // Utils
-import { getRandomUniqueItem } from './game-utils';
+import { getRandomUniqueItem, shuffle } from './game-utils';
 
 /**
  * Generates a player id based of their name
@@ -222,3 +222,23 @@ export const getPreviousPlayer = (turnOrder: GameOrder | TurnOrder, activePlayer
  * @returns
  */
 export const getPlayerCount = (players: Players): number => Object.keys(players).length;
+
+/**
+ * Creates number ids and distribute them as given propertyName to players
+ * @param players
+ * @param startingId
+ * @param endingId
+ * @param propertyName
+ */
+export const distributeNumberIds = (
+  players: Players,
+  startingId: number,
+  endingId: number,
+  propertyName: string
+) => {
+  const ids = shuffle(new Array(startingId + endingId + 1).fill(0).map((e, i) => e + i));
+  // Add sheep id
+  Object.values(players).forEach((player, index) => {
+    player[propertyName] = `${ids[index]}`;
+  });
+};
