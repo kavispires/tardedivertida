@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 // Ant Design Resources
 import { message } from 'antd';
 // Hooks
@@ -14,6 +14,7 @@ import { Translate } from 'components/language';
 import { Card } from 'components/cards';
 import { AvatarName } from 'components/avatars';
 import { PopoverRule } from 'components/rules';
+import { TurnOrder } from 'components/players';
 
 type StepDreamsSelectionProps = {
   table: GImageCard[];
@@ -22,6 +23,10 @@ type StepDreamsSelectionProps = {
   user: GamePlayer;
   activePlayer: GamePlayer;
   isActivePlayer: boolean;
+  isLoading?: boolean;
+  players: GamePlayers;
+  gameOrder: GameOrder;
+  goToNextStep: GenericFunction;
 };
 
 export function StepPlayDream({
@@ -31,11 +36,23 @@ export function StepPlayDream({
   user,
   activePlayer,
   isActivePlayer,
+  isLoading,
+  players,
+  gameOrder,
+  goToNextStep,
 }: StepDreamsSelectionProps) {
   const { translate } = useLanguage();
+  const [currentPlayerId, setCurrentPlayerId] = useState('');
 
   useEffect(() => {
-    if (isActivePlayer) {
+    if (currentPlayerId && activePlayer.id !== currentPlayerId) {
+      setCurrentPlayerId(activePlayer.id);
+      // goToNextStep();
+    }
+  }, []); // eslint-disable-line
+
+  useEffect(() => {
+    if (isActivePlayer && !isLoading) {
       message.info(
         messageContent(
           translate('Você controla!', 'You control!'),
@@ -48,7 +65,7 @@ export function StepPlayDream({
         )
       );
     }
-  }, [isActivePlayer, activePlayer.id, translate]);
+  }, [isActivePlayer, activePlayer.id, translate, isLoading]);
 
   return (
     <Step fullWidth>
@@ -89,6 +106,8 @@ export function StepPlayDream({
         userCards={user.cards}
         isPlayAvailable={isActivePlayer}
       />
+
+      <TurnOrder players={players} order={gameOrder} activePlayerId={activePlayer.id} />
     </Step>
   );
 }

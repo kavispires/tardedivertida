@@ -137,7 +137,9 @@ export const handlePlayCard = async (
 
   const nextActivePlayerId = utils.players.getNextPlayer(availableTurnOrder, state.activePlayerId);
   players[playerId].ready = true;
-  players[nextActivePlayerId].ready = true;
+  if (nextActivePlayerId) {
+    players[nextActivePlayerId].ready = true;
+  }
 
   // Update players
   try {

@@ -15,6 +15,7 @@ type StepAnnounceDreamProps = {
   latest: LatestInfo;
   lastActivePlayer: GamePlayer;
   activePlayer: GamePlayer;
+  playerHavingNightmare: GamePlayer;
   setStep: GenericFunction;
   players: GamePlayers;
 };
@@ -25,6 +26,7 @@ export function StepAnnounceDream({
   activePlayer,
   setStep,
   players,
+  playerHavingNightmare,
 }: StepAnnounceDreamProps) {
   const cardWidth = useCardWidth(5, 8, 140, 150);
 
@@ -78,7 +80,7 @@ export function StepAnnounceDream({
       </Instruction>
 
       {latest.cardsLeft > 0 ? (
-        <TimedButton disabled duration={15} onExpire={() => setStep(2)}>
+        <TimedButton disabled duration={15} onExpire={() => setStep(Boolean(playerHavingNightmare) ? 2 : 3)}>
           <Translate pt="Continuando em..." en="Continuing in..." />
         </TimedButton>
       ) : (

@@ -5,6 +5,7 @@ import { ImageBlurButton, ImageCard, ImageCardBack } from 'components/cards';
 import { Icons } from 'components/icons';
 import { Translate } from 'components/language';
 import { useCardWidth, useLoading } from 'hooks';
+import { getAnimationClass } from 'utils/helpers';
 
 type PlayTableProps = {
   table: GImageCard[];
@@ -21,14 +22,18 @@ export function PlayTable({ table, onPlayCard, userCards, isPlayAvailable }: Pla
     <ul className="g-table">
       {table.map((card) => {
         const isSelected = Boolean((userCards ?? {})[card.id]);
-        const userCardEntry = userCards[card.id];
+        const userCardEntry = userCards[card.id] ?? {};
         if (card.used) {
           return (
             <li key={`g-table-${card.id}`} className="g-table-item" style={{ width: `${cardWidth + 8}px` }}>
               <ImageBlurButton cardId={card.id} />
               <ImageCardBack
                 cardWidth={cardWidth - 6}
-                className={clsx('g-table-image', isSelected && 'g-table-image--selected')}
+                className={clsx(
+                  'g-table-image',
+                  isSelected && 'g-table-image--selected',
+                  getAnimationClass('zoomIn')
+                )}
               />
               {userCardEntry.used && (
                 <div className="g-star-points">
@@ -59,7 +64,11 @@ export function PlayTable({ table, onPlayCard, userCards, isPlayAvailable }: Pla
             <ImageCard
               imageId={card.id}
               cardWidth={cardWidth - 6} // 6 is the border total size
-              className={clsx('g-table-image', isSelected && 'g-table-image--selected')}
+              className={clsx(
+                'g-table-image',
+                isSelected && 'g-table-image--selected',
+                getAnimationClass('zoomIn')
+              )}
             />
             {isPlayAvailable && userCards[card.id] && (
               <Button
