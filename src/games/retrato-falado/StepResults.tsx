@@ -63,7 +63,7 @@ export function StepResults({
             en="The monsters who got the most votes were..."
           />
         ) : (
-          <Translate pt="O mostro mais votado foi..." en="The monster who got the most votes was..." />
+          <Translate pt="O monstro mais votado foi..." en="The monster who got the most votes was..." />
         )}
       </Title>
 

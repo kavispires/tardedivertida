@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Tooltip } from 'antd';
 // Components
-import { AvatarIcon, AvatarName } from 'components/avatars';
+import { AvatarIcon } from 'components/avatars';
 import { Translate } from 'components/language';
 import { CostumeAvatar } from './CostumeAvatar';
 
