@@ -32,7 +32,7 @@ function PhaseEvaluation({ players, state, info }: PhaseProps) {
         >
           <Instruction>
             <Translate
-              pt={<>Vote no desenho que você acha que mais parece com o mostro meliante.</>}
+              pt={<>Vote no desenho que você acha que mais parece com o monstro meliante.</>}
               en={<>Vote for the sketch that best represents the monster.</>}
             />
           </Instruction>

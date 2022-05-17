@@ -63,6 +63,7 @@ export function Pasture({ players, pastureSize = 5, roundType }: PastureProps) {
                       <SheepAvatar
                         key={sheepKey}
                         id={player.avatarId}
+                        sheepId={player.sheepId}
                         className={clsx(
                           'm-sheep',
                           sheepClassName,

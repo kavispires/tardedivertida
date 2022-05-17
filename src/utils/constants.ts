@@ -225,6 +225,11 @@ export const AVATARS: AvatarDict = {
     description: { pt: 'o porco', en: 'the pig' },
     color: '#dd9fbd',
   },
+  25: {
+    id: '25',
+    description: { pt: 'o desconhecido', en: 'the unknown' },
+    color: '#cccccc',
+  },
 };
 
 export const AVAILABLE_AVATAR_IDS: string[] = Object.keys(AVATARS);
