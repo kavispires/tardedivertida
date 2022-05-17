@@ -49,6 +49,8 @@ export const prepareSetupPhase = async (
     answers: [],
   });
 
+  utils.players.distributeNumberIds(players, 0, 24, 'sheepId');
+
   // Save
   return {
     update: {

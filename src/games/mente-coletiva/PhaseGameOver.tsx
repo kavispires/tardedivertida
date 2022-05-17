@@ -18,7 +18,7 @@ function PhaseGameOver({ state, info }: PhaseProps) {
           {state.losers.map((player: GamePlayer) => {
             return (
               <div className="m-sheep-rip__entry" key={`sheep-player-1`}>
-                <SheepAvatar id={player.avatarId} width={80} />
+                <SheepAvatar id={player.avatarId} width={80} sheepId={player.sheepId} />
                 <span className="m-sheep-rip__name">{player.name}</span>
               </div>
             );
