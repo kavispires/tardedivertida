@@ -231,7 +231,7 @@ export const getAnimationClass = (
   delayInSeconds?: number,
   speed?: 'slow' | 'slower' | 'fast' | 'faster',
   infinite?: boolean,
-  repeat?: number
+  repeat?: 1 | 2 | 3
 ) => {
   const result = ['animate__animated', `animate__${type}`];
 
