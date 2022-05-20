@@ -71,7 +71,6 @@ export const doesExist = (property: any) => property !== undefined && property !
  */
 export const evaluateTag = (filters: PlainObject, game: GameInfo, tagName: string, result: boolean[]) => {
   if (doesExist(filters[tagName])) {
-    console.log(game.tags);
     const res = game.tags.includes(tagName);
     result.push(filters[tagName] === 'on' ? res : !res);
   }

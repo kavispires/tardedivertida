@@ -1,13 +1,14 @@
 // State & Hooks
 import { useIsUserReady, useLanguage, useStep } from 'hooks';
-import { useOnSubmitCardsAPIRequest } from './api-requests';
+import { useOnSubmitCardsAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import { StepSwitcher } from 'components/steps';
-import { DreamSelectionRules } from './RulesBlobs';
-import { StepDreamsSelection } from './StepDreamsSelection';
+import { ImageCardPreloadHand } from 'components/cards';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { StepSwitcher } from 'components/steps';
+import { DreamSelectionRules } from './components/RulesBlobs';
+import { StepDreamsSelection } from './StepDreamsSelection';
 
 function PhaseDreamsSelections({ players, state, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -27,6 +28,7 @@ function PhaseDreamsSelections({ players, state, info }: PhaseProps) {
           currentRound={state?.round?.current}
         >
           <DreamSelectionRules />
+          <ImageCardPreloadHand hand={state.table.map((entry: GImageCard) => entry.id)} />
         </PhaseAnnouncement>
 
         {/* Step 1 */}

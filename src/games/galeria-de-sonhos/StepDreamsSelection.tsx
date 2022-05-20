@@ -1,16 +1,17 @@
 // Ant Design Resources
 import { Button, Space } from 'antd';
+// Hooks
+import { useBooleanDictionary, useMock } from 'hooks';
+// Utils
+import { mockDreamSelection } from './utils/mock';
+// Components
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
 import { Step } from 'components/steps';
 import { Title } from 'components/text';
-// Hooks
-import { useBooleanDictionary, useMock } from 'hooks';
-import { mockDreamSelection } from './mock';
-// Components
-import { DreamSelectionExtendedRules, DreamSelectionRules } from './RulesBlobs';
-import { SelectTable } from './SelectTable';
+import { DreamSelectionExtendedRules, DreamSelectionRules } from './components/RulesBlobs';
+import { SelectTable } from './components/SelectTable';
 
 const validateSelectedCards = (v: BooleanDictionary) => {
   return Object.keys(v).length < 10;
@@ -34,15 +35,13 @@ export function StepDreamsSelection({ table, word, onSubmitCards, currentRound }
 
   return (
     <Step fullWidth>
-      <Title level={2}>
+      <Title size="medium">
         <Translate pt="Visite Sonhos" en="Visit Dreams" />
       </Title>
       <Card randomColor>{word.text}</Card>
       <DreamSelectionRules contained />
-      {/* {currentRound === 1 && <DreamSelectionExtendedRules />} */}
 
       <PopoverRule content={<DreamSelectionExtendedRules />} />
-      <SelectTable table={table} onSelectCard={onSelectCard} selectedCards={selectedCards} />
 
       <Space className="space-container" align="center">
         <Button
@@ -54,6 +53,7 @@ export function StepDreamsSelection({ table, word, onSubmitCards, currentRound }
           <Translate pt={`Visitar ${selectedCount} sonhos`} en={`Visit ${selectedCount} dreams`} />
         </Button>
       </Space>
+      <SelectTable table={table} onSelectCard={onSelectCard} selectedCards={selectedCards} />
     </Step>
   );
 }

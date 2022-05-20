@@ -70,14 +70,14 @@ export function DreamSelectionRules({ contained = false }) {
       <Translate
         pt={
           <>
-            Selecione sonhos (cartas) que você acha que se relaciona com a palavra-tema da rodada.
+            Selecione sonhos (cartas) que você acha que se relacionam com a palavra-tema da rodada.
             <br />
             Você deve selecionar pelo menos uma e no máximo 10.
           </>
         }
         en={
           <>
-            Now select cards that you think match the round's word.
+            Now select cards that you think match the round's card.
             <br />
             You must select at least one card and a maximum of 10.
           </>
@@ -131,7 +131,7 @@ export function CardPlayRules() {
             <br />
             Você ganha 3 pontos se apenas mais 1 jogador visitou o mesmo sonho.
             <br />
-            Você ganha 1 ponto se mais de 1 jogador visitou o mesmo sonho.
+            Você ganha 2 pontos se mais de 1 jogador visitou o mesmo sonho.
             <br />
             Você está eliminado da rodada se ninguém mais visitou o sonho escolhido.
           </>
@@ -144,7 +144,7 @@ export function CardPlayRules() {
             <br />
             You get 3 points if only 1 player visited the same dream.
             <br />
-            You get 1 point if many players have visited the same dream.
+            You get 2 points if many players have visited the same dream.
             <br />
             You are eliminated for this round if nobody else has visited the chosen dream.
           </>

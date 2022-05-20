@@ -264,14 +264,14 @@
   "G": {
     "gameCode": "G",
     "gameName": "galeria-sonhos",
-    "version": "alpha",
+    "version": "beta",
     "title": {
       "pt": "Galeria de sonhos",
       "en": "Dream Gallery"
     },
     "popularName": {
-      "pt": "",
-      "en": ""
+      "pt": "Bingo de cartas bonitas",
+      "en": "Image bingo"
     },
     "basedOn": "alletS",
     "summary": {

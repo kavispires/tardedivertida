@@ -4,9 +4,8 @@ import { message } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks';
 // Components
-
-import { CardPlayRules } from './RulesBlobs';
-import { PlayTable } from './PlayTable';
+import { CardPlayRules } from './components/RulesBlobs';
+import { PlayTable } from './components/PlayTable';
 import { messageContent } from 'components/pop-up';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
@@ -15,6 +14,8 @@ import { Card } from 'components/cards';
 import { AvatarName } from 'components/avatars';
 import { PopoverRule } from 'components/rules';
 import { TurnOrder } from 'components/players';
+import { PlayersDreamsCount } from './components/PlayersDreamsCount';
+import { getAnimationClass } from 'utils/helpers';
 
 type StepDreamsSelectionProps = {
   table: GImageCard[];
@@ -26,7 +27,9 @@ type StepDreamsSelectionProps = {
   isLoading?: boolean;
   players: GamePlayers;
   gameOrder: GameOrder;
-  goToNextStep: GenericFunction;
+
+  setLastTurnCount: GenericFunction;
+  playerInNightmareId?: PlayerId;
 };
 
 export function StepPlayDream({
@@ -39,59 +42,63 @@ export function StepPlayDream({
   isLoading,
   players,
   gameOrder,
-  goToNextStep,
+
+  setLastTurnCount,
+  playerInNightmareId,
 }: StepDreamsSelectionProps) {
   const { translate } = useLanguage();
-  const [currentPlayerId, setCurrentPlayerId] = useState('');
+  const [showedMessage, setShowedMessage] = useState(false);
 
   useEffect(() => {
-    if (currentPlayerId && activePlayer.id !== currentPlayerId) {
-      setCurrentPlayerId(activePlayer.id);
-      // goToNextStep();
-    }
-  }, []); // eslint-disable-line
+    setLastTurnCount(activePlayer.id);
+  });
 
   useEffect(() => {
-    if (isActivePlayer && !isLoading) {
+    if (isActivePlayer && !isLoading && !showedMessage) {
       message.info(
         messageContent(
           translate('Você controla!', 'You control!'),
           translate(
-            'Selecione a carta-sonho que você acha que pelo menos um jogador vai dar match!',
+            'Selecione a carta-sonho que você acha que vai dar match com pelo menos um jogador!',
             'Select the dream card you think will match at least one player'
           ),
           activePlayer.id,
           3
         )
       );
+      setShowedMessage(true);
     }
-  }, [isActivePlayer, activePlayer.id, translate, isLoading]);
+  }, [isActivePlayer, activePlayer.id, translate, isLoading, showedMessage]);
 
   return (
     <Step fullWidth>
-      <Title level={2}>
+      <Title size="small">
         <Translate pt="Bingo dos Sonhos" en="Dream Bingo" />
       </Title>
       <Card header={translate('Tema', 'Theme')} randomColor>
         {word.text}
       </Card>
 
+      <PlayersDreamsCount players={players} playerInNightmareId={playerInNightmareId} />
+
       <Instruction contained>
         {isActivePlayer ? (
           <Translate
-            pt="Selecione a carta-sonho que você acha que pelo menos um jogador vai dar match!"
+            pt="Selecione a carta-sonho que você acha que vai dar match com pelo menos um jogador!"
             en="Select the dream card you think will match at least one player"
           />
         ) : (
           <Translate
             pt={
               <>
-                <AvatarName player={activePlayer} /> está selecionando um sonho.
+                <AvatarName player={activePlayer} className={getAnimationClass('tada')} /> está selecionando
+                um sonho.
               </>
             }
             en={
               <>
-                <AvatarName player={activePlayer} /> is selecting a dream.
+                <AvatarName player={activePlayer} className={getAnimationClass('tada')} /> is selecting a
+                dream.
               </>
             }
           />
