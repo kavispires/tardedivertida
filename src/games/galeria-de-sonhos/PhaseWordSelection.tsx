@@ -1,12 +1,10 @@
 // State & Hooks
 import { useIsUserReady, useLanguage, useStep, useWhichPlayerIsThe } from 'hooks';
-import { useOnSubmitWordAPIRequest } from './api-requests';
+import { useOnSubmitWordAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-
-import { StepWordSelection } from './StepWordSelection';
-import { GeneralRules, WordSelectionRules } from './RulesBlobs';
+import { GeneralRules, WordSelectionRules } from './components/RulesBlobs';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { RoundAnnouncement } from 'components/round';
@@ -15,6 +13,7 @@ import { Translate } from 'components/language';
 import { ViewOr } from 'components/views';
 import { WaitingRoom } from 'components/players';
 import { AvatarName } from 'components/avatars';
+import { StepWordSelection } from './StepWordSelection';
 
 function PhaseWordSelection({ players, state, info }: PhaseProps) {
   const { translate } = useLanguage();

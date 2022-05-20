@@ -99,9 +99,10 @@ const determineScore = (guess: number, target: number): number => {
 };
 
 /**
- * Build round ranking
+ *
  * @param players - it modifies players
- * @param gallery
+ * @param currentCategory
+ * @param psychicId
  * @returns
  */
 export const buildRanking = (players: Players, currentCategory: CategoryCard, psychicId: PlayerId) => {
