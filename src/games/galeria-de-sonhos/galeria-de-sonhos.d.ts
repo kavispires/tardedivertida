@@ -22,8 +22,23 @@ type PlayCardPayload = {
 
 type LatestInfo = {
   cardId: string;
-  fallenPlayers: PlayerId[];
+  completedPlayers: PlayerId[];
   matchCount: number;
   matchedPlayers: PlayerId[];
   cardsLeft: number;
+  isPhaseOver?: boolean;
+};
+
+type GCardInHand = {
+  used: boolean;
+  score: number;
+  matchedPlayers: PlayerId[];
+  cardId: CardId;
+};
+
+type GImageCardMatch = {
+  id: CardId;
+  used: boolean;
+  text: string;
+  matchedPlayers: PlayerId[];
 };

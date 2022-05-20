@@ -6,6 +6,7 @@ import { UpCircleOutlined } from '@ant-design/icons';
 import { useCardWidth } from 'hooks';
 import { ImageBlurButton, ImageCard, ImageCardBack } from 'components/cards';
 import { Translate } from 'components/language';
+import { getAnimationClass } from 'utils/helpers';
 // Components
 
 type TableProps = {
@@ -40,7 +41,11 @@ export function Table({ table, onSelectCard, selectedCards, userCards }: TablePr
             <ImageCard
               imageId={card.id}
               cardWidth={cardWidth - 6} // 6 is the border total size
-              className={clsx('g-table-image', isSelected && 'g-table-image--selected')}
+              className={clsx(
+                'g-table-image',
+                isSelected && 'g-table-image--selected',
+                getAnimationClass('zoomIn')
+              )}
             />
             {(!userCards || userCards[card.id]) && (
               <Button

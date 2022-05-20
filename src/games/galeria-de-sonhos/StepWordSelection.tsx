@@ -2,7 +2,7 @@
 import { LETTERS } from 'utils/constants';
 // Components
 
-import { GeneralRules } from './RulesBlobs';
+import { GeneralRules } from './components/RulesBlobs';
 import { Space } from 'antd';
 import { Step } from 'components/steps';
 import { Title } from 'components/text';

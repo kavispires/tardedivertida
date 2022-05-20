@@ -5,6 +5,10 @@ import { PHASES } from 'utils/phases';
 // Components
 import { StepSwitcher } from 'components/steps';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { Translate } from 'components/language';
+import { StepRankingWrapper } from 'components/ranking';
+import { Instruction } from 'components/text';
+import { AdminNextRoundButton } from 'components/admin';
 
 function PhaseResolution({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
@@ -21,16 +25,34 @@ function PhaseResolution({ players, state, info }: PhaseProps) {
       >
         {/* Step 0 */}
         <PhaseAnnouncement
-          type="sleep"
-          title={translate('Tema dos Sonhos', 'The Dream Theme')}
+          type="rank"
+          title={translate('Ranking', 'Ranking')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
         >
-          TODO
+          <Instruction>
+            <Translate pt="E quem deu mais matches foi..." en="And who matched the most was..." />
+          </Instruction>
         </PhaseAnnouncement>
 
         {/* Step 1 */}
-        <div>Resolution comes here</div>
+        <StepRankingWrapper
+          players={players}
+          ranking={state.ranking}
+          gainedPointsDescriptions={[
+            <Translate pt="Pontos por encontrar só um jogador" en="Points for matching only 1 player" />,
+            <Translate
+              pt="Pontos por encontrar mais de um jogador"
+              en="Points for matching with more players"
+            />,
+            <Translate
+              pt="Pontos perdidos por não ter dado match e estar em um pesadelo"
+              en="Points lost for not matching any player while in a nightmare"
+            />,
+          ]}
+        >
+          <AdminNextRoundButton round={state.round} lastRound={state.isLastRound} />
+        </StepRankingWrapper>
       </StepSwitcher>
     </PhaseContainer>
   );

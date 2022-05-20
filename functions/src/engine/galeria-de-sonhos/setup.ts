@@ -3,11 +3,18 @@ import { GALERIA_DE_SONHOS_PHASES, TABLE_DECK_TOTAL } from './constants';
 // Types
 import { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 import { TextCard } from '../../utils/tdr';
-import { NumberDictionary, PlainObject, PlayerId, Players, SaveGamePayload } from '../../utils/types';
+import { Players, SaveGamePayload } from '../../utils/types';
 // Utils
 import * as utils from '../../utils';
 // Internal
-import { buildDeck, buildTable, getRoundWords } from './helpers';
+import {
+  buildDeck,
+  buildRanking,
+  buildTable,
+  getMostVotedCards,
+  getPlayersWithMaxDreams,
+  getRoundWords,
+} from './helpers';
 
 /**
  * Setup
@@ -40,6 +47,7 @@ export const prepareSetupPhase = async (
         gameOrder,
         tableDeck,
         wordsDeck,
+        bestMatches: [],
       },
       state: {
         phase: GALERIA_DE_SONHOS_PHASES.SETUP,
@@ -65,13 +73,13 @@ export const prepareWordSelectionPhase = async (
   const round = utils.helpers.increaseRound(state.round);
 
   // Make sure everybody has 6 cards in hand
-  players = utils.players.removePropertiesFromPlayers(players, ['cards']);
+  players = utils.players.removePropertiesFromPlayers(players, ['cards', 'fallen', 'skip']);
 
   // Determine active player based on current round
-  const scoutId = utils.players.getActivePlayer(state.gameOrder, round.current);
+  const scoutId = utils.players.getActivePlayer(store.gameOrder, round.current);
 
   // Update table
-  const [tableDeck, table] = buildTable(store.tableDeck, [], round.current);
+  const [tableDeck, table] = buildTable(store.tableDeck, state.table ?? [], round.current);
 
   // Get current words options
   const [wordsDeck, words] = getRoundWords(store.wordsDeck);
@@ -132,24 +140,7 @@ export const prepareCardPlayPhase = async (
   // Unready players
   utils.players.unReadyPlayers(players);
 
-  // Count selected cards per player
-  const cardCount = Object.values(players).reduce((acc: NumberDictionary, player: PlainObject) => {
-    acc[player.id] = Object.keys(player.cards).length;
-    return acc;
-  }, {});
-
-  // Check if anybody is having a nightmare (in the dark) (uniquely most cards)
-  const maxDreamCount = Math.max(...Object.values(cardCount));
-
-  const playersInMax = Object.entries(cardCount).reduce(
-    (acc: PlayerId[], [playerId, quantity]: [PlayerId, number]) => {
-      if (quantity === maxDreamCount) {
-        acc.push(playerId);
-      }
-      return acc;
-    },
-    []
-  );
+  const playersInMax = getPlayersWithMaxDreams(players);
 
   // Save
   return {
@@ -157,8 +148,9 @@ export const prepareCardPlayPhase = async (
       state: {
         phase: GALERIA_DE_SONHOS_PHASES.CARD_PLAY,
         activePlayerId: state.scoutId,
-        playerHavingNightmareId: playersInMax.length === 1 ? playersInMax[0] : utils.firebase.deleteValue(),
+        playerInNightmareId: playersInMax.length === 1 ? playersInMax[0] : utils.firebase.deleteValue(),
         turnCount: 0,
+        gameOrder: store.gameOrder,
       },
       players,
     },
@@ -170,11 +162,26 @@ export const prepareResolutionPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
+  // Build ranking
+  const ranking = buildRanking(players, state.playerInNightmareId);
+
+  // Save to store most matched card
+  const mostVotedCards = getMostVotedCards(state.table, state.word);
+
   // Save
   return {
     update: {
+      store: {
+        bestMatches: [...(store.bestMatches ?? []), ...mostVotedCards],
+      },
       state: {
         phase: GALERIA_DE_SONHOS_PHASES.RESOLUTION,
+        activePlayerId: utils.firebase.deleteValue(),
+        gameOrder: utils.firebase.deleteValue(),
+        lastActivePlayerId: utils.firebase.deleteValue(),
+        turnCount: utils.firebase.deleteValue(),
+        latest: utils.firebase.deleteValue(),
+        ranking,
       },
       players,
     },
@@ -201,6 +208,7 @@ export const prepareGameOverPhase = async (
         round: state.round,
         gameEndedAt: Date.now(),
         winners,
+        bestMatches: store.bestMatches,
       },
     },
   };
