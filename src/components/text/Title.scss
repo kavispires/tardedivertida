@@ -20,4 +20,20 @@
   &#{$self}--white {
     color: white;
   }
+
+  &#{$self}--large {
+    font-size: 2.25rem;
+  }
+
+  &#{$self}--medium {
+    font-size: 2rem;
+  }
+
+  &#{$self}--small {
+    font-size: 1.75rem;
+  }
+
+  &#{$self}--x-small {
+    font-size: 1.5rem;
+  }
 }
