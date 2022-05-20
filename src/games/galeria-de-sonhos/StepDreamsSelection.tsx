@@ -1,15 +1,17 @@
 // Ant Design Resources
 import { Button, Space } from 'antd';
+// Hooks
+import { useBooleanDictionary, useMock } from 'hooks';
+// Utils
+import { mockDreamSelection } from './utils/mock';
+// Components
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
 import { Step } from 'components/steps';
 import { Title } from 'components/text';
-// Hooks
-import { useBooleanDictionary } from 'hooks';
-// Components
-import { DreamSelectionExtendedRules, DreamSelectionRules } from './RulesBlobs';
-import { SelectTable } from './SelectTable';
+import { DreamSelectionExtendedRules, DreamSelectionRules } from './components/RulesBlobs';
+import { SelectTable } from './components/SelectTable';
 
 const validateSelectedCards = (v: BooleanDictionary) => {
   return Object.keys(v).length < 10;
@@ -27,17 +29,19 @@ export function StepDreamsSelection({ table, word, onSubmitCards, currentRound }
 
   const selectedCount = Object.keys(selectedCards).length;
 
+  useMock(() => {
+    onSubmitCards({ cardsIds: mockDreamSelection(table) });
+  }, []);
+
   return (
     <Step fullWidth>
-      <Title level={2}>
+      <Title size="medium">
         <Translate pt="Visite Sonhos" en="Visit Dreams" />
       </Title>
       <Card randomColor>{word.text}</Card>
       <DreamSelectionRules contained />
-      {currentRound === 1 && <DreamSelectionExtendedRules />}
 
       <PopoverRule content={<DreamSelectionExtendedRules />} />
-      <SelectTable table={table} onSelectCard={onSelectCard} selectedCards={selectedCards} />
 
       <Space className="space-container" align="center">
         <Button
@@ -46,9 +50,10 @@ export function StepDreamsSelection({ table, word, onSubmitCards, currentRound }
           disabled={selectedCount < 1 || selectedCount > 10}
           onClick={() => onSubmitCards({ cardsIds: Object.keys(selectedCards) })}
         >
-          <Translate pt={`Enviar ${selectedCount} cartas-sonho`} en={`Send ${selectedCount} dream cards`} />
+          <Translate pt={`Visitar ${selectedCount} sonhos`} en={`Visit ${selectedCount} dreams`} />
         </Button>
       </Space>
+      <SelectTable table={table} onSelectCard={onSelectCard} selectedCards={selectedCards} />
     </Step>
   );
 }

@@ -9,10 +9,11 @@ type ResourceData = {
   allWords: AllWords;
 };
 
-type ImageCardId = {
+type ImageCard = {
   id: string;
   used: boolean;
   matchedPlayers?: PlayerId[];
+  text?: string;
 };
 
 type PlayerCard = {
@@ -23,7 +24,7 @@ type PlayerCard = {
 };
 
 interface GaleriaDeSonhosStore extends DefaultStore {
-  tableDeck: ImageCardId[];
+  tableDeck: ImageCard[];
   deck: TextCard[];
   gameOrder: GameOrder;
   [key: string]: any;

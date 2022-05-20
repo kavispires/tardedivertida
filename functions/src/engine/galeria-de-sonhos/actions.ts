@@ -1,6 +1,6 @@
 // Types
-import { GameId, PlayerId, GameName, PlainObject, Player } from '../../utils/types';
-import { ImageCardId } from './types';
+import { GameId, PlayerId, GameName, PlainObject, Player, CardId } from '../../utils/types';
+import { ImageCard } from './types';
 // Helpers
 import * as utils from '../../utils';
 // Internal functions
@@ -64,8 +64,11 @@ export const handlePlayCard = async (
   const players = playersDoc.data() ?? {};
   const state = stateDoc.data() ?? {};
 
-  const cardCache: PlainObject = {};
-  Object.values(players).forEach((player) => {
+  const playersList = Object.values(players);
+
+  // Group each players in a dictionary of cardIds and players array
+  const cardCache: Record<CardId, PlayerId[]> = {};
+  playersList.forEach((player) => {
     Object.values(player.cards).forEach((card: any) => {
       if (cardCache[card.cardId] === undefined) {
         cardCache[card.cardId] = [];
@@ -74,9 +77,9 @@ export const handlePlayCard = async (
     });
   });
 
-  let didPlayerJustFallen = false;
+  let didPlayerJustFall = false;
   const playersWhoGotPoints: PlayerId[] = [];
-  const fallenPlayers: PlayerId[] = [];
+  const completedPlayers: PlayerId[] = [];
 
   // Check matches (3 points for 1 match, 2 points for 2+ matches, 0 points for 0 match)
   const cardEntry = cardCache[cardId];
@@ -85,7 +88,7 @@ export const handlePlayCard = async (
   if (matchCount === 0) {
     // Mark player as fallen
     players[playerId].fallen = true;
-    didPlayerJustFallen = true;
+    didPlayerJustFall = true;
   } else if (matchCount === 1) {
     cardEntry.forEach((pId: PlayerId) => {
       if (!players[pId].fallen) {
@@ -108,19 +111,19 @@ export const handlePlayCard = async (
   });
 
   // Mark players as fallen if all their cards were just used
-  Object.values(players).forEach((player: Player) => {
-    const hasFallen =
+  playersList.forEach((player: Player) => {
+    const isPlayerComplete =
       playersWhoGotPoints.includes(player.id) && Object.values(player.cards).every((card: any) => card.used);
-    if (hasFallen) {
-      player.fallen = true;
-      fallenPlayers.push(player.id);
+    if (isPlayerComplete) {
+      player.skip = true;
+      completedPlayers.push(player.id);
     }
   });
 
   let cardsLeft = 0;
 
   // Mark card in table as used
-  state.table.forEach((tableCardEntry: ImageCardId) => {
+  state.table.forEach((tableCardEntry: ImageCard) => {
     if (tableCardEntry.id === cardId) {
       tableCardEntry.used = true;
       tableCardEntry.matchedPlayers = cardCache[cardId];
@@ -131,13 +134,26 @@ export const handlePlayCard = async (
   });
 
   // Assign next player (who hasn't fallen, if all has fallen, next phase)
+  let nextActivePlayerId = '';
+  let currentPlayerId = state.activePlayerId;
+  let tries = 0;
+  while (!nextActivePlayerId && tries <= playersList.length) {
+    currentPlayerId = utils.players.getNextPlayer(state.gameOrder, currentPlayerId);
+    tries += 1;
+
+    if (!players[currentPlayerId].fallen && !players[currentPlayerId].skip) {
+      nextActivePlayerId = currentPlayerId;
+    }
+  }
+
   const availableTurnOrder = state.gameOrder.filter((pId: PlayerId) => {
-    return !players[pId].fallen;
+    return !players[pId].fallen && !players[pId].skip;
   });
 
-  const nextActivePlayerId = utils.players.getNextPlayer(availableTurnOrder, state.activePlayerId);
   players[playerId].ready = true;
-  players[nextActivePlayerId].ready = true;
+  if (nextActivePlayerId) {
+    players[nextActivePlayerId].ready = false;
+  }
 
   // Update players
   try {
@@ -148,8 +164,12 @@ export const handlePlayCard = async (
 
   // Shame falling
   const shameFalling: PlainObject = {};
-  if (didPlayerJustFallen) {
+  if (didPlayerJustFall) {
     shameFalling.shameFallenPlayerId = playerId;
+  }
+
+  if (availableTurnOrder.length === 0) {
+    shameFalling.isPhaseOver = true;
   }
 
   return await utils.firebase.updateState({
@@ -160,16 +180,17 @@ export const handlePlayCard = async (
     change: {
       latest: {
         cardId,
-        fallenPlayers,
+        completedPlayers,
         matchCount,
         matchedPlayers: cardCache[cardId],
         cardsLeft,
         ...shameFalling,
       },
       lastActivePlayerId: playerId,
-      activePlayerId: nextActivePlayerId,
+      activePlayerId: nextActivePlayerId ?? 'END_ROUND',
       turnCount: state.turnCount + 1,
       table: state.table,
+      gameOrder: availableTurnOrder,
     },
   });
 };

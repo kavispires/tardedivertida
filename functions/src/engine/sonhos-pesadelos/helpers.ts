@@ -1,11 +1,10 @@
 // Types
-import { PlainObject, Players, Round, StringDictionary } from '../../utils/types';
+import { ImageCardId, PlainObject, Players, Round, StringDictionary } from '../../utils/types';
 import { SonhosPesadelosCards, ThemeDeck } from './types';
 // Constants
 import { IMAGE_CARDS_PER_ROUND, SONHOS_PESADELOS_PHASES, THEMES_PER_ROUND } from './constants';
 // Helpers
 import * as utils from '../../utils';
-import { ImageCardId } from '../galeria-de-sonhos/types';
 import { InspirationCard } from '../../utils/tdr';
 import { orderBy } from '../../utils/helpers';
 
@@ -157,7 +156,7 @@ export const gatherDreams = (players: Players): PlainObject[] => {
  * @returns
  */
 export const buildRanking = (players: Players) => {
-  // Gained point: correct answers, votes gotten, nightmare selection
+  // Gained points: correct answers, votes gotten, nightmare selection
   const newScores = utils.helpers.buildNewScoreObject(players, [0, 0, 0]);
 
   Object.values(players).forEach((player) => {

@@ -17,6 +17,7 @@ export function TimedButton({
   onExpire,
   showTimer = true,
   type,
+  onClick,
   ...props
 }: TimedButtonProps) {
   const { minutes, seconds } = useTimer({
@@ -28,7 +29,7 @@ export function TimedButton({
   const timeClass = 'timed-button__time';
 
   return (
-    <Button {...props} type={type}>
+    <Button {...props} type={type} onClick={onClick ?? onExpire}>
       {children}
       {Boolean(children) && ' '}
       {showTimer && (

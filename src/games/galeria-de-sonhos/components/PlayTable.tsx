@@ -1,10 +1,15 @@
-import { UpCircleOutlined } from '@ant-design/icons';
-import { Button } from 'antd';
 import clsx from 'clsx';
+// Ant Design Resources
+import { Button } from 'antd';
+import { UpCircleOutlined } from '@ant-design/icons';
+// Hooks
+import { useCardWidth, useLoading } from 'hooks';
+// Utils
+import { getAnimationClass } from 'utils/helpers';
+// Components
 import { ImageBlurButton, ImageCard, ImageCardBack } from 'components/cards';
 import { Icons } from 'components/icons';
 import { Translate } from 'components/language';
-import { useCardWidth, useLoading } from 'hooks';
 
 type PlayTableProps = {
   table: GImageCard[];
@@ -21,22 +26,22 @@ export function PlayTable({ table, onPlayCard, userCards, isPlayAvailable }: Pla
     <ul className="g-table">
       {table.map((card) => {
         const isSelected = Boolean((userCards ?? {})[card.id]);
-        const userCardEntry = userCards[card.id];
+        const userCardEntry = userCards[card.id] ?? {};
         if (card.used) {
           return (
             <li key={`g-table-${card.id}`} className="g-table-item" style={{ width: `${cardWidth + 8}px` }}>
               <ImageBlurButton cardId={card.id} />
               <ImageCardBack
                 cardWidth={cardWidth - 6}
-                className={clsx('g-table-image', isSelected && 'g-table-image--selected')}
+                className={clsx(
+                  'g-table-image',
+                  isSelected && 'g-table-image--selected',
+                  getAnimationClass('zoomIn')
+                )}
               />
               {userCardEntry.used && (
                 <div className="g-star-points">
-                  {userCardEntry.score === 3 ? (
-                    <Icons.Star className="g-star g-star--super-spark" />
-                  ) : (
-                    <Icons.StarOutline className="g-star g-star--super-spark" />
-                  )}
+                  {userCardEntry.score === 3 && <Icons.Star className="g-star g-star--super-spark" />}
                   {userCardEntry.score > 1 ? (
                     <Icons.Star className="g-star g-star--spark" />
                   ) : (
@@ -59,7 +64,11 @@ export function PlayTable({ table, onPlayCard, userCards, isPlayAvailable }: Pla
             <ImageCard
               imageId={card.id}
               cardWidth={cardWidth - 6} // 6 is the border total size
-              className={clsx('g-table-image', isSelected && 'g-table-image--selected')}
+              className={clsx(
+                'g-table-image',
+                isSelected && 'g-table-image--selected',
+                getAnimationClass('zoomIn')
+              )}
             />
             {isPlayAvailable && userCards[card.id] && (
               <Button

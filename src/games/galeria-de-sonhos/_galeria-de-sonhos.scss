@@ -4,9 +4,7 @@
 }
 
 .g-table-item {
-  background: black;
-  // display: flex;
-  // flex-direction: column;
+  background-color: black;
   position: relative;
   box-sizing: border-box;
 }
@@ -18,7 +16,7 @@
   transform: translateX(-50%);
 
   &:hover.ant-btn {
-    background: get-color(white);
+    background-color: get-color(white);
   }
 }
 
@@ -49,27 +47,151 @@
   }
 }
 
-h2.g-announce-title {
-  margin-top: get-unit(1);
-  font-size: 1.25rem;
+.g-players-dreams-count {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 0.75rem;
+  margin: get-unit(2 auto);
+
+  &__title {
+    background-color: rgba($color: white, $alpha: 0.6);
+    margin: 0;
+    padding: get-unit(1 3 0 3);
+    border-radius: get-unit(2 2 0 0);
+  }
+
+  &__players {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba($color: white, $alpha: 0.6);
+    padding: get-unit(1);
+    border-radius: get-unit(1);
+    flex-wrap: wrap;
+    color: get-color(white);
+  }
+
+  &__player {
+    background-color: rgba($color: white, $alpha: 0.6);
+    padding: get-unit(1 2);
+    white-space: nowrap;
+
+    &:first-child {
+      border-radius: get-unit(1 0 0 1);
+    }
+
+    &:last-child {
+      border-radius: get-unit(0 1 1 0);
+    }
+
+    &--nightmare {
+      border: 2px solid get-color(black);
+      color: get-color(black);
+    }
+  }
+
+  &__count {
+    text-align: center;
+
+    &--fallen {
+      text-decoration: line-through;
+      opacity: 0.6;
+    }
+  }
 }
 
-ul.g-matched-players-list {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+.g-dream-result {
+  display: grid;
+  width: 100%;
+  max-width: 600px;
+  grid-template-columns: 50% auto;
+  grid-template-rows: repeat(5 auto);
+  gap: get-unit(2);
+  grid-template-areas:
+    'header header'
+    'card matches'
+    'card matching-players'
+    'card fallen-matches'
+    'footer footer';
+  background-color: get-color(white);
+
+  &__header {
+    grid-area: header;
+    padding: get-unit(2);
+    color: get-color(white);
+  }
+
+  &__card {
+    grid-area: card;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__match-result {
+    grid-area: matches;
+    background-color: get-color(gray, 1);
+    font-size: 1rem;
+    padding: get-unit(1);
+    margin-right: get-unit(2);
+  }
+
+  &__matching-players {
+    grid-area: matching-players;
+    background-color: get-color(gray, 1);
+    padding: get-unit(1);
+    margin-right: get-unit(2);
+  }
+
+  &__fallen-matching-players {
+    grid-area: fallen-matches;
+    background-color: get-color(gray, 1);
+    padding: get-unit(1);
+    margin-right: get-unit(2);
+  }
+
+  &__matched-players-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+
+    &--centered {
+      justify-content: center;
+    }
+  }
+
+  &__label {
+    font-weight: bold;
+  }
+
+  &__footer {
+    grid-area: footer;
+    background-color: get-color(gray, 1);
+    padding: get-unit(1);
+    margin: get-unit(0 2 2 2);
+  }
 }
 
-ul.g-fallen-players-list {
-  list-style-type: none;
-  margin: 0;
-  padding: get-unit(2);
+.g-best-matches {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
-  background: get-color(red, 4);
-  border-radius: get-unit(1);
+
+  &__entry {
+    margin: get-unit(2);
+  }
+
+  &__label {
+    text-align: center;
+    text-transform: uppercase;
+    padding: get-unit(1);
+    background-color: get-color(gray, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: get-unit(1);
+  }
 }
