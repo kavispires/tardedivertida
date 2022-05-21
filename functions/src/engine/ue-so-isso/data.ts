@@ -1,3 +1,5 @@
+// Types
+import { TDR_RESOURCES } from '../../utils/constants';
 // Helpers
 import * as resourceUtils from '../resource';
 
@@ -7,6 +9,6 @@ import * as resourceUtils from '../resource';
  * @returns
  */
 export const getWords = async (language: string) => {
-  const resourceName = `ue-so-isso-${language}`;
+  const resourceName = `${TDR_RESOURCES.SINGLE_WORDS_2}-${language}`;
   return await resourceUtils.fetchResource(resourceName);
 };

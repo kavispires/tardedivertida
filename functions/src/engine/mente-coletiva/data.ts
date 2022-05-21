@@ -1,13 +1,14 @@
 // Constants
-import { GLOBAL_USED_DOCUMENTS } from '../../utils/constants';
+import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
 import { MenteColetivaCard } from '../../utils/tdr';
+import { MAX_ROUNDS, QUESTIONS_PER_ROUND } from './constants';
+// Types
+import { ResourceData } from './types';
+import { StringDictionary } from '../../utils/types';
 // Helpers
 import * as globalUtils from '../global';
 import * as resourceUtils from '../resource';
 import * as utils from '../../utils';
-import { MAX_ROUNDS, QUESTIONS_PER_ROUND } from './constants';
-import { ResourceData } from './types';
-import { PlainObject } from '../../utils/types';
 
 /**
  * Get question cards resource based on the game's language
@@ -15,7 +16,7 @@ import { PlainObject } from '../../utils/types';
  * @returns
  */
 export const getQuestions = async (language: string): Promise<ResourceData> => {
-  const resourceName = `mente-coletiva-${language}`;
+  const resourceName = `${TDR_RESOURCES.GROUP_QUESTIONS}-${language}`;
   // Get full deck
   const allQuestions = await resourceUtils.fetchResource(resourceName);
   // Get used deck
@@ -43,7 +44,7 @@ export const getQuestions = async (language: string): Promise<ResourceData> => {
  * @param pastQuestions
  */
 export const saveUsedQuestions = async (pastQuestions: string[]) => {
-  const pastQuestionsObj = pastQuestions.reduce((acc: PlainObject[], id: string) => {
+  const pastQuestionsObj = pastQuestions.reduce((acc: StringDictionary[], id: string) => {
     acc.push({ id });
     return acc;
   }, []);

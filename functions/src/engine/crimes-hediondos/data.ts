@@ -1,6 +1,9 @@
+// Constants
+import { TDR_RESOURCES } from '../../utils/constants';
+// Types
+import { ResourceData } from './types';
 // Helpers
 import * as resourceUtils from '../resource';
-import { ResourceData } from './types';
 
 /**
  * Get question resource based on the game's language
@@ -14,7 +17,7 @@ export const getData = async (): Promise<ResourceData> => {
   const allEvidence = await resourceUtils.fetchTDIData('dmhk/ev');
 
   // Get scene tiles
-  const allScenes = await resourceUtils.fetchResource('crimes-hediondos-tiles');
+  const allScenes = await resourceUtils.fetchResource(TDR_RESOURCES.CRIME_TILES);
 
   return {
     allWeapons: Object.values(allWeapons),
