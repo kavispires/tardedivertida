@@ -15,6 +15,7 @@ import { Translate } from 'components/language';
 type WaitingProps = {
   info: GameInfo;
   players: GamePlayers;
+  meta: GameMeta;
 };
 
 export function Waiting({ info, players }: WaitingProps) {

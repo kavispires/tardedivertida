@@ -12,6 +12,7 @@ import { LoadingBar, LoadingPage } from 'components/loaders';
 // Pages
 import Home from './Home/Home';
 import Login from './Login/Login';
+import AvatarsPage from './Dev/Avatars';
 
 // Routes Lazy load
 const Hub = lazy(() => import('pages/Hub/Hub' /* webpackChunkName: "page-hub" */));
@@ -35,6 +36,11 @@ const LazyGame = () => (
 const LazyShowcase = () => (
   <Suspense fallback={<LoadingPage message={''} />}>
     <Showcase />
+  </Suspense>
+);
+const LazyDevAvatars = () => (
+  <Suspense fallback={<LoadingPage message={''} />}>
+    <AvatarsPage />
   </Suspense>
 );
 const LazyDevIcons = () => (
@@ -88,11 +94,19 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/hub" element={isAuthenticated ? <LazyHub /> : <Navigate to="/login" />} />
-            <Route path="/icons" element={isAuthenticated ? <LazyDevIcons /> : <Navigate to="/login" />} />
             <Route
-              path="/testing-zone"
+              path="/dev/avatars"
+              element={isAuthenticated ? <LazyDevAvatars /> : <Navigate to="/login" />}
+            />
+            <Route
+              path="/dev/icons"
+              element={isAuthenticated ? <LazyDevIcons /> : <Navigate to="/login" />}
+            />
+            <Route
+              path="/dev/testing-zone"
               element={isAuthenticated ? <LazyDevTestingZone /> : <Navigate to="/login" />}
             />
+
             <Route path="/showcase" element={<LazyShowcase />} />
             <Route path="/vitrine" element={<LazyShowcase />} />
             <Route path="*" element={<LazyGame />} />

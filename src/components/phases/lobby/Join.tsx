@@ -11,21 +11,21 @@ import avatars from 'assets/images/avatars.svg';
 // Services
 import localStorage from 'services/localStorage';
 // Utils
-import { AVATARS, PUBLIC_URL, RANDOM_NAMES } from 'utils/constants';
+import { AVAILABLE_AVATAR_IDS, AVATARS, PUBLIC_URL, RANDOM_NAMES } from 'utils/constants';
 import { getRandomItem, isDevEnv } from 'utils/helpers';
 // Components
 import { Translate } from 'components/language';
+import { messageContent } from 'components/pop-up';
 
 const randomName = isDevEnv ? getRandomItem(RANDOM_NAMES) : undefined;
-
-const AVATAR_IDS = Object.keys(AVATARS);
 
 type JoinProps = {
   info: GameInfo;
   players: GamePlayers;
+  meta: GameMeta;
 };
 
-export function Join({ players, info }: JoinProps) {
+export function Join({ players, info, meta }: JoinProps) {
   const { language, translate } = useLanguage();
   const { isLoading, setLoader } = useLoading();
   const [gameId] = useGlobalState('gameId');
@@ -34,8 +34,8 @@ export function Join({ players, info }: JoinProps) {
   const [, setUsername] = useGlobalState('username');
   const [, setUserAvatarId] = useGlobalState('userAvatarId');
 
-  const [availableAvatars, setAvailableAvatars] = useState(AVATAR_IDS);
-  const [tempAvatar, setTempAvatar] = useState(getRandomItem(AVATAR_IDS));
+  const [availableAvatars, setAvailableAvatars] = useState(AVAILABLE_AVATAR_IDS);
+  const [tempAvatar, setTempAvatar] = useState(getRandomItem(AVAILABLE_AVATAR_IDS));
   const [tempUsername, setTempUsername] = useState('');
   const [sameGameId, setSameGameId] = useState(false);
 
@@ -43,12 +43,16 @@ export function Join({ players, info }: JoinProps) {
 
   // Calculate available avatars and monitor if user chose a non-available one
   useEffect(() => {
-    const usedAvatars = Object.values(players).reduce((acc: PlainObject, { avatarId }) => {
-      acc[avatarId] = true;
+    const usedAvatars = Object.values(players).reduce((acc: PlainObject, { avatarId, name }) => {
+      if (name !== tempUsername) {
+        acc[avatarId] = true;
+      }
       return acc;
     }, {});
 
-    const newAvailableAvatars = AVATAR_IDS.filter((avatarId) => usedAvatars[avatarId] === undefined);
+    const newAvailableAvatars = AVAILABLE_AVATAR_IDS.filter(
+      (avatarId) => usedAvatars[avatarId] === undefined
+    );
 
     if (newAvailableAvatars.includes(tempAvatar) && !localStorageAvatar) {
       setTempAvatar(getRandomItem(newAvailableAvatars));
@@ -62,6 +66,14 @@ export function Join({ players, info }: JoinProps) {
     const lsAvatarId = localStorage.get('avatarId');
     const lsUsername = localStorage.get('username');
     const lsGameId = localStorage.get('gameId');
+    const newAvatarsNotice = localStorage.get('newAvatarsNotice');
+
+    if (!newAvatarsNotice) {
+      notification.info({
+        message: translate('Novos avatares estão disponíveis!', 'New avatars are available'),
+        placement: 'bottomLeft',
+      });
+    }
 
     if (lsAvatarId && lsUsername) {
       setTempAvatar(localStorage.get('avatarId'));
@@ -154,6 +166,9 @@ export function Join({ players, info }: JoinProps) {
             <CaretRightOutlined />
           </Button>
         </div>
+        <div className="lobby-join__description">
+          <small>{AVATARS[tempAvatar].description[language]}</small>
+        </div>
 
         {Boolean(localStorageAvatar) ? (
           <Alert
@@ -175,7 +190,7 @@ export function Join({ players, info }: JoinProps) {
           />
         )}
 
-        {Boolean(sameGameId) && (
+        {Boolean(sameGameId) && meta.isComplete && (
           <Alert
             className="lobby-join__avatar-alert"
             type="error"

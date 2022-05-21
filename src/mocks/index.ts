@@ -176,8 +176,16 @@ export const mockLoading = (value = true) => {
  */
 export const mockGameMeta = () => {
   setGlobalState('gameMeta', {
-    min: 4,
-    max: 8,
+    gameId: '',
+    gameName: '',
+    createdAt: 0,
+    createdBy: '',
+    isComplete: false,
+    isLocked: false,
+    language: 'en',
+    max: 4,
+    min: 8,
+    replay: 0,
   });
 };
 
