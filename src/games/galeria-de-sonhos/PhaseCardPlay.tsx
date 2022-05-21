@@ -57,6 +57,7 @@ function PhaseCardPlay({ players, state, info }: PhaseProps) {
             setStep(playerInNightmare.id ? GO_TO_PLAYER_WITH_NIGHTMARE_STEP : GO_TO_CARD_PLAY_STEP)
           }
           duration={state.round.current < 3 ? 20 : 5}
+          unskippable
         >
           <CardPlayRules />
         </PhaseAnnouncement>
@@ -85,6 +86,7 @@ function PhaseCardPlay({ players, state, info }: PhaseProps) {
           onClose={() => setStep(GO_TO_CARD_PLAY_STEP)}
           currentRound={state?.round?.current}
           duration={state.turnCount < 1 ? 10 : 3}
+          unskippable
         >
           <Instruction>
             <Translate
