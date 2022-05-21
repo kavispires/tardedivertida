@@ -10,7 +10,7 @@ type InitialState = {
   // Meta
   gameId: string | null;
   gameName: string | null;
-  gameMeta: PlainObject;
+  gameMeta: GameMeta;
   // User/Player
   userId: string | null;
   username: string;
@@ -39,7 +39,18 @@ const initialState: InitialState = {
   // Meta
   gameId: null,
   gameName: null,
-  gameMeta: {},
+  gameMeta: {
+    gameId: '',
+    gameName: '',
+    createdAt: 0,
+    createdBy: '',
+    isComplete: false,
+    isLocked: false,
+    language: 'en',
+    max: 0,
+    min: 0,
+    replay: 0,
+  },
   // User/Player
   userId: null,
   username: '',

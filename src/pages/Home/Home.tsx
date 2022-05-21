@@ -21,7 +21,7 @@ function Home() {
       navigate(`/${gameId.toUpperCase()}`);
     }
   };
-  console.log({ gameId });
+
   return (
     <Layout className="home">
       <div className="home__logo-container">

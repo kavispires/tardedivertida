@@ -27,7 +27,7 @@ function IconsPage() {
       <ul style={styles}>
         {iconEntries.map(([key, Icon], index) => (
           <li key={key} style={stylesLi}>
-            <Icon key={index} style={{ width: '90px' }} />
+            <Icon style={{ width: '90px' }} />
             <div style={{ width: '90px', overflow: 'hidden', textAlign: 'center' }}>{key}</div>
           </li>
         ))}

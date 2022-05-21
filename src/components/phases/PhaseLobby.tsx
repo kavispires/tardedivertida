@@ -13,9 +13,10 @@ import { orderBy } from 'lodash';
 type PhaseLobbyProps = {
   players: GamePlayers;
   info: GameInfo;
+  meta: GameMeta;
 };
 
-export function PhaseLobby({ players, info }: PhaseLobbyProps) {
+export function PhaseLobby({ players, info, meta }: PhaseLobbyProps) {
   const [userId] = useGlobalState('userId');
   const [username] = useGlobalState('username');
   const [userAvatarId] = useGlobalState('userAvatarId');
@@ -34,9 +35,9 @@ export function PhaseLobby({ players, info }: PhaseLobbyProps) {
         ))}
 
         {userId && username && userAvatarId !== undefined ? (
-          <Waiting players={players} info={info} />
+          <Waiting players={players} info={info} meta={meta} />
         ) : (
-          <Join players={players} info={info} />
+          <Join players={players} info={info} meta={meta} />
         )}
       </div>
 

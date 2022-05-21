@@ -12,7 +12,6 @@ type PlayersDreamsCountProps = {
 };
 
 export function PlayersDreamsCount({ players, playerInNightmareId }: PlayersDreamsCountProps) {
-  console.log({ playerInNightmareId });
   return (
     <div className="g-players-dreams-count">
       <header className="g-players-dreams-count__title">
