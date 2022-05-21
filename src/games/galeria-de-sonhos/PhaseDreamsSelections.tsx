@@ -36,7 +36,7 @@ function PhaseDreamsSelections({ players, state, info }: PhaseProps) {
           table={state.table}
           word={state.word}
           onSubmitCards={onSubmitCards}
-          currentRound={state.round.current}
+          players={players}
         />
       </StepSwitcher>
     </PhaseContainer>
