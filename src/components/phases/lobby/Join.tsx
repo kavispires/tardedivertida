@@ -12,10 +12,9 @@ import avatars from 'assets/images/avatars.svg';
 import localStorage from 'services/localStorage';
 // Utils
 import { AVAILABLE_AVATAR_IDS, AVATARS, PUBLIC_URL, RANDOM_NAMES } from 'utils/constants';
-import { getRandomItem, isDevEnv } from 'utils/helpers';
+import { convertYYYYMMDDtoMilliseconds, getRandomItem, isDevEnv } from 'utils/helpers';
 // Components
 import { Translate } from 'components/language';
-import { messageContent } from 'components/pop-up';
 
 const randomName = isDevEnv ? getRandomItem(RANDOM_NAMES) : undefined;
 
@@ -32,7 +31,7 @@ export function Join({ players, info, meta }: JoinProps) {
   const [gameName] = useGlobalState('gameName');
   const [, setUserId] = useGlobalState('userId');
   const [, setUsername] = useGlobalState('username');
-  const [, setUserAvatarId] = useGlobalState('userAvatarId');
+  const [userAvatarId, setUserAvatarId] = useGlobalState('userAvatarId');
 
   const [availableAvatars, setAvailableAvatars] = useState(AVAILABLE_AVATAR_IDS);
   const [tempAvatar, setTempAvatar] = useState(getRandomItem(AVAILABLE_AVATAR_IDS));
@@ -66,14 +65,6 @@ export function Join({ players, info, meta }: JoinProps) {
     const lsAvatarId = localStorage.get('avatarId');
     const lsUsername = localStorage.get('username');
     const lsGameId = localStorage.get('gameId');
-    const newAvatarsNotice = localStorage.get('newAvatarsNotice');
-
-    if (!newAvatarsNotice) {
-      notification.info({
-        message: translate('Novos avatares estão disponíveis!', 'New avatars are available'),
-        placement: 'bottomLeft',
-      });
-    }
 
     if (lsAvatarId && lsUsername) {
       setTempAvatar(localStorage.get('avatarId'));
@@ -83,6 +74,18 @@ export function Join({ players, info, meta }: JoinProps) {
       if (lsGameId === gameId) {
         setSameGameId(true);
       }
+    }
+  }, []); // eslint-disable-line
+
+  // News
+  useEffect(() => {
+    const newAvatarsNotice = localStorage.get('newAvatarsNotice');
+
+    if (!userAvatarId && (!newAvatarsNotice || convertYYYYMMDDtoMilliseconds('2022/06/21') > Date.now())) {
+      notification.info({
+        message: translate('Novos avatares estão disponíveis!', 'New avatars are available'),
+        placement: 'bottomLeft',
+      });
     }
   }, []); // eslint-disable-line
 

@@ -251,3 +251,18 @@ export const getAnimationClass = (
 
   return result.join(' ');
 };
+
+/**
+ * Convert a yyyy/mm/dd date to milliseconds
+ * @param yyyymmdd
+ * @returns
+ */
+export const convertYYYYMMDDtoMilliseconds = (yyyymmdd: string): number => {
+  const dateArgs = yyyymmdd.match(/\d{2,4}/g);
+
+  const year = Number(dateArgs?.[0] ?? '2022');
+  const month = Number(dateArgs?.[1] ?? '1');
+  const day = Number(dateArgs?.[2] ?? '1');
+
+  return new Date(year, month, day).getTime();
+};
