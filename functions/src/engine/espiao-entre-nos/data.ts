@@ -1,3 +1,5 @@
+// Constants
+import { TDR_RESOURCES } from '../../utils/constants';
 // Types
 import { ResourceData } from './types';
 // Utils
@@ -9,7 +11,7 @@ import * as resourceUtils from '../resource';
  * @returns
  */
 export const getLocations = async (language: string): Promise<ResourceData> => {
-  const resourceName = `espiao-entre-nos-${language}`;
+  const resourceName = `${TDR_RESOURCES.SPY_LOCATIONS}-${language}`;
   // Get full deck
   const allLocations = await resourceUtils.fetchResource(resourceName);
 

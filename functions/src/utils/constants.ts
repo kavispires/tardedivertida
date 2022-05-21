@@ -85,6 +85,26 @@ export const GLOBAL_USED_DOCUMENTS = {
   TESTEMUNHA_OCULAR: 'usedTestemunhaOcularCards',
 };
 
+export const TDR_RESOURCES = {
+  ARTE_RUIM_CARDS: 'arte-ruim',
+  ARTE_RUIM_GROUPS: 'arte-ruim-group',
+  CATEGORIES: 'categories',
+  CHARACTERS: 'characters',
+  CRIME_TILES: 'crimes-hediondos-tiles',
+  GROUP_QUESTIONS: 'mente-coletiva',
+  INSPIRATION_THEMES: 'sonhos-pesadelos',
+  LEFT_RIGHT_IDEAS: 'onda-telepatica',
+  SINGLE_WORDS: 'single-word',
+  SINGLE_WORDS_2: 'ue-so-isso',
+  SPY_LOCATIONS: 'espiao-entre-nos',
+  SPY_QUESTIONS: 'espiao-entre-nos-questions',
+  TESTIMONY_QUESTIONS: 'testemunha-ocular',
+  THEMES: 'themes',
+  TOPICS: 'polemica-da-vez',
+  WORDS: 'galeria-de-sonhos',
+  WORDS_2: 'linhas-cruzadas',
+};
+
 export const SEPARATOR = ';;';
 
 export const USED_GAME_IDS = 'usedGameIds';

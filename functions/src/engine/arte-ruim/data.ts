@@ -1,5 +1,5 @@
 // Constants
-import { GLOBAL_USED_DOCUMENTS } from '../../utils/constants';
+import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
 // Types
 import { BooleanDictionary, Language } from '../../utils/types';
 import { ArteRuimData, ArteRuimDrawing } from './types';
@@ -25,12 +25,14 @@ export const getCards = async (
   isShortGame: boolean,
   useAllCards: boolean
 ): Promise<ArteRuimData> => {
-  const resourceName = `arte-ruim-${language}`;
+  const resourceName = `${TDR_RESOURCES.ARTE_RUIM_CARDS}-${language}`;
   // Get regular and level 4 cards
   const allCardsResponse = await resourceUtils.fetchResource(resourceName);
   const allCards: ArteRuimCard[] = Object.values(allCardsResponse);
 
-  const allCardsGroupResponse = await resourceUtils.fetchResource(`arte-ruim-group-${language}`);
+  const allCardsGroupResponse = await resourceUtils.fetchResource(
+    `${TDR_RESOURCES.ARTE_RUIM_CARDS}-${language}`
+  );
   const cardsGroups: ArteRuimGroup[] = Object.values(allCardsGroupResponse);
 
   const cardsByLevel = distributeCardsByLevel(allCards);

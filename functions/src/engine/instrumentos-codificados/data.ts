@@ -1,3 +1,5 @@
+// Constants
+import { TDR_RESOURCES } from '../../utils/constants';
 // Helpers
 import * as resourceUtils from '../resource';
 
@@ -7,6 +9,6 @@ import * as resourceUtils from '../resource';
  * @returns
  */
 export const getThemes = async (language: string) => {
-  const resourceName = `themes-${language}`;
+  const resourceName = `${TDR_RESOURCES.THEMES}-${language}`;
   return await resourceUtils.fetchResource(resourceName);
 };

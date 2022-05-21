@@ -2,7 +2,7 @@
 import { ResourceData, TestemunhaOcularEntry } from './types';
 import { TestemunhaOcularCard } from '../../utils/tdr';
 // Constants
-import { GLOBAL_USED_DOCUMENTS } from '../../utils/constants';
+import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
 import { QUESTION_COUNT } from './constants';
 // Helpers
 import * as utils from '../../utils';
@@ -15,7 +15,7 @@ import * as resourceUtils from '../resource';
  * @returns
  */
 export const getQuestionsAndSuspects = async (language: string): Promise<ResourceData> => {
-  const resourceName = `testemunha-ocular-${language}`;
+  const resourceName = `${TDR_RESOURCES.TESTIMONY_QUESTIONS}-${language}`;
   // Get full deck
   const allCards = await resourceUtils.fetchResource(resourceName);
   // Get used deck

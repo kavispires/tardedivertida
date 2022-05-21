@@ -1,3 +1,5 @@
+// Constants
+import { TDR_RESOURCES } from '../../utils/constants';
 // Types
 import { ResourceData } from './types';
 // Utils
@@ -9,10 +11,10 @@ import * as resourceUtils from '../resource';
  * @returns
  */
 export const getData = async (language: string): Promise<ResourceData> => {
-  const resourceNameLC = `linhas-cruzadas-${language}`;
+  const resourceNameLC = `${TDR_RESOURCES.WORDS_2}-${language}`;
   const allWords = await resourceUtils.fetchResource(resourceNameLC);
 
-  const resourceNameAR = `arte-ruim-${language}`;
+  const resourceNameAR = `${TDR_RESOURCES.ARTE_RUIM_CARDS}-${language}`;
   // Get full deck
   const allExpressions = await resourceUtils.fetchResource(resourceNameAR);
 

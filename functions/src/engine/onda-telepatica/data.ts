@@ -1,5 +1,5 @@
 // Constants
-import { GLOBAL_USED_DOCUMENTS } from '../../utils/constants';
+import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
 import { PLAYER_COUNTS } from './constants';
 // Types
 import { PastCategories, ResourceData } from './types';
@@ -15,7 +15,7 @@ import * as utils from '../../utils';
  * @returns
  */
 export const getCategories = async (language: string): Promise<ResourceData> => {
-  const resourceName = `onda-telepatica-${language}`;
+  const resourceName = `${TDR_RESOURCES.LEFT_RIGHT_IDEAS}-${language}`;
   // Get full deck
   const allCategories = await resourceUtils.fetchResource(resourceName);
   // Get used deck

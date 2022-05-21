@@ -1,3 +1,5 @@
+// Constants
+import { TDR_RESOURCES } from '../../utils/constants';
 // Types
 import { InspirationCard } from '../../utils/tdr';
 import { SonhosPesadelosCards } from './types';
@@ -10,7 +12,7 @@ import * as resourceUtils from '../resource';
  * @returns
  */
 export const getInspirationThemes = async (language: string): Promise<SonhosPesadelosCards> => {
-  const resourceName = `sonhos-pesadelos-${language}`;
+  const resourceName = `${TDR_RESOURCES.INSPIRATION_THEMES}-${language}`;
   const cardsResponse = await resourceUtils.fetchResource(resourceName);
   const cards: InspirationCard[] = Object.values(cardsResponse);
 
