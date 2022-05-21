@@ -12,6 +12,7 @@ import { Step } from 'components/steps';
 import { Title } from 'components/text';
 import { DreamSelectionExtendedRules, DreamSelectionRules } from './components/RulesBlobs';
 import { SelectTable } from './components/SelectTable';
+import { ReadyPlayersBar } from 'components/players';
 
 const validateSelectedCards = (v: BooleanDictionary) => {
   return Object.keys(v).length < 10;
@@ -21,10 +22,10 @@ type StepDreamsSelectionProps = {
   table: GImageCard[];
   word: GWord;
   onSubmitCards: GenericFunction;
-  currentRound: number;
+  players: GamePlayers;
 };
 
-export function StepDreamsSelection({ table, word, onSubmitCards, currentRound }: StepDreamsSelectionProps) {
+export function StepDreamsSelection({ table, word, onSubmitCards, players }: StepDreamsSelectionProps) {
   const [selectedCards, onSelectCard] = useBooleanDictionary({}, validateSelectedCards);
 
   const selectedCount = Object.keys(selectedCards).length;
@@ -54,6 +55,8 @@ export function StepDreamsSelection({ table, word, onSubmitCards, currentRound }
         </Button>
       </Space>
       <SelectTable table={table} onSelectCard={onSelectCard} selectedCards={selectedCards} />
+
+      <ReadyPlayersBar players={players} />
     </Step>
   );
 }
