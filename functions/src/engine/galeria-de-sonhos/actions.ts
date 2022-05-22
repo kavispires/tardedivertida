@@ -168,7 +168,7 @@ export const handlePlayCard = async (
     shameFalling.shameFallenPlayerId = playerId;
   }
 
-  if (availableTurnOrder.length === 0) {
+  if (availableTurnOrder.length <= 1) {
     shameFalling.isPhaseOver = true;
   }
 

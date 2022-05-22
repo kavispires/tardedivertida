@@ -1,9 +1,8 @@
+// Ant Design Resources
+import { Space } from 'antd';
 // Utils
 import { LETTERS } from 'utils/constants';
 // Components
-
-import { GeneralRules } from './components/RulesBlobs';
-import { Space } from 'antd';
 import { Step } from 'components/steps';
 import { Title } from 'components/text';
 import { Translate } from 'components/language';
@@ -19,9 +18,9 @@ export function StepWordSelection({ onSubmitWord, words }: StepWordSelectionProp
   return (
     <Step fullWidth>
       <Title>
-        <Translate pt="Selecione o tema" en="Select the theme" />
+        <Translate pt="Selecione o tema da rodada" en="Select the theme for the round" />
       </Title>
-      <GeneralRules />
+
       <Space className="space-container" align="center">
         {words.map((word, index) => {
           return (

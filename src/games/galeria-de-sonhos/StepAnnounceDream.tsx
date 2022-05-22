@@ -1,10 +1,10 @@
 // Ant Design Resources
-import { Divider, Space } from 'antd';
+import { Alert, Divider, Space } from 'antd';
 import { useMemo } from 'react';
 // Hooks
 import { useCardWidth } from 'hooks';
 // Constants
-import { GO_TO_CARD_PLAY_STEP, GO_TO_PLAYER_WITH_NIGHTMARE_STEP } from './utils/constants';
+import { GO_TO_CARD_PLAY_STEP } from './utils/constants';
 // Helpers
 import { getAvatarColorById } from 'utils/helpers';
 // Components
@@ -16,6 +16,7 @@ import { TimedButton } from 'components/buttons';
 import { AdminNextRoundButton } from 'components/admin';
 import { ListPlayers } from './components/ListPlayers';
 import { MatchCount } from './components/MatchCount';
+import { TurnOrder } from 'components/players';
 
 type MatchingPlayersReduceResult = {
   matchingPlayers: GamePlayer[];
@@ -29,6 +30,7 @@ type StepAnnounceDreamProps = {
   playerInNightmare?: GamePlayer;
   setStep: GenericFunction;
   players: GamePlayers;
+  gameOrder: TurnOrder;
 };
 
 export function StepAnnounceDream({
@@ -38,6 +40,7 @@ export function StepAnnounceDream({
   setStep,
   players,
   playerInNightmare,
+  gameOrder,
 }: StepAnnounceDreamProps) {
   const cardWidth = useCardWidth(5, 8, 140, 150);
 
@@ -111,25 +114,54 @@ export function StepAnnounceDream({
           )}
         </div>
         <footer className="g-dream-result__footer">
-          {completedPlayers.length > 0 && (
-            <div>
-              <p className="g-dream-result__label center">
-                <Translate pt="Jogadores fora do rodízio" en="Players out of rotation" />:
-              </p>
-              <ListPlayers
-                listPlayers={completedPlayers}
-                className="g-dream-result__matched-players-list g-dream-result__matched-players-list--centered"
-              />
-            </div>
-          )}
-          <Divider />
           {latest.isPhaseOver || latest.cardsLeft === 0 ? (
-            <p className="center">
-              <Translate
-                pt="Todos jogadores já usaram seus sonhos ou não deram match com ninguém. Vamos para a próxima rodada?"
-                en="All players have used their dreams or didn't match anybody. Ready for the next round?"
-              />
-            </p>
+            <Space align="center" className="full-width padding" direction="vertical">
+              <p className="center">
+                <Translate
+                  pt="Todos jogadores já usaram seus sonhos ou não deram match com ninguém. Vamos para a próxima rodada?"
+                  en="All players have used their dreams or didn't match anybody. Ready for the next round?"
+                />
+              </p>
+              {gameOrder.length === 1 && (
+                <Alert
+                  className="center"
+                  type="error"
+                  message={
+                    playerInNightmare?.id === gameOrder[0] ? (
+                      <Translate
+                        pt={
+                          <>
+                            <AvatarName player={playerInNightmare} /> foi ganancioso(a) não conseguiu usar
+                            todos os sonhos.
+                          </>
+                        }
+                        en={
+                          <>
+                            <AvatarName player={playerInNightmare} /> was too greedy and wasn't able to use of
+                            all their dreams.
+                          </>
+                        }
+                      />
+                    ) : (
+                      <Translate
+                        pt={
+                          <>
+                            Não há mais jogadores pra dar match com{' '}
+                            <AvatarName player={players[gameOrder[0]]} />
+                          </>
+                        }
+                        en={
+                          <>
+                            There are no players to match anymore with{' '}
+                            <AvatarName player={players[gameOrder[0]]} />
+                          </>
+                        }
+                      />
+                    )
+                  }
+                />
+              )}
+            </Space>
           ) : (
             <Space align="center" className="full-width padding" direction="vertical">
               <p className="center">
@@ -139,22 +171,34 @@ export function StepAnnounceDream({
 
               <TimedButton
                 type="primary"
-                duration={10}
+                duration={12}
                 disabled
-                onExpire={() =>
-                  setStep(
-                    Boolean(playerInNightmare?.id && !playerInNightmare?.fallen)
-                      ? GO_TO_PLAYER_WITH_NIGHTMARE_STEP
-                      : GO_TO_CARD_PLAY_STEP
-                  )
-                }
+                onExpire={() => setStep(GO_TO_CARD_PLAY_STEP)}
               >
                 <Translate pt="Continuando em..." en="Continuing in..." />
               </TimedButton>
             </Space>
           )}
+          {completedPlayers.length > 0 && (
+            <>
+              <Divider />
+              <div className="g-dream-result__completed-players">
+                <p className="g-dream-result__label center">
+                  <Translate pt="Jogadores fora do rodízio" en="Players out of rotation" />:
+                </p>
+                <ListPlayers
+                  listPlayers={completedPlayers}
+                  className="g-dream-result__matched-players-list g-dream-result__matched-players-list--centered"
+                />
+              </div>
+            </>
+          )}
         </footer>
       </div>
+
+      {gameOrder.length > 1 && (
+        <TurnOrder players={players} order={gameOrder} activePlayerId={activePlayer.id} />
+      )}
 
       {(latest.isPhaseOver || latest.cardsLeft === 0) && <AdminNextRoundButton buttonText="Ranking" />}
     </Step>

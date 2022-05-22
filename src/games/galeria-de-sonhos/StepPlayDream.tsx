@@ -42,7 +42,6 @@ export function StepPlayDream({
   isLoading,
   players,
   gameOrder,
-
   setLastTurnCount,
   playerInNightmareId,
 }: StepDreamsSelectionProps) {
@@ -80,6 +79,15 @@ export function StepPlayDream({
       </Card>
 
       <PlayersDreamsCount players={players} playerInNightmareId={playerInNightmareId} />
+
+      {Boolean(user.fallen) && (
+        <Instruction contained>
+          <Translate
+            pt="Você estava em apuros e não conseguiu dar match em uma de suas cartas, então perdeu um ponto por carta que você deu match."
+            en="You were in danger and didn't get a match in one of your cards. You lost 1 point per scored card."
+          />
+        </Instruction>
+      )}
 
       <Instruction contained>
         {isActivePlayer ? (
