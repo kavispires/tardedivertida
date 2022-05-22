@@ -1,6 +1,10 @@
 .g-table {
   display: grid;
   grid-template-columns: repeat(5, auto);
+
+  &--game-over {
+    grid-template-columns: repeat(10, auto);
+  }
 }
 
 .g-table-item {
@@ -184,6 +188,7 @@
 .g-best-matches {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 
   &__entry {
     margin: get-unit(2);
@@ -198,5 +203,6 @@
     flex-direction: column;
     align-items: center;
     border-radius: get-unit(1);
+    font-size: 0.75rem;
   }
 }

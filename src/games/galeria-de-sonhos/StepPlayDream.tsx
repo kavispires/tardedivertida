@@ -99,13 +99,13 @@ export function StepPlayDream({
           <Translate
             pt={
               <>
-                <AvatarName player={activePlayer} className={getAnimationClass('tada')} /> está selecionando
+                <AvatarName player={activePlayer} className={getAnimationClass('flash')} /> está selecionando
                 um sonho.
               </>
             }
             en={
               <>
-                <AvatarName player={activePlayer} className={getAnimationClass('tada')} /> is selecting a
+                <AvatarName player={activePlayer} className={getAnimationClass('flash')} /> is selecting a
                 dream.
               </>
             }

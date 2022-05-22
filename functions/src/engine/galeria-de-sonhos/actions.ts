@@ -1,6 +1,6 @@
 // Types
 import { GameId, PlayerId, GameName, PlainObject, Player, CardId } from '../../utils/types';
-import { ImageCard } from './types';
+import { ImageCard, PlayerCard } from './types';
 // Helpers
 import * as utils from '../../utils';
 // Internal functions
@@ -155,21 +155,42 @@ export const handlePlayCard = async (
     players[nextActivePlayerId].ready = false;
   }
 
-  // Update players
-  try {
-    await sessionRef.doc('players').update(players);
-  } catch (error) {
-    utils.firebase.throwException(error, 'Failed to update players');
-  }
-
   // Shame falling
   const shameFalling: PlainObject = {};
   if (didPlayerJustFall) {
     shameFalling.shameFallenPlayerId = playerId;
   }
 
-  if (availableTurnOrder.length <= 1) {
+  // If there are nobody else available
+  if (availableTurnOrder.length === 0) {
     shameFalling.isPhaseOver = true;
+  }
+
+  // If there's only one player available, check if there are cards to be matched, otherwise end the round
+  if (availableTurnOrder.length === 1) {
+    const leftOverPlayerId = availableTurnOrder[0];
+
+    const cardsLeftToMatch = Object.values(players).reduce((acc, player) => {
+      if (player.id !== leftOverPlayerId) {
+        const cards: PlayerCard[] = Object.values(player.cards);
+        acc += cards.filter((card) => !card.used).length;
+      }
+    }, 0);
+
+    if (cardsLeftToMatch === 0) {
+      shameFalling.isPhaseOver = true;
+      // If its the player in danger, mark as fallen
+      if (players[leftOverPlayerId].inNightmare) {
+        players[leftOverPlayerId].fallen = true;
+      }
+    }
+  }
+
+  // Update players
+  try {
+    await sessionRef.doc('players').update(players);
+  } catch (error) {
+    utils.firebase.throwException(error, 'Failed to update players');
   }
 
   return await utils.firebase.updateState({
