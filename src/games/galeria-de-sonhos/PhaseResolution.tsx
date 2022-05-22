@@ -7,7 +7,7 @@ import { StepSwitcher } from 'components/steps';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
 import { StepRankingWrapper } from 'components/ranking';
-import { Instruction } from 'components/text';
+import { Instruction, RoundsLeftInstruction } from 'components/text';
 import { AdminNextRoundButton } from 'components/admin';
 
 function PhaseResolution({ players, state, info }: PhaseProps) {
@@ -51,6 +51,7 @@ function PhaseResolution({ players, state, info }: PhaseProps) {
             />,
           ]}
         >
+          <RoundsLeftInstruction round={state.round} />
           <AdminNextRoundButton round={state.round} lastRound={state.isLastRound} />
         </StepRankingWrapper>
       </StepSwitcher>

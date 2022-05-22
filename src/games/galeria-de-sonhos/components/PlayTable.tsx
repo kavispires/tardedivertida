@@ -43,16 +43,8 @@ export function PlayTable({ table, onPlayCard, userCards, isPlayAvailable }: Pla
                 {userCardEntry.used && (
                   <div className="g-star-points">
                     {userCardEntry.score === 3 && <Icons.Star className="g-star g-star--super-spark" />}
-                    {userCardEntry.score > 1 ? (
-                      <Icons.Star className="g-star g-star--spark" />
-                    ) : (
-                      <Icons.StarOutline className="g-star g-star--spark" />
-                    )}
-                    {userCardEntry.score > 0 ? (
-                      <Icons.Star className="g-star g-star--spark" />
-                    ) : (
-                      <Icons.StarOutline className="g-star g-star--spark" />
-                    )}
+                    {userCardEntry.score > 1 && <Icons.Star className="g-star g-star--spark" />}
+                    {userCardEntry.score > 0 && <Icons.Star className="g-star g-star--spark" />}
                   </div>
                 )}
               </li>

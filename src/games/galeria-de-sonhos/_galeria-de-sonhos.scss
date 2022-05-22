@@ -53,7 +53,7 @@
   align-items: center;
   flex-wrap: wrap;
   font-size: 0.75rem;
-  margin: get-unit(2 auto);
+  margin: get-unit(2 auto 5);
 
   &__title {
     background-color: rgba($color: white, $alpha: 0.6);
@@ -173,6 +173,11 @@
     background-color: get-color(gray, 1);
     padding: get-unit(1);
     margin: get-unit(0 2 2 2);
+  }
+
+  &__completed-players {
+    color: get-color(gray, 4);
+    margin-bottom: get-unit(4);
   }
 }
 

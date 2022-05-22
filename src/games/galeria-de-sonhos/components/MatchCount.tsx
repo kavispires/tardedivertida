@@ -4,6 +4,7 @@ import { pluralize } from 'utils/helpers';
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { StarPoints } from 'components/points';
+import { Avatar } from 'antd';
 
 type MatchCountProps = {
   matchCount: number;
@@ -23,7 +24,7 @@ export function MatchCount({ matchCount, lastActivePlayer, playerInNightmare }: 
         <Translate
           pt={
             <p>
-              E encontrou {matchCount} {pluralize(matchCount, 'jogador', 'jogadores')} lá!
+              E encontrou <Avatar>{matchCount}</Avatar> {pluralize(matchCount, 'jogador', 'jogadores')} lá!
               <br />
               {isSuperSpark && 'Brilho total!'}
               <StarPoints keyPrefix="dream-result" quantity={isSuperSpark ? 3 : 2} />
@@ -31,7 +32,7 @@ export function MatchCount({ matchCount, lastActivePlayer, playerInNightmare }: 
           }
           en={
             <p>
-              And met {matchCount} {pluralize(matchCount, 'player', 'players')} there!
+              And met <Avatar>{matchCount}</Avatar> {pluralize(matchCount, 'player', 'players')} there!
               <br />
               {isSuperSpark && 'Super Spark!'}
               <StarPoints keyPrefix="dream-result" quantity={isSuperSpark ? 3 : 2} />

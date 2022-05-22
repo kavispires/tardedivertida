@@ -91,10 +91,12 @@ export const buildRanking = (players: Players, playerInNightmareId?: PlayerId) =
     cards.forEach((card: PlayerCard) => {
       if (card.score === 3) {
         newScores[player.id].gainedPoints[0] += 3;
+        players[player.id].score += 3;
         newScores[player.id].newScore += 3;
         scoringCardsCount += 1;
       } else if (card.score === 2) {
         newScores[player.id].gainedPoints[1] += 2;
+        players[player.id].score += 2;
         newScores[player.id].newScore += 2;
         scoringCardsCount += 1;
       }
@@ -105,9 +107,8 @@ export const buildRanking = (players: Players, playerInNightmareId?: PlayerId) =
     if (scoringCardsCount > 0 && shouldLosePoints) {
       newScores[player.id].gainedPoints[2] -= scoringCardsCount;
       newScores[player.id].newScore -= scoringCardsCount;
+      players[player.id].score -= scoringCardsCount;
     }
-
-    players[player.id].score += newScores[player.id].newScore;
   });
 
   return Object.values(newScores).sort((a, b) => (a.newScore > b.newScore ? 1 : -1));

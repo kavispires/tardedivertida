@@ -1,3 +1,4 @@
+import { Tooltip } from 'antd';
 import clsx from 'clsx';
 // Helpers
 
@@ -21,13 +22,15 @@ export function PlayersDreamsCount({ players, playerInNightmareId }: PlayersDrea
         {Object.values(players).map((player) => {
           const cards: GCardInHand[] = Object.values(player.cards);
           const cardsLeft = cards.filter((card) => !card.used);
+          const isPlayerInNightmare = player.id === playerInNightmareId;
+          const showTooltip = isPlayerInNightmare && !player.fallen;
 
           return (
             <span
               key={`player-dream-count-${player.id}`}
               className={clsx(
                 'g-players-dreams-count__player',
-                player.id === playerInNightmareId &&
+                isPlayerInNightmare &&
                   !player.fallen &&
                   `g-players-dreams-count__player--nightmare ${getAnimationClass(
                     'pulse',
@@ -39,15 +42,29 @@ export function PlayersDreamsCount({ players, playerInNightmareId }: PlayersDrea
               )}
               style={{ backgroundColor: getAvatarColorById(player.avatarId) }}
             >
-              <Avatar shape="square" id={player.avatarId} alt={player.name} />
-              <div
-                className={clsx(
-                  'g-players-dreams-count__count',
-                  player.fallen && 'g-players-dreams-count__count--fallen'
-                )}
+              <Tooltip
+                title={
+                  showTooltip ? (
+                    <div className={getAnimationClass('tada', undefined, 'fast', true)}>
+                      <Translate pt="Em apuros!" en="In danger" />
+                    </div>
+                  ) : undefined
+                }
+                color="black"
+                placement="bottom"
+                visible={showTooltip}
               >
-                {cardsLeft.length}
-              </div>
+                <Avatar shape="square" id={player.avatarId} alt={player.name} />
+
+                <div
+                  className={clsx(
+                    'g-players-dreams-count__count',
+                    player.fallen && 'g-players-dreams-count__count--fallen'
+                  )}
+                >
+                  {cardsLeft.length}
+                </div>
+              </Tooltip>
             </span>
           );
         })}
