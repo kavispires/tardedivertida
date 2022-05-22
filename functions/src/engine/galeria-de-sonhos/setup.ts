@@ -46,6 +46,7 @@ export const prepareSetupPhase = async (
       store: {
         gameOrder,
         tableDeck,
+        tableDeckBackup: tableDeck,
         wordsDeck,
         bestMatches: [],
       },
@@ -73,7 +74,7 @@ export const prepareWordSelectionPhase = async (
   const round = utils.helpers.increaseRound(state.round);
 
   // Make sure everybody has 6 cards in hand
-  players = utils.players.removePropertiesFromPlayers(players, ['cards', 'fallen', 'skip']);
+  players = utils.players.removePropertiesFromPlayers(players, ['cards', 'fallen', 'skip', 'inNightmare']);
 
   // Determine active player based on current round
   const scoutId = utils.players.getActivePlayer(store.gameOrder, round.current);
@@ -142,6 +143,10 @@ export const prepareCardPlayPhase = async (
 
   const playersInMax = getPlayersWithMaxDreams(players);
 
+  if (playersInMax.length === 1) {
+    players[playersInMax[0]].inNightmare = true;
+  }
+
   // Save
   return {
     update: {
@@ -209,6 +214,7 @@ export const prepareGameOverPhase = async (
         gameEndedAt: Date.now(),
         winners,
         bestMatches: store.bestMatches,
+        table: store.tableDeckBackup,
       },
     },
   };

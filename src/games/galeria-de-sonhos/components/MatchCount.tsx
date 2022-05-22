@@ -46,7 +46,7 @@ export function MatchCount({ matchCount, lastActivePlayer, playerInNightmare }: 
               <h2 className="g-announce-title">Vixi...</h2>
               Não sei o que dizer... Ninguém visitou esse sonho e{' '}
               <AvatarName player={lastActivePlayer} size="small" addressUser /> está fora da rodada{' '}
-              <small>(as cartas restantes ainda contarão pontos para outros jogadores)</small>.
+              <small>(as cartas restantes ainda contarão pontos para outros jogadores)</small>.{' '}
               {isPlayerInNightmare && (
                 <>
                   Para piorar, <AvatarName player={lastActivePlayer} size="small" addressUser /> vai perder 1
