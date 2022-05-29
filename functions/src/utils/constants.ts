@@ -23,6 +23,7 @@ export const GAME_CODES = {
   S: 'S', // sonhos-pesadelos
   T: 'T', // testemunha-ocular
   U: 'U', // ue-so-isso
+  V: 'V', // vendaval-de-palpite
   X: 'X', // cruza-palavras
   Y: 'Y', // te-conheco
 };
@@ -48,6 +49,7 @@ export const GAME_KEYS = {
   SONHOS_PESADELOS: 'SONHOS_PESADELOS',
   TESTEMUNHA_OCULAR: 'TESTEMUNHA_OCULAR',
   UE_SO_ISSO: 'UE_SO_ISSO',
+  VENDAVAL_DE_PALPITE: 'VENDAVAL_DE_PALPITE',
   CRUZA_PALAVRAS: 'CRUZA_PALAVRAS',
   TE_CONHECO: 'TE_CONHECO',
 };
@@ -73,6 +75,7 @@ export const GAME_COLLECTIONS = {
   SONHOS_PESADELOS: 'sonhos-pesadelos',
   TESTEMUNHA_OCULAR: 'testemunha-ocular',
   UE_SO_ISSO: 'ue-so-isso',
+  VENDAVAL_DE_PALPITE: 'vendaval-de-palpite',
   CRUZA_PALAVRAS: 'cruza-palavras',
   TE_CONHECO: 'te-conheco',
 };

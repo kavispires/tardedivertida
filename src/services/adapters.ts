@@ -78,6 +78,10 @@ export const UE_SO_ISSO_API = {
   submitAction: httpsCallable(functions, 'ueSoIssoSubmitAction'),
 };
 
+export const VENDAVAL_DE_PALPITE_API = {
+  submitAction: httpsCallable(functions, 'vendavalDePalpiteSubmitAction'),
+};
+
 export const CRUZA_PALAVRAS_API = {
   submitAction: httpsCallable(functions, 'cruzaPalavrasSubmitAction'),
 };

@@ -270,7 +270,9 @@ export const updatePlayer = async ({
 
   const playerChange = {};
   for (const key in change) {
-    playerChange[`${playerId}.${key}`] = change[key];
+    if (change[key] !== undefined) {
+      playerChange[`${playerId}.${key}`] = change[key];
+    }
   }
   // Ready player if so
   if (shouldReady) {

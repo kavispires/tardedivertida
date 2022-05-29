@@ -53,8 +53,6 @@ export const handleSubmitGuesses = async (
   playerId: PlayerId,
   guesses: PlainObject
 ) => {
-  // TODO, update guessing history
-
   return await utils.firebase.updatePlayer({
     collectionName,
     gameId,
