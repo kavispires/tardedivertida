@@ -4,7 +4,7 @@ import { Button, Progress, Space } from 'antd';
 import gameOverTitle from 'assets/images/game-over-title.svg';
 // Utils
 import { useLanguage } from 'hooks';
-import { AVATARS } from 'utils/constants';
+import { AVATARS } from 'utils/avatars';
 // Components
 import { Translate } from 'components/language';
 import { Avatar } from 'components/avatars';

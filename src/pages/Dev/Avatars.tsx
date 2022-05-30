@@ -2,7 +2,7 @@
 import { Divider, Layout, PageHeader } from 'antd';
 import { Avatar } from 'components/avatars';
 // Components
-import { AVAILABLE_AVATAR_IDS, AVATARS } from 'utils/constants';
+import { AVAILABLE_AVATAR_IDS, AVATARS } from 'utils/avatars';
 
 function AvatarsPage() {
   const styles: React.CSSProperties = {
@@ -14,7 +14,7 @@ function AvatarsPage() {
   const stylesLi: React.CSSProperties = {
     margin: '0',
     display: 'grid',
-    gridTemplateRows: '72px auto',
+    gridTemplateRows: ' auto 72px auto',
     alignItems: 'center',
     justifyItems: 'center',
     padding: '0.5rem',
@@ -31,6 +31,7 @@ function AvatarsPage() {
           const avatar = AVATARS[avatarId];
           return (
             <li key={avatar.id} style={{ ...stylesLi, backgroundColor: avatar.color }}>
+              <div style={{ overflow: 'hidden', textAlign: 'center' }}>[{avatar.id}]</div>
               <Avatar id={avatar.id} size={64} />
               <div style={{ overflow: 'hidden', textAlign: 'center' }}>
                 <p>

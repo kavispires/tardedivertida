@@ -1,7 +1,7 @@
 // Hooks
 import { useCardWidth } from 'hooks';
 // Constants
-import { AVATARS } from 'utils/constants';
+import { AVATARS } from 'utils/avatars';
 // Components
 import { CanvasSVG } from 'components/canvas';
 import { GalleryWindowCredits } from './GalleryWindowCredits';

@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Badge } from 'antd';
 // Utils
-import { AVATARS } from 'utils/constants';
+import { AVATARS } from 'utils/avatars';
 // Hooks
 import { useLanguage } from 'hooks';
 // Components

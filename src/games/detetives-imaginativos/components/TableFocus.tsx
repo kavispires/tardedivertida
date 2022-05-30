@@ -2,7 +2,7 @@ import clsx from 'clsx';
 // Hooks
 import { useCardWidth } from 'hooks';
 // Utils
-import { AVATARS } from 'utils/constants';
+import { AVATARS } from 'utils/avatars';
 // Components
 import { Avatar, AvatarIcon } from 'components/avatars';
 import { ImageBlurButtonContainer, ImageCard } from 'components/cards';

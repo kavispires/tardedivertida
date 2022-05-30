@@ -1,4 +1,4 @@
-import { AVAILABLE_AVATAR_IDS } from 'utils/constants';
+import { AVAILABLE_AVATAR_IDS } from 'utils/avatars';
 import { Avatar } from './Avatar';
 import { getLanguageControl, mockLanguageHook } from 'mocks/storybook-helpers';
 

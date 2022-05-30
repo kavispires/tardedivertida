@@ -3,7 +3,7 @@ import { orderBy } from 'lodash';
 // Hooks
 import { useLanguage } from 'hooks';
 // Utils
-import { AVATARS } from 'utils/constants';
+import { AVATARS } from 'utils/avatars';
 // Components
 import { Avatar } from 'components/avatars';
 import { Translate } from 'components/language';

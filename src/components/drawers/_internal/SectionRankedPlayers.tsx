@@ -5,7 +5,7 @@ import { Badge } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks';
 // Utils
-import { AVATARS } from 'utils/constants';
+import { AVATARS } from 'utils/avatars';
 // Components
 import { Avatar } from 'components/avatars';
 
