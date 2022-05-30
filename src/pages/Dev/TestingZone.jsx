@@ -10,6 +10,7 @@ import { Button, Input } from 'antd';
 import { LETTERS } from 'utils/constants';
 
 import { getColorFromLetter } from 'utils/helpers';
+import { DevHeader } from './DevHeader';
 
 function TestingZone() {
   const info = gameList['U'];
@@ -105,6 +106,7 @@ function TestingZone() {
   };
   return (
     <div>
+      <DevHeader title="Testing Zone" />
       <AdminOnlyContainer>Hello</AdminOnlyContainer>
     </div>
   );

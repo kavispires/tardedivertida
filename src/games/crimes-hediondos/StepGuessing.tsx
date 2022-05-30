@@ -14,7 +14,7 @@ import { SelectableGroupedItemsBoard } from './components/SelectableGroupedItems
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
-import { DebugOnly } from 'components/dev';
+import { DebugOnly } from 'components/debug';
 import { FloatingHand } from 'components/cards';
 import { ReadyPlayersBar } from 'components/players';
 

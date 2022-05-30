@@ -12,7 +12,7 @@ import { PopoverRule } from 'components/rules';
 import { Step } from 'components/steps';
 import { Title } from 'components/text';
 import { VotingRules } from './components/RulesBlobs';
-import { DebugOnly } from 'components/dev';
+import { DebugOnly } from 'components/debug';
 import { ReadyPlayersBar } from 'components/players';
 
 type StepVotingProps = {
