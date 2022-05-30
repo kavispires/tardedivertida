@@ -1,6 +1,4 @@
-import { useState } from 'react';
 // Ant Design Resources
-import { Button, Space } from 'antd';
 import { CloudUploadOutlined } from '@ant-design/icons';
 // Hooks
 import { useMock } from 'hooks';

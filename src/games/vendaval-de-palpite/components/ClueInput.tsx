@@ -1,4 +1,4 @@
-import { Alert, Input, Switch } from 'antd';
+import { Input, Switch } from 'antd';
 import clsx from 'clsx';
 import { Translate } from 'components/language';
 import { useLanguage } from 'hooks';
@@ -26,7 +26,7 @@ export function ClueInput({
 
   useEffect(() => {
     toggleGuessIds(id, isGuess);
-  }, [isGuess]);
+  }, [isGuess]); // eslint-disable-line
 
   return (
     <div className={clsx('v-clue-input', isGuess && 'v-clue-input--guess')}>
