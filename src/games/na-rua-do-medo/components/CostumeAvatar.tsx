@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import costumes from 'assets/images/costumes.svg';
 import avatars from 'assets/images/avatars.svg';
 // Utils
-import { AVATARS } from 'utils/constants';
+import { AVATARS } from 'utils/avatars';
 
 type CostumeAvatarProps = {
   id?: string;

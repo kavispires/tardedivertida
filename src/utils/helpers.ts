@@ -1,5 +1,6 @@
 import { camelCase, startCase } from 'lodash';
-import { AVATARS, SEPARATOR } from './constants';
+import { AVATARS } from 'utils/avatars';
+import { SEPARATOR } from './constants';
 
 /**
  * Creates a copy of given object

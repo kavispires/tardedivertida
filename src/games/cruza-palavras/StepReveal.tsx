@@ -4,7 +4,7 @@ import { orderBy } from 'lodash';
 import { Space, Table } from 'antd';
 import { CheckSquareFilled, CloseSquareFilled, TrophyOutlined, WarningOutlined } from '@ant-design/icons';
 // Utils
-import { AVATARS as avatars } from 'utils/constants';
+import { AVATARS as avatars } from 'utils/avatars';
 import { useLanguage } from 'hooks';
 // Components
 import { Step } from 'components/steps';

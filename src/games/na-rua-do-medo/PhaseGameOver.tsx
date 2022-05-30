@@ -2,7 +2,7 @@ import { orderBy } from 'lodash';
 // Hooks
 import { useLanguage, useUser } from 'hooks';
 // Utils
-import { AVATARS } from 'utils/constants';
+import { AVATARS } from 'utils/avatars';
 // Components
 
 import { CandyCount } from './components/CandyCount';

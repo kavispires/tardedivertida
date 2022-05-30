@@ -3,16 +3,16 @@ import { useTimer } from 'react-timer-hook';
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Utils
-import { AVATARS } from 'utils/constants';
+import { AVATARS } from 'utils/avatars';
 import { DRAWING_TIME_IN_SECONDS } from './utils/constants';
 import { inNSeconds } from 'utils/helpers';
+// Components
 import { Step } from 'components/steps';
 import { Card } from 'components/cards';
 import { TimerBar } from 'components/timers';
 import { Icons } from 'components/icons';
 import { DrawingCanvas } from 'components/canvas';
 import { Translate } from 'components/language';
-// Components
 
 type StepTimedDrawingProps = {
   currentPrompt: Prompt;

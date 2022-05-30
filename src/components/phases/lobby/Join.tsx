@@ -11,7 +11,8 @@ import avatars from 'assets/images/avatars.svg';
 // Services
 import localStorage from 'services/localStorage';
 // Utils
-import { AVAILABLE_AVATAR_IDS, AVATARS, PUBLIC_URL, RANDOM_NAMES } from 'utils/constants';
+import { AVAILABLE_AVATAR_IDS, AVATARS } from 'utils/avatars';
+import { PUBLIC_URL, RANDOM_NAMES } from 'utils/constants';
 import { convertYYYYMMDDtoMilliseconds, getRandomItem, isDevEnv } from 'utils/helpers';
 // Components
 import { Translate } from 'components/language';
