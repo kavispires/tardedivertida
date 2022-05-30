@@ -1,6 +1,7 @@
-import { Card } from 'components/cards';
+// Hooks
 import { useLanguage } from 'hooks';
-import { pluralize } from 'utils/helpers';
+// Components
+import { Card } from 'components/cards';
 
 type SecretWordCardProps = {
   secretWord: string;
