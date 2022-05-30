@@ -16,6 +16,7 @@ import * as retratoFaladoEngine from '../engine/retrato-falado';
 import * as sonhosPesadelosEngine from '../engine/sonhos-pesadelos';
 import * as testemunhaOcularEngine from '../engine/testemunha-ocular';
 import * as ueSoIssoEngine from '../engine/ue-so-isso';
+import * as vendavalDePalpiteEngine from '../engine/vendaval-de-palpite';
 import * as cruzaPalavrasEngine from '../engine/cruza-palavras';
 
 /**
@@ -57,6 +58,8 @@ export const getCollectionNameByGameCode = (gameCode: GameCode): string | null =
       return GAME_COLLECTIONS.TESTEMUNHA_OCULAR;
     case GAME_CODES.U:
       return GAME_COLLECTIONS.UE_SO_ISSO;
+    case GAME_CODES.V:
+      return GAME_COLLECTIONS.VENDAVAL_DE_PALPITE;
     case GAME_CODES.X:
       return GAME_COLLECTIONS.CRUZA_PALAVRAS;
     default:
@@ -103,6 +106,8 @@ export const getCollectionKeyByGameCode = (gameCode: GameCode): string | null =>
       return GAME_KEYS.TESTEMUNHA_OCULAR;
     case GAME_CODES.U:
       return GAME_KEYS.UE_SO_ISSO;
+    case GAME_CODES.V:
+      return GAME_KEYS.VENDAVAL_DE_PALPITE;
     case GAME_CODES.X:
       return GAME_KEYS.CRUZA_PALAVRAS;
     default:
@@ -157,6 +162,8 @@ export const getEngine = (collectionName: string): Engine => {
       return testemunhaOcularEngine;
     case GAME_COLLECTIONS.UE_SO_ISSO:
       return ueSoIssoEngine;
+    case GAME_COLLECTIONS.VENDAVAL_DE_PALPITE:
+      return vendavalDePalpiteEngine;
     case GAME_COLLECTIONS.CRUZA_PALAVRAS:
       return cruzaPalavrasEngine;
     default:

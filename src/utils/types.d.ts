@@ -191,3 +191,8 @@ type AnimationType =
   | 'tada'
   | 'zoomIn'
   | 'zoomInDown';
+
+type DefaultTextCard = {
+  id: CardId;
+  text: string;
+};

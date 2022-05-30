@@ -15,6 +15,7 @@ import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
 import { ReadyPlayersBar } from 'components/players';
+import { ControlledInputWriting } from 'components/input';
 
 type StepSuggestionProps = {
   guesser: GamePlayer;
@@ -31,30 +32,6 @@ export function StepSuggestion({
   players,
   suggestionsNumber = 1,
 }: StepSuggestionProps) {
-  const [suggestions, setSuggestions] = useState([]);
-
-  const onChangeInput = (e: any) => {
-    const { id, value } = e.target;
-    if (id && value?.length > 1) {
-      const indexStr = id.split('-')[1];
-      const index = Number(indexStr) - 1;
-      setSuggestions((s: any) => {
-        const newState = { ...s };
-        newState[index] = value.toUpperCase().trim();
-        return newState;
-      });
-    }
-  };
-
-  const suggestionsValues = Object.values(suggestions);
-
-  // On enter in the easel if only one suggestion is necessary
-  const onPressEnter = () => {
-    if (suggestionsNumber === suggestionsValues.length) {
-      onSendSuggestions({ suggestions: suggestionsValues });
-    }
-  };
-
   useMock(() => {
     onSendSuggestions(mockSuggestions(suggestionsNumber));
   }, []);
@@ -91,29 +68,22 @@ export function StepSuggestion({
         </Instruction>
       )}
 
-      <Space className="u-word-suggestion-step__inputs">
-        {Array(suggestionsNumber)
-          .fill(1)
-          .map((entry, index) => {
-            const id = `suggestion-${entry + index}`;
-            return (
-              <SuggestionEasel key={id} id={id} onChangeInput={onChangeInput} onPressEnter={onPressEnter} />
-            );
-          })}
-      </Space>
-
-      <Space className="u-word-suggestion-step__submit">
-        <Button
-          icon={<CloudUploadOutlined />}
-          type="primary"
-          onClick={() => onSendSuggestions({ suggestions: suggestionsValues })}
-          disabled={suggestionsValues.length < suggestionsNumber}
-          size="large"
-        >
-          <Translate pt="Enviar dica" en="Send clue" />
-          {suggestionsNumber > 1 && 's'}
-        </Button>
-      </Space>
+      <ControlledInputWriting
+        onSubmit={onSendSuggestions}
+        inputComponent={SuggestionEasel}
+        valueKey="suggestions"
+        inputQuantity={suggestionsNumber}
+        submitButtonLabel={
+          <>
+            <Translate pt="Enviar dica" en="Send clue" />
+            {suggestionsNumber > 1 && 's'}
+          </>
+        }
+        submitButtonProps={{
+          icon: <CloudUploadOutlined />,
+          size: 'large',
+        }}
+      />
 
       <ReadyPlayersBar players={players} />
     </Step>
