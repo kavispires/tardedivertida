@@ -402,6 +402,7 @@ export const GAME_COLLECTION: StringDictionary = {
   SONHOS_PESADELOS: 'sonhos-pesadelos',
   TESTEMUNHA_OCULAR: 'testemunha-ocular',
   UE_SO_ISSO: 'ue-so-isso',
+  VENDAVAL_DE_PALPITE: 'vendaval-de-palpite',
   CRUZA_PALAVRAS: 'cruza-palavras',
   TE_CONHECO: 'te-conheco',
 };

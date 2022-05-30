@@ -74,6 +74,9 @@ const SessionTestemunhaOcular = lazy(
 const SessionUeSoIsso = lazy(
   () => import('games/ue-so-isso/SessionUeSoIsso' /* webpackChunkName: "ue-so-isso" */)
 );
+const SessionVendavalDePalpite = lazy(
+  () => import('games/vendaval-de-palpite/SessionVendavalDePalpite' /* webpackChunkName: "ue-so-isso" */)
+);
 
 function Game() {
   const navigate = useNavigate();
@@ -254,6 +257,12 @@ function Game() {
         return (
           <Suspense fallback={<LoadingPage message={''} />}>
             <SessionUeSoIsso gameId={gameId} />
+          </Suspense>
+        );
+      case GAME_COLLECTION.VENDAVAL_DE_PALPITE:
+        return (
+          <Suspense fallback={<LoadingPage message={''} />}>
+            <SessionVendavalDePalpite gameId={gameId} />
           </Suspense>
         );
       case GAME_COLLECTION.CRUZA_PALAVRAS:

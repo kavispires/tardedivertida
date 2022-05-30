@@ -48,7 +48,6 @@ function PhaseSuggest({ state, players, info }: PhaseProps) {
         </PhaseAnnouncement>
 
         {/* Step 1 */}
-
         <ViewOr orCondition={isUserTheGuesser}>
           <GuesserWaitingRoom
             players={players}

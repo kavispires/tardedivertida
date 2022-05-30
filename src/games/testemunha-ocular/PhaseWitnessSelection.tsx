@@ -1,24 +1,18 @@
-// Ant Design Resources
-import { Space } from 'antd';
 // Hooks
-import { useLoading, useLanguage, useGlobalState, useStep } from 'hooks';
+import { useLanguage, useStep } from 'hooks';
 import { useOnSelectWitnessAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-import { AvatarCard, AvatarIcon } from 'components/avatars';
-import { TransparentButton } from 'components/buttons';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { Step, StepSwitcher } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { StepSwitcher } from 'components/steps';
+import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
-import { WitnessRules } from './components/TextBlobs';
+import { StepWitnessSelection } from './StepWitnessSelection';
 
 function PhaseWitnessSelection({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
-  const { isLoading } = useLoading();
   const { step, goToNextStep } = useStep(0);
-  const [isAdmin] = useGlobalState('isAdmin');
 
   const onWitnessButtonClick = useOnSelectWitnessAPIRequest();
 
@@ -58,40 +52,7 @@ function PhaseWitnessSelection({ state, players, info }: PhaseProps) {
         </PhaseAnnouncement>
 
         {/* Step 1 */}
-        <Step key={1}>
-          <Title>
-            <AvatarIcon type="animated-clock" size="large" />
-            <br />
-            <Translate pt="Quem quer ser a testemunha ocular?" en="Who wants to be the eye witness?" />
-          </Title>
-
-          <WitnessRules />
-
-          <Instruction contained>
-            <Space>
-              {Object.values(players).map((player) => {
-                if (isAdmin) {
-                  return (
-                    <TransparentButton
-                      key={`p-bt-${player.id}`}
-                      disabled={isLoading}
-                      onClick={() => onWitnessButtonClick({ witnessId: player.id })}
-                    >
-                      <AvatarCard key={`p-a-${player.id}`} player={player} withName addressUser />
-                    </TransparentButton>
-                  );
-                }
-
-                return <AvatarCard key={`p-a-${player.id}`} player={player} withName addressUser />;
-              })}
-            </Space>
-          </Instruction>
-
-          <Instruction>
-            (
-            <Translate pt="O administrator selecionará a testemunha" en="The VIP will select the witness" />)
-          </Instruction>
-        </Step>
+        <StepWitnessSelection players={players} onWitnessButtonClick={onWitnessButtonClick} />
       </StepSwitcher>
     </PhaseContainer>
   );
