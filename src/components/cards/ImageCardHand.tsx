@@ -46,7 +46,6 @@ export function ImageCardHand({
                   className={selectButtonClass}
                   onClick={() => onSelectCard!(cardId)}
                   size="small"
-                  ghost
                   disabled={disabledSelectButton}
                 >
                   {translate('Selecionar', 'Select', selectButtonLabel)}

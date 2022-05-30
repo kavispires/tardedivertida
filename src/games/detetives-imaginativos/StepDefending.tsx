@@ -19,6 +19,8 @@ type StepDefendingProps = {
   table: DetetivesImaginativosCardEntry[];
   onFinishDefenseClick: GenericFunction;
   isLoading: boolean;
+  isUserTheImpostor: boolean;
+  user: GamePlayer;
 };
 
 export function StepDefending({
@@ -28,6 +30,8 @@ export function StepDefending({
   table,
   onFinishDefenseClick,
   isLoading,
+  isUserTheImpostor,
+  user,
 }: StepDefendingProps) {
   const { translate } = useLanguage();
 
@@ -61,7 +65,16 @@ export function StepDefending({
           <>
             <Translate
               pt=" Quando terminar sua defesa, aperte concluir."
-              en=" When you're done, press 'End Defense'"
+              en=" When you're done, press 'End Defense'."
+            />
+          </>
+        )}
+        {isUserTheImpostor && (
+          <>
+            <br />
+            <Translate
+              pt=" Suas cartas estão no fim da página pra você começar a já pensar numa desculpa esfarrapada."
+              en=" Your cards are displayed in the bottom of the page so you can think of your B.S.'"
             />
           </>
         )}
@@ -75,7 +88,17 @@ export function StepDefending({
         </Space>
       )}
 
-      <TableFocus table={table} currentPlayer={currentPlayer} />
+      <Space className="space-container" align="center" wrap>
+        <TableFocus table={table} currentPlayer={currentPlayer} />
+        {isUserTheImpostor && (
+          <div style={{ transform: 'scale(0.8)' }}>
+            <Title size="x-small">
+              <Translate pt="Suas cartas" en="Your cards" />
+            </Title>
+            <TableFocus table={table} currentPlayer={user} />
+          </div>
+        )}
+      </Space>
     </Step>
   );
 }
