@@ -46,7 +46,7 @@ export function StepVoting({
         <ViewIf isVisible={!isUserTheLeader && !user.vote}>
           <Translate
             pt="Vote para quem você acha que pode ser o impostor! Lembre-se, o impostor só perde se 2 ou mais detetives votarem nele."
-            en="Vote for who you think can be the impostor! Remember, the impostor only goes down if they get 2 or more votes."
+            en="Vote for who you think is the impostor! Remember, the impostor only goes down if they get 2 or more votes."
           />
         </ViewIf>
         <ViewIf isVisible={!isUserTheLeader && user.vote}>

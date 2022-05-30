@@ -1,5 +1,5 @@
 // Hooks
-import { useWhichPlayerIsThe, useLoading, useLanguage, useStep } from 'hooks';
+import { useWhichPlayerIsThe, useLoading, useLanguage, useStep, useUser } from 'hooks';
 import { useOnFinishDefenseRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
@@ -15,6 +15,8 @@ function PhaseDefense({ state, players, info }: PhaseProps) {
   const { isLoading } = useLoading();
   const { step, goToNextStep } = useStep(0);
   const [currentPlayer, isUserTheCurrentPlayer] = useWhichPlayerIsThe('currentPlayerId', state, players);
+  const [, isUserTheImpostor] = useWhichPlayerIsThe('impostorId', state, players);
+  const user = useUser(players);
 
   const onFinishDefense = useOnFinishDefenseRequest();
 
@@ -54,6 +56,8 @@ function PhaseDefense({ state, players, info }: PhaseProps) {
           table={state.table}
           onFinishDefenseClick={onFinishDefense}
           isLoading={isLoading}
+          isUserTheImpostor={isUserTheImpostor}
+          user={user}
         />
       </StepSwitcher>
     </PhaseContainer>
