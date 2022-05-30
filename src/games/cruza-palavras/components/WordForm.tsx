@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 //Design Resources
-import { Button, Input, Space } from 'antd';
+import { Button, Input, InputRef, Space } from 'antd';
 // Hooks
 import { useMock } from 'hooks';
 // Components
@@ -15,7 +15,7 @@ type WordFormProps = {
 
 export function WordForm({ x, y, onSubmit, disabled }: WordFormProps) {
   const [clue, setClue] = useState('');
-  const textInput = useRef<Input | null>(null);
+  const textInput = useRef<InputRef | null>(null);
 
   const onChange = (e: any) => {
     setClue(e.target.value);
