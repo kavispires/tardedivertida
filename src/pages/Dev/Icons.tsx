@@ -1,7 +1,8 @@
 // Ant Design Resources
-import { Layout, PageHeader } from 'antd';
+import { Layout } from 'antd';
 // Components
 import { Icons } from 'components/icons';
+import { DevHeader } from './DevHeader';
 
 function IconsPage() {
   const styles: React.CSSProperties = {
@@ -22,17 +23,19 @@ function IconsPage() {
   };
   const iconEntries = Object.entries(Icons);
   return (
-    <Layout.Content style={{ padding: '1rem', width: '100%' }}>
-      <PageHeader title={`Icons (${iconEntries.length})`} style={{ backgroundColor: 'white' }} />
-      <ul style={styles}>
-        {iconEntries.map(([key, Icon], index) => (
-          <li key={key} style={stylesLi}>
-            <Icon style={{ width: '90px' }} />
-            <div style={{ width: '90px', overflow: 'hidden', textAlign: 'center' }}>{key}</div>
-          </li>
-        ))}
-      </ul>
-    </Layout.Content>
+    <Layout style={{ background: 'none' }}>
+      <DevHeader title="Icons" subTitle={`(${iconEntries.length})`} />
+      <Layout.Content style={{ padding: '1rem', width: '100%' }}>
+        <ul style={styles}>
+          {iconEntries.map(([key, Icon], index) => (
+            <li key={key} style={stylesLi}>
+              <Icon style={{ width: '90px' }} />
+              <div style={{ width: '90px', overflow: 'hidden', textAlign: 'center' }}>{key}</div>
+            </li>
+          ))}
+        </ul>
+      </Layout.Content>
+    </Layout>
   );
 }
 

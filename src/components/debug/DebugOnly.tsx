@@ -7,6 +7,11 @@ type DebugOnlyProps = {
   children: ReactChildren;
 };
 
+/**
+ * Wrapper component for information only displayed if the debug mode is on
+ * @param props
+ * @returns
+ */
 export function DebugOnly({ children, div = false, dev = false, devOnly = false }: DebugOnlyProps) {
   const { isDebugEnabled, isDevEnv } = useDevFeatures();
 

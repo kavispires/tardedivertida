@@ -10,7 +10,7 @@ import { SectionMeta } from './_internal/SectionMeta';
 import { SectionTeams } from './_internal/SectionTeams';
 import { SectionRankedPlayers } from './_internal/SectionRankedPlayers';
 import { SectionSettings } from './_internal/SectionSettings';
-import { DebugOnly } from 'components/dev';
+import { DebugOnly } from 'components/debug';
 import { RulesModal } from 'components/rules';
 import { PUBLIC_URL } from 'utils/constants';
 
