@@ -11,8 +11,10 @@ import { LETTERS } from 'utils/constants';
 
 import { getColorFromLetter } from 'utils/helpers';
 import { DevHeader } from './DevHeader';
+import { useTitle } from 'react-use';
 
 function TestingZone() {
+  useTitle('Testing Zone | Dev | Tarde Divertida');
   const info = gameList['U'];
 
   const players = {
