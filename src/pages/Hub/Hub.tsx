@@ -14,12 +14,15 @@ import { RecentlyCreatedGames } from './components/RecentlyCreatedGames';
 import { GameCard } from './components/GameCard';
 import { LanguageSwitch, Translate } from 'components/language';
 import { DevHeader } from 'pages/Dev/DevHeader';
+import { useTitle } from 'react-use';
 
 const GAME_LIST: {
   [key: string]: GameInfo;
 } = gameList;
 
 function Hub() {
+  useTitle('Hub - Tarde Divertida');
+
   const navigate = useNavigate();
   const { language } = useLanguage();
   const [getLocalStorage] = useLocalStorage();

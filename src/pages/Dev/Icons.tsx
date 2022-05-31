@@ -2,9 +2,11 @@
 import { Layout } from 'antd';
 // Components
 import { Icons } from 'components/icons';
+import { useTitle } from 'react-use';
 import { DevHeader } from './DevHeader';
 
 function IconsPage() {
+  useTitle('Icons | Dev | Tarde Divertida');
   const styles: React.CSSProperties = {
     width: '100%',
     display: 'flex',

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 // Hooks
-import { useGameState, useGlobalState, useGamePlayers } from 'hooks';
+import { useGameState, useGlobalState, useGamePlayers, useLanguage } from 'hooks';
 // Utils
 import gameList from 'assets/data/games.json';
 import { isDevEnv } from 'utils/helpers';
@@ -8,6 +8,7 @@ import { isDevEnv } from 'utils/helpers';
 import { PhaseLobby } from 'components/phases';
 import { GameInfoDrawer } from 'components/drawers';
 import { AdminMenuDrawer } from 'components/admin';
+import { useTitle } from 'react-use';
 
 const GAME_LIST: {
   [key: string]: GameInfo;
@@ -20,11 +21,14 @@ type SessionProps = {
 };
 
 export function Session({ gameId, gameCollection, getActiveComponent }: SessionProps) {
+  const { language } = useLanguage();
   const players = useGamePlayers(gameId, gameCollection);
   const state = useGameState(gameId, gameCollection);
   const [userId] = useGlobalState('userId');
   const [gameMeta] = useGlobalState('gameMeta');
   const [info, setInfo] = useState<any>({});
+  const gameName = info?.title ?? '';
+  useTitle(`${gameName ? `${gameName[language]} | ` : ''}Tarde Divertida`);
 
   useEffect(() => {
     if (isDevEnv) {

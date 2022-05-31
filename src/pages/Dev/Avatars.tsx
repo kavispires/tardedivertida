@@ -1,11 +1,14 @@
 // Ant Design Resources
 import { Divider, Layout } from 'antd';
 import { Avatar } from 'components/avatars';
+import { useTitle } from 'react-use';
 // Components
 import { AVAILABLE_AVATAR_IDS, AVATARS } from 'utils/avatars';
 import { DevHeader } from './DevHeader';
 
 function AvatarsPage() {
+  useTitle('Avatars | Dev | Tarde Divertida');
+
   const styles: React.CSSProperties = {
     width: '100%',
     display: 'grid',
