@@ -36,7 +36,7 @@ export const ImageCard = ({
     <div className={clsx(baseClass, `${baseClass}--${size}`, isBlurred && `${baseClass}--blur`, className)}>
       <Image
         width={cardWidth}
-        src={`${process.env.REACT_APP_TDI_IMAGES_URL}${imageURL}.jpg`}
+        src={`${process.env.REACT_APP_TD_IMAGES_URL}${imageURL}.jpg`}
         placeholder={<Image preview={false} src={placeholder} width={cardWidth} />}
         fallback={`${PUBLIC_URL.CARDS}${fallbackName}.jpg`}
         preview={
