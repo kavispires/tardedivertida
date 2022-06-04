@@ -19,8 +19,8 @@ export const ImageCardBack = ({
   previewImageId,
 }: ImageCardBackProps) => {
   const baseClass = 'image-card-back';
-  const [blurredCards, , blurEnabled] = useBlurCards();
-  const isBlurred = blurEnabled && previewImageId && blurredCards?.[previewImageId];
+  const { shouldBeBlurred } = useBlurCards();
+  const isBlurred = shouldBeBlurred(previewImageId);
   const imageURL = (previewImageId ?? '').replace(/-/g, '/');
 
   return (

@@ -12,9 +12,9 @@ type ImageBlurButtonProps = {
 };
 
 export function ImageBlurButton({ cardId }: ImageBlurButtonProps) {
-  const [, addBlurCard, blurEnabled] = useBlurCards();
+  const { blurCard, isBlurEnabled } = useBlurCards();
 
-  return blurEnabled ? (
+  return isBlurEnabled ? (
     <Tooltip
       placement="top"
       title={
@@ -24,7 +24,7 @@ export function ImageBlurButton({ cardId }: ImageBlurButtonProps) {
         />
       }
     >
-      <Button ghost onClick={() => addBlurCard(cardId)} size="small" className="image-blur-button">
+      <Button ghost onClick={() => blurCard(cardId)} size="small" className="image-blur-button">
         <EyeInvisibleOutlined /> <Translate pt="Credo" en="Blur" />
       </Button>
     </Tooltip>
