@@ -12,14 +12,14 @@ export function WordSelectionRules({ scout }: WordSelectionRulesProps) {
       <Translate
         pt={
           <>
-            Cada sonho tem seu tema... uma palavra.
+            Cada rodada tem seu tema... uma palavra.
             <br />
             Para essa rodada, <AvatarName player={scout} addressUser size="small" /> escolherá o tema.
           </>
         }
         en={
           <>
-            Every dream has a theme... a word.
+            Every round has a theme... a word.
             <br />
             For this round,
             <AvatarName player={scout} addressUser size="small" /> will choose the theme.
