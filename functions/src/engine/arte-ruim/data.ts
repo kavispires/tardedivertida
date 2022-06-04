@@ -31,7 +31,7 @@ export const getCards = async (
   const allCards: ArteRuimCard[] = Object.values(allCardsResponse);
 
   const allCardsGroupResponse = await resourceUtils.fetchResource(
-    `${TDR_RESOURCES.ARTE_RUIM_CARDS}-${language}`
+    `${TDR_RESOURCES.ARTE_RUIM_GROUPS}-${language}`
   );
   const cardsGroups: ArteRuimGroup[] = Object.values(allCardsGroupResponse);
 
