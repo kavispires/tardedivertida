@@ -1,4 +1,3 @@
-import clsx from 'clsx';
 // Ant Design Resources
 import { Button, Tooltip } from 'antd';
 import { EyeInvisibleOutlined } from '@ant-design/icons';
@@ -30,26 +29,5 @@ export function ImageBlurButton({ cardId }: ImageBlurButtonProps) {
     </Tooltip>
   ) : (
     <></>
-  );
-}
-
-type ImageBlurButtonContainerProps = {
-  cardId: string;
-  className?: string;
-  children: any;
-  [key: string]: any;
-};
-
-export function ImageBlurButtonContainer({
-  cardId,
-  className,
-  children,
-  ...props
-}: ImageBlurButtonContainerProps) {
-  return (
-    <div className={clsx('image-blur-button-container', className)} {...props}>
-      {children}
-      <ImageBlurButton cardId={cardId} />
-    </div>
   );
 }
