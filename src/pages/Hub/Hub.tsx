@@ -1,7 +1,7 @@
 import { useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 // Ant Design Resources
-import { Typography, Layout, Space, Divider, Button, message } from 'antd';
+import { Typography, Layout, Space, Divider, Button, message, Popconfirm } from 'antd';
 import { DatabaseFilled } from '@ant-design/icons';
 // API
 import { signOut } from 'services/firebase';
@@ -79,9 +79,11 @@ function Hub() {
         subTitle={<Translate pt="Selecione um jogo para começar" en="Select a game to start" />}
         extra={[
           <LanguageSwitch key="language-switch" />,
-          <Button danger ghost onClick={onSignOut} key="logout-button" size="small">
-            Logout
-          </Button>,
+          <Popconfirm title={<Translate pt="Tem certeza?" en="Are you sure?" />} onConfirm={onSignOut}>
+            <Button danger ghost key="logout-button" size="small">
+              Logout
+            </Button>
+          </Popconfirm>,
         ]}
       />
       <Layout.Content className="container">
