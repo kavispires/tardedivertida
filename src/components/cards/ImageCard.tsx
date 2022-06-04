@@ -22,7 +22,7 @@ export const ImageCard = ({
   className = '',
   preview = true,
 }: ImageCardProps) => {
-  const [blurredCards, , blurEnabled] = useBlurCards();
+  const { shouldBeBlurred } = useBlurCards();
 
   const baseClass = 'image-card';
 
@@ -30,7 +30,7 @@ export const ImageCard = ({
 
   const imageURL = imageId.replace(/-/g, '/');
 
-  const isBlurred = blurEnabled && blurredCards?.[imageId];
+  const isBlurred = shouldBeBlurred(imageId);
 
   return (
     <div className={clsx(baseClass, `${baseClass}--${size}`, isBlurred && `${baseClass}--blur`, className)}>
