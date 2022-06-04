@@ -41,7 +41,7 @@ export const AVATARS: AvatarDict = {
   5: {
     id: '5',
     description: { pt: 'o tucano', en: 'the toucan' },
-    color: '#3a874b',
+    color: '#f07f3a',
   },
   6: {
     id: '6',
