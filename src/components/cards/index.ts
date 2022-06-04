@@ -1,6 +1,7 @@
 export * from './Card';
 export * from './FloatingHand';
 export * from './ImageBlurButton';
+export * from './ImageBlurButtonContainer';
 export * from './ImageCard';
 export * from './ImageCardHand';
 export * from './ImageCardBack';
