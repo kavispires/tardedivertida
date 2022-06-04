@@ -24,7 +24,9 @@ export function SelectTable({ table, onSelectCard, selectedCards }: SelectTableP
 
           return (
             <li key={`g-table-${card.id}`} className="g-table-item" style={{ width: `${cardWidth + 8}px` }}>
-              <ImageBlurButton cardId={card.id} />
+              <div className="center">
+                <ImageBlurButton cardId={card.id} />
+              </div>
               <ImageCard
                 imageId={card.id}
                 cardWidth={cardWidth - 6} // 6 is the border total size
