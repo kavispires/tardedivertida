@@ -11,7 +11,7 @@ export function DevHeader({ title, extra, ...props }: PageHeaderProps) {
       {...props}
       extra={
         <>
-          <DevMenu /> {extra}
+          {extra} <DevMenu />
         </>
       }
     />
