@@ -5,7 +5,6 @@ import { useBooleanDictionary, useMock } from 'hooks';
 // Utils
 import { mockDreamSelection } from './utils/mock';
 // Components
-import { Card } from 'components/cards';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
 import { Step } from 'components/steps';
@@ -40,7 +39,6 @@ export function StepDreamsSelection({ table, word, onSubmitCards, players }: Ste
         <Translate pt="Visite sonhos relacionados a " en="Visit dreams related to " />
         <TextHighlight>{word.text}</TextHighlight>
       </Title>
-      {/* <Card randomColor>{word.text}</Card> */}
       <DreamSelectionRules contained />
 
       <PopoverRule content={<DreamSelectionExtendedRules />} />
