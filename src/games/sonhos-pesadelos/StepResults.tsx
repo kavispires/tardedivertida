@@ -39,7 +39,7 @@ export function StepResults({
 
       <SlideShow
         players={players}
-        galleryLength={gallery.length}
+        length={gallery.length}
         activeIndex={activeIndex}
         setActiveIndex={setActiveIndex}
         setStep={setStep}

@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
 // Hooks
-import { useIsUserReady, useLanguage, useStep } from 'hooks';
+import { useIsUserReady, useLanguage, useSlideShow, useStep } from 'hooks';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
@@ -14,17 +13,8 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 function PhaseResolution({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
   const { step, goToNextStep, goToPreviousStep, setStep } = useStep(0);
-
   const isUserReady = useIsUserReady(players, state);
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [isFirstGalleryRunThrough, setIsFirstGalleryRunThrough] = useState(true);
-
-  // Changes isFirstGalleryRunThrough property which disables controls, after the first gallery run through
-  useEffect(() => {
-    if (isFirstGalleryRunThrough && step > 1) {
-      setIsFirstGalleryRunThrough(false);
-    }
-  }, [step, isFirstGalleryRunThrough]);
+  const { activeIndex, setActiveIndex, isFirstGalleryRunThrough } = useSlideShow(state.gallery.length);
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.SONHOS_PESADELOS.RESOLUTION}>
