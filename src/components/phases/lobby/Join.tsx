@@ -14,6 +14,7 @@ import localStorage from 'services/localStorage';
 import { AVAILABLE_AVATAR_IDS, AVATARS } from 'utils/avatars';
 import { PUBLIC_URL, RANDOM_NAMES } from 'utils/constants';
 import { convertYYYYMMDDtoMilliseconds, getRandomItem, isDevEnv } from 'utils/helpers';
+import { speak } from 'utils/speech';
 // Components
 import { Translate } from 'components/language';
 
@@ -121,6 +122,14 @@ export function Join({ players, info, meta }: JoinProps) {
         avatarId: response.data.avatarId,
         gameId,
       });
+
+      speak(
+        {
+          pt: `Bem-vindo, ${response.data.name}!`,
+          en: `Welcome, ${response.data.name}!`,
+        },
+        language
+      );
     } catch (e: any) {
       notification.error({
         message: translate(

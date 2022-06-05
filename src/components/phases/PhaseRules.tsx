@@ -3,12 +3,13 @@ import { Button, Layout, Space, Typography } from 'antd';
 import { CheckCircleFilled, MehFilled, RobotFilled, SmileFilled } from '@ant-design/icons';
 // Utils
 import { GAME_API } from 'services/adapters';
-import { useLoading, useIsUserReady, useAPICall, useLanguage, useMock } from 'hooks';
+import { useLoading, useIsUserReady, useAPICall, useLanguage, useMock, useUser } from 'hooks';
 // Components
 import { LoadingPage } from 'components/loaders';
 import { Translate } from 'components/language';
 import { ReadyPlayersBar } from 'components/players';
 import { RulesCarousel } from '../rules';
+import { speak } from 'utils/speech';
 
 type PhaseRulesProps = {
   players: GamePlayers;
@@ -17,8 +18,14 @@ type PhaseRulesProps = {
 
 export function PhaseRules({ players, info }: PhaseRulesProps) {
   const { isLoading } = useLoading();
-  const { translate } = useLanguage();
+  const { language, translate } = useLanguage();
   const isUserReady = useIsUserReady(players);
+  const user = useUser(players);
+
+  const errorMessage = translate(
+    'Vixi, o aplicativo encontrou um erro ao tentar continuar',
+    'Oh no! The application found an error when trying to continue'
+  );
 
   const onBeReady = useAPICall({
     apiFunction: GAME_API.makePlayerReady,
@@ -27,10 +34,35 @@ export function PhaseRules({ players, info }: PhaseRulesProps) {
       'Pronto! Aguarde os outros jogadores estarem prontos',
       'Done! Now wait for the other players'
     ),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar continuar',
-      'Oh no! The application found an error when trying to continue'
+    errorMessage,
+    onSuccess: () => {
+      speak(
+        {
+          pt: `Pronto! Aguarde os outros jogadores estarem prontos. Boa sorte, ${user.name}`,
+          en: `Done! Now wait for the other players. Good luck, ${user.name}`,
+        },
+        language
+      );
+    },
+  });
+
+  const onBeReadyIDK = useAPICall({
+    apiFunction: GAME_API.makePlayerReady,
+    actionName: 'be-ready',
+    successMessage: translate(
+      'Pronto! Aguarde os outros jogadores estarem prontos',
+      'Done! Now wait for the other players'
     ),
+    errorMessage,
+    onSuccess: () => {
+      speak(
+        {
+          pt: `Agora só resta rezar, ${user.name}, porque o jogo vai começar mesmo assim!`,
+          en: `Now all you have left is to pray ${user.name} because the game is starting anyway!`,
+        },
+        language
+      );
+    },
   });
 
   const onBeReadyQue = useAPICall({
@@ -40,10 +72,16 @@ export function PhaseRules({ players, info }: PhaseRulesProps) {
       'Vixi, se fudeu então, porque o jogo vai começar!',
       'Sorry, you are screwed because the game is starting anyway!'
     ),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar continuar',
-      'Oh no! The application found an error when trying to continue'
-    ),
+    errorMessage,
+    onSuccess: () => {
+      speak(
+        {
+          pt: `Vixi ${user.name}, se fudeu então, porque o jogo vai começar mesmo assim!`,
+          en: `Oh ${user.name}, you are screwed because the game is starting anyway!`,
+        },
+        language
+      );
+    },
   });
 
   // DEV: Auto-ready
@@ -77,7 +115,7 @@ export function PhaseRules({ players, info }: PhaseRulesProps) {
         <Button
           icon={isUserReady ? <CheckCircleFilled /> : <MehFilled />}
           disabled={isLoading || isUserReady}
-          onClick={() => onBeReady({})}
+          onClick={() => onBeReadyIDK({})}
           loading={isLoading}
         >
           <Translate pt="Não entendi nada, mas vamos lá!" en="I don't get it but let's go!" />
