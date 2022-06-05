@@ -9,11 +9,11 @@ type GalleryWindowCreditsProps = {
 
 export function GalleryWindowCredits({ artistName, artistAvatarId }: GalleryWindowCreditsProps) {
   return (
-    <div className="a-gallery-window__credits">
-      <div className="a-gallery-window__label">
+    <div className="a-gallery__credits">
+      <div className="a-gallery__label">
         <Translate pt="Artista" en="Artist" />
       </div>
-      <span className="a-gallery-window__artist-name">
+      <span className="a-gallery__artist-name">
         <AvatarEntry id={artistAvatarId} name={artistName} />
       </span>
     </div>

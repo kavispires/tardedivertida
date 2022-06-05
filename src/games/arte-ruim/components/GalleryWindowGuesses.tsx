@@ -38,25 +38,25 @@ export function GalleryWindowGuesses({
   );
 
   return (
-    <div className="a-gallery-window__guesses">
-      <div className="a-gallery-window__label">
+    <div className="a-gallery__guesses">
+      <div className="a-gallery__label">
         <Translate pt="Participantes votaram" en="Players voted" />
       </div>
       {entries.map((entry, index) => {
         return (
-          <div key={`guess-${entry.cardId}-${index}`} className="a-gallery-window__guess">
+          <div key={`guess-${entry.cardId}-${index}`} className="a-gallery__guess">
             <div
-              className="a-gallery-window__speech-bubble"
+              className="a-gallery__speech-bubble"
               style={entry.isCorrect ? { backgroundColor: artistColor, color: 'white' } : {}}
             >
               {entry.isCorrect ? (
-                <CrownFilled className="a-gallery-window__speech-bubble-icon" style={{ color: 'white' }} />
+                <CrownFilled className="a-gallery__speech-bubble-icon" style={{ color: 'white' }} />
               ) : (
-                <MessageFilled className="a-gallery-window__speech-bubble-icon" />
+                <MessageFilled className="a-gallery__speech-bubble-icon" />
               )}
               {entry.card?.text}
             </div>
-            <div className="a-gallery-window__players">
+            <div className="a-gallery__players">
               <AntAvatar.Group>
                 {entry.playersIds.map((playerId) => (
                   <Avatar
@@ -65,7 +65,7 @@ export function GalleryWindowGuesses({
                   />
                 ))}
               </AntAvatar.Group>
-              <span className="a-gallery-window__players-names">
+              <span className="a-gallery__players-names">
                 {getPlayersFromIds(entry.playersIds, players, true).join(', ')}
               </span>
             </div>

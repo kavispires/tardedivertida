@@ -23,7 +23,7 @@ type ArteRuimWindow = {
   drawing: string;
   id: string;
   level: number;
-  playersPoints?: PlainObject;
+  playersPoints?: NumberDictionary;
   playersSay: PlayersSay;
   text: string;
 };
