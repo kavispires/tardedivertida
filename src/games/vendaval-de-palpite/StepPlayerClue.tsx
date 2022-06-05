@@ -104,8 +104,8 @@ export function StepPlayerClue({
 
       <Instruction contained>
         <Translate
-          pt="Escreva pistas para ajudar a afunilar as possibilidades. Vocês tem 2 minutos"
-          en="Write clues that will have narrow down the possibilities. You have 2 minutes"
+          pt="Escreva pistas para ajudar a afunilar as possibilidades. Vocês tem 3 minutos"
+          en="Write clues that will have narrow down the possibilities. You have 3 minutes"
         />
       </Instruction>
 
