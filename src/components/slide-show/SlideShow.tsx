@@ -5,7 +5,7 @@ import { SlideShowControls } from './SlideShowControls';
 type SlideShowProps = {
   players: GamePlayers;
   children: [ReactChildren, ReactChildren];
-  galleryLength: number;
+  length: number;
   activeIndex: number;
   setActiveIndex: GenericFunction;
   setStep: GenericFunction;
@@ -17,9 +17,14 @@ type SlideShowProps = {
   rightClassName?: string;
 };
 
+/**
+ * Display Slick show with a left and right sides with full navigation controls
+ * @param props
+ * @returns
+ */
 export function SlideShow({
   children,
-  galleryLength,
+  length,
   activeIndex,
   setActiveIndex,
   setStep,
@@ -31,15 +36,15 @@ export function SlideShow({
   rightClassName = '',
 }: SlideShowProps) {
   return (
-    <div className={clsx('gallery', className)}>
-      <div className={clsx('gallery__left', leftClassName)} id="gallery-left">
+    <div className={clsx('slide-show', className)}>
+      <div className={clsx('slide-show__left', leftClassName)} id="gallery-left">
         {children[0]}
       </div>
-      <div className={clsx('gallery__right', rightClassName)} id="gallery-right">
+      <div className={clsx('slide-show__right', rightClassName)} id="gallery-right">
         {children[1]}
       </div>
       <SlideShowControls
-        galleryLength={galleryLength}
+        length={length}
         activeIndex={activeIndex}
         setActiveIndex={setActiveIndex}
         setStep={setStep}

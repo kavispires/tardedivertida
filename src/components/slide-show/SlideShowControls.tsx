@@ -15,7 +15,7 @@ import { inNSeconds } from 'utils/helpers';
 import { Translate } from 'components/language';
 
 type SlideShowControlsProps = {
-  galleryLength: number;
+  length: number;
   activeIndex: number;
   setActiveIndex: GenericFunction;
   setStep: GenericFunction;
@@ -25,7 +25,7 @@ type SlideShowControlsProps = {
 };
 
 export function SlideShowControls({
-  galleryLength,
+  length,
   activeIndex,
   setActiveIndex,
   setStep,
@@ -34,40 +34,40 @@ export function SlideShowControls({
   windowDuration = 10,
 }: SlideShowControlsProps) {
   const { minutes, seconds, isRunning, pause, resume } = useTimer({
-    expiryTimestamp: inNSeconds(windowDuration * galleryLength),
+    expiryTimestamp: inNSeconds(windowDuration * length),
     autoStart: true,
     onExpire: () => setStep(2),
   });
 
   const time = minutes * 60 + seconds;
 
-  // Automatically go to the next window every 10 seconds
+  // Automatically go to the next window every {windowDuration} seconds
   useEffect(() => {
-    if (time < windowDuration * galleryLength && time > 0 && time % windowDuration === 0) {
-      setActiveIndex((s: number) => Math.min(s + 1, galleryLength - 1));
+    if (time < windowDuration * length && time > 0 && time % windowDuration === 0) {
+      setActiveIndex((s: number) => Math.min(s + 1, length - 1));
     }
-  }, [time, setActiveIndex, galleryLength, windowDuration]);
+  }, [time, setActiveIndex, length, windowDuration]);
 
   const goToPreviousStep = () => {
     setActiveIndex((s: number) => Math.max(s - 1, 0));
   };
 
   const goToNextStep = () => {
-    setActiveIndex((s: number) => Math.min(s + 1, galleryLength - 1));
+    setActiveIndex((s: number) => Math.min(s + 1, length - 1));
   };
 
   return (
-    <div className="gallery__controls">
-      <div className="gallery__controls-timer-bar">
-        <div className="gallery__controls-timer-bar-base">
-          {Array(galleryLength)
+    <div className="slide-show__controls">
+      <div className="slide-show__controls-timer-bar">
+        <div className="slide-show__controls-timer-bar-base">
+          {Array(length)
             .fill('')
             .map((e, i) => {
               return (
                 <div
                   key={`control-timer-bar-${e + i}`}
-                  className="gallery__controls-timer-bar-node"
-                  style={{ width: `${99 / galleryLength}%` }}
+                  className="slide-show__controls-timer-bar-node"
+                  style={{ width: `${99 / length}%` }}
                 >
                   {e}
                 </div>
@@ -75,9 +75,9 @@ export function SlideShowControls({
             })}
         </div>
         <span
-          className="gallery__controls-timer-bar-pill"
+          className="slide-show__controls-timer-bar-pill"
           style={{
-            width: `${Math.abs((windowDuration * time) / galleryLength - 100)}%`,
+            width: `${Math.abs((windowDuration * time) / length - 100)}%`,
             backgroundColor: barColor,
           }}
         ></span>
@@ -101,7 +101,7 @@ export function SlideShowControls({
           <Button
             size="large"
             onClick={goToNextStep}
-            disabled={disableControls || activeIndex === galleryLength - 1}
+            disabled={disableControls || activeIndex === length - 1}
           >
             <Translate pt="Próximo" en="Next" /> <StepForwardOutlined />
           </Button>
