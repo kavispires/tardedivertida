@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
 // State & Hooks
-import { useLanguage, useStep } from 'hooks';
+import { useLanguage, useSlideShow, useStep } from 'hooks';
 // Resources and Utils
 import { PHASES } from 'utils/phases';
 // Components
@@ -10,20 +9,14 @@ import { GalleryRules } from './components/TextBlobs';
 import { StepGallery } from './StepGallery';
 import { StepRanking } from './StepRanking';
 
-function PhaseGallery({ players, state, info }: PhaseProps) {
+function PhaseGallery({ players, state, info, meta }: PhaseProps) {
   const { translate } = useLanguage();
   const { step, goToNextStep, goToPreviousStep, setStep } = useStep(0);
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [isFirstGalleryRunThrough, setIsFirstGalleryRunThrough] = useState(true);
+  const { activeIndex, setActiveIndex, isFirstGalleryRunThrough } = useSlideShow(state.gallery.length);
 
-  // Changes isFirstGalleryRunThrough property which disables controls, after the first gallery run through
-  useEffect(() => {
-    if (isFirstGalleryRunThrough && step > 1) {
-      setIsFirstGalleryRunThrough(false);
-    }
-  }, [step, isFirstGalleryRunThrough]);
-
-  const isGameOver = Object.values(players).some((player) => player.score > 50);
+  const isGameOver = meta.options?.shortGame
+    ? state.round.current === 5
+    : Object.values(players).some((player) => player.score > 50);
 
   return (
     <PhaseContainer
