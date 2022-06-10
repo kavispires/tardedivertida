@@ -12,7 +12,7 @@
     align-items: center;
     justify-content: space-between;
     min-height: 50px;
-    background: get-color(white);
+    background-color: get-color(white);
     border-radius: get-unit(1);
     margin: get-unit(2 0);
     padding: get-unit(2);
@@ -66,7 +66,7 @@
     font-size: 1em;
     min-width: 2em;
     border-radius: get-unit(8);
-    background: get-color(gray, 1);
+    background-color: get-color(gray, 1);
     padding: get-unit(1);
     align-self: flex-end;
     margin: get-unit(0 2);
@@ -74,11 +74,11 @@
     animation: fade-in 3000ms forwards;
 
     &--plus {
-      background: get-color(yellow, 3);
+      background-color: get-color(yellow, 3);
     }
 
     &--minus {
-      background: get-color(red, 3);
+      background-color: get-color(red, 3);
     }
 
     &--0 {

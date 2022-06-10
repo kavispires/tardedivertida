@@ -13,13 +13,13 @@
     'controls controls';
 
   &__left {
-    // background: hotpink;
+    // background-color: hotpink;
     grid-area: left;
     min-height: 50vh;
   }
 
   &__right {
-    // background: olivedrab;
+    // background-color: olivedrab;
     grid-area: right;
     min-height: 50vh;
   }
@@ -37,7 +37,7 @@
     width: 100%;
     height: get-unit(2);
     margin: get-unit(0 0 4 0);
-    background: get-color(gray, 1);
+    background-color: get-color(gray, 1);
     border-radius: get-unit(2);
     flex-grow: 1;
     position: relative;
@@ -66,7 +66,7 @@
   &__controls-timer-bar-pill {
     height: get-unit(2);
     border-radius: get-unit(2);
-    background: get-color(gray);
+    background-color: get-color(gray);
     display: block;
     transition: all 1s;
     position: absolute;

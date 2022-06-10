@@ -3,7 +3,7 @@
   width: 95vw;
   height: 270px;
   overflow-y: auto;
-  // background: get-color(gray, 6);
+  // background-color: get-color(gray, 6);
   // padding: get-unit(1 0);
   padding-top: 45px;
   padding-right: get-unit(4);
@@ -34,7 +34,7 @@ $n-pink: #ffb1b4;
     border-radius: get-unit(1);
     flex-direction: column;
     align-items: center;
-    background: $n-pink;
+    background-color: $n-pink;
     width: $card-width;
     height: 120px;
     margin: 8px 1px 0 1px;
@@ -44,11 +44,11 @@ $n-pink: #ffb1b4;
     }
 
     #{$self}--horror & {
-      background: get-color(brown);
+      background-color: get-color(brown);
     }
 
     #{$self}--jackpot & {
-      background: get-color(yellow);
+      background-color: get-color(yellow);
     }
   }
 
@@ -57,15 +57,15 @@ $n-pink: #ffb1b4;
     border-radius: get-unit(1);
     text-align: center;
     font-size: 0.8em;
-    background: $n-pink;
+    background-color: $n-pink;
     margin-top: get-unit(2);
 
     #{$self}--horror & {
-      background: get-color(brown);
+      background-color: get-color(brown);
     }
 
     #{$self}--jackpot & {
-      background: get-color(yellow);
+      background-color: get-color(yellow);
     }
   }
 
@@ -79,7 +79,7 @@ $n-pink: #ffb1b4;
 $stats-height: get-unit(40);
 
 .n-player-stats {
-  background: get-color(white);
+  background-color: get-color(white);
   height: $stats-height;
   width: 80vw;
   display: flex;
@@ -130,7 +130,7 @@ $stats-height: get-unit(40);
 
   &__count-value {
     display: block;
-    background: get-color(gray, 2);
+    background-color: get-color(gray, 2);
     font-size: 1.1em;
     border-radius: get-unit(1);
     padding: get-unit(1 2);
@@ -161,7 +161,7 @@ $stats-height: get-unit(40);
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: get-color(white);
+  background-color: get-color(white);
   transition: all 250ms;
 
   &:hover {
@@ -169,11 +169,11 @@ $stats-height: get-unit(40);
   }
 
   &--home:hover {
-    background: get-color(blue, 4);
+    background-color: get-color(blue, 4);
   }
 
   &--continue:hover {
-    background: get-color(yellow, 4);
+    background-color: get-color(yellow, 4);
   }
 }
 
@@ -186,7 +186,7 @@ $stats-height: get-unit(40);
   margin: get-unit(0 auto 2 auto);
 
   &__title {
-    background: rgba($color: white, $alpha: 0.6);
+    background-color: rgba($color: white, $alpha: 0.6);
     margin: 0;
     padding: get-unit(1 2 0 2);
     border-radius: get-unit(5 5 0 0);
@@ -196,7 +196,7 @@ $stats-height: get-unit(40);
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgba($color: white, $alpha: 0.6);
+    background-color: rgba($color: white, $alpha: 0.6);
     padding: get-unit(1);
     border-radius: get-unit(5);
     flex-wrap: wrap;
@@ -235,7 +235,7 @@ $stats-height: get-unit(40);
   }
 
   &__divider {
-    background: get-color(black, 1);
+    background-color: get-color(black, 1);
   }
 
   &__title {

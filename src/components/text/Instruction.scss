@@ -12,12 +12,12 @@
   }
 
   &--contained {
-    background: rgba($color: white, $alpha: 0.6);
+    background-color: rgba($color: white, $alpha: 0.6);
     padding: get-unit(2);
     border-radius: get-unit(1);
 
     &#{$self}--white {
-      background: rgba($color: black, $alpha: 0.2);
+      background-color: rgba($color: black, $alpha: 0.2);
     }
   }
 

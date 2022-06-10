@@ -52,7 +52,7 @@
   transform: translateY(-50%);
 
   &--has-names {
-    background: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.9);
   }
 }
 
@@ -186,12 +186,12 @@
 
   &--span {
     display: block;
-    background: white;
+    background-color: white;
     font-size: 1.25rem;
   }
 
   &__number {
-    background: gold;
+    background-color: gold;
     border-radius: 50%;
     display: inline-block;
     width: 1.5em;
@@ -237,7 +237,7 @@
   display: block;
   position: absolute;
   z-index: 100;
-  background: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.9);
   padding: get-unit(0 4 2 4);
 
   @include xs {
@@ -252,7 +252,7 @@
 .m-answers {
   font-family: 'Architects Daughter', cursive;
   padding: get-unit(2);
-  background: get-color(white);
+  background-color: get-color(white);
 
   &__item {
     margin-left: get-unit(6);
@@ -275,7 +275,7 @@
     display: inline;
     text-align: center;
     padding: get-unit(4 10);
-    background: get-color(white);
+    background-color: get-color(white);
     border-radius: get-unit(8);
     position: relative;
     @include box-shadow;
@@ -298,7 +298,7 @@
   &__speech-bubble-small {
     margin-top: get-unit(2);
     text-align: center;
-    background: get-color(white);
+    background-color: get-color(white);
     border-radius: get-unit(2);
     padding: get-unit(1 2);
     position: relative;

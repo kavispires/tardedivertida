@@ -141,7 +141,7 @@
   overflow-x: auto;
   padding: get-unit(2);
   color: white;
-  background: get-color(brown, 6);
+  background-color: get-color(brown, 6);
   border-radius: get-unit(1);
   border: get-color(brown, 7) get-unit(1) groove;
   @include box-shadow;

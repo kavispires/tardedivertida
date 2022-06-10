@@ -11,12 +11,12 @@
     border: 1px solid get-color(white);
     border-radius: get-unit(0 0 4 4);
     padding: get-unit(0 6);
-    background: rgba($color: #ffffff, $alpha: 0.9);
+    background-color: rgba($color: #ffffff, $alpha: 0.9);
 
     cursor: pointer;
 
     &:hover {
-      background: rgba($color: #ffffff, $alpha: 1);
+      background-color: rgba($color: #ffffff, $alpha: 1);
     }
   }
 
@@ -73,7 +73,7 @@
 
   &__round {
     font-weight: bolder;
-    background: get-color(gray, 4);
+    background-color: get-color(gray, 4);
     margin-left: get-unit(2);
   }
 

@@ -1,7 +1,7 @@
 .admin-only-container {
   max-width: 100%;
   border: 1px solid get-color(red);
-  background: rgba(red, 0.2);
+  background-color: rgba(red, 0.2);
   padding: get-unit(2);
   margin: get-unit(2 0);
   display: flex;
@@ -9,7 +9,7 @@
 
   &__legend {
     border: 1px solid get-color(red);
-    background: get-color(red);
+    background-color: get-color(red);
     padding: get-unit(1);
     font-size: 0.8rem;
     color: get-color(white);
@@ -46,7 +46,7 @@
   }
 
   &__item {
-    background: get-color(gray, 1);
+    background-color: get-color(gray, 1);
     padding: get-unit(0 1);
     margin: get-unit(0 1);
     border-radius: get-unit(1);

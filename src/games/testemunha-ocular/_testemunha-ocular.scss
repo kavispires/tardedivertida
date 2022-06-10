@@ -1,7 +1,7 @@
 .t-select-question {
   &__button {
     border: none;
-    background: none;
+    background-color: none;
     transition: 500ms transform;
     cursor: pointer;
 
@@ -12,7 +12,7 @@
 }
 
 .t-suspects-table {
-  background: get-color(brown);
+  background-color: get-color(brown);
   border-radius: get-unit(2);
 
   display: grid;
@@ -49,7 +49,7 @@
   &__suspect-button {
     cursor: pointer !important;
     border: none;
-    background: rgba(orange, 0.6);
+    background-color: rgba(orange, 0.6);
     padding: 0;
   }
 }

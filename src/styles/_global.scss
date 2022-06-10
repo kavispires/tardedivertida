@@ -16,10 +16,10 @@ body {
   margin: get-unit(4);
   padding: get-unit(4);
   border-radius: get-unit(1);
-  background: rgba(white, 0.5);
+  background-color: rgba(white, 0.5);
 
   &--white {
-    background: white;
+    background-color: white;
   }
 
   &--border {
@@ -27,7 +27,7 @@ body {
   }
 
   &--transparent {
-    background: transparent;
+    background-color: transparent;
   }
 
   &--center {
@@ -54,20 +54,20 @@ body {
 }
 
 .admin-container {
-  background: rgba($color: red, $alpha: 0.5);
+  background-color: rgba($color: red, $alpha: 0.5);
   padding: get-unit(2);
   border: 1px solid get-color(red);
   border-radius: get-unit(1);
 }
 
 .contained {
-  background: rgba($color: white, $alpha: 0.6);
+  background-color: rgba($color: white, $alpha: 0.6);
   padding: get-unit(2);
   border-radius: get-unit(1);
 }
 
 .reset-button {
-  background: none;
+  background-color: none;
   border: none;
   padding: 0;
   margin: 0;

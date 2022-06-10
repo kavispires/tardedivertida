@@ -1,7 +1,7 @@
 .app {
   width: 100%;
   min-height: 100vh !important;
-  background: linear-gradient(-45deg, #3e1e68, #44bba4, #3a7ca5, #f2e863, #f45b69, #9261d1, #3e1e68);
+  background-color: linear-gradient(-45deg, #3e1e68, #44bba4, #3a7ca5, #f2e863, #f45b69, #9261d1, #3e1e68);
   background-size: 1000% 1000%;
   animation: gradient 60s ease infinite;
   display: flex;

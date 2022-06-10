@@ -6,7 +6,7 @@ $offWhite: #faf8f4;
 }
 
 .l-drawing {
-  background: white;
+  background-color: white;
   border: 4px solid get-color(brown);
   margin-bottom: get-unit(2);
 }
@@ -20,7 +20,7 @@ $offWhite: #faf8f4;
 }
 
 .l-album {
-  background: $offWhite;
+  background-color: $offWhite;
   width: 600px;
 
   &__owner {
@@ -57,7 +57,7 @@ $offWhite: #faf8f4;
     justify-content: center;
     width: 350px;
     height: 350px;
-    background: get-color(white);
+    background-color: get-color(white);
     margin: get-unit(2 auto);
   }
 
@@ -71,7 +71,7 @@ $offWhite: #faf8f4;
     position: absolute;
     bottom: 0;
     left: 50%;
-    background: get-color(white);
+    background-color: get-color(white);
     padding: get-unit(0 2);
     transform: translateX(-50%);
     margin-bottom: get-unit(4);
@@ -85,14 +85,14 @@ $offWhite: #faf8f4;
   height: get-unit(2);
   max-height: get-unit(2);
   margin: get-unit(4 0);
-  background: get-color(white);
+  background-color: get-color(white);
   border-radius: get-unit(2);
   flex-grow: 1;
 
   &__pill {
     height: get-unit(2);
     border-radius: get-unit(2);
-    background: get-color(gray);
+    background-color: get-color(gray);
     display: block;
     transition: all 6s;
   }
@@ -109,7 +109,7 @@ $offWhite: #faf8f4;
 }
 
 .l-album-strip-entry {
-  background: get-color(white);
+  background-color: get-color(white);
   padding: get-unit(1);
   margin: get-unit(2);
   @include box-shadow;
@@ -128,7 +128,7 @@ $offWhite: #faf8f4;
 
 .l-album-strip-square-text {
   margin: get-unit(1);
-  background: $offWhite;
+  background-color: $offWhite;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -137,6 +137,6 @@ $offWhite: #faf8f4;
 
 .l-album-strip-square-drawing {
   margin: get-unit(1);
-  background: $offWhite;
+  background-color: $offWhite;
   display: flex;
 }

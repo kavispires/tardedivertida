@@ -1,7 +1,7 @@
 .card {
   $self: &;
 
-  background: get-color(white);
+  background-color: get-color(white);
   border-radius: get-unit(1);
   min-width: 150px;
   max-width: 300px;
@@ -25,7 +25,7 @@
   }
 
   &__header {
-    background: get-color(gray);
+    background-color: get-color(gray);
     color: get-color(white);
     font-weight: bold;
     font-size: 0.75em;
@@ -94,8 +94,8 @@
   overflow-x: auto;
   padding: get-unit(2);
 
-  background: rgb(0, 0, 0);
-  background: linear-gradient(
+  background-color: rgb(0, 0, 0);
+  background-color: linear-gradient(
     0deg,
     rgba(0, 0, 0, 1) 0%,
     rgba(8, 12, 42, 1) 15%,
@@ -162,7 +162,7 @@
   bottom: get-unit(-3);
   left: 50%;
   border-radius: get-unit(3 3 0 0);
-  background: rgba($color: #f0f0f0, $alpha: 0.9);
+  background-color: rgba($color: #f0f0f0, $alpha: 0.9);
   padding: get-unit(2 2 0 2);
   z-index: 149;
 
@@ -172,7 +172,7 @@
 
   &--expanded {
     transform: translate(-50%) scale(100%);
-    background: rgba($color: get-color(grey, 3), $alpha: 1);
+    background-color: rgba($color: get-color(grey, 3), $alpha: 1);
     box-shadow: 0px -15px 30px rgba(0, 0, 0, 0.2);
   }
 
@@ -213,7 +213,7 @@
   transform: translateX(-50%);
 
   &:hover.ant-btn {
-    background: get-color(white);
+    background-color: get-color(white);
     color: get-color(yellow);
     border-color: get-color(yellow);
   }
