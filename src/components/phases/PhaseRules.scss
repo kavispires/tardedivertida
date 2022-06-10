@@ -4,7 +4,7 @@
   padding: get-unit(4);
 
   &__carousel {
-    background: rgba($color: #000, $alpha: 0.2);
+    background-color: rgba($color: #000, $alpha: 0.2);
   }
 
   &__rule .rules-carousel__rule-text {
@@ -16,11 +16,11 @@
     justify-content: center;
     margin-top: get-unit(3);
     padding: get-unit(4);
-    background: rgba($color: #000, $alpha: 0.2);
+    background-color: rgba($color: #000, $alpha: 0.2);
   }
 
   &__rule-actions-ready {
-    background: get-color(green);
+    background-color: get-color(green);
     font-style: italic;
   }
 }

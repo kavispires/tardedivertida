@@ -34,6 +34,7 @@ export function Join({ players, info, meta }: JoinProps) {
   const [, setUserId] = useGlobalState('userId');
   const [, setUsername] = useGlobalState('username');
   const [userAvatarId, setUserAvatarId] = useGlobalState('userAvatarId');
+  const [volume] = useGlobalState('volume');
 
   const [availableAvatars, setAvailableAvatars] = useState(AVAILABLE_AVATAR_IDS);
   const [tempAvatar, setTempAvatar] = useState(getRandomItem(AVAILABLE_AVATAR_IDS));
@@ -128,7 +129,8 @@ export function Join({ players, info, meta }: JoinProps) {
           pt: `Bem-vindo, ${response.data.name}!`,
           en: `Welcome, ${response.data.name}!`,
         },
-        language
+        language,
+        volume
       );
     } catch (e: any) {
       notification.error({

@@ -18,7 +18,7 @@
 }
 
 @mixin contained {
-  background: rgba($color: white, $alpha: 0.6);
+  background-color: rgba($color: white, $alpha: 0.6);
   padding: get-unit(2);
   border-radius: get-unit(1);
 }

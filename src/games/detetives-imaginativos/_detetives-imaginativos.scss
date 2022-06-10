@@ -5,7 +5,7 @@
   max-width: 94vw;
   overflow-x: auto;
   padding: get-unit(2);
-  background: rgba($color: white, $alpha: 0.3);
+  background-color: rgba($color: white, $alpha: 0.3);
   border-radius: get-unit(1);
 
   &--center {
@@ -14,7 +14,7 @@
   }
 
   &__player-entry {
-    background: rgba($color: white, $alpha: 0.3);
+    background-color: rgba($color: white, $alpha: 0.3);
     border-radius: get-unit(1);
     margin-right: get-unit(1);
     padding: get-unit(1);
@@ -70,7 +70,7 @@
   }
 
   &__vote-container {
-    background: rgba($color: white, $alpha: 0.3);
+    background-color: rgba($color: white, $alpha: 0.3);
     padding: get-unit(1);
     margin-top: get-unit(1);
     border-radius: get-unit(1);
@@ -83,7 +83,7 @@
 }
 
 .d-emergency-alert-title {
-  background: rgba($color: white, $alpha: 0.8);
+  background-color: rgba($color: white, $alpha: 0.8);
   border-radius: get-unit(1);
   padding: get-unit(1 1 2 1);
 }
