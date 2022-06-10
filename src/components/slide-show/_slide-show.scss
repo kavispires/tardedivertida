@@ -13,13 +13,11 @@
     'controls controls';
 
   &__left {
-    // background-color: hotpink;
     grid-area: left;
     min-height: 50vh;
   }
 
   &__right {
-    // background-color: olivedrab;
     grid-area: right;
     min-height: 50vh;
   }
