@@ -3,7 +3,7 @@ import { Button, Layout, Space, Typography } from 'antd';
 import { CheckCircleFilled, MehFilled, RobotFilled, SmileFilled } from '@ant-design/icons';
 // Utils
 import { GAME_API } from 'services/adapters';
-import { useLoading, useIsUserReady, useAPICall, useLanguage, useMock, useUser } from 'hooks';
+import { useLoading, useIsUserReady, useAPICall, useLanguage, useMock, useUser, useGlobalState } from 'hooks';
 // Components
 import { LoadingPage } from 'components/loaders';
 import { Translate } from 'components/language';
@@ -21,6 +21,7 @@ export function PhaseRules({ players, info }: PhaseRulesProps) {
   const { language, translate } = useLanguage();
   const isUserReady = useIsUserReady(players);
   const user = useUser(players);
+  const [volume] = useGlobalState('volume');
 
   const errorMessage = translate(
     'Vixi, o aplicativo encontrou um erro ao tentar continuar',
@@ -41,7 +42,8 @@ export function PhaseRules({ players, info }: PhaseRulesProps) {
           pt: `Pronto! Aguarde os outros jogadores estarem prontos. Boa sorte, ${user.name}`,
           en: `Done! Now wait for the other players. Good luck, ${user.name}`,
         },
-        language
+        language,
+        volume
       );
     },
   });
@@ -60,7 +62,8 @@ export function PhaseRules({ players, info }: PhaseRulesProps) {
           pt: `Agora só resta rezar, ${user.name}, porque o jogo vai começar mesmo assim!`,
           en: `Now all you have left is to pray ${user.name} because the game is starting anyway!`,
         },
-        language
+        language,
+        volume
       );
     },
   });
@@ -79,7 +82,8 @@ export function PhaseRules({ players, info }: PhaseRulesProps) {
           pt: `Vixi ${user.name}, se fudeu então, porque o jogo vai começar mesmo assim!`,
           en: `Oh ${user.name}, you are screwed because the game is starting anyway!`,
         },
-        language
+        language,
+        volume
       );
     },
   });

@@ -21,6 +21,8 @@ type InitialState = {
   isDebugEnabled: boolean;
   blurredCards: BooleanDictionary;
   blurEnabled: boolean;
+  // Sound
+  volume: number;
   // Drawing Games
   canvasSize: number;
   // Espiao-entre-nos
@@ -61,6 +63,8 @@ const initialState: InitialState = {
   isDebugEnabled: false,
   blurredCards: {},
   blurEnabled: false,
+  // Sound
+  volume: 0.5,
   // Drawing games
   canvasSize: 0,
   // Espiao-entre-nos

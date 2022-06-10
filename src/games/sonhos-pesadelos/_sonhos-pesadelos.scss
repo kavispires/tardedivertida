@@ -14,7 +14,7 @@
 
   &__dream-label {
     width: 100%;
-    background: get-color(yellow);
+    background-color: get-color(yellow);
     border-radius: get-unit(2);
     color: get-color(black);
     text-align: center;
@@ -22,7 +22,7 @@
 
   &__nightmare-label {
     width: 100%;
-    background: get-color(purple, 6);
+    background-color: get-color(purple, 6);
     border-radius: get-unit(2);
     color: get-color(white);
     text-align: center;
@@ -46,20 +46,20 @@
 }
 
 .s-dream-board-entry-nightmare {
-  background: get-color(purple, 6);
+  background-color: get-color(purple, 6);
   border-radius: get-unit(2);
   color: get-color(white);
   text-align: center;
 
   &:disabled {
-    background: get-color(purple, 6);
+    background-color: get-color(purple, 6);
     color: get-color(white);
     border-color: get-color(purple, 6);
   }
 }
 
 .s-dream-board-entry-dream {
-  background: get-color(yellow);
+  background-color: get-color(yellow);
   border-radius: get-unit(2);
   color: get-color(black);
   text-align: center;
@@ -112,7 +112,7 @@
   margin: get-unit(1);
 
   padding: get-unit(1);
-  background: get-color(white);
+  background-color: get-color(white);
   border-radius: get-unit(1);
 }
 
@@ -133,7 +133,7 @@
 
   &__theme {
     font-style: italic;
-    background: get-color(gray, 1);
+    background-color: get-color(gray, 1);
     padding: get-unit(1);
     color: get-color(gray);
   }

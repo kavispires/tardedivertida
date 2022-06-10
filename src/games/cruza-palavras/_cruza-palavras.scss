@@ -15,7 +15,7 @@
   padding: get-unit(0.5);
 
   &--header {
-    background: black;
+    background-color: black;
     color: white;
     font-weight: bold;
     text-transform: uppercase;
@@ -44,7 +44,7 @@
 }
 
 .x-clue-card-button {
-  background: none;
+  background-color: none;
   padding: 0;
   border: none;
   cursor: pointer;
@@ -54,7 +54,7 @@
   height: 3rem;
   border: get-color(black) 2px solid;
   border-radius: get-unit(1);
-  background: get-color(white);
+  background-color: get-color(white);
   padding: 0;
   display: flex;
   align-items: center;
@@ -91,7 +91,7 @@
 
 .x-players-in-cell-player {
   &--correct {
-    background: get-color(white, 5, -0.5);
+    background-color: get-color(white, 5, -0.5);
     border-radius: get-unit(1);
     padding: 1px;
     margin: get-unit(0.5);

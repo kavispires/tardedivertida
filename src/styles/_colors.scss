@@ -1,84 +1,84 @@
 .color-background {
   $self: &;
   &--red {
-    background: get-color(red);
+    background-color: get-color(red);
   }
 
   &--blue {
-    background: get-color(blue);
+    background-color: get-color(blue);
   }
 
   &--green {
-    background: get-color(green);
+    background-color: get-color(green);
   }
 
   &--yellow {
-    background: get-color(yellow);
+    background-color: get-color(yellow);
   }
 
   &--pink {
-    background: get-color(pink);
+    background-color: get-color(pink);
   }
 
   &--purple {
-    background: get-color(purple);
+    background-color: get-color(purple);
   }
 
   &--teal {
-    background: get-color(teal);
+    background-color: get-color(teal);
   }
 
   &--orange {
-    background: get-color(orange);
+    background-color: get-color(orange);
   }
 
   &--fur {
-    background: get-color(red, 4);
+    background-color: get-color(red, 4);
   }
 
   &--navy {
-    background: get-color(blue, 8);
+    background-color: get-color(blue, 8);
   }
 
   &--light-green {
-    background: get-color(green, 4);
+    background-color: get-color(green, 4);
   }
 
   &--hot-pink {
-    background: get-color(pink, 6);
+    background-color: get-color(pink, 6);
   }
 
   &--brown {
-    background: get-color(orange, 7);
+    background-color: get-color(orange, 7);
   }
 
   &--forest {
-    background: get-color(teal, 6);
+    background-color: get-color(teal, 6);
   }
 
   &--violet {
-    background: get-color(purple, 7);
+    background-color: get-color(purple, 7);
   }
 
   &--cream {
-    background: get-color(orange, 4);
+    background-color: get-color(orange, 4);
   }
 
   &--none,
   &--grey {
-    background: get-color(gray);
+    background-color: get-color(gray);
   }
 
   &--lime {
-    background: get-color(lime);
+    background-color: get-color(lime);
   }
 
   &--black {
-    background: get-color(black, 4);
+    background-color: get-color(black, 4);
   }
 
   &--white {
-    background: get-color(white);
+    background-color: get-color(white);
   }
 }
 

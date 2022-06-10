@@ -6,16 +6,16 @@
     font-size: 0.8em;
     border-radius: 50%;
     width: 1.6em;
-    background: white;
+    background-color: white;
     color: get-color(black);
 
     &--primary {
-      background: white;
+      background-color: white;
       color: get-color(blue);
     }
 
     &--ghost {
-      background: transparent;
+      background-color: transparent;
       border: 1px dashed get-color(black);
       color: get-color(black);
     }

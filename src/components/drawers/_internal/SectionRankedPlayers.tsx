@@ -1,13 +1,14 @@
 import { useMemo } from 'react';
 import { orderBy } from 'lodash';
 // Ant Design Resources
-import { Badge } from 'antd';
+import { Badge, Tag } from 'antd';
 // Hooks
-import { useLanguage } from 'hooks';
+import { useLanguage, useUser } from 'hooks';
 // Utils
 import { AVATARS } from 'utils/avatars';
 // Components
 import { Avatar } from 'components/avatars';
+import { Translate } from 'components/language';
 
 type SectionRankedPlayersProps = {
   players: GamePlayers;
@@ -15,6 +16,7 @@ type SectionRankedPlayersProps = {
 
 export function SectionRankedPlayers({ players }: SectionRankedPlayersProps) {
   const { language } = useLanguage();
+  const user = useUser(players);
 
   const rankedPlayers = useMemo(
     () => orderBy(Object.values(players), ['score', 'name'], ['desc', 'asc']),
@@ -30,6 +32,11 @@ export function SectionRankedPlayers({ players }: SectionRankedPlayersProps) {
               <Avatar id={player.avatarId} shape="square" />
             </Badge>
             {player.name}, {AVATARS[player.avatarId].description[language]}
+            {player.id === user.id && (
+              <Tag color={AVATARS[player.avatarId].color} className="game-info-drawer__avatar-tag">
+                <Translate pt="VOCÊ" en="YOU" />
+              </Tag>
+            )}
           </div>
         );
       })}
