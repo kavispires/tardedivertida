@@ -1,18 +1,18 @@
-import { useState } from 'react';
+import { useToggle } from 'react-use';
 // Ant Design Resources
-import { Button, Divider, Drawer, Image } from 'antd';
-import { InfoCircleOutlined } from '@ant-design/icons';
-// Utils
+import { Button, Divider, Drawer, Image, Space } from 'antd';
+import { SettingOutlined } from '@ant-design/icons';
+// Hooks
 import { useLanguage } from 'hooks';
+// Utils
+import { PUBLIC_URL } from 'utils/constants';
 // Components
-import { SectionMe } from './_internal/SectionMe';
 import { SectionMeta } from './_internal/SectionMeta';
-import { SectionTeams } from './_internal/SectionTeams';
 import { SectionRankedPlayers } from './_internal/SectionRankedPlayers';
 import { SectionSettings } from './_internal/SectionSettings';
 import { DebugOnly } from 'components/debug';
 import { RulesModal } from 'components/rules';
-import { PUBLIC_URL } from 'utils/constants';
+import { Translate } from 'components/language';
 
 type GameInfoDrawerProps = {
   players: GamePlayers;
@@ -23,27 +23,18 @@ type GameInfoDrawerProps = {
 
 export function GameInfoDrawer({ players, state, info, userId }: GameInfoDrawerProps) {
   const { language } = useLanguage();
-  const [visible, setVisible] = useState(false);
+  const [isDrawerOpen, toggleDrawer] = useToggle(false);
+  const [isSettingsOpen, toggleSettingsDrawer] = useToggle(false);
 
   if (state.phase === 'LOBBY') {
     return <></>;
   }
 
-  const showDrawer = () => {
-    setVisible(true);
-  };
-  const onClose = () => {
-    setVisible(false);
-  };
-
-  const completeMe = players?.[userId] ?? {};
-  const isTeamGame = Boolean(completeMe?.team) && Boolean(state.teams);
-
   return (
     <>
       <div className="game-info-drawer">
-        <Button size="small" className="game-info-drawer__button" onClick={showDrawer}>
-          {info.title?.[language] ?? '?'} <InfoCircleOutlined />
+        <Button size="small" className="game-info-drawer__button" onClick={toggleDrawer}>
+          {info.title?.[language] ?? '?'} <SettingOutlined />
           <DebugOnly devOnly>{userId}</DebugOnly>
         </Button>
 
@@ -51,8 +42,8 @@ export function GameInfoDrawer({ players, state, info, userId }: GameInfoDrawerP
           title={info?.title?.[language]}
           placement="right"
           closable={true}
-          onClose={onClose}
-          visible={visible}
+          onClose={toggleDrawer}
+          visible={isDrawerOpen}
         >
           <Image
             alt={info?.title?.[language]}
@@ -63,33 +54,29 @@ export function GameInfoDrawer({ players, state, info, userId }: GameInfoDrawerP
 
           <Divider />
 
-          {completeMe && <SectionMe player={completeMe} isTeamGame={isTeamGame} />}
+          <Space>
+            <Button type="default" onClick={() => toggleSettingsDrawer(true)} icon={<SettingOutlined />}>
+              <Translate pt="Configurações" en="Settings" />
+            </Button>{' '}
+            <RulesModal gameInfo={info} />
+            <Drawer
+              title={<Translate pt="Configurações" en="Settings" />}
+              width={200}
+              closable={false}
+              onClose={toggleSettingsDrawer}
+              visible={isSettingsOpen}
+            >
+              <SectionSettings />
+            </Drawer>
+          </Space>
 
           <Divider />
 
-          <SectionSettings />
+          <SectionMeta round={state?.round || 0} groupScore={state?.groupScore} />
 
           <Divider />
 
-          <RulesModal gameInfo={info} />
-
-          <Divider />
-
-          <SectionMeta
-            round={state?.round || 0}
-            groupScore={state?.groupScore}
-            pointsToVictory={state?.pointsToVictory}
-            isTeamGame={isTeamGame}
-            teams={state?.teams}
-          />
-
-          <Divider />
-
-          {isTeamGame ? (
-            <SectionTeams players={players} teams={state?.teams} />
-          ) : (
-            <SectionRankedPlayers players={players} />
-          )}
+          <SectionRankedPlayers players={players} />
         </Drawer>
       </div>
     </>
