@@ -1,7 +1,7 @@
 .drawing-canvas {
   width: $canvas-size;
   height: $canvas-size;
-  background: get-color(white);
+  background-color: get-color(white);
   cursor: crosshair;
   touch-action: none;
 

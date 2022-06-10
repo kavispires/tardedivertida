@@ -11,7 +11,7 @@
   }
 
   &__rule-number {
-    background: get-color(white);
+    background-color: get-color(white);
     position: absolute;
     top: 0;
     right: 50%;
@@ -27,7 +27,7 @@
   &__rule-text {
     text-align: center;
     color: get-color(white);
-    background: rgba($color: black, $alpha: 0.8);
+    background-color: rgba($color: black, $alpha: 0.8);
     border-radius: get-unit(1);
     padding: get-unit(1 2);
   }
@@ -41,7 +41,7 @@
   }
 
   &__nav {
-    background: white;
+    background-color: white;
     padding: get-unit(4 2);
     display: block;
     border: 1px solid rgb(116, 83, 171);

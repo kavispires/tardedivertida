@@ -1,7 +1,7 @@
 .e-phase {
   margin: 0;
   padding: get-unit(10 8 8 8);
-  background: rgba($color: black, $alpha: 0.9);
+  background-color: rgba($color: black, $alpha: 0.9);
   border-radius: get-unit(1);
   font-family: 'Courier New', monospace;
 
@@ -12,7 +12,7 @@
 
 .e-phase-announcement {
   font-family: 'Courier New', monospace;
-  background: get-color(white);
+  background-color: get-color(white);
 
   &--animated {
     .title {
@@ -26,7 +26,7 @@
   }
 
   &--alert {
-    background: red;
+    background-color: red;
     .phase-announcement__icon {
       animation: 500ms emergency-pulse infinite;
     }
@@ -163,7 +163,7 @@
 
   .ant-modal-content,
   .ant-modal-header {
-    background: get-color(black);
+    background-color: get-color(black);
   }
 
   .ant-modal-title {
@@ -232,7 +232,7 @@
     white-space: nowrap;
 
     &:hover {
-      background: get-color(white);
+      background-color: get-color(white);
     }
 
     &--crossed {
