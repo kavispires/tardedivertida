@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import useSound from 'use-sound';
 // State & Hooks
 import { useIsUserReady, useUser, useLanguage, useStep } from 'hooks';
 import { useOnSubmitDrawingAPIRequest } from './utils/api-requests';
@@ -13,27 +12,18 @@ import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
 import { StepDraw } from './StepDraw';
 
-// Sound
-const arteRuimTimer = require('assets/sounds/arte-ruim-timer.mp3');
-
 function PhaseDraw({ players, state, info }: PhaseProps) {
   const { translate } = useLanguage();
   const { step, goToNextStep, setStep } = useStep(0);
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
   const [secretCard, setSecretCard] = useState({});
-  const [play] = useSound(arteRuimTimer, { volume: 0.4 });
 
   useEffect(() => {
     setSecretCard(players[user?.id]?.currentCard ?? {});
   }, [players, user?.id]);
 
   const onSubmitDrawing = useOnSubmitDrawingAPIRequest(setStep);
-
-  const onStartDrawing = () => {
-    play();
-    setStep(2);
-  };
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.ARTE_RUIM.DRAW}>
@@ -60,7 +50,7 @@ function PhaseDraw({ players, state, info }: PhaseProps) {
           type="painting"
           title={translate('Desenhe!', 'Draw!')}
           buttonText={translate('Um dó, lá, si... vamos ir... já!', 'Ready! Set! Go!')}
-          onClose={onStartDrawing}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
           withoutTimer
         >
