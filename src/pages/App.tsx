@@ -59,6 +59,7 @@ function App() {
   const { translate } = useLanguage();
   const [isAuthenticated, setIsAuthenticated] = useGlobalState('isAuthenticated');
   const [, setBlurEnabled] = useGlobalState('blurEnabled');
+  const [, setVolume] = useGlobalState('volume');
   const [, setIsAdmin] = useGlobalState('isAdmin');
   const [, setIsAdminEnabled] = useGlobalState('isAdminEnabled');
   const [getLocalStorage] = useLocalStorage();
@@ -81,6 +82,7 @@ function App() {
     });
 
     setBlurEnabled(getLocalStorage('blurEnabled') || false);
+    setVolume(getLocalStorage('volume') ?? 0.5);
   }, []); // eslint-disable-line
 
   return (
