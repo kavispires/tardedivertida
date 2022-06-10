@@ -5,12 +5,12 @@ import { InfoCircleOutlined } from '@ant-design/icons';
 import { useDevFeatures, useGlobalState, useLocalStorage } from 'hooks';
 // Components
 import { LanguageSwitch, Translate } from 'components/language';
-import clsx from 'clsx';
 
 export function SectionSettings() {
   const [blurEnabled, setBlurEnabled] = useGlobalState('blurEnabled');
   const [isAdmin] = useGlobalState('isAdmin');
   const [isAdminEnabled, setIsAdminEnabled] = useGlobalState('isAdminEnabled');
+  const [volume, setVolume] = useGlobalState('volume');
   const { isDebugEnabled, toggleDevFeatures } = useDevFeatures();
   const [, setLocalStorage] = useLocalStorage();
 
@@ -19,13 +19,13 @@ export function SectionSettings() {
     setLocalStorage({ blurEnabled: value });
   };
 
+  const onSoundSwitchClick = (value: boolean) => {
+    setVolume(value ? 0.5 : 0);
+    setLocalStorage({ volume: value ? 0.5 : 0 });
+  };
+
   return (
-    <div
-      className={clsx(
-        'game-info-drawer__section-settings',
-        isAdmin && 'game-info-drawer__section-settings--4'
-      )}
-    >
+    <div className="game-info-drawer__section-settings">
       <div className="game-info-drawer__settings-entry">
         <div className="game-info-drawer__switch-label">
           <Translate pt="Idioma" en="Language" />{' '}
@@ -42,6 +42,24 @@ export function SectionSettings() {
         </div>
 
         <LanguageSwitch />
+      </div>
+
+      <div className="game-info-drawer__settings-entry">
+        <div className="game-info-drawer__switch-label">
+          <Translate pt="Som" en="Sound" />
+          <Tooltip
+            title={<Translate pt="Muda ou desmuda sons no aplicativo" en="Mute/Unmute sounds in the app" />}
+          >
+            <Button type="text" shape="circle" icon={<InfoCircleOutlined />} size="small" />
+          </Tooltip>
+        </div>
+
+        <Switch
+          checkedChildren="on"
+          unCheckedChildren="off"
+          checked={volume > 0}
+          onClick={onSoundSwitchClick}
+        />
       </div>
 
       <div className="game-info-drawer__settings-entry">
