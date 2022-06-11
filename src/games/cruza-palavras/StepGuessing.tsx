@@ -22,17 +22,17 @@ type StepGuessingProps = {
 };
 
 export function StepGuessing({ grid, user, clues, onSubmitGuesses, players }: StepGuessingProps) {
-  const [active, setActive] = useState(null);
+  const [active, setActive] = useState<any>(null);
   const [guesses, setGuesses] = useState({});
 
   const onSelectClue = useCallback(
-    (clueObj) => {
+    (clueIndex: any) => {
       if (!active || isClue(active)) {
-        setActive(clueObj);
+        setActive(clueIndex);
       } else {
         setGuesses((s) => ({
           ...s,
-          [getClueKey(clueObj)]: active,
+          [getClueKey(clueIndex)]: active,
         }));
         setActive(null);
       }
@@ -41,7 +41,7 @@ export function StepGuessing({ grid, user, clues, onSubmitGuesses, players }: St
   );
 
   const onSelectCell = useCallback(
-    (cellCoordinate) => {
+    (cellCoordinate: any) => {
       if (!isClue(active)) {
         setActive(cellCoordinate);
       } else {
@@ -53,7 +53,7 @@ export function StepGuessing({ grid, user, clues, onSubmitGuesses, players }: St
             return acc;
           }, {});
 
-          newState[getClueKey(active!)] = cellCoordinate;
+          newState[getClueKey(active)] = cellCoordinate;
 
           setActive(null);
           return newState;
