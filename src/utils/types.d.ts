@@ -145,6 +145,7 @@ interface GamePlayers {
 
 type CanvasLine = number[];
 type CanvasSetLine = React.Dispatch<React.SetStateAction<CanvasLine[]>>;
+type GenericComponent = (...args: any) => any;
 type GenericFunction = (...args: any) => void;
 type BooleanFunction = (...args: any) => boolean;
 
