@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useTitle } from 'react-use';
 // Hooks
 import { useGameState, useGlobalState, useGamePlayers, useLanguage } from 'hooks';
 // Utils
@@ -8,7 +9,7 @@ import { isDevEnv } from 'utils/helpers';
 import { PhaseLobby } from 'components/phases';
 import { GameInfoDrawer } from 'components/drawers';
 import { AdminMenuDrawer } from 'components/admin';
-import { useTitle } from 'react-use';
+import { useIdleRedirect } from 'hooks/useIdleRedirect';
 
 const GAME_LIST: {
   [key: string]: GameInfo;
@@ -28,6 +29,9 @@ export function Session({ gameId, gameCollection, getActiveComponent }: SessionP
   const [gameMeta] = useGlobalState('gameMeta');
   const [info, setInfo] = useState<any>({});
   const gameName = info?.title ?? '';
+
+  useIdleRedirect();
+
   useTitle(`${gameName ? `${gameName[language]} | ` : ''}Tarde Divertida`);
 
   useEffect(() => {
