@@ -15,6 +15,7 @@ import { GameCard } from './components/GameCard';
 import { LanguageSwitch, Translate } from 'components/language';
 import { DevHeader } from 'pages/Dev/DevHeader';
 import { useTitle } from 'react-use';
+import { DevEmulatorAlert } from './components/DevEmulatorAlert';
 
 const GAME_LIST: {
   [key: string]: GameInfo;
@@ -90,6 +91,9 @@ function Hub() {
           </Popconfirm>,
         ]}
       />
+
+      <DevEmulatorAlert />
+
       <Layout.Content className="container">
         <RecentlyCreatedGames />
         <Divider />

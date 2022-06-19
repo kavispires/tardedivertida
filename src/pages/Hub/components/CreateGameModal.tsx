@@ -37,6 +37,7 @@ type CreateGameModalProps = {
 
 export function CreateGameModal({ gameInfo }: CreateGameModalProps): JSX.Element {
   const navigate = useNavigate();
+
   const { language, translate } = useLanguage();
   const { setLoader } = useLoading();
   const [getLocalStorage, setLocalStorage] = useLocalStorage();
