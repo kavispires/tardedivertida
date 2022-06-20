@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { useEffectOnce } from 'react-use';
 import { useNavigate } from 'react-router-dom';
 // Ant Design Resources
 import { Button, Space, Tooltip } from 'antd';
@@ -23,9 +24,9 @@ export function RecentlyCreatedGames(): JSX.Element {
     navigate(gameId);
   };
 
-  useEffect(() => {
+  useEffectOnce(() => {
     refreshIds();
-  }, []); // eslint-disable-line
+  });
 
   return (
     <Space>

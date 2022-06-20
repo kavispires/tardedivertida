@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useEffectOnce } from 'react-use';
 import { useGlobalState, useLocalStorage } from './index';
 
 type UseBlueCards = {
@@ -28,9 +29,9 @@ export function useBlurCards(): UseBlueCards {
     return Boolean(cardId && blurEnabled && blurredCards?.[cardId]);
   };
 
-  useEffect(() => {
+  useEffectOnce(() => {
     setBlurredCards(getLocalStorage('blurredCards') ?? {});
-  }, []); // eslint-disable-line
+  });
 
   useEffect(() => {
     if (Object.keys(blurredCards ?? {}).length) {

@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { useEffectOnce } from 'react-use';
 // Ant Design Resources
 import { Button, Popover } from 'antd';
 import { ReadOutlined } from '@ant-design/icons';
@@ -14,9 +15,9 @@ type PopoverRuleProps = {
 export function PopoverRule({ content, label, showLabel = true }: PopoverRuleProps): JSX.Element {
   const [isActive, setActive] = useState(false);
 
-  useEffect(() => {
+  useEffectOnce(() => {
     setActive(showLabel);
-  }, []); // eslint-disable-line
+  });
 
   return (
     <div className="popover-rule">

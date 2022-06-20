@@ -1,11 +1,13 @@
 import clsx from 'clsx';
-import { useEffect } from 'react';
+import { useEffectOnce } from 'react-use';
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Hooks
 import { useLanguage, useLoading, useMock, useVotingMatch } from 'hooks';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
+import { cleanupVotes, selectOwnVote, voteRandomly } from './utils/helpers';
+import { mockVotes } from './utils/mock';
 // Components
 import { Translate } from 'components/language';
 import { ReadyPlayersBar } from 'components/players';
@@ -13,8 +15,6 @@ import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { AllDreamsClues } from './components/AllDreamsClues';
 import { DreamBoardVote } from './components/DreamBoardVote';
-import { cleanupVotes, selectOwnVote, voteRandomly } from './utils/helpers';
-import { mockVotes } from './utils/mock';
 
 type StepMatchDreamsProps = {
   onSubmitVotes: GenericFunction;
@@ -35,12 +35,12 @@ export function StepMatchDreams({ players, user, table, onSubmitVotes, dreams }:
   );
 
   // Auto-select own clue
-  useEffect(() => {
+  useEffectOnce(() => {
     const userClues = selectOwnVote(dreams, user);
     if (userClues) {
       setVotes((s: StringDictionary) => ({ ...s, ...userClues }));
     }
-  }, []); //eslint-disable-line
+  });
 
   // DEV: Random vote
   useMock(() => {

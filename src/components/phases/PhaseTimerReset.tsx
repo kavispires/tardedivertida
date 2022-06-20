@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffectOnce } from 'react-use';
 
 type PhaseTimerResetProps = {
   goToNextStep: GenericFunction;
@@ -10,7 +10,7 @@ type PhaseTimerResetProps = {
  * @returns
  */
 export function PhaseTimerReset({ goToNextStep }: PhaseTimerResetProps) {
-  useEffect(() => {
+  useEffectOnce(() => {
     const delay = () => new Promise((res) => setTimeout(res, 100));
     const next = async () => {
       await delay();
@@ -18,7 +18,7 @@ export function PhaseTimerReset({ goToNextStep }: PhaseTimerResetProps) {
     };
 
     next();
-  }, []); // eslint-disable-line
+  });
 
   return <div></div>;
 }

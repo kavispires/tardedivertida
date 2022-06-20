@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
 import clsx from 'clsx';
+import { useEffectOnce } from 'react-use';
 // Ant Design Resources
 import { Button, Space, SpaceProps } from 'antd';
 import { RotateLeftOutlined, RotateRightOutlined } from '@ant-design/icons';
@@ -18,11 +18,11 @@ export function MonsterCard({ currentMonster, showControls = true, ...props }: M
   const [monsterOrientation, setMonsterOrientation] = useGlobalState('monsterOrientation');
   const cardWidth = useCardWidth(5, 16, 120, 360);
 
-  useEffect(() => {
+  useEffectOnce(() => {
     if (currentMonster.orientation === 'horizontal') {
       setMonsterOrientation(currentMonster.orientation);
     }
-  }, []); // eslint-disable-line
+  });
 
   const onChangeOrientation = () => {
     const newOrientation = monsterOrientation === 'vertical' ? 'horizontal' : 'vertical';

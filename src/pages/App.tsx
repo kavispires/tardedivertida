@@ -1,4 +1,4 @@
-import { useState, useEffect, lazy, Suspense } from 'react';
+import { useState, lazy, Suspense } from 'react';
 import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
 
 // Ant Design Resources
@@ -13,6 +13,7 @@ import { LoadingBar, LoadingPage } from 'components/loaders';
 import Home from './Home/Home';
 import Login from './Login/Login';
 import AvatarsPage from './Dev/Avatars';
+import { useEffectOnce } from 'react-use';
 
 // Routes Lazy load
 const Hub = lazy(() => import('pages/Hub/Hub' /* webpackChunkName: "page-hub" */));
@@ -64,7 +65,7 @@ function App() {
   const [, setIsAdminEnabled] = useGlobalState('isAdminEnabled');
   const [getLocalStorage] = useLocalStorage();
 
-  useEffect(() => {
+  useEffectOnce(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
         setIsAuthenticated(true);
@@ -83,7 +84,7 @@ function App() {
 
     setBlurEnabled(getLocalStorage('blurEnabled') || false);
     setVolume(getLocalStorage('volume') ?? 0.5);
-  }, []); // eslint-disable-line
+  });
 
   return (
     <Layout className="app" id="app">

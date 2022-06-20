@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+import { useEffectOnce } from 'react-use';
 // Ant Design Resources
 import { Alert, Button, Image, Input, notification, Tooltip } from 'antd';
 import { CaretLeftOutlined, CaretRightOutlined, InfoCircleOutlined } from '@ant-design/icons';
@@ -64,7 +65,7 @@ export function Join({ players, info, meta }: JoinProps) {
   }, [players]); // eslint-disable-line
 
   // Load name and avatarId from localStorage
-  useEffect(() => {
+  useEffectOnce(() => {
     const lsAvatarId = localStorage.get('avatarId');
     const lsUsername = localStorage.get('username');
     const lsGameId = localStorage.get('gameId');
@@ -78,10 +79,10 @@ export function Join({ players, info, meta }: JoinProps) {
         setSameGameId(true);
       }
     }
-  }, []); // eslint-disable-line
+  });
 
   // News
-  useEffect(() => {
+  useEffectOnce(() => {
     const newAvatarsNotice = localStorage.get('newAvatarsNotice');
 
     if (!userAvatarId && (!newAvatarsNotice || convertYYYYMMDDtoMilliseconds('2022/06/21') > Date.now())) {
@@ -90,7 +91,7 @@ export function Join({ players, info, meta }: JoinProps) {
         placement: 'bottomLeft',
       });
     }
-  }, []); // eslint-disable-line
+  });
 
   const onPreviousAvatar = useCallback(() => {
     const index = availableAvatars.indexOf(tempAvatar);
