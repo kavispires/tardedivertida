@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import { orderBy } from 'lodash';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { useEffectOnce } from 'react-use';
 // Ant Design Resources
 import { Avatar, Image, Layout, Modal, Space } from 'antd';
 import { FilterFilled } from '@ant-design/icons';
@@ -37,7 +38,7 @@ function Showcase() {
   const [list, setList] = useState<GameInfo[]>([]);
 
   // Load query params
-  useEffect(() => {
+  useEffectOnce(() => {
     const searchAsObject = Object.fromEntries(new URLSearchParams(searchParams));
     if (Object.keys(searchAsObject).length > 0) {
       const parsedQP = Object.entries(searchAsObject).reduce((acc: StringDictionary, [key, value]) => {
@@ -56,7 +57,7 @@ function Showcase() {
 
       setFilters(parsedQP);
     }
-  }, []); // eslint-disable-line
+  });
 
   useEffect(() => {
     setList(filterGames(GAME_LIST, filters, language, setLanguage));

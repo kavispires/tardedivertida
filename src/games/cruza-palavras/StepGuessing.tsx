@@ -1,4 +1,5 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback } from 'react';
+import { useEffectOnce } from 'react-use';
 //Design Resources
 import { Button, Space } from 'antd';
 // Utils
@@ -82,13 +83,13 @@ export function StepGuessing({ grid, user, clues, onSubmitGuesses, players }: St
   }, [guesses, onSubmitGuesses]);
 
   // Select player's own clue
-  useEffect(() => {
+  useEffectOnce(() => {
     const playersOwnClue = clues.find((clue) => clue.playerId === user.id);
 
     setGuesses({
       [getClueKey(playersOwnClue)]: playersOwnClue?.coordinate,
     });
-  }, []); // eslint-disable-line
+  });
 
   const randomGuessThem = () => {
     const usedCells = Object.values(guesses);

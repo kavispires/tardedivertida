@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 import { orderBy } from 'lodash';
 import { useTimer } from 'react-timer-hook';
+import { useEffectOnce } from 'react-use';
 // Ant Design Resources
 import { Tooltip } from 'antd';
 import { CrownFilled } from '@ant-design/icons';
@@ -95,7 +96,7 @@ export function RankingBoard({
   });
 
   // Rank by previousScore
-  useEffect(() => {
+  useEffectOnce(() => {
     const positions: PlainObject = {};
     let lastPosition = 0;
     let lastPoints = 0;
@@ -135,7 +136,7 @@ export function RankingBoard({
     });
 
     setSortedRanking(tempSortedRanking);
-  }, []); // eslint-disable-line
+  });
 
   // Show gained points
   useEffect(() => {

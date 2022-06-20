@@ -1,5 +1,6 @@
-import { useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useEffectOnce, useTitle } from 'react-use';
 // Ant Design Resources
 import { Typography, Layout, Space, Divider, Button, message, Popconfirm } from 'antd';
 import { DatabaseFilled } from '@ant-design/icons';
@@ -14,7 +15,6 @@ import { RecentlyCreatedGames } from './components/RecentlyCreatedGames';
 import { GameCard } from './components/GameCard';
 import { LanguageSwitch, Translate } from 'components/language';
 import { DevHeader } from 'pages/Dev/DevHeader';
-import { useTitle } from 'react-use';
 import { DevEmulatorAlert } from './components/DevEmulatorAlert';
 
 const GAME_LIST: {
@@ -30,12 +30,12 @@ function Hub() {
   const [, setLanguage] = useGlobalState('language');
   const [, setIsAuthenticated] = useGlobalState('isAuthenticated');
 
-  useEffect(() => {
+  useEffectOnce(() => {
     const prevLanguage = getLocalStorage('language');
     if (prevLanguage) {
       setLanguage(prevLanguage);
     }
-  }, []); // eslint-disable-line
+  });
 
   const onSignOut = async () => {
     try {
