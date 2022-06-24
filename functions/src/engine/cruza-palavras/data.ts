@@ -11,7 +11,7 @@ import * as resourceUtils from '../resource';
  * @returns
  */
 export const getWords = async (language: string): Promise<ResourceData> => {
-  const resourceName = `${TDR_RESOURCES.SINGLE_WORDS}-${language}`;
+  const resourceName = `${TDR_RESOURCES.SINGLE_WORDS_1}-${language}`;
   // Get full deck
   const allWords = await resourceUtils.fetchResource(resourceName);
 

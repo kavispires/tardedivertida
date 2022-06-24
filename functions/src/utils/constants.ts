@@ -89,6 +89,7 @@ export const GLOBAL_USED_DOCUMENTS = {
 };
 
 export const TDR_RESOURCES = {
+  ADJECTIVES: 'adjectives',
   ARTE_RUIM_CARDS: 'arte-ruim',
   ARTE_RUIM_GROUPS: 'arte-ruim-group',
   CATEGORIES: 'categories',
@@ -97,14 +98,14 @@ export const TDR_RESOURCES = {
   GROUP_QUESTIONS: 'mente-coletiva',
   INSPIRATION_THEMES: 'sonhos-pesadelos',
   LEFT_RIGHT_IDEAS: 'onda-telepatica',
-  SINGLE_WORDS: 'single-word',
+  SINGLE_WORDS_1: 'single-word',
   SINGLE_WORDS_2: 'ue-so-isso',
   SPY_LOCATIONS: 'espiao-entre-nos',
   SPY_QUESTIONS: 'espiao-entre-nos-questions',
   TESTIMONY_QUESTIONS: 'testemunha-ocular',
   THEMES: 'themes',
   TOPICS: 'polemica-da-vez',
-  WORDS: 'galeria-de-sonhos',
+  WORDS_1: 'galeria-de-sonhos',
   WORDS_2: 'linhas-cruzadas',
 };
 
