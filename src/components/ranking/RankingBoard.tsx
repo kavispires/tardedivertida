@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { orderBy } from 'lodash';
 import { useTimer } from 'react-timer-hook';
 import { useEffectOnce } from 'react-use';
@@ -87,12 +87,15 @@ export function RankingBoard({
   const [reRank, setReRank] = useState(0);
   const [, height] = useDimensions('ranking-row-0');
 
-  const maxPoints = ranking[0].newScore;
+  const maxPoints = useMemo(() => Math.max(...ranking.map((scores) => scores.newScore)), [ranking]);
 
   const { seconds } = useTimer({
     expiryTimestamp: inNSeconds(5),
     autoStart: true,
-    onExpire: () => setReRank(1),
+    onExpire: () => {
+      setReRank(1);
+      setDisplayStep(3);
+    },
   });
 
   // Rank by previousScore
@@ -155,6 +158,7 @@ export function RankingBoard({
       {sortedRanking.map((entry, index) => {
         const { playerId, newScore, previousScore, gainedPoints, order, position } = entry;
         const hPosition = (Math.max(60, height) + 8) * (order[reRank] ?? 0);
+
         return (
           <div
             className={`ranking-board__row ranking-board__row--${index}`}
@@ -186,7 +190,7 @@ export function RankingBoard({
             )}
             {displayStep >= 2 && (
               <Tooltip title="Total" color="gold">
-                <div className="ranking-board__cell-points-total">{newScore}</div>
+                <span className="ranking-board__cell-points-total">{newScore}</span>
               </Tooltip>
             )}
           </div>
