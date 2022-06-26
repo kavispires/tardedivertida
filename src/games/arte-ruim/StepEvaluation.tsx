@@ -13,8 +13,9 @@ import {
   useMock,
 } from 'hooks';
 // Utils
-import { LETTERS, SEPARATOR } from 'utils/constants';
+import { LETTERS } from 'utils/constants';
 import { getEntryId, shuffle } from 'utils/helpers';
+import { prepareVotes } from './utils/helpers';
 // Components
 import { Step } from 'components/steps';
 import { PopoverRule } from 'components/rules';
@@ -25,15 +26,6 @@ import { ReadyPlayersBar } from 'components/players';
 import { EvaluationAllDrawings } from './components/EvaluationAllDrawings';
 import { EvaluationAllCards } from './components/EvaluationAllCards';
 import { EvaluationRules } from './components/TextBlobs';
-
-function prepareVotes(votes: PlainObject) {
-  return Object.entries(votes).reduce((acc: PlainObject, [drawingEntryId, cardEntryId]) => {
-    const [, drawingId] = drawingEntryId.split(SEPARATOR);
-    const [, cardId] = cardEntryId.split(SEPARATOR);
-    acc[drawingId] = cardId;
-    return acc;
-  }, {});
-}
 
 type StepEvaluationProps = {
   drawings: ArteRuimDrawing[];

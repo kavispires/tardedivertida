@@ -51,8 +51,8 @@ export const prepareDrawPhase = async (
   // Unready players
   utils.players.unReadyPlayers(players);
 
-  // Remove previous 'vote' from players
-  utils.players.removePropertiesFromPlayers(players, ['vote']);
+  // Remove previous 'votes' from players
+  utils.players.removePropertiesFromPlayers(players, ['votes']);
 
   // Deal cards
   dealCards(players, store);
