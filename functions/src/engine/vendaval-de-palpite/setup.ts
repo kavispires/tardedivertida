@@ -1,12 +1,12 @@
 // Constants
 import { CLUES_PER_PLAYER, FINAL_ANSWER_COUNT, MAX_ROUNDS, VENDAVAL_DE_PALPITE_PHASES } from './constants';
 // Types
-import { Board, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
+import { Board, ClueId, Clues, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 import { Players, SaveGamePayload } from '../../utils/types';
 // Utils
 import * as utils from '../../utils';
-import { gatherClues, verifyGuesses } from './helpers';
 // Internal
+import { gatherClues, verifyGuesses } from './helpers';
 
 /**
  * Setup
@@ -39,12 +39,12 @@ export const prepareSetupPhase = async (
   };
 };
 
-export const prepareMasterPlayerSelection = async (): Promise<SaveGamePayload> => {
+export const prepareBossPlayerSelection = async (): Promise<SaveGamePayload> => {
   // Save
   return {
     set: {
       state: {
-        phase: VENDAVAL_DE_PALPITE_PHASES.MASTER_PLAYER_SELECTION,
+        phase: VENDAVAL_DE_PALPITE_PHASES.BOSS_SELECTION,
         round: {
           current: 0,
           total: MAX_ROUNDS,
@@ -59,9 +59,9 @@ export const prepareSecretWordSelection = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
-  utils.players.unReadyPlayer(players, state.masterId);
+  utils.players.unReadyPlayer(players, state.bossId);
 
-  players[state.masterId].isMaster = true;
+  players[state.bossId].isBoss = true;
 
   // Save
   return {
@@ -83,11 +83,16 @@ export const preparePlayersClues = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
-  utils.players.unReadyPlayers(players, state.masterId);
+  utils.players.unReadyPlayers(players, state.bossId);
 
-  // Added master result if any
   const board: Board = { ...(state?.board ?? {}) };
-  if (state.round.current > 0) {
+  const clues: Clues = { ...(state?.clues ?? {}) };
+
+  if (state.currentClues) {
+    const currentClues: Record<ClueId, boolean> = state.currentClues;
+    Object.keys(currentClues).forEach((clueId) => {
+      clues[clueId].evaluation = currentClues[clueId];
+    });
     board[state.round.current].evaluation = state.currentEvaluation;
   }
 
@@ -99,7 +104,9 @@ export const preparePlayersClues = async (
         round: utils.helpers.increaseRound(state.round),
         words: utils.firebase.deleteValue(),
         outcome: utils.firebase.deleteValue(),
+        currentClues: utils.firebase.deleteValue(),
         board,
+        clues,
       },
       players,
     },
@@ -111,23 +118,36 @@ export const prepareClueEvaluations = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
-  utils.players.readyPlayers(players, state.masterId);
+  utils.players.readyPlayers(players, state.bossId);
 
   // Gather clues
-  const board = gatherClues(state.board, players, state.round.current);
+  const { clues, board } = gatherClues(state.clues, state.board, players, state.round.current);
 
   const latestBoardEntry = board[state.round.current];
   const { outcome, finalAnswersLeft } = verifyGuesses(
+    clues,
     latestBoardEntry,
     state.finalAnswersLeft,
     state.secretWord
   );
+
+  if (['WIN', 'FAIL'].includes(outcome)) {
+    const newState = {
+      ...state,
+      clues,
+      board,
+      outcome,
+      finalAnswersLeft,
+    };
+    return prepareGameOverPhase(store, newState, players);
+  }
 
   // Save
   return {
     update: {
       state: {
         phase: VENDAVAL_DE_PALPITE_PHASES.CLUE_EVALUATIONS,
+        clues,
         board,
         outcome,
         finalAnswersLeft,
@@ -164,6 +184,7 @@ export const prepareGameOverPhase = async (
         round: state.round,
         gameEndedAt: Date.now(),
         board: state.board,
+        clues: state.clues,
         secretWord: state.secretWord,
         finalAnswersLeft: state.finalAnswersLeft,
         categories: state.categories,

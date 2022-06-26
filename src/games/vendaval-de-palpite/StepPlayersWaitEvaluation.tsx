@@ -11,16 +11,18 @@ import { Avatar, AvatarName } from 'components/avatars';
 type StepPlayersWaitEvaluationProps = {
   categories: string[];
   board: VBoard;
+  clues: VClues;
   finalAnswersLeft: number;
   players: GamePlayers;
-  master: GamePlayer;
+  boss: GamePlayer;
 };
 
 export function StepPlayersWaitEvaluation({
   categories,
   board,
+  clues,
   finalAnswersLeft,
-  master,
+  boss,
   players,
 }: StepPlayersWaitEvaluationProps) {
   return (
@@ -35,14 +37,13 @@ export function StepPlayersWaitEvaluation({
         <Translate
           pt={
             <>
-              Veja as pistas escrita por outros jogadores e aguarde enquanto <AvatarName player={master} /> as
+              Veja as pistas escrita por outros jogadores e aguarde enquanto <AvatarName player={boss} /> as
               avalia.
             </>
           }
           en={
             <>
-              Check the clues written by other players while <AvatarName player={master} /> is evaluating
-              them.
+              Check the clues written by other players while <AvatarName player={boss} /> is evaluating them.
             </>
           }
         />
@@ -55,14 +56,14 @@ export function StepPlayersWaitEvaluation({
           <>
             <Avatar id="A" size="small" />
             <Translate
-              pt={<>O grupo usou até agora {finalAnswersLeft}/3 chances de respostas finais</>}
-              en={<>The group has used so far {finalAnswersLeft}/3 chances of final answers</>}
+              pt={<>O grupo usou até agora {3 - finalAnswersLeft}/3 chances de respostas finais</>}
+              en={<>The group has used so far {3 - finalAnswersLeft}/3 chances of final answers</>}
             />
           </>
         }
       />
 
-      <Board board={board} players={players} />
+      <Board board={board} clues={clues} players={players} />
     </Step>
   );
 }

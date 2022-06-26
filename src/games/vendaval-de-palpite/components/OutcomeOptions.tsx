@@ -1,84 +1,17 @@
-import { useState } from 'react';
-// Ant Design Resources
-import { Alert, Button, Divider, InputNumber, Space } from 'antd';
-// Components
-import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
-import { Translate } from 'components/language';
-import { Board } from './components/Board';
-import { CategoryWordGroup } from './components/CategoryWordGroup';
+import { Alert, Button, Divider } from 'antd';
 import { Avatar } from 'components/avatars';
+import { Translate } from 'components/language';
+import { Instruction } from 'components/text';
 
-type StepMasterEvaluationProps = {
-  secretWord: string;
-  categories: string[];
-  onSubmitEvaluation: Function;
-  onSubmitOutcome: Function;
-  onSubmitHelp: Function;
-  board: VBoard;
-  finalAnswersLeft: number;
-  players: GamePlayers;
-  round: GameRound;
+type OutcomeOptionsProps = {
   outcome?: string;
+  onSubmitOutcome: Function;
+  finalAnswersLeft: number;
 };
 
-export function StepMasterEvaluation({
-  secretWord,
-  categories,
-  onSubmitEvaluation,
-  onSubmitOutcome,
-  onSubmitHelp,
-  board,
-  finalAnswersLeft,
-  players,
-  round,
-  outcome,
-}: StepMasterEvaluationProps) {
-  const [correctCount, setCorrectCount] = useState(0);
-  const latestBoardEntry = board[round.current];
-
+export function OutcomeOptions({ outcome, onSubmitOutcome, finalAnswersLeft }: OutcomeOptionsProps) {
   return (
-    <Step fullWidth>
-      <Title size="medium">
-        <Translate pt="Avaliação" en="Avaliação" />
-      </Title>
-
-      <CategoryWordGroup categories={categories} secretWord={secretWord} showSecretWord />
-
-      <Board board={board} players={players} />
-
-      <Instruction contained>
-        <Translate
-          pt={
-            <>
-              Selecione quantas da última remessa de dicas estão corretas.
-              <br /> Você pode fazer perguntar para clarificar o que os jogadores quiseram dizer.
-            </>
-          }
-          en={
-            <>
-              Write clues that will have narrow down the possibilities. You can ask clarifying questions about
-              any of them.
-            </>
-          }
-        />
-      </Instruction>
-
-      <Space>
-        <InputNumber
-          min={0}
-          max={latestBoardEntry.clues.length}
-          defaultValue={0}
-          onChange={setCorrectCount}
-        />
-        <Button type="primary" onClick={() => onSubmitEvaluation({ evaluation: correctCount })}>
-          <Translate
-            pt={`Enviar que ${correctCount} estão corretas`}
-            en={`Submit that ${correctCount} are correct`}
-          />
-        </Button>
-      </Space>
-
+    <>
       <Divider />
 
       <Instruction contained>
@@ -88,7 +21,7 @@ export function StepMasterEvaluation({
             showIcon
             message={
               <>
-                <Avatar id="A" size="small" />
+                <Avatar id="A" size="small" />{' '}
                 <Translate
                   pt="Meu algorítimo me diz que um dos casos abaixo aconteceu, selecione o apropriado:"
                   en="According to my calculations, one of the cases below happened, select the appropriate case:"
@@ -166,6 +99,6 @@ export function StepMasterEvaluation({
           </Button>
         </div>
       </div>
-    </Step>
+    </>
   );
 }

@@ -26,7 +26,8 @@ type StepPlayerClueProps = {
   categories: string[];
   onSubmitClues: GenericFunction;
   board: VBoard;
-  master: GamePlayer;
+  clues: VClues;
+  boss: GamePlayer;
   finalAnswersLeft: number;
   cluesPerPlayer: number;
   players: GamePlayers;
@@ -38,7 +39,8 @@ export function StepPlayerClue({
   categories,
   onSubmitClues,
   board,
-  master,
+  clues,
+  boss,
   finalAnswersLeft,
   cluesPerPlayer,
   players,
@@ -95,12 +97,12 @@ export function StepPlayerClue({
   return (
     <Step fullWidth>
       <Title size="medium">
-        <Translate pt="Escreva Pistas" en="Write Clues" />
+        <Translate pt="Escreva palpites" en="Write Ideas" />
       </Title>
 
       <CategoryCard categories={categories} />
 
-      <Board board={board} players={players} />
+      <Board board={board} clues={clues} players={players} />
 
       <Instruction contained>
         <Translate
@@ -109,7 +111,7 @@ export function StepPlayerClue({
         />
       </Instruction>
 
-      <TimerBar value={timer} total={timerTotal} steps={timerTotal} />
+      <TimerBar value={timer} total={timerTotal} steps={timerTotal / 3} />
 
       <ControlledInputWriting
         onSubmit={onSubmitEverything}
@@ -179,8 +181,8 @@ export function StepPlayerClue({
                   <>
                     Durante o jogo, o grupo tem 3 chances de adivinhar a palavra secreta, para isso o jogador
                     que escrever a palavra secreta tem que marcar a sua dica como 'Resposta' clicando no
-                    botãozinho 'Dica' na carta. <br /> O grupo ainda tem {finalAnswersLeft} chances de
-                    adivinhar.
+                    botãozinho 'Dica' na carta. <br /> O grupo ainda tem {finalAnswersLeft} chances sobrando
+                    para adivinhar.
                   </>
                 }
                 en={

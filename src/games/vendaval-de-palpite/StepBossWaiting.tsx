@@ -7,21 +7,15 @@ import { Step } from 'components/steps';
 import { Board } from './components/Board';
 import { CategoryWordGroup } from './components/CategoryWordGroup';
 
-type StepMasterWaitingProps = {
+type StepBossWaitingProps = {
   players: GamePlayers;
-
   board: VBoard;
+  clues: VClues;
   secretWord: string;
   categories: string[];
 };
 
-export function StepMasterWaiting({
-  players,
-
-  board,
-  secretWord,
-  categories,
-}: StepMasterWaitingProps) {
+export function StepBossWaiting({ players, board, clues, secretWord, categories }: StepBossWaitingProps) {
   const { translate } = useLanguage();
 
   return (
@@ -36,7 +30,7 @@ export function StepMasterWaiting({
 
       <CategoryWordGroup categories={categories} secretWord={secretWord} showSecretWord />
 
-      <Board players={players} board={board} />
+      <Board players={players} clues={clues} board={board} />
     </Step>
   );
 }

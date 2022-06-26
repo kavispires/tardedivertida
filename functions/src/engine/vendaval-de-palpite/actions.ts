@@ -4,28 +4,29 @@ import { GameId, PlayerId, GameName } from '../../utils/types';
 import * as utils from '../../utils';
 // Internal
 import { getNextPhase } from '.';
+import { ClueId } from './types';
 
 /**
  *
  * @param collectionName
  * @param gameId
  * @param playerId
- * @param masterId
+ * @param bossId
  * @returns
  */
-export const handleSubmitMasterPlayer = async (
+export const handleSubmitBossPlayer = async (
   collectionName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  masterId: string
+  bossId: string
 ) => {
   return await utils.firebase.updateState({
     collectionName,
     gameId,
     playerId,
-    actionText: 'submit master player id',
+    actionText: 'submit boss player id',
     change: {
-      masterId,
+      bossId,
     },
     nextPhaseFunction: getNextPhase,
   });
@@ -66,7 +67,7 @@ export const handleSubmitSecretWord = async (
  * @param gameId
  * @param playerId
  * @param clues
- * @param guess
+ * @param guesses
  * @returns
  */
 export const handleSubmitPlayerClues = async (
@@ -99,15 +100,19 @@ export const handleSubmitEvaluation = async (
   collectionName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  evaluation: number
+  evaluation: Record<ClueId, boolean>
 ) => {
+  // Count trues
+  const trues = Object.values(evaluation).filter((result) => result).length;
+
   return await utils.firebase.updateState({
     collectionName,
     gameId,
     playerId,
     actionText: 'submit evaluation',
     change: {
-      currentEvaluation: evaluation,
+      currentEvaluation: trues,
+      currentClues: evaluation,
     },
     nextPhaseFunction: getNextPhase,
   });
@@ -140,22 +145,19 @@ export const handleSubmitOutcome = async (
   });
 };
 
-// TODO: SUBMIT_HELP
 /**
  *
  * @param collectionName
  * @param gameId
  * @param playerId
- * @param clue
- * @param evaluation
+ * @param clueId
  * @returns
  */
 export const handleSubmitHelp = async (
   collectionName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  clue: string,
-  evaluation: string
+  clueId: ClueId
 ) => {
   return await utils.firebase.updateState({
     collectionName,
@@ -163,8 +165,8 @@ export const handleSubmitHelp = async (
     playerId,
     actionText: 'submit help',
     change: {
-      usedHelper: false,
-      help: { [clue]: evaluation },
+      usedHelper: true,
+      [`clues.${clueId}.isResolved`]: true,
     },
     nextPhaseFunction: getNextPhase,
   });
