@@ -5,10 +5,11 @@ import { Translate } from 'components/language';
 
 type BoardProps = {
   board: VBoard;
+  clues: VClues;
   players: GamePlayers;
 };
 
-export function Board({ board, players }: BoardProps) {
+export function Board({ board, clues, players }: BoardProps) {
   const boardEntries = Object.keys(board);
   return (
     <div className="v-board">
@@ -22,8 +23,8 @@ export function Board({ board, players }: BoardProps) {
             className={clsx('v-board__entry', isLatestBoard && 'v-board__entry--active')}
           >
             <ul className="v-board__clues">
-              {boardEntry.clues.map((clue) => (
-                <Clue clue={clue} key={`${clue.playerId}-${clue.clue}`} players={players} />
+              {boardEntry.clues.map((clueId) => (
+                <Clue clue={clues[clueId]} key={clueId} players={players} />
               ))}
             </ul>
             <div className="v-board__evaluation">

@@ -2,7 +2,7 @@ export const VENDAVAL_DE_PALPITE_PHASES = {
   LOBBY: 'LOBBY',
   RULES: 'RULES',
   SETUP: 'SETUP',
-  MASTER_PLAYER_SELECTION: 'MASTER_PLAYER_SELECTION',
+  BOSS_SELECTION: 'BOSS_SELECTION',
   SECRET_WORD_SELECTION: 'SECRET_WORD_SELECTION',
   PLAYERS_CLUES: 'PLAYERS_CLUES',
   CLUE_EVALUATIONS: 'CLUE_EVALUATIONS',
@@ -16,7 +16,7 @@ export const PLAYER_COUNTS = {
 
 export const MAX_ROUNDS = 7;
 
-// The count includes the Master
+// The count includes the Boss
 export const CLUES_PER_PLAYER = {
   2: 4,
   3: 2,

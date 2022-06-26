@@ -28,7 +28,7 @@ function PhaseGameOver({ state, players, info }: PhaseProps) {
         )}
       </Space>
       <CategoryWordGroup categories={state.categories} secretWord={state.secretWord} showSecretWord />
-      <Board players={players} board={state.board} />
+      <Board players={players} clues={state.clues} board={state.board} />
     </GameOverWrapper>
   );
 }
