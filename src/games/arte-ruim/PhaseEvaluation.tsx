@@ -1,5 +1,5 @@
 // Hooks
-import { useIsUserReady, useLanguage, useStep } from 'hooks';
+import { useIsUserReady, useLanguage, useStep, useUser } from 'hooks';
 import { useOnSubmitVotingAPIRequest } from './utils/api-requests';
 // Utils
 import { PHASES } from 'utils/phases';
@@ -8,10 +8,12 @@ import { StepSwitcher } from 'components/steps';
 import { StepEvaluation } from './StepEvaluation';
 import { EvaluationRules } from './components/TextBlobs';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { EvaluatedDrawings } from './components/EvaluatedDrawings';
 
 function EvaluationPhase({ players, state, info }: PhaseProps) {
   const { translate } = useLanguage();
   const { step, goToNextStep, setStep } = useStep(0);
+  const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
   const onSubmitVoting = useOnSubmitVotingAPIRequest(setStep);
 
@@ -25,6 +27,9 @@ function EvaluationPhase({ players, state, info }: PhaseProps) {
           'Vamos aguardar enquanto os outros jogadores terminam de avaliar!',
           'Please wait while other players finish their evaluations!'
         )}
+        waitingRoomContent={
+          <EvaluatedDrawings cards={state.cards} drawings={state.drawings} votes={user?.votes} />
+        }
       >
         {/*Step 0 */}
         <PhaseAnnouncement
