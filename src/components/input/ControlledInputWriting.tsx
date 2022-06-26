@@ -28,15 +28,19 @@ export function ControlledInputWriting({
   const { isLoading } = useLoading();
 
   const onChangeInput = (e: any) => {
-    const { id, value } = e.target;
-    if (id && value?.length > 1) {
+    const { id, value = '' } = e.target;
+    if (id) {
       const indexStr = id.split(SEPARATOR)[1];
       const index = Number(indexStr);
-      setValues((s: any) => {
-        const newState = { ...s };
-        newState[index] = value.toUpperCase().trim();
-        return newState;
-      });
+      if (typeof index === 'number') {
+        setValues((s: any) => {
+          const newState = { ...s };
+          newState[index] = value.toUpperCase().trim();
+          return newState;
+        });
+      } else {
+        console.error(`Index ${indexStr} for ${id} is not a number`);
+      }
     }
   };
 
