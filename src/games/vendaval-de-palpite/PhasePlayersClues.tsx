@@ -11,18 +11,23 @@ import { Translate } from 'components/language';
 import { StepPlayerClue } from './StepPlayerClue';
 import { RoundAnnouncement } from 'components/round';
 import { ViewOr } from 'components/views';
-import { StepMasterWaiting } from './StepMasterWaiting';
+import { StepBossWaiting } from './StepBossWaiting';
+import { Board } from './components/Board';
 
 function PhasePlayersClues({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
   const { step, setStep, goToNextStep } = useStep(0);
-  const [master, isUserTheMaster] = useWhichPlayerIsThe('masterId', state, players);
+  const [boss, isUserTheBoss] = useWhichPlayerIsThe('bossId', state, players);
 
   const onSubmitClues = useOnSubmitPlayerCluesAPIRequest(setStep);
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.VENDAVAL_DE_PALPITE.PLAYERS_CLUES}>
-      <StepSwitcher step={step} players={players}>
+      <StepSwitcher
+        step={step}
+        players={players}
+        waitingRoomContent={<Board players={players} clues={state.clues} board={state.board} />}
+      >
         {/* Step 0 */}
         <RoundAnnouncement
           round={state?.round}
@@ -37,7 +42,7 @@ function PhasePlayersClues({ state, players, info }: PhaseProps) {
         {/* Step 1 */}
         <PhaseAnnouncement
           type="discussion"
-          title={translate('Escrevam dicas', 'Write clues')}
+          title={translate('Reunião', 'Meeting')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           duration={5}
@@ -46,25 +51,22 @@ function PhasePlayersClues({ state, players, info }: PhaseProps) {
             <Translate
               pt={
                 <>
-                  Os jogadores agora escrevem dicas para tentar adivinhar a palavra secreta, discutam entre si
-                  e evitem escrever a mesma coisa
+                  O chefe quer a próxima ideia brilhante! Escreva dicas para tentar desvendar o que o chefe
+                  quer! Discuta com os outros funcionários e evitem escrever a mesma coisa. Ideias contrárias
+                  não ajudam muito.
                 </>
               }
-              en={
-                <>
-                  Players now write clues to try to guess the secret word. Discuss among yourselves and avoid
-                  writing the same thing
-                </>
-              }
+              en={<>TODO</>}
             />
           </Instruction>
         </PhaseAnnouncement>
 
         {/* Step 1 */}
-        <ViewOr orCondition={isUserTheMaster}>
-          <StepMasterWaiting
+        <ViewOr orCondition={isUserTheBoss}>
+          <StepBossWaiting
             secretWord={state.secretWord}
             board={state.board}
+            clues={state.clues}
             categories={state.categories}
             players={players}
           />
@@ -72,9 +74,10 @@ function PhasePlayersClues({ state, players, info }: PhaseProps) {
           <StepPlayerClue
             secretWord={state.secretWord}
             board={state.board}
+            clues={state.clues}
             categories={state.categories}
             onSubmitClues={onSubmitClues}
-            master={master}
+            boss={boss}
             finalAnswersLeft={state.finalAnswersLeft}
             cluesPerPlayer={state.cluesPerPlayer}
             players={players}

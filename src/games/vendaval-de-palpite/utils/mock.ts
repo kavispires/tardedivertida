@@ -18,6 +18,9 @@ const suggestedWords = [
   'yellow',
   'can I put in my mouth?',
   'is it legal?',
+  'warm',
+  'beautiful',
+  'larger than an elephant',
 ];
 
 export function mockClues(quantity: number): string[] {

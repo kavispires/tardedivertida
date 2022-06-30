@@ -5,7 +5,7 @@ import { PHASES } from 'utils/phases';
 import { Session } from 'components/session';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { PageError } from 'components/errors';
-import PhaseMasterPlayerSelection from './PhaseMasterPlayerSelection';
+import PhaseBossPlayerSelection from './PhaseBossPlayerSelection';
 import PhaseSecretWordSelection from './PhaseSecretWordSelection';
 import PhasePlayersClues from './PhasePlayersClues';
 import PhaseClueEvaluations from './PhaseClueEvaluations';
@@ -20,8 +20,8 @@ function SessionVendavalDePalpite({ gameId }: SessionProps) {
         return PhaseRules;
       case PHASES.DEFAULT.SETUP:
         return PhaseSetup;
-      case PHASES.VENDAVAL_DE_PALPITE.MASTER_PLAYER_SELECTION:
-        return PhaseMasterPlayerSelection;
+      case PHASES.VENDAVAL_DE_PALPITE.BOSS_SELECTION:
+        return PhaseBossPlayerSelection;
       case PHASES.VENDAVAL_DE_PALPITE.SECRET_WORD_SELECTION:
         return PhaseSecretWordSelection;
       case PHASES.VENDAVAL_DE_PALPITE.PLAYERS_CLUES:

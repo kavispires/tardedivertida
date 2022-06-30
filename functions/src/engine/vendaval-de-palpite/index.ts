@@ -11,7 +11,7 @@ import { determineNextPhase } from './helpers';
 import {
   prepareClueEvaluations,
   prepareGameOverPhase,
-  prepareMasterPlayerSelection,
+  prepareBossPlayerSelection,
   preparePlayersClues,
   prepareSecretWordSelection,
   prepareSetupPhase,
@@ -19,7 +19,7 @@ import {
 import {
   handleSubmitEvaluation,
   handleSubmitHelp,
-  handleSubmitMasterPlayer,
+  handleSubmitBossPlayer,
   handleSubmitOutcome,
   handleSubmitPlayerClues,
   handleSubmitSecretWord,
@@ -86,13 +86,13 @@ export const getNextPhase = async (
     return getNextPhase(collectionName, gameId, players);
   }
 
-  // SETUP -> MASTER_PLAYER_SELECTION
-  if (nextPhase === VENDAVAL_DE_PALPITE_PHASES.MASTER_PLAYER_SELECTION) {
-    const newPhase = await prepareMasterPlayerSelection();
+  // SETUP -> BOSS_SELECTION
+  if (nextPhase === VENDAVAL_DE_PALPITE_PHASES.BOSS_SELECTION) {
+    const newPhase = await prepareBossPlayerSelection();
     return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
-  // MASTER_PLAYER_SELECTION -> SECRET_WORD_SELECTION
+  // BOSS_SELECTION -> SECRET_WORD_SELECTION
   if (nextPhase === VENDAVAL_DE_PALPITE_PHASES.SECRET_WORD_SELECTION) {
     const newPhase = await prepareSecretWordSelection(store, state, players);
     return utils.firebase.saveGame(sessionRef, newPhase);
@@ -129,9 +129,9 @@ export const submitAction = async (data: VendavalDePalpiteSubmitAction) => {
   utils.firebase.validateSubmitActionPayload(gameId, collectionName, playerId, action);
 
   switch (action) {
-    case 'SUBMIT_MASTER':
-      utils.firebase.validateSubmitActionProperties(data, ['masterId'], 'submit master player id');
-      return handleSubmitMasterPlayer(collectionName, gameId, playerId, data.masterId);
+    case 'SUBMIT_BOSS':
+      utils.firebase.validateSubmitActionProperties(data, ['bossId'], 'submit boss player id');
+      return handleSubmitBossPlayer(collectionName, gameId, playerId, data.bossId);
     case 'SUBMIT_SECRET_WORD':
       utils.firebase.validateSubmitActionProperties(
         data,
@@ -149,8 +149,8 @@ export const submitAction = async (data: VendavalDePalpiteSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(data, ['outcome'], 'submit outcome');
       return handleSubmitOutcome(collectionName, gameId, playerId, data.outcome);
     case 'SUBMIT_HELP':
-      utils.firebase.validateSubmitActionProperties(data, ['clue', 'evaluation'], 'submit help');
-      return handleSubmitHelp(collectionName, gameId, playerId, data.clue, data.evaluation);
+      utils.firebase.validateSubmitActionProperties(data, ['clueId'], 'submit help');
+      return handleSubmitHelp(collectionName, gameId, playerId, data.clueId);
     default:
       utils.firebase.throwException(`Given action ${action} is not allowed`);
   }

@@ -16,7 +16,7 @@ import { StepWaiting } from './StepWaiting';
 function PhaseSecretWordSelection({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
   const { step, setStep, goToNextStep } = useStep(0);
-  const [master, isUserTheMaster] = useWhichPlayerIsThe('masterId', state, players);
+  const [boss, isUserTheBoss] = useWhichPlayerIsThe('bossId', state, players);
 
   const onSubmitSecretWord = useOnSubmitSecretWordAPIRequest(setStep);
 
@@ -29,7 +29,7 @@ function PhaseSecretWordSelection({ state, players, info }: PhaseProps) {
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
-          type="secret"
+          type="knowledge"
           title={translate('A Palavra Secreta', 'The Secret Word')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
@@ -39,12 +39,12 @@ function PhaseSecretWordSelection({ state, players, info }: PhaseProps) {
             <Translate
               pt={
                 <>
-                  O mestre <AvatarName player={master} /> escolherá a palavra-secreta e sua categoria.
+                  O chefe <AvatarName player={boss} /> escolherá a palavra-secreta e sua categoria.
                 </>
               }
               en={
                 <>
-                  The master <AvatarName player={master} /> will choose the secret clue and its category.
+                  The boss <AvatarName player={boss} /> will choose the secret clue and its category.
                 </>
               }
             />
@@ -52,7 +52,7 @@ function PhaseSecretWordSelection({ state, players, info }: PhaseProps) {
         </PhaseAnnouncement>
 
         {/* Step 1 */}
-        <ViewOr orCondition={isUserTheMaster}>
+        <ViewOr orCondition={isUserTheBoss}>
           <StepSecretWordSelection
             words={state.words}
             categories={state.categories}
@@ -65,12 +65,12 @@ function PhaseSecretWordSelection({ state, players, info }: PhaseProps) {
               <Translate
                 pt={
                   <>
-                    O mestre <AvatarName player={master} /> está escolhendo a palavra-secreta e sua categoria.
+                    O mestre <AvatarName player={boss} /> está escolhendo a palavra-secreta e sua categoria.
                   </>
                 }
                 en={
                   <>
-                    The master <AvatarName player={master} /> is choosing the secret clue and its category.
+                    The boss <AvatarName player={boss} /> is choosing the secret clue and its category.
                   </>
                 }
               />
