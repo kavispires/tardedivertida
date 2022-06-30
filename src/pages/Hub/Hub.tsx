@@ -80,11 +80,7 @@ function Hub() {
         subTitle={<Translate pt="Selecione um jogo para começar" en="Select a game to start" />}
         extra={[
           <LanguageSwitch key="language-switch" />,
-          <Popconfirm
-            title={<Translate pt="Tem certeza?" en="Are you sure?" />}
-            onConfirm={onSignOut}
-            key="logout-button"
-          >
+          <Popconfirm title={<Translate pt="Tem certeza?" en="Are you sure?" />} onConfirm={onSignOut}>
             <Button danger ghost key="logout-button" size="small">
               Logout
             </Button>

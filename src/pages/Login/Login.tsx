@@ -56,13 +56,7 @@ function Login() {
         </div>
 
         {Boolean(error) && (
-          <Alert
-            message="Error"
-            description={JSON.stringify(error)}
-            type="error"
-            showIcon
-            className="login__error-alert"
-          />
+          <Alert message="Error" description={error} type="error" showIcon className="login__error-alert" />
         )}
         <Form
           {...layout}

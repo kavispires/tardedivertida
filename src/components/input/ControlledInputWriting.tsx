@@ -8,7 +8,7 @@ type ControlledInputWritingProps = {
   valueKey: string;
   inputQuantity?: number;
   restrictMax?: boolean;
-  inputComponent: GenericComponent;
+  inputComponent: ReactNode;
   inputComponentProps?: PlainObject;
   submitButtonProps?: ButtonProps;
   submitButtonLabel: ReactNode;
