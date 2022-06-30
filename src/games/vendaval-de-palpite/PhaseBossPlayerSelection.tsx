@@ -1,6 +1,6 @@
 // Hooks
 import { useLanguage, useStep } from 'hooks';
-import { useOnSubmitMasterPlayerAPIRequest } from './utils/api-requests';
+import { useOnSubmitBossPlayerAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
@@ -8,24 +8,20 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
-import { StepMasterPlayerSelection } from './StepMasterPlayerSelection';
+import { StepBossPlayerSelection } from './StepBossPlayerSelection';
 
-function PhaseMasterPlayerSelection({ state, players, info }: PhaseProps) {
+function PhaseBossPlayerSelection({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
   const { step, setStep, goToNextStep } = useStep(0);
 
-  const onMasterPlayerClick = useOnSubmitMasterPlayerAPIRequest(setStep);
+  const onBossPlayerClick = useOnSubmitBossPlayerAPIRequest(setStep);
 
   return (
-    <PhaseContainer
-      info={info}
-      phase={state?.phase}
-      allowedPhase={PHASES.VENDAVAL_DE_PALPITE.MASTER_PLAYER_SELECTION}
-    >
+    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.VENDAVAL_DE_PALPITE.BOSS_SELECTION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
-          type="brain"
+          type="boss"
           title={translate('O Chefe', 'The Boss')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
@@ -35,14 +31,14 @@ function PhaseMasterPlayerSelection({ state, players, info }: PhaseProps) {
             <Translate
               pt={
                 <>
-                  Um jogador deve ser o Chefe e avaliará as dicas dadas pelos outros jogadores que estão
-                  tentando descobrir a palavra secreta.
+                  Um jogador deve ser o Chefe que sabe exatamente o que ele quer (a palavra secreta) e os
+                  outros serão funcionários na reunião de brainstorm.
                 </>
               }
               en={
                 <>
-                  A player must be the Boss who will evaluate the clues given by other players who are trying
-                  to unveil the secret word.
+                  One player must be the Boss who knows exactly wht they want (the secret word) and the other
+                  players will be the employees participating in this brainstorm meeting.
                 </>
               }
             />
@@ -50,10 +46,10 @@ function PhaseMasterPlayerSelection({ state, players, info }: PhaseProps) {
         </PhaseAnnouncement>
 
         {/* Step 1 */}
-        <StepMasterPlayerSelection players={players} onMasterPlayerClick={onMasterPlayerClick} />
+        <StepBossPlayerSelection players={players} onBossPlayerClick={onBossPlayerClick} />
       </StepSwitcher>
     </PhaseContainer>
   );
 }
 
-export default PhaseMasterPlayerSelection;
+export default PhaseBossPlayerSelection;

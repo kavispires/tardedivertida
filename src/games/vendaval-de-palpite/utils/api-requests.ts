@@ -1,24 +1,24 @@
 import { VENDAVAL_DE_PALPITE_API } from 'services/adapters';
 import { useAPICall, useLanguage } from 'hooks';
 
-export function useOnSubmitMasterPlayerAPIRequest(setStep: GenericFunction) {
+export function useOnSubmitBossPlayerAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 
   const request = useAPICall({
     apiFunction: VENDAVAL_DE_PALPITE_API.submitAction,
-    actionName: 'submit-master',
+    actionName: 'submit-boss',
     onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
-    successMessage: translate('Mestre enviado com sucesso!', 'Master submitted successfully!'),
+    successMessage: translate('Chefe enviado com sucesso!', 'Boss submitted successfully!'),
     errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar enviar o mestre',
-      'Oops, the application failed to send the master player'
+      'Vixi, o aplicativo encontrou um erro ao tentar enviar o chefe',
+      'Oops, the application failed to send the boss player'
     ),
   });
 
-  return (payload: SubmitMasterPlayerPayload) => {
+  return (payload: SubmitBossPlayerPayload) => {
     request({
-      action: 'SUBMIT_MASTER',
+      action: 'SUBMIT_BOSS',
       ...payload,
     });
   };
@@ -121,7 +121,7 @@ export function useOnSubmitHelpAPIRequest(setStep: GenericFunction) {
 
   const request = useAPICall({
     apiFunction: VENDAVAL_DE_PALPITE_API.submitAction,
-    actionName: 'submit-player-clues',
+    actionName: 'submit-help',
     onBeforeCall: () => setStep(3),
     onError: () => setStep(1),
     successMessage: translate('Ajuda enviada com sucesso!', 'Help sent successfully!'),

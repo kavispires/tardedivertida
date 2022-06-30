@@ -13,13 +13,13 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
 import { ViewOr } from 'components/views';
-import { StepMasterEvaluation } from './StepMasterEvaluation';
+import { StepBossEvaluation } from './StepBossEvaluation';
 import { StepPlayersWaitEvaluation } from './StepPlayersWaitEvaluation';
 
 function PhaseClueEvaluations({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
   const { step, setStep, goToNextStep } = useStep(0);
-  const [master, isUserTheMaster] = useWhichPlayerIsThe('masterId', state, players);
+  const [boss, isUserTheBoss] = useWhichPlayerIsThe('bossId', state, players);
 
   const onSubmitEvaluation = useOnSubmitEvaluationAPIRequest(setStep);
   const onSubmitOutcome = useOnSubmitOutcomeAPIRequest(setStep);
@@ -49,10 +49,11 @@ function PhaseClueEvaluations({ state, players, info }: PhaseProps) {
         </PhaseAnnouncement>
 
         {/* Step 1 */}
-        <ViewOr orCondition={isUserTheMaster}>
-          <StepMasterEvaluation
+        <ViewOr orCondition={isUserTheBoss}>
+          <StepBossEvaluation
             secretWord={state.secretWord}
             board={state.board}
+            clues={state.clues}
             categories={state.categories}
             onSubmitEvaluation={onSubmitEvaluation}
             onSubmitOutcome={onSubmitOutcome}
@@ -65,8 +66,9 @@ function PhaseClueEvaluations({ state, players, info }: PhaseProps) {
 
           <StepPlayersWaitEvaluation
             board={state.board}
+            clues={state.clues}
             categories={state.categories}
-            master={master}
+            boss={boss}
             finalAnswersLeft={state.finalAnswersLeft}
             players={players}
           />

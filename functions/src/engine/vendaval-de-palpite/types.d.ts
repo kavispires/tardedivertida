@@ -6,20 +6,36 @@ type ResourceData = {
   categories: TextCard[];
 };
 
+type ClueId = string;
+
 type Clue = {
+  id: ClueId;
   playerId: PlayerId;
   clue: string;
+  /**
+   * Indicates if the boss has already evaluated this clue against the secret word
+   */
+  evaluation?: boolean;
+  /**
+   * Indicates if clue is a final guess
+   */
   isGuess?: boolean;
+  /**
+   * Indicates if the boss has used help to reveal the resolution of this clue
+   */
+  isResolved?: boolean;
 };
 
+type Clues = Record<ClueId, Clue>;
+
+type CurrentRound = number;
+
 type BoardEntry = {
-  clues: Clue[];
+  clues: ClueId[];
   evaluation?: number;
 };
 
-type Board = {
-  [key: string]: BoardEntry;
-};
+type Board = Record<CurrentRound, BoardEntry>;
 
 interface VendavalDePalpiteStore extends DefaultStore {
   categories: TextCard[];
@@ -38,7 +54,7 @@ interface VendavalDePalpiteInitialState extends InitialState {
 
 interface VendavalDePalpiteSubmitAction extends Payload {
   action:
-    | 'SUBMIT_MASTER'
+    | 'SUBMIT_BOSS'
     | 'SUBMIT_SECRET_WORD'
     | 'SUBMIT_CLUES'
     | 'SUBMIT_EVALUATION'

@@ -9,12 +9,12 @@ import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 
-type StepMasterPlayerSelectionProps = {
+type StepBossPlayerSelectionProps = {
   players: GamePlayers;
-  onMasterPlayerClick: GenericFunction;
+  onBossPlayerClick: GenericFunction;
 };
 
-export function StepMasterPlayerSelection({ players, onMasterPlayerClick }: StepMasterPlayerSelectionProps) {
+export function StepBossPlayerSelection({ players, onBossPlayerClick }: StepBossPlayerSelectionProps) {
   const { isLoading } = useLoading();
   const [isAdmin] = useGlobalState('isAdmin');
 
@@ -23,7 +23,7 @@ export function StepMasterPlayerSelection({ players, onMasterPlayerClick }: Step
       <Title>
         <AvatarIcon type="animated-clock" size="large" />
         <br />
-        <Translate pt="Quem quer ser o Mestre?" en="Who wants to be the Master?" />
+        <Translate pt="Quem quer ser o Chefe?" en="Who wants to be the Boss?" />
       </Title>
 
       <Instruction contained>
@@ -34,7 +34,7 @@ export function StepMasterPlayerSelection({ players, onMasterPlayerClick }: Step
                 <TransparentButton
                   key={`p-bt-${player.id}`}
                   disabled={isLoading}
-                  onClick={() => onMasterPlayerClick({ masterId: player.id })}
+                  onClick={() => onBossPlayerClick({ bossId: player.id })}
                 >
                   <AvatarCard key={`p-a-${player.id}`} player={player} withName addressUser />
                 </TransparentButton>
@@ -48,7 +48,7 @@ export function StepMasterPlayerSelection({ players, onMasterPlayerClick }: Step
 
       <Instruction>
         (
-        <Translate pt="O administrator selecionará o mestre" en="The Admin will select the master" />)
+        <Translate pt="O administrator selecionará o chefe" en="The Admin will select the boss" />)
       </Instruction>
     </Step>
   );
