@@ -62,7 +62,6 @@ export function RoundAnnouncement({
             onClick={onPressButton}
             onExpire={onPressButton}
             duration={time}
-            showTimer
             disabled={unskippable}
           >
             <Translate pt="Prosseguir" en="Continue" custom={buttonText} />
