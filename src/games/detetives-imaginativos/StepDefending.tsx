@@ -1,5 +1,5 @@
 // Ant Design Resources
-import { Button, message, Space } from 'antd';
+import { message, Space } from 'antd';
 // Components
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
@@ -9,6 +9,7 @@ import { Instruction, TextHighlight, Title } from 'components/text';
 import { useLanguage } from 'hooks';
 import { useEffect } from 'react';
 import { getAnimationClass } from 'utils/helpers';
+import { EndDefenseTimedButton } from './components/EndDefenseTimedButton';
 
 import { TableFocus } from './components/TableFocus';
 
@@ -81,23 +82,18 @@ export function StepDefending({
       </Instruction>
 
       {isUserTheCurrentPlayer && (
-        <Space className="space-container" align="center">
-          <Button type="primary" onClick={onFinishDefenseClick} disabled={isLoading} size="large">
-            <Translate pt="Concluir Defesa" en="End Defense" />
-          </Button>
-        </Space>
+        <EndDefenseTimedButton onFinishDefenseClick={onFinishDefenseClick} isLoading={isLoading} />
       )}
 
       <Space className="space-container" align="center" wrap>
         <TableFocus table={table} currentPlayer={currentPlayer} />
-        {isUserTheImpostor && (
-          <div style={{ transform: 'scale(0.8)' }}>
-            <Title size="x-small">
-              <Translate pt="Suas cartas" en="Your cards" />
-            </Title>
-            <TableFocus table={table} currentPlayer={user} />
-          </div>
-        )}
+
+        <div style={{ transform: 'scale(0.75)' }}>
+          <Title size="x-small">
+            <Translate pt="Suas cartas" en="Your cards" />
+          </Title>
+          <TableFocus table={table} currentPlayer={user} />
+        </div>
       </Space>
     </Step>
   );
