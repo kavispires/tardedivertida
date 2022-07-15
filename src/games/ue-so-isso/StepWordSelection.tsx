@@ -91,7 +91,7 @@ export function StepWordSelection({ guesser, onSendSelectedWords, words = [] }: 
         disabled={noSelection}
         onExpire={autoSelectRandomWord}
         duration={15}
-        showTimer={noSelection}
+        hideTimer={!noSelection}
       >
         <Translate pt="Enviar votos" en="Send votes" />
       </TimedButton>

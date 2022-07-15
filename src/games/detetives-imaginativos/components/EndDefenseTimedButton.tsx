@@ -17,7 +17,6 @@ export function EndDefenseTimedButton({ onFinishDefenseClick, isLoading }: EndDe
         onExpire={onFinishDefenseClick}
         disabled={isLoading}
         size="large"
-        showTimer
       >
         <Translate pt="Concluir Defesa" en="End Defense" />
       </TimedButton>
