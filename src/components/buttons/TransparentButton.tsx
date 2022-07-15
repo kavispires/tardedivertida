@@ -1,20 +1,39 @@
 import clsx from 'clsx';
+import { ReactNode } from 'react';
 
 interface TransparentButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  children: any;
+  /**
+   * The content of the button
+   */
+  children: ReactNode;
+  /**
+   * Flag indicating if the button is on its active state
+   */
   active?: boolean;
+  /**
+   * Custom active class
+   */
   activeClass?: string;
+  /**
+   * Custom class name
+   */
   className?: string;
+  /**
+   * Behavior when the mouse hovers the button (default: scale)
+   */
   hoverType?: 'scale' | 'sepia';
 }
 
+/**
+ * Transparent button that has all the functionality of a button but no visible styling
+ */
 export const TransparentButton = ({
   children,
   active = false,
   activeClass = '',
   className = '',
   hoverType = 'scale',
-  ...props
+  ...rest
 }: TransparentButtonProps) => {
   return (
     <button
@@ -24,7 +43,7 @@ export const TransparentButton = ({
         active && (activeClass || 'transparent-button--active'),
         className
       )}
-      {...props}
+      {...rest}
     >
       {children}
     </button>
