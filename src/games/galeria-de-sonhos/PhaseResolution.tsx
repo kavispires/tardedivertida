@@ -51,8 +51,8 @@ function PhaseResolution({ players, state, info }: PhaseProps) {
             />,
           ]}
         >
-          <RoundsLeftInstruction round={state.round} />
-          <AdminNextRoundButton round={state.round} lastRound={state.isLastRound} />
+          <RoundsLeftInstruction round={state.round} lastRound={state.lastRound} />
+          <AdminNextRoundButton round={state.round} lastRound={state.lastRound} />
         </StepRankingWrapper>
       </StepSwitcher>
     </PhaseContainer>
