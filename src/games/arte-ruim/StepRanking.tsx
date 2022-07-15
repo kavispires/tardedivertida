@@ -26,7 +26,7 @@ export function StepRanking({
   round,
   goToPreviousStep,
   setActiveIndex,
-  isLastRound,
+  isLastRound = false,
 }: StepRankingProps) {
   return (
     <StepRankingWrapper
@@ -42,7 +42,7 @@ export function StepRanking({
     >
       <PopoverRule content={<ScoringRules />} />
 
-      {!isGameOver && <RoundsLeftInstruction round={round} />}
+      {!isGameOver && <RoundsLeftInstruction round={round} lastRound={isLastRound} />}
 
       <Button
         size="large"

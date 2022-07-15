@@ -61,7 +61,7 @@ export function StepReveal({
       <VotingOptions players={players} isAllDisabled={true} leaderId={leaderId} onVote={(...args) => {}} />
       <RankingBoard players={players} ranking={ranking} />
 
-      <RoundsLeftInstruction round={round} />
+      <RoundsLeftInstruction round={round} lastRound={lastRound} />
 
       <TableFocus table={table} currentPlayer={impostor} />
 

@@ -24,7 +24,7 @@ export function StepRanking({
   round,
   goToPreviousStep,
   setActiveIndex,
-  isLastRound,
+  isLastRound = false,
   correctGuessPoints,
 }: StepRankingProps) {
   return (
@@ -44,7 +44,7 @@ export function StepRanking({
 
       {/* <PopoverRule content={<ScoringRules />} /> */}
 
-      {round.current < round.total && <RoundsLeftInstruction round={round} />}
+      {round.current < round.total && <RoundsLeftInstruction round={round} lastRound={isLastRound} />}
 
       <Button
         size="large"
