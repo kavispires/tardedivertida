@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { Icons } from 'components/icons';
+import { ArrowIcon } from 'components/icons/ArrowIcon';
 import { Translate } from 'components/language';
 // Components
 
@@ -16,10 +16,10 @@ export function RoundType({ roundType, className = '' }: RoundTypeProps) {
   return (
     <div className={clsx('m-round-type', className)}>
       <div className="m-round-type__arrows">
-        {roundType === 0 && <Icons.Arrow className={clsx(arrowBaseClass, `${arrowBaseClass}--0`)} />}
-        <Icons.Arrow className={clsx(arrowBaseClass, `${arrowBaseClass}--1`)} />
-        {roundType >= 2 && <Icons.Arrow className={clsx(arrowBaseClass, `${arrowBaseClass}--2`)} />}
-        {roundType === 3 && <Icons.Arrow className={clsx(arrowBaseClass, `${arrowBaseClass}--3`)} />}
+        {roundType === 0 && <ArrowIcon className={clsx(arrowBaseClass, `${arrowBaseClass}--0`)} />}
+        <ArrowIcon className={clsx(arrowBaseClass, `${arrowBaseClass}--1`)} />
+        {roundType >= 2 && <ArrowIcon className={clsx(arrowBaseClass, `${arrowBaseClass}--2`)} />}
+        {roundType === 3 && <ArrowIcon className={clsx(arrowBaseClass, `${arrowBaseClass}--3`)} />}
       </div>
 
       <div>

@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { message } from 'antd';
 // Components
-import { Icons } from 'components/icons';
+import { VideoGameControllerIcon } from 'components/icons/VideoGameControllerIcon';
 import { Translate } from 'components/language';
 
 /**
@@ -33,7 +33,7 @@ export const messageContent = (title: string, description: string, id: string, d
     top: window.innerWidth / 2 - 100,
     duration,
     key,
-    icon: <Icons.VideoGameController style={{ width: '64px' }} />,
+    icon: <VideoGameControllerIcon style={{ width: '64px' }} />,
     onClick: () => message.destroy(key),
   };
 };

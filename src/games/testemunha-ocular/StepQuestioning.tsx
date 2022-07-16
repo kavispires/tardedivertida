@@ -10,8 +10,9 @@ import { Step } from 'components/steps';
 import { Title } from 'components/text';
 import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
-import { Icons } from 'components/icons';
 import { Card } from 'components/cards';
+import { SpeechBubbleAcceptedIcon } from 'components/icons/SpeechBubbleAcceptedIcon';
+import { SpeechBubbleDeclinedIcon } from 'components/icons/SpeechBubbleDeclinedIcon';
 
 type StepQuestioningProps = {
   suspects: Suspect[];
@@ -68,7 +69,7 @@ export function StepQuestioning({
               </span>
               <Avatar
                 size="large"
-                icon={<Icons.SpeechBubbleDeclined />}
+                icon={<SpeechBubbleDeclinedIcon />}
                 style={{ backgroundColor: 'transparent' }}
                 shape="square"
               />
@@ -90,7 +91,7 @@ export function StepQuestioning({
             >
               <Avatar
                 size="large"
-                icon={<Icons.SpeechBubbleAccepted />}
+                icon={<SpeechBubbleAcceptedIcon />}
                 style={{ backgroundColor: 'transparent' }}
                 shape="square"
               />

@@ -1,10 +1,10 @@
 // Hooks
 import { useLanguage } from 'hooks';
 // Components
-import { Icons } from 'components/icons';
 import { Translate } from 'components/language';
 import { ReadyPlayersBar } from 'components/players';
 import { Instruction, Title } from 'components/text';
+import { WaitingRoomIcon } from 'components/icons/WaitingRoomIcon';
 
 type WaitingRoomProps = {
   players: GamePlayers;
@@ -18,7 +18,7 @@ export function WaitingRoom({ players, title, instruction, children }: WaitingRo
   return (
     <div className="waiting-room">
       <Title>{translate('Pronto!', 'Done!', title)}</Title>
-      <Icons.WaitingRoom style={{ width: '6rem' }} />
+      <WaitingRoomIcon style={{ width: '6rem' }} />
       <Instruction>
         {Boolean(instruction) ? (
           instruction

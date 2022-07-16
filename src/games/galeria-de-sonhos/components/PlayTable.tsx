@@ -8,8 +8,8 @@ import { useCardWidth, useLoading } from 'hooks';
 import { getAnimationClass } from 'utils/helpers';
 // Components
 import { ImageBlurButton, ImageCard, ImageCardBack } from 'components/cards';
-import { Icons } from 'components/icons';
 import { Translate } from 'components/language';
+import { StarIcon } from 'components/icons/StarIcon';
 
 type PlayTableProps = {
   table: GImageCard[];
@@ -45,9 +45,9 @@ export function PlayTable({ table, onPlayCard, userCards, isPlayAvailable }: Pla
                 />
                 {userCardEntry.used && (
                   <div className="g-star-points">
-                    {userCardEntry.score === 3 && <Icons.Star className="g-star g-star--super-spark" />}
-                    {userCardEntry.score > 1 && <Icons.Star className="g-star g-star--spark" />}
-                    {userCardEntry.score > 0 && <Icons.Star className="g-star g-star--spark" />}
+                    {userCardEntry.score === 3 && <StarIcon className="g-star g-star--super-spark" />}
+                    {userCardEntry.score > 1 && <StarIcon className="g-star g-star--spark" />}
+                    {userCardEntry.score > 0 && <StarIcon className="g-star g-star--spark" />}
                   </div>
                 )}
               </li>

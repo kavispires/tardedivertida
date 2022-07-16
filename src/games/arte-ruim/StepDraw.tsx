@@ -7,8 +7,8 @@ import { inNSeconds } from 'utils/helpers';
 // Components
 import { Step } from 'components/steps';
 import { Card } from 'components/cards';
-import { Icons } from 'components/icons';
 import { DrawingCanvas } from 'components/canvas';
+import { PanicIcon } from 'components/icons/PanicIcon';
 
 // Sound
 const arteRuimTimer = require('assets/sounds/arte-ruim-timer.mp3');
@@ -60,7 +60,7 @@ export function StepDraw({ secretCard, onSubmitDrawing }: StepDrawProps) {
       </Card>
       {audio}
       {isTimesUp ? (
-        <Icons.Panic style={{ background: 'white', width: '500px', padding: '2em' }} />
+        <PanicIcon style={{ background: 'white', width: '500px', padding: '2em' }} />
       ) : (
         <DrawingCanvas lines={lines} setLines={setLines} />
       )}

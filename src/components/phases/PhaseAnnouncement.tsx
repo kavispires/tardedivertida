@@ -7,7 +7,6 @@ import { useLanguage } from 'hooks';
 import { getAnimationClass, kebabToPascal } from 'utils/helpers';
 // Components
 import { Translate } from 'components/language';
-import { Icons } from 'components/icons';
 import { Title } from 'components/text';
 import { TimedButton } from 'components/buttons';
 
