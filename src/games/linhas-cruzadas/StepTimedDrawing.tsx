@@ -10,9 +10,9 @@ import { inNSeconds } from 'utils/helpers';
 import { Step } from 'components/steps';
 import { Card } from 'components/cards';
 import { TimerBar } from 'components/timers';
-import { Icons } from 'components/icons';
 import { DrawingCanvas } from 'components/canvas';
 import { Translate } from 'components/language';
+import { AnimatedLoaderIcon } from 'components/icons/AnimatedLoaderIcon';
 
 type StepTimedDrawingProps = {
   currentPrompt: Prompt;
@@ -49,7 +49,7 @@ export function StepTimedDrawing({ currentPrompt, onSubmitDrawing, players }: St
       </Card>
       <TimerBar steps={90} value={timer} total={DRAWING_TIME_IN_SECONDS} type="circle" />
       {isTimesUp ? (
-        <Icons.AnimatedLoader style={{ background: 'white', width: '250px', padding: '125px' }} />
+        <AnimatedLoaderIcon style={{ background: 'white', width: '250px', padding: '125px' }} />
       ) : (
         <DrawingCanvas lines={lines} setLines={setLines} showControls />
       )}

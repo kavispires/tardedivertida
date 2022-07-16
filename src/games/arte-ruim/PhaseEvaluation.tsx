@@ -9,6 +9,7 @@ import { StepEvaluation } from './StepEvaluation';
 import { EvaluationRules } from './components/TextBlobs';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { EvaluatedDrawings } from './components/EvaluatedDrawings';
+import { EvaluateIcon } from 'components/icons/EvaluateIcon';
 
 function EvaluationPhase({ players, state, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -33,7 +34,7 @@ function EvaluationPhase({ players, state, info }: PhaseProps) {
       >
         {/*Step 0 */}
         <PhaseAnnouncement
-          type="evaluate"
+          icon={<EvaluateIcon />}
           title={translate('Adivinhação', 'Match the Pairs')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}

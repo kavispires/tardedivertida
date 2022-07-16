@@ -1,5 +1,6 @@
 // Components
 import { GameOverWrapper } from 'components/game-over';
+import { TheEndIcon } from 'components/icons/TheEndIcon';
 import { Translate } from 'components/language';
 import { Title } from 'components/text';
 import { SheepAvatar } from './components/SheepAvatar';
@@ -9,7 +10,7 @@ function PhaseGameOver({ state, info }: PhaseProps) {
     <GameOverWrapper
       info={info}
       state={state}
-      announcementIcon="the-end"
+      announcementIcon={<TheEndIcon />}
       rateWidgetCustomText={<Translate pt="Alguma sugestão de pergunta?" en="Any question suggestions?" />}
     >
       <div className="m-game-over-in-memoriam">

@@ -15,6 +15,7 @@ import { AvatarName } from 'components/avatars';
 import { StepSwitcher } from 'components/steps';
 import { RoundAnnouncement } from 'components/round';
 import { ViewOr } from 'components/views';
+import { OpinionsIcon } from 'components/icons/OpinionsIcon';
 
 type RoundAnnouncementTextProps = {
   guesser: GamePlayer;
@@ -66,7 +67,7 @@ function PhaseWordSelection({ state, players, info }: PhaseProps) {
 
         {/* Step 1 */}
         <PhaseAnnouncement
-          type="opinions"
+          icon={<OpinionsIcon />}
           title={translate('Seleção da Palavra Secreta', 'Secret Word Selection')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}

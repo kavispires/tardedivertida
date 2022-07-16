@@ -9,6 +9,7 @@ import { Instruction } from 'components/text';
 import { StepResults } from './StepResults';
 import { StepRanking } from './StepRanking';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { QualitySealIcon } from 'components/icons/QualitySealIcon';
 
 function PhaseReveal({ players, state, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -23,7 +24,7 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
       <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady, !isUserReady]} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
-          type="quality-seal"
+          icon={<QualitySealIcon />}
           title={translate('Resultado', 'Results')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}

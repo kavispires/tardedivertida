@@ -13,6 +13,7 @@ import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
 import { ViewOr } from 'components/views';
 import { WaitingRoom } from 'components/players';
+import { VerifyListIcon } from 'components/icons/VerifyListIcon';
 
 function PhaseCompare({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -29,7 +30,7 @@ function PhaseCompare({ state, players, info }: PhaseProps) {
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
-          type="verify-list"
+          icon={<VerifyListIcon />}
           title={translate('Comparação de dicas!', 'Clue Check!')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}

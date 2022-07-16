@@ -11,6 +11,7 @@ import { Translate } from 'components/language';
 import { ViewOr } from 'components/views';
 import { StepGuess } from './StepGuess';
 import { StepPsychicGuess } from './StepPsychicGuess';
+import { SoundWaveIcon } from 'components/icons/SoundWaveIcon';
 
 function PhaseGuess({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
@@ -25,7 +26,7 @@ function PhaseGuess({ players, state, info }: PhaseProps) {
       <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady, !isUserReady]} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
-          type="sound-wave"
+          icon={<SoundWaveIcon />}
           title={translate('Adivinhação', 'Guessing')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}

@@ -9,6 +9,7 @@ import { Translate } from 'components/language';
 import { StepRankingWrapper } from 'components/ranking';
 import { Instruction, RoundsLeftInstruction } from 'components/text';
 import { AdminNextRoundButton } from 'components/admin';
+import { RankIcon } from 'components/icons/RankIcon';
 
 function PhaseResolution({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
@@ -25,7 +26,7 @@ function PhaseResolution({ players, state, info }: PhaseProps) {
       >
         {/* Step 0 */}
         <PhaseAnnouncement
-          type="rank"
+          icon={<RankIcon />}
           title={translate('Ranking', 'Ranking')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}

@@ -8,6 +8,8 @@ import { GameOverWrapper } from 'components/game-over';
 import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
 import { ImageCard } from 'components/cards';
+import { CriminalIcon } from 'components/icons/CriminalIcon';
+import { NewspaperIcon } from 'components/icons/NewspaperIcon';
 
 function PhaseGameOver({ state, info }: PhaseProps) {
   const { language, translate } = useLanguage();
@@ -18,7 +20,7 @@ function PhaseGameOver({ state, info }: PhaseProps) {
     <GameOverWrapper
       info={info}
       state={state}
-      announcementIcon={didUserWin ? 'criminal' : 'newspaper'}
+      announcementIcon={didUserWin ? <CriminalIcon /> : <NewspaperIcon />}
       announcementDuration={15}
       announcementTitle={
         didUserWin

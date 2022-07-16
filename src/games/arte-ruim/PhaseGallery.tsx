@@ -8,6 +8,7 @@ import { StepSwitcher } from 'components/steps';
 import { GalleryRules } from './components/TextBlobs';
 import { StepGallery } from './StepGallery';
 import { StepRanking } from './StepRanking';
+import { PictureIcon } from 'components/icons/PictureIcon';
 
 function PhaseGallery({ players, state, info, meta }: PhaseProps) {
   const { translate } = useLanguage();
@@ -28,7 +29,7 @@ function PhaseGallery({ players, state, info, meta }: PhaseProps) {
       <StepSwitcher step={step} players={players}>
         {/*Step 0 */}
         <PhaseAnnouncement
-          type="picture"
+          icon={<PictureIcon />}
           title={translate('Galeria de Arte', 'Art Gallery')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}

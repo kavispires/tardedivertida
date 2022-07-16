@@ -11,6 +11,7 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { StepNewScene } from './StepNewScene';
+import { LoupeIcon } from 'components/icons/LoupeIcon';
 
 function PhaseSceneMarking({ players, state, info }: PhaseProps) {
   const { language, translate } = useLanguage();
@@ -31,7 +32,7 @@ function PhaseSceneMarking({ players, state, info }: PhaseProps) {
 
         {/* Step 1 */}
         <PhaseAnnouncement
-          type="loupe"
+          icon={<LoupeIcon />}
           title={translate('Nova pista', 'New clue')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}

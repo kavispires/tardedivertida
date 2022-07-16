@@ -12,6 +12,8 @@ import { Translate } from 'components/language';
 import { StepMakeDecision } from './StepMakeDecision';
 import { PlayerStats } from './components/PlayerStats';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { StreetIcon } from 'components/icons/StreetIcon';
+import { TrickOrTreatIcon } from 'components/icons/TrickOrTreatIcon';
 
 function PhaseTrickOrTreat({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -49,7 +51,7 @@ function PhaseTrickOrTreat({ state, players, info }: PhaseProps) {
 
         {/* Step 1 */}
         <PhaseAnnouncement
-          type={isNewStreet ? 'street' : 'trick-or-treat'}
+          icon={isNewStreet ? <StreetIcon /> : <TrickOrTreatIcon />}
           title={translate('Gostosuras ou Travessuras?', 'Trick or Treat?')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}

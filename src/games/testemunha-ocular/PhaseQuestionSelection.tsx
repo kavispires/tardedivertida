@@ -12,6 +12,7 @@ import { ViewOr } from 'components/views';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepQuestionWaiting } from './StepQuestionWaiting';
 import { StepSelectQuestion } from './StepSelectQuestion';
+import { InvestigationIcon } from 'components/icons/InvestigationIcon';
 
 function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -33,7 +34,7 @@ function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
-          type="investigation"
+          icon={<InvestigationIcon />}
           title={translate('Seleção da Pergunta', 'Question Selection')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}

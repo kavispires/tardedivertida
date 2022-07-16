@@ -4,8 +4,10 @@ import { useCardWidth } from 'hooks';
 // Utils
 import { AVATARS } from 'utils/avatars';
 // Components
-import { Avatar, AvatarIcon } from 'components/avatars';
+import { Avatar } from 'components/avatars';
 import { ImageBlurButtonContainer, ImageCard } from 'components/cards';
+import { AnimatedLoaderIcon } from 'components/icons/AnimatedLoaderIcon';
+import { IconAvatar } from 'components/icons/IconAvatar';
 
 type TableFocusProps = {
   currentPlayer: GamePlayer;
@@ -21,7 +23,7 @@ export function TableFocus({ table, currentPlayer }: TableFocusProps) {
   if (!currentPlayer || !tableEntry?.cards) {
     return (
       <div className={clsx(baseClass, `${baseClass}--center`)}>
-        <AvatarIcon type="animated-loader" />
+        <IconAvatar icon={<AnimatedLoaderIcon />} />
       </div>
     );
   }

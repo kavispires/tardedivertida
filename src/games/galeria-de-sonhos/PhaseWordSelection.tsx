@@ -14,6 +14,7 @@ import { ViewOr } from 'components/views';
 import { WaitingRoom } from 'components/players';
 import { AvatarName } from 'components/avatars';
 import { StepWordSelection } from './StepWordSelection';
+import { SleepIcon } from 'components/icons/SleepIcon';
 
 function PhaseWordSelection({ players, state, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -43,7 +44,7 @@ function PhaseWordSelection({ players, state, info }: PhaseProps) {
 
         {/* Step 1 */}
         <PhaseAnnouncement
-          type="sleep"
+          icon={<SleepIcon />}
           title={translate('Tema dos Sonhos', 'The Dream Theme')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}

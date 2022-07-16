@@ -1,7 +1,9 @@
 // Ant Design Resources
 import { Tooltip } from 'antd';
 // Components
-import { AvatarIcon } from 'components/avatars';
+import { HouseIcon } from 'components/icons/HouseIcon';
+import { IconAvatar } from 'components/icons/IconAvatar';
+import { WalkIcon } from 'components/icons/WalkIcon';
 import { Translate } from 'components/language';
 import { CostumeAvatar } from './CostumeAvatar';
 
@@ -28,7 +30,7 @@ export function PlayersDecisionList({ playersIdsList, players, type }: PlayersDe
             )
           }
         >
-          <AvatarIcon type={isWalk ? 'walk' : 'house'} />
+          <IconAvatar icon={isWalk ? <WalkIcon /> : <HouseIcon />} />
         </Tooltip>
       </h4>
       <ul className="n-players-decision-list__players">

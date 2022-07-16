@@ -3,7 +3,6 @@ import { useLanguage, useMock } from 'hooks';
 // Utils
 import { mockPlayerDecision } from './utils/mock';
 // Components
-
 import { CandyCount } from './components/CandyCount';
 import { PlayersDecisionList } from './components/PlayersDecisionList';
 import { PlayerStats } from './components/PlayerStats';
@@ -14,8 +13,10 @@ import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
 import { TransparentButton } from 'components/buttons';
-import { AvatarIcon } from 'components/avatars';
 import { ReadyPlayersBar } from 'components/players';
+import { WalkIcon } from 'components/icons/WalkIcon';
+import { HouseIcon } from 'components/icons/HouseIcon';
+import { IconAvatar } from 'components/icons/IconAvatar';
 
 type StepMakeDecisionProps = {
   players: GamePlayers;
@@ -64,8 +65,8 @@ export function StepMakeDecision({
             }
             en={
               <>
-                Yummy! {currentCard.value} <AvatarIcon type="candy" />! Each player gets {candyPerPlayer}{' '}
-                <AvatarIcon type="candy" />!
+                Yummy! <CandyCount candyCount={currentCard.value} size="large" />! {candyPerPlayer} for each
+                one of us!
               </>
             }
           />
@@ -119,14 +120,14 @@ export function StepMakeDecision({
             className="n-decision-button n-decision-button--home"
             onClick={() => onSubmitDecision({ decision: 'GO_HOME' })}
           >
-            <AvatarIcon type="house" size="large" />
+            <IconAvatar icon={<HouseIcon />} size="large" />
             <Translate pt="Voltar pra casa" en="Go back home" />
           </TransparentButton>
           <TransparentButton
             className="n-decision-button n-decision-button--continue"
             onClick={() => onSubmitDecision({ decision: 'CONTINUE' })}
           >
-            <AvatarIcon type="walk" size="large" />
+            <IconAvatar icon={<WalkIcon />} size="large" />
             <Translate pt="Continuar para a próxima casa" en="Continue trick or treating" />
           </TransparentButton>
         </div>

@@ -9,6 +9,7 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
 import { StepBossPlayerSelection } from './StepBossPlayerSelection';
+import { BossIcon } from 'components/icons/BossIcon';
 
 function PhaseBossPlayerSelection({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -21,7 +22,7 @@ function PhaseBossPlayerSelection({ state, players, info }: PhaseProps) {
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
-          type="boss"
+          icon={<BossIcon />}
           title={translate('O Chefe', 'The Boss')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}

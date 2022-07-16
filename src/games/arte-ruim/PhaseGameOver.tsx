@@ -1,6 +1,7 @@
 // Components
 import { CanvasSVG } from 'components/canvas';
 import { GameOverWrapper } from 'components/game-over';
+import { TrophyIcon } from 'components/icons/TrophyIcon';
 import { Translate } from 'components/language';
 import { DrawingGrade } from './components/DrawingGrade';
 
@@ -9,7 +10,7 @@ function PhaseGameOver({ state, players, info }: PhaseProps) {
     <GameOverWrapper
       info={info}
       state={state}
-      announcementIcon="trophy"
+      announcementIcon={<TrophyIcon />}
       rateWidgetCustomText={<Translate pt="Alguma sugestão de carta?" en="Any card suggestions?" />}
     >
       <ul className="a-game-over__gallery">

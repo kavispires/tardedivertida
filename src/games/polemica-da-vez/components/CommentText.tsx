@@ -1,5 +1,7 @@
 import clsx from 'clsx';
-import { AvatarIcon } from 'components/avatars';
+import { IconAvatar } from 'components/icons/IconAvatar';
+import { SpeechBubbleThumbsDownIcon } from 'components/icons/SpeechBubbleThumbsDownIcon';
+import { SpeechBubbleThumbsUpIcon } from 'components/icons/SpeechBubbleThumbsUpIcon';
 import { Translate } from 'components/language';
 import { StarPoints } from 'components/points';
 // Components
@@ -17,13 +19,18 @@ export function CommentText({ reaction, likes, playerId, points }: CommentTextPr
       {reaction ? (
         <>
           <Translate pt="Curto" en="I like it" />{' '}
-          <AvatarIcon type="speech-bubble-thumbs-up" shape="square" className="p-like-icon" size={20} />{' '}
+          <IconAvatar icon={<SpeechBubbleThumbsUpIcon />} shape="square" className="p-like-icon" size={20} />{' '}
           <Translate pt=" e " en=" and " />
         </>
       ) : (
         <>
           <Translate pt="Não curto" en="I dislike it" />{' '}
-          <AvatarIcon type="speech-bubble-thumbs-down" shape="square" className="p-like-icon" size={20} />{' '}
+          <IconAvatar
+            icon={<SpeechBubbleThumbsDownIcon />}
+            shape="square"
+            className="p-like-icon"
+            size={20}
+          />{' '}
           <Translate pt=", mas " en=" but " />
         </>
       )}

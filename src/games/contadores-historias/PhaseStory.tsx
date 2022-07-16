@@ -16,6 +16,7 @@ import { AvatarName } from 'components/avatars';
 import { TurnOrder } from 'components/players';
 import { ImageCardPreloadHand } from 'components/cards';
 import { ViewOr } from 'components/views';
+import { FairyTaleIcon } from 'components/icons/FairyTaleIcon';
 
 function PhaseStory({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -34,7 +35,7 @@ function PhaseStory({ state, players, info }: PhaseProps) {
 
         {/* Step 1 */}
         <PhaseAnnouncement
-          type="fairy-tale"
+          icon={<FairyTaleIcon />}
           title={translate('Conte-nos uma história', 'Tell us a story...')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}

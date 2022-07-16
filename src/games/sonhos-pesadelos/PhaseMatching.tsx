@@ -9,6 +9,7 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { StepMatchDreams } from './StepMatchDreams';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { EvaluateIcon } from 'components/icons/EvaluateIcon';
 
 function PhaseMatching({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -23,7 +24,7 @@ function PhaseMatching({ state, players, info }: PhaseProps) {
       <StepSwitcher step={step} conditions={[!isUserReady]} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
-          type="evaluate"
+          icon={<EvaluateIcon />}
           title={translate('Combine os sonhos', 'Match the dreams')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}

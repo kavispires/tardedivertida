@@ -1,12 +1,13 @@
 // Hooks
 import { useLoading, useMock } from 'hooks';
 // Components
-import { AvatarIcon } from 'components/avatars';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 
 import { Card } from './components/Card';
+import { AnimatedLoaderIcon } from 'components/icons/AnimatedLoaderIcon';
+import { IconAvatar } from 'components/icons/IconAvatar';
 
 type StepCategorySelectionProps = {
   currentCategories: OCategoryCard[];
@@ -35,7 +36,7 @@ export function StepCategorySelection({ currentCategories, onSendChosenSide }: S
         />
         {isLoading && (
           <div>
-            <AvatarIcon type="animated-loader" size="small" />
+            <IconAvatar icon={<AnimatedLoaderIcon />} size="small" />
           </div>
         )}
       </Instruction>

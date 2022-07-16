@@ -1,5 +1,8 @@
 // Components
-import { AvatarIcon } from 'components/avatars';
+import { CandyIcon } from 'components/icons/CandyIcon';
+import { HouseIcon } from 'components/icons/HouseIcon';
+import { IconAvatar } from 'components/icons/IconAvatar';
+import { WalkIcon } from 'components/icons/WalkIcon';
 import { Translate } from 'components/language';
 import { CostumeAvatar } from './CostumeAvatar';
 
@@ -22,7 +25,7 @@ export function PlayersDecisionResult({
     <div className="n-players-decision-result">
       <div className="n-players-decision-result__section">
         <h3 className="n-players-decision-result__title">
-          <AvatarIcon type="house" />
+          <IconAvatar icon={<HouseIcon />} />
           <Translate pt="Decidiram voltar pra casa" en="Decided to go back home" />
         </h3>
 
@@ -48,13 +51,14 @@ export function PlayersDecisionResult({
             <Translate
               pt={
                 <>
-                  Cada um levou {candyInHand + cashedInCandy} <AvatarIcon type="candy" size="small" /> pra
-                  casa.
+                  Cada um levou {candyInHand + cashedInCandy} <IconAvatar icon={<CandyIcon />} size="small" />{' '}
+                  pra casa.
                 </>
               }
               en={
                 <>
-                  Each one took {candyInHand + cashedInCandy} <AvatarIcon type="candy" size="small" /> home.
+                  Each one took {candyInHand + cashedInCandy} <IconAvatar icon={<CandyIcon />} size="small" />{' '}
+                  home.
                 </>
               }
             />
@@ -64,7 +68,7 @@ export function PlayersDecisionResult({
       <div className="n-players-decision-result__divider"></div>
       <div className="n-players-decision-result__section">
         <h3 className="n-players-decision-result__title">
-          <AvatarIcon type="walk" />
+          <IconAvatar icon={<WalkIcon />} />
           <Translate pt="Decidiram continuar" en="Decided to continue" />
         </h3>
 
@@ -90,12 +94,12 @@ export function PlayersDecisionResult({
             <Translate
               pt={
                 <>
-                  Cada um tem {candyInHand} <AvatarIcon type="candy" size="small" /> na sacolinha.
+                  Cada um tem {candyInHand} <IconAvatar icon={<CandyIcon />} size="small" /> na sacolinha.
                 </>
               }
               en={
                 <>
-                  Each one has {candyInHand} <AvatarIcon type="candy" size="small" /> in their bag.
+                  Each one has {candyInHand} <IconAvatar icon={<CandyIcon />} size="small" /> in their bag.
                 </>
               }
             />

@@ -8,6 +8,7 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { StepResolution } from './StepResolution';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { CustomerReviewIcon } from 'components/icons/CustomerReviewIcon';
 
 function PhaseResolution({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -18,7 +19,7 @@ function PhaseResolution({ state, players, info }: PhaseProps) {
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
-          type="customer-review"
+          icon={<CustomerReviewIcon />}
           title={translate('Resultado', 'And who moves is...')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}

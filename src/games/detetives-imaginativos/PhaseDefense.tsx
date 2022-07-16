@@ -9,6 +9,7 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction, TextHighlight, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { StepDefending } from './StepDefending';
+import { DefenseIcon } from 'components/icons/DefenseIcon';
 
 function PhaseDefense({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -30,7 +31,7 @@ function PhaseDefense({ state, players, info }: PhaseProps) {
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
-          type="defense"
+          icon={<DefenseIcon />}
           title={translate('Defensa', 'Defense')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}

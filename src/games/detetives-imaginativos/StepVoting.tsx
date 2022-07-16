@@ -1,5 +1,6 @@
 // Components
-import { AvatarIcon } from 'components/avatars';
+import { AnimatedClockIcon } from 'components/icons/AnimatedClockIcon';
+import { IconAvatar } from 'components/icons/IconAvatar';
 import { Translate } from 'components/language';
 import { ReadyPlayersBar } from 'components/players';
 import { Step } from 'components/steps';
@@ -31,7 +32,7 @@ export function StepVoting({
     <Step>
       <Title>
         {isLoading ? (
-          <AvatarIcon type="animated-clock" size="large" />
+          <IconAvatar icon={<AnimatedClockIcon />} size="large" />
         ) : (
           <Translate pt="Quem é o impostor?" en="Who is the impostor?" />
         )}

@@ -10,6 +10,7 @@ import { StepReveal } from './StepReveal';
 import { ScoringMessage } from './components/RulesBlobs';
 import { StepRanking } from './StepRanking';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { RankIcon } from 'components/icons/RankIcon';
 
 function PhaseReveal({ players, state, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -30,7 +31,7 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
       <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady, !isUserReady]} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
-          type="rank"
+          icon={<RankIcon />}
           title={translate('Resultado', 'Results')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}

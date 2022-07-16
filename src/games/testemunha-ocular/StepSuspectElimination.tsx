@@ -3,15 +3,15 @@ import { Avatar, Button, Space } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks';
 // Components
-
 import { Suspects } from './components/Suspects';
 import { QuestionsHistory } from './components/QuestionsHistory';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
-import { Icons } from 'components/icons';
 import { Card } from 'components/cards';
+import { SpeechBubbleAcceptedIcon } from 'components/icons/SpeechBubbleAcceptedIcon';
+import { SpeechBubbleDeclinedIcon } from 'components/icons/SpeechBubbleDeclinedIcon';
 
 type StepSuspectEliminationProps = {
   suspects: Suspect[];
@@ -61,7 +61,7 @@ export function StepSuspectElimination({
         )}{' '}
         <Avatar
           size="large"
-          icon={testimony ? <Icons.SpeechBubbleAccepted /> : <Icons.SpeechBubbleDeclined />}
+          icon={testimony ? <SpeechBubbleAcceptedIcon /> : <SpeechBubbleDeclinedIcon />}
           style={{ backgroundColor: 'transparent' }}
           shape="square"
         />{' '}

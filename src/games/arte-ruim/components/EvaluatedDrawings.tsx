@@ -2,8 +2,9 @@ import { useMemo } from 'react';
 // Hooks
 import { useGlobalState } from 'hooks';
 // Components
-import { AvatarIcon } from 'components/avatars';
 import { CanvasSVG } from 'components/canvas';
+import { IconAvatar } from 'components/icons/IconAvatar';
+import { AnimatedLoaderIcon } from 'components/icons/AnimatedLoaderIcon';
 
 type EvaluatedDrawingsProps = {
   votes?: StringDictionary;
@@ -40,7 +41,7 @@ export function EvaluatedDrawings({ votes, cards, drawings }: EvaluatedDrawingsP
   if (!votes) {
     return (
       <div className="a-evaluated-drawings">
-        <AvatarIcon type="animated-loader" />
+        <IconAvatar icon={<AnimatedLoaderIcon />} />
       </div>
     );
   }

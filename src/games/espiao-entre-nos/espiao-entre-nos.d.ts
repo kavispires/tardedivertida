@@ -31,7 +31,7 @@ type ResolutionStatus = {
   wasAnAccusationAttempt: boolean;
   didSpyGuess: boolean;
   didTheSpyWin: boolean;
-  phaseIcon: string;
+  phaseIcon: 'nuclear-explosion' | 'handcuffs';
   guess: ELocation | PlainObject;
   currentLocation?: ELocation;
 };

@@ -15,6 +15,7 @@ import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
 import { TurnOrder } from 'components/players';
 import { ViewOr } from 'components/views';
+import { TurbanIcon } from 'components/icons/TurbanIcon';
 
 function PhaseDialClue({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
@@ -40,7 +41,7 @@ function PhaseDialClue({ players, state, info }: PhaseProps) {
 
         {/* Step 1 */}
         <PhaseAnnouncement
-          type="turban"
+          icon={<TurbanIcon />}
           title={translate('Concentração', 'Focus')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}

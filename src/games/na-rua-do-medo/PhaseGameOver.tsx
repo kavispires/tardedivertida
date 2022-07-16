@@ -11,6 +11,7 @@ import { GameOverWrapper } from 'components/game-over';
 import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
 import { Avatar } from 'components/avatars';
+import { PoopIcon } from 'components/icons/PoopIcon';
 
 const GRID_REPEAT: NumberDictionary = {
   3: 3,
@@ -31,7 +32,7 @@ function PhaseGameOver({ state, players, info }: PhaseProps) {
     <GameOverWrapper
       info={info}
       state={state}
-      announcementIcon="poop"
+      announcementIcon={<PoopIcon />}
       announcementDuration={6}
       announcementContent={
         <Instruction>

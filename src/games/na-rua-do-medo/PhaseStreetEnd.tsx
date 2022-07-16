@@ -8,6 +8,8 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { StepStreetEnd } from './StepStreetEnd';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { ScaredIcon } from 'components/icons/ScaredIcon';
+import { HouseIcon } from 'components/icons/HouseIcon';
 
 function PhaseStreetEnd({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -20,7 +22,7 @@ function PhaseStreetEnd({ state, players, info }: PhaseProps) {
       <StepSwitcher step={step} conditions={[!isUserReady]} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
-          type={state.isDoubleHorror ? 'scared' : 'house'}
+          icon={state.isDoubleHorror ? <ScaredIcon /> : <HouseIcon />}
           title={translate('Fim da Rua', 'End of the Street')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}

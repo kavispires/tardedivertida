@@ -18,6 +18,11 @@ import { StepCauseOfDeathSelection } from './StepCauseOfDeathSelection';
 import { StepLocationSelection } from './StepLocationSelection';
 import { StepReviewCrime } from './StepReviewCrime';
 import { StepReasonForEvidence } from './StepReasonForEvidence';
+import { EventIcon } from 'components/icons/EventIcon';
+import { SkullIcon } from 'components/icons/SkullIcon';
+import { CrimeSceneIcon } from 'components/icons/CrimeSceneIcon';
+import { LocationIcon } from 'components/icons/LocationIcon';
+import { CrimeTapeIcon } from 'components/icons/CrimeTapeIcon';
 
 function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -63,7 +68,7 @@ function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
 
         {/* Step 1 */}
         <PhaseAnnouncement
-          type="event"
+          icon={<EventIcon />}
           title={translate('A Convenção', 'The Convention')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
@@ -83,7 +88,7 @@ function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
 
         {/* Step 3 */}
         <PhaseAnnouncement
-          type="skull"
+          icon={<SkullIcon />}
           title={translate('Causa da Morte', 'Cause of Death')}
           onClose={goToNextStep}
           duration={5}
@@ -103,7 +108,7 @@ function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
 
         {/* Step 5 */}
         <PhaseAnnouncement
-          type="crime-scene"
+          icon={<CrimeSceneIcon />}
           title={translate('Evidências?', 'Evidence?')}
           onClose={goToNextStep}
           duration={5}
@@ -126,7 +131,7 @@ function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
 
         {/* Step 7 */}
         <PhaseAnnouncement
-          type="location"
+          icon={<LocationIcon />}
           title={translate('Local do Crime', 'Crime Location')}
           onClose={goToNextStep}
           duration={5}
@@ -148,7 +153,7 @@ function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
 
         {/* Step 9 */}
         <PhaseAnnouncement
-          type="crime-tape"
+          icon={<CrimeTapeIcon />}
           title={translate('Revisão', 'Review')}
           onClose={goToNextStep}
           duration={5}

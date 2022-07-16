@@ -1,10 +1,10 @@
 // Constants
 import { PHASES } from 'utils/phases';
 // Components
-import { Icons } from 'components/icons';
 import { Translate } from 'components/language';
 import { Instruction, Title } from 'components/text';
 import { PhaseContainer } from './PhaseContainer';
+import { GearsIcon } from 'components/icons/GearsIcon';
 
 type PhaseSetupProps = {
   info: GameInfo;
@@ -19,7 +19,7 @@ export function PhaseSetup({ info, state }: PhaseSetupProps) {
           <Translate pt="Preparando o jogo..." en="Setting up...." />
         </Title>
 
-        <Icons.Gears className="phase-announcement__icon" />
+        <GearsIcon className="phase-announcement__icon" />
 
         <Instruction>
           <Translate pt="Aguarde um momento" en="Just a moment" />

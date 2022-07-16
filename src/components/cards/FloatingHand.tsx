@@ -3,8 +3,10 @@ import { ReactNode, useState } from 'react';
 // Hooks
 import { useLanguage } from 'hooks';
 // Components
-import { AvatarIcon } from 'components/avatars';
 import { Translate } from 'components/language';
+import { IconAvatar } from 'components/icons/IconAvatar';
+import { HandOfCardsIcon } from 'components/icons/HandOfCardsIcon';
+import { UserStatsIcon } from 'components/icons/UserStatsIcon';
 
 type FloatingHandProps = {
   /**
@@ -28,8 +30,8 @@ export function FloatingHand({ children, subtitle = '', type = 'hand' }: Floatin
         onMouseLeave={() => setIsExpanded(false)}
       >
         <span className="floating-hand__label">
-          <AvatarIcon
-            type={type === 'hand' ? 'hand-of-cards' : 'user-stats'}
+          <IconAvatar
+            icon={type === 'hand' ? <HandOfCardsIcon /> : <UserStatsIcon />}
             size={isExpanded ? 40 : 60}
             className="floating-hand__icon"
             alt={translate('Mão de Cartas', 'Hand of Cards')}

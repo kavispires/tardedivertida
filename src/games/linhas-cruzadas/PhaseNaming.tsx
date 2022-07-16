@@ -10,6 +10,7 @@ import { Instruction } from 'components/text';
 import { StepSwitcher } from 'components/steps';
 import { StepNameDrawing } from './StepNameDrawing';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { WriteIdeaIcon } from 'components/icons/WriteIdeaIcon';
 
 function PhaseNaming({ players, state, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
@@ -24,7 +25,7 @@ function PhaseNaming({ players, state, info }: PhaseProps) {
       <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady, !isUserReady]} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
-          type="write-idea"
+          icon={<WriteIdeaIcon />}
           title={translate('O que é isso?', 'What is it?')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}

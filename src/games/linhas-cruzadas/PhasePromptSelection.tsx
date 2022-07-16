@@ -9,6 +9,7 @@ import { Translate } from 'components/language';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { StepSelectPrompt } from './StepSelectPrompt';
+import { ListIcon } from 'components/icons/ListIcon';
 
 function PhasePromptSelection({ players, state, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -23,7 +24,7 @@ function PhasePromptSelection({ players, state, info }: PhaseProps) {
       <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady, !isUserReady]} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
-          type="list"
+          icon={<ListIcon />}
           title={translate('Seleção da Carta', 'Card Selection')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}

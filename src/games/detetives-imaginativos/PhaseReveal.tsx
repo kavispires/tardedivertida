@@ -8,6 +8,7 @@ import { Translate } from 'components/language';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { StepReveal } from './StepReveal';
+import { RankIcon } from 'components/icons/RankIcon';
 
 function PhaseReveal({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -24,7 +25,7 @@ function PhaseReveal({ state, players, info }: PhaseProps) {
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
-          type="rank"
+          icon={<RankIcon />}
           title={translate('Revelação', 'Reveal')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
