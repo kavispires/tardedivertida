@@ -9,6 +9,6 @@ import * as resourceUtils from '../resource';
  * @returns
  */
 export const getWords = async (language: string) => {
-  const resourceName = `${TDR_RESOURCES.SINGLE_WORDS_2}-${language}`;
+  const resourceName = `${TDR_RESOURCES.SINGLE_WORDS}-${language}`;
   return await resourceUtils.fetchResource(resourceName);
 };
