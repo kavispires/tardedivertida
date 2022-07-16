@@ -7,6 +7,7 @@ import { PHASES } from 'utils/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { TDIcon } from 'components/icons/TDIcon';
 
 function PhasePromptSelection({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
@@ -19,7 +20,7 @@ function PhasePromptSelection({ players, state, info }: PhaseProps) {
       <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady, !isUserReady]} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
-          type="?"
+          icon={<TDIcon />}
           title={translate('?', '?')}
           onClose={() => setStep(1)}
           currentRound={state?.round?.current}

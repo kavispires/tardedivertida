@@ -13,6 +13,7 @@ import { RoundAnnouncement } from 'components/round';
 import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
+import { MonsterIcon } from 'components/icons/MonsterIcon';
 
 function PhaseCompositeSketch({ players, state, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -57,7 +58,7 @@ function PhaseCompositeSketch({ players, state, info }: PhaseProps) {
 
         {/* Step 1 */}
         <PhaseAnnouncement
-          type="monster"
+          icon={<MonsterIcon />}
           title={translate('Memorize! Descreva! Desenhe!', 'Memorize! Describe! Sketch!')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}

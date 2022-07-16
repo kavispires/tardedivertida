@@ -11,9 +11,12 @@ import { Step } from 'components/steps';
 import { Instruction, TextHighlight, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { ViewIf } from 'components/views';
-import { AvatarIcon, AvatarName } from 'components/avatars';
+import { AvatarName } from 'components/avatars';
 import { FloatingHand, ImageCardHand } from 'components/cards';
 import { TurnOrder } from 'components/players';
+import { IconAvatar } from 'components/icons/IconAvatar';
+import { ImageCardsIcon } from 'components/icons/ImageCardsIcon';
+import { AnimatedClockIcon } from 'components/icons/AnimatedClockIcon';
 
 type StepPlayCardProps = {
   isUserTheImpostor: boolean;
@@ -81,7 +84,7 @@ export function StepPlayCard({
       <Instruction>
         <ViewIf isVisible={isUserTheCurrentPlayer && !isUserTheImpostor}>
           <>
-            <AvatarIcon type="image-cards" size="large" shape="square" />{' '}
+            <IconAvatar icon={<ImageCardsIcon />} size="large" shape="square" />{' '}
             <Translate
               pt="Selecione uma carta que mais combine com a pista secreta."
               en="Select a card that best fits the secret clue."
@@ -90,7 +93,7 @@ export function StepPlayCard({
         </ViewIf>
         <ViewIf isVisible={isUserTheCurrentPlayer && isUserTheImpostor}>
           <>
-            <AvatarIcon type="image-cards" size="large" shape="square" />{' '}
+            <IconAvatar icon={<ImageCardsIcon />} size="large" shape="square" />{' '}
             <Translate
               pt="Selecione uma carta que mais combine com as cartas que os outros
                 jogadores estão usando."
@@ -100,7 +103,7 @@ export function StepPlayCard({
         </ViewIf>
         <ViewIf isVisible={!isUserTheCurrentPlayer}>
           <>
-            <AvatarIcon type="animated-clock" size="large" />{' '}
+            <IconAvatar icon={<AnimatedClockIcon />} size="large" />{' '}
             <Translate
               pt={
                 <>

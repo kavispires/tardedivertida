@@ -1,6 +1,8 @@
 // Components
-import { AvatarIcon, AvatarName } from 'components/avatars';
+import { AvatarName } from 'components/avatars';
 import { FloatingHand, ImageCardHand } from 'components/cards';
+import { AnimatedClockIcon } from 'components/icons/AnimatedClockIcon';
+import { IconAvatar } from 'components/icons/IconAvatar';
 import { Translate } from 'components/language';
 import { TurnOrder } from 'components/players';
 import { Step } from 'components/steps';
@@ -17,7 +19,8 @@ export function StepSecretClueWaiting({ leader, user, players, turnOrder }: Step
   return (
     <Step fullWidth>
       <Title>
-        <AvatarIcon type="animated-clock" size="large" /> <Translate pt="Aguarde..." en="Please wait..." />
+        <IconAvatar icon={<AnimatedClockIcon />} size="large" />{' '}
+        <Translate pt="Aguarde..." en="Please wait..." />
       </Title>
 
       <Instruction contained>

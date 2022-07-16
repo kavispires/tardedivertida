@@ -12,6 +12,7 @@ import { StepSuggestion } from './StepSuggestion';
 import { WritingRules } from './components/RulesBlobs';
 import { GuesserWaitingRoom } from './components/GuesserWaitingRoom';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { WritingIcon } from 'components/icons/WritingIcon';
 
 function PhaseSuggest({ state, players, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
@@ -31,7 +32,7 @@ function PhaseSuggest({ state, players, info }: PhaseProps) {
       <StepSwitcher step={step} conditions={[!isUserReady]} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
-          type="writing"
+          icon={<WritingIcon />}
           title={translate('Escreva uma dica!', 'Write a Clue!')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}

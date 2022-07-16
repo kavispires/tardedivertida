@@ -9,6 +9,7 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
 import { StepPlayCard } from './StepPlayCard';
+import { HangingPhotographIcon } from 'components/icons/HangingPhotographIcon';
 
 function PhaseCardPlay({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -30,7 +31,7 @@ function PhaseCardPlay({ state, players, info }: PhaseProps) {
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
-          type="hanging-photograph"
+          icon={<HangingPhotographIcon />}
           title={translate('Apresentação das Evidências', 'Evidence')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}

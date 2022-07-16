@@ -10,6 +10,7 @@ import { StepGuessing } from './StepGuessing';
 import { StepGuessVerification } from './StepGuessVerification';
 import { GuessingRules } from './components/RulesBlobs';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { GuessIcon } from 'components/icons/GuessIcon';
 
 function PhaseGuess({ state, players, info }: PhaseProps) {
   const { isLoading } = useLoading();
@@ -35,7 +36,7 @@ function PhaseGuess({ state, players, info }: PhaseProps) {
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
-          type="guess"
+          icon={<GuessIcon />}
           title={translate('Adivinhação', 'Guessing')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}

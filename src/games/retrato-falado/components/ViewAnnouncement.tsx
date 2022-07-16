@@ -1,3 +1,5 @@
+import { SketchIcon } from 'components/icons/SketchIcon';
+import { TimerIcon } from 'components/icons/TimerIcon';
 import { Translate } from 'components/language';
 import { PhaseAnnouncement } from 'components/phases';
 
@@ -17,7 +19,7 @@ export function ViewAnnouncement({ isUserTheWitness }: ViewAnnouncementProps) {
       }
       unskippable
       duration={5}
-      type={isUserTheWitness ? 'timer' : 'sketch'}
+      icon={isUserTheWitness ? <TimerIcon /> : <SketchIcon />}
       onClose={() => {}}
     ></PhaseAnnouncement>
   );

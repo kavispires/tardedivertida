@@ -9,6 +9,7 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { StepVoting } from './StepVoting';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { AlertIcon } from 'components/icons/AlertIcon';
 
 function PhaseAssessment({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -30,7 +31,7 @@ function PhaseAssessment({ state, players, info }: PhaseProps) {
       <StepSwitcher step={step} conditions={[!isUserReady]} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
-          type="alert"
+          icon={<AlertIcon />}
           title={translate('Acusação!', 'Accusation!')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}

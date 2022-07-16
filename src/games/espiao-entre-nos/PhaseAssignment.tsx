@@ -9,6 +9,9 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { StepAssignment } from './StepAssignment';
 import { PhaseAnnouncement, PhaseContainer, PhaseTimerReset } from 'components/phases';
+import { SpyNewspaperIcon } from 'components/icons/SpyNewspaperIcon';
+import { SecretIcon } from 'components/icons/SecretIcon';
+import { PassportIcon } from 'components/icons/PassportIcon';
 
 function PhaseAssignment({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -40,7 +43,7 @@ function PhaseAssignment({ state, players, info }: PhaseProps) {
 
         {/* Step 1 */}
         <PhaseAnnouncement
-          type="spy-newspaper"
+          icon={<SpyNewspaperIcon />}
           title={translate('Prólogo', 'Prologue')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
@@ -75,7 +78,7 @@ function PhaseAssignment({ state, players, info }: PhaseProps) {
 
         {/* Step 3 */}
         <PhaseAnnouncement
-          type="secret"
+          icon={<SecretIcon />}
           title={translate('Você tem uma missão', 'You have one mission')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
@@ -108,7 +111,7 @@ function PhaseAssignment({ state, players, info }: PhaseProps) {
 
         {/* Step 5 */}
         <PhaseAnnouncement
-          type="passport"
+          icon={<PassportIcon />}
           title={translate('Mais detalhes', 'More details')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}

@@ -10,6 +10,7 @@ import { AvatarName } from 'components/avatars';
 import { Instruction } from 'components/text';
 import { StepQuestioning } from './StepQuestioning';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { EyeIcon } from 'components/icons/EyeIcon';
 
 function PhaseQuestioning({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -29,7 +30,7 @@ function PhaseQuestioning({ state, players, info }: PhaseProps) {
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
-          type="eye"
+          icon={<EyeIcon />}
           title={translate('Questionamento', 'Questioning')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}

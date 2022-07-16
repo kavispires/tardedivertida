@@ -11,8 +11,10 @@ import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { TransparentButton } from 'components/buttons';
-import { AvatarIcon } from 'components/avatars';
 import { ReadyPlayersBar } from 'components/players';
+import { IconAvatar } from 'components/icons/IconAvatar';
+import { SpeechBubbleThumbsUpIcon } from 'components/icons/SpeechBubbleThumbsUpIcon';
+import { SpeechBubbleThumbsDownIcon } from 'components/icons/SpeechBubbleThumbsDownIcon';
 
 type StepLikingProps = {
   currentTopic: Topic;
@@ -53,7 +55,7 @@ export function StepLiking({ currentTopic, customTopic, onSubmitReaction, player
           )}
           onClick={() => setLike(true)}
         >
-          <AvatarIcon type="speech-bubble-thumbs-up" shape="square" className="p-like-icon" />
+          <IconAvatar icon={<SpeechBubbleThumbsUpIcon />} shape="square" className="p-like-icon" />
           <Translate pt="Curtir" en="Like" />
         </TransparentButton>
         <TransparentButton
@@ -64,7 +66,7 @@ export function StepLiking({ currentTopic, customTopic, onSubmitReaction, player
           )}
           onClick={() => setLike(false)}
         >
-          <AvatarIcon type="speech-bubble-thumbs-down" shape="square" className="p-like-icon" />
+          <IconAvatar icon={<SpeechBubbleThumbsDownIcon />} shape="square" className="p-like-icon" />
           <Translate pt="Não curto" en="Dislike" />
         </TransparentButton>
       </div>

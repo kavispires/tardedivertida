@@ -2,8 +2,8 @@
 import { Avatar } from 'antd';
 import { RiseOutlined, TwitterOutlined } from '@ant-design/icons';
 // Components
-import { Icons } from 'components/icons';
 import clsx from 'clsx';
+import { SpeechBubbleThumbsUpIcon } from 'components/icons/SpeechBubbleThumbsUpIcon';
 
 type TopicProps = {
   topic: string;
@@ -21,7 +21,7 @@ export function Topic({ topic, likes, className = '' }: TopicProps) {
       {Boolean(likes) && (
         <span className="p-trending-topic__likes">
           <Avatar
-            src={<Icons.SpeechBubbleThumbsUp />}
+            src={<SpeechBubbleThumbsUpIcon />}
             shape="square"
             size="large"
             className="p-trending-topic__icon-like"

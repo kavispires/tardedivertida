@@ -15,6 +15,7 @@ import { Translate } from 'components/language';
 import { ViewOr } from 'components/views';
 import { StepBossEvaluation } from './StepBossEvaluation';
 import { StepPlayersWaitEvaluation } from './StepPlayersWaitEvaluation';
+import { LoupeIcon } from 'components/icons/LoupeIcon';
 
 function PhaseClueEvaluations({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -34,7 +35,7 @@ function PhaseClueEvaluations({ state, players, info }: PhaseProps) {
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
-          type="loupe"
+          icon={<LoupeIcon />}
           title={translate('Avaliação das Pistas', 'Clue Evaluation')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}

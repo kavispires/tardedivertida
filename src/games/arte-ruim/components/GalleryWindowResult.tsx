@@ -5,8 +5,10 @@ import { CrownFilled } from '@ant-design/icons';
 import { getPlayersFromIds } from 'utils/helpers';
 // Components
 import { Translate } from 'components/language';
-import { Avatar, AvatarIcon } from 'components/avatars';
+import { Avatar } from 'components/avatars';
 import { StarPoints } from 'components/points';
+import { GarbageIcon } from 'components/icons/GarbageIcon';
+import { IconAvatar } from 'components/icons/IconAvatar';
 
 type GalleryWindowResultProps = {
   playerArtist: GamePlayer;
@@ -60,7 +62,7 @@ export function GalleryWindowResult({
         </>
       ) : (
         <Typography.Text className="a-gallery__no-wins">
-          <AvatarIcon type="garbage" size="large" shape="square" />
+          <IconAvatar icon={<GarbageIcon />} size="large" shape="square" />
           <Translate
             pt="Nossa, ninguém acertou. Esse desenho deve ter sido muito ruim."
             en="Wow, nobody got it. It must have been a very crappy drawing. Shame..."

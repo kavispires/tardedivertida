@@ -10,6 +10,7 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { StepLiking } from './StepLiking';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { FeedbackIcon } from 'components/icons/FeedbackIcon';
 
 function PhaseReact({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -26,7 +27,7 @@ function PhaseReact({ state, players, info }: PhaseProps) {
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
-          type="feedback"
+          icon={<FeedbackIcon />}
           title={translate('O que você acha?', 'What do you think?')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}

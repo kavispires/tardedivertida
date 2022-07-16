@@ -9,6 +9,7 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { DreamSelectionRules } from './components/RulesBlobs';
 import { StepDreamsSelection } from './StepDreamsSelection';
+import { DreamIcon } from 'components/icons/DreamIcon';
 
 function PhaseDreamsSelections({ players, state, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -22,7 +23,7 @@ function PhaseDreamsSelections({ players, state, info }: PhaseProps) {
       <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady, !isUserReady]} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
-          type="dream"
+          icon={<DreamIcon />}
           title={translate('Visite sonhos!', 'Visit dreams!')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}

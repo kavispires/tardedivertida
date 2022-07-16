@@ -9,6 +9,7 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { StepGuessing } from './StepGuessing';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { GuessIcon } from 'components/icons/GuessIcon';
 
 function PhaseGuessing({ players, state, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -23,7 +24,7 @@ function PhaseGuessing({ players, state, info }: PhaseProps) {
       <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady]} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
-          type="guess"
+          icon={<GuessIcon />}
           title={translate('Match!', 'Combine!')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}

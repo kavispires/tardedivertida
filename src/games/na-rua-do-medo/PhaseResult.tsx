@@ -8,6 +8,7 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { StepResult } from './StepResult';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { HalloweenBalloonsIcon } from 'components/icons/HalloweenBalloonsIcon';
 
 function PhaseResult({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -20,7 +21,7 @@ function PhaseResult({ state, players, info }: PhaseProps) {
       <StepSwitcher step={step} conditions={[!isUserReady]} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
-          type="halloween-balloons"
+          icon={<HalloweenBalloonsIcon />}
           title={translate('Resultado', 'Results')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}

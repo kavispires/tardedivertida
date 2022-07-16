@@ -15,6 +15,7 @@ import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
 import { ViewOr } from 'components/views';
 import { TurnOrder, WaitingRoom } from 'components/players';
+import { TrendingIcon } from 'components/icons/TrendingIcon';
 
 function PhaseTopicSelection({ state, players, info, meta }: PhaseProps) {
   const { translate } = useLanguage();
@@ -45,7 +46,7 @@ function PhaseTopicSelection({ state, players, info, meta }: PhaseProps) {
 
         {/* Step 1 */}
         <PhaseAnnouncement
-          type="trending"
+          icon={<TrendingIcon />}
           title={translate('Você sabe qual a polêmica da vez?', "Do you know what's trending now?")}
           onClose={goToNextStep}
           currentRound={state?.round?.current}

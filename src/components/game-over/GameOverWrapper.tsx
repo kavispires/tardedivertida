@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { ReactNode, useState } from 'react';
 // Utils
 import { useLanguage } from 'hooks';
 import { PHASES } from 'utils/phases';
@@ -6,23 +6,13 @@ import { PHASES } from 'utils/phases';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { GameOver } from './GameOver';
+import { TheEndIcon } from 'components/icons/TheEndIcon';
 
 type GameOverWrapperProps = {
   info: GameInfo;
   state: GameState;
   children?: any;
-  announcementIcon?:
-    | 'criminal'
-    | 'crown'
-    | 'flag'
-    | 'ladder'
-    | 'medal'
-    | 'newspaper'
-    | 'nuclear-explosion'
-    | 'poop'
-    | 'spy'
-    | 'the-end'
-    | 'trophy';
+  announcementIcon?: ReactNode;
   announcementTitle?: string;
   announcementDuration?: number;
   announcementContent?: any;
@@ -33,7 +23,7 @@ type GameOverWrapperProps = {
 export function GameOverWrapper({
   info,
   state,
-  announcementIcon = 'the-end',
+  announcementIcon = <TheEndIcon />,
   announcementTitle,
   announcementDuration = 3,
   announcementContent,
@@ -54,7 +44,7 @@ export function GameOverWrapper({
       <StepSwitcher step={step}>
         {/*Step 0 */}
         <PhaseAnnouncement
-          type={announcementIcon}
+          icon={announcementIcon}
           title={translate('E o jogo chegou ao fim...', 'And the game is over...', announcementTitle)}
           onClose={() => setStep(1)}
           currentRound={state?.round?.current}

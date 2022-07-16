@@ -9,6 +9,7 @@ import { StepSwitcher } from 'components/steps';
 import { ImageCardPreloadHand } from 'components/cards';
 import { StepVoting } from './StepVoting';
 import { VotingRules } from './components/RulesBlobs';
+import { VoteIcon } from 'components/icons/VoteIcon';
 
 function PhaseVoting({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -28,7 +29,7 @@ function PhaseVoting({ state, players, info }: PhaseProps) {
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
-          type="vote"
+          icon={<VoteIcon />}
           title={translate('Votação', 'Voting')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}

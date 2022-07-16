@@ -8,6 +8,7 @@ import { StepSwitcher } from 'components/steps';
 import { StepAnswering } from './StepAnswering';
 import { AnsweringRules } from './components/RulesBlobs';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { WritingIcon } from 'components/icons/WritingIcon';
 
 function PhaseEverybodyWrites({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -21,7 +22,7 @@ function PhaseEverybodyWrites({ state, players, info }: PhaseProps) {
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
-          type="writing"
+          icon={<WritingIcon />}
           title={translate('Todos Respondem', 'Everybody Writes')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}

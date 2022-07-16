@@ -8,6 +8,7 @@ import { PHASES } from 'utils/phases';
 
 import { useOnEliminateSuspectAPIRequest } from './utils/api-requests';
 import { StepSuspectElimination } from './StepSuspectElimination';
+import { LawIcon } from 'components/icons/LawIcon';
 
 function PhaseTrial({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -29,7 +30,7 @@ function PhaseTrial({ state, players, info }: PhaseProps) {
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
-          type="law"
+          icon={<LawIcon />}
           title={translate('Julgamento', 'Trial')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}

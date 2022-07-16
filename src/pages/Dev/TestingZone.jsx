@@ -84,15 +84,6 @@ function TestingZone() {
 
   console.log({ splitQuestions });
 
-  // return <GameOver info={info} state={state} players={players} />;
-  // return (
-  //   <PhaseContainer info={info} phase={state.phase} allowedPhase="WORD_SELECTION" className="" fullScreen>
-  //     <PhaseAnnouncement title="Drawing!" round={state.round.current} onClose={onRun}>
-  //       <Instruction>Do this and that and the other thing</Instruction>
-  //     </PhaseAnnouncement>
-  //   </PhaseContainer>
-  // );
-
   const styles = {
     display: 'grid',
     gridTemplateColumns: 'repeat(15, 1fr)',

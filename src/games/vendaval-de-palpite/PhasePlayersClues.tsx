@@ -13,6 +13,7 @@ import { RoundAnnouncement } from 'components/round';
 import { ViewOr } from 'components/views';
 import { StepBossWaiting } from './StepBossWaiting';
 import { Board } from './components/Board';
+import { DiscussionIcon } from 'components/icons/DiscussionIcon';
 
 function PhasePlayersClues({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -41,7 +42,7 @@ function PhasePlayersClues({ state, players, info }: PhaseProps) {
 
         {/* Step 1 */}
         <PhaseAnnouncement
-          type="discussion"
+          icon={<DiscussionIcon />}
           title={translate('Reunião', 'Meeting')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}

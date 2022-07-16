@@ -9,6 +9,7 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
 import { StepWitnessSelection } from './StepWitnessSelection';
+import { CrimeSceneIcon } from 'components/icons/CrimeSceneIcon';
 
 function PhaseWitnessSelection({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -26,7 +27,7 @@ function PhaseWitnessSelection({ state, players, info }: PhaseProps) {
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
-          type="crime-scene"
+          icon={<CrimeSceneIcon />}
           title={translate('O Caso', 'The Case')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
