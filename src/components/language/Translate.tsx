@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import { ReactElement, ReactNode } from 'react';
 // Ant Design Resources
 import { message } from 'antd';
 // Hooks
@@ -20,7 +20,7 @@ export function Translate({
 }: {
   pt: LanguageEntry;
   en: LanguageEntry;
-  custom?: LanguageEntry;
+  custom?: ReactNode;
 }): any {
   const { language } = useLanguage();
 

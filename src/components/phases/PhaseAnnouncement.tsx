@@ -1,15 +1,13 @@
+import { ReactNode } from 'react';
 import clsx from 'clsx';
 // Design Resource
 import { Button } from 'antd';
-// Hooks
-import { useLanguage } from 'hooks';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
 import { Translate } from 'components/language';
 import { Title } from 'components/text';
 import { TimedButton } from 'components/buttons';
-import { ReactNode } from 'react';
 
 type PhaseAnnouncementProps = {
   /**
@@ -27,12 +25,11 @@ type PhaseAnnouncementProps = {
   /**
    * The Text
    */
-  buttonText?: string;
+  buttonText?: ReactNode;
   /**
    * Additional content of the announcement, usually a simple instruction
-   * TODO: Remove any
    */
-  children?: any;
+  children?: ReactNode;
   /**
    * Optional custom class name
    */
@@ -76,21 +73,19 @@ export function PhaseAnnouncement({
   unskippable,
   animationType = 'backInDown',
 }: PhaseAnnouncementProps) {
-  const { translate } = useLanguage();
   const durationPerRound = [15, 10, 5]?.[currentRound] ?? 5;
 
   return (
     <div className={clsx('phase-announcement', getAnimationClass(animationType), className)}>
       <Title>{title}</Title>
 
-      {/* TODO: Check if this worked */}
       <span className="phase-announcement__icon">{icon}</span>
 
       {children}
 
       {withoutTimer ? (
         <Button type="primary" onClick={onClose}>
-          {translate('Prosseguir', 'Continue', buttonText)}
+          <Translate pt="Prosseguir" en="Continue" custom={buttonText} />
         </Button>
       ) : (
         <TimedButton
