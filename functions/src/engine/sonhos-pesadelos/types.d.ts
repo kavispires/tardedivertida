@@ -1,18 +1,26 @@
-import { InspirationCard } from '../../utils/tdr';
-import { DefaultState, DefaultStore, ImageCardId, Meta, Payload, PlayerId, Players } from '../../utils/types';
+import type { NamingPromptCard } from '../../utils/tdr';
+import type {
+  DefaultState,
+  DefaultStore,
+  ImageCardId,
+  Meta,
+  Payload,
+  PlayerId,
+  Players,
+} from '../../utils/types';
 
 type SonhosPesadelosCards = {
-  2: InspirationCard[];
-  3: InspirationCard[];
-  4: InspirationCard[];
+  2: NamingPromptCard[];
+  3: NamingPromptCard[];
+  4: NamingPromptCard[];
 };
 
 type ThemeDeck = {
-  1: InspirationCard[];
-  2: InspirationCard[];
-  3: InspirationCard[];
-  4: InspirationCard[];
-  5: InspirationCard[];
+  1: NamingPromptCard[];
+  2: NamingPromptCard[];
+  3: NamingPromptCard[];
+  4: NamingPromptCard[];
+  5: NamingPromptCard[];
 };
 
 interface SonhosPesadelosStore extends DefaultStore {

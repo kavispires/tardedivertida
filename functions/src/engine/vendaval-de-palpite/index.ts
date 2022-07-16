@@ -2,8 +2,8 @@
 import { GAME_COLLECTIONS } from '../../utils/constants';
 import { VENDAVAL_DE_PALPITE_PHASES, PLAYER_COUNTS, MAX_ROUNDS } from './constants';
 // Types
-import { GameId, Language, Players } from '../../utils/types';
-import { VendavalDePalpiteInitialState, VendavalDePalpiteSubmitAction } from './types';
+import type { GameId, Language, Players } from '../../utils/types';
+import type { VendavalDePalpiteInitialState, VendavalDePalpiteSubmitAction } from './types';
 // Utils
 import * as utils from '../../utils';
 import { determineNextPhase } from './helpers';

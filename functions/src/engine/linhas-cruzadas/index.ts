@@ -2,12 +2,12 @@
 import { GAME_COLLECTIONS } from '../../utils/constants';
 import { LINHAS_CRUZADAS_PHASES, PLAYER_COUNTS, TOTAL_ROUNDS } from './constants';
 // Types
-import { GameId, Language, Players } from '../../utils/types';
+import type { GameId, Language, Players } from '../../utils/types';
+import type { LinhasCruzadasInitialState, LinhasCruzadasOptions, LinhasCruzadasSubmitAction } from './types';
 // Utils
 import * as utils from '../../utils';
 // Internal Functions
 import { determineNextPhase } from './helpers';
-import { LinhasCruzadasInitialState, LinhasCruzadasOptions, LinhasCruzadasSubmitAction } from './types';
 import {
   prepareDrawingPhase,
   prepareGameOverPhase,

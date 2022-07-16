@@ -1,6 +1,6 @@
 // Types
-import { Players, SaveGamePayload } from '../../utils/types';
-import { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
+import type { Players, SaveGamePayload } from '../../utils/types';
+import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Constants
 import {
   MENTE_COLETIVA_PHASES,

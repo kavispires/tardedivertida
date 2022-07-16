@@ -1,6 +1,6 @@
 // Types
-import { ResourceData, TestemunhaOcularEntry } from './types';
-import { TestemunhaOcularCard } from '../../utils/tdr';
+import type { ResourceData, TestemunhaOcularEntry } from './types';
+import type { TestimonyQuestionCard } from '../../utils/tdr';
 // Constants
 import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
 import { QUESTION_COUNT } from './constants';
@@ -24,7 +24,10 @@ export const getQuestionsAndSuspects = async (language: string): Promise<Resourc
   const allSuspects = await resourceUtils.fetchTDIData('us/info');
 
   // Filter out used cards
-  const availableCards: Record<string, TestemunhaOcularCard> = utils.game.filterOutByIds(allCards, usedCards);
+  const availableCards: Record<string, TestimonyQuestionCard> = utils.game.filterOutByIds(
+    allCards,
+    usedCards
+  );
 
   // If not the minimum cards needed, reset and use all
   if (Object.keys(availableCards).length < QUESTION_COUNT) {

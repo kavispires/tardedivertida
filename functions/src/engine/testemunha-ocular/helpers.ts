@@ -1,10 +1,10 @@
 // Types
-import { PlayerId, Players } from '../../utils/types';
+import type { PlayerId, Players } from '../../utils/types';
+import type { TestimonyQuestionCard } from '../../utils/tdr';
 // Constants
 import { MAX_ROUNDS, TESTEMUNHA_OCULAR_PHASES } from './constants';
 // Utils
 import * as utils from '../../utils';
-import { TestemunhaOcularCard } from '../../utils/tdr';
 
 /**
  * Determine the next phase based on the current one
@@ -71,9 +71,9 @@ export const getQuestionerId = (turnOrder: PlayerId[], questionerIndex: number):
  * @returns
  */
 export const getQuestions = (
-  questions: TestemunhaOcularCard[],
+  questions: TestimonyQuestionCard[],
   questionIndex: number
-): TestemunhaOcularCard[] => {
+): TestimonyQuestionCard[] => {
   return [questions[questionIndex], questions[questionIndex + 1]];
 };
 

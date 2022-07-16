@@ -1,11 +1,11 @@
-import { OndaTelepaticaCard } from '../../utils/tdr';
-import { DefaultState, DefaultStore, InitialState, Payload, PlayerId } from '../../utils/types';
+import type { OpposingIdeaCard } from '../../utils/tdr';
+import type { DefaultState, DefaultStore, InitialState, Payload, PlayerId } from '../../utils/types';
 
 type OndaTelepaticaOptions = {
   fixedRounds: boolean;
 };
 
-interface CategoryCard extends OndaTelepaticaCard {
+interface CategoryCard extends OpposingIdeaCard {
   target?: number;
   clue?: string;
   psychicId?: string;
@@ -13,7 +13,7 @@ interface CategoryCard extends OndaTelepaticaCard {
 
 interface ResourceData {
   allCategories: {
-    [key: string]: OndaTelepaticaCard;
+    [key: string]: OpposingIdeaCard;
   };
 }
 

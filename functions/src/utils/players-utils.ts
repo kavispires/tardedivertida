@@ -1,5 +1,5 @@
 // Types
-import {
+import type {
   GameOrder,
   PlainObject,
   Player,

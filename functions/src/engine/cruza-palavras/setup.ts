@@ -1,8 +1,8 @@
 // Constants
 import { WORDS_PER_PLAYER_COUNT, CRUZA_PALAVRAS_PHASES } from './constants';
 // Types
-import { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
-import { Players, SaveGamePayload } from '../../utils/types';
+import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
+import type { Players, SaveGamePayload } from '../../utils/types';
 // Utils
 import * as utils from '../../utils';
 // Internal

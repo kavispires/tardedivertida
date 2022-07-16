@@ -1,7 +1,7 @@
 // Constants
 import { DETETIVES_IMAGINATIVOS_PHASES } from './constants';
 // Types
-import { PlainObject, Player, PlayerId, Players, Round } from '../../utils/types';
+import type { PlainObject, Player, PlayerId, Players, Round } from '../../utils/types';
 
 /**
  * Determine the next phase based on the current one

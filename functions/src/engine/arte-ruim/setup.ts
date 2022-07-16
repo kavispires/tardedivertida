@@ -1,6 +1,6 @@
 // Types
-import { Players, SaveGamePayload } from '../../utils/types';
-import { ArteRuimData, FirebaseStateData, FirebaseStoreData } from './types';
+import type { Players, SaveGamePayload } from '../../utils/types';
+import type { ArteRuimData, FirebaseStateData, FirebaseStoreData } from './types';
 // Constants
 import { ARTE_RUIM_PHASES, REGULAR_GAME_LEVELS, SHORT_GAME_LEVELS } from './constants';
 // Helpers

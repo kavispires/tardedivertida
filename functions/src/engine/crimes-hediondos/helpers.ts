@@ -1,7 +1,7 @@
 // Types
 import { PlainObject, PlayerId, Players, RankingEntry, Round, StringDictionary } from '../../utils/types';
-import { CrimesHediondosSceneTile } from '../../utils/tdr';
-import { CrimesHediondosCard } from '../../utils/tdi';
+import type { CrimeTile } from '../../utils/tdr';
+import type { CrimesHediondosCard } from '../../utils/tdi';
 // Constants
 import {
   CRIMES_HEDIONDOS_PHASES,
@@ -51,15 +51,15 @@ export const determineNextPhase = (
 };
 
 type ParsedTiles = {
-  causeOfDeathTile: CrimesHediondosSceneTile;
-  reasonForEvidenceTile: CrimesHediondosSceneTile;
-  locationTiles: CrimesHediondosSceneTile[];
-  sceneTiles: CrimesHediondosSceneTile[];
+  causeOfDeathTile: CrimeTile;
+  reasonForEvidenceTile: CrimeTile;
+  locationTiles: CrimeTile[];
+  sceneTiles: CrimeTile[];
 };
 
-export const parseTiles = (sceneTiles: CrimesHediondosSceneTile[]): ParsedTiles => {
+export const parseTiles = (sceneTiles: CrimeTile[]): ParsedTiles => {
   const result = sceneTiles.reduce(
-    (acc: any, tile: CrimesHediondosSceneTile) => {
+    (acc: any, tile: CrimeTile) => {
       if (tile.type === 'cause') {
         acc.causeOfDeathTile = tile;
       } else if (tile.type === 'evidence') {
@@ -121,8 +121,8 @@ export const dealItemGroups = (players: Players) => {
 
 export const buildCrimes = (
   players: Players,
-  causeOfDeathTile: CrimesHediondosSceneTile,
-  reasonForEvidenceTile: CrimesHediondosSceneTile
+  causeOfDeathTile: CrimeTile,
+  reasonForEvidenceTile: CrimeTile
 ): Crime[] => {
   return Object.values(players).map((player) => {
     return {
@@ -141,15 +141,15 @@ export const buildCrimes = (
 
 type BuiltScenes = {
   scenes: {
-    [key: string]: CrimesHediondosSceneTile;
+    [key: string]: CrimeTile;
   };
   order: string[];
 };
 
 export const buildScenes = (
-  causeOfDeathTile: CrimesHediondosSceneTile,
-  reasonForEvidenceTile: CrimesHediondosSceneTile,
-  locationTiles: CrimesHediondosSceneTile[],
+  causeOfDeathTile: CrimeTile,
+  reasonForEvidenceTile: CrimeTile,
+  locationTiles: CrimeTile[],
   players: Players
 ): BuiltScenes => {
   const locationsUsedByPlayers = Object.values(players).map((player) => player.locationTile);
@@ -167,11 +167,7 @@ export const buildScenes = (
   return { scenes, order };
 };
 
-export const updateCrime = (
-  crimes: Crime[],
-  players: Players,
-  currentScene: CrimesHediondosSceneTile
-): Crime[] => {
+export const updateCrime = (crimes: Crime[], players: Players, currentScene: CrimeTile): Crime[] => {
   return crimes.map((crime) => {
     crime.scenes[currentScene.id] = players[crime.playerId].sceneIndex;
     return crime;

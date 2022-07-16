@@ -1,5 +1,5 @@
 // Types
-import { PlainObject, PlayerId, Players } from './types';
+import type { PlainObject, PlayerId, Players } from './types';
 // Helpers
 import { removeItem } from './game-utils';
 

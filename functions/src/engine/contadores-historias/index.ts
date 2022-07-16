@@ -2,16 +2,16 @@
 import { GAME_COLLECTIONS } from '../../utils/constants';
 import { CONTADORES_HISTORIAS_PHASES, MAX_ROUNDS, PLAYER_COUNTS } from './constants';
 // Types
-import { GameId, Language, Players } from '../../utils/types';
-// Utils
-import * as utils from '../../utils';
-// Internal Functions
-import { determineGameOver, determineNextPhase } from './helpers';
-import {
+import type { GameId, Language, Players } from '../../utils/types';
+import type {
   ContadoresHistoriasInitialState,
   ContadoresHistoriasOptions,
   ContadoresHistoriasSubmitAction,
 } from './types';
+// Utils
+import * as utils from '../../utils';
+// Internal Functions
+import { determineGameOver, determineNextPhase } from './helpers';
 import {
   prepareCardPlayPhase,
   prepareGameOverPhase,

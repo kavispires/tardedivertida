@@ -1,5 +1,12 @@
-import { TextCard } from '../../utils/tdr';
-import { DefaultState, DefaultStore, GameOrder, InitialState, Payload, PlayerId } from '../../utils/types';
+import type { TextCard } from '../../utils/tdr';
+import type {
+  DefaultState,
+  DefaultStore,
+  GameOrder,
+  InitialState,
+  Payload,
+  PlayerId,
+} from '../../utils/types';
 
 type AllWords = {
   [key: string]: TextCard;

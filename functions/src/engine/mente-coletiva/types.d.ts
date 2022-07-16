@@ -1,5 +1,4 @@
-import { MenteColetivaCard } from '../../utils/tdr';
-import {
+import type {
   DefaultState,
   DefaultStore,
   InitialState,
@@ -8,6 +7,7 @@ import {
   PlayerId,
   PlayerName,
 } from '../../utils/types';
+import type { GroupQuestionCard } from '../../utils/tdr';
 
 type MenteColetivaOptions = {
   shortPasture: boolean;
@@ -15,12 +15,12 @@ type MenteColetivaOptions = {
 
 interface ResourceData {
   allQuestions: {
-    [key: string]: MenteColetivaCard;
+    [key: string]: GroupQuestionCard;
   };
 }
 
 interface AllQuestions {
-  [key: string]: MenteColetivaCard;
+  [key: string]: GroupQuestionCard;
 }
 
 interface PastQuestions {
@@ -28,13 +28,13 @@ interface PastQuestions {
   answers: string[];
 }
 
-type Deck = MenteColetivaCard[];
+type Deck = GroupQuestionCard[];
 
 interface MenteColetivaStore extends DefaultStore {
   deck: Deck;
   gameOrder: PlayerId[];
   pastQuestions: PastQuestions[];
-  currentQuestion?: MenteColetivaCard;
+  currentQuestion?: GroupQuestionCard;
   [key: string]: any;
 }
 

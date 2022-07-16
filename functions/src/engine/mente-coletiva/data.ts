@@ -1,10 +1,10 @@
 // Constants
 import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
-import { MenteColetivaCard } from '../../utils/tdr';
 import { MAX_ROUNDS, QUESTIONS_PER_ROUND } from './constants';
 // Types
-import { ResourceData } from './types';
-import { StringDictionary } from '../../utils/types';
+import type { ResourceData } from './types';
+import type { StringDictionary } from '../../utils/types';
+import type { GroupQuestionCard } from '../../utils/tdr';
 // Helpers
 import * as globalUtils from '../global';
 import * as resourceUtils from '../resource';
@@ -23,7 +23,7 @@ export const getQuestions = async (language: string): Promise<ResourceData> => {
   const usedQuestions = await globalUtils.getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.MENTE_COLETIVA, {});
 
   // Filter out used cards
-  const availableQuestions: Record<string, MenteColetivaCard> = utils.game.filterOutByIds(
+  const availableQuestions: Record<string, GroupQuestionCard> = utils.game.filterOutByIds(
     allQuestions,
     usedQuestions
   );

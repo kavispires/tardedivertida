@@ -1,7 +1,7 @@
 // Constants
 import { TDR_RESOURCES } from '../../utils/constants';
 // Types
-import { ResourceData } from './types';
+import type { ResourceData } from './types';
 // Utils
 import * as resourceUtils from '../resource';
 

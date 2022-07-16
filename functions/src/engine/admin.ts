@@ -1,7 +1,8 @@
 import * as admin from 'firebase-admin';
-import * as delegatorUtils from '../utils/delegators';
-import * as utils from '../utils';
-import {
+// Constants
+import { GLOBAL_USED_DOCUMENTS, USED_GAME_IDS } from '../utils/constants';
+// Types
+import type {
   CreateGamePayload,
   FirebaseContext,
   BasicGamePayload,
@@ -11,7 +12,9 @@ import {
   GameName,
   PlainObject,
 } from '../utils/types';
-import { GLOBAL_USED_DOCUMENTS, USED_GAME_IDS } from '../utils/constants';
+// Utils
+import * as delegatorUtils from '../utils/delegators';
+import * as utils from '../utils';
 
 /**
  * Creates a new game instance

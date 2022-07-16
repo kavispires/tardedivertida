@@ -1,7 +1,7 @@
 // Types
-import { BooleanDictionary, CardId, PlainObject, Players, Round } from '../../utils/types';
-import { ArteRuimCard, ArteRuimGroup } from '../../utils/tdr';
-import { ArteRuimDrawing, FirebaseStoreData, CardsByLevel } from './types';
+import type { BooleanDictionary, CardId, PlainObject, Players, Round } from '../../utils/types';
+import type { ArteRuimCard, ArteRuimGroup } from '../../utils/tdr';
+import type { ArteRuimDrawing, FirebaseStoreData, CardsByLevel } from './types';
 // Constants
 import {
   ARTE_RUIM_PHASES,

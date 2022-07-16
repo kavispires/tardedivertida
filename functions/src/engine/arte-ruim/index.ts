@@ -2,8 +2,8 @@
 import { GAME_COLLECTIONS } from '../../utils/constants';
 import { ARTE_RUIM_PHASES, PLAYER_COUNTS, MAX_ROUNDS } from './constants';
 // Types
-import { GameId, GameName, Language, Players } from '../../utils/types';
-import { ArteRuimGameOptions, ArteRuimInitialState, ArteRuimSubmitAction } from './types';
+import type { GameId, GameName, Language, Players } from '../../utils/types';
+import type { ArteRuimGameOptions, ArteRuimInitialState, ArteRuimSubmitAction } from './types';
 // Utilities
 import * as utils from '../../utils';
 // Internal Functions

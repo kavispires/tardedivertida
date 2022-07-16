@@ -2,8 +2,8 @@
 import { GAME_COLLECTIONS } from '../../utils/constants';
 import { GALERIA_DE_SONHOS_PHASES, PLAYER_COUNTS, TOTAL_ROUNDS } from './constants';
 // Types
-import { GameId, Language, Players } from '../../utils/types';
-import { GaleriaDeSonhosInitialState, GaleriaDeSonhosSubmitAction } from './types';
+import type { GameId, Language, Players } from '../../utils/types';
+import type { GaleriaDeSonhosInitialState, GaleriaDeSonhosSubmitAction } from './types';
 // Utils
 import * as utils from '../../utils';
 import { determineNextPhase } from './helpers';

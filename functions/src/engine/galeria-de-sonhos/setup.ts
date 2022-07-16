@@ -1,9 +1,9 @@
 // Constants
 import { GALERIA_DE_SONHOS_PHASES, TABLE_DECK_TOTAL } from './constants';
 // Types
-import { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
-import { TextCard } from '../../utils/tdr';
-import { Players, SaveGamePayload } from '../../utils/types';
+import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
+import type { TextCard } from '../../utils/tdr';
+import type { Players, SaveGamePayload } from '../../utils/types';
 // Utils
 import * as utils from '../../utils';
 // Internal

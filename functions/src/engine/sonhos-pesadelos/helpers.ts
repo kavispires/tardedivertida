@@ -1,11 +1,11 @@
 // Types
-import { ImageCardId, PlainObject, Players, Round, StringDictionary } from '../../utils/types';
-import { SonhosPesadelosCards, ThemeDeck } from './types';
+import type { ImageCardId, PlainObject, Players, Round, StringDictionary } from '../../utils/types';
+import type { SonhosPesadelosCards, ThemeDeck } from './types';
+import type { NamingPromptCard } from '../../utils/tdr';
 // Constants
 import { IMAGE_CARDS_PER_ROUND, SONHOS_PESADELOS_PHASES, THEMES_PER_ROUND } from './constants';
 // Helpers
 import * as utils from '../../utils';
-import { InspirationCard } from '../../utils/tdr';
 import { orderBy } from '../../utils/helpers';
 
 /**
@@ -104,9 +104,9 @@ export const determineDreamsNightmaresAndThemes = (
   table: ImageCardId[],
   currentRound: number
 ) => {
-  const roundThemesDeck: InspirationCard[] = themesDeck[currentRound];
+  const roundThemesDeck: NamingPromptCard[] = themesDeck[currentRound];
 
-  const shuffledThemes: InspirationCard[] = utils.game.shuffle(roundThemesDeck).slice(0, 3);
+  const shuffledThemes: NamingPromptCard[] = utils.game.shuffle(roundThemesDeck).slice(0, 3);
   const shuffledImageCards: ImageCardId[] = utils.game.shuffle(table);
 
   const dictionaryPair: any = [];
@@ -116,7 +116,7 @@ export const determineDreamsNightmaresAndThemes = (
     });
   });
 
-  const shufflePairs: [InspirationCard, ImageCardId][] = utils.game.shuffle(dictionaryPair);
+  const shufflePairs: [NamingPromptCard, ImageCardId][] = utils.game.shuffle(dictionaryPair);
 
   Object.values(players).forEach((player, index) => {
     const dreamSelection = shufflePairs[index];

@@ -2,10 +2,11 @@
 import { GAME_COLLECTIONS } from '../../utils/constants';
 import { INSTRUMENTOS_CODIFICADOS_PHASES, PLAYER_COUNTS, TOTAL_ROUNDS } from './constants';
 // Types
-import { GameId, Language, Players } from '../../utils/types';
+import type { GameId, Language, Players } from '../../utils/types';
+import type { InstrumentosCodificadosInitialState, InstrumentosCodificadosSubmitAction } from './types';
 // Utils
 import * as utils from '../../utils';
-import { InstrumentosCodificadosInitialState, InstrumentosCodificadosSubmitAction } from './types';
+// Internal
 import {
   prepareGameOverPhase,
   prepareSetupPhase,

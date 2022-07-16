@@ -1,5 +1,5 @@
+import type { BooleanDictionary, PlainObject, Players, Primitive } from './types';
 import { buildIdDictionary } from './helpers';
-import { BooleanDictionary, PlainObject, Players, Primitive } from './types';
 
 // Shuffling
 

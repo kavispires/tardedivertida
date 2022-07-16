@@ -2,8 +2,8 @@
 import { GAME_COLLECTIONS } from '../../utils/constants';
 import { PLAYER_COUNTS, UE_SO_ISSO_PHASES } from './constants';
 // Types
-import { Players, GameId } from '../../utils/types';
-import { UeSoIssoInitialState, UeSoIssoSubmitAction } from './types';
+import type { Players, GameId } from '../../utils/types';
+import type { UeSoIssoInitialState, UeSoIssoSubmitAction } from './types';
 // Utilities
 import * as utils from '../../utils';
 // Internal Functions

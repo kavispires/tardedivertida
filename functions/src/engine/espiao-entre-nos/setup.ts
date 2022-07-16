@@ -7,8 +7,9 @@ import {
   TIMER_STATUS,
 } from './constants';
 // Types
-import { FirebaseStateData, FirebaseStoreData, Outcome, Resolution, ResourceData } from './types';
-import { PlainObject, Players, SaveGamePayload } from '../../utils/types';
+import type { FirebaseStateData, FirebaseStoreData, Outcome, Resolution, ResourceData } from './types';
+import type { PlainObject, Players, SaveGamePayload } from '../../utils/types';
+import type { SpyLocation } from '../../utils/tdr';
 // Utils
 import * as utils from '../../utils';
 import {
@@ -18,7 +19,6 @@ import {
   determineFinalAssessmentPlayerOrder,
   distributeRoles,
 } from './helpers';
-import { EspiaoEntreNosLocation } from '../../utils/tdr';
 
 /**
  * Setup
@@ -66,7 +66,7 @@ export const prepareAssignmentPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Use only 25 locations
-  const availableLocations: EspiaoEntreNosLocation[] = utils.game.getRandomItems(
+  const availableLocations: SpyLocation[] = utils.game.getRandomItems(
     store.allLocations,
     LOCATIONS_USED_IN_A_ROUND
   );

@@ -2,7 +2,7 @@ import { CardId, DualLanguageValue } from './types';
 
 /**
  * Generic text card
- * Games that use: linhas-cruzadas, polemica-da-vez, single-word, ue-so-isso
+ * Games that use: linhas-cruzadas, polemica-da-vez, single-word
  */
 export type TextCard = {
   id: CardId;
@@ -21,7 +21,12 @@ export type ArteRuimGroup = {
   cards: Record<CardId, string>;
 };
 
-export type CrimesHediondosSceneTile = {
+export type ArteRuimPair = {
+  id: string;
+  values: [string, string];
+};
+
+export type CrimeTile = {
   id: string;
   title: DualLanguageValue;
   description: DualLanguageValue;
@@ -30,26 +35,26 @@ export type CrimesHediondosSceneTile = {
   specific?: string | null;
 };
 
-export type EspiaoEntreNosLocation = {
+export type SpyLocation = {
   id: CardId;
   name: string;
   roles: string[];
 };
 
-export type MenteColetivaCard = {
+export type GroupQuestionCard = {
   id: CardId;
   prefix: string;
   number: number;
   suffix: string;
 };
 
-export type OndaTelepaticaCard = {
+export type OpposingIdeaCard = {
   id: CardId;
   left: string;
   right: string;
 };
 
-export type TestemunhaOcularCard = {
+export type TestimonyQuestionCard = {
   id: CardId;
   question: string;
 };
@@ -60,7 +65,7 @@ export type ThemeCard = {
   description?: string;
 };
 
-export type InspirationCard = {
+export type NamingPromptCard = {
   id: CardId;
   text: string;
   set: string;

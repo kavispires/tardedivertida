@@ -1,6 +1,6 @@
 // Types
-import { Players, SaveGamePayload } from '../../utils/types';
-import { FirebaseStateData, FirebaseStoreData, AllWords } from './types';
+import type { Players, SaveGamePayload } from '../../utils/types';
+import type { FirebaseStateData, FirebaseStoreData, AllWords } from './types';
 // Constants
 import { UE_SO_ISSO_PHASES } from './constants';
 import { DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';

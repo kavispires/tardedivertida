@@ -2,8 +2,8 @@
 import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
 import { PLAYER_COUNTS } from './constants';
 // Types
-import { PastCategories, ResourceData } from './types';
-import { OndaTelepaticaCard } from '../../utils/tdr';
+import type { PastCategories, ResourceData } from './types';
+import type { OpposingIdeaCard } from '../../utils/tdr';
 // Utils
 import * as globalUtils from '../global';
 import * as resourceUtils from '../resource';
@@ -25,7 +25,7 @@ export const getCategories = async (language: string): Promise<ResourceData> => 
   );
 
   // Filter out used cards
-  const availableCategories: Record<string, OndaTelepaticaCard> = utils.game.filterOutByIds(
+  const availableCategories: Record<string, OpposingIdeaCard> = utils.game.filterOutByIds(
     allCategories,
     usedCategories
   );

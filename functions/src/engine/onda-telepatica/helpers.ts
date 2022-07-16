@@ -1,6 +1,6 @@
 // Types
-import { CategoryCard, Deck, OndaTelepaticaOptions, ResourceData } from './types';
-import { PlainObject, PlayerId, Players, Round } from '../../utils/types';
+import type { CategoryCard, Deck, OndaTelepaticaOptions, ResourceData } from './types';
+import type { PlainObject, PlayerId, Players, Round } from '../../utils/types';
 // Constants
 import {
   CATEGORIES_PER_ROUND,

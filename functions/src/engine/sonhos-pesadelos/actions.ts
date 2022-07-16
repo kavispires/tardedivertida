@@ -1,5 +1,5 @@
 // Types
-import { GameId, PlayerId, GameName, StringDictionary } from '../../utils/types';
+import type { GameId, PlayerId, GameName, StringDictionary } from '../../utils/types';
 // Helpers
 import * as utils from '../../utils';
 // Internal
