@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Layout } from 'antd';
 // Components
-import { Icons } from 'components/icons';
+import * as icons from 'components/icons/collection';
 import { useTitle } from 'react-use';
 import { DevHeader } from './DevHeader';
 
@@ -23,7 +23,7 @@ function IconsPage() {
     justifyContent: 'space-between',
     padding: '0.5rem',
   };
-  const iconEntries = Object.entries(Icons);
+  const iconEntries = Object.entries(icons);
   return (
     <Layout style={{ background: 'none' }}>
       <DevHeader title="Icons" subTitle={`(${iconEntries.length})`} />
