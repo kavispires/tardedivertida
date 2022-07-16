@@ -1,4 +1,4 @@
-export function Investigation(props: any): JSX.Element {
+export function Investigation(props: React.SVGProps<SVGSVGElement>): JSX.Element {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
       <path fill="#d7e6eb" d="M80 24h248v48H80z"></path>

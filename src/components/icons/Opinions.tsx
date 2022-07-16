@@ -1,4 +1,4 @@
-export function Opinions(props: any): JSX.Element {
+export function Opinions(props: React.SVGProps<SVGSVGElement>): JSX.Element {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
       <circle cx="410.083" cy="107.326" r="62.504" fill="#fd8087"></circle>

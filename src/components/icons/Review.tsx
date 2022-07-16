@@ -1,4 +1,4 @@
-export function Review(props: any): JSX.Element {
+export function Review(props: React.SVGProps<SVGSVGElement>): JSX.Element {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
       <ellipse cx="313.046" cy="143.347" fill="#ff8ccc" rx="135.546" ry="135.835"></ellipse>

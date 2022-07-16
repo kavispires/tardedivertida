@@ -1,4 +1,4 @@
-export function Timer(props: any): JSX.Element {
+export function Timer(props: React.SVGProps<SVGSVGElement>): JSX.Element {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
       <circle cx="256" cy="256" r="247.47" fill="#39a4dd"></circle>

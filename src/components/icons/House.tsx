@@ -1,4 +1,4 @@
-export function House(props: any): JSX.Element {
+export function House(props: React.SVGProps<SVGSVGElement>): JSX.Element {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
       <path fill="#dfebfa" d="M255.949 54.053L83.061 222.227v247.044h345.777V222.227z"></path>

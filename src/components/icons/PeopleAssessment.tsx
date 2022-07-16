@@ -1,4 +1,4 @@
-export function PeopleAssessment(props: any): JSX.Element {
+export function PeopleAssessment(props: React.SVGProps<SVGSVGElement>): JSX.Element {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
       <circle cx="256" cy="256" r="246" fill="#c8f5ff"></circle>

@@ -1,4 +1,4 @@
-export function Law(props: any): JSX.Element {
+export function Law(props: React.SVGProps<SVGSVGElement>): JSX.Element {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60" {...props}>
       <g>

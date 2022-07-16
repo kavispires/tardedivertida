@@ -1,4 +1,4 @@
-export function Scared(props: any): JSX.Element {
+export function Scared(props: React.SVGProps<SVGSVGElement>): JSX.Element {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
       <ellipse cx="256.01" cy="242.035" fill="#a2ddfd" rx="228.989" ry="224.02"></ellipse>

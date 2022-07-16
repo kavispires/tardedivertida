@@ -1,4 +1,4 @@
-export function Clock(props: any): JSX.Element {
+export function Clock(props: React.SVGProps<SVGSVGElement>): JSX.Element {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
       <circle cx="256" cy="256" r="248" fill="#ff5876"></circle>

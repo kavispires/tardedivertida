@@ -1,4 +1,4 @@
-export function IdCard(props: any): JSX.Element {
+export function IdCard(props: React.SVGProps<SVGSVGElement>): JSX.Element {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
       <rect width="453.65" height="288" x="7.02" y="79.19" fill="#14afc1" rx="20"></rect>

@@ -1,4 +1,4 @@
-export function WaitingRoom(props: any): JSX.Element {
+export function WaitingRoom(props: React.SVGProps<SVGSVGElement>): JSX.Element {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
       <circle cx="256" cy="112.565" r="105.065" fill="#eb5569"></circle>

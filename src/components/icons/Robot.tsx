@@ -1,4 +1,4 @@
-export function Robot(props: any): JSX.Element {
+export function Robot(props: React.SVGProps<SVGSVGElement>): JSX.Element {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
       <circle cx="256" cy="33.02" r="25.52" fill="#6bc1dd" transform="rotate(-76.72 255.997 33.025)"></circle>
