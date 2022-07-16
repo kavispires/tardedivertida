@@ -11,12 +11,16 @@ import { Avatar } from 'components/avatars';
 import { RateGameWidget } from './RateGameWidget';
 import { useNavigate } from 'react-router-dom';
 import { AdminOnlyButton } from 'components/admin';
+import { ReactNode } from 'react';
 
 const GameOverText = () => <Translate pt="Jogo concluído" en="The game is over" />;
 
 type GameOverProps = {
   state: GameState;
-  children: ReactChildren;
+  /**
+   * The content of the component
+   */
+  children: ReactNode;
   className?: string;
   showRateWidgetAfterContent?: boolean;
   rateWidgetCustomText?: any;

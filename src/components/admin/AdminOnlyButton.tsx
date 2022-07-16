@@ -1,9 +1,10 @@
 import { useGlobalState } from 'hooks';
+import { ReactNode } from 'react';
 import { AdminButton, AdminOnlyContainer } from './index';
 
 type AdminOnlyButtonProps = {
   onClick: GenericFunction;
-  label: ReactChildren;
+  label: ReactNode;
 };
 
 export function AdminOnlyButton({ onClick, label }: AdminOnlyButtonProps) {

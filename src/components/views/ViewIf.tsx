@@ -1,5 +1,10 @@
+import { ReactNode } from 'react';
+
 type ViewIfProps = {
-  children: any;
+  /**
+   * The content of the component
+   */
+  children: ReactNode;
   isVisible?: boolean;
 };
 

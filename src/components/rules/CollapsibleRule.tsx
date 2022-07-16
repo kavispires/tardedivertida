@@ -4,9 +4,16 @@ import { Collapse } from 'antd';
 import { useLanguage } from 'hooks';
 // Components
 import { Instruction } from 'components/text';
+import { ReactNode } from 'react';
 
 type CollapsibleRuleProps = {
-  children: any;
+  /**
+   * The content of the component
+   */
+  children: ReactNode;
+  /**
+   * The title of the panel (default: Rules/Regras)
+   */
   title?: string;
 };
 export function CollapsibleRule({ children, title }: CollapsibleRuleProps): JSX.Element {

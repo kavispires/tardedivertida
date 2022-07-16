@@ -1,10 +1,14 @@
 import { InfoCircleOutlined } from '@ant-design/icons';
 import { Button, Tooltip } from 'antd';
+import { ReactNode } from 'react';
 
 type FilterEntryProps = {
-  label: any;
-  children: any;
-  tooltip?: any;
+  label: ReactNode;
+  /**
+   * The content of the component
+   */
+  children: ReactNode;
+  tooltip?: ReactNode;
 };
 
 export function FilterEntry({ label, tooltip, children }: FilterEntryProps) {

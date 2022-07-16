@@ -2,6 +2,7 @@ import { FireFilled } from '@ant-design/icons';
 import { Button } from 'antd';
 import { Translate } from 'components/language';
 import { useAPICall, useGlobalState, useLanguage, useLoading } from 'hooks';
+import { ReactNode } from 'react';
 import { ADMIN_API } from 'services/adapters';
 import { ADMIN_ACTIONS } from 'utils/constants';
 
@@ -16,7 +17,7 @@ function ButtonLabel({ round, lastRound }: { round?: GameRound; lastRound: boole
 }
 
 type AdminNextRoundButtonProps = {
-  buttonText?: ReactChildren;
+  buttonText?: ReactNode;
   className?: string;
   round?: GameRound;
   lastRound?: boolean;
