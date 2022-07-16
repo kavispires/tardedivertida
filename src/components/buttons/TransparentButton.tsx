@@ -15,9 +15,6 @@ interface TransparentButtonProps extends React.ButtonHTMLAttributes<HTMLButtonEl
    */
   activeClass?: string;
   /**
-   * Custom class name
-   */
-  /**
    * Optional custom class name
    */
   className?: string;
