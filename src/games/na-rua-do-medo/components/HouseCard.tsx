@@ -11,6 +11,9 @@ import { CandyCount } from './CandyCount';
 type HouseCardProps = {
   card: NCard;
   candyLeftover: number;
+  /**
+   * Optional custom class name
+   */
   className?: string;
   id?: string;
 };

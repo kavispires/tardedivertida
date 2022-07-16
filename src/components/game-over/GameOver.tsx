@@ -21,6 +21,9 @@ type GameOverProps = {
    * The content of the component
    */
   children: ReactNode;
+  /**
+   * Optional custom class name
+   */
   className?: string;
   showRateWidgetAfterContent?: boolean;
   rateWidgetCustomText?: any;

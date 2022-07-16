@@ -20,6 +20,9 @@ const getPathFromKonvaLines = (lines: CanvasLine[]) => {
 
 type CanvasSVGProps = {
   drawing: string;
+  /**
+   * Optional custom class name
+   */
   className?: string;
   size?: number;
 };

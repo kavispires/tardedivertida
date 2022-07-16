@@ -8,6 +8,9 @@ import { DreamCard } from './DreamCard';
 type DreamBoardProps = {
   table: ImageCard[];
   user: GamePlayer;
+  /**
+   * Optional custom class name
+   */
   className?: string;
 };
 

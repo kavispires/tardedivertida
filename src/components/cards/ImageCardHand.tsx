@@ -11,6 +11,9 @@ type ImageCardHandProps = {
   hand: string[];
   onSelectCard?: GenericFunction;
   selectButtonLabel?: string;
+  /**
+   * Optional custom class name
+   */
   className?: string;
   selectButtonClass?: string;
   sizeRatio?: number;

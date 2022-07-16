@@ -7,6 +7,9 @@ type StepProps = {
    */
   children: ReactNode;
   fullWidth?: boolean;
+  /**
+   * Optional custom class name
+   */
   className?: string;
 };
 

@@ -18,6 +18,9 @@ type PhaseAnnouncementProps = {
   onClose: GenericFunction;
   buttonText?: string;
   children?: any;
+  /**
+   * Optional custom class name
+   */
   className?: string;
   currentRound?: number;
   duration?: number;

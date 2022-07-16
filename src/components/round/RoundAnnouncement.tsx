@@ -18,6 +18,9 @@ type RoundAnnouncementProps = {
   buttonText?: string;
   time: number;
   players?: Players;
+  /**
+   * Optional custom class name
+   */
   className?: string;
   children?: any;
   unskippable?: boolean;

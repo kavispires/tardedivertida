@@ -8,6 +8,9 @@ import clsx from 'clsx';
 type TopicProps = {
   topic: string;
   likes?: number;
+  /**
+   * Optional custom class name
+   */
   className?: string;
 };
 

@@ -9,6 +9,9 @@ interface AdminOnlyContainerProps extends SpaceProps {
    * The content of the component
    */
   children: ReactNode;
+  /**
+   * Optional custom class name
+   */
   className?: string;
 }
 

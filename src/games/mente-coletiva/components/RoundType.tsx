@@ -5,6 +5,9 @@ import { Translate } from 'components/language';
 
 type RoundTypeProps = {
   roundType: Number;
+  /**
+   * Optional custom class name
+   */
   className?: string;
 };
 

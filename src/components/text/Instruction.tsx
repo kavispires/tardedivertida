@@ -22,6 +22,9 @@ type InstructionsProps = {
   /**
    * Custom class name
    */
+  /**
+   * Optional custom class name
+   */
   className?: string;
 };
 

@@ -9,6 +9,9 @@ import { DoubleLeftOutlined, DoubleRightOutlined } from '@ant-design/icons';
 
 type RulesCarouselProps = {
   info: GameInfo;
+  /**
+   * Optional custom class name
+   */
   className?: string;
   ruleClass?: string;
 };

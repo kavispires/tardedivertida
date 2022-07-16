@@ -11,6 +11,9 @@ type ItemCardProps = {
   cardWidth: number;
   preview?: boolean;
   isSelected?: boolean;
+  /**
+   * Optional custom class name
+   */
   className?: string;
   activeColor?: string;
 };

@@ -9,6 +9,9 @@ interface ImageBlurButtonContainerProps extends React.HTMLAttributes<HTMLDivElem
    * The content the component is wrapping
    */
   children: ReactNode;
+  /**
+   * Optional custom class name
+   */
   className?: string;
 }
 

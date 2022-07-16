@@ -7,6 +7,9 @@ type AvatarEntryProps = {
   id?: string;
   name?: string;
   animate?: boolean;
+  /**
+   * Optional custom class name
+   */
   className?: string;
 };
 

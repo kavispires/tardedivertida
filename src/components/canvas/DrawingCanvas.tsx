@@ -10,6 +10,9 @@ import { Translate } from 'components/language';
 type DrawingCanvasProps = {
   lines: CanvasLine[];
   setLines: CanvasSetLine;
+  /**
+   * Optional custom class name
+   */
   className?: string;
   showControls?: boolean;
   strokeWidth?: 'small' | 'medium' | 'large';
