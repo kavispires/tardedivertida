@@ -1,6 +1,8 @@
 // Components
 
-import { AvatarIcon, AvatarName } from 'components/avatars';
+import { AvatarName } from 'components/avatars';
+import { AnimatedClockIcon } from 'components/icons/AnimatedClockIcon';
+import { IconAvatar } from 'components/icons/IconAvatar';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
@@ -22,7 +24,8 @@ export function StepQuestionSelectionWaiting({
   return (
     <Step fullWidth className="m-step">
       <Title>
-        <AvatarIcon type="animated-clock" size="large" /> <Translate pt="Aguarde..." en="Please wait..." />
+        <IconAvatar icon={<AnimatedClockIcon />} size="large" />{' '}
+        <Translate pt="Aguarde..." en="Please wait..." />
       </Title>
 
       <Instruction contained>

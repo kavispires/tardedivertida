@@ -2,8 +2,13 @@ import { orderBy } from 'lodash';
 // Ant Design Resources
 import { Table, Tooltip } from 'antd';
 // Components
-import { AvatarName, Avatar, AvatarIcon } from 'components/avatars';
+import { AvatarName, Avatar } from 'components/avatars';
 import { CrimeGuessStatus } from './CrimeGuessStatus';
+import { IconAvatar } from 'components/icons/IconAvatar';
+import { BoxCheckMarkIcon } from 'components/icons/BoxCheckMarkIcon';
+import { BoxXIcon } from 'components/icons/BoxXIcon';
+import { BoxMinusIcon } from 'components/icons/BoxMinusIcon';
+import { BoxOneIcon } from 'components/icons/BoxOneIcon';
 
 type ResultsTableProps = {
   players: GamePlayers;
@@ -44,25 +49,25 @@ function ResultsTableCell({ status }: ResultsTableCellProps) {
     case 'CORRECT':
       return (
         <Tooltip title={<CrimeGuessStatus status={status} withDescription />} color="white">
-          <AvatarIcon type="box-check-mark" shape="square" alt={status} />
+          <IconAvatar icon={<BoxCheckMarkIcon />} shape="square" alt={status} />
         </Tooltip>
       );
     case 'HALF':
       return (
         <Tooltip title={<CrimeGuessStatus status={status} withDescription />} color="white">
-          <AvatarIcon type="box-one" shape="square" alt={status} />
+          <IconAvatar icon={<BoxOneIcon />} shape="square" alt={status} />
         </Tooltip>
       );
     case 'WRONG':
       return (
         <Tooltip title={<CrimeGuessStatus status={status} withDescription />} color="white">
-          <AvatarIcon type="box-minus" shape="square" alt={status} />
+          <IconAvatar icon={<BoxMinusIcon />} shape="square" alt={status} />
         </Tooltip>
       );
     case 'WRONG_GROUP':
       return (
         <Tooltip title={<CrimeGuessStatus status={status} withDescription />} color="white">
-          <AvatarIcon type="box-x" shape="square" alt={status} />
+          <IconAvatar icon={<BoxXIcon />} shape="square" alt={status} />
         </Tooltip>
       );
     default:

@@ -3,11 +3,13 @@ import { Space } from 'antd';
 // Hooks
 import { useLoading, useGlobalState } from 'hooks';
 // Components
-import { AvatarCard, AvatarIcon } from 'components/avatars';
+import { AvatarCard } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
+import { IconAvatar } from 'components/icons/IconAvatar';
+import { AnimatedClockIcon } from 'components/icons/AnimatedClockIcon';
 
 type StepBossPlayerSelectionProps = {
   players: GamePlayers;
@@ -21,7 +23,7 @@ export function StepBossPlayerSelection({ players, onBossPlayerClick }: StepBoss
   return (
     <Step key={1}>
       <Title>
-        <AvatarIcon type="animated-clock" size="large" />
+        <IconAvatar icon={<AnimatedClockIcon />} size="large" />
         <br />
         <Translate pt="Quem quer ser o Chefe?" en="Who wants to be the Boss?" />
       </Title>

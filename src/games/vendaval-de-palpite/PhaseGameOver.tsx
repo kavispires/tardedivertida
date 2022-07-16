@@ -1,7 +1,9 @@
 import { Space } from 'antd';
 // Components
-import { AvatarIcon } from 'components/avatars';
 import { GameOverWrapper } from 'components/game-over';
+import { GarbageIcon } from 'components/icons/GarbageIcon';
+import { IconAvatar } from 'components/icons/IconAvatar';
+import { QualitySealIcon } from 'components/icons/QualitySealIcon';
 import { Translate } from 'components/language';
 import { Board } from './components/Board';
 import { CategoryWordGroup } from './components/CategoryWordGroup';
@@ -17,12 +19,12 @@ function PhaseGameOver({ state, players, info }: PhaseProps) {
       <Space className="space-container" direction="vertical" align="center">
         {state.outcome === 'WIN' ? (
           <>
-            <AvatarIcon type="quality-seal" size={100} shape="square" />
+            <IconAvatar icon={<QualitySealIcon />} size={100} shape="square" />
             <Translate pt="VITÓRIA" en="WIN" />
           </>
         ) : (
           <>
-            <AvatarIcon type="garbage" size={100} shape="square" />
+            <IconAvatar icon={<GarbageIcon />} size={100} shape="square" />
             <Translate pt="DERROTA" en="LOSE" />
           </>
         )}

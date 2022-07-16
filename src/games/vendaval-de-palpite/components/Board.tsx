@@ -1,6 +1,8 @@
 import { Avatar, Tooltip } from 'antd';
 import clsx from 'clsx';
-import { AvatarIcon, AvatarName } from 'components/avatars';
+import { AvatarName } from 'components/avatars';
+import { IconAvatar } from 'components/icons/IconAvatar';
+import { QuestionIcon } from 'components/icons/QuestionIcon';
 import { Translate } from 'components/language';
 
 type BoardProps = {
@@ -35,7 +37,7 @@ export function Board({ board, clues, players }: BoardProps) {
                   </Avatar>
                 </Tooltip>
               ) : (
-                <AvatarIcon size={48} type="question" shape="square" />
+                <IconAvatar icon={<QuestionIcon />} size={48} shape="square" />
               )}
             </div>
           </div>

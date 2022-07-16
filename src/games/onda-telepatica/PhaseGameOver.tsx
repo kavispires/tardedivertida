@@ -1,7 +1,8 @@
 import { Space } from 'antd';
 // Components
-import { AvatarIcon } from 'components/avatars';
 import { GameOverWrapper } from 'components/game-over';
+import { IconAvatar } from 'components/icons/IconAvatar';
+import { WavelengthDeviceIcon } from 'components/icons/WavelengthDeviceIcon';
 import { Translate } from 'components/language';
 
 function PhaseGameOver({ state, players, info }: PhaseProps) {
@@ -21,7 +22,7 @@ function PhaseGameOver({ state, players, info }: PhaseProps) {
         {state.pastCategories.map((category: any) => {
           return (
             <div key={category.id} className="o-past-category-entry">
-              <AvatarIcon type="wavelength-device" size={48} />
+              <IconAvatar icon={<WavelengthDeviceIcon />} size={48} />
               <header className="o-past-category-entry__category">
                 {category.target < 0 && category.left}
                 {category.target > 0 && category.right}

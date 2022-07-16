@@ -3,8 +3,10 @@ import { Tooltip } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks';
 // Components
-import { AvatarIcon } from 'components/avatars';
 import { CollapsibleRule } from 'components/rules';
+import { IconAvatar } from 'components/icons/IconAvatar';
+import { SpeechBubbleDeclinedIcon } from 'components/icons/SpeechBubbleDeclinedIcon';
+import { SpeechBubbleAcceptedIcon } from 'components/icons/SpeechBubbleAcceptedIcon';
 
 type QuestionsHistoryProps = {
   history: THistoryEntry[];
@@ -21,11 +23,11 @@ export function QuestionsHistory({ history }: QuestionsHistoryProps) {
             <span className="t-history__question">{entry.question}</span>
             {entry.answer ? (
               <Tooltip title={translate('Sim', 'Yes')} className="t-history__icon">
-                <AvatarIcon type="speech-bubble-accepted" size="small" />
+                <IconAvatar icon={<SpeechBubbleAcceptedIcon />} size="small" />
               </Tooltip>
             ) : (
               <Tooltip title={translate('Não', 'No')} className="t-history__icon">
-                <AvatarIcon type="speech-bubble-declined" size="small" />
+                <IconAvatar icon={<SpeechBubbleDeclinedIcon />} size="small" />
               </Tooltip>
             )}
           </li>

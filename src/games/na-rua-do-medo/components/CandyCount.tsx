@@ -1,7 +1,8 @@
 // Ant Design Resources
 import { Avatar } from 'antd';
 // Components
-import { AvatarIcon } from 'components/avatars';
+import { CandyIcon } from 'components/icons/CandyIcon';
+import { IconAvatar } from 'components/icons/IconAvatar';
 
 type CandyCountProps = {
   candyCount: number;
@@ -11,7 +12,7 @@ type CandyCountProps = {
 export function CandyCount({ candyCount, size = 'small' }: CandyCountProps) {
   return (
     <>
-      <AvatarIcon type="candy" size={size} />
+      <IconAvatar icon={<CandyIcon />} size={size} />
       <Avatar size={size} style={{ backgroundColor: 'hotPink' }}>
         {candyCount}
       </Avatar>

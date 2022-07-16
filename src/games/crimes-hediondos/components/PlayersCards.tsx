@@ -2,8 +2,11 @@ import { orderBy } from 'lodash';
 // Helpers
 import { isHistoryLocked } from '../utils/helpers';
 // Components
-import { AvatarCard, AvatarIcon } from 'components/avatars';
+import { AvatarCard } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
+import { IconAvatar } from 'components/icons/IconAvatar';
+import { LockIcon } from 'components/icons/LockIcon';
+import { KnifeIcon } from 'components/icons/KnifeIcon';
 
 type PlayersCardsProps = {
   activePlayerId: PlayerId;
@@ -37,8 +40,8 @@ export function PlayersCards({
                 player={player}
                 withName
                 replacementAvatar={
-                  (isLocked && <AvatarIcon type="lock" className="h-players-cards__seal" />) ||
-                  (isComplete && <AvatarIcon type="knife" className="h-players-cards__seal" />)
+                  (isLocked && <IconAvatar icon={<LockIcon />} className="h-players-cards__seal" />) ||
+                  (isComplete && <IconAvatar icon={<KnifeIcon />} className="h-players-cards__seal" />)
                 }
               />
             </TransparentButton>
