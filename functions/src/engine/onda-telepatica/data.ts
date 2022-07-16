@@ -15,7 +15,7 @@ import * as utils from '../../utils';
  * @returns
  */
 export const getCategories = async (language: string): Promise<ResourceData> => {
-  const resourceName = `${TDR_RESOURCES.LEFT_RIGHT_IDEAS}-${language}`;
+  const resourceName = `${TDR_RESOURCES.OPPOSING_IDEAS}-${language}`;
   // Get full deck
   const allCategories = await resourceUtils.fetchResource(resourceName);
   // Get used deck

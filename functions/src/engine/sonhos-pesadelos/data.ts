@@ -12,7 +12,7 @@ import * as resourceUtils from '../resource';
  * @returns
  */
 export const getInspirationThemes = async (language: string): Promise<SonhosPesadelosCards> => {
-  const resourceName = `${TDR_RESOURCES.INSPIRATION_THEMES}-${language}`;
+  const resourceName = `${TDR_RESOURCES.NAMING_PROMPTS}-${language}`;
   const cardsResponse = await resourceUtils.fetchResource(resourceName);
   const cards: InspirationCard[] = Object.values(cardsResponse);
 
