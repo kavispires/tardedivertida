@@ -11,6 +11,9 @@ type TurnOrderProps = {
   players: GamePlayers;
   order: PlayerId[];
   activePlayerId?: PlayerId;
+  /**
+   * Optional custom class name
+   */
   className?: string;
   reorderByUser?: PlayerId;
   title?: string;

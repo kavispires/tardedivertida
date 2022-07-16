@@ -7,6 +7,9 @@ import { getColorModifier } from '../utils/helpers';
 type CardProps = {
   left: string;
   right: string;
+  /**
+   * Optional custom class name
+   */
   className?: string;
   setNeedle?: GenericFunction;
 };

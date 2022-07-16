@@ -8,6 +8,9 @@ import { getAvatarColorById } from 'utils/helpers';
 type AvatarStripProps = {
   player: GamePlayer;
   size?: 'small' | 'default' | 'large';
+  /**
+   * Optional custom class name
+   */
   className?: string;
   withName?: boolean;
   uppercase?: boolean;

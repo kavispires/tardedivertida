@@ -13,6 +13,9 @@ type CardProps = {
   color?: string;
   size?: 'small' | 'medium' | 'large';
   randomColor?: boolean;
+  /**
+   * Optional custom class name
+   */
   className?: string;
   headerClassName?: string;
   footerClassName?: string;

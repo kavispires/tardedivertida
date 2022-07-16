@@ -13,6 +13,9 @@ type SlideShowProps = {
   disableControls: boolean;
   barColor: string;
   windowDuration: number;
+  /**
+   * Optional custom class name
+   */
   className?: string;
   leftClassName?: string;
   rightClassName?: string;

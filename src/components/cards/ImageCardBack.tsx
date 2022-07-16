@@ -8,6 +8,9 @@ import { useBlurCards } from 'hooks';
 type ImageCardBackProps = {
   size?: 'small' | 'medium' | 'large';
   cardWidth?: number | string;
+  /**
+   * Optional custom class name
+   */
   className?: string;
   previewImageId?: string;
 };

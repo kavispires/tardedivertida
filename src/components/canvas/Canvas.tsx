@@ -3,6 +3,9 @@ import clsx from 'clsx';
 
 type CanvasProps = {
   drawing?: string | CanvasLine[];
+  /**
+   * Optional custom class name
+   */
   className?: string;
 };
 

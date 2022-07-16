@@ -14,6 +14,9 @@ type PhaseContainerProps = {
    * The content of the component
    */
   children: ReactNode;
+  /**
+   * Optional custom class name
+   */
   className?: string;
   fullScreen?: boolean;
   white?: boolean;
