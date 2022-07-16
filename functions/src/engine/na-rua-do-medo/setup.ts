@@ -1,8 +1,8 @@
 // Constants
 import { NA_RUA_DO_MEDO_PHASES, OUTCOME_STATUS } from './constants';
 // Types
-import { FirebaseStateData, FirebaseStoreData, Outcome } from './types';
-import { Players, SaveGamePayload } from '../../utils/types';
+import type { FirebaseStateData, FirebaseStoreData, Outcome } from './types';
+import type { Players, SaveGamePayload } from '../../utils/types';
 // Utils
 import * as utils from '../../utils';
 // Internal

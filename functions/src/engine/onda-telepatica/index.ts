@@ -2,12 +2,12 @@
 import { GAME_COLLECTIONS } from '../../utils/constants';
 import { MAX_ROUNDS, ONDA_TELEPATICA_PHASES, PLAYER_COUNTS } from './constants';
 // Types
-import { GameId, Language, Players } from '../../utils/types';
+import type { GameId, Language, Players } from '../../utils/types';
+import type { OndaTelepaticaInitialState, OndaTelepaticaOptions, OndaTelepaticaSubmitAction } from './types';
 // Utils
 import * as utils from '../../utils';
 // Internal Functions
 import { determineGameOver, determineNextPhase } from './helpers';
-import { OndaTelepaticaInitialState, OndaTelepaticaOptions, OndaTelepaticaSubmitAction } from './types';
 import {
   prepareDialCluePhase,
   prepareGameOverPhase,

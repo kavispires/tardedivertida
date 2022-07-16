@@ -1,15 +1,15 @@
 // Constants
 import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
 // Types
-import { BooleanDictionary, Language } from '../../utils/types';
-import { ArteRuimData, ArteRuimDrawing } from './types';
+import type { BooleanDictionary, Language } from '../../utils/types';
+import type { ArteRuimData, ArteRuimDrawing } from './types';
+import type { ArteRuimCard, ArteRuimGroup } from '../../utils/tdr';
 // Helpers
 import * as globalUtils from '../global';
 import * as publicUtils from '../public';
 import * as resourceUtils from '../resource';
 import * as utils from '../../utils';
 import { buildPastDrawingsDict, distributeCardsByLevel, getAvailableCards, getGameSettings } from './helpers';
-import { ArteRuimCard, ArteRuimGroup } from '../../utils/tdr';
 
 /**
  * Get expression cards resource based on the game's language

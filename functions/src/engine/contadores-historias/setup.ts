@@ -8,8 +8,8 @@ import {
 } from './constants';
 import { DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
 // Types
-import { FirebaseStateData, FirebaseStoreData } from './types';
-import { Players, SaveGamePayload } from '../../utils/types';
+import type { FirebaseStateData, FirebaseStoreData } from './types';
+import type { Players, SaveGamePayload } from '../../utils/types';
 // Utils
 import * as utils from '../../utils';
 // Internal

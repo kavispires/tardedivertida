@@ -1,12 +1,12 @@
 // Types
-import { PlainObject, Players, SaveGamePayload } from '../../utils/types';
-import { FirebaseStateData, FirebaseStoreData, ResourceData, TestemunhaOcularEntry } from './types';
+import type { PlainObject, Players, SaveGamePayload } from '../../utils/types';
+import type { FirebaseStateData, FirebaseStoreData, ResourceData, TestemunhaOcularEntry } from './types';
+import type { TestimonyQuestionCard } from '../../utils/tdr';
 // Constants
 import { MAX_ROUNDS, QUESTION_COUNT, SUSPECT_COUNT, TESTEMUNHA_OCULAR_PHASES } from './constants';
 // Helpers
 import * as utils from '../../utils';
 import { calculateScore, determineTurnOrder, getQuestionerId, getQuestions } from './helpers';
-import { TestemunhaOcularCard } from '../../utils/tdr';
 
 /**
  * Setup
@@ -135,7 +135,7 @@ export const prepareQuestioningPhase = async (
   store: FirebaseStoreData,
   additionalPayload: PlainObject
 ): Promise<SaveGamePayload> => {
-  const question = store.deck.find((card: TestemunhaOcularCard) => card.id === additionalPayload.questionId);
+  const question = store.deck.find((card: TestimonyQuestionCard) => card.id === additionalPayload.questionId);
 
   // Save
   return {

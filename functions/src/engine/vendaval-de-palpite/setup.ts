@@ -1,8 +1,8 @@
 // Constants
 import { CLUES_PER_PLAYER, FINAL_ANSWER_COUNT, MAX_ROUNDS, VENDAVAL_DE_PALPITE_PHASES } from './constants';
 // Types
-import { Board, ClueId, Clues, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
-import { Players, SaveGamePayload } from '../../utils/types';
+import type { Board, ClueId, Clues, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
+import type { Players, SaveGamePayload } from '../../utils/types';
 // Utils
 import * as utils from '../../utils';
 // Internal

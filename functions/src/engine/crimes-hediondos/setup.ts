@@ -1,11 +1,11 @@
 // Constants
 import { CARDS_PER_GAME, CRIMES_HEDIONDOS_PHASES } from './constants';
 // Types
-import { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
-import { Players, SaveGamePayload } from '../../utils/types';
+import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
+import type { Players, SaveGamePayload } from '../../utils/types';
 // Utils
 import * as utils from '../../utils';
-
+// Internal
 import {
   buildCrimes,
   buildRanking,
@@ -16,7 +16,6 @@ import {
   updateCrime,
   updateOrCreateGuessHistory,
 } from './helpers';
-// Internal
 
 /**
  * Setup

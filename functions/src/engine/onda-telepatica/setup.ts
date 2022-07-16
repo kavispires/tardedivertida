@@ -2,8 +2,8 @@
 import { CATEGORIES_PER_ROUND, MAX_ROUNDS, ONDA_TELEPATICA_PHASES } from './constants';
 import { DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
 // Types
-import { CategoryCard, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
-import { Players, SaveGamePayload } from '../../utils/types';
+import type { CategoryCard, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
+import type { Players, SaveGamePayload } from '../../utils/types';
 // Utils
 import * as utils from '../../utils';
 // Internal

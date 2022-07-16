@@ -1,4 +1,4 @@
-import { DefaultState, DefaultStore, InitialState, Payload, PlayerId } from '../../utils/types';
+import type { DefaultState, DefaultStore, InitialState, Payload, PlayerId } from '../../utils/types';
 
 interface InstrumentosCodificadosStore extends DefaultStore {
   [key: string]: any;

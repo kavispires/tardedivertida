@@ -2,12 +2,12 @@
 import { GAME_COLLECTIONS } from '../../utils/constants';
 import { CRUZA_PALAVRAS_PHASES, PLAYER_COUNTS, TOTAL_ROUNDS } from './constants';
 // Types
-import { GameId, Language, Players } from '../../utils/types';
+import type { GameId, Language, Players } from '../../utils/types';
+import type { CruzaPalavrasInitialState, CruzaPalavrasOptions, CruzaPalavrasSubmitAction } from './types';
 // Utils
 import * as utils from '../../utils';
 // Internal Functions
 import { determineNextPhase } from './helpers';
-import { CruzaPalavrasInitialState, CruzaPalavrasOptions, CruzaPalavrasSubmitAction } from './types';
 import {
   prepareClueWritingPhase,
   prepareGuessingPhase,

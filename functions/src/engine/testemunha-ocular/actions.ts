@@ -1,5 +1,5 @@
 // Types
-import { GameName, GameId } from '../../utils/types';
+import type { GameName, GameId } from '../../utils/types';
 // Utils
 import * as utils from '../../utils';
 import { getNextPhase } from './index';

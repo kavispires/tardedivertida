@@ -1,10 +1,10 @@
 // Types
-import { GameId, PlayerId, GameName } from '../../utils/types';
+import type { GameId, PlayerId, GameName } from '../../utils/types';
+import type { Decisions } from './types';
 // Helpers
 import * as utils from '../../utils';
 // Internal functions
 import { getNextPhase } from './index';
-import { Decisions } from './types';
 
 export const handleSubmitDecision = async (
   collectionName: GameName,

@@ -1,5 +1,5 @@
-import { ArteRuimCard, ArteRuimGroup } from '../../utils/tdr';
-import { CardId, DefaultState, DefaultStore, InitialState, Payload, PlayerId } from '../../utils/types';
+import type { ArteRuimCard, ArteRuimGroup } from '../../utils/tdr';
+import type { CardId, DefaultState, DefaultStore, InitialState, Payload, PlayerId } from '../../utils/types';
 
 type ArteRuimGameOptions = {
   useAllCards: boolean;

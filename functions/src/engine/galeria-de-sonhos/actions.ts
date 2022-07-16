@@ -1,6 +1,6 @@
 // Types
-import { GameId, PlayerId, GameName, PlainObject, Player, CardId } from '../../utils/types';
-import { ImageCard, PlayerCard } from './types';
+import type { GameId, PlayerId, GameName, PlainObject, Player, CardId } from '../../utils/types';
+import type { ImageCard, PlayerCard } from './types';
 // Helpers
 import * as utils from '../../utils';
 // Internal functions

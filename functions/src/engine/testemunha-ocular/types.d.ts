@@ -1,6 +1,6 @@
-import { SuspectCard } from '../../utils/tdi';
-import { TestemunhaOcularCard } from '../../utils/tdr';
-import { CardId, DefaultState, DefaultStore, InitialState, Payload, PlayerId } from '../../utils/types';
+import type { SuspectCard } from '../../utils/tdi';
+import type { TestimonyQuestionCard } from '../../utils/tdr';
+import type { CardId, DefaultState, DefaultStore, InitialState, Payload, PlayerId } from '../../utils/types';
 
 type SuspectId = CardId;
 
@@ -13,7 +13,7 @@ interface TestemunhaOcularEntry {
 
 interface ResourceData {
   allCards: {
-    [key: string]: TestemunhaOcularCard;
+    [key: string]: TestimonyQuestionCard;
   };
   allSuspects: SuspectCard[];
 }

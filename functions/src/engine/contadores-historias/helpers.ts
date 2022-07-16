@@ -2,8 +2,8 @@
 import { CONTADORES_HISTORIAS_PHASES, GAME_OVER_SCORE_THRESHOLD, OUTCOME } from './constants';
 import { DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
 // Types
-import { ImageCardId, PlainObject, PlayerId, Players, Round } from '../../utils/types';
-import { ContadoresHistoriasOptions, Table } from './types';
+import type { ImageCardId, PlainObject, PlayerId, Players, Round } from '../../utils/types';
+import type { ContadoresHistoriasOptions, Table } from './types';
 // Utils
 import * as utils from '../../utils';
 

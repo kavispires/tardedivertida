@@ -1,11 +1,11 @@
 // Types
-import { Album, Card, LinhasCruzadasOptions, Slide } from './types';
-import { GameOrder, Players, Round } from '../../utils/types';
+import type { Album, Card, LinhasCruzadasOptions, Slide } from './types';
+import type { GameOrder, Players, Round } from '../../utils/types';
+import type { ArteRuimCard, TextCard } from '../../utils/tdr';
 // Constants
 import { LINHAS_CRUZADAS_PHASES } from './constants';
 // Utils
 import * as utils from '../../utils';
-import { ArteRuimCard, TextCard } from '../../utils/tdr';
 
 /**
  * Determine the next phase based on the current one

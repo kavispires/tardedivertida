@@ -1,5 +1,5 @@
-import { TextCard } from '../../utils/tdr';
-import { DefaultState, DefaultStore, InitialState, Payload, PlayerId } from '../../utils/types';
+import type { TextCard } from '../../utils/tdr';
+import type { DefaultState, DefaultStore, InitialState, Payload, PlayerId } from '../../utils/types';
 
 type ResourceData = {
   words: TextCard[];

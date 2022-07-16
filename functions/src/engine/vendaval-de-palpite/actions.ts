@@ -1,5 +1,5 @@
 // Types
-import { GameId, PlayerId, GameName } from '../../utils/types';
+import type { GameId, PlayerId, GameName } from '../../utils/types';
 // Utils
 import * as utils from '../../utils';
 // Internal

@@ -1,6 +1,6 @@
 // Types
-import { PlainObject, Players, SaveGamePayload } from '../../utils/types';
-import { FirebaseStateData, FirebaseStoreData } from './types';
+import type { PlainObject, Players, SaveGamePayload } from '../../utils/types';
+import type { FirebaseStateData, FirebaseStoreData } from './types';
 // Constants
 import {
   DIGITS,

@@ -1,5 +1,5 @@
 import { GAME_CODES, GAME_COLLECTIONS, GAME_KEYS } from './constants';
-import { Engine, GameCode, GameId } from './types';
+import type { Engine, GameCode, GameId } from './types';
 import * as arteRuimEngine from '../engine/arte-ruim';
 import * as contadoresHistoriasEngine from '../engine/contadores-historias';
 import * as detetivesImaginativosEngine from '../engine/detetives-imaginativos';

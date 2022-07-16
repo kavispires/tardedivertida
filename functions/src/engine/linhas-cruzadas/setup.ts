@@ -1,8 +1,8 @@
 // Constants
 import { LINHAS_CRUZADAS_PHASES } from './constants';
 // Types
-import { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
-import { PlayerId, Players, SaveGamePayload } from '../../utils/types';
+import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
+import type { PlayerId, Players, SaveGamePayload } from '../../utils/types';
 // Utils
 import * as utils from '../../utils';
 // Internal

@@ -1,5 +1,5 @@
 import { LETTERS } from './constants';
-import {
+import type {
   BooleanDictionary,
   GameCode,
   InitialState,

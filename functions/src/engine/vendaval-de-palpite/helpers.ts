@@ -1,6 +1,6 @@
 // Types
-import { PlayerId, Players } from '../../utils/types';
-import { Board, BoardEntry, Clue, Clues } from './types';
+import type { PlayerId, Players } from '../../utils/types';
+import type { Board, BoardEntry, Clue, Clues } from './types';
 // Constants
 import { VENDAVAL_DE_PALPITE_PHASES } from './constants';
 // Utilities

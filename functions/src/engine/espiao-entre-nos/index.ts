@@ -2,8 +2,8 @@
 import { GAME_COLLECTIONS } from '../../utils/constants';
 import { ESPIAO_ENTRE_NOS_PHASES, PLAYER_COUNTS } from './constants';
 // Types
-import { GameId, Language, Players } from '../../utils/types';
-import { EspiaoEntreNosInitialState, EspiaoEntreNosSubmitAction } from './types';
+import type { GameId, Language, Players } from '../../utils/types';
+import type { EspiaoEntreNosInitialState, EspiaoEntreNosSubmitAction } from './types';
 // Utils
 import * as utils from '../../utils';
 import {

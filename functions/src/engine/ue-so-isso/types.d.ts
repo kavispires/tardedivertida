@@ -1,5 +1,5 @@
-import { TextCard } from '../../utils/tdr';
-import {
+import type { TextCard } from '../../utils/tdr';
+import type {
   DefaultState,
   DefaultStore,
   InitialState,

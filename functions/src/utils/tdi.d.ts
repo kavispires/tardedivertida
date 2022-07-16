@@ -1,4 +1,4 @@
-import { CardId, DualLanguageValue } from './types';
+import type { CardId, DualLanguageValue } from './types';
 
 export type CrimesHediondosCard = {
   id: CardId;

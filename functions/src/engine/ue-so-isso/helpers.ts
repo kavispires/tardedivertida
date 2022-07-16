@@ -1,7 +1,7 @@
 // Types
-import { PlainObject, Player, Players } from '../../utils/types';
-import { TextCard } from '../../utils/tdr';
-import { AllWords, CurrentSuggestions, UsedWord, UsedWords } from './types';
+import type { PlainObject, Player, Players } from '../../utils/types';
+import type { TextCard } from '../../utils/tdr';
+import type { AllWords, CurrentSuggestions, UsedWord, UsedWords } from './types';
 // Constants
 import { UE_SO_ISSO_PHASES, WORDS_PER_CARD } from './constants';
 // Utilities
