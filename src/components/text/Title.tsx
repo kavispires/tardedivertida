@@ -10,6 +10,9 @@ type TitleProps = {
   children: ReactNode;
   white?: boolean;
   icon?: any;
+  /**
+   * Optional custom class name
+   */
   className?: string;
   level?: 1 | 2 | 3 | 4 | 5 | undefined;
   size?: 'x-small' | 'small' | 'medium' | 'large';

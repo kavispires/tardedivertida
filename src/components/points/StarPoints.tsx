@@ -7,6 +7,9 @@ import { Translate } from 'components/language';
 type StarPointsProps = {
   keyPrefix: string;
   quantity?: number;
+  /**
+   * Optional custom class name
+   */
   className?: string;
   hideText?: boolean;
 };

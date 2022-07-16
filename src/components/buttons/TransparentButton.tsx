@@ -17,6 +17,9 @@ interface TransparentButtonProps extends React.ButtonHTMLAttributes<HTMLButtonEl
   /**
    * Custom class name
    */
+  /**
+   * Optional custom class name
+   */
   className?: string;
   /**
    * Behavior when the mouse hovers the button (default: scale)

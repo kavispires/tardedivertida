@@ -9,6 +9,9 @@ import { Avatar } from './Avatar';
 type AvatarCardProps = {
   player: GamePlayer;
   size?: 'small' | 'default' | 'large';
+  /**
+   * Optional custom class name
+   */
   className?: string;
   withName?: boolean;
   withDescription?: boolean;

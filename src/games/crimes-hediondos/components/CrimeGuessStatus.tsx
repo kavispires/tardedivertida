@@ -14,6 +14,9 @@ import { Translate } from 'components/language';
 type CrimeGuessStatusProps = {
   status: string;
   withDescription?: boolean;
+  /**
+   * Optional custom class name
+   */
   className?: string;
 };
 

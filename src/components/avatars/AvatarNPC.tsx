@@ -5,6 +5,9 @@ import { Translate } from 'components/language';
 
 type AvatarNPCProps = {
   size?: 'small' | 'default' | 'large';
+  /**
+   * Optional custom class name
+   */
   className?: string;
   withDescription?: boolean;
   uppercase?: boolean;

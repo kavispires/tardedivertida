@@ -9,6 +9,9 @@ type SheepAvatarProps = {
   id?: string;
   sheepId?: string;
   animate?: boolean;
+  /**
+   * Optional custom class name
+   */
   className?: string;
   width?: number;
   [key: string]: any;

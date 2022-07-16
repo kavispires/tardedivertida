@@ -12,6 +12,9 @@ type ImageCardProps = {
   imageId: string;
   size?: 'small' | 'medium' | 'large';
   cardWidth?: number;
+  /**
+   * Optional custom class name
+   */
   className?: string;
   preview?: Boolean;
 };

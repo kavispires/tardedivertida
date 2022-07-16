@@ -8,6 +8,9 @@ type ImageCardSelectButtonProps = {
   isSelected?: boolean;
   cardId: ImageCard;
   onClick: GenericFunction;
+  /**
+   * Optional custom class name
+   */
   className?: string;
   selectLabel?: string;
   deselectLabel?: string;

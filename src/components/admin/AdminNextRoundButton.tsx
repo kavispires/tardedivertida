@@ -18,6 +18,9 @@ function ButtonLabel({ round, lastRound }: { round?: GameRound; lastRound: boole
 
 type AdminNextRoundButtonProps = {
   buttonText?: ReactNode;
+  /**
+   * Optional custom class name
+   */
   className?: string;
   round?: GameRound;
   lastRound?: boolean;

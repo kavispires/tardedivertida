@@ -9,6 +9,9 @@ type CostumeAvatarProps = {
   id?: string;
   costumeId?: string;
   animate?: boolean;
+  /**
+   * Optional custom class name
+   */
   className?: string;
   width?: number;
   [key: string]: any;
