@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { useState } from 'react';
+import { ReactNode, useState } from 'react';
 // Hooks
 import { useLanguage } from 'hooks';
 // Components
@@ -7,7 +7,10 @@ import { AvatarIcon } from 'components/avatars';
 import { Translate } from 'components/language';
 
 type FloatingHandProps = {
-  children: any;
+  /**
+   * The content of the component
+   */
+  children: ReactNode;
   type?: 'hand' | 'stats';
   subtitle?: any;
 };

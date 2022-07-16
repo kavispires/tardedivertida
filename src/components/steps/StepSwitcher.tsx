@@ -23,7 +23,10 @@ const getWaitingRoomInstruction = (kind: string) => {
 };
 
 type StepSwitcherProps = {
-  children: any;
+  /**
+   * The content of the component
+   */
+  children: JSX.Element[];
   step: number;
   conditions?: boolean[];
   players?: GamePlayers;

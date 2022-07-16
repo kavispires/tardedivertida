@@ -1,5 +1,8 @@
 type ViewSwitchProps = {
   cases: boolean[];
+  /**
+   * The content of the component
+   */
   children: any;
 };
 

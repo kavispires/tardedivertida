@@ -1,9 +1,13 @@
 import clsx from 'clsx';
 // Ant Design Resources
 import { Typography } from 'antd';
+import { ReactNode } from 'react';
 
 type TitleProps = {
-  children: any;
+  /**
+   * The content of the component
+   */
+  children: ReactNode;
   white?: boolean;
   icon?: any;
   className?: string;

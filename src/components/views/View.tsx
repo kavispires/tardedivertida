@@ -1,5 +1,10 @@
+import { ReactNode } from 'react';
+
 type ViewProps = {
-  children: any;
+  /**
+   * The content of the component
+   */
+  children: ReactNode;
 };
 
 export function View({ children }: ViewProps) {

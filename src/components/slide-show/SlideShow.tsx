@@ -1,10 +1,11 @@
 import clsx from 'clsx';
+import { ReactNode } from 'react';
 // Components
 import { SlideShowControls } from './SlideShowControls';
 
 type SlideShowProps = {
   players: GamePlayers;
-  children: [ReactChildren, ReactChildren];
+  children: [ReactNode, ReactNode];
   length: number;
   activeIndex: number;
   setActiveIndex: GenericFunction;

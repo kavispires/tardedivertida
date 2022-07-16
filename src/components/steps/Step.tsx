@@ -1,7 +1,11 @@
 import clsx from 'clsx';
+import { ReactNode } from 'react';
 
 type StepProps = {
-  children: any;
+  /**
+   * The content of the component
+   */
+  children: ReactNode;
   fullWidth?: boolean;
   className?: string;
 };

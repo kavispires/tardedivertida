@@ -1,5 +1,10 @@
+import { ReactNode } from 'react';
+
 type TextHighlightProps = {
-  children: any;
+  /**
+   * The text to be highlighted
+   */
+  children: ReactNode;
 };
 
 export function TextHighlight({ children }: TextHighlightProps) {

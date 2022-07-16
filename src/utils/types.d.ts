@@ -39,7 +39,6 @@ type DualLanguageValue = {
   pt: string;
 };
 type CardId = string;
-type ReactChildren = JSX.Element | JSX.Element[] | Primitive | Primitive[] | any;
 type Color =
   | 'red'
   | 'blue'

@@ -1,7 +1,11 @@
 import clsx from 'clsx';
+import { ReactNode } from 'react';
 
 type RulesListProps = {
-  children: any;
+  /**
+   * The content of the component
+   */
+  children: ReactNode;
   className?: string;
 };
 

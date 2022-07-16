@@ -1,10 +1,14 @@
 import { useDevFeatures } from 'hooks';
+import { ReactNode } from 'react';
 
 type DebugOnlyProps = {
   dev?: boolean;
   devOnly?: boolean;
   div?: boolean;
-  children: ReactChildren;
+  /**
+   * The content of the component
+   */
+  children: ReactNode;
 };
 
 /**
