@@ -26,6 +26,7 @@
     "react-scripts": "5.0.0",
     "react-timer-hook": "^3.0.5",
     "react-use": "^17.4.0",
+    "sass": "^1.53.0",
     "typescript": "^4.7.3",
     "web-vitals": "^2.1.4"
   },
@@ -35,9 +36,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "build-css": "node-sass-chokidar ./src/styles/index.scss ./src/styles/index.css",
-    "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive"
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -88,7 +87,6 @@
     "gh-pages": "^3.2.3",
     "husky": "^6.0.0",
     "lint-staged": "^10.5.4",
-    "node-sass-chokidar": "^1.5.0",
     "prettier": "^2.6.2"
   }
 }
