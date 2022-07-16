@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { ReactNode, useEffect, useRef } from 'react';
 import clsx from 'clsx';
 // Hooks
 import { useGlobalState, useLanguage } from 'hooks';
@@ -10,7 +10,10 @@ type PhaseContainerProps = {
   info?: GameInfo;
   phase?: string;
   allowedPhase?: string;
-  children: any;
+  /**
+   * The content of the component
+   */
+  children: ReactNode;
   className?: string;
   fullScreen?: boolean;
   white?: boolean;

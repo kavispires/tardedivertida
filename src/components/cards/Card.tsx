@@ -1,9 +1,13 @@
 import clsx from 'clsx';
+import { ReactNode } from 'react';
 // Utils
 import { getColorFromLetter } from 'utils/helpers';
 
 type CardProps = {
-  children: any;
+  /**
+   * The content of the component
+   */
+  children: ReactNode;
   header?: string;
   footer?: string;
   color?: string;

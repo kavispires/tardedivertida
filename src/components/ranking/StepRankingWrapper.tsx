@@ -1,13 +1,14 @@
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
+import { ReactNode } from 'react';
 import { RankingBoard } from './RankingBoard';
 
 type StepRankingWrapperProps = {
   players: GamePlayers;
   ranking: GameRanking;
   gainedPointsDescriptions: any[];
-  children?: ReactChildren;
+  children?: ReactNode;
 };
 
 export function StepRankingWrapper({

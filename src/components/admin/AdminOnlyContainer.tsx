@@ -2,9 +2,13 @@ import { FireFilled } from '@ant-design/icons';
 import { Space, SpaceProps } from 'antd';
 import clsx from 'clsx';
 import { useGlobalState } from 'hooks';
+import { ReactNode } from 'react';
 
 interface AdminOnlyContainerProps extends SpaceProps {
-  children: any;
+  /**
+   * The content of the component
+   */
+  children: ReactNode;
   className?: string;
 }
 
