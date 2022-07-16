@@ -12,7 +12,7 @@ type GameOverWrapperProps = {
   info: GameInfo;
   state: GameState;
   children?: any;
-  announcementIconBitch: ReactNode;
+  announcementIcon?: ReactNode;
   announcementTitle?: string;
   announcementDuration?: number;
   announcementContent?: any;
@@ -23,7 +23,7 @@ type GameOverWrapperProps = {
 export function GameOverWrapper({
   info,
   state,
-  announcementIconBitch = <TheEndIcon />,
+  announcementIcon = <TheEndIcon />,
   announcementTitle,
   announcementDuration = 3,
   announcementContent,
@@ -44,7 +44,7 @@ export function GameOverWrapper({
       <StepSwitcher step={step}>
         {/*Step 0 */}
         <PhaseAnnouncement
-          icon={announcementIconBitch}
+          icon={announcementIcon}
           title={translate('E o jogo chegou ao fim...', 'And the game is over...', announcementTitle)}
           onClose={() => setStep(1)}
           currentRound={state?.round?.current}

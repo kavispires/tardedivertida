@@ -2,6 +2,7 @@ import { Space } from 'antd';
 // Components
 import { GameOverWrapper } from 'components/game-over';
 import { IconAvatar } from 'components/icons/IconAvatar';
+import { TrophyIcon } from 'components/icons/TrophyIcon';
 import { WavelengthDeviceIcon } from 'components/icons/WavelengthDeviceIcon';
 import { Translate } from 'components/language';
 
@@ -10,7 +11,7 @@ function PhaseGameOver({ state, players, info }: PhaseProps) {
     <GameOverWrapper
       info={info}
       state={state}
-      announcementIcon="trophy"
+      announcementIcon={<TrophyIcon />}
       rateWidgetCustomText={
         <Translate
           pt="Alguma sugestão de cartas com ideias opostas?"

@@ -6,12 +6,13 @@ import { GameOverWrapper } from 'components/game-over';
 import { Translate } from 'components/language';
 import { IconAvatar } from 'components/icons/IconAvatar';
 import { SpeechBubbleThumbsUpIcon } from 'components/icons/SpeechBubbleThumbsUpIcon';
+import { TrophyIcon } from 'components/icons/TrophyIcon';
 
 function PhaseGameOver({ state, players, info }: PhaseProps) {
   const playerCount = Object.keys(players).length;
 
   return (
-    <GameOverWrapper announcementIcon="trophy" info={info} state={state}>
+    <GameOverWrapper announcementIcon={<TrophyIcon />} info={info} state={state}>
       <ul
         className="p-all-topics"
         style={{ gridTemplateColumns: `repeat(${playerCount % 3 === 0 ? 3 : 5}, 1fr)` }}

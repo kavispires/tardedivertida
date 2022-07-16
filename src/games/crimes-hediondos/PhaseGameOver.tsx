@@ -4,13 +4,14 @@ import { useUser } from 'hooks';
 // Components
 import { GameOverWrapper } from 'components/game-over';
 import { Crime } from './components/Crime';
+import { TrophyIcon } from 'components/icons/TrophyIcon';
 
 function PhaseGameOver({ state, players, info }: PhaseProps) {
   const crimes: Crime[] = state.crimes;
   const user = useUser(players);
 
   return (
-    <GameOverWrapper info={info} state={state} announcementIcon="trophy">
+    <GameOverWrapper info={info} state={state} announcementIcon={<TrophyIcon />}>
       <ul>
         {orderBy(crimes, ['playerId']).map((crime) => (
           <Crime
