@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import { useEffect } from 'react';
+import { PUBLIC_URL } from 'utils/constants';
 // Helpers
 import { getAnimationClass } from 'utils/helpers';
 // Components
@@ -21,7 +22,13 @@ export function Street({ street, currentCard, candySidewalk }: StreetProps) {
   }, [street, currentCard]);
 
   return (
-    <div className="n-street" id="street">
+    <div
+      className="n-street"
+      id="street"
+      style={{
+        backgroundImage: `url('${PUBLIC_URL.IN_GAME}n-street.png')`,
+      }}
+    >
       {street.map((card, index) => {
         return <HouseCard key={card.id} card={card} candyLeftover={candySidewalk[index].leftover} />;
       })}

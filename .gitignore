@@ -11,10 +11,6 @@
 # production
 /build
 
-# all css files but compiled version
-*.css
-!/src/styles/index.css
-
 # misc
 .DS_Store
 .env
