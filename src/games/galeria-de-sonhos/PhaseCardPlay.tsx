@@ -18,6 +18,8 @@ import { Instruction } from 'components/text';
 import { CardPlayRules } from './components/RulesBlobs';
 import { StepPlayDream } from './StepPlayDream';
 import { StepAnnounceDream } from './StepAnnounceDream';
+import { DoorSignIcon } from 'components/icons/DoorSignIcon';
+import { NightmareIcon } from 'components/icons/NightmareIcon';
 
 function PhaseCardPlay({ players, state, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -51,7 +53,7 @@ function PhaseCardPlay({ players, state, info }: PhaseProps) {
       <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady, !isUserReady]} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
-          type="door-sign"
+          icon={<DoorSignIcon />}
           title={translate('Hora do Bingo dos Sonhos!', 'Time for the Dream Bingo!')}
           onClose={() =>
             setStep(playerInNightmare.id ? GO_TO_PLAYER_WITH_NIGHTMARE_STEP : GO_TO_CARD_PLAY_STEP)
@@ -67,7 +69,7 @@ function PhaseCardPlay({ players, state, info }: PhaseProps) {
 
         {/* Step 2 */}
         <PhaseAnnouncement
-          type="nightmare"
+          icon={<NightmareIcon />}
           animationType="tada"
           title={
             <Translate

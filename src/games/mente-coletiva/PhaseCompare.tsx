@@ -9,6 +9,7 @@ import { StepSwitcher } from 'components/steps';
 import { StepCompare } from './StepCompare';
 import { ComparingRules } from './components/RulesBlobs';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { DiscussionIcon } from 'components/icons/DiscussionIcon';
 
 function PhaseCompare({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -26,7 +27,7 @@ function PhaseCompare({ state, players, info }: PhaseProps) {
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
-          type="discussion"
+          icon={<DiscussionIcon />}
           title={translate('Respostas', 'Answers')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}

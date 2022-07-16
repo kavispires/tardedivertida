@@ -15,6 +15,7 @@ import { ViewOr } from 'components/views';
 
 import { StepSecretClueWrite } from './StepSecretClueWrite';
 import { StepSecretClueWaiting } from './StepSecretClueWaiting';
+import { SecretIcon } from 'components/icons/SecretIcon';
 
 function PhaseSecretClue({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -44,7 +45,7 @@ function PhaseSecretClue({ state, players, info }: PhaseProps) {
 
         {/* Step 1 */}
         <PhaseAnnouncement
-          type="secret"
+          icon={<SecretIcon />}
           title={translate('Pista Secreta', 'Secret Clue')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}

@@ -17,6 +17,9 @@ import { Instruction } from 'components/text';
 import { StepInvestigation } from './StepInvestigation';
 import { FinalAssessmentPreparationModal } from './components/FinalAssessmentPreparationModal';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { LoupeIcon } from 'components/icons/LoupeIcon';
+import { OpinionsIcon } from 'components/icons/OpinionsIcon';
+import { TimerIcon } from 'components/icons/TimerIcon';
 
 function PhaseInvestigation({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -54,7 +57,7 @@ function PhaseInvestigation({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         {state?.outcome?.type !== 'VOTE_FAIL' ? (
           <PhaseAnnouncement
-            type="loupe"
+            icon={<LoupeIcon />}
             title={translate('Investigação', 'Investigation')}
             onClose={goToNextStep}
             currentRound={state?.round?.current}
@@ -64,7 +67,7 @@ function PhaseInvestigation({ state, players, info }: PhaseProps) {
           />
         ) : (
           <PhaseAnnouncement
-            type="opinions"
+            icon={<OpinionsIcon />}
             title={translate('A investigação continua', 'The investigation continues')}
             onClose={goToNextStep}
             currentRound={state?.round?.current}
@@ -94,7 +97,7 @@ function PhaseInvestigation({ state, players, info }: PhaseProps) {
 
         {/* Step 2 */}
         <PhaseAnnouncement
-          type="timer"
+          icon={<TimerIcon />}
           title={translate('O tempo acabou!!!', "Time's up!!!")}
           unskippable
           duration={300}

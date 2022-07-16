@@ -9,6 +9,7 @@ import { Instruction } from 'components/text';
 import { StepSwitcher } from 'components/steps';
 import { StepAlbum } from './StepAlbum';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { PhotoAlbumIcon } from 'components/icons/PhotoAlbumIcon';
 
 function PhasePresentation({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
@@ -20,7 +21,7 @@ function PhasePresentation({ players, state, info }: PhaseProps) {
       <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady, !isUserReady]} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
-          type="photo-album"
+          icon={<PhotoAlbumIcon />}
           title={translate('Álbum de Fotos', 'Album de Fotos')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}

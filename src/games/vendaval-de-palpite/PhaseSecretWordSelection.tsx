@@ -12,6 +12,7 @@ import { AvatarName } from 'components/avatars';
 import { ViewOr } from 'components/views';
 import { StepSecretWordSelection } from './StepSecretWordSelection';
 import { StepWaiting } from './StepWaiting';
+import { KnowledgeIcon } from 'components/icons/KnowledgeIcon';
 
 function PhaseSecretWordSelection({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -29,7 +30,7 @@ function PhaseSecretWordSelection({ state, players, info }: PhaseProps) {
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
-          type="knowledge"
+          icon={<KnowledgeIcon />}
           title={translate('A Palavra Secreta', 'The Secret Word')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}

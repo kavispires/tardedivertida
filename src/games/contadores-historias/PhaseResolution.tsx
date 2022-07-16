@@ -8,6 +8,7 @@ import { StepResolution } from './StepResolution';
 import { StepRanking } from './StepRanking';
 import { ScoringRules } from './components/RulesBlobs';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { SealIcon } from 'components/icons/SealIcon';
 
 function PhaseResolution({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -19,7 +20,7 @@ function PhaseResolution({ state, players, info }: PhaseProps) {
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
-          type="seal"
+          icon={<SealIcon />}
           title={translate('Solução', 'Solution')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}

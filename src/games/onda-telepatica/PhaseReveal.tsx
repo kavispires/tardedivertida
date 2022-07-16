@@ -14,6 +14,7 @@ import { RankingBoard } from 'components/ranking';
 import { AdminNextRoundButton } from 'components/admin';
 import { StepReveal } from './StepReveal';
 import { ScoringRules } from './components/RulesBlobs';
+import { WavelengthDeviceIcon } from 'components/icons/WavelengthDeviceIcon';
 
 function PhaseReveal({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
@@ -26,7 +27,7 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
       <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady, !isUserReady]} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
-          type="wavelength-device"
+          icon={<WavelengthDeviceIcon />}
           title={translate('Resultado', 'Results')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}

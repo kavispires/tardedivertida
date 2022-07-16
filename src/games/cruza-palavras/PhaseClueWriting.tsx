@@ -9,6 +9,7 @@ import { RoundAnnouncement } from 'components/round';
 import { StepSwitcher } from 'components/steps';
 import { StepClueWriting } from './StepClueWriting';
 import { WritingCluesRule } from './components/RulesBlobs';
+import { GridIcon } from 'components/icons/GridIcon';
 
 function PhaseClueWriting({ players, state, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -33,7 +34,7 @@ function PhaseClueWriting({ players, state, info }: PhaseProps) {
 
         {/* Step 1 */}
         <PhaseAnnouncement
-          type="grid"
+          icon={<GridIcon />}
           title={translate('Escreva!', 'Write!')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}

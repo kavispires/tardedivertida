@@ -12,6 +12,7 @@ import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { RankingBoard } from 'components/ranking';
 import { AdminNextRoundButton } from 'components/admin';
+import { ReviewIcon } from 'components/icons/ReviewIcon';
 
 function PhaseReact({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -22,7 +23,7 @@ function PhaseReact({ state, players, info }: PhaseProps) {
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
-          type="review"
+          icon={<ReviewIcon />}
           title={translate('Resultado', 'Results')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}

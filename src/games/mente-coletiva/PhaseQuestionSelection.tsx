@@ -14,6 +14,7 @@ import { RoundAnnouncement } from 'components/round';
 import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
 import { ViewOr } from 'components/views';
+import { SheepIcon } from 'components/icons/SheepIcon';
 
 function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -37,7 +38,7 @@ function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
 
         {/* Step 1 */}
         <PhaseAnnouncement
-          type="sheep"
+          icon={<SheepIcon />}
           title={translate('O Pasto Superlotado', 'A Overcrowded Pasture')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}

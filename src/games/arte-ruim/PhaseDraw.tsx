@@ -11,6 +11,7 @@ import { RoundAnnouncement } from 'components/round';
 import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
 import { StepDraw } from './StepDraw';
+import { PaintingIcon } from 'components/icons/PaintingIcon';
 
 function PhaseDraw({ players, state, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -47,7 +48,7 @@ function PhaseDraw({ players, state, info }: PhaseProps) {
         </RoundAnnouncement>
         {/* Step 1 */}
         <PhaseAnnouncement
-          type="painting"
+          icon={<PaintingIcon />}
           title={translate('Desenhe!', 'Draw!')}
           buttonText={translate('Um dó, lá, si... vamos ir... já!', 'Ready! Set! Go!')}
           onClose={goToNextStep}

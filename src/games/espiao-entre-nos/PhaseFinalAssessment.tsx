@@ -9,6 +9,8 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { StepFinalAssessment } from './StepFinalAssessment';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { PeopleAssessmentIcon } from 'components/icons/PeopleAssessmentIcon';
+import { OpinionsIcon } from 'components/icons/OpinionsIcon';
 
 function PhaseFinalAssessment({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -32,7 +34,7 @@ function PhaseFinalAssessment({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         {state.finalAssessment.playerOrderIndex === 0 ? (
           <PhaseAnnouncement
-            type="people-assessment"
+            icon={<PeopleAssessmentIcon />}
             title={translate('O tempo acabou!', "Time's up!")}
             onClose={goToNextStep}
             currentRound={state?.round?.current}
@@ -42,7 +44,7 @@ function PhaseFinalAssessment({ state, players, info }: PhaseProps) {
           />
         ) : (
           <PhaseAnnouncement
-            type="opinions"
+            icon={<OpinionsIcon />}
             title={translate('A avaliação final continua', 'The final assessment continues')}
             onClose={goToNextStep}
             currentRound={state?.round?.current}

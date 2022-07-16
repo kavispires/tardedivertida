@@ -12,6 +12,7 @@ import { Translate } from 'components/language';
 import { StepTellDream } from './StepTellDream';
 import { DreamTellingRules } from './components/RulesBlobs';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { DreamIcon } from 'components/icons/DreamIcon';
 
 function PhaseDreamTelling({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -36,7 +37,7 @@ function PhaseDreamTelling({ state, players, info }: PhaseProps) {
 
         {/* Step 1 */}
         <PhaseAnnouncement
-          type="dream"
+          icon={<DreamIcon />}
           title={translate('Conte-nos sobre seu sonho', 'Tell us about your dream...')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}

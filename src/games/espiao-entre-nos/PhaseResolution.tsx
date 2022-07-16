@@ -10,6 +10,10 @@ import { StepResolution } from './StepResolution';
 import { PhaseAnnouncement, PhaseContainer, PhaseTimerReset } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { ViewOr } from 'components/views';
+import { MapLocationIcon } from 'components/icons/MapLocationIcon';
+import { ThiefIcon } from 'components/icons/ThiefIcon';
+import { NuclearExplosionIcon } from 'components/icons/NuclearExplosionIcon';
+import { HandcuffsIcon } from 'components/icons/HandcuffsIcon';
 
 function PhaseResolution({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -36,7 +40,7 @@ function PhaseResolution({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <ViewOr orCondition={resolutionStatus.didSpyGuess}>
           <PhaseAnnouncement
-            type="map-location"
+            icon={<MapLocationIcon />}
             title={translate('O espião tentou adivinhar o local', 'The spy tried to guess the location')}
             onClose={goToNextStep}
             currentRound={state?.round?.current}
@@ -46,7 +50,7 @@ function PhaseResolution({ state, players, info }: PhaseProps) {
           />
 
           <PhaseAnnouncement
-            type="thief"
+            icon={<ThiefIcon />}
             title={translate('A votação foi unanime!', 'The vote was unanimous!')}
             onClose={goToNextStep}
             currentRound={state?.round?.current}
@@ -61,7 +65,9 @@ function PhaseResolution({ state, players, info }: PhaseProps) {
 
         {/* Step 2 */}
         <PhaseAnnouncement
-          type={resolutionStatus.phaseIcon}
+          icon={
+            resolutionStatus.phaseIcon === 'nuclear-explosion' ? <NuclearExplosionIcon /> : <HandcuffsIcon />
+          }
           title={translate('O fim chegou!', 'The end is here!')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}

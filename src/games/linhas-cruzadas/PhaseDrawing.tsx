@@ -12,6 +12,7 @@ import { Instruction } from 'components/text';
 import { StepSwitcher } from 'components/steps';
 
 import { StepTimedDrawing } from './StepTimedDrawing';
+import { DrawingIcon } from 'components/icons/DrawingIcon';
 
 function PhaseDrawing({ players, state, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
@@ -26,7 +27,7 @@ function PhaseDrawing({ players, state, info }: PhaseProps) {
       <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady, !isUserReady]} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
-          type="drawing"
+          icon={<DrawingIcon />}
           title={translate('Desenhe', 'Draw')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}

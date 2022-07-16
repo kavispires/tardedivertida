@@ -9,6 +9,7 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { StepPlayCard } from './StepPlayCard';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
+import { ImageCardsIcon } from 'components/icons/ImageCardsIcon';
 
 function PhaseCardPlay({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -23,7 +24,7 @@ function PhaseCardPlay({ state, players, info }: PhaseProps) {
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
-          type="image-cards"
+          icon={<ImageCardsIcon />}
           title={translate('Selecione uma carta', 'Play a card...')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
