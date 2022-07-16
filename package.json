@@ -37,24 +37,12 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "build-css": "node-sass-chokidar ./src/styles/index.scss ./src/styles/index.css",
-    "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
-    "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"
-    ],
-    "overrides": [
-      {
-        "files": [
-          "**/*.stories.*"
-        ],
-        "rules": {
-          "import/no-anonymous-default-export": "off"
-        }
-      }
     ]
   },
   "prettier": {
@@ -94,12 +82,6 @@
     ]
   },
   "devDependencies": {
-    "@storybook/addon-actions": "^6.4.9",
-    "@storybook/addon-essentials": "^6.4.9",
-    "@storybook/addon-links": "^6.4.9",
-    "@storybook/node-logger": "^6.4.9",
-    "@storybook/preset-create-react-app": "^4.0.0",
-    "@storybook/react": "^6.4.9",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^12.1.5",
     "@testing-library/user-event": "^13.5.0",
