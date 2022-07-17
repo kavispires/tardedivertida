@@ -9,17 +9,13 @@ import { signOut } from 'services/firebase';
 // Hooks
 import { useGlobalState, useLanguage, useLocalStorage } from 'hooks';
 // Utils
-import gameList from 'assets/data/games.json';
+import GAME_LIST from 'utils/info';
 // Components
 import { RecentlyCreatedGames } from './components/RecentlyCreatedGames';
 import { GameCard } from './components/GameCard';
 import { LanguageSwitch, Translate } from 'components/language';
 import { DevHeader } from 'pages/Dev/DevHeader';
 import { DevEmulatorAlert } from './components/DevEmulatorAlert';
-
-const GAME_LIST: {
-  [key: string]: GameInfo;
-} = gameList;
 
 function Hub() {
   useTitle('Hub - Tarde Divertida');

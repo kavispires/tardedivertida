@@ -1,0 +1,49 @@
+{
+  "gameCode": "U",
+  "gameName": "ue-so-isso",
+  "version": "2.2.0",
+  "title": {
+    "pt": "Ué, Só Isso?",
+    "en": "That's It?"
+  },
+  "popularName": {
+    "pt": "Do colocolo",
+    "en": ""
+  },
+  "basedOn": "enO tsuJ",
+  "summary": {
+    "pt": "Tente adivinhar a palavra secreta com as dicas de seus amigos, mas dicas repetidas são eliminadas... ferrou! Ué, só isso?",
+    "en": "Try to guess the secret word from clues given by the players, but there's a catch: similar clues are thrown out and all you have left are... that's it?"
+  },
+  "rules": {
+    "pt": [
+      "Ué, Só Isso? é um jogo cooperativo em que cada rodada um jogador tenta adivinhar a palavra secreta usando as dicas que os outros jogadores sugeriram, mas existe um porém: dicas repetidas ou similares são desclassificadas! Ué, só isso?",
+      "Cada rodada todos os jogadores, menos o Adivinhador, votam em qual palavra secreta usar.",
+      "Então, em segredo e sem conversar, cada um deles escreve uma dica. Importante: Esta dica DEVE ser uma palavra única, nem conter parte ou variações da palavra secreta",
+      "Quando todas as dicas forem enviadas, todas as iguais são automaticamente eliminadas. Porém, os jogadores devem decidir entre eles quais dicas adicionais também devem ser removidas",
+      "São consideradas dicas iguais palavras derivadas, conjugações: piloto = pilotar = pilotando. Variações como pluralidade, gênero e erros ortográficos: príncipe = princesa = principes = pryncipe. Então, tente não ser muito óbvio ao escrever sua dica.",
+      "Após as dicas terem sido selecionadas, o Adivinhador tem uma única chance de adivinhar (ou passar, se for um covarde).",
+      "Se a palavra estiver correta, ganha-se 1 ponto, se estiver errada perde-se 1 ponto. Mas se tiver passado a vez, nada acontece. Ganha-se o jogo se os jogadores acertarem 70% ou mais das Palavras Secretas!"
+    ],
+    "en": [
+      "That's it? is a cooperative game where a player tries to guess the secret word using clues given but the other players, but there's a catch: similar clues are eliminated! That's it?",
+      "Every round, all players but the Guesser vote for the secret word.",
+      "Then, in secret and in silence, each player writes a clue. Important: A clue MUST be a single word without any parts or variations of the secret word.",
+      "When all clues are submitted, all identical clues are automatically eliminated. Then the players must judge what clues should also be eliminated (because of a typo, etc)",
+      "Variants of the secret word are considered similar: prince = princess, drive = driving. So, don't be too obvious.",
+      "Finally the guesser has a single chance to guess the secret word (or pass, coward).",
+      "If they guess correctly the group gets 1 point, if incorrect the group loses 1 point. Nothing happens if passing. The group wins the game if it scores over 70%!"
+    ]
+  },
+  "playerCount": {
+    "recommended": "6-7",
+    "min": 4,
+    "max": 10
+  },
+  "tags": ["cooperative", "guessing", "writing", "mobile-friendly"],
+  "cooperative": true,
+  "available": {
+    "pt": true,
+    "en": true
+  }
+}

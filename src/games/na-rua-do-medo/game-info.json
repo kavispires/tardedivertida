@@ -1,0 +1,47 @@
+{
+  "gameCode": "N",
+  "gameName": "na-rua-do-medo",
+  "version": "2.2.0",
+  "title": {
+    "pt": "Na Rua do Medo",
+    "en": "Fear Street"
+  },
+  "popularName": {
+    "pt": "Dos doces/halloween",
+    "en": ""
+  },
+  "basedOn": "tnamaiD/dloG nacnI",
+  "summary": {
+    "pt": "Jogadores são crianças recolhendo doces durante o Halloween, mas se você ver o mesmo monstro mais de uma vez...",
+    "en": "Players are trick-or-treaters collecting candy, but if you see the same monster twice..."
+  },
+  "rules": {
+    "pt": [
+      "É Halloween e somos um bando de crianças medrosas indo coletar gostosuras de porta em porta nas Ruas do Medo",
+      "Nós combinamos que dividiremos todos os doces igualmente e qualquer sobra deixaremos no passeio",
+      "Se encontramos alguém fantasiado de monstro, sem problemas, a gente aguenta uma vez, mas se um mesmo monstro aparece uma segunda vez, a gente entra em desespero, jogamos os doces pra cima e saímos correndo",
+      "Mas andaremos de vagar, e após cada carta casa é revelada (mostrando doces ou monstros), você escolher se deseja continuar ou voltar pra casa",
+      "Se você decide voltar pra casa, você coleta os doces que ficaram no passeio e garante os doces... que são pontos!",
+      "O jogo dura 5 (ou 3) rodadas (ruas), e o jogador com mais doces ganha!"
+    ],
+    "en": [
+      "It's Halloween and we are a bunch of scared kids going trick or treating in the Fear Streets",
+      "We go door to door to get candy. If we get treats, we agreed that all the candy must be shared equally and any candy that can't be shared will be left behind",
+      "If we encounter someone dressed as a monster, no problem, we can handle it once, but in the second time we face same monster, we drop all of our candy and run back home",
+      "But we're going slow and steady, after every house card is revealing (showing candy or a monster), you get to decide if you want to continue or go back home",
+      "When you go back home you collect all candy left behind and secure your candy, those are points!",
+      "The game is played in 5 (or 3) rounds (streets), and the player with the most candy wins!"
+    ]
+  },
+  "playerCount": {
+    "recommended": "4-6",
+    "min": 3,
+    "max": 10
+  },
+  "tags": ["competitive", "same-time", "push-your-luck", "mobile-friendly"],
+  "available": {
+    "pt": true,
+    "en": true
+  },
+  "options": [{ "label": "Game Length", "key": "shortGame", "off": "5 streets", "on": "3 streets" }]
+}

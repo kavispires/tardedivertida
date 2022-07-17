@@ -9,7 +9,7 @@ import { FilterFilled } from '@ant-design/icons';
 // Hooks
 import { useDimensions, useGlobalState, useLanguage } from 'hooks';
 // Utils
-import gameList from 'assets/data/games.json';
+import GAMES from 'utils/info';
 import { PUBLIC_URL } from 'utils/constants';
 import { getAnimationClass } from 'utils/helpers';
 import { filterGames } from './helpers';
@@ -19,11 +19,7 @@ import { GameDetailsContent } from './components/GameDetailsContent';
 import { TransparentButton } from 'components/buttons';
 import { Translate } from 'components/language';
 
-const GAMES: {
-  [key: string]: GameInfo;
-} = gameList;
-
-const GAME_LIST: GameInfo[] = Object.values(gameList);
+const GAME_LIST: GameInfo[] = Object.values(GAMES);
 
 function Showcase() {
   const { language } = useLanguage();

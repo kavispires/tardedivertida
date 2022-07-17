@@ -1,0 +1,39 @@
+{
+  "gameCode": "B",
+  "gameName": "bomba-relogio",
+  "version": "none",
+  "title": {
+    "pt": "Bomba Relógio",
+    "en": "Time Bomb"
+  },
+  "popularName": {
+    "pt": "",
+    "en": ""
+  },
+  "basedOn": "bmoB emiT/uhluhtC htiw ssem t'noD",
+  "summary": {
+    "pt": "Uns são agentes, outros terroristas. Você será capaz de parar a bomba antes que ela detone?",
+    "en": "Some are agents, some are terrorists. Are you capable to stop the bomb before it goes kaboom?"
+  },
+  "rules": {
+    "pt": [
+      "Jogadores são agentes tentando desarmar uma bomba e pra isso têm que cortar todos os fios coloridos. Mas entre os agentes, pode haver um ou mais terroristas que querem que a bomba exploda.",
+      "Cada rodada os jogadores recebem cartas que podem conter um fio colorido a ser cortado ou um fio cinza que não serve pra nada. Eles examinam suas cartas e colocam-as a sua frente embaralhadas. Você sabe todas as cartas que você tem, mas não exatamente qual é qual.",
+      "Jogadores, então, declaram o que vieram. \"Eu tenho um fio colorido\", ou \"Eu não tenho nada\", ou até mesmo \"Eu tenho a bomba!\" (sim, existe uma bomba). Essa é a hora de tentar descobrir quem pode estar mentindo. O número de fios coloridos é igual ao número de jogadores, será que a quantidade declarada pelos jogadores corresponde mesmo a esse número?",
+      "Agora, uma pessoa se torna o investigador e tem que escolher outro jogador e virar uma de duas cartas. Se for um fio comum, nada acontece. Se for um fio colorido, maravilha, estamos mais próximos de desarmar a bomba. Se for a bomba, CABUM!!! - Os terroristas ganham... Após virar uma cara, o jogador selecionado se torna o investigador e escolhe outro jogador e repete o mesmo processo.",
+      "Mas como ganha ou perde? Se os agentes encontram todos os fios coloridos, eles ganham! Os terroristas ganham se a qualquer momento a bomba é revelada, ou se, ao final de 4 rodadas, os não conseguiram encontrar todos os fios coloridos",
+      "Uma rodada termina qdo as cartas reveladas são iguais ao número de jogadores, a partir dai, todas as cartas são embaralhadas novamente e os jogadores recebem uma nova mão, agora com uma carta a menos que a rodada anterior e por ai vai."
+    ],
+    "en": ["TBD"]
+  },
+  "playerCount": {
+    "recommended": "6",
+    "min": 5,
+    "max": 8
+  },
+  "tags": ["cooperative", "turn-based", "traitor", "discussion"],
+  "available": {
+    "pt": false,
+    "en": false
+  }
+}

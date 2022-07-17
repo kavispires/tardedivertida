@@ -1,0 +1,37 @@
+{
+  "gameCode": "R",
+  "gameName": "retrato-falado",
+  "version": "1.5",
+  "title": {
+    "pt": "Retrato Falado Monstruoso",
+    "en": "Monster Sketch"
+  },
+  "popularName": {
+    "pt": "Do monstro",
+    "en": ""
+  },
+  "basedOn": "ytiswardsnoM",
+  "summary": {
+    "pt": "Um monstro atacou a pobre testemunha. Será que ela vai conseguir descrever o criminoso",
+    "en": "A monster has attacked a poor witness. Will she be able to describe the perpetrator"
+  },
+  "rules": {
+    "pt": ["TBD"],
+    "en": [
+      "Every round a player will be the witness, they have seen a monster around doing monstrous criminal activities",
+      "They have 20 seconds to memorize the monster's features. Immediately after they have 2 minutes to describe the monster to the other players",
+      "Then each player including the witness vote for the sketch the best matches the original monster, that artist will get 1 point.",
+      "If the witness voted with the group, it is a credible witness and it also gets a point, otherwise whoever the witness voted for gets 1 point"
+    ]
+  },
+  "playerCount": {
+    "recommended": "5-6",
+    "min": 4,
+    "max": 10
+  },
+  "tags": ["competitive", "drawing", "voting", "discussion", "timed"],
+  "available": {
+    "pt": true,
+    "en": true
+  }
+}

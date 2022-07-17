@@ -1,0 +1,32 @@
+{
+  "gameCode": "V",
+  "gameName": "vendaval-de-palpite",
+  "version": "alpha",
+  "title": {
+    "pt": "Vendaval de Palpite",
+    "en": "Brainy Storm"
+  },
+  "popularName": {
+    "pt": "",
+    "en": ""
+  },
+  "basedOn": "droW retsaM",
+  "summary": {
+    "pt": "Uma palavra secreta que sabemos apenas o tema. Consegue descobri-la fazendo associação de palavras?",
+    "en": "A secret work with a known category. Can you guess that word by just associating words?"
+  },
+  "rules": {
+    "pt": ["TBD"],
+    "en": ["TBD"]
+  },
+  "playerCount": {
+    "recommended": "4-6",
+    "min": 2,
+    "max": 10
+  },
+  "tags": ["cooperative", "same-time", "writing", "guessing"],
+  "available": {
+    "pt": true,
+    "en": true
+  }
+}

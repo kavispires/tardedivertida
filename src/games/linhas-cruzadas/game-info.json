@@ -1,0 +1,41 @@
+{
+  "gameCode": "L",
+  "gameName": "linhas-cruzadas",
+  "version": "1.0.1",
+  "title": {
+    "pt": "Linhas Cruzadas",
+    "en": "Mis...communication"
+  },
+  "popularName": {
+    "pt": "Telefone sem fio de desenhar",
+    "en": ""
+  },
+  "basedOn": "snoitartseleT",
+  "summary": {
+    "pt": "Desenhe... adivinhe... repita...",
+    "en": "Draw... guess... repeat..."
+  },
+  "rules": {
+    "pt": ["TBD"],
+    "en": ["TBD"]
+  },
+  "playerCount": {
+    "recommended": "6+",
+    "min": 4,
+    "max": 10
+  },
+  "tags": ["cooperative", "drawing", "guessing", "writing", "mobile-friendly"],
+  "available": {
+    "pt": true,
+    "en": true
+  },
+  "options": [
+    {
+      "label": "Cards Type",
+      "key": "singleWordOnly",
+      "off": "Words and Expressions",
+      "on": "Only Single Words"
+    },
+    { "label": "Card Distribution", "key": "evenDistribution", "off": "Random", "on": "Even" }
+  ]
+}

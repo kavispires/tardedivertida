@@ -1,0 +1,47 @@
+{
+  "gameCode": "C",
+  "gameName": "contadores-historias",
+  "version": "2.2",
+  "title": {
+    "pt": "Contadores de Histórias",
+    "en": "Storytellers"
+  },
+  "popularName": {
+    "pt": "Das cartas bonitas",
+    "en": ""
+  },
+  "basedOn": "tixiD",
+  "summary": {
+    "pt": "Uma imagem vale mesmo mais que mil palavras? Tente descobrir de qual imagem o contador de histórias está falando",
+    "en": "Is an image really worth a thousand words? Try to find out what image is the storyteller referring to"
+  },
+  "rules": {
+    "pt": ["TBD"],
+    "en": [
+      "Every round someone will be the storyteller and will pick one of their cards in hands and write a story about it.",
+      "The story can be anything they want, a word, a sentence, etc. The goal is to have some players guessing the correct card but not all.",
+      "If at least one but not all players choose the right card, the storyteller will score points.",
+      "But watch out, before anybody can vote, everyone will see the story and also play a card to trick the other players",
+      "If your trick-card gets picked by any other player, you get a point",
+      "The game ends when someone score over 30 points."
+    ]
+  },
+  "playerCount": {
+    "recommended": "4-6",
+    "min": 3,
+    "max": 10
+  },
+  "tags": ["competitive", "turn-based", "images", "writing", "guessing", "mobile-friendly"],
+  "available": {
+    "pt": true,
+    "en": true
+  },
+  "options": [
+    {
+      "label": "Duration",
+      "key": "fixedRounds",
+      "off": "30 points (15 rounds max)",
+      "on": "Each player once (6+) or twice (1-5)"
+    }
+  ]
+}

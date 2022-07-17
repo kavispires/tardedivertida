@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 
 // import { Image, Layout } from 'antd';
-import gameList from 'assets/data/games.json';
+import GAME_LIST from 'utils/info';
 import { Avatar, AvatarEntry } from 'components/avatars';
 import { AdminOnlyContainer } from 'components/admin';
 // Resources
@@ -15,7 +15,7 @@ import { useTitle } from 'react-use';
 
 function TestingZone() {
   useTitle('Testing Zone | Dev | Tarde Divertida');
-  const info = gameList['U'];
+  const info = GAME_LIST['U'];
 
   const players = {
     Flaviane: {

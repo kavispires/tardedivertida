@@ -1,0 +1,32 @@
+{
+  "gameCode": "I",
+  "gameName": "instrumentos-codificados",
+  "version": "none",
+  "title": {
+    "pt": "Instrumentos Codificados",
+    "en": "Instrumental Cyphers"
+  },
+  "popularName": {
+    "pt": "",
+    "en": ""
+  },
+  "basedOn": "maJ retteL",
+  "summary": {
+    "pt": "TBD",
+    "en": "TBD"
+  },
+  "rules": {
+    "pt": ["TBD"],
+    "en": ["TBD"]
+  },
+  "playerCount": {
+    "recommended": "2+",
+    "min": 2,
+    "max": 8
+  },
+  "tags": ["cooperative", "competitive", "guessing", "images"],
+  "available": {
+    "pt": false,
+    "en": false
+  }
+}

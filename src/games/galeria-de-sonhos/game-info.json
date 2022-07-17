@@ -1,0 +1,32 @@
+{
+  "gameCode": "G",
+  "gameName": "galeria-sonhos",
+  "version": "beta",
+  "title": {
+    "pt": "Galeria de sonhos",
+    "en": "Dream Gallery"
+  },
+  "popularName": {
+    "pt": "Bingo de cartas bonitas",
+    "en": "Image bingo"
+  },
+  "basedOn": "alletS",
+  "summary": {
+    "pt": "Você consegue associar imagens com uma palavra? E você consegue associar essas imagens como os outros jogadores?",
+    "en": "Can you match the most images with the associated word? Can you match other players?"
+  },
+  "rules": {
+    "pt": ["TBD"],
+    "en": ["TBD"]
+  },
+  "playerCount": {
+    "recommended": "4-6",
+    "min": 3,
+    "max": 10
+  },
+  "tags": ["competitive", "turn-based", "images"],
+  "available": {
+    "pt": true,
+    "en": true
+  }
+}

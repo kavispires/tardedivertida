@@ -1,0 +1,52 @@
+{
+  "gameCode": "P",
+  "gameName": "polemica-vez",
+  "version": "2.3",
+  "title": {
+    "pt": "Polêmica da Vez",
+    "en": "That's Polemic"
+  },
+  "popularName": {
+    "pt": "Do quem ganha mais likes",
+    "en": ""
+  },
+  "basedOn": "cimeloP",
+  "summary": {
+    "pt": "Um tópico... Polêmico. Você sabe a sua opinião, mas consegue descobrir a dos seus oponentes?",
+    "en": "One... polemic... subject... You know your opinion, but can do guess the opponents' ones?"
+  },
+  "rules": {
+    "pt": [
+      "Você consegue prever se a polêmica da vez realmente está gerando polêmica?",
+      "Cada rodada, um jogador escolhe um assunto polêmico.",
+      "Todos votam se curtem ou não e então, você tem que tentar adivinhar quantas curtidas o assunto vai ganhar",
+      "Se você acertar o número de curtidas, você ganha 3 pontos! De for quase lá, você ganha 1 ponto.",
+      "Dependendo do modo, o primeiro jogador a chegar a 10 pontos ganha o jogo (ou 15 rodadas) ou cada jogador escolhe o tópico uma (ou duas) vezes"
+    ],
+    "en": [
+      "Can you predict the trending topic?",
+      "Each round a player will select a topic that's very polemic.",
+      "Every player then chooses if they like or dislike that topic and immediately tries to guess how many likes that topic will get",
+      "If you get the right number of likes, you get 3 points. If you're one of, you get 1 point. you get 1 point.",
+      "The game ends when a player gets 10 points (or 15 rounds), or each player chooses the topic once (or twice), it depends on the mode."
+    ]
+  },
+  "playerCount": {
+    "recommended": "5+",
+    "min": 3,
+    "max": 10
+  },
+  "tags": ["competitive", "voting", "guessing"],
+  "available": {
+    "pt": true,
+    "en": true
+  },
+  "options": [
+    {
+      "label": "End Game",
+      "key": "fixedRounds",
+      "off": "10 points (15 rounds max)",
+      "on": "Each player once (6+) or twice (1-5)"
+    }
+  ]
+}
