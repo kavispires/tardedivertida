@@ -9,7 +9,12 @@ import { LoadingPage } from 'components/loaders';
 import { Translate } from 'components/language';
 import { ReadyPlayersBar } from 'components/players';
 import { RulesCarousel } from '../rules';
-import { speak } from 'utils/speech';
+import {
+  getRandomNegativeReadyMessage,
+  getRandomNeutralReadyMessage,
+  getRandomPositiveReadyMessage,
+  speak,
+} from 'utils/speech';
 
 type PhaseRulesProps = {
   players: GamePlayers;
@@ -37,14 +42,7 @@ export function PhaseRules({ players, info }: PhaseRulesProps) {
     ),
     errorMessage,
     onSuccess: () => {
-      speak(
-        {
-          pt: `Pronto! Aguarde os outros jogadores estarem prontos. Boa sorte, ${user.name}`,
-          en: `Done! Now wait for the other players. Good luck, ${user.name}`,
-        },
-        language,
-        volume
-      );
+      speak(getRandomPositiveReadyMessage(user.name), language, volume);
     },
   });
 
@@ -57,14 +55,7 @@ export function PhaseRules({ players, info }: PhaseRulesProps) {
     ),
     errorMessage,
     onSuccess: () => {
-      speak(
-        {
-          pt: `Agora só resta rezar, ${user.name}, porque o jogo vai começar mesmo assim!`,
-          en: `Now all you have left is to pray ${user.name} because the game is starting anyway!`,
-        },
-        language,
-        volume
-      );
+      speak(getRandomNeutralReadyMessage(user.name), language, volume);
     },
   });
 
@@ -77,14 +68,7 @@ export function PhaseRules({ players, info }: PhaseRulesProps) {
     ),
     errorMessage,
     onSuccess: () => {
-      speak(
-        {
-          pt: `Vixi ${user.name}, se fudeu então, porque o jogo vai começar mesmo assim!`,
-          en: `Oh ${user.name}, you are screwed because the game is starting anyway!`,
-        },
-        language,
-        volume
-      );
+      speak(getRandomNegativeReadyMessage(user.name), language, volume);
     },
   });
 

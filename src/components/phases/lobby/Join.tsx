@@ -14,8 +14,8 @@ import localStorage from 'services/localStorage';
 // Utils
 import { AVAILABLE_AVATAR_IDS, AVATARS } from 'utils/avatars';
 import { PUBLIC_URL, RANDOM_NAMES } from 'utils/constants';
-import { convertYYYYMMDDtoMilliseconds, getRandomItem, isDevEnv } from 'utils/helpers';
-import { speak } from 'utils/speech';
+import { getRandomItem, isDevEnv } from 'utils/helpers';
+import { getRandomWelcomeMessage, speak } from 'utils/speech';
 // Components
 import { Translate } from 'components/language';
 
@@ -34,8 +34,8 @@ export function Join({ players, info, meta }: JoinProps) {
   const [gameName] = useGlobalState('gameName');
   const [, setUserId] = useGlobalState('userId');
   const [, setUsername] = useGlobalState('username');
-  const [userAvatarId, setUserAvatarId] = useGlobalState('userAvatarId');
-  const [volume] = useGlobalState('volume');
+  const [, setUserAvatarId] = useGlobalState('userAvatarId');
+  const [volume, setVolume] = useGlobalState('volume');
 
   const [availableAvatars, setAvailableAvatars] = useState(AVAILABLE_AVATAR_IDS);
   const [tempAvatar, setTempAvatar] = useState(getRandomItem(AVAILABLE_AVATAR_IDS));
@@ -81,18 +81,6 @@ export function Join({ players, info, meta }: JoinProps) {
     }
   });
 
-  // News
-  useEffectOnce(() => {
-    const newAvatarsNotice = localStorage.get('newAvatarsNotice');
-
-    if (!userAvatarId && (!newAvatarsNotice || convertYYYYMMDDtoMilliseconds('2022/06/21') > Date.now())) {
-      notification.info({
-        message: translate('Novos avatares estão disponíveis!', 'New avatars are available'),
-        placement: 'bottomLeft',
-      });
-    }
-  });
-
   const onPreviousAvatar = useCallback(() => {
     const index = availableAvatars.indexOf(tempAvatar);
     const newIndex = index === 0 ? availableAvatars.length - 1 : index - 1;
@@ -105,48 +93,53 @@ export function Join({ players, info, meta }: JoinProps) {
     setTempAvatar(availableAvatars[newIndex]);
   }, [availableAvatars, tempAvatar]);
 
-  const onAddPlayer = useCallback(async () => {
-    try {
-      setLoader('add-player', true);
-      const response: PlainObject = await GAME_API.addPlayer({
-        gameId,
-        gameName,
-        playerName: tempUsername,
-        playerAvatarId: tempAvatar,
-      });
+  const onAddPlayer = useCallback(
+    async (_?: any, vol?: number) => {
+      try {
+        setLoader('add-player', true);
+        const response: PlainObject = await GAME_API.addPlayer({
+          gameId,
+          gameName,
+          playerName: tempUsername,
+          playerAvatarId: tempAvatar,
+        });
 
-      setUserId(response.data.id);
-      setUsername(response.data.name);
-      setUserAvatarId(response.data.avatarId);
+        setUserId(response.data.id);
+        setUsername(response.data.name);
+        setUserAvatarId(response.data.avatarId);
 
-      localStorage.set({
-        username: response.data.name,
-        avatarId: response.data.avatarId,
-        gameId,
-      });
+        localStorage.set({
+          username: response.data.name,
+          avatarId: response.data.avatarId,
+          gameId,
+        });
 
-      speak(
-        {
-          pt: `Bem-vindo, ${response.data.name}!`,
-          en: `Welcome, ${response.data.name}!`,
-        },
-        language,
-        volume
-      );
-    } catch (e: any) {
-      notification.error({
-        message: translate(
-          'Vixi, o aplicativo encontrou um erro ao tentar te adicionar como jogador',
-          'Oops, the application failed when trying to add you as a player'
-        ),
-        description: JSON.stringify(e.message),
-        placement: 'bottomLeft',
-      });
-      console.error(e);
-    } finally {
-      setLoader('add-player', false);
-    }
-  }, [gameId, gameName, tempUsername, tempAvatar]); // eslint-disable-line
+        speak(
+          getRandomWelcomeMessage(response.data.name ?? translate('vei', 'babe')),
+          language,
+          vol ?? volume
+        );
+      } catch (e: any) {
+        notification.error({
+          message: translate(
+            'Vixi, o aplicativo encontrou um erro ao tentar te adicionar como jogador',
+            'Oops, the application failed when trying to add you as a player'
+          ),
+          description: JSON.stringify(e.message),
+          placement: 'bottomLeft',
+        });
+        console.error(e);
+      } finally {
+        setLoader('add-player', false);
+      }
+    },
+    [gameId, gameName, tempUsername, tempAvatar] // eslint-disable-line
+  );
+
+  const onEnterWithoutSound = () => {
+    setVolume(0);
+    onAddPlayer(null, 0);
+  };
 
   const onEnterInput = (e: any) => {
     if (e.key === 'Enter') {
@@ -237,7 +230,18 @@ export function Join({ players, info, meta }: JoinProps) {
           onClick={onAddPlayer}
           loading={isLoading}
         >
-          {translate('Entrar no jogo', 'Enter')}
+          <Translate pt="Entrar" en="Enter" />
+        </Button>
+        <Button
+          className="lobby-join__join-button-link"
+          type="primary"
+          ghost
+          disabled={!Boolean(tempUsername) || isLoading}
+          onClick={onEnterWithoutSound}
+          loading={isLoading}
+          size="small"
+        >
+          <Translate pt="Entrar sem som" en="Enter without sound" />
         </Button>
       </div>
     </div>
