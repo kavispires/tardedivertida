@@ -58,7 +58,7 @@ export function StepSelectQuestion({
 
       <Suspects suspects={suspects} eliminatedSuspects={previouslyEliminatedSuspects} />
 
-      <QuestionsHistory history={history} />
+      {history.length > 0 && <QuestionsHistory history={history} />}
     </Step>
   );
 }
