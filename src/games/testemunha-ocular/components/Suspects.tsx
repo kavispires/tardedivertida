@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 // Ant Design Resources
-import { Popconfirm } from 'antd';
+import { Image, Popconfirm } from 'antd';
 // Hooks
 import { useDimensions, useLanguage, useLoading } from 'hooks';
 // Components
@@ -64,22 +64,27 @@ export function Suspects({ suspects, perpetrator, onCardClick, eliminatedSuspect
 
   return (
     <div className="t-suspects-table">
-      {suspects.map((suspect) => {
-        const wasEliminated = eliminatedSuspects.includes(suspect.id);
-        return (
-          <div className="t-suspects-table__suspect" key={suspect.id}>
-            <ImageCard
-              imageId={wasEliminated ? 'us-00' : suspect.id}
-              className={clsx(
-                't-suspects-table__suspect-image',
-                perpetrator?.id === suspect.id && 't-suspects-table__suspect-image--active'
+      <Image.PreviewGroup>
+        {suspects.map((suspect) => {
+          const wasEliminated = eliminatedSuspects.includes(suspect.id);
+          return (
+            <div className="t-suspects-table__suspect" key={suspect.id}>
+              <ImageCard
+                imageId={wasEliminated ? 'us-00' : suspect.id}
+                previewImageId={suspect.id}
+                className={clsx(
+                  't-suspects-table__suspect-image',
+                  perpetrator?.id === suspect.id && 't-suspects-table__suspect-image--active'
+                )}
+                cardWidth={cardWidth}
+              />
+              {!wasEliminated && (
+                <div className="t-suspects-table__suspect-name">{suspect.name[language]}</div>
               )}
-              cardWidth={cardWidth}
-            />
-            {!wasEliminated && <div className="t-suspects-table__suspect-name">{suspect.name[language]}</div>}
-          </div>
-        );
-      })}
+            </div>
+          );
+        })}
+      </Image.PreviewGroup>
     </div>
   );
 }
