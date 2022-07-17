@@ -14,7 +14,13 @@ describe('arte-ruim/helpers', () => {
         3: [],
         4: [],
       };
-      result = helpers.buildDeck(mockArteRuimCardDatabase, [], mockCardsByLevel, 7, false);
+      const cards = {
+        allCards: mockArteRuimCardDatabase,
+        availableCards: mockCardsByLevel,
+        cardsGroups: [],
+        cardsPairs: [],
+      };
+      result = helpers.buildDeck(cards, 7, false);
 
       expect(result).toHaveLength(42);
       expect(result[0].level).toBe(3);

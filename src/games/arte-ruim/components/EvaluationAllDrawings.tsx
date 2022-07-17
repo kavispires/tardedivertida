@@ -30,9 +30,10 @@ export function EvaluationAllDrawings({
         const canvasEntryId = getEntryId(['drawing', drawingEntry.id]);
         const isActive = activeItem === canvasEntryId;
         const vote = votes[canvasEntryId];
+
         return (
           <li
-            key={canvasEntryId}
+            key={`${canvasEntryId}-${drawingEntry.playerId}`}
             className={clsx(liButtonBaseClass, isActive && `${liButtonBaseClass}--active`)}
             onClick={() => onActivateItem(canvasEntryId)}
           >

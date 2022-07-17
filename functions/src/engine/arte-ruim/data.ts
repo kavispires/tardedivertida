@@ -2,8 +2,8 @@
 import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
 // Types
 import type { BooleanDictionary, Language } from '../../utils/types';
-import type { ArteRuimData, ArteRuimDrawing } from './types';
-import type { ArteRuimCard, ArteRuimGroup } from '../../utils/tdr';
+import type { ResourceData, ArteRuimDrawing } from './types';
+import type { ArteRuimCard, ArteRuimGroup, ArteRuimPair } from '../../utils/tdr';
 // Helpers
 import * as globalUtils from '../global';
 import * as publicUtils from '../public';
@@ -24,18 +24,23 @@ export const getCards = async (
   playerCount: number,
   isShortGame: boolean,
   useAllCards: boolean
-): Promise<ArteRuimData> => {
-  const resourceName = `${TDR_RESOURCES.ARTE_RUIM_CARDS}-${language}`;
-  // Get regular and level 4 cards
-  const allCardsResponse = await resourceUtils.fetchResource(resourceName);
+): Promise<ResourceData> => {
+  // Get regular cards
+  const allCardsResponse = await resourceUtils.fetchResource(`${TDR_RESOURCES.ARTE_RUIM_CARDS}-${language}`);
   const allCards: ArteRuimCard[] = Object.values(allCardsResponse);
+  const cardsByLevel = distributeCardsByLevel(allCards);
 
+  // Get level 4 cards
   const allCardsGroupResponse = await resourceUtils.fetchResource(
     `${TDR_RESOURCES.ARTE_RUIM_GROUPS}-${language}`
   );
   const cardsGroups: ArteRuimGroup[] = Object.values(allCardsGroupResponse);
 
-  const cardsByLevel = distributeCardsByLevel(allCards);
+  // Get level 5 cards
+  const allCardPairsResponse = await resourceUtils.fetchResource(
+    `${TDR_RESOURCES.ARTE_RUIM_PAIRS}-${language}`
+  );
+  const cardsPairs: ArteRuimPair[] = Object.values(allCardPairsResponse);
 
   // If no need for used cards check
   if (useAllCards) {
@@ -43,6 +48,7 @@ export const getCards = async (
       allCards: allCardsResponse,
       availableCards: cardsByLevel,
       cardsGroups,
+      cardsPairs,
     };
   }
 
@@ -69,6 +75,7 @@ export const getCards = async (
     allCards: allCardsResponse,
     availableCards: cards,
     cardsGroups,
+    cardsPairs,
   };
 };
 

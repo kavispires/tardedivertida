@@ -1,4 +1,4 @@
-import type { ArteRuimCard, ArteRuimGroup } from '../../utils/tdr';
+import type { ArteRuimCard, ArteRuimGroup, ArteRuimPair } from '../../utils/tdr';
 import type { CardId, DefaultState, DefaultStore, InitialState, Payload, PlayerId } from '../../utils/types';
 
 type ArteRuimGameOptions = {
@@ -10,10 +10,11 @@ type CardsByLevel = {
   [key: string]: ArteRuimCard[];
 };
 
-type ArteRuimData = {
+type ResourceData = {
   allCards: Record<CardId, ArteRuimCard>;
   availableCards: CardsByLevel;
   cardsGroups: ArteRuimGroup[];
+  cardsPairs: ArteRuimPair[];
 };
 
 interface ArteRuimDrawing extends ArteRuimCard {
