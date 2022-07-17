@@ -6,7 +6,7 @@ import { useLoading, useMock } from 'hooks';
 import { Translate } from 'components/language';
 import { ReadyPlayersBar } from 'components/players';
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { Instruction, TextHighlight, Title } from 'components/text';
 import { Dial } from './components/Dial';
 
 type StepPsychicGuessProps = {
@@ -20,13 +20,14 @@ export function StepPsychicGuess({ currentCategory, onSendGuess, players }: Step
 
   useMock(() => {
     onSendGuess({ guess: false });
-    alert('StepPsychicGuess');
   }, []);
 
   return (
     <Step className="o-dial-guess-selection">
-      <Title>
+      <Title size="small">
         <Translate pt="Hora de brilhar telepaticamente!" en="Time to shine telepathically!" />
+        <br />
+        <Translate pt="Você escreveu" en="a" />: <TextHighlight>{currentCategory.clue}</TextHighlight>
       </Title>
       <Instruction contained>
         <Translate

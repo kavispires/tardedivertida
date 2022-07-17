@@ -44,7 +44,7 @@ export function StepClueWriting({
     if (card) {
       onSendClue({ clue: mockHint(card, target) });
     }
-  }, [card]);
+  }, []);
 
   return (
     <Step fullWidth>

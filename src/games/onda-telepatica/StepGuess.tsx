@@ -47,7 +47,6 @@ export function StepGuess({ currentCategory, onSendGuess, players }: StepGuessPr
 
   useMock(() => {
     onSendGuess({ guess: mockGuess(currentCategory.target ?? 0) });
-    alert('StepGuess');
   }, []);
 
   return (
