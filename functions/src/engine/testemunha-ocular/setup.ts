@@ -179,14 +179,6 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   additionalPayload: PlainObject
 ): Promise<SaveGamePayload> => {
-  const testimony = additionalPayload?.testimony ?? state.testimony;
-
-  const history = [...state.history];
-  history.push({
-    ...state.question,
-    answer: testimony,
-  });
-
   // Save
   return {
     update: {
@@ -202,7 +194,7 @@ export const prepareGameOverPhase = async (
         perpetrator: state.perpetrator,
         groupScore: state.groupScore,
         outcome: additionalPayload?.win ? 'WIN' : 'LOSE',
-        history,
+        history: state.history,
       },
     },
   };
