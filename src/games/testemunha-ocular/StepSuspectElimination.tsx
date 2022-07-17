@@ -104,7 +104,7 @@ export function StepSuspectElimination({
         eliminatedSuspects={[...(eliminatedSuspects ?? []), ...(previouslyEliminatedSuspects ?? [])]}
       />
 
-      <QuestionsHistory history={history} />
+      {history.length > 0 && <QuestionsHistory history={history} />}
     </Step>
   );
 }
