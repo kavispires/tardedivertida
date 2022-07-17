@@ -17,6 +17,7 @@ type ImageCardProps = {
    */
   className?: string;
   preview?: Boolean;
+  previewImageId?: string;
 };
 export const ImageCard = ({
   imageId,
@@ -24,6 +25,7 @@ export const ImageCard = ({
   cardWidth = 200,
   className = '',
   preview = true,
+  previewImageId = '',
 }: ImageCardProps) => {
   const { shouldBeBlurred } = useBlurCards();
 
@@ -35,6 +37,13 @@ export const ImageCard = ({
 
   const isBlurred = shouldBeBlurred(imageId);
 
+  const booleanPreviewConfig =
+    preview && !isBlurred
+      ? {
+          maskClassName: `${baseClass}__preview-mask`,
+        }
+      : false;
+
   return (
     <div className={clsx(baseClass, `${baseClass}--${size}`, isBlurred && `${baseClass}--blur`, className)}>
       <Image
@@ -43,11 +52,11 @@ export const ImageCard = ({
         placeholder={<Image preview={false} src={placeholder} width={cardWidth} />}
         fallback={`${PUBLIC_URL.CARDS}${fallbackName}.jpg`}
         preview={
-          preview && !isBlurred
+          Boolean(previewImageId)
             ? {
-                maskClassName: `${baseClass}__preview-mask`,
+                src: `${process.env.REACT_APP_TD_IMAGES_URL}${previewImageId.replace(/-/g, '/')}.jpg`,
               }
-            : false
+            : booleanPreviewConfig
         }
       />
     </div>
