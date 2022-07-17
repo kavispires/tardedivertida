@@ -1,0 +1,40 @@
+{
+  "gameCode": "X",
+  "gameName": "cruza-palavras",
+  "version": "2.1",
+  "title": {
+    "pt": "Cruza Palavras",
+    "en": "Mixed Clues"
+  },
+  "popularName": {
+    "pt": "Conectar duas palavras da grade",
+    "en": ""
+  },
+  "basedOn": "seulC ssorC",
+  "summary": {
+    "pt": "Uma grade de palavras e várias coordenadas... você consegue associar todas as palavras?",
+    "en": "A word grid and many coordinates... are you able to match all words?"
+  },
+  "rules": {
+    "pt": ["TBD"],
+    "en": [
+      "You will get a coordinate in a grid of with words in their header columns and header rows. You must write a single word clue that connects both coordinates headers",
+      "After everybody is done, everybody has to match the clues with the coordinates",
+      "Getting the exact clue coordinate gets you 2 points, but if you get a right coordinate with a wrong clue, you still get 1 point",
+      "Watch out, if nobody gets your clue, you lose points equal to the number of players, ouch",
+      "A new bigger board will show up when there are not enough clues for each player and... will use the clues written by the players as coordinates",
+      "The game ends after 6 rounds"
+    ]
+  },
+  "playerCount": {
+    "recommended": "4-6",
+    "min": 3,
+    "max": 10
+  },
+  "tags": ["competitive", "same-time", "writing", "pairing"],
+  "available": {
+    "pt": true,
+    "en": true
+  },
+  "options": [{ "label": "Grid", "key": "largerGrid", "off": "Normal", "on": "Larger" }]
+}

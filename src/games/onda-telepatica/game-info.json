@@ -1,0 +1,56 @@
+{
+  "gameCode": "O",
+  "gameName": "onda-telepatica",
+  "version": "2.2.1",
+  "title": {
+    "pt": "Onda Telepática",
+    "en": "Telepathic Waves"
+  },
+  "popularName": {
+    "pt": "Do treco com ponteiro marcando de 1 a 10",
+    "en": ""
+  },
+  "basedOn": "htgnelevaW",
+  "summary": {
+    "pt": "Jogadores tentam comunicar através de ondas telepáticas",
+    "en": "Players try to communicate using their telepathic waves"
+  },
+  "rules": {
+    "pt": [
+      "Em Onda Telepática, os jogadores competem para ver quem consegue se comunicar melhor telepaticamente! E como medimos isso? Através de um medidor de ondas telepáticas!",
+      "Em cada rodada, um jogador é o medium e escolhe uma carta com dois conceitos opostos que será usada na rodada. Por exemplo: \"Quente vs Frio\", \"Seco vs Molhado\".",
+      "O medium secretamente tem acesso ao medidor de ondas! Nele o resultado será marcado de azul! O objetivo da rodada é fazer com que os outros jogadores coloquem o ponteiro exatamente naquela posição.",
+      "Para isso, o medium tem que escrever uma dica! Se a carta é Quente vs Frio e o ponteiro está no 4 pro lado \"Quente\", será que \"Café\" é uma boa dica? Será que alguns vão achar que 4 não é quente o suficiente para um café? E se eles preferirem café gelado?",
+      "Baseado na dica, os jogadores tentam desvendar onde o ponteiro do resultado deve estar. Será que suas ondas telepáticas estão em sintonia? Será que o medium gosta de café pelando?",
+      "A resposta então é revelada e os jogadores ganham ponto dependendo do número que votaram, 4 pontos na mosca e menos pontos se chegaram quase lá. O medium ganha 1 ponto para cada jogador que ganhou pontos na rodada (máximo de 3 pontos) e também tenta adivinhar se a metade ou mais dos jogadores vão acertar.",
+      "O jogo continua até alguém conseguir 10 pontos ou 10 rodadas, o que acontecer primeiro"
+    ],
+    "en": [
+      "In Telepathic Waves, players compete to see who can communicate the best telepathically. And how do we measure that? Using a Telepathic Waves Measuring Device, of course!",
+      "Each turn one player is the psychic and will choose a card with two opposing concepts, like \"Hot vs Cold\", \"Dry vs Wet\".",
+      "The Psychic will see the Telepathic Waves Measuring Device pointing at one of the numbers in its scale. That's the answer! The goal is to write a clue that will help the other players to select the correct number in the device.",
+      "The Psychic must write a clue to accomplish that! If the card is \"Hot vs Cold\" and the needle is pointing to 4 towards \"Hot\", maybe \"Coffee\" is a good clue. Or maybe players will think it's not hot enough, or maybe they prefer iced coffee?",
+      "Based on the clue, players must try to guess the answer. Do you think your telepathic waves are in sync? Maybe the Psychic likes room temperature coffee?",
+      "The answer is then revealed and players get points depending on their guess. A correct guess gets 4 points, an almost correct gets less. The psychic gets 1 point for every player who got some points this round (max 3) and also has the change to guess how many players will get it correctly or not.",
+      "The game ends when someone gets 10 points or within 10 rounds, whatever comes first"
+    ]
+  },
+  "playerCount": {
+    "recommended": "4+",
+    "min": 3,
+    "max": 10
+  },
+  "tags": ["competitive", "turn-based", "writing", "guessing"],
+  "available": {
+    "pt": true,
+    "en": true
+  },
+  "options": [
+    {
+      "label": "End Game",
+      "key": "fixedRounds",
+      "off": "10 points (10 rounds max)",
+      "on": "Each player once (6+) or twice (1-5)"
+    }
+  ]
+}

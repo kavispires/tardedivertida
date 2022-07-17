@@ -1,0 +1,130 @@
+{
+  "F": {
+    "gameCode": "F",
+    "gameName": "desenho-rapidao",
+    "version": "none",
+    "title": {
+      "pt": "Desenho Rapidão",
+      "en": "Fast Draw"
+    },
+    "popularName": {
+      "pt": "",
+      "en": ""
+    },
+    "basedOn": "hsaD eldooD",
+    "summary": {
+      "pt": "Uma palavra secreta, uma corrida, vários desenhos! Quem consegue desenhar o mais rápido possível?",
+      "en": "One secret word, a race, many drawings! Who can draw as fast as possible?"
+    },
+    "rules": {
+      "pt": ["TBD"],
+      "en": ["TBD"]
+    },
+    "playerCount": {
+      "recommended": "4-6",
+      "min": 4,
+      "max": 10
+    },
+    "tags": ["competitive", "turn-based", "drawing", "guessing", "timed"],
+    "available": {
+      "pt": false,
+      "en": false
+    }
+  },
+  "K": {
+    "gameCode": "K",
+    "gameName": "palheta-cores",
+    "version": "none",
+    "title": {
+      "pt": "Palheta de Cores",
+      "en": "Color Palette"
+    },
+    "popularName": {
+      "pt": "",
+      "en": ""
+    },
+    "basedOn": "enotnaP",
+    "summary": {
+      "pt": "Em cada rodada escolha a cor que mais combina com as palavras. Quanto mais combinações iguais você faz com outros jogadores, mais pontos você ganha",
+      "en": "Each round you choose a color to match each of the words. For every match with other players, you get points!"
+    },
+    "rules": {
+      "pt": ["TBD"],
+      "en": ["TBD"]
+    },
+    "playerCount": {
+      "recommended": "4+",
+      "min": 3,
+      "max": 10
+    },
+    "tags": ["competitive", "pairing"],
+    "available": {
+      "pt": false,
+      "en": false
+    }
+  },
+  "Q": {
+    "gameCode": "Q",
+    "gameName": "quem-sou-eu",
+    "version": "none",
+    "title": {
+      "pt": "Quem Sou Eu?",
+      "en": "Who Am I?"
+    },
+    "popularName": {
+      "pt": "",
+      "en": ""
+    },
+    "basedOn": "znabdeH/ytirbeleC",
+    "summary": {
+      "pt": "Cada jogador é uma celebridade, você consegue adivinhar quem você é com 20 perguntas?",
+      "en": "Can you guess who you are with 20 questions?"
+    },
+    "rules": {
+      "pt": ["TBD"],
+      "en": ["TBD"]
+    },
+    "playerCount": {
+      "recommended": "3+",
+      "min": 1,
+      "max": 10
+    },
+    "tags": ["cooperative", "discussion", "guessing"],
+    "available": {
+      "pt": false,
+      "en": false
+    }
+  },
+  "Y": {
+    "gameCode": "Y",
+    "gameName": "te-conheco",
+    "version": "none",
+    "title": {
+      "pt": "Te conheço?",
+      "en": "You don't know me"
+    },
+    "popularName": {
+      "pt": "",
+      "en": ""
+    },
+    "basedOn": "eiL enO shturT owT",
+    "summary": {
+      "pt": "Você conhece os outros jogadores? Consegue descobrir uma mentira ou adivinhar quem disse o que?",
+      "en": "Do you know the other players? Can you spot a lie? Can you match the player with a sentence?"
+    },
+    "rules": {
+      "pt": ["TBD"],
+      "en": ["TBD"]
+    },
+    "playerCount": {
+      "recommended": "4-6",
+      "min": 3,
+      "max": 10
+    },
+    "tags": ["competitive", "writing", "turn-based", "images"],
+    "available": {
+      "pt": false,
+      "en": false
+    }
+  }
+}

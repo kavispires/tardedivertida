@@ -1,0 +1,47 @@
+{
+  "gameCode": "M",
+  "gameName": "mente-coletiva",
+  "version": "2.3.0",
+  "title": {
+    "pt": "Mente Coletiva",
+    "en": "Herd Mind"
+  },
+  "popularName": {
+    "pt": "Da ovelhinha",
+    "en": ""
+  },
+  "basedOn": "dniM eviH",
+  "summary": {
+    "pt": "Você é capaz de pensar como o grupo para não correr o risco de ser expulso?",
+    "en": "Do you think like the group or are you the sheep about to be kicked out?"
+  },
+  "rules": {
+    "pt": [
+      "Somos todos ovelhinhas e nosso pasto está super lotado. Precisamos expulsar pelo menos uma de nós para que o pasto fique mais confortável e qual a melhor maneira de fazer isso? Expulsando a ovelha mais diferente de todas! Chega de inclusão!",
+      "Temos 5 partes no nosso pasto, começamos todos na parte 1 e vamos fazer uma pergunta toda rodada e todos respondem uma certa quantidade de respostas, por exemplo: 'Cite 3 frutas'",
+      "Após todos responderem, contamos todas as respostas iguais. Você ganha 1 ponto para cada resposta igual a de outro jogador (incluindo a sua). Se 3 jogadores responderam Maçã, cada um deles ganha 3 pontos.",
+      "O objetivo é pensar como o grupo, então escreva respostas comuns! Nada de bancar o diferentão.",
+      "Quando contarmos todas as respostas, o jogador (ou jogadores) com o menor número de pontos é enviado para o pasto da direita. (Os pontos resetam toda rodada)",
+      "Se você tem que mover mais adiante que o pasto 5, você cai no precipício e morre, o pasto fica menos lotado e todos mais felizes. Viva."
+    ],
+    "en": [
+      "We are sheep and our pasture is overcrowded. Are you really part of the herd?",
+      "We need to kick out at least one of us so the pasture is more comfortable. What's the best way to do so? By excluding the minority, of course!",
+      "Each round, everybody answers a simple question, for example: 'Name 3 fruits' or 'Name 4 things you bring on a trip",
+      "After everyone has given their answers we group them. If three players answer 'Apple', each player gets 3 points. The goal is to reply like the majority, so write common simple answers is the way to go.",
+      "After tallying all the points, all the sheep with the least amount of points are kicked to the next pasture.",
+      "When there's no more 'next pasture', they fall off the cliff and die, but at least the pasture is better. Yay."
+    ]
+  },
+  "playerCount": {
+    "recommended": "4+",
+    "min": 3,
+    "max": 12
+  },
+  "tags": ["competitive", "same-time", "writing", "mobile-friendly"],
+  "available": {
+    "pt": true,
+    "en": true
+  },
+  "options": [{ "label": "Duration", "key": "shortPasture", "off": "5 Pastures", "on": "3 Pastures" }]
+}

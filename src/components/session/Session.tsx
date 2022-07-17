@@ -3,17 +3,13 @@ import { useTitle } from 'react-use';
 // Hooks
 import { useGameState, useGlobalState, useGamePlayers, useLanguage } from 'hooks';
 // Utils
-import gameList from 'assets/data/games.json';
+import GAME_LIST from 'utils/info';
 import { isDevEnv } from 'utils/helpers';
 // Components
 import { PhaseLobby } from 'components/phases';
 import { GameInfoDrawer } from 'components/drawers';
 import { AdminMenuDrawer } from 'components/admin';
 import { useIdleRedirect } from 'hooks/useIdleRedirect';
-
-const GAME_LIST: {
-  [key: string]: GameInfo;
-} = gameList;
 
 type SessionProps = {
   gameId: GameId;
