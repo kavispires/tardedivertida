@@ -89,7 +89,7 @@ export const saveUsedCards = async (pastDrawings: ArteRuimDrawing[], language: L
   const usedArteRuimCards = utils.helpers.buildIdDictionary(pastDrawings);
   await globalUtils.updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.ARTE_RUIM, usedArteRuimCards);
   // Save drawings to public gallery
-  const drawingDocumentName = language === 'pt' ? 'arteRuimDrawingsPt' : 'arteRuimDrawingsEn';
+  const drawingDocumentName = language === 'pt' ? 'arteRuimDrawingsPt2' : 'arteRuimDrawingsEn2';
   const publicDrawings = await publicUtils.getPublicFirebaseDocData(drawingDocumentName, {});
   const newArteRuimDrawings = buildPastDrawingsDict(pastDrawings, publicDrawings);
   await publicUtils.updatePublicFirebaseDoc(drawingDocumentName, newArteRuimDrawings);
