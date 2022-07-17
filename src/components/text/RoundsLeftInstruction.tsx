@@ -33,7 +33,7 @@ export function RoundsLeftInstruction({ round, lastRound }: RoundsLeftInstructio
       <Translate
         pt={
           <>
-            {pluralize(left, 'Falta', 'faltam')} <strong>{left}</strong>{' '}
+            {pluralize(left, 'Falta', 'Faltam')} <strong>{left}</strong>{' '}
             {pluralize(left, 'rodada', 'rodadas')} para o jogo terminar...
           </>
         }

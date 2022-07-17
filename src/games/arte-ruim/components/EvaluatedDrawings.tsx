@@ -54,7 +54,7 @@ export function EvaluatedDrawings({ votes, cards, drawings }: EvaluatedDrawingsP
         const card = cardsDict[votes[drawingKey]] as ArteRuimCard;
 
         return (
-          <li className="a-evaluated-drawings__item" key={`${drawing.id}-${card.id}`}>
+          <li className="a-evaluated-drawings__item" key={`${drawing.id}-${card.id}-${card.playerId}`}>
             <CanvasSVG
               drawing={drawing.drawing}
               size={cSize}

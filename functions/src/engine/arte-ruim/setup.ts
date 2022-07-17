@@ -1,11 +1,19 @@
 // Types
 import type { Players, SaveGamePayload } from '../../utils/types';
-import type { ArteRuimData, FirebaseStateData, FirebaseStoreData } from './types';
+import type { ResourceData, FirebaseStateData, FirebaseStoreData } from './types';
 // Constants
 import { ARTE_RUIM_PHASES, REGULAR_GAME_LEVELS, SHORT_GAME_LEVELS } from './constants';
 // Helpers
 import * as utils from '../../utils';
-import { buildDeck, buildGallery, buildRanking, dealCards, getNewPastDrawings } from './helpers';
+import {
+  buildDeck,
+  buildGallery,
+  buildRanking,
+  dealCards,
+  getNewPastDrawings,
+  getTheTwoLevel5Cards,
+} from './helpers';
+import { ArteRuimCard } from '../../utils/tdr';
 
 /**
  * Setup
@@ -17,19 +25,13 @@ export const prepareSetupPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
-  additionalData: ArteRuimData
+  resourceData: ResourceData
 ): Promise<SaveGamePayload> => {
   // Get number of cards per level
   const playerCount = Object.keys(players).length;
 
   // Build deck
-  const deck = buildDeck(
-    additionalData.allCards,
-    additionalData.cardsGroups,
-    additionalData.availableCards,
-    playerCount,
-    store.options?.shortGame ?? false
-  );
+  const deck = buildDeck(resourceData, playerCount, store.options?.shortGame ?? false);
 
   // Save
   return {
@@ -85,22 +87,26 @@ export const prepareEvaluationPhase = async (
   // Unready players
   utils.players.unReadyPlayers(players);
 
+  const level = store.currentCards?.[0]?.level ?? 1;
+
   // Shuffle cards
-  const shuffledCards = utils.game.shuffle(store.currentCards);
+  const shuffledCards: ArteRuimCard[] =
+    level === 5 ? getTheTwoLevel5Cards(store.currentCards) : utils.game.shuffle(store.currentCards);
 
   // Shuffle drawings
   const shuffledDrawings = utils.game.shuffle(Object.values(players).map((player) => player.currentCard));
 
   return {
     update: {
-      store: {
-        // TODO: is this necessary?
-        ...store,
-      },
+      // store: {
+      //   // TODO: is this necessary?
+      //   ...store,
+      // },
       state: {
         phase: ARTE_RUIM_PHASES.EVALUATION,
         cards: shuffledCards,
         drawings: shuffledDrawings,
+        level,
       },
     },
     set: {

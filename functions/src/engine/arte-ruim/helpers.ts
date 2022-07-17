@@ -1,7 +1,7 @@
 // Types
 import type { BooleanDictionary, CardId, PlainObject, Players, Round } from '../../utils/types';
-import type { ArteRuimCard, ArteRuimGroup } from '../../utils/tdr';
-import type { ArteRuimDrawing, FirebaseStoreData, CardsByLevel } from './types';
+import type { ArteRuimCard, ArteRuimGroup, ArteRuimPair } from '../../utils/tdr';
+import type { ArteRuimDrawing, FirebaseStoreData, CardsByLevel, ResourceData } from './types';
 // Constants
 import {
   ARTE_RUIM_PHASES,
@@ -186,17 +186,13 @@ const getEnoughUnusedLevel4Cards = (
 
 /**
  * Builds the deck as evenly as possible with cards needed per level
- * @param allCards
- * @param cardGroups
- * @param availableCards
+ * @param resourceData
  * @param playerCount
  * @param isShortGame
  * @returns
  */
 export const buildDeck = (
-  allCards: Record<CardId, ArteRuimCard>,
-  cardGroups: ArteRuimGroup[],
-  availableCards: CardsByLevel,
+  resourceData: ResourceData,
   playerCount: number,
   isShortGame: boolean
 ): ArteRuimCard[] => {
@@ -204,20 +200,25 @@ export const buildDeck = (
   const cardsPerRound = determineNumberOfCards(playerCount);
   const cardsNeeded = levels.length * cardsPerRound;
 
+  const { allCards, availableCards, cardsGroups, cardsPairs } = resourceData;
+
   // Shuffle available decls
   availableCards[1] = utils.game.shuffle(availableCards[1]);
   availableCards[2] = utils.game.shuffle(availableCards[2]);
   availableCards[3] = utils.game.shuffle(availableCards[3]);
 
   const usedCardIdDict = {};
-  const shuffledLevel4Deck = utils.game.shuffle(cardGroups);
+  const shuffledLevel4Deck = utils.game.shuffle(cardsGroups);
   let level4Hand: CardId[] = [];
+  const shuffledLevel5Deck = utils.game.shuffle(cardsPairs);
+  const availableLevel5Cards = getEnoughLevel5Cards(shuffledLevel5Deck, cardsPerRound);
 
   return Array(cardsNeeded)
     .fill(0)
     .map((e, i) => {
       const level = levels[Math.floor((e + i) / cardsPerRound)];
 
+      // Level 4 (cards within a common theme)
       if (level === 4) {
         // When no level 4 cards are available, fetch a new hand with the minimum needed for a round
         if (level4Hand.length === 0) {
@@ -229,6 +230,13 @@ export const buildDeck = (
             ...allCards[cardId],
             level: 4,
           };
+        }
+      }
+      // Only two similar cards
+      else if (level === 5) {
+        const card = availableLevel5Cards.pop();
+        if (card) {
+          return card;
         }
       } else {
         const card = availableCards[level].pop();
@@ -245,6 +253,55 @@ export const buildDeck = (
       };
     })
     .reverse();
+};
+
+const getEnoughLevel5Cards = (cards: ArteRuimPair[], playerCount: number) => {
+  let result: ArteRuimCard[] = [];
+
+  function buildNecessaryArray(card: ArteRuimPair, count: number): ArteRuimCard[] {
+    const newCards: ArteRuimCard[] = card.values.map((value, index) => ({
+      id: `${card.id}--${index}`,
+      text: value,
+      level: 5,
+    }));
+
+    const cardsArr0 = new Array(count * 2).fill(newCards[0]).map((c, i) => ({ ...c, id: `${c.id}--${i}` }));
+    const cardsArr1 = new Array(count * 2).fill(newCards[1]).map((c, i) => ({ ...c, id: `${c.id}--${i}` }));
+    // From an array composed of twice the numbers of players for each card,
+    // return an array with the exact number of players
+    const randomCards = utils.game.getRandomItems([...cardsArr0, ...cardsArr1], count - 2);
+    // Guarantee that there's at least one of each
+    return utils.game.getRandomItems([newCards[0], newCards[1], ...randomCards], count);
+  }
+
+  // Get 2 pairs
+  [cards[0], cards[1]].forEach((card) => {
+    result = result.concat(buildNecessaryArray(card, playerCount));
+  });
+
+  return result;
+};
+
+/**
+ * Returns a unique set of cards
+ * @param cards
+ * @returns
+ */
+export const getTheTwoLevel5Cards = (cards: ArteRuimCard[]): ArteRuimCard[] => {
+  const cache: BooleanDictionary = {};
+
+  const selectedCards = cards.filter((card) => {
+    if (cache[card.text] === undefined) {
+      cache[card.text] = true;
+      return true;
+    }
+    return false;
+  });
+
+  return selectedCards.map((card) => ({
+    ...card,
+    id: getLevel5Id(card.id),
+  }));
 };
 
 /**
@@ -285,6 +342,11 @@ export const dealCards = (players: Players, store: FirebaseStoreData) => {
   });
 };
 
+const getLevel5Id = (id: string): string => {
+  const split = id.split('--');
+  return split.length === 1 ? id : `${split[0]}--${split[1]}`;
+};
+
 /**
  * Build gallery
  * @param drawings
@@ -293,13 +355,14 @@ export const dealCards = (players: Players, store: FirebaseStoreData) => {
  */
 export const buildGallery = (drawings: ArteRuimDrawing[], players: Players) =>
   drawings.map((drawingEntry) => {
-    const correctAnswer = `${drawingEntry.id}`;
+    const correctAnswer = getLevel5Id(drawingEntry.id);
     const artistId = drawingEntry.playerId;
 
     const newGalleryEntry = {
-      id: drawingEntry.id,
+      id: correctAnswer,
+      originalId: drawingEntry.id,
       drawing: drawingEntry.drawing,
-      artistId: drawingEntry.playerId,
+      artistId,
       level: drawingEntry.level,
       text: drawingEntry.text,
       playersSay: {},
@@ -314,11 +377,16 @@ export const buildGallery = (drawings: ArteRuimDrawing[], players: Players) =>
 
       if (artistId) {
         // Calculate what players say
-        const currentVote = pObject.votes[correctAnswer];
-        if (playersSay[currentVote] === undefined) {
-          playersSay[currentVote] = [];
+        const currentVote = getLevel5Id(pObject.votes[drawingEntry.id]);
+
+        const peopleSayId = currentVote;
+
+        if (playersSay[peopleSayId] === undefined) {
+          playersSay[peopleSayId] = [];
         }
-        playersSay[currentVote].push(playerId);
+
+        playersSay[peopleSayId].push(playerId);
+
         // Calculate player points
         if (playersPoints[playerId] === undefined) {
           playersPoints[playerId] = 0;
@@ -348,7 +416,7 @@ export const buildRanking = (drawings: ArteRuimDrawing[], players: Players) => {
   const newScores = utils.helpers.buildNewScoreObject(players, [0, 0]);
 
   drawings.forEach((drawingEntry) => {
-    const correctAnswer = `${drawingEntry.id}`;
+    const correctAnswer = getLevel5Id(drawingEntry.id);
     const artistId = drawingEntry.playerId;
 
     Object.entries(<PlainObject>players).forEach(([playerId, pObject]) => {
@@ -356,7 +424,8 @@ export const buildRanking = (drawings: ArteRuimDrawing[], players: Players) => {
 
       if (artistId) {
         // Calculate what players say
-        const currentVote = pObject.votes[correctAnswer];
+        const currentVote = getLevel5Id(pObject.votes[drawingEntry.id]);
+
         // Calculate player points
         if (currentVote === correctAnswer) {
           newScores[playerId].gainedPoints[0] += 2;
@@ -385,7 +454,7 @@ export const getNewPastDrawings = (players: Players, gallery) => {
   return Object.values(players).map((playerData) => {
     const card = playerData.currentCard;
     // Get playersSay from gallery and calculate success rate
-    const galleryEntry = gallery.find((e) => e.id === card.id);
+    const galleryEntry = gallery.find((e) => e.originalId === card.id);
     const correctAnswers = galleryEntry.playersSay?.[card.id]?.length ?? 0;
 
     card.successRate = Math.round((100 * correctAnswers) / (playerCount - 1)) / 100;

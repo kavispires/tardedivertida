@@ -40,7 +40,7 @@ export function StepEvaluation({ drawings, cards, players, onSubmitVoting }: Ste
   const user = useUser(players);
   const canvasWidth = useCardWidth(Math.min(Object.keys(players).length, 6), 16, 150, 500);
   const [canvasSize, setCanvasSize] = useGlobalState('canvasSize');
-  const { votes, setVotes, activeItem, activateItem, resetVoting } = useVotingMatch(
+  const { votes, setVotes, activeItem, activateItem, resetVoting, isVotingComplete } = useVotingMatch(
     'drawing',
     true,
     drawings.length || 2
@@ -52,11 +52,19 @@ export function StepEvaluation({ drawings, cards, players, onSubmitVoting }: Ste
     const drawingsKeys = drawings
       .map((e: ArteRuimDrawing) => getEntryId(['drawing', e.id]))
       .filter((key: string) => !usedDrawings.includes(key));
-    const cardsKeys = shuffle(
+    let cardsKeys = shuffle(
       cards
         .map((e: ArteRuimCard, index: number) => getEntryId(['card', e.id, LETTERS[index]]))
         .filter((key: string) => !usedCards.includes(key))
     );
+    // For level 5 specifically, if there are less cards than drawings
+    cardsKeys =
+      cardsKeys.length < drawingsKeys.length
+        ? Array(Math.ceil(drawingsKeys.length / cardsKeys.length))
+            .fill(cardsKeys)
+            .flat()
+        : cardsKeys;
+
     const newVotes = { ...votes };
     drawingsKeys.forEach((drawingKey: string, index: number) => {
       if (!newVotes[drawingKey]) {
@@ -75,7 +83,7 @@ export function StepEvaluation({ drawings, cards, players, onSubmitVoting }: Ste
 
   const selectOwnDrawing = useCallback(() => {
     const playersDrawing = (drawings ?? []).find((drawing: ArteRuimDrawing) => drawing.playerId === user.id);
-    if (playersDrawing) {
+    if (playersDrawing && playersDrawing.level !== 5) {
       const drawingKey = getEntryId(['drawing', playersDrawing.id]);
       const cardIndex = (cards ?? []).findIndex((card: ArteRuimCard) => card.playerId === user.id);
       const cardKey = getEntryId(['card', playersDrawing.id, LETTERS[cardIndex]]);
@@ -125,7 +133,7 @@ export function StepEvaluation({ drawings, cards, players, onSubmitVoting }: Ste
         <Button
           type="primary"
           onClick={() => onSubmitVoting({ votes: prepareVotes(votes) })}
-          disabled={isLoading || Object.values(votes).length < drawings.length}
+          disabled={isLoading || !isVotingComplete}
           icon={<CloudUploadOutlined />}
         >
           <Translate pt="Enviar sua avaliação" en="Send evaluation" />

@@ -11,6 +11,7 @@ type ArteRuimDrawing = {
   playerId: PlayerId;
   text: string;
   successRate?: number;
+  level: number;
 };
 
 type PlayersSay = {

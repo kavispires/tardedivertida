@@ -24,6 +24,11 @@ const getVersionColor = (version: string) => {
   if (version.startsWith('2.')) {
     return '#7CBD51';
   }
+
+  if (version.startsWith('3.')) {
+    return '#7CBD51';
+  }
+
   return '#96A0A3';
 };
 
