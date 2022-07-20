@@ -8,20 +8,31 @@ import { DeleteOutlined, UndoOutlined } from '@ant-design/icons';
 import { Translate } from 'components/language';
 
 type DrawingCanvasProps = {
+  /**
+   * Lines drawn in the canvas
+   */
   lines: CanvasLine[];
+  /**
+   * Function where any new version of the drawing is sent to
+   */
   setLines: CanvasSetLine;
   /**
    * Optional custom class name
    */
   className?: string;
+  /**
+   * Show controls to undo, redo, or erase drawing. Default: false
+   */
   showControls?: boolean;
+  /**
+   * Size of the stroke. Default: medium
+   */
   strokeWidth?: 'small' | 'medium' | 'large';
 };
 
 /**
  * Canvas drawing board using react-konva
- * @param props
- * @returns
+ * It requires an array of lines and an setState function to save the lines
  */
 export const DrawingCanvas = ({
   lines,
@@ -33,12 +44,54 @@ export const DrawingCanvas = ({
   const [drawingHistory, setDrawingHistory] = useState<CanvasLine[]>([]);
   const isDrawing = useRef(false);
 
-  const handleMouseDown = (e: any) => {
+  /**
+   * Toggles off the isDrawing flag
+   */
+  const startDrawing = () => {
     isDrawing.current = true;
+  };
+
+  /**
+   * Toggles off the isDrawing flag and resets history
+   */
+  const stopDrawing = () => {
+    isDrawing.current = false;
+    setDrawingHistory([]);
+  };
+
+  const startLine = (e: any) => {
+    startDrawing();
     const pos = e.target.getStage().getPointerPosition();
     setLines([...lines, [Math.round(pos.x), Math.round(pos.y)]]);
   };
 
+  const finishLine = (e: any) => {
+    // Add point if it was a point
+    const stage = e.target.getStage();
+    const point = stage.getPointerPosition();
+    const x = Math.round(point.x);
+    const y = Math.round(point.y);
+
+    let lastLineEntry = lines[lines.length - 1];
+    lastLineEntry = lastLineEntry.concat([x + 0.1, y + 0.1]);
+
+    // replace last
+    lines.splice(lines.length - 1, 1, lastLineEntry);
+    setLines(lines.concat());
+  };
+
+  /**
+   * Start recording drawing
+   * @param e - konva mouse event
+   */
+  const handleMouseDown = (e: any) => {
+    startLine(e);
+  };
+
+  /**
+   * Tracks mouse moving during the drawing
+   * @param e - konva mouse event
+   */
   const handleMouseMove = (e: any) => {
     // no drawing - skipping
     if (!isDrawing.current) {
@@ -56,24 +109,56 @@ export const DrawingCanvas = ({
   };
 
   const handleMouseUp = (e: any) => {
-    isDrawing.current = false;
-    setDrawingHistory([]);
+    if (isDrawing.current) {
+      stopDrawing();
 
-    // Add point if it was a point
-    const stage = e.target.getStage();
-    const point = stage.getPointerPosition();
-    const x = Math.round(point.x);
-    const y = Math.round(point.y);
-
-    let lastLineEntry = lines[lines.length - 1];
-    if (lastLineEntry[0] === x && lastLineEntry[1] === y) {
-      // add end point
-      lastLineEntry = lastLineEntry.concat([x + 0.1, y + 0.1]);
-
-      // replace last
-      lines.splice(lines.length - 1, 1, lastLineEntry);
-      setLines(lines.concat());
+      finishLine(e);
     }
+  };
+
+  /**
+   * Handles case when a current drawing is stopped off stage
+   * @param e - mouse event
+   */
+  const handleOffsetMouseUp = () => {
+    stopDrawing();
+  };
+
+  /**
+   * Handles case when a current drawing is started off stage
+   * @param e - mouse event
+   */
+  const handleOffsetMouseDown = () => {
+    startDrawing();
+  };
+
+  /**
+   * Handles when mouse leaves the stage
+   * @param e - konva mouse event
+   */
+  const handleMouseLeave = (e: any) => {
+    if (isDrawing.current) {
+      finishLine(e);
+
+      window.document.addEventListener('mouseup', handleOffsetMouseUp);
+      window.document.addEventListener('touchEnd', handleOffsetMouseUp);
+      window.document.addEventListener('mousedown', handleOffsetMouseDown);
+      window.document.addEventListener('touchStart', handleOffsetMouseDown);
+    }
+  };
+
+  /**
+   * Handles when mouse reenters the state
+   * @param e
+   */
+  const handleMouseEnter = (e: any) => {
+    if (isDrawing.current) {
+      startLine(e);
+    }
+    window.document.removeEventListener('mouseup', handleOffsetMouseUp);
+    window.document.removeEventListener('touchEnd', handleOffsetMouseUp);
+    window.document.removeEventListener('mousedown', handleOffsetMouseDown);
+    window.document.removeEventListener('touchStart', handleOffsetMouseDown);
   };
 
   const onClear = () => setLines([]);
@@ -118,7 +203,10 @@ export const DrawingCanvas = ({
         onTouchStart={handleMouseDown}
         onTouchMove={handleMouseMove}
         onTouchEnd={handleMouseUp}
+        onMouseLeave={handleMouseLeave}
+        onMouseEnter={handleMouseEnter}
         className={clsx('drawing-canvas', className)}
+        id="drawing-canvas"
       >
         <Layer>
           {lines.map((line, i) => (
