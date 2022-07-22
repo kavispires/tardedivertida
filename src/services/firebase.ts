@@ -8,7 +8,7 @@ import {
   UserCredential,
 } from 'firebase/auth';
 import { getFunctions, connectFunctionsEmulator, Functions } from 'firebase/functions';
-import { message } from 'antd';
+import { message, notification } from 'antd';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -32,6 +32,7 @@ const localHost = process.env.REACT_APP_LOCAL_IP || 'localhost';
 
 if (window.location.hostname.includes(localHost)) {
   console.log(`%cEmulating to ${localHost}`, 'color:dodgerblue');
+  notification.warn({ message: `Emulating to ${localHost}`, placement: 'bottomLeft' });
   connectFirestoreEmulator(firestore, localHost, 8091);
   connectFunctionsEmulator(functions, localHost, 5001);
   connectFirestoreEmulator(firestore, 'localhost', 8091);
