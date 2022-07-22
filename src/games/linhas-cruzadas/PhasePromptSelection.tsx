@@ -35,8 +35,8 @@ function PhasePromptSelection({ players, state, info }: PhaseProps) {
               pt={
                 <>
                   Neste jogo, você recebe uma carta e a desenha, daí o próximo jogador tentar adivinhar o que
-                  é, daí o próximo jogador desenha a adivinhação, e por ai vai até sua carta voltar pra você
-                  mesmo.
+                  é, daí o próximo jogador desenha a adivinhação, e por ai vai até seu album original voltar
+                  pra você.
                   <br />
                   Selecione a palavra a ser desenhada, talvez seja para você, talvez seja para um outro
                   jogador.
@@ -46,7 +46,7 @@ function PhasePromptSelection({ players, state, info }: PhaseProps) {
                 <>
                   In this game, you receive a prompt and will have to draw it, then the next player will
                   attempt to guess your drawing, then the next player will draw the guess attempt, and so on
-                  until your card comes back to you.
+                  until your album comes back to you.
                   <br />
                   Select a card to be drawn this round, it might be for you to draw or the next player... who
                   knows?
