@@ -119,7 +119,7 @@ export function deleteValue() {
  * Get firebase doc verifying its existence
  * @param collectionName
  * @param gameId
- * @param doc
+ * @param docName
  * @param actionText
  * @returns
  */
@@ -182,8 +182,7 @@ export const getStateAndStoreReferences = async (
 /**
  * Saves (setting or updating) the game's session
  * @param sessionRef
- * @param toSet
- * @param toUpdate
+ * @param saveContent
  * @returns
  */
 export const saveGame = async (
@@ -236,13 +235,13 @@ export const triggerSetupPhase = async (
 
 /**
  * Aides updating player properties on submit actions
- * @param collectionName
- * @param gameId
- * @param playerId
- * @param actionText
- * @param shouldReady
- * @param change
- * @param nextPhaseFunction
+ * @param args.collectionName
+ * @param args.gameId
+ * @param args.playerId
+ * @param args.actionText
+ * @param args.shouldReady
+ * @param args.change
+ * @param args.nextPhaseFunction
  * @returns
  */
 export const updatePlayer = async ({
@@ -287,12 +286,12 @@ export const updatePlayer = async ({
 
 /**
  * Aides updating simple store properties on submit actions
- * @param collectionName
- * @param gameId
- * @param playerId
- * @param actionText
- * @param change
- * @param nextPhaseFunction
+ * @param args.collectionName
+ * @param args.gameId
+ * @param args.playerId
+ * @param args.actionText
+ * @param args.change
+ * @param args.nextPhaseFunction
  * @returns
  */
 export const updateStore = async ({
@@ -321,12 +320,12 @@ export const updateStore = async ({
 
 /**
  * Aides updating simple state properties on submit actions
- * @param collectionName
- * @param gameId
- * @param playerId
- * @param actionText
- * @param change
- * @param nextPhaseFunction
+ * @param args.collectionName
+ * @param args.gameId
+ * @param args.playerId
+ * @param args.actionText
+ * @param args.change
+ * @param args.nextPhaseFunction
  * @returns
  */
 export const updateState = async ({

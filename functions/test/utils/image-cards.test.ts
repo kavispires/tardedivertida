@@ -1,5 +1,5 @@
 import 'jest';
-import * as imageCardUtils from '../../src/utils/image-cards';
+import * as imageCardUtils from '../../src/utils/image-cards-utils';
 
 describe('image-cards', () => {
   describe('getImageCards', () => {
