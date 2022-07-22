@@ -1,12 +1,13 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 // Ant Design Resources
 import { Button } from 'antd';
-import { PlusCircleFilled } from '@ant-design/icons';
+import { PlusCircleFilled, RocketFilled } from '@ant-design/icons';
 // Hooks
 import { useLoading } from 'hooks';
-import { AdminButton, AdminOnlyContainer } from 'components/admin';
+import { AdminOnlyContainer } from 'components/admin';
 import { Translate } from 'components/language';
 import { Avatar } from 'components/avatars';
+import { TimedButton } from 'components/buttons';
 // Components
 
 type AdminAnswerControlProps = {
@@ -27,6 +28,7 @@ export function AdminAnswerControl({
   players,
 }: AdminAnswerControlProps) {
   const { isLoading } = useLoading();
+  const [disableButton, setDisableButton] = useState(true);
 
   const filteredAnswers = useMemo(
     () =>
@@ -43,12 +45,17 @@ export function AdminAnswerControl({
 
   return (
     <AdminOnlyContainer className="m-admin" direction="vertical" align="center">
-      <AdminButton
+      <TimedButton
         onClick={() => onNextAnswer({ allowedList: Object.keys(allowedList) })}
-        disabled={isLoading}
+        disabled={disableButton || isLoading}
+        type="primary"
+        danger
+        duration={10}
+        icon={<RocketFilled />}
+        onExpire={() => setDisableButton(false)}
       >
         <Translate pt="Confirmar e ir para próxima resposta" en="Confirm and go to next answer" />
-      </AdminButton>
+      </TimedButton>
 
       <ul className="m-admin__players-answers">
         {filteredAnswers.map((answer) => {

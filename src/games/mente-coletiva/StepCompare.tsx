@@ -58,6 +58,7 @@ export function StepCompare({
       <UserAnswers user={user} answerGroup={answerGroup} onAddAnswer={onAddAnswer} />
       <Divider />
       <AdminAnswerControl
+        key={answerGroup.answer}
         answerGroup={answerGroup}
         allAnswers={allAnswers}
         players={players}
