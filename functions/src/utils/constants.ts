@@ -1,4 +1,4 @@
-export const AVATAR_IDS = new Array(25).fill(0).map((i, index) => `${i + index}`);
+export const AVATAR_IDS = new Array(50).fill(0).map((i, index) => `${i + index}`);
 
 export const LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
