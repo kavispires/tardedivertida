@@ -1,7 +1,5 @@
 // Types
 import type { AllWords, ClueEntry, Deck, GridCell } from './types';
-import type { TextCard } from '../../utils/tdr';
-import type { PlayerId, Players, RankingEntry, Round } from '../../utils/types';
 // Constants
 import { SEPARATOR } from '../../utils/constants';
 import { WORDS_PER_PLAYER_COUNT, CRUZA_PALAVRAS_PHASES } from './constants';

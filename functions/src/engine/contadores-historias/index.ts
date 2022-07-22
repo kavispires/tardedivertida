@@ -2,7 +2,6 @@
 import { GAME_COLLECTIONS } from '../../utils/constants';
 import { CONTADORES_HISTORIAS_PHASES, MAX_ROUNDS, PLAYER_COUNTS } from './constants';
 // Types
-import type { GameId, Language, Players } from '../../utils/types';
 import type {
   ContadoresHistoriasInitialState,
   ContadoresHistoriasOptions,

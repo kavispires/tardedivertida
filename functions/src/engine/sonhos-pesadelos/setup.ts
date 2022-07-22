@@ -1,5 +1,4 @@
 // Types
-import type { Players, SaveGamePayload } from '../../utils/types';
 import type { FirebaseStateData, FirebaseStoreData, SonhosPesadelosCards } from './types';
 // Constants
 import { IMAGE_CARDS_PER_ROUND, SONHOS_PESADELOS_PHASES, TOTAL_ROUNDS } from './constants';

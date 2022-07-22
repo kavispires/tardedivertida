@@ -1,77 +1,77 @@
-export type GameId = string;
-export type GameName = string;
-export type GameCode = string;
-export type DateMilliseconds = number;
-export type Language = 'en' | 'pt';
-export type PlayerId = string;
-export type PlayerName = string;
-export type PlayerAvatarId = string;
-export type Primitive = string | number | boolean | symbol | null;
-export type CardId = string;
-export type ImageCardId = string;
-export type GameOrder = PlayerId[];
-export type TurnOrder = PlayerId[];
-export type DualLanguageValue = {
+type GameId = string;
+type GameName = string;
+type GameCode = string;
+type DateMilliseconds = number;
+type Language = 'en' | 'pt';
+type PlayerId = string;
+type PlayerName = string;
+type PlayerAvatarId = string;
+type Primitive = string | number | boolean | symbol | null;
+type CardId = string;
+type ImageCardId = string;
+type GameOrder = PlayerId[];
+type TurnOrder = PlayerId[];
+type DualLanguageValue = {
   en: string;
   pt: string;
 };
 
 // COMMON INTERFACES
 
-export interface PlainObject {
+interface PlainObject {
   [key: string]: any;
 }
 
-export type BooleanDictionary = {
+type BooleanDictionary = {
   [key: string]: boolean;
 };
 
-export type NumberDictionary = {
+type NumberDictionary = {
   [key: string]: number;
 };
 
-export type StringDictionary = {
+type StringDictionary = {
   [key: string]: string;
 };
 
-export type ObjectDictionary = {
+type ObjectDictionary = {
   [key: string]: PlainObject;
 };
 
-export interface FirebaseContext {
+interface FirebaseContext {
   [key: string]: any;
 }
 
-export interface CreateGamePayload {
+interface CreateGamePayload {
   gameCode: GameCode;
   language: string;
   options?: PlainObject;
 }
 
-export interface LoadGamePayload {
+interface LoadGamePayload {
   gameId: GameId;
 }
 
-export interface Engine {
+interface Engine {
   getInitialState: any;
   getNextPhase: any;
   playerCounts: PlayerCounts;
   submitAction: any;
 }
 
-export interface AddPlayerPayload {
+interface AddPlayerPayload {
   gameId: GameId;
   gameName: GameName;
   playerName: PlayerName;
   playerAvatarId: PlayerAvatarId;
 }
 
-export interface BasicGamePayload {
+interface BasicGamePayload {
   gameId: GameId;
   gameName: GameName;
 }
 
-export interface Meta {
+interface Meta {
   gameId: GameId;
   gameName: GameName;
   createdAt: DateMilliseconds;
@@ -85,12 +85,12 @@ export interface Meta {
   options?: BooleanDictionary;
 }
 
-export interface PlayerCounts {
+interface PlayerCounts {
   MIN: number;
   MAX: number;
 }
 
-export interface DefaultState {
+interface DefaultState {
   phase: string;
   round: Round;
   updatedAt: DateMilliseconds;
@@ -98,20 +98,20 @@ export interface DefaultState {
   gameEndedAt?: DateMilliseconds;
 }
 
-export interface DefaultStore {
+interface DefaultStore {
   language: Language;
   options?: BooleanDictionary;
   [key: string]: any;
 }
 
-export interface InitialState {
+interface InitialState {
   meta: Meta;
   players: Players;
   store: any;
   state: any;
 }
 
-export interface InitialStateArgs {
+interface InitialStateArgs {
   gameId: GameId;
   gameName: GameName;
   uid: string;
@@ -123,12 +123,12 @@ export interface InitialStateArgs {
   options?: PlainObject;
 }
 
-export interface Round {
+interface Round {
   current: number;
   total: number;
 }
 
-export interface Player {
+interface Player {
   id: PlayerId;
   avatarId: PlayerAvatarId;
   name: PlayerName;
@@ -139,46 +139,46 @@ export interface Player {
   [key: string]: any;
 }
 
-export interface Players {
+interface Players {
   [key: string]: Player;
 }
 
-export interface Team {
+interface Team {
   members: PlayerId[];
   name: string;
   score: number;
 }
 
-export interface Teams {
+interface Teams {
   [key: string]: Team;
 }
 
-export interface Payload {
+interface Payload {
   gameId: GameId;
   gameName: GameName;
   playerId: PlayerId;
   [key: string]: any;
 }
 
-export interface ExtendedPayload {
+interface ExtendedPayload {
   gameId: GameId;
   gameName: GameName;
   [key: string]: any;
 }
 
-export interface SubmitGuessPayload extends Payload {
+interface SubmitGuessPayload extends Payload {
   guess: string | number;
 }
 
-export interface SubmitVotesPayload extends Payload {
+interface SubmitVotesPayload extends Payload {
   votes: PlainObject;
 }
 
-export interface SubmitVotePayload extends Payload {
+interface SubmitVotePayload extends Payload {
   vote: string;
 }
 
-export interface StateAndStoreReferences {
+interface StateAndStoreReferences {
   sessionRef: FirebaseFirestore.CollectionReference;
   stateDoc: FirebaseFirestore.DocumentSnapshot;
   storeDoc: FirebaseFirestore.DocumentSnapshot;
@@ -186,25 +186,25 @@ export interface StateAndStoreReferences {
   store: FirebaseFirestore.DocumentData | PlainObject;
 }
 
-export interface SetPayload {
+interface SetPayload {
   players?: PlainObject | Players;
   state?: PlainObject;
   store?: PlainObject;
 }
 
-export interface UpdatePayload {
+interface UpdatePayload {
   players?: PlainObject | Players;
   state?: PlainObject;
   store?: PlainObject;
   meta?: PlainObject;
 }
 
-export interface SaveGamePayload {
+interface SaveGamePayload {
   set?: SetPayload;
   update?: UpdatePayload;
 }
 
-export interface UpdatePlayerArgs {
+interface UpdatePlayerArgs {
   collectionName: GameName;
   gameId: GameId;
   playerId: PlayerId;
@@ -214,7 +214,7 @@ export interface UpdatePlayerArgs {
   nextPhaseFunction?: any;
 }
 
-export interface UpdateStoreArgs {
+interface UpdateStoreArgs {
   collectionName: GameName;
   gameId: GameId;
   playerId: PlayerId;
@@ -223,7 +223,7 @@ export interface UpdateStoreArgs {
   nextPhaseFunction?: any;
 }
 
-export interface UpdateStateArgs {
+interface UpdateStateArgs {
   collectionName: GameName;
   gameId: GameId;
   playerId: PlayerId;
@@ -232,7 +232,7 @@ export interface UpdateStateArgs {
   nextPhaseFunction?: any;
 }
 
-export interface UsedWord {
+interface UsedWord {
   id: string;
   playerName?: PlayerName | null;
   uniqueSuggestions?: string[] | [];
@@ -240,14 +240,16 @@ export interface UsedWord {
   votes: 0;
 }
 
+interface NewScore {
+  playerId: PlayerId;
+  name: PlayerName;
+  previousScore: number;
+  gainedPoints: number[];
+  newScore: number;
+}
+
 interface NewScores {
-  [key: string]: {
-    playerId: PlayerId;
-    name: PlayerName;
-    previousScore: number;
-    gainedPoints: number[];
-    newScore: number;
-  };
+  [key: string]: NewScore;
 }
 
 interface RankingEntry {

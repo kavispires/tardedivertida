@@ -3,7 +3,7 @@ import { DETETIVES_IMAGINATIVOS_PHASES, HAND_LIMIT } from './constants';
 import { DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
 // Types
 import type { FirebaseStateData, FirebaseStoreData } from './types';
-import type { Players, SaveGamePayload } from '../../utils/types';
+
 // Utils
 import * as utils from '../../utils';
 // Internal

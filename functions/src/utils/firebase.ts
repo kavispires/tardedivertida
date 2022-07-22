@@ -1,17 +1,5 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
-// Types
-import type {
-  FirebaseContext,
-  GameId,
-  GameName,
-  PlainObject,
-  PlayerId,
-  SaveGamePayload,
-  StateAndStoreReferences,
-  UpdatePlayerArgs,
-  UpdateStoreArgs,
-} from './types';
 // Utils
 import * as utils from '../utils';
 

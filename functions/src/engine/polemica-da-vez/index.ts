@@ -2,7 +2,6 @@
 import { GAME_COLLECTIONS } from '../../utils/constants';
 import { MAX_ROUNDS, PLAYER_COUNTS, POLEMICA_DA_VEZ_PHASES } from './constants';
 // Types
-import type { GameId, Language, Players } from '../../utils/types';
 import type { PolemicaDaVezInitialState, PolemicaDaVezOptions, PolemicaDaVezSubmitAction } from './types';
 // Utils
 import * as utils from '../../utils';

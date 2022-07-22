@@ -1,9 +1,7 @@
 // Constants
 import { RETRATO_FALADO_PHASES } from './constants';
 // Types
-import type { Player, PlayerId, Players, RankingEntry, Round } from '../../utils/types';
 import type { AllMonsters, MonsterSketch } from './types';
-import type { MonsterCard } from '../../utils/tdi';
 // Helpers
 import * as utils from '../../utils';
 import { buildNewScoreObject } from '../../utils/helpers';

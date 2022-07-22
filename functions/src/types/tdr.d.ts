@@ -1,32 +1,30 @@
-import type { CardId, DualLanguageValue } from './types';
-
 /**
  * Generic text card
  * Games that use: linhas-cruzadas, polemica-da-vez, single-word
  */
-export type TextCard = {
+type TextCard = {
   id: CardId;
   text: string;
 };
 
-export type ArteRuimCard = {
+type ArteRuimCard = {
   id: CardId;
   text: string;
   level: number;
 };
 
-export type ArteRuimGroup = {
+type ArteRuimGroup = {
   id: string;
   theme: string;
   cards: Record<CardId, string>;
 };
 
-export type ArteRuimPair = {
+type ArteRuimPair = {
   id: string;
   values: [string, string];
 };
 
-export type CrimeTile = {
+type CrimeTile = {
   id: string;
   title: DualLanguageValue;
   description: DualLanguageValue;
@@ -35,37 +33,37 @@ export type CrimeTile = {
   specific?: string | null;
 };
 
-export type SpyLocation = {
+type SpyLocation = {
   id: CardId;
   name: string;
   roles: string[];
 };
 
-export type GroupQuestionCard = {
+type GroupQuestionCard = {
   id: CardId;
   prefix: string;
   number: number;
   suffix: string;
 };
 
-export type OpposingIdeaCard = {
+type OpposingIdeaCard = {
   id: CardId;
   left: string;
   right: string;
 };
 
-export type TestimonyQuestionCard = {
+type TestimonyQuestionCard = {
   id: CardId;
   question: string;
 };
 
-export type ThemeCard = {
+type ThemeCard = {
   id: CardId;
   text: string;
   description?: string;
 };
 
-export type NamingPromptCard = {
+type NamingPromptCard = {
   id: CardId;
   text: string;
   set: string;

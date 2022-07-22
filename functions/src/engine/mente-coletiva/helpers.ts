@@ -7,7 +7,6 @@ import {
   SHORT_PASTURE_GAME_OVER_THRESHOLD,
 } from './constants';
 // Types
-import type { PlainObject, PlayerId, Players, RankingEntry } from '../../utils/types';
 import type { AllQuestions, AnswerEntry, Deck, PastureChangeEntry, SheepAnimation } from './types';
 // Utils
 import * as utils from '../../utils';

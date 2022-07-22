@@ -1,22 +1,19 @@
-import type { TextCard } from '../../utils/tdr';
-import type { DefaultState, DefaultStore, InitialState, Payload, PlayerId } from '../../utils/types';
-
-type PolemicaDaVezOptions = {
+export type PolemicaDaVezOptions = {
   fixedRounds: boolean;
 };
 
-interface Topic extends TextCard {
+export interface Topic extends TextCard {
   custom?: boolean;
 }
 
-interface CustomTopic extends Topic {
+export interface CustomTopic extends Topic {
   custom: boolean;
 }
 
-type Deck = Topic[];
-type CustomDeck = CustomTopic[];
+export type Deck = Topic[];
+export type CustomDeck = CustomTopic[];
 
-interface Decks {
+export interface Decks {
   deck: Deck;
   customDeck: CustomDeck;
   deckIndex?: number;
@@ -24,11 +21,11 @@ interface Decks {
   pastTopics?: any[];
 }
 
-interface PolemicaDaVezStore extends DefaultStore {
+export interface PolemicaDaVezStore extends DefaultStore {
   gameOrder: PlayerId[];
 }
 
-interface PolemicaDaVezState extends DefaultState {
+export interface PolemicaDaVezState extends DefaultState {
   activePlayerId?: PlayerId;
   gameOrder?: PlayerId[];
   currentTopics?: any;
@@ -41,14 +38,14 @@ interface PolemicaDaVezState extends DefaultState {
   [key: string]: any;
 }
 
-interface PolemicaDaVezInitialState extends InitialState {
+export interface PolemicaDaVezInitialState extends InitialState {
   store: PolemicaDaVezStore;
   state: PolemicaDaVezState;
 }
 
-interface PolemicaDaVezSubmitAction extends Payload {
+export interface PolemicaDaVezSubmitAction extends Payload {
   action: 'SUBMIT_TOPIC' | 'SUBMIT_REACTION';
 }
 
-type FirebaseStateData = FirebaseFirestore.DocumentData | PolemicaDaVezState;
-type FirebaseStoreData = FirebaseFirestore.DocumentData | PolemicaDaVezStore;
+export type FirebaseStateData = FirebaseFirestore.DocumentData | PolemicaDaVezState;
+export type FirebaseStoreData = FirebaseFirestore.DocumentData | PolemicaDaVezStore;

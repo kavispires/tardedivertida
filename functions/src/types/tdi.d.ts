@@ -1,17 +1,15 @@
-import type { CardId, DualLanguageValue } from './types';
-
-export type CrimesHediondosCard = {
+type CrimesHediondosCard = {
   id: CardId;
   type: string;
   name: DualLanguageValue;
 };
 
-export type MonsterCard = {
+type MonsterCard = {
   id: string;
   orientation: string;
 };
 
-export type SuspectCard = {
+type SuspectCard = {
   id: CardId;
   pt: string;
   en: string;

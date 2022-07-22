@@ -1,7 +1,5 @@
 // Types
-import type { NumberDictionary, PlainObject, PlayerId, Players, Round } from '../../utils/types';
 import type { AllWords, ImageCard, PlayerCard } from './types';
-import type { TextCard } from '../../utils/tdr';
 // Constants
 import { GALERIA_DE_SONHOS_PHASES, WORD_DECK_TOTAL } from './constants';
 // Utils
