@@ -1,5 +1,3 @@
-// Types
-import type { GameId, PlayerId, GameName } from '../../utils/types';
 // Constants
 import { HAND_LIMIT } from './constants';
 // Utils

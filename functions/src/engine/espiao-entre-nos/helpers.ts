@@ -2,7 +2,6 @@
 import { ESPIAO_ENTRE_NOS_PHASES, GAME_DURATION, OUTCOMES, SPY } from './constants';
 // Types
 import type { FirebaseStateData, FirebaseStoreData, Outcome } from './types';
-import type { PlayerId, Players } from '../../utils/types';
 // Utils
 import * as utils from '../../utils';
 

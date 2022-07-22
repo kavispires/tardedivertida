@@ -2,7 +2,6 @@
 import { GAME_COLLECTIONS } from '../../utils/constants';
 import { MAX_ROUNDS, PLAYER_COUNTS, TESTEMUNHA_OCULAR_PHASES } from './constants';
 // Types
-import type { GameId, PlainObject, Players } from '../../utils/types';
 import type { TestemunhaOcularInitialState, TestemunhaOcularSubmitAction } from './types';
 // Utils
 import * as utils from '../../utils';

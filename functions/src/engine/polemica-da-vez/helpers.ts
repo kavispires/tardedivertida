@@ -8,7 +8,6 @@ import {
 } from './constants';
 import { DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
 // Types
-import type { PlainObject, Players, Round } from '../../utils/types';
 import type { Decks, PolemicaDaVezOptions } from './types';
 // Utils
 import * as utils from '../../utils';

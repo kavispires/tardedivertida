@@ -1,17 +1,6 @@
 import * as admin from 'firebase-admin';
 // Constants
 import { GLOBAL_USED_DOCUMENTS, USED_GAME_IDS } from '../utils/constants';
-// Types
-import type {
-  CreateGamePayload,
-  FirebaseContext,
-  BasicGamePayload,
-  Players,
-  ExtendedPayload,
-  GameId,
-  GameName,
-  PlainObject,
-} from '../utils/types';
 // Utils
 import * as delegatorUtils from '../utils/delegators';
 import * as utils from '../utils';

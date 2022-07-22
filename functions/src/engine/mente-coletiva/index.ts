@@ -2,7 +2,6 @@
 import { GAME_COLLECTIONS } from '../../utils/constants';
 import { MENTE_COLETIVA_PHASES, MAX_ROUNDS, PLAYER_COUNTS } from './constants';
 // Types
-import type { GameId, Language, Players } from '../../utils/types';
 import type { MenteColetivaInitialState, MenteColetivaOptions, MenteColetivaSubmitAction } from './types';
 // Utilities
 import * as utils from '../../utils';

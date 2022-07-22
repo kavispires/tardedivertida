@@ -1,5 +1,4 @@
 // Types
-import type { Players, SaveGamePayload } from '../../utils/types';
 import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Constants
 import {

@@ -1,36 +1,25 @@
-import type {
-  DefaultState,
-  DefaultStore,
-  InitialState,
-  Payload,
-  PlayerAvatarId,
-  PlayerId,
-  PlayerName,
-} from '../../utils/types';
-import type { GroupQuestionCard } from '../../utils/tdr';
-
-type MenteColetivaOptions = {
+export type MenteColetivaOptions = {
   shortPasture: boolean;
 };
 
-interface ResourceData {
+export interface ResourceData {
   allQuestions: {
     [key: string]: GroupQuestionCard;
   };
 }
 
-interface AllQuestions {
+export interface AllQuestions {
   [key: string]: GroupQuestionCard;
 }
 
-interface PastQuestions {
+export interface PastQuestions {
   id: string;
   answers: string[];
 }
 
-type Deck = GroupQuestionCard[];
+export type Deck = GroupQuestionCard[];
 
-interface MenteColetivaStore extends DefaultStore {
+export interface MenteColetivaStore extends DefaultStore {
   deck: Deck;
   gameOrder: PlayerId[];
   pastQuestions: PastQuestions[];
@@ -38,7 +27,7 @@ interface MenteColetivaStore extends DefaultStore {
   [key: string]: any;
 }
 
-interface MenteColetivaState extends DefaultState {
+export interface MenteColetivaState extends DefaultState {
   gameOrder?: PlayerId[];
   roundType?: string;
   activePlayerId?: PlayerId;
@@ -55,12 +44,12 @@ interface MenteColetivaState extends DefaultState {
   [key: string]: any;
 }
 
-interface MenteColetivaInitialState extends InitialState {
+export interface MenteColetivaInitialState extends InitialState {
   store: MenteColetivaStore;
   state: MenteColetivaState;
 }
 
-interface AnswerEntry {
+export interface AnswerEntry {
   id: string;
   playerId: PlayerId;
   answer: string;
@@ -68,19 +57,19 @@ interface AnswerEntry {
   isLocked: boolean;
 }
 
-interface MenteColetivaSubmitAction extends Payload {
+export interface MenteColetivaSubmitAction extends Payload {
   action: 'SUBMIT_QUESTION' | 'SUBMIT_ANSWERS' | 'NEXT_ANSWERS' | 'ADD_ANSWER';
 }
 
-type FirebaseStateData = FirebaseFirestore.DocumentData | MenteColetivaState;
-type FirebaseStoreData = FirebaseFirestore.DocumentData | MenteColetivaStore;
+export type FirebaseStateData = FirebaseFirestore.DocumentData | MenteColetivaState;
+export type FirebaseStoreData = FirebaseFirestore.DocumentData | MenteColetivaStore;
 
-type SheepAnimation = {
+export type SheepAnimation = {
   animateRight?: boolean;
   animateLeft?: boolean;
 };
 
-interface PastureChangeEntry extends SheepAnimation {
+export interface PastureChangeEntry extends SheepAnimation {
   id: PlayerId;
   name: PlayerName;
   avatarId: PlayerAvatarId;

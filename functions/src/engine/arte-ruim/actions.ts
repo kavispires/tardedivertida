@@ -1,5 +1,3 @@
-// Types
-import type { GameId, PlayerId, GameName, PlainObject } from '../../utils/types';
 // Helpers
 import * as utils from '../../utils';
 // Internal functions

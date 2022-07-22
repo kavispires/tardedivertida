@@ -1,6 +1,5 @@
 import 'jest';
 import * as gameUtils from '../../src/utils/game-utils';
-import { Players } from '../../src/utils/types';
 
 describe('game-utils', () => {
   let result: any = null;

@@ -1,7 +1,5 @@
 // Types
 import type { Album, Card, LinhasCruzadasOptions, Slide } from './types';
-import type { GameOrder, Players, Round } from '../../utils/types';
-import type { ArteRuimCard, TextCard } from '../../utils/tdr';
 // Constants
 import { LINHAS_CRUZADAS_PHASES } from './constants';
 // Utils

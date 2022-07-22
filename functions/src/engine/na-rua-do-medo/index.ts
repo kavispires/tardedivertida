@@ -2,7 +2,6 @@
 import { GAME_COLLECTIONS } from '../../utils/constants';
 import { NA_RUA_DO_MEDO_PHASES, PLAYER_COUNTS, MAX_ROUNDS } from './constants';
 // Types
-import type { GameId, GameName, Language, Players } from '../../utils/types';
 import type { NoRuaDoMedoInitialState, NoRuaDoMedoOptions, NaRuaDoMedoSubmitAction } from './types';
 // Utilities
 import * as utils from '../../utils';

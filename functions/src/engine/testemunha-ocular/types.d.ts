@@ -1,24 +1,20 @@
-import type { SuspectCard } from '../../utils/tdi';
-import type { TestimonyQuestionCard } from '../../utils/tdr';
-import type { CardId, DefaultState, DefaultStore, InitialState, Payload, PlayerId } from '../../utils/types';
+export type SuspectId = CardId;
 
-type SuspectId = CardId;
-
-interface TestemunhaOcularEntry {
+export interface TestemunhaOcularEntry {
   id: string;
   question: string;
   unfit?: SuspectId[];
   fit?: SuspectId[];
 }
 
-interface ResourceData {
+export interface ResourceData {
   allCards: {
     [key: string]: TestimonyQuestionCard;
   };
   allSuspects: SuspectCard[];
 }
 
-interface TestemunhaOcularStore extends DefaultStore {
+export interface TestemunhaOcularStore extends DefaultStore {
   pastQuestions: TestemunhaOcularEntry[];
   gameOrder: PlayerId[];
   turnOrder: PlayerId[];
@@ -27,7 +23,7 @@ interface TestemunhaOcularStore extends DefaultStore {
   questionerIndex?: number;
 }
 
-interface TestemunhaOcularState extends DefaultState {
+export interface TestemunhaOcularState extends DefaultState {
   suspects?: SuspectCard[];
   perpetrator?: any;
   groupScore?: any;
@@ -42,14 +38,14 @@ interface TestemunhaOcularState extends DefaultState {
   [key: string]: any;
 }
 
-interface TestemunhaOcularInitialState extends InitialState {
+export interface TestemunhaOcularInitialState extends InitialState {
   store: TestemunhaOcularStore;
   state: TestemunhaOcularState;
 }
 
-interface TestemunhaOcularSubmitAction extends Payload {
+export interface TestemunhaOcularSubmitAction extends Payload {
   action: 'SELECT_WITNESS' | 'SELECT_QUESTION' | 'GIVE_TESTIMONY' | 'ELIMINATE_SUSPECT';
 }
 
-type FirebaseStateData = FirebaseFirestore.DocumentData | TestemunhaOcularState;
-type FirebaseStoreData = FirebaseFirestore.DocumentData | TestemunhaOcularStore;
+export type FirebaseStateData = FirebaseFirestore.DocumentData | TestemunhaOcularState;
+export type FirebaseStoreData = FirebaseFirestore.DocumentData | TestemunhaOcularStore;

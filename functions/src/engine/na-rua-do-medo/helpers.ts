@@ -11,14 +11,6 @@ import {
   SHORT_GAME_ROUNDS,
 } from './constants';
 // Types
-import type {
-  DualLanguageValue,
-  NumberDictionary,
-  Player,
-  PlayerId,
-  Players,
-  Round,
-} from '../../utils/types';
 import type { CandyStatus, Card, Decks, FirebaseStateData, FirebaseStoreData, Outcome } from './types';
 // Utils
 import * as utils from '../../utils';

@@ -1,5 +1,3 @@
-// Types
-import type { ImageCardId, Players } from '../../utils/types';
 // Constantes
 import { DIGITS, INSTRUMENTOS_CODIFICADOS_PHASES, TOTAL_ROUNDS } from './constants';
 // Helpers

@@ -1,7 +1,5 @@
 // Types
-import type { ImageCardId, PlainObject, Players, Round, StringDictionary } from '../../utils/types';
 import type { SonhosPesadelosCards, ThemeDeck } from './types';
-import type { NamingPromptCard } from '../../utils/tdr';
 // Constants
 import { IMAGE_CARDS_PER_ROUND, SONHOS_PESADELOS_PHASES, THEMES_PER_ROUND } from './constants';
 // Helpers
