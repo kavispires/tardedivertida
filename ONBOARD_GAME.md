@@ -35,7 +35,6 @@ All file paths here are relative to `/src`.
 
 ### Constants
 
-- Add your game to `/assets/data/games.json`, make sure to use an unique game code letter and the available flag.
 - Update `GAME_COLLECTION` in `/utils/constants.ts`.
 - Update `PHASES` in `/utils/phases.ts`.
 
@@ -50,6 +49,7 @@ All file paths here are relative to `/src`.
 - Create a session file `Session<game-name>.tsx` with basic placeholder stuff.
 - Create a api file `api-requests.ts` for api calls for the game.
 - Create a `<game-name>.d.ts` for game specific types.
+- Create a `game-info.ts` for game info object.
 - Update `/games/index.ts` to include the new game.
 - Update `/pages/Game.tsx` to include the new Game Session.
 
