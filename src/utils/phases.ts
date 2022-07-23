@@ -1,7 +1,7 @@
 /**
  * Enum of Game Phases
  */
-export const PHASES: Record<string, Record<string, string>> = {
+export const PHASES: ObjectDictionary = {
   DEFAULT: {
     LOBBY: 'LOBBY',
     RULES: 'RULES',
@@ -94,6 +94,12 @@ export const PHASES: Record<string, Record<string, string>> = {
     REACT: 'REACT',
     RESOLUTION: 'RESOLUTION',
   },
+  QUEM_NAO_MATA: {
+    TARGETING: 'TARGETING',
+    STANDOFF: 'STANDOFF',
+    DUEL: 'DUEL',
+    RESOLUTION: 'RESOLUTION',
+  },
   QUEM_SOU_EU: {
     ASSIGNMENT: 'ASSIGNMENT',
     QUESTIONING: 'QUESTIONING',
@@ -127,6 +133,13 @@ export const PHASES: Record<string, Record<string, string>> = {
     SECRET_WORD_SELECTION: 'SECRET_WORD_SELECTION',
     PLAYERS_CLUES: 'PLAYERS_CLUES',
     CLUE_EVALUATIONS: 'CLUE_EVALUATIONS',
+  },
+  SUPER_CAMPEONATO: {
+    CHALLENGE_SELECTION: 'CHALLENGE_SELECTION',
+    CONTENDER_SELECTION: 'CONTENDER_SELECTION',
+    BETS: 'BETS',
+    BATTLE: 'BATTLE',
+    RESULTS: 'RESULTS',
   },
   CRUZA_PALAVRAS: {
     CLUE_WRITING: 'CLUE_WRITING',
