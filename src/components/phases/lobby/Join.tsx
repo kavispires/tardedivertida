@@ -152,8 +152,8 @@ export function Join({ players, info, meta }: JoinProps) {
       <div className="lobby-join__card">
         <Image
           alt={info?.title[language]}
-          src={`${PUBLIC_URL.BANNERS}game-image-${info?.gameName}-${language}.jpg`}
-          fallback={`${PUBLIC_URL.BANNERS}/game-image-em-breve.jpg`}
+          src={`${PUBLIC_URL.BANNERS}${info?.gameName}-${language}.jpg`}
+          fallback={`${PUBLIC_URL.BANNERS}/em-breve.jpg`}
           className="lobby-join__game-image"
         />
         <h1 className="lobby-join__title">

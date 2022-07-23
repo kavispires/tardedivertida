@@ -121,8 +121,8 @@ export function CreateGameModal({ gameInfo }: CreateGameModalProps): JSX.Element
           <>
             <Image
               alt={gameInfo.title[language]}
-              src={`${PUBLIC_URL.BANNERS}game-image-${gameInfo.gameName}-${language}.jpg`}
-              fallback={`${PUBLIC_URL.BANNERS}/game-image-em-breve-${language}.jpg`}
+              src={`${PUBLIC_URL.BANNERS}${gameInfo.gameName}-${language}.jpg`}
+              fallback={`${PUBLIC_URL.BANNERS}/em-breve-${language}.jpg`}
             />
 
             <Options

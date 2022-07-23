@@ -47,7 +47,7 @@ export function RulesCarousel({ info, className = '', ruleClass = '' }: RulesCar
             className="rules-carousel__image"
             src={
               index === 0
-                ? `${PUBLIC_URL.BANNERS}game-image-${info.gameName}-${language}.jpg`
+                ? `${PUBLIC_URL.BANNERS}${info.gameName}-${language}.jpg`
                 : `${PUBLIC_URL.RULES}game-rule-${info.gameName}-${index}.jpg`
             }
             fallback={`${PUBLIC_URL.RULES}game-rule-not-found.jpg`}

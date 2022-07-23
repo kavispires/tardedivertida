@@ -24,6 +24,12 @@ type ArteRuimPair = {
   values: [string, string];
 };
 
+type Contenders = {
+  id: CardId;
+  name: DualLanguageValue;
+  exclusivity?: Language;
+};
+
 type CrimeTile = {
   id: string;
   title: DualLanguageValue;
@@ -33,12 +39,6 @@ type CrimeTile = {
   specific?: string | null;
 };
 
-type SpyLocation = {
-  id: CardId;
-  name: string;
-  roles: string[];
-};
-
 type GroupQuestionCard = {
   id: CardId;
   prefix: string;
@@ -46,10 +46,23 @@ type GroupQuestionCard = {
   suffix: string;
 };
 
+type NamingPromptCard = {
+  id: CardId;
+  text: string;
+  set: string;
+  level: number;
+};
+
 type OpposingIdeaCard = {
   id: CardId;
   left: string;
   right: string;
+};
+
+type SpyLocation = {
+  id: CardId;
+  name: string;
+  roles: string[];
 };
 
 type TestimonyQuestionCard = {
@@ -61,11 +74,4 @@ type ThemeCard = {
   id: CardId;
   text: string;
   description?: string;
-};
-
-type NamingPromptCard = {
-  id: CardId;
-  text: string;
-  set: string;
-  level: number;
 };
