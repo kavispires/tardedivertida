@@ -1,0 +1,32 @@
+{
+  "gameCode": "K",
+  "gameName": "palheta-de-cores",
+  "version": "none",
+  "title": {
+    "pt": "Palheta de Cores",
+    "en": "Color Palette"
+  },
+  "popularName": {
+    "pt": "O das cores",
+    "en": "The color one"
+  },
+  "basedOn": "tsaL daeD",
+  "summary": {
+    "pt": "Crie palhetas para outros jogadores adivinharem",
+    "en": "Create beautiful palettes so other players can guess"
+  },
+  "rules": {
+    "pt": ["TBD"],
+    "en": ["TBD"]
+  },
+  "playerCount": {
+    "recommended": "4-6",
+    "min": 2,
+    "max": 10
+  },
+  "tags": ["cooperative", "same-time", "pairing"],
+  "available": {
+    "pt": false,
+    "en": false
+  }
+}

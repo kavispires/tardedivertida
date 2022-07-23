@@ -1,0 +1,32 @@
+{
+  "gameCode": "Q",
+  "gameName": "quem-nao-mata",
+  "version": "none",
+  "title": {
+    "pt": "Quem não mata, morre",
+    "en": "Mortal Standoff"
+  },
+  "popularName": {
+    "pt": "O de matar",
+    "en": "The mexican standoff one"
+  },
+  "basedOn": "tsaL daeD",
+  "summary": {
+    "pt": "Estamos em um impasse, em quem você vai atirar? Quem vai sobreviver?",
+    "en": "We're in a standoff, who's gonna shoot first? Who's gonna survive?"
+  },
+  "rules": {
+    "pt": ["TBD"],
+    "en": ["TBD"]
+  },
+  "playerCount": {
+    "recommended": "6+",
+    "min": 4,
+    "max": 10
+  },
+  "tags": ["cooperative", "same-time"],
+  "available": {
+    "pt": false,
+    "en": false
+  }
+}

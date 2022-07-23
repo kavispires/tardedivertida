@@ -1,0 +1,32 @@
+{
+  "gameCode": "W",
+  "gameName": "super-campeonato",
+  "version": "none",
+  "title": {
+    "pt": "Super Campeonato Ultimate",
+    "en": "Ultimate Championship"
+  },
+  "popularName": {
+    "pt": "O do campeonato",
+    "en": "The brackets one"
+  },
+  "basedOn": "nwodwohS etamitlU",
+  "summary": {
+    "pt": "Num campeonato aleatório quem você aposta todas suas fichas?",
+    "en": "In a random showdown, who will you bet all your chips?"
+  },
+  "rules": {
+    "pt": ["TBD"],
+    "en": ["TBD"]
+  },
+  "playerCount": {
+    "recommended": "4",
+    "min": 3,
+    "max": 8
+  },
+  "tags": ["competitive", "discussion", "voting"],
+  "available": {
+    "pt": false,
+    "en": false
+  }
+}
