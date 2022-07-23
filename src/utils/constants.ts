@@ -99,12 +99,6 @@ export const ADMIN_ACTIONS: StringDictionary = {
 };
 
 /**
- * Random names used during Dev
- */
-export const RANDOM_NAMES: string[] =
-  'Abe,Bob,Cam,Dan,Eva,Fin,Gus,Hal,Ian,Jan,Kim,Leo,Max,Nic,Ole,Pat,Quinn,Roy,Tim'.split(',');
-
-/**
  * Enum of available games
  */
 export const GAME_COLLECTION: StringDictionary = {
