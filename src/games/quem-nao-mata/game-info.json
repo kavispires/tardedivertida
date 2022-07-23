@@ -1,7 +1,7 @@
 {
   "gameCode": "Q",
   "gameName": "quem-nao-mata",
-  "version": "none",
+  "version": "alpha",
   "title": {
     "pt": "Quem não mata, morre",
     "en": "Mortal Standoff"
@@ -26,7 +26,7 @@
   },
   "tags": ["cooperative", "same-time"],
   "available": {
-    "pt": false,
-    "en": false
+    "pt": true,
+    "en": true
   }
 }

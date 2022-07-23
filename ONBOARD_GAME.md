@@ -6,9 +6,7 @@ All file paths here are relative to `/functions/src`.
 
 ### Constants
 
-- Update `GAME_CODES` in `/functions/src/utils/constants.ts`.
-- Update `GAME_KEYS` in `/functions/src/utils/constants.ts`.
-- Update `GAME_COLLECTIONS` in `/functions/src/utils/constants.ts`.
+- Update `GAMES` in `/functions/src/utils/constants.ts`.
 
 ### Create engine
 
@@ -50,7 +48,6 @@ All file paths here are relative to `/src`.
 - Create a api file `api-requests.ts` for api calls for the game.
 - Create a `<game-name>.d.ts` for game specific types.
 - Create a `game-info.ts` for game info object.
-- Update `/games/index.ts` to include the new game.
 - Update `/pages/Game.tsx` to include the new Game Session.
 
 # Add cloud functions Adapter
