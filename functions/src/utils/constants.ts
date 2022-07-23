@@ -151,8 +151,10 @@ export const TDR_RESOURCES = {
   ARTE_RUIM_GROUPS: 'arte-ruim-groups',
   ARTE_RUIM_PAIRS: 'arte-ruim-pairs',
   CATEGORIES: 'categories',
+  CHALLENGES: 'challenges',
   CHARACTERS: 'characters',
-  CRIME_TILES: 'crimes-tiles',
+  CONTENDERS: 'contenders', // dual language
+  CRIME_TILES: 'crimes-tiles', // dual language
   GROUP_QUESTIONS: 'group-questions',
   NAMING_PROMPTS: 'naming-prompts',
   OPPOSING_IDEAS: 'opposing-ideas',

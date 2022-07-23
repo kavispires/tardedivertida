@@ -61,8 +61,8 @@ export function Waiting({ info, players }: WaitingProps) {
       <div className="lobby-waiting__card">
         <Image
           alt={info?.title[language]}
-          src={`${PUBLIC_URL.BANNERS}game-image-${info?.gameName}-${language}.jpg`}
-          fallback={`${PUBLIC_URL.BANNERS}/game-image-em-breve.jpg`}
+          src={`${PUBLIC_URL.BANNERS}${info?.gameName}-${language}.jpg`}
+          fallback={`${PUBLIC_URL.BANNERS}/em-breve.jpg`}
         />
 
         <h1 className="center">{username || 'Fulano'},</h1>

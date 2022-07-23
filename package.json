@@ -85,8 +85,8 @@
     "@testing-library/react": "^12.1.5",
     "@testing-library/user-event": "^13.5.0",
     "gh-pages": "^3.2.3",
-    "husky": "^6.0.0",
-    "lint-staged": "^10.5.4",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.1.2",
     "prettier": "^2.6.2"
   }
 }
