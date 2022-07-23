@@ -75,7 +75,7 @@ const GAMES = [
   },
   {
     code: 'Q',
-    key: 'QUEM_NAO_MATA_MORRE',
+    key: 'QUEM_NAO_MATA',
     collection: 'quem-nao-mata',
   },
   {
