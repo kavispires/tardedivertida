@@ -28,6 +28,7 @@ export function TimerBar({
       showInfo={false}
       style={{ marginBottom: '1rem' }}
       size={steps && steps > 30 ? 'small' : undefined}
+      type={type}
       {...props}
     />
   );
