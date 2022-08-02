@@ -8,8 +8,22 @@ const DEV_NAMES: string[] =
   'Abe,Bob,Cam,Dan,Eva,Fin,Gus,Hal,Ian,Jan,Kim,Leo,Max,Nic,Ole,Pat,Quinn,Roy,Tim'.split(',');
 
 const cacheNames: BooleanDictionary = {};
+const cacheAvatars: BooleanDictionary = {};
 
-const getRandomUniqueFromList = (source: string[], used: string[] = [], cache: BooleanDictionary = {}) => {
+let cacheMockedPlayers: GamePlayers = {};
+
+/**
+ * Gets a random unique item from list based on the cached dictionary or used dictionary
+ * @param source
+ * @param used
+ * @param cache
+ * @returns
+ */
+const getRandomUniqueItemFromList = (
+  source: string[],
+  used: string[] = [],
+  cache: BooleanDictionary = {}
+) => {
   let randomItem = '';
   while (!randomItem || cache[randomItem] || used?.includes(randomItem)) {
     randomItem = getRandomItem(source);
@@ -18,15 +32,34 @@ const getRandomUniqueFromList = (source: string[], used: string[] = [], cache: B
   return randomItem;
 };
 
+/**
+ * Get random user name
+ * @param used
+ * @returns
+ */
 export function mockPlayerName(used?: string[]): string {
-  return getRandomUniqueFromList(DEV_NAMES, used, cacheNames);
+  return getRandomUniqueItemFromList(DEV_NAMES, used, cacheNames);
 }
 
+/**
+ * Mock players to be used during dev
+ * @param players
+ * @param quantity
+ * @param properties
+ * @returns
+ */
 export function mockPlayers(
   players: GamePlayers,
   quantity: number = 10,
   properties?: PlainObject
 ): GamePlayers {
+  if (Object.keys(cacheMockedPlayers).length > 1) {
+    return {
+      ...cacheMockedPlayers,
+      ...players,
+    };
+  }
+
   const usedNames: BooleanDictionary = {};
   const usedAvatars: BooleanDictionary = {};
   Object.values(players).forEach((player) => {
@@ -44,18 +77,21 @@ export function mockPlayers(
       return {
         id: `_${name.toLowerCase()}`,
         name,
-        avatarId: getRandomUniqueFromList(AVAILABLE_AVATAR_IDS, Object.keys(usedAvatars)),
+        avatarId: getRandomUniqueItemFromList(AVAILABLE_AVATAR_IDS, Object.keys(usedAvatars), cacheAvatars),
         updatedAt: Date.now(),
         ready: true,
         ...properties,
       };
     });
 
-  return {
+  const newMockedPlayers: GamePlayers = {
     ...mockedPlayers.reduce((acc: GamePlayers, player) => {
       acc[player.id] = player;
       return acc;
     }, {}),
     ...players,
   };
+
+  cacheMockedPlayers = newMockedPlayers;
+  return cacheMockedPlayers;
 }
