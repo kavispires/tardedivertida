@@ -9,16 +9,29 @@
   &--scale {
     &:hover {
       transform: scale(1.1);
+
+      &:disabled {
+        transform: none;
+      }
     }
   }
 
   &--sepia {
     &:hover {
       filter: sepia(100%);
+
+      &:disabled {
+        filter: grayscale(0.9);
+      }
     }
   }
 
   &--active {
     border: 2px solid get-color(white);
+  }
+
+  &:disabled {
+    filter: grayscale(0.9);
+    cursor: not-allowed;
   }
 }
