@@ -7,7 +7,7 @@ export const handleSubmitTarget = async (
   collectionName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  target: PlayerId
+  targetId: PlayerId
 ) => {
   return await utils.firebase.updatePlayer({
     collectionName,
@@ -15,7 +15,7 @@ export const handleSubmitTarget = async (
     playerId,
     actionText: 'submit your target',
     shouldReady: true,
-    change: { target },
+    change: { target: targetId },
   });
 };
 
@@ -23,15 +23,27 @@ export const handleSubmitMessage = async (
   collectionName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  message: any
+  targetId: PlayerId,
+  recipientId?: PlayerId
 ) => {
+  // Handle player
+  await utils.firebase.updateState({
+    collectionName,
+    gameId,
+    playerId,
+    actionText: 'used message',
+    change: { messaged: true },
+    nextPhaseFunction: getNextPhase,
+  });
+
+  // Handle state
   return await utils.firebase.updateState({
     collectionName,
     gameId,
     playerId,
     actionText: 'submit message',
 
-    change: { message },
+    change: { [`messages.${playerId}`]: { targetId, recipientId: recipientId || 'ALL' } },
     nextPhaseFunction: getNextPhase,
   });
 };

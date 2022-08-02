@@ -15,7 +15,7 @@ import {
   prepareStandoffPhase,
   prepareTargetingPhase,
 } from './setup';
-import { handleSubmitDecision } from './actions';
+import { handleSubmitDecision, handleSubmitMessage, handleSubmitTarget } from './actions';
 
 /**
  * Get Initial Game State
@@ -120,6 +120,12 @@ export const submitAction = async (data: NaRuaDoMedoSubmitAction) => {
   utils.firebase.validateSubmitActionPayload(gameId, collectionName, playerId, action);
 
   switch (action) {
+    case 'SUBMIT_TARGET':
+      utils.firebase.validateSubmitActionProperties(data, ['targetId'], 'submit target');
+      return handleSubmitTarget(collectionName, gameId, playerId, data.targetId);
+    case 'SUBMIT_MESSAGE':
+      utils.firebase.validateSubmitActionProperties(data, ['targetId'], 'submit message');
+      return handleSubmitMessage(collectionName, gameId, playerId, data.targetId, data.recipientId);
     case 'SUBMIT_DECISION':
       utils.firebase.validateSubmitActionProperties(data, ['decision'], 'submit decision');
       return handleSubmitDecision(collectionName, gameId, playerId, data.decision);

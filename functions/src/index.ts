@@ -14,6 +14,7 @@ import * as menteColetivaEngine from './engine/mente-coletiva';
 import * as naRuaDoMedoEngine from './engine/na-rua-do-medo';
 import * as ondaTelepaticaEngine from './engine/onda-telepatica';
 import * as polemicaDaVezEngine from './engine/polemica-da-vez';
+import * as quemNaoMataEngine from './engine/quem-nao-mata';
 import * as retratoFaladoEngine from './engine/retrato-falado';
 import * as sonhosPesadelosEngine from './engine/sonhos-pesadelos';
 import * as testemunhaOcularEngine from './engine/testemunha-ocular';
@@ -94,6 +95,8 @@ exports.naRuaDoMedoSubmitAction = functions.https.onCall(naRuaDoMedoEngine.submi
 exports.ondaTelepaticaSubmitAction = functions.https.onCall(ondaTelepaticaEngine.submitAction);
 
 exports.polemicaDaVezSubmitAction = functions.https.onCall(polemicaDaVezEngine.submitAction);
+
+exports.quemNaoMataSubmitAction = functions.https.onCall(quemNaoMataEngine.submitAction);
 
 exports.retratoFaladoSubmitAction = functions.https.onCall(retratoFaladoEngine.submitAction);
 
