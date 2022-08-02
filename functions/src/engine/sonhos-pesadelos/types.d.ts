@@ -1,21 +1,10 @@
-import type { NamingPromptCard } from '../../utils/tdr';
-import type {
-  DefaultState,
-  DefaultStore,
-  ImageCardId,
-  Meta,
-  Payload,
-  PlayerId,
-  Players,
-} from '../../utils/types';
-
-type SonhosPesadelosCards = {
+export type SonhosPesadelosCards = {
   2: NamingPromptCard[];
   3: NamingPromptCard[];
   4: NamingPromptCard[];
 };
 
-type ThemeDeck = {
+export type ThemeDeck = {
   1: NamingPromptCard[];
   2: NamingPromptCard[];
   3: NamingPromptCard[];
@@ -23,13 +12,13 @@ type ThemeDeck = {
   5: NamingPromptCard[];
 };
 
-interface SonhosPesadelosStore extends DefaultStore {
+export interface SonhosPesadelosStore extends DefaultStore {
   themes?: any;
   results?: any;
   [key: string]: any;
 }
 
-interface SonhosPesadelosState extends DefaultState {
+export interface SonhosPesadelosState extends DefaultState {
   table?: any;
   dreamsCount?: number;
   nightmaresCount?: number;
@@ -41,22 +30,22 @@ interface SonhosPesadelosState extends DefaultState {
   [key: string]: any;
 }
 
-interface SonhosPesadelosInitialState {
+export interface SonhosPesadelosInitialState {
   meta: Meta;
   players: Players;
   store: SonhosPesadelosStore;
   state: SonhosPesadelosState;
 }
 
-interface TableEntry {
+export interface TableEntry {
   cardId: ImageCardId;
   dreamer: PlayerId | null;
   nightmares: PlayerId[];
 }
 
-type Table = TableEntry[];
+export type Table = TableEntry[];
 
-type Result = {
+export type Result = {
   playerId: PlayerId;
   dreamId: ImageCardId;
   dream: string;
@@ -68,9 +57,9 @@ type Result = {
   }[];
 };
 
-interface SonhosPesadelosSubmitAction extends Payload {
+export interface SonhosPesadelosSubmitAction extends Payload {
   action: 'SUBMIT_DREAM' | 'SUBMIT_VOTING';
 }
 
-type FirebaseStateData = FirebaseFirestore.DocumentData | SonhosPesadelosState;
-type FirebaseStoreData = FirebaseFirestore.DocumentData | SonhosPesadelosStore;
+export type FirebaseStateData = FirebaseFirestore.DocumentData | SonhosPesadelosState;
+export type FirebaseStoreData = FirebaseFirestore.DocumentData | SonhosPesadelosStore;

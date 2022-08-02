@@ -1,7 +1,3 @@
-// Types
-import { PlainObject, PlayerId, Players, RankingEntry, Round, StringDictionary } from '../../utils/types';
-import type { CrimeTile } from '../../utils/tdr';
-import type { CrimesHediondosCard } from '../../utils/tdi';
 // Constants
 import {
   CRIMES_HEDIONDOS_PHASES,

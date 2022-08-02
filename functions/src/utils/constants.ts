@@ -1,84 +1,141 @@
-export const AVATAR_IDS = new Array(25).fill(0).map((i, index) => `${i + index}`);
+export const AVATAR_IDS = new Array(50).fill(0).map((i, index) => `${i + index}`);
 
 export const LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-export const GAME_CODES = {
-  A: 'A', // arte-ruim
-  B: 'B', // bomba-relogio
-  C: 'C', // contadores-historias
-  D: 'D', // detetives-imaginativos
-  E: 'E', // espiao-entre-nos
-  F: 'F', // desenho-rapidao
-  G: 'G', // galeria-de-sonhos
-  H: 'H', // crimes-hediondos
-  I: 'I', // instrumentos-codificados
-  K: 'K', // palheta-de-cores
-  L: 'L', // linhas-cruzadas
-  M: 'M', // mente-coletiva
-  N: 'N', // na-rua-do-medo
-  O: 'O', // onda-telepatica
-  P: 'P', // polemica-da-vez
-  Q: 'Q', // quem-sou-eu
-  R: 'R', // retrato-falado
-  S: 'S', // sonhos-pesadelos
-  T: 'T', // testemunha-ocular
-  U: 'U', // ue-so-isso
-  V: 'V', // vendaval-de-palpite
-  X: 'X', // cruza-palavras
-  Y: 'Y', // te-conheco
-};
+const GAMES = [
+  {
+    code: 'A',
+    key: 'ARTE_RUIM',
+    collection: 'arte-ruim',
+  },
+  {
+    code: 'B',
+    key: 'BOMBA_RELOGIO',
+    collection: 'bomba-relogio',
+  },
+  {
+    code: 'C',
+    key: 'CONTADORES_HISTORIAS',
+    collection: 'contadores-historias',
+  },
+  {
+    code: 'D',
+    key: 'DETETIVES_IMAGINATIVOS',
+    collection: 'detetives-imaginativos',
+  },
+  {
+    code: 'E',
+    key: 'ESPIAO_ENTRE_NOS',
+    collection: 'espiao-entre-nos',
+  },
+  {
+    code: 'G',
+    key: 'GALERIA_DE_SONHOS',
+    collection: 'galeria-de-sonhos',
+  },
+  {
+    code: 'H',
+    key: 'CRIMES_HEDIONDOS',
+    collection: 'crimes-hediondos',
+  },
+  {
+    code: 'I',
+    key: 'INSTRUMENTOS_CODIFICADOS',
+    collection: 'instrumentos-codificados',
+  },
+  {
+    code: 'K',
+    key: 'PALHETA_DE_CORES',
+    collection: 'palheta-de-cores',
+  },
+  {
+    code: 'L',
+    key: 'LINHAS_CRUZADAS',
+    collection: 'linhas-cruzadas',
+  },
+  {
+    code: 'M',
+    key: 'MENTE_COLETIVA',
+    collection: 'mente-coletiva',
+  },
+  {
+    code: 'N',
+    key: 'NA_RUA_DO_MEDO',
+    collection: 'na-rua-do-medo',
+  },
+  {
+    code: 'O',
+    key: 'ONDA_TELEPATICA',
+    collection: 'onda-telepatica',
+  },
+  {
+    code: 'P',
+    key: 'POLEMICA_DA_VEZ',
+    collection: 'polemica-da-vez',
+  },
+  {
+    code: 'Q',
+    key: 'QUEM_NAO_MATA',
+    collection: 'quem-nao-mata',
+  },
+  {
+    code: 'R',
+    key: 'RETRATO_FALADO',
+    collection: 'retrato-falado',
+  },
+  {
+    code: 'S',
+    key: 'SONHOS_PESADELOS',
+    collection: 'sonhos-pesadelos',
+  },
+  {
+    code: 'T',
+    key: 'TESTEMUNHA_OCULAR',
+    collection: 'testemunha-ocular',
+  },
+  {
+    code: 'U',
+    key: 'UE_SO_ISSO',
+    collection: 'ue-so-isso',
+  },
+  {
+    code: 'V',
+    key: 'VENDAVAL_DE_PALPITE',
+    collection: 'vendaval-de-palpite',
+  },
+  {
+    code: 'W',
+    key: 'SUPER_CAMPEONATO_ULTIMATE',
+    collection: 'super-campeonato',
+  },
+  {
+    code: 'X',
+    key: 'CRUZA_PALAVRAS',
+    collection: 'cruza-palavras',
+  },
+];
 
-export const GAME_KEYS = {
-  ARTE_RUIM: 'ARTE_RUIM',
-  BOMBA_RELOGIO: 'BOMBA_RELOGIO',
-  CONTADORES_HISTORIAS: 'CONTADORES_HISTORIAS',
-  DETETIVES_IMAGINATIVOS: 'DETETIVES_IMAGINATIVOS',
-  ESPIAO_ENTRE_NOS: 'ESPIAO_ENTRE_NOS',
-  DESENHO_RAPIDAO: 'DESENHO_RAPIDAO',
-  GALERIA_DE_SONHOS: 'GALERIA_DE_SONHOS',
-  CRIMES_HEDIONDOS: 'CRIMES_HEDIONDOS',
-  INSTRUMENTOS_CODIFICADOS: 'INSTRUMENTOS_CODIFICADOS',
-  PALHETA_DE_CORES: 'PALHETA_DE_CORES',
-  LINHAS_CRUZADAS: 'LINHAS_CRUZADAS',
-  MENTE_COLETIVA: 'MENTE_COLETIVA',
-  NA_RUA_DO_MEDO: 'NA_RUA_DO_MEDO',
-  ONDA_TELEPATICA: 'ONDA_TELEPATICA',
-  POLEMICA_DA_VEZ: 'POLEMICA_DA_VEZ',
-  QUEM_SOU_EU: 'QUEM_SOU_EU',
-  RETRATO_FALADO: 'RETRATO_FALADO',
-  SONHOS_PESADELOS: 'SONHOS_PESADELOS',
-  TESTEMUNHA_OCULAR: 'TESTEMUNHA_OCULAR',
-  UE_SO_ISSO: 'UE_SO_ISSO',
-  VENDAVAL_DE_PALPITE: 'VENDAVAL_DE_PALPITE',
-  CRUZA_PALAVRAS: 'CRUZA_PALAVRAS',
-  TE_CONHECO: 'TE_CONHECO',
-};
+const generateGameCodes = (): StringDictionary =>
+  GAMES.reduce((acc, entry) => {
+    acc[entry.code] = entry.code;
+    return acc;
+  }, {});
 
-export const GAME_COLLECTIONS = {
-  ARTE_RUIM: 'arte-ruim',
-  BOMBA_RELOGIO: 'bomba-relogio',
-  CONTADORES_HISTORIAS: 'contadores-historias',
-  DETETIVES_IMAGINATIVOS: 'detetives-imaginativos',
-  ESPIAO_ENTRE_NOS: 'espiao-entre-nos',
-  DESENHO_RAPIDAO: 'desenho-rapidao',
-  GALERIA_DE_SONHOS: 'galeria-de-sonhos',
-  CRIMES_HEDIONDOS: 'crimes-hediondos',
-  INSTRUMENTOS_CODIFICADOS: 'instrumentos-codificados',
-  PALHETA_DE_CORES: 'palheta-de-cores',
-  LINHAS_CRUZADAS: 'linhas-cruzadas',
-  MENTE_COLETIVA: 'mente-coletiva',
-  NA_RUA_DO_MEDO: 'na-rua-do-medo',
-  ONDA_TELEPATICA: 'onda-telepatica',
-  POLEMICA_DA_VEZ: 'polemica-da-vez',
-  QUEM_SOU_EU: 'quem-sou-eu',
-  RETRATO_FALADO: 'retrato-falado',
-  SONHOS_PESADELOS: 'sonhos-pesadelos',
-  TESTEMUNHA_OCULAR: 'testemunha-ocular',
-  UE_SO_ISSO: 'ue-so-isso',
-  VENDAVAL_DE_PALPITE: 'vendaval-de-palpite',
-  CRUZA_PALAVRAS: 'cruza-palavras',
-  TE_CONHECO: 'te-conheco',
-};
+const generateGameKeys = (): StringDictionary =>
+  GAMES.reduce((acc, entry) => {
+    acc[entry.key] = entry.key;
+    return acc;
+  }, {});
+
+const generateGameCollections = (): StringDictionary =>
+  GAMES.reduce((acc, entry) => {
+    acc[entry.key] = entry.collection;
+    return acc;
+  }, {});
+
+export const GAME_CODES = generateGameCodes();
+export const GAME_KEYS = generateGameKeys();
+export const GAME_COLLECTIONS = generateGameCollections();
 
 export const GLOBAL_USED_DOCUMENTS = {
   ARTE_RUIM: 'usedArteRuimCards',
@@ -94,8 +151,10 @@ export const TDR_RESOURCES = {
   ARTE_RUIM_GROUPS: 'arte-ruim-groups',
   ARTE_RUIM_PAIRS: 'arte-ruim-pairs',
   CATEGORIES: 'categories',
+  CHALLENGES: 'challenges',
   CHARACTERS: 'characters',
-  CRIME_TILES: 'crimes-tiles',
+  CONTENDERS: 'contenders', // dual language
+  CRIME_TILES: 'crimes-tiles', // dual language
   GROUP_QUESTIONS: 'group-questions',
   NAMING_PROMPTS: 'naming-prompts',
   OPPOSING_IDEAS: 'opposing-ideas',

@@ -13,13 +13,14 @@ import avatars from 'assets/images/avatars.svg';
 import localStorage from 'services/localStorage';
 // Utils
 import { AVAILABLE_AVATAR_IDS, AVATARS } from 'utils/avatars';
-import { PUBLIC_URL, RANDOM_NAMES } from 'utils/constants';
+import { PUBLIC_URL } from 'utils/constants';
 import { getRandomItem, isDevEnv } from 'utils/helpers';
 import { getRandomWelcomeMessage, speak } from 'utils/speech';
 // Components
 import { Translate } from 'components/language';
+import { mockPlayerName } from 'mock/players';
 
-const randomName = isDevEnv ? getRandomItem(RANDOM_NAMES) : undefined;
+const randomName = isDevEnv ? mockPlayerName() : undefined;
 
 type JoinProps = {
   info: GameInfo;
@@ -152,8 +153,8 @@ export function Join({ players, info, meta }: JoinProps) {
       <div className="lobby-join__card">
         <Image
           alt={info?.title[language]}
-          src={`${PUBLIC_URL.BANNERS}game-image-${info?.gameName}-${language}.jpg`}
-          fallback={`${PUBLIC_URL.BANNERS}/game-image-em-breve.jpg`}
+          src={`${PUBLIC_URL.BANNERS}${info?.gameName}-${language}.jpg`}
+          fallback={`${PUBLIC_URL.BANNERS}/em-breve.jpg`}
           className="lobby-join__game-image"
         />
         <h1 className="lobby-join__title">

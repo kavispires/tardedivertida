@@ -14,7 +14,7 @@ export function GameDetailsContent({ game }: { game: GameInfo }) {
       <Image
         alt={game.title[language]}
         src={`${PUBLIC_URL.EXAMPLES}game-example-${game.gameName}.png`}
-        fallback={`${PUBLIC_URL.BANNERS}/game-image-em-breve-${language}.jpg`}
+        fallback={`${PUBLIC_URL.BANNERS}/em-breve-${language}.jpg`}
       />
       <Card.Meta style={{ marginTop: '8px' }} description={game.summary[language]} />
 

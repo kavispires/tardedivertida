@@ -1,17 +1,8 @@
-import type {
-  DefaultState,
-  DefaultStore,
-  DualLanguageValue,
-  InitialState,
-  NumberDictionary,
-  Payload,
-} from '../../utils/types';
-
-type NoRuaDoMedoOptions = {
+export type NoRuaDoMedoOptions = {
   shortGame: boolean;
 };
 
-type Card = {
+export type Card = {
   id: string;
   key: string;
   name: DualLanguageValue;
@@ -19,25 +10,25 @@ type Card = {
   value: number;
 };
 
-type Decks = {
+export type Decks = {
   horrorDeck: Card[];
   jackpotDeck: Card[];
   candyDeck: Card[];
   horrorCount: NumberDictionary;
 };
 
-type CandyStatus = {
+export type CandyStatus = {
   leftover: number;
   perPlayer: number;
 };
 
-type Outcome = {
+export type Outcome = {
   status: string;
   flipCard: boolean;
   isEverybodyHome?: boolean;
 };
 
-interface NoRuaDoMedoStore extends DefaultStore {
+export interface NoRuaDoMedoStore extends DefaultStore {
   horrorDeck: Card[];
   jackpotDeck: Card[];
   candyDeck: Card[];
@@ -46,7 +37,7 @@ interface NoRuaDoMedoStore extends DefaultStore {
   [key: string]: any;
 }
 
-interface NoRuaDoMedoState extends DefaultState {
+export interface NoRuaDoMedoState extends DefaultState {
   street?: Card[];
   currentCard?: Card;
   candySidewalk?: CandyStatus[];
@@ -56,16 +47,16 @@ interface NoRuaDoMedoState extends DefaultState {
   [key: string]: any;
 }
 
-interface NoRuaDoMedoInitialState extends InitialState {
+export interface NoRuaDoMedoInitialState extends InitialState {
   store: NoRuaDoMedoStore;
   state: NoRuaDoMedoState;
 }
 
-interface NaRuaDoMedoSubmitAction extends Payload {
+export interface NaRuaDoMedoSubmitAction extends Payload {
   action: 'SUBMIT_DECISION';
 }
 
-type FirebaseStateData = FirebaseFirestore.DocumentData | NoRuaDoMedoState;
-type FirebaseStoreData = FirebaseFirestore.DocumentData | NoRuaDoMedoStore;
+export type FirebaseStateData = FirebaseFirestore.DocumentData | NoRuaDoMedoState;
+export type FirebaseStoreData = FirebaseFirestore.DocumentData | NoRuaDoMedoStore;
 
-type Decisions = 'CONTINUE' | 'GO_HOME' | 'HOME';
+export type Decisions = 'CONTINUE' | 'GO_HOME' | 'HOME';

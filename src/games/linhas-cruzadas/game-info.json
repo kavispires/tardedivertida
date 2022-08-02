@@ -1,7 +1,7 @@
 {
   "gameCode": "L",
   "gameName": "linhas-cruzadas",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "title": {
     "pt": "Linhas Cruzadas",
     "en": "Mis...communication"
@@ -16,8 +16,12 @@
     "en": "Draw... guess... repeat..."
   },
   "rules": {
-    "pt": ["TBD"],
-    "en": ["TBD"]
+    "pt": [
+      "Neste jogo, você recebe uma carta e a desenha, daí o próximo jogador tentar adivinhar o que é, daí o próximo jogador desenha a adivinhação, e por ai vai até seu album original volta pra você."
+    ],
+    "en": [
+      "In this game, you receive a prompt and will have to draw it, then the next player will attempt to guess your drawing, then the next player will draw the guess attempt, and so on until your album comes back to you"
+    ]
   },
   "playerCount": {
     "recommended": "6+",

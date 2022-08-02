@@ -47,8 +47,8 @@ export function GameInfoDrawer({ players, state, info, userId }: GameInfoDrawerP
         >
           <Image
             alt={info?.title?.[language]}
-            src={`${PUBLIC_URL.BANNERS}game-image-${info.gameName}-${language}.jpg`}
-            fallback={`${PUBLIC_URL.BANNERS}/game-image-em-breve-${language}.jpg`}
+            src={`${PUBLIC_URL.BANNERS}${info.gameName}-${language}.jpg`}
+            fallback={`${PUBLIC_URL.BANNERS}/em-breve-${language}.jpg`}
             preview={false}
           />
 

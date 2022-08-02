@@ -1,14 +1,3 @@
-// Types
-import type {
-  GameOrder,
-  PlainObject,
-  Player,
-  PlayerAvatarId,
-  PlayerId,
-  PlayerName,
-  Players,
-  TurnOrder,
-} from './types';
 // Constants
 import { AVATAR_IDS } from './constants';
 // Utils

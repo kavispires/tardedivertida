@@ -1,6 +1,4 @@
 // Types
-import type { BooleanDictionary, CardId, PlainObject, Players, Round } from '../../utils/types';
-import type { ArteRuimCard, ArteRuimGroup, ArteRuimPair } from '../../utils/tdr';
 import type { ArteRuimDrawing, FirebaseStoreData, CardsByLevel, ResourceData } from './types';
 // Constants
 import {
@@ -439,7 +437,7 @@ export const buildRanking = (drawings: ArteRuimDrawing[], players: Players) => {
     });
   });
 
-  return Object.values(newScores).sort((a, b) => (a.newScore > b.newScore ? 1 : -1));
+  return Object.values(newScores).sort((a: NewScore, b: NewScore) => (a.newScore > b.newScore ? 1 : -1));
 };
 
 /**

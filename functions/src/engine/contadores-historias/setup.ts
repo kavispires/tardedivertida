@@ -7,9 +7,8 @@ import {
   TABLE_CARDS_BY_PLAYER_COUNT,
 } from './constants';
 import { DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
-// Types
+// Type
 import type { FirebaseStateData, FirebaseStoreData } from './types';
-import type { Players, SaveGamePayload } from '../../utils/types';
 // Utils
 import * as utils from '../../utils';
 // Internal

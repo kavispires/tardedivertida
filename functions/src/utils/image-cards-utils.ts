@@ -1,6 +1,4 @@
 import fetch from 'cross-fetch';
-// Types
-import type { ImageCardId } from './types';
 // Helpers
 import { config, throwException } from './firebase';
 import { shuffle } from './game-utils';

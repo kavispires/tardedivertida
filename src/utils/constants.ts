@@ -99,12 +99,6 @@ export const ADMIN_ACTIONS: StringDictionary = {
 };
 
 /**
- * Random names used during Dev
- */
-export const RANDOM_NAMES: string[] =
-  'Abe,Bob,Cam,Dan,Eva,Fin,Gus,Hal,Ian,Jan,Kim,Leo,Max,Nic,Ole,Pat,Quinn,Roy,Tim'.split(',');
-
-/**
  * Enum of available games
  */
 export const GAME_COLLECTION: StringDictionary = {
@@ -123,12 +117,12 @@ export const GAME_COLLECTION: StringDictionary = {
   NA_RUA_DO_MEDO: 'na-rua-do-medo',
   ONDA_TELEPATICA: 'onda-telepatica',
   POLEMICA_DA_VEZ: 'polemica-da-vez',
-  QUEM_SOU_EU: 'quem-sou-eu',
+  QUEM_NAO_MATA: 'quem-nao-mata',
   RETRATO_FALADO: 'retrato-falado',
   SONHOS_PESADELOS: 'sonhos-pesadelos',
   TESTEMUNHA_OCULAR: 'testemunha-ocular',
   UE_SO_ISSO: 'ue-so-isso',
   VENDAVAL_DE_PALPITE: 'vendaval-de-palpite',
+  SUPER_CAMPEONATO: 'SUPER_CAMPEONATO',
   CRUZA_PALAVRAS: 'cruza-palavras',
-  TE_CONHECO: 'te-conheco',
 };

@@ -2,7 +2,6 @@
 import { GAME_COLLECTIONS } from '../../utils/constants';
 import { DETETIVES_IMAGINATIVOS_PHASES, PLAYER_COUNTS } from './constants';
 // Types
-import type { GameId, Language, Players } from '../../utils/types';
 import type { DetetivesImaginativosInitialState, DetetivesImaginativosSubmitAction } from './types';
 // Utils
 import * as utils from '../../utils';

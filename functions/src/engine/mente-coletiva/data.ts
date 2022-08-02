@@ -3,8 +3,6 @@ import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
 import { MAX_ROUNDS, QUESTIONS_PER_ROUND } from './constants';
 // Types
 import type { ResourceData } from './types';
-import type { StringDictionary } from '../../utils/types';
-import type { GroupQuestionCard } from '../../utils/tdr';
 // Helpers
 import * as globalUtils from '../global';
 import * as resourceUtils from '../resource';

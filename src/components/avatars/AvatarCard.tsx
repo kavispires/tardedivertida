@@ -1,3 +1,4 @@
+import { ReactNode } from 'react';
 import clsx from 'clsx';
 // Resources
 import { AVATARS } from 'utils/avatars';
@@ -7,17 +8,38 @@ import { useGlobalState, useLanguage } from 'hooks';
 import { Avatar } from './Avatar';
 
 type AvatarCardProps = {
+  /**
+   * The player object which must contain avatarId, and name
+   */
   player: GamePlayer;
+  /**
+   * The card size
+   */
   size?: 'small' | 'default' | 'large';
   /**
    * Optional custom class name
    */
   className?: string;
+  /**
+   * Indicates if the player name should be displayed
+   */
   withName?: boolean;
+  /**
+   * Indicates if the description (animal type) should be displayed
+   */
   withDescription?: boolean;
+  /**
+   * If text should be displayed in uppercase
+   */
   uppercase?: boolean;
+  /**
+   * Displays YOU/VOCÊ if player is the user
+   */
   addressUser?: boolean;
-  replacementAvatar?: any;
+  /**
+   * Replaces the regular Avatar
+   */
+  replacementAvatar?: ReactNode;
 };
 
 export const AvatarCard = ({

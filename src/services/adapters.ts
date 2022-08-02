@@ -62,6 +62,10 @@ export const POLEMICA_DA_VEZ_API = {
   submitAction: httpsCallable(functions, 'polemicaDaVezSubmitAction'),
 };
 
+export const QUEM_NAO_MATA_API = {
+  submitAction: httpsCallable(functions, 'quemNaoMataSubmitAction'),
+};
+
 export const RETRATO_FALADO_API = {
   submitAction: httpsCallable(functions, 'retratoFaladoSubmitAction'),
 };

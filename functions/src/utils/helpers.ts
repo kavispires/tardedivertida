@@ -1,16 +1,4 @@
 import { LETTERS } from './constants';
-import type {
-  BooleanDictionary,
-  GameCode,
-  InitialState,
-  InitialStateArgs,
-  NewScores,
-  PlainObject,
-  PlayerId,
-  Players,
-  Round,
-  Teams,
-} from './types';
 import { shuffle } from './game-utils';
 
 /**

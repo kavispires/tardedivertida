@@ -1,19 +1,8 @@
-import type { TextCard } from '../../utils/tdr';
-import type {
-  DefaultState,
-  DefaultStore,
-  InitialState,
-  Payload,
-  PlainObject,
-  PlayerId,
-  PlayerName,
-} from '../../utils/types';
-
-interface AllWords {
+export interface AllWords {
   [key: string]: TextCard;
 }
 
-interface UsedWord {
+export interface UsedWord {
   id: string;
   text: string;
   playerName?: PlayerName | null;
@@ -22,11 +11,11 @@ interface UsedWord {
   votes: 0;
 }
 
-interface UsedWords {
+export interface UsedWords {
   [key: string]: UsedWord;
 }
 
-interface UeSoIssoStore extends DefaultStore {
+export interface UeSoIssoStore extends DefaultStore {
   deck: TextCard[];
   turnOrder: PlayerId[];
   gameOrder: PlayerId[];
@@ -39,7 +28,7 @@ interface UeSoIssoStore extends DefaultStore {
   outcome?: any;
 }
 
-interface UeSoIssoState extends DefaultState {
+export interface UeSoIssoState extends DefaultState {
   gameOrder;
   guesserId?: PlayerId;
   controllerId?: PlayerId;
@@ -54,28 +43,28 @@ interface UeSoIssoState extends DefaultState {
   [key: string]: any;
 }
 
-interface UeSoIssoInitialState extends InitialState {
+export interface UeSoIssoInitialState extends InitialState {
   store: UeSoIssoStore;
   state: UeSoIssoState;
 }
 
-interface SubmitSuggestionsPayload extends Payload {
+export interface SubmitSuggestionsPayload extends Payload {
   suggestions: string[];
 }
 
-interface CurrentSuggestions {
+export interface CurrentSuggestions {
   [key: string]: string[];
 }
 
-interface SubmitSuggestionsValidationPayload extends Payload {
+export interface SubmitSuggestionsValidationPayload extends Payload {
   validSuggestions: PlainObject[];
 }
 
-interface ConfirmGuessPayload extends Payload {
+export interface ConfirmGuessPayload extends Payload {
   guess: string;
 }
 
-interface UeSoIssoSubmitAction extends Payload {
+export interface UeSoIssoSubmitAction extends Payload {
   action:
     | 'SUBMIT_VOTES'
     | 'SUBMIT_SUGGESTIONS'
@@ -85,5 +74,5 @@ interface UeSoIssoSubmitAction extends Payload {
     | 'SEND_GUESS';
 }
 
-type FirebaseStateData = FirebaseFirestore.DocumentData | UeSoIssoState;
-type FirebaseStoreData = FirebaseFirestore.DocumentData | UeSoIssoStore;
+export type FirebaseStateData = FirebaseFirestore.DocumentData | UeSoIssoState;
+export type FirebaseStoreData = FirebaseFirestore.DocumentData | UeSoIssoStore;

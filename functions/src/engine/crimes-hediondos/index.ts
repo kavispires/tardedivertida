@@ -2,7 +2,6 @@
 import { GAME_COLLECTIONS } from '../../utils/constants';
 import { CRIMES_HEDIONDOS_PHASES, PLAYER_COUNTS, TOTAL_ROUNDS } from './constants';
 // Types
-import type { GameId, Language, Players } from '../../utils/types';
 import type { CrimesHediondosInitialState, CrimesHediondosSubmitAction } from './types';
 // Utils
 import * as utils from '../../utils';
