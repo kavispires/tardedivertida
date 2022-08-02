@@ -1,6 +1,8 @@
+import { ReactNode } from 'react';
 // Ant Design Resources
 import { message } from 'antd';
 // Components
+import { RulesIcon } from 'components/icons/RulesIcon';
 import { VideoGameControllerIcon } from 'components/icons/VideoGameControllerIcon';
 import { Translate } from 'components/language';
 
@@ -10,16 +12,23 @@ import { Translate } from 'components/language';
  * @param description
  * @param id
  * @param duration
+ * @param type
  * @returns
  */
-export const messageContent = (title: string, description: string, id: string, duration = 30) => {
+export const messageContent = (
+  title: ReactNode,
+  description: ReactNode,
+  id: string,
+  duration = 30,
+  type: 'control' | 'rules' = 'control'
+) => {
   const key = `${id} - ${title}`;
 
   return {
     content: (
       <div>
-        <h1>{title}</h1>
-        <p>{description}</p>
+        <h2>{title}</h2>
+        <div>{description}</div>
         <p>
           <small>
             <Translate
@@ -33,7 +42,12 @@ export const messageContent = (title: string, description: string, id: string, d
     top: window.innerWidth / 2 - 100,
     duration,
     key,
-    icon: <VideoGameControllerIcon style={{ width: '64px' }} />,
+    icon:
+      type === 'control' ? (
+        <VideoGameControllerIcon style={{ width: '64px' }} />
+      ) : (
+        <RulesIcon style={{ width: '64px' }} />
+      ),
     onClick: () => message.destroy(key),
   };
 };

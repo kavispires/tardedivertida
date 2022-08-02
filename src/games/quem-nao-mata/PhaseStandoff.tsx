@@ -1,6 +1,5 @@
-import { useState } from 'react';
 // State & Hooks
-import { useIsUserReady, useUser, useLanguage } from 'hooks';
+import { useIsUserReady, useUser, useLanguage, useStep } from 'hooks';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
@@ -13,7 +12,7 @@ function PhaseStandoff({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
   const { translate } = useLanguage();
   const user = useUser(players);
-  const [step, setStep] = useState(0);
+  const { step, goToNextStep } = useStep(0);
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.QUEM_NAO_MATA.STANDOFF}>
@@ -21,8 +20,8 @@ function PhaseStandoff({ players, state, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<TDIcon />}
-          title={translate('?', '?')}
-          onClose={() => setStep(1)}
+          title={translate('O pega pra capar!', 'Standoff Results')}
+          onClose={goToNextStep}
           currentRound={state?.round?.current}
         >
           <Instruction>Add text here</Instruction>
