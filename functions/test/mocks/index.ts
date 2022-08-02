@@ -1,6 +1,3 @@
-import { ArteRuimCard, TextCard } from '../../src/utils/tdr';
-import { CardId } from '../../src/utils/types';
-
 export const mockArteRuimCardDatabase: Record<CardId, ArteRuimCard> = Array(120)
   .fill(1)
   .reduce((acc, element, index) => {

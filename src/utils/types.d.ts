@@ -184,6 +184,7 @@ type AnimationType =
   | 'flipInY'
   | 'heartBeat'
   | 'pulse'
+  | 'rotateInDownLeft'
   | 'rubberBand'
   | 'shakeX'
   | 'shakeY'

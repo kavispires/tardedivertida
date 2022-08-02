@@ -1,14 +1,11 @@
-import type { TextCard } from '../../utils/tdr';
-import type { DefaultState, DefaultStore, InitialState, Payload, PlayerId } from '../../utils/types';
-
-type ResourceData = {
+export type ResourceData = {
   words: TextCard[];
   categories: TextCard[];
 };
 
-type ClueId = string;
+export type ClueId = string;
 
-type Clue = {
+export type Clue = {
   id: ClueId;
   playerId: PlayerId;
   clue: string;
@@ -26,33 +23,33 @@ type Clue = {
   isResolved?: boolean;
 };
 
-type Clues = Record<ClueId, Clue>;
+export type Clues = Record<ClueId, Clue>;
 
-type CurrentRound = number;
+export type CurrentRound = number;
 
-type BoardEntry = {
+export type BoardEntry = {
   clues: ClueId[];
   evaluation?: number;
 };
 
-type Board = Record<CurrentRound, BoardEntry>;
+export type Board = Record<CurrentRound, BoardEntry>;
 
-interface VendavalDePalpiteStore extends DefaultStore {
+export interface VendavalDePalpiteStore extends DefaultStore {
   categories: TextCard[];
   words: TextCard[];
   [key: string]: any;
 }
 
-interface VendavalDePalpiteState extends DefaultState {
+export interface VendavalDePalpiteState extends DefaultState {
   [key: string]: any;
 }
 
-interface VendavalDePalpiteInitialState extends InitialState {
+export interface VendavalDePalpiteInitialState extends InitialState {
   store: VendavalDePalpiteStore;
   state: VendavalDePalpiteState;
 }
 
-interface VendavalDePalpiteSubmitAction extends Payload {
+export interface VendavalDePalpiteSubmitAction extends Payload {
   action:
     | 'SUBMIT_BOSS'
     | 'SUBMIT_SECRET_WORD'
@@ -62,5 +59,5 @@ interface VendavalDePalpiteSubmitAction extends Payload {
     | 'SUBMIT_HELP';
 }
 
-type FirebaseStateData = FirebaseFirestore.DocumentData | VendavalDePalpiteState;
-type FirebaseStoreData = FirebaseFirestore.DocumentData | VendavalDePalpiteStore;
+export type FirebaseStateData = FirebaseFirestore.DocumentData | VendavalDePalpiteState;
+export type FirebaseStoreData = FirebaseFirestore.DocumentData | VendavalDePalpiteStore;

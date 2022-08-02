@@ -1,5 +1,3 @@
-// Types
-import type { AddPlayerPayload, LoadGamePayload, Players, Payload, ExtendedPayload } from '../utils/types';
 // Utils
 import * as delegatorUtils from '../utils/delegators';
 import * as utils from '../utils';

@@ -1,5 +1,4 @@
 // Types
-import type { Players, SaveGamePayload } from '../../utils/types';
 import type { ResourceData, FirebaseStateData, FirebaseStoreData } from './types';
 // Constants
 import { ARTE_RUIM_PHASES, REGULAR_GAME_LEVELS, SHORT_GAME_LEVELS } from './constants';
@@ -13,7 +12,6 @@ import {
   getNewPastDrawings,
   getTheTwoLevel5Cards,
 } from './helpers';
-import { ArteRuimCard } from '../../utils/tdr';
 
 /**
  * Setup

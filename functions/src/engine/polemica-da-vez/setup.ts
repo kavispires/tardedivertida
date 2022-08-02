@@ -1,7 +1,6 @@
 // Constants
 import { CUSTOM_TOPICS_PER_ROUND, MAX_ROUNDS, POLEMICA_DA_VEZ_PHASES, TOPICS_PER_ROUND } from './constants';
 // Types
-import type { PlainObject, Players, SaveGamePayload } from '../../utils/types';
 import type { FirebaseStateData, FirebaseStoreData } from './types';
 // Utils
 import * as utils from '../../utils';

@@ -1,7 +1,6 @@
 // Constants
 import { TDR_RESOURCES } from '../../utils/constants';
 // Types
-import type { NamingPromptCard } from '../../utils/tdr';
 import type { SonhosPesadelosCards } from './types';
 // Helpers
 import * as resourceUtils from '../resource';

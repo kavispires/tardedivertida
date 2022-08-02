@@ -1,7 +1,5 @@
 // Types
-import type { PlainObject, Players, SaveGamePayload } from '../../utils/types';
 import type { FirebaseStateData, FirebaseStoreData, ResourceData, TestemunhaOcularEntry } from './types';
-import type { TestimonyQuestionCard } from '../../utils/tdr';
 // Constants
 import { MAX_ROUNDS, QUESTION_COUNT, SUSPECT_COUNT, TESTEMUNHA_OCULAR_PHASES } from './constants';
 // Helpers

@@ -1,6 +1,3 @@
-// Types
-import type { PlayerId, Players } from '../../utils/types';
-import type { TestimonyQuestionCard } from '../../utils/tdr';
 // Constants
 import { MAX_ROUNDS, TESTEMUNHA_OCULAR_PHASES } from './constants';
 // Utils

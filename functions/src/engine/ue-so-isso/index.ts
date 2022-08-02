@@ -2,7 +2,6 @@
 import { GAME_COLLECTIONS } from '../../utils/constants';
 import { PLAYER_COUNTS, UE_SO_ISSO_PHASES } from './constants';
 // Types
-import type { Players, GameId } from '../../utils/types';
 import type { UeSoIssoInitialState, UeSoIssoSubmitAction } from './types';
 // Utilities
 import * as utils from '../../utils';

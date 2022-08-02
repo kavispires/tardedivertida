@@ -98,8 +98,8 @@ function Showcase() {
               >
                 <Image
                   alt={game.title[language]}
-                  src={`${PUBLIC_URL.BANNERS}game-image-${game.gameName}-${language}.jpg`}
-                  fallback={`${PUBLIC_URL.BANNERS}/game-image-em-breve-${language}.jpg`}
+                  src={`${PUBLIC_URL.BANNERS}${game.gameName}-${language}.jpg`}
+                  fallback={`${PUBLIC_URL.BANNERS}/em-breve-${language}.jpg`}
                   className="showcase-image"
                   preview={false}
                 />

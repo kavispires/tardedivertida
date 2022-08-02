@@ -2,7 +2,6 @@
 import { GAME_COLLECTIONS } from '../../utils/constants';
 import { PLAYER_COUNTS, SONHOS_PESADELOS_PHASES, TOTAL_ROUNDS } from './constants';
 // Types
-import type { GameId, Language, Players } from '../../utils/types';
 import type { SonhosPesadelosInitialState, SonhosPesadelosSubmitAction } from './types';
 // Utils
 import * as utils from '../../utils';

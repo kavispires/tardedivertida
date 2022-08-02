@@ -1,14 +1,12 @@
-import type { DefaultState, DefaultStore, InitialState, Payload, PlayerId } from '../../utils/types';
+export type TimerAction = 'START' | 'STOP' | 'RESUME' | 'PAUSE';
 
-type TimerAction = 'START' | 'STOP' | 'RESUME' | 'PAUSE';
-
-type Outcome = {
+export type Outcome = {
   type: string;
   votedYes?: string;
   isFinalAssessment: boolean;
 };
 
-type Resolution = {
+export type Resolution = {
   type: string;
   isSpyWin: boolean;
   isSpyGuess: boolean;
@@ -16,28 +14,28 @@ type Resolution = {
   currentLocation?: Location;
 };
 
-interface EspiaoEntreNosStore extends DefaultStore {
+export interface EspiaoEntreNosStore extends DefaultStore {
   gameOrder: PlayerId[];
   turnOrder: PlayerId[];
   [key: string]: any;
 }
 
-interface EspiaoEntreNosState extends DefaultState {
+export interface EspiaoEntreNosState extends DefaultState {
   [key: string]: any;
 }
 
-interface EspiaoEntreNosInitialState extends InitialState {
+export interface EspiaoEntreNosInitialState extends InitialState {
   store: EspiaoEntreNosStore;
   state: EspiaoEntreNosState;
 }
 
-interface EspiaoEntreNosSubmitAction extends Payload {
+export interface EspiaoEntreNosSubmitAction extends Payload {
   action: 'LAST_QUESTIONER' | 'MAKE_ACCUSATION' | 'SUBMIT_VOTE' | 'GUESS_LOCATION';
 }
 
-type ResourceData = {
+export type ResourceData = {
   allLocations: Location[];
 };
 
-type FirebaseStateData = FirebaseFirestore.DocumentData | EspiaoEntreNosState;
-type FirebaseStoreData = FirebaseFirestore.DocumentData | EspiaoEntreNosStore;
+export type FirebaseStateData = FirebaseFirestore.DocumentData | EspiaoEntreNosState;
+export type FirebaseStoreData = FirebaseFirestore.DocumentData | EspiaoEntreNosStore;

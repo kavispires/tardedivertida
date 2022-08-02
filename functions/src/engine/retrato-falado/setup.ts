@@ -1,5 +1,4 @@
 // Types
-import type { Players, SaveGamePayload } from '../../utils/types';
 import type { FirebaseStateData, FirebaseStoreData, MonsterSketch, ResourceData } from './types';
 // Constants
 import { RETRATO_FALADO_PHASES } from './constants';

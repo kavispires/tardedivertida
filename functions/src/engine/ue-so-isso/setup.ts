@@ -1,5 +1,4 @@
 // Types
-import type { Players, SaveGamePayload } from '../../utils/types';
 import type { FirebaseStateData, FirebaseStoreData, AllWords } from './types';
 // Constants
 import { UE_SO_ISSO_PHASES } from './constants';

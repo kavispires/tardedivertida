@@ -1,9 +1,7 @@
 // Constants
 import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
 // Types
-import type { BooleanDictionary, Language } from '../../utils/types';
 import type { ResourceData, ArteRuimDrawing } from './types';
-import type { ArteRuimCard, ArteRuimGroup, ArteRuimPair } from '../../utils/tdr';
 // Helpers
 import * as globalUtils from '../global';
 import * as publicUtils from '../public';

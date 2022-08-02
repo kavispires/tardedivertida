@@ -3,7 +3,6 @@ import { GLOBAL_USED_DOCUMENTS } from '../../utils/constants';
 import { PLAYER_COUNTS } from './constants';
 // Types
 import type { MonsterSketch, ResourceData } from './types';
-import type { MonsterCard } from '../../utils/tdi';
 // Helpers
 import * as utils from '../../utils';
 import * as globalUtils from '../global';

@@ -3,7 +3,6 @@ import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
 import { PLAYER_COUNTS } from './constants';
 // Types
 import type { PastCategories, ResourceData } from './types';
-import type { OpposingIdeaCard } from '../../utils/tdr';
 // Utils
 import * as globalUtils from '../global';
 import * as resourceUtils from '../resource';

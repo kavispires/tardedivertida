@@ -1,27 +1,24 @@
-import type { TextCard } from '../../utils/tdr';
-import type { DefaultState, DefaultStore, InitialState, Payload, PlayerId } from '../../utils/types';
-
-type CruzaPalavrasOptions = {
+export type CruzaPalavrasOptions = {
   largerGrid: boolean;
 };
 
-type AllWords = {
+export type AllWords = {
   [key: string]: TextCard;
 };
 
-type ResourceData = {
+export type ResourceData = {
   allWords: AllWords;
 };
 
-type Deck = TextCard[];
+export type Deck = TextCard[];
 
-type ClueEntry = {
+export type ClueEntry = {
   playerId: PlayerId;
   clue: string;
   coordinate: number;
 };
 
-type GridCell = {
+export type GridCell = {
   index: number;
   kind: string;
   text: string;
@@ -35,23 +32,23 @@ type GridCell = {
   playerId?: string | null;
 };
 
-interface CruzaPalavrasStore extends DefaultStore {
+export interface CruzaPalavrasStore extends DefaultStore {
   deck?: Deck;
   [key: string]: any;
 }
 
-interface CruzaPalavrasState extends DefaultState {
+export interface CruzaPalavrasState extends DefaultState {
   [key: string]: any;
 }
 
-interface CruzaPalavrasInitialState extends InitialState {
+export interface CruzaPalavrasInitialState extends InitialState {
   store: CruzaPalavrasStore;
   state: CruzaPalavrasState;
 }
 
-interface CruzaPalavrasSubmitAction extends Payload {
+export interface CruzaPalavrasSubmitAction extends Payload {
   action: 'SUBMIT_CLUE' | 'SUBMIT_GUESSES';
 }
 
-type FirebaseStateData = FirebaseFirestore.DocumentData | CruzaPalavrasState;
-type FirebaseStoreData = FirebaseFirestore.DocumentData | CruzaPalavrasStore;
+export type FirebaseStateData = FirebaseFirestore.DocumentData | CruzaPalavrasState;
+export type FirebaseStoreData = FirebaseFirestore.DocumentData | CruzaPalavrasStore;

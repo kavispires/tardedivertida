@@ -2,7 +2,6 @@
 import { GAME_COLLECTIONS } from '../../utils/constants';
 import { MAX_ROUNDS, PLAYER_COUNTS, RETRATO_FALADO_PHASES } from './constants';
 // Types
-import type { GameId, GameName, Language, Players } from '../../utils/types';
 import type { RetratoFaladoInitialState, RetratoFaladoSubmitAction } from './types';
 // Utilities
 import * as utils from '../../utils';
