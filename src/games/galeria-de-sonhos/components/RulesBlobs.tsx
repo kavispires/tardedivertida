@@ -72,14 +72,14 @@ export function DreamSelectionRules({ contained = false }) {
           <>
             Selecione sonhos (cartas) que você acha que se relacionam com a palavra-tema da rodada.
             <br />
-            Você deve selecionar pelo menos uma e no máximo 10.
+            Você deve selecionar pelo menos 1 e no máximo 10.
           </>
         }
         en={
           <>
             Now select cards that you think match the round's card.
             <br />
-            You must select at least one card and a maximum of 10.
+            You must select at least 1 card and a maximum of 10.
           </>
         }
       />
