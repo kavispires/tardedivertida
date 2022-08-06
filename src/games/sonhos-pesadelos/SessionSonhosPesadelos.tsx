@@ -1,5 +1,6 @@
+import { ConfigProvider } from 'antd';
 // Constants
-import { GAME_COLLECTION } from 'utils/constants';
+import { GAME_COLLECTION, THEME_COLORS } from 'utils/constants';
 import { PHASES } from 'utils/phases';
 // Components
 import { Session } from 'components/session';
@@ -9,6 +10,12 @@ import PhaseGameOver from './PhaseGameOver';
 import PhaseDreamTelling from './PhaseDreamTelling';
 import PhaseMatching from './PhaseMatching';
 import PhaseResolution from './PhaseResolution';
+
+ConfigProvider.config({
+  theme: {
+    primaryColor: THEME_COLORS.DEFAULT,
+  },
+});
 
 function SessionSonhosPesadelos({ gameId }: SessionProps) {
   function getActiveComponent(phase: string) {

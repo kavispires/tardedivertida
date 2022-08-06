@@ -1,5 +1,6 @@
+import { ConfigProvider } from 'antd';
 // Constants
-import { GAME_COLLECTION } from 'utils/constants';
+import { GAME_COLLECTION, THEME_COLORS } from 'utils/constants';
 import { PHASES } from 'utils/phases';
 // Components
 import { Session } from 'components/session';
@@ -9,6 +10,12 @@ import PhaseTargeting from './PhaseTargeting';
 import PhaseStandoff from './PhaseStandoff';
 import PhaseDuel from './PhaseDuel';
 import PhaseResolution from './PhaseResolution';
+
+ConfigProvider.config({
+  theme: {
+    primaryColor: THEME_COLORS.DEFAULT,
+  },
+});
 
 function SessionQuemNaoMata({ gameId }: SessionProps) {
   function getActiveComponent(phase: string) {

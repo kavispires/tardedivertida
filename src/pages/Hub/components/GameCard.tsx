@@ -11,10 +11,10 @@ import { MobileFilled } from '@ant-design/icons';
 import { Translate } from 'components/language';
 
 const getVersionColor = (version: string) => {
-  if (version.endsWith('alpha')) {
+  if (version.includes('alpha')) {
     return '#F97659';
   }
-  if (version === 'beta') {
+  if (version.includes('beta')) {
     return '#F9D859';
   }
 

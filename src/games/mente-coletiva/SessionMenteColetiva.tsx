@@ -1,5 +1,6 @@
+import { ConfigProvider } from 'antd';
 // Constants
-import { GAME_COLLECTION } from 'utils/constants';
+import { GAME_COLLECTION, THEME_COLORS } from 'utils/constants';
 import { PHASES } from 'utils/phases';
 // Components
 import { Session } from 'components/session';
@@ -10,6 +11,12 @@ import PhaseEverybodyWrites from './PhaseEverybodyWrites';
 import PhaseCompare from './PhaseCompare';
 import PhaseResolution from './PhaseResolution';
 import PhaseGameOver from './PhaseGameOver';
+
+ConfigProvider.config({
+  theme: {
+    primaryColor: THEME_COLORS.DEFAULT,
+  },
+});
 
 function SessionMenteColetiva({ gameId }: SessionProps) {
   function getActiveComponent(phase: string) {

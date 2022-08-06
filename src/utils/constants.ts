@@ -126,3 +126,7 @@ export const GAME_COLLECTION: StringDictionary = {
   SUPER_CAMPEONATO: 'SUPER_CAMPEONATO',
   CRUZA_PALAVRAS: 'cruza-palavras',
 };
+
+export const THEME_COLORS = {
+  DEFAULT: '#1890ff',
+};
