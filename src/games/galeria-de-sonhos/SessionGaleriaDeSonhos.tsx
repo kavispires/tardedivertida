@@ -1,6 +1,6 @@
 import { ConfigProvider } from 'antd';
 // Constants
-import { GAME_COLLECTION } from 'utils/constants';
+import { GAME_COLLECTION, THEME_COLORS } from 'utils/constants';
 import { PHASES } from 'utils/phases';
 // Components
 import { Session } from 'components/session';
@@ -14,7 +14,7 @@ import PhaseGameOver from './PhaseGameOver';
 
 ConfigProvider.config({
   theme: {
-    primaryColor: '#6052a8',
+    primaryColor: THEME_COLORS.PLUMP_PURPLE,
   },
 });
 
