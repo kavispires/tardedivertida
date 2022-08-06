@@ -1,3 +1,4 @@
+import { ConfigProvider } from 'antd';
 // Constants
 import { GAME_COLLECTION } from 'utils/constants';
 import { PHASES } from 'utils/phases';
@@ -10,6 +11,12 @@ import PhaseDreamsSelection from './PhaseDreamsSelections';
 import PhaseCardPlay from './PhaseCardPlay';
 import PhaseResolution from './PhaseResolution';
 import PhaseGameOver from './PhaseGameOver';
+
+ConfigProvider.config({
+  theme: {
+    primaryColor: '#6052a8',
+  },
+});
 
 function SessionGaleriaDeSonhos({ gameId }: SessionProps) {
   function getActiveComponent(phase: string) {

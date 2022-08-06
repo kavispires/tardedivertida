@@ -1,5 +1,6 @@
+import { ConfigProvider } from 'antd';
 // Constants
-import { GAME_COLLECTION } from 'utils/constants';
+import { GAME_COLLECTION, THEME_COLORS } from 'utils/constants';
 import { PHASES } from 'utils/phases';
 // Components
 import { Session } from 'components/session';
@@ -11,6 +12,12 @@ import PhaseInvestigation from './PhaseInvestigation';
 import PhaseAssessment from './PhaseAssessment';
 import PhaseResolution from './PhaseResolution';
 import PhaseFinalAssessment from './PhaseFinalAssessment';
+
+ConfigProvider.config({
+  theme: {
+    primaryColor: THEME_COLORS.DEFAULT,
+  },
+});
 
 function SessionEspiaoEntreNos({ gameId }: SessionProps) {
   function getActiveComponent(phase: string) {
