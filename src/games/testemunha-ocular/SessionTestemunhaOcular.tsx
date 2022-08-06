@@ -11,6 +11,8 @@ import PhaseQuestionSelection from './PhaseQuestionSelection';
 import PhaseQuestioning from './PhaseQuestioning';
 import PhaseTrial from './PhaseTrial';
 import PhaseGameOver from './PhaseGameOver';
+// Fonts
+import 'assets/fonts/architects-daughter.scss';
 
 ConfigProvider.config({
   theme: {

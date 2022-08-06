@@ -11,6 +11,8 @@ import PhaseSecretWordSelection from './PhaseSecretWordSelection';
 import PhasePlayersClues from './PhasePlayersClues';
 import PhaseClueEvaluations from './PhaseClueEvaluations';
 import PhaseGameOver from './PhaseGameOver';
+// Fonts
+import 'assets/fonts/architects-daughter.scss';
 
 ConfigProvider.config({
   theme: {
