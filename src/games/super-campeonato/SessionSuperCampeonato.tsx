@@ -6,10 +6,14 @@ import { PHASES } from 'utils/phases';
 import { Session } from 'components/session';
 import { PhaseLobby, PhasePlaceholder, PhaseRules, PhaseSetup } from 'components/phases';
 import { PageError } from 'components/errors';
+import PhaseChallengeSelection from './PhaseChallengeSelection';
+import PhaseContenderSelection from './PhaseContendersSelection';
+// Fonts
+import 'assets/fonts/bangers.scss';
 
 ConfigProvider.config({
   theme: {
-    primaryColor: THEME_COLORS.DEFAULT,
+    primaryColor: THEME_COLORS.RUSSIAN_VIOLET,
   },
 });
 
@@ -23,9 +27,9 @@ function SessionSuperCampeonato({ gameId }: SessionProps) {
       case PHASES.DEFAULT.SETUP:
         return PhaseSetup;
       case PHASES.SUPER_CAMPEONATO.CHALLENGE_SELECTION:
-        return PhasePlaceholder;
+        return PhaseChallengeSelection;
       case PHASES.SUPER_CAMPEONATO.CONTENDER_SELECTION:
-        return PhasePlaceholder;
+        return PhaseContenderSelection;
       case PHASES.SUPER_CAMPEONATO.BETS:
         return PhasePlaceholder;
       case PHASES.SUPER_CAMPEONATO.BATTLE:

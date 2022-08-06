@@ -1,0 +1,43 @@
+.w-contender {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  background: green;
+}
+
+.w-contender-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.w-contender-image {
+  margin: 0;
+  padding: 0;
+}
+
+.w-contender-name {
+  font-family: 'Bangers', monospace;
+  position: absolute;
+  bottom: get-unit(1);
+  left: get-unit(1);
+  z-index: 2;
+  color: get-color(white);
+  text-shadow: 2px 2px 2px #000;
+  letter-spacing: 2px;
+  overflow-y: hidden;
+  font-size: 1.25rem;
+}
+
+.w-contenders-hand {
+  display: flex;
+
+  &__entry {
+    margin: get-unit(1 2 3 2);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-bottom: get-unit(2);
+  }
+}

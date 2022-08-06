@@ -1,5 +1,6 @@
 // Constants
 import { AVATAR_IDS } from './constants';
+import { throwException } from './firebase';
 // Utils
 import { getRandomUniqueItem, shuffle } from './game-utils';
 
@@ -230,4 +231,41 @@ export const distributeNumberIds = (
   Object.values(players).forEach((player, index) => {
     player[propertyName] = `${ids[index]}`;
   });
+};
+
+/**
+ * Deal items from a list to players
+ * @param players
+ * @param list
+ * @param quantityPerPlayer
+ * @param propertyName
+ */
+export const dealItemsToPlayers = (
+  players: Players,
+  list: unknown[],
+  quantityPerPlayer = 1,
+  propertyName: string
+) => {
+  const playersList = Object.values(players);
+  if (list.length < playersList.length * quantityPerPlayer) {
+    throwException('List has less items the needed', 'deal items to players');
+  }
+
+  if (quantityPerPlayer === 1) {
+    playersList.forEach((player, index) => {
+      player[propertyName] = list[index];
+    });
+    return players;
+  }
+
+  for (let i = 0; i < playersList.length * quantityPerPlayer; i++) {
+    const player = playersList[i % playersList.length];
+    if (player[propertyName] === undefined) {
+      player[propertyName] = [];
+    }
+
+    player[propertyName].push(list[i]);
+  }
+
+  return players;
 };

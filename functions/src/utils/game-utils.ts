@@ -82,7 +82,7 @@ export const getRandomUniqueItem = <T>(list: T[], used: T[]): T => {
  */
 export const getRandomUniqueObjects = <T>(
   list: T[],
-  used: PlainObject[],
+  used: T[],
   quantity: number,
   byPropertyName = 'id'
 ): T[] => {
