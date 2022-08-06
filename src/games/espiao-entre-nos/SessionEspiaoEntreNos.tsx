@@ -15,7 +15,7 @@ import PhaseFinalAssessment from './PhaseFinalAssessment';
 
 ConfigProvider.config({
   theme: {
-    primaryColor: THEME_COLORS.DEFAULT,
+    primaryColor: THEME_COLORS.LIME,
   },
 });
 
