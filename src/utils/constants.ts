@@ -128,6 +128,7 @@ export const GAME_COLLECTION: StringDictionary = {
 };
 
 export const THEME_COLORS = {
+  BLOOD: '#ab0d17', // dark red
   DEFAULT: '#1890ff',
   WOOD: '#8C4103', // brown
 };
