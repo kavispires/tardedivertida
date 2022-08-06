@@ -10,6 +10,8 @@ import PhaseTopicSelection from './PhaseTopicSelection';
 import PhaseReact from './PhaseReact';
 import PhaseResolution from './PhaseResolution';
 import PhaseGameOver from './PhaseGameOver';
+// Fonts
+import 'assets/fonts/architects-daughter.scss';
 
 ConfigProvider.config({
   theme: {

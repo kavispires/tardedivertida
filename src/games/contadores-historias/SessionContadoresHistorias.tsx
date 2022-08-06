@@ -11,6 +11,8 @@ import PhaseCardPlay from './PhaseCardPlay';
 import PhaseVoting from './PhaseVoting';
 import PhaseResolution from './PhaseResolution';
 import PhaseGameOver from './PhaseGameOver';
+// Fonts
+import 'assets/fonts/dancing-script.scss';
 
 ConfigProvider.config({
   theme: {

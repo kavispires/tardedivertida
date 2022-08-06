@@ -11,6 +11,8 @@ import PhaseDrawing from './PhaseDrawing';
 import PhaseNaming from './PhaseNaming';
 import PhasePresentation from './PhasePresentation';
 import PhaseGameOver from './PhaseGameOver';
+// Fonts
+import 'assets/fonts/architects-daughter.scss';
 
 ConfigProvider.config({
   theme: {
