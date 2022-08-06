@@ -130,7 +130,13 @@ export const GAME_COLLECTION: StringDictionary = {
 export const THEME_COLORS = {
   BLOOD: '#ab0d17', // dark red
   DEFAULT: '#1890ff',
+  GRASS: '#007A5A',
+  HOT_PINK: '#FF47DA',
   LIME: '#1CC41C',
+  MIDNIGHT: '#4B2142', // dark teal
+  ORANGE: '#F55E00',
   PLUMP_PURPLE: '#6052a8',
+  RUSSIAN_VIOLET: '#301A4B', // dark purple
+  WINE: '#4B2142',
   WOOD: '#8C4103', // brown
 };
