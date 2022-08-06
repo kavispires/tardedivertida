@@ -86,6 +86,10 @@ export const VENDAVAL_DE_PALPITE_API = {
   submitAction: httpsCallable(functions, 'vendavalDePalpiteSubmitAction'),
 };
 
+export const SUPER_CAMPEONATO_API = {
+  submitAction: httpsCallable(functions, 'superCampeonatoSubmitAction'),
+};
+
 export const CRUZA_PALAVRAS_API = {
   submitAction: httpsCallable(functions, 'cruzaPalavrasSubmitAction'),
 };

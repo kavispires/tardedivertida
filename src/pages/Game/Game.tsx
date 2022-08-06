@@ -78,7 +78,11 @@ const SessionUeSoIsso = lazy(
   () => import('games/ue-so-isso/SessionUeSoIsso' /* webpackChunkName: "ue-so-isso" */)
 );
 const SessionVendavalDePalpite = lazy(
-  () => import('games/vendaval-de-palpite/SessionVendavalDePalpite' /* webpackChunkName: "ue-so-isso" */)
+  () =>
+    import('games/vendaval-de-palpite/SessionVendavalDePalpite' /* webpackChunkName: "vendaval-de-palpite" */)
+);
+const SessionSuperCampeonato = lazy(
+  () => import('games/super-campeonato/SessionSuperCampeonato' /* webpackChunkName: "super-campeonato" */)
 );
 
 function Game() {
@@ -272,6 +276,12 @@ function Game() {
         return (
           <Suspense fallback={<LoadingPage message="" />}>
             <SessionVendavalDePalpite gameId={gameId} />
+          </Suspense>
+        );
+      case GAME_COLLECTION.SUPER_CAMPEONATO:
+        return (
+          <Suspense fallback={<LoadingPage message="" />}>
+            <SessionSuperCampeonato gameId={gameId} />
           </Suspense>
         );
       case GAME_COLLECTION.CRUZA_PALAVRAS:
