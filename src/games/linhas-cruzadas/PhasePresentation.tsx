@@ -22,7 +22,7 @@ function PhasePresentation({ players, state, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<PhotoAlbumIcon />}
-          title={translate('Álbum de Fotos', 'Album de Fotos')}
+          title={translate('Álbum de Fotos', 'Photo Album')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           unskippable
