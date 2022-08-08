@@ -27,7 +27,8 @@
     "en": ["TBD"]
   },
   "playerCount": {
-    "recommended": "2-4",
+    "best": 3,
+    "recommended": [2, 3, 4],
     "min": 2,
     "max": 10
   },
