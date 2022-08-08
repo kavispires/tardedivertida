@@ -15,7 +15,7 @@ type TitleProps = {
    */
   className?: string;
   level?: 1 | 2 | 3 | 4 | 5 | undefined;
-  size?: 'x-small' | 'small' | 'medium' | 'large';
+  size?: 'xx-small' | 'x-small' | 'small' | 'medium' | 'large';
 };
 
 export const Title = ({ children, white, icon, className, level = 1, size = 'large' }: TitleProps) => {
