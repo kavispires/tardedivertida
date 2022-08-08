@@ -33,22 +33,22 @@ export const handleSubmitChallenge = async (
  * @param collectionName
  * @param gameId
  * @param playerId
- * @param contendersIds
+ * @param contendersId
  * @returns
  */
 export const handleSubmitContenders = async (
   collectionName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  contendersIds: CardId[]
+  contendersId: CardId
 ) => {
   return await utils.firebase.updatePlayer({
     collectionName,
     gameId,
     playerId,
-    actionText: 'submit your contender(s)',
+    actionText: 'submit your contender',
     shouldReady: true,
-    change: { selectedContenders: contendersIds },
+    change: { selectedContenderId: contendersId },
     nextPhaseFunction: getNextPhase,
   });
 };
@@ -77,9 +77,32 @@ export const handleSubmitBets = async (
     playerId,
     actionText: 'submit your contender(s)',
     shouldReady: true,
-    change: { 'bet.quarter': quarter, 'bet.semi': semi, 'bet.final': final },
+    change: { 'bets.quarter': quarter, 'bets.semi': semi, 'bets.final': final },
     nextPhaseFunction: getNextPhase,
   });
 };
 
-// TODO: battle vote
+/**
+ * Save player votes for the tier
+ * @param collectionName
+ * @param gameId
+ * @param playerId
+ * @param votes
+ * @returns
+ */
+export const handleSubmitVotes = async (
+  collectionName: GameName,
+  gameId: GameId,
+  playerId: PlayerId,
+  votes: NumberDictionary
+) => {
+  return await utils.firebase.updatePlayer({
+    collectionName,
+    gameId,
+    playerId,
+    actionText: 'submit your votes',
+    shouldReady: true,
+    change: { votes },
+    nextPhaseFunction: getNextPhase,
+  });
+};

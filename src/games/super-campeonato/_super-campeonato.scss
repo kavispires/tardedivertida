@@ -2,7 +2,7 @@
   position: relative;
   margin: 0;
   padding: 0;
-  background: green;
+  overflow: hidden;
 }
 
 .w-contender-overlay {
@@ -22,12 +22,20 @@
   position: absolute;
   bottom: get-unit(1);
   left: get-unit(1);
+  text-align: left;
   z-index: 2;
   color: get-color(white);
   text-shadow: 2px 2px 2px #000;
   letter-spacing: 2px;
   overflow-y: hidden;
   font-size: 1.25rem;
+  line-height: 1rem;
+}
+
+.w-bracket-contender {
+  .w-contender-name {
+    font-size: 1rem;
+  }
 }
 
 .w-contenders-hand {
@@ -39,5 +47,240 @@
     flex-direction: column;
     justify-content: center;
     padding-bottom: get-unit(2);
+  }
+}
+
+.tournament-headers {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  border-bottom: 1px solid #ccc;
+
+  h3 {
+    width: 25%;
+    text-align: center;
+    font-weight: 400;
+    border-right: 1px dashed #ccc;
+    margin: 0;
+    padding: get-unit(2);
+
+    &:last-child {
+      border-right: none;
+    }
+  }
+}
+
+.w-tournament-brackets {
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+  background: #fdfdfd;
+}
+
+.w-bracket {
+  padding-left: 0;
+  display: flex;
+  margin: 0;
+  padding: 30px 0;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: space-around;
+  list-style-type: none;
+  border-right: 1px dashed #ccc;
+  flex: 1;
+}
+
+.w-team-item {
+  background-color: #f4f4f4;
+  padding: 0.5rem;
+  display: block;
+  margin: 0.5rem 10px;
+  position: relative;
+  line-height: 2;
+  text-align: center;
+
+  &--win {
+    background-color: get-color(yellow);
+  }
+
+  &--lose {
+    filter: saturate(0);
+  }
+}
+
+.w-team-item:after {
+  content: '';
+  border-color: get-color(violet, 6);
+  border-width: 2px;
+  position: absolute;
+  display: block;
+  width: 10px;
+  right: -11px;
+}
+
+.w-team-item:nth-of-type(odd):after {
+  border-right-style: solid;
+  border-top-style: solid;
+  height: 100%;
+  top: 50%;
+}
+
+.w-team-item:nth-of-type(even):after {
+  border-right-style: solid;
+  border-bottom-style: solid;
+  height: 100%;
+  top: -50%;
+}
+
+.w-team-item:before {
+  content: '';
+  border-top: 2px solid get-color(violet, 6);
+  position: absolute;
+  height: 2px;
+  width: 10px;
+  left: -10px;
+  top: 50%;
+}
+
+.w-bracket--2 {
+  .w-team-item:nth-of-type(odd):after {
+    height: 200%;
+    top: 50%;
+  }
+  .w-team-item:nth-of-type(even):after {
+    height: 200%;
+    top: -150%;
+  }
+}
+
+.w-bracket--3 {
+  .w-team-item:nth-of-type(odd):after {
+    height: 350%;
+    top: 50%;
+  }
+  .w-team-item:nth-of-type(even):after {
+    height: 350%;
+    top: -300%;
+  }
+}
+
+.w-bracket--4 {
+  .w-team-item:nth-of-type(odd):after {
+    height: 700%;
+    top: 50%;
+  }
+  .w-team-item:nth-of-type(even):after {
+    height: 700%;
+    top: -650%;
+  }
+}
+
+.w-bracket:first-of-type {
+  .w-team-item:before {
+    display: none;
+  }
+}
+
+.w-bracket-4 {
+  .w-team-item:after {
+    display: none;
+  }
+}
+
+.w-bracket:last-of-type {
+  .w-team-item:before,
+  .w-team-item:after {
+    display: none;
+  }
+}
+
+.w-bet-form {
+  width: 80vw;
+  max-width: 600px;
+
+  &__select {
+    width: 50%;
+    min-width: 250px;
+  }
+}
+
+.w-voting-options {
+  background: get-color(white);
+  margin: get-unit(4 2);
+  padding: get-unit(2);
+
+  &__vs {
+    font-family: 'Bangers', monospace;
+    z-index: 2;
+    color: get-color(violet, 6);
+    text-shadow: 2px 2px 2px #000;
+    font-size: 2rem;
+    margin: get-unit(4);
+  }
+}
+
+.w-vote {
+  border: get-unit(3) transparent solid;
+
+  &--active {
+    border-color: get-color(violet, 6);
+    border-radius: get-unit(4);
+    transform: scale(90%);
+  }
+}
+
+.w-brackets-container {
+  // transform: scale(80%);
+  background: get-color(gray, 1);
+  padding: get-unit(2 4 4 4);
+}
+
+.w-bets-floating-hand {
+  margin-bottom: get-unit(5);
+}
+
+.w-floating-bets {
+  display: flex;
+  &__entry {
+    margin: get-unit(0 2);
+  }
+
+  &__label {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-family: 'Bangers', monospace;
+  }
+}
+
+.w-bet-form__container {
+  &--final {
+    background-color: gold;
+  }
+
+  &--semi {
+    background-color: silver;
+  }
+
+  &--quarter {
+    background-color: #b87333;
+  }
+}
+
+.w-tier-contenders.w-tier-contenders {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding-inline-start: 0;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin: get-unit(0 0 4 0);
+  padding: 0;
+  list-style: none;
+
+  & .w-tier-contender {
+    margin: get-unit(0 1);
+    padding: 0;
   }
 }

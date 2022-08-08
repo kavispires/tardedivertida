@@ -24,3 +24,5 @@ export const CONTENDERS_PER_PLAYER = 5;
 export const CHALLENGES_PER_ROUND = 2;
 
 export const CHALLENGES_PER_GAME = CHALLENGES_PER_ROUND * TOTAL_ROUNDS;
+
+export const CHAMPIONSHIP_ORDER = ['quarter', 'semi', 'final'];

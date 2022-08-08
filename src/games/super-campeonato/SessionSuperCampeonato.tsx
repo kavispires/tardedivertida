@@ -4,10 +4,14 @@ import { GAME_COLLECTION, THEME_COLORS } from 'utils/constants';
 import { PHASES } from 'utils/phases';
 // Components
 import { Session } from 'components/session';
-import { PhaseLobby, PhasePlaceholder, PhaseRules, PhaseSetup } from 'components/phases';
+import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { PageError } from 'components/errors';
 import PhaseChallengeSelection from './PhaseChallengeSelection';
 import PhaseContenderSelection from './PhaseContendersSelection';
+import PhaseBets from './PhaseBets';
+import PhaseBattle from './PhaseBattle';
+import PhaseResults from './PhaseResults';
+import PhaseGameOver from './PhaseGameOver';
 // Fonts
 import 'assets/fonts/bangers.scss';
 
@@ -31,13 +35,13 @@ function SessionSuperCampeonato({ gameId }: SessionProps) {
       case PHASES.SUPER_CAMPEONATO.CONTENDER_SELECTION:
         return PhaseContenderSelection;
       case PHASES.SUPER_CAMPEONATO.BETS:
-        return PhasePlaceholder;
+        return PhaseBets;
       case PHASES.SUPER_CAMPEONATO.BATTLE:
-        return PhasePlaceholder;
+        return PhaseBattle;
       case PHASES.SUPER_CAMPEONATO.RESULTS:
-        return PhasePlaceholder;
+        return PhaseResults;
       case PHASES.DEFAULT.GAME_OVER:
-        return PhasePlaceholder;
+        return PhaseGameOver;
       default:
         return PageError;
     }
