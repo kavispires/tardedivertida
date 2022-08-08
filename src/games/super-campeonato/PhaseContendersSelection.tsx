@@ -8,8 +8,9 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
-import { TrendingIcon } from 'components/icons/TrendingIcon';
 import { StepSelectContenders } from './StepSelectContenders';
+import { AnonymousIcon } from 'components/icons/AnonymousIcon';
+import { ContendersHand } from './components/ContendersHand';
 
 function PhaseContenderSelection({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -24,10 +25,14 @@ function PhaseContenderSelection({ state, players, info }: PhaseProps) {
       phase={state?.phase}
       allowedPhase={PHASES.SUPER_CAMPEONATO.CONTENDER_SELECTION}
     >
-      <StepSwitcher step={step} players={players}>
+      <StepSwitcher
+        step={step}
+        players={players}
+        waitingRoomContent={<ContendersHand contenders={user.contenders} />}
+      >
         {/* Step 0 */}
         <PhaseAnnouncement
-          icon={<TrendingIcon />}
+          icon={<AnonymousIcon />}
           title={translate('Competidores', 'Contenders')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
@@ -43,6 +48,7 @@ function PhaseContenderSelection({ state, players, info }: PhaseProps) {
           onSubmitContender={onSubmitContender}
           challenge={state.challenge}
           userContenders={user.contenders}
+          players={players}
         />
       </StepSwitcher>
     </PhaseContainer>

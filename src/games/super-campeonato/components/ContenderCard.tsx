@@ -6,12 +6,14 @@ import { PUBLIC_URL } from 'utils/constants';
 type ContenderCardProps = {
   size: number;
   overlayColor: string;
-  contender: WContender;
+  contender: WContender | WBracket;
   className?: string;
 };
 
 export function ContenderCard({ size, overlayColor, contender, className }: ContenderCardProps) {
   const { language } = useLanguage();
+
+  const imageURL = contender.id.replace(/-/g, '/');
 
   return (
     <div className={clsx('w-contender', className)} style={{ width: `${size}px` }}>
@@ -23,10 +25,11 @@ export function ContenderCard({ size, overlayColor, contender, className }: Cont
         style={{ width: `${size}px` }}
       />
       <Image
-        src={`${PUBLIC_URL.IN_GAME}/${contender.id}.jpg`}
+        src={`${process.env.REACT_APP_TD_IMAGES_URL}${imageURL}.jpg`}
         width={size}
         className="w-contender-image"
         fallback={`${PUBLIC_URL.IN_GAME}/w-no-image.jpg`}
+        alt={contender.name[language]}
       />
     </div>
   );

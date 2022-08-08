@@ -1,28 +1,31 @@
 // Ant Design Resources
-import { Space } from 'antd';
-
+// Hooks
+import { useMock } from 'hooks';
+// Utils
+import { mockSelectContender } from './utils/mock';
 // Components
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
-import { Card } from 'components/cards';
 import { ContendersHand } from './components/ContendersHand';
-import { useMock } from 'hooks';
-import { mockSelectContender } from './utils/mock';
+import { Challenge } from './components/Challenge';
+import { ReadyPlayersBar } from 'components/players';
 
 type StepSelectContendersProps = {
   onSubmitContender: GenericFunction;
   challenge: DefaultTextCard;
   userContenders: WContender[];
+  players: GamePlayers;
 };
 
 export function StepSelectContenders({
   onSubmitContender,
   challenge,
   userContenders,
+  players,
 }: StepSelectContendersProps) {
   useMock(() => {
-    onSubmitContender({ contendersIds: mockSelectContender(userContenders) });
+    onSubmitContender({ contendersId: mockSelectContender(userContenders) });
   });
 
   return (
@@ -31,11 +34,7 @@ export function StepSelectContenders({
         <Translate pt="Quem pode ganhar esse desafio?" en="Who can win this challenge?" />
       </Title>
 
-      <Space className="space-container" align="center">
-        <Card header={challenge.text[0]} randomColor>
-          {challenge.text}
-        </Card>
-      </Space>
+      <Challenge challenge={challenge} />
 
       <Instruction contained>
         <Translate
@@ -44,9 +43,11 @@ export function StepSelectContenders({
         />
       </Instruction>
 
+      <ReadyPlayersBar players={players} />
+
       <ContendersHand
         contenders={userContenders}
-        onSelect={(id) => onSubmitContender({ contendersIds: [id] })}
+        onSelect={(id) => onSubmitContender({ contendersId: id })}
       />
     </Step>
   );

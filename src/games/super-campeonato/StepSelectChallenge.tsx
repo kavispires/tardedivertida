@@ -11,17 +11,20 @@ import { Card } from 'components/cards';
 import { ContendersHand } from './components/ContendersHand';
 import { useMock } from 'hooks';
 import { mockSelectChallenge } from './utils/mock';
+import { ReadyPlayersBar } from 'components/players';
 
 type StepSelectChallengeProps = {
   onSubmitChallenge: GenericFunction;
   challenges: DefaultTextCard[];
   userContenders: WContender[];
+  players: GamePlayers;
 };
 
 export function StepSelectChallenge({
   onSubmitChallenge,
   challenges,
   userContenders,
+  players,
 }: StepSelectChallengeProps) {
   useMock(() => {
     onSubmitChallenge({ challengeId: mockSelectChallenge(challenges) });
@@ -35,8 +38,20 @@ export function StepSelectChallenge({
 
       <Instruction contained>
         <Translate
-          pt="Selecione o desafio que você acha que um dos seus competidores tem mais change de ganhar"
-          en="Select a challenge you think one of your contenders have the best chance of winning"
+          pt={
+            <>
+              Selecione o desafio que você acha que um dos seus competidores tem mais change de vencer.
+              <br />
+              Você ganha 2 pontos se ele vencer.
+            </>
+          }
+          en={
+            <>
+              Select a challenge you think one of your contenders have the best chance of winning.
+              <br />
+              You get 2 points if they win.
+            </>
+          }
         />
       </Instruction>
 
@@ -54,6 +69,8 @@ export function StepSelectChallenge({
           );
         })}
       </Space>
+
+      <ReadyPlayersBar players={players} />
 
       <ContendersHand contenders={userContenders} />
     </Step>

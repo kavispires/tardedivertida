@@ -9,8 +9,9 @@ import { StepSwitcher } from 'components/steps';
 import { RoundAnnouncement } from 'components/round';
 import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
-import { TrendingIcon } from 'components/icons/TrendingIcon';
 import { StepSelectChallenge } from './StepSelectChallenge';
+import { SelectListIcon } from 'components/icons/SelectListIcon';
+import { ContendersHand } from './components/ContendersHand';
 
 function PhaseChallengeSelection({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -25,7 +26,11 @@ function PhaseChallengeSelection({ state, players, info }: PhaseProps) {
       phase={state?.phase}
       allowedPhase={PHASES.SUPER_CAMPEONATO.CHALLENGE_SELECTION}
     >
-      <StepSwitcher step={step} players={players}>
+      <StepSwitcher
+        step={step}
+        players={players}
+        waitingRoomContent={<ContendersHand contenders={user.contenders} />}
+      >
         {/* Step 0 */}
         <RoundAnnouncement round={state.round} onPressButton={goToNextStep} time={4} circleColor="pink">
           <Instruction contained>
@@ -35,7 +40,7 @@ function PhaseChallengeSelection({ state, players, info }: PhaseProps) {
 
         {/* Step 1 */}
         <PhaseAnnouncement
-          icon={<TrendingIcon />}
+          icon={<SelectListIcon />}
           title={translate('Desafio', 'Challenge')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
@@ -51,6 +56,7 @@ function PhaseChallengeSelection({ state, players, info }: PhaseProps) {
           onSubmitChallenge={onSubmitChallenge}
           challenges={state.challenges}
           userContenders={user.contenders}
+          players={players}
         />
       </StepSwitcher>
     </PhaseContainer>

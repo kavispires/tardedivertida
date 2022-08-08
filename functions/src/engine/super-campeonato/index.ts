@@ -12,8 +12,21 @@ import * as utils from '../../utils';
 // Internal Functions
 import { determineNextPhase } from './helpers';
 import { getResourceData } from './data';
-import { handleSubmitBets, handleSubmitChallenge, handleSubmitContenders } from './actions';
-import { prepareChallengeSelectionPhase, prepareContenderSelectionPhase, prepareSetupPhase } from './setup';
+import {
+  handleSubmitBets,
+  handleSubmitChallenge,
+  handleSubmitContenders,
+  handleSubmitVotes,
+} from './actions';
+import {
+  prepareBattlePhase,
+  prepareBetsPhase,
+  prepareChallengeSelectionPhase,
+  prepareContenderSelectionPhase,
+  prepareGameOverPhase,
+  prepareResultsPhase,
+  prepareSetupPhase,
+} from './setup';
 
 /**
  * Get Initial Game State
@@ -62,7 +75,7 @@ export const getNextPhase = async (
   );
 
   // Determine next phase
-  const nextPhase = determineNextPhase(state?.phase, state.round, state?.lastRound);
+  const nextPhase = determineNextPhase(state?.phase, state.round, state?.tier, state?.lastRound);
 
   // RULES -> SETUP
   if (nextPhase === SUPER_CAMPEONATO_PHASES.SETUP) {
@@ -89,28 +102,28 @@ export const getNextPhase = async (
   }
 
   // // CONTENDER_SELECTION -> BETS
-  // if (nextPhase === SUPER_CAMPEONATO_PHASES.BETS) {
-  //   const newPhase = await prepareBetsPhase(store, state, players);
-  //   return utils.firebase.saveGame(sessionRef, newPhase);
-  // }
+  if (nextPhase === SUPER_CAMPEONATO_PHASES.BETS) {
+    const newPhase = await prepareBetsPhase(store, state, players);
+    return utils.firebase.saveGame(sessionRef, newPhase);
+  }
 
-  // // * -> BATTLE
-  // if (nextPhase === SUPER_CAMPEONATO_PHASES.BATTLE) {
-  //   const newPhase = await prepareBattlePhase(store, state, players);
-  //   return utils.firebase.saveGame(sessionRef, newPhase);
-  // }
+  // * -> BATTLE
+  if (nextPhase === SUPER_CAMPEONATO_PHASES.BATTLE) {
+    const newPhase = await prepareBattlePhase(store, state, players);
+    return utils.firebase.saveGame(sessionRef, newPhase);
+  }
 
-  // // * -> RESULTS
-  // if (nextPhase === SUPER_CAMPEONATO_PHASES.RESULTS) {
-  //   const newPhase = await prepareResultsPhase(store, state, players);
-  //   return utils.firebase.saveGame(sessionRef, newPhase);
-  // }
+  // * -> RESULTS
+  if (nextPhase === SUPER_CAMPEONATO_PHASES.RESULTS) {
+    const newPhase = await prepareResultsPhase(store, state, players);
+    return utils.firebase.saveGame(sessionRef, newPhase);
+  }
 
-  // // RESULTS --> GAME_OVER
-  // if (nextPhase === SUPER_CAMPEONATO_PHASES.GAME_OVER) {
-  //   const newPhase = await prepareGameOverPhase(store, state, players);
-  //   return utils.firebase.saveGame(sessionRef, newPhase);
-  // }
+  // RESULTS --> GAME_OVER
+  if (nextPhase === SUPER_CAMPEONATO_PHASES.GAME_OVER) {
+    const newPhase = await prepareGameOverPhase(store, state, players);
+    return utils.firebase.saveGame(sessionRef, newPhase);
+  }
 
   return true;
 };
@@ -130,11 +143,14 @@ export const submitAction = async (data: SuperCampeonatoSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(data, ['challengeId'], 'submit challenge');
       return handleSubmitChallenge(collectionName, gameId, playerId, data.challengeId);
     case 'SUBMIT_CONTENDERS':
-      utils.firebase.validateSubmitActionProperties(data, ['contendersIds'], 'submit contenders');
-      return handleSubmitContenders(collectionName, gameId, playerId, data.contendersIds);
+      utils.firebase.validateSubmitActionProperties(data, ['contendersId'], 'submit contenders');
+      return handleSubmitContenders(collectionName, gameId, playerId, data.contendersId);
     case 'SUBMIT_BETS':
       utils.firebase.validateSubmitActionProperties(data, ['quarter', 'semi', 'final'], 'submit bets');
       return handleSubmitBets(collectionName, gameId, playerId, data.quarter, data.semi, data.final);
+    case 'SUBMIT_VOTES':
+      utils.firebase.validateSubmitActionProperties(data, ['votes'], 'submit bets');
+      return handleSubmitVotes(collectionName, gameId, playerId, data.votes);
     default:
       utils.firebase.throwException(`Given action ${action} is not allowed`);
   }

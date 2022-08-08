@@ -17,11 +17,19 @@ export type ContendersDeck = ContenderCard[];
 
 export type ChallengesDeck = TextCard[];
 
-export type Contender = {
+export interface Contender {
   id: CardId;
-  name: string;
+  name: DualLanguageValue;
   playerId: PlayerId | 'CPU';
-};
+}
+
+type BracketTier = 'quarter' | 'semi' | 'final' | 'winner';
+
+interface Bracket extends Contender {
+  position: number;
+  win?: boolean;
+  tier: BracketTier;
+}
 
 export interface SuperCampeonatoStore extends DefaultStore {
   [key: string]: any;

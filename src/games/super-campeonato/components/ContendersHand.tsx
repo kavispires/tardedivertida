@@ -11,7 +11,7 @@ type ContendersHandProps = {
 
 export function ContendersHand({ contenders, onSelect }: ContendersHandProps) {
   const cardWidth = useCardWidth(5, 32, 100);
-  console.log({ contenders });
+
   return (
     <FloatingHand>
       <ul className="w-contenders-hand">
