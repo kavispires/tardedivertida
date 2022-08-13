@@ -101,7 +101,8 @@ type GameInfo = {
     en: string[];
   };
   playerCount: {
-    recommended: string;
+    best?: number;
+    recommended: number[] | string;
     min: number;
     max: number;
   };

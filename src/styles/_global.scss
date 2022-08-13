@@ -41,6 +41,10 @@ body {
   text-align: center;
 }
 
+.margin {
+  margin: get-unit(2);
+}
+
 .padding {
   padding: get-unit(2);
 }

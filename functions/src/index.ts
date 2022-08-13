@@ -20,6 +20,7 @@ import * as sonhosPesadelosEngine from './engine/sonhos-pesadelos';
 import * as testemunhaOcularEngine from './engine/testemunha-ocular';
 import * as ueSoIssoEngine from './engine/ue-so-isso';
 import * as vendavalDePalpiteEngine from './engine/vendaval-de-palpite';
+import * as superCampeonatoEngine from './engine/super-campeonato';
 import * as cruzaPalavrasEngine from './engine/cruza-palavras';
 
 admin.initializeApp();
@@ -107,5 +108,7 @@ exports.testemunhaOcularSubmitAction = functions.https.onCall(testemunhaOcularEn
 exports.ueSoIssoSubmitAction = functions.https.onCall(ueSoIssoEngine.submitAction);
 
 exports.vendavalDePalpiteSubmitAction = functions.https.onCall(vendavalDePalpiteEngine.submitAction);
+
+exports.superCampeonatoSubmitAction = functions.https.onCall(superCampeonatoEngine.submitAction);
 
 exports.cruzaPalavrasSubmitAction = functions.https.onCall(cruzaPalavrasEngine.submitAction);
