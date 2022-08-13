@@ -1,6 +1,9 @@
-import { Image } from 'antd';
 import clsx from 'clsx';
+// Ant Design resources
+import { Image } from 'antd';
+// Hooks
 import { useLanguage } from 'hooks';
+// Utils
 import { PUBLIC_URL } from 'utils/constants';
 
 type ContenderCardProps = {

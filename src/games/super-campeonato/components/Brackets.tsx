@@ -1,5 +1,5 @@
-// Components
 import clsx from 'clsx';
+// Components
 import { Translate } from 'components/language';
 import { ContenderCard } from './ContenderCard';
 

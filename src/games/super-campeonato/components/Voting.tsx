@@ -1,15 +1,19 @@
-import { Button, Space } from 'antd';
+import { useMemo } from 'react';
+import { useTimer } from 'react-timer-hook';
 import clsx from 'clsx';
+// Ant Design resources
+import { Button, Space } from 'antd';
+// Hooks
+import { useMock, useStep } from 'hooks';
+import { useBracketVoting } from '../utils/useBracketVoting';
+// Utils
+import { getAnimationClass, inNSeconds } from 'utils/helpers';
+import { mockVotes } from '../utils/mock';
+// Components
 import { TransparentButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { useMock, useStep } from 'hooks';
-import { useMemo } from 'react';
-import { useTimer } from 'react-timer-hook';
-import { getAnimationClass, inNSeconds } from 'utils/helpers';
-import { mockVotes } from '../utils/mock';
-import { useBracketVoting } from '../utils/useBracketVoting';
 import { ContenderCard } from './ContenderCard';
 import { TierContenders } from './TierContenders';
 

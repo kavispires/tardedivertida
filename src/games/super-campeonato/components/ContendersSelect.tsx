@@ -1,4 +1,6 @@
+// Ant Design resources
 import { Select } from 'antd';
+// Components
 import { Translate } from 'components/language';
 
 type ContendersSelectProps = {

@@ -1,7 +1,10 @@
 // Ant Design Resources
 import { Space } from 'antd';
+// Hooks
+import { useMock } from 'hooks';
 // Utils
 import { LETTERS } from 'utils/constants';
+import { mockSelectChallenge } from './utils/mock';
 // Components
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
@@ -9,8 +12,6 @@ import { Translate } from 'components/language';
 import { TransparentButton } from 'components/buttons';
 import { Card } from 'components/cards';
 import { ContendersHand } from './components/ContendersHand';
-import { useMock } from 'hooks';
-import { mockSelectChallenge } from './utils/mock';
 import { ReadyPlayersBar } from 'components/players';
 
 type StepSelectChallengeProps = {

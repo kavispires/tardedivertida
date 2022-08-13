@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 // Hooks
 import { useLanguage, useStep, useUser } from 'hooks';
 import { useOnSubmitVotesAPIRequest } from './utils/api-requests';
@@ -10,7 +11,6 @@ import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
 import { BoxingGlovesIcon } from 'components/icons/BoxingGlovesIcon';
 import { StepBattle } from './StepBattle';
-import { useEffect, useState } from 'react';
 
 function PhaseBattle({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();

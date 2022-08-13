@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 // Hooks
 import { useCardWidth } from 'hooks';
+// Components
 import { FloatingHand } from 'components/cards';
 import { Translate } from 'components/language';
 import { Title } from 'components/text';
