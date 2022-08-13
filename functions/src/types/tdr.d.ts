@@ -24,7 +24,7 @@ type ArteRuimPair = {
   values: [string, string];
 };
 
-type Contenders = {
+type ContenderCard = {
   id: CardId;
   name: DualLanguageValue;
   exclusivity?: Language;

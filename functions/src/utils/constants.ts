@@ -105,7 +105,7 @@ const GAMES = [
   },
   {
     code: 'W',
-    key: 'SUPER_CAMPEONATO_ULTIMATE',
+    key: 'SUPER_CAMPEONATO',
     collection: 'super-campeonato',
   },
   {

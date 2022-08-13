@@ -1,7 +1,7 @@
 /**
  * List of urls residing in the public folder
  */
-export const PUBLIC_URL: StringDictionary = {
+export const PUBLIC_URL = {
   BANNERS: `${process.env.PUBLIC_URL}/images/banners/`,
   CARDS: `${process.env.PUBLIC_URL}/images/cards/`,
   CLOUDS: `${process.env.PUBLIC_URL}/images/clouds/`,
@@ -91,7 +91,7 @@ export const SEPARATOR: string = ';;';
 
 export const LATEST_GAME_IDS: string = 'latestGameIds';
 
-export const ADMIN_ACTIONS: StringDictionary = {
+export const ADMIN_ACTIONS = {
   GO_TO_NEXT_PHASE: 'GO_TO_NEXT_PHASE',
   FORCE_STATE_PROPERTY: 'FORCE_STATE_PROPERTY',
   PLAY_AGAIN: 'PLAY_AGAIN',
@@ -101,7 +101,7 @@ export const ADMIN_ACTIONS: StringDictionary = {
 /**
  * Enum of available games
  */
-export const GAME_COLLECTION: StringDictionary = {
+export const GAME_COLLECTION = {
   ARTE_RUIM: 'arte-ruim',
   BOMBA_RELOGIO: 'bomba-relogio',
   CONTADORES_HISTORIAS: 'contadores-historias',
@@ -123,7 +123,7 @@ export const GAME_COLLECTION: StringDictionary = {
   TESTEMUNHA_OCULAR: 'testemunha-ocular',
   UE_SO_ISSO: 'ue-so-isso',
   VENDAVAL_DE_PALPITE: 'vendaval-de-palpite',
-  SUPER_CAMPEONATO: 'SUPER_CAMPEONATO',
+  SUPER_CAMPEONATO: 'super-campeonato',
   CRUZA_PALAVRAS: 'cruza-palavras',
 };
 
