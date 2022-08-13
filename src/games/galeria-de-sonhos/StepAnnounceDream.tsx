@@ -13,7 +13,7 @@ import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { ImageCard } from 'components/cards';
 import { TimedButton } from 'components/buttons';
-import { AdminNextRoundButton } from 'components/admin';
+import { AdminNextPhaseButton } from 'components/admin';
 import { ListPlayers } from './components/ListPlayers';
 import { MatchCount } from './components/MatchCount';
 import { TurnOrder } from 'components/players';
@@ -200,7 +200,7 @@ export function StepAnnounceDream({
         <TurnOrder players={players} order={gameOrder} activePlayerId={activePlayer.id} />
       )}
 
-      {(latest.isPhaseOver || latest.cardsLeft === 0) && <AdminNextRoundButton buttonText="Ranking" />}
+      {(latest.isPhaseOver || latest.cardsLeft === 0) && <AdminNextPhaseButton>Ranking</AdminNextPhaseButton>}
     </Step>
   );
 }

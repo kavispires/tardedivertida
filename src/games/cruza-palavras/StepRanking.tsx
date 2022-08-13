@@ -7,7 +7,7 @@ import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
 import { ScoringRule } from './components/RulesBlobs';
 import { RankingBoard } from 'components/ranking';
-import { AdminNextRoundButton } from 'components/admin';
+import { AdminNextPhaseButton } from 'components/admin';
 
 type StepRankingProps = {
   players: GamePlayers;
@@ -45,7 +45,7 @@ export function StepRanking({
           <Translate pt="Ver resultado novamente" en="See results again" />
         </Button>
       </Space>
-      <AdminNextRoundButton round={round} lastRound={isLastRound} />
+      <AdminNextPhaseButton round={round} lastRound={isLastRound} />
     </Step>
   );
 }

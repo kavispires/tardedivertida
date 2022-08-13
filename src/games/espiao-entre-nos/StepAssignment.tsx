@@ -1,11 +1,8 @@
-// Hooks
-import { useLanguage } from 'hooks';
 // Components
-import { AdminNextRoundButton } from 'components/admin';
+import { AdminNextPhaseButton } from 'components/admin';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
-
 import { EspiaoEntreNosCard as Card } from './components/Card';
 import { LocationsList } from './components/LocationsList';
 import { Notes } from './components/Notes';
@@ -17,8 +14,6 @@ type StepAssignmentProps = {
 };
 
 export function StepAssignment({ user, isUserTheSpy, locations }: StepAssignmentProps) {
-  const { translate } = useLanguage();
-
   return (
     <Step className="e-phase-step">
       <Title level={2} className="e-phase-title">
@@ -27,7 +22,9 @@ export function StepAssignment({ user, isUserTheSpy, locations }: StepAssignment
 
       <Card location={user.location} role={user.role} />
 
-      <AdminNextRoundButton buttonText={translate('Começar cronômetro', 'Start Timer')} />
+      <AdminNextPhaseButton>
+        <Translate pt="Começar cronômetro" en="Start Timer" />
+      </AdminNextPhaseButton>
 
       <Instruction className="e-phase-instruction">
         {isUserTheSpy ? (

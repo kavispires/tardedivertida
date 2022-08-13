@@ -5,7 +5,7 @@ import { Step } from 'components/steps';
 import { StepRankingWrapper } from 'components/ranking';
 import { Translate } from 'components/language';
 import { RoundsLeftInstruction } from 'components/text';
-import { AdminNextRoundButton } from 'components/admin';
+import { AdminNextPhaseButton } from 'components/admin';
 // Components
 
 type StepRankingProps = {
@@ -57,7 +57,7 @@ export function StepRanking({
         <Translate pt="Ver Galeria De Novo" en="See Gallery Again" />
       </Button>
 
-      <AdminNextRoundButton round={round} lastRound={isLastRound} />
+      <AdminNextPhaseButton round={round} lastRound={isLastRound} />
     </Step>
   );
 }

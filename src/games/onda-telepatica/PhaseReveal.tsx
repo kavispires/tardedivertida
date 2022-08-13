@@ -11,7 +11,7 @@ import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
 import { RankingBoard } from 'components/ranking';
-import { AdminNextRoundButton } from 'components/admin';
+import { AdminNextPhaseButton } from 'components/admin';
 import { StepReveal } from './StepReveal';
 import { ScoringRules } from './components/RulesBlobs';
 import { WavelengthDeviceIcon } from 'components/icons/WavelengthDeviceIcon';
@@ -61,7 +61,7 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
               <Translate pt="Ver resultado novamente" en="See results again" />
             </Button>
           </Space>
-          <AdminNextRoundButton round={state.round} lastRound={state?.lastRound} />
+          <AdminNextPhaseButton round={state.round} lastRound={state?.lastRound} />
         </Step>
       </StepSwitcher>
     </PhaseContainer>
