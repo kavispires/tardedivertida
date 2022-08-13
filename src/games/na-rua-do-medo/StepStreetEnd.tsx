@@ -9,13 +9,12 @@ import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
-import { AdminNextRoundButton } from 'components/admin';
+import { AdminNextPhaseButton } from 'components/admin';
 
 type StepStreetEndProps = {
   street: NStreet;
   currentCard: NCard;
   candySidewalk: CandySidewalk;
-  totalCandyInSidewalk: number;
   user: GamePlayer;
   isDoubleHorror: boolean;
   round: GameRound;
@@ -28,13 +27,12 @@ export function StepStreetEnd({
   currentCard,
   candySidewalk,
   user,
-  totalCandyInSidewalk,
   isDoubleHorror,
   round,
   players,
   alreadyAtHomePlayerIds,
 }: StepStreetEndProps) {
-  const { language, translate } = useLanguage();
+  const { language } = useLanguage();
 
   const monsterName = currentCard?.name?.[language] ?? '';
 
@@ -89,9 +87,9 @@ export function StepStreetEnd({
         players={players}
       />
 
-      <AdminNextRoundButton
-        buttonText={round.current < round.total ? translate('Próxima Casa', 'Next House') : 'Game Over'}
-      />
+      <AdminNextPhaseButton>
+        {round.current < round.total ? <Translate pt="Próxima Casa" en="Next House" /> : 'Game Over'}
+      </AdminNextPhaseButton>
 
       <PlayerStats user={user} />
     </Step>

@@ -2,7 +2,7 @@ import { Button, Space } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks';
 // Components
-import { AdminNextRoundButton } from 'components/admin';
+import { AdminNextPhaseButton } from 'components/admin';
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { RankingBoard } from 'components/ranking';
@@ -91,7 +91,7 @@ export function StepRanking({
         <Button onClick={goToPreviousStep}>{translate('Voltar para Solução', 'Back to Solution')}</Button>
       </Space>
 
-      <AdminNextRoundButton round={round} lastRound={lastRound} />
+      <AdminNextPhaseButton round={round} lastRound={lastRound} />
     </Step>
   );
 }

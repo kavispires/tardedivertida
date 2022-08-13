@@ -42,7 +42,6 @@ function PhaseStreetEnd({ state, players, info }: PhaseProps) {
           street={state.street}
           currentCard={state.currentCard}
           candySidewalk={state.candySidewalk}
-          totalCandyInSidewalk={state.totalCandyInSidewalk}
           user={user}
           isDoubleHorror={state.isDoubleHorror}
           round={state.round}

@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Components
-import { AdminNextRoundButton } from 'components/admin';
+import { AdminNextPhaseButton } from 'components/admin';
 import { Translate } from 'components/language';
 import { RankingBoard } from 'components/ranking';
 import { Step } from 'components/steps';
@@ -35,7 +35,7 @@ export function StepRanking({ ranking, players, goToPreviousStep, round, lastRou
           <Translate pt="Ver resultado novamente" en="See results again" />
         </Button>
       </Space>
-      <AdminNextRoundButton round={round} lastRound={lastRound} />
+      <AdminNextPhaseButton round={round} lastRound={lastRound} />
     </Step>
   );
 }

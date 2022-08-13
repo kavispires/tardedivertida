@@ -1,5 +1,5 @@
 // Components
-import { AdminNextRoundButton } from 'components/admin';
+import { AdminNextPhaseButton } from 'components/admin';
 import { Translate } from 'components/language';
 import { StepRankingWrapper } from 'components/ranking';
 import { RoundsLeftInstruction } from 'components/text';
@@ -38,7 +38,7 @@ export function StepRanking({
     >
       {!isGameOver && <RoundsLeftInstruction round={round} lastRound={isLastRound} />}
 
-      <AdminNextRoundButton round={round} lastRound={isLastRound} />
+      <AdminNextPhaseButton round={round} lastRound={isLastRound} />
 
       <Brackets brackets={brackets} activeTier="winner" />
 

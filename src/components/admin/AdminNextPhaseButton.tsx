@@ -16,22 +16,31 @@ function ButtonLabel({ round, lastRound }: { round?: GameRound; lastRound: boole
   );
 }
 
-type AdminNextRoundButtonProps = {
-  buttonText?: ReactNode;
+type AdminNextPhaseButtonProps = {
+  /**
+   * The button content, if not present "Next Round is used instead"
+   */
+  children?: ReactNode;
   /**
    * Optional custom class name
    */
   className?: string;
+  /**
+   * Game round information used to determine if it is game over
+   */
   round?: GameRound;
+  /**
+   * Flag indicating if the current round should be considered the final round
+   */
   lastRound?: boolean;
 };
 
-export function AdminNextRoundButton({
-  buttonText,
+export function AdminNextPhaseButton({
   className = '',
   round,
   lastRound = false,
-}: AdminNextRoundButtonProps) {
+  children,
+}: AdminNextPhaseButtonProps) {
   const { translate } = useLanguage();
   const { isLoading } = useLoading();
   const [isAdmin] = useGlobalState('isAdmin');
@@ -58,7 +67,7 @@ export function AdminNextRoundButton({
         onClick={() => onGoToNextPhase({ action: ADMIN_ACTIONS.GO_TO_NEXT_PHASE })}
         disabled={isLoading}
       >
-        {buttonText ?? <ButtonLabel round={round} lastRound={lastRound} />}
+        {children ?? <ButtonLabel round={round} lastRound={lastRound} />}
       </Button>
     </AdminOnlyContainer>
   );

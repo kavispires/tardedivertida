@@ -13,7 +13,7 @@ import { Step, StepSwitcher } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { RankingBoard } from 'components/ranking';
-import { AdminNextRoundButton } from 'components/admin';
+import { AdminNextPhaseButton } from 'components/admin';
 
 type StepResolutionProps = {
   ranking: GameRanking;
@@ -91,7 +91,7 @@ export function StepResolution({
             pastureSize={pastureSize}
             roundType={step > 0 ? roundType : undefined}
           />
-          <AdminNextRoundButton round={round} />
+          <AdminNextPhaseButton round={round} />
         </Step>
       </StepSwitcher>
     </Step>

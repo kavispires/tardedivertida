@@ -11,7 +11,7 @@ import { Step, StepSwitcher } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { RankingBoard } from 'components/ranking';
-import { AdminNextRoundButton } from 'components/admin';
+import { AdminNextPhaseButton } from 'components/admin';
 import { ReviewIcon } from 'components/icons/ReviewIcon';
 
 function PhaseReact({ state, players, info }: PhaseProps) {
@@ -70,7 +70,7 @@ function PhaseReact({ state, players, info }: PhaseProps) {
               <Translate pt="Ver resultado novamente" en="See results again" />
             </Button>
           </Space>
-          <AdminNextRoundButton round={state.round} />
+          <AdminNextPhaseButton round={state.round} />
         </Step>
       </StepSwitcher>
     </PhaseContainer>

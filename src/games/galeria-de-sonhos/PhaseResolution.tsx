@@ -8,7 +8,7 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
 import { StepRankingWrapper } from 'components/ranking';
 import { Instruction, RoundsLeftInstruction } from 'components/text';
-import { AdminNextRoundButton } from 'components/admin';
+import { AdminNextPhaseButton } from 'components/admin';
 import { RankIcon } from 'components/icons/RankIcon';
 
 function PhaseResolution({ players, state, info }: PhaseProps) {
@@ -53,7 +53,7 @@ function PhaseResolution({ players, state, info }: PhaseProps) {
           ]}
         >
           <RoundsLeftInstruction round={state.round} lastRound={state.lastRound} />
-          <AdminNextRoundButton round={state.round} lastRound={state.lastRound} />
+          <AdminNextPhaseButton round={state.round} lastRound={state.lastRound} />
         </StepRankingWrapper>
       </StepSwitcher>
     </PhaseContainer>

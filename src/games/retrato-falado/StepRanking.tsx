@@ -1,4 +1,4 @@
-import { AdminNextRoundButton } from 'components/admin';
+import { AdminNextPhaseButton } from 'components/admin';
 import { Translate } from 'components/language';
 import { RankingBoard } from 'components/ranking';
 import { Step } from 'components/steps';
@@ -22,7 +22,7 @@ export function StepRanking({ ranking, players, round }: StepRankingProps) {
       </Instruction>
 
       <RankingBoard ranking={ranking} players={players} />
-      <AdminNextRoundButton round={round} />
+      <AdminNextPhaseButton round={round} />
     </Step>
   );
 }

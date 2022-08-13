@@ -2,7 +2,7 @@ import { Button, Space } from 'antd';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTimer } from 'react-timer-hook';
 
-import { AdminNextRoundButton } from 'components/admin';
+import { AdminNextPhaseButton } from 'components/admin';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Title } from 'components/text';
@@ -109,7 +109,7 @@ export function StepAlbum({ players, album }: StepAlbumProps) {
           Next Album
         </Button>
       </Space>
-      <AdminNextRoundButton />
+      <AdminNextPhaseButton />
     </Step>
   );
 }

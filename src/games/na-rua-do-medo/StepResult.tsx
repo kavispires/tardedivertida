@@ -1,7 +1,4 @@
-// Hooks
-import { useLanguage } from 'hooks';
 // Components
-
 import { PlayersDecisionList } from './components/PlayersDecisionList';
 import { PlayersDecisionResult } from './components/PlayersDecisionResult';
 import { PlayerStats } from './components/PlayerStats';
@@ -11,7 +8,7 @@ import { Step } from 'components/steps';
 import { Title } from 'components/text';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
-import { AdminNextRoundButton } from 'components/admin';
+import { AdminNextPhaseButton } from 'components/admin';
 
 type StepResultProps = {
   players: GamePlayers;
@@ -38,7 +35,6 @@ export function StepResult({
   goingHomePlayerIds,
   candyInHand,
 }: StepResultProps) {
-  const { translate } = useLanguage();
   return (
     <Step fullWidth>
       <Title>
@@ -61,7 +57,9 @@ export function StepResult({
         <PlayersDecisionList playersIdsList={alreadyAtHomePlayerIds} type="home" players={players} />
       )}
 
-      <AdminNextRoundButton buttonText={translate('Próxima Casa', 'Next House')} />
+      <AdminNextPhaseButton>
+        <Translate pt="Próxima Casa" en="Next House" />
+      </AdminNextPhaseButton>
 
       <PlayerStats user={user} />
     </Step>
