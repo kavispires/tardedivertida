@@ -1,5 +1,6 @@
-// Components
+// Ant Design resources
 import { Space } from 'antd';
+// Components
 import { GameOverWrapper } from 'components/game-over';
 import { TrophyIcon } from 'components/icons/TrophyIcon';
 import { ContenderCard } from './components/ContenderCard';

@@ -1,6 +1,9 @@
+// Ant Design resources
 import { Space } from 'antd';
-import { Card } from 'components/cards';
+// Hooks
 import { useLanguage } from 'hooks';
+// Components
+import { Card } from 'components/cards';
 
 type ChallengeProps = {
   challenge: DefaultTextCard;

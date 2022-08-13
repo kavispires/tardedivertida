@@ -1,4 +1,6 @@
+// Hooks
 import { useCardWidth } from 'hooks';
+// Components
 import { ContenderCard } from './ContenderCard';
 
 type TierContendersProps = {

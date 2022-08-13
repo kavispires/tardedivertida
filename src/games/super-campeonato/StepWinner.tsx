@@ -1,13 +1,12 @@
-import { TrophyOutlined } from '@ant-design/icons';
+// Ant Design resources
 import { Space } from 'antd';
-
+import { TrophyOutlined } from '@ant-design/icons';
+// Components
 import { TimedButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
-
 import { Title } from 'components/text';
 import { BetsFloatingHand } from './components/BetsFloatingHand';
-
 import { Challenge } from './components/Challenge';
 import { ContenderCard } from './components/ContenderCard';
 

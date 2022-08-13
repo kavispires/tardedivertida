@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 // Hooks
 import { useLanguage, useStep, useUser } from 'hooks';
 // Resources & Utils
@@ -7,9 +8,8 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
-import { useEffect, useState } from 'react';
-import { StepRanking } from './StepRanking';
 import { TournamentIcon } from 'components/icons/TournamentIcon';
+import { StepRanking } from './StepRanking';
 import { StepWinner } from './StepWinner';
 
 function PhaseResults({ state, players, info }: PhaseProps) {
