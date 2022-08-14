@@ -1,13 +1,12 @@
 import { useMemo } from 'react';
-import { useTimer } from 'react-timer-hook';
 import clsx from 'clsx';
 // Ant Design resources
 import { Button, Space } from 'antd';
 // Hooks
-import { useMock, useStep } from 'hooks';
+import { useCountdown, useMock, useStep } from 'hooks';
 import { useBracketVoting } from '../utils/useBracketVoting';
 // Utils
-import { getAnimationClass, inNSeconds } from 'utils/helpers';
+import { getAnimationClass } from 'utils/helpers';
 import { mockVotes } from '../utils/mock';
 // Components
 import { TransparentButton } from 'components/buttons';
@@ -27,8 +26,8 @@ type VotingProps = {
 export function Voting({ brackets, tier, onSubmitVotes, players }: VotingProps) {
   const { step, goToNextStep } = useStep(0);
 
-  const { seconds } = useTimer({
-    expiryTimestamp: inNSeconds(5),
+  const { seconds } = useCountdown({
+    duration: 5,
     autoStart: true,
     onExpire: goToNextStep,
   });

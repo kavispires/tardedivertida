@@ -2,8 +2,7 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Button, ButtonProps } from 'antd';
 // Hook and Utils
-import { useTimer } from 'react-timer-hook';
-import { inNSeconds } from 'utils/helpers';
+import { useCountdown } from 'hooks';
 
 interface TimedButtonProps extends ButtonProps {
   /**
@@ -32,10 +31,11 @@ export function TimedButton({
   hideTimer = false,
   ...rest
 }: TimedButtonProps) {
-  const { minutes, seconds } = useTimer({
-    expiryTimestamp: inNSeconds(duration),
+  const { timeLeft } = useCountdown({
+    duration,
     autoStart: true,
-    onExpire: hideTimer ? undefined : onExpire,
+    onExpire,
+    disabled: hideTimer,
   });
 
   const timeClass = 'timed-button__time';
@@ -44,9 +44,7 @@ export function TimedButton({
     <Button {...rest} type={type} onClick={onClick ?? onExpire}>
       {children}
       {Boolean(children && !hideTimer) && ' '}
-      {!hideTimer && (
-        <span className={clsx(timeClass, `${timeClass}--${type}`)}>{minutes * 60 + seconds}</span>
-      )}
+      {!hideTimer && <span className={clsx(timeClass, `${timeClass}--${type}`)}>{timeLeft}</span>}
     </Button>
   );
 }

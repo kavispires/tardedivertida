@@ -1,14 +1,14 @@
+import clsx from 'clsx';
 import { useEffect, useMemo, useState } from 'react';
-import { useTimer } from 'react-timer-hook';
 // Ant Design Resources
 import { HeartFilled } from '@ant-design/icons';
 // Hooks
-import { getAnimationClass, inNSeconds } from 'utils/helpers';
+import { useCountdown } from 'hooks';
+// Utils
+import { getAnimationClass } from 'utils/helpers';
 // Components
-
 import { Pasture } from './components/Pasture';
 import { RoundType } from './components/RoundType';
-import clsx from 'clsx';
 import { Step, StepSwitcher } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
@@ -40,26 +40,26 @@ export function StepResolution({
 
   const pastureChange = useMemo(() => JSON.parse(pastureChangeStr), [pastureChangeStr]);
 
-  const { seconds } = useTimer({
-    expiryTimestamp: inNSeconds(15),
+  const { timeLeft } = useCountdown({
+    duration: 15,
     autoStart: true,
   });
 
   useEffect(() => {
-    if (seconds === 7) {
+    if (timeLeft === 7) {
       setStep(1);
     }
-    if (seconds === 5) {
+    if (timeLeft === 5) {
       setPastureIndex(1);
     }
-    if (seconds === 4 && announceSave) {
+    if (timeLeft === 4 && announceSave) {
       setShowAnnounceSave(true);
     }
 
-    if (seconds === 1) {
+    if (timeLeft === 1) {
       setPastureIndex(2);
     }
-  }, [seconds]); // eslint-disable-line
+  }, [timeLeft]); // eslint-disable-line
 
   return (
     <Step fullWidth>

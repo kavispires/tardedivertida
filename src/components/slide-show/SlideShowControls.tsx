@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { useTimer } from 'react-timer-hook';
 // Ant Design Resources
 import { Button, Space } from 'antd';
 import {
@@ -9,8 +8,8 @@ import {
   StepForwardOutlined,
   TrophyOutlined,
 } from '@ant-design/icons';
-// Utils
-import { inNSeconds } from 'utils/helpers';
+// Hooks
+import { useCountdown } from 'hooks';
 // Components
 import { Translate } from 'components/language';
 
@@ -33,20 +32,18 @@ export function SlideShowControls({
   barColor = 'gray',
   windowDuration = 10,
 }: SlideShowControlsProps) {
-  const { minutes, seconds, isRunning, pause, resume } = useTimer({
-    expiryTimestamp: inNSeconds(windowDuration * length),
+  const { timeLeft, isRunning, pause, resume } = useCountdown({
+    duration: windowDuration * length,
     autoStart: true,
     onExpire: () => setStep(2),
   });
 
-  const time = minutes * 60 + seconds;
-
   // Automatically go to the next window every {windowDuration} seconds
   useEffect(() => {
-    if (time < windowDuration * length && time > 0 && time % windowDuration === 0) {
+    if (timeLeft < windowDuration * length && timeLeft > 0 && timeLeft % windowDuration === 0) {
       setActiveIndex((s: number) => Math.min(s + 1, length - 1));
     }
-  }, [time, setActiveIndex, length, windowDuration]);
+  }, [timeLeft, setActiveIndex, length, windowDuration]);
 
   const goToPreviousStep = () => {
     setActiveIndex((s: number) => Math.max(s - 1, 0));
@@ -77,7 +74,7 @@ export function SlideShowControls({
         <span
           className="slide-show__controls-timer-bar-pill"
           style={{
-            width: `${Math.abs((windowDuration * time) / length - 100)}%`,
+            width: `${Math.abs((windowDuration * timeLeft) / length - 100)}%`,
             backgroundColor: barColor,
           }}
         ></span>

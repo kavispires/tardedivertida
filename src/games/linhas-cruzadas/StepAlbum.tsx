@@ -1,14 +1,16 @@
-import { Button, Space } from 'antd';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { useTimer } from 'react-timer-hook';
-
+// Ant Design Resources
+import { Button, Space } from 'antd';
+// Hooks
+import { useCountdown } from 'hooks';
+// Utils
+import { PAGE_DURATION } from './utils/constants';
+// Components
 import { AdminNextPhaseButton } from 'components/admin';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Title } from 'components/text';
-import { inNSeconds } from 'utils/helpers';
 import { Album } from './components/Album';
-import { PAGE_DURATION } from './utils/constants';
 
 type StepAlbumProps = {
   players: GamePlayers;
@@ -27,8 +29,8 @@ export function StepAlbum({ players, album }: StepAlbumProps) {
 
   const totalTime = PAGE_DURATION * totalPages;
 
-  const { minutes, seconds, isRunning } = useTimer({
-    expiryTimestamp: inNSeconds(PAGE_DURATION * totalPages),
+  const { timeLeft, isRunning } = useCountdown({
+    duration: PAGE_DURATION * totalPages,
     autoStart: true,
     onExpire: () => setAreControlsLocked(false),
   });
@@ -36,8 +38,6 @@ export function StepAlbum({ players, album }: StepAlbumProps) {
   const currentAlbumEntry = album[currentEntry];
   const currentAlbumLastPageIndex = (currentAlbumEntry?.slides?.length || 0) - 1;
   const isLastAlbum = !Boolean(album[currentEntry + 1]);
-
-  const time = minutes * 60 + seconds;
 
   // Control Functions
   const onPrevAlbum = () => {
@@ -63,7 +63,7 @@ export function StepAlbum({ players, album }: StepAlbumProps) {
   }, [areControlsLocked]);
 
   useEffect(() => {
-    if (isRunning && time < totalTime && time % PAGE_DURATION === 0) {
+    if (isRunning && timeLeft < totalTime && timeLeft % PAGE_DURATION === 0) {
       // If next page exists, go for it, otherwise, next album
       if (currentPage < currentAlbumLastPageIndex) {
         onNextPage();
@@ -71,7 +71,7 @@ export function StepAlbum({ players, album }: StepAlbumProps) {
         onNextAlbum();
       }
     }
-  }, [time, isRunning, currentAlbumLastPageIndex]); // eslint-disable-line
+  }, [timeLeft, isRunning, currentAlbumLastPageIndex]); // eslint-disable-line
 
   return (
     <Step className="l-step-album">

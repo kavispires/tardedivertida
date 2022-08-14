@@ -1,15 +1,12 @@
 import clsx from 'clsx';
 import { useEffect, useMemo, useState } from 'react';
 import { orderBy } from 'lodash';
-import { useTimer } from 'react-timer-hook';
 import { useEffectOnce } from 'react-use';
 // Ant Design Resources
 import { Tooltip } from 'antd';
 import { CrownFilled } from '@ant-design/icons';
 // Hooks
-import { useDimensions } from 'hooks';
-// Utils
-import { inNSeconds } from 'utils/helpers';
+import { useCountdown, useDimensions } from 'hooks';
 // Components
 import { Translate } from 'components/language';
 import { Avatar } from 'components/avatars';
@@ -89,8 +86,8 @@ export function RankingBoard({
 
   const maxPoints = useMemo(() => Math.max(...ranking.map((scores) => scores.newScore)), [ranking]);
 
-  const { seconds } = useTimer({
-    expiryTimestamp: inNSeconds(5),
+  const { seconds } = useCountdown({
+    duration: 5,
     autoStart: true,
     onExpire: () => {
       setReRank(1);

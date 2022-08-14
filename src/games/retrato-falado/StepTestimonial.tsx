@@ -1,15 +1,14 @@
 import { useEffect, useState } from 'react';
-import { useTimer } from 'react-timer-hook';
+// Hooks
+import { useCountdown, useGlobalState } from 'hooks';
 // Utils
 import { TIMES, VIEWS } from './utils/constants';
-import { inNSeconds } from 'utils/helpers';
 // Components
 import { ViewSwitch } from 'components/views';
 import { ViewAnnouncement } from './components/ViewAnnouncement';
 import { ViewLastSeconds } from './components/ViewLastSeconds';
 import { ViewSketching } from './components/ViewSketching';
 import { ViewWitnessing } from './components/ViewWitnessing';
-import { useGlobalState } from 'hooks';
 
 type StepTestimonialProps = {
   isUserTheWitness: boolean;
@@ -36,24 +35,22 @@ export function StepTestimonial({
     onSubmitSketch({ sketch: JSON.stringify(lines) });
   };
 
-  const { minutes, seconds } = useTimer({
-    expiryTimestamp: inNSeconds(TIMES.TOTAL),
+  const { timeLeft } = useCountdown({
+    duration: TIMES.TOTAL,
     autoStart: true,
     onExpire: onEnd,
   });
 
-  const timer = minutes * 60 + seconds;
-
   useEffect(() => {
     // When time is done for memorizing
-    if (timer === TIMES.MEMORY_MARK) {
+    if (timeLeft === TIMES.MEMORY_MARK) {
       setView(VIEWS.ANNOUNCEMENT);
-    } else if (timer === TIMES.ANNOUNCEMENT_MARK) {
+    } else if (timeLeft === TIMES.ANNOUNCEMENT_MARK) {
       setView(VIEWS.SKETCHING);
-    } else if (timer === TIMES.SKETCH_MARK) {
+    } else if (timeLeft === TIMES.SKETCH_MARK) {
       setView(VIEWS.FINISHING);
     }
-  }, [timer]);
+  }, [timeLeft]);
 
   return (
     <ViewSwitch
@@ -67,20 +64,20 @@ export function StepTestimonial({
       <ViewWitnessing
         isUserTheWitness={isUserTheWitness}
         currentMonster={currentMonster}
-        remainingWitnessingTime={timer - TIMES.MEMORY_MARK}
+        remainingWitnessingTime={timeLeft - TIMES.MEMORY_MARK}
         lines={lines}
         setLines={setLines}
       />
       <ViewAnnouncement isUserTheWitness={isUserTheWitness} />
       <ViewSketching
         isUserTheWitness={isUserTheWitness}
-        remainingSketchingTime={timer - TIMES.SKETCH_MARK}
+        remainingSketchingTime={timeLeft - TIMES.SKETCH_MARK}
         lines={lines}
         setLines={setLines}
       />
       <ViewLastSeconds
         isUserTheWitness={isUserTheWitness}
-        remainingTime={timer}
+        remainingTime={timeLeft}
         lines={lines}
         setLines={setLines}
       />

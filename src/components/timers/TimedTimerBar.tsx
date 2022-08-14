@@ -1,5 +1,6 @@
-import { useTimer } from 'react-timer-hook';
-import { inNSeconds } from 'utils/helpers';
+// Hooks
+import { useCountdown } from 'hooks';
+// Components
 import { TimerBar } from './TimerBar';
 
 type TimedTimerBarProps = {
@@ -22,17 +23,15 @@ type TimedTimerBarProps = {
 };
 
 export function TimedTimerBar({ duration, onExpire, type, steps = 10 }: TimedTimerBarProps) {
-  const { minutes, seconds } = useTimer({
-    expiryTimestamp: inNSeconds(duration),
+  const { timeLeft } = useCountdown({
+    duration,
     autoStart: true,
     onExpire,
   });
 
-  const timer = minutes * 60 + seconds;
-
   return (
     <div>
-      {timer} <TimerBar steps={steps} value={timer} total={duration} type={type} /> {timer}
+      {timeLeft} <TimerBar steps={steps} value={timeLeft} total={duration} type={type} /> {timeLeft}
     </div>
   );
 }
