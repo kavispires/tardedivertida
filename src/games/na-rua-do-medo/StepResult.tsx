@@ -57,7 +57,7 @@ export function StepResult({
         <PlayersDecisionList playersIdsList={alreadyAtHomePlayerIds} type="home" players={players} />
       )}
 
-      <AdminNextPhaseButton>
+      <AdminNextPhaseButton autoTriggerTime={15}>
         <Translate pt="Próxima Casa" en="Next House" />
       </AdminNextPhaseButton>
 

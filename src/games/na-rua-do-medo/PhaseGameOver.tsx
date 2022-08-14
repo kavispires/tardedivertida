@@ -4,7 +4,6 @@ import { useLanguage, useUser } from 'hooks';
 // Utils
 import { AVATARS } from 'utils/avatars';
 // Components
-
 import { CandyCount } from './components/CandyCount';
 import { PlayerStats } from './components/PlayerStats';
 import { GameOverWrapper } from 'components/game-over';
