@@ -1,11 +1,14 @@
-import { FireFilled } from '@ant-design/icons';
-import { Button } from 'antd';
-import { Translate } from 'components/language';
-import { useAPICall, useGlobalState, useLanguage, useLoading } from 'hooks';
 import { ReactNode } from 'react';
+// Ant Design Resources
+import { FireFilled } from '@ant-design/icons';
+// Hooks
+import { useAPICall, useLanguage, useLoading } from 'hooks';
+// Utils
 import { ADMIN_API } from 'services/adapters';
 import { ADMIN_ACTIONS } from 'utils/constants';
-
+// Components
+import { TimedButton } from 'components/buttons';
+import { Translate } from 'components/language';
 import { AdminOnlyContainer } from './AdminOnlyContainer';
 
 function ButtonLabel({ round, lastRound }: { round?: GameRound; lastRound: boolean }) {
@@ -33,18 +36,27 @@ type AdminNextPhaseButtonProps = {
    * Flag indicating if the current round should be considered the final round
    */
   lastRound?: boolean;
+  /**
+   * Time to auto trigger the button in seconds
+   */
+  autoTriggerTime?: number;
 };
 
+/**
+ * Button only available to the admin to go to the next phase.
+ * It can be auto-triggered by using the autoTriggerTime
+ * @param props
+ * @returns
+ */
 export function AdminNextPhaseButton({
   className = '',
   round,
   lastRound = false,
+  autoTriggerTime = 0,
   children,
 }: AdminNextPhaseButtonProps) {
   const { translate } = useLanguage();
   const { isLoading } = useLoading();
-  const [isAdmin] = useGlobalState('isAdmin');
-  const [isAdminEnabled] = useGlobalState('isAdminEnabled');
 
   const onGoToNextPhase = useAPICall({
     apiFunction: ADMIN_API.performAdminAction,
@@ -56,19 +68,22 @@ export function AdminNextPhaseButton({
     ),
   });
 
-  if (!isAdmin || !isAdminEnabled) return <span></span>;
+  const handleClick = () => onGoToNextPhase({ action: ADMIN_ACTIONS.GO_TO_NEXT_PHASE });
 
   return (
     <AdminOnlyContainer className={className}>
-      <Button
+      <TimedButton
         icon={<FireFilled />}
         type="primary"
         danger
-        onClick={() => onGoToNextPhase({ action: ADMIN_ACTIONS.GO_TO_NEXT_PHASE })}
         disabled={isLoading}
+        onClick={handleClick}
+        onExpire={handleClick}
+        duration={autoTriggerTime}
+        hideTimer={!Boolean(autoTriggerTime)}
       >
         {children ?? <ButtonLabel round={round} lastRound={lastRound} />}
-      </Button>
+      </TimedButton>
     </AdminOnlyContainer>
   );
 }
