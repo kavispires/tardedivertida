@@ -24,7 +24,7 @@
     ]
   },
   "playerCount": {
-    "recommended": "6+",
+    "recommended": [6, 7, 8, 9, 10],
     "min": 4,
     "max": 10
   },
