@@ -6,10 +6,7 @@ import { Input } from 'antd';
 // Adapters
 import { GAME_API } from 'services/adapters';
 // Hooks
-import { useTimer } from 'react-timer-hook';
-import { useAPICall, useGlobalState, useLanguage, useLoading } from 'hooks';
-// Utils
-import { inNSeconds } from 'utils/helpers';
+import { useAPICall, useCountdown, useGlobalState, useLanguage, useLoading } from 'hooks';
 // Components
 import { Translate } from 'components/language';
 
@@ -31,8 +28,8 @@ export function RateGameWidget({ customText }: RateGameWidgetProps): JSX.Element
   const [hideWidget, setHideWidget] = useState(false);
   const [thankYouMessage, setThankYouMessage] = useState(false);
 
-  const { start } = useTimer({
-    expiryTimestamp: inNSeconds(3),
+  const { start } = useCountdown({
+    duration: 3,
     onExpire: () => setHideWidget(true),
     autoStart: false,
   });

@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react';
-import { useTimer } from 'react-timer-hook';
 import { useAudio } from 'react-use';
 // Utils
-import { useDevFeatures, useGlobalState, useLanguage } from 'hooks';
-import { inNSeconds } from 'utils/helpers';
+import { useCountdown, useDevFeatures, useGlobalState, useLanguage } from 'hooks';
 // Components
 import { Step } from 'components/steps';
 import { Card } from 'components/cards';
@@ -34,8 +32,8 @@ export function StepDraw({ secretCard, onSubmitDrawing }: StepDrawProps) {
     controls.volume(volume);
   }, [volume]); // eslint-disable-line
 
-  const { seconds } = useTimer({
-    expiryTimestamp: inNSeconds(11),
+  const { seconds } = useCountdown({
+    duration: 11,
     autoStart: true,
     onExpire: () => {
       setTimesUp(true);

@@ -1,13 +1,11 @@
 import { useState } from 'react';
-import { useTimer } from 'react-timer-hook';
 // Ant Design Resources
 import { Alert } from 'antd';
 import { CloudUploadOutlined } from '@ant-design/icons';
 // Hooks
-import { useMock } from 'hooks';
+import { useCountdown, useMock } from 'hooks';
 // Utils
 import { mockClues } from './utils/mock';
-import { inNSeconds } from 'utils/helpers';
 import { getAnimationClass } from 'utils/helpers';
 import { SEPARATOR } from 'utils/constants';
 import { WRITE_CLUE_TIME, WRITE_CLUE_TIME_FIRST_ROUND } from './utils/constants';
@@ -55,15 +53,13 @@ export function StepPlayerClue({
 
   const timerTotal = round.current === 1 ? WRITE_CLUE_TIME_FIRST_ROUND : WRITE_CLUE_TIME;
 
-  const { minutes, seconds } = useTimer({
-    expiryTimestamp: inNSeconds(timerTotal),
+  const { timeLeft } = useCountdown({
+    duration: timerTotal,
     autoStart: true,
     onExpire: () => {
       setDisableInputs(true);
     },
   });
-
-  const timer = minutes * 60 + seconds;
 
   const toggleGuessIds = (id: string, isGuess: boolean) => {
     const index = Number(id.split(SEPARATOR)[1]);
@@ -111,7 +107,7 @@ export function StepPlayerClue({
         />
       </Instruction>
 
-      <TimerBar value={timer} total={timerTotal} steps={timerTotal / 3} />
+      <TimerBar value={timeLeft} total={timerTotal} steps={timerTotal / 3} />
 
       <ControlledInputWriting
         onSubmit={onSubmitEverything}
