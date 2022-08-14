@@ -76,7 +76,9 @@ export const AdminMenuDrawer = ({ state, players }: AdminMenuDrawerProps) => {
                 onConfirm={() => onPerformAdminAction({ action: ADMIN_ACTIONS.PLAY_AGAIN })}
               >
                 <AdminPerformActionButton
-                  disabled={isLoading || !(state.phase === 'GAME_OVER')}
+                  // disabled={isLoading || !(state.phase === 'GAME_OVER')}
+                  // Not every game is currently working with this feature
+                  disabled={false}
                   label="Play Again"
                   className="admin-menu-drawer__button"
                 />
