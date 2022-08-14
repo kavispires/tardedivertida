@@ -200,7 +200,9 @@ export function StepAnnounceDream({
         <TurnOrder players={players} order={gameOrder} activePlayerId={activePlayer.id} />
       )}
 
-      {(latest.isPhaseOver || latest.cardsLeft === 0) && <AdminNextPhaseButton>Ranking</AdminNextPhaseButton>}
+      {(latest.isPhaseOver || latest.cardsLeft === 0) && (
+        <AdminNextPhaseButton autoTriggerTime={15}>Ranking</AdminNextPhaseButton>
+      )}
     </Step>
   );
 }

@@ -24,11 +24,7 @@ export function GameOverTable({ table }: TableProps) {
               <ImageCard
                 imageId={card.id}
                 cardWidth={cardWidth - 6} // 6 is the border total size
-                className={clsx(
-                  'g-table-image',
-
-                  getAnimationClass('zoomIn')
-                )}
+                className={clsx('g-table-image', getAnimationClass('zoomIn'))}
               />
             </li>
           );

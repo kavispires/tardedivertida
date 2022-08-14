@@ -1,10 +1,11 @@
+// Ant Design
+import { Avatar } from 'antd';
 // Utils
 import { pluralize } from 'utils/helpers';
 // Components
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { StarPoints } from 'components/points';
-import { Avatar } from 'antd';
 
 type MatchCountProps = {
   matchCount: number;
