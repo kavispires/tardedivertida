@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import { message } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks';
+// Utils
+import { getAnimationClass } from 'utils/helpers';
 // Components
 import { CardPlayRules } from './components/RulesBlobs';
 import { PlayTable } from './components/PlayTable';
@@ -15,7 +17,6 @@ import { AvatarName } from 'components/avatars';
 import { PopoverRule } from 'components/rules';
 import { TurnOrder } from 'components/players';
 import { PlayersDreamsCount } from './components/PlayersDreamsCount';
-import { getAnimationClass } from 'utils/helpers';
 
 type StepDreamsSelectionProps = {
   table: GImageCard[];
