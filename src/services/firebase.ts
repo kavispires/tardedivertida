@@ -9,6 +9,7 @@ import {
 } from 'firebase/auth';
 import { getFunctions, connectFunctionsEmulator, Functions } from 'firebase/functions';
 import { message, notification } from 'antd';
+import { setGlobalState } from 'hooks';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -37,6 +38,7 @@ if (window.location.hostname.includes(localHost)) {
   connectFunctionsEmulator(functions, localHost, 5001);
   connectFirestoreEmulator(firestore, 'localhost', 8091);
   connectFunctionsEmulator(functions, 'localhost', 5001);
+  setGlobalState('usingEmulators', true);
 }
 
 export default firebaseApp;
