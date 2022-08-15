@@ -22,7 +22,7 @@ export function EvaluatedDrawings({ votes, cards, drawings }: EvaluatedDrawingsP
 
   const cardsDict = useMemo(
     () =>
-      cards.reduce((acc: ObjectDictionary, card) => {
+      cards.reduce((acc: Record<string, ArteRuimCard>, card) => {
         acc[card.id] = card;
         return acc;
       }, {}),
@@ -31,7 +31,7 @@ export function EvaluatedDrawings({ votes, cards, drawings }: EvaluatedDrawingsP
 
   const drawingsDict = useMemo(
     () =>
-      drawings.reduce((acc: ObjectDictionary, drawing) => {
+      drawings.reduce((acc: Record<string, ArteRuimDrawing>, drawing) => {
         acc[drawing.id] = drawing;
         return acc;
       }, {}),
@@ -49,23 +49,25 @@ export function EvaluatedDrawings({ votes, cards, drawings }: EvaluatedDrawingsP
 
   return (
     <ul className="a-evaluated-drawings">
-      {Object.keys(votes).map((drawingKey) => {
-        const drawing = drawingsDict[drawingKey] as ArteRuimDrawing;
-        const card = cardsDict[votes[drawingKey]] as ArteRuimCard;
+      {Object.keys(votes)
+        .sort()
+        .map((drawingKey: string) => {
+          const drawing = drawingsDict[drawingKey] as ArteRuimDrawing;
+          const card = cardsDict[votes[drawingKey]] as ArteRuimCard;
 
-        return (
-          <li className="a-evaluated-drawings__item" key={`${drawing.id}-${card.id}-${card.playerId}`}>
-            <CanvasSVG
-              drawing={drawing.drawing}
-              size={cSize}
-              className="a-evaluation-all-drawings__drawing"
-            />
-            <div className="a-evaluated-drawings__card" style={{ maxWidth: `${cSize}px` }}>
-              {card.text}
-            </div>
-          </li>
-        );
-      })}
+          return (
+            <li className="a-evaluated-drawings__item" key={`${drawing.id}-${card.id}-${card.playerId}`}>
+              <CanvasSVG
+                drawing={drawing.drawing}
+                size={cSize}
+                className="a-evaluation-all-drawings__drawing"
+              />
+              <div className="a-evaluated-drawings__card" style={{ maxWidth: `${cSize}px` }}>
+                {card.text}
+              </div>
+            </li>
+          );
+        })}
     </ul>
   );
 }
