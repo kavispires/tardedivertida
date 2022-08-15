@@ -15,6 +15,7 @@ import {
   getChampionshipTier,
   getMostVotedChallenge,
   getTableContenders,
+  isFinalRound,
   makeBrackets,
   makeFinalBrackets,
   updateBracketsWithVotes,
@@ -73,9 +74,12 @@ export const prepareChallengeSelectionPhase = async (
   // Get the two challenges
   const challenges = [store.deck[store.deckIndex], store.deck[store.deckIndex + 1]];
 
+  const round = utils.helpers.increaseRound(state.round);
+
   // If round 5, build brackets with store.finalBrackets
-  const brackets =
-    state.round.current === 4 ? makeFinalBrackets(store.finalBrackets) : utils.firebase.deleteValue();
+  const brackets = isFinalRound(round)
+    ? makeFinalBrackets(store.finalBrackets)
+    : utils.firebase.deleteValue();
 
   // Save
   return {
@@ -85,7 +89,7 @@ export const prepareChallengeSelectionPhase = async (
       },
       state: {
         phase: SUPER_CAMPEONATO_PHASES.CHALLENGE_SELECTION,
-        round: utils.helpers.increaseRound(state.round),
+        round,
         challenges,
         brackets,
       },
@@ -125,10 +129,13 @@ export const prepareBetsPhase = async (
 ): Promise<SaveGamePayload> => {
   utils.players.unReadyPlayers(players);
 
-  const brackets =
-    state.round.current === 5
-      ? state.brackets
-      : makeBrackets(players, store.tableContenders, state.round.current);
+  const brackets = isFinalRound(state.round)
+    ? state.brackets
+    : makeBrackets(players, store.tableContenders, state.round.current);
+
+  const challenge = isFinalRound(state.challenge)
+    ? getMostVotedChallenge(players, state.challenges)
+    : state.challenge;
 
   utils.players.removePropertiesFromPlayers(players, ['votes']);
 
@@ -138,6 +145,7 @@ export const prepareBetsPhase = async (
       state: {
         phase: SUPER_CAMPEONATO_PHASES.BETS,
         brackets,
+        challenge,
       },
       players,
     },
