@@ -34,7 +34,7 @@ export const determineNextPhase = (
     return RESULTS;
   }
 
-  if (currentPhase === CHALLENGE_SELECTION && round.current === 5) {
+  if (currentPhase === CHALLENGE_SELECTION && isFinalRound(round)) {
     return BETS;
   }
 
@@ -45,6 +45,15 @@ export const determineNextPhase = (
   }
   console.warn('Missing phase check');
   return CHALLENGE_SELECTION;
+};
+
+/**
+ * Check if it is the final voting round
+ * @param round
+ * @returns
+ */
+export const isFinalRound = (round: Round): boolean => {
+  return round.current === TOTAL_ROUNDS;
 };
 
 export const getTableContenders = (contendersDeck: ContendersDeck, players: Players): Contender[] => {
