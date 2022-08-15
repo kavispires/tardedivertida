@@ -93,16 +93,17 @@ export const getMostVotedChallenge = (players: Players, challenges: TextCard[]) 
 
   const challengesIds = Object.keys(votes);
   const votesCount: number[] = challengesIds.map((key) => votes[key]);
+
   const max = Math.max(...votesCount);
+
   // If both got the max votes, return a random one
-  if (votesCount.every((vc) => vc === max)) {
+  if (votesCount.length > 1 && votesCount.every((vc) => vc === max)) {
     return utils.game.getRandomItem(challenges);
   }
 
   // Return only the most voted one
   const index = votesCount.findIndex((vc) => vc === max);
   const winnerId = challengesIds[index];
-
   const winner = challenges.find((card) => card.id === winnerId);
 
   return winner ? winner : challenges[0];
