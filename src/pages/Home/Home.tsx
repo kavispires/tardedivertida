@@ -1,12 +1,18 @@
-import { ForwardFilled } from '@ant-design/icons';
-import { Button, Image, Input, Layout, Space } from 'antd';
-import logo from 'assets/images/tarde-divertida-logo.svg';
 import clsx from 'clsx';
-import { resetGlobalState, useGlobalState } from 'hooks';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTitle } from 'react-use';
+// Ant Design Resources
+import { Button, Image, Input, Layout, Space } from 'antd';
+import { ForwardFilled } from '@ant-design/icons';
+// Hooks
+import { resetGlobalState, useGlobalState } from 'hooks';
+// Assets
+import logo from 'assets/images/tarde-divertida-logo.svg';
 
 function Home() {
+  useTitle('Tarde Divertida');
+
   const [showInput, setShowInput] = useState(false);
   const [gameId, setGameId] = useState('');
   const [isAdmin] = useGlobalState('isAdmin');
