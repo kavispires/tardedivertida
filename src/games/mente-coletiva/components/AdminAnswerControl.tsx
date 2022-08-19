@@ -50,7 +50,7 @@ export function AdminAnswerControl({
         disabled={disableButton || isLoading}
         type="primary"
         danger
-        duration={10}
+        duration={answerGroup.entries.length > 1 ? 10 : 5}
         icon={<RocketFilled />}
         onExpire={() => setDisableButton(false)}
       >
