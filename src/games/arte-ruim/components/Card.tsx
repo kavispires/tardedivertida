@@ -4,13 +4,28 @@ import { WarningOutlined } from '@ant-design/icons';
 import { getColorFromLetter } from 'utils/helpers';
 // Components
 import { Card } from 'components/cards';
+import { ReactNode } from 'react';
 
 type ArteRuimCardProps = {
-  text?: any;
+  /**
+   * The text of the card
+   */
+  text?: ReactNode;
+  /**
+   * The level of the card displayed as dots in the footer
+   */
   level: number;
+  /**
+   * The header of the card. Default: X
+   */
   header?: string;
 };
 
+/**
+ * This is the Card component
+ * @param props {object}
+ * @returns
+ */
 export const ArteRuimCard = ({ text, level, header = 'X' }: ArteRuimCardProps) => {
   return (
     <Card
