@@ -9,6 +9,7 @@ import { RulesModal } from 'components/rules';
 import { CreateGameModal } from './CreateGameModal';
 import { MobileFilled } from '@ant-design/icons';
 import { Translate } from 'components/language';
+import { truncateRecommended } from 'utils/helpers';
 
 const getVersionColor = (version: string) => {
   if (version.includes('alpha')) {
@@ -74,8 +75,8 @@ export function GameCard({ game }: GameCardProps) {
         />
         <Card.Meta
           description={translate(
-            `Recomendado jogar com ${game.playerCount.recommended}`,
-            `Recommended with ${game.playerCount.recommended}`
+            `Recomendado jogar com ${truncateRecommended(game.playerCount.recommended)}`,
+            `Recommended with ${truncateRecommended(game.playerCount.recommended)}`
           )}
         />
 
