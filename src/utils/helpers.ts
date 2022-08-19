@@ -267,3 +267,43 @@ export const convertYYYYMMDDtoMilliseconds = (yyyymmdd: string): number => {
 
   return new Date(year, month, day).getTime();
 };
+
+export const truncateRecommended = (recommended: number[]): string => {
+  let result = '';
+  recommended.forEach((number, index) => {
+    if (!result || result[result.length - 1] === ',') {
+      result += number;
+      return;
+    }
+
+    if (number - 1 === recommended[index - 1] && result[result.length - 1] !== '-') {
+      result += '-';
+
+      if (number + 1 !== recommended[index + 1]) {
+        result += number;
+      }
+
+      return;
+    }
+
+    if (
+      result[result.length - 1] === '-' &&
+      number + 1 !== recommended[index + 1] &&
+      result[result.length - 1] !== `${number}`
+    ) {
+      result += number;
+      return;
+    }
+
+    if (number !== recommended[index - 1] + 1) {
+      result += `,${number}`;
+      return;
+    }
+
+    if (recommended.length - 1 === index) {
+      result += number;
+    }
+  });
+
+  return result;
+};
