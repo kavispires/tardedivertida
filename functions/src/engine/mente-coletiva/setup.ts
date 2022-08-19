@@ -184,7 +184,7 @@ export const prepareResolutionPhase = async (
   updateLevelsForPlayers(players, pastureChange[2]);
 
   const isGameOver = determineGameOver(players, store.options?.shortPasture);
-  const shouldSave = isGameOver && !state?.usedSave;
+  const shouldSave = isGameOver && !state?.usedSave && !state?.lastRound;
   if (shouldSave) {
     recalculateLastPasture(pastureChange, state.pastureSize);
     updateLevelsForPlayers(players, pastureChange[2]);
