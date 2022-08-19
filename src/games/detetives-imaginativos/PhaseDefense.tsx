@@ -59,6 +59,8 @@ function PhaseDefense({ state, players, info }: PhaseProps) {
           isLoading={isLoading}
           isUserTheImpostor={isUserTheImpostor}
           user={user}
+          players={players}
+          turnOrder={state.turnOrder}
         />
       </StepSwitcher>
     </PhaseContainer>
