@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { Button, message, Space } from 'antd';
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 // Hooks
-import { useLanguage } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { UeSoIssoCard as Card } from './components/UeSoIssoCard';
 import { SuggestionEasel } from './components/SuggestionEasel';

@@ -1,5 +1,6 @@
 import { SUPER_CAMPEONATO_API } from 'services/adapters';
-import { useAPICall, useLanguage } from 'hooks';
+import { useAPICall } from 'hooks/useAPICall';
+import { useLanguage } from 'hooks/useLanguage';
 import { ACTIONS } from './constants';
 
 export function useOnSubmitChallengeAPIRequest(setStep: GenericFunction) {

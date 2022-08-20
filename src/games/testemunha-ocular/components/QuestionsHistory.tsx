@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Tooltip } from 'antd';
 // Hooks
-import { useLanguage } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { CollapsibleRule } from 'components/rules';
 import { IconAvatar } from 'components/icons/IconAvatar';

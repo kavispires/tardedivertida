@@ -7,7 +7,7 @@ import { TurnOrder } from 'components/players';
 import { messageContent } from 'components/pop-up';
 import { Step } from 'components/steps';
 import { Instruction, TextHighlight, Title } from 'components/text';
-import { useLanguage } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
 import { useEffect } from 'react';
 import { getAnimationClass } from 'utils/helpers';
 import { EndDefenseTimedButton } from './components/EndDefenseTimedButton';

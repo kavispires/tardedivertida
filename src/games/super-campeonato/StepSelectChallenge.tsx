@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Space } from 'antd';
 // Hooks
-import { useMock } from 'hooks';
+import { useMock } from 'hooks/useMock';
 // Utils
 import { LETTERS } from 'utils/constants';
 import { mockSelectChallenge } from './utils/mock';

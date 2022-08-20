@@ -1,5 +1,5 @@
 import { Card } from 'components/cards';
-import { useLanguage } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
 import { pluralize } from 'utils/helpers';
 
 type CategoryCardProps = {

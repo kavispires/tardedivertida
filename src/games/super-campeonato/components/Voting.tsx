@@ -3,7 +3,9 @@ import clsx from 'clsx';
 // Ant Design resources
 import { Button, Space } from 'antd';
 // Hooks
-import { useCountdown, useMock, useStep } from 'hooks';
+import { useCountdown } from 'hooks/useCountdown';
+import { useMock } from 'hooks/useMock';
+import { useStep } from 'hooks/useStep';
 import { useBracketVoting } from '../utils/useBracketVoting';
 // Utils
 import { getAnimationClass } from 'utils/helpers';

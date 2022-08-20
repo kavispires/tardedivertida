@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 // Hooks
-import { useCardWidth } from 'hooks';
+import { useCardWidth } from 'hooks/useCardWidth';
 // Utils
 import { AVATARS } from 'utils/avatars';
 // Components

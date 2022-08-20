@@ -1,5 +1,8 @@
 // Hooks
-import { useLanguage, useLoading, useStep, useWhichPlayerIsThe } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
+import { useLoading } from 'hooks/useLoading';
+import { useStep } from 'hooks/useStep';
+import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { useOnSelectQuestionAPIRequest } from './utils/api-requests';
 // Utils
 import { PHASES } from 'utils/phases';

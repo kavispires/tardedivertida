@@ -3,7 +3,7 @@ import clsx from 'clsx';
 //Design Resources
 import { Button, Divider } from 'antd';
 // Hooks
-import { useLoading } from 'hooks';
+import { useLoading } from 'hooks/useLoading';
 // Components
 
 import { Topic } from './components/Topic';

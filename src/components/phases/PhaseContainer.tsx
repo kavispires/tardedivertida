@@ -1,7 +1,8 @@
 import { ReactNode, useEffect, useRef } from 'react';
 import clsx from 'clsx';
 // Hooks
-import { useGlobalState, useLanguage } from 'hooks';
+import { useGlobalState } from 'hooks/useGlobalState';
+import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { LoadingPage } from 'components/loaders';
 import { PageError } from 'components/errors';

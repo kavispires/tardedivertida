@@ -1,10 +1,15 @@
-import { FireFilled } from '@ant-design/icons';
-import { Button, Drawer, Popconfirm, Spin } from 'antd';
-import { useAPICall, useGlobalState, useLoading } from 'hooks';
 import { useState } from 'react';
+// Ant Design Resources
+import { Button, Drawer, Popconfirm, Spin } from 'antd';
+import { FireFilled } from '@ant-design/icons';
+// Hooks
+import { useAPICall } from 'hooks/useAPICall';
+import { useGlobalState } from 'hooks/useGlobalState';
+import { useLoading } from 'hooks/useLoading';
+// Utils
 import { ADMIN_API } from 'services/adapters';
 import { ADMIN_ACTIONS } from 'utils/constants';
-
+// Components
 import { AdminPerformActionButton } from './_internal/AdminPerformActionButton';
 import { ForceStateForm } from './_internal/ForceStateForm';
 import { PlayersReadyState } from './_internal/PlayersReadyState';

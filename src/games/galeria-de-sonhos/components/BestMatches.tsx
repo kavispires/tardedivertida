@@ -2,7 +2,7 @@ import { orderBy } from 'lodash';
 // Ant Design Resources
 import { Avatar, Divider } from 'antd';
 // Hooks
-import { useCardWidth } from 'hooks';
+import { useCardWidth } from 'hooks/useCardWidth';
 // Components
 import { ImageCard } from 'components/cards';
 import { Translate } from 'components/language';

@@ -1,7 +1,7 @@
 import { Input, Switch } from 'antd';
 import clsx from 'clsx';
 import { Translate } from 'components/language';
-import { useLanguage } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
 import { useEffect, useState } from 'react';
 
 type ClueInputProps = {

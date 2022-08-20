@@ -1,6 +1,8 @@
 import { useState } from 'react';
 // State & Hooks
-import { useIsUserReady, useUser, useLanguage } from 'hooks';
+import { useIsUserReady } from 'hooks/useIsUserReady';
+import { useLanguage } from 'hooks/useLanguage';
+import { useUser } from 'hooks/useUser';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
@@ -29,7 +31,7 @@ function PhasePromptSelection({ players, state, info }: PhaseProps) {
         </PhaseAnnouncement>
 
         {/* Step 1 */}
-        <div>Add Content Here</div>
+        <div>Add Content Here {user.name}</div>
       </StepSwitcher>
     </PhaseContainer>
   );

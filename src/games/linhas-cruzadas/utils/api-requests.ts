@@ -1,6 +1,7 @@
 import { LINHAS_CRUZADAS_API } from 'services/adapters';
 
-import { useAPICall, useLanguage } from 'hooks';
+import { useAPICall } from 'hooks/useAPICall';
+import { useLanguage } from 'hooks/useLanguage';
 
 export function useOnSubmitPromptAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();

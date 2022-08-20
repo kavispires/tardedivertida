@@ -1,5 +1,7 @@
 // State & Hooks
-import { useLanguage, useSlideShow, useStep } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
+import { useSlideShow } from 'hooks/useSlideShow';
+import { useStep } from 'hooks/useStep';
 // Resources and Utils
 import { PHASES } from 'utils/phases';
 // Components

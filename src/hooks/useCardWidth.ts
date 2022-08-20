@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useDimensions } from '.';
+import { useDimensions } from './useDimensions';
 
 /**
  * Get a card width in px based on the window size of the user's browser

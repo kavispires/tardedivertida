@@ -88,5 +88,3 @@ function resetGlobalState() {
   setGlobalState('userAvatarId', initialState.userAvatarId);
 }
 export { setGlobalState, getGlobalState, useGlobalState, resetGlobalState };
-
-export default useGlobalState;

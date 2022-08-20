@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Button, Modal } from 'antd';
 import { ReadOutlined } from '@ant-design/icons';
 // Hooks
-import { useLanguage } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { Translate } from 'components/language';
 import { RulesCarousel } from 'components/rules';

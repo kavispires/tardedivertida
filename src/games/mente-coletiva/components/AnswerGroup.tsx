@@ -5,7 +5,8 @@ import { LockFilled, QuestionCircleFilled } from '@ant-design/icons';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Hooks
-import { useGlobalState, useLanguage } from 'hooks';
+import { useGlobalState } from 'hooks/useGlobalState';
+import { useLanguage } from 'hooks/useLanguage';
 // Components
 
 import { Question } from './Question';

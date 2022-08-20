@@ -2,7 +2,7 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Button, ButtonProps } from 'antd';
 // Hook and Utils
-import { useCountdown } from 'hooks';
+import { useCountdown } from 'hooks/useCountdown';
 
 interface TimedButtonProps extends ButtonProps {
   /**

@@ -1,5 +1,7 @@
 // Hooks
-import { useWhichPlayerIsThe, useLanguage, useStep } from 'hooks';
+import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
+import { useLanguage } from 'hooks/useLanguage';
+import { useStep } from 'hooks/useStep';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components

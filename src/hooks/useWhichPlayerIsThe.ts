@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useGlobalState } from '.';
+import { useGlobalState } from './useGlobalState';
 
 /**
  * Gets player that is assigned to a property in the state

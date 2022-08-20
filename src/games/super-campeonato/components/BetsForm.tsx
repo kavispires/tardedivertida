@@ -3,7 +3,7 @@ import { orderBy } from 'lodash';
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Hooks
-import { useLanguage } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';

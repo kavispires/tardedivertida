@@ -2,7 +2,7 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Tooltip } from 'antd';
 // Hooks
-import { useLanguage } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { ImageCard } from 'components/cards';
 import { Translate } from 'components/language';

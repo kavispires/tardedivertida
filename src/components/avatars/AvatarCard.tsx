@@ -3,7 +3,8 @@ import clsx from 'clsx';
 // Resources
 import { AVATARS } from 'utils/avatars';
 // Hooks
-import { useGlobalState, useLanguage } from 'hooks';
+import { useGlobalState } from 'hooks/useGlobalState';
+import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { Avatar } from './Avatar';
 

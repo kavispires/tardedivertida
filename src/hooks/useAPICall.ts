@@ -1,7 +1,8 @@
 import { useCallback } from 'react';
 import { message, notification } from 'antd';
 import { HttpsCallable } from 'firebase/functions';
-import { useGlobalState, useLoading } from './index';
+import { useLoading } from './useLoading';
+import { useGlobalState } from './useGlobalState';
 
 const debounce = (func: any, timeout = 1000): ((...args: any[]) => any) => {
   let timer: NodeJS.Timeout;

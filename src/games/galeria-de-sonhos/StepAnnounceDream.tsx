@@ -2,7 +2,7 @@
 import { Alert, Divider, Space } from 'antd';
 import { useMemo } from 'react';
 // Hooks
-import { useCardWidth } from 'hooks';
+import { useCardWidth } from 'hooks/useCardWidth';
 // Constants
 import { GO_TO_CARD_PLAY_STEP } from './utils/constants';
 // Helpers

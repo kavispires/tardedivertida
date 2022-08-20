@@ -1,5 +1,5 @@
 // Hooks
-import { useCountdown } from 'hooks';
+import { useCountdown } from 'hooks/useCountdown';
 // Components
 import { TimerBar } from './TimerBar';
 

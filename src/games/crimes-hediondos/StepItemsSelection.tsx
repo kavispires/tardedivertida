@@ -2,7 +2,7 @@ import { useState } from 'react';
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Hooks
-import { useCardWidth } from 'hooks';
+import { useCardWidth } from 'hooks/useCardWidth';
 // Utils
 import { shuffle } from 'utils/helpers';
 // Components

@@ -1,7 +1,7 @@
 // Ant Design resources
 import { Space } from 'antd';
 // Hooks
-import { useLanguage } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { Card } from 'components/cards';
 

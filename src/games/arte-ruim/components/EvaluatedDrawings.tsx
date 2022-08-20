@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 // Hooks
-import { useGlobalState } from 'hooks';
+import { useGlobalState } from 'hooks/useGlobalState';
 // Components
 import { CanvasSVG } from 'components/canvas';
 import { IconAvatar } from 'components/icons/IconAvatar';

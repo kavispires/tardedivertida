@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Collapse } from 'antd';
 // Hooks
-import { useLanguage } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { Instruction } from 'components/text';
 import { ReactNode } from 'react';

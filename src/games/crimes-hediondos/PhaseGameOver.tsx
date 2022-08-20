@@ -1,6 +1,6 @@
 import { orderBy } from 'lodash';
 // Hooks
-import { useUser } from 'hooks';
+import { useUser } from 'hooks/useUser';
 // Components
 import { GameOverWrapper } from 'components/game-over';
 import { Crime } from './components/Crime';

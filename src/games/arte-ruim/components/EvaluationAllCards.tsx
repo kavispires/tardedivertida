@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { useDevFeatures } from 'hooks';
+import { useDevFeatures } from 'hooks/useDevFeatures';
 // Utils
 import { LETTERS } from 'utils/constants';
 import { getEntryId } from 'utils/helpers';

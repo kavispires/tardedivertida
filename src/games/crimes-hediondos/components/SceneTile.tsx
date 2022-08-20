@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { Button, Popover } from 'antd';
 import { CheckCircleFilled } from '@ant-design/icons';
 // Hooks
-import { useLanguage } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
 
 type SceneTileProps = {
   tile: SceneTile;

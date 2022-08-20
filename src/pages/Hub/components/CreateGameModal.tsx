@@ -6,7 +6,10 @@ import { Image, Modal, message, Button, notification, Divider, Typography, Switc
 // Adapters
 import { ADMIN_API } from 'services/adapters';
 // Hooks
-import { useGlobalState, useLanguage, useLoading, useLocalStorage } from 'hooks';
+import { useGlobalState } from 'hooks/useGlobalState';
+import { useLanguage } from 'hooks/useLanguage';
+import { useLoading } from 'hooks/useLoading';
+import { useLocalStorage } from 'hooks/useLocalStorage';
 // Constants
 import { LATEST_GAME_IDS, PUBLIC_URL } from 'utils/constants';
 // Components

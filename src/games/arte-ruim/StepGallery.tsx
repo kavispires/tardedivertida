@@ -1,5 +1,5 @@
 // Hooks
-import { useCardWidth } from 'hooks';
+import { useCardWidth } from 'hooks/useCardWidth';
 // Utils
 import { AVATARS } from 'utils/avatars';
 import { WINDOW_DURATION } from './utils/constants';

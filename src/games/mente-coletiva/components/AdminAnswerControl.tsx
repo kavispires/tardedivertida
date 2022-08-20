@@ -3,7 +3,7 @@ import { useMemo, useState } from 'react';
 import { Button } from 'antd';
 import { PlusCircleFilled, RocketFilled } from '@ant-design/icons';
 // Hooks
-import { useLoading } from 'hooks';
+import { useLoading } from 'hooks/useLoading';
 import { AdminOnlyContainer } from 'components/admin';
 import { Translate } from 'components/language';
 import { Avatar } from 'components/avatars';

@@ -6,7 +6,7 @@ import { useTitle } from 'react-use';
 import { Button, Image, Input, Layout, Space } from 'antd';
 import { ForwardFilled } from '@ant-design/icons';
 // Hooks
-import { resetGlobalState, useGlobalState } from 'hooks';
+import { resetGlobalState, useGlobalState } from 'hooks/useGlobalState';
 // Assets
 import logo from 'assets/images/tarde-divertida-logo.svg';
 

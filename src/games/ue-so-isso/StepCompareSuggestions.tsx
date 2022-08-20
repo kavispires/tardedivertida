@@ -3,7 +3,9 @@ import { useEffect, useState } from 'react';
 import { Button, message, Space } from 'antd';
 import { CloudUploadOutlined } from '@ant-design/icons';
 // Hooks
-import { useGlobalState, useLanguage, useLoading } from 'hooks';
+import { useGlobalState } from 'hooks/useGlobalState';
+import { useLanguage } from 'hooks/useLanguage';
+import { useLoading } from 'hooks/useLoading';
 // Utils
 import { deepCopy } from 'utils/helpers';
 // Components

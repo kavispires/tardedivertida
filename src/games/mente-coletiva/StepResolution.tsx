@@ -3,7 +3,7 @@ import { useEffect, useMemo, useState } from 'react';
 // Ant Design Resources
 import { HeartFilled } from '@ant-design/icons';
 // Hooks
-import { useCountdown } from 'hooks';
+import { useCountdown } from 'hooks/useCountdown';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components

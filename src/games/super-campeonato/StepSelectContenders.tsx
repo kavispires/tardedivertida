@@ -1,6 +1,6 @@
 // Ant Design Resources
 // Hooks
-import { useMock } from 'hooks';
+import { useMock } from 'hooks/useMock';
 // Utils
 import { mockSelectContender } from './utils/mock';
 // Components

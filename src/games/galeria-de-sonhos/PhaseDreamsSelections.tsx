@@ -1,5 +1,7 @@
 // State & Hooks
-import { useIsUserReady, useLanguage, useStep } from 'hooks';
+import { useIsUserReady } from 'hooks/useIsUserReady';
+import { useLanguage } from 'hooks/useLanguage';
+import { useStep } from 'hooks/useStep';
 import { useOnSubmitCardsAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';

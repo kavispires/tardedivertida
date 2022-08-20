@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useAudio } from 'react-use';
 // Utils
-import { useCountdown, useDevFeatures, useGlobalState, useLanguage } from 'hooks';
+import { useCountdown } from 'hooks/useCountdown';
+import { useDevFeatures } from 'hooks/useDevFeatures';
+import { useGlobalState } from 'hooks/useGlobalState';
+import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { Step } from 'components/steps';
 import { Card } from 'components/cards';
