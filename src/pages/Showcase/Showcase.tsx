@@ -7,7 +7,9 @@ import { useEffectOnce } from 'react-use';
 import { Avatar, Image, Layout, Modal, Space } from 'antd';
 import { FilterFilled } from '@ant-design/icons';
 // Hooks
-import { useDimensions, useGlobalState, useLanguage } from 'hooks';
+import { useDimensions } from 'hooks/useDimensions';
+import { useGlobalState } from 'hooks/useGlobalState';
+import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import GAMES from 'utils/info';
 import { PUBLIC_URL } from 'utils/constants';

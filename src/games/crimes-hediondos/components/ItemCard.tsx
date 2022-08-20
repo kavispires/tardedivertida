@@ -2,7 +2,8 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Popover, Tag } from 'antd';
 // Hooks
-import { useDevFeatures, useLanguage } from 'hooks';
+import { useDevFeatures } from 'hooks/useDevFeatures';
+import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { ImageCard } from 'components/cards';
 

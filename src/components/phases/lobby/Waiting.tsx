@@ -3,7 +3,9 @@ import { useCallback } from 'react';
 import { Button, Image, message, notification, Typography } from 'antd';
 // API & Hooks
 import { ADMIN_API } from 'services/adapters';
-import { useLoading, useGlobalState, useLanguage } from 'hooks';
+import { useGlobalState } from 'hooks/useGlobalState';
+import { useLanguage } from 'hooks/useLanguage';
+import { useLoading } from 'hooks/useLoading';
 // Images
 import avatars from 'assets/images/avatars.svg';
 // Utils and Resources

@@ -5,8 +5,9 @@ import { Alert, Button, Image, Input, notification, Tooltip } from 'antd';
 import { CaretLeftOutlined, CaretRightOutlined, InfoCircleOutlined } from '@ant-design/icons';
 // API & Hooks
 import { GAME_API } from 'services/adapters';
-import { useLanguage, useLoading } from 'hooks';
-import useGlobalState from 'hooks/useGlobalState';
+import { useLanguage } from 'hooks/useLanguage';
+import { useLoading } from 'hooks/useLoading';
+import { useGlobalState } from 'hooks/useGlobalState';
 // Images
 import avatars from 'assets/images/avatars.svg';
 // Services

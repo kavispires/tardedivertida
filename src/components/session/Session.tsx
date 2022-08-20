@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useTitle } from 'react-use';
 // Hooks
-import { useGameState, useGlobalState, useGamePlayers, useLanguage } from 'hooks';
+import { useGameState } from 'hooks/useGameState';
+import { useGlobalState } from 'hooks/useGlobalState';
+import { useGamePlayers } from 'hooks/useGamePlayers';
+import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import GAME_LIST from 'utils/info';
 import { isDevEnv } from 'utils/helpers';

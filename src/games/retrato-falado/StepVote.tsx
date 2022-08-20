@@ -2,7 +2,8 @@ import { useEffect } from 'react';
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Utils
-import { useCardWidth, useGlobalState } from 'hooks';
+import { useCardWidth } from 'hooks/useCardWidth';
+import { useGlobalState } from 'hooks/useGlobalState';
 // Components
 
 import { MonsterCard } from './components/MonsterCard';

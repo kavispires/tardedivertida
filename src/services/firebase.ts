@@ -8,8 +8,10 @@ import {
   UserCredential,
 } from 'firebase/auth';
 import { getFunctions, connectFunctionsEmulator, Functions } from 'firebase/functions';
+// Ant Design Resources
 import { message, notification } from 'antd';
-import { setGlobalState } from 'hooks';
+// Hooks
+import { setGlobalState } from 'hooks/useGlobalState';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,

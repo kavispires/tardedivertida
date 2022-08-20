@@ -1,5 +1,6 @@
 import { DETETIVES_IMAGINATIVOS_API } from 'services/adapters';
-import { useAPICall, useLanguage } from 'hooks';
+import { useAPICall } from 'hooks/useAPICall';
+import { useLanguage } from 'hooks/useLanguage';
 
 export function useOnSubmitSecretClueAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();

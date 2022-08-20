@@ -6,7 +6,11 @@ import { Input } from 'antd';
 // Adapters
 import { GAME_API } from 'services/adapters';
 // Hooks
-import { useAPICall, useCountdown, useGlobalState, useLanguage, useLoading } from 'hooks';
+import { useAPICall } from 'hooks/useAPICall';
+import { useCountdown } from 'hooks/useCountdown';
+import { useLanguage } from 'hooks/useLanguage';
+import { useLoading } from 'hooks/useLoading';
+import { useGlobalState } from 'hooks/useGlobalState';
 // Components
 import { Translate } from 'components/language';
 

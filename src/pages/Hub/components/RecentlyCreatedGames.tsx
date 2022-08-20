@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button, Space, Tooltip } from 'antd';
 import { RedoOutlined } from '@ant-design/icons';
 // Hooks
-import { useLocalStorage } from 'hooks';
+import { useLocalStorage } from 'hooks/useLocalStorage';
 // Utils
 import { LATEST_GAME_IDS } from 'utils/constants';
 // Components

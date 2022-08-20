@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
-import { useLanguage } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
 import { EspiaoEntreNosCard as Card } from './components/Card';
 import { LocationSelect } from './components/LocationSelect';
 import { LocationsList } from './components/LocationsList';

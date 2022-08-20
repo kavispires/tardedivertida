@@ -5,7 +5,10 @@ import { message, notification } from 'antd';
 // Adapters
 import { GAME_API } from 'services/adapters';
 // Hooks
-import { useIsGameStale, useLoading, useGlobalState, useLocalStorage } from 'hooks';
+import { useGlobalState } from 'hooks/useGlobalState';
+import { useIsGameStale } from 'hooks/useIsGameStale';
+import { useLoading } from 'hooks/useLoading';
+import { useLocalStorage } from 'hooks/useLocalStorage';
 // Utils
 import { isValidGameId, isDevEnv, getGameIdFromPathname } from 'utils/helpers';
 import { GAME_COLLECTION } from 'utils/constants';

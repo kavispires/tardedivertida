@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Input } from 'antd';
 // Hooks
-import { useLanguage } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
 
 type SuggestionEaselProps = {
   id: string;

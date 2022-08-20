@@ -1,12 +1,11 @@
 // Hooks
-import { useLanguage, useStep, useWhichPlayerIsThe } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
+import { useStep } from 'hooks/useStep';
+import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { useOnSubmitQuestionAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-
-import { StepQuestionSelection } from './StepQuestionSelection';
-import { StepQuestionSelectionWaiting } from './StepQuestionSelectionWaiting';
 import { GamePremiseRules } from './components/RulesBlobs';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
@@ -15,6 +14,8 @@ import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
 import { ViewOr } from 'components/views';
 import { SheepIcon } from 'components/icons/SheepIcon';
+import { StepQuestionSelection } from './StepQuestionSelection';
+import { StepQuestionSelectionWaiting } from './StepQuestionSelectionWaiting';
 
 function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();

@@ -2,7 +2,8 @@ import { useState } from 'react';
 // Ant Design Resources
 import { Button, Slider, Space } from 'antd';
 // Hooks
-import { useLoading, useMock } from 'hooks';
+import { useLoading } from 'hooks/useLoading';
+import { useMock } from 'hooks/useMock';
 // Utils
 import { mockGuess } from './utils/mock';
 // Components

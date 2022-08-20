@@ -2,7 +2,7 @@ import { useState } from 'react';
 //Design Resources
 import { Button, Input } from 'antd';
 // Hooks
-import { useLanguage } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
 import { Step } from 'components/steps';
 import { Title } from 'components/text';
 import { Translate } from 'components/language';

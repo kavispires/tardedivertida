@@ -3,7 +3,7 @@ import { GameOverWrapper } from 'components/game-over';
 import { TrophyIcon } from 'components/icons/TrophyIcon';
 import { Translate } from 'components/language';
 import { Title } from 'components/text';
-import { useCardWidth } from 'hooks';
+import { useCardWidth } from 'hooks/useCardWidth';
 // Components
 import { MonsterSketches } from './components/MonsterSketches';
 

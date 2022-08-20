@@ -1,7 +1,8 @@
 // Ant Design Resources
 import { Space, Card, Image, Divider, Tag, Badge } from 'antd';
 // Hooks
-import { useDimensions, useLanguage } from 'hooks';
+import { useDimensions } from 'hooks/useDimensions';
+import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { PUBLIC_URL, TAG_DICT } from 'utils/constants';
 // Components

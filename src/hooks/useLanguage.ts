@@ -1,4 +1,4 @@
-import { useGlobalState } from './index';
+import { useGlobalState } from './useGlobalState';
 
 /**
  * Translate text

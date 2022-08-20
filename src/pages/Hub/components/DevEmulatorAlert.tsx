@@ -1,5 +1,5 @@
 import { Alert, Button } from 'antd';
-import { useDevFeatures } from 'hooks';
+import { useDevFeatures } from 'hooks/useDevFeatures';
 
 /**
  * The emulator only properly works if using the local ip, to allow multi device testing

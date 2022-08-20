@@ -1,7 +1,7 @@
 import { Button } from 'antd';
 import { FloatingHand } from 'components/cards';
 import { Translate } from 'components/language';
-import { useCardWidth } from 'hooks';
+import { useCardWidth } from 'hooks/useCardWidth';
 import { ContenderCard } from './ContenderCard';
 
 type ContendersHandProps = {

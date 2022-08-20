@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Hooks
-import { useCountdown } from 'hooks';
+import { useCountdown } from 'hooks/useCountdown';
 // Utils
 import { PAGE_DURATION } from './utils/constants';
 // Components

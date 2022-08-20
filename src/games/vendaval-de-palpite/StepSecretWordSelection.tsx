@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Button, notification, Space } from 'antd';
 // Hooks
-import { useLoading } from 'hooks';
+import { useLoading } from 'hooks/useLoading';
 // Components
 import { TransparentButton } from 'components/buttons';
 import { Step } from 'components/steps';

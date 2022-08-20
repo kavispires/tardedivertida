@@ -1,6 +1,9 @@
 import { useState } from 'react';
 // State & Hooks
-import { useIsUserReady, useUser, useLanguage, useStep } from 'hooks';
+import { useIsUserReady } from 'hooks/useIsUserReady';
+import { useUser } from 'hooks/useUser';
+import { useLanguage } from 'hooks/useLanguage';
+import { useStep } from 'hooks/useStep';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components

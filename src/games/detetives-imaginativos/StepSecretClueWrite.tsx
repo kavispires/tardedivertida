@@ -1,6 +1,7 @@
 import { useState } from 'react';
 // Hooks
-import { useLanguage, useLoading } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
+import { useLoading } from 'hooks/useLoading';
 // Ant Design Resources
 import { Button, Input, Space } from 'antd';
 import { Step } from 'components/steps';

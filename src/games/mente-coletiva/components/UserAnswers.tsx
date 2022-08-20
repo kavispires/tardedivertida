@@ -2,7 +2,7 @@
 import { Button, Space } from 'antd';
 import { LockFilled, PlusCircleFilled } from '@ant-design/icons';
 // Hooks
-import { useLoading } from 'hooks';
+import { useLoading } from 'hooks/useLoading';
 // Components
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';

@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
-
-import { useGlobalState } from './index';
+import { useGlobalState } from './useGlobalState';
 
 type UseLoading = {
   isLoading: boolean;

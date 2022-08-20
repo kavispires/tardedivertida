@@ -1,6 +1,11 @@
 import { useEffect, useState } from 'react';
 // State & Hooks
-import { useIsUserReady, useUser, useLanguage, useWhichPlayerIsThe, useStep, useLoading } from 'hooks';
+import { useIsUserReady } from 'hooks/useIsUserReady';
+import { useUser } from 'hooks/useUser';
+import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
+import { useLanguage } from 'hooks/useLanguage';
+import { useStep } from 'hooks/useStep';
+import { useLoading } from 'hooks/useLoading';
 import { useOnPlayCardAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';

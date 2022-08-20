@@ -3,7 +3,8 @@ import { useMemo, useState } from 'react';
 import { Button, Popconfirm, Select, Space } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 // Hooks
-import { useLanguage, useLoading } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
+import { useLoading } from 'hooks/useLoading';
 // Components
 import { Translate } from 'components/language';
 

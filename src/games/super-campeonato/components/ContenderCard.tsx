@@ -2,7 +2,7 @@ import clsx from 'clsx';
 // Ant Design resources
 import { Image } from 'antd';
 // Hooks
-import { useLanguage } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { PUBLIC_URL } from 'utils/constants';
 

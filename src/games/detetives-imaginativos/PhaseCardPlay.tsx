@@ -1,5 +1,9 @@
 // Hooks
-import { useWhichPlayerIsThe, useUser, useLoading, useLanguage, useStep } from 'hooks';
+import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
+import { useLanguage } from 'hooks/useLanguage';
+import { useLoading } from 'hooks/useLoading';
+import { useStep } from 'hooks/useStep';
+import { useUser } from 'hooks/useUser';
 import { useOnPlayCardAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';

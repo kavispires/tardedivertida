@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useEffectOnce } from 'react-use';
-import { useGlobalState, useLocalStorage } from './index';
+import { useGlobalState } from './useGlobalState';
+import { useLocalStorage } from './useLocalStorage';
 
 type UseBlueCards = {
   blurredCards: BooleanDictionary;

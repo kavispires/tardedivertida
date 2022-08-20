@@ -3,7 +3,8 @@ import { ReactNode } from 'react';
 import { RocketFilled } from '@ant-design/icons';
 import { Button, ButtonProps } from 'antd';
 // Hooks
-import { useGlobalState, useLoading } from 'hooks';
+import { useGlobalState } from 'hooks/useGlobalState';
+import { useLoading } from 'hooks/useLoading';
 
 interface AdminButtonProps extends ButtonProps {
   /**

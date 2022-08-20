@@ -1,4 +1,4 @@
-import { useDevFeatures } from 'hooks';
+import { useDevFeatures } from 'hooks/useDevFeatures';
 import { ReactNode } from 'react';
 
 type DebugOnlyProps = {

@@ -9,7 +9,7 @@ import { SuspectsList } from './components/SuspectsList';
 import { FinalAssessmentModal } from './components/FinalAssessmentModal';
 import { useEffect } from 'react';
 import { notification } from 'antd';
-import { useLanguage } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
 
 type StepFinalAssessmentProps = {
   onMakeAccusation: GenericFunction;

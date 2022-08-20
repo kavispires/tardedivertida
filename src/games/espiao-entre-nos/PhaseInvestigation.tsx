@@ -2,7 +2,11 @@ import { useEffect } from 'react';
 // Ant Design Resources
 import { notification } from 'antd';
 // Hooks
-import { useIsUserReady, useWhichPlayerIsThe, useUser, useLanguage, useStep } from 'hooks';
+import { useIsUserReady } from 'hooks/useIsUserReady';
+import { useLanguage } from 'hooks/useLanguage';
+import { useStep } from 'hooks/useStep';
+import { useUser } from 'hooks/useUser';
+import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import {
   useOnGuessLocationAPIRequest,
   useOnMakeAccusationAPIRequest,

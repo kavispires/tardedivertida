@@ -6,7 +6,7 @@ import { PUBLIC_URL } from 'utils/constants';
 // Assets
 import placeholder from 'assets/images/placeholder.jpg';
 // Hooks
-import { useBlurCards } from 'hooks';
+import { useBlurCards } from 'hooks/useBlurCards';
 
 type ImageCardProps = {
   imageId: string;

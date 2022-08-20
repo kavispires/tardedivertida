@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 // Hooks
-import { useGlobalState, useLanguage } from 'hooks';
+import { useGlobalState } from 'hooks/useGlobalState';
+import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { Avatar } from './Avatar';
 import { getAvatarColorById } from 'utils/helpers';

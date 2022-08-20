@@ -7,7 +7,9 @@ import { DatabaseFilled } from '@ant-design/icons';
 // API
 import { signOut } from 'services/firebase';
 // Hooks
-import { useGlobalState, useLanguage, useLocalStorage } from 'hooks';
+import { useGlobalState } from 'hooks/useGlobalState';
+import { useLanguage } from 'hooks/useLanguage';
+import { useLocalStorage } from 'hooks/useLocalStorage';
 // Utils
 import GAME_LIST from 'utils/info';
 // Components

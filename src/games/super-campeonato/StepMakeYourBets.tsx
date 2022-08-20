@@ -1,5 +1,5 @@
 // Hooks
-import { useMock } from 'hooks';
+import { useMock } from 'hooks/useMock';
 // Utils
 import { mockBets } from './utils/mock';
 // Components

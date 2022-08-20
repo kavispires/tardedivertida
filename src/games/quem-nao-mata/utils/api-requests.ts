@@ -1,4 +1,5 @@
-import { useAPICall, useLanguage } from 'hooks';
+import { useAPICall } from 'hooks/useAPICall';
+import { useLanguage } from 'hooks/useLanguage';
 import { QUEM_NAO_MATA_API } from 'services/adapters';
 
 export function useOnSubmitTargetAPIRequest() {

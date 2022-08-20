@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { message } from 'antd';
 import { QuestionCircleFilled } from '@ant-design/icons';
 // Hooks
-import { useLanguage } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { Table } from './components/Table';
 import { messageContent } from 'components/pop-up';

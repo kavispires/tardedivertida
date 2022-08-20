@@ -2,7 +2,7 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Typography, Image, Carousel, Button } from 'antd';
 // Hooks
-import { useLanguage } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
 // Constants
 import { PUBLIC_URL } from 'utils/constants';
 import { DoubleLeftOutlined, DoubleRightOutlined } from '@ant-design/icons';

@@ -1,5 +1,7 @@
 // Hooks
-import { useLanguage, useMock, useStep } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
+import { useMock } from 'hooks/useMock';
+import { useStep } from 'hooks/useStep';
 import { useOnSubmitReactionAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
