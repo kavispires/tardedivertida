@@ -12,6 +12,7 @@ import { LETTERS } from 'utils/constants';
 import { getColorFromLetter } from 'utils/helpers';
 import { DevHeader } from './DevHeader';
 import { useTitle } from 'react-use';
+import { TimedTimerBar } from 'components/timers';
 
 function TestingZone() {
   useTitle('Testing Zone | Dev | Tarde Divertida');
@@ -101,6 +102,7 @@ function TestingZone() {
     <div>
       <DevHeader title="Testing Zone" />
       <AdminOnlyContainer>Hello</AdminOnlyContainer>
+      <TimedTimerBar duration={30} />
     </div>
   );
 }

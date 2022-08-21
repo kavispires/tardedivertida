@@ -7,12 +7,19 @@ import { useDimensions } from './useDimensions';
  * @param gap total value of padding and margin on the left and right of the card
  * @param minWidth minimum width of a card
  * @param maxWidth maximum width of a card
+ * @param containerId the id of the container element where the cards will live in
  * @returns
  */
-export function useCardWidth(quantity: number, gap = 32, minWidth = 120, maxWidth = 300): number {
-  const [width] = useDimensions();
-
+export function useCardWidth(
+  quantity: number,
+  gap = 32,
+  minWidth = 120,
+  maxWidth = 300,
+  containerId?: string
+): number {
+  const [width] = useDimensions(containerId);
   return useMemo(() => {
-    return Math.min(Math.max(Math.floor(width / quantity) - gap, minWidth), maxWidth);
+    const value = Math.min(Math.max(Math.floor(width / quantity) - gap, minWidth), maxWidth);
+    return Number.isNaN(value) ? minWidth : value;
   }, [width, quantity, gap, minWidth, maxWidth]);
 }

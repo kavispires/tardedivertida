@@ -1,16 +1,16 @@
 // Ant Design Resources
 import { Space, Card, Image, Divider, Tag, Badge } from 'antd';
+import { MobileFilled } from '@ant-design/icons';
 // Hooks
-import { useDimensions } from 'hooks/useDimensions';
 import { useLanguage } from 'hooks/useLanguage';
+import { useCardWidth } from 'hooks/useCardWidth';
 // Utils
 import { PUBLIC_URL, TAG_DICT } from 'utils/constants';
+import { truncateRecommended } from 'utils/helpers';
 // Components
 import { RulesModal } from 'components/rules';
 import { CreateGameModal } from './CreateGameModal';
-import { MobileFilled } from '@ant-design/icons';
 import { Translate } from 'components/language';
-import { truncateRecommended } from 'utils/helpers';
 
 const getVersionColor = (version: string) => {
   if (version.includes('alpha')) {
@@ -39,7 +39,7 @@ type GameCardProps = {
 };
 
 export function GameCard({ game }: GameCardProps) {
-  const [width] = useDimensions();
+  const cardWidth = useCardWidth(5, 16, 250, 400, 'app');
   const { language, translate } = useLanguage();
 
   return (
@@ -47,7 +47,7 @@ export function GameCard({ game }: GameCardProps) {
       <Card
         key={game.gameName}
         hoverable
-        style={{ width: width && width > 0 ? Math.max(width / 5, 250) : 250 }}
+        style={{ width: cardWidth }}
         cover={
           <Image
             alt={game.title[language]}
