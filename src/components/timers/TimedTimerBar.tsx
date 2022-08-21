@@ -30,7 +30,7 @@ export function TimedTimerBar({ duration, onExpire, type, steps = 10 }: TimedTim
   });
 
   return (
-    <div>
+    <div className="timer-number">
       {timeLeft} <TimerBar steps={steps} value={timeLeft} total={duration} type={type} /> {timeLeft}
     </div>
   );
