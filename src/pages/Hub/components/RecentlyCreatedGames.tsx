@@ -11,6 +11,10 @@ import { LATEST_GAME_IDS } from 'utils/constants';
 // Components
 import { Translate } from 'components/language';
 
+/**
+ * @deprecated
+ * @returns
+ */
 export function RecentlyCreatedGames(): JSX.Element {
   const navigate = useNavigate();
   const [getLocalStorage] = useLocalStorage();
