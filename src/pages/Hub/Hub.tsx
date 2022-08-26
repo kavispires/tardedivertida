@@ -13,7 +13,6 @@ import { useLocalStorage } from 'hooks/useLocalStorage';
 // Utils
 import GAME_LIST from 'utils/info';
 // Components
-import { RecentlyCreatedGames } from './components/RecentlyCreatedGames';
 import { GameCard } from './components/GameCard';
 import { LanguageSwitch, Translate } from 'components/language';
 import { DevHeader } from 'pages/Dev/DevHeader';
@@ -92,10 +91,8 @@ function Hub() {
 
       <DevEmulatorAlert />
 
-      <Layout.Content className="container">
-        <RecentlyCreatedGames />
-        <Divider />
-        <Space size={[8, 16]} wrap align="start">
+      <Layout.Content className="container" id="main-container">
+        <Space size={[8, 16]} wrap align="start" className="game-card-collection">
           {availableGames.map((game: GameInfo, index: number) => (
             <GameCard key={`${game.gameCode}-${index}`} game={game} />
           ))}
@@ -104,7 +101,7 @@ function Hub() {
         <Typography.Title level={2}>
           <Translate pt="Em Breve" en="Coming Soon" />
         </Typography.Title>
-        <Space size={[8, 16]} wrap align="start">
+        <Space size={[8, 16]} wrap align="start" className="game-card-collection">
           {comingSoonGames.map((game: GameInfo, index: number) => (
             <GameCard key={`${game.gameCode}-${index}`} game={game} />
           ))}
