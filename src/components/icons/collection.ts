@@ -121,6 +121,7 @@ export * from './TDIcon';
 export * from './TheEndIcon';
 export * from './ThiefIcon';
 export * from './ThinkingIcon';
+export * from './ThumbsUpIcon';
 export * from './TimerIcon';
 export * from './TournamentIcon';
 export * from './TrendingIcon';
