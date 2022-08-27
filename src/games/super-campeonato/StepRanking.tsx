@@ -40,7 +40,7 @@ export function StepRanking({
 
       <AdminNextPhaseButton round={round} lastRound={isLastRound} />
 
-      <Brackets brackets={brackets} activeTier="winner" />
+      <Brackets brackets={brackets} activeTier="winner" players={players} />
 
       <BetsFloatingHand bets={bets} brackets={brackets} selectedContenderId={selectedContenderId} />
     </StepRankingWrapper>

@@ -31,8 +31,8 @@ function PhaseBets({ state, players, info }: PhaseProps) {
         >
           <Instruction>
             <Translate
-              pt="Selecione quem você acha que ganha as quartas de final, semi final, final"
-              en="Place bet on who you think will win the quarter-finals, semifinals and finals"
+              pt="Selecione quem você acha que ganha as quartas de final, semi final e final"
+              en="Place bet on who you think will win the quarter-finals, semifinals, and finals"
             />
           </Instruction>
         </PhaseAnnouncement>

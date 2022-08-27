@@ -148,6 +148,7 @@ export const makeBrackets = (players: Players, deck: Contender[], currentRound: 
       playerId: '',
       position: v + index,
       tier: getBracketTier(v + index),
+      votes: [],
     }));
 
   shuffledContenders.forEach((contender, index) => {
@@ -190,6 +191,8 @@ export const updateBracketsWithVotes = (players: Players, brackets: Bracket[]) =
       }
 
       votes[target][voted] += 1;
+
+      brackets[voted].votes.push(player.id);
     });
   });
 
@@ -214,6 +217,7 @@ export const updateBracketsWithVotes = (players: Players, brackets: Bracket[]) =
       id: winner.id,
       name: winner.name,
       playerId: winner.playerId,
+      votes: [],
     };
   });
 
@@ -273,6 +277,7 @@ export const makeFinalBrackets = (brackets: Bracket[]) => {
       playerId: '',
       position: v + index,
       tier: getBracketTier(v + index),
+      votes: [],
     }));
 
   shuffledContenders.forEach((contender, index) => {

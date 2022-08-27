@@ -55,7 +55,7 @@ export function BetsFloatingHand({ bets, brackets, selectedContenderId = '' }: B
           </li>
 
           {Boolean(selectedCard) && (
-            <li className="w-floating-bets__entry">
+            <li className="w-floating-bets__entry w-floating-bets__entry--your-contender">
               <span className="w-floating-bets__label">
                 <Translate pt="Seu competidor" en="Your contender" />
               </span>

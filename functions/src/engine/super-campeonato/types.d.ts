@@ -29,6 +29,7 @@ interface Bracket extends Contender {
   position: number;
   win?: boolean;
   tier: BracketTier;
+  votes: PlayerId[];
 }
 
 export interface SuperCampeonatoStore extends DefaultStore {

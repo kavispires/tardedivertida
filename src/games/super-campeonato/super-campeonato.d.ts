@@ -2,6 +2,7 @@ interface WContender {
   id: CardId;
   name: DualLanguageValue;
   playerId?: PlayerId;
+  votes?: PlayerId[];
 }
 
 type WBracketTier = 'quarter' | 'semi' | 'final' | 'winner';
@@ -10,6 +11,7 @@ interface WBracket extends WContender {
   position: number;
   win?: boolean;
   tier: WBracketTier;
+  votes: PlayerId[];
 }
 
 type SubmitChallengePayload = {
