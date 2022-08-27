@@ -11,16 +11,31 @@ import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
 import { StepMakeYourBets } from './StepMakeYourBets';
 import { GamblingChipIcon } from 'components/icons/GamblingChipIcon';
+import { useUser } from 'hooks/useUser';
+import { BetsFloatingHand } from './components/BetsFloatingHand';
 
 function PhaseBets({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
   const { step, goToNextStep, setStep } = useStep(0);
+  const user = useUser(players);
 
   const onSubmitBets = useOnSubmitBetsAPIRequest(setStep);
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.SUPER_CAMPEONATO.BETS}>
-      <StepSwitcher step={step} players={players}>
+      <StepSwitcher
+        step={step}
+        players={players}
+        waitingRoomContent={
+          Boolean(user.bets?.final) && (
+            <BetsFloatingHand
+              bets={user.bets}
+              brackets={state.brackets}
+              selectedContenderId={user.selectedContenderId}
+            />
+          )
+        }
+      >
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<GamblingChipIcon />}

@@ -225,8 +225,8 @@ export const updateBracketsWithVotes = (players: Players, brackets: Bracket[]) =
 };
 
 export const buildRanking = (players: Players, brackets: Bracket[]) => {
-  // Gained points: super sparks, sparks, nightmare
-  const newScores = utils.helpers.buildNewScoreObject(players, [0, 0]);
+  // Gained points: final, semi, quarter, own contender
+  const newScores = utils.helpers.buildNewScoreObject(players, [0, 0, 0, 0]);
 
   const parsedBrackets = brackets.reduce((acc: Record<string, BracketTier[]>, bracket) => {
     if (acc[bracket.id] === undefined) {
@@ -244,19 +244,19 @@ export const buildRanking = (players: Players, brackets: Bracket[]) => {
     }
 
     if (parsedBrackets?.[player.bets.semi]?.includes('final')) {
-      newScores[player.id].gainedPoints[0] += 3;
+      newScores[player.id].gainedPoints[1] += 3;
       newScores[player.id].newScore += 3;
       players[player.id].score += 3;
     }
 
     if (parsedBrackets?.[player.bets.quarter]?.includes('semi')) {
-      newScores[player.id].gainedPoints[0] += 1;
+      newScores[player.id].gainedPoints[2] += 1;
       newScores[player.id].newScore += 1;
       players[player.id].score += 1;
     }
 
     if (brackets[brackets.length - 1].playerId === player.id) {
-      newScores[player.id].gainedPoints[1] += 2;
+      newScores[player.id].gainedPoints[3] += 2;
       newScores[player.id].newScore += 2;
       players[player.id].score += 2;
     }
