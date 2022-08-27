@@ -11,6 +11,7 @@ type ContenderCardProps = {
   overlayColor: string;
   contender: WContender | WBracket;
   className?: string;
+  showVotes?: boolean;
 };
 
 export function ContenderCard({ size, overlayColor, contender, className }: ContenderCardProps) {

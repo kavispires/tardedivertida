@@ -242,8 +242,17 @@
 
 .w-floating-bets {
   display: flex;
+  background: white;
+  padding: get-unit(2);
+  border-radius: get-unit(1);
+
   &__entry {
     margin: get-unit(0 2);
+
+    &--your-contender {
+      border: 2px solid get-color(gray, 2);
+      padding: get-unit(0 2 2 2);
+    }
   }
 
   &__label {
@@ -283,4 +292,11 @@
     margin: get-unit(0 1);
     padding: 0;
   }
+}
+
+.w-contender-votes {
+  position: absolute;
+  top: get-unit(-1);
+  left: get-unit(1);
+  z-index: 1;
 }
