@@ -1,6 +1,8 @@
 import { useMemo } from 'react';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
+// Utils
+import { findBetContenders } from '../utils/helpers';
 // Components
 import { FloatingHand } from 'components/cards';
 import { Translate } from 'components/language';
@@ -16,14 +18,12 @@ type BetsFloatingHandProps = {
 export function BetsFloatingHand({ bets, brackets, selectedContenderId = '' }: BetsFloatingHandProps) {
   const cardWidth = useCardWidth(5, 32, 100);
 
-  const { quarterCard, semiCard, finalCard, selectedCard } = useMemo(() => {
-    return {
-      quarterCard: brackets.find((bracket) => bracket.id === bets.quarter),
-      semiCard: brackets.find((bracket) => bracket.id === bets.semi),
-      finalCard: brackets.find((bracket) => bracket.id === bets.final),
-      selectedCard: brackets.find((bracket) => bracket.id === selectedContenderId),
-    };
-  }, []); // eslint-disable-line
+  const { quarterCard, semiCard, finalCard, selectedCard } = useMemo(
+    () => findBetContenders(brackets, bets, selectedContenderId),
+    [bets.final, bets.quarter, bets.semi] // eslint-disable-line
+  );
+
+  if (!quarterCard || !semiCard || !finalCard) return <></>;
 
   return (
     <FloatingHand>

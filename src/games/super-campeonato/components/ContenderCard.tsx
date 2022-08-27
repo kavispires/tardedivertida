@@ -11,17 +11,17 @@ type ContenderCardProps = {
   overlayColor: string;
   contender: WContender | WBracket;
   className?: string;
-  showVotes?: boolean;
+  hideName?: boolean;
 };
 
-export function ContenderCard({ size, overlayColor, contender, className }: ContenderCardProps) {
+export function ContenderCard({ size, overlayColor, contender, className, hideName }: ContenderCardProps) {
   const { language } = useLanguage();
 
   const imageURL = contender.id.replace(/-/g, '/');
 
   return (
     <div className={clsx('w-contender', className)} style={{ width: `${size}px` }}>
-      <span className="w-contender-name">{contender.name[language]}</span>
+      {!hideName && <span className="w-contender-name">{contender.name[language]}</span>}
       <img
         src={`${PUBLIC_URL.IN_GAME}/w-overlay-${overlayColor}.png`}
         className="w-contender-overlay"

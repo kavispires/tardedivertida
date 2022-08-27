@@ -37,3 +37,5 @@ type WBets = {
   semi: CardId;
   quarter: CardId;
 };
+
+type WContenderByTier = Record<WBracketTier | string, Record<CardId, boolean>>;

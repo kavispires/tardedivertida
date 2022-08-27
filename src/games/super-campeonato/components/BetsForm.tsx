@@ -1,7 +1,8 @@
+import clsx from 'clsx';
 import { useState } from 'react';
 import { orderBy } from 'lodash';
 // Ant Design Resources
-import { Avatar, Button, Space } from 'antd';
+import { Button, Space } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Components
@@ -9,7 +10,6 @@ import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
 import { ContendersSelect } from './ContendersSelect';
 import { MedalIcon } from 'components/icons/MedalIcon';
-import clsx from 'clsx';
 import { getAnimationClass } from 'utils/helpers';
 import { IconAvatar } from 'components/icons/IconAvatar';
 import { TrophyIcon } from 'components/icons/TrophyIcon';

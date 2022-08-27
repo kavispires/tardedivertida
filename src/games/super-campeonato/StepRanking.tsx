@@ -5,6 +5,7 @@ import { StepRankingWrapper } from 'components/ranking';
 import { RoundsLeftInstruction } from 'components/text';
 import { BetsFloatingHand } from './components/BetsFloatingHand';
 import { Brackets } from './components/Brackets';
+import { PlayersBets } from './components/PlayersBets';
 
 type StepRankingProps = {
   players: GamePlayers;
@@ -32,11 +33,15 @@ export function StepRanking({
       players={players}
       ranking={ranking}
       gainedPointsDescriptions={[
-        <Translate pt="Apostas corretos" en="Correct bets" />,
+        <Translate pt="Apostou na final corretamente" en="Correct final bet" />,
+        <Translate pt="Apostou nas semifinais corretamente" en="Correct semifinal bet" />,
+        <Translate pt="Apostou nas quartas de finais corretamente" en="Correct quarterfinal bet" />,
         <Translate pt="Seu competidor ganhou" en="Your competitor won" />,
       ]}
     >
       {!isGameOver && <RoundsLeftInstruction round={round} lastRound={isLastRound} />}
+
+      <PlayersBets players={players} brackets={brackets} />
 
       <AdminNextPhaseButton round={round} lastRound={isLastRound} />
 
