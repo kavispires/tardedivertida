@@ -159,7 +159,7 @@
 .floating-hand {
   $self: &;
   position: fixed;
-  bottom: get-unit(-3);
+  bottom: get-unit(-7);
   left: 50%;
   min-height: 200px;
   min-width: 40vw;
@@ -169,7 +169,7 @@
   z-index: 149;
 
   transition: 500ms all;
-  transform: translate(-50%, 60%) scale(80%);
+  transform: translate(-50%, 60%) scale(60%);
   box-shadow: 0px -5px 15px rgba(0, 0, 0, 0.4);
 
   &--expanded {
