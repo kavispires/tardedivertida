@@ -1,5 +1,5 @@
 // Hooks
-import { useMock } from 'hooks';
+import { useMock } from 'hooks/useMock';
 // Utils
 import { mockBets } from './utils/mock';
 // Components
@@ -35,7 +35,7 @@ export function StepMakeYourBets({ onSubmitBets, challenge, brackets, players }:
 
       <ReadyPlayersBar players={players} />
 
-      <Brackets brackets={brackets} activeTier="quarter" />
+      <Brackets brackets={brackets} activeTier="quarter" players={players} />
     </Step>
   );
 }

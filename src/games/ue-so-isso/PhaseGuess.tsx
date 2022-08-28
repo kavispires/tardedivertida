@@ -1,6 +1,10 @@
 import { useEffect } from 'react';
 // Hooks
-import { useGlobalState, useLoading, useWhichPlayerIsThe, useLanguage, useStep } from 'hooks';
+import { useGlobalState } from 'hooks/useGlobalState';
+import { useLanguage } from 'hooks/useLanguage';
+import { useLoading } from 'hooks/useLoading';
+import { useStep } from 'hooks/useStep';
+import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { useOnSendGuessAPIRequest, useOnSubmitOutcomeAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';

@@ -1,7 +1,7 @@
 import { Button, Form, Popover, Select } from 'antd';
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
-import { useLanguage } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
 
 type MessageBoardProps = {
   messages: Record<PlayerId, QMessage>;

@@ -3,7 +3,7 @@ import { useToggle } from 'react-use';
 import { Button, Divider, Drawer, Image, Space } from 'antd';
 import { SettingOutlined } from '@ant-design/icons';
 // Hooks
-import { useLanguage } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { PUBLIC_URL } from 'utils/constants';
 // Components

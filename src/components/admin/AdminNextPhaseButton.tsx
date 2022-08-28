@@ -2,7 +2,9 @@ import { ReactNode } from 'react';
 // Ant Design Resources
 import { FireFilled } from '@ant-design/icons';
 // Hooks
-import { useAPICall, useLanguage, useLoading } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
+import { useLoading } from 'hooks/useLoading';
+import { useAPICall } from 'hooks/useAPICall';
 // Utils
 import { ADMIN_API } from 'services/adapters';
 import { ADMIN_ACTIONS } from 'utils/constants';

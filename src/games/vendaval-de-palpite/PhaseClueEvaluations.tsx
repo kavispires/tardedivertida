@@ -1,5 +1,7 @@
 // Hooks
-import { useLanguage, useStep, useWhichPlayerIsThe } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
+import { useStep } from 'hooks/useStep';
+import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import {
   useOnSubmitEvaluationAPIRequest,
   useOnSubmitHelpAPIRequest,

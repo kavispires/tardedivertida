@@ -11,7 +11,7 @@ export function EndDefenseTimedButton({ onFinishDefenseClick, isLoading }: EndDe
   return (
     <Space className="space-container" align="center">
       <TimedButton
-        duration={45}
+        duration={40}
         type="primary"
         onClick={onFinishDefenseClick}
         onExpire={onFinishDefenseClick}

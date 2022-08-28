@@ -3,15 +3,13 @@ import { useCallback, useEffect } from 'react';
 import { Button, Space } from 'antd';
 import { CloudUploadOutlined, ThunderboltOutlined } from '@ant-design/icons';
 // Hooks
-import {
-  useGlobalState,
-  useLanguage,
-  useUser,
-  useLoading,
-  useVotingMatch,
-  useCardWidth,
-  useMock,
-} from 'hooks';
+import { useCardWidth } from 'hooks/useCardWidth';
+import { useGlobalState } from 'hooks/useGlobalState';
+import { useLanguage } from 'hooks/useLanguage';
+import { useLoading } from 'hooks/useLoading';
+import { useMock } from 'hooks/useMock';
+import { useUser } from 'hooks/useUser';
+import { useVotingMatch } from 'hooks/useVotingMatch';
 // Utils
 import { LETTERS } from 'utils/constants';
 import { getEntryId, shuffle } from 'utils/helpers';

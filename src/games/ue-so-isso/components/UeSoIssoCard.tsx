@@ -3,7 +3,7 @@ import { WarningOutlined } from '@ant-design/icons';
 // Hooks
 import { Card } from 'components/cards';
 // Components
-import { useLanguage } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
 
 type UeSoIssoCardProps = {
   word?: any;

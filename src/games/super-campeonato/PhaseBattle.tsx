@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 // Hooks
-import { useLanguage, useStep, useUser } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
+import { useStep } from 'hooks/useStep';
+import { useUser } from 'hooks/useUser';
 import { useOnSubmitVotesAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';

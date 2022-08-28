@@ -37,7 +37,7 @@ export function StepBattle({
 
       <Voting brackets={brackets} tier={tier} onSubmitVotes={onSubmitVotes} players={players} />
 
-      <Brackets brackets={brackets} activeTier={tier} />
+      <Brackets brackets={brackets} activeTier={tier} players={players} />
 
       <ReadyPlayersBar players={players} />
 

@@ -1,10 +1,15 @@
-import { FireFilled } from '@ant-design/icons';
-import { Button, Drawer, Popconfirm, Spin } from 'antd';
-import { useAPICall, useGlobalState, useLoading } from 'hooks';
 import { useState } from 'react';
+// Ant Design Resources
+import { Button, Drawer, Popconfirm, Spin } from 'antd';
+import { FireFilled } from '@ant-design/icons';
+// Hooks
+import { useAPICall } from 'hooks/useAPICall';
+import { useGlobalState } from 'hooks/useGlobalState';
+import { useLoading } from 'hooks/useLoading';
+// Utils
 import { ADMIN_API } from 'services/adapters';
 import { ADMIN_ACTIONS } from 'utils/constants';
-
+// Components
 import { AdminPerformActionButton } from './_internal/AdminPerformActionButton';
 import { ForceStateForm } from './_internal/ForceStateForm';
 import { PlayersReadyState } from './_internal/PlayersReadyState';
@@ -17,8 +22,10 @@ type AdminMenuDrawerProps = {
 export const AdminMenuDrawer = ({ state, players }: AdminMenuDrawerProps) => {
   const { isLoading } = useLoading();
   const [isAdmin] = useGlobalState('isAdmin');
+  const [usingEmulators] = useGlobalState('usingEmulators');
   const [isAdminEnabled] = useGlobalState('isAdminEnabled');
   const [visible, setVisible] = useState(false);
+  const [meta] = useGlobalState('gameMeta');
 
   const showDrawer = () => {
     setVisible(true);
@@ -76,9 +83,9 @@ export const AdminMenuDrawer = ({ state, players }: AdminMenuDrawerProps) => {
                 onConfirm={() => onPerformAdminAction({ action: ADMIN_ACTIONS.PLAY_AGAIN })}
               >
                 <AdminPerformActionButton
-                  // disabled={isLoading || !(state.phase === 'GAME_OVER')}
                   // Not every game is currently working with this feature
-                  disabled={false}
+                  // disabled={isLoading || !(state.phase === 'GAME_OVER')}
+                  disabled
                   label="Play Again"
                   className="admin-menu-drawer__button"
                 />
@@ -107,9 +114,24 @@ export const AdminMenuDrawer = ({ state, players }: AdminMenuDrawerProps) => {
                 state={state}
               />
             </li>
+            <li>
+              <hr />
+            </li>
+            <li>
+              <h3>Firebase</h3>
+              <Button target="_blank" href={getFirebaseUrl(usingEmulators, meta.gameName, meta.gameId)}>
+                Visit Firebase Collection
+              </Button>
+            </li>
           </ul>
         </Drawer>
       </div>
     </>
   );
+};
+
+const getFirebaseUrl = (usingEmulators: boolean, gameCollection: GameName, gameId: GameId) => {
+  return usingEmulators
+    ? `http://localhost:4000/firestore/${gameCollection}/${gameId}/session/state`
+    : `https://console.firebase.google.com/u/0/project/game-session/firestore/data/~2${gameCollection}~2F${gameId}~2Fsession~2Fstate`;
 };

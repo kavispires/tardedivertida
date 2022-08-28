@@ -115,6 +115,9 @@ describe('/utils', function () {
         {
           id: '_bob',
           name: 'Bob',
+          avatarId: '2',
+          ready: false,
+          updatedAt: 0,
         },
       ]);
     });
@@ -129,6 +132,20 @@ describe('/utils', function () {
       expect(utils.pluralize(1, 'mouse', 'mice')).toBe('mouse');
       expect(utils.pluralize(2, 'mouse', 'mice')).toBe('mice');
       expect(utils.pluralize(0, 'mouse', 'mice')).toBe('mice');
+    });
+  });
+
+  describe('truncateRecommended', function () {
+    it('truncates recommended player count correctly', function () {
+      expect(utils.truncateRecommended([1])).toBe('1');
+      expect(utils.truncateRecommended([1, 2])).toBe('1-2');
+      expect(utils.truncateRecommended([1, 2, 3])).toBe('1-3');
+      expect(utils.truncateRecommended([1, 2, 3, 5])).toBe('1-3,5');
+      expect(utils.truncateRecommended([1, 2, 3, 5, 6, 7])).toBe('1-3,5-7');
+      expect(utils.truncateRecommended([1, 3, 4, 5, 6, 7])).toBe('1,3-7');
+      expect(utils.truncateRecommended([1, 3, 4, 6, 7])).toBe('1,3-4,6-7');
+      expect(utils.truncateRecommended([1, 3, 4, 6, 7, 9])).toBe('1,3-4,6-7,9');
+      expect(utils.truncateRecommended([1, 3, 5, 7, 9])).toBe('1,3,5,7,9');
     });
   });
 });

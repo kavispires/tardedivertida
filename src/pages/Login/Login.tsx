@@ -6,7 +6,7 @@ import { Layout, Button, Form, Input, Alert, Image } from 'antd';
 // API
 import { signIn } from 'services/firebase';
 // State
-import { useGlobalState } from 'hooks';
+import { useGlobalState } from 'hooks/useGlobalState';
 // Image
 import logo from 'assets/images/tarde-divertida-logo.svg';
 

@@ -1,5 +1,9 @@
 // Hooks
-import { useWhichPlayerIsThe, useLoading, useLanguage, useStep, useUser } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
+import { useLoading } from 'hooks/useLoading';
+import { useStep } from 'hooks/useStep';
+import { useUser } from 'hooks/useUser';
+import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { useOnFinishDefenseRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
@@ -59,6 +63,8 @@ function PhaseDefense({ state, players, info }: PhaseProps) {
           isLoading={isLoading}
           isUserTheImpostor={isUserTheImpostor}
           user={user}
+          players={players}
+          turnOrder={state.turnOrder}
         />
       </StepSwitcher>
     </PhaseContainer>

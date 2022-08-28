@@ -1,5 +1,8 @@
 // State & Hooks
-import { useIsUserReady, useLanguage, useStep, useWhichPlayerIsThe } from 'hooks';
+import { useIsUserReady } from 'hooks/useIsUserReady';
+import { useLanguage } from 'hooks/useLanguage';
+import { useStep } from 'hooks/useStep';
+import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { useOnSubmitOrientationAPIRequest, useOnSubmitSketchAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';

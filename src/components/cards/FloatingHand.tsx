@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { ReactNode, useState } from 'react';
 // Hooks
-import { useLanguage } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { Translate } from 'components/language';
 import { IconAvatar } from 'components/icons/IconAvatar';

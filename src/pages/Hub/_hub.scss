@@ -32,3 +32,68 @@
     color: get-color(black);
   }
 }
+.game-card-collection {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+
+  @include lg {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include md {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include sm {
+    grid-template-columns: auto;
+  }
+
+  .ant-space-item {
+    height: 100%;
+  }
+}
+
+.game-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .ant-card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+  }
+
+  &__contents {
+    flex: 1;
+  }
+
+  &__actions {
+    // display: flex;
+    margin-top: get-unit(6);
+
+    & > button {
+      width: 50%;
+      display: block;
+    }
+  }
+
+  &__player-count {
+    margin-top: get-unit(1);
+  }
+
+  &__description {
+    margin: get-unit(4 0);
+    font-style: italic;
+  }
+
+  &__margin-bottom {
+    margin-bottom: get-unit(2);
+  }
+
+  &__divider {
+    margin: get-unit(1 0 2 0);
+  }
+}

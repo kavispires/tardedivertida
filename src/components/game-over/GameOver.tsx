@@ -3,7 +3,7 @@ import { Button, Progress, Space } from 'antd';
 // Images
 import gameOverTitle from 'assets/images/game-over-title.svg';
 // Utils
-import { useLanguage } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
 import { AVATARS } from 'utils/avatars';
 // Components
 import { Translate } from 'components/language';

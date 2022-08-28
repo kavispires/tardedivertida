@@ -1,6 +1,9 @@
-import { Button, ButtonProps, Space } from 'antd';
-import { useLoading } from 'hooks';
 import { ReactNode, useState } from 'react';
+// Ant Design Resources
+import { Button, ButtonProps, Space } from 'antd';
+// Hooks
+import { useLoading } from 'hooks/useLoading';
+// Utils
 import { SEPARATOR } from 'utils/constants';
 
 type ControlledInputWritingProps = {

@@ -2,13 +2,14 @@ import { useState } from 'react';
 // Ant Design Resources
 import { Button, Input, Space } from 'antd';
 // Hooks
-import { useLanguage, useMock } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
+import { useMock } from 'hooks/useMock';
+// Components
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
 import { CanvasSVG } from 'components/canvas';
-// Components
 
 type StepNameDrawingProps = {
   currentPrompt: Prompt;

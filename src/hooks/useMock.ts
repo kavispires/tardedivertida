@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { isDevEnv } from 'utils/helpers';
-import { useGlobalState } from './index';
+import { useGlobalState } from './useGlobalState';
 
 /**
  * Runs mock function tht performs whatever

@@ -1,5 +1,8 @@
 // Hooks
-import { useIsUserReady, useLanguage, useStep, useUser } from 'hooks';
+import { useIsUserReady } from 'hooks/useIsUserReady';
+import { useUser } from 'hooks/useUser';
+import { useLanguage } from 'hooks/useLanguage';
+import { useStep } from 'hooks/useStep';
 import { useOnSubmitVotingAPIRequest } from './utils/api-requests';
 // Utils
 import { PHASES } from 'utils/phases';

@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Avatar as AntAvatar, Space } from 'antd';
 // Hooks
-import { useCardWidth } from 'hooks';
+import { useCardWidth } from 'hooks/useCardWidth';
 // Components
 import { Avatar, AvatarName, AvatarNPC } from 'components/avatars';
 import { TimedButton } from 'components/buttons';

@@ -5,7 +5,7 @@ import { Space, Table } from 'antd';
 import { CheckSquareFilled, CloseSquareFilled, TrophyOutlined, WarningOutlined } from '@ant-design/icons';
 // Utils
 import { AVATARS as avatars } from 'utils/avatars';
-import { useLanguage } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';

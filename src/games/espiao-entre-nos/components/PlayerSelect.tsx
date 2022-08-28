@@ -3,7 +3,9 @@ import { useState } from 'react';
 import { Button, Popconfirm, Select, Space } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 // Hooks
-import { useGlobalState, useLanguage, useLoading } from 'hooks';
+import { useGlobalState } from 'hooks/useGlobalState';
+import { useLanguage } from 'hooks/useLanguage';
+import { useLoading } from 'hooks/useLoading';
 // Components
 import { Translate } from 'components/language';
 

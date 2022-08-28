@@ -12,7 +12,7 @@ import {
   SafetyOutlined,
 } from '@ant-design/icons';
 // Hooks
-import { useLanguage } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { getAvatarColorById } from 'utils/helpers';
 // Components

@@ -1,7 +1,8 @@
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Hooks
-import { useBooleanDictionary, useMock } from 'hooks';
+import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
+import { useMock } from 'hooks/useMock';
 // Utils
 import { mockDreamSelection } from './utils/mock';
 // Components

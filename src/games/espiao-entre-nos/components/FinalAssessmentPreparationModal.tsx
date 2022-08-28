@@ -2,7 +2,8 @@
 import { Button, Modal, Space } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 // Hooks and API
-import { useGlobalState, useLanguage } from 'hooks';
+import { useGlobalState } from 'hooks/useGlobalState';
+import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { Translate } from 'components/language';
 

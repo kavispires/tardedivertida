@@ -1,11 +1,13 @@
 import clsx from 'clsx';
 // Components
 import { Translate } from 'components/language';
+import { BracketContenderVotes } from './BracketContenderVotes';
 import { ContenderCard } from './ContenderCard';
 
 type BracketsProps = {
   brackets: WBracket[];
   activeTier: WBracketTier;
+  players: GamePlayers;
 };
 
 type BracketTiers = {
@@ -22,7 +24,7 @@ const getContenderColor = (index: number, activeTier: WBracketTier) => {
   return index % 2 === 0 ? 'red' : 'blue';
 };
 
-export function Brackets({ brackets, activeTier }: BracketsProps) {
+export function Brackets({ brackets, activeTier, players }: BracketsProps) {
   const { quarter, semi, final, winner } = brackets.reduce(
     (acc: BracketTiers, entry) => {
       acc[entry.tier].push(entry);
@@ -68,6 +70,7 @@ export function Brackets({ brackets, activeTier }: BracketsProps) {
                 }}
                 className="w-bracket-contender"
               />
+              <BracketContenderVotes bracket={entry} players={players} />
             </li>
           ))}
         </ul>
@@ -86,6 +89,7 @@ export function Brackets({ brackets, activeTier }: BracketsProps) {
                 }}
                 className="w-bracket-contender"
               />
+              <BracketContenderVotes bracket={entry} players={players} />
             </li>
           ))}
         </ul>
@@ -104,6 +108,7 @@ export function Brackets({ brackets, activeTier }: BracketsProps) {
                 }}
                 className="w-bracket-contender"
               />
+              <BracketContenderVotes bracket={entry} players={players} />
             </li>
           ))}
         </ul>
@@ -122,6 +127,7 @@ export function Brackets({ brackets, activeTier }: BracketsProps) {
                 }}
                 className="w-bracket-contender"
               />
+              <BracketContenderVotes bracket={entry} players={players} />
             </li>
           ))}
         </ul>

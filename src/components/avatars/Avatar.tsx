@@ -4,7 +4,7 @@ import { Avatar as AntAvatar, AvatarProps } from 'antd';
 // Images
 import avatars from 'assets/images/avatars.svg';
 // Hooks
-import { useLanguage } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
 
 interface TDAvatarProps extends AvatarProps {
   id?: string;

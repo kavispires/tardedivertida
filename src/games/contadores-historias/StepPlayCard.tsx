@@ -1,5 +1,6 @@
 // Hooks
-import { useLoading, useMock } from 'hooks';
+import { useLoading } from 'hooks/useLoading';
+import { useMock } from 'hooks/useMock';
 // Components
 import { TableFaceDown } from './components/TableFaceDown';
 import { mockPlayCard } from './utils/mock';

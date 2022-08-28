@@ -1,5 +1,6 @@
 import { NA_RUA_DO_MEDO_API } from 'services/adapters';
-import { useAPICall, useLanguage } from 'hooks';
+import { useAPICall } from 'hooks/useAPICall';
+import { useLanguage } from 'hooks/useLanguage';
 
 export function useOnSubmitDecisionAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();

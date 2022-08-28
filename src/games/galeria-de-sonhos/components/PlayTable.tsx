@@ -3,7 +3,8 @@ import clsx from 'clsx';
 import { Button, Image } from 'antd';
 import { UpCircleOutlined } from '@ant-design/icons';
 // Hooks
-import { useCardWidth, useLoading } from 'hooks';
+import { useCardWidth } from 'hooks/useCardWidth';
+import { useLoading } from 'hooks/useLoading';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components

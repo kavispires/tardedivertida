@@ -1,7 +1,7 @@
 // Ant Design resources
 import { Space } from 'antd';
 // Hooks
-import { useLanguage } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { Card } from 'components/cards';
 
@@ -13,7 +13,7 @@ export function Challenge({ challenge }: ChallengeProps) {
   const { translate } = useLanguage();
   return (
     <Space className="space-container" align="center">
-      <Card header={translate('Desafio', 'Challenge')} randomColor>
+      <Card header={translate('Desafio', 'Challenge')} color="purple">
         {challenge.text}
       </Card>
     </Space>

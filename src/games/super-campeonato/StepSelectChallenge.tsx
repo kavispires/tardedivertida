@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Space } from 'antd';
 // Hooks
-import { useMock } from 'hooks';
+import { useMock } from 'hooks/useMock';
 // Utils
 import { LETTERS } from 'utils/constants';
 import { mockSelectChallenge } from './utils/mock';
@@ -41,13 +41,19 @@ export function StepSelectChallenge({
         <Translate
           pt={
             <>
+              Cada rodada é feita ao redor de um desafio. Você tem competidores em mãos (na barra abaixo) e um
+              deles irá participar desta rodada.
+              <br />
               Selecione o desafio que você acha que um dos seus competidores tem mais change de vencer.
               <br />
-              Você ganha 2 pontos se ele vencer.
+              Você ganha 2 pontos se ele(a) vencer.
             </>
           }
           en={
             <>
+              Each round has a challenge for the contenders to battle on! You have a hand of contenders and
+              one of them will participate in this round.
+              <br />
               Select a challenge you think one of your contenders have the best chance of winning.
               <br />
               You get 2 points if they win.

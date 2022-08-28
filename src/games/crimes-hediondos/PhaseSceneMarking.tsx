@@ -1,5 +1,8 @@
 // State & Hooks
-import { useUser, useLanguage, useMock, useStep } from 'hooks';
+import { useMock } from 'hooks/useMock';
+import { useLanguage } from 'hooks/useLanguage';
+import { useStep } from 'hooks/useStep';
+import { useUser } from 'hooks/useUser';
 import { useOnSubmitMarkAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';

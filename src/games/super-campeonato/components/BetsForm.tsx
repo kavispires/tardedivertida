@@ -1,13 +1,19 @@
+import clsx from 'clsx';
 import { useState } from 'react';
 import { orderBy } from 'lodash';
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Hooks
-import { useLanguage } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
 import { ContendersSelect } from './ContendersSelect';
+import { MedalIcon } from 'components/icons/MedalIcon';
+import { getAnimationClass } from 'utils/helpers';
+import { IconAvatar } from 'components/icons/IconAvatar';
+import { TrophyIcon } from 'components/icons/TrophyIcon';
+import { ThumbsUpIcon } from 'components/icons/ThumbsUpIcon';
 
 type BetsFormProps = {
   brackets: WBracket[];
@@ -34,7 +40,15 @@ export function BetsForm({ brackets, onSubmitBets }: BetsFormProps) {
   return (
     <div className="w-bet-form">
       {step === 0 && (
-        <Instruction contained className="w-bet-form__container w-bet-form__container--final">
+        <Instruction
+          contained
+          className={clsx(
+            'w-bet-form__container',
+            'w-bet-form__container--final',
+            getAnimationClass('zoomIn')
+          )}
+        >
+          <IconAvatar icon={<TrophyIcon />} size="large" />
           <p className="w-bet-form__instruction">
             <Translate
               pt={
@@ -68,9 +82,16 @@ export function BetsForm({ brackets, onSubmitBets }: BetsFormProps) {
           </Space>
         </Instruction>
       )}
-
       {step === 1 && (
-        <Instruction contained className="w-bet-form__container w-bet-form__container--semi">
+        <Instruction
+          contained
+          className={clsx(
+            'w-bet-form__container',
+            'w-bet-form__container--semi',
+            getAnimationClass('zoomIn')
+          )}
+        >
+          <IconAvatar icon={<MedalIcon />} size="large" />
           <p className="w-bet-form__instruction">
             <Translate
               pt={
@@ -104,9 +125,16 @@ export function BetsForm({ brackets, onSubmitBets }: BetsFormProps) {
           </Space>
         </Instruction>
       )}
-
       {step === 2 && (
-        <Instruction contained className="w-bet-form__container w-bet-form__container--quarter">
+        <Instruction
+          contained
+          className={clsx(
+            'w-bet-form__container',
+            'w-bet-form__container--quarter',
+            getAnimationClass('zoomIn')
+          )}
+        >
+          <IconAvatar icon={<ThumbsUpIcon />} size="large" />
           <p className="w-bet-form__instruction">
             <Translate
               pt={

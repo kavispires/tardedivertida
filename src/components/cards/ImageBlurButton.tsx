@@ -2,7 +2,7 @@
 import { Button, Tooltip } from 'antd';
 import { EyeInvisibleOutlined } from '@ant-design/icons';
 // Utils
-import { useBlurCards } from 'hooks';
+import { useBlurCards } from 'hooks/useBlurCards';
 // Components
 import { Translate } from 'components/language';
 

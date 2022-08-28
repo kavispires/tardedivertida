@@ -9,7 +9,7 @@ import {
   TrophyOutlined,
 } from '@ant-design/icons';
 // Hooks
-import { useCountdown } from 'hooks';
+import { useCountdown } from 'hooks/useCountdown';
 // Components
 import { Translate } from 'components/language';
 

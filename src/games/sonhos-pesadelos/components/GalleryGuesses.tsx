@@ -1,7 +1,7 @@
 import { Avatar as AntAvatar } from 'antd';
 import { Avatar } from 'components/avatars';
 import { StarPoints } from 'components/points';
-import { useCardWidth } from 'hooks';
+import { useCardWidth } from 'hooks/useCardWidth';
 import { DreamCard } from './DreamCard';
 
 type GalleryGuessesProps = {

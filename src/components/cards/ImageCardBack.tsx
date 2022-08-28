@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { Image } from 'antd';
 // Resources
 import placeholder from 'assets/images/placeholder.jpg';
-import { useBlurCards } from 'hooks';
+import { useBlurCards } from 'hooks/useBlurCards';
 
 type ImageCardBackProps = {
   size?: 'small' | 'medium' | 'large';

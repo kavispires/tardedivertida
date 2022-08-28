@@ -1,5 +1,5 @@
 // Hooks
-import { useLoading } from 'hooks';
+import { useLoading } from 'hooks/useLoading';
 // Components
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';

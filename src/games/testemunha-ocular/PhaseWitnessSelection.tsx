@@ -1,5 +1,6 @@
 // Hooks
-import { useLanguage, useStep } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
+import { useStep } from 'hooks/useStep';
 import { useOnSelectWitnessAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';

@@ -6,7 +6,8 @@ import { useEffectOnce } from 'react-use';
 import { Tooltip } from 'antd';
 import { CrownFilled } from '@ant-design/icons';
 // Hooks
-import { useCountdown, useDimensions } from 'hooks';
+import { useCountdown } from 'hooks/useCountdown';
+import { useDimensions } from 'hooks/useDimensions';
 // Components
 import { Translate } from 'components/language';
 import { Avatar } from 'components/avatars';
