@@ -1,9 +1,9 @@
 {
   "gameCode": "W",
   "gameName": "super-campeonato",
-  "version": "beta-1",
+  "version": "1.0.0",
   "title": {
-    "pt": "Super Campeonato Ultimate",
+    "pt": "Super Campeonato",
     "en": "Ultimate Championship"
   },
   "popularName": {
