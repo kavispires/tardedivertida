@@ -1,10 +1,11 @@
+// Ant Design Resources
+import { Space } from 'antd';
 // Utils
-import { useCardWidth, useGlobalState } from 'hooks';
+import { useCardWidth } from 'hooks/useCardWidth';
+import { useGlobalState } from 'hooks/useGlobalState';
 // Components
-
 import { MonsterCard } from './components/MonsterCard';
 import { MonsterSketches } from './components/MonsterSketches';
-import { Space } from 'antd';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';

@@ -1,6 +1,7 @@
 import { orderBy } from 'lodash';
 // Hooks
-import { useLanguage, useUser } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
+import { useUser } from 'hooks/useUser';
 // Utils
 import { AVATARS } from 'utils/avatars';
 // Components

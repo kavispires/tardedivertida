@@ -1,4 +1,4 @@
-import { useGlobalState } from './index';
+import { useGlobalState } from './useGlobalState';
 
 /**
  * Get width and height of given element or from the screen

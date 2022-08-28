@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 // Hooks
-import { useCardWidth } from 'hooks';
+import { useCardWidth } from 'hooks/useCardWidth';
 // Components
 import { Translate } from 'components/language';
 import { DreamCard } from './DreamCard';

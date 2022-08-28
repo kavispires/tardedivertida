@@ -2,11 +2,14 @@ import clsx from 'clsx';
 import { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // Ant Design Resources
-import { Image, Modal, message, Button, notification, Divider, Typography, Switch, Space } from 'antd';
+import { Image, Modal, message, Button, notification, Divider, Typography, Switch, Space, Alert } from 'antd';
 // Adapters
 import { ADMIN_API } from 'services/adapters';
 // Hooks
-import { useGlobalState, useLanguage, useLoading, useLocalStorage } from 'hooks';
+import { useGlobalState } from 'hooks/useGlobalState';
+import { useLanguage } from 'hooks/useLanguage';
+import { useLoading } from 'hooks/useLoading';
+import { useLocalStorage } from 'hooks/useLocalStorage';
 // Constants
 import { LATEST_GAME_IDS, PUBLIC_URL } from 'utils/constants';
 // Components
@@ -106,8 +109,8 @@ export function CreateGameModal({ gameInfo }: CreateGameModalProps): JSX.Element
 
   return (
     <>
-      <Button type="primary" onClick={() => setVisibility(true)}>
-        <Translate pt="Criar Jogo" en="Create Game" />
+      <Button type="primary" onClick={() => setVisibility(true)} block>
+        <Translate pt="Criar" en="Create" />
       </Button>
       {isVisible && (
         <Modal
@@ -141,6 +144,32 @@ export function CreateGameModal({ gameInfo }: CreateGameModalProps): JSX.Element
                 </Instruction>
                 <Loading message={translate('Gerando...', 'Generating...')} margin />
               </>
+            )}
+
+            {gameInfo.version.startsWith('alpha') && (
+              <Alert
+                type="warning"
+                showIcon
+                message={
+                  <Translate
+                    pt="Este jogo está em alpha, não o jogue"
+                    en="This game is still in alpha and shouldn't be played"
+                  />
+                }
+              />
+            )}
+
+            {gameInfo.version.startsWith('beta') && (
+              <Alert
+                type="warning"
+                showIcon
+                message={
+                  <Translate
+                    pt="Este jogo está em beta, prossiga com cuidado"
+                    en="This game is in beta and bugs might be everywhere"
+                  />
+                }
+              />
             )}
 
             {Boolean(gameId) ? (

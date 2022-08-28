@@ -2,7 +2,7 @@
 import { Alert } from 'antd';
 import { Translate } from 'components/language';
 // Hooks
-import { useLanguage } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
 import { Link } from 'react-router-dom';
 // Components
 

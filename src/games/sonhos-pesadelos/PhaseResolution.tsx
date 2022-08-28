@@ -1,5 +1,8 @@
 // Hooks
-import { useIsUserReady, useLanguage, useSlideShow, useStep } from 'hooks';
+import { useIsUserReady } from 'hooks/useIsUserReady';
+import { useLanguage } from 'hooks/useLanguage';
+import { useSlideShow } from 'hooks/useSlideShow';
+import { useStep } from 'hooks/useStep';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components

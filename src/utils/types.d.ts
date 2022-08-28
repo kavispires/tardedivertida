@@ -102,7 +102,7 @@ type GameInfo = {
   };
   playerCount: {
     best?: number;
-    recommended: number[] | string;
+    recommended: number[];
     min: number;
     max: number;
   };
@@ -174,25 +174,107 @@ type GameRanking = {
   [key: string]: any;
 }[];
 
+/**
+ * Animation types
+ * For examples check: https://animate.style/
+ */
 type AnimationType =
   | 'backInDown'
+  | 'backInLeft'
   | 'backInRight'
+  | 'backInUp'
+  | 'backOutDown'
+  | 'backOutLeft'
+  | 'backOutRight'
+  | 'backOutUp'
   | 'bounce'
   | 'bounceIn'
+  | 'bounceInDown'
+  | 'bounceInLeft'
+  | 'bounceInRight'
+  | 'bounceInUp'
+  | 'bounceOut'
+  | 'bounceOutDown'
+  | 'bounceOutLeft'
+  | 'bounceOutRight'
+  | 'bounceOutUp'
   | 'fadeIn'
+  | 'fadeInDown'
+  | 'fadeInDownBig'
+  | 'fadeInLeft'
+  | 'fadeInLeftBig'
+  | 'fadeInRight'
+  | 'fadeInRightBig'
+  | 'fadeInUp'
+  | 'fadeInUpBig'
+  | 'fadeInTopLeft'
+  | 'fadeInTopRight'
+  | 'fadeInBottomLeft'
+  | 'fadeInBottomRight'
+  | 'fadeOut'
+  | 'fadeOutDown'
+  | 'fadeOutDownBig'
+  | 'fadeOutLeft'
+  | 'fadeOutLeftBig'
+  | 'fadeOutRight'
+  | 'fadeOutRightBig'
+  | 'fadeOutUp'
+  | 'fadeOutUpBig'
+  | 'fadeOutTopLeft'
+  | 'fadeOutTopRight'
+  | 'fadeOutBottomLeft'
+  | 'fadeOutBottomRight'
   | 'flash'
+  | 'flip'
   | 'flipInX'
   | 'flipInY'
+  | 'flipOutX'
+  | 'flipOutY'
   | 'heartBeat'
+  | 'hinge'
+  | 'jackInTheBox'
+  | 'jello'
+  | 'lightSpeedInLeft'
+  | 'lightSpeedInRight'
+  | 'lightSpeedOutLeft'
+  | 'lightSpeedOutRight'
   | 'pulse'
+  | 'rollIn'
+  | 'rollOut'
+  | 'rotateIn'
   | 'rotateInDownLeft'
+  | 'rotateInDownRight'
+  | 'rotateInUpLeft'
+  | 'rotateInUpRight'
+  | 'rotateOut'
+  | 'rotateOutDownLeft'
+  | 'rotateOutDownRight'
+  | 'rotateOutUpLeft'
+  | 'rotateOutUpRight'
   | 'rubberBand'
   | 'shakeX'
   | 'shakeY'
+  | 'slideInDown'
+  | 'slideInLeft'
+  | 'slideInRight'
   | 'slideInUp'
+  | 'slideOutDown'
+  | 'slideOutLeft'
+  | 'slideOutRight'
+  | 'slideOutUp'
+  | 'swing'
   | 'tada'
+  | 'wobble'
   | 'zoomIn'
-  | 'zoomInDown';
+  | 'zoomInDown'
+  | 'zoomInLeft'
+  | 'zoomInRight'
+  | 'zoomInUp'
+  | 'zoomOut'
+  | 'zoomOutDown'
+  | 'zoomOutLeft'
+  | 'zoomOutRight'
+  | 'zoomOutUp';
 
 type DefaultTextCard = {
   id: CardId;

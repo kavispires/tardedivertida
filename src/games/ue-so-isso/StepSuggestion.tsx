@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { CloudUploadOutlined } from '@ant-design/icons';
 // Hooks
-import { useMock } from 'hooks';
+import { useMock } from 'hooks/useMock';
 // Utils
 import { mockSuggestions } from './utils/mock';
 // Components

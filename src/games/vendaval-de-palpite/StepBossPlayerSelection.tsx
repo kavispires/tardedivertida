@@ -1,7 +1,8 @@
 // Ant Design Resources
 import { Space } from 'antd';
 // Hooks
-import { useLoading, useGlobalState } from 'hooks';
+import { useGlobalState } from 'hooks/useGlobalState';
+import { useLoading } from 'hooks/useLoading';
 // Components
 import { AvatarCard } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';

@@ -1,14 +1,14 @@
 {
   "gameCode": "M",
   "gameName": "mente-coletiva",
-  "version": "2.3.2",
+  "version": "2.3.4",
   "title": {
     "pt": "Mente Coletiva",
     "en": "Herd Mind"
   },
   "popularName": {
     "pt": "Da ovelhinha",
-    "en": ""
+    "en": "The sheep one"
   },
   "basedOn": "dniM eviH",
   "summary": {
@@ -34,6 +34,7 @@
     ]
   },
   "playerCount": {
+    "best": 6,
     "recommended": [4, 5, 6],
     "min": 3,
     "max": 12

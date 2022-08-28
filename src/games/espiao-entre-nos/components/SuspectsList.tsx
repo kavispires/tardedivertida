@@ -4,7 +4,8 @@ import clsx from 'clsx';
 import { Button, Tooltip } from 'antd';
 import { AimOutlined, ClearOutlined, IssuesCloseOutlined } from '@ant-design/icons';
 // Hooks
-import { useGlobalState, useLanguage } from 'hooks';
+import { useGlobalState } from 'hooks/useGlobalState';
+import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { Translate } from 'components/language';
 

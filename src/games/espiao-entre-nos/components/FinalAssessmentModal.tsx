@@ -2,7 +2,7 @@
 import { Modal, Space } from 'antd';
 // Components
 import { Translate } from 'components/language';
-import { useLanguage } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
 import { PlayerSelect } from './PlayerSelect';
 import { FinalAssessmentInstruction } from './RulesBlobs';
 

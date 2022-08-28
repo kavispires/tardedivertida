@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Avatar, Button } from 'antd';
 // Hooks
-import { useLanguage } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
 // Components
 
 import { Suspects } from './components/Suspects';

@@ -1,6 +1,6 @@
 import { ReactNode, useState } from 'react';
 // Utils
-import { useLanguage } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
 import { PHASES } from 'utils/phases';
 // Components
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';

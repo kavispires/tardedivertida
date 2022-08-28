@@ -1,18 +1,19 @@
 import { useState } from 'react';
 // Ant Design Resources
-import { Button, Modal } from 'antd';
+import { Button, ButtonProps, Modal } from 'antd';
 import { ReadOutlined } from '@ant-design/icons';
 // Hooks
-import { useLanguage } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { Translate } from 'components/language';
 import { RulesCarousel } from 'components/rules';
 
 type RulesModalProps = {
   gameInfo: GameInfo;
+  buttonProps?: ButtonProps;
 };
 
-export function RulesModal({ gameInfo }: RulesModalProps): JSX.Element {
+export function RulesModal({ gameInfo, buttonProps }: RulesModalProps): JSX.Element {
   const { language, translate } = useLanguage();
   const [isVisible, setVisibility] = useState(false);
 
@@ -22,7 +23,7 @@ export function RulesModal({ gameInfo }: RulesModalProps): JSX.Element {
 
   return (
     <>
-      <Button type="default" onClick={() => setVisibility(true)} icon={<ReadOutlined />}>
+      <Button type="default" onClick={() => setVisibility(true)} icon={<ReadOutlined />} {...buttonProps}>
         <Translate pt="Regras" en="Rules" />
       </Button>
       {isVisible && (

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 // Hooks
-import { useCountdown, useGlobalState } from 'hooks';
+import { useCountdown } from 'hooks/useCountdown';
+import { useGlobalState } from 'hooks/useGlobalState';
 // Utils
 import { TIMES, VIEWS } from './utils/constants';
 // Components

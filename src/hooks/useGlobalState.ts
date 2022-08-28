@@ -29,6 +29,8 @@ type InitialState = {
   cache: PlainObject;
   // Retrato-Falado
   monsterOrientation: 'vertical' | 'horizontal';
+  // Dev
+  usingEmulators: boolean;
 };
 
 const initialState: InitialState = {
@@ -71,6 +73,8 @@ const initialState: InitialState = {
   cache: {},
   // Retrato-Falado
   monsterOrientation: 'vertical',
+  // Dev
+  usingEmulators: false,
 };
 
 const { useGlobalState, setGlobalState, getGlobalState } = createGlobalState(initialState);
@@ -84,5 +88,3 @@ function resetGlobalState() {
   setGlobalState('userAvatarId', initialState.userAvatarId);
 }
 export { setGlobalState, getGlobalState, useGlobalState, resetGlobalState };
-
-export default useGlobalState;

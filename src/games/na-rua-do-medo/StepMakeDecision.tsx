@@ -1,5 +1,6 @@
 // Hooks
-import { useLanguage, useMock } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
+import { useMock } from 'hooks/useMock';
 // Utils
 import { mockPlayerDecision } from './utils/mock';
 // Components

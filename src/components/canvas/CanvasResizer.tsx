@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Slider } from 'antd';
 // State & Hooks
-import { useGlobalState } from 'hooks';
+import { useGlobalState } from 'hooks/useGlobalState';
 // Components
 import { Translate } from 'components/language';
 

@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { Button, Image } from 'antd';
 import { UpCircleOutlined } from '@ant-design/icons';
 // Hooks
-import { useCardWidth } from 'hooks';
+import { useCardWidth } from 'hooks/useCardWidth';
 // Components
 import { ImageBlurButton, ImageCard } from 'components/cards';
 import { Translate } from 'components/language';

@@ -2,7 +2,9 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Image, Popconfirm } from 'antd';
 // Hooks
-import { useDimensions, useLanguage, useLoading } from 'hooks';
+import { useDimensions } from 'hooks/useDimensions';
+import { useLanguage } from 'hooks/useLanguage';
+import { useLoading } from 'hooks/useLoading';
 // Components
 import { ImageCard } from 'components/cards';
 

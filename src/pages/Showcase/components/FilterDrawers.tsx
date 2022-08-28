@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Button, Divider, Drawer, Space } from 'antd';
 // Hooks
-import { useDimensions } from 'hooks';
+import { useDimensions } from 'hooks/useDimensions';
 // Components
 import { LanguageSwitch, Translate } from 'components/language';
 import { CustomFilterOptions } from './CustomFilterOptions';

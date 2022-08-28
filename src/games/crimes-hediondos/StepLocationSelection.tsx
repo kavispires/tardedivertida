@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Space } from 'antd';
 // Hooks
-import { useCardWidth } from 'hooks';
+import { useCardWidth } from 'hooks/useCardWidth';
 // Components
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';

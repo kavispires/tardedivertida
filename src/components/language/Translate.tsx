@@ -2,7 +2,7 @@ import { ReactElement, ReactNode } from 'react';
 // Ant Design Resources
 import { message } from 'antd';
 // Hooks
-import { useLanguage } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
 
 type LanguageEntry = ReactElement | string;
 

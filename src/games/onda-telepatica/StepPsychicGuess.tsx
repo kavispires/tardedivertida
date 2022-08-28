@@ -1,7 +1,8 @@
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Hooks
-import { useLoading, useMock } from 'hooks';
+import { useLoading } from 'hooks/useLoading';
+import { useMock } from 'hooks/useMock';
 // Components
 import { Translate } from 'components/language';
 import { ReadyPlayersBar } from 'components/players';

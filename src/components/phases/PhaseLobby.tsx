@@ -1,7 +1,7 @@
 // Constants
 import { PHASES } from 'utils/phases';
 // Hooks
-import useGlobalState from 'hooks/useGlobalState';
+import { useGlobalState } from 'hooks/useGlobalState';
 // Components
 import { PhaseContainer } from 'components/phases';
 import { AvatarEntry } from 'components/avatars';
@@ -9,6 +9,7 @@ import { Join } from './lobby/Join';
 import { Waiting } from './lobby/Waiting';
 import { CloudBackground } from './lobby/CloudBackground';
 import { orderBy } from 'lodash';
+import { AdminMenuDrawer } from 'components/admin';
 
 type PhaseLobbyProps = {
   players: GamePlayers;
@@ -41,6 +42,7 @@ export function PhaseLobby({ players, info, meta }: PhaseLobbyProps) {
         )}
       </div>
 
+      <AdminMenuDrawer state={{ phase: 'LOBBY', round: { current: 0, total: 0 } }} players={players} />
       <CloudBackground gameCode={info.gameCode} />
     </PhaseContainer>
   );

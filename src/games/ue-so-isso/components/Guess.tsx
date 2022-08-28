@@ -3,7 +3,8 @@ import { useState } from 'react';
 import { Button, Input, Space } from 'antd';
 import { CloudUploadOutlined, MinusOutlined } from '@ant-design/icons';
 // Hooks
-import { useLanguage, useLoading } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
+import { useLoading } from 'hooks/useLoading';
 // Components
 import { Translate } from 'components/language';
 

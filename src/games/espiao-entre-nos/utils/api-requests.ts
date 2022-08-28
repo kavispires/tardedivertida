@@ -1,5 +1,6 @@
 import { ADMIN_API, ESPIAO_ENTRE_NOS_API } from 'services/adapters';
-import { useAPICall, useLanguage } from 'hooks';
+import { useAPICall } from 'hooks/useAPICall';
+import { useLanguage } from 'hooks/useLanguage';
 import { ADMIN_ACTIONS } from 'utils/constants';
 
 export function useOnGuessLocationAPIRequest(setStep: GenericFunction) {

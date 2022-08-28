@@ -1,5 +1,5 @@
 // Hooks
-import { useCardWidth } from 'hooks';
+import { useCardWidth } from 'hooks/useCardWidth';
 // Components
 import { ItemCard } from './ItemCard';
 

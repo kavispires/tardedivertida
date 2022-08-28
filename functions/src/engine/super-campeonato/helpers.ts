@@ -34,7 +34,7 @@ export const determineNextPhase = (
     return RESULTS;
   }
 
-  if (currentPhase === CHALLENGE_SELECTION && round.current === 5) {
+  if (currentPhase === CHALLENGE_SELECTION && isFinalRound(round)) {
     return BETS;
   }
 
@@ -45,6 +45,15 @@ export const determineNextPhase = (
   }
   console.warn('Missing phase check');
   return CHALLENGE_SELECTION;
+};
+
+/**
+ * Check if it is the final voting round
+ * @param round
+ * @returns
+ */
+export const isFinalRound = (round: Round): boolean => {
+  return round.current === TOTAL_ROUNDS;
 };
 
 export const getTableContenders = (contendersDeck: ContendersDeck, players: Players): Contender[] => {
@@ -84,16 +93,17 @@ export const getMostVotedChallenge = (players: Players, challenges: TextCard[]) 
 
   const challengesIds = Object.keys(votes);
   const votesCount: number[] = challengesIds.map((key) => votes[key]);
+
   const max = Math.max(...votesCount);
+
   // If both got the max votes, return a random one
-  if (votesCount.every((vc) => vc === max)) {
+  if (votesCount.length > 1 && votesCount.every((vc) => vc === max)) {
     return utils.game.getRandomItem(challenges);
   }
 
   // Return only the most voted one
   const index = votesCount.findIndex((vc) => vc === max);
   const winnerId = challengesIds[index];
-
   const winner = challenges.find((card) => card.id === winnerId);
 
   return winner ? winner : challenges[0];
@@ -138,6 +148,7 @@ export const makeBrackets = (players: Players, deck: Contender[], currentRound: 
       playerId: '',
       position: v + index,
       tier: getBracketTier(v + index),
+      votes: [],
     }));
 
   shuffledContenders.forEach((contender, index) => {
@@ -180,6 +191,8 @@ export const updateBracketsWithVotes = (players: Players, brackets: Bracket[]) =
       }
 
       votes[target][voted] += 1;
+
+      brackets[voted].votes.push(player.id);
     });
   });
 
@@ -204,6 +217,7 @@ export const updateBracketsWithVotes = (players: Players, brackets: Bracket[]) =
       id: winner.id,
       name: winner.name,
       playerId: winner.playerId,
+      votes: [],
     };
   });
 
@@ -211,8 +225,8 @@ export const updateBracketsWithVotes = (players: Players, brackets: Bracket[]) =
 };
 
 export const buildRanking = (players: Players, brackets: Bracket[]) => {
-  // Gained points: super sparks, sparks, nightmare
-  const newScores = utils.helpers.buildNewScoreObject(players, [0, 0]);
+  // Gained points: final, semi, quarter, own contender
+  const newScores = utils.helpers.buildNewScoreObject(players, [0, 0, 0, 0]);
 
   const parsedBrackets = brackets.reduce((acc: Record<string, BracketTier[]>, bracket) => {
     if (acc[bracket.id] === undefined) {
@@ -230,19 +244,19 @@ export const buildRanking = (players: Players, brackets: Bracket[]) => {
     }
 
     if (parsedBrackets?.[player.bets.semi]?.includes('final')) {
-      newScores[player.id].gainedPoints[0] += 3;
+      newScores[player.id].gainedPoints[1] += 3;
       newScores[player.id].newScore += 3;
       players[player.id].score += 3;
     }
 
     if (parsedBrackets?.[player.bets.quarter]?.includes('semi')) {
-      newScores[player.id].gainedPoints[0] += 1;
+      newScores[player.id].gainedPoints[2] += 1;
       newScores[player.id].newScore += 1;
       players[player.id].score += 1;
     }
 
     if (brackets[brackets.length - 1].playerId === player.id) {
-      newScores[player.id].gainedPoints[1] += 2;
+      newScores[player.id].gainedPoints[3] += 2;
       newScores[player.id].newScore += 2;
       players[player.id].score += 2;
     }
@@ -263,6 +277,7 @@ export const makeFinalBrackets = (brackets: Bracket[]) => {
       playerId: '',
       position: v + index,
       tier: getBracketTier(v + index),
+      votes: [],
     }));
 
   shuffledContenders.forEach((contender, index) => {

@@ -1,6 +1,10 @@
 import { useState } from 'react';
 // State & Hooks
-import { useIsUserReady, useUser, useLanguage, useMock, useStep } from 'hooks';
+import { useIsUserReady } from 'hooks/useIsUserReady';
+import { useLanguage } from 'hooks/useLanguage';
+import { useMock } from 'hooks/useMock';
+import { useStep } from 'hooks/useStep';
+import { useUser } from 'hooks/useUser';
 import { useOnSubmitCrimeAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';

@@ -7,7 +7,7 @@ import roundTitlePt from 'assets/images/round-title-pt.svg';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Hooks
-import { useLanguage } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { Translate } from 'components/language';
 import { TimedButton } from 'components/buttons';

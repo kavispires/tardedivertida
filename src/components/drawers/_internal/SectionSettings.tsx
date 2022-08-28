@@ -2,7 +2,9 @@
 import { Button, Switch, Tooltip } from 'antd';
 import { InfoCircleOutlined } from '@ant-design/icons';
 // Hooks
-import { useDevFeatures, useGlobalState, useLocalStorage } from 'hooks';
+import { useDevFeatures } from 'hooks/useDevFeatures';
+import { useGlobalState } from 'hooks/useGlobalState';
+import { useLocalStorage } from 'hooks/useLocalStorage';
 // Components
 import { LanguageSwitch, Translate } from 'components/language';
 

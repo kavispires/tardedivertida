@@ -2,7 +2,7 @@ import clsx from 'clsx';
 // Ant Design Resources
 import { Image } from 'antd';
 // Hooks
-import { useCardWidth } from 'hooks';
+import { useCardWidth } from 'hooks/useCardWidth';
 // Helpers
 import { getAnimationClass } from 'utils/helpers';
 // Components

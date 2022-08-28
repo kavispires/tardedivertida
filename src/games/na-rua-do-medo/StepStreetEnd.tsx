@@ -1,5 +1,5 @@
 // Hooks
-import { useLanguage } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { PlayerStats } from './components/PlayerStats';
 import { Street } from './components/Street';

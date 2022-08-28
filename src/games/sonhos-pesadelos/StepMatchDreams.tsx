@@ -3,7 +3,10 @@ import { useEffectOnce } from 'react-use';
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Hooks
-import { useLanguage, useLoading, useMock, useVotingMatch } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
+import { useLoading } from 'hooks/useLoading';
+import { useMock } from 'hooks/useMock';
+import { useVotingMatch } from 'hooks/useVotingMatch';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 import { cleanupVotes, selectOwnVote, voteRandomly } from './utils/helpers';

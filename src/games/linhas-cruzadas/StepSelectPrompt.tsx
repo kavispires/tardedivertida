@@ -6,7 +6,8 @@ import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 // Hooks
-import { useLoading, useMock } from 'hooks';
+import { useLoading } from 'hooks/useLoading';
+import { useMock } from 'hooks/useMock';
 // Utils
 import { shuffle } from 'utils/helpers';
 // Components

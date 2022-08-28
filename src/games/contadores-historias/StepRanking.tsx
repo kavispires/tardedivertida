@@ -1,6 +1,6 @@
 import { Button, Space } from 'antd';
 // Hooks
-import { useLanguage } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { AdminNextPhaseButton } from 'components/admin';
 import { AvatarName } from 'components/avatars';

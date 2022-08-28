@@ -1,6 +1,9 @@
 import { useMemo } from 'react';
 // Hooks
-import { useIsUserReady, useWhichPlayerIsThe, useLanguage, useStep } from 'hooks';
+import { useIsUserReady } from 'hooks/useIsUserReady';
+import { useLanguage } from 'hooks/useLanguage';
+import { useStep } from 'hooks/useStep';
+import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { useOnProgressGameAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';

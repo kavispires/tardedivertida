@@ -3,7 +3,8 @@ import { orderBy } from 'lodash';
 // Ant Design Resources
 import { Badge, Tag } from 'antd';
 // Hooks
-import { useLanguage, useUser } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
+import { useUser } from 'hooks/useUser';
 // Utils
 import { AVATARS } from 'utils/avatars';
 // Components

@@ -3,7 +3,8 @@ import { useState } from 'react';
 import { Alert } from 'antd';
 import { CloudUploadOutlined } from '@ant-design/icons';
 // Hooks
-import { useCountdown, useMock } from 'hooks';
+import { useCountdown } from 'hooks/useCountdown';
+import { useMock } from 'hooks/useMock';
 // Utils
 import { mockClues } from './utils/mock';
 import { getAnimationClass } from 'utils/helpers';

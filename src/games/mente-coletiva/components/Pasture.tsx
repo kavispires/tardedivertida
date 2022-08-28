@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import clsx from 'clsx';
 // Hooks
-import { useDimensions } from 'hooks';
+import { useDimensions } from 'hooks/useDimensions';
 // Utils
 import { PUBLIC_URL } from 'utils/constants';
 // Components

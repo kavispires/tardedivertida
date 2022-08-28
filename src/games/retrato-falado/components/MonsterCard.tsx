@@ -4,7 +4,8 @@ import { useEffectOnce } from 'react-use';
 import { Button, Space, SpaceProps } from 'antd';
 import { RotateLeftOutlined, RotateRightOutlined } from '@ant-design/icons';
 // Hooks
-import { useCardWidth, useGlobalState } from 'hooks';
+import { useCardWidth } from 'hooks/useCardWidth';
+import { useGlobalState } from 'hooks/useGlobalState';
 // Components
 import { ImageCard } from 'components/cards';
 import { Translate } from 'components/language';

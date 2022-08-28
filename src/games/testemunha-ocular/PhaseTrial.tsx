@@ -3,7 +3,10 @@ import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { useLanguage, useLoading, useStep, useWhichPlayerIsThe } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
+import { useLoading } from 'hooks/useLoading';
+import { useStep } from 'hooks/useStep';
+import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { PHASES } from 'utils/phases';
 
 import { useOnEliminateSuspectAPIRequest } from './utils/api-requests';

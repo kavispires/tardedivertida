@@ -1,5 +1,6 @@
 import { CONTADORES_HISTORIAS_API } from 'services/adapters';
-import { useAPICall, useLanguage } from 'hooks';
+import { useAPICall } from 'hooks/useAPICall';
+import { useLanguage } from 'hooks/useLanguage';
 
 export function useOnSubmitStoryAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();

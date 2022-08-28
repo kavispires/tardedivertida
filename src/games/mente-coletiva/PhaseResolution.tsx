@@ -1,5 +1,6 @@
 // Hooks
-import { useLanguage, useStep } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
+import { useStep } from 'hooks/useStep';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components

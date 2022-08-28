@@ -3,11 +3,17 @@ import { Space } from 'antd';
 // Components
 import { GameOverWrapper } from 'components/game-over';
 import { TrophyIcon } from 'components/icons/TrophyIcon';
+import { Translate } from 'components/language';
+import { Title } from 'components/text';
 import { ContenderCard } from './components/ContenderCard';
 
 function PhaseGameOver({ state, info }: PhaseProps) {
   return (
     <GameOverWrapper info={info} state={state} announcementIcon={<TrophyIcon />}>
+      <Title size="xx-small" className="padding">
+        <Translate pt="Campeão Ultimate" en="Ultimate Champion" />
+      </Title>
+
       <Space className="space-container margin" align="center">
         <ContenderCard size={200} overlayColor="yellow" contender={state.finalWinner} />
       </Space>

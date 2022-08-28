@@ -3,10 +3,11 @@ import { message, Space } from 'antd';
 // Components
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
+import { TurnOrder } from 'components/players';
 import { messageContent } from 'components/pop-up';
 import { Step } from 'components/steps';
 import { Instruction, TextHighlight, Title } from 'components/text';
-import { useLanguage } from 'hooks';
+import { useLanguage } from 'hooks/useLanguage';
 import { useEffect } from 'react';
 import { getAnimationClass } from 'utils/helpers';
 import { EndDefenseTimedButton } from './components/EndDefenseTimedButton';
@@ -22,6 +23,8 @@ type StepDefendingProps = {
   isLoading: boolean;
   isUserTheImpostor: boolean;
   user: GamePlayer;
+  players: GamePlayers;
+  turnOrder: TurnOrder;
 };
 
 export function StepDefending({
@@ -33,6 +36,8 @@ export function StepDefending({
   isLoading,
   isUserTheImpostor,
   user,
+  players,
+  turnOrder,
 }: StepDefendingProps) {
   const { translate } = useLanguage();
 
@@ -95,6 +100,8 @@ export function StepDefending({
           <TableFocus table={table} currentPlayer={user} />
         </div>
       </Space>
+
+      <TurnOrder players={players} activePlayerId={currentPlayer.id} order={turnOrder} />
     </Step>
   );
 }

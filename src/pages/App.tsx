@@ -6,7 +6,9 @@ import { Layout, message } from 'antd';
 // Firebase
 import { auth } from 'services/firebase';
 // State
-import { useGlobalState, useLanguage, useLocalStorage } from 'hooks';
+import { useGlobalState } from 'hooks/useGlobalState';
+import { useLanguage } from 'hooks/useLanguage';
+import { useLocalStorage } from 'hooks/useLocalStorage';
 // Components
 import { LoadingBar, LoadingPage } from 'components/loaders';
 // Pages

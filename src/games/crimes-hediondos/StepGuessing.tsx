@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Hooks
-import { useMock } from 'hooks';
+import { useMock } from 'hooks/useMock';
 // Utils
 import { getAvatarColorById, getLastItem } from 'utils/helpers';
 import { mockGuesses } from './utils/mock';

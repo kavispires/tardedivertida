@@ -3,18 +3,25 @@ import { Button, Layout, Space, Typography } from 'antd';
 import { CheckCircleFilled, MehFilled, RobotFilled, SmileFilled } from '@ant-design/icons';
 // Utils
 import { GAME_API } from 'services/adapters';
-import { useLoading, useIsUserReady, useAPICall, useLanguage, useMock, useUser, useGlobalState } from 'hooks';
-// Components
-import { LoadingPage } from 'components/loaders';
-import { Translate } from 'components/language';
-import { ReadyPlayersBar } from 'components/players';
-import { RulesCarousel } from '../rules';
 import {
   getRandomNegativeReadyMessage,
   getRandomNeutralReadyMessage,
   getRandomPositiveReadyMessage,
   speak,
 } from 'utils/speech';
+// Hooks
+import { useLoading } from 'hooks/useLoading';
+import { useIsUserReady } from 'hooks/useIsUserReady';
+import { useAPICall } from 'hooks/useAPICall';
+import { useLanguage } from 'hooks/useLanguage';
+import { useMock } from 'hooks/useMock';
+import { useUser } from 'hooks/useUser';
+import { useGlobalState } from 'hooks/useGlobalState';
+// Components
+import { LoadingPage } from 'components/loaders';
+import { Translate } from 'components/language';
+import { ReadyPlayersBar } from 'components/players';
+import { RulesCarousel } from '../rules';
 
 type PhaseRulesProps = {
   players: GamePlayers;

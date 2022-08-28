@@ -3,7 +3,10 @@ import clsx from 'clsx';
 import { Button } from 'antd';
 import { DownSquareOutlined } from '@ant-design/icons';
 // Hooks & Utils
-import { useCardWidth, useLanguage, useLoading, useMock } from 'hooks';
+import { useCardWidth } from 'hooks/useCardWidth';
+import { useLanguage } from 'hooks/useLanguage';
+import { useLoading } from 'hooks/useLoading';
+import { useMock } from 'hooks/useMock';
 import { mockVote } from './utils/mock';
 // Components
 import { Card, ImageBlurButton, ImageCard } from 'components/cards';
