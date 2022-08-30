@@ -1,4 +1,6 @@
+// Ant Design Resources
 import { Space } from 'antd';
+// Components
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { WaitingRoom } from 'components/players';
