@@ -5,10 +5,9 @@ import { useLanguage } from 'hooks/useLanguage';
 import { AdminNextPhaseButton } from 'components/admin';
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
-import { RankingBoard } from 'components/ranking';
+import { StepRankingWrapper } from 'components/ranking';
 import { PopoverRule } from 'components/rules';
-import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { Instruction } from 'components/text';
 import { ScoringRules } from './components/RulesBlobs';
 
 type StepRankingProps = {
@@ -33,10 +32,11 @@ export function StepRanking({
   const { translate } = useLanguage();
 
   return (
-    <Step fullWidth>
-      <Title level={1}>
-        <Translate pt="Resultado" en="Results" />
-      </Title>
+    <StepRankingWrapper
+      players={players}
+      ranking={ranking}
+      gainedPointsDescriptions={['Pontos ganhos', 'Pontos por votos em sua carta']}
+    >
       <PopoverRule content={<ScoringRules storyteller={storyteller} />} />
 
       <Instruction contained>
@@ -85,13 +85,11 @@ export function StepRanking({
         )}
       </Instruction>
 
-      <RankingBoard ranking={ranking} players={players} />
-
       <Space className="space-container" align="center">
         <Button onClick={goToPreviousStep}>{translate('Voltar para Solução', 'Back to Solution')}</Button>
       </Space>
 
       <AdminNextPhaseButton round={round} lastRound={lastRound} />
-    </Step>
+    </StepRankingWrapper>
   );
 }
