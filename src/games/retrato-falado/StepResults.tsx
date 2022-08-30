@@ -1,8 +1,9 @@
 // Ant Design Resources
 import { Space } from 'antd';
-// Utils
+// Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useGlobalState } from 'hooks/useGlobalState';
+import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
 import { MonsterCard } from './components/MonsterCard';
 import { MonsterSketches } from './components/MonsterSketches';
@@ -37,6 +38,8 @@ export function StepResults({
   witnessVote,
   witness,
 }: StepResultsProps) {
+  useTemporarilyHidePlayersBar();
+
   const canvasWidth = useCardWidth(Math.min(Object.keys(players).length, 6), 16, 150, 500);
   const [canvasSize] = useGlobalState('canvasSize');
 

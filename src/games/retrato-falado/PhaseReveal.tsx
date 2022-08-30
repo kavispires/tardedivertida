@@ -17,7 +17,7 @@ import { QualitySealIcon } from 'components/icons/QualitySealIcon';
 
 function PhaseReveal({ players, state, info }: PhaseProps) {
   const { translate } = useLanguage();
-  const { step, goToNextStep } = useStep(0);
+  const { step, goToNextStep, goToPreviousStep } = useStep(0);
   const user = useUser(players);
 
   const isUserReady = useIsUserReady(players, state);
@@ -52,7 +52,13 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
         />
 
         {/* Step 2 */}
-        <StepRanking ranking={state.ranking} players={players} round={state.round} />
+        <StepRanking
+          ranking={state.ranking}
+          players={players}
+          round={state.round}
+          isLastRound={state?.lastRound}
+          goToPreviousStep={goToPreviousStep}
+        />
       </StepSwitcher>
     </PhaseContainer>
   );
