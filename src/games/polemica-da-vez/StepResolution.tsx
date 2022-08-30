@@ -1,13 +1,15 @@
+import { orderBy } from 'lodash';
 // Ant Design Resources
-import { CommentOutlined, LikeFilled, ShareAltOutlined } from '@ant-design/icons';
 import { Space } from 'antd';
+import { CommentOutlined, LikeFilled, ShareAltOutlined } from '@ant-design/icons';
+// Hooks
+import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
+// Components
+import { Topic } from './components/Topic';
 import { TimedButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Title } from 'components/text';
-import { orderBy } from 'lodash';
-// Components
-import { Topic } from './components/Topic';
 import { TweetComment } from './components/TweetComment';
 
 type StepResolutionProps = {
@@ -24,6 +26,8 @@ export function StepResolution({
   currentTopic,
   goToNextStep,
 }: StepResolutionProps) {
+  useTemporarilyHidePlayersBar();
+
   return (
     <Step fullWidth className="p-step">
       <Title level={1}>
@@ -63,7 +67,7 @@ export function StepResolution({
       </div>
 
       <Space className="space-container" align="center">
-        <TimedButton duration={25} onExpire={goToNextStep} onClick={goToNextStep}>
+        <TimedButton duration={20} onExpire={goToNextStep} onClick={goToNextStep}>
           <Translate pt="Ver Ranking" en="See Ranking" />
         </TimedButton>
       </Space>
