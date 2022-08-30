@@ -8,6 +8,7 @@ import roundTitlePt from 'assets/images/round-title-pt.svg';
 import { getAnimationClass } from 'utils/helpers';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
+import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
 import { Translate } from 'components/language';
 import { TimedButton } from 'components/buttons';
@@ -37,6 +38,7 @@ export function RoundAnnouncement({
   unskippable = false,
   circleColor = 'yellow',
 }: RoundAnnouncementProps) {
+  useTemporarilyHidePlayersBar();
   const { translate } = useLanguage();
 
   return (

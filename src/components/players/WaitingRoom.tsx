@@ -5,6 +5,7 @@ import { Translate } from 'components/language';
 import { ReadyPlayersBar } from 'components/players';
 import { Instruction, Title } from 'components/text';
 import { WaitingRoomIcon } from 'components/icons/WaitingRoomIcon';
+import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 
 type WaitingRoomProps = {
   players: GamePlayers;
@@ -14,7 +15,10 @@ type WaitingRoomProps = {
 };
 
 export function WaitingRoom({ players, title, instruction, children }: WaitingRoomProps) {
+  useTemporarilyHidePlayersBar();
+
   const { translate } = useLanguage();
+
   return (
     <div className="waiting-room">
       <Title>{translate('Pronto!', 'Done!', title)}</Title>

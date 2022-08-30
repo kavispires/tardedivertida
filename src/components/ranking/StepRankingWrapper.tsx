@@ -1,7 +1,10 @@
+import { ReactNode } from 'react';
+// Hooks
+import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
+// Components
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
-import { ReactNode } from 'react';
 import { RankingBoard } from './RankingBoard';
 
 type StepRankingWrapperProps = {
@@ -17,6 +20,8 @@ export function StepRankingWrapper({
   gainedPointsDescriptions,
   children,
 }: StepRankingWrapperProps) {
+  useTemporarilyHidePlayersBar();
+
   return (
     <Step>
       <Title>Ranking</Title>
