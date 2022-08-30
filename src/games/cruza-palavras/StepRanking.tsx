@@ -1,12 +1,10 @@
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Components
-import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
 import { ScoringRule } from './components/RulesBlobs';
-import { RankingBoard } from 'components/ranking';
+import { StepRankingWrapper } from 'components/ranking';
 import { AdminNextPhaseButton } from 'components/admin';
 
 type StepRankingProps = {
@@ -27,18 +25,19 @@ export function StepRanking({
   isLastRound,
 }: StepRankingProps) {
   return (
-    <Step fullWidth>
-      <Title>Ranking</Title>
-      <Instruction contained>
+    <StepRankingWrapper
+      players={players}
+      ranking={ranking}
+      gainedPointsDescriptions={[
+        <Translate pt="Votos corretos" en="Correct guesses" />,
+        <Translate pt="Votos recebidos" en="Received votes" />,
         <Translate
-          pt="Distribuição de pontos: Votos corretos | Votos recebidos | Penalidade se ninguém acertou a sua dica"
-          en="Points Distribution: Correct guesses | Received votes | Penalty for nobody getting your clue correctly"
-        />
-      </Instruction>
-
+          pt="Penalidade se ninguém acertou a sua dica"
+          en="Penalty for nobody getting your clue correctly"
+        />,
+      ]}
+    >
       <PopoverRule content={<ScoringRule playerCount={playerCount} />} />
-
-      <RankingBoard ranking={ranking} players={players} />
 
       <Space className="space-container" align="center">
         <Button onClick={goToPreviousStep}>
@@ -46,6 +45,6 @@ export function StepRanking({
         </Button>
       </Space>
       <AdminNextPhaseButton round={round} lastRound={isLastRound} />
-    </Step>
+    </StepRankingWrapper>
   );
 }
