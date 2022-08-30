@@ -1,3 +1,5 @@
+// Hooks
+import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
 import { AdminNextPhaseButton } from 'components/admin';
 import { AvatarName } from 'components/avatars';
@@ -29,6 +31,8 @@ export function StepReveal({
   table,
   lastRound = false,
 }: StepRevealProps) {
+  useTemporarilyHidePlayersBar();
+
   return (
     <Step>
       <Title>

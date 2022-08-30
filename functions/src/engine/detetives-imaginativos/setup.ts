@@ -78,6 +78,8 @@ export const prepareSecretCluePhase = async (
   // Determine the impostor
   const impostorId = utils.game.shuffle(Object.keys(players).filter((playerId) => playerId !== leaderId))[0];
 
+  utils.players.unReadyPlayer(players, leaderId);
+
   // Save
   return {
     update: {
