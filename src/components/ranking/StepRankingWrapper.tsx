@@ -10,7 +10,7 @@ import { RankingBoard } from './RankingBoard';
 type StepRankingWrapperProps = {
   players: GamePlayers;
   ranking: GameRanking;
-  gainedPointsDescriptions: any[];
+  gainedPointsDescriptions: ReactNode[];
   children?: ReactNode;
 };
 
