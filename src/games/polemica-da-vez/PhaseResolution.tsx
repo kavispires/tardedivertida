@@ -4,16 +4,13 @@ import { useStep } from 'hooks/useStep';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-
 import { StepResolution } from './StepResolution';
-import { Button, Space } from 'antd';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { Step, StepSwitcher } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { StepSwitcher } from 'components/steps';
+import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
-import { RankingBoard } from 'components/ranking';
-import { AdminNextPhaseButton } from 'components/admin';
 import { ReviewIcon } from 'components/icons/ReviewIcon';
+import { StepRanking } from './StepRanking';
 
 function PhaseReact({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -54,7 +51,6 @@ function PhaseReact({ state, players, info }: PhaseProps) {
         </PhaseAnnouncement>
 
         {/* Step 1 */}
-
         <StepResolution
           players={players}
           customTopic={state.customTopic}
@@ -63,16 +59,14 @@ function PhaseReact({ state, players, info }: PhaseProps) {
           goToNextStep={goToNextStep}
         />
 
-        <Step fullWidth>
-          <Title>Ranking</Title>
-          <RankingBoard ranking={state.ranking} players={players} />
-          <Space className="space-container" align="center">
-            <Button onClick={goToPreviousStep} ghost>
-              <Translate pt="Ver resultado novamente" en="See results again" />
-            </Button>
-          </Space>
-          <AdminNextPhaseButton round={state.round} />
-        </Step>
+        {/* Step 2 */}
+        <StepRanking
+          players={players}
+          round={state.round}
+          ranking={state.ranking}
+          goToPreviousStep={goToPreviousStep}
+          isLastRound={state?.lastRound}
+        />
       </StepSwitcher>
     </PhaseContainer>
   );

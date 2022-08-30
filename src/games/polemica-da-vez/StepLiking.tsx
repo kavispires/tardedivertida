@@ -1,17 +1,17 @@
 import { useMemo, useState } from 'react';
 import clsx from 'clsx';
 //Design Resources
-import { Button, Divider } from 'antd';
+import { Button } from 'antd';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
+// Utils
+import { getAnimationClass } from 'utils/helpers';
 // Components
-
 import { Topic } from './components/Topic';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { TransparentButton } from 'components/buttons';
-import { ReadyPlayersBar } from 'components/players';
 import { IconAvatar } from 'components/icons/IconAvatar';
 import { SpeechBubbleThumbsUpIcon } from 'components/icons/SpeechBubbleThumbsUpIcon';
 import { SpeechBubbleThumbsDownIcon } from 'components/icons/SpeechBubbleThumbsDownIcon';
@@ -72,7 +72,7 @@ export function StepLiking({ currentTopic, customTopic, onSubmitReaction, player
       </div>
 
       {like !== null && (
-        <>
+        <div className={getAnimationClass('fadeIn')}>
           <Instruction contained>
             <Translate
               pt="Quantas curtidas esse assunto vai receber?"
@@ -98,11 +98,8 @@ export function StepLiking({ currentTopic, customTopic, onSubmitReaction, player
               );
             })}
           </ul>
-        </>
+        </div>
       )}
-      <Divider />
-
-      <ReadyPlayersBar players={players} />
     </Step>
   );
 }
