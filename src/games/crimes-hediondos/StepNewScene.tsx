@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { Button, Collapse, Space } from 'antd';
 // Components
 import { Translate } from 'components/language';
-import { ReadyPlayersBar } from 'components/players';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Crime } from './components/Crime';
@@ -101,8 +100,6 @@ export function StepNewScene({
           <Translate pt="Enviar" en="Send" />
         </Button>
       </Space>
-
-      <ReadyPlayersBar players={players} />
     </Step>
   );
 }

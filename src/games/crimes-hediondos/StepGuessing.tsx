@@ -16,7 +16,6 @@ import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { DebugOnly } from 'components/debug';
 import { FloatingHand } from 'components/cards';
-import { ReadyPlayersBar } from 'components/players';
 
 type StepGuessingProps = {
   user: GamePlayer;
@@ -171,8 +170,6 @@ export function StepGuessing({
         isLocked={isOwnCrime || isLocked}
         wrongGroups={user?.wrongGroups?.[activePlayerId] ?? []}
       />
-
-      <ReadyPlayersBar players={players} />
 
       {activeCrime && (
         <FloatingHand type="stats">
