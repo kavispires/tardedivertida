@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { message } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
+import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
@@ -46,6 +47,7 @@ export function StepPlayDream({
   setLastTurnCount,
   playerInNightmareId,
 }: StepDreamsSelectionProps) {
+  useTemporarilyHidePlayersBar();
   const { translate } = useLanguage();
   const [showedMessage, setShowedMessage] = useState(false);
 

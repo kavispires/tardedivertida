@@ -76,6 +76,7 @@ export const prepareWordSelectionPhase = async (
 
   // Determine active player based on current round
   const scoutId = utils.players.getActivePlayer(store.gameOrder, round.current);
+  utils.players.unReadyPlayer(players, scoutId);
 
   // Update table
   const [tableDeck, table] = buildTable(store.tableDeck, state.table ?? [], round.current);

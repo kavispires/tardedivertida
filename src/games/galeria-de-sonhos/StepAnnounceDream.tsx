@@ -3,6 +3,7 @@ import { Alert, Divider, Space } from 'antd';
 import { useMemo } from 'react';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
+import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Constants
 import { GO_TO_CARD_PLAY_STEP } from './utils/constants';
 // Helpers
@@ -42,6 +43,7 @@ export function StepAnnounceDream({
   playerInNightmare,
   gameOrder,
 }: StepAnnounceDreamProps) {
+  useTemporarilyHidePlayersBar();
   const cardWidth = useCardWidth(5, 8, 140, 150);
 
   const { matchingPlayers, fallenMatchingPlayers } = useMemo(
