@@ -41,7 +41,12 @@ export function StepResolution({ players, story, storyteller, table, goToNextSte
         <BookPages
           leftPage={
             <div className="c-story-book__selected-card">
-              {solution && <ImageCard imageId={solution.cardId} cardWidth={175} />}
+              {solution && (
+                <>
+                  <ImageCard imageId={solution.cardId} cardWidth={160} />
+                  <ImageBlurButton cardId={solution.cardId} />
+                </>
+              )}
             </div>
           }
           rightPage={

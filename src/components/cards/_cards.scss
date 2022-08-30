@@ -159,13 +159,13 @@
 .floating-hand {
   $self: &;
   position: fixed;
-  bottom: get-unit(-7);
+  bottom: get-unit(-8);
   left: 50%;
   min-height: 200px;
   min-width: 40vw;
   border-radius: get-unit(3 3 0 0);
   background-color: rgba($color: #f0f0f0, $alpha: 0.9);
-  padding: get-unit(2 2 0 2);
+  padding: get-unit(3 2 6 2);
   z-index: 149;
 
   transition: 500ms all;

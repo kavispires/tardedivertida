@@ -114,35 +114,39 @@ export const calculateNewScores = (
   outcome: string,
   storyteller: PlayerId
 ): PlainObject => {
+  // Gained points: [points depending on outcome, votes on card]
+  const newScores = utils.helpers.buildNewScoreObject(players, [0, 0]);
+
   const solutionEntry = table.find((entry) => entry.isSolution);
 
-  return Object.values(players).reduce((result, player) => {
-    const currentScore = player.score;
-    let addedScore = 0;
-
+  Object.values(players).forEach((player) => {
     const playerCard = table.find((entry) => entry.playerId === player.id);
     // Calculate additional points when not storyteller
     if (player.id !== storyteller) {
       // Other players gets 2 points if everybody or nobody got
       if (outcome === OUTCOME.EVERYBODY_GOT || outcome === OUTCOME.NOBODY_GOT) {
-        addedScore += 2;
+        newScores[player.id].gainedPoints[0] += 2;
+        newScores[player.id].newScore += 2;
       }
 
       // Votes the player card got
-      addedScore += playerCard?.votes.length ?? 0;
+      const cardVotes = playerCard?.votes.length ?? 0;
+      newScores[player.id].gainedPoints[1] += cardVotes;
+      newScores[player.id].newScore += cardVotes;
     }
 
     // Everybody that got correctly, including storyteller, gets 3 points
     if (outcome === OUTCOME.NORMAL) {
-      addedScore += solutionEntry?.votes.includes(player.id) ? 3 : 0;
+      const normalPoints = solutionEntry?.votes.includes(player.id) ? 3 : 0;
+      newScores[player.id].gainedPoints[0] += normalPoints;
+      newScores[player.id].newScore += normalPoints;
     }
 
-    const newScore = currentScore + addedScore;
-    result[player.id] = [currentScore, addedScore, newScore];
     // Update player as well
-    player.score = newScore;
-    return result;
-  }, {});
+    player.score = newScores[player.id].newScore;
+  });
+
+  return Object.values(newScores).sort((a: NewScore, b: NewScore) => (a.newScore > b.newScore ? 1 : -1));
 };
 
 export const scoreRound = (players: Players, table: Table, storyteller: PlayerId) => {
@@ -156,19 +160,7 @@ export const scoreRound = (players: Players, table: Table, storyteller: PlayerId
 
   const outcome = determineOutcome(table, solutionIndex, Object.keys(players).length);
 
-  const newScores = calculateNewScores(table, players, outcome, storyteller);
-
-  const ranking = Object.entries(newScores)
-    .map(([playerId, scores]) => {
-      return {
-        playerId,
-        name: players[playerId].name,
-        previousScore: scores[0],
-        gainedPoints: scores[1],
-        newScore: scores[2],
-      };
-    })
-    .sort((a, b) => (a.newScore > b.newScore ? 1 : -1));
+  const ranking = calculateNewScores(table, players, outcome, storyteller);
 
   return {
     table,

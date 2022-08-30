@@ -13,11 +13,31 @@ import { ScoringRules } from './components/RulesBlobs';
 type StepRankingProps = {
   players: GamePlayers;
   storyteller: GamePlayer;
-  outcome: 'EVERYBODY_GOT' | 'NOBODY_GOT' | 'NORMAL';
+  outcome: COutcome;
   ranking: GameRanking;
   round: GameRound;
   lastRound?: boolean;
   goToPreviousStep: GenericFunction;
+};
+
+const getGainedPointsText = (
+  outcome: COutcome,
+  translate: (pt: string, en: string, custom?: string | undefined) => string
+) => {
+  switch (outcome) {
+    case 'EVERYBODY_GOT':
+      return translate(
+        'Pontos porque o Contador de Histórias foi muito obscuro',
+        'Points because the Storyteller was too vague'
+      );
+    case 'NOBODY_GOT':
+      return translate(
+        'Pontos porque o Contador de Histórias foi óbvio',
+        'Points because the Storyteller was too obvious'
+      );
+    default:
+      return translate('Pontos por acertar', 'Points for getting it right');
+  }
 };
 
 export function StepRanking({
@@ -35,7 +55,7 @@ export function StepRanking({
     <StepRankingWrapper
       players={players}
       ranking={ranking}
-      gainedPointsDescriptions={['Pontos ganhos', 'Pontos por votos em sua carta']}
+      gainedPointsDescriptions={[getGainedPointsText(outcome, translate), 'Pontos por votos em sua carta']}
     >
       <PopoverRule content={<ScoringRules storyteller={storyteller} />} />
 
