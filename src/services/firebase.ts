@@ -37,9 +37,9 @@ if (window.location.hostname.includes(localHost)) {
   console.log(`%cEmulating to ${localHost}`, 'color:dodgerblue');
   notification.warn({ message: `Emulating to ${localHost}`, placement: 'bottomLeft' });
   connectFirestoreEmulator(firestore, localHost, 8091);
-  connectFunctionsEmulator(functions, localHost, 5001);
+  connectFunctionsEmulator(functions, localHost, 5003);
   connectFirestoreEmulator(firestore, 'localhost', 8091);
-  connectFunctionsEmulator(functions, 'localhost', 5001);
+  connectFunctionsEmulator(functions, 'localhost', 5003);
   setGlobalState('usingEmulators', true);
 }
 
