@@ -1,28 +1,33 @@
+import { Button, Space } from 'antd';
 import { AdminNextPhaseButton } from 'components/admin';
 import { Translate } from 'components/language';
-import { RankingBoard } from 'components/ranking';
-import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { StepRankingWrapper } from 'components/ranking';
 
 type StepRankingProps = {
   ranking: any;
   players: Players;
   round: GameRound;
+  goToPreviousStep: GenericFunction;
+  isLastRound?: boolean;
 };
 
-export function StepRanking({ ranking, players, round }: StepRankingProps) {
+export function StepRanking({ ranking, players, round, goToPreviousStep, isLastRound }: StepRankingProps) {
   return (
-    <Step fullWidth>
-      <Title>Ranking</Title>
-      <Instruction contained>
-        <Translate
-          pt="Distribuição de pontos: Mais votado | Votou com o grupo | Votado pela testemunha"
-          en="Points Distribution: Most votes | Voted with the group | Voted by the witness"
-        />
-      </Instruction>
-
-      <RankingBoard ranking={ranking} players={players} />
-      <AdminNextPhaseButton round={round} />
-    </Step>
+    <StepRankingWrapper
+      players={players}
+      ranking={ranking}
+      gainedPointsDescriptions={[
+        <Translate pt="Mais votado" en="Most votes" />,
+        <Translate pt="Votou com o grupo" en="Voted with the group" />,
+        <Translate pt="Votado pela testemunha" en="Voted by the witness" />,
+      ]}
+    >
+      <Space className="space-container" align="center">
+        <Button onClick={goToPreviousStep}>
+          <Translate pt="Ver resultado novamente" en="See results again" />
+        </Button>
+      </Space>
+      <AdminNextPhaseButton round={round} lastRound={isLastRound} />
+    </StepRankingWrapper>
   );
 }
