@@ -154,7 +154,7 @@ export const TDR_RESOURCES = {
   CHALLENGES: 'challenges',
   CHARACTERS: 'characters',
   CONTENDERS: 'contenders', // dual language
-  CRIME_TILES: 'crimes-tiles', // dual language
+  CRIME_TILES: 'crime-tiles', // dual language
   GROUP_QUESTIONS: 'group-questions',
   NAMING_PROMPTS: 'naming-prompts',
   OPPOSING_IDEAS: 'opposing-ideas',
