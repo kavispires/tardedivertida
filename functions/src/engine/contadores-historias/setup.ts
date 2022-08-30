@@ -85,6 +85,8 @@ export const prepareStoryPhase = async (
   const storytellerId = utils.players.getActivePlayer(state.gameOrder, state.round.current + 1);
   const nextStorytellerId = utils.players.getActivePlayer(state.gameOrder, state.round.current + 2);
 
+  utils.players.unReadyPlayer(players, storytellerId);
+
   // Save
   return {
     update: {
