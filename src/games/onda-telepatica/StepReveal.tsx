@@ -1,5 +1,9 @@
 import clsx from 'clsx';
 import { orderBy } from 'lodash';
+// Hooks
+import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
+// Utils
+import { getGuessResultClass, getPoints } from './utils/helpers';
 // Components
 import { Avatar, AvatarName } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
@@ -7,10 +11,8 @@ import { Translate } from 'components/language';
 import { StarPoints } from 'components/points';
 import { PopoverRule } from 'components/rules';
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
-
 import { Dial } from './components/Dial';
-import { getGuessResultClass, getPoints } from './utils/helpers';
+import { Instruction, Title } from 'components/text';
 import { ScoringRules } from './components/RulesBlobs';
 
 type SentenceProps = {
@@ -39,6 +41,7 @@ type StepRevealProps = {
 };
 
 export function StepReveal({ goToNextStep, currentCategory, players, psychic }: StepRevealProps) {
+  useTemporarilyHidePlayersBar();
   const regularPlayers = Object.values(players).filter((p) => p.id !== psychic.id);
 
   return (
