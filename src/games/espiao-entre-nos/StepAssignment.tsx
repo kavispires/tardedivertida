@@ -1,3 +1,5 @@
+// Hooks
+import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
 import { AdminNextPhaseButton } from 'components/admin';
 import { Translate } from 'components/language';
@@ -14,6 +16,8 @@ type StepAssignmentProps = {
 };
 
 export function StepAssignment({ user, isUserTheSpy, locations }: StepAssignmentProps) {
+  useTemporarilyHidePlayersBar();
+
   return (
     <Step className="e-phase-step">
       <Title level={2} className="e-phase-title">

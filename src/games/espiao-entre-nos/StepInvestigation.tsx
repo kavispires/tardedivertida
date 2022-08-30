@@ -1,11 +1,13 @@
-// Components
-import { notification, Space } from 'antd';
 import { useEffect, useState } from 'react';
+// Ant Design Resources
+import { notification, Space } from 'antd';
+// Hooks
+import { useLanguage } from 'hooks/useLanguage';
+import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
-import { useLanguage } from 'hooks/useLanguage';
 import { EspiaoEntreNosCard as Card } from './components/Card';
 import { LocationSelect } from './components/LocationSelect';
 import { LocationsList } from './components/LocationsList';
@@ -39,6 +41,7 @@ export function StepInvestigation({
   outcome,
   setStep,
 }: StepInvestigationProps) {
+  useTemporarilyHidePlayersBar();
   const { translate } = useLanguage();
   const [isAccusationSelectVisible, setAccusationSelectVisible] = useState(true);
 
