@@ -74,3 +74,9 @@ export async function signOut(): Promise<void> {
     message.warn(`You've been signed out`);
   });
 }
+
+export const getFirebaseUrl = (usingEmulators: boolean, gameCollection: GameName, gameId: GameId) => {
+  return usingEmulators
+    ? `http://localhost:4000/firestore/${gameCollection}/${gameId}/session/state`
+    : `${process.env.REACT_APP_FIREBASE_URL}/~2F${gameCollection}~2F${gameId}~2Fsession~2Fstate`;
+};

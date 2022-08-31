@@ -9,6 +9,7 @@ import { useLoading } from 'hooks/useLoading';
 // Utils
 import { ADMIN_API } from 'services/adapters';
 import { ADMIN_ACTIONS } from 'utils/constants';
+import { getFirebaseUrl } from 'services/firebase';
 // Components
 import { AdminPerformActionButton } from './_internal/AdminPerformActionButton';
 import { ForceStateForm } from './_internal/ForceStateForm';
@@ -128,10 +129,4 @@ export const AdminMenuDrawer = ({ state, players }: AdminMenuDrawerProps) => {
       </div>
     </>
   );
-};
-
-const getFirebaseUrl = (usingEmulators: boolean, gameCollection: GameName, gameId: GameId) => {
-  return usingEmulators
-    ? `http://localhost:4000/firestore/${gameCollection}/${gameId}/session/state`
-    : `https://console.firebase.google.com/u/0/project/game-session/firestore/data/~2${gameCollection}~2F${gameId}~2Fsession~2Fstate`;
 };
