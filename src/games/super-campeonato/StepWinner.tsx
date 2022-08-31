@@ -1,6 +1,8 @@
 // Ant Design resources
 import { Space } from 'antd';
 import { TrophyOutlined } from '@ant-design/icons';
+// Hooks
+import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
 import { TimedButton } from 'components/buttons';
 import { Translate } from 'components/language';
@@ -25,6 +27,8 @@ export function StepWinner({
   goToNextStep,
   selectedContenderId,
 }: StepWinnerProps) {
+  useTemporarilyHidePlayersBar();
+
   return (
     <Step fullWidth>
       <Title size="medium">
