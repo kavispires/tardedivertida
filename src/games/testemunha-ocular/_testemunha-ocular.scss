@@ -83,6 +83,11 @@
 .t-card {
   width: 40vw;
   max-width: 400px;
+
+  .title & {
+    font-size: 1.5rem;
+    max-width: 800px;
+  }
 }
 
 .t-history {

@@ -1,7 +1,6 @@
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Components
-
 import { AnnouncementContent } from './components/TextBlobs';
 import { QuestionsHistory } from './components/QuestionsHistory';
 import { GameOverWrapper } from 'components/game-over';
