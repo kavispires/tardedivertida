@@ -9,7 +9,6 @@ import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { ContendersHand } from './components/ContendersHand';
 import { Challenge } from './components/Challenge';
-import { ReadyPlayersBar } from 'components/players';
 
 type StepSelectContendersProps = {
   onSubmitContender: GenericFunction;
@@ -42,8 +41,6 @@ export function StepSelectContenders({
           en="Select one of your contenders to join the championship"
         />
       </Instruction>
-
-      <ReadyPlayersBar players={players} />
 
       <ContendersHand
         contenders={userContenders}

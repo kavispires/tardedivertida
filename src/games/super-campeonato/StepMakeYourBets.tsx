@@ -9,7 +9,6 @@ import { Translate } from 'components/language';
 import { Brackets } from './components/Brackets';
 import { BetsForm } from './components/BetsForm';
 import { Challenge } from './components/Challenge';
-import { ReadyPlayersBar } from 'components/players';
 
 type StepMakeYourBetsProps = {
   onSubmitBets: GenericFunction;
@@ -32,8 +31,6 @@ export function StepMakeYourBets({ onSubmitBets, challenge, brackets, players }:
       <Challenge challenge={challenge} />
 
       <BetsForm brackets={brackets} onSubmitBets={onSubmitBets} />
-
-      <ReadyPlayersBar players={players} />
 
       <Brackets brackets={brackets} activeTier="quarter" players={players} />
     </Step>
