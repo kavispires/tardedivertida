@@ -74,6 +74,7 @@ function PhaseTrial({ state, players, info }: PhaseProps) {
           onEliminate={onEliminate}
           question={state.question}
           eliminatedSuspects={state.eliminatedSuspects}
+          questioner={questioner}
           isUserTheQuestioner={isUserTheQuestioner}
           testimony={state.testimony}
           history={state.history}

@@ -86,7 +86,7 @@ export const getNextPhase = async (
 
   // SETUP -> WITNESS_SELECTION
   if (nextPhase === TESTEMUNHA_OCULAR_PHASES.WITNESS_SELECTION) {
-    const newPhase = await prepareWitnessSelectionPhase();
+    const newPhase = await prepareWitnessSelectionPhase(players);
     return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
@@ -98,13 +98,13 @@ export const getNextPhase = async (
 
   // QUESTION_SELECTION -> QUESTIONING
   if (nextPhase === TESTEMUNHA_OCULAR_PHASES.QUESTIONING) {
-    const newPhase = await prepareQuestioningPhase(store, additionalPayload ?? {});
+    const newPhase = await prepareQuestioningPhase(store, state, players, additionalPayload ?? {});
     return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   // QUESTIONING -> TRIAL
   if (nextPhase === TESTEMUNHA_OCULAR_PHASES.TRIAL) {
-    const newPhase = await prepareTrialPhase(store, state, additionalPayload ?? {});
+    const newPhase = await prepareTrialPhase(store, state, players, additionalPayload ?? {});
     return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
