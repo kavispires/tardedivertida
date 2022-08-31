@@ -47,7 +47,7 @@ export function PhaseContainer({
       let width = screenRef.current.offsetWidth;
       setScreenSize([width, height]);
     }
-  }, [screenRef, setScreenSize]);
+  }, [screenRef.current?.offsetHeight, screenRef.current?.offsetWidth, setScreenSize]);
 
   if (!info?.gameName || allowedPhase !== phase) {
     return <LoadingPage />;
