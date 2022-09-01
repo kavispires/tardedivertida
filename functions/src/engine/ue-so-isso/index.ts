@@ -108,7 +108,7 @@ export const getNextPhase = async (
 
   // COMPARE -> GUESS
   if (nextPhase === UE_SO_ISSO_PHASES.GUESS) {
-    const newPhase = await prepareGuessPhase(store);
+    const newPhase = await prepareGuessPhase(store, state, players);
     return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
