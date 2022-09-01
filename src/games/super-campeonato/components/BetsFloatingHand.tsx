@@ -4,7 +4,7 @@ import { useCardWidth } from 'hooks/useCardWidth';
 // Utils
 import { findBetContenders } from '../utils/helpers';
 // Components
-import { FloatingHand } from 'components/cards';
+import { FloatingHand, ImageBlurButtonContainer } from 'components/cards';
 import { Translate } from 'components/language';
 import { Title } from 'components/text';
 import { ContenderCard } from './ContenderCard';
@@ -59,7 +59,9 @@ export function BetsFloatingHand({ bets, brackets, selectedContenderId = '' }: B
               <span className="w-floating-bets__label">
                 <Translate pt="Seu competidor" en="Your contender" />
               </span>
-              <ContenderCard contender={selectedCard!} overlayColor="gray" size={cardWidth} />
+              <ImageBlurButtonContainer cardId={selectedCard!.id}>
+                <ContenderCard contender={selectedCard!} overlayColor="gray" size={cardWidth} />
+              </ImageBlurButtonContainer>
             </li>
           )}
         </ul>
