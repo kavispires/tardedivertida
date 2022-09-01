@@ -5,6 +5,7 @@ import { Image } from 'antd';
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { PUBLIC_URL } from 'utils/constants';
+import { useBlurCards } from 'hooks/useBlurCards';
 
 type ContenderCardProps = {
   size: number;
@@ -16,6 +17,9 @@ type ContenderCardProps = {
 
 export function ContenderCard({ size, overlayColor, contender, className, hideName }: ContenderCardProps) {
   const { language } = useLanguage();
+  const { shouldBeBlurred } = useBlurCards();
+
+  const isBlurred = shouldBeBlurred(contender.id);
 
   const imageURL = contender.id.replace(/-/g, '/');
 
@@ -31,7 +35,7 @@ export function ContenderCard({ size, overlayColor, contender, className, hideNa
       <Image
         src={`${process.env.REACT_APP_TD_IMAGES_URL}${imageURL}.jpg`}
         width={size}
-        className="w-contender-image"
+        className={clsx('w-contender-image', isBlurred && 'w-contender-image--blur')}
         fallback={`${PUBLIC_URL.IN_GAME}/w-no-image.jpg`}
         alt={contender.name[language]}
       />
