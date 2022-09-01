@@ -169,7 +169,7 @@
   padding: get-unit(3 2 6 2);
   z-index: 149;
 
-  transition: 300ms all;
+  transition: 500ms all;
   transform: translate(-50%, calc(100% - 50px));
   box-shadow: 0px -5px 15px rgba(0, 0, 0, 0.4);
 
@@ -184,7 +184,7 @@
     max-height: 70vh;
     overflow-y: hidden;
     transform: scale(60%);
-    transition: 300ms transform;
+    transition: 700ms transform;
 
     #{$self}--expanded & {
       transform: scale(100%);
