@@ -56,54 +56,56 @@ export function StepRanking({
       players={players}
       ranking={ranking}
       gainedPointsDescriptions={[getGainedPointsText(outcome, translate), 'Pontos por votos em sua carta']}
+      subtitle={
+        <Instruction contained>
+          {outcome === 'EVERYBODY_GOT' && (
+            <Translate
+              pt={
+                <>
+                  Todo mundo acertou! <AvatarName player={storyteller} />, da próxima vez, seja menos
+                  óbvio(a).
+                </>
+              }
+              en={
+                <>
+                  Everybody guessed it right! <AvatarName player={storyteller} />, be less obvious next time.
+                </>
+              }
+            />
+          )}
+          {outcome === 'NOBODY_GOT' && (
+            <Translate
+              pt={
+                <>
+                  Ninguém acertou! <AvatarName player={storyteller} />, da próxima vez seja menos obscuro.
+                </>
+              }
+              en={
+                <>
+                  Nobody guessed it right! <AvatarName player={storyteller} />, next time be less obscure.
+                </>
+              }
+            />
+          )}
+
+          {outcome === 'NORMAL' && (
+            <Translate
+              pt={
+                <>
+                  Quem acertou ganha 3 pontos! Bom trabalho, <AvatarName player={storyteller} />.
+                </>
+              }
+              en={
+                <>
+                  Whoever guessed it right got 3 points! Good job, <AvatarName player={storyteller} />
+                </>
+              }
+            />
+          )}
+        </Instruction>
+      }
     >
       <PopoverRule content={<ScoringRules storyteller={storyteller} />} />
-
-      <Instruction contained>
-        {outcome === 'EVERYBODY_GOT' && (
-          <Translate
-            pt={
-              <>
-                Todo mundo acertou! <AvatarName player={storyteller} />, da próxima vez, seja menos óbvio(a).
-              </>
-            }
-            en={
-              <>
-                Everybody guessed it right! <AvatarName player={storyteller} />, be less obvious next time.
-              </>
-            }
-          />
-        )}
-        {outcome === 'NOBODY_GOT' && (
-          <Translate
-            pt={
-              <>
-                Ninguém acertou! <AvatarName player={storyteller} />, da próxima vez seja menos obscuro.
-              </>
-            }
-            en={
-              <>
-                Nobody guessed it right! <AvatarName player={storyteller} />, next time be less obscure.
-              </>
-            }
-          />
-        )}
-
-        {outcome === 'NORMAL' && (
-          <Translate
-            pt={
-              <>
-                Quem acertou ganha 3 pontos! Bom trabalho, <AvatarName player={storyteller} />.
-              </>
-            }
-            en={
-              <>
-                Whoever guessed it right got 3 points! Good job, <AvatarName player={storyteller} />
-              </>
-            }
-          />
-        )}
-      </Instruction>
 
       <Space className="space-container" align="center">
         <Button onClick={goToPreviousStep}>{translate('Voltar para Solução', 'Back to Solution')}</Button>
