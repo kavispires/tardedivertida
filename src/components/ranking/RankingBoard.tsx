@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { useEffect, useMemo, useState } from 'react';
+import { ReactNode, useEffect, useMemo, useState } from 'react';
 import { orderBy } from 'lodash';
 import { useEffectOnce } from 'react-use';
 // Ant Design Resources
@@ -70,7 +70,7 @@ function GainedPoints({
 type RankingBoardProps = {
   players: GamePlayers;
   ranking: GameRanking;
-  gainedPointsDescriptions?: any[];
+  gainedPointsDescriptions?: ReactNode[];
   hideGainedPoints?: boolean;
 };
 
