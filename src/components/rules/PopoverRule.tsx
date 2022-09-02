@@ -23,7 +23,7 @@ export function PopoverRule({ content, label, showLabel = true }: PopoverRulePro
     <div className="popover-rule">
       <Popover placement="bottomLeft" content={content} trigger="click">
         <Button
-          shape={'round'}
+          shape="round"
           size="large"
           onMouseOver={() => setActive(true)}
           onMouseLeave={() => setActive(showLabel ?? false)}
