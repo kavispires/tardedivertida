@@ -17,9 +17,9 @@ import { AVAILABLE_AVATAR_IDS, AVATARS } from 'utils/avatars';
 import { PUBLIC_URL } from 'utils/constants';
 import { getRandomItem, isDevEnv } from 'utils/helpers';
 import { getRandomWelcomeMessage, speak } from 'utils/speech';
+import { mockPlayerName } from 'mock/players';
 // Components
 import { Translate } from 'components/language';
-import { mockPlayerName } from 'mock/players';
 
 const randomName = isDevEnv ? mockPlayerName() : undefined;
 
@@ -138,6 +138,11 @@ export function Join({ players, info, meta }: JoinProps) {
     [gameId, gameName, tempUsername, tempAvatar] // eslint-disable-line
   );
 
+  const onEnter = () => {
+    setVolume(0.5);
+    onAddPlayer(null, 0.5);
+  };
+
   const onEnterWithoutSound = () => {
     setVolume(0);
     onAddPlayer(null, 0);
@@ -145,7 +150,8 @@ export function Join({ players, info, meta }: JoinProps) {
 
   const onEnterInput = (e: any) => {
     if (e.key === 'Enter') {
-      onAddPlayer();
+      setVolume(0.5);
+      onAddPlayer(null, 0.5);
     }
   };
 
@@ -229,7 +235,7 @@ export function Join({ players, info, meta }: JoinProps) {
           className="lobby-join__join-button"
           type="primary"
           disabled={!Boolean(tempUsername) || isLoading}
-          onClick={onAddPlayer}
+          onClick={onEnter}
           loading={isLoading}
         >
           <Translate pt="Entrar" en="Enter" />

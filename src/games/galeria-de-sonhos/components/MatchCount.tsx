@@ -50,6 +50,7 @@ export function MatchCount({ matchCount, lastActivePlayer, playerInNightmare }: 
               <small>(as cartas restantes ainda contarão pontos para outros jogadores)</small>.{' '}
               {isPlayerInNightmare && (
                 <>
+                  {' '}
                   Para piorar, <AvatarName player={lastActivePlayer} size="small" addressUser /> vai perder 1
                   ponto por sonho usado até então.
                 </>
@@ -63,6 +64,7 @@ export function MatchCount({ matchCount, lastActivePlayer, playerInNightmare }: 
               round <small>(the remaining cards will still count towards scoring for other players)</small>.
               {isPlayerInNightmare && (
                 <>
+                  {' '}
                   To make this worse, <AvatarName player={lastActivePlayer} size="small" addressUser /> will
                   lose a point for each scored dream.
                 </>

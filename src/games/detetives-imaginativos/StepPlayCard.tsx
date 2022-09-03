@@ -4,6 +4,7 @@ import { message } from 'antd';
 import { QuestionCircleFilled } from '@ant-design/icons';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
+import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
 import { Table } from './components/Table';
 import { messageContent } from 'components/pop-up';
@@ -43,6 +44,7 @@ export function StepPlayCard({
   isLoading,
   turnOrder,
 }: StepPlayCardProps) {
+  useTemporarilyHidePlayersBar();
   const { translate } = useLanguage();
   const onSelectCard = (cardId: string) => onPlayCard({ cardId });
 

@@ -1,8 +1,9 @@
 // Ant Design Resources
 import { Space } from 'antd';
-// Utils
+// Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useGlobalState } from 'hooks/useGlobalState';
+import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
 import { MonsterCard } from './components/MonsterCard';
 import { MonsterSketches } from './components/MonsterSketches';
@@ -37,6 +38,8 @@ export function StepResults({
   witnessVote,
   witness,
 }: StepResultsProps) {
+  useTemporarilyHidePlayersBar();
+
   const canvasWidth = useCardWidth(Math.min(Object.keys(players).length, 6), 16, 150, 500);
   const [canvasSize] = useGlobalState('canvasSize');
 
@@ -70,9 +73,9 @@ export function StepResults({
 
       <Instruction contained>
         {mostVotes.length > 1 ? (
-          <Translate pt="Esses jogadores ganharam 3 pontos cada." en="These players get 3 points each." />
+          <Translate pt="Esses jogadores ganharam 3 pontos cada." en="These players get 2 points each." />
         ) : (
-          <Translate pt="Esse jogador ganha 3 pontos." en="This player gets 3 points." />
+          <Translate pt="Esse jogador ganha 3 pontos." en="This player gets 2 points." />
         )}
       </Instruction>
 
@@ -92,13 +95,13 @@ export function StepResults({
             pt={
               <>
                 A testemunha <AvatarName player={witness} /> votou no mais votado, logo, é uma testemunha
-                confiável e ganha 3 pontos também.
+                confiável e ganha 2 pontos também.
               </>
             }
             en={
               <>
                 The witness <AvatarName player={witness} /> voted with the group which means s(he) is a
-                credible witness and gets 3 points as well.
+                credible witness and gets 2 points as well.
               </>
             }
           />

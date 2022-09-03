@@ -4,7 +4,6 @@ import { Button } from 'antd';
 import { DownSquareOutlined } from '@ant-design/icons';
 // Hooks & Utils
 import { useCardWidth } from 'hooks/useCardWidth';
-import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 import { mockVote } from './utils/mock';
@@ -37,7 +36,6 @@ export function StepVoting({
   table,
   isUserTheStoryTeller,
 }: StepVotingProps) {
-  const { translate } = useLanguage();
   const { isLoading } = useLoading();
   const cardWidth = useCardWidth(Math.max(Object.keys(players).length, 6), 32, 150);
 
@@ -77,8 +75,9 @@ export function StepVoting({
                   onClick={() => onSelectCard(cardEntry.cardId)}
                   size="small"
                   disabled={isLoading || isUserCard}
+                  shape="round"
                 >
-                  {isUserCard ? translate('Sua', 'Yours') : translate('Votar', 'Vote')}
+                  {isUserCard ? <Translate pt="Sua" en="Yours" /> : <Translate pt="Votar" en="Vote" />}
                 </Button>
               )}
               <ImageCard

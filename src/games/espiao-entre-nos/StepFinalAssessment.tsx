@@ -1,3 +1,10 @@
+import { useEffect } from 'react';
+// Ant Design Resources
+import { notification } from 'antd';
+// Hooks
+import { useLanguage } from 'hooks/useLanguage';
+import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
+// Components
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
@@ -7,9 +14,6 @@ import { LocationsList } from './components/LocationsList';
 import { Notes } from './components/Notes';
 import { SuspectsList } from './components/SuspectsList';
 import { FinalAssessmentModal } from './components/FinalAssessmentModal';
-import { useEffect } from 'react';
-import { notification } from 'antd';
-import { useLanguage } from 'hooks/useLanguage';
 
 type StepFinalAssessmentProps = {
   onMakeAccusation: GenericFunction;
@@ -30,6 +34,7 @@ export function StepFinalAssessment({
   onMakeAccusation,
   outcome,
 }: StepFinalAssessmentProps) {
+  useTemporarilyHidePlayersBar();
   const { translate } = useLanguage();
 
   useEffect(() => {

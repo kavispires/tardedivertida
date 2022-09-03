@@ -41,7 +41,7 @@ export function StepQuestioning({
 
   return (
     <Step>
-      <Title level={3}>
+      <Title level={3} size="medium">
         <Translate
           pt={
             <>

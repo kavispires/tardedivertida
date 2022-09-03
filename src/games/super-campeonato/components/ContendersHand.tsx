@@ -20,7 +20,12 @@ export function ContendersHand({ contenders, onSelect }: ContendersHandProps) {
         {contenders.map((contender) => (
           <li key={contender.id} className="w-contenders-hand__entry">
             {Boolean(onSelect) && (
-              <Button onClick={() => onSelect!(contender.id)}>
+              <Button
+                onClick={() => onSelect!(contender.id)}
+                shape="round"
+                ghost
+                className="w-contenders-hand__button"
+              >
                 <Translate pt="Selecionar" en="Select" />
               </Button>
             )}

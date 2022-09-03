@@ -1,5 +1,6 @@
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
+import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
 import { AVATARS } from 'utils/avatars';
 import { WINDOW_DURATION } from './utils/constants';
@@ -34,6 +35,8 @@ export function StepGallery({
   setStep,
   isFirstGalleryRunThrough,
 }: StepGalleryProps) {
+  useTemporarilyHidePlayersBar();
+
   const canvasWidth = useCardWidth(2, 16, 200, 500);
 
   const { drawing, artistId, id, text, playersPoints, playersSay } = gallery[activeIndex];

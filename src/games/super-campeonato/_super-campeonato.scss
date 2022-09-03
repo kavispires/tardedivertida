@@ -15,6 +15,10 @@
 .w-contender-image {
   margin: 0;
   padding: 0;
+
+  &--blur {
+    filter: blur(10px);
+  }
 }
 
 .w-contender-name {
@@ -41,12 +45,21 @@
 .w-contenders-hand {
   display: flex;
 
+  @include xs {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
   &__entry {
     margin: get-unit(1 2 3 2);
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding-bottom: get-unit(2);
+  }
+
+  &__button {
+    margin-bottom: get-unit(2);
   }
 }
 

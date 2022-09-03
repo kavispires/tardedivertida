@@ -4,7 +4,7 @@
   width: 50vw;
   min-width: 500px;
   position: relative;
-  margin-bottom: get-unit(4);
+  margin-bottom: get-unit(2);
 
   &__row {
     width: 100%;
@@ -102,4 +102,9 @@
     transform: scale(1.5);
     animation: fade-in 500ms;
   }
+}
+
+.step-ranking-wrapper-gained-points-instruction {
+  font-size: 0.75rem;
+  margin: get-unit(0 0 2 0);
 }

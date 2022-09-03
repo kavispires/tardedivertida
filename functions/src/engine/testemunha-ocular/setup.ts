@@ -50,10 +50,13 @@ export const prepareSetupPhase = async (additionalData: ResourceData): Promise<S
   };
 };
 
-export const prepareWitnessSelectionPhase = async (): Promise<SaveGamePayload> => {
+export const prepareWitnessSelectionPhase = async (players: Players): Promise<SaveGamePayload> => {
+  utils.players.readyPlayers(players);
+
   // Save
   return {
     update: {
+      players,
       state: {
         phase: TESTEMUNHA_OCULAR_PHASES.WITNESS_SELECTION,
       },
@@ -103,9 +106,12 @@ export const prepareQuestionSelectionPhase = async (
 
   const pastQuestions = testimonyEntry?.id ? [...store.pastQuestions, testimonyEntry] : store.pastQuestions;
 
+  utils.players.readyPlayers(players, questionerId);
+
   // Save
   return {
     update: {
+      players,
       store: {
         turnOrder,
         gameOrder: turnOrder,
@@ -118,12 +124,12 @@ export const prepareQuestionSelectionPhase = async (
         round: utils.helpers.increaseRound(state.round),
         questionerId,
         questions,
-        question: utils.firebase.deleteValue(),
         witnessId: additionalPayload?.witnessId ?? state.witnessId,
-        testimony: utils.firebase.deleteValue(),
-        eliminatedSuspects: utils.firebase.deleteValue(),
         previouslyEliminatedSuspects: previouslyEliminatedSuspects,
         groupScore,
+        question: utils.firebase.deleteValue(),
+        testimony: utils.firebase.deleteValue(),
+        eliminatedSuspects: utils.firebase.deleteValue(),
       },
     },
   };
@@ -131,13 +137,18 @@ export const prepareQuestionSelectionPhase = async (
 
 export const prepareQuestioningPhase = async (
   store: FirebaseStoreData,
+  state: FirebaseStateData,
+  players: Players,
   additionalPayload: PlainObject
 ): Promise<SaveGamePayload> => {
   const question = store.deck.find((card: TestimonyQuestionCard) => card.id === additionalPayload.questionId);
 
+  utils.players.readyPlayers(players, state.witnessId);
+
   // Save
   return {
     update: {
+      players,
       state: {
         phase: TESTEMUNHA_OCULAR_PHASES.QUESTIONING,
         question,
@@ -150,6 +161,7 @@ export const prepareQuestioningPhase = async (
 export const prepareTrialPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
+  players: Players,
   additionalPayload: PlainObject
 ): Promise<SaveGamePayload> => {
   const testimony = additionalPayload?.testimony ?? state.testimony;
@@ -160,9 +172,12 @@ export const prepareTrialPhase = async (
     answer: testimony,
   });
 
+  utils.players.readyPlayers(players, state.questionerId);
+
   // Save
   return {
     update: {
+      players,
       state: {
         phase: TESTEMUNHA_OCULAR_PHASES.TRIAL,
         testimony: additionalPayload?.testimony ?? state.testimony,

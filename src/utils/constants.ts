@@ -131,6 +131,7 @@ export const THEME_COLORS = {
   BLOOD: '#ab0d17', // dark red
   DEFAULT: '#1890ff',
   GRASS: '#007A5A',
+  FOREST: '#227168',
   HOT_PINK: '#FF47DA',
   LIME: '#1CC41C',
   MIDNIGHT: '#4B2142', // dark teal

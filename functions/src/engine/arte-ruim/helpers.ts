@@ -411,6 +411,7 @@ export const buildGallery = (drawings: ArteRuimDrawing[], players: Players) =>
  * @returns
  */
 export const buildRanking = (drawings: ArteRuimDrawing[], players: Players) => {
+  // Gained Points [correct guesses, guesses on your drawing]
   const newScores = utils.helpers.buildNewScoreObject(players, [0, 0]);
 
   drawings.forEach((drawingEntry) => {

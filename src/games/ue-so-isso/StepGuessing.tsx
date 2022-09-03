@@ -46,7 +46,7 @@ export function StepGuessing({
           <Card word={<QuestionCircleOutlined />} />
 
           <Instruction contained>
-            <Translate pt="Escreva seu chute no campo abaixo" en="Write your guess below" />
+            <Translate pt="Escreva seu palpite no campo abaixo" en="Write your guess below" />
           </Instruction>
           <Guess onSubmitOutcome={onSubmitOutcome} onSendGuess={onSendGuess} />
 

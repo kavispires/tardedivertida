@@ -1,5 +1,7 @@
 // Ant Design Resources
 import { Divider } from 'antd';
+// Hook
+import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
 import { Step } from 'components/steps';
 import { AdminAnswerControl } from './components/AdminAnswerControl';
@@ -31,6 +33,7 @@ export function StepCompare({
   allowedList,
   setAllowedList,
 }: StepCompareProps) {
+  useTemporarilyHidePlayersBar();
   const allowUserAnswer = (isAllowed: boolean, answerId: string) => {
     const allowedListCopy = { ...allowedList };
     if (!isAllowed) {
@@ -65,6 +68,7 @@ export function StepCompare({
         onAddAnswer={onAddAnswer}
         onNextAnswer={onNextAnswer}
         allowedList={allowedList}
+        remainingGroupsCount={remainingGroupsCount}
       />
     </Step>
   );

@@ -14,7 +14,6 @@ import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
 import { TransparentButton } from 'components/buttons';
-import { ReadyPlayersBar } from 'components/players';
 import { WalkIcon } from 'components/icons/WalkIcon';
 import { HouseIcon } from 'components/icons/HouseIcon';
 import { IconAvatar } from 'components/icons/IconAvatar';
@@ -133,8 +132,6 @@ export function StepMakeDecision({
           </TransparentButton>
         </div>
       )}
-
-      <ReadyPlayersBar players={players} />
 
       <PlayerStats user={user} omitDecision />
     </Step>

@@ -80,6 +80,14 @@
     }
   }
 
+  &__title {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 20ch;
+  }
+
   &__player-count {
     margin-top: get-unit(1);
   }

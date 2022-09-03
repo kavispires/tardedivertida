@@ -1,15 +1,7 @@
 .canvas-resizer {
   width: 160px;
-  position: absolute;
-  background-color: rgba(black, 0.1);
   padding: get-unit(1 2);
   border-radius: get-unit(1);
-  top: get-unit(1);
-  right: get-unit(1);
-
-  @include xs {
-    position: static;
-  }
 
   &__label {
     font-size: 90%;

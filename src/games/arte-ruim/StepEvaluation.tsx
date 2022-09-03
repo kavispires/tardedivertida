@@ -5,7 +5,6 @@ import { CloudUploadOutlined, ThunderboltOutlined } from '@ant-design/icons';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useGlobalState } from 'hooks/useGlobalState';
-import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 import { useUser } from 'hooks/useUser';
@@ -20,7 +19,6 @@ import { PopoverRule } from 'components/rules';
 import { CanvasResizer } from 'components/canvas';
 import { Title } from 'components/text';
 import { Translate } from 'components/language';
-import { ReadyPlayersBar } from 'components/players';
 import { EvaluationAllDrawings } from './components/EvaluationAllDrawings';
 import { EvaluationAllCards } from './components/EvaluationAllCards';
 import { EvaluationRules } from './components/TextBlobs';
@@ -34,7 +32,6 @@ type StepEvaluationProps = {
 
 export function StepEvaluation({ drawings, cards, players, onSubmitVoting }: StepEvaluationProps) {
   const { isLoading } = useLoading();
-  const { translate } = useLanguage();
   const user = useUser(players);
   const canvasWidth = useCardWidth(Math.min(Object.keys(players).length, 6), 16, 150, 500);
   const [canvasSize, setCanvasSize] = useGlobalState('canvasSize');
@@ -152,12 +149,6 @@ export function StepEvaluation({ drawings, cards, players, onSubmitVoting }: Ste
         activeItem={activeItem}
         onActivateItem={activateItem}
         votes={votes}
-      />
-
-      <ReadyPlayersBar
-        players={players}
-        readyText={translate('Já acabei, anda logo!', "I'm done, hurry up!")}
-        readyTextPlural={translate('Já acabamos, anda logo!', "We're done, hurry up!")}
       />
     </Step>
   );

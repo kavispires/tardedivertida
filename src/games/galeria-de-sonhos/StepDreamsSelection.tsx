@@ -12,7 +12,6 @@ import { Step } from 'components/steps';
 import { TextHighlight, Title } from 'components/text';
 import { DreamSelectionExtendedRules, DreamSelectionRules } from './components/RulesBlobs';
 import { SelectTable } from './components/SelectTable';
-import { ReadyPlayersBar } from 'components/players';
 
 const validateSelectedCards = (v: BooleanDictionary) => {
   return Object.keys(v).length < 10;
@@ -55,8 +54,6 @@ export function StepDreamsSelection({ table, word, onSubmitCards, players }: Ste
         </Button>
       </Space>
       <SelectTable table={table} onSelectCard={onSelectCard} selectedCards={selectedCards} />
-
-      <ReadyPlayersBar players={players} />
     </Step>
   );
 }

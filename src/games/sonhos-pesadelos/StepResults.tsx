@@ -1,9 +1,10 @@
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
-// Components
-
-import { GalleryDreamDisplay } from './components/GalleryDreamDisplay';
+import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
+// Utils
 import { getAvatarColorById } from 'utils/helpers';
+// Components
+import { GalleryDreamDisplay } from './components/GalleryDreamDisplay';
 import { GalleryGuesses } from './components/GalleryGuesses';
 import { Step } from 'components/steps';
 import { Title } from 'components/text';
@@ -28,6 +29,7 @@ export function StepResults({
   isFirstGalleryRunThrough,
   correctGuessPoints,
 }: StepResultsProps) {
+  useTemporarilyHidePlayersBar();
   const { translate } = useLanguage();
 
   const galleryEntry = gallery[activeIndex];

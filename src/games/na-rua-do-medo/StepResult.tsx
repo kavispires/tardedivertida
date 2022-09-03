@@ -1,3 +1,5 @@
+// Hooks
+import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
 import { PlayersDecisionList } from './components/PlayersDecisionList';
 import { PlayersDecisionResult } from './components/PlayersDecisionResult';
@@ -35,6 +37,8 @@ export function StepResult({
   goingHomePlayerIds,
   candyInHand,
 }: StepResultProps) {
+  useTemporarilyHidePlayersBar();
+
   return (
     <Step fullWidth>
       <Title>

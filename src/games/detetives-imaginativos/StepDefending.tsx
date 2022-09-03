@@ -1,5 +1,11 @@
+import { useEffect } from 'react';
 // Ant Design Resources
 import { message, Space } from 'antd';
+// Hooks
+import { useLanguage } from 'hooks/useLanguage';
+import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
+// Utils
+import { getAnimationClass } from 'utils/helpers';
 // Components
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
@@ -7,9 +13,6 @@ import { TurnOrder } from 'components/players';
 import { messageContent } from 'components/pop-up';
 import { Step } from 'components/steps';
 import { Instruction, TextHighlight, Title } from 'components/text';
-import { useLanguage } from 'hooks/useLanguage';
-import { useEffect } from 'react';
-import { getAnimationClass } from 'utils/helpers';
 import { EndDefenseTimedButton } from './components/EndDefenseTimedButton';
 
 import { TableFocus } from './components/TableFocus';
@@ -39,6 +42,7 @@ export function StepDefending({
   players,
   turnOrder,
 }: StepDefendingProps) {
+  useTemporarilyHidePlayersBar();
   const { translate } = useLanguage();
 
   useEffect(() => {

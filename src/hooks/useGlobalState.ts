@@ -5,6 +5,7 @@ type InitialState = {
   loaders: PlainObject;
   appStartedAt: number;
   screenSize: number[];
+  showPlayersBar: boolean;
   // Language
   language: 'pt' | 'en';
   // Meta
@@ -38,6 +39,7 @@ const initialState: InitialState = {
   loaders: {},
   appStartedAt: Date.now(),
   screenSize: [],
+  showPlayersBar: true,
   // Language
   language: 'pt',
   // Meta

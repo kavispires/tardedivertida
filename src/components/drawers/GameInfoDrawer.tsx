@@ -13,6 +13,7 @@ import { SectionSettings } from './_internal/SectionSettings';
 import { DebugOnly } from 'components/debug';
 import { RulesModal } from 'components/rules';
 import { Translate } from 'components/language';
+import { PlayersStatusBar } from '../players/PlayersStatusBar';
 
 type GameInfoDrawerProps = {
   players: GamePlayers;
@@ -32,6 +33,7 @@ export function GameInfoDrawer({ players, state, info, userId }: GameInfoDrawerP
 
   return (
     <>
+      <PlayersStatusBar players={players} onClick={toggleDrawer} />
       <div className="game-info-drawer">
         <Button size="small" className="game-info-drawer__button" onClick={toggleDrawer}>
           {info.title?.[language] ?? '?'} <SettingOutlined />

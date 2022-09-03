@@ -9,7 +9,6 @@ import { getClueFromKey, getClueKey, isClue } from './utils/helpers';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
-import { ReadyPlayersBar } from 'components/players';
 import { WordGrid } from './components/WordGrid';
 import { SelectableCell } from './components/SelectableCell';
 import { Clues } from './components/Clues';
@@ -147,8 +146,6 @@ export function StepGuessing({ grid, user, clues, onSubmitGuesses, players }: St
         CellComponent={SelectableCell}
         cellComponentProps={{ onSelectCell, onClearCell, active, guesses, clues, user }}
       />
-
-      <ReadyPlayersBar players={players} />
     </Step>
   );
 }

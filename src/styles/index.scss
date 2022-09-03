@@ -20,6 +20,7 @@
 @import '../components/phases/PhaseContainer.scss';
 @import '../components/phases/PhaseLobby.scss';
 @import '../components/phases/PhaseRules.scss';
+@import '../components/buttons/FixedMenuButton.scss';
 @import '../components/buttons/TimedButton.scss';
 @import '../components/buttons/TransparentButton.scss';
 @import '../components/rules/_rules.scss';
@@ -27,6 +28,7 @@
 @import '../components/text/TextHighlight.scss';
 @import '../components/text/Title.scss';
 @import '../components/players/WaitingRoom.scss';
+@import '../components/players/PlayersStatusBar.scss';
 @import '../components/players/ReadyPlayersBar.scss';
 @import '../components/players/TurnOrder.scss';
 @import '../components/round/round';

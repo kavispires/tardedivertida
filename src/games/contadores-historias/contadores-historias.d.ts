@@ -16,3 +16,5 @@ type PlayCardPayload = {
 type SubmitVotePayload = {
   vote: string;
 };
+
+type COutcome = 'EVERYBODY_GOT' | 'NOBODY_GOT' | 'NORMAL';

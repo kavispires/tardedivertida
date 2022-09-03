@@ -12,7 +12,6 @@ import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
-import { ReadyPlayersBar } from 'components/players';
 import { ControlledInputWriting } from 'components/input';
 
 type StepSuggestionProps = {
@@ -82,8 +81,6 @@ export function StepSuggestion({
           size: 'large',
         }}
       />
-
-      <ReadyPlayersBar players={players} />
     </Step>
   );
 }
