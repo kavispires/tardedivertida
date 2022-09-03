@@ -13,7 +13,6 @@ import { cleanupVotes, selectOwnVote, voteRandomly } from './utils/helpers';
 import { mockVotes } from './utils/mock';
 // Components
 import { Translate } from 'components/language';
-import { ReadyPlayersBar } from 'components/players';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { AllDreamsClues } from './components/AllDreamsClues';
@@ -104,8 +103,6 @@ export function StepMatchDreams({ players, user, table, onSubmitVotes, dreams }:
         votes={votes}
         players={players}
       />
-
-      <ReadyPlayersBar players={players} />
     </Step>
   );
 }

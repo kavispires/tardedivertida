@@ -36,7 +36,11 @@ function PhaseChallengeSelection({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <RoundAnnouncement round={state.round} onPressButton={goToNextStep} time={4} circleColor="pink">
           <Instruction contained>
-            <Translate pt="Quem vai ganhar a medalha de ouro?" en="Who's gonna get the gold medal?" />
+            {state.round.current === state.round.total ? (
+              <Translate pt="Rodada final: Somente os finalistas!" en="Final Round: Only finalists" />
+            ) : (
+              <Translate pt="Quem vai ganhar a medalha de ouro?" en="Who's gonna get the gold medal?" />
+            )}
           </Instruction>
         </RoundAnnouncement>
 

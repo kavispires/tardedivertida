@@ -4,11 +4,12 @@ import { Button } from 'antd';
 import { PlusCircleFilled, RocketFilled } from '@ant-design/icons';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
+import { useDevFeatures } from 'hooks/useDevFeatures';
+// Components
 import { AdminOnlyContainer } from 'components/admin';
 import { Translate } from 'components/language';
 import { Avatar } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
-// Components
 
 type AdminAnswerControlProps = {
   allAnswers: MAnswer[];
@@ -17,6 +18,7 @@ type AdminAnswerControlProps = {
   onAddAnswer: GenericFunction;
   onNextAnswer: GenericFunction;
   players: GamePlayers;
+  remainingGroupsCount: number;
 };
 
 export function AdminAnswerControl({
@@ -26,9 +28,12 @@ export function AdminAnswerControl({
   onNextAnswer,
   onAddAnswer,
   players,
+  remainingGroupsCount,
 }: AdminAnswerControlProps) {
   const { isLoading } = useLoading();
+  const { isDevEnv } = useDevFeatures();
   const [disableButton, setDisableButton] = useState(true);
+  const playerCount = Object.keys(players).length;
 
   const filteredAnswers = useMemo(
     () =>
@@ -43,6 +48,21 @@ export function AdminAnswerControl({
     [allAnswers, answerGroup]
   );
 
+  // How long to wait to enable the button to avoid ignoring player's custom adds to the answer group
+  const waitDuration = useMemo(() => {
+    const answersCount = answerGroup.entries.length;
+    // Dev
+    if (isDevEnv) return 1;
+    // When all players are in
+    if (playerCount === answersCount) return 1;
+    // When only 2 or less answers left
+    if (answersCount < 3 && remainingGroupsCount < 3) return 5;
+    // When only 1 answer in
+    if (answersCount === 1) return 5;
+    // Other cases
+    return 10;
+  }, [answerGroup.entries.length, isDevEnv, playerCount, remainingGroupsCount]);
+
   return (
     <AdminOnlyContainer className="m-admin" direction="vertical" align="center">
       <TimedButton
@@ -50,7 +70,7 @@ export function AdminAnswerControl({
         disabled={disableButton || isLoading}
         type="primary"
         danger
-        duration={answerGroup.entries.length > 1 ? 10 : 5}
+        duration={waitDuration}
         icon={<RocketFilled />}
         onExpire={() => setDisableButton(false)}
       >

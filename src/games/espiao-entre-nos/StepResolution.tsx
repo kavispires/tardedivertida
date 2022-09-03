@@ -1,11 +1,12 @@
 import clsx from 'clsx';
+// Hooks
+import { useLoading } from 'hooks/useLoading';
+import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
+// Components
 import { AdminButton, AdminOnlyContainer } from 'components/admin';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
-// Hooks
-import { useLoading } from 'hooks/useLoading';
-// Components
 
 type StepVotingProps = {
   players: GamePlayers;
@@ -22,6 +23,7 @@ export function StepResolution({
   currentSpy,
   onProgressGame,
 }: StepVotingProps) {
+  useTemporarilyHidePlayersBar();
   const { isLoading } = useLoading();
 
   return (
@@ -105,7 +107,8 @@ export function StepResolution({
         <Translate pt="Disfarces dos infiltrados:" en="Agent's roles:" />
         {Object.values(players).map(({ id, name, role }) => (
           <li key={`role-list-${id}`}>
-            {name} <Translate pt="como" en="as" /> {role}
+            {name} <Translate pt="como" en="as" />{' '}
+            {role === 'SPY' ? <Translate pt="ESPIÃO" en="SPY" /> : role}
           </li>
         ))}
       </Instruction>

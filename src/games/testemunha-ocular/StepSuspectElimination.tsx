@@ -1,5 +1,5 @@
 // Ant Design Resources
-import { Avatar, Button, Space } from 'antd';
+import { Button, Space } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Components
@@ -12,6 +12,7 @@ import { Translate } from 'components/language';
 import { Card } from 'components/cards';
 import { SpeechBubbleAcceptedIcon } from 'components/icons/SpeechBubbleAcceptedIcon';
 import { SpeechBubbleDeclinedIcon } from 'components/icons/SpeechBubbleDeclinedIcon';
+import { IconAvatar } from 'components/icons/IconAvatar';
 
 type StepSuspectEliminationProps = {
   suspects: Suspect[];
@@ -21,6 +22,7 @@ type StepSuspectEliminationProps = {
   isUserTheWitness: boolean;
   isUserTheQuestioner: boolean;
   witness: GamePlayer;
+  questioner: GamePlayer;
   isLoading: boolean;
   onEliminate: GenericFunction;
   question: GamePlayer;
@@ -41,6 +43,7 @@ export function StepSuspectElimination({
   question,
   testimony,
   history,
+  questioner,
 }: StepSuspectEliminationProps) {
   const { translate } = useLanguage();
 
@@ -49,7 +52,7 @@ export function StepSuspectElimination({
 
   return (
     <Step>
-      <Title level={3}>
+      <Title level={3} size="medium">
         <AvatarName player={witness} />
         <Translate en="answered" pt="respondeu" />{' '}
         {testimony ? (
@@ -59,11 +62,9 @@ export function StepSuspectElimination({
             <Translate en="NO" pt="NÃO" />
           </>
         )}{' '}
-        <Avatar
+        <IconAvatar
           size="large"
           icon={testimony ? <SpeechBubbleAcceptedIcon /> : <SpeechBubbleDeclinedIcon />}
-          style={{ backgroundColor: 'transparent' }}
-          shape="square"
         />{' '}
         <Translate en="to the question" pt="para a pergunta:" />
         <br />
@@ -77,7 +78,7 @@ export function StepSuspectElimination({
           </Card>
         </Space>
       </Title>
-      {isUserTheQuestioner && (
+      {isUserTheQuestioner ? (
         <Instruction contained>
           <Translate
             pt="Clique em um suspeito para liberá-lo(a)"
@@ -94,6 +95,11 @@ export function StepSuspectElimination({
               </Button>
             </Space>
           )}
+        </Instruction>
+      ) : (
+        <Instruction contained>
+          <AvatarName player={questioner} />{' '}
+          <Translate pt="é quem libera os suspeitos" en="is who is releasing the suspects" />
         </Instruction>
       )}
 

@@ -32,14 +32,14 @@ export function FloatingHand({ children, subtitle = '', type = 'hand' }: Floatin
         <span className="floating-hand__label">
           <IconAvatar
             icon={type === 'hand' ? <HandOfCardsIcon /> : <UserStatsIcon />}
-            size={isExpanded ? 40 : 60}
+            size={isExpanded ? 30 : 40}
             className="floating-hand__icon"
             alt={translate('Mão de Cartas', 'Hand of Cards')}
           />
           <Translate pt="Passe o mouse para expandir " en="Hover to expand " />
           {subtitle}
         </span>
-        {children}
+        <div className="floating-hand__children">{children}</div>
       </div>
     </>
   );

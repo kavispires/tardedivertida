@@ -84,11 +84,8 @@ export const prepareWordSelectionPhase = async (
   const currentWords = buildCurrentWords(JSON.parse(store.deck[roundIndex]));
 
   // Unready players and remove any previously used game keys
-  const unReadiedPlayers = utils.players.unReadyPlayers(players, guesserId);
-  const removedPropsPlayers = utils.players.removePropertiesFromPlayers(unReadiedPlayers, [
-    'suggestions',
-    'votes',
-  ]);
+  utils.players.unReadyPlayers(players, guesserId);
+  utils.players.removePropertiesFromPlayers(players, ['suggestions', 'votes']);
 
   const groupScore = determineGroupScore(players, state.round.total);
 
@@ -101,6 +98,7 @@ export const prepareWordSelectionPhase = async (
         validSuggestions: [],
         outcome: null,
       },
+      players,
       state: {
         phase: UE_SO_ISSO_PHASES.WORD_SELECTION,
         round: utils.helpers.increaseRound(state.round),
@@ -111,9 +109,6 @@ export const prepareWordSelectionPhase = async (
         words: Object.values(currentWords),
         guess: utils.firebase.deleteValue(),
       },
-    },
-    set: {
-      players: removedPropsPlayers,
     },
   };
 };
@@ -129,6 +124,8 @@ export const prepareSuggestPhase = async (
 
   const suggestionsNumber = determineSuggestionsNumber(players);
 
+  utils.players.unReadyPlayers(players, state.guesserId);
+
   // Save
   return {
     update: {
@@ -139,15 +136,13 @@ export const prepareSuggestPhase = async (
         },
         currentWord: secretWord,
       },
+      players,
       state: {
         phase: UE_SO_ISSO_PHASES.SUGGEST,
         secretWord,
         suggestionsNumber,
         words: utils.firebase.deleteValue(),
       },
-    },
-    set: {
-      players: utils.players.unReadyPlayers(players, state.guesserId),
     },
   };
 };
@@ -163,11 +158,13 @@ export const prepareComparePhase = async (
 
   const shuffledSuggestions = utils.game.shuffle(suggestionsArray);
 
+  utils.players.readyPlayers(players, state.controllerId);
   // Save
   return {
     update: {
       // TODO: save suggestions to store then to global
       // store: {},
+      players,
       state: {
         phase: UE_SO_ISSO_PHASES.COMPARE,
         suggestions: shuffledSuggestions,
@@ -177,10 +174,17 @@ export const prepareComparePhase = async (
   };
 };
 
-export const prepareGuessPhase = async (store: FirebaseStoreData): Promise<SaveGamePayload> => {
+export const prepareGuessPhase = async (
+  store: FirebaseStoreData,
+  state: FirebaseStateData,
+  players: Players
+): Promise<SaveGamePayload> => {
+  utils.players.readyPlayers(players, state.guesserId);
+
   // Save
   return {
     update: {
+      players,
       state: {
         phase: UE_SO_ISSO_PHASES.GUESS,
         validSuggestions: store.validSuggestions,

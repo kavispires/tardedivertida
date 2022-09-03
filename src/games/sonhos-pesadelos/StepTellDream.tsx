@@ -8,13 +8,11 @@ import { useMock } from 'hooks/useMock';
 // Utils
 import { mockDream } from './utils/mock';
 // Components
-
 import { DreamBoard } from './components/DreamBoard';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
-import { ReadyPlayersBar } from 'components/players';
 
 type StepTellDreamProps = {
   players: GamePlayers;
@@ -75,8 +73,6 @@ export function StepTellDream({ players, table, user, onSubmitDream }: StepTellD
           <Translate pt="Enviar Sonho" en="Submit Dream" />
         </Button>
       </Space>
-
-      <ReadyPlayersBar players={players} />
     </Step>
   );
 }

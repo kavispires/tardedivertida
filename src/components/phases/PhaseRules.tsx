@@ -20,7 +20,6 @@ import { useGlobalState } from 'hooks/useGlobalState';
 // Components
 import { LoadingPage } from 'components/loaders';
 import { Translate } from 'components/language';
-import { ReadyPlayersBar } from 'components/players';
 import { RulesCarousel } from '../rules';
 
 type PhaseRulesProps = {
@@ -126,7 +125,6 @@ export function PhaseRules({ players, info }: PhaseRulesProps) {
           <Translate pt="Quê?" en="What?" />
         </Button>
       </Space>
-      <ReadyPlayersBar players={players} />
     </Layout.Content>
   );
 }

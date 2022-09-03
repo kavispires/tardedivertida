@@ -8,7 +8,6 @@ import { useMock } from 'hooks/useMock';
 import { mockGuess } from './utils/mock';
 // Components
 import { Translate } from 'components/language';
-import { ReadyPlayersBar } from 'components/players';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Dial } from './components/Dial';
@@ -83,8 +82,6 @@ export function StepGuess({ currentCategory, onSendGuess, players }: StepGuessPr
           {Math.abs(needle)}
         </Button>
       </Space>
-
-      <ReadyPlayersBar players={players} />
     </Step>
   );
 }

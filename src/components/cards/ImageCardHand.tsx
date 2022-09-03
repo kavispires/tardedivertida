@@ -51,6 +51,7 @@ export function ImageCardHand({
                   onClick={() => onSelectCard!(cardId)}
                   size="small"
                   disabled={disabledSelectButton}
+                  shape="round"
                 >
                   {translate('Selecionar', 'Select', selectButtonLabel)}
                 </Button>

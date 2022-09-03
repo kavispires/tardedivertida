@@ -5,8 +5,9 @@ import { TrophyOutlined } from '@ant-design/icons';
 // Utils
 import { getAnimationClass, getLastItem } from 'utils/helpers';
 import { isEntryLocked } from './utils/helpers';
+// Hooks
+import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
-
 import { Crime } from './components/Crime';
 import { GroupedItemsBoard } from './components/GroupedItemsBoard';
 import { ScoringMessage } from './components/RulesBlobs';
@@ -46,6 +47,8 @@ export function StepReveal({
   results,
   isFirstRunThrough,
 }: StepRevealProps) {
+  useTemporarilyHidePlayersBar();
+
   const [activePlayerId, setActivePlayerId] = useState<PlayerId>('');
 
   const playerCount = Object.keys(players).length;

@@ -1,4 +1,4 @@
-// State & Hooks
+// Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useSlideShow } from 'hooks/useSlideShow';
 import { useStep } from 'hooks/useStep';

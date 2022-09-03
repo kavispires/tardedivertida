@@ -1,6 +1,6 @@
 import { useState } from 'react';
 // Ant Design Resources
-import { Button, Drawer, Popconfirm, Spin } from 'antd';
+import { Button, Drawer, Popconfirm } from 'antd';
 import { FireFilled } from '@ant-design/icons';
 // Hooks
 import { useAPICall } from 'hooks/useAPICall';
@@ -9,10 +9,13 @@ import { useLoading } from 'hooks/useLoading';
 // Utils
 import { ADMIN_API } from 'services/adapters';
 import { ADMIN_ACTIONS } from 'utils/constants';
+import { getFirebaseUrl } from 'services/firebase';
 // Components
 import { AdminPerformActionButton } from './_internal/AdminPerformActionButton';
 import { ForceStateForm } from './_internal/ForceStateForm';
 import { PlayersReadyState } from './_internal/PlayersReadyState';
+import { FixedMenuButton } from 'components/buttons';
+import { Translate } from 'components/language';
 
 type AdminMenuDrawerProps = {
   state: GameState;
@@ -47,16 +50,17 @@ export const AdminMenuDrawer = ({ state, players }: AdminMenuDrawerProps) => {
   return (
     <>
       <div className="admin-menu-drawer">
-        <Button
-          type="primary"
-          danger
-          size="small"
+        <FixedMenuButton
+          position={-1}
+          icon={<FireFilled />}
+          type="button"
+          label={<Translate pt=" Admin" en=" Admin" />}
           onClick={showDrawer}
-          disabled={isLoading}
-          icon={isLoading ? <Spin /> : <FireFilled />}
-        >
-          Admin
-        </Button>
+          buttonProps={{
+            type: 'primary',
+            danger: true,
+          }}
+        />
 
         <Drawer title="Admin Menu" placement="left" closable={false} visible={visible} onClose={onClose}>
           <ul>
@@ -128,10 +132,4 @@ export const AdminMenuDrawer = ({ state, players }: AdminMenuDrawerProps) => {
       </div>
     </>
   );
-};
-
-const getFirebaseUrl = (usingEmulators: boolean, gameCollection: GameName, gameId: GameId) => {
-  return usingEmulators
-    ? `http://localhost:4000/firestore/${gameCollection}/${gameId}/session/state`
-    : `https://console.firebase.google.com/u/0/project/game-session/firestore/data/~2${gameCollection}~2F${gameId}~2Fsession~2Fstate`;
 };

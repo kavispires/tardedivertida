@@ -5,7 +5,6 @@ import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
-import { ReadyPlayersBar } from 'components/players';
 import { WordGrid } from './components/WordGrid';
 import { WritingCell } from './components/WritingCell';
 import { WritingCluesRule } from './components/RulesBlobs';
@@ -47,8 +46,6 @@ export function StepClueWriting({ grid, user, onSubmitClue, players }: StepClueW
         CellComponent={WritingCell}
         cellComponentProps={{ onSubmitClue: onSubmitClueClick, disabled: isLoading }}
       />
-
-      <ReadyPlayersBar players={players} />
     </Step>
   );
 }

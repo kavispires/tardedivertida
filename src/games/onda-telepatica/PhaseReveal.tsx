@@ -1,5 +1,3 @@
-// Ant Design Resources
-import { Button, Space } from 'antd';
 // State & Hooks
 import { useIsUserReady } from 'hooks/useIsUserReady';
 import { useLanguage } from 'hooks/useLanguage';
@@ -9,15 +7,12 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { PHASES } from 'utils/phases';
 // Components
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { Step, StepSwitcher } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { StepSwitcher } from 'components/steps';
+import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
-import { PopoverRule } from 'components/rules';
-import { RankingBoard } from 'components/ranking';
-import { AdminNextPhaseButton } from 'components/admin';
 import { StepReveal } from './StepReveal';
-import { ScoringRules } from './components/RulesBlobs';
 import { WavelengthDeviceIcon } from 'components/icons/WavelengthDeviceIcon';
+import { StepRanking } from './StepRanking';
 
 function PhaseReveal({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
@@ -50,22 +45,13 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
         />
 
         {/* Step 2 */}
-        <Step fullWidth>
-          <Title>Ranking</Title>
-
-          <PopoverRule
-            label={<Translate pt="Como a pontuação funciona?" en="How does scoring work?" />}
-            content={<ScoringRules />}
-          />
-
-          <RankingBoard ranking={state.ranking} players={players} />
-          <Space className="space-container" align="center">
-            <Button onClick={goToPreviousStep}>
-              <Translate pt="Ver resultado novamente" en="See results again" />
-            </Button>
-          </Space>
-          <AdminNextPhaseButton round={state.round} lastRound={state?.lastRound} />
-        </Step>
+        <StepRanking
+          players={players}
+          round={state.round}
+          ranking={state.ranking}
+          goToPreviousStep={goToPreviousStep}
+          isLastRound={state?.lastRound}
+        />
       </StepSwitcher>
     </PhaseContainer>
   );

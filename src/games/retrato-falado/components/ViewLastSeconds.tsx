@@ -1,11 +1,13 @@
+// Hooks
+import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
+import { TIMES } from '../utils/constants';
+// Components
 import { DrawingCanvas } from 'components/canvas';
 import { Translate } from 'components/language';
 import { Instruction, Title } from 'components/text';
 import { TimerBar } from 'components/timers';
 import { ViewOr } from 'components/views';
-import { TIMES } from '../utils/constants';
-// Components
 
 type ViewSketchingProps = {
   isUserTheWitness: boolean;
@@ -15,6 +17,8 @@ type ViewSketchingProps = {
 };
 
 export function ViewLastSeconds({ isUserTheWitness, remainingTime, lines, setLines }: ViewSketchingProps) {
+  useTemporarilyHidePlayersBar();
+
   return (
     <ViewOr orCondition={isUserTheWitness}>
       <div className="r-view">

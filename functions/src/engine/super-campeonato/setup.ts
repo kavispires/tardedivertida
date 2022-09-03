@@ -133,11 +133,11 @@ export const prepareBetsPhase = async (
     ? state.brackets
     : makeBrackets(players, store.tableContenders, state.round.current);
 
-  const challenge = isFinalRound(state.challenge)
+  const challenge = isFinalRound(state.round)
     ? getMostVotedChallenge(players, state.challenges)
     : state.challenge;
 
-  utils.players.removePropertiesFromPlayers(players, ['votes']);
+  utils.players.removePropertiesFromPlayers(players, ['votes', 'challengeId']);
 
   // Save
   return {

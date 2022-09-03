@@ -2,6 +2,7 @@
 import { Avatar as AntAvatar, Space } from 'antd';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
+import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
 import { Avatar, AvatarName, AvatarNPC } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
@@ -22,6 +23,8 @@ type StepResolutionProps = {
 };
 
 export function StepResolution({ players, story, storyteller, table, goToNextStep }: StepResolutionProps) {
+  useTemporarilyHidePlayersBar();
+
   const cardWidth = useCardWidth(10, 32, 75);
 
   const solution = table.find((entry) => entry.playerId === storyteller.id);
@@ -38,7 +41,12 @@ export function StepResolution({ players, story, storyteller, table, goToNextSte
         <BookPages
           leftPage={
             <div className="c-story-book__selected-card">
-              {solution && <ImageCard imageId={solution.cardId} cardWidth={175} />}
+              {solution && (
+                <>
+                  <ImageCard imageId={solution.cardId} cardWidth={160} />
+                  <ImageBlurButton cardId={solution.cardId} />
+                </>
+              )}
             </div>
           }
           rightPage={

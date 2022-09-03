@@ -22,6 +22,7 @@ import {
   updateLevelsForPlayers,
   gatherAllAnswers,
   recalculateLastPasture,
+  shouldSaveSheep,
 } from './helpers';
 
 /**
@@ -184,7 +185,14 @@ export const prepareResolutionPhase = async (
   updateLevelsForPlayers(players, pastureChange[2]);
 
   const isGameOver = determineGameOver(players, store.options?.shortPasture);
-  const shouldSave = isGameOver && !state?.usedSave && !state?.lastRound;
+  const shouldSave = shouldSaveSheep(
+    isGameOver,
+    store.options?.shortPasture ? SHORT_PASTURE_GAME_OVER_THRESHOLD : PASTURE_GAME_OVER_THRESHOLD,
+    pastureChange,
+    state?.lastRound,
+    state?.usedSave
+  );
+
   if (shouldSave) {
     recalculateLastPasture(pastureChange, state.pastureSize);
     updateLevelsForPlayers(players, pastureChange[2]);

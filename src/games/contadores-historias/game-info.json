@@ -1,7 +1,7 @@
 {
   "gameCode": "C",
   "gameName": "contadores-historias",
-  "version": "2.2",
+  "version": "2.3.1",
   "title": {
     "pt": "Contadores de Histórias",
     "en": "Storytellers"
@@ -16,13 +16,20 @@
     "en": "Is an image really worth a thousand words? Try to find out what image is the storyteller referring to"
   },
   "rules": {
-    "pt": ["TBD"],
+    "pt": [
+      "Cada rodada alguém é o Contador de Histórias e selecionará uma cara em mão e escreverá uma história sobre ela.",
+      "A historia pode ser qualquer coisa, uma palavra, uma frase, etc. O objectivo é fazer que alguns jogadores descubram a carta relacionada, mas não todos",
+      "Se pelo menos um jogador, mas não todos, acertou a carta, o Contador de Histórias ganha pontos",
+      "Mas antes da votação, os outros jogadores saberá a história e também colocarão cartas relacionadas",
+      "Se a carta deles forem selecionadas, eles ganham pontos.",
+      "O jogo termina quando alguém alcança 30 pontos"
+    ],
     "en": [
       "Every round someone will be the storyteller and will pick one of their cards in hands and write a story about it.",
       "The story can be anything they want, a word, a sentence, etc. The goal is to have some players guessing the correct card but not all.",
       "If at least one but not all players choose the right card, the storyteller will score points.",
-      "But watch out, before anybody can vote, everyone will see the story and also play a card to trick the other players",
-      "If your trick-card gets picked by any other player, you get a point",
+      "But watch out, before anybody can vote, everyone will see the story and also play a card to trick the other players.",
+      "If your trick-card gets picked by any other player, you get a point!",
       "The game ends when someone score over 30 points."
     ]
   },

@@ -12,7 +12,6 @@ import { Translate } from 'components/language';
 import { TransparentButton } from 'components/buttons';
 import { Card } from 'components/cards';
 import { ContendersHand } from './components/ContendersHand';
-import { ReadyPlayersBar } from 'components/players';
 
 type StepSelectChallengeProps = {
   onSubmitChallenge: GenericFunction;
@@ -76,8 +75,6 @@ export function StepSelectChallenge({
           );
         })}
       </Space>
-
-      <ReadyPlayersBar players={players} />
 
       <ContendersHand contenders={userContenders} />
     </Step>

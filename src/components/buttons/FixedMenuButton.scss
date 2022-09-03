@@ -1,0 +1,41 @@
+.fixed-menu-button {
+  position: fixed;
+  left: 0;
+  padding: get-unit(1);
+  border-radius: get-unit(0 5 5 0);
+  background: get-color(gray, 1);
+  border: 1px solid get-color(white);
+  color: get-color(gray, 4);
+
+  @include box-shadow;
+  transition: all 250ms;
+
+  @include xs {
+    position: static;
+  }
+
+  z-index: 125;
+
+  // Each position should have 12 (initial top) + pos# * 12 (height plus spacing)
+  &--0 {
+    top: get-unit(12);
+  }
+
+  &--1 {
+    top: get-unit(24);
+  }
+
+  &--2 {
+    top: get-unit(36);
+  }
+
+  &---1 {
+    bottom: get-unit(1);
+    background: get-color(red);
+    border-color: get-color(red);
+  }
+
+  &__label {
+    padding: get-unit(0 2 0 1);
+  }
+}

@@ -2,6 +2,8 @@ import { ReactNode } from 'react';
 import clsx from 'clsx';
 // Design Resource
 import { Button } from 'antd';
+// Hooks
+import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
@@ -73,6 +75,7 @@ export function PhaseAnnouncement({
   unskippable,
   animationType = 'backInDown',
 }: PhaseAnnouncementProps) {
+  useTemporarilyHidePlayersBar();
   const durationPerRound = [15, 10, 5]?.[currentRound] ?? 5;
 
   return (

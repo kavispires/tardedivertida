@@ -3,6 +3,8 @@ import { orderBy } from 'lodash';
 //Design Resources
 import { Space, Table } from 'antd';
 import { CheckSquareFilled, CloseSquareFilled, TrophyOutlined, WarningOutlined } from '@ant-design/icons';
+// Hooks
+import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
 import { AVATARS as avatars } from 'utils/avatars';
 import { useLanguage } from 'hooks/useLanguage';
@@ -183,6 +185,7 @@ type StepRevealProps = {
 };
 
 export function StepReveal({ grid, user, players, clues, goToNextStep, whoGotNoPoints }: StepRevealProps) {
+  useTemporarilyHidePlayersBar();
   const correctCoordinatesPerPlayer = clues.reduce((acc: PlainObject, clue) => {
     acc[clue.coordinate] = clue.playerId;
     return acc;

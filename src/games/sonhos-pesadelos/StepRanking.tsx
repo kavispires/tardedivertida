@@ -1,12 +1,12 @@
 // Ant Design Resources
 import { Button } from 'antd';
 import { PictureOutlined } from '@ant-design/icons';
+// Components
 import { Step } from 'components/steps';
 import { StepRankingWrapper } from 'components/ranking';
 import { Translate } from 'components/language';
 import { RoundsLeftInstruction } from 'components/text';
 import { AdminNextPhaseButton } from 'components/admin';
-// Components
 
 type StepRankingProps = {
   players: GamePlayers;

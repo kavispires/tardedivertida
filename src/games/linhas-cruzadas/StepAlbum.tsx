@@ -3,6 +3,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Button, Space } from 'antd';
 // Hooks
 import { useCountdown } from 'hooks/useCountdown';
+import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
 import { PAGE_DURATION } from './utils/constants';
 // Components
@@ -18,6 +19,7 @@ type StepAlbumProps = {
 };
 
 export function StepAlbum({ players, album }: StepAlbumProps) {
+  useTemporarilyHidePlayersBar();
   const [areControlsLocked, setAreControlsLocked] = useState(true);
   const [currentEntry, setCurrentEntry] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);

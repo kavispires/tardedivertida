@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { HeartFilled } from '@ant-design/icons';
 // Hooks
 import { useCountdown } from 'hooks/useCountdown';
+import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
@@ -34,6 +35,7 @@ export function StepResolution({
   pastureSize,
   announceSave = false,
 }: StepResolutionProps) {
+  useTemporarilyHidePlayersBar();
   const [step, setStep] = useState(0);
   const [pastureIndex, setPastureIndex] = useState(0);
   const [showAnnounceSave, setShowAnnounceSave] = useState(false);
