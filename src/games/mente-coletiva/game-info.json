@@ -1,7 +1,7 @@
 {
   "gameCode": "M",
   "gameName": "mente-coletiva",
-  "version": "2.4.0",
+  "version": "2.5.0",
   "title": {
     "pt": "Mente Coletiva",
     "en": "Herd Mind"
@@ -30,7 +30,7 @@
       "Each round, everybody answers a simple question, for example: 'Name 3 fruits' or 'Name 4 things you bring on a trip",
       "After everyone has given their answers we group them. If three players answer 'Apple', each player gets 3 points. The goal is to reply like the majority, so write common simple answers is the way to go.",
       "After tallying all the points, all the sheep with the least amount of points are kicked to the next pasture.",
-      "When there's no more 'next pasture', they fall off the cliff and die, but at least the pasture is better. Yay."
+      "When there's no more 'next pasture', they fall off the cliff and die, but at least the pasture is more roomy. Yay."
     ]
   },
   "playerCount": {

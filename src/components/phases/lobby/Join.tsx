@@ -45,7 +45,6 @@ export function Join({ players, info, meta }: JoinProps) {
   const [sameGameId, setSameGameId] = useState(false);
 
   const [localStorageAvatar, setLocalStorageAvatar] = useState(null);
-  console.log({ volume });
 
   // Calculate available avatars and monitor if user chose a non-available one
   useEffect(() => {

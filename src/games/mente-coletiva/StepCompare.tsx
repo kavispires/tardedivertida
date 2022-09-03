@@ -68,6 +68,7 @@ export function StepCompare({
         onAddAnswer={onAddAnswer}
         onNextAnswer={onNextAnswer}
         allowedList={allowedList}
+        remainingGroupsCount={remainingGroupsCount}
       />
     </Step>
   );
