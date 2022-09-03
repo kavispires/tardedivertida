@@ -364,3 +364,18 @@ export const determineGameOver = (players: Players, isShortPasture: boolean) => 
       player.level >= (isShortPasture ? SHORT_PASTURE_GAME_OVER_THRESHOLD : PASTURE_GAME_OVER_THRESHOLD)
   );
 };
+
+export const shouldSaveSheep = (
+  isGameOver: boolean,
+  pastureSize: number,
+  pastureChange: PastureChangeEntry[][],
+  lastRound?: boolean,
+  usedSave?: boolean
+) => {
+  if (lastRound || usedSave || !isGameOver) return false;
+
+  // Only save is whoever is dying was by themselves in the last pasture
+  const howManyInLastPasture = pastureChange[0].filter((entry) => entry.level === pastureSize - 1).length;
+
+  return howManyInLastPasture <= 1;
+};
