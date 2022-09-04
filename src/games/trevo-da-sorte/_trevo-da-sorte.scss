@@ -1,0 +1,203 @@
+.y-words-list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: get-unit(2);
+
+  &__word {
+    padding: get-unit(2 3);
+    background-color: get-color(white);
+    text-align: center;
+  }
+
+  &__word-selected {
+    text-decoration: line-through;
+    color: get-color(red, 3);
+    background-color: get-color(red, 7);
+    width: 100%;
+  }
+}
+
+.y-clover {
+  width: 500px;
+  height: 500px;
+
+  display: grid;
+  grid-template-columns: 3rem auto auto 3rem;
+  grid-template-rows: 3rem auto auto 3rem;
+  grid-template-areas:
+    '. clue-0 clue-0 .'
+    'clue-3 leaf-A leaf-B clue-1'
+    'clue-3 leaf-D leaf-C clue-1'
+    '. clue-2 clue-2 .';
+
+  transition: 500ms all;
+
+  &__clue-0 {
+    grid-area: clue-0;
+  }
+
+  &__clue-1 {
+    grid-area: clue-1;
+  }
+
+  &__clue-2 {
+    grid-area: clue-2;
+  }
+
+  &__clue-3 {
+    grid-area: clue-3;
+  }
+
+  &__leaf-A {
+    grid-area: leaf-A;
+  }
+
+  &__leaf-B {
+    grid-area: leaf-B;
+  }
+
+  &__leaf-C {
+    grid-area: leaf-C;
+  }
+
+  &__leaf-D {
+    grid-area: leaf-D;
+  }
+}
+
+// Handles clover and leaves rotation
+.y-clover-rotation {
+  &--0 {
+    transform: rotate(0turn);
+  }
+
+  &--90 {
+    transform: rotate(0.25turn);
+  }
+
+  &--180 {
+    transform: rotate(0.5turn);
+  }
+
+  &--270 {
+    transform: rotate(0.75turn);
+  }
+}
+
+.y-clover-clue {
+  background-color: olivedrab;
+  border: 1px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: get-unit(1);
+}
+
+.y-clover-input {
+  width: 25ch;
+  min-width: 25ch;
+  text-align: center;
+  font-family: 'Architects Daughter', cursive;
+
+  &:disabled {
+    color: olivedrab;
+    text-transform: uppercase;
+  }
+}
+
+.y-clover-leaf {
+  padding: get-unit(1);
+  background-color: olivedrab;
+  border: 2px solid transparent;
+  transition: all 250ms;
+  border-radius: get-unit(2);
+  min-width: 180px;
+  min-height: 180px;
+
+  &--empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  display: grid;
+  grid-template-columns: 2rem 1fr 2rem;
+  grid-template-rows: 2rem 1fr 2rem;
+  grid-template-areas:
+    '. card-0 .'
+    'card-3 center card-1'
+    '. card-2 .';
+
+  &__center {
+    grid-area: center;
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &--rotatable {
+      border: 2px solid transparent;
+      cursor: pointer;
+
+      &:hover {
+        border: 2px solid white;
+        background-color: get-color(gray, 1);
+      }
+    }
+  }
+
+  &__card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+
+    background: white;
+    color: green;
+    padding: get-unit(1 2);
+  }
+
+  &__card--0 {
+    grid-area: card-0;
+    transform: rotate(0deg);
+    border-radius: get-unit(6 6 0 0);
+  }
+
+  &__card--1 {
+    grid-area: card-1;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    border-radius: get-unit(0 6 6 0);
+  }
+
+  &__card--2 {
+    grid-area: card-2;
+    transform: rotate(180deg);
+    border-radius: get-unit(6 6 0 0);
+  }
+
+  &__card--3 {
+    grid-area: card-3;
+    transform: rotate(180deg);
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    border-radius: get-unit(0 6 6 0);
+  }
+
+  // &__card-text {
+  //   // min-width: 100%;
+  //   // min-height: 100%;
+  // }
+}
+
+.y-leaf-loose {
+  width: 180px;
+  height: 180px;
+  display: flex;
+  background: orange;
+}

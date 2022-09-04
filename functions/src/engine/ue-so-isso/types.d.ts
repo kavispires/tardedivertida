@@ -29,7 +29,7 @@ export interface UeSoIssoStore extends DefaultStore {
 }
 
 export interface UeSoIssoState extends DefaultState {
-  gameOrder;
+  gameOrder: PlayerId[];
   guesserId?: PlayerId;
   controllerId?: PlayerId;
   groupScore?: any;
