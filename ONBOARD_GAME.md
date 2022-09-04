@@ -2,11 +2,11 @@
 
 ## Cloud functions
 
-All file paths here are relative to `/functions/src`.
+All file paths here are relative to `functions/src`.
 
 ### Constants
 
-- Update `GAMES` in `/functions/src/utils/constants.ts`.
+- Update `GAMES` in `functions/src/utils/constants.ts`.
 
 ### Create engine
 
@@ -47,12 +47,16 @@ All file paths here are relative to `/src`.
 - Create a session file `Session<game-name>.tsx` with basic placeholder stuff.
 - Create a api file `api-requests.ts` for api calls for the game.
 - Create a `<game-name>.d.ts` for game specific types.
-- Create a `game-info.ts` for game info object.
-- Update `/pages/Game.tsx` to include the new Game Session.
+- Create a `game-info.json` for game info object.
+- Update `pages/Game.tsx` to include the new Game Session.
 
 # Add cloud functions Adapter
 
 - Update `/adapters/index.ts` with the new cloud functions
+
+# Add game to the list
+
+- Update `src/utils/info.ts` with the game entry for its game-info
 
 # Customize the Lobby "clouds" background
 

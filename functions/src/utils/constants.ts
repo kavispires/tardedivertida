@@ -113,6 +113,11 @@ const GAMES = [
     key: 'CRUZA_PALAVRAS',
     collection: 'cruza-palavras',
   },
+  {
+    code: 'Y',
+    key: 'TREVO_DA_SORTE',
+    collection: 'trevo-da-sorte',
+  },
 ];
 
 const generateGameCodes = (): StringDictionary =>

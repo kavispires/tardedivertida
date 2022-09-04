@@ -20,6 +20,8 @@ import U from 'games/ue-so-isso/game-info.json';
 import V from 'games/vendaval-de-palpite/game-info.json';
 import W from 'games/super-campeonato/game-info.json';
 import X from 'games/cruza-palavras/game-info.json';
+import Y from 'games/trevo-da-sorte/game-info.json';
+
 import comingSoonGames from 'assets/data/coming-soon-games.json';
 
 const others = comingSoonGames as Record<GameCode, GameInfo>;
@@ -48,6 +50,7 @@ export const GAME_LIST: Record<GameCode, GameInfo> = {
   V,
   W,
   X,
+  Y,
 };
 
 export default GAME_LIST;
