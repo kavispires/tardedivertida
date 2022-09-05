@@ -38,14 +38,14 @@ type ObjectDictionary = {
   [key: string]: PlainObject;
 };
 
-interface FirebaseContext {
+type FirebaseContext = {
   [key: string]: any;
-}
+};
 
-interface CreateGamePayload {
+interface CreateGamePayload<T> {
   gameCode: GameCode;
   language: string;
-  options?: PlainObject;
+  options?: T & PlainObject;
 }
 
 interface LoadGamePayload {
@@ -135,22 +135,11 @@ interface Player {
   ready: boolean;
   score: number;
   updatedAt?: DateMilliseconds;
-  team?: string;
   [key: string]: any;
 }
 
 interface Players {
   [key: string]: Player;
-}
-
-interface Team {
-  members: PlayerId[];
-  name: string;
-  score: number;
-}
-
-interface Teams {
-  [key: string]: Team;
 }
 
 interface Payload {
@@ -176,14 +165,6 @@ interface SubmitVotesPayload extends Payload {
 
 interface SubmitVotePayload extends Payload {
   vote: string;
-}
-
-interface StateAndStoreReferences {
-  sessionRef: FirebaseFirestore.CollectionReference;
-  stateDoc: FirebaseFirestore.DocumentSnapshot;
-  storeDoc: FirebaseFirestore.DocumentSnapshot;
-  state: FirebaseFirestore.DocumentData | PlainObject;
-  store: FirebaseFirestore.DocumentData | PlainObject;
 }
 
 interface SetPayload {
@@ -248,9 +229,7 @@ interface NewScore {
   newScore: number;
 }
 
-interface NewScores {
-  [key: string]: NewScore;
-}
+type NewScores = Record<string, NewScore>;
 
 interface RankingEntry {
   playerId: PlayerId;

@@ -97,7 +97,7 @@ export function getDefaultInitialState({
  * @param victory
  * @returns
  */
-export const getPointsToVictory = (players: Players | Teams, victory: number): number => {
+export const getPointsToVictory = (players: Players, victory: number): number => {
   const max = Object.values(players).reduce((acc, player) => {
     return Math.max(acc, player.score);
   }, 0);
