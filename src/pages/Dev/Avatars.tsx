@@ -28,9 +28,9 @@ function AvatarsPage() {
   const AI_AVATARS = Object.keys(AVATARS).filter((id) => !AVAILABLE_AVATAR_IDS.includes(id));
 
   return (
-    <Layout style={{ background: 'none' }}>
+    <Layout className="dev-layout">
       <DevHeader title="Avatars" subTitle={`(${AVAILABLE_AVATAR_IDS.length})`} />
-      <Layout.Content style={{ padding: '1rem', width: '100%' }}>
+      <Layout.Content className="dev-content">
         <ul style={styles}>
           {AVAILABLE_AVATAR_IDS.map((avatarId) => {
             const avatar = AVATARS[avatarId];
