@@ -1,8 +1,8 @@
+import { useTitle } from 'react-use';
 // Ant Design Resources
 import { Layout } from 'antd';
 // Components
 import * as icons from 'components/icons/collection';
-import { useTitle } from 'react-use';
 import { DevHeader } from './DevHeader';
 
 function IconsPage() {
@@ -25,9 +25,9 @@ function IconsPage() {
   };
   const iconEntries = Object.entries(icons);
   return (
-    <Layout style={{ background: 'none' }}>
+    <Layout className="dev-layout">
       <DevHeader title="Icons" subTitle={`(${iconEntries.length})`} />
-      <Layout.Content style={{ padding: '1rem', width: '100%' }}>
+      <Layout.Content className="dev-content">
         <ul style={styles}>
           {iconEntries.map(([key, Icon], index) => (
             <li key={key} style={stylesLi}>

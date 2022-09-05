@@ -67,7 +67,7 @@ function Hub() {
   }, [language]);
 
   return (
-    <Layout style={{ background: 'none' }}>
+    <Layout className="dev-layout">
       <DevHeader
         title={
           <>

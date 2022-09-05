@@ -10,8 +10,8 @@ export function DevMenu() {
     { label: 'Hub', value: '/hub', disabled: pathname === '/hub' },
     { label: 'Avatars', value: '/dev/avatars', disabled: pathname === '/dev/avatars' },
     { label: 'Icons', value: '/dev/icons', disabled: pathname === '/dev/icons' },
+    { label: 'Resources', value: '/dev/resources', disabled: pathname === '/dev/resources' },
     { label: 'Testing Zone', value: '/dev/testing-zone', disabled: pathname === '/dev/testing-zone' },
-    { label: 'Resources', value: '/dev/resources', disabled: true },
   ];
 
   const onNavigate = (path: any) => {
