@@ -1,7 +1,7 @@
 import { useToggle } from 'react-use';
 // Ant Design Resources
 import { Button, Divider, Drawer, Image, Space } from 'antd';
-import { SettingOutlined } from '@ant-design/icons';
+import { FireOutlined, SettingOutlined } from '@ant-design/icons';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
@@ -14,6 +14,8 @@ import { DebugOnly } from 'components/debug';
 import { RulesModal } from 'components/rules';
 import { Translate } from 'components/language';
 import { PlayersStatusBar } from '../players/PlayersStatusBar';
+import { useNavigate } from 'react-router-dom';
+import { useGlobalState } from 'hooks/useGlobalState';
 
 type GameInfoDrawerProps = {
   players: GamePlayers;
@@ -26,6 +28,8 @@ export function GameInfoDrawer({ players, state, info, userId }: GameInfoDrawerP
   const { language } = useLanguage();
   const [isDrawerOpen, toggleDrawer] = useToggle(false);
   const [isSettingsOpen, toggleSettingsDrawer] = useToggle(false);
+  const navigate = useNavigate();
+  const [isAdmin] = useGlobalState('isAdmin');
 
   if (state.phase === 'LOBBY') {
     return <></>;
@@ -70,6 +74,11 @@ export function GameInfoDrawer({ players, state, info, userId }: GameInfoDrawerP
             >
               <SectionSettings />
             </Drawer>
+            {isAdmin && (
+              <Button type="default" danger onClick={() => navigate('/hub')} icon={<FireOutlined />}>
+                Hub
+              </Button>
+            )}
           </Space>
 
           <Divider />
