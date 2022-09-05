@@ -2,7 +2,11 @@
 import { GAME_COLLECTIONS } from '../../utils/constants';
 import { GALERIA_DE_SONHOS_PHASES, PLAYER_COUNTS, TOTAL_ROUNDS } from './constants';
 // Types
-import type { GaleriaDeSonhosInitialState, GaleriaDeSonhosSubmitAction } from './types';
+import type {
+  GaleriaDeSonhosInitialState,
+  GaleriaDeSonhosOptions,
+  GaleriaDeSonhosSubmitAction,
+} from './types';
 // Utils
 import * as utils from '../../utils';
 import { determineNextPhase } from './helpers';
@@ -28,7 +32,8 @@ import { getWords } from './data';
 export const getInitialState = (
   gameId: GameId,
   uid: string,
-  language: Language
+  language: Language,
+  options: GaleriaDeSonhosOptions
 ): GaleriaDeSonhosInitialState => {
   return utils.helpers.getDefaultInitialState({
     gameId,
@@ -44,6 +49,7 @@ export const getInitialState = (
       tableDeck: [],
       wordsDeck: [],
     },
+    options,
   });
 };
 

@@ -200,7 +200,10 @@ export const buildIdDictionary = (dataList: PlainObject[]): BooleanDictionary =>
  * @param gainedPointsInitialState
  * @returns
  */
-export const buildNewScoreObject = (players: Players, gainedPointsInitialState?: number[]): NewScores => {
+export const buildNewScoreObject = (
+  players: Players | Player[],
+  gainedPointsInitialState?: number[]
+): NewScores => {
   const newScores: NewScores = {};
 
   // Build score object
@@ -231,3 +234,10 @@ export const buildGameOrder = (
   const gameOrder = playerIds.length < doublingThreshold ? [...playerIds, ...playerIds] : playerIds;
   return { gameOrder, playerIds, playerCount: playerIds.length };
 };
+
+/**
+ * Creates a copy of given object
+ * @param obj
+ * @returns
+ */
+export const deepCopy = <T>(obj: T): T => JSON.parse(JSON.stringify(obj));

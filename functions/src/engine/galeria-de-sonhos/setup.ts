@@ -12,6 +12,7 @@ import {
   getMostVotedCards,
   getPlayersWithMaxDreams,
   getRoundWords,
+  simulateBotCards,
 } from './helpers';
 
 /**
@@ -35,8 +36,12 @@ export const prepareSetupPhase = async (
   const tableDeck = imageCardsIdsDeck.map((cardId) => ({ id: cardId, used: false }));
 
   // Get word deck
-  // Build deck
   const wordsDeck = buildDeck(resourceData.allWords);
+
+  // Helper Bots
+  if (store.options.withBots) {
+    utils.players.addBots(players, 2);
+  }
 
   // Save
   return {
@@ -141,10 +146,15 @@ export const prepareCardPlayPhase = async (
   utils.players.unReadyPlayers(players);
 
   const playersInMax = getPlayersWithMaxDreams(players);
+  const isOnePlayerInNightmare = playersInMax.length === 1;
 
-  if (playersInMax.length === 1) {
+  if (isOnePlayerInNightmare) {
     players[playersInMax[0]].inNightmare = true;
   }
+  const playerInNightmareId = isOnePlayerInNightmare ? playersInMax[0] : utils.firebase.deleteValue();
+
+  // Simulate bots cards
+  simulateBotCards(players);
 
   // Save
   return {
@@ -152,7 +162,7 @@ export const prepareCardPlayPhase = async (
       state: {
         phase: GALERIA_DE_SONHOS_PHASES.CARD_PLAY,
         activePlayerId: state.scoutId,
-        playerInNightmareId: playersInMax.length === 1 ? playersInMax[0] : utils.firebase.deleteValue(),
+        playerInNightmareId,
         turnCount: 0,
         gameOrder: store.gameOrder,
       },
@@ -168,6 +178,7 @@ export const prepareResolutionPhase = async (
 ): Promise<SaveGamePayload> => {
   // Build ranking
   const ranking = buildRanking(players, state.playerInNightmareId);
+  utils.players.neutralizeBotScores(players);
 
   // Save to store most matched card
   const mostVotedCards = getMostVotedCards(state.table, state.word);

@@ -1,3 +1,7 @@
+export type GaleriaDeSonhosOptions = {
+  withBots?: boolean;
+};
+
 export type AllWords = {
   [key: string]: TextCard;
 };
@@ -24,6 +28,7 @@ export interface GaleriaDeSonhosStore extends DefaultStore {
   tableDeck: ImageCard[];
   deck: TextCard[];
   gameOrder: GameOrder;
+  withBots?: boolean;
   [key: string]: any;
 }
 
