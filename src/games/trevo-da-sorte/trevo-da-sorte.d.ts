@@ -6,6 +6,14 @@ type SubmitCluesPayload = {
   clues: string[];
 };
 
+type SubmitGuessPayload = {
+  guess: any;
+};
+
+type UpdateCoverStatePayload = {
+  change: Record<string, any>;
+};
+
 type LeafIndex = 0 | 1 | 2 | 3;
 
 type LeafPosition = 'A' | 'B' | 'C' | 'D';
@@ -14,7 +22,7 @@ type LeafId = string;
 
 interface Leaf {
   id: LeafId;
-  cards: TextCard[];
+  cards: DefaultTextCard[];
   rotation: number;
   position: Position | null;
 }

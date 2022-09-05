@@ -97,6 +97,6 @@ export const handleUpdateCloverState = async (
     gameId,
     playerId,
     actionText: 'update clover state',
-    change: { changes },
+    change: { ...changes },
   });
 };

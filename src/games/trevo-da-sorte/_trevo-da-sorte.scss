@@ -34,34 +34,46 @@
 
   &__clue-0 {
     grid-area: clue-0;
+    border-radius: get-unit(6 6 0 0);
   }
 
   &__clue-1 {
     grid-area: clue-1;
+    border-radius: get-unit(0 6 6 0);
   }
 
   &__clue-2 {
     grid-area: clue-2;
+    border-radius: get-unit(0 0 6 6);
   }
 
   &__clue-3 {
     grid-area: clue-3;
+    border-radius: get-unit(6 0 0 6);
   }
 
   &__leaf-A {
     grid-area: leaf-A;
+    width: 100%;
+    height: 100%;
   }
 
   &__leaf-B {
     grid-area: leaf-B;
+    width: 100%;
+    height: 100%;
   }
 
   &__leaf-C {
     grid-area: leaf-C;
+    width: 100%;
+    height: 100%;
   }
 
   &__leaf-D {
     grid-area: leaf-D;
+    width: 100%;
+    height: 100%;
   }
 }
 
@@ -90,7 +102,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: get-unit(1);
 }
 
 .y-clover-input {
@@ -98,11 +109,17 @@
   min-width: 25ch;
   text-align: center;
   font-family: 'Architects Daughter', cursive;
+}
 
-  &:disabled {
-    color: olivedrab;
-    text-transform: uppercase;
-  }
+.y-clover-clue-readonly {
+  width: 25ch;
+  min-width: 25ch;
+  text-align: center;
+  font-family: 'Architects Daughter', cursive;
+  text-transform: uppercase;
+  font-weight: bolder;
+  color: get-color(white);
+  font-size: 1.1rem;
 }
 
 .y-clover-leaf {
@@ -113,6 +130,15 @@
   border-radius: get-unit(2);
   min-width: 180px;
   min-height: 180px;
+
+  &--draggable {
+    cursor: grab;
+  }
+
+  &--dragging {
+    opacity: 0.5;
+    transform: scale(0.9);
+  }
 
   &--empty {
     display: flex;
@@ -199,5 +225,12 @@
   width: 180px;
   height: 180px;
   display: flex;
-  background: orange;
+}
+
+.y-clover-leaf-drop {
+  & .y-clover-leaf {
+    background-color: get-color(brown, 6);
+    transform: scale(0.8);
+  }
+  transition: all 500ms;
 }

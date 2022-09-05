@@ -1,48 +1,49 @@
 import { Button, Space } from 'antd';
-import clsx from 'clsx';
+
 import { AvatarName } from 'components/avatars';
-import { TransparentButton } from 'components/buttons';
+
 import { DebugOnly } from 'components/debug';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
-import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
+
 import { useLoading } from 'hooks/useLoading';
-import { useMock } from 'hooks/useMock';
-import { Clover } from './components/Clover';
-import { Leaf } from './components/Leaf';
-import { mockClues, mockSelectCards } from './utils/mock';
+
+import { DndClover } from './components/DndClover';
+
+import { mockClues } from './utils/mock';
 import { useCloverState } from './utils/useCloverState';
 
 type StepGuessCloverProps = {
   clover: Clover;
   leaves: Leaves;
   onSubmitGuess: GenericFunction;
+  onUpdateCloverState: GenericFunction;
   controller: GamePlayer;
   isUserTheController: boolean;
   activeCloverPlayer: GamePlayer;
   isUserTheCloverPlayer: boolean;
 };
 
-export function StepGuessClover({ clover, leaves, onSubmitGuess, activeCloverPlayer }: StepGuessCloverProps) {
+export function StepGuessClover({
+  clover,
+  leaves,
+  onSubmitGuess,
+  activeCloverPlayer,
+  onUpdateCloverState,
+}: StepGuessCloverProps) {
   const { isLoading } = useLoading();
-  const {
-    rotation,
-    rotations,
-    onRotateLeaf,
-    onRotateClover,
-
-    clues,
-    guesses,
-    allowLeafRotation,
-    isCluesComplete,
-  } = useCloverState('guess', clover, leaves);
+  const { rotation, onRotateClover, clues, guesses, allowLeafRotation, mode } = useCloverState(
+    'guess',
+    clover,
+    leaves
+  );
 
   console.log({ clover });
   console.log({ leaves });
 
   const onSubmit = () => {
-    onSubmitGuess({ clues });
+    // onSubmitGuess({ clues });
   };
   const onSubmitMock = () => {
     onSubmitGuess(mockClues());
@@ -68,30 +69,24 @@ export function StepGuessClover({ clover, leaves, onSubmitGuess, activeCloverPla
       <Instruction contained>
         <Translate pt={<>??</>} en={<>??</>} />
       </Instruction>
-      <Space className="space-container" align="center">
-        <Clover
-          leaves={leaves}
-          clues={clues}
-          rotation={rotation}
-          guesses={guesses}
-          allowLeafRotation={allowLeafRotation}
-          onRotateClover={onRotateClover}
-        />
-        <Instruction contained>
-          <Space className="space-container" align="center" wrap>
-            {Object.values(leaves).map((leaf) => {
-              return (
-                <div className="y-leaf-loose">
-                  <Leaf leaf={leaf} allowLeafRotation={true} />
-                </div>
-              );
-            })}
-          </Space>
-        </Instruction>
-      </Space>
+
+      <DndClover
+        mode={mode}
+        leaves={leaves}
+        clues={clues}
+        rotation={rotation}
+        guesses={guesses}
+        allowLeafRotation={allowLeafRotation}
+        onRotateClover={onRotateClover}
+        clover={clover}
+        onSubmitGuess={function (...args: any): void {
+          throw new Error('Function not implemented.');
+        }}
+        onUpdateCloverState={onUpdateCloverState}
+      />
 
       <Space className="space-container" align="center">
-        <Button type="primary" size="large" onClick={onSubmit} disabled={!isCluesComplete || isLoading}>
+        <Button type="primary" size="large" onClick={onSubmit} disabled={isLoading}>
           <Translate pt="Enviar adivinhação" en="Submit guess" />
         </Button>
 

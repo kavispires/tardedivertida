@@ -1,12 +1,13 @@
-import { RedoOutlined, RotateLeftOutlined, RotateRightOutlined } from '@ant-design/icons';
+import { RotateLeftOutlined, RotateRightOutlined } from '@ant-design/icons';
 import { Button, Input } from 'antd';
 import clsx from 'clsx';
 import { ROTATIONS } from '../utils/constants';
-import { Leaf } from './Leaf';
+import { LeafSlot } from './LeafSlot';
 
 type CloverProps = {
   // mode: CloverMode;
   // clover: Clover;
+  mode: CloverMode;
   leaves: Leaves;
   clues: string[];
   rotation: number;
@@ -14,6 +15,8 @@ type CloverProps = {
   guesses: YGuesses;
   allowLeafRotation: boolean;
   onRotateClover: (direction: number) => void;
+  onDrop?: GenericFunction;
+  onRotateLeaf?: (id: LeafId) => void;
 };
 
 export function Clover({
@@ -23,11 +26,13 @@ export function Clover({
   onChangeClue,
   guesses,
   allowLeafRotation,
-
+  onDrop,
   onRotateClover,
+  onRotateLeaf,
+  mode,
 }: CloverProps) {
-  console.log({ clues });
-
+  const leavesIds = Object.keys(leaves);
+  console.log({ mode });
   return (
     <div className="container center">
       <div className="y-clover" style={{ transform: `rotate(${rotation}deg)` }}>
@@ -35,40 +40,47 @@ export function Clover({
         {clues.map((clue, index) => {
           const leafIndex = Number(index) as LeafIndex;
 
-          return (
-            <div
-              key={`clue-key-${leafIndex}`}
-              className={clsx(`y-clover__clue-${leafIndex}`, 'y-clover-clue')}
-            >
-              <Input
-                defaultValue={clue}
-                onChange={onChangeClue ? (e) => onChangeClue(leafIndex, e.target.value) : undefined}
-                className={`y-clover-rotation--${ROTATIONS[index]} y-clover-input`}
-                placeholder={'Write here'}
-                disabled={!Boolean(onChangeClue)}
-              />
-            </div>
-          );
-        })}
-
-        {/* LEAVES */}
-        {Object.entries(guesses).map(([leafPosKey, guess], index) => {
-          if (guess) {
-            const leaf = leaves[guess.leafId];
+          if (mode === 'write') {
             return (
-              <Leaf leaf={leaf} allowLeafRotation={allowLeafRotation} position={leafPosKey as LeafPosition} />
+              <div
+                key={`clue-key-${leafIndex}`}
+                className={clsx(`y-clover__clue-${leafIndex}`, 'y-clover-clue')}
+              >
+                <Input
+                  onChange={onChangeClue ? (e) => onChangeClue(leafIndex, e.target.value) : undefined}
+                  className={`y-clover-rotation--${ROTATIONS[index]} y-clover-input`}
+                  placeholder={'Write here'}
+                  disabled={!Boolean(onChangeClue)}
+                  value={mode === 'write' ? undefined : clue}
+                />
+              </div>
             );
           }
 
           return (
             <div
-              key={`clue-key-${leafPosKey}`}
-              className={clsx(`y-clover__leaf-${leafPosKey}`, 'y-clover-leaf', 'y-clover-leaf--empty')}
+              key={`clue-key-${leafIndex}`}
+              className={clsx(`y-clover__clue-${leafIndex}`, 'y-clover-clue')}
             >
-              ?
+              <span className={clsx(`y-clover-rotation--${ROTATIONS[index]}`, 'y-clover-clue-readonly')}>
+                {clue}
+              </span>
             </div>
           );
         })}
+
+        {/* LEAVES */}
+        {Object.entries(guesses).map(([leafPosKey, guess], index) => (
+          <LeafSlot
+            key={`slot-${leafPosKey}`}
+            leaf={guess ? leaves[guess.leafId] : undefined}
+            allowLeafRotation={allowLeafRotation}
+            position={leafPosKey as LeafPosition}
+            leavesIds={leavesIds}
+            onDrop={onDrop}
+            onRotateLeaf={onRotateLeaf}
+          />
+        ))}
       </div>
       <div className="controls space-container center">
         <Button icon={<RotateLeftOutlined />} onClick={() => onRotateClover(-1)} />
