@@ -2,7 +2,13 @@
 import { GAME_COLLECTIONS } from '../../utils/constants';
 import { PLAYER_COUNTS, TREVO_DA_SORTE_PHASES } from './constants';
 // Types
-import type { TrevoDaSorteInitialState, TrevoDaSorteOptions, TrevoDaSorteSubmitAction } from './types';
+import {
+  FirebaseStateData,
+  FirebaseStoreData,
+  TrevoDaSorteInitialState,
+  TrevoDaSorteOptions,
+  TrevoDaSorteSubmitAction,
+} from './types';
 // Utilities
 import * as utils from '../../utils';
 // Internal Functions
@@ -62,14 +68,13 @@ export const getNextPhase = async (
   players: Players
 ): Promise<boolean> => {
   // Gather docs and references
-  const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences(
-    collectionName,
-    gameId,
-    'prepare next phase'
-  );
+  const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences<
+    FirebaseStateData,
+    FirebaseStoreData
+  >(collectionName, gameId, 'prepare next phase');
 
   // Determine next phase
-  const nextPhase = determineNextPhase(state?.phase);
+  const nextPhase = determineNextPhase(state.phase, state?.gameOrder, state?.activeCloverId);
 
   // RULES -> SETUP
   if (nextPhase === TREVO_DA_SORTE_PHASES.SETUP) {
@@ -136,8 +141,8 @@ export const submitAction = async (data: TrevoDaSorteSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(data, ['guess'], 'submit guess');
       return handleSubmitGuess(collectionName, gameId, playerId, data.guess);
     case 'UPDATE_CLOVER_STATE':
-      utils.firebase.validateSubmitActionProperties(data, ['state'], 'update clover state');
-      return handleUpdateCloverState(collectionName, gameId, playerId, data.state);
+      utils.firebase.validateSubmitActionProperties(data, ['change'], 'update clover state');
+      return handleUpdateCloverState(collectionName, gameId, playerId, data.change);
     default:
       utils.firebase.throwException(`Given action ${action} is not allowed`);
   }

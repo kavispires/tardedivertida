@@ -12,6 +12,7 @@ import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Clover } from './components/Clover';
+import { DndClover } from './components/DndClover';
 
 type StepWriteCluesProps = {
   clover: Clover;
@@ -21,7 +22,7 @@ type StepWriteCluesProps = {
 
 export function StepWriteClues({ clover, leaves, onSubmitClues }: StepWriteCluesProps) {
   const { isLoading } = useLoading();
-  const { rotation, onRotateClover, onChangeClue, clues, guesses, allowLeafRotation, isCluesComplete } =
+  const { mode, rotation, onRotateClover, onChangeClue, clues, guesses, allowLeafRotation, isCluesComplete } =
     useCloverState('write', clover, leaves);
 
   const onSubmit = () => {
@@ -59,7 +60,8 @@ export function StepWriteClues({ clover, leaves, onSubmitClues }: StepWriteClues
         />
       </Instruction>
 
-      <Clover
+      <DndClover
+        mode={mode}
         leaves={leaves}
         clues={clues}
         rotation={rotation}
@@ -67,6 +69,14 @@ export function StepWriteClues({ clover, leaves, onSubmitClues }: StepWriteClues
         allowLeafRotation={allowLeafRotation}
         onRotateClover={onRotateClover}
         onChangeClue={onChangeClue}
+        clover={clover}
+        // onSubmitGuess={function (...args: any): void {
+        //   throw new Error('Function not implemented.');
+        // }}
+        // controller={undefined}
+        // isUserTheController={false}
+        // activeCloverPlayer={undefined}
+        // isUserTheCloverPlayer={false}
       />
 
       <Space className="space-container" align="center">

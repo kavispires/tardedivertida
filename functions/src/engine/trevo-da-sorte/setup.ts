@@ -71,7 +71,7 @@ export const prepareCloverWritingPhase = async (
   utils.players.unReadyPlayers(players);
 
   // Build leaves for each player
-  buildLeaves(players, store.options.hardGame ? 'hard' : 'normal');
+  buildLeaves(players, store?.options?.hardGame ? 'hard' : 'normal');
 
   // Build clovers to players
   buildClovers(players);
@@ -94,13 +94,15 @@ export const prepareCloverGuessingPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
+  const gameOrder = state?.gameOrder ?? [];
+
   const activeCloverId = state.activeCloverId
-    ? utils.players.getNextPlayer(state.gameOrder, state.activeCloverId)
-    : state.gameOrder[0];
+    ? utils.players.getNextPlayer(gameOrder, state.activeCloverId)
+    : gameOrder[0];
 
   const controllerId = state.controllerId
-    ? utils.players.getNextPlayer(state.gameOrder, state.controllerId)
-    : state.gameOrder[1];
+    ? utils.players.getNextPlayer(gameOrder, state.controllerId)
+    : gameOrder[1];
 
   utils.players.readyPlayers(players, controllerId);
 
@@ -112,6 +114,8 @@ export const prepareCloverGuessingPhase = async (
         phase: TREVO_DA_SORTE_PHASES.CLOVER_GUESSING,
         activeCloverId,
         controllerId,
+        clover: players[activeCloverId].clover,
+        leaves: players[activeCloverId].leaves,
       },
     },
   };
@@ -124,6 +128,8 @@ export const prepareResultsPhase = async (
 ): Promise<SaveGamePayload> => {
   utils.players.readyPlayers(players);
 
+  // Calculate score
+
   // Save
   return {
     update: {
@@ -132,6 +138,8 @@ export const prepareResultsPhase = async (
         phase: TREVO_DA_SORTE_PHASES.RESULTS,
         activeCloverId: utils.firebase.deleteValue(),
         controllerId: utils.firebase.deleteValue(),
+        clover: utils.firebase.deleteValue(),
+        leaves: utils.firebase.deleteValue(),
       },
     },
   };

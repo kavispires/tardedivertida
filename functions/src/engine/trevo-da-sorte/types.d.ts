@@ -13,15 +13,26 @@ type LeafId = string;
 export interface Leaf {
   id: LeafId;
   cards: TextCard[];
-  rotation: number;
+  lockedRotation: number;
   position: Position | null;
+  rotation: number;
 }
 
 export interface LeafGuess {
   leafId: LeafId;
   rotation: number;
   position?: Position;
+  score?: number;
 }
+
+export interface Guess {
+  A: LeafGuess;
+  B: LeafGuess;
+  C: LeafGuess;
+  D: LeafGuess;
+}
+
+export type Guesses = Record<PlayerId, Guess>;
 
 export interface Clover {
   clues?: string[];
@@ -32,13 +43,6 @@ export interface Clover {
     C: LeafId;
     D: LeafId;
   };
-  guess: {
-    A: LeafGuess | null;
-    B: LeafGuess | null;
-    C: LeafGuess | null;
-    D: LeafGuess | null;
-  };
-  tries: number;
 }
 
 export interface TrevoDaSorteStore extends DefaultStore {
@@ -46,8 +50,7 @@ export interface TrevoDaSorteStore extends DefaultStore {
 }
 
 export interface TrevoDaSorteState extends DefaultState {
-  gameOrder: PlayerId[];
-  controllerId?: PlayerId;
+  gameOrder?: PlayerId[];
 
   [key: string]: any;
 }
@@ -61,5 +64,5 @@ export interface TrevoDaSorteSubmitAction extends Payload {
   action: 'SUBMIT_BAD_WORDS' | 'SUBMIT_CLUES' | 'SUBMIT_GUESS' | 'UPDATE_CLOVER_STATE';
 }
 
-export type FirebaseStateData = FirebaseFirestore.DocumentData | TrevoDaSorteState;
-export type FirebaseStoreData = FirebaseFirestore.DocumentData | TrevoDaSorteStore;
+export type FirebaseStateData = FirebaseFirestore.DocumentData & TrevoDaSorteState;
+export type FirebaseStoreData = FirebaseFirestore.DocumentData & TrevoDaSorteStore;

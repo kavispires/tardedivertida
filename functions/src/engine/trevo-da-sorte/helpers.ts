@@ -10,14 +10,23 @@ import { getRandomItems } from '../../utils/game-utils';
  * @param currentPhase
  * @returns phase
  */
-export const determineNextPhase = (currentPhase: string): string => {
+export const determineNextPhase = (
+  currentPhase: string,
+  gameOrder?: PlayerId[],
+  activeCloverId?: PlayerId
+): string => {
   const { RULES, SETUP, WORD_SELECTION, CLOVER_WRITING, CLOVER_GUESSING, RESULTS, GAME_OVER } =
     TREVO_DA_SORTE_PHASES;
   const order = [RULES, SETUP, WORD_SELECTION, CLOVER_WRITING, CLOVER_GUESSING, RESULTS, GAME_OVER];
 
-  // if (currentPhase === CLOVER_GUESSING) {
-  //   return triggerLastRound || roundsToEndGame <= 0 ? GAME_OVER : WORD_SELECTION;
-  // }
+  if (currentPhase === CLOVER_GUESSING) {
+    // If last player, go to results
+    if (gameOrder && activeCloverId === gameOrder[gameOrder.length - 1]) {
+      return RESULTS;
+    }
+
+    return CLOVER_GUESSING;
+  }
 
   const currentPhaseIndex = order.indexOf(currentPhase);
 
@@ -41,7 +50,8 @@ export const buildLeaves = (players: Players, gameMode: string) => {
       const leaf: Leaf = {
         id: leafId,
         cards: entry,
-        rotation: utils.game.getRandomItem(ROTATIONS),
+        lockedRotation: utils.game.getRandomItem(ROTATIONS),
+        rotation: 0,
         position: null,
       };
       acc[leafId] = leaf;
@@ -63,13 +73,6 @@ export const buildClovers = (players: Players) => {
         C: leaves[2],
         D: leaves[3],
       },
-      guess: {
-        A: null,
-        B: null,
-        C: null,
-        D: null,
-      },
-      tries: 0,
     };
 
     player.clover = clover;
