@@ -42,10 +42,10 @@ type FirebaseContext = {
   [key: string]: any;
 };
 
-interface CreateGamePayload<T> {
+interface CreateGamePayload {
   gameCode: GameCode;
   language: string;
-  options?: T & PlainObject;
+  options?: BooleanDictionary;
 }
 
 interface LoadGamePayload {
@@ -138,9 +138,7 @@ interface Player {
   [key: string]: any;
 }
 
-interface Players {
-  [key: string]: Player;
-}
+type Players = Record<PlayerId, Player>;
 
 interface Payload {
   gameId: GameId;

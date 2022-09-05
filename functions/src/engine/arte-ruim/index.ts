@@ -2,7 +2,13 @@
 import { GAME_COLLECTIONS } from '../../utils/constants';
 import { ARTE_RUIM_PHASES, PLAYER_COUNTS, MAX_ROUNDS } from './constants';
 // Types
-import type { ArteRuimGameOptions, ArteRuimInitialState, ArteRuimSubmitAction } from './types';
+import type {
+  ArteRuimGameOptions,
+  ArteRuimInitialState,
+  ArteRuimSubmitAction,
+  FirebaseStateData,
+  FirebaseStoreData,
+} from './types';
 // Utilities
 import * as utils from '../../utils';
 // Internal Functions
@@ -66,11 +72,10 @@ export const getNextPhase = async (
   gameId: GameId,
   players: Players
 ): Promise<boolean> => {
-  const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences(
-    collectionName,
-    gameId,
-    'prepare next phase'
-  );
+  const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences<
+    FirebaseStateData,
+    FirebaseStoreData
+  >(collectionName, gameId, 'prepare next phase');
 
   // Determine if it's game over
   const isGameOver = determineGameOver(players, state?.round);
