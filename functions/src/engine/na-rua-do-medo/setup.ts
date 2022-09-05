@@ -121,7 +121,7 @@ export const prepareTrickOrTreatPhase = async (
   }
 
   const atHomePlayerIds = sendPlayersHome(players);
-  utils.players.unReadyPlayers(players, undefined, atHomePlayerIds);
+  utils.players.unReadyPlayers(players, atHomePlayerIds);
 
   const { currentCard, candyStatus } = dealNewCard(store, players);
 

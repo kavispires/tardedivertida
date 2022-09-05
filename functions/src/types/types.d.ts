@@ -135,6 +135,9 @@ interface Player {
   ready: boolean;
   score: number;
   updatedAt?: DateMilliseconds;
+  // Bots only
+  bot?: true;
+  // Extra keys
   [key: string]: any;
 }
 
