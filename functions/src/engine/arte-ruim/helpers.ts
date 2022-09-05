@@ -325,8 +325,8 @@ export const dealCards = (players: Players, store: FirebaseStoreData) => {
 
   store.currentCards = new Array(numberOfCards).fill(0).map((i, index) => {
     const currentPlayerId = playersArray?.[index]?.id ?? null;
-    const card = {
-      ...store.deck.pop(),
+    const card: ArteRuimDrawing = {
+      ...(store.deck.pop() as ArteRuimCard),
       drawing: null,
       successRate: i,
       playerId: currentPlayerId,
