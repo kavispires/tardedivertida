@@ -153,3 +153,36 @@ export function CardPlayRules() {
     </Instruction>
   );
 }
+
+export function BotsRules() {
+  return (
+    <Instruction contained>
+      <Translate
+        pt={
+          <>
+            Em um jogo com bots, 2 jogadores-robôs são adicionados ao jogo.
+            <br />
+            Antes da fase do Bingo dos Sonhos, os dois bots entram em ação e selecionam cartas segundo se
+            seguinte lógica:
+            <br />
+            O bot A seleciona todas as cartas que foram mais selecionadas pelos jogadores.
+            <br />O bot B seleciona cartas que foram selecionadas por apenas um jogador, mas apenas uma por
+            jogador, e somente se mais de um jogador tiver essa carta extra.
+          </>
+        }
+        en={
+          <>
+            In a game with bos, the 2 bots are added to the game.
+            <br />
+            Before the Dream Bingo phase, the two bots select cards based on a pre-determined logic:
+            <br />
+            Bot A select all most visited cards.
+            <br />
+            Bot B select all cards that got a single player visiting them but only one per player and only if
+            more than one player will have a match this way.
+          </>
+        }
+      />
+    </Instruction>
+  );
+}

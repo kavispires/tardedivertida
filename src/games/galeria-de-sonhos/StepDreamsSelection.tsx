@@ -10,8 +10,10 @@ import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
 import { Step } from 'components/steps';
 import { TextHighlight, Title } from 'components/text';
-import { DreamSelectionExtendedRules, DreamSelectionRules } from './components/RulesBlobs';
+import { BotsRules, DreamSelectionExtendedRules, DreamSelectionRules } from './components/RulesBlobs';
 import { SelectTable } from './components/SelectTable';
+import { RobotOutlined } from '@ant-design/icons';
+import { FixedMenuButton } from 'components/buttons';
 
 const validateSelectedCards = (v: BooleanDictionary) => {
   return Object.keys(v).length < 10;
@@ -42,6 +44,17 @@ export function StepDreamsSelection({ table, word, onSubmitCards, players }: Ste
       <DreamSelectionRules contained />
 
       <PopoverRule content={<DreamSelectionExtendedRules />} />
+
+      <FixedMenuButton
+        type="popover"
+        position={1}
+        icon={<RobotOutlined />}
+        content={<BotsRules />}
+        label={<Translate pt=" Bots" en=" Bots" />}
+        buttonProps={{
+          type: 'default',
+        }}
+      />
 
       <Space className="space-container" align="center">
         <Button
