@@ -1,6 +1,7 @@
 import { RotateLeftOutlined, RotateRightOutlined } from '@ant-design/icons';
 import { Button, Input } from 'antd';
 import clsx from 'clsx';
+import { useLanguage } from 'hooks/useLanguage';
 import { ROTATIONS } from '../utils/constants';
 import { LeafSlot } from './LeafSlot';
 
@@ -31,6 +32,8 @@ export function Clover({
   onRotateLeaf,
   mode,
 }: CloverProps) {
+  const { translate } = useLanguage();
+
   const leavesIds = Object.keys(leaves);
   console.log({ mode });
   return (
@@ -49,7 +52,7 @@ export function Clover({
                 <Input
                   onChange={onChangeClue ? (e) => onChangeClue(leafIndex, e.target.value) : undefined}
                   className={`y-clover-rotation--${ROTATIONS[index]} y-clover-input`}
-                  placeholder={'Write here'}
+                  placeholder={translate('Escreva aqui', 'Write here')}
                   disabled={!Boolean(onChangeClue)}
                   value={mode === 'write' ? undefined : clue}
                 />

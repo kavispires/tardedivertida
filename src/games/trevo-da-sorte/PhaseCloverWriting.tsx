@@ -1,3 +1,5 @@
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 // State & Hooks
 import { useIsUserReady } from 'hooks/useIsUserReady';
 import { useLanguage } from 'hooks/useLanguage';
@@ -10,12 +12,9 @@ import { PHASES } from 'utils/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { TDIcon } from 'components/icons/TDIcon';
-
 import { Translate } from 'components/language';
+import { WritingIcon } from 'components/icons/WritingIcon';
 import { StepWriteClues } from './StepWriteClues';
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
 
 function PhaseCloverWriting({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
@@ -31,7 +30,7 @@ function PhaseCloverWriting({ players, state, info }: PhaseProps) {
         <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady, !isUserReady]} players={players}>
           {/* Step 0 */}
           <PhaseAnnouncement
-            icon={<TDIcon />}
+            icon={<WritingIcon />}
             title={translate('Escreva as dicas', 'Write the clues')}
             onClose={goToNextStep}
             currentRound={state?.round?.current}
