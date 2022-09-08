@@ -2,19 +2,19 @@
 import { useIsUserReady } from 'hooks/useIsUserReady';
 import { useLanguage } from 'hooks/useLanguage';
 import { useUser } from 'hooks/useUser';
+import { useOnSubmitBadWordsAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+import { WORST_TO_REMOVE } from './utils/constants';
 // Components
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { TDIcon } from 'components/icons/TDIcon';
 import { RoundAnnouncement } from 'components/round';
 import { useStep } from 'hooks/useStep';
 import { Translate } from 'components/language';
-import { useOnSubmitBadWordsAPIRequest } from './utils/api-requests';
+import { VerifyListIcon } from 'components/icons/VerifyListIcon';
 import { StepSelectWords } from './StepSelectWords';
-import { WORST_TO_REMOVE } from './utils/constants';
 
 function PhaseWordSelection({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
@@ -32,7 +32,7 @@ function PhaseWordSelection({ players, state, info }: PhaseProps) {
 
         {/* Step 1 */}
         <PhaseAnnouncement
-          icon={<TDIcon />}
+          icon={<VerifyListIcon />}
           title={translate('Seleção das Palavras', 'Words Selection')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}

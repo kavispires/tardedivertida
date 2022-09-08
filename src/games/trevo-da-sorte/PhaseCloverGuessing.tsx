@@ -22,6 +22,7 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { StepGuessClover } from './StepGuessClover';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
+import { CloverIcon } from 'components/icons/CloverIcon';
 
 function PhaseCloverGuessing({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
@@ -40,7 +41,7 @@ function PhaseCloverGuessing({ players, state, info }: PhaseProps) {
         <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady, !isUserReady]} players={players}>
           {/* Step 0 */}
           <PhaseAnnouncement
-            icon={<TDIcon />}
+            icon={<CloverIcon />}
             title={translate('Hora de Adivinhar', 'Time to guess')}
             onClose={goToNextStep}
             currentRound={state?.round?.current}
