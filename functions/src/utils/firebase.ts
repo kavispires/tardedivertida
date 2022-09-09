@@ -159,16 +159,25 @@ export function throwException(error: any, action = 'function') {
  * @param actionText
  * @returns
  */
-export const getStateAndStoreReferences = async (
+export const getStateAndStoreReferences = async <
+  A = FirebaseFirestore.DocumentData,
+  O = FirebaseFirestore.DocumentData
+>(
   collectionName: GameName,
   gameId: GameId,
   actionText: string
-): Promise<StateAndStoreReferences> => {
+): Promise<{
+  sessionRef: FirebaseFirestore.CollectionReference;
+  stateDoc: FirebaseFirestore.DocumentSnapshot;
+  storeDoc: FirebaseFirestore.DocumentSnapshot;
+  state: A;
+  store: O;
+}> => {
   const sessionRef = getSessionRef(collectionName, gameId);
   const stateDoc = await getSessionDoc(collectionName, gameId, 'state', actionText);
   const storeDoc = await getSessionDoc(collectionName, gameId, 'store', actionText);
-  const state = stateDoc.data() ?? {};
-  const store = storeDoc.data() ?? {};
+  const state = (stateDoc.data() ?? {}) as A;
+  const store = (storeDoc.data() ?? {}) as O;
 
   return {
     sessionRef,

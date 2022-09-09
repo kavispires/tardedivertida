@@ -93,3 +93,7 @@ export const SUPER_CAMPEONATO_API = {
 export const CRUZA_PALAVRAS_API = {
   submitAction: httpsCallable(functions, 'cruzaPalavrasSubmitAction'),
 };
+
+export const TREVO_DA_SORTE_API = {
+  submitAction: httpsCallable(functions, 'trevoDaSorteSubmitAction'),
+};

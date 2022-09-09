@@ -125,6 +125,7 @@ export const GAME_COLLECTION = {
   VENDAVAL_DE_PALPITE: 'vendaval-de-palpite',
   SUPER_CAMPEONATO: 'super-campeonato',
   CRUZA_PALAVRAS: 'cruza-palavras',
+  TREVO_DA_SORTE: 'trevo-da-sorte',
 };
 
 export const THEME_COLORS = {

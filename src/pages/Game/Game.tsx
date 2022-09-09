@@ -87,6 +87,9 @@ const SessionVendavalDePalpite = lazy(
 const SessionSuperCampeonato = lazy(
   () => import('games/super-campeonato/SessionSuperCampeonato' /* webpackChunkName: "super-campeonato" */)
 );
+const SessionTrevoDaSorte = lazy(
+  () => import('games/trevo-da-sorte/SessionTrevoDaSorte' /* webpackChunkName: "trevo-da-sorte" */)
+);
 
 function Game() {
   const navigate = useNavigate();
@@ -291,6 +294,12 @@ function Game() {
         return (
           <Suspense fallback={<LoadingPage message="" />}>
             <SessionCruzaPalavras gameId={gameId} />
+          </Suspense>
+        );
+      case GAME_COLLECTION.TREVO_DA_SORTE:
+        return (
+          <Suspense fallback={<LoadingPage message="" />}>
+            <SessionTrevoDaSorte gameId={gameId} />
           </Suspense>
         );
       default:

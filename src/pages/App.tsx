@@ -22,6 +22,7 @@ const Hub = lazy(() => import('pages/Hub/Hub' /* webpackChunkName: "page-hub" */
 const Game = lazy(() => import('pages/Game/Game' /* webpackChunkName: "page-game" */));
 const Showcase = lazy(() => import('pages/Showcase/Showcase' /* webpackChunkName: "page-showcase" */));
 const DevIcons = lazy(() => import('pages/Dev/Icons' /* webpackChunkName: "page-dev-icons" */));
+const DevResources = lazy(() => import('pages/Dev/Resources' /* webpackChunkName: "page-dev-resources" */));
 const DevTestingZone = lazy(
   () => import('pages/Dev/TestingZone' /* webpackChunkName: "page-dev-testing-zone" */)
 );
@@ -49,6 +50,11 @@ const LazyDevAvatars = () => (
 const LazyDevIcons = () => (
   <Suspense fallback={<LoadingPage message={''} />}>
     <DevIcons />
+  </Suspense>
+);
+const LazyDevResources = () => (
+  <Suspense fallback={<LoadingPage message={''} />}>
+    <DevResources />
   </Suspense>
 );
 const LazyDevTestingZone = () => (
@@ -106,6 +112,10 @@ function App() {
             <Route
               path="/dev/icons"
               element={isAuthenticated ? <LazyDevIcons /> : <Navigate to="/login" />}
+            />
+            <Route
+              path="/dev/resources"
+              element={isAuthenticated ? <LazyDevResources /> : <Navigate to="/login" />}
             />
             <Route
               path="/dev/testing-zone"

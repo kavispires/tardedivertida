@@ -3,9 +3,7 @@ export type ArteRuimGameOptions = {
   shortGame: boolean;
 };
 
-export type CardsByLevel = {
-  [key: string]: ArteRuimCard[];
-};
+export type CardsByLevel = Record<string, ArteRuimCard[]>;
 
 export type ResourceData = {
   allCards: Record<CardId, ArteRuimCard>;
@@ -21,8 +19,8 @@ export interface ArteRuimDrawing extends ArteRuimCard {
 }
 
 export interface ArteRuimStore extends DefaultStore {
-  deck: Record<string, ArteRuimCard>;
-  currentCards: string[];
+  deck: ArteRuimCard[];
+  currentCards: ArteRuimCard[] | ArteRuimDrawing[];
   pastDrawings: ArteRuimDrawing[];
 }
 
@@ -34,6 +32,13 @@ export interface ArteRuimState extends DefaultState {
   winners?: any;
   [key: string]: any;
 }
+
+export interface ArteRuimPlayer extends Player {
+  votes: any;
+}
+
+export type ArteRuimPlayers = Record<PlayerId, ArteRuimPlayer>;
+
 export interface ArteRuimInitialState extends InitialState {
   store: ArteRuimStore;
   state: ArteRuimState;
@@ -43,5 +48,6 @@ export interface ArteRuimSubmitAction extends Payload {
   action: 'SUBMIT_DRAWING' | 'SUBMIT_VOTING';
 }
 
-export type FirebaseStateData = FirebaseFirestore.DocumentData | ArteRuimState;
-export type FirebaseStoreData = FirebaseFirestore.DocumentData | ArteRuimStore;
+export type FirebaseStateData = FirebaseFirestore.DocumentData & ArteRuimState;
+export type FirebaseStoreData = FirebaseFirestore.DocumentData & ArteRuimStore;
+export type FirebasePlayersData = FirebaseFirestore.DocumentData & ArteRuimPlayers;
