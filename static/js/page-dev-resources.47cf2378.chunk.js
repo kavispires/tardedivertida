@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunktardedivertida=self.webpackChunktardedivertida||[]).push([[8801],{65840:function(e,t,s){s.r(t);var a=s(66509),r=s(25671),d=s(20107),n=s(80184);t.default=function(){return(0,a.Z)("Resources | Dev | Tarde Divertida"),(0,n.jsxs)(r.Z,{className:"dev-layout",children:[(0,n.jsx)(d.B,{title:"Resources"}),(0,n.jsx)(r.Z.Content,{className:"dev-content",children:"TBD"})]})}}}]);
+//# sourceMappingURL=page-dev-resources.47cf2378.chunk.js.map
