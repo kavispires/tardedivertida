@@ -33,7 +33,6 @@ export function Clover({
 }: CloverProps) {
   const { translate } = useLanguage();
 
-  console.log({ mode });
   return (
     <div className="container center">
       <div className="y-clover" style={{ transform: `rotate(${rotation}deg)` }}>

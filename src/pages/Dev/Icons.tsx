@@ -32,7 +32,6 @@ function IconsPage() {
     if (state.value) {
       message.info(`Copied to clipboard: ${state.value}`);
     }
-    console.log(state);
   }, [state]);
 
   const iconEntries = Object.entries(icons);

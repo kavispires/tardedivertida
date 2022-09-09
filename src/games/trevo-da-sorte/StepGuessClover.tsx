@@ -37,9 +37,6 @@ export function StepGuessClover({ clover, leaves, onSubmitGuess, activeCloverPla
     activeSlotId,
   } = useCloverState('guess', clover, leaves);
 
-  console.log({ clover });
-  console.log({ leaves });
-
   const onSubmit = () => {
     // onSubmitGuess({ clues });
   };

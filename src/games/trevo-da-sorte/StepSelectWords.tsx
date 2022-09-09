@@ -27,8 +27,6 @@ export function StepSelectWords({ hand, onSubmitBadWords }: StepSelectWordsProps
 
   const [selectedCards, updateSelectedCard] = useBooleanDictionary({});
 
-  console.log(selectedCards);
-
   const onSubmit = () => {
     onSubmitBadWords({ cardsIds: Object.keys(selectedCards) });
   };
