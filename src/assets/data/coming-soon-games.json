@@ -1,31 +1,65 @@
 {
   "F": {
     "gameCode": "F",
-    "gameName": "desenho-rapidao",
+    "gameName": "naufragos",
     "version": "none",
     "title": {
-      "pt": "Desenho Rapidão",
-      "en": "Fast Draw"
+      "pt": "Náufragos",
+      "en": "Castaways"
     },
     "popularName": {
-      "pt": "",
+      "pt": "Do barco",
       "en": ""
     },
-    "basedOn": "hsaD eldooD",
+    "basedOn": "efilstaoB",
     "summary": {
-      "pt": "Uma palavra secreta, uma corrida, vários desenhos! Quem consegue desenhar o mais rápido possível?",
-      "en": "One secret word, a race, many drawings! Who can draw as fast as possible?"
+      "pt": "Estamos em barcos salva-vidas tentando alcançar a praia, mas buracos não param de surgir... quem sobreviverá?",
+      "en": "We're in lifeboats trying to reach the shore, but leaks keep happening... who's gonna survive?"
     },
     "rules": {
       "pt": ["TBD"],
       "en": ["TBD"]
     },
     "playerCount": {
-      "recommended": [4, 5, 6],
+      "best": 6,
+      "recommended": [5, 6],
       "min": 4,
-      "max": 10
+      "max": 6
     },
-    "tags": ["competitive", "turn-based", "drawing", "guessing", "timed"],
+    "tags": ["competitive", "voting"],
+    "available": {
+      "pt": false,
+      "en": false
+    }
+  },
+  "Z": {
+    "gameCode": "Z",
+    "gameName": "caminhos-magicos",
+    "version": "none",
+    "title": {
+      "pt": "Caminhos Mágicos",
+      "en": "Magic Pathways"
+    },
+    "popularName": {
+      "pt": "Do labirinto de palavras",
+      "en": ""
+    },
+    "basedOn": "shtaP citsyM",
+    "summary": {
+      "pt": "Jogadores tem que descobrir qual caminho devem seguir num labirinto de palavras usando adjetivos e lógica",
+      "en": "Players must find the right path in a word maze using adjectives and logic"
+    },
+    "rules": {
+      "pt": ["TBD"],
+      "en": ["TBD"]
+    },
+    "playerCount": {
+      "best": 4,
+      "recommended": [4, 5, 6],
+      "min": 2,
+      "max": 8
+    },
+    "tags": ["competitive", "guessing", "same-time", "pairing"],
     "available": {
       "pt": false,
       "en": false
@@ -34,7 +68,7 @@
   "K": {
     "gameCode": "K",
     "gameName": "palheta-cores",
-    "version": "none",
+    "version": "decommission",
     "title": {
       "pt": "Palheta de Cores",
       "en": "Color Palette"
@@ -63,10 +97,10 @@
       "en": false
     }
   },
-  "Z": {
+  "ZZ": {
     "gameCode": "Z",
     "gameName": "quem-sou-eu",
-    "version": "none",
+    "version": "cancelled",
     "title": {
       "pt": "Quem Sou Eu?",
       "en": "Who Am I?"
@@ -95,10 +129,42 @@
       "en": false
     }
   },
+  "FF": {
+    "gameCode": "FF",
+    "gameName": "desenho-rapidao",
+    "version": "cancelled",
+    "title": {
+      "pt": "Desenho Rapidão",
+      "en": "Fast Draw"
+    },
+    "popularName": {
+      "pt": "",
+      "en": ""
+    },
+    "basedOn": "hsaD eldooD",
+    "summary": {
+      "pt": "Uma palavra secreta, uma corrida, vários desenhos! Quem consegue desenhar o mais rápido possível?",
+      "en": "One secret word, a race, many drawings! Who can draw as fast as possible?"
+    },
+    "rules": {
+      "pt": ["TBD"],
+      "en": ["TBD"]
+    },
+    "playerCount": {
+      "recommended": [4, 5, 6],
+      "min": 4,
+      "max": 10
+    },
+    "tags": ["competitive", "turn-based", "drawing", "guessing", "timed"],
+    "available": {
+      "pt": false,
+      "en": false
+    }
+  },
   "YY": {
     "gameCode": "YY",
     "gameName": "te-conheco",
-    "version": "none",
+    "version": "cancelled",
     "title": {
       "pt": "Te conheço?",
       "en": "You don't know me"

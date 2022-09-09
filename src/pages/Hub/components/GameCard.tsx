@@ -87,15 +87,15 @@ export function GameCard({ game }: GameCardProps) {
             `For ${game.playerCount.min}-${game.playerCount.max} players`
           )}
         />
-        {Boolean(game.playerCount.best) && (
-          <Card.Meta
-            className="game-card__player-count"
-            description={translate(
-              `Melhor com ${game.playerCount.best} jogadores`,
-              `Best wih ${game.playerCount.best} players`
-            )}
-          />
-        )}
+
+        <Card.Meta
+          className="game-card__player-count"
+          description={translate(
+            `Melhor com ${game.playerCount.best || '?'} jogadores`,
+            `Best wih ${game.playerCount.best || '?'} players`
+          )}
+        />
+
         <Card.Meta
           className="game-card__player-count game-card__margin-bottom"
           description={translate(
