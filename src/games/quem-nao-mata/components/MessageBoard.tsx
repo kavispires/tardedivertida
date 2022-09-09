@@ -46,8 +46,6 @@ function PopOverMessageForm({ onSubmitMessage, players }: PopOverMessageFormProp
   const { translate } = useLanguage();
   const [form] = Form.useForm();
 
-  console.log({ form });
-
   return (
     <Form
       form={form}

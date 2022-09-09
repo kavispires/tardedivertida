@@ -10,7 +10,7 @@ export const GALERIA_DE_SONHOS_PHASES = {
 };
 
 export const PLAYER_COUNTS = {
-  MIN: 3,
+  MIN: 2,
   MAX: 10,
 };
 

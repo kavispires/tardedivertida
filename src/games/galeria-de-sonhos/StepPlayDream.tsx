@@ -7,7 +7,7 @@ import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
-import { CardPlayRules } from './components/RulesBlobs';
+import { BotsRules, CardPlayRules } from './components/RulesBlobs';
 import { PlayTable } from './components/PlayTable';
 import { messageContent } from 'components/pop-up';
 import { Step } from 'components/steps';
@@ -18,6 +18,8 @@ import { AvatarName } from 'components/avatars';
 import { PopoverRule } from 'components/rules';
 import { TurnOrder } from 'components/players';
 import { PlayersDreamsCount } from './components/PlayersDreamsCount';
+import { FixedMenuButton } from 'components/buttons';
+import { RobotOutlined } from '@ant-design/icons';
 
 type StepDreamsSelectionProps = {
   table: GImageCard[];
@@ -117,6 +119,17 @@ export function StepPlayDream({
       </Instruction>
 
       <PopoverRule content={<CardPlayRules />} />
+
+      <FixedMenuButton
+        type="popover"
+        position={1}
+        icon={<RobotOutlined />}
+        content={<BotsRules />}
+        label={<Translate pt=" Bots" en=" Bots" />}
+        buttonProps={{
+          type: 'default',
+        }}
+      />
 
       <PlayTable
         table={table}

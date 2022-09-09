@@ -22,6 +22,7 @@ import * as ueSoIssoEngine from './engine/ue-so-isso';
 import * as vendavalDePalpiteEngine from './engine/vendaval-de-palpite';
 import * as superCampeonatoEngine from './engine/super-campeonato';
 import * as cruzaPalavrasEngine from './engine/cruza-palavras';
+import * as trevoDaSorteEngine from './engine/trevo-da-sorte';
 
 admin.initializeApp();
 
@@ -112,3 +113,5 @@ exports.vendavalDePalpiteSubmitAction = functions.https.onCall(vendavalDePalpite
 exports.superCampeonatoSubmitAction = functions.https.onCall(superCampeonatoEngine.submitAction);
 
 exports.cruzaPalavrasSubmitAction = functions.https.onCall(cruzaPalavrasEngine.submitAction);
+
+exports.trevoDaSorteSubmitAction = functions.https.onCall(trevoDaSorteEngine.submitAction);

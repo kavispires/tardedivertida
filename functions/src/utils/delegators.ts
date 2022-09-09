@@ -19,6 +19,7 @@ import * as ueSoIssoEngine from '../engine/ue-so-isso';
 import * as vendavalDePalpiteEngine from '../engine/vendaval-de-palpite';
 import * as superCampeonatoEngine from '../engine/super-campeonato';
 import * as cruzaPalavrasEngine from '../engine/cruza-palavras';
+import * as trevoDaSorteEngine from '../engine/trevo-da-sorte';
 
 /**
  * Get collection name by single letter game code
@@ -67,6 +68,9 @@ export const getCollectionNameByGameCode = (gameCode: GameCode): string | null =
       return GAME_COLLECTIONS.SUPER_CAMPEONATO;
     case GAME_CODES.X:
       return GAME_COLLECTIONS.CRUZA_PALAVRAS;
+    case GAME_CODES.Y:
+      return GAME_COLLECTIONS.TREVO_DA_SORTE;
+
     default:
       return null;
   }
@@ -119,6 +123,8 @@ export const getCollectionKeyByGameCode = (gameCode: GameCode): string | null =>
       return GAME_KEYS.SUPER_CAMPEONATO;
     case GAME_CODES.X:
       return GAME_KEYS.CRUZA_PALAVRAS;
+    case GAME_CODES.Y:
+      return GAME_KEYS.TREVO_DA_SORTE;
     default:
       return null;
   }
@@ -179,6 +185,8 @@ export const getEngine = (collectionName: string): Engine => {
       return superCampeonatoEngine;
     case GAME_COLLECTIONS.CRUZA_PALAVRAS:
       return cruzaPalavrasEngine;
+    case GAME_COLLECTIONS.TREVO_DA_SORTE:
+      return trevoDaSorteEngine;
     default:
       throw new Error(`Collection '${collectionName}' initial state does not exist`);
   }

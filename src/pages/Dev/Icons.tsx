@@ -1,9 +1,11 @@
+import { useCopyToClipboard, useTitle } from 'react-use';
 // Ant Design Resources
-import { Layout } from 'antd';
+import { Layout, message } from 'antd';
 // Components
 import * as icons from 'components/icons/collection';
-import { useTitle } from 'react-use';
 import { DevHeader } from './DevHeader';
+import { TransparentButton } from 'components/buttons';
+import { useEffect } from 'react';
 
 function IconsPage() {
   useTitle('Icons | Dev | Tarde Divertida');
@@ -23,16 +25,27 @@ function IconsPage() {
     justifyContent: 'space-between',
     padding: '0.5rem',
   };
+
+  const [state, copyToClipboard] = useCopyToClipboard();
+
+  useEffect(() => {
+    if (state.value) {
+      message.info(`Copied to clipboard: ${state.value}`);
+    }
+  }, [state]);
+
   const iconEntries = Object.entries(icons);
   return (
-    <Layout style={{ background: 'none' }}>
+    <Layout className="dev-layout">
       <DevHeader title="Icons" subTitle={`(${iconEntries.length})`} />
-      <Layout.Content style={{ padding: '1rem', width: '100%' }}>
+      <Layout.Content className="dev-content">
         <ul style={styles}>
           {iconEntries.map(([key, Icon], index) => (
             <li key={key} style={stylesLi}>
-              <Icon style={{ width: '90px' }} />
-              <div style={{ width: '90px', overflow: 'hidden', textAlign: 'center' }}>{key}</div>
+              <TransparentButton onClick={() => copyToClipboard(`<${key} />`)}>
+                <Icon style={{ width: '90px' }} />
+                <div style={{ width: '90px', overflow: 'hidden', textAlign: 'center' }}>{key}</div>
+              </TransparentButton>
             </li>
           ))}
         </ul>

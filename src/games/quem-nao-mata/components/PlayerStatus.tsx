@@ -11,12 +11,6 @@ type PlayerStatusProps = {
 };
 
 export function PlayerStatus({ player, side }: PlayerStatusProps) {
-  // if (player.target) {
-  //   console.log(player);
-  // }
-  if (player.id === '_bobak') {
-    console.log('IN', player);
-  }
   return (
     <div className={clsx('q-player-status', `q-player-status--${side}`)}>
       <AvatarCard player={player} withName size="small" />

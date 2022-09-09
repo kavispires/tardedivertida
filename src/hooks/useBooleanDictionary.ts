@@ -1,7 +1,11 @@
 import { useState } from 'react';
 
 export function useBooleanDictionary(
+  /**
+   * The initial state, usually an empty object
+   */
   initialState: BooleanDictionary,
+  // Confirm if entry can be added to the dictionary
   validation?: BooleanFunction
 ): [BooleanDictionary, GenericFunction] {
   const [dict, setDict] = useState(initialState);

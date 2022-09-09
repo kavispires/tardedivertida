@@ -79,10 +79,11 @@ export const getRoundWords = (wordsDeck: TextCard[]): [TextCard[], TextCard[]] =
 };
 
 export const buildRanking = (players: Players, playerInNightmareId?: PlayerId) => {
+  const listOfPlayers = utils.players.getListOfPlayers(players);
   // Gained points: super sparks, sparks, nightmare
-  const newScores = utils.helpers.buildNewScoreObject(players, [0, 0, 0]);
+  const newScores = utils.helpers.buildNewScoreObject(listOfPlayers, [0, 0, 0]);
 
-  Object.values(players).forEach((player) => {
+  listOfPlayers.forEach((player) => {
     let scoringCardsCount = 0;
 
     const cards: PlayerCard[] = Object.values(player.cards);
@@ -136,4 +137,84 @@ export const getMostVotedCards = (table: ImageCard[], word: TextCard): ImageCard
   return table
     .filter((entry) => entry?.matchedPlayers?.length === mostNumberOfMatches)
     .map((entry) => ({ ...entry, text: word.text }));
+};
+
+/**
+ * Simulate player cards for bots based on other players choices:
+ * - 1 card with the most matches (between all players)
+ * - 1 card for each player
+ * @param players
+ */
+export const simulateBotCards = (players: Players) => {
+  const playersCount = utils.players.getListOfPlayers(players).length;
+  const cardMatches: Record<CardId, PlayerId[]> = {};
+
+  utils.players.getListOfPlayers(players).forEach((player) => {
+    Object.keys(player.cards).forEach((cardId) => {
+      if (cardMatches[cardId] === undefined) {
+        cardMatches[cardId] = [];
+      }
+      cardMatches[cardId].push(player.id);
+    });
+  });
+
+  let mostMatchCount = 1;
+  let mostMatchedCards: CardId[] = [];
+  const singleMatchedCards: Record<PlayerId, CardId> = {};
+  Object.keys(cardMatches).forEach((cardId) => {
+    const entry = cardMatches[cardId];
+    const count = entry.length;
+    // One single card per player
+    if (count === 1 && singleMatchedCards[entry[0]] === undefined) {
+      singleMatchedCards[entry[0]] = cardId;
+    }
+
+    if (count > mostMatchCount) {
+      mostMatchCount = count;
+      mostMatchedCards = [cardId];
+    } else if (count === mostMatchCount) {
+      mostMatchedCards.push(cardId);
+    }
+  });
+
+  const bots = utils.players.getListOfBots(players);
+
+  // METHOD BOT A: matches with one card only selected by each player (N)
+  const singleMatchedCardIds = Object.values(singleMatchedCards);
+  if (bots[0] && singleMatchedCardIds.length > 1) {
+    const bot = bots[0];
+
+    bot.cards = utils.game
+      .getRandomItems(singleMatchedCardIds, Math.min(singleMatchedCardIds.length, playersCount))
+      .reduce((acc: Record<CardId, PlayerCard>, cardId: CardId) => {
+        const entry: PlayerCard = {
+          cardId,
+          used: false,
+          matchedPlayers: [],
+          score: 0,
+        };
+
+        acc[cardId] = entry;
+
+        return acc;
+      }, {});
+  }
+
+  // METHOD BOT B: matches with the most matched cards (?)
+  if (bots[1] && mostMatchedCards.length >= 1) {
+    const bot = bots[1];
+
+    bot.cards = mostMatchedCards.reduce((acc: Record<CardId, PlayerCard>, cardId: CardId) => {
+      const entry: PlayerCard = {
+        cardId,
+        used: false,
+        matchedPlayers: [],
+        score: 0,
+      };
+
+      acc[cardId] = entry;
+
+      return acc;
+    }, {});
+  }
 };

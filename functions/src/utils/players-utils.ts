@@ -3,6 +3,7 @@ import { AVATAR_IDS } from './constants';
 import { throwException } from './firebase';
 // Utils
 import { getRandomUniqueItem, shuffle } from './game-utils';
+import { deepCopy } from './helpers';
 
 /**
  * Generates a player id based of their name
@@ -85,13 +86,19 @@ export const unReadyPlayer = (players: Players, playerId: PlayerId): Players => 
 /**
  * Set all players as not ready
  * @param players
- * @param butThisOne
+ * @param butThisOne - playerId or list of player ids to be ignored
  * @returns
  */
-export const unReadyPlayers = (players: Players, butThisOne?: PlayerId, butThose?: PlayerId[]): Players => {
-  const excludeList: PlayerId[] = butThisOne ? [butThisOne] : butThose ? butThose : [];
+export const unReadyPlayers = (players: Players, butThisOne?: PlayerId | PlayerId[]): Players => {
+  const excludeList: PlayerId[] = butThisOne
+    ? typeof butThisOne === 'string'
+      ? [butThisOne]
+      : butThisOne
+    : [];
   for (const playerKey in players) {
-    players[playerKey].ready = excludeList.includes(playerKey);
+    if (!players[playerKey].bot) {
+      players[playerKey].ready = excludeList.includes(playerKey);
+    }
   }
   return players;
 };
@@ -135,6 +142,7 @@ export const removePropertiesFromPlayers = (players: Players, properties: string
  */
 export const resetPlayers = (players: Players): Players => {
   for (const playerId in players) {
+    const isBot = Boolean(players[playerId].bot);
     players[playerId] = {
       id: playerId,
       avatarId: players[playerId].avatarId,
@@ -143,6 +151,10 @@ export const resetPlayers = (players: Players): Players => {
       score: 0,
       updatedAt: Date.now(),
     };
+
+    if (isBot) {
+      players[playerId].bot = true;
+    }
   }
   return players;
 };
@@ -268,4 +280,66 @@ export const dealItemsToPlayers = (
   }
 
   return players;
+};
+
+/**
+ * Adds bots to the players object
+ * @param players
+ * @param quantity 1-5
+ * @returns
+ */
+export const addBots = (
+  players: Players,
+  quantity: 1 | 2 | 3 | 4 | 5,
+  defaultProperties: Record<string, any> = {}
+) => {
+  const names = ['A-bot', 'B-bop', 'C-am', 'D-Doo', 'E-max'];
+  const avatarIds = ['A', 'B', 'C', 'D', 'E'];
+  const bots: Player[] = new Array(quantity).fill(0).map((n, i) => ({
+    ...deepCopy({
+      ...createPlayer(generatePlayerId(names[n + i]), names[i], avatarIds[i]),
+      ...defaultProperties,
+      bot: true,
+      ready: true,
+    }),
+  }));
+
+  bots.forEach((bot) => {
+    players[bot.id] = bot;
+  });
+
+  return bots;
+};
+
+/**
+ * Get list of non-bot players
+ * @param players
+ * @param ignoreBots
+ * @returns
+ */
+export const getListOfPlayers = (players: Players, ignoreBots = true): Player[] => {
+  if (!ignoreBots) return Object.values(players);
+
+  return Object.values(players).filter((player) => !player.bot);
+};
+
+/**
+ * Get list of bot players
+ * @param players
+ * @returns
+ */
+export const getListOfBots = (players: Players): Player[] => {
+  return Object.values(players).filter((player) => player.bot);
+};
+
+/**
+ * When bots shouldn't score, it clears their score
+ * @param players
+ */
+export const neutralizeBotScores = (players: Players) => {
+  Object.values(players).forEach((player) => {
+    if (player.bot) {
+      player.score = 0;
+    }
+  });
 };
