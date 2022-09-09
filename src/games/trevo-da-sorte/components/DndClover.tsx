@@ -1,8 +1,6 @@
 import { Avatar, Space } from 'antd';
 import { Instruction } from 'components/text';
 import { orderBy } from 'lodash';
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
 import { useCloverState } from '../utils/useCloverState';
 import { Clover } from './Clover';
 import { Leaf } from './Leaf';

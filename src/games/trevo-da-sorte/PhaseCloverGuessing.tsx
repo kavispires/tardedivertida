@@ -16,8 +16,7 @@ import { Translate } from 'components/language';
 import { StepWriteClues } from './StepWriteClues';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { StepGuessClover } from './StepGuessClover';
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
+
 import { CloverIcon } from 'components/icons/CloverIcon';
 import { ViewOr } from 'components/views';
 import { StepWaitClover } from './StepWaitClover';
