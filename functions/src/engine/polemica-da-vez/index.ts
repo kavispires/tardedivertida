@@ -39,7 +39,6 @@ export const getInitialState = (
     initialPhase: POLEMICA_DA_VEZ_PHASES.LOBBY,
     totalRounds: MAX_ROUNDS,
     store: {
-      language,
       pastTopics: [],
       gameOrder: [],
     },

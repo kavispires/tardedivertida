@@ -39,7 +39,6 @@ export const getInitialState = (
     initialPhase: CRUZA_PALAVRAS_PHASES.LOBBY,
     totalRounds: TOTAL_ROUNDS,
     store: {
-      language,
       deck: [],
     },
     options,

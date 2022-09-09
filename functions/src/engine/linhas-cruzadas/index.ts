@@ -39,9 +39,7 @@ export const getInitialState = (
     playerCounts: PLAYER_COUNTS,
     initialPhase: LINHAS_CRUZADAS_PHASES.LOBBY,
     totalRounds: TOTAL_ROUNDS,
-    store: {
-      language,
-    },
+    store: {},
     options,
   });
 };

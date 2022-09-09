@@ -42,7 +42,6 @@ export const getInitialState = (gameId: GameId, uid: string, language: string): 
     initialPhase: UE_SO_ISSO_PHASES.LOBBY,
     totalRounds: 0,
     store: {
-      language,
       deck: [],
       turnOrder: [],
       gameOrder: [],

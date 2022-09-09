@@ -33,9 +33,7 @@ export const getInitialState = (gameId: GameId, uid: string, language: Language)
     playerCounts: PLAYER_COUNTS,
     initialPhase: QUEM_NAO_MATA_PHASES.LOBBY,
     totalRounds: MAX_ROUNDS,
-    store: {
-      language,
-    },
+    store: {},
   });
 };
 

@@ -38,7 +38,6 @@ export const getInitialState = (
     initialPhase: DETETIVES_IMAGINATIVOS_PHASES.LOBBY,
     totalRounds: 0,
     store: {
-      language,
       usedCards: [],
       gameOrder: [],
       turnOrder: [],

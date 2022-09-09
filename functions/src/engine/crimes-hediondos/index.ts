@@ -39,7 +39,6 @@ export const getInitialState = (
     initialPhase: CRIMES_HEDIONDOS_PHASES.LOBBY,
     totalRounds: TOTAL_ROUNDS,
     store: {
-      language,
       scenes: [],
     },
   });

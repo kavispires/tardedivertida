@@ -50,9 +50,7 @@ export const getInitialState = (
     playerCounts: PLAYER_COUNTS,
     initialPhase: TREVO_DA_SORTE_PHASES.LOBBY,
     totalRounds: 0,
-    store: {
-      language,
-    },
+    store: {},
     options,
   });
 };
@@ -138,8 +136,8 @@ export const submitAction = async (data: TrevoDaSorteSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(data, ['clues'], 'submit clues');
       return handleSubmitClues(collectionName, gameId, playerId, data.clues);
     case 'SUBMIT_GUESS':
-      utils.firebase.validateSubmitActionProperties(data, ['guess'], 'submit guess');
-      return handleSubmitGuess(collectionName, gameId, playerId, data.guess);
+      utils.firebase.validateSubmitActionProperties(data, ['guess', 'activeCloverId'], 'submit guess');
+      return handleSubmitGuess(collectionName, gameId, playerId, data.guess, data.activeCloverId);
     case 'UPDATE_CLOVER_STATE':
       utils.firebase.validateSubmitActionProperties(data, ['change'], 'update clover state');
       return handleUpdateCloverState(collectionName, gameId, playerId, data.change);

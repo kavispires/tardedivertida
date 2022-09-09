@@ -43,7 +43,6 @@ export const getInitialState = (
     initialPhase: CONTADORES_HISTORIAS_PHASES.LOBBY,
     totalRounds: MAX_ROUNDS,
     store: {
-      language,
       gameOrder: [],
       tableDeck: [],
       deckIndex: -1,

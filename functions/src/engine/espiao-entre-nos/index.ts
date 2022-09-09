@@ -39,7 +39,6 @@ export const getInitialState = (
     initialPhase: ESPIAO_ENTRE_NOS_PHASES.LOBBY,
     totalRounds: 0,
     store: {
-      language,
       usedCards: [],
       gameOrder: [],
       turnOrder: [],

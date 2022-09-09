@@ -40,7 +40,6 @@ export const getInitialState = (
     initialPhase: MENTE_COLETIVA_PHASES.LOBBY,
     totalRounds: MAX_ROUNDS,
     store: {
-      language,
       deck: [],
       gameOrder: [],
       pastQuestions: [],

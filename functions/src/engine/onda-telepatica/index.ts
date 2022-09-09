@@ -39,7 +39,6 @@ export const getInitialState = (
     initialPhase: ONDA_TELEPATICA_PHASES.LOBBY,
     totalRounds: MAX_ROUNDS,
     store: {
-      language,
       gameOrder: [],
       deck: [],
       deckIndex: -1,
