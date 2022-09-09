@@ -36,9 +36,7 @@ export const getInitialState = (
     playerCounts: PLAYER_COUNTS,
     initialPhase: SONHOS_PESADELOS_PHASES.LOBBY,
     totalRounds: TOTAL_ROUNDS,
-    store: {
-      language,
-    },
+    store: {},
   });
 };
 

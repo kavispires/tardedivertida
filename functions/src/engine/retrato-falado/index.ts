@@ -38,7 +38,6 @@ export const getInitialState = (
     initialPhase: RETRATO_FALADO_PHASES.LOBBY,
     totalRounds: MAX_ROUNDS,
     store: {
-      language,
       deck: [],
       pastSketches: [],
     },

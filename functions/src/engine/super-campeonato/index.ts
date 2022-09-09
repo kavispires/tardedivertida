@@ -50,7 +50,6 @@ export const getInitialState = (
     initialPhase: SUPER_CAMPEONATO_PHASES.LOBBY,
     totalRounds: TOTAL_ROUNDS,
     store: {
-      language,
       pastTopics: [],
       gameOrder: [],
     },

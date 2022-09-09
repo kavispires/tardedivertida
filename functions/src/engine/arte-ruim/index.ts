@@ -45,7 +45,6 @@ export const getInitialState = (
     initialPhase: ARTE_RUIM_PHASES.LOBBY,
     totalRounds: MAX_ROUNDS,
     store: {
-      language,
       deck: [],
       usedCards: [],
       currentCards: [],

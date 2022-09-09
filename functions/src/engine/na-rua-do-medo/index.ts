@@ -38,7 +38,6 @@ export const getInitialState = (
     initialPhase: NA_RUA_DO_MEDO_PHASES.LOBBY,
     totalRounds: MAX_ROUNDS,
     store: {
-      language,
       horrorDeck: [],
       jackpotDeck: [],
       candyDeck: [],
