@@ -101,7 +101,6 @@ export const buildGuesses = (players: Players) => {
 export const buildRanking = (players: Players) => {
   // Gained Points: [First try, second try, granted by other players]
   const newScores = utils.helpers.buildNewScoreObject(players, [0, 0, 0]);
-  console.log(newScores);
 
   const listOfPlayers = utils.players.getListOfPlayers(players);
   listOfPlayers.forEach((player) => {

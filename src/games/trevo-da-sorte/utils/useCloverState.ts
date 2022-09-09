@@ -8,7 +8,6 @@ export function useCloverState(
   leaves: Leaves,
   updateCloverState?: GenericFunction
 ) {
-  // console.log({ mode, clover, leaves });
   const [clues, setClues] = useState<string[]>(['', '', '', '']);
   const [rotation, setRotation] = useState<number>(clover.rotation);
   const [guesses, setGuesses] = useState<YGuesses>({ A: null, B: null, C: null, D: null });
@@ -167,8 +166,6 @@ export function useCloverState(
   };
 
   const isCluesComplete = clues.every((clue) => clue.trim());
-  console.log({ activeLeafId, activeSlotId });
-  console.log({ guesses });
 
   return {
     mode,
