@@ -6,18 +6,17 @@ import { ROTATIONS } from '../utils/constants';
 import { LeafSlot } from './LeafSlot';
 
 type CloverProps = {
-  // mode: CloverMode;
   // clover: Clover;
   mode: CloverMode;
   leaves: Leaves;
   clues: string[];
+  onRotateClover: (direction: number) => void;
   rotation: number;
   onChangeClue?: (targetIndex: LeafIndex, value: string) => void;
   guesses: YGuesses;
   allowLeafRotation: boolean;
-  onRotateClover: (direction: number) => void;
   onDrop?: GenericFunction;
-  onRotateLeaf?: (id: LeafId) => void;
+  onRotateLeaf?: (e: any, id: LeafId) => void;
 };
 
 export function Clover({
@@ -34,7 +33,6 @@ export function Clover({
 }: CloverProps) {
   const { translate } = useLanguage();
 
-  const leavesIds = Object.keys(leaves);
   console.log({ mode });
   return (
     <div className="container center">
@@ -79,8 +77,6 @@ export function Clover({
             leaf={guess ? leaves[guess.leafId] : undefined}
             allowLeafRotation={allowLeafRotation}
             position={leafPosKey as LeafPosition}
-            leavesIds={leavesIds}
-            onDrop={onDrop}
             onRotateLeaf={onRotateLeaf}
           />
         ))}

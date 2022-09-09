@@ -37,7 +37,7 @@ interface LeafGuess {
 
 type YGuesses = Record<LeafPosition, LeafGuess | null>;
 
-type CloverMode = 'write' | 'guess' | 'result';
+type CloverMode = 'write' | 'guess' | 'result' | 'wait';
 
 interface Clover {
   clues?: string[];

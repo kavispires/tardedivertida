@@ -230,7 +230,7 @@ interface NewScore {
   newScore: number;
 }
 
-type NewScores = Record<string, NewScore>;
+type NewScores = Record<PlayerId, NewScore>;
 
 interface RankingEntry {
   playerId: PlayerId;

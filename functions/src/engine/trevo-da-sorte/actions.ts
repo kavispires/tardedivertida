@@ -65,7 +65,8 @@ export const handleSubmitGuess = async (
   collectionName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  guess: any
+  guess: any,
+  activeCloverId: PlayerId
 ) => {
   return await utils.firebase.updatePlayer({
     collectionName,
@@ -73,7 +74,7 @@ export const handleSubmitGuess = async (
     playerId,
     actionText: 'submit guess',
     shouldReady: true,
-    change: { guess },
+    change: { [`guesses.${activeCloverId}`]: guess },
     nextPhaseFunction: getNextPhase,
   });
 };

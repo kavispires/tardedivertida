@@ -5,7 +5,7 @@ import { CARDS_PER_PLAYER, TREVO_DA_SORTE_PHASES } from './constants';
 
 // Helpers
 import * as utils from '../../utils';
-import { buildClovers, buildLeaves } from './helpers';
+import { buildClovers, buildGuesses, buildLeaves, buildRanking } from './helpers';
 // Internal
 
 /**
@@ -100,11 +100,13 @@ export const prepareCloverGuessingPhase = async (
     ? utils.players.getNextPlayer(gameOrder, state.activeCloverId)
     : gameOrder[0];
 
-  const controllerId = state.controllerId
-    ? utils.players.getNextPlayer(gameOrder, state.controllerId)
-    : gameOrder[1];
+  utils.players.unReadyPlayers(players, activeCloverId);
 
-  utils.players.readyPlayers(players, controllerId);
+  if (players[activeCloverId].guesses === undefined) {
+    buildGuesses(players);
+  }
+
+  // TODO: Save clues to store
 
   // Save
   return {
@@ -113,7 +115,6 @@ export const prepareCloverGuessingPhase = async (
       state: {
         phase: TREVO_DA_SORTE_PHASES.CLOVER_GUESSING,
         activeCloverId,
-        controllerId,
         clover: players[activeCloverId].clover,
         leaves: players[activeCloverId].leaves,
       },
@@ -129,6 +130,7 @@ export const prepareResultsPhase = async (
   utils.players.readyPlayers(players);
 
   // Calculate score
+  const ranking = buildRanking(players);
 
   // Save
   return {
@@ -136,10 +138,7 @@ export const prepareResultsPhase = async (
       players,
       state: {
         phase: TREVO_DA_SORTE_PHASES.RESULTS,
-        activeCloverId: utils.firebase.deleteValue(),
-        controllerId: utils.firebase.deleteValue(),
-        clover: utils.firebase.deleteValue(),
-        leaves: utils.firebase.deleteValue(),
+        ranking,
       },
     },
   };

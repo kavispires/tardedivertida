@@ -2,7 +2,7 @@
 import { LEAF_SIZE, ROTATIONS, TREVO_DA_SORTE_PHASES } from './constants';
 // Helpers
 import * as utils from '../../utils';
-import { Clover, Leaf, LeafId } from './types';
+import { Clover, Guess, Guesses, Leaf, LeafGuess, LeafId, Leaves } from './types';
 import { getRandomItems } from '../../utils/game-utils';
 
 /**
@@ -45,7 +45,7 @@ export const buildLeaves = (players: Players, gameMode: string) => {
 
     const wordChunks = utils.game.sliceIntoChunks(selectedWords, LEAF_SIZE);
     const selectedChunks = gameMode === 'hard' ? wordChunks : getRandomItems(wordChunks, 5);
-    const leaves = selectedChunks.reduce((acc: Record<LeafId, Leaf>, entry) => {
+    const leaves = selectedChunks.reduce((acc: Leaves, entry) => {
       const leafId: LeafId = entry.map((card) => card.id.split('-')[1]).join('-');
       const leaf: Leaf = {
         id: leafId,
@@ -77,4 +77,63 @@ export const buildClovers = (players: Players) => {
 
     player.clover = clover;
   });
+};
+
+export const buildGuesses = (players: Players) => {
+  const listOfPlayers = utils.players.getListOfPlayers(players);
+  listOfPlayers.forEach((player) => {
+    player.guesses = listOfPlayers.reduce((acc: Guesses, p) => {
+      if (p.id === player.id) return acc;
+
+      acc[p.id] = {
+        A: null,
+        B: null,
+        C: null,
+        D: null,
+        tries: 0,
+      };
+
+      return acc;
+    }, {});
+  });
+};
+
+export const buildRanking = (players: Players) => {
+  // Gained Points: [First try, second try, granted by other players]
+  const newScores = utils.helpers.buildNewScoreObject(players, [0, 0, 0]);
+  console.log(newScores);
+
+  const listOfPlayers = utils.players.getListOfPlayers(players);
+  listOfPlayers.forEach((player) => {
+    // For each guess, compare guesses with result
+    Object.keys(player.guesses).forEach((resultCloverId) => {
+      const guesses: Guess = player.guesses[resultCloverId];
+      const clover: Clover = players[resultCloverId].clover;
+      const leaves: Leaves = players[resultCloverId].leaves;
+      const isSecondTry = guesses.tries > 1;
+      const pointValue = isSecondTry ? 1 : 2;
+
+      Object.keys(guesses).forEach((leafId) => {
+        if (leafId !== 'tries') {
+          const guess: LeafGuess = guesses[leafId];
+          const result = leaves[clover[leafId]];
+
+          if (guess.leafId === result.id && guess.rotation === result.lockedRotation) {
+            newScores[player.id].gainedPoints[isSecondTry ? 1 : 0] += pointValue;
+            newScores[player.id].newScore += pointValue;
+            player.score += pointValue;
+
+            // Author gets points only if first try
+            if (!isSecondTry) {
+              newScores[resultCloverId].gainedPoints[2] += 1;
+              newScores[resultCloverId].newScore += 1;
+              players[resultCloverId].score += 1;
+            }
+          }
+        }
+      });
+    });
+  });
+
+  return Object.values(newScores).sort((a: NewScore, b: NewScore) => (a.newScore > b.newScore ? 1 : -1));
 };
