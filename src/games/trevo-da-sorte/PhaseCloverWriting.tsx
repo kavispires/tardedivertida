@@ -1,5 +1,3 @@
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
 // State & Hooks
 import { useIsUserReady } from 'hooks/useIsUserReady';
 import { useLanguage } from 'hooks/useLanguage';
@@ -26,24 +24,22 @@ function PhaseCloverWriting({ players, state, info }: PhaseProps) {
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.TREVO_DA_SORTE.CLOVER_WRITING}>
-      <DndProvider backend={HTML5Backend}>
-        <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady, !isUserReady]} players={players}>
-          {/* Step 0 */}
-          <PhaseAnnouncement
-            icon={<WritingIcon />}
-            title={translate('Escreva as dicas', 'Write the clues')}
-            onClose={goToNextStep}
-            currentRound={state?.round?.current}
-          >
-            <Instruction>
-              <Translate pt="Para cada par, escreva uma dica" en="For each pair, write a clue" />
-            </Instruction>
-          </PhaseAnnouncement>
+      <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady, !isUserReady]} players={players}>
+        {/* Step 0 */}
+        <PhaseAnnouncement
+          icon={<WritingIcon />}
+          title={translate('Escreva as dicas', 'Write the clues')}
+          onClose={goToNextStep}
+          currentRound={state?.round?.current}
+        >
+          <Instruction>
+            <Translate pt="Para cada par, escreva uma dica" en="For each pair, write a clue" />
+          </Instruction>
+        </PhaseAnnouncement>
 
-          {/* Step 1 */}
-          <StepWriteClues clover={user.clover} leaves={user.leaves} onSubmitClues={onSubmitClues} />
-        </StepSwitcher>
-      </DndProvider>
+        {/* Step 1 */}
+        <StepWriteClues clover={user.clover} leaves={user.leaves} onSubmitClues={onSubmitClues} />
+      </StepSwitcher>
     </PhaseContainer>
   );
 }

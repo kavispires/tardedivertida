@@ -18,6 +18,8 @@ export interface Leaf {
   rotation: number;
 }
 
+type Leaves = Record<LeafId, Leaf>;
+
 export interface LeafGuess {
   leafId: LeafId;
   rotation: number;
@@ -26,10 +28,11 @@ export interface LeafGuess {
 }
 
 export interface Guess {
-  A: LeafGuess;
-  B: LeafGuess;
-  C: LeafGuess;
-  D: LeafGuess;
+  A: LeafGuess | null;
+  B: LeafGuess | null;
+  C: LeafGuess | null;
+  D: LeafGuess | null;
+  tries: number;
 }
 
 export type Guesses = Record<PlayerId, Guess>;

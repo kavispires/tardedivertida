@@ -1,17 +1,20 @@
-import { Button, Space } from 'antd';
 import clsx from 'clsx';
-import { TransparentButton } from 'components/buttons';
-import { DebugOnly } from 'components/debug';
-import { Translate } from 'components/language';
-import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { orderBy } from 'lodash';
+import { useMemo } from 'react';
+// Ant Design Resources
+import { Button, Space } from 'antd';
+// Hooks
 import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
-import { orderBy } from 'lodash';
-import { useMemo } from 'react';
+// Utils
 import { WORST_TO_REMOVE } from './utils/constants';
 import { mockSelectCards } from './utils/mock';
+// Components
+import { TransparentButton } from 'components/buttons';
+import { Translate } from 'components/language';
+import { Step } from 'components/steps';
+import { Instruction, Title } from 'components/text';
 
 type StepSelectWordsProps = {
   hand: DefaultTextCard[];
@@ -68,13 +71,15 @@ export function StepSelectWords({ hand, onSubmitBadWords }: StepSelectWordsProps
 
       <Space className="space-container" align="center">
         <Button type="primary" size="large" onClick={onSubmit} disabled={!isComplete || isLoading}>
-          <Translate pt="Enviar Palavras" en="Submit Words" /> ({selectedCount})
+          <Translate
+            pt={<>Enviar Palavras ({selectedCount} de 6)</>}
+            en={<>Submit Words ({selectedCount} of 6)</>}
+          />
         </Button>
-        <DebugOnly devOnly>
-          <Button size="large" onClick={onSubmitMock}>
-            Mock select
-          </Button>
-        </DebugOnly>
+
+        <Button size="large" onClick={onSubmitMock}>
+          <Translate pt="Secione pra mim" en="Select for me" />
+        </Button>
       </Space>
     </Step>
   );

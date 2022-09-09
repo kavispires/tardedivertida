@@ -8,8 +8,7 @@ import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 
 import { useLoading } from 'hooks/useLoading';
-
-import { DndClover } from './components/DndClover';
+import { CloverGuess } from './components/CloverGuess';
 
 import { mockClues } from './utils/mock';
 import { useCloverState } from './utils/useCloverState';
@@ -18,26 +17,25 @@ type StepGuessCloverProps = {
   clover: Clover;
   leaves: Leaves;
   onSubmitGuess: GenericFunction;
-  onUpdateCloverState: GenericFunction;
-  controller: GamePlayer;
-  isUserTheController: boolean;
+
   activeCloverPlayer: GamePlayer;
   isUserTheCloverPlayer: boolean;
 };
 
-export function StepGuessClover({
-  clover,
-  leaves,
-  onSubmitGuess,
-  activeCloverPlayer,
-  onUpdateCloverState,
-}: StepGuessCloverProps) {
+export function StepGuessClover({ clover, leaves, onSubmitGuess, activeCloverPlayer }: StepGuessCloverProps) {
   const { isLoading } = useLoading();
-  const { rotation, onRotateClover, clues, guesses, allowLeafRotation, mode } = useCloverState(
-    'guess',
-    clover,
-    leaves
-  );
+  const {
+    rotation,
+    rotations,
+    onRotateLeaf,
+    onRotateClover,
+    guesses,
+    clues,
+    onActivateLeaf,
+    activeLeafId,
+    onActivateSlot,
+    activeSlotId,
+  } = useCloverState('guess', clover, leaves);
 
   console.log({ clover });
   console.log({ leaves });
@@ -70,19 +68,18 @@ export function StepGuessClover({
         <Translate pt={<>??</>} en={<>??</>} />
       </Instruction>
 
-      <DndClover
-        mode={mode}
+      <CloverGuess
         leaves={leaves}
         clues={clues}
-        rotation={rotation}
-        guesses={guesses}
-        allowLeafRotation={allowLeafRotation}
         onRotateClover={onRotateClover}
-        clover={clover}
-        onSubmitGuess={function (...args: any): void {
-          throw new Error('Function not implemented.');
-        }}
-        onUpdateCloverState={onUpdateCloverState}
+        rotation={rotation}
+        onRotateLeaf={onRotateLeaf}
+        rotations={rotations}
+        guesses={guesses}
+        onActivateLeaf={onActivateLeaf}
+        activeLeafId={activeLeafId}
+        onActivateSlot={onActivateSlot}
+        activeSlotId={activeSlotId}
       />
 
       <Space className="space-container" align="center">
