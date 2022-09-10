@@ -2,6 +2,7 @@ type HCard = {
   id: string;
   type: string;
   name: DualLanguageValue;
+  tags?: string[];
 };
 
 type GroupedItems = {
@@ -19,6 +20,7 @@ type SceneTile = {
   description: DualLanguageValue;
   values: DualLanguageValue[];
   specific?: string | null;
+  tags?: Record<number | string, string[]>;
 };
 
 type ScenesDict = {

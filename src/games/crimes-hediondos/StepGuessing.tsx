@@ -187,6 +187,9 @@ export function StepGuessing({
           />
         </FloatingHand>
       )}
+
+      {/* This makes sure people can open the floating hand and still see all ItemBoard */}
+      <div className="h-empty-space"></div>
     </Step>
   );
 }

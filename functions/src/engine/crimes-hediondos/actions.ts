@@ -2,6 +2,7 @@
 import * as utils from '../../utils';
 // Internal functions
 import { getNextPhase } from './index';
+import { Guesses } from './types';
 
 export const handleSubmitCrime = async (
   collectionName: GameName,
@@ -31,7 +32,6 @@ export const handleSubmitMark = async (
   collectionName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  sceneId: string,
   sceneIndex: number
 ) => {
   return await utils.firebase.updatePlayer({
@@ -49,7 +49,7 @@ export const handleSubmitGuesses = async (
   collectionName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  guesses: PlainObject
+  guesses: Guesses
 ) => {
   return await utils.firebase.updatePlayer({
     collectionName,

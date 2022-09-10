@@ -2,7 +2,11 @@
 import { GAME_COLLECTIONS } from '../../utils/constants';
 import { CRIMES_HEDIONDOS_PHASES, PLAYER_COUNTS, TOTAL_ROUNDS } from './constants';
 // Types
-import type { CrimesHediondosInitialState, CrimesHediondosSubmitAction } from './types';
+import type {
+  CrimesHediondosInitialState,
+  CrimesHediondosOptions,
+  CrimesHediondosSubmitAction,
+} from './types';
 // Utils
 import * as utils from '../../utils';
 // Internal Functions
@@ -28,7 +32,8 @@ import { handleSubmitCrime, handleSubmitMark, handleSubmitGuesses } from './acti
 export const getInitialState = (
   gameId: GameId,
   uid: string,
-  language: Language
+  language: Language,
+  options: CrimesHediondosOptions
 ): CrimesHediondosInitialState => {
   return utils.helpers.getDefaultInitialState({
     gameId,
@@ -41,6 +46,7 @@ export const getInitialState = (
     store: {
       scenes: [],
     },
+    options,
   });
 };
 
@@ -128,7 +134,7 @@ export const submitAction = async (data: CrimesHediondosSubmitAction) => {
       return handleSubmitCrime(collectionName, gameId, playerId, data);
     case 'SUBMIT_MARK':
       utils.firebase.validateSubmitActionProperties(data, ['sceneIndex'], 'submit scene mark');
-      return handleSubmitMark(collectionName, gameId, playerId, data.sceneId, data.sceneIndex);
+      return handleSubmitMark(collectionName, gameId, playerId, data.sceneIndex);
     case 'SUBMIT_GUESSES':
       utils.firebase.validateSubmitActionProperties(data, ['guesses'], 'submit guess');
       return handleSubmitGuesses(collectionName, gameId, playerId, data.guesses);

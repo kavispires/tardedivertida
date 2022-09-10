@@ -37,6 +37,7 @@ type CrimeTile = {
   values: DualLanguageValue[];
   type: string;
   specific?: string | null;
+  tags?: Record<number | string, string[]>;
 };
 
 type GroupQuestionCard = {

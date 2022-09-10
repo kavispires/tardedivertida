@@ -29,12 +29,14 @@ export function ResultsTable({ players, results }: ResultsTableProps) {
     })),
   ];
 
-  const data = orderBy(Object.entries(results)).map(([key, result]) => {
-    return {
-      playerId: key,
-      ...result,
-    };
-  });
+  const data = orderBy(Object.entries(results))
+    .filter(([key, _]) => !players[key].bot)
+    .map(([key, result]) => {
+      return {
+        playerId: key,
+        ...result,
+      };
+    });
 
   return <Table columns={columns} dataSource={data} pagination={false} size="small" bordered />;
 }
