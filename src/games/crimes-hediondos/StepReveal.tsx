@@ -83,7 +83,9 @@ export function StepReveal({
             </>
           }
         />
+        
         <ResultsTable players={players} results={results} />
+        
         <Translate
           pt={
             <>

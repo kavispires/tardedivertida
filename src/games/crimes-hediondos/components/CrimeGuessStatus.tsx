@@ -63,7 +63,10 @@ export function CrimeGuessStatus({ status, withDescription = false, className = 
           <CloseCircleFilled color="red" />
           <Translate pt="ERRADO" en="WRONG" />
           {withDescription && (
-            <Translate pt=": Você errou ambos arma e objeto" en=": You got both weapon and object wrong" />
+            <Translate
+              pt=": Você errou ambos arma e objeto, mas está no quadrante certo"
+              en=": You got both weapon and object wrong but you are in the right group"
+            />
           )}
         </span>
       );

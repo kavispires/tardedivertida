@@ -11,6 +11,9 @@ import {
   buildScenes,
   dealItemGroups,
   groupItems,
+  mockCrimeForBots,
+  mockGuessingForBots,
+  mockSceneMarkForBots,
   parseTiles,
   updateCrime,
   updateOrCreateGuessHistory,
@@ -36,6 +39,11 @@ export const prepareSetupPhase = async (
   const { causeOfDeathTile, reasonForEvidenceTile, locationTiles, sceneTiles } = parseTiles(
     resourceData.allScenes
   );
+
+  // Helper Bots
+  if (store.options.withBots) {
+    utils.players.addBots(players, 2);
+  }
 
   // Save
   return {
@@ -70,6 +78,9 @@ export const prepareCrimeSelectionPhase = async (
   utils.players.unReadyPlayers(players);
   utils.players.addPropertiesToPlayers(players, { secretScore: 0, pastCorrectCrimes: 0, history: {} });
 
+  // Auto select cards for bots and perform initial markings
+  mockCrimeForBots(players, groupedItems);
+
   return {
     update: {
       state: {
@@ -95,6 +106,9 @@ export const prepareSceneMarkingPhase = async (
     [newScene.id]: newScene,
   };
   const updatedScenesOrder = [...state.scenesOrder, newScene.id];
+
+  // Perform markings for bots
+  mockSceneMarkForBots(players);
 
   // Unready players
   utils.players.unReadyPlayers(players);
@@ -147,6 +161,8 @@ export const prepareGuessingPhase = async (
       'reasonForEvidence',
     ]);
 
+    mockGuessingForBots(players);
+
     return {
       update: {
         state: {
@@ -158,7 +174,7 @@ export const prepareGuessingPhase = async (
           reasonForEvidenceTile: utils.firebase.deleteValue(),
           locationTiles: utils.firebase.deleteValue(),
         },
-        players: players,
+        players,
       },
     };
   }
@@ -213,7 +229,7 @@ export const prepareGameOverPhase = async (
 ): Promise<SaveGamePayload> => {
   // Check if anybody has won, if so, from those, get the highest score, otherwise, any higher score
 
-  const winningPlayers = state.winners.map((playerId) => players[playerId]);
+  const winningPlayers = state.winners.map((playerId: PlayerId) => players[playerId]);
 
   const winners = utils.players.determineWinners(
     Object.keys(winningPlayers).length > 0 ? winningPlayers : players

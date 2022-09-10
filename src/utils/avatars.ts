@@ -273,7 +273,7 @@ export const AVATARS: AvatarDict = {
     description: { pt: 'o robô B', en: 'the bot B' },
     color: '#6b8267',
   },
-  '-C': {
+  C: {
     id: 'C',
     description: { pt: 'o robô C', en: 'the bot C' },
     color: '#677182',

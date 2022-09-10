@@ -42,12 +42,12 @@ function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
   };
 
   const updateSelections = (payload: SubmitCrimePayload) => {
-    setSelections((s: SubmitCrimePayload) => ({ ...s, ...payload }));
+    setSelections((prevState: SubmitCrimePayload) => ({ ...prevState, ...payload }));
     goToNextStep();
   };
 
   const updateSelection = (payload: SubmitCrimePayload) => {
-    setSelections((s: SubmitCrimePayload) => ({ ...s, ...payload }));
+    setSelections((prevState: SubmitCrimePayload) => ({ ...prevState, ...payload }));
   };
 
   useMock(() => {

@@ -10,7 +10,7 @@ export const CRIMES_HEDIONDOS_PHASES = {
 };
 
 export const PLAYER_COUNTS = {
-  MIN: 3,
+  MIN: 2,
   MAX: 10,
 };
 

@@ -7,7 +7,7 @@ import {
   SCENE_TILES_COUNT,
   TOTAL_ROUNDS,
 } from './constants';
-import { Crime, GroupedItems, Guess, GuessHistory, GuessHistoryEntry, WrongGroups } from './types';
+import { Crime, GroupedItems, Guess, Guesses, GuessHistory, GuessHistoryEntry, WrongGroups } from './types';
 // Utils
 import * as utils from '../../utils';
 
@@ -288,7 +288,7 @@ export const buildRanking = (players: Players, currentRound: number): BuiltRanki
 
   const playerCount = Object.keys(players).length;
 
-  const playersArray = Object.values(players);
+  const playersArray = utils.players.getListOfPlayers(players);
 
   const ranking: RankingEntry[] = playersArray
     .map((player) => {
@@ -345,4 +345,44 @@ export const buildRanking = (players: Players, currentRound: number): BuiltRanki
     ranking,
     winners,
   };
+};
+
+export const mockCrimeForBots = (players: Players, groupedItems: GroupedItems) => {
+  // TODO: Use tags logic
+
+  utils.players.getListOfBots(players).forEach((bot) => {
+    const itemsGroup = groupedItems[bot.itemGroupIndex];
+    const shuffledItems = utils.game.shuffle(itemsGroup);
+    const weapon = shuffledItems.find((e) => e?.includes('wp'));
+    const evidence = shuffledItems.find((e) => e?.includes('ev'));
+    const locationTileId = `location-tile-${utils.game.getRandomItem([1, 2, 3, 4])}`;
+    const options = [0, 1, 2, 3, 4, 5];
+
+    bot.weaponId = weapon;
+    bot.evidenceId = evidence;
+    bot.causeOfDeath = utils.game.getRandomItem(options);
+    bot.reasonForEvidence = utils.game.getRandomItem(options);
+    bot.locationTile = locationTileId;
+    bot.locationIndex = utils.game.getRandomItem(options);
+  });
+};
+
+export const mockGuessingForBots = (players: Players) => {
+  utils.players.getListOfBots(players).forEach((bot) => {
+    const guesses: Guesses = {};
+    utils.players.getListOfPlayers(players, false).forEach((player) => {
+      guesses[player.id] = {
+        weaponId: bot.weaponId,
+        evidenceId: bot.evidenceId,
+      };
+    });
+    bot.guesses = guesses;
+  });
+};
+
+export const mockSceneMarkForBots = (players: Players) => {
+  utils.players.getListOfBots(players).forEach((bot) => {
+    // TODO: Do intelligent marking based on tags
+    bot.sceneIndex = utils.game.getRandomItem([0, 1, 2, 3, 4, 5]);
+  });
 };

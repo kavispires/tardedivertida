@@ -1,3 +1,7 @@
+export type CrimesHediondosOptions = {
+  withBots?: boolean;
+};
+
 export interface Crime {
   playerId: PlayerId;
   weaponId: string;
@@ -12,6 +16,8 @@ export type Guess = {
   weaponId: string;
   evidenceId: string;
 };
+
+export type Guesses = Record<PlayerId, Guess>;
 
 export type GuessHistory = {
   [key: string]: GuessHistoryEntry[];
