@@ -33,7 +33,7 @@ function PhaseResults({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<TournamentIcon />}
-          title={translate('Resultado!', 'Resultado!')}
+          title={translate('Resultado!', 'Results!')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           duration={7}
