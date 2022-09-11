@@ -347,8 +347,14 @@ export const buildRanking = (players: Players, currentRound: number): BuiltRanki
   };
 };
 
-export const mockCrimeForBots = (players: Players, groupedItems: GroupedItems) => {
-  // TODO: Use tags logic
+export const mockCrimeForBots = (
+  players: Players,
+  groupedItems: GroupedItems,
+  items: Record<string, CrimesHediondosCard>,
+  causeOfDeathTile: CrimeTile,
+  reasonForEvidenceTile: CrimeTile
+) => {
+  // TODO: Use tags logic for location
 
   utils.players.getListOfBots(players).forEach((bot) => {
     const itemsGroup = groupedItems[bot.itemGroupIndex];
@@ -360,8 +366,19 @@ export const mockCrimeForBots = (players: Players, groupedItems: GroupedItems) =
 
     bot.weaponId = weapon;
     bot.evidenceId = evidence;
-    bot.causeOfDeath = utils.game.getRandomItem(options);
-    bot.reasonForEvidence = utils.game.getRandomItem(options);
+
+    // Intelligent cause of death
+    bot.causeOfDeath = botIntelligentSceneMarking(
+      causeOfDeathTile,
+      items[bot.weaponId],
+      items[bot.evidenceId]
+    );
+    // Intelligent evidence reason
+    bot.reasonForEvidence = botIntelligentSceneMarking(
+      reasonForEvidenceTile,
+      items[bot.weaponId],
+      items[bot.evidenceId]
+    );
     bot.locationTile = locationTileId;
     bot.locationIndex = utils.game.getRandomItem(options);
   });
@@ -380,9 +397,81 @@ export const mockGuessingForBots = (players: Players) => {
   });
 };
 
-export const mockSceneMarkForBots = (players: Players) => {
+export const mockSceneMarkForBots = (
+  players: Players,
+  scene: CrimeTile,
+  items: Record<string, CrimesHediondosCard>
+) => {
   utils.players.getListOfBots(players).forEach((bot) => {
-    // TODO: Do intelligent marking based on tags
-    bot.sceneIndex = utils.game.getRandomItem([0, 1, 2, 3, 4, 5]);
+    bot.sceneIndex = botIntelligentSceneMarking(scene, items[bot.weaponId], items[bot.evidenceId]);
   });
+};
+
+const botIntelligentSceneMarking = (
+  scene: CrimeTile,
+  weapon: CrimesHediondosCard,
+  evidence: CrimesHediondosCard
+): number => {
+  // If no tags is available for the scene, choose randomly
+  const sceneTags = scene?.tags ?? {};
+  const hasTags = Object.keys(sceneTags).length > 0;
+  if (!hasTags) {
+    return utils.game.getRandomNumber(0, 5);
+  }
+
+  // If no weapon or evidence tags, choose randomly
+  const weaponTags = weapon?.tags ?? [];
+  const evidenceTags = evidence?.tags ?? [];
+  if (weaponTags.length === 0 && evidenceTags.length === 0) {
+    return utils.game.getRandomNumber(0, 5);
+  }
+
+  let selectedTags: string[] = [];
+
+  // Check for exclusivity cases
+  if (scene?.specific === 'weapon') {
+    selectedTags = weaponTags;
+  } else if (scene?.specific === 'evidence') {
+    selectedTags = evidenceTags;
+  } else {
+    selectedTags = [...new Set([...weaponTags, ...evidenceTags])];
+  }
+
+  // The any index is used when no matches are made and it should be present at least once in one of the tags
+  let anyIndex = -1;
+
+  const scores = Object.values(sceneTags).reduce((acc: number[], entry, index) => {
+    if (entry.includes('any')) {
+      anyIndex = index;
+    }
+
+    if (!acc[index]) {
+      acc[index] = 0;
+    }
+
+    entry.forEach((entryTag) => {
+      if (selectedTags.includes(entryTag)) {
+        acc[index] += 1;
+      }
+    });
+
+    return acc;
+  }, []);
+
+  // Gather indexes with the highest scores
+  const selectedEntries: number[] = [];
+
+  const maxScore = Math.max(...scores);
+  scores.forEach((score, index) => {
+    if (score === maxScore) {
+      selectedEntries.push(index);
+    }
+  });
+
+  // If no entry is more likely than others, return any index of random index
+  if (selectedEntries.length === 0) {
+    return anyIndex > -1 ? anyIndex : utils.game.getRandomNumber(0, 5);
+  }
+
+  return utils.game.getRandomItem(selectedEntries);
 };
