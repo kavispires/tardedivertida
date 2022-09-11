@@ -79,7 +79,14 @@ export const prepareCrimeSelectionPhase = async (
   utils.players.addPropertiesToPlayers(players, { secretScore: 0, pastCorrectCrimes: 0, history: {} });
 
   // Auto select cards for bots and perform initial markings
-  mockCrimeForBots(players, groupedItems);
+  mockCrimeForBots(
+    players,
+    groupedItems,
+    items,
+    state.causeOfDeathTile,
+    state.reasonForEvidenceTile
+    // state.locationTiles
+  );
 
   return {
     update: {
@@ -108,7 +115,7 @@ export const prepareSceneMarkingPhase = async (
   const updatedScenesOrder = [...state.scenesOrder, newScene.id];
 
   // Perform markings for bots
-  mockSceneMarkForBots(players);
+  mockSceneMarkForBots(players, newScene, state.items);
 
   // Unready players
   utils.players.unReadyPlayers(players);
