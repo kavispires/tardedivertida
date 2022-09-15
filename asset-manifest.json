@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/tardedivertida/static/css/main.cdca0c9e.css",
-    "main.js": "/tardedivertida/static/js/main.bdcd2a77.js",
+    "main.css": "/tardedivertida/static/css/main.79526330.css",
+    "main.js": "/tardedivertida/static/js/main.374d03ab.js",
     "page-hub.js": "/tardedivertida/static/js/page-hub.42b5d260.chunk.js",
     "page-game.js": "/tardedivertida/static/js/page-game.33847cf7.chunk.js",
     "page-showcase.js": "/tardedivertida/static/js/page-showcase.785b3ab6.chunk.js",
@@ -37,7 +37,7 @@
     "vendaval-de-palpite.css": "/tardedivertida/static/css/vendaval-de-palpite.18285c46.chunk.css",
     "vendaval-de-palpite.js": "/tardedivertida/static/js/vendaval-de-palpite.540f90d6.chunk.js",
     "super-campeonato.css": "/tardedivertida/static/css/super-campeonato.3226b691.chunk.css",
-    "super-campeonato.js": "/tardedivertida/static/js/super-campeonato.51cdc009.chunk.js",
+    "super-campeonato.js": "/tardedivertida/static/js/super-campeonato.c9143ddd.chunk.js",
     "trevo-da-sorte.css": "/tardedivertida/static/css/trevo-da-sorte.18285c46.chunk.css",
     "trevo-da-sorte.js": "/tardedivertida/static/js/trevo-da-sorte.c93eb6b7.chunk.js",
     "static/js/5170.c1193df6.chunk.js": "/tardedivertida/static/js/5170.c1193df6.chunk.js",
@@ -86,8 +86,8 @@
     "static/media/round-title-en.svg": "/tardedivertida/static/media/round-title-en.2ad07e1f265a85634ad7940a33f96552.svg",
     "static/media/round-title-pt.svg": "/tardedivertida/static/media/round-title-pt.2e3f9c1deb85d58d118aa6e3dfa7af23.svg",
     "index.html": "/tardedivertida/index.html",
-    "main.cdca0c9e.css.map": "/tardedivertida/static/css/main.cdca0c9e.css.map",
-    "main.bdcd2a77.js.map": "/tardedivertida/static/js/main.bdcd2a77.js.map",
+    "main.79526330.css.map": "/tardedivertida/static/css/main.79526330.css.map",
+    "main.374d03ab.js.map": "/tardedivertida/static/js/main.374d03ab.js.map",
     "page-hub.42b5d260.chunk.js.map": "/tardedivertida/static/js/page-hub.42b5d260.chunk.js.map",
     "page-game.33847cf7.chunk.js.map": "/tardedivertida/static/js/page-game.33847cf7.chunk.js.map",
     "page-showcase.785b3ab6.chunk.js.map": "/tardedivertida/static/js/page-showcase.785b3ab6.chunk.js.map",
@@ -114,7 +114,7 @@
     "testemunha-ocular.5c0fe190.chunk.js.map": "/tardedivertida/static/js/testemunha-ocular.5c0fe190.chunk.js.map",
     "ue-so-isso.c7599304.chunk.js.map": "/tardedivertida/static/js/ue-so-isso.c7599304.chunk.js.map",
     "vendaval-de-palpite.540f90d6.chunk.js.map": "/tardedivertida/static/js/vendaval-de-palpite.540f90d6.chunk.js.map",
-    "super-campeonato.51cdc009.chunk.js.map": "/tardedivertida/static/js/super-campeonato.51cdc009.chunk.js.map",
+    "super-campeonato.c9143ddd.chunk.js.map": "/tardedivertida/static/js/super-campeonato.c9143ddd.chunk.js.map",
     "trevo-da-sorte.c93eb6b7.chunk.js.map": "/tardedivertida/static/js/trevo-da-sorte.c93eb6b7.chunk.js.map",
     "5170.c1193df6.chunk.js.map": "/tardedivertida/static/js/5170.c1193df6.chunk.js.map",
     "4195.26e75a8f.chunk.js.map": "/tardedivertida/static/js/4195.26e75a8f.chunk.js.map",
@@ -154,7 +154,7 @@
     "9609.68361fef.chunk.js.map": "/tardedivertida/static/js/9609.68361fef.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.cdca0c9e.css",
-    "static/js/main.bdcd2a77.js"
+    "static/css/main.79526330.css",
+    "static/js/main.374d03ab.js"
   ]
 }
