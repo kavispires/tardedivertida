@@ -1,10 +1,18 @@
 .ranking-board {
   padding: get-unit(4);
   border-radius: get-unit(1);
-  width: 50vw;
+  width: 60vw;
   min-width: 500px;
   position: relative;
   margin-bottom: get-unit(2);
+
+  @include md {
+    width: 80vw;
+  }
+
+  @include xs {
+    width: 90vw;
+  }
 
   &__row {
     width: 100%;
