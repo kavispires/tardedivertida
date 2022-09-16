@@ -6,8 +6,8 @@ import { findBetContenders } from '../utils/helpers';
 // Components
 import { FloatingHand, ImageBlurButtonContainer } from 'components/cards';
 import { Translate } from 'components/language';
-import { Title } from 'components/text';
 import { ContenderCard } from './ContenderCard';
+import { GamblingChipIcon } from 'components/icons/GamblingChipIcon';
 
 type BetsFloatingHandProps = {
   bets: WBets;
@@ -26,12 +26,8 @@ export function BetsFloatingHand({ bets, brackets, selectedContenderId = '' }: B
   if (!quarterCard || !semiCard || !finalCard) return <></>;
 
   return (
-    <FloatingHand>
+    <FloatingHand title={<Translate pt="Suas Apostas" en="Your Bets" />} icon={<GamblingChipIcon />}>
       <div className="w-bets-floating-hand">
-        <Title size="xx-small" level={3}>
-          <Translate pt="Suas Apostas" en="Your Bets" />
-        </Title>
-
         <ul className="w-floating-bets">
           <li className="w-floating-bets__entry">
             <span className="w-floating-bets__label">

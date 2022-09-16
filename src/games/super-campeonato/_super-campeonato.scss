@@ -44,10 +44,10 @@
 
 .w-contenders-hand {
   display: flex;
+  justify-content: center;
 
   @include xs {
     flex-wrap: wrap;
-    justify-content: center;
   }
 
   &__entry {

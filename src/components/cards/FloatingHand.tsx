@@ -6,18 +6,23 @@ import { useLanguage } from 'hooks/useLanguage';
 import { Translate } from 'components/language';
 import { IconAvatar } from 'components/icons/IconAvatar';
 import { HandOfCardsIcon } from 'components/icons/HandOfCardsIcon';
-import { UserStatsIcon } from 'components/icons/UserStatsIcon';
 
 type FloatingHandProps = {
   /**
-   * The content of the component
+   * The content of the floating hand
    */
   children: ReactNode;
-  type?: 'hand' | 'stats';
-  subtitle?: any;
+  /**
+   * The title of the floating hand
+   */
+  title?: ReactNode;
+  /**
+   * The icon (default: Hand of Cards)
+   */
+  icon?: ReactNode;
 };
 
-export function FloatingHand({ children, subtitle = '', type = 'hand' }: FloatingHandProps) {
+export function FloatingHand({ children, icon, title = '' }: FloatingHandProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const { translate } = useLanguage();
 
@@ -29,16 +34,20 @@ export function FloatingHand({ children, subtitle = '', type = 'hand' }: Floatin
         onMouseOver={() => setIsExpanded(true)}
         onMouseLeave={() => setIsExpanded(false)}
       >
-        <span className="floating-hand__label">
+        <h3 className="floating-hand__label">
           <IconAvatar
-            icon={type === 'hand' ? <HandOfCardsIcon /> : <UserStatsIcon />}
+            icon={icon ?? <HandOfCardsIcon />}
             size={isExpanded ? 30 : 40}
             className="floating-hand__icon"
             alt={translate('Mão de Cartas', 'Hand of Cards')}
           />
-          <Translate pt="Passe o mouse para expandir " en="Hover to expand " />
-          {subtitle}
-        </span>
+          <span className="floating-hand__label-text">
+            {title ?? <Translate pt="Suas Cartas" en="Your Cards" />}
+            <span className="floating-hand__label-text-hint">
+              (<Translate pt="Passe o mouse para expandir" en="Hover to expand" />)
+            </span>
+          </span>
+        </h3>
         <div className="floating-hand__children">{children}</div>
       </div>
     </>

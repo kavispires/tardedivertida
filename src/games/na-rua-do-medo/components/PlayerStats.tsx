@@ -5,6 +5,7 @@ import { FloatingHand, ImageCard } from 'components/cards';
 import { HouseIcon } from 'components/icons/HouseIcon';
 import { IconAvatar } from 'components/icons/IconAvatar';
 import { QuestionIcon } from 'components/icons/QuestionIcon';
+import { UserStatsIcon } from 'components/icons/UserStatsIcon';
 import { WalkIcon } from 'components/icons/WalkIcon';
 import { Translate } from 'components/language';
 
@@ -15,7 +16,7 @@ type PlayerStatsProps = {
 
 export function PlayerStats({ user, omitDecision = false }: PlayerStatsProps) {
   return (
-    <FloatingHand type="stats">
+    <FloatingHand title={<Translate pt="Informações" en="Stats" />} icon={<UserStatsIcon />}>
       <div className="n-player-stats">
         <AvatarStrip player={user} withName size="small" />
         <div className="n-player-stats__decision">

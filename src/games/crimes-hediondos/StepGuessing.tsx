@@ -16,6 +16,7 @@ import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { DebugOnly } from 'components/debug';
 import { FloatingHand } from 'components/cards';
+import { InvestigationIcon } from 'components/icons/InvestigationIcon';
 
 type StepGuessingProps = {
   user: GamePlayer;
@@ -172,7 +173,7 @@ export function StepGuessing({
       />
 
       {activeCrime && (
-        <FloatingHand type="stats">
+        <FloatingHand title="Crime" icon={<InvestigationIcon />}>
           <Crime
             key={`crime-by-${activeCrime.playerId}`}
             crime={activeCrime}
