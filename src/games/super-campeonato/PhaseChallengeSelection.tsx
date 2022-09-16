@@ -31,7 +31,11 @@ function PhaseChallengeSelection({ state, players, info }: PhaseProps) {
       <StepSwitcher
         step={step}
         players={players}
-        waitingRoomContent={<ContendersHand contenders={user.contenders} />}
+        waitingRoomContent={
+          state.round.current !== state.round.total ? (
+            <ContendersHand contenders={user.contenders} />
+          ) : undefined
+        }
       >
         {/* Step 0 */}
         <RoundAnnouncement round={state.round} onPressButton={goToNextStep} time={4} circleColor="pink">
@@ -62,7 +66,7 @@ function PhaseChallengeSelection({ state, players, info }: PhaseProps) {
           onSubmitChallenge={onSubmitChallenge}
           challenges={state.challenges}
           userContenders={user.contenders}
-          players={players}
+          round={state.round}
         />
       </StepSwitcher>
     </PhaseContainer>
