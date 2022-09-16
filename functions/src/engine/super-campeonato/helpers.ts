@@ -124,6 +124,8 @@ export const makeBrackets = (players: Players, deck: Contender[], currentRound: 
     const contender = player.contenders.find((c: Contender) => c.id === player.selectedContenderId);
     // Remove contender from player's hand
     player.contenders = player.contenders.filter((c: Contender) => c.id !== player.selectedContenderId);
+    // Add contenders to player's used contenders
+    player.usedContenders.push(contender.id);
     // Add to selected ones
     contenders.push({
       ...contender,
