@@ -15,7 +15,7 @@ export function ContendersHand({ contenders, onSelect }: ContendersHandProps) {
   const cardWidth = useCardWidth(5, 32, 100);
 
   return (
-    <FloatingHand>
+    <FloatingHand title={<Translate pt="Seus Competidores" en="Your Contenders" />}>
       <ul className="w-contenders-hand">
         {contenders.map((contender) => (
           <li key={contender.id} className="w-contenders-hand__entry">
