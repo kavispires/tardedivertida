@@ -44,7 +44,7 @@ export function PlayerSelect({ players, onSend, isFinalAssessment = false }: Pla
           isFinalAssessment
             ? ''
             : translate(
-                'Você só pode acusar uma vez durante o jogo! ',
+                'Você só pode acusar uma vez durante o jogo!',
                 'You may only make one accusation during the game!'
               )
         } ${translate('Tem certeza que quer acusar', 'Are you sure you want to accuse')} ${

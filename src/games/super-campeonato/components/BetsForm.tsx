@@ -14,6 +14,9 @@ import { getAnimationClass } from 'utils/helpers';
 import { IconAvatar } from 'components/icons/IconAvatar';
 import { TrophyIcon } from 'components/icons/TrophyIcon';
 import { ThumbsUpIcon } from 'components/icons/ThumbsUpIcon';
+import { ResetBetsButton } from './ResetBetsButton';
+
+const DEFAULT_BETS = { quarter: '', semi: '', final: '' };
 
 type BetsFormProps = {
   brackets: WBracket[];
@@ -24,7 +27,12 @@ export function BetsForm({ brackets, onSubmitBets }: BetsFormProps) {
   const { language } = useLanguage();
   const [step, setStep] = useState(0);
 
-  const [bets, setBets] = useState({ quarter: '', semi: '', final: '' });
+  const [bets, setBets] = useState(DEFAULT_BETS);
+
+  const resetBets = () => {
+    setStep(0);
+    setBets(DEFAULT_BETS);
+  };
 
   const updateBet = (value: StringDictionary) => {
     setBets((s) => ({ ...s, ...value }));
@@ -76,7 +84,8 @@ export function BetsForm({ brackets, onSubmitBets }: BetsFormProps) {
           />
 
           <Space className="space-container">
-            <Button onClick={() => setStep(step + 1)} disabled={Boolean(!bets.final)}>
+            <ResetBetsButton onConfirm={resetBets} />
+            <Button onClick={() => setStep(step + 1)} disabled={Boolean(!bets.final)} type="primary">
               <Translate pt="Próximo" en="Next" />
             </Button>
           </Space>
@@ -119,7 +128,8 @@ export function BetsForm({ brackets, onSubmitBets }: BetsFormProps) {
           />
 
           <Space className="space-container">
-            <Button onClick={() => setStep(step + 1)} disabled={Boolean(!bets.semi)}>
+            <ResetBetsButton onConfirm={resetBets} />
+            <Button onClick={() => setStep(step + 1)} disabled={Boolean(!bets.semi)} type="primary">
               <Translate pt="Próximo" en="Next" />
             </Button>
           </Space>
@@ -162,6 +172,7 @@ export function BetsForm({ brackets, onSubmitBets }: BetsFormProps) {
           />
 
           <Space className="space-container">
+            <ResetBetsButton onConfirm={resetBets} />
             <Button onClick={() => onSubmitBets(bets)} type="primary" disabled={Boolean(!bets.quarter)}>
               <Translate pt="Enviar Apostas" en="Submit Bets" />
             </Button>
