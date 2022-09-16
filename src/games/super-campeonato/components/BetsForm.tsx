@@ -1,10 +1,12 @@
 import clsx from 'clsx';
-import { useState } from 'react';
-import { orderBy } from 'lodash';
+import { useEffect, useState } from 'react';
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
+// Utils
+import { getSmartBetContenderOptions } from '../utils/helpers';
+import { DEFAULT_BETS, TIER_BY_STEP } from '../utils/constants';
 // Components
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
@@ -16,8 +18,6 @@ import { TrophyIcon } from 'components/icons/TrophyIcon';
 import { ThumbsUpIcon } from 'components/icons/ThumbsUpIcon';
 import { ResetBetsButton } from './ResetBetsButton';
 
-const DEFAULT_BETS = { quarter: '', semi: '', final: '' };
-
 type BetsFormProps = {
   brackets: WBracket[];
   onSubmitBets: GenericFunction;
@@ -26,6 +26,7 @@ type BetsFormProps = {
 export function BetsForm({ brackets, onSubmitBets }: BetsFormProps) {
   const { language } = useLanguage();
   const [step, setStep] = useState(0);
+  const [contenders, setContenders] = useState<WContender[]>([]);
 
   const [bets, setBets] = useState(DEFAULT_BETS);
 
@@ -38,10 +39,9 @@ export function BetsForm({ brackets, onSubmitBets }: BetsFormProps) {
     setBets((s) => ({ ...s, ...value }));
   };
 
-  const contenders = orderBy(
-    brackets.filter((entry) => entry.tier === 'quarter').map((entry) => ({ id: entry.id, name: entry.name })),
-    `name.${language}`
-  );
+  useEffect(() => {
+    setContenders(getSmartBetContenderOptions(brackets, TIER_BY_STEP[step], bets, language));
+  }, [brackets, step, bets, language]);
 
   const availableContenders = contenders.filter((contender) => !Object.values(bets).includes(contender.id));
 
@@ -80,7 +80,7 @@ export function BetsForm({ brackets, onSubmitBets }: BetsFormProps) {
             contenders={availableContenders}
             updateBet={updateBet}
             language={language}
-            betTier="final"
+            betTier={TIER_BY_STEP[step]}
           />
 
           <Space className="space-container">
@@ -124,7 +124,7 @@ export function BetsForm({ brackets, onSubmitBets }: BetsFormProps) {
             contenders={availableContenders}
             updateBet={updateBet}
             language={language}
-            betTier="semi"
+            betTier={TIER_BY_STEP[step]}
           />
 
           <Space className="space-container">
@@ -168,7 +168,7 @@ export function BetsForm({ brackets, onSubmitBets }: BetsFormProps) {
             contenders={availableContenders}
             updateBet={updateBet}
             language={language}
-            betTier="quarter"
+            betTier={TIER_BY_STEP[step]}
           />
 
           <Space className="space-container">

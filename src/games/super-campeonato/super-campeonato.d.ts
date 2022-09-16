@@ -22,20 +22,16 @@ type SubmitContendersPayload = {
   contendersId: CardId;
 };
 
-type SubmitBetsPayload = {
-  quarter: CardId;
-  semi: CardId;
-  final: CardId;
-};
-
-type SubmitBattleVotesPayload = {
-  votes: NumberDictionary;
-};
-
 type WBets = {
   final: CardId;
   semi: CardId;
   quarter: CardId;
+};
+
+type SubmitBetsPayload = WBets;
+
+type SubmitBattleVotesPayload = {
+  votes: NumberDictionary;
 };
 
 type WContenderByTier = Record<WBracketTier | string, Record<CardId, boolean>>;
