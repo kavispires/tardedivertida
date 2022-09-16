@@ -28,3 +28,11 @@ export const targetByTier: Record<WBracketTier, number> = {
   final: 1,
   winner: 0,
 };
+
+export const DEFAULT_BETS = { quarter: '', semi: '', final: '' };
+
+export const TIER_BY_STEP: Record<number, WBracketTier> = {
+  0: 'final',
+  1: 'semi',
+  2: 'quarter',
+};

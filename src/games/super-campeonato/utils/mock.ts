@@ -1,5 +1,6 @@
-import { getRandomItem, shuffle } from 'utils/helpers';
-import { voteTarget } from './constants';
+import { deepCopy, getRandomItem } from 'utils/helpers';
+import { DEFAULT_BETS, TIER_BY_STEP, voteTarget } from './constants';
+import { getSmartBetContenderOptions } from './helpers';
 
 export function mockSelectChallenge(challenges: DefaultTextCard[]): CardId {
   return getRandomItem(challenges).id;
@@ -10,20 +11,27 @@ export function mockSelectContender(contenders: WContender[]): CardId {
 }
 
 export function mockBets(brackets: WBracket[]) {
-  const contenders = shuffle(
-    brackets.filter((entry) => entry.tier === 'quarter').map((entry) => ({ id: entry.id, name: entry.name }))
-  );
+  const bets: WBets = deepCopy(DEFAULT_BETS);
 
-  return {
-    quarter: contenders[0].id,
-    semi: contenders[1].id,
-    final: contenders[2].id,
-  };
+  for (let i = 0; i <= 2; i++) {
+    const tier = TIER_BY_STEP[i];
+    const options = getSmartBetContenderOptions(brackets, tier, bets, 'en');
+    if (tier !== 'winner') {
+      bets[tier] = getRandomItem(options).id;
+    }
+  }
+
+  return bets;
 }
 
-export function mockVotes(bracketedContenders: WBracket[][]) {
+export function mockVotes(bracketedContenders: WBracket[][], bets: WBets) {
+  const betsList = Object.values(bets);
   return bracketedContenders.reduce((acc: NumberDictionary, pair) => {
-    const vote = getRandomItem(pair);
+    let vote = pair.find((entry) => betsList.includes(entry.id));
+    if (!vote) {
+      vote = getRandomItem(pair);
+    }
+
     acc[voteTarget[vote.position]] = vote.position;
     return acc;
   }, {});

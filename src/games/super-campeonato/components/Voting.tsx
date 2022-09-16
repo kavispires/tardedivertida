@@ -23,9 +23,10 @@ type VotingProps = {
   tier: WBracketTier;
   onSubmitVotes: GenericFunction;
   players: GamePlayers;
+  bets: WBets;
 };
 
-export function Voting({ brackets, tier, onSubmitVotes, players }: VotingProps) {
+export function Voting({ brackets, tier, onSubmitVotes, players, bets }: VotingProps) {
   const { step, goToNextStep } = useStep(0);
 
   const { seconds } = useCountdown({
@@ -53,7 +54,7 @@ export function Voting({ brackets, tier, onSubmitVotes, players }: VotingProps) 
   const colors = getContenderColor(tier);
 
   useMock(() => {
-    onSubmitVotes({ votes: mockVotes(bracketedContenders) });
+    onSubmitVotes({ votes: mockVotes(bracketedContenders, bets) });
   });
 
   return (
