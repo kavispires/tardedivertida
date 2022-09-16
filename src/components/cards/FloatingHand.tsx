@@ -22,7 +22,7 @@ type FloatingHandProps = {
   icon?: ReactNode;
 };
 
-export function FloatingHand({ children, icon, title = '' }: FloatingHandProps) {
+export function FloatingHand({ children, icon, title }: FloatingHandProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const { translate } = useLanguage();
 
