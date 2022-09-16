@@ -1,11 +1,11 @@
 .card {
   $self: &;
 
-  background-color: get-color(white);
+  background-color: get-color('white');
   border-radius: get-unit(1);
   min-width: 150px;
   max-width: 300px;
-  border: 2px solid get-color(black);
+  border: 2px solid get-color('black');
   min-height: 15px;
   display: flex;
   flex-direction: column;
@@ -25,8 +25,8 @@
   }
 
   &__header {
-    background-color: get-color(gray);
-    color: get-color(white);
+    background-color: get-color('gray');
+    color: get-color('white');
     font-weight: bold;
     font-size: 0.75em;
 
@@ -57,7 +57,7 @@
   }
 
   &__footer {
-    color: get-color(black, 1);
+    color: get-color('white', 8);
     font-size: 0.5em;
 
     #{$self}--large & {
@@ -136,9 +136,9 @@
   }
 
   &__previous--clue {
-    border-top: 1px dashed get-color(grey, 1);
+    border-top: 1px dashed get-color('gray', 1);
     font-size: 0.85em;
-    color: get-color(grey, 4);
+    color: get-color('gray', 4);
   }
 }
 
@@ -177,7 +177,7 @@
   &--expanded {
     bottom: get-unit(-1);
     transform: translate(-50%);
-    background-color: rgba($color: get-color(grey, 3), $alpha: 1);
+    background-color: rgba($color: get-color('gray', 3), $alpha: 1);
     box-shadow: 0px -15px 30px rgba(0, 0, 0, 0.2);
   }
 
@@ -194,7 +194,7 @@
   }
 
   &__label {
-    color: get-color(black, 1);
+    color: get-color('white', 8);
     width: 100%;
     display: block;
     transition: all 500ms;
@@ -205,7 +205,7 @@
 
     #{$self}--expanded & {
       font-size: 1.2rem;
-      color: get-color(black);
+      color: get-color('black');
     }
   }
 
@@ -261,8 +261,8 @@
   transform: translateX(-50%);
 
   &:hover.ant-btn {
-    background-color: get-color(white);
-    color: get-color(yellow);
-    border-color: get-color(yellow);
+    background-color: get-color('white');
+    color: get-color('yellow');
+    border-color: get-color('yellow');
   }
 }

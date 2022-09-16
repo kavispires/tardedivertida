@@ -15,24 +15,21 @@
   align-items: center;
 }
 
-// $hades
-// $colors-list: blue, gray, green, orange, pink, purple, violet, red, teal, yellow, white, black, brown, lime;
-
 $colors: (
-  blue: #598ffd,
-  gray: #6f7273,
-  green: #49d156,
-  orange: #fea245,
-  pink: #fb9cf0,
-  purple: #9e8ef0,
-  violet: #b771f4,
-  red: #d14949,
-  teal: #34ac9e,
-  yellow: #ffd700,
-  white: #ffffff,
-  black: #222222,
-  brown: #875131,
-  lime: #1fda1f,
+  'blue': #598ffd,
+  'gray': #6f7273,
+  'green': #49d156,
+  'orange': #fea245,
+  'pink': #fb9cf0,
+  'purple': #9e8ef0,
+  'violet': #b771f4,
+  'red': #d14949,
+  'teal': #34ac9e,
+  'yellow': #ffd700,
+  'white': #ffffff,
+  'black': #222222,
+  'brown': #875131,
+  'lime': #1fda1f,
 );
 
 $shade-levels: (

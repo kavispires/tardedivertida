@@ -33,52 +33,121 @@
  * Each color has 9 levels and 5 is the default mid color one
 */
 @function get-color($color-name, $shade: 5, $alpha-value: 1) {
+  // legacy colors
+  // $colors: (
+  //   blue: #598ffd,
+  //   gray: #6f7273,
+  //   green: #49d156,
+  //   orange: #fea245,
+  //   pink: #fb9cf0,
+  //   purple: #9e8ef0,
+  //   violet: #b771f4,
+  //   red: #d14949,
+  //   teal: #34ac9e,
+  //   yellow: #ffd700,
+  //   white: #ffffff,
+  //   black: #222222,
+  //   brown: #875131,
+  //   lime: #1fda1f,
+  // );
+
   $colors: (
-    blue: #598ffd,
-    gray: #6f7273,
-    green: #49d156,
-    orange: #fea245,
-    pink: #fb9cf0,
-    purple: #9e8ef0,
-    violet: #b771f4,
-    red: #d14949,
-    teal: #34ac9e,
-    yellow: #ffd700,
-    white: #ffffff,
-    black: #222222,
-    brown: #875131,
-    lime: #1fda1f,
+    'brown': #6e5135,
+    'yellow': #f7cb15,
+    'orange': #f08119,
+    'green': #0f9539,
+    'teal': #519e8a,
+    'blue': #598ffd,
+    'purple': #7652b7,
+    'violet': #ac7ad8,
+    'pink': #e85d75,
+    'red': #d72638,
+    'gray': #6f7273,
+    'white': #f8f8f8,
+    'black': #1a1b1b,
+    'lime': #2dec2d,
+    // slate: #4e576a,
+  );
+
+  $colors-light: (
+    'brown': #ece0d5,
+    'yellow': #fef6d8,
+    'orange': #fef5ec,
+    'green': #dafbe4,
+    'teal': #f2f8f6,
+    'blue': #d6e2ff,
+    'purple': #ddd4ed,
+    'violet': #f5effa,
+    'pink': #fceef1,
+    'red': #f9dce0,
+    'gray': #c1c2c3,
+    'white': #ffffff,
+    'black': #464749,
+    'lime': #2dec2d,
+    // "slate": #4e576a,
+  );
+
+  $colors-dark: (
+    'brown': #0d0a07,
+    'yellow': #141001,
+    'orange': #130a01,
+    'green': #021207,
+    'teal': #070d0b,
+    'blue': #000c29,
+    'purple': #09060e,
+    'violet': #0b0510,
+    'pink': #120305,
+    'red': #110304,
+    'gray': #464749,
+    'white': #c1c2c3,
+    'black': #000000,
+    'lime': #2dec2d,
+    // slate: #4e576a,
   );
 
   $shade-levels: (
-    1: 50%,
-    2: 40%,
-    3: 30%,
-    4: 15%,
-    5: 0,
-    6: -15%,
-    7: -30%,
-    8: -40%,
-    9: -50%,
+    1: 0%,
+    2: 25%,
+    3: 50%,
+    4: 75%,
+    5: 100%,
+    6: 75%,
+    7: 50%,
+    8: 25%,
+    9: 0%,
   );
 
-  $color: null;
+  $color-base: null;
 
   // Determine color
   @if map-has-key($colors, $color-name) {
-    $color: map-get($colors, $color-name);
+    $color-base: map-get($colors, $color-name);
   } @else {
     @error "Invalid color name: `#{$color-name}`.";
   }
 
-  $shade-level: null;
+  $color-extra: null;
+
+  @if $shade <= 5 {
+    $color-extra: map-get($colors-light, $color-name);
+  } @else {
+    $color-extra: map-get($colors-dark, $color-name);
+  }
+
+  $mix-level: null;
 
   // Determine shade
   @if map-has-key($shade-levels, $shade) {
-    $shade-level: map-get($shade-levels, $shade);
+    $mix-level: map-get($shade-levels, $shade);
   } @else {
     @error "Invalid shade value: `#{$shade}`.";
   }
 
-  @return adjust-color($color, $lightness: $shade-level, $alpha: $alpha-value);
+  $mix: mix($color-base, $color-extra, $mix-level);
+
+  @if $alpha-value < 1 {
+    @return rgba($mix, $alpha-value);
+  }
+
+  @return $mix;
 }

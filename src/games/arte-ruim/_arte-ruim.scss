@@ -10,9 +10,9 @@
     right: 0;
     font-size: 3em;
     width: 2em;
-    background-color: get-color(white);
+    background-color: get-color('white');
     border-radius: 50%;
-    border: 10px solid get-color(orange);
+    border: 10px solid get-color('orange');
     aspect-ratio: 1 / 1;
     display: flex;
     justify-content: center;
@@ -37,7 +37,7 @@
 }
 
 .a-evaluation-step {
-  background-color: get-color(yellow, 2);
+  background-color: get-color('yellow', 2);
   padding: get-unit(4);
   border-radius: get-unit(1);
   flex: 1;
@@ -70,7 +70,7 @@
 
   &__gallery-canvas {
     background-color: white;
-    border: 2px solid get-color(brown);
+    border: 2px solid get-color('brown');
     border-radius: get-unit(1);
   }
 
@@ -86,23 +86,23 @@
   transform: translate(30%, -30%);
 
   &--A {
-    background-color: get-color(green);
+    background-color: get-color('green');
   }
 
   &--B {
-    background-color: get-color(yellow);
+    background-color: get-color('yellow');
   }
 
   &--C {
-    background-color: get-color(orange);
+    background-color: get-color('orange');
   }
 
   &--D {
-    background-color: get-color(pink);
+    background-color: get-color('pink');
   }
 
   &--F {
-    background-color: get-color(red);
+    background-color: get-color('red');
   }
 }
 
@@ -124,13 +124,13 @@
 
     &:hover {
       transform: scale(0.95);
-      background-color: get-color(red);
+      background-color: get-color('red');
     }
 
     &--active {
       transform: scale(0.9);
-      background-color: get-color(orange);
-      border: 2px solid get-color(white);
+      background-color: get-color('orange');
+      border: 2px solid get-color('white');
     }
 
     &--used {
@@ -162,13 +162,13 @@
 
     &:hover {
       transform: scale(0.95);
-      background-color: get-color(red);
+      background-color: get-color('red');
     }
 
     &--active {
       transform: scale(0.95);
-      background-color: get-color(orange);
-      border: 2px solid get-color(white);
+      background-color: get-color('orange');
+      border: 2px solid get-color('white');
 
       svg {
         transform: scale(0.9);
@@ -178,14 +178,14 @@
 
   &__drawing {
     width: 300px;
-    background-color: get-color(white);
-    border: 8px inset get-color(brown);
+    background-color: get-color('white');
+    border: 8px inset get-color('brown');
     margin: get-unit(1);
     border-radius: get-unit(1);
   }
 
   &__artist {
-    background-color: get-color(white);
+    background-color: get-color('white');
     padding: get-unit(0 1);
     position: absolute;
     top: get-unit(-3);
@@ -199,7 +199,7 @@
   &__canvas {
     display: flex;
     justify-content: center;
-    background-color: get-color(gray, 1);
+    background-color: get-color('gray', 1);
     padding: get-unit(2);
   }
 
@@ -214,16 +214,16 @@
   }
 
   &__drawing {
-    background-color: get-color(white);
+    background-color: get-color('white');
     border-radius: get-unit(1);
 
-    border: 8px inset get-color(brown);
+    border: 8px inset get-color('brown');
   }
 
   &__credits {
     grid-area: credits;
 
-    background-color: get-color(white);
+    background-color: get-color('white');
     border-radius: get-unit(1);
     padding: get-unit(2 3);
   }
@@ -246,7 +246,7 @@
   &__guesses {
     grid-area: guesses;
 
-    background-color: get-color(white);
+    background-color: get-color('white');
     border-radius: get-unit(1);
     padding: get-unit(2 3);
     max-height: 52vh;
@@ -258,7 +258,7 @@
   }
 
   &__speech-bubble {
-    background-color: get-color(white);
+    background-color: get-color('white');
     box-shadow: 0 3px 5px 2px rgba($color: #000, $alpha: 0.5);
     padding: get-unit(2 4);
     text-transform: uppercase;
@@ -271,7 +271,7 @@
 
   &__speech-bubble-icon {
     margin-right: get-unit(2);
-    color: get-color(gray);
+    color: get-color('gray');
   }
 
   &__players {
@@ -282,13 +282,13 @@
 
   &__players-names {
     margin-left: get-unit(2);
-    color: get-color(gray);
+    color: get-color('gray');
   }
 
   &__result {
     grid-area: result;
 
-    background-color: get-color(white);
+    background-color: get-color('white');
     border-radius: get-unit(1);
     padding: get-unit(2 3);
   }
@@ -299,7 +299,7 @@
   }
 
   &__no-wins {
-    color: get-color(red);
+    color: get-color('red');
     font-size: 1.2rem;
     padding-top: get-unit(2);
     display: block;
@@ -312,7 +312,7 @@
   justify-content: center;
 
   &__card {
-    background-color: get-color(white);
+    background-color: get-color('white');
     border-radius: get-unit(1);
     padding: get-unit(1 3);
     margin: get-unit(0 2);

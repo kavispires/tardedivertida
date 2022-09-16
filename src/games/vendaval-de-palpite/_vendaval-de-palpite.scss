@@ -1,19 +1,19 @@
 .v-clue-input {
-  background-color: get-color(white);
+  background-color: get-color('white');
   border-radius: get-unit(2);
   padding: get-unit(2);
   display: flex;
   flex-direction: column;
 
   &--guess {
-    background-color: get-color(red);
+    background-color: get-color('red');
   }
 
   &__inner {
     border-radius: get-unit(2);
     padding: get-unit(5);
-    border: 2px dashed get-color(red);
-    background-color: get-color(white);
+    border: 2px dashed get-color('red');
+    background-color: get-color('white');
   }
 
   &__input {
@@ -33,7 +33,7 @@
 
   &__entry {
     border-radius: get-unit(1);
-    border: 2px dashed get-color(red, 3);
+    border: 2px dashed get-color('red', 3);
     display: grid;
     width: 100%;
     grid-template-columns: auto 96px;
@@ -41,7 +41,7 @@
     transform: scale(0.8);
 
     &--active {
-      background-color: get-color(red, 4);
+      background-color: get-color('red', 4);
       transform: scale(1);
     }
   }
@@ -67,7 +67,7 @@
   width: 7rem;
 
   &__text {
-    background-color: get-color(white);
+    background-color: get-color('white');
     font-family: 'Architects Daughter', cursive;
     border-radius: get-unit(1);
     padding: get-unit(1);
@@ -76,14 +76,14 @@
     text-align: center;
 
     &--guess {
-      background-color: get-color(red);
-      color: get-color(red);
+      background-color: get-color('red');
+      color: get-color('red');
     }
   }
 
   &__text-inner {
-    border: 2px dashed get-color(red);
-    background-color: get-color(white);
+    border: 2px dashed get-color('red');
+    background-color: get-color('white');
     border-radius: get-unit(1);
     padding: get-unit(2);
     height: 100%;
@@ -96,7 +96,7 @@
 .v-case-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  background-color: get-color(red, 3);
+  background-color: get-color('red', 3);
 }
 
 .v-case {
@@ -110,7 +110,7 @@
     border-radius: get-unit(1);
     margin: get-unit(1);
     padding: get-unit(1);
-    background-color: get-color(white);
+    background-color: get-color('white');
   }
 
   &__clue {

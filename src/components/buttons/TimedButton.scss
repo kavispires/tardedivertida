@@ -7,22 +7,22 @@
     border-radius: 50%;
     width: 1.6em;
     background-color: white;
-    color: get-color(black);
+    color: get-color('black');
 
     &--primary {
       background-color: white;
-      color: get-color(blue);
+      color: get-color('blue');
     }
 
     &--ghost {
       background-color: transparent;
-      border: 1px dashed get-color(black);
-      color: get-color(black);
+      border: 1px dashed get-color('black');
+      color: get-color('black');
     }
 
     &--dashed {
-      border: 1px dashed get-color(blue);
-      color: get-color(blue);
+      border: 1px dashed get-color('blue');
+      color: get-color('blue');
     }
   }
 }

@@ -20,7 +20,7 @@
     align-items: center;
     justify-content: space-between;
     min-height: 50px;
-    background-color: get-color(white);
+    background-color: get-color('white');
     border-radius: get-unit(1);
     margin: get-unit(2 0);
     padding: get-unit(2);
@@ -39,7 +39,7 @@
 
   &__crown-icon {
     font-size: 3em;
-    color: get-color(yellow);
+    color: get-color('yellow');
     animation: fade-in 500ms;
   }
 
@@ -63,7 +63,7 @@
   &__cell-points {
     font-size: 1.5em;
     min-width: 30px;
-    color: get-color(gray);
+    color: get-color('gray');
   }
 
   &__cell-gained-points {
@@ -74,7 +74,7 @@
     font-size: 1em;
     min-width: 2em;
     border-radius: get-unit(8);
-    background-color: get-color(gray, 1);
+    background-color: get-color('gray', 1);
     padding: get-unit(1);
     align-self: flex-end;
     margin: get-unit(0 2);
@@ -82,11 +82,11 @@
     animation: fade-in 3000ms forwards;
 
     &--plus {
-      background-color: get-color(yellow, 3);
+      background-color: get-color('yellow', 3);
     }
 
     &--minus {
-      background-color: get-color(red, 3);
+      background-color: get-color('red', 3);
     }
 
     &--0 {

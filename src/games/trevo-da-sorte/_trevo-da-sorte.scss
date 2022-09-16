@@ -5,14 +5,14 @@
 
   &__word {
     padding: get-unit(2 3);
-    background-color: get-color(white);
+    background-color: get-color('white');
     text-align: center;
   }
 
   &__word-selected {
     text-decoration: line-through;
-    color: get-color(red, 3);
-    background-color: get-color(red, 7);
+    color: get-color('red', 3);
+    background-color: get-color('red', 7);
     width: 100%;
   }
 }
@@ -118,7 +118,7 @@
   font-family: 'Architects Daughter', cursive;
   text-transform: uppercase;
   font-weight: bolder;
-  color: get-color(white);
+  color: get-color('white');
   font-size: 1.1rem;
 }
 
@@ -180,7 +180,7 @@
 
       &:hover {
         border: 2px solid white;
-        background-color: get-color(gray, 1);
+        background-color: get-color('gray', 1);
       }
     }
   }
@@ -238,7 +238,7 @@
 
 .y-clover-leaf-drop {
   & .y-clover-leaf {
-    background-color: get-color(brown, 6);
+    background-color: get-color('brown', 6);
     transform: scale(0.8);
   }
   transition: all 500ms;

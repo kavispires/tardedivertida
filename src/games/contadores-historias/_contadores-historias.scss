@@ -27,12 +27,12 @@
 
   &__story {
     font-size: 1rem;
-    color: get-color(blue, 8);
+    color: get-color('blue', 8);
     margin: get-unit(3);
   }
 
   &__nobody {
-    color: get-color(red);
+    color: get-color('red');
     margin: get-unit(3);
   }
 
@@ -44,8 +44,8 @@
 
 .c-story-writing-input {
   border: none;
-  border-bottom: 1px dashed get-color(blue, 4);
-  color: get-color(blue);
+  border-bottom: 1px dashed get-color('blue', 4);
+  color: get-color('blue');
 }
 
 .c-table-face-down {
@@ -142,9 +142,9 @@
   overflow-x: auto;
   padding: get-unit(2);
   color: white;
-  background-color: get-color(brown, 6);
+  background-color: get-color('brown', 6);
   border-radius: get-unit(1);
-  border: get-color(brown, 7) get-unit(1) groove;
+  border: get-color('brown', 7) get-unit(1) groove;
   @include box-shadow;
 
   &__card-container {
@@ -155,7 +155,7 @@
   }
 
   &--vote {
-    border: 2px solid get-color(yellow);
+    border: 2px solid get-color('yellow');
   }
 }
 

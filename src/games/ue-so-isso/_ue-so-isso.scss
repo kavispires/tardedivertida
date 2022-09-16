@@ -16,7 +16,7 @@
 }
 
 .u-word-card {
-  background-color: get-color(white);
+  background-color: get-color('white');
   font-size: 1.5em;
   min-width: 200px;
   width: 250px;
@@ -32,23 +32,23 @@
     border-radius: get-unit(1);
 
     &:nth-child(1) {
-      border-color: get-color(pink);
+      border-color: get-color('pink');
     }
 
     &:nth-child(2) {
-      border-color: get-color(blue, 4);
+      border-color: get-color('blue', 4);
     }
 
     &:nth-child(3) {
-      border-color: get-color(orange, 4);
+      border-color: get-color('orange', 4);
     }
 
     &:nth-child(4) {
-      border-color: get-color(teal, 4);
+      border-color: get-color('teal', 4);
     }
 
     &:nth-child(5) {
-      border-color: get-color(purple);
+      border-color: get-color('purple');
     }
   }
 
@@ -61,7 +61,7 @@
     cursor: pointer;
 
     &:hover {
-      background-color: get-color(green, 3);
+      background-color: get-color('green', 3);
     }
   }
 
@@ -71,7 +71,7 @@
 
   &__icon {
     min-width: 1.5em;
-    color: get-color(green);
+    color: get-color('green');
   }
 }
 
@@ -142,13 +142,13 @@
 .u-suggestion-card {
   &__suggestion-avatar {
     margin-right: get-unit(3);
-    background-color: get-color(red);
+    background-color: get-color('red');
   }
 
   &__invalid {
-    border-color: get-color(red, 6);
-    color: get-color(red, 6);
+    border-color: get-color('red', 6);
+    color: get-color('red', 6);
     text-decoration: line-through;
-    background-color: get-color(red, 4);
+    background-color: get-color('red', 4);
   }
 }

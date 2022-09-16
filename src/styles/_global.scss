@@ -61,7 +61,7 @@ body {
 .admin-container {
   background-color: rgba($color: red, $alpha: 0.5);
   padding: get-unit(2);
-  border: 1px solid get-color(red);
+  border: 1px solid get-color('red');
   border-radius: get-unit(1);
 }
 

@@ -28,7 +28,7 @@
   left: get-unit(1);
   text-align: left;
   z-index: 2;
-  color: get-color(white);
+  color: get-color('white');
   text-shadow: 2px 2px 2px #000;
   letter-spacing: 2px;
   overflow-y: hidden;
@@ -114,7 +114,7 @@
   text-align: center;
 
   &--win {
-    background-color: get-color(yellow);
+    background-color: get-color('yellow');
   }
 
   &--lose {
@@ -124,7 +124,7 @@
 
 .w-team-item:after {
   content: '';
-  border-color: get-color(violet, 6);
+  border-color: get-color('violet', 6);
   border-width: 2px;
   position: absolute;
   display: block;
@@ -148,7 +148,7 @@
 
 .w-team-item:before {
   content: '';
-  border-top: 2px solid get-color(violet, 6);
+  border-top: 2px solid get-color('violet', 6);
   position: absolute;
   height: 2px;
   width: 10px;
@@ -219,14 +219,14 @@
 }
 
 .w-voting-options {
-  background: get-color(white);
+  background-color: get-color('white');
   margin: get-unit(4 2);
   padding: get-unit(2);
 
   &__vs {
     font-family: 'Bangers', monospace;
     z-index: 2;
-    color: get-color(violet, 6);
+    color: get-color('violet', 6);
     text-shadow: 2px 2px 2px #000;
     font-size: 2rem;
     margin: get-unit(4);
@@ -237,7 +237,7 @@
   border: get-unit(3) transparent solid;
 
   &--active {
-    border-color: get-color(violet, 6);
+    border-color: get-color('violet', 6);
     border-radius: get-unit(4);
     transform: scale(90%);
   }
@@ -245,7 +245,7 @@
 
 .w-brackets-container {
   // transform: scale(80%);
-  background: get-color(gray, 1);
+  background-color: get-color('gray', 1);
   padding: get-unit(2 4 4 4);
 }
 
@@ -263,7 +263,7 @@
     margin: get-unit(0 2);
 
     &--your-contender {
-      border: 2px solid get-color(gray, 2);
+      border: 2px solid get-color('gray', 2);
       padding: get-unit(0 2 2 2);
     }
   }
@@ -316,7 +316,7 @@
 
 .w-players-bets {
   display: grid;
-  background-color: get-color(gray, 3);
+  background-color: get-color('gray', 3);
   font-family: 'Bangers', monospace;
   text-align: center;
   &__player {
@@ -336,7 +336,7 @@
     min-height: 50px;
 
     &--win {
-      border-color: get-color(white);
+      border-color: get-color('white');
     }
 
     &--none {

@@ -1,7 +1,7 @@
 .ribbon {
   $default-right: 16px;
   $default-top: 0px;
-  $default-color: get-color(gray);
+  $default-color: get-color('gray');
   $default-width: 32px;
   $default-height: 36px;
   z-index: 100;
@@ -15,7 +15,7 @@
   filter: drop-shadow(2px 3px 2px rgba(#000, 0.5));
 
   &__content {
-    color: get-color(white);
+    color: get-color('white');
     font-size: 1.25rem;
     text-align: center;
     font-weight: 400;
