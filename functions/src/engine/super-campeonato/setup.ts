@@ -39,6 +39,7 @@ export const prepareSetupPhase = async (
   // Give contenders to each player
   const contendersDeck = utils.game.shuffle(resourceData.contenders);
   utils.players.dealItemsToPlayers(players, contendersDeck, CONTENDERS_PER_PLAYER, 'contenders');
+  utils.players.addPropertiesToPlayers(players, { usedContenders: [] });
 
   // Get extra contenders to the table in cases there are less than 8 players
   const tableContenders = getTableContenders(contendersDeck, players);
