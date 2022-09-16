@@ -3,9 +3,9 @@
   left: 0;
   padding: get-unit(1);
   border-radius: get-unit(0 5 5 0);
-  background: get-color(gray, 1);
-  border: 1px solid get-color(white);
-  color: get-color(gray, 4);
+  background-color: get-color('gray', 1);
+  border: 1px solid get-color('white');
+  color: get-color('gray', 4);
 
   @include box-shadow;
   transition: all 250ms;
@@ -31,8 +31,8 @@
 
   &---1 {
     bottom: get-unit(1);
-    background: get-color(red);
-    border-color: get-color(red);
+    background-color: get-color('red');
+    border-color: get-color('red');
   }
 
   &__label {

@@ -5,7 +5,7 @@
   right: 0;
   z-index: 30;
 
-  border: 1px solid get-color(white);
+  border: 1px solid get-color('white');
   border-radius: get-unit(4 0 0 4);
   padding: get-unit(1);
   background-color: rgba($color: #ffffff, $alpha: 0.8);
@@ -35,13 +35,13 @@
     left: -12px;
     top: 0;
     transform: translate(-100%);
-    color: get-color(black);
+    color: get-color('black');
     font-size: 0.75rem;
   }
 
   &__ready-speech {
     position: relative;
-    background-color: get-color(white);
+    background-color: get-color('white');
     border-radius: 0.4em;
     padding: get-unit(1 2);
     margin-left: get-unit(3);
@@ -57,7 +57,7 @@
       width: 0;
       height: 0;
       border: get-unit(2) solid transparent;
-      border-left-color: get-color(white);
+      border-left-color: get-color('white');
       border-right: 0;
       margin-top: get-unit(-2);
       margin-right: get-unit(-2);

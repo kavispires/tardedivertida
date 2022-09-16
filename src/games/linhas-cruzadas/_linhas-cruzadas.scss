@@ -7,7 +7,7 @@ $offWhite: #faf8f4;
 
 .l-drawing {
   background-color: white;
-  border: 4px solid get-color(brown);
+  border: 4px solid get-color('brown');
   margin-bottom: get-unit(2);
 }
 
@@ -26,13 +26,13 @@ $offWhite: #faf8f4;
   &__owner {
     display: flex;
     align-items: center;
-    color: get-color(white);
+    color: get-color('white');
     padding: get-unit(2);
   }
 }
 
 .l-artwork {
-  border: 4px solid get-color(brown);
+  border: 4px solid get-color('brown');
   display: block;
 }
 
@@ -57,7 +57,7 @@ $offWhite: #faf8f4;
     justify-content: center;
     width: 350px;
     height: 350px;
-    background-color: get-color(white);
+    background-color: get-color('white');
     margin: get-unit(2 auto);
   }
 
@@ -71,11 +71,11 @@ $offWhite: #faf8f4;
     position: absolute;
     bottom: 0;
     left: 50%;
-    background-color: get-color(white);
+    background-color: get-color('white');
     padding: get-unit(0 2);
     transform: translateX(-50%);
     margin-bottom: get-unit(4);
-    border-bottom: 4px solid get-color(brown);
+    border-bottom: 4px solid get-color('brown');
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
   }
 }
@@ -85,14 +85,14 @@ $offWhite: #faf8f4;
   height: get-unit(2);
   max-height: get-unit(2);
   margin: get-unit(4 0);
-  background-color: get-color(white);
+  background-color: get-color('white');
   border-radius: get-unit(2);
   flex-grow: 1;
 
   &__pill {
     height: get-unit(2);
     border-radius: get-unit(2);
-    background-color: get-color(gray);
+    background-color: get-color('gray');
     display: block;
     transition: all 6s;
   }
@@ -109,14 +109,14 @@ $offWhite: #faf8f4;
 }
 
 .l-album-strip-entry {
-  background-color: get-color(white);
+  background-color: get-color('white');
   padding: get-unit(1);
   margin: get-unit(2);
   @include box-shadow;
 
   &__author {
     padding-bottom: get-unit(1);
-    border-bottom: 1px solid get-color(grey, 1);
+    border-bottom: 1px solid get-color('gray', 1);
   }
 }
 

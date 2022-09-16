@@ -8,7 +8,7 @@
   &__button {
     @include box-shadow;
 
-    border: 1px solid get-color(white);
+    border: 1px solid get-color('white');
     border-radius: get-unit(0 0 4 4);
     padding: get-unit(0 6);
     background-color: rgba($color: #ffffff, $alpha: 0.9);
@@ -73,7 +73,7 @@
 
   &__round {
     font-weight: bolder;
-    background-color: get-color(gray, 4);
+    background-color: get-color('gray', 4);
     margin-left: get-unit(2);
   }
 

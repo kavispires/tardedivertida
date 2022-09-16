@@ -54,7 +54,7 @@
 
   &__player-name {
     text-transform: uppercase;
-    color: get-color(black, 4);
+    color: get-color('gray', 8);
     grid-area: name;
   }
 }

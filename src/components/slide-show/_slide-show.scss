@@ -4,7 +4,7 @@
   gap: get-unit(4);
   padding: get-unit(2);
   border-radius: get-unit(1);
-  background-color: get-color(white, 4);
+  background-color: get-color('white', 4);
 
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto auto;
@@ -35,7 +35,7 @@
     width: 100%;
     height: get-unit(2);
     margin: get-unit(0 0 4 0);
-    background-color: get-color(gray, 1);
+    background-color: get-color('gray', 1);
     border-radius: get-unit(2);
     flex-grow: 1;
     position: relative;
@@ -55,7 +55,7 @@
   }
 
   &__controls-timer-bar-node {
-    background-color: get-color(gray, 2);
+    background-color: get-color('gray', 2);
     height: get-unit(2);
     min-width: get-unit(5);
     border-radius: get-unit(1);
@@ -64,7 +64,7 @@
   &__controls-timer-bar-pill {
     height: get-unit(2);
     border-radius: get-unit(2);
-    background-color: get-color(gray);
+    background-color: get-color('gray');
     display: block;
     transition: all 1s;
     position: absolute;

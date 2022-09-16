@@ -19,17 +19,17 @@
 
   &__on {
     text-align: left;
-    color: get-color(grey, 4);
+    color: get-color('gray', 4);
   }
 
   &__off {
     text-align: right;
-    color: get-color(grey, 4);
+    color: get-color('gray', 4);
   }
 
   &__selected {
     font-weight: bolder;
-    color: get-color(black);
+    color: get-color('black');
   }
 }
 .game-card-collection {

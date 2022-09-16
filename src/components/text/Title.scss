@@ -2,7 +2,7 @@
   $self: &;
 
   text-align: center;
-  color: get-color(black);
+  color: get-color('black');
 
   &.ant-typography {
     margin-bottom: get-unit(1);

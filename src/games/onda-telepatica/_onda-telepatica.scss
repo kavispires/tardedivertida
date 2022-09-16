@@ -1,6 +1,6 @@
 .o-dial-guess-selection {
   &__clue {
-    background-color: get-color(white);
+    background-color: get-color('white');
     font-weight: bolder;
     padding: get-unit(1);
     margin: get-unit(0 1);
@@ -48,16 +48,16 @@
     }
 
     &--blue {
-      color: get-color(blue, 5);
+      color: get-color('blue', 5);
       font-weight: bolder;
     }
 
     &--orange {
-      color: get-color(orange, 5);
+      color: get-color('orange', 5);
     }
 
     &--yellow {
-      color: get-color(yellow, 5);
+      color: get-color('yellow', 5);
     }
   }
 }
@@ -91,7 +91,7 @@ $o-card-width: 300px;
       transition: all 500ms;
 
       &:hover {
-        background-color: get-color(white);
+        background-color: get-color('white');
       }
     }
 
@@ -306,7 +306,7 @@ $base-angle: 8deg;
 }
 
 .o-past-category-entry {
-  background-color: get-color(teal);
+  background-color: get-color('teal');
   padding: get-unit(2 1);
   display: block;
   max-width: 300px;
@@ -316,13 +316,13 @@ $base-angle: 8deg;
   border-radius: get-unit(1);
 
   &__category {
-    background-color: get-color(teal, 4);
+    background-color: get-color('teal', 4);
     padding: get-unit(1);
   }
 
   &__number {
     font-size: 2rem;
-    background-color: get-color(teal, 2);
+    background-color: get-color('teal', 2);
     border-radius: 50%;
     width: 2.5rem;
     height: 2.5rem;
@@ -333,11 +333,11 @@ $base-angle: 8deg;
   }
 
   &__clue {
-    background-color: get-color(white);
+    background-color: get-color('white');
   }
 
   &__author {
     font-style: italic;
-    color: get-color(black, 4);
+    color: get-color('gray', 8);
   }
 }

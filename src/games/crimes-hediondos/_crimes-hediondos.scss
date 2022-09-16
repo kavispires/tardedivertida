@@ -4,8 +4,8 @@
   justify-content: center;
 
   &--selected {
-    border: 2px dashed get-color(yellow);
-    background-color: get-color(yellow, 6);
+    border: 2px dashed get-color('yellow');
+    background-color: get-color('yellow', 6);
     border-radius: get-unit(1);
   }
 
@@ -26,7 +26,7 @@
   grid-template-columns: repeat(4, auto);
   gap: get-unit(1);
   justify-items: center;
-  background-color: get-color(black, 5);
+  background-color: get-color('black');
   border-radius: get-unit(2);
   padding: get-unit(2);
 
@@ -40,7 +40,7 @@
 
 .h-items-crime-selection {
   display: flex;
-  background-color: get-color(black, 5);
+  background-color: get-color('black');
   border-radius: get-unit(2);
   padding: get-unit(2);
   align-items: center;
@@ -59,7 +59,7 @@
   display: grid;
   grid-template-columns: repeat(6, auto);
   gap: get-unit(1);
-  background-color: get-color(black, 5);
+  background-color: get-color('black');
   border-radius: get-unit(2);
   padding: get-unit(2);
 }
@@ -68,7 +68,7 @@
   display: grid;
   grid-template-columns: repeat(2, auto);
   gap: get-unit(1);
-  background-color: get-color(black, 5);
+  background-color: get-color('black');
   border-radius: get-unit(2);
   padding: get-unit(2);
 
@@ -77,7 +77,7 @@
     grid-template-columns: repeat(4, auto);
     gap: get-unit(1);
 
-    border: 2px solid get-color(brown);
+    border: 2px solid get-color('brown');
     border-radius: get-unit(2);
     padding: get-unit(2);
   }
@@ -86,7 +86,7 @@
 .h-scene-tile {
   $self: &;
 
-  background-color: get-color(black, 5);
+  background-color: get-color('black');
   padding: get-unit(2);
   border-radius: get-unit(2);
   margin: get-unit(2);
@@ -96,7 +96,7 @@
   }
 
   &__button {
-    color: get-color(white);
+    color: get-color('white');
   }
 
   &__options {
@@ -116,82 +116,82 @@
   }
 
   &--cause {
-    border: 5px solid get-color(violet, 6);
+    border: 5px solid get-color('violet', 6);
 
     #{ $self }__title {
-      color: get-color(violet, 5);
+      color: get-color('violet', 5);
     }
 
     #{ $self }__button {
-      background-color: get-color(violet, 7);
-      border-color: get-color(violet, 7);
+      background-color: get-color('violet', 7);
+      border-color: get-color('violet', 7);
     }
 
     #{ $self }__icon {
-      color: get-color(violet, 5);
+      color: get-color('violet', 5);
     }
   }
 
   &--evidence {
-    border: 5px solid get-color(red, 8);
+    border: 5px solid get-color('red', 8);
 
     #{ $self }__title {
-      color: get-color(red, 5);
+      color: get-color('red', 5);
     }
 
     #{ $self }__button {
-      background-color: get-color(red, 7);
-      border-color: get-color(red, 7);
+      background-color: get-color('red', 7);
+      border-color: get-color('red', 7);
     }
 
     #{ $self }__icon {
-      color: get-color(red, 5);
+      color: get-color('red', 5);
     }
   }
 
   &--location {
-    border: 5px solid get-color(green, 8);
+    border: 5px solid get-color('green', 8);
 
     #{ $self }__title {
-      color: get-color(green, 5);
+      color: get-color('green', 5);
     }
 
     #{ $self }__button {
-      background-color: get-color(green, 7);
-      border-color: get-color(green, 7);
+      background-color: get-color('green', 7);
+      border-color: get-color('green', 7);
     }
 
     #{ $self }__icon {
-      color: get-color(green, 5);
+      color: get-color('green', 5);
     }
   }
 
   &--scene {
-    border: 5px solid get-color(orange, 8);
+    border: 5px solid get-color('orange', 8);
 
     #{ $self }__title {
-      color: get-color(orange, 5);
+      color: get-color('orange', 5);
     }
 
     #{ $self }__button {
-      background-color: get-color(orange, 7);
-      border-color: get-color(orange, 7);
+      background-color: get-color('orange', 7);
+      border-color: get-color('orange', 7);
     }
 
     #{ $self }__icon {
-      color: get-color(orange, 5);
+      color: get-color('orange', 5);
     }
   }
 }
 
 .h-crime {
-  background-color: get-color(black, 5);
+  background-color: get-color('black');
   display: grid;
   grid-template-columns: [player] 2.5rem [info] auto [history] 28px [selections] 216px [done] 2.5rem;
   min-height: 200px;
   margin: get-unit(2);
   border-radius: get-unit(1);
-  color: get-color(white);
+  color: get-color('white');
   min-width: 800px;
 
   &__player {
@@ -230,19 +230,19 @@
     margin-right: get-unit(1);
 
     &--cause {
-      background-color: get-color(violet, 6);
+      background-color: get-color('violet', 6);
     }
 
     &--evidence {
-      background-color: get-color(red, 6);
+      background-color: get-color('red', 6);
     }
 
     &--location {
-      background-color: get-color(green, 6);
+      background-color: get-color('green', 6);
     }
 
     &--scene {
-      background-color: get-color(orange, 6);
+      background-color: get-color('orange', 6);
     }
   }
 
@@ -276,23 +276,23 @@
   align-items: center;
 
   &--LOCKED {
-    color: get-color(grey, 5);
+    color: get-color('gray', 5);
   }
 
   &--CORRECT {
-    color: get-color(green, 5);
+    color: get-color('green', 5);
   }
 
   &--HALF {
-    color: get-color(yellow, 5);
+    color: get-color('yellow', 5);
   }
 
   &--WRONG {
-    color: get-color(red, 5);
+    color: get-color('red', 5);
   }
 
   &--WRONG_GROUP {
-    color: get-color(purple, 6);
+    color: get-color('purple', 6);
   }
 }
 

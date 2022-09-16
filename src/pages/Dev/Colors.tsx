@@ -9,21 +9,22 @@ import { useEffect } from 'react';
 import clsx from 'clsx';
 
 const COLOR_NAMES = [
-  'blue',
-  'gray',
-  'green',
+  'brown',
+  'yellow',
   'orange',
-  'pink',
+  'green',
+  'teal',
+  'blue',
   'purple',
   'violet',
+  'pink',
   'red',
-  'teal',
-  'yellow',
   'white',
+  'gray',
   'black',
-  'brown',
   'lime',
 ];
+
 const COLOR_SHADES = new Array(9).fill(1).map((e, i) => e + i);
 
 function ColorsPage() {

@@ -27,7 +27,7 @@
   }
 
   &--active {
-    border: 2px solid get-color(white);
+    border: 2px solid get-color('white');
   }
 
   &:disabled {

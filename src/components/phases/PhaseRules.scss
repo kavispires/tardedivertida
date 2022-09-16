@@ -8,7 +8,7 @@
   }
 
   &__rule .rules-carousel__rule-text {
-    color: get-color(white);
+    color: get-color('white');
   }
 
   &__actions {
@@ -20,7 +20,7 @@
   }
 
   &__rule-actions-ready {
-    background-color: get-color(green);
+    background-color: get-color('green');
     font-style: italic;
   }
 }

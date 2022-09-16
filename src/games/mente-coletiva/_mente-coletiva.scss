@@ -252,12 +252,12 @@
 .m-answers {
   font-family: 'Architects Daughter', cursive;
   padding: get-unit(2);
-  background-color: get-color(white);
+  background-color: get-color('white');
 
   &__item {
     margin-left: get-unit(6);
     font-size: 1.25rem;
-    border-bottom: 1px dashed get-color(blue, 4);
+    border-bottom: 1px dashed get-color('blue', 4);
   }
 
   &__input {
@@ -275,7 +275,7 @@
     display: inline;
     text-align: center;
     padding: get-unit(4 10);
-    background-color: get-color(white);
+    background-color: get-color('white');
     border-radius: get-unit(8);
     position: relative;
     @include box-shadow;
@@ -288,7 +288,7 @@
       width: 0;
       height: 0;
       border: 10px solid transparent;
-      border-top-color: get-color(white);
+      border-top-color: get-color('white');
       border-bottom: 0;
       margin-left: -10px;
       margin-bottom: -10px;
@@ -298,7 +298,7 @@
   &__speech-bubble-small {
     margin-top: get-unit(2);
     text-align: center;
-    background-color: get-color(white);
+    background-color: get-color('white');
     border-radius: get-unit(2);
     padding: get-unit(1 2);
     position: relative;
@@ -312,7 +312,7 @@
       width: 0;
       height: 0;
       border: 10px solid transparent;
-      border-bottom-color: get-color(white);
+      border-bottom-color: get-color('white');
       border-top: 0;
       margin-left: -10px;
       margin-top: -10px;

@@ -41,11 +41,11 @@ $n-pink: #ffb1b4;
     }
 
     #{$self}--horror & {
-      background-color: get-color(brown);
+      background-color: get-color('brown');
     }
 
     #{$self}--jackpot & {
-      background-color: get-color(yellow);
+      background-color: get-color('yellow');
     }
   }
 
@@ -58,11 +58,11 @@ $n-pink: #ffb1b4;
     margin-top: get-unit(2);
 
     #{$self}--horror & {
-      background-color: get-color(brown);
+      background-color: get-color('brown');
     }
 
     #{$self}--jackpot & {
-      background-color: get-color(yellow);
+      background-color: get-color('yellow');
     }
   }
 
@@ -76,7 +76,7 @@ $n-pink: #ffb1b4;
 $stats-height: get-unit(40);
 
 .n-player-stats {
-  background-color: get-color(white);
+  background-color: get-color('white');
   height: $stats-height;
   width: 80vw;
   display: flex;
@@ -104,13 +104,13 @@ $stats-height: get-unit(40);
   }
 
   &__title {
-    color: get-color(gray, 4);
+    color: get-color('gray', 4);
     display: block;
     font-size: 1.1em;
   }
 
   &__container {
-    border-left: 1px solid get-color(gray, 2);
+    border-left: 1px solid get-color('gray', 2);
     display: flex;
     flex-direction: column;
     padding: get-unit(2);
@@ -121,13 +121,13 @@ $stats-height: get-unit(40);
   }
 
   &__count-label {
-    color: get-color(gray);
+    color: get-color('gray');
     display: block;
   }
 
   &__count-value {
     display: block;
-    background-color: get-color(gray, 2);
+    background-color: get-color('gray', 2);
     font-size: 1.1em;
     border-radius: get-unit(1);
     padding: get-unit(1 2);
@@ -141,7 +141,7 @@ $stats-height: get-unit(40);
 
   &__no-jackpot {
     font-style: italic;
-    color: get-color(gray, 3);
+    color: get-color('gray', 3);
   }
 }
 
@@ -158,7 +158,7 @@ $stats-height: get-unit(40);
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: get-color(white);
+  background-color: get-color('white');
   transition: all 250ms;
 
   &:hover {
@@ -166,11 +166,11 @@ $stats-height: get-unit(40);
   }
 
   &--home:hover {
-    background-color: get-color(blue, 4);
+    background-color: get-color('blue', 4);
   }
 
   &--continue:hover {
-    background-color: get-color(yellow, 4);
+    background-color: get-color('yellow', 4);
   }
 }
 
@@ -232,7 +232,7 @@ $stats-height: get-unit(40);
   }
 
   &__divider {
-    background-color: get-color(black, 1);
+    background-color: get-color('gray', 3);
   }
 
   &__title {
@@ -252,7 +252,7 @@ $stats-height: get-unit(40);
 
     &--nobody {
       font-style: italic;
-      color: get-color(black, 3);
+      color: get-color('gray', 8);
     }
   }
 

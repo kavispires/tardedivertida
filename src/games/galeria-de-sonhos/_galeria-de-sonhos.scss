@@ -20,7 +20,7 @@
   transform: translateX(-50%);
 
   &:hover.ant-btn {
-    background-color: get-color(white);
+    background-color: get-color('white');
   }
 }
 
@@ -47,7 +47,7 @@
   box-sizing: border-box;
 
   &--selected {
-    border-color: get-color(yellow);
+    border-color: get-color('yellow');
   }
 }
 
@@ -74,7 +74,7 @@
     padding: get-unit(1);
     border-radius: get-unit(1);
     flex-wrap: wrap;
-    color: get-color(white);
+    color: get-color('white');
   }
 
   &__player {
@@ -91,8 +91,8 @@
     }
 
     &--nightmare {
-      border: 2px solid get-color(black);
-      color: get-color(black);
+      border: 2px solid get-color('black');
+      color: get-color('black');
     }
   }
 
@@ -119,12 +119,12 @@
     'card matching-players'
     'card fallen-matches'
     'footer footer';
-  background-color: get-color(white);
+  background-color: get-color('white');
 
   &__header {
     grid-area: header;
     padding: get-unit(2);
-    color: get-color(white);
+    color: get-color('white');
   }
 
   &__card {
@@ -135,7 +135,7 @@
 
   &__match-result {
     grid-area: matches;
-    background-color: get-color(gray, 1);
+    background-color: get-color('gray', 1);
     font-size: 1rem;
     padding: get-unit(1);
     margin-right: get-unit(2);
@@ -143,14 +143,14 @@
 
   &__matching-players {
     grid-area: matching-players;
-    background-color: get-color(gray, 1);
+    background-color: get-color('gray', 1);
     padding: get-unit(1);
     margin-right: get-unit(2);
   }
 
   &__fallen-matching-players {
     grid-area: fallen-matches;
-    background-color: get-color(gray, 1);
+    background-color: get-color('gray', 1);
     padding: get-unit(1);
     margin-right: get-unit(2);
   }
@@ -174,13 +174,13 @@
 
   &__footer {
     grid-area: footer;
-    background-color: get-color(gray, 1);
+    background-color: get-color('gray', 1);
     padding: get-unit(1);
     margin: get-unit(0 2 2 2);
   }
 
   &__completed-players {
-    color: get-color(gray, 4);
+    color: get-color('gray', 4);
     margin-bottom: get-unit(4);
   }
 }
@@ -198,7 +198,7 @@
     text-align: center;
     text-transform: uppercase;
     padding: get-unit(1);
-    background-color: get-color(gray, 1);
+    background-color: get-color('gray', 1);
     display: flex;
     flex-direction: column;
     align-items: center;
