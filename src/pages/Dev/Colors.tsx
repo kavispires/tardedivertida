@@ -1,0 +1,87 @@
+import { useCopyToClipboard, useTitle } from 'react-use';
+// Ant Design Resources
+import { Layout, message } from 'antd';
+// Components
+import * as icons from 'components/icons/collection';
+import { DevHeader } from './DevHeader';
+import { TransparentButton } from 'components/buttons';
+import { useEffect } from 'react';
+import clsx from 'clsx';
+
+const COLOR_NAMES = [
+  'blue',
+  'gray',
+  'green',
+  'orange',
+  'pink',
+  'purple',
+  'violet',
+  'red',
+  'teal',
+  'yellow',
+  'white',
+  'black',
+  'brown',
+  'lime',
+];
+const COLOR_SHADES = new Array(9).fill(1).map((e, i) => e + i);
+
+function ColorsPage() {
+  useTitle('Colors | Dev | Tarde Divertida');
+  const styles: React.CSSProperties = {
+    width: '100%',
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+  };
+
+  const stylesLi: React.CSSProperties = {
+    border: '1px solid black',
+    margin: '0.5rem',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: '0.5rem',
+  };
+
+  const [state, copyToClipboard] = useCopyToClipboard();
+
+  useEffect(() => {
+    if (state.value) {
+      message.info(`Copied to clipboard: ${state.value}`);
+    }
+  }, [state]);
+
+  const iconEntries = Object.entries(icons);
+  return (
+    <Layout className="dev-layout">
+      <DevHeader title="Colors" subTitle={`(${iconEntries.length})`} />
+      <Layout.Content className="dev-content">
+        <ul style={styles}>
+          {COLOR_NAMES.map((colorName, index) => (
+            <li key={colorName} style={stylesLi}>
+              <ul>
+                {COLOR_SHADES.map((colorShade) => (
+                  <li key={`${colorName}-${colorShade}`}>
+                    <TransparentButton
+                      onClick={() => copyToClipboard(`get-color(${colorName}, ${colorShade});`)}
+                    >
+                      <div
+                        className={clsx('dev-color-swatch', `dev-color-swatch--${colorName}-${colorShade}`)}
+                      >
+                        get-color({colorName}, {colorShade})
+                      </div>
+                    </TransparentButton>
+                  </li>
+                ))}
+              </ul>
+            </li>
+          ))}
+        </ul>
+      </Layout.Content>
+    </Layout>
+  );
+}
+
+export default ColorsPage;
