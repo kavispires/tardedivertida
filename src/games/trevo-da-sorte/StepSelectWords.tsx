@@ -17,7 +17,7 @@ import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 
 type StepSelectWordsProps = {
-  hand: DefaultTextCard[];
+  hand: TextCard[];
   onSubmitBadWords: GenericFunction;
 };
 

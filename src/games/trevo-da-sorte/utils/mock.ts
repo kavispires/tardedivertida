@@ -2,7 +2,7 @@ import { shuffle } from 'utils/helpers';
 import { WORST_TO_REMOVE } from './constants';
 import { sampleSize } from 'lodash';
 
-export const mockSelectCards = (cards: DefaultTextCard[]): CardId[] =>
+export const mockSelectCards = (cards: TextCard[]): CardId[] =>
   shuffle(cards)
     .slice(0, WORST_TO_REMOVE)
     .map((card) => card.id);

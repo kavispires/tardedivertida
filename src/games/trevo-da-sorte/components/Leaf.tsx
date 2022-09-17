@@ -32,7 +32,7 @@ export function Leaf({
       )}
       style={{ transform: `rotate(${rotation ?? leaf.rotation}deg)` }}
     >
-      {leaf.cards.map((card: DefaultTextCard, cIndex: number) => (
+      {leaf.cards.map((card: TextCard, cIndex: number) => (
         <div key={card.id} className={clsx('y-clover-leaf__card', `y-clover-leaf__card--${cIndex}`)}>
           <div className="y-clover-leaf__card-text">{card.text}</div>
         </div>

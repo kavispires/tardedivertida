@@ -276,7 +276,7 @@ type AnimationType =
   | 'zoomOutRight'
   | 'zoomOutUp';
 
-type DefaultTextCard = {
+type TextCard = {
   id: CardId;
   text: string;
 };

@@ -6,7 +6,7 @@ import { useLanguage } from 'hooks/useLanguage';
 import { Card } from 'components/cards';
 
 type ChallengeProps = {
-  challenge: DefaultTextCard;
+  challenge: TextCard;
 };
 
 export function Challenge({ challenge }: ChallengeProps) {

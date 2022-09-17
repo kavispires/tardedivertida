@@ -22,7 +22,7 @@ type LeafId = string;
 
 interface Leaf {
   id: LeafId;
-  cards: DefaultTextCard[];
+  cards: TextCard[];
   rotation: number;
   position: Position | null;
 }

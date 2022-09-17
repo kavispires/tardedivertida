@@ -13,7 +13,7 @@ import { Challenge } from './components/Challenge';
 import { ContenderCard } from './components/ContenderCard';
 
 type StepWinnerProps = {
-  challenge: DefaultTextCard;
+  challenge: TextCard;
   brackets: WBracket[];
   bets: WBets;
   goToNextStep: GenericFunction;

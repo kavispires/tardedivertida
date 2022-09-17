@@ -12,7 +12,7 @@ import { Challenge } from './components/Challenge';
 
 type StepSelectContendersProps = {
   onSubmitContender: GenericFunction;
-  challenge: DefaultTextCard;
+  challenge: TextCard;
   userContenders: WContender[];
   players: GamePlayers;
 };
