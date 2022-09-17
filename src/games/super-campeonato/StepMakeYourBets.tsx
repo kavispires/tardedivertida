@@ -12,7 +12,7 @@ import { Challenge } from './components/Challenge';
 
 type StepMakeYourBetsProps = {
   onSubmitBets: GenericFunction;
-  challenge: DefaultTextCard;
+  challenge: TextCard;
   brackets: WBracket[];
   players: GamePlayers;
 };

@@ -12,8 +12,8 @@ import { Card } from 'components/cards';
 import { CheckCircleFilled } from '@ant-design/icons';
 
 type StepSecretWordSelectionProps = {
-  words: DefaultTextCard[];
-  categories: DefaultTextCard[];
+  words: TextCard[];
+  categories: TextCard[];
   onSubmitSecretWord: GenericFunction;
 };
 

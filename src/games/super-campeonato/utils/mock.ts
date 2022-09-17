@@ -2,7 +2,7 @@ import { deepCopy, getRandomItem } from 'utils/helpers';
 import { DEFAULT_BETS, TIER_BY_STEP, voteTarget } from './constants';
 import { getSmartBetContenderOptions } from './helpers';
 
-export function mockSelectChallenge(challenges: DefaultTextCard[]): CardId {
+export function mockSelectChallenge(challenges: TextCard[]): CardId {
   return getRandomItem(challenges).id;
 }
 

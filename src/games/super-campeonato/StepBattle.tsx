@@ -10,7 +10,7 @@ import { ReadyPlayersBar } from 'components/players';
 
 type StepBattleProps = {
   onSubmitVotes: GenericFunction;
-  challenge: DefaultTextCard;
+  challenge: TextCard;
   brackets: WBracket[];
   tier: WBracketTier;
   bets: WBets;

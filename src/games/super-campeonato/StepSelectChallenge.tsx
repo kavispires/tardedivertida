@@ -15,7 +15,7 @@ import { ContendersHand } from './components/ContendersHand';
 
 type StepSelectChallengeProps = {
   onSubmitChallenge: GenericFunction;
-  challenges: DefaultTextCard[];
+  challenges: TextCard[];
   userContenders: WContender[];
   round: GameRound;
 };
