@@ -1,5 +1,5 @@
-import { shuffle } from 'utils/helpers';
-import { WORST_TO_REMOVE } from './constants';
+import { getRandomItem, shuffle } from 'utils/helpers';
+import { ROTATIONS, WORST_TO_REMOVE } from './constants';
 import { sampleSize } from 'lodash';
 
 export const mockSelectCards = (cards: TextCard[]): CardId[] =>
@@ -11,4 +11,35 @@ const clues = ['agua', 'bola', 'coco', 'dedo', 'egua', 'flauta', 'gatilho', 'hé
 
 export const mockClues = (): { clues: string[] } => {
   return { clues: sampleSize(clues, 4) };
+};
+
+export const mockGuesses = (leaves: Leaves): YGuesses => {
+  const selected = sampleSize(Object.keys(leaves), 4);
+
+  return {
+    A: {
+      leafId: selected[0],
+      rotation: getRandomItem(ROTATIONS),
+      score: getRandomItem([3, 1, 1, 1, 1]),
+      tries: 2,
+    },
+    B: {
+      leafId: selected[1],
+      rotation: getRandomItem(ROTATIONS),
+      score: getRandomItem([3, 1, 1, 1, 1]),
+      tries: 2,
+    },
+    C: {
+      leafId: selected[2],
+      rotation: getRandomItem(ROTATIONS),
+      score: getRandomItem([3, 1, 1, 1, 1]),
+      tries: 2,
+    },
+    D: {
+      leafId: selected[3],
+      rotation: getRandomItem(ROTATIONS),
+      score: getRandomItem([3, 1, 1, 1, 1]),
+      tries: 2,
+    },
+  };
 };

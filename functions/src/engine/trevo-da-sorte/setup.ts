@@ -130,7 +130,7 @@ export const prepareResultsPhase = async (
   utils.players.readyPlayers(players);
 
   // Calculate score
-  const ranking = buildRanking(players);
+  const ranking = buildRanking(players, state.activeCloverId);
 
   // Save
   return {
@@ -149,7 +149,7 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
-  utils.players.readyPlayers(players);
+  const winners = utils.players.determineWinners(players);
 
   // Save
   return {
@@ -163,6 +163,7 @@ export const prepareGameOverPhase = async (
       state: {
         phase: TREVO_DA_SORTE_PHASES.GAME_OVER,
         gameEndedAt: Date.now(),
+        winners,
       },
     },
   };

@@ -3,6 +3,7 @@ import { Button } from 'antd';
 import clsx from 'clsx';
 import { CloverIcon } from 'components/icons/CloverIcon';
 import { IconAvatar } from 'components/icons/IconAvatar';
+import { LockIcon } from 'components/icons/LockIcon';
 import { getAnimationClass } from 'utils/helpers';
 
 type LeafProps = {
@@ -13,6 +14,7 @@ type LeafProps = {
   onLeafRotate?: GenericFunction;
   className?: string;
   position?: LeafPosition;
+  isLocked?: boolean;
 };
 
 export function Leaf({
@@ -23,6 +25,7 @@ export function Leaf({
   onLeafGrab,
   className,
   position,
+  isLocked,
 }: LeafProps) {
   const grabbable = Boolean(onLeafGrab);
   const removable = Boolean(onLeafRemove);
@@ -36,7 +39,7 @@ export function Leaf({
       style={{ transform: `rotate(${rotation}deg)` }}
     >
       {leaf.cards.map((card: TextCard, cIndex: number) =>
-        grabbable ? (
+        !isLocked && grabbable ? (
           <div
             role="button"
             key={card.id}
@@ -52,7 +55,7 @@ export function Leaf({
         )
       )}
       <div className="y-leaf__controls" style={{ transform: `rotate(-${rotation}deg)` }}>
-        {rotatable && (
+        {!isLocked && rotatable && (
           <Button
             onClick={(e) => onLeafRotate!(e, leaf.id)}
             className="y-leaf__center y-leaf__center--rotatable"
@@ -61,7 +64,7 @@ export function Leaf({
             <RedoOutlined />
           </Button>
         )}
-        {removable && (
+        {!isLocked && removable && (
           <Button
             onClick={() => onLeafRemove!(position)}
             className="y-leaf__center y-leaf__center--rotatable"
@@ -69,6 +72,12 @@ export function Leaf({
           >
             <DeleteOutlined />
           </Button>
+        )}
+
+        {isLocked && (
+          <div className="y-leaf__center">
+            <IconAvatar icon={<LockIcon />} />
+          </div>
         )}
 
         {isStatic && (

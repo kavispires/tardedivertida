@@ -22,7 +22,6 @@ function PhaseCloverGuessing({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
   const { translate } = useLanguage();
   const { step, goToNextStep, setStep } = useStep(0);
-
   const [activeCloverPlayer, isUserTheCloverPlayer] = useWhichPlayerIsThe('activeCloverId', state, players);
 
   const onSubmitGuess = useOnSubmitGuessAPIRequest(setStep);

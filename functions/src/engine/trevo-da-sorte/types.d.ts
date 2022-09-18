@@ -34,9 +34,16 @@ export interface Leaf {
 export interface LeafGuess {
   leafId: LeafId;
   rotation: number;
-  tries: number;
+  tries?: number;
+  score?: number;
 }
 
+export interface GuessPayload {
+  A: LeafGuess;
+  B: LeafGuess;
+  C: LeafGuess;
+  D: LeafGuess;
+}
 export interface Guess {
   cloverId: PlayerId;
   playerId: PlayerId;

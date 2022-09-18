@@ -49,8 +49,11 @@ type Leaves = Record<LeafId, Leaf>;
 interface LeafGuess {
   leafId: LeafId;
   rotation: number;
-  tries: number;
+  tries?: number;
+  score?: number;
 }
+
+type LeafLocks = Record<LeafPosition, boolean>;
 
 type YGuesses = Record<LeafPosition, LeafGuess | null>;
 

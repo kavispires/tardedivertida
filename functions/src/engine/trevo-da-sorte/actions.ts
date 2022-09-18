@@ -2,6 +2,7 @@
 import * as utils from '../../utils';
 // Internal
 import { getNextPhase } from '.';
+import { Guess, GuessPayload } from './types';
 
 /**
  *
@@ -72,16 +73,23 @@ export const handleSubmitGuess = async (
   collectionName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  guesses: any,
+  guesses: GuessPayload,
   activeCloverId: PlayerId
 ) => {
+  const guess: Guess = {
+    cloverId: activeCloverId,
+    playerId,
+    leaves: guesses,
+    score: Object.values(guesses).reduce((acc: number, entry) => acc + entry.score, 0),
+  };
+
   return await utils.firebase.updatePlayer({
     collectionName,
     gameId,
     playerId,
     actionText: 'submit guess',
     shouldReady: true,
-    change: { [`guesses.${activeCloverId}`]: guesses },
+    change: { [`guesses.${activeCloverId}`]: guess },
     nextPhaseFunction: getNextPhase,
   });
 };

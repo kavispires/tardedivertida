@@ -24,6 +24,7 @@ type CloverProps = {
   activeSlotId?: LeafPosition | null;
   onLeafGrab?: GenericFunction;
   onActivateSlot?: GenericFunction;
+  locks?: LeafLocks;
 };
 
 export function Clover({
@@ -40,6 +41,7 @@ export function Clover({
   activeSlotId,
   onLeafGrab,
   onActivateSlot,
+  locks,
 }: CloverProps) {
   const { translate } = useLanguage();
   const cloverLeaves = Object.entries(clover.leaves);
@@ -48,7 +50,7 @@ export function Clover({
     <div className="container center">
       <div className="y-clover" style={{ transform: `rotate(${rotation}deg)` }}>
         {/* ANSWERS */}
-        {cloverLeaves.map(([cloverLeafPosition, cloverLeaf], index) => {
+        {cloverLeaves.map(([_, cloverLeaf], index) => {
           const leafIndex = Number(index) as LeafIndex;
 
           if (mode === 'write' && onClueChange) {
@@ -81,7 +83,7 @@ export function Clover({
         })}
 
         {/* LEAVES */}
-        {cloverLeaves.map(([cloverLeafPosition, cloverLeaf], index) => {
+        {cloverLeaves.map(([cloverLeafPosition, cloverLeaf]) => {
           const resultView = mode !== 'guess';
           const leafId = resultView ? cloverLeaf.leafId : guesses?.[cloverLeafPosition]?.leafId;
           const leaf = leaves?.[leafId];
@@ -97,6 +99,7 @@ export function Clover({
               onLeafRemove={onLeafRemove}
               activeSlotId={activeSlotId}
               onActivateSlot={onActivateSlot}
+              isLocked={locks?.[cloverLeafPosition as LeafPosition] ?? false}
             />
           );
         })}
