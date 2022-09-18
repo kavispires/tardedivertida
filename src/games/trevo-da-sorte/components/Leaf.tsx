@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import { CloverIcon } from 'components/icons/CloverIcon';
 import { IconAvatar } from 'components/icons/IconAvatar';
 import { LockIcon } from 'components/icons/LockIcon';
+import { ReactNode } from 'react';
 import { getAnimationClass } from 'utils/helpers';
 
 type LeafProps = {
@@ -15,6 +16,7 @@ type LeafProps = {
   className?: string;
   position?: LeafPosition;
   isLocked?: boolean;
+  icon?: ReactNode;
 };
 
 export function Leaf({
@@ -26,6 +28,7 @@ export function Leaf({
   className,
   position,
   isLocked,
+  icon,
 }: LeafProps) {
   const grabbable = Boolean(onLeafGrab);
   const removable = Boolean(onLeafRemove);
@@ -82,7 +85,7 @@ export function Leaf({
 
         {isStatic && (
           <div className="y-leaf__center">
-            <IconAvatar icon={<CloverIcon />} />
+            <IconAvatar icon={icon ?? <CloverIcon />} />
           </div>
         )}
       </div>

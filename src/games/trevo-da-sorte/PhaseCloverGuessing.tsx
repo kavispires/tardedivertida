@@ -9,13 +9,12 @@ import { PHASES } from 'utils/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-
 import { Translate } from 'components/language';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { StepGuessClover } from './StepGuessClover';
-
 import { CloverIcon } from 'components/icons/CloverIcon';
 import { ViewOr } from 'components/views';
+import { TurnOrder } from 'components/players';
 import { StepWaitClover } from './StepWaitClover';
 
 function PhaseCloverGuessing({ players, state, info }: PhaseProps) {
@@ -42,6 +41,8 @@ function PhaseCloverGuessing({ players, state, info }: PhaseProps) {
               en="One at a time, let's try to guess the position of each leaf on each clover"
             />
           </Instruction>
+
+          <TurnOrder players={players} activePlayerId={state.activeCloverId} order={state.gameOrder} />
         </PhaseAnnouncement>
 
         {/* Step 1 */}

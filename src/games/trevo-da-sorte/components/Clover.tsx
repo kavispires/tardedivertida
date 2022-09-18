@@ -8,6 +8,9 @@ import { useLanguage } from 'hooks/useLanguage';
 import { ROTATIONS } from '../utils/constants';
 // Components
 import { LeafSlot } from './LeafSlot';
+import { BoxXIcon } from 'components/icons/BoxXIcon';
+import { BoxOneIcon } from 'components/icons/BoxOneIcon';
+import { BoxCheckMarkIcon } from 'components/icons/BoxCheckMarkIcon';
 
 type CloverProps = {
   mode: CloverMode;
@@ -84,15 +87,17 @@ export function Clover({
 
         {/* LEAVES */}
         {cloverLeaves.map(([cloverLeafPosition, cloverLeaf]) => {
-          const resultView = mode !== 'guess';
-          const leafId = resultView ? cloverLeaf.leafId : guesses?.[cloverLeafPosition]?.leafId;
-          const leaf = leaves?.[leafId];
-          const rotation = resultView ? cloverLeaf.rotation : rotations[leaf?.id ?? ''] ?? 0;
+          const {
+            leaf,
+            rotation: leafRotation,
+            icon,
+          } = getLeaf(mode, leaves, cloverLeafPosition as LeafPosition, cloverLeaf, guesses, rotations);
+
           return (
             <LeafSlot
               key={`slot-${cloverLeafPosition}`}
               leaf={leaf}
-              rotation={rotation}
+              rotation={leafRotation}
               position={cloverLeafPosition as LeafPosition}
               onLeafGrab={onLeafGrab}
               onLeafRotate={onLeafRotate}
@@ -100,6 +105,7 @@ export function Clover({
               activeSlotId={activeSlotId}
               onActivateSlot={onActivateSlot}
               isLocked={locks?.[cloverLeafPosition as LeafPosition] ?? false}
+              icon={icon}
             />
           );
         })}
@@ -111,3 +117,52 @@ export function Clover({
     </div>
   );
 }
+
+const getLeaf = (
+  mode: CloverMode,
+  leaves: Leaves,
+  position: LeafPosition,
+  cloverLeaf: CloverLeaf,
+  guesses: YGuesses,
+  rotations: NumberDictionary
+) => {
+  let leafId = '';
+  switch (mode) {
+    case 'guess':
+      leafId = guesses?.[position]?.leafId ?? '';
+      return {
+        leaf: leaves?.[leafId],
+        rotation: rotations[leafId] ?? 0,
+        icon: undefined,
+      };
+    case 'result':
+      leafId = guesses?.[position]?.leafId ?? '';
+      const guess = guesses?.[position];
+      return {
+        leaf: leaves?.[leafId],
+        rotation: guess?.rotation ?? 0,
+        icon: getIcon(guess?.score ?? 0),
+      };
+    case 'view':
+    case 'write':
+    default:
+      leafId = cloverLeaf.leafId;
+      return {
+        leaf: leaves?.[leafId],
+        rotation: cloverLeaf.rotation,
+        icon: undefined,
+      };
+  }
+};
+
+const getIcon = (score: number) => {
+  switch (score) {
+    case 1:
+      return <BoxOneIcon />;
+    case 3:
+      return <BoxCheckMarkIcon />;
+    case 0:
+    default:
+      return <BoxXIcon />;
+  }
+};

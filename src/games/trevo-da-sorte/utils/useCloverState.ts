@@ -206,12 +206,14 @@ export function useCloverState(mode: CloverMode, clover: Clover, leaves: Leaves,
 
         if (isCorrect) {
           entry.score = attempts === 0 ? 3 : 1;
-          entry.tries = attempts + 1;
           correctCount += 1;
           locksCopy[key] = true;
-        } else {
+        } else if (attempts === 0) {
           guessesCopy[key] = null;
         }
+
+        entry.tries = attempts + 1;
+        entry.score = entry.score ?? 0;
       }
     });
 
