@@ -1,57 +1,68 @@
-import { RotateLeftOutlined, RotateRightOutlined } from '@ant-design/icons';
-import { Button, Input } from 'antd';
 import clsx from 'clsx';
+// Ant Design Resources
+import { Button, Input } from 'antd';
+import { RotateLeftOutlined, RotateRightOutlined } from '@ant-design/icons';
+// Hooks
 import { useLanguage } from 'hooks/useLanguage';
+// Utils
 import { ROTATIONS } from '../utils/constants';
+// Components
 import { LeafSlot } from './LeafSlot';
 
 type CloverProps = {
-  // clover: Clover;
   mode: CloverMode;
+  clover: Clover;
   leaves: Leaves;
-  clues: string[];
-  onRotateClover: (direction: number) => void;
+  guesses?: any;
   rotation: number;
-  onChangeClue?: (targetIndex: LeafIndex, value: string) => void;
-  guesses: YGuesses;
-  allowLeafRotation: boolean;
-  onDrop?: GenericFunction;
-  onRotateLeaf?: (e: any, id: LeafId) => void;
+  onRotate: (direction: number) => void;
+  onClueChange?: (targetIndex: LeafIndex, value: string) => void;
+  rotations?: NumberDictionary;
+  onLeafRotate?: GenericFunction;
+  onLeafRemove?: GenericFunction;
+  activeLeafId?: LeafId | null;
+  activeSlotId?: LeafPosition | null;
+  onLeafGrab?: GenericFunction;
+  onActivateSlot?: GenericFunction;
 };
 
 export function Clover({
-  leaves,
-  clues,
-  rotation,
-  onChangeClue,
-  guesses,
-  allowLeafRotation,
-  onDrop,
-  onRotateClover,
-  onRotateLeaf,
   mode,
+  clover,
+  leaves,
+  guesses,
+  rotation,
+  onRotate,
+  onClueChange,
+  rotations = {},
+  onLeafRotate,
+  onLeafRemove,
+  activeSlotId,
+  onLeafGrab,
+  onActivateSlot,
 }: CloverProps) {
   const { translate } = useLanguage();
+  const cloverLeaves = Object.entries(clover.leaves);
 
   return (
     <div className="container center">
       <div className="y-clover" style={{ transform: `rotate(${rotation}deg)` }}>
         {/* ANSWERS */}
-        {clues.map((clue, index) => {
+        {cloverLeaves.map(([cloverLeafPosition, cloverLeaf], index) => {
           const leafIndex = Number(index) as LeafIndex;
 
-          if (mode === 'write') {
+          if (mode === 'write' && onClueChange) {
             return (
               <div
                 key={`clue-key-${leafIndex}`}
                 className={clsx(`y-clover__clue-${leafIndex}`, 'y-clover-clue')}
               >
                 <Input
-                  onChange={onChangeClue ? (e) => onChangeClue(leafIndex, e.target.value) : undefined}
+                  onChange={onClueChange ? (e) => onClueChange(leafIndex, e.target.value) : undefined}
                   className={`y-clover-rotation--${ROTATIONS[index]} y-clover-input`}
                   placeholder={translate('Escreva aqui', 'Write here')}
-                  disabled={!Boolean(onChangeClue)}
-                  value={mode === 'write' ? undefined : clue}
+                  disabled={!Boolean(onClueChange)}
+                  value={mode === 'write' ? undefined : cloverLeaf.clue}
                 />
               </div>
             );
@@ -63,26 +74,36 @@ export function Clover({
               className={clsx(`y-clover__clue-${leafIndex}`, 'y-clover-clue')}
             >
               <span className={clsx(`y-clover-rotation--${ROTATIONS[index]}`, 'y-clover-clue-readonly')}>
-                {clue}
+                {cloverLeaf.clue}
               </span>
             </div>
           );
         })}
 
         {/* LEAVES */}
-        {Object.entries(guesses).map(([leafPosKey, guess], index) => (
-          <LeafSlot
-            key={`slot-${leafPosKey}`}
-            leaf={guess ? leaves[guess.leafId] : undefined}
-            allowLeafRotation={allowLeafRotation}
-            position={leafPosKey as LeafPosition}
-            onRotateLeaf={onRotateLeaf}
-          />
-        ))}
+        {cloverLeaves.map(([cloverLeafPosition, cloverLeaf], index) => {
+          const resultView = mode !== 'guess';
+          const leafId = resultView ? cloverLeaf.leafId : guesses?.[cloverLeafPosition]?.leafId;
+          const leaf = leaves?.[leafId];
+          const rotation = resultView ? cloverLeaf.rotation : rotations[leaf?.id ?? ''] ?? 0;
+          return (
+            <LeafSlot
+              key={`slot-${cloverLeafPosition}`}
+              leaf={leaf}
+              rotation={rotation}
+              position={cloverLeafPosition as LeafPosition}
+              onLeafGrab={onLeafGrab}
+              onLeafRotate={onLeafRotate}
+              onLeafRemove={onLeafRemove}
+              activeSlotId={activeSlotId}
+              onActivateSlot={onActivateSlot}
+            />
+          );
+        })}
       </div>
       <div className="controls space-container center">
-        <Button icon={<RotateLeftOutlined />} onClick={() => onRotateClover(-1)} />
-        <Button icon={<RotateRightOutlined />} onClick={() => onRotateClover(1)} />
+        <Button icon={<RotateLeftOutlined />} onClick={() => onRotate(-1)} />
+        <Button icon={<RotateRightOutlined />} onClick={() => onRotate(1)} />
       </div>
     </div>
   );

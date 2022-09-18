@@ -50,9 +50,9 @@ export const buildLeaves = (players: Players, gameMode: string) => {
       const leaf: Leaf = {
         id: leafId,
         cards: entry,
-        lockedRotation: utils.game.getRandomItem(ROTATIONS),
-        rotation: 0,
-        position: null,
+        // lockedRotation: utils.game.getRandomItem(ROTATIONS),
+        // rotation: 0,
+        // position: null,
       };
       acc[leafId] = leaf;
       return acc;
@@ -66,12 +66,28 @@ export const buildClovers = (players: Players) => {
     const leaves: string[] = utils.game.shuffle(Object.keys(player.leaves));
 
     const clover: Clover = {
-      rotation: 0,
+      cloverId: player.id,
       leaves: {
-        A: leaves[0],
-        B: leaves[1],
-        C: leaves[2],
-        D: leaves[3],
+        A: {
+          leafId: leaves[0],
+          rotation: utils.game.getRandomItem(ROTATIONS),
+          clue: '',
+        },
+        B: {
+          leafId: leaves[1],
+          rotation: utils.game.getRandomItem(ROTATIONS),
+          clue: '',
+        },
+        C: {
+          leafId: leaves[2],
+          rotation: utils.game.getRandomItem(ROTATIONS),
+          clue: '',
+        },
+        D: {
+          leafId: leaves[3],
+          rotation: utils.game.getRandomItem(ROTATIONS),
+          clue: '',
+        },
       },
     };
 
@@ -86,11 +102,31 @@ export const buildGuesses = (players: Players) => {
       if (p.id === player.id) return acc;
 
       acc[p.id] = {
-        A: null,
-        B: null,
-        C: null,
-        D: null,
-        tries: 0,
+        cloverId: p.id,
+        playerId: player.id,
+        score: 0,
+        leaves: {
+          A: {
+            leafId: '',
+            rotation: 0,
+            tries: 0,
+          },
+          B: {
+            leafId: '',
+            rotation: 0,
+            tries: 0,
+          },
+          C: {
+            leafId: '',
+            rotation: 0,
+            tries: 0,
+          },
+          D: {
+            leafId: '',
+            rotation: 0,
+            tries: 0,
+          },
+        },
       };
 
       return acc;
@@ -108,8 +144,8 @@ export const buildRanking = (players: Players) => {
     Object.keys(player.guesses).forEach((resultCloverId) => {
       const guesses: Guess = player.guesses[resultCloverId];
       const clover: Clover = players[resultCloverId].clover;
-      const leaves: Leaves = players[resultCloverId].leaves;
-      const isSecondTry = guesses.tries > 1;
+      const leaves = players[resultCloverId].leaves;
+      const isSecondTry = false; // guesses.tries > 1;
       const pointValue = isSecondTry ? 1 : 2;
 
       Object.keys(guesses).forEach((leafId) => {

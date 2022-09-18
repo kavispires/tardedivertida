@@ -1,47 +1,63 @@
-import { Avatar } from 'antd';
 import clsx from 'clsx';
-import { TransparentButton } from 'components/buttons';
+// Components
 import { Leaf } from './Leaf';
+import { GuessIcon } from 'components/icons/GuessIcon';
+import { IconAvatar } from 'components/icons/IconAvatar';
 
 type LeafSlotProps = {
   leaf?: Leaf;
-  position: LeafPosition;
-  allowLeafRotation: boolean;
-  activeSlotId?: LeafPosition | null;
-  onActivateSlot?: GenericFunction;
-  onRotateLeaf?: (e: any, id: LeafId) => void;
   rotation?: number;
+  position?: LeafPosition;
+  onLeafGrab?: GenericFunction;
+  onLeafRotate?: GenericFunction;
+  onLeafRemove?: GenericFunction;
+  onActivateSlot?: GenericFunction;
+  activeLeafId?: LeafId | null;
+  activeSlotId?: LeafPosition | null;
+  className?: string;
 };
 
 export function LeafSlot({
   leaf,
-  position,
-  allowLeafRotation,
-  onActivateSlot,
-  onRotateLeaf,
-  activeSlotId,
   rotation,
+  position,
+  onLeafGrab,
+  onLeafRotate,
+  onLeafRemove,
+  activeSlotId,
+  onActivateSlot,
 }: LeafSlotProps) {
-  // const isActive = isOver && canDrop;
-  // const isActive = false;
-
-  if (Boolean(onActivateSlot)) {
+  if (!leaf && onActivateSlot) {
     return (
-      <TransparentButton
-        onClick={() => onActivateSlot!(position)}
-        active={activeSlotId === position}
-        className={clsx(`y-clover__leaf-${position}`)}
-      >
+      <div className={clsx(`y-clover__leaf-${position}`, activeSlotId === position && 'active-class')}>
+        <button
+          key={`clue-key-${position}`}
+          className={clsx(
+            'y-leaf',
+            'y-leaf--empty',
+            'y-leaf--empty-clickable',
+            activeSlotId === position && 'y-leaf--empty-active'
+          )}
+          onClick={(_) => onActivateSlot(position)}
+        >
+          <IconAvatar icon={<GuessIcon />} size="large" />
+        </button>
+      </div>
+    );
+  }
+
+  if (Boolean(onLeafGrab)) {
+    return (
+      <div className={clsx(`y-clover__leaf-${position}`, activeSlotId === position && 'active-class')}>
         <LeafSlotContent
           leaf={leaf}
-          allowLeafRotation={true}
           position={position}
-          onRotateLeaf={onRotateLeaf}
-          onActivateSlot={onActivateSlot}
-          activeSlotId={activeSlotId}
           rotation={rotation}
+          onLeafGrab={() => onLeafGrab!(position)}
+          onLeafRotate={onLeafRotate}
+          onLeafRemove={onLeafRemove}
         />
-      </TransparentButton>
+      </div>
     );
   }
 
@@ -49,30 +65,38 @@ export function LeafSlot({
     <div className={clsx(`y-clover__leaf-${position}`)}>
       <LeafSlotContent
         leaf={leaf}
-        allowLeafRotation={true}
         position={position}
-        onRotateLeaf={onRotateLeaf}
-        onActivateSlot={onActivateSlot}
-        activeSlotId={activeSlotId}
         rotation={rotation}
+        onLeafRotate={onLeafRotate}
+        onLeafRemove={onLeafRemove}
       />
     </div>
   );
 }
 
-function LeafSlotContent({ leaf, position, allowLeafRotation, onRotateLeaf, rotation }: LeafSlotProps) {
+function LeafSlotContent({
+  leaf,
+  rotation,
+  position,
+  onLeafGrab,
+  onLeafRotate,
+  onLeafRemove,
+  className = '',
+}: LeafSlotProps) {
   return Boolean(leaf) ? (
     <Leaf
       key={leaf!.id}
       leaf={leaf!}
-      allowLeafRotation={allowLeafRotation}
-      position={position as LeafPosition}
-      onRotateLeaf={onRotateLeaf}
+      onLeafGrab={onLeafGrab}
+      onLeafRotate={onLeafRotate}
+      onLeafRemove={onLeafRemove}
       rotation={rotation}
+      className={className}
+      position={position}
     />
   ) : (
-    <div key={`clue-key-${position}`} className={clsx('y-clover-leaf', 'y-clover-leaf--empty')}>
-      <Avatar className="y-clover-leaf__empty-avatar">?</Avatar>
+    <div key={`clue-key-${position}`} className={clsx('y-leaf', 'y-leaf--empty')}>
+      <IconAvatar icon={<GuessIcon />} size="large" />
     </div>
   );
 }

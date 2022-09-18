@@ -1,7 +1,6 @@
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Hooks
-import { useCloverState } from './utils/useCloverState';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Utils
@@ -11,7 +10,8 @@ import { DebugOnly } from 'components/debug';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
-import { CloverWrite } from './components/CloverWrite';
+import { Clover } from './components/Clover';
+import { useCloverState } from './utils/useCloverState';
 
 type StepWriteCluesProps = {
   clover: Clover;
@@ -21,15 +21,12 @@ type StepWriteCluesProps = {
 
 export function StepWriteClues({ clover, leaves, onSubmitClues }: StepWriteCluesProps) {
   const { isLoading } = useLoading();
-  const { rotation, onRotateClover, onChangeClue, clues, guesses, isCluesComplete } = useCloverState(
-    'write',
-    clover,
-    leaves
-  );
+  const { mode, rotation, onRotateClover, clues, onClueChange } = useCloverState('write', clover, leaves);
 
   const onSubmit = () => {
     onSubmitClues({ clues });
   };
+
   const onSubmitMock = () => {
     onSubmitClues(mockClues());
   };
@@ -62,17 +59,17 @@ export function StepWriteClues({ clover, leaves, onSubmitClues }: StepWriteClues
         />
       </Instruction>
 
-      <CloverWrite
+      <Clover
+        mode={mode}
+        clover={clover}
         leaves={leaves}
-        clues={clues}
         rotation={rotation}
-        results={guesses}
-        onRotateClover={onRotateClover}
-        onChangeClue={onChangeClue}
+        onRotate={onRotateClover}
+        onClueChange={onClueChange}
       />
 
       <Space className="space-container" align="center">
-        <Button type="primary" size="large" onClick={onSubmit} disabled={!isCluesComplete || isLoading}>
+        <Button type="primary" size="large" onClick={onSubmit} disabled={isLoading}>
           <Translate pt="Enviar dicas" en="Submit clues" />
         </Button>
 
