@@ -57,4 +57,4 @@ type LeafLocks = Record<LeafPosition, boolean>;
 
 type YGuesses = Record<LeafPosition, LeafGuess | null>;
 
-type CloverMode = 'write' | 'guess' | 'view';
+type CloverMode = 'write' | 'guess' | 'view' | 'result';

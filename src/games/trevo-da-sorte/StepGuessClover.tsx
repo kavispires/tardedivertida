@@ -18,7 +18,6 @@ type StepGuessCloverProps = {
   clover: Clover;
   leaves: Leaves;
   onSubmitGuess: GenericFunction;
-
   activeCloverPlayer: GamePlayer;
   isUserTheCloverPlayer: boolean;
 };

@@ -50,9 +50,6 @@ export const buildLeaves = (players: Players, gameMode: string) => {
       const leaf: Leaf = {
         id: leafId,
         cards: entry,
-        // lockedRotation: utils.game.getRandomItem(ROTATIONS),
-        // rotation: 0,
-        // position: null,
       };
       acc[leafId] = leaf;
       return acc;
@@ -136,28 +133,27 @@ export const buildGuesses = (players: Players) => {
 
 export const buildRanking = (players: Players, activeCloverId: PlayerId) => {
   // Gained Points: [First try, second try, granted by other players]
-  const newScores = utils.helpers.buildNewScoreObject(players, [0, 0]);
+  const newScores = utils.helpers.buildNewScoreObject(players, [0, 0, 0]);
 
   const listOfPlayers = utils.players.getListOfPlayers(players);
   listOfPlayers.forEach((player) => {
     if (player.id !== activeCloverId) {
-      const guesses: Guess = player.guesses[activeCloverId];
+      const guesses: Guess = player.guesses[activeCloverId].leaves;
 
-      Object.keys(guesses).forEach((leafId) => {
-        if (leafId !== 'tries') {
-          const guess: LeafGuess = guesses[leafId];
-          const score = guess.score ?? 0;
-          const pointSlotIndex = score > 1 ? 0 : 1;
+      Object.values(guesses).forEach((guess: LeafGuess) => {
+        const score = guess.score ?? 0;
+        const pointSlotIndex = score > 1 ? 0 : 1;
 
-          newScores[player.id].gainedPoints[pointSlotIndex] += score;
-          newScores[player.id].newScore += score;
-          player.score += score;
+        newScores[player.id].gainedPoints[pointSlotIndex] += score;
+        newScores[player.id].newScore += score;
+        player.score += score;
 
-          players[activeCloverId].score += score > 1 ? 1 : 0;
-        }
+        newScores[activeCloverId].gainedPoints[2] += score > 1 ? 1 : 0;
+        newScores[activeCloverId].newScore += score > 1 ? 1 : 0;
+        players[activeCloverId].score += score > 1 ? 1 : 0;
       });
     }
   });
 
-  return Object.values(newScores).sort((a: NewScore, b: NewScore) => (a.newScore > b.newScore ? 1 : -1));
+  return utils.helpers.sortNewScore(newScores);
 };

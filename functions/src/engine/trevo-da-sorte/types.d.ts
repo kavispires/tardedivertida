@@ -58,43 +58,7 @@ export interface Guess {
 
 export type Guesses = Record<PlayerId, Guess>;
 
-// export interface Leaf {
-//   id: LeafId;
-//   cards: TextCard[];
-//   lockedRotation: number;
-//   position: Position | null;
-//   rotation: number;
-// }
-
 type Leaves = Record<LeafId, Leaf>;
-
-// export interface LeafGuess {
-//   leafId: LeafId;
-//   rotation: number;
-//   position?: Position;
-//   score?: number;
-// }
-
-// export interface Guess {
-//   A: LeafGuess | null;
-//   B: LeafGuess | null;
-//   C: LeafGuess | null;
-//   D: LeafGuess | null;
-//   tries: number;
-// }
-
-// export type Guesses = Record<PlayerId, Guess>;
-
-// export interface Clover {
-//   clues?: string[];
-//   rotation: number;
-//   leaves: {
-//     A: LeafId;
-//     B: LeafId;
-//     C: LeafId;
-//     D: LeafId;
-//   };
-// }
 
 export interface TrevoDaSorteStore extends DefaultStore {
   [key: string]: any;

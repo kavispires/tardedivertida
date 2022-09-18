@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { ReactNode } from 'react';
 // Components
 import { Leaf } from './Leaf';
 import { GuessIcon } from 'components/icons/GuessIcon';
@@ -16,6 +17,7 @@ type LeafSlotProps = {
   activeSlotId?: LeafPosition | null;
   className?: string;
   isLocked?: boolean;
+  icon?: ReactNode;
 };
 
 export function LeafSlot({
@@ -28,6 +30,7 @@ export function LeafSlot({
   activeSlotId,
   onActivateSlot,
   isLocked,
+  icon,
 }: LeafSlotProps) {
   if (!leaf && onActivateSlot) {
     return (
@@ -59,6 +62,7 @@ export function LeafSlot({
           onLeafRotate={onLeafRotate}
           onLeafRemove={onLeafRemove}
           isLocked={isLocked}
+          icon={icon}
         />
       </div>
     );
@@ -73,6 +77,7 @@ export function LeafSlot({
         onLeafRotate={onLeafRotate}
         onLeafRemove={onLeafRemove}
         isLocked={isLocked}
+        icon={icon}
       />
     </div>
   );
@@ -87,6 +92,7 @@ function LeafSlotContent({
   onLeafRemove,
   isLocked,
   className = '',
+  icon,
 }: LeafSlotProps) {
   return Boolean(leaf) ? (
     <Leaf
@@ -99,6 +105,7 @@ function LeafSlotContent({
       className={className}
       position={position}
       isLocked={isLocked}
+      icon={icon}
     />
   ) : (
     <div key={`clue-key-${position}`} className={clsx('y-leaf', 'y-leaf--empty')}>

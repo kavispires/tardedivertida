@@ -11,6 +11,7 @@ import PhaseCloverWriting from './PhaseCloverWriting';
 // Fonts
 import 'assets/fonts/architects-daughter.scss';
 import PhaseCloverGuessing from './PhaseCloverGuessing';
+import PhaseResults from './PhaseResults';
 
 ConfigProvider.config({
   theme: {
@@ -34,7 +35,7 @@ function SessionTrevoDaSorte({ gameId }: SessionProps) {
       case PHASES.TREVO_DA_SORTE.CLOVER_GUESSING:
         return PhaseCloverGuessing;
       case PHASES.TREVO_DA_SORTE.RESULTS:
-        return PhasePlaceholder;
+        return PhaseResults;
       case PHASES.DEFAULT.GAME_OVER:
         return PhasePlaceholder;
       default:
