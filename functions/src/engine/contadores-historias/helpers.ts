@@ -146,7 +146,7 @@ export const calculateNewScores = (
     player.score = newScores[player.id].newScore;
   });
 
-  return Object.values(newScores).sort((a: NewScore, b: NewScore) => (a.newScore > b.newScore ? 1 : -1));
+  return utils.helpers.sortNewScore(newScores);
 };
 
 export const scoreRound = (players: Players, table: Table, storyteller: PlayerId) => {

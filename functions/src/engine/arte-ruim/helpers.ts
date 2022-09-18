@@ -438,7 +438,7 @@ export const buildRanking = (drawings: ArteRuimDrawing[], players: Players) => {
     });
   });
 
-  return Object.values(newScores).sort((a: NewScore, b: NewScore) => (a.newScore > b.newScore ? 1 : -1));
+  return utils.helpers.sortNewScore(newScores);
 };
 
 /**
