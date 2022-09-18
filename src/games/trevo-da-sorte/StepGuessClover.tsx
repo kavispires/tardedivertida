@@ -8,7 +8,9 @@ import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 
 import { useLoading } from 'hooks/useLoading';
-import { CloverGuess } from './components/CloverGuess';
+import { Clover } from './components/Clover';
+import { DetachedLeaves } from './components/DetachedLeaves';
+import { cleanupGuesses } from './utils/helpers';
 
 import { mockClues } from './utils/mock';
 import { useCloverState } from './utils/useCloverState';
@@ -27,18 +29,20 @@ export function StepGuessClover({ clover, leaves, onSubmitGuess, activeCloverPla
   const {
     rotation,
     rotations,
-    onRotateLeaf,
+    onLeafRotate,
     onRotateClover,
     guesses,
-    clues,
     onActivateLeaf,
     activeLeafId,
     onActivateSlot,
     activeSlotId,
+    usedLeavesIds,
+    onLeafRemove,
+    isCloverComplete,
   } = useCloverState('guess', clover, leaves);
 
   const onSubmit = () => {
-    // onSubmitGuess({ clues });
+    onSubmitGuess({ guesses: cleanupGuesses(guesses), activeCloverId: clover.cloverId });
   };
   const onSubmitMock = () => {
     onSubmitGuess(mockClues());
@@ -65,22 +69,33 @@ export function StepGuessClover({ clover, leaves, onSubmitGuess, activeCloverPla
         <Translate pt={<>??</>} en={<>??</>} />
       </Instruction>
 
-      <CloverGuess
+      <Clover
+        mode="guess"
+        clover={clover}
         leaves={leaves}
-        clues={clues}
-        onRotateClover={onRotateClover}
+        onRotate={onRotateClover}
         rotation={rotation}
-        onRotateLeaf={onRotateLeaf}
+        onLeafRotate={onLeafRotate}
         rotations={rotations}
         guesses={guesses}
-        onActivateLeaf={onActivateLeaf}
+        onLeafGrab={onActivateLeaf}
         activeLeafId={activeLeafId}
         onActivateSlot={onActivateSlot}
         activeSlotId={activeSlotId}
+        onLeafRemove={onLeafRemove}
+      />
+
+      <DetachedLeaves
+        leaves={leaves}
+        rotations={rotations}
+        onLeafRotate={onLeafRotate}
+        onLeafGrab={onActivateLeaf}
+        activeLeafId={activeLeafId}
+        usedLeavesIds={usedLeavesIds}
       />
 
       <Space className="space-container" align="center">
-        <Button type="primary" size="large" onClick={onSubmit} disabled={isLoading}>
+        <Button type="primary" size="large" onClick={onSubmit} disabled={!isCloverComplete || isLoading}>
           <Translate pt="Enviar adivinhação" en="Submit guess" />
         </Button>
 

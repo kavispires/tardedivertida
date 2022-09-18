@@ -91,6 +91,8 @@ export const SEPARATOR: string = ';;';
 
 export const LATEST_GAME_IDS: string = 'latestGameIds';
 
+export const NOOP = () => {};
+
 export const ADMIN_ACTIONS = {
   GO_TO_NEXT_PHASE: 'GO_TO_NEXT_PHASE',
   FORCE_STATE_PROPERTY: 'FORCE_STATE_PROPERTY',

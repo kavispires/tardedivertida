@@ -64,7 +64,7 @@ export function useOnSubmitGuessAPIRequest(setStep: GenericFunction) {
     ),
   });
 
-  return (payload: SubmitGuessPayload) => {
+  return (payload: SubmitCloverGuessesPayload) => {
     request({
       action: ACTIONS.SUBMIT_GUESS,
       ...payload,

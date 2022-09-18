@@ -42,13 +42,20 @@ export const handleSubmitClues = async (
   playerId: PlayerId,
   clues: string[]
 ) => {
+  const update = {
+    'clover.leaves.A.clue': clues[0],
+    'clover.leaves.B.clue': clues[1],
+    'clover.leaves.C.clue': clues[2],
+    'clover.leaves.D.clue': clues[3],
+  };
+
   return await utils.firebase.updatePlayer({
     collectionName,
     gameId,
     playerId,
     actionText: 'submit clues',
     shouldReady: true,
-    change: { 'clover.clues': clues },
+    change: { ...update },
     nextPhaseFunction: getNextPhase,
   });
 };
@@ -65,7 +72,7 @@ export const handleSubmitGuess = async (
   collectionName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  guess: any,
+  guesses: any,
   activeCloverId: PlayerId
 ) => {
   return await utils.firebase.updatePlayer({
@@ -74,7 +81,7 @@ export const handleSubmitGuess = async (
     playerId,
     actionText: 'submit guess',
     shouldReady: true,
-    change: { [`guesses.${activeCloverId}`]: guess },
+    change: { [`guesses.${activeCloverId}`]: guesses },
     nextPhaseFunction: getNextPhase,
   });
 };
