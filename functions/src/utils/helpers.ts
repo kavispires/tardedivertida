@@ -221,6 +221,14 @@ export const buildNewScoreObject = (
 };
 
 /**
+ * Sort results after building new score
+ * @param newScores
+ * @returns
+ */
+export const sortNewScore = (newScores: NewScores) =>
+  Object.values(newScores).sort((a: NewScore, b: NewScore) => (a.newScore > b.newScore ? 1 : -1));
+
+/**
  * Randomizes player ids
  * @param players
  * @param doublingThreshold - doubles the order player count is lower than this
