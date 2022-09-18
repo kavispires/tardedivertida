@@ -1,4 +1,3 @@
-import { orderBy } from 'lodash';
 import clsx from 'clsx';
 // Ant Design Resources
 import { Button, Tooltip } from 'antd';
@@ -6,6 +5,8 @@ import { AimOutlined, ClearOutlined, IssuesCloseOutlined } from '@ant-design/ico
 // Hooks
 import { useGlobalState } from 'hooks/useGlobalState';
 import { useLanguage } from 'hooks/useLanguage';
+// Utils
+import { sortPlayers } from 'utils/helpers';
 // Components
 import { Translate } from 'components/language';
 
@@ -16,7 +17,7 @@ type SuspectsListProps = {
 export function SuspectsList({ players }: SuspectsListProps) {
   const { translate } = useLanguage();
   const [cache, setCache] = useGlobalState('cache');
-  const sortedPlayers: Player[] = orderBy(Object.values(players), ['name'], ['asc']);
+  const sortedPlayers = sortPlayers(players);
 
   const onCross = (playerId: string) => {
     setCache((s) => {

@@ -3,6 +3,9 @@ import { Space } from 'antd';
 // Hooks
 import { useGlobalState } from 'hooks/useGlobalState';
 import { useLoading } from 'hooks/useLoading';
+import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
+// Utils
+import { sortPlayers } from 'utils/helpers';
 // Components
 import { AvatarCard } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
@@ -12,8 +15,6 @@ import { Translate } from 'components/language';
 import { WitnessRules } from './components/TextBlobs';
 import { IconAvatar } from 'components/icons/IconAvatar';
 import { AnimatedClockIcon } from 'components/icons/AnimatedClockIcon';
-import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
-import { orderBy } from 'lodash';
 
 type StepWitnessSelectionProps = {
   players: GamePlayers;
@@ -37,7 +38,7 @@ export function StepWitnessSelection({ players, onWitnessButtonClick }: StepWitn
 
       <Instruction contained>
         <Space>
-          {orderBy(Object.values(players), 'name').map((player) => {
+          {sortPlayers(players).map((player) => {
             if (isAdmin) {
               return (
                 <TransparentButton

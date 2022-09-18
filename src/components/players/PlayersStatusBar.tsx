@@ -1,11 +1,10 @@
 import clsx from 'clsx';
-import { orderBy } from 'lodash';
 // Ant Design Resources
 import { Badge } from 'antd';
 // Hooks
 import { useGlobalState } from 'hooks/useGlobalState';
 // Utils
-import { getAnimationClass } from 'utils/helpers';
+import { getAnimationClass, sortPlayers } from 'utils/helpers';
 // Components
 import { Avatar } from 'components/avatars';
 import { Translate } from 'components/language';
@@ -22,12 +21,10 @@ export function PlayersStatusBar({ players, onClick }: PlayersStatusBarProps) {
     return <></>;
   }
 
-  const sortedPlayers = orderBy(Object.values(players), ['name']);
-
   return (
     <button onClick={onClick} className={clsx('players-status-bar', getAnimationClass('slideInRight'))}>
       <ul className="players-status-bar__list">
-        {Object.values(sortedPlayers).map((player) => {
+        {sortPlayers(players).map((player) => {
           return (
             <li className="players-status-bar__player" key={`players-status-bar-${player.id}`}>
               <Badge dot color={player.ready ? 'green' : 'gray'}>

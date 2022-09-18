@@ -1,10 +1,11 @@
 import clsx from 'clsx';
+import { useMemo } from 'react';
+// Utils
+import { getAvatarColorById, sortPlayers } from 'utils/helpers';
+import { findBetContenders, getContenderIdsByTier } from '../utils/helpers';
+// Components
 import { Avatar } from 'components/avatars';
 import { Translate } from 'components/language';
-import { orderBy } from 'lodash';
-import { useMemo } from 'react';
-import { getAvatarColorById } from 'utils/helpers';
-import { findBetContenders, getContenderIdsByTier } from '../utils/helpers';
 import { ContenderCard } from './ContenderCard';
 
 type PlayersBetsProps = {
@@ -13,7 +14,7 @@ type PlayersBetsProps = {
 };
 
 export function PlayersBets({ players, brackets }: PlayersBetsProps) {
-  const playersList = orderBy(Object.values(players), 'name');
+  const playersList = sortPlayers(players);
   const contendersByTiers = getContenderIdsByTier(brackets);
   return (
     <ul className="w-players-bets" style={{ gridTemplateColumns: `repeat(${playersList.length + 1}, auto)` }}>
