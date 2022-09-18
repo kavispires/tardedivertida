@@ -15,6 +15,7 @@ type LeafSlotProps = {
   activeLeafId?: LeafId | null;
   activeSlotId?: LeafPosition | null;
   className?: string;
+  isLocked?: boolean;
 };
 
 export function LeafSlot({
@@ -26,6 +27,7 @@ export function LeafSlot({
   onLeafRemove,
   activeSlotId,
   onActivateSlot,
+  isLocked,
 }: LeafSlotProps) {
   if (!leaf && onActivateSlot) {
     return (
@@ -56,6 +58,7 @@ export function LeafSlot({
           onLeafGrab={() => onLeafGrab!(position)}
           onLeafRotate={onLeafRotate}
           onLeafRemove={onLeafRemove}
+          isLocked={isLocked}
         />
       </div>
     );
@@ -69,6 +72,7 @@ export function LeafSlot({
         rotation={rotation}
         onLeafRotate={onLeafRotate}
         onLeafRemove={onLeafRemove}
+        isLocked={isLocked}
       />
     </div>
   );
@@ -81,6 +85,7 @@ function LeafSlotContent({
   onLeafGrab,
   onLeafRotate,
   onLeafRemove,
+  isLocked,
   className = '',
 }: LeafSlotProps) {
   return Boolean(leaf) ? (
@@ -93,6 +98,7 @@ function LeafSlotContent({
       rotation={rotation}
       className={className}
       position={position}
+      isLocked={isLocked}
     />
   ) : (
     <div key={`clue-key-${position}`} className={clsx('y-leaf', 'y-leaf--empty')}>

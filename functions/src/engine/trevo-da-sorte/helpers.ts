@@ -19,10 +19,10 @@ export const determineNextPhase = (
     TREVO_DA_SORTE_PHASES;
   const order = [RULES, SETUP, WORD_SELECTION, CLOVER_WRITING, CLOVER_GUESSING, RESULTS, GAME_OVER];
 
-  if (currentPhase === CLOVER_GUESSING) {
+  if (currentPhase === RESULTS) {
     // If last player, go to results
     if (gameOrder && activeCloverId === gameOrder[gameOrder.length - 1]) {
-      return RESULTS;
+      return GAME_OVER;
     }
 
     return CLOVER_GUESSING;
@@ -134,40 +134,29 @@ export const buildGuesses = (players: Players) => {
   });
 };
 
-export const buildRanking = (players: Players) => {
+export const buildRanking = (players: Players, activeCloverId: PlayerId) => {
   // Gained Points: [First try, second try, granted by other players]
-  const newScores = utils.helpers.buildNewScoreObject(players, [0, 0, 0]);
+  const newScores = utils.helpers.buildNewScoreObject(players, [0, 0]);
 
   const listOfPlayers = utils.players.getListOfPlayers(players);
   listOfPlayers.forEach((player) => {
-    // For each guess, compare guesses with result
-    Object.keys(player.guesses).forEach((resultCloverId) => {
-      const guesses: Guess = player.guesses[resultCloverId];
-      const clover: Clover = players[resultCloverId].clover;
-      const leaves = players[resultCloverId].leaves;
-      const isSecondTry = false; // guesses.tries > 1;
-      const pointValue = isSecondTry ? 1 : 2;
+    if (player.id !== activeCloverId) {
+      const guesses: Guess = player.guesses[activeCloverId];
 
       Object.keys(guesses).forEach((leafId) => {
         if (leafId !== 'tries') {
           const guess: LeafGuess = guesses[leafId];
-          const result = leaves[clover[leafId]];
+          const score = guess.score ?? 0;
+          const pointSlotIndex = score > 1 ? 0 : 1;
 
-          if (guess.leafId === result.id && guess.rotation === result.lockedRotation) {
-            newScores[player.id].gainedPoints[isSecondTry ? 1 : 0] += pointValue;
-            newScores[player.id].newScore += pointValue;
-            player.score += pointValue;
+          newScores[player.id].gainedPoints[pointSlotIndex] += score;
+          newScores[player.id].newScore += score;
+          player.score += score;
 
-            // Author gets points only if first try
-            if (!isSecondTry) {
-              newScores[resultCloverId].gainedPoints[2] += 1;
-              newScores[resultCloverId].newScore += 1;
-              players[resultCloverId].score += 1;
-            }
-          }
+          players[activeCloverId].score += score > 1 ? 1 : 0;
         }
       });
-    });
+    }
   });
 
   return Object.values(newScores).sort((a: NewScore, b: NewScore) => (a.newScore > b.newScore ? 1 : -1));

@@ -1,12 +1,17 @@
+import { notification } from 'antd';
+import { useLanguage } from 'hooks/useLanguage';
 import { useEffect, useState } from 'react';
-import { onRotate } from './helpers';
+import { onRotate, parseRotation } from './helpers';
 
-export function useCloverState(mode: CloverMode, clover: Clover, leaves: Leaves) {
+export function useCloverState(mode: CloverMode, clover: Clover, leaves: Leaves, onSubmit?: GenericFunction) {
+  const { translate } = useLanguage();
+  const [attempts, setAttempts] = useState(0);
   const [clues, setClues] = useState<string[]>(['', '', '', '']);
   const [rotation, setRotation] = useState<number>(0);
   const [activeLeafId, setActiveLeafId] = useState<string | null>(null);
   const [activeSlotId, setActiveSlotId] = useState<LeafPosition | null>(null);
   const [guesses, setGuesses] = useState<YGuesses>({ A: null, B: null, C: null, D: null });
+  const [locks, setLocks] = useState<LeafLocks>({ A: false, B: false, C: false, D: false });
   const [rotations, setRotations] = useState<NumberDictionary>(
     Object.keys(leaves).reduce((acc: NumberDictionary, leafId) => {
       acc[leafId] = 0;
@@ -84,7 +89,6 @@ export function useCloverState(mode: CloverMode, clover: Clover, leaves: Leaves)
    * @returns
    */
   const onActivateLeaf = (targetLeafId: LeafId) => {
-    console.log({ targetLeafId });
     if (activeLeafId === targetLeafId) {
       return setActiveLeafId(null);
     }
@@ -181,6 +185,59 @@ export function useCloverState(mode: CloverMode, clover: Clover, leaves: Leaves)
     }
   };
 
+  /**
+   * First attempt: Validates clover, if correct submits, else undo wrong leaves
+   * Second attempt: Validates clover, but submits anyway
+   */
+  const submitClover = () => {
+    let correctCount = 0;
+
+    // Verify corrects guesses
+    const locksCopy = { ...locks };
+    const guessesCopy = { ...guesses };
+    Object.keys(guessesCopy).forEach((k) => {
+      const key = k as LeafPosition;
+      const entry = guessesCopy[key];
+
+      if (entry && (entry.score === undefined || entry.score === 0)) {
+        const correctLeaf = clover.leaves[key];
+        const isCorrect =
+          entry.leafId === correctLeaf.leafId && parseRotation(entry.rotation) === correctLeaf.rotation;
+
+        if (isCorrect) {
+          entry.score = attempts === 0 ? 3 : 1;
+          entry.tries = attempts + 1;
+          correctCount += 1;
+          locksCopy[key] = true;
+        } else {
+          guessesCopy[key] = null;
+        }
+      }
+    });
+
+    // If correct or second attempt, submit
+    if ((correctCount === 4 || attempts === 1) && onSubmit) {
+      onSubmit({
+        activeCloverId: clover.cloverId,
+        guesses: guessesCopy,
+      });
+      return;
+    }
+
+    notification.warn({
+      message: translate(`${4 - correctCount} folhas estão erradas`, `${4 - correctCount} leaves are wrong`),
+      description: translate(
+        'Tente novamente. Pode ter sido folha errada ou rotação errada',
+        'Try again. It may have been wrong leaf or just wrong rotation'
+      ),
+    });
+
+    setGuesses(guessesCopy);
+    setLocks(locksCopy);
+    setAttempts(1);
+  };
+
+  // BOOLEANS
   const isCluesComplete = clues.every((clue) => clue.trim());
   const isCloverComplete = Object.values(guesses).every((guess) => Boolean(guess));
 
@@ -201,5 +258,7 @@ export function useCloverState(mode: CloverMode, clover: Clover, leaves: Leaves)
     onLeafRemove,
     isCluesComplete,
     isCloverComplete,
+    submitClover,
+    locks,
   };
 }

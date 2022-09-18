@@ -10,9 +10,8 @@ import { Instruction, Title } from 'components/text';
 import { useLoading } from 'hooks/useLoading';
 import { Clover } from './components/Clover';
 import { DetachedLeaves } from './components/DetachedLeaves';
-import { cleanupGuesses } from './utils/helpers';
 
-import { mockClues } from './utils/mock';
+import { mockGuesses } from './utils/mock';
 import { useCloverState } from './utils/useCloverState';
 
 type StepGuessCloverProps = {
@@ -39,13 +38,15 @@ export function StepGuessClover({ clover, leaves, onSubmitGuess, activeCloverPla
     usedLeavesIds,
     onLeafRemove,
     isCloverComplete,
-  } = useCloverState('guess', clover, leaves);
+    submitClover,
+    locks,
+  } = useCloverState('guess', clover, leaves, onSubmitGuess);
 
-  const onSubmit = () => {
-    onSubmitGuess({ guesses: cleanupGuesses(guesses), activeCloverId: clover.cloverId });
-  };
   const onSubmitMock = () => {
-    onSubmitGuess(mockClues());
+    onSubmitGuess({
+      guesses: mockGuesses(leaves),
+      activeCloverId: clover.cloverId,
+    });
   };
 
   return (
@@ -83,6 +84,7 @@ export function StepGuessClover({ clover, leaves, onSubmitGuess, activeCloverPla
         onActivateSlot={onActivateSlot}
         activeSlotId={activeSlotId}
         onLeafRemove={onLeafRemove}
+        locks={locks}
       />
 
       <DetachedLeaves
@@ -95,13 +97,13 @@ export function StepGuessClover({ clover, leaves, onSubmitGuess, activeCloverPla
       />
 
       <Space className="space-container" align="center">
-        <Button type="primary" size="large" onClick={onSubmit} disabled={!isCloverComplete || isLoading}>
+        <Button type="primary" size="large" onClick={submitClover} disabled={!isCloverComplete || isLoading}>
           <Translate pt="Enviar adivinhação" en="Submit guess" />
         </Button>
 
         <DebugOnly devOnly>
-          <Button size="large" onClick={onSubmitMock} disabled>
-            Mock clues
+          <Button size="large" onClick={onSubmitMock}>
+            Mock guesses
           </Button>
         </DebugOnly>
       </Space>
