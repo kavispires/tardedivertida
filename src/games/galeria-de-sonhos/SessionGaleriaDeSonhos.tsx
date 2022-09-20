@@ -47,6 +47,7 @@ function SessionGaleriaDeSonhos({ gameId }: SessionProps) {
       gameId={gameId}
       gameCollection={GAME_COLLECTION.GALERIA_DE_SONHOS}
       getActiveComponent={getActiveComponent}
+      backgroundClassName="g-background"
     />
   );
 }
