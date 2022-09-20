@@ -1,8 +1,21 @@
-import { notification } from 'antd';
-import { useLanguage } from 'hooks/useLanguage';
 import { useEffect, useState } from 'react';
+// Ant Design Resources
+import { notification } from 'antd';
+// Hooks
+import { useLanguage } from 'hooks/useLanguage';
+// Helpers
 import { onRotate, parseRotation } from './helpers';
+import { FIRST_ATTEMPT_SCORE, SECOND_ATTEMPT_SCORE } from './constants';
+import { getRandomItem } from 'utils/helpers';
 
+/**
+ * Keeps track of the clover state
+ * @param mode
+ * @param clover
+ * @param leaves
+ * @param onSubmit
+ * @returns
+ */
 export function useCloverState(mode: CloverMode, clover: Clover, leaves: Leaves, onSubmit?: GenericFunction) {
   const { translate } = useLanguage();
   const [attempts, setAttempts] = useState(0);
@@ -65,14 +78,24 @@ export function useCloverState(mode: CloverMode, clover: Clover, leaves: Leaves,
    * Rotates a leaf
    * @param e
    * @param leadId
+   * @param quantity - how many times it should rotate
    */
-  const onLeafRotate = (e: ButtonEvent, leadId: LeafId) => {
+  const onLeafRotate = (e: ButtonEvent, leadId: LeafId, quantity = 1) => {
     e.stopPropagation();
-    const newRotation = onRotate(rotations[leadId]);
+    const newRotation = onRotate(rotations[leadId], quantity);
     setRotations((prevState) => ({ ...prevState, [leadId]: newRotation }));
 
     setActiveLeafId(null);
     setActiveSlotId(null);
+  };
+
+  /**
+   * Randomly chooses different rotations for the leaves
+   */
+  const onRandomizeLeafRotations = (e: ButtonEvent) => {
+    Object.values(clover.leaves).forEach((cloverLeaf) => {
+      onLeafRotate(e, cloverLeaf.leafId, getRandomItem([1, 2, 3, 4, 5]));
+    });
   };
 
   /**
@@ -94,7 +117,6 @@ export function useCloverState(mode: CloverMode, clover: Clover, leaves: Leaves,
     }
 
     // Attach leaf to slot
-    // TODO: if duplicated leaf, remove
     if (activeSlotId) {
       setGuesses((g) => {
         const repeat = Object.keys(g).filter((k) => {
@@ -154,7 +176,6 @@ export function useCloverState(mode: CloverMode, clover: Clover, leaves: Leaves,
     }
 
     // Attach slot to leaf
-    // TODO: if duplicated leaf, remove
     if (activeLeafId) {
       setGuesses((g) => {
         const repeat = Object.keys(g).filter((k) => {
@@ -205,7 +226,7 @@ export function useCloverState(mode: CloverMode, clover: Clover, leaves: Leaves,
           entry.leafId === correctLeaf.leafId && parseRotation(entry.rotation) === correctLeaf.rotation;
 
         if (isCorrect) {
-          entry.score = attempts === 0 ? 3 : 1;
+          entry.score = attempts === 0 ? FIRST_ATTEMPT_SCORE : SECOND_ATTEMPT_SCORE;
           correctCount += 1;
           locksCopy[key] = true;
         } else if (attempts === 0) {
@@ -240,7 +261,7 @@ export function useCloverState(mode: CloverMode, clover: Clover, leaves: Leaves,
   };
 
   // BOOLEANS
-  const isCluesComplete = clues.every((clue) => clue.trim());
+  const areCluesComplete = clues.every((clue) => clue.trim());
   const isCloverComplete = Object.values(guesses).every((guess) => Boolean(guess));
 
   return {
@@ -251,6 +272,7 @@ export function useCloverState(mode: CloverMode, clover: Clover, leaves: Leaves,
     onClueChange,
     rotations,
     onLeafRotate,
+    onRandomizeLeafRotations,
     guesses,
     onActivateLeaf,
     activeLeafId,
@@ -258,7 +280,7 @@ export function useCloverState(mode: CloverMode, clover: Clover, leaves: Leaves,
     activeSlotId,
     usedLeavesIds,
     onLeafRemove,
-    isCluesComplete,
+    areCluesComplete,
     isCloverComplete,
     submitClover,
     locks,

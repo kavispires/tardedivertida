@@ -111,6 +111,7 @@ $clover-green: get-color('green');
   min-width: 25ch;
   text-align: center;
   font-family: 'Architects Daughter', cursive;
+  text-transform: uppercase;
 }
 
 .y-clover-clue-readonly {
@@ -122,9 +123,13 @@ $clover-green: get-color('green');
   font-weight: bolder;
   color: get-color('white');
   font-size: 1.1rem;
+  text-transform: uppercase;
 }
 
 .y-leaf {
+  $self: &;
+
+  text-transform: uppercase;
   padding: get-unit(1);
   background-color: $clover-green;
   border: 2px solid transparent;
@@ -204,6 +209,10 @@ $clover-green: get-color('green');
   &__card-button {
     border: none;
     cursor: grab;
+  }
+
+  &__card-text {
+    font-size: 0.8em;
   }
 
   &__card--0 {

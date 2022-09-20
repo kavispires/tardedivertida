@@ -8,11 +8,11 @@ import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { PageError } from 'components/errors';
 import PhaseWordSelection from './PhaseWordSelection';
 import PhaseCloverWriting from './PhaseCloverWriting';
-// Fonts
-import 'assets/fonts/architects-daughter.scss';
 import PhaseCloverGuessing from './PhaseCloverGuessing';
 import PhaseResults from './PhaseResults';
 import PhaseGameOver from './PhaseGameOver';
+// Fonts
+import 'assets/fonts/architects-daughter.scss';
 
 ConfigProvider.config({
   theme: {

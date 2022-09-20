@@ -1,6 +1,7 @@
+import { sampleSize } from 'lodash';
+// Utils
 import { getRandomItem, shuffle } from 'utils/helpers';
 import { ROTATIONS, WORST_TO_REMOVE } from './constants';
-import { sampleSize } from 'lodash';
 
 export const mockSelectCards = (cards: TextCard[]): CardId[] =>
   shuffle(cards)
@@ -9,8 +10,8 @@ export const mockSelectCards = (cards: TextCard[]): CardId[] =>
 
 const clues = ['agua', 'bola', 'coco', 'dedo', 'egua', 'flauta', 'gatilho', 'hélio', 'jaguar'];
 
-export const mockClues = (): { clues: string[] } => {
-  return { clues: sampleSize(clues, 4) };
+export const mockClues = (): string[] => {
+  return sampleSize(clues, 4);
 };
 
 const mockedScore = [3, 1, 1, 1, 0, 0];

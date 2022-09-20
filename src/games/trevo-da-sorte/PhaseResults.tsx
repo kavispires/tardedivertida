@@ -1,9 +1,7 @@
 // State & Hooks
 import { useIsUserReady } from 'hooks/useIsUserReady';
 import { useLanguage } from 'hooks/useLanguage';
-
 import { useStep } from 'hooks/useStep';
-
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
@@ -11,8 +9,8 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
-import { StepRanking } from './StepRanking';
 import { RankIcon } from 'components/icons/RankIcon';
+import { StepRanking } from './StepRanking';
 
 function PhaseResults({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);

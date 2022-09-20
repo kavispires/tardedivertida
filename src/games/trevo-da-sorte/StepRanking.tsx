@@ -1,9 +1,11 @@
+// Hooks
+import { useCloverState } from './utils/useCloverState';
+// Components
 import { AdminNextPhaseButton } from 'components/admin';
 import { Translate } from 'components/language';
 import { StepRankingWrapper } from 'components/ranking';
 import { Clover } from './components/Clover';
 import { PlayersGuesses } from './components/PlayersGuesses';
-import { useCloverState } from './utils/useCloverState';
 
 type StepRankingProps = {
   players: GamePlayers;
@@ -50,7 +52,9 @@ export function StepRanking({
         activeCloverId={activeCloverId}
       />
 
-      <AdminNextPhaseButton round={round} lastRound={lastRound} />
+      <AdminNextPhaseButton round={round} lastRound={lastRound}>
+        <Translate pt="Próximo Trevo ou Game Over" en="Next Clover or Game Over" />
+      </AdminNextPhaseButton>
     </StepRankingWrapper>
   );
 }

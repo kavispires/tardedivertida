@@ -1,8 +1,11 @@
+import { useState } from 'react';
+// Ant Design Resources
 import { Tabs } from 'antd';
+// Utils
+import { sortPlayers } from 'utils/helpers';
+// Components
 import { AvatarName } from 'components/avatars';
 import { Instruction } from 'components/text';
-import { useState } from 'react';
-import { sortPlayers } from 'utils/helpers';
 import { Clover } from './Clover';
 
 type PlayersGuessesProps = {

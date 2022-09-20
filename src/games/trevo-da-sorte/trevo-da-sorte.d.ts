@@ -4,6 +4,7 @@ type SubmitBadWordsPayload = {
 
 type SubmitCluesPayload = {
   clues: string[];
+  rotations: NumberDictionary;
 };
 
 type SubmitCloverGuessesPayload = {

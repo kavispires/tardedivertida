@@ -1,11 +1,13 @@
 import clsx from 'clsx';
+import { useRef } from 'react';
+import { useKeyPressEvent } from 'react-use';
 // Ant Design Resources
 import { Button, Input } from 'antd';
 import { RotateLeftOutlined, RotateRightOutlined } from '@ant-design/icons';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
-import { ROTATIONS } from '../utils/constants';
+import { FIRST_ATTEMPT_SCORE, ROTATIONS, SECOND_ATTEMPT_SCORE } from '../utils/constants';
 // Components
 import { LeafSlot } from './LeafSlot';
 import { BoxXIcon } from 'components/icons/BoxXIcon';
@@ -46,8 +48,13 @@ export function Clover({
   onActivateSlot,
   locks,
 }: CloverProps) {
+  const inputRefs = useRef<any[]>([]);
   const { translate } = useLanguage();
   const cloverLeaves = Object.entries(clover.leaves);
+
+  useKeyPressEvent('Tab', () => {
+    onRotate(-1);
+  });
 
   return (
     <div className="container center">
@@ -63,11 +70,13 @@ export function Clover({
                 className={clsx(`y-clover__clue-${leafIndex}`, 'y-clover-clue')}
               >
                 <Input
+                  ref={(el) => (inputRefs.current[index] = el)}
                   onChange={onClueChange ? (e) => onClueChange(leafIndex, e.target.value) : undefined}
                   className={`y-clover-rotation--${ROTATIONS[index]} y-clover-input`}
                   placeholder={translate('Escreva aqui', 'Write here')}
                   disabled={!Boolean(onClueChange)}
                   value={mode === 'write' ? undefined : cloverLeaf.clue}
+                  autoFocus={index === 0}
                 />
               </div>
             );
@@ -143,8 +152,14 @@ const getLeaf = (
         rotation: guess?.rotation ?? 0,
         icon: getIcon(guess?.score ?? 0),
       };
-    case 'view':
     case 'write':
+      leafId = cloverLeaf.leafId;
+      return {
+        leaf: leaves?.[leafId],
+        rotation: rotations[leafId] ?? 0,
+        icon: undefined,
+      };
+    case 'view':
     default:
       leafId = cloverLeaf.leafId;
       return {
@@ -155,11 +170,16 @@ const getLeaf = (
   }
 };
 
+/**
+ * Get the result icon based on score
+ * @param score
+ * @returns
+ */
 const getIcon = (score: number) => {
   switch (score) {
-    case 1:
+    case SECOND_ATTEMPT_SCORE:
       return <BoxOneIcon />;
-    case 3:
+    case FIRST_ATTEMPT_SCORE:
       return <BoxCheckMarkIcon />;
     case 0:
     default:
