@@ -49,6 +49,7 @@ function SessionTrevoDaSorte({ gameId }: SessionProps) {
       gameId={gameId}
       gameCollection={GAME_COLLECTION.TREVO_DA_SORTE}
       getActiveComponent={getActiveComponent}
+      backgroundClassName="y-background"
     />
   );
 }
