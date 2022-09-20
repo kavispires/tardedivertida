@@ -2,7 +2,7 @@
 import * as utils from '../../utils';
 // Internal
 import { getNextPhase } from '.';
-import { Guess, GuessPayload } from './types';
+import { CloverLeaf, Guess, GuessPayload } from './types';
 
 /**
  *
@@ -41,13 +41,13 @@ export const handleSubmitClues = async (
   collectionName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  clues: string[]
+  clues: CloverLeaf[]
 ) => {
   const update = {
-    'clover.leaves.A.clue': clues[0],
-    'clover.leaves.B.clue': clues[1],
-    'clover.leaves.C.clue': clues[2],
-    'clover.leaves.D.clue': clues[3],
+    'clover.leaves.A': clues[0],
+    'clover.leaves.B': clues[1],
+    'clover.leaves.C': clues[2],
+    'clover.leaves.D': clues[3],
   };
 
   return await utils.firebase.updatePlayer({

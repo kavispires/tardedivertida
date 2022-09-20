@@ -1,8 +1,10 @@
-import { Space } from 'antd';
 import clsx from 'clsx';
-import { Instruction } from 'components/text';
-import { orderBy } from 'lodash';
 import { useMemo } from 'react';
+import { orderBy } from 'lodash';
+// And Design Resources
+import { Space } from 'antd';
+// Components
+import { Instruction } from 'components/text';
 import { Leaf } from './Leaf';
 
 type DetachedLeavesProps = {

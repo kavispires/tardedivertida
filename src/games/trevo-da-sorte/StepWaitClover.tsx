@@ -1,10 +1,12 @@
+// Hooks
+import { useCloverState } from './utils/useCloverState';
+// Components
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Clover } from './components/Clover';
 import { DetachedLeaves } from './components/DetachedLeaves';
-import { useCloverState } from './utils/useCloverState';
 
 type StepWaitCloverProps = {
   activeCloverPlayer: GamePlayer;

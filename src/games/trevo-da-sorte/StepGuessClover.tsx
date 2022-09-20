@@ -1,18 +1,20 @@
+// Ant Design Resources
 import { Button, Space } from 'antd';
-
+// Hooks
+import { useLoading } from 'hooks/useLoading';
+// Utils
+import { mockGuesses } from './utils/mock';
+import { useCloverState } from './utils/useCloverState';
+// Components
 import { AvatarName } from 'components/avatars';
-
 import { DebugOnly } from 'components/debug';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
-
-import { useLoading } from 'hooks/useLoading';
+import { Title } from 'components/text';
 import { Clover } from './components/Clover';
 import { DetachedLeaves } from './components/DetachedLeaves';
-
-import { mockGuesses } from './utils/mock';
-import { useCloverState } from './utils/useCloverState';
+import { GuessingRules } from './components/RulesBlobs';
+import { PopoverRule } from 'components/rules';
 
 type StepGuessCloverProps = {
   clover: Clover;
@@ -65,9 +67,10 @@ export function StepGuessClover({ clover, leaves, onSubmitGuess, activeCloverPla
           }
         />
       </Title>
-      <Instruction contained>
-        <Translate pt={<>??</>} en={<>??</>} />
-      </Instruction>
+
+      <GuessingRules />
+
+      <PopoverRule content={<GuessingRules />} />
 
       <Clover
         mode="guess"
