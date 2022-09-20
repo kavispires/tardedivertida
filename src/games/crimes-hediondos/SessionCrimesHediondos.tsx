@@ -47,6 +47,7 @@ function SessionCrimesHediondos({ gameId }: SessionProps) {
       gameId={gameId}
       gameCollection={GAME_COLLECTION.CRIMES_HEDIONDOS}
       getActiveComponent={getActiveComponent}
+      backgroundClassName="h-background"
     />
   );
 }
