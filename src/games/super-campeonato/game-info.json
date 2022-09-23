@@ -1,7 +1,7 @@
 {
   "gameCode": "W",
   "gameName": "super-campeonato",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "title": {
     "pt": "Super Campeonato",
     "en": "Ultimate Championship"
@@ -16,8 +16,22 @@
     "en": "In a random showdown, who will you bet all your chips?"
   },
   "rules": {
-    "pt": ["TBD"],
-    "en": ["TBD"]
+    "pt": [
+      "Em Super Campeonato, jogadores apostam em personalidades que eles acham que ganharam os desafios",
+      "Primero, jogadores votam em qual o Desafio da rodada",
+      "Segundo, eles selecionam um de seus competidores para entrar na batalha",
+      "Então, eles apostam em quem eles acham que vai passar a final, semi final e quartas de final",
+      "Durante a batalha, os jogadores votem em cada par de competidores e devem convencer os outros a votar em quem eles apostaram",
+      "O jogo dura 5 rodadas e o jogador com o maior pontuação ganha"
+    ],
+    "en": [
+      "In Ultimate Championship, players bet on what character they think will win random challenges",
+      "First, players vote for the challenge of the round",
+      "Second, they will pick one of their contenders to battle",
+      "Then, they bet on who they think will win, pass the semi finals, and pass the quarter finals",
+      "During the battle, players vote on each pair and should discuss and lobby for their bets",
+      "The game goes for 5 rounds and the player with the most point wins!"
+    ]
   },
   "playerCount": {
     "best": 8,
