@@ -55,7 +55,7 @@ export function useOnSubmitGuessAPIRequest(setStep: GenericFunction) {
   const request = useAPICall({
     apiFunction: TREVO_DA_SORTE_API.submitAction,
     actionName: 'submit-guess',
-    onBeforeCall: () => setStep(3),
+    onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
     successMessage: translate('Palpites enviadas com sucesso!', 'Guesses submitted successfully!'),
     errorMessage: translate(
@@ -64,7 +64,7 @@ export function useOnSubmitGuessAPIRequest(setStep: GenericFunction) {
     ),
   });
 
-  return (payload: SubmitGuessPayload) => {
+  return (payload: SubmitCloverGuessesPayload) => {
     request({
       action: ACTIONS.SUBMIT_GUESS,
       ...payload,

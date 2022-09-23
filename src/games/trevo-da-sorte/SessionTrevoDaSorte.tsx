@@ -4,13 +4,15 @@ import { GAME_COLLECTION, THEME_COLORS } from 'utils/constants';
 import { PHASES } from 'utils/phases';
 // Components
 import { Session } from 'components/session';
-import { PhaseLobby, PhasePlaceholder, PhaseRules, PhaseSetup } from 'components/phases';
+import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { PageError } from 'components/errors';
 import PhaseWordSelection from './PhaseWordSelection';
 import PhaseCloverWriting from './PhaseCloverWriting';
+import PhaseCloverGuessing from './PhaseCloverGuessing';
+import PhaseResults from './PhaseResults';
+import PhaseGameOver from './PhaseGameOver';
 // Fonts
 import 'assets/fonts/architects-daughter.scss';
-import PhaseCloverGuessing from './PhaseCloverGuessing';
 
 ConfigProvider.config({
   theme: {
@@ -34,9 +36,9 @@ function SessionTrevoDaSorte({ gameId }: SessionProps) {
       case PHASES.TREVO_DA_SORTE.CLOVER_GUESSING:
         return PhaseCloverGuessing;
       case PHASES.TREVO_DA_SORTE.RESULTS:
-        return PhasePlaceholder;
+        return PhaseResults;
       case PHASES.DEFAULT.GAME_OVER:
-        return PhasePlaceholder;
+        return PhaseGameOver;
       default:
         return PageError;
     }
@@ -47,6 +49,7 @@ function SessionTrevoDaSorte({ gameId }: SessionProps) {
       gameId={gameId}
       gameCollection={GAME_COLLECTION.TREVO_DA_SORTE}
       getActiveComponent={getActiveComponent}
+      backgroundClassName="y-background"
     />
   );
 }

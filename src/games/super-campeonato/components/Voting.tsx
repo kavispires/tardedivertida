@@ -77,7 +77,7 @@ export function Voting({ brackets, tier, onSubmitVotes, players, bets }: VotingP
 
       {/* Step 1 */}
       <div>
-        <ul>
+        <ul className="w-voting-group">
           {bracketedContenders.map((contenderPair) => (
             <VotingOptions
               left={contenderPair[0]}

@@ -1,6 +1,6 @@
-import { orderBy } from 'lodash';
 // Helpers
 import { isHistoryLocked } from '../utils/helpers';
+import { sortPlayers } from 'utils/helpers';
 // Components
 import { AvatarCard } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
@@ -27,7 +27,7 @@ export function PlayersCards({
 }: PlayersCardsProps) {
   return (
     <ul className="h-players-cards">
-      {orderBy(Object.values(players), ['name']).map((player) => {
+      {sortPlayers(players).map((player) => {
         const isActive = activePlayerId === player.id;
         const isComplete =
           user.id === player.id || Boolean(guesses[player.id]?.weaponId && guesses[player.id]?.evidenceId);

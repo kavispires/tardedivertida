@@ -1,3 +1,9 @@
+.g-background.g-background {
+  // background: linear-gradient(-45deg, #070713, #0a1848, #31297a, #070713, #31297a, #0a1848, #070713);
+  background: linear-gradient(-45deg, #403699, #c549ce, #2d5cca, #403699, #2d5cca, #c549ce);
+  background-size: 1000% 1000%;
+}
+
 .g-table {
   display: grid;
   grid-template-columns: repeat(5, auto);
@@ -135,7 +141,7 @@
 
   &__match-result {
     grid-area: matches;
-    background-color: get-color('gray', 1);
+    background-color: get-color('white', 6);
     font-size: 1rem;
     padding: get-unit(1);
     margin-right: get-unit(2);
@@ -143,14 +149,14 @@
 
   &__matching-players {
     grid-area: matching-players;
-    background-color: get-color('gray', 1);
+    background-color: get-color('white', 6);
     padding: get-unit(1);
     margin-right: get-unit(2);
   }
 
   &__fallen-matching-players {
     grid-area: fallen-matches;
-    background-color: get-color('gray', 1);
+    background-color: get-color('white', 6);
     padding: get-unit(1);
     margin-right: get-unit(2);
   }
@@ -174,13 +180,13 @@
 
   &__footer {
     grid-area: footer;
-    background-color: get-color('gray', 1);
+    background-color: get-color('white', 6);
     padding: get-unit(1);
     margin: get-unit(0 2 2 2);
   }
 
   &__completed-players {
-    color: get-color('gray', 4);
+    color: get-color('gray', 1);
     margin-bottom: get-unit(4);
   }
 }
@@ -198,7 +204,7 @@
     text-align: center;
     text-transform: uppercase;
     padding: get-unit(1);
-    background-color: get-color('gray', 1);
+    background-color: get-color('white', 6);
     display: flex;
     flex-direction: column;
     align-items: center;

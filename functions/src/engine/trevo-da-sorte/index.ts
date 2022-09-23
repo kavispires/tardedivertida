@@ -136,8 +136,8 @@ export const submitAction = async (data: TrevoDaSorteSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(data, ['clues'], 'submit clues');
       return handleSubmitClues(collectionName, gameId, playerId, data.clues);
     case 'SUBMIT_GUESS':
-      utils.firebase.validateSubmitActionProperties(data, ['guess', 'activeCloverId'], 'submit guess');
-      return handleSubmitGuess(collectionName, gameId, playerId, data.guess, data.activeCloverId);
+      utils.firebase.validateSubmitActionProperties(data, ['guesses', 'activeCloverId'], 'submit guesses');
+      return handleSubmitGuess(collectionName, gameId, playerId, data.guesses, data.activeCloverId);
     case 'UPDATE_CLOVER_STATE':
       utils.firebase.validateSubmitActionProperties(data, ['change'], 'update clover state');
       return handleUpdateCloverState(collectionName, gameId, playerId, data.change);

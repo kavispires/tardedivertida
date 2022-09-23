@@ -1,6 +1,7 @@
 import clsx from 'clsx';
-import { useCallback, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useCallback, useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useCopyToClipboard } from 'react-use';
 // Ant Design Resources
 import { Image, Modal, message, Button, notification, Divider, Typography, Switch, Space, Alert } from 'antd';
 // Adapters
@@ -40,6 +41,8 @@ type CreateGameModalProps = {
 
 export function CreateGameModal({ gameInfo }: CreateGameModalProps): JSX.Element {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const [state, copyToClipboard] = useCopyToClipboard();
 
   const { language, translate } = useLanguage();
   const { setLoader } = useLoading();
@@ -51,6 +54,12 @@ export function CreateGameModal({ gameInfo }: CreateGameModalProps): JSX.Element
   const [, setUserName] = useGlobalState('username');
   const [, setUserAvatarId] = useGlobalState('userAvatarId');
   const [options, setOptions] = useState({});
+
+  useEffect(() => {
+    if (state.value && gameId) {
+      message.info(`Copied to clipboard: ${state.value}`);
+    }
+  }, [state, gameId]);
 
   const onCloseModal = useCallback(() => {
     setVisibility(false);
@@ -78,6 +87,8 @@ export function CreateGameModal({ gameInfo }: CreateGameModalProps): JSX.Element
         setUserName('');
         setUserAvatarId('');
         setLocalStorage(updateLocal24hGameIds(getLocalStorage(LATEST_GAME_IDS), response.data.gameId));
+        const baseUrl = window.location.href.split(pathname)[0];
+        copyToClipboard(`${baseUrl}/${response.data.gameId}`);
       }
     } catch (e: any) {
       notification.error({

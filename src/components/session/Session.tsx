@@ -15,12 +15,25 @@ import { AdminMenuDrawer } from 'components/admin';
 import { useIdleRedirect } from 'hooks/useIdleRedirect';
 
 type SessionProps = {
+  /**
+   * The id of the game
+   */
   gameId: GameId;
+  /**
+   * The game collection name
+   */
   gameCollection: GameName;
+  /**
+   * The active component to be rendered, usually a Phase... component
+   */
   getActiveComponent: (args: any) => any;
+  /**
+   * The class to replace the background gradient
+   */
+  backgroundClassName?: string;
 };
 
-export function Session({ gameId, gameCollection, getActiveComponent }: SessionProps) {
+export function Session({ gameId, gameCollection, getActiveComponent, backgroundClassName }: SessionProps) {
   const { language } = useLanguage();
   const players = useGamePlayers(gameId, gameCollection);
   const state = useGameState(gameId, gameCollection);
@@ -49,6 +62,20 @@ export function Session({ gameId, gameCollection, getActiveComponent }: SessionP
   useEffect(() => {
     setInfo(gameId?.[0] ? GAME_LIST[gameId[0]] : {});
   }, [gameId]);
+
+  // Colorize background
+  useEffect(() => {
+    if (backgroundClassName) {
+      const appElement = document.getElementById('app');
+      if (appElement) {
+        appElement.classList.add(backgroundClassName);
+      }
+    }
+    return () => {
+      const appElement = document.getElementById('app');
+      appElement?.classList.remove(backgroundClassName ?? '');
+    };
+  }, [backgroundClassName]);
 
   if (!userId) {
     return <PhaseLobby players={players} info={info} meta={gameMeta} />;

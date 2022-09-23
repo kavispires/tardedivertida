@@ -1,17 +1,21 @@
 // Ant Design Resources
-import { Button, Space } from 'antd';
+import { Button, Popconfirm, Space } from 'antd';
 // Hooks
-import { useCloverState } from './utils/useCloverState';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 // Utils
 import { mockClues } from './utils/mock';
+import { prepareClueSubmission } from './utils/helpers';
+import { useCloverState } from './utils/useCloverState';
 // Components
 import { DebugOnly } from 'components/debug';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
-import { CloverWrite } from './components/CloverWrite';
+import { Title } from 'components/text';
+import { Clover } from './components/Clover';
+import { WritingRules } from './components/RulesBlobs';
+import { PopoverRule } from 'components/rules';
+import { ConfirmClues } from './components/ConfirmClues';
 
 type StepWriteCluesProps = {
   clover: Clover;
@@ -21,21 +25,28 @@ type StepWriteCluesProps = {
 
 export function StepWriteClues({ clover, leaves, onSubmitClues }: StepWriteCluesProps) {
   const { isLoading } = useLoading();
-  const { rotation, onRotateClover, onChangeClue, clues, guesses, isCluesComplete } = useCloverState(
-    'write',
-    clover,
-    leaves
-  );
+  const {
+    mode,
+    rotation,
+    onRotateClover,
+    clues,
+    onClueChange,
+    rotations,
+    onLeafRotate,
+    onRandomizeLeafRotations,
+    areCluesComplete,
+  } = useCloverState('write', clover, leaves);
 
   const onSubmit = () => {
-    onSubmitClues({ clues });
+    onSubmitClues({ clues: prepareClueSubmission(clues, clover, rotations) });
   };
+
   const onSubmitMock = () => {
-    onSubmitClues(mockClues());
+    onSubmitClues({ clues: prepareClueSubmission(mockClues(), clover, rotations) });
   };
 
   useMock(() => {
-    onSubmitClues(mockClues());
+    onSubmitClues({ clues: prepareClueSubmission(mockClues(), clover, rotations) });
   });
 
   return (
@@ -43,38 +54,43 @@ export function StepWriteClues({ clover, leaves, onSubmitClues }: StepWriteClues
       <Title size="medium">
         <Translate pt="Escreva as dicas" en="Write clues" />
       </Title>
-      <Instruction contained>
-        <Translate
-          pt={
-            <>
-              Escreva uma dica para cada um dos pares de palavras na parte de fora do trevo
-              <br />
-              Você pode girar o trevo para ficar mais fácil de escrever
-            </>
-          }
-          en={
-            <>
-              Write a clue for each pair of clues in the outer side of the clover
-              <br />
-              You may rotate the clover before writing
-            </>
-          }
-        />
-      </Instruction>
 
-      <CloverWrite
+      <WritingRules />
+
+      <PopoverRule content={<WritingRules />} />
+
+      <Space className="space-container" align="center">
+        <Button type="default" size="large" onClick={onRandomizeLeafRotations} disabled={isLoading}>
+          <Translate pt="Chacoalhar cartas" en="Randomize rotations" />
+        </Button>
+      </Space>
+
+      <Clover
+        mode={mode}
+        clover={clover}
         leaves={leaves}
-        clues={clues}
         rotation={rotation}
-        results={guesses}
-        onRotateClover={onRotateClover}
-        onChangeClue={onChangeClue}
+        onRotate={onRotateClover}
+        onClueChange={onClueChange}
+        rotations={rotations}
+        onLeafRotate={onLeafRotate}
       />
 
       <Space className="space-container" align="center">
-        <Button type="primary" size="large" onClick={onSubmit} disabled={!isCluesComplete || isLoading}>
-          <Translate pt="Enviar dicas" en="Submit clues" />
-        </Button>
+        <Popconfirm
+          title={<ConfirmClues clover={clover} leaves={leaves} clues={clues} rotations={rotations} />}
+          disabled={!areCluesComplete || isLoading}
+          onConfirm={onSubmit}
+        >
+          <Button
+            type="primary"
+            size="large"
+            disabled={!areCluesComplete || isLoading}
+            onClick={() => onRotateClover((rotation / 90) * -1)}
+          >
+            <Translate pt="Enviar dicas" en="Submit clues" />
+          </Button>
+        </Popconfirm>
 
         <DebugOnly devOnly>
           <Button size="large" onClick={onSubmitMock}>

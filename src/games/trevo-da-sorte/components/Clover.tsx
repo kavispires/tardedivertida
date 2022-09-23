@@ -1,57 +1,83 @@
-import { RotateLeftOutlined, RotateRightOutlined } from '@ant-design/icons';
-import { Button, Input } from 'antd';
 import clsx from 'clsx';
+import { useRef } from 'react';
+import { useKeyPressEvent } from 'react-use';
+// Ant Design Resources
+import { Button, Input, Tooltip } from 'antd';
+import { RotateLeftOutlined, RotateRightOutlined } from '@ant-design/icons';
+// Hooks
 import { useLanguage } from 'hooks/useLanguage';
-import { ROTATIONS } from '../utils/constants';
+// Utils
+import { FIRST_ATTEMPT_SCORE, ROTATIONS, SECOND_ATTEMPT_SCORE } from '../utils/constants';
+// Components
+import { BoxXIcon } from 'components/icons/BoxXIcon';
+import { BoxOneIcon } from 'components/icons/BoxOneIcon';
+import { BoxCheckMarkIcon } from 'components/icons/BoxCheckMarkIcon';
+import { Translate } from 'components/language';
 import { LeafSlot } from './LeafSlot';
 
 type CloverProps = {
-  // clover: Clover;
   mode: CloverMode;
+  clover: Clover;
   leaves: Leaves;
-  clues: string[];
-  onRotateClover: (direction: number) => void;
+  guesses?: any;
   rotation: number;
-  onChangeClue?: (targetIndex: LeafIndex, value: string) => void;
-  guesses: YGuesses;
-  allowLeafRotation: boolean;
-  onDrop?: GenericFunction;
-  onRotateLeaf?: (e: any, id: LeafId) => void;
+  onRotate: (direction: number) => void;
+  onClueChange?: (targetIndex: LeafIndex, value: string) => void;
+  rotations?: NumberDictionary;
+  onLeafRotate?: GenericFunction;
+  onLeafRemove?: GenericFunction;
+  activeLeafId?: LeafId | null;
+  activeSlotId?: LeafPosition | null;
+  onLeafGrab?: GenericFunction;
+  onActivateSlot?: GenericFunction;
+  locks?: LeafLocks;
 };
 
 export function Clover({
-  leaves,
-  clues,
-  rotation,
-  onChangeClue,
-  guesses,
-  allowLeafRotation,
-  onDrop,
-  onRotateClover,
-  onRotateLeaf,
   mode,
+  clover,
+  leaves,
+  guesses,
+  rotation,
+  onRotate,
+  onClueChange,
+  rotations = {},
+  onLeafRotate,
+  onLeafRemove,
+  activeSlotId,
+  onLeafGrab,
+  onActivateSlot,
+  locks,
 }: CloverProps) {
+  const inputRefs = useRef<any[]>([]);
   const { translate } = useLanguage();
+  const cloverLeaves = Object.entries(clover.leaves);
+
+  useKeyPressEvent('Tab', () => {
+    onRotate(-1);
+  });
 
   return (
     <div className="container center">
       <div className="y-clover" style={{ transform: `rotate(${rotation}deg)` }}>
         {/* ANSWERS */}
-        {clues.map((clue, index) => {
+        {cloverLeaves.map(([_, cloverLeaf], index) => {
           const leafIndex = Number(index) as LeafIndex;
 
-          if (mode === 'write') {
+          if (mode === 'write' && onClueChange) {
             return (
               <div
                 key={`clue-key-${leafIndex}`}
                 className={clsx(`y-clover__clue-${leafIndex}`, 'y-clover-clue')}
               >
                 <Input
-                  onChange={onChangeClue ? (e) => onChangeClue(leafIndex, e.target.value) : undefined}
+                  ref={(el) => (inputRefs.current[index] = el)}
+                  onChange={onClueChange ? (e) => onClueChange(leafIndex, e.target.value) : undefined}
                   className={`y-clover-rotation--${ROTATIONS[index]} y-clover-input`}
                   placeholder={translate('Escreva aqui', 'Write here')}
-                  disabled={!Boolean(onChangeClue)}
-                  value={mode === 'write' ? undefined : clue}
+                  disabled={!Boolean(onClueChange)}
+                  value={mode === 'write' ? undefined : cloverLeaf.clue}
+                  autoFocus={index === 0}
                 />
               </div>
             );
@@ -63,27 +89,113 @@ export function Clover({
               className={clsx(`y-clover__clue-${leafIndex}`, 'y-clover-clue')}
             >
               <span className={clsx(`y-clover-rotation--${ROTATIONS[index]}`, 'y-clover-clue-readonly')}>
-                {clue}
+                {cloverLeaf.clue}
               </span>
             </div>
           );
         })}
 
         {/* LEAVES */}
-        {Object.entries(guesses).map(([leafPosKey, guess], index) => (
-          <LeafSlot
-            key={`slot-${leafPosKey}`}
-            leaf={guess ? leaves[guess.leafId] : undefined}
-            allowLeafRotation={allowLeafRotation}
-            position={leafPosKey as LeafPosition}
-            onRotateLeaf={onRotateLeaf}
-          />
-        ))}
+        {cloverLeaves.map(([cloverLeafPosition, cloverLeaf]) => {
+          const {
+            leaf,
+            rotation: leafRotation,
+            icon,
+          } = getLeaf(mode, leaves, cloverLeafPosition as LeafPosition, cloverLeaf, guesses, rotations);
+
+          return (
+            <LeafSlot
+              key={`slot-${cloverLeafPosition}`}
+              leaf={leaf}
+              rotation={leafRotation}
+              position={cloverLeafPosition as LeafPosition}
+              onLeafGrab={onLeafGrab}
+              onLeafRotate={onLeafRotate}
+              onLeafRemove={onLeafRemove}
+              activeSlotId={activeSlotId}
+              onActivateSlot={onActivateSlot}
+              isLocked={locks?.[cloverLeafPosition as LeafPosition] ?? false}
+              icon={icon}
+            />
+          );
+        })}
       </div>
       <div className="controls space-container center">
-        <Button icon={<RotateLeftOutlined />} onClick={() => onRotateClover(-1)} />
-        <Button icon={<RotateRightOutlined />} onClick={() => onRotateClover(1)} />
+        <Button icon={<RotateLeftOutlined />} onClick={() => onRotate(-1)} />
+        <Button icon={<RotateRightOutlined />} onClick={() => onRotate(1)} />
       </div>
     </div>
   );
 }
+
+const getLeaf = (
+  mode: CloverMode,
+  leaves: Leaves,
+  position: LeafPosition,
+  cloverLeaf: CloverLeaf,
+  guesses: YGuesses,
+  rotations: NumberDictionary
+) => {
+  let leafId = '';
+  switch (mode) {
+    case 'guess':
+      leafId = guesses?.[position]?.leafId ?? '';
+      return {
+        leaf: leaves?.[leafId],
+        rotation: rotations[leafId] ?? 0,
+        icon: undefined,
+      };
+    case 'result':
+      leafId = guesses?.[position]?.leafId ?? '';
+      const guess = guesses?.[position];
+      return {
+        leaf: leaves?.[leafId],
+        rotation: guess?.rotation ?? 0,
+        icon: getIcon(guess?.score ?? 0),
+      };
+    case 'write':
+      leafId = cloverLeaf.leafId;
+      return {
+        leaf: leaves?.[leafId],
+        rotation: rotations[leafId] ?? 0,
+        icon: undefined,
+      };
+    case 'view':
+    default:
+      leafId = cloverLeaf.leafId;
+      return {
+        leaf: leaves?.[leafId],
+        rotation: cloverLeaf.rotation,
+        icon: undefined,
+      };
+  }
+};
+
+/**
+ * Get the result icon based on score
+ * @param score
+ * @returns
+ */
+const getIcon = (score: number) => {
+  switch (score) {
+    case SECOND_ATTEMPT_SCORE:
+      return (
+        <Tooltip title={<Translate pt="Acertou na segunda tentativa" en="Got it in their second attempt" />}>
+          <BoxOneIcon />
+        </Tooltip>
+      );
+    case FIRST_ATTEMPT_SCORE:
+      return (
+        <Tooltip title={<Translate pt="Acertou na primeira tentativa" en="Got it in their first attempt" />}>
+          <BoxCheckMarkIcon />
+        </Tooltip>
+      );
+    case 0:
+    default:
+      return (
+        <Tooltip title={<Translate pt="Burro pra carai e não acertou" en="Did not get it right" />}>
+          <BoxXIcon />;
+        </Tooltip>
+      );
+  }
+};

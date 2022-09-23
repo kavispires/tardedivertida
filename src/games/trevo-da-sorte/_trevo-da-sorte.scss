@@ -1,3 +1,10 @@
+$clover-green: get-color('green');
+
+.y-background.y-background {
+  background: linear-gradient(-45deg, #04670b, #44bba4, #f2e863, #44bba4, #026308);
+  background-size: 1000% 1000%;
+}
+
 .y-words-list {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -97,7 +104,7 @@
 }
 
 .y-clover-clue {
-  background-color: olivedrab;
+  background-color: $clover-green;
   border: 1px solid white;
   display: flex;
   justify-content: center;
@@ -109,6 +116,7 @@
   min-width: 25ch;
   text-align: center;
   font-family: 'Architects Daughter', cursive;
+  text-transform: uppercase;
 }
 
 .y-clover-clue-readonly {
@@ -120,19 +128,26 @@
   font-weight: bolder;
   color: get-color('white');
   font-size: 1.1rem;
+  text-transform: uppercase;
 }
 
-.y-clover-leaf {
+.y-leaf {
+  $self: &;
+
+  text-transform: uppercase;
   padding: get-unit(1);
-  background-color: olivedrab;
+  background-color: $clover-green;
   border: 2px solid transparent;
   transition: all 250ms;
   border-radius: get-unit(2);
   min-width: 180px;
   min-height: 180px;
+  width: 100%;
+  height: 100%;
 
-  &--draggable {
-    cursor: grab;
+  &--active {
+    border-color: get-color('green', 4);
+    background-color: get-color('yellow', 4);
   }
 
   &--dragging {
@@ -148,13 +163,13 @@
     height: 100%;
   }
 
-  &__empty-avatar {
+  &--empty-clickable {
     cursor: help;
-    transition: transform 250ms;
+  }
 
-    &:hover {
-      transform: scale(1.5);
-    }
+  &--empty-active {
+    border-color: get-color('yellow', 4);
+    background-color: get-color('green', 6);
   }
 
   display: grid;
@@ -165,7 +180,7 @@
     'card-3 center card-1'
     '. card-2 .';
 
-  &__center {
+  &__controls {
     grid-area: center;
     background-color: white;
     width: 100%;
@@ -191,10 +206,18 @@
     align-items: center;
     width: 100%;
     height: 100%;
-
     background: white;
-    color: green;
+    color: $clover-green;
     padding: get-unit(1 2);
+  }
+
+  &__card-button {
+    border: none;
+    cursor: grab;
+  }
+
+  &__card-text {
+    font-size: 0.8em;
   }
 
   &__card--0 {
@@ -223,11 +246,6 @@
     text-orientation: mixed;
     border-radius: get-unit(0 6 6 0);
   }
-
-  // &__card-text {
-  //   // min-width: 100%;
-  //   // min-height: 100%;
-  // }
 }
 
 .y-leaf-loose {

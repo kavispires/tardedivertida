@@ -2,6 +2,7 @@
 import { useIsUserReady } from 'hooks/useIsUserReady';
 import { useLanguage } from 'hooks/useLanguage';
 import { useUser } from 'hooks/useUser';
+import { useStep } from 'hooks/useStep';
 import { useOnSubmitBadWordsAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
@@ -11,7 +12,6 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { RoundAnnouncement } from 'components/round';
-import { useStep } from 'hooks/useStep';
 import { Translate } from 'components/language';
 import { VerifyListIcon } from 'components/icons/VerifyListIcon';
 import { StepSelectWords } from './StepSelectWords';

@@ -1,4 +1,4 @@
-import { camelCase, startCase } from 'lodash';
+import { camelCase, orderBy, startCase } from 'lodash';
 import { AVATARS } from 'utils/avatars';
 import { SEPARATOR } from './constants';
 
@@ -307,3 +307,10 @@ export const truncateRecommended = (recommended: number[]): string => {
 
   return result;
 };
+
+/**
+ * Sort players by name
+ * @param players
+ * @returns
+ */
+export const sortPlayers = (players: GamePlayers) => orderBy(Object.values(players), ['name'], ['asc']);

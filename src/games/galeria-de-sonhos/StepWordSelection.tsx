@@ -25,7 +25,7 @@ export function StepWordSelection({ onSubmitWord, words }: StepWordSelectionProp
         {words.map((word, index) => {
           return (
             <TransparentButton key={word.id} onClick={() => onSubmitWord({ wordId: word.id })}>
-              <Card header={LETTERS[index]} randomColor>
+              <Card header={LETTERS[index]} color="purple">
                 {word.text}
               </Card>
             </TransparentButton>
