@@ -1,23 +1,25 @@
+// Ant Design Resources
 import { Button, Space } from 'antd';
-
+// Hooks
+import { useLoading } from 'hooks/useLoading';
+// Utils
+import { mockGuesses } from './utils/mock';
+import { useCloverState } from './utils/useCloverState';
+// Components
 import { AvatarName } from 'components/avatars';
-
 import { DebugOnly } from 'components/debug';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
-
-import { useLoading } from 'hooks/useLoading';
-import { CloverGuess } from './components/CloverGuess';
-
-import { mockClues } from './utils/mock';
-import { useCloverState } from './utils/useCloverState';
+import { Title } from 'components/text';
+import { Clover } from './components/Clover';
+import { DetachedLeaves } from './components/DetachedLeaves';
+import { GuessingRules } from './components/RulesBlobs';
+import { PopoverRule } from 'components/rules';
 
 type StepGuessCloverProps = {
   clover: Clover;
   leaves: Leaves;
   onSubmitGuess: GenericFunction;
-
   activeCloverPlayer: GamePlayer;
   isUserTheCloverPlayer: boolean;
 };
@@ -27,21 +29,25 @@ export function StepGuessClover({ clover, leaves, onSubmitGuess, activeCloverPla
   const {
     rotation,
     rotations,
-    onRotateLeaf,
+    onLeafRotate,
     onRotateClover,
     guesses,
-    clues,
     onActivateLeaf,
     activeLeafId,
     onActivateSlot,
     activeSlotId,
-  } = useCloverState('guess', clover, leaves);
+    usedLeavesIds,
+    onLeafRemove,
+    isCloverComplete,
+    submitClover,
+    locks,
+  } = useCloverState('guess', clover, leaves, onSubmitGuess);
 
-  const onSubmit = () => {
-    // onSubmitGuess({ clues });
-  };
   const onSubmitMock = () => {
-    onSubmitGuess(mockClues());
+    onSubmitGuess({
+      guesses: mockGuesses(leaves),
+      activeCloverId: clover.cloverId,
+    });
   };
 
   return (
@@ -61,32 +67,45 @@ export function StepGuessClover({ clover, leaves, onSubmitGuess, activeCloverPla
           }
         />
       </Title>
-      <Instruction contained>
-        <Translate pt={<>??</>} en={<>??</>} />
-      </Instruction>
 
-      <CloverGuess
+      <GuessingRules />
+
+      <PopoverRule content={<GuessingRules />} />
+
+      <Clover
+        mode="guess"
+        clover={clover}
         leaves={leaves}
-        clues={clues}
-        onRotateClover={onRotateClover}
+        onRotate={onRotateClover}
         rotation={rotation}
-        onRotateLeaf={onRotateLeaf}
+        onLeafRotate={onLeafRotate}
         rotations={rotations}
         guesses={guesses}
-        onActivateLeaf={onActivateLeaf}
+        onLeafGrab={onActivateLeaf}
         activeLeafId={activeLeafId}
         onActivateSlot={onActivateSlot}
         activeSlotId={activeSlotId}
+        onLeafRemove={onLeafRemove}
+        locks={locks}
+      />
+
+      <DetachedLeaves
+        leaves={leaves}
+        rotations={rotations}
+        onLeafRotate={onLeafRotate}
+        onLeafGrab={onActivateLeaf}
+        activeLeafId={activeLeafId}
+        usedLeavesIds={usedLeavesIds}
       />
 
       <Space className="space-container" align="center">
-        <Button type="primary" size="large" onClick={onSubmit} disabled={isLoading}>
+        <Button type="primary" size="large" onClick={submitClover} disabled={!isCloverComplete || isLoading}>
           <Translate pt="Enviar adivinhação" en="Submit guess" />
         </Button>
 
         <DebugOnly devOnly>
-          <Button size="large" onClick={onSubmitMock} disabled>
-            Mock clues
+          <Button size="large" onClick={onSubmitMock}>
+            Mock guesses
           </Button>
         </DebugOnly>
       </Space>

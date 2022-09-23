@@ -1,9 +1,10 @@
-import { orderBy } from 'lodash';
 // Ant Design Resources
 import { Space } from 'antd';
 import { CommentOutlined, LikeFilled, ShareAltOutlined } from '@ant-design/icons';
 // Hooks
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
+// Utils
+import { sortPlayers } from 'utils/helpers';
 // Components
 import { Topic } from './components/Topic';
 import { TimedButton } from 'components/buttons';
@@ -54,7 +55,7 @@ export function StepResolution({
         </div>
 
         <ul className="p-tweet-comments">
-          {orderBy(Object.values(players), 'name').map((player) => {
+          {sortPlayers(players).map((player) => {
             const key = `player-result-${player.id}`;
 
             return (

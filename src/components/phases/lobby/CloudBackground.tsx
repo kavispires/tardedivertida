@@ -48,6 +48,7 @@ function getCloudComponent(type: string) {
     case 'retro-cloud':
     case 'sheep-cloud':
     case 'speech-cloud':
+    case 'clover-cloud':
       return SingleCloud;
     case 'artsy-clouds':
     case 'book-clouds':
@@ -81,6 +82,7 @@ function getCloudFileName(gameCode: string) {
       T: 'eye-cloud',
       U: 'one-clouds',
       X: 'letter-clouds',
+      Y: 'clover-cloud',
     }[gameCode] ?? 'cloud'
   );
 }

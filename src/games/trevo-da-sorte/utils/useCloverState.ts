@@ -1,71 +1,72 @@
-import { useState } from 'react';
-import { useEffectOnce } from 'react-use';
-import { onRotate } from './helpers';
+import { useEffect, useState } from 'react';
+// Ant Design Resources
+import { notification } from 'antd';
+// Hooks
+import { useLanguage } from 'hooks/useLanguage';
+// Helpers
+import { onRotate, parseRotation } from './helpers';
+import { FIRST_ATTEMPT_SCORE, SECOND_ATTEMPT_SCORE } from './constants';
+import { getRandomItem } from 'utils/helpers';
 
-export function useCloverState(
-  mode: CloverMode,
-  clover: Clover,
-  leaves: Leaves,
-  updateCloverState?: GenericFunction
-) {
+/**
+ * Keeps track of the clover state
+ * @param mode
+ * @param clover
+ * @param leaves
+ * @param onSubmit
+ * @returns
+ */
+export function useCloverState(mode: CloverMode, clover: Clover, leaves: Leaves, onSubmit?: GenericFunction) {
+  const { translate } = useLanguage();
+  const [attempts, setAttempts] = useState(0);
   const [clues, setClues] = useState<string[]>(['', '', '', '']);
-  const [rotation, setRotation] = useState<number>(clover.rotation);
-  const [guesses, setGuesses] = useState<YGuesses>({ A: null, B: null, C: null, D: null });
-  const [allowLeafRotation, setAllowLeafRotation] = useState(true);
+  const [rotation, setRotation] = useState<number>(0);
   const [activeLeafId, setActiveLeafId] = useState<string | null>(null);
   const [activeSlotId, setActiveSlotId] = useState<LeafPosition | null>(null);
-
-  useEffectOnce(() => {
-    if (mode === 'write') {
-      setAllowLeafRotation(false);
-
-      const writeGuesses = Object.entries(clover.leaves).reduce(
-        (acc: YGuesses, [key, leafId]) => {
-          const guess: LeafGuess = {
-            leafId,
-            rotation: leaves[leafId].rotation,
-          };
-          acc[key as LeafPosition] = guess;
-          return acc;
-        },
-        { A: null, B: null, C: null, D: null }
-      );
-      setGuesses(writeGuesses);
-    }
-
-    if (mode === 'guess' || mode === 'wait') {
-      setAllowLeafRotation(true);
-      setClues(clover.clues!);
-    }
-  });
-
-  // useEffect(() => {
-  //   if (mode === 'guess') {
-
-  //   }
-  // }, [])
-
+  const [guesses, setGuesses] = useState<YGuesses>({ A: null, B: null, C: null, D: null });
+  const [locks, setLocks] = useState<LeafLocks>({ A: false, B: false, C: false, D: false });
   const [rotations, setRotations] = useState<NumberDictionary>(
     Object.keys(leaves).reduce((acc: NumberDictionary, leafId) => {
       acc[leafId] = 0;
       return acc;
     }, {})
   );
+  const [usedLeavesIds, setUsedLeavesIds] = useState<string[]>([]);
 
-  const onRotateLeaf = (e: any, leadId: LeafId) => {
-    e.stopPropagation();
-    const newRotation = onRotate(rotations[leadId]);
-    setRotations((prevState) => ({ ...prevState, [leadId]: newRotation }));
+  // Keep used leaves ids up to date
+  useEffect(() => {
+    setUsedLeavesIds(Object.values(guesses).map((guess) => guess?.leafId ?? ''));
+  }, [guesses]);
 
-    setActiveLeafId(null);
-    setActiveSlotId(null);
-  };
+  // Keep guess rotation up to date
+  useEffect(() => {
+    setGuesses((prevState) => {
+      const newState = { ...prevState };
+      Object.keys(newState).forEach((k) => {
+        const key = k as LeafPosition;
+        const entry = newState[key];
+        if (entry) {
+          entry.rotation = rotations[entry.leafId];
+        }
+      });
+      return newState;
+    });
+  }, [rotations]);
 
+  /**
+   * Handles clover local rotation
+   * @param direction
+   */
   const onRotateClover = (direction: number) => {
     setRotation(onRotate(rotation, direction));
   };
 
-  const onChangeClue = (targetIndex: LeafIndex, value: string) => {
+  /**
+   * Updates the clue according to its index
+   * @param targetIndex
+   * @param value
+   */
+  const onClueChange = (targetIndex: LeafIndex, value: string) => {
     setClues((prevState) => {
       const copy = [...prevState];
       copy[targetIndex] = value;
@@ -73,13 +74,49 @@ export function useCloverState(
     });
   };
 
+  /**
+   * Rotates a leaf
+   * @param e
+   * @param leadId
+   * @param quantity - how many times it should rotate
+   */
+  const onLeafRotate = (e: ButtonEvent, leadId: LeafId, quantity = 1) => {
+    e.stopPropagation();
+    const newRotation = onRotate(rotations[leadId], quantity);
+    setRotations((prevState) => ({ ...prevState, [leadId]: newRotation }));
+
+    setActiveLeafId(null);
+    setActiveSlotId(null);
+  };
+
+  /**
+   * Randomly chooses different rotations for the leaves
+   */
+  const onRandomizeLeafRotations = (e: ButtonEvent) => {
+    Object.values(clover.leaves).forEach((cloverLeaf) => {
+      onLeafRotate(e, cloverLeaf.leafId, getRandomItem([1, 2, 3, 4, 5]));
+    });
+  };
+
+  /**
+   * Removes the leaf of the clover
+   * @param targetSlotId
+   */
+  const onLeafRemove = (targetSlotId: LeafPosition) => {
+    setGuesses((prevState) => ({ ...prevState, [targetSlotId]: null }));
+  };
+
+  /**
+   * Activate a leaf to be connected to the clover
+   * @param targetLeafId
+   * @returns
+   */
   const onActivateLeaf = (targetLeafId: LeafId) => {
     if (activeLeafId === targetLeafId) {
       return setActiveLeafId(null);
     }
 
     // Attach leaf to slot
-    // TODO: if duplicated leaf, remove
     if (activeSlotId) {
       setGuesses((g) => {
         const repeat = Object.keys(g).filter((k) => {
@@ -110,6 +147,11 @@ export function useCloverState(
     }
   };
 
+  /**
+   * Activate a slot to receive a leaf on the clover
+   * @param targetSlotId
+   * @returns
+   */
   const onActivateSlot = (targetSlotId: LeafPosition) => {
     // If it's the same slot, deactivate it
     if (activeSlotId === targetSlotId) {
@@ -134,7 +176,6 @@ export function useCloverState(
     }
 
     // Attach slot to leaf
-    // TODO: if duplicated leaf, remove
     if (activeLeafId) {
       setGuesses((g) => {
         const repeat = Object.keys(g).filter((k) => {
@@ -165,22 +206,83 @@ export function useCloverState(
     }
   };
 
-  const isCluesComplete = clues.every((clue) => clue.trim());
+  /**
+   * First attempt: Validates clover, if correct submits, else undo wrong leaves
+   * Second attempt: Validates clover, but submits anyway
+   */
+  const submitClover = () => {
+    let correctCount = 0;
+
+    // Verify corrects guesses
+    const locksCopy = { ...locks };
+    const guessesCopy = { ...guesses };
+    Object.keys(guessesCopy).forEach((k) => {
+      const key = k as LeafPosition;
+      const entry = guessesCopy[key];
+
+      if (entry && (entry.score === undefined || entry.score === 0)) {
+        const correctLeaf = clover.leaves[key];
+        const isCorrect =
+          entry.leafId === correctLeaf.leafId && parseRotation(entry.rotation) === correctLeaf.rotation;
+
+        if (isCorrect) {
+          entry.score = attempts === 0 ? FIRST_ATTEMPT_SCORE : SECOND_ATTEMPT_SCORE;
+          correctCount += 1;
+          locksCopy[key] = true;
+        } else if (attempts === 0) {
+          guessesCopy[key] = null;
+        }
+
+        entry.tries = attempts + 1;
+        entry.score = entry.score ?? 0;
+      }
+    });
+
+    // If correct or second attempt, submit
+    if ((correctCount === 4 || attempts === 1) && onSubmit) {
+      onSubmit({
+        activeCloverId: clover.cloverId,
+        guesses: guessesCopy,
+      });
+      return;
+    }
+
+    notification.warn({
+      message: translate(`${4 - correctCount} folhas estão erradas`, `${4 - correctCount} leaves are wrong`),
+      description: translate(
+        'Tente novamente. Pode ter sido folha errada ou rotação errada',
+        'Try again. It may have been wrong leaf or just wrong rotation'
+      ),
+    });
+
+    setGuesses(guessesCopy);
+    setLocks(locksCopy);
+    setAttempts(1);
+  };
+
+  // BOOLEANS
+  const areCluesComplete = clues.every((clue) => clue.trim());
+  const isCloverComplete = Object.values(guesses).every((guess) => Boolean(guess));
 
   return {
     mode,
-    onRotateClover,
     rotation,
-    onRotateLeaf,
-    rotations,
-    onChangeClue,
+    onRotateClover,
     clues,
+    onClueChange,
+    rotations,
+    onLeafRotate,
+    onRandomizeLeafRotations,
+    guesses,
     onActivateLeaf,
     activeLeafId,
     onActivateSlot,
     activeSlotId,
-    guesses,
-    allowLeafRotation,
-    isCluesComplete,
+    usedLeavesIds,
+    onLeafRemove,
+    areCluesComplete,
+    isCloverComplete,
+    submitClover,
+    locks,
   };
 }

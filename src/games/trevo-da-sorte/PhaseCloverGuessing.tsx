@@ -1,32 +1,26 @@
 // State & Hooks
 import { useIsUserReady } from 'hooks/useIsUserReady';
 import { useLanguage } from 'hooks/useLanguage';
-import { useOnSubmitGuessAPIRequest, useOnUpdateCloverStateAPIRequest } from './utils/api-requests';
+import { useOnSubmitGuessAPIRequest } from './utils/api-requests';
 import { useStep } from 'hooks/useStep';
-import { useUser } from 'hooks/useUser';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { TDIcon } from 'components/icons/TDIcon';
-
 import { Translate } from 'components/language';
-import { StepWriteClues } from './StepWriteClues';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { StepGuessClover } from './StepGuessClover';
-
 import { CloverIcon } from 'components/icons/CloverIcon';
 import { ViewOr } from 'components/views';
+import { TurnOrder } from 'components/players';
 import { StepWaitClover } from './StepWaitClover';
 
 function PhaseCloverGuessing({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
   const { translate } = useLanguage();
   const { step, goToNextStep, setStep } = useStep(0);
-  const user = useUser(players);
-
   const [activeCloverPlayer, isUserTheCloverPlayer] = useWhichPlayerIsThe('activeCloverId', state, players);
 
   const onSubmitGuess = useOnSubmitGuessAPIRequest(setStep);
@@ -47,6 +41,8 @@ function PhaseCloverGuessing({ players, state, info }: PhaseProps) {
               en="One at a time, let's try to guess the position of each leaf on each clover"
             />
           </Instruction>
+
+          <TurnOrder players={players} activePlayerId={state.activeCloverId} order={state.gameOrder} />
         </PhaseAnnouncement>
 
         {/* Step 1 */}

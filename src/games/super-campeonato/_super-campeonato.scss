@@ -218,10 +218,17 @@
   }
 }
 
+.w-voting-group {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+}
+
 .w-voting-options {
   background-color: get-color('white');
-  margin: get-unit(4 2);
+  margin: get-unit(4);
   padding: get-unit(2);
+  display: flex;
+  align-items: center;
 
   &__vs {
     font-family: 'Bangers', monospace;
@@ -319,6 +326,8 @@
   background-color: get-color('gray', 3);
   font-family: 'Bangers', monospace;
   text-align: center;
+  margin-bottom: get-unit(5);
+
   &__player {
     display: grid;
     grid-template-columns: auto;

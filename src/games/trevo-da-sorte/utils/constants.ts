@@ -8,3 +8,9 @@ export const ACTIONS = {
 export const ROTATIONS = [0, 90, 180, 270];
 
 export const WORST_TO_REMOVE = 6;
+
+export const FIRST_ATTEMPT_SCORE = 3;
+
+export const SECOND_ATTEMPT_SCORE = 1;
+
+export const LEAVES_ORDER = ['A', 'B', 'C', 'D'];

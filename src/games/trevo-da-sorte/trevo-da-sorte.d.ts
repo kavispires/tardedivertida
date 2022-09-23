@@ -4,10 +4,12 @@ type SubmitBadWordsPayload = {
 
 type SubmitCluesPayload = {
   clues: string[];
+  rotations: NumberDictionary;
 };
 
-type SubmitGuessPayload = {
-  guess: any;
+type SubmitCloverGuessesPayload = {
+  activeCloverId: PlayerId;
+  guesses: YGuesses;
 };
 
 type UpdateCoverStatePayload = {
@@ -20,11 +22,27 @@ type LeafPosition = 'A' | 'B' | 'C' | 'D';
 
 type LeafId = string;
 
+type LeafEvent = (e: ButtonEvent, leafId: LeafId) => void;
+
+interface CloverLeaf {
+  leafId: LeafId;
+  rotation: number;
+  clue: string;
+}
+
+interface Clover {
+  cloverId: PlayerId;
+  leaves: {
+    A: CloverLeaf;
+    B: CloverLeaf;
+    C: CloverLeaf;
+    D: CloverLeaf;
+  };
+}
+
 interface Leaf {
   id: LeafId;
   cards: TextCard[];
-  rotation: number;
-  position: Position | null;
 }
 
 type Leaves = Record<LeafId, Leaf>;
@@ -32,27 +50,12 @@ type Leaves = Record<LeafId, Leaf>;
 interface LeafGuess {
   leafId: LeafId;
   rotation: number;
-  position?: Position;
+  tries?: number;
+  score?: number;
 }
+
+type LeafLocks = Record<LeafPosition, boolean>;
 
 type YGuesses = Record<LeafPosition, LeafGuess | null>;
 
-type CloverMode = 'write' | 'guess' | 'result' | 'wait';
-
-interface Clover {
-  clues?: string[];
-  rotation: number;
-  leaves: {
-    A: LeafId;
-    B: LeafId;
-    C: LeafId;
-    D: LeafId;
-  };
-  guess: {
-    A: LeafGuess | null;
-    B: LeafGuess | null;
-    C: LeafGuess | null;
-    D: LeafGuess | null;
-  };
-  tries: number;
-}
+type CloverMode = 'write' | 'guess' | 'view' | 'result';

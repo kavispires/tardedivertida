@@ -1,9 +1,12 @@
+// Hooks
+import { useCloverState } from './utils/useCloverState';
+// Components
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
-import { CloverWait } from './components/CloverWait';
-import { useCloverState } from './utils/useCloverState';
+import { Clover } from './components/Clover';
+import { DetachedLeaves } from './components/DetachedLeaves';
 
 type StepWaitCloverProps = {
   activeCloverPlayer: GamePlayer;
@@ -12,8 +15,8 @@ type StepWaitCloverProps = {
 };
 
 export function StepWaitClover({ activeCloverPlayer, clover, leaves }: StepWaitCloverProps) {
-  const { rotation, rotations, onRotateLeaf, onRotateClover, guesses, clues } = useCloverState(
-    'wait',
+  const { mode, rotation, rotations, onLeafRotate, onRotateClover, usedLeavesIds } = useCloverState(
+    'view',
     clover,
     leaves
   );
@@ -54,14 +57,13 @@ export function StepWaitClover({ activeCloverPlayer, clover, leaves }: StepWaitC
         />
       </Instruction>
 
-      <CloverWait
+      <Clover mode={mode} clover={clover} leaves={leaves} onRotate={onRotateClover} rotation={rotation} />
+
+      <DetachedLeaves
         leaves={leaves}
-        clues={clues}
-        onRotateClover={onRotateClover}
-        rotation={rotation}
-        onRotateLeaf={onRotateLeaf}
         rotations={rotations}
-        guesses={guesses}
+        onLeafRotate={onLeafRotate}
+        usedLeavesIds={usedLeavesIds}
       />
     </Step>
   );

@@ -1,7 +1,7 @@
 {
   "gameCode": "Y",
   "gameName": "trevo-da-sorte",
-  "version": "alpha",
+  "version": "1.0.0",
   "title": {
     "pt": "Trevo da Sorte",
     "en": "Clover Words"
@@ -16,8 +16,22 @@
     "en": "Guess the write combination of leaves in your word clover based on other player's clues"
   },
   "rules": {
-    "pt": ["TBD"],
-    "en": ["TBD"]
+    "pt": [
+      "Em Trevo da Sorte, jogadores tentam adivinhar a combinação correta de cartas nos 'trevos' dos outros.",
+      "Primeiro, cada jogador escreve dicas conectando os pares de palavras na borda do seu trevo.",
+      "Então, um trevo de cada vez, as cartas são removidas e jogadores tem que tentar adivinhar a combinação correta delas no trevo.",
+      "Você tem duas chances. Na primeira tentative, você ganha 3 pontos por cada carta no lugar correto. Na segunda, você ganha apenas um ponto.",
+      "Sempre há pelo menos uma carta a mais e elas podem ser rotacionadas em qualquer direção.",
+      "Após todos os trevos passarem pela adivinhação, o jogador com mais pontos é o vencedor!"
+    ],
+    "en": [
+      "In Clover Words, players are trying to find the right combination of cards in each other's clovers.",
+      "First, every player will write clues connecting each of the pair of words in their clover.",
+      "Then one clover at a time, the cards are removed and players will try to guess the right combination of the cards in the clover.",
+      "You get two attempts. On the first attempt you score 3 points for each correctly positioned card. On the second attempt correct cards get only 1 point.",
+      "There always be at least one extra card and they may be rotated in any direction.",
+      "Afer all clovers have been guesses, the player with the most points wins!"
+    ]
   },
   "playerCount": {
     "recommended": [5, 6, 7],

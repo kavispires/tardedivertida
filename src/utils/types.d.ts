@@ -148,6 +148,7 @@ type CanvasSetLine = React.Dispatch<React.SetStateAction<CanvasLine[]>>;
 type GenericComponent = (...args: any) => any;
 type GenericFunction = (...args: any) => void;
 type BooleanFunction = (...args: any) => boolean;
+type ButtonEvent = React.MouseEvent<HTMLButtonElement, MouseEvent>;
 
 type PhaseProps = {
   players: GamePlayers;

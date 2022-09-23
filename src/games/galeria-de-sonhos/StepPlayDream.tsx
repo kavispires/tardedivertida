@@ -79,7 +79,7 @@ export function StepPlayDream({
       <Title size="small">
         <Translate pt="Bingo dos Sonhos" en="Dream Bingo" />
       </Title>
-      <Card header={translate('Tema', 'Theme')} randomColor>
+      <Card header={translate('Tema', 'Theme')} color="purple">
         {word.text}
       </Card>
 
