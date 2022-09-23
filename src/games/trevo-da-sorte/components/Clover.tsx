@@ -2,17 +2,18 @@ import clsx from 'clsx';
 import { useRef } from 'react';
 import { useKeyPressEvent } from 'react-use';
 // Ant Design Resources
-import { Button, Input } from 'antd';
+import { Button, Input, Tooltip } from 'antd';
 import { RotateLeftOutlined, RotateRightOutlined } from '@ant-design/icons';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { FIRST_ATTEMPT_SCORE, ROTATIONS, SECOND_ATTEMPT_SCORE } from '../utils/constants';
 // Components
-import { LeafSlot } from './LeafSlot';
 import { BoxXIcon } from 'components/icons/BoxXIcon';
 import { BoxOneIcon } from 'components/icons/BoxOneIcon';
 import { BoxCheckMarkIcon } from 'components/icons/BoxCheckMarkIcon';
+import { Translate } from 'components/language';
+import { LeafSlot } from './LeafSlot';
 
 type CloverProps = {
   mode: CloverMode;
@@ -178,11 +179,23 @@ const getLeaf = (
 const getIcon = (score: number) => {
   switch (score) {
     case SECOND_ATTEMPT_SCORE:
-      return <BoxOneIcon />;
+      return (
+        <Tooltip title={<Translate pt="Acertou na segunda tentativa" en="Got it in their second attempt" />}>
+          <BoxOneIcon />
+        </Tooltip>
+      );
     case FIRST_ATTEMPT_SCORE:
-      return <BoxCheckMarkIcon />;
+      return (
+        <Tooltip title={<Translate pt="Acertou na primeira tentativa" en="Got it in their first attempt" />}>
+          <BoxCheckMarkIcon />
+        </Tooltip>
+      );
     case 0:
     default:
-      return <BoxXIcon />;
+      return (
+        <Tooltip title={<Translate pt="Burro pra carai e não acertou" en="Did not get it right" />}>
+          <BoxXIcon />;
+        </Tooltip>
+      );
   }
 };
