@@ -8,10 +8,12 @@ type FixedMenuButtonDefaultProps = {
   /**
    * What order it will show up in the screen
    * 0 for rules
-   * 1 for extras (card size)
-   * 2 for admin only
+   * 1 for extras (e.g. card size)
+   * 2 for extras
+   * 3 for rating
+   * -1 for admin only
    */
-  position: 0 | 1 | 2 | -1;
+  position: 0 | 1 | 2 | 3 | -1;
   /**
    * The displayed icon
    */
@@ -47,6 +49,10 @@ interface FixedMenuButtonPopoverProps extends FixedMenuButtonDefaultProps {
    * Guard onclick from button only
    */
   onClick?: never;
+  /**
+   * If popover should be open
+   */
+  open?: boolean;
 }
 
 interface FixedMenuButtonButtonOnlyProps extends FixedMenuButtonDefaultProps {
@@ -62,6 +68,10 @@ interface FixedMenuButtonButtonOnlyProps extends FixedMenuButtonDefaultProps {
    * Guard content from popover
    */
   content?: never;
+  /**
+   * If popover should be open
+   */
+  open?: never;
 }
 
 type FixedMenuButtonProps = FixedMenuButtonPopoverProps | FixedMenuButtonButtonOnlyProps;
@@ -69,11 +79,11 @@ type FixedMenuButtonProps = FixedMenuButtonPopoverProps | FixedMenuButtonButtonO
 /**
  * Button position on the top left of the screen to display rules, admin button and other features
  */
-export function FixedMenuButton({ type, position, content, className, ...rest }: FixedMenuButtonProps) {
+export function FixedMenuButton({ type, position, content, className, open, ...rest }: FixedMenuButtonProps) {
   return (
     <div className={clsx('fixed-menu-button', `fixed-menu-button--${position}`, className)}>
       {type === 'popover' ? (
-        <Popover placement="bottomLeft" content={content} trigger="click">
+        <Popover placement="bottomLeft" content={content} trigger="click" open={open}>
           <FixedMenuButtonContent {...rest} />
         </Popover>
       ) : (
