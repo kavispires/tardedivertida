@@ -83,6 +83,10 @@ export const TAG_DICT: TagDict = {
     label: 'aparelho móvel',
     color: 'gray',
   },
+  'brain-burner': {
+    label: 'sofrimento',
+    color: 'rosyBrown',
+  },
 };
 
 export const LETTERS: string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';

@@ -38,7 +38,7 @@
     "min": 2,
     "max": 10
   },
-  "tags": ["cooperative", "guessing", "writing"],
+  "tags": ["cooperative", "guessing", "writing", "brain-burner"],
   "cooperative": true,
   "available": {
     "pt": true,
