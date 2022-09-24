@@ -1,5 +1,8 @@
+// Hooks
+import { useMock } from 'hooks/useMock';
+// Utils
+import { mockSelectQuestion } from './utils/mock';
 // Components
-
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
 import { Step } from 'components/steps';
@@ -24,6 +27,11 @@ export function StepQuestionSelection({
   activePlayer,
   pastureSize,
 }: StepQuestionSelectionProps) {
+  // DEV: Mock answers
+  useMock(() => {
+    onSubmitQuestion({ questionId: mockSelectQuestion(currentQuestions) });
+  });
+
   return (
     <Step fullWidth className="m-step">
       <Title>
