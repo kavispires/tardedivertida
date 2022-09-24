@@ -1,6 +1,6 @@
 // Constants
 import { GAME_COLLECTIONS } from '../../utils/constants';
-import { MENTE_COLETIVA_PHASES, MAX_ROUNDS, PLAYER_COUNTS } from './constants';
+import { MENTE_COLETIVA_PHASES, MAX_ROUNDS, PLAYER_COUNTS, MENTE_COLETIVA_ACTIONS } from './constants';
 // Types
 import type { MenteColetivaInitialState, MenteColetivaOptions, MenteColetivaSubmitAction } from './types';
 // Utilities
@@ -133,16 +133,16 @@ export const submitAction = async (data: MenteColetivaSubmitAction) => {
   utils.firebase.validateSubmitActionPayload(gameId, collectionName, playerId, action);
 
   switch (action) {
-    case 'SUBMIT_QUESTION':
+    case MENTE_COLETIVA_ACTIONS.SUBMIT_QUESTION:
       utils.firebase.validateSubmitActionProperties(data, ['questionId'], 'submit question');
       return handleSubmitQuestion(collectionName, gameId, playerId, data.questionId);
-    case 'SUBMIT_ANSWERS':
+    case MENTE_COLETIVA_ACTIONS.SUBMIT_ANSWERS:
       utils.firebase.validateSubmitActionProperties(data, ['answers'], 'submit answers');
       return handleSubmitAnswers(collectionName, gameId, playerId, data.answers);
-    case 'NEXT_ANSWERS':
+    case MENTE_COLETIVA_ACTIONS.NEXT_ANSWERS:
       utils.firebase.validateSubmitActionProperties(data, ['allowedList'], 'advance answers');
       return handleNextAnswers(collectionName, gameId, playerId, data.allowedList);
-    case 'ADD_ANSWER':
+    case MENTE_COLETIVA_ACTIONS.ADD_ANSWER:
       utils.firebase.validateSubmitActionProperties(data, ['answer'], 'add answer');
       return handleAddAnswer(collectionName, gameId, playerId, data.answer);
     default:

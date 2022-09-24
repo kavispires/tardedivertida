@@ -23,6 +23,8 @@ import {
   gatherAllAnswers,
   recalculateLastPasture,
   shouldSaveSheep,
+  getAchievements,
+  calculateSheepTravelDistance,
 } from './helpers';
 
 /**
@@ -47,6 +49,8 @@ export const prepareSetupPhase = async (
   utils.players.addPropertiesToPlayers(players, {
     level: 0,
     answers: [],
+    secretScore: 0,
+    distance: 0,
   });
 
   utils.players.distributeNumberIds(players, 0, 24, 'sheepId');
@@ -184,19 +188,20 @@ export const prepareResolutionPhase = async (
   // Fixed up level based on pastureChange
   updateLevelsForPlayers(players, pastureChange[2]);
 
+  const threshold = store.options?.shortPasture
+    ? SHORT_PASTURE_GAME_OVER_THRESHOLD
+    : PASTURE_GAME_OVER_THRESHOLD;
+
   const isGameOver = determineGameOver(players, store.options?.shortPasture);
-  const shouldSave = shouldSaveSheep(
-    isGameOver,
-    store.options?.shortPasture ? SHORT_PASTURE_GAME_OVER_THRESHOLD : PASTURE_GAME_OVER_THRESHOLD,
-    pastureChange,
-    state?.lastRound,
-    state?.usedSave
-  );
+  const shouldSave = shouldSaveSheep(isGameOver, threshold, pastureChange, state?.lastRound, state?.usedSave);
 
   if (shouldSave) {
     recalculateLastPasture(pastureChange, state.pastureSize);
     updateLevelsForPlayers(players, pastureChange[2]);
   }
+
+  // Calculate distance
+  calculateSheepTravelDistance(players, pastureChange);
 
   // Save
   return {
@@ -222,6 +227,9 @@ export const prepareGameOverPhase = async (
 
   const losers = Object.values(players).filter((player) => player.level === state.pastureSize);
 
+  // Get achievements
+  const achievements = getAchievements(players);
+
   // Save
   return {
     set: {
@@ -231,6 +239,7 @@ export const prepareGameOverPhase = async (
         round: state.round,
         winners,
         losers,
+        achievements,
       },
     },
   };

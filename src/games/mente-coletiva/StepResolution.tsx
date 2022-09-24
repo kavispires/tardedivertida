@@ -41,7 +41,6 @@ export function StepResolution({
   const [showAnnounceSave, setShowAnnounceSave] = useState(false);
 
   const pastureChange = useMemo(() => JSON.parse(pastureChangeStr), [pastureChangeStr]);
-
   const { timeLeft } = useCountdown({
     duration: 15,
     autoStart: true,

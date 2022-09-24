@@ -7,6 +7,7 @@ import { Step } from 'components/steps';
 import { AdminAnswerControl } from './components/AdminAnswerControl';
 import { AnswerGroup } from './components/AnswerGroup';
 import { UserAnswers } from './components/UserAnswers';
+import { Translate } from 'components/language';
 
 type StepCompareProps = {
   currentQuestion: MQuestion;
@@ -45,7 +46,11 @@ export function StepCompare({
   };
 
   if (!answerGroup) {
-    return <Step fullWidth>Pronto!</Step>;
+    return (
+      <Step fullWidth>
+        <Translate pt="Pronto!" en="All done!" />
+      </Step>
+    );
   }
 
   return (

@@ -60,7 +60,7 @@ export function AdminAnswerControl({
     // When only 1 answer in
     if (answersCount === 1) return 5;
     // Other cases
-    return 10;
+    return 7;
   }, [answerGroup.entries.length, isDevEnv, playerCount, remainingGroupsCount]);
 
   return (
