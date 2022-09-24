@@ -49,6 +49,7 @@ function SessionMenteColetiva({ gameId }: SessionProps) {
       gameId={gameId}
       gameCollection={GAME_COLLECTION.MENTE_COLETIVA}
       getActiveComponent={getActiveComponent}
+      backgroundClassName="m-background"
     />
   );
 }
