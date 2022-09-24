@@ -1,5 +1,5 @@
 import { shuffle } from 'lodash';
-import { getEntryId } from 'utils/helpers';
+import { getEntryId, getRandomItem } from 'utils/helpers';
 
 export const mockAnswers = (userId: PlayerId, numAnswers: number) => {
   const list = ['agua', 'bola', 'coco', 'dedo', 'egua', 'flauta', 'gatilho', 'hélio', 'jaguar'];
@@ -15,3 +15,5 @@ export const mockAnswers = (userId: PlayerId, numAnswers: number) => {
       return acc;
     }, {});
 };
+
+export const mockSelectQuestion = (questions: MQuestion[]) => getRandomItem(questions).id;

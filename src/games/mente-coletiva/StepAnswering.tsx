@@ -4,6 +4,7 @@ import { Button, Input, Space } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useMock } from 'hooks/useMock';
+import { useLoading } from 'hooks/useLoading';
 // Utils
 import { getEntryId } from 'utils/helpers';
 import { mockAnswers } from './utils/mock';
@@ -15,6 +16,7 @@ import { Step } from 'components/steps';
 import { Title } from 'components/text';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
+import { DebugOnly } from 'components/debug';
 
 type StepAnsweringProps = {
   currentQuestion: MQuestion;
@@ -33,6 +35,7 @@ export function StepAnswering({
   onSubmitAnswers,
   pastureSize,
 }: StepAnsweringProps) {
+  const { isLoading } = useLoading();
   const { translate } = useLanguage();
   const [answers, setAnswers] = useState({});
 
@@ -90,9 +93,23 @@ export function StepAnswering({
             })}
         </ol>
         <Space className="space-container" align="center">
-          <Button type="primary" disabled={isDisabled} onClick={() => onSubmitAnswers({ answers })}>
+          <Button
+            type="primary"
+            disabled={isDisabled || isLoading}
+            onClick={() => onSubmitAnswers({ answers })}
+          >
             <Translate pt="Enviar respostas" en="Submit answers" />
           </Button>
+
+          <DebugOnly devOnly>
+            <Button
+              type="primary"
+              ghost
+              onClick={() => onSubmitAnswers({ answers: mockAnswers(user.id, currentQuestion.number) })}
+            >
+              Mock Answers
+            </Button>
+          </DebugOnly>
         </Space>
       </div>
 
