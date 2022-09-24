@@ -1,8 +1,8 @@
 import { ReactNode, useState } from 'react';
 import clsx from 'clsx';
 // Ant Design Resources
-import { Alert, Button, Rate } from 'antd';
-import { Input } from 'antd';
+import { Alert, Button, Input, Rate } from 'antd';
+import { StarFilled } from '@ant-design/icons';
 // Adapters
 import { GAME_API } from 'services/adapters';
 // Hooks
@@ -16,7 +16,6 @@ import { getAnimationClass } from 'utils/helpers';
 // Components
 import { Translate } from 'components/language';
 import { FixedMenuButton } from 'components/buttons';
-import { StarFilled } from '@ant-design/icons';
 
 const { TextArea } = Input;
 
@@ -124,6 +123,11 @@ function RateGameWidgetContent({
           <Button type="primary" disabled={!rating || isLoading} onClick={onSubmit} size="small">
             <Translate pt="Enviar" en="Send" />
           </Button>
+          <p style={{ marginTop: '1rem' }}>
+            <Button type="ghost" ghost onClick={() => setHideWidget(true)} size="small">
+              <Translate pt="Hide" en="Hide" />
+            </Button>
+          </p>
         </>
       )}
     </div>

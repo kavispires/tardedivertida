@@ -281,3 +281,16 @@ type TextCard = {
   id: CardId;
   text: string;
 };
+
+interface Achievement {
+  type: string;
+  playerId: PlayerId;
+  value: Primitive;
+}
+
+interface AchievementReference {
+  [key: string]: {
+    icon: ReactNode;
+    title: DualLanguageValue;
+  };
+}

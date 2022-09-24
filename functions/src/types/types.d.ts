@@ -239,3 +239,9 @@ interface RankingEntry {
   gainedPoints: number[];
   newScore: number;
 }
+
+interface Achievement<T> {
+  type: T | string;
+  playerId: PlayerId;
+  value: Primitive;
+}
