@@ -14,7 +14,7 @@ export const PUBLIC_URL = {
 
 type TagDict = {
   [key: string]: {
-    label: string;
+    label: DualLanguageValue;
     color: string;
   };
 };
@@ -23,69 +23,123 @@ type TagDict = {
  * List of tags translation and color
  */
 export const TAG_DICT: TagDict = {
+  // About Dynamics
   competitive: {
-    label: 'competitivo',
+    label: {
+      en: 'competitive',
+      pt: 'competitivo',
+    },
     color: 'red',
   },
   cooperative: {
-    label: 'cooperativo',
+    label: {
+      en: 'cooperative',
+      pt: 'cooperativo',
+    },
     color: 'green',
   },
   'same-time': {
-    label: 'todos juntos',
+    label: {
+      en: 'same time',
+      pt: 'todos juntos',
+    },
     color: 'volcano',
   },
   'turn-based': {
-    label: 'um por vez',
+    label: {
+      en: 'turn based',
+      pt: 'um por vez',
+    },
     color: 'volcano',
   },
-  traitor: {
-    label: 'inimigo',
-    color: 'volcano',
-  },
-  timed: {
-    label: 'cronometrado',
-    color: 'orange',
-  },
+  // About Skilled Mechanics
   drawing: {
-    label: 'desenhar',
-    color: 'gold',
-  },
-  guessing: {
-    label: 'adivinhar',
-    color: 'cyan',
-  },
-  voting: {
-    label: 'votação ',
-    color: 'cyan',
-  },
-  pairing: {
-    label: 'parear',
+    label: {
+      en: 'drawing',
+      pt: 'desenhar',
+    },
     color: 'cyan',
   },
   writing: {
-    label: 'escrever',
-    color: 'blue',
+    label: {
+      en: 'writing',
+      pt: 'escrever',
+    },
+    color: 'cyan',
   },
-  images: {
-    label: 'imagens',
-    color: 'purple',
-  },
-  discussion: {
-    label: 'discussão/fala',
+  // About General Mechanics
+  guessing: {
+    label: {
+      en: 'guessing',
+      pt: 'adivinhar',
+    },
     color: 'geekblue',
   },
-  'push-your-luck': {
-    label: 'sorte',
-    color: 'pink',
+  voting: {
+    label: {
+      en: 'voting',
+      pt: 'votação',
+    },
+    color: 'geekblue',
   },
-  'mobile-friendly': {
-    label: 'aparelho móvel',
-    color: 'gray',
+  pairing: {
+    label: {
+      en: 'pairing',
+      pt: 'parear',
+    },
+    color: 'geekblue',
+  },
+  // About Feeling inducing
+  'push-your-luck': {
+    label: {
+      en: 'push your luck',
+      pt: 'sorte',
+    },
+    color: 'lime',
   },
   'brain-burner': {
-    label: 'sofrimento',
-    color: 'rosyBrown',
+    label: {
+      en: 'brain burner',
+      pt: 'sofrimento',
+    },
+    color: 'lime',
+  },
+  discussion: {
+    label: {
+      en: 'discussion',
+      pt: 'discussão',
+    },
+    color: 'lime',
+  },
+  // About Features
+  timed: {
+    label: {
+      en: 'timed',
+      pt: 'cronometrado',
+    },
+    color: 'gold',
+  },
+  traitor: {
+    label: {
+      en: 'traitor',
+      pt: 'traidor',
+    },
+    color: 'volcano',
+  },
+  images: {
+    label: {
+      en: 'images',
+      pt: 'imagens',
+    },
+    color: 'purple',
+  },
+  // Technical
+  'mobile-friendly': {
+    label: {
+      en: 'mobile-friendly',
+      pt: 'aparelho móvel',
+    },
+    color: '',
   },
 };
 

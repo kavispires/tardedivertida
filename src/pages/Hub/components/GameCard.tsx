@@ -1,13 +1,14 @@
 // Ant Design Resources
-import { Space, Card, Image, Divider, Tag, Badge } from 'antd';
+import { Card, Image, Divider, Badge } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
-import { PUBLIC_URL, TAG_DICT } from 'utils/constants';
+import { PUBLIC_URL } from 'utils/constants';
 import { truncateRecommended } from 'utils/helpers';
 // Components
 import { RulesModal } from 'components/rules';
 import { CreateGameModal } from './CreateGameModal';
+import { GameTags } from 'components/general/GameTags';
 
 const getVersionColor = (version: string) => {
   if (version.includes('alpha')) {
@@ -69,13 +70,7 @@ export function GameCard({ game }: GameCardProps) {
           />
         )}
 
-        <Space wrap size={[1, 6]} style={{ display: 'flex' }}>
-          {game.tags.map((tag) => (
-            <Tag key={`${game.gameCode}-${tag}`} color={TAG_DICT[tag]?.color}>
-              {language === 'pt' ? TAG_DICT[tag]?.label : tag}
-            </Tag>
-          ))}
-        </Space>
+        <GameTags wrap size={[1, 6]} style={{ display: 'flex' }} gameCode={game.gameCode} tags={game.tags} />
       </div>
 
       <div className="game-card__actions">

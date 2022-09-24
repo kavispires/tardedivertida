@@ -1,11 +1,13 @@
 // Ant Design Resources
-import { Card, Divider, Image, Space, Tag } from 'antd';
+import { Card, Image, Space } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
-import { PUBLIC_URL, TAG_DICT } from 'utils/constants';
+import { PUBLIC_URL } from 'utils/constants';
+import { truncateRecommended } from 'utils/helpers';
 // Components
 import { RulesModal } from 'components/rules';
+import { GameTags } from 'components/general/GameTags';
 
 export function GameDetailsContent({ game }: { game: GameInfo }) {
   const { language, translate } = useLanguage();
@@ -16,32 +18,39 @@ export function GameDetailsContent({ game }: { game: GameInfo }) {
         src={`${PUBLIC_URL.EXAMPLES}game-example-${game.gameName}.png`}
         fallback={`${PUBLIC_URL.BANNERS}/em-breve-${language}.jpg`}
       />
-      <Card.Meta style={{ marginTop: '8px' }} description={game.summary[language]} />
+      <Card.Meta style={{ margin: '8px 0' }} description={game.summary[language]} />
 
       <Card.Meta
-        style={{ marginTop: '8px' }}
         description={translate(
           `Para ${game.playerCount.min}-${game.playerCount.max} jogadores`,
           `For ${game.playerCount.min}-${game.playerCount.max} players`
         )}
       />
 
-      <Divider />
-
       <Card.Meta
+        className="game-card__player-count"
         description={translate(
-          `Recomendado jogar com ${game.playerCount.recommended}`,
-          `Recommended with ${game.playerCount.recommended}`
+          `Melhor com ${game.playerCount.best || '?'} jogadores`,
+          `Best wih ${game.playerCount.best || '?'} players`
         )}
       />
 
-      <Space wrap size={[1, 6]} prefixCls={game.gameName} style={{ display: 'flex', marginTop: '12px' }}>
-        {game.tags.map((tag) => (
-          <Tag key={`${game.gameCode}-${tag}`} color={TAG_DICT[tag]?.color}>
-            {language === 'pt' ? TAG_DICT[tag]?.label : tag}
-          </Tag>
-        ))}
-      </Space>
+      <Card.Meta
+        className="game-card__player-count game-card__margin-bottom"
+        description={translate(
+          `Recomendado jogar com ${truncateRecommended(game.playerCount.recommended)}`,
+          `Recommended with ${truncateRecommended(game.playerCount.recommended)}`
+        )}
+      />
+
+      <GameTags
+        wrap
+        size={[1, 6]}
+        prefixCls={game.gameName}
+        style={{ display: 'flex', marginTop: '12px' }}
+        gameCode={game.gameCode}
+        tags={game.tags}
+      />
 
       <Space style={{ marginTop: '12px' }}>
         {Boolean(game.rules?.[language]?.length > 1) && <RulesModal gameInfo={game} />}
