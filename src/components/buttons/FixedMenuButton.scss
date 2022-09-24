@@ -3,8 +3,8 @@
   left: 0;
   padding: get-unit(1);
   border-radius: get-unit(0 5 5 0);
-  background-color: get-color('gray', 1);
-  border: 1px solid get-color('white');
+  background-color: get-color('white', 5, 0.8);
+  border: 1px solid get-color('white', 8);
   color: get-color('gray', 4);
 
   @include box-shadow;
@@ -27,6 +27,10 @@
 
   &--2 {
     top: get-unit(36);
+  }
+
+  &--3 {
+    top: get-unit(48);
   }
 
   &---1 {

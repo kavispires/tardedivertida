@@ -272,7 +272,9 @@ const _feedEmulatorDB = async () => {
   // ARTE_RUIM
 
   await utils.firebase.getPublicRef().doc('arteRuimDrawingsPt').set(sample);
+  await utils.firebase.getPublicRef().doc('arteRuimDrawingsPt2').set(sample);
   await utils.firebase.getPublicRef().doc('arteRuimDrawingsEn').set(sample);
+  await utils.firebase.getPublicRef().doc('arteRuimDrawingsEn2').set(sample);
   await utils.firebase.getPublicRef().doc('ratings').set(sample);
 
   const usedEntries = Object.values(GLOBAL_USED_DOCUMENTS).map((usedEntryName) =>

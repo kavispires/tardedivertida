@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { ReactNode, useState } from 'react';
 import clsx from 'clsx';
 // Ant Design Resources
 import { Alert, Button, Rate } from 'antd';
@@ -11,16 +11,56 @@ import { useCountdown } from 'hooks/useCountdown';
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 import { useGlobalState } from 'hooks/useGlobalState';
+// Utils
+import { getAnimationClass } from 'utils/helpers';
 // Components
 import { Translate } from 'components/language';
+import { FixedMenuButton } from 'components/buttons';
+import { StarFilled } from '@ant-design/icons';
 
 const { TextArea } = Input;
 
 type RateGameWidgetProps = {
-  customText?: any;
+  customText?: ReactNode;
 };
 
-export function RateGameWidget({ customText }: RateGameWidgetProps): JSX.Element {
+export function RateGameWidget({ customText }: RateGameWidgetProps) {
+  const [hideWidget, setHideWidget] = useState(false);
+
+  if (hideWidget) {
+    return <></>;
+  }
+
+  return (
+    <FixedMenuButton
+      content={
+        <RateGameWidgetContent
+          customText={customText}
+          hideWidget={hideWidget}
+          setHideWidget={setHideWidget}
+        />
+      }
+      type="popover"
+      icon={<StarFilled />}
+      position={3}
+      open={true}
+      buttonProps={{
+        type: 'primary',
+      }}
+    />
+  );
+}
+
+type RateGameWidgetContentProps = {
+  hideWidget: boolean;
+  setHideWidget: React.Dispatch<React.SetStateAction<boolean>>;
+} & RateGameWidgetProps;
+
+function RateGameWidgetContent({
+  customText,
+  hideWidget,
+  setHideWidget,
+}: RateGameWidgetContentProps): JSX.Element {
   const { isLoading } = useLoading();
   const { translate } = useLanguage();
   const [userId] = useGlobalState('userId');
@@ -29,7 +69,7 @@ export function RateGameWidget({ customText }: RateGameWidgetProps): JSX.Element
   const [isAdminEnabled] = useGlobalState('isAdminEnabled');
   const [rating, setRating] = useState(0);
   const [comments, setComments] = useState('');
-  const [hideWidget, setHideWidget] = useState(false);
+
   const [thankYouMessage, setThankYouMessage] = useState(false);
 
   const { start } = useCountdown({
@@ -43,8 +83,7 @@ export function RateGameWidget({ customText }: RateGameWidgetProps): JSX.Element
     actionName: 'rating',
     successMessage: translate('Obrigado por avaliar o jogo', 'Thanks for rating the game'),
     errorMessage: translate('Envio de avaliação falhou', 'Rating submission has failed'),
-    onSuccess: () => setThankYouMessage(true),
-    onError: () => setThankYouMessage(true),
+    onBeforeCall: () => setThankYouMessage(true),
     onAfterCall: start,
   });
 
@@ -67,7 +106,7 @@ export function RateGameWidget({ customText }: RateGameWidgetProps): JSX.Element
       className={clsx(
         'rate-game-widget',
         thankYouMessage && 'rate-game-widget--thank-you',
-        hideWidget ? 'swirl-out-bck' : 'swirl-in-fwd'
+        getAnimationClass(hideWidget ? 'bounceOut' : 'bounceIn')
       )}
     >
       {thankYouMessage ? (
@@ -79,7 +118,7 @@ export function RateGameWidget({ customText }: RateGameWidgetProps): JSX.Element
           </h3>
           <Rate onChange={setRating} />
           <p>
-            <Translate pt="Comentários" en="Comments" custom={customText} />:
+            <Translate pt="Comentários" en="Comments" custom={customText} />
           </p>
           <TextArea onChange={(e) => setComments(e.target.value)} disabled={isLoading} />
           <Button type="primary" disabled={!rating || isLoading} onClick={onSubmit} size="small">
