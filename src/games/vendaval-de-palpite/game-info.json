@@ -24,7 +24,7 @@
     "min": 2,
     "max": 10
   },
-  "tags": ["cooperative", "same-time", "writing", "guessing"],
+  "tags": ["cooperative", "same-time", "writing", "guessing", "brain-burner"],
   "available": {
     "pt": true,
     "en": true
