@@ -1,3 +1,5 @@
+import { MENTE_COLETIVA_ACHIEVEMENTS, MENTE_COLETIVA_ACTIONS } from './constants';
+
 export type MenteColetivaOptions = {
   shortPasture: boolean;
 };
@@ -55,11 +57,21 @@ export interface AnswerEntry {
   answer: string;
   parsedAnswer: string;
   isLocked: boolean;
+  score: number;
+}
+
+export interface AnswerGroupEntry {
+  answer: string;
+  parsedAnswer: string;
+  score: number;
+  entries: AnswerEntry[];
 }
 
 export interface MenteColetivaSubmitAction extends Payload {
-  action: 'SUBMIT_QUESTION' | 'SUBMIT_ANSWERS' | 'NEXT_ANSWERS' | 'ADD_ANSWER';
+  action: keyof typeof MENTE_COLETIVA_ACTIONS;
 }
+
+export type MenteColetivaAchievement = keyof typeof MENTE_COLETIVA_ACHIEVEMENTS;
 
 export type FirebaseStateData = FirebaseFirestore.DocumentData | MenteColetivaState;
 export type FirebaseStoreData = FirebaseFirestore.DocumentData | MenteColetivaStore;

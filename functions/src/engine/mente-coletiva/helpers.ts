@@ -1,13 +1,22 @@
 // Constants
 import {
   MAX_ROUNDS,
+  MENTE_COLETIVA_ACHIEVEMENTS,
   MENTE_COLETIVA_PHASES,
   PASTURE_GAME_OVER_THRESHOLD,
   QUESTIONS_PER_ROUND,
   SHORT_PASTURE_GAME_OVER_THRESHOLD,
 } from './constants';
 // Types
-import type { AllQuestions, AnswerEntry, Deck, PastureChangeEntry, SheepAnimation } from './types';
+import type {
+  AllQuestions,
+  AnswerEntry,
+  AnswerGroupEntry,
+  Deck,
+  MenteColetivaAchievement,
+  PastureChangeEntry,
+  SheepAnimation,
+} from './types';
 // Utils
 import * as utils from '../../utils';
 
@@ -85,11 +94,11 @@ export const buildDeck = (allQuestions: AllQuestions): Deck => {
  * @returns
  */
 export const gatherAllAnswers = (players: Players): AnswerEntry[] => {
-  const answersObj: any[] = [];
-  Object.values(players).forEach((player) => {
-    const answers: PlainObject = player.answers;
+  const answersArr: AnswerEntry[] = [];
+  utils.players.getListOfPlayers(players).forEach((player) => {
+    const answers: StringDictionary = player.answers;
     Object.entries(answers).forEach(([key, answer]) => {
-      answersObj.push({
+      answersArr.push({
         id: key,
         playerId: player.id,
         answer,
@@ -99,7 +108,7 @@ export const gatherAllAnswers = (players: Players): AnswerEntry[] => {
       });
     });
   });
-  return answersObj;
+  return answersArr;
 };
 
 /**
@@ -127,9 +136,9 @@ export const extendPlayerAnswers = (players: Players) => {
  * @param allAnswers
  * @returns
  */
-export const buildListOfAnswers = (allAnswers: PlainObject) => {
+export const buildListOfAnswers = (allAnswers: AnswerEntry[]): AnswerGroupEntry[] => {
   // Group by equality
-  const groupedAnswers = allAnswers.reduce((acc, entry: AnswerEntry) => {
+  const groupedAnswers = allAnswers.reduce((acc: Record<string, AnswerGroupEntry>, entry: AnswerEntry) => {
     if (entry?.isLocked) {
       return acc;
     }
@@ -139,6 +148,7 @@ export const buildListOfAnswers = (allAnswers: PlainObject) => {
         parsedAnswer: entry.parsedAnswer,
         answer: entry.answer,
         entries: [],
+        score: 0,
       };
     }
 
@@ -161,16 +171,17 @@ export const buildListOfAnswers = (allAnswers: PlainObject) => {
  * @returns
  */
 export const buildRanking = (players: Players): RankingEntry[] => {
-  // Build score array
-  return Object.values(players)
-    .map((player) => ({
-      playerId: player.id,
-      name: player.name,
-      previousScore: 0,
-      gainedPoints: [0],
-      newScore: player.score,
-    }))
-    .sort((a, b) => (a.newScore > b.newScore ? 1 : -1));
+  // Gained points: [matches]
+  const newScores = utils.helpers.buildNewScoreObject(players, [0]);
+
+  utils.players.getListOfPlayers(players).forEach((player) => {
+    newScores[player.id].previousScore = 0;
+    newScores[player.id].newScore = player.score;
+
+    player.secretScore += player.score;
+  });
+
+  return utils.helpers.sortNewScore(newScores);
 };
 
 /**
@@ -365,6 +376,15 @@ export const determineGameOver = (players: Players, isShortPasture: boolean) => 
   );
 };
 
+/**
+ * Determine if a lonely sheep should be saved
+ * @param isGameOver
+ * @param pastureSize
+ * @param pastureChange
+ * @param lastRound
+ * @param usedSave
+ * @returns
+ */
 export const shouldSaveSheep = (
   isGameOver: boolean,
   pastureSize: number,
@@ -374,8 +394,113 @@ export const shouldSaveSheep = (
 ) => {
   if (lastRound || usedSave || !isGameOver) return false;
 
-  // Only save is whoever is dying was by themselves in the last pasture
+  // Only save if whoever is dying is by themselves in the last pasture
   const howManyInLastPasture = pastureChange[0].filter((entry) => entry.level === pastureSize - 1).length;
 
   return howManyInLastPasture <= 1;
+};
+
+/**
+ * Get achievements:
+ * Most dead - if only one sheep died
+ * Most matches - highest final score
+ * Least matches - lowest final score
+ * Most lonely - is the only one in a pasture
+ * @param players
+ */
+export const getAchievements = (players: Players) => {
+  let mostMatches: Player[] = [];
+  let leastMatches: Player[] = [];
+  let mostDistance: Player[] = [];
+  const pasturesCount: PlayerId[][] = [];
+
+  utils.players.getListOfPlayers(players).forEach((player) => {
+    if (!mostMatches[0] || mostMatches[0].secretScore === player.secretScore) {
+      mostMatches.push(player);
+    } else if (mostMatches[0].secretScore < player.secretScore) {
+      mostMatches = [player];
+    }
+
+    if (!leastMatches[0] || leastMatches[0].secretScore === player.secretScore) {
+      leastMatches.push(player);
+    } else if (leastMatches[0].secretScore > player.secretScore) {
+      leastMatches = [player];
+    }
+
+    if (!mostDistance[0] || mostDistance[0].distance === player.distance) {
+      mostDistance.push(player);
+    } else if (mostDistance[0].distance < player.distance) {
+      mostDistance = [player];
+    }
+
+    if (pasturesCount[player.level]) {
+      pasturesCount[player.level].push(player.id);
+    } else {
+      pasturesCount[player.level] = [player.id];
+    }
+  });
+
+  const achievements: Achievement<MenteColetivaAchievement>[] = [];
+
+  // Most friendly / most matches - highest final score
+  if (mostMatches.length === 1) {
+    achievements.push({
+      type: MENTE_COLETIVA_ACHIEVEMENTS.MOST_MATCHES,
+      playerId: mostMatches[0].id,
+      value: mostMatches[0].secretScore,
+    });
+  }
+
+  // Least friendly / least matches - highest final score
+  if (leastMatches.length === 1) {
+    achievements.push({
+      type: MENTE_COLETIVA_ACHIEVEMENTS.LEAST_MATCHES,
+      playerId: leastMatches[0].id,
+      value: leastMatches[0].secretScore,
+    });
+  }
+
+  // Best traveler: a player alone move left or right the most
+  if (mostDistance.length === 1) {
+    achievements.push({
+      type: MENTE_COLETIVA_ACHIEVEMENTS.BEST_TRAVELER,
+      playerId: mostDistance[0].id,
+      value: mostDistance[0].distance,
+    });
+  }
+
+  // Most dead: died alone
+  const lastPasture = pasturesCount[pasturesCount.length - 1];
+  if (lastPasture.length === 1) {
+    achievements.push({
+      type: MENTE_COLETIVA_ACHIEVEMENTS.MOST_DEAD,
+      playerId: lastPasture[0],
+      value: null,
+    });
+  }
+
+  // Most lonely: it's the only one alone in a pasture
+  const loners = pasturesCount.filter(
+    (pastureCount, index, arr) => pastureCount.length === 1 && index !== arr.length - 1
+  );
+  if (loners.length === 1) {
+    achievements.push({
+      type: MENTE_COLETIVA_ACHIEVEMENTS.MOST_LONELY,
+      playerId: loners[0][0],
+      value: null,
+    });
+  }
+
+  return achievements;
+};
+
+/**
+ * Adds the distance the sheep moved during the pasture change (for achievement)
+ * @param players
+ * @param pastureChange
+ */
+export const calculateSheepTravelDistance = (players: Players, pastureChange: PastureChangeEntry[][]) => {
+  pastureChange[0].forEach((pastureChangeEntry, index) => {
+    players[pastureChangeEntry.id].distance += pastureChange[2][index].level - pastureChangeEntry.level;
+  });
 };

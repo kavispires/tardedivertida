@@ -3,6 +3,7 @@ import * as utils from '../../utils';
 // Internal
 import { getNextPhase } from '.';
 import { buildListOfAnswers } from './helpers';
+import { AnswerEntry, AnswerGroupEntry } from './types';
 
 /**
  * When active player chooses the round's question
@@ -42,7 +43,7 @@ export const handleSubmitAnswers = async (
   collectionName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  answers: PlainObject
+  answers: StringDictionary
 ) => {
   return await utils.firebase.updatePlayer({
     collectionName,
@@ -142,7 +143,7 @@ export const handleAddAnswer = async (
   collectionName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  answer: PlainObject
+  answer: AnswerEntry
 ) => {
   const actionText = 'add answer';
 
@@ -151,8 +152,12 @@ export const handleAddAnswer = async (
   const stateDoc = await utils.firebase.getSessionDoc(collectionName, gameId, 'state', actionText);
   const state = stateDoc.data() ?? {};
 
-  const answersList = [...state.answersList];
-  answersList[0].entries.push(answer);
+  const answersList = [...(state.answersList as AnswerGroupEntry[])];
+
+  // Only add if player is not in the list already
+  if (answersList[0].entries.findIndex((e) => e.playerId === answer.playerId) === -1) {
+    answersList[0].entries.push(answer);
+  }
 
   try {
     await sessionRef.doc('state').update({ answersList });

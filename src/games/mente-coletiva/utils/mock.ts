@@ -2,7 +2,7 @@ import { shuffle } from 'lodash';
 import { getEntryId, getRandomItem } from 'utils/helpers';
 
 export const mockAnswers = (userId: PlayerId, numAnswers: number) => {
-  const list = ['agua', 'bola', 'coco', 'dedo', 'egua', 'flauta', 'gatilho', 'hélio', 'jaguar'];
+  const list = ['agua', 'bola', 'coco', 'dedo', 'egua', 'flauta', 'gatilho', 'hélio', 'jaguar', 'pêssego'];
   const list2 = ['água', 'bola', 'cocô', 'dedo', 'égua', 'flauta', 'gatilho', 'helio', 'jipe'];
 
   const shuffled = shuffle(Math.random() > 0.5 ? list : list2);

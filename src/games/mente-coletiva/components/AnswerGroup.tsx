@@ -86,7 +86,7 @@ export function AnswerGroup({
                 {!isLocked && isAdmin && (
                   <div className="m-answer-group__allow-add">
                     <Checkbox
-                      data-allowAnswer={entry.id}
+                      data-allowanswer={entry.id}
                       onChange={(e) => allowUserAnswer(e.target.checked, entry.id)}
                     />
                   </div>
