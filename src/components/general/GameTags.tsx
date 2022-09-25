@@ -22,7 +22,8 @@ const sortTags = (tags: string[]) => {
     timed: 12,
     traitor: 13,
     images: 14,
-    'mobile-friendly': 15,
+    achievements: 15,
+    'mobile-friendly': 16,
   };
 
   const sortedTags: string[] = [];
