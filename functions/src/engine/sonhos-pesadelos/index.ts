@@ -1,6 +1,6 @@
 // Constants
 import { GAME_COLLECTIONS } from '../../utils/constants';
-import { PLAYER_COUNTS, SONHOS_PESADELOS_PHASES, TOTAL_ROUNDS } from './constants';
+import { PLAYER_COUNTS, SONHOS_PESADELOS_ACTIONS, SONHOS_PESADELOS_PHASES, TOTAL_ROUNDS } from './constants';
 // Types
 import type { SonhosPesadelosInitialState, SonhosPesadelosSubmitAction } from './types';
 // Utils
@@ -113,10 +113,10 @@ export const submitAction = async (data: SonhosPesadelosSubmitAction) => {
   utils.firebase.validateSubmitActionPayload(gameId, collectionName, playerId, action);
 
   switch (action) {
-    case 'SUBMIT_DREAM':
+    case SONHOS_PESADELOS_ACTIONS.SUBMIT_DREAM:
       utils.firebase.validateSubmitActionProperties(data, ['dream'], 'submit dreams');
       return handleSubmitDream(collectionName, gameId, playerId, data.dream);
-    case 'SUBMIT_VOTING':
+    case SONHOS_PESADELOS_ACTIONS.SUBMIT_VOTING:
       utils.firebase.validateSubmitActionProperties(data, ['votes'], 'submit votes');
       return handleSubmitVoting(collectionName, gameId, playerId, data.votes);
     default:

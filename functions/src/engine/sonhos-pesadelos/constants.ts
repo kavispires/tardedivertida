@@ -8,6 +8,11 @@ export const SONHOS_PESADELOS_PHASES = {
   GAME_OVER: 'GAME_OVER',
 };
 
+export const SONHOS_PESADELOS_ACTIONS = {
+  SUBMIT_DREAM: 'SUBMIT_DREAM',
+  SUBMIT_VOTING: 'SUBMIT_VOTING',
+};
+
 export const PLAYER_COUNTS = {
   MIN: 2,
   MAX: 10,
