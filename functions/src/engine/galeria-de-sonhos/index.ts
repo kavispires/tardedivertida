@@ -1,6 +1,11 @@
 // Constants
 import { GAME_COLLECTIONS } from '../../utils/constants';
-import { GALERIA_DE_SONHOS_PHASES, PLAYER_COUNTS, TOTAL_ROUNDS } from './constants';
+import {
+  GALERIA_DE_SONHOS_ACTIONS,
+  GALERIA_DE_SONHOS_PHASES,
+  PLAYER_COUNTS,
+  TOTAL_ROUNDS,
+} from './constants';
 // Types
 import type {
   GaleriaDeSonhosInitialState,
@@ -129,13 +134,13 @@ export const submitAction = async (data: GaleriaDeSonhosSubmitAction) => {
   utils.firebase.validateSubmitActionPayload(gameId, collectionName, playerId, action);
 
   switch (action) {
-    case 'SUBMIT_WORD':
+    case GALERIA_DE_SONHOS_ACTIONS.SUBMIT_WORD:
       utils.firebase.validateSubmitActionProperties(data, ['wordId'], 'submit word');
       return handleSubmitWord(collectionName, gameId, playerId, data.wordId);
-    case 'SUBMIT_CARDS':
+    case GALERIA_DE_SONHOS_ACTIONS.SUBMIT_CARDS:
       utils.firebase.validateSubmitActionProperties(data, ['cardsIds'], 'submit cards');
       return handleSubmitCards(collectionName, gameId, playerId, data.cardsIds);
-    case 'PLAY_CARD':
+    case GALERIA_DE_SONHOS_ACTIONS.PLAY_CARD:
       utils.firebase.validateSubmitActionProperties(data, ['cardId'], 'play card');
       return handlePlayCard(collectionName, gameId, playerId, data.cardId);
     default:
