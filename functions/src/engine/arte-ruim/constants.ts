@@ -8,6 +8,11 @@ export const ARTE_RUIM_PHASES = {
   GAME_OVER: 'GAME_OVER',
 };
 
+export const ARTE_RUIM_ACTIONS = {
+  SUBMIT_DRAWING: 'SUBMIT_DRAWING',
+  SUBMIT_VOTING: 'SUBMIT_VOTING',
+};
+
 export const PLAYER_COUNTS = {
   MIN: 3,
   MAX: 10,
