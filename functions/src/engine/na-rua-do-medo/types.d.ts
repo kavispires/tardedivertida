@@ -1,3 +1,5 @@
+import { NA_RUA_DO_MEDO_ACTIONS } from './constants';
+
 export type NoRuaDoMedoOptions = {
   shortGame: boolean;
 };
@@ -53,7 +55,7 @@ export interface NoRuaDoMedoInitialState extends InitialState {
 }
 
 export interface NaRuaDoMedoSubmitAction extends Payload {
-  action: 'SUBMIT_DECISION';
+  action: keyof typeof NA_RUA_DO_MEDO_ACTIONS;
 }
 
 export type FirebaseStateData = FirebaseFirestore.DocumentData | NoRuaDoMedoState;
