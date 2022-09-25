@@ -1,6 +1,11 @@
 // Constants
 import { GAME_COLLECTIONS } from '../../utils/constants';
-import { CONTADORES_HISTORIAS_PHASES, MAX_ROUNDS, PLAYER_COUNTS } from './constants';
+import {
+  CONTADORES_HISTORIAS_ACTIONS,
+  CONTADORES_HISTORIAS_PHASES,
+  MAX_ROUNDS,
+  PLAYER_COUNTS,
+} from './constants';
 // Types
 import type {
   ContadoresHistoriasInitialState,
@@ -129,13 +134,13 @@ export const submitAction = async (data: ContadoresHistoriasSubmitAction) => {
   utils.firebase.validateSubmitActionPayload(gameId, collectionName, playerId, action);
 
   switch (action) {
-    case 'SUBMIT_STORY':
+    case CONTADORES_HISTORIAS_ACTIONS.SUBMIT_STORY:
       utils.firebase.validateSubmitActionProperties(data, ['story', 'cardId'], 'submit story');
       return handleSubmitStory(collectionName, gameId, playerId, data.story, data.cardId);
-    case 'PLAY_CARD':
+    case CONTADORES_HISTORIAS_ACTIONS.PLAY_CARD:
       utils.firebase.validateSubmitActionProperties(data, ['cardId'], 'play card');
       return handlePlayCard(collectionName, gameId, playerId, data.cardId);
-    case 'SUBMIT_VOTE':
+    case CONTADORES_HISTORIAS_ACTIONS.SUBMIT_VOTE:
       utils.firebase.validateSubmitActionProperties(data, ['vote'], 'submit vote');
       return handleSubmitVote(collectionName, gameId, playerId, data.vote);
     default:

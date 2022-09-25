@@ -1,3 +1,5 @@
+import { POLEMICA_DA_VEZ_ACTIONS } from './constants';
+
 export type PolemicaDaVezOptions = {
   fixedRounds: boolean;
 };
@@ -44,7 +46,7 @@ export interface PolemicaDaVezInitialState extends InitialState {
 }
 
 export interface PolemicaDaVezSubmitAction extends Payload {
-  action: 'SUBMIT_TOPIC' | 'SUBMIT_REACTION';
+  action: keyof typeof POLEMICA_DA_VEZ_ACTIONS;
 }
 
 export type FirebaseStateData = FirebaseFirestore.DocumentData | PolemicaDaVezState;

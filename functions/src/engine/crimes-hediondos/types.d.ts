@@ -1,3 +1,5 @@
+import { CRIMES_HEDIONDOS_ACTIONS } from './constants';
+
 export type CrimesHediondosOptions = {
   withBots?: boolean;
 };
@@ -62,7 +64,7 @@ export interface CrimesHediondosInitialState extends InitialState {
 }
 
 export interface CrimesHediondosSubmitAction extends Payload {
-  action: 'SUBMIT_CRIME' | 'SUBMIT_MARK' | 'SUBMIT_GUESSES';
+  action: keyof typeof CRIMES_HEDIONDOS_ACTIONS;
 }
 
 export type FirebaseStateData = FirebaseFirestore.DocumentData | CrimesHediondosState;

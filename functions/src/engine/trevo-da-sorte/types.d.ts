@@ -1,3 +1,5 @@
+import { TREVO_DA_SORTE_ACTIONS } from './constants';
+
 export type TrevoDaSorteOptions = {
   hardGame: boolean;
 };
@@ -76,7 +78,7 @@ export interface TrevoDaSorteInitialState extends InitialState {
 }
 
 export interface TrevoDaSorteSubmitAction extends Payload {
-  action: 'SUBMIT_BAD_WORDS' | 'SUBMIT_CLUES' | 'SUBMIT_GUESS' | 'UPDATE_CLOVER_STATE';
+  action: keyof typeof TREVO_DA_SORTE_ACTIONS;
 }
 
 export type FirebaseStateData = FirebaseFirestore.DocumentData & TrevoDaSorteState;

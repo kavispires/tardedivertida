@@ -8,6 +8,11 @@ export const CRUZA_PALAVRAS_PHASES = {
   GAME_OVER: 'GAME_OVER',
 };
 
+export const CRUZA_PALAVRAS_ACTIONS = {
+  SUBMIT_CLUE: 'SUBMIT_CLUE',
+  SUBMIT_GUESSES: 'SUBMIT_GUESSES',
+};
+
 export const PLAYER_COUNTS = {
   MIN: 3,
   MAX: 10,

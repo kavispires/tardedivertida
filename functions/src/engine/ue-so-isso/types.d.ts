@@ -1,3 +1,5 @@
+import { UE_SO_ISSO_ACTIONS } from './constants';
+
 export interface AllWords {
   [key: string]: TextCard;
 }
@@ -65,13 +67,7 @@ export interface ConfirmGuessPayload extends Payload {
 }
 
 export interface UeSoIssoSubmitAction extends Payload {
-  action:
-    | 'SUBMIT_VOTES'
-    | 'SUBMIT_SUGGESTIONS'
-    | 'SUBMIT_VALIDATION'
-    | 'SUBMIT_OUTCOME'
-    | 'VALIDATE_SUGGESTION'
-    | 'SEND_GUESS';
+  action: keyof typeof UE_SO_ISSO_ACTIONS;
 }
 
 export type FirebaseStateData = FirebaseFirestore.DocumentData | UeSoIssoState;

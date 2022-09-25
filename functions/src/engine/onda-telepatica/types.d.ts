@@ -1,3 +1,5 @@
+import { ONDA_TELEPATICA_ACTIONS } from './constants';
+
 export type OndaTelepaticaOptions = {
   fixedRounds: boolean;
 };
@@ -37,7 +39,7 @@ export interface OndaTelepaticaInitialState extends InitialState {
 }
 
 export interface OndaTelepaticaSubmitAction extends Payload {
-  action: 'SUBMIT_CATEGORY' | 'SUBMIT_CLUE' | 'SUBMIT_GUESS';
+  action: keyof typeof ONDA_TELEPATICA_ACTIONS;
 }
 
 export type FirebaseStateData = FirebaseFirestore.DocumentData | OndaTelepaticaState;
