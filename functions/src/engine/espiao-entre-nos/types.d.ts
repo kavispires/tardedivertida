@@ -1,3 +1,5 @@
+import { ESPIAO_ENTRE_NOS_ACTIONS } from './constants';
+
 export type TimerAction = 'START' | 'STOP' | 'RESUME' | 'PAUSE';
 
 export type Outcome = {
@@ -30,7 +32,7 @@ export interface EspiaoEntreNosInitialState extends InitialState {
 }
 
 export interface EspiaoEntreNosSubmitAction extends Payload {
-  action: 'LAST_QUESTIONER' | 'MAKE_ACCUSATION' | 'SUBMIT_VOTE' | 'GUESS_LOCATION';
+  action: keyof typeof ESPIAO_ENTRE_NOS_ACTIONS;
 }
 
 export type ResourceData = {
