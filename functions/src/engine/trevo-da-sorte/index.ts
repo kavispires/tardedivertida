@@ -1,6 +1,6 @@
 // Constants
 import { GAME_COLLECTIONS } from '../../utils/constants';
-import { PLAYER_COUNTS, TREVO_DA_SORTE_PHASES } from './constants';
+import { PLAYER_COUNTS, TREVO_DA_SORTE_ACTIONS, TREVO_DA_SORTE_PHASES } from './constants';
 // Types
 import {
   FirebaseStateData,
@@ -22,12 +22,7 @@ import {
   prepareResultsPhase,
   prepareGameOverPhase,
 } from './setup';
-import {
-  handleSubmitClues,
-  handleSubmitBadWords,
-  handleSubmitGuess,
-  handleUpdateCloverState,
-} from './actions';
+import { handleSubmitClues, handleSubmitBadWords, handleSubmitGuess } from './actions';
 
 /**
  * Get Initial Game State
@@ -129,18 +124,15 @@ export const submitAction = async (data: TrevoDaSorteSubmitAction) => {
   utils.firebase.validateSubmitActionPayload(gameId, collectionName, playerId, action);
 
   switch (action) {
-    case 'SUBMIT_BAD_WORDS':
+    case TREVO_DA_SORTE_ACTIONS.SUBMIT_BAD_WORDS:
       utils.firebase.validateSubmitActionProperties(data, ['cardsIds'], 'submit bad cards');
       return handleSubmitBadWords(collectionName, gameId, playerId, data.cardsIds);
-    case 'SUBMIT_CLUES':
+    case TREVO_DA_SORTE_ACTIONS.SUBMIT_CLUES:
       utils.firebase.validateSubmitActionProperties(data, ['clues'], 'submit clues');
       return handleSubmitClues(collectionName, gameId, playerId, data.clues);
-    case 'SUBMIT_GUESS':
+    case TREVO_DA_SORTE_ACTIONS.SUBMIT_GUESS:
       utils.firebase.validateSubmitActionProperties(data, ['guesses', 'activeCloverId'], 'submit guesses');
       return handleSubmitGuess(collectionName, gameId, playerId, data.guesses, data.activeCloverId);
-    case 'UPDATE_CLOVER_STATE':
-      utils.firebase.validateSubmitActionProperties(data, ['change'], 'update clover state');
-      return handleUpdateCloverState(collectionName, gameId, playerId, data.change);
     default:
       utils.firebase.throwException(`Given action ${action} is not allowed`);
   }
