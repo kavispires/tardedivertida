@@ -1,3 +1,5 @@
+import { GALERIA_DE_SONHOS_ACTIONS } from './constants';
+
 export type GaleriaDeSonhosOptions = {
   withBots?: boolean;
 };
@@ -42,7 +44,7 @@ export interface GaleriaDeSonhosInitialState extends InitialState {
 }
 
 export interface GaleriaDeSonhosSubmitAction extends Payload {
-  action: 'SUBMIT_WORD' | 'SUBMIT_CARDS' | 'PLAY_CARD';
+  action: keyof typeof GALERIA_DE_SONHOS_ACTIONS;
 }
 
 export type FirebaseStateData = FirebaseFirestore.DocumentData | GaleriaDeSonhosState;
