@@ -36,7 +36,7 @@ export const ImageCardBack = ({
             ? !isBlurred
               ? {
                   maskClassName: 'image-card__preview-mask',
-                  src: `${process.env.REACT_APP_TD_IMAGES_URL}${imageURL}.jpg`,
+                  src: `${process.env.REACT_APP_TDI_IMAGES_URL}${imageURL}.jpg`,
                 }
               : false
             : false

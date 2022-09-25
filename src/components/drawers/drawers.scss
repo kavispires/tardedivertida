@@ -62,7 +62,6 @@
   }
 
   &__settings-entry {
-    width: 45%;
     margin-right: get-unit(1);
   }
 
@@ -79,5 +78,13 @@
 
   &__ranked-player {
     margin: get-unit(3 0);
+  }
+}
+
+.blur-options {
+  font-size: 0.8em;
+
+  &__checkbox {
+    font-size: 1.05em;
   }
 }

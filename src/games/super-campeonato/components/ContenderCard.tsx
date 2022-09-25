@@ -33,7 +33,7 @@ export function ContenderCard({ size, overlayColor, contender, className, hideNa
         style={{ width: `${size}px` }}
       />
       <Image
-        src={`${process.env.REACT_APP_TD_IMAGES_URL}${imageURL}.jpg`}
+        src={`${process.env.REACT_APP_TDI_IMAGES_URL}${imageURL}.jpg`}
         width={size}
         className={clsx('w-contender-image', isBlurred && 'w-contender-image--blur')}
         fallback={`${PUBLIC_URL.IN_GAME}/w-no-image.jpg`}
