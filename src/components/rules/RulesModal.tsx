@@ -29,7 +29,7 @@ export function RulesModal({ gameInfo, buttonProps }: RulesModalProps): JSX.Elem
       {isVisible && (
         <Modal
           title={`${translate('Regras', 'Rules')}: ${gameInfo.title[language]}`}
-          visible={isVisible}
+          open={isVisible}
           onCancel={onCloseModal}
           className="rules-modal"
           footer={[

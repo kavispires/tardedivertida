@@ -34,7 +34,7 @@ export function FiltersDrawer({
 
   return (
     <Drawer
-      visible={showFilters}
+      open={showFilters}
       title={<Translate pt={<>Filtros ({list.length} jogos)</>} en={<>Filters ({list.length} games)</>} />}
       placement="left"
       onClose={() => setShowFilters(false)}

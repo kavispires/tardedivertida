@@ -49,7 +49,7 @@ export function GameInfoDrawer({ players, state, info, userId }: GameInfoDrawerP
           placement="right"
           closable={true}
           onClose={toggleDrawer}
-          visible={isDrawerOpen}
+          open={isDrawerOpen}
         >
           <Image
             alt={info?.title?.[language]}
@@ -70,7 +70,7 @@ export function GameInfoDrawer({ players, state, info, userId }: GameInfoDrawerP
               width={200}
               closable={false}
               onClose={toggleSettingsDrawer}
-              visible={isSettingsOpen}
+              open={isSettingsOpen}
             >
               <SectionSettings />
             </Drawer>

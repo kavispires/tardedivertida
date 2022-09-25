@@ -122,7 +122,7 @@ function Showcase() {
 
       {Boolean(GAMES?.[showModal]) && (
         <Modal
-          visible={Boolean(showModal)}
+          open={Boolean(showModal)}
           onOk={() => setShowModal('')}
           onCancel={() => setShowModal('')}
           title={GAMES[showModal].title[language]}
