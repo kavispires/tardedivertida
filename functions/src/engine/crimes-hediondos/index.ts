@@ -1,6 +1,6 @@
 // Constants
 import { GAME_COLLECTIONS } from '../../utils/constants';
-import { CRIMES_HEDIONDOS_PHASES, PLAYER_COUNTS, TOTAL_ROUNDS } from './constants';
+import { CRIMES_HEDIONDOS_ACTIONS, CRIMES_HEDIONDOS_PHASES, PLAYER_COUNTS, TOTAL_ROUNDS } from './constants';
 // Types
 import type {
   CrimesHediondosInitialState,
@@ -125,17 +125,17 @@ export const submitAction = async (data: CrimesHediondosSubmitAction) => {
   utils.firebase.validateSubmitActionPayload(gameId, collectionName, playerId, action);
 
   switch (action) {
-    case 'SUBMIT_CRIME':
+    case CRIMES_HEDIONDOS_ACTIONS.SUBMIT_CRIME:
       utils.firebase.validateSubmitActionProperties(
         data,
         ['weaponId', 'evidenceId', 'causeOfDeath', 'reasonForEvidence', 'locationTile', 'locationIndex'],
         'submit crime'
       );
       return handleSubmitCrime(collectionName, gameId, playerId, data);
-    case 'SUBMIT_MARK':
+    case CRIMES_HEDIONDOS_ACTIONS.SUBMIT_MARK:
       utils.firebase.validateSubmitActionProperties(data, ['sceneIndex'], 'submit scene mark');
       return handleSubmitMark(collectionName, gameId, playerId, data.sceneIndex);
-    case 'SUBMIT_GUESSES':
+    case CRIMES_HEDIONDOS_ACTIONS.SUBMIT_GUESSES:
       utils.firebase.validateSubmitActionProperties(data, ['guesses'], 'submit guess');
       return handleSubmitGuesses(collectionName, gameId, playerId, data.guesses);
     default:
