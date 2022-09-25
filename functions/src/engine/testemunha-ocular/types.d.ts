@@ -1,3 +1,5 @@
+import { TESTEMUNHA_OCULAR_ACTIONS } from './constants';
+
 export type SuspectId = CardId;
 
 export interface TestemunhaOcularEntry {
@@ -44,7 +46,7 @@ export interface TestemunhaOcularInitialState extends InitialState {
 }
 
 export interface TestemunhaOcularSubmitAction extends Payload {
-  action: 'SELECT_WITNESS' | 'SELECT_QUESTION' | 'GIVE_TESTIMONY' | 'ELIMINATE_SUSPECT';
+  action: keyof typeof TESTEMUNHA_OCULAR_ACTIONS;
 }
 
 export type FirebaseStateData = FirebaseFirestore.DocumentData | TestemunhaOcularState;

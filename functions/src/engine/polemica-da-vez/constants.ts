@@ -8,6 +8,11 @@ export const POLEMICA_DA_VEZ_PHASES = {
   GAME_OVER: 'GAME_OVER',
 };
 
+export const POLEMICA_DA_VEZ_ACTIONS = {
+  SUBMIT_TOPIC: 'SUBMIT_TOPIC',
+  SUBMIT_REACTION: 'SUBMIT_REACTION',
+};
+
 export const PLAYER_COUNTS = {
   MIN: 3,
   MAX: 10,

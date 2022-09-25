@@ -1,6 +1,6 @@
 // Constants
 import { GAME_COLLECTIONS } from '../../utils/constants';
-import { LINHAS_CRUZADAS_PHASES, PLAYER_COUNTS, TOTAL_ROUNDS } from './constants';
+import { LINHAS_CRUZADAS_ACTIONS, LINHAS_CRUZADAS_PHASES, PLAYER_COUNTS, TOTAL_ROUNDS } from './constants';
 // Types
 import type { LinhasCruzadasInitialState, LinhasCruzadasOptions, LinhasCruzadasSubmitAction } from './types';
 // Utils
@@ -119,13 +119,13 @@ export const submitAction = async (data: LinhasCruzadasSubmitAction) => {
   utils.firebase.validateSubmitActionPayload(gameId, collectionName, playerId, action);
 
   switch (action) {
-    case 'SUBMIT_PROMPT':
+    case LINHAS_CRUZADAS_ACTIONS.SUBMIT_PROMPT:
       utils.firebase.validateSubmitActionProperties(data, ['promptId'], 'submit prompt');
       return handleSubmitPrompt(collectionName, gameId, playerId, data.promptId);
-    case 'SUBMIT_DRAWING':
+    case LINHAS_CRUZADAS_ACTIONS.SUBMIT_DRAWING:
       utils.firebase.validateSubmitActionProperties(data, ['drawing'], 'submit drawing');
       return handleSubmitDrawing(collectionName, gameId, playerId, data.drawing);
-    case 'SUBMIT_GUESS':
+    case LINHAS_CRUZADAS_ACTIONS.SUBMIT_GUESS:
       utils.firebase.validateSubmitActionProperties(data, ['guess'], 'submit guess');
       return handleSubmitGuess(collectionName, gameId, playerId, data.guess);
     default:

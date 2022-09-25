@@ -71,24 +71,3 @@ export function useOnSubmitGuessAPIRequest(setStep: GenericFunction) {
     });
   };
 }
-
-export function useOnUpdateCloverStateAPIRequest() {
-  const { translate } = useLanguage();
-
-  const request = useAPICall({
-    apiFunction: TREVO_DA_SORTE_API.submitAction,
-    actionName: 'update-clover-state',
-    // successMessage: translate('Dicas enviadas com sucesso!', 'Clues submitted successfully!'),
-    errorMessage: translate(
-      'Vixi, o aplicativo encontrou um erro ao tentar atualizar o trevo',
-      'Oops, the application failed to update the clover'
-    ),
-  });
-
-  return (payload: UpdateCoverStatePayload) => {
-    request({
-      action: ACTIONS.UPDATE_CLOVER_STATE,
-      ...payload,
-    });
-  };
-}

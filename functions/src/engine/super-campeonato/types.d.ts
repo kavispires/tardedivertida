@@ -1,3 +1,5 @@
+import { SUPER_CAMPEONATO_ACTIONS } from './constants';
+
 export type SuperCampeonatoOptions = {
   fixedRounds: boolean;
 };
@@ -46,7 +48,7 @@ export interface SuperCampeonatoInitialState extends InitialState {
 }
 
 export interface SuperCampeonatoSubmitAction extends Payload {
-  action: 'SUBMIT_CHALLENGE' | 'SUBMIT_CONTENDERS' | 'SUBMIT_BETS' | 'SUBMIT_VOTES';
+  action: keyof typeof SUPER_CAMPEONATO_ACTIONS;
 }
 
 export type FirebaseStateData = FirebaseFirestore.DocumentData | SuperCampeonatoState;

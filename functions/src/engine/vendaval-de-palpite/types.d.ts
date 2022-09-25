@@ -1,3 +1,5 @@
+import { VENDAVAL_DE_PALPITE_ACTIONS } from './constants';
+
 export type ResourceData = {
   words: TextCard[];
   categories: TextCard[];
@@ -50,13 +52,7 @@ export interface VendavalDePalpiteInitialState extends InitialState {
 }
 
 export interface VendavalDePalpiteSubmitAction extends Payload {
-  action:
-    | 'SUBMIT_BOSS'
-    | 'SUBMIT_SECRET_WORD'
-    | 'SUBMIT_CLUES'
-    | 'SUBMIT_EVALUATION'
-    | 'SUBMIT_OUTCOME'
-    | 'SUBMIT_HELP';
+  action: keyof typeof VENDAVAL_DE_PALPITE_ACTIONS;
 }
 
 export type FirebaseStateData = FirebaseFirestore.DocumentData | VendavalDePalpiteState;

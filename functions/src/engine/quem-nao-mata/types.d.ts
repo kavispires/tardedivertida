@@ -1,3 +1,5 @@
+import { QUEM_NAO_MATA_ACTIONS } from './constants';
+
 export interface QuemNaoMataStore extends DefaultStore {
   [key: string]: any;
 }
@@ -12,7 +14,7 @@ export interface QuemNaoMataInitialState extends InitialState {
 }
 
 export interface NaRuaDoMedoSubmitAction extends Payload {
-  action: 'SUBMIT_TARGET' | 'SUBMIT_MESSAGE' | 'SUBMIT_DECISION';
+  action: keyof typeof QUEM_NAO_MATA_ACTIONS;
 }
 
 export type FirebaseStateData = FirebaseFirestore.DocumentData | QuemNaoMataState;

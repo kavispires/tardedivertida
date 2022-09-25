@@ -9,6 +9,12 @@ export const GALERIA_DE_SONHOS_PHASES = {
   GAME_OVER: 'GAME_OVER',
 };
 
+export const GALERIA_DE_SONHOS_ACTIONS = {
+  SUBMIT_WORD: 'SUBMIT_WORD',
+  SUBMIT_CARDS: 'SUBMIT_CARDS',
+  PLAY_CARD: 'PLAY_CARD',
+};
+
 export const PLAYER_COUNTS = {
   MIN: 2,
   MAX: 10,

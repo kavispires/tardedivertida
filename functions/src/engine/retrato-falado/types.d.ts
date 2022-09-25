@@ -1,3 +1,5 @@
+import { RETRATO_FALADO_ACTIONS } from './constants';
+
 export interface MonsterSketch extends MonsterCard {
   playerId: PlayerId | null;
   sketch: string | null;
@@ -25,7 +27,7 @@ export interface RetratoFaladoInitialState extends InitialState {
 }
 
 export interface RetratoFaladoSubmitAction extends Payload {
-  action: 'SUBMIT_ORIENTATION' | 'SUBMIT_SKETCH' | 'SUBMIT_VOTE';
+  action: keyof typeof RETRATO_FALADO_ACTIONS;
 }
 
 export type FirebaseStoreData = FirebaseFirestore.DocumentData | RetratoFaladoStore;

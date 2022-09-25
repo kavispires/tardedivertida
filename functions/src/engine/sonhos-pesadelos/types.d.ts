@@ -1,3 +1,5 @@
+import { SONHOS_PESADELOS_ACTIONS } from './constants';
+
 export type SonhosPesadelosCards = {
   2: NamingPromptCard[];
   3: NamingPromptCard[];
@@ -58,7 +60,7 @@ export type Result = {
 };
 
 export interface SonhosPesadelosSubmitAction extends Payload {
-  action: 'SUBMIT_DREAM' | 'SUBMIT_VOTING';
+  action: keyof typeof SONHOS_PESADELOS_ACTIONS;
 }
 
 export type FirebaseStateData = FirebaseFirestore.DocumentData | SonhosPesadelosState;

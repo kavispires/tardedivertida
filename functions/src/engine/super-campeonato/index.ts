@@ -1,6 +1,6 @@
 // Constants
 import { GAME_COLLECTIONS } from '../../utils/constants';
-import { TOTAL_ROUNDS, PLAYER_COUNTS, SUPER_CAMPEONATO_PHASES } from './constants';
+import { TOTAL_ROUNDS, PLAYER_COUNTS, SUPER_CAMPEONATO_PHASES, SUPER_CAMPEONATO_ACTIONS } from './constants';
 // Types
 import type {
   SuperCampeonatoInitialState,
@@ -138,16 +138,16 @@ export const submitAction = async (data: SuperCampeonatoSubmitAction) => {
   utils.firebase.validateSubmitActionPayload(gameId, collectionName, playerId, action);
 
   switch (action) {
-    case 'SUBMIT_CHALLENGE':
+    case SUPER_CAMPEONATO_ACTIONS.SUBMIT_CHALLENGE:
       utils.firebase.validateSubmitActionProperties(data, ['challengeId'], 'submit challenge');
       return handleSubmitChallenge(collectionName, gameId, playerId, data.challengeId);
-    case 'SUBMIT_CONTENDERS':
+    case SUPER_CAMPEONATO_ACTIONS.SUBMIT_CONTENDERS:
       utils.firebase.validateSubmitActionProperties(data, ['contendersId'], 'submit contenders');
       return handleSubmitContenders(collectionName, gameId, playerId, data.contendersId);
-    case 'SUBMIT_BETS':
+    case SUPER_CAMPEONATO_ACTIONS.SUBMIT_BETS:
       utils.firebase.validateSubmitActionProperties(data, ['quarter', 'semi', 'final'], 'submit bets');
       return handleSubmitBets(collectionName, gameId, playerId, data.quarter, data.semi, data.final);
-    case 'SUBMIT_VOTES':
+    case SUPER_CAMPEONATO_ACTIONS.SUBMIT_VOTES:
       utils.firebase.validateSubmitActionProperties(data, ['votes'], 'submit bets');
       return handleSubmitVotes(collectionName, gameId, playerId, data.votes);
     default:

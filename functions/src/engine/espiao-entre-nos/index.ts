@@ -1,6 +1,6 @@
 // Constants
 import { GAME_COLLECTIONS } from '../../utils/constants';
-import { ESPIAO_ENTRE_NOS_PHASES, PLAYER_COUNTS } from './constants';
+import { ESPIAO_ENTRE_NOS_ACTIONS, ESPIAO_ENTRE_NOS_PHASES, PLAYER_COUNTS } from './constants';
 // Types
 import type { EspiaoEntreNosInitialState, EspiaoEntreNosSubmitAction } from './types';
 // Utils
@@ -133,16 +133,16 @@ export const submitAction = async (data: EspiaoEntreNosSubmitAction) => {
   utils.firebase.validateSubmitActionPayload(gameId, collectionName, playerId, action);
 
   switch (action) {
-    case 'LAST_QUESTIONER':
+    case ESPIAO_ENTRE_NOS_ACTIONS.LAST_QUESTIONER:
       utils.firebase.validateSubmitActionProperties(data, ['lastPlayerId'], 'change timer');
       return handleLastQuestioner(collectionName, gameId, playerId, data.lastPlayerId);
-    case 'MAKE_ACCUSATION':
+    case ESPIAO_ENTRE_NOS_ACTIONS.MAKE_ACCUSATION:
       utils.firebase.validateSubmitActionProperties(data, ['targetId'], 'make an accusation');
       return handleMakeAccusation(collectionName, gameId, playerId, data.targetId);
-    case 'GUESS_LOCATION':
+    case ESPIAO_ENTRE_NOS_ACTIONS.GUESS_LOCATION:
       utils.firebase.validateSubmitActionProperties(data, ['locationId'], 'guess location');
       return handleGuessLocation(collectionName, gameId, playerId, data.locationId);
-    case 'SUBMIT_VOTE':
+    case ESPIAO_ENTRE_NOS_ACTIONS.SUBMIT_VOTE:
       utils.firebase.validateSubmitActionProperties(data, ['vote'], 'submit vote');
       return handleSubmitVote(collectionName, gameId, playerId, data.vote);
     default:

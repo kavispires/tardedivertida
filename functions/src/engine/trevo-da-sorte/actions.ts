@@ -93,26 +93,3 @@ export const handleSubmitGuess = async (
     nextPhaseFunction: getNextPhase,
   });
 };
-
-/**
- *
- * @param collectionName
- * @param gameId
- * @param playerId
- * @param changes
- * @returns
- */
-export const handleUpdateCloverState = async (
-  collectionName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
-  changes: any
-) => {
-  return await utils.firebase.updateState({
-    collectionName,
-    gameId,
-    playerId,
-    actionText: 'update clover state',
-    change: { ...changes },
-  });
-};

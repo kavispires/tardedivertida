@@ -1,6 +1,6 @@
 // Constants
 import { GAME_COLLECTIONS } from '../../utils/constants';
-import { DETETIVES_IMAGINATIVOS_PHASES, PLAYER_COUNTS } from './constants';
+import { DETETIVES_IMAGINATIVOS_ACTIONS, DETETIVES_IMAGINATIVOS_PHASES, PLAYER_COUNTS } from './constants';
 // Types
 import type { DetetivesImaginativosInitialState, DetetivesImaginativosSubmitAction } from './types';
 // Utils
@@ -128,15 +128,15 @@ export const submitAction = async (data: DetetivesImaginativosSubmitAction) => {
   utils.firebase.validateSubmitActionPayload(gameId, collectionName, playerId, action);
 
   switch (action) {
-    case 'SUBMIT_CLUE':
+    case DETETIVES_IMAGINATIVOS_ACTIONS.SUBMIT_CLUE:
       utils.firebase.validateSubmitActionProperties(data, ['clue'], 'submit clue');
       return handleSubmitClue(collectionName, gameId, playerId, data.clue);
-    case 'PLAY_CARD':
+    case DETETIVES_IMAGINATIVOS_ACTIONS.PLAY_CARD:
       utils.firebase.validateSubmitActionProperties(data, ['cardId'], 'play card');
       return handlePlayCard(collectionName, gameId, playerId, data.cardId);
-    case 'DEFEND':
+    case DETETIVES_IMAGINATIVOS_ACTIONS.DEFEND:
       return handleDefend(collectionName, gameId, playerId);
-    case 'SUBMIT_VOTE':
+    case DETETIVES_IMAGINATIVOS_ACTIONS.SUBMIT_VOTE:
       utils.firebase.validateSubmitActionProperties(data, ['vote'], 'submit vote');
       return handleSubmitVote(collectionName, gameId, playerId, data.vote);
     default:

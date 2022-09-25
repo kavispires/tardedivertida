@@ -1,3 +1,5 @@
+import { CONTADORES_HISTORIAS_ACTIONS } from './constants';
+
 export type ContadoresHistoriasOptions = {
   fixedRounds: boolean;
 };
@@ -37,7 +39,7 @@ export interface TableEntry {
 export type Table = TableEntry[];
 
 export interface ContadoresHistoriasSubmitAction extends Payload {
-  action: 'SUBMIT_STORY' | 'PLAY_CARD' | 'SUBMIT_VOTE';
+  action: keyof typeof CONTADORES_HISTORIAS_ACTIONS;
 }
 
 export type FirebaseStateData = FirebaseFirestore.DocumentData | ContadoresHistoriasState;

@@ -1,6 +1,6 @@
 // Constants
 import { GAME_COLLECTIONS } from '../../utils/constants';
-import { MAX_ROUNDS, PLAYER_COUNTS, RETRATO_FALADO_PHASES } from './constants';
+import { MAX_ROUNDS, PLAYER_COUNTS, RETRATO_FALADO_ACTIONS, RETRATO_FALADO_PHASES } from './constants';
 // Types
 import type { RetratoFaladoInitialState, RetratoFaladoSubmitAction } from './types';
 // Utilities
@@ -121,13 +121,13 @@ export const submitAction = async (data: RetratoFaladoSubmitAction) => {
   utils.firebase.validateSubmitActionPayload(gameId, collectionName, playerId, action);
 
   switch (action) {
-    case 'SUBMIT_ORIENTATION':
+    case RETRATO_FALADO_ACTIONS.SUBMIT_ORIENTATION:
       utils.firebase.validateSubmitActionProperties(data, ['orientation'], 'submit orientation');
       return handleSubmitOrientation(collectionName, gameId, playerId, data.orientation);
-    case 'SUBMIT_SKETCH':
+    case RETRATO_FALADO_ACTIONS.SUBMIT_SKETCH:
       utils.firebase.validateSubmitActionProperties(data, ['sketch'], 'submit sketch');
       return handleSubmitSketch(collectionName, gameId, playerId, data.sketch);
-    case 'SUBMIT_VOTE':
+    case RETRATO_FALADO_ACTIONS.SUBMIT_VOTE:
       utils.firebase.validateSubmitActionProperties(data, ['vote'], 'submit vote');
       return handleSubmitVote(collectionName, gameId, playerId, data.vote);
     default:
