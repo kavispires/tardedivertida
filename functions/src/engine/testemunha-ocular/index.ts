@@ -1,6 +1,6 @@
 // Constants
 import { GAME_COLLECTIONS } from '../../utils/constants';
-import { MAX_ROUNDS, PLAYER_COUNTS, TESTEMUNHA_OCULAR_PHASES } from './constants';
+import { MAX_ROUNDS, PLAYER_COUNTS, TESTEMUNHA_OCULAR_ACTIONS, TESTEMUNHA_OCULAR_PHASES } from './constants';
 // Types
 import type { TestemunhaOcularInitialState, TestemunhaOcularSubmitAction } from './types';
 // Utils
@@ -136,22 +136,22 @@ export const submitAction = async (data: TestemunhaOcularSubmitAction) => {
   let actionText = 'submit action';
 
   switch (action) {
-    case 'SELECT_WITNESS':
+    case TESTEMUNHA_OCULAR_ACTIONS.SELECT_WITNESS:
       actionText = 'select witness';
       utils.firebase.validateSubmitActionProperties(data, ['witnessId'], actionText);
       return handleExtraAction(collectionName, gameId, actionText, { playerId, witnessId: data.witnessId });
 
-    case 'SELECT_QUESTION':
+    case TESTEMUNHA_OCULAR_ACTIONS.SELECT_QUESTION:
       actionText = 'select question';
       utils.firebase.validateSubmitActionProperties(data, ['questionId'], actionText);
       return handleExtraAction(collectionName, gameId, actionText, { playerId, questionId: data.questionId });
 
-    case 'GIVE_TESTIMONY':
+    case TESTEMUNHA_OCULAR_ACTIONS.GIVE_TESTIMONY:
       actionText = 'give testimony';
       utils.firebase.validateSubmitActionProperties(data, ['testimony'], actionText);
       return handleExtraAction(collectionName, gameId, actionText, { playerId, testimony: data.testimony });
 
-    case 'ELIMINATE_SUSPECT':
+    case TESTEMUNHA_OCULAR_ACTIONS.ELIMINATE_SUSPECT:
       actionText = 'eliminate suspect';
       utils.firebase.validateSubmitActionProperties(data, ['suspectId', 'pass'], actionText);
       return handleElimination(collectionName, gameId, actionText, {
