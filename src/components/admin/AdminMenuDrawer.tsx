@@ -62,7 +62,7 @@ export const AdminMenuDrawer = ({ state, players }: AdminMenuDrawerProps) => {
           }}
         />
 
-        <Drawer title="Admin Menu" placement="left" closable={false} visible={visible} onClose={onClose}>
+        <Drawer title="Admin Menu" placement="left" closable={false} open={visible} onClose={onClose}>
           <ul>
             <PlayersReadyState players={players} />
             <li>

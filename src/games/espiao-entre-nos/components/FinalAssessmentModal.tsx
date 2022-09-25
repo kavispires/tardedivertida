@@ -23,7 +23,7 @@ export function FinalAssessmentModal({
 
   return (
     <Modal
-      visible={isModalVisible}
+      open={isModalVisible}
       title={translate('Quem você vai acusar?', 'Who are you gonna accuse?')}
       footer={null}
       closable={false}

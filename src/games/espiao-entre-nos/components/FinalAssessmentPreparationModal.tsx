@@ -23,7 +23,7 @@ export function FinalAssessmentPreparationModal({
 
   return (
     <Modal
-      visible={isAdmin}
+      open={isAdmin}
       title={translate('O Tempo Acabou!', "Time's up")}
       footer={null}
       closable={false}

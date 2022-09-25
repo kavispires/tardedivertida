@@ -126,7 +126,7 @@ export function CreateGameModal({ gameInfo }: CreateGameModalProps): JSX.Element
       {isVisible && (
         <Modal
           title={`${translate('Criando novo jogo', 'Creating new game')}: ${gameInfo.title[language]}`}
-          visible={isVisible}
+          open={isVisible}
           onCancel={onCloseModal}
           onOk={onConfirmGame}
           okButtonProps={{ disabled: Boolean(!gameId) }}

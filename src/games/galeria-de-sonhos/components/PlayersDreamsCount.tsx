@@ -52,7 +52,7 @@ export function PlayersDreamsCount({ players, playerInNightmareId }: PlayersDrea
                 }
                 color="black"
                 placement="bottom"
-                visible={showTooltip}
+                open={showTooltip}
               >
                 <Avatar shape="square" id={player.avatarId} alt={player.name} />
 
