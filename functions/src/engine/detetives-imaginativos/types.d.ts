@@ -1,3 +1,5 @@
+import { DETETIVES_IMAGINATIVOS_ACTIONS } from './constants';
+
 export interface DetetivesImaginativosStore extends DefaultStore {
   usedCards: ImageCardId[];
   gameOrder: PlayerId[];
@@ -24,7 +26,7 @@ export interface DetetivesImaginativosInitialState extends InitialState {
 }
 
 export interface DetetivesImaginativosSubmitAction extends Payload {
-  action: 'SUBMIT_CLUE' | 'PLAY_CARD' | 'DEFEND' | 'SUBMIT_VOTE';
+  action: keyof typeof DETETIVES_IMAGINATIVOS_ACTIONS;
 }
 
 export type FirebaseStateData = FirebaseFirestore.DocumentData | DetetivesImaginativosState;
