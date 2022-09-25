@@ -1,6 +1,6 @@
 // Constants
 import { GAME_COLLECTIONS } from '../../utils/constants';
-import { MAX_ROUNDS, ONDA_TELEPATICA_PHASES, PLAYER_COUNTS } from './constants';
+import { MAX_ROUNDS, ONDA_TELEPATICA_ACTIONS, ONDA_TELEPATICA_PHASES, PLAYER_COUNTS } from './constants';
 // Types
 import type { OndaTelepaticaInitialState, OndaTelepaticaOptions, OndaTelepaticaSubmitAction } from './types';
 // Utils
@@ -119,13 +119,13 @@ export const submitAction = async (data: OndaTelepaticaSubmitAction) => {
   utils.firebase.validateSubmitActionPayload(gameId, collectionName, playerId, action);
 
   switch (action) {
-    case 'SUBMIT_CATEGORY':
+    case ONDA_TELEPATICA_ACTIONS.SUBMIT_CATEGORY:
       utils.firebase.validateSubmitActionProperties(data, ['categoryId'], 'submit category');
       return handleSubmitCategory(collectionName, gameId, playerId, data.categoryId);
-    case 'SUBMIT_CLUE':
+    case ONDA_TELEPATICA_ACTIONS.SUBMIT_CLUE:
       utils.firebase.validateSubmitActionProperties(data, ['clue'], 'submit clue');
       return handleSubmitClue(collectionName, gameId, playerId, data.clue);
-    case 'SUBMIT_GUESS':
+    case ONDA_TELEPATICA_ACTIONS.SUBMIT_GUESS:
       utils.firebase.validateSubmitActionProperties(data, ['guess'], 'submit guess');
       return handleSubmitGuess(collectionName, gameId, playerId, data.guess);
     default:
