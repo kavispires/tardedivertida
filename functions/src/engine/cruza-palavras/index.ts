@@ -1,6 +1,6 @@
 // Constants
 import { GAME_COLLECTIONS } from '../../utils/constants';
-import { CRUZA_PALAVRAS_PHASES, PLAYER_COUNTS, TOTAL_ROUNDS } from './constants';
+import { CRUZA_PALAVRAS_ACTIONS, CRUZA_PALAVRAS_PHASES, PLAYER_COUNTS, TOTAL_ROUNDS } from './constants';
 // Types
 import type { CruzaPalavrasInitialState, CruzaPalavrasOptions, CruzaPalavrasSubmitAction } from './types';
 // Utils
@@ -114,10 +114,10 @@ export const submitAction = async (data: CruzaPalavrasSubmitAction) => {
   utils.firebase.validateSubmitActionPayload(gameId, collectionName, playerId, action);
 
   switch (action) {
-    case 'SUBMIT_CLUE':
+    case CRUZA_PALAVRAS_ACTIONS.SUBMIT_CLUE:
       utils.firebase.validateSubmitActionProperties(data, ['clue'], 'submit category');
       return handleSubmitClue(collectionName, gameId, playerId, data.clue);
-    case 'SUBMIT_GUESSES':
+    case CRUZA_PALAVRAS_ACTIONS.SUBMIT_GUESSES:
       utils.firebase.validateSubmitActionProperties(data, ['guesses'], 'submit guess');
       return handleSubmitGuesses(collectionName, gameId, playerId, data.guesses);
     default:

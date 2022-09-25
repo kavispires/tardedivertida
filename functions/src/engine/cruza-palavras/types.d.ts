@@ -1,3 +1,5 @@
+import { CRUZA_PALAVRAS_ACTIONS } from './constants';
+
 export type CruzaPalavrasOptions = {
   largerGrid: boolean;
 };
@@ -47,7 +49,7 @@ export interface CruzaPalavrasInitialState extends InitialState {
 }
 
 export interface CruzaPalavrasSubmitAction extends Payload {
-  action: 'SUBMIT_CLUE' | 'SUBMIT_GUESSES';
+  action: keyof typeof CRUZA_PALAVRAS_ACTIONS;
 }
 
 export type FirebaseStateData = FirebaseFirestore.DocumentData | CruzaPalavrasState;
