@@ -117,7 +117,7 @@ export const TAG_DICT: TagDict = {
       en: 'timed',
       pt: 'cronometrado',
     },
-    color: 'gold',
+    color: 'yellow',
   },
   traitor: {
     label: {
@@ -132,6 +132,13 @@ export const TAG_DICT: TagDict = {
       pt: 'imagens',
     },
     color: 'purple',
+  },
+  achievements: {
+    label: {
+      en: 'achievements',
+      pt: 'medalhas',
+    },
+    color: 'gold',
   },
   // Technical
   'mobile-friendly': {

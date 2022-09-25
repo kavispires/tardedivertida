@@ -39,7 +39,7 @@
     "min": 3,
     "max": 12
   },
-  "tags": ["competitive", "same-time", "writing", "mobile-friendly"],
+  "tags": ["competitive", "same-time", "writing", "mobile-friendly", "achievements"],
   "available": {
     "pt": true,
     "en": true
