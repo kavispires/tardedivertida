@@ -1,6 +1,11 @@
 // Constants
 import { GAME_COLLECTIONS } from '../../utils/constants';
-import { VENDAVAL_DE_PALPITE_PHASES, PLAYER_COUNTS, MAX_ROUNDS } from './constants';
+import {
+  VENDAVAL_DE_PALPITE_PHASES,
+  PLAYER_COUNTS,
+  MAX_ROUNDS,
+  VENDAVAL_DE_PALPITE_ACTIONS,
+} from './constants';
 // Types
 import type { VendavalDePalpiteInitialState, VendavalDePalpiteSubmitAction } from './types';
 // Utils
@@ -126,26 +131,26 @@ export const submitAction = async (data: VendavalDePalpiteSubmitAction) => {
   utils.firebase.validateSubmitActionPayload(gameId, collectionName, playerId, action);
 
   switch (action) {
-    case 'SUBMIT_BOSS':
+    case VENDAVAL_DE_PALPITE_ACTIONS.SUBMIT_BOSS:
       utils.firebase.validateSubmitActionProperties(data, ['bossId'], 'submit boss player id');
       return handleSubmitBossPlayer(collectionName, gameId, playerId, data.bossId);
-    case 'SUBMIT_SECRET_WORD':
+    case VENDAVAL_DE_PALPITE_ACTIONS.SUBMIT_SECRET_WORD:
       utils.firebase.validateSubmitActionProperties(
         data,
         ['secretWord', 'categories'],
         'submit secret word and categories'
       );
       return handleSubmitSecretWord(collectionName, gameId, playerId, data.secretWord, data.categories);
-    case 'SUBMIT_CLUES':
+    case VENDAVAL_DE_PALPITE_ACTIONS.SUBMIT_CLUES:
       utils.firebase.validateSubmitActionProperties(data, ['clues'], 'submit clues');
       return handleSubmitPlayerClues(collectionName, gameId, playerId, data.clues, data.guesses);
-    case 'SUBMIT_EVALUATION':
+    case VENDAVAL_DE_PALPITE_ACTIONS.SUBMIT_EVALUATION:
       utils.firebase.validateSubmitActionProperties(data, ['evaluation'], 'submit evaluation');
       return handleSubmitEvaluation(collectionName, gameId, playerId, data.evaluation);
-    case 'SUBMIT_OUTCOME':
+    case VENDAVAL_DE_PALPITE_ACTIONS.SUBMIT_OUTCOME:
       utils.firebase.validateSubmitActionProperties(data, ['outcome'], 'submit outcome');
       return handleSubmitOutcome(collectionName, gameId, playerId, data.outcome);
-    case 'SUBMIT_HELP':
+    case VENDAVAL_DE_PALPITE_ACTIONS.SUBMIT_HELP:
       utils.firebase.validateSubmitActionProperties(data, ['clueId'], 'submit help');
       return handleSubmitHelp(collectionName, gameId, playerId, data.clueId);
     default:
