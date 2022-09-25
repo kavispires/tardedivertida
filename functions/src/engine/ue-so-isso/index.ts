@@ -1,6 +1,6 @@
 // Constants
 import { GAME_COLLECTIONS } from '../../utils/constants';
-import { PLAYER_COUNTS, UE_SO_ISSO_PHASES } from './constants';
+import { PLAYER_COUNTS, UE_SO_ISSO_ACTIONS, UE_SO_ISSO_PHASES } from './constants';
 // Types
 import type { UeSoIssoInitialState, UeSoIssoSubmitAction } from './types';
 // Utilities
@@ -130,22 +130,22 @@ export const submitAction = async (data: UeSoIssoSubmitAction) => {
   utils.firebase.validateSubmitActionPayload(gameId, collectionName, playerId, action);
 
   switch (action) {
-    case 'SUBMIT_VOTES':
+    case UE_SO_ISSO_ACTIONS.SUBMIT_VOTES:
       utils.firebase.validateSubmitActionProperties(data, ['votes'], 'submit votes');
       return handleSubmitWordSelectionVotes(collectionName, gameId, playerId, data.votes);
-    case 'SUBMIT_SUGGESTIONS':
+    case UE_SO_ISSO_ACTIONS.SUBMIT_SUGGESTIONS:
       utils.firebase.validateSubmitActionProperties(data, ['suggestions'], 'submit suggestions');
       return handleSubmitSuggestions(collectionName, gameId, playerId, data.suggestions);
-    case 'SUBMIT_VALIDATION':
+    case UE_SO_ISSO_ACTIONS.SUBMIT_VALIDATION:
       utils.firebase.validateSubmitActionProperties(data, ['validSuggestions'], 'submit valid suggestions');
       return handleSubmitValidation(collectionName, gameId, playerId, data.validSuggestions);
-    case 'SUBMIT_OUTCOME':
+    case UE_SO_ISSO_ACTIONS.SUBMIT_OUTCOME:
       utils.firebase.validateSubmitActionProperties(data, ['outcome'], 'submit outcome');
       return handleConfirmGuess(collectionName, gameId, playerId, data.outcome);
-    case 'VALIDATE_SUGGESTION':
+    case UE_SO_ISSO_ACTIONS.VALIDATE_SUGGESTION:
       utils.firebase.validateSubmitActionProperties(data, ['suggestions'], 'validate suggestions');
       return handleUpdateValidSuggestions(collectionName, gameId, playerId, data.suggestions);
-    case 'SEND_GUESS':
+    case UE_SO_ISSO_ACTIONS.SEND_GUESS:
       utils.firebase.validateSubmitActionProperties(data, ['guess'], 'send guess');
       return handleSendGuess(collectionName, gameId, playerId, data.guess);
     default:
