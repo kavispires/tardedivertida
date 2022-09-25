@@ -63,7 +63,7 @@ export function GameInfoDrawer({ players, state, info, userId }: GameInfoDrawerP
           <Space>
             <Button type="default" onClick={() => toggleSettingsDrawer(true)} icon={<SettingOutlined />}>
               <Translate pt="Configurações" en="Settings" />
-            </Button>{' '}
+            </Button>
             <RulesModal gameInfo={info} />
             <Drawer
               title={<Translate pt="Configurações" en="Settings" />}

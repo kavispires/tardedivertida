@@ -7,6 +7,7 @@ import { useGlobalState } from 'hooks/useGlobalState';
 import { useLocalStorage } from 'hooks/useLocalStorage';
 // Components
 import { LanguageSwitch, Translate } from 'components/language';
+import { BlurOptions } from './BlurOptions';
 
 export function SectionSettings() {
   const [blurEnabled, setBlurEnabled] = useGlobalState('blurEnabled');
@@ -86,6 +87,12 @@ export function SectionSettings() {
           onClick={onBlurSwitchClick}
         />
       </div>
+
+      {blurEnabled && (
+        <div className="game-info-drawer__settings-entry">
+          <BlurOptions />
+        </div>
+      )}
 
       <div className="game-info-drawer__settings-entry">
         <div className="game-info-drawer__switch-label">
