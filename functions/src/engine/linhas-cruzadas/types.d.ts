@@ -1,3 +1,5 @@
+import { LINHAS_CRUZADAS_ACTIONS } from './constants';
+
 export type LinhasCruzadasOptions = {
   singleWordOnly: boolean;
   evenDistribution: boolean;
@@ -48,7 +50,7 @@ export interface LinhasCruzadasInitialState extends InitialState {
 }
 
 export interface LinhasCruzadasSubmitAction extends Payload {
-  action: 'SUBMIT_PROMPT' | 'SUBMIT_DRAWING' | 'SUBMIT_GUESS';
+  action: keyof typeof LINHAS_CRUZADAS_ACTIONS;
 }
 
 export type FirebaseStateData = FirebaseFirestore.DocumentData | LinhasCruzadasState;
