@@ -1,3 +1,5 @@
+import { ARTE_RUIM_ACTIONS } from './constants';
+
 export type ArteRuimGameOptions = {
   useAllCards: boolean;
   shortGame: boolean;
@@ -45,7 +47,7 @@ export interface ArteRuimInitialState extends InitialState {
 }
 
 export interface ArteRuimSubmitAction extends Payload {
-  action: 'SUBMIT_DRAWING' | 'SUBMIT_VOTING';
+  action: keyof typeof ARTE_RUIM_ACTIONS;
 }
 
 export type FirebaseStateData = FirebaseFirestore.DocumentData & ArteRuimState;
