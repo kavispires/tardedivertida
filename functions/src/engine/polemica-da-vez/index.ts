@@ -1,6 +1,6 @@
 // Constants
 import { GAME_COLLECTIONS } from '../../utils/constants';
-import { MAX_ROUNDS, PLAYER_COUNTS, POLEMICA_DA_VEZ_PHASES } from './constants';
+import { MAX_ROUNDS, PLAYER_COUNTS, POLEMICA_DA_VEZ_ACTIONS, POLEMICA_DA_VEZ_PHASES } from './constants';
 // Types
 import type { PolemicaDaVezInitialState, PolemicaDaVezOptions, PolemicaDaVezSubmitAction } from './types';
 // Utils
@@ -117,10 +117,10 @@ export const submitAction = async (data: PolemicaDaVezSubmitAction) => {
   utils.firebase.validateSubmitActionPayload(gameId, collectionName, playerId, action);
 
   switch (action) {
-    case 'SUBMIT_TOPIC':
+    case POLEMICA_DA_VEZ_ACTIONS.SUBMIT_TOPIC:
       utils.firebase.validateSubmitActionProperties(data, ['topicId'], 'submit topic');
       return handleSubmitTopic(collectionName, gameId, playerId, data.topicId, data?.customTopic);
-    case 'SUBMIT_REACTION':
+    case POLEMICA_DA_VEZ_ACTIONS.SUBMIT_REACTION:
       utils.firebase.validateSubmitActionProperties(data, ['reaction', 'likesGuess'], 'submit reaction');
       return handleSubmitReaction(collectionName, gameId, playerId, data.reaction, data.likesGuess);
     default:
