@@ -28,24 +28,28 @@ export function PlayersGuesses({
   const sortedPlayers = sortPlayers(players).filter((player) => player.id !== activeCloverId);
   const [activePlayerTab, setActivePlayerTab] = useState(`${sortedPlayers[0].id}::tab`);
 
+  const items = sortedPlayers.map((player) => {
+    return {
+      key: `${player.id}::tab`,
+      label: <AvatarName player={player} />,
+      children: (
+        <Tabs.TabPane tab={<AvatarName player={player} />} key={`${player.id}::tab`}>
+          <Clover
+            mode="result"
+            clover={clover}
+            leaves={leaves}
+            rotation={rotation}
+            onRotate={onRotate}
+            guesses={player.guesses[activeCloverId]?.leaves ?? {}}
+          />
+        </Tabs.TabPane>
+      ),
+    };
+  });
+
   return (
     <Instruction contained>
-      <Tabs activeKey={activePlayerTab} onChange={(key) => setActivePlayerTab(key)}>
-        {sortedPlayers.map((player) => {
-          return (
-            <Tabs.TabPane tab={<AvatarName player={player} />} key={`${player.id}::tab`}>
-              <Clover
-                mode="result"
-                clover={clover}
-                leaves={leaves}
-                rotation={rotation}
-                onRotate={onRotate}
-                guesses={player.guesses[activeCloverId]?.leaves ?? {}}
-              />
-            </Tabs.TabPane>
-          );
-        })}
-      </Tabs>
+      <Tabs activeKey={activePlayerTab} onChange={(key) => setActivePlayerTab(key)} items={items}></Tabs>
     </Instruction>
   );
 }
