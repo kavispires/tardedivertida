@@ -1,11 +1,10 @@
 import { SEPARATOR } from 'utils/constants';
 import { getLastItem, getRandomItem, shuffle } from 'utils/helpers';
 
-export const mockCrime = (itemsGroup: string[]): SubmitCrimePayload => {
+export const mockCrime = (itemsGroup: string[], locationTiles: SceneTile[]): SubmitCrimePayload => {
   const shuffledItems = shuffle(itemsGroup);
   const weapon = shuffledItems.find((e) => e?.includes('wp'));
   const evidence = shuffledItems.find((e) => e?.includes('ev'));
-  const locationTileId = `location-tile-${getRandomItem([1, 2, 3, 4])}`;
   const options = [0, 1, 2, 3, 4, 5];
 
   return {
@@ -13,7 +12,7 @@ export const mockCrime = (itemsGroup: string[]): SubmitCrimePayload => {
     evidenceId: evidence,
     causeOfDeath: getRandomItem(options),
     reasonForEvidence: getRandomItem(options),
-    locationTile: locationTileId,
+    locationTile: getRandomItem(locationTiles).id,
     locationIndex: getRandomItem(options),
   };
 };

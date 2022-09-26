@@ -223,11 +223,17 @@ export const updateOrCreateGuessHistory = (
           player.correctCrimes += 1;
         }
 
+        if (wrongGroups[crime.playerId] === undefined) {
+          wrongGroups[crime.playerId] = [];
+        }
+
         if (status === GUESS_STATUS.WRONG_GROUP) {
-          if (wrongGroups[crime.playerId] === undefined) {
-            wrongGroups[crime.playerId] = [];
-          }
           wrongGroups[crime.playerId].push(groupIndex);
+        }
+
+        // If player knows the group, eliminate all other groups
+        if ([GUESS_STATUS.HALF, GUESS_STATUS.WRONG].includes(status)) {
+          wrongGroups[crime.playerId] = [0, 1, 2, 3].filter((i) => i !== groupIndex);
         }
 
         result[crime.playerId] = status;
@@ -352,7 +358,8 @@ export const mockCrimeForBots = (
   groupedItems: GroupedItems,
   items: Record<string, CrimesHediondosCard>,
   causeOfDeathTile: CrimeTile,
-  reasonForEvidenceTile: CrimeTile
+  reasonForEvidenceTile: CrimeTile,
+  locationTiles: CrimeTile[]
 ) => {
   // TODO: Use tags logic for location
 
@@ -361,25 +368,20 @@ export const mockCrimeForBots = (
     const shuffledItems = utils.game.shuffle(itemsGroup);
     const weapon = shuffledItems.find((e) => e?.includes('wp'));
     const evidence = shuffledItems.find((e) => e?.includes('ev'));
-    const locationTileId = `location-tile-${utils.game.getRandomItem([1, 2, 3, 4])}`;
     const options = [0, 1, 2, 3, 4, 5];
 
     bot.weaponId = weapon;
     bot.evidenceId = evidence;
 
     // Intelligent cause of death
-    bot.causeOfDeath = botIntelligentSceneMarking(
-      causeOfDeathTile,
-      items[bot.weaponId],
-      items[bot.evidenceId]
-    );
+    bot.causeOfDeath = botSmartSceneMarking(causeOfDeathTile, items[bot.weaponId], items[bot.evidenceId]);
     // Intelligent evidence reason
-    bot.reasonForEvidence = botIntelligentSceneMarking(
+    bot.reasonForEvidence = botSmartSceneMarking(
       reasonForEvidenceTile,
       items[bot.weaponId],
       items[bot.evidenceId]
     );
-    bot.locationTile = locationTileId;
+    bot.locationTile = utils.game.getRandomItem(locationTiles).id;
     bot.locationIndex = utils.game.getRandomItem(options);
   });
 };
@@ -403,11 +405,11 @@ export const mockSceneMarkForBots = (
   items: Record<string, CrimesHediondosCard>
 ) => {
   utils.players.getListOfBots(players).forEach((bot) => {
-    bot.sceneIndex = botIntelligentSceneMarking(scene, items[bot.weaponId], items[bot.evidenceId]);
+    bot.sceneIndex = botSmartSceneMarking(scene, items[bot.weaponId], items[bot.evidenceId]);
   });
 };
 
-const botIntelligentSceneMarking = (
+const botSmartSceneMarking = (
   scene: CrimeTile,
   weapon: CrimesHediondosCard,
   evidence: CrimesHediondosCard

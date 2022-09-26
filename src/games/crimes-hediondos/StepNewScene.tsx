@@ -8,6 +8,7 @@ import { Instruction, Title } from 'components/text';
 import { Crime } from './components/Crime';
 import { GroupedItemsBoard } from './components/GroupedItemsBoard';
 import { SceneTile } from './components/SceneTile';
+import { useLanguage } from 'hooks/useLanguage';
 
 type StepNewSceneProps = {
   user: GamePlayer;
@@ -32,6 +33,7 @@ export function StepNewScene({
   scenes,
   scenesOrder,
 }: StepNewSceneProps) {
+  const { language } = useLanguage();
   const [sceneMarkIndex, setSceneMarkIndex] = useState<number>();
 
   const onSelectItem = (payload: SceneTilePayload) => {
@@ -42,8 +44,9 @@ export function StepNewScene({
 
   return (
     <Step>
-      <Title>
-        <Translate pt="Dê mais detalhes do crime" en="Give us more details" />
+      <Title size="medium">
+        {/* <Translate pt="Dê mais detalhes do crime" en="Give us more details" /> */}
+        {sceneTile.description[language]}
       </Title>
       <Instruction contained>
         <Translate
