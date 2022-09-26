@@ -20,7 +20,7 @@ export const AVATARS: AvatarDict = {
   },
   1: {
     id: '1',
-    description: { pt: 'o porquinho-da-íngua', en: 'the guinea pig' },
+    description: { pt: 'o porquinho-da-índia', en: 'the guinea pig' },
     color: '#661613',
   },
   2: {
