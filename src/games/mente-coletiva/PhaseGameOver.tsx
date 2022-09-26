@@ -46,7 +46,7 @@ const achievementsReference: AchievementReference = {
       en: 'Most Matches',
     },
     description: {
-      pt: 'As respostas combinaram mais vezes com outras',
+      pt: 'As respostas combinaram mais vezes com outros jogadores',
       en: 'Their answers matched the most with other players',
     },
   },
@@ -57,7 +57,7 @@ const achievementsReference: AchievementReference = {
       en: 'Least Matches',
     },
     description: {
-      pt: 'As respostas combinaram menos vezes com outras',
+      pt: 'As respostas combinaram menos vezes com outros jogadores',
       en: 'Their answers matched the least with other players',
     },
   },

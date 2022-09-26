@@ -49,11 +49,12 @@ export const prepareSetupPhase = async (
   utils.players.addPropertiesToPlayers(players, {
     level: 0,
     answers: [],
-    secretScore: 0,
-    distance: 0,
   });
 
   utils.players.distributeNumberIds(players, 0, 24, 'sheepId');
+
+  // Setup achievements
+  const achievements = utils.achievements.setup(players, store, { secretScore: 0, distance: 0 });
 
   // Save
   return {
@@ -63,6 +64,7 @@ export const prepareSetupPhase = async (
         gameOrder,
         pastQuestions: [],
         deckIndex: 0,
+        achievements,
       },
       state: {
         phase: MENTE_COLETIVA_PHASES.SETUP,
@@ -177,7 +179,7 @@ export const prepareResolutionPhase = async (
   });
 
   // Determine ranking
-  const ranking = buildRanking(players);
+  const ranking = buildRanking(players, store);
 
   const lowestScores = determineLowestScores(ranking, state.roundType);
 
@@ -201,11 +203,14 @@ export const prepareResolutionPhase = async (
   }
 
   // Calculate distance
-  calculateSheepTravelDistance(players, pastureChange);
+  calculateSheepTravelDistance(store, players, pastureChange);
 
   // Save
   return {
     update: {
+      store: {
+        achievements: store.achievements,
+      },
       state: {
         phase: MENTE_COLETIVA_PHASES.RESOLUTION,
         ranking,
@@ -228,7 +233,7 @@ export const prepareGameOverPhase = async (
   const losers = Object.values(players).filter((player) => player.level === state.pastureSize);
 
   // Get achievements
-  const achievements = getAchievements(players);
+  const achievements = getAchievements(players, store);
 
   // Save
   return {

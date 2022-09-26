@@ -170,7 +170,7 @@ export const buildListOfAnswers = (allAnswers: AnswerEntry[]): AnswerGroupEntry[
  * @param players - it modifies players
  * @returns
  */
-export const buildRanking = (players: Players): RankingEntry[] => {
+export const buildRanking = (players: Players, store: PlainObject): RankingEntry[] => {
   // Gained points: [matches]
   const newScores = utils.helpers.buildNewScoreObject(players, [0]);
 
@@ -178,7 +178,7 @@ export const buildRanking = (players: Players): RankingEntry[] => {
     newScores[player.id].previousScore = 0;
     newScores[player.id].newScore = player.score;
 
-    player.secretScore += player.score;
+    utils.achievements.increaseAchievement(store, player.id, 'secretScore', player.score);
   });
 
   return utils.helpers.sortNewScore(newScores);
@@ -408,31 +408,10 @@ export const shouldSaveSheep = (
  * Most lonely - is the only one in a pasture
  * @param players
  */
-export const getAchievements = (players: Players) => {
-  let mostMatches: Player[] = [];
-  let leastMatches: Player[] = [];
-  let mostDistance: Player[] = [];
+export const getAchievements = (players: Players, store: PlainObject) => {
   const pasturesCount: PlayerId[][] = [];
 
   utils.players.getListOfPlayers(players).forEach((player) => {
-    if (!mostMatches[0] || mostMatches[0].secretScore === player.secretScore) {
-      mostMatches.push(player);
-    } else if (mostMatches[0].secretScore < player.secretScore) {
-      mostMatches = [player];
-    }
-
-    if (!leastMatches[0] || leastMatches[0].secretScore === player.secretScore) {
-      leastMatches.push(player);
-    } else if (leastMatches[0].secretScore > player.secretScore) {
-      leastMatches = [player];
-    }
-
-    if (!mostDistance[0] || mostDistance[0].distance === player.distance) {
-      mostDistance.push(player);
-    } else if (mostDistance[0].distance < player.distance) {
-      mostDistance = [player];
-    }
-
     if (pasturesCount[player.level]) {
       pasturesCount[player.level].push(player.id);
     } else {
@@ -442,30 +421,33 @@ export const getAchievements = (players: Players) => {
 
   const achievements: Achievement<MenteColetivaAchievement>[] = [];
 
+  const { most, least } = utils.achievements.getMostAndLeastOf(store, 'secretScore');
   // Most friendly / most matches - highest final score
-  if (mostMatches.length === 1) {
+  if (most) {
     achievements.push({
       type: MENTE_COLETIVA_ACHIEVEMENTS.MOST_MATCHES,
-      playerId: mostMatches[0].id,
-      value: mostMatches[0].secretScore,
+      playerId: most.playerId,
+      value: most.secretScore,
     });
   }
 
   // Least friendly / least matches - highest final score
-  if (leastMatches.length === 1) {
+  if (least) {
     achievements.push({
       type: MENTE_COLETIVA_ACHIEVEMENTS.LEAST_MATCHES,
-      playerId: leastMatches[0].id,
-      value: leastMatches[0].secretScore,
+      playerId: least.playerId,
+      value: least.secretScore,
     });
   }
 
+  const { most: mostTravel } = utils.achievements.getMostAndLeastOf(store, 'distance');
+
   // Best traveler: a player alone move left or right the most
-  if (mostDistance.length === 1) {
+  if (mostTravel) {
     achievements.push({
       type: MENTE_COLETIVA_ACHIEVEMENTS.BEST_TRAVELER,
-      playerId: mostDistance[0].id,
-      value: mostDistance[0].distance,
+      playerId: mostTravel.playerId,
+      value: mostTravel.distance,
     });
   }
 
@@ -499,8 +481,17 @@ export const getAchievements = (players: Players) => {
  * @param players
  * @param pastureChange
  */
-export const calculateSheepTravelDistance = (players: Players, pastureChange: PastureChangeEntry[][]) => {
+export const calculateSheepTravelDistance = (
+  store: PlainObject,
+  players: Players,
+  pastureChange: PastureChangeEntry[][]
+) => {
   pastureChange[0].forEach((pastureChangeEntry, index) => {
-    players[pastureChangeEntry.id].distance += pastureChange[2][index].level - pastureChangeEntry.level;
+    utils.achievements.increaseAchievement(
+      store,
+      pastureChangeEntry.id,
+      'distance',
+      pastureChange[2][index].level - pastureChangeEntry.level
+    );
   });
 };
