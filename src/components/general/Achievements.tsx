@@ -40,7 +40,7 @@ export function Achievements({ players, achievements, reference }: AchievementsP
               {Boolean(achievementObj.description) && (
                 <div className="achievement__description">
                   <Popover content={achievementObj.description![language]}>
-                    <Button icon={<QuestionCircleOutlined />} shape="circle" type="ghost" size="small" />
+                    <Button icon={<QuestionCircleOutlined />} shape="circle" type="text" size="small" />
                   </Popover>
                 </div>
               )}
