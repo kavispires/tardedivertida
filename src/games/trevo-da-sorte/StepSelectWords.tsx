@@ -76,7 +76,7 @@ export function StepSelectWords({ hand, onSubmitBadWords }: StepSelectWordsProps
         </Button>
 
         <Button size="large" onClick={onSubmitMock}>
-          <Translate pt="Secione pra mim" en="Select for me" />
+          <Translate pt="Selecione pra mim" en="Select for me" />
         </Button>
       </Space>
     </Step>
