@@ -52,7 +52,7 @@ function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
 
   useMock(() => {
     if (step === 1) {
-      onSubmitCrimeRequest(mockCrime(state.groupedItems[user.itemGroupIndex]));
+      onSubmitCrimeRequest(mockCrime(state.groupedItems[user.itemGroupIndex], state.locationTiles));
     }
   }, [step]);
 

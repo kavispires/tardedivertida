@@ -84,8 +84,8 @@ export const prepareCrimeSelectionPhase = async (
     groupedItems,
     items,
     state.causeOfDeathTile,
-    state.reasonForEvidenceTile
-    // state.locationTiles
+    state.reasonForEvidenceTile,
+    state.locationTiles
   );
 
   return {
