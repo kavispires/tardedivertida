@@ -10,6 +10,11 @@ body {
   height: 100%;
   font-family: 'Lato', sans-serif;
   // font-family: 'Titillium Web', sans-serif;
+
+  // Intercepts image preview to make then look like cards
+  .ant-image-preview-img {
+    border-radius: get-unit(8);
+  }
 }
 
 .container {
