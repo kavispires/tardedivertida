@@ -1,5 +1,6 @@
 {
   "F": {
+    "$schema": "../../utils/game-info.schema.json",
     "gameCode": "F",
     "gameName": "naufragos",
     "version": "none",
@@ -33,6 +34,7 @@
     }
   },
   "Z": {
+    "$schema": "../../utils/game-info.schema.json",
     "gameCode": "Z",
     "gameName": "caminhos-magicos",
     "version": "none",
@@ -66,6 +68,7 @@
     }
   },
   "K": {
+    "$schema": "../../utils/game-info.schema.json",
     "gameCode": "K",
     "gameName": "palheta-cores",
     "version": "decommission",
@@ -98,6 +101,7 @@
     }
   },
   "ZZ": {
+    "$schema": "../../utils/game-info.schema.json",
     "gameCode": "Z",
     "gameName": "quem-sou-eu",
     "version": "cancelled",
@@ -130,6 +134,7 @@
     }
   },
   "FF": {
+    "$schema": "../../utils/game-info.schema.json",
     "gameCode": "FF",
     "gameName": "desenho-rapidao",
     "version": "cancelled",
@@ -162,6 +167,7 @@
     }
   },
   "YY": {
+    "$schema": "../../utils/game-info.schema.json",
     "gameCode": "YY",
     "gameName": "te-conheco",
     "version": "cancelled",
