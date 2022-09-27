@@ -1,4 +1,5 @@
 {
+  "$schema": "../../utils/game-info.schema.json",
   "gameCode": "V",
   "gameName": "vendaval-de-palpite",
   "version": "alpha",

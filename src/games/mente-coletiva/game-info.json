@@ -1,4 +1,5 @@
 {
+  "$schema": "../../utils/game-info.schema.json",
   "gameCode": "M",
   "gameName": "mente-coletiva",
   "version": "3.0.0",

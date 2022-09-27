@@ -1,4 +1,5 @@
 {
+  "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "testemunha-ocular",
   "version": "2.2.0",

@@ -1,4 +1,5 @@
 {
+  "$schema": "../../utils/game-info.schema.json",
   "gameCode": "S",
   "gameName": "sonhos-pesadelos",
   "version": "beta-1",

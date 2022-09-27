@@ -1,4 +1,5 @@
 {
+  "$schema": "../../utils/game-info.schema.json",
   "gameCode": "U",
   "gameName": "ue-so-isso",
   "version": "2.3.0",

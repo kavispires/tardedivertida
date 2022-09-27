@@ -1,0 +1,165 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "$schema": "../../utils/game-info.schema.json",
+    "gameCode": {
+      "type": "string"
+    },
+    "gameName": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "title": {
+      "type": "object",
+      "properties": {
+        "pt": {
+          "type": "string"
+        },
+        "en": {
+          "type": "string"
+        }
+      },
+      "required": ["pt", "en"]
+    },
+    "popularName": {
+      "type": "object",
+      "properties": {
+        "pt": {
+          "type": "string"
+        },
+        "en": {
+          "type": "string"
+        }
+      },
+      "required": ["pt", "en"]
+    },
+    "basedOn": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "object",
+      "properties": {
+        "pt": {
+          "type": "string"
+        },
+        "en": {
+          "type": "string"
+        }
+      },
+      "required": ["pt", "en"]
+    },
+    "rules": {
+      "type": "object",
+      "properties": {
+        "pt": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "en": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": ["pt", "en"]
+    },
+    "playerCount": {
+      "type": "object",
+      "properties": {
+        "best": {
+          "type": "integer"
+        },
+        "recommended": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "min": {
+          "type": "integer"
+        },
+        "max": {
+          "type": "integer"
+        }
+      },
+      "required": ["recommended", "min", "max"]
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "competitive",
+          "cooperative",
+          "same-time",
+          "turn-based",
+          "drawing",
+          "writing",
+          "guessing",
+          "voting",
+          "pairing",
+          "push-your-luck",
+          "brain-burner",
+          "discussion",
+          "timed",
+          "traitor",
+          "images",
+          "achievements",
+          "mobile-friendly"
+        ]
+      }
+    },
+    "available": {
+      "type": "object",
+      "properties": {
+        "pt": {
+          "type": "boolean"
+        },
+        "en": {
+          "type": "boolean"
+        }
+      },
+      "required": ["pt", "en"]
+    },
+    "options": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          },
+          "off": {
+            "type": "string"
+          },
+          "on": {
+            "type": "string"
+          }
+        },
+        "required": ["label", "key", "off", "on"]
+      }
+    }
+  },
+  "required": [
+    "gameCode",
+    "gameName",
+    "version",
+    "title",
+    "popularName",
+    "basedOn",
+    "summary",
+    "rules",
+    "playerCount",
+    "tags",
+    "available"
+  ]
+}

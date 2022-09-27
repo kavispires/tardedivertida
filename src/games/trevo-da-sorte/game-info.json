@@ -1,4 +1,5 @@
 {
+  "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Y",
   "gameName": "trevo-da-sorte",
   "version": "1.0.1",
