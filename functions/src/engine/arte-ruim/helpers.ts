@@ -1,7 +1,14 @@
 // Types
-import type { ArteRuimDrawing, FirebaseStoreData, CardsByLevel, ResourceData } from './types';
+import type {
+  ArteRuimDrawing,
+  FirebaseStoreData,
+  CardsByLevel,
+  ResourceData,
+  ArteRuimAchievement,
+} from './types';
 // Constants
 import {
+  ARTE_RUIM_ACHIEVEMENTS,
   ARTE_RUIM_PHASES,
   GAME_OVER_SCORE_THRESHOLD,
   REGULAR_GAME_LEVELS,
@@ -351,8 +358,14 @@ const getLevel5Id = (id: string): string => {
  * @param players
  * @returns
  */
-export const buildGallery = (drawings: ArteRuimDrawing[], players: Players) =>
+export const buildGallery = (
+  drawings: ArteRuimDrawing[],
+  players: Players,
+  store: PlainObject,
+  tableCardsIds: CardId[]
+) =>
   drawings.map((drawingEntry) => {
+    const playerCount = utils.players.getPlayerCount(players);
     const correctAnswer = getLevel5Id(drawingEntry.id);
     const artistId = drawingEntry.playerId;
 
@@ -365,10 +378,13 @@ export const buildGallery = (drawings: ArteRuimDrawing[], players: Players) =>
       text: drawingEntry.text,
       playersSay: {},
       playersPoints: {},
+      accuracy: 0,
     };
 
     const playersSay = {};
     const playersPoints = {};
+    const gotCorrect: PlayerId[] = [];
+    const gotWrong: PlayerId[] = [];
 
     Object.entries(<PlainObject>players).forEach(([playerId, pObject]) => {
       if (artistId === playerId) return;
@@ -396,11 +412,40 @@ export const buildGallery = (drawings: ArteRuimDrawing[], players: Players) =>
         if (currentVote === correctAnswer) {
           playersPoints[playerId] += 2;
           playersPoints[artistId] += 1;
+          gotCorrect.push(playerId);
+        } else {
+          gotWrong.push(playerId);
+        }
+
+        if (drawingEntry.level < 5 && tableCardsIds.includes(currentVote)) {
+          utils.achievements.increaseAchievement(store, playerId, 'tableVotes', 1);
         }
       }
     });
     newGalleryEntry.playersSay = playersSay;
     newGalleryEntry.playersPoints = playersPoints;
+    newGalleryEntry.accuracy = (1 * gotCorrect.length) / (newGalleryEntry.level * (playerCount - 1));
+
+    // Achievement: artistPoints
+    if (gotCorrect.length === playerCount - 1 && artistId) {
+      utils.achievements.increaseAchievement(store, artistId, 'artistPoints', drawingEntry.level);
+    }
+
+    // Achievement: worstArtist
+    if (gotCorrect.length === 0 && artistId) {
+      utils.achievements.increaseAchievement(store, artistId, 'worstArtist', 6 - drawingEntry.level);
+    }
+
+    // Achievement: solitaryWin
+    if (gotCorrect.length === 1) {
+      utils.achievements.increaseAchievement(store, gotCorrect[0], 'solitaryWin', 1);
+    }
+
+    // Achievement: solitaryFail
+    if (gotWrong.length === 1) {
+      utils.achievements.increaseAchievement(store, gotWrong[0], 'solitaryFail', 1);
+    }
+
     return newGalleryEntry;
   });
 
@@ -448,15 +493,13 @@ export const buildRanking = (drawings: ArteRuimDrawing[], players: Players) => {
  * @returns
  */
 export const getNewPastDrawings = (players: Players, gallery) => {
-  const playerCount = Object.keys(players).length;
   // Remove currentCard from players and add it to past drawings in the store
   return Object.values(players).map((playerData) => {
     const card = playerData.currentCard;
     // Get playersSay from gallery and calculate success rate
     const galleryEntry = gallery.find((e) => e.originalId === card.id);
-    const correctAnswers = galleryEntry.playersSay?.[card.id]?.length ?? 0;
 
-    card.successRate = Math.round((100 * correctAnswers) / (playerCount - 1)) / 100;
+    card.successRate = galleryEntry.accuracy;
     return card;
   });
 };
@@ -485,4 +528,65 @@ export const buildPastDrawingsDict = (drawings, publicDrawings) => {
   });
 
   return newDrawings;
+};
+
+/**
+ * Get achievements:
+ * @param players
+ * @param store
+ */
+export const getAchievements = (players: Players, store: PlainObject) => {
+  const achievements: Achievement<ArteRuimAchievement>[] = [];
+
+  // Best artist: got all players to guess correctly more times and by level
+  const { most: bestArtist } = utils.achievements.getMostAndLeastOf(store, 'artistPoints');
+  if (bestArtist) {
+    achievements.push({
+      type: ARTE_RUIM_ACHIEVEMENTS.BEST_ARTIST,
+      playerId: bestArtist.playerId,
+      value: bestArtist.artistPoints,
+    });
+  }
+
+  // Worst artist: got no player to guess correctly at all more times and by level
+  const { most: worstArtist } = utils.achievements.getMostAndLeastOf(store, 'worstArtist');
+  if (worstArtist) {
+    achievements.push({
+      type: ARTE_RUIM_ACHIEVEMENTS.WORST_ARTIST,
+      playerId: worstArtist.playerId,
+      value: worstArtist.worstArtist,
+    });
+  }
+
+  // Solitary Win: Was the only one to guess the drawing more times
+  const { most: solitaryWinner } = utils.achievements.getMostAndLeastOf(store, 'solitaryWin');
+  if (solitaryWinner) {
+    achievements.push({
+      type: ARTE_RUIM_ACHIEVEMENTS.SOLITARY_WINNER,
+      playerId: solitaryWinner.playerId,
+      value: solitaryWinner.solitaryWin,
+    });
+  }
+
+  // Worst artist: got all players to guess correctly more time and by level
+  const { most: solitaryLoser } = utils.achievements.getMostAndLeastOf(store, 'solitaryFail');
+  if (solitaryLoser) {
+    achievements.push({
+      type: ARTE_RUIM_ACHIEVEMENTS.SOLITARY_LOSER,
+      playerId: solitaryLoser.playerId,
+      value: solitaryLoser.solitaryFail,
+    });
+  }
+
+  // Table votes: votes for cards that are not from players the most
+  const { most: tableVotes } = utils.achievements.getMostAndLeastOf(store, 'tableVotes');
+  if (tableVotes) {
+    achievements.push({
+      type: ARTE_RUIM_ACHIEVEMENTS.TABLE_VOTES,
+      playerId: tableVotes.playerId,
+      value: tableVotes.tableVotes,
+    });
+  }
+
+  return achievements;
 };
