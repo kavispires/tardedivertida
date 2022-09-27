@@ -4,6 +4,13 @@
   background-size: 1000% 1000%;
 }
 
+.g-table-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: get-color('black');
+}
+
 .g-table {
   display: grid;
   grid-template-columns: repeat(5, auto);
@@ -14,7 +21,6 @@
 }
 
 .g-table-item {
-  background-color: black;
   position: relative;
   box-sizing: border-box;
 }

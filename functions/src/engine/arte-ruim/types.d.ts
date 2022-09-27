@@ -1,4 +1,4 @@
-import { ARTE_RUIM_ACTIONS } from './constants';
+import { ARTE_RUIM_ACHIEVEMENTS, ARTE_RUIM_ACTIONS } from './constants';
 
 export type ArteRuimGameOptions = {
   useAllCards: boolean;
@@ -40,6 +40,8 @@ export interface ArteRuimPlayer extends Player {
 }
 
 export type ArteRuimPlayers = Record<PlayerId, ArteRuimPlayer>;
+
+export type ArteRuimAchievement = keyof typeof ARTE_RUIM_ACHIEVEMENTS;
 
 export interface ArteRuimInitialState extends InitialState {
   store: ArteRuimStore;

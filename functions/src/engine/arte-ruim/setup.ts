@@ -9,6 +9,7 @@ import {
   buildGallery,
   buildRanking,
   dealCards,
+  getAchievements,
   getNewPastDrawings,
   getTheTwoLevel5Cards,
 } from './helpers';
@@ -31,6 +32,13 @@ export const prepareSetupPhase = async (
   // Build deck
   const deck = buildDeck(resourceData, playerCount, store.options?.shortGame ?? false);
 
+  const achievements = utils.achievements.setup(players, store, {
+    solitaryFail: 0,
+    artistPoints: 0,
+    solitaryWin: 0,
+    worstArtist: 0,
+    tableVotes: 0,
+  });
   // Save
   return {
     update: {
@@ -38,6 +46,7 @@ export const prepareSetupPhase = async (
         deck,
         pastDrawings: [],
         currentCards: [],
+        achievements,
       },
     },
   };
@@ -96,10 +105,6 @@ export const prepareEvaluationPhase = async (
 
   return {
     update: {
-      // store: {
-      //   // TODO: is this necessary?
-      //   ...store,
-      // },
       state: {
         phase: ARTE_RUIM_PHASES.EVALUATION,
         cards: shuffledCards,
@@ -121,8 +126,13 @@ export const prepareGalleryPhase = async (
   // Unready players
   utils.players.unReadyPlayers(players);
 
+  const playersCardsIds = utils.players.getListOfPlayers(players).map((player) => player.currentCard.id);
+  const tableCardsIds = store.currentCards
+    .filter((card) => !playersCardsIds.includes(card.id))
+    .map((card) => card.id);
+
   // Build gallery
-  const gallery = utils.game.shuffle(buildGallery(state.drawings, players));
+  const gallery = utils.game.shuffle(buildGallery(state.drawings, players, store, tableCardsIds));
 
   const ranking = buildRanking(state.drawings, players);
 
@@ -156,6 +166,8 @@ export const prepareGameOverPhase = async (
 
   const finalGallery = utils.helpers.orderBy(store.pastDrawings, 'successRate', 'desc');
 
+  const achievements = getAchievements(players, store);
+
   return {
     update: {
       meta: {
@@ -170,6 +182,7 @@ export const prepareGameOverPhase = async (
         gameEndedAt: Date.now(),
         winners,
         drawings: finalGallery,
+        achievements,
       },
     },
   };
