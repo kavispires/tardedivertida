@@ -1,8 +1,11 @@
+import clsx from 'clsx';
 // Ant Design Resources
 import { Button, Popover } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
+// Utils
+import { getAnimationClass } from 'utils/helpers';
 // Components
 import { Avatar } from 'components/avatars';
 import { IconAvatar } from 'components/icons/IconAvatar';
@@ -19,16 +22,19 @@ export function Achievements({ players, achievements, reference }: AchievementsP
   const { language } = useLanguage();
 
   return (
-    <div className="achievements">
+    <div className={clsx('achievements', getAnimationClass('fadeIn'))}>
       <Title size="small" level={3}>
         <Translate pt="Medalhas" en="Achievements" />
       </Title>
       <ul className="achievements-list">
-        {achievements.map((achievement) => {
+        {achievements.map((achievement, index) => {
           const achievementObj = reference[achievement.type];
           const player = players[achievement.playerId];
           return (
-            <li key={`achievement-${achievement.type}`} className="achievements-entry">
+            <li
+              key={`achievement-${achievement.type}`}
+              className={clsx('achievements-entry', getAnimationClass('flipInY', index + 1))}
+            >
               <div className="achievement__medal">
                 <IconAvatar icon={achievementObj.icon} size="large" />
               </div>
