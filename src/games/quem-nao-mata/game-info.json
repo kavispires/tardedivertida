@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Q",
   "gameName": "quem-nao-mata",
-  "version": "alpha",
+  "version": "dev",
   "title": {
     "pt": "Quem não mata, morre",
     "en": "Mortal Standoff"
