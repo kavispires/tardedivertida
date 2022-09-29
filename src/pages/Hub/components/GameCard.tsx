@@ -11,21 +11,33 @@ import { CreateGameModal } from './CreateGameModal';
 import { GameTags } from 'components/general/GameTags';
 
 const getVersionColor = (version: string) => {
+  if (version.includes('dev')) {
+    return '#6cb3f6';
+  }
+
   if (version.includes('alpha')) {
     return '#F97659';
   }
+
   if (version.includes('beta')) {
     return '#F9D859';
   }
 
-  if (version.startsWith('1.')) {
+  const major = Number(version.split('.')[0]);
+
+  if (isNaN(major)) {
+    return '#96A0A3';
+  }
+
+  if (major === 1) {
     return '#72D984';
   }
-  if (version.startsWith('2.')) {
+
+  if (major === 2) {
     return '#7CBD51';
   }
 
-  if (version.startsWith('3.')) {
+  if (major >= 3) {
     return '#7CBD51';
   }
 
