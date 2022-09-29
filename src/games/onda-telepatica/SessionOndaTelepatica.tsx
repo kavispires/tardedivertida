@@ -13,7 +13,7 @@ import PhaseGameOver from './PhaseGameOver';
 
 ConfigProvider.config({
   theme: {
-    primaryColor: THEME_COLORS.DEFAULT,
+    primaryColor: THEME_COLORS.PLUMP_PURPLE,
   },
 });
 
@@ -44,6 +44,7 @@ function SessionOndaTelepatica({ gameId }: SessionProps) {
       gameId={gameId}
       gameCollection={GAME_COLLECTION.ONDA_TELEPATICA}
       getActiveComponent={getActiveComponent}
+      backgroundClassName="o-background"
     />
   );
 }

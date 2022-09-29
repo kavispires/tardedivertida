@@ -1,3 +1,8 @@
+.o-background.o-background {
+  background: linear-gradient(-45deg, #9287cf, #a73fb3, #9287cf, #583fb3);
+  background-size: 1000% 1000%;
+}
+
 .o-dial-guess-selection {
   &__clue {
     background-color: get-color('white');
