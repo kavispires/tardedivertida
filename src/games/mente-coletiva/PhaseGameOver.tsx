@@ -1,8 +1,8 @@
 // Components
 import { GameOverWrapper } from 'components/game-over';
 import { Achievements } from 'components/general/Achievements';
-import { MedalDoubleArrowDownIcon } from 'components/icons/MedalDoubleArrowDownIcon';
-import { MedalDoubleArrowUpIcon } from 'components/icons/MedalDoubleArrowUpIcon';
+import { MedalArrowDownIcon } from 'components/icons/MedalArrowDownIcon';
+import { MedalArrowUpIcon } from 'components/icons/MedalArrowUpIcon';
 import { MedalFootprintsIcon } from 'components/icons/MedalFootprintsIcon';
 import { MedalPersonIcon } from 'components/icons/MedalPersonIcon';
 import { MedalSkullIcon } from 'components/icons/MedalSkullIcon';
@@ -40,10 +40,10 @@ function PhaseGameOver({ state, info, players }: PhaseProps) {
 
 const achievementsReference: AchievementReference = {
   MOST_MATCHES: {
-    icon: <MedalDoubleArrowUpIcon />,
+    icon: <MedalArrowUpIcon />,
     title: {
       pt: 'Mais Matches',
-      en: 'Most Matches',
+      en: 'Best Matcher',
     },
     description: {
       pt: 'As respostas combinaram mais vezes com outros jogadores',
@@ -51,10 +51,10 @@ const achievementsReference: AchievementReference = {
     },
   },
   LEAST_MATCHES: {
-    icon: <MedalDoubleArrowDownIcon />,
+    icon: <MedalArrowDownIcon />,
     title: {
-      pt: 'Menos Matches',
-      en: 'Least Matches',
+      pt: 'Mais Diferentão',
+      en: 'Most Unique',
     },
     description: {
       pt: 'As respostas combinaram menos vezes com outros jogadores',
