@@ -2,12 +2,12 @@
 import { GameOverWrapper } from 'components/game-over';
 import { Achievements } from 'components/general/Achievements';
 import { MedalBrushIcon } from 'components/icons/MedalBrushIcon';
-import { MedalCloseIcon } from 'components/icons/MedalCloseIcon';
 import { MedalPersonIcon } from 'components/icons/MedalPersonIcon';
 import { MedalThumbsDownIcon } from 'components/icons/MedalThumbsDownIcon';
-import { MedalThumbsUpIcon } from 'components/icons/MedalThumbsUpIcon';
 import { TrophyIcon } from 'components/icons/TrophyIcon';
 import { Translate } from 'components/language';
+import { MedalQuestionMarkIcon } from 'components/icons/MedalQuestionMarkIcon';
+import { MedalLightBulbIcon } from 'components/icons/MedalLightBulbIcon';
 import { FinalGallery } from './components/FinalGallery';
 
 function PhaseGameOver({ state, players, info }: PhaseProps) {
@@ -38,10 +38,10 @@ const achievementsReference: AchievementReference = {
     },
   },
   WORST_ARTIST: {
-    icon: <MedalCloseIcon />,
+    icon: <MedalQuestionMarkIcon />,
     title: {
-      pt: 'Pior Artista',
-      en: 'Worst Artist',
+      pt: 'Artista Mais Não Convencional',
+      en: 'Most Unconventional Artist',
     },
     description: {
       pt: 'Todos os jogadores NÃO acertaram unanimemente seu desenho mais vezes',
@@ -49,10 +49,10 @@ const achievementsReference: AchievementReference = {
     },
   },
   SOLITARY_WINNER: {
-    icon: <MedalThumbsUpIcon />,
+    icon: <MedalPersonIcon />,
     title: {
-      pt: 'Vencedor Solitário',
-      en: 'Solitary Winner',
+      pt: 'Adivinhador Solitário',
+      en: 'Best Solitary Guesser',
     },
     description: {
       pt: 'Foi o único que acertou o desenho mais vezes',
@@ -60,10 +60,10 @@ const achievementsReference: AchievementReference = {
     },
   },
   SOLITARY_LOSER: {
-    icon: <MedalPersonIcon />,
+    icon: <MedalLightBulbIcon />,
     title: {
-      pt: 'Perdedor Solitário',
-      en: 'Solitary Loser',
+      pt: 'Mais Diferentão',
+      en: 'Most Unique Guesser',
     },
     description: {
       pt: 'Foi o único que errou o desenho mais vezes',
@@ -73,8 +73,8 @@ const achievementsReference: AchievementReference = {
   TABLE_VOTES: {
     icon: <MedalThumbsDownIcon />,
     title: {
-      pt: 'Mais Votos Pra Mesa',
-      en: 'Most Table Votes',
+      pt: 'Melhor Votador Pra Mesa',
+      en: 'Best Table Voter',
     },
     description: {
       pt: 'Votou nas cartas extras que não eram de nenhum jogador mais vezes',
