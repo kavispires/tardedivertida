@@ -42,7 +42,7 @@ function PhaseBets({ state, players, info }: PhaseProps) {
           title={translate('Apostas', 'Bets')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
-          duration={7}
+          duration={5}
         >
           <Instruction>
             <Translate

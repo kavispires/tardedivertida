@@ -38,7 +38,7 @@ function PhaseBattle({ state, players, info }: PhaseProps) {
           title={translate('Batalha!', 'Battle!')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
-          duration={7}
+          duration={4}
         >
           <Instruction>
             <Translate
