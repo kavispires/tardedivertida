@@ -4,14 +4,14 @@ import { useCardWidth } from 'hooks/useCardWidth';
 import { AvatarName } from 'components/avatars';
 import { CanvasSVG } from 'components/canvas';
 import { GameOverWrapper } from 'components/game-over';
-import { TrophyIcon } from 'components/icons/TrophyIcon';
+import { TheEndIcon } from 'components/icons/TheEndIcon';
 
 function PhaseGameOver({ state, info, players }: PhaseProps) {
   const slideCount = Math.min(state.album[0]?.slides.length ?? 5, 8);
   const cardWidth = useCardWidth(slideCount, 32, 100);
 
   return (
-    <GameOverWrapper info={info} state={state} announcementIcon={<TrophyIcon />}>
+    <GameOverWrapper info={info} state={state} announcementIcon={<TheEndIcon />}>
       <ul className="l-album-strips">
         {state.album.map((albumEntry: LAlbumEntry) => (
           <li key={`album-strip-${albumEntry.id}`} className="l-album-strip-entry">
