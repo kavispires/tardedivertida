@@ -50,7 +50,6 @@ export const getInitialState = (
     initialPhase: SUPER_CAMPEONATO_PHASES.LOBBY,
     totalRounds: TOTAL_ROUNDS,
     store: {
-      pastTopics: [],
       gameOrder: [],
     },
     options,
@@ -74,7 +73,13 @@ export const getNextPhase = async (
   );
 
   // Determine next phase
-  const nextPhase = determineNextPhase(state?.phase, state.round, state?.tier, state?.lastRound);
+  const nextPhase = determineNextPhase(
+    state?.phase,
+    state.round,
+    state?.tier,
+    state?.lastRound,
+    store.options?.autoContenders ?? false
+  );
 
   // RULES -> SETUP
   if (nextPhase === SUPER_CAMPEONATO_PHASES.SETUP) {
@@ -82,7 +87,8 @@ export const getNextPhase = async (
     await utils.firebase.triggerSetupPhase(sessionRef);
 
     // Request data
-    const additionalData = await getResourceData(store.language);
+    const isAlternativeGame = store.options?.alternative ?? false;
+    const additionalData = await getResourceData(store.language, isAlternativeGame);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await utils.firebase.saveGame(sessionRef, newPhase);
     return getNextPhase(collectionName, gameId, players);

@@ -19,7 +19,7 @@ export const SUPER_CAMPEONATO_ACTIONS = {
 
 export const PLAYER_COUNTS = {
   MIN: 3,
-  MAX: 8,
+  MAX: 30,
 };
 
 export const TOTAL_ROUNDS = 5;

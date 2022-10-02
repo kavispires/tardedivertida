@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "W",
   "gameName": "super-campeonato",
-  "version": "1.5.1",
+  "version": "2.0.0",
   "title": {
     "pt": "Super Campeonato",
     "en": "Ultimate Championship"
@@ -38,11 +38,12 @@
     "best": 8,
     "recommended": [4, 5, 6, 7, 8],
     "min": 3,
-    "max": 8
+    "max": 30
   },
   "tags": ["competitive", "discussion", "voting"],
   "available": {
     "pt": true,
     "en": true
-  }
+  },
+  "options": [{ "key": "alternative", "label": "Decks", "on": "Babies", "off": "Normal" }]
 }
