@@ -177,6 +177,7 @@ export const GAME_COLLECTION = {
   DESENHO_RAPIDAO: 'desenho-rapidao',
   GALERIA_DE_SONHOS: 'galeria-de-sonhos',
   CRIMES_HEDIONDOS: 'crimes-hediondos',
+  PORTA_DOS_DESESPERADOS: 'porta-dos-desesperados',
   INSTRUMENTOS_CODIFICADOS: 'instrumentos-codificados',
   PALHETA_DE_CORES: 'palheta-de-cores',
   LINHAS_CRUZADAS: 'linhas-cruzadas',

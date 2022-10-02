@@ -1,7 +1,7 @@
 {
   "F": {
     "$schema": "../../utils/game-info.schema.json",
-    "gameCode": "F",
+    "gameCode": "J",
     "gameName": "naufragos",
     "version": "none",
     "title": {
@@ -100,9 +100,9 @@
       "en": false
     }
   },
-  "ZZ": {
+  "η": {
     "$schema": "../../utils/game-info.schema.json",
-    "gameCode": "Z",
+    "gameCode": "η",
     "gameName": "quem-sou-eu",
     "version": "cancelled",
     "title": {
@@ -133,9 +133,9 @@
       "en": false
     }
   },
-  "FF": {
+  "ζ": {
     "$schema": "../../utils/game-info.schema.json",
-    "gameCode": "FF",
+    "gameCode": "ζ",
     "gameName": "desenho-rapidao",
     "version": "cancelled",
     "title": {
@@ -166,9 +166,9 @@
       "en": false
     }
   },
-  "YY": {
+  "λ": {
     "$schema": "../../utils/game-info.schema.json",
-    "gameCode": "YY",
+    "gameCode": "λ",
     "gameName": "te-conheco",
     "version": "cancelled",
     "title": {

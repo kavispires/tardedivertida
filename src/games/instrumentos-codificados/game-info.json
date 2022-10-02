@@ -1,8 +1,8 @@
 {
   "$schema": "../../utils/game-info.schema.json",
-  "gameCode": "I",
+  "gameCode": "ι",
   "gameName": "instrumentos-codificados",
-  "version": "none",
+  "version": "cancelled",
   "title": {
     "pt": "Instrumentos Codificados",
     "en": "Instrumental Cyphers"

@@ -1,0 +1,33 @@
+{
+  "$schema": "../../utils/game-info.schema.json",
+  "gameCode": "I",
+  "gameName": "porta-dos-desesperados",
+  "version": "dev",
+  "title": {
+    "pt": "Porta dos Desesperados",
+    "en": "Obscured Doors"
+  },
+  "popularName": {
+    "pt": "",
+    "en": ""
+  },
+  "basedOn": "oirucsbO",
+  "summary": {
+    "pt": "TBD",
+    "en": "TBD"
+  },
+  "rules": {
+    "pt": ["TBD"],
+    "en": ["TBD"]
+  },
+  "playerCount": {
+    "recommended": [4, 5, 6, 7],
+    "min": 2,
+    "max": 10
+  },
+  "tags": ["cooperative", "guessing", "images", "turn-based"],
+  "available": {
+    "pt": true,
+    "en": true
+  }
+}
