@@ -32,7 +32,7 @@ function PhaseChallengeSelection({ state, players, info }: PhaseProps) {
         step={step}
         players={players}
         waitingRoomContent={
-          state.round.current !== state.round.total ? (
+          user.contenders.length > 0 && state.round.current !== state.round.total ? (
             <ContendersHand contenders={user.contenders} />
           ) : undefined
         }
