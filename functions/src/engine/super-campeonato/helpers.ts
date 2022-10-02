@@ -9,17 +9,21 @@ import type { Bracket, BracketTier, Contender, ContendersDeck } from './types';
  * @param round
  * @param tier
  * @param triggerLastRound
+ * @param autoContenders - if players won't have contenders, they don't need to select
  * @returns
  */
 export const determineNextPhase = (
   currentPhase: string,
   round: Round,
   tier?: string,
-  triggerLastRound?: boolean
+  triggerLastRound?: boolean,
+  autoContenders?: boolean
 ): string => {
   const { RULES, SETUP, CHALLENGE_SELECTION, CONTENDER_SELECTION, BETS, BATTLE, RESULTS, GAME_OVER } =
     SUPER_CAMPEONATO_PHASES;
-  const order = [RULES, SETUP, CHALLENGE_SELECTION, CONTENDER_SELECTION, BETS, BATTLE];
+  const order = autoContenders
+    ? [RULES, SETUP, CHALLENGE_SELECTION, BETS, BATTLE]
+    : [RULES, SETUP, CHALLENGE_SELECTION, CONTENDER_SELECTION, BETS, BATTLE];
 
   if (currentPhase === RESULTS) {
     return triggerLastRound || round.current >= round.total ? GAME_OVER : CHALLENGE_SELECTION;
@@ -57,7 +61,11 @@ export const isFinalRound = (round: Round): boolean => {
 };
 
 export const getTableContenders = (contendersDeck: ContendersDeck, players: Players): Contender[] => {
-  const quantityNeeded = (CONTENDERS_PER_ROUND - Object.values(players).length) * TOTAL_ROUNDS;
+  const playerCount = utils.players.getPlayerCount(players);
+  const neededContendersPerRound =
+    playerCount > 8 ? CONTENDERS_PER_ROUND : CONTENDERS_PER_ROUND - playerCount;
+
+  const quantityNeeded = neededContendersPerRound * TOTAL_ROUNDS;
 
   if (quantityNeeded <= 0) {
     return [];
@@ -122,15 +130,18 @@ export const makeBrackets = (players: Players, deck: Contender[], currentRound: 
   Object.values(players).forEach((player) => {
     // Get contender
     const contender = player.contenders.find((c: Contender) => c.id === player.selectedContenderId);
-    // Remove contender from player's hand
-    player.contenders = player.contenders.filter((c: Contender) => c.id !== player.selectedContenderId);
-    // Add contenders to player's used contenders
-    player.usedContenders.push(contender.id);
-    // Add to selected ones
-    contenders.push({
-      ...contender,
-      playerId: player.id,
-    });
+
+    if (contender) {
+      // Remove contender from player's hand
+      player.contenders = player.contenders.filter((c: Contender) => c.id !== player.selectedContenderId);
+      // Add contenders to player's used contenders
+      player.usedContenders.push(contender.id);
+      // Add to selected ones
+      contenders.push({
+        ...contender,
+        playerId: player.id,
+      });
+    }
   });
 
   // Add additional contenders if needed

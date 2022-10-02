@@ -42,7 +42,7 @@ export function StepWinner({
       </Space>
 
       <Space className="space-container " align="center">
-        <TimedButton duration={7} icon={<TrophyOutlined />} onExpire={goToNextStep} onClick={goToNextStep}>
+        <TimedButton duration={4} icon={<TrophyOutlined />} onExpire={goToNextStep} onClick={goToNextStep}>
           <Translate pt="Ver Ranking" en="See Ranking" />
         </TimedButton>
       </Space>

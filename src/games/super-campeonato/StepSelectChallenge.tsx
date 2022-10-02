@@ -38,19 +38,15 @@ export function StepSelectChallenge({
 
       <Instruction contained>
         <Translate
-          pt={
-            <>
-              Cada rodada é feita ao redor de um desafio. Você tem competidores em mãos (na barra abaixo) e um
-              deles irá participar desta rodada.
-            </>
-          }
-          en={
-            <>
-              Each round has a challenge for the contenders to battle on! You have a hand of contenders and
-              one of them will participate in this round.
-            </>
-          }
+          pt={<>Cada rodada é feita ao redor de um desafio.</>}
+          en={<>Each round has a challenge for the contenders to battle on!</>}
         />
+        {userContenders.length > 1 && (
+          <Translate
+            pt={<> Você tem competidores em mãos (na barra abaixo) e um deles irá participar desta rodada.</>}
+            en={<> You have a hand of contenders and one of them will participate in this round.</>}
+          />
+        )}
         {round.current < 5 ? (
           <Translate
             pt={
@@ -108,7 +104,7 @@ export function StepSelectChallenge({
         })}
       </Space>
 
-      {round.current < 5 && <ContendersHand contenders={userContenders} />}
+      {round.current < 5 && userContenders.length > 1 && <ContendersHand contenders={userContenders} />}
     </Step>
   );
 }

@@ -1,14 +1,9 @@
 import { SUPER_CAMPEONATO_ACTIONS } from './constants';
 
 export type SuperCampeonatoOptions = {
-  fixedRounds: boolean;
+  alternative?: boolean;
+  autoContenders?: boolean;
 };
-
-export interface CategoryCard extends OpposingIdeaCard {
-  target?: number;
-  clue?: string;
-  psychicId?: string;
-}
 
 export interface ResourceData {
   contenders: ContenderCard[];

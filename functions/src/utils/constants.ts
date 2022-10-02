@@ -148,6 +148,8 @@ export const GLOBAL_USED_DOCUMENTS = {
   ONDA_TELEPATICA: 'usedOndaTelepaticaCategories',
   RETRATO_FALADO: 'usedRetratoFaladoCards',
   TESTEMUNHA_OCULAR: 'usedTestemunhaOcularCards',
+  SUPER_CAMPEONATO_CHALLENGES: 'usedSuperCampeonatoChallenges',
+  SUPER_CAMPEONATO_CONTENDERS: 'usedSuperCampeonatoContenders',
 };
 
 export const TDR_RESOURCES = {
