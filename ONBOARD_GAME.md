@@ -52,7 +52,7 @@ All file paths here are relative to `/src`.
 
 # Add cloud functions Adapter
 
-- Update `/adapters/index.ts` with the new cloud functions
+- Update `/services/adapters.ts` with the new cloud functions
 
 # Add game to the list
 

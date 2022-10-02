@@ -44,10 +44,10 @@ const SessionEspiaoEntreNos = lazy(
 const SessionGaleriaDeSonhos = lazy(
   () => import('games/galeria-de-sonhos/SessionGaleriaDeSonhos' /* webpackChunkName: "galeria-de-sonhos" */)
 );
-const SessionInstrumentosCodificados = lazy(
+const SessionPortaDosDesesperados = lazy(
   () =>
     import(
-      'games/instrumentos-codificados/SessionInstrumentosCodificados' /* webpackChunkName: "instrumentos-codificados" */
+      'games/porta-dos-desesperados/SessionPortaDosDesesperados' /* webpackChunkName: "porta-dos-desesperados" */
     )
 );
 const SessionLinhasCruzadas = lazy(
@@ -212,10 +212,10 @@ function Game() {
             <SessionCrimesHediondos gameId={gameId} />
           </Suspense>
         );
-      case GAME_COLLECTION.INSTRUMENTOS_CODIFICADOS:
+      case GAME_COLLECTION.PORTA_DOS_DESESPERADOS:
         return (
           <Suspense fallback={<LoadingPage message="" />}>
-            <SessionInstrumentosCodificados gameId={gameId} />
+            <SessionPortaDosDesesperados gameId={gameId} />
           </Suspense>
         );
       case GAME_COLLECTION.LINHAS_CRUZADAS:
