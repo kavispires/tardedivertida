@@ -47,7 +47,10 @@ export function StepSelectChallenge({
             en={<> You have a hand of contenders and one of them will participate in this round.</>}
           />
         )}
-        {round.current < 5 ? (
+        {userContenders.length === 0 && (
+          <Translate pt={<> Selecione um dos desafios.</>} en={<> Select one of the challenges.</>} />
+        )}
+        {userContenders.length > 1 && round.current < 5 ? (
           <Translate
             pt={
               <>
