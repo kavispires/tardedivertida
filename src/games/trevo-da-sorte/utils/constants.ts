@@ -14,3 +14,10 @@ export const FIRST_ATTEMPT_SCORE = 3;
 export const SECOND_ATTEMPT_SCORE = 1;
 
 export const LEAVES_ORDER = ['A', 'B', 'C', 'D'];
+
+export const DIRECTIONS_INDEXES = {
+  top: 0,
+  right: 1,
+  bottom: 2,
+  left: 3,
+};
