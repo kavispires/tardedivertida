@@ -42,11 +42,11 @@ export function StepWriteClues({ clover, leaves, onSubmitClues }: StepWriteClues
   };
 
   const onSubmitMock = () => {
-    onSubmitClues({ clues: prepareClueSubmission(mockClues(), clover, rotations) });
+    onSubmitClues({ clues: prepareClueSubmission(mockClues(clover, leaves, rotations), clover, rotations) });
   };
 
   useMock(() => {
-    onSubmitClues({ clues: prepareClueSubmission(mockClues(), clover, rotations) });
+    onSubmitClues({ clues: prepareClueSubmission(mockClues(clover, leaves, rotations), clover, rotations) });
   });
 
   return (

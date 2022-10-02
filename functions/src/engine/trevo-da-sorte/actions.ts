@@ -66,7 +66,7 @@ export const handleSubmitClues = async (
  * @param collectionName
  * @param gameId
  * @param playerId
- * @param guess
+ * @param guesses
  * @returns
  */
 export const handleSubmitGuess = async (
