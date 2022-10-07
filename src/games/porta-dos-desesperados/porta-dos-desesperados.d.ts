@@ -1,7 +1,8 @@
 type SubmitPagesPayload = {
-  pagesIds: CardId[];
+  pageIds: CardId[];
 };
 
 type SubmitDoorPayload = {
-  dorId: CardId;
+  doorId: CardId;
+  ready?: boolean;
 };

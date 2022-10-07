@@ -4,9 +4,11 @@
 import {
   DOOR_LEVELS,
   DOOR_OPTIONS_PER_ROUND,
+  OUTCOME,
   PAGES_PER_ROUND,
   PORTA_DOS_DESESPERADOS_PHASES,
   TRAPS,
+  WIN_CONDITION,
 } from './constants';
 // Utils
 import * as utils from '../../utils';
@@ -48,20 +50,26 @@ export const determineNextPhase = (
  * @param currentPhase
  * @param round
  * @param outcome
- * @param currentDoor
+ * @param winCondition
+ * @param currentCorridor
  * @returns
  */
 export const determineGameOver = (
   currentPhase: string,
   round: Round,
   outcome: string,
-  currentDoor: number
+  winCondition: string,
+  currentCorridor: number
 ): boolean => {
   if (currentPhase !== PORTA_DOS_DESESPERADOS_PHASES.RESOLUTION) return false;
 
   if (round.total === round.current) return true;
 
-  if (currentDoor === DOOR_LEVELS && outcome === 'SUCCESS') return true;
+  if (
+    (currentCorridor === DOOR_LEVELS && outcome === OUTCOME.SUCCESS) ||
+    winCondition !== WIN_CONDITION.CONTINUE
+  )
+    return true;
 
   return false;
 };
@@ -76,7 +84,7 @@ export const createTrapOrder = (): string[] => {
 };
 
 export const getDoorSet = (doorDeck: ImageCardId[], doorDeckIndex: number, trap: Trap) => {
-  const quantity = trap === 'EXTRA_DOOR' ? DOOR_OPTIONS_PER_ROUND + 1 : DOOR_OPTIONS_PER_ROUND;
+  const quantity = trap === TRAPS.EXTRA_DOOR ? DOOR_OPTIONS_PER_ROUND + 1 : DOOR_OPTIONS_PER_ROUND;
 
   const selectedDoors = doorDeck.slice(doorDeckIndex, doorDeckIndex + quantity);
   const answerDoorId = utils.game.getRandomItem(selectedDoors);
@@ -89,12 +97,12 @@ export const getDoorSet = (doorDeck: ImageCardId[], doorDeckIndex: number, trap:
 };
 
 export const getBookPages = (pagesDeck: ImageCardId[], pagesDeckIndex: number, trap: Trap) => {
-  const quantity = trap === 'FEWER_PAGES' ? PAGES_PER_ROUND / 2 : PAGES_PER_ROUND;
+  const quantity = trap === TRAPS.FEWER_PAGES ? PAGES_PER_ROUND / 2 : PAGES_PER_ROUND;
 
   const selectedPages = pagesDeck.slice(pagesDeckIndex, pagesDeckIndex + quantity);
 
   return {
     pages: selectedPages,
-    newPageIndex: 0,
+    newPageIndex: pagesDeckIndex + quantity,
   };
 };

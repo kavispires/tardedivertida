@@ -14,7 +14,7 @@ export const handleSubmitPages = async (
     gameId,
     playerId,
     actionText: 'submit your clue pages',
-    change: { currentPageIds: utils.game.shuffle(pageIds) },
+    change: { selectedPagesIds: utils.game.shuffle(pageIds) },
     nextPhaseFunction: getNextPhase,
   });
 };
@@ -23,15 +23,16 @@ export const handleSubmitDoor = async (
   collectionName: GameName,
   gameId: GameId,
   playerId: PlayerId,
-  doorId: ImageCardId
+  doorId: ImageCardId,
+  ready?: boolean
 ) => {
   return await utils.firebase.updatePlayer({
     collectionName,
     gameId,
     playerId,
     actionText: 'submit your door',
-    shouldReady: true,
-    change: { doorId },
+    shouldReady: false,
+    change: { doorId, ready: Boolean(ready) },
     nextPhaseFunction: getNextPhase,
   });
 };

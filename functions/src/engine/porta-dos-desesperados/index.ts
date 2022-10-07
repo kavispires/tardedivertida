@@ -73,7 +73,13 @@ export const getNextPhase = async (
   >(collectionName, gameId, 'prepare next phase');
 
   // Determine if it's game over
-  const isGameOver = determineGameOver(state?.phase, state?.round, state?.outcome, state?.currentDoor);
+  const isGameOver = determineGameOver(
+    state?.phase,
+    state?.round,
+    state?.outcome,
+    state?.winCondition,
+    state?.currentDoor
+  );
   // Determine next phase
   const nextPhase = determineNextPhase(state?.phase, state?.round, isGameOver, state?.lastRound);
 
@@ -127,10 +133,10 @@ export const submitAction = async (data: PortaDosDesesperadosSubmitAction) => {
   switch (action) {
     case PORTA_DOS_DESESPERADOS_ACTIONS.SUBMIT_PAGES:
       utils.firebase.validateSubmitActionProperties(data, ['pageIds'], 'submit pages');
-      return handleSubmitPages(collectionName, gameId, playerId, data.cluePageIds);
+      return handleSubmitPages(collectionName, gameId, playerId, data.pageIds);
     case PORTA_DOS_DESESPERADOS_ACTIONS.SUBMIT_DOOR:
       utils.firebase.validateSubmitActionProperties(data, ['doorId'], 'submit door');
-      return handleSubmitDoor(collectionName, gameId, playerId, data.doorId);
+      return handleSubmitDoor(collectionName, gameId, playerId, data.doorId, data.ready);
     default:
       utils.firebase.throwException(`Given action ${action} is not allowed`);
   }

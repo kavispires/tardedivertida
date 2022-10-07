@@ -5,16 +5,16 @@
   "version": "dev",
   "title": {
     "pt": "Porta dos Desesperados",
-    "en": "Obscured Doors"
+    "en": "Obscure Doors"
   },
   "popularName": {
-    "pt": "",
+    "pt": "Das portas",
     "en": ""
   },
   "basedOn": "oirucsbO",
   "summary": {
-    "pt": "TBD",
-    "en": "TBD"
+    "pt": "Jogadores devem achar as 7 portas corretas para passar na prova de bruxaria final",
+    "en": "Players must go through 7 doors to pass the ultimate wizard test"
   },
   "rules": {
     "pt": ["TBD"],
