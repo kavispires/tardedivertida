@@ -1,3 +1,4 @@
+import { ReactNode, useMemo } from 'react';
 import clsx from 'clsx';
 // Ant Design Resources
 import { ForwardFilled } from '@ant-design/icons';
@@ -8,15 +9,30 @@ import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
 
 type TurnOrderProps = {
+  /**
+   * Game players
+   */
   players: GamePlayers;
+  /**
+   * The order array
+   */
   order: PlayerId[];
+  /**
+   * The active player who should be highlighted
+   */
   activePlayerId?: PlayerId;
+  /**
+   * Optional custom title
+   */
+  title?: ReactNode;
   /**
    * Optional custom class name
    */
   className?: string;
+  /**
+   * Reorder turn order so it starts with given player
+   */
   reorderByUser?: PlayerId;
-  title?: string;
 };
 
 export function TurnOrder({
@@ -27,7 +43,10 @@ export function TurnOrder({
   title,
   className = '',
 }: TurnOrderProps) {
-  const orderList = Boolean(reorderByUser) ? reorder(order, reorderByUser!) : order;
+  const orderList = useMemo(
+    () => (Boolean(reorderByUser) ? reorder(order, reorderByUser!) : order),
+    [reorderByUser, order]
+  );
 
   return (
     <div className={clsx('game-order', className)}>
