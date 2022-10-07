@@ -38,8 +38,8 @@ export const CRIMES_HEDIONDOS_API = {
   submitAction: httpsCallable(functions, 'crimesHediondosSubmitAction'),
 };
 
-export const INSTRUMENTOS_CODIFICADOS_API = {
-  submitAction: httpsCallable(functions, 'instrumentosCodificadosSubmitAction'),
+export const PORTA_DOS_DESESPERADOS = {
+  submitAction: httpsCallable(functions, 'portaDosDesesperadosSubmitAction'),
 };
 
 export const LINHAS_CRUZADAS_API = {

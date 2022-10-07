@@ -26,6 +26,7 @@
 @import '../components/rules/_rules.scss';
 @import '../components/text/Instruction.scss';
 @import '../components/text/TextHighlight.scss';
+@import '../components/text/MetricHighlight.scss';
 @import '../components/text/Title.scss';
 @import '../components/players/WaitingRoom.scss';
 @import '../components/players/PlayersStatusBar.scss';
@@ -70,6 +71,7 @@
 @import '../games/vendaval-de-palpite/vendaval-de-palpite';
 @import '../games/ue-so-isso/ue-so-isso';
 @import '../games/trevo-da-sorte/trevo-da-sorte';
+@import '../games/porta-dos-desesperados/porta-dos-desesperados';
 
 // Pages
 @import '../pages/app';

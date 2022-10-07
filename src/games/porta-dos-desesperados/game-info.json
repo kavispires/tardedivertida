@@ -1,0 +1,33 @@
+{
+  "$schema": "../../utils/game-info.schema.json",
+  "gameCode": "I",
+  "gameName": "porta-dos-desesperados",
+  "version": "dev",
+  "title": {
+    "pt": "Porta dos Desesperados",
+    "en": "Obscure Doors"
+  },
+  "popularName": {
+    "pt": "Das portas",
+    "en": ""
+  },
+  "basedOn": "oirucsbO",
+  "summary": {
+    "pt": "Jogadores devem achar as 7 portas corretas para passar na prova de bruxaria final",
+    "en": "Players must go through 7 doors to pass the ultimate wizard test"
+  },
+  "rules": {
+    "pt": ["TBD"],
+    "en": ["TBD"]
+  },
+  "playerCount": {
+    "recommended": [4, 5, 6, 7],
+    "min": 2,
+    "max": 10
+  },
+  "tags": ["cooperative", "guessing", "images", "turn-based"],
+  "available": {
+    "pt": true,
+    "en": true
+  }
+}

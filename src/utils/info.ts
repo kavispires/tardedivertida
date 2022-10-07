@@ -5,7 +5,8 @@ import D from 'games/detetives-imaginativos/game-info.json';
 import E from 'games/espiao-entre-nos/game-info.json';
 import G from 'games/galeria-de-sonhos/game-info.json';
 import H from 'games/crimes-hediondos/game-info.json';
-import I from 'games/instrumentos-codificados/game-info.json';
+import I from 'games/porta-dos-desesperados/game-info.json';
+import II from 'games/instrumentos-codificados/game-info.json';
 import K from 'games/palheta-de-cores/game-info.json';
 import L from 'games/linhas-cruzadas/game-info.json';
 import M from 'games/mente-coletiva/game-info.json';
@@ -51,6 +52,7 @@ export const GAME_LIST: Record<GameCode, GameInfo> = {
   W,
   X,
   Y,
+  II,
 };
 
 export default GAME_LIST;

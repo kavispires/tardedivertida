@@ -40,8 +40,8 @@ const GAMES = [
   },
   {
     code: 'I',
-    key: 'INSTRUMENTOS_CODIFICADOS',
-    collection: 'instrumentos-codificados',
+    key: 'PORTA_DOS_DESESPERADOS',
+    collection: 'porta-dos-desesperados',
   },
   {
     code: 'K',

@@ -313,4 +313,5 @@ export const truncateRecommended = (recommended: number[]): string => {
  * @param players
  * @returns
  */
-export const sortPlayers = (players: GamePlayers) => orderBy(Object.values(players), ['name'], ['asc']);
+export const sortPlayers = (players: GamePlayers, by = 'name') =>
+  orderBy(Object.values(players), [by], ['asc']);
