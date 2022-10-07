@@ -29,6 +29,10 @@ const getVersionColor = (version: string) => {
     return '#96A0A3';
   }
 
+  if (major === 0) {
+    return '#F9D859';
+  }
+
   if (major === 1) {
     return '#72D984';
   }

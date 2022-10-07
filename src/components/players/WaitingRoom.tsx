@@ -1,28 +1,44 @@
+import { ReactNode } from 'react';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
+import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
 import { Translate } from 'components/language';
 import { ReadyPlayersBar } from 'components/players';
 import { Instruction, Title } from 'components/text';
 import { WaitingRoomIcon } from 'components/icons/WaitingRoomIcon';
-import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 
 type WaitingRoomProps = {
+  /**
+   * The game players
+   */
   players: GamePlayers;
-  title?: any;
-  instruction?: any;
-  children?: any;
+  /**
+   * Replacement title of the waiting room
+   */
+  title?: ReactNode;
+  /**
+   * Replacement instruction for the waiting room
+   */
+  instruction?: ReactNode;
+  /**
+   * Additional content of the waiting room
+   */
+  children?: ReactNode;
+  /**
+   * Icon the replaces the default Waiting Room icon
+   */
+  icon?: ReactNode;
 };
 
-export function WaitingRoom({ players, title, instruction, children }: WaitingRoomProps) {
+export function WaitingRoom({ players, title, instruction, children, icon }: WaitingRoomProps) {
   useTemporarilyHidePlayersBar();
-
-  const { translate } = useLanguage();
 
   return (
     <div className="waiting-room">
-      <Title>{translate('Pronto!', 'Done!', title)}</Title>
-      <WaitingRoomIcon style={{ width: '6rem' }} />
+      <Title>
+        <Translate pt="Pronto!" en="Done!" custom={title} />
+      </Title>
+      {icon ?? <WaitingRoomIcon style={{ width: '6rem' }} />}
       <Instruction>
         {Boolean(instruction) ? (
           instruction

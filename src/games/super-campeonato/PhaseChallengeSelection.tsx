@@ -28,15 +28,7 @@ function PhaseChallengeSelection({ state, players, info }: PhaseProps) {
       phase={state?.phase}
       allowedPhase={PHASES.SUPER_CAMPEONATO.CHALLENGE_SELECTION}
     >
-      <StepSwitcher
-        step={step}
-        players={players}
-        waitingRoomContent={
-          user.contenders.length > 0 && state.round.current !== state.round.total ? (
-            <ContendersHand contenders={user.contenders} />
-          ) : undefined
-        }
-      >
+      <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
         <RoundAnnouncement round={state.round} onPressButton={goToNextStep} time={4} circleColor="pink">
           <Instruction contained>

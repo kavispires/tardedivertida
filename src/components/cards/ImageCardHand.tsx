@@ -1,40 +1,84 @@
+import { ReactNode } from 'react';
 import clsx from 'clsx';
 // Ant Design Resources
 import { Button, Image } from 'antd';
 import { DownSquareOutlined } from '@ant-design/icons';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
-import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { ImageBlurButton, ImageCard } from '.';
+import { Translate } from 'components/language';
 
 type ImageCardHandProps = {
-  hand: string[];
-  onSelectCard?: GenericFunction;
-  selectButtonLabel?: string;
   /**
-   * Optional custom class name
+   * The list of card ids
+   */
+  hand: ImageCardId[];
+  /**
+   * Function to trigger when clicking on the select button
+   */
+  onSelectCard?: GenericFunction;
+  /**
+   * Select button custom label
+   */
+  selectButtonLabel?: ReactNode;
+  /**
+   * Select button custom icon
+   */
+  selectButtonIcon?: ReactNode;
+  /**
+   * Select button custom class
+   */
+  selectButtonClass?: string;
+  /**
+   * Disable select button
+   */
+  disabledSelectButton?: boolean;
+  /**
+   * Optional custom class name for the hand container
    */
   className?: string;
-  selectButtonClass?: string;
-  sizeRatio?: number;
+  /**
+   * The size of the card
+   */
   cardSize?: number;
+  /**
+   * If no card size is provided, the ratio is used instead to determine card size (default 8)
+   */
+  sizeRatio?: number;
+  /**
+   * Minimum width of a card (default 80)
+   */
   minCardSize?: number;
-  disabledSelectButton?: boolean;
+  /**
+   * Cache showing which cards have been selected and should be highlighted
+   */
+  selectedCards?: BooleanDictionary;
+  /**
+   * Custom card class
+   */
+  cardClassName?: string;
+  /**
+   * Enable preview (default: true)
+   */
+  preview?: boolean;
 };
 
 export function ImageCardHand({
   hand = [],
   onSelectCard,
   selectButtonLabel,
+  selectButtonIcon,
   className = '',
   selectButtonClass = '',
   sizeRatio = 8,
   cardSize,
   minCardSize = 80,
   disabledSelectButton = false,
+  selectedCards = {},
+  cardClassName = '',
+  preview = true,
 }: ImageCardHandProps) {
-  const { translate } = useLanguage();
   // Prefers cardSize otherwise calculates width based on screen and ratio
   const cardWidth = useCardWidth(sizeRatio, 32, minCardSize);
 
@@ -46,17 +90,22 @@ export function ImageCardHand({
             <div key={`hand-${cardId}`} className="image-card-hand__card-container">
               {Boolean(onSelectCard) && (
                 <Button
-                  icon={<DownSquareOutlined />}
+                  icon={selectButtonIcon ?? <DownSquareOutlined />}
                   className={selectButtonClass}
                   onClick={() => onSelectCard!(cardId)}
                   size="small"
                   disabled={disabledSelectButton}
                   shape="round"
                 >
-                  {translate('Selecionar', 'Select', selectButtonLabel)}
+                  <Translate pt="Selecionar" en="Select" custom={selectButtonLabel} />
                 </Button>
               )}
-              <ImageCard imageId={cardId} cardWidth={cardSize || cardWidth} />
+              <ImageCard
+                imageId={cardId}
+                cardWidth={cardSize || cardWidth}
+                className={clsx(selectedCards[cardId] && 'image-card-hand__selected', cardClassName)}
+                preview={preview}
+              />
               <ImageBlurButton cardId={cardId} />
             </div>
           );

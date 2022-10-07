@@ -8,7 +8,7 @@ import * as detetivesImaginativosEngine from './engine/detetives-imaginativos';
 import * as espiaoEntreNosEngine from './engine/espiao-entre-nos';
 import * as galeriaDeSonhosEngine from './engine/galeria-de-sonhos';
 import * as crimesHediondosEngine from './engine/crimes-hediondos';
-import * as instrumentosCodificadosEngine from './engine/instrumentos-codificados';
+import * as portaDosDesesperadosEngine from './engine/porta-dos-desesperados';
 import * as linhasCruzadasEngine from './engine/linhas-cruzadas';
 import * as menteColetivaEngine from './engine/mente-coletiva';
 import * as naRuaDoMedoEngine from './engine/na-rua-do-medo';
@@ -84,9 +84,7 @@ exports.galeriaDeSonhosSubmitAction = functions.https.onCall(galeriaDeSonhosEngi
 
 exports.crimesHediondosSubmitAction = functions.https.onCall(crimesHediondosEngine.submitAction);
 
-exports.instrumentosCodificadosSubmitAction = functions.https.onCall(
-  instrumentosCodificadosEngine.submitAction
-);
+exports.portaDosDesesperadosSubmitAction = functions.https.onCall(portaDosDesesperadosEngine.submitAction);
 
 exports.linhasCruzadasSubmitAction = functions.https.onCall(linhasCruzadasEngine.submitAction);
 

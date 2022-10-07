@@ -9,6 +9,12 @@
   align-items: center;
 }
 
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 @mixin box-shadow {
   // box-shadow: 0 5px 7px 0px rgba($color: #000, $alpha: 0.5);
   box-shadow: 0 8px 5px rgba(0, 0, 0, 0.1);
