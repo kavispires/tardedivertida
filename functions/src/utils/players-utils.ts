@@ -314,11 +314,11 @@ export const addBots = (
 /**
  * Get list of non-bot players
  * @param players
- * @param ignoreBots
+ * @param includeBots
  * @returns
  */
-export const getListOfPlayers = (players: Players, ignoreBots = true): Player[] => {
-  if (!ignoreBots) return Object.values(players);
+export const getListOfPlayers = (players: Players, includeBots = false): Player[] => {
+  if (!includeBots) return Object.values(players);
 
   return Object.values(players).filter((player) => !player.bot);
 };

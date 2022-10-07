@@ -11,6 +11,9 @@ import PhaseDoorChoice from './PhaseDoorChoice';
 import PhaseResolution from './PhaseResolution';
 import PhaseGameOver from './PhaseGameOver';
 
+// Fonts
+import 'assets/fonts/dancing-script.scss';
+
 ConfigProvider.config({
   theme: {
     primaryColor: THEME_COLORS.MIDNIGHT,
@@ -44,6 +47,7 @@ function SessionPortaDosDesesperados({ gameId }: SessionProps) {
       gameId={gameId}
       gameCollection={GAME_COLLECTION.PORTA_DOS_DESESPERADOS}
       getActiveComponent={getActiveComponent}
+      backgroundClassName="i-background"
     />
   );
 }

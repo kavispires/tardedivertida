@@ -1,28 +1,35 @@
 // State & Hooks
 import { useIsUserReady } from 'hooks/useIsUserReady';
 import { useLanguage } from 'hooks/useLanguage';
-import { useUser } from 'hooks/useUser';
 import { useStep } from 'hooks/useStep';
+import { useOnSubmitPagesAPIRequest } from './utils/api-requests';
+import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
-import { TOTAL_DOORS } from './utils/constants';
+import { shouldAnnounceTrap } from './utils/helpers';
 // Components
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { TDIcon } from 'components/icons/TDIcon';
+import { PhaseAnnouncement, PhaseContainer, PhaseTimerReset } from 'components/phases';
 import { RoundAnnouncement } from 'components/round';
 import { Translate } from 'components/language';
-import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { AvatarName } from 'components/avatars';
 import { ViewOr } from 'components/views';
+import { TrapAnnouncement } from './components/TrapAnnouncement';
+import { RoundOneRule, RoundRule } from './components/RulesBlobs';
+import { MagicBookIcon } from 'components/icons/MagicBookIcon';
+import { StepSelectPages } from './StepSelectPages';
+import { StepWaitPageSelection } from './StepWaitPageSelection';
+import { BookHighlight } from './components/Highlights';
+import { TurnOrder } from 'components/players';
 
 function PhaseBookPossession({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
   const { translate } = useLanguage();
-  const user = useUser(players);
-  const { step, goToNextStep } = useStep();
+  const { step, goToNextStep, setStep } = useStep();
   const [possessed, isPossessed] = useWhichPlayerIsThe('possessedId', state, players);
+
+  const onSubmitPages = useOnSubmitPagesAPIRequest(setStep);
 
   return (
     <PhaseContainer
@@ -36,71 +43,81 @@ function PhaseBookPossession({ players, state, info }: PhaseProps) {
           round={state?.round}
           onPressButton={goToNextStep}
           buttonText=" "
-          time={5}
+          time={state.round.current === 1 ? 20 : 7}
           circleColor="black"
+          unskippable
         >
-          <Instruction contained>
-            <Translate
-              pt={
-                <>
-                  Somos estudantes de feitiçaria presos num corredor de portas tentando voltar pra casa
-                  <br />
-                  Temos que passar por {TOTAL_DOORS} portas. Estamos na porta no. {state.currentDoor}
-                  <br />
-                  Será que conseguimos sair antes que nossa mágica acabe? Temos {state.magic} cristais
-                  sobrando.
-                </>
-              }
-              en={
-                <>
-                  We are witchcraft students trapped in a hallway of doors trying to get back home.
-                  <br />
-                  We have to go through {TOTAL_DOORS} doors. We're at door #{state.currentDoor}
-                  <br />
-                  Can we get out before our magic is gone? We have {state.magic} magic crystals.
-                </>
-              }
-            />
-          </Instruction>
+          {state.round.current === 1 ? (
+            <RoundOneRule magic={state.magic} />
+          ) : (
+            <RoundRule magic={state.magic} currentCorridor={state.currentCorridor} />
+          )}
         </RoundAnnouncement>
 
         {/* Step 1 */}
         <PhaseAnnouncement
-          icon={<TDIcon />}
+          icon={<MagicBookIcon />}
           title={translate('O Livro possui um jogador', 'The Book possesses a player')}
-          onClose={goToNextStep}
+          onClose={
+            shouldAnnounceTrap(state.trap, PHASES.PORTA_DOS_DESESPERADOS.BOOK_POSSESSION)
+              ? goToNextStep
+              : () => setStep(4)
+          }
           currentRound={state?.round?.current}
         >
           <Instruction>
             <Translate
               pt={
                 <>
-                  Cada rodada um jogador é possuído pelo Livro que Tudo Sabe.
+                  Cada rodada um jogador é possuído pelo <BookHighlight>Livro que Tudo Sabe</BookHighlight>.
                   <br />
-                  <AvatarName player={possessed} /> vai escolher cartas que representam as páginas do livro
-                  para ajudar os outros jogadores a escolherem a porta correta pra ir para o próximo corredor.
-                  <br />
-                  Uma armadilha pode aparecer para nos atrapalhar a cada rodada.
+                  <AvatarName player={possessed} addressUser /> vai escolher cartas que representam as páginas
+                  do livro para ajudar os outros jogadores a escolherem a porta correta pra ir para o próximo
+                  corredor.
                 </>
               }
               en={
                 <>
-                  Each round a player is possessed by The Book Who Knows It All.
+                  Each round a player is possessed by{' '}
+                  <BookHighlight>The Book That Knows It All</BookHighlight>.
                   <br />
-                  <AvatarName player={possessed} /> will choose cards representing the pages in the book to
-                  try to help the other players choose the correct door to move to the next level.
-                  <br />A random trap might show up to disturb our quest.
+                  <AvatarName player={possessed} addressUser /> will choose cards representing the pages in
+                  the book to try to help the other players choose the correct door to move to the next level.
                 </>
               }
+            />
+
+            <TurnOrder
+              players={players}
+              order={state.gameOrder}
+              activePlayerId={state.possessedId}
+              title={<Translate pt="Ordem da Possessão" en="Possession Order" />}
             />
           </Instruction>
         </PhaseAnnouncement>
 
         {/* Step 2 */}
-        <ViewOr orCondition={isPossessed}>
-          <StepSelectPages />
+        <PhaseTimerReset goToNextStep={goToNextStep} />
 
-          <StepWaitPageSelection />
+        {/* Step 3 */}
+        <TrapAnnouncement trap={state.trap} goToNextStep={goToNextStep} />
+
+        {/* Step 4 */}
+        <ViewOr orCondition={isPossessed}>
+          <StepSelectPages
+            pages={state.pages}
+            currentCorridor={state.currentCorridor}
+            answerDoorId={state.answerDoorId}
+            trap={state.trap}
+            onSubmitPages={onSubmitPages}
+          />
+
+          <StepWaitPageSelection
+            players={players}
+            currentCorridor={state.currentCorridor}
+            trap={state.trap}
+            possessed={possessed}
+          />
         </ViewOr>
       </StepSwitcher>
     </PhaseContainer>
