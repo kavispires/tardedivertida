@@ -1,3 +1,5 @@
+import { ReactNode } from 'react';
+import { useNavigate } from 'react-router-dom';
 // Ant Design Resources
 import { Button, Progress, Space } from 'antd';
 // Images
@@ -8,11 +10,9 @@ import { AVATARS } from 'utils/avatars';
 // Components
 import { Translate } from 'components/language';
 import { Avatar } from 'components/avatars';
-import { RateGameWidget } from './RateGameWidget';
-import { useNavigate } from 'react-router-dom';
 import { AdminOnlyButton } from 'components/admin';
-import { ReactNode } from 'react';
 import { Instruction } from 'components/text';
+import { RateGameWidget } from './RateGameWidget';
 
 const GameOverText = () => <Translate pt="Jogo concluído" en="The game is over" />;
 
@@ -26,17 +26,13 @@ type GameOverProps = {
    * Optional custom class name
    */
   className?: string;
-  showRateWidgetAfterContent?: boolean;
+  /**
+   * Custom rate widget text
+   */
   rateWidgetCustomText?: any;
 };
 
-export function GameOver({
-  state,
-  children,
-  className,
-  showRateWidgetAfterContent,
-  rateWidgetCustomText,
-}: GameOverProps) {
+export function GameOver({ state, children, className, rateWidgetCustomText }: GameOverProps) {
   const { language } = useLanguage();
 
   const navigate = useNavigate();
@@ -136,11 +132,9 @@ export function GameOver({
         )}
       </Instruction>
 
-      {!showRateWidgetAfterContent && <RateGameWidget customText={rateWidgetCustomText} />}
+      <RateGameWidget customText={rateWidgetCustomText} />
 
       {children}
-
-      {showRateWidgetAfterContent && <RateGameWidget customText={rateWidgetCustomText} />}
 
       <Space align="center" direction="vertical" className="full-width padding">
         <Button onClick={() => navigate('/')}>

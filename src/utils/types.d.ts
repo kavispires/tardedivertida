@@ -39,6 +39,7 @@ type DualLanguageValue = {
   pt: string;
 };
 type CardId = string;
+type ImageCardId = string;
 type Color =
   | 'red'
   | 'blue'
