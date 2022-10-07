@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "E",
   "gameName": "espiao-entre-nos",
-  "version": "beta-1.1",
+  "version": "0.9.1",
   "title": {
     "pt": "Espião Entre Nós",
     "en": "Spy the Spies"
