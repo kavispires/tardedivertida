@@ -42,7 +42,6 @@ function PhaseGameOver({ state, players, info }: PhaseProps) {
           />
         </Instruction>
       }
-      showRateWidgetAfterContent
     >
       <Instruction>
         <Translate pt="com" en="with" />

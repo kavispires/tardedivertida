@@ -1,23 +1,46 @@
 import { ReactNode, useState } from 'react';
 // Utils
-import { useLanguage } from 'hooks/useLanguage';
 import { PHASES } from 'utils/phases';
 // Components
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { GameOver } from './GameOver';
 import { TheEndIcon } from 'components/icons/TheEndIcon';
+import { Translate } from 'components/language';
 
 type GameOverWrapperProps = {
+  /**
+   * The game info
+   */
   info: GameInfo;
+  /**
+   * The game state
+   */
   state: GameState;
-  children?: any;
+  /**
+   * The additional content of the screen
+   */
+  children?: ReactNode;
+  /**
+   * Custom announcement icon (default: TheEndIcon)
+   */
   announcementIcon?: ReactNode;
-  announcementTitle?: string;
+  /**
+   * CUstom announcement title
+   */
+  announcementTitle?: ReactNode;
+  /**
+   * Custom announcement duration (default: 3)
+   */
   announcementDuration?: number;
-  announcementContent?: any;
-  showRateWidgetAfterContent?: boolean;
-  rateWidgetCustomText?: any;
+  /**
+   * Custom announcement content
+   */
+  announcementContent?: ReactNode;
+  /**
+   * Customize rate widget text
+   */
+  rateWidgetCustomText?: ReactNode;
 };
 
 export function GameOverWrapper({
@@ -28,11 +51,9 @@ export function GameOverWrapper({
   announcementDuration = 3,
   announcementContent,
   children = <></>,
-  showRateWidgetAfterContent = false,
   rateWidgetCustomText,
 }: GameOverWrapperProps) {
   const [step, setStep] = useState(0);
-  const { translate } = useLanguage();
 
   return (
     <PhaseContainer
@@ -45,7 +66,13 @@ export function GameOverWrapper({
         {/*Step 0 */}
         <PhaseAnnouncement
           icon={announcementIcon}
-          title={translate('E o jogo chegou ao fim...', 'And the game is over...', announcementTitle)}
+          title={
+            <Translate
+              pt="E o jogo chegou ao fim..."
+              en="And the game is over..."
+              custom={announcementTitle}
+            />
+          }
           onClose={() => setStep(1)}
           currentRound={state?.round?.current}
           duration={announcementDuration}
@@ -53,11 +80,7 @@ export function GameOverWrapper({
           {Boolean(announcementContent) && announcementContent}
         </PhaseAnnouncement>
 
-        <GameOver
-          state={state}
-          showRateWidgetAfterContent={showRateWidgetAfterContent}
-          rateWidgetCustomText={rateWidgetCustomText}
-        >
+        <GameOver state={state} rateWidgetCustomText={rateWidgetCustomText}>
           {children}
         </GameOver>
       </StepSwitcher>
