@@ -24,8 +24,8 @@ const Showcase = lazy(() => import('pages/Showcase/Showcase' /* webpackChunkName
 const DevIcons = lazy(() => import('pages/Dev/Icons' /* webpackChunkName: "page-dev-icons" */));
 const DevColors = lazy(() => import('pages/Dev/Colors' /* webpackChunkName: "page-dev-colors" */));
 const DevResources = lazy(() => import('pages/Dev/Resources' /* webpackChunkName: "page-dev-resources" */));
-const DevTestingZone = lazy(
-  () => import('pages/Dev/TestingZone' /* webpackChunkName: "page-dev-testing-zone" */)
+const DevPlayground = lazy(
+  () => import('pages/Dev/Playground' /* webpackChunkName: "page-dev-playground" */)
 );
 
 const LazyHub = () => (
@@ -63,9 +63,9 @@ const LazyDevResources = () => (
     <DevResources />
   </Suspense>
 );
-const LazyDevTestingZone = () => (
+const LazyDevPlayground = () => (
   <Suspense fallback={<LoadingPage message={''} />}>
-    <DevTestingZone />
+    <DevPlayground />
   </Suspense>
 );
 
@@ -128,8 +128,8 @@ function App() {
               element={isAuthenticated ? <LazyDevResources /> : <Navigate to="/login" />}
             />
             <Route
-              path="/dev/testing-zone"
-              element={isAuthenticated ? <LazyDevTestingZone /> : <Navigate to="/login" />}
+              path="/dev/playground"
+              element={isAuthenticated ? <LazyDevPlayground /> : <Navigate to="/login" />}
             />
 
             <Route path="/showcase" element={<LazyShowcase />} />
