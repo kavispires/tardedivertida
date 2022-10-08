@@ -9,13 +9,13 @@ type TimedTimerBarProps = {
    */
   duration: number;
   /**
-   * Number of ticks in the bar
-   */
-  steps: number;
-  /**
    * Function executed when the time is up
    */
   onExpire: GenericFunction;
+  /**
+   * Number of ticks in the bar
+   */
+  steps?: number;
   /**
    * Type of bar. Default: line
    */
