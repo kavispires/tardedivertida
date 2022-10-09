@@ -1,11 +1,12 @@
-import { Tooltip } from 'antd';
 import clsx from 'clsx';
+// Ant Design Resources
+import { Tooltip } from 'antd';
 // Helpers
-
-// Colors
+import { getAnimationClass, getAvatarColorById, sortPlayers } from 'utils/helpers';
+// Components
 import { Avatar } from 'components/avatars';
 import { Translate } from 'components/language';
-import { getAnimationClass, getAvatarColorById } from 'utils/helpers';
+import { useMemo } from 'react';
 
 type PlayersDreamsCountProps = {
   players: Players;
@@ -13,13 +14,15 @@ type PlayersDreamsCountProps = {
 };
 
 export function PlayersDreamsCount({ players, playerInNightmareId }: PlayersDreamsCountProps) {
+  const sortedPlayers = useMemo(() => sortPlayers(players), [players]);
+
   return (
     <div className="g-players-dreams-count">
       <header className="g-players-dreams-count__title">
         <Translate en="Player Dream Count" pt="Sonhos por Jogador" />
       </header>
       <ul className="g-players-dreams-count__players">
-        {Object.values(players).map((player) => {
+        {sortedPlayers.map((player) => {
           const cards: GCardInHand[] = Object.values(player.cards);
           const cardsLeft = cards.filter((card) => !card.used);
           const isPlayerInNightmare = player.id === playerInNightmareId;

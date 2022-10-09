@@ -166,8 +166,10 @@ export function BotsRules() {
             seguinte lógica:
             <br />
             O bot A seleciona todas as cartas que foram mais selecionadas pelos jogadores.
-            <br />O bot B seleciona cartas que foram selecionadas por apenas um jogador, mas apenas uma por
-            jogador, e somente se mais de um jogador tiver essa carta extra.
+            <br />
+            O bot B seleciona cartas que foram selecionadas por apenas um jogador, mas apenas uma por jogador,
+            e somente se mais de um jogador tiver essa carta extra.
+            <br />O bot C simplesmente seleciona 4 cartas aleatórias.
           </>
         }
         en={
@@ -180,6 +182,8 @@ export function BotsRules() {
             <br />
             Bot B select all cards that got a single player visiting them but only one per player and only if
             more than one player will have a match this way.
+            <br />
+            Bot C simply selects 4 random cards.
           </>
         }
       />

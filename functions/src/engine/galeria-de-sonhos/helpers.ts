@@ -143,9 +143,11 @@ export const getMostVotedCards = (table: ImageCard[], word: TextCard): ImageCard
  * Simulate player cards for bots based on other players choices:
  * - 1 card with the most matches (between all players)
  * - 1 card for each player
+ * - 4 random cards
  * @param players
+ * @table
  */
-export const simulateBotCards = (players: Players) => {
+export const simulateBotCards = (players: Players, table: ImageCard[]) => {
   const playersCount = utils.players.getListOfPlayers(players).length;
   const cardMatches: Record<CardId, PlayerId[]> = {};
 
@@ -213,6 +215,26 @@ export const simulateBotCards = (players: Players) => {
       };
 
       acc[cardId] = entry;
+
+      return acc;
+    }, {});
+  }
+
+  // METHOD BOT C: Randomly selects 4 cards
+  if (bots[2]) {
+    const bot = bots[2];
+
+    const selectedTable = utils.game.getRandomItems(table, 4);
+
+    bot.cards = selectedTable.reduce((acc: Record<CardId, PlayerCard>, card: ImageCard) => {
+      const entry: PlayerCard = {
+        cardId: card.id,
+        used: false,
+        matchedPlayers: [],
+        score: 0,
+      };
+
+      acc[card.id] = entry;
 
       return acc;
     }, {});
