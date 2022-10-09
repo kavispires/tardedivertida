@@ -6,7 +6,7 @@ import type { CategoryCard, FirebaseStateData, FirebaseStoreData, ResourceData }
 // Utils
 import * as utils from '../../utils';
 // Internal
-import { buildDeck, buildRanking } from './helpers';
+import { buildDeck, buildRanking, getAchievements } from './helpers';
 
 /**
  * Setup
@@ -29,6 +29,14 @@ export const prepareSetupPhase = async (
   // Build deck
   const deck = buildDeck(additionalData);
 
+  // Setup achievements
+  const achievements = utils.achievements.setup(players, store, {
+    exact: 0,
+    accuracy: 0,
+    zero: 0,
+    psychicPoints: 0,
+  });
+
   // Save
   return {
     update: {
@@ -37,6 +45,7 @@ export const prepareSetupPhase = async (
         deck,
         deckIndex: 0,
         pastCategories: [],
+        achievements,
       },
       state: {
         phase: ONDA_TELEPATICA_PHASES.SETUP,
@@ -131,11 +140,14 @@ export const prepareRevealPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Gather votes
-  const ranking = buildRanking(players, state.currentCategory, state.psychicId);
+  const ranking = buildRanking(players, state.currentCategory, state.psychicId, store);
 
   // Save
   return {
     update: {
+      store: {
+        achievements: store.achievements,
+      },
       state: {
         phase: ONDA_TELEPATICA_PHASES.REVEAL,
         ranking,
@@ -152,6 +164,9 @@ export const prepareGameOverPhase = async (
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 
+  // Get achievements
+  const achievements = getAchievements(players, store);
+
   return {
     update: {
       meta: {
@@ -166,6 +181,7 @@ export const prepareGameOverPhase = async (
         gameEndedAt: Date.now(),
         winners,
         pastCategories: store.pastCategories,
+        achievements,
       },
     },
   };
