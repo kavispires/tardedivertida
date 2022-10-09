@@ -17,6 +17,7 @@ type AvatarNameProps = {
   withDescription?: boolean;
   uppercase?: boolean;
   addressUser?: boolean;
+  upright?: boolean;
 };
 
 export const AvatarName = ({
@@ -26,6 +27,7 @@ export const AvatarName = ({
   withDescription = false,
   uppercase = false,
   addressUser = false,
+  upright = false,
 }: AvatarNameProps) => {
   const [userId] = useGlobalState('userId');
   const { language, translate } = useLanguage();
@@ -36,7 +38,14 @@ export const AvatarName = ({
   const addressedUser = translate('VOCÊ', 'YOU');
 
   return (
-    <span className={clsx(baseClass, uppercase && `${baseClass}--uppercase`, className)}>
+    <span
+      className={clsx(
+        baseClass,
+        uppercase && `${baseClass}--uppercase`,
+        upright && `${baseClass}--upright`,
+        className
+      )}
+    >
       <Avatar id={player.avatarId} className="avatar-name__avatar" size={size} />
       <span className="avatar-name__name">{addressUser && isUser ? addressedUser : player.name}</span>
       {withDescription && (
