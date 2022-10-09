@@ -1,5 +1,9 @@
 import { PORTA_DOS_DESESPERADOS_ACTIONS, TRAPS } from './constants';
 
+export type PortaDosDesesperadosOptions = {
+  withBots?: boolean;
+};
+
 export interface PortaDosDesesperadosStore extends DefaultStore {
   [key: string]: any;
 }

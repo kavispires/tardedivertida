@@ -19,7 +19,7 @@ import { getAnimationClass } from 'utils/helpers';
 import { Book } from './components/Book';
 import { Corridor } from './components/Corridor';
 import { CrystalHighlight, DoorHighlight, TimeHighlight } from './components/Highlights';
-import { TrapPopupRule } from './components/RulesBlobs';
+import { BotPopupRule, TrapPopupRule } from './components/RulesBlobs';
 import { SandTimer } from './components/SandTimer';
 
 type StepSelectPagesProps = {
@@ -63,6 +63,8 @@ export function StepSelectDoor({
       </Title>
 
       {showTrap && <TrapPopupRule trap={trap} />}
+
+      <BotPopupRule />
 
       <Instruction contained className="i-sand-timer-container">
         <Translate
