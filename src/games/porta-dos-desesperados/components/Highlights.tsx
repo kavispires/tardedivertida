@@ -5,15 +5,15 @@ import { MagicHourGlassIcon } from 'components/icons/MagicHourGlassIcon';
 import { MagicBookIcon } from 'components/icons/MagicBookIcon';
 import { MetricHighlight, MetricHighlightProps } from 'components/text/MetricHighlight';
 
-type HighlightProps = Pick<MetricHighlightProps, 'children' | 'negative'>;
+type HighlightProps = Pick<MetricHighlightProps, 'children' | 'type'>;
 
 export function BookHighlight({ children }: HighlightProps) {
   return <MetricHighlight icon={<MagicBookIcon />}>{children}</MetricHighlight>;
 }
 
-export function CrystalHighlight({ children, negative }: HighlightProps) {
+export function CrystalHighlight({ children, type }: HighlightProps) {
   return (
-    <MetricHighlight icon={<MagicCrystalIcon />} negative={negative}>
+    <MetricHighlight icon={<MagicCrystalIcon />} type={type}>
       {children}
     </MetricHighlight>
   );

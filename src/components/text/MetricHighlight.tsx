@@ -14,12 +14,12 @@ export type MetricHighlightProps = {
   /**
    * Indicates if it's a negative metric
    */
-  negative?: boolean;
+  type?: 'positive' | 'negative' | 'default';
 };
 
-export function MetricHighlight({ children, icon, negative }: MetricHighlightProps) {
+export function MetricHighlight({ children, icon, type }: MetricHighlightProps) {
   return (
-    <span className={clsx('metric-highlight', negative && 'metric-highlight--negative')}>
+    <span className={clsx('metric-highlight', type && `metric-highlight--${type}`)}>
       {children} <IconAvatar size="small" icon={icon} />
     </span>
   );

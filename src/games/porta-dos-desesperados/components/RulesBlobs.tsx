@@ -26,7 +26,7 @@ export function RoundOneRule({ magic }: RoundOneRuleProps) {
             Devemos que passar por <DoorHighlight>{TOTAL_DOORS}</DoorHighlight> portas.
             <br />
             Mas temos apenas <CrystalHighlight>{magic}</CrystalHighlight> cristais mágicos e cada porta que
-            abrimos usamos <CrystalHighlight negative>1</CrystalHighlight> cristal.
+            abrimos usamos <CrystalHighlight type="negative">1</CrystalHighlight> cristal.
             <br />
             Será que conseguimos sair antes que nossa mágica acabe?
           </>
@@ -39,7 +39,7 @@ export function RoundOneRule({ magic }: RoundOneRuleProps) {
             doors.
             <br />
             But we only have <CrystalHighlight>{magic}</CrystalHighlight> magic crystals and each door we go
-            through costs us <CrystalHighlight negative>1</CrystalHighlight> crystal.
+            through costs us <CrystalHighlight type="negative">1</CrystalHighlight> crystal.
             <br />
             Can we get out before our crystals are gone?
           </>
@@ -66,7 +66,7 @@ export function RoundRule({ magic, currentCorridor }: RoundRuleProps) {
             </DoorHighlight>
             <br />
             Ainda temos <CrystalHighlight>{magic}</CrystalHighlight> cristais mágicos e cada porta que abrimos
-            usamos <CrystalHighlight negative>1</CrystalHighlight> cristal.
+            usamos <CrystalHighlight type="negative">1</CrystalHighlight> cristal.
             <br />
             Será que conseguimos sair antes que nossa mágica acabe?
           </>
@@ -79,7 +79,7 @@ export function RoundRule({ magic, currentCorridor }: RoundRuleProps) {
             </DoorHighlight>
             <br />
             We still have <CrystalHighlight>{magic}</CrystalHighlight> magic crystals left and each door we go
-            through costs us <CrystalHighlight negative>1</CrystalHighlight> crystal.
+            through costs us <CrystalHighlight type="negative">1</CrystalHighlight> crystal.
             <br />
             Can we get out before our crystals are gone?
           </>

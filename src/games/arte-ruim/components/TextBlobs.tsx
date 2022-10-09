@@ -1,5 +1,6 @@
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
+import { PointsHighlight } from './Highlights';
 
 export const EvaluationRules = () => (
   <Instruction>
@@ -34,18 +35,23 @@ export const GalleryRules = () => (
         <>
           Agora, mostraremos cada arte, o que os jogadores votaram e a resposta final.
           <br />
-          Se você votou na expressão correta, você ganha 2 pontos.
+          Se você votou na expressão correta, você ganha <PointsHighlight type="positive">
+            2
+          </PointsHighlight>{' '}
+          pontos.
           <br />
-          Quando for a sua arte, você ganha 1 ponto para cada pessoa que votou corretamente.
+          Quando for a sua arte, você ganha <PointsHighlight type="positive">1</PointsHighlight> ponto para
+          cada pessoa que votou corretamente.
         </>
       }
       en={
         <>
           Now we show each art, what players voted, and the final answer.
           <br />
-          You get 2 points if you selected the right card.
+          You get <PointsHighlight type="positive">2</PointsHighlight> points if you selected the right card.
           <br />
-          When players selected the correct card for your artwork, you get 1 point for each match!
+          When players selected the correct card for your artwork, you get{' '}
+          <PointsHighlight type="positive">1</PointsHighlight> point for each match!
         </>
       }
     />
@@ -57,16 +63,20 @@ export const ScoringRules = () => (
     <Translate
       pt={
         <>
-          Você ganha 2 pontos para cada ligação correta entre arte e expressão.
+          Você ganha <PointsHighlight type="positive">2</PointsHighlight> pontos para cada ligação correta
+          entre arte e expressão.
           <br />
-          Para cada ligação correta que sua arte ganha, você recebe 1 ponto.
+          Para cada ligação correta que sua arte ganha, você recebe{' '}
+          <PointsHighlight type="positive">1</PointsHighlight> ponto.
         </>
       }
       en={
         <>
-          You get 2 points if you matched the right card with artwork.
+          You get <PointsHighlight type="positive">2</PointsHighlight> points if you matched the right card
+          with artwork.
           <br />
-          For you own artwork, you get 1 point for each correct match the other players done.
+          For you own artwork, you get <PointsHighlight type="positive">1</PointsHighlight> point for each
+          correct match the other players done.
         </>
       }
     />
