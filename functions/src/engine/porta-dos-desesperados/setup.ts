@@ -14,7 +14,7 @@ import {
 import type { FirebaseStateData, FirebaseStoreData, Trap } from './types';
 // Utils
 import * as utils from '../../utils';
-import { createTrapOrder, getBookPages, getDoorSet } from './helpers';
+import { botDoorSelection, createTrapOrder, getBookPages, getDoorSet } from './helpers';
 
 /**
  * Setup
@@ -28,7 +28,13 @@ export const prepareSetupPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Determine player order
-  const { gameOrder, playerCount } = utils.helpers.buildGameOrder(players);
+  const { gameOrder, playerCount: pC } = utils.helpers.buildGameOrder(players);
+  const playerCount = store.options?.withBots ? pC + 2 : pC;
+
+  // Helper Bots
+  if (store.options?.withBots) {
+    utils.players.addBots(players, 2);
+  }
 
   // Get image cards
   const imageCardIds = await utils.imageCards.getImageCards(252);
@@ -138,6 +144,11 @@ export const prepareDoorChoicePhase = async (
     selectedPagesIds.push(utils.game.getRandomItem(otherPages));
   }
 
+  // Bot choices
+  if (store.options?.withBots) {
+    botDoorSelection(players, state.doors, state.answerDoorId);
+  }
+
   // Save
   return {
     update: {
@@ -155,8 +166,9 @@ export const prepareResolutionPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
-  //Gather all players door choices
+  // Gather all players door choices
   const visitedDoors = utils.players.getListOfPlayers(players, true).reduce((acc: string[], player) => {
+    console.log(player.id, player.doorId);
     if (player.doorId && !acc.includes(player.doorId)) {
       acc.push(player.doorId);
     }

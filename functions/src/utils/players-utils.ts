@@ -318,7 +318,7 @@ export const addBots = (
  * @returns
  */
 export const getListOfPlayers = (players: Players, includeBots = false): Player[] => {
-  if (!includeBots) return Object.values(players);
+  if (includeBots) return Object.values(players);
 
   return Object.values(players).filter((player) => !player.bot);
 };

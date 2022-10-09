@@ -21,6 +21,8 @@ import { Instruction, TextHighlight, Title } from 'components/text';
 import { DoorFrame } from './components/DoorFrame';
 import { TrapPopupRule } from './components/RulesBlobs';
 import { getAnimationClass } from 'utils/helpers';
+import { MagicDoorIcon } from 'components/icons/MagicDoorIcon';
+import { IconAvatar } from 'components/icons/IconAvatar';
 
 type StepSelectPagesProps = {
   pages: CardId[];
@@ -62,12 +64,20 @@ export function StepSelectPages({
         <Translate
           pt={
             <>
-              Ajude os jogadores a encontrar a <TextHighlight>Porta {currentCorridor}</TextHighlight>:
+              Ajude os jogadores a encontrar a porta{' '}
+              <TextHighlight>
+                <IconAvatar icon={<MagicDoorIcon />} size="large" /> {currentCorridor}
+              </TextHighlight>
+              :
             </>
           }
           en={
             <>
-              Help players find <TextHighlight>Door {currentCorridor}</TextHighlight>:
+              Help players find the door{' '}
+              <TextHighlight>
+                <IconAvatar icon={<MagicDoorIcon />} size="large" /> {currentCorridor}
+              </TextHighlight>
+              :
             </>
           }
         />

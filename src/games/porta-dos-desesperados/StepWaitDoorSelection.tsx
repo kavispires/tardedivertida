@@ -13,7 +13,7 @@ import { PHASES } from 'utils/phases';
 import { Book } from './components/Book';
 import { Corridor } from './components/Corridor';
 import { CrystalHighlight, DoorHighlight, TimeHighlight } from './components/Highlights';
-import { TrapPopupRule } from './components/RulesBlobs';
+import { BotPopupRule, TrapPopupRule } from './components/RulesBlobs';
 import { SandTimer } from './components/SandTimer';
 import { ROUND_DURATION, TOTAL_DOORS, TRAPS } from './utils/constants';
 import { shouldAnnounceTrap } from './utils/helpers';
@@ -49,6 +49,8 @@ export function StepWaitDoorSelection({
       </Title>
 
       {showTrap && <TrapPopupRule trap={trap} />}
+
+      <BotPopupRule />
 
       <Instruction contained className="i-sand-timer-container">
         <Translate

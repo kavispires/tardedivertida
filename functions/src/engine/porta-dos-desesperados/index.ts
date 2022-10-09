@@ -12,6 +12,7 @@ import type {
   PortaDosDesesperadosSubmitAction,
   FirebaseStateData,
   FirebaseStoreData,
+  PortaDosDesesperadosOptions,
 } from './types';
 // Utilities
 import * as utils from '../../utils';
@@ -36,7 +37,8 @@ import { handleSubmitDoor, handleSubmitPages } from './actions';
 export const getInitialState = (
   gameId: GameId,
   uid: string,
-  language: Language
+  language: Language,
+  options: PortaDosDesesperadosOptions
 ): PortaDosDesesperadosInitialState => {
   return utils.helpers.getDefaultInitialState({
     gameId,
@@ -47,6 +49,7 @@ export const getInitialState = (
     initialPhase: PORTA_DOS_DESESPERADOS_PHASES.LOBBY,
     totalRounds: MAX_ROUNDS,
     store: {},
+    options,
   });
 };
 

@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable no-unused-vars, @typescript-eslint/no-unused-vars */
 
 // import { Image, Layout } from 'antd';
 import GAME_LIST from 'utils/info';
