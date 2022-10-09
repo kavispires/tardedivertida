@@ -6,7 +6,7 @@ import { Avatar, AvatarEntry } from 'components/avatars';
 import { AdminOnlyContainer } from 'components/admin';
 // Resources
 import { CheckCircleFilled, CheckCircleOutlined } from '@ant-design/icons';
-import { Button, Input } from 'antd';
+import { Button, Input, Space } from 'antd';
 import { LETTERS } from 'utils/constants';
 
 import { getColorFromLetter } from 'utils/helpers';
@@ -15,12 +15,14 @@ import { useTitle } from 'react-use';
 import { TimedTimerBar } from 'components/timers';
 import { mockPlayers } from 'mock/players';
 import { TurnOrder } from 'components/players';
+import { TableOrder } from 'components/players/TableOrder';
+import { useMemo } from 'react';
 
 function Playground() {
   useTitle('Playground | Dev | Tarde Divertida');
   const info = GAME_LIST['U'];
 
-  const players = mockPlayers({});
+  const players = useMemo(() => mockPlayers({}, 12, {}), []);
 
   // Mock State
   const state = {
@@ -84,6 +86,23 @@ function Playground() {
       <AdminOnlyContainer>Hello</AdminOnlyContainer>
       <TimedTimerBar duration={30} onExpire={() => console.log('done')} />
       <TurnOrder players={players} order={Object.keys(players)} activePlayerId={Object.keys(players)[3]} />
+
+      <Space>
+        <TableOrder
+          players={players}
+          order={Object.keys(players)}
+          activePlayerId={Object.keys(players)[3]}
+          reorderByUser={Object.keys(players)[3]}
+        />
+
+        <TableOrder
+          players={players}
+          order={Object.keys(players)}
+          activePlayerId={Object.keys(players)[3]}
+          reorderByUser={Object.keys(players)[3]}
+          size="small"
+        />
+      </Space>
     </div>
   );
 }
