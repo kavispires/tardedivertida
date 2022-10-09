@@ -61,13 +61,13 @@ export function StepResults({
         <Translate
           pt={
             <>
-              Vocês usaram <CrystalHighlight negative>{usedMagic}</CrystalHighlight> e têm{' '}
+              Vocês usaram <CrystalHighlight type="negative">{usedMagic}</CrystalHighlight> e têm{' '}
               <CrystalHighlight>{magic}</CrystalHighlight> sobrando.
             </>
           }
           en={
             <>
-              You used <CrystalHighlight negative>{usedMagic}</CrystalHighlight> but still have{' '}
+              You used <CrystalHighlight type="negative">{usedMagic}</CrystalHighlight> but still have{' '}
               <CrystalHighlight>{magic}</CrystalHighlight> remaining.
             </>
           }
