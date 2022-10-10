@@ -1,6 +1,7 @@
-import clsx from 'clsx';
-import { IconAvatar } from 'components/icons/IconAvatar';
 import { ReactNode } from 'react';
+import clsx from 'clsx';
+// Components
+import { IconAvatar } from 'components/icons/IconAvatar';
 
 export type MetricHighlightProps = {
   /**
