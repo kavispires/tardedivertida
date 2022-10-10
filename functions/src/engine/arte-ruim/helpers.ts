@@ -417,6 +417,7 @@ export const buildGallery = (
           gotWrong.push(playerId);
         }
 
+        // Achievement: tableVotes
         if (drawingEntry.level < 5 && tableCardsIds.includes(currentVote)) {
           utils.achievements.increaseAchievement(store, playerId, 'tableVotes', 1);
         }

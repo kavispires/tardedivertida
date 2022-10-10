@@ -1,8 +1,18 @@
 // Constants
-import { CONTADORES_HISTORIAS_PHASES, GAME_OVER_SCORE_THRESHOLD, OUTCOME } from './constants';
-import { DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
+import {
+  CONTADORES_HISTORIAS_ACHIEVEMENTS,
+  CONTADORES_HISTORIAS_PHASES,
+  GAME_OVER_SCORE_THRESHOLD,
+  OUTCOME,
+} from './constants';
+import { DOUBLE_ROUNDS_THRESHOLD, NPC } from '../../utils/constants';
 // Type
-import type { ContadoresHistoriasOptions, Table } from './types';
+import type {
+  ContadoresHistoriasAchievement,
+  ContadoresHistoriasOptions,
+  FirebaseStoreData,
+  Table,
+} from './types';
 // Utils
 import * as utils from '../../utils';
 
@@ -69,7 +79,7 @@ export const buildTable = (players: Players, tableCards: ImageCardId[], storytel
   tableCards.forEach((cardId) => {
     table.push({
       cardId: cardId,
-      playerId: 'NPC',
+      playerId: NPC,
       votes: [],
       isSolution: false,
     });
@@ -112,8 +122,9 @@ export const calculateNewScores = (
   table: Table,
   players: Players,
   outcome: string,
-  storyteller: PlayerId
-): PlainObject => {
+  storytellerId: PlayerId,
+  store: FirebaseStoreData
+): NewScore[] => {
   // Gained points: [points depending on outcome, votes on card]
   const newScores = utils.helpers.buildNewScoreObject(players, [0, 0]);
 
@@ -122,7 +133,7 @@ export const calculateNewScores = (
   Object.values(players).forEach((player) => {
     const playerCard = table.find((entry) => entry.playerId === player.id);
     // Calculate additional points when not storyteller
-    if (player.id !== storyteller) {
+    if (player.id !== storytellerId) {
       // Other players gets 2 points if everybody or nobody got
       if (outcome === OUTCOME.EVERYBODY_GOT || outcome === OUTCOME.NOBODY_GOT) {
         newScores[player.id].gainedPoints[0] += 2;
@@ -133,6 +144,8 @@ export const calculateNewScores = (
       const cardVotes = playerCard?.votes.length ?? 0;
       newScores[player.id].gainedPoints[1] += cardVotes;
       newScores[player.id].newScore += cardVotes;
+      // Achievement: playerVotes
+      utils.achievements.increaseAchievement(store, player.id, 'playerVotes', 1);
     }
 
     // Everybody that got correctly, including storyteller, gets 3 points
@@ -140,16 +153,40 @@ export const calculateNewScores = (
       const normalPoints = solutionEntry?.votes.includes(player.id) ? 3 : 0;
       newScores[player.id].gainedPoints[0] += normalPoints;
       newScores[player.id].newScore += normalPoints;
+
+      // Achievement: easyClues
+      if (normalPoints === 3) {
+        utils.achievements.increaseAchievement(store, storytellerId, 'easyClues', 1);
+      }
     }
 
     // Update player as well
     player.score = newScores[player.id].newScore;
   });
 
+  // Achievement: badClues
+  if (outcome === OUTCOME.EVERYBODY_GOT || outcome === OUTCOME.NOBODY_GOT) {
+    utils.achievements.increaseAchievement(store, storytellerId, 'badClues', 1);
+  }
+
+  // Achievement: tableVotes
+  table
+    .filter((tableEntry) => tableEntry.playerId === NPC)
+    .forEach((tableEntry) =>
+      tableEntry.votes.forEach((playerId) =>
+        utils.achievements.increaseAchievement(store, playerId, 'tableVotes', 1)
+      )
+    );
+
   return utils.helpers.sortNewScore(newScores);
 };
 
-export const scoreRound = (players: Players, table: Table, storyteller: PlayerId) => {
+export const scoreRound = (
+  players: Players,
+  table: Table,
+  storyteller: PlayerId,
+  store: FirebaseStoreData
+) => {
   const { solutionIndex, cardIndexDictionary } = buildCardIndex(table);
 
   // Add player votes to table
@@ -160,7 +197,7 @@ export const scoreRound = (players: Players, table: Table, storyteller: PlayerId
 
   const outcome = determineOutcome(table, solutionIndex, Object.keys(players).length);
 
-  const ranking = calculateNewScores(table, players, outcome, storyteller);
+  const ranking = calculateNewScores(table, players, outcome, storyteller, store);
 
   return {
     table,
@@ -191,4 +228,73 @@ export const determineGameOver = (
   }
 
   return round.current >= playerCount;
+};
+
+/**
+ * Get achievements:
+ * @param players
+ * @param store
+ */
+export const getAchievements = (players: Players, store: FirebaseStoreData) => {
+  const achievements: Achievement<ContadoresHistoriasAchievement>[] = [];
+
+  // Most Deceiving: Got players to vote for their cards when not the storyteller
+  const { most, least } = utils.achievements.getMostAndLeastOf(store, 'playerVotes');
+  if (most) {
+    achievements.push({
+      type: CONTADORES_HISTORIAS_ACHIEVEMENTS.MOST_DECEIVING,
+      playerId: most.playerId,
+      value: most.playerVotes,
+    });
+  }
+
+  // Worst Cards: Didn't get players to vote for their cards when not the storyteller
+  if (least) {
+    achievements.push({
+      type: CONTADORES_HISTORIAS_ACHIEVEMENTS.WORST_CARDS,
+      playerId: least.playerId,
+      value: least.playerVotes,
+    });
+  }
+
+  // Worst clues: nobody got or all got it
+  const { most: worstClues } = utils.achievements.getMostAndLeastOf(store, 'badClues');
+  if (worstClues) {
+    achievements.push({
+      type: CONTADORES_HISTORIAS_ACHIEVEMENTS.WORST_CLUES,
+      playerId: worstClues.playerId,
+      value: worstClues.badClues,
+    });
+  }
+
+  // Easiest clues: most people got it or all got it
+  const { most: easyClues, least: hardestClues } = utils.achievements.getMostAndLeastOf(store, 'easyClues');
+  if (easyClues) {
+    achievements.push({
+      type: CONTADORES_HISTORIAS_ACHIEVEMENTS.EASIEST_CLUES,
+      playerId: easyClues.playerId,
+      value: easyClues.easyClues,
+    });
+  }
+
+  // Hardest clues: least people got it
+  if (hardestClues) {
+    achievements.push({
+      type: CONTADORES_HISTORIAS_ACHIEVEMENTS.HARDEST_CLUES,
+      playerId: hardestClues.playerId,
+      value: hardestClues.easyClues,
+    });
+  }
+
+  // Table votes: votes for cards that are not from players the most
+  const { most: tableVotes } = utils.achievements.getMostAndLeastOf(store, 'tableVotes');
+  if (tableVotes) {
+    achievements.push({
+      type: CONTADORES_HISTORIAS_ACHIEVEMENTS.TABLE_VOTES,
+      playerId: tableVotes.playerId,
+      value: tableVotes.tableVotes,
+    });
+  }
+
+  return achievements;
 };

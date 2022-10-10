@@ -180,3 +180,5 @@ export const SEPARATOR = ';;';
 export const USED_GAME_IDS = 'usedGameIds';
 
 export const DOUBLE_ROUNDS_THRESHOLD = 6;
+
+export const NPC = 'NPC';

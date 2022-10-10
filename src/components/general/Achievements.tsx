@@ -11,6 +11,7 @@ import { Avatar } from 'components/avatars';
 import { IconAvatar } from 'components/icons/IconAvatar';
 import { Translate } from 'components/language';
 import { Title } from 'components/text';
+import { MedalStarIcon } from 'components/icons/MedalStarIcon';
 
 type AchievementsProps = {
   players: GamePlayers;
@@ -28,7 +29,7 @@ export function Achievements({ players, achievements, reference }: AchievementsP
       </Title>
       <ul className="achievements-list">
         {achievements.map((achievement, index) => {
-          const { Icon, ...achievementObj } = reference[achievement.type];
+          const { Icon = MedalStarIcon, ...achievementObj } = reference[achievement.type];
           const player = players[achievement.playerId];
           return (
             <li
@@ -36,7 +37,9 @@ export function Achievements({ players, achievements, reference }: AchievementsP
               className={clsx('achievements-entry', getAnimationClass('flipInY', index + 1))}
             >
               <div className="achievement__medal">
-                <IconAvatar icon={<Icon />} size="large" />
+                <Popover content={`Total: ${String(achievement.value)}`}>
+                  <IconAvatar icon={<Icon />} size="large" />
+                </Popover>
               </div>
               <h4 className="achievement__title">{achievementObj.title[language] ?? 'Unknown'}</h4>
               <div className="achievement__avatar">

@@ -1,4 +1,4 @@
-import { CONTADORES_HISTORIAS_ACTIONS } from './constants';
+import { CONTADORES_HISTORIAS_ACHIEVEMENTS, CONTADORES_HISTORIAS_ACTIONS } from './constants';
 
 export type ContadoresHistoriasOptions = {
   fixedRounds: boolean;
@@ -41,6 +41,8 @@ export type Table = TableEntry[];
 export interface ContadoresHistoriasSubmitAction extends Payload {
   action: keyof typeof CONTADORES_HISTORIAS_ACTIONS;
 }
+
+export type ContadoresHistoriasAchievement = keyof typeof CONTADORES_HISTORIAS_ACHIEVEMENTS;
 
 export type FirebaseStateData = FirebaseFirestore.DocumentData | ContadoresHistoriasState;
 export type FirebaseStoreData = FirebaseFirestore.DocumentData | ContadoresHistoriasStore;
