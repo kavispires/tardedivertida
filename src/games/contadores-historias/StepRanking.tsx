@@ -9,6 +9,7 @@ import { StepRankingWrapper } from 'components/ranking';
 import { PopoverRule } from 'components/rules';
 import { Instruction } from 'components/text';
 import { ScoringRules } from './components/RulesBlobs';
+import { PointsHighlight } from './components/Highlights';
 
 type StepRankingProps = {
   players: GamePlayers;
@@ -92,12 +93,14 @@ export function StepRanking({
             <Translate
               pt={
                 <>
-                  Quem acertou ganha 3 pontos! Bom trabalho, <AvatarName player={storyteller} />.
+                  Quem acertou ganha <PointsHighlight type="positive">3</PointsHighlight> pontos! Bom
+                  trabalho, <AvatarName player={storyteller} />.
                 </>
               }
               en={
                 <>
-                  Whoever guessed it right got 3 points! Good job, <AvatarName player={storyteller} />
+                  Whoever guessed it right got <PointsHighlight type="positive">3</PointsHighlight> points!
+                  Good job, <AvatarName player={storyteller} />
                 </>
               }
             />
