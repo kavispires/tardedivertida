@@ -235,7 +235,7 @@ export const determineGameOver = (
  * @param players
  * @param store
  */
-export const getAchievements = (players: Players, store: FirebaseStoreData) => {
+export const getAchievements = (store: FirebaseStoreData) => {
   const achievements: Achievement<ContadoresHistoriasAchievement>[] = [];
 
   // Most Deceiving: Got players to vote for their cards when not the storyteller

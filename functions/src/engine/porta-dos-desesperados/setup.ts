@@ -163,7 +163,6 @@ export const prepareResolutionPhase = async (
 ): Promise<SaveGamePayload> => {
   // Gather all players door choices
   const visitedDoors = utils.players.getListOfPlayers(players, true).reduce((acc: string[], player) => {
-    console.log(player.id, player.doorId);
     if (player.doorId && !acc.includes(player.doorId)) {
       acc.push(player.doorId);
     }

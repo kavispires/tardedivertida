@@ -204,7 +204,7 @@ export const prepareGameOverPhase = async (
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 
-  const achievements = getAchievements(players, store);
+  const achievements = getAchievements(store);
 
   return {
     update: {

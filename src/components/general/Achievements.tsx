@@ -20,7 +20,8 @@ type AchievementsProps = {
 };
 
 export function Achievements({ players, achievements, reference }: AchievementsProps) {
-  const { language } = useLanguage();
+  const { language, translate } = useLanguage();
+  const unknownText = translate('Desconhecido', 'Unknown');
 
   return (
     <div className={clsx('achievements', getAnimationClass('fadeIn'))}>
@@ -29,7 +30,7 @@ export function Achievements({ players, achievements, reference }: AchievementsP
       </Title>
       <ul className="achievements-list">
         {achievements.map((achievement, index) => {
-          const { Icon = MedalStarIcon, ...achievementObj } = reference[achievement.type];
+          const { Icon = MedalStarIcon, ...achievementObj } = reference[achievement.type] ?? {};
           const player = players[achievement.playerId];
           return (
             <li
@@ -41,7 +42,7 @@ export function Achievements({ players, achievements, reference }: AchievementsP
                   <IconAvatar icon={<Icon />} size="large" />
                 </Popover>
               </div>
-              <h4 className="achievement__title">{achievementObj.title[language] ?? 'Unknown'}</h4>
+              <h4 className="achievement__title">{achievementObj.title?.[language] ?? unknownText}</h4>
               <div className="achievement__avatar">
                 <Avatar id={player.avatarId} />
               </div>

@@ -8,7 +8,9 @@ import * as utils from '../../utils';
 import {
   buildDecks,
   buildStreetDeck,
+  countMonsters,
   dealNewCard,
+  getAchievements,
   getTotalCandyInSidewalk,
   parseDecisions,
   resetHorrorCount,
@@ -40,6 +42,14 @@ export const prepareSetupPhase = async (
 
   utils.players.distributeNumberIds(players, 0, 14, 'costumeId');
 
+  const achievements = utils.achievements.setup(players, store, {
+    facingMonsters: 0,
+    lostCandy: 0,
+    houses: 0,
+    jackpots: 0,
+    sidewalk: 0,
+  });
+
   // Save
   return {
     update: {
@@ -50,6 +60,7 @@ export const prepareSetupPhase = async (
         horrorCount,
         usedHorrorIds: [],
         claimedJackpotIds: [],
+        achievements,
       },
       state: {
         phase: NA_RUA_DO_MEDO_PHASES.SETUP,
@@ -163,12 +174,7 @@ export const prepareResultPhase = async (
     continuingPlayerIds,
     alreadyAtHomePlayerIds,
     cashedInCandy,
-  } = parseDecisions(
-    players,
-    state.candySidewalk,
-    [...state.street, state.currentCard],
-    store.claimedJackpotIds
-  );
+  } = parseDecisions(players, state.candySidewalk, [...state.street, state.currentCard], store);
 
   // Count candy
   const totalCandyInSidewalk = getTotalCandyInSidewalk(candySidewalk);
@@ -178,6 +184,7 @@ export const prepareResultPhase = async (
     update: {
       store: {
         claimedJackpotIds,
+        achievements: store.achievements,
       },
       state: {
         phase: NA_RUA_DO_MEDO_PHASES.RESULT,
@@ -219,8 +226,24 @@ export const prepareStreetEndPhase = async (
 
   const usedHorrorIds = [...store.usedHorrorIds, currentCard.id];
 
-  // Count lost candy
+  // Count lost candy in sidewalk
   const totalCandyInSidewalk = getTotalCandyInSidewalk(state.candySidewalk);
+
+  // Achievements
+  const monsterCount = countMonsters([...state.street, currentCard]);
+  state.continuingPlayerIds.forEach((playerId: PlayerId) => {
+    // Achievement: most houses
+    utils.achievements.increaseAchievement(store, playerId, 'houses', 1);
+    // Achievement: facing monsters
+    utils.achievements.increaseAchievement(store, playerId, 'facingMonsters', monsterCount);
+    // Achievement lost candy
+    utils.achievements.increaseAchievement(
+      store,
+      playerId,
+      'lostCandy',
+      totalCandyInSidewalk + state.candyInHand
+    );
+  });
 
   // Save
   return {
@@ -228,6 +251,7 @@ export const prepareStreetEndPhase = async (
       store: {
         usedHorrorIds,
         horrorCount: store.horrorCount,
+        achievements: store.achievements,
       },
       state: {
         phase: NA_RUA_DO_MEDO_PHASES.STREET_END,
@@ -249,6 +273,8 @@ export const prepareGameOverPhase = async (
   tallyCandyAsScore(players);
   const winners = utils.players.determineWinners(players);
 
+  const achievements = getAchievements(store);
+
   return {
     update: {
       meta: {
@@ -262,6 +288,7 @@ export const prepareGameOverPhase = async (
         round: state.round,
         gameEndedAt: Date.now(),
         winners,
+        achievements,
       },
     },
   };
