@@ -28,7 +28,7 @@ export function Achievements({ players, achievements, reference }: AchievementsP
       </Title>
       <ul className="achievements-list">
         {achievements.map((achievement, index) => {
-          const achievementObj = reference[achievement.type];
+          const { Icon, ...achievementObj } = reference[achievement.type];
           const player = players[achievement.playerId];
           return (
             <li
@@ -36,7 +36,7 @@ export function Achievements({ players, achievements, reference }: AchievementsP
               className={clsx('achievements-entry', getAnimationClass('flipInY', index + 1))}
             >
               <div className="achievement__medal">
-                <IconAvatar icon={achievementObj.icon} size="large" />
+                <IconAvatar icon={<Icon />} size="large" />
               </div>
               <h4 className="achievement__title">{achievementObj.title[language] ?? 'Unknown'}</h4>
               <div className="achievement__avatar">
