@@ -165,7 +165,7 @@ export const prepareGameOverPhase = async (
   const winners = utils.players.determineWinners(players);
 
   // Get achievements
-  const achievements = getAchievements(players, store);
+  const achievements = getAchievements(store);
 
   return {
     update: {

@@ -2,6 +2,7 @@
 import type {
   CategoryCard,
   Deck,
+  FirebaseStoreData,
   OndaTelepaticaAchievement,
   OndaTelepaticaOptions,
   ResourceData,
@@ -182,13 +183,9 @@ export const buildRanking = (
 
 /**
  * Get achievements:
- * Most dead - if only one sheep died
- * Most matches - highest final score
- * Least matches - lowest final score
- * Most lonely - is the only one in a pasture
- * @param players
+ * @param store
  */
-export const getAchievements = (players: Players, store: PlainObject) => {
+export const getAchievements = (store: FirebaseStoreData) => {
   const achievements: Achievement<OndaTelepaticaAchievement>[] = [];
 
   const { most, least } = utils.achievements.getMostAndLeastOf(store, 'accuracy');

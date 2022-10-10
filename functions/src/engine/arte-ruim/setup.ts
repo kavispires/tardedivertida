@@ -167,7 +167,7 @@ export const prepareGameOverPhase = async (
 
   const finalGallery = utils.helpers.orderBy(store.pastDrawings, 'successRate', 'desc');
 
-  const achievements = getAchievements(players, store);
+  const achievements = getAchievements(store);
 
   return {
     update: {

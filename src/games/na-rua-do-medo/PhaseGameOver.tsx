@@ -12,6 +12,8 @@ import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
 import { Avatar } from 'components/avatars';
 import { PoopIcon } from 'components/icons/PoopIcon';
+import { Achievements } from 'components/general/Achievements';
+import { achievementsReference } from './utils/achievements';
 
 const GRID_REPEAT: NumberDictionary = {
   3: 3,
@@ -66,6 +68,8 @@ function PhaseGameOver({ state, players, info }: PhaseProps) {
       </ul>
 
       <PlayerStats user={user} />
+
+      <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
     </GameOverWrapper>
   );
 }
