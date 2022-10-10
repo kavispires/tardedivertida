@@ -96,15 +96,10 @@ export const prepareBookPossessionPhase = async (
     : {
         doors: state.doors,
         newDoorIndex: store.doorsDeckIndex,
-        answerDoorId: state.answerDoorId,
+        answerDoorId: utils.game.getRandomItem(state.doors),
       };
 
-  const pages = isCorrect
-    ? getBookPages(store.pagesDeck, store.pagesDeckIndex, trap as Trap)
-    : {
-        pages: state.pages,
-        newPageIndex: store.pagesDeckIndex,
-      };
+  const pages = getBookPages(store.pagesDeck, store.pagesDeckIndex, trap as Trap);
 
   // Save
   return {
