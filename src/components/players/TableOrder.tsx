@@ -1,4 +1,4 @@
-import { ReactNode, useMemo } from 'react';
+import { Fragment, ReactNode, useMemo } from 'react';
 import clsx from 'clsx';
 // Helpers
 import { getAvatarColorById } from 'utils/helpers';
@@ -7,6 +7,7 @@ import { reorder } from './reorder';
 import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
 import { RotationIcon } from 'components/icons/RotationIcon';
+import { ForwardFilled } from '@ant-design/icons';
 
 type TableOrderProps = {
   /**
@@ -57,7 +58,7 @@ export function TableOrder({
     () => (Boolean(reorderByUser) ? reorder(order, reorderByUser!) : order),
     [reorderByUser, order]
   );
-  const playerCount = orderedList.length;
+  const doublePlayerCount = orderedList.length * 2;
 
   return (
     <div className={clsx('table-order', size && `table-order--${size}`, className)}>
@@ -67,15 +68,26 @@ export function TableOrder({
           const isActive = activePlayerId === playerId;
           const color = getAvatarColorById(player.avatarId);
           return (
-            <li
-              // @ts-ignore
-              style={{ '--t': playerCount, '--i': index }}
-              className={clsx('table-order__player', isActive && 'table-order__player--active')}
-            >
-              <span style={isActive ? { backgroundColor: color } : undefined}>
-                <AvatarName player={player} upright />
-              </span>
-            </li>
+            <Fragment key={`table-order-${playerId}`}>
+              <li
+                // @ts-ignore
+                style={{ '--t': doublePlayerCount, '--i': index * 2 }}
+                className={clsx('table-order__player', isActive && 'table-order__player--active')}
+              >
+                <span className="table-order__icon" style={isActive ? { backgroundColor: color } : undefined}>
+                  <AvatarName player={player} upright />
+                </span>
+              </li>
+              <li
+                // @ts-ignore
+                style={{ '--t': doublePlayerCount, '--i': index * 2 + 1 }}
+                className="table-order__chevron"
+              >
+                <span className="table-order__icon">
+                  <ForwardFilled />
+                </span>
+              </li>
+            </Fragment>
           );
         })}
         <li className="table-order__center">

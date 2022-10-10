@@ -10,7 +10,6 @@ $table-order-size: 500px;
     width: $table-order-size;
     height: $table-order-size;
     margin: 1rem;
-    // background: green;
     position: relative;
   }
 
@@ -21,21 +20,13 @@ $table-order-size: 500px;
     transition: 1000s;
     transform-origin: $table-order-size / 2;
     transform: rotate(calc((360deg / var(--t) * var(--i)) + 90deg));
+    transition-delay: calc(500ms * (var(--i) * 2150));
 
     &--active {
       color: get-color('white');
     }
 
-    &:before {
-      content: '»';
-      font-size: 1.5rem;
-      transform: rotate(-100deg) translateY(100%);
-      position: absolute;
-      top: 100%;
-      color: get-color('black');
-    }
-
-    & > span {
+    #{$self}__icon {
       transform: rotate(calc((360deg / var(--t) * -1 * var(--i)) - 90deg));
 
       background: get-color('white');
@@ -51,6 +42,20 @@ $table-order-size: 500px;
       align-items: center;
       border-radius: 50%;
       transition: 1000ms;
+    }
+  }
+
+  &__chevron {
+    position: absolute;
+    left: 0;
+    list-style: none;
+    transition: 1000s;
+    transform-origin: $table-order-size / 2;
+    transform: rotate(calc((360deg / var(--t) * var(--i)) + 90deg));
+
+    #{$self}__icon {
+      transform: rotate(calc((360deg / -1 * var(--i)) - 90deg)) translateY(150%);
+      display: block;
     }
   }
 
@@ -85,18 +90,9 @@ $table-order-size: 500px;
       height: $table-order-size * 0.66;
     }
 
-    #{$self}__player {
+    #{$self}__player,
+    #{$self}__chevron {
       transform-origin: $table-order-size * 0.66 / 2;
-
-      &:before {
-        content: '»';
-        color: get-color('black');
-        font-size: 1.5rem;
-        transform: rotate(-100deg) translate(125%, 95%);
-        position: absolute;
-        top: 100%;
-        z-index: 20;
-      }
     }
   }
 }
