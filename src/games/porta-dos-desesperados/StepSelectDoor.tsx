@@ -33,6 +33,7 @@ type StepSelectPagesProps = {
   user: GamePlayer;
   possessed: GamePlayer;
   magic: number;
+  botEnabled?: boolean;
 };
 
 export function StepSelectDoor({
@@ -46,6 +47,7 @@ export function StepSelectDoor({
   user,
   possessed,
   magic,
+  botEnabled,
 }: StepSelectPagesProps) {
   const { isLoading } = useLoading();
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
@@ -64,7 +66,19 @@ export function StepSelectDoor({
 
       {showTrap && <TrapPopupRule trap={trap} />}
 
-      <BotPopupRule />
+      {botEnabled && <BotPopupRule />}
+
+      {Boolean(user.doorId) && (
+        <Button
+          type="primary"
+          size="large"
+          loading={isLoading}
+          disabled={!user.doorId || user.ready || isButtonDisabled}
+          onClick={() => onConfirmDoor()}
+        >
+          <Translate pt="Confirmar Porta" en="Confirm Door" />
+        </Button>
+      )}
 
       <Instruction contained className="i-sand-timer-container">
         <Translate
@@ -157,16 +171,6 @@ export function StepSelectDoor({
           )}
         </Book>
       </Space>
-
-      <Button
-        type="primary"
-        size="large"
-        loading={isLoading}
-        disabled={!user.doorId || user.ready || isButtonDisabled}
-        onClick={() => onConfirmDoor()}
-      >
-        <Translate pt="Confirmar Porta" en="Confirm Door" />
-      </Button>
     </Step>
   );
 }

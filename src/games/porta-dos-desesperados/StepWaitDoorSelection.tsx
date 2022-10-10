@@ -26,6 +26,7 @@ type StepWaitDoorSelectionProps = {
   players: GamePlayers;
   answerDoorId: CardId;
   magic: number;
+  botEnabled?: boolean;
 };
 
 export function StepWaitDoorSelection({
@@ -36,6 +37,7 @@ export function StepWaitDoorSelection({
   players,
   answerDoorId,
   magic,
+  botEnabled,
 }: StepWaitDoorSelectionProps) {
   const showTrap = useMemo(() => shouldAnnounceTrap(trap, PHASES.PORTA_DOS_DESESPERADOS.DOOR_CHOICE), [trap]);
 
@@ -50,7 +52,7 @@ export function StepWaitDoorSelection({
 
       {showTrap && <TrapPopupRule trap={trap} />}
 
-      <BotPopupRule />
+      {botEnabled && <BotPopupRule />}
 
       <Instruction contained className="i-sand-timer-container">
         <Translate

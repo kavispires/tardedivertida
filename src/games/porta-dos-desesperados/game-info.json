@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "I",
   "gameName": "porta-dos-desesperados",
-  "version": "0.9.1",
+  "version": "1.0.0",
   "title": {
     "pt": "Porta dos Desesperados",
     "en": "Obscure Doors"
