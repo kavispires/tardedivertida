@@ -39,6 +39,7 @@ export const prepareSetupPhase = async (
     worstArtist: 0,
     tableVotes: 0,
   });
+
   // Save
   return {
     update: {
