@@ -1,6 +1,7 @@
 export * from './AlarmClockIcon';
 export * from './AlertIcon';
 export * from './AnimatedClockIcon';
+export * from './AnimatedGearIcon';
 export * from './AnimatedLoaderIcon';
 export * from './AnimatedVideoConferenceIcon';
 export * from './AnonymousIcon';
