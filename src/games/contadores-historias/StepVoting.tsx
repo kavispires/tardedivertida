@@ -15,7 +15,6 @@ import { Step } from 'components/steps';
 import { Title } from 'components/text';
 import { VotingRules } from './components/RulesBlobs';
 import { DebugOnly } from 'components/debug';
-import { ReadyPlayersBar } from 'components/players';
 
 type StepVotingProps = {
   players: GamePlayers;
@@ -37,7 +36,7 @@ export function StepVoting({
   isUserTheStoryTeller,
 }: StepVotingProps) {
   const { isLoading } = useLoading();
-  const cardWidth = useCardWidth(Math.max(Object.keys(players).length, 6), 32, 150);
+  const cardWidth = useCardWidth(Math.max(Object.keys(players).length, 8), 32, 150);
 
   const hasPlayedCardAlready = Boolean(user.vote);
 
@@ -92,8 +91,6 @@ export function StepVoting({
           );
         })}
       </div>
-
-      <ReadyPlayersBar players={players} />
     </Step>
   );
 }

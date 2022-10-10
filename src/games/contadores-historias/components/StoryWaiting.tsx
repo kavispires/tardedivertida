@@ -4,7 +4,7 @@ import { FloatingHand, ImageCardHand } from 'components/cards';
 import { AnimatedClockIcon } from 'components/icons/AnimatedClockIcon';
 import { IconAvatar } from 'components/icons/IconAvatar';
 import { Translate } from 'components/language';
-import { TurnOrder } from 'components/players';
+import { TableOrder } from 'components/players/TableOrder';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 
@@ -34,7 +34,15 @@ export function StoryWaiting({ storyteller, user, players, gameOrder }: StoryWai
           en="In the meantime, examine your cards. You're gonna use them this round."
         />
       </Instruction>
-      <TurnOrder players={players} activePlayerId={storyteller.id} order={gameOrder} />
+
+      <TableOrder
+        players={players}
+        activePlayerId={storyteller.id}
+        order={gameOrder}
+        size="small"
+        reorderByUser={storyteller.id}
+      />
+
       <FloatingHand>
         <ImageCardHand hand={user.hand} sizeRatio={user.hand.length} />
       </FloatingHand>

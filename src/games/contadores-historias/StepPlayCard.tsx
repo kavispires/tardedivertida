@@ -9,7 +9,6 @@ import { Instruction, Title } from 'components/text';
 import { Card, FloatingHand, ImageCardHand } from 'components/cards';
 import { ViewOr } from 'components/views';
 import { Translate } from 'components/language';
-import { ReadyPlayersBar } from 'components/players';
 
 type StepPlayCardProps = {
   players: GamePlayers;
@@ -66,8 +65,6 @@ export function StepPlayCard({
       </Instruction>
 
       <TableFaceDown players={players} user={user} />
-
-      <ReadyPlayersBar players={players} />
 
       <FloatingHand>
         <ImageCardHand

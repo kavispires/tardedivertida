@@ -5,6 +5,7 @@
   padding: get-unit(1 2);
   margin: get-unit(0 1);
   border-radius: get-unit(1);
+  white-space: nowrap;
 
   &--negative {
     border: get-color('red', 7, 0.8) 1px solid;
