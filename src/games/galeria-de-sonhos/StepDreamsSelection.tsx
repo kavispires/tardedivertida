@@ -23,10 +23,10 @@ type StepDreamsSelectionProps = {
   table: GImageCard[];
   word: GWord;
   onSubmitCards: GenericFunction;
-  players: GamePlayers;
+  botEnabled: boolean;
 };
 
-export function StepDreamsSelection({ table, word, onSubmitCards, players }: StepDreamsSelectionProps) {
+export function StepDreamsSelection({ table, word, onSubmitCards, botEnabled }: StepDreamsSelectionProps) {
   const [selectedCards, onSelectCard] = useBooleanDictionary({}, validateSelectedCards);
 
   const selectedCount = Object.keys(selectedCards).length;
@@ -45,16 +45,18 @@ export function StepDreamsSelection({ table, word, onSubmitCards, players }: Ste
 
       <PopoverRule content={<DreamSelectionExtendedRules />} />
 
-      <FixedMenuButton
-        type="popover"
-        position={1}
-        icon={<RobotOutlined />}
-        content={<BotsRules />}
-        label={<Translate pt=" Bots" en=" Bots" />}
-        buttonProps={{
-          type: 'default',
-        }}
-      />
+      {botEnabled && (
+        <FixedMenuButton
+          type="popover"
+          position={1}
+          icon={<RobotOutlined />}
+          content={<BotsRules />}
+          label={<Translate pt=" Bots" en=" Bots" />}
+          buttonProps={{
+            type: 'default',
+          }}
+        />
+      )}
 
       <Space className="space-container" align="center">
         <Button
