@@ -15,6 +15,7 @@ import { GAME_COLLECTION } from 'utils/constants';
 // Components
 import { PageError } from 'components/errors';
 import { LoadingPage } from 'components/loaders';
+import { useLanguage } from 'hooks/useLanguage';
 
 // Game lazy imports
 const SessionArteRuim = lazy(
@@ -103,6 +104,7 @@ function Game() {
   const [, setUserAvatarId] = useGlobalState('userAvatarId');
   const [, setLanguage] = useGlobalState('language');
   const [, setLocalStorage] = useLocalStorage();
+  const { translate } = useLanguage();
 
   const [isPageLoading, setPageLoading] = useState(true);
   const isGameStale = useIsGameStale(gameMeta?.createdAt);
@@ -153,7 +155,6 @@ function Game() {
           message: 'Failed to load game',
           description: JSON.stringify(e.message),
         });
-        console.error(e);
       } finally {
         setPageLoading(false);
         setLoader('load', false);
@@ -171,7 +172,15 @@ function Game() {
   }
 
   if (isGameStale) {
-    return <PageError message="Expired Game" description="This game is too old or does not exist" />;
+    return (
+      <PageError
+        message={translate('Jogo Expirado', 'Expired Game')}
+        description={translate(
+          'Este jogo ou é muito antigo ou não existe',
+          'This game is too old or does not exist'
+        )}
+      />
+    );
   }
 
   if (gameId && gameName) {

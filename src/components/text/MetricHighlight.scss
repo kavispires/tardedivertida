@@ -5,9 +5,15 @@
   padding: get-unit(1 2);
   margin: get-unit(0 1);
   border-radius: get-unit(1);
+  white-space: nowrap;
 
   &--negative {
     border: get-color('red', 7, 0.8) 1px solid;
     background-color: get-color('red', 2, 0.6);
+  }
+
+  &--positive {
+    border: get-color('yellow', 7, 0.8) 1px solid;
+    background-color: get-color('yellow', 2, 0.6);
   }
 }

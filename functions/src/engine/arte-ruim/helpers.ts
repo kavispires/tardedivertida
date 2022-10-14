@@ -417,6 +417,7 @@ export const buildGallery = (
           gotWrong.push(playerId);
         }
 
+        // Achievement: tableVotes
         if (drawingEntry.level < 5 && tableCardsIds.includes(currentVote)) {
           utils.achievements.increaseAchievement(store, playerId, 'tableVotes', 1);
         }
@@ -531,11 +532,10 @@ export const buildPastDrawingsDict = (drawings, publicDrawings) => {
 };
 
 /**
- * Get achievements:
- * @param players
+ * Get achievements
  * @param store
  */
-export const getAchievements = (players: Players, store: PlainObject) => {
+export const getAchievements = (store: FirebaseStoreData) => {
   const achievements: Achievement<ArteRuimAchievement>[] = [];
 
   // Best artist: got all players to guess correctly more times and by level

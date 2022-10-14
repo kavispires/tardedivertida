@@ -4,12 +4,12 @@ import { useLanguage } from 'hooks/useLanguage';
 import { PlayerStats } from './components/PlayerStats';
 import { Street } from './components/Street';
 import { CardCountExplanation } from './components/RulesBlobs';
-import { PlayersDecisionList } from './components/PlayersDecisionList';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
 import { AdminNextPhaseButton } from 'components/admin';
+import { PlayersDecisionState } from './components/PlayersDecisionState';
 
 type StepStreetEndProps = {
   street: NStreet;
@@ -20,6 +20,9 @@ type StepStreetEndProps = {
   round: GameRound;
   players: GamePlayers;
   alreadyAtHomePlayerIds: PlayerId[];
+  goingHomePlayerIds: PlayerId[];
+  continuingPlayerIds: PlayerId[];
+  candyInHand: number;
 };
 
 export function StepStreetEnd({
@@ -31,6 +34,9 @@ export function StepStreetEnd({
   round,
   players,
   alreadyAtHomePlayerIds,
+  goingHomePlayerIds,
+  continuingPlayerIds,
+  candyInHand,
 }: StepStreetEndProps) {
   const { language } = useLanguage();
 
@@ -38,7 +44,7 @@ export function StepStreetEnd({
 
   return (
     <Step fullWidth>
-      <Title>
+      <Title size="medium" white>
         {isDoubleHorror ? (
           <Translate
             pt={<>Um segundo {monsterName} surgiu do nada!</>}
@@ -67,9 +73,10 @@ export function StepStreetEnd({
               pt={<>Uma carta do {monsterName} será removida, menos chances dele aparece novamente!</>}
               en={<>One of the {monsterName} will be removed, so less chances of it showing up again!</>}
             />
+            <br />
           </>
         )}
-        <br />
+
         {round.current === round.total ? (
           <Translate
             pt="E a noite chegou ao fim... Hora de comer gostosuras!"
@@ -79,13 +86,18 @@ export function StepStreetEnd({
           <Translate pt="Próxima rua?" en="Let's hit the next street?" />
         )}
       </Instruction>
-      <Street street={street} currentCard={currentCard} candySidewalk={candySidewalk} />
 
-      <PlayersDecisionList
-        playersIdsList={isDoubleHorror ? alreadyAtHomePlayerIds : Object.keys(players)}
-        type="home"
+      <PlayersDecisionState
         players={players}
+        goingHomePlayerIds={[]}
+        continuingPlayerIds={continuingPlayerIds}
+        alreadyAtHomePlayerIds={[...goingHomePlayerIds, ...alreadyAtHomePlayerIds]}
+        cashedInCandy={0}
+        candyInHand={candyInHand}
+        phase="STREET_END"
       />
+
+      <Street street={street} currentCard={currentCard} candySidewalk={candySidewalk} />
 
       <AdminNextPhaseButton>
         {round.current < round.total ? <Translate pt="Próxima Casa" en="Next House" /> : 'Game Over'}

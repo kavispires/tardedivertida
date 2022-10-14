@@ -291,7 +291,7 @@ interface Achievement {
 
 interface AchievementReference {
   [key: string]: {
-    icon: ReactNode;
+    Icon: ReactNode;
     title: DualLanguageValue;
     description?: DualLanguageValue;
   };

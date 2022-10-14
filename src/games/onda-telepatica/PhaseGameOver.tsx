@@ -1,6 +1,9 @@
 import { Space } from 'antd';
+// Utils
+import { achievementsReference } from './utils/achievements';
 // Components
 import { GameOverWrapper } from 'components/game-over';
+import { Achievements } from 'components/general/Achievements';
 import { IconAvatar } from 'components/icons/IconAvatar';
 import { TrophyIcon } from 'components/icons/TrophyIcon';
 import { WavelengthDeviceIcon } from 'components/icons/WavelengthDeviceIcon';
@@ -19,6 +22,8 @@ function PhaseGameOver({ state, players, info }: PhaseProps) {
         />
       }
     >
+      <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
+
       <Space wrap align="center" className="o-past-category">
         {state.pastCategories.map((category: any) => {
           return (

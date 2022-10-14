@@ -1,8 +1,9 @@
+import clsx from 'clsx';
 // Hooks
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
+// Utils
+import { getAnimationClass } from 'utils/helpers';
 // Components
-import { PlayersDecisionList } from './components/PlayersDecisionList';
-import { PlayersDecisionResult } from './components/PlayersDecisionResult';
 import { PlayerStats } from './components/PlayerStats';
 import { Street } from './components/Street';
 import { CardCountExplanation } from './components/RulesBlobs';
@@ -11,6 +12,7 @@ import { Title } from 'components/text';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
 import { AdminNextPhaseButton } from 'components/admin';
+import { PlayersDecisionState } from './components/PlayersDecisionState';
 
 type StepResultProps = {
   players: GamePlayers;
@@ -41,27 +43,41 @@ export function StepResult({
 
   return (
     <Step fullWidth>
-      <Title>
-        <Translate pt="Decisões" en="Decisions" />
+      <Title size="medium" white className={clsx('n-title', getAnimationClass('fadeIn'))} level={2}>
+        <Translate pt="Decisões" en="Decisions" />:
+      </Title>
+
+      <Title size="small" white level={3} className={clsx('n-subtitle', getAnimationClass('fadeIn', 1))}>
+        {goingHomePlayerIds.length === 0 && (
+          <Translate pt="Todos continuaram..." en="Everybody will continue..." />
+        )}
+
+        {goingHomePlayerIds.length === 1 && (
+          <Translate pt="Olha o cagão voltando pra casa..." en="Look at this scared cat going back home..." />
+        )}
+        {goingHomePlayerIds.length > 1 && (
+          <Translate
+            pt="Olha os cagões voltando pra casa..."
+            en="Look at these scared cats going back home..."
+          />
+        )}
       </Title>
 
       <PopoverRule content={<CardCountExplanation />} />
 
-      <PlayersDecisionResult
+      <PlayersDecisionState
         players={players}
-        goingHomePlayerIds={goingHomePlayerIds}
+        goingHomePlayerIds={goingHomePlayerIds ?? []}
         continuingPlayerIds={continuingPlayerIds}
+        alreadyAtHomePlayerIds={alreadyAtHomePlayerIds ?? []}
         cashedInCandy={cashedInCandy}
         candyInHand={candyInHand}
+        phase="RESULT"
       />
 
       <Street street={street} currentCard={currentCard} candySidewalk={candySidewalk} />
 
-      {alreadyAtHomePlayerIds.length > 0 && (
-        <PlayersDecisionList playersIdsList={alreadyAtHomePlayerIds} type="home" players={players} />
-      )}
-
-      <AdminNextPhaseButton autoTriggerTime={15}>
+      <AdminNextPhaseButton autoTriggerTime={10}>
         <Translate pt="Próxima Casa" en="Next House" />
       </AdminNextPhaseButton>
 

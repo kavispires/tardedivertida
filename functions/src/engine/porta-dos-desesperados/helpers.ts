@@ -106,3 +106,13 @@ export const getBookPages = (pagesDeck: ImageCardId[], pagesDeckIndex: number, t
     newPageIndex: pagesDeckIndex + quantity,
   };
 };
+
+export const botDoorSelection = (players: Players, doors: ImageCardId[], doorAnswerId: ImageCardId) => {
+  // The bot pool is only half of the doors, but always has the answer
+  const options = [...utils.game.getRandomItems(doors, 4), doorAnswerId];
+
+  utils.players.getListOfBots(players).forEach((bot) => {
+    bot.doorId = utils.game.getRandomItem(options);
+    bot.ready = true;
+  });
+};

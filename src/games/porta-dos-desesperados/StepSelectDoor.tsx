@@ -19,7 +19,7 @@ import { getAnimationClass } from 'utils/helpers';
 import { Book } from './components/Book';
 import { Corridor } from './components/Corridor';
 import { CrystalHighlight, DoorHighlight, TimeHighlight } from './components/Highlights';
-import { TrapPopupRule } from './components/RulesBlobs';
+import { BotPopupRule, TrapPopupRule } from './components/RulesBlobs';
 import { SandTimer } from './components/SandTimer';
 
 type StepSelectPagesProps = {
@@ -33,6 +33,7 @@ type StepSelectPagesProps = {
   user: GamePlayer;
   possessed: GamePlayer;
   magic: number;
+  botEnabled?: boolean;
 };
 
 export function StepSelectDoor({
@@ -46,6 +47,7 @@ export function StepSelectDoor({
   user,
   possessed,
   magic,
+  botEnabled,
 }: StepSelectPagesProps) {
   const { isLoading } = useLoading();
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
@@ -63,6 +65,20 @@ export function StepSelectDoor({
       </Title>
 
       {showTrap && <TrapPopupRule trap={trap} />}
+
+      {botEnabled && <BotPopupRule />}
+
+      {Boolean(user.doorId) && (
+        <Button
+          type="primary"
+          size="large"
+          loading={isLoading}
+          disabled={!user.doorId || user.ready || isButtonDisabled}
+          onClick={() => onConfirmDoor()}
+        >
+          <Translate pt="Confirmar Porta" en="Confirm Door" />
+        </Button>
+      )}
 
       <Instruction contained className="i-sand-timer-container">
         <Translate
@@ -155,16 +171,6 @@ export function StepSelectDoor({
           )}
         </Book>
       </Space>
-
-      <Button
-        type="primary"
-        size="large"
-        loading={isLoading}
-        disabled={!user.doorId || user.ready || isButtonDisabled}
-        onClick={() => onConfirmDoor()}
-      >
-        <Translate pt="Confirmar Porta" en="Confirm Door" />
-      </Button>
     </Step>
   );
 }

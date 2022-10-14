@@ -13,7 +13,7 @@ import { PHASES } from 'utils/phases';
 import { Book } from './components/Book';
 import { Corridor } from './components/Corridor';
 import { CrystalHighlight, DoorHighlight, TimeHighlight } from './components/Highlights';
-import { TrapPopupRule } from './components/RulesBlobs';
+import { BotPopupRule, TrapPopupRule } from './components/RulesBlobs';
 import { SandTimer } from './components/SandTimer';
 import { ROUND_DURATION, TOTAL_DOORS, TRAPS } from './utils/constants';
 import { shouldAnnounceTrap } from './utils/helpers';
@@ -26,6 +26,7 @@ type StepWaitDoorSelectionProps = {
   players: GamePlayers;
   answerDoorId: CardId;
   magic: number;
+  botEnabled?: boolean;
 };
 
 export function StepWaitDoorSelection({
@@ -36,6 +37,7 @@ export function StepWaitDoorSelection({
   players,
   answerDoorId,
   magic,
+  botEnabled,
 }: StepWaitDoorSelectionProps) {
   const showTrap = useMemo(() => shouldAnnounceTrap(trap, PHASES.PORTA_DOS_DESESPERADOS.DOOR_CHOICE), [trap]);
 
@@ -49,6 +51,8 @@ export function StepWaitDoorSelection({
       </Title>
 
       {showTrap && <TrapPopupRule trap={trap} />}
+
+      {botEnabled && <BotPopupRule />}
 
       <Instruction contained className="i-sand-timer-container">
         <Translate

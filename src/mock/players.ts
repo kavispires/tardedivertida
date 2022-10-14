@@ -6,6 +6,10 @@ import { getRandomItem } from 'utils/helpers';
  */
 const DEV_NAMES: string[] =
   'Abe,Bob,Cam,Dan,Eva,Fin,Gus,Hal,Ian,Jan,Kim,Leo,Max,Nic,Ole,Pat,Quinn,Roy,Tim'.split(',');
+// const DEV_NAMES: string[] =
+//   'Abigail,Bartolomeu,Cameron,Daniella,Evelyn,Frederick,Gordon,Hector,Isaac,Jacklyn,Madonna,Nathaniel'.split(
+//     ','
+//   );
 
 const cacheNames: BooleanDictionary = {};
 const cacheAvatars: BooleanDictionary = {};

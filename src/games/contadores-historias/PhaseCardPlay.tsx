@@ -13,6 +13,7 @@ import { Instruction } from 'components/text';
 import { StepPlayCard } from './StepPlayCard';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { ImageCardsIcon } from 'components/icons/ImageCardsIcon';
+import { PointsHighlight } from './components/Highlights';
 
 function PhaseCardPlay({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -38,13 +39,14 @@ function PhaseCardPlay({ state, players, info }: PhaseProps) {
                 <>
                   Agora, jogadores verão a história da rodada e selecionarão uma de suas cartas que mais se
                   aproxime da história. Na próxima fase, se algum outro jogador selecionar sua carta, você
-                  ganha 1 ponto!
+                  ganha <PointsHighlight>1</PointsHighlight> ponto!
                 </>
               }
               en={
                 <>
                   Now players will see the story for the round and select one of their cards that best match
-                  the story. If any other player vote for your card later, you will get 1 point.
+                  the story. If any other player vote for your card later, you will get{' '}
+                  <PointsHighlight>1</PointsHighlight> point.
                 </>
               }
             />

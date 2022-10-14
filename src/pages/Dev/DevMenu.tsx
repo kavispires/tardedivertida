@@ -12,7 +12,7 @@ export function DevMenu() {
     { label: 'Icons', value: '/dev/icons', disabled: pathname === '/dev/icons' },
     { label: 'Colors', value: '/dev/colors', disabled: pathname === '/dev/colors' },
     { label: 'Resources', value: '/dev/resources', disabled: pathname === '/dev/resources' },
-    { label: 'Testing Zone', value: '/dev/testing-zone', disabled: pathname === '/dev/testing-zone' },
+    { label: 'Playground', value: '/dev/playground', disabled: pathname === '/dev/playground' },
   ];
 
   const onNavigate = (path: any) => {

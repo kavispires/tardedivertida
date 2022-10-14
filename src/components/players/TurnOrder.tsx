@@ -1,9 +1,10 @@
-import { ReactNode, useMemo } from 'react';
+import { Fragment, ReactNode, useMemo } from 'react';
 import clsx from 'clsx';
 // Ant Design Resources
 import { ForwardFilled } from '@ant-design/icons';
 // Helpers
 import { getAvatarColorById } from 'utils/helpers';
+import { reorder } from './reorder';
 // Components
 import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
@@ -49,38 +50,31 @@ export function TurnOrder({
   );
 
   return (
-    <div className={clsx('game-order', className)}>
-      <header className="game-order__title">
+    <div className={clsx('turn-order', className)}>
+      <header className="turn-order__title">
         <Translate en="Player Order" pt="Ordem dos Jogadores" custom={title} />
       </header>
-      <ul className="game-order__players">
+      <ol className="turn-order__players">
         {orderList.map((playerId, index) => {
           const player = players[playerId];
           const isActive = activePlayerId === playerId;
           return (
-            <>
+            <Fragment key={`turn-order-player-${playerId}`}>
               <span
-                key={`turn-order-player-${playerId}`}
-                className={clsx('game-order__player', isActive && 'game-order__player--active')}
+                className={clsx('turn-order__player', isActive && 'turn-order__player--active')}
                 style={isActive ? { backgroundColor: getAvatarColorById(player.avatarId) } : undefined}
               >
                 <AvatarName player={player} />
               </span>
               {index < order.length - 1 && (
-                <span key={`turn-order-player-${playerId}-arrow`} className="game-order__arrow">
+                <span className="turn-order__arrow">
                   <ForwardFilled />
                 </span>
               )}
-            </>
+            </Fragment>
           );
         })}
-      </ul>
+      </ol>
     </div>
   );
-}
-
-function reorder(order: PlayerId[], startWith: PlayerId): PlayerId[] {
-  const starterIndex = order.indexOf(startWith);
-
-  return [...order.slice(starterIndex), ...order.slice(0, starterIndex)];
 }

@@ -1,6 +1,7 @@
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
+import { CardHighlight, PointsHighlight } from './Highlights';
 
 type WordSelectionRulesProps = {
   scout: GamePlayer;
@@ -72,14 +73,16 @@ export function DreamSelectionRules({ contained = false }) {
           <>
             Selecione sonhos (cartas) que você acha que se relacionam com a palavra-tema da rodada.
             <br />
-            Você deve selecionar pelo menos 1 e no máximo 10.
+            Você deve selecionar pelo menos <CardHighlight>1</CardHighlight> e no máximo{' '}
+            <CardHighlight>10</CardHighlight>.
           </>
         }
         en={
           <>
             Now select cards that you think match the round's card.
             <br />
-            You must select at least 1 card and a maximum of 10.
+            You must select at least <CardHighlight>1</CardHighlight> card and a maximum of{' '}
+            <CardHighlight>10</CardHighlight>.
           </>
         }
       />
@@ -129,9 +132,11 @@ export function CardPlayRules() {
             <br />
             Selecione o sonho que você mais acha que tem chance de outro jogador ter também visitado.
             <br />
-            Você ganha 3 pontos se apenas mais 1 jogador visitou o mesmo sonho.
+            Você ganha <PointsHighlight type="positive">3</PointsHighlight> pontos se apenas mais 1 jogador
+            visitou o mesmo sonho.
             <br />
-            Você ganha 2 pontos se mais de 1 jogador visitou o mesmo sonho.
+            Você ganha <PointsHighlight type="positive">2</PointsHighlight> pontos se mais de 1 jogador
+            visitou o mesmo sonho.
             <br />
             Você está eliminado da rodada se ninguém mais visitou o sonho escolhido.
           </>
@@ -142,9 +147,11 @@ export function CardPlayRules() {
             <br />
             Select the dream you think you have the most chances of matching another player.
             <br />
-            You get 3 points if only 1 player visited the same dream.
+            You get <PointsHighlight type="positive">3</PointsHighlight> points if only 1 player visited the
+            same dream.
             <br />
-            You get 2 points if many players have visited the same dream.
+            You get <PointsHighlight type="positive">2</PointsHighlight> points if many players have visited
+            the same dream.
             <br />
             You are eliminated for this round if nobody else has visited the chosen dream.
           </>
@@ -166,8 +173,10 @@ export function BotsRules() {
             seguinte lógica:
             <br />
             O bot A seleciona todas as cartas que foram mais selecionadas pelos jogadores.
-            <br />O bot B seleciona cartas que foram selecionadas por apenas um jogador, mas apenas uma por
-            jogador, e somente se mais de um jogador tiver essa carta extra.
+            <br />
+            O bot B seleciona cartas que foram selecionadas por apenas um jogador, mas apenas uma por jogador,
+            e somente se mais de um jogador tiver essa carta extra.
+            <br />O bot C simplesmente seleciona 4 cartas aleatórias.
           </>
         }
         en={
@@ -180,6 +189,8 @@ export function BotsRules() {
             <br />
             Bot B select all cards that got a single player visiting them but only one per player and only if
             more than one player will have a match this way.
+            <br />
+            Bot C simply selects 4 random cards.
           </>
         }
       />

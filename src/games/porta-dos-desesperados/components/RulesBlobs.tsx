@@ -1,5 +1,5 @@
 // Ant Design Resources
-import { RadarChartOutlined } from '@ant-design/icons';
+import { RadarChartOutlined, RobotOutlined } from '@ant-design/icons';
 // Utils
 import { getTrapDetails } from '../utils/helpers';
 import { TOTAL_DOORS } from '../utils/constants';
@@ -26,7 +26,7 @@ export function RoundOneRule({ magic }: RoundOneRuleProps) {
             Devemos que passar por <DoorHighlight>{TOTAL_DOORS}</DoorHighlight> portas.
             <br />
             Mas temos apenas <CrystalHighlight>{magic}</CrystalHighlight> cristais mágicos e cada porta que
-            abrimos usamos <CrystalHighlight negative>1</CrystalHighlight> cristal.
+            abrimos usamos <CrystalHighlight type="negative">1</CrystalHighlight> cristal.
             <br />
             Será que conseguimos sair antes que nossa mágica acabe?
           </>
@@ -39,7 +39,7 @@ export function RoundOneRule({ magic }: RoundOneRuleProps) {
             doors.
             <br />
             But we only have <CrystalHighlight>{magic}</CrystalHighlight> magic crystals and each door we go
-            through costs us <CrystalHighlight negative>1</CrystalHighlight> crystal.
+            through costs us <CrystalHighlight type="negative">1</CrystalHighlight> crystal.
             <br />
             Can we get out before our crystals are gone?
           </>
@@ -66,7 +66,7 @@ export function RoundRule({ magic, currentCorridor }: RoundRuleProps) {
             </DoorHighlight>
             <br />
             Ainda temos <CrystalHighlight>{magic}</CrystalHighlight> cristais mágicos e cada porta que abrimos
-            usamos <CrystalHighlight negative>1</CrystalHighlight> cristal.
+            usamos <CrystalHighlight type="negative">1</CrystalHighlight> cristal.
             <br />
             Será que conseguimos sair antes que nossa mágica acabe?
           </>
@@ -79,7 +79,7 @@ export function RoundRule({ magic, currentCorridor }: RoundRuleProps) {
             </DoorHighlight>
             <br />
             We still have <CrystalHighlight>{magic}</CrystalHighlight> magic crystals left and each door we go
-            through costs us <CrystalHighlight negative>1</CrystalHighlight> crystal.
+            through costs us <CrystalHighlight type="negative">1</CrystalHighlight> crystal.
             <br />
             Can we get out before our crystals are gone?
           </>
@@ -143,5 +143,49 @@ export function LoseGameText({ players }: { players: GamePlayers }) {
         }
       />
     </Instruction>
+  );
+}
+
+export function BotsRules() {
+  return (
+    <Instruction contained>
+      <Translate
+        pt={
+          <>
+            Em um jogo com bots, 2 jogadores-robôs são adicionados ao jogo.
+            <br />
+            Quando a escolha das portas acontece, eles selecionam cada um uma porta aleatória, mas há 20-40%
+            de chance um deles selecionar a página correta.
+            <br />
+            Em comparação, você tem 14-16% de chance de escolher a porta correta, dependendo da armadilha.
+          </>
+        }
+        en={
+          <>
+            In a game with bos, the 2 bots are added to the game.
+            <br />
+            Each bot will randomly select a door, but there are 20-40% chance they will select the correct
+            door.
+            <br />
+            In comparison, you have 14-16% chances of choosing the correct door, depending on the trap.
+          </>
+        }
+      />
+    </Instruction>
+  );
+}
+
+export function BotPopupRule() {
+  return (
+    <FixedMenuButton
+      type="popover"
+      position={1}
+      icon={<RobotOutlined />}
+      content={<BotsRules />}
+      label={<Translate pt=" Bots" en=" Bots" />}
+      buttonProps={{
+        type: 'default',
+      }}
+    />
   );
 }

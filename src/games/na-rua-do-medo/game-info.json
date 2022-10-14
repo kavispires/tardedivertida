@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "N",
   "gameName": "na-rua-do-medo",
-  "version": "2.3.0",
+  "version": "3.1.1",
   "title": {
     "pt": "Na Rua do Medo",
     "en": "Fear Street"
@@ -39,7 +39,7 @@
     "min": 3,
     "max": 10
   },
-  "tags": ["competitive", "same-time", "push-your-luck", "mobile-friendly"],
+  "tags": ["competitive", "same-time", "push-your-luck", "mobile-friendly", "achievements"],
   "available": {
     "pt": true,
     "en": true

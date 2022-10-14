@@ -8,8 +8,9 @@ export function useOnSubmitDecisionAPIRequest(setStep: GenericFunction) {
   const request = useAPICall({
     apiFunction: NA_RUA_DO_MEDO_API.submitAction,
     actionName: 'submit-decision',
-    onBeforeCall: () => setStep(3),
-    onError: () => setStep(0),
+    onSuccess: () => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    },
     successMessage: translate('Decisão submetida com sucesso', 'Decision submitted successfully'),
     errorMessage: translate(
       'Vixi, o aplicativo encontrou um erro ao tentar enviar sua decisão',

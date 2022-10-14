@@ -1,27 +1,21 @@
-import { ReactElement, ReactNode } from 'react';
+import { ReactNode } from 'react';
 // Ant Design Resources
 import { message } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 
-type LanguageEntry = ReactElement | string;
+type TransLateProps = {
+  pt: ReactNode;
+  en: ReactNode;
+  custom?: ReactNode;
+};
 
 /**
  * Delegate between two strings depending on the active language
- * @param pt
- * @param en
- * @param [custom] text that will override anything else
- * @returns a fragment
+ * @param props
+ * @returns the text/element according to the current language
  */
-export function Translate({
-  pt,
-  en,
-  custom,
-}: {
-  pt: LanguageEntry;
-  en: LanguageEntry;
-  custom?: ReactNode;
-}): any {
+export function Translate({ pt, en, custom }: TransLateProps) {
   const { language } = useLanguage();
 
   if (!language) {

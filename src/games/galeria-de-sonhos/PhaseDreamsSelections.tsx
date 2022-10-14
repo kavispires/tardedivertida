@@ -13,7 +13,7 @@ import { DreamSelectionRules } from './components/RulesBlobs';
 import { StepDreamsSelection } from './StepDreamsSelection';
 import { DreamIcon } from 'components/icons/DreamIcon';
 
-function PhaseDreamsSelections({ players, state, info }: PhaseProps) {
+function PhaseDreamsSelections({ players, state, info, meta }: PhaseProps) {
   const { translate } = useLanguage();
   const { step, goToNextStep, setStep } = useStep();
   const isUserReady = useIsUserReady(players, state);
@@ -39,7 +39,7 @@ function PhaseDreamsSelections({ players, state, info }: PhaseProps) {
           table={state.table}
           word={state.word}
           onSubmitCards={onSubmitCards}
-          players={players}
+          botEnabled={Boolean(meta.options?.withBots)}
         />
       </StepSwitcher>
     </PhaseContainer>
