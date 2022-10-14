@@ -1,3 +1,8 @@
+.n-background.n-background {
+  background: linear-gradient(-45deg, #1f122f, #54321a, #27143d, #322414, #1c172e);
+  background-size: 1000% 1000%;
+}
+
 .n-street {
   display: flex;
   width: 92vw;
@@ -318,4 +323,9 @@ $stats-height: get-unit(40);
   100% {
     transform: scale(1, 1) translateY(0);
   }
+}
+
+.n-candy-highlight {
+  border: get-color('pink', 7, 0.8) 1px solid;
+  background-color: get-color('pink', 3, 0.6);
 }
