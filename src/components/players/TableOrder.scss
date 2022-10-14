@@ -18,7 +18,7 @@ $table-order-size: 500px;
     left: 0;
     list-style: none;
     transition: 1000s;
-    transform-origin: $table-order-size / 2;
+    transform-origin: calc($table-order-size / 2);
     transform: rotate(calc((360deg / var(--t) * var(--i)) + 90deg));
     transition-delay: calc(500ms * (var(--i) * 2150));
 
@@ -50,7 +50,7 @@ $table-order-size: 500px;
     left: 0;
     list-style: none;
     transition: 1000s;
-    transform-origin: $table-order-size / 2;
+    transform-origin: calc($table-order-size / 2);
     transform: rotate(calc((360deg / var(--t) * var(--i)) + 90deg));
 
     #{$self}__icon {
@@ -60,7 +60,7 @@ $table-order-size: 500px;
   }
 
   &__center {
-    transform-origin: $table-order-size / 2;
+    transform-origin: calc($table-order-size / 2);
     transform: translateX(-50%);
     position: absolute;
     left: 50%;
@@ -92,7 +92,7 @@ $table-order-size: 500px;
 
     #{$self}__player,
     #{$self}__chevron {
-      transform-origin: $table-order-size * 0.66 / 2;
+      transform-origin: calc($table-order-size * 0.66 / 2);
     }
   }
 }
