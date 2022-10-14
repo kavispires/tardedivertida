@@ -50,6 +50,9 @@ function PhaseStreetEnd({ state, players, info }: PhaseProps) {
           round={state.round}
           players={players}
           alreadyAtHomePlayerIds={state.alreadyAtHomePlayerIds}
+          goingHomePlayerIds={state.goingHomePlayerIds}
+          continuingPlayerIds={state.continuingPlayerIds}
+          candyInHand={state.candyInHand}
         />
       </StepSwitcher>
     </PhaseContainer>

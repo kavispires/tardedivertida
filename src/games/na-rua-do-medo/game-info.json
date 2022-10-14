@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "N",
   "gameName": "na-rua-do-medo",
-  "version": "2.4.3",
+  "version": "3.0.0",
   "title": {
     "pt": "Na Rua do Medo",
     "en": "Fear Street"

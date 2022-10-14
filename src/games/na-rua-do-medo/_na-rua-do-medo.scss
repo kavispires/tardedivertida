@@ -1,6 +1,19 @@
 .n-background.n-background {
-  background: linear-gradient(-45deg, #1f122f, #54321a, #27143d, #322414, #1c172e);
+  background: linear-gradient(-45deg, #1f122f, #2f2404, #27143d, #322414, #1c172e);
   background-size: 1000% 1000%;
+}
+
+.n-title {
+  &.title {
+    margin-bottom: 0;
+  }
+}
+
+.n-subtitle {
+  &.title {
+    margin-bottom: get-unit(2);
+    margin-top: 0 !important;
+  }
 }
 
 .n-street {
@@ -75,6 +88,15 @@ $n-pink: #ffb1b4;
     min-height: 25px;
     text-align: center;
     width: 100%;
+  }
+
+  &__active {
+    width: 0;
+    height: 0;
+    border-left: calc($card-width / 3) solid transparent;
+    border-right: calc($card-width / 3) solid transparent;
+    border-bottom: 10px solid $n-pink;
+    clear: both;
   }
 }
 
@@ -176,6 +198,86 @@ $stats-height: get-unit(40);
 
   &--continue:hover {
     background-color: get-color('yellow', 4);
+  }
+}
+
+.n-players-decision {
+  @include contained;
+  display: grid;
+  max-width: 70vw;
+  grid-template-columns: auto 1px auto 1px auto;
+  margin-bottom: get-unit(2);
+  border-radius: get-unit(2);
+  transition: all 3s;
+
+  @include mobile {
+    display: block;
+  }
+
+  &__section {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: auto;
+    min-width: 20vw;
+    transition: all 3s;
+
+    &--empty {
+      width: 48px;
+      min-width: auto;
+    }
+  }
+
+  &__divider {
+    background-color: get-color('gray', 3);
+  }
+
+  &__title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    // transition: all 5s;
+
+    &--empty {
+      font-size: 0;
+    }
+  }
+
+  &__players {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: get-unit(2);
+
+    &--nobody {
+      font-style: italic;
+      color: get-color('gray', 8);
+    }
+
+    &--empty {
+      font-size: 0;
+    }
+  }
+
+  &__player {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__info {
+    margin: get-unit(3 0 1 0);
+    font-style: italic;
+
+    &--empty {
+      font-size: 0;
+    }
   }
 }
 
@@ -328,4 +430,50 @@ $stats-height: get-unit(40);
 .n-candy-highlight {
   border: get-color('pink', 7, 0.8) 1px solid;
   background-color: get-color('pink', 3, 0.6);
+}
+
+.n-step-trick-or-treat {
+  position: relative;
+}
+
+.n-new-house-card {
+  $self: &;
+
+  position: absolute;
+  @include contained;
+  background-color: get-color('white', 5, 0.8);
+  top: 20vh;
+
+  &__container {
+    // transform: scale(2);
+
+    #{$self}--collapsed & {
+      overflow: hidden;
+    }
+
+    #{$self}--horror & {
+      background-color: get-color('brown');
+    }
+
+    #{$self}--jackpot & {
+      background-color: get-color('yellow');
+    }
+  }
+
+  &__name {
+    width: 100%;
+    border-radius: get-unit(1);
+    text-align: center;
+    font-size: 1.5em;
+    background-color: $n-pink;
+    margin-top: get-unit(2);
+
+    #{$self}--horror & {
+      background-color: get-color('brown');
+    }
+
+    #{$self}--jackpot & {
+      background-color: get-color('yellow');
+    }
+  }
 }

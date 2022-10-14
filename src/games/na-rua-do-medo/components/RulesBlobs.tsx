@@ -1,9 +1,8 @@
 // Components
-
 import { Translate } from 'components/language';
 import { RulesList } from 'components/rules';
 import { Instruction } from 'components/text';
-import { CandyCount } from './CandyCount';
+import { CandyHighlight } from './Highlights';
 
 const CANDY_VALUES = [1, 2, 3, 4, 5, 5, 5, 7, 7, 7, 8, 9, 10, 11, 11, 12, 13, 14, 15, 17, 19];
 
@@ -22,15 +21,17 @@ export function DecisionExplanation({ user, totalCandyInSidewalk }: DecisionExpl
           pt={
             <>
               Se você voltar pra sua casa você come todos os doces em mãos{' '}
-              <CandyCount candyCount={user.hand} /> e divide os doces ainda na rua{' '}
-              <CandyCount candyCount={totalCandyInSidewalk} /> com os jogadores que também decidirem voltar.
+              <CandyHighlight>{user.hand}</CandyHighlight> e divide os doces ainda na rua{' '}
+              <CandyHighlight>{totalCandyInSidewalk}</CandyHighlight> com os jogadores que também decidirem
+              voltar.
             </>
           }
           en={
             <>
-              If you go back home you cash in all your candy in hand <CandyCount candyCount={user.hand} /> and
-              divide all candy still in the street <CandyCount candyCount={totalCandyInSidewalk} /> with other
-              players who also decide to go back.
+              If you go back home you cash in all your candy in hand{' '}
+              <CandyHighlight>{user.hand}</CandyHighlight> and divide all candy still in the street{' '}
+              <CandyHighlight>{totalCandyInSidewalk}</CandyHighlight> with other players who also decide to go
+              back.
             </>
           }
         />
