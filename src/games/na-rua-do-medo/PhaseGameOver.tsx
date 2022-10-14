@@ -4,6 +4,7 @@ import { useLanguage } from 'hooks/useLanguage';
 import { useUser } from 'hooks/useUser';
 // Utils
 import { AVATARS } from 'utils/avatars';
+import { achievementsReference } from './utils/achievements';
 // Components
 import { CandyCount } from './components/CandyCount';
 import { PlayerStats } from './components/PlayerStats';
@@ -13,7 +14,6 @@ import { Translate } from 'components/language';
 import { Avatar } from 'components/avatars';
 import { PoopIcon } from 'components/icons/PoopIcon';
 import { Achievements } from 'components/general/Achievements';
-import { achievementsReference } from './utils/achievements';
 
 const GRID_REPEAT: NumberDictionary = {
   3: 3,
@@ -45,7 +45,7 @@ function PhaseGameOver({ state, players, info }: PhaseProps) {
         </Instruction>
       }
     >
-      <Instruction>
+      <Instruction contained>
         <Translate pt="com" en="with" />
         <CandyCount candyCount={state.winners[0].score} size="default" />
       </Instruction>

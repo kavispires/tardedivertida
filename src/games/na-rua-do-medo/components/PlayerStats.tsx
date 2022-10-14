@@ -34,7 +34,7 @@ export function PlayerStats({ user, omitDecision = false }: PlayerStatsProps) {
 
           <div className="n-player-stats__count">
             <span className="n-player-stats__count-label">
-              <Translate pt="Em casa" en="At home" />
+              <Translate pt="Em casa (pontos)" en="At home (points)" />
             </span>
             <span className="n-player-stats__count-value">{user.totalCandy}</span>
           </div>
@@ -87,7 +87,7 @@ function DecisionIcon({ decision, omitDecision }: DecisionIconProps) {
   return decision === 'CONTINUE' ? (
     <>
       <IconAvatar icon={<WalkIcon />} />
-      <Translate pt="Continuar" en="Continue" />
+      <Translate pt="Continuando" en="Continuing" />
     </>
   ) : (
     <>

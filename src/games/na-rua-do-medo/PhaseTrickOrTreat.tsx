@@ -16,14 +16,13 @@ import { StepMakeDecision } from './StepMakeDecision';
 import { PlayerStats } from './components/PlayerStats';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StreetIcon } from 'components/icons/StreetIcon';
-import { TrickOrTreatIcon } from 'components/icons/TrickOrTreatIcon';
 
 function PhaseTrickOrTreat({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
   const isNewStreet = state.street.length === 0;
-  const { step, goToNextStep, setStep } = useStep(isNewStreet ? 0 : 1);
+  const { step, goToNextStep, setStep } = useStep(isNewStreet ? 0 : 2);
 
   const onSubmitDecision = useOnSubmitDecisionAPIRequest(setStep);
 
@@ -41,7 +40,7 @@ function PhaseTrickOrTreat({ state, players, info }: PhaseProps) {
           buttonText=" "
           onPressButton={goToNextStep}
           time={5}
-          circleColor="black"
+          circleColor="purple"
         >
           <Instruction contained>
             <Translate
@@ -54,24 +53,28 @@ function PhaseTrickOrTreat({ state, players, info }: PhaseProps) {
 
         {/* Step 1 */}
         <PhaseAnnouncement
-          icon={isNewStreet ? <StreetIcon /> : <TrickOrTreatIcon />}
+          icon={<StreetIcon />}
           title={translate('Gostosuras ou Travessuras?', 'Trick or Treat?')}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
-          duration={isNewStreet ? 6 : 3}
+          duration={5}
         >
           <Instruction>
-            {isNewStreet ? (
-              <Translate
-                pt={<>Nova rua! Vamos de porta em porta pegar doces!</>}
-                en={<>New street! Let's go door to door to get candy!</>}
-              />
-            ) : (
-              <Translate
-                pt={<>Espero que a próxima casa não dê medo...</>}
-                en={<>I hope the next house is not scary...</>}
-              />
-            )}
+            <Translate
+              pt={
+                <>
+                  Nova rua! Vamos de porta em porta pegar doces!
+                  <br />
+                  Espero que essa rua não dê medo...
+                </>
+              }
+              en={
+                <>
+                  New street! Let's go door to door to get candy!
+                  <br />I hope this street is not scary...
+                </>
+              }
+            />
           </Instruction>
         </PhaseAnnouncement>
 
@@ -81,11 +84,14 @@ function PhaseTrickOrTreat({ state, players, info }: PhaseProps) {
           street={state.street}
           currentCard={state.currentCard}
           candySidewalk={state.candySidewalk}
+          cashedInCandy={state.cashedInCandy}
+          candyPerPlayer={state.candyPerPlayer}
+          candyInHand={state.candyInHand}
           totalCandyInSidewalk={state.totalCandyInSidewalk}
           continuingPlayerIds={state.continuingPlayerIds}
+          alreadyAtHomePlayerIds={state.alreadyAtHomePlayerIds}
           onSubmitDecision={onSubmitDecision}
           user={user}
-          candyPerPlayer={state.candyPerPlayer}
         />
       </StepSwitcher>
     </PhaseContainer>
