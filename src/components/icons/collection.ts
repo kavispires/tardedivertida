@@ -157,6 +157,7 @@ export * from './StarIcon';
 export * from './StarOutlineIcon';
 export * from './StreetIcon';
 export * from './SuccessIcon';
+export * from './TabletIcon';
 export * from './TargetIcon';
 export * from './TDIcon';
 export * from './TheEndIcon';

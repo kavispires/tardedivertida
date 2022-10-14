@@ -101,3 +101,7 @@ body {
 .invisible {
   opacity: 0;
 }
+
+.svg-mirror {
+  transform: scaleX(-1);
+}
