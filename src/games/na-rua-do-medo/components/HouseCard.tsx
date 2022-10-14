@@ -33,7 +33,7 @@ type HouseCardProps = {
 };
 
 export function HouseCard({ card, candyLeftover, id, className = '', active = false }: HouseCardProps) {
-  const { language } = useLanguage();
+  const { dualTranslate } = useLanguage();
 
   const baseClass = 'n-house-card';
   const cardBaseClass = 'n-house-card__card';
@@ -60,7 +60,7 @@ export function HouseCard({ card, candyLeftover, id, className = '', active = fa
       </div>
       <ImageCard imageId={card.key} cardWidth={80} className={clsx(cardBaseClass)} />
 
-      <h3 className={`${baseClass}__name`}>{card.name[language]}</h3>
+      <h3 className={`${baseClass}__name`}>{dualTranslate(card.name)}</h3>
 
       {active && (
         <span
