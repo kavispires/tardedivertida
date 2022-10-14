@@ -239,7 +239,6 @@ $stats-height: get-unit(40);
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    // transition: all 5s;
 
     &--empty {
       font-size: 0;
@@ -278,111 +277,19 @@ $stats-height: get-unit(40);
     &--empty {
       font-size: 0;
     }
-  }
-}
-
-.n-players-decision-list {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex-wrap: wrap;
-  transform: scale(75%);
-  margin: get-unit(0 auto 2 auto);
-
-  &__title {
-    background-color: rgba($color: white, $alpha: 0.6);
-    margin: 0;
-    padding: get-unit(1 2 0 2);
-    border-radius: get-unit(5 5 0 0);
-  }
-
-  &__players {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba($color: white, $alpha: 0.6);
-    padding: get-unit(1);
-    border-radius: get-unit(5);
-    flex-wrap: wrap;
-  }
-
-  &__player {
-    padding: get-unit(1 2);
-    border-radius: get-unit(5);
-    white-space: nowrap;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-}
-
-.n-players-decision-result {
-  @include contained;
-  display: grid;
-  max-width: 70vw;
-  grid-template-columns: 1fr 1px 1fr;
-  margin-bottom: get-unit(2);
-  border-radius: get-unit(2);
-
-  @include mobile {
-    display: block;
-  }
-
-  &__section {
-    display: flex;
-    height: 100%;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    min-width: 30vw;
-  }
-
-  &__divider {
-    background-color: get-color('gray', 3);
-  }
-
-  &__title {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  &__players {
-    flex: 1;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    padding: get-unit(2);
-
-    &--nobody {
-      font-style: italic;
-      color: get-color('gray', 8);
-    }
-  }
-
-  &__player {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-
-  &__info {
-    margin: get-unit(3 0 1 0);
-    font-style: italic;
   }
 }
 
 .n-game-over-players {
   width: 100%;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .n-game-over-player {
+  width: 15vw;
+  max-width: 200px;
   @include contained;
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
@@ -476,4 +383,10 @@ $stats-height: get-unit(40);
       background-color: get-color('yellow');
     }
   }
+}
+
+.n-game-over-player {
+  display: flex;
+  flex-direction: column;
+  gap: get-unit(1);
 }
