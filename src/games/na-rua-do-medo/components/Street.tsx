@@ -38,6 +38,7 @@ export function Street({ street, currentCard, candySidewalk }: StreetProps) {
           candyLeftover={candySidewalk[candySidewalk.length - 1].leftover}
           className={clsx('n-current-card', getAnimationClass('flipInY'))}
           id="current-card"
+          active
         />
       )}
     </div>
