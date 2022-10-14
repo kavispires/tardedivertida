@@ -1,3 +1,21 @@
+.n-background.n-background {
+  background: linear-gradient(-45deg, #1f122f, #2f2404, #27143d, #322414, #1c172e);
+  background-size: 1000% 1000%;
+}
+
+.n-title {
+  &.title {
+    margin-bottom: 0;
+  }
+}
+
+.n-subtitle {
+  &.title {
+    margin-bottom: get-unit(2);
+    margin-top: 0 !important;
+  }
+}
+
 .n-street {
   display: flex;
   width: 92vw;
@@ -70,6 +88,15 @@ $n-pink: #ffb1b4;
     min-height: 25px;
     text-align: center;
     width: 100%;
+  }
+
+  &__active {
+    width: 0;
+    height: 0;
+    border-left: calc($card-width / 3) solid transparent;
+    border-right: calc($card-width / 3) solid transparent;
+    border-bottom: 10px solid $n-pink;
+    clear: both;
   }
 }
 
@@ -174,49 +201,14 @@ $stats-height: get-unit(40);
   }
 }
 
-.n-players-decision-list {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex-wrap: wrap;
-  transform: scale(75%);
-  margin: get-unit(0 auto 2 auto);
-
-  &__title {
-    background-color: rgba($color: white, $alpha: 0.6);
-    margin: 0;
-    padding: get-unit(1 2 0 2);
-    border-radius: get-unit(5 5 0 0);
-  }
-
-  &__players {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba($color: white, $alpha: 0.6);
-    padding: get-unit(1);
-    border-radius: get-unit(5);
-    flex-wrap: wrap;
-  }
-
-  &__player {
-    padding: get-unit(1 2);
-    border-radius: get-unit(5);
-    white-space: nowrap;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-}
-
-.n-players-decision-result {
+.n-players-decision {
   @include contained;
   display: grid;
   max-width: 70vw;
-  grid-template-columns: 1fr 1px 1fr;
+  grid-template-columns: auto 1px auto 1px auto;
   margin-bottom: get-unit(2);
   border-radius: get-unit(2);
+  transition: all 3s;
 
   @include mobile {
     display: block;
@@ -228,7 +220,14 @@ $stats-height: get-unit(40);
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    min-width: 30vw;
+    width: auto;
+    min-width: 20vw;
+    transition: all 3s;
+
+    &--empty {
+      width: 48px;
+      min-width: auto;
+    }
   }
 
   &__divider {
@@ -240,6 +239,10 @@ $stats-height: get-unit(40);
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    &--empty {
+      font-size: 0;
+    }
   }
 
   &__players {
@@ -254,6 +257,10 @@ $stats-height: get-unit(40);
       font-style: italic;
       color: get-color('gray', 8);
     }
+
+    &--empty {
+      font-size: 0;
+    }
   }
 
   &__player {
@@ -266,16 +273,23 @@ $stats-height: get-unit(40);
   &__info {
     margin: get-unit(3 0 1 0);
     font-style: italic;
+
+    &--empty {
+      font-size: 0;
+    }
   }
 }
 
 .n-game-over-players {
   width: 100%;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .n-game-over-player {
+  width: 15vw;
+  max-width: 200px;
   @include contained;
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
@@ -318,4 +332,61 @@ $stats-height: get-unit(40);
   100% {
     transform: scale(1, 1) translateY(0);
   }
+}
+
+.n-candy-highlight {
+  border: get-color('pink', 7, 0.8) 1px solid;
+  background-color: get-color('pink', 3, 0.6);
+}
+
+.n-step-trick-or-treat {
+  position: relative;
+}
+
+.n-new-house-card {
+  $self: &;
+
+  position: absolute;
+  @include contained;
+  background-color: get-color('white', 5, 0.8);
+  top: 20vh;
+
+  &__container {
+    // transform: scale(2);
+
+    #{$self}--collapsed & {
+      overflow: hidden;
+    }
+
+    #{$self}--horror & {
+      background-color: get-color('brown');
+    }
+
+    #{$self}--jackpot & {
+      background-color: get-color('yellow');
+    }
+  }
+
+  &__name {
+    width: 100%;
+    border-radius: get-unit(1);
+    text-align: center;
+    font-size: 1.5em;
+    background-color: $n-pink;
+    margin-top: get-unit(2);
+
+    #{$self}--horror & {
+      background-color: get-color('brown');
+    }
+
+    #{$self}--jackpot & {
+      background-color: get-color('yellow');
+    }
+  }
+}
+
+.n-game-over-player {
+  display: flex;
+  flex-direction: column;
+  gap: get-unit(1);
 }

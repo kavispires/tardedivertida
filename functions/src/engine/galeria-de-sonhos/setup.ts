@@ -40,7 +40,7 @@ export const prepareSetupPhase = async (
 
   // Helper Bots
   if (store.options.withBots) {
-    utils.players.addBots(players, 2);
+    utils.players.addBots(players, 3);
   }
 
   // Save
@@ -154,7 +154,7 @@ export const prepareCardPlayPhase = async (
   const playerInNightmareId = isOnePlayerInNightmare ? playersInMax[0] : utils.firebase.deleteValue();
 
   // Simulate bots cards
-  simulateBotCards(players);
+  simulateBotCards(players, state.table);
 
   // Save
   return {

@@ -6,6 +6,7 @@ import { pluralize } from 'utils/helpers';
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { StarPoints } from 'components/points';
+import { PointsHighlight } from './Highlights';
 
 type MatchCountProps = {
   matchCount: number;
@@ -51,7 +52,8 @@ export function MatchCount({ matchCount, lastActivePlayer, playerInNightmare }: 
               {isPlayerInNightmare && (
                 <>
                   {' '}
-                  Para piorar, <AvatarName player={lastActivePlayer} size="small" addressUser /> vai perder 1
+                  Para piorar, <AvatarName player={lastActivePlayer} size="small" addressUser /> vai perder{' '}
+                  <PointsHighlight type="negative">1</PointsHighlight>
                   ponto por sonho usado até então.
                 </>
               )}
@@ -66,7 +68,7 @@ export function MatchCount({ matchCount, lastActivePlayer, playerInNightmare }: 
                 <>
                   {' '}
                   To make this worse, <AvatarName player={lastActivePlayer} size="small" addressUser /> will
-                  lose a point for each scored dream.
+                  lose <PointsHighlight type="negative">1</PointsHighlight> point for each scored dream.
                 </>
               )}
             </>

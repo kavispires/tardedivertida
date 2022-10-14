@@ -25,6 +25,7 @@ import { StepPlayDream } from './StepPlayDream';
 import { StepAnnounceDream } from './StepAnnounceDream';
 import { DoorSignIcon } from 'components/icons/DoorSignIcon';
 import { NightmareIcon } from 'components/icons/NightmareIcon';
+import { PointsHighlight } from './components/Highlights';
 
 function PhaseCardPlay({ players, state, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -97,8 +98,24 @@ function PhaseCardPlay({ players, state, info }: PhaseProps) {
         >
           <Instruction>
             <Translate
-              pt="Quando um jogador sozinho selecionou o maior número de sonhos, ele é considerado estar em um pesadelo! Se ele não conseguir achar outro jogador que marcou o mesmo sonho para cada uma das cartas selecionadas, ele perde 1 ponto por carta."
-              en="When a player alone selected the most dream cards they are considered to be in a nightmare! If they are not able to match every single dream, they will lose 1 point per card."
+              pt={
+                <>
+                  Quando um jogador sozinho selecionou o maior número de sonhos, ele é considerado estar em um
+                  pesadelo!
+                  <br />
+                  Se ele não conseguir achar outro jogador que marcou o mesmo sonho para cada uma das cartas
+                  selecionadas, ele perde <PointsHighlight type="negative">1</PointsHighlight> ponto por carta
+                  que você ganhou ponto.
+                </>
+              }
+              en={
+                <>
+                  When a player alone selected the most dream cards they are considered to be in a nightmare!
+                  <br />
+                  If they are not able to match every single dream, they will lose{' '}
+                  <PointsHighlight type="negative">1</PointsHighlight> point per card you previously scored.
+                </>
+              }
             />
           </Instruction>
         </PhaseAnnouncement>

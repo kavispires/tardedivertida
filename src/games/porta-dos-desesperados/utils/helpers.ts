@@ -23,6 +23,7 @@ export function shouldAnnounceTrap(trap: string, phase: string) {
     TRAPS.SECRET_CHOICE,
     TRAPS.NO_COMMUNICATION,
     TRAPS.SEPIA,
+    TRAPS.HALF_TIME,
   ].includes(trap);
 }
 

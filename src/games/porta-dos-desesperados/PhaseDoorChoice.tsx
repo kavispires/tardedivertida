@@ -21,7 +21,7 @@ import { StepWaitDoorSelection } from './StepWaitDoorSelection';
 import { MagicDoorIcon } from 'components/icons/MagicDoorIcon';
 import { useLoading } from 'hooks/useLoading';
 
-function PhaseDoorChoice({ players, state, info }: PhaseProps) {
+function PhaseDoorChoice({ players, state, info, meta }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
   const { translate } = useLanguage();
   const user = useUser(players);
@@ -82,6 +82,7 @@ function PhaseDoorChoice({ players, state, info }: PhaseProps) {
             players={players}
             magic={state.magic}
             answerDoorId={state.answerDoorId}
+            botEnabled={Boolean(meta?.options?.withBots)}
           />
 
           <StepSelectDoor
@@ -95,6 +96,7 @@ function PhaseDoorChoice({ players, state, info }: PhaseProps) {
             onConfirmDoor={onConfirmDoor}
             possessed={possessed}
             magic={state.magic}
+            botEnabled={Boolean(meta?.options?.withBots)}
           />
         </ViewOr>
       </StepSwitcher>

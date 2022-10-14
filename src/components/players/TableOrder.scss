@@ -1,0 +1,98 @@
+$table-order-size: 500px;
+
+.table-order {
+  $self: &;
+
+  &__players {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: $table-order-size;
+    height: $table-order-size;
+    margin: 1rem;
+    position: relative;
+  }
+
+  &__player {
+    position: absolute;
+    left: 0;
+    list-style: none;
+    transition: 1000s;
+    transform-origin: calc($table-order-size / 2);
+    transform: rotate(calc((360deg / var(--t) * var(--i)) + 90deg));
+    transition-delay: calc(500ms * (var(--i) * 2150));
+
+    &--active {
+      color: get-color('white');
+    }
+
+    #{$self}__icon {
+      transform: rotate(calc((360deg / var(--t) * -1 * var(--i)) - 90deg));
+
+      background: get-color('white');
+      @include box-shadow;
+      display: flex;
+      flex-direction: column;
+
+      width: 10ch;
+      height: 10ch;
+      padding: get-unit(1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      transition: 1000ms;
+    }
+  }
+
+  &__chevron {
+    position: absolute;
+    left: 0;
+    list-style: none;
+    transition: 1000s;
+    transform-origin: calc($table-order-size / 2);
+    transform: rotate(calc((360deg / var(--t) * var(--i)) + 90deg));
+
+    #{$self}__icon {
+      transform: rotate(calc((360deg / -1 * var(--i)) - 90deg)) translateY(150%);
+      display: block;
+    }
+  }
+
+  &__center {
+    transform-origin: calc($table-order-size / 2);
+    transform: translateX(-50%);
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    width: 40%;
+    list-style: none;
+  }
+
+  &__center-container {
+    @include contained;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__title {
+    margin: get-unit(1);
+    white-space: nowrap;
+  }
+
+  &--small {
+    font-size: 0.75rem !important;
+
+    #{$self}__players {
+      width: $table-order-size * 0.66;
+      height: $table-order-size * 0.66;
+    }
+
+    #{$self}__player,
+    #{$self}__chevron {
+      transform-origin: calc($table-order-size * 0.66 / 2);
+    }
+  }
+}

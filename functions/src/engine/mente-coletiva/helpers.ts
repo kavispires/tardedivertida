@@ -13,6 +13,7 @@ import type {
   AnswerEntry,
   AnswerGroupEntry,
   Deck,
+  FirebaseStoreData,
   MenteColetivaAchievement,
   PastureChangeEntry,
   SheepAnimation,
@@ -408,7 +409,7 @@ export const shouldSaveSheep = (
  * Most lonely - is the only one in a pasture
  * @param players
  */
-export const getAchievements = (players: Players, store: PlainObject) => {
+export const getAchievements = (players: Players, store: FirebaseStoreData) => {
   const pasturesCount: PlayerId[][] = [];
 
   utils.players.getListOfPlayers(players).forEach((player) => {

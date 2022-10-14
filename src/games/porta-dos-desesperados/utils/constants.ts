@@ -39,7 +39,7 @@ export const OUTCOME = {
 /**
  * In minutes
  */
-export const ROUND_DURATION = 2;
+export const ROUND_DURATION = 4;
 
 /**
  * In seconds

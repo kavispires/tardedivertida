@@ -4,14 +4,16 @@ import { useLanguage } from 'hooks/useLanguage';
 import { useUser } from 'hooks/useUser';
 // Utils
 import { AVATARS } from 'utils/avatars';
+import { achievementsReference } from './utils/achievements';
 // Components
 import { CandyCount } from './components/CandyCount';
 import { PlayerStats } from './components/PlayerStats';
 import { GameOverWrapper } from 'components/game-over';
 import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
-import { Avatar } from 'components/avatars';
 import { PoopIcon } from 'components/icons/PoopIcon';
+import { Achievements } from 'components/general/Achievements';
+import { CostumeAvatar } from './components/CostumeAvatar';
 
 const GRID_REPEAT: NumberDictionary = {
   3: 3,
@@ -28,6 +30,13 @@ function PhaseGameOver({ state, players, info }: PhaseProps) {
   const { language } = useLanguage();
   const user = useUser(players);
 
+  const winningPlayersIds = state.winners.map((player: GamePlayer) => player.id);
+  const nonWinningPlayers = orderBy(
+    Object.values(players).filter((player) => !winningPlayersIds.includes(player.id)),
+    'score',
+    'desc'
+  );
+
   return (
     <GameOverWrapper
       info={info}
@@ -43,19 +52,37 @@ function PhaseGameOver({ state, players, info }: PhaseProps) {
         </Instruction>
       }
     >
-      <Instruction>
-        <Translate pt="com" en="with" />
-        <CandyCount candyCount={state.winners[0].score} size="default" />
+      <Instruction contained>
+        <p>
+          <Translate pt="com" en="with" />
+        </p>
+        <ul className="n-game-over-players">
+          {state.winners.map((player: GamePlayer) => {
+            return (
+              <div className="n-game-over-player">
+                <CostumeAvatar
+                  key={`winner-${player.id}`}
+                  id={state.winners[0].avatarId}
+                  costumeId={player.costumeId}
+                />
+                <div>
+                  <CandyCount candyCount={player.score} size="default" />
+                </div>
+              </div>
+            );
+          })}
+        </ul>
       </Instruction>
 
       <ul
         className="n-game-over-players"
         style={{ gridTemplateColumns: `repeat(${GRID_REPEAT?.[Object.keys(players).length] ?? 5}, 1fr)` }}
       >
-        {orderBy(Object.values(players), 'score', 'desc').map((player) => (
+        {nonWinningPlayers.map((player) => (
           <li className="n-game-over-player" key={`game-over-player-${player.id}`}>
-            <Avatar className="n-game-over-player__avatar" id={player.avatarId} />
             <div className="n-game-over-player__name">
+              <CostumeAvatar id={player.avatarId} costumeId={player.costumeId} />
+              <br />
               <strong>{player.name}</strong>, {AVATARS[player.avatarId].description[language]}
             </div>
             <div className="n-game-over-player__candy">
@@ -64,6 +91,8 @@ function PhaseGameOver({ state, players, info }: PhaseProps) {
           </li>
         ))}
       </ul>
+
+      <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
 
       <PlayerStats user={user} />
     </GameOverWrapper>

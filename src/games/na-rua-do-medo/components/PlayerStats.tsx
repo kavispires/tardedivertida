@@ -1,11 +1,10 @@
 // Components
-
 import { AvatarStrip } from 'components/avatars';
 import { FloatingHand, ImageCard } from 'components/cards';
 import { HouseIcon } from 'components/icons/HouseIcon';
 import { IconAvatar } from 'components/icons/IconAvatar';
 import { QuestionIcon } from 'components/icons/QuestionIcon';
-import { UserStatsIcon } from 'components/icons/UserStatsIcon';
+import { TrickOrTreatIcon } from 'components/icons/TrickOrTreatIcon';
 import { WalkIcon } from 'components/icons/WalkIcon';
 import { Translate } from 'components/language';
 
@@ -16,7 +15,7 @@ type PlayerStatsProps = {
 
 export function PlayerStats({ user, omitDecision = false }: PlayerStatsProps) {
   return (
-    <FloatingHand title={<Translate pt="Informações" en="Stats" />} icon={<UserStatsIcon />}>
+    <FloatingHand title={<Translate pt="Informações" en="Stats" />} icon={<TrickOrTreatIcon />}>
       <div className="n-player-stats">
         <AvatarStrip player={user} withName size="small" />
         <div className="n-player-stats__decision">
@@ -35,7 +34,7 @@ export function PlayerStats({ user, omitDecision = false }: PlayerStatsProps) {
 
           <div className="n-player-stats__count">
             <span className="n-player-stats__count-label">
-              <Translate pt="Em casa" en="At home" />
+              <Translate pt="Em casa (pontos)" en="At home (points)" />
             </span>
             <span className="n-player-stats__count-value">{user.totalCandy}</span>
           </div>
@@ -88,7 +87,7 @@ function DecisionIcon({ decision, omitDecision }: DecisionIconProps) {
   return decision === 'CONTINUE' ? (
     <>
       <IconAvatar icon={<WalkIcon />} />
-      <Translate pt="Continuar" en="Continue" />
+      <Translate pt="Continuando" en="Continuing" />
     </>
   ) : (
     <>

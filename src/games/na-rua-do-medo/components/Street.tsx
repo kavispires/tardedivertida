@@ -16,7 +16,8 @@ export function Street({ street, currentCard, candySidewalk }: StreetProps) {
   useEffect(() => {
     const streetEl = document.getElementById('street');
     const currentCardEl = document.getElementById('current-card');
-    if (streetEl != null && currentCardEl != null) {
+
+    if (streetEl !== null && currentCardEl !== null) {
       streetEl.scrollLeft = currentCardEl.offsetLeft;
     }
   }, [street, currentCard]);
@@ -30,7 +31,14 @@ export function Street({ street, currentCard, candySidewalk }: StreetProps) {
       }}
     >
       {street.map((card, index) => {
-        return <HouseCard key={card.id} card={card} candyLeftover={candySidewalk[index].leftover} />;
+        return (
+          <HouseCard
+            key={card.id}
+            card={card}
+            candyLeftover={candySidewalk[index].leftover}
+            id={index === street.length - 1 ? 'current-card' : undefined}
+          />
+        );
       })}
       {currentCard && (
         <HouseCard
@@ -38,6 +46,7 @@ export function Street({ street, currentCard, candySidewalk }: StreetProps) {
           candyLeftover={candySidewalk[candySidewalk.length - 1].leftover}
           className={clsx('n-current-card', getAnimationClass('flipInY'))}
           id="current-card"
+          active
         />
       )}
     </div>

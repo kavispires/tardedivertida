@@ -12,7 +12,7 @@ import type { FirebaseStateData, FirebaseStoreData } from './types';
 // Utils
 import * as utils from '../../utils';
 // Internal
-import { buildTable, buildTableDeck, getTableCards, scoreRound } from './helpers';
+import { buildTable, buildTableDeck, getAchievements, getTableCards, scoreRound } from './helpers';
 
 /**
  * Setup
@@ -44,6 +44,13 @@ export const prepareSetupPhase = async (
   // Split cards equally between players
   players = utils.game.dealList(cards, players, CARDS_PER_PLAYER, 'deck');
 
+  const achievements = utils.achievements.setup(players, store, {
+    playerVotes: 0,
+    badClues: 0,
+    easyClues: 0,
+    tableVotes: 0,
+  });
+
   // Save
   return {
     update: {
@@ -51,6 +58,7 @@ export const prepareSetupPhase = async (
         usedCards: [],
         tableDeck,
         tableDeckIndex: -1,
+        achievements,
       },
       state: {
         phase: CONTADORES_HISTORIAS_PHASES.SETUP,
@@ -170,11 +178,14 @@ export const prepareResolutionPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Gather votes
-  const { ranking, outcome, table } = scoreRound(players, state.table, state.storytellerId);
+  const { ranking, outcome, table } = scoreRound(players, state.table, state.storytellerId, store);
 
   // Save
   return {
     update: {
+      store: {
+        achievements: store.achievements,
+      },
       state: {
         phase: CONTADORES_HISTORIAS_PHASES.RESOLUTION,
         outcome,
@@ -193,6 +204,8 @@ export const prepareGameOverPhase = async (
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 
+  const achievements = getAchievements(store);
+
   return {
     update: {
       meta: {
@@ -206,6 +219,7 @@ export const prepareGameOverPhase = async (
         round: state.round,
         gameEndedAt: Date.now(),
         winners,
+        achievements,
       },
     },
   };

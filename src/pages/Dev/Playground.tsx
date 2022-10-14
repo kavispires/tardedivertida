@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable no-unused-vars, @typescript-eslint/no-unused-vars */
 
 // import { Image, Layout } from 'antd';
 import GAME_LIST from 'utils/info';
@@ -6,41 +6,23 @@ import { Avatar, AvatarEntry } from 'components/avatars';
 import { AdminOnlyContainer } from 'components/admin';
 // Resources
 import { CheckCircleFilled, CheckCircleOutlined } from '@ant-design/icons';
-import { Button, Input } from 'antd';
+import { Button, Input, Space } from 'antd';
 import { LETTERS } from 'utils/constants';
 
 import { getColorFromLetter } from 'utils/helpers';
 import { DevHeader } from './DevHeader';
 import { useTitle } from 'react-use';
 import { TimedTimerBar } from 'components/timers';
+import { mockPlayers } from 'mock/players';
+import { TurnOrder } from 'components/players';
+import { TableOrder } from 'components/players/TableOrder';
+import { useMemo } from 'react';
 
-function TestingZone() {
-  useTitle('Testing Zone | Dev | Tarde Divertida');
+function Playground() {
+  useTitle('Playground | Dev | Tarde Divertida');
   const info = GAME_LIST['U'];
 
-  const players = {
-    Flaviane: {
-      avatarId: '10',
-      name: 'Flaviane',
-      ready: false,
-      score: 0,
-      updatedAt: Date.now(),
-    },
-    Kavis: {
-      avatarId: '11',
-      name: 'Kavis',
-      ready: false,
-      score: 0,
-      updatedAt: Date.now(),
-    },
-    Stephanie: {
-      avatarId: '12',
-      name: 'Stephanie',
-      ready: false,
-      score: 0,
-      updatedAt: Date.now(),
-    },
-  };
+  const players = useMemo(() => mockPlayers({}, 12, {}), []);
 
   // Mock State
   const state = {
@@ -64,7 +46,7 @@ function TestingZone() {
   // }, {});
   // console.log({ questionObj });
 
-  const splitQuestions = questions.reduce((acc, question, index) => {
+  const splitQuestions = questions.reduce((acc: any, question, index) => {
     const id = `m-${index + 1}-en`;
 
     const [prefix, answers, suffix] = question.suffix.split(/([0-9])+/g);
@@ -100,14 +82,32 @@ function TestingZone() {
   };
   return (
     <div>
-      <DevHeader title="Testing Zone" />
+      <DevHeader title="Playground" />
       <AdminOnlyContainer>Hello</AdminOnlyContainer>
-      <TimedTimerBar duration={30} />
+      <TimedTimerBar duration={30} onExpire={() => console.log('done')} />
+      <TurnOrder players={players} order={Object.keys(players)} activePlayerId={Object.keys(players)[3]} />
+
+      <Space>
+        <TableOrder
+          players={players}
+          order={Object.keys(players)}
+          activePlayerId={Object.keys(players)[3]}
+          reorderByUser={Object.keys(players)[3]}
+        />
+
+        <TableOrder
+          players={players}
+          order={Object.keys(players)}
+          activePlayerId={Object.keys(players)[3]}
+          reorderByUser={Object.keys(players)[3]}
+          size="small"
+        />
+      </Space>
     </div>
   );
 }
 
-export default TestingZone;
+export default Playground;
 
 const questions = [
   {
