@@ -13,7 +13,7 @@ import PhaseGameOver from './PhaseGameOver';
 
 ConfigProvider.config({
   theme: {
-    primaryColor: THEME_COLORS.DEFAULT,
+    primaryColor: THEME_COLORS.MIDNIGHT,
   },
 });
 
@@ -44,6 +44,7 @@ function SessionNaRuaDoMedo({ gameId }: SessionProps) {
       gameId={gameId}
       gameCollection={GAME_COLLECTION.NA_RUA_DO_MEDO}
       getActiveComponent={getActiveComponent}
+      backgroundClassName="n-background"
     />
   );
 }
