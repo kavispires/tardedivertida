@@ -51,14 +51,12 @@ export function StepMakeDecision({
   candyPerPlayer,
   candyInHand,
 }: StepMakeDecisionProps) {
-  const { language } = useLanguage();
+  const { dualTranslate } = useLanguage();
   const { isLoading } = useLoading();
 
   // DEV: make decision
   useMock(() => {
-    console.log('MOCK!');
     if (user.isTrickOrTreating && !user.ready) {
-      console.log('MOCKING');
       onSubmitDecision({
         decision: mockPlayerDecision(street.filter((card) => card.type === 'horror').length, user.hand),
       });
@@ -90,8 +88,8 @@ export function StepMakeDecision({
         )}
         {currentCard.type === 'horror' && (
           <Translate
-            pt={`Ahh! Cruz credo! Um(a) ${currentCard.name[language]} super assustador(a)!`}
-            en={`Ahh! Yikes! A very scary ${currentCard.name[language]}!`}
+            pt={`Ahh! Cruz credo! Um(a) ${dualTranslate(currentCard.name)} super assustador(a)!`}
+            en={`Ahh! Yikes! A very scary ${dualTranslate(currentCard.name)}!`}
           />
         )}
         {currentCard.type === 'jackpot' && (
