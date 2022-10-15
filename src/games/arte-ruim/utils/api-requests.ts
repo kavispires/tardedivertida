@@ -34,7 +34,7 @@ export function useOnSubmitVotingAPIRequest(setStep: GenericFunction) {
   const request = useAPICall({
     apiFunction: ARTE_RUIM_API.submitAction,
     actionName: 'submit-voting',
-    onBeforeCall: () => setStep(2),
+    onSuccess: () => setStep(2),
     onError: () => setStep(0),
     successMessage: translate(
       'Avaliação enviada! Agora aguarde os outros jogadores',

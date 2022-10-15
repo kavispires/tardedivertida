@@ -130,6 +130,7 @@ export function StepEvaluation({ drawings, cards, players, onSubmitVoting }: Ste
           onClick={() => onSubmitVoting({ votes: prepareVotes(votes) })}
           disabled={isLoading || !isVotingComplete}
           icon={<CloudUploadOutlined />}
+          loading={isLoading}
         >
           <Translate pt="Enviar sua avaliação" en="Send evaluation" />
         </Button>
