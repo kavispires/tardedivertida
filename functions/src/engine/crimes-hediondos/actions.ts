@@ -1,17 +1,17 @@
 // Helpers
-import * as utils from '../../utils';
+import utils from '../../utils';
 // Internal functions
 import { getNextPhase } from './index';
 import { Guesses } from './types';
 
 export const handleSubmitCrime = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   data: PlainObject
 ) => {
   return await utils.firebase.updatePlayer({
-    collectionName,
+    gameName,
     gameId,
     playerId,
     actionText: 'submit your crime',
@@ -29,13 +29,13 @@ export const handleSubmitCrime = async (
 };
 
 export const handleSubmitMark = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   sceneIndex: number
 ) => {
   return await utils.firebase.updatePlayer({
-    collectionName,
+    gameName,
     gameId,
     playerId,
     actionText: 'submit your mark',
@@ -46,13 +46,13 @@ export const handleSubmitMark = async (
 };
 
 export const handleSubmitGuesses = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   guesses: Guesses
 ) => {
   return await utils.firebase.updatePlayer({
-    collectionName,
+    gameName,
     gameId,
     playerId,
     actionText: 'submit your guesses',

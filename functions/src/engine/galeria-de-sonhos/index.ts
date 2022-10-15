@@ -1,5 +1,5 @@
 // Constants
-import { GAME_COLLECTIONS } from '../../utils/constants';
+import { GAME_NAMES } from '../../utils/constants';
 import {
   GALERIA_DE_SONHOS_ACTIONS,
   GALERIA_DE_SONHOS_PHASES,
@@ -13,7 +13,7 @@ import type {
   GaleriaDeSonhosSubmitAction,
 } from './types';
 // Utils
-import * as utils from '../../utils';
+import utils from '../../utils';
 import { determineNextPhase } from './helpers';
 // Internal Functions
 import {
@@ -42,7 +42,7 @@ export const getInitialState = (
 ): GaleriaDeSonhosInitialState => {
   return utils.helpers.getDefaultInitialState({
     gameId,
-    gameName: GAME_COLLECTIONS.GALERIA_DE_SONHOS,
+    gameName: GAME_NAMES.GALERIA_DE_SONHOS,
     uid,
     language,
     playerCounts: PLAYER_COUNTS,
@@ -62,16 +62,12 @@ export const getInitialState = (
  */
 export const playerCounts = PLAYER_COUNTS;
 
-export const getNextPhase = async (
-  collectionName: string,
-  gameId: string,
-  players: Players
-): Promise<boolean> => {
+export const getNextPhase = async (gameName: string, gameId: string, players: Players): Promise<boolean> => {
   const actionText = 'prepare next phase';
 
   // Gather docs and references
   const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences(
-    collectionName,
+    gameName,
     gameId,
     actionText
   );
@@ -88,7 +84,7 @@ export const getNextPhase = async (
     const additionalData = await getWords(store.language);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await utils.firebase.saveGame(sessionRef, newPhase);
-    return getNextPhase(collectionName, gameId, players);
+    return getNextPhase(gameName, gameId, players);
   }
 
   // * -> WORD_SELECTION
@@ -117,7 +113,7 @@ export const getNextPhase = async (
 
   // RESOLUTION -> GAME_OVER
   if (nextPhase === GALERIA_DE_SONHOS_PHASES.GAME_OVER) {
-    const newPhase = await prepareGameOverPhase(store, state, players);
+    const newPhase = await prepareGameOverPhase(gameId, store, state, players);
     return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
@@ -129,20 +125,20 @@ export const getNextPhase = async (
  * May trigger next phase
  */
 export const submitAction = async (data: GaleriaDeSonhosSubmitAction) => {
-  const { gameId, gameName: collectionName, playerId, action } = data;
+  const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, collectionName, playerId, action);
+  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
     case GALERIA_DE_SONHOS_ACTIONS.SUBMIT_WORD:
       utils.firebase.validateSubmitActionProperties(data, ['wordId'], 'submit word');
-      return handleSubmitWord(collectionName, gameId, playerId, data.wordId);
+      return handleSubmitWord(gameName, gameId, playerId, data.wordId);
     case GALERIA_DE_SONHOS_ACTIONS.SUBMIT_CARDS:
       utils.firebase.validateSubmitActionProperties(data, ['cardsIds'], 'submit cards');
-      return handleSubmitCards(collectionName, gameId, playerId, data.cardsIds);
+      return handleSubmitCards(gameName, gameId, playerId, data.cardsIds);
     case GALERIA_DE_SONHOS_ACTIONS.PLAY_CARD:
       utils.firebase.validateSubmitActionProperties(data, ['cardId'], 'play card');
-      return handlePlayCard(collectionName, gameId, playerId, data.cardId);
+      return handlePlayCard(gameName, gameId, playerId, data.cardId);
     default:
       utils.firebase.throwException(`Given action ${action} is not allowed`);
   }

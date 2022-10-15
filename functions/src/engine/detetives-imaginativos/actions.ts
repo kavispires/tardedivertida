@@ -1,28 +1,28 @@
 // Constants
 import { HAND_LIMIT } from './constants';
 // Utils
-import * as utils from '../../utils';
+import utils from '../../utils';
 import { getNextPhase } from './index';
 
 /**
  *
- * @param collectionName
+ * @param gameName
  * @param gameId
  * @param playerId
  * @param cardId
  * @returns
  */
 export const handlePlayCard = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   cardId: string
 ) => {
   const actionText = 'play a card';
 
-  const sessionRef = utils.firebase.getSessionRef(collectionName, gameId);
-  const playersDoc = await utils.firebase.getSessionDoc(collectionName, gameId, 'players', actionText);
-  const stateDoc = await utils.firebase.getSessionDoc(collectionName, gameId, 'state', actionText);
+  const sessionRef = utils.firebase.getSessionRef(gameName, gameId);
+  const playersDoc = await utils.firebase.getSessionDoc(gameName, gameId, 'players', actionText);
+  const stateDoc = await utils.firebase.getSessionDoc(gameName, gameId, 'state', actionText);
   const players = playersDoc.data() ?? {};
   const state = stateDoc.data() ?? {};
 
@@ -33,7 +33,7 @@ export const handlePlayCard = async (
   const { hand, deckIndex } = utils.playerHand.discardPlayerCard(players, cardId, playerId, HAND_LIMIT);
 
   await utils.firebase.updatePlayer({
-    collectionName,
+    gameName,
     gameId,
     playerId,
     actionText,
@@ -63,7 +63,7 @@ export const handlePlayCard = async (
     // If it is the last player to play, go to the next phase
     if (newPhaseIndex === state.phaseOrder.length) {
       await sessionRef.doc('state').update({ table });
-      getNextPhase(collectionName, gameId, players);
+      getNextPhase(gameName, gameId, players);
     } else {
       await sessionRef.doc('state').update({
         table,
@@ -80,16 +80,16 @@ export const handlePlayCard = async (
 
 /**
  *
- * @param collectionName
+ * @param gameName
  * @param gameId
  * @param playerId
  * @returns
  */
-export const handleDefend = async (collectionName: GameName, gameId: GameId, playerId: PlayerId) => {
+export const handleDefend = async (gameName: GameName, gameId: GameId, playerId: PlayerId) => {
   const actionText = 'defend';
 
-  const sessionRef = utils.firebase.getSessionRef(collectionName, gameId);
-  const stateDoc = await utils.firebase.getSessionDoc(collectionName, gameId, 'state', actionText);
+  const sessionRef = utils.firebase.getSessionRef(gameName, gameId);
+  const stateDoc = await utils.firebase.getSessionDoc(gameName, gameId, 'state', actionText);
 
   const state = stateDoc.data() ?? {};
 
@@ -103,9 +103,9 @@ export const handleDefend = async (collectionName: GameName, gameId: GameId, pla
 
     // If it is the last player to play, go to the next phase
     if (newPhaseIndex === state.phaseOrder.length) {
-      const playersDoc = await utils.firebase.getSessionDoc(collectionName, gameId, 'players', actionText);
+      const playersDoc = await utils.firebase.getSessionDoc(gameName, gameId, 'players', actionText);
       const players = playersDoc.data() ?? {};
-      getNextPhase(collectionName, gameId, players);
+      getNextPhase(gameName, gameId, players);
     } else {
       await sessionRef.doc('state').update({
         phaseIndex: newPhaseIndex,
@@ -121,20 +121,20 @@ export const handleDefend = async (collectionName: GameName, gameId: GameId, pla
 
 /**
  *
- * @param collectionName
+ * @param gameName
  * @param gameId
  * @param playerId
  * @param vote
  * @returns
  */
 export const handleSubmitVote = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   vote: PlayerId
 ) => {
   return await utils.firebase.updatePlayer({
-    collectionName,
+    gameName,
     gameId,
     playerId,
     actionText: 'submit vote',
@@ -146,20 +146,20 @@ export const handleSubmitVote = async (
 
 /**
  *
- * @param collectionName
+ * @param gameName
  * @param gameId
  * @param playerId
  * @param clue
  * @returns
  */
 export const handleSubmitClue = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   clue: string
 ) => {
   return await utils.firebase.updateStore({
-    collectionName,
+    gameName,
     gameId,
     playerId,
     actionText: 'submit clue',

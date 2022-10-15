@@ -3,7 +3,7 @@ import type { AllWords, CurrentSuggestions, UsedWord, UsedWords } from './types'
 // Constants
 import { UE_SO_ISSO_PHASES, WORDS_PER_CARD } from './constants';
 // Utilities
-import * as utils from '../../utils';
+import utils from '../../utils';
 
 /**
  * Determine the next phase based on the current one

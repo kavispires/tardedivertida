@@ -8,7 +8,7 @@ import {
   SHORT_PASTURE_GAME_OVER_THRESHOLD,
 } from './constants';
 // Utils
-import * as utils from '../../utils';
+import utils from '../../utils';
 import {
   buildDeck,
   buildListOfAnswers,
@@ -224,6 +224,7 @@ export const prepareResolutionPhase = async (
 };
 
 export const prepareGameOverPhase = async (
+  gameId: GameId,
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players
@@ -234,6 +235,8 @@ export const prepareGameOverPhase = async (
 
   // Get achievements
   const achievements = getAchievements(players, store);
+
+  await utils.firebase.markGameAsComplete(gameId);
 
   // Save
   return {

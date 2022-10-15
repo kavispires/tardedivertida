@@ -1,24 +1,24 @@
 // Helpers
-import * as utils from '../../utils';
+import utils from '../../utils';
 // Internal functions
 import { getNextPhase } from './index';
 
 /**
  * Update store with the current orientation
- * @param collectionName
+ * @param gameName
  * @param gameId
  * @param playerId
  * @param orientation
  * @returns
  */
 export const handleSubmitOrientation = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   orientation: string
 ) => {
   return await utils.firebase.updateStore({
-    collectionName,
+    gameName,
     gameId,
     playerId,
     actionText: 'submit orientation',
@@ -28,20 +28,20 @@ export const handleSubmitOrientation = async (
 
 /**
  * Update player with their sketch
- * @param collectionName
+ * @param gameName
  * @param gameId
  * @param playerId
  * @param sketch
  * @returns
  */
 export const handleSubmitSketch = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   sketch: string
 ) => {
   return await utils.firebase.updatePlayer({
-    collectionName,
+    gameName,
     gameId,
     playerId,
     actionText: 'submit sketch',
@@ -53,20 +53,20 @@ export const handleSubmitSketch = async (
 
 /**
  * Update player with their vote
- * @param collectionName
+ * @param gameName
  * @param gameId
  * @param playerId
  * @param vote
  * @returns
  */
 export const handleSubmitVote = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   vote: PlayerId
 ) => {
   return await utils.firebase.updatePlayer({
-    collectionName,
+    gameName,
     gameId,
     playerId,
     actionText: 'submit vote',

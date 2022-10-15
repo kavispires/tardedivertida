@@ -3,7 +3,7 @@ import { NA_RUA_DO_MEDO_PHASES, OUTCOME_STATUS } from './constants';
 // Types
 import type { FirebaseStateData, FirebaseStoreData, Outcome } from './types';
 // Utils
-import * as utils from '../../utils';
+import utils from '../../utils';
 // Internal
 import {
   buildDecks,
@@ -235,16 +235,11 @@ export const prepareStreetEndPhase = async (
   const monsterCount = countMonsters([...state.street, currentCard]);
   state.continuingPlayerIds.forEach((playerId: PlayerId) => {
     // Achievement: most houses
-    utils.achievements.increaseAchievement(store, playerId, 'houses', 1);
+    utils.achievements.increase(store, playerId, 'houses', 1);
     // Achievement: facing monsters
-    utils.achievements.increaseAchievement(store, playerId, 'facingMonsters', monsterCount);
+    utils.achievements.increase(store, playerId, 'facingMonsters', monsterCount);
     // Achievement lost candy
-    utils.achievements.increaseAchievement(
-      store,
-      playerId,
-      'lostCandy',
-      totalCandyInSidewalk + state.candyInHand
-    );
+    utils.achievements.increase(store, playerId, 'lostCandy', totalCandyInSidewalk + state.candyInHand);
   });
 
   // Save
@@ -268,6 +263,7 @@ export const prepareStreetEndPhase = async (
 };
 
 export const prepareGameOverPhase = async (
+  gameId: GameId,
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players
@@ -277,12 +273,9 @@ export const prepareGameOverPhase = async (
 
   const achievements = getAchievements(store);
 
+  await utils.firebase.markGameAsComplete(gameId);
+
   return {
-    update: {
-      meta: {
-        isComplete: true,
-      },
-    },
     set: {
       players,
       state: {

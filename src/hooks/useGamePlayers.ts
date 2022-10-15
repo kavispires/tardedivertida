@@ -5,7 +5,7 @@ import { doc } from 'firebase/firestore';
 import { firestore } from 'services/firebase';
 
 export function useGamePlayers(gameId: GameId, gameName: GameName): Players | {} {
-  const docPath = `${gameName}/${gameId}/session/players`;
+  const docPath = `games/${gameName}/${gameId}/players`;
   const [snapshot, loading, error] = useDocument(doc(firestore, docPath), {
     snapshotListenOptions: { includeMetadataChanges: true },
   });

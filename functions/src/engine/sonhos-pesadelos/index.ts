@@ -1,10 +1,10 @@
 // Constants
-import { GAME_COLLECTIONS } from '../../utils/constants';
+import { GAME_NAMES } from '../../utils/constants';
 import { PLAYER_COUNTS, SONHOS_PESADELOS_ACTIONS, SONHOS_PESADELOS_PHASES, TOTAL_ROUNDS } from './constants';
 // Types
 import type { SonhosPesadelosInitialState, SonhosPesadelosSubmitAction } from './types';
 // Utils
-import * as utils from '../../utils';
+import utils from '../../utils';
 import { determineNextPhase } from './helpers';
 import {
   prepareGameOverPhase,
@@ -30,7 +30,7 @@ export const getInitialState = (
 ): SonhosPesadelosInitialState => {
   return utils.helpers.getDefaultInitialState({
     gameId,
-    gameName: GAME_COLLECTIONS.SONHOS_PESADELOS,
+    gameName: GAME_NAMES.SONHOS_PESADELOS,
     uid,
     language,
     playerCounts: PLAYER_COUNTS,
@@ -45,16 +45,12 @@ export const getInitialState = (
  */
 export const playerCounts = PLAYER_COUNTS;
 
-export const getNextPhase = async (
-  collectionName: string,
-  gameId: string,
-  players: Players
-): Promise<boolean> => {
+export const getNextPhase = async (gameName: string, gameId: string, players: Players): Promise<boolean> => {
   const actionText = 'prepare next phase';
 
   // Gather docs and references
   const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences(
-    collectionName,
+    gameName,
     gameId,
     actionText
   );
@@ -72,7 +68,7 @@ export const getNextPhase = async (
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await utils.firebase.saveGame(sessionRef, newPhase);
 
-    return getNextPhase(collectionName, gameId, newPhase.update?.players ?? {});
+    return getNextPhase(gameName, gameId, newPhase.update?.players ?? {});
   }
 
   // * -> DREAM_TELLING
@@ -95,7 +91,7 @@ export const getNextPhase = async (
 
   // RESOLUTION --> GAME_OVER
   if (nextPhase === SONHOS_PESADELOS_PHASES.GAME_OVER) {
-    const newPhase = await prepareGameOverPhase(store, state, players);
+    const newPhase = await prepareGameOverPhase(gameId, store, state, players);
     return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
@@ -108,17 +104,17 @@ export const getNextPhase = async (
  * @returns
  */
 export const submitAction = async (data: SonhosPesadelosSubmitAction) => {
-  const { gameId, gameName: collectionName, playerId, action } = data;
+  const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, collectionName, playerId, action);
+  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
     case SONHOS_PESADELOS_ACTIONS.SUBMIT_DREAM:
       utils.firebase.validateSubmitActionProperties(data, ['dream'], 'submit dreams');
-      return handleSubmitDream(collectionName, gameId, playerId, data.dream);
+      return handleSubmitDream(gameName, gameId, playerId, data.dream);
     case SONHOS_PESADELOS_ACTIONS.SUBMIT_VOTING:
       utils.firebase.validateSubmitActionProperties(data, ['votes'], 'submit votes');
-      return handleSubmitVoting(collectionName, gameId, playerId, data.votes);
+      return handleSubmitVoting(gameName, gameId, playerId, data.votes);
     default:
       utils.firebase.throwException(`Given action ${action} is not allowed`);
   }

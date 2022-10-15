@@ -1,11 +1,11 @@
 // Utils
-import * as utils from '../../utils';
+import utils from '../../utils';
 import { getNextPhase } from './index';
 import { SUSPECT_COUNT } from './constants';
 
 /**
  *
- * @param collectionName
+ * @param gameName
  * @param gameId
  * @param playerId
  * @param actionText
@@ -13,16 +13,16 @@ import { SUSPECT_COUNT } from './constants';
  * @returns
  */
 export const handleExtraAction = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   actionText: string,
   additionalPayload: any
 ) => {
   // Save card to store
   try {
-    const playersDoc = await utils.firebase.getSessionDoc(collectionName, gameId, 'players', actionText);
+    const playersDoc = await utils.firebase.getSessionDoc(gameName, gameId, 'players', actionText);
     const players = playersDoc.data() ?? {};
-    return getNextPhase(collectionName, gameId, players, additionalPayload);
+    return getNextPhase(gameName, gameId, players, additionalPayload);
   } catch (error) {
     utils.firebase.throwException(error, `Failed to ${actionText}`);
   }
@@ -32,7 +32,7 @@ export const handleExtraAction = async (
 
 /**
  *
- * @param collectionName
+ * @param gameName
  * @param gameId
  * @param playerId
  * @param actionText
@@ -40,13 +40,13 @@ export const handleExtraAction = async (
  * @returns
  */
 export const handleElimination = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   actionText: string,
   additionalPayload: any
 ) => {
   // Get state
-  const stateDoc = await utils.firebase.getSessionDoc(collectionName, gameId, 'state', actionText);
+  const stateDoc = await utils.firebase.getSessionDoc(gameName, gameId, 'state', actionText);
   const state = stateDoc.data() ?? {};
 
   let shouldGoToNextPhase = false;
@@ -65,7 +65,7 @@ export const handleElimination = async (
       shouldGoToNextPhase = true;
       lose = true;
     } else {
-      const sessionRef = utils.firebase.getSessionRef(collectionName, gameId);
+      const sessionRef = utils.firebase.getSessionRef(gameName, gameId);
       const eliminatedSuspects = state?.eliminatedSuspects || [];
       eliminatedSuspects.push(suspectId);
       await utils.firebase.saveGame(sessionRef, {
@@ -87,9 +87,9 @@ export const handleElimination = async (
   // In case of a pass or win (found all) or a lose (clicked on perpetrator)
   if (shouldGoToNextPhase) {
     try {
-      const playersDoc = await utils.firebase.getSessionDoc(collectionName, gameId, 'players', actionText);
+      const playersDoc = await utils.firebase.getSessionDoc(gameName, gameId, 'players', actionText);
       const players = playersDoc.data() ?? {};
-      return getNextPhase(collectionName, gameId, players, { lose, win });
+      return getNextPhase(gameName, gameId, players, { lose, win });
     } catch (error) {
       utils.firebase.throwException(error, `Failed to ${actionText}`);
     }

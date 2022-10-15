@@ -1,7 +1,17 @@
-export * as achievements from './achievement-utils';
-export * as firebase from './firebase';
-export * as game from './game-utils';
-export * as helpers from './helpers';
-export * as imageCards from './image-cards-utils';
-export * as players from './players-utils';
-export * as playerHand from './player-hand-utils';
+import * as achievements from './achievement-utils';
+import * as firebase from './firebase';
+import * as game from './game-utils';
+import * as helpers from './helpers';
+import * as imageCards from './image-cards-utils';
+import * as players from './players-utils';
+import * as playerHand from './player-hand-utils';
+
+export default {
+  achievements,
+  firebase,
+  game,
+  helpers,
+  imageCards,
+  players,
+  playerHand,
+};

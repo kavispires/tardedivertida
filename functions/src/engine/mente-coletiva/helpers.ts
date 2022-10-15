@@ -19,7 +19,7 @@ import type {
   SheepAnimation,
 } from './types';
 // Utils
-import * as utils from '../../utils';
+import utils from '../../utils';
 
 /**
  * Determine the next phase based on the current one
@@ -179,7 +179,7 @@ export const buildRanking = (players: Players, store: PlainObject): RankingEntry
     newScores[player.id].previousScore = 0;
     newScores[player.id].newScore = player.score;
 
-    utils.achievements.increaseAchievement(store, player.id, 'secretScore', player.score);
+    utils.achievements.increase(store, player.id, 'secretScore', player.score);
   });
 
   return utils.helpers.sortNewScore(newScores);
@@ -488,7 +488,7 @@ export const calculateSheepTravelDistance = (
   pastureChange: PastureChangeEntry[][]
 ) => {
   pastureChange[0].forEach((pastureChangeEntry, index) => {
-    utils.achievements.increaseAchievement(
+    utils.achievements.increase(
       store,
       pastureChangeEntry.id,
       'distance',

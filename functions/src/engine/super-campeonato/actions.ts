@@ -1,24 +1,24 @@
 // Utils
-import * as utils from '../../utils';
+import utils from '../../utils';
 // Internal
 import { getNextPhase } from '.';
 
 /**
  * Save player choice between the two challenges
- * @param collectionName
+ * @param gameName
  * @param gameId
  * @param playerId
  * @param challengeId
  * @returns
  */
 export const handleSubmitChallenge = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   challengeId: CardId
 ) => {
   return await utils.firebase.updatePlayer({
-    collectionName,
+    gameName,
     gameId,
     playerId,
     actionText: 'submit your challenge',
@@ -30,20 +30,20 @@ export const handleSubmitChallenge = async (
 
 /**
  * Save player choice of contender for the round
- * @param collectionName
+ * @param gameName
  * @param gameId
  * @param playerId
  * @param contendersId
  * @returns
  */
 export const handleSubmitContenders = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   contendersId: CardId
 ) => {
   return await utils.firebase.updatePlayer({
-    collectionName,
+    gameName,
     gameId,
     playerId,
     actionText: 'submit your contender',
@@ -55,7 +55,7 @@ export const handleSubmitContenders = async (
 
 /**
  * Save player bets for the round
- * @param collectionName
+ * @param gameName
  * @param gameId
  * @param playerId
  * @param quarter
@@ -64,7 +64,7 @@ export const handleSubmitContenders = async (
  * @returns
  */
 export const handleSubmitBets = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   quarter: string,
@@ -72,7 +72,7 @@ export const handleSubmitBets = async (
   final: string
 ) => {
   return await utils.firebase.updatePlayer({
-    collectionName,
+    gameName,
     gameId,
     playerId,
     actionText: 'submit your contender(s)',
@@ -84,20 +84,20 @@ export const handleSubmitBets = async (
 
 /**
  * Save player votes for the tier
- * @param collectionName
+ * @param gameName
  * @param gameId
  * @param playerId
  * @param votes
  * @returns
  */
 export const handleSubmitVotes = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   votes: NumberDictionary
 ) => {
   return await utils.firebase.updatePlayer({
-    collectionName,
+    gameName,
     gameId,
     playerId,
     actionText: 'submit your votes',

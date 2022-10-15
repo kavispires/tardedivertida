@@ -1,9 +1,9 @@
 // Helpers
-import * as utils from '../../utils';
+import utils from '../../utils';
 import { getNextPhase } from './index';
 
 export const handleSubmitHint = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   hint: string,
@@ -17,7 +17,7 @@ export const handleSubmitHint = async (
   };
 
   return await utils.firebase.updatePlayer({
-    collectionName,
+    gameName,
     gameId,
     playerId,
     actionText: 'submit hint',
@@ -28,14 +28,14 @@ export const handleSubmitHint = async (
 };
 
 export const handleSubmitConclusions = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   conclusions: PlainObject
 ) => {
   const actionText = 'submit conclusions';
 
-  const playersDoc = await utils.firebase.getSessionDoc(collectionName, gameId, 'players', actionText);
+  const playersDoc = await utils.firebase.getSessionDoc(gameName, gameId, 'players', actionText);
   const players = playersDoc.data() ?? {};
 
   const updatedConclusions = {
@@ -44,7 +44,7 @@ export const handleSubmitConclusions = async (
   };
 
   return await utils.firebase.updatePlayer({
-    collectionName,
+    gameName,
     gameId,
     playerId,
     actionText,
@@ -55,15 +55,15 @@ export const handleSubmitConclusions = async (
 };
 
 export const handleSubmitCode = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   code: string
 ) => {
   const actionText = 'submit conclusions';
 
-  const sessionRef = utils.firebase.getSessionRef(collectionName, gameId);
-  const playersDoc = await utils.firebase.getSessionDoc(collectionName, gameId, 'players', actionText);
+  const sessionRef = utils.firebase.getSessionRef(gameName, gameId);
+  const playersDoc = await utils.firebase.getSessionDoc(gameName, gameId, 'players', actionText);
 
   const players = playersDoc.data() ?? {};
   const updatedPlayers = utils.players.readyPlayer(players, playerId);
@@ -78,7 +78,7 @@ export const handleSubmitCode = async (
 
   // If all players are ready, trigger next phase
   if (utils.players.isEverybodyReady(updatedPlayers)) {
-    return getNextPhase(collectionName, gameId, players);
+    return getNextPhase(gameName, gameId, players);
   }
 
   return true;

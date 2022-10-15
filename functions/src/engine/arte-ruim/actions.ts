@@ -1,16 +1,16 @@
 // Helpers
-import * as utils from '../../utils';
+import utils from '../../utils';
 // Internal functions
 import { getNextPhase } from './index';
 
 export const handleSubmitDrawing = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   drawing: string
 ) => {
   return await utils.firebase.updatePlayer({
-    collectionName,
+    gameName,
     gameId,
     playerId,
     actionText: 'submit your drawing',
@@ -21,13 +21,13 @@ export const handleSubmitDrawing = async (
 };
 
 export const handleSubmitVoting = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   votes: PlainObject
 ) => {
   return await utils.firebase.updatePlayer({
-    collectionName,
+    gameName,
     gameId,
     playerId,
     actionText: 'submit your votes',

@@ -43,13 +43,14 @@ type FirebaseContext = {
 };
 
 interface CreateGamePayload {
-  gameCode: GameCode;
+  gameName: string;
   language: string;
   options?: BooleanDictionary;
 }
 
 interface LoadGamePayload {
   gameId: GameId;
+  gameName: string;
 }
 
 interface Engine {
@@ -178,7 +179,6 @@ interface UpdatePayload {
   players?: PlainObject | Players;
   state?: PlainObject;
   store?: PlainObject;
-  meta?: PlainObject;
 }
 
 interface SaveGamePayload {
@@ -187,7 +187,7 @@ interface SaveGamePayload {
 }
 
 interface UpdatePlayerArgs {
-  collectionName: GameName;
+  gameName: GameName;
   gameId: GameId;
   playerId: PlayerId;
   actionText: string;
@@ -197,7 +197,7 @@ interface UpdatePlayerArgs {
 }
 
 interface UpdateStoreArgs {
-  collectionName: GameName;
+  gameName: GameName;
   gameId: GameId;
   playerId: PlayerId;
   actionText: string;
@@ -206,7 +206,7 @@ interface UpdateStoreArgs {
 }
 
 interface UpdateStateArgs {
-  collectionName: GameName;
+  gameName: GameName;
   gameId: GameId;
   playerId: PlayerId;
   actionText: string;

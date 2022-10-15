@@ -24,12 +24,7 @@ export const setup = (players: Players, store: PlainObject, properties: PlainObj
  * @param value
  * @returns the achievements
  */
-export const increaseAchievement = (
-  store: PlainObject,
-  playerId: PlayerId,
-  property: string,
-  value: number
-) => {
+export const increase = (store: PlainObject, playerId: PlayerId, property: string, value: number) => {
   store.achievements[playerId][property] += value;
   return store.achievements;
 };
@@ -42,7 +37,7 @@ export const increaseAchievement = (
  * @param value
  * @returns the achievements
  */
-export const pushAchievement = (store: PlainObject, playerId: PlayerId, property: string, value: any) => {
+export const push = (store: PlainObject, playerId: PlayerId, property: string, value: any) => {
   store.achievements[playerId][property].push(value);
   return store.achievements;
 };

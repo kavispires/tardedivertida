@@ -1,5 +1,5 @@
 // Utils
-import * as utils from '../../utils';
+import utils from '../../utils';
 // Internal
 import { getNextPhase } from '.';
 import { buildListOfAnswers } from './helpers';
@@ -7,20 +7,20 @@ import { AnswerEntry, AnswerGroupEntry } from './types';
 
 /**
  * When active player chooses the round's question
- * @param collectionName
+ * @param gameName
  * @param gameId
  * @param playerId
  * @param questionId
  * @returns
  */
 export const handleSubmitQuestion = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   questionId: string
 ) => {
   return await utils.firebase.updateStore({
-    collectionName,
+    gameName,
     gameId,
     playerId,
     actionText: 'submit question',
@@ -33,20 +33,20 @@ export const handleSubmitQuestion = async (
 
 /**
  * When each player submit their round's answers
- * @param collectionName
+ * @param gameName
  * @param gameId
  * @param playerId
  * @param answers
  * @returns
  */
 export const handleSubmitAnswers = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   answers: StringDictionary
 ) => {
   return await utils.firebase.updatePlayer({
-    collectionName,
+    gameName,
     gameId,
     playerId,
     actionText: 'submit the answers',
@@ -58,23 +58,23 @@ export const handleSubmitAnswers = async (
 
 /**
  * When admin iterate through answer groups
- * @param collectionName
+ * @param gameName
  * @param gameId
  * @param playerId
  * @param allowedList
  * @returns
  */
 export const handleNextAnswers = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   allowedList: string[]
 ) => {
   const actionText = 'advance answers';
 
-  const sessionRef = utils.firebase.getSessionRef(collectionName, gameId);
-  const stateDoc = await utils.firebase.getSessionDoc(collectionName, gameId, 'state', actionText);
-  const playersDoc = await utils.firebase.getSessionDoc(collectionName, gameId, 'players', actionText);
+  const sessionRef = utils.firebase.getSessionRef(gameName, gameId);
+  const stateDoc = await utils.firebase.getSessionDoc(gameName, gameId, 'state', actionText);
+  const playersDoc = await utils.firebase.getSessionDoc(gameName, gameId, 'players', actionText);
   const state = stateDoc.data() ?? {};
   const players = playersDoc.data() ?? {};
 
@@ -109,7 +109,7 @@ export const handleNextAnswers = async (
   const answersList = buildListOfAnswers(allAnswers);
 
   if (answersList.length === 0) {
-    return getNextPhase(collectionName, gameId, players);
+    return getNextPhase(gameName, gameId, players);
   }
 
   try {
@@ -133,23 +133,23 @@ export const handleNextAnswers = async (
 
 /**
  * When player wants to add an answer to the answer group
- * @param collectionName
+ * @param gameName
  * @param gameId
  * @param playerId
  * @param answer
  * @returns
  */
 export const handleAddAnswer = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   answer: AnswerEntry
 ) => {
   const actionText = 'add answer';
 
-  const sessionRef = utils.firebase.getSessionRef(collectionName, gameId);
+  const sessionRef = utils.firebase.getSessionRef(gameName, gameId);
 
-  const stateDoc = await utils.firebase.getSessionDoc(collectionName, gameId, 'state', actionText);
+  const stateDoc = await utils.firebase.getSessionDoc(gameName, gameId, 'state', actionText);
   const state = stateDoc.data() ?? {};
 
   const answersList = [...(state.answersList as AnswerGroupEntry[])];

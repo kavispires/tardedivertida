@@ -14,7 +14,7 @@ import type {
   Table,
 } from './types';
 // Utils
-import * as utils from '../../utils';
+import utils from '../../utils';
 
 /**
  * Determine the next phase based on the current one
@@ -145,7 +145,7 @@ export const calculateNewScores = (
       newScores[player.id].gainedPoints[1] += cardVotes;
       newScores[player.id].newScore += cardVotes;
       // Achievement: playerVotes
-      utils.achievements.increaseAchievement(store, player.id, 'playerVotes', 1);
+      utils.achievements.increase(store, player.id, 'playerVotes', 1);
     }
 
     // Everybody that got correctly, including storyteller, gets 3 points
@@ -156,7 +156,7 @@ export const calculateNewScores = (
 
       // Achievement: easyClues
       if (normalPoints === 3) {
-        utils.achievements.increaseAchievement(store, storytellerId, 'easyClues', 1);
+        utils.achievements.increase(store, storytellerId, 'easyClues', 1);
       }
     }
 
@@ -166,16 +166,14 @@ export const calculateNewScores = (
 
   // Achievement: badClues
   if (outcome === OUTCOME.EVERYBODY_GOT || outcome === OUTCOME.NOBODY_GOT) {
-    utils.achievements.increaseAchievement(store, storytellerId, 'badClues', 1);
+    utils.achievements.increase(store, storytellerId, 'badClues', 1);
   }
 
   // Achievement: tableVotes
   table
     .filter((tableEntry) => tableEntry.playerId === NPC)
     .forEach((tableEntry) =>
-      tableEntry.votes.forEach((playerId) =>
-        utils.achievements.increaseAchievement(store, playerId, 'tableVotes', 1)
-      )
+      tableEntry.votes.forEach((playerId) => utils.achievements.increase(store, playerId, 'tableVotes', 1))
     );
 
   return utils.helpers.sortNewScore(newScores);

@@ -1,18 +1,18 @@
 // Types
 import type { ImageCard, PlayerCard } from './types';
 // Helpers
-import * as utils from '../../utils';
+import utils from '../../utils';
 // Internal functions
 import { getNextPhase } from './index';
 
 export const handleSubmitWord = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   wordId: string
 ) => {
   return await utils.firebase.updateStore({
-    collectionName,
+    gameName,
     gameId,
     playerId,
     actionText: 'submit the word',
@@ -22,7 +22,7 @@ export const handleSubmitWord = async (
 };
 
 export const handleSubmitCards = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   cardsIds: string[]
@@ -38,7 +38,7 @@ export const handleSubmitCards = async (
   }, {});
 
   return await utils.firebase.updatePlayer({
-    collectionName,
+    gameName,
     gameId,
     playerId,
     actionText: 'submit your cards',
@@ -49,7 +49,7 @@ export const handleSubmitCards = async (
 };
 
 export const handlePlayCard = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   cardId: string
@@ -57,9 +57,9 @@ export const handlePlayCard = async (
   const actionText = 'play a card';
 
   // Get 'players' from given game session
-  const sessionRef = utils.firebase.getSessionRef(collectionName, gameId);
-  const playersDoc = await utils.firebase.getSessionDoc(collectionName, gameId, 'players', actionText);
-  const stateDoc = await utils.firebase.getSessionDoc(collectionName, gameId, 'state', actionText);
+  const sessionRef = utils.firebase.getSessionRef(gameName, gameId);
+  const playersDoc = await utils.firebase.getSessionDoc(gameName, gameId, 'players', actionText);
+  const stateDoc = await utils.firebase.getSessionDoc(gameName, gameId, 'state', actionText);
   const players = playersDoc.data() ?? {};
   const state = stateDoc.data() ?? {};
 
@@ -193,7 +193,7 @@ export const handlePlayCard = async (
   }
 
   return await utils.firebase.updateState({
-    collectionName,
+    gameName,
     gameId,
     playerId,
     actionText: 'next card play',

@@ -3,7 +3,7 @@ import type { FirebaseStateData, FirebaseStoreData, MonsterSketch, ResourceData 
 // Constants
 import { RETRATO_FALADO_PHASES } from './constants';
 // Helpers1
-import * as utils from '../../utils';
+import utils from '../../utils';
 import { buildDeck, buildRanking, gatherSketches, getMostVotes } from './helpers';
 
 /**
@@ -135,20 +135,16 @@ export const prepareRevealPhase = async (
 };
 
 export const prepareGameOverPhase = async (
+  gameId: GameId,
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 
-  // Build gallery
+  await utils.firebase.markGameAsComplete(gameId);
 
   return {
-    update: {
-      meta: {
-        isComplete: true,
-      },
-    },
     set: {
       players,
       state: {

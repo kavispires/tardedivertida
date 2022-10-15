@@ -1,128 +1,130 @@
 export const AVATAR_IDS = new Array(50).fill(0).map((i, index) => `${i + index}`);
 
 export const LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+export const LETTERS_EN = 'ABCDEFGHIJKLM';
+export const LETTERS_PT = 'NOPQRSTUVWXYZ';
 
 const GAMES = [
   {
+    name: 'arte-ruim',
     code: 'A',
     key: 'ARTE_RUIM',
-    collection: 'arte-ruim',
   },
   {
+    name: 'bomba-relogio',
     code: 'B',
     key: 'BOMBA_RELOGIO',
-    collection: 'bomba-relogio',
   },
   {
+    name: 'contadores-historias',
     code: 'C',
     key: 'CONTADORES_HISTORIAS',
-    collection: 'contadores-historias',
   },
   {
-    code: 'D',
-    key: 'DETETIVES_IMAGINATIVOS',
-    collection: 'detetives-imaginativos',
-  },
-  {
-    code: 'E',
-    key: 'ESPIAO_ENTRE_NOS',
-    collection: 'espiao-entre-nos',
-  },
-  {
-    code: 'G',
-    key: 'GALERIA_DE_SONHOS',
-    collection: 'galeria-de-sonhos',
-  },
-  {
+    name: 'crimes-hediondos',
     code: 'H',
     key: 'CRIMES_HEDIONDOS',
-    collection: 'crimes-hediondos',
   },
   {
-    code: 'I',
-    key: 'PORTA_DOS_DESESPERADOS',
-    collection: 'porta-dos-desesperados',
-  },
-  {
-    code: 'K',
-    key: 'PALHETA_DE_CORES',
-    collection: 'palheta-de-cores',
-  },
-  {
-    code: 'L',
-    key: 'LINHAS_CRUZADAS',
-    collection: 'linhas-cruzadas',
-  },
-  {
-    code: 'M',
-    key: 'MENTE_COLETIVA',
-    collection: 'mente-coletiva',
-  },
-  {
-    code: 'N',
-    key: 'NA_RUA_DO_MEDO',
-    collection: 'na-rua-do-medo',
-  },
-  {
-    code: 'O',
-    key: 'ONDA_TELEPATICA',
-    collection: 'onda-telepatica',
-  },
-  {
-    code: 'P',
-    key: 'POLEMICA_DA_VEZ',
-    collection: 'polemica-da-vez',
-  },
-  {
-    code: 'Q',
-    key: 'QUEM_NAO_MATA',
-    collection: 'quem-nao-mata',
-  },
-  {
-    code: 'R',
-    key: 'RETRATO_FALADO',
-    collection: 'retrato-falado',
-  },
-  {
-    code: 'S',
-    key: 'SONHOS_PESADELOS',
-    collection: 'sonhos-pesadelos',
-  },
-  {
-    code: 'T',
-    key: 'TESTEMUNHA_OCULAR',
-    collection: 'testemunha-ocular',
-  },
-  {
-    code: 'U',
-    key: 'UE_SO_ISSO',
-    collection: 'ue-so-isso',
-  },
-  {
-    code: 'V',
-    key: 'VENDAVAL_DE_PALPITE',
-    collection: 'vendaval-de-palpite',
-  },
-  {
-    code: 'W',
-    key: 'SUPER_CAMPEONATO',
-    collection: 'super-campeonato',
-  },
-  {
+    name: 'cruza-palavras',
     code: 'X',
     key: 'CRUZA_PALAVRAS',
-    collection: 'cruza-palavras',
   },
   {
+    name: 'detetives-imaginativos',
+    code: 'D',
+    key: 'DETETIVES_IMAGINATIVOS',
+  },
+  {
+    name: 'espiao-entre-nos',
+    code: 'E',
+    key: 'ESPIAO_ENTRE_NOS',
+  },
+  {
+    name: 'galeria-de-sonhos',
+    code: 'G',
+    key: 'GALERIA_DE_SONHOS',
+  },
+  {
+    name: 'linhas-cruzadas',
+    code: 'L',
+    key: 'LINHAS_CRUZADAS',
+  },
+  {
+    name: 'mente-coletiva',
+    code: 'M',
+    key: 'MENTE_COLETIVA',
+  },
+  {
+    name: 'na-rua-do-medo',
+    code: 'N',
+    key: 'NA_RUA_DO_MEDO',
+  },
+  {
+    name: 'onda-telepatica',
+    code: 'O',
+    key: 'ONDA_TELEPATICA',
+  },
+  {
+    name: 'palheta-de-cores',
+    code: 'K',
+    key: 'PALHETA_DE_CORES',
+  },
+  {
+    name: 'polemica-da-vez',
+    code: 'P',
+    key: 'POLEMICA_DA_VEZ',
+  },
+  {
+    name: 'porta-dos-desesperados',
+    code: 'I',
+    key: 'PORTA_DOS_DESESPERADOS',
+  },
+  {
+    name: 'quem-nao-mata',
+    code: 'Q',
+    key: 'QUEM_NAO_MATA',
+  },
+  {
+    name: 'retrato-falado',
+    code: 'R',
+    key: 'RETRATO_FALADO',
+  },
+  {
+    name: 'sonhos-pesadelos',
+    code: 'S',
+    key: 'SONHOS_PESADELOS',
+  },
+  {
+    name: 'super-campeonato',
+    code: 'W',
+    key: 'SUPER_CAMPEONATO',
+  },
+  {
+    name: 'testemunha-ocular',
+    code: 'T',
+    key: 'TESTEMUNHA_OCULAR',
+  },
+  {
+    name: 'trevo-da-sorte',
     code: 'Y',
     key: 'TREVO_DA_SORTE',
-    collection: 'trevo-da-sorte',
+  },
+  {
+    name: 'ue-so-isso',
+    code: 'U',
+    key: 'UE_SO_ISSO',
+  },
+  {
+    name: 'vendaval-de-palpite',
+    code: 'V',
+    key: 'VENDAVAL_DE_PALPITE',
   },
 ];
 
 const generateGameCodes = (): StringDictionary =>
   GAMES.reduce((acc, entry) => {
-    acc[entry.code] = entry.code;
+    acc[entry.name] = entry.code;
     return acc;
   }, {});
 
@@ -134,13 +136,13 @@ const generateGameKeys = (): StringDictionary =>
 
 const generateGameCollections = (): StringDictionary =>
   GAMES.reduce((acc, entry) => {
-    acc[entry.key] = entry.collection;
+    acc[entry.key] = entry.name;
     return acc;
   }, {});
 
 export const GAME_CODES = generateGameCodes();
 export const GAME_KEYS = generateGameKeys();
-export const GAME_COLLECTIONS = generateGameCollections();
+export const GAME_NAMES = generateGameCollections();
 
 export const GLOBAL_USED_DOCUMENTS = {
   ARTE_RUIM: 'usedArteRuimCards',

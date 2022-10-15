@@ -1,10 +1,10 @@
 // Constants
-import { GAME_COLLECTIONS } from '../../utils/constants';
+import { GAME_NAMES } from '../../utils/constants';
 import { CRUZA_PALAVRAS_ACTIONS, CRUZA_PALAVRAS_PHASES, PLAYER_COUNTS, TOTAL_ROUNDS } from './constants';
 // Types
 import type { CruzaPalavrasInitialState, CruzaPalavrasOptions, CruzaPalavrasSubmitAction } from './types';
 // Utils
-import * as utils from '../../utils';
+import utils from '../../utils';
 // Internal Functions
 import { determineNextPhase } from './helpers';
 import {
@@ -32,7 +32,7 @@ export const getInitialState = (
 ): CruzaPalavrasInitialState => {
   return utils.helpers.getDefaultInitialState({
     gameId,
-    gameName: GAME_COLLECTIONS.CRUZA_PALAVRAS,
+    gameName: GAME_NAMES.CRUZA_PALAVRAS,
     uid,
     language,
     playerCounts: PLAYER_COUNTS,
@@ -50,14 +50,10 @@ export const getInitialState = (
  */
 export const playerCounts = PLAYER_COUNTS;
 
-export const getNextPhase = async (
-  collectionName: string,
-  gameId: string,
-  players: Players
-): Promise<boolean> => {
+export const getNextPhase = async (gameName: string, gameId: string, players: Players): Promise<boolean> => {
   // Gather docs and references
   const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences(
-    collectionName,
+    gameName,
     gameId,
     'prepare next phase'
   );
@@ -74,7 +70,7 @@ export const getNextPhase = async (
     const additionalData = await getWords(store.language);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await utils.firebase.saveGame(sessionRef, newPhase);
-    return getNextPhase(collectionName, gameId, players);
+    return getNextPhase(gameName, gameId, players);
   }
 
   // * -> CLUE_WRITING
@@ -97,7 +93,7 @@ export const getNextPhase = async (
 
   // REVEAL -> GAME_OVER
   if (nextPhase === CRUZA_PALAVRAS_PHASES.GAME_OVER) {
-    const newPhase = await prepareGameOverPhase(store, state, players);
+    const newPhase = await prepareGameOverPhase(gameId, store, state, players);
     return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
@@ -109,17 +105,17 @@ export const getNextPhase = async (
  * May trigger next phase
  */
 export const submitAction = async (data: CruzaPalavrasSubmitAction) => {
-  const { gameId, gameName: collectionName, playerId, action } = data;
+  const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, collectionName, playerId, action);
+  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
     case CRUZA_PALAVRAS_ACTIONS.SUBMIT_CLUE:
       utils.firebase.validateSubmitActionProperties(data, ['clue'], 'submit category');
-      return handleSubmitClue(collectionName, gameId, playerId, data.clue);
+      return handleSubmitClue(gameName, gameId, playerId, data.clue);
     case CRUZA_PALAVRAS_ACTIONS.SUBMIT_GUESSES:
       utils.firebase.validateSubmitActionProperties(data, ['guesses'], 'submit guess');
-      return handleSubmitGuesses(collectionName, gameId, playerId, data.guesses);
+      return handleSubmitGuesses(gameName, gameId, playerId, data.guesses);
     default:
       utils.firebase.throwException(`Given action ${action} is not allowed`);
   }

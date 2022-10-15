@@ -1,4 +1,4 @@
-import * as utils from '../utils';
+import utils from '../utils';
 
 /**
  * Gets document from global in firestore

@@ -1,16 +1,16 @@
 // Helpers
-import * as utils from '../../utils';
+import utils from '../../utils';
 // Internal functions
 import { getNextPhase } from './index';
 
 export const handleSubmitPages = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   pageIds: ImageCardId[]
 ) => {
   return await utils.firebase.updateState({
-    collectionName,
+    gameName,
     gameId,
     playerId,
     actionText: 'submit your clue pages',
@@ -20,14 +20,14 @@ export const handleSubmitPages = async (
 };
 
 export const handleSubmitDoor = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   doorId: ImageCardId,
   ready?: boolean
 ) => {
   return await utils.firebase.updatePlayer({
-    collectionName,
+    gameName,
     gameId,
     playerId,
     actionText: 'submit your door',

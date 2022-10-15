@@ -4,7 +4,7 @@ import { DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
 // Types
 import type { CategoryCard, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Utils
-import * as utils from '../../utils';
+import utils from '../../utils';
 // Internal
 import { buildDeck, buildRanking, getAchievements } from './helpers';
 
@@ -158,6 +158,7 @@ export const prepareRevealPhase = async (
 };
 
 export const prepareGameOverPhase = async (
+  gameId: GameId,
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players
@@ -167,12 +168,9 @@ export const prepareGameOverPhase = async (
   // Get achievements
   const achievements = getAchievements(store);
 
+  await utils.firebase.markGameAsComplete(gameId);
+
   return {
-    update: {
-      meta: {
-        isComplete: true,
-      },
-    },
     set: {
       players,
       state: {
