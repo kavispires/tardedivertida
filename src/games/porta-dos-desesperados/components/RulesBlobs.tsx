@@ -179,7 +179,7 @@ export function BotPopupRule() {
   return (
     <FixedMenuButton
       type="popover"
-      position={1}
+      position={2}
       icon={<RobotOutlined />}
       content={<BotsRules />}
       label={<Translate pt=" Bots" en=" Bots" />}
