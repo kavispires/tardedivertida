@@ -1,5 +1,5 @@
 // Constants
-import { GAME_COLLECTIONS } from '../../utils/constants';
+import { GAME_NAMES } from '../../utils/constants';
 import { ARTE_RUIM_PHASES, PLAYER_COUNTS, MAX_ROUNDS, ARTE_RUIM_ACTIONS } from './constants';
 // Types
 import type {
@@ -38,7 +38,7 @@ export const getInitialState = (
 ): ArteRuimInitialState => {
   return utils.helpers.getDefaultInitialState({
     gameId,
-    gameName: GAME_COLLECTIONS.ARTE_RUIM,
+    gameName: GAME_NAMES.ARTE_RUIM,
     uid,
     language,
     playerCounts: PLAYER_COUNTS,
@@ -61,20 +61,20 @@ export const playerCounts = PLAYER_COUNTS;
 
 /**
  *
- * @param collectionName
+ * @param gameName
  * @param gameId
  * @param players
  * @returns
  */
 export const getNextPhase = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   players: Players
 ): Promise<boolean> => {
   const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences<
     FirebaseStateData,
     FirebaseStoreData
-  >(collectionName, gameId, 'prepare next phase');
+  >(gameName, gameId, 'prepare next phase');
 
   // Determine if it's game over
   const isGameOver = determineGameOver(players, state?.round);
@@ -95,7 +95,7 @@ export const getNextPhase = async (
     );
     const newPhase = await prepareSetupPhase(store, state, players, data);
     await utils.firebase.saveGame(sessionRef, newPhase);
-    return getNextPhase(collectionName, gameId, players);
+    return getNextPhase(gameName, gameId, players);
   }
 
   // SETUP -> DRAW
@@ -132,17 +132,17 @@ export const getNextPhase = async (
  * @returns
  */
 export const submitAction = async (data: ArteRuimSubmitAction) => {
-  const { gameId, gameName: collectionName, playerId, action } = data;
+  const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, collectionName, playerId, action);
+  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
     case ARTE_RUIM_ACTIONS.SUBMIT_DRAWING:
       utils.firebase.validateSubmitActionProperties(data, ['drawing'], 'submit drawing');
-      return handleSubmitDrawing(collectionName, gameId, playerId, data.drawing);
+      return handleSubmitDrawing(gameName, gameId, playerId, data.drawing);
     case ARTE_RUIM_ACTIONS.SUBMIT_VOTING:
       utils.firebase.validateSubmitActionProperties(data, ['votes'], 'submit votes');
-      return handleSubmitVoting(collectionName, gameId, playerId, data.votes);
+      return handleSubmitVoting(gameName, gameId, playerId, data.votes);
     default:
       utils.firebase.throwException(`Given action ${action} is not allowed`);
   }

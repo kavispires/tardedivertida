@@ -1,5 +1,5 @@
 // Constants
-import { GAME_COLLECTIONS } from '../../utils/constants';
+import { GAME_NAMES } from '../../utils/constants';
 import { QUEM_NAO_MATA_PHASES, PLAYER_COUNTS, MAX_ROUNDS, QUEM_NAO_MATA_ACTIONS } from './constants';
 // Types
 import type { QuemNaoMataInitialState, NaRuaDoMedoSubmitAction } from './types';
@@ -27,7 +27,7 @@ import { handleSubmitDecision, handleSubmitMessage, handleSubmitTarget } from '.
 export const getInitialState = (gameId: GameId, uid: string, language: Language): QuemNaoMataInitialState => {
   return utils.helpers.getDefaultInitialState({
     gameId,
-    gameName: GAME_COLLECTIONS.QUEM_NAO_MATA,
+    gameName: GAME_NAMES.QUEM_NAO_MATA,
     uid,
     language,
     playerCounts: PLAYER_COUNTS,
@@ -44,18 +44,18 @@ export const playerCounts = PLAYER_COUNTS;
 
 /**
  *
- * @param collectionName
+ * @param gameName
  * @param gameId
  * @param players
  * @returns
  */
 export const getNextPhase = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   players: Players
 ): Promise<boolean> => {
   const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences(
-    collectionName,
+    gameName,
     gameId,
     'prepare next phase'
   );
@@ -71,7 +71,7 @@ export const getNextPhase = async (
     const newPhase = await prepareSetupPhase(store, state, players);
     await utils.firebase.saveGame(sessionRef, newPhase);
 
-    return getNextPhase(collectionName, gameId, newPhase.update?.players ?? {});
+    return getNextPhase(gameName, gameId, newPhase.update?.players ?? {});
   }
 
   // SETUP/STANDOFF/RESOLUTION -> TARGETING
@@ -113,20 +113,20 @@ export const getNextPhase = async (
  * @returns
  */
 export const submitAction = async (data: NaRuaDoMedoSubmitAction) => {
-  const { gameId, gameName: collectionName, playerId, action } = data;
+  const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, collectionName, playerId, action);
+  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
     case QUEM_NAO_MATA_ACTIONS.SUBMIT_TARGET:
       utils.firebase.validateSubmitActionProperties(data, ['targetId'], 'submit target');
-      return handleSubmitTarget(collectionName, gameId, playerId, data.targetId);
+      return handleSubmitTarget(gameName, gameId, playerId, data.targetId);
     case QUEM_NAO_MATA_ACTIONS.SUBMIT_MESSAGE:
       utils.firebase.validateSubmitActionProperties(data, ['targetId'], 'submit message');
-      return handleSubmitMessage(collectionName, gameId, playerId, data.targetId, data.recipientId);
+      return handleSubmitMessage(gameName, gameId, playerId, data.targetId, data.recipientId);
     case QUEM_NAO_MATA_ACTIONS.SUBMIT_DECISION:
       utils.firebase.validateSubmitActionProperties(data, ['decision'], 'submit decision');
-      return handleSubmitDecision(collectionName, gameId, playerId, data.decision);
+      return handleSubmitDecision(gameName, gameId, playerId, data.decision);
     default:
       utils.firebase.throwException(`Given action ${action} is not allowed`);
   }

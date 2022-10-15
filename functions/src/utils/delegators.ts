@@ -1,4 +1,4 @@
-import { GAME_CODES, GAME_COLLECTIONS, GAME_KEYS } from './constants';
+import { GAME_CODES, GAME_NAMES, GAME_KEYS } from './constants';
 import * as arteRuimEngine from '../engine/arte-ruim';
 import * as contadoresHistoriasEngine from '../engine/contadores-historias';
 import * as detetivesImaginativosEngine from '../engine/detetives-imaginativos';
@@ -29,47 +29,47 @@ import * as trevoDaSorteEngine from '../engine/trevo-da-sorte';
 export const getCollectionNameByGameCode = (gameCode: GameCode): string | null => {
   switch (gameCode) {
     case GAME_CODES.A:
-      return GAME_COLLECTIONS.ARTE_RUIM;
+      return GAME_NAMES.ARTE_RUIM;
     case GAME_CODES.C:
-      return GAME_COLLECTIONS.CONTADORES_HISTORIAS;
+      return GAME_NAMES.CONTADORES_HISTORIAS;
     case GAME_CODES.D:
-      return GAME_COLLECTIONS.DETETIVES_IMAGINATIVOS;
+      return GAME_NAMES.DETETIVES_IMAGINATIVOS;
     case GAME_CODES.E:
-      return GAME_COLLECTIONS.ESPIAO_ENTRE_NOS;
+      return GAME_NAMES.ESPIAO_ENTRE_NOS;
     case GAME_CODES.G:
-      return GAME_COLLECTIONS.GALERIA_DE_SONHOS;
+      return GAME_NAMES.GALERIA_DE_SONHOS;
     case GAME_CODES.H:
-      return GAME_COLLECTIONS.CRIMES_HEDIONDOS;
+      return GAME_NAMES.CRIMES_HEDIONDOS;
     case GAME_CODES.I:
-      return GAME_COLLECTIONS.PORTA_DOS_DESESPERADOS;
+      return GAME_NAMES.PORTA_DOS_DESESPERADOS;
     case GAME_CODES.L:
-      return GAME_COLLECTIONS.LINHAS_CRUZADAS;
+      return GAME_NAMES.LINHAS_CRUZADAS;
     case GAME_CODES.M:
-      return GAME_COLLECTIONS.MENTE_COLETIVA;
+      return GAME_NAMES.MENTE_COLETIVA;
     case GAME_CODES.N:
-      return GAME_COLLECTIONS.NA_RUA_DO_MEDO;
+      return GAME_NAMES.NA_RUA_DO_MEDO;
     case GAME_CODES.O:
-      return GAME_COLLECTIONS.ONDA_TELEPATICA;
+      return GAME_NAMES.ONDA_TELEPATICA;
     case GAME_CODES.P:
-      return GAME_COLLECTIONS.POLEMICA_DA_VEZ;
+      return GAME_NAMES.POLEMICA_DA_VEZ;
     case GAME_CODES.Q:
-      return GAME_COLLECTIONS.QUEM_NAO_MATA;
+      return GAME_NAMES.QUEM_NAO_MATA;
     case GAME_CODES.R:
-      return GAME_COLLECTIONS.RETRATO_FALADO;
+      return GAME_NAMES.RETRATO_FALADO;
     case GAME_CODES.S:
-      return GAME_COLLECTIONS.SONHOS_PESADELOS;
+      return GAME_NAMES.SONHOS_PESADELOS;
     case GAME_CODES.T:
-      return GAME_COLLECTIONS.TESTEMUNHA_OCULAR;
+      return GAME_NAMES.TESTEMUNHA_OCULAR;
     case GAME_CODES.U:
-      return GAME_COLLECTIONS.UE_SO_ISSO;
+      return GAME_NAMES.UE_SO_ISSO;
     case GAME_CODES.V:
-      return GAME_COLLECTIONS.VENDAVAL_DE_PALPITE;
+      return GAME_NAMES.VENDAVAL_DE_PALPITE;
     case GAME_CODES.W:
-      return GAME_COLLECTIONS.SUPER_CAMPEONATO;
+      return GAME_NAMES.SUPER_CAMPEONATO;
     case GAME_CODES.X:
-      return GAME_COLLECTIONS.CRUZA_PALAVRAS;
+      return GAME_NAMES.CRUZA_PALAVRAS;
     case GAME_CODES.Y:
-      return GAME_COLLECTIONS.TREVO_DA_SORTE;
+      return GAME_NAMES.TREVO_DA_SORTE;
 
     default:
       return null;
@@ -140,54 +140,54 @@ export const getCollectionNameByGameId = (gameId: GameId): string | null => {
 
 /**
  *
- * @param collectionName
+ * @param gameName
  * @returns
  */
-export const getEngine = (collectionName: string): Engine => {
-  switch (collectionName) {
-    case GAME_COLLECTIONS.ARTE_RUIM:
+export const getEngine = (gameName: string): Engine => {
+  switch (gameName) {
+    case GAME_NAMES.ARTE_RUIM:
       return arteRuimEngine;
-    case GAME_COLLECTIONS.CONTADORES_HISTORIAS:
+    case GAME_NAMES.CONTADORES_HISTORIAS:
       return contadoresHistoriasEngine;
-    case GAME_COLLECTIONS.DETETIVES_IMAGINATIVOS:
+    case GAME_NAMES.DETETIVES_IMAGINATIVOS:
       return detetivesImaginativosEngine;
-    case GAME_COLLECTIONS.ESPIAO_ENTRE_NOS:
+    case GAME_NAMES.ESPIAO_ENTRE_NOS:
       return espiaoEntreNosEngine;
-    case GAME_COLLECTIONS.GALERIA_DE_SONHOS:
+    case GAME_NAMES.GALERIA_DE_SONHOS:
       return galeriaDeSonhosEngine;
-    case GAME_COLLECTIONS.CRIMES_HEDIONDOS:
+    case GAME_NAMES.CRIMES_HEDIONDOS:
       return crimesHediondosEngine;
-    case GAME_COLLECTIONS.PORTA_DOS_DESESPERADOS:
+    case GAME_NAMES.PORTA_DOS_DESESPERADOS:
       return portadosDesesperadosEngine;
-    case GAME_COLLECTIONS.LINHAS_CRUZADAS:
+    case GAME_NAMES.LINHAS_CRUZADAS:
       return linhasCruzadasEngine;
-    case GAME_COLLECTIONS.MENTE_COLETIVA:
+    case GAME_NAMES.MENTE_COLETIVA:
       return menteColetivaEngine;
-    case GAME_COLLECTIONS.NA_RUA_DO_MEDO:
+    case GAME_NAMES.NA_RUA_DO_MEDO:
       return naRuaDoMedoEngine;
-    case GAME_COLLECTIONS.ONDA_TELEPATICA:
+    case GAME_NAMES.ONDA_TELEPATICA:
       return ondaTelepaticaEngine;
-    case GAME_COLLECTIONS.POLEMICA_DA_VEZ:
+    case GAME_NAMES.POLEMICA_DA_VEZ:
       return polemicaDaVezEngine;
-    case GAME_COLLECTIONS.QUEM_NAO_MATA:
+    case GAME_NAMES.QUEM_NAO_MATA:
       return quemNaoMataEngine;
-    case GAME_COLLECTIONS.RETRATO_FALADO:
+    case GAME_NAMES.RETRATO_FALADO:
       return retratoFaladoEngine;
-    case GAME_COLLECTIONS.SONHOS_PESADELOS:
+    case GAME_NAMES.SONHOS_PESADELOS:
       return sonhosPesadelosEngine;
-    case GAME_COLLECTIONS.TESTEMUNHA_OCULAR:
+    case GAME_NAMES.TESTEMUNHA_OCULAR:
       return testemunhaOcularEngine;
-    case GAME_COLLECTIONS.UE_SO_ISSO:
+    case GAME_NAMES.UE_SO_ISSO:
       return ueSoIssoEngine;
-    case GAME_COLLECTIONS.VENDAVAL_DE_PALPITE:
+    case GAME_NAMES.VENDAVAL_DE_PALPITE:
       return vendavalDePalpiteEngine;
-    case GAME_COLLECTIONS.SUPER_CAMPEONATO:
+    case GAME_NAMES.SUPER_CAMPEONATO:
       return superCampeonatoEngine;
-    case GAME_COLLECTIONS.CRUZA_PALAVRAS:
+    case GAME_NAMES.CRUZA_PALAVRAS:
       return cruzaPalavrasEngine;
-    case GAME_COLLECTIONS.TREVO_DA_SORTE:
+    case GAME_NAMES.TREVO_DA_SORTE:
       return trevoDaSorteEngine;
     default:
-      throw new Error(`Collection '${collectionName}' initial state does not exist`);
+      throw new Error(`Collection '${gameName}' initial state does not exist`);
   }
 };

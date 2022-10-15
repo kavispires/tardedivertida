@@ -127,7 +127,7 @@ export const makePlayerReady = async (data: Payload) => {
 };
 
 export const rateGame = async (data: ExtendedPayload) => {
-  const { gameId, gameName: gameName, playerId } = data;
+  const { gameId, gameName, playerId } = data;
   const actionText = 'submit ratings';
 
   try {

@@ -1,5 +1,5 @@
 // Constants
-import { GAME_COLLECTIONS } from '../../utils/constants';
+import { GAME_NAMES } from '../../utils/constants';
 import { LINHAS_CRUZADAS_ACTIONS, LINHAS_CRUZADAS_PHASES, PLAYER_COUNTS, TOTAL_ROUNDS } from './constants';
 // Types
 import type { LinhasCruzadasInitialState, LinhasCruzadasOptions, LinhasCruzadasSubmitAction } from './types';
@@ -33,7 +33,7 @@ export const getInitialState = (
 ): LinhasCruzadasInitialState => {
   return utils.helpers.getDefaultInitialState({
     gameId,
-    gameName: GAME_COLLECTIONS.LINHAS_CRUZADAS,
+    gameName: GAME_NAMES.LINHAS_CRUZADAS,
     uid,
     language,
     playerCounts: PLAYER_COUNTS,
@@ -49,14 +49,10 @@ export const getInitialState = (
  */
 export const playerCounts = PLAYER_COUNTS;
 
-export const getNextPhase = async (
-  collectionName: string,
-  gameId: string,
-  players: Players
-): Promise<boolean> => {
+export const getNextPhase = async (gameName: string, gameId: string, players: Players): Promise<boolean> => {
   // Gather docs and references
   const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences(
-    collectionName,
+    gameName,
     gameId,
     'prepare next phase'
   );
@@ -73,7 +69,7 @@ export const getNextPhase = async (
     const additionalData = await getData(store.language);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await utils.firebase.saveGame(sessionRef, newPhase);
-    return getNextPhase(collectionName, gameId, players);
+    return getNextPhase(gameName, gameId, players);
   }
 
   // * -> CLUE_WRITING
@@ -114,20 +110,20 @@ export const getNextPhase = async (
  * May trigger next phase
  */
 export const submitAction = async (data: LinhasCruzadasSubmitAction) => {
-  const { gameId, gameName: collectionName, playerId, action } = data;
+  const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, collectionName, playerId, action);
+  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
     case LINHAS_CRUZADAS_ACTIONS.SUBMIT_PROMPT:
       utils.firebase.validateSubmitActionProperties(data, ['promptId'], 'submit prompt');
-      return handleSubmitPrompt(collectionName, gameId, playerId, data.promptId);
+      return handleSubmitPrompt(gameName, gameId, playerId, data.promptId);
     case LINHAS_CRUZADAS_ACTIONS.SUBMIT_DRAWING:
       utils.firebase.validateSubmitActionProperties(data, ['drawing'], 'submit drawing');
-      return handleSubmitDrawing(collectionName, gameId, playerId, data.drawing);
+      return handleSubmitDrawing(gameName, gameId, playerId, data.drawing);
     case LINHAS_CRUZADAS_ACTIONS.SUBMIT_GUESS:
       utils.firebase.validateSubmitActionProperties(data, ['guess'], 'submit guess');
-      return handleSubmitGuess(collectionName, gameId, playerId, data.guess);
+      return handleSubmitGuess(gameName, gameId, playerId, data.guess);
     default:
       utils.firebase.throwException(`Given action ${action} is not allowed`);
   }

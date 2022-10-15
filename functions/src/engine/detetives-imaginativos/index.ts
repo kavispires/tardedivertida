@@ -1,5 +1,5 @@
 // Constants
-import { GAME_COLLECTIONS } from '../../utils/constants';
+import { GAME_NAMES } from '../../utils/constants';
 import { DETETIVES_IMAGINATIVOS_ACTIONS, DETETIVES_IMAGINATIVOS_PHASES, PLAYER_COUNTS } from './constants';
 // Types
 import type { DetetivesImaginativosInitialState, DetetivesImaginativosSubmitAction } from './types';
@@ -31,7 +31,7 @@ export const getInitialState = (
 ): DetetivesImaginativosInitialState => {
   return utils.helpers.getDefaultInitialState({
     gameId,
-    gameName: GAME_COLLECTIONS.DETETIVES_IMAGINATIVOS,
+    gameName: GAME_NAMES.DETETIVES_IMAGINATIVOS,
     uid,
     language,
     playerCounts: PLAYER_COUNTS,
@@ -50,16 +50,12 @@ export const getInitialState = (
  */
 export const playerCounts = PLAYER_COUNTS;
 
-export const getNextPhase = async (
-  collectionName: string,
-  gameId: string,
-  players: Players
-): Promise<boolean> => {
+export const getNextPhase = async (gameName: string, gameId: string, players: Players): Promise<boolean> => {
   const actionText = 'prepare next phase';
 
   // Gather docs and references
   const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences(
-    collectionName,
+    gameName,
     gameId,
     actionText
   );
@@ -75,7 +71,7 @@ export const getNextPhase = async (
     const newPhase = await prepareSetupPhase(store, state, players);
     await utils.firebase.saveGame(sessionRef, newPhase);
 
-    return getNextPhase(collectionName, gameId, newPhase.update?.players ?? {});
+    return getNextPhase(gameName, gameId, newPhase.update?.players ?? {});
   }
 
   // * -> SECRET_CLUE
@@ -123,22 +119,22 @@ export const getNextPhase = async (
  * @returns
  */
 export const submitAction = async (data: DetetivesImaginativosSubmitAction) => {
-  const { gameId, gameName: collectionName, playerId, action } = data;
+  const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, collectionName, playerId, action);
+  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
     case DETETIVES_IMAGINATIVOS_ACTIONS.SUBMIT_CLUE:
       utils.firebase.validateSubmitActionProperties(data, ['clue'], 'submit clue');
-      return handleSubmitClue(collectionName, gameId, playerId, data.clue);
+      return handleSubmitClue(gameName, gameId, playerId, data.clue);
     case DETETIVES_IMAGINATIVOS_ACTIONS.PLAY_CARD:
       utils.firebase.validateSubmitActionProperties(data, ['cardId'], 'play card');
-      return handlePlayCard(collectionName, gameId, playerId, data.cardId);
+      return handlePlayCard(gameName, gameId, playerId, data.cardId);
     case DETETIVES_IMAGINATIVOS_ACTIONS.DEFEND:
-      return handleDefend(collectionName, gameId, playerId);
+      return handleDefend(gameName, gameId, playerId);
     case DETETIVES_IMAGINATIVOS_ACTIONS.SUBMIT_VOTE:
       utils.firebase.validateSubmitActionProperties(data, ['vote'], 'submit vote');
-      return handleSubmitVote(collectionName, gameId, playerId, data.vote);
+      return handleSubmitVote(gameName, gameId, playerId, data.vote);
     default:
       utils.firebase.throwException(`Given action ${action} is not allowed`);
   }

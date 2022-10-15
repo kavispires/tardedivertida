@@ -1,5 +1,5 @@
 // Constants
-import { GAME_COLLECTIONS } from '../../utils/constants';
+import { GAME_NAMES } from '../../utils/constants';
 import { MAX_ROUNDS, PLAYER_COUNTS, RETRATO_FALADO_ACTIONS, RETRATO_FALADO_PHASES } from './constants';
 // Types
 import type { RetratoFaladoInitialState, RetratoFaladoSubmitAction } from './types';
@@ -31,7 +31,7 @@ export const getInitialState = (
 ): RetratoFaladoInitialState => {
   return utils.helpers.getDefaultInitialState({
     gameId,
-    gameName: GAME_COLLECTIONS.RETRATO_FALADO,
+    gameName: GAME_NAMES.RETRATO_FALADO,
     uid,
     language,
     playerCounts: PLAYER_COUNTS,
@@ -51,18 +51,18 @@ export const playerCounts = PLAYER_COUNTS;
 
 /**
  *
- * @param collectionName
+ * @param gameName
  * @param gameId
  * @param players
  * @returns
  */
 export const getNextPhase = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   players: Players
 ): Promise<boolean> => {
   const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences(
-    collectionName,
+    gameName,
     gameId,
     'prepare next phase'
   );
@@ -79,7 +79,7 @@ export const getNextPhase = async (
     const additionalData = await getMonsterCards();
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await utils.firebase.saveGame(sessionRef, newPhase);
-    return getNextPhase(collectionName, gameId, players);
+    return getNextPhase(gameName, gameId, players);
   }
 
   // SETUP -> COMPOSITE_SKETCH
@@ -116,20 +116,20 @@ export const getNextPhase = async (
  * @returns
  */
 export const submitAction = async (data: RetratoFaladoSubmitAction) => {
-  const { gameId, gameName: collectionName, playerId, action } = data;
+  const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, collectionName, playerId, action);
+  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
     case RETRATO_FALADO_ACTIONS.SUBMIT_ORIENTATION:
       utils.firebase.validateSubmitActionProperties(data, ['orientation'], 'submit orientation');
-      return handleSubmitOrientation(collectionName, gameId, playerId, data.orientation);
+      return handleSubmitOrientation(gameName, gameId, playerId, data.orientation);
     case RETRATO_FALADO_ACTIONS.SUBMIT_SKETCH:
       utils.firebase.validateSubmitActionProperties(data, ['sketch'], 'submit sketch');
-      return handleSubmitSketch(collectionName, gameId, playerId, data.sketch);
+      return handleSubmitSketch(gameName, gameId, playerId, data.sketch);
     case RETRATO_FALADO_ACTIONS.SUBMIT_VOTE:
       utils.firebase.validateSubmitActionProperties(data, ['vote'], 'submit vote');
-      return handleSubmitVote(collectionName, gameId, playerId, data.vote);
+      return handleSubmitVote(gameName, gameId, playerId, data.vote);
     default:
       utils.firebase.throwException(`Given action ${action} is not allowed`);
   }

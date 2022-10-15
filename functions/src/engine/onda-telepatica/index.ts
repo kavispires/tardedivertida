@@ -1,5 +1,5 @@
 // Constants
-import { GAME_COLLECTIONS } from '../../utils/constants';
+import { GAME_NAMES } from '../../utils/constants';
 import { MAX_ROUNDS, ONDA_TELEPATICA_ACTIONS, ONDA_TELEPATICA_PHASES, PLAYER_COUNTS } from './constants';
 // Types
 import type { OndaTelepaticaInitialState, OndaTelepaticaOptions, OndaTelepaticaSubmitAction } from './types';
@@ -32,7 +32,7 @@ export const getInitialState = (
 ): OndaTelepaticaInitialState => {
   return utils.helpers.getDefaultInitialState({
     gameId,
-    gameName: GAME_COLLECTIONS.ONDA_TELEPATICA,
+    gameName: GAME_NAMES.ONDA_TELEPATICA,
     uid,
     language,
     playerCounts: PLAYER_COUNTS,
@@ -52,14 +52,10 @@ export const getInitialState = (
  */
 export const playerCounts = PLAYER_COUNTS;
 
-export const getNextPhase = async (
-  collectionName: string,
-  gameId: string,
-  players: Players
-): Promise<boolean> => {
+export const getNextPhase = async (gameName: string, gameId: string, players: Players): Promise<boolean> => {
   // Gather docs and references
   const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences(
-    collectionName,
+    gameName,
     gameId,
     'prepare next phase'
   );
@@ -78,7 +74,7 @@ export const getNextPhase = async (
     const additionalData = await getCategories(store.language);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await utils.firebase.saveGame(sessionRef, newPhase);
-    return getNextPhase(collectionName, gameId, players);
+    return getNextPhase(gameName, gameId, players);
   }
 
   // DIAL_SIDES -> DIAL_CLUE
@@ -114,20 +110,20 @@ export const getNextPhase = async (
  * May trigger next phase
  */
 export const submitAction = async (data: OndaTelepaticaSubmitAction) => {
-  const { gameId, gameName: collectionName, playerId, action } = data;
+  const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, collectionName, playerId, action);
+  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
     case ONDA_TELEPATICA_ACTIONS.SUBMIT_CATEGORY:
       utils.firebase.validateSubmitActionProperties(data, ['categoryId'], 'submit category');
-      return handleSubmitCategory(collectionName, gameId, playerId, data.categoryId);
+      return handleSubmitCategory(gameName, gameId, playerId, data.categoryId);
     case ONDA_TELEPATICA_ACTIONS.SUBMIT_CLUE:
       utils.firebase.validateSubmitActionProperties(data, ['clue'], 'submit clue');
-      return handleSubmitClue(collectionName, gameId, playerId, data.clue);
+      return handleSubmitClue(gameName, gameId, playerId, data.clue);
     case ONDA_TELEPATICA_ACTIONS.SUBMIT_GUESS:
       utils.firebase.validateSubmitActionProperties(data, ['guess'], 'submit guess');
-      return handleSubmitGuess(collectionName, gameId, playerId, data.guess);
+      return handleSubmitGuess(gameName, gameId, playerId, data.guess);
     default:
       utils.firebase.throwException(`Given action ${action} is not allowed`);
   }

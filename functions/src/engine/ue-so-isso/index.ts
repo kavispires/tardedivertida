@@ -1,5 +1,5 @@
 // Constants
-import { GAME_COLLECTIONS } from '../../utils/constants';
+import { GAME_NAMES } from '../../utils/constants';
 import { PLAYER_COUNTS, UE_SO_ISSO_ACTIONS, UE_SO_ISSO_PHASES } from './constants';
 // Types
 import type { UeSoIssoInitialState, UeSoIssoSubmitAction } from './types';
@@ -35,7 +35,7 @@ import {
 export const getInitialState = (gameId: GameId, uid: string, language: string): UeSoIssoInitialState => {
   return utils.helpers.getDefaultInitialState({
     gameId,
-    gameName: GAME_COLLECTIONS.UE_SO_ISSO,
+    gameName: GAME_NAMES.UE_SO_ISSO,
     uid,
     language,
     playerCounts: PLAYER_COUNTS,
@@ -57,14 +57,10 @@ export const getInitialState = (gameId: GameId, uid: string, language: string): 
  */
 export const playerCounts = PLAYER_COUNTS;
 
-export const getNextPhase = async (
-  collectionName: string,
-  gameId: string,
-  players: Players
-): Promise<boolean> => {
+export const getNextPhase = async (gameName: string, gameId: string, players: Players): Promise<boolean> => {
   // Gather docs and references
   const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences(
-    collectionName,
+    gameName,
     gameId,
     'prepare next phase'
   );
@@ -84,7 +80,7 @@ export const getNextPhase = async (
     const additionalData = await getWords(store.language);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await utils.firebase.saveGame(sessionRef, newPhase);
-    return getNextPhase(collectionName, gameId, players);
+    return getNextPhase(gameName, gameId, players);
   }
 
   // SETUP/* -> WORD_SELECTION
@@ -125,29 +121,29 @@ export const getNextPhase = async (
  * May trigger next phase
  */
 export const submitAction = async (data: UeSoIssoSubmitAction) => {
-  const { gameId, gameName: collectionName, playerId, action } = data;
+  const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, collectionName, playerId, action);
+  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
     case UE_SO_ISSO_ACTIONS.SUBMIT_VOTES:
       utils.firebase.validateSubmitActionProperties(data, ['votes'], 'submit votes');
-      return handleSubmitWordSelectionVotes(collectionName, gameId, playerId, data.votes);
+      return handleSubmitWordSelectionVotes(gameName, gameId, playerId, data.votes);
     case UE_SO_ISSO_ACTIONS.SUBMIT_SUGGESTIONS:
       utils.firebase.validateSubmitActionProperties(data, ['suggestions'], 'submit suggestions');
-      return handleSubmitSuggestions(collectionName, gameId, playerId, data.suggestions);
+      return handleSubmitSuggestions(gameName, gameId, playerId, data.suggestions);
     case UE_SO_ISSO_ACTIONS.SUBMIT_VALIDATION:
       utils.firebase.validateSubmitActionProperties(data, ['validSuggestions'], 'submit valid suggestions');
-      return handleSubmitValidation(collectionName, gameId, playerId, data.validSuggestions);
+      return handleSubmitValidation(gameName, gameId, playerId, data.validSuggestions);
     case UE_SO_ISSO_ACTIONS.SUBMIT_OUTCOME:
       utils.firebase.validateSubmitActionProperties(data, ['outcome'], 'submit outcome');
-      return handleConfirmGuess(collectionName, gameId, playerId, data.outcome);
+      return handleConfirmGuess(gameName, gameId, playerId, data.outcome);
     case UE_SO_ISSO_ACTIONS.VALIDATE_SUGGESTION:
       utils.firebase.validateSubmitActionProperties(data, ['suggestions'], 'validate suggestions');
-      return handleUpdateValidSuggestions(collectionName, gameId, playerId, data.suggestions);
+      return handleUpdateValidSuggestions(gameName, gameId, playerId, data.suggestions);
     case UE_SO_ISSO_ACTIONS.SEND_GUESS:
       utils.firebase.validateSubmitActionProperties(data, ['guess'], 'send guess');
-      return handleSendGuess(collectionName, gameId, playerId, data.guess);
+      return handleSendGuess(gameName, gameId, playerId, data.guess);
     default:
       utils.firebase.throwException(`Given action ${action} is not allowed`);
   }
