@@ -230,7 +230,6 @@ export const determineGameOver = (
 
 /**
  * Get achievements:
- * @param players
  * @param store
  */
 export const getAchievements = (store: FirebaseStoreData) => {
