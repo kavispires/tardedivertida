@@ -1,4 +1,4 @@
-import { LETTERS } from './constants';
+import { LETTERS, LETTERS_EN, LETTERS_PT } from './constants';
 import { shuffle } from './game-utils';
 
 /**
@@ -8,7 +8,12 @@ import { shuffle } from './game-utils';
  * @param length the length of the game id
  * @returns
  */
-export const generateGameId = (gameCode: GameCode, usedIds: string[] = [], length = 4): string => {
+export const generateGameId = (
+  gameCode: GameCode,
+  language: Language,
+  usedIds: string[] = [],
+  length = 4
+): string => {
   if (!gameCode) throw Error('Missing game code');
 
   if (gameCode.length > 1 || !LETTERS.includes(gameCode)) throw Error('Invalid game code');
@@ -19,8 +24,14 @@ export const generateGameId = (gameCode: GameCode, usedIds: string[] = [], lengt
    * @param length
    * @returns
    */
-  function generateId(gameCode: GameCode, length: number): string {
+  function generateId(gameCode: GameCode, length: number, language: Language): string {
     let id = `${gameCode}`;
+    // Add second character based on language
+    id +=
+      language === 'en'
+        ? LETTERS_EN[Math.floor(Math.random() * LETTERS_EN.length)]
+        : LETTERS_PT[Math.floor(Math.random() * LETTERS_PT.length)];
+
     while (id.length < length) {
       id += LETTERS[Math.floor(Math.random() * LETTERS.length)];
     }
@@ -29,7 +40,7 @@ export const generateGameId = (gameCode: GameCode, usedIds: string[] = [], lengt
 
   let gameId: string | null = null;
   while (!gameId || usedIds.includes(gameId)) {
-    gameId = generateId(gameCode, length);
+    gameId = generateId(gameCode, length, language);
   }
 
   return gameId;

@@ -51,3 +51,8 @@ $shade-levels: (
     }
   }
 }
+
+.dev-text-areas {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
