@@ -1,7 +1,7 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 // Utils
-import * as utils from '../utils';
+import utils from '../utils';
 
 export const config = functions.config;
 
@@ -20,37 +20,37 @@ export function verifyPayload(property?: any, propertyName = 'unknown property',
 /**
  * Validate payload data for an action
  * @param gameId
- * @param collectionName
+ * @param gameName
  * @param action
  * @param actionText
  */
 export function validateActionPayload(
   gameId: GameId,
-  collectionName: GameName,
+  gameName: GameName,
   action: string,
   actionText: string
 ) {
   verifyPayload(gameId, 'gameId', actionText);
-  verifyPayload(collectionName, 'collectionName', actionText);
+  verifyPayload(gameName, 'gameName', actionText);
   verifyPayload(action, 'action', actionText);
 }
 
 /**
  * Validate payload data for a submit action
  * @param gameId
- * @param collectionName
+ * @param gameName
  * @param playerId
  * @param action
  */
 export function validateSubmitActionPayload(
   gameId: GameId,
-  collectionName: GameName,
+  gameName: GameName,
   playerId: PlayerId,
   action: string
 ) {
   const actionText = 'submit action';
   verifyPayload(gameId, 'gameId', actionText);
-  verifyPayload(collectionName, 'collectionName', actionText);
+  verifyPayload(gameName, 'gameName', actionText);
   verifyPayload(playerId, 'playerId', actionText);
   verifyPayload(action, 'action', actionText);
 }
@@ -79,32 +79,40 @@ export function verifyAuth(context: FirebaseContext, action = 'perform function'
 }
 
 /**
- * Get Firebase session for the _global collection
- * @returns firebase _global reference
+ * Get Firebase session for the global collection
+ * @returns firebase global reference
  */
 export function getGlobalRef(): FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData> {
-  return admin.firestore().collection('_global');
+  return admin.firestore().collection('global');
 }
 
 /**
- * Get Firebase session for the _public collection
- * @returns firebase _public reference
+ * Get Firebase session for the meta collection
+ * @returns firebase meta reference
+ */
+export function getMetaRef(): FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData> {
+  return admin.firestore().collection('meta');
+}
+
+/**
+ * Get Firebase session for the public collection
+ * @returns firebase public reference
  */
 export function getPublicRef(): FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData> {
-  return admin.firestore().collection('_public');
+  return admin.firestore().collection('public');
 }
 
 /**
  * Get Firebase session for gameId in collection
- * @param collectionName
+ * @param gameName
  * @param gameId
  * @returns firebase session reference
  */
 export function getSessionRef(
-  collectionName: string,
+  gameName: string,
   gameId: string
 ): FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData> {
-  return admin.firestore().collection(collectionName).doc(gameId).collection('session');
+  return admin.firestore().collection('games').doc(gameName).collection(gameId);
 }
 
 /**
@@ -117,25 +125,48 @@ export function deleteValue() {
 
 /**
  * Get firebase doc verifying its existence
- * @param collectionName
+ * @param gameId
+ * @param actionText
+ * @returns
+ */
+export async function getMetaDoc(
+  gameId: string,
+  actionText: string
+): Promise<FirebaseFirestore.DocumentSnapshot<FirebaseFirestore.DocumentData>> {
+  const metaRef = getMetaRef();
+  const gameDoc = await metaRef.doc(gameId).get();
+
+  if (!gameDoc.exists) {
+    throw new functions.https.HttpsError(
+      'internal',
+      `Failed to ${actionText}: game ${gameId} does not exist`
+    );
+  }
+
+  return gameDoc;
+}
+
+/**
+ * Get firebase doc verifying its existence
+ * @param gameName
  * @param gameId
  * @param docName
  * @param actionText
  * @returns
  */
 export async function getSessionDoc(
-  collectionName: string,
+  gameName: string,
   gameId: string,
   docName: string,
   actionText: string
 ): Promise<FirebaseFirestore.DocumentSnapshot<FirebaseFirestore.DocumentData>> {
-  const sessionRef = getSessionRef(collectionName, gameId);
+  const sessionRef = getSessionRef(gameName, gameId);
   const gameDoc = await sessionRef.doc(docName).get();
 
   if (!gameDoc.exists) {
     throw new functions.https.HttpsError(
       'internal',
-      `Failed to ${actionText}: game ${collectionName}/${gameId}/${docName} does not exist`
+      `Failed to ${actionText}: game ${gameName}/${gameId}/${docName} does not exist`
     );
   }
 
@@ -154,7 +185,7 @@ export function throwException(error: any, action = 'function') {
 
 /**
  * Gather docs and references needed in every nextPhase function
- * @param collectionName
+ * @param gameName
  * @param gameId
  * @param actionText
  * @returns
@@ -163,7 +194,7 @@ export const getStateAndStoreReferences = async <
   A = FirebaseFirestore.DocumentData,
   O = FirebaseFirestore.DocumentData
 >(
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   actionText: string
 ): Promise<{
@@ -173,9 +204,9 @@ export const getStateAndStoreReferences = async <
   state: A;
   store: O;
 }> => {
-  const sessionRef = getSessionRef(collectionName, gameId);
-  const stateDoc = await getSessionDoc(collectionName, gameId, 'state', actionText);
-  const storeDoc = await getSessionDoc(collectionName, gameId, 'store', actionText);
+  const sessionRef = getSessionRef(gameName, gameId);
+  const stateDoc = await getSessionDoc(gameName, gameId, 'state', actionText);
+  const storeDoc = await getSessionDoc(gameName, gameId, 'store', actionText);
   const state = (stateDoc.data() ?? {}) as A;
   const store = (storeDoc.data() ?? {}) as O;
 
@@ -218,14 +249,20 @@ export const saveGame = async (
     if (saveContent?.update?.state) {
       await sessionRef.doc('state').update({ ...saveContent.update.state, updatedAt: Date.now() });
     }
-
-    if (saveContent?.update?.meta) {
-      await sessionRef.doc('meta').update(saveContent.update.meta);
-    }
   } catch (error) {
     throwException(error, 'update game');
   }
 
+  return true;
+};
+
+/**
+ * Mark game as complete on its meta data doc
+ * @param gameId
+ * @returns
+ */
+export const markGameAsComplete = async (gameId: GameId) => {
+  await getMetaRef().doc(gameId).update({ isComplete: true });
   return true;
 };
 
@@ -244,7 +281,7 @@ export const triggerSetupPhase = async (
 
 /**
  * Aides updating player properties on submit actions
- * @param args.collectionName
+ * @param args.gameName
  * @param args.gameId
  * @param args.playerId
  * @param args.actionText
@@ -254,7 +291,7 @@ export const triggerSetupPhase = async (
  * @returns
  */
 export const updatePlayer = async ({
-  collectionName,
+  gameName,
   gameId,
   playerId,
   actionText,
@@ -262,7 +299,7 @@ export const updatePlayer = async ({
   change,
   nextPhaseFunction,
 }: UpdatePlayerArgs) => {
-  const sessionRef = getSessionRef(collectionName, gameId);
+  const sessionRef = getSessionRef(gameName, gameId);
 
   const playerChange = {};
   for (const key in change) {
@@ -281,12 +318,12 @@ export const updatePlayer = async ({
     return throwException(error, actionText);
   }
   if (shouldReady && nextPhaseFunction) {
-    const playersDoc = await getSessionDoc(collectionName, gameId, 'players', actionText);
+    const playersDoc = await getSessionDoc(gameName, gameId, 'players', actionText);
     const players = playersDoc.data() ?? {};
 
     // If all players are ready, trigger next phase
     if (utils.players.isEverybodyReady(players)) {
-      return nextPhaseFunction(collectionName, gameId, players);
+      return nextPhaseFunction(gameName, gameId, players);
     }
   }
 
@@ -295,7 +332,7 @@ export const updatePlayer = async ({
 
 /**
  * Aides updating simple store properties on submit actions
- * @param args.collectionName
+ * @param args.gameName
  * @param args.gameId
  * @param args.playerId
  * @param args.actionText
@@ -304,13 +341,13 @@ export const updatePlayer = async ({
  * @returns
  */
 export const updateStore = async ({
-  collectionName,
+  gameName,
   gameId,
   actionText,
   change,
   nextPhaseFunction,
 }: UpdateStoreArgs) => {
-  const sessionRef = getSessionRef(collectionName, gameId);
+  const sessionRef = getSessionRef(gameName, gameId);
 
   try {
     await sessionRef.doc('store').update({ ...change });
@@ -319,9 +356,9 @@ export const updateStore = async ({
   }
 
   if (nextPhaseFunction) {
-    const playersDoc = await getSessionDoc(collectionName, gameId, 'players', actionText);
+    const playersDoc = await getSessionDoc(gameName, gameId, 'players', actionText);
     const players = playersDoc.data() ?? {};
-    return nextPhaseFunction(collectionName, gameId, players);
+    return nextPhaseFunction(gameName, gameId, players);
   }
 
   return true;
@@ -329,7 +366,7 @@ export const updateStore = async ({
 
 /**
  * Aides updating simple state properties on submit actions
- * @param args.collectionName
+ * @param args.gameName
  * @param args.gameId
  * @param args.playerId
  * @param args.actionText
@@ -338,13 +375,13 @@ export const updateStore = async ({
  * @returns
  */
 export const updateState = async ({
-  collectionName,
+  gameName,
   gameId,
   actionText,
   change,
   nextPhaseFunction,
 }: UpdateStoreArgs) => {
-  const sessionRef = getSessionRef(collectionName, gameId);
+  const sessionRef = getSessionRef(gameName, gameId);
 
   try {
     await sessionRef.doc('state').update({ ...change });
@@ -353,9 +390,9 @@ export const updateState = async ({
   }
 
   if (nextPhaseFunction) {
-    const playersDoc = await getSessionDoc(collectionName, gameId, 'players', actionText);
+    const playersDoc = await getSessionDoc(gameName, gameId, 'players', actionText);
     const players = playersDoc.data() ?? {};
-    return nextPhaseFunction(collectionName, gameId, players);
+    return nextPhaseFunction(gameName, gameId, players);
   }
 
   return true;

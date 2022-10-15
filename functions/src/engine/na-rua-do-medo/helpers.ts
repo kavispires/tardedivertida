@@ -22,7 +22,7 @@ import type {
   Outcome,
 } from './types';
 // Utils
-import * as utils from '../../utils';
+import utils from '../../utils';
 
 /**
  * Determine the next phase based on the current one
@@ -234,16 +234,16 @@ export const parseDecisions = (
         goingHomePlayers.push(player);
         goingHomePlayerIds.push(player.id);
         // Achievement: most houses
-        utils.achievements.increaseAchievement(store, player.id, 'houses', 1);
+        utils.achievements.increase(store, player.id, 'houses', 1);
         // Achievement: facing monsters
-        utils.achievements.increaseAchievement(store, player.id, 'facingMonsters', monsterCount);
+        utils.achievements.increase(store, player.id, 'facingMonsters', monsterCount);
         break;
       case DECISIONS.CONTINUE:
       default:
         continuingPlayers.push(player);
         continuingPlayerIds.push(player.id);
         // Achievement: most houses
-        utils.achievements.increaseAchievement(store, player.id, 'houses', 1);
+        utils.achievements.increase(store, player.id, 'houses', 1);
     }
   });
 
@@ -270,7 +270,7 @@ export const parseDecisions = (
     player.hand = 0;
     player.isTrickOrTreating = false;
     // Achievement: most sidewalk candy
-    utils.achievements.increaseAchievement(store, player.id, 'sidewalk', candyPerPlayer);
+    utils.achievements.increase(store, player.id, 'sidewalk', candyPerPlayer);
   });
 
   let newStreet = street;
@@ -291,12 +291,7 @@ export const parseDecisions = (
     newStreet = street.filter((card) => card.type !== 'jackpot');
 
     // Achievement: most jackpots
-    utils.achievements.increaseAchievement(
-      store,
-      goingHomePlayers[0].id,
-      'jackpots',
-      availableJackpot.length
-    );
+    utils.achievements.increase(store, goingHomePlayers[0].id, 'jackpots', availableJackpot.length);
   }
 
   // Redistribute leftover candy

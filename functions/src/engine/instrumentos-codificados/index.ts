@@ -1,10 +1,10 @@
 // Constants
-import { GAME_COLLECTIONS } from '../../utils/constants';
+import { GAME_NAMES } from '../../utils/constants';
 import { INSTRUMENTOS_CODIFICADOS_PHASES, PLAYER_COUNTS, TOTAL_ROUNDS } from './constants';
 // Types
 import type { InstrumentosCodificadosInitialState, InstrumentosCodificadosSubmitAction } from './types';
 // Utils
-import * as utils from '../../utils';
+import utils from '../../utils';
 // Internal
 import {
   prepareGameOverPhase,
@@ -31,7 +31,7 @@ export const getInitialState = (
 ): InstrumentosCodificadosInitialState => {
   return utils.helpers.getDefaultInitialState({
     gameId,
-    gameName: GAME_COLLECTIONS.INSTRUMENTOS_CODIFICADOS,
+    gameName: GAME_NAMES.INSTRUMENTOS_CODIFICADOS,
     uid,
     language,
     playerCounts: PLAYER_COUNTS,
@@ -46,16 +46,12 @@ export const getInitialState = (
  */
 export const playerCounts = PLAYER_COUNTS;
 
-export const getNextPhase = async (
-  collectionName: string,
-  gameId: string,
-  players: Players
-): Promise<boolean> => {
+export const getNextPhase = async (gameName: string, gameId: string, players: Players): Promise<boolean> => {
   const actionText = 'prepare next phase';
 
   // Gather docs and references
   const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences(
-    collectionName,
+    gameName,
     gameId,
     actionText
   );
@@ -73,7 +69,7 @@ export const getNextPhase = async (
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await utils.firebase.saveGame(sessionRef, newPhase);
 
-    return getNextPhase(collectionName, gameId, newPhase.update?.players ?? {});
+    return getNextPhase(gameName, gameId, newPhase.update?.players ?? {});
   }
 
   // * -> HINT_GIVING
@@ -96,7 +92,7 @@ export const getNextPhase = async (
 
   // GUESS_THE_CODE --> GAME_OVER
   if (nextPhase === INSTRUMENTOS_CODIFICADOS_PHASES.GAME_OVER) {
-    const newPhase = await prepareGameOverPhase(store, state, players);
+    const newPhase = await prepareGameOverPhase(gameId, store, state, players);
     return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
@@ -109,9 +105,9 @@ export const getNextPhase = async (
  * @returns
  */
 export const submitAction = async (data: InstrumentosCodificadosSubmitAction) => {
-  const { gameId, gameName: collectionName, playerId, action } = data;
+  const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, collectionName, playerId, action);
+  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
     case 'SUBMIT_HINT':
@@ -124,17 +120,17 @@ export const submitAction = async (data: InstrumentosCodificadosSubmitAction) =>
       if (!data.position) {
         utils.firebase.throwException('Missing `position` value', 'submit position');
       }
-      return handleSubmitHint(collectionName, gameId, playerId, data.hint, data.targetId, data.position);
+      return handleSubmitHint(gameName, gameId, playerId, data.hint, data.targetId, data.position);
     case 'SUBMIT_CONCLUSIONS':
       if (!data.conclusions) {
         utils.firebase.throwException('Missing `conclusions` value', 'submit conclusions');
       }
-      return handleSubmitConclusions(collectionName, gameId, playerId, data.conclusions);
+      return handleSubmitConclusions(gameName, gameId, playerId, data.conclusions);
     case 'SUBMIT_CODE':
       if (!data.code) {
         utils.firebase.throwException('Missing `code` value', 'submit code');
       }
-      return handleSubmitCode(collectionName, gameId, playerId, data.code);
+      return handleSubmitCode(gameName, gameId, playerId, data.code);
     default:
       utils.firebase.throwException(`Given action ${action} is not allowed`);
   }

@@ -1,25 +1,25 @@
 // Utils
-import * as utils from '../../utils';
+import utils from '../../utils';
 // Internal
 import { getNextPhase } from '.';
 import { CloverLeaf, Guess, GuessPayload } from './types';
 
 /**
  *
- * @param collectionName
+ * @param gameName
  * @param gameId
  * @param playerId
  * @param cardsIds
  * @returns
  */
 export const handleSubmitBadWords = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   cardsIds: CardId[]
 ) => {
   return await utils.firebase.updatePlayer({
-    collectionName,
+    gameName,
     gameId,
     playerId,
     actionText: 'submit bad words',
@@ -31,14 +31,14 @@ export const handleSubmitBadWords = async (
 
 /**
  *
- * @param collectionName
+ * @param gameName
  * @param gameId
  * @param playerId
  * @param clues
  * @returns
  */
 export const handleSubmitClues = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   clues: CloverLeaf[]
@@ -51,7 +51,7 @@ export const handleSubmitClues = async (
   };
 
   return await utils.firebase.updatePlayer({
-    collectionName,
+    gameName,
     gameId,
     playerId,
     actionText: 'submit clues',
@@ -63,14 +63,14 @@ export const handleSubmitClues = async (
 
 /**
  *
- * @param collectionName
+ * @param gameName
  * @param gameId
  * @param playerId
  * @param guesses
  * @returns
  */
 export const handleSubmitGuess = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   guesses: GuessPayload,
@@ -84,7 +84,7 @@ export const handleSubmitGuess = async (
   };
 
   return await utils.firebase.updatePlayer({
-    collectionName,
+    gameName,
     gameId,
     playerId,
     actionText: 'submit guess',

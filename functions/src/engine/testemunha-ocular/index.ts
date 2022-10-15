@@ -1,10 +1,10 @@
 // Constants
-import { GAME_COLLECTIONS } from '../../utils/constants';
+import { GAME_NAMES } from '../../utils/constants';
 import { MAX_ROUNDS, PLAYER_COUNTS, TESTEMUNHA_OCULAR_ACTIONS, TESTEMUNHA_OCULAR_PHASES } from './constants';
 // Types
 import type { TestemunhaOcularInitialState, TestemunhaOcularSubmitAction } from './types';
 // Utils
-import * as utils from '../../utils';
+import utils from '../../utils';
 // Internal Functions
 import { determineNextPhase } from './helpers';
 import {
@@ -32,7 +32,7 @@ export const getInitialState = (
 ): TestemunhaOcularInitialState => {
   return utils.helpers.getDefaultInitialState({
     gameId,
-    gameName: GAME_COLLECTIONS.TESTEMUNHA_OCULAR,
+    gameName: GAME_NAMES.TESTEMUNHA_OCULAR,
     uid,
     language,
     playerCounts: PLAYER_COUNTS,
@@ -52,13 +52,13 @@ export const getInitialState = (
 export const playerCounts = PLAYER_COUNTS;
 
 export const getNextPhase = async (
-  collectionName: string,
+  gameName: string,
   gameId: string,
   players: Players,
   additionalPayload?: PlainObject
 ): Promise<boolean> => {
   const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences(
-    collectionName,
+    gameName,
     gameId,
     'prepare next phase'
   );
@@ -81,7 +81,7 @@ export const getNextPhase = async (
     const additionalData = await getQuestionsAndSuspects(store.language);
     const newPhase = await prepareSetupPhase(additionalData);
     await utils.firebase.saveGame(sessionRef, newPhase);
-    return getNextPhase(collectionName, gameId, players);
+    return getNextPhase(gameName, gameId, players);
   }
 
   // SETUP -> WITNESS_SELECTION
@@ -110,7 +110,7 @@ export const getNextPhase = async (
 
   // TRIAL -> GAME_OVER
   if (nextPhase === TESTEMUNHA_OCULAR_PHASES.GAME_OVER) {
-    const newPhase = await prepareGameOverPhase(store, state, additionalPayload ?? {});
+    const newPhase = await prepareGameOverPhase(gameId, store, state, additionalPayload ?? {});
 
     // Save usedTestemunhaOcularCards to global
     await saveUsedQUestions(store.pastQuestions);
@@ -129,9 +129,9 @@ export const getNextPhase = async (
  * @returns
  */
 export const submitAction = async (data: TestemunhaOcularSubmitAction) => {
-  const { gameId, gameName: collectionName, playerId, action } = data;
+  const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, collectionName, playerId, action);
+  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   let actionText = 'submit action';
 
@@ -139,22 +139,22 @@ export const submitAction = async (data: TestemunhaOcularSubmitAction) => {
     case TESTEMUNHA_OCULAR_ACTIONS.SELECT_WITNESS:
       actionText = 'select witness';
       utils.firebase.validateSubmitActionProperties(data, ['witnessId'], actionText);
-      return handleExtraAction(collectionName, gameId, actionText, { playerId, witnessId: data.witnessId });
+      return handleExtraAction(gameName, gameId, actionText, { playerId, witnessId: data.witnessId });
 
     case TESTEMUNHA_OCULAR_ACTIONS.SELECT_QUESTION:
       actionText = 'select question';
       utils.firebase.validateSubmitActionProperties(data, ['questionId'], actionText);
-      return handleExtraAction(collectionName, gameId, actionText, { playerId, questionId: data.questionId });
+      return handleExtraAction(gameName, gameId, actionText, { playerId, questionId: data.questionId });
 
     case TESTEMUNHA_OCULAR_ACTIONS.GIVE_TESTIMONY:
       actionText = 'give testimony';
       utils.firebase.validateSubmitActionProperties(data, ['testimony'], actionText);
-      return handleExtraAction(collectionName, gameId, actionText, { playerId, testimony: data.testimony });
+      return handleExtraAction(gameName, gameId, actionText, { playerId, testimony: data.testimony });
 
     case TESTEMUNHA_OCULAR_ACTIONS.ELIMINATE_SUSPECT:
       actionText = 'eliminate suspect';
       utils.firebase.validateSubmitActionProperties(data, ['suspectId', 'pass'], actionText);
-      return handleElimination(collectionName, gameId, actionText, {
+      return handleElimination(gameName, gameId, actionText, {
         playerId,
         suspectId: data?.suspectId,
         pass: data?.pass,

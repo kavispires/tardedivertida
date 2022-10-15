@@ -4,7 +4,7 @@ import type { AllWords, ClueEntry, Deck, GridCell } from './types';
 import { SEPARATOR } from '../../utils/constants';
 import { WORDS_PER_PLAYER_COUNT, CRUZA_PALAVRAS_PHASES } from './constants';
 // Utils
-import * as utils from '../../utils';
+import utils from '../../utils';
 
 /**
  * Determine the next phase based on the current one

@@ -9,7 +9,7 @@ import {
 } from './constants';
 import { Crime, GroupedItems, Guess, Guesses, GuessHistory, GuessHistoryEntry, WrongGroups } from './types';
 // Utils
-import * as utils from '../../utils';
+import utils from '../../utils';
 
 /**
  * Determine the next phase based on the current one

@@ -6,7 +6,7 @@ import type { ResourceData } from './types';
 // Helpers
 import * as globalUtils from '../global';
 import * as resourceUtils from '../resource';
-import * as utils from '../../utils';
+import utils from '../../utils';
 
 /**
  * Get question cards resource based on the game's language

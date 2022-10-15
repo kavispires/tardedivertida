@@ -2,7 +2,7 @@
 import { TDR_RESOURCES } from '../../utils/constants';
 import type { ResourceData } from './types';
 // Helpers
-import * as utils from '../../utils';
+import utils from '../../utils';
 import * as resourceUtils from '../resource';
 
 /**

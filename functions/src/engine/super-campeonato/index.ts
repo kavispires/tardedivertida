@@ -1,5 +1,5 @@
 // Constants
-import { GAME_COLLECTIONS } from '../../utils/constants';
+import { GAME_NAMES } from '../../utils/constants';
 import { TOTAL_ROUNDS, PLAYER_COUNTS, SUPER_CAMPEONATO_PHASES, SUPER_CAMPEONATO_ACTIONS } from './constants';
 // Types
 import type {
@@ -8,7 +8,7 @@ import type {
   SuperCampeonatoSubmitAction,
 } from './types';
 // Utils
-import * as utils from '../../utils';
+import utils from '../../utils';
 // Internal Functions
 import { determineNextPhase } from './helpers';
 import { getResourceData } from './data';
@@ -43,7 +43,7 @@ export const getInitialState = (
 ): SuperCampeonatoInitialState => {
   return utils.helpers.getDefaultInitialState({
     gameId,
-    gameName: GAME_COLLECTIONS.SUPER_CAMPEONATO,
+    gameName: GAME_NAMES.SUPER_CAMPEONATO,
     uid,
     language,
     playerCounts: PLAYER_COUNTS,
@@ -61,13 +61,9 @@ export const getInitialState = (
  */
 export const playerCounts = PLAYER_COUNTS;
 
-export const getNextPhase = async (
-  collectionName: string,
-  gameId: string,
-  players: Players
-): Promise<boolean> => {
+export const getNextPhase = async (gameName: string, gameId: string, players: Players): Promise<boolean> => {
   const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences(
-    collectionName,
+    gameName,
     gameId,
     'prepare next phase'
   );
@@ -91,7 +87,7 @@ export const getNextPhase = async (
     const additionalData = await getResourceData(store.language, isAlternativeGame);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await utils.firebase.saveGame(sessionRef, newPhase);
-    return getNextPhase(collectionName, gameId, players);
+    return getNextPhase(gameName, gameId, players);
   }
 
   // * -> CHALLENGE_SELECTION
@@ -126,7 +122,7 @@ export const getNextPhase = async (
 
   // RESULTS --> GAME_OVER
   if (nextPhase === SUPER_CAMPEONATO_PHASES.GAME_OVER) {
-    const newPhase = await prepareGameOverPhase(store, state, players);
+    const newPhase = await prepareGameOverPhase(gameId, store, state, players);
     return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
@@ -139,23 +135,23 @@ export const getNextPhase = async (
  * @returns
  */
 export const submitAction = async (data: SuperCampeonatoSubmitAction) => {
-  const { gameId, gameName: collectionName, playerId, action } = data;
+  const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, collectionName, playerId, action);
+  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
     case SUPER_CAMPEONATO_ACTIONS.SUBMIT_CHALLENGE:
       utils.firebase.validateSubmitActionProperties(data, ['challengeId'], 'submit challenge');
-      return handleSubmitChallenge(collectionName, gameId, playerId, data.challengeId);
+      return handleSubmitChallenge(gameName, gameId, playerId, data.challengeId);
     case SUPER_CAMPEONATO_ACTIONS.SUBMIT_CONTENDERS:
       utils.firebase.validateSubmitActionProperties(data, ['contendersId'], 'submit contenders');
-      return handleSubmitContenders(collectionName, gameId, playerId, data.contendersId);
+      return handleSubmitContenders(gameName, gameId, playerId, data.contendersId);
     case SUPER_CAMPEONATO_ACTIONS.SUBMIT_BETS:
       utils.firebase.validateSubmitActionProperties(data, ['quarter', 'semi', 'final'], 'submit bets');
-      return handleSubmitBets(collectionName, gameId, playerId, data.quarter, data.semi, data.final);
+      return handleSubmitBets(gameName, gameId, playerId, data.quarter, data.semi, data.final);
     case SUPER_CAMPEONATO_ACTIONS.SUBMIT_VOTES:
       utils.firebase.validateSubmitActionProperties(data, ['votes'], 'submit bets');
-      return handleSubmitVotes(collectionName, gameId, playerId, data.votes);
+      return handleSubmitVotes(gameName, gameId, playerId, data.votes);
     default:
       utils.firebase.throwException(`Given action ${action} is not allowed`);
   }

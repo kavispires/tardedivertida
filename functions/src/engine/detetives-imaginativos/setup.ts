@@ -5,7 +5,7 @@ import { DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
 import type { FirebaseStateData, FirebaseStoreData } from './types';
 
 // Utils
-import * as utils from '../../utils';
+import utils from '../../utils';
 // Internal
 import { calculateNewScores, countImpostorVotes, determinePhaseOrder } from './helpers';
 
@@ -198,18 +198,16 @@ export const prepareRevealPhase = async (
 };
 
 export const prepareGameOverPhase = async (
+  gameId: GameId,
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 
+  await utils.firebase.markGameAsComplete(gameId);
+
   return {
-    update: {
-      meta: {
-        isComplete: true,
-      },
-    },
     set: {
       players,
       state: {

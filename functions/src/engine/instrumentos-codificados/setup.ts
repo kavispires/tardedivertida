@@ -9,7 +9,7 @@ import {
   TOTAL_ROUNDS,
 } from './constants';
 // Utils
-import * as utils from '../../utils';
+import utils from '../../utils';
 // Internal
 import { buildCode, buildCodeFragment, buildTable } from './helpers';
 
@@ -143,18 +143,16 @@ export const prepareSolutionPhase = async (
 };
 
 export const prepareGameOverPhase = async (
+  gameId: GameId,
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 
+  await utils.firebase.markGameAsComplete(gameId);
+
   return {
-    update: {
-      meta: {
-        isComplete: true,
-      },
-    },
     set: {
       players,
       state: {

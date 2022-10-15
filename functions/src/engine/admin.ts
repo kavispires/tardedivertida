@@ -1,9 +1,9 @@
 import * as admin from 'firebase-admin';
 // Constants
-import { GLOBAL_USED_DOCUMENTS, USED_GAME_IDS } from '../utils/constants';
+import { GAME_CODES, GLOBAL_USED_DOCUMENTS, USED_GAME_IDS } from '../utils/constants';
 // Utils
 import * as delegatorUtils from '../utils/delegators';
-import * as utils from '../utils';
+import utils from '../utils';
 
 /**
  * Creates a new game instance
@@ -16,16 +16,17 @@ export const createGame = async (data: CreateGamePayload, context: FirebaseConte
   utils.firebase.verifyAuth(context, actionText);
 
   // Get collection name by game code on request
-  const { gameCode } = data;
+  const { gameName, language } = data;
 
-  if (!gameCode) {
-    return utils.firebase.throwException('a gameCode is required', actionText);
+  if (!gameName) {
+    return utils.firebase.throwException('a gameName is required', actionText);
   }
 
-  const collectionName = delegatorUtils.getCollectionNameByGameCode(gameCode);
+  // Get gameCode
+  const gameCode = GAME_CODES[gameName];
 
-  if (!collectionName) {
-    return utils.firebase.throwException(`provided gameCode is invalid ${gameCode}`, actionText);
+  if (!gameCode) {
+    return utils.firebase.throwException(`provided gameCode is invalid ${gameName}`, actionText);
   }
 
   if (process.env.FUNCTIONS_EMULATOR) {
@@ -39,16 +40,16 @@ export const createGame = async (data: CreateGamePayload, context: FirebaseConte
   const usedGameIds = Object.keys(usedGameIdsData ?? {});
 
   // Get list of code ids present in database
-  const collectionRef = admin.firestore().collection(collectionName);
+  const gameRef = admin.firestore().collection('games').doc(gameName);
 
   // Generate unique 4 digit code starting with game code letter
-  let gameId: string = utils.helpers.generateGameId(gameCode, usedGameIds);
+  let gameId: string = utils.helpers.generateGameId(gameCode, language as Language, usedGameIds);
 
   // Make sure the game does not exist, I do not trust that while loop
-  const tempGame = await collectionRef.doc(gameId).get();
+  const tempGame = await gameRef.collection(gameId).doc('state').get();
   if (tempGame.exists) {
     return utils.firebase.throwException(
-      `the generated game id ${gameCode} belongs to an existing session`,
+      `the generated game id ${gameId} belongs to an existing session`,
       actionText
     );
   }
@@ -60,16 +61,18 @@ export const createGame = async (data: CreateGamePayload, context: FirebaseConte
   // Create game entry in database
   let response = {};
   try {
-    const sessionRef = utils.firebase.getSessionRef(collectionName, gameId);
-    const { getInitialState } = delegatorUtils.getEngine(collectionName);
+    const sessionRef = utils.firebase.getSessionRef(gameName, gameId);
+    const { getInitialState } = delegatorUtils.getEngine(gameName);
 
     const uid = context?.auth?.uid ?? 'admin?';
     const { meta, players, state, store } = getInitialState(gameId, uid, data.language ?? 'pt', data.options);
 
-    await sessionRef.doc('meta').set(meta);
     await sessionRef.doc('players').set(players);
     await sessionRef.doc('state').set(state);
     await sessionRef.doc('store').set(store);
+
+    const metaRef = utils.firebase.getMetaRef();
+    await metaRef.doc(gameId).set(meta);
 
     response = meta;
   } catch (e) {
@@ -95,20 +98,20 @@ export const createGame = async (data: CreateGamePayload, context: FirebaseConte
  * @returns
  */
 export const lockGame = async (data: BasicGamePayload, context: FirebaseContext) => {
-  const { gameId, gameName: collectionName } = data;
+  const { gameId, gameName } = data;
 
   const actionText = 'lock game';
   utils.firebase.verifyPayload(gameId, 'gameId', actionText);
-  utils.firebase.verifyPayload(collectionName, 'collectionName', actionText);
+  utils.firebase.verifyPayload(gameName, 'gameName', actionText);
   utils.firebase.verifyAuth(context, actionText);
 
-  const sessionRef = utils.firebase.getSessionRef(collectionName, gameId);
-  const playersDoc = await utils.firebase.getSessionDoc(collectionName, gameId, 'players', actionText);
+  const sessionRef = utils.firebase.getSessionRef(gameName, gameId);
+  const playersDoc = await utils.firebase.getSessionDoc(gameName, gameId, 'players', actionText);
   const players: Players = playersDoc.data() ?? {};
 
   // Verify minimum number of players
   const numPlayers = Object.keys(players).length;
-  const { playerCounts } = delegatorUtils.getEngine(collectionName);
+  const { playerCounts } = delegatorUtils.getEngine(gameName);
 
   if (numPlayers < playerCounts.MIN) {
     utils.firebase.throwException(
@@ -126,7 +129,7 @@ export const lockGame = async (data: BasicGamePayload, context: FirebaseContext)
 
   try {
     // Set info with players object and isLocked
-    await sessionRef.doc('meta').update({ isLocked: true });
+    await utils.firebase.getMetaRef().doc(gameId).update({ isLocked: true });
     // Set state with new Phase: Rules
     await sessionRef.doc('state').update({
       phase: 'RULES',
@@ -156,20 +159,20 @@ const ADMIN_ACTIONS = {
  * @returns
  */
 export const performAdminAction = async (data: ExtendedPayload, context: FirebaseContext) => {
-  const { gameId, gameName: collectionName, action } = data;
+  const { gameId, gameName, action } = data;
 
   utils.firebase.verifyAuth(context, action);
-  utils.firebase.validateActionPayload(gameId, collectionName, action, action);
+  utils.firebase.validateActionPayload(gameId, gameName, action, action);
 
   switch (action) {
     case ADMIN_ACTIONS.GO_TO_NEXT_PHASE:
-      return await goToNextPhase(gameId, collectionName);
+      return await goToNextPhase(gameId, gameName);
     case ADMIN_ACTIONS.FORCE_STATE_PROPERTY:
-      return await forceStateProperty(gameId, collectionName, data.state);
+      return await forceStateProperty(gameId, gameName, data.state);
     case ADMIN_ACTIONS.PLAY_AGAIN:
-      return await playAgain(gameId, collectionName);
+      return await playAgain(gameId, gameName);
     case ADMIN_ACTIONS.FORCE_END_GAME:
-      return await forceStateProperty(gameId, collectionName, { lastRound: true });
+      return await forceStateProperty(gameId, gameName, { lastRound: true });
     default:
       return utils.firebase.throwException(
         'Failed to perform admin action',
@@ -181,31 +184,31 @@ export const performAdminAction = async (data: ExtendedPayload, context: Firebas
 /**
  * Goes to next phase of the current game
  * @param gameId
- * @param collectionName
+ * @param gameName
  * @returns
  */
-const goToNextPhase = async (gameId: GameId, collectionName: GameName) => {
+const goToNextPhase = async (gameId: GameId, gameName: GameName) => {
   const actionText = 'go to next phase';
-  const playersDoc = await utils.firebase.getSessionDoc(collectionName, gameId, 'players', actionText);
+  const playersDoc = await utils.firebase.getSessionDoc(gameName, gameId, 'players', actionText);
 
   const players = playersDoc.data() ?? {};
 
-  const { getNextPhase } = delegatorUtils.getEngine(collectionName);
+  const { getNextPhase } = delegatorUtils.getEngine(gameName);
 
-  return getNextPhase(collectionName, gameId, players);
+  return getNextPhase(gameName, gameId, players);
 };
 
 /**
  * Adds a property to game game state
  * @param gameId
- * @param collectionName
+ * @param gameName
  * @param stateUpdate
  * @returns
  */
-const forceStateProperty = async (gameId: GameId, collectionName: GameName, stateUpdate: PlainObject) => {
+const forceStateProperty = async (gameId: GameId, gameName: GameName, stateUpdate: PlainObject) => {
   const actionText = 'force state property';
 
-  const sessionRef = utils.firebase.getSessionRef(collectionName, gameId);
+  const sessionRef = utils.firebase.getSessionRef(gameName, gameId);
 
   try {
     await sessionRef.doc('state').update(stateUpdate);
@@ -219,20 +222,20 @@ const forceStateProperty = async (gameId: GameId, collectionName: GameName, stat
 /**
  *
  * @param gameId
- * @param collectionName
+ * @param gameName
  * @returns
  */
-const playAgain = async (gameId: GameId, collectionName: GameName) => {
+const playAgain = async (gameId: GameId, gameName: GameName) => {
   const actionText = 'play game again';
 
-  const sessionRef = utils.firebase.getSessionRef(collectionName, gameId);
+  const sessionRef = utils.firebase.getSessionRef(gameName, gameId);
   // Reset players
-  const playersDoc = await utils.firebase.getSessionDoc(collectionName, gameId, 'players', actionText);
+  const playersDoc = await utils.firebase.getSessionDoc(gameName, gameId, 'players', actionText);
   const players: Players = playersDoc.data() ?? {};
   const newPlayers = utils.players.resetPlayers(players);
 
   // Update meta
-  const metaDoc = await utils.firebase.getSessionDoc(collectionName, gameId, 'meta', actionText);
+  const metaDoc = await utils.firebase.getSessionDoc(gameName, gameId, 'meta', actionText);
   const meta = metaDoc.data() ?? {};
 
   try {

@@ -3,7 +3,7 @@ import type { FirebaseStateData, FirebaseStoreData, ResourceData, TestemunhaOcul
 // Constants
 import { MAX_ROUNDS, QUESTION_COUNT, SUSPECT_COUNT, TESTEMUNHA_OCULAR_PHASES } from './constants';
 // Helpers
-import * as utils from '../../utils';
+import utils from '../../utils';
 import { calculateScore, determineTurnOrder, getQuestionerId, getQuestions } from './helpers';
 
 /**
@@ -188,17 +188,15 @@ export const prepareTrialPhase = async (
 };
 
 export const prepareGameOverPhase = async (
+  gameId: GameId,
   store: FirebaseStoreData,
   state: FirebaseStateData,
   additionalPayload: PlainObject
 ): Promise<SaveGamePayload> => {
+  await utils.firebase.markGameAsComplete(gameId);
+
   // Save
   return {
-    update: {
-      meta: {
-        isComplete: true,
-      },
-    },
     set: {
       state: {
         phase: TESTEMUNHA_OCULAR_PHASES.GAME_OVER,

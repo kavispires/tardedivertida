@@ -35,14 +35,14 @@ describe('helpers', () => {
 
   describe('generateGameId', () => {
     test('it generates a 4 letter game id', () => {
-      const result = helpers.generateGameId('A');
+      const result = helpers.generateGameId('A', 'pt');
       expect(result.startsWith('A')).toBeTruthy();
       expect(result).toHaveLength(4);
     });
 
     test('it throws an error if game code is invalid', () => {
       function catcher() {
-        return helpers.generateGameId('12');
+        return helpers.generateGameId('12', 'pt');
       }
 
       expect(catcher).toThrow('Invalid game code');

@@ -3,7 +3,7 @@ import { CARDS_PER_GAME, CRIMES_HEDIONDOS_PHASES } from './constants';
 // Types
 import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Utils
-import * as utils from '../../utils';
+import utils from '../../utils';
 // Internal
 import {
   buildCrimes,
@@ -230,6 +230,7 @@ export const prepareRevealPhase = async (
 };
 
 export const prepareGameOverPhase = async (
+  gameId: GameId,
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players
@@ -242,12 +243,9 @@ export const prepareGameOverPhase = async (
     Object.keys(winningPlayers).length > 0 ? winningPlayers : players
   );
 
+  await utils.firebase.markGameAsComplete(gameId);
+
   return {
-    update: {
-      meta: {
-        isComplete: true,
-      },
-    },
     set: {
       players,
       state: {

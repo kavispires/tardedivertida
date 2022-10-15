@@ -1,6 +1,6 @@
 import fetch from 'cross-fetch';
 // Helpers
-import * as utils from '../utils';
+import utils from '../utils';
 
 /**
  * Queries a tdr file

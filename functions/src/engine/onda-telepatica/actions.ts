@@ -1,24 +1,24 @@
 // Utils
-import * as utils from '../../utils';
+import utils from '../../utils';
 // Internal
 import { getNextPhase } from '.';
 
 /**
  *
- * @param collectionName
+ * @param gameName
  * @param gameId
  * @param playerId
- * @param guess
+ * @param categoryId
  * @returns
  */
 export const handleSubmitCategory = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   categoryId: string
 ) => {
   return await utils.firebase.updateState({
-    collectionName,
+    gameName,
     gameId,
     playerId,
     actionText: 'submit category',
@@ -30,21 +30,20 @@ export const handleSubmitCategory = async (
 
 /**
  * When psychic submits the round's clue
- * @param collectionName
+ * @param gameName
  * @param gameId
  * @param playerId
- * @param categoryId
  * @param clue
  * @returns
  */
 export const handleSubmitClue = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   clue: string
 ) => {
   return await utils.firebase.updateStore({
-    collectionName,
+    gameName,
     gameId,
     playerId,
     actionText: 'submit clue',
@@ -57,20 +56,20 @@ export const handleSubmitClue = async (
 
 /**
  * When each player submit their round's guess
- * @param collectionName
+ * @param gameName
  * @param gameId
  * @param playerId
  * @param guess
  * @returns
  */
 export const handleSubmitGuess = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   guess: number | boolean
 ) => {
   return await utils.firebase.updatePlayer({
-    collectionName,
+    gameName,
     gameId,
     playerId,
     actionText: 'submit guess',

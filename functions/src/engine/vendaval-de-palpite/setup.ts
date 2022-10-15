@@ -3,7 +3,7 @@ import { CLUES_PER_PLAYER, FINAL_ANSWER_COUNT, MAX_ROUNDS, VENDAVAL_DE_PALPITE_P
 // Types
 import type { Board, ClueId, Clues, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Utils
-import * as utils from '../../utils';
+import utils from '../../utils';
 // Internal
 import { gatherClues, verifyGuesses } from './helpers';
 
@@ -113,6 +113,7 @@ export const preparePlayersClues = async (
 };
 
 export const prepareClueEvaluations = async (
+  gameId: GameId,
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players
@@ -138,7 +139,7 @@ export const prepareClueEvaluations = async (
       outcome,
       finalAnswersLeft,
     };
-    return prepareGameOverPhase(store, newState, players);
+    return prepareGameOverPhase(gameId, store, newState, players);
   }
 
   // Save
@@ -157,6 +158,7 @@ export const prepareClueEvaluations = async (
 };
 
 export const prepareGameOverPhase = async (
+  gameId: GameId,
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players
@@ -170,12 +172,9 @@ export const prepareGameOverPhase = async (
    * - Did not guess within 7 rounds
    */
 
+  await utils.firebase.markGameAsComplete(gameId);
+
   return {
-    update: {
-      meta: {
-        isComplete: true,
-      },
-    },
     set: {
       players,
       state: {

@@ -3,7 +3,7 @@ import { CUSTOM_TOPICS_PER_ROUND, MAX_ROUNDS, POLEMICA_DA_VEZ_PHASES, TOPICS_PER
 // Types
 import type { FirebaseStateData, FirebaseStoreData } from './types';
 // Utils
-import * as utils from '../../utils';
+import utils from '../../utils';
 import { buildDeck, countLikes, rankAndScore } from './helpers';
 import { DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
 
@@ -160,18 +160,16 @@ export const prepareResolutionPhase = async (
 };
 
 export const prepareGameOverPhase = async (
+  gameId: GameId,
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 
+  await utils.firebase.markGameAsComplete(gameId);
+
   return {
-    update: {
-      meta: {
-        isComplete: true,
-      },
-    },
     set: {
       players,
       state: {

@@ -77,7 +77,7 @@ export function CreateGameModal({ gameInfo }: CreateGameModalProps): JSX.Element
       setLoader('create', true);
       setLoading(true);
       const response: PlainObject = await ADMIN_API.createGame({
-        gameCode: gameInfo.gameCode,
+        gameName: gameInfo.gameName,
         language,
         options,
       });

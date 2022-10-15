@@ -3,7 +3,7 @@ import type { ResourceData, FirebaseStateData, FirebaseStoreData } from './types
 // Constants
 import { ARTE_RUIM_PHASES, REGULAR_GAME_LEVELS, SHORT_GAME_LEVELS } from './constants';
 // Helpers
-import * as utils from '../../utils';
+import utils from '../../utils';
 import {
   buildDeck,
   buildGallery,
@@ -159,6 +159,7 @@ export const prepareGalleryPhase = async (
 };
 
 export const prepareGameOverPhase = async (
+  gameId: GameId,
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players
@@ -169,12 +170,9 @@ export const prepareGameOverPhase = async (
 
   const achievements = getAchievements(store);
 
+  await utils.firebase.markGameAsComplete(gameId);
+
   return {
-    update: {
-      meta: {
-        isComplete: true,
-      },
-    },
     set: {
       players,
       state: {

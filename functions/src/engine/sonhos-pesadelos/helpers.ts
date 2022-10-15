@@ -3,7 +3,7 @@ import type { SonhosPesadelosCards, ThemeDeck } from './types';
 // Constants
 import { IMAGE_CARDS_PER_ROUND, SONHOS_PESADELOS_PHASES, THEMES_PER_ROUND } from './constants';
 // Helpers
-import * as utils from '../../utils';
+import utils from '../../utils';
 import { orderBy } from '../../utils/helpers';
 
 /**

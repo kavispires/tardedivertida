@@ -1,7 +1,7 @@
 // Constants
 import { LEAF_SIZE, ROTATIONS, TREVO_DA_SORTE_PHASES } from './constants';
 // Helpers
-import * as utils from '../../utils';
+import utils from '../../utils';
 import { Clover, Guess, Guesses, Leaf, LeafGuess, LeafId, Leaves } from './types';
 import { getRandomItems } from '../../utils/game-utils';
 
