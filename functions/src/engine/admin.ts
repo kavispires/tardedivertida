@@ -16,7 +16,7 @@ export const createGame = async (data: CreateGamePayload, context: FirebaseConte
   utils.firebase.verifyAuth(context, actionText);
 
   // Get collection name by game code on request
-  const { gameName } = data;
+  const { gameName, language } = data;
 
   if (!gameName) {
     return utils.firebase.throwException('a gameName is required', actionText);
@@ -43,7 +43,7 @@ export const createGame = async (data: CreateGamePayload, context: FirebaseConte
   const gameRef = admin.firestore().collection('games').doc(gameName);
 
   // Generate unique 4 digit code starting with game code letter
-  let gameId: string = utils.helpers.generateGameId(gameCode, usedGameIds);
+  let gameId: string = utils.helpers.generateGameId(gameCode, language as Language, usedGameIds);
 
   // Make sure the game does not exist, I do not trust that while loop
   const tempGame = await gameRef.collection(gameId).doc('state').get();
