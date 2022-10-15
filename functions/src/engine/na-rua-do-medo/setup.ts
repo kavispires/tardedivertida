@@ -235,16 +235,11 @@ export const prepareStreetEndPhase = async (
   const monsterCount = countMonsters([...state.street, currentCard]);
   state.continuingPlayerIds.forEach((playerId: PlayerId) => {
     // Achievement: most houses
-    utils.achievements.increaseAchievement(store, playerId, 'houses', 1);
+    utils.achievements.increase(store, playerId, 'houses', 1);
     // Achievement: facing monsters
-    utils.achievements.increaseAchievement(store, playerId, 'facingMonsters', monsterCount);
+    utils.achievements.increase(store, playerId, 'facingMonsters', monsterCount);
     // Achievement lost candy
-    utils.achievements.increaseAchievement(
-      store,
-      playerId,
-      'lostCandy',
-      totalCandyInSidewalk + state.candyInHand
-    );
+    utils.achievements.increase(store, playerId, 'lostCandy', totalCandyInSidewalk + state.candyInHand);
   });
 
   // Save
