@@ -419,7 +419,7 @@ export const buildGallery = (
 
         // Achievement: tableVotes
         if (drawingEntry.level < 5 && tableCardsIds.includes(currentVote)) {
-          utils.achievements.increaseAchievement(store, playerId, 'tableVotes', 1);
+          utils.achievements.increase(store, playerId, 'tableVotes', 1);
         }
       }
     });
@@ -429,22 +429,22 @@ export const buildGallery = (
 
     // Achievement: artistPoints
     if (gotCorrect.length === playerCount - 1 && artistId) {
-      utils.achievements.increaseAchievement(store, artistId, 'artistPoints', drawingEntry.level);
+      utils.achievements.increase(store, artistId, 'artistPoints', drawingEntry.level);
     }
 
     // Achievement: worstArtist
     if (gotCorrect.length === 0 && artistId) {
-      utils.achievements.increaseAchievement(store, artistId, 'worstArtist', 6 - drawingEntry.level);
+      utils.achievements.increase(store, artistId, 'worstArtist', 6 - drawingEntry.level);
     }
 
     // Achievement: solitaryWin
     if (gotCorrect.length === 1) {
-      utils.achievements.increaseAchievement(store, gotCorrect[0], 'solitaryWin', 1);
+      utils.achievements.increase(store, gotCorrect[0], 'solitaryWin', 1);
     }
 
     // Achievement: solitaryFail
     if (gotWrong.length === 1) {
-      utils.achievements.increaseAchievement(store, gotWrong[0], 'solitaryFail', 1);
+      utils.achievements.increase(store, gotWrong[0], 'solitaryFail', 1);
     }
 
     return newGalleryEntry;
