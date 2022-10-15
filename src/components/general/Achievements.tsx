@@ -41,9 +41,7 @@ export function Achievements({ players, achievements, reference }: AchievementsP
               )}
             >
               <div className="achievement__medal">
-                <Popover content={`Total: ${String(achievement.value)}`}>
-                  <IconAvatar icon={<Icon />} size="large" />
-                </Popover>
+                <IconAvatar icon={<Icon />} size="large" />
               </div>
               <h4 className="achievement__title">
                 <DualTranslate>{achievementObj.title ?? unknownText}</DualTranslate>
@@ -55,7 +53,12 @@ export function Achievements({ players, achievements, reference }: AchievementsP
               {Boolean(achievementObj.description) && (
                 <div className="achievement__description">
                   <Popover
-                    content={<DualTranslate>{achievementObj.description ?? unknownText}</DualTranslate>}
+                    content={
+                      <>
+                        <DualTranslate>{achievementObj.description ?? unknownText}</DualTranslate> (
+                        {achievement.value})
+                      </>
+                    }
                   >
                     <Button icon={<QuestionCircleOutlined />} shape="circle" type="text" size="small" />
                   </Popover>
