@@ -44,12 +44,12 @@ export function StepSelectWords({ hand, onSubmitBadWords }: StepSelectWordsProps
   return (
     <Step fullWidth>
       <Title size="medium">
-        <Translate pt="Seleção das Palavras" en="Words Selection" />
+        <Translate pt="As Palavras do Trevo" en="The Clover Words" />
       </Title>
       <Instruction contained>
         <Translate
-          pt={`Selecione ${WORST_TO_REMOVE} palavras que você NÃO quer no jogo`}
-          en={`Select ${WORST_TO_REMOVE} words you DO NOT want in the game`}
+          pt={`Elimine ${WORST_TO_REMOVE} palavras que você NÃO quer no jogo`}
+          en={`Eliminate ${WORST_TO_REMOVE} words you DO NOT want in the game`}
         />
       </Instruction>
 
