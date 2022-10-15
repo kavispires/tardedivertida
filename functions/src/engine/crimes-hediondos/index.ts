@@ -8,7 +8,7 @@ import type {
   CrimesHediondosSubmitAction,
 } from './types';
 // Utils
-import * as utils from '../../utils';
+import utils from '../../utils';
 // Internal Functions
 import { determineNextPhase } from './helpers';
 import {

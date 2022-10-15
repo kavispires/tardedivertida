@@ -3,7 +3,7 @@ import type { FirebaseStateData, FirebaseStoreData, SonhosPesadelosCards } from 
 // Constants
 import { IMAGE_CARDS_PER_ROUND, SONHOS_PESADELOS_PHASES, TOTAL_ROUNDS } from './constants';
 // Helpers
-import * as utils from '../../utils';
+import utils from '../../utils';
 import {
   buildGallery,
   buildRanking,

@@ -19,7 +19,7 @@ import type {
   SheepAnimation,
 } from './types';
 // Utils
-import * as utils from '../../utils';
+import utils from '../../utils';
 
 /**
  * Determine the next phase based on the current one

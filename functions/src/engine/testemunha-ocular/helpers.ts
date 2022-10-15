@@ -1,7 +1,7 @@
 // Constants
 import { MAX_ROUNDS, TESTEMUNHA_OCULAR_PHASES } from './constants';
 // Utils
-import * as utils from '../../utils';
+import utils from '../../utils';
 
 /**
  * Determine the next phase based on the current one

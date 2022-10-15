@@ -4,7 +4,7 @@ import { MAX_ROUNDS, PLAYER_COUNTS, TESTEMUNHA_OCULAR_ACTIONS, TESTEMUNHA_OCULAR
 // Types
 import type { TestemunhaOcularInitialState, TestemunhaOcularSubmitAction } from './types';
 // Utils
-import * as utils from '../../utils';
+import utils from '../../utils';
 // Internal Functions
 import { determineNextPhase } from './helpers';
 import {

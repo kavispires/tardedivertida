@@ -1,5 +1,5 @@
 // Helpers
-import * as utils from '../../utils';
+import utils from '../../utils';
 // Internal functions
 import { getNextPhase } from './index';
 

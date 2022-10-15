@@ -3,7 +3,7 @@ import type { Album, Card, LinhasCruzadasOptions, Slide } from './types';
 // Constants
 import { LINHAS_CRUZADAS_PHASES } from './constants';
 // Utils
-import * as utils from '../../utils';
+import utils from '../../utils';
 
 /**
  * Determine the next phase based on the current one

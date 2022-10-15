@@ -9,7 +9,7 @@ import {
   TOTAL_ROUNDS,
 } from './constants';
 // Utils
-import * as utils from '../../utils';
+import utils from '../../utils';
 // Internal
 import { buildCode, buildCodeFragment, buildTable } from './helpers';
 

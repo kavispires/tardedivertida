@@ -8,7 +8,7 @@ import {
   SHORT_PASTURE_GAME_OVER_THRESHOLD,
 } from './constants';
 // Utils
-import * as utils from '../../utils';
+import utils from '../../utils';
 import {
   buildDeck,
   buildListOfAnswers,

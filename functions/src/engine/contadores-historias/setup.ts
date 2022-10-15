@@ -10,7 +10,7 @@ import { DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
 // Type
 import type { FirebaseStateData, FirebaseStoreData } from './types';
 // Utils
-import * as utils from '../../utils';
+import utils from '../../utils';
 // Internal
 import { buildTable, buildTableDeck, getAchievements, getTableCards, scoreRound } from './helpers';
 

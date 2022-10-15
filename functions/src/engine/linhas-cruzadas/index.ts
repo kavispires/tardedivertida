@@ -4,7 +4,7 @@ import { LINHAS_CRUZADAS_ACTIONS, LINHAS_CRUZADAS_PHASES, PLAYER_COUNTS, TOTAL_R
 // Types
 import type { LinhasCruzadasInitialState, LinhasCruzadasOptions, LinhasCruzadasSubmitAction } from './types';
 // Utils
-import * as utils from '../../utils';
+import utils from '../../utils';
 // Internal Functions
 import { determineNextPhase } from './helpers';
 import {

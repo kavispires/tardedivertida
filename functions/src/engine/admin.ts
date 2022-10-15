@@ -3,7 +3,7 @@ import * as admin from 'firebase-admin';
 import { GAME_CODES, GLOBAL_USED_DOCUMENTS, USED_GAME_IDS } from '../utils/constants';
 // Utils
 import * as delegatorUtils from '../utils/delegators';
-import * as utils from '../utils';
+import utils from '../utils';
 
 /**
  * Creates a new game instance

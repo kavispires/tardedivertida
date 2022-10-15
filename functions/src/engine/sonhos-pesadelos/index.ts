@@ -4,7 +4,7 @@ import { PLAYER_COUNTS, SONHOS_PESADELOS_ACTIONS, SONHOS_PESADELOS_PHASES, TOTAL
 // Types
 import type { SonhosPesadelosInitialState, SonhosPesadelosSubmitAction } from './types';
 // Utils
-import * as utils from '../../utils';
+import utils from '../../utils';
 import { determineNextPhase } from './helpers';
 import {
   prepareGameOverPhase,

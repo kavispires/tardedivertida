@@ -1,4 +1,4 @@
-import * as utils from '../../utils';
+import utils from '../../utils';
 import { CHAMPIONSHIP_ORDER, CONTENDERS_PER_ROUND, SUPER_CAMPEONATO_PHASES, TOTAL_ROUNDS } from './constants';
 
 import type { Bracket, BracketTier, Contender, ContendersDeck } from './types';

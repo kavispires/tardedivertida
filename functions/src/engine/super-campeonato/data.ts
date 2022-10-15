@@ -5,7 +5,7 @@ import { ResourceData } from './types';
 // Helpers
 import * as resourceUtils from '../resource';
 import * as globalUtils from '../global';
-import * as utils from '../../utils';
+import utils from '../../utils';
 import { CHALLENGES_PER_GAME } from './constants';
 
 /**

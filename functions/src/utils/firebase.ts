@@ -1,7 +1,7 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 // Utils
-import * as utils from '../utils';
+import utils from '../utils';
 
 export const config = functions.config;
 

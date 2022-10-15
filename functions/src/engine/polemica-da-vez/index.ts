@@ -4,7 +4,7 @@ import { MAX_ROUNDS, PLAYER_COUNTS, POLEMICA_DA_VEZ_ACTIONS, POLEMICA_DA_VEZ_PHA
 // Types
 import type { PolemicaDaVezInitialState, PolemicaDaVezOptions, PolemicaDaVezSubmitAction } from './types';
 // Utils
-import * as utils from '../../utils';
+import utils from '../../utils';
 // Internal Functions
 import { determineGameOver, determineNextPhase } from './helpers';
 import { getTopics } from './data';

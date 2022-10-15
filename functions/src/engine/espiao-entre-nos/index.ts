@@ -4,7 +4,7 @@ import { ESPIAO_ENTRE_NOS_ACTIONS, ESPIAO_ENTRE_NOS_PHASES, PLAYER_COUNTS } from
 // Types
 import type { EspiaoEntreNosInitialState, EspiaoEntreNosSubmitAction } from './types';
 // Utils
-import * as utils from '../../utils';
+import utils from '../../utils';
 import {
   prepareAssessmentPhase,
   prepareAssignmentPhase,

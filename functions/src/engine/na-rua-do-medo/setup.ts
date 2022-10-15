@@ -3,7 +3,7 @@ import { NA_RUA_DO_MEDO_PHASES, OUTCOME_STATUS } from './constants';
 // Types
 import type { FirebaseStateData, FirebaseStoreData, Outcome } from './types';
 // Utils
-import * as utils from '../../utils';
+import utils from '../../utils';
 // Internal
 import {
   buildDecks,

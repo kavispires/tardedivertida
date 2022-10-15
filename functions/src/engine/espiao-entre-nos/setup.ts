@@ -9,7 +9,7 @@ import {
 // Types
 import type { FirebaseStateData, FirebaseStoreData, Outcome, Resolution, ResourceData } from './types';
 // Utils
-import * as utils from '../../utils';
+import utils from '../../utils';
 import {
   calculateScore,
   calculateTimeRemaining,

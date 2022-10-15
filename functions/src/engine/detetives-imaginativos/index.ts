@@ -4,7 +4,7 @@ import { DETETIVES_IMAGINATIVOS_ACTIONS, DETETIVES_IMAGINATIVOS_PHASES, PLAYER_C
 // Types
 import type { DetetivesImaginativosInitialState, DetetivesImaginativosSubmitAction } from './types';
 // Utils
-import * as utils from '../../utils';
+import utils from '../../utils';
 import {
   prepareCardPlayPhase,
   prepareDefensePhase,

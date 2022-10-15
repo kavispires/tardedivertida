@@ -4,7 +4,7 @@ import { CRUZA_PALAVRAS_ACTIONS, CRUZA_PALAVRAS_PHASES, PLAYER_COUNTS, TOTAL_ROU
 // Types
 import type { CruzaPalavrasInitialState, CruzaPalavrasOptions, CruzaPalavrasSubmitAction } from './types';
 // Utils
-import * as utils from '../../utils';
+import utils from '../../utils';
 // Internal Functions
 import { determineNextPhase } from './helpers';
 import {

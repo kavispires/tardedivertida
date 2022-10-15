@@ -4,7 +4,7 @@ import { INSTRUMENTOS_CODIFICADOS_PHASES, PLAYER_COUNTS, TOTAL_ROUNDS } from './
 // Types
 import type { InstrumentosCodificadosInitialState, InstrumentosCodificadosSubmitAction } from './types';
 // Utils
-import * as utils from '../../utils';
+import utils from '../../utils';
 // Internal
 import {
   prepareGameOverPhase,

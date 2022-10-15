@@ -1,6 +1,6 @@
 // Utils
 import * as delegatorUtils from '../utils/delegators';
-import * as utils from '../utils';
+import utils from '../utils';
 
 /**
  * Loads a new game instance

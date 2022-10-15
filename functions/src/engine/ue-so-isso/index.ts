@@ -4,7 +4,7 @@ import { PLAYER_COUNTS, UE_SO_ISSO_ACTIONS, UE_SO_ISSO_PHASES } from './constant
 // Types
 import type { UeSoIssoInitialState, UeSoIssoSubmitAction } from './types';
 // Utilities
-import * as utils from '../../utils';
+import utils from '../../utils';
 // Internal Functions
 import { determineNextPhase } from './helpers';
 import { getWords } from './data';

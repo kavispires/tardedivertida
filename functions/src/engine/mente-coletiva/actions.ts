@@ -1,5 +1,5 @@
 // Utils
-import * as utils from '../../utils';
+import utils from '../../utils';
 // Internal
 import { getNextPhase } from '.';
 import { buildListOfAnswers } from './helpers';

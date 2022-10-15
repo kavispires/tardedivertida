@@ -4,7 +4,7 @@ import type { ResourceData, TestemunhaOcularEntry } from './types';
 import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
 import { QUESTION_COUNT } from './constants';
 // Helpers
-import * as utils from '../../utils';
+import utils from '../../utils';
 import * as globalUtils from '../global';
 import * as resourceUtils from '../resource';
 

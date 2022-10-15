@@ -3,7 +3,7 @@ import type { FirebaseStateData, FirebaseStoreData, MonsterSketch, ResourceData 
 // Constants
 import { RETRATO_FALADO_PHASES } from './constants';
 // Helpers1
-import * as utils from '../../utils';
+import utils from '../../utils';
 import { buildDeck, buildRanking, gatherSketches, getMostVotes } from './helpers';
 
 /**

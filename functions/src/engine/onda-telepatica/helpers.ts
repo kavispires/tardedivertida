@@ -17,7 +17,7 @@ import {
 } from './constants';
 import { DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
 // Utils
-import * as utils from '../../utils';
+import utils from '../../utils';
 
 /**
  * Determine the next phase based on the current one
