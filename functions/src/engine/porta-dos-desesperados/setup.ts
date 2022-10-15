@@ -13,7 +13,7 @@ import {
 // Types
 import type { FirebaseStateData, FirebaseStoreData, Trap } from './types';
 // Utils
-import * as utils from '../../utils';
+import utils from '../../utils';
 import { botDoorSelection, createTrapOrder, getBookPages, getDoorSet } from './helpers';
 
 /**

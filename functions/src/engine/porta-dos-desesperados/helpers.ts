@@ -11,7 +11,7 @@ import {
   WIN_CONDITION,
 } from './constants';
 // Utils
-import * as utils from '../../utils';
+import utils from '../../utils';
 import { Trap } from './types';
 
 /**

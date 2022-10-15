@@ -3,7 +3,7 @@ import type { ResourceData, FirebaseStateData, FirebaseStoreData } from './types
 // Constants
 import { ARTE_RUIM_PHASES, REGULAR_GAME_LEVELS, SHORT_GAME_LEVELS } from './constants';
 // Helpers
-import * as utils from '../../utils';
+import utils from '../../utils';
 import {
   buildDeck,
   buildGallery,

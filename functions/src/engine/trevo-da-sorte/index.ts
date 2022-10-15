@@ -10,7 +10,7 @@ import {
   TrevoDaSorteSubmitAction,
 } from './types';
 // Utilities
-import * as utils from '../../utils';
+import utils from '../../utils';
 // Internal Functions
 import { determineNextPhase } from './helpers';
 import { getWords } from './data';

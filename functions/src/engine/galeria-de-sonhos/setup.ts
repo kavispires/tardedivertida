@@ -3,7 +3,7 @@ import { GALERIA_DE_SONHOS_PHASES, TABLE_DECK_TOTAL } from './constants';
 // Types
 import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Utils
-import * as utils from '../../utils';
+import utils from '../../utils';
 // Internal
 import {
   buildDeck,

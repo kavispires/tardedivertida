@@ -4,7 +4,7 @@ import { NA_RUA_DO_MEDO_PHASES, PLAYER_COUNTS, MAX_ROUNDS, NA_RUA_DO_MEDO_ACTION
 // Types
 import type { NoRuaDoMedoInitialState, NoRuaDoMedoOptions, NaRuaDoMedoSubmitAction } from './types';
 // Utilities
-import * as utils from '../../utils';
+import utils from '../../utils';
 // Internal Functions
 import { determineOutcome, determineNextPhase } from './helpers';
 import {

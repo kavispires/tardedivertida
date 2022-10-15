@@ -6,7 +6,7 @@ import type { ResourceData, ArteRuimDrawing } from './types';
 import * as globalUtils from '../global';
 import * as publicUtils from '../public';
 import * as resourceUtils from '../resource';
-import * as utils from '../../utils';
+import utils from '../../utils';
 import { buildPastDrawingsDict, distributeCardsByLevel, getAvailableCards, getGameSettings } from './helpers';
 
 /**

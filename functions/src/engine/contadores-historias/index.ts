@@ -13,7 +13,7 @@ import type {
   ContadoresHistoriasSubmitAction,
 } from './types';
 // Utils
-import * as utils from '../../utils';
+import utils from '../../utils';
 // Internal Functions
 import { determineGameOver, determineNextPhase } from './helpers';
 import {

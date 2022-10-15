@@ -4,7 +4,7 @@ import type { FirebaseStateData, FirebaseStoreData, AllWords } from './types';
 import { CARDS_PER_PLAYER, TREVO_DA_SORTE_PHASES } from './constants';
 
 // Helpers
-import * as utils from '../../utils';
+import utils from '../../utils';
 import { buildClovers, buildGuesses, buildLeaves, buildRanking } from './helpers';
 // Internal
 

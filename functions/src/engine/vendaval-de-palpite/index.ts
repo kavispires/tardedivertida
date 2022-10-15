@@ -9,7 +9,7 @@ import {
 // Types
 import type { VendavalDePalpiteInitialState, VendavalDePalpiteSubmitAction } from './types';
 // Utils
-import * as utils from '../../utils';
+import utils from '../../utils';
 import { determineNextPhase } from './helpers';
 // Internal Functions
 import {

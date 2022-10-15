@@ -1,5 +1,5 @@
 // Helpers
-import * as utils from '../../utils';
+import utils from '../../utils';
 import { getNextPhase } from './index';
 
 export const handleSubmitHint = async (

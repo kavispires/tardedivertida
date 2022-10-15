@@ -4,7 +4,7 @@ import { QUEM_NAO_MATA_PHASES, PLAYER_COUNTS, MAX_ROUNDS, QUEM_NAO_MATA_ACTIONS 
 // Types
 import type { QuemNaoMataInitialState, NaRuaDoMedoSubmitAction } from './types';
 // Utilities
-import * as utils from '../../utils';
+import utils from '../../utils';
 // Internal Functions
 import { determineNextPhase } from './helpers';
 import {

@@ -3,7 +3,7 @@ import type { Board, BoardEntry, Clue, Clues } from './types';
 // Constants
 import { VENDAVAL_DE_PALPITE_PHASES } from './constants';
 // Utilities
-import * as utils from '../../utils';
+import utils from '../../utils';
 
 /**
  * Determine the next phase based on the current one

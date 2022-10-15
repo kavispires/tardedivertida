@@ -4,7 +4,7 @@ import { MENTE_COLETIVA_PHASES, MAX_ROUNDS, PLAYER_COUNTS, MENTE_COLETIVA_ACTION
 // Types
 import type { MenteColetivaInitialState, MenteColetivaOptions, MenteColetivaSubmitAction } from './types';
 // Utilities
-import * as utils from '../../utils';
+import utils from '../../utils';
 // Internal Functions
 import { determineNextPhase, determineGameOver } from './helpers';
 import {

@@ -4,7 +4,7 @@ import type { FirebaseStateData, FirebaseStoreData, AllWords } from './types';
 import { UE_SO_ISSO_PHASES } from './constants';
 import { DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
 // Helpers
-import * as utils from '../../utils';
+import utils from '../../utils';
 // Internal
 import {
   buildCurrentWords,

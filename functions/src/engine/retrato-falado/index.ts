@@ -4,7 +4,7 @@ import { MAX_ROUNDS, PLAYER_COUNTS, RETRATO_FALADO_ACTIONS, RETRATO_FALADO_PHASE
 // Types
 import type { RetratoFaladoInitialState, RetratoFaladoSubmitAction } from './types';
 // Utilities
-import * as utils from '../../utils';
+import utils from '../../utils';
 // Internal Functions
 import { determineNextPhase } from './helpers';
 import {

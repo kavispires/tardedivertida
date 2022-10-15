@@ -3,7 +3,7 @@ import { RETRATO_FALADO_PHASES } from './constants';
 // Types
 import type { AllMonsters, MonsterSketch } from './types';
 // Helpers
-import * as utils from '../../utils';
+import utils from '../../utils';
 import { buildNewScoreObject } from '../../utils/helpers';
 
 /**

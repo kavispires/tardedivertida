@@ -3,7 +3,7 @@ import { MAX_ROUNDS, QUEM_NAO_MATA_PHASES } from './constants';
 // Types
 import type { FirebaseStateData, FirebaseStoreData } from './types';
 // Utils
-import * as utils from '../../utils';
+import utils from '../../utils';
 
 export const prepareSetupPhase = async (
   store: FirebaseStoreData,

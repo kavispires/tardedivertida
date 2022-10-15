@@ -3,7 +3,7 @@ import { CARDS_PER_GAME, CRIMES_HEDIONDOS_PHASES } from './constants';
 // Types
 import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Utils
-import * as utils from '../../utils';
+import utils from '../../utils';
 // Internal
 import {
   buildCrimes,
