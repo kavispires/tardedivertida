@@ -5,20 +5,20 @@ import { getNextPhase } from './index';
 
 /**
  *
- * @param collectionName
+ * @param gameName
  * @param gameId
  * @param playerId
  * @param promptId
  * @returns
  */
 export const handleSubmitPrompt = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   promptId: string
 ) => {
   return await utils.firebase.updatePlayer({
-    collectionName,
+    gameName,
     gameId,
     playerId,
     actionText: 'submit prompt',
@@ -30,20 +30,20 @@ export const handleSubmitPrompt = async (
 
 /**
  *
- * @param collectionName
+ * @param gameName
  * @param gameId
  * @param playerId
  * @param drawing
  * @returns
  */
 export const handleSubmitDrawing = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   drawing: string
 ) => {
   return await utils.firebase.updatePlayer({
-    collectionName,
+    gameName,
     gameId,
     playerId,
     actionText: 'submit drawing',
@@ -55,20 +55,20 @@ export const handleSubmitDrawing = async (
 
 /**
  *
- * @param collectionName
+ * @param gameName
  * @param gameId
  * @param playerId
  * @param guess
  * @returns
  */
 export const handleSubmitGuess = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   guess: string
 ) => {
   return await utils.firebase.updatePlayer({
-    collectionName,
+    gameName,
     gameId,
     playerId,
     actionText: 'submit guess',

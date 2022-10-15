@@ -96,7 +96,7 @@ export const getNextPhase = async (
 
   // GUESS_THE_CODE --> GAME_OVER
   if (nextPhase === INSTRUMENTOS_CODIFICADOS_PHASES.GAME_OVER) {
-    const newPhase = await prepareGameOverPhase(store, state, players);
+    const newPhase = await prepareGameOverPhase(gameId, store, state, players);
     return utils.firebase.saveGame(sessionRef, newPhase);
   }
 

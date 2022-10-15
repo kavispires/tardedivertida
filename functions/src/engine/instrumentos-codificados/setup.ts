@@ -143,18 +143,16 @@ export const prepareSolutionPhase = async (
 };
 
 export const prepareGameOverPhase = async (
+  gameId: GameId,
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 
+  await utils.firebase.markGameAsComplete(gameId);
+
   return {
-    update: {
-      meta: {
-        isComplete: true,
-      },
-    },
     set: {
       players,
       state: {

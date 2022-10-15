@@ -104,7 +104,7 @@ export const getNextPhase = async (
 
   // STREET_END -> GAME_OVER
   if (nextPhase === NA_RUA_DO_MEDO_PHASES.GAME_OVER) {
-    const newPhase = await prepareGameOverPhase(store, state, players);
+    const newPhase = await prepareGameOverPhase(gameId, store, state, players);
     return utils.firebase.saveGame(sessionRef, newPhase);
   }
 

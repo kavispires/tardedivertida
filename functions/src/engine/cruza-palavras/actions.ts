@@ -4,13 +4,13 @@ import * as utils from '../../utils';
 import { getNextPhase } from './index';
 
 export const handleSubmitClue = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   clue: string
 ) => {
   return await utils.firebase.updatePlayer({
-    collectionName,
+    gameName,
     gameId,
     playerId,
     actionText: 'submit your clue',
@@ -21,13 +21,13 @@ export const handleSubmitClue = async (
 };
 
 export const handleSubmitGuesses = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   guesses: PlainObject
 ) => {
   return await utils.firebase.updatePlayer({
-    collectionName,
+    gameName,
     gameId,
     playerId,
     actionText: 'submit your guesses',

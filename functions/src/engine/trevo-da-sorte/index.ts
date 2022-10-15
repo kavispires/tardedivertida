@@ -107,7 +107,7 @@ export const getNextPhase = async (
 
   // RESULTS -> GAME_OVER
   if (nextPhase === TREVO_DA_SORTE_PHASES.GAME_OVER) {
-    const newPhase = await prepareGameOverPhase(store, state, players);
+    const newPhase = await prepareGameOverPhase(gameId, store, state, players);
     return utils.firebase.saveGame(sessionRef, newPhase);
   }
 

@@ -198,6 +198,7 @@ export const prepareResolutionPhase = async (
 };
 
 export const prepareGameOverPhase = async (
+  gameId: GameId,
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players
@@ -206,12 +207,9 @@ export const prepareGameOverPhase = async (
 
   const achievements = getAchievements(store);
 
+  await utils.firebase.markGameAsComplete(gameId);
+
   return {
-    update: {
-      meta: {
-        isComplete: true,
-      },
-    },
     set: {
       players,
       state: {

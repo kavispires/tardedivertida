@@ -108,13 +108,13 @@ export const getNextPhase = async (
 
   // CARD_PLAY -> RESOLUTION
   if (nextPhase === VENDAVAL_DE_PALPITE_PHASES.CLUE_EVALUATIONS) {
-    const newPhase = await prepareClueEvaluations(store, state, players);
+    const newPhase = await prepareClueEvaluations(gameId, store, state, players);
     return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
   // RESOLUTION -> GAME_OVER
   if (nextPhase === VENDAVAL_DE_PALPITE_PHASES.GAME_OVER) {
-    const newPhase = await prepareGameOverPhase(store, state, players);
+    const newPhase = await prepareGameOverPhase(gameId, store, state, players);
     return utils.firebase.saveGame(sessionRef, newPhase);
   }
 

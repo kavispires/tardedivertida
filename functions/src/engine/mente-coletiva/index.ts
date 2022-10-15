@@ -112,7 +112,7 @@ export const getNextPhase = async (
 
   // GUESS -> GAME_OVER
   if (nextPhase === MENTE_COLETIVA_PHASES.GAME_OVER) {
-    const newPhase = await prepareGameOverPhase(store, state, players);
+    const newPhase = await prepareGameOverPhase(gameId, store, state, players);
 
     // Save usedMenteColetivaQuestions to global
     await saveUsedQuestions(store.pastQuestions);

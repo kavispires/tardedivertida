@@ -11,23 +11,20 @@ export const loadGame = async (data: LoadGamePayload) => {
   const { gameId } = data;
 
   const actionText = 'load game';
-  utils.firebase.verifyPayload(gameId, 'gameId', 'load game');
+  utils.firebase.verifyPayload(gameId, 'gameId', actionText);
 
-  const collectionName = delegatorUtils.getCollectionNameByGameId(gameId);
-
-  if (!collectionName) {
-    return utils.firebase.throwException(`there is no game engine for the given id: ${gameId}`, actionText);
-  }
-
-  // Get 'meta' from given game session
-  const sessionRef = utils.firebase.getSessionRef(collectionName, gameId);
-  const gameMeta = await sessionRef.doc('meta').get();
+  const metaRef = utils.firebase.getMetaRef();
+  const gameMeta = await metaRef.doc(gameId).get();
 
   if (!gameMeta.exists) {
     return utils.firebase.throwException(`game ${gameId} does not exist`, actionText);
   }
 
-  return gameMeta.data();
+  const gameMetaData = gameMeta.data();
+
+  utils.firebase.verifyPayload(gameMetaData?.gameName, 'gameName', actionText);
+
+  return gameMetaData;
 };
 
 /**
@@ -36,16 +33,16 @@ export const loadGame = async (data: LoadGamePayload) => {
  * @returns
  */
 export const addPlayer = async (data: AddPlayerPayload) => {
-  const { gameId, gameName: collectionName, playerName, playerAvatarId } = data;
+  const { gameId, gameName, playerName, playerAvatarId } = data;
 
   const actionText = 'add player';
   utils.firebase.verifyPayload(gameId, 'gameId', actionText);
-  utils.firebase.verifyPayload(collectionName, 'collectionName', actionText);
+  utils.firebase.verifyPayload(gameName, 'gameName', actionText);
   utils.firebase.verifyPayload(playerName, 'playerName', actionText);
 
   // Get 'players' from given game session
-  const sessionRef = utils.firebase.getSessionRef(collectionName, gameId);
-  const playersDoc = await utils.firebase.getSessionDoc(collectionName, gameId, 'players', actionText);
+  const sessionRef = utils.firebase.getSessionRef(gameName, gameId);
+  const playersDoc = await utils.firebase.getSessionDoc(gameName, gameId, 'players', actionText);
   const players: Players = playersDoc.data() ?? {};
 
   // Remove symbols from the player name
@@ -59,7 +56,7 @@ export const addPlayer = async (data: AddPlayerPayload) => {
   }
 
   // Verify maximum number of players
-  const { playerCounts } = delegatorUtils.getEngine(collectionName);
+  const { playerCounts } = delegatorUtils.getEngine(gameName);
   const numPlayers = Object.keys(players).length;
 
   if (numPlayers === playerCounts.MAX) {
@@ -70,7 +67,7 @@ export const addPlayer = async (data: AddPlayerPayload) => {
   }
 
   // Verify if game is locked
-  const metaDoc = await utils.firebase.getSessionDoc(collectionName, gameId, 'meta', actionText);
+  const metaDoc = await utils.firebase.getMetaDoc(gameId, actionText);
   const meta = metaDoc.data() ?? {};
 
   if (meta?.isLocked) {
@@ -94,16 +91,16 @@ export const addPlayer = async (data: AddPlayerPayload) => {
  * @returns
  */
 export const makePlayerReady = async (data: Payload) => {
-  const { gameId, gameName: collectionName, playerId } = data;
+  const { gameId, gameName, playerId } = data;
 
   const actionText = 'make you ready';
   utils.firebase.verifyPayload(gameId, 'gameId', actionText);
-  utils.firebase.verifyPayload(collectionName, 'collectionName', actionText);
+  utils.firebase.verifyPayload(gameName, 'gameName', actionText);
   utils.firebase.verifyPayload(playerId, 'playerId', actionText);
 
   // Get 'players' from given game session
-  const sessionRef = utils.firebase.getSessionRef(collectionName, gameId);
-  const playersDoc = await utils.firebase.getSessionDoc(collectionName, gameId, 'players', actionText);
+  const sessionRef = utils.firebase.getSessionRef(gameName, gameId);
+  const playersDoc = await utils.firebase.getSessionDoc(gameName, gameId, 'players', actionText);
 
   // Make player ready
   const players = playersDoc.data() ?? {};
@@ -119,25 +116,25 @@ export const makePlayerReady = async (data: Payload) => {
     }
   }
 
-  const { getNextPhase } = delegatorUtils.getEngine(collectionName);
+  const { getNextPhase } = delegatorUtils.getEngine(gameName);
 
   // If all players are ready, trigger next phase
   try {
-    return getNextPhase(collectionName, gameId, players);
+    return getNextPhase(gameName, gameId, players);
   } catch (error) {
     utils.firebase.throwException(error, actionText);
   }
 };
 
 export const rateGame = async (data: ExtendedPayload) => {
-  const { gameId, gameName: collectionName, playerId } = data;
+  const { gameId, gameName: gameName, playerId } = data;
   const actionText = 'submit ratings';
 
   try {
     await utils.firebase
       .getPublicRef()
       .doc('ratings')
-      .collection(collectionName)
+      .collection(gameName)
       .doc(playerId)
       .update({
         [gameId]: data.ratings,
@@ -147,7 +144,7 @@ export const rateGame = async (data: ExtendedPayload) => {
       await utils.firebase
         .getPublicRef()
         .doc('ratings')
-        .collection(collectionName)
+        .collection(gameName)
         .doc(playerId)
         .set({
           [gameId]: data.ratings,

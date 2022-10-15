@@ -102,7 +102,7 @@ export const getNextPhase = async (
 
   // REVEAL -> GAME_OVER
   if (nextPhase === RETRATO_FALADO_PHASES.GAME_OVER) {
-    const newPhase = await prepareGameOverPhase(store, state, players);
+    const newPhase = await prepareGameOverPhase(gameId, store, state, players);
     await saveUsedCards(store.pastSketches);
     return utils.firebase.saveGame(sessionRef, newPhase);
   }

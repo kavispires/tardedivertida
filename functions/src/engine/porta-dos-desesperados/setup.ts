@@ -208,6 +208,7 @@ export const prepareResolutionPhase = async (
 };
 
 export const prepareGameOverPhase = async (
+  gameId: GameId,
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players
@@ -217,12 +218,9 @@ export const prepareGameOverPhase = async (
     state.outcome === OUTCOME.SUCCESS ? state.currentCorridor + 1 : state.currentCorridor;
   const winCondition = state.winCondition === WIN_CONDITION.WIN ? WIN_CONDITION.WIN : WIN_CONDITION.LOSE;
 
+  await utils.firebase.markGameAsComplete(gameId);
+
   return {
-    update: {
-      meta: {
-        isComplete: true,
-      },
-    },
     set: {
       players,
       state: {

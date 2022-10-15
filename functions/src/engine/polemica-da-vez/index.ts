@@ -99,7 +99,7 @@ export const getNextPhase = async (
 
   // RESOLUTION --> GAME_OVER
   if (nextPhase === POLEMICA_DA_VEZ_PHASES.GAME_OVER) {
-    const newPhase = await prepareGameOverPhase(store, state, players);
+    const newPhase = await prepareGameOverPhase(gameId, store, state, players);
     return utils.firebase.saveGame(sessionRef, newPhase);
   }
 

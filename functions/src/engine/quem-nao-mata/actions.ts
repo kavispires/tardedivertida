@@ -4,13 +4,13 @@ import * as utils from '../../utils';
 import { getNextPhase } from './index';
 
 export const handleSubmitTarget = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   targetId: PlayerId
 ) => {
   return await utils.firebase.updatePlayer({
-    collectionName,
+    gameName,
     gameId,
     playerId,
     actionText: 'submit your target',
@@ -20,7 +20,7 @@ export const handleSubmitTarget = async (
 };
 
 export const handleSubmitMessage = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   targetId: PlayerId,
@@ -28,7 +28,7 @@ export const handleSubmitMessage = async (
 ) => {
   // Handle player
   await utils.firebase.updateState({
-    collectionName,
+    gameName,
     gameId,
     playerId,
     actionText: 'used message',
@@ -38,7 +38,7 @@ export const handleSubmitMessage = async (
 
   // Handle state
   return await utils.firebase.updateState({
-    collectionName,
+    gameName,
     gameId,
     playerId,
     actionText: 'submit message',
@@ -49,13 +49,13 @@ export const handleSubmitMessage = async (
 };
 
 export const handleSubmitDecision = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   decision: string
 ) => {
   return await utils.firebase.updatePlayer({
-    collectionName,
+    gameName,
     gameId,
     playerId,
     actionText: 'submit decision',
