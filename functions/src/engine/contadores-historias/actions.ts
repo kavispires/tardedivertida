@@ -7,29 +7,29 @@ import { getNextPhase } from './index';
 
 /**
  *
- * @param collectionName
+ * @param gameName
  * @param gameId
  * @param playerId
  * @param cardId
  * @returns
  */
 export const handleSubmitStory = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   story: string,
   cardId: string
 ) => {
   // Get 'players' from given game session
-  const sessionRef = utils.firebase.getSessionRef(collectionName, gameId);
-  const playersDoc = await utils.firebase.getSessionDoc(collectionName, gameId, 'players', 'submit story');
+  const sessionRef = utils.firebase.getSessionRef(gameName, gameId);
+  const playersDoc = await utils.firebase.getSessionDoc(gameName, gameId, 'players', 'submit story');
 
   const players = playersDoc.data() ?? {};
 
   const { hand, deckIndex } = utils.playerHand.discardPlayerCard(players, cardId, playerId, HAND_LIMIT);
 
   await utils.firebase.updatePlayer({
-    collectionName,
+    gameName,
     gameId,
     playerId,
     actionText: 'submit story',
@@ -49,27 +49,27 @@ export const handleSubmitStory = async (
   }
 
   // If all players are ready, trigger next phase
-  return getNextPhase(collectionName, gameId, players);
+  return getNextPhase(gameName, gameId, players);
 };
 
 /**
  *
- * @param collectionName
+ * @param gameName
  * @param gameId
  * @param playerId
  * @param cardId
  * @returns
  */
 export const handlePlayCard = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   cardId: string
 ) => {
   const actionText = 'play a card';
 
-  const playersDoc = await utils.firebase.getSessionDoc(collectionName, gameId, 'players', actionText);
-  const stateDoc = await utils.firebase.getSessionDoc(collectionName, gameId, 'state', actionText);
+  const playersDoc = await utils.firebase.getSessionDoc(gameName, gameId, 'players', actionText);
+  const stateDoc = await utils.firebase.getSessionDoc(gameName, gameId, 'state', actionText);
   const players = playersDoc.data() ?? {};
   const state = stateDoc.data() ?? {};
 
@@ -80,7 +80,7 @@ export const handlePlayCard = async (
   const { hand, deckIndex } = utils.playerHand.discardPlayerCard(players, cardId, playerId, HAND_LIMIT);
 
   return await utils.firebase.updatePlayer({
-    collectionName,
+    gameName,
     gameId,
     playerId,
     actionText,
@@ -96,20 +96,20 @@ export const handlePlayCard = async (
 
 /**
  *
- * @param collectionName
+ * @param gameName
  * @param gameId
  * @param playerId
  * @param vote
  * @returns
  */
 export const handleSubmitVote = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   vote: PlayerId
 ) => {
   return await utils.firebase.updatePlayer({
-    collectionName,
+    gameName,
     gameId,
     playerId,
     actionText: 'submit vote',

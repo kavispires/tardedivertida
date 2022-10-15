@@ -6,20 +6,20 @@ import { ClueId } from './types';
 
 /**
  *
- * @param collectionName
+ * @param gameName
  * @param gameId
  * @param playerId
  * @param bossId
  * @returns
  */
 export const handleSubmitBossPlayer = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   bossId: string
 ) => {
   return await utils.firebase.updateState({
-    collectionName,
+    gameName,
     gameId,
     playerId,
     actionText: 'submit boss player id',
@@ -32,7 +32,7 @@ export const handleSubmitBossPlayer = async (
 
 /**
  *
- * @param collectionName
+ * @param gameName
  * @param gameId
  * @param playerId
  * @param secretWord
@@ -40,14 +40,14 @@ export const handleSubmitBossPlayer = async (
  * @returns
  */
 export const handleSubmitSecretWord = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   secretWord: string,
   categories: string[]
 ) => {
   return await utils.firebase.updateState({
-    collectionName,
+    gameName,
     gameId,
     playerId,
     actionText: 'submit secret word and categories',
@@ -61,7 +61,7 @@ export const handleSubmitSecretWord = async (
 
 /**
  *
- * @param collectionName
+ * @param gameName
  * @param gameId
  * @param playerId
  * @param clues
@@ -69,14 +69,14 @@ export const handleSubmitSecretWord = async (
  * @returns
  */
 export const handleSubmitPlayerClues = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   clues: string[],
   guesses?: string[]
 ) => {
   return await utils.firebase.updatePlayer({
-    collectionName,
+    gameName,
     gameId,
     playerId,
     actionText: 'submit clues',
@@ -88,14 +88,14 @@ export const handleSubmitPlayerClues = async (
 
 /**
  *
- * @param collectionName
+ * @param gameName
  * @param gameId
  * @param playerId
  * @param evaluation
  * @returns
  */
 export const handleSubmitEvaluation = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   evaluation: Record<ClueId, boolean>
@@ -104,7 +104,7 @@ export const handleSubmitEvaluation = async (
   const trues = Object.values(evaluation).filter((result) => result).length;
 
   return await utils.firebase.updateState({
-    collectionName,
+    gameName,
     gameId,
     playerId,
     actionText: 'submit evaluation',
@@ -119,20 +119,20 @@ export const handleSubmitEvaluation = async (
 // TODO: SUBMIT_FAIL
 /**
  *
- * @param collectionName
+ * @param gameName
  * @param gameId
  * @param playerId
  * @param outcome
  * @returns
  */
 export const handleSubmitOutcome = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   outcome: string
 ) => {
   return await utils.firebase.updateState({
-    collectionName,
+    gameName,
     gameId,
     playerId,
     actionText: 'submit outcome',
@@ -145,20 +145,20 @@ export const handleSubmitOutcome = async (
 
 /**
  *
- * @param collectionName
+ * @param gameName
  * @param gameId
  * @param playerId
  * @param clueId
  * @returns
  */
 export const handleSubmitHelp = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   clueId: ClueId
 ) => {
   return await utils.firebase.updateState({
-    collectionName,
+    gameName,
     gameId,
     playerId,
     actionText: 'submit help',

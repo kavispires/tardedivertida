@@ -5,20 +5,20 @@ import { getNextPhase } from './index';
 
 /**
  *
- * @param collectionName
+ * @param gameName
  * @param gameId
  * @param playerId
  * @param locationId
  * @returns
  */
 export const handleLastQuestioner = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   lastPlayerId: PlayerId
 ) => {
   return await utils.firebase.updateStore({
-    collectionName,
+    gameName,
     gameId,
     playerId,
     actionText: 'set last player to question',
@@ -29,20 +29,20 @@ export const handleLastQuestioner = async (
 
 /**
  *
- * @param collectionName
+ * @param gameName
  * @param gameId
  * @param playerId
  * @param locationId
  * @returns
  */
 export const handleGuessLocation = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   locationId: string
 ) => {
   return await utils.firebase.updateStore({
-    collectionName,
+    gameName,
     gameId,
     playerId,
     actionText: 'attempt a spy guess',
@@ -53,20 +53,20 @@ export const handleGuessLocation = async (
 
 /**
  *
- * @param collectionName
+ * @param gameName
  * @param gameId
  * @param playerId
  * @param vote
  * @returns
  */
 export const handleMakeAccusation = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   targetId: PlayerId
 ) => {
   return await utils.firebase.updateStore({
-    collectionName,
+    gameName,
     gameId,
     playerId,
     actionText: 'make accusation',
@@ -81,20 +81,20 @@ export const handleMakeAccusation = async (
 
 /**
  *
- * @param collectionName
+ * @param gameName
  * @param gameId
  * @param playerId
  * @param vote
  * @returns
  */
 export const handleSubmitVote = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   vote: PlayerId
 ) => {
   return await utils.firebase.updatePlayer({
-    collectionName,
+    gameName,
     gameId,
     playerId,
     actionText: 'submit vote',

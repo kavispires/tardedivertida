@@ -110,7 +110,7 @@ export const getNextPhase = async (
 
   // TRIAL -> GAME_OVER
   if (nextPhase === TESTEMUNHA_OCULAR_PHASES.GAME_OVER) {
-    const newPhase = await prepareGameOverPhase(store, state, additionalPayload ?? {});
+    const newPhase = await prepareGameOverPhase(gameId, store, state, additionalPayload ?? {});
 
     // Save usedTestemunhaOcularCards to global
     await saveUsedQUestions(store.pastQuestions);

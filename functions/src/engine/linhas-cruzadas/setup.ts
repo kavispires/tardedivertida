@@ -168,16 +168,13 @@ export const preparePresentationPhase = async (
 };
 
 export const prepareGameOverPhase = async (
+  gameId: GameId,
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
+  await utils.firebase.markGameAsComplete(gameId);
   return {
-    update: {
-      meta: {
-        isComplete: true,
-      },
-    },
     set: {
       players,
       state: {

@@ -188,17 +188,15 @@ export const prepareTrialPhase = async (
 };
 
 export const prepareGameOverPhase = async (
+  gameId: GameId,
   store: FirebaseStoreData,
   state: FirebaseStateData,
   additionalPayload: PlainObject
 ): Promise<SaveGamePayload> => {
+  await utils.firebase.markGameAsComplete(gameId);
+
   // Save
   return {
-    update: {
-      meta: {
-        isComplete: true,
-      },
-    },
     set: {
       state: {
         phase: TESTEMUNHA_OCULAR_PHASES.GAME_OVER,

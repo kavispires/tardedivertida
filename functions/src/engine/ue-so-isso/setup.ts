@@ -195,6 +195,7 @@ export const prepareGuessPhase = async (
 };
 
 export const prepareGameOverPhase = async (
+  gameId: GameId,
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players
@@ -206,13 +207,10 @@ export const prepareGameOverPhase = async (
 
   const groupScore = determineGroupScore(players, state.round.total);
 
+  await utils.firebase.markGameAsComplete(gameId);
+
   // Save
   return {
-    update: {
-      meta: {
-        isComplete: true,
-      },
-    },
     set: {
       state: {
         phase: UE_SO_ISSO_PHASES.GAME_OVER,

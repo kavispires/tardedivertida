@@ -5,7 +5,7 @@ import { getNextPhase } from '.';
 
 /**
  * When active player chooses the round's topic
- * @param collectionName
+ * @param gameName
  * @param gameId
  * @param playerId
  * @param topicId
@@ -13,14 +13,14 @@ import { getNextPhase } from '.';
  * @returns
  */
 export const handleSubmitTopic = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   topicId: string,
   customTopic?: string
 ) => {
   return await utils.firebase.updateStore({
-    collectionName,
+    gameName,
     gameId,
     playerId,
     actionText: 'submit the question',
@@ -34,7 +34,7 @@ export const handleSubmitTopic = async (
 
 /**
  * When each player submit their round's reaction and likes guess
- * @param collectionName
+ * @param gameName
  * @param gameId
  * @param playerId
  * @param reaction
@@ -42,14 +42,14 @@ export const handleSubmitTopic = async (
  * @returns
  */
 export const handleSubmitReaction = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   playerId: PlayerId,
   reaction: boolean,
   likesGuess: number
 ) => {
   return await utils.firebase.updatePlayer({
-    collectionName,
+    gameName,
     gameId,
     playerId,
     actionText: 'submit the answers',
