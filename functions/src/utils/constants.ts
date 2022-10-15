@@ -142,7 +142,7 @@ const generateGameCollections = (): StringDictionary =>
 
 export const GAME_CODES = generateGameCodes();
 export const GAME_KEYS = generateGameKeys();
-export const GAME_COLLECTIONS = generateGameCollections();
+export const GAME_NAMES = generateGameCollections();
 
 export const GLOBAL_USED_DOCUMENTS = {
   ARTE_RUIM: 'usedArteRuimCards',

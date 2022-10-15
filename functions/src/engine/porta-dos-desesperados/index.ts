@@ -1,5 +1,5 @@
 // Constants
-import { GAME_COLLECTIONS } from '../../utils/constants';
+import { GAME_NAMES } from '../../utils/constants';
 import {
   PORTA_DOS_DESESPERADOS_PHASES,
   PLAYER_COUNTS,
@@ -42,7 +42,7 @@ export const getInitialState = (
 ): PortaDosDesesperadosInitialState => {
   return utils.helpers.getDefaultInitialState({
     gameId,
-    gameName: GAME_COLLECTIONS.PORTA_DOS_DESESPERADOS,
+    gameName: GAME_NAMES.PORTA_DOS_DESESPERADOS,
     uid,
     language,
     playerCounts: PLAYER_COUNTS,
@@ -60,20 +60,20 @@ export const playerCounts = PLAYER_COUNTS;
 
 /**
  *
- * @param collectionName
+ * @param gameName
  * @param gameId
  * @param players
  * @returns
  */
 export const getNextPhase = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   players: Players
 ): Promise<boolean> => {
   const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences<
     FirebaseStateData,
     FirebaseStoreData
-  >(collectionName, gameId, 'prepare next phase');
+  >(gameName, gameId, 'prepare next phase');
 
   // Determine if it's game over
   const isGameOver = determineGameOver(
@@ -93,7 +93,7 @@ export const getNextPhase = async (
 
     const newPhase = await prepareSetupPhase(store, state, players);
     await utils.firebase.saveGame(sessionRef, newPhase);
-    return getNextPhase(collectionName, gameId, players);
+    return getNextPhase(gameName, gameId, players);
   }
 
   // * -> BOOK_POSSESSION
@@ -129,17 +129,17 @@ export const getNextPhase = async (
  * @returns
  */
 export const submitAction = async (data: PortaDosDesesperadosSubmitAction) => {
-  const { gameId, gameName: collectionName, playerId, action } = data;
+  const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, collectionName, playerId, action);
+  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
     case PORTA_DOS_DESESPERADOS_ACTIONS.SUBMIT_PAGES:
       utils.firebase.validateSubmitActionProperties(data, ['pageIds'], 'submit pages');
-      return handleSubmitPages(collectionName, gameId, playerId, data.pageIds);
+      return handleSubmitPages(gameName, gameId, playerId, data.pageIds);
     case PORTA_DOS_DESESPERADOS_ACTIONS.SUBMIT_DOOR:
       utils.firebase.validateSubmitActionProperties(data, ['doorId'], 'submit door');
-      return handleSubmitDoor(collectionName, gameId, playerId, data.doorId, data.ready);
+      return handleSubmitDoor(gameName, gameId, playerId, data.doorId, data.ready);
     default:
       utils.firebase.throwException(`Given action ${action} is not allowed`);
   }

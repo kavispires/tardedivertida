@@ -1,5 +1,5 @@
 // Constants
-import { GAME_COLLECTIONS } from '../../utils/constants';
+import { GAME_NAMES } from '../../utils/constants';
 import { NA_RUA_DO_MEDO_PHASES, PLAYER_COUNTS, MAX_ROUNDS, NA_RUA_DO_MEDO_ACTIONS } from './constants';
 // Types
 import type { NoRuaDoMedoInitialState, NoRuaDoMedoOptions, NaRuaDoMedoSubmitAction } from './types';
@@ -31,7 +31,7 @@ export const getInitialState = (
 ): NoRuaDoMedoInitialState => {
   return utils.helpers.getDefaultInitialState({
     gameId,
-    gameName: GAME_COLLECTIONS.NA_RUA_DO_MEDO,
+    gameName: GAME_NAMES.NA_RUA_DO_MEDO,
     uid,
     language,
     playerCounts: PLAYER_COUNTS,
@@ -53,18 +53,18 @@ export const playerCounts = PLAYER_COUNTS;
 
 /**
  *
- * @param collectionName
+ * @param gameName
  * @param gameId
  * @param players
  * @returns
  */
 export const getNextPhase = async (
-  collectionName: GameName,
+  gameName: GameName,
   gameId: GameId,
   players: Players
 ): Promise<boolean> => {
   const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences(
-    collectionName,
+    gameName,
     gameId,
     'prepare next phase'
   );
@@ -81,7 +81,7 @@ export const getNextPhase = async (
     const newPhase = await prepareSetupPhase(store, state, players);
     await utils.firebase.saveGame(sessionRef, newPhase);
 
-    return getNextPhase(collectionName, gameId, newPhase.update?.players ?? {});
+    return getNextPhase(gameName, gameId, newPhase.update?.players ?? {});
   }
 
   // * -> TRICK_OR_TREAT
@@ -117,14 +117,14 @@ export const getNextPhase = async (
  * @returns
  */
 export const submitAction = async (data: NaRuaDoMedoSubmitAction) => {
-  const { gameId, gameName: collectionName, playerId, action } = data;
+  const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, collectionName, playerId, action);
+  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
     case NA_RUA_DO_MEDO_ACTIONS.SUBMIT_DECISION:
       utils.firebase.validateSubmitActionProperties(data, ['decision'], 'submit decision');
-      return handleSubmitDecision(collectionName, gameId, playerId, data.decision);
+      return handleSubmitDecision(gameName, gameId, playerId, data.decision);
     default:
       utils.firebase.throwException(`Given action ${action} is not allowed`);
   }

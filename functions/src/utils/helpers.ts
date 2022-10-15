@@ -74,7 +74,7 @@ export function getDefaultInitialState({
   return {
     meta: {
       gameId,
-      gameName: gameName,
+      gameName,
       createdAt: Date.now(),
       createdBy: uid,
       min: playerCounts.MIN,

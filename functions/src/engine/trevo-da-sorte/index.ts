@@ -1,5 +1,5 @@
 // Constants
-import { GAME_COLLECTIONS } from '../../utils/constants';
+import { GAME_NAMES } from '../../utils/constants';
 import { PLAYER_COUNTS, TREVO_DA_SORTE_ACTIONS, TREVO_DA_SORTE_PHASES } from './constants';
 // Types
 import {
@@ -39,7 +39,7 @@ export const getInitialState = (
 ): TrevoDaSorteInitialState => {
   return utils.helpers.getDefaultInitialState({
     gameId,
-    gameName: GAME_COLLECTIONS.TREVO_DA_SORTE,
+    gameName: GAME_NAMES.TREVO_DA_SORTE,
     uid,
     language,
     playerCounts: PLAYER_COUNTS,
@@ -55,16 +55,12 @@ export const getInitialState = (
  */
 export const playerCounts = PLAYER_COUNTS;
 
-export const getNextPhase = async (
-  collectionName: string,
-  gameId: string,
-  players: Players
-): Promise<boolean> => {
+export const getNextPhase = async (gameName: string, gameId: string, players: Players): Promise<boolean> => {
   // Gather docs and references
   const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences<
     FirebaseStateData,
     FirebaseStoreData
-  >(collectionName, gameId, 'prepare next phase');
+  >(gameName, gameId, 'prepare next phase');
 
   // Determine next phase
   const nextPhase = determineNextPhase(state.phase, state?.gameOrder, state?.activeCloverId);
@@ -78,7 +74,7 @@ export const getNextPhase = async (
     const additionalData = await getWords(store.language);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await utils.firebase.saveGame(sessionRef, newPhase);
-    return getNextPhase(collectionName, gameId, players);
+    return getNextPhase(gameName, gameId, players);
   }
 
   // SETUP/* -> WORD_SELECTION
@@ -119,20 +115,20 @@ export const getNextPhase = async (
  * May trigger next phase
  */
 export const submitAction = async (data: TrevoDaSorteSubmitAction) => {
-  const { gameId, gameName: collectionName, playerId, action } = data;
+  const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, collectionName, playerId, action);
+  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
     case TREVO_DA_SORTE_ACTIONS.SUBMIT_BAD_WORDS:
       utils.firebase.validateSubmitActionProperties(data, ['cardsIds'], 'submit bad cards');
-      return handleSubmitBadWords(collectionName, gameId, playerId, data.cardsIds);
+      return handleSubmitBadWords(gameName, gameId, playerId, data.cardsIds);
     case TREVO_DA_SORTE_ACTIONS.SUBMIT_CLUES:
       utils.firebase.validateSubmitActionProperties(data, ['clues'], 'submit clues');
-      return handleSubmitClues(collectionName, gameId, playerId, data.clues);
+      return handleSubmitClues(gameName, gameId, playerId, data.clues);
     case TREVO_DA_SORTE_ACTIONS.SUBMIT_GUESS:
       utils.firebase.validateSubmitActionProperties(data, ['guesses', 'activeCloverId'], 'submit guesses');
-      return handleSubmitGuess(collectionName, gameId, playerId, data.guesses, data.activeCloverId);
+      return handleSubmitGuess(gameName, gameId, playerId, data.guesses, data.activeCloverId);
     default:
       utils.firebase.throwException(`Given action ${action} is not allowed`);
   }

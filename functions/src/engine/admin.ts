@@ -98,7 +98,7 @@ export const createGame = async (data: CreateGamePayload, context: FirebaseConte
  * @returns
  */
 export const lockGame = async (data: BasicGamePayload, context: FirebaseContext) => {
-  const { gameId, gameName: gameName } = data;
+  const { gameId, gameName } = data;
 
   const actionText = 'lock game';
   utils.firebase.verifyPayload(gameId, 'gameId', actionText);
@@ -159,7 +159,7 @@ const ADMIN_ACTIONS = {
  * @returns
  */
 export const performAdminAction = async (data: ExtendedPayload, context: FirebaseContext) => {
-  const { gameId, gameName: gameName, action } = data;
+  const { gameId, gameName, action } = data;
 
   utils.firebase.verifyAuth(context, action);
   utils.firebase.validateActionPayload(gameId, gameName, action, action);

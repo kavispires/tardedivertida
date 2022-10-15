@@ -1,5 +1,5 @@
 // Constants
-import { GAME_COLLECTIONS } from '../../utils/constants';
+import { GAME_NAMES } from '../../utils/constants';
 import { MENTE_COLETIVA_PHASES, MAX_ROUNDS, PLAYER_COUNTS, MENTE_COLETIVA_ACTIONS } from './constants';
 // Types
 import type { MenteColetivaInitialState, MenteColetivaOptions, MenteColetivaSubmitAction } from './types';
@@ -33,7 +33,7 @@ export const getInitialState = (
 ): MenteColetivaInitialState => {
   return utils.helpers.getDefaultInitialState({
     gameId,
-    gameName: GAME_COLLECTIONS.MENTE_COLETIVA,
+    gameName: GAME_NAMES.MENTE_COLETIVA,
     uid,
     language,
     playerCounts: PLAYER_COUNTS,
@@ -53,17 +53,13 @@ export const getInitialState = (
  */
 export const playerCounts = PLAYER_COUNTS;
 
-export const getNextPhase = async (
-  collectionName: string,
-  gameId: string,
-  players: Players
-): Promise<boolean> => {
+export const getNextPhase = async (gameName: string, gameId: string, players: Players): Promise<boolean> => {
   const actionText = 'prepare next phase';
 
   // Gather docs and references
-  const sessionRef = utils.firebase.getSessionRef(collectionName, gameId);
-  const stateDoc = await utils.firebase.getSessionDoc(collectionName, gameId, 'state', actionText);
-  const storeDoc = await utils.firebase.getSessionDoc(collectionName, gameId, 'store', actionText);
+  const sessionRef = utils.firebase.getSessionRef(gameName, gameId);
+  const stateDoc = await utils.firebase.getSessionDoc(gameName, gameId, 'state', actionText);
+  const storeDoc = await utils.firebase.getSessionDoc(gameName, gameId, 'store', actionText);
 
   const state = stateDoc.data() ?? {};
   const store = { ...(storeDoc.data() ?? {}) };
@@ -83,7 +79,7 @@ export const getNextPhase = async (
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await utils.firebase.saveGame(sessionRef, newPhase);
 
-    return getNextPhase(collectionName, gameId, players);
+    return getNextPhase(gameName, gameId, players);
   }
 
   // SETUP/* -> QUESTION_SELECTION
@@ -128,23 +124,23 @@ export const getNextPhase = async (
  * May trigger next phase
  */
 export const submitAction = async (data: MenteColetivaSubmitAction) => {
-  const { gameId, gameName: collectionName, playerId, action } = data;
+  const { gameId, gameName, playerId, action } = data;
 
-  utils.firebase.validateSubmitActionPayload(gameId, collectionName, playerId, action);
+  utils.firebase.validateSubmitActionPayload(gameId, gameName, playerId, action);
 
   switch (action) {
     case MENTE_COLETIVA_ACTIONS.SUBMIT_QUESTION:
       utils.firebase.validateSubmitActionProperties(data, ['questionId'], 'submit question');
-      return handleSubmitQuestion(collectionName, gameId, playerId, data.questionId);
+      return handleSubmitQuestion(gameName, gameId, playerId, data.questionId);
     case MENTE_COLETIVA_ACTIONS.SUBMIT_ANSWERS:
       utils.firebase.validateSubmitActionProperties(data, ['answers'], 'submit answers');
-      return handleSubmitAnswers(collectionName, gameId, playerId, data.answers);
+      return handleSubmitAnswers(gameName, gameId, playerId, data.answers);
     case MENTE_COLETIVA_ACTIONS.NEXT_ANSWERS:
       utils.firebase.validateSubmitActionProperties(data, ['allowedList'], 'advance answers');
-      return handleNextAnswers(collectionName, gameId, playerId, data.allowedList);
+      return handleNextAnswers(gameName, gameId, playerId, data.allowedList);
     case MENTE_COLETIVA_ACTIONS.ADD_ANSWER:
       utils.firebase.validateSubmitActionProperties(data, ['answer'], 'add answer');
-      return handleAddAnswer(collectionName, gameId, playerId, data.answer);
+      return handleAddAnswer(gameName, gameId, playerId, data.answer);
     default:
       utils.firebase.throwException(`Given action ${action} is not allowed`);
   }
