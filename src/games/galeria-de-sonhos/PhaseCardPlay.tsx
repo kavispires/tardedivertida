@@ -27,7 +27,7 @@ import { DoorSignIcon } from 'components/icons/DoorSignIcon';
 import { NightmareIcon } from 'components/icons/NightmareIcon';
 import { PointsHighlight } from './components/Highlights';
 
-function PhaseCardPlay({ players, state, info }: PhaseProps) {
+function PhaseCardPlay({ players, state, info, meta }: PhaseProps) {
   const { translate } = useLanguage();
   const { isLoading } = useLoading();
   const { step, goToNextStep, setStep } = useStep();
@@ -150,6 +150,7 @@ function PhaseCardPlay({ players, state, info }: PhaseProps) {
           isLoading={isLoading}
           setLastTurnCount={setLastTurnCount}
           playerInNightmareId={state.playerInNightmareId}
+          botEnabled={Boolean(meta?.options?.withBots)}
         />
       </StepSwitcher>
     </PhaseContainer>

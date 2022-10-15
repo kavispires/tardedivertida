@@ -1,4 +1,5 @@
 import { deepCopy } from './helpers';
+import { getListOfPlayers } from './players-utils';
 
 /**
  * Sets up achievements in the store by created an achievements object with every player in it with given starting properties
@@ -9,8 +10,8 @@ import { deepCopy } from './helpers';
  */
 export const setup = (players: Players, store: PlainObject, properties: PlainObject) => {
   store.achievements = {};
-  Object.keys(players).forEach((playerId) => {
-    store.achievements[playerId] = { ...deepCopy(properties), playerId };
+  getListOfPlayers(players).forEach((player) => {
+    store.achievements[player.id] = { ...deepCopy(properties), playerId: player.id };
   });
 
   return store.achievements;

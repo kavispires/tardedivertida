@@ -9,6 +9,7 @@ import {
   buildDeck,
   buildRanking,
   buildTable,
+  getAchievements,
   getMostVotedCards,
   getPlayersWithMaxDreams,
   getRoundWords,
@@ -43,6 +44,17 @@ export const prepareSetupPhase = async (
     utils.players.addBots(players, 3);
   }
 
+  const achievements = utils.achievements.setup(players, store, {
+    matches: 0,
+    fullMatches: 0,
+    dreamCount: 0,
+    nightmare: 0,
+    pairs: 0,
+    noMatches: 0,
+    zeroMatches: 0,
+    falls: 0,
+  });
+
   // Save
   return {
     update: {
@@ -52,6 +64,7 @@ export const prepareSetupPhase = async (
         tableDeckBackup: tableDeck,
         wordsDeck,
         bestMatches: [],
+        achievements,
       },
       state: {
         phase: GALERIA_DE_SONHOS_PHASES.SETUP,
@@ -177,7 +190,7 @@ export const prepareResolutionPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Build ranking
-  const ranking = buildRanking(players, state.playerInNightmareId);
+  const ranking = buildRanking(players, store, state.playerInNightmareId);
   utils.players.neutralizeBotScores(players);
 
   // Save to store most matched card
@@ -188,6 +201,7 @@ export const prepareResolutionPhase = async (
     update: {
       store: {
         bestMatches: [...(store.bestMatches ?? []), ...mostVotedCards],
+        achievements: store.achievements,
       },
       state: {
         phase: GALERIA_DE_SONHOS_PHASES.RESOLUTION,
@@ -211,6 +225,8 @@ export const prepareGameOverPhase = async (
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 
+  const achievements = getAchievements(store);
+
   await utils.firebase.markGameAsComplete(gameId);
 
   return {
@@ -223,6 +239,7 @@ export const prepareGameOverPhase = async (
         winners,
         bestMatches: store.bestMatches,
         table: store.tableDeckBackup,
+        achievements,
       },
     },
   };

@@ -31,9 +31,9 @@ type StepDreamsSelectionProps = {
   isLoading?: boolean;
   players: GamePlayers;
   gameOrder: GameOrder;
-
   setLastTurnCount: GenericFunction;
   playerInNightmareId?: PlayerId;
+  botEnabled?: boolean;
 };
 
 export function StepPlayDream({
@@ -48,6 +48,7 @@ export function StepPlayDream({
   gameOrder,
   setLastTurnCount,
   playerInNightmareId,
+  botEnabled = false,
 }: StepDreamsSelectionProps) {
   useTemporarilyHidePlayersBar();
   const { translate } = useLanguage();
@@ -120,16 +121,18 @@ export function StepPlayDream({
 
       <PopoverRule content={<CardPlayRules />} />
 
-      <FixedMenuButton
-        type="popover"
-        position={1}
-        icon={<RobotOutlined />}
-        content={<BotsRules />}
-        label={<Translate pt=" Bots" en=" Bots" />}
-        buttonProps={{
-          type: 'default',
-        }}
-      />
+      {botEnabled && (
+        <FixedMenuButton
+          type="popover"
+          position={1}
+          icon={<RobotOutlined />}
+          content={<BotsRules />}
+          label={<Translate pt=" Bots" en=" Bots" />}
+          buttonProps={{
+            type: 'default',
+          }}
+        />
+      )}
 
       <PlayTable
         table={table}

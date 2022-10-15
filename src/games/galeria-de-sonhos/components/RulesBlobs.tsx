@@ -1,7 +1,7 @@
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
-import { CardHighlight, PointsHighlight } from './Highlights';
+import { CardHighlight, PlayerHighlight, PlayersHighlight, PointsHighlight } from './Highlights';
 
 type WordSelectionRulesProps = {
   scout: GamePlayer;
@@ -132,11 +132,11 @@ export function CardPlayRules() {
             <br />
             Selecione o sonho que você mais acha que tem chance de outro jogador ter também visitado.
             <br />
-            Você ganha <PointsHighlight type="positive">3</PointsHighlight> pontos se apenas mais 1 jogador
-            visitou o mesmo sonho.
+            Você ganha <PointsHighlight type="positive">3</PointsHighlight> pontos se apenas mais{' '}
+            <PlayerHighlight>1</PlayerHighlight> jogador visitou o mesmo sonho.
             <br />
-            Você ganha <PointsHighlight type="positive">2</PointsHighlight> pontos se mais de 1 jogador
-            visitou o mesmo sonho.
+            Você ganha <PointsHighlight type="positive">2</PointsHighlight> pontos se mais de{' '}
+            <PlayersHighlight>1+</PlayersHighlight> jogador visitou o mesmo sonho.
             <br />
             Você está eliminado da rodada se ninguém mais visitou o sonho escolhido.
           </>
@@ -147,11 +147,11 @@ export function CardPlayRules() {
             <br />
             Select the dream you think you have the most chances of matching another player.
             <br />
-            You get <PointsHighlight type="positive">3</PointsHighlight> points if only 1 player visited the
-            same dream.
+            You get <PointsHighlight type="positive">3</PointsHighlight> points if only{' '}
+            <PlayerHighlight>1</PlayerHighlight> player visited the same dream.
             <br />
-            You get <PointsHighlight type="positive">2</PointsHighlight> points if many players have visited
-            the same dream.
+            You get <PointsHighlight type="positive">2</PointsHighlight> points if many{' '}
+            <PlayersHighlight>1+</PlayersHighlight> players have visited the same dream.
             <br />
             You are eliminated for this round if nobody else has visited the chosen dream.
           </>
