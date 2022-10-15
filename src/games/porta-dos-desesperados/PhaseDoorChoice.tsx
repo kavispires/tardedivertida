@@ -37,7 +37,6 @@ function PhaseDoorChoice({ players, state, info, meta }: PhaseProps) {
     if (!user.ready && possessed.id && !isPossessed && !isLoading) {
       // Submit door
       if (!user.doorId) {
-        debugger;
         onSubmitDoor({ doorId: mockDoorSelection(state.doors, state.answerDoorId) });
       }
       // Then make player ready
