@@ -16,6 +16,10 @@
     "pt": "Todos nós, agentes de bem, estamos num mesmo local, mas um de nós é um espião! Será que conseguimos descobrir quem é o impostor antes dele descobrir que local estamos?",
     "en": "We, all good agents, are meeting in the same place, but there's a spy among us. Can we find the impostor before they find out where we're supposed to meet?"
   },
+  "appearance": {
+    "clouds": "cyber-cloud",
+    "color": ""
+  },
   "rules": {
     "pt": [
       "Espião Entre Nós é um jogo competitivo jogado em uma ou mais rodadas. Cada rodada dura no máximo 10 minutos e jogo pode ser jogado em apenas uma rodada ou várias",

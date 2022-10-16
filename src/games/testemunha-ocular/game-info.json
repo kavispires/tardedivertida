@@ -16,6 +16,10 @@
     "pt": "Um crime. Uma testemunha. Desde quando julgando por aparência não se desvenda um crime?",
     "en": "One crime. One witness... that judge people by their appearances. What could go wrong?"
   },
+  "appearance": {
+    "clouds": "eye-cloud",
+    "color": ""
+  },
   "rules": {
     "pt": [
       "Um crime. Uma testemunha. Desde quando julgando por aparência não se desvenda um crime?",

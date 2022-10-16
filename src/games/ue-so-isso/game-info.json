@@ -16,6 +16,10 @@
     "pt": "Tente adivinhar a palavra secreta com as dicas de seus amigos, mas dicas repetidas são eliminadas... ferrou! Ué, só isso?",
     "en": "Try to guess the secret word from clues given by the players, but there's a catch: similar clues are thrown out and all you have left are... that's it?"
   },
+  "appearance": {
+    "clouds": "one-clouds",
+    "color": ""
+  },
   "rules": {
     "pt": [
       "Ué, Só Isso? é um jogo cooperativo em que cada rodada um jogador tenta adivinhar a palavra secreta usando as dicas que os outros jogadores sugeriram, mas existe um porém: dicas repetidas ou similares são desclassificadas! Ué, só isso?",

@@ -16,6 +16,10 @@
     "pt": "Jogadores são crianças recolhendo doces durante o Halloween, mas se você ver o mesmo monstro mais de uma vez...",
     "en": "Players are trick-or-treaters collecting candy, but if you see the same monster twice..."
   },
+  "appearance": {
+    "clouds": "halloween-clouds",
+    "color": ""
+  },
   "rules": {
     "pt": [
       "É Halloween e somos um bando de crianças medrosas indo coletar gostosuras de porta em porta nas Ruas do Medo",

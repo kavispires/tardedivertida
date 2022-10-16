@@ -16,6 +16,10 @@
     "pt": "Numa convenção anual de Serial Killers, você e seus amigos tem que descrever o seu crime para que os outros jogadores adivinhem qual arma você usou e qual lembrancinha você levou pra casa",
     "en": "In a Serial Killers Annual Convention, you and your friends must describe your crime so the other players can guess what weapon and what souvenir you took home"
   },
+  "appearance": {
+    "clouds": "crime-clouds",
+    "color": ""
+  },
   "rules": {
     "pt": ["TBD"],
     "en": ["TBD"]

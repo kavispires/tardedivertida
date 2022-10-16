@@ -60,8 +60,8 @@ export function Session({ gameId, gameCollection, getActiveComponent, background
 
   // Update game description as the gameId comes in
   useEffect(() => {
-    setInfo(gameId?.[0] ? GAME_LIST[gameId[0]] : {});
-  }, [gameId]);
+    setInfo(gameCollection ? GAME_LIST[gameCollection] : {});
+  }, [gameCollection]);
 
   // Colorize background
   useEffect(() => {

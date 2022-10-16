@@ -16,6 +16,10 @@
     "pt": "TBD",
     "en": "TBD"
   },
+  "appearance": {
+    "clouds": "cloud",
+    "color": ""
+  },
   "rules": {
     "pt": ["TBD"],
     "en": ["TBD"]

@@ -16,6 +16,10 @@
     "pt": "Você consegue associar imagens com uma palavra? E você consegue associar essas imagens como os outros jogadores?",
     "en": "Can you match the most images with the associated word? Can you match other players?"
   },
+  "appearance": {
+    "clouds": "sky-clouds",
+    "color": ""
+  },
   "rules": {
     "pt": [
       "Em Galeria dos sonhos, somos Caçadores de Sonhos tentando achar uns aos outros em sonhos aleatórios",

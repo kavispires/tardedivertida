@@ -16,6 +16,10 @@
     "pt": "Você é capaz de pensar como o grupo para não correr o risco de ser expulso?",
     "en": "Do you think like the group or are you the sheep about to be kicked out?"
   },
+  "appearance": {
+    "clouds": "sheep-cloud",
+    "color": ""
+  },
   "rules": {
     "pt": [
       "Somos todos ovelhinhas e nosso pasto está super lotado. Precisamos expulsar pelo menos uma de nós para que o pasto fique mais confortável e qual a melhor maneira de fazer isso? Expulsando a ovelha mais diferente de todas! Chega de inclusão!",

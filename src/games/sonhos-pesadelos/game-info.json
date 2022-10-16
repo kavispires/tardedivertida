@@ -16,6 +16,10 @@
     "pt": "Às vezes, sonhos são bem difíceis de contar porque você só consegue lembrar fragmentos e colocar todas ideias juntas pode ser um desafio",
     "en": "Sometimes dreams are very hard to tell because you can only remember so many things among the fragments of your memory and trying to put your ideas together can be a challenge"
   },
+  "appearance": {
+    "clouds": "sky-clouds",
+    "color": ""
+  },
   "rules": {
     "pt": [
       "Em Sonhos e Pesadelos, os jogadores são paranormais num concurso de adivinhar os sonhos dos outros! Quando um jogador consegue adivinhar todos os sonhos corretamente numa mesma rodada, ele vence!",

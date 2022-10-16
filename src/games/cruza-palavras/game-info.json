@@ -16,6 +16,10 @@
     "pt": "Uma grade de palavras e várias coordenadas... você consegue associar todas as palavras?",
     "en": "A word grid and many coordinates... are you able to match all words?"
   },
+  "appearance": {
+    "clouds": "letter-clouds",
+    "color": ""
+  },
   "rules": {
     "pt": ["TBD"],
     "en": [

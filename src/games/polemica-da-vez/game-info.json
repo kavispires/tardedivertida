@@ -16,6 +16,10 @@
     "pt": "Um tópico... Polêmico. Você sabe a sua opinião, mas consegue descobrir a dos seus oponentes?",
     "en": "One... polemic... subject... You know your opinion, but can do guess the opponents' ones?"
   },
+  "appearance": {
+    "clouds": "speech-cloud",
+    "color": ""
+  },
   "rules": {
     "pt": [
       "Você consegue prever se a polêmica da vez realmente está gerando polêmica?",

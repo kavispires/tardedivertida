@@ -16,6 +16,10 @@
     "pt": "Jogadores tentam comunicar através de ondas telepáticas",
     "en": "Players try to communicate using their telepathic waves"
   },
+  "appearance": {
+    "clouds": "retro-cloud",
+    "color": ""
+  },
   "rules": {
     "pt": [
       "Em Onda Telepática, os jogadores competem para ver quem consegue se comunicar melhor telepaticamente! E como medimos isso? Através de um medidor de ondas telepáticas!",

@@ -16,6 +16,10 @@
     "pt": "Estamos em um impasse, em quem você vai atirar? Quem vai sobreviver?",
     "en": "We're in a standoff, who's gonna shoot first? Who's gonna survive?"
   },
+  "appearance": {
+    "clouds": "cloud",
+    "color": ""
+  },
   "rules": {
     "pt": ["TBD"],
     "en": ["TBD"]

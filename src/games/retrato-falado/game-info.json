@@ -16,6 +16,10 @@
     "pt": "Um monstro atacou a pobre testemunha. Será que ela vai conseguir descrever o criminoso",
     "en": "A monster has attacked a poor witness. Will she be able to describe the perpetrator"
   },
+  "appearance": {
+    "clouds": "monster-eye-cloud",
+    "color": ""
+  },
   "rules": {
     "pt": ["TBD"],
     "en": [

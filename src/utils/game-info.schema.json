@@ -51,6 +51,21 @@
       },
       "required": ["pt", "en"]
     },
+    "appearance": {
+      "type": "object",
+      "properties": {
+        "color": {
+          "type": "string"
+        },
+        "clouds": {
+          "type": "string"
+        },
+        "backgroundColor": {
+          "type": "string"
+        }
+      },
+      "required": ["color", "clouds"]
+    },
     "rules": {
       "type": "object",
       "properties": {
@@ -160,6 +175,7 @@
     "rules",
     "playerCount",
     "tags",
-    "available"
+    "available",
+    "background"
   ]
 }
