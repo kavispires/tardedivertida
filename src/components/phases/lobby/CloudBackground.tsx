@@ -53,6 +53,7 @@ function getCloudComponent(type: string) {
     case 'artsy-clouds':
     case 'book-clouds':
     case 'crime-clouds':
+    case 'doors-clouds':
     case 'halloween-clouds':
     case 'letter-clouds':
     case 'one-clouds':
@@ -72,6 +73,7 @@ function getCloudFileName(gameCode: string) {
       E: 'cyber-cloud',
       G: 'sky-clouds',
       H: 'crime-clouds',
+      I: 'doors-clouds',
       L: 'phone-cloud',
       M: 'sheep-cloud',
       N: 'halloween-clouds',
