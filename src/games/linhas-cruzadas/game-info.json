@@ -16,6 +16,10 @@
     "pt": "Desenhe... adivinhe... repita...",
     "en": "Draw... guess... repeat..."
   },
+  "appearance": {
+    "clouds": "phone-cloud",
+    "color": ""
+  },
   "rules": {
     "pt": [
       "Neste jogo, você recebe uma carta e a desenha, daí o próximo jogador tentar adivinhar o que é, daí o próximo jogador desenha a adivinhação, e por ai vai até seu album original volta pra você."

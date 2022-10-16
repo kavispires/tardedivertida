@@ -16,6 +16,10 @@
     "pt": "Existe um impostor entre nós, mas será que ele tem boa lábia para se safar?",
     "en": "There is an impostor among us, but will they be able to fool us all?"
   },
+  "appearance": {
+    "clouds": "crime-clouds",
+    "color": ""
+  },
   "rules": {
     "pt": [
       "O Clube dos Detetives abriu uma nova vaga! E para decidir quem será o novo membro, eles estão fazendo uma dinâmica de grupo para analisar seu poder de análise e persuasão",

@@ -16,6 +16,10 @@
     "pt": "Uma imagem vale mesmo mais que mil palavras? Tente descobrir de qual imagem o contador de histórias está falando",
     "en": "Is an image really worth a thousand words? Try to find out what image is the storyteller referring to"
   },
+  "appearance": {
+    "clouds": "book-clouds",
+    "color": ""
+  },
   "rules": {
     "pt": [
       "Cada rodada alguém é o Contador de Histórias e selecionará uma cara em mão e escreverá uma história sobre ela.",

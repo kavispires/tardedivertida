@@ -16,6 +16,10 @@
     "pt": "Crie palhetas para outros jogadores adivinharem",
     "en": "Create beautiful palettes so other players can guess"
   },
+  "appearance": {
+    "clouds": "cloud",
+    "color": ""
+  },
   "rules": {
     "pt": ["TBD"],
     "en": ["TBD"]

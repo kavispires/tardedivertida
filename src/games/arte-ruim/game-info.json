@@ -16,6 +16,10 @@
     "pt": "Tente identificar as obras-primas criadas por seus oponentes!",
     "en": "Try to guess the masterpieces created by your opponents"
   },
+  "appearance": {
+    "clouds": "artsy-clouds",
+    "color": "#8c4103"
+  },
   "rules": {
     "pt": [
       "Arte Ruim Pra Dedéu é um jogo competitivo que os jogadores tentam adivinhar o maior número de desenhos possíveis",

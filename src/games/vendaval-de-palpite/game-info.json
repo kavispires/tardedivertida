@@ -16,6 +16,10 @@
     "pt": "Uma palavra secreta que sabemos apenas o tema. Consegue descobri-la fazendo associação de palavras?",
     "en": "A secret work with a known category. Can you guess that word by just associating words?"
   },
+  "appearance": {
+    "clouds": "cloud",
+    "color": ""
+  },
   "rules": {
     "pt": ["TBD"],
     "en": ["TBD"]

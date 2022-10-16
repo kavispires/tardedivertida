@@ -16,6 +16,10 @@
     "pt": "Jogadores devem achar as 7 portas corretas para passar na prova de bruxaria final",
     "en": "Players must go through 7 doors to pass the ultimate wizard test"
   },
+  "appearance": {
+    "clouds": "doors-clouds",
+    "color": ""
+  },
   "rules": {
     "pt": ["TBD"],
     "en": ["TBD"]

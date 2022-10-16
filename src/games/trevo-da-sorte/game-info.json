@@ -16,6 +16,10 @@
     "pt": "Adivinhe a combinação correta de folhos do seu trevo de palavras baseado nas dicas dadas por outros jogadores",
     "en": "Guess the write combination of leaves in your word clover based on other player's clues"
   },
+  "appearance": {
+    "clouds": "clover-cloud",
+    "color": ""
+  },
   "rules": {
     "pt": [
       "Em Trevo da Sorte, jogadores tentam adivinhar a combinação correta de cartas nos 'trevos' dos outros.",

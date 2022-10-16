@@ -1,5 +1,5 @@
 {
-  "F": {
+  "naufragos": {
     "$schema": "../../utils/game-info.schema.json",
     "gameCode": "J",
     "gameName": "naufragos",
@@ -17,6 +17,10 @@
       "pt": "Estamos em barcos salva-vidas tentando alcançar a praia, mas buracos não param de surgir... quem sobreviverá?",
       "en": "We're in lifeboats trying to reach the shore, but leaks keep happening... who's gonna survive?"
     },
+    "appearance": {
+      "clouds": "cloud",
+      "color": ""
+    },
     "rules": {
       "pt": ["TBD"],
       "en": ["TBD"]
@@ -33,7 +37,7 @@
       "en": false
     }
   },
-  "Z": {
+  "caminhos-magicos": {
     "$schema": "../../utils/game-info.schema.json",
     "gameCode": "Z",
     "gameName": "caminhos-magicos",
@@ -47,6 +51,10 @@
       "en": ""
     },
     "basedOn": "shtaP citsyM",
+    "appearance": {
+      "clouds": "cloud",
+      "color": ""
+    },
     "summary": {
       "pt": "Jogadores tem que descobrir qual caminho devem seguir num labirinto de palavras usando adjetivos e lógica",
       "en": "Players must find the right path in a word maze using adjectives and logic"
@@ -67,40 +75,7 @@
       "en": false
     }
   },
-  "K": {
-    "$schema": "../../utils/game-info.schema.json",
-    "gameCode": "K",
-    "gameName": "palheta-cores",
-    "version": "decommission",
-    "title": {
-      "pt": "Palheta de Cores",
-      "en": "Color Palette"
-    },
-    "popularName": {
-      "pt": "",
-      "en": ""
-    },
-    "basedOn": "enotnaP",
-    "summary": {
-      "pt": "Em cada rodada escolha a cor que mais combina com as palavras. Quanto mais combinações iguais você faz com outros jogadores, mais pontos você ganha",
-      "en": "Each round you choose a color to match each of the words. For every match with other players, you get points!"
-    },
-    "rules": {
-      "pt": ["TBD"],
-      "en": ["TBD"]
-    },
-    "playerCount": {
-      "recommended": [4, 5, 6],
-      "min": 3,
-      "max": 10
-    },
-    "tags": ["competitive", "pairing"],
-    "available": {
-      "pt": false,
-      "en": false
-    }
-  },
-  "η": {
+  "quem-sou-eu": {
     "$schema": "../../utils/game-info.schema.json",
     "gameCode": "η",
     "gameName": "quem-sou-eu",
@@ -114,6 +89,10 @@
       "en": ""
     },
     "basedOn": "znabdeH/ytirbeleC",
+    "appearance": {
+      "clouds": "cloud",
+      "color": ""
+    },
     "summary": {
       "pt": "Cada jogador é uma celebridade, você consegue adivinhar quem você é com 20 perguntas?",
       "en": "Can you guess who you are with 20 questions?"
@@ -133,7 +112,7 @@
       "en": false
     }
   },
-  "ζ": {
+  "desenho-rapidao": {
     "$schema": "../../utils/game-info.schema.json",
     "gameCode": "ζ",
     "gameName": "desenho-rapidao",
@@ -147,6 +126,10 @@
       "en": ""
     },
     "basedOn": "hsaD eldooD",
+    "appearance": {
+      "clouds": "cloud",
+      "color": ""
+    },
     "summary": {
       "pt": "Uma palavra secreta, uma corrida, vários desenhos! Quem consegue desenhar o mais rápido possível?",
       "en": "One secret word, a race, many drawings! Who can draw as fast as possible?"
@@ -166,7 +149,7 @@
       "en": false
     }
   },
-  "λ": {
+  "te-conheco": {
     "$schema": "../../utils/game-info.schema.json",
     "gameCode": "λ",
     "gameName": "te-conheco",
@@ -180,6 +163,10 @@
       "en": ""
     },
     "basedOn": "eiL enO shturT owT",
+    "appearance": {
+      "clouds": "cloud",
+      "color": ""
+    },
     "summary": {
       "pt": "Você conhece os outros jogadores? Consegue descobrir uma mentira ou adivinhar quem disse o que?",
       "en": "Do you know the other players? Can you spot a lie? Can you match the player with a sentence?"

@@ -97,6 +97,11 @@ type GameInfo = {
   popularName: DualLanguageValue;
   basedOn: string;
   summary: DualLanguageValue;
+  appearance: {
+    clouds: string;
+    color?: string;
+    backgroundColor?: string;
+  };
   rules: {
     pt: string[];
     en: string[];

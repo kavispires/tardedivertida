@@ -16,6 +16,10 @@
     "pt": "Num campeonato aleatório quem você aposta todas suas fichas?",
     "en": "In a random showdown, who will you bet all your chips?"
   },
+  "appearance": {
+    "clouds": "cloud",
+    "color": ""
+  },
   "rules": {
     "pt": [
       "Em Super Campeonato, jogadores apostam em personalidades que eles acham que ganharam os desafios",
