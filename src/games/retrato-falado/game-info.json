@@ -18,7 +18,8 @@
   },
   "appearance": {
     "clouds": "monster-eye-cloud",
-    "color": ""
+    "color": "#9ea63b",
+    "backgroundColor": "rgba(8, 60, 3, 0.5)"
   },
   "rules": {
     "pt": ["TBD"],

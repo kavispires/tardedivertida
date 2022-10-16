@@ -37,7 +37,12 @@ function PhaseTopicSelection({ state, players, info, meta }: PhaseProps) {
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.POLEMICA_DA_VEZ.TOPIC_SELECTION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
-        <RoundAnnouncement round={state.round} onPressButton={goToNextStep} time={4} circleColor="blue">
+        <RoundAnnouncement
+          round={state.round}
+          onPressButton={goToNextStep}
+          time={4}
+          circleColor={info?.appearance?.color}
+        >
           <Instruction contained>
             <Translate
               pt="Cada rodada um novo assunto, a sua opinião e a opinião dos outros."

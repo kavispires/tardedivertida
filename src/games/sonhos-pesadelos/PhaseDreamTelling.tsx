@@ -29,7 +29,13 @@ function PhaseDreamTelling({ state, players, info }: PhaseProps) {
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.SONHOS_PESADELOS.DREAM_TELLING}>
       <StepSwitcher step={step} conditions={[!isUserReady]} players={players}>
         {/* Step 0 */}
-        <RoundAnnouncement round={state.round} buttonText="" onPressButton={goToNextStep} time={5}>
+        <RoundAnnouncement
+          round={state.round}
+          buttonText=""
+          onPressButton={goToNextStep}
+          time={5}
+          circleColor={info?.appearance?.color}
+        >
           <Instruction contained>
             <Translate
               pt="Sabe quando você sonha com uma coisa, mas não consegue explicar? Então..."

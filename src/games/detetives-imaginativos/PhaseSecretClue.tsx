@@ -44,7 +44,7 @@ function PhaseSecretClue({ state, players, info }: PhaseProps) {
           buttonText=" "
           onPressButton={goToNextStep}
           time={5}
-          circleColor="grey"
+          circleColor={info?.appearance?.color}
         />
 
         {/* Step 1 */}

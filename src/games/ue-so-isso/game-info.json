@@ -18,7 +18,8 @@
   },
   "appearance": {
     "clouds": "one-clouds",
-    "color": ""
+    "color": "#1890ff",
+    "backgroundColor": "rgba(233, 185, 81, 0.5)"
   },
   "rules": {
     "pt": [

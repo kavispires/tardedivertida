@@ -65,7 +65,7 @@ function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
           onPressButton={goToNextStep}
           buttonText=" "
           time={5}
-          circleColor="black"
+          circleColor={info?.appearance?.color}
         >
           <ImageCardPreloadHand hand={Object.keys(state.items)} />
         </RoundAnnouncement>

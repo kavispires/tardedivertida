@@ -40,7 +40,7 @@ function PhaseTrickOrTreat({ state, players, info }: PhaseProps) {
           buttonText=" "
           onPressButton={goToNextStep}
           time={5}
-          circleColor="purple"
+          circleColor={info?.appearance?.color}
         >
           <Instruction contained>
             <Translate

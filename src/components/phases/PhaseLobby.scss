@@ -211,56 +211,6 @@
     transform: scale(0.55) translateY(100vh);
   }
 
-  // THEMING RECOLORING
-
-  &--artsy-clouds {
-    background-color: rgba(255, 255, 255, 0.95);
-  }
-
-  &--book-clouds {
-    background-color: rgba(76, 210, 244, 0.5);
-  }
-
-  &--retro-cloud {
-    background-color: rgba(96, 82, 168, 0.8);
-  }
-
-  &--one-clouds {
-    background-color: rgba(233, 185, 81, 0.5);
-  }
-
-  &--monster-eye-cloud {
-    background-color: rgba(8, 60, 3, 0.5);
-  }
-
-  &--eye-cloud {
-    background-color: rgba(46, 33, 13, 0.75);
-  }
-
-  &--sheep-cloud {
-    background-color: rgba(196, 246, 255, 0.75);
-  }
-
-  &--sky-clouds {
-    background-color: rgba(0, 4, 31, 0.75);
-  }
-
-  &--cloud {
-    background: none;
-  }
-
-  &--cyber-cloud {
-    background-color: rgba(37, 37, 37, 0.95);
-  }
-
-  &--crime-clouds {
-    background-color: rgba(35, 35, 35, 0.8);
-  }
-
-  &--halloween-clouds {
-    background-color: rgba(27, 7, 57, 0.8);
-  }
-
   // The cloud itself
 
   &__cloud {

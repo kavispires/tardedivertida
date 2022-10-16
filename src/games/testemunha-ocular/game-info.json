@@ -18,7 +18,8 @@
   },
   "appearance": {
     "clouds": "eye-cloud",
-    "color": ""
+    "color": "#7d8388",
+    "backgroundColor": "rgba(46, 33, 13, 0.75)"
   },
   "rules": {
     "pt": [

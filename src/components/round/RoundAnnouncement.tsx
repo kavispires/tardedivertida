@@ -25,7 +25,7 @@ type RoundAnnouncementProps = {
   className?: string;
   children?: any;
   unskippable?: boolean;
-  circleColor?: Color;
+  circleColor?: string;
 };
 
 export function RoundAnnouncement({
@@ -36,10 +36,12 @@ export function RoundAnnouncement({
   className,
   children,
   unskippable = false,
-  circleColor = 'yellow',
+  circleColor,
 }: RoundAnnouncementProps) {
   useTemporarilyHidePlayersBar();
   const { translate } = useLanguage();
+
+  const circleStyle = circleColor ? { borderColor: circleColor } : {};
 
   return (
     <div className={clsx('round-announcement', className)}>
@@ -48,8 +50,8 @@ export function RoundAnnouncement({
           <img src={translate(roundTitlePt, roundTitleEn)} alt={translate('Rodada', 'Round')} />
         </div>
         <div className={clsx('round-announcement__round-wrapper', getAnimationClass('zoomIn'))}>
-          <div className={clsx('round-announcement__circle', `color-border--${circleColor}`)}></div>
-          <div className={clsx('round-announcement__circle-2', `color-border--${circleColor}`)}></div>
+          <div className="round-announcement__circle" style={circleStyle} />
+          <div className="round-announcement__circle-2" style={circleStyle} />
           <div className="round-announcement__number">{round?.current ?? round ?? 0}</div>
         </div>
 

@@ -13,7 +13,6 @@ import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
 import { StepSelectChallenge } from './StepSelectChallenge';
 import { SelectListIcon } from 'components/icons/SelectListIcon';
-import { ContendersHand } from './components/ContendersHand';
 
 function PhaseChallengeSelection({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -30,7 +29,12 @@ function PhaseChallengeSelection({ state, players, info }: PhaseProps) {
     >
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
-        <RoundAnnouncement round={state.round} onPressButton={goToNextStep} time={4} circleColor="pink">
+        <RoundAnnouncement
+          round={state.round}
+          onPressButton={goToNextStep}
+          time={4}
+          circleColor={info?.appearance?.color}
+        >
           <Instruction contained>
             {state.round.current === state.round.total ? (
               <Translate pt="Rodada final: Somente os finalistas!" en="Final Round: Only finalists" />

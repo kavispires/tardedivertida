@@ -43,7 +43,10 @@ export function PhaseLobby({ players, info, meta }: PhaseLobbyProps) {
       </div>
 
       <AdminMenuDrawer state={{ phase: 'LOBBY', round: { current: 0, total: 0 } }} players={players} />
-      <CloudBackground cloudType={info?.appearance?.clouds} />
+      <CloudBackground
+        cloudType={info?.appearance?.clouds}
+        backgroundColor={info?.appearance?.backgroundColor}
+      />
     </PhaseContainer>
   );
 }

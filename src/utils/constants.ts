@@ -204,9 +204,11 @@ export const THEME_COLORS = {
   HOT_PINK: '#FF47DA',
   LIME: '#1CC41C',
   MIDNIGHT: '#4B2142', // dark teal
-  ORANGE: '#F55E00',
+  ORANGE: '#ea7702',
   PLUMP_PURPLE: '#6052a8',
   RUSSIAN_VIOLET: '#301A4B', // dark purple
+  SLATE: '#7d8388', // gray
   WINE: '#4B2142',
-  WOOD: '#8C4103', // brown
+  WOOD: '#8C4103', // brown,
+  MOSS: '#9ea63b', //green ish
 };
