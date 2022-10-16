@@ -32,7 +32,7 @@ function PhaseClueWriting({ players, state, info }: PhaseProps) {
           onPressButton={goToNextStep}
           buttonText=" "
           time={5}
-          circleColor="forest"
+          circleColor={info?.appearance?.color}
         />
 
         {/* Step 1 */}

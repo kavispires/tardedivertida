@@ -18,7 +18,7 @@
   },
   "appearance": {
     "clouds": "letter-clouds",
-    "color": ""
+    "color": "#227168"
   },
   "rules": {
     "pt": ["TBD"],

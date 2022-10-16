@@ -37,7 +37,7 @@ function PhasePlayersClues({ state, players, info }: PhaseProps) {
           onPressButton={goToNextStep}
           buttonText=" "
           time={5}
-          circleColor="red"
+          circleColor={info?.appearance?.color}
         >
           <RoundsLeftInstruction round={state.round} lastRound={state.lastRound} />
         </RoundAnnouncement>

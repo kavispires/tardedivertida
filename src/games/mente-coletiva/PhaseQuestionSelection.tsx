@@ -28,7 +28,12 @@ function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.MENTE_COLETIVA.QUESTION_SELECTION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
-        <RoundAnnouncement round={state.round} onPressButton={goToNextStep} time={3} circleColor="white">
+        <RoundAnnouncement
+          round={state.round}
+          onPressButton={goToNextStep}
+          time={3}
+          circleColor={info?.appearance?.color}
+        >
           <Instruction contained>
             <Translate
               pt="Somos ovelhinhas e nosso pasto está superlotado!"

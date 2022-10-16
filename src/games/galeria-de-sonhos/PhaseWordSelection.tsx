@@ -36,7 +36,13 @@ function PhaseWordSelection({ players, state, info }: PhaseProps) {
         waitingRoomInstructionType="SERVER"
       >
         {/* Step 0 */}
-        <RoundAnnouncement round={state?.round} onPressButton={goToNextStep} buttonText=" " time={5}>
+        <RoundAnnouncement
+          round={state?.round}
+          onPressButton={goToNextStep}
+          buttonText=" "
+          time={5}
+          circleColor={info?.appearance?.color}
+        >
           <Instruction contained>
             <Translate
               pt="Somos caçadores de sonhos tentando encontrar uns aos outros..."

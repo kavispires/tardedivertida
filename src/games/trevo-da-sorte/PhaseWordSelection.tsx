@@ -28,7 +28,12 @@ function PhaseWordSelection({ players, state, info }: PhaseProps) {
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.TREVO_DA_SORTE.WORD_SELECTION}>
       <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady, !isUserReady]} players={players}>
         {/* Step 0 */}
-        <RoundAnnouncement round={state.round} onPressButton={goToNextStep} time={4} circleColor="green" />
+        <RoundAnnouncement
+          round={state.round}
+          onPressButton={goToNextStep}
+          time={4}
+          circleColor={info?.appearance?.color}
+        />
 
         {/* Step 1 */}
         <PhaseAnnouncement

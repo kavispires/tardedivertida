@@ -39,7 +39,7 @@ function PhaseDialClue({ players, state, info }: PhaseProps) {
           buttonText=" "
           onPressButton={goToNextStep}
           time={5}
-          circleColor="pink"
+          circleColor={info?.appearance?.color}
         ></RoundAnnouncement>
 
         {/* Step 1 */}

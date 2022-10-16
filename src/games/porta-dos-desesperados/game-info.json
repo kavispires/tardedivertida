@@ -18,7 +18,7 @@
   },
   "appearance": {
     "clouds": "doors-clouds",
-    "color": ""
+    "color": "#4b2142"
   },
   "rules": {
     "pt": ["TBD"],

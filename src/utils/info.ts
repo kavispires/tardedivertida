@@ -25,7 +25,7 @@ import TREVO_DA_SORTE from 'games/trevo-da-sorte/game-info.json';
 
 import comingSoonGames from 'assets/data/coming-soon-games.json';
 
-const others = comingSoonGames as Record<GameCode, GameInfo>;
+const others = comingSoonGames as Record<GameName, GameInfo>;
 
 export const GAME_LIST: Record<GameCode, GameInfo> = {
   ...others,

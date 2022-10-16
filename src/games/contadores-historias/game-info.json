@@ -18,7 +18,8 @@
   },
   "appearance": {
     "clouds": "book-clouds",
-    "color": ""
+    "color": "#1890ff",
+    "backgroundColor": "rgba(76, 210, 244, 0.5)"
   },
   "rules": {
     "pt": [

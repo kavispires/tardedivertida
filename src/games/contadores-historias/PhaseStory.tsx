@@ -34,7 +34,12 @@ function PhaseStory({ state, players, info }: PhaseProps) {
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.CONTADORES_HISTORIAS.STORY}>
       <StepSwitcher step={step} conditions={[!isUserReady]} players={players}>
         {/* Step 0 */}
-        <RoundAnnouncement round={state.round} onPressButton={goToNextStep} time={5} circleColor="blue" />
+        <RoundAnnouncement
+          round={state.round}
+          onPressButton={goToNextStep}
+          time={5}
+          circleColor={info?.appearance?.color}
+        />
 
         {/* Step 1 */}
         <PhaseAnnouncement

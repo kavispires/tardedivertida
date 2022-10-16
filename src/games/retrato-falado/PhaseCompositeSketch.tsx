@@ -37,7 +37,7 @@ function PhaseCompositeSketch({ players, state, info }: PhaseProps) {
           buttonText=" "
           time={7}
           unskippable
-          circleColor="green"
+          circleColor={info?.appearance?.color}
         >
           <Instruction contained>
             <Translate

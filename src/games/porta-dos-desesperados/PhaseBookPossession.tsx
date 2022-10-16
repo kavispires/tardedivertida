@@ -44,7 +44,7 @@ function PhaseBookPossession({ players, state, info }: PhaseProps) {
           onPressButton={goToNextStep}
           buttonText=" "
           time={state.round.current === 1 ? 20 : 7}
-          circleColor="black"
+          circleColor={info?.appearance?.color}
           unskippable
         >
           {state.round.current === 1 ? (

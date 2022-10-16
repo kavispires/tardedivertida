@@ -99,7 +99,7 @@ type GameInfo = {
   summary: DualLanguageValue;
   appearance: {
     clouds: string;
-    color?: string;
+    color: string;
     backgroundColor?: string;
   };
   rules: {

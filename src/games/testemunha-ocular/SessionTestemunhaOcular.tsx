@@ -16,7 +16,7 @@ import 'assets/fonts/architects-daughter.scss';
 
 ConfigProvider.config({
   theme: {
-    primaryColor: THEME_COLORS.DEFAULT,
+    primaryColor: THEME_COLORS.SLATE,
   },
 });
 

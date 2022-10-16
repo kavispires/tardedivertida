@@ -13,7 +13,7 @@ import PhaseGameOver from './PhaseGameOver';
 
 ConfigProvider.config({
   theme: {
-    primaryColor: THEME_COLORS.MIDNIGHT,
+    primaryColor: THEME_COLORS.ORANGE,
   },
 });
 

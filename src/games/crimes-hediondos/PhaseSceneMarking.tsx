@@ -31,7 +31,13 @@ function PhaseSceneMarking({ players, state, info }: PhaseProps) {
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.CRIMES_HEDIONDOS.SCENE_MARKING}>
       <StepSwitcher step={step} conditions={[!user.ready, !user.ready, !user.ready]} players={players}>
         {/* Step 0 */}
-        <RoundAnnouncement round={state?.round} onPressButton={goToNextStep} buttonText=" " time={5} />
+        <RoundAnnouncement
+          round={state?.round}
+          onPressButton={goToNextStep}
+          buttonText=" "
+          time={5}
+          circleColor={info?.appearance?.color}
+        />
 
         {/* Step 1 */}
         <PhaseAnnouncement

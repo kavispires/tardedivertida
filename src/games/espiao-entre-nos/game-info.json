@@ -18,7 +18,8 @@
   },
   "appearance": {
     "clouds": "cyber-cloud",
-    "color": ""
+    "color": "#1CC41C",
+    "backgroundColor": "rgba(37, 37, 37, 0.95)"
   },
   "rules": {
     "pt": [

@@ -53,15 +53,19 @@ function getCloudComponent(type: string) {
 
 type CloudBackgroundProps = {
   cloudType?: string;
+  backgroundColor?: string;
 };
 
-export function CloudBackground({ cloudType = 'cloud' }: CloudBackgroundProps) {
+export function CloudBackground({ cloudType = 'cloud', backgroundColor }: CloudBackgroundProps) {
   const CloudTypeComponent = getCloudComponent(cloudType);
 
   const baseClass = 'cloud-background';
 
   return (
-    <div className={clsx(baseClass, `${baseClass}--${cloudType}`)}>
+    <div
+      className={clsx(baseClass, `${baseClass}--${cloudType}`)}
+      style={backgroundColor ? { backgroundColor } : {}}
+    >
       <div className="cloud-background__animation-0">
         <CloudTypeComponent index={0} type={cloudType} />
       </div>
