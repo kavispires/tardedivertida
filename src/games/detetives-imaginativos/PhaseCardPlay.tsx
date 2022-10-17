@@ -14,6 +14,7 @@ import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
 import { StepPlayCard } from './StepPlayCard';
 import { HangingPhotographIcon } from 'components/icons/HangingPhotographIcon';
+import { CardHighlight } from 'components/metrics/CardHighlight';
 
 function PhaseCardPlay({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -42,8 +43,20 @@ function PhaseCardPlay({ state, players, info }: PhaseProps) {
         >
           <Instruction>
             <Translate
-              pt="Agora, jogadores selecionarão duas cartas, uma de cada vez, como evidência que eles não sao o impostor. Enquanto isso, o impostor está prestando bastante atenção nas cartas selecionadas e escolhendo algo que o(a) ajude a passar despercebido."
-              en="Now players will play 2 cards, one at a time, as evidence that they are not the impostor while the impostor is looking closely to what others are playing and trying to go unnoticed."
+              pt={
+                <>
+                  Agora, jogadores selecionarão <CardHighlight>2</CardHighlight> cartas, uma de cada vez, como
+                  evidência que eles não sao o impostor. Enquanto isso, o impostor está prestando bastante
+                  atenção nas cartas selecionadas e escolhendo algo que o(a) ajude a passar despercebido.
+                </>
+              }
+              en={
+                <>
+                  Now players will play <CardHighlight>2</CardHighlight> cards, one at a time, as evidence
+                  that they are not the impostor while the impostor is looking closely to what others are
+                  playing and trying to go unnoticed.
+                </>
+              }
             />
           </Instruction>
         </PhaseAnnouncement>
