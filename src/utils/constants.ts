@@ -89,6 +89,13 @@ export const TAG_DICT: TagDict = {
     },
     color: 'geekblue',
   },
+  betting: {
+    label: {
+      en: 'betting',
+      pt: 'apostas',
+    },
+    color: 'geekblue',
+  },
   // About Feeling inducing
   'push-your-luck': {
     label: {

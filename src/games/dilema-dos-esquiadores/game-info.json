@@ -30,7 +30,7 @@
     "min": 2,
     "max": 10
   },
-  "tags": ["betting", "voting"],
+  "tags": ["competitive", "same-time", "betting", "voting"],
   "available": {
     "pt": false,
     "en": false
