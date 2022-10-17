@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/tardedivertida/static/css/main.6018f0cf.css",
-    "main.js": "/tardedivertida/static/js/main.9b4755ac.js",
-    "page-hub.js": "/tardedivertida/static/js/page-hub.16371c99.chunk.js",
+    "main.css": "/tardedivertida/static/css/main.38344e82.css",
+    "main.js": "/tardedivertida/static/js/main.24c8ae2a.js",
+    "page-hub.js": "/tardedivertida/static/js/page-hub.8c5dc99d.chunk.js",
     "page-game.js": "/tardedivertida/static/js/page-game.f27f189a.chunk.js",
-    "page-showcase.js": "/tardedivertida/static/js/page-showcase.9d528d67.chunk.js",
+    "page-showcase.js": "/tardedivertida/static/js/page-showcase.f162cdac.chunk.js",
     "page-dev-icons.js": "/tardedivertida/static/js/page-dev-icons.05adfd38.chunk.js",
     "page-dev-colors.js": "/tardedivertida/static/js/page-dev-colors.baefb797.chunk.js",
     "page-dev-resources.js": "/tardedivertida/static/js/page-dev-resources.f5b8663c.chunk.js",
@@ -57,7 +57,7 @@
     "static/js/2643.86fd7340.chunk.js": "/tardedivertida/static/js/2643.86fd7340.chunk.js",
     "static/js/4267.f1b0981a.chunk.js": "/tardedivertida/static/js/4267.f1b0981a.chunk.js",
     "static/js/6137.f4e2d130.chunk.js": "/tardedivertida/static/js/6137.f4e2d130.chunk.js",
-    "static/js/4862.d2add256.chunk.js": "/tardedivertida/static/js/4862.d2add256.chunk.js",
+    "static/js/4862.8f9a7148.chunk.js": "/tardedivertida/static/js/4862.8f9a7148.chunk.js",
     "static/js/8068.50c8ac9c.chunk.js": "/tardedivertida/static/js/8068.50c8ac9c.chunk.js",
     "static/js/7323.b2f9371d.chunk.js": "/tardedivertida/static/js/7323.b2f9371d.chunk.js",
     "static/js/5495.c25fe243.chunk.js": "/tardedivertida/static/js/5495.c25fe243.chunk.js",
@@ -96,11 +96,11 @@
     "static/media/round-title-en.svg": "/tardedivertida/static/media/round-title-en.2ad07e1f265a85634ad7940a33f96552.svg",
     "static/media/round-title-pt.svg": "/tardedivertida/static/media/round-title-pt.2e3f9c1deb85d58d118aa6e3dfa7af23.svg",
     "index.html": "/tardedivertida/index.html",
-    "main.6018f0cf.css.map": "/tardedivertida/static/css/main.6018f0cf.css.map",
-    "main.9b4755ac.js.map": "/tardedivertida/static/js/main.9b4755ac.js.map",
-    "page-hub.16371c99.chunk.js.map": "/tardedivertida/static/js/page-hub.16371c99.chunk.js.map",
+    "main.38344e82.css.map": "/tardedivertida/static/css/main.38344e82.css.map",
+    "main.24c8ae2a.js.map": "/tardedivertida/static/js/main.24c8ae2a.js.map",
+    "page-hub.8c5dc99d.chunk.js.map": "/tardedivertida/static/js/page-hub.8c5dc99d.chunk.js.map",
     "page-game.f27f189a.chunk.js.map": "/tardedivertida/static/js/page-game.f27f189a.chunk.js.map",
-    "page-showcase.9d528d67.chunk.js.map": "/tardedivertida/static/js/page-showcase.9d528d67.chunk.js.map",
+    "page-showcase.f162cdac.chunk.js.map": "/tardedivertida/static/js/page-showcase.f162cdac.chunk.js.map",
     "page-dev-icons.05adfd38.chunk.js.map": "/tardedivertida/static/js/page-dev-icons.05adfd38.chunk.js.map",
     "page-dev-colors.baefb797.chunk.js.map": "/tardedivertida/static/js/page-dev-colors.baefb797.chunk.js.map",
     "page-dev-resources.f5b8663c.chunk.js.map": "/tardedivertida/static/js/page-dev-resources.f5b8663c.chunk.js.map",
@@ -142,7 +142,7 @@
     "2643.86fd7340.chunk.js.map": "/tardedivertida/static/js/2643.86fd7340.chunk.js.map",
     "4267.f1b0981a.chunk.js.map": "/tardedivertida/static/js/4267.f1b0981a.chunk.js.map",
     "6137.f4e2d130.chunk.js.map": "/tardedivertida/static/js/6137.f4e2d130.chunk.js.map",
-    "4862.d2add256.chunk.js.map": "/tardedivertida/static/js/4862.d2add256.chunk.js.map",
+    "4862.8f9a7148.chunk.js.map": "/tardedivertida/static/js/4862.8f9a7148.chunk.js.map",
     "8068.50c8ac9c.chunk.js.map": "/tardedivertida/static/js/8068.50c8ac9c.chunk.js.map",
     "7323.b2f9371d.chunk.js.map": "/tardedivertida/static/js/7323.b2f9371d.chunk.js.map",
     "5495.c25fe243.chunk.js.map": "/tardedivertida/static/js/5495.c25fe243.chunk.js.map",
@@ -173,7 +173,7 @@
     "6500.62bd8346.chunk.js.map": "/tardedivertida/static/js/6500.62bd8346.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6018f0cf.css",
-    "static/js/main.9b4755ac.js"
+    "static/css/main.38344e82.css",
+    "static/js/main.24c8ae2a.js"
   ]
 }
