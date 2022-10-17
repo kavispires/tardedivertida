@@ -1,0 +1,38 @@
+{
+  "$schema": "../../utils/game-info.schema.json",
+  "gameCode": "Z",
+  "gameName": "caminhos-magicos",
+  "version": "none",
+  "title": {
+    "pt": "Caminhos Mágicos",
+    "en": "Magic Pathways"
+  },
+  "popularName": {
+    "pt": "Do labirinto de palavras",
+    "en": ""
+  },
+  "basedOn": "shtaP citsyM",
+  "appearance": {
+    "clouds": "cloud",
+    "color": ""
+  },
+  "summary": {
+    "pt": "Jogadores tem que descobrir qual caminho devem seguir num labirinto de palavras usando adjetivos e lógica",
+    "en": "Players must find the right path in a word maze using adjectives and logic"
+  },
+  "rules": {
+    "pt": ["TBD"],
+    "en": ["TBD"]
+  },
+  "playerCount": {
+    "best": 4,
+    "recommended": [4, 5, 6],
+    "min": 2,
+    "max": 8
+  },
+  "tags": ["competitive", "guessing", "same-time", "pairing"],
+  "available": {
+    "pt": false,
+    "en": false
+  }
+}

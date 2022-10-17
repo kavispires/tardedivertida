@@ -22,13 +22,7 @@ function SessionPalhetaDeCores({ gameId }: SessionProps) {
         return PhaseRules;
       case PHASES.DEFAULT.SETUP:
         return PhaseSetup;
-      case PHASES.PALHETA_DE_CORES.HINT_GIVING:
-        return PhasePlaceholder;
-      case PHASES.PALHETA_DE_CORES.HINT_RECEIVING:
-        return PhasePlaceholder;
-      case PHASES.PALHETA_DE_CORES.GUESS_THE_CODE:
-        return PhasePlaceholder;
-      case PHASES.PALHETA_DE_CORES.SOLUTION:
+      case PHASES.PALHETA_DE_CORES.UNKNOWN:
         return PhasePlaceholder;
       case PHASES.DEFAULT.GAME_OVER:
         return PhasePlaceholder;

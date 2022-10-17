@@ -1,0 +1,38 @@
+{
+  "$schema": "../../utils/game-info.schema.json",
+  "gameCode": "ι",
+  "gameName": "template",
+  "version": "planned",
+  "title": {
+    "pt": "Template",
+    "en": "Template"
+  },
+  "popularName": {
+    "pt": "",
+    "en": ""
+  },
+  "basedOn": "Template",
+  "summary": {
+    "pt": "TBD",
+    "en": "TBD"
+  },
+  "appearance": {
+    "clouds": "cloud",
+    "color": "",
+    "backgroundColor": ""
+  },
+  "rules": {
+    "pt": ["TBD"],
+    "en": ["TBD"]
+  },
+  "playerCount": {
+    "recommended": [4, 5, 6],
+    "min": 2,
+    "max": 10
+  },
+  "tags": [""],
+  "available": {
+    "pt": false,
+    "en": false
+  }
+}

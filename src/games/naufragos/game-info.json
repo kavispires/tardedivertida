@@ -1,0 +1,38 @@
+{
+  "$schema": "../../utils/game-info.schema.json",
+  "gameCode": "J",
+  "gameName": "naufragos",
+  "version": "none",
+  "title": {
+    "pt": "Náufragos",
+    "en": "Castaways"
+  },
+  "popularName": {
+    "pt": "Do barco",
+    "en": ""
+  },
+  "basedOn": "efilstaoB",
+  "summary": {
+    "pt": "Estamos em barcos salva-vidas tentando alcançar a praia, mas buracos não param de surgir... quem sobreviverá?",
+    "en": "We're in lifeboats trying to reach the shore, but leaks keep happening... who's gonna survive?"
+  },
+  "appearance": {
+    "clouds": "cloud",
+    "color": ""
+  },
+  "rules": {
+    "pt": ["TBD"],
+    "en": ["TBD"]
+  },
+  "playerCount": {
+    "best": 6,
+    "recommended": [5, 6],
+    "min": 4,
+    "max": 6
+  },
+  "tags": ["competitive", "voting"],
+  "available": {
+    "pt": false,
+    "en": false
+  }
+}
