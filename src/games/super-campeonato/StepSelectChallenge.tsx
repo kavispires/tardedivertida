@@ -12,6 +12,7 @@ import { Translate } from 'components/language';
 import { TransparentButton } from 'components/buttons';
 import { Card } from 'components/cards';
 import { ContendersHand } from './components/ContendersHand';
+import { PointsHighlight } from 'components/metrics/PointsHighlight';
 
 type StepSelectChallengeProps = {
   onSubmitChallenge: GenericFunction;
@@ -57,7 +58,7 @@ export function StepSelectChallenge({
                 <br />
                 Selecione o desafio que você acha que um dos seus competidores tem mais change de vencer.
                 <br />
-                Você ganha 2 pontos se ele(a) vencer.
+                Você ganha <PointsHighlight>2</PointsHighlight> pontos se ele(a) vencer.
               </>
             }
             en={
@@ -65,7 +66,7 @@ export function StepSelectChallenge({
                 <br />
                 Select a challenge you think one of your contenders have the best chance of winning.
                 <br />
-                You get 2 points if they win.
+                You get <PointsHighlight>2</PointsHighlight> points if they win.
               </>
             }
           />
