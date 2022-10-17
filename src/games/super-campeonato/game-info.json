@@ -44,7 +44,7 @@
     "min": 3,
     "max": 30
   },
-  "tags": ["competitive", "discussion", "voting"],
+  "tags": ["competitive", "betting", "discussion", "voting"],
   "available": {
     "pt": true,
     "en": true

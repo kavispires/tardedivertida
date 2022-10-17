@@ -1,0 +1,38 @@
+{
+  "$schema": "../../utils/game-info.schema.json",
+  "gameCode": "CC",
+  "gameName": "cinegrafistas-amadores",
+  "version": "planned",
+  "title": {
+    "pt": "Cinegrafistas Amadores",
+    "en": "Amateur Cinematographers"
+  },
+  "popularName": {
+    "pt": "",
+    "en": ""
+  },
+  "basedOn": "'tcefreP erutciP'",
+  "summary": {
+    "pt": "Jogadores tentam montar uma foto baseados nas pistas",
+    "en": "Players try to set up a picture based on clues"
+  },
+  "appearance": {
+    "clouds": "cloud",
+    "color": "",
+    "backgroundColor": ""
+  },
+  "rules": {
+    "pt": ["TBD"],
+    "en": ["TBD"]
+  },
+  "playerCount": {
+    "recommended": [4, 5, 6],
+    "min": 2,
+    "max": 10
+  },
+  "tags": ["same-time", "voting"],
+  "available": {
+    "pt": false,
+    "en": false
+  }
+}

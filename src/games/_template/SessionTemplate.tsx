@@ -13,7 +13,7 @@ ConfigProvider.config({
   },
 });
 
-function SessionInstrumentosCodificados({ gameId }: SessionProps) {
+function SessionTemplate({ gameId }: SessionProps) {
   function getActiveComponent(phase: string) {
     switch (phase) {
       case PHASES.DEFAULT.LOBBY:
@@ -22,7 +22,7 @@ function SessionInstrumentosCodificados({ gameId }: SessionProps) {
         return PhaseRules;
       case PHASES.DEFAULT.SETUP:
         return PhaseSetup;
-      case PHASES.INSTRUMENTOS_CODIFICADOS.UNKNOWN:
+      case PHASES.TEMPLATE.UNKNOWN:
         return PhasePlaceholder;
       case PHASES.DEFAULT.GAME_OVER:
         return PhasePlaceholder;
@@ -36,8 +36,9 @@ function SessionInstrumentosCodificados({ gameId }: SessionProps) {
       gameId={gameId}
       gameCollection={GAME_COLLECTION.INSTRUMENTOS_CODIFICADOS}
       getActiveComponent={getActiveComponent}
+      backgroundClassName="xx-background"
     />
   );
 }
 
-export default SessionInstrumentosCodificados;
+export default SessionTemplate;

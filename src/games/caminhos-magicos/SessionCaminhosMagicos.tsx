@@ -13,7 +13,7 @@ ConfigProvider.config({
   },
 });
 
-function SessionInstrumentosCodificados({ gameId }: SessionProps) {
+function SessionCaminhosMagicos({ gameId }: SessionProps) {
   function getActiveComponent(phase: string) {
     switch (phase) {
       case PHASES.DEFAULT.LOBBY:
@@ -22,7 +22,7 @@ function SessionInstrumentosCodificados({ gameId }: SessionProps) {
         return PhaseRules;
       case PHASES.DEFAULT.SETUP:
         return PhaseSetup;
-      case PHASES.INSTRUMENTOS_CODIFICADOS.UNKNOWN:
+      case PHASES.CAMINHOS_MAGICOS.UNKNOWN:
         return PhasePlaceholder;
       case PHASES.DEFAULT.GAME_OVER:
         return PhasePlaceholder;
@@ -34,10 +34,11 @@ function SessionInstrumentosCodificados({ gameId }: SessionProps) {
   return (
     <Session
       gameId={gameId}
-      gameCollection={GAME_COLLECTION.INSTRUMENTOS_CODIFICADOS}
+      gameCollection={GAME_COLLECTION.CAMINHOS_MAGICOS}
       getActiveComponent={getActiveComponent}
+      backgroundClassName="z-background"
     />
   );
 }
 
-export default SessionInstrumentosCodificados;
+export default SessionCaminhosMagicos;
