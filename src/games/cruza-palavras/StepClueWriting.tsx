@@ -35,8 +35,8 @@ export function StepClueWriting({ grid, user, onSubmitClue, players }: StepClueW
 
       <Instruction contained>
         <Translate
-          pt="Clique no ícone azul e escreva sua dica. Sua dica deve conter apenas uma palavra."
-          en="Click on the blue icon and write your clue. Your clue must be a single word clue."
+          pt="Clique no ícone na tabela e escreva sua dica. Sua dica deve conter apenas uma palavra."
+          en="Click on the icon on the table cell and write your clue. Your clue must be a single word clue."
         />
       </Instruction>
 
