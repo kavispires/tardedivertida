@@ -1,7 +1,11 @@
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
+import { BotHighlight } from 'components/metrics/BotHighlight';
+import { CardHighlight } from 'components/metrics/CardHighlight';
+import { PlayerHighlight } from 'components/metrics/PlayerHighlight';
+import { PlayersHighlight } from 'components/metrics/PlayersHighlight';
+import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { Instruction } from 'components/text';
-import { CardHighlight, PlayerHighlight, PlayersHighlight, PointsHighlight } from './Highlights';
 
 type WordSelectionRulesProps = {
   scout: GamePlayer;
@@ -167,9 +171,9 @@ export function BotsRules() {
       <Translate
         pt={
           <>
-            Em um jogo com bots, 2 jogadores-robôs são adicionados ao jogo.
+            Em um jogo com bots, <BotHighlight>3</BotHighlight> jogadores-robôs são adicionados ao jogo.
             <br />
-            Antes da fase do Bingo dos Sonhos, os dois bots entram em ação e selecionam cartas segundo se
+            Antes da fase do Bingo dos Sonhos, os três bots entram em ação e selecionam cartas segundo se
             seguinte lógica:
             <br />
             O bot A seleciona todas as cartas que foram mais selecionadas pelos jogadores.
@@ -181,9 +185,9 @@ export function BotsRules() {
         }
         en={
           <>
-            In a game with bos, the 2 bots are added to the game.
+            In a game with bos, the <BotHighlight>3</BotHighlight> bots are added to the game.
             <br />
-            Before the Dream Bingo phase, the two bots select cards based on a pre-determined logic:
+            Before the Dream Bingo phase, the three bots select cards based on a pre-determined logic:
             <br />
             Bot A select all most visited cards.
             <br />

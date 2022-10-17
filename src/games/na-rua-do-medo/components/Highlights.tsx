@@ -2,9 +2,7 @@ import clsx from 'clsx';
 import { CandyIcon } from 'components/icons/CandyIcon';
 import { IconAvatar } from 'components/icons/IconAvatar';
 import { TabletIcon } from 'components/icons/TabletIcon';
-import { MetricHighlight, MetricHighlightProps } from 'components/text/MetricHighlight';
-
-type HighlightProps = Pick<MetricHighlightProps, 'children' | 'type'>;
+import { HighlightProps, MetricHighlight } from 'components/metrics/MetricHighlight';
 
 export function CandyHighlight({ children, type }: HighlightProps) {
   return (

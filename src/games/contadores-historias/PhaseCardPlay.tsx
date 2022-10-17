@@ -13,7 +13,7 @@ import { Instruction } from 'components/text';
 import { StepPlayCard } from './StepPlayCard';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { ImageCardsIcon } from 'components/icons/ImageCardsIcon';
-import { PointsHighlight } from './components/Highlights';
+import { PointsHighlight } from 'components/metrics/PointsHighlight';
 
 function PhaseCardPlay({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();

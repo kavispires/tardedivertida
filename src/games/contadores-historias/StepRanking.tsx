@@ -9,7 +9,7 @@ import { StepRankingWrapper } from 'components/ranking';
 import { PopoverRule } from 'components/rules';
 import { Instruction } from 'components/text';
 import { ScoringRules } from './components/RulesBlobs';
-import { PointsHighlight } from './components/Highlights';
+import { PointsHighlight } from 'components/metrics/PointsHighlight';
 
 type StepRankingProps = {
   players: GamePlayers;

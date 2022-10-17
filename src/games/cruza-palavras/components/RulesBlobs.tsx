@@ -1,4 +1,5 @@
 import { Translate } from 'components/language';
+import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { Instruction } from 'components/text';
 
 export function WritingCluesRule({ playerCount }: { playerCount: number }) {
@@ -38,24 +39,29 @@ export function ScoringRule({ playerCount }: { playerCount: number }) {
       <Translate
         pt={
           <>
-            Você ganha 2 pontos para cada célula com uma resposta correta sua.
+            Você ganha <PointsHighlight>+2</PointsHighlight> pontos para cada célula com uma resposta correta
+            sua.
             <br />
-            + 1 ponto para cada célula com uma dica mas uma resposta errada sua.
+            <PointsHighlight>+1</PointsHighlight> ponto para cada célula com uma dica mas uma resposta errada
+            sua.
             <br />
-            + 1 ponto para cada voto correto que sua dica recebeu.
+            <PointsHighlight>+1</PointsHighlight> ponto para cada voto correto que sua dica recebeu.
             <br />
-            Mas se ninguém acertar sua dica, você perde {playerCount} pontos.
+            Mas se ninguém acertar sua dica, você perde{' '}
+            <PointsHighlight type="negative">{playerCount}</PointsHighlight> pontos.
           </>
         }
         en={
           <>
-            You get 2 points for each cell with your correct answer.
+            You get <PointsHighlight>+2</PointsHighlight> points for each cell with your correct answer.
             <br />
-            + 1 point for each cell with a clue but with a wrong answer of yours.
+            <PointsHighlight>+1</PointsHighlight> point for each cell with a clue but with a wrong answer of
+            yours.
             <br />
-            + 1 point for each correct vote your clue received.
+            <PointsHighlight>+1</PointsHighlight> point for each correct vote your clue received.
             <br />
-            But if nobody gets your clue correctly, you lose {playerCount} points.
+            But if nobody gets your clue correctly, you lose{' '}
+            <PointsHighlight type="negative">{playerCount}</PointsHighlight> points.
           </>
         }
       />
