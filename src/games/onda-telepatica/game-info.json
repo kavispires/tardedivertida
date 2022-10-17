@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "O",
   "gameName": "onda-telepatica",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "title": {
     "pt": "Onda Telepática",
     "en": "Telepathic Waves"
