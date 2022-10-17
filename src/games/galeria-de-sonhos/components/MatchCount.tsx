@@ -5,7 +5,9 @@ import { pluralize } from 'utils/helpers';
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { StarPoints } from 'components/points';
-import { PlayerHighlight, PlayersHighlight, PointsHighlight } from './Highlights';
+import { PlayersHighlight } from 'components/metrics/PlayersHighlight';
+import { PlayerHighlight } from 'components/metrics/PlayerHighlight';
+import { PointsHighlight } from 'components/metrics/PointsHighlight';
 
 type MatchCountProps = {
   matchCount: number;

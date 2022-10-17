@@ -25,7 +25,7 @@ import { StepPlayDream } from './StepPlayDream';
 import { StepAnnounceDream } from './StepAnnounceDream';
 import { DoorSignIcon } from 'components/icons/DoorSignIcon';
 import { NightmareIcon } from 'components/icons/NightmareIcon';
-import { PointsHighlight } from './components/Highlights';
+import { PointsHighlight } from 'components/metrics/PointsHighlight';
 
 function PhaseCardPlay({ players, state, info, meta }: PhaseProps) {
   const { translate } = useLanguage();

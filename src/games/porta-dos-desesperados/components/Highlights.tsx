@@ -3,9 +3,7 @@ import { MagicCrystalIcon } from 'components/icons/MagicCrystalIcon';
 import { MagicDoorIcon } from 'components/icons/MagicDoorIcon';
 import { MagicHourGlassIcon } from 'components/icons/MagicHourGlassIcon';
 import { MagicBookIcon } from 'components/icons/MagicBookIcon';
-import { MetricHighlight, MetricHighlightProps } from 'components/text/MetricHighlight';
-
-type HighlightProps = Pick<MetricHighlightProps, 'children' | 'type'>;
+import { HighlightProps, MetricHighlight } from 'components/metrics/MetricHighlight';
 
 export function BookHighlight({ children }: HighlightProps) {
   return <MetricHighlight icon={<MagicBookIcon />}>{children}</MetricHighlight>;

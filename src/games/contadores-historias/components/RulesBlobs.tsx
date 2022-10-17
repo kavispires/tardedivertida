@@ -1,7 +1,7 @@
 import { Avatar } from 'components/avatars';
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
-import { PointsHighlight } from './Highlights';
+import { PointsHighlight } from 'components/metrics/PointsHighlight';
 
 export function VotingRules(): JSX.Element {
   return (

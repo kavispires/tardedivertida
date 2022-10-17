@@ -3,6 +3,8 @@ import clsx from 'clsx';
 // Components
 import { IconAvatar } from 'components/icons/IconAvatar';
 
+import { AvatarSize } from 'antd/lib/avatar/SizeContext';
+
 export type MetricHighlightProps = {
   /**
    * The text to be highlighted
@@ -17,15 +19,27 @@ export type MetricHighlightProps = {
    */
   type?: 'positive' | 'negative' | 'default';
   /**
+   *
+   */
+  iconSize?: AvatarSize;
+  /**
    * Custom class
    */
   className?: string;
 };
 
-export function MetricHighlight({ children, icon, type, className }: MetricHighlightProps) {
+export function MetricHighlight({
+  children,
+  icon,
+  type,
+  className,
+  iconSize = 'small',
+}: MetricHighlightProps) {
   return (
     <span className={clsx('metric-highlight', type && `metric-highlight--${type}`, className)}>
-      {children} <IconAvatar size="small" icon={icon} />
+      {children} <IconAvatar size={iconSize} icon={icon} />
     </span>
   );
 }
+
+export type HighlightProps = Pick<MetricHighlightProps, 'children' | 'type' | 'iconSize' | 'className'>;
