@@ -17,13 +17,14 @@ const sortTags = (tags: string[]) => {
     voting: 7,
     pairing: 8,
     'push-your-luck': 9,
-    'brain-burner': 10,
-    discussion: 11,
-    timed: 12,
-    traitor: 13,
-    images: 14,
-    achievements: 15,
-    'mobile-friendly': 16,
+    betting: 10,
+    'brain-burner': 11,
+    discussion: 12,
+    timed: 13,
+    traitor: 14,
+    images: 15,
+    achievements: 16,
+    'mobile-friendly': 17,
   };
 
   const sortedTags: string[] = [];
