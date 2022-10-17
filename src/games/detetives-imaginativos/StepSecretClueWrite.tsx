@@ -8,6 +8,7 @@ import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { FloatingHand, ImageCardHand } from 'components/cards';
+import { CardHighlight } from 'components/metrics/CardHighlight';
 // Components
 
 type SecretClueWriteProps = {
@@ -41,8 +42,16 @@ export function StepSecretClueWrite({ user, onSubmitClue }: SecretClueWriteProps
         <ul>
           <li>
             <Translate
-              pt="Escreva uma pista que relacione com duas das suas cartas."
-              en="Write a clue that relates to two of your cards."
+              pt={
+                <>
+                  Escreva uma pista que relacione com <CardHighlight>2</CardHighlight> cartas suas.
+                </>
+              }
+              en={
+                <>
+                  Write a clue that relates to <CardHighlight>2</CardHighlight> of your cards.
+                </>
+              }
             />
           </li>
           <li>
