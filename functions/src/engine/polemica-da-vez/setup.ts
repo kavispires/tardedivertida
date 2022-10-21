@@ -139,7 +139,7 @@ export const prepareResolutionPhase = async (
   const pastTopics = [
     ...store.pastTopics,
     state.customTopic
-      ? { ...state.customTopic, likes: totalLikes }
+      ? { text: state.customTopic, id: `custom-${state.customTopic}`, likes: totalLikes }
       : { ...state.currentTopic, likes: totalLikes },
   ];
 

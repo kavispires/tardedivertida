@@ -18,6 +18,8 @@ import { AvatarName } from 'components/avatars';
 import { ViewOr } from 'components/views';
 import { TurnOrder, WaitingRoom } from 'components/players';
 import { TrendingIcon } from 'components/icons/TrendingIcon';
+import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { TargetHighlight } from 'components/metrics/TargetHighlight';
 
 function PhaseTopicSelection({ state, players, info, meta }: PhaseProps) {
   const { translate } = useLanguage();
@@ -63,17 +65,19 @@ function PhaseTopicSelection({ state, players, info, meta }: PhaseProps) {
             <Translate
               pt={
                 <>
-                  Todos vão curtir ou descurtir a polêmica da vez e então devem tentar adivinhar quantas
-                  curtidas o assunto vai ganhar. Se você adivinhar corretamente, você ganha 3 pontos.
+                  Todos vão curtir ou des-curtir a polêmica da vez e então devem tentar adivinhar quantas
+                  curtidas o assunto vai ganhar. Se você adivinhar corretamente, você ganha{' '}
+                  <PointsHighlight>3</PointsHighlight> pontos.
                   <br />
-                  Se você escolheu um número a menos ou a mais, você ganha 1 ponto.
+                  Se você escolheu um número a menos ou a mais, você ganha{' '}
+                  <PointsHighlight>1</PointsHighlight> ponto.
                   <br />
                   {isFixedRounds ? (
                     <>O jogo tem {state.round.total} rodadas.</>
                   ) : (
                     <>
-                      O primeiro jogador a receber 10 pontos ganha o jogo (ou no máximo {state.round.total}{' '}
-                      rodadas)
+                      O primeiro jogador a receber <TargetHighlight>10</TargetHighlight> pontos ganha o jogo
+                      (ou no máximo {state.round.total} rodadas)
                     </>
                   )}
                   <br />
@@ -85,9 +89,10 @@ function PhaseTopicSelection({ state, players, info, meta }: PhaseProps) {
               en={
                 <>
                   All players must like or dislike a topic then must vote how trendy it is (how many players
-                  liked the topic). If you guess correctly you get 3 points.
+                  liked the topic). If you guess correctly you get <PointsHighlight>3</PointsHighlight>{' '}
+                  points.
                   <br />
-                  If you got 1 number off (more or less), you get 1 point.
+                  If you got 1 number off (more or less), you get <PointsHighlight>1</PointsHighlight> point.
                   <br />
                   {isFixedRounds ? (
                     <>
@@ -96,8 +101,8 @@ function PhaseTopicSelection({ state, players, info, meta }: PhaseProps) {
                     </>
                   ) : (
                     <>
-                      The first players to get 10 points wins the game (or a maximum of {state.round.total}{' '}
-                      rounds)
+                      The first players to get <TargetHighlight>10</TargetHighlight> points wins the game (or
+                      a maximum of {state.round.total} rounds)
                     </>
                   )}
                   <br />

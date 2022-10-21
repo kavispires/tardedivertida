@@ -19,7 +19,6 @@ function PhaseGameOver({ state, players, info }: PhaseProps) {
       >
         {orderBy(state.allTopics, ['likes', 'text'], ['desc', 'asc']).map((topic: PastTopic) => {
           const trended = topic.likes > playerCount / 2;
-
           return (
             <li className="p-all-topics__topic" key={topic.id}>
               <h3>

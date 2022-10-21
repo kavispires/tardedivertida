@@ -11,6 +11,7 @@ import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
 import { ReviewIcon } from 'components/icons/ReviewIcon';
 import { StepRanking } from './StepRanking';
+import { PointsHighlight } from 'components/metrics/PointsHighlight';
 
 function PhaseReact({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -32,18 +33,24 @@ function PhaseReact({ state, players, info }: PhaseProps) {
                 <>
                   E aí? Será que o assunto bombou?
                   <br />
-                  Se você acertou a quantidade de curtidas, você ganha 3 pontos.
+                  Se você acertou a quantidade de curtidas, você ganha <PointsHighlight>
+                    3
+                  </PointsHighlight>{' '}
+                  pontos.
                   <br />
-                  Se você quase acertou, você ganha 1 ponto.
+                  Se você quase acertou, você ganha <PointsHighlight>1</PointsHighlight> ponto.
                 </>
               }
               en={
                 <>
                   So... did the topic trend?
                   <br />
-                  If you guessed the correct number of likes, you get 3 points.
+                  If you guessed the correct number of likes, you get <PointsHighlight>
+                    3
+                  </PointsHighlight>{' '}
+                  points.
                   <br />
-                  If you were 1 off, you get 1 point.
+                  If you were one off, you get <PointsHighlight>1</PointsHighlight> point.
                 </>
               }
             />
