@@ -18,20 +18,18 @@ export function CommentText({ reaction, likes, playerId, points }: CommentTextPr
     <span>
       {reaction ? (
         <>
-          <Translate pt="Curto" en="I like it" />{' '}
           <IconAvatar icon={<SpeechBubbleThumbsUpIcon />} shape="square" className="p-like-icon" size={20} />{' '}
-          <Translate pt=" e " en=" and " />
+          <Translate pt="Curto e " en="I like it and" />
         </>
       ) : (
         <>
-          <Translate pt="Não curto" en="I dislike it" />{' '}
           <IconAvatar
             icon={<SpeechBubbleThumbsDownIcon />}
             shape="square"
             className="p-like-icon"
             size={20}
           />{' '}
-          <Translate pt=", mas " en=" but " />
+          <Translate pt="Não curto, mas" en="I dislike it but" />
         </>
       )}
 
