@@ -45,7 +45,7 @@ function Hub() {
     }
   };
 
-  const { availableGames, comingSoonGames } = useMemo(() => {
+  const { availableGames, comingSoonGames, devGames } = useMemo(() => {
     const sortedGameList = Object.values(GAME_LIST).sort((a, b) =>
       a.title[language] > b.title[language] ? 1 : -1
     );
@@ -53,7 +53,11 @@ function Hub() {
     return sortedGameList.reduce(
       (acc: any, game) => {
         if (game.available[language]) {
-          acc.availableGames.push(game);
+          if (['alpha', 'dev'].includes(game.version) || game.version.startsWith('beta')) {
+            acc.devGames.push(game);
+          } else {
+            acc.availableGames.push(game);
+          }
         } else {
           acc.comingSoonGames.push(game);
         }
@@ -61,6 +65,7 @@ function Hub() {
       },
       {
         availableGames: [],
+        devGames: [],
         comingSoonGames: [],
       }
     );
@@ -94,6 +99,15 @@ function Hub() {
       <Layout.Content className="container" id="main-container">
         <Space size={[8, 16]} wrap align="start" className="game-card-collection">
           {availableGames.map((game: GameInfo, index: number) => (
+            <GameCard key={`${game.gameCode}-${index}`} game={game} />
+          ))}
+        </Space>
+        <Divider />
+        <Typography.Title level={2}>
+          <Translate pt="Em Desenvolvimento" en="Under Development" />
+        </Typography.Title>
+        <Space size={[8, 16]} wrap align="start" className="game-card-collection">
+          {devGames.map((game: GameInfo, index: number) => (
             <GameCard key={`${game.gameCode}-${index}`} game={game} />
           ))}
         </Space>
