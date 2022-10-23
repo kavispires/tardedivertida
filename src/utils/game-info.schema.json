@@ -140,7 +140,8 @@
           "betting",
           "achievements",
           "bots",
-          "mobile-friendly"
+          "mobile-friendly",
+          "audience-mode"
         ]
       }
     },

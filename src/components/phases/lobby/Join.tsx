@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useEffectOnce } from 'react-use';
 // Ant Design Resources
-import { Alert, Button, Image, Input, notification, Tooltip } from 'antd';
-import { CaretLeftOutlined, CaretRightOutlined, InfoCircleOutlined } from '@ant-design/icons';
+import { Alert, Button, Divider, Image, Input, notification, Popconfirm, Tooltip } from 'antd';
+import { CaretLeftOutlined, CaretRightOutlined, FireFilled, InfoCircleOutlined } from '@ant-design/icons';
 // API & Hooks
 import { GAME_API } from 'services/adapters';
 import { useLanguage } from 'hooks/useLanguage';
@@ -14,7 +14,7 @@ import avatars from 'assets/images/avatars.svg';
 import localStorage from 'services/localStorage';
 // Utils
 import { AVAILABLE_AVATAR_IDS, AVATARS } from 'utils/avatars';
-import { PUBLIC_URL } from 'utils/constants';
+import { PUBLIC_URL, VIEWER_ID } from 'utils/constants';
 import { getRandomItem, isDevEnv } from 'utils/helpers';
 import { getRandomWelcomeMessage, speak } from 'utils/speech';
 import { mockPlayerName } from 'mock/players';
@@ -38,6 +38,8 @@ export function Join({ players, info, meta }: JoinProps) {
   const [, setUsername] = useGlobalState('username');
   const [, setUserAvatarId] = useGlobalState('userAvatarId');
   const [volume, setVolume] = useGlobalState('volume');
+  const [isAdmin] = useGlobalState('isAdmin');
+  const [, setIsAdminEnabled] = useGlobalState('isAdminEnabled');
 
   const [availableAvatars, setAvailableAvatars] = useState(AVAILABLE_AVATAR_IDS);
   const [tempAvatar, setTempAvatar] = useState(getRandomItem(AVAILABLE_AVATAR_IDS));
@@ -155,6 +157,13 @@ export function Join({ players, info, meta }: JoinProps) {
     }
   };
 
+  const onEnterAsViewer = () => {
+    setUserId(VIEWER_ID);
+    setUsername(translate('Espectador', 'Viewer'));
+    setUserAvatarId('N');
+    setIsAdminEnabled(false);
+  };
+
   return (
     <div className="lobby-join">
       <div className="lobby-join__card">
@@ -251,6 +260,33 @@ export function Join({ players, info, meta }: JoinProps) {
         >
           <Translate pt="Entrar sem som" en="Enter without sound" />
         </Button>
+
+        {isAdmin && info.tags.includes('audience-mode') && (
+          <>
+            <Divider className="game-card__divider" />
+            <Popconfirm
+              title={
+                <Translate
+                  pt="Tem certeza que quer entrar como espectador?"
+                  en="Are you sure you want to join as viewer?"
+                />
+              }
+              onConfirm={onEnterAsViewer}
+            >
+              <Button
+                className="lobby-join__join-button-link"
+                type="primary"
+                disabled={!Boolean(tempUsername) || isLoading}
+                loading={isLoading}
+                size="small"
+                danger
+                icon={<FireFilled />}
+              >
+                <Translate pt="Entrar como espectador" en="Join as viewer" />
+              </Button>
+            </Popconfirm>
+          </>
+        )}
       </div>
     </div>
   );
