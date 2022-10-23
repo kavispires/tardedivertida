@@ -137,7 +137,7 @@ interface Player {
   score: number;
   updatedAt?: DateMilliseconds;
   // Bots only
-  bot?: true;
+  type: 'player' | 'bot';
   // Extra keys
   [key: string]: any;
 }

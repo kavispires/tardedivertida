@@ -264,6 +264,7 @@ describe('game-utils', () => {
           avatarId: '1',
           ready: false,
           score: 0,
+          type: 'player',
         },
         2: {
           id: '2',
@@ -271,6 +272,7 @@ describe('game-utils', () => {
           avatarId: '2',
           ready: false,
           score: 0,
+          type: 'player',
         },
       };
     });

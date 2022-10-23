@@ -13,6 +13,7 @@ describe('players-utils', () => {
         ready: false,
         score: 0,
         updatedAt: Date.now(),
+        type: 'player',
       },
       _bob: {
         id: '_bob',
@@ -21,6 +22,7 @@ describe('players-utils', () => {
         ready: false,
         score: 0,
         updatedAt: Date.now(),
+        type: 'player',
       },
       _cam: {
         id: '_cam',
@@ -29,6 +31,7 @@ describe('players-utils', () => {
         ready: false,
         score: 0,
         updatedAt: Date.now(),
+        type: 'player',
       },
     };
   });
@@ -42,6 +45,7 @@ describe('players-utils', () => {
       expect(result).toHaveProperty('score', 0);
       expect(result).toHaveProperty('ready', false);
       expect(result).toHaveProperty('updatedAt');
+      expect(result).toHaveProperty('type', 'player');
     });
 
     test('it assigned a random avatar to player if chosen avatar is in use', () => {
@@ -53,6 +57,7 @@ describe('players-utils', () => {
           ready: false,
           score: 0,
           updatedAt: Date.now(),
+          type: 'player',
         },
       });
 
