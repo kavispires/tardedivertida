@@ -14,6 +14,7 @@ import { Instruction } from 'components/text';
 import { StepVoting } from './StepVoting';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { VoteIcon } from 'components/icons/VoteIcon';
+import { PlayersHighlight } from 'components/metrics/PlayersHighlight';
 
 function PhaseVoting({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
@@ -45,14 +46,14 @@ function PhaseVoting({ state, players, info }: PhaseProps) {
                 <>
                   Agora você vota! Escolha o jogador que você acredita ser o impostor. Você pode discutir com
                   os outros antes de votar, porque uma vez votado, você não pode mudar. O impostor só pede se
-                  duas pessoas votarem nele.
+                  <PlayersHighlight>2+</PlayersHighlight> pessoas votarem nele.
                 </>
               }
               en={
                 <>
                   Now it's time to vote! Vote for the player you think is the impostor. You can discuss before
-                  you vote because you can't change your vote. The impostor only loses if at least two people
-                  voted for them.
+                  you vote because you can't change your vote. The impostor only loses if at least{' '}
+                  <PlayersHighlight>2+</PlayersHighlight> people voted for them.
                 </>
               }
             />

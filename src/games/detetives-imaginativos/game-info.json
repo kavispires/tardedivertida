@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "D",
   "gameName": "detetives-imaginativos",
-  "version": "2.4.0",
+  "version": "2.5.0",
   "title": {
     "pt": "Detetives Imaginativos",
     "en": "Detective Agency"
@@ -56,7 +56,16 @@
     "base": 0,
     "perPlayer": 0
   },
-  "tags": ["competitive", "turn-based", "traitor", "discussion", "images", "writing", "voting"],
+  "tags": [
+    "competitive",
+    "turn-based",
+    "traitor",
+    "discussion",
+    "images",
+    "writing",
+    "voting",
+    "audience-mode"
+  ],
   "available": {
     "pt": true,
     "en": true
