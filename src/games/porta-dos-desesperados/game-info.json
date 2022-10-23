@@ -29,7 +29,11 @@
     "min": 2,
     "max": 10
   },
-  "tags": ["cooperative", "guessing", "images", "turn-based"],
+  "duration": {
+    "base": 0,
+    "perPlayer": 0
+  },
+  "tags": ["cooperative", "guessing", "images", "turn-based", "discussion"],
   "available": {
     "pt": true,
     "en": true

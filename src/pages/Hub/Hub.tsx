@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useEffectOnce, useTitle } from 'react-use';
 // Ant Design Resources
@@ -17,6 +17,17 @@ import { GameCard } from './components/GameCard';
 import { LanguageSwitch, Translate } from 'components/language';
 import { DevHeader } from 'pages/Dev/DevHeader';
 import { DevEmulatorAlert } from './components/DevEmulatorAlert';
+import { Filters } from './components/Filters';
+import { SEPARATOR, TAG_RULES } from 'utils/constants';
+import { calculateGameAverageDuration } from 'utils/helpers';
+
+// const TAGS_BY_TAG_GROUP = Object.keys(TAG_DICT).reduce((acc: Record<string, string[]>, key) => {
+//   if (acc[TAG_DICT[key].group] === undefined) {
+//     acc[TAG_DICT[key].group] = [];
+//   }
+//   acc[TAG_DICT[key].group].push(key);
+//   return acc;
+// }, {});
 
 function Hub() {
   useTitle('Hub - Tarde Divertida');
@@ -26,6 +37,8 @@ function Hub() {
   const [getLocalStorage] = useLocalStorage();
   const [, setLanguage] = useGlobalState('language');
   const [, setIsAuthenticated] = useGlobalState('isAuthenticated');
+  const [tagFilters, setTagFilters] = useState<string[]>([]);
+  const [numberFilters, setNumberFilters] = useState<NumberDictionary>({});
 
   useEffectOnce(() => {
     const prevLanguage = getLocalStorage('language');
@@ -45,10 +58,59 @@ function Hub() {
     }
   };
 
+  const gameList = useMemo(
+    () =>
+      Object.values(GAME_LIST).filter((game) => {
+        let result = [];
+
+        // Check player count
+        if (numberFilters.players) {
+          result.push(
+            game.playerCount.min <= numberFilters.players && game.playerCount.max >= numberFilters.players
+          );
+
+          if (numberFilters.bestWith) {
+            result.push(numberFilters.players === game.playerCount.best);
+          }
+
+          if (numberFilters.recommendedWith) {
+            result.push(game.playerCount.recommended.includes(numberFilters.players));
+          }
+        }
+
+        // Check tags
+        // TODO: this does not account for tagGroups and concurrent tags
+        tagFilters.forEach((tagKey) => {
+          const [tagGroup, tag] = tagKey.split(SEPARATOR);
+
+          if (tagGroup && tag && TAG_RULES?.[tagGroup] === 'exclusive') {
+            result.push(game.tags.includes(tag));
+          } else if (tag) {
+            result.push(game.tags.includes(tag));
+          }
+        });
+
+        // Check time
+        if (numberFilters.duration) {
+          const duration = calculateGameAverageDuration(game, numberFilters.players ?? 0);
+
+          if (numberFilters.players) {
+            result.push(
+              numberFilters.duration >= duration.customTime - 10 &&
+                numberFilters.duration <= duration.customTime + 10
+            );
+          } else {
+            result.push(numberFilters.duration >= duration.min && numberFilters.duration <= duration.max);
+          }
+        }
+
+        return result.every(Boolean);
+      }),
+    [tagFilters, numberFilters]
+  );
+
   const { availableGames, comingSoonGames, devGames } = useMemo(() => {
-    const sortedGameList = Object.values(GAME_LIST).sort((a, b) =>
-      a.title[language] > b.title[language] ? 1 : -1
-    );
+    const sortedGameList = gameList.sort((a, b) => (a.title[language] > b.title[language] ? 1 : -1));
 
     return sortedGameList.reduce(
       (acc: any, game) => {
@@ -69,7 +131,7 @@ function Hub() {
         comingSoonGames: [],
       }
     );
-  }, [language]);
+  }, [gameList, language]);
 
   return (
     <Layout className="dev-layout">
@@ -95,6 +157,12 @@ function Hub() {
       />
 
       <DevEmulatorAlert />
+
+      <Filters
+        setTagFilters={setTagFilters}
+        setNumberFilters={setNumberFilters}
+        availabilityCount={availableGames.length}
+      />
 
       <Layout.Content className="container" id="main-container">
         <Space size={[8, 16]} wrap align="start" className="game-card-collection">

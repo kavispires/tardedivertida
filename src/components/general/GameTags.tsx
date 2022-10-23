@@ -6,33 +6,12 @@ import { useLanguage } from 'hooks/useLanguage';
 import { TAG_DICT } from 'utils/constants';
 
 const sortTags = (tags: string[]) => {
-  const SORTED_INDEXES: NumberDictionary = {
-    competitive: 0,
-    cooperative: 1,
-    'same-time': 2,
-    'turn-based': 3,
-    drawing: 4,
-    writing: 5,
-    guessing: 6,
-    voting: 7,
-    pairing: 8,
-    'push-your-luck': 9,
-    betting: 10,
-    'brain-burner': 11,
-    discussion: 12,
-    timed: 13,
-    traitor: 14,
-    images: 15,
-    achievements: 16,
-    'mobile-friendly': 17,
-  };
-
   const sortedTags: string[] = [];
 
   tags.forEach((tag) => {
-    if (SORTED_INDEXES[tag] !== undefined) {
-      sortedTags[SORTED_INDEXES[tag]] = tag;
-    } else if (sortedTags.length < Object.keys(SORTED_INDEXES).length) {
+    if (TAG_DICT?.[tag]?.index !== undefined) {
+      sortedTags[TAG_DICT[tag].index] = tag;
+    } else if (sortedTags.length < 18) {
       sortedTags[18] = tag;
     } else {
       sortedTags.push(tag);

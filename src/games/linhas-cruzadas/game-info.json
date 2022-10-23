@@ -33,6 +33,10 @@
     "min": 4,
     "max": 10
   },
+  "duration": {
+    "base": 0,
+    "perPlayer": 0
+  },
   "tags": ["cooperative", "drawing", "guessing", "writing", "mobile-friendly"],
   "available": {
     "pt": true,

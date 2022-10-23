@@ -44,6 +44,10 @@
     "min": 3,
     "max": 10
   },
+  "duration": {
+    "base": 0,
+    "perPlayer": 0
+  },
   "tags": ["competitive", "same-time", "push-your-luck", "mobile-friendly", "achievements"],
   "available": {
     "pt": true,

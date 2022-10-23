@@ -30,6 +30,10 @@
     "min": 4,
     "max": 6
   },
+  "duration": {
+    "base": 0,
+    "perPlayer": 0
+  },
   "tags": ["competitive", "voting"],
   "available": {
     "pt": false,

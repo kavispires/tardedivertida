@@ -4,11 +4,12 @@ import { Card, Image, Divider, Badge } from 'antd';
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { PUBLIC_URL } from 'utils/constants';
-import { truncateRecommended } from 'utils/helpers';
+import { calculateGameAverageDuration, truncateRecommended } from 'utils/helpers';
 // Components
 import { RulesModal } from 'components/rules';
 import { CreateGameModal } from './CreateGameModal';
 import { GameTags } from 'components/general/GameTags';
+import { ClockCircleOutlined } from '@ant-design/icons';
 
 const getVersionColor = (version: string) => {
   if (version.includes('dev')) {
@@ -55,6 +56,8 @@ type GameCardProps = {
 export function GameCard({ game }: GameCardProps) {
   const { language, translate } = useLanguage();
 
+  const duration = calculateGameAverageDuration(game);
+
   return (
     <Card
       key={game.gameName}
@@ -90,6 +93,16 @@ export function GameCard({ game }: GameCardProps) {
       </div>
 
       <div className="game-card__actions">
+        {game.duration && (
+          <Card.Meta
+            description={
+              <>
+                <ClockCircleOutlined /> {duration.min} min - {duration.max} min (Avg: {duration.ideal} min)
+              </>
+            }
+          />
+        )}
+
         <Divider className="game-card__divider" />
 
         <Card.Meta

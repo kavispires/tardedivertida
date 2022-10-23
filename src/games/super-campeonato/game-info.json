@@ -44,6 +44,10 @@
     "min": 3,
     "max": 30
   },
+  "duration": {
+    "base": 0,
+    "perPlayer": 0
+  },
   "tags": ["competitive", "betting", "discussion", "voting"],
   "available": {
     "pt": true,
