@@ -16,9 +16,11 @@ type UserAnswersProps = {
 export function UserAnswers({ answerGroup, user, onAddAnswer }: UserAnswersProps) {
   const { isLoading } = useLoading();
 
+  const answers = user.answers ?? {};
+
   const alreadyHasAnswer = answerGroup.entries.some((entry: any) => entry.playerId === user.id);
 
-  const points = Object.values(user.answers).reduce((acc, answer: any) => {
+  const points = Object.values(answers).reduce((acc, answer: any) => {
     return acc + (answer?.score ?? 0);
   }, 0);
 
@@ -35,7 +37,7 @@ export function UserAnswers({ answerGroup, user, onAddAnswer }: UserAnswersProps
         </Instruction>
 
         <Space className="space-container m-user-answers" align="center">
-          {Object.entries(user.answers).map(([key, answerObj]: any) => {
+          {Object.entries(answers).map(([key, answerObj]: any) => {
             return (
               <Button
                 key={`a-b-${key}`}

@@ -56,11 +56,11 @@ export function AdminAnswerControl({
     // When all players are in
     if (playerCount === answersCount) return 1;
     // When only 2 or less answers left
-    if (answersCount < 3 && remainingGroupsCount < 3) return 5;
+    if (answersCount < 3 && remainingGroupsCount < 3) return 3;
     // When only 1 answer in
-    if (answersCount === 1) return 5;
+    if (answersCount === 1) return 2;
     // Other cases
-    return 7;
+    return 5;
   }, [answerGroup.entries.length, isDevEnv, playerCount, remainingGroupsCount]);
 
   return (
