@@ -44,7 +44,7 @@ export function StoryWaiting({ storyteller, user, players, gameOrder }: StoryWai
       />
 
       <FloatingHand>
-        <ImageCardHand hand={user.hand} sizeRatio={user.hand.length} />
+        <ImageCardHand hand={user.hand} sizeRatio={user.hand?.length} />
       </FloatingHand>
     </Step>
   );

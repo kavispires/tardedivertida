@@ -71,7 +71,7 @@ export function StepPlayCard({
           hand={user.hand}
           onSelectCard={hasPlayedCardAlready ? undefined : onSelectCard}
           disabledSelectButton={isLoading || hasPlayedCardAlready}
-          sizeRatio={user.hand.length}
+          sizeRatio={user.hand?.length}
         />
       </FloatingHand>
     </Step>
