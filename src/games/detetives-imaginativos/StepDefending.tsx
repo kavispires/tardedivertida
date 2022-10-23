@@ -16,6 +16,7 @@ import { Instruction, TextHighlight, Title } from 'components/text';
 import { EndDefenseTimedButton } from './components/EndDefenseTimedButton';
 
 import { TableFocus } from './components/TableFocus';
+import { YourSelectedCards } from './components/YourSelectedCards';
 
 type StepDefendingProps = {
   clue: string;
@@ -96,16 +97,11 @@ export function StepDefending({
 
       <Space className="space-container" align="center" wrap>
         <TableFocus table={table} currentPlayer={currentPlayer} />
-
-        <div style={{ transform: 'scale(0.75)' }}>
-          <Title size="x-small">
-            <Translate pt="Suas cartas" en="Your cards" />
-          </Title>
-          <TableFocus table={table} currentPlayer={user} />
-        </div>
       </Space>
 
       <TurnOrder players={players} activePlayerId={currentPlayer.id} order={turnOrder} />
+
+      <YourSelectedCards table={table} user={user} />
     </Step>
   );
 }

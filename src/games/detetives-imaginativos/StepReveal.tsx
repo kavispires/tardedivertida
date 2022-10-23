@@ -51,7 +51,7 @@ export function StepReveal({
               <Translate
                 pt={
                   <>
-                    le(a) recebeu mais de dois votos! Quem votou nele(a) ganha{' '}
+                    Ele(a) recebeu mais de dois votos! Quem votou nele(a) ganha{' '}
                     <PointsHighlight>3</PointsHighlight> pontos!
                   </>
                 }

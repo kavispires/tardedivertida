@@ -2,6 +2,7 @@
 import { AnimatedClockIcon } from 'components/icons/AnimatedClockIcon';
 import { IconAvatar } from 'components/icons/IconAvatar';
 import { Translate } from 'components/language';
+import { PlayersHighlight } from 'components/metrics/PlayersHighlight';
 import { ReadyPlayersBar } from 'components/players';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
@@ -46,8 +47,18 @@ export function StepVoting({
         </ViewIf>
         <ViewIf isVisible={!isUserTheLeader && !user.vote}>
           <Translate
-            pt="Vote para quem você acha que pode ser o impostor! Lembre-se, o impostor só perde se 2 ou mais detetives votarem nele."
-            en="Vote for who you think is the impostor! Remember, the impostor only goes down if they get 2 or more votes."
+            pt={
+              <>
+                Vote para quem você acha que pode ser o impostor! Lembre-se, o impostor só perde se{' '}
+                <PlayersHighlight>2+</PlayersHighlight> detetives votarem nele.
+              </>
+            }
+            en={
+              <>
+                Vote for who you think is the impostor! Remember, the impostor only goes down if they get{' '}
+                <PlayersHighlight>2+</PlayersHighlight> votes.
+              </>
+            }
           />
         </ViewIf>
         <ViewIf isVisible={!isUserTheLeader && user.vote}>

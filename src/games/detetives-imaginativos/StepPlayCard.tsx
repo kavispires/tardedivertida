@@ -70,11 +70,11 @@ export function StepPlayCard({
       <Title>
         {isUserTheImpostor ? (
           <>
-            <QuestionCircleFilled />{' '}
-            <Translate
-              pt="Pista? Que pista? Você é o impostor!"
-              en="Clue? What clue? You are the impostor!"
-            />
+            <Translate pt="A pista secreta é" en="The secret clue is" />{' '}
+            <TextHighlight>
+              <QuestionCircleFilled />
+            </TextHighlight>{' '}
+            <Translate pt="Você é o impostor!" en="You are the impostor!" />
           </>
         ) : (
           <>
