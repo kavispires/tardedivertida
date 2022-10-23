@@ -46,7 +46,7 @@
     "min": 2,
     "max": 10
   },
-  "tags": ["competitive", "turn-based", "images", "achievements"],
+  "tags": ["competitive", "turn-based", "images", "achievements", "bots"],
   "available": {
     "pt": true,
     "en": true

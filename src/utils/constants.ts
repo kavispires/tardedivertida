@@ -182,6 +182,15 @@ export const TAG_DICT: Record<string, GameTag> = {
       pt: 'aparelho móvel',
     },
     color: '',
+    index: 16,
+    group: 'other',
+  },
+  bots: {
+    label: {
+      en: 'bots',
+      pt: 'bots',
+    },
+    color: '',
     index: 15,
     group: 'other',
   },
