@@ -33,7 +33,7 @@
     "base": 0,
     "perPlayer": 0
   },
-  "tags": ["cooperative", "guessing", "images", "turn-based", "discussion"],
+  "tags": ["cooperative", "guessing", "images", "turn-based", "discussion", "bots"],
   "available": {
     "pt": true,
     "en": true

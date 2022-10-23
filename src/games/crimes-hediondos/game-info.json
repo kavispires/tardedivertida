@@ -34,7 +34,7 @@
     "base": 0,
     "perPlayer": 0
   },
-  "tags": ["competitive", "same-time", "pairing"],
+  "tags": ["competitive", "same-time", "pairing", "bots"],
   "available": {
     "pt": true,
     "en": true

@@ -30,7 +30,7 @@ export function ResultsTable({ players, results }: ResultsTableProps) {
   ];
 
   const data = orderBy(Object.entries(results))
-    .filter(([key, _]) => !players[key].bot)
+    .filter(([key, _]) => players[key].type === 'player')
     .map(([key, result]) => {
       return {
         playerId: key,
