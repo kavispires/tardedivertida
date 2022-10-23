@@ -137,7 +137,7 @@ export function StepPlayDream({
       <PlayTable
         table={table}
         onPlayCard={(cardId: string) => onPlayCard({ cardId })}
-        userCards={user.cards}
+        userCards={user.cards ?? {}}
         isPlayAvailable={isActivePlayer}
       />
 

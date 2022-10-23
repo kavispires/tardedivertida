@@ -7,7 +7,7 @@ import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar
 // Constants
 import { GO_TO_CARD_PLAY_STEP } from './utils/constants';
 // Helpers
-import { getAvatarColorById } from 'utils/helpers';
+import { getAnimationClass, getAvatarColorById } from 'utils/helpers';
 // Components
 import { Step } from 'components/steps';
 import { AvatarName } from 'components/avatars';
@@ -18,6 +18,7 @@ import { AdminNextPhaseButton } from 'components/admin';
 import { ListPlayers } from './components/ListPlayers';
 import { MatchCount } from './components/MatchCount';
 import { TurnOrder } from 'components/players';
+import clsx from 'clsx';
 
 type MatchingPlayersReduceResult = {
   matchingPlayers: GamePlayer[];
@@ -69,7 +70,7 @@ export function StepAnnounceDream({
 
   return (
     <Step fullWidth>
-      <div className="g-dream-result">
+      <div className={clsx('g-dream-result', getAnimationClass('fadeIn', 0, 'slow'))}>
         <header
           className="g-dream-result__header"
           style={{ backgroundColor: getAvatarColorById(lastActivePlayer.avatarId) }}
