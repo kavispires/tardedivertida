@@ -176,6 +176,15 @@ export const TAG_DICT: Record<string, GameTag> = {
     group: 'features',
   },
   // Technical
+  bots: {
+    label: {
+      en: 'bots',
+      pt: 'bots',
+    },
+    color: '',
+    index: 15,
+    group: 'other',
+  },
   'mobile-friendly': {
     label: {
       en: 'mobile-friendly',
@@ -185,13 +194,13 @@ export const TAG_DICT: Record<string, GameTag> = {
     index: 16,
     group: 'other',
   },
-  bots: {
+  'audience-mode': {
     label: {
-      en: 'bots',
-      pt: 'bots',
+      en: 'audience mode',
+      pt: 'modo audiência',
     },
     color: '',
-    index: 15,
+    index: 17,
     group: 'other',
   },
 };
@@ -274,3 +283,5 @@ export const THEME_COLORS = {
   WOOD: '#8C4103', // brown,
   MOSS: '#9ea63b', //green ish
 };
+
+export const VIEWER_ID = '$viewer$';

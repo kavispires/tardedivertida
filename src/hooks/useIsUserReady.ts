@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { VIEWER_ID } from 'utils/constants';
 import { useGlobalState } from './useGlobalState';
 
 // Check if user is ready
@@ -7,6 +8,10 @@ export function useIsUserReady(players: Players, state?: GameState) {
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
+    if (userId === VIEWER_ID) {
+      setIsReady(false);
+      return;
+    }
     // Check if user is ready and check if user has been ready after the last state change
     if (userId && players?.[userId].ready === false) {
       setIsReady(false);
