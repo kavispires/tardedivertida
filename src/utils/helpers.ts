@@ -315,3 +315,26 @@ export const truncateRecommended = (recommended: number[]): string => {
  */
 export const sortPlayers = (players: GamePlayers, by = 'name') =>
   orderBy(Object.values(players), [by], ['asc']);
+
+/**
+ * Calculate a game average duration
+ * @param game
+ * @param numPlayers
+ * @returns
+ */
+export const calculateGameAverageDuration = (game: GameInfo, numPlayers = 0) => {
+  const base = game?.duration?.base ?? 0;
+  const perPlayer = game?.duration?.perPlayer ?? 0;
+
+  const minTime = base + perPlayer * game.playerCount.min;
+  const maxTime = base + perPlayer * game.playerCount.max;
+  const idealTime = base + perPlayer * (game.playerCount.best ?? 0);
+  const customTime = base + perPlayer * numPlayers;
+
+  return {
+    min: Math.ceil(minTime / 5) * 5,
+    max: Math.ceil(maxTime / 5) * 5,
+    ideal: Math.ceil(idealTime / 5) * 5,
+    customTime: Math.ceil(customTime / 5) * 5,
+  };
+};

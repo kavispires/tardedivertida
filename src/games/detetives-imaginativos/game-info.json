@@ -52,6 +52,10 @@
     "min": 3,
     "max": 10
   },
+  "duration": {
+    "base": 0,
+    "perPlayer": 0
+  },
   "tags": ["competitive", "turn-based", "traitor", "discussion", "images", "writing", "voting"],
   "available": {
     "pt": true,

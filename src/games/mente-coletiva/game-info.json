@@ -45,6 +45,10 @@
     "min": 3,
     "max": 12
   },
+  "duration": {
+    "base": 0,
+    "perPlayer": 0
+  },
   "tags": ["competitive", "same-time", "writing", "mobile-friendly", "achievements"],
   "available": {
     "pt": true,

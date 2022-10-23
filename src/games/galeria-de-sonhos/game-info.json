@@ -51,5 +51,9 @@
     "pt": true,
     "en": true
   },
+  "duration": {
+    "base": 0,
+    "perPlayer": 0
+  },
   "options": [{ "label": "Additional players", "key": "withBots", "off": "Only Humans", "on": "Add 3 Bots" }]
 }

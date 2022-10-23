@@ -112,6 +112,10 @@ type GameInfo = {
     min: number;
     max: number;
   };
+  duration?: {
+    base: number;
+    perPlayer: number;
+  };
   tags: string[];
   available: {
     pt: boolean;
@@ -124,6 +128,13 @@ type GameInfo = {
     off?: string;
   }[];
   mobileFriendly?: boolean;
+};
+
+type GameTag = {
+  label: DualLanguageValue;
+  color: string;
+  index: number;
+  group: 'dynamics' | 'turns' | 'skills' | 'actions' | 'emotions' | 'features' | 'other';
 };
 
 type GameMeta = {

@@ -30,6 +30,10 @@
     "min": 2,
     "max": 10
   },
+  "duration": {
+    "base": 0,
+    "perPlayer": 0
+  },
   "tags": ["competitive", "same-time", "betting", "voting"],
   "available": {
     "pt": false,

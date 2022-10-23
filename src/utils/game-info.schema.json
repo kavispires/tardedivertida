@@ -105,6 +105,18 @@
       },
       "required": ["recommended", "min", "max"]
     },
+    "duration": {
+      "type": "object",
+      "properties": {
+        "base": {
+          "type": "number"
+        },
+        "perPlayer": {
+          "type": "number"
+        }
+      },
+      "required": ["base", "perPlayer"]
+    },
     "tags": {
       "type": "array",
       "items": {

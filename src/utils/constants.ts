@@ -12,17 +12,10 @@ export const PUBLIC_URL = {
   RESOURCES: `${process.env.PUBLIC_URL}/resources/`,
 };
 
-type TagDict = {
-  [key: string]: {
-    label: DualLanguageValue;
-    color: string;
-  };
-};
-
 /**
  * List of tags translation and color
  */
-export const TAG_DICT: TagDict = {
+export const TAG_DICT: Record<string, GameTag> = {
   // About Dynamics
   competitive: {
     label: {
@@ -30,6 +23,8 @@ export const TAG_DICT: TagDict = {
       pt: 'competitivo',
     },
     color: 'red',
+    index: 0,
+    group: 'dynamics',
   },
   cooperative: {
     label: {
@@ -37,13 +32,18 @@ export const TAG_DICT: TagDict = {
       pt: 'cooperativo',
     },
     color: 'green',
+    index: 0,
+    group: 'dynamics',
   },
+  // About Turns
   'same-time': {
     label: {
       en: 'same time',
       pt: 'todos juntos',
     },
     color: 'volcano',
+    index: 1,
+    group: 'turns',
   },
   'turn-based': {
     label: {
@@ -51,6 +51,8 @@ export const TAG_DICT: TagDict = {
       pt: 'um por vez',
     },
     color: 'volcano',
+    index: 1,
+    group: 'turns',
   },
   // About Skilled Mechanics
   drawing: {
@@ -59,6 +61,8 @@ export const TAG_DICT: TagDict = {
       pt: 'desenhar',
     },
     color: 'cyan',
+    index: 2,
+    group: 'skills',
   },
   writing: {
     label: {
@@ -66,14 +70,18 @@ export const TAG_DICT: TagDict = {
       pt: 'escrever',
     },
     color: 'cyan',
+    index: 3,
+    group: 'skills',
   },
-  // About General Mechanics
+  // About Actions
   guessing: {
     label: {
       en: 'guessing',
       pt: 'adivinhar',
     },
     color: 'geekblue',
+    index: 4,
+    group: 'actions',
   },
   voting: {
     label: {
@@ -81,6 +89,8 @@ export const TAG_DICT: TagDict = {
       pt: 'votação',
     },
     color: 'geekblue',
+    index: 5,
+    group: 'actions',
   },
   pairing: {
     label: {
@@ -88,6 +98,8 @@ export const TAG_DICT: TagDict = {
       pt: 'parear',
     },
     color: 'geekblue',
+    index: 6,
+    group: 'actions',
   },
   betting: {
     label: {
@@ -95,6 +107,8 @@ export const TAG_DICT: TagDict = {
       pt: 'apostas',
     },
     color: 'geekblue',
+    index: 7,
+    group: 'actions',
   },
   // About Feeling inducing
   'push-your-luck': {
@@ -103,6 +117,8 @@ export const TAG_DICT: TagDict = {
       pt: 'sorte',
     },
     color: 'lime',
+    index: 8,
+    group: 'emotions',
   },
   'brain-burner': {
     label: {
@@ -110,6 +126,8 @@ export const TAG_DICT: TagDict = {
       pt: 'sofrimento',
     },
     color: 'lime',
+    index: 9,
+    group: 'emotions',
   },
   discussion: {
     label: {
@@ -117,6 +135,8 @@ export const TAG_DICT: TagDict = {
       pt: 'discussão',
     },
     color: 'lime',
+    index: 10,
+    group: 'emotions',
   },
   // About Features
   timed: {
@@ -125,6 +145,8 @@ export const TAG_DICT: TagDict = {
       pt: 'cronometrado',
     },
     color: 'yellow',
+    index: 11,
+    group: 'features',
   },
   traitor: {
     label: {
@@ -132,6 +154,8 @@ export const TAG_DICT: TagDict = {
       pt: 'traidor',
     },
     color: 'volcano',
+    index: 12,
+    group: 'features',
   },
   images: {
     label: {
@@ -139,6 +163,8 @@ export const TAG_DICT: TagDict = {
       pt: 'imagens',
     },
     color: 'purple',
+    index: 13,
+    group: 'features',
   },
   achievements: {
     label: {
@@ -146,6 +172,8 @@ export const TAG_DICT: TagDict = {
       pt: 'medalhas',
     },
     color: 'gold',
+    index: 14,
+    group: 'features',
   },
   // Technical
   'mobile-friendly': {
@@ -154,7 +182,19 @@ export const TAG_DICT: TagDict = {
       pt: 'aparelho móvel',
     },
     color: '',
+    index: 15,
+    group: 'other',
   },
+};
+
+export const TAG_RULES: Record<string, 'concurrent' | 'exclusive'> = {
+  dynamics: 'exclusive',
+  turns: 'exclusive',
+  skills: 'concurrent',
+  actions: 'concurrent',
+  emotions: 'concurrent',
+  features: 'concurrent',
+  other: 'concurrent',
 };
 
 export const LETTERS: string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';

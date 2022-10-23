@@ -38,6 +38,10 @@
     "min": 4,
     "max": 10
   },
+  "duration": {
+    "base": 0,
+    "perPlayer": 0
+  },
   "tags": ["competitive", "same-time", "traitor", "discussion", "timed", "voting"],
   "available": {
     "pt": true,

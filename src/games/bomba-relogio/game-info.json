@@ -37,6 +37,10 @@
     "max": 8
   },
   "tags": ["cooperative", "turn-based", "traitor", "discussion"],
+  "duration": {
+    "base": 0,
+    "perPlayer": 0
+  },
   "available": {
     "pt": false,
     "en": false

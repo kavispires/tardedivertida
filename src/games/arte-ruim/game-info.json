@@ -45,6 +45,10 @@
     "min": 3,
     "max": 10
   },
+  "duration": {
+    "base": 5,
+    "perPlayer": 3
+  },
   "tags": ["competitive", "same-time", "drawing", "pairing", "timed", "mobile-friendly", "achievements"],
   "available": {
     "pt": true,

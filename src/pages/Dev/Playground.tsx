@@ -121,3 +121,103 @@ const questions = [
     FIELD3: '',
   },
 ];
+
+// const timestamps = [
+//   {
+//     id: 'ABVY',
+//     start: 1652647996458,
+//     end: 1652649436331,
+//     numPlayers: 6,
+//   },
+//   {
+//     id: 'AOAN',
+//     start: 1654460679493,
+//     end: 1654461751431,
+//     numPlayers: 4,
+//   },
+//   {
+//     id: 'ANPP',
+//     start: 1647542016336,
+//     end: 1647543929236,
+//     numPlayers: 8,
+//   },
+//   {
+//     id: 'AQUM',
+//     start: 1656276274168,
+//     end: 1656277587137,
+//     numPlayers: 6,
+//   },
+// ];
+
+// const timestamps = [
+//   {
+//     id: '',
+//     start: 0,
+//     end: 0,
+//     numPlayers: 0,
+//   },
+//   {
+//     id: '',
+//     start: 0,
+//     end: 0,
+//     numPlayers: 0,
+//   },
+//   {
+//     id: '',
+//     start: 0,
+//     end: 0,
+//     numPlayers: 0,
+//   },
+//   {
+//     id: '',
+//     start: 0,
+//     end: 0,
+//     numPlayers: 0,
+//   },
+// ];
+
+const timestamps = [
+  {
+    id: 'CGQH',
+    start: 1631473289901,
+    end: 1631475624884,
+    numPlayers: 4,
+  },
+  {
+    id: 'CJLF',
+    start: 1644105185680,
+    end: 1644108977487,
+    numPlayers: 4,
+  },
+  {
+    id: 'CVOV',
+    start: 1661714340575,
+    end: 1661715735468,
+    numPlayers: 6,
+  },
+  {
+    id: '',
+    start: 0,
+    end: 0,
+    numPlayers: 0,
+  },
+];
+
+const baseTime = 5;
+
+const average = () => {
+  const durations = timestamps.map((entry) => {
+    const duration = entry.end - entry.start;
+    return Math.round(duration / (60 * 1000));
+  });
+
+  console.log({ durations });
+
+  const averages = timestamps.map((entry, index) => {
+    return Math.round((durations[index] - baseTime) / entry.numPlayers);
+  });
+
+  console.log({ averages });
+};
+
+average();

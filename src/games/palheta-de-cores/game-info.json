@@ -29,6 +29,10 @@
     "min": 2,
     "max": 10
   },
+  "duration": {
+    "base": 0,
+    "perPlayer": 0
+  },
   "tags": ["cooperative", "same-time", "pairing"],
   "available": {
     "pt": false,
