@@ -40,6 +40,7 @@ export const createPlayer = (
     id,
     name,
     avatarId: newAvatarId,
+    type: 'player',
     ready: false,
     score: 0,
     updatedAt: Date.now(),
@@ -96,7 +97,7 @@ export const unReadyPlayers = (players: Players, butThisOne?: PlayerId | PlayerI
       : butThisOne
     : [];
   for (const playerKey in players) {
-    if (!players[playerKey].bot) {
+    if (players[playerKey].type === 'player') {
       players[playerKey].ready = excludeList.includes(playerKey);
     }
   }
@@ -142,19 +143,15 @@ export const removePropertiesFromPlayers = (players: Players, properties: string
  */
 export const resetPlayers = (players: Players): Players => {
   for (const playerId in players) {
-    const isBot = Boolean(players[playerId].bot);
     players[playerId] = {
       id: playerId,
       avatarId: players[playerId].avatarId,
       name: players[playerId].name,
+      type: players[playerId].type,
       ready: false,
       score: 0,
       updatedAt: Date.now(),
     };
-
-    if (isBot) {
-      players[playerId].bot = true;
-    }
   }
   return players;
 };
@@ -299,7 +296,7 @@ export const addBots = (
     ...deepCopy({
       ...createPlayer(generatePlayerId(names[n + i]), names[i], avatarIds[i]),
       ...defaultProperties,
-      bot: true,
+      type: 'bot',
       ready: true,
     }),
   }));
@@ -320,7 +317,7 @@ export const addBots = (
 export const getListOfPlayers = (players: Players, includeBots = false): Player[] => {
   if (includeBots) return Object.values(players);
 
-  return Object.values(players).filter((player) => !player.bot);
+  return Object.values(players).filter((player) => player.type === 'player');
 };
 
 /**
@@ -329,7 +326,7 @@ export const getListOfPlayers = (players: Players, includeBots = false): Player[
  * @returns
  */
 export const getListOfBots = (players: Players): Player[] => {
-  return Object.values(players).filter((player) => player.bot);
+  return Object.values(players).filter((player) => player.type === 'bot');
 };
 
 /**
@@ -338,7 +335,7 @@ export const getListOfBots = (players: Players): Player[] => {
  */
 export const neutralizeBotScores = (players: Players) => {
   Object.values(players).forEach((player) => {
-    if (player.bot) {
+    if (player.type === 'bot') {
       player.score = 0;
     }
   });
