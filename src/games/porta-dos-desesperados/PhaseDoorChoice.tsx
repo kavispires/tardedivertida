@@ -1,6 +1,6 @@
 // State & Hooks
 import { useIsUserReady } from 'hooks/useIsUserReady';
-import { useLanguage } from 'hooks/useLanguage';
+import { useLoading } from 'hooks/useLoading';
 import { useUser } from 'hooks/useUser';
 import { useStep } from 'hooks/useStep';
 import { useMock } from 'hooks/useMock';
@@ -19,11 +19,11 @@ import { ViewOr } from 'components/views';
 import { StepSelectDoor } from './StepSelectDoor';
 import { StepWaitDoorSelection } from './StepWaitDoorSelection';
 import { MagicDoorIcon } from 'components/icons/MagicDoorIcon';
-import { useLoading } from 'hooks/useLoading';
+import { Translate } from 'components/language';
 
 function PhaseDoorChoice({ players, state, info, meta }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
-  const { translate } = useLanguage();
+
   const user = useUser(players);
   const { step, goToNextStep, setStep } = useStep();
   const [possessed, isPossessed] = useWhichPlayerIsThe('possessedId', state, players);
@@ -52,7 +52,7 @@ function PhaseDoorChoice({ players, state, info, meta }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<MagicDoorIcon />}
-          title={translate('Qual porta é a correta?', 'Which door is the correct one?')}
+          title={<Translate pt="Qual porta é a correta?" en="Which door is the correct one?" />}
           onClose={
             shouldAnnounceTrap(state.trap, PHASES.PORTA_DOS_DESESPERADOS.DOOR_CHOICE)
               ? goToNextStep
@@ -62,7 +62,12 @@ function PhaseDoorChoice({ players, state, info, meta }: PhaseProps) {
           duration={5}
           unskippable
         >
-          <Instruction>Selecione a porta que os deixa mais próximos da saída</Instruction>
+          <Instruction>
+            <Translate
+              pt="Selecione a porta que os deixa mais próximos da saída"
+              en="Select the door which could lead you closer to the exit"
+            />
+          </Instruction>
         </PhaseAnnouncement>
 
         {/* Step 1 */}
