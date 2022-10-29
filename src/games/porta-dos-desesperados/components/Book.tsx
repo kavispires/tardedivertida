@@ -98,11 +98,6 @@ export function Book({ children }: BookProps) {
       <foreignObject x="566" y="63" width="150" height="225">
         {Boolean(children && children[2]) && children![2]}
       </foreignObject>
-
-      {/* <path fill="#fff200" d="M185.99 63.59h150v225h-150zm201.53 0h150v225h-150z"></path>
-      <path fill="#fff200" d="M387.52 63.59h150v225h-150z"></path>
-
-      <path fill="#fff200" d="M566.26 63.59h150v225h-150z"></path> */}
     </svg>
   );
 }

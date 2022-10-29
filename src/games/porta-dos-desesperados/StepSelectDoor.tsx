@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 // Ant Design Resources
-import { Button, Space } from 'antd';
+import { Button, Image, Space } from 'antd';
 import { RadarChartOutlined } from '@ant-design/icons';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
@@ -144,32 +144,34 @@ export function StepSelectDoor({
       />
 
       <Space className="i-book-container">
-        <Book>
-          {Boolean(pages[0]) && (
-            <ImageCard
-              imageId={pages[0]}
-              cardWidth={140}
-              className={bookCardClass}
-              preview={trap !== TRAPS.NO_PREVIEW}
-            />
-          )}
-          {Boolean(pages[1]) && (
-            <ImageCard
-              imageId={pages[1]}
-              cardWidth={140}
-              className={bookCardClass}
-              preview={trap !== TRAPS.NO_PREVIEW}
-            />
-          )}
-          {Boolean(pages[2]) && (
-            <ImageCard
-              imageId={pages[2]}
-              cardWidth={140}
-              className={bookCardClass}
-              preview={trap !== TRAPS.NO_PREVIEW}
-            />
-          )}
-        </Book>
+        <Image.PreviewGroup>
+          <Book>
+            {Boolean(pages[0]) && (
+              <ImageCard
+                imageId={pages[0]}
+                cardWidth={140}
+                className={bookCardClass}
+                preview={trap !== TRAPS.NO_PREVIEW}
+              />
+            )}
+            {Boolean(pages[1]) && (
+              <ImageCard
+                imageId={pages[1]}
+                cardWidth={140}
+                className={bookCardClass}
+                preview={trap !== TRAPS.NO_PREVIEW}
+              />
+            )}
+            {Boolean(pages[2]) && (
+              <ImageCard
+                imageId={pages[2]}
+                cardWidth={140}
+                className={bookCardClass}
+                preview={trap !== TRAPS.NO_PREVIEW}
+              />
+            )}
+          </Book>
+        </Image.PreviewGroup>
       </Space>
     </Step>
   );

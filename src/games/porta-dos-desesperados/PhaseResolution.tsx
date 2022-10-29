@@ -1,6 +1,5 @@
 // State & Hooks
 import { useIsUserReady } from 'hooks/useIsUserReady';
-import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
@@ -9,10 +8,11 @@ import { StepSwitcher } from 'components/steps';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepResults } from './StepResults';
 import { MagicBookSpellIcon } from 'components/icons/MagicBookSpellIcon';
+import { Translate } from 'components/language';
 
 function PhaseResolution({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
-  const { translate } = useLanguage();
+
   const { step, goToNextStep } = useStep();
 
   return (
@@ -21,7 +21,7 @@ function PhaseResolution({ players, state, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<MagicBookSpellIcon />}
-          title={translate('Vocês escolheram a porta correta?', 'Have you opened the right door?')}
+          title={<Translate pt="Vocês escolheram a porta correta?" en="Have you opened the right door?" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           duration={4}

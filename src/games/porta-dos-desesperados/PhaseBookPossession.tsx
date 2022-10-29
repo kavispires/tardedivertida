@@ -1,6 +1,5 @@
 // State & Hooks
 import { useIsUserReady } from 'hooks/useIsUserReady';
-import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
 import { useOnSubmitPagesAPIRequest } from './utils/api-requests';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
@@ -25,7 +24,6 @@ import { TurnOrder } from 'components/players';
 
 function PhaseBookPossession({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
-  const { translate } = useLanguage();
   const { step, goToNextStep, setStep } = useStep();
   const [possessed, isPossessed] = useWhichPlayerIsThe('possessedId', state, players);
 
@@ -57,7 +55,7 @@ function PhaseBookPossession({ players, state, info }: PhaseProps) {
         {/* Step 1 */}
         <PhaseAnnouncement
           icon={<MagicBookIcon />}
-          title={translate('O Livro possui um jogador', 'The Book possesses a player')}
+          title={<Translate pt="O Livro possui um jogador" en="The Book possesses a player" />}
           onClose={
             shouldAnnounceTrap(state.trap, PHASES.PORTA_DOS_DESESPERADOS.BOOK_POSSESSION)
               ? goToNextStep
