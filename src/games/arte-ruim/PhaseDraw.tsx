@@ -13,6 +13,7 @@ import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
 import { StepDraw } from './StepDraw';
 import { PaintingIcon } from 'components/icons/PaintingIcon';
+import { TimeHighlight } from 'components/metrics/TimeHighlight';
 
 function PhaseDraw({ players, state, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
@@ -83,7 +84,7 @@ function PhaseDraw({ players, state, info }: PhaseProps) {
             <Translate
               pt={
                 <>
-                  Você terá 10 segundos para ler a sua carta e desenhá-la.
+                  Você terá <TimeHighlight>10</TimeHighlight> segundos para ler a sua carta e desenhá-la.
                   <br />
                   Aperte o botão quando estiver pronto!
                   <br />
@@ -94,7 +95,7 @@ function PhaseDraw({ players, state, info }: PhaseProps) {
               }
               en={
                 <>
-                  You'll have 10 seconds to read and draw your card.
+                  You'll have <TimeHighlight>10</TimeHighlight> seconds to read and draw your card.
                   <br />
                   Press the button when you're ready!
                   <br />
