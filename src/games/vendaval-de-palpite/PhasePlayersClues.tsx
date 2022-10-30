@@ -1,5 +1,4 @@
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { useOnSubmitPlayerCluesAPIRequest } from './utils/api-requests';
@@ -18,7 +17,6 @@ import { Board } from './components/Board';
 import { DiscussionIcon } from 'components/icons/DiscussionIcon';
 
 function PhasePlayersClues({ state, players, info }: PhaseProps) {
-  const { translate } = useLanguage();
   const { step, setStep, goToNextStep } = useStep(0);
   const [boss, isUserTheBoss] = useWhichPlayerIsThe('bossId', state, players);
 
@@ -45,7 +43,7 @@ function PhasePlayersClues({ state, players, info }: PhaseProps) {
         {/* Step 1 */}
         <PhaseAnnouncement
           icon={<DiscussionIcon />}
-          title={translate('Reunião', 'Meeting')}
+          title={<Translate pt="Reunião" en="Meeting" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           duration={5}

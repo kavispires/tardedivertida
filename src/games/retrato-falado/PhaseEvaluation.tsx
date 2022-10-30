@@ -1,6 +1,5 @@
 // State & Hooks
 import { useIsUserReady } from 'hooks/useIsUserReady';
-import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
@@ -16,7 +15,6 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { ChoiceIcon } from 'components/icons/ChoiceIcon';
 
 function PhaseEvaluation({ players, state, info }: PhaseProps) {
-  const { translate } = useLanguage();
   const user = useUser(players);
 
   const isUserReady = useIsUserReady(players, state);
@@ -31,7 +29,7 @@ function PhaseEvaluation({ players, state, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<ChoiceIcon />}
-          title={translate('Vote!', 'Vote!')}
+          title={<Translate pt="Vote!" en="Vote!" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
         >

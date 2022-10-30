@@ -1,5 +1,4 @@
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { useOnSubmitQuestionAPIRequest } from './utils/api-requests';
@@ -18,7 +17,6 @@ import { StepQuestionSelection } from './StepQuestionSelection';
 import { StepQuestionSelectionWaiting } from './StepQuestionSelectionWaiting';
 
 function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
-  const { translate } = useLanguage();
   const { step, goToNextStep, setStep } = useStep(0);
   const [activePlayer, isUserTheActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
 
@@ -45,7 +43,7 @@ function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
         {/* Step 1 */}
         <PhaseAnnouncement
           icon={<SheepIcon />}
-          title={translate('O Pasto Superlotado', 'A Overcrowded Pasture')}
+          title={<Translate pt="O Pasto Superlotado" en="A Overcrowded Pasture" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           duration={state?.round?.current < 3 ? 40 : 10}

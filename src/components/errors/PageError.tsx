@@ -1,10 +1,8 @@
+import { Link } from 'react-router-dom';
 // Ant Design Resources
 import { Alert } from 'antd';
-import { Translate } from 'components/language';
-// Hooks
-import { useLanguage } from 'hooks/useLanguage';
-import { Link } from 'react-router-dom';
 // Components
+import { Translate } from 'components/language';
 
 type PageErrorProps = {
   message?: string;
@@ -12,12 +10,12 @@ type PageErrorProps = {
 };
 
 export function PageError({ message, description }: PageErrorProps): JSX.Element {
-  const { translate } = useLanguage();
-
   return (
     <div className="container container--center">
       <Alert
-        message={translate('Algo errado não está certo', 'Something wrong is not right', message)}
+        message={
+          <Translate pt="Algo errado não está certo" en="Something wrong is not right" custom={message} />
+        }
         description={
           <>
             <Translate

@@ -11,7 +11,7 @@ import { CriminalIcon } from 'components/icons/CriminalIcon';
 import { NewspaperIcon } from 'components/icons/NewspaperIcon';
 
 function PhaseGameOver({ state, info }: PhaseProps) {
-  const { language, translate } = useLanguage();
+  const { language } = useLanguage();
 
   const didUserWin = state.outcome === 'WIN';
 
@@ -22,9 +22,11 @@ function PhaseGameOver({ state, info }: PhaseProps) {
       announcementIcon={didUserWin ? <CriminalIcon /> : <NewspaperIcon />}
       announcementDuration={15}
       announcementTitle={
-        didUserWin
-          ? translate('Capturado!', 'Arrested!')
-          : translate('O criminoso escapou!', 'They got away!')
+        didUserWin ? (
+          <Translate pt="Capturado!" en="Arrested!" />
+        ) : (
+          <Translate pt="O criminoso escapou!" en="They got away!" />
+        )
       }
       announcementContent={<AnnouncementContent didUserWin={didUserWin} />}
     >

@@ -1,5 +1,4 @@
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
 import { useMock } from 'hooks/useMock';
 import { useStep } from 'hooks/useStep';
 import { useOnSubmitReactionAPIRequest } from './utils/api-requests';
@@ -15,7 +14,6 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { FeedbackIcon } from 'components/icons/FeedbackIcon';
 
 function PhaseReact({ state, players, info }: PhaseProps) {
-  const { translate } = useLanguage();
   const { step, goToNextStep, setStep } = useStep(0);
 
   const onSubmitReaction = useOnSubmitReactionAPIRequest(setStep);
@@ -30,7 +28,7 @@ function PhaseReact({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<FeedbackIcon />}
-          title={translate('O que você acha?', 'What do you think?')}
+          title={<Translate pt="O que você acha?" en="What do you think?" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
         >

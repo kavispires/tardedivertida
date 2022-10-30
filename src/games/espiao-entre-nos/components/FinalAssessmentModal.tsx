@@ -2,7 +2,6 @@
 import { Modal, Space } from 'antd';
 // Components
 import { Translate } from 'components/language';
-import { useLanguage } from 'hooks/useLanguage';
 import { PlayerSelect } from './PlayerSelect';
 import { FinalAssessmentInstruction } from './RulesBlobs';
 
@@ -19,12 +18,10 @@ export function FinalAssessmentModal({
   players,
   finalAssessment,
 }: FinalAssessmentModalProps) {
-  const { translate } = useLanguage();
-
   return (
     <Modal
       open={isModalVisible}
-      title={translate('Quem você vai acusar?', 'Who are you gonna accuse?')}
+      title={<Translate pt="Quem você vai acusar?" en="Who are you gonna accuse?" />}
       footer={null}
       closable={false}
       className="e-modal"

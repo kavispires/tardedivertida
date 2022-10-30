@@ -1,5 +1,4 @@
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { useOnSubmitSecretWordAPIRequest } from './utils/api-requests';
@@ -17,7 +16,6 @@ import { StepWaiting } from './StepWaiting';
 import { KnowledgeIcon } from 'components/icons/KnowledgeIcon';
 
 function PhaseSecretWordSelection({ state, players, info }: PhaseProps) {
-  const { translate } = useLanguage();
   const { step, setStep, goToNextStep } = useStep(0);
   const [boss, isUserTheBoss] = useWhichPlayerIsThe('bossId', state, players);
 
@@ -33,7 +31,7 @@ function PhaseSecretWordSelection({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<KnowledgeIcon />}
-          title={translate('A Palavra Secreta', 'The Secret Word')}
+          title={<Translate pt="A Palavra Secreta" en="The Secret Word" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           duration={5}

@@ -1,6 +1,5 @@
 // State & Hooks
 import { useIsUserReady } from 'hooks/useIsUserReady';
-import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
@@ -15,7 +14,6 @@ import { PhotoAlbumIcon } from 'components/icons/PhotoAlbumIcon';
 
 function PhasePresentation({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
-  const { translate } = useLanguage();
   const { step, goToNextStep } = useStep(0);
 
   return (
@@ -24,7 +22,7 @@ function PhasePresentation({ players, state, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<PhotoAlbumIcon />}
-          title={translate('Álbum de Fotos', 'Photo Album')}
+          title={<Translate pt="Álbum de Fotos" en="Photo Album" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           unskippable

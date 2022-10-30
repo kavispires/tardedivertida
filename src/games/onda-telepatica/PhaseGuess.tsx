@@ -1,6 +1,5 @@
 // State & Hooks
 import { useIsUserReady } from 'hooks/useIsUserReady';
-import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { useOnSubmitGuessAPIRequest } from './utils/api-requests';
@@ -18,7 +17,6 @@ import { SoundWaveIcon } from 'components/icons/SoundWaveIcon';
 
 function PhaseGuess({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
-  const { translate } = useLanguage();
   const { step, goToNextStep, setStep } = useStep(0);
   const [, isUserThePsychic] = useWhichPlayerIsThe('psychicId', state, players);
 
@@ -30,7 +28,7 @@ function PhaseGuess({ players, state, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<SoundWaveIcon />}
-          title={translate('Adivinhação', 'Guessing')}
+          title={<Translate pt="Adivinhação" en="Guessing" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           duration={7}

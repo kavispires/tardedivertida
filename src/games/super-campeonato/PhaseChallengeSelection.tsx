@@ -1,5 +1,4 @@
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useOnSubmitChallengeAPIRequest } from './utils/api-requests';
@@ -15,7 +14,6 @@ import { StepSelectChallenge } from './StepSelectChallenge';
 import { SelectListIcon } from 'components/icons/SelectListIcon';
 
 function PhaseChallengeSelection({ state, players, info }: PhaseProps) {
-  const { translate } = useLanguage();
   const { step, goToNextStep, setStep } = useStep(0);
   const user = useUser(players);
 
@@ -47,7 +45,7 @@ function PhaseChallengeSelection({ state, players, info }: PhaseProps) {
         {/* Step 1 */}
         <PhaseAnnouncement
           icon={<SelectListIcon />}
-          title={translate('Desafio', 'Challenge')}
+          title={<Translate pt="Desafio" en="Challenge" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           duration={5}

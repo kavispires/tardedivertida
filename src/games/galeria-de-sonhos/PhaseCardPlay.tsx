@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import { useIsUserReady } from 'hooks/useIsUserReady';
 import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
 import { useLoading } from 'hooks/useLoading';
 import { useOnPlayCardAPIRequest } from './utils/api-requests';
@@ -28,7 +27,6 @@ import { NightmareIcon } from 'components/icons/NightmareIcon';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 
 function PhaseCardPlay({ players, state, info, meta }: PhaseProps) {
-  const { translate } = useLanguage();
   const { isLoading } = useLoading();
   const { step, goToNextStep, setStep } = useStep();
   const user = useUser(players);
@@ -60,7 +58,7 @@ function PhaseCardPlay({ players, state, info, meta }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<DoorSignIcon />}
-          title={translate('Hora do Bingo dos Sonhos!', 'Time for the Dream Bingo!')}
+          title={<Translate pt="Hora do Bingo dos Sonhos!" en="Time for the Dream Bingo!" />}
           onClose={() =>
             setStep(playerInNightmare.id ? GO_TO_PLAYER_WITH_NIGHTMARE_STEP : GO_TO_CARD_PLAY_STEP)
           }

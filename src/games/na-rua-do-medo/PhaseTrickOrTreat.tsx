@@ -1,7 +1,6 @@
 // Hooks
 import { useIsUserReady } from 'hooks/useIsUserReady';
 import { useUser } from 'hooks/useUser';
-import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
 import { useOnSubmitDecisionAPIRequest } from './utils/api-requests';
 // Resources & Utils
@@ -18,7 +17,6 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StreetIcon } from 'components/icons/StreetIcon';
 
 function PhaseTrickOrTreat({ state, players, info }: PhaseProps) {
-  const { translate } = useLanguage();
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
   const isNewStreet = state.street.length === 0;
@@ -54,7 +52,7 @@ function PhaseTrickOrTreat({ state, players, info }: PhaseProps) {
         {/* Step 1 */}
         <PhaseAnnouncement
           icon={<StreetIcon />}
-          title={translate('Gostosuras ou Travessuras?', 'Trick or Treat?')}
+          title={<Translate pt="Gostosuras ou Travessuras?" en="Trick or Treat?" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           duration={5}

@@ -3,7 +3,6 @@ import { Translate } from 'components/language';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
-import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
@@ -14,7 +13,6 @@ import { StepSuspectElimination } from './StepSuspectElimination';
 import { LawIcon } from 'components/icons/LawIcon';
 
 function PhaseTrial({ state, players, info }: PhaseProps) {
-  const { translate } = useLanguage();
   const { isLoading } = useLoading();
   const { step, goToNextStep } = useStep(0);
 
@@ -34,7 +32,7 @@ function PhaseTrial({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<LawIcon />}
-          title={translate('Julgamento', 'Trial')}
+          title={<Translate pt="Julgamento" en="Trial" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
         >

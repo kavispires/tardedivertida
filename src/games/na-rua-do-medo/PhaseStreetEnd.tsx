@@ -1,7 +1,6 @@
 // Hooks
 import { useIsUserReady } from 'hooks/useIsUserReady';
 import { useUser } from 'hooks/useUser';
-import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
@@ -15,7 +14,6 @@ import { ScaredIcon } from 'components/icons/ScaredIcon';
 import { HouseIcon } from 'components/icons/HouseIcon';
 
 function PhaseStreetEnd({ state, players, info }: PhaseProps) {
-  const { translate } = useLanguage();
   const { step, goToNextStep } = useStep(0);
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
@@ -26,7 +24,7 @@ function PhaseStreetEnd({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={state.isDoubleHorror ? <ScaredIcon /> : <HouseIcon />}
-          title={translate('Fim da Rua', 'End of the Street')}
+          title={<Translate pt="Fim da Rua" en="End of the Street" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           duration={3}

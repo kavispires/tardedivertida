@@ -34,10 +34,12 @@ export function LocationSelect({ locations, onSend }: LocationSelectProps) {
         ))}
       </Select>
       <Popconfirm
-        title={translate(
-          `Você só pode chutar uma vez durante o jogo! Tem certeza que quer chutar ${selectedLocationName}?`,
-          `You may guess the location only once! Are you sure you want to guess ${selectedLocationName}?`
-        )}
+        title={
+          <Translate
+            pt={`Você só pode chutar uma vez durante o jogo! Tem certeza que quer chutar ${selectedLocationName}?`}
+            en={`You may guess the location only once! Are you sure you want to guess ${selectedLocationName}?`}
+          />
+        }
         onConfirm={() => onSend({ locationId: selectedLocationId })}
         okText="Sim"
         cancelText="Não"

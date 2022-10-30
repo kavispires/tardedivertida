@@ -1,6 +1,5 @@
 // Hooks
 import { useIsUserReady } from 'hooks/useIsUserReady';
-import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Resources & Utils
@@ -49,7 +48,6 @@ function RoundAnnouncementText({ guesser, groupScore, round }: RoundAnnouncement
 
 function PhaseWordSelection({ state, players, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
-  const { translate } = useLanguage();
   const [guesser, isUserTheGuesser] = useWhichPlayerIsThe('guesserId', state, players);
   const { step, goToNextStep, setStep } = useStep(0);
 
@@ -76,7 +74,7 @@ function PhaseWordSelection({ state, players, info }: PhaseProps) {
         {/* Step 1 */}
         <PhaseAnnouncement
           icon={<OpinionsIcon />}
-          title={translate('Seleção da Palavra Secreta', 'Secret Word Selection')}
+          title={<Translate pt="Seleção da Palavra Secreta" en="Secret Word Selection" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
         >

@@ -62,7 +62,7 @@ function PhaseInvestigation({ state, players, info }: PhaseProps) {
         {state?.outcome?.type !== 'VOTE_FAIL' ? (
           <PhaseAnnouncement
             icon={<LoupeIcon />}
-            title={translate('Investigação', 'Investigation')}
+            title={<Translate pt="Investigação" en="Investigation" />}
             onClose={goToNextStep}
             currentRound={state?.round?.current}
             buttonText=""
@@ -72,7 +72,7 @@ function PhaseInvestigation({ state, players, info }: PhaseProps) {
         ) : (
           <PhaseAnnouncement
             icon={<OpinionsIcon />}
-            title={translate('A investigação continua', 'The investigation continues')}
+            title={<Translate pt="A investigação continua" en="The investigation continues" />}
             onClose={goToNextStep}
             currentRound={state?.round?.current}
             buttonText=""
@@ -102,7 +102,7 @@ function PhaseInvestigation({ state, players, info }: PhaseProps) {
         {/* Step 2 */}
         <PhaseAnnouncement
           icon={<TimerIcon />}
-          title={translate('O tempo acabou!!!', "Time's up!!!")}
+          title={<Translate pt="O tempo acabou!!!" en="Time's up!!!" />}
           unskippable
           duration={300}
           onClose={() => {}}

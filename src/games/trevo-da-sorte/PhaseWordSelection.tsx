@@ -1,6 +1,5 @@
 // State & Hooks
 import { useIsUserReady } from 'hooks/useIsUserReady';
-import { useLanguage } from 'hooks/useLanguage';
 import { useUser } from 'hooks/useUser';
 import { useStep } from 'hooks/useStep';
 import { useOnSubmitBadWordsAPIRequest } from './utils/api-requests';
@@ -18,7 +17,6 @@ import { StepSelectWords } from './StepSelectWords';
 
 function PhaseWordSelection({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
-  const { translate } = useLanguage();
   const user = useUser(players);
   const { step, goToNextStep, setStep } = useStep(0);
 
@@ -38,7 +36,7 @@ function PhaseWordSelection({ players, state, info }: PhaseProps) {
         {/* Step 1 */}
         <PhaseAnnouncement
           icon={<VerifyListIcon />}
-          title={translate('Seleção das Palavras', 'Words Selection')}
+          title={<Translate pt="Seleção das Palavras" en="Words Selection" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
         >

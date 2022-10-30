@@ -1,8 +1,9 @@
 // Hooks
-import { WaitingRoom } from 'components/players';
-import { Step } from 'components/steps';
 import { useLanguage } from 'hooks/useLanguage';
 // Components
+import { Translate } from 'components/language';
+import { WaitingRoom } from 'components/players';
+import { Step } from 'components/steps';
 
 type GuesserWaitingRoomProps = {
   players: GamePlayers;
@@ -21,7 +22,7 @@ export function GuesserWaitingRoom({ players, instructionSuffix }: GuesserWaitin
     <Step fullWidth>
       <WaitingRoom
         players={players}
-        title={translate('Você é o(a) adivinhador(a)', "You're the guesser")}
+        title={<Translate pt="Você é o(a) adivinhador(a)" en="You're the guesser" />}
         instruction={`${instructionPrefix} ${instructionSuffix[language]}.`}
       />
     </Step>

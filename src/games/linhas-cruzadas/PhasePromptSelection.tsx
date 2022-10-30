@@ -1,7 +1,6 @@
 // State & Hooks
 import { useIsUserReady } from 'hooks/useIsUserReady';
 import { useUser } from 'hooks/useUser';
-import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
 import { useOnSubmitPromptAPIRequest } from './utils/api-requests';
 // Resources & Utils
@@ -15,7 +14,6 @@ import { StepSelectPrompt } from './StepSelectPrompt';
 import { ListIcon } from 'components/icons/ListIcon';
 
 function PhasePromptSelection({ players, state, info }: PhaseProps) {
-  const { translate } = useLanguage();
   const { step, goToNextStep, setStep } = useStep(0);
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
@@ -28,7 +26,7 @@ function PhasePromptSelection({ players, state, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<ListIcon />}
-          title={translate('Seleção da Carta', 'Card Selection')}
+          title={<Translate pt="Seleção da Carta" en="Card Selection" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           duration={20}

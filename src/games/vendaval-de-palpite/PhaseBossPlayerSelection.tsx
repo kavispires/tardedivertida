@@ -1,5 +1,4 @@
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
 import { useOnSubmitBossPlayerAPIRequest } from './utils/api-requests';
 // Resources & Utils
@@ -13,7 +12,6 @@ import { StepBossPlayerSelection } from './StepBossPlayerSelection';
 import { BossIcon } from 'components/icons/BossIcon';
 
 function PhaseBossPlayerSelection({ state, players, info }: PhaseProps) {
-  const { translate } = useLanguage();
   const { step, setStep, goToNextStep } = useStep(0);
 
   const onBossPlayerClick = useOnSubmitBossPlayerAPIRequest(setStep);
@@ -24,7 +22,7 @@ function PhaseBossPlayerSelection({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<BossIcon />}
-          title={translate('O Chefe', 'The Boss')}
+          title={<Translate pt="O Chefe" en="The Boss" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           duration={10}

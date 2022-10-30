@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 // State & Hooks
 import { useIsUserReady } from 'hooks/useIsUserReady';
 import { useUser } from 'hooks/useUser';
-import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
@@ -14,9 +13,9 @@ import { ScoringMessage } from './components/RulesBlobs';
 import { StepRanking } from './StepRanking';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { RankIcon } from 'components/icons/RankIcon';
+import { Translate } from 'components/language';
 
 function PhaseReveal({ players, state, info }: PhaseProps) {
-  const { translate } = useLanguage();
   const { step, goToNextStep, goToPreviousStep } = useStep(0);
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
@@ -35,7 +34,7 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<RankIcon />}
-          title={translate('Resultado', 'Results')}
+          title={<Translate pt="Resultado" en="Results" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
         >

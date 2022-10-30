@@ -1,5 +1,4 @@
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
 import { useSlideShow } from 'hooks/useSlideShow';
 import { useStep } from 'hooks/useStep';
 // Resources and Utils
@@ -11,9 +10,9 @@ import { GalleryRules } from './components/TextBlobs';
 import { StepGallery } from './StepGallery';
 import { StepRanking } from './StepRanking';
 import { PictureIcon } from 'components/icons/PictureIcon';
+import { Translate } from 'components/language';
 
 function PhaseGallery({ players, state, info, meta }: PhaseProps) {
-  const { translate } = useLanguage();
   const { step, goToNextStep, goToPreviousStep, setStep } = useStep(0);
   const { activeIndex, setActiveIndex, isFirstGalleryRunThrough } = useSlideShow(state.gallery.length);
 
@@ -32,7 +31,7 @@ function PhaseGallery({ players, state, info, meta }: PhaseProps) {
         {/*Step 0 */}
         <PhaseAnnouncement
           icon={<PictureIcon />}
-          title={translate('Galeria de Arte', 'Art Gallery')}
+          title={<Translate pt="Galeria de Arte" en="Art Gallery" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           unskippable

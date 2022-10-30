@@ -1,6 +1,5 @@
 // State & Hooks
 import { useIsUserReady } from 'hooks/useIsUserReady';
-import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { useOnSubmitWordAPIRequest } from './utils/api-requests';
@@ -20,7 +19,6 @@ import { StepWordSelection } from './StepWordSelection';
 import { SleepIcon } from 'components/icons/SleepIcon';
 
 function PhaseWordSelection({ players, state, info }: PhaseProps) {
-  const { translate } = useLanguage();
   const { step, goToNextStep, setStep } = useStep();
   const isUserReady = useIsUserReady(players, state);
   const [scout, isUserTheScout] = useWhichPlayerIsThe('scoutId', state, players);
@@ -54,7 +52,7 @@ function PhaseWordSelection({ players, state, info }: PhaseProps) {
         {/* Step 1 */}
         <PhaseAnnouncement
           icon={<SleepIcon />}
-          title={translate('Tema dos Sonhos', 'The Dream Theme')}
+          title={<Translate pt="Tema dos Sonhos" en="The Dream Theme" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
         >

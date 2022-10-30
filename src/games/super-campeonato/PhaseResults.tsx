@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 // Resources & Utils
@@ -15,7 +14,6 @@ import { StepRanking } from './StepRanking';
 import { StepWinner } from './StepWinner';
 
 function PhaseResults({ state, players, info }: PhaseProps) {
-  const { translate } = useLanguage();
   const { step, goToNextStep, setStep } = useStep(0);
   const [previousTier, setPreviousTier] = useState<string>('');
   const user = useUser(players);
@@ -33,7 +31,7 @@ function PhaseResults({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<TournamentIcon />}
-          title={translate('Resultado!', 'Results!')}
+          title={<Translate pt="Resultado!" en="Results!" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           duration={7}

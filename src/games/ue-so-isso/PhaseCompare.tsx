@@ -1,6 +1,5 @@
 // Hooks
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
 import { useOnSubmitValidationsAPIRequest, useOnValidateSuggestionAPIRequest } from './utils/api-requests';
 // Resources & Utils
@@ -18,7 +17,6 @@ import { WaitingRoom } from 'components/players';
 import { VerifyListIcon } from 'components/icons/VerifyListIcon';
 
 function PhaseCompare({ state, players, info }: PhaseProps) {
-  const { translate } = useLanguage();
   const { step, goToNextStep, setStep } = useStep(0);
   const [, isUserTheGuesser] = useWhichPlayerIsThe('guesserId', state, players);
   const [controller, isUserTheController] = useWhichPlayerIsThe('controllerId', state, players);
@@ -33,7 +31,7 @@ function PhaseCompare({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<VerifyListIcon />}
-          title={translate('Comparação de dicas!', 'Clue Check!')}
+          title={<Translate pt="Comparação de dicas!" en="Clue Check!" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
         >
@@ -72,7 +70,7 @@ function PhaseCompare({ state, players, info }: PhaseProps) {
         {/* Step 2 */}
         <WaitingRoom
           players={players}
-          title={translate('Enviando a confirmação de dicas', 'Sending confirmation')}
+          title={<Translate pt="Enviando a confirmação de dicas" en="Sending confirmation" />}
           instruction="..."
         />
       </StepSwitcher>

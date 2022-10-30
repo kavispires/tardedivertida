@@ -1,8 +1,6 @@
-import { useMemo } from 'react';
 // State & Hooks
 import { useIsUserReady } from 'hooks/useIsUserReady';
 import { useUser } from 'hooks/useUser';
-import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
@@ -13,13 +11,11 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { TDIcon } from 'components/icons/TDIcon';
 import { Translate } from 'components/language';
 import { StepTargeting } from './StepTargeting';
-import { mockPlayers } from 'mock/players';
 import { useOnSubmitMessageAPIRequest, useOnSubmitTargetAPIRequest } from './utils/api-requests';
 
 function PhaseTargeting({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
   const user = useUser(players);
-  const { translate } = useLanguage();
   const { step, goToNextStep } = useStep(0);
 
   const onSubmitTarget = useOnSubmitTargetAPIRequest();
@@ -34,7 +30,7 @@ function PhaseTargeting({ players, state, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<TDIcon />}
-          title={translate('Apontem suas armas!', 'Point your guns!')}
+          title={<Translate pt="Apontem suas armas!" en="Point your guns!" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
         >

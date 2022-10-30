@@ -1,6 +1,5 @@
 // State & Hooks
 import { useIsUserReady } from 'hooks/useIsUserReady';
-import { useLanguage } from 'hooks/useLanguage';
 import { useOnSubmitGuessAPIRequest } from './utils/api-requests';
 import { useStep } from 'hooks/useStep';
 // Resources & Utils
@@ -19,7 +18,6 @@ import { StepWaitClover } from './StepWaitClover';
 
 function PhaseCloverGuessing({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
-  const { translate } = useLanguage();
   const { step, goToNextStep, setStep } = useStep(0);
   const [activeCloverPlayer, isUserTheCloverPlayer] = useWhichPlayerIsThe('activeCloverId', state, players);
 
@@ -31,7 +29,7 @@ function PhaseCloverGuessing({ players, state, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<CloverIcon />}
-          title={translate('Hora de Adivinhar', 'Time to guess')}
+          title={<Translate pt="Hora de Adivinhar" en="Time to guess" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
         >

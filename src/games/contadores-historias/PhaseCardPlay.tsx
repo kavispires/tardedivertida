@@ -1,7 +1,6 @@
 // Hooks
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { useUser } from 'hooks/useUser';
-import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
 import { useOnPlayCardAPIRequest } from './utils/api-requests';
 // Resources & Utils
@@ -16,7 +15,6 @@ import { ImageCardsIcon } from 'components/icons/ImageCardsIcon';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 
 function PhaseCardPlay({ state, players, info }: PhaseProps) {
-  const { translate } = useLanguage();
   const { step, goToNextStep, setStep } = useStep(0);
   const user = useUser(players);
   const [storyteller, isUserTheStoryTeller] = useWhichPlayerIsThe('storytellerId', state, players);
@@ -29,7 +27,7 @@ function PhaseCardPlay({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<ImageCardsIcon />}
-          title={translate('Selecione uma carta', 'Play a card...')}
+          title={<Translate pt="Selecione uma carta" en="Play a card..." />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
         >

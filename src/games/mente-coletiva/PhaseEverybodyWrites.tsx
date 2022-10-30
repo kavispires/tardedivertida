@@ -1,5 +1,4 @@
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useOnSubmitAnswersAPIRequest } from './utils/api-requests';
@@ -11,9 +10,9 @@ import { StepAnswering } from './StepAnswering';
 import { AnsweringRules } from './components/RulesBlobs';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { WritingIcon } from 'components/icons/WritingIcon';
+import { Translate } from 'components/language';
 
 function PhaseEverybodyWrites({ state, players, info }: PhaseProps) {
-  const { translate } = useLanguage();
   const { step, goToNextStep, setStep } = useStep(0);
   const user = useUser(players);
 
@@ -25,7 +24,7 @@ function PhaseEverybodyWrites({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<WritingIcon />}
-          title={translate('Todos Respondem', 'Everybody Writes')}
+          title={<Translate pt="Todos Respondem" en="Everybody Writes" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           duration={state?.round?.current < 3 ? 20 : undefined}

@@ -1,6 +1,5 @@
 import { useState } from 'react';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useOnAddAnswerAPIRequest, useOnNextAnswersAPIRequest } from './utils/api-requests';
@@ -12,9 +11,9 @@ import { StepCompare } from './StepCompare';
 import { ComparingRules } from './components/RulesBlobs';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { DiscussionIcon } from 'components/icons/DiscussionIcon';
+import { Translate } from 'components/language';
 
 function PhaseCompare({ state, players, info }: PhaseProps) {
-  const { translate } = useLanguage();
   const { step, goToNextStep } = useStep(0);
   const user = useUser(players);
   const [allowedList, setAllowedList] = useState({});
@@ -30,7 +29,7 @@ function PhaseCompare({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<DiscussionIcon />}
-          title={translate('Respostas', 'Answers')}
+          title={<Translate pt="Respostas" en="Answers" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           duration={state?.round?.current < 3 ? 20 : undefined}

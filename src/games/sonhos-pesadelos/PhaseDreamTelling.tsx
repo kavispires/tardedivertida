@@ -1,7 +1,6 @@
 // Hooks
 import { useIsUserReady } from 'hooks/useIsUserReady';
 import { useUser } from 'hooks/useUser';
-import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
 import { useOnSubmitDreamAPIRequest } from './utils/api-requests';
 // Resources & Utils
@@ -18,7 +17,6 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { DreamIcon } from 'components/icons/DreamIcon';
 
 function PhaseDreamTelling({ state, players, info }: PhaseProps) {
-  const { translate } = useLanguage();
   const { step, goToNextStep, setStep } = useStep(0);
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
@@ -47,7 +45,7 @@ function PhaseDreamTelling({ state, players, info }: PhaseProps) {
         {/* Step 1 */}
         <PhaseAnnouncement
           icon={<DreamIcon />}
-          title={translate('Conte-nos sobre seu sonho', 'Tell us about your dream...')}
+          title={<Translate pt="Conte-nos sobre seu sonho" en="Tell us about your dream..." />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
         >

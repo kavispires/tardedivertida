@@ -1,5 +1,4 @@
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
@@ -14,7 +13,6 @@ import { StepRanking } from './StepRanking';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 
 function PhaseReact({ state, players, info }: PhaseProps) {
-  const { translate } = useLanguage();
   const { step, goToNextStep, goToPreviousStep } = useStep(0);
 
   return (
@@ -23,7 +21,7 @@ function PhaseReact({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<ReviewIcon />}
-          title={translate('Resultado', 'Results')}
+          title={<Translate pt="Resultado" en="Results" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
         >

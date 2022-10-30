@@ -1,8 +1,5 @@
-import { useState } from 'react';
 // State & Hooks
 import { useIsUserReady } from 'hooks/useIsUserReady';
-import { useUser } from 'hooks/useUser';
-import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
@@ -11,11 +8,11 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { TDIcon } from 'components/icons/TDIcon';
+import { Translate } from 'components/language';
 
 function PhaseResolution({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
-  const { translate } = useLanguage();
-  const user = useUser(players);
+
   const { step, goToNextStep } = useStep(0);
 
   return (
@@ -24,7 +21,7 @@ function PhaseResolution({ players, state, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<TDIcon />}
-          title={translate('Resultado', 'Resultado')}
+          title={<Translate pt="Resultado" en="Resultado" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
         >

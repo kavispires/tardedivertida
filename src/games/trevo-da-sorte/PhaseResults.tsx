@@ -1,6 +1,5 @@
 // State & Hooks
 import { useIsUserReady } from 'hooks/useIsUserReady';
-import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
@@ -14,7 +13,6 @@ import { StepRanking } from './StepRanking';
 
 function PhaseResults({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
-  const { translate } = useLanguage();
   const { step, goToNextStep } = useStep(0);
 
   return (
@@ -23,7 +21,7 @@ function PhaseResults({ players, state, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<RankIcon />}
-          title={translate('Resultado', 'Results')}
+          title={<Translate pt="Resultado" en="Results" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
         >
