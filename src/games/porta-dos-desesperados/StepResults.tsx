@@ -1,5 +1,5 @@
 // Ant Design Resources
-import { Space } from 'antd';
+import { Alert, Space } from 'antd';
 // Utils
 import { OUTCOME, TOTAL_DOORS, TRAPS } from './utils/constants';
 // Components
@@ -49,6 +49,7 @@ export function StepResults({
 
       <Instruction contained>
         <OutcomeInstruction outcome={outcome} />
+
         {trap === TRAPS.DOUBLE_MAGIC && (
           <>
             <br />
@@ -87,6 +88,8 @@ export function StepResults({
         />
       </Instruction>
 
+      <OutcomeAlert outcome={outcome} />
+
       <Corridor doors={doors} trap={trap} players={players} answerDoorId={answerDoorId} />
 
       <Space className="i-book-container">
@@ -108,7 +111,7 @@ type OutcomeProps = {
   outcome: string;
 };
 
-export function OutcomeTitle({ outcome }: OutcomeProps) {
+function OutcomeTitle({ outcome }: OutcomeProps) {
   if (outcome === OUTCOME.SUCCESS || outcome === OUTCOME.WIN) {
     return <Translate pt="Porta Correta!" en="Correct Door!" />;
   }
@@ -116,7 +119,7 @@ export function OutcomeTitle({ outcome }: OutcomeProps) {
   return <Translate pt="Porta Errada" en="Wrong Door" />;
 }
 
-export function OutcomeInstruction({ outcome }: OutcomeProps) {
+function OutcomeInstruction({ outcome }: OutcomeProps) {
   if (outcome === OUTCOME.SUCCESS || outcome === OUTCOME.WIN) {
     return (
       <Translate
@@ -128,5 +131,24 @@ export function OutcomeInstruction({ outcome }: OutcomeProps) {
 
   return (
     <Translate pt="Nenhum jogador entrou na porta correta." en="No player has entered the correct door." />
+  );
+}
+
+function OutcomeAlert({ outcome }: OutcomeProps) {
+  if (outcome === OUTCOME.SUCCESS || outcome === OUTCOME.WIN) {
+    return <></>;
+  }
+
+  return (
+    <Alert
+      type="warning"
+      showIcon
+      message={
+        <Translate
+          pt="Para a próxima rodada, as portas e armadilha continuarão as mesmas, mas a 'porta resposta' será aleatória."
+          en="For the next round, the doors and trap will remain the same, but the 'door answer' will be randomized again."
+        />
+      }
+    />
   );
 }
