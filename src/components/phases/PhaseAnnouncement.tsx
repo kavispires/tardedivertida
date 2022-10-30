@@ -79,6 +79,7 @@ export function PhaseAnnouncement({
   useTemporarilyHidePlayersBar();
   const durationPerRound = [15, 10, 5]?.[currentRound] ?? 5;
 
+  // Allow skip when pressing the space bar in a skippable announcement
   useKeyPressEvent(' ', () => {
     if (!unskippable) {
       onClose();

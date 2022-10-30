@@ -98,7 +98,7 @@ function RateGameWidgetContent({
     });
   };
 
-  if (isAdmin && !isAdminEnabled) return <span></span>;
+  if (isAdmin && !isAdminEnabled) return <></>;
 
   return (
     <div

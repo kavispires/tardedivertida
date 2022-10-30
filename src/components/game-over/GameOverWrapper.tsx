@@ -80,7 +80,7 @@ export function GameOverWrapper({
           {Boolean(announcementContent) && announcementContent}
         </PhaseAnnouncement>
 
-        <GameOver state={state} rateWidgetCustomText={rateWidgetCustomText}>
+        <GameOver state={state} info={info} rateWidgetCustomText={rateWidgetCustomText}>
           {children}
         </GameOver>
       </StepSwitcher>
