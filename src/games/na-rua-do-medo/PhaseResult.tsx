@@ -7,7 +7,7 @@ import { StepResult } from './StepResult';
 import { PhaseContainer } from 'components/phases';
 
 function PhaseResult({ state, players, info }: PhaseProps) {
-  const user = useUser(players);
+  const user = useUser(players, state);
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.NA_RUA_DO_MEDO.RESULT}>

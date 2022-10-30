@@ -1,6 +1,5 @@
 import { useState } from 'react';
 // State & Hooks
-import { useIsUserReady } from 'hooks/useIsUserReady';
 import { useMock } from 'hooks/useMock';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
@@ -29,8 +28,8 @@ import { CrimeTapeIcon } from 'components/icons/CrimeTapeIcon';
 
 function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
   const { step, setStep, goToNextStep } = useStep(0);
-  const user = useUser(players);
-  const isUserReady = useIsUserReady(players, state);
+  const user = useUser(players, state);
+
   const [selections, setSelections] = useState<SubmitCrimePayload>({});
 
   const onSubmitCrimeRequest = useOnSubmitCrimeAPIRequest(setStep);
@@ -56,7 +55,7 @@ function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.CRIMES_HEDIONDOS.CRIME_SELECTION}>
-      <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady, !isUserReady]} players={players}>
+      <StepSwitcher step={step} conditions={[!user.isReady, !user.isReady, !user.isReady]} players={players}>
         {/* Step 0 */}
         <RoundAnnouncement
           round={state?.round}

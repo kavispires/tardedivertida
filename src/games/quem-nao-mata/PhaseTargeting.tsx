@@ -1,5 +1,4 @@
 // State & Hooks
-import { useIsUserReady } from 'hooks/useIsUserReady';
 import { useUser } from 'hooks/useUser';
 import { useStep } from 'hooks/useStep';
 // Resources & Utils
@@ -14,8 +13,7 @@ import { StepTargeting } from './StepTargeting';
 import { useOnSubmitMessageAPIRequest, useOnSubmitTargetAPIRequest } from './utils/api-requests';
 
 function PhaseTargeting({ players, state, info }: PhaseProps) {
-  const isUserReady = useIsUserReady(players, state);
-  const user = useUser(players);
+  const user = useUser(players, state);
   const { step, goToNextStep } = useStep(0);
 
   const onSubmitTarget = useOnSubmitTargetAPIRequest();
@@ -26,7 +24,7 @@ function PhaseTargeting({ players, state, info }: PhaseProps) {
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.QUEM_NAO_MATA.TARGETING}>
-      <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady, !isUserReady]} players={players}>
+      <StepSwitcher step={step} conditions={[!user.isReady, !user.isReady, !user.isReady]} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<TDIcon />}

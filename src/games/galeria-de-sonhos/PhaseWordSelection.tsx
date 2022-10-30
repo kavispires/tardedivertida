@@ -1,8 +1,8 @@
 // State & Hooks
-import { useIsUserReady } from 'hooks/useIsUserReady';
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { useOnSubmitWordAPIRequest } from './utils/api-requests';
+import { useUser } from 'hooks/useUser';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
@@ -19,8 +19,9 @@ import { StepWordSelection } from './StepWordSelection';
 import { SleepIcon } from 'components/icons/SleepIcon';
 
 function PhaseWordSelection({ players, state, info }: PhaseProps) {
+  const user = useUser(players, state);
   const { step, goToNextStep, setStep } = useStep();
-  const isUserReady = useIsUserReady(players, state);
+
   const [scout, isUserTheScout] = useWhichPlayerIsThe('scoutId', state, players);
 
   const onSubmitWord = useOnSubmitWordAPIRequest(setStep);
@@ -29,7 +30,7 @@ function PhaseWordSelection({ players, state, info }: PhaseProps) {
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.GALERIA_DE_SONHOS.WORD_SELECTION}>
       <StepSwitcher
         step={step}
-        conditions={[!isUserReady, !isUserReady, !isUserReady]}
+        conditions={[!user.isReady, !user.isReady, !user.isReady]}
         players={players}
         waitingRoomInstructionType="SERVER"
       >

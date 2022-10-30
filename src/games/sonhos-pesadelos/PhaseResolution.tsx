@@ -1,7 +1,7 @@
 // Hooks
-import { useIsUserReady } from 'hooks/useIsUserReady';
 import { useSlideShow } from 'hooks/useSlideShow';
 import { useStep } from 'hooks/useStep';
+import { useUser } from 'hooks/useUser';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
@@ -14,13 +14,14 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { CountdownIcon } from 'components/icons/CountdownIcon';
 
 function PhaseResolution({ state, players, info }: PhaseProps) {
+  const user = useUser(players, state);
   const { step, goToNextStep, goToPreviousStep, setStep } = useStep(0);
-  const isUserReady = useIsUserReady(players, state);
+
   const { activeIndex, setActiveIndex, isFirstGalleryRunThrough } = useSlideShow(state.gallery.length);
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.SONHOS_PESADELOS.RESOLUTION}>
-      <StepSwitcher step={step} conditions={[!isUserReady]} players={players}>
+      <StepSwitcher step={step} conditions={[!user.isReady]} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<CountdownIcon />}

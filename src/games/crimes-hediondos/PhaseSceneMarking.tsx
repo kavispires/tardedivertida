@@ -18,7 +18,7 @@ import { LoupeIcon } from 'components/icons/LoupeIcon';
 
 function PhaseSceneMarking({ players, state, info }: PhaseProps) {
   const { language } = useLanguage();
-  const user = useUser(players);
+  const user = useUser(players, state);
   const { step, setStep, goToNextStep } = useStep(0);
 
   const onSubmitMark = useOnSubmitMarkAPIRequest(setStep);

@@ -1,5 +1,4 @@
 // Hooks
-import { useIsUserReady } from 'hooks/useIsUserReady';
 import { useUser } from 'hooks/useUser';
 import { useStep } from 'hooks/useStep';
 import { useOnSubmitDecisionAPIRequest } from './utils/api-requests';
@@ -17,8 +16,8 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StreetIcon } from 'components/icons/StreetIcon';
 
 function PhaseTrickOrTreat({ state, players, info }: PhaseProps) {
-  const user = useUser(players);
-  const isUserReady = useIsUserReady(players, state);
+  const user = useUser(players, state);
+
   const isNewStreet = state.street.length === 0;
   const { step, goToNextStep, setStep } = useStep(isNewStreet ? 0 : 2);
 
@@ -28,7 +27,7 @@ function PhaseTrickOrTreat({ state, players, info }: PhaseProps) {
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.NA_RUA_DO_MEDO.TRICK_OR_TREAT}>
       <StepSwitcher
         step={step}
-        conditions={[!isUserReady]}
+        conditions={[!user.isReady]}
         players={players}
         waitingRoomContent={<PlayerStats user={user} />}
       >

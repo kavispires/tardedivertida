@@ -1,5 +1,4 @@
 // Hooks
-import { useIsUserReady } from 'hooks/useIsUserReady';
 import { useUser } from 'hooks/useUser';
 import { useStep } from 'hooks/useStep';
 import { useOnSubmitVotesAPIRequest } from './utils/api-requests';
@@ -15,14 +14,13 @@ import { EvaluateIcon } from 'components/icons/EvaluateIcon';
 
 function PhaseMatching({ state, players, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
-  const user = useUser(players);
-  const isUserReady = useIsUserReady(players, state);
+  const user = useUser(players, state);
 
   const onSubmitVotes = useOnSubmitVotesAPIRequest(setStep);
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.SONHOS_PESADELOS.MATCHING}>
-      <StepSwitcher step={step} conditions={[!isUserReady]} players={players}>
+      <StepSwitcher step={step} conditions={[!user.isReady]} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<EvaluateIcon />}

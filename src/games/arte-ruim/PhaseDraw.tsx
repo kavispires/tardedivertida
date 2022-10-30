@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 // State & Hooks
-import { useIsUserReady } from 'hooks/useIsUserReady';
 import { useUser } from 'hooks/useUser';
 import { useStep } from 'hooks/useStep';
 import { useOnSubmitDrawingAPIRequest } from './utils/api-requests';
@@ -17,8 +16,8 @@ import { PaintingIcon } from 'components/icons/PaintingIcon';
 
 function PhaseDraw({ players, state, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
-  const user = useUser(players);
-  const isUserReady = useIsUserReady(players, state);
+  const user = useUser(players, state);
+
   const [secretCard, setSecretCard] = useState({});
 
   useEffect(() => {
@@ -31,7 +30,7 @@ function PhaseDraw({ players, state, info }: PhaseProps) {
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.ARTE_RUIM.DRAW}>
       <StepSwitcher
         step={step}
-        conditions={[!isUserReady, !isUserReady, !isUserReady]}
+        conditions={[!user.isReady, !user.isReady, !user.isReady]}
         players={players}
         waitingRoomInstruction={
           <Translate

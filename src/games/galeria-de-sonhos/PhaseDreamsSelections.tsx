@@ -1,7 +1,7 @@
 // State & Hooks
-import { useIsUserReady } from 'hooks/useIsUserReady';
 import { useStep } from 'hooks/useStep';
 import { useOnSubmitCardsAPIRequest } from './utils/api-requests';
+import { useUser } from 'hooks/useUser';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
@@ -14,14 +14,14 @@ import { DreamIcon } from 'components/icons/DreamIcon';
 import { Translate } from 'components/language';
 
 function PhaseDreamsSelections({ players, state, info, meta }: PhaseProps) {
+  const user = useUser(players, state);
   const { step, goToNextStep, setStep } = useStep();
-  const isUserReady = useIsUserReady(players, state);
 
   const onSubmitCards = useOnSubmitCardsAPIRequest(setStep);
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.GALERIA_DE_SONHOS.DREAMS_SELECTION}>
-      <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady, !isUserReady]} players={players}>
+      <StepSwitcher step={step} conditions={[!user.isReady, !user.isReady, !user.isReady]} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<DreamIcon />}

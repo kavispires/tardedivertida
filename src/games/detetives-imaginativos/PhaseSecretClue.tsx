@@ -1,5 +1,4 @@
 // Hooks
-import { useIsUserReady } from 'hooks/useIsUserReady';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
@@ -22,8 +21,8 @@ import { SecretIcon } from 'components/icons/SecretIcon';
 
 function PhaseSecretClue({ state, players, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
-  const user = useUser(players);
-  const isUserReady = useIsUserReady(players, state);
+  const user = useUser(players, state);
+
   const [leader, isUserTheLeader] = useWhichPlayerIsThe('leaderId', state, players);
 
   const onSubmitSecretClue = useOnSubmitSecretClueAPIRequest(setStep);
@@ -35,7 +34,7 @@ function PhaseSecretClue({ state, players, info }: PhaseProps) {
       allowedPhase={PHASES.DETETIVES_IMAGINATIVOS.SECRET_CLUE}
       className="d-secret-clue-phase"
     >
-      <StepSwitcher step={step} conditions={[!isUserReady]} players={players}>
+      <StepSwitcher step={step} conditions={[!user.isReady]} players={players}>
         {/* Step 0 */}
         <RoundAnnouncement
           round={state.round}

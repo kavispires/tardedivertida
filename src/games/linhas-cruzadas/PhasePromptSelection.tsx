@@ -1,5 +1,4 @@
 // State & Hooks
-import { useIsUserReady } from 'hooks/useIsUserReady';
 import { useUser } from 'hooks/useUser';
 import { useStep } from 'hooks/useStep';
 import { useOnSubmitPromptAPIRequest } from './utils/api-requests';
@@ -15,14 +14,13 @@ import { ListIcon } from 'components/icons/ListIcon';
 
 function PhasePromptSelection({ players, state, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
-  const user = useUser(players);
-  const isUserReady = useIsUserReady(players, state);
+  const user = useUser(players, state);
 
   const onSubmitPrompt = useOnSubmitPromptAPIRequest(setStep);
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.LINHAS_CRUZADAS.PROMPT_SELECTION}>
-      <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady, !isUserReady]} players={players}>
+      <StepSwitcher step={step} conditions={[!user.isReady, !user.isReady, !user.isReady]} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<ListIcon />}

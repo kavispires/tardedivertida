@@ -1,8 +1,8 @@
 import { useMemo } from 'react';
 // Hooks
-import { useIsUserReady } from 'hooks/useIsUserReady';
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
+import { useUser } from 'hooks/useUser';
 import { useOnProgressGameAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
@@ -19,8 +19,9 @@ import { HandcuffsIcon } from 'components/icons/HandcuffsIcon';
 import { Translate } from 'components/language';
 
 function PhaseResolution({ state, players, info }: PhaseProps) {
+  const user = useUser(players, state);
   const { step, goToNextStep, setStep } = useStep(0);
-  const isUserReady = useIsUserReady(players, state);
+
   const [currentSpy, isUserTheSpy] = useWhichPlayerIsThe('currentSpyId', state, players);
   const [target] = useWhichPlayerIsThe('targetId', state, players);
 
@@ -38,7 +39,7 @@ function PhaseResolution({ state, players, info }: PhaseProps) {
       allowedPhase={PHASES.ESPIAO_ENTRE_NOS.RESOLUTION}
       className="e-phase"
     >
-      <StepSwitcher step={step} conditions={[!isUserReady]} players={players}>
+      <StepSwitcher step={step} conditions={[!user.isReady]} players={players}>
         {/* Step 0 */}
         <ViewOr orCondition={resolutionStatus.didSpyGuess}>
           <PhaseAnnouncement

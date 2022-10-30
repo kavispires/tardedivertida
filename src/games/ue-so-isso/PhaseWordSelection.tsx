@@ -1,11 +1,10 @@
 // Hooks
-import { useIsUserReady } from 'hooks/useIsUserReady';
 import { useStep } from 'hooks/useStep';
+import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
-
 import { StepWordSelection } from './StepWordSelection';
 import { GameProgressBar } from './components/GameProgressBar';
 import { GuesserWaitingRoom } from './components/GuesserWaitingRoom';
@@ -47,7 +46,7 @@ function RoundAnnouncementText({ guesser, groupScore, round }: RoundAnnouncement
 }
 
 function PhaseWordSelection({ state, players, info }: PhaseProps) {
-  const isUserReady = useIsUserReady(players, state);
+  const user = useUser(players, state);
   const [guesser, isUserTheGuesser] = useWhichPlayerIsThe('guesserId', state, players);
   const { step, goToNextStep, setStep } = useStep(0);
 
@@ -60,7 +59,7 @@ function PhaseWordSelection({ state, players, info }: PhaseProps) {
       allowedPhase={PHASES.UE_SO_ISSO.WORD_SELECTION}
       className="u-word-selection-phase"
     >
-      <StepSwitcher step={step} conditions={[!isUserReady]} players={players}>
+      <StepSwitcher step={step} conditions={[!user.isReady]} players={players}>
         {/* Step 0 */}
         <RoundAnnouncement
           round={state.round}

@@ -28,7 +28,7 @@ const GRID_REPEAT: NumberDictionary = {
 
 function PhaseGameOver({ state, players, info }: PhaseProps) {
   const { language } = useLanguage();
-  const user = useUser(players);
+  const user = useUser(players, state);
 
   const winningPlayersIds = state.winners.map((player: GamePlayer) => player.id);
   const nonWinningPlayers = orderBy(

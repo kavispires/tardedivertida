@@ -1,5 +1,4 @@
 // State & Hooks
-import { useIsUserReady } from 'hooks/useIsUserReady';
 import { useUser } from 'hooks/useUser';
 import { useStep } from 'hooks/useStep';
 import { useOnSubmitGuessesAPIRequest } from './utils/api-requests';
@@ -15,14 +14,13 @@ import { Translate } from 'components/language';
 
 function PhaseGuessing({ players, state, info }: PhaseProps) {
   const { step, setStep, goToNextStep } = useStep(0);
-  const user = useUser(players);
-  const isUserReady = useIsUserReady(players, state);
+  const user = useUser(players, state);
 
   const onSubmitGuesses = useOnSubmitGuessesAPIRequest(setStep);
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.CRIMES_HEDIONDOS.GUESSING}>
-      <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady]} players={players}>
+      <StepSwitcher step={step} conditions={[!user.isReady, !user.isReady]} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<GuessIcon />}

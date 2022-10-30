@@ -16,7 +16,7 @@ import { StepBattle } from './StepBattle';
 function PhaseBattle({ state, players, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
   const [previousTier, setPreviousTier] = useState<string>('');
-  const user = useUser(players);
+  const user = useUser(players, state);
 
   const onSubmitVotes = useOnSubmitVotesAPIRequest(setStep);
 

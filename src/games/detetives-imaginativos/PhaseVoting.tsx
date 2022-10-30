@@ -18,7 +18,7 @@ import { PlayersHighlight } from 'components/metrics/PlayersHighlight';
 function PhaseVoting({ state, players, info }: PhaseProps) {
   const { isLoading } = useLoading();
   const { step, goToNextStep } = useStep(0);
-  const user = useUser(players);
+  const user = useUser(players, state);
   const [, isUserTheLeader] = useWhichPlayerIsThe('leaderId', state, players);
 
   const onSubmitVote = useOnSubmitVoteAPIRequest();

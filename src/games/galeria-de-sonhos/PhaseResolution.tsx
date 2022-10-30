@@ -1,6 +1,6 @@
 // State & Hooks
-import { useIsUserReady } from 'hooks/useIsUserReady';
 import { useStep } from 'hooks/useStep';
+import { useUser } from 'hooks/useUser';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
@@ -13,14 +13,14 @@ import { AdminNextPhaseButton } from 'components/admin';
 import { RankIcon } from 'components/icons/RankIcon';
 
 function PhaseResolution({ players, state, info }: PhaseProps) {
-  const isUserReady = useIsUserReady(players, state);
+  const user = useUser(players, state);
   const { step, goToNextStep } = useStep();
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.GALERIA_DE_SONHOS.RESOLUTION}>
       <StepSwitcher
         step={step}
-        conditions={[!isUserReady, !isUserReady, !isUserReady]}
+        conditions={[!user.isReady, !user.isReady, !user.isReady]}
         players={players}
         waitingRoomInstructionType="SERVER"
       >
