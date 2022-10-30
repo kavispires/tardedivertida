@@ -10,6 +10,7 @@ import { getAnimationClass } from 'utils/helpers';
 import { Translate } from 'components/language';
 import { Title } from 'components/text';
 import { TimedButton } from 'components/buttons';
+import { useKeyPressEvent } from 'react-use';
 
 type PhaseAnnouncementProps = {
   /**
@@ -77,6 +78,12 @@ export function PhaseAnnouncement({
 }: PhaseAnnouncementProps) {
   useTemporarilyHidePlayersBar();
   const durationPerRound = [15, 10, 5]?.[currentRound] ?? 5;
+
+  useKeyPressEvent(' ', () => {
+    if (!unskippable) {
+      onClose();
+    }
+  });
 
   return (
     <div className={clsx('phase-announcement', getAnimationClass(animationType), className)}>
