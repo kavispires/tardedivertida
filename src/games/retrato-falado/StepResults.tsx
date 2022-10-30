@@ -12,6 +12,7 @@ import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { AvatarName } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
+import { PointsHighlight } from 'components/metrics/PointsHighlight';
 
 type StepResultsProps = {
   currentMonster: Monster;
@@ -40,7 +41,7 @@ export function StepResults({
 }: StepResultsProps) {
   useTemporarilyHidePlayersBar();
 
-  const canvasWidth = useCardWidth(Math.min(Object.keys(players).length, 6), 16, 150, 500);
+  const canvasWidth = useCardWidth(Math.min(Object.keys(players).length, 6), 16, 150, 300);
   const [canvasSize] = useGlobalState('canvasSize');
 
   const { mostVotedSketches, otherSketches } = sketches.reduce(
@@ -73,14 +74,36 @@ export function StepResults({
 
       <Instruction contained>
         {mostVotes.length > 1 ? (
-          <Translate pt="Esses jogadores ganharam 3 pontos cada." en="These players get 2 points each." />
+          <Translate
+            pt={
+              <>
+                Esses jogadores ganharam <PointsHighlight type="positive">2</PointsHighlight> pontos cada.
+              </>
+            }
+            en={
+              <>
+                These players get <PointsHighlight type="positive">2</PointsHighlight> points each.
+              </>
+            }
+          />
         ) : (
-          <Translate pt="Esse jogador ganha 3 pontos." en="This player gets 2 points." />
+          <Translate
+            pt={
+              <>
+                Esse jogador ganha <PointsHighlight type="positive">2</PointsHighlight> pontos.
+              </>
+            }
+            en={
+              <>
+                This player gets <PointsHighlight type="positive">2</PointsHighlight> points.
+              </>
+            }
+          />
         )}
       </Instruction>
 
       <div className="r-monster-list">
-        <MonsterCard currentMonster={currentMonster} style={{ width: `${canvasWidth * 1.5}px` }} />
+        <MonsterCard currentMonster={currentMonster} style={{ width: `${canvasWidth * 2}px` }} />
         <MonsterSketches
           sketches={mostVotedSketches}
           players={players}
@@ -95,13 +118,13 @@ export function StepResults({
             pt={
               <>
                 A testemunha <AvatarName player={witness} /> votou no mais votado, logo, é uma testemunha
-                confiável e ganha 2 pontos também.
+                confiável e ganha <PointsHighlight type="positive">2</PointsHighlight> pontos também.
               </>
             }
             en={
               <>
-                The witness <AvatarName player={witness} /> voted with the group which means s(he) is a
-                credible witness and gets 2 points as well.
+                The witness <AvatarName player={witness} /> voted with the group which means they are a
+                credible witness and get <PointsHighlight type="positive">2</PointsHighlight> points as well.
               </>
             }
           />
@@ -110,13 +133,14 @@ export function StepResults({
             pt={
               <>
                 A testemunha achou que o desenho de <AvatarName player={players[witnessVote]} /> foi o melhor,
-                esse jogador ganha 1 ponto.
+                esse jogador ganha <PointsHighlight type="positive">1</PointsHighlight> ponto.
               </>
             }
             en={
               <>
                 The witness thought that <AvatarName player={players[witnessVote]} />
-                's sketch was the best, so s(he) gets 1 point.
+                's sketch was the best, so they get <PointsHighlight type="positive">1</PointsHighlight>{' '}
+                point.
               </>
             }
           />

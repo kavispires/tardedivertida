@@ -5,13 +5,13 @@ import { Button, Space } from 'antd';
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useGlobalState } from 'hooks/useGlobalState';
 // Components
-
 import { MonsterCard } from './components/MonsterCard';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { ViewOr } from 'components/views';
 import { CanvasResizer, CanvasSVG } from 'components/canvas';
-import { Avatar } from 'components/avatars';
+import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { CheckSquareOutlined } from '@ant-design/icons';
 
 type StepVoteProps = {
   isUserTheWitness: boolean;
@@ -52,14 +52,18 @@ export function StepVote({
               <>
                 Você só ganha ponto se você escolher o desenho mais votado.
                 <br />
-                Caso você não escolha o mais votado, o jogador que você escolher ganha 1 ponto.
+                Caso você não escolha o mais votado, o jogador que você escolher ganha{' '}
+                <PointsHighlight>1</PointsHighlight> ponto.
               </>
             }
             en={
               <>
                 You only score if you choose the best sketch (the one with the most votes).
                 <br />
-                If you didn't pick the one, the player you chose gets 1 point.
+                If you didn't pick the one, the player you chose gets <PointsHighlight>
+                  1
+                </PointsHighlight>{' '}
+                point.
               </>
             }
           />
@@ -70,7 +74,7 @@ export function StepVote({
                 Vote no desenho que mais se aproxima do monstro.
                 <br />
                 Você não pode votar em si mesmo.
-                <br />O desenho (ou desenhos) mais votado receberá 1 ponto!
+                <br />O desenho (ou desenhos) mais votado receberá <PointsHighlight>2</PointsHighlight> ponto!
               </>
             }
             en={
@@ -79,7 +83,7 @@ export function StepVote({
                 <br />
                 You cannot vote for yourself.
                 <br />
-                The sketch (or sketches) with the most votes gets 1 point.
+                The sketch (or sketches) with the most votes gets <PointsHighlight>2</PointsHighlight> point.
               </>
             }
           />
@@ -91,6 +95,7 @@ export function StepVote({
       <Space className="space-container" align="center">
         {sketches.map((sketchObj) => {
           const player = players[sketchObj.playerId];
+          const ownDrawing = sketchObj.playerId === user.id;
           return (
             <Space direction="vertical" align="center" key={`sketch-for-player-${sketchObj.playerId}`}>
               <CanvasSVG
@@ -102,9 +107,16 @@ export function StepVote({
               <Button
                 type="primary"
                 onClick={() => onSubmitVote({ vote: player.id })}
-                disabled={sketchObj.playerId === user.id}
+                disabled={ownDrawing}
+                className="r-vote-button"
               >
-                <Avatar id={player.avatarId} size="small" /> {player.name}
+                {ownDrawing ? (
+                  <Translate pt="Seu" en="Yours" />
+                ) : (
+                  <>
+                    <CheckSquareOutlined /> <Translate pt="Vote neste" en="Vote for this one" />
+                  </>
+                )}
               </Button>
             </Space>
           );
