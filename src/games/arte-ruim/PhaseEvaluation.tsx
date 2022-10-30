@@ -32,7 +32,12 @@ function EvaluationPhase({ players, state, info }: PhaseProps) {
           />
         }
         waitingRoomContent={
-          <EvaluatedDrawings cards={state.cards} drawings={state.drawings} votes={user?.votes} />
+          <EvaluatedDrawings
+            cards={state.cards}
+            drawings={state.drawings}
+            votes={user?.votes}
+            players={players}
+          />
         }
       >
         {/*Step 0 */}

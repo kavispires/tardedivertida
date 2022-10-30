@@ -5,11 +5,13 @@ import { useGlobalState } from 'hooks/useGlobalState';
 import { CanvasSVG } from 'components/canvas';
 import { IconAvatar } from 'components/icons/IconAvatar';
 import { AnimatedLoaderIcon } from 'components/icons/AnimatedLoaderIcon';
+import { AvatarName } from 'components/avatars';
 
 type EvaluatedDrawingsProps = {
   votes?: StringDictionary;
   cards: ArteRuimCard[];
   drawings: ArteRuimDrawing[];
+  players: GamePlayers;
 };
 
 /**
@@ -17,7 +19,7 @@ type EvaluatedDrawingsProps = {
  * @param props
  * @returns
  */
-export function EvaluatedDrawings({ votes, cards, drawings }: EvaluatedDrawingsProps) {
+export function EvaluatedDrawings({ votes, cards, drawings, players }: EvaluatedDrawingsProps) {
   const [canvasSize] = useGlobalState('canvasSize');
 
   const cardsDict = useMemo(
@@ -54,9 +56,12 @@ export function EvaluatedDrawings({ votes, cards, drawings }: EvaluatedDrawingsP
         .map((drawingKey: string) => {
           const drawing = drawingsDict[drawingKey] as ArteRuimDrawing;
           const card = cardsDict[votes[drawingKey]] as ArteRuimCard;
-
+          console.log(drawing);
           return (
             <li className="a-evaluated-drawings__item" key={`${drawing.id}-${card.id}-${card.playerId}`}>
+              <div className="a-evaluated-drawings__card" style={{ maxWidth: `${cSize}px` }}>
+                <AvatarName player={players[drawing.playerId]} size="small" />
+              </div>
               <CanvasSVG
                 drawing={drawing.drawing}
                 size={cSize}

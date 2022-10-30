@@ -88,7 +88,7 @@ function PhaseDraw({ players, state, info }: PhaseProps) {
                   <br />
                   Aperte o botão quando estiver pronto!
                   <br />
-                  Não vale usar números e letras.
+                  <strong>Não vale usar números e letras.</strong>
                   <br />
                   Fique esperto porque o tempo começa assim que você apertar.
                 </>
@@ -99,7 +99,7 @@ function PhaseDraw({ players, state, info }: PhaseProps) {
                   <br />
                   Press the button when you're ready!
                   <br />
-                  You can NOT use numbers or letters.
+                  <strong>You can NOT use numbers or letters.</strong>
                   <br />
                   Be aware of the timer! It starts as soon as you press the button.
                 </>
