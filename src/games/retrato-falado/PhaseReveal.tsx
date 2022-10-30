@@ -1,5 +1,4 @@
 // State & Hooks
-import { useIsUserReady } from 'hooks/useIsUserReady';
 
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
@@ -17,14 +16,13 @@ import { QualitySealIcon } from 'components/icons/QualitySealIcon';
 
 function PhaseReveal({ players, state, info }: PhaseProps) {
   const { step, goToNextStep, goToPreviousStep } = useStep(0);
-  const user = useUser(players);
+  const user = useUser(players, state);
 
-  const isUserReady = useIsUserReady(players, state);
   const [witness] = useWhichPlayerIsThe('witnessId', state, players);
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.RETRATO_FALADO.REVEAL}>
-      <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady, !isUserReady]} players={players}>
+      <StepSwitcher step={step} conditions={[!user.isReady, !user.isReady, !user.isReady]} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<QualitySealIcon />}

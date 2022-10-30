@@ -19,7 +19,7 @@ function PhaseDefense({ state, players, info }: PhaseProps) {
   const { step, goToNextStep } = useStep(0);
   const [currentPlayer, isUserTheCurrentPlayer] = useWhichPlayerIsThe('currentPlayerId', state, players);
   const [, isUserTheImpostor] = useWhichPlayerIsThe('impostorId', state, players);
-  const user = useUser(players);
+  const user = useUser(players, state);
 
   const onFinishDefense = useOnFinishDefenseRequest();
 

@@ -1,6 +1,6 @@
 // State & Hooks
-import { useIsUserReady } from 'hooks/useIsUserReady';
 import { useStep } from 'hooks/useStep';
+import { useUser } from 'hooks/useUser';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
@@ -11,13 +11,12 @@ import { TDIcon } from 'components/icons/TDIcon';
 import { Translate } from 'components/language';
 
 function PhaseDuel({ players, state, info }: PhaseProps) {
-  const isUserReady = useIsUserReady(players, state);
-
+  const user = useUser(players, state);
   const { step, goToNextStep } = useStep(0);
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.QUEM_NAO_MATA.DUEL}>
-      <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady, !isUserReady]} players={players}>
+      <StepSwitcher step={step} conditions={[!user.isReady, !user.isReady, !user.isReady]} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<TDIcon />}

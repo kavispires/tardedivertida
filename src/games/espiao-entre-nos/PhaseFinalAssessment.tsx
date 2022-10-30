@@ -1,5 +1,4 @@
 // Hooks
-import { useIsUserReady } from 'hooks/useIsUserReady';
 import { useUser } from 'hooks/useUser';
 import { useStep } from 'hooks/useStep';
 import { useOnMakeAccusationAPIRequest } from './utils/api-requests';
@@ -16,8 +15,8 @@ import { OpinionsIcon } from 'components/icons/OpinionsIcon';
 
 function PhaseFinalAssessment({ state, players, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
-  const isUserReady = useIsUserReady(players, state);
-  const user = useUser(players);
+
+  const user = useUser(players, state);
 
   const onMakeAccusation = useOnMakeAccusationAPIRequest(setStep);
 
@@ -31,7 +30,7 @@ function PhaseFinalAssessment({ state, players, info }: PhaseProps) {
       allowedPhase={PHASES.ESPIAO_ENTRE_NOS.FINAL_ASSESSMENT}
       className="e-phase"
     >
-      <StepSwitcher step={step} conditions={[!isUserReady]} players={players}>
+      <StepSwitcher step={step} conditions={[!user.isReady]} players={players}>
         {/* Step 0 */}
         {state.finalAssessment.playerOrderIndex === 0 ? (
           <PhaseAnnouncement

@@ -1,5 +1,4 @@
 // Hooks
-import { useIsUserReady } from 'hooks/useIsUserReady';
 import { useUser } from 'hooks/useUser';
 import { useStep } from 'hooks/useStep';
 // Resources & Utils
@@ -15,12 +14,11 @@ import { HouseIcon } from 'components/icons/HouseIcon';
 
 function PhaseStreetEnd({ state, players, info }: PhaseProps) {
   const { step, goToNextStep } = useStep(0);
-  const user = useUser(players);
-  const isUserReady = useIsUserReady(players, state);
+  const user = useUser(players, state);
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.NA_RUA_DO_MEDO.STREET_END}>
-      <StepSwitcher step={step} conditions={[!isUserReady]} players={players}>
+      <StepSwitcher step={step} conditions={[!user.isReady]} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={state.isDoubleHorror ? <ScaredIcon /> : <HouseIcon />}

@@ -1,5 +1,4 @@
 // State & Hooks
-import { useIsUserReady } from 'hooks/useIsUserReady';
 import { useLoading } from 'hooks/useLoading';
 import { useUser } from 'hooks/useUser';
 import { useStep } from 'hooks/useStep';
@@ -22,9 +21,7 @@ import { MagicDoorIcon } from 'components/icons/MagicDoorIcon';
 import { Translate } from 'components/language';
 
 function PhaseDoorChoice({ players, state, info, meta }: PhaseProps) {
-  const isUserReady = useIsUserReady(players, state);
-
-  const user = useUser(players);
+  const user = useUser(players, state);
   const { step, goToNextStep, setStep } = useStep();
   const [possessed, isPossessed] = useWhichPlayerIsThe('possessedId', state, players);
   const { isLoading } = useLoading();
@@ -48,7 +45,7 @@ function PhaseDoorChoice({ players, state, info, meta }: PhaseProps) {
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.PORTA_DOS_DESESPERADOS.DOOR_CHOICE}>
-      <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady, !isUserReady]} players={players}>
+      <StepSwitcher step={step} conditions={[!user.isReady, !user.isReady, !user.isReady]} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<MagicDoorIcon />}

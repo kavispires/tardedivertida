@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 // State & Hooks
-import { useIsUserReady } from 'hooks/useIsUserReady';
 import { useUser } from 'hooks/useUser';
 import { useStep } from 'hooks/useStep';
 // Resources & Utils
@@ -17,8 +16,8 @@ import { Translate } from 'components/language';
 
 function PhaseReveal({ players, state, info }: PhaseProps) {
   const { step, goToNextStep, goToPreviousStep } = useStep(0);
-  const user = useUser(players);
-  const isUserReady = useIsUserReady(players, state);
+  const user = useUser(players, state);
+
   const [isFirstRunThrough, setIsFirstRunThrough] = useState(true);
 
   // Changes isFirstGalleryRunThrough property which disables controls, after the first gallery run through
@@ -30,7 +29,7 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.CRIMES_HEDIONDOS.REVEAL}>
-      <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady, !isUserReady]} players={players}>
+      <StepSwitcher step={step} conditions={[!user.isReady, !user.isReady, !user.isReady]} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<RankIcon />}

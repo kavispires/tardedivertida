@@ -1,6 +1,6 @@
 // State & Hooks
-import { useIsUserReady } from 'hooks/useIsUserReady';
 import { useStep } from 'hooks/useStep';
+import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { useOnSubmitOrientationAPIRequest, useOnSubmitSketchAPIRequest } from './utils/api-requests';
 // Resources & Utils
@@ -17,8 +17,9 @@ import { AvatarName } from 'components/avatars';
 import { MonsterIcon } from 'components/icons/MonsterIcon';
 
 function PhaseCompositeSketch({ players, state, info }: PhaseProps) {
+  const user = useUser(players, state);
   const { step, goToNextStep, setStep } = useStep(0);
-  const isUserReady = useIsUserReady(players, state);
+
   const [witness, isUserTheWitness] = useWhichPlayerIsThe('witnessId', state, players);
 
   const onSubmitSketch = useOnSubmitSketchAPIRequest(setStep);
@@ -26,7 +27,7 @@ function PhaseCompositeSketch({ players, state, info }: PhaseProps) {
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.RETRATO_FALADO.COMPOSITE_SKETCH}>
-      <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady, !isUserReady]} players={players}>
+      <StepSwitcher step={step} conditions={[!user.isReady, !user.isReady, !user.isReady]} players={players}>
         {/* Step 0 */}
         <RoundAnnouncement
           round={state?.round}

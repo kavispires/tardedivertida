@@ -1,5 +1,4 @@
 // Hooks
-import { useIsUserReady } from 'hooks/useIsUserReady';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
@@ -18,8 +17,8 @@ import { PassportIcon } from 'components/icons/PassportIcon';
 
 function PhaseAssignment({ state, players, info }: PhaseProps) {
   const { step, goToNextStep } = useStep(0);
-  const user = useUser(players);
-  const isUserReady = useIsUserReady(players, state);
+  const user = useUser(players, state);
+
   const [, isUserTheSpy] = useWhichPlayerIsThe('currentSpyId', state, players);
 
   return (
@@ -29,7 +28,7 @@ function PhaseAssignment({ state, players, info }: PhaseProps) {
       allowedPhase={PHASES.ESPIAO_ENTRE_NOS.ASSIGNMENT}
       className="e-phase"
     >
-      <StepSwitcher step={step} conditions={[!isUserReady]} players={players}>
+      <StepSwitcher step={step} conditions={[!user.isReady]} players={players}>
         {/* Step 0 */}
         <RoundAnnouncement
           round={state.round}

@@ -1,5 +1,4 @@
 // State & Hooks
-import { useIsUserReady } from 'hooks/useIsUserReady';
 import { useUser } from 'hooks/useUser';
 import { useStep } from 'hooks/useStep';
 // Resources & Utils
@@ -12,13 +11,12 @@ import { TDIcon } from 'components/icons/TDIcon';
 import { Translate } from 'components/language';
 
 function PhaseTemplate({ players, state, info }: PhaseProps) {
-  const isUserReady = useIsUserReady(players, state);
-  const user = useUser(players);
+  const user = useUser(players, state);
   const { step, goToNextStep } = useStep();
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.CINEGRAFISTAS_AMADORES.UNKNOWN}>
-      <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady, !isUserReady]} players={players}>
+      <StepSwitcher step={step} conditions={[!user.isReady, !user.isReady, !user.isReady]} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<TDIcon />}

@@ -1,8 +1,8 @@
 // State & Hooks
-import { useIsUserReady } from 'hooks/useIsUserReady';
 import { useStep } from 'hooks/useStep';
 import { useOnSubmitPagesAPIRequest } from './utils/api-requests';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
+import { useUser } from 'hooks/useUser';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 import { shouldAnnounceTrap } from './utils/helpers';
@@ -23,7 +23,7 @@ import { BookHighlight } from './components/Highlights';
 import { TurnOrder } from 'components/players';
 
 function PhaseBookPossession({ players, state, info }: PhaseProps) {
-  const isUserReady = useIsUserReady(players, state);
+  const user = useUser(players, state);
   const { step, goToNextStep, setStep } = useStep();
   const [possessed, isPossessed] = useWhichPlayerIsThe('possessedId', state, players);
 
@@ -35,7 +35,7 @@ function PhaseBookPossession({ players, state, info }: PhaseProps) {
       phase={state?.phase}
       allowedPhase={PHASES.PORTA_DOS_DESESPERADOS.BOOK_POSSESSION}
     >
-      <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady, !isUserReady]} players={players}>
+      <StepSwitcher step={step} conditions={[!user.isReady, !user.isReady, !user.isReady]} players={players}>
         {/* Step 0 */}
         <RoundAnnouncement
           round={state?.round}

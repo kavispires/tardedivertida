@@ -1,5 +1,4 @@
 // Hooks
-import { useIsUserReady } from 'hooks/useIsUserReady';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
@@ -16,8 +15,8 @@ import { AlertIcon } from 'components/icons/AlertIcon';
 
 function PhaseAssessment({ state, players, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
-  const user = useUser(players);
-  const isUserReady = useIsUserReady(players, state);
+  const user = useUser(players, state);
+
   const [accuser, isUserTheAccuser] = useWhichPlayerIsThe('accuserId', state, players);
   const [target, isUserTheTarget] = useWhichPlayerIsThe('targetId', state, players);
 
@@ -30,7 +29,7 @@ function PhaseAssessment({ state, players, info }: PhaseProps) {
       allowedPhase={PHASES.ESPIAO_ENTRE_NOS.ASSESSMENT}
       className="e-phase"
     >
-      <StepSwitcher step={step} conditions={[!isUserReady]} players={players}>
+      <StepSwitcher step={step} conditions={[!user.isReady]} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<AlertIcon />}

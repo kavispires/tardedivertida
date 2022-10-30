@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 // State & Hooks
-import { useIsUserReady } from 'hooks/useIsUserReady';
 import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { useStep } from 'hooks/useStep';
@@ -29,8 +28,7 @@ import { PointsHighlight } from 'components/metrics/PointsHighlight';
 function PhaseCardPlay({ players, state, info, meta }: PhaseProps) {
   const { isLoading } = useLoading();
   const { step, goToNextStep, setStep } = useStep();
-  const user = useUser(players);
-  const isUserReady = useIsUserReady(players, state);
+  const user = useUser(players, state);
 
   const [activePlayer, isActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
   const [lastActivePlayer] = useWhichPlayerIsThe('lastActivePlayerId', state, players);
@@ -54,7 +52,7 @@ function PhaseCardPlay({ players, state, info, meta }: PhaseProps) {
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.GALERIA_DE_SONHOS.CARD_PLAY}>
-      <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady, !isUserReady]} players={players}>
+      <StepSwitcher step={step} conditions={[!user.isReady, !user.isReady, !user.isReady]} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<DoorSignIcon />}

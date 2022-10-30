@@ -8,7 +8,7 @@ import { TrophyIcon } from 'components/icons/TrophyIcon';
 
 function PhaseGameOver({ state, players, info }: PhaseProps) {
   const crimes: Crime[] = state.crimes;
-  const user = useUser(players);
+  const user = useUser(players, state);
 
   return (
     <GameOverWrapper info={info} state={state} announcementIcon={<TrophyIcon />}>

@@ -14,7 +14,7 @@ import { Translate } from 'components/language';
 
 function PhaseEverybodyWrites({ state, players, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
-  const user = useUser(players);
+  const user = useUser(players, state);
 
   const onSubmitAnswers = useOnSubmitAnswersAPIRequest(setStep);
 

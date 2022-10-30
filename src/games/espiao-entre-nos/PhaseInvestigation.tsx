@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 // Ant Design Resources
 import { notification } from 'antd';
 // Hooks
-import { useIsUserReady } from 'hooks/useIsUserReady';
 import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
@@ -28,8 +27,8 @@ import { TimerIcon } from 'components/icons/TimerIcon';
 function PhaseInvestigation({ state, players, info }: PhaseProps) {
   const { translate } = useLanguage();
   const { step, goToNextStep, setStep } = useStep(0);
-  const user = useUser(players);
-  const isUserReady = useIsUserReady(players, state);
+  const user = useUser(players, state);
+
   const [, isUserTheSpy] = useWhichPlayerIsThe('currentSpyId', state, players);
   const [startingPlayer] = useWhichPlayerIsThe('startingPlayerId', state, players);
 
@@ -57,7 +56,7 @@ function PhaseInvestigation({ state, players, info }: PhaseProps) {
       allowedPhase={PHASES.ESPIAO_ENTRE_NOS.INVESTIGATION}
       className="e-phase"
     >
-      <StepSwitcher step={step} conditions={[!isUserReady]} players={players}>
+      <StepSwitcher step={step} conditions={[!user.isReady]} players={players}>
         {/* Step 0 */}
         {state?.outcome?.type !== 'VOTE_FAIL' ? (
           <PhaseAnnouncement

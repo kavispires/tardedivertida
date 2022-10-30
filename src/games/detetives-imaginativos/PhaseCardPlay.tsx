@@ -18,7 +18,7 @@ import { CardHighlight } from 'components/metrics/CardHighlight';
 function PhaseCardPlay({ state, players, info }: PhaseProps) {
   const { isLoading } = useLoading();
   const { step, goToNextStep } = useStep(0);
-  const user = useUser(players);
+  const user = useUser(players, state);
   const [currentPlayer, isUserTheCurrentPlayer] = useWhichPlayerIsThe('currentPlayerId', state, players);
   const [, isUserTheImpostor] = useWhichPlayerIsThe('impostorId', state, players);
 

@@ -1,7 +1,7 @@
 // State & Hooks
-import { useIsUserReady } from 'hooks/useIsUserReady';
-import { useOnSubmitGuessAPIRequest } from './utils/api-requests';
 import { useStep } from 'hooks/useStep';
+import { useUser } from 'hooks/useUser';
+import { useOnSubmitGuessAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Components
@@ -17,7 +17,7 @@ import { TurnOrder } from 'components/players';
 import { StepWaitClover } from './StepWaitClover';
 
 function PhaseCloverGuessing({ players, state, info }: PhaseProps) {
-  const isUserReady = useIsUserReady(players, state);
+  const user = useUser(players, state);
   const { step, goToNextStep, setStep } = useStep(0);
   const [activeCloverPlayer, isUserTheCloverPlayer] = useWhichPlayerIsThe('activeCloverId', state, players);
 
@@ -25,7 +25,7 @@ function PhaseCloverGuessing({ players, state, info }: PhaseProps) {
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.TREVO_DA_SORTE.CLOVER_GUESSING}>
-      <StepSwitcher step={step} conditions={[!isUserReady, !isUserReady, !isUserReady]} players={players}>
+      <StepSwitcher step={step} conditions={[!user.isReady, !user.isReady, !user.isReady]} players={players}>
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<CloverIcon />}

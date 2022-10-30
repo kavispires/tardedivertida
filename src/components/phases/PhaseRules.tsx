@@ -11,7 +11,6 @@ import {
 } from 'utils/speech';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
-import { useIsUserReady } from 'hooks/useIsUserReady';
 import { useAPICall } from 'hooks/useAPICall';
 import { useLanguage } from 'hooks/useLanguage';
 import { useMock } from 'hooks/useMock';
@@ -30,7 +29,6 @@ type PhaseRulesProps = {
 export function PhaseRules({ players, info }: PhaseRulesProps) {
   const { isLoading } = useLoading();
   const { language, translate } = useLanguage();
-  const isUserReady = useIsUserReady(players);
   const user = useUser(players);
   const [volume] = useGlobalState('volume');
 
@@ -96,8 +94,8 @@ export function PhaseRules({ players, info }: PhaseRulesProps) {
       <Space className="phase-rules__actions" wrap>
         <Button
           type="primary"
-          icon={isUserReady ? <CheckCircleFilled /> : <SmileFilled />}
-          disabled={isLoading || isUserReady}
+          icon={user.isReady ? <CheckCircleFilled /> : <SmileFilled />}
+          disabled={isLoading || user.isReady}
           onClick={() => onBeReady({})}
           loading={isLoading}
         >
@@ -107,8 +105,8 @@ export function PhaseRules({ players, info }: PhaseRulesProps) {
           />
         </Button>
         <Button
-          icon={isUserReady ? <CheckCircleFilled /> : <MehFilled />}
-          disabled={isLoading || isUserReady}
+          icon={user.isReady ? <CheckCircleFilled /> : <MehFilled />}
+          disabled={isLoading || user.isReady}
           onClick={() => onBeReadyIDK({})}
           loading={isLoading}
         >
@@ -117,8 +115,8 @@ export function PhaseRules({ players, info }: PhaseRulesProps) {
         <Button
           type="primary"
           danger
-          icon={isUserReady ? <CheckCircleFilled /> : <RobotFilled />}
-          disabled={isLoading || isUserReady}
+          icon={user.isReady ? <CheckCircleFilled /> : <RobotFilled />}
+          disabled={isLoading || user.isReady}
           onClick={() => onBeReadyQue({})}
           loading={isLoading}
         >

@@ -15,7 +15,7 @@ import { SelectListIcon } from 'components/icons/SelectListIcon';
 
 function PhaseChallengeSelection({ state, players, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
-  const user = useUser(players);
+  const user = useUser(players, state);
 
   const onSubmitChallenge = useOnSubmitChallengeAPIRequest(setStep);
 
