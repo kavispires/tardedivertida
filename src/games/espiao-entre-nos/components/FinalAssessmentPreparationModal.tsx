@@ -3,7 +3,6 @@ import { Button, Modal, Space } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 // Hooks and API
 import { useGlobalState } from 'hooks/useGlobalState';
-import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { Translate } from 'components/language';
 
@@ -19,12 +18,11 @@ export function FinalAssessmentPreparationModal({
   players,
 }: FinalAssessmentModalProps) {
   const [isAdmin] = useGlobalState('isAdmin');
-  const { translate } = useLanguage();
 
   return (
     <Modal
       open={isAdmin}
-      title={translate('O Tempo Acabou!', "Time's up")}
+      title={<Translate pt="O Tempo Acabou!" en="Time's up" />}
       footer={null}
       closable={false}
       className="e-modal"

@@ -3,7 +3,6 @@ import { useEffectOnce } from 'react-use';
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
 import { useVotingMatch } from 'hooks/useVotingMatch';
@@ -28,7 +27,6 @@ type StepMatchDreamsProps = {
 
 export function StepMatchDreams({ players, user, table, onSubmitVotes, dreams }: StepMatchDreamsProps) {
   const { isLoading } = useLoading();
-  const { translate } = useLanguage();
 
   const { votes, setVotes, activeItem, activateItem, isVotingComplete } = useVotingMatch(
     'dream',
@@ -59,7 +57,9 @@ export function StepMatchDreams({ players, user, table, onSubmitVotes, dreams }:
 
   return (
     <Step fullWidth className="s-tell-dream-step">
-      <Title>{translate('Adivinhação', 'Match the Pairs')}</Title>
+      <Title>
+        <Translate pt="Adivinhação" en="Match the Pairs" />
+      </Title>
       <Instruction contained>
         <Translate
           pt="Clique em uma carta e então uma botão da imagem correspondente ou vice e versa. Aperte enviar quando terminar te combinar todas as dicas."

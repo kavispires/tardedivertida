@@ -1,6 +1,5 @@
 // State & Hooks
 import { useIsUserReady } from 'hooks/useIsUserReady';
-import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { useOnSubmitOrientationAPIRequest, useOnSubmitSketchAPIRequest } from './utils/api-requests';
@@ -8,7 +7,6 @@ import { useOnSubmitOrientationAPIRequest, useOnSubmitSketchAPIRequest } from '.
 import { PHASES } from 'utils/phases';
 import { TIMES } from './utils/constants';
 // Components
-
 import { StepTestimonial } from './StepTestimonial';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
@@ -19,7 +17,6 @@ import { AvatarName } from 'components/avatars';
 import { MonsterIcon } from 'components/icons/MonsterIcon';
 
 function PhaseCompositeSketch({ players, state, info }: PhaseProps) {
-  const { translate } = useLanguage();
   const { step, goToNextStep, setStep } = useStep(0);
   const isUserReady = useIsUserReady(players, state);
   const [witness, isUserTheWitness] = useWhichPlayerIsThe('witnessId', state, players);
@@ -62,7 +59,7 @@ function PhaseCompositeSketch({ players, state, info }: PhaseProps) {
         {/* Step 1 */}
         <PhaseAnnouncement
           icon={<MonsterIcon />}
-          title={translate('Memorize! Descreva! Desenhe!', 'Memorize! Describe! Sketch!')}
+          title={<Translate pt="Memorize! Descreva! Desenhe!" en="Memorize! Describe! Sketch!" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           duration={state?.round?.current < 2 ? 20 : 5}

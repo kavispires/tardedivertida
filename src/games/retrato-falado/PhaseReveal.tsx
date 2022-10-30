@@ -1,6 +1,6 @@
 // State & Hooks
 import { useIsUserReady } from 'hooks/useIsUserReady';
-import { useLanguage } from 'hooks/useLanguage';
+
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
@@ -16,7 +16,6 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { QualitySealIcon } from 'components/icons/QualitySealIcon';
 
 function PhaseReveal({ players, state, info }: PhaseProps) {
-  const { translate } = useLanguage();
   const { step, goToNextStep, goToPreviousStep } = useStep(0);
   const user = useUser(players);
 
@@ -29,7 +28,7 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<QualitySealIcon />}
-          title={translate('Resultado', 'Results')}
+          title={<Translate pt="Resultado" en="Results" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           duration={5}

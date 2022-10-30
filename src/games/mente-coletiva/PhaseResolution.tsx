@@ -1,5 +1,4 @@
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
@@ -12,7 +11,6 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { CustomerReviewIcon } from 'components/icons/CustomerReviewIcon';
 
 function PhaseResolution({ state, players, info }: PhaseProps) {
-  const { translate } = useLanguage();
   const { step, goToNextStep } = useStep(0);
 
   return (
@@ -21,7 +19,7 @@ function PhaseResolution({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<CustomerReviewIcon />}
-          title={translate('Resultado', 'And who moves is...')}
+          title={<Translate pt="Resultado" en="And who moves is..." />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
         >

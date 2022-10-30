@@ -1,6 +1,5 @@
 // Hooks
 import { useIsUserReady } from 'hooks/useIsUserReady';
-import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
@@ -18,7 +17,6 @@ import { SecretIcon } from 'components/icons/SecretIcon';
 import { PassportIcon } from 'components/icons/PassportIcon';
 
 function PhaseAssignment({ state, players, info }: PhaseProps) {
-  const { translate } = useLanguage();
   const { step, goToNextStep } = useStep(0);
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
@@ -48,7 +46,7 @@ function PhaseAssignment({ state, players, info }: PhaseProps) {
         {/* Step 1 */}
         <PhaseAnnouncement
           icon={<SpyNewspaperIcon />}
-          title={translate('Prólogo', 'Prologue')}
+          title={<Translate pt="Prólogo" en="Prologue" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           buttonText=""
@@ -83,7 +81,7 @@ function PhaseAssignment({ state, players, info }: PhaseProps) {
         {/* Step 3 */}
         <PhaseAnnouncement
           icon={<SecretIcon />}
-          title={translate('Você tem uma missão', 'You have one mission')}
+          title={<Translate pt="Você tem uma missão" en="You have one mission" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           buttonText=""
@@ -116,7 +114,7 @@ function PhaseAssignment({ state, players, info }: PhaseProps) {
         {/* Step 5 */}
         <PhaseAnnouncement
           icon={<PassportIcon />}
-          title={translate('Mais detalhes', 'More details')}
+          title={<Translate pt="Mais detalhes" en="More details" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           buttonText=""

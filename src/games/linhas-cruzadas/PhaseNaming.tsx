@@ -1,7 +1,6 @@
 // State & Hooks
 import { useIsUserReady } from 'hooks/useIsUserReady';
 import { useUser } from 'hooks/useUser';
-import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
 import { useOnSubmitGuessAPIRequest } from './utils/api-requests';
 // Resources & Utils
@@ -17,7 +16,6 @@ import { WriteIdeaIcon } from 'components/icons/WriteIdeaIcon';
 
 function PhaseNaming({ players, state, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
-  const { translate } = useLanguage();
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
 
@@ -29,7 +27,7 @@ function PhaseNaming({ players, state, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<WriteIdeaIcon />}
-          title={translate('O que é isso?', 'What is it?')}
+          title={<Translate pt="O que é isso?" en="What is it?" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
         >

@@ -1,6 +1,5 @@
 // Hooks
 import { useIsUserReady } from 'hooks/useIsUserReady';
-import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
@@ -22,7 +21,6 @@ import { StepSecretClueWaiting } from './StepSecretClueWaiting';
 import { SecretIcon } from 'components/icons/SecretIcon';
 
 function PhaseSecretClue({ state, players, info }: PhaseProps) {
-  const { translate } = useLanguage();
   const { step, goToNextStep, setStep } = useStep(0);
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
@@ -50,7 +48,7 @@ function PhaseSecretClue({ state, players, info }: PhaseProps) {
         {/* Step 1 */}
         <PhaseAnnouncement
           icon={<SecretIcon />}
-          title={translate('Pista Secreta', 'Secret Clue')}
+          title={<Translate pt="Pista Secreta" en="Secret Clue" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
         >

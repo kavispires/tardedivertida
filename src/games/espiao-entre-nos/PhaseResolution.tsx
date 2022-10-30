@@ -1,7 +1,6 @@
 import { useMemo } from 'react';
 // Hooks
 import { useIsUserReady } from 'hooks/useIsUserReady';
-import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { useOnProgressGameAPIRequest } from './utils/api-requests';
@@ -17,9 +16,9 @@ import { MapLocationIcon } from 'components/icons/MapLocationIcon';
 import { ThiefIcon } from 'components/icons/ThiefIcon';
 import { NuclearExplosionIcon } from 'components/icons/NuclearExplosionIcon';
 import { HandcuffsIcon } from 'components/icons/HandcuffsIcon';
+import { Translate } from 'components/language';
 
 function PhaseResolution({ state, players, info }: PhaseProps) {
-  const { translate } = useLanguage();
   const { step, goToNextStep, setStep } = useStep(0);
   const isUserReady = useIsUserReady(players, state);
   const [currentSpy, isUserTheSpy] = useWhichPlayerIsThe('currentSpyId', state, players);
@@ -44,7 +43,9 @@ function PhaseResolution({ state, players, info }: PhaseProps) {
         <ViewOr orCondition={resolutionStatus.didSpyGuess}>
           <PhaseAnnouncement
             icon={<MapLocationIcon />}
-            title={translate('O espião tentou adivinhar o local', 'The spy tried to guess the location')}
+            title={
+              <Translate pt="O espião tentou adivinhar o local" en="The spy tried to guess the location" />
+            }
             onClose={goToNextStep}
             currentRound={state?.round?.current}
             buttonText=""
@@ -54,7 +55,7 @@ function PhaseResolution({ state, players, info }: PhaseProps) {
 
           <PhaseAnnouncement
             icon={<ThiefIcon />}
-            title={translate('A votação foi unanime!', 'The vote was unanimous!')}
+            title={<Translate pt="A votação foi unanime!" en="The vote was unanimous!" />}
             onClose={goToNextStep}
             currentRound={state?.round?.current}
             buttonText=""
@@ -71,7 +72,7 @@ function PhaseResolution({ state, players, info }: PhaseProps) {
           icon={
             resolutionStatus.phaseIcon === 'nuclear-explosion' ? <NuclearExplosionIcon /> : <HandcuffsIcon />
           }
-          title={translate('O fim chegou!', 'The end is here!')}
+          title={<Translate pt="O fim chegou!" en="The end is here!" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           buttonText=""

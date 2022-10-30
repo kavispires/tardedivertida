@@ -1,5 +1,4 @@
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
 import { useOnSelectWitnessAPIRequest } from './utils/api-requests';
 // Resources & Utils
@@ -13,7 +12,6 @@ import { StepWitnessSelection } from './StepWitnessSelection';
 import { CrimeSceneIcon } from 'components/icons/CrimeSceneIcon';
 
 function PhaseWitnessSelection({ state, players, info }: PhaseProps) {
-  const { translate } = useLanguage();
   const { step, goToNextStep } = useStep(0);
 
   const onWitnessButtonClick = useOnSelectWitnessAPIRequest();
@@ -29,7 +27,7 @@ function PhaseWitnessSelection({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<CrimeSceneIcon />}
-          title={translate('O Caso', 'The Case')}
+          title={<Translate pt="O Caso" en="The Case" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
         >

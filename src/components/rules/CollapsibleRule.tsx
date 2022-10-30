@@ -1,10 +1,9 @@
+import { ReactNode } from 'react';
 // Ant Design Resources
 import { Collapse } from 'antd';
-// Hooks
-import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { Instruction } from 'components/text';
-import { ReactNode } from 'react';
+import { Translate } from 'components/language';
 
 type CollapsibleRuleProps = {
   /**
@@ -14,15 +13,13 @@ type CollapsibleRuleProps = {
   /**
    * The title of the panel (default: Rules/Regras)
    */
-  title?: string;
+  title?: ReactNode;
 };
 export function CollapsibleRule({ children, title }: CollapsibleRuleProps): JSX.Element {
-  const { translate } = useLanguage();
-
   return (
     <Instruction contained>
       <Collapse ghost>
-        <Collapse.Panel header={translate('Regras', 'Rules', title)} key="1">
+        <Collapse.Panel header={<Translate pt="Regras" en="Rules" custom={title} />} key="1">
           {children}
         </Collapse.Panel>
       </Collapse>

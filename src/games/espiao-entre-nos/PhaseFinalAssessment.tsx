@@ -1,7 +1,6 @@
 // Hooks
 import { useIsUserReady } from 'hooks/useIsUserReady';
 import { useUser } from 'hooks/useUser';
-import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
 import { useOnMakeAccusationAPIRequest } from './utils/api-requests';
 // Resources & Utils
@@ -16,7 +15,6 @@ import { PeopleAssessmentIcon } from 'components/icons/PeopleAssessmentIcon';
 import { OpinionsIcon } from 'components/icons/OpinionsIcon';
 
 function PhaseFinalAssessment({ state, players, info }: PhaseProps) {
-  const { translate } = useLanguage();
   const { step, goToNextStep, setStep } = useStep(0);
   const isUserReady = useIsUserReady(players, state);
   const user = useUser(players);
@@ -38,7 +36,7 @@ function PhaseFinalAssessment({ state, players, info }: PhaseProps) {
         {state.finalAssessment.playerOrderIndex === 0 ? (
           <PhaseAnnouncement
             icon={<PeopleAssessmentIcon />}
-            title={translate('O tempo acabou!', "Time's up!")}
+            title={<Translate pt="O tempo acabou!" en="Time's up!" />}
             onClose={goToNextStep}
             currentRound={state?.round?.current}
             buttonText=""
@@ -48,7 +46,7 @@ function PhaseFinalAssessment({ state, players, info }: PhaseProps) {
         ) : (
           <PhaseAnnouncement
             icon={<OpinionsIcon />}
-            title={translate('A avaliação final continua', 'The final assessment continues')}
+            title={<Translate pt="A avaliação final continua" en="The final assessment continues" />}
             onClose={goToNextStep}
             currentRound={state?.round?.current}
             buttonText=""

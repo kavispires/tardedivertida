@@ -1,7 +1,6 @@
 import { useState } from 'react';
 // State & Hooks
 import { useIsUserReady } from 'hooks/useIsUserReady';
-import { useLanguage } from 'hooks/useLanguage';
 import { useMock } from 'hooks/useMock';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
@@ -29,7 +28,6 @@ import { LocationIcon } from 'components/icons/LocationIcon';
 import { CrimeTapeIcon } from 'components/icons/CrimeTapeIcon';
 
 function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
-  const { translate } = useLanguage();
   const { step, setStep, goToNextStep } = useStep(0);
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
@@ -73,7 +71,7 @@ function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
         {/* Step 1 */}
         <PhaseAnnouncement
           icon={<EventIcon />}
-          title={translate('A Convenção', 'The Convention')}
+          title={<Translate pt="A Convenção" en="The Convention" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           duration={30}
@@ -93,7 +91,7 @@ function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
         {/* Step 3 */}
         <PhaseAnnouncement
           icon={<SkullIcon />}
-          title={translate('Causa da Morte', 'Cause of Death')}
+          title={<Translate pt="Causa da Morte" en="Cause of Death" />}
           onClose={goToNextStep}
           duration={5}
         >
@@ -113,7 +111,7 @@ function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
         {/* Step 5 */}
         <PhaseAnnouncement
           icon={<CrimeSceneIcon />}
-          title={translate('Evidências?', 'Evidence?')}
+          title={<Translate pt="Evidências?" en="Evidence?" />}
           onClose={goToNextStep}
           duration={5}
         >
@@ -136,7 +134,7 @@ function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
         {/* Step 7 */}
         <PhaseAnnouncement
           icon={<LocationIcon />}
-          title={translate('Local do Crime', 'Crime Location')}
+          title={<Translate pt="Local do Crime" en="Crime Location" />}
           onClose={goToNextStep}
           duration={5}
         >
@@ -158,7 +156,7 @@ function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
         {/* Step 9 */}
         <PhaseAnnouncement
           icon={<CrimeTapeIcon />}
-          title={translate('Revisão', 'Review')}
+          title={<Translate pt="Revisão" en="Review" />}
           onClose={goToNextStep}
           duration={5}
         />

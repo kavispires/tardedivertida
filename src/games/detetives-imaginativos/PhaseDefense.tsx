@@ -1,5 +1,4 @@
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
@@ -16,7 +15,6 @@ import { StepDefending } from './StepDefending';
 import { DefenseIcon } from 'components/icons/DefenseIcon';
 
 function PhaseDefense({ state, players, info }: PhaseProps) {
-  const { translate } = useLanguage();
   const { isLoading } = useLoading();
   const { step, goToNextStep } = useStep(0);
   const [currentPlayer, isUserTheCurrentPlayer] = useWhichPlayerIsThe('currentPlayerId', state, players);
@@ -36,7 +34,7 @@ function PhaseDefense({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<DefenseIcon />}
-          title={translate('Defensa', 'Defense')}
+          title={<Translate pt="Defensa" en="Defense" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           duration={5}

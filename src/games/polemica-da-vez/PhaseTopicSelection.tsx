@@ -1,5 +1,4 @@
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
 import { useMock } from 'hooks/useMock';
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
@@ -22,7 +21,6 @@ import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { TargetHighlight } from 'components/metrics/TargetHighlight';
 
 function PhaseTopicSelection({ state, players, info, meta }: PhaseProps) {
-  const { translate } = useLanguage();
   const { step, goToNextStep, setStep } = useStep(0);
   const [activePlayer, isUserTheActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
 
@@ -56,7 +54,7 @@ function PhaseTopicSelection({ state, players, info, meta }: PhaseProps) {
         {/* Step 1 */}
         <PhaseAnnouncement
           icon={<TrendingIcon />}
-          title={translate('Você sabe qual a polêmica da vez?', "Do you know what's trending now?")}
+          title={<Translate pt="Você sabe qual a polêmica da vez?" en="Do you know what's trending now?" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           duration={state?.round?.current < 3 ? 30 : undefined}
@@ -126,7 +124,7 @@ function PhaseTopicSelection({ state, players, info, meta }: PhaseProps) {
 
           <Step fullWidth>
             <WaitingRoom
-              title={translate('Aguarde...', 'Please wait...')}
+              title={<Translate pt="Aguarde..." en="Please wait..." />}
               instruction={
                 <>
                   <AvatarName player={activePlayer} addressUser />{' '}

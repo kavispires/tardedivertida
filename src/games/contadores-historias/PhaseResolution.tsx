@@ -1,6 +1,5 @@
 // Hooks
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
@@ -11,9 +10,9 @@ import { StepRanking } from './StepRanking';
 import { ScoringRules } from './components/RulesBlobs';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { SealIcon } from 'components/icons/SealIcon';
+import { Translate } from 'components/language';
 
 function PhaseResolution({ state, players, info }: PhaseProps) {
-  const { translate } = useLanguage();
   const { step, goToNextStep, goToPreviousStep } = useStep(0);
   const [storyteller] = useWhichPlayerIsThe('storytellerId', state, players);
 
@@ -23,7 +22,7 @@ function PhaseResolution({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<SealIcon />}
-          title={translate('Solução', 'Solution')}
+          title={<Translate pt="Solução" en="Solution" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
         >

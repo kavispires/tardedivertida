@@ -1,6 +1,5 @@
 // Hooks
 import { useIsUserReady } from 'hooks/useIsUserReady';
-import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { useOnSubmitSuggestionsAPIRequest } from './utils/api-requests';
@@ -19,7 +18,6 @@ import { WritingIcon } from 'components/icons/WritingIcon';
 
 function PhaseSuggest({ state, players, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
-  const { translate } = useLanguage();
   const { step, goToNextStep, setStep } = useStep(0);
   const [guesser, isUserTheGuesser] = useWhichPlayerIsThe('guesserId', state, players);
 
@@ -36,7 +34,7 @@ function PhaseSuggest({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<WritingIcon />}
-          title={translate('Escreva uma dica!', 'Write a Clue!')}
+          title={<Translate pt="Escreva uma dica!" en="Write a Clue!" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
         >

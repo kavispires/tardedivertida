@@ -1,8 +1,5 @@
-import { useState } from 'react';
 // State & Hooks
 import { useIsUserReady } from 'hooks/useIsUserReady';
-import { useUser } from 'hooks/useUser';
-import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
@@ -15,8 +12,7 @@ import { Translate } from 'components/language';
 
 function PhaseDuel({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
-  const { translate } = useLanguage();
-  const user = useUser(players);
+
   const { step, goToNextStep } = useStep(0);
 
   return (
@@ -25,7 +21,7 @@ function PhaseDuel({ players, state, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<TDIcon />}
-          title={translate('Duelo de Dois', 'The Duel')}
+          title={<Translate pt="Duelo de Dois" en="The Duel" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
         >

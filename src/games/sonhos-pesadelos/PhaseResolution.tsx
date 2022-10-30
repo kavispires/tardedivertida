@@ -1,6 +1,5 @@
 // Hooks
 import { useIsUserReady } from 'hooks/useIsUserReady';
-import { useLanguage } from 'hooks/useLanguage';
 import { useSlideShow } from 'hooks/useSlideShow';
 import { useStep } from 'hooks/useStep';
 // Resources & Utils
@@ -15,7 +14,6 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { CountdownIcon } from 'components/icons/CountdownIcon';
 
 function PhaseResolution({ state, players, info }: PhaseProps) {
-  const { translate } = useLanguage();
   const { step, goToNextStep, goToPreviousStep, setStep } = useStep(0);
   const isUserReady = useIsUserReady(players, state);
   const { activeIndex, setActiveIndex, isFirstGalleryRunThrough } = useSlideShow(state.gallery.length);
@@ -26,7 +24,7 @@ function PhaseResolution({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<CountdownIcon />}
-          title={translate('Resultado', 'Results')}
+          title={<Translate pt="Resultado" en="Results" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
         >

@@ -1,6 +1,5 @@
 // State & Hooks
 import { useIsUserReady } from 'hooks/useIsUserReady';
-import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
 import { useOnSubmitCardsAPIRequest } from './utils/api-requests';
 // Resources & Utils
@@ -12,9 +11,9 @@ import { StepSwitcher } from 'components/steps';
 import { DreamSelectionRules } from './components/RulesBlobs';
 import { StepDreamsSelection } from './StepDreamsSelection';
 import { DreamIcon } from 'components/icons/DreamIcon';
+import { Translate } from 'components/language';
 
 function PhaseDreamsSelections({ players, state, info, meta }: PhaseProps) {
-  const { translate } = useLanguage();
   const { step, goToNextStep, setStep } = useStep();
   const isUserReady = useIsUserReady(players, state);
 
@@ -26,7 +25,7 @@ function PhaseDreamsSelections({ players, state, info, meta }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<DreamIcon />}
-          title={translate('Visite sonhos!', 'Visit dreams!')}
+          title={<Translate pt="Visite sonhos!" en="Visit dreams!" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
         >

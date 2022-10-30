@@ -1,5 +1,4 @@
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useOnSubmitContenderAPIRequest } from './utils/api-requests';
@@ -15,7 +14,6 @@ import { AnonymousIcon } from 'components/icons/AnonymousIcon';
 import { ContendersHand } from './components/ContendersHand';
 
 function PhaseContenderSelection({ state, players, info }: PhaseProps) {
-  const { translate } = useLanguage();
   const { step, goToNextStep, setStep } = useStep(0);
   const user = useUser(players);
 
@@ -35,7 +33,7 @@ function PhaseContenderSelection({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<AnonymousIcon />}
-          title={translate('Competidores', 'Contenders')}
+          title={<Translate pt="Competidores" en="Contenders" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           duration={5}

@@ -1,7 +1,6 @@
 // State & Hooks
 import { useIsUserReady } from 'hooks/useIsUserReady';
 import { useUser } from 'hooks/useUser';
-import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
 import { useOnSubmitDrawingAPIRequest } from './utils/api-requests';
 // Resources & Utils
@@ -19,7 +18,6 @@ import { DrawingIcon } from 'components/icons/DrawingIcon';
 
 function PhaseDrawing({ players, state, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
-  const { translate } = useLanguage();
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
 
@@ -31,10 +29,10 @@ function PhaseDrawing({ players, state, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<DrawingIcon />}
-          title={translate('Desenhe', 'Draw')}
+          title={<Translate pt="Desenhe" en="Draw" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
-          buttonText={translate('Um dó, lá, si... vamos ir... já!', 'Ready! Set! Go!')}
+          buttonText={<Translate pt="Um dó, lá, si... vamos ir... já!" en="Ready! Set! Go!" />}
           withoutTimer
         >
           <Instruction>
@@ -56,7 +54,7 @@ function PhaseDrawing({ players, state, info }: PhaseProps) {
             />
 
             <TurnOrder
-              title={translate('Ordem dos Álbuns', "Albums' Order")}
+              title={<Translate pt="Ordem dos Álbuns" en="Albums' Order" />}
               players={players}
               order={state.gameOrder}
               className="l-turn-order"

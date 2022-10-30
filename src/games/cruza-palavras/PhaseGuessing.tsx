@@ -1,7 +1,6 @@
 // State & Hooks
 import { useIsUserReady } from 'hooks/useIsUserReady';
 import { useUser } from 'hooks/useUser';
-import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
 import { useOnSubmitGuessesAPIRequest } from './utils/api-requests';
 // Resources & Utils
@@ -15,7 +14,6 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { GuessIcon } from 'components/icons/GuessIcon';
 
 function PhaseGuessing({ players, state, info }: PhaseProps) {
-  const { translate } = useLanguage();
   const { step, goToNextStep, setStep } = useStep(0);
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
@@ -28,7 +26,7 @@ function PhaseGuessing({ players, state, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<GuessIcon />}
-          title={translate('Match!', 'Combine!')}
+          title={<Translate pt="Match!" en="Combine!" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
         >

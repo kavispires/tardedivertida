@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 // Hooks
 import { useGlobalState } from 'hooks/useGlobalState';
-import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
@@ -15,10 +14,10 @@ import { StepGuessVerification } from './StepGuessVerification';
 import { GuessingRules } from './components/RulesBlobs';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { GuessIcon } from 'components/icons/GuessIcon';
+import { Translate } from 'components/language';
 
 function PhaseGuess({ state, players, info }: PhaseProps) {
   const { isLoading } = useLoading();
-  const { translate } = useLanguage();
   const { step, goToNextStep, setStep } = useStep(0);
   const [isAdmin] = useGlobalState('isAdmin');
   const [guesser, isUserTheGuesser] = useWhichPlayerIsThe('guesserId', state, players);
@@ -41,7 +40,7 @@ function PhaseGuess({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<GuessIcon />}
-          title={translate('Adivinhação', 'Guessing')}
+          title={<Translate pt="Adivinhação" en="Guessing" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
         >

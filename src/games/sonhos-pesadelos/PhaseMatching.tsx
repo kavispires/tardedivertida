@@ -1,7 +1,6 @@
 // Hooks
 import { useIsUserReady } from 'hooks/useIsUserReady';
 import { useUser } from 'hooks/useUser';
-import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
 import { useOnSubmitVotesAPIRequest } from './utils/api-requests';
 // Resources & Utils
@@ -15,7 +14,6 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { EvaluateIcon } from 'components/icons/EvaluateIcon';
 
 function PhaseMatching({ state, players, info }: PhaseProps) {
-  const { translate } = useLanguage();
   const { step, goToNextStep, setStep } = useStep(0);
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
@@ -28,7 +26,7 @@ function PhaseMatching({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<EvaluateIcon />}
-          title={translate('Combine os sonhos', 'Match the dreams')}
+          title={<Translate pt="Combine os sonhos" en="Match the dreams" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
         >

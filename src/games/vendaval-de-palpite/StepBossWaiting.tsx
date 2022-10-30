@@ -1,5 +1,3 @@
-// Hooks
-import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { Translate } from 'components/language';
 import { WaitingRoom } from 'components/players';
@@ -16,13 +14,11 @@ type StepBossWaitingProps = {
 };
 
 export function StepBossWaiting({ players, board, clues, secretWord, categories }: StepBossWaitingProps) {
-  const { translate } = useLanguage();
-
   return (
     <Step fullWidth>
       <WaitingRoom
         players={players}
-        title={translate('Aguarde', 'Please wait')}
+        title={<Translate pt="Aguarde" en="Please wait" />}
         instruction={
           <Translate pt="Os jogadores estão escrevendo dicas" en="The players are writing clues" />
         }

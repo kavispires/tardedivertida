@@ -1,6 +1,5 @@
 // State & Hooks
 import { useIsUserReady } from 'hooks/useIsUserReady';
-import { useLanguage } from 'hooks/useLanguage';
 import { useUser } from 'hooks/useUser';
 import { useStep } from 'hooks/useStep';
 // Resources & Utils
@@ -10,10 +9,10 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { TDIcon } from 'components/icons/TDIcon';
+import { Translate } from 'components/language';
 
 function PhaseTemplate({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
-  const { translate } = useLanguage();
   const user = useUser(players);
   const { step, goToNextStep } = useStep();
 
@@ -23,7 +22,7 @@ function PhaseTemplate({ players, state, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<TDIcon />}
-          title={translate('?', '?')}
+          title={<Translate pt="?" en="?" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
         >

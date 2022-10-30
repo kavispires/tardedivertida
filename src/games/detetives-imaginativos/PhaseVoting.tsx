@@ -1,5 +1,4 @@
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
@@ -17,7 +16,6 @@ import { VoteIcon } from 'components/icons/VoteIcon';
 import { PlayersHighlight } from 'components/metrics/PlayersHighlight';
 
 function PhaseVoting({ state, players, info }: PhaseProps) {
-  const { translate } = useLanguage();
   const { isLoading } = useLoading();
   const { step, goToNextStep } = useStep(0);
   const user = useUser(players);
@@ -36,7 +34,7 @@ function PhaseVoting({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<VoteIcon />}
-          title={translate('Votação', 'Vote')}
+          title={<Translate pt="Votação" en="Vote" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
         >

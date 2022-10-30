@@ -1,7 +1,6 @@
 // Hooks
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { useUser } from 'hooks/useUser';
-import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
 import { useOnSubmitVoteAPIRequest } from './utils/api-requests';
 // Resources & Utils
@@ -13,9 +12,9 @@ import { ImageCardPreloadHand } from 'components/cards';
 import { StepVoting } from './StepVoting';
 import { VotingRules } from './components/RulesBlobs';
 import { VoteIcon } from 'components/icons/VoteIcon';
+import { Translate } from 'components/language';
 
 function PhaseVoting({ state, players, info }: PhaseProps) {
-  const { translate } = useLanguage();
   const { step, goToNextStep, setStep } = useStep(0);
   const user = useUser(players);
   const [storyteller, isUserTheStoryTeller] = useWhichPlayerIsThe('storytellerId', state, players);
@@ -33,7 +32,7 @@ function PhaseVoting({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<VoteIcon />}
-          title={translate('Votação', 'Voting')}
+          title={<Translate pt="Votação" en="Voting" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
         >

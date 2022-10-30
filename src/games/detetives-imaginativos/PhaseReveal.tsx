@@ -1,6 +1,5 @@
 // Hooks
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
@@ -14,7 +13,6 @@ import { RankIcon } from 'components/icons/RankIcon';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 
 function PhaseReveal({ state, players, info }: PhaseProps) {
-  const { translate } = useLanguage();
   const { step, goToNextStep } = useStep(0);
   const [impostor] = useWhichPlayerIsThe('impostorId', state, players);
 
@@ -29,7 +27,7 @@ function PhaseReveal({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<RankIcon />}
-          title={translate('Revelação', 'Reveal')}
+          title={<Translate pt="Revelação" en="Reveal" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
         >

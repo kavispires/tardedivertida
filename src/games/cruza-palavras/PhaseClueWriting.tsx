@@ -1,7 +1,6 @@
 // State & Hooks
 import { useIsUserReady } from 'hooks/useIsUserReady';
 import { useUser } from 'hooks/useUser';
-import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
 import { useOnSubmitClueAPIRequest } from './utils/api-requests';
 // Resources & Utils
@@ -13,9 +12,9 @@ import { StepSwitcher } from 'components/steps';
 import { StepClueWriting } from './StepClueWriting';
 import { WritingCluesRule } from './components/RulesBlobs';
 import { GridIcon } from 'components/icons/GridIcon';
+import { Translate } from 'components/language';
 
 function PhaseClueWriting({ players, state, info }: PhaseProps) {
-  const { translate } = useLanguage();
   const { step, goToNextStep, setStep } = useStep(0);
 
   const isUserReady = useIsUserReady(players, state);
@@ -38,7 +37,7 @@ function PhaseClueWriting({ players, state, info }: PhaseProps) {
         {/* Step 1 */}
         <PhaseAnnouncement
           icon={<GridIcon />}
-          title={translate('Escreva!', 'Write!')}
+          title={<Translate pt="Escreva!" en="Write!" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
         >

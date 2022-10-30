@@ -1,6 +1,5 @@
 // Hooks
 import { useIsUserReady } from 'hooks/useIsUserReady';
-import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
@@ -22,7 +21,6 @@ import { ViewOr } from 'components/views';
 import { FairyTaleIcon } from 'components/icons/FairyTaleIcon';
 
 function PhaseStory({ state, players, info }: PhaseProps) {
-  const { translate } = useLanguage();
   const { step, goToNextStep, setStep } = useStep(0);
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
@@ -44,7 +42,7 @@ function PhaseStory({ state, players, info }: PhaseProps) {
         {/* Step 1 */}
         <PhaseAnnouncement
           icon={<FairyTaleIcon />}
-          title={translate('Conte-nos uma história', 'Tell us a story...')}
+          title={<Translate pt="Conte-nos uma história" en="Tell us a story..." />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           buttonText=""

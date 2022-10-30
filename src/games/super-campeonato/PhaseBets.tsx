@@ -1,5 +1,4 @@
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
 import { useOnSubmitBetsAPIRequest } from './utils/api-requests';
 // Resources & Utils
@@ -15,7 +14,6 @@ import { useUser } from 'hooks/useUser';
 import { BetsFloatingHand } from './components/BetsFloatingHand';
 
 function PhaseBets({ state, players, info }: PhaseProps) {
-  const { translate } = useLanguage();
   const { step, goToNextStep, setStep } = useStep(0);
   const user = useUser(players);
 
@@ -39,7 +37,7 @@ function PhaseBets({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<GamblingChipIcon />}
-          title={translate('Apostas', 'Bets')}
+          title={<Translate pt="Apostas" en="Bets" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           duration={5}

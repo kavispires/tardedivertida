@@ -1,5 +1,4 @@
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
@@ -16,7 +15,6 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { EyeIcon } from 'components/icons/EyeIcon';
 
 function PhaseQuestioning({ state, players, info }: PhaseProps) {
-  const { translate } = useLanguage();
   const { isLoading } = useLoading();
   const { step, goToNextStep } = useStep(0);
   const [witness, isUserTheWitness] = useWhichPlayerIsThe('witnessId', state, players);
@@ -34,7 +32,7 @@ function PhaseQuestioning({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<EyeIcon />}
-          title={translate('Questionamento', 'Questioning')}
+          title={<Translate pt="Questionamento" en="Questioning" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
         >

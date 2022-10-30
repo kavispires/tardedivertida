@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useOnSubmitVotesAPIRequest } from './utils/api-requests';
@@ -15,7 +14,6 @@ import { BoxingGlovesIcon } from 'components/icons/BoxingGlovesIcon';
 import { StepBattle } from './StepBattle';
 
 function PhaseBattle({ state, players, info }: PhaseProps) {
-  const { translate } = useLanguage();
   const { step, goToNextStep, setStep } = useStep(0);
   const [previousTier, setPreviousTier] = useState<string>('');
   const user = useUser(players);
@@ -35,7 +33,7 @@ function PhaseBattle({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<BoxingGlovesIcon />}
-          title={translate('Batalha!', 'Battle!')}
+          title={<Translate pt="Batalha!" en="Battle!" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           duration={4}

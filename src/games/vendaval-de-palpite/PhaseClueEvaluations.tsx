@@ -1,5 +1,4 @@
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import {
@@ -20,7 +19,6 @@ import { StepPlayersWaitEvaluation } from './StepPlayersWaitEvaluation';
 import { LoupeIcon } from 'components/icons/LoupeIcon';
 
 function PhaseClueEvaluations({ state, players, info }: PhaseProps) {
-  const { translate } = useLanguage();
   const { step, setStep, goToNextStep } = useStep(0);
   const [boss, isUserTheBoss] = useWhichPlayerIsThe('bossId', state, players);
 
@@ -38,7 +36,7 @@ function PhaseClueEvaluations({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<LoupeIcon />}
-          title={translate('Avaliação das Pistas', 'Clue Evaluation')}
+          title={<Translate pt="Avaliação das Pistas" en="Clue Evaluation" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           duration={5}

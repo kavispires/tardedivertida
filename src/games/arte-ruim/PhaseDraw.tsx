@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 // State & Hooks
 import { useIsUserReady } from 'hooks/useIsUserReady';
 import { useUser } from 'hooks/useUser';
-import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
 import { useOnSubmitDrawingAPIRequest } from './utils/api-requests';
 // Resources & Utils
@@ -17,7 +16,6 @@ import { StepDraw } from './StepDraw';
 import { PaintingIcon } from 'components/icons/PaintingIcon';
 
 function PhaseDraw({ players, state, info }: PhaseProps) {
-  const { translate } = useLanguage();
   const { step, goToNextStep, setStep } = useStep(0);
   const user = useUser(players);
   const isUserReady = useIsUserReady(players, state);
@@ -35,10 +33,12 @@ function PhaseDraw({ players, state, info }: PhaseProps) {
         step={step}
         conditions={[!isUserReady, !isUserReady, !isUserReady]}
         players={players}
-        waitingRoomInstruction={translate(
-          'Vamos aguardar enquanto os outros jogadores terminam seus desenhos!',
-          'Please wait while other players finish their artwork!'
-        )}
+        waitingRoomInstruction={
+          <Translate
+            pt="Vamos aguardar enquanto os outros jogadores terminam seus desenhos!"
+            en="Please wait while other players finish their artwork!"
+          />
+        }
       >
         {/* Step 0 */}
         <RoundAnnouncement
@@ -74,8 +74,8 @@ function PhaseDraw({ players, state, info }: PhaseProps) {
         {/* Step 1 */}
         <PhaseAnnouncement
           icon={<PaintingIcon />}
-          title={translate('Desenhe!', 'Draw!')}
-          buttonText={translate('Um dó, lá, si... vamos ir... já!', 'Ready! Set! Go!')}
+          title={<Translate pt="Desenhe!" en="Draw!" />}
+          buttonText={<Translate pt="Um dó, lá, si... vamos ir... já!" en="Ready! Set! Go!" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           withoutTimer

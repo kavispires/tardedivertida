@@ -1,6 +1,5 @@
 // State & Hooks
 import { useIsUserReady } from 'hooks/useIsUserReady';
-import { useLanguage } from 'hooks/useLanguage';
 import { useOnSubmitCluesAPIRequest } from './utils/api-requests';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
@@ -16,7 +15,6 @@ import { StepWriteClues } from './StepWriteClues';
 
 function PhaseCloverWriting({ players, state, info }: PhaseProps) {
   const isUserReady = useIsUserReady(players, state);
-  const { translate } = useLanguage();
   const user = useUser(players);
   const { step, goToNextStep, setStep } = useStep(0);
 
@@ -28,7 +26,7 @@ function PhaseCloverWriting({ players, state, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<WritingIcon />}
-          title={translate('Escreva as dicas', 'Write the clues')}
+          title={<Translate pt="Escreva as dicas" en="Write the clues" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
         >

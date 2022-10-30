@@ -1,6 +1,5 @@
 // Hooks
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
@@ -17,7 +16,6 @@ import { HangingPhotographIcon } from 'components/icons/HangingPhotographIcon';
 import { CardHighlight } from 'components/metrics/CardHighlight';
 
 function PhaseCardPlay({ state, players, info }: PhaseProps) {
-  const { translate } = useLanguage();
   const { isLoading } = useLoading();
   const { step, goToNextStep } = useStep(0);
   const user = useUser(players);
@@ -37,7 +35,7 @@ function PhaseCardPlay({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <PhaseAnnouncement
           icon={<HangingPhotographIcon />}
-          title={translate('Apresentação das Evidências', 'Evidence')}
+          title={<Translate pt="Apresentação das Evidências" en="Evidence" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
         >

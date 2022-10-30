@@ -3,7 +3,6 @@ import { Avatar, Button } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Components
-
 import { Suspects } from './components/Suspects';
 import { QuestionsHistory } from './components/QuestionsHistory';
 import { Step } from 'components/steps';
