@@ -60,8 +60,11 @@ export function StepWaitDoorSelection({
             <>
               Silêncio e poker face!
               <br />
-              Eles tem <TimeHighlight>{ROUND_DURATION}</TimeHighlight> minutos para decidir qual(quais)
-              porta(s) entrar.
+              Eles tem{' '}
+              <TimeHighlight>
+                {trap === TRAPS.HALF_TIME ? ROUND_DURATION / 2 : ROUND_DURATION}
+              </TimeHighlight>{' '}
+              minutos para decidir qual(quais) porta(s) entrar.
               <br />
               Cada porta visitada custará{' '}
               <CrystalHighlight>{trap === TRAPS.DOUBLE_MAGIC ? 2 : 1}</CrystalHighlight> cristal, portanto,
@@ -75,8 +78,11 @@ export function StepWaitDoorSelection({
             <>
               Silence and poker face!
               <br />
-              You have <TimeHighlight>{ROUND_DURATION}</TimeHighlight> minutes to decide what door(s) to
-              visit.
+              You have{' '}
+              <TimeHighlight>
+                {trap === TRAPS.HALF_TIME ? ROUND_DURATION / 2 : ROUND_DURATION}
+              </TimeHighlight>{' '}
+              minutes to decide what door(s) to visit.
               <br />
               Each door a player visits costs{' '}
               <CrystalHighlight>{trap === TRAPS.DOUBLE_MAGIC ? 2 : 1}</CrystalHighlight> crystal, so choose
