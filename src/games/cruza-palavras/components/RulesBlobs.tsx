@@ -13,7 +13,7 @@ export function WritingCluesRule({ playerCount }: { playerCount: number }) {
             Escreva uma dica (palavra única) que conecte as palavras da linha e da coluna assinalada a você.
             <br />
             Escreva algo bem simples e óbvio porque se ninguém entender você perderá{' '}
-            <PointsHighlight type="negative">{playerCount}</PointsHighlight> pontos.
+            <PointsHighlight type="negative">- {playerCount}</PointsHighlight> pontos.
           </>
         }
         en={
@@ -24,7 +24,7 @@ export function WritingCluesRule({ playerCount }: { playerCount: number }) {
             coordinate.
             <br />
             Write something simple and obvious because if nobody gets your clue you will lose{' '}
-            <PointsHighlight type="negative">{playerCount}</PointsHighlight>
+            <PointsHighlight type="negative">- {playerCount}</PointsHighlight>
             points.
           </>
         }
@@ -48,7 +48,7 @@ export function ScoringRule({ playerCount }: { playerCount: number }) {
             <PointsHighlight>+1</PointsHighlight> ponto para cada voto correto que sua dica recebeu.
             <br />
             Mas se ninguém acertar sua dica, você perde{' '}
-            <PointsHighlight type="negative">{playerCount}</PointsHighlight> pontos.
+            <PointsHighlight type="negative">- {playerCount}</PointsHighlight> pontos.
           </>
         }
         en={
@@ -61,7 +61,7 @@ export function ScoringRule({ playerCount }: { playerCount: number }) {
             <PointsHighlight>+1</PointsHighlight> point for each correct vote your clue received.
             <br />
             But if nobody gets your clue correctly, you lose{' '}
-            <PointsHighlight type="negative">{playerCount}</PointsHighlight> points.
+            <PointsHighlight type="negative">- {playerCount}</PointsHighlight> points.
           </>
         }
       />

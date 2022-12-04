@@ -1,4 +1,6 @@
 import clsx from 'clsx';
+// Components
+import { WordGridHeader } from './WordGridHeader';
 
 type WordGridProps = {
   grid: CruzaPalavraGrid;
@@ -19,7 +21,7 @@ export function WordGrid({ grid, user, CellComponent, cellComponentProps = {} }:
     <div className="x-grid" style={gridStyle}>
       {grid.map((cell) => (
         <div className={clsx('x-grid-cell', `x-grid-cell--${cell.kind}`)} key={`${cell.index}-${cell.kind}`}>
-          {cell.kind === 'header' && cell.text}
+          {cell.kind === 'header' && <WordGridHeader cell={cell} />}
 
           {cell.kind === 'cell' && <CellComponent {...cellComponentProps} cell={cell} user={user} />}
         </div>
