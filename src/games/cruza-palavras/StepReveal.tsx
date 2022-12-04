@@ -19,6 +19,7 @@ import { PreviousClue } from './components/PreviousClue';
 import { ScoringRule } from './components/RulesBlobs';
 import { AvatarName } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
+import { getMeanDuration } from 'utils/helpers';
 
 const AVATARS: PlainObject = avatars;
 
@@ -42,9 +43,7 @@ function PlayersInCell({ cellPlayers, players }: PlayersInCellProps) {
           >
             <AvatarName player={players[playerId]} size="small" />
           </li>
-        ) : (
-          <></>
-        )
+        ) : undefined
       )}
     </ul>
   );
@@ -254,7 +253,12 @@ export function StepReveal({ grid, user, players, clues, goToNextStep, whoGotNoP
       />
 
       <Space className="space-container" align="center">
-        <TimedButton duration={45} icon={<TrophyOutlined />} onExpire={goToNextStep} onClick={goToNextStep}>
+        <TimedButton
+          duration={getMeanDuration(playerCount, 5, 40, 15)}
+          icon={<TrophyOutlined />}
+          onExpire={goToNextStep}
+          onClick={goToNextStep}
+        >
           <Translate pt="Ver Ranking" en="See Ranking" />
         </TimedButton>
       </Space>
