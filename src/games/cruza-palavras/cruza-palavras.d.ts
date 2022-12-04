@@ -5,6 +5,7 @@ type CruzaPalavrasClue = {
 };
 
 type CruzaPalavrasGridCell = {
+  id?: string;
   index: number;
   kind: string;
   text: string;

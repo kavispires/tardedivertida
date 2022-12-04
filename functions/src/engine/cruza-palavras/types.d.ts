@@ -2,6 +2,7 @@ import { CRUZA_PALAVRAS_ACTIONS } from './constants';
 
 export type CruzaPalavrasOptions = {
   largerGrid: boolean;
+  imageGrid: boolean;
 };
 
 export type AllWords = {

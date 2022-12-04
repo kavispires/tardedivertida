@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "X",
   "gameName": "cruza-palavras",
-  "version": "2.1.7",
+  "version": "3.0.0",
   "title": {
     "pt": "Cruza Palavras",
     "en": "Mixed Clues"
@@ -46,5 +46,8 @@
     "pt": true,
     "en": true
   },
-  "options": [{ "label": "Grid", "key": "largerGrid", "off": "Normal", "on": "Larger" }]
+  "options": [
+    { "label": "Grid Size", "key": "largerGrid", "off": "Normal", "on": "Larger" },
+    { "label": "Grid Type", "key": "imageGrid", "off": "Words", "on": "Images" }
+  ]
 }
