@@ -9,7 +9,7 @@ export const achievementsReference: AchievementReference = {
     Icon: MedalArrowUpIcon,
     title: {
       pt: 'Mais Preciso',
-      en: 'Best Accurate',
+      en: 'Most Accurate',
     },
     description: {
       pt: 'Os palpites foram mais próximos do ponteiro do que qualquer outro jogador',

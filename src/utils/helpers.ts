@@ -338,3 +338,22 @@ export const calculateGameAverageDuration = (game: GameInfo, numPlayers = 0) => 
     customTime: Math.ceil(customTime / 5) * 5,
   };
 };
+
+/**
+ * Calculates a good duration to wait for something based on the number of players
+ * @param numPlayers
+ * @param durationPerPlayer
+ * @param minDuration
+ * @param maxDuration
+ * @returns
+ */
+export const getMeanDuration = (
+  numPlayers: number,
+  durationPerPlayer: number,
+  maxDuration = 30,
+  minDuration = 5
+) => {
+  const duration = numPlayers * durationPerPlayer;
+
+  return Math.min(maxDuration, Math.max(minDuration, duration));
+};
