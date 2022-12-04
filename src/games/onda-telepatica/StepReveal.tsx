@@ -1,9 +1,11 @@
+import { useMemo } from 'react';
 import clsx from 'clsx';
 import { orderBy } from 'lodash';
 // Hooks
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
-import { getGuessResultClass, getPoints } from './utils/helpers';
+import { countDifferentGuesses, getGuessResultClass, getPoints } from './utils/helpers';
+import { getMeanDuration } from 'utils/helpers';
 // Components
 import { Avatar, AvatarName } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
@@ -42,11 +44,18 @@ type StepRevealProps = {
 
 export function StepReveal({ goToNextStep, currentCategory, players, psychic }: StepRevealProps) {
   useTemporarilyHidePlayersBar();
-  const regularPlayers = Object.values(players).filter((p) => p.id !== psychic.id);
+  const regularPlayers = useMemo(
+    () => Object.values(players).filter((p) => p.id !== psychic.id),
+    [players, psychic.id]
+  );
+  const duration = useMemo(
+    () => getMeanDuration(countDifferentGuesses(regularPlayers), 5, 25, 12),
+    [regularPlayers]
+  );
 
   return (
     <Step fullWidth>
-      <Title level={2} className="o-step-reveal-title">
+      <Title level={2} className="o-step-reveal-title" size="medium">
         <Sentence currentCategory={currentCategory} />
       </Title>
 
@@ -94,7 +103,7 @@ export function StepReveal({ goToNextStep, currentCategory, players, psychic }: 
 
       <PopoverRule content={<ScoringRules />} />
 
-      <TimedButton duration={30} onExpire={goToNextStep} onClick={goToNextStep}>
+      <TimedButton duration={duration} onExpire={goToNextStep} onClick={goToNextStep}>
         <Translate pt="Continuar" en="Continue" />
       </TimedButton>
     </Step>

@@ -50,3 +50,19 @@ export const getPoints = (guess: number, target: number): number => {
   if (Math.abs(target - guess) === 2) return 2;
   return 0;
 };
+
+/**
+ * Counts how many difference guesses are there
+ */
+export const countDifferentGuesses = (regularPlayers: GamePlayer[]): number => {
+  const dict: Record<string, number> = {};
+
+  regularPlayers.forEach((player) => {
+    if (dict[String(player.guess)] === undefined) {
+      dict[String(player.guess)] = 0;
+    }
+    dict[String(player.guess)] += 1;
+  });
+
+  return Object.keys(dict).length;
+};
