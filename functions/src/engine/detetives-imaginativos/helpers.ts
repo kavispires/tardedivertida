@@ -1,4 +1,5 @@
 // Constants
+import utils from '../../utils';
 import { DETETIVES_IMAGINATIVOS_PHASES } from './constants';
 
 /**
@@ -78,38 +79,35 @@ export const countImpostorVotes = (players: Players, impostorId: PlayerId): numb
  * @param leaderId
  * @returns
  */
-export const calculateNewScores = (
+export const calculateRanking = (
   players: Players,
   impostorVotes: number,
   impostorId: PlayerId,
   leaderId: PlayerId
 ): PlainObject => {
+  // Gained points: [player vote, being impostor/leader]
+  const scores = new utils.players.Scores(players, [0, 0]);
+
   const relevantPlayers = [impostorId, leaderId];
 
-  return Object.values(players).reduce((result, player) => {
-    const currentScore = player.score;
-    let addedScore = 0;
+  Object.values(players).forEach((player) => {
     // If detectives won
     if (impostorVotes > 1 && !relevantPlayers.includes(player.id)) {
       // If the player voted for the impostor
       if (player.vote === impostorId) {
-        addedScore += 3;
+        scores.add(player.id, 3, 0);
       }
     }
     // If relevant players won
     if (impostorVotes <= 1) {
       if (impostorId === player.id) {
-        addedScore += 5;
+        scores.add(player.id, 5, 1);
       }
       if (leaderId === player.id) {
-        addedScore += 4;
+        scores.add(player.id, 4, 1);
       }
     }
+  });
 
-    const newScore = currentScore + addedScore;
-    result[player.id] = [currentScore, addedScore, newScore];
-    // Update player as well
-    player.score = newScore;
-    return result;
-  }, {});
+  return scores.rank(players);
 };

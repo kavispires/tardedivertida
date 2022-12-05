@@ -4,7 +4,7 @@ import { CUSTOM_TOPICS_PER_ROUND, MAX_ROUNDS, POLEMICA_DA_VEZ_PHASES, TOPICS_PER
 import type { FirebaseStateData, FirebaseStoreData } from './types';
 // Utils
 import utils from '../../utils';
-import { buildDeck, countLikes, rankAndScore } from './helpers';
+import { buildDeck, countLikes, getRanking } from './helpers';
 import { DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
 
 /**
@@ -134,7 +134,7 @@ export const prepareResolutionPhase = async (
   const totalLikes = countLikes(players);
 
   // Score players
-  const ranking = rankAndScore(players, totalLikes);
+  const ranking = getRanking(players, totalLikes);
 
   const pastTopics = [
     ...store.pastTopics,

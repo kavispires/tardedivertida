@@ -20,7 +20,10 @@ export function StepRanking({ players, ranking, goToPreviousStep, round, isLastR
     <StepRankingWrapper
       players={players}
       ranking={ranking}
-      gainedPointsDescriptions={[<Translate pt="Escolha correta ou próxima" en="Correct or close guess" />]}
+      gainedPointsDescriptions={[
+        <Translate pt="Escolha correta ou próxima" en="Correct or close guess" />,
+        <Translate pt="Pontos do Medium" en="Psychic points" />,
+      ]}
     >
       <PopoverRule content={<ScoringRules />} />
       <Space className="space-container" align="center">

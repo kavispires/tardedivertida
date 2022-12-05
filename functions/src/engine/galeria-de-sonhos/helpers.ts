@@ -81,7 +81,7 @@ export const getRoundWords = (wordsDeck: TextCard[]): [TextCard[], TextCard[]] =
 export const buildRanking = (players: Players, store: FirebaseStoreData, playerInNightmareId?: PlayerId) => {
   const listOfPlayers = utils.players.getListOfPlayers(players);
   // Gained points: super sparks, sparks, nightmare
-  const newScores = utils.helpers.buildNewScoreObject(listOfPlayers, [0, 0, 0]);
+  const scores = new utils.players.Scores(players, [0, 0, 0]);
 
   listOfPlayers.forEach((player) => {
     let scoringCardsCount = 0;
@@ -92,17 +92,13 @@ export const buildRanking = (players: Players, store: FirebaseStoreData, playerI
     utils.achievements.increase(store, player.id, 'dreamCount', cards.length);
     cards.forEach((card: PlayerCard) => {
       if (card.score === 3) {
-        newScores[player.id].gainedPoints[0] += 3;
-        players[player.id].score += 3;
-        newScores[player.id].newScore += 3;
+        scores.add(player.id, 3, 0);
         scoringCardsCount += 1;
         // Achievement: matches, pairs
         utils.achievements.increase(store, player.id, 'matches', 1);
         utils.achievements.increase(store, player.id, 'pairs', 1);
       } else if (card.score === 2) {
-        newScores[player.id].gainedPoints[1] += 2;
-        players[player.id].score += 2;
-        newScores[player.id].newScore += 2;
+        scores.add(player.id, 2, 1);
         scoringCardsCount += 1;
         // Achievement: matches
         utils.achievements.increase(store, player.id, 'matches', card.matchedPlayers.length - 1);
@@ -133,13 +129,10 @@ export const buildRanking = (players: Players, store: FirebaseStoreData, playerI
     // Fallen player penalty
     const shouldLosePoints = player.id === playerInNightmareId && player.fallen;
     if (scoringCardsCount > 0 && shouldLosePoints) {
-      newScores[player.id].gainedPoints[2] -= scoringCardsCount;
-      newScores[player.id].newScore -= scoringCardsCount;
-      players[player.id].score -= scoringCardsCount;
+      scores.subtract(player.id, scoringCardsCount, 2);
     }
   });
-
-  return Object.values(newScores).sort((a, b) => (a.newScore > b.newScore ? 1 : -1));
+  return scores.rank(players);
 };
 
 export const getPlayersWithMaxDreams = (players: Players) => {

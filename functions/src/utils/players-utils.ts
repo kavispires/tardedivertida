@@ -340,3 +340,70 @@ export const neutralizeBotScores = (players: Players) => {
     }
   });
 };
+
+export class Scores {
+  scores: NewScores;
+
+  constructor(players: Players | Player[], gainedPointsInitialState?: number[]) {
+    this.scores = {};
+
+    this.init(players, gainedPointsInitialState);
+  }
+
+  private init(players: Players | Player[], gainedPointsInitialState?: number[]) {
+    this.scores = Object.values(players).reduce((scores, player) => {
+      scores[player.id] = {
+        playerId: player.id,
+        name: player.name,
+        previousScore: player.score,
+        gainedPoints: gainedPointsInitialState ? [...gainedPointsInitialState] : new Array(1).fill(0),
+        newScore: player.score,
+      };
+      return scores;
+    }, {});
+  }
+
+  /**
+   * Adds a value to given player's gained score
+   * @param playerId
+   * @param value
+   * @param gainedIndex
+   */
+  add(playerId: PlayerId, value: number, gainedIndex = 0): void {
+    this.scores[playerId].gainedPoints[gainedIndex] += value;
+    this.scores[playerId].newScore += value;
+  }
+
+  /**
+   * Subtracts a value from given player's gained score
+   * @param playerId
+   * @param value
+   * @param gainedIndex
+   */
+  subtract(playerId: PlayerId, value: number, gainedIndex = 0): void {
+    this.scores[playerId].gainedPoints[gainedIndex] -= value;
+    this.scores[playerId].newScore -= value;
+  }
+
+  /**
+   * Returns sorted round's ranking
+   */
+  rank(players: Players): NewScore[] {
+    // Add the new score to the player
+    if (players) {
+      Object.values(players).forEach((player) => (player.score = this.scores[player.id].newScore));
+    }
+
+    return Object.values(this.scores).sort((a: NewScore, b: NewScore) => (a.newScore > b.newScore ? 1 : -1));
+  }
+
+  /**
+   * Resets previous and total score
+   */
+  reset(): void {
+    Object.values(this.scores).forEach((entry) => {
+      entry.previousScore = 0;
+      entry.newScore = 0;
+    });
+  }
+}

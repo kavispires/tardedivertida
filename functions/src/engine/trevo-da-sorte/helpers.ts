@@ -133,10 +133,9 @@ export const buildGuesses = (players: Players) => {
 
 export const buildRanking = (players: Players, activeCloverId: PlayerId) => {
   // Gained Points: [First try, second try, granted by other players]
-  const newScores = utils.helpers.buildNewScoreObject(players, [0, 0, 0]);
+  const scores = new utils.players.Scores(players, [0, 0, 0]);
 
-  const listOfPlayers = utils.players.getListOfPlayers(players);
-  listOfPlayers.forEach((player) => {
+  utils.players.getListOfPlayers(players).forEach((player) => {
     if (player.id !== activeCloverId) {
       const guesses: Guess = player.guesses[activeCloverId].leaves;
 
@@ -144,16 +143,11 @@ export const buildRanking = (players: Players, activeCloverId: PlayerId) => {
         const score = guess.score ?? 0;
         const pointSlotIndex = score > 1 ? 0 : 1;
 
-        newScores[player.id].gainedPoints[pointSlotIndex] += score;
-        newScores[player.id].newScore += score;
-        player.score += score;
-
-        newScores[activeCloverId].gainedPoints[2] += score > 1 ? 1 : 0;
-        newScores[activeCloverId].newScore += score > 1 ? 1 : 0;
-        players[activeCloverId].score += score > 1 ? 1 : 0;
+        scores.add(player.id, score, pointSlotIndex);
+        scores.add(activeCloverId, score > 1 ? 1 : 0, 2);
       });
     }
   });
 
-  return utils.helpers.sortNewScore(newScores);
+  return scores.rank(players);
 };

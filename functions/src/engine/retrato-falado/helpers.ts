@@ -4,7 +4,6 @@ import { RETRATO_FALADO_PHASES } from './constants';
 import type { AllMonsters, MonsterSketch } from './types';
 // Helpers
 import utils from '../../utils';
-import { buildNewScoreObject } from '../../utils/helpers';
 
 /**
  * Determine the next phase based on the current one
@@ -39,7 +38,6 @@ export const determineNextPhase = (
 /**
  * Build the deck to be used on the game
  * @param allMonsters
- * @param usedCardsIds
  * @param playerCount
  * @returns
  */
@@ -113,26 +111,19 @@ export const buildRanking = (
   mostVotes: PlayerId[],
   witnessVote: PlayerId
 ): RankingEntry[] => {
-  const newScores = buildNewScoreObject(players, [0, 0, 0]);
+  const scores = new utils.players.Scores(players, [0, 0, 0]);
 
   // Add points for mostVotes
   mostVotes.forEach((playerId) => {
-    newScores[playerId].gainedPoints[0] += 2;
-    newScores[playerId].newScore += 2;
+    scores.add(playerId, 2, 0);
   });
 
   // Add witness vote
   if (mostVotes.includes(witnessVote)) {
-    newScores[witnessId].gainedPoints[1] += 2;
-    newScores[witnessId].newScore += 2;
+    scores.add(witnessId, 2, 1);
   } else {
-    newScores[witnessVote].gainedPoints[2] += 1;
-    newScores[witnessVote].newScore += 1;
+    scores.add(witnessVote, 1, 2);
   }
 
-  Object.values(newScores).forEach((score) => {
-    players[score.playerId].score = score.newScore;
-  });
-
-  return Object.values(newScores);
+  return scores.rank(players);
 };

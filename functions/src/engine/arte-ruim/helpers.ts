@@ -458,33 +458,29 @@ export const buildGallery = (
  */
 export const buildRanking = (drawings: ArteRuimDrawing[], players: Players) => {
   // Gained Points [correct guesses, guesses on your drawing]
-  const newScores = utils.helpers.buildNewScoreObject(players, [0, 0]);
+  const scores = new utils.players.Scores(players, [0, 0]);
 
   drawings.forEach((drawingEntry) => {
     const correctAnswer = getLevel5Id(drawingEntry.id);
     const artistId = drawingEntry.playerId;
 
-    Object.entries(<PlainObject>players).forEach(([playerId, pObject]) => {
-      if (artistId === playerId) return;
+    Object.values(players).forEach((player) => {
+      if (artistId === player.id) return;
 
       if (artistId) {
         // Calculate what players say
-        const currentVote = getLevel5Id(pObject.votes[drawingEntry.id]);
+        const currentVote = getLevel5Id(player.votes[drawingEntry.id]);
 
         // Calculate player points
         if (currentVote === correctAnswer) {
-          newScores[playerId].gainedPoints[0] += 2;
-          newScores[playerId].newScore += 2;
-          players[playerId].score += 2;
-          newScores[artistId].gainedPoints[1] += 1;
-          newScores[artistId].newScore += 1;
-          players[artistId].score += 1;
+          scores.add(player.id, 2, 0);
+          scores.add(artistId, 1, 1);
         }
       }
     });
   });
 
-  return utils.helpers.sortNewScore(newScores);
+  return scores.rank(players);
 };
 
 /**
