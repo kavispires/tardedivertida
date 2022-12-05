@@ -155,33 +155,25 @@ export const gatherDreams = (players: Players): PlainObject[] => {
  */
 export const buildRanking = (players: Players) => {
   // Gained points: correct answers, votes gotten, nightmare selection
-  const newScores = utils.helpers.buildNewScoreObject(players, [0, 0, 0]);
+  const scores = new utils.players.Scores(players, [0, 0, 0]);
 
-  Object.values(players).forEach((player) => {
+  utils.players.getListOfPlayers(players).forEach((player) => {
     const points: number = player.theme.level;
     Object.entries(<StringDictionary>player.votes).forEach(([playerId, vote]) => {
       const correctDreamId: string = players[playerId].dreamId;
       const nightmareId: string = players[playerId].nightmareId;
 
       if (vote === correctDreamId) {
-        newScores[player.id].gainedPoints[0] += points;
-        newScores[player.id].newScore += points;
-        players[player.id].score += points;
-        newScores[playerId].gainedPoints[1] += points;
-        newScores[playerId].newScore += points;
-        players[playerId].score += points;
+        scores.add(player.id, points, 0);
+        scores.add(playerId, points, 1);
       } else if (vote === nightmareId) {
-        newScores[player.id].gainedPoints[2] -= 1;
-        newScores[player.id].newScore -= 1;
-        players[player.id].score -= 1;
-        newScores[playerId].gainedPoints[2] -= 1;
-        newScores[playerId].newScore -= 1;
-        players[playerId].score -= 1;
+        scores.subtract(player.id, 1, 2);
+        scores.subtract(playerId, 1, 2);
       }
     });
   });
 
-  return Object.values(newScores).sort((a, b) => (a.newScore > b.newScore ? 1 : -1));
+  return scores.rank(players);
 };
 
 /**

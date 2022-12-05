@@ -118,7 +118,7 @@ export const determineOutcome = (table: Table, solutionIndex: number, playerCoun
   return OUTCOME.NORMAL;
 };
 
-export const calculateNewScores = (
+export const getRanking = (
   table: Table,
   players: Players,
   outcome: string,
@@ -126,7 +126,7 @@ export const calculateNewScores = (
   store: FirebaseStoreData
 ): NewScore[] => {
   // Gained points: [points depending on outcome, votes on card]
-  const newScores = utils.helpers.buildNewScoreObject(players, [0, 0]);
+  const scores = new utils.players.Scores(players, [0, 0]);
 
   const solutionEntry = table.find((entry) => entry.isSolution);
 
@@ -136,14 +136,13 @@ export const calculateNewScores = (
     if (player.id !== storytellerId) {
       // Other players gets 2 points if everybody or nobody got
       if (outcome === OUTCOME.EVERYBODY_GOT || outcome === OUTCOME.NOBODY_GOT) {
-        newScores[player.id].gainedPoints[0] += 2;
-        newScores[player.id].newScore += 2;
+        scores.add(player.id, 2, 0);
       }
 
       // Votes the player card got
       const cardVotes = playerCard?.votes.length ?? 0;
-      newScores[player.id].gainedPoints[1] += cardVotes;
-      newScores[player.id].newScore += cardVotes;
+      scores.add(player.id, cardVotes, 1);
+
       // Achievement: playerVotes
       utils.achievements.increase(store, player.id, 'playerVotes', 1);
     }
@@ -151,17 +150,13 @@ export const calculateNewScores = (
     // Everybody that got correctly, including storyteller, gets 3 points
     if (outcome === OUTCOME.NORMAL) {
       const normalPoints = solutionEntry?.votes.includes(player.id) ? 3 : 0;
-      newScores[player.id].gainedPoints[0] += normalPoints;
-      newScores[player.id].newScore += normalPoints;
+      scores.add(player.id, normalPoints, 0);
 
       // Achievement: easyClues
       if (normalPoints === 3) {
         utils.achievements.increase(store, storytellerId, 'easyClues', 1);
       }
     }
-
-    // Update player as well
-    player.score = newScores[player.id].newScore;
   });
 
   // Achievement: badClues
@@ -176,7 +171,7 @@ export const calculateNewScores = (
       tableEntry.votes.forEach((playerId) => utils.achievements.increase(store, playerId, 'tableVotes', 1))
     );
 
-  return utils.helpers.sortNewScore(newScores);
+  return scores.rank(players);
 };
 
 export const scoreRound = (
@@ -195,7 +190,7 @@ export const scoreRound = (
 
   const outcome = determineOutcome(table, solutionIndex, Object.keys(players).length);
 
-  const ranking = calculateNewScores(table, players, outcome, storyteller, store);
+  const ranking = getRanking(table, players, outcome, storyteller, store);
 
   return {
     table,

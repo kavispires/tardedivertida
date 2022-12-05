@@ -119,22 +119,18 @@ export const buildRanking = (
   psychicId: PlayerId,
   store: PlainObject
 ) => {
-  // Format <player>: [<old score>, <addition points>, <new score>]
-  const newScores: PlainObject = {};
+  // Gained Points [correct guesses, psychic points]
+  const scores = new utils.players.Scores(players, [0, 0]);
 
   let psychicPoints = 0;
   let playersMaxPoints = 0;
 
   // Build score object
   Object.values(players).forEach((player) => {
-    newScores[player.id] = [player.score, 0, player.score];
-
     if (player.id !== psychicId) {
       const points = determineScore(player.guess, currentCategory?.target ?? 0);
-      newScores[player.id][1] += points;
-      newScores[player.id][2] += points;
+      scores.add(player.id, points, 0);
 
-      players[player.id].score += points;
       playersMaxPoints = points > playersMaxPoints ? points : playersMaxPoints;
 
       // Determine psychic points
@@ -164,21 +160,9 @@ export const buildRanking = (
   // The psychic can never get more points than the other players
   psychicPoints = psychicPoints > playersMaxPoints ? playersMaxPoints : psychicPoints;
   // Add psychic points
-  players[psychicId].score += psychicPoints;
-  newScores[psychicId][1] += psychicPoints;
-  newScores[psychicId][2] += psychicPoints;
+  scores.add(psychicId, psychicPoints, 1);
 
-  return Object.entries(newScores)
-    .map(([playerId, scores]) => {
-      return {
-        playerId,
-        name: players[playerId].name,
-        previousScore: scores[0],
-        gainedPoints: scores[1],
-        newScore: scores[2],
-      };
-    })
-    .sort((a, b) => (a.newScore > b.newScore ? 1 : -1));
+  return scores.rank(players);
 };
 
 /**

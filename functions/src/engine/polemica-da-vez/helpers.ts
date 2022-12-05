@@ -84,27 +84,16 @@ export const countLikes = (players: Players): number => {
  * @param totalLikes
  * @returns
  */
-export const rankAndScore = (players: Players, totalLikes: number): PlainObject => {
-  // Format <player>: [<old score>, <addition points>, <new score>]
-  const oneWayValues = [totalLikes - 1, totalLikes + 1];
-  // Build score array
-  return Object.values(players)
-    .map((player) => {
-      const previousScore = player.score;
-      let gainedPoints = player.likesGuess === totalLikes ? 3 : 0;
-      gainedPoints += oneWayValues.includes(player.likesGuess) ? 1 : 0;
-      const newScore = player.score + gainedPoints;
+export const getRanking = (players: Players, totalLikes: number) => {
+  const scores = new utils.players.Scores(players, [0]);
 
-      player.score = newScore;
-      return {
-        playerId: player.id,
-        name: player.name,
-        previousScore,
-        gainedPoints,
-        newScore,
-      };
-    })
-    .sort((a, b) => (a.newScore > b.newScore ? 1 : -1));
+  const oneOffValues = [totalLikes - 1, totalLikes + 1];
+
+  utils.players.getListOfPlayers(players, true).forEach((player) => {
+    scores.add(player.id, player.likesGuess === totalLikes ? 3 : 0, 0);
+    scores.add(player.id, oneOffValues.includes(player.likesGuess) ? 1 : 0, 0);
+  });
+  return scores.rank(players);
 };
 
 /**

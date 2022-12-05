@@ -39,57 +39,57 @@ describe('clube-detetives', () => {
     });
   });
 
-  describe('calculateNewScores', () => {
-    test('it counts the scores correctly', () => {
-      sample = Array.from(['Abe', 'Bob', 'Cam', 'Dan', 'Eve', 'Fin'], (name, index) =>
-        mockPlayer({ name, additionalInfo: { vote: index % 2 === 0 ? '_bob' : '_cam' } })
-      );
+  // describe('calculateNewScores', () => {
+  //   test('it counts the scores correctly', () => {
+  //     sample = Array.from(['Abe', 'Bob', 'Cam', 'Dan', 'Eve', 'Fin'], (name, index) =>
+  //       mockPlayer({ name, additionalInfo: { vote: index % 2 === 0 ? '_bob' : '_cam' } })
+  //     );
 
-      result = helpers.calculateNewScores(sample, 3, '_bob', '_dan');
-      expect(result['_abe']).toStrictEqual([0, 3, 3]);
-      expect(result['_bob']).toStrictEqual([0, 0, 0]);
-      expect(result['_cam']).toStrictEqual([0, 3, 3]);
-      expect(result['_dan']).toStrictEqual([0, 0, 0]);
-      expect(result['_eve']).toStrictEqual([0, 3, 3]);
-      expect(result['_fin']).toStrictEqual([0, 0, 0]);
+  //     result = helpers.calculateNewScores(sample, 3, '_bob', '_dan');
+  //     expect(result['_abe']).toStrictEqual([0, 3, 3]);
+  //     expect(result['_bob']).toStrictEqual([0, 0, 0]);
+  //     expect(result['_cam']).toStrictEqual([0, 3, 3]);
+  //     expect(result['_dan']).toStrictEqual([0, 0, 0]);
+  //     expect(result['_eve']).toStrictEqual([0, 3, 3]);
+  //     expect(result['_fin']).toStrictEqual([0, 0, 0]);
 
-      sample = Array.from(['Abe', 'Bob', 'Cam', 'Dan', 'Eve', 'Fin'], (name) =>
-        mockPlayer({ name, additionalInfo: { vote: '_cam' } })
-      );
+  //     sample = Array.from(['Abe', 'Bob', 'Cam', 'Dan', 'Eve', 'Fin'], (name) =>
+  //       mockPlayer({ name, additionalInfo: { vote: '_cam' } })
+  //     );
 
-      result = helpers.calculateNewScores(sample, 0, '_bob', '_dan');
+  //     result = helpers.calculateNewScores(sample, 0, '_bob', '_dan');
 
-      expect(result['_abe']).toStrictEqual([0, 0, 0]);
-      expect(result['_bob']).toStrictEqual([0, 5, 5]);
-      expect(result['_cam']).toStrictEqual([0, 0, 0]);
-      expect(result['_dan']).toStrictEqual([0, 4, 4]);
-      expect(result['_eve']).toStrictEqual([0, 0, 0]);
-      expect(result['_fin']).toStrictEqual([0, 0, 0]);
+  //     expect(result['_abe']).toStrictEqual([0, 0, 0]);
+  //     expect(result['_bob']).toStrictEqual([0, 5, 5]);
+  //     expect(result['_cam']).toStrictEqual([0, 0, 0]);
+  //     expect(result['_dan']).toStrictEqual([0, 4, 4]);
+  //     expect(result['_eve']).toStrictEqual([0, 0, 0]);
+  //     expect(result['_fin']).toStrictEqual([0, 0, 0]);
 
-      sample = Array.from(['Abe', 'Bob', 'Cam', 'Dan', 'Eve', 'Fin'], (name, index) =>
-        mockPlayer({ name, additionalInfo: { vote: index % 2 === 0 ? '_bob' : '_cam', score: index + 1 } })
-      );
+  //     sample = Array.from(['Abe', 'Bob', 'Cam', 'Dan', 'Eve', 'Fin'], (name, index) =>
+  //       mockPlayer({ name, additionalInfo: { vote: index % 2 === 0 ? '_bob' : '_cam', score: index + 1 } })
+  //     );
 
-      result = helpers.calculateNewScores(sample, 3, '_bob', '_dan');
-      expect(result['_abe']).toStrictEqual([1, 3, 4]);
-      expect(result['_bob']).toStrictEqual([2, 0, 2]);
-      expect(result['_cam']).toStrictEqual([3, 3, 6]);
-      expect(result['_dan']).toStrictEqual([4, 0, 4]);
-      expect(result['_eve']).toStrictEqual([5, 3, 8]);
-      expect(result['_fin']).toStrictEqual([6, 0, 6]);
+  //     result = helpers.calculateNewScores(sample, 3, '_bob', '_dan');
+  //     expect(result['_abe']).toStrictEqual([1, 3, 4]);
+  //     expect(result['_bob']).toStrictEqual([2, 0, 2]);
+  //     expect(result['_cam']).toStrictEqual([3, 3, 6]);
+  //     expect(result['_dan']).toStrictEqual([4, 0, 4]);
+  //     expect(result['_eve']).toStrictEqual([5, 3, 8]);
+  //     expect(result['_fin']).toStrictEqual([6, 0, 6]);
 
-      sample = Array.from(['Abe', 'Bob', 'Cam', 'Dan', 'Eve', 'Fin'], (name, index) =>
-        mockPlayer({ name, additionalInfo: { vote: '_cam', score: index } })
-      );
+  //     sample = Array.from(['Abe', 'Bob', 'Cam', 'Dan', 'Eve', 'Fin'], (name, index) =>
+  //       mockPlayer({ name, additionalInfo: { vote: '_cam', score: index } })
+  //     );
 
-      result = helpers.calculateNewScores(sample, 0, '_bob', '_dan');
+  //     result = helpers.calculateNewScores(sample, 0, '_bob', '_dan');
 
-      expect(result['_abe']).toStrictEqual([0, 0, 0]);
-      expect(result['_bob']).toStrictEqual([1, 5, 6]);
-      expect(result['_cam']).toStrictEqual([2, 0, 2]);
-      expect(result['_dan']).toStrictEqual([3, 4, 7]);
-      expect(result['_eve']).toStrictEqual([4, 0, 4]);
-      expect(result['_fin']).toStrictEqual([5, 0, 5]);
-    });
-  });
+  //     expect(result['_abe']).toStrictEqual([0, 0, 0]);
+  //     expect(result['_bob']).toStrictEqual([1, 5, 6]);
+  //     expect(result['_cam']).toStrictEqual([2, 0, 2]);
+  //     expect(result['_dan']).toStrictEqual([3, 4, 7]);
+  //     expect(result['_eve']).toStrictEqual([4, 0, 4]);
+  //     expect(result['_fin']).toStrictEqual([5, 0, 5]);
+  //   });
+  // });
 });

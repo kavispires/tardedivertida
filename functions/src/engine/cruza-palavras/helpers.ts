@@ -236,14 +236,15 @@ export const getPlayerClues = (players: Players): ClueEntry[] => {
  * @returns
  */
 export const buildRanking = (players: Players, clues: ClueEntry[]) => {
-  const newScores = utils.helpers.buildNewScoreObject(players, [0, 0, 0]); // from guesses, from others, lost points
+  // Gained Points: [from guesses, from others, lost points]
+  const scores = new utils.players.Scores(players, [0, 0, 0]);
 
   const answers = clues.reduce((acc, entry) => {
     acc[entry.playerId] = entry.coordinate;
     return acc;
   }, {});
 
-  const playerCount = Object.keys(players).length;
+  const playerCount = utils.players.getPlayerCount(players);
 
   const gotPassivePoints = {};
 
@@ -256,17 +257,14 @@ export const buildRanking = (players: Players, clues: ClueEntry[]) => {
 
       // Every correct guess gets 2 points
       if (answers[guessPlayerId] === coordinate) {
-        newScores[player.id].gainedPoints[0] += 2;
-        newScores[player.id].newScore += 2;
+        scores.add(player.id, 2, 0);
 
         // Every player guessing yours correctly gets 1 point
-        newScores[guessPlayerId].gainedPoints[1] += 1;
-        newScores[guessPlayerId].newScore += 1;
+        scores.add(guessPlayerId, 1, 1);
         gotPassivePoints[guessPlayerId] = true;
       } else if (Object.values(answers).includes(coordinate)) {
         // You still get 1 point if you voted the wrong match, but a correct coordinate
-        newScores[player.id].gainedPoints[0] += 1;
-        newScores[player.id].newScore += 1;
+        scores.add(guessPlayerId, 1, 0);
       }
     });
   });
@@ -274,27 +272,11 @@ export const buildRanking = (players: Players, clues: ClueEntry[]) => {
   // 0 correct guesses on your clue gets minus player count in points
   const whoGotNoPoints: PlayerId[] = Object.keys(players).filter((playerId) => !gotPassivePoints[playerId]);
   whoGotNoPoints.forEach((playerId) => {
-    newScores[playerId].gainedPoints[2] -= playerCount;
-    newScores[playerId].newScore -= playerCount;
+    scores.subtract(playerId, playerCount, 2);
   });
 
-  const ranking: RankingEntry[] = Object.entries(newScores)
-    .map(([playerId, scores]) => {
-      // Update player score
-      players[playerId].score = scores.newScore;
-
-      return {
-        playerId,
-        name: players[playerId].name,
-        previousScore: scores.previousScore,
-        gainedPoints: scores.gainedPoints,
-        newScore: scores.newScore,
-      };
-    })
-    .sort((a, b) => (a.newScore > b.newScore ? 1 : -1));
-
   return {
-    ranking,
+    ranking: scores.rank(players),
     whoGotNoPoints,
   };
 };

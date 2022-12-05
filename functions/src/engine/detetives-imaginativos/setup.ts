@@ -3,11 +3,10 @@ import { DETETIVES_IMAGINATIVOS_PHASES, HAND_LIMIT } from './constants';
 import { DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
 // Types
 import type { FirebaseStateData, FirebaseStoreData } from './types';
-
 // Utils
 import utils from '../../utils';
 // Internal
-import { calculateNewScores, countImpostorVotes, determinePhaseOrder } from './helpers';
+import { calculateRanking, countImpostorVotes, determinePhaseOrder } from './helpers';
 
 /**
  * Setup
@@ -168,21 +167,7 @@ export const prepareRevealPhase = async (
   // Check how many votes impostor got
   const impostorVotes = countImpostorVotes(players, state.impostorId);
 
-  // -- Ranking Stuff Start
-  // Format <playerId>: [<old score>, <addition points>, <new score>]
-  const newScores = calculateNewScores(players, impostorVotes, state.impostorId, state.leaderId);
-
-  const ranking = Object.entries(newScores)
-    .map(([playerId, scores]) => {
-      return {
-        playerId,
-        name: players[playerId].name,
-        previousScore: scores[0],
-        gainedPoints: scores[1],
-        newScore: scores[2],
-      };
-    })
-    .sort((a, b) => (a.newScore > b.newScore ? 1 : -1));
+  const ranking = calculateRanking(players, impostorVotes, state.impostorId, state.leaderId);
 
   // Save
   return {

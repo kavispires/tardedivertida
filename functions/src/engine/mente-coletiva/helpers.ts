@@ -173,16 +173,16 @@ export const buildListOfAnswers = (allAnswers: AnswerEntry[]): AnswerGroupEntry[
  */
 export const buildRanking = (players: Players, store: PlainObject): RankingEntry[] => {
   // Gained points: [matches]
-  const newScores = utils.helpers.buildNewScoreObject(players, [0]);
+  const scores = new utils.players.Scores(players, [0]);
+  scores.reset();
 
   utils.players.getListOfPlayers(players).forEach((player) => {
-    newScores[player.id].previousScore = 0;
-    newScores[player.id].newScore = player.score;
+    scores.add(player.id, player.score, 0);
 
     utils.achievements.increase(store, player.id, 'secretScore', player.score);
   });
 
-  return utils.helpers.sortNewScore(newScores);
+  return scores.rank(players);
 };
 
 /**

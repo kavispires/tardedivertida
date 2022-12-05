@@ -206,40 +206,6 @@ export const buildIdDictionary = (dataList: PlainObject[]): BooleanDictionary =>
 };
 
 /**
- * Builds new scoring object used by ranking builders
- * @param players
- * @param gainedPointsInitialState
- * @returns
- */
-export const buildNewScoreObject = (
-  players: Players | Player[],
-  gainedPointsInitialState?: number[]
-): NewScores => {
-  const newScores: NewScores = {};
-
-  // Build score object
-  Object.values(players).forEach((player) => {
-    newScores[player.id] = {
-      playerId: player.id,
-      name: player.name,
-      previousScore: player.score,
-      gainedPoints: gainedPointsInitialState ? [...gainedPointsInitialState] : new Array(1).fill(0),
-      newScore: player.score,
-    };
-  });
-
-  return newScores;
-};
-
-/**
- * Sort results after building new score
- * @param newScores
- * @returns
- */
-export const sortNewScore = (newScores: NewScores) =>
-  Object.values(newScores).sort((a: NewScore, b: NewScore) => (a.newScore > b.newScore ? 1 : -1));
-
-/**
  * Randomizes player ids
  * @param players
  * @param doublingThreshold - doubles the order player count is lower than this

@@ -28,7 +28,7 @@ import utils from '../../utils';
  * Determine the next phase based on the current one
  * @param currentPhase
  * @param round
- * @param isGameOver
+ * @param outcome
  * @param triggerLastRound
  * @returns
  */
