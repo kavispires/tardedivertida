@@ -28,9 +28,15 @@ type StepEvaluationProps = {
   cards: ArteRuimCard[];
   players: GamePlayers;
   onSubmitVoting: GenericFunction;
-};
+} & AnnouncementProps;
 
-export function StepEvaluation({ drawings, cards, players, onSubmitVoting }: StepEvaluationProps) {
+export function StepEvaluation({
+  drawings,
+  cards,
+  players,
+  onSubmitVoting,
+  announcement,
+}: StepEvaluationProps) {
   const { isLoading } = useLoading();
   const user = useUser(players);
   const canvasWidth = useCardWidth(Math.min(Object.keys(players).length, 6), 16, 150, 500);
@@ -101,7 +107,7 @@ export function StepEvaluation({ drawings, cards, players, onSubmitVoting }: Ste
   }, []);
 
   return (
-    <Step className="a-evaluation-step">
+    <Step className="a-evaluation-step" announcement={announcement}>
       <PopoverRule content={<EvaluationRules />} />
       <CanvasResizer />
       <Title>

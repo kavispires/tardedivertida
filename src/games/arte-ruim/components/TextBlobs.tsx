@@ -1,6 +1,36 @@
 import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { TimeHighlight } from 'components/metrics/TimeHighlight';
 import { Instruction } from 'components/text';
+
+export const DrawInstruction = () => (
+  <Instruction>
+    <Translate
+      pt={
+        <>
+          Você terá <TimeHighlight>10</TimeHighlight> segundos para ler a sua carta e desenhá-la.
+          <br />
+          Aperte o botão quando estiver pronto!
+          <br />
+          <strong>Não vale usar números e letras.</strong>
+          <br />
+          Fique esperto porque o tempo começa assim que você apertar.
+        </>
+      }
+      en={
+        <>
+          You'll have <TimeHighlight>10</TimeHighlight> seconds to read and draw your card.
+          <br />
+          Press the button when you're ready!
+          <br />
+          <strong>You can NOT use numbers or letters.</strong>
+          <br />
+          Be aware of the timer! It starts as soon as you press the button.
+        </>
+      }
+    />
+  </Instruction>
+);
 
 export const EvaluationRules = () => (
   <Instruction>

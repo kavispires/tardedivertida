@@ -13,11 +13,12 @@ import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
 import { StepDraw } from './StepDraw';
 import { PaintingIcon } from 'components/icons/PaintingIcon';
-import { TimeHighlight } from 'components/metrics/TimeHighlight';
+import { DrawInstruction } from './components/TextBlobs';
 
 function PhaseDraw({ players, state, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
   const user = useUser(players, state);
+  const [startDrawingTimer, setStartDrawingTimer] = useState(false);
 
   const [secretCard, setSecretCard] = useState({});
 
@@ -26,6 +27,20 @@ function PhaseDraw({ players, state, info }: PhaseProps) {
   }, [players, user?.id]);
 
   const onSubmitDrawing = useOnSubmitDrawingAPIRequest(setStep);
+
+  const announcement = (
+    <PhaseAnnouncement
+      icon={<PaintingIcon />}
+      title={<Translate pt="Desenhe!" en="Draw!" />}
+      buttonText={<Translate pt="Um dó, lá, si... vamos ir... já!" en="Ready! Set! Go!" />}
+      onClose={() => setStartDrawingTimer(true)}
+      currentRound={state?.round?.current}
+      withoutTimer
+      type="overlay"
+    >
+      <DrawInstruction />
+    </PhaseAnnouncement>
+  );
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.ARTE_RUIM.DRAW}>
@@ -71,45 +86,14 @@ function PhaseDraw({ players, state, info }: PhaseProps) {
             )}
           </Instruction>
         </RoundAnnouncement>
-        {/* Step 1 */}
-        <PhaseAnnouncement
-          icon={<PaintingIcon />}
-          title={<Translate pt="Desenhe!" en="Draw!" />}
-          buttonText={<Translate pt="Um dó, lá, si... vamos ir... já!" en="Ready! Set! Go!" />}
-          onClose={goToNextStep}
-          currentRound={state?.round?.current}
-          withoutTimer
-        >
-          <Instruction>
-            <Translate
-              pt={
-                <>
-                  Você terá <TimeHighlight>10</TimeHighlight> segundos para ler a sua carta e desenhá-la.
-                  <br />
-                  Aperte o botão quando estiver pronto!
-                  <br />
-                  <strong>Não vale usar números e letras.</strong>
-                  <br />
-                  Fique esperto porque o tempo começa assim que você apertar.
-                </>
-              }
-              en={
-                <>
-                  You'll have <TimeHighlight>10</TimeHighlight> seconds to read and draw your card.
-                  <br />
-                  Press the button when you're ready!
-                  <br />
-                  <strong>You can NOT use numbers or letters.</strong>
-                  <br />
-                  Be aware of the timer! It starts as soon as you press the button.
-                </>
-              }
-            />
-          </Instruction>
-        </PhaseAnnouncement>
 
-        {/* Step 2 */}
-        <StepDraw secretCard={secretCard} onSubmitDrawing={onSubmitDrawing} />
+        {/* Step 1 */}
+        <StepDraw
+          secretCard={secretCard}
+          onSubmitDrawing={onSubmitDrawing}
+          announcement={announcement}
+          startDrawingTimer={startDrawingTimer}
+        />
       </StepSwitcher>
     </PhaseContainer>
   );
