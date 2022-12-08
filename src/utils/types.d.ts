@@ -174,6 +174,10 @@ type PhaseProps = {
   meta: GameMeta;
 };
 
+type AnnouncementProps = {
+  announcement: JSX.Element;
+};
+
 type GameTeam = {
   name?: string;
   score: number;

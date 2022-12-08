@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, useState } from 'react';
 import clsx from 'clsx';
 // Design Resource
 import { Button } from 'antd';
@@ -11,6 +11,7 @@ import { Translate } from 'components/language';
 import { Title } from 'components/text';
 import { TimedButton } from 'components/buttons';
 import { useKeyPressEvent } from 'react-use';
+import { useCountdown } from 'hooks/useCountdown';
 
 type PhaseAnnouncementProps = {
   /**
@@ -58,10 +59,14 @@ type PhaseAnnouncementProps = {
    * In animation for the announcement
    */
   animationType?: AnimationType;
+  /**
+   * If component should be an overlay or a block
+   */
+  type?: 'block' | 'overlay';
 };
 
 /**
- * Screen displayed before any game phase with title and illustration and some simple instruction
+ * Screen displayed before (or over) any game phase with title and illustration and some simple instruction
  */
 export function PhaseAnnouncement({
   buttonText,
@@ -75,40 +80,84 @@ export function PhaseAnnouncement({
   withoutTimer = false,
   unskippable,
   animationType = 'backInDown',
+  type = 'block',
 }: PhaseAnnouncementProps) {
   useTemporarilyHidePlayersBar();
-  const durationPerRound = [15, 10, 5]?.[currentRound] ?? 5;
+  const durationPerRound = [15, 7, 5]?.[currentRound] ?? 4;
+  const [isActive, setActive] = useState(true);
+  const [isRemoved, setRemoved] = useState(false);
+
+  /**
+   * Deactivate component (triggering animation)
+   * Start timer to remove it from dom
+   * Perform the onClose function
+   */
+  const onContinue = () => {
+    setActive(false);
+    start();
+    onClose();
+  };
 
   // Allow skip when pressing the space bar in a skippable announcement
   useKeyPressEvent(' ', () => {
     if (!unskippable) {
-      onClose();
+      onContinue();
     }
   });
 
+  /**
+   * When the overlay is dismissed the component needs to disappear so the screen
+   * components can be clickable again
+   */
+  const { start } = useCountdown({
+    autoStart: false,
+    duration: 1,
+    onExpire: () => setRemoved(true),
+  });
+
+  if (isRemoved) {
+    return <></>;
+  }
+
   return (
-    <div className={clsx('phase-announcement', getAnimationClass(animationType), className)}>
-      <Title>{title}</Title>
-
-      <span className="phase-announcement__icon">{icon}</span>
-
-      {children}
-
-      {withoutTimer ? (
-        <Button type="primary" onClick={onClose}>
-          <Translate pt="Prosseguir" en="Continue" custom={buttonText} />
-        </Button>
-      ) : (
-        <TimedButton
-          duration={duration || durationPerRound}
-          type="text"
-          onClick={onClose}
-          onExpire={onClose}
-          disabled={unskippable}
-        >
-          <Translate pt="Prosseguir" en="Continue" custom={buttonText} />
-        </TimedButton>
+    <div
+      className={clsx(
+        type === 'overlay' && 'phase-announcement-overlay',
+        !isActive && getAnimationClass('fadeOut')
       )}
+    >
+      <div
+        className={clsx(
+          'phase-announcement',
+          isActive
+            ? getAnimationClass(animationType, undefined, 'fast')
+            : getAnimationClass('bounceOut', undefined),
+          className
+        )}
+      >
+        <Title>{title}</Title>
+
+        <span className="phase-announcement__icon">{icon}</span>
+
+        {children}
+
+        {withoutTimer ? (
+          <Button type="primary" onClick={onContinue} autoFocus>
+            <Translate pt="Prosseguir" en="Continue" custom={buttonText} />
+          </Button>
+        ) : (
+          <TimedButton
+            duration={duration || durationPerRound}
+            type="text"
+            onClick={onContinue}
+            onExpire={onContinue}
+            disabled={unskippable}
+            autoFocus
+          >
+            <Translate pt="Prosseguir" en="Continue" custom={buttonText} />
+          </TimedButton>
+        )}
+      </div>
     </div>
   );
 }
