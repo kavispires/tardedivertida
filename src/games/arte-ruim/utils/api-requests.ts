@@ -8,7 +8,7 @@ export function useOnSubmitDrawingAPIRequest(setStep: GenericFunction) {
   const request = useAPICall({
     apiFunction: ARTE_RUIM_API.submitAction,
     actionName: 'submit-drawing',
-    onBeforeCall: () => setStep(3),
+    onBeforeCall: () => setStep(2),
     onError: () => setStep(1),
     successMessage: translate(
       'Acabou o tempo! Aguarde enquanto os outros participantes desenham',
