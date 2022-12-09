@@ -13,11 +13,11 @@ type StoryWaitingProps = {
   user: GamePlayer;
   players: GamePlayers;
   gameOrder: PlayerId[];
-};
+} & AnnouncementProps;
 
-export function StoryWaiting({ storyteller, user, players, gameOrder }: StoryWaitingProps) {
+export function StoryWaiting({ storyteller, user, players, gameOrder, announcement }: StoryWaitingProps) {
   return (
-    <Step fullWidth className="c-story-waiting">
+    <Step fullWidth className="c-story-waiting" announcement={announcement}>
       <Title>
         <IconAvatar icon={<AnimatedClockIcon />} size="large" />{' '}
         <Translate pt="Aguarde..." en="Please wait..." />

@@ -17,7 +17,7 @@ type StepPlayCardProps = {
   onPlayCard: GenericFunction;
   storyteller: GamePlayer;
   isUserTheStoryTeller: boolean;
-};
+} & AnnouncementProps;
 
 export function StepPlayCard({
   players,
@@ -26,6 +26,7 @@ export function StepPlayCard({
   onPlayCard,
   storyteller,
   isUserTheStoryTeller,
+  announcement,
 }: StepPlayCardProps) {
   const { isLoading } = useLoading();
   const hasPlayedCardAlready = Boolean(user.cardId);
@@ -36,14 +37,18 @@ export function StepPlayCard({
     });
   };
 
-  useMock(() => {
-    if (!isUserTheStoryTeller) {
-      onPlayCard(mockPlayCard(user.hand));
-    }
-  }, []);
+  useMock(
+    () => {
+      if (!isUserTheStoryTeller) {
+        onPlayCard(mockPlayCard(user.hand));
+      }
+    },
+    [],
+    [user.hand]
+  );
 
   return (
-    <Step fullWidth>
+    <Step fullWidth announcement={announcement}>
       <Title>
         <Card header={storyteller.name} className="c-story-card" randomColor>
           {story}
