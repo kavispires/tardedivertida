@@ -24,7 +24,6 @@ export function useUser(players: Players, state?: GameState): GamePlayer {
     }
 
     if (userId && players?.[userId]) {
-      console.log('updating user YES QUEEN');
       setUser(players?.[userId]);
     }
   }, [players, userId, setUser]);
