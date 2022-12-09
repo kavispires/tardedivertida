@@ -16,6 +16,7 @@ type InitialState = {
   userId: string | null;
   username: string;
   userAvatarId: string;
+  user: GamePlayer;
   isAuthenticated: boolean;
   isAdmin: boolean;
   isAdminEnabled: boolean;
@@ -61,6 +62,7 @@ const initialState: InitialState = {
   userId: null,
   username: '',
   userAvatarId: '',
+  user: {},
   isAuthenticated: false,
   isAdmin: false,
   isAdminEnabled: false,
