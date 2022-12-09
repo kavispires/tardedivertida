@@ -24,7 +24,7 @@ type StepVotingProps = {
   storyteller: GamePlayer;
   table: TableEntry[];
   isUserTheStoryTeller: boolean;
-};
+} & AnnouncementProps;
 
 export function StepVoting({
   players,
@@ -34,6 +34,7 @@ export function StepVoting({
   storyteller,
   table,
   isUserTheStoryTeller,
+  announcement,
 }: StepVotingProps) {
   const { isLoading } = useLoading();
   const cardWidth = useCardWidth(Math.max(Object.keys(players).length, 8), 32, 150);
@@ -46,14 +47,18 @@ export function StepVoting({
     });
   };
 
-  useMock(() => {
-    if (!isUserTheStoryTeller) {
-      onSubmitVote(mockVote(table, user.hand));
-    }
-  }, []);
+  useMock(
+    () => {
+      if (!isUserTheStoryTeller) {
+        onSubmitVote(mockVote(table, user?.hand));
+      }
+    },
+    [],
+    [user?.hand]
+  );
 
   return (
-    <Step fullWidth className="c-step-play-card">
+    <Step fullWidth className="c-step-play-card" announcement={announcement}>
       <Title>
         <Translate pt="Qual carta é a ilustração correta?" en="What card is the correct one?" />
         <Card header={storyteller.name} className="c-story-card" color="yellow">

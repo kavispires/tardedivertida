@@ -8,7 +8,7 @@ export function useOnSubmitStoryAPIRequest(setStep: GenericFunction) {
   const request = useAPICall({
     apiFunction: CONTADORES_HISTORIAS_API.submitAction,
     actionName: 'submit-story',
-    onBeforeCall: () => setStep(3),
+    onBeforeCall: () => setStep(2),
     onError: () => setStep(0),
     successMessage: translate('História submetida com sucesso', 'Story submitted successfully'),
     errorMessage: translate(
