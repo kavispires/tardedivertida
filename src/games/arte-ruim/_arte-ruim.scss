@@ -200,6 +200,13 @@
     display: flex;
     justify-content: center;
     background-color: get-color('white', 6);
+    background: linear-gradient(
+      to right,
+      get-color('white', 4) 0%,
+      get-color('white', 5) 88%,
+      get-color('white', 8) 96%,
+      get-color('white', 9) 100%
+    );
     padding: get-unit(2);
   }
 

@@ -12,12 +12,25 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { EvaluatedDrawings } from './components/EvaluatedDrawings';
 import { EvaluateIcon } from 'components/icons/EvaluateIcon';
 import { Translate } from 'components/language';
+import { NOOP } from 'utils/constants';
 
 function EvaluationPhase({ players, state, info }: PhaseProps) {
-  const { step, goToNextStep, setStep } = useStep(0);
+  const { step, setStep } = useStep(0);
   const user = useUser(players, state);
 
   const onSubmitVoting = useOnSubmitVotingAPIRequest(setStep);
+
+  const announcement = (
+    <PhaseAnnouncement
+      icon={<EvaluateIcon />}
+      title={<Translate pt="Adivinhação" en="Match the Pairs" />}
+      onClose={NOOP}
+      currentRound={state?.round?.current}
+      type="overlay"
+    >
+      <EvaluationRules />
+    </PhaseAnnouncement>
+  );
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.ARTE_RUIM.EVALUATION}>
@@ -41,22 +54,15 @@ function EvaluationPhase({ players, state, info }: PhaseProps) {
         }
       >
         {/*Step 0 */}
-        <PhaseAnnouncement
-          icon={<EvaluateIcon />}
-          title={<Translate pt="Adivinhação" en="Match the Pairs" />}
-          onClose={goToNextStep}
-          currentRound={state?.round?.current}
-        >
-          <EvaluationRules />
-        </PhaseAnnouncement>
-
-        {/* Step 1 */}
         <StepEvaluation
           drawings={state.drawings}
           cards={state.cards}
           players={players}
           onSubmitVoting={onSubmitVoting}
+          announcement={announcement}
         />
+
+        <></>
       </StepSwitcher>
     </PhaseContainer>
   );
