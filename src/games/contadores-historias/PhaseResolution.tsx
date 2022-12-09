@@ -3,6 +3,7 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { useStep } from 'hooks/useStep';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+import { NOOP } from 'utils/constants';
 // Components
 import { StepSwitcher } from 'components/steps';
 import { StepResolution } from './StepResolution';
@@ -16,29 +17,32 @@ function PhaseResolution({ state, players, info }: PhaseProps) {
   const { step, goToNextStep, goToPreviousStep } = useStep(0);
   const [storyteller] = useWhichPlayerIsThe('storytellerId', state, players);
 
+  const announcement = (
+    <PhaseAnnouncement
+      icon={<SealIcon />}
+      title={<Translate pt="Solução" en="Solution" />}
+      onClose={NOOP}
+      currentRound={state?.round?.current}
+      type="overlay"
+    >
+      <ScoringRules storyteller={storyteller} />
+    </PhaseAnnouncement>
+  );
+
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.CONTADORES_HISTORIAS.RESOLUTION}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
-        <PhaseAnnouncement
-          icon={<SealIcon />}
-          title={<Translate pt="Solução" en="Solution" />}
-          onClose={goToNextStep}
-          currentRound={state?.round?.current}
-        >
-          <ScoringRules storyteller={storyteller} />
-        </PhaseAnnouncement>
-
-        {/* Step 1 */}
         <StepResolution
           players={players}
           story={state.story}
           storyteller={storyteller}
           table={state.table}
           goToNextStep={goToNextStep}
+          announcement={announcement}
         />
 
-        {/* Step 2 */}
+        {/* Step 1 */}
         <StepRanking
           players={players}
           ranking={state.ranking}

@@ -20,9 +20,16 @@ type StepResolutionProps = {
   storyteller: GamePlayer;
   table: TableEntry[];
   goToNextStep: GenericFunction;
-};
+} & AnnouncementProps;
 
-export function StepResolution({ players, story, storyteller, table, goToNextStep }: StepResolutionProps) {
+export function StepResolution({
+  players,
+  story,
+  storyteller,
+  table,
+  goToNextStep,
+  announcement,
+}: StepResolutionProps) {
   useTemporarilyHidePlayersBar();
 
   const cardWidth = useCardWidth(10, 32, 75);
@@ -31,7 +38,7 @@ export function StepResolution({ players, story, storyteller, table, goToNextSte
   const otherCards = table.filter((entry) => entry.playerId !== storyteller.id);
 
   return (
-    <Step fullWidth className="c-step-play-card">
+    <Step fullWidth className="c-step-play-card" announcement={announcement}>
       <Title>
         <Translate pt="Solução" en="Solution" />
       </Title>

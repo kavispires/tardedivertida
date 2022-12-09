@@ -5,6 +5,7 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { useOnSubmitStoryAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+import { NOOP } from 'utils/constants';
 // Components
 import { StoryWaiting } from './components/StoryWaiting';
 import { StoryWriting } from './components/StoryWriting';
@@ -27,6 +28,34 @@ function PhaseStory({ state, players, info }: PhaseProps) {
 
   const onSubmitStory = useOnSubmitStoryAPIRequest(setStep);
 
+  const announcement = (
+    <PhaseAnnouncement
+      icon={<FairyTaleIcon />}
+      title={<Translate pt="Conte-nos uma história" en="Tell us a story..." />}
+      onClose={NOOP}
+      currentRound={state?.round?.current}
+      type="overlay"
+    >
+      <Instruction>
+        <Translate
+          pt={
+            <>
+              Para essa rodada, <AvatarName player={storyteller} addressUser size="small" /> será o(a)
+              Contador(a) de Histórias.
+            </>
+          }
+          en={
+            <>
+              For this round, <AvatarName player={storyteller} addressUser /> will be the Storyteller.
+            </>
+          }
+        />
+        <TurnOrder players={players} order={state.gameOrder} activePlayerId={state.storytellerId} />
+        <ImageCardPreloadHand hand={user?.hand} />
+      </Instruction>
+    </PhaseAnnouncement>
+  );
+
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.CONTADORES_HISTORIAS.STORY}>
       <StepSwitcher step={step} conditions={[!user.isReady]} players={players}>
@@ -39,36 +68,15 @@ function PhaseStory({ state, players, info }: PhaseProps) {
         />
 
         {/* Step 1 */}
-        <PhaseAnnouncement
-          icon={<FairyTaleIcon />}
-          title={<Translate pt="Conte-nos uma história" en="Tell us a story..." />}
-          onClose={goToNextStep}
-          currentRound={state?.round?.current}
-          buttonText=""
-        >
-          <Instruction>
-            <Translate
-              pt={
-                <>
-                  Para essa rodada, <AvatarName player={storyteller} addressUser size="small" /> será o(a)
-                  Contador(a) de Histórias.
-                </>
-              }
-              en={
-                <>
-                  For this round, <AvatarName player={storyteller} addressUser /> will be the Storyteller.
-                </>
-              }
-            />
-            <TurnOrder players={players} order={state.gameOrder} activePlayerId={state.storytellerId} />
-            <ImageCardPreloadHand hand={user?.hand} />
-          </Instruction>
-        </PhaseAnnouncement>
-
-        {/* Step 2 */}
         <ViewOr orCondition={isUserTheStoryTeller}>
-          <StoryWriting user={user} onSubmitStory={onSubmitStory} />
-          <StoryWaiting user={user} storyteller={storyteller} players={players} gameOrder={state.gameOrder} />
+          <StoryWriting user={user} onSubmitStory={onSubmitStory} announcement={announcement} />
+          <StoryWaiting
+            user={user}
+            storyteller={storyteller}
+            players={players}
+            gameOrder={state.gameOrder}
+            announcement={announcement}
+          />
         </ViewOr>
       </StepSwitcher>
     </PhaseContainer>

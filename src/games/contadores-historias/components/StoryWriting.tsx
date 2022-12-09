@@ -17,9 +17,9 @@ import { FloatingHand, ImageCard, ImageCardHand } from 'components/cards';
 type StoryWritingProps = {
   user: GamePlayer;
   onSubmitStory: GenericFunction;
-};
+} & AnnouncementProps;
 
-export function StoryWriting({ user, onSubmitStory }: StoryWritingProps) {
+export function StoryWriting({ user, onSubmitStory, announcement }: StoryWritingProps) {
   const { translate } = useLanguage();
   const { isLoading } = useLoading();
   const [story, setStory] = useState('');
@@ -39,7 +39,7 @@ export function StoryWriting({ user, onSubmitStory }: StoryWritingProps) {
   }, []);
 
   return (
-    <Step fullWidth className="c-story-writing">
+    <Step fullWidth className="c-story-writing" announcement={announcement}>
       <Title>
         <Translate pt="Escreva uma história" en="Tell us a story" />
       </Title>
