@@ -11,7 +11,7 @@ const THREE_MINUTES = 3 * 60 * 1000;
  */
 export function useUser(players: Players, state?: GameState): GamePlayer {
   const [userId] = useGlobalState('userId');
-  const [user, setUser] = useState<GamePlayer>({});
+  const [user, setUser] = useGlobalState('user');
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
@@ -23,10 +23,11 @@ export function useUser(players: Players, state?: GameState): GamePlayer {
       return;
     }
 
-    if (userId) {
+    if (userId && players?.[userId]) {
+      console.log('updating user YES QUEEN');
       setUser(players?.[userId]);
     }
-  }, [players, userId]);
+  }, [players, userId, setUser]);
 
   useEffect(() => {
     if (userId === VIEWER_ID) {
