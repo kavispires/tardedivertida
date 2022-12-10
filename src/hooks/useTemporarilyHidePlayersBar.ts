@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 import { useGlobalState } from './useGlobalState';
 
-export function useTemporarilyHidePlayersBar() {
+export function useTemporarilyHidePlayersBar(ignore = false) {
   const [, setShowPlayersBar] = useGlobalState('showPlayersBar');
 
   useEffect(() => {
-    setShowPlayersBar(false);
+    setShowPlayersBar(ignore ? true : false);
     return () => {
       setShowPlayersBar(true);
     };
