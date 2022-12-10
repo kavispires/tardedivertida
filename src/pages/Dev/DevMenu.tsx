@@ -19,5 +19,13 @@ export function DevMenu() {
     navigate(path);
   };
 
-  return <Segmented options={options} defaultValue={pathname} onChange={onNavigate} />;
+  return (
+    <Segmented
+      options={options}
+      defaultValue={pathname}
+      onChange={onNavigate}
+      onResize={undefined}
+      onResizeCapture={undefined}
+    />
+  );
 }
