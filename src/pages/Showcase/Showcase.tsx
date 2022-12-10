@@ -94,7 +94,7 @@ function Showcase() {
               className={clsx('showcase-entry', getAnimationClass('zoomIn', index + 0.3))}
             >
               <TransparentButton
-                onClick={() => setShowModal(game.gameCode)}
+                onClick={() => setShowModal(game.gameName)}
                 className="showcase-image-button"
                 hoverType="sepia"
               >
