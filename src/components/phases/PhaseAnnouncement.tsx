@@ -82,7 +82,7 @@ export function PhaseAnnouncement({
   animationType = 'backInDown',
   type = 'block',
 }: PhaseAnnouncementProps) {
-  useTemporarilyHidePlayersBar();
+  useTemporarilyHidePlayersBar(type === 'overlay');
   const durationPerRound = [15, 7, 5]?.[currentRound] ?? 4;
   const [isActive, setActive] = useState(true);
   const [isRemoved, setRemoved] = useState(false);
