@@ -1,24 +1,36 @@
 import clsx from 'clsx';
+import { ReactNode } from 'react';
 // Ant Design Resources
 import { Typography } from 'antd';
-import { ReactNode } from 'react';
 
 type TitleProps = {
   /**
    * The content of the component
    */
   children: ReactNode;
+  /**
+   * Makes text white
+   */
   white?: boolean;
-  icon?: any;
+  /**
+   * Icon prefixing the title
+   */
+  icon?: ReactNode;
   /**
    * Optional custom class name
    */
   className?: string;
-  level?: 1 | 2 | 3 | 4 | 5 | undefined;
+  /**
+   * The heading level
+   */
+  level?: 1 | 2 | 3 | 4 | 5;
+  /**
+   * The size of the title
+   */
   size?: 'xx-small' | 'x-small' | 'small' | 'medium' | 'large';
 };
 
-export const Title = ({ children, white, icon, className, level = 1, size = 'large' }: TitleProps) => {
+export const Title = ({ children, white, icon, className, level = 2, size = 'large' }: TitleProps) => {
   return (
     <Typography.Title
       level={level}
