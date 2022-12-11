@@ -3,6 +3,8 @@ import { ReactNode, useState } from 'react';
 import { useEffectOnce } from 'react-use';
 // Ant Design Resources
 import { Button, ButtonProps, Popover } from 'antd';
+// Sass
+import './FixedMenuButton.scss';
 
 type FixedMenuButtonDefaultProps = {
   /**

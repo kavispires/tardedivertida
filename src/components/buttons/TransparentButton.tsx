@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import { ReactNode } from 'react';
-
+// Sass
+import './TransparentButton.scss';
 interface TransparentButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * The content of the button
