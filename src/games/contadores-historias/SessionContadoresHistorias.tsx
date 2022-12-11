@@ -14,42 +14,44 @@ import PhaseGameOver from './PhaseGameOver';
 // Fonts
 import 'assets/fonts/dancing-script.scss';
 
-ConfigProvider.config({
-  theme: {
-    primaryColor: THEME_COLORS.DEFAULT,
-  },
-});
+function getActiveComponent(phase: string) {
+  switch (phase) {
+    case PHASES.DEFAULT.LOBBY:
+      return PhaseLobby;
+    case PHASES.DEFAULT.RULES:
+      return PhaseRules;
+    case PHASES.DEFAULT.SETUP:
+      return PhaseSetup;
+    case PHASES.CONTADORES_HISTORIAS.STORY:
+      return PhaseStory;
+    case PHASES.CONTADORES_HISTORIAS.CARD_PLAY:
+      return PhaseCardPlay;
+    case PHASES.CONTADORES_HISTORIAS.VOTING:
+      return PhaseVoting;
+    case PHASES.CONTADORES_HISTORIAS.RESOLUTION:
+      return PhaseResolution;
+    case PHASES.DEFAULT.GAME_OVER:
+      return PhaseGameOver;
+    default:
+      return PageError;
+  }
+}
 
 function SessionDetetivesImaginativos({ gameId }: SessionProps) {
-  function getActiveComponent(phase: string) {
-    switch (phase) {
-      case PHASES.DEFAULT.LOBBY:
-        return PhaseLobby;
-      case PHASES.DEFAULT.RULES:
-        return PhaseRules;
-      case PHASES.DEFAULT.SETUP:
-        return PhaseSetup;
-      case PHASES.CONTADORES_HISTORIAS.STORY:
-        return PhaseStory;
-      case PHASES.CONTADORES_HISTORIAS.CARD_PLAY:
-        return PhaseCardPlay;
-      case PHASES.CONTADORES_HISTORIAS.VOTING:
-        return PhaseVoting;
-      case PHASES.CONTADORES_HISTORIAS.RESOLUTION:
-        return PhaseResolution;
-      case PHASES.DEFAULT.GAME_OVER:
-        return PhaseGameOver;
-      default:
-        return PageError;
-    }
-  }
-
   return (
-    <Session
-      gameId={gameId}
-      gameCollection={GAME_COLLECTION.CONTADORES_HISTORIAS}
-      getActiveComponent={getActiveComponent}
-    />
+    <ConfigProvider
+      theme={{
+        token: {
+          colorPrimary: THEME_COLORS.DEFAULT,
+        },
+      }}
+    >
+      <Session
+        gameId={gameId}
+        gameCollection={GAME_COLLECTION.CONTADORES_HISTORIAS}
+        getActiveComponent={getActiveComponent}
+      />
+    </ConfigProvider>
   );
 }
 

@@ -6,16 +6,16 @@
   font-size: 1em;
   color: get-color('black');
   display: block;
-  // max-width: 960px;
+  max-width: 960px;
 
   &--white {
-    color: white;
+    color: get-color('white');
   }
 
   &--contained {
     background-color: rgba($color: white, $alpha: 0.6);
     padding: get-unit(2);
-    border-radius: get-unit(1);
+    border-radius: get-unit(2);
 
     &#{$self}--white {
       background-color: rgba($color: black, $alpha: 0.2);
