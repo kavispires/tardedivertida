@@ -64,10 +64,10 @@ export function StepAnswering({
   return (
     <Step fullWidth>
       <div className="m-step__contained-content">
-        <Title level={3}>
+        <Title level={3} size="small">
           <Translate pt="Responda a pergunta:" en="Answer the question:" />
-          <Question question={currentQuestion} />
         </Title>
+        <Question question={currentQuestion} />
 
         <PopoverRule content={<AnsweringRules />} />
 

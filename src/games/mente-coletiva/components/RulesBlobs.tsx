@@ -1,5 +1,6 @@
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
+import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { Instruction } from 'components/text';
 
 type GamePremiseRulesProps = {
@@ -55,10 +56,12 @@ export function AnsweringRules() {
             <br />
             Pense em respostas comuns que fará com que você responda igual a outros jogadores.
             <br />
-            Você ganha 1 ponto para cada uma de suas respostas + 1 ponto para cada resposta igual a de outro
-            jogador (1 ponto por jogador).
+            Você ganha <PointsHighlight>1</PointsHighlight> ponto para cada uma de suas respostas +{' '}
+            <PointsHighlight>1</PointsHighlight> ponto para cada resposta igual a de outro jogador (1 ponto
+            por jogador).
             <br />
-            Por exemplo, se 3 jogadores escreveram 'bola', são 3 pontos para cada.
+            Por exemplo, se 3 jogadores escreveram 'bola', são <PointsHighlight>+3</PointsHighlight> pontos
+            para cada.
           </>
         }
         en={
@@ -67,9 +70,11 @@ export function AnsweringRules() {
             <br />
             Think of common answers that will help you match the largest number of players.
             <br />
-            You get 1 point for each of your answers + 1 point for each match with other players.
+            You get <PointsHighlight>1</PointsHighlight> point for each of your answers +{' '}
+            <PointsHighlight>1</PointsHighlight> point for each match with other players.
             <br />
-            For example, if 3 players write 'chicken', each of those players get 3 points.
+            For example, if 3 players write 'chicken', each of those players get{' '}
+            <PointsHighlight>3</PointsHighlight> points.
           </>
         }
       />
