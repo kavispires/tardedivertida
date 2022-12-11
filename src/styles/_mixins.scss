@@ -1,3 +1,6 @@
+@use './functions' as *;
+@use './constants' as c;
+
 @mixin centered-container {
   display: flex;
   justify-content: center;
@@ -35,28 +38,28 @@
 
 // Extra Small devices
 @mixin xs {
-  @media (max-width: #{$screen-xs-max}) {
+  @media (max-width: #{c.$screen-xs-max}) {
     @content;
   }
 }
 
 // Small devices
 @mixin sm {
-  @media (max-width: #{$screen-sm-max}) {
+  @media (max-width: #{c.$screen-sm-max}) {
     @content;
   }
 }
 
 // Medium devices
 @mixin md {
-  @media (max-width: #{$screen-md-max}) {
+  @media (max-width: #{c.$screen-md-max}) {
     @content;
   }
 }
 
 // Large devices
 @mixin lg {
-  @media (max-width: #{$screen-lg-max}) {
+  @media (max-width: #{c.$screen-lg-max}) {
     @content;
   }
 }
