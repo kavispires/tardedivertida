@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useEffectOnce } from 'react-use';
 // Ant Design Resources
-import { Alert, Button, Divider, Image, Input, notification, Popconfirm, Tooltip } from 'antd';
+import { Alert, Button, Divider, Input, notification, Popconfirm, Tooltip } from 'antd';
 import { CaretLeftOutlined, CaretRightOutlined, FireFilled, InfoCircleOutlined } from '@ant-design/icons';
 // API & Hooks
 import { GAME_API } from 'services/adapters';
@@ -14,12 +14,13 @@ import avatars from 'assets/images/avatars.svg';
 import localStorage from 'services/localStorage';
 // Utils
 import { AVAILABLE_AVATAR_IDS, AVATARS } from 'utils/avatars';
-import { PUBLIC_URL, VIEWER_ID } from 'utils/constants';
+import { VIEWER_ID } from 'utils/constants';
 import { getRandomItem, isDevEnv } from 'utils/helpers';
 import { getRandomWelcomeMessage, speak } from 'utils/speech';
 import { mockPlayerName } from 'mock/players';
 // Components
 import { Translate } from 'components/language';
+import { GameBanner } from '../../general/GameBanner';
 
 const randomName = isDevEnv ? mockPlayerName() : undefined;
 
@@ -167,13 +168,9 @@ export function Join({ players, info, meta }: JoinProps) {
   return (
     <div className="lobby-join">
       <div className="lobby-join__card">
-        <Image
-          alt={info?.title[language]}
-          src={`${PUBLIC_URL.BANNERS}${info?.gameName}-${language}.jpg`}
-          fallback={`${PUBLIC_URL.BANNERS}/em-breve.jpg`}
-          className="lobby-join__game-image"
-        />
-        <h1 className="lobby-join__title">
+        <GameBanner title={info?.title} gameName={info?.gameName} className="lobby-banner" />
+
+        <h1 className="lobby-heading">
           {Boolean(localStorageAvatar) ? (
             <Translate pt="Bem-vindo de volta!" en="Welcome Back!" />
           ) : (
@@ -184,7 +181,7 @@ export function Join({ players, info, meta }: JoinProps) {
           <Button type="dashed" onClick={onPreviousAvatar} className="lobby-join__avatar-nav-button">
             <CaretLeftOutlined />
           </Button>
-          <svg viewBox="0 0 100 100" className="lobby-join__avatar-selection-image">
+          <svg viewBox="0 0 100 100" className="lobby-avatar">
             <use href={avatars + `#avatar-${tempAvatar}`}></use>
             <title>{AVATARS[tempAvatar].description[language]}</title>
           </svg>

@@ -78,6 +78,22 @@
   }
 }
 
+.lobby-banner {
+  max-width: 360px;
+  border-radius: get-unit(2);
+}
+
+.lobby-avatar {
+  width: 200px;
+  border-radius: get-unit(2);
+  margin: get-unit(0 2);
+}
+
+.lobby-heading {
+  text-align: center;
+  margin: get-unit(2 1);
+}
+
 .lobby-waiting {
   grid-column: col 4;
   grid-row: row -7 / row 6;
@@ -130,14 +146,6 @@
     align-items: center;
   }
 
-  &__game-image {
-    max-width: 360px;
-  }
-
-  &__title {
-    text-align: center;
-  }
-
   &__avatar-selection {
     display: flex;
     align-items: center;
@@ -148,12 +156,6 @@
   &__avatar-nav-button {
     height: 100px;
     flex: 1;
-  }
-
-  &__avatar-selection-image {
-    width: 200px;
-    border-radius: get-unit(1);
-    margin: get-unit(0 2);
   }
 
   &__avatar-alert {

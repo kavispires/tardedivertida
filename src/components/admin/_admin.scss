@@ -1,18 +1,18 @@
 .admin-only-container {
   max-width: 100%;
-  border: 1px solid get-color('red');
   background-color: get-color('red', 5, 0.5);
   padding: get-unit(2);
   margin: get-unit(2 0);
   display: flex;
   justify-content: center;
+  border-radius: get-unit(2);
 
   &__legend {
-    border: 1px solid get-color('red');
     background-color: get-color('red');
-    padding: get-unit(1);
+    padding: get-unit(2);
     font-size: 0.8rem;
     color: get-color('white');
+    border-radius: get-unit(2);
   }
 }
 
@@ -49,6 +49,6 @@
     background-color: get-color('gray', 1);
     padding: get-unit(0 1);
     margin: get-unit(0 1);
-    border-radius: get-unit(1);
+    border-radius: get-unit(2);
   }
 }
