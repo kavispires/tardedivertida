@@ -6,6 +6,7 @@ import { useLoading } from 'hooks/useLoading';
 // Components
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
+import { PointsHighlight } from 'components/metrics/PointsHighlight';
 
 type UserAnswersProps = {
   answerGroup: any;
@@ -20,8 +21,8 @@ export function UserAnswers({ answerGroup, user, onAddAnswer }: UserAnswersProps
 
   const alreadyHasAnswer = answerGroup.entries.some((entry: any) => entry.playerId === user.id);
 
-  const points = Object.values(answers).reduce((acc, answer: any) => {
-    return acc + (answer?.score ?? 0);
+  const points = Object.values(answers).reduce((acc: number, answer: any) => {
+    return acc + Number(answer?.score ?? 0);
   }, 0);
 
   return (
@@ -33,7 +34,18 @@ export function UserAnswers({ answerGroup, user, onAddAnswer }: UserAnswersProps
             en="If you made a typo or for some reason think your answer should be in this group, click on it to add it. You can only have one answer per question."
           />
           <br />
-          <Translate pt={<>Você tem: {points} ponto(s)</>} en={<>You have: {points} point(s)</>} />
+          <Translate
+            pt={
+              <>
+                Você tem: <PointsHighlight>{points}</PointsHighlight> ponto(s)
+              </>
+            }
+            en={
+              <>
+                You have:<PointsHighlight>{points}</PointsHighlight> point(s)
+              </>
+            }
+          />
         </Instruction>
 
         <Space className="space-container m-user-answers" align="center">

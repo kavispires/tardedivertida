@@ -1,5 +1,6 @@
+@use 'styles/sass' as *;
+
 .m-background.m-background {
-  // background: linear-gradient(-45deg, #070713, #0a1848, #31297a, #070713, #31297a, #0a1848, #070713);
   background: linear-gradient(-45deg, #7999e2, #d7f9f1, #618b4a, #7999e2, #afbc88, #c549ce);
   background-size: 1000% 1000%;
 }
@@ -9,7 +10,7 @@
   max-width: 1360px;
 
   &__contained-content {
-    max-width: 60%;
+    max-width: 60vw;
     margin: 0 auto;
   }
 }
@@ -54,7 +55,7 @@
   text-align: center;
   margin: get-unit(1 2);
   padding: get-unit(0 1);
-  border-radius: get-unit(1);
+  border-radius: $border-radius;
   transform: translateY(-50%);
 
   &--has-names {
@@ -74,7 +75,7 @@
 
 .sheep-avatar {
   width: 100px;
-  border-radius: get-unit(1);
+  border-radius: $border-radius;
   margin: get-unit(0 2);
 
   &--bounce {
@@ -192,16 +193,19 @@
 
   &--span {
     display: block;
-    background-color: white;
+    background-color: get-color('white');
     font-size: 1.25rem;
   }
 
   &__number {
-    background-color: gold;
+    background-color: get-color('yellow');
     border-radius: 50%;
-    display: inline-block;
-    width: 1.5em;
+    width: 2ch;
+    height: 2ch;
     margin: get-unit(0 2);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 
@@ -234,7 +238,6 @@
 }
 
 .m-pasture-round-type {
-  max-width: 60vw;
   width: 80%;
   margin: get-unit(auto);
   top: 0;
@@ -245,6 +248,7 @@
   z-index: 100;
   background-color: rgba(255, 255, 255, 0.9);
   padding: get-unit(0 4 2 4);
+  border-radius: $border-radius;
 
   @include xs {
     position: static;
@@ -257,8 +261,10 @@
 
 .m-answers {
   font-family: 'Architects Daughter', cursive;
-  padding: get-unit(2);
+  padding: get-unit(5 3 8 3);
   background-color: get-color('white');
+  border-radius: $border-radius;
+  @include box-shadow;
 
   &__item {
     margin-left: get-unit(6);
@@ -361,9 +367,10 @@
 
 .m-question-card {
   width: 100%;
-  max-width: 70vw;
+  max-width: $max-width;
   min-width: 400px;
   margin: get-unit(2 auto);
+  font-size: 1.15rem;
 }
 
 .m-game-over-in-memoriam {
