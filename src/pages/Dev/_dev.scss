@@ -59,7 +59,7 @@ $shade-levels: (
 
 .dev-header {
   font-feature-settings: 'tnum';
-  background-color: #fff;
+  background-color: get-color('white');
   box-sizing: border-box;
   color: rgba(0, 0, 0, 0.85);
   font-size: 14px;
@@ -67,7 +67,7 @@ $shade-levels: (
   line-height: 1.5715;
   list-style: none;
   margin: 0;
-  padding: 16px 24px;
+  padding: get-unit(4 6);
   position: relative;
 
   &__heading {
@@ -78,17 +78,17 @@ $shade-levels: (
   &__left {
     align-items: center;
     display: flex;
-    margin: 4px 0;
+    margin: get-unit(1 0);
     overflow: hidden;
   }
 
   &__title {
     color: rgba(0, 0, 0, 0.85);
-    font-size: 20px;
+    font-size: get-unit(5);
     font-weight: 600;
     line-height: 32px;
     margin-bottom: 0;
-    margin-right: 12px;
+    margin-right: get-unit(3);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -96,16 +96,20 @@ $shade-levels: (
 
   &__subtitle {
     color: rgba(0, 0, 0, 0.45);
-    font-size: 14px;
+    font-size: 0.875rem;
     line-height: 1.5715;
-    margin-right: 12px;
+    margin-right: get-unit(3);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
 
   &__extra {
-    margin: 4px 0;
+    margin: get-unit(1 0);
     white-space: nowrap;
+  }
+
+  &__extra-space {
+    margin: get-unit(0 2);
   }
 }

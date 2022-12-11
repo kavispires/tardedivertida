@@ -1,10 +1,10 @@
 // Ant Design Resources
-import { Card, Image, Divider, Badge } from 'antd';
+import { Card, Image, Divider, Badge, Space } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { PUBLIC_URL } from 'utils/constants';
-import { calculateGameAverageDuration, truncateRecommended } from 'utils/helpers';
+import { calculateGameAverageDuration, isDevEnv, truncateRecommended } from 'utils/helpers';
 // Components
 import { RulesModal } from 'components/rules';
 import { CreateGameModal } from './CreateGameModal';
@@ -73,23 +73,36 @@ export function GameCard({ game }: GameCardProps) {
       }
     >
       <div className="game-card__contents">
-        <Card.Meta
-          title={
-            <span className="game-card__title" title={game.title[language]}>
-              [{game.gameCode}] {game.title[language]}
-            </span>
-          }
-          description={`${translate('Baseado em', 'Based on')} ${game.basedOn.split('').reverse().join('')}`}
-        />
-        <Card.Meta className="game-card__description" description={game.summary[language]} />
-        {Boolean(game.rules?.[language]?.length > 1) && (
-          <RulesModal
-            gameInfo={game}
-            buttonProps={{ size: 'small', className: 'game-card__margin-bottom' }}
+        <Space direction="vertical">
+          <Card.Meta
+            title={
+              <span className="game-card__title" title={game.title[language]}>
+                {isDevEnv && `[${game.gameCode}]`} {game.title[language]}
+              </span>
+            }
+            description={`${translate('Baseado em', 'Based on')} ${game.basedOn
+              .split('')
+              .reverse()
+              .join('')}`}
           />
-        )}
 
-        <GameTags wrap size={[1, 6]} style={{ display: 'flex' }} gameCode={game.gameCode} tags={game.tags} />
+          <Card.Meta className="game-card__description" description={game.summary[language]} />
+
+          {Boolean(game.rules?.[language]?.length > 1) && (
+            <RulesModal
+              gameInfo={game}
+              buttonProps={{ size: 'small', className: 'game-card__margin-bottom' }}
+            />
+          )}
+
+          <GameTags
+            wrap
+            size={[1, 6]}
+            style={{ display: 'flex' }}
+            gameCode={game.gameCode}
+            tags={game.tags}
+          />
+        </Space>
       </div>
 
       <div className="game-card__actions">
@@ -105,30 +118,34 @@ export function GameCard({ game }: GameCardProps) {
 
         <Divider className="game-card__divider" />
 
-        <Card.Meta
-          description={translate(
-            `Para ${game.playerCount.min}-${game.playerCount.max} jogadores`,
-            `For ${game.playerCount.min}-${game.playerCount.max} players`
-          )}
-        />
+        <Space direction="vertical">
+          <Card.Meta
+            description={translate(
+              `Para ${game.playerCount.min}-${game.playerCount.max} jogadores`,
+              `For ${game.playerCount.min}-${game.playerCount.max} players`
+            )}
+          />
 
-        <Card.Meta
-          className="game-card__player-count"
-          description={translate(
-            `Melhor com ${game.playerCount.best || '?'} jogadores`,
-            `Best wih ${game.playerCount.best || '?'} players`
-          )}
-        />
+          <Card.Meta
+            className="game-card__player-count"
+            description={translate(
+              `Melhor com ${game.playerCount.best || '?'} jogadores`,
+              `Best wih ${game.playerCount.best || '?'} players`
+            )}
+          />
 
-        <Card.Meta
-          className="game-card__player-count game-card__margin-bottom"
-          description={translate(
-            `Recomendado jogar com ${truncateRecommended(game.playerCount.recommended)}`,
-            `Recommended with ${truncateRecommended(game.playerCount.recommended)}`
-          )}
-        />
+          <Card.Meta
+            className="game-card__player-count game-card__margin-bottom"
+            description={translate(
+              `Recomendado jogar com ${truncateRecommended(game.playerCount.recommended)}`,
+              `Recommended with ${truncateRecommended(game.playerCount.recommended)}`
+            )}
+          />
+        </Space>
 
-        <div>{Boolean(game.available[language]) && <CreateGameModal gameInfo={game} />}</div>
+        <div style={{ marginTop: '1rem' }}>
+          {Boolean(game.available[language]) && <CreateGameModal gameInfo={game} />}
+        </div>
       </div>
     </Card>
   );

@@ -92,6 +92,10 @@ body {
   }
 }
 
+.round-corners {
+  border-radius: get-unit(2);
+}
+
 .space-container {
   margin: get-unit(2 0);
   width: 100%;
