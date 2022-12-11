@@ -1,6 +1,9 @@
 import clsx from 'clsx';
-import { Typography } from 'antd';
 import { ReactNode } from 'react';
+// Ant Design Resources
+import { Typography } from 'antd';
+// Sass
+import './Instruction.scss';
 
 type InstructionsProps = {
   /**
@@ -21,9 +24,6 @@ type InstructionsProps = {
   fullWidth?: boolean;
   /**
    * Custom class name
-   */
-  /**
-   * Optional custom class name
    */
   className?: string;
 };
