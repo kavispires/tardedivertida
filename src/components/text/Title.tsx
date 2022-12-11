@@ -2,6 +2,8 @@ import clsx from 'clsx';
 import { ReactNode } from 'react';
 // Ant Design Resources
 import { Typography } from 'antd';
+// Sass
+import './Title.scss';
 
 type TitleProps = {
   /**
@@ -30,7 +32,7 @@ type TitleProps = {
   size?: 'xx-small' | 'x-small' | 'small' | 'medium' | 'large';
 };
 
-export const Title = ({ children, white, icon, className, level = 2, size = 'large' }: TitleProps) => {
+export const Title = ({ children, white, icon, className, level = 2, size = 'medium' }: TitleProps) => {
   return (
     <Typography.Title
       level={level}

@@ -1,3 +1,5 @@
+@use 'styles/sass' as *;
+
 .instruction {
   $self: &;
 
@@ -15,7 +17,7 @@
   &--contained {
     background-color: rgba($color: white, $alpha: 0.6);
     padding: get-unit(2);
-    border-radius: get-unit(2);
+    border-radius: $border-radius;
 
     &#{$self}--white {
       background-color: rgba($color: black, $alpha: 0.2);

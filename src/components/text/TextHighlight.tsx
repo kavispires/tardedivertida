@@ -1,4 +1,6 @@
 import { ReactNode } from 'react';
+// Sass
+import './TextHighlight.scss';
 
 type TextHighlightProps = {
   /**
