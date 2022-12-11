@@ -13,16 +13,17 @@ type StepQuestionSelectionWaitingProps = {
   players: GamePlayers;
   roundType: number;
   pastureSize: number;
-};
+} & AnnouncementProps;
 
 export function StepQuestionSelectionWaiting({
+  announcement,
   activePlayer,
   players,
   roundType,
   pastureSize,
 }: StepQuestionSelectionWaitingProps) {
   return (
-    <Step fullWidth className="m-step">
+    <Step fullWidth className="m-step" announcement={announcement}>
       <Title>
         <IconAvatar icon={<AnimatedClockIcon />} size="large" />{' '}
         <Translate pt="Aguarde..." en="Please wait..." />

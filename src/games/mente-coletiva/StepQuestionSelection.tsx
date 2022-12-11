@@ -17,9 +17,10 @@ type StepQuestionSelectionProps = {
   players: GamePlayers;
   roundType: number;
   pastureSize: number;
-};
+} & AnnouncementProps;
 
 export function StepQuestionSelection({
+  announcement,
   currentQuestions,
   onSubmitQuestion,
   players,
@@ -33,7 +34,7 @@ export function StepQuestionSelection({
   });
 
   return (
-    <Step fullWidth className="m-step">
+    <Step fullWidth className="m-step" announcement={announcement}>
       <Title>
         <Translate pt="Selecione uma das perguntas" en="Select one of the questions" />
       </Title>

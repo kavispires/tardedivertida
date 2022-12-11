@@ -4,6 +4,7 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { useOnSubmitQuestionAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+import { NOOP } from 'utils/constants';
 // Components
 import { GamePremiseRules } from './components/RulesBlobs';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
@@ -21,6 +22,19 @@ function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
   const [activePlayer, isUserTheActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
 
   const onSubmitQuestion = useOnSubmitQuestionAPIRequest(setStep);
+
+  const announcement = (
+    <PhaseAnnouncement
+      icon={<SheepIcon />}
+      title={<Translate pt="O Pasto Superlotado" en="A Overcrowded Pasture" />}
+      onClose={NOOP}
+      currentRound={state?.round?.current}
+      duration={state?.round?.current < 3 ? 40 : 10}
+      type="overlay"
+    >
+      <GamePremiseRules activePlayer={activePlayer} />
+    </PhaseAnnouncement>
+  );
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.MENTE_COLETIVA.QUESTION_SELECTION}>
@@ -41,17 +55,6 @@ function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
         </RoundAnnouncement>
 
         {/* Step 1 */}
-        <PhaseAnnouncement
-          icon={<SheepIcon />}
-          title={<Translate pt="O Pasto Superlotado" en="A Overcrowded Pasture" />}
-          onClose={goToNextStep}
-          currentRound={state?.round?.current}
-          duration={state?.round?.current < 3 ? 40 : 10}
-        >
-          <GamePremiseRules activePlayer={activePlayer} />
-        </PhaseAnnouncement>
-
-        {/* Step 2 */}
         <ViewOr orCondition={isUserTheActivePlayer}>
           <StepQuestionSelection
             players={players}
@@ -60,6 +63,7 @@ function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
             roundType={state.roundType}
             activePlayer={activePlayer}
             pastureSize={state.pastureSize}
+            announcement={announcement}
           />
 
           <StepQuestionSelectionWaiting
@@ -67,6 +71,7 @@ function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
             players={players}
             roundType={state.roundType}
             pastureSize={state.pastureSize}
+            announcement={announcement}
           />
         </ViewOr>
       </StepSwitcher>
