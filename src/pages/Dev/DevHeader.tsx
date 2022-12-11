@@ -1,6 +1,7 @@
 // import { PageHeader, PageHeaderProps } from 'antd';
 // import { PageHeader } from @ant-design/pro-components
 // Components
+import { Space } from 'antd';
 import { ReactNode } from 'react';
 import { DevMenu } from './DevMenu';
 
@@ -19,7 +20,8 @@ export function DevHeader({ title, subTitle, extra }: DevHeaderProps) {
           <span className="dev-header__subtitle">{subTitle}</span>
         </div>
         <div className="dev-header__extra">
-          {extra} <DevMenu />
+          <Space className="dev-header__extra-space">{extra}</Space>
+          <DevMenu />
         </div>
       </div>
     </header>

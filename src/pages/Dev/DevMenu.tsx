@@ -13,6 +13,7 @@ export function DevMenu() {
     { label: 'Colors', value: '/dev/colors', disabled: pathname === '/dev/colors' },
     { label: 'Resources', value: '/dev/resources', disabled: pathname === '/dev/resources' },
     { label: 'Playground', value: '/dev/playground', disabled: pathname === '/dev/playground' },
+    { label: 'Showcase', value: '/showcase', disabled: pathname === '/showcase' },
   ];
 
   const onNavigate = (path: any) => {
