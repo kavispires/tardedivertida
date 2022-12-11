@@ -36,7 +36,7 @@ export function StepDraw({ secretCard, onSubmitDrawing, startDrawingTimer, annou
   }, [volume]); // eslint-disable-line
 
   const { seconds, start, isRunning } = useCountdown({
-    duration: 11,
+    duration: 12,
     autoStart: false,
     onExpire: () => {
       setTimesUp(true);
@@ -66,7 +66,7 @@ export function StepDraw({ secretCard, onSubmitDrawing, startDrawingTimer, annou
         {isRunning && (
           <>
             {secretCard?.text}
-            <span className="a-draw-step__timer">{seconds > 0 ? seconds - 1 : 0}</span>
+            <span className="a-draw-step__timer">{seconds > 1 ? seconds - 2 : 0}</span>
           </>
         )}
       </Card>

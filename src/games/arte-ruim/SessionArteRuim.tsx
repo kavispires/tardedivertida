@@ -10,6 +10,8 @@ import PhaseDraw from './PhaseDraw';
 import PhaseEvaluation from './PhaseEvaluation';
 import PhaseGallery from './PhaseGallery';
 import PhaseGameOver from './PhaseGameOver';
+// Sass
+import './arte-ruim.scss';
 
 function getActiveComponent(phase: string) {
   switch (phase) {
