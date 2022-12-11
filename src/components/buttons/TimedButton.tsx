@@ -3,6 +3,8 @@ import clsx from 'clsx';
 import { Button, ButtonProps } from 'antd';
 // Hook and Utils
 import { useCountdown } from 'hooks/useCountdown';
+// Sass
+import './TimedButton.scss';
 
 interface TimedButtonProps extends ButtonProps {
   /**
