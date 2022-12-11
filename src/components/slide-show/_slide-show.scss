@@ -1,7 +1,7 @@
 .slide-show {
   display: grid;
   width: calc(100% - #{get-unit(4)});
-  gap: get-unit(4);
+  gap: get-unit(1);
   padding: get-unit(2);
   border-radius: get-unit(1);
   background-color: get-color('white', 4);

@@ -45,7 +45,7 @@ export function StepGallery({
   const currentColor = AVATARS[playerArtist.avatarId].color;
 
   return (
-    <Step className="a-gallery-phase__windows">
+    <Step fullWidth>
       <Title size="small">
         <Translate pt="Galeria de Arte" en="Art Gallery" />
       </Title>

@@ -19,11 +19,17 @@ const getPathFromKonvaLines = (lines: CanvasLine[]) => {
 };
 
 type CanvasSVGProps = {
+  /**
+   * The stringified svg path
+   */
   drawing: string;
   /**
    * Optional custom class name
    */
   className?: string;
+  /**
+   * Size in px of width and height (square)
+   */
   size?: number;
 };
 
@@ -37,7 +43,7 @@ export const CanvasSVG = ({ drawing = '', className = '', size = 250 }: CanvasSV
       viewBox="0 0 500 500"
       overflow="hidden"
       className={className}
-      style={{ width: `${size}px` }}
+      style={{ width: `${size}px`, height: `${size}px` }}
     >
       <defs />
       {paths.map((path, index) => (

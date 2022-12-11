@@ -20,6 +20,10 @@
     width: $roundSize;
     height: $roundSize;
     margin: get-unit(3);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
     @include xs {
       width: 250px;
@@ -54,19 +58,14 @@
   }
 
   &__number {
-    position: absolute;
-    width: $roundSize;
-    height: $roundSize;
     color: get-color('white');
     font-weight: bolder;
-    top: 0;
-    left: 0;
     font-size: 14rem;
-    text-align: center;
+    transform: translate(-0.5rem, -0.5rem);
 
     @include xs {
-      width: 250px;
-      height: 250px;
+      // width: 250px;
+      // height: 250px;
       font-size: 10rem;
     }
   }

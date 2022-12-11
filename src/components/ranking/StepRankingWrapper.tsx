@@ -53,7 +53,7 @@ export function StepRankingWrapper({
       {subtitle}
 
       <RankingBoard players={players} ranking={ranking} gainedPointsDescriptions={gainedPointsDescriptions} />
-      <Instruction contained className="step-ranking-wrapper-gained-points-instruction">
+      <Instruction className="step-ranking-wrapper-gained-points-instruction">
         <CaretUpOutlined />
         <Translate
           pt="Passe o mouse em cada um dos pontos para saber como eles foram distribuídos"
