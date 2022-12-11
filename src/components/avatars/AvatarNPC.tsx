@@ -2,14 +2,25 @@ import clsx from 'clsx';
 import { Avatar } from 'antd';
 // Components
 import { Translate } from 'components/language';
+// Sass
+import './AvatarName.scss';
 
 type AvatarNPCProps = {
+  /**
+   * The component size
+   */
   size?: 'small' | 'default' | 'large';
   /**
    * Optional custom class name
    */
   className?: string;
+  /**
+   * Indicates if the description (animal type) should be displayed
+   */
   withDescription?: boolean;
+  /**
+   * If text should be displayed in uppercase
+   */
   uppercase?: boolean;
 };
 

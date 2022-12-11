@@ -7,6 +7,9 @@ import avatars from 'assets/images/avatars.svg';
 import { useLanguage } from 'hooks/useLanguage';
 
 interface TDAvatarProps extends AvatarProps {
+  /**
+   * The id of the player avatar
+   */
   id?: string;
 }
 
@@ -20,7 +23,7 @@ export const Avatar = ({ id, size, shape, alt, className, ...props }: TDAvatarPr
 
   return (
     <AntAvatar
-      className={clsx('avatar', className)}
+      className={clsx(className)}
       size={size}
       shape={shape}
       alt={alt ?? translate('Fulano', 'John Doe')}
