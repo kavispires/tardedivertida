@@ -16,6 +16,8 @@ import { ForceStateForm } from './_internal/ForceStateForm';
 import { PlayersReadyState } from './_internal/PlayersReadyState';
 import { FixedMenuButton } from 'components/buttons';
 import { Translate } from 'components/language';
+// Sass
+import './AdminMenuDrawer.scss';
 
 type AdminMenuDrawerProps = {
   /**
@@ -112,6 +114,17 @@ export const AdminMenuDrawer = ({ state, players }: AdminMenuDrawerProps) => {
                   label={
                     state?.lastRound ? 'This is already set as the last round' : 'Make this the last round'
                   }
+                  className="admin-menu-drawer__button"
+                />
+              </Popconfirm>
+              <Popconfirm
+                placement="right"
+                title="Are you sure you want to go to the lobby and unlock the game?"
+                onConfirm={() => onPerformAdminAction({ action: ADMIN_ACTIONS.RESET_GAME })}
+              >
+                <AdminPerformActionButton
+                  disabled={state?.phase === 'LOBBY'}
+                  label="Reset and restart"
                   className="admin-menu-drawer__button"
                 />
               </Popconfirm>
