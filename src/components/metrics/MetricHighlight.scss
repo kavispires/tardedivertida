@@ -4,6 +4,7 @@
   background-color: rgba($color: white, $alpha: 0.6);
   padding: get-unit(1 2);
   margin: get-unit(0 1);
+  border: get-color('gray', 1, 0.4) 1px solid;
   border-radius: get-unit(1);
   white-space: nowrap;
 

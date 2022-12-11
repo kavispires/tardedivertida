@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 // State & Hooks
 import { useUser } from 'hooks/useUser';
 import { useStep } from 'hooks/useStep';
@@ -19,12 +19,6 @@ function PhaseDraw({ players, state, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
   const user = useUser(players, state);
   const [startDrawingTimer, setStartDrawingTimer] = useState(false);
-
-  const [secretCard, setSecretCard] = useState({});
-
-  useEffect(() => {
-    setSecretCard(players[user?.id]?.currentCard ?? {});
-  }, [players, user?.id]);
 
   const onSubmitDrawing = useOnSubmitDrawingAPIRequest(setStep);
 
@@ -89,7 +83,7 @@ function PhaseDraw({ players, state, info }: PhaseProps) {
 
         {/* Step 1 */}
         <StepDraw
-          secretCard={secretCard}
+          secretCard={user.currentCard ?? {}}
           onSubmitDrawing={onSubmitDrawing}
           announcement={announcement}
           startDrawingTimer={startDrawingTimer}

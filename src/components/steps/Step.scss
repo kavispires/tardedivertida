@@ -2,8 +2,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: get-unit(5);
+  border-radius: get-unit(2);
 
   &--full-width {
     width: 100%;
+  }
+
+  &--full-height {
+    flex: 1;
   }
 }

@@ -2,7 +2,7 @@
   position: fixed;
   left: 0;
   padding: get-unit(1);
-  border-radius: get-unit(0 5 5 0);
+  border-radius: get-unit(0 6 6 0);
   background-color: get-color('white', 5, 0.8);
   border: 1px solid get-color('white', 8);
   color: get-color('gray', 4);
@@ -22,15 +22,15 @@
   }
 
   &--1 {
-    top: get-unit(24);
+    top: get-unit(28);
   }
 
   &--2 {
-    top: get-unit(36);
+    top: get-unit(42);
   }
 
   &--3 {
-    top: get-unit(48);
+    top: get-unit(60);
   }
 
   &---1 {
