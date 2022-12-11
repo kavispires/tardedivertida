@@ -1,7 +1,7 @@
 .rules-carousel {
   display: flex;
   justify-content: center;
-  border-radius: get-unit(1);
+  border-radius: get-unit(2);
   max-height: 70vh !important;
 
   &__rule {
@@ -15,7 +15,7 @@
     position: absolute;
     top: 0;
     right: 50%;
-    font-size: 1.5em;
+    font-size: 1.25em;
     width: 1.5em;
     height: 1.5em;
     border-radius: 50%;
@@ -28,12 +28,13 @@
     text-align: center;
     color: get-color('white');
     background-color: rgba($color: black, $alpha: 0.8);
-    border-radius: get-unit(1);
+    border-radius: get-unit(2);
     padding: get-unit(1 2);
+    margin: get-unit(0 3);
   }
 
   &__image {
-    border-radius: get-unit(1);
+    border-radius: get-unit(2);
     box-shadow: 2px 2px 5px rgba($color: #000, $alpha: 0.3);
     width: auto;
     max-width: 90vw;
