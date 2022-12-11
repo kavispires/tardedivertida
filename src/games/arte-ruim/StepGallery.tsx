@@ -67,7 +67,7 @@ export function StepGallery({
         <CanvasSVG drawing={drawing} size={canvasWidth} className="a-gallery__drawing" />
 
         <>
-          <GalleryWindowCredits artistName={playerArtist.name} artistAvatarId={playerArtist.avatarId} />
+          <GalleryWindowCredits artist={playerArtist} />
 
           <GalleryWindowGuesses
             players={players}

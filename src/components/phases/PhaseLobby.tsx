@@ -28,8 +28,7 @@ export function PhaseLobby({ players, info, meta }: PhaseLobbyProps) {
         {orderBy(Object.values(players), 'updatedAt').map((player, index) => (
           <AvatarEntry
             key={player.name}
-            id={player.avatarId}
-            name={player.name}
+            player={player}
             className={`lobby__seat lobby__seat--${index}`}
             animate
           />

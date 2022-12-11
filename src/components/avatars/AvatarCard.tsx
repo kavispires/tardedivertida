@@ -7,10 +7,12 @@ import { useGlobalState } from 'hooks/useGlobalState';
 import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { Avatar } from './Avatar';
+// Sass
+import './AvatarCard.scss';
 
 type AvatarCardProps = {
   /**
-   * The player object which must contain avatarId, and name
+   * A player instance
    */
   player: GamePlayer;
   /**

@@ -6,17 +6,37 @@ import { useGlobalState } from 'hooks/useGlobalState';
 import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { Avatar } from './Avatar';
+// Sass
+import './AvatarName.scss';
 
 type AvatarNameProps = {
+  /**
+   * A player instance
+   */
   player: GamePlayer;
+  /**
+   * The component size
+   */
   size?: 'small' | 'default' | 'large';
   /**
    * Optional custom class name
    */
   className?: string;
+  /**
+   * Indicates if the description (animal type) should be displayed
+   */
   withDescription?: boolean;
+  /**
+   * If text should be displayed in uppercase
+   */
   uppercase?: boolean;
+  /**
+   * Displays YOU/VOCÊ if player is the user
+   */
   addressUser?: boolean;
+  /**
+   * Change the name direction to upright
+   */
   upright?: boolean;
 };
 
