@@ -1,14 +1,23 @@
+import { useState } from 'react';
 // Ant Design Resources
 import { AutoComplete, Button, Form, message, Select } from 'antd';
-import { useState } from 'react';
+// Utils
 import { ADMIN_ACTIONS } from 'utils/constants';
-
 // Components
 import { ValueFormItem } from './ValueFormItem';
 
 type ForceStateFormProps = {
+  /**
+   * The loading state
+   */
   isLoading?: boolean;
+  /**
+   * The game state
+   */
   state: GameState;
+  /**
+   * The admin action being performed
+   */
   onPerformAdminAction: GenericFunction;
 };
 

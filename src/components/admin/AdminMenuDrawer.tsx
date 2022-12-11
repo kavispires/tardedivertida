@@ -18,7 +18,13 @@ import { FixedMenuButton } from 'components/buttons';
 import { Translate } from 'components/language';
 
 type AdminMenuDrawerProps = {
+  /**
+   * The game state
+   */
   state: GameState;
+  /**
+   * The game players
+   */
   players: GamePlayers;
 };
 

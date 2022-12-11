@@ -5,7 +5,13 @@ import { useGlobalState } from 'hooks/useGlobalState';
 import { AdminButton, AdminOnlyContainer } from './index';
 
 type AdminOnlyButtonProps = {
+  /**
+   * The click action
+   */
   onClick: GenericFunction;
+  /**
+   * The button label
+   */
   label: ReactNode;
 };
 
