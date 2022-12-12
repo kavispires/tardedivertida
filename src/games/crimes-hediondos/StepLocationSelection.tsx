@@ -9,6 +9,7 @@ import { Instruction, Title } from 'components/text';
 import { ItemCard } from './components/ItemCard';
 import { SceneTile } from './components/SceneTile';
 import { ContinueButton } from './components/ContinueButton';
+import { ResetButton } from './components/ResetButton';
 
 type StepLocationSelectionProps = {
   user: GamePlayer;
@@ -17,15 +18,18 @@ type StepLocationSelectionProps = {
   updateSelections: GenericFunction;
   locationTiles: SceneTile[];
   groupedItems: GroupedItems;
-};
+  goToStep: GenericFunction;
+} & AnnouncementProps;
 
 export function StepLocationSelection({
+  announcement,
   user,
   items,
   selections,
   updateSelections,
   locationTiles,
   groupedItems,
+  goToStep,
 }: StepLocationSelectionProps) {
   const cardWidth = useCardWidth(12, 8, 50, 200);
   const [location, setLocation] = useState<PlainObject>();
@@ -37,7 +41,7 @@ export function StepLocationSelection({
   };
 
   return (
-    <Step>
+    <Step announcement={announcement}>
       <Title>
         <Translate pt="Onde foi o crime?" en="Where was the crime?" />
       </Title>
@@ -90,6 +94,8 @@ export function StepLocationSelection({
       </div>
 
       <Space className="space-container" align="center">
+        <ResetButton goToStep={goToStep} />
+
         <ContinueButton
           disabled={location?.tileId === undefined}
           onClick={() => updateSelections({ locationTile: location?.tileId, locationIndex: location?.value })}

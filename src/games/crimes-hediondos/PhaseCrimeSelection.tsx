@@ -1,6 +1,7 @@
 import { useState } from 'react';
+// Ant Design Resources
+import { Button } from 'antd';
 // State & Hooks
-import { useMock } from 'hooks/useMock';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useOnSubmitCrimeAPIRequest } from './utils/api-requests';
@@ -25,6 +26,7 @@ import { SkullIcon } from 'components/icons/SkullIcon';
 import { CrimeSceneIcon } from 'components/icons/CrimeSceneIcon';
 import { LocationIcon } from 'components/icons/LocationIcon';
 import { CrimeTapeIcon } from 'components/icons/CrimeTapeIcon';
+import { DebugOnly } from 'components/debug';
 
 function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
   const { step, setStep, goToNextStep } = useStep(0);
@@ -47,11 +49,71 @@ function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
     setSelections((prevState: SubmitCrimePayload) => ({ ...prevState, ...payload }));
   };
 
-  useMock(() => {
-    if (step === 1) {
-      onSubmitCrimeRequest(mockCrime(state.groupedItems[user.itemGroupIndex], state.locationTiles));
-    }
-  }, [step]);
+  const onMockCrime = () =>
+    onSubmitCrimeRequest(mockCrime(state.groupedItems[user.itemGroupIndex], state.locationTiles));
+
+  const announcementItems = (
+    <PhaseAnnouncement
+      icon={<EventIcon />}
+      title={<Translate pt="A Convenção" en="The Convention" />}
+      currentRound={state?.round?.current}
+      duration={30}
+      type="overlay"
+    >
+      <WelcomeMessage />
+    </PhaseAnnouncement>
+  );
+
+  const announcementCause = (
+    <PhaseAnnouncement
+      icon={<SkullIcon />}
+      title={<Translate pt="Causa da Morte" en="Cause of Death" />}
+      duration={3}
+      type="overlay"
+    >
+      <Instruction>
+        <Translate pt="Como a vítima morreu?" en="How did the victim die?" />
+      </Instruction>
+    </PhaseAnnouncement>
+  );
+
+  const announcementEvidence = (
+    <PhaseAnnouncement
+      icon={<CrimeSceneIcon />}
+      title={<Translate pt="Evidências?" en="Evidence?" />}
+      duration={3}
+      type="overlay"
+    >
+      <Instruction>
+        <Translate
+          pt="Conte-nos sobre o objeto que você escolheu."
+          en="Tell us about the object you selected."
+        />
+      </Instruction>
+    </PhaseAnnouncement>
+  );
+
+  const announcementLocation = (
+    <PhaseAnnouncement
+      icon={<LocationIcon />}
+      title={<Translate pt="Local do Crime" en="Crime Location" />}
+      duration={3}
+      type="overlay"
+    >
+      <Instruction>
+        <Translate pt="Onde que foi?" en="Where was it?" />
+      </Instruction>
+    </PhaseAnnouncement>
+  );
+
+  const announcementReview = (
+    <PhaseAnnouncement
+      icon={<CrimeTapeIcon />}
+      title={<Translate pt="Revisão" en="Review" />}
+      duration={3}
+      type="overlay"
+    />
+  );
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.CRIMES_HEDIONDOS.CRIME_SELECTION}>
@@ -68,81 +130,43 @@ function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
         </RoundAnnouncement>
 
         {/* Step 1 */}
-        <PhaseAnnouncement
-          icon={<EventIcon />}
-          title={<Translate pt="A Convenção" en="The Convention" />}
-          onClose={goToNextStep}
-          currentRound={state?.round?.current}
-          duration={30}
-        >
-          <WelcomeMessage />
-        </PhaseAnnouncement>
+        <>
+          <StepItemsSelection
+            user={user}
+            groupedItems={state.groupedItems}
+            items={state.items}
+            selections={selections}
+            updateSelections={updateSelections}
+            announcement={announcementItems}
+          />
+          <DebugOnly dev>
+            <Button onClick={onMockCrime} size="large">
+              Random Crime
+            </Button>
+          </DebugOnly>
+        </>
 
         {/* Step 2 */}
-        <StepItemsSelection
-          user={user}
-          groupedItems={state.groupedItems}
-          items={state.items}
-          selections={selections}
-          updateSelections={updateSelections}
-        />
-
-        {/* Step 3 */}
-        <PhaseAnnouncement
-          icon={<SkullIcon />}
-          title={<Translate pt="Causa da Morte" en="Cause of Death" />}
-          onClose={goToNextStep}
-          duration={5}
-        >
-          <Instruction>
-            <Translate pt="Como a vítima morreu?" en="How did the victim die?" />
-          </Instruction>
-        </PhaseAnnouncement>
-
-        {/* Step 4 */}
         <StepCauseOfDeathSelection
           items={state.items}
           causeOfDeathTile={state.causeOfDeathTile}
           selections={selections}
           updateSelections={updateSelections}
+          goToStep={setStep}
+          announcement={announcementCause}
         />
 
-        {/* Step 5 */}
-        <PhaseAnnouncement
-          icon={<CrimeSceneIcon />}
-          title={<Translate pt="Evidências?" en="Evidence?" />}
-          onClose={goToNextStep}
-          duration={5}
-        >
-          <Instruction>
-            <Translate
-              pt="Conte-nos sobre o objeto que você escolheu."
-              en="Tell us about the object you selected."
-            />
-          </Instruction>
-        </PhaseAnnouncement>
-
-        {/* Step 6 */}
+        {/* Step 3 */}
         <StepReasonForEvidence
           items={state.items}
           reasonForEvidenceTile={state.reasonForEvidenceTile}
           selections={selections}
           updateSelections={updateSelections}
+          goToStep={setStep}
+          announcement={announcementEvidence}
         />
 
-        {/* Step 7 */}
-        <PhaseAnnouncement
-          icon={<LocationIcon />}
-          title={<Translate pt="Local do Crime" en="Crime Location" />}
-          onClose={goToNextStep}
-          duration={5}
-        >
-          <Instruction>
-            <Translate pt="Onde que foi?" en="Where was it?" />
-          </Instruction>
-        </PhaseAnnouncement>
-
-        {/* Step 8 */}
+        {/* Step 4 */}
         <StepLocationSelection
           user={user}
           items={state.items}
@@ -150,17 +174,11 @@ function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
           locationTiles={state.locationTiles}
           selections={selections}
           updateSelections={updateSelections}
+          goToStep={setStep}
+          announcement={announcementLocation}
         />
 
-        {/* Step 9 */}
-        <PhaseAnnouncement
-          icon={<CrimeTapeIcon />}
-          title={<Translate pt="Revisão" en="Review" />}
-          onClose={goToNextStep}
-          duration={5}
-        />
-
-        {/* Step 10 */}
+        {/* Step 5 */}
         <StepReviewCrime
           items={state.items}
           causeOfDeathTile={state.causeOfDeathTile}
@@ -170,6 +188,7 @@ function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
           onSubmitCrime={onSubmitCrime}
           updateSelection={updateSelection}
           players={players}
+          announcement={announcementReview}
         />
       </StepSwitcher>
     </PhaseContainer>

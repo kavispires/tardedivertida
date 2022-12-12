@@ -19,9 +19,10 @@ type StepItemsSelectionProps = {
   items: ItemsDict;
   selections: PlainObject;
   updateSelections: GenericFunction;
-};
+} & AnnouncementProps;
 
 export function StepItemsSelection({
+  announcement,
   user,
   items,
   groupedItems,
@@ -57,7 +58,7 @@ export function StepItemsSelection({
   };
 
   return (
-    <Step>
+    <Step announcement={announcement}>
       <Title>
         <Translate pt="Qual foi seu último crime?" en="How was your last crime?" />
       </Title>
@@ -83,17 +84,6 @@ export function StepItemsSelection({
         />
       </Instruction>
 
-      <Space className="space-container" align="center">
-        <Button onClick={onRandomSelect} size="large">
-          <Translate pt="Selecionar aleatoriamente" en="Random picks" />
-        </Button>
-
-        <ContinueButton
-          disabled={!weaponId || !evidenceId}
-          onClick={() => updateSelections({ weaponId, evidenceId })}
-        />
-      </Space>
-
       <ul className="h-items-selection">
         {userItems.map((itemId) => (
           <li key={itemId} className="h-items-selection__item">
@@ -108,6 +98,17 @@ export function StepItemsSelection({
           </li>
         ))}
       </ul>
+
+      <Space className="space-container" align="center">
+        <Button onClick={onRandomSelect} size="large">
+          <Translate pt="Selecionar aleatoriamente" en="Random picks" />
+        </Button>
+
+        <ContinueButton
+          disabled={!weaponId || !evidenceId}
+          onClick={() => updateSelections({ weaponId, evidenceId })}
+        />
+      </Space>
     </Step>
   );
 }
