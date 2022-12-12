@@ -1,6 +1,6 @@
 // Basic
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Zilla+Slab:wght@500&display=swap');
-@import 'antd/dist/antd.variable.min.css';
+@import 'antd/dist/reset.css';
 @import 'animate.css';
 
 // Utils
@@ -14,19 +14,12 @@
 @import './global';
 
 // Shared Components
-@import '../components/avatars/avatars.scss';
 @import '../components/loaders/loaders.scss';
 @import '../components/phases/PhaseAnnouncement.scss';
 @import '../components/phases/PhaseContainer.scss';
 @import '../components/phases/PhaseLobby.scss';
 @import '../components/phases/PhaseRules.scss';
-@import '../components/buttons/FixedMenuButton.scss';
-@import '../components/buttons/TimedButton.scss';
-@import '../components/buttons/TransparentButton.scss';
 @import '../components/rules/_rules.scss';
-@import '../components/text/Instruction.scss';
-@import '../components/text/TextHighlight.scss';
-@import '../components/text/Title.scss';
 @import '../components/metrics/MetricHighlight.scss';
 @import '../components/players/WaitingRoom.scss';
 @import '../components/players/PlayersStatusBar.scss';
@@ -44,35 +37,9 @@
 @import '../components/canvas/CanvasReSizer.scss';
 @import '../components/canvas/DrawingCanvas.scss';
 @import '../components/slide-show/slide-show';
-@import '../components/admin/admin';
 @import '../components/game-over/game-over';
 @import '../components/timers/timers';
 @import '../components/general/Achievements.scss';
-
-// Game Styles
-@import '../games/arte-ruim/arte-ruim';
-@import '../games/bomba-relogio/bomba-relogio';
-@import '../games/contadores-historias/contadores-historias';
-@import '../games/crimes-hediondos/crimes-hediondos';
-@import '../games/cruza-palavras/cruza-palavras';
-@import '../games/detetives-imaginativos/detetives-imaginativos';
-@import '../games/espiao-entre-nos/espiao-entre-nos';
-@import '../games/galeria-de-sonhos/galeria-de-sonhos';
-@import '../games/linhas-cruzadas/linhas-cruzadas';
-@import '../games/mente-coletiva/mente-coletiva';
-@import '../games/na-rua-do-medo/na-rua-do-medo';
-@import '../games/onda-telepatica/onda-telepatica';
-@import '../games/palheta-de-cores/palheta-de-cores';
-@import '../games/polemica-da-vez/polemica-da-vez';
-@import '../games/quem-nao-mata/quem-nao-mata';
-@import '../games/retrato-falado/retrato-falado';
-@import '../games/sonhos-pesadelos/sonhos-pesadelos';
-@import '../games/super-campeonato/super-campeonato';
-@import '../games/testemunha-ocular/testemunha-ocular';
-@import '../games/vendaval-de-palpite/vendaval-de-palpite';
-@import '../games/ue-so-isso/ue-so-isso';
-@import '../games/trevo-da-sorte/trevo-da-sorte';
-@import '../games/porta-dos-desesperados/porta-dos-desesperados';
 
 // Pages
 @import '../pages/app';

@@ -1,6 +1,7 @@
 import { ReactNode, useState } from 'react';
 // Utils
 import { PHASES } from 'utils/phases';
+import { NOOP } from 'utils/constants';
 // Components
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
@@ -53,7 +54,22 @@ export function GameOverWrapper({
   children = <></>,
   rateWidgetCustomText,
 }: GameOverWrapperProps) {
-  const [step, setStep] = useState(0);
+  const [step] = useState(0);
+
+  const announcement = (
+    <PhaseAnnouncement
+      icon={announcementIcon}
+      title={
+        <Translate pt="E o jogo chegou ao fim..." en="And the game is over..." custom={announcementTitle} />
+      }
+      onClose={NOOP}
+      currentRound={state?.round?.current}
+      duration={announcementDuration}
+      type="overlay"
+    >
+      {Boolean(announcementContent) && announcementContent}
+    </PhaseAnnouncement>
+  );
 
   return (
     <PhaseContainer
@@ -64,25 +80,17 @@ export function GameOverWrapper({
     >
       <StepSwitcher step={step}>
         {/*Step 0 */}
-        <PhaseAnnouncement
-          icon={announcementIcon}
-          title={
-            <Translate
-              pt="E o jogo chegou ao fim..."
-              en="And the game is over..."
-              custom={announcementTitle}
-            />
-          }
-          onClose={() => setStep(1)}
-          currentRound={state?.round?.current}
-          duration={announcementDuration}
+        <GameOver
+          state={state}
+          info={info}
+          rateWidgetCustomText={rateWidgetCustomText}
+          announcement={announcement}
         >
-          {Boolean(announcementContent) && announcementContent}
-        </PhaseAnnouncement>
-
-        <GameOver state={state} info={info} rateWidgetCustomText={rateWidgetCustomText}>
           {children}
         </GameOver>
+
+        {/*Step 1 */}
+        <></>
       </StepSwitcher>
     </PhaseContainer>
   );

@@ -18,10 +18,9 @@ type StepGuessingProps = {
   user: GamePlayer;
   clues: CruzaPalavrasClue[];
   onSubmitGuesses: GenericFunction;
-  players: GamePlayers;
-};
+} & AnnouncementProps;
 
-export function StepGuessing({ grid, user, clues, onSubmitGuesses, players }: StepGuessingProps) {
+export function StepGuessing({ grid, user, clues, onSubmitGuesses, announcement }: StepGuessingProps) {
   const [active, setActive] = useState(null);
   const [guesses, setGuesses] = useState<any>({});
 
@@ -113,7 +112,7 @@ export function StepGuessing({ grid, user, clues, onSubmitGuesses, players }: St
   };
 
   return (
-    <Step fullWidth>
+    <Step fullWidth announcement={announcement}>
       <Title>
         <Translate pt="Decifre as dicas!" en="Guess the cells!" />
       </Title>

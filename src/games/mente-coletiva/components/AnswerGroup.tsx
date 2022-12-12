@@ -36,17 +36,17 @@ export function AnswerGroup({
 
   return (
     <Step className="m-step">
-      <Title level={3}>
+      <Title level={3} size="small">
         <Translate pt="Comparar Respostas" en="Compare Answers" />
-        <Card
-          header={translate('Pergunta', 'Question')}
-          color={['yellow', 'orange', 'green', 'blue', 'purple'][remainingGroupsCount % 5]}
-          className="m-question-card"
-          footer={Array(remainingGroupsCount).fill('•').join('')}
-        >
-          <Question question={currentQuestion} />
-        </Card>
       </Title>
+      <Card
+        header={translate('Pergunta', 'Question')}
+        color={['yellow', 'orange', 'green', 'blue', 'purple'][remainingGroupsCount % 5]}
+        className="m-question-card"
+        footer={Array(remainingGroupsCount).fill('•').join('')}
+      >
+        <Question question={currentQuestion} />
+      </Card>
 
       <Instruction contained>
         <Translate

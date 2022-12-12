@@ -16,6 +16,7 @@ import { RateGameWidget } from './RateGameWidget';
 import { useCountdown } from 'hooks/useCountdown';
 import { PUBLIC_URL } from 'utils/constants';
 import { getAnimationClass } from 'utils/helpers';
+import { Step } from 'components/steps';
 
 const GameOverText = () => <Translate pt="Jogo concluído" en="The game is over" />;
 
@@ -40,9 +41,16 @@ type GameOverProps = {
    * Custom rate widget text
    */
   rateWidgetCustomText?: any;
-};
+} & AnnouncementProps;
 
-export function GameOver({ state, info, children, className, rateWidgetCustomText }: GameOverProps) {
+export function GameOver({
+  state,
+  info,
+  children,
+  className,
+  rateWidgetCustomText,
+  announcement,
+}: GameOverProps) {
   const { language, dualTranslate } = useLanguage();
   const [showGameBanner, setShowGameBanner] = useState(false);
 
@@ -57,7 +65,7 @@ export function GameOver({ state, info, children, className, rateWidgetCustomTex
     (Boolean(state.winners) && state.winners.length > 0) || Boolean(state.group) || Boolean(state.team);
 
   return (
-    <div className={className}>
+    <Step className={className} announcement={announcement}>
       <div className="game-over__title">
         {showGameBanner ? (
           <Image
@@ -176,6 +184,6 @@ export function GameOver({ state, info, children, className, rateWidgetCustomTex
 
         <AdminOnlyButton onClick={() => navigate('/hub')} label="Hub" />
       </Space>
-    </div>
+    </Step>
   );
 }

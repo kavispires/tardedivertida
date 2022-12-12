@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 // Ant Design Resources
-import { Button, Image, message, notification, Typography } from 'antd';
+import { Button, message, notification, Typography } from 'antd';
 // API & Hooks
 import { ADMIN_API } from 'services/adapters';
 import { useGlobalState } from 'hooks/useGlobalState';
@@ -8,11 +8,10 @@ import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 // Images
 import avatars from 'assets/images/avatars.svg';
-// Utils and Resources
-import { PUBLIC_URL } from 'utils/constants';
 // Components
 import { AdminOnlyContainer } from 'components/admin';
 import { Translate } from 'components/language';
+import { GameBanner } from '../../general/GameBanner';
 
 type WaitingProps = {
   info: GameInfo;
@@ -21,7 +20,7 @@ type WaitingProps = {
 };
 
 export function Waiting({ info, players }: WaitingProps) {
-  const { language, translate } = useLanguage();
+  const { translate } = useLanguage();
   const { isLoading, setLoader } = useLoading();
   const [gameId] = useGlobalState('gameId');
   const [gameName] = useGlobalState('gameName');
@@ -61,17 +60,15 @@ export function Waiting({ info, players }: WaitingProps) {
   return (
     <div className="lobby-waiting">
       <div className="lobby-waiting__card">
-        <Image
-          alt={info?.title[language]}
-          src={`${PUBLIC_URL.BANNERS}${info?.gameName}-${language}.jpg`}
-          fallback={`${PUBLIC_URL.BANNERS}/em-breve.jpg`}
-        />
+        <GameBanner title={info?.title} gameName={info?.gameName} className="lobby-banner" />
 
-        <h1 className="center">{username || 'Fulano'},</h1>
-        <svg viewBox="0 0 100 100" className="lobby-waiting__avatar">
+        <h1 className="lobby-heading">{username || 'Fulano'}</h1>
+
+        <svg viewBox="0 0 100 100" className="lobby-avatar">
           <use href={avatars + `#avatar-${userAvatarId}`}></use>
         </svg>
-        <h3 className="center">
+
+        <h3 className="lobby-heading">
           <Translate
             pt="Aguarde os outros jogadores entrarem."
             en="Please, wait while other players join..."

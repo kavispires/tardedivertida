@@ -56,3 +56,60 @@ $shade-levels: (
   display: grid;
   grid-template-columns: repeat(4, 1fr);
 }
+
+.dev-header {
+  font-feature-settings: 'tnum';
+  background-color: get-color('white');
+  box-sizing: border-box;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+  font-variant: tabular-nums;
+  line-height: 1.5715;
+  list-style: none;
+  margin: 0;
+  padding: get-unit(4 6);
+  position: relative;
+
+  &__heading {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__left {
+    align-items: center;
+    display: flex;
+    margin: get-unit(1 0);
+    overflow: hidden;
+  }
+
+  &__title {
+    color: rgba(0, 0, 0, 0.85);
+    font-size: get-unit(5);
+    font-weight: 600;
+    line-height: 32px;
+    margin-bottom: 0;
+    margin-right: get-unit(3);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__subtitle {
+    color: rgba(0, 0, 0, 0.45);
+    font-size: 0.875rem;
+    line-height: 1.5715;
+    margin-right: get-unit(3);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__extra {
+    margin: get-unit(1 0);
+    white-space: nowrap;
+  }
+
+  &__extra-space {
+    margin: get-unit(0 2);
+  }
+}

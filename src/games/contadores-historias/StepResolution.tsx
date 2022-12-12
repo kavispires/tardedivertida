@@ -38,7 +38,7 @@ export function StepResolution({
   const otherCards = table.filter((entry) => entry.playerId !== storyteller.id);
 
   return (
-    <Step fullWidth className="c-step-play-card" announcement={announcement}>
+    <Step fullWidth announcement={announcement}>
       <Title>
         <Translate pt="Solução" en="Solution" />
       </Title>

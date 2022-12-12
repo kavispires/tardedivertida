@@ -1,8 +1,8 @@
 import { useState, lazy, Suspense } from 'react';
+import { useEffectOnce } from 'react-use';
 import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
-
 // Ant Design Resources
-import { Layout, message } from 'antd';
+import { ConfigProvider, Layout, message } from 'antd';
 // Firebase
 import { auth } from 'services/firebase';
 // State
@@ -15,7 +15,6 @@ import { LoadingBar, LoadingPage } from 'components/loaders';
 import Home from './Home/Home';
 import Login from './Login/Login';
 import AvatarsPage from './Dev/Avatars';
-import { useEffectOnce } from 'react-use';
 
 // Routes Lazy load
 const Hub = lazy(() => import('pages/Hub/Hub' /* webpackChunkName: "page-hub" */));
@@ -78,6 +77,7 @@ function App() {
   const [, setIsAdmin] = useGlobalState('isAdmin');
   const [, setIsAdminEnabled] = useGlobalState('isAdminEnabled');
   const [getLocalStorage] = useLocalStorage();
+  // const [theme] = useGlobalState('theme');
 
   useEffectOnce(() => {
     auth.onAuthStateChanged((user) => {
@@ -101,44 +101,52 @@ function App() {
   });
 
   return (
-    <Layout className="app" id="app">
-      <LoadingBar />
-      <HashRouter>
-        {isLoading ? (
-          <LoadingPage message="..." />
-        ) : (
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/hub" element={isAuthenticated ? <LazyHub /> : <Navigate to="/login" />} />
-            <Route
-              path="/dev/avatars"
-              element={isAuthenticated ? <LazyDevAvatars /> : <Navigate to="/login" />}
-            />
-            <Route
-              path="/dev/icons"
-              element={isAuthenticated ? <LazyDevIcons /> : <Navigate to="/login" />}
-            />
-            <Route
-              path="/dev/colors"
-              element={isAuthenticated ? <LazyDevColors /> : <Navigate to="/login" />}
-            />
-            <Route
-              path="/dev/resources"
-              element={isAuthenticated ? <LazyDevResources /> : <Navigate to="/login" />}
-            />
-            <Route
-              path="/dev/playground"
-              element={isAuthenticated ? <LazyDevPlayground /> : <Navigate to="/login" />}
-            />
+    <ConfigProvider
+      theme={{
+        token: {
+          fontFamily: "'Lato', sans-serif",
+        },
+      }}
+    >
+      <Layout className="app" id="app">
+        <LoadingBar />
+        <HashRouter>
+          {isLoading ? (
+            <LoadingPage message="..." />
+          ) : (
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/hub" element={isAuthenticated ? <LazyHub /> : <Navigate to="/login" />} />
+              <Route
+                path="/dev/avatars"
+                element={isAuthenticated ? <LazyDevAvatars /> : <Navigate to="/login" />}
+              />
+              <Route
+                path="/dev/icons"
+                element={isAuthenticated ? <LazyDevIcons /> : <Navigate to="/login" />}
+              />
+              <Route
+                path="/dev/colors"
+                element={isAuthenticated ? <LazyDevColors /> : <Navigate to="/login" />}
+              />
+              <Route
+                path="/dev/resources"
+                element={isAuthenticated ? <LazyDevResources /> : <Navigate to="/login" />}
+              />
+              <Route
+                path="/dev/playground"
+                element={isAuthenticated ? <LazyDevPlayground /> : <Navigate to="/login" />}
+              />
 
-            <Route path="/showcase" element={<LazyShowcase />} />
-            <Route path="/vitrine" element={<LazyShowcase />} />
-            <Route path="*" element={<LazyGame />} />
-          </Routes>
-        )}
-      </HashRouter>
-    </Layout>
+              <Route path="/showcase" element={<LazyShowcase />} />
+              <Route path="/vitrine" element={<LazyShowcase />} />
+              <Route path="*" element={<LazyGame />} />
+            </Routes>
+          )}
+        </HashRouter>
+      </Layout>
+    </ConfigProvider>
   );
 }
 

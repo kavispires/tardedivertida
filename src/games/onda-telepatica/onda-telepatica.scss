@@ -1,3 +1,5 @@
+@use 'styles/sass' as *;
+
 .o-background.o-background {
   background: linear-gradient(-45deg, #9287cf, #583fb3, #a73fb3, #9287cf, #583fb3, #a73fb3);
   background-size: 1000% 1000%;
@@ -9,7 +11,7 @@
     font-weight: bolder;
     padding: get-unit(1);
     margin: get-unit(0 1);
-    border-radius: get-unit(1);
+    border-radius: $border-radius;
     text-transform: uppercase;
   }
 }
@@ -318,7 +320,7 @@ $base-angle: 8deg;
   width: 25ch;
   text-align: center;
   font-size: 0.8rem;
-  border-radius: get-unit(1);
+  border-radius: $border-radius;
 
   &__category {
     background-color: get-color('teal', 4);

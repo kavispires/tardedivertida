@@ -58,7 +58,7 @@ export function StepVoting({
   );
 
   return (
-    <Step fullWidth className="c-step-play-card" announcement={announcement}>
+    <Step fullWidth announcement={announcement}>
       <Title>
         <Translate pt="Qual carta é a ilustração correta?" en="What card is the correct one?" />
         <Card header={storyteller.name} className="c-story-card" color="yellow">

@@ -2,6 +2,9 @@
 import { Form, Input, InputNumber, Switch } from 'antd';
 
 type ValueFormItemProps = {
+  /**
+   * The input value type
+   */
   valueType?: string;
 };
 

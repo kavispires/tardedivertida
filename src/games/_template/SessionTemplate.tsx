@@ -7,37 +7,39 @@ import { Session } from 'components/session';
 import { PhaseLobby, PhasePlaceholder, PhaseRules, PhaseSetup } from 'components/phases';
 import { PageError } from 'components/errors';
 
-ConfigProvider.config({
-  theme: {
-    primaryColor: THEME_COLORS.DEFAULT,
-  },
-});
+function getActiveComponent(phase: string) {
+  switch (phase) {
+    case PHASES.DEFAULT.LOBBY:
+      return PhaseLobby;
+    case PHASES.DEFAULT.RULES:
+      return PhaseRules;
+    case PHASES.DEFAULT.SETUP:
+      return PhaseSetup;
+    case PHASES.TEMPLATE.UNKNOWN:
+      return PhasePlaceholder;
+    case PHASES.DEFAULT.GAME_OVER:
+      return PhasePlaceholder;
+    default:
+      return PageError;
+  }
+}
 
 function SessionTemplate({ gameId }: SessionProps) {
-  function getActiveComponent(phase: string) {
-    switch (phase) {
-      case PHASES.DEFAULT.LOBBY:
-        return PhaseLobby;
-      case PHASES.DEFAULT.RULES:
-        return PhaseRules;
-      case PHASES.DEFAULT.SETUP:
-        return PhaseSetup;
-      case PHASES.TEMPLATE.UNKNOWN:
-        return PhasePlaceholder;
-      case PHASES.DEFAULT.GAME_OVER:
-        return PhasePlaceholder;
-      default:
-        return PageError;
-    }
-  }
-
   return (
-    <Session
-      gameId={gameId}
-      gameCollection={GAME_COLLECTION.INSTRUMENTOS_CODIFICADOS}
-      getActiveComponent={getActiveComponent}
-      backgroundClassName="xx-background"
-    />
+    <ConfigProvider
+      theme={{
+        token: {
+          colorPrimary: THEME_COLORS.DEFAULT,
+        },
+      }}
+    >
+      <Session
+        gameId={gameId}
+        gameCollection={GAME_COLLECTION.INSTRUMENTOS_CODIFICADOS}
+        getActiveComponent={getActiveComponent}
+        backgroundClassName="xx-background"
+      />
+    </ConfigProvider>
   );
 }
 

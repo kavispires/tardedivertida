@@ -26,6 +26,29 @@ export function useOnSubmitQuestionAPIRequest(setStep: GenericFunction) {
   };
 }
 
+export function useOnSubmitCustomQuestionAPIRequest(setStep: GenericFunction) {
+  const { translate } = useLanguage();
+
+  const request = useAPICall({
+    apiFunction: MENTE_COLETIVA_API.submitAction,
+    actionName: 'submit-question',
+    onSuccess: () => setStep(3),
+    onError: () => setStep(1),
+    successMessage: translate('Pergunta enviada com sucesso!', 'Question send successfully!'),
+    errorMessage: translate(
+      'Vixi, o aplicativo encontrou um erro ao tentar enviar a pergunta',
+      'Oops, the application failed to submit the question'
+    ),
+  });
+
+  return (payload: SubmitCustomQuestionPayload) => {
+    request({
+      action: 'SUBMIT_CUSTOM_QUESTION',
+      ...payload,
+    });
+  };
+}
+
 export function useOnSubmitAnswersAPIRequest(setStep: GenericFunction) {
   const { translate } = useLanguage();
 

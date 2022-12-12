@@ -18,20 +18,21 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
 
   const playerCount = Object.keys(players).length;
 
+  const announcement = (
+    <PhaseAnnouncement
+      icon={<RankIcon />}
+      title={<Translate pt="Resultado" en="Results" />}
+      currentRound={state?.round?.current}
+      type="overlay"
+    >
+      <ScoringRule playerCount={playerCount} />
+    </PhaseAnnouncement>
+  );
+
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.CRUZA_PALAVRAS.REVEAL}>
       <StepSwitcher step={step} conditions={[!user.isReady, !user.isReady, !user.isReady]} players={players}>
         {/* Step 0 */}
-        <PhaseAnnouncement
-          icon={<RankIcon />}
-          title={<Translate pt="Resultado" en="Results" />}
-          onClose={goToNextStep}
-          currentRound={state?.round?.current}
-        >
-          <ScoringRule playerCount={playerCount} />
-        </PhaseAnnouncement>
-
-        {/* Step 1 */}
         <StepReveal
           user={user}
           grid={state.grid}
@@ -39,9 +40,10 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
           goToNextStep={goToNextStep}
           players={players}
           whoGotNoPoints={state.whoGotNoPoints ?? []}
+          announcement={announcement}
         />
 
-        {/* Step 2 */}
+        {/* Step 1 */}
         <StepRanking
           players={players}
           playerCount={playerCount}

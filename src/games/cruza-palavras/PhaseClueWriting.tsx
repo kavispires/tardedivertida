@@ -20,6 +20,17 @@ function PhaseClueWriting({ players, state, info }: PhaseProps) {
 
   const onSubmitClue = useOnSubmitClueAPIRequest(setStep);
 
+  const announcement = (
+    <PhaseAnnouncement
+      icon={<GridIcon />}
+      title={<Translate pt="Escreva!" en="Write!" />}
+      currentRound={state?.round?.current}
+      type="overlay"
+    >
+      <WritingCluesRule playerCount={Object.keys(players).length} />
+    </PhaseAnnouncement>
+  );
+
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.CRUZA_PALAVRAS.CLUE_WRITING}>
       <StepSwitcher step={step} conditions={[!user.isReady, !user.isReady, !user.isReady]} players={players}>
@@ -33,17 +44,13 @@ function PhaseClueWriting({ players, state, info }: PhaseProps) {
         />
 
         {/* Step 1 */}
-        <PhaseAnnouncement
-          icon={<GridIcon />}
-          title={<Translate pt="Escreva!" en="Write!" />}
-          onClose={goToNextStep}
-          currentRound={state?.round?.current}
-        >
-          <WritingCluesRule playerCount={Object.keys(players).length} />
-        </PhaseAnnouncement>
-
-        {/* Step 2 */}
-        <StepClueWriting user={user} grid={state.grid} onSubmitClue={onSubmitClue} players={players} />
+        <StepClueWriting
+          user={user}
+          grid={state.grid}
+          onSubmitClue={onSubmitClue}
+          players={players}
+          announcement={announcement}
+        />
       </StepSwitcher>
     </PhaseContainer>
   );

@@ -7,19 +7,23 @@ import { Instruction, Title } from 'components/text';
 import { SceneTile } from './components/SceneTile';
 import { SelectedItems } from './components/SelectedItems';
 import { ContinueButton } from './components/ContinueButton';
+import { ResetButton } from './components/ResetButton';
 
 type StepCauseOfDeathSelectionProps = {
   items: ItemsDict;
   selections: PlainObject;
   updateSelections: GenericFunction;
   causeOfDeathTile: SceneTile;
-};
+  goToStep: GenericFunction;
+} & AnnouncementProps;
 
 export function StepCauseOfDeathSelection({
+  announcement,
   items,
   selections,
   updateSelections,
   causeOfDeathTile,
+  goToStep,
 }: StepCauseOfDeathSelectionProps) {
   const [causeOfDeathIndex, setCauseOfDeathIndex] = useState<number>();
 
@@ -28,7 +32,7 @@ export function StepCauseOfDeathSelection({
   };
 
   return (
-    <Step>
+    <Step announcement={announcement}>
       <Title>
         <Translate pt="Qual foi seu último crime?" en="How was your last crime?" />
       </Title>
@@ -53,6 +57,8 @@ export function StepCauseOfDeathSelection({
       </Space>
 
       <Space className="space-container" align="center">
+        <ResetButton goToStep={goToStep} />
+
         <ContinueButton
           disabled={causeOfDeathIndex === undefined}
           onClick={() => updateSelections({ causeOfDeath: causeOfDeathIndex })}

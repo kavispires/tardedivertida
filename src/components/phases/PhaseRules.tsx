@@ -1,5 +1,5 @@
 // Ant Design Resources
-import { Button, Layout, Space, Typography } from 'antd';
+import { Button, Layout, Space } from 'antd';
 import { CheckCircleFilled, MehFilled, RobotFilled, SmileFilled } from '@ant-design/icons';
 // Utils
 import { GAME_API } from 'services/adapters';
@@ -19,6 +19,7 @@ import { useGlobalState } from 'hooks/useGlobalState';
 // Components
 import { LoadingPage } from 'components/loaders';
 import { Translate } from 'components/language';
+import { Title } from 'components/text';
 import { RulesCarousel } from '../rules';
 
 type PhaseRulesProps = {
@@ -85,11 +86,16 @@ export function PhaseRules({ players, info }: PhaseRulesProps) {
 
   return (
     <Layout.Content className="phase-rules">
-      <Typography.Title className="center">
+      <Title>
         <Translate pt="Regras do Jogo" en="Game Rules" />
-      </Typography.Title>
+      </Title>
 
-      <RulesCarousel info={info} className="phase-rules__carousel" ruleClass="phase-rules__rule" />
+      <RulesCarousel
+        info={info}
+        className="phase-rules__carousel"
+        ruleClassName="phase-rules__rule"
+        actionsClassName="phase-rules__actions"
+      />
 
       <Space className="phase-rules__actions" wrap>
         <Button

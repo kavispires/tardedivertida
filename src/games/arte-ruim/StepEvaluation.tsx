@@ -22,6 +22,7 @@ import { Translate } from 'components/language';
 import { EvaluationAllDrawings } from './components/EvaluationAllDrawings';
 import { EvaluationAllCards } from './components/EvaluationAllCards';
 import { EvaluationRules } from './components/TextBlobs';
+import { useEffectOnce } from 'react-use';
 
 type StepEvaluationProps = {
   drawings: ArteRuimDrawing[];
@@ -39,7 +40,7 @@ export function StepEvaluation({
 }: StepEvaluationProps) {
   const { isLoading } = useLoading();
   const user = useUser(players);
-  const canvasWidth = useCardWidth(Math.min(Object.keys(players).length, 6), 16, 150, 500);
+  const canvasWidth = useCardWidth(5, 16, 150, 500);
   const [canvasSize, setCanvasSize] = useGlobalState('canvasSize');
   const { votes, setVotes, activeItem, activateItem, resetVoting, isVotingComplete } = useVotingMatch(
     'drawing',
@@ -94,20 +95,20 @@ export function StepEvaluation({
     return {};
   }, [user, drawings, cards]);
 
-  // Auto-select the players own drawing and word
-  useEffect(() => {
+  // // Auto-select the players own drawing and word
+  useEffectOnce(() => {
     const selection = selectOwnDrawing();
     if (selection) {
       setVotes((s: any) => ({ ...s, ...selection }));
     }
-  }, [selectOwnDrawing, setVotes]);
+  });
 
   useMock(() => {
     onGuessForMe();
   }, []);
 
   return (
-    <Step className="a-evaluation-step" announcement={announcement}>
+    <Step className="a-evaluation-step" announcement={announcement} fullWidth>
       <PopoverRule content={<EvaluationRules />} />
       <CanvasResizer />
       <Title>

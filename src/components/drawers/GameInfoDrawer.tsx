@@ -1,11 +1,9 @@
 import { useToggle } from 'react-use';
 // Ant Design Resources
-import { Button, Divider, Drawer, Image, Space } from 'antd';
+import { Button, Divider, Drawer, Space } from 'antd';
 import { FireOutlined, SettingOutlined } from '@ant-design/icons';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
-// Utils
-import { PUBLIC_URL } from 'utils/constants';
 // Components
 import { SectionMeta } from './_internal/SectionMeta';
 import { SectionRankedPlayers } from './_internal/SectionRankedPlayers';
@@ -16,6 +14,7 @@ import { Translate } from 'components/language';
 import { PlayersStatusBar } from '../players/PlayersStatusBar';
 import { useNavigate } from 'react-router-dom';
 import { useGlobalState } from 'hooks/useGlobalState';
+import { GameBanner } from 'components/general/GameBanner';
 
 type GameInfoDrawerProps = {
   players: GamePlayers;
@@ -51,11 +50,11 @@ export function GameInfoDrawer({ players, state, info, userId }: GameInfoDrawerP
           onClose={toggleDrawer}
           open={isDrawerOpen}
         >
-          <Image
-            alt={info?.title?.[language]}
-            src={`${PUBLIC_URL.BANNERS}${info.gameName}-${language}.jpg`}
-            fallback={`${PUBLIC_URL.BANNERS}/em-breve-${language}.jpg`}
+          <GameBanner
+            title={info?.title}
+            gameName={info.gameName}
             preview={false}
+            className="round-corners"
           />
 
           <Divider />

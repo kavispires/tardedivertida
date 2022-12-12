@@ -13,43 +13,47 @@ import PhaseClueEvaluations from './PhaseClueEvaluations';
 import PhaseGameOver from './PhaseGameOver';
 // Fonts
 import 'assets/fonts/architects-daughter.scss';
+// Sass
+import './vendaval-de-palpite.scss';
 
-ConfigProvider.config({
-  theme: {
-    primaryColor: THEME_COLORS.DEFAULT,
-  },
-});
+function getActiveComponent(phase: string) {
+  switch (phase) {
+    case PHASES.DEFAULT.LOBBY:
+      return PhaseLobby;
+    case PHASES.DEFAULT.RULES:
+      return PhaseRules;
+    case PHASES.DEFAULT.SETUP:
+      return PhaseSetup;
+    case PHASES.VENDAVAL_DE_PALPITE.BOSS_SELECTION:
+      return PhaseBossPlayerSelection;
+    case PHASES.VENDAVAL_DE_PALPITE.SECRET_WORD_SELECTION:
+      return PhaseSecretWordSelection;
+    case PHASES.VENDAVAL_DE_PALPITE.PLAYERS_CLUES:
+      return PhasePlayersClues;
+    case PHASES.VENDAVAL_DE_PALPITE.CLUE_EVALUATIONS:
+      return PhaseClueEvaluations;
+    case PHASES.DEFAULT.GAME_OVER:
+      return PhaseGameOver;
+    default:
+      return PageError;
+  }
+}
 
 function SessionVendavalDePalpite({ gameId }: SessionProps) {
-  function getActiveComponent(phase: string) {
-    switch (phase) {
-      case PHASES.DEFAULT.LOBBY:
-        return PhaseLobby;
-      case PHASES.DEFAULT.RULES:
-        return PhaseRules;
-      case PHASES.DEFAULT.SETUP:
-        return PhaseSetup;
-      case PHASES.VENDAVAL_DE_PALPITE.BOSS_SELECTION:
-        return PhaseBossPlayerSelection;
-      case PHASES.VENDAVAL_DE_PALPITE.SECRET_WORD_SELECTION:
-        return PhaseSecretWordSelection;
-      case PHASES.VENDAVAL_DE_PALPITE.PLAYERS_CLUES:
-        return PhasePlayersClues;
-      case PHASES.VENDAVAL_DE_PALPITE.CLUE_EVALUATIONS:
-        return PhaseClueEvaluations;
-      case PHASES.DEFAULT.GAME_OVER:
-        return PhaseGameOver;
-      default:
-        return PageError;
-    }
-  }
-
   return (
-    <Session
-      gameId={gameId}
-      gameCollection={GAME_COLLECTION.VENDAVAL_DE_PALPITE}
-      getActiveComponent={getActiveComponent}
-    />
+    <ConfigProvider
+      theme={{
+        token: {
+          colorPrimary: THEME_COLORS.DEFAULT,
+        },
+      }}
+    >
+      <Session
+        gameId={gameId}
+        gameCollection={GAME_COLLECTION.VENDAVAL_DE_PALPITE}
+        getActiveComponent={getActiveComponent}
+      />
+    </ConfigProvider>
   );
 }
 

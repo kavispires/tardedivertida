@@ -143,11 +143,44 @@ export const lockGame = async (data: BasicGamePayload, context: FirebaseContext)
   return false;
 };
 
+/**
+ * Unlocks the game and move everybody to the lobby
+ * @param data
+ * @param context
+ * @returns
+ */
+const unlockAndResetGame = async (data: BasicGamePayload, context: FirebaseContext) => {
+  const { gameId, gameName } = data;
+
+  const actionText = 'reset game';
+  utils.firebase.verifyPayload(gameId, 'gameId', actionText);
+  utils.firebase.verifyPayload(gameName, 'gameName', actionText);
+  utils.firebase.verifyAuth(context, actionText);
+
+  const sessionRef = utils.firebase.getSessionRef(gameName, gameId);
+
+  try {
+    // Unlock game
+    await utils.firebase.getMetaRef().doc(gameId).update({ isLocked: false });
+    // Set state with new Phase: Lobby
+    await sessionRef.doc('state').set({
+      phase: 'LOBBY',
+    });
+
+    return true;
+  } catch (error) {
+    utils.firebase.throwException(error, actionText);
+  }
+
+  return false;
+};
+
 const ADMIN_ACTIONS = {
   GO_TO_NEXT_PHASE: 'GO_TO_NEXT_PHASE',
   FORCE_STATE_PROPERTY: 'FORCE_STATE_PROPERTY',
   PLAY_AGAIN: 'PLAY_AGAIN',
   FORCE_END_GAME: 'FORCE_END_GAME',
+  RESET_GAME: 'RESET_GAME',
 };
 
 /**
@@ -173,6 +206,8 @@ export const performAdminAction = async (data: ExtendedPayload, context: Firebas
       return await playAgain(gameId, gameName);
     case ADMIN_ACTIONS.FORCE_END_GAME:
       return await forceStateProperty(gameId, gameName, { lastRound: true });
+    case ADMIN_ACTIONS.RESET_GAME:
+      return await unlockAndResetGame(data, context);
     default:
       return utils.firebase.throwException(
         'Failed to perform admin action',

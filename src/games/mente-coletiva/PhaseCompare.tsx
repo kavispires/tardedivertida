@@ -12,9 +12,10 @@ import { ComparingRules } from './components/RulesBlobs';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { DiscussionIcon } from 'components/icons/DiscussionIcon';
 import { Translate } from 'components/language';
+import { NOOP } from 'utils/constants';
 
 function PhaseCompare({ state, players, info }: PhaseProps) {
-  const { step, goToNextStep } = useStep(0);
+  const { step } = useStep(0);
   const user = useUser(players, state);
   const [allowedList, setAllowedList] = useState({});
 
@@ -23,21 +24,23 @@ function PhaseCompare({ state, players, info }: PhaseProps) {
 
   const answerGroup = state.answersList[0];
 
+  const announcement = (
+    <PhaseAnnouncement
+      icon={<DiscussionIcon />}
+      title={<Translate pt="Respostas" en="Answers" />}
+      onClose={NOOP}
+      currentRound={state?.round?.current}
+      duration={state?.round?.current < 3 ? 20 : undefined}
+      type="overlay"
+    >
+      <ComparingRules />
+    </PhaseAnnouncement>
+  );
+
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.MENTE_COLETIVA.COMPARE}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
-        <PhaseAnnouncement
-          icon={<DiscussionIcon />}
-          title={<Translate pt="Respostas" en="Answers" />}
-          onClose={goToNextStep}
-          currentRound={state?.round?.current}
-          duration={state?.round?.current < 3 ? 20 : undefined}
-        >
-          <ComparingRules />
-        </PhaseAnnouncement>
-
-        {/* Step 1 */}
         <StepCompare
           currentQuestion={state.currentQuestion}
           answerGroup={answerGroup}
@@ -49,7 +52,11 @@ function PhaseCompare({ state, players, info }: PhaseProps) {
           remainingGroupsCount={state.answersList.length}
           allowedList={allowedList}
           setAllowedList={setAllowedList}
+          announcement={announcement}
         />
+
+        {/* Step 1 */}
+        <></>
       </StepSwitcher>
     </PhaseContainer>
   );

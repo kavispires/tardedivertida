@@ -20,9 +20,10 @@ type StepCompareProps = {
   remainingGroupsCount: number;
   allowedList: AllowedList;
   setAllowedList: GenericFunction;
-};
+} & AnnouncementProps;
 
 export function StepCompare({
+  announcement,
   currentQuestion,
   answerGroup,
   players,
@@ -54,7 +55,7 @@ export function StepCompare({
   }
 
   return (
-    <Step fullWidth>
+    <Step fullWidth announcement={announcement}>
       <AnswerGroup
         currentQuestion={currentQuestion}
         answerGroup={answerGroup}
