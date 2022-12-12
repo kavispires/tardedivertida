@@ -13,6 +13,8 @@ import PhaseResolution from './PhaseResolution';
 import PhaseGameOver from './PhaseGameOver';
 // Fonts
 import 'assets/fonts/dancing-script.scss';
+// Sass
+import './contadores-historias.scss';
 
 function getActiveComponent(phase: string) {
   switch (phase) {
