@@ -11,6 +11,8 @@ import PhaseSceneMarking from './PhaseSceneMarking';
 import PhaseGuessing from './PhaseGuessing';
 import PhaseReveal from './PhaseReveal';
 import PhaseGameOver from './PhaseGameOver';
+// Sass
+import './crimes-hediondos.scss';
 
 function getActiveComponent(phase: string) {
   switch (phase) {
