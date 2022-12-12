@@ -16,7 +16,13 @@ import {
   prepareResolutionPhase,
 } from './setup';
 import { getQuestions, saveUsedQuestions } from './data';
-import { handleAddAnswer, handleNextAnswers, handleSubmitAnswers, handleSubmitQuestion } from './actions';
+import {
+  handleAddAnswer,
+  handleNextAnswers,
+  handleSubmitAnswers,
+  handleSubmitCustomQuestion,
+  handleSubmitQuestion,
+} from './actions';
 
 /**
  * Get Initial Game State
@@ -132,6 +138,9 @@ export const submitAction = async (data: MenteColetivaSubmitAction) => {
     case MENTE_COLETIVA_ACTIONS.SUBMIT_QUESTION:
       utils.firebase.validateSubmitActionProperties(data, ['questionId'], 'submit question');
       return handleSubmitQuestion(gameName, gameId, playerId, data.questionId);
+    case MENTE_COLETIVA_ACTIONS.SUBMIT_CUSTOM_QUESTION:
+      utils.firebase.validateSubmitActionProperties(data, ['customQuestion'], 'submit question');
+      return handleSubmitCustomQuestion(gameName, gameId, playerId, data.customQuestion);
     case MENTE_COLETIVA_ACTIONS.SUBMIT_ANSWERS:
       utils.firebase.validateSubmitActionProperties(data, ['answers'], 'submit answers');
       return handleSubmitAnswers(gameName, gameId, playerId, data.answers);

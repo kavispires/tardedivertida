@@ -25,6 +25,10 @@ type SubmitQuestionPayload = {
   questionId: string;
 };
 
+type SubmitCustomQuestionPayload = {
+  question: MQuestion;
+};
+
 type SubmitAnswersPayload = {
   answers: string[];
   allowedList: PlainObject;

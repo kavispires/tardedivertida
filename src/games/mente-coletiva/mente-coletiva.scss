@@ -186,6 +186,7 @@
   border-radius: get-unit(5);
   margin: get-unit(2 0 3 0);
   padding: get-unit(1 5);
+  text-align: center;
 
   &--button {
     cursor: pointer;
@@ -445,4 +446,8 @@
     transform: scale(0.1) translateY(700%);
     opacity: 0;
   }
+}
+
+.m-custom-question-form {
+  display: flex;
 }
