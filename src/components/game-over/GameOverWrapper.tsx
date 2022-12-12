@@ -1,6 +1,7 @@
 import { ReactNode, useState } from 'react';
 // Utils
 import { PHASES } from 'utils/phases';
+import { NOOP } from 'utils/constants';
 // Components
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
@@ -53,7 +54,7 @@ export function GameOverWrapper({
   children = <></>,
   rateWidgetCustomText,
 }: GameOverWrapperProps) {
-  const [step, setStep] = useState(0);
+  const [step] = useState(0);
 
   const announcement = (
     <PhaseAnnouncement
@@ -61,9 +62,10 @@ export function GameOverWrapper({
       title={
         <Translate pt="E o jogo chegou ao fim..." en="And the game is over..." custom={announcementTitle} />
       }
-      onClose={() => setStep(1)}
+      onClose={NOOP}
       currentRound={state?.round?.current}
       duration={announcementDuration}
+      type="overlay"
     >
       {Boolean(announcementContent) && announcementContent}
     </PhaseAnnouncement>

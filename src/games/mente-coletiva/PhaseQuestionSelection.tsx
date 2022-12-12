@@ -1,7 +1,8 @@
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-import { useOnSubmitQuestionAPIRequest } from './utils/api-requests';
+import { useUser } from 'hooks/useUser';
+import { useOnSubmitCustomQuestionAPIRequest, useOnSubmitQuestionAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 import { NOOP } from 'utils/constants';
@@ -19,9 +20,11 @@ import { StepQuestionSelectionWaiting } from './StepQuestionSelectionWaiting';
 
 function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
+  const user = useUser(players, state);
   const [activePlayer, isUserTheActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
 
   const onSubmitQuestion = useOnSubmitQuestionAPIRequest(setStep);
+  const onSubmitCustomQuestion = useOnSubmitCustomQuestionAPIRequest(setStep);
 
   const announcement = (
     <PhaseAnnouncement
@@ -60,9 +63,11 @@ function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
             players={players}
             currentQuestions={state.currentQuestions}
             onSubmitQuestion={onSubmitQuestion}
+            onSubmitCustomQuestion={onSubmitCustomQuestion}
             roundType={state.roundType}
             activePlayer={activePlayer}
             pastureSize={state.pastureSize}
+            user={user}
             announcement={announcement}
           />
 

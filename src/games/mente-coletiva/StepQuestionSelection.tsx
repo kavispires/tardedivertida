@@ -9,24 +9,29 @@ import { Step } from 'components/steps';
 import { Title } from 'components/text';
 import { Pasture } from './components/Pasture';
 import { GamePremiseRules } from './components/RulesBlobs';
+import { CustomQuestion } from './components/CustomQuestion';
 
 type StepQuestionSelectionProps = {
   activePlayer: GamePlayer;
   currentQuestions: MQuestion[];
   onSubmitQuestion: GenericFunction;
+  onSubmitCustomQuestion: GenericFunction;
   players: GamePlayers;
   roundType: number;
   pastureSize: number;
+  user: GamePlayer;
 } & AnnouncementProps;
 
 export function StepQuestionSelection({
   announcement,
   currentQuestions,
   onSubmitQuestion,
+  onSubmitCustomQuestion,
   players,
   roundType,
   activePlayer,
   pastureSize,
+  user,
 }: StepQuestionSelectionProps) {
   // DEV: Mock answers
   useMock(() => {
@@ -35,13 +40,13 @@ export function StepQuestionSelection({
 
   return (
     <Step fullWidth className="m-step" announcement={announcement}>
-      <Title>
+      <Title size="small">
         <Translate pt="Selecione uma das perguntas" en="Select one of the questions" />
       </Title>
 
       <PopoverRule content={<GamePremiseRules activePlayer={activePlayer} />} />
 
-      <ul className="m-questions contained">
+      <ul className="contained">
         {currentQuestions.map((question) => (
           <li className="m-questions__item" key={question.id}>
             <button
@@ -55,6 +60,7 @@ export function StepQuestionSelection({
           </li>
         ))}
       </ul>
+      <CustomQuestion onSubmit={onSubmitCustomQuestion} userId={user.id} />
 
       <Pasture players={players} pastureSize={pastureSize} roundType={roundType} />
     </Step>

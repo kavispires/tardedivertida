@@ -20,7 +20,7 @@ body {
   flex-grow: 1;
   margin: get-unit(4);
   padding: get-unit(4);
-  border-radius: get-unit(1);
+  border-radius: $border-radius;
   background-color: rgba(white, 0.5);
 
   &--white {
@@ -66,13 +66,13 @@ body {
   background-color: rgba($color: red, $alpha: 0.5);
   padding: get-unit(2);
   border: 1px solid get-color('red');
-  border-radius: get-unit(1);
+  border-radius: $border-radius;
 }
 
 .contained {
   background-color: rgba($color: white, $alpha: 0.6);
   padding: get-unit(2);
-  border-radius: get-unit(1);
+  border-radius: $border-radius;
 }
 
 .reset-button {

@@ -32,6 +32,32 @@ export const handleSubmitQuestion = async (
 };
 
 /**
+ * When active player writes the round's question
+ * @param gameName
+ * @param gameId
+ * @param playerId
+ * @param customQuestion
+ * @returns
+ */
+export const handleSubmitCustomQuestion = async (
+  gameName: GameName,
+  gameId: GameId,
+  playerId: PlayerId,
+  customQuestion: GroupQuestionCard
+) => {
+  return await utils.firebase.updateStore({
+    gameName,
+    gameId,
+    playerId,
+    actionText: 'submit custom question',
+    change: {
+      customQuestion,
+    },
+    nextPhaseFunction: getNextPhase,
+  });
+};
+
+/**
  * When each player submit their round's answers
  * @param gameName
  * @param gameId
