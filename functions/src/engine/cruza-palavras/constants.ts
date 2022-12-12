@@ -18,7 +18,7 @@ export const PLAYER_COUNTS = {
   MAX: 10,
 };
 
-export const TOTAL_ROUNDS = 6;
+export const TOTAL_ROUNDS = 5;
 
 export const WORDS_PER_PLAYER_COUNT = {
   3: 6,

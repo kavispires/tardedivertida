@@ -10,6 +10,8 @@ import PhaseClueWriting from './PhaseClueWriting';
 import PhaseGuessing from './PhaseGuessing';
 import PhaseReveal from './PhaseReveal';
 import PhaseGameOver from './PhaseGameOver';
+// Sass
+import './cruza-palavras.scss';
 
 function getActiveComponent(phase: string) {
   switch (phase) {

@@ -14,9 +14,9 @@ type StepClueWritingProps = {
   user: GamePlayer;
   onSubmitClue: GenericFunction;
   players: GamePlayers;
-};
+} & AnnouncementProps;
 
-export function StepClueWriting({ grid, user, onSubmitClue, players }: StepClueWritingProps) {
+export function StepClueWriting({ grid, user, onSubmitClue, players, announcement }: StepClueWritingProps) {
   const { isLoading } = useLoading();
 
   const onSubmitClueClick = (payload: string) => {
@@ -26,7 +26,7 @@ export function StepClueWriting({ grid, user, onSubmitClue, players }: StepClueW
   };
 
   return (
-    <Step fullWidth>
+    <Step fullWidth announcement={announcement}>
       <Title>
         <Translate pt="Escreva sua dica" en="Write your clue" />
       </Title>
