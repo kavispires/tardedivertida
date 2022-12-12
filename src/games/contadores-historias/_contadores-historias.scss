@@ -143,7 +143,7 @@
   padding: get-unit(2);
   color: white;
   background-color: get-color('brown', 6);
-  border-radius: get-unit(1);
+  border-radius: $border-radius;
   border: get-color('brown', 7) get-unit(1) groove;
   @include box-shadow;
 
@@ -167,7 +167,7 @@
   &__entry {
     display: flex;
     flex-direction: column;
-    border-radius: get-unit(1);
+    border-radius: $border-radius;
     padding: get-unit(1);
     margin: get-unit(1);
   }

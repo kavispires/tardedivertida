@@ -11,7 +11,7 @@
   &--selected {
     border: 2px dashed get-color('yellow');
     background-color: get-color('yellow', 6);
-    border-radius: get-unit(1);
+    border-radius: $border-radius;
   }
 
   &__name {
@@ -195,7 +195,7 @@
   grid-template-columns: [player] 2.5rem [info] auto [history] 28px [selections] 216px [done] 2.5rem;
   min-height: 200px;
   margin: get-unit(2);
-  border-radius: get-unit(1);
+  border-radius: $border-radius;
   color: get-color('white');
   min-width: 800px;
 

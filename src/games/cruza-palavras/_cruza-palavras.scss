@@ -8,7 +8,7 @@
   border: 1px solid white;
   min-width: 80px;
   min-height: 4rem;
-  border-radius: get-unit(1);
+  border-radius: $border-radius;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -40,7 +40,7 @@
 
 .x-clue-card-li {
   margin: get-unit(1);
-  border-radius: get-unit(1);
+  border-radius: $border-radius;
 }
 
 .x-clue-card-button {
@@ -53,7 +53,7 @@
 .x-clue-card {
   height: 3rem;
   border: get-color('black') 2px solid;
-  border-radius: get-unit(1);
+  border-radius: $border-radius;
   background-color: get-color('white');
   padding: 0;
   display: flex;
@@ -92,7 +92,7 @@
 .x-players-in-cell-player {
   &--correct {
     background-color: get-color('white', 5, -0.5);
-    border-radius: get-unit(1);
+    border-radius: $border-radius;
     padding: 1px;
     margin: get-unit(0.5);
   }
