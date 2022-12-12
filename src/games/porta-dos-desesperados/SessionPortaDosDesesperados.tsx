@@ -12,6 +12,8 @@ import PhaseResolution from './PhaseResolution';
 import PhaseGameOver from './PhaseGameOver';
 // Fonts
 import 'assets/fonts/dancing-script.scss';
+// Sass
+import './porta-dos-desesperados.scss';
 
 function getActiveComponent(phase: string) {
   switch (phase) {
