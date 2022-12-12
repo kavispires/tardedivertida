@@ -38,7 +38,7 @@ $n-pink: #ffb1b4;
   padding: get-unit(1);
 
   &--collapsed {
-    border-radius: get-unit(1);
+    border-radius: $border-radius;
     width: 30px;
     overflow: hidden;
     margin-right: get-unit(2);
@@ -46,7 +46,7 @@ $n-pink: #ffb1b4;
 
   &__card {
     display: flex;
-    border-radius: get-unit(1);
+    border-radius: $border-radius;
     flex-direction: column;
     align-items: center;
     background-color: $n-pink;
@@ -69,7 +69,7 @@ $n-pink: #ffb1b4;
 
   &__name {
     width: $card-width;
-    border-radius: get-unit(1);
+    border-radius: $border-radius;
     text-align: center;
     font-size: 0.8em;
     background-color: $n-pink;
@@ -156,7 +156,7 @@ $stats-height: get-unit(40);
     display: block;
     background-color: get-color('gray', 2);
     font-size: 1.1em;
-    border-radius: get-unit(1);
+    border-radius: $border-radius;
     padding: get-unit(1 2);
     margin: get-unit(1);
     text-align: center;
@@ -302,7 +302,7 @@ $stats-height: get-unit(40);
 
 .costume-avatar {
   width: 100px;
-  border-radius: get-unit(1);
+  border-radius: $border-radius;
   margin: get-unit(0 2);
 
   &--bounce {
@@ -369,7 +369,7 @@ $stats-height: get-unit(40);
 
   &__name {
     width: 100%;
-    border-radius: get-unit(1);
+    border-radius: $border-radius;
     text-align: center;
     font-size: 1.5em;
     background-color: $n-pink;

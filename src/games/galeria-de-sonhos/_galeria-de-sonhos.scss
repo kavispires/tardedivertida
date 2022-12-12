@@ -84,7 +84,7 @@
     align-items: center;
     background-color: rgba($color: white, $alpha: 0.6);
     padding: get-unit(1);
-    border-radius: get-unit(1);
+    border-radius: $border-radius;
     flex-wrap: wrap;
     color: get-color('white');
   }
@@ -214,7 +214,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-radius: get-unit(1);
+    border-radius: $border-radius;
     font-size: 0.75rem;
   }
 }

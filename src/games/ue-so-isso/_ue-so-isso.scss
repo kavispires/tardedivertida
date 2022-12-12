@@ -20,7 +20,7 @@
   font-size: 1.5em;
   min-width: 200px;
   width: 250px;
-  border-radius: get-unit(1);
+  border-radius: $border-radius;
   padding: get-unit(1 3);
   margin: get-unit(2);
   @include box-shadow;
@@ -29,7 +29,7 @@
     display: flex;
     margin: get-unit(2 0);
     border: get-unit(1) solid;
-    border-radius: get-unit(1);
+    border-radius: $border-radius;
 
     &:nth-child(1) {
       border-color: get-color('pink');

@@ -2,7 +2,7 @@
   margin: 0;
   padding: get-unit(10 8 8 8);
   background-color: rgba($color: black, $alpha: 0.9);
-  border-radius: get-unit(1);
+  border-radius: $border-radius;
   font-family: 'Courier New', monospace;
 
   &--center {
@@ -64,7 +64,7 @@
 
 .e-phase-instruction.e-phase-instruction {
   border: 1px solid get-color('lime');
-  border-radius: get-unit(1);
+  border-radius: $border-radius;
   color: get-color('lime');
   padding: get-unit(1 4);
   margin: get-unit(2 5);
@@ -87,7 +87,7 @@
 
 .e-lists {
   border: 1px solid get-color('lime');
-  border-radius: get-unit(1);
+  border-radius: $border-radius;
   color: get-color('lime');
   margin: get-unit(2);
 }
@@ -95,7 +95,7 @@
 .e-notes {
   width: 100%;
   resize: vertical;
-  border-radius: get-unit(1);
+  border-radius: $border-radius;
   padding: get-unit(1 2);
 }
 
@@ -137,7 +137,7 @@
   border: 2px solid get-color('lime');
   color: get-color('lime');
   width: 100px;
-  border-radius: get-unit(1);
+  border-radius: $border-radius;
   font-family: monospace;
   font-size: 2em;
   text-align: center;

@@ -3,7 +3,7 @@
   flex-wrap: wrap;
   justify-content: center;
   background-color: get-color('black');
-  border-radius: get-unit(1);
+  border-radius: $border-radius;
   padding: get-unit(2);
 
   &__entry {
@@ -113,7 +113,7 @@
 
   padding: get-unit(1);
   background-color: get-color('white');
-  border-radius: get-unit(1);
+  border-radius: $border-radius;
 }
 
 .s-gallery-dream-display {
@@ -121,13 +121,13 @@
   background-color: get-color('white');
   @include box-shadow;
   height: 100%;
-  border-radius: get-unit(1);
+  border-radius: $border-radius;
 
   &__theme-container {
     border-width: 1px;
     border-style: outset;
     border-color: get-color('gray', 1);
-    border-radius: get-unit(1);
+    border-radius: $border-radius;
     margin: get-unit(2);
   }
 
@@ -155,7 +155,7 @@
   background-color: get-color('white');
   @include box-shadow;
   height: 100%;
-  border-radius: get-unit(1);
+  border-radius: $border-radius;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 

@@ -1,6 +1,6 @@
 .lobby {
   border: 1px solid white;
-  border-radius: get-unit(1);
+  border-radius: $border-radius;
   margin: get-unit(4);
   padding: get-unit(4);
   height: 100%;
@@ -108,7 +108,7 @@
     background-color: white;
     @include box-shadow;
     padding: get-unit(3);
-    border-radius: get-unit(1);
+    border-radius: $border-radius;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -140,7 +140,7 @@
     background-color: white;
     @include box-shadow;
     padding: get-unit(3);
-    border-radius: get-unit(1);
+    border-radius: $border-radius;
     display: flex;
     flex-direction: column;
     align-items: center;
