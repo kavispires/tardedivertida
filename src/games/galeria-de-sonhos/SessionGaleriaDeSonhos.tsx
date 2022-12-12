@@ -11,6 +11,8 @@ import PhaseDreamsSelection from './PhaseDreamsSelections';
 import PhaseCardPlay from './PhaseCardPlay';
 import PhaseResolution from './PhaseResolution';
 import PhaseGameOver from './PhaseGameOver';
+// Sass
+import './galeria-de-sonhos.scss';
 
 function getActiveComponent(phase: string) {
   switch (phase) {

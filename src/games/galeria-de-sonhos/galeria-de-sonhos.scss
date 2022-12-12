@@ -1,5 +1,6 @@
+@use 'styles/sass' as *;
+
 .g-background.g-background {
-  // background: linear-gradient(-45deg, #070713, #0a1848, #31297a, #070713, #31297a, #0a1848, #070713);
   background: linear-gradient(-45deg, #403699, #c549ce, #2d5cca, #403699, #2d5cca, #c549ce);
   background-size: 1000% 1000%;
 }
@@ -9,6 +10,7 @@
   display: flex;
   justify-content: center;
   background-color: get-color('black');
+  border-radius: $border-radius;
 }
 
 .g-table {
@@ -121,6 +123,7 @@
 .g-dream-result {
   display: grid;
   width: 100%;
+  border-radius: $border-radius;
   max-width: 600px;
   grid-template-columns: 50% auto;
   grid-template-rows: repeat(5 auto);
@@ -137,6 +140,7 @@
     grid-area: header;
     padding: get-unit(2);
     color: get-color('white');
+    border-radius: $border-radius;
   }
 
   &__card {
@@ -151,6 +155,7 @@
     font-size: 1rem;
     padding: get-unit(1);
     margin-right: get-unit(2);
+    border-radius: $border-radius;
   }
 
   &__matching-players {
@@ -158,6 +163,7 @@
     background-color: get-color('white', 6);
     padding: get-unit(1);
     margin-right: get-unit(2);
+    border-radius: $border-radius;
   }
 
   &__fallen-matching-players {
@@ -165,6 +171,7 @@
     background-color: get-color('white', 6);
     padding: get-unit(1);
     margin-right: get-unit(2);
+    border-radius: $border-radius;
   }
 
   &__matched-players-list {
@@ -174,6 +181,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
+    border-radius: $border-radius;
 
     &--centered {
       justify-content: center;
@@ -189,6 +197,7 @@
     background-color: get-color('white', 6);
     padding: get-unit(1);
     margin: get-unit(0 2 2 2);
+    border-radius: $border-radius;
   }
 
   &__completed-players {
