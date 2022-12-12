@@ -35,7 +35,7 @@ const localHost = process.env.REACT_APP_LOCAL_IP || 'localhost';
 
 if (window.location.hostname.includes(localHost)) {
   console.log(`%cEmulating to ${localHost}`, 'color:dodgerblue');
-  notification.warn({ message: `Emulating to ${localHost}`, placement: 'bottomLeft' });
+  notification.warning({ message: `Emulating to ${localHost}`, placement: 'bottomLeft' });
   connectFirestoreEmulator(firestore, localHost, 8091);
   connectFunctionsEmulator(functions, localHost, 5003);
   connectFirestoreEmulator(firestore, 'localhost', 8091);
@@ -71,7 +71,7 @@ export function signIn(email: string, password: string): Promise<UserCredential>
  */
 export async function signOut(): Promise<void> {
   return auth.signOut().then(() => {
-    message.warn(`You've been signed out`);
+    message.warning(`You've been signed out`);
   });
 }
 

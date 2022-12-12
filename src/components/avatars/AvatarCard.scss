@@ -1,0 +1,37 @@
+@use 'styles/sass' as *;
+
+.avatar-card {
+  padding: get-unit(0 1 2 1);
+  font-weight: bolder;
+  font-size: inherit;
+  color: get-color('white');
+  text-align: center;
+  overflow: hidden;
+
+  &--uppercase {
+    text-transform: uppercase;
+  }
+
+  &--small {
+    font-size: 0.75rem;
+  }
+
+  &--default {
+    font-size: 1rem;
+  }
+
+  &--large {
+    font-size: 1.25rem;
+  }
+
+  &__name {
+    display: block;
+    white-space: nowrap;
+    word-break: keep-all;
+  }
+
+  &__description {
+    white-space: nowrap;
+    word-break: keep-all;
+  }
+}

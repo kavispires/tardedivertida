@@ -1,5 +1,5 @@
 .phase-container {
-  padding: get-unit(10 5);
+  padding: get-unit(10);
   display: flex;
   flex: 1;
   justify-content: center;
@@ -8,9 +8,12 @@
   min-height: 90vh;
   box-sizing: border-box;
   position: relative;
+  width: 100%;
+  max-width: $max-width-container;
+  margin: 0 auto;
 
   @include xs {
-    margin: get-unit(4 1 1 1);
+    margin: get-unit(4 auto 1 auto);
     padding: get-unit(4 1 1 1);
   }
 

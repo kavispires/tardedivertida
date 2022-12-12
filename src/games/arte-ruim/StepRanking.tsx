@@ -52,7 +52,7 @@ export function StepRanking({
         }}
         icon={<PictureOutlined />}
       >
-        <Translate pt="Ver Galeria De Novo" en="See Gallery Again" />
+        <Translate pt="Ver Galeria Novamente" en="See Gallery Again" />
       </Button>
 
       <AdminNextPhaseButton round={round} lastRound={isLastRound} />

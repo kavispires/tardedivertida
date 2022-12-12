@@ -7,19 +7,23 @@ import { SceneTile } from './components/SceneTile';
 import { SelectedItems } from './components/SelectedItems';
 import { ContinueButton } from './components/ContinueButton';
 import { Space } from 'antd';
+import { ResetButton } from './components/ResetButton';
 
 type StepReasonForEvidenceProps = {
   items: ItemsDict;
   selections: PlainObject;
   updateSelections: GenericFunction;
   reasonForEvidenceTile: SceneTile;
-};
+  goToStep: GenericFunction;
+} & AnnouncementProps;
 
 export function StepReasonForEvidence({
+  announcement,
   items,
   selections,
   updateSelections,
   reasonForEvidenceTile,
+  goToStep,
 }: StepReasonForEvidenceProps) {
   const [reasonForEvidenceIndex, setReasonForEvidenceIndex] = useState<number>();
 
@@ -28,7 +32,7 @@ export function StepReasonForEvidence({
   };
 
   return (
-    <Step>
+    <Step announcement={announcement}>
       <Title>
         <Translate pt="Qual foi seu último crime?" en="How was your last crime?" />
       </Title>
@@ -57,6 +61,8 @@ export function StepReasonForEvidence({
       </Space>
 
       <Space className="space-container" align="center">
+        <ResetButton goToStep={goToStep} />
+
         <ContinueButton
           disabled={reasonForEvidenceIndex === undefined}
           onClick={() => updateSelections({ reasonForEvidence: reasonForEvidenceIndex })}

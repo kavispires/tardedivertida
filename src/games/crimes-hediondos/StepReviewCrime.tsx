@@ -20,9 +20,10 @@ type StepReviewCrimeProps = {
   reasonForEvidenceTile: SceneTile;
   updateSelection: GenericFunction;
   players: GamePlayers;
-};
+} & AnnouncementProps;
 
 export function StepReviewCrime({
+  announcement,
   items,
   causeOfDeathTile,
   reasonForEvidenceTile,
@@ -37,7 +38,7 @@ export function StepReviewCrime({
   const locationTile = locationTiles.find((location) => location.id === selections.locationTile);
 
   return (
-    <Step>
+    <Step announcement={announcement}>
       <Title>
         <Translate pt="Seu crime tá bom?" en="Is your crime alright?" />
       </Title>

@@ -1,3 +1,5 @@
+@use 'styles/sass' as *;
+
 .a-draw-step {
   &__card {
     margin-bottom: get-unit(2);
@@ -37,19 +39,7 @@
 }
 
 .a-evaluation-step {
-  background-color: get-color('yellow', 2);
-  padding: get-unit(4);
-  border-radius: get-unit(1);
-  flex: 1;
-  position: relative;
-}
-
-.a-gallery-phase {
-  &__windows {
-    position: relative;
-    width: 100%;
-    flex: 1;
-  }
+  background-color: get-color('yellow', 2, 0.8);
 }
 
 .a-game-over {
@@ -71,7 +61,7 @@
   &__gallery-canvas {
     background-color: white;
     border: 2px solid get-color('brown');
-    border-radius: get-unit(1);
+    border-radius: get-unit(2);
   }
 
   &__credits {
@@ -181,7 +171,7 @@
     background-color: get-color('white');
     border: 8px inset get-color('brown');
     margin: get-unit(1);
-    border-radius: get-unit(1);
+    border-radius: get-unit(2);
   }
 
   &__artist {
@@ -208,9 +198,11 @@
       get-color('white', 9) 100%
     );
     padding: get-unit(2);
+    align-items: center;
   }
 
   &__info {
+    padding: get-unit(2);
     display: grid;
     grid-template-rows: 90px auto 165px auto;
     grid-template-areas:
@@ -218,11 +210,18 @@
       'guesses'
       'result'
       'controls';
+    background: linear-gradient(
+      to left,
+      get-color('white', 4) 0%,
+      get-color('white', 5) 88%,
+      get-color('white', 8) 96%,
+      get-color('white', 9) 100%
+    );
   }
 
   &__drawing {
     background-color: get-color('white');
-    border-radius: get-unit(1);
+    border-radius: get-unit(2);
 
     border: 8px inset get-color('brown');
   }
@@ -230,13 +229,12 @@
   &__credits {
     grid-area: credits;
 
-    background-color: get-color('white');
-    border-radius: get-unit(1);
+    border-radius: get-unit(2);
     padding: get-unit(2 3);
   }
 
   &__label {
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-weight: bold;
     text-transform: uppercase;
     margin-bottom: get-unit(1);
@@ -253,8 +251,7 @@
   &__guesses {
     grid-area: guesses;
 
-    background-color: get-color('white');
-    border-radius: get-unit(1);
+    border-radius: get-unit(2);
     padding: get-unit(2 3);
     max-height: 52vh;
     overflow-y: auto;
@@ -294,9 +291,7 @@
 
   &__result {
     grid-area: result;
-
-    background-color: get-color('white');
-    border-radius: get-unit(1);
+    border-radius: get-unit(2);
     padding: get-unit(2 3);
   }
 
@@ -320,7 +315,7 @@
 
   &__card {
     background-color: get-color('white');
-    border-radius: get-unit(1);
+    border-radius: get-unit(2);
     padding: get-unit(1 3);
     margin: get-unit(0 2);
   }

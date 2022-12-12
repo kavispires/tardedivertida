@@ -5,16 +5,33 @@ import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { Avatar } from './Avatar';
 import { getAvatarColorById } from 'utils/helpers';
+// Sass
+import './AvatarStrip.scss';
 
 type AvatarStripProps = {
+  /**
+   * A player instance
+   */
   player: GamePlayer;
+  /**
+   * The strip size
+   */
   size?: 'small' | 'default' | 'large';
   /**
    * Optional custom class name
    */
   className?: string;
+  /**
+   * Indicates if the player name should be displayed
+   */
   withName?: boolean;
+  /**
+   * If text should be displayed in uppercase
+   */
   uppercase?: boolean;
+  /**
+   * Displays YOU/VOCÊ if player is the user
+   */
   addressUser?: boolean;
 };
 

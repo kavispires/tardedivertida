@@ -5,6 +5,8 @@ import { Space, SpaceProps } from 'antd';
 import { FireFilled } from '@ant-design/icons';
 // Hooks
 import { useGlobalState } from 'hooks/useGlobalState';
+// Sass
+import './AdminOnlyContainer.scss';
 
 interface AdminOnlyContainerProps extends SpaceProps {
   /**

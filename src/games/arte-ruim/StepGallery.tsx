@@ -45,7 +45,7 @@ export function StepGallery({
   const currentColor = AVATARS[playerArtist.avatarId].color;
 
   return (
-    <Step className="a-gallery-phase__windows">
+    <Step fullWidth>
       <Title size="small">
         <Translate pt="Galeria de Arte" en="Art Gallery" />
       </Title>
@@ -67,7 +67,7 @@ export function StepGallery({
         <CanvasSVG drawing={drawing} size={canvasWidth} className="a-gallery__drawing" />
 
         <>
-          <GalleryWindowCredits artistName={playerArtist.name} artistAvatarId={playerArtist.avatarId} />
+          <GalleryWindowCredits artist={playerArtist} />
 
           <GalleryWindowGuesses
             players={players}

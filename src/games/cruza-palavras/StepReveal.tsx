@@ -20,6 +20,7 @@ import { ScoringRule } from './components/RulesBlobs';
 import { AvatarName } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
 import { getMeanDuration } from 'utils/helpers';
+import { PointsHighlight } from 'components/metrics/PointsHighlight';
 
 const AVATARS: PlainObject = avatars;
 
@@ -181,9 +182,17 @@ type StepRevealProps = {
   clues: CruzaPalavrasClue[];
   goToNextStep: GenericFunction;
   whoGotNoPoints: PlayerId[];
-};
+} & AnnouncementProps;
 
-export function StepReveal({ grid, user, players, clues, goToNextStep, whoGotNoPoints }: StepRevealProps) {
+export function StepReveal({
+  grid,
+  user,
+  players,
+  clues,
+  goToNextStep,
+  whoGotNoPoints,
+  announcement,
+}: StepRevealProps) {
   useTemporarilyHidePlayersBar();
   const correctCoordinatesPerPlayer = clues.reduce((acc: PlainObject, clue) => {
     acc[clue.coordinate] = clue.playerId;
@@ -216,7 +225,7 @@ export function StepReveal({ grid, user, players, clues, goToNextStep, whoGotNoP
   const playerCount = Object.keys(players).length;
 
   return (
-    <Step fullWidth>
+    <Step fullWidth announcement={announcement}>
       <Title>
         <Translate pt="Resultado" en="Results" />
       </Title>
@@ -231,14 +240,14 @@ export function StepReveal({ grid, user, players, clues, goToNextStep, whoGotNoP
               <>
                 Ninguém acertou a(s) dica(s) dadas por
                 <BadCluesPlayersList badCluesPlayersList={whoGotNoPointsNames} />, então ele(s) perde(m){' '}
-                {playerCount} pontos.
+                <PointsHighlight type="negative">- {playerCount}</PointsHighlight> pontos.
               </>
             }
             en={
               <>
                 Nobody got the clues given by
-                <BadCluesPlayersList badCluesPlayersList={whoGotNoPointsNames} />, so they lose {playerCount}{' '}
-                points.
+                <BadCluesPlayersList badCluesPlayersList={whoGotNoPointsNames} />, so they lose{' '}
+                <PointsHighlight type="negative">- {playerCount}</PointsHighlight> points.
               </>
             }
           />
@@ -254,7 +263,7 @@ export function StepReveal({ grid, user, players, clues, goToNextStep, whoGotNoP
 
       <Space className="space-container" align="center">
         <TimedButton
-          duration={getMeanDuration(playerCount, 5, 40, 15)}
+          duration={getMeanDuration(playerCount, 6, 40, 15) + 5}
           icon={<TrophyOutlined />}
           onExpire={goToNextStep}
           onClick={goToNextStep}
@@ -263,7 +272,7 @@ export function StepReveal({ grid, user, players, clues, goToNextStep, whoGotNoP
         </TimedButton>
       </Space>
 
-      <Title level={3}>
+      <Title level={3} size="x-small">
         <Translate pt="Todas as respostas" en="All Answers" />
       </Title>
       <AnswersList correctCoordinatesPerPlayer={correctCoordinatesPerPlayer} players={players} grid={grid} />

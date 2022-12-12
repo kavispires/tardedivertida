@@ -21,7 +21,7 @@ type PhaseAnnouncementProps = {
   /**
    * The function called when the close button is clicked
    */
-  onClose: GenericFunction;
+  onClose?: GenericFunction;
   /**
    * The icon displayed to illustrate the phase (default: MultitaskIcon)
    */
@@ -74,7 +74,7 @@ export function PhaseAnnouncement({
   title,
   children,
   currentRound = 0,
-  onClose,
+  onClose = () => {},
   className,
   duration,
   withoutTimer = false,

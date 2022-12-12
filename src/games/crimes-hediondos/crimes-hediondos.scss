@@ -1,3 +1,5 @@
+@use 'styles/sass' as *;
+
 .h-background.h-background {
   background: linear-gradient(-45deg, #676666, #b33f62, #d39673, #9a5555, #b33f62);
   background-size: 1000% 1000%;
@@ -11,7 +13,7 @@
   &--selected {
     border: 2px dashed get-color('yellow');
     background-color: get-color('yellow', 6);
-    border-radius: get-unit(1);
+    border-radius: $border-radius;
   }
 
   &__name {
@@ -195,7 +197,7 @@
   grid-template-columns: [player] 2.5rem [info] auto [history] 28px [selections] 216px [done] 2.5rem;
   min-height: 200px;
   margin: get-unit(2);
-  border-radius: get-unit(1);
+  border-radius: $border-radius;
   color: get-color('white');
   min-width: 800px;
 

@@ -1,9 +1,11 @@
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
-import { useOnSubmitQuestionAPIRequest } from './utils/api-requests';
+import { useUser } from 'hooks/useUser';
+import { useOnSubmitCustomQuestionAPIRequest, useOnSubmitQuestionAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+import { NOOP } from 'utils/constants';
 // Components
 import { GamePremiseRules } from './components/RulesBlobs';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
@@ -18,9 +20,24 @@ import { StepQuestionSelectionWaiting } from './StepQuestionSelectionWaiting';
 
 function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
+  const user = useUser(players, state);
   const [activePlayer, isUserTheActivePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
 
   const onSubmitQuestion = useOnSubmitQuestionAPIRequest(setStep);
+  const onSubmitCustomQuestion = useOnSubmitCustomQuestionAPIRequest(setStep);
+
+  const announcement = (
+    <PhaseAnnouncement
+      icon={<SheepIcon />}
+      title={<Translate pt="O Pasto Superlotado" en="A Overcrowded Pasture" />}
+      onClose={NOOP}
+      currentRound={state?.round?.current}
+      duration={state?.round?.current < 3 ? 40 : 10}
+      type="overlay"
+    >
+      <GamePremiseRules activePlayer={activePlayer} />
+    </PhaseAnnouncement>
+  );
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.MENTE_COLETIVA.QUESTION_SELECTION}>
@@ -41,25 +58,17 @@ function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
         </RoundAnnouncement>
 
         {/* Step 1 */}
-        <PhaseAnnouncement
-          icon={<SheepIcon />}
-          title={<Translate pt="O Pasto Superlotado" en="A Overcrowded Pasture" />}
-          onClose={goToNextStep}
-          currentRound={state?.round?.current}
-          duration={state?.round?.current < 3 ? 40 : 10}
-        >
-          <GamePremiseRules activePlayer={activePlayer} />
-        </PhaseAnnouncement>
-
-        {/* Step 2 */}
         <ViewOr orCondition={isUserTheActivePlayer}>
           <StepQuestionSelection
             players={players}
             currentQuestions={state.currentQuestions}
             onSubmitQuestion={onSubmitQuestion}
+            onSubmitCustomQuestion={onSubmitCustomQuestion}
             roundType={state.roundType}
             activePlayer={activePlayer}
             pastureSize={state.pastureSize}
+            user={user}
+            announcement={announcement}
           />
 
           <StepQuestionSelectionWaiting
@@ -67,6 +76,7 @@ function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
             players={players}
             roundType={state.roundType}
             pastureSize={state.pastureSize}
+            announcement={announcement}
           />
         </ViewOr>
       </StepSwitcher>

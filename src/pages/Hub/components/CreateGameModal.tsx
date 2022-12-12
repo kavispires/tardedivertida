@@ -137,6 +137,7 @@ export function CreateGameModal({ gameInfo }: CreateGameModalProps): JSX.Element
               alt={gameInfo.title[language]}
               src={`${PUBLIC_URL.BANNERS}${gameInfo.gameName}-${language}.jpg`}
               fallback={`${PUBLIC_URL.BANNERS}/em-breve-${language}.jpg`}
+              className="round-corners"
             />
 
             <Options

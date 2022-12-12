@@ -24,9 +24,10 @@ type StepResolutionProps = {
   round: GameRound;
   announceSave: boolean;
   pastureSize: number;
-};
+} & AnnouncementProps;
 
 export function StepResolution({
+  announcement,
   ranking,
   players,
   roundType,
@@ -63,7 +64,7 @@ export function StepResolution({
   }, [timeLeft]); // eslint-disable-line
 
   return (
-    <Step fullWidth>
+    <Step fullWidth announcement={announcement}>
       <Title level={1}>
         <Translate pt="Resultado" en="Results" />
       </Title>
@@ -72,7 +73,7 @@ export function StepResolution({
 
       <StepSwitcher step={step} players={players}>
         <Step key={0}>
-          <RankingBoard ranking={ranking} players={players} hideGainedPoints />
+          <RankingBoard ranking={ranking} players={players} hideGainedPoints delay={5} />
         </Step>
 
         <Step key={1}>

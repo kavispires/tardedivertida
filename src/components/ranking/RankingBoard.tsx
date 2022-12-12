@@ -72,6 +72,7 @@ type RankingBoardProps = {
   ranking: GameRanking;
   gainedPointsDescriptions?: ReactNode[];
   hideGainedPoints?: boolean;
+  delay?: number;
 };
 
 export function RankingBoard({
@@ -79,6 +80,7 @@ export function RankingBoard({
   ranking,
   gainedPointsDescriptions,
   hideGainedPoints = false,
+  delay = 0,
 }: RankingBoardProps): JSX.Element {
   const [displayStep, setDisplayStep] = useState(0);
   const [sortedRanking, setSortedRanking] = useState<GameRanking>([]);
@@ -88,7 +90,7 @@ export function RankingBoard({
   const maxPoints = useMemo(() => Math.max(...ranking.map((scores) => scores.newScore)), [ranking]);
 
   const { seconds } = useCountdown({
-    duration: 5,
+    duration: 5 + delay,
     autoStart: true,
     onExpire: () => {
       setReRank(1);
@@ -141,12 +143,12 @@ export function RankingBoard({
 
   // Show gained points
   useEffect(() => {
-    if (seconds === 4) {
+    if (seconds === 4 + delay) {
       setDisplayStep(1);
-    } else if (seconds === 2) {
+    } else if (seconds === 2 + delay) {
       setDisplayStep(2);
     }
-  }, [seconds]);
+  }, [seconds, delay]);
 
   return (
     <div

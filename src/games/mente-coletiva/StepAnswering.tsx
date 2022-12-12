@@ -25,7 +25,7 @@ type StepAnsweringProps = {
   roundType: number;
   user: GamePlayer;
   pastureSize: number;
-};
+} & AnnouncementProps;
 
 export function StepAnswering({
   user,
@@ -34,6 +34,7 @@ export function StepAnswering({
   roundType,
   onSubmitAnswers,
   pastureSize,
+  announcement,
 }: StepAnsweringProps) {
   const { isLoading } = useLoading();
   const { translate } = useLanguage();
@@ -62,12 +63,12 @@ export function StepAnswering({
   };
 
   return (
-    <Step fullWidth>
+    <Step fullWidth announcement={announcement}>
       <div className="m-step__contained-content">
-        <Title level={3}>
+        <Title level={3} size="small">
           <Translate pt="Responda a pergunta:" en="Answer the question:" />
-          <Question question={currentQuestion} />
         </Title>
+        <Question question={currentQuestion} />
 
         <PopoverRule content={<AnsweringRules />} />
 

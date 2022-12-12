@@ -1,0 +1,17 @@
+@use 'styles/sass' as *;
+
+.admin-menu-drawer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 150;
+
+  &__buttons {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__button {
+    margin: get-unit(1 0);
+  }
+}

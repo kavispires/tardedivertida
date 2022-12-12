@@ -1,6 +1,6 @@
 import moment from 'moment';
 // Ant Design Resources
-import { Comment } from 'antd';
+import { Comment } from '@ant-design/compatible';
 // Components
 import { Avatar } from 'components/avatars';
 import { CommentText } from './CommentText';

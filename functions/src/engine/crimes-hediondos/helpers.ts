@@ -389,7 +389,7 @@ export const mockCrimeForBots = (
 export const mockGuessingForBots = (players: Players) => {
   utils.players.getListOfBots(players).forEach((bot) => {
     const guesses: Guesses = {};
-    utils.players.getListOfPlayers(players, false).forEach((player) => {
+    utils.players.getListOfPlayers(players, true).forEach((player) => {
       guesses[player.id] = {
         weaponId: bot.weaponId,
         evidenceId: bot.evidenceId,

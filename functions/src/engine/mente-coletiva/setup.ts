@@ -124,7 +124,13 @@ export const prepareEverybodyWritesPhase = async (
   // Modify players
   utils.players.unReadyPlayers(players);
 
-  const currentQuestion = store.deck.find((question) => question.id === store.questionId);
+  const currentQuestion = store.customQuestion
+    ? store.customQuestion
+    : store.deck.find((question: GroupQuestionCard) => question.id === store.questionId);
+
+  const pastQuestions = store.currentQuestion
+    ? store.pastQuestions
+    : [...store.pastQuestions, currentQuestion.id];
 
   // Save
   return {
@@ -135,7 +141,9 @@ export const prepareEverybodyWritesPhase = async (
         currentQuestions: utils.firebase.deleteValue(),
       },
       store: {
-        pastQuestions: [...store.pastQuestions, currentQuestion.id],
+        pastQuestions,
+        customQuestion: utils.firebase.deleteValue(),
+        questionId: utils.firebase.deleteValue(),
       },
       players,
     },
