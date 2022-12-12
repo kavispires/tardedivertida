@@ -13,6 +13,8 @@ import PhaseClueEvaluations from './PhaseClueEvaluations';
 import PhaseGameOver from './PhaseGameOver';
 // Fonts
 import 'assets/fonts/architects-daughter.scss';
+// Sass
+import './vendaval-de-palpite.scss';
 
 function getActiveComponent(phase: string) {
   switch (phase) {

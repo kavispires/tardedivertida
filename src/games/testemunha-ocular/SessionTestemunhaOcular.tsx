@@ -13,6 +13,8 @@ import PhaseTrial from './PhaseTrial';
 import PhaseGameOver from './PhaseGameOver';
 // Fonts
 import 'assets/fonts/architects-daughter.scss';
+// Sass
+import './testemunha-ocular.scss';
 
 function getActiveComponent(phase: string) {
   switch (phase) {

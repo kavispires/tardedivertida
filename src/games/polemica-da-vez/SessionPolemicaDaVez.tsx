@@ -12,6 +12,8 @@ import PhaseResolution from './PhaseResolution';
 import PhaseGameOver from './PhaseGameOver';
 // Fonts
 import 'assets/fonts/architects-daughter.scss';
+// Sass
+import './polemica-da-vez.scss';
 
 function getActiveComponent(phase: string) {
   switch (phase) {

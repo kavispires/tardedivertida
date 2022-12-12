@@ -13,6 +13,8 @@ import PhaseGuess from './PhaseGuess';
 import PhaseGameOver from './PhaseGameOver';
 // Fonts
 import 'assets/fonts/architects-daughter.scss';
+// Session
+import './ue-so-isso.scss';
 
 function getActiveComponent(phase: string) {
   switch (phase) {

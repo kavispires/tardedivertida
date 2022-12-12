@@ -10,6 +10,8 @@ import PhaseTrickOrTreat from './PhaseTrickOrTreat';
 import PhaseResult from './PhaseResult';
 import PhaseStreetEnd from './PhaseStreetEnd';
 import PhaseGameOver from './PhaseGameOver';
+// Sass
+import './na-rua-do-medo.scss';
 
 function getActiveComponent(phase: string) {
   switch (phase) {

@@ -1,3 +1,5 @@
+@use 'styles/sass' as *;
+
 .o-background.o-background {
   background: linear-gradient(-45deg, #9287cf, #583fb3, #a73fb3, #9287cf, #583fb3, #a73fb3);
   background-size: 1000% 1000%;

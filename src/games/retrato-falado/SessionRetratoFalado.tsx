@@ -10,6 +10,8 @@ import PhaseCompositeSketch from './PhaseCompositeSketch';
 import PhaseEvaluation from './PhaseEvaluation';
 import PhaseReveal from './PhaseReveal';
 import PhaseGameOver from './PhaseGameOver';
+// Sass
+import './retrato-falado.scss';
 
 function getActiveComponent(phase: string) {
   switch (phase) {
