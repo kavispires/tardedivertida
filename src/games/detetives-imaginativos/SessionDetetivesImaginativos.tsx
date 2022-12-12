@@ -12,6 +12,8 @@ import PhaseDefense from './PhaseDefense';
 import PhaseVoting from './PhaseVoting';
 import PhaseReveal from './PhaseReveal';
 import PhaseGameOver from './PhaseGameOver';
+// Sass
+import './detetives-imaginativos.scss';
 
 function getActiveComponent(phase: string) {
   switch (phase) {

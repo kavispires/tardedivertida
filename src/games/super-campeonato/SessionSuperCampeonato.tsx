@@ -14,6 +14,8 @@ import PhaseResults from './PhaseResults';
 import PhaseGameOver from './PhaseGameOver';
 // Fonts
 import 'assets/fonts/bangers.scss';
+// Sass
+import './super-campeonato.scss';
 
 function getActiveComponent(phase: string) {
   switch (phase) {

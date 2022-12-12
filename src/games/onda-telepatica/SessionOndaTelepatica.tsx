@@ -10,6 +10,8 @@ import PhaseDialClue from './PhaseDialClue';
 import PhaseGuess from './PhaseGuess';
 import PhaseReveal from './PhaseReveal';
 import PhaseGameOver from './PhaseGameOver';
+// Sass
+import './onda-telepatica.scss';
 
 function getActiveComponent(phase: string) {
   switch (phase) {

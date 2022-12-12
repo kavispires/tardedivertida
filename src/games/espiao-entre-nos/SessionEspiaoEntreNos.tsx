@@ -12,6 +12,8 @@ import PhaseInvestigation from './PhaseInvestigation';
 import PhaseAssessment from './PhaseAssessment';
 import PhaseResolution from './PhaseResolution';
 import PhaseFinalAssessment from './PhaseFinalAssessment';
+// Sass
+import './espiao-entre-nos.scss';
 
 function getActiveComponent(phase: string) {
   switch (phase) {

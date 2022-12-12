@@ -12,6 +12,8 @@ import PhaseMatching from './PhaseMatching';
 import PhaseResolution from './PhaseResolution';
 // Fonts
 import 'assets/fonts/architects-daughter.scss';
+// Sass
+import './sonhos-pesadelos.scss';
 
 function getActiveComponent(phase: string) {
   switch (phase) {

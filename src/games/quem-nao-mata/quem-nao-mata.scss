@@ -1,3 +1,5 @@
+@use 'styles/sass' as *;
+
 .q-target-grid {
   display: grid;
   grid-template-columns: auto 1fr auto;
@@ -94,9 +96,6 @@
   padding: get-unit(2);
   font-family: 'Times New Roman', Times, serif;
   text-align: center;
-}
-
-.q-message {
 }
 
 .q-ambush-card {

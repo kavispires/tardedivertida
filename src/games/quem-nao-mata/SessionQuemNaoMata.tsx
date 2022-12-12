@@ -10,6 +10,8 @@ import PhaseTargeting from './PhaseTargeting';
 import PhaseStandoff from './PhaseStandoff';
 import PhaseDuel from './PhaseDuel';
 import PhaseResolution from './PhaseResolution';
+// Sass
+import './quem-nao-mata.scss';
 
 function getActiveComponent(phase: string) {
   switch (phase) {

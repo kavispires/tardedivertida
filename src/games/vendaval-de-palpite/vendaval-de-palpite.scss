@@ -1,3 +1,5 @@
+@use 'styles/sass' as *;
+
 .v-clue-input {
   background-color: get-color('white');
   border-radius: get-unit(2);
