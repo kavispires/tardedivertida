@@ -68,12 +68,12 @@
 }
 
 .image-card {
-  border-radius: get-unit(3);
+  border-radius: get-unit(5);
   margin: get-unit(1);
   transition: 500ms transform;
 
   &__preview-mask {
-    border-radius: get-unit(3);
+    border-radius: get-unit(5);
   }
 
   &:hover {
@@ -81,7 +81,7 @@
   }
 
   .ant-image-img {
-    border-radius: get-unit(3);
+    border-radius: get-unit(5);
   }
 
   &--blur {
