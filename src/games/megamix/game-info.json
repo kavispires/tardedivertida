@@ -1,0 +1,42 @@
+{
+  "$schema": "../../utils/game-info.schema.json",
+  "gameCode": "Z",
+  "gameName": "megamix",
+  "version": "dev",
+  "title": {
+    "pt": "Megamix",
+    "en": "Megamix"
+  },
+  "popularName": {
+    "pt": "",
+    "en": ""
+  },
+  "basedOn": "sniW maeT neerG ehT",
+  "summary": {
+    "pt": "Todos jogos de uma vez só!",
+    "en": "All games all at once"
+  },
+  "appearance": {
+    "clouds": "cloud",
+    "color": "",
+    "backgroundColor": ""
+  },
+  "rules": {
+    "pt": [
+      "Cada rodada um desafio baseado em um dos jogos do Tarde Divertida é lançado e se você estiver com a maioria você vai para o Time Vencedor. Após 15 rodadas, ganha o vencedor do Time Vencedor"
+    ],
+    "en": [
+      "Each round there's a task based on the other games in the platform. If you match the majority of players, you are in the Winning Team. After 15 round, the winner in the Winning Team wins"
+    ]
+  },
+  "playerCount": {
+    "recommended": [5, 6, 7],
+    "min": 3,
+    "max": 10
+  },
+  "tags": ["competitive", "images", "guessing", "pairing", "same-time", "writing", "voting"],
+  "available": {
+    "pt": true,
+    "en": true
+  }
+}
