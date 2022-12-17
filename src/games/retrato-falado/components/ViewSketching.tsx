@@ -9,7 +9,7 @@ import { Instruction, Title } from 'components/text';
 import { TimerBar } from 'components/timers';
 import { ViewOr } from 'components/views';
 
-import { MonsterCard } from './MonsterCard';
+import { MonsterCard } from '../../../components/cards/MonsterCard';
 
 type ViewSketchingProps = {
   isUserTheWitness: boolean;

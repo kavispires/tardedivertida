@@ -6,19 +6,6 @@
   align-items: center;
 }
 
-.r-monster-card {
-  transition: 500ms transform;
-  transform: rotate(0deg);
-
-  &--vertical {
-    transform: rotate(0deg);
-  }
-
-  &--horizontal {
-    transform: rotate(90deg);
-  }
-}
-
 .r-sketch {
   background-color: get-color('white');
   @include box-shadow;

@@ -9,15 +9,18 @@ import { useGlobalState } from 'hooks/useGlobalState';
 // Components
 import { ImageCard } from 'components/cards';
 import { Translate } from 'components/language';
+// Sass
+import './MonsterCard.scss';
 
 interface MonsterCardProps extends SpaceProps {
   currentMonster: Monster;
   showControls?: boolean;
+  cardWidth?: number;
 }
 
-export function MonsterCard({ currentMonster, showControls = true, ...props }: MonsterCardProps) {
+export function MonsterCard({ currentMonster, showControls = true, cardWidth, ...props }: MonsterCardProps) {
   const [monsterOrientation, setMonsterOrientation] = useGlobalState('monsterOrientation');
-  const cardWidth = useCardWidth(5, 16, 120, 360);
+  const defaultCardWidth = useCardWidth(5, 16, 120, 360);
 
   useEffectOnce(() => {
     if (currentMonster.orientation === 'horizontal') {
@@ -30,12 +33,12 @@ export function MonsterCard({ currentMonster, showControls = true, ...props }: M
     setMonsterOrientation(newOrientation);
   };
 
-  const baseClass = 'r-monster-card';
+  const baseClass = 'monster-card';
   return (
     <Space direction="vertical" align="center" {...props}>
       <ImageCard
         imageId={currentMonster.id}
-        cardWidth={cardWidth}
+        cardWidth={cardWidth || defaultCardWidth}
         className={clsx(
           baseClass,
           monsterOrientation === 'vertical' ? `${baseClass}--vertical` : `${baseClass}--horizontal`
