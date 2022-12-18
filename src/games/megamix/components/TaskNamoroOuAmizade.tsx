@@ -11,9 +11,9 @@ import { mockSelection } from '../utils/mock';
 export const TaskNamoroOuAmizade = ({ task, round, onSubmitTask, user }: TaskProps) => {
   const { isLoading } = useLoading();
 
-  const onSelect = (value: number) => {
+  const onSelect = (value: string) => {
     onSubmitTask({
-      data: { value: String(value) },
+      data: { value },
     });
   };
 
@@ -52,7 +52,7 @@ export const TaskNamoroOuAmizade = ({ task, round, onSubmitTask, user }: TaskPro
                 funFact={task.data.funFacts[index]}
               />
               <Button
-                onClick={() => onSelect(index)}
+                onClick={() => onSelect(head.id)}
                 disabled={user.ready || isLoading}
                 className="noa-button"
                 key={head.id}
