@@ -7,6 +7,7 @@ import * as galeriaDeSonhosEngine from '../engine/galeria-de-sonhos';
 import * as crimesHediondosEngine from '../engine/crimes-hediondos';
 import * as portadosDesesperadosEngine from '../engine/porta-dos-desesperados';
 import * as linhasCruzadasEngine from '../engine/linhas-cruzadas';
+import * as megamixEngine from '../engine/megamix';
 import * as menteColetivaEngine from '../engine/mente-coletiva';
 import * as naRuaDoMedoEngine from '../engine/na-rua-do-medo';
 import * as ondaTelepaticaEngine from '../engine/onda-telepatica';
@@ -70,6 +71,8 @@ export const getCollectionNameByGameCode = (gameCode: GameCode): string | null =
       return GAME_NAMES.CRUZA_PALAVRAS;
     case GAME_CODES.Y:
       return GAME_NAMES.TREVO_DA_SORTE;
+    case GAME_CODES.Z:
+      return GAME_NAMES.MEGAMIX;
 
     default:
       return null;
@@ -125,6 +128,8 @@ export const getCollectionKeyByGameCode = (gameCode: GameCode): string | null =>
       return GAME_KEYS.CRUZA_PALAVRAS;
     case GAME_CODES.Y:
       return GAME_KEYS.TREVO_DA_SORTE;
+    case GAME_CODES.Z:
+      return GAME_KEYS.MEGAMIX;
     default:
       return null;
   }
@@ -187,6 +192,8 @@ export const getEngine = (gameName: string): Engine => {
       return cruzaPalavrasEngine;
     case GAME_NAMES.TREVO_DA_SORTE:
       return trevoDaSorteEngine;
+    case GAME_NAMES.MEGAMIX:
+      return megamixEngine;
     default:
       throw new Error(`Collection '${gameName}' initial state does not exist`);
   }

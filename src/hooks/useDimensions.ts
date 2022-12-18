@@ -15,7 +15,7 @@ export function useDimensions(elementId?: string): [number, number] {
   const element = document.getElementById(elementId);
 
   if (!element) {
-    console.warn(`Element of id #${elementId} is not present in the dom`);
+    // console.warn(`Element of id #${elementId} is not present in the dom`);
   }
 
   return [element?.offsetWidth ?? 32, element?.offsetHeight ?? 32];

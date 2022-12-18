@@ -97,3 +97,7 @@ export const CRUZA_PALAVRAS_API = {
 export const TREVO_DA_SORTE_API = {
   submitAction: httpsCallable(functions, 'trevoDaSorteSubmitAction'),
 };
+
+export const MEGAMIX_API = {
+  submitAction: httpsCallable(functions, 'megamixSubmitAction'),
+};

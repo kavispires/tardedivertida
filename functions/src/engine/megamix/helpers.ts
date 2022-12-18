@@ -1,13 +1,13 @@
 import stringSimilarity from 'string-similarity';
 import utils from '../../utils';
-import { MEGAMIX_PHASES, MINI_GAMES_LIST, TOTAL_ROUNDS } from './constants';
-import { MostScoring } from './types';
+import { GAME_NAMES } from '../../utils/constants';
+import { MEGAMIX_PHASES, MINI_GAMES_LIST, TOTAL_ROUNDS, WINNING_CONDITION } from './constants';
+import { MostScoring, Task } from './types';
 
 /**
  * Determine the next phase based on the current one
  * @param currentPhase
  * @param round
- * @param isGameOver
  * @param triggerLastRound
  * @returns
  */
@@ -155,11 +155,16 @@ export const getMostVotes = (players: Players, property = 'cardId'): MostScoring
     }
   });
 
+  let scoringType = 'NORMAL';
+  if (winningValues.length > 1) scoringType = 'TIE';
+  if (Object.keys(counts).length === listOfPlayers.length) scoringType = 'DRAW';
+
   return {
-    condition: 'mostVoted',
+    condition: WINNING_CONDITION.MOST_VOTED,
     winningTeam,
     losingTeam,
     winningValues,
+    scoringType: scoringType as MostScoring['scoringType'],
   };
 };
 
@@ -195,12 +200,17 @@ export const getMostMatching = (players: Players, property: string, acceptance =
 
   // Get max votes
   const maxVal = Math.max(...lengths);
-  const winningValues = Object.values(counts).reduce((acc, arr) => {
-    if (arr.length === maxVal) {
-      acc = [...acc, ...arr];
-    }
-    return acc;
-  }, []);
+  const winningUniqueValues: string[] = [];
+  const winningValues = utils.helpers.flattenArray(
+    Object.keys(counts).reduce((acc: string[][], key) => {
+      const arr = counts[key];
+      if (arr.length === maxVal) {
+        acc.push(arr);
+        winningUniqueValues.push(key);
+      }
+      return acc;
+    }, [])
+  );
 
   const winningTeam: string[] = [];
   const losingTeam: string[] = [];
@@ -214,44 +224,422 @@ export const getMostMatching = (players: Players, property: string, acceptance =
     }
   });
 
+  let scoringType = 'NORMAL';
+  if (winningUniqueValues.length > 1) scoringType = 'TIE';
+  if (Object.keys(counts).length === listOfPlayers.length) scoringType = 'DRAW';
+
   return {
-    condition: 'stringMatch',
+    condition: WINNING_CONDITION.STRING_MATCH,
     winningTeam,
     losingTeam,
-    winningValues,
+    winningValues: [...new Set(winningValues)],
+    scoringType: scoringType as MostScoring['scoringType'],
   };
 };
 
 export const getRanking = (
   players: Players,
-  scoring: MostScoring
+  scoring: MostScoring,
+  currentRound: number
   // store: FirebaseStoreData
 ): NewScore[] => {
   // Gained points: [already on Winning team, joining Winning team]
   const scores = new utils.players.Scores(players, [0, 0]);
 
+  // Full on tie, nobody scores, everybody is kicked out
+  if (scoring.scoringType === 'DRAW') {
+    utils.players.getListOfPlayers(players).forEach((player) => {
+      player.team.push('L');
+    });
+    return scores.rank(players);
+  }
+
   utils.players.getListOfPlayers(players).forEach((player) => {
-    // Is on the new winning team
-    if (scoring.winningTeam.includes(player.id)) {
-      // Was in the winning team
-      if (player.team === 'W') {
-        scores.add(player.id, 2, 0);
-        // TODO: achievement stayed winning
+    if (scoring.scoringType === 'TIE') {
+      // Is on the new winning team
+      if (scoring.winningTeam.includes(player.id)) {
+        // Was in the winning team
+        if (player.team[currentRound - 1] === 'W') {
+          scores.add(player.id, 2, 0);
+          player.team.push('W');
+          // TODO: achievement stayed winning
+        } else {
+          player.team.push('L');
+          // TODO: achievement joined winning
+        }
       } else {
-        scores.add(player.id, 1, 1);
-        player.team = 'W';
-        // TODO: achievement joined winning
+        // Was in the winning team
+        if (player.team[currentRound - 1] === 'W') {
+          player.team.push('L');
+          // TODO: achievement left winning
+        } else {
+          player.team.push('L');
+          // TODO: achievement stayed losing
+        }
       }
     } else {
-      // Was in the winning team
-      if (player.team === 'W') {
-        player.team = 'L';
-        // TODO: achievement left winning
+      // Is on the new winning team
+      if (scoring.winningTeam.includes(player.id)) {
+        // Was in the winning team
+        if (player.team[currentRound - 1] === 'W') {
+          scores.add(player.id, 2, 0);
+          player.team.push('W');
+          // TODO: achievement stayed winning
+        } else {
+          scores.add(player.id, 1, 1);
+          player.team.push('W');
+          // TODO: achievement joined winning
+        }
       } else {
-        // TODO: achievement stayed losing
+        // Was in the winning team
+        if (player.team[currentRound - 1] === 'W') {
+          player.team.push('L');
+          // TODO: achievement left winning
+        } else {
+          player.team.push('L');
+          // TODO: achievement stayed losing
+        }
       }
     }
   });
 
   return scores.rank(players);
+};
+
+export const getCandidatePersonality = (cards: DatingCandidateCard[]) => {
+  const interests: DatingCandidateCard[] = [];
+  const needs: DatingCandidateCard[] = [];
+  const funFacts: DatingCandidateCard[] = [];
+
+  cards.forEach((card) => {
+    if (card.type === 'fun-fact') {
+      funFacts.push(card);
+    } else if (card.type === 'interest') {
+      interests.push(card);
+    } else if (card.type === 'need') {
+      needs.push(card);
+    }
+  });
+
+  return {
+    interests: utils.game.getRandomItems(interests, 3),
+    needs: utils.game.getRandomItems(needs, 3),
+    funFacts: utils.game.getRandomItems(funFacts, 3),
+  };
+};
+
+export const distributeSeeds = (tasks: Task[], players: Players, clubberIds: string[]) => {
+  const individualSeeds: any[] = [];
+  const groupSeeds: any[] = [];
+
+  tasks.forEach((task) => {
+    switch (task.game) {
+      case GAME_NAMES.ARTE_RUIM:
+        if (task.variant === 'cards') {
+          individualSeeds.push({
+            type: GAME_NAMES.ARTE_RUIM,
+            card: utils.game.getRandomItem(task.data.cards),
+          });
+          break;
+        }
+        individualSeeds.push({
+          type: GAME_NAMES.ARTE_RUIM,
+          card: task.data.cards[0],
+        });
+        individualSeeds.push({
+          type: GAME_NAMES.ARTE_RUIM,
+          card: task.data.cards[1],
+        });
+        if (task.data.cards[2]) {
+          individualSeeds.push({
+            type: GAME_NAMES.ARTE_RUIM,
+            card: task.data.cards[2],
+          });
+        }
+        break;
+
+      case GAME_NAMES.CAMINHOS_MAGICOS:
+        individualSeeds.push({
+          type: GAME_NAMES.CAMINHOS_MAGICOS,
+          portal: task.data.portals[0],
+          cards: task.data.adjectives.slice(0, 3),
+        });
+        individualSeeds.push({
+          type: GAME_NAMES.CAMINHOS_MAGICOS,
+          portal: task.data.portals[1],
+          cards: task.data.adjectives.slice(3, 6),
+        });
+        individualSeeds.push({
+          type: GAME_NAMES.CAMINHOS_MAGICOS,
+          portal: task.data.portals[2],
+          cards: task.data.adjectives.slice(6, 9),
+        });
+        break;
+
+      case GAME_NAMES.FILEIRA_DE_FATOS:
+        individualSeeds.push({
+          type: GAME_NAMES.FILEIRA_DE_FATOS,
+          card: task.data.card,
+        });
+        individualSeeds.push({
+          type: GAME_NAMES.FILEIRA_DE_FATOS,
+          card: task.data.card,
+        });
+        individualSeeds.push({
+          type: GAME_NAMES.FILEIRA_DE_FATOS,
+          card: task.data.card,
+        });
+        break;
+
+      case GAME_NAMES.ONDA_TELEPATICA:
+        individualSeeds.push({
+          type: GAME_NAMES.ONDA_TELEPATICA,
+          card: task.data.card,
+        });
+        break;
+
+      case GAME_NAMES.POLEMICA_DA_VEZ:
+        groupSeeds.push({
+          type: GAME_NAMES.POLEMICA_DA_VEZ,
+          card: task.data.card,
+        });
+        break;
+
+      case GAME_NAMES.RETRATO_FALADO:
+        individualSeeds.push({
+          type: GAME_NAMES.RETRATO_FALADO,
+          card: task.data.card,
+        });
+        individualSeeds.push({
+          type: GAME_NAMES.RETRATO_FALADO,
+          card: task.data.card,
+        });
+        individualSeeds.push({
+          type: GAME_NAMES.RETRATO_FALADO,
+          card: task.data.card,
+        });
+        break;
+
+      default:
+      // do nothing
+    }
+  });
+
+  const playersList = utils.players.getListOfPlayers(players);
+
+  playersList.forEach((player) => {
+    player.seeds = [];
+  });
+
+  individualSeeds.forEach((seed, index) => {
+    const player = playersList[index % playersList.length];
+    player.seeds.push(seed);
+  });
+
+  const clubbers = utils.game.sliceIntoChunks(clubberIds, 5);
+
+  playersList.forEach((player, index) => {
+    groupSeeds.forEach((seed) => {
+      player.seeds.push(seed);
+    });
+
+    player.seeds.push({
+      type: 'clubber',
+      outfits: clubbers[index],
+    });
+  });
+};
+
+export const handleSeedingData = (tasks: Task[], players: Players) => {
+  tasks.forEach((task) => {
+    switch (task.game) {
+      case GAME_NAMES.ARTE_RUIM:
+        if (task.variant === 'cards') {
+          task.data.option = buildArteRuimCardOptions(players, task);
+          break;
+        }
+
+        task.data.options = buildArteRuimDrawingsOptions(players, task);
+        break;
+
+      case GAME_NAMES.CAMINHOS_MAGICOS:
+        task.data.options = buildCaminhosMagicosOptions(players, task);
+        break;
+
+      case GAME_NAMES.FILEIRA_DE_FATOS:
+        task.data.options = buildFileiraDeFatosOptions(players);
+        break;
+
+      case GAME_NAMES.ONDA_TELEPATICA:
+        task.data.option = buildOndaTelepaticaOptions(players);
+
+        break;
+
+      case GAME_NAMES.POLEMICA_DA_VEZ:
+        task.data.options = buildPolemicaDaVezOptions(players);
+        break;
+
+      case GAME_NAMES.RETRATO_FALADO:
+        task.data.options = buildRetratoFaladoOptions(players, task);
+        break;
+
+      default:
+      // do nothing
+    }
+  });
+
+  return tasks;
+};
+
+/**
+ * Gather likes, count likes, return a array with 3 possible answers (total likes), always including the correct one
+ * @param players
+ */
+const buildPolemicaDaVezOptions = (players: Players) => {
+  const playerCount = utils.players.getPlayerCount(players);
+  const totalLikes = utils.players
+    .getListOfPlayers(players)
+    .map((player) => player.data.likeTopic)
+    .reduce((acc: number, like) => {
+      if (like) {
+        acc += 1;
+      }
+      return acc;
+    }, 0);
+
+  const possibleLikes = new Array(playerCount + 1).fill(0).map((e, i) => e + i);
+
+  return [...new Set([totalLikes, ...utils.game.getRandomItems(possibleLikes, 3)])].sort();
+};
+
+/**
+ * Gather facts, order them
+ * @param players
+ */
+const buildFileiraDeFatosOptions = (players: Players) => {
+  const allFacts = utils.players.getListOfPlayers(players).reduce((acc: PlainObject[], player) => {
+    if (player.data.fact !== undefined) {
+      acc.push({
+        playerId: player.id,
+        value: player.data.fact,
+      });
+    }
+    return acc;
+  }, []);
+
+  const ordered = utils.helpers.orderBy(allFacts, 'value', 'asc');
+
+  if (Math.random() > 0.5) {
+    return [ordered[0], ordered[1], ordered[2]];
+  }
+
+  return [ordered[2], ordered[0], ordered[1]];
+};
+
+const buildRetratoFaladoOptions = (players: Players, task: Task) => {
+  return utils.players.getListOfPlayers(players).reduce((acc: PlainObject[], player) => {
+    if (player.data[task.data.card.id]) {
+      acc.push({
+        playerId: player.id,
+        drawing: player.data[task.data.card.id],
+      });
+    }
+    return acc;
+  }, []);
+};
+
+const buildOndaTelepaticaOptions = (players: Players) => {
+  const player = utils.players.getListOfPlayers(players).find((p) => p.data.wave);
+
+  return {
+    playerId: player?.id ?? 'Bug!',
+    value: player?.data?.wave ?? 'Bug!',
+  };
+};
+
+/**
+ * Find the one drawing
+ * @param players
+ * @param task
+ * @returns
+ */
+const buildArteRuimCardOptions = (players: Players, task: Task) => {
+  const cardIds: CardId[] = task.data.cards.map((card: TextCard) => card.id);
+  const drawing = {
+    drawing: '[]',
+    playerId: 'Bug!',
+  };
+  utils.players.getListOfPlayers(players).forEach((player) => {
+    cardIds.forEach((cardId) => {
+      if (player.data[cardId]) {
+        drawing.drawing = player.data[cardId];
+        drawing.playerId = player.id;
+      }
+    });
+  });
+
+  return drawing;
+};
+
+/**
+ * Find the 2 or 3 drawings
+ * @param players
+ * @param task
+ * @returns
+ */
+const buildArteRuimDrawingsOptions = (players: Players, task: Task) => {
+  const cardIds: CardId[] = task.data.cards.map((card: TextCard) => card.id);
+  const drawings: PlainObject[] = [];
+
+  utils.players.getListOfPlayers(players).forEach((player) => {
+    Object.keys(player.data).forEach((dataKey) => {
+      if (cardIds.includes(dataKey)) {
+        drawings.push({
+          drawing: player.data[dataKey],
+          playerId: player.id,
+        });
+      }
+    });
+  });
+
+  return drawings;
+};
+
+/**
+ * Get the 3 portal clues in order, add two random options, shuffle everything
+ * @param players
+ * @param task
+ * @returns
+ */
+const buildCaminhosMagicosOptions = (players: Players, task: Task) => {
+  const portalIds: CardId[] = task.data.portals.map((portal) => portal.id);
+
+  const clues: PlainObject[] = [];
+  utils.players.getListOfPlayers(players).forEach((player) => {
+    Object.keys(player.data).forEach((dataKey) => {
+      if (portalIds.includes(dataKey)) {
+        clues[portalIds.indexOf(dataKey)] = {
+          text: task.data.adjectives.find((adjective) => adjective.id === player.data[dataKey]).text ?? '???',
+          playerId: player.id,
+          portalId: dataKey,
+        };
+      }
+    });
+  });
+
+  const permutations = utils.game.shuffle([
+    [clues[0], clues[2], clues[1]],
+    [clues[1], clues[2], clues[0]],
+    [clues[1], clues[0], clues[2]],
+    [clues[2], clues[0], clues[1]],
+    [clues[2], clues[1], clues[0]],
+  ]);
+
+  const options = utils.game.shuffle([[clues[0], clues[1], clues[2]], permutations[0], permutations[1]]);
+
+  return {
+    0: options[0],
+    1: options[1],
+    2: options[2],
+  };
 };

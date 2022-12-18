@@ -295,4 +295,34 @@ export const AVATARS: AvatarDict = {
   },
 };
 
+export const BOTS = {
+  A: {
+    id: 'A',
+    name: 'A-bot',
+    avatarId: 'A',
+  },
+  B: {
+    id: 'B',
+    name: 'B-bop',
+    avatarId: 'B',
+  },
+  C: {
+    id: 'C',
+    name: 'C-am',
+    avatarId: 'C',
+  },
+  D: {
+    id: 'D',
+    name: 'D-Doo',
+    avatarId: 'D',
+  },
+  E: {
+    id: 'E',
+    name: 'E-max',
+    avatarId: 'E',
+  },
+};
+
+export const BOTS_LIST = Object.values(BOTS);
+
 export const AVAILABLE_AVATAR_IDS: string[] = Object.keys(AVATARS).filter((key) => key.match(/^\d+$/));

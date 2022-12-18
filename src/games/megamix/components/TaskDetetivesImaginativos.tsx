@@ -1,24 +1,32 @@
 import { Button, Space } from 'antd';
+import clsx from 'clsx';
 import { Avatar } from 'components/avatars';
 import { ImageBlurButtonContainer, ImageCard } from 'components/cards';
 import { Translate } from 'components/language';
-import { Instruction, Title } from 'components/text';
+import { Instruction } from 'components/text';
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
+import { useMock } from 'hooks/useMock';
 import { AVATARS, BOTS_LIST } from 'utils/avatars';
-import { INSTRUCTIONS } from './utils/constants';
+import { MinigameTitle } from './MinigameTitle';
+import { mockSelection } from '../utils/mock';
 
-export const TaskDetetivesImaginativos = ({ task, onSubmitTask, user }: TaskProps) => {
-  const cardWidth = useCardWidth(6, 32, 200, 300);
-  const { dualTranslate, language } = useLanguage();
+export const TaskDetetivesImaginativos = ({ task, round, onSubmitTask, user, players }: TaskProps) => {
+  const cardWidth = useCardWidth(6, 32, 200, 270);
+  const { language } = useLanguage();
   const { isLoading } = useLoading();
+
+  // DEV Mock
+  useMock(() => {
+    onSubmitTask({
+      data: { value: mockSelection(task.data.cards) },
+    });
+  });
 
   return (
     <>
-      <Title size="small">
-        <Title size="small">{dualTranslate(INSTRUCTIONS[task.game])}</Title>
-      </Title>
+      <MinigameTitle round={round} task={task} />
       <Instruction contained>
         <Translate
           pt={
@@ -38,16 +46,23 @@ export const TaskDetetivesImaginativos = ({ task, onSubmitTask, user }: TaskProp
         />
       </Instruction>
 
-      <ul className="container container--center">
+      <ul className="d-table">
         {task.data.cards.map((cardId: ImageCardId, index: number) => {
           const bot = BOTS_LIST[index];
           return (
             <div className="d-table__player-entry" key={`table-focus-${cardId}`}>
-              <div className="d-table__cards">
-                <ImageBlurButtonContainer cardId={cardId} className="d-table__card">
-                  <ImageCard key={`table-focus-${cardId}`} imageId={cardId} cardWidth={cardWidth} />
-                </ImageBlurButtonContainer>
-              </div>
+              <ImageBlurButtonContainer
+                cardId={cardId}
+                className={clsx('d-table__card', user?.data?.value === cardId && 'd-table__card--selected')}
+              >
+                <ImageCard
+                  key={`table-focus-${cardId}`}
+                  imageId={cardId}
+                  cardWidth={cardWidth}
+                  className="d-table__image-card"
+                />
+              </ImageBlurButtonContainer>
+
               <div className="d-table__player-info">
                 <Avatar id={bot.avatarId} className="d-table__player-avatar" size="default" />
                 <span
@@ -66,7 +81,7 @@ export const TaskDetetivesImaginativos = ({ task, onSubmitTask, user }: TaskProp
                   loading={isLoading}
                   onClick={() =>
                     onSubmitTask({
-                      data: { cardId },
+                      data: { value: cardId },
                     })
                   }
                 >

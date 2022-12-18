@@ -39,11 +39,11 @@ All file paths here are relative to `/src`.
 ### Banner
 
 - Add a banner image for your game in `../public/images/banners/`.
-- The naming convention is `game-image-<game-name>-<language>.jpg`.
+- The naming convention is `<game-name>-<language>.jpg`.
 
 ### Setup Basic Game files
 
-- Create a folder with the game name under `/games/`.
+- Create a folder with the game name under `/games/`. You may duplicate the folder `_template` there
 - Create a session file `Session<game-name>.tsx` with basic placeholder stuff.
 - Create a api file `api-requests.ts` for api calls for the game.
 - Create a `<game-name>.d.ts` for game specific types.

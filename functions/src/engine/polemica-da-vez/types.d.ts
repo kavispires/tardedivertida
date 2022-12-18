@@ -4,10 +4,6 @@ export type PolemicaDaVezOptions = {
   fixedRounds: boolean;
 };
 
-export interface Topic extends TextCard {
-  custom?: boolean;
-}
-
 export interface CustomTopic extends Topic {
   custom: boolean;
 }

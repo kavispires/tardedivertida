@@ -126,37 +126,39 @@ export function PhaseAnnouncement({
         !isActive && getAnimationClass('fadeOut')
       )}
     >
-      <div
-        className={clsx(
-          'phase-announcement',
-          isActive
-            ? getAnimationClass(animationType, undefined, 'fast')
-            : getAnimationClass('bounceOut', undefined),
-          className
-        )}
-      >
-        <Title>{title}</Title>
+      <div className="phase-announcement-wrapper">
+        <div
+          className={clsx(
+            'phase-announcement',
+            isActive
+              ? getAnimationClass(animationType, undefined, 'fast')
+              : getAnimationClass('bounceOut', undefined),
+            className
+          )}
+        >
+          <Title>{title}</Title>
 
-        <span className="phase-announcement__icon">{icon}</span>
+          <span className="phase-announcement__icon">{icon}</span>
 
-        {children}
+          {children}
 
-        {withoutTimer ? (
-          <Button type="primary" onClick={onContinue} autoFocus>
-            <Translate pt="Prosseguir" en="Continue" custom={buttonText} />
-          </Button>
-        ) : (
-          <TimedButton
-            duration={duration || durationPerRound}
-            type="text"
-            onClick={onContinue}
-            onExpire={onContinue}
-            disabled={unskippable}
-            autoFocus
-          >
-            <Translate pt="Prosseguir" en="Continue" custom={buttonText} />
-          </TimedButton>
-        )}
+          {withoutTimer ? (
+            <Button type="primary" onClick={onContinue} autoFocus>
+              <Translate pt="Prosseguir" en="Continue" custom={buttonText} />
+            </Button>
+          ) : (
+            <TimedButton
+              duration={duration || durationPerRound}
+              type="text"
+              onClick={onContinue}
+              onExpire={onContinue}
+              disabled={unskippable}
+              autoFocus
+            >
+              <Translate pt="Prosseguir" en="Continue" custom={buttonText} />
+            </TimedButton>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -20,10 +20,11 @@ export interface Task {
 }
 
 export interface MostScoring {
-  condition: 'mostVoted' | 'stringMatch';
+  condition: string;
   winningTeam: PlayerId[];
   losingTeam: PlayerId[];
   winningValues: (string | number)[];
+  scoringType: 'NORMAL' | 'TIE' | 'DRAW';
 }
 
 type MegamixCard = any;

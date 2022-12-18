@@ -12,6 +12,7 @@ import FILEIRA_DE_FATOS from 'games/fileira-de-fatos/game-info.json';
 import GALERIA_DE_SONHOS from 'games/galeria-de-sonhos/game-info.json';
 import INSTRUMENTOS_CODIFICADOS from 'games/instrumentos-codificados/game-info.json';
 import LINHAS_CRUZADAS from 'games/linhas-cruzadas/game-info.json';
+import MEGAMIX from 'games/megamix/game-info.json';
 import MENTE_COLETIVA from 'games/mente-coletiva/game-info.json';
 import NA_RUA_DO_MEDO from 'games/na-rua-do-medo/game-info.json';
 import NAUFRAGOS from 'games/naufragos/game-info.json';
@@ -49,6 +50,7 @@ export const GAME_LIST: Record<GameCode, GameInfo> = {
   'galeria-de-sonhos': GALERIA_DE_SONHOS,
   'instrumentos-codificados': INSTRUMENTOS_CODIFICADOS,
   'linhas-cruzadas': LINHAS_CRUZADAS,
+  megamix: MEGAMIX,
   'mente-coletiva': MENTE_COLETIVA,
   'na-rua-do-medo': NA_RUA_DO_MEDO,
   naufragos: NAUFRAGOS,

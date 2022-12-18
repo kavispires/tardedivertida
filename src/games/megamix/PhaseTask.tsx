@@ -7,19 +7,23 @@ import { PHASES } from 'utils/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { Translate } from 'components/language';
 import { NOOP } from 'utils/constants';
 import { TaskIcon } from './components/TaskIcon';
 import { TaskInstructions } from './components/TaskInstructions';
 import { StepTask } from './StepTask';
 import { TaskTitle } from './components/TaskTitle';
 import { useOnSubmitTaskAPIRequest } from './utils/api-requests';
+import { DJIcon } from 'components/icons/DJIcon';
+import { DJInstructions } from './components/RulesBlobs';
+import { Translate } from 'components/language';
+import { DJPruPruPruSound } from 'components/audio/DJPruPruPruSound';
+import { showDJPruPruPruStep } from './utils/helpers';
 
 function PhaseTask({ players, state, info }: PhaseProps) {
   const user = useUser(players, state);
-  const { step } = useStep();
+  const { step, setStep, goToNextStep } = useStep(showDJPruPruPruStep(state.round));
 
-  const onSubmitTask = useOnSubmitTaskAPIRequest();
+  const onSubmitTask = useOnSubmitTaskAPIRequest(setStep);
 
   const announcement = (
     <PhaseAnnouncement
@@ -39,19 +43,36 @@ function PhaseTask({ players, state, info }: PhaseProps) {
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.MEGAMIX.TASK}>
       <StepSwitcher step={step} conditions={[!user.isReady]} players={players}>
         {/* Step 0 */}
+        <PhaseAnnouncement
+          icon={<DJIcon />}
+          title={<DJAnnouncementTitle round={state.round} />}
+          onClose={goToNextStep}
+          currentRound={state?.round?.current}
+          duration={20}
+        >
+          <DJPruPruPruSound />
+          <DJInstructions round={state.round} />
+        </PhaseAnnouncement>
+
+        {/* Step 1 */}
         <StepTask
           task={state.task}
+          round={state.round}
           players={players}
           announcement={announcement}
           onSubmitTask={onSubmitTask}
           user={user}
         />
-
-        {/* Step 1 */}
-        <></>
       </StepSwitcher>
     </PhaseContainer>
   );
 }
 
 export default PhaseTask;
+
+function DJAnnouncementTitle({ round }: { round: GameRound }) {
+  if (round.current === 0) return <Translate pt="A Balada" en="The Club" />;
+  if (round.current === Math.round(round.total / 2))
+    return <Translate pt="E tamo só esquentando" en="We're halfway!" />;
+  return <Translate pt="Última música" en="The last song" />;
+}
