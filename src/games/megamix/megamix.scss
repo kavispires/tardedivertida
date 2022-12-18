@@ -970,3 +970,20 @@ $o-card-width: 300px;
     padding: 0;
   }
 }
+
+.player-vote {
+  background-color: get-color('white', 5, 0.6);
+  padding: get-unit(2);
+  border-radius: $border-radius;
+  margin: get-unit(2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__name {
+    margin-bottom: get-unit(2);
+    font-size: 0.85rem;
+    color: get-color('gray');
+  }
+}

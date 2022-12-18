@@ -20,6 +20,7 @@ import { useDimensions } from 'hooks/useDimensions';
 import { ResultValueDelegator } from './components/ResultValueDelegator';
 import { TaskTitle } from './components/TaskTitle';
 import { DJIcon } from 'components/icons/DJIcon';
+import { VotesDelegator } from './components/VotesDelegator';
 
 type StepResultProps = {
   user: GamePlayer;
@@ -133,6 +134,10 @@ export function StepResult({
             <Translate pt="Ver Ranking" en="See Ranking" />
           </Button>
         )}
+      </Space>
+
+      <Space className="space-container" align="center" wrap>
+        <VotesDelegator task={task} winningValues={winningValues} players={players} />
       </Space>
     </Step>
   );
