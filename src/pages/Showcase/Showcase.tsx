@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import { orderBy } from 'lodash';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { useEffectOnce } from 'react-use';
+import { useEffectOnce, useTitle } from 'react-use';
 // Ant Design Resources
 import { Avatar, Image, Layout, Modal, Space } from 'antd';
 import { FilterFilled } from '@ant-design/icons';
@@ -24,6 +24,7 @@ import { Translate } from 'components/language';
 const GAME_LIST: GameInfo[] = Object.values(GAMES);
 
 function Showcase() {
+  useTitle('Showcase | Tarde Divertida');
   const { language } = useLanguage();
   const [searchParams, setSearchParams] = useSearchParams();
   const [width] = useDimensions('app');

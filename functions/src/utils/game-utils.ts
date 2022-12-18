@@ -86,7 +86,7 @@ export const getRandomUniqueObjects = <T>(
   quantity: number,
   byPropertyName = 'id'
 ): T[] => {
-  const usedIdDict = buildIdDictionary(used);
+  const usedIdDict = buildIdDictionary(used as PlainObject[]);
   const availableList = list.filter((entry) => !usedIdDict[entry[byPropertyName]]);
   return getRandomItems(availableList, quantity);
 };

@@ -16,7 +16,5 @@ export function DJPruPruPruSound() {
     controls.volume(volume);
   }, [volume]); // eslint-disable-line
 
-  console.log(state);
-
   return <>{audio}</>;
 }
