@@ -3,11 +3,12 @@ import clsx from 'clsx';
 import { Tooltip } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
+// Utils
+import { getAnimationClass } from 'utils/helpers';
 // Components
 import { ImageCard } from 'components/cards';
 import { Translate } from 'components/language';
 import { CandyCount } from './CandyCount';
-import { getAnimationClass } from 'utils/helpers';
 
 type HouseCardProps = {
   /**
@@ -30,9 +31,20 @@ type HouseCardProps = {
    * If the house is the last one
    */
   active?: boolean;
+  /**
+   * Enables or disables preview
+   */
+  preview?: boolean;
 };
 
-export function HouseCard({ card, candyLeftover, id, className = '', active = false }: HouseCardProps) {
+export function HouseCard({
+  card,
+  candyLeftover,
+  id,
+  className = '',
+  active = false,
+  preview,
+}: HouseCardProps) {
   const { dualTranslate } = useLanguage();
 
   const baseClass = 'n-house-card';
@@ -58,7 +70,7 @@ export function HouseCard({ card, candyLeftover, id, className = '', active = fa
           </Tooltip>
         )}
       </div>
-      <ImageCard imageId={card.key} cardWidth={80} className={clsx(cardBaseClass)} />
+      <ImageCard imageId={card.key} cardWidth={80} className={clsx(cardBaseClass)} preview={preview} />
 
       <h3 className={`${baseClass}__name`}>{dualTranslate(card.name)}</h3>
 

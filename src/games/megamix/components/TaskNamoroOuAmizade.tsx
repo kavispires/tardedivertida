@@ -29,12 +29,12 @@ export const TaskNamoroOuAmizade = ({ task, round, onSubmitTask, user }: TaskPro
         <Translate
           pt={
             <>
-              Dos <strong>3</strong> partidos abaixo, qual é o melhor?
+              Dos <strong>3 partidos</strong> abaixo, qual é o melhor?
             </>
           }
           en={
             <>
-              From <strong>3</strong> candidates below, which one is the best one?
+              From <strong>3 candidates</strong> below, which one is the best one?
             </>
           }
         />
@@ -99,7 +99,7 @@ export const Candidate = ({ head, body, interest, need, funFact }: CandidateProp
         </div>
         <div className="noa-candidate__info-entry">
           <div className="noa-candidate__info-label">
-            <Translate pt="Quero alguém que" en="I want someone to" />
+            <Translate pt="Quero alguém que" en="I want someone who" />
           </div>
           {need.text}
         </div>

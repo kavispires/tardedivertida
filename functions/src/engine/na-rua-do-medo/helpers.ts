@@ -14,7 +14,7 @@ import {
 // Types
 import type {
   CandyStatus,
-  Card,
+  HouseCard,
   Decks,
   FirebaseStateData,
   FirebaseStoreData,
@@ -72,10 +72,10 @@ export const determineNextPhase = (
   return TRICK_OR_TREAT;
 };
 
-export const buildDecks = (isShortGame: number): Decks => {
+export const buildDecks = (isShortGame: boolean): Decks => {
   // 1. Build horror deck: get one random horror of each set and make 3 copies of it
   const horrorCount = {};
-  const horrorDeck: Card[] = utils.helpers.flattenArray(
+  const horrorDeck: HouseCard[] = utils.helpers.flattenArray(
     HORROR_SETS.map((horrorGroup: DualLanguageValue[]) => {
       const horrorName = utils.game.getRandomItem(horrorGroup);
       const horrorGenericName = horrorName.en.toLowerCase();
@@ -94,7 +94,7 @@ export const buildDecks = (isShortGame: number): Decks => {
   );
 
   // 2. Build jackpot deck: based on game length
-  const jackpotDeck: Card[] = new Array(isShortGame ? SHORT_GAME_ROUNDS : MAX_ROUNDS)
+  const jackpotDeck: HouseCard[] = new Array(isShortGame ? SHORT_GAME_ROUNDS : MAX_ROUNDS)
     .fill('jackpot')
     .map((typeName, i) => ({
       id: `jackpot-${JACKPOT_VALUES[i]}-${i + 1}`,
@@ -108,7 +108,7 @@ export const buildDecks = (isShortGame: number): Decks => {
     }));
 
   // 3. Build candy deck with all candy
-  const candyDeck: Card[] = CANDY_VALUES.map((candyValue, i) => ({
+  const candyDeck: HouseCard[] = CANDY_VALUES.map((candyValue, i) => ({
     id: `candy-${candyValue}-${i + 1}`,
     key: `${CARD_KEY_PREFIX}-candy-${candyValue}`,
     name: {
@@ -127,14 +127,14 @@ export const buildDecks = (isShortGame: number): Decks => {
   };
 };
 
-export const buildStreetDeck = (store: FirebaseStoreData, currentRound: number): Card[] => {
+export const buildStreetDeck = (store: FirebaseStoreData, currentRound: number): HouseCard[] => {
   // Remove last used horror, if any
   const horrorDeckWithoutAnyUsedHorrors = store.horrorDeck.filter(
-    (horror: Card) => !store.usedHorrorIds.includes(horror.id)
+    (horror: HouseCard) => !store.usedHorrorIds.includes(horror.id)
   );
 
   // Add jackpots up to the current level
-  const availableJackpots = store.jackpotDeck.filter((jackpot: Card, index: number) => {
+  const availableJackpots = store.jackpotDeck.filter((jackpot: HouseCard, index: number) => {
     return index < currentRound && !store.claimedJackpotIds.includes(jackpot.id);
   });
 
@@ -144,7 +144,7 @@ export const buildStreetDeck = (store: FirebaseStoreData, currentRound: number):
   return utils.game.shuffle(streetDeck);
 };
 
-export const shareCandy = (players: Players, currentCard?: Card): CandyStatus => {
+export const shareCandy = (players: Players, currentCard?: HouseCard): CandyStatus => {
   if (!currentCard || ['jackpot', 'horror'].includes(currentCard.type)) {
     return {
       leftover: 0,
@@ -176,7 +176,7 @@ export const shareCandy = (players: Players, currentCard?: Card): CandyStatus =>
 export const dealNewCard = (
   store: FirebaseStoreData,
   players: Players
-): { currentCard: Card; candyStatus: CandyStatus } => {
+): { currentCard: HouseCard; candyStatus: CandyStatus } => {
   // Deal card
   const currentCard = store.streetDeck.pop();
 
@@ -195,7 +195,7 @@ export const dealNewCard = (
 };
 
 type ParsedDecisions = {
-  street: Card[];
+  street: HouseCard[];
   candySidewalk: CandyStatus[];
   claimedJackpotIds: string[];
   goingHomePlayerIds: PlayerId[];
@@ -207,7 +207,7 @@ type ParsedDecisions = {
 export const parseDecisions = (
   players: Players,
   candySidewalk: CandyStatus[],
-  street: Card[],
+  street: HouseCard[],
   store: FirebaseStoreData
 ): ParsedDecisions => {
   const { claimedJackpotIds } = store;
@@ -277,7 +277,7 @@ export const parseDecisions = (
 
   // Handle jackpot
   let newClaimedJackpotIds = claimedJackpotIds;
-  const availableJackpot = street.reduce((jackpots: Card[], card: Card): Card[] => {
+  const availableJackpot = street.reduce((jackpots: HouseCard[], card: HouseCard): HouseCard[] => {
     if (card.type === 'jackpot') {
       jackpots.push(card);
     }
@@ -427,12 +427,12 @@ export const resetHorrorCount = (horrorCount: NumberDictionary): NumberDictionar
 
 export const tallyCandyAsScore = (players: Players) => {
   Object.values(players).forEach((player) => {
-    const jackpots = player.jackpots.reduce((t: number, j: Card) => t + j.value, 0);
+    const jackpots = player.jackpots.reduce((t: number, j: HouseCard) => t + j.value, 0);
     player.score = player.totalCandy + jackpots;
   });
 };
 
-export const countMonsters = (street: Card[]) =>
+export const countMonsters = (street: HouseCard[]) =>
   street.reduce((acc: number, entry) => {
     if (entry.type === 'horror') acc += 1;
     return acc;

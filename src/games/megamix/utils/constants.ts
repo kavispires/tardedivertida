@@ -87,6 +87,10 @@ export const TITLES: Record<string, DualLanguageValue> = {
     pt: 'Ué, só isso?',
     en: "That's it?",
   },
+  'vamos-no-cinema': {
+    pt: 'Vamos no cinema?',
+    en: 'Movie night!',
+  },
 };
 
 export const INSTRUCTIONS: Record<string, DualLanguageValue> = {
@@ -111,8 +115,8 @@ export const INSTRUCTIONS: Record<string, DualLanguageValue> = {
     en: 'Place the clue in the word grid!',
   },
   'detetives-imaginativos': {
-    pt: 'Encontre o impostor!',
-    en: 'Find the impostor!',
+    pt: 'Há um impostor entre a gente!',
+    en: 'There is an impostor among us!',
   },
   'dilema-dos-esquiadores': {
     pt: 'Escolha uma montanha para esquiar!',
@@ -135,15 +139,15 @@ export const INSTRUCTIONS: Record<string, DualLanguageValue> = {
     en: 'Join the herd!',
   },
   'na-rua-do-medo': {
-    pt: '???',
-    en: '???',
+    pt: 'Gostosuras ou travessuras?',
+    en: 'Trick or treat?',
   },
   'namoro-ou-amizade': {
     pt: 'Selecione o melhor partido',
     en: "Who's the best catch?",
   },
   'onda-telepatica': {
-    pt: 'Onde o ponteiro está apontando?',
+    pt: 'Para onde o ponteiro está apontando?',
     en: 'Where is the pointer pointing to?',
   },
   'palheta-de-cores': {
@@ -177,5 +181,9 @@ export const INSTRUCTIONS: Record<string, DualLanguageValue> = {
   'ue-so-isso': {
     pt: 'Escreva uma dica para ser eliminada',
     en: 'Write a clue to be eliminated',
+  },
+  'vamos-no-cinema': {
+    pt: 'Vamos ver qual filme?',
+    en: 'But what movie?',
   },
 };

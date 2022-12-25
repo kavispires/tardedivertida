@@ -12,6 +12,7 @@ import { TaskFileiraDeFatos } from './components/TaskFileiraDeFatos';
 import { TaskGaleriaDeSonhos } from './components/TaskGaleriaDeSonhos';
 import { TaskMenteColetiva } from './components/TaskMenteColetiva';
 import { TaskNamoroOuAmizade } from './components/TaskNamoroOuAmizade';
+import { TaskNaRuaDoMedo } from './components/TaskNaRuaDoMedo';
 import { TaskOndaTelepatica } from './components/TaskOndaTelepatica';
 import { TaskPalhetaDeCores } from './components/TaskPalhetaDeFores';
 import { TaskPolemicaDaVez } from './components/TaskPolemicaDaVez';
@@ -21,6 +22,7 @@ import { TaskRetratoFalado } from './components/TaskRetratoFalado';
 import { TaskSuperCampeonato } from './components/TaskSuperCampeonato';
 import { TaskTestemunhaOcular } from './components/TaskTestemunhaOcular';
 import { TaskUeSoIsso } from './components/TaskUeSoIsso';
+import { TaskVamosNoCinema } from './components/TaskVamosNoCinema';
 
 type StepTaskProps = {
   round: GameRound;
@@ -32,7 +34,6 @@ type StepTaskProps = {
 
 export const StepTask = ({ announcement, ...rest }: StepTaskProps) => {
   let Component = FallbackComponent;
-  console.log({ task: rest.task });
 
   switch (rest.task.game) {
     case 'arte-ruim':
@@ -71,6 +72,9 @@ export const StepTask = ({ announcement, ...rest }: StepTaskProps) => {
     case 'namoro-ou-amizade':
       Component = TaskNamoroOuAmizade;
       break;
+    case 'na-rua-do-medo':
+      Component = TaskNaRuaDoMedo;
+      break;
     case 'onda-telepatica':
       Component = TaskOndaTelepatica;
       break;
@@ -97,6 +101,9 @@ export const StepTask = ({ announcement, ...rest }: StepTaskProps) => {
       break;
     case 'ue-so-isso':
       Component = TaskUeSoIsso;
+      break;
+    case 'vamos-no-cinema':
+      Component = TaskVamosNoCinema;
       break;
     default:
       Component = FallbackComponent;

@@ -48,9 +48,9 @@ export const TaskPortaDosDesesperados = ({ task, round, onSubmitTask, user, play
       </Instruction>
       <Image.PreviewGroup>
         <Space className="space-container">
-          {task.data.doors.map((cardId: ImageCardId, index: number) => {
+          {task.data.doors.map((cardId: ImageCardId) => {
             return (
-              <Space className="space-container" direction="vertical">
+              <Space className="space-container" direction="vertical" key={cardId}>
                 <ImageBlurButtonContainer cardId={cardId}>
                   <DoorFrame width={doorWidth}>
                     <ImageCard imageId={cardId} cardWidth={150} />
@@ -75,10 +75,10 @@ export const TaskPortaDosDesesperados = ({ task, round, onSubmitTask, user, play
         <Image.PreviewGroup>
           <Book>
             <ImageBlurButtonContainer cardId={task.data.book}>
-              <ImageCard imageId={task.data.book} cardWidth={140} />
+              <ImageCard imageId={task.data.book[0]} cardWidth={140} />
             </ImageBlurButtonContainer>
             <ImageBlurButtonContainer cardId={task.data.book}>
-              <ImageCard imageId={task.data.book} cardWidth={140} />
+              <ImageCard imageId={task.data.book?.[1] || task.data.book[0]} cardWidth={140} />
             </ImageBlurButtonContainer>
           </Book>
         </Image.PreviewGroup>

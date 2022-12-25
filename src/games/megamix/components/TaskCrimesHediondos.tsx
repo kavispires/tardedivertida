@@ -66,7 +66,10 @@ export const TaskCrimesHediondos = ({ task, round, onSubmitTask, user, players }
       <ul className="h-cards">
         {task.data.cards.map((card: HCard) => {
           return (
-            <li className={clsx('h-item-card', user?.data?.value === card.id && 'h-item-card--selected')}>
+            <li
+              className={clsx('h-item-card', user?.data?.value === card.id && 'h-item-card--selected')}
+              key={card.id}
+            >
               <Popover content={dualTranslate(card.name).toUpperCase()}>
                 <Tag
                   className="h-item-card__name"

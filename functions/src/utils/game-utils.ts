@@ -235,3 +235,10 @@ export const filterOutByIds = <T>(dict: Record<string, T>, usedIds: BooleanDicti
     return acc;
   }, {});
 };
+
+/**
+ * Creates array of given length filled with indexes
+ * @param length
+ * @returns
+ */
+export const makeArray = (length = 1): number[] => new Array(length).fill(0).map((e, i) => e + i);

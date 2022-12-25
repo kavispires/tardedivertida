@@ -10,6 +10,7 @@ import { GuessIcon } from 'components/icons/GuessIcon';
 import { LoveIcon } from 'components/icons/LoveIcon';
 import { MagicDoorIcon } from 'components/icons/MagicDoorIcon';
 import { MonsterIcon } from 'components/icons/MonsterIcon';
+import { MovieTheaterIcon } from 'components/icons/MovieTheaterIcon';
 import { PassportIcon } from 'components/icons/PassportIcon';
 import { PathIcon } from 'components/icons/PathIcon';
 import { PictureIcon } from 'components/icons/PictureIcon';
@@ -74,6 +75,8 @@ export const TaskIcon = ({ task }: TaskIconProps) => {
       return <CriminalIcon />;
     case 'ue-so-isso':
       return <GuessIcon />;
+    case 'vamos-no-cinema':
+      return <MovieTheaterIcon />;
     default:
       return <TDIcon />;
   }

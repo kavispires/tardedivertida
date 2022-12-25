@@ -72,7 +72,7 @@ export const TaskMenteColetiva = ({ task, round, onSubmitTask, user }: TaskProps
           loading={isLoading}
           onClick={onSubmitAnswer}
         >
-          <Translate pt="Selecionar" en="Select" />
+          <Translate pt="Enviar" en="Submit" />
         </Button>
       </Space>
     </>

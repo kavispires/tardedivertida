@@ -1,15 +1,23 @@
 import { MEGAMIX_ACHIEVEMENTS, MEGAMIX_ACTIONS } from './constants';
 
 export type MegamixGameOptions = {
-  fullGame: boolean;
-  allMiniGameTypes: boolean;
+  nsfw: boolean;
+  allMinigames: boolean;
 };
 
 export interface PossibleTask {
   game: string;
-  variation?: string;
   condition: string;
-  upcoming: boolean;
+  variants?: string[];
+  upcoming?: boolean;
+  nsfw?: boolean;
+}
+
+export interface AvailableTask {
+  game: string;
+  variant?: string;
+  upcoming?: boolean;
+  nsfw?: boolean;
 }
 
 export interface Task {

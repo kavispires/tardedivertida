@@ -34,14 +34,14 @@ export const TaskOndaTelepatica = ({ task, round, onSubmitTask, user, players }:
         <Translate
           pt={
             <>
-              Com a carta com as duas ideias opostas e a dica abaixo, você acha o Medidor de Ondas Telepáticas
-              apontaria para a <TextHighlight>Esquerda</TextHighlight>, <TextHighlight>Centro</TextHighlight>{' '}
-              ou <TextHighlight>Direita</TextHighlight>?
+              Com a carta de as duas ideias opostas e a dica abaixo, você acha que o Medidor de Ondas
+              Telepáticas apontaria para a <TextHighlight>Esquerda</TextHighlight>,{' '}
+              <TextHighlight>Centro</TextHighlight> ou <TextHighlight>Direita</TextHighlight>?
             </>
           }
           en={
             <>
-              With the card with the two opposing ideas and the clue below, do you think the Wavelength
+              With the card of the two opposing ideas and the clue below, do you think the Wavelength
               Measuring device would point to the <TextHighlight>Left</TextHighlight>,{' '}
               <TextHighlight>Center</TextHighlight>, or <TextHighlight>Right</TextHighlight>?
             </>

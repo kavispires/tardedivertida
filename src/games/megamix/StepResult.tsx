@@ -30,6 +30,7 @@ type StepResultProps = {
   isFirstRunThrough: boolean;
   task: Task;
   winningValues: string[];
+  winningTeam: PlayerId[];
   scoringType: string;
 } & AnnouncementProps;
 
@@ -42,6 +43,7 @@ export function StepResult({
   announcement,
   task,
   winningValues,
+  winningTeam,
   scoringType,
 }: StepResultProps) {
   useTemporarilyHidePlayersBar();
@@ -63,7 +65,7 @@ export function StepResult({
         <IconAvatar icon={<DJIcon />} size="large" />
         {scoringType === 'NORMAL' && (
           <Translate
-            pt={<>Jogadores que votaram com a maioria ficam ou se entram na Área VIP.</>}
+            pt={<>Jogadores que votaram com a maioria entram ou continuam na Área VIP.</>}
             en={<>Players who voted with the majority join or stay in the VIP area.</>}
           />
         )}
@@ -96,14 +98,19 @@ export function StepResult({
           </span>
         </div>
         <div className="results__values" id="results-values">
-          <ResultValueDelegator task={task} winningValues={winningValues} players={players} />
+          <ResultValueDelegator
+            task={task}
+            winningValues={winningValues}
+            players={players}
+            winningTeam={winningTeam}
+          />
         </div>
         <div className="results__gutter">
           <span className="results__icon">
             <IconAvatar icon={<GarbageIcon />} size="large" />
           </span>
           <span className="results__label">
-            <Translate pt="Sarjeta" en="Scum" />
+            <Translate pt="Pista (Sarjeta)" en="GA (Scum)" />
           </span>
         </div>
 
@@ -136,9 +143,7 @@ export function StepResult({
         )}
       </Space>
 
-      <Space className="space-container" align="center" wrap>
-        <VotesDelegator task={task} winningValues={winningValues} players={players} />
-      </Space>
+      <VotesDelegator task={task} winningValues={winningValues} players={players} winningTeam={winningTeam} />
     </Step>
   );
 }

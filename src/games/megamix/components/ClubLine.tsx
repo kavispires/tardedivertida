@@ -1,7 +1,11 @@
-import { Tooltip } from 'antd';
-import { VIPLineIcon } from 'components/icons/VIPLineIcon';
 import { useMemo } from 'react';
+// AntDesign Resources
+import { Tooltip } from 'antd';
+// Hooks
+// Utils
 import { sortPlayers } from 'utils/helpers';
+// Components
+import { VIPLineIcon } from 'components/icons/VIPLineIcon';
 import { ClubberAvatar } from './ClubberAvatar';
 
 type MinigameTitleProps = {

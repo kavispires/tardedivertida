@@ -1,23 +1,27 @@
+import { Fragment } from 'react';
+// AntDesign Resources
 import { RightSquareOutlined } from '@ant-design/icons';
-
+// Hooks
+// Utils
+import { LETTERS } from 'utils/constants';
+// Components
 import { IconAvatar } from 'components/icons/IconAvatar';
 import { MapIcon } from 'components/icons/MapIcon';
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
+import { WinningCount } from './WinningCount';
 
-import { Fragment } from 'react';
-import { LETTERS } from 'utils/constants';
-
-export function ResultCaminhosMagicos({ task, winningValues }: ResultComponentProps) {
+export function ResultCaminhosMagicos({ task, winningValues, winningTeam }: ResultComponentProps) {
   return (
     <>
+      <WinningCount>{winningTeam.length}</WinningCount>
       <Instruction>
         <Translate pt="A arte mais votada foi" en="The most popular art was" />:
       </Instruction>
       <div className="task-result-values__cards">
         {winningValues.map((value) => {
           const index = Number(value);
-          const entry = task.data.options[index];
+          const entry = task.data?.options?.[index] ?? {};
           return (
             <div key={index} className="cm-clues__clue">
               {LETTERS[Number(value)]}

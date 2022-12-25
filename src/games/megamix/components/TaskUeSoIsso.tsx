@@ -36,18 +36,19 @@ export const TaskUeSoIsso = ({ task, round, onSubmitTask, user, players }: TaskP
         <Translate
           pt={
             <>
-              Num jogo normal de Ué, Só Isso, você está tentando dar uma dica que não seja igual a dos outros
-              jogadores para que sua dica não seja eliminada.
+              Num jogo normal de <strong>Ué, Só Isso</strong>, você está tentando dar uma dica que não seja
+              igual a dos outros jogadores para que sua dica não seja eliminada.
               <br />
-              Dessa vez, você <strong>quer que sua dica seja eliminada</strong>, seja bem óbvio!
+              Dessa vez, você <strong>quer que sua dica (palavra-única) seja eliminada</strong>, seja bem
+              óbvio!
             </>
           }
           en={
             <>
-              In a normal game of That's it?, you are trying to write a clue that is not the same as other
-              players so it doesn't get removed.
+              In a normal game of <strong>That's it?</strong>, you are trying to write a clue that is not the
+              same as other players so it doesn't get removed.
               <br />
-              This time, you <strong>want your clue to be eliminated</strong>so be very obvious!
+              This time, you <strong>want your clue (single word) to be eliminated</strong>so be very obvious!
             </>
           }
         />
@@ -71,7 +72,7 @@ export const TaskUeSoIsso = ({ task, round, onSubmitTask, user, players }: TaskP
           loading={isLoading}
           onClick={onSubmitClue}
         >
-          <Translate pt="Selecionar" en="Select" />
+          <Translate pt="Enviar" en="Submit" />
         </Button>
       </Space>
     </>

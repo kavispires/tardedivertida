@@ -1,7 +1,12 @@
+// AntDesign Resources
+// Hooks
+// Utils
+// Components
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
+import { WinningCount } from './WinningCount';
 
-export function ResultCruzaPalavras({ task, winningValues }: ResultComponentProps) {
+export function ResultCruzaPalavras({ task, winningValues, winningTeam }: ResultComponentProps) {
   const cheatSheet: PlainObject = {
     0: [task.data.cards[0].text, task.data.cards[2].text],
     1: [task.data.cards[0].text, task.data.cards[3].text],
@@ -11,6 +16,7 @@ export function ResultCruzaPalavras({ task, winningValues }: ResultComponentProp
 
   return (
     <>
+      <WinningCount>{winningTeam.length}</WinningCount>
       <Instruction>
         <Translate pt="O mais votado foi" en="The most popular was" />:
       </Instruction>

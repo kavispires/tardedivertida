@@ -40,106 +40,107 @@ export const MINI_GAMES_LIST: PossibleTask[] = [
   {
     game: GAME_NAMES.ARTE_RUIM,
     condition: WINNING_CONDITION.MOST_VOTED,
-    upcoming: false,
+    variants: ['cards', 'drawings'],
   },
   {
     game: GAME_NAMES.CONTADORES_HISTORIAS,
     condition: WINNING_CONDITION.MOST_VOTED,
-    upcoming: false,
   },
   {
     game: GAME_NAMES.CRIMES_HEDIONDOS,
     condition: WINNING_CONDITION.MOST_VOTED,
-    upcoming: false,
+    variants: ['weapon', 'evidence'],
   },
   {
     game: GAME_NAMES.CRUZA_PALAVRAS,
     condition: WINNING_CONDITION.MOST_VOTED,
-    upcoming: false,
   },
   {
     game: GAME_NAMES.DETETIVES_IMAGINATIVOS,
     condition: WINNING_CONDITION.MOST_VOTED,
-    upcoming: false,
+    variants: ['impostor', 'detective'],
   },
   {
     game: GAME_NAMES.ESPIAO_ENTRE_NOS,
     condition: WINNING_CONDITION.STRING_MATCH,
-    upcoming: false,
   },
   {
     game: GAME_NAMES.GALERIA_DE_SONHOS,
     condition: WINNING_CONDITION.MOST_VOTED,
-    upcoming: false,
   },
   {
     game: GAME_NAMES.MENTE_COLETIVA,
     condition: WINNING_CONDITION.STRING_MATCH,
-    upcoming: false,
   },
   {
     game: GAME_NAMES.NA_RUA_DO_MEDO,
     condition: WINNING_CONDITION.MOST_VOTED,
-    upcoming: false,
+    variants: ['kids', 'house'],
   },
   {
     game: GAME_NAMES.ONDA_TELEPATICA,
     condition: WINNING_CONDITION.MOST_VOTED,
-    upcoming: false,
   },
   {
     game: GAME_NAMES.POLEMICA_DA_VEZ,
     condition: WINNING_CONDITION.MOST_VOTED,
-    upcoming: false,
   },
   {
     game: GAME_NAMES.PORTA_DOS_DESESPERADOS,
     condition: WINNING_CONDITION.MOST_VOTED,
-    upcoming: false,
+    variants: ['normal', 'hard'],
   },
   {
     game: GAME_NAMES.SUPER_CAMPEONATO,
     condition: WINNING_CONDITION.MOST_VOTED,
-    upcoming: false,
   },
   {
     game: GAME_NAMES.TESTEMUNHA_OCULAR,
     condition: WINNING_CONDITION.MOST_VOTED,
-    upcoming: false,
+    variants: ['suspects', 'answer'],
+    nsfw: true,
   },
   {
     game: GAME_NAMES.UE_SO_ISSO,
     condition: WINNING_CONDITION.STRING_MATCH,
-    upcoming: false,
   },
-
   {
-    game: 'DILEMA_DO_ESQUIADOR',
+    game: GAME_NAMES.DILEMA_DOS_ESQUIADORES,
     condition: WINNING_CONDITION.MOST_VOTED,
     upcoming: true,
   },
   {
-    game: 'MATA_MATA',
+    game: GAME_NAMES.QUEM_NAO_MATA,
+    condition: WINNING_CONDITION.MOST_VOTED,
+    upcoming: true,
+    variants: [
+      'kill',
+      // 'gold'
+    ],
+  },
+  {
+    game: GAME_NAMES.FILEIRA_DE_FATOS,
     condition: WINNING_CONDITION.MOST_VOTED,
     upcoming: true,
   },
   {
-    game: 'FILEIRA_DE_FATOS',
+    game: GAME_NAMES.NAMORO_OU_AMIZADE,
+    condition: WINNING_CONDITION.MOST_VOTED,
+    upcoming: true,
+    nsfw: true,
+  },
+  {
+    game: GAME_NAMES.CAMINHOS_MAGICOS,
     condition: WINNING_CONDITION.MOST_VOTED,
     upcoming: true,
   },
   {
-    game: 'NAMORO_OU_AMIZADE',
+    game: GAME_NAMES.PALHETA_DE_CORES,
     condition: WINNING_CONDITION.MOST_VOTED,
     upcoming: true,
   },
   {
-    game: 'CAMINHOS_MAGICOS',
-    condition: WINNING_CONDITION.MOST_VOTED,
-    upcoming: true,
-  },
-  {
-    game: 'PALHETA_DE_CORES',
+    game: GAME_NAMES.VAMOS_NO_CINEMA,
     condition: WINNING_CONDITION.MOST_VOTED,
     upcoming: true,
   },

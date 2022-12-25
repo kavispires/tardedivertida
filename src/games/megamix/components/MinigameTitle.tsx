@@ -1,6 +1,10 @@
+// AntDesign Resources
+// Hooks
+// Utils
+import { INSTRUCTIONS } from '../utils/constants';
+// Components
 import { Title } from 'components/text';
 import { useLanguage } from 'hooks/useLanguage';
-import { INSTRUCTIONS } from '../utils/constants';
 
 type MinigameTitleProps = {
   round: GameRound;

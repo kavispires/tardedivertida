@@ -37,7 +37,7 @@ export const TaskGaleriaDeSonhos = ({ task, round, onSubmitTask, user }: TaskPro
         />
       </Instruction>
 
-      <Card header={translate('tema', 'theme')} color="orange">
+      <Card header={translate('Tema', 'Theme')} color="orange">
         {task.data.theme.text}
       </Card>
 

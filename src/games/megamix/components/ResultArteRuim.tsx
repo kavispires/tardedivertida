@@ -1,9 +1,13 @@
+// Hooks
+import { useCardWidth } from 'hooks/useCardWidth';
+// Utils
+// Components
 import { CanvasSVG } from 'components/canvas';
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
-import { useCardWidth } from 'hooks/useCardWidth';
+import { WinningCount } from './WinningCount';
 
-export function ResultArteRuim({ task, winningValues }: ResultComponentProps) {
+export function ResultArteRuim({ task, winningValues, winningTeam }: ResultComponentProps) {
   const width = useCardWidth(winningValues.length + 1, 9, 80, 200, 0, 'results-values');
 
   if (task.variant === 'drawings') {
@@ -13,6 +17,7 @@ export function ResultArteRuim({ task, winningValues }: ResultComponentProps) {
 
     return (
       <>
+        <WinningCount>{winningTeam.length}</WinningCount>
         <Instruction>
           <Translate pt="A arte mais votada foi" en="The most popular art was" />:
         </Instruction>
@@ -33,6 +38,7 @@ export function ResultArteRuim({ task, winningValues }: ResultComponentProps) {
 
   return (
     <>
+      <WinningCount>{winningTeam.length}</WinningCount>
       <Instruction>
         <Translate pt="O mais votado foi" en="The most popular was" />:
       </Instruction>

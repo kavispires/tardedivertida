@@ -1,4 +1,4 @@
-import { Button, Space } from 'antd';
+import { Button, Image, Space } from 'antd';
 import clsx from 'clsx';
 import { Avatar } from 'components/avatars';
 import { ImageBlurButtonContainer, ImageCard } from 'components/cards';
@@ -13,7 +13,7 @@ import { MinigameTitle } from './MinigameTitle';
 import { mockSelection } from '../utils/mock';
 
 export const TaskDetetivesImaginativos = ({ task, round, onSubmitTask, user, players }: TaskProps) => {
-  const cardWidth = useCardWidth(6, 32, 200, 270);
+  const cardWidth = useCardWidth(7, 32, 200, 270);
   const { language } = useLanguage();
   const { isLoading } = useLoading();
 
@@ -23,6 +23,115 @@ export const TaskDetetivesImaginativos = ({ task, round, onSubmitTask, user, pla
       data: { value: mockSelection(task.data.cards) },
     });
   });
+
+  if (task.variant === 'impostor') {
+    return (
+      <>
+        <MinigameTitle round={round} task={task} />
+        <Instruction contained>
+          <Translate
+            pt={
+              <>
+                Você é o impostor e não sabe a palavra-secreta. Os outros jogadores escolheram essas cartas
+                abaixo.
+              </>
+            }
+            en={
+              <>
+                You are the impostor and don't know the secret clue. The other players played those cartas
+                below.
+              </>
+            }
+          />
+        </Instruction>
+
+        <Image.PreviewGroup>
+          <ul className="d-table">
+            {task.data.table.map((cardId: ImageCardId, index: number) => {
+              const bot = BOTS_LIST[index];
+              return (
+                <div className="d-table__player-entry" key={`table-focus-${cardId}`}>
+                  <ImageBlurButtonContainer
+                    cardId={cardId}
+                    className={clsx(
+                      'd-table__card',
+                      user?.data?.value === cardId && 'd-table__card--selected'
+                    )}
+                  >
+                    <ImageCard
+                      key={`table-focus-${cardId}`}
+                      imageId={cardId}
+                      cardWidth={cardWidth * 0.6}
+                      className="d-table__image-card"
+                    />
+                  </ImageBlurButtonContainer>
+
+                  <div className="d-table__player-info">
+                    <Avatar id={bot.avatarId} className="d-table__player-avatar" size="default" />
+                    <span
+                      className="d-table__player-bar"
+                      style={{ backgroundColor: AVATARS[bot.avatarId].color }}
+                    />
+                    <span className="d-table__player-name">
+                      {bot.name}, {AVATARS[bot.avatarId].description[language]}
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
+          </ul>
+        </Image.PreviewGroup>
+
+        <Instruction contained>
+          <Translate
+            pt={<>Qual das suas cartas você usaria para passar despercebido?</>}
+            en={<>Which card in your hand would to play so you can blend in?</>}
+          />
+        </Instruction>
+
+        <Image.PreviewGroup>
+          <Space className="space-container">
+            {task.data.cards.map((cardId: ImageCardId) => {
+              return (
+                <div className="d-table__player-entry" key={`table-focus-${cardId}`}>
+                  <ImageBlurButtonContainer
+                    cardId={cardId}
+                    className={clsx(
+                      'd-table__card',
+                      user?.data?.value === cardId && 'd-table__card--selected'
+                    )}
+                  >
+                    <ImageCard
+                      key={`table-focus-${cardId}`}
+                      imageId={cardId}
+                      cardWidth={cardWidth * 0.75}
+                      className="d-table__image-card"
+                    />
+                  </ImageBlurButtonContainer>
+
+                  <Space className="space-container">
+                    <Button
+                      shape="round"
+                      type="primary"
+                      disabled={user.ready}
+                      loading={isLoading}
+                      onClick={() =>
+                        onSubmitTask({
+                          data: { value: cardId },
+                        })
+                      }
+                    >
+                      <Translate pt="Selecionar" en="Select" />
+                    </Button>
+                  </Space>
+                </div>
+              );
+            })}
+          </Space>
+        </Image.PreviewGroup>
+      </>
+    );
+  }
 
   return (
     <>
@@ -46,52 +155,54 @@ export const TaskDetetivesImaginativos = ({ task, round, onSubmitTask, user, pla
         />
       </Instruction>
 
-      <ul className="d-table">
-        {task.data.cards.map((cardId: ImageCardId, index: number) => {
-          const bot = BOTS_LIST[index];
-          return (
-            <div className="d-table__player-entry" key={`table-focus-${cardId}`}>
-              <ImageBlurButtonContainer
-                cardId={cardId}
-                className={clsx('d-table__card', user?.data?.value === cardId && 'd-table__card--selected')}
-              >
-                <ImageCard
-                  key={`table-focus-${cardId}`}
-                  imageId={cardId}
-                  cardWidth={cardWidth}
-                  className="d-table__image-card"
-                />
-              </ImageBlurButtonContainer>
-
-              <div className="d-table__player-info">
-                <Avatar id={bot.avatarId} className="d-table__player-avatar" size="default" />
-                <span
-                  className="d-table__player-bar"
-                  style={{ backgroundColor: AVATARS[bot.avatarId].color }}
-                />
-                <span className="d-table__player-name">
-                  {bot.name}, {AVATARS[bot.avatarId].description[language]}
-                </span>
-              </div>
-              <Space className="space-container">
-                <Button
-                  shape="round"
-                  type="primary"
-                  disabled={user.ready}
-                  loading={isLoading}
-                  onClick={() =>
-                    onSubmitTask({
-                      data: { value: cardId },
-                    })
-                  }
+      <Image.PreviewGroup>
+        <ul className="d-table">
+          {task.data.cards.map((cardId: ImageCardId, index: number) => {
+            const bot = BOTS_LIST[index];
+            return (
+              <div className="d-table__player-entry" key={`table-focus-${cardId}`}>
+                <ImageBlurButtonContainer
+                  cardId={cardId}
+                  className={clsx('d-table__card', user?.data?.value === cardId && 'd-table__card--selected')}
                 >
-                  <Translate pt="Esse é o impostor" en="This is the impostor" />
-                </Button>
-              </Space>
-            </div>
-          );
-        })}
-      </ul>
+                  <ImageCard
+                    key={`table-focus-${cardId}`}
+                    imageId={cardId}
+                    cardWidth={cardWidth}
+                    className="d-table__image-card"
+                  />
+                </ImageBlurButtonContainer>
+
+                <div className="d-table__player-info">
+                  <Avatar id={bot.avatarId} className="d-table__player-avatar" size="default" />
+                  <span
+                    className="d-table__player-bar"
+                    style={{ backgroundColor: AVATARS[bot.avatarId].color }}
+                  />
+                  <span className="d-table__player-name">
+                    {bot.name}, {AVATARS[bot.avatarId].description[language]}
+                  </span>
+                </div>
+                <Space className="space-container">
+                  <Button
+                    shape="round"
+                    type="primary"
+                    disabled={user.ready}
+                    loading={isLoading}
+                    onClick={() =>
+                      onSubmitTask({
+                        data: { value: cardId },
+                      })
+                    }
+                  >
+                    <Translate pt="Esse é o impostor" en="This is the impostor" />
+                  </Button>
+                </Space>
+              </div>
+            );
+          })}
+        </ul>
+      </Image.PreviewGroup>
     </>
   );
 };

@@ -33,7 +33,7 @@ export const TaskCruzaPalavras = ({ task, round, onSubmitTask, user }: TaskProps
         <Translate
           pt={
             <>
-              Alguém escreveu a dica péssima abaixo, e agora? oOnde ela se encaixa na grade?
+              Alguém escreveu a dica péssima abaixo, e agora? Aonde ela se encaixa na grade?
               <br />
               Clique na célula apropriada!
             </>
