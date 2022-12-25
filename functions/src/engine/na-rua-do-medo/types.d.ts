@@ -4,7 +4,7 @@ export type NoRuaDoMedoOptions = {
   shortGame: boolean;
 };
 
-export type Card = {
+export type HouseCard = {
   id: string;
   key: string;
   name: DualLanguageValue;
@@ -13,9 +13,9 @@ export type Card = {
 };
 
 export type Decks = {
-  horrorDeck: Card[];
-  jackpotDeck: Card[];
-  candyDeck: Card[];
+  horrorDeck: HouseCard[];
+  jackpotDeck: HouseCard[];
+  candyDeck: HouseCard[];
   horrorCount: NumberDictionary;
 };
 
@@ -31,17 +31,17 @@ export type Outcome = {
 };
 
 export interface NoRuaDoMedoStore extends DefaultStore {
-  horrorDeck: Card[];
-  jackpotDeck: Card[];
-  candyDeck: Card[];
+  horrorDeck: HouseCard[];
+  jackpotDeck: HouseCard[];
+  candyDeck: HouseCard[];
   usedHorrorIds: string[];
   claimedJackpotIds: string[];
   [key: string]: any;
 }
 
 export interface NoRuaDoMedoState extends DefaultState {
-  street?: Card[];
-  currentCard?: Card;
+  street?: HouseCard[];
+  currentCard?: HouseCard;
   candySidewalk?: CandyStatus[];
   totalCandyInSidewalk?: number;
   isEverybodyHome?: boolean;

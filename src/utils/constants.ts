@@ -250,6 +250,7 @@ export const GAME_COLLECTION = {
   GALERIA_DE_SONHOS: 'galeria-de-sonhos',
   INSTRUMENTOS_CODIFICADOS: 'instrumentos-codificados',
   LINHAS_CRUZADAS: 'linhas-cruzadas',
+  MEGAMIX: 'megamix',
   MENTE_COLETIVA: 'mente-coletiva',
   NA_RUA_DO_MEDO: 'na-rua-do-medo',
   NAUFRAGOS: 'naufragos',

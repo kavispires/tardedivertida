@@ -75,8 +75,14 @@ const SessionRetratoFalado = lazy(
 const SessionSonhosPesadelos = lazy(
   () => import('games/sonhos-pesadelos/SessionSonhosPesadelos' /* webpackChunkName: "sonhos-pesadelos" */)
 );
+const SessionSuperCampeonato = lazy(
+  () => import('games/super-campeonato/SessionSuperCampeonato' /* webpackChunkName: "super-campeonato" */)
+);
 const SessionTestemunhaOcular = lazy(
   () => import('games/testemunha-ocular/SessionTestemunhaOcular' /* webpackChunkName: "testemunha-ocular" */)
+);
+const SessionTrevoDaSorte = lazy(
+  () => import('games/trevo-da-sorte/SessionTrevoDaSorte' /* webpackChunkName: "trevo-da-sorte" */)
 );
 const SessionUeSoIsso = lazy(
   () => import('games/ue-so-isso/SessionUeSoIsso' /* webpackChunkName: "ue-so-isso" */)
@@ -85,12 +91,7 @@ const SessionVendavalDePalpite = lazy(
   () =>
     import('games/vendaval-de-palpite/SessionVendavalDePalpite' /* webpackChunkName: "vendaval-de-palpite" */)
 );
-const SessionSuperCampeonato = lazy(
-  () => import('games/super-campeonato/SessionSuperCampeonato' /* webpackChunkName: "super-campeonato" */)
-);
-const SessionTrevoDaSorte = lazy(
-  () => import('games/trevo-da-sorte/SessionTrevoDaSorte' /* webpackChunkName: "trevo-da-sorte" */)
-);
+const SessionMegamix = lazy(() => import('games/megamix/SessionMegamix' /* webpackChunkName: "megamix" */));
 
 function Game() {
   const navigate = useNavigate();
@@ -197,6 +198,12 @@ function Game() {
             <SessionContadoresHistorias gameId={gameId} />
           </Suspense>
         );
+      case GAME_COLLECTION.CRUZA_PALAVRAS:
+        return (
+          <Suspense fallback={<LoadingPage message="" />}>
+            <SessionCruzaPalavras gameId={gameId} />
+          </Suspense>
+        );
       case GAME_COLLECTION.DETETIVES_IMAGINATIVOS:
         return (
           <Suspense fallback={<LoadingPage message="" />}>
@@ -231,6 +238,12 @@ function Game() {
         return (
           <Suspense fallback={<LoadingPage message="" />}>
             <SessionLinhasCruzadas gameId={gameId} />
+          </Suspense>
+        );
+      case GAME_COLLECTION.MEGAMIX:
+        return (
+          <Suspense fallback={<LoadingPage message="" />}>
+            <SessionMegamix gameId={gameId} />
           </Suspense>
         );
       case GAME_COLLECTION.MENTE_COLETIVA:
@@ -275,10 +288,22 @@ function Game() {
             <SessionSonhosPesadelos gameId={gameId} />
           </Suspense>
         );
+      case GAME_COLLECTION.SUPER_CAMPEONATO:
+        return (
+          <Suspense fallback={<LoadingPage message="" />}>
+            <SessionSuperCampeonato gameId={gameId} />
+          </Suspense>
+        );
       case GAME_COLLECTION.TESTEMUNHA_OCULAR:
         return (
           <Suspense fallback={<LoadingPage message="" />}>
             <SessionTestemunhaOcular gameId={gameId} />
+          </Suspense>
+        );
+      case GAME_COLLECTION.TREVO_DA_SORTE:
+        return (
+          <Suspense fallback={<LoadingPage message="" />}>
+            <SessionTrevoDaSorte gameId={gameId} />
           </Suspense>
         );
       case GAME_COLLECTION.UE_SO_ISSO:
@@ -293,24 +318,7 @@ function Game() {
             <SessionVendavalDePalpite gameId={gameId} />
           </Suspense>
         );
-      case GAME_COLLECTION.SUPER_CAMPEONATO:
-        return (
-          <Suspense fallback={<LoadingPage message="" />}>
-            <SessionSuperCampeonato gameId={gameId} />
-          </Suspense>
-        );
-      case GAME_COLLECTION.CRUZA_PALAVRAS:
-        return (
-          <Suspense fallback={<LoadingPage message="" />}>
-            <SessionCruzaPalavras gameId={gameId} />
-          </Suspense>
-        );
-      case GAME_COLLECTION.TREVO_DA_SORTE:
-        return (
-          <Suspense fallback={<LoadingPage message="" />}>
-            <SessionTrevoDaSorte gameId={gameId} />
-          </Suspense>
-        );
+
       default:
         console.warn('Wrong game library provided');
     }

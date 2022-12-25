@@ -23,6 +23,7 @@ import * as vendavalDePalpiteEngine from './engine/vendaval-de-palpite';
 import * as superCampeonatoEngine from './engine/super-campeonato';
 import * as cruzaPalavrasEngine from './engine/cruza-palavras';
 import * as trevoDaSorteEngine from './engine/trevo-da-sorte';
+import * as megamixEngine from './engine/megamix';
 
 admin.initializeApp();
 
@@ -113,3 +114,5 @@ exports.superCampeonatoSubmitAction = functions.https.onCall(superCampeonatoEngi
 exports.cruzaPalavrasSubmitAction = functions.https.onCall(cruzaPalavrasEngine.submitAction);
 
 exports.trevoDaSorteSubmitAction = functions.https.onCall(trevoDaSorteEngine.submitAction);
+
+exports.megamixSubmitAction = functions.https.onCall(megamixEngine.submitAction);

@@ -5,7 +5,7 @@ import { Button, Space } from 'antd';
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useGlobalState } from 'hooks/useGlobalState';
 // Components
-import { MonsterCard } from './components/MonsterCard';
+import { MonsterCard } from '../../components/cards/MonsterCard';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { ViewOr } from 'components/views';

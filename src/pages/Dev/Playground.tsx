@@ -6,7 +6,7 @@ import { Avatar, AvatarEntry } from 'components/avatars';
 import { AdminOnlyContainer } from 'components/admin';
 // Resources
 import { CheckCircleFilled, CheckCircleOutlined } from '@ant-design/icons';
-import { Button, Input, Space } from 'antd';
+import { Button, Image, Input, Space, Tag } from 'antd';
 import { LETTERS } from 'utils/constants';
 
 import { getColorFromLetter } from 'utils/helpers';
@@ -16,7 +16,8 @@ import { TimedTimerBar } from 'components/timers';
 import { mockPlayers } from 'mock/players';
 import { TurnOrder } from 'components/players';
 import { TableOrder } from 'components/players/TableOrder';
-import { useMemo } from 'react';
+import { CSSProperties, useMemo } from 'react';
+import { ImageCard } from 'components/cards';
 
 function Playground() {
   useTitle('Playground | Dev | Tarde Divertida');
@@ -67,27 +68,34 @@ function Playground() {
 
   console.log({ splitQuestions });
 
-  const styles = {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(15, 1fr)',
-    gap: '1rem',
-  };
-  const stylesLi = {
-    border: '1px solid black',
-    margin: '1fr',
+  const styles: CSSProperties = {
+    // display: 'grid',
+    // gridTemplateColumns: 'repeat(5, 1fr)',
+
+    // gap: '1rem',
     display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    flexWrap: 'wrap',
   };
+  const stylesLi: CSSProperties = {
+    border: '1px solid black',
+    margin: '4px',
+    padding: '8px',
+    // width: '132px',
+    // display: 'flex',
+    // flexDirection: 'column',
+    background: 'white',
+    // alignItems: 'center',
+    // justifyContent: 'space-between',
+  };
+
   return (
     <div>
       <DevHeader title="Playground" />
-      <AdminOnlyContainer>Hello</AdminOnlyContainer>
-      <TimedTimerBar duration={30} onExpire={() => console.log('done')} />
-      <TurnOrder players={players} order={Object.keys(players)} activePlayerId={Object.keys(players)[3]} />
+      {/* <AdminOnlyContainer>Hello</AdminOnlyContainer> */}
+      {/* <TimedTimerBar duration={30} onExpire={() => console.log('done')} /> */}
+      {/* <TurnOrder players={players} order={Object.keys(players)} activePlayerId={Object.keys(players)[3]} /> */}
 
-      <Space>
+      {/* <Space>
         <TableOrder
           players={players}
           order={Object.keys(players)}
@@ -102,7 +110,16 @@ function Playground() {
           reorderByUser={Object.keys(players)[3]}
           size="small"
         />
-      </Space>
+      </Space> */}
+      <ul style={styles}>
+        {/* {allNames.map((name: string) => {
+          return (
+            <li key={name}>
+              <Tag>{name}</Tag>
+            </li>
+          );
+        })} */}
+      </ul>
     </div>
   );
 }
@@ -121,60 +138,6 @@ const questions = [
     FIELD3: '',
   },
 ];
-
-// const timestamps = [
-//   {
-//     id: 'ABVY',
-//     start: 1652647996458,
-//     end: 1652649436331,
-//     numPlayers: 6,
-//   },
-//   {
-//     id: 'AOAN',
-//     start: 1654460679493,
-//     end: 1654461751431,
-//     numPlayers: 4,
-//   },
-//   {
-//     id: 'ANPP',
-//     start: 1647542016336,
-//     end: 1647543929236,
-//     numPlayers: 8,
-//   },
-//   {
-//     id: 'AQUM',
-//     start: 1656276274168,
-//     end: 1656277587137,
-//     numPlayers: 6,
-//   },
-// ];
-
-// const timestamps = [
-//   {
-//     id: '',
-//     start: 0,
-//     end: 0,
-//     numPlayers: 0,
-//   },
-//   {
-//     id: '',
-//     start: 0,
-//     end: 0,
-//     numPlayers: 0,
-//   },
-//   {
-//     id: '',
-//     start: 0,
-//     end: 0,
-//     numPlayers: 0,
-//   },
-//   {
-//     id: '',
-//     start: 0,
-//     end: 0,
-//     numPlayers: 0,
-//   },
-// ];
 
 const timestamps = [
   {
@@ -221,3 +184,40 @@ const average = () => {
 };
 
 average();
+
+// function moreUS() {
+//   return new Array(114).fill(1).reduce((acc, e, i) => {
+//     const num: string = e + i < 10 ? `0${e + i}` : e + i;
+//     const id = `us-${num}`;
+//     const initial = LETTERS[i % LETTERS.length];
+
+//     acc[id] = {
+//       id: id,
+//       name: {
+//         pt: `XXX ${initial}`,
+//         en: `XXX ${initial}`,
+//       },
+//       gender: 'female',
+//     };
+//     return acc;
+//   }, {});
+// }
+
+// console.log(allUS)
+const rawData: any[] = [];
+
+const parseQuantitativeQuestions = () =>
+  rawData.reduce((acc: any, entry, index) => {
+    const id = `mr-${index + 1}-pt`;
+    const e: any = {
+      id,
+      text: entry.text,
+      type: entry.type,
+    };
+
+    acc[id] = e;
+    return acc;
+  }, {});
+
+const result = parseQuantitativeQuestions();
+console.log({ result });

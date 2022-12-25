@@ -5,7 +5,7 @@ import { useCardWidth } from 'hooks/useCardWidth';
 import { useGlobalState } from 'hooks/useGlobalState';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
-import { MonsterCard } from './components/MonsterCard';
+import { MonsterCard } from '../../components/cards/MonsterCard';
 import { MonsterSketches } from './components/MonsterSketches';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
