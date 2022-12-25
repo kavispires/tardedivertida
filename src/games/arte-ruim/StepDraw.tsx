@@ -1,18 +1,14 @@
 import { useEffect, useState } from 'react';
-import { useAudio } from 'react-use';
 // Utils
 import { useCountdown } from 'hooks/useCountdown';
 import { useDevFeatures } from 'hooks/useDevFeatures';
-import { useGlobalState } from 'hooks/useGlobalState';
 import { useLanguage } from 'hooks/useLanguage';
 // Components
 import { Step } from 'components/steps';
 import { Card } from 'components/cards';
 import { DrawingCanvas } from 'components/canvas';
 import { PanicIcon } from 'components/icons/PanicIcon';
-
-// Sound
-const arteRuimTimer = require('assets/sounds/arte-ruim-timer.mp3');
+import { ArteRuimTimerSound } from 'components/audio/ArteRuimTimerSound';
 
 type StepDrawProps = {
   secretCard: ArteRuimCard | PlainObject;
@@ -25,15 +21,6 @@ export function StepDraw({ secretCard, onSubmitDrawing, startDrawingTimer, annou
   const { isDebugEnabled } = useDevFeatures();
   const [lines, setLines] = useState<any>([]);
   const [isTimesUp, setTimesUp] = useState(false);
-  const [volume] = useGlobalState('volume');
-  const [audio, , controls] = useAudio({
-    src: arteRuimTimer,
-  });
-
-  // Updated volume
-  useEffect(() => {
-    controls.volume(volume);
-  }, [volume]); // eslint-disable-line
 
   const { seconds, start, isRunning } = useCountdown({
     duration: 12,
@@ -49,10 +36,9 @@ export function StepDraw({ secretCard, onSubmitDrawing, startDrawingTimer, annou
 
   useEffect(() => {
     if (!isRunning && startDrawingTimer) {
-      controls.play();
       start();
     }
-  }, [startDrawingTimer, isRunning, start, controls]);
+  }, [startDrawingTimer, isRunning, start]);
 
   return (
     <Step announcement={announcement}>
@@ -70,7 +56,7 @@ export function StepDraw({ secretCard, onSubmitDrawing, startDrawingTimer, annou
           </>
         )}
       </Card>
-      {audio}
+      {isRunning && <ArteRuimTimerSound />}
       {isTimesUp ? (
         <PanicIcon style={{ background: 'white', width: '500px', padding: '2em' }} />
       ) : (

@@ -56,7 +56,7 @@ export function EvaluatedDrawings({ votes, cards, drawings, players }: Evaluated
         .map((drawingKey: string) => {
           const drawing = drawingsDict[drawingKey] as ArteRuimDrawing;
           const card = cardsDict[votes[drawingKey]] as ArteRuimCard;
-          console.log(drawing);
+
           return (
             <li className="a-evaluated-drawings__item" key={`${drawing.id}-${card.id}-${card.playerId}`}>
               <div className="a-evaluated-drawings__card" style={{ maxWidth: `${cSize}px` }}>

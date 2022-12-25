@@ -16,6 +16,11 @@ const GAMES = [
     key: 'BOMBA_RELOGIO',
   },
   {
+    name: 'caminhos-magicos',
+    code: 'C',
+    key: 'CAMINHOS_MAGICOS',
+  },
+  {
     name: 'contadores-historias',
     code: 'C',
     key: 'CONTADORES_HISTORIAS',
@@ -36,9 +41,19 @@ const GAMES = [
     key: 'DETETIVES_IMAGINATIVOS',
   },
   {
+    name: 'dilema-dos-esquiadores',
+    code: 'D',
+    key: 'DILEMA_DOS_ESQUIADORES',
+  },
+  {
     name: 'espiao-entre-nos',
     code: 'E',
     key: 'ESPIAO_ENTRE_NOS',
+  },
+  {
+    name: 'fileira-de-fatos',
+    code: 'F',
+    key: 'FILEIRA_DE_FATOS',
   },
   {
     name: 'galeria-de-sonhos',
@@ -51,6 +66,11 @@ const GAMES = [
     key: 'LINHAS_CRUZADAS',
   },
   {
+    name: 'megamix',
+    code: 'Z',
+    key: 'MEGAMIX',
+  },
+  {
     name: 'mente-coletiva',
     code: 'M',
     key: 'MENTE_COLETIVA',
@@ -59,6 +79,11 @@ const GAMES = [
     name: 'na-rua-do-medo',
     code: 'N',
     key: 'NA_RUA_DO_MEDO',
+  },
+  {
+    name: 'namoro-ou-amizade',
+    code: 'M',
+    key: 'NAMORO_OU_AMIZADE',
   },
   {
     name: 'onda-telepatica',
@@ -116,6 +141,11 @@ const GAMES = [
     key: 'UE_SO_ISSO',
   },
   {
+    name: 'vamos-no-cinema',
+    code: 'V',
+    key: 'VAMOS_NO_CINEMA',
+  },
+  {
     name: 'vendaval-de-palpite',
     code: 'V',
     key: 'VENDAVAL_DE_PALPITE',
@@ -164,9 +194,14 @@ export const TDR_RESOURCES = {
   CHARACTERS: 'characters',
   CONTENDERS: 'contenders', // dual language
   CRIME_TILES: 'crime-tiles', // dual language
+  DATING_CANDIDATE: 'dating-candidate',
+  DILEMMAS: 'dilemmas',
   GROUP_QUESTIONS: 'group-questions',
+  MOVIES: 'movies',
+  MOVIE_REVIEWS: 'movie-reviews',
   NAMING_PROMPTS: 'naming-prompts',
   OPPOSING_IDEAS: 'opposing-ideas',
+  QUANTITATIVE_QUESTIONS: 'quantitative-questions',
   SINGLE_WORDS: 'single-words',
   SPY_LOCATIONS: 'spy-locations',
   SPY_QUESTIONS: 'spy-questions',
@@ -175,6 +210,7 @@ export const TDR_RESOURCES = {
   TOPICS: 'topics',
   WORDS_1: 'galeria-de-sonhos',
   WORDS_2: 'linhas-cruzadas',
+  WORDS_3: 'caminhos-magicos',
 };
 
 export const SEPARATOR = ';;';

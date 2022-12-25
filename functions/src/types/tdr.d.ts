@@ -1,6 +1,6 @@
 /**
  * Generic text card
- * Games that use: linhas-cruzadas, polemica-da-vez, single-word
+ * Games that use: linhas-cruzadas, single-word
  */
 type TextCard = {
   id: CardId;
@@ -75,4 +75,42 @@ type ThemeCard = {
   id: CardId;
   text: string;
   description?: string;
+};
+
+type Topic = {
+  id: CardId;
+  text: string;
+  custom?: boolean;
+};
+
+type DatingCandidateCard = {
+  id: CardId;
+  text: string;
+  type: 'fun-fact' | 'interest' | 'need';
+};
+
+type DilemmaCard = {
+  id: CardId;
+  prompt: string;
+  left: string;
+  right: string;
+  nsfw?: boolean;
+};
+
+type QuantitativeQuestionCard = {
+  id: CardId;
+  question: string;
+  scale?: boolean;
+};
+
+type MovieCard = {
+  id: CardId;
+  prefix: string;
+  suffix: string;
+};
+
+type MovieReview = {
+  id: CardId;
+  text: string;
+  type: 'good' | 'bad';
 };

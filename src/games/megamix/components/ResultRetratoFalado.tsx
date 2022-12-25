@@ -1,0 +1,32 @@
+import { Badge } from 'antd';
+import { CanvasSVG } from 'components/canvas';
+import { Translate } from 'components/language';
+import { Instruction } from 'components/text';
+import { useCardWidth } from 'hooks/useCardWidth';
+import { WinningCount } from './WinningCount';
+
+export function ResultRetratoFalado({ task, winningValues, winningTeam }: ResultComponentProps) {
+  const width = useCardWidth(winningValues.length + 1, 9, 80, 200, 0, 'results-values');
+
+  const winningArtworks: PlainObject[] = task.data.options.filter((option: PlainObject) => {
+    return winningValues.includes(option.playerId);
+  });
+
+  return (
+    <>
+      <WinningCount>{winningTeam.length}</WinningCount>
+      <Instruction>
+        <Translate pt="O monstro escolhido foi" en="The best monster was" />:
+      </Instruction>
+      <div className="task-result-values__cards">
+        {winningArtworks.map((value) => (
+          <Badge key={value.playerId} count={winningTeam.length} color="#faad14">
+            <div className="task-result-values__text-value">
+              <CanvasSVG drawing={value.drawing} size={width} className="a-drawing" />
+            </div>
+          </Badge>
+        ))}
+      </div>
+    </>
+  );
+}

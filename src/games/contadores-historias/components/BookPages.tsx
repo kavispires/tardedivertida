@@ -1,6 +1,8 @@
+import { ReactNode } from 'react';
+
 type BookPagesProps = {
-  leftPage: any;
-  rightPage: any;
+  leftPage: ReactNode;
+  rightPage: ReactNode;
 };
 
 export function BookPages({ leftPage, rightPage }: BookPagesProps) {

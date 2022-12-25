@@ -86,7 +86,7 @@ export const getRandomUniqueObjects = <T>(
   quantity: number,
   byPropertyName = 'id'
 ): T[] => {
-  const usedIdDict = buildIdDictionary(used);
+  const usedIdDict = buildIdDictionary(used as PlainObject[]);
   const availableList = list.filter((entry) => !usedIdDict[entry[byPropertyName]]);
   return getRandomItems(availableList, quantity);
 };
@@ -235,3 +235,10 @@ export const filterOutByIds = <T>(dict: Record<string, T>, usedIds: BooleanDicti
     return acc;
   }, {});
 };
+
+/**
+ * Creates array of given length filled with indexes
+ * @param length
+ * @returns
+ */
+export const makeArray = (length = 1): number[] => new Array(length).fill(0).map((e, i) => e + i);

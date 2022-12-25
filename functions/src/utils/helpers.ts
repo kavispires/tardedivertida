@@ -226,3 +226,16 @@ export const buildGameOrder = (
  * @returns
  */
 export const deepCopy = <T>(obj: T): T => JSON.parse(JSON.stringify(obj));
+
+/**
+ * Generates dictionary of given list of objects
+ * @param list
+ * @param keyProperty the property that will be the key of the dictionary
+ * @returns
+ */
+export const buildObjectFromList = <T>(list: T[], keyProperty = 'id'): Record<string, T> =>
+  list.reduce((acc: Record<string, T>, item: T) => {
+    const key = (item as PlainObject)[keyProperty];
+    acc[key] = item;
+    return acc;
+  }, {});

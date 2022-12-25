@@ -14,6 +14,14 @@ const requestTDIInfo = async (): Promise<any> => {
   }
 };
 
+const generateDeck = (deckPrefix: string, quantity: number) => {
+  return new Array(quantity).fill(1).map((item, index) => {
+    const tempId = item + index;
+    const id = tempId < 10 ? `0${tempId}` : tempId;
+    return `${deckPrefix}-${id}`;
+  });
+};
+
 /**
  * Gets cards from decks of image cards
  * @param quantity the number of cards needed
@@ -41,15 +49,41 @@ export const getImageCards = async (quantity: number): Promise<ImageCardId[]> =>
 
   const cards = selectedDecks.map((deckPrefix) => {
     if (deckCache[deckPrefix] === undefined) {
-      deckCache[deckPrefix] = new Array(cardInfo[deckPrefix]).fill(1).map((item, index) => {
-        const tempId = item + index;
-        const id = tempId < 10 ? `0${tempId}` : tempId;
-        return `${deckPrefix}-${id}`;
-      });
+      deckCache[deckPrefix] = generateDeck(deckPrefix, cardInfo[deckPrefix]);
     }
 
     return deckCache[deckPrefix];
   });
 
   return cards.reduce((acc, val) => acc.concat(val), []);
+};
+
+/**
+ * Get several image card decks
+ * @param quantity
+ * @returns
+ */
+export const getImageCardsDecks = async (quantity: number): Promise<ImageCardId[][]> => {
+  const cardInfo: any = await requestTDIInfo();
+
+  const decks = Object.keys(cardInfo);
+  const totalCards = Number(Object.values(cardInfo ?? {}).reduce((acc: any, num: any) => acc + num, 0));
+  if (quantity > totalCards) {
+    throwException(`${quantity} image cards were requested but the game only has ${totalCards} available`);
+  }
+
+  const shuffledDecks = shuffle(decks);
+  const selectedDecks = Array(quantity)
+    .fill(0)
+    .map((_, index) => shuffledDecks[index]);
+
+  const cards = selectedDecks.map((deckPrefix) => {
+    if (deckCache[deckPrefix] === undefined) {
+      deckCache[deckPrefix] = generateDeck(deckPrefix, cardInfo[deckPrefix]);
+    }
+
+    return deckCache[deckPrefix];
+  });
+
+  return cards;
 };
