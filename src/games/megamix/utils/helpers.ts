@@ -48,11 +48,20 @@ export const buildSeedingSteps = (
 };
 
 export const showDJPruPruPruStep = (round: GameRound) => {
-  if (round.current === 0) return 0; // true
+  if (round.current <= 1 || !round) return 0; // true
 
   if (round.current === Math.round(round.total / 2)) return 0;
 
   if (round.current === round.total) return 0;
 
   return 1; // false
+};
+
+export const getMovieTitles = (movies: MovieCard[]) => {
+  return {
+    A: `${movies[0].prefix} ${movies[1].suffix}`,
+    B: `${movies[1].prefix} ${movies[2].suffix}`,
+    C: `${movies[3].prefix} ${movies[4].suffix}`,
+    D: `${movies[4].prefix} ${movies[5].suffix}`,
+  };
 };

@@ -2,13 +2,13 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Z",
   "gameName": "megamix",
-  "version": "0.2",
+  "version": "1.0.0",
   "title": {
     "pt": "Megamix",
     "en": "Megamix"
   },
   "popularName": {
-    "pt": "",
+    "pt": "O do DJ com minigames",
     "en": ""
   },
   "basedOn": "sniW maeT neerG ehT",
@@ -30,13 +30,17 @@
     ]
   },
   "playerCount": {
-    "recommended": [5, 6, 7],
-    "min": 3,
+    "recommended": [5, 7, 9],
+    "min": 4,
     "max": 10
   },
-  "tags": ["competitive", "images", "guessing", "pairing", "same-time", "writing", "voting"],
+  "tags": ["competitive", "images", "drawing", "guessing", "pairing", "same-time", "writing", "voting"],
   "available": {
     "pt": true,
     "en": true
-  }
+  },
+  "options": [
+    { "key": "nsfw", "label": "NSFW", "on": "Any content", "off": "Safe content" },
+    { "key": "allMinigames", "label": "Minigames", "on": "All Games (~27)", "off": "15 games" }
+  ]
 }

@@ -48,7 +48,8 @@ function PhaseTask({ players, state, info }: PhaseProps) {
           title={<DJAnnouncementTitle round={state.round} />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
-          duration={20}
+          duration={state?.round?.current < 2 ? 20 : 7}
+          unskippable
         >
           <DJPruPruPruSound />
           <DJInstructions round={state.round} />
@@ -71,7 +72,7 @@ function PhaseTask({ players, state, info }: PhaseProps) {
 export default PhaseTask;
 
 function DJAnnouncementTitle({ round }: { round: GameRound }) {
-  if (round.current === 0) return <Translate pt="A Balada" en="The Club" />;
+  if (round.current < 2) return <Translate pt="A Balada" en="The Club" />;
   if (round.current === Math.round(round.total / 2))
     return <Translate pt="E tamo só esquentando" en="We're halfway!" />;
   return <Translate pt="Última música" en="The last song" />;

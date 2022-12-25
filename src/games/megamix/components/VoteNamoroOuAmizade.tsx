@@ -1,12 +1,11 @@
-import { Space } from 'antd';
 import { Avatar } from 'components/avatars';
+
+import { SpacePlayerCheckWrapper } from './SpacePlayerCheckWrapper';
 import { Candidate } from './TaskNamoroOuAmizade';
 
-export function VoteNamoroOuAmizade({ task, winningValues, players }: ResultComponentProps) {
-  const playersList = Object.values(players);
-
+export function VoteNamoroOuAmizade({ task, players, playersList }: VoteComponentProps) {
   return (
-    <Space className="space-container" align="center" wrap>
+    <SpacePlayerCheckWrapper playersList={playersList} paths={['data.value']}>
       {playersList.map((player) => {
         const index = task.data.heads.findIndex((head: PlainObject) => head.id === player.data.value);
         return (
@@ -26,6 +25,6 @@ export function VoteNamoroOuAmizade({ task, winningValues, players }: ResultComp
           </div>
         );
       })}
-    </Space>
+    </SpacePlayerCheckWrapper>
   );
 }

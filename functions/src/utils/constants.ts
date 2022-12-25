@@ -141,6 +141,11 @@ const GAMES = [
     key: 'UE_SO_ISSO',
   },
   {
+    name: 'vamos-no-cinema',
+    code: 'V',
+    key: 'VAMOS_NO_CINEMA',
+  },
+  {
     name: 'vendaval-de-palpite',
     code: 'V',
     key: 'VENDAVAL_DE_PALPITE',
@@ -192,6 +197,8 @@ export const TDR_RESOURCES = {
   DATING_CANDIDATE: 'dating-candidate',
   DILEMMAS: 'dilemmas',
   GROUP_QUESTIONS: 'group-questions',
+  MOVIES: 'movies',
+  MOVIE_REVIEWS: 'movie-reviews',
   NAMING_PROMPTS: 'naming-prompts',
   OPPOSING_IDEAS: 'opposing-ideas',
   QUANTITATIVE_QUESTIONS: 'quantitative-questions',

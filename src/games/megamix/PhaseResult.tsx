@@ -52,6 +52,7 @@ export function PhaseResult({ players, state, info }: PhaseProps) {
           isFirstRunThrough={isFirstRunThrough}
           task={state.task}
           winningValues={state.winningValues}
+          winningTeam={state.winningTeam}
           scoringType={state.scoringType}
         />
 

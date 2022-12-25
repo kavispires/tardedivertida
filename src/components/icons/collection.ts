@@ -115,6 +115,7 @@ export * from './MedalThumbsUpIcon';
 export * from './MedalWideIcon';
 export * from './MirrorIcon';
 export * from './MonsterIcon';
+export * from './MovieTheaterIcon';
 export * from './MultitaskIcon';
 export * from './NewspaperIcon';
 export * from './NightmareIcon';

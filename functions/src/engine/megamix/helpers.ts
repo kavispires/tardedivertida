@@ -1,8 +1,10 @@
 import stringSimilarity from 'string-similarity';
 import utils from '../../utils';
 import { GAME_NAMES } from '../../utils/constants';
+import { buildDecks } from '../na-rua-do-medo/helpers';
+import { HouseCard } from '../na-rua-do-medo/types';
 import { MEGAMIX_PHASES, MINI_GAMES_LIST, TOTAL_ROUNDS, WINNING_CONDITION } from './constants';
-import { MostScoring, Task } from './types';
+import { AvailableTask, MostScoring, Task } from './types';
 
 /**
  * Determine the next phase based on the current one
@@ -255,11 +257,12 @@ export const getRanking = (
   }
 
   utils.players.getListOfPlayers(players).forEach((player) => {
+    const previousTeam = player.team[currentRound - 1];
     if (scoring.scoringType === 'TIE') {
       // Is on the new winning team
       if (scoring.winningTeam.includes(player.id)) {
         // Was in the winning team
-        if (player.team[currentRound - 1] === 'W') {
+        if (previousTeam === 'W') {
           scores.add(player.id, 2, 0);
           player.team.push('W');
           // TODO: achievement stayed winning
@@ -269,7 +272,7 @@ export const getRanking = (
         }
       } else {
         // Was in the winning team
-        if (player.team[currentRound - 1] === 'W') {
+        if (previousTeam === 'W') {
           player.team.push('L');
           // TODO: achievement left winning
         } else {
@@ -281,7 +284,7 @@ export const getRanking = (
       // Is on the new winning team
       if (scoring.winningTeam.includes(player.id)) {
         // Was in the winning team
-        if (player.team[currentRound - 1] === 'W') {
+        if (previousTeam === 'W') {
           scores.add(player.id, 2, 0);
           player.team.push('W');
           // TODO: achievement stayed winning
@@ -292,7 +295,7 @@ export const getRanking = (
         }
       } else {
         // Was in the winning team
-        if (player.team[currentRound - 1] === 'W') {
+        if (previousTeam === 'W') {
           player.team.push('L');
           // TODO: achievement left winning
         } else {
@@ -507,7 +510,7 @@ const buildPolemicaDaVezOptions = (players: Players) => {
       return acc;
     }, 0);
 
-  const possibleLikes = new Array(playerCount + 1).fill(0).map((e, i) => e + i);
+  const possibleLikes = utils.game.makeArray(playerCount + 1);
 
   return [...new Set([totalLikes, ...utils.game.getRandomItems(possibleLikes, 3)])].sort();
 };
@@ -641,5 +644,85 @@ const buildCaminhosMagicosOptions = (players: Players, task: Task) => {
     0: options[0],
     1: options[1],
     2: options[2],
+  };
+};
+
+export const getGameOnList = (list: AvailableTask[], gameName: string): AvailableTask[] => {
+  return list.filter((game) => game.game === gameName);
+};
+
+export const getNaRuaDoMedoScenario = (playerCount: number) => {
+  const decks = buildDecks(true);
+  const [lowCandy, mediumCandy, highCandy] = decks.candyDeck.reduce(
+    (acc: [HouseCard[], HouseCard[], HouseCard[]], card) => {
+      // Low cards are 4 or less or less than players - 2
+      if (card.value < 4 || card.value <= playerCount - 2) {
+        acc[0].push(card);
+      } else if (card.value > 10) {
+        acc[2].push(card);
+      } else {
+        acc[1].push(card);
+      }
+
+      return acc;
+    },
+    [[], [], []]
+  );
+  const horrorDeck = decks.horrorDeck.reduce((acc: HouseCard[], monster) => {
+    if (!acc.some((m) => m.key === monster.key)) {
+      acc.push(monster);
+    }
+    return acc;
+  }, []);
+
+  const scenarios: HouseCard[][] = [];
+  // Scenarios
+  // 1) 3 monsters, 1 low card, 1 jackpot
+  scenarios.push([
+    ...utils.game.getRandomItems(horrorDeck, 3),
+    ...utils.game.getRandomItems(lowCandy, 1),
+    ...utils.game.getRandomItems(decks.jackpotDeck, 1),
+  ]);
+  // 2) 2 monsters, 2 low card, 1 medium cards
+  scenarios.push([
+    ...utils.game.getRandomItems(horrorDeck, 2),
+    ...utils.game.getRandomItems(lowCandy, 2),
+    ...utils.game.getRandomItems(mediumCandy, 1),
+  ]);
+  // 3) 3 monsters, 2 medium cards
+  scenarios.push([...utils.game.getRandomItems(horrorDeck, 3), ...utils.game.getRandomItems(mediumCandy, 2)]);
+  // 4) 1 monster, 4 low cards
+  scenarios.push([...utils.game.getRandomItems(horrorDeck, 1), ...utils.game.getRandomItems(lowCandy, 4)]);
+  // 5) 2 monsters, 1 low, 2 high
+  scenarios.push([
+    ...utils.game.getRandomItems(horrorDeck, 2),
+    ...utils.game.getRandomItems(lowCandy, 1),
+    ...utils.game.getRandomItems(highCandy, 2),
+  ]);
+
+  return {
+    scenarios: utils.game.shuffle(scenarios),
+    home: [
+      utils.game.getRandomItem(decks.horrorDeck),
+      ...utils.game.getRandomItems([...decks.candyDeck, utils.game.getRandomItem(decks.jackpotDeck)], 2),
+    ],
+    costumes: utils.game.getRandomItems(utils.game.makeArray(14), playerCount),
+    kids: utils.game.getRandomItems(utils.game.makeArray(14), 5),
+  };
+};
+
+export const getMovieReviews = (reviews: MovieReview[]) => {
+  const [good, bad] = reviews.reduce(
+    (acc: [MovieReview[], MovieReview[]], entry) => {
+      acc[entry.type === 'good' ? 0 : 1].push(entry);
+
+      return acc;
+    },
+    [[], []]
+  );
+
+  return {
+    good: utils.game.getRandomItem(good),
+    bad: utils.game.getRandomItem(bad),
   };
 };

@@ -1,38 +1,50 @@
-import { Space } from 'antd';
 import { Avatar } from 'components/avatars';
 import { ImageBlurButtonContainer, ImageCard } from 'components/cards';
 import { TDIcon } from 'components/icons/TDIcon';
 import { Translate } from 'components/language';
 import { useCardWidth } from 'hooks/useCardWidth';
+import { has, orderBy } from 'lodash';
+import { SpacePlayerCheckWrapper } from './SpacePlayerCheckWrapper';
 import { SplatterSVG } from './TaskPalhetaDeFores';
 import { ContenderCard } from './TaskSuperCampeonato';
+import { VoteArteRuim } from './VoteArteRuim';
 import { VoteCruzaPalavras } from './VoteCruzaPalavras';
 import { VoteNamoroOuAmizade } from './VoteNamoroOuAmizade';
+import { VoteNaRuaDoMedo } from './VoteNaRuaDoMedo';
+import { VoteRetratoFalado } from './VoteRetratoFalado';
+import { VoteVamosNoCinema } from './VoteVamosNoCinema';
 
-export const VotesDelegator = ({ task, winningValues, players }: ResultComponentProps) => {
-  const width = useCardWidth(Object.keys(players).length + 3, 9, 50, 120, 8);
-  const playersList = Object.values(players);
+export const VotesDelegator = (props: Omit<VoteComponentProps, 'playersList'>) => {
+  const playersList = orderBy(Object.values(props.players), ['data.value', 'name'], ['asc', 'asc']);
 
-  switch (task.game) {
+  const width = useCardWidth(playersList.length + 3, 9, 50, 120, 8);
+
+  if (!playersList.every((player) => has(player, 'data.value'))) {
+    return <></>;
+  }
+
+  switch (props.task.game) {
     case 'cruza-palavras':
-      return <VoteCruzaPalavras task={task} winningValues={winningValues} players={players} />;
+      return <VoteCruzaPalavras {...props} playersList={playersList} />;
     case 'onda-telepatica':
       return (
-        <Space className="space-container" align="center" wrap>
+        <SpacePlayerCheckWrapper playersList={playersList} paths={['data.value']}>
           {playersList.map((player) => (
             <div key={`vote-${player.id}`} className="player-vote">
               <Avatar id={player.avatarId} />
               <div className="player-vote__name">{player.name}</div>
-              {player.data.value === 'center' && <Translate pt="Centro" en="Center" />}
-              {player.data.value === 'left' && <Translate pt="Esquerda" en="Left" />}
-              {player.data.value === 'right' && <Translate pt="Direita" en="Right" />}
+              <div className="player-vote__value">
+                {player.data?.value === 'center' && <Translate pt="Centro" en="Center" />}
+                {player.data?.value === 'left' && <Translate pt="Esquerda" en="Left" />}
+                {player.data?.value === 'right' && <Translate pt="Direita" en="Right" />}
+              </div>
             </div>
           ))}
-        </Space>
+        </SpacePlayerCheckWrapper>
       );
     case 'super-campeonato':
       return (
-        <Space className="space-container" align="center" wrap>
+        <SpacePlayerCheckWrapper playersList={playersList} paths={['data.value']}>
           {playersList.map((player) => (
             <div key={`vote-${player.id}`} className="player-vote">
               <Avatar id={player.avatarId} />
@@ -49,7 +61,7 @@ export const VotesDelegator = ({ task, winningValues, players }: ResultComponent
               </ImageBlurButtonContainer>
             </div>
           ))}
-        </Space>
+        </SpacePlayerCheckWrapper>
       );
     case 'crimes-hediondos':
     case 'detetives-imaginativos':
@@ -57,7 +69,7 @@ export const VotesDelegator = ({ task, winningValues, players }: ResultComponent
     case 'porta-dos-desesperados':
     case 'testemunha-ocular':
       return (
-        <Space className="space-container" align="center" wrap>
+        <SpacePlayerCheckWrapper playersList={playersList} paths={['data.value']}>
           {playersList.map((player) => (
             <div key={`vote-${player.id}`} className="player-vote">
               <Avatar id={player.avatarId} />
@@ -72,11 +84,11 @@ export const VotesDelegator = ({ task, winningValues, players }: ResultComponent
               </ImageBlurButtonContainer>
             </div>
           ))}
-        </Space>
+        </SpacePlayerCheckWrapper>
       );
     case 'palheta-de-cores':
       return (
-        <Space className="space-container" align="center" wrap>
+        <SpacePlayerCheckWrapper playersList={playersList} paths={['data.value']}>
           {playersList.map((player) => (
             <div key={`vote-${player.id}`} className="player-vote">
               <Avatar id={player.avatarId} />
@@ -84,42 +96,61 @@ export const VotesDelegator = ({ task, winningValues, players }: ResultComponent
               <SplatterSVG color={player.data.value} style={{ color: player.data.value }} width={48} />
             </div>
           ))}
-        </Space>
+        </SpacePlayerCheckWrapper>
       );
     case 'fileira-de-fatos':
       return (
-        <Space className="space-container" align="center" wrap>
+        <SpacePlayerCheckWrapper playersList={playersList} paths={['data.value']}>
           {playersList.map((player) => (
             <div key={`vote-${player.id}`} className="player-vote">
               <Avatar id={player.avatarId} />
               <div className="player-vote__name">{player.name}</div>
-              <Translate pt={player.data.value === 'before' ? 'Antes' : 'Depois'} en={player.data.value} />
+              <div className="player-vote__value">
+                <Translate pt={player.data.value === 'before' ? 'Antes' : 'Depois'} en={player.data.value} />
+              </div>
             </div>
           ))}
-        </Space>
+        </SpacePlayerCheckWrapper>
       );
     case 'namoro-ou-amizade':
-      return <VoteNamoroOuAmizade task={task} winningValues={winningValues} players={players} />;
+      return <VoteNamoroOuAmizade {...props} playersList={playersList} />;
     case 'arte-ruim':
+      return <VoteArteRuim {...props} playersList={playersList} />;
     case 'caminhos-magicos':
+    case 'na-rua-do-medo':
+      return <VoteNaRuaDoMedo {...props} playersList={playersList} />;
+    case 'retrato-falado':
+      return <VoteRetratoFalado {...props} playersList={playersList} />;
+    case 'quem-nao-mata':
+      return (
+        <SpacePlayerCheckWrapper playersList={playersList} paths={['data.value']}>
+          {playersList.map((player) => (
+            <div key={`vote-${player.id}`} className="player-vote">
+              <Avatar id={player.avatarId} />
+              <div className="player-vote__name">{player.name}</div>
+              <div className="player-vote__value">{props.players[player.data?.value]?.name}</div>
+            </div>
+          ))}
+        </SpacePlayerCheckWrapper>
+      );
+    case 'vamos-no-cinema':
+      return <VoteVamosNoCinema {...props} playersList={playersList} />;
     case 'contadores-historias':
     case 'dilema-dos-esquiadores':
     case 'espiao-entre-nos':
     case 'mente-coletiva':
     case 'polemica-da-vez':
-    case 'quem-nao-mata':
-    case 'retrato-falado':
     case 'ue-so-isso':
       return (
-        <Space className="space-container" align="center" wrap>
+        <SpacePlayerCheckWrapper playersList={playersList} paths={['data.value']}>
           {playersList.map((player) => (
             <div key={`vote-${player.id}`} className="player-vote">
               <Avatar id={player.avatarId} />
               <div className="player-vote__name">{player.name}</div>
-              {player.data.value}
+              <div className="player-vote__value">{player.data?.value}</div>
             </div>
           ))}
-        </Space>
+        </SpacePlayerCheckWrapper>
       );
 
     default:

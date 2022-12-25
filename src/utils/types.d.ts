@@ -418,3 +418,15 @@ type QuantitativeQuestionCard = {
   question: string;
   scale?: boolean;
 };
+
+type MovieCard = {
+  id: CardId;
+  prefix: string;
+  suffix: string;
+};
+
+type MovieReview = {
+  id: CardId;
+  text: string;
+  type: 'good' | 'bad';
+};

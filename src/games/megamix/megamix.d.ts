@@ -105,5 +105,14 @@ type SeedEntry =
 type ResultComponentProps = {
   task: Task;
   winningValues: string[];
+  winningTeam: PlayerId[];
   players: GamePlayers;
+};
+
+type VoteComponentProps = {
+  task: Task;
+  winningValues: string[];
+  winningTeam: PlayerId[];
+  players: GamePlayers;
+  playersList: GamePlayer[];
 };

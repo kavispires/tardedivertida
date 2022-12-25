@@ -9,26 +9,30 @@ import { ResultArteRuim } from './ResultArteRuim';
 import { ResultCaminhosMagicos } from './ResultCaminhosMagicos';
 import { ResultCruzaPalavras } from './ResultCruzaPalavras';
 import { ResultNamoroOuAmizade } from './ResultNamoroOuAmizade';
+import { ResultNaRuaDoMedo } from './ResultNaRuaDoMedo';
 import { ResultRetratoFalado } from './ResultRetratoFalado';
+import { ResultVamosAoCinema } from './ResultVamosNoCinema';
 import { SplatterSVG } from './TaskPalhetaDeFores';
 import { ContenderCard } from './TaskSuperCampeonato';
+import { WinningCount } from './WinningCount';
 
-export const ResultValueDelegator = ({ task, winningValues, players }: ResultComponentProps) => {
-  const width = useCardWidth(winningValues.length + 1, 9, 80, 200, 0, 'results-values');
+export const ResultValueDelegator = (props: Omit<ResultComponentProps, 'playersList'>) => {
+  const width = useCardWidth(props.winningValues.length + 1, 9, 80, 200, 0, 'results-values');
 
-  switch (task.game) {
+  switch (props.task.game) {
     case 'arte-ruim':
-      return <ResultArteRuim task={task} winningValues={winningValues} players={players} />;
+      return <ResultArteRuim {...props} />;
     case 'caminhos-magicos':
-      return <ResultCaminhosMagicos task={task} winningValues={winningValues} players={players} />;
+      return <ResultCaminhosMagicos {...props} />;
     case 'contadores-historias':
       return (
         <>
+          <WinningCount>{props.winningTeam.length}</WinningCount>
           <Instruction>
             <Translate pt="A história mais popular foi" en="The most popular story was" />:
           </Instruction>
           <div className="task-result-values__cards">
-            {winningValues.map((value) => (
+            {props.winningValues.map((value) => (
               <div key={value} className="task-result-values__text-value">
                 {value}
               </div>
@@ -39,40 +43,32 @@ export const ResultValueDelegator = ({ task, winningValues, players }: ResultCom
     case 'crimes-hediondos':
       return (
         <>
+          <WinningCount>{props.winningTeam.length}</WinningCount>
           <Instruction>
             <Translate pt="O item mais votado foi" en="The most voted item was" />:
           </Instruction>
           <div className="task-result-values__cards">
-            {winningValues.map((cardId) => (
-              <ImageBlurButtonContainer cardId={cardId}>
-                <ImageCard
-                  key={`table-focus-${cardId}`}
-                  imageId={cardId}
-                  cardWidth={width}
-                  className="d-table__image-card"
-                />
+            {props.winningValues.map((cardId) => (
+              <ImageBlurButtonContainer cardId={cardId} key={`table-focus-${cardId}`}>
+                <ImageCard imageId={cardId} cardWidth={width} className="d-table__image-card" />
               </ImageBlurButtonContainer>
             ))}
           </div>
         </>
       );
     case 'cruza-palavras':
-      return <ResultCruzaPalavras task={task} winningValues={winningValues} players={players} />;
+      return <ResultCruzaPalavras {...props} />;
     case 'detetives-imaginativos':
       return (
         <>
+          <WinningCount>{props.winningTeam.length}</WinningCount>
           <Instruction>
             <Translate pt="O impostor mais votado foi" en="The most voted impostor was" />:
           </Instruction>
           <div className="task-result-values__cards">
-            {winningValues.map((cardId) => (
-              <ImageBlurButtonContainer cardId={cardId}>
-                <ImageCard
-                  key={`table-focus-${cardId}`}
-                  imageId={cardId}
-                  cardWidth={width}
-                  className="d-table__image-card"
-                />
+            {props.winningValues.map((cardId) => (
+              <ImageBlurButtonContainer cardId={cardId} key={`table-focus-${cardId}`}>
+                <ImageCard imageId={cardId} cardWidth={width} className="d-table__image-card" />
               </ImageBlurButtonContainer>
             ))}
           </div>
@@ -81,11 +77,12 @@ export const ResultValueDelegator = ({ task, winningValues, players }: ResultCom
     case 'dilema-dos-esquiadores':
       return (
         <>
+          <WinningCount>{props.winningTeam.length}</WinningCount>
           <Instruction>
             <Translate pt="O lado mais popular foi" en="The most popular side was" />:
           </Instruction>
           <div className="task-result-values__cards">
-            {winningValues.map((value) => (
+            {props.winningValues.map((value) => (
               <div key={value} className="task-result-values__text-value">
                 {value}
               </div>
@@ -96,11 +93,12 @@ export const ResultValueDelegator = ({ task, winningValues, players }: ResultCom
     case 'espiao-entre-nos':
       return (
         <>
+          <WinningCount>{props.winningTeam.length}</WinningCount>
           <Instruction>
             <Translate pt="Respostas mais dadas" en="Best answers" />:
           </Instruction>
           <div className="task-result-values__cards">
-            {winningValues.map((value) => (
+            {props.winningValues.map((value) => (
               <div key={value} className="task-result-values__text-value">
                 {value}
               </div>
@@ -111,11 +109,12 @@ export const ResultValueDelegator = ({ task, winningValues, players }: ResultCom
     case 'fileira-de-fatos':
       return (
         <>
+          <WinningCount>{props.winningTeam.length}</WinningCount>
           <Instruction>
             <Translate pt="A melhor resposta foi" en="The best answer was" />:
           </Instruction>
           <div className="task-result-values__cards">
-            {winningValues.map((value) => (
+            {props.winningValues.map((value) => (
               <div key={value} className="task-result-values__text-value">
                 <Translate pt={value === 'before' ? 'Antes' : 'Depois'} en={value} />
               </div>
@@ -126,11 +125,12 @@ export const ResultValueDelegator = ({ task, winningValues, players }: ResultCom
     case 'galeria-de-sonhos':
       return (
         <>
+          <WinningCount>{props.winningTeam.length}</WinningCount>
           <Instruction>
             <Translate pt="A sonho mais visitado foi" en="The most visited dream was" />:
           </Instruction>
           <div className="task-result-values__cards">
-            {winningValues.map((value) => (
+            {props.winningValues.map((value) => (
               <div key={value} className="task-result-values__text-value">
                 <ImageBlurButtonContainer cardId={value}>
                   <ImageCard
@@ -148,11 +148,12 @@ export const ResultValueDelegator = ({ task, winningValues, players }: ResultCom
     case 'mente-coletiva':
       return (
         <>
+          <WinningCount>{props.winningTeam.length}</WinningCount>
           <Instruction>
             <Translate pt="A resposta mais comum foi" en="The most common answer was" />:
           </Instruction>
           <div className="task-result-values__cards">
-            {winningValues.map((value) => (
+            {props.winningValues.map((value) => (
               <div key={value} className="task-result-values__text-value">
                 {value}
               </div>
@@ -162,15 +163,18 @@ export const ResultValueDelegator = ({ task, winningValues, players }: ResultCom
       );
 
     case 'namoro-ou-amizade':
-      return <ResultNamoroOuAmizade task={task} winningValues={winningValues} players={players} />;
+      return <ResultNamoroOuAmizade {...props} />;
+    case 'na-rua-do-medo':
+      return <ResultNaRuaDoMedo {...props} />;
     case 'onda-telepatica':
       return (
         <>
+          <WinningCount>{props.winningTeam.length}</WinningCount>
           <Instruction>
             <Translate pt="A mais votado foi" en="The most voted was" />:
           </Instruction>
           <div className="task-result-values__cards">
-            {winningValues.map((value) => (
+            {props.winningValues.map((value) => (
               <div key={value} className="task-result-values__text-value">
                 {value === 'center' && <Translate pt="Centro" en="Center" />}
                 {value === 'left' && <Translate pt="Esquerda" en="Left" />}
@@ -183,11 +187,12 @@ export const ResultValueDelegator = ({ task, winningValues, players }: ResultCom
     case 'palheta-de-cores':
       return (
         <>
+          <WinningCount>{props.winningTeam.length}</WinningCount>
           <Instruction>
             <Translate pt="A amostra mais selecionada foi" en="The most selected swatch was" />:
           </Instruction>
           <div className="task-result-values__cards">
-            {winningValues.map((value) => (
+            {props.winningValues.map((value) => (
               <div key={value} className="task-result-values__text-value">
                 <SplatterSVG color={value} style={{ color: value }} width={48} />
               </div>
@@ -198,11 +203,12 @@ export const ResultValueDelegator = ({ task, winningValues, players }: ResultCom
     case 'polemica-da-vez':
       return (
         <>
+          <WinningCount>{props.winningTeam.length}</WinningCount>
           <Instruction>
             <Translate pt="A quantidade de curtidas foi" en="The number of likes was" />:
           </Instruction>
           <div className="task-result-values__cards">
-            {winningValues.map((value) => (
+            {props.winningValues.map((value) => (
               <div key={value} className="task-result-values__text-value">
                 {value}
               </div>
@@ -214,12 +220,13 @@ export const ResultValueDelegator = ({ task, winningValues, players }: ResultCom
     case 'porta-dos-desesperados':
       return (
         <>
+          <WinningCount>{props.winningTeam.length}</WinningCount>
           <Instruction>
             <Translate pt="A saída era na porta" en="The Exit was on this door" />:
           </Instruction>
           <div className="task-result-values__cards">
-            {winningValues.map((cardId) => (
-              <ImageBlurButtonContainer cardId={cardId}>
+            {props.winningValues.map((cardId) => (
+              <ImageBlurButtonContainer cardId={cardId} key={cardId}>
                 <DoorFrame width={width}>
                   <ImageCard imageId={cardId} cardWidth={150} />
                 </DoorFrame>
@@ -231,28 +238,30 @@ export const ResultValueDelegator = ({ task, winningValues, players }: ResultCom
     case 'quem-nao-mata':
       return (
         <>
+          <WinningCount>{props.winningTeam.length}</WinningCount>
           <Instruction>
             <Translate pt="O mais morto foi" en="The most killed was" />:
           </Instruction>
           <div className="task-result-values__cards">
-            {winningValues.map((value) => (
+            {props.winningValues.map((value) => (
               <div key={value} className="task-result-values__text-value">
-                <AvatarName player={players[value]} />
+                <AvatarName player={props.players[value]} />
               </div>
             ))}
           </div>
         </>
       );
     case 'retrato-falado':
-      return <ResultRetratoFalado task={task} winningValues={winningValues} players={players} />;
+      return <ResultRetratoFalado {...props} />;
     case 'super-campeonato':
       return (
         <>
+          <WinningCount>{props.winningTeam.length}</WinningCount>
           <Instruction>
             <Translate pt="O campeão é" en="And the champion is" />:
           </Instruction>
-          {winningValues.map((cardId) => (
-            <ImageBlurButtonContainer cardId={cardId}>
+          {props.winningValues.map((cardId) => (
+            <ImageBlurButtonContainer cardId={cardId} key={cardId}>
               <ContenderCard
                 size={width}
                 overlayColor={'yellow'}
@@ -268,11 +277,12 @@ export const ResultValueDelegator = ({ task, winningValues, players }: ResultCom
     case 'testemunha-ocular':
       return (
         <>
+          <WinningCount>{props.winningTeam.length}</WinningCount>
           <Instruction>
             <Translate pt="O criminoso mais votado foi" en="The perpetrator with most votes was" />:
           </Instruction>
           <div className="task-result-values__cards">
-            {winningValues.map((value) => (
+            {props.winningValues.map((value) => (
               <div key={value} className="task-result-values__text-value">
                 <ImageCard
                   key={`table-focus-${value}`}
@@ -288,11 +298,12 @@ export const ResultValueDelegator = ({ task, winningValues, players }: ResultCom
     case 'ue-so-isso':
       return (
         <>
+          <WinningCount>{props.winningTeam.length}</WinningCount>
           <Instruction>
             <Translate pt="A dica eliminada foi" en="The eliminated clue was" />:
           </Instruction>
           <div className="task-result-values__cards">
-            {winningValues.map((value) => (
+            {props.winningValues.map((value) => (
               <div key={value} className="task-result-values__text-value">
                 {value}
               </div>
@@ -300,6 +311,8 @@ export const ResultValueDelegator = ({ task, winningValues, players }: ResultCom
           </div>
         </>
       );
+    case 'vamos-no-cinema':
+      return <ResultVamosAoCinema {...props} />;
 
     default:
       return <TDIcon />;

@@ -1,12 +1,18 @@
+// AntDesign Resources
+// Hooks
+// Utils
+// Components
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
 import { Candidate } from './TaskNamoroOuAmizade';
+import { WinningCount } from './WinningCount';
 
-export function ResultNamoroOuAmizade({ task, winningValues }: ResultComponentProps) {
+export function ResultNamoroOuAmizade({ task, winningValues, winningTeam }: ResultComponentProps) {
   return (
     <>
+      <WinningCount>{winningTeam.length}</WinningCount>
       <Instruction>
-        <Translate pt="O melhor partido foi" en="The best match was" />:
+        <Translate pt="O melhor partido foi" en="The best match was" />:{' '}
       </Instruction>
       <div className="task-result-values__cards">
         {winningValues.map((value) => {

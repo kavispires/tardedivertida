@@ -1,9 +1,7 @@
-import { Space } from 'antd';
 import { Avatar } from 'components/avatars';
+import { SpacePlayerCheckWrapper } from './SpacePlayerCheckWrapper';
 
-export function VoteCruzaPalavras({ task, winningValues, players }: ResultComponentProps) {
-  const playersList = Object.values(players);
-
+export function VoteCruzaPalavras({ task, players, playersList }: VoteComponentProps) {
   const cheatSheet: PlainObject = {
     0: [task.data.cards[0].text, task.data.cards[2].text],
     1: [task.data.cards[0].text, task.data.cards[3].text],
@@ -12,7 +10,7 @@ export function VoteCruzaPalavras({ task, winningValues, players }: ResultCompon
   };
 
   return (
-    <Space className="space-container" align="center" wrap>
+    <SpacePlayerCheckWrapper playersList={playersList} paths={['data.value']}>
       {playersList.map((player) => (
         <div key={`vote-${player.id}`} className="player-vote">
           <Avatar id={player.avatarId} />
@@ -22,6 +20,6 @@ export function VoteCruzaPalavras({ task, winningValues, players }: ResultCompon
           </div>
         </div>
       ))}
-    </Space>
+    </SpacePlayerCheckWrapper>
   );
 }

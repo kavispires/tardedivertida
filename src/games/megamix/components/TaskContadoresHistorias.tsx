@@ -45,7 +45,7 @@ export const TaskContadoresHistorias = ({ task, round, onSubmitTask, user, playe
                   <>
                     Escreva uma história para essa página do livro.
                     <br />
-                    Seja bem óbvio e palavras únicas tem mais chances de dar match.
+                    Seja bem óbvio e palavras únicas têm mais chances de dar match.
                   </>
                 }
                 en={
@@ -73,7 +73,7 @@ export const TaskContadoresHistorias = ({ task, round, onSubmitTask, user, playe
         loading={isLoading}
         onClick={onSubmitClue}
       >
-        <Translate pt="Esse é o impostor" en="This is the impostor" />
+        <Translate pt="Enviar" en="Submit" />
       </Button>
     </>
   );

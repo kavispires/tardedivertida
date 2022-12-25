@@ -82,7 +82,11 @@ export const getNextPhase = async (
     await utils.firebase.triggerSetupPhase(sessionRef);
 
     // Request data
-    const data = await getData(store.language);
+    const data = await getData(
+      store.language,
+      store.options as MegamixGameOptions,
+      Object.keys(players).length
+    );
     const newPhase = await prepareSetupPhase(store, state, players, data);
     await utils.firebase.saveGame(sessionRef, newPhase);
     return getNextPhase(gameName, gameId, players);
