@@ -12,7 +12,7 @@ import { VoteCruzaPalavras } from './VoteCruzaPalavras';
 import { VoteNamoroOuAmizade } from './VoteNamoroOuAmizade';
 import { VoteNaRuaDoMedo } from './VoteNaRuaDoMedo';
 import { VoteRetratoFalado } from './VoteRetratoFalado';
-import { VoteVamosNoCinema } from './VoteVamosNoCinema';
+import { VoteVamosAoCinema } from './VoteVamosAoCinema';
 
 export const VotesDelegator = (props: Omit<VoteComponentProps, 'playersList'>) => {
   const playersList = orderBy(Object.values(props.players), ['data.value', 'name'], ['asc', 'asc']);
@@ -133,8 +133,8 @@ export const VotesDelegator = (props: Omit<VoteComponentProps, 'playersList'>) =
           ))}
         </SpacePlayerCheckWrapper>
       );
-    case 'vamos-no-cinema':
-      return <VoteVamosNoCinema {...props} playersList={playersList} />;
+    case 'vamos-ao-cinema':
+      return <VoteVamosAoCinema {...props} playersList={playersList} />;
     case 'contadores-historias':
     case 'dilema-dos-esquiadores':
     case 'espiao-entre-nos':

@@ -22,7 +22,7 @@ import { TaskRetratoFalado } from './components/TaskRetratoFalado';
 import { TaskSuperCampeonato } from './components/TaskSuperCampeonato';
 import { TaskTestemunhaOcular } from './components/TaskTestemunhaOcular';
 import { TaskUeSoIsso } from './components/TaskUeSoIsso';
-import { TaskVamosNoCinema } from './components/TaskVamosNoCinema';
+import { TaskVamosAoCinema } from './components/TaskVamosAoCinema';
 
 type StepTaskProps = {
   round: GameRound;
@@ -102,8 +102,8 @@ export const StepTask = ({ announcement, ...rest }: StepTaskProps) => {
     case 'ue-so-isso':
       Component = TaskUeSoIsso;
       break;
-    case 'vamos-no-cinema':
-      Component = TaskVamosNoCinema;
+    case 'vamos-ao-cinema':
+      Component = TaskVamosAoCinema;
       break;
     default:
       Component = FallbackComponent;

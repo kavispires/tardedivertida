@@ -141,9 +141,9 @@ const GAMES = [
     key: 'UE_SO_ISSO',
   },
   {
-    name: 'vamos-no-cinema',
+    name: 'vamos-ao-cinema',
     code: 'V',
-    key: 'VAMOS_NO_CINEMA',
+    key: 'VAMOS_AO_CINEMA',
   },
   {
     name: 'vendaval-de-palpite',

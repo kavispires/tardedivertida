@@ -12,7 +12,7 @@ import clsx from 'clsx';
 import { useMock } from 'hooks/useMock';
 import { mockSelection } from '../utils/mock';
 
-export const TaskVamosNoCinema = ({ task, round, onSubmitTask, user }: TaskProps) => {
+export const TaskVamosAoCinema = ({ task, round, onSubmitTask, user }: TaskProps) => {
   const { isLoading } = useLoading();
   const { translate } = useLanguage();
 

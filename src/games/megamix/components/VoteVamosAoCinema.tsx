@@ -3,7 +3,7 @@ import { Avatar } from 'components/avatars';
 import { getMovieTitles } from '../utils/helpers';
 import { SpacePlayerCheckWrapper } from './SpacePlayerCheckWrapper';
 
-export function VoteVamosNoCinema({ task, players, playersList }: VoteComponentProps) {
+export function VoteVamosAoCinema({ task, playersList }: VoteComponentProps) {
   const movies: StringDictionary = getMovieTitles(task.data.movies);
 
   return (

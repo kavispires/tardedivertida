@@ -311,7 +311,7 @@ export const ResultValueDelegator = (props: Omit<ResultComponentProps, 'playersL
           </div>
         </>
       );
-    case 'vamos-no-cinema':
+    case 'vamos-ao-cinema':
       return <ResultVamosAoCinema {...props} />;
 
     default:
