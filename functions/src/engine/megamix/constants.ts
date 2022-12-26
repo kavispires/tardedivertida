@@ -140,7 +140,7 @@ export const MINI_GAMES_LIST: PossibleTask[] = [
     upcoming: true,
   },
   {
-    game: GAME_NAMES.VAMOS_NO_CINEMA,
+    game: GAME_NAMES.VAMOS_AO_CINEMA,
     condition: WINNING_CONDITION.MOST_VOTED,
     upcoming: true,
   },

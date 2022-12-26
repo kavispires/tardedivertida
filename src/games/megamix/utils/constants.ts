@@ -87,7 +87,7 @@ export const TITLES: Record<string, DualLanguageValue> = {
     pt: 'Ué, só isso?',
     en: "That's it?",
   },
-  'vamos-no-cinema': {
+  'vamos-ao-cinema': {
     pt: 'Vamos no cinema?',
     en: 'Movie night!',
   },
@@ -182,7 +182,7 @@ export const INSTRUCTIONS: Record<string, DualLanguageValue> = {
     pt: 'Escreva uma dica para ser eliminada',
     en: 'Write a clue to be eliminated',
   },
-  'vamos-no-cinema': {
+  'vamos-ao-cinema': {
     pt: 'Vamos ver qual filme?',
     en: 'But what movie?',
   },

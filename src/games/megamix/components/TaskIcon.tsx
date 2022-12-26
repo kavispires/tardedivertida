@@ -75,7 +75,7 @@ export const TaskIcon = ({ task }: TaskIconProps) => {
       return <CriminalIcon />;
     case 'ue-so-isso':
       return <GuessIcon />;
-    case 'vamos-no-cinema':
+    case 'vamos-ao-cinema':
       return <MovieTheaterIcon />;
     default:
       return <TDIcon />;

@@ -604,8 +604,8 @@ export const getData = async (
     });
   }
 
-  // VAMOS_NO_CINEMA
-  const hasVamosNoCinema = getGameOnList(availableTasks, GAME_NAMES.VAMOS_NO_CINEMA);
+  // VAMOS_AO_CINEMA
+  const hasVamosNoCinema = getGameOnList(availableTasks, GAME_NAMES.VAMOS_AO_CINEMA);
   if (hasVamosNoCinema.length > 0) {
     const movies = Object.values(await resourceUtils.fetchResource(`${TDR_RESOURCES.MOVIES}-${language}`));
     const allReviews: MovieReview[] = Object.values(
@@ -614,7 +614,7 @@ export const getData = async (
     const reviews = getMovieReviews(allReviews);
     hasVamosNoCinema.forEach(() => {
       tasks.push({
-        game: GAME_NAMES.VAMOS_NO_CINEMA,
+        game: GAME_NAMES.VAMOS_AO_CINEMA,
         condition: WINNING_CONDITION.MOST_VOTED,
         data: {
           movies: utils.game.getRandomItems(movies, 6),
