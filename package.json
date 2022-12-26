@@ -15,7 +15,7 @@
     "animate.css": "^4.1.1",
     "antd": "^5.1.*",
     "clsx": "^1.1.1",
-    "firebase": "^9.8.3",
+    "firebase": "^9.15.0",
     "konva": "^8.3.9",
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
