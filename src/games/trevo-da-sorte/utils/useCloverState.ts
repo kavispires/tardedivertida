@@ -92,7 +92,7 @@ export function useCloverState(mode: CloverMode, clover: Clover, leaves: Leaves,
   /**
    * Randomly chooses different rotations for the leaves
    */
-  const onRandomizeLeafRotations = (e: ButtonEvent) => {
+  const onRandomizeLeafRotations = (e: any) => {
     Object.values(clover.leaves).forEach((cloverLeaf) => {
       onLeafRotate(e, cloverLeaf.leafId, getRandomItem([1, 2, 3, 4, 5]));
     });
