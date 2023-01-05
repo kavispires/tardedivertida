@@ -450,4 +450,13 @@
 
 .m-custom-question-form {
   display: flex;
+
+  & .ant-select {
+    min-width: 150px;
+  }
+}
+
+.m-custom-question-sample {
+  color: get-color('gray');
+  font-style: italic;
 }

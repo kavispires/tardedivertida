@@ -9,7 +9,7 @@ export function useOnSubmitQuestionAPIRequest(setStep: GenericFunction) {
   const request = useAPICall({
     apiFunction: MENTE_COLETIVA_API.submitAction,
     actionName: 'submit-question',
-    onBeforeCall: () => setStep(3),
+    onSuccess: () => setStep(3),
     onError: () => setStep(1),
     successMessage: translate('Pergunta enviada com sucesso!', 'Question send successfully!'),
     errorMessage: translate(
@@ -55,7 +55,7 @@ export function useOnSubmitAnswersAPIRequest(setStep: GenericFunction) {
   const request = useAPICall({
     apiFunction: MENTE_COLETIVA_API.submitAction,
     actionName: 'submit-answers',
-    onBeforeCall: () => setStep(2),
+    onSuccess: () => setStep(2),
     onError: () => setStep(1),
     successMessage: translate('Respostas enviadas com sucesso!', 'Answers send successfully!'),
     errorMessage: translate(
