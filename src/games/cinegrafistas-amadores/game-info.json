@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "CC",
   "gameName": "cinegrafistas-amadores",
-  "version": "planned",
+  "version": "none",
   "title": {
     "pt": "Cinegrafistas Amadores",
     "en": "Amateur Cinematographers"

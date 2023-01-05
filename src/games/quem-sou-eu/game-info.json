@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Q",
   "gameName": "quem-sou-eu",
-  "version": "cancelled",
+  "version": "planned",
   "title": {
     "pt": "Quem Sou Eu?",
     "en": "Who Am I?"
@@ -11,14 +11,14 @@
     "pt": "",
     "en": ""
   },
-  "basedOn": "znabdeH/ytirbeleC",
+  "basedOn": "ytitnedI terceS",
   "appearance": {
     "clouds": "cloud",
     "color": ""
   },
   "summary": {
-    "pt": "Cada jogador é uma celebridade, você consegue adivinhar quem você é com 20 perguntas?",
-    "en": "Can you guess who you are with 20 questions?"
+    "pt": "Cada jogador é uma celebridade ou personagem e deve comunicar aos outros jogadores apenas através de ícones",
+    "en": "Each player is a celebrity or character and must communicate with other players through icons only"
   },
   "rules": {
     "pt": ["TBD"],
@@ -33,7 +33,7 @@
     "base": 0,
     "perPlayer": 0
   },
-  "tags": ["cooperative", "discussion", "guessing"],
+  "tags": ["cooperative", "guessing", "same-time"],
   "available": {
     "pt": false,
     "en": false
