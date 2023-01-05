@@ -3,7 +3,7 @@
     "$schema": "../../utils/game-info.schema.json",
     "gameCode": "ζ",
     "gameName": "desenho-rapidao",
-    "version": "cancelled",
+    "version": "planned",
     "title": {
       "pt": "Desenho Rapidão",
       "en": "Fast Draw"
@@ -31,43 +31,6 @@
       "max": 10
     },
     "tags": ["competitive", "turn-based", "drawing", "guessing", "timed"],
-    "available": {
-      "pt": false,
-      "en": false
-    }
-  },
-  "te-conheco": {
-    "$schema": "../../utils/game-info.schema.json",
-    "gameCode": "λ",
-    "gameName": "te-conheco",
-    "version": "cancelled",
-    "title": {
-      "pt": "Te conheço?",
-      "en": "You don't know me"
-    },
-    "popularName": {
-      "pt": "",
-      "en": ""
-    },
-    "basedOn": "eiL enO shturT owT",
-    "appearance": {
-      "clouds": "cloud",
-      "color": ""
-    },
-    "summary": {
-      "pt": "Você conhece os outros jogadores? Consegue descobrir uma mentira ou adivinhar quem disse o que?",
-      "en": "Do you know the other players? Can you spot a lie? Can you match the player with a sentence?"
-    },
-    "rules": {
-      "pt": ["TBD"],
-      "en": ["TBD"]
-    },
-    "playerCount": {
-      "recommended": [4, 5, 6],
-      "min": 3,
-      "max": 10
-    },
-    "tags": ["competitive", "writing", "turn-based", "images"],
     "available": {
       "pt": false,
       "en": false
