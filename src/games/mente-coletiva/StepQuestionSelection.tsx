@@ -10,6 +10,7 @@ import { Title } from 'components/text';
 import { Pasture } from './components/Pasture';
 import { GamePremiseRules } from './components/RulesBlobs';
 import { CustomQuestion } from './components/CustomQuestion';
+import { useLoading } from 'hooks/useLoading';
 
 type StepQuestionSelectionProps = {
   activePlayer: GamePlayer;
@@ -33,6 +34,8 @@ export function StepQuestionSelection({
   pastureSize,
   user,
 }: StepQuestionSelectionProps) {
+  const { isLoading } = useLoading();
+
   // DEV: Mock answers
   useMock(() => {
     onSubmitQuestion({ questionId: mockSelectQuestion(currentQuestions) });
@@ -52,6 +55,7 @@ export function StepQuestionSelection({
             <button
               onClick={() => onSubmitQuestion({ questionId: question.id })}
               className="m-question m-question--button"
+              disabled={isLoading || user.ready}
             >
               <span className="m-question__prefix">{question.prefix}</span>
               <span className="m-question__number">{question.number}</span>
