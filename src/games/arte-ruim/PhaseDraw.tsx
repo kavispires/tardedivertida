@@ -40,7 +40,7 @@ function PhaseDraw({ players, state, info }: PhaseProps) {
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.ARTE_RUIM.DRAW}>
       <StepSwitcher
         step={step}
-        conditions={[!user.isReady, !user.isReady, !user.isReady]}
+        conditions={[!user.isReady, !user.isReady]}
         players={players}
         waitingRoomInstruction={
           <Translate

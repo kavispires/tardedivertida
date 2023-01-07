@@ -9,6 +9,9 @@ import { Card } from 'components/cards';
 import { DrawingCanvas } from 'components/canvas';
 import { PanicIcon } from 'components/icons/PanicIcon';
 import { ArteRuimTimerSound } from 'components/audio/ArteRuimTimerSound';
+import { useMock } from 'hooks/useMock';
+import { mockDrawing } from 'mock/drawing';
+import { DevButton } from 'components/debug';
 
 type StepDrawProps = {
   secretCard: ArteRuimCard | PlainObject;
@@ -40,6 +43,19 @@ export function StepDraw({ secretCard, onSubmitDrawing, startDrawingTimer, annou
     }
   }, [startDrawingTimer, isRunning, start]);
 
+  const onMockDrawing = () =>
+    onSubmitDrawing({
+      drawing: JSON.stringify(mockDrawing()),
+      cardId: secretCard.id,
+    });
+
+  useMock(() => {
+    onSubmitDrawing({
+      drawing: JSON.stringify(mockDrawing()),
+      cardId: secretCard.id,
+    });
+  });
+
   return (
     <Step announcement={announcement}>
       <Card
@@ -57,6 +73,9 @@ export function StepDraw({ secretCard, onSubmitDrawing, startDrawingTimer, annou
         )}
       </Card>
       {isRunning && <ArteRuimTimerSound />}
+
+      <DevButton onClick={onMockDrawing}>Mock Drawing</DevButton>
+
       {isTimesUp ? (
         <PanicIcon style={{ background: 'white', width: '500px', padding: '2em' }} />
       ) : (
