@@ -16,7 +16,7 @@ import { Step } from 'components/steps';
 import { Title } from 'components/text';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
-import { DebugOnly } from 'components/debug';
+import { DevButton } from 'components/debug';
 
 type StepAnsweringProps = {
   currentQuestion: MQuestion;
@@ -102,15 +102,12 @@ export function StepAnswering({
             <Translate pt="Enviar respostas" en="Submit answers" />
           </Button>
 
-          <DebugOnly devOnly>
-            <Button
-              type="primary"
-              ghost
-              onClick={() => onSubmitAnswers({ answers: mockAnswers(user.id, currentQuestion.number) })}
-            >
-              Mock Answers
-            </Button>
-          </DebugOnly>
+          <DevButton
+            ghost
+            onClick={() => onSubmitAnswers({ answers: mockAnswers(user.id, currentQuestion.number) })}
+          >
+            Mock Answers
+          </DevButton>
         </Space>
       </div>
 

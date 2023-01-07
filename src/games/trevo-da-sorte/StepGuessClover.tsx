@@ -7,7 +7,7 @@ import { mockGuesses } from './utils/mock';
 import { useCloverState } from './utils/useCloverState';
 // Components
 import { AvatarName } from 'components/avatars';
-import { DebugOnly } from 'components/debug';
+import { DevButton } from 'components/debug';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Title } from 'components/text';
@@ -103,11 +103,9 @@ export function StepGuessClover({ clover, leaves, onSubmitGuess, activeCloverPla
           <Translate pt="Enviar adivinhação" en="Submit guess" />
         </Button>
 
-        <DebugOnly devOnly>
-          <Button size="large" onClick={onSubmitMock}>
-            Mock guesses
-          </Button>
-        </DebugOnly>
+        <DevButton size="large" onClick={onSubmitMock}>
+          Mock guesses
+        </DevButton>
       </Space>
     </Step>
   );
