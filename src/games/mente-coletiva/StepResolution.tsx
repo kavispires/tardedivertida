@@ -65,7 +65,7 @@ export function StepResolution({
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title level={1}>
+      <Title level={2}>
         <Translate pt="Resultado" en="Results" />
       </Title>
 
@@ -73,7 +73,7 @@ export function StepResolution({
 
       <StepSwitcher step={step} players={players}>
         <Step key={0}>
-          <RankingBoard ranking={ranking} players={players} hideGainedPoints delay={5} />
+          <RankingBoard ranking={ranking} players={players} hideGainedPoints delay={0} />
         </Step>
 
         <Step key={1}>
