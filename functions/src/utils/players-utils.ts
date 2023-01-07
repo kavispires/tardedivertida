@@ -341,6 +341,36 @@ export const neutralizeBotScores = (players: Players) => {
   });
 };
 
+/**
+ * Randomizes player ids
+ * @param players
+ * @param doublingThreshold - doubles the order player count is lower than this
+ * @returns
+ */
+export const buildGameOrder = (
+  players: Players,
+  doublingThreshold = 0
+): { gameOrder: PlayerId[]; playerIds: PlayerId[]; playerCount: number } => {
+  const playerIds = shuffle(Object.keys(players));
+  const gameOrder = playerIds.length < doublingThreshold ? [...playerIds, ...playerIds] : playerIds;
+  return { gameOrder, playerIds, playerCount: playerIds.length };
+};
+
+/**
+ * Orders a randomized player list starting from given player id
+ * @param gameOrder - the order of players
+ * @param startingPlayerId - the player to start the order
+ * @returns
+ */
+export const reorderGameOrder = (gameOrder: PlayerId[], startingPlayerId: PlayerId) => {
+  const index = gameOrder.indexOf(startingPlayerId);
+  if (index === -1) {
+    return gameOrder;
+  }
+
+  return [...gameOrder.slice(index), ...gameOrder.slice(0, index)];
+};
+
 export class Scores {
   scores: NewScores;
 

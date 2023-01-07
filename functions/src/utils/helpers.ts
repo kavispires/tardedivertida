@@ -1,5 +1,4 @@
 import { LETTERS, LETTERS_EN, LETTERS_PT } from './constants';
-import { shuffle } from './game-utils';
 
 /**
  * Generates an unique game id starting with the gameCode character
@@ -203,21 +202,6 @@ export const buildIdDictionary = (dataList: PlainObject[]): BooleanDictionary =>
     acc[entry.id] = true;
     return acc;
   }, {});
-};
-
-/**
- * Randomizes player ids
- * @param players
- * @param doublingThreshold - doubles the order player count is lower than this
- * @returns
- */
-export const buildGameOrder = (
-  players: Players,
-  doublingThreshold = 0
-): { gameOrder: PlayerId[]; playerIds: PlayerId[]; playerCount: number } => {
-  const playerIds = shuffle(Object.keys(players));
-  const gameOrder = playerIds.length < doublingThreshold ? [...playerIds, ...playerIds] : playerIds;
-  return { gameOrder, playerIds, playerCount: playerIds.length };
 };
 
 /**
