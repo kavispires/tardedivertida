@@ -6,6 +6,8 @@ import { PHASES } from 'utils/phases';
 import { Session } from 'components/session';
 import { PhaseLobby, PhasePlaceholder, PhaseRules, PhaseSetup } from 'components/phases';
 import { PageError } from 'components/errors';
+// Sass
+import 'game-name.scss';
 
 function getActiveComponent(phase: string) {
   switch (phase) {
