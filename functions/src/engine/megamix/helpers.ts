@@ -711,9 +711,9 @@ export const getNaRuaDoMedoScenario = (playerCount: number) => {
   };
 };
 
-export const getMovieReviews = (reviews: MovieReview[]) => {
+export const getMovieReviews = (reviews: MovieReviewCard[]) => {
   const [good, bad] = reviews.reduce(
-    (acc: [MovieReview[], MovieReview[]], entry) => {
+    (acc: [MovieReviewCard[], MovieReviewCard[]], entry) => {
       acc[entry.type === 'good' ? 0 : 1].push(entry);
 
       return acc;

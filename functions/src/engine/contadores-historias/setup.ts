@@ -26,9 +26,9 @@ export const prepareSetupPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Determine player order
-  const { gameOrder, playerCount } = utils.helpers.buildGameOrder(players);
+  const { gameOrder, playerCount } = utils.players.buildGameOrder(players);
 
-  const { gameOrder: roundsIfRoundFixed } = utils.helpers.buildGameOrder(players, DOUBLE_ROUNDS_THRESHOLD);
+  const { gameOrder: roundsIfRoundFixed } = utils.players.buildGameOrder(players, DOUBLE_ROUNDS_THRESHOLD);
   const totalRounds = store.options.fixedRounds ? roundsIfRoundFixed.length : MAX_ROUNDS;
 
   // Assigned cards to players

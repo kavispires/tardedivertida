@@ -21,7 +21,7 @@ export const prepareSetupPhase = async (
   allWords: AllWords
 ): Promise<SaveGamePayload> => {
   // Determine turn order
-  const { gameOrder, playerCount } = utils.helpers.buildGameOrder(players);
+  const { gameOrder, playerCount } = utils.players.buildGameOrder(players);
 
   const deck = utils.game.getRandomItems(Object.values(allWords), playerCount * CARDS_PER_PLAYER);
 

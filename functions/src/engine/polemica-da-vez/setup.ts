@@ -21,7 +21,7 @@ export const prepareSetupPhase = async (
 ): Promise<SaveGamePayload> => {
   // Determine turn order
   // Determine turn order
-  const { gameOrder, playerIds } = utils.helpers.buildGameOrder(
+  const { gameOrder, playerIds } = utils.players.buildGameOrder(
     players,
     store.options.fixedRounds ? DOUBLE_ROUNDS_THRESHOLD : undefined
   );
