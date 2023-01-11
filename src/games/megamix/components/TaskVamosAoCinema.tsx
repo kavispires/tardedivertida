@@ -3,14 +3,13 @@ import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
 import { useLoading } from 'hooks/useLoading';
 import { MinigameTitle } from './MinigameTitle';
-
 import { Card } from 'components/cards';
 import { useLanguage } from 'hooks/useLanguage';
 import { IconAvatar } from 'components/icons/IconAvatar';
 import { ThumbsUpIcon } from 'components/icons/ThumbsUpIcon';
-import clsx from 'clsx';
 import { useMock } from 'hooks/useMock';
 import { mockSelection } from '../utils/mock';
+import { MovieCard } from 'components/cards/MovieCard';
 
 export const TaskVamosAoCinema = ({ task, round, onSubmitTask, user }: TaskProps) => {
   const { isLoading } = useLoading();
@@ -117,30 +116,3 @@ export const TaskVamosAoCinema = ({ task, round, onSubmitTask, user }: TaskProps
     </>
   );
 };
-
-type MovieCardProps = {
-  movie: MovieCard;
-  disableSuffix?: boolean;
-  suffixColor?: string;
-  disablePrefix?: boolean;
-  prefixColor?: string;
-};
-function MovieCard({ movie, disableSuffix, disablePrefix, prefixColor, suffixColor }: MovieCardProps) {
-  return (
-    <div className="v-movie">
-      <div
-        className={clsx('v-movie__suffix', disableSuffix && 'v-movie__suffix--disabled')}
-        style={{ backgroundColor: suffixColor || 'rgba(248, 248, 248, 0.6)' }}
-      >
-        {movie.suffix}
-      </div>
-
-      <div
-        className={clsx('v-movie__prefix', disablePrefix && 'v-movie__prefix--disabled')}
-        style={{ backgroundColor: prefixColor || 'rgba(248, 248, 248, 0.6)' }}
-      >
-        {movie.prefix}
-      </div>
-    </div>
-  );
-}
