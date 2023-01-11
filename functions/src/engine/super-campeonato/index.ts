@@ -73,7 +73,6 @@ export const getNextPhase = async (gameName: string, gameId: string, players: Pl
     state?.phase,
     state.round,
     state?.tier,
-    state?.lastRound,
     store.options?.autoContenders ?? false
   );
 

@@ -29,15 +29,9 @@ import utils from '../../utils';
  * @param currentPhase
  * @param round
  * @param outcome
- * @param triggerLastRound
  * @returns
  */
-export const determineNextPhase = (
-  currentPhase: string,
-  round: Round,
-  outcome: Outcome,
-  triggerLastRound?: boolean
-): string => {
+export const determineNextPhase = (currentPhase: string, round: Round, outcome: Outcome): string => {
   const { RULES, SETUP, TRICK_OR_TREAT, RESULT, STREET_END, GAME_OVER } = NA_RUA_DO_MEDO_PHASES;
   const order = [RULES, SETUP, TRICK_OR_TREAT, RESULT, STREET_END, GAME_OVER];
 
@@ -51,7 +45,7 @@ export const determineNextPhase = (
 
   if (
     currentPhase === STREET_END &&
-    (triggerLastRound || (round.current > 0 && round.current) === round.total)
+    (round.forceLastRound || (round.current > 0 && round.current) === round.total)
   ) {
     return GAME_OVER;
   }

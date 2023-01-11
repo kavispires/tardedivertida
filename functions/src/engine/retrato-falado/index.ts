@@ -68,7 +68,7 @@ export const getNextPhase = async (
   );
 
   // Determine next phase
-  const nextPhase = determineNextPhase(state?.phase, state?.round ?? {}, state.lastRound);
+  const nextPhase = determineNextPhase(state?.phase, state?.round ?? {});
 
   // RULES -> SETUP
   if (nextPhase === RETRATO_FALADO_PHASES.SETUP) {

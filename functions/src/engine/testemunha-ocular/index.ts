@@ -68,8 +68,7 @@ export const getNextPhase = async (
     state?.phase,
     state?.round,
     additionalPayload?.lose,
-    additionalPayload?.win,
-    state?.lastRound
+    additionalPayload?.win
   );
 
   // RULES -> SETUP

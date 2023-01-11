@@ -61,7 +61,7 @@ export const getNextPhase = async (
   );
 
   // Determine next phase
-  const nextPhase = determineNextPhase(state?.phase, state?.round, state?.lastRound);
+  const nextPhase = determineNextPhase(state?.phase, state?.round);
 
   // RULES -> SETUP
   if (nextPhase === QUEM_NAO_MATA_PHASES.SETUP) {

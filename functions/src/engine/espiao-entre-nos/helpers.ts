@@ -8,21 +8,17 @@ import utils from '../../utils';
 /**
  * Determine the next phase based on the current one
  * @param currentPhase
+ * @param round
  * @param outcome
- * @param isFinalAssessment
  * @returns
  */
-export const determineNextPhase = (
-  currentPhase: string,
-  outcome: Outcome,
-  triggerLastRound?: boolean
-): string => {
+export const determineNextPhase = (currentPhase: string, round: Round, outcome: Outcome): string => {
   const { RULES, SETUP, ASSIGNMENT, INVESTIGATION, ASSESSMENT, FINAL_ASSESSMENT, RESOLUTION, GAME_OVER } =
     ESPIAO_ENTRE_NOS_PHASES;
   const order = [RULES, SETUP, ASSIGNMENT, INVESTIGATION, FINAL_ASSESSMENT, RESOLUTION, GAME_OVER];
 
   if (currentPhase === RESOLUTION) {
-    return triggerLastRound ? GAME_OVER : ASSIGNMENT;
+    return round.forceLastRound ? GAME_OVER : ASSIGNMENT;
   }
 
   // When players ran out of votes during final assessment

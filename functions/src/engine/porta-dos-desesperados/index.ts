@@ -84,7 +84,7 @@ export const getNextPhase = async (
     state?.currentDoor
   );
   // Determine next phase
-  const nextPhase = determineNextPhase(state?.phase, state?.round, isGameOver, state?.lastRound);
+  const nextPhase = determineNextPhase(state?.phase, state?.round, isGameOver);
 
   // RULES -> SETUP
   if (nextPhase === PORTA_DOS_DESESPERADOS_PHASES.SETUP) {

@@ -14,10 +14,9 @@ import utils from '../../utils';
  */
 export const determineNextPhase = (
   currentPhase: string,
-  currentRound: number,
+  round: Round,
   lose?: boolean,
-  win?: boolean,
-  triggerLastRound?: boolean
+  win?: boolean
 ): string => {
   const { RULES, SETUP, WITNESS_SELECTION, QUESTION_SELECTION, QUESTIONING, TRIAL, GAME_OVER } =
     TESTEMUNHA_OCULAR_PHASES;
@@ -28,7 +27,7 @@ export const determineNextPhase = (
   }
 
   if (currentPhase === TRIAL) {
-    return triggerLastRound || currentRound >= MAX_ROUNDS ? GAME_OVER : QUESTION_SELECTION;
+    return round.forceLastRound || round.current >= MAX_ROUNDS ? GAME_OVER : QUESTION_SELECTION;
   }
 
   const currentPhaseIndex = order.indexOf(currentPhase);

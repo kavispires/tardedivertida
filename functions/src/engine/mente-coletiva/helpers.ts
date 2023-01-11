@@ -24,27 +24,21 @@ import utils from '../../utils';
 /**
  * Determine the next phase based on the current one
  * @param currentPhase
- * @param currentRound
+ * @param round
  * @param isGameOver
- * @param triggerLastRound
  * @returns
  */
-export const determineNextPhase = (
-  currentPhase: string,
-  currentRound: number,
-  isGameOver?: boolean,
-  triggerLastRound?: boolean
-): string => {
+export const determineNextPhase = (currentPhase: string, round: Round, isGameOver?: boolean): string => {
   const { RULES, SETUP, QUESTION_SELECTION, EVERYBODY_WRITES, COMPARE, RESOLUTION, GAME_OVER } =
     MENTE_COLETIVA_PHASES;
   const order = [RULES, SETUP, QUESTION_SELECTION, EVERYBODY_WRITES, COMPARE, RESOLUTION];
 
-  if (isGameOver || currentRound === MAX_ROUNDS) {
+  if (isGameOver || round.current === MAX_ROUNDS) {
     return GAME_OVER;
   }
 
   if (currentPhase === RESOLUTION) {
-    return triggerLastRound ? GAME_OVER : QUESTION_SELECTION;
+    return round.forceLastRound ? GAME_OVER : QUESTION_SELECTION;
   }
 
   const currentPhaseIndex = order.indexOf(currentPhase);

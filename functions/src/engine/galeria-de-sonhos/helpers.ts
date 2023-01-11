@@ -9,20 +9,15 @@ import utils from '../../utils';
  * Determine the next phase based on the current one
  * @param currentPhase
  * @param round
- * @param triggerLastRound
  * @returns
  */
-export const determineNextPhase = (
-  currentPhase: string,
-  round: Round,
-  triggerLastRound?: boolean
-): string => {
+export const determineNextPhase = (currentPhase: string, round: Round): string => {
   const { RULES, SETUP, WORD_SELECTION, DREAMS_SELECTION, CARD_PLAY, RESOLUTION, GAME_OVER } =
     GALERIA_DE_SONHOS_PHASES;
   const order = [RULES, SETUP, WORD_SELECTION, DREAMS_SELECTION, CARD_PLAY, RESOLUTION, GAME_OVER];
 
   if (currentPhase === RESOLUTION) {
-    return triggerLastRound || (round.current > 0 && round.current === round.total)
+    return round.forceLastRound || (round.current > 0 && round.current === round.total)
       ? GAME_OVER
       : WORD_SELECTION;
   }

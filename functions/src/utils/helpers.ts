@@ -96,6 +96,7 @@ export function getDefaultInitialState({
       round: {
         current: 0,
         total: totalRounds,
+        forceLastRound: false,
       },
       updatedAt: Date.now(),
     },
@@ -170,6 +171,7 @@ export const orderBy = <T>(list: T[], properties: string | string[], orders: str
  */
 export const increaseRound = (round: Round, total?: number, current?: number): Round => {
   return {
+    ...round,
     total: total ?? round.total,
     current: current ?? (round?.current ?? 0) + 1,
   };

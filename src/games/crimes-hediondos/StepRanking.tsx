@@ -10,10 +10,9 @@ type StepRankingProps = {
   players: GamePlayers;
   goToPreviousStep: GenericFunction;
   round: GameRound;
-  lastRound?: boolean;
 };
 
-export function StepRanking({ ranking, players, goToPreviousStep, round, lastRound }: StepRankingProps) {
+export function StepRanking({ ranking, players, goToPreviousStep, round }: StepRankingProps) {
   const roundPoints = round.total - round.current + 1;
 
   return (
@@ -32,7 +31,7 @@ export function StepRanking({ ranking, players, goToPreviousStep, round, lastRou
           <Translate pt="Ver resultado novamente" en="See results again" />
         </Button>
       </Space>
-      <AdminNextPhaseButton round={round} lastRound={lastRound} />
+      <AdminNextPhaseButton round={round} />
     </StepRankingWrapper>
   );
 }
