@@ -37,7 +37,6 @@ function PhaseResults({ players, state, info }: PhaseProps) {
           clover={state.clover}
           leaves={state.leaves}
           ranking={state.ranking}
-          lastRound={state.lastRound}
           activeCloverId={state.activeCloverId}
         />
       </StepSwitcher>

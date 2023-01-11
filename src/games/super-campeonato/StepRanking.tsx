@@ -12,7 +12,6 @@ type StepRankingProps = {
   ranking: GameRanking;
   isGameOver: boolean;
   round: GameRound;
-  isLastRound?: boolean;
   brackets: WBracket[];
   selectedContenderId: CardId;
   bets: WBets;
@@ -23,7 +22,6 @@ export function StepRanking({
   ranking,
   isGameOver,
   round,
-  isLastRound = false,
   brackets,
   bets,
   selectedContenderId,
@@ -39,11 +37,11 @@ export function StepRanking({
         <Translate pt="Seu competidor ganhou" en="Your competitor won" />,
       ]}
     >
-      {!isGameOver && <RoundsLeftInstruction round={round} lastRound={isLastRound} />}
+      {!isGameOver && <RoundsLeftInstruction round={round} />}
 
       <PlayersBets players={players} brackets={brackets} />
 
-      <AdminNextPhaseButton round={round} lastRound={isLastRound} />
+      <AdminNextPhaseButton round={round} />
 
       <Brackets brackets={brackets} activeTier="winner" players={players} />
 

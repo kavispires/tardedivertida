@@ -37,7 +37,7 @@ function PhasePlayersClues({ state, players, info }: PhaseProps) {
           time={5}
           circleColor={info?.appearance?.color}
         >
-          <RoundsLeftInstruction round={state.round} lastRound={state.lastRound} />
+          <RoundsLeftInstruction round={state.round} />
         </RoundAnnouncement>
 
         {/* Step 1 */}

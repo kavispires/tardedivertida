@@ -8,17 +8,11 @@ import utils from '../../utils';
 /**
  * Determine the next phase based on the current one
  * @param currentPhase
- * @param roundsToEndGame
+ * @param round
  * @param outcome
- * @param triggerLastRound
  * @returns
  */
-export const determineNextPhase = (
-  currentPhase: string,
-  roundsToEndGame: number,
-  outcome?: string,
-  triggerLastRound?: boolean
-): string => {
+export const determineNextPhase = (currentPhase: string, round: Round, outcome?: string): string => {
   const { RULES, SETUP, BOSS_SELECTION, SECRET_WORD_SELECTION, PLAYERS_CLUES, CLUE_EVALUATIONS, GAME_OVER } =
     VENDAVAL_DE_PALPITE_PHASES;
   const order = [
@@ -33,7 +27,7 @@ export const determineNextPhase = (
   if (outcome && outcome !== 'CONTINUE') return GAME_OVER;
 
   if (currentPhase === CLUE_EVALUATIONS) {
-    return triggerLastRound || roundsToEndGame <= 0 ? GAME_OVER : PLAYERS_CLUES;
+    return round.forceLastRound || round.current === round.total ? GAME_OVER : PLAYERS_CLUES;
   }
 
   const currentPhaseIndex = order.indexOf(currentPhase);

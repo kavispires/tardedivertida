@@ -22,7 +22,6 @@ type StepResultsProps = {
   round: GameRound;
   outcome: string;
   answerDoorId: string;
-  isLastRound?: boolean;
   magic: number;
   usedMagic: number;
 };
@@ -34,7 +33,6 @@ export function StepResults({
   trap,
   players,
   round,
-  isLastRound,
   answerDoorId,
   outcome,
   magic,
@@ -102,7 +100,7 @@ export function StepResults({
 
       <TrapPopupRule trap={trap} />
 
-      <AdminNextPhaseButton round={round} lastRound={isLastRound} />
+      <AdminNextPhaseButton round={round} />
     </Step>
   );
 }
