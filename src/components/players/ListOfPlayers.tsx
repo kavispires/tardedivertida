@@ -1,0 +1,43 @@
+import { AvatarName } from 'components/avatars';
+
+type ListOfPlayersProps = {
+  /**
+   * The players
+   */
+  players: GamePlayers;
+  /**
+   * The ordered subset of players to be listed
+   */
+  list: PlayerId[];
+  /**
+   * The key prefix
+   */
+  prefix: string;
+  /**
+   * Flag indicating if only the names should be listed
+   */
+  namesOnly?: boolean;
+  /**
+   * Optional class name
+   */
+  className?: string;
+};
+
+/**
+ * Renders player names from a list of playerIds
+ * @param props
+ * @returns
+ */
+export function ListOfPlayers({ players, list, namesOnly, prefix, className }: ListOfPlayersProps) {
+  if (namesOnly) {
+    return <span className={className}>{list.map((playerId) => players[playerId].name).join(',')}</span>;
+  }
+
+  return (
+    <span className={className}>
+      {list.map((playerId) => (
+        <AvatarName player={players[playerId]} key={`${prefix}-${playerId}`} />
+      ))}
+    </span>
+  );
+}
