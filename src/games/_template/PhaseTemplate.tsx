@@ -10,7 +10,7 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { TDIcon } from 'components/icons/TDIcon';
 import { Translate } from 'components/language';
 
-function PhaseTemplate({ players, state, info }: PhaseProps) {
+export function PhaseTemplate({ players, state, info }: PhaseProps) {
   const user = useUser(players, state);
   const { step, goToNextStep } = useStep();
 
@@ -33,5 +33,3 @@ function PhaseTemplate({ players, state, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseTemplate;
