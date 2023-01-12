@@ -1,14 +1,18 @@
-import { Button, Image, Space } from 'antd';
 import clsx from 'clsx';
-import { Card, ImageBlurButtonContainer } from 'components/cards';
-import { Translate } from 'components/language';
-import { Instruction } from 'components/text';
+// AntDesign Resources
+import { Button, Image, Space } from 'antd';
+// Hooks
 import { useBlurCards } from 'hooks/useBlurCards';
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
+// Utils
 import { PUBLIC_URL } from 'utils/constants';
+// Components
+import { Card, ImageBlurButtonContainer } from 'components/cards';
+import { Translate } from 'components/language';
+import { Instruction } from 'components/text';
 import { MinigameTitle } from './/MinigameTitle';
 import { mockSelection } from '../utils/mock';
 

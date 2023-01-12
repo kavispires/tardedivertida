@@ -1,17 +1,21 @@
+import { Fragment } from 'react';
+// AntDesign Resources
 import { Space } from 'antd';
+// Hooks
+import { useLoading } from 'hooks/useLoading';
+import { useMock } from 'hooks/useMock';
+// Utils
+import { mockSelection } from '../utils/mock';
+// Components
 import { Translate } from 'components/language';
 import { Instruction, TextHighlight } from 'components/text';
-import { useLoading } from 'hooks/useLoading';
 import { MinigameTitle } from './MinigameTitle';
-import { useMock } from 'hooks/useMock';
-import { mockSelection } from '../utils/mock';
 import { IconAvatar } from 'components/icons/IconAvatar';
 import { TransparentButton } from 'components/buttons';
 import { TreeOneIcon } from 'components/icons/TreeOneIcon';
 import { TreeTwoIcon } from 'components/icons/TreeTwoIcon';
 import { TreeThreeIcon } from 'components/icons/TreeThreeIcon';
 import { MapIcon } from 'components/icons/MapIcon';
-import { Fragment } from 'react';
 import { RightSquareOutlined } from '@ant-design/icons';
 
 export const TaskCaminhosMagicos = ({ task, round, onSubmitTask, user }: TaskProps) => {

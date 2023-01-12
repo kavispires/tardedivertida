@@ -1,12 +1,16 @@
+// AntDesign Resources
 import { Space } from 'antd';
+// Hooks
+import { useLanguage } from 'hooks/useLanguage';
+import { useLoading } from 'hooks/useLoading';
+import { useMock } from 'hooks/useMock';
+// Utils
+import { mockSelection } from '../utils/mock';
+// Components
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
-import { useLanguage } from 'hooks/useLanguage';
-import { useLoading } from 'hooks/useLoading';
 import { MinigameTitle } from './MinigameTitle';
-import { useMock } from 'hooks/useMock';
-import { mockSelection } from '../utils/mock';
 import { TransparentButton } from 'components/buttons';
 
 export const TaskPalhetaDeCores = ({ task, round, onSubmitTask, user }: TaskProps) => {

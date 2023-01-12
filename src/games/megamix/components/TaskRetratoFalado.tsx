@@ -1,11 +1,15 @@
+// AntDesign Resources
 import { Button, Space } from 'antd';
-import { Translate } from 'components/language';
-import { Instruction } from 'components/text';
+// Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
-import { MinigameTitle } from './MinigameTitle';
+// Utils
 import { mockSelection } from '../utils/mock';
+// Components
+import { Translate } from 'components/language';
+import { Instruction } from 'components/text';
+import { MinigameTitle } from './MinigameTitle';
 import { CanvasSVG } from 'components/canvas';
 import { MonsterCard } from 'components/cards/MonsterCard';
 

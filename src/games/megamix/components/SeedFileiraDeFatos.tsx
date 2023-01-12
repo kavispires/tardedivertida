@@ -1,9 +1,11 @@
+import moment from 'moment';
+import { useState } from 'react';
+// AntDesign Resources
 import { Button, InputNumber, Slider, Space } from 'antd';
+// Components
 import { Avatar } from 'components/avatars';
 import { Translate } from 'components/language';
 import { Title } from 'components/text';
-import moment from 'moment';
-import { useState } from 'react';
 
 type SeedFileiraDeFatosProps = {
   seed: SeedEntryFileiraDeFatos;
@@ -20,7 +22,7 @@ export function SeedFileiraDeFatos({ seed, updateData }: SeedFileiraDeFatosProps
       <Title size="xx-small">
         <Translate
           pt="Você recebeu o torpedo de um amigo e precisa responder antes de se arrumar"
-          en="You received the following text message from a friend and you must answer before leaving"
+          en="You received the following text message from a friend and you must answer it before leaving"
         />
       </Title>
 

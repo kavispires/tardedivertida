@@ -1,6 +1,3 @@
-// AntDesign Resources
-// Hooks
-// Utils
 // Components
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';

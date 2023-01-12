@@ -1,4 +1,6 @@
+// Hooks
 import { useLanguage } from 'hooks/useLanguage';
+// Utils
 import { TITLES } from '../utils/constants';
 
 type TaskTitleProps = {

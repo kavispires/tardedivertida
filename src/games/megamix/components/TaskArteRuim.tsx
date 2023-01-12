@@ -1,16 +1,20 @@
+// AntDesign Resources
 import { Button, Space } from 'antd';
-import { Card } from 'components/cards';
-import { Translate } from 'components/language';
-import { Instruction } from 'components/text';
+// Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
-import { MinigameTitle } from './MinigameTitle';
-import { mockSelection } from '../utils/mock';
-import { CanvasSVG } from 'components/canvas';
-import { TransparentButton } from 'components/buttons';
+// Utils
 import { LETTERS } from 'utils/constants';
 import { getColorFromIndex } from 'utils/helpers';
+import { mockSelection } from '../utils/mock';
+// Components
+import { Card } from 'components/cards';
+import { Translate } from 'components/language';
+import { Instruction } from 'components/text';
+import { MinigameTitle } from './MinigameTitle';
+import { CanvasSVG } from 'components/canvas';
+import { TransparentButton } from 'components/buttons';
 
 export const TaskArteRuim = ({ task, round, onSubmitTask, user, players }: TaskProps) => {
   const cardWidth = useCardWidth(5, 32, 250, 270);
@@ -51,8 +55,10 @@ export const TaskArteRuim = ({ task, round, onSubmitTask, user, players }: TaskP
               <>
                 Among the cards below, which one best describes the beautiful illustration?
                 <br />
-                Is that your drawing? Remember that the correct answer is not important, but what the majority
-                will choose.
+                <em>
+                  Is that your drawing? Remember that the correct answer is not important, but what the
+                  majority will choose.
+                </em>
               </>
             }
           />
@@ -100,8 +106,10 @@ export const TaskArteRuim = ({ task, round, onSubmitTask, user, players }: TaskP
             <>
               Among the illustrations below, which one best fits the card?
               <br />
-              Is that your drawing? Remember that the correct answer is not important, but what the majority
-              will choose.
+              <em>
+                Is that your drawing? Remember that the correct answer is not important, but what the majority
+                will choose.
+              </em>
             </>
           }
         />

@@ -1,7 +1,8 @@
+// Utils
+import { LETTERS } from 'utils/constants';
+// Components
 import { Avatar } from 'components/avatars';
 import { HouseCard } from 'games/na-rua-do-medo/components/HouseCard';
-
-import { LETTERS } from 'utils/constants';
 import { SpacePlayerCheckWrapper } from './SpacePlayerCheckWrapper';
 
 export function VoteNaRuaDoMedo({ task, players, playersList }: VoteComponentProps) {

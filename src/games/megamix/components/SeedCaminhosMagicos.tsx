@@ -1,9 +1,11 @@
-import { HeartOutlined, MessageOutlined, SendOutlined } from '@ant-design/icons';
+import { capitalize } from 'lodash';
+// AntDesign Resources
 import { Button, Space } from 'antd';
+import { HeartOutlined, MessageOutlined, SendOutlined } from '@ant-design/icons';
+// Components
 import { BikiniModelIcon } from 'components/icons/BikiniModelIcon';
 import { Translate } from 'components/language';
-import { Instruction, Title } from 'components/text';
-import { capitalize } from 'lodash';
+import { Instruction, TextHighlight, Title } from 'components/text';
 import { SocialProfile } from './SocialProfile';
 
 type SeedCaminhosMagicosProps = {
@@ -27,14 +29,15 @@ export function SeedCaminhosMagicos({ seed, updateData, user }: SeedCaminhosMagi
           <Translate
             pt={
               <>
-                Para não pensarem mal de você, você escolheu <strong>{seed.portal.text}</strong> como a
-                legenda de impacto da sua postagem. Agora escolha o melhor adjetivo que vai bem com ela.
+                Para não pensarem mal de você, você escolheu <TextHighlight>{seed.portal.text}</TextHighlight>{' '}
+                como a legenda de impacto da sua postagem. Agora escolha o melhor adjetivo que vai bem com
+                ela.
               </>
             }
             en={
               <>
-                Thinking about the haters, you chose <strong>{seed.portal.text}</strong> as a caption. Now
-                select the best adjective to go with it.
+                Thinking about the haters, you chose <TextHighlight>{seed.portal.text}</TextHighlight> as a
+                caption. Now select the best adjective to go with it.
               </>
             }
           />

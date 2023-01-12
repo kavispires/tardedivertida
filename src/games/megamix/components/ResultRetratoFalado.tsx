@@ -1,8 +1,11 @@
+// AntDesign Resources
 import { Badge } from 'antd';
+// Hooks
+import { useCardWidth } from 'hooks/useCardWidth';
+// Components
 import { CanvasSVG } from 'components/canvas';
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
-import { useCardWidth } from 'hooks/useCardWidth';
 import { WinningCount } from './WinningCount';
 
 export function ResultRetratoFalado({ task, winningValues, winningTeam }: ResultComponentProps) {

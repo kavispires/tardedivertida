@@ -1,7 +1,9 @@
-import { CheckCircleFilled } from '@ant-design/icons';
-import clsx from 'clsx';
-import { Avatar } from 'components/avatars';
 import { ReactNode } from 'react';
+import clsx from 'clsx';
+// AntDesign Resources
+import { CheckCircleFilled } from '@ant-design/icons';
+// Components
+import { Avatar } from 'components/avatars';
 
 type SocialProfileProps = {
   avatarId: string;

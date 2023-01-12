@@ -1,14 +1,19 @@
+import { useEffect, useState } from 'react';
+// AntDesign Resources
 import { Button, Space } from 'antd';
+// Hooks
+import { useCountdown } from 'hooks/useCountdown';
+import { useLanguage } from 'hooks/useLanguage';
+// Utils
+import { NOOP } from 'utils/constants';
+// Components
 import { Translate } from 'components/language';
 import { Instruction, Title } from 'components/text';
-import { useCountdown } from 'hooks/useCountdown';
 import { Card } from 'components/cards';
 import { DrawingCanvas } from 'components/canvas';
 import { PanicIcon } from 'components/icons/PanicIcon';
-import { useLanguage } from 'hooks/useLanguage';
-import { useEffect, useState } from 'react';
-import { NOOP } from 'utils/constants';
 import { ArteRuimTimerSound } from 'components/audio/ArteRuimTimerSound';
+import { TimeHighlight } from 'components/metrics/TimeHighlight';
 
 type SeedArteRuimProps = {
   seed: SeedEntryArteRuim;
@@ -44,7 +49,7 @@ export function SeedArteRuim({ seed, updateData }: SeedArteRuimProps) {
       <Title size="xx-small">
         <Translate
           pt="Para ajudar aliviar o estresse de ser sensual na balada, você resolveu se expressar artisticamente"
-          en="To help relieve the stress of being completely sexy in the club, you decided to express yourself through art"
+          en="To help relieve the stress of being incredibly hot in the club, you decided to express yourself through art"
         />
       </Title>
 
@@ -53,13 +58,14 @@ export function SeedArteRuim({ seed, updateData }: SeedArteRuimProps) {
           <Translate
             pt={
               <>
-                Você tem <strong>10 segundos</strong> para desenhar a carta abaixo. Quando estiver pronto,
-                aperte o botão!
+                Você tem <TimeHighlight>10 segundos</TimeHighlight> para desenhar a carta abaixo. Quando
+                estiver pronto, aperte o botão, o texto irá aparecer, então desenhe rápido!
               </>
             }
             en={
               <>
-                You have <strong>10 seconds</strong> to draw the card below. When you ready, press the button!
+                You have <TimeHighlight>10 seconds</TimeHighlight> to draw the card below. When you're ready,
+                press the button so the text will show up and then draw fast!
               </>
             }
           />

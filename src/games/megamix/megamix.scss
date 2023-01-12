@@ -782,6 +782,7 @@
     padding: get-unit(2 4);
     border-radius: $border-radius;
     display: block;
+    text-transform: uppercase;
   }
 }
 
@@ -869,6 +870,21 @@
       transform: scale(1.05);
       transform-origin: center;
       fill: get-color('purple');
+    }
+  }
+
+  &__pointer {
+    transform-origin: 340px 340px;
+    transition: all 1s;
+
+    &--p-1 {
+      transform: rotate(-60deg);
+    }
+    &--p0 {
+      transform: rotate(0);
+    }
+    &--p1 {
+      transform: rotate(60deg);
     }
   }
 }

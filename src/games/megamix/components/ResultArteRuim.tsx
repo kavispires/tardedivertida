@@ -1,6 +1,5 @@
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
-// Utils
 // Components
 import { CanvasSVG } from 'components/canvas';
 import { Translate } from 'components/language';

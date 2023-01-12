@@ -1,14 +1,18 @@
+import { ReactNode } from 'react';
+// AntDesign Resources
 import { Button, Space } from 'antd';
-import { Card } from 'components/cards';
-import { Translate } from 'components/language';
-import { Instruction } from 'components/text';
+// Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
-import { MinigameTitle } from './MinigameTitle';
-import { mockSelection } from '../utils/mock';
+// Utils
 import { getAvatarColorById } from 'utils/helpers';
-import { ReactNode } from 'react';
+import { mockSelection } from '../utils/mock';
+// Components
+import { Card } from 'components/cards';
+import { Translate } from 'components/language';
+import { Instruction } from 'components/text';
+import { MinigameTitle } from './MinigameTitle';
 
 function getRevealedEntry(options: PlainObject[], playerId: PlayerId) {
   const index = options.findIndex((option) => option.playerId === playerId);
@@ -35,6 +39,13 @@ export const TaskFileiraDeFatos = ({ task, round, onSubmitTask, user, players }:
         <Card header={translate('Pergunta', 'Question')}>{task.data.card.question}</Card>
       </Space>
 
+      <Instruction contained>
+        <Translate
+          pt={<>Temos duas respostas numéricas em ordem crescente para a pergunta acima.</>}
+          en={<>We have two secretly sorted numbered answers for the question above.</>}
+        />
+      </Instruction>
+
       <Space className="space-container">
         <Chevron
           player={players[task.data.options[0].playerId]}
@@ -52,15 +63,15 @@ export const TaskFileiraDeFatos = ({ task, round, onSubmitTask, user, players }:
         <Translate
           pt={
             <>
-              Temos duas respostas numéricas em ordem crescente para a pergunta acima.
-              <br />A resposta abaixo vai <strong>antes</strong> ou <strong>depois</strong> das duas acima?
+              A resposta abaixo vai <strong>antes</strong> ou <strong>depois</strong> das duas acima? <br />
+              <em>(Para te ajudar um pouco, revelamos o valor de um dos números)</em>
             </>
           }
           en={
             <>
-              We have two ordered numbered answers for the the question above.
-              <br />
               Does the answer below goes <strong>before</strong> or <strong>after</strong> the two players?
+              <br />
+              <em>(To help out a bit, we revealed the value of one if the chevrons)</em>
             </>
           }
         />

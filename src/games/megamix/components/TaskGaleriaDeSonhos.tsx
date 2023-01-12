@@ -1,13 +1,18 @@
+// AntDesign Resources
 import { Button, Image, Space } from 'antd';
-import { Translate } from 'components/language';
-import { Instruction } from 'components/text';
+// Hooks
 import { useLoading } from 'hooks/useLoading';
-import { MinigameTitle } from './MinigameTitle';
 import { useMock } from 'hooks/useMock';
-import { mockSelection } from '../utils/mock';
-import { Card, ImageBlurButtonContainer, ImageCard } from 'components/cards';
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useLanguage } from 'hooks/useLanguage';
+// Utils
+import { mockSelection } from '../utils/mock';
+// Components
+import { Translate } from 'components/language';
+import { Instruction } from 'components/text';
+import { MinigameTitle } from './MinigameTitle';
+import { Card, ImageBlurButtonContainer, ImageCard } from 'components/cards';
+import { CardHighlight } from 'components/metrics/CardHighlight';
 
 export const TaskGaleriaDeSonhos = ({ task, round, onSubmitTask, user }: TaskProps) => {
   const cardWidth = useCardWidth(8, 8, 150, 350, 8);
@@ -31,9 +36,17 @@ export const TaskGaleriaDeSonhos = ({ task, round, onSubmitTask, user }: TaskPro
       <Instruction contained>
         <Translate
           pt={
-            <>Com o tema abaixo, qual carta-sonho é a mais provável dos outros jogadores também visitarem?</>
+            <>
+              Com o tema abaixo, qual <CardHighlight>carta-sonho</CardHighlight> é a mais provável dos outros
+              jogadores também visitarem?
+            </>
           }
-          en={<>With the theme below, what is the Dream Card most likely to be visited by other players?</>}
+          en={
+            <>
+              With the theme below, what is the <CardHighlight>Dream Card</CardHighlight> most likely to be
+              visited by other players?
+            </>
+          }
         />
       </Instruction>
 

@@ -1,7 +1,8 @@
+// Hooks
+import { useCardWidth } from 'hooks/useCardWidth';
+// Components
 import { Avatar } from 'components/avatars';
 import { CanvasSVG } from 'components/canvas';
-import { useCardWidth } from 'hooks/useCardWidth';
-
 import { SpacePlayerCheckWrapper } from './SpacePlayerCheckWrapper';
 
 export function VoteRetratoFalado({ task, players, playersList }: VoteComponentProps) {

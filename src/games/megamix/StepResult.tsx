@@ -6,17 +6,17 @@ import { TrophyOutlined } from '@ant-design/icons';
 import { sortPlayers } from 'utils/helpers';
 // Hooks
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
+import { useCountdown } from 'hooks/useCountdown';
+import { useDimensions } from 'hooks/useDimensions';
 // Components
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { TimedButton } from 'components/buttons';
 import { ClubberAvatar } from './components/ClubberAvatar';
-import { useCountdown } from 'hooks/useCountdown';
 import { GarbageIcon } from 'components/icons/GarbageIcon';
 import { VIPLineIcon } from 'components/icons/VIPLineIcon';
 import { IconAvatar } from 'components/icons/IconAvatar';
-import { useDimensions } from 'hooks/useDimensions';
 import { ResultValueDelegator } from './components/ResultValueDelegator';
 import { TaskTitle } from './components/TaskTitle';
 import { DJIcon } from 'components/icons/DJIcon';
