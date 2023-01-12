@@ -1,13 +1,17 @@
+import { useState } from 'react';
+// AntDesign Resources
 import { Button, Input } from 'antd';
+// Hooks
+import { useLoading } from 'hooks/useLoading';
+import { useMock } from 'hooks/useMock';
+// Utils
+import { mockText } from '../utils/mock';
+// Components
 import { ImageBlurButtonContainer, ImageCard } from 'components/cards';
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
 import { BookPages } from 'games/contadores-historias/components/BookPages';
-import { useLoading } from 'hooks/useLoading';
-import { useMock } from 'hooks/useMock';
-import { useState } from 'react';
 import { MinigameTitle } from './MinigameTitle';
-import { mockText } from '../utils/mock';
 
 export const TaskContadoresHistorias = ({ task, round, onSubmitTask, user, players }: TaskProps) => {
   const { isLoading } = useLoading();

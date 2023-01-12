@@ -1,5 +1,5 @@
+// Components
 import { Avatar } from 'components/avatars';
-
 import { SpacePlayerCheckWrapper } from './SpacePlayerCheckWrapper';
 import { Candidate } from './TaskNamoroOuAmizade';
 

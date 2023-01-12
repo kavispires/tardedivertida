@@ -1,14 +1,18 @@
+// AntDesign Resources
 import { Button, Space } from 'antd';
+// Hooks
+import { useLanguage } from 'hooks/useLanguage';
+import { useMock } from 'hooks/useMock';
+import { useLoading } from 'hooks/useLoading';
+// Utils
+import { mockSelection } from '../utils/mock';
+// Components
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
-import { useLoading } from 'hooks/useLoading';
 import { MinigameTitle } from './MinigameTitle';
 import { Card } from 'components/cards';
-import { useLanguage } from 'hooks/useLanguage';
 import { IconAvatar } from 'components/icons/IconAvatar';
 import { ThumbsUpIcon } from 'components/icons/ThumbsUpIcon';
-import { useMock } from 'hooks/useMock';
-import { mockSelection } from '../utils/mock';
 import { MovieCard } from 'components/cards/MovieCard';
 
 export const TaskVamosAoCinema = ({ task, round, onSubmitTask, user }: TaskProps) => {

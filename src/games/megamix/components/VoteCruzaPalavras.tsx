@@ -1,3 +1,4 @@
+// Components
 import { Avatar } from 'components/avatars';
 import { SpacePlayerCheckWrapper } from './SpacePlayerCheckWrapper';
 

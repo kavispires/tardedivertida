@@ -1,12 +1,15 @@
+// AntDesign Resources
 import { Button, Space } from 'antd';
-
+// Hooks
+import { useLoading } from 'hooks/useLoading';
+import { useMock } from 'hooks/useMock';
+// Utils
+import { mockSelection } from '../utils/mock';
+// Components
 import { ImageCard } from 'components/cards';
 import { DualTranslate, Translate } from 'components/language';
 import { Instruction } from 'components/text';
-import { useLoading } from 'hooks/useLoading';
 import { MinigameTitle } from './MinigameTitle';
-import { useMock } from 'hooks/useMock';
-import { mockSelection } from '../utils/mock';
 
 export const TaskNamoroOuAmizade = ({ task, round, onSubmitTask, user }: TaskProps) => {
   const { isLoading } = useLoading();

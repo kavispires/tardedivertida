@@ -9,6 +9,7 @@ export * from './ApplauseIcon';
 export * from './ArrowIcon';
 export * from './BikiniModelIcon';
 export * from './BossIcon';
+export * from './BouncerIcon';
 export * from './BoxAlertIcon';
 export * from './BoxCheckMarkIcon';
 export * from './BoxingGlovesIcon';

@@ -1,3 +1,4 @@
+// Components
 import { BoxingGlovesIcon } from 'components/icons/BoxingGlovesIcon';
 import { ColorWheelIcon } from 'components/icons/ColorWheelIcon';
 import { CrimeSceneIcon } from 'components/icons/CrimeSceneIcon';

@@ -1,10 +1,14 @@
+// AntDesign Resources
 import { Button, Space } from 'antd';
+// Hooks
+import { useLoading } from 'hooks/useLoading';
+import { useMock } from 'hooks/useMock';
+// Utils
+import { mockSelection } from '../utils/mock';
+// Components
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
-import { useLoading } from 'hooks/useLoading';
 import { MinigameTitle } from './MinigameTitle';
-import { useMock } from 'hooks/useMock';
-import { mockSelection } from '../utils/mock';
 import { SocialProfile } from './SocialProfile';
 
 export const TaskPolemicaDaVez = ({ task, round, onSubmitTask, user }: TaskProps) => {

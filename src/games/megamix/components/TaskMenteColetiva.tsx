@@ -1,13 +1,17 @@
+import { useState } from 'react';
+// AntDesign Resources
 import { Button, Input, Space } from 'antd';
+// Hooks
+import { useLanguage } from 'hooks/useLanguage';
+import { useLoading } from 'hooks/useLoading';
+import { useMock } from 'hooks/useMock';
+// Utils
+import { mockText } from '../utils/mock';
+// Components
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
-import { useLanguage } from 'hooks/useLanguage';
-import { useLoading } from 'hooks/useLoading';
 import { MinigameTitle } from './MinigameTitle';
-import { useState } from 'react';
-import { useMock } from 'hooks/useMock';
-import { mockText } from '../utils/mock';
 
 export const TaskMenteColetiva = ({ task, round, onSubmitTask, user }: TaskProps) => {
   const { translate } = useLanguage();

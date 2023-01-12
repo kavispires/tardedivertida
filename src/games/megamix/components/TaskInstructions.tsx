@@ -1,4 +1,6 @@
+// Hooks
 import { useLanguage } from 'hooks/useLanguage';
+// Utils
 import { INSTRUCTIONS } from '../utils/constants';
 
 type TaskInstructionsProps = {

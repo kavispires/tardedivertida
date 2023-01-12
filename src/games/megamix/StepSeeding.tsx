@@ -1,11 +1,17 @@
+import { useState } from 'react';
+// AntDesign Resources
 import { Steps } from 'antd';
+// Hooks
+import { useMock } from 'hooks/useMock';
+import { useStep } from 'hooks/useStep';
+import { useLanguage } from 'hooks/useLanguage';
+// Utils
+import { buildSeedingSteps } from './utils/helpers';
+import { mockSeeding } from './utils/mock';
+// Components
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Title } from 'components/text';
-import { useLanguage } from 'hooks/useLanguage';
-import { useMock } from 'hooks/useMock';
-import { useStep } from 'hooks/useStep';
-import { useState } from 'react';
 import { SeedArteRuim } from './components/SeedArteRuim';
 import { SeedCaminhosMagicos } from './components/SeedCaminhosMagicos';
 import { SeedClubber } from './components/SeedClubber';
@@ -13,8 +19,6 @@ import { SeedFileiraDeFatos } from './components/SeedFileiraDeFatos';
 import { SeedOndaTelepatica } from './components/SeedOndaTelepatica';
 import { SeedPolemicaDaVez } from './components/SeedPolemicaDaVez';
 import { SeedRetratoFalado } from './components/SeedRetratoFalado';
-import { buildSeedingSteps } from './utils/helpers';
-import { mockSeeding } from './utils/mock';
 
 type StepSeedingProps = {
   players: GamePlayers;

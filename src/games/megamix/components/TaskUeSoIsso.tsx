@@ -1,13 +1,17 @@
+import { useState } from 'react';
+// AntDesign Resources
 import { Button, Input, Space } from 'antd';
-import { Card } from 'components/cards';
-import { Translate } from 'components/language';
-import { Instruction } from 'components/text';
+// Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
-import { useState } from 'react';
-import { MinigameTitle } from './MinigameTitle';
+// Utils
 import { mockText } from '../utils/mock';
+// Components
+import { Card } from 'components/cards';
+import { Translate } from 'components/language';
+import { Instruction } from 'components/text';
+import { MinigameTitle } from './MinigameTitle';
 
 export const TaskUeSoIsso = ({ task, round, onSubmitTask, user, players }: TaskProps) => {
   const { translate } = useLanguage();
@@ -46,9 +50,10 @@ export const TaskUeSoIsso = ({ task, round, onSubmitTask, user, players }: TaskP
           en={
             <>
               In a normal game of <strong>That's it?</strong>, you are trying to write a clue that is not the
-              same as other players so it doesn't get removed.
+              same as other players' so it doesn't get removed.
               <br />
-              This time, you <strong>want your clue (single word) to be eliminated</strong>so be very obvious!
+              This time, you <strong>want your clue (single word) to be eliminated</strong>, so be very
+              obvious!
             </>
           }
         />

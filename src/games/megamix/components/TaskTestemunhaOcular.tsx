@@ -1,13 +1,17 @@
+// AntDesign Resources
 import { Button, Image, Space } from 'antd';
-import { DualTranslate, Translate } from 'components/language';
-import { Instruction } from 'components/text';
-import { useLoading } from 'hooks/useLoading';
-import { MinigameTitle } from './MinigameTitle';
+// Hooks
 import { useMock } from 'hooks/useMock';
-import { mockSelection } from '../utils/mock';
-import { Card, ImageCard } from 'components/cards';
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useLanguage } from 'hooks/useLanguage';
+import { useLoading } from 'hooks/useLoading';
+// Utils
+import { mockSelection } from '../utils/mock';
+// Components
+import { DualTranslate, Translate } from 'components/language';
+import { Instruction } from 'components/text';
+import { MinigameTitle } from './MinigameTitle';
+import { Card, ImageCard } from 'components/cards';
 import { IconAvatar } from 'components/icons/IconAvatar';
 import { SpeechBubbleAcceptedIcon } from 'components/icons/SpeechBubbleAcceptedIcon';
 import { SpeechBubbleDeclinedIcon } from 'components/icons/SpeechBubbleDeclinedIcon';
@@ -43,7 +47,7 @@ export const TaskTestemunhaOcular = ({ task, round, onSubmitTask, user }: TaskPr
             }
             en={
               <>
-                A witness give this answer when trying to explain who the perpetrator was to the police.
+                A witness gave this answer when trying to explain who the perpetrator was to the police.
                 <br />
                 Which one of them is the perpetrator?
               </>

@@ -128,7 +128,7 @@ export const INSTRUCTIONS: Record<string, DualLanguageValue> = {
   },
   'fileira-de-fatos': {
     pt: 'Coloque a fila de números na ordem!',
-    en: 'Place the line of number is order!',
+    en: 'Place the line of numbers in order!',
   },
   'galeria-de-sonhos': {
     pt: 'Um tema, um sonho, várias images',

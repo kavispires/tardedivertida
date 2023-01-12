@@ -1,9 +1,11 @@
+import { has, orderBy } from 'lodash';
+// Hooks
+import { useCardWidth } from 'hooks/useCardWidth';
+// Components
 import { Avatar } from 'components/avatars';
 import { ImageBlurButtonContainer, ImageCard } from 'components/cards';
 import { TDIcon } from 'components/icons/TDIcon';
 import { Translate } from 'components/language';
-import { useCardWidth } from 'hooks/useCardWidth';
-import { has, orderBy } from 'lodash';
 import { SpacePlayerCheckWrapper } from './SpacePlayerCheckWrapper';
 import { SplatterSVG } from './TaskPalhetaDeFores';
 import { ContenderCard } from './TaskSuperCampeonato';

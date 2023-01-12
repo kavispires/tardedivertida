@@ -1,15 +1,19 @@
-import { CheckCircleFilled } from '@ant-design/icons';
-import { Button, Popover, Tag } from 'antd';
 import clsx from 'clsx';
-import { ImageCard } from 'components/cards';
-import { DualTranslate, Translate } from 'components/language';
-import { Instruction } from 'components/text';
+// AntDesign Resources
+import { Button, Popover, Tag } from 'antd';
+import { CheckCircleFilled } from '@ant-design/icons';
+// Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
-import { MinigameTitle } from './MinigameTitle';
+// Utils
 import { mockSelection } from '../utils/mock';
+// Components
+import { ImageCard } from 'components/cards';
+import { DualTranslate, Translate } from 'components/language';
+import { Instruction } from 'components/text';
+import { MinigameTitle } from './MinigameTitle';
 
 export const TaskCrimesHediondos = ({ task, round, onSubmitTask, user, players }: TaskProps) => {
   const cardWidth = useCardWidth(12, 32, 100, 130);

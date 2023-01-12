@@ -1,7 +1,8 @@
+// Utils
+import { getMovieTitles } from '../utils/helpers';
+// Components
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
-
-import { getMovieTitles } from '../utils/helpers';
 import { WinningCount } from './WinningCount';
 
 export function ResultVamosAoCinema({ task, winningValues, winningTeam }: ResultComponentProps) {
@@ -11,7 +12,7 @@ export function ResultVamosAoCinema({ task, winningValues, winningTeam }: Result
     <>
       <WinningCount>{winningTeam.length}</WinningCount>
       <Instruction>
-        <Translate pt="A arte mais votada foi" en="The most popular art was" />:
+        <Translate pt="A filme mais votado foi" en="The most popular movie was" />:
       </Instruction>
       <div className="task-result-values__cards">
         {winningValues.map((value) => {
