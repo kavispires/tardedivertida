@@ -8,20 +8,16 @@ import utils from '../../utils';
 /**
  * Determine the next phase based on the current one
  * @param currentPhase
+ * @param round
  * @param roundsToEndGame
- * @param triggerLastRound
  * @returns
  */
-export const determineNextPhase = (
-  currentPhase: string,
-  roundsToEndGame: number,
-  triggerLastRound?: boolean
-): string => {
+export const determineNextPhase = (currentPhase: string, round: Round, roundsToEndGame: number): string => {
   const { RULES, SETUP, WORD_SELECTION, SUGGEST, COMPARE, GUESS, GAME_OVER } = UE_SO_ISSO_PHASES;
   const order = [RULES, SETUP, WORD_SELECTION, SUGGEST, COMPARE, GUESS, GAME_OVER];
 
   if (currentPhase === GUESS) {
-    return triggerLastRound || roundsToEndGame <= 0 ? GAME_OVER : WORD_SELECTION;
+    return round.forceLastRound || roundsToEndGame <= 0 ? GAME_OVER : WORD_SELECTION;
   }
 
   const currentPhaseIndex = order.indexOf(currentPhase);

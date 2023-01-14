@@ -1,13 +1,17 @@
+import { useEffect, useState } from 'react';
+import { useAudio } from 'react-use';
+// AntDesign Resources
 import { Button, Space } from 'antd';
+// Hooks
+import { useGlobalState } from 'hooks/useGlobalState';
+import { useCountdown } from 'hooks/useCountdown';
+// Utils
+import { NOOP } from 'utils/constants';
+// Components
 import { Translate } from 'components/language';
 import { Instruction, Title } from 'components/text';
-import { useCountdown } from 'hooks/useCountdown';
 import { DrawingCanvas } from 'components/canvas';
 import { PanicIcon } from 'components/icons/PanicIcon';
-import { useEffect, useState } from 'react';
-import { useGlobalState } from 'hooks/useGlobalState';
-import { useAudio } from 'react-use';
-import { NOOP } from 'utils/constants';
 import { MonsterCard } from 'components/cards/MonsterCard';
 import { ImageCardPreloadHand } from 'components/cards';
 // Sound
@@ -73,7 +77,7 @@ export function SeedRetratoFalado({ seed, updateData }: SeedRetratoFaladoProps) 
               <>
                 You have <strong>30 seconds</strong> to draw the card below.
                 <br />
-                Drawing it is the only thing that calms you down. When you ready, press the button!
+                Drawing it is the only thing that calms you down. When you're ready, press the button!
               </>
             }
           />

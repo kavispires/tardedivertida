@@ -6,20 +6,17 @@ import { DETETIVES_IMAGINATIVOS_PHASES } from './constants';
  * Determine the next phase based on the current one
  * @param currentPhase
  * @param round
- * @param triggerLastRound
  * @returns
  */
-export const determineNextPhase = (
-  currentPhase: string,
-  round: Round,
-  triggerLastRound?: boolean
-): string => {
+export const determineNextPhase = (currentPhase: string, round: Round): string => {
   const { RULES, SETUP, SECRET_CLUE, CARD_PLAY, DEFENSE, VOTING, REVEAL, GAME_OVER } =
     DETETIVES_IMAGINATIVOS_PHASES;
   const order = [RULES, SETUP, SECRET_CLUE, CARD_PLAY, DEFENSE, VOTING, REVEAL, GAME_OVER];
 
   if (currentPhase === REVEAL) {
-    return triggerLastRound || (round.current > 0 && round.current === round.total) ? GAME_OVER : SECRET_CLUE;
+    return round.forceLastRound || (round.current > 0 && round.current === round.total)
+      ? GAME_OVER
+      : SECRET_CLUE;
   }
 
   const currentPhaseIndex = order.indexOf(currentPhase);

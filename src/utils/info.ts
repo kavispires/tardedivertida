@@ -28,6 +28,7 @@ import SUPER_CAMPEONATO from 'games/super-campeonato/game-info.json';
 import TESTEMUNHA_OCULAR from 'games/testemunha-ocular/game-info.json';
 import TREVO_DA_SORTE from 'games/trevo-da-sorte/game-info.json';
 import UE_SO_ISSO from 'games/ue-so-isso/game-info.json';
+import VAMOS_AO_CINEMA from 'games/vamos-ao-cinema/game-info.json';
 import VENDAVAL_DE_PALPITE from 'games/vendaval-de-palpite/game-info.json';
 
 import comingSoonGames from 'assets/data/coming-soon-games.json';
@@ -66,6 +67,7 @@ export const GAME_LIST: Record<GameCode, GameInfo> = {
   'testemunha-ocular': TESTEMUNHA_OCULAR,
   'trevo-da-sorte': TREVO_DA_SORTE,
   'ue-so-isso': UE_SO_ISSO,
+  'vamos-ao-cinema': VAMOS_AO_CINEMA,
   'vendaval-de-palpite': VENDAVAL_DE_PALPITE,
 };
 

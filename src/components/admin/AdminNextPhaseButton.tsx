@@ -13,8 +13,8 @@ import { TimedButton } from 'components/buttons';
 import { Translate } from 'components/language';
 import { AdminOnlyContainer } from './AdminOnlyContainer';
 
-function ButtonLabel({ round, lastRound }: { round?: GameRound; lastRound: boolean }) {
-  return lastRound || !round || round.current === round.total ? (
+function ButtonLabel({ round }: { round?: GameRound }) {
+  return !round || round.current === round.total || round.forceLastRound ? (
     <Translate pt="Tela de Game Over" en="Game Over Screen" />
   ) : (
     <Translate pt="Próxima rodada" en="Next Round" />
@@ -35,10 +35,6 @@ type AdminNextPhaseButtonProps = {
    */
   round?: GameRound;
   /**
-   * Flag indicating if the current round should be considered the final round
-   */
-  lastRound?: boolean;
-  /**
    * Time to auto trigger the button in seconds
    */
   autoTriggerTime?: number;
@@ -53,7 +49,6 @@ type AdminNextPhaseButtonProps = {
 export function AdminNextPhaseButton({
   className = '',
   round,
-  lastRound = false,
   autoTriggerTime = 0,
   children,
 }: AdminNextPhaseButtonProps) {
@@ -84,7 +79,7 @@ export function AdminNextPhaseButton({
         duration={autoTriggerTime}
         hideTimer={!Boolean(autoTriggerTime)}
       >
-        {children ?? <ButtonLabel round={round} lastRound={lastRound} />}
+        {children ?? <ButtonLabel round={round} />}
       </TimedButton>
     </AdminOnlyContainer>
   );

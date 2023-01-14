@@ -1,15 +1,19 @@
-import { PlusCircleFilled } from '@ant-design/icons';
+// AntDesign Resources
 import { Button, ButtonProps, Space } from 'antd';
+import { PlusCircleFilled } from '@ant-design/icons';
+// Hooks
+import { useMock } from 'hooks/useMock';
+import { useLanguage } from 'hooks/useLanguage';
+import { useLoading } from 'hooks/useLoading';
+// Utils
+import { mockSelection } from '../utils/mock';
+// Components
 import { Avatar } from 'components/avatars';
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
-import { useLanguage } from 'hooks/useLanguage';
-import { useLoading } from 'hooks/useLoading';
 import { MinigameTitle } from './MinigameTitle';
 import { SpreadsheetCell, SpreadsheetGrid } from 'components/general/SpreadsheetGrid';
-import { useMock } from 'hooks/useMock';
-import { mockSelection } from '../utils/mock';
 
 export const TaskCruzaPalavras = ({ task, round, onSubmitTask, user }: TaskProps) => {
   const { translate } = useLanguage();

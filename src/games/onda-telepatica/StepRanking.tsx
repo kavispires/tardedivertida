@@ -12,10 +12,9 @@ type StepRankingProps = {
   round: GameRound;
   ranking: GameRanking;
   goToPreviousStep: GenericFunction;
-  isLastRound?: boolean;
 };
 
-export function StepRanking({ players, ranking, goToPreviousStep, round, isLastRound }: StepRankingProps) {
+export function StepRanking({ players, ranking, goToPreviousStep, round }: StepRankingProps) {
   return (
     <StepRankingWrapper
       players={players}
@@ -31,7 +30,7 @@ export function StepRanking({ players, ranking, goToPreviousStep, round, isLastR
           <Translate pt="Ver resultado novamente" en="See results again" />
         </Button>
       </Space>
-      <AdminNextPhaseButton round={round} lastRound={isLastRound} />
+      <AdminNextPhaseButton round={round} />
     </StepRankingWrapper>
   );
 }

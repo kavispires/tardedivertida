@@ -74,7 +74,7 @@ export const getNextPhase = async (
   >(gameName, gameId, 'prepare next phase');
 
   // Determine next phase
-  const nextPhase = determineNextPhase(state?.phase, state?.round, state?.lastRound);
+  const nextPhase = determineNextPhase(state?.phase, state?.round);
 
   // RULES -> SETUP
   if (nextPhase === MEGAMIX_PHASES.SETUP) {

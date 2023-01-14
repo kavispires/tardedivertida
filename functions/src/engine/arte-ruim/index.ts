@@ -79,7 +79,7 @@ export const getNextPhase = async (
   // Determine if it's game over
   const isGameOver = determineGameOver(players, state?.round);
   // Determine next phase
-  const nextPhase = determineNextPhase(state?.phase, state?.round, isGameOver, state?.lastRound);
+  const nextPhase = determineNextPhase(state?.phase, state?.round, isGameOver);
 
   // RULES -> SETUP
   if (nextPhase === ARTE_RUIM_PHASES.SETUP) {

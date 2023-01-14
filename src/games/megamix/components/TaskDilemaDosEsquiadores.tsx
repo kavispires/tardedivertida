@@ -1,13 +1,16 @@
+// AntDesign Resources
 import { Space } from 'antd';
-
+// Hooks
+import { useMock } from 'hooks/useMock';
+import { useLanguage } from 'hooks/useLanguage';
+import { useLoading } from 'hooks/useLoading';
+// Utils
+import { mockSelection } from '../utils/mock';
+// Components
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
-import { useLanguage } from 'hooks/useLanguage';
-import { useLoading } from 'hooks/useLoading';
 import { MinigameTitle } from './MinigameTitle';
-import { useMock } from 'hooks/useMock';
-import { mockSelection } from '../utils/mock';
 import { SkiingIcon } from 'components/icons/SkiingIcon';
 import { IconAvatar } from 'components/icons/IconAvatar';
 import { TransparentButton } from 'components/buttons';

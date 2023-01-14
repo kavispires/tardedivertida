@@ -782,6 +782,7 @@
     padding: get-unit(2 4);
     border-radius: $border-radius;
     display: block;
+    text-transform: uppercase;
   }
 }
 
@@ -869,6 +870,21 @@
       transform: scale(1.05);
       transform-origin: center;
       fill: get-color('purple');
+    }
+  }
+
+  &__pointer {
+    transform-origin: 340px 340px;
+    transition: all 1s;
+
+    &--p-1 {
+      transform: rotate(-60deg);
+    }
+    &--p0 {
+      transform: rotate(0);
+    }
+    &--p1 {
+      transform: rotate(60deg);
     }
   }
 }
@@ -1046,41 +1062,6 @@ $o-card-width: 300px;
   background-color: get-color('white', 5, 0.6);
   padding: get-unit(2);
   border-radius: $border-radius;
-}
-
-.v-movie {
-  background-color: get-color('white', 5, 0.6);
-  padding: get-unit(2);
-  border-radius: $border-radius;
-  width: 300px;
-  text-transform: uppercase;
-  font-family: 'Courier New', Courier, monospace;
-  font-weight: bold;
-  font-size: 1.25rem;
-  text-align: center;
-  display: grid;
-  grid-template-rows: repeat(2, 1fr);
-  gap: get-unit(8);
-
-  &__suffix {
-    background-color: get-color('white', 5, 0.6);
-    padding: get-unit(2);
-    border-radius: get-unit(0 0 6 6);
-
-    &--disabled {
-      opacity: 0.25;
-    }
-  }
-
-  &__prefix {
-    background-color: get-color('white', 5, 0.6);
-    padding: get-unit(2);
-    border-radius: get-unit(6 6 0 0);
-
-    &--disabled {
-      opacity: 0.25;
-    }
-  }
 }
 
 .v-movies {

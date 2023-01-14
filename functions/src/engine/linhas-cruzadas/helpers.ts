@@ -8,18 +8,14 @@ import utils from '../../utils';
 /**
  * Determine the next phase based on the current one
  * @param currentPhase
- * @param triggerLastRound
+ * @param round
  * @returns
  */
-export const determineNextPhase = (
-  currentPhase: string,
-  round: Round,
-  triggerLastRound?: boolean
-): string => {
+export const determineNextPhase = (currentPhase: string, round: Round): string => {
   const { RULES, SETUP, PROMPT_SELECTION, DRAWING, NAMING, PRESENTATION, GAME_OVER } = LINHAS_CRUZADAS_PHASES;
   const order = [RULES, SETUP, PROMPT_SELECTION, DRAWING, NAMING, PRESENTATION, GAME_OVER];
 
-  if (currentPhase !== PRESENTATION && triggerLastRound) {
+  if (currentPhase !== PRESENTATION && round.forceLastRound) {
     return PRESENTATION;
   }
 
@@ -29,7 +25,7 @@ export const determineNextPhase = (
     // const slidesToTriggerPresentation = playerCount % 2 === 0 ? playerCount + 1 : playerCount;
 
     // return Object.values(album)[0].slides.length === slidesToTriggerPresentation ? PRESENTATION : DRAWING;
-    return triggerLastRound || round.current >= round.total ? PRESENTATION : DRAWING;
+    return round.forceLastRound || round.current >= round.total ? PRESENTATION : DRAWING;
   }
 
   const currentPhaseIndex = order.indexOf(currentPhase);

@@ -203,7 +203,13 @@ export const prepareResolutionPhase = async (
     : PASTURE_GAME_OVER_THRESHOLD;
 
   const isGameOver = determineGameOver(players, store.options?.shortPasture);
-  const shouldSave = shouldSaveSheep(isGameOver, threshold, pastureChange, state?.lastRound, state?.usedSave);
+  const shouldSave = shouldSaveSheep(
+    isGameOver,
+    threshold,
+    pastureChange,
+    state?.round.forceLastRound,
+    state?.usedSave
+  );
 
   if (shouldSave) {
     recalculateLastPasture(pastureChange, state.pastureSize);

@@ -74,7 +74,7 @@ export const getNextPhase = async (gameName: string, gameId: string, players: Pl
   // Determine if it's game over
   const isGameOver = determineGameOver(players, store.options, state.round);
   // Determine next phase
-  const nextPhase = determineNextPhase(state?.phase, state?.round, isGameOver, state?.lastRound);
+  const nextPhase = determineNextPhase(state?.phase, state?.round, isGameOver);
 
   // RULES -> SETUP
   if (nextPhase === CONTADORES_HISTORIAS_PHASES.SETUP) {

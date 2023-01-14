@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 // State & Hooks
 import { useUser } from 'hooks/useUser';
 import { useStep } from 'hooks/useStep';
@@ -8,10 +9,9 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
-import { DirectionsIcon } from 'components/icons/DirectionsIcon';
-import { useEffect, useState } from 'react';
 import { StepResult } from './StepResult';
 import { StepRanking } from './StepRanking';
+import { BouncerIcon } from 'components/icons/BouncerIcon';
 
 export function PhaseResult({ players, state, info }: PhaseProps) {
   const user = useUser(players, state);
@@ -27,7 +27,7 @@ export function PhaseResult({ players, state, info }: PhaseProps) {
 
   const announcement = (
     <PhaseAnnouncement
-      icon={<DirectionsIcon />}
+      icon={<BouncerIcon />}
       title={<Translate pt="Resultado" en="Results" />}
       currentRound={state?.round?.current}
       type="overlay"
@@ -62,7 +62,6 @@ export function PhaseResult({ players, state, info }: PhaseProps) {
           players={players}
           goToPreviousStep={goToPreviousStep}
           round={state.round}
-          lastRound={state?.lastRound}
         />
       </StepSwitcher>
     </PhaseContainer>

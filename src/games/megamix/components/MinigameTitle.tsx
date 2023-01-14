@@ -1,5 +1,3 @@
-// AntDesign Resources
-// Hooks
 // Utils
 import { INSTRUCTIONS } from '../utils/constants';
 // Components

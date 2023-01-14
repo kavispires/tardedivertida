@@ -222,7 +222,10 @@ export const prepareRevealPhase = async (
         ranking,
         winners,
         results,
-        lastRound: state?.lastRound || winners.length > 0 ? true : utils.firebase.deleteValue(),
+        round: {
+          ...state.round,
+          forceLastRound: state?.round.forceLastRound || winners.length > 0,
+        },
       },
       players: players,
     },

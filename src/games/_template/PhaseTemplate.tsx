@@ -11,7 +11,7 @@ import { TDIcon } from 'components/icons/TDIcon';
 import { Translate } from 'components/language';
 import { NOOP } from 'utils/constants';
 
-function PhaseTemplate({ players, state, info }: PhaseProps) {
+export function PhaseTemplate({ players, state, info }: PhaseProps) {
   const user = useUser(players, state);
   const { step, goToNextStep } = useStep();
 
@@ -41,5 +41,3 @@ function PhaseTemplate({ players, state, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseTemplate;

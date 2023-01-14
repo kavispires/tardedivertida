@@ -1,16 +1,20 @@
-import { Button, Image, Space } from 'antd';
 import clsx from 'clsx';
-import { Avatar } from 'components/avatars';
-import { ImageBlurButtonContainer, ImageCard } from 'components/cards';
-import { Translate } from 'components/language';
-import { Instruction } from 'components/text';
+// AntDesign Resources
+import { Button, Image, Space } from 'antd';
+// Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
+// Utils
 import { AVATARS, BOTS_LIST } from 'utils/avatars';
-import { MinigameTitle } from './MinigameTitle';
 import { mockSelection } from '../utils/mock';
+// Components
+import { Avatar } from 'components/avatars';
+import { ImageBlurButtonContainer, ImageCard } from 'components/cards';
+import { Translate } from 'components/language';
+import { Instruction } from 'components/text';
+import { MinigameTitle } from './MinigameTitle';
 
 export const TaskDetetivesImaginativos = ({ task, round, onSubmitTask, user, players }: TaskProps) => {
   const cardWidth = useCardWidth(7, 32, 200, 270);
@@ -32,14 +36,14 @@ export const TaskDetetivesImaginativos = ({ task, round, onSubmitTask, user, pla
           <Translate
             pt={
               <>
-                Você é o impostor e não sabe a palavra-secreta. Os outros jogadores escolheram essas cartas
-                abaixo.
+                Você é o impostor e não sabe a palavra-secreta. Os outros jogadores escolheram as cartas
+                abaixo que supostamente combinam com a palavra-secreta.
               </>
             }
             en={
               <>
-                You are the impostor and don't know the secret clue. The other players played those cartas
-                below.
+                You are the impostor and don't know the secret clue. The other players played the cards below
+                and they all supposed to match the secret clue.
               </>
             }
           />
@@ -85,7 +89,7 @@ export const TaskDetetivesImaginativos = ({ task, round, onSubmitTask, user, pla
         <Instruction contained>
           <Translate
             pt={<>Qual das suas cartas você usaria para passar despercebido?</>}
-            en={<>Which card in your hand would to play so you can blend in?</>}
+            en={<>Which card in your hand would play so you can blend in with the others?</>}
           />
         </Instruction>
 

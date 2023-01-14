@@ -1,10 +1,13 @@
+import { useEffectOnce } from 'react-use';
+// AntDesign Resources
 import { Button, Segmented, Space } from 'antd';
+// Hooks
+import { useLoading } from 'hooks/useLoading';
+// Utils
+import { LETTERS } from 'utils/constants';
+// Components
 import { Translate } from 'components/language';
 import { Title } from 'components/text';
-import { useLoading } from 'hooks/useLoading';
-
-import { useEffectOnce } from 'react-use';
-import { LETTERS } from 'utils/constants';
 import { ClubberAvatar } from './ClubberAvatar';
 
 type SeedClubberProps = {

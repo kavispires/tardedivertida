@@ -95,7 +95,6 @@ interface DefaultState {
   phase: string;
   round: Round;
   updatedAt: DateMilliseconds;
-  lastRound?: boolean;
   gameEndedAt?: DateMilliseconds;
 }
 
@@ -110,6 +109,12 @@ interface InitialState {
   players: Players;
   store: any;
   state: any;
+  //  {
+  //   phase: string;
+  //   round: Round;
+  //   updatedAt: number;
+  //   [key: string]: any;
+  // };
 }
 
 interface InitialStateArgs {
@@ -127,6 +132,7 @@ interface InitialStateArgs {
 interface Round {
   current: number;
   total: number;
+  forceLastRound: boolean;
 }
 
 interface Player {

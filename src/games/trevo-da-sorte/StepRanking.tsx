@@ -11,21 +11,12 @@ type StepRankingProps = {
   players: GamePlayers;
   ranking: GameRanking;
   round: GameRound;
-  lastRound?: boolean;
   clover: Clover;
   leaves: Leaves;
   activeCloverId: PlayerId;
 };
 
-export function StepRanking({
-  players,
-  ranking,
-  round,
-  lastRound,
-  clover,
-  leaves,
-  activeCloverId,
-}: StepRankingProps) {
+export function StepRanking({ players, ranking, round, clover, leaves, activeCloverId }: StepRankingProps) {
   const { mode, rotation, onRotateClover } = useCloverState('view', clover, leaves);
 
   return (
@@ -52,7 +43,7 @@ export function StepRanking({
         activeCloverId={activeCloverId}
       />
 
-      <AdminNextPhaseButton round={round} lastRound={lastRound}>
+      <AdminNextPhaseButton round={round}>
         <Translate pt="Próximo Trevo ou Game Over" en="Next Clover or Game Over" />
       </AdminNextPhaseButton>
     </StepRankingWrapper>

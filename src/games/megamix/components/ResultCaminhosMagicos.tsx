@@ -1,7 +1,6 @@
 import { Fragment } from 'react';
 // AntDesign Resources
 import { RightSquareOutlined } from '@ant-design/icons';
-// Hooks
 // Utils
 import { LETTERS } from 'utils/constants';
 // Components
@@ -16,7 +15,7 @@ export function ResultCaminhosMagicos({ task, winningValues, winningTeam }: Resu
     <>
       <WinningCount>{winningTeam.length}</WinningCount>
       <Instruction>
-        <Translate pt="A arte mais votada foi" en="The most popular art was" />:
+        <Translate pt="O caminho mais votado foi" en="The most popular path was" />:
       </Instruction>
       <div className="task-result-values__cards">
         {winningValues.map((value) => {

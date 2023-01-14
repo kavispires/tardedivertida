@@ -65,7 +65,7 @@ export const getNextPhase = async (gameName: string, gameId: string, players: Pl
   const outcome = checkOutcome(state, store, players);
 
   // Determine next phase
-  const nextPhase = determineNextPhase(state?.phase, outcome, state?.lastRound);
+  const nextPhase = determineNextPhase(state?.phase, state?.round, outcome);
 
   // RULES -> SETUP
   if (nextPhase === ESPIAO_ENTRE_NOS_PHASES.SETUP) {

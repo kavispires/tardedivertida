@@ -1,6 +1,7 @@
-import { Avatar } from 'components/avatars';
-
+// Utils
 import { getMovieTitles } from '../utils/helpers';
+// Components
+import { Avatar } from 'components/avatars';
 import { SpacePlayerCheckWrapper } from './SpacePlayerCheckWrapper';
 
 export function VoteVamosAoCinema({ task, playersList }: VoteComponentProps) {

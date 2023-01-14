@@ -65,7 +65,6 @@ function PhaseReveal({ state, players, info }: PhaseProps) {
           leaderId={state.leaderId}
           round={state.round}
           ranking={state.ranking}
-          lastRound={state.lastRound}
           table={state.table}
         />
       </StepSwitcher>

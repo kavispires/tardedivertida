@@ -8,7 +8,6 @@ import type { Bracket, BracketTier, Contender, ContendersDeck } from './types';
  * @param currentPhase
  * @param round
  * @param tier
- * @param triggerLastRound
  * @param autoContenders - if players won't have contenders, they don't need to select
  * @returns
  */
@@ -16,7 +15,6 @@ export const determineNextPhase = (
   currentPhase: string,
   round: Round,
   tier?: string,
-  triggerLastRound?: boolean,
   autoContenders?: boolean
 ): string => {
   const { RULES, SETUP, CHALLENGE_SELECTION, CONTENDER_SELECTION, BETS, BATTLE, RESULTS, GAME_OVER } =
@@ -26,7 +24,7 @@ export const determineNextPhase = (
     : [RULES, SETUP, CHALLENGE_SELECTION, CONTENDER_SELECTION, BETS, BATTLE];
 
   if (currentPhase === RESULTS) {
-    return triggerLastRound || round.current >= round.total ? GAME_OVER : CHALLENGE_SELECTION;
+    return round.forceLastRound || round.current >= round.total ? GAME_OVER : CHALLENGE_SELECTION;
   }
 
   if (currentPhase === BATTLE) {

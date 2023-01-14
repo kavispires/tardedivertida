@@ -11,7 +11,7 @@ import PhaseTask from './PhaseTask';
 import './megamix.scss';
 import { PhaseSeeding } from './PhaseSeeding';
 import { PhaseResult } from './PhaseResult';
-import PhaseGameOver from './PhaseGameOver';
+import { PhaseGameOver } from './PhaseGameOver';
 
 function getActiveComponent(phase: string) {
   switch (phase) {
