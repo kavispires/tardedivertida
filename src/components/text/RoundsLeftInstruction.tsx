@@ -8,19 +8,15 @@ type RoundsLeftInstructionProps = {
    * The state round object with current and total values
    */
   round: GameRound;
-  /**
-   * Flag indicating if it is the last round
-   */
-  lastRound?: boolean;
 };
 
 /**
  * Displays instructional sentence based on the number of rounds left for the game to end
  */
-export function RoundsLeftInstruction({ round, lastRound }: RoundsLeftInstructionProps) {
+export function RoundsLeftInstruction({ round }: RoundsLeftInstructionProps) {
   const left = (round?.total ?? 0) - (round?.current ?? 0);
 
-  if (left === 0 || lastRound) {
+  if (left === 0 || round.forceLastRound) {
     return (
       <Instruction contained>
         <Translate pt="Essa foi a última rodada" en="No more rounds left" />

@@ -1,5 +1,3 @@
-// AntDesign Resources
-// Hooks
 // Utils
 import { LETTERS } from 'utils/constants';
 // Components

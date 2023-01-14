@@ -22,15 +22,9 @@ import utils from '../../utils';
  * @param currentPhase
  * @param round
  * @param isGameOver
- * @param triggerLastRound
  * @returns
  */
-export const determineNextPhase = (
-  currentPhase: string,
-  round: Round,
-  isGameOver?: boolean,
-  triggerLastRound?: boolean
-): string => {
+export const determineNextPhase = (currentPhase: string, round: Round, isGameOver?: boolean): string => {
   const { RULES, SETUP, DRAW, EVALUATION, GALLERY, GAME_OVER } = ARTE_RUIM_PHASES;
   const order = [RULES, SETUP, DRAW, EVALUATION, GALLERY];
 
@@ -39,7 +33,7 @@ export const determineNextPhase = (
   }
 
   if (currentPhase === GALLERY) {
-    return triggerLastRound || round.current >= round.total ? GAME_OVER : DRAW;
+    return round.forceLastRound || round.current >= round.total ? GAME_OVER : DRAW;
   }
 
   const currentPhaseIndex = order.indexOf(currentPhase);

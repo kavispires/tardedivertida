@@ -1,5 +1,7 @@
-import { DislikeFilled, LikeFilled } from '@ant-design/icons';
+// AntDesign Resources
 import { Button } from 'antd';
+import { DislikeFilled, LikeFilled } from '@ant-design/icons';
+// Components
 import { Translate } from 'components/language';
 import { Title } from 'components/text';
 import { SocialProfile } from './SocialProfile';

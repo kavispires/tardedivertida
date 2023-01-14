@@ -57,7 +57,6 @@ function PhaseResults({ state, players, info }: PhaseProps) {
           isGameOver={false}
           round={state.round}
           brackets={state.brackets}
-          isLastRound={state?.lastRound}
           bets={user.bets}
           selectedContenderId={user.selectedContenderId}
         />

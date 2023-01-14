@@ -4,19 +4,14 @@ import { MAX_ROUNDS, QUEM_NAO_MATA_PHASES } from './constants';
  * Determine the next phase based on the current one
  * @param currentPhase
  * @param round
- * @param triggerLastRound
  * @returns
  */
-export const determineNextPhase = (
-  currentPhase: string,
-  round: Round,
-  triggerLastRound?: boolean
-): string => {
+export const determineNextPhase = (currentPhase: string, round: Round): string => {
   const { RULES, SETUP, TARGETING, STANDOFF, DUEL, RESOLUTION, GAME_OVER } = QUEM_NAO_MATA_PHASES;
   const order = [RULES, SETUP, TARGETING, STANDOFF, DUEL, RESOLUTION, GAME_OVER];
 
   if (currentPhase === RESOLUTION) {
-    if (round.total === MAX_ROUNDS || triggerLastRound) {
+    if (round.total === MAX_ROUNDS || round.forceLastRound) {
       return GAME_OVER;
     }
 

@@ -18,20 +18,14 @@ import { Trap } from './types';
  * Determine the next phase based on the current one
  * @param currentPhase
  * @param round
- * @param triggerLastRound
  * @returns
  */
-export const determineNextPhase = (
-  currentPhase: string,
-  round: Round,
-  triggerLastRound?: boolean,
-  isGameOver?: boolean
-): string => {
+export const determineNextPhase = (currentPhase: string, round: Round, isGameOver?: boolean): string => {
   const { RULES, SETUP, BOOK_POSSESSION, DOOR_CHOICE, RESOLUTION, GAME_OVER } = PORTA_DOS_DESESPERADOS_PHASES;
   const order = [RULES, SETUP, BOOK_POSSESSION, DOOR_CHOICE, RESOLUTION, GAME_OVER];
 
   if (currentPhase === RESOLUTION) {
-    return triggerLastRound || (round.current > 0 && round.current === round.total) || isGameOver
+    return round.forceLastRound || (round.current > 0 && round.current === round.total) || isGameOver
       ? GAME_OVER
       : BOOK_POSSESSION;
   }

@@ -1,0 +1,39 @@
+{
+  "$schema": "../../utils/game-info.schema.json",
+  "gameCode": "V",
+  "gameName": "vamos-ao-cinema",
+  "version": "dev",
+  "title": {
+    "pt": "Vamos Ao Cinema",
+    "en": "Movie Night"
+  },
+  "popularName": {
+    "pt": "O dos filmes",
+    "en": "The movies ones"
+  },
+  "basedOn": "eivom taht toN",
+  "summary": {
+    "pt": "Você e seus amigos querem ir ao cinema e baseado na crítica, qual filme você quer ver?",
+    "en": "You and your friends want to go the movies, so based on the reviews, what movie do you want to watch?"
+  },
+  "appearance": {
+    "clouds": "movies-clouds",
+    "color": "",
+    "backgroundColor": ""
+  },
+  "rules": {
+    "pt": ["TBD"],
+    "en": ["TBD"]
+  },
+  "playerCount": {
+    "best": 5,
+    "recommended": [4, 5, 6, 7, 8, 9],
+    "min": 2,
+    "max": 9
+  },
+  "tags": ["cooperative", "turn-based", "guessing"],
+  "available": {
+    "pt": true,
+    "en": true
+  }
+}

@@ -1,11 +1,14 @@
-import { Avatar, Space } from 'antd';
+// AntDesign Resources
+import { Avatar, Button, Space } from 'antd';
+// Hooks
+import { useLoading } from 'hooks/useLoading';
+import { useMock } from 'hooks/useMock';
+// Utils
+import { mockSelection } from '../utils/mock';
+// Components
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
-import { useLoading } from 'hooks/useLoading';
 import { MinigameTitle } from './MinigameTitle';
-import { useMock } from 'hooks/useMock';
-import { mockSelection } from '../utils/mock';
-
 import { TransparentButton } from 'components/buttons';
 import { HouseCard } from 'games/na-rua-do-medo/components/HouseCard';
 
@@ -37,14 +40,14 @@ export const TaskNaRuaDoMedo = ({ task, round, onSubmitTask, user }: TaskProps) 
               <>
                 Estamos indo de porta em porta buscar doces...
                 <br />
-                Mas qual rua devemos ir?
+                Mas qual rua devemos ir? A rua com mais doces? A rua com menos medo?
               </>
             }
             en={
               <>
                 We're trick-or-treating...
                 <br />
-                Which street should we hit first?
+                Which street should we hit first? The one with more candy? The one with less horror?
               </>
             }
           />
@@ -94,7 +97,7 @@ export const TaskNaRuaDoMedo = ({ task, round, onSubmitTask, user }: TaskProps) 
           en={
             <>
               You are hanging out at home and <strong>6 kids</strong> showed up at our door. Which of the
-              options do you choose? Scare or treats?
+              options do you choose to give to them? Scare 'em or give treats?
             </>
           }
         />
@@ -102,14 +105,18 @@ export const TaskNaRuaDoMedo = ({ task, round, onSubmitTask, user }: TaskProps) 
 
       <Space className="space-container">
         {task.data.options.map((house: NCard) => (
-          <TransparentButton
-            key={house.id}
-            className="n-street-house"
-            disabled={user.ready || isLoading}
-            onClick={() => onSelect(house.id)}
-          >
+          <Space direction="vertical" key={house.id} className="space-container n-street-house">
             <HouseCard card={house} candyLeftover={0} preview={false} />
-          </TransparentButton>
+            <Button
+              shape="round"
+              type="primary"
+              disabled={user.ready || isLoading}
+              onClick={() => onSelect(house.id)}
+              loading={isLoading}
+            >
+              <Translate pt="Selecionar" en="Select" />
+            </Button>
+          </Space>
         ))}
       </Space>
     </>

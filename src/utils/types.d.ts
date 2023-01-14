@@ -154,6 +154,7 @@ type GameMeta = {
 type GameRound = {
   current: number;
   total: number;
+  forceLastRound: boolean;
 };
 
 interface GamePlayers {

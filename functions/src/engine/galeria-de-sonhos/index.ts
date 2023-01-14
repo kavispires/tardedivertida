@@ -73,7 +73,7 @@ export const getNextPhase = async (gameName: string, gameId: string, players: Pl
   );
 
   // Determine next phase
-  const nextPhase = determineNextPhase(state?.phase, state?.round, state?.lastRound);
+  const nextPhase = determineNextPhase(state?.phase, state?.round);
 
   // RULES -> SETUP
   if (nextPhase === GALERIA_DE_SONHOS_PHASES.SETUP) {

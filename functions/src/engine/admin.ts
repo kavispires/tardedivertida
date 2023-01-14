@@ -205,7 +205,7 @@ export const performAdminAction = async (data: ExtendedPayload, context: Firebas
     case ADMIN_ACTIONS.PLAY_AGAIN:
       return await playAgain(gameId, gameName);
     case ADMIN_ACTIONS.FORCE_END_GAME:
-      return await forceStateProperty(gameId, gameName, { lastRound: true });
+      return await forceStateProperty(gameId, gameName, { 'round.forceLastRound': true });
     case ADMIN_ACTIONS.RESET_GAME:
       return await unlockAndResetGame(data, context);
     default:

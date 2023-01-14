@@ -25,7 +25,7 @@ export function StepRanking({ players, ranking, goToPreviousStep, round, isLastR
           <Translate pt="Ver resultado novamente" en="See results again" />
         </Button>
       </Space>
-      <AdminNextPhaseButton round={round} lastRound={isLastRound} />
+      <AdminNextPhaseButton round={round} />
     </StepRankingWrapper>
   );
 }

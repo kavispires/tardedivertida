@@ -1,16 +1,22 @@
+import { useState } from 'react';
+import clsx from 'clsx';
+// AntDesign Resources
+import { ArrowLeftOutlined, ArrowRightOutlined, MinusOutlined } from '@ant-design/icons';
+// Hooks
+import { useLoading } from 'hooks/useLoading';
+import { useMock } from 'hooks/useMock';
+// Utils
+import { mockSelection } from '../utils/mock';
+import { getColorModifier } from 'games/onda-telepatica/utils/helpers';
+// Components
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
 import { Instruction, TextHighlight } from 'components/text';
-import { useLoading } from 'hooks/useLoading';
-import { useMock } from 'hooks/useMock';
 import { MinigameTitle } from './MinigameTitle';
-import { mockSelection } from '../utils/mock';
-import { ArrowLeftOutlined, ArrowRightOutlined, MinusOutlined } from '@ant-design/icons';
-import clsx from 'clsx';
-import { getColorModifier } from 'games/onda-telepatica/utils/helpers';
 
 export const TaskOndaTelepatica = ({ task, round, onSubmitTask, user, players }: TaskProps) => {
   const { isLoading } = useLoading();
+  const [position, setPosition] = useState(0);
 
   const onSelect = (value: string) => {
     if (!isLoading && !user.ready) {
@@ -62,6 +68,7 @@ export const TaskOndaTelepatica = ({ task, round, onSubmitTask, user, players }:
             d="M119.67 121.48a303.5 303.5 0 00-61.93 91.22 401 401 0 00-25.59 120 7 7 0 00.43 2.75A6.86 6.86 0 0039 340h295.86L181.06 73.61a300.5 300.5 0 00-61.39 47.87z"
             className="o-simple-dial__clickable"
             onClick={() => onSelect('left')}
+            onMouseEnter={() => setPosition(-1)}
           ></path>
 
           <path
@@ -69,12 +76,20 @@ export const TaskOndaTelepatica = ({ task, round, onSubmitTask, user, players }:
             d="M630.39 330.85A402.06 402.06 0 00606 215.46 302.44 302.44 0 00487.05 77L335.19 340h288.44a6.88 6.88 0 006.44-4.52 7.56 7.56 0 00.36-1.51c0-1.04-.02-2.08-.04-3.12z"
             className="o-simple-dial__clickable"
             onClick={() => onSelect('right')}
+            onMouseEnter={() => setPosition(1)}
           ></path>
           <path
             fill="#96a6a8"
             d="M331.32 32.7h-.2a295 295 0 00-150.06 40.91L334.86 340h.33L487.05 77a295 295 0 00-155.73-44.3z"
             className="o-simple-dial__clickable"
             onClick={() => onSelect('center')}
+            onMouseEnter={() => setPosition(0)}
+          ></path>
+
+          <path
+            fill="#ff0004"
+            d="M336.46 24.24a1.5 1.5 0 0 0-3 0L326.65 340a1.48 1.48 0 0 0 .45 1.1l6.81 6.73a1.51 1.51 0 0 0 2.11 0l6.81-6.73a1.48 1.48 0 0 0 .45-1.1Z"
+            className={clsx('o-simple-dial__pointer', `o-simple-dial__pointer--p${position}`)}
           ></path>
         </svg>
       </div>

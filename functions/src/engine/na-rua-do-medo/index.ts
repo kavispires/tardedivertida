@@ -72,7 +72,7 @@ export const getNextPhase = async (
   // Determine if it's game over
   const outcome = determineOutcome(store, state, players);
   // Determine next phase
-  const nextPhase = determineNextPhase(state?.phase, state?.round, outcome, state?.lastRound);
+  const nextPhase = determineNextPhase(state?.phase, state?.round, outcome);
   // RULES -> SETUP
   if (nextPhase === NA_RUA_DO_MEDO_PHASES.SETUP) {
     // Enter setup phase before doing anything

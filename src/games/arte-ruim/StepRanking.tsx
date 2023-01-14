@@ -42,7 +42,7 @@ export function StepRanking({
     >
       <PopoverRule content={<ScoringRules />} />
 
-      {!isGameOver && <RoundsLeftInstruction round={round} lastRound={isLastRound} />}
+      {!isGameOver && <RoundsLeftInstruction round={round} />}
 
       <Button
         size="large"
@@ -55,7 +55,7 @@ export function StepRanking({
         <Translate pt="Ver Galeria Novamente" en="See Gallery Again" />
       </Button>
 
-      <AdminNextPhaseButton round={round} lastRound={isLastRound} />
+      <AdminNextPhaseButton round={round} />
     </StepRankingWrapper>
   );
 }

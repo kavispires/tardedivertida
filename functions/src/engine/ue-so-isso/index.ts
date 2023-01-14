@@ -69,7 +69,7 @@ export const getNextPhase = async (gameName: string, gameId: string, players: Pl
   const roundsToEndGame = utils.helpers.getRoundsToEndGame(state.round.current, state.round.total);
 
   // Determine next phase
-  const nextPhase = determineNextPhase(state?.phase, roundsToEndGame, state?.lastRound);
+  const nextPhase = determineNextPhase(state?.phase, state?.round, roundsToEndGame);
 
   // RULES -> SETUP
   if (nextPhase === UE_SO_ISSO_PHASES.SETUP) {

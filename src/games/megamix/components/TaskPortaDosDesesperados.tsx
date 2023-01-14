@@ -1,14 +1,18 @@
+// AntDesign Resources
 import { Button, Image, Space } from 'antd';
+// Hooks
+import { useCardWidth } from 'hooks/useCardWidth';
+import { useLoading } from 'hooks/useLoading';
+import { useMock } from 'hooks/useMock';
+// Utils
+import { mockSelection } from '../utils/mock';
+// Components
 import { ImageBlurButtonContainer, ImageCard } from 'components/cards';
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
 import { Book } from 'games/porta-dos-desesperados/components/Book';
 import { DoorFrame } from 'games/porta-dos-desesperados/components/DoorFrame';
-import { useCardWidth } from 'hooks/useCardWidth';
-import { useLoading } from 'hooks/useLoading';
-import { useMock } from 'hooks/useMock';
 import { MinigameTitle } from './MinigameTitle';
-import { mockSelection } from '../utils/mock';
 
 export const TaskPortaDosDesesperados = ({ task, round, onSubmitTask, user, players }: TaskProps) => {
   const doorWidth = useCardWidth(8, 8, 150, 350, 8);

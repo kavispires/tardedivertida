@@ -18,7 +18,6 @@ type StepRevealProps = {
   round: GameRound;
   ranking: GameRanking;
   table: DetetivesImaginativosCardEntry[];
-  lastRound?: boolean;
 };
 
 export function StepReveal({
@@ -29,7 +28,6 @@ export function StepReveal({
   round,
   ranking,
   table,
-  lastRound = false,
 }: StepRevealProps) {
   useTemporarilyHidePlayersBar();
 
@@ -97,11 +95,11 @@ export function StepReveal({
         </>
       }
     >
-      <RoundsLeftInstruction round={round} lastRound={lastRound} />
+      <RoundsLeftInstruction round={round} />
 
       <TableFocus table={table} currentPlayer={impostor} />
 
-      <AdminNextPhaseButton round={round} lastRound={lastRound} />
+      <AdminNextPhaseButton round={round} />
     </StepRankingWrapper>
   );
 }

@@ -1,15 +1,16 @@
-import { Translate } from 'components/language';
-import { Instruction } from 'components/text';
+import clsx from 'clsx';
+// AntDesign Resources
+import { Button, Space } from 'antd';
+// Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
-import { MinigameTitle } from './MinigameTitle';
+// Utils
 import { mockSelection } from '../utils/mock';
-
-import clsx from 'clsx';
-
-import { Button, Space } from 'antd';
+// Components
+import { Translate } from 'components/language';
+import { Instruction } from 'components/text';
+import { MinigameTitle } from './MinigameTitle';
 import { Avatar } from 'components/avatars';
-
 import { IconAvatar } from 'components/icons/IconAvatar';
 import { ShooterIcon } from 'components/icons/ShooterIcon';
 
@@ -32,8 +33,13 @@ export const TaskQuemNaoMata = ({ task, round, onSubmitTask, user, players }: Ta
       <MinigameTitle round={round} task={task} />
       <Instruction contained>
         <Translate
-          pt={<>Estamos num impasse! O primeiro a se mexer leva bala! Em quem você atira primeiro?</>}
-          en={<>A standoff! Who are you going to shoot first?</>}
+          pt={
+            <>
+              Estamos num impasse! O primeiro a se mexer leva bala! Em quem você atira primeiro? (Pode ser
+              você mesmo)
+            </>
+          }
+          en={<>A standoff! Who are you going to shoot first? (It could be yourself)</>}
         />
       </Instruction>
 

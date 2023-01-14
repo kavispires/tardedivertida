@@ -1,10 +1,12 @@
+import { useState } from 'react';
+// AntDesign Resources
 import { Button, Input, Space } from 'antd';
+// Hooks
+import { useLanguage } from 'hooks/useLanguage';
+// Components
 import { Card } from 'components/cards';
 import { Translate } from 'components/language';
 import { Instruction, Title } from 'components/text';
-import { useLanguage } from 'hooks/useLanguage';
-
-import { useState } from 'react';
 
 type SeedOndaTelepaticaProps = {
   seed: SeedEntryOndaTelepatica;

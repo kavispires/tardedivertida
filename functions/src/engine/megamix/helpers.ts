@@ -10,19 +10,14 @@ import { AvailableTask, MostScoring, Task } from './types';
  * Determine the next phase based on the current one
  * @param currentPhase
  * @param round
- * @param triggerLastRound
  * @returns
  */
-export const determineNextPhase = (
-  currentPhase: string,
-  round: Round,
-  triggerLastRound?: boolean
-): string => {
+export const determineNextPhase = (currentPhase: string, round: Round): string => {
   const { RULES, SETUP, SEEDING, TASK, RESULT, GAME_OVER } = MEGAMIX_PHASES;
   const order = [RULES, SETUP, SEEDING, TASK, RESULT, GAME_OVER];
 
   if (currentPhase === RESULT) {
-    return triggerLastRound || (round.current > 0 && round.current) === round.total ? GAME_OVER : TASK;
+    return round.forceLastRound || (round.current > 0 && round.current) === round.total ? GAME_OVER : TASK;
   }
 
   const currentPhaseIndex = order.indexOf(currentPhase);

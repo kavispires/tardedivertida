@@ -1,13 +1,14 @@
+import { isEqual } from 'lodash';
+// Utils
+import { AVATARS } from 'utils/avatars';
 // Components
 import { Avatar } from 'components/avatars';
 import { GameOverWrapper } from 'components/game-over';
 import { CrownIcon } from 'components/icons/CrownIcon';
 import { DualTranslate, Translate } from 'components/language';
 import { Instruction, Title } from 'components/text';
-import { isEqual } from 'lodash';
-import { AVATARS } from 'utils/avatars';
 
-function PhaseGameOver({ state, info, players }: PhaseProps) {
+export function PhaseGameOver({ state, info, players }: PhaseProps) {
   return (
     <GameOverWrapper info={info} state={state} announcementIcon={<CrownIcon />}>
       {!isEqual(state.winners, state.fairWinners) && (
@@ -38,5 +39,3 @@ function PhaseGameOver({ state, info, players }: PhaseProps) {
     </GameOverWrapper>
   );
 }
-
-export default PhaseGameOver;

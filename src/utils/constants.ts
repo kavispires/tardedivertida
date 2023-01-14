@@ -266,6 +266,7 @@ export const GAME_COLLECTION = {
   TESTEMUNHA_OCULAR: 'testemunha-ocular',
   TREVO_DA_SORTE: 'trevo-da-sorte',
   UE_SO_ISSO: 'ue-so-isso',
+  VAMOS_AO_CINEMA: 'vamos-ao-cinema',
   VENDAVAL_DE_PALPITE: 'vendaval-de-palpite',
 };
 
