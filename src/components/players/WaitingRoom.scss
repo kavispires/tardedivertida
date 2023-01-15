@@ -1,3 +1,5 @@
+@use 'styles/sass' as *;
+
 .waiting-room {
   width: 70%;
   min-width: 50vw;
@@ -5,4 +7,10 @@
   border-radius: get-unit(2);
   padding: get-unit(6 2);
   text-align: center;
+
+  &__content {
+    display: grid;
+    width: 100%;
+    place-items: center;
+  }
 }
