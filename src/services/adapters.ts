@@ -101,3 +101,7 @@ export const TREVO_DA_SORTE_API = {
 export const MEGAMIX_API = {
   submitAction: httpsCallable(functions, 'megamixSubmitAction'),
 };
+
+export const VAMOS_AO_CINEMA_API = {
+  submitAction: httpsCallable(functions, 'vamosAoCinemaSubmitAction'),
+};

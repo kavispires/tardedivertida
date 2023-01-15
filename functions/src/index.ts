@@ -24,6 +24,7 @@ import * as superCampeonatoEngine from './engine/super-campeonato';
 import * as cruzaPalavrasEngine from './engine/cruza-palavras';
 import * as trevoDaSorteEngine from './engine/trevo-da-sorte';
 import * as megamixEngine from './engine/megamix';
+import * as vamosAoCinemaEngine from './engine/vamos-ao-cinema';
 
 admin.initializeApp();
 
@@ -116,3 +117,5 @@ exports.cruzaPalavrasSubmitAction = functions.https.onCall(cruzaPalavrasEngine.s
 exports.trevoDaSorteSubmitAction = functions.https.onCall(trevoDaSorteEngine.submitAction);
 
 exports.megamixSubmitAction = functions.https.onCall(megamixEngine.submitAction);
+
+exports.vamosAoCinemaSubmitAction = functions.https.onCall(vamosAoCinemaEngine.submitAction);

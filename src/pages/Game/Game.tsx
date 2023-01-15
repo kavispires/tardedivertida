@@ -87,6 +87,9 @@ const SessionTrevoDaSorte = lazy(
 const SessionUeSoIsso = lazy(
   () => import('games/ue-so-isso/SessionUeSoIsso' /* webpackChunkName: "ue-so-isso" */)
 );
+const SessionVamosAoCinema = lazy(
+  () => import('games/vamos-ao-cinema/SessionVamosAoCinema' /* webpackChunkName: "vamos-ao-cinema" */)
+);
 const SessionVendavalDePalpite = lazy(
   () =>
     import('games/vendaval-de-palpite/SessionVendavalDePalpite' /* webpackChunkName: "vendaval-de-palpite" */)
@@ -310,6 +313,12 @@ function Game() {
         return (
           <Suspense fallback={<LoadingPage message="" />}>
             <SessionUeSoIsso gameId={gameId} />
+          </Suspense>
+        );
+      case GAME_COLLECTION.VAMOS_AO_CINEMA:
+        return (
+          <Suspense fallback={<LoadingPage message="" />}>
+            <SessionVamosAoCinema gameId={gameId} />
           </Suspense>
         );
       case GAME_COLLECTION.VENDAVAL_DE_PALPITE:
