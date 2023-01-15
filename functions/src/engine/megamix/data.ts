@@ -608,7 +608,7 @@ export const getData = async (
   const hasVamosNoCinema = getGameOnList(availableTasks, GAME_NAMES.VAMOS_AO_CINEMA);
   if (hasVamosNoCinema.length > 0) {
     const movies = Object.values(await resourceUtils.fetchResource(`${TDR_RESOURCES.MOVIES}-${language}`));
-    const allReviews: MovieReview[] = Object.values(
+    const allReviews: MovieReviewCard[] = Object.values(
       await resourceUtils.fetchResource(`${TDR_RESOURCES.MOVIE_REVIEWS}-${language}`)
     );
     const reviews = getMovieReviews(allReviews);

@@ -23,11 +23,11 @@ type TitleProps = {
    */
   className?: string;
   /**
-   * The heading level
+   * The heading level (default: 2)
    */
   level?: 1 | 2 | 3 | 4 | 5;
   /**
-   * The size of the title
+   * The size of the title (default: medium)
    */
   size?: 'xx-small' | 'x-small' | 'small' | 'medium' | 'large';
 };

@@ -1,0 +1,67 @@
+@use 'styles/sass' as *;
+
+.movie-review-card {
+  $self: &;
+
+  border-radius: get-unit(2);
+  color: get-color('white');
+  background-color: get-color('white');
+  width: 300px;
+  min-height: 96px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  box-shadow: 0 5px 7px 0px rgba($color: #000, $alpha: 0.5);
+  margin: get-unit(2);
+  position: relative;
+
+  &--positive {
+    background-color: get-color('teal', 5);
+    border: 2px solid get-color('teal', 8);
+  }
+
+  &--negative {
+    background-color: get-color('purple', 5);
+    border: 2px solid get-color('purple', 8);
+  }
+
+  &__header {
+    color: get-color('white');
+    font-size: 1em;
+    border-radius: get-unit(1 1 0 0);
+    padding: get-unit(1);
+
+    #{$self}--positive & {
+      background-color: get-color('teal', 7);
+    }
+
+    #{$self}--negative & {
+      background-color: get-color('purple', 7);
+    }
+  }
+
+  &__content {
+    font-size: 1.15em;
+    padding: get-unit(3 4);
+    font-weight: normal;
+    display: grid;
+    place-items: center;
+
+    height: 100%;
+    flex: 1;
+  }
+
+  &__text-highlight {
+    background: transparent;
+
+    &--positive {
+      color: get-color('teal', 2);
+      text-shadow: get-color('black') 2px 2px;
+    }
+
+    &--negative {
+      color: get-color('purple', 2);
+      text-shadow: get-color('black') 2px 2px;
+    }
+  }
+}

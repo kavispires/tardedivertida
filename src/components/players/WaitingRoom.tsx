@@ -6,6 +6,8 @@ import { Translate } from 'components/language';
 import { ReadyPlayersBar } from 'components/players';
 import { Instruction, Title } from 'components/text';
 import { WaitingRoomIcon } from 'components/icons/WaitingRoomIcon';
+// Sass
+import './WaitingRoom.scss';
 
 type WaitingRoomProps = {
   /**
@@ -39,14 +41,16 @@ export function WaitingRoom({ players, title, instruction, children, icon }: Wai
         <Translate pt="Pronto!" en="Done!" custom={title} />
       </Title>
       {icon ?? <WaitingRoomIcon style={{ width: '6rem' }} />}
-      <Instruction>
-        {Boolean(instruction) ? (
-          instruction
-        ) : (
-          <Translate pt="Vamos aguardar os outros jogadores!" en="Please wait for the other players!" />
-        )}
-      </Instruction>
-      {children}
+      <div className="waiting-room__content">
+        <Instruction>
+          {Boolean(instruction) ? (
+            instruction
+          ) : (
+            <Translate pt="Vamos aguardar os outros jogadores!" en="Please wait for the other players!" />
+          )}
+        </Instruction>
+        {children}
+      </div>
       <ReadyPlayersBar players={players} />
     </div>
   );
