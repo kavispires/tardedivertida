@@ -28,7 +28,7 @@ export const prepareSetupPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Determine player order
-  const { gameOrder, playerCount: pC } = utils.helpers.buildGameOrder(players);
+  const { gameOrder, playerCount: pC } = utils.players.buildGameOrder(players);
   const playerCount = store.options?.withBots ? pC + 2 : pC;
 
   // Helper Bots

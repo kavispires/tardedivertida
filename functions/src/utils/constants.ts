@@ -177,6 +177,7 @@ export const GAME_NAMES = generateGameCollections();
 export const GLOBAL_USED_DOCUMENTS = {
   ARTE_RUIM: 'usedArteRuimCards',
   MENTE_COLETIVA: 'usedMenteColetivaQuestions',
+  MOVIES: 'usedMoviesAndReviews',
   ONDA_TELEPATICA: 'usedOndaTelepaticaCategories',
   RETRATO_FALADO: 'usedRetratoFaladoCards',
   TESTEMUNHA_OCULAR: 'usedTestemunhaOcularCards',

@@ -20,7 +20,7 @@ export const prepareSetupPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Determine player order
-  const { gameOrder, playerIds, playerCount } = utils.helpers.buildGameOrder(
+  const { gameOrder, playerIds, playerCount } = utils.players.buildGameOrder(
     players,
     DOUBLE_ROUNDS_THRESHOLD
   );

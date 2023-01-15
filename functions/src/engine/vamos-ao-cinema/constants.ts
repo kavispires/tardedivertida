@@ -1,0 +1,31 @@
+export const VAMOS_AO_CINEMA_PHASES = {
+  LOBBY: 'LOBBY',
+  RULES: 'RULES',
+  SETUP: 'SETUP',
+  MOVIE_SELECTION: 'MOVIE_SELECTION',
+  MOVIE_ELIMINATION: 'MOVIE_ELIMINATION',
+  REVEAL: 'REVEAL',
+  GAME_OVER: 'GAME_OVER',
+};
+
+export const VAMOS_AO_CINEMA_ACTIONS = {
+  SELECT_MOVIE: 'SELECT_MOVIE',
+  ELIMINATE_MOVIE: 'ELIMINATE_MOVIE',
+};
+
+export const PLAYER_COUNTS = {
+  MIN: 2,
+  MAX: 9,
+};
+
+export const TOTAL_ROUNDS = 3;
+export const MOVIES_PER_ROUND = 12;
+export const TOTAL_REVIEW_CARDS = 6;
+export const TOTAL_MOVIE_OPTIONS = 10;
+export const MAX_MISTAKES = 2;
+
+export const OUTCOME = {
+  CONTINUE: 'CONTINUE',
+  MISTAKE: 'MISTAKE',
+  DONE: 'DONE',
+};

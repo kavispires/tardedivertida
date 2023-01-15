@@ -1,17 +1,19 @@
 import { ReactNode, useState } from 'react';
 import clsx from 'clsx';
+import { useKeyPressEvent } from 'react-use';
 // Design Resource
 import { Button } from 'antd';
 // Hooks
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
+import { useCountdown } from 'hooks/useCountdown';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
 import { Translate } from 'components/language';
 import { Title } from 'components/text';
 import { TimedButton } from 'components/buttons';
-import { useKeyPressEvent } from 'react-use';
-import { useCountdown } from 'hooks/useCountdown';
+// Sass
+import './PhaseAnnouncement.scss';
 
 type PhaseAnnouncementProps = {
   /**

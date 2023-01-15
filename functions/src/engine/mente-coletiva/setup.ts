@@ -40,7 +40,7 @@ export const prepareSetupPhase = async (
   additionalData: ResourceData
 ): Promise<SaveGamePayload> => {
   // Determine turn order
-  const { gameOrder } = utils.helpers.buildGameOrder(players);
+  const { gameOrder } = utils.players.buildGameOrder(players);
 
   // Build deck
   const deck = buildDeck(additionalData.allQuestions);
