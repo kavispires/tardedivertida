@@ -1,7 +1,6 @@
 // AntDesign Resources
 import { Button, Space } from 'antd';
 // Hooks
-import { useLanguage } from 'hooks/useLanguage';
 import { useMock } from 'hooks/useMock';
 import { useLoading } from 'hooks/useLoading';
 // Utils
@@ -10,14 +9,11 @@ import { mockSelection } from '../utils/mock';
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
 import { MinigameTitle } from './MinigameTitle';
-import { Card } from 'components/cards';
-import { IconAvatar } from 'components/icons/IconAvatar';
-import { ThumbsUpIcon } from 'components/icons/ThumbsUpIcon';
 import { MovieCard } from 'components/cards/MovieCard';
+import { MovieReviewCard } from 'components/cards/MovieReviewCard';
 
 export const TaskVamosAoCinema = ({ task, round, onSubmitTask, user }: TaskProps) => {
   const { isLoading } = useLoading();
-  const { translate } = useLanguage();
 
   const onSelect = (value: string) => {
     onSubmitTask({
@@ -51,14 +47,17 @@ export const TaskVamosAoCinema = ({ task, round, onSubmitTask, user }: TaskProps
       </Instruction>
 
       <Space className="space-container">
-        <Card header={translate('Crítica Positiva', 'Good Review')} color="teal">
-          <IconAvatar icon={<ThumbsUpIcon />} /> {task.data.reviews.good.text}
-        </Card>
+        <MovieReviewCard
+          type="positive"
+          text={task.data.reviews.good.text}
+          highlights={task.data.reviews.good.highlights}
+        />
 
-        <Card header={translate('Crítica Negativa', 'Bad Review')} color="red">
-          <IconAvatar icon={<ThumbsUpIcon style={{ transform: 'rotate(180deg)' }} />} />{' '}
-          {task.data.reviews.bad.text}
-        </Card>
+        <MovieReviewCard
+          type="negative"
+          text={task.data.reviews.bad.text}
+          highlights={task.data.reviews.bad.highlights}
+        />
       </Space>
 
       <Space className="v-movies">
