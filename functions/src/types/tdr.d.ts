@@ -109,8 +109,9 @@ type MovieCard = {
   suffix: string;
 };
 
-type MovieReview = {
+type MovieReviewCard = {
   id: CardId;
   text: string;
   type: 'good' | 'bad';
+  highlights?: string[];
 };
