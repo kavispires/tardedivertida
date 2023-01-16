@@ -1,7 +1,14 @@
 import { GALERIA_DE_SONHOS_ACHIEVEMENTS, GALERIA_DE_SONHOS_ACTIONS } from './constants';
 
 export type GaleriaDeSonhosOptions = {
+  /**
+   * Add bots to the game
+   */
   withBots?: boolean;
+  /**
+   * Use original image decks only
+   */
+  originalDecks: boolean;
 };
 
 export type AllWords = {
@@ -10,6 +17,7 @@ export type AllWords = {
 
 export type ResourceData = {
   allWords: AllWords;
+  images: ImageCardId[];
 };
 
 export type ImageCard = {

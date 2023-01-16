@@ -32,8 +32,7 @@ export const prepareSetupPhase = async (
   const { gameOrder } = utils.players.buildGameOrder(players);
 
   // Build Image Cards deck
-  const imageCardIds = await utils.imageCards.getImageCards(TABLE_DECK_TOTAL);
-  const imageCardsIdsDeck = utils.game.getRandomItems(imageCardIds, TABLE_DECK_TOTAL);
+  const imageCardsIdsDeck = utils.game.getRandomItems(resourceData.images, TABLE_DECK_TOTAL);
   const tableDeck = imageCardsIdsDeck.map((cardId) => ({ id: cardId, used: false }));
 
   // Get word deck

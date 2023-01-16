@@ -12,7 +12,7 @@ export type ContadoresHistoriasOptions = {
 };
 
 export interface ResourceData {
-  cards: string[];
+  cards: ImageCardId[];
 }
 
 export interface ContadoresHistoriasStore extends DefaultStore {
