@@ -38,6 +38,8 @@ export const DOOR_LEVELS = 7;
 
 export const PAGES_PER_ROUND = 8;
 
+export const TOTAL_IMAGE_CARDS = 252;
+
 export const OUTCOME = {
   SUCCESS: 'SUCCESS',
   FAIL: 'FAIL',
