@@ -1,5 +1,16 @@
 import { DETETIVES_IMAGINATIVOS_ACTIONS } from './constants';
 
+export interface DetetivesImaginativosOptions {
+  /**
+   * Use original image decks only
+   */
+  originalDecks: boolean;
+}
+
+export interface ResourceData {
+  cards: string[];
+}
+
 export interface DetetivesImaginativosStore extends DefaultStore {
   usedCards: ImageCardId[];
   gameOrder: PlayerId[];

@@ -2,7 +2,7 @@
 import { DETETIVES_IMAGINATIVOS_PHASES, HAND_LIMIT } from './constants';
 import { DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
 // Types
-import type { FirebaseStateData, FirebaseStoreData } from './types';
+import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Utils
 import utils from '../../utils';
 // Internal
@@ -17,23 +17,17 @@ import { calculateRanking, countImpostorVotes, determinePhaseOrder } from './hel
 export const prepareSetupPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
+  data: ResourceData
 ): Promise<SaveGamePayload> => {
   // Determine player order
-  const { gameOrder, playerIds, playerCount } = utils.players.buildGameOrder(
-    players,
-    DOUBLE_ROUNDS_THRESHOLD
-  );
+  const { gameOrder, playerIds } = utils.players.buildGameOrder(players, DOUBLE_ROUNDS_THRESHOLD);
 
   // Assigned cards to players depending on player count
-  // We build the used cards deck all at once to avoid having to generate and
-  // get unique ones every time
   const cardsPerPlayer = gameOrder.length * 2 + HAND_LIMIT;
-  const minimumNumberOfCards = playerCount * cardsPerPlayer;
-  const cards = await utils.imageCards.getImageCards(minimumNumberOfCards);
 
   // Split cards equally between players
-  players = utils.game.dealList(cards, players, cardsPerPlayer, 'deck');
+  players = utils.game.dealList(data.cards, players, cardsPerPlayer, 'deck');
 
   // Save
   return {
