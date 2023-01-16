@@ -12,6 +12,7 @@ import { StepResults } from './StepResults';
 import { StepRanking } from './StepRanking';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { CountdownIcon } from 'components/icons/CountdownIcon';
+import { PointsHighlight } from 'components/metrics/PointsHighlight';
 
 function PhaseResolution({ state, players, info }: PhaseProps) {
   const user = useUser(players, state);
@@ -31,8 +32,18 @@ function PhaseResolution({ state, players, info }: PhaseProps) {
         >
           <Instruction>
             <Translate
-              pt={<>Acertos ganham {state.correctGuessPoints} pontos nessa rodada.</>}
-              en={<>Correct guesses get {state.correctGuessPoints} points this round.</>}
+              pt={
+                <>
+                  Acertos ganham <PointsHighlight>{state.correctGuessPoints}</PointsHighlight> pontos nessa
+                  rodada.
+                </>
+              }
+              en={
+                <>
+                  Correct guesses get <PointsHighlight>{state.correctGuessPoints}</PointsHighlight> points
+                  this round.
+                </>
+              }
             />
           </Instruction>
         </PhaseAnnouncement>

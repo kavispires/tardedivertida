@@ -19,7 +19,7 @@ type DreamBoardVoteProps = {
 };
 
 export function DreamBoardVote({ table, activeItem, onActivateItem, votes }: DreamBoardVoteProps) {
-  const cardWidth = useCardWidth(table.length, 20, undefined, undefined, 50);
+  const cardWidth = useCardWidth(table.length + 1, 20, undefined, undefined, 50);
   const liButtonBaseClass = 'a-evaluation-all-drawings__li-drawing-button';
 
   return (

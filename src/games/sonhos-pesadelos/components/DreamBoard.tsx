@@ -32,7 +32,7 @@ export function DreamBoard({ table, user, className = '' }: DreamBoardProps) {
             <DreamCard cardId={cardId} cardWidth={cardWidth} isDream={isDream} isNightmare={isNightmare} />
             {isDream && (
               <div className="s-dream-board__dream-label" style={{ maxWidth: `${cardWidth}px` }}>
-                <Translate pt="Sonho" en="Pesadelo" />
+                <Translate pt="Sonho" en="Dream" />
               </div>
             )}
             {isNightmare && (

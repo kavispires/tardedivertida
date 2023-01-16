@@ -1,10 +1,13 @@
 import clsx from 'clsx';
+// Ant Design Resources
+import { Space } from 'antd';
 // Constants
 import { LETTERS } from 'utils/constants';
 // Utils
 import { getColorFromLetter, getEntryId } from 'utils/helpers';
 // Components
 import { Card } from 'components/cards';
+import { TransparentButton } from 'components/buttons';
 
 type AllDreamsCluesProps = {
   dreams: SDream[];
@@ -18,7 +21,7 @@ export function AllDreamsClues({ dreams, activeItem, onActivateItem, votes, play
   const liButtonBaseClass = 'a-evaluation-all-cards__li-card-button';
 
   return (
-    <ul className="a-evaluation-all-cards">
+    <Space className="space-container">
       {dreams.map(({ id, dream }, index) => {
         const player = players[id];
         const letter = LETTERS[index];
@@ -27,8 +30,7 @@ export function AllDreamsClues({ dreams, activeItem, onActivateItem, votes, play
         const isUsed = Object.keys(votes).includes(cardEntryId);
 
         return (
-          <li
-            role="button"
+          <TransparentButton
             key={cardEntryId}
             className={clsx(
               liButtonBaseClass,
@@ -47,9 +49,9 @@ export function AllDreamsClues({ dreams, activeItem, onActivateItem, votes, play
             >
               {dream}
             </Card>
-          </li>
+          </TransparentButton>
         );
       })}
-    </ul>
+    </Space>
   );
 }
