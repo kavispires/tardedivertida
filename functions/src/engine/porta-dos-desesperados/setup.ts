@@ -11,7 +11,7 @@ import {
   WIN_CONDITION,
 } from './constants';
 // Types
-import type { FirebaseStateData, FirebaseStoreData, Trap } from './types';
+import type { FirebaseStateData, FirebaseStoreData, ResourceData, Trap } from './types';
 // Utils
 import utils from '../../utils';
 import { botDoorSelection, createTrapOrder, getBookPages, getDoorSet } from './helpers';
@@ -25,7 +25,8 @@ import { botDoorSelection, createTrapOrder, getBookPages, getDoorSet } from './h
 export const prepareSetupPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
+  data: ResourceData
 ): Promise<SaveGamePayload> => {
   // Determine player order
   const { gameOrder, playerCount: pC } = utils.players.buildGameOrder(players);
@@ -37,8 +38,7 @@ export const prepareSetupPhase = async (
   }
 
   // Get image cards
-  const imageCardIds = await utils.imageCards.getImageCards(252);
-  const imageCardsParts = utils.game.sliceInParts(imageCardIds, 3);
+  const imageCardsParts = utils.game.sliceInParts(data.cards, 3);
   // Use the first as the doors
   const doorsDeck = utils.game.getRandomItems(imageCardsParts[0], DOOR_OPTIONS_PER_ROUND * DOOR_LEVELS);
 

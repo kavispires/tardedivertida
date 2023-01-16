@@ -11,6 +11,10 @@ export type PortaDosDesesperadosOptions = {
   originalDecks: boolean;
 };
 
+export interface ResourceData {
+  cards: ImageCardId[];
+}
+
 export interface PortaDosDesesperadosStore extends DefaultStore {
   [key: string]: any;
 }
