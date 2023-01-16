@@ -1,10 +1,22 @@
 import { CONTADORES_HISTORIAS_ACHIEVEMENTS, CONTADORES_HISTORIAS_ACTIONS } from './constants';
 
 export type ContadoresHistoriasOptions = {
+  /**
+   * Each player goes one or twice
+   */
   fixedRounds: boolean;
+  /**
+   * Use original image decks only
+   */
+  originalDecks: boolean;
 };
 
+export interface ResourceData {
+  cards: string[];
+}
+
 export interface ContadoresHistoriasStore extends DefaultStore {
+  options: ContadoresHistoriasOptions;
   gameOrder: PlayerId[];
   tableDeck: ImageCardId[];
   deckIndex: number;

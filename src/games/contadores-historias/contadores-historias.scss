@@ -144,7 +144,7 @@
   overflow-x: auto;
   padding: get-unit(2);
   color: white;
-  background-color: get-color('brown', 6);
+  background: linear-gradient(160deg, rgb(86, 63, 42) 0%, rgb(71, 42, 18) 33%, rgb(55, 37, 37) 78%);
   border-radius: $border-radius;
   border: get-color('brown', 7) get-unit(1) groove;
   @include box-shadow;
