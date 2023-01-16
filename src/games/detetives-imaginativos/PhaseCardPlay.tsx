@@ -44,7 +44,7 @@ function PhaseCardPlay({ state, players, info }: PhaseProps) {
               pt={
                 <>
                   Agora, jogadores selecionarão <CardHighlight>2</CardHighlight> cartas, uma de cada vez, como
-                  evidência que eles não sao o impostor. Enquanto isso, o impostor está prestando bastante
+                  evidência que eles não são o impostor. Enquanto isso, o impostor está prestando bastante
                   atenção nas cartas selecionadas e escolhendo algo que o(a) ajude a passar despercebido.
                 </>
               }

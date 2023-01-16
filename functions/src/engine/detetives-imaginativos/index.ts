@@ -2,7 +2,11 @@
 import { GAME_NAMES } from '../../utils/constants';
 import { DETETIVES_IMAGINATIVOS_ACTIONS, DETETIVES_IMAGINATIVOS_PHASES, PLAYER_COUNTS } from './constants';
 // Types
-import type { DetetivesImaginativosInitialState, DetetivesImaginativosSubmitAction } from './types';
+import type {
+  DetetivesImaginativosInitialState,
+  DetetivesImaginativosOptions,
+  DetetivesImaginativosSubmitAction,
+} from './types';
 // Utils
 import utils from '../../utils';
 import {
@@ -16,6 +20,7 @@ import {
 } from './setup';
 import { handleDefend, handlePlayCard, handleSubmitClue, handleSubmitVote } from './actions';
 import { determineNextPhase } from './helpers';
+import { getData } from './data';
 
 /**
  * Get Initial Game State
@@ -27,7 +32,8 @@ import { determineNextPhase } from './helpers';
 export const getInitialState = (
   gameId: GameId,
   uid: string,
-  language: Language
+  language: Language,
+  options: DetetivesImaginativosOptions
 ): DetetivesImaginativosInitialState => {
   return utils.helpers.getDefaultInitialState({
     gameId,
@@ -42,6 +48,7 @@ export const getInitialState = (
       gameOrder: [],
       turnOrder: [],
     },
+    options,
   });
 };
 
@@ -68,7 +75,10 @@ export const getNextPhase = async (gameName: string, gameId: string, players: Pl
     // Enter setup phase before doing anything
     await utils.firebase.triggerSetupPhase(sessionRef);
 
-    const newPhase = await prepareSetupPhase(store, state, players);
+    // Request data
+    const additionalData = await getData(players, store.options.originalDecks);
+
+    const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await utils.firebase.saveGame(sessionRef, newPhase);
 
     return getNextPhase(gameName, gameId, newPhase.update?.players ?? {});

@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "D",
   "gameName": "detetives-imaginativos",
-  "version": "2.6.0",
+  "version": "3.0.0",
   "title": {
     "pt": "Detetives Imaginativos",
     "en": "Detective Agency"
@@ -69,5 +69,13 @@
   "available": {
     "pt": true,
     "en": true
-  }
+  },
+  "options": [
+    {
+      "label": "Images",
+      "key": "originalDecks",
+      "off": "Any",
+      "on": "Original"
+    }
+  ]
 }
