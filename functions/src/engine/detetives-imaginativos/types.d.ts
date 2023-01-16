@@ -8,7 +8,7 @@ export interface DetetivesImaginativosOptions {
 }
 
 export interface ResourceData {
-  cards: string[];
+  cards: ImageCardId[];
 }
 
 export interface DetetivesImaginativosStore extends DefaultStore {
