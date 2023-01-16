@@ -1,7 +1,14 @@
 import { PORTA_DOS_DESESPERADOS_ACTIONS, TRAPS } from './constants';
 
 export type PortaDosDesesperadosOptions = {
+  /**
+   * Add bots to the game to go was players
+   */
   withBots?: boolean;
+  /**
+   * Use original image decks only
+   */
+  originalDecks: boolean;
 };
 
 export interface PortaDosDesesperadosStore extends DefaultStore {

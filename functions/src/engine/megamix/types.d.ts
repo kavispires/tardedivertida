@@ -1,8 +1,18 @@
 import { MEGAMIX_ACHIEVEMENTS, MEGAMIX_ACTIONS } from './constants';
 
 export type MegamixGameOptions = {
+  /**
+   * Use not safe for work games and cards
+   */
   nsfw: boolean;
+  /**
+   * Include all mini-games
+   */
   allMinigames: boolean;
+  /**
+   * Use original image decks only
+   */
+  originalDecks: boolean;
 };
 
 export interface PossibleTask {

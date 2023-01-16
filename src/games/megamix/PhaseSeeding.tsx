@@ -22,7 +22,7 @@ export function PhaseSeeding({ players, state, info }: PhaseProps) {
     <PhaseAnnouncement
       icon={<ExperimentIcon />}
       title={
-        <Translate pt="Seus amigos te chamaram para a balada!" en="Your friend invited yo to the club!" />
+        <Translate pt="Seus amigos te chamaram para a balada!" en="Your friend invited to to the club!" />
       }
       currentRound={state?.round?.current}
       type="overlay"

@@ -1,5 +1,12 @@
 import { SONHOS_PESADELOS_ACTIONS } from './constants';
 
+export interface SonhosPesadelosOptions {
+  /**
+   * Use original image decks only
+   */
+  originalDecks: boolean;
+}
+
 export type SonhosPesadelosCards = {
   2: NamingPromptCard[];
   3: NamingPromptCard[];
