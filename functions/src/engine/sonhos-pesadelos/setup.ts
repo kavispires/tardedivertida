@@ -1,7 +1,7 @@
 // Types
-import type { FirebaseStateData, FirebaseStoreData, SonhosPesadelosCards } from './types';
+import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Constants
-import { IMAGE_CARDS_PER_ROUND, SONHOS_PESADELOS_PHASES, TOTAL_ROUNDS } from './constants';
+import { SONHOS_PESADELOS_PHASES, TOTAL_ROUNDS } from './constants';
 // Helpers
 import utils from '../../utils';
 import {
@@ -23,19 +23,16 @@ export const prepareSetupPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
   players: Players,
-  cards: SonhosPesadelosCards
+  data: ResourceData
 ): Promise<SaveGamePayload> => {
-  // Get images
-  const imageDeck = await utils.imageCards.getImageCards(TOTAL_ROUNDS * IMAGE_CARDS_PER_ROUND);
-
   // Distribute themes for each round
-  const themesDeck = getThemeDeck(cards);
+  const themesDeck = getThemeDeck(data.cards);
 
   // Save
   return {
     update: {
       store: {
-        imageDeck,
+        imageDeck: data.images,
         imagesDeckIndex: -1,
         themesDeck,
       },

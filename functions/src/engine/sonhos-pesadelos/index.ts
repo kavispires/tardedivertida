@@ -2,7 +2,11 @@
 import { GAME_NAMES } from '../../utils/constants';
 import { PLAYER_COUNTS, SONHOS_PESADELOS_ACTIONS, SONHOS_PESADELOS_PHASES, TOTAL_ROUNDS } from './constants';
 // Types
-import type { SonhosPesadelosInitialState, SonhosPesadelosSubmitAction } from './types';
+import type {
+  SonhosPesadelosInitialState,
+  SonhosPesadelosOptions,
+  SonhosPesadelosSubmitAction,
+} from './types';
 // Utils
 import utils from '../../utils';
 import { determineNextPhase } from './helpers';
@@ -26,7 +30,8 @@ import { getInspirationThemes } from './data';
 export const getInitialState = (
   gameId: GameId,
   uid: string,
-  language: Language
+  language: Language,
+  options: SonhosPesadelosOptions
 ): SonhosPesadelosInitialState => {
   return utils.helpers.getDefaultInitialState({
     gameId,
@@ -37,6 +42,7 @@ export const getInitialState = (
     initialPhase: SONHOS_PESADELOS_PHASES.LOBBY,
     totalRounds: TOTAL_ROUNDS,
     store: {},
+    options,
   });
 };
 
@@ -64,7 +70,7 @@ export const getNextPhase = async (gameName: string, gameId: string, players: Pl
     await utils.firebase.triggerSetupPhase(sessionRef);
 
     // Request data
-    const additionalData = await getInspirationThemes(store.language);
+    const additionalData = await getInspirationThemes(store.language, store.options.originalDecks);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await utils.firebase.saveGame(sessionRef, newPhase);
 

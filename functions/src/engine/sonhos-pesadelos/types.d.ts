@@ -7,6 +7,11 @@ export interface SonhosPesadelosOptions {
   originalDecks: boolean;
 }
 
+export interface ResourceData {
+  cards: SonhosPesadelosCards;
+  images: ImageCardId[];
+}
+
 export type SonhosPesadelosCards = {
   2: NamingPromptCard[];
   3: NamingPromptCard[];
