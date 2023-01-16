@@ -8,7 +8,7 @@ import {
 } from './constants';
 import { DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
 // Type
-import type { FirebaseStateData, FirebaseStoreData } from './types';
+import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Utils
 import utils from '../../utils';
 // Internal
@@ -23,26 +23,21 @@ import { buildTable, buildTableDeck, getAchievements, getTableCards, scoreRound 
 export const prepareSetupPhase = async (
   store: FirebaseStoreData,
   state: FirebaseStateData,
-  players: Players
+  players: Players,
+  data: ResourceData
 ): Promise<SaveGamePayload> => {
   // Determine player order
-  const { gameOrder, playerCount } = utils.players.buildGameOrder(players);
+  const { gameOrder } = utils.players.buildGameOrder(players);
 
   const { gameOrder: roundsIfRoundFixed } = utils.players.buildGameOrder(players, DOUBLE_ROUNDS_THRESHOLD);
   const totalRounds = store.options.fixedRounds ? roundsIfRoundFixed.length : MAX_ROUNDS;
 
   // Assigned cards to players
-  // We build the used cards deck all at once to avoid having to generate and
-  // get unique ones every time
-  // Also add 1 deck (with the double amount of cards) to be used as the table deck
-  const minimumNumberOfCards = (playerCount + 2) * CARDS_PER_PLAYER;
-  const cards = await utils.imageCards.getImageCards(minimumNumberOfCards);
-
   // Get table deck removing them from the original list of cards
-  const tableDeck = buildTableDeck(cards, 2 * CARDS_PER_PLAYER);
+  const tableDeck = buildTableDeck(data.cards, 2 * CARDS_PER_PLAYER);
 
   // Split cards equally between players
-  players = utils.game.dealList(cards, players, CARDS_PER_PLAYER, 'deck');
+  players = utils.game.dealList(data.cards, players, CARDS_PER_PLAYER, 'deck');
 
   const achievements = utils.achievements.setup(players, store, {
     playerVotes: 0,

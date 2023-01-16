@@ -25,6 +25,7 @@ import {
   prepareVotingPhase,
 } from './setup';
 import { handlePlayCard, handleSubmitStory, handleSubmitVote } from './actions';
+import { getData } from './data';
 
 /**
  * Get Initial Game State
@@ -81,7 +82,10 @@ export const getNextPhase = async (gameName: string, gameId: string, players: Pl
     // Enter setup phase before doing anything
     await utils.firebase.triggerSetupPhase(sessionRef);
 
-    const newPhase = await prepareSetupPhase(store, state, players);
+    // Request data
+    const additionalData = await getData(utils.players.getPlayerCount(players), store.options.originalDecks);
+
+    const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await utils.firebase.saveGame(sessionRef, newPhase);
 
     return getNextPhase(gameName, gameId, newPhase.update?.players ?? {});

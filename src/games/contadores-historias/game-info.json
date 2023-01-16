@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "C",
   "gameName": "contadores-historias",
-  "version": "2.6.1",
+  "version": "3.0.0",
   "title": {
     "pt": "Contadores de Histórias",
     "en": "Storytellers"
@@ -69,6 +69,12 @@
       "key": "fixedRounds",
       "off": "30 points (15 rounds max)",
       "on": "Each player once (6+) or twice (1-5)"
+    },
+    {
+      "label": "Images",
+      "key": "originalDecks",
+      "off": "Any",
+      "on": "Original"
     }
   ]
 }
