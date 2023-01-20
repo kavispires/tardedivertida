@@ -257,8 +257,8 @@ export const prepareGameOverPhase = async (
     set: {
       state: {
         phase: MENTE_COLETIVA_PHASES.GAME_OVER,
-        gameEndedAt: Date.now(),
         round: state.round,
+        gameEndedAt: Date.now(),
         winners,
         losers,
         achievements,

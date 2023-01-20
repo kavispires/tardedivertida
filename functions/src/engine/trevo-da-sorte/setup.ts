@@ -162,6 +162,7 @@ export const prepareGameOverPhase = async (
     set: {
       state: {
         phase: TREVO_DA_SORTE_PHASES.GAME_OVER,
+        round: state.round,
         gameEndedAt: Date.now(),
         winners,
       },

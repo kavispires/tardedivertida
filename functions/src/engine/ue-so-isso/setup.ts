@@ -214,6 +214,7 @@ export const prepareGameOverPhase = async (
     set: {
       state: {
         phase: UE_SO_ISSO_PHASES.GAME_OVER,
+        round: state.round,
         gameEndedAt: Date.now(),
         group: {
           score: groupScore,
