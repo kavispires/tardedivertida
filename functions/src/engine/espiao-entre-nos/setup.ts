@@ -292,9 +292,9 @@ export const prepareGameOverPhase = async (
       players,
       state: {
         phase: ESPIAO_ENTRE_NOS_PHASES.GAME_OVER,
-        winners,
-        gameEndedAt: Date.now(),
         round: state.round,
+        gameEndedAt: Date.now(),
+        winners,
       },
       store: {},
     },

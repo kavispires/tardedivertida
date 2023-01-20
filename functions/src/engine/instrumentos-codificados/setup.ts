@@ -157,9 +157,9 @@ export const prepareGameOverPhase = async (
       players,
       state: {
         phase: INSTRUMENTOS_CODIFICADOS_PHASES.GAME_OVER,
-        winners,
-        gameEndedAt: Date.now(),
         round: state.round,
+        gameEndedAt: Date.now(),
+        winners,
       },
     },
   };

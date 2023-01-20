@@ -191,9 +191,9 @@ export const prepareGameOverPhase = async (
       players,
       state: {
         phase: DETETIVES_IMAGINATIVOS_PHASES.GAME_OVER,
-        winners,
-        gameEndedAt: Date.now(),
         round: state.round,
+        gameEndedAt: Date.now(),
+        winners,
       },
     },
   };
