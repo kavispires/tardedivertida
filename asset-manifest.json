@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/tardedivertida/static/css/main.bedb2b69.css",
-    "main.js": "/tardedivertida/static/js/main.3c451550.js",
+    "main.css": "/tardedivertida/static/css/main.cefb124e.css",
+    "main.js": "/tardedivertida/static/js/main.a972989f.js",
     "page-hub.css": "/tardedivertida/static/css/page-hub.4a76a375.chunk.css",
     "page-hub.js": "/tardedivertida/static/js/page-hub.05c041b9.chunk.js",
     "page-game.js": "/tardedivertida/static/js/page-game.e1abf9c3.chunk.js",
@@ -55,7 +55,7 @@
     "ue-so-isso.css": "/tardedivertida/static/css/ue-so-isso.210c9a55.chunk.css",
     "ue-so-isso.js": "/tardedivertida/static/js/ue-so-isso.433985d6.chunk.js",
     "vamos-ao-cinema.css": "/tardedivertida/static/css/vamos-ao-cinema.7e639b4e.chunk.css",
-    "vamos-ao-cinema.js": "/tardedivertida/static/js/vamos-ao-cinema.6a6e4147.chunk.js",
+    "vamos-ao-cinema.js": "/tardedivertida/static/js/vamos-ao-cinema.b3268435.chunk.js",
     "vendaval-de-palpite.css": "/tardedivertida/static/css/vendaval-de-palpite.11b9782c.chunk.css",
     "vendaval-de-palpite.js": "/tardedivertida/static/js/vendaval-de-palpite.cfd55cf7.chunk.js",
     "megamix.css": "/tardedivertida/static/css/megamix.d0929690.chunk.css",
@@ -126,8 +126,8 @@
     "static/media/round-title-en.svg": "/tardedivertida/static/media/round-title-en.2ad07e1f265a85634ad7940a33f96552.svg",
     "static/media/round-title-pt.svg": "/tardedivertida/static/media/round-title-pt.2e3f9c1deb85d58d118aa6e3dfa7af23.svg",
     "index.html": "/tardedivertida/index.html",
-    "main.bedb2b69.css.map": "/tardedivertida/static/css/main.bedb2b69.css.map",
-    "main.3c451550.js.map": "/tardedivertida/static/js/main.3c451550.js.map",
+    "main.cefb124e.css.map": "/tardedivertida/static/css/main.cefb124e.css.map",
+    "main.a972989f.js.map": "/tardedivertida/static/js/main.a972989f.js.map",
     "page-hub.4a76a375.chunk.css.map": "/tardedivertida/static/css/page-hub.4a76a375.chunk.css.map",
     "page-hub.05c041b9.chunk.js.map": "/tardedivertida/static/js/page-hub.05c041b9.chunk.js.map",
     "page-game.e1abf9c3.chunk.js.map": "/tardedivertida/static/js/page-game.e1abf9c3.chunk.js.map",
@@ -181,7 +181,7 @@
     "ue-so-isso.210c9a55.chunk.css.map": "/tardedivertida/static/css/ue-so-isso.210c9a55.chunk.css.map",
     "ue-so-isso.433985d6.chunk.js.map": "/tardedivertida/static/js/ue-so-isso.433985d6.chunk.js.map",
     "vamos-ao-cinema.7e639b4e.chunk.css.map": "/tardedivertida/static/css/vamos-ao-cinema.7e639b4e.chunk.css.map",
-    "vamos-ao-cinema.6a6e4147.chunk.js.map": "/tardedivertida/static/js/vamos-ao-cinema.6a6e4147.chunk.js.map",
+    "vamos-ao-cinema.b3268435.chunk.js.map": "/tardedivertida/static/js/vamos-ao-cinema.b3268435.chunk.js.map",
     "vendaval-de-palpite.11b9782c.chunk.css.map": "/tardedivertida/static/css/vendaval-de-palpite.11b9782c.chunk.css.map",
     "vendaval-de-palpite.cfd55cf7.chunk.js.map": "/tardedivertida/static/js/vendaval-de-palpite.cfd55cf7.chunk.js.map",
     "megamix.d0929690.chunk.css.map": "/tardedivertida/static/css/megamix.d0929690.chunk.css.map",
@@ -242,7 +242,7 @@
     "3624.68bd6d88.chunk.js.map": "/tardedivertida/static/js/3624.68bd6d88.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.bedb2b69.css",
-    "static/js/main.3c451550.js"
+    "static/css/main.cefb124e.css",
+    "static/js/main.a972989f.js"
   ]
 }
