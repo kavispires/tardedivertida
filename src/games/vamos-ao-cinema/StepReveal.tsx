@@ -81,23 +81,22 @@ export function StepReveal({
           />
         )}
 
-        {outcome === 'MISTAKE' ||
-          (outcome === 'DONE' && mistakes.length === 2 && (
-            <Translate
-              pt={
-                <>
-                  Ah não! <ListOfPlayers players={players} list={votedForSelectedMovie} prefix="vote" />
-                  {pluralize(votedForSelectedMovie.length, 'escolheu', 'escolheram')} esse filme.
-                </>
-              }
-              en={
-                <>
-                  Oh no! <ListOfPlayers players={players} list={votedForSelectedMovie} prefix="vote" />
-                  chose this movie.
-                </>
-              }
-            />
-          ))}
+        {(outcome === 'MISTAKE' || (outcome === 'DONE' && mistakes.length === 2)) && (
+          <Translate
+            pt={
+              <>
+                Ah não! <ListOfPlayers players={players} list={votedForSelectedMovie} prefix="vote" />
+                {pluralize(votedForSelectedMovie.length, 'escolheu', 'escolheram')} esse filme.
+              </>
+            }
+            en={
+              <>
+                Oh no! <ListOfPlayers players={players} list={votedForSelectedMovie} prefix="vote" />
+                chose this movie.
+              </>
+            }
+          />
+        )}
 
         {outcome === 'DONE' && mistakes.length < 2 && finalMovieId && (
           <Translate
