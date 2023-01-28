@@ -5,6 +5,7 @@ import { useLoading } from 'hooks/useLoading';
 import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useDelayedMock } from 'hooks/useMock';
+import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { prepareGlyphs } from './utils/helpers';
 import { mockGlyphs } from './utils/mock';
@@ -19,7 +20,6 @@ import { YesIcon } from 'components/icons/YesIcon';
 import { IconAvatar } from 'components/icons/IconAvatar';
 import { NoIcon } from 'components/icons/NoIcon';
 import { NegativeHighlight, PositiveHighlight } from './components/Highlights';
-import { useLanguage } from 'hooks/useLanguage';
 
 type StepSelectGlyphsProps = {
   user: GamePlayer;

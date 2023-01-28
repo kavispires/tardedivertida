@@ -1,23 +1,20 @@
 // Ant Design Resources
 import { Space } from 'antd';
 // Hooks
-
+import { useCardWidth } from 'hooks/useCardWidth';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
-
+import { PAGE_DURATION } from './utils/constants';
+import { getAvatarColorById } from 'utils/helpers';
 // Components
-
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Title } from 'components/text';
-import { PAGE_DURATION } from './utils/constants';
-import { getAvatarColorById } from 'utils/helpers';
 import { PopoverRule } from 'components/rules';
 import { SlideShow } from 'components/slide-show';
 import { ScoringRules } from './components/RulesBlobs';
 import { AvatarName } from 'components/avatars';
 import { PlayerGlyphs } from './components/PlayerGlyphs';
-import { useCardWidth } from 'hooks/useCardWidth';
 import { CharacterCard } from './components/CharacterCard';
 import { GalleryGuesses } from './components/GalleryGuesses';
 

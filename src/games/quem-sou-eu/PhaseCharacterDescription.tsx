@@ -3,14 +3,14 @@ import { useUser } from 'hooks/useUser';
 import { useStep } from 'hooks/useStep';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+import { NOOP } from 'utils/constants';
+import { useOnSubmitGlyphsAPIRequest } from './utils/api-requests';
 // Components
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
-import { NOOP } from 'utils/constants';
 import { StepSelectGlyphs } from './StepSelectGlyphs';
-import { useOnSubmitGlyphsAPIRequest } from './utils/api-requests';
 import { IconsIcon } from 'components/icons/IconsIcon';
 import { RoundAnnouncement } from 'components/round';
 
