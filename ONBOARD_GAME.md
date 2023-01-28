@@ -19,8 +19,6 @@ All file paths here are relative to `functions/src`.
 
 ### Update delegators in `functions/src/utils/delegators.ts`
 
-- Add entry to `getCollectionNameByGameCode`.
-- Add entry to `getCollectionKeyByGameCode`.
 - Add entry to `getEngine`.
 
 ### Add submitAction to `functions/src/index.ts`

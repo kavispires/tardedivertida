@@ -15,7 +15,9 @@ export function StepPlayCard({ players, user, announcement }: StepPlayCardProps)
 
   return (
     <Step fullWidth announcement={announcement}>
-      <Title>Title of Step</Title>
+      <Title>
+        <Translate pt={<>?</>} en={<>?</>} />
+      </Title>
 
       <Instruction contained>
         <Translate pt={<>?</>} en={<>?</>} />

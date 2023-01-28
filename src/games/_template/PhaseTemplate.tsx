@@ -3,13 +3,13 @@ import { useUser } from 'hooks/useUser';
 import { useStep } from 'hooks/useStep';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+import { NOOP } from 'utils/constants';
 // Components
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { TDIcon } from 'components/icons/TDIcon';
 import { Translate } from 'components/language';
-import { NOOP } from 'utils/constants';
 
 export function PhaseTemplate({ players, state, info }: PhaseProps) {
   const user = useUser(players, state);

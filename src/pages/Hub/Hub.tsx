@@ -19,7 +19,7 @@ import { DevHeader } from 'pages/Dev/DevHeader';
 import { DevEmulatorAlert } from './components/DevEmulatorAlert';
 import { Filters } from './components/Filters';
 import { SEPARATOR, TAG_RULES } from 'utils/constants';
-import { calculateGameAverageDuration } from 'utils/helpers';
+import { calculateGameAverageDuration, isDevEnv } from 'utils/helpers';
 
 // const TAGS_BY_TAG_GROUP = Object.keys(TAG_DICT).reduce((acc: Record<string, string[]>, key) => {
 //   if (acc[TAG_DICT[key].group] === undefined) {
@@ -165,21 +165,41 @@ function Hub() {
       />
 
       <Layout.Content className="container" id="main-container">
+        {isDevEnv && (
+          <>
+            <Typography.Title level={2}>
+              <Translate pt="Em Desenvolvimento" en="Under Development" />
+            </Typography.Title>
+            <Space size={[8, 16]} wrap align="start" className="game-card-collection">
+              {devGames.map((game: GameInfo, index: number) => (
+                <GameCard key={`${game.gameCode}-${index}`} game={game} />
+              ))}
+            </Space>
+            <Divider />
+          </>
+        )}
+        <Typography.Title level={2}>
+          <Translate pt="Disponíveis" en="Available" />
+        </Typography.Title>
         <Space size={[8, 16]} wrap align="start" className="game-card-collection">
           {availableGames.map((game: GameInfo, index: number) => (
             <GameCard key={`${game.gameCode}-${index}`} game={game} />
           ))}
         </Space>
         <Divider />
-        <Typography.Title level={2}>
-          <Translate pt="Em Desenvolvimento" en="Under Development" />
-        </Typography.Title>
-        <Space size={[8, 16]} wrap align="start" className="game-card-collection">
-          {devGames.map((game: GameInfo, index: number) => (
-            <GameCard key={`${game.gameCode}-${index}`} game={game} />
-          ))}
-        </Space>
-        <Divider />
+        {!isDevEnv && (
+          <>
+            <Typography.Title level={2}>
+              <Translate pt="Em Desenvolvimento" en="Under Development" />
+            </Typography.Title>
+            <Space size={[8, 16]} wrap align="start" className="game-card-collection">
+              {devGames.map((game: GameInfo, index: number) => (
+                <GameCard key={`${game.gameCode}-${index}`} game={game} />
+              ))}
+            </Space>
+            <Divider />
+          </>
+        )}
         <Typography.Title level={2}>
           <Translate pt="Em Breve" en="Coming Soon" />
         </Typography.Title>

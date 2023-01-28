@@ -1,4 +1,5 @@
 import { useCallback, useEffect } from 'react';
+import { useEffectOnce } from 'react-use';
 // Ant Design Resources
 import { Button, Space } from 'antd';
 import { CloudUploadOutlined, ThunderboltOutlined } from '@ant-design/icons';
@@ -22,7 +23,6 @@ import { Translate } from 'components/language';
 import { EvaluationAllDrawings } from './components/EvaluationAllDrawings';
 import { EvaluationAllCards } from './components/EvaluationAllCards';
 import { EvaluationRules } from './components/TextBlobs';
-import { useEffectOnce } from 'react-use';
 
 type StepEvaluationProps = {
   drawings: ArteRuimDrawing[];
@@ -95,7 +95,7 @@ export function StepEvaluation({
     return {};
   }, [user, drawings, cards]);
 
-  // // Auto-select the players own drawing and word
+  // Auto-select the players own drawing and word
   useEffectOnce(() => {
     const selection = selectOwnDrawing();
     if (selection) {

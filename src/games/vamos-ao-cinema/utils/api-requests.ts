@@ -48,7 +48,6 @@ export function useOnSubmitMovieEliminationAPIRequest(setStep: GenericFunction) 
   });
 
   return (payload: SubmitMovieEliminationPayload) => {
-    console.log(payload);
     request({
       action: 'ELIMINATE_MOVIE',
       ...payload,

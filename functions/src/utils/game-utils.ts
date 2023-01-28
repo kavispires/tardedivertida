@@ -221,6 +221,23 @@ export const dealList = <T>(
 };
 
 /**
+ * Deal n items, modifying the original list
+ * @param list
+ * @param quantity
+ * @returns
+ */
+export const dealItems = <T>(list: T[], quantity: number) => {
+  const dealt: T[] = [];
+  for (let i = 0; i < quantity; i++) {
+    const item = list.pop();
+    if (item) {
+      dealt.push(item);
+    }
+  }
+  return dealt;
+};
+
+/**
  * Filter out entries that contained any of the used ids
  * @param dict
  * @param usedIds
@@ -238,7 +255,9 @@ export const filterOutByIds = <T>(dict: Record<string, T>, usedIds: BooleanDicti
 
 /**
  * Creates array of given length filled with indexes
- * @param length
+ * @param length the length of the array
+ * @param startAt the starting value
  * @returns
  */
-export const makeArray = (length = 1): number[] => new Array(length).fill(0).map((e, i) => e + i);
+export const makeArray = (length = 1, startAt = 0): number[] =>
+  new Array(length).fill(0).map((e, i) => e + i + startAt);

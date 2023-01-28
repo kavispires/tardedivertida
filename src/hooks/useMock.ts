@@ -7,6 +7,7 @@ import { useGlobalState } from './useGlobalState';
 /**
  * Runs mock function tht performs whatever
  * @param whatToDo
+ * @param requirements
  * @param [conditions]
  */
 export function useMock(whatToDo: GenericFunction, conditions: any[] = [], requirements: any[] = []) {
@@ -25,17 +26,17 @@ export function useMock(whatToDo: GenericFunction, conditions: any[] = [], requi
 /**
  * Runs mock function tht performs whatever after 3 seconds
  * @param whatToDo
- * @param conditions
  * @param requirements
+ * @param delay (default 4)
  * @returns
  */
-export function useDelayedMock(whatToDo: GenericFunction, conditions: any[] = [], requirements: any[] = []) {
+export function useDelayedMock(whatToDo: GenericFunction, requirements: any[] = [], delay = 4) {
   const [isAdmin] = useGlobalState('isAdmin');
   const [userId] = useGlobalState('userId');
   const [runOnce, setRunOnce] = useState(false);
 
   return useCountdown({
-    duration: 3,
+    duration: delay,
     onExpire: () => {
       if (!runOnce && isDevEnv && !isAdmin && userId !== VIEWER_ID && requirements.every(Boolean)) {
         whatToDo();
