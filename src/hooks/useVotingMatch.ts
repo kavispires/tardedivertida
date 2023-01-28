@@ -39,6 +39,8 @@ export function useVotingMatch(
   activateItem: (entryId: string) => void;
   isVotingComplete: boolean;
   resetVoting: (newInitialState: Votes) => void;
+  getEntryId: (arr: string[]) => string;
+  isItemActive: (entryId: string) => boolean;
 } {
   const [votes, setVotes]: [Votes, React.Dispatch<any>] = useState({ ...initialState });
   const [activeItem, setActiveItem]: [string, React.Dispatch<any>] = useState('');
@@ -99,11 +101,24 @@ export function useVotingMatch(
     setActiveItem('');
   };
 
+  const isItemActive = (item: string) => activeItem === item;
+
+  const getEntryId = (arr: string[]): string => arr.join(SEPARATOR);
+
   useEffect(() => {
     if (completeCount) {
       setIsVotingComplete(Object.keys(votes).length === completeCount);
     }
   }, [completeCount, votes]);
 
-  return { votes, setVotes, activeItem, activateItem, isVotingComplete, resetVoting };
+  return {
+    votes,
+    setVotes,
+    activeItem,
+    activateItem,
+    isVotingComplete,
+    resetVoting,
+    getEntryId,
+    isItemActive,
+  };
 }

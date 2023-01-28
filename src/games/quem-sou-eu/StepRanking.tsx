@@ -7,25 +7,17 @@ import { StepRankingWrapper } from 'components/ranking';
 import { PopoverRule } from 'components/rules';
 import { Translate } from 'components/language';
 import { AdminNextPhaseButton } from 'components/admin';
-import { ScoringRules } from './components/TextBlobs';
+import { ScoringRules } from './components/RulesBlobs';
 
 type StepRankingProps = {
   players: GamePlayers;
   ranking: GameRanking;
-  isGameOver: boolean;
   round: GameRound;
   goToPreviousStep: GenericFunction;
   setActiveIndex: GenericFunction;
 };
 
-export function StepRanking({
-  players,
-  ranking,
-  isGameOver,
-  round,
-  goToPreviousStep,
-  setActiveIndex,
-}: StepRankingProps) {
+export function StepRanking({ players, ranking, round, goToPreviousStep, setActiveIndex }: StepRankingProps) {
   return (
     <StepRankingWrapper
       players={players}
@@ -33,14 +25,14 @@ export function StepRanking({
       gainedPointsDescriptions={[
         <Translate pt="Votos corretos" en="Correct guesses" />,
         <Translate
-          pt="Votos corretos em seu desenho por outros jogadores"
-          en="Correct guesses on your drawing by other players"
+          pt="Votos corretos em seu personagem por outros jogadores"
+          en="Correct guesses on your character by other players"
         />,
       ]}
     >
-      <PopoverRule content={<ScoringRules />} />
+      <PopoverRule content={<ScoringRules currentRound={round.current} />} />
 
-      {!isGameOver && <RoundsLeftInstruction round={round} />}
+      <RoundsLeftInstruction round={round} />
 
       <Button
         size="large"
