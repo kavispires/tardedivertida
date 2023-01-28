@@ -1,17 +1,17 @@
 // State & Hooks
 import { useUser } from 'hooks/useUser';
 import { useStep } from 'hooks/useStep';
+import { useOnSubmitGuessesAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+import { NOOP } from 'utils/constants';
 // Components
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
-import { NOOP } from 'utils/constants';
 import { EvaluateIcon } from 'components/icons/EvaluateIcon';
 import { StepGuessing } from './StepGuessing';
-import { useOnSubmitGuessesAPIRequest } from './utils/api-requests';
 import { ScoringRules } from './components/RulesBlobs';
 
 export function PhaseGuessing({ players, state, info }: PhaseProps) {

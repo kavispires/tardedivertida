@@ -1,5 +1,3 @@
-// Types
-
 // Constants
 import { QUEM_SOU_EU_PHASES } from './constants';
 // Helpers

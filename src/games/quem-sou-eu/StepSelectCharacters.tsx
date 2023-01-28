@@ -1,16 +1,18 @@
+// Ant Design Resources
+import { Button, Space } from 'antd';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
+import { useDelayedMock } from 'hooks/useMock';
+import { useCardWidth } from 'hooks/useCardWidth';
+import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
+// Utils
+import { mockSelectCharacters } from './utils/mock';
 // Components
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
-import { Button, Space } from 'antd';
 import { TransparentButton } from 'components/buttons';
-import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
 import { CharacterCard } from './components/CharacterCard';
-import { useCardWidth } from 'hooks/useCardWidth';
-import { mockSelectCharacters } from './utils/mock';
-import { useDelayedMock } from 'hooks/useMock';
 import { CardHighlight } from 'components/metrics/CardHighlight';
 
 type StepSelectCharactersProps = {
