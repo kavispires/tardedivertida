@@ -2,8 +2,8 @@
 import { useCardWidth } from 'hooks/useCardWidth';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
-import { AVATARS } from 'utils/avatars';
 import { WINDOW_DURATION } from './utils/constants';
+import { getAvatarColorById } from 'utils/helpers';
 // Components
 import { CanvasSVG } from 'components/canvas';
 import { Translate } from 'components/language';
@@ -42,7 +42,7 @@ export function StepGallery({
   const { drawing, artistId, id, text, playersPoints, playersSay } = gallery[activeIndex];
 
   const playerArtist = players[artistId];
-  const currentColor = AVATARS[playerArtist.avatarId].color;
+  const currentColor = getAvatarColorById(playerArtist.avatarId);
 
   return (
     <Step fullWidth>

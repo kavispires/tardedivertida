@@ -95,6 +95,9 @@ const SessionVendavalDePalpite = lazy(
     import('games/vendaval-de-palpite/SessionVendavalDePalpite' /* webpackChunkName: "vendaval-de-palpite" */)
 );
 const SessionMegamix = lazy(() => import('games/megamix/SessionMegamix' /* webpackChunkName: "megamix" */));
+const SessionQuemSouEu = lazy(
+  () => import('games/quem-sou-eu/SessionQuemSouEu' /* webpackChunkName: "quem-sou-eu" */)
+);
 
 function Game() {
   const navigate = useNavigate();
@@ -277,6 +280,12 @@ function Game() {
         return (
           <Suspense fallback={<LoadingPage message="" />}>
             <SessionQuemNaoMata gameId={gameId} />
+          </Suspense>
+        );
+      case GAME_COLLECTION.QUEM_SOU_EU:
+        return (
+          <Suspense fallback={<LoadingPage message="" />}>
+            <SessionQuemSouEu gameId={gameId} />
           </Suspense>
         );
       case GAME_COLLECTION.RETRATO_FALADO:

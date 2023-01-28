@@ -14,6 +14,7 @@ import * as ondaTelepaticaEngine from '../engine/onda-telepatica';
 import * as polemicaDaVezEngine from '../engine/polemica-da-vez';
 import * as retratoFaladoEngine from '../engine/retrato-falado';
 import * as quemNaoMataEngine from '../engine/quem-nao-mata';
+import * as quemSouEuEngine from '../engine/quem-sou-eu';
 import * as sonhosPesadelosEngine from '../engine/sonhos-pesadelos';
 import * as testemunhaOcularEngine from '../engine/testemunha-ocular';
 import * as ueSoIssoEngine from '../engine/ue-so-isso';
@@ -56,6 +57,8 @@ export const getEngine = (gameName: string): Engine => {
       return polemicaDaVezEngine;
     case GAME_NAMES.QUEM_NAO_MATA:
       return quemNaoMataEngine;
+    case GAME_NAMES.QUEM_SOU_EU:
+      return quemSouEuEngine;
     case GAME_NAMES.RETRATO_FALADO:
       return retratoFaladoEngine;
     case GAME_NAMES.SONHOS_PESADELOS:

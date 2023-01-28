@@ -2,10 +2,12 @@ import clsx from 'clsx';
 // Ant Design resources
 import { Image } from 'antd';
 // Hooks
+import { useBlurCards } from 'hooks/useBlurCards';
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { PUBLIC_URL } from 'utils/constants';
-import { useBlurCards } from 'hooks/useBlurCards';
+// Components
+import { DualTranslate } from 'components/language';
 
 type ContenderCardProps = {
   size: number;
@@ -25,7 +27,11 @@ export function ContenderCard({ size, overlayColor, contender, className, hideNa
 
   return (
     <div className={clsx('w-contender', className)} style={{ width: `${size}px` }}>
-      {!hideName && <span className="w-contender-name">{contender.name[language]}</span>}
+      {!hideName && (
+        <span className="w-contender-name">
+          <DualTranslate>{contender.name}</DualTranslate>
+        </span>
+      )}
       <img
         src={`${PUBLIC_URL.IN_GAME}/w-overlay-${overlayColor}.png`}
         className="w-contender-overlay"

@@ -1,17 +1,22 @@
 // Ant Design Resources
 import { Button, Tooltip } from 'antd';
-import { EyeInvisibleOutlined } from '@ant-design/icons';
+import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
 // Utils
 import { useBlurCards } from 'hooks/useBlurCards';
 // Components
 import { Translate } from 'components/language';
+// Sass
+import './ImageBlurButton.scss';
 
 type ImageBlurButtonProps = {
+  /**
+   * The card to be blurred
+   */
   cardId: string;
 };
 
 export function ImageBlurButton({ cardId }: ImageBlurButtonProps) {
-  const { blurCard, isBlurEnabled } = useBlurCards();
+  const { blurCard, isBlurEnabled, shouldBeBlurred } = useBlurCards();
 
   return isBlurEnabled ? (
     <Tooltip
@@ -24,7 +29,15 @@ export function ImageBlurButton({ cardId }: ImageBlurButtonProps) {
       }
     >
       <Button ghost onClick={() => blurCard(cardId)} size="small" className="image-blur-button">
-        <EyeInvisibleOutlined /> <Translate pt="Credo" en="Blur" />
+        {shouldBeBlurred(cardId) ? (
+          <>
+            <EyeOutlined /> <Translate pt="Descredar" en="Unblur" />
+          </>
+        ) : (
+          <>
+            <EyeInvisibleOutlined /> <Translate pt="Credo" en="Blur" />
+          </>
+        )}
       </Button>
     </Tooltip>
   ) : (
