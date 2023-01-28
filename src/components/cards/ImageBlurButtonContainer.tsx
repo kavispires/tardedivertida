@@ -2,8 +2,13 @@ import clsx from 'clsx';
 import { ReactNode } from 'react';
 // Components
 import { ImageBlurButton } from './ImageBlurButton';
+// Sass
+import './ImageBlurButtonContainer';
 
 interface ImageBlurButtonContainerProps extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * The card to be blurred
+   */
   cardId: string;
   /**
    * The content the component is wrapping
