@@ -111,6 +111,11 @@ const GAMES = [
     key: 'QUEM_NAO_MATA',
   },
   {
+    name: 'quem-sou-eu',
+    code: 'Q',
+    key: 'QUEM_SOU_EU',
+  },
+  {
     name: 'retrato-falado',
     code: 'R',
     key: 'RETRATO_FALADO',

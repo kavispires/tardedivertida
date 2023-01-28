@@ -15,6 +15,7 @@ import * as naRuaDoMedoEngine from './engine/na-rua-do-medo';
 import * as ondaTelepaticaEngine from './engine/onda-telepatica';
 import * as polemicaDaVezEngine from './engine/polemica-da-vez';
 import * as quemNaoMataEngine from './engine/quem-nao-mata';
+import * as quemSouEuEngine from './engine/quem-sou-eu';
 import * as retratoFaladoEngine from './engine/retrato-falado';
 import * as sonhosPesadelosEngine from './engine/sonhos-pesadelos';
 import * as testemunhaOcularEngine from './engine/testemunha-ocular';
@@ -119,3 +120,5 @@ exports.trevoDaSorteSubmitAction = functions.https.onCall(trevoDaSorteEngine.sub
 exports.megamixSubmitAction = functions.https.onCall(megamixEngine.submitAction);
 
 exports.vamosAoCinemaSubmitAction = functions.https.onCall(vamosAoCinemaEngine.submitAction);
+
+exports.quemSouEuSubmitAction = functions.https.onCall(quemSouEuEngine.submitAction);

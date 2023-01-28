@@ -285,6 +285,7 @@ export const THEME_COLORS = {
   WINE: '#4B2142',
   WOOD: '#8C4103', // brown,
   MOSS: '#9ea63b', //green ish
+  DARK_BLUE: '#0f4364f2',
 };
 
 export const VIEWER_ID = '$viewer$';

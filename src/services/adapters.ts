@@ -105,3 +105,7 @@ export const MEGAMIX_API = {
 export const VAMOS_AO_CINEMA_API = {
   submitAction: httpsCallable(functions, 'vamosAoCinemaSubmitAction'),
 };
+
+export const QUEM_SOU_EU_API = {
+  submitAction: httpsCallable(functions, 'quemSouEuSubmitAction'),
+};
