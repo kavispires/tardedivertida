@@ -18,7 +18,7 @@ export const PLAYER_COUNTS = {
   MAX: 9,
 };
 
-export const TOTAL_ROUNDS = 3;
+export const TOTAL_ROUNDS = 5;
 export const MOVIES_PER_ROUND = 12;
 export const TOTAL_REVIEW_CARDS = 6;
 export const TOTAL_MOVIE_OPTIONS = 10;
