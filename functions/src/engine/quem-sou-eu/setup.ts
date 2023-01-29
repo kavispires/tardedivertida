@@ -178,6 +178,7 @@ export const prepareResultsPhase = async (
   // Save
   return {
     update: {
+      players,
       state: {
         phase: QUEM_SOU_EU_PHASES.RESULTS,
         gallery,
