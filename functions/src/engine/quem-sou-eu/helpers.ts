@@ -56,9 +56,9 @@ export const buildRanking = (players: Players, currentRound: number) => {
         scores.add(player.id, currentRound, 0);
         player.score += currentRound;
 
-        // Every player guessing yours correctly gets 1 point
-        scores.add(guessPlayerId, 1, 1);
-        players[guessPlayerId].score += 1;
+        // Every player guessing yours correctly gets N points
+        scores.add(guessPlayerId, currentRound, 1);
+        players[guessPlayerId].score += currentRound;
       }
     });
   });
@@ -102,7 +102,7 @@ export const buildGallery = (players: Players, currentRound: number): GalleryEnt
         if (guessId === characterId) {
           playersSay[characterId].push(opponent.id);
           playersPoints[opponent.id] = currentRound;
-          playersPoints[player.id] += 1;
+          playersPoints[player.id] += currentRound;
           // Got wrong
         } else {
           playersSay[guessId].push(opponent.id);
