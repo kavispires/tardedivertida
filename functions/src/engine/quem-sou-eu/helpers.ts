@@ -54,9 +54,11 @@ export const buildRanking = (players: Players, currentRound: number) => {
       // Every correct guess gets N points
       if (answers[guessPlayerId] === voteCardId) {
         scores.add(player.id, currentRound, 0);
+        player.score += currentRound;
 
         // Every player guessing yours correctly gets 1 point
         scores.add(guessPlayerId, 1, 1);
+        players[guessPlayerId].score += 1;
       }
     });
   });
