@@ -7,6 +7,7 @@ import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 // Components
 import { ImageCard } from 'components/cards';
+import { DualTranslate } from 'components/language';
 
 type SuspectsProps = {
   suspects: Suspect[];
@@ -81,7 +82,9 @@ export function Suspects({ suspects, perpetrator, onCardClick, eliminatedSuspect
                 cardWidth={cardWidth}
               />
               {!wasEliminated && (
-                <div className="t-suspects-table__suspect-name">{suspect.name[language]}</div>
+                <div className="t-suspects-table__suspect-name">
+                  <DualTranslate>{suspect.name}</DualTranslate>
+                </div>
               )}
             </div>
           );

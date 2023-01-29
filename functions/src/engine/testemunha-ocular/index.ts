@@ -2,7 +2,11 @@
 import { GAME_NAMES } from '../../utils/constants';
 import { MAX_ROUNDS, PLAYER_COUNTS, TESTEMUNHA_OCULAR_ACTIONS, TESTEMUNHA_OCULAR_PHASES } from './constants';
 // Types
-import type { TestemunhaOcularInitialState, TestemunhaOcularSubmitAction } from './types';
+import type {
+  TestemunhaOcularInitialState,
+  TestemunhaOcularOptions,
+  TestemunhaOcularSubmitAction,
+} from './types';
 // Utils
 import utils from '../../utils';
 // Internal Functions
@@ -28,7 +32,8 @@ import { getQuestionsAndSuspects, saveUsedQUestions } from './data';
 export const getInitialState = (
   gameId: GameId,
   uid: string,
-  language: string
+  language: string,
+  options: TestemunhaOcularOptions
 ): TestemunhaOcularInitialState => {
   return utils.helpers.getDefaultInitialState({
     gameId,
@@ -43,6 +48,7 @@ export const getInitialState = (
       gameOrder: [],
       turnOrder: [],
     },
+    options,
   });
 };
 
@@ -77,7 +83,7 @@ export const getNextPhase = async (
     await utils.firebase.triggerSetupPhase(sessionRef);
 
     // Request data
-    const additionalData = await getQuestionsAndSuspects(store.language);
+    const additionalData = await getQuestionsAndSuspects(store.language, store.options);
     const newPhase = await prepareSetupPhase(additionalData);
     await utils.firebase.saveGame(sessionRef, newPhase);
     return getNextPhase(gameName, gameId, players);
