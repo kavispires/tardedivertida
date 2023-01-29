@@ -134,13 +134,14 @@ export function StepGuessing({
         <div className="q-players-glyphs">
           {sortPlayers(players).map((player) => {
             const entryId = getEntryId(['player', player.id]);
+
             return (
               <TransparentButton
                 key={`glyphs-for-${player.id}`}
                 onClick={() => activateItem(entryId)}
                 active={isItemActive(entryId)}
               >
-                <PlayerGlyphs player={player} glyphWidth={glyphWidth} />
+                <PlayerGlyphs player={player} glyphWidth={glyphWidth} done={Boolean(votes[entryId])} />
               </TransparentButton>
             );
           })}
