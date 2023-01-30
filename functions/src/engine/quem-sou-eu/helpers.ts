@@ -1,7 +1,8 @@
 // Constants
-import { QUEM_SOU_EU_PHASES } from './constants';
+import { QUEM_SOU_EU_ACHIEVEMENTS, QUEM_SOU_EU_PHASES } from './constants';
 // Helpers
 import utils from '../../utils';
+import { FirebaseStoreData, QuemSouEuAchievement } from './types';
 
 /**
  * Determine the next phase based on the current one
@@ -119,4 +120,100 @@ export const buildGallery = (players: Players, currentRound: number): GalleryEnt
   });
 
   return gallery;
+};
+
+/**
+ * Get achievements
+ * @param store
+ */
+export const getAchievements = (store: FirebaseStoreData) => {
+  const achievements: Achievement<QuemSouEuAchievement>[] = [];
+
+  const { most: mostGlyphs, least: leastGlyphs } = utils.achievements.getMostAndLeastOf(store, 'glyphs');
+
+  // Most glyphs: selected the most number of glyphs during the game
+  if (mostGlyphs) {
+    achievements.push({
+      type: QUEM_SOU_EU_ACHIEVEMENTS.MOST_GLYPHS,
+      playerId: mostGlyphs.playerId,
+      value: mostGlyphs.glyphs,
+    });
+  }
+
+  // Least glyphs: selected the least number of glyphs during the game
+  if (leastGlyphs) {
+    achievements.push({
+      type: QUEM_SOU_EU_ACHIEVEMENTS.LEAST_GLYPHS,
+      playerId: leastGlyphs.playerId,
+      value: leastGlyphs.glyphs,
+    });
+  }
+
+  const { most: mostPositive, least: leastPositive } = utils.achievements.getMostAndLeastOf(
+    store,
+    'positive'
+  );
+
+  // Most positive: selected the most number of glyphs in the positive side during the game
+  if (mostPositive) {
+    achievements.push({
+      type: QUEM_SOU_EU_ACHIEVEMENTS.MOST_POSITIVE,
+      playerId: mostPositive.playerId,
+      value: mostPositive.positive,
+    });
+  }
+
+  // Least positive: selected the least number of glyphs in the positive side  during the game
+  if (leastPositive) {
+    achievements.push({
+      type: QUEM_SOU_EU_ACHIEVEMENTS.LEAST_POSITIVE,
+      playerId: leastPositive.playerId,
+      value: leastPositive.positive,
+    });
+  }
+
+  const { most: mostNegative, least: leastNegative } = utils.achievements.getMostAndLeastOf(
+    store,
+    'negative'
+  );
+
+  // Most negative: selected the most number of glyphs in the negative side during the game
+  if (mostNegative) {
+    achievements.push({
+      type: QUEM_SOU_EU_ACHIEVEMENTS.MOST_NEGATIVE,
+      playerId: mostNegative.playerId,
+      value: mostNegative.negative,
+    });
+  }
+
+  // Least negative: selected the least number of glyphs in the negative side  during the game
+  if (leastNegative) {
+    achievements.push({
+      type: QUEM_SOU_EU_ACHIEVEMENTS.LEAST_NEGATIVE,
+      playerId: leastNegative.playerId,
+      value: leastNegative.negative,
+    });
+  }
+
+  const { most: single } = utils.achievements.getMostAndLeastOf(store, 'single');
+  // Single: selected a single item most times
+  if (single) {
+    achievements.push({
+      type: QUEM_SOU_EU_ACHIEVEMENTS.SINGLE_ICON,
+      playerId: single.playerId,
+      value: single.single,
+    });
+  }
+
+  const { most: tableVotes } = utils.achievements.getMostAndLeastOf(store, 'tableVotes');
+  // tableVotes: selected the character from the table most times
+  if (tableVotes) {
+    achievements.push({
+      type: QUEM_SOU_EU_ACHIEVEMENTS.TABLE_VOTES,
+      playerId: tableVotes.playerId,
+      value: tableVotes.tableVotes,
+    });
+  }
+
+  return achievements;
 };
