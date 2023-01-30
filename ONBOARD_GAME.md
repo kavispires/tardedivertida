@@ -64,3 +64,12 @@ All file paths here are relative to `/src`.
 
 - Add rules images in `../public/images/rules/` following the same array of rules in games.json.
 - The naming convention is `game-rule-<game-name>-<rule-index>.jpg`.
+
+## Achievements
+
+- Add achievements titles in `functions/src/engine/<>/constants.ts`
+- Add the type `export type ArteRuimAchievement = keyof typeof ARTE_RUIM_ACHIEVEMENTS;`
+- In the prepareSetupPhase add `utils.achievements.setup` with key trackers for each category
+- Add adders everywhere is necessary with the use of ''
+- Create a function getAchievements to read the store and generate the achievements properly with the help of the `utils.achievements` functions
+- Use the component `<Achievements />` in the GameOverPhase padding a reference for all the icons in the game. See type `AchievementReference`
