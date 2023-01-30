@@ -12,3 +12,10 @@ export const getMovieTitle = (movies: MovieCard[], letter: string) => {
     J: `${movies[10].prefix} ${movies[11].suffix}`,
   }[letter];
 };
+
+export const getAnnouncementKey = (outcome: string, mistakes: string[]) => {
+  if (outcome === 'DONE' && mistakes.length === 2) return 'lose';
+  if (outcome === 'MISTAKE') return 'mistake';
+  if (outcome === 'DONE') return 'win';
+  return 'normal';
+};

@@ -54,3 +54,25 @@ export function useOnSubmitMovieEliminationAPIRequest(setStep: GenericFunction) 
     });
   };
 }
+
+export function useOnSubmitMoviePosterAPIRequest(setStep: GenericFunction) {
+  const { translate } = useLanguage();
+
+  const request = useAPICall({
+    apiFunction: VAMOS_AO_CINEMA_API.submitAction,
+    actionName: 'submit-action',
+    onError: () => setStep(0),
+    successMessage: translate('Ação submetida com sucesso', 'Action submitted successfully'),
+    errorMessage: translate(
+      'Vixi, o aplicativo encontrou um erro ao tentar enviar sua ação',
+      'Oops, the application found an error while trying to submit your action'
+    ),
+  });
+
+  return (payload: SubmitMovieEliminationPayload) => {
+    request({
+      action: 'VOTE_FOR_POSTER',
+      ...payload,
+    });
+  };
+}

@@ -5,6 +5,8 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 import { NOOP } from 'utils/constants';
+import { useOnSubmitMoviePosterAPIRequest } from './utils/api-requests';
+import { getAnnouncementKey } from './utils/helpers';
 // Components
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
@@ -18,8 +20,10 @@ import { StepReveal } from './StepReveal';
 
 export function PhaseReveal({ players, state, info }: PhaseProps) {
   const user = useUser(players, state);
-  const { step } = useStep();
+  const { step, setStep } = useStep();
   const [activePlayer] = useWhichPlayerIsThe('activePlayerId', state, players);
+
+  const onSubmitPoster = useOnSubmitMoviePosterAPIRequest(setStep);
 
   const announcements = {
     mistake: (
@@ -85,6 +89,8 @@ export function PhaseReveal({ players, state, info }: PhaseProps) {
           currentMovieId={state.currentMovieId}
           finalMovieId={state.finalMovieId}
           score={state.score}
+          onSubmitPoster={onSubmitPoster}
+          posters={state.posters}
         />
 
         {/* Step 1 */}
@@ -93,10 +99,3 @@ export function PhaseReveal({ players, state, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-const getAnnouncementKey = (outcome: string, mistakes: string[]) => {
-  if (outcome === 'DONE' && mistakes.length === 2) return 'lose';
-  if (outcome === 'MISTAKE') return 'mistake';
-  if (outcome === 'DONE') return 'win';
-  return 'normal';
-};

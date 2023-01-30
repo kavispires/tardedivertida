@@ -1,3 +1,8 @@
+// Ant Design Resources
+import { Space } from 'antd';
+// Hooks
+import { useCardWidth } from 'hooks/useCardWidth';
+import { useLoading } from 'hooks/useLoading';
 // Utils
 import { pluralize } from 'utils/helpers';
 // Components
@@ -13,6 +18,8 @@ import { ListOfPlayers } from 'components/players/ListOfPlayers';
 import { MistakeCountHighlight } from './components/MistakeCountHighlight';
 import { MovieHighlight } from './components/MovieHighlight';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { TransparentButton } from 'components/buttons';
+import { ImageCard } from 'components/cards';
 
 type StepRevealProps = {
   players: GamePlayers;
@@ -31,6 +38,8 @@ type StepRevealProps = {
   currentMovieId: string;
   finalMovieId?: string;
   score: number;
+  onSubmitPoster: GenericFunction;
+  posters: string[];
 } & AnnouncementProps;
 
 export function StepReveal({
@@ -51,7 +60,14 @@ export function StepReveal({
   currentMovieId,
   finalMovieId,
   score,
+  onSubmitPoster,
+  posters,
 }: StepRevealProps) {
+  const posterWidth = useCardWidth(8, 16, 80, 150, 32);
+  const { isLoading } = useLoading();
+
+  const isFinalMovie = outcome === 'DONE' && mistakes.length < 2 && finalMovieId;
+
   return (
     <Step fullWidth announcement={announcement}>
       <Title size="small">
@@ -81,7 +97,7 @@ export function StepReveal({
           />
         )}
 
-        {(outcome === 'MISTAKE' || (outcome === 'DONE' && mistakes.length === 2)) && (
+        {(outcome === 'MISTAKE' || (outcome === 'DONE' && mistakes.length > 1)) && (
           <Translate
             pt={
               <>
@@ -98,24 +114,22 @@ export function StepReveal({
           />
         )}
 
-        {outcome === 'DONE' && mistakes.length < 2 && finalMovieId && (
+        {isFinalMovie && (
           <Translate
             pt={
               <strong>
-                Decidido! Vamos assistir a <MovieHighlight movies={movies} movieId={finalMovieId} /> e
-                ganhamos <PointsHighlight type="positive">{score}</PointsHighlight> pontos.
+                Decidido! E ganhamos <PointsHighlight type="positive">{score}</PointsHighlight> pontos.
               </strong>
             }
             en={
               <strong>
-                It's decided! Let's watch <MovieHighlight movies={movies} movieId={finalMovieId} /> e we
-                scored <PointsHighlight type="positive">{score}</PointsHighlight> points.
+                It's decided! And we scored <PointsHighlight type="positive">{score}</PointsHighlight> points.
               </strong>
             }
           />
         )}
 
-        {mistakes.length === 0 && (
+        {outcome !== 'DONE' && mistakes.length === 0 && (
           <Translate
             pt={
               <>
@@ -173,12 +187,42 @@ export function StepReveal({
         )}
       </Instruction>
 
+      {isFinalMovie && (
+        <div>
+          <Title level={4} size="medium">
+            <MovieHighlight movies={movies} movieId={finalMovieId} />
+          </Title>
+          <Instruction contained>
+            <Translate pt="Vote no poster do filme" en="Vote for the movie poster" />:
+            <br />
+            <Space className="space-container" wrap>
+              {posters.map((posterId) => (
+                <TransparentButton
+                  key={posterId}
+                  disabled={isLoading || user.ready}
+                  onClick={() =>
+                    onSubmitPoster({
+                      movieId: `${round.current}-${finalMovieId}`,
+                      posterId,
+                    })
+                  }
+                >
+                  <ImageCard imageId={posterId} cardWidth={posterWidth} preview={false} />
+                </TransparentButton>
+              ))}
+            </Space>
+          </Instruction>
+        </div>
+      )}
+
       <Movies
         movies={movies}
         user={user}
         onSelect={(movieId) => onEliminateMovie({ movieId })}
         eliminatedMovies={eliminatedMovies}
         mistakes={mistakes}
+        players={players}
+        showResults
       />
 
       <TurnOrder players={players} activePlayerId={activePlayer.id} order={turnOrder} />

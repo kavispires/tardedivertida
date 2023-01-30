@@ -15,7 +15,7 @@ import {
   prepareGameOverPhase,
 } from './setup';
 import { getCards, saveUsedCards } from './data';
-import { handleSelectMovie, handleEliminateMovie } from './actions';
+import { handleSelectMovie, handleEliminateMovie, handleVoteForPoster } from './actions';
 
 /**
  * Get Initial Game State
@@ -119,8 +119,11 @@ export const submitAction = async (data: VamosAoCinemaSubmitAction) => {
       utils.firebase.validateSubmitActionProperties(data, ['movieId'], 'select movie');
       return handleSelectMovie(gameName, gameId, playerId, data.movieId);
     case VAMOS_AO_CINEMA_ACTIONS.ELIMINATE_MOVIE:
-      utils.firebase.validateSubmitActionProperties(data, ['movieId'], 'submit clue');
+      utils.firebase.validateSubmitActionProperties(data, ['movieId'], 'submit movie elimination');
       return handleEliminateMovie(gameName, gameId, playerId, data.movieId);
+    case VAMOS_AO_CINEMA_ACTIONS.VOTE_FOR_POSTER:
+      utils.firebase.validateSubmitActionProperties(data, ['movieId', 'posterId'], 'submit poster');
+      return handleVoteForPoster(gameName, gameId, playerId, data.movieId, data.posterId);
 
     default:
       utils.firebase.throwException(`Given action ${action} is not allowed`);

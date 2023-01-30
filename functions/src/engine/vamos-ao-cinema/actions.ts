@@ -53,3 +53,28 @@ export const handleEliminateMovie = async (
     nextPhaseFunction: getNextPhase,
   });
 };
+
+/**
+ * During reveal players may vote for the poster
+ * @param gameName
+ * @param gameId
+ * @param playerId
+ * @param clue
+ * @returns
+ */
+export const handleVoteForPoster = async (
+  gameName: GameName,
+  gameId: GameId,
+  playerId: PlayerId,
+  movieId: CardId,
+  posterId: CardId
+) => {
+  return await utils.firebase.updatePlayer({
+    gameName,
+    gameId,
+    playerId,
+    actionText: 'submit movie poster',
+    shouldReady: true,
+    change: { [`posters.${movieId}`]: posterId },
+  });
+};
