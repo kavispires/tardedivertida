@@ -1,4 +1,4 @@
-import { Button, Space, Spin } from 'antd';
+import { Avatar as AntAvatar, Button, Space, Spin } from 'antd';
 import clsx from 'clsx';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
@@ -8,6 +8,7 @@ import { IconAvatar } from 'components/icons/IconAvatar';
 import { ScaredIcon } from 'components/icons/ScaredIcon';
 import { StarIcon } from 'components/icons/StarIcon';
 import { TomatoIcon } from 'components/icons/TomatoIcon';
+import { Avatar } from 'components/avatars';
 
 type MoviesProps = {
   movies: MovieCard[];
@@ -16,6 +17,8 @@ type MoviesProps = {
   eliminatedMovies?: CardId[];
   playerMovie?: CardId;
   mistakes?: CardId[];
+  players?: GamePlayers;
+  showResults?: boolean;
 };
 
 const fakeMoviesLeft = [
@@ -70,24 +73,43 @@ export function Movies({
   onSelect = () => {},
   eliminatedMovies = [],
   mistakes = [],
+  players = {},
+  showResults = false,
 }: MoviesProps) {
   const { isLoading } = useLoading();
 
   const leftMovies = movies.slice(0, movies.length / 2);
   const rightMovies = movies.slice(movies.length / 2);
 
+  const moviePlayerDict = Object.values(players).reduce((acc: Record<CardId, PlayerId[]>, player) => {
+    if (!acc[player.movieId]) {
+      acc[player.movieId] = [];
+    }
+    acc[player.movieId].push(player.id);
+    return acc;
+  }, {});
+
   return (
     <Space className="movies">
       <Space className="space-container" direction="vertical">
         {leftMovies.map((movie, index, arr) => (
-          <MovieCard
-            key={movie.id}
-            movie={movie}
-            disableSuffix={index === 0}
-            prefixColor={fakeMoviesLeft?.[index]?.color}
-            disablePrefix={index === arr.length - 1}
-            suffixColor={fakeMoviesLeft?.[index - 1]?.color}
-          />
+          <div key={movie.id} className="movie-container">
+            <PlayersSelections
+              side="left"
+              index={index}
+              moviePlayerDict={moviePlayerDict}
+              players={players}
+              mistakes={mistakes}
+              showAll={showResults}
+            />
+            <MovieCard
+              movie={movie}
+              disableSuffix={index === 0}
+              prefixColor={fakeMoviesLeft?.[index]?.color}
+              disablePrefix={index === arr.length - 1}
+              suffixColor={fakeMoviesLeft?.[index - 1]?.color}
+            />
+          </div>
         ))}
       </Space>
       <div className="movie-buttons">
@@ -146,14 +168,23 @@ export function Movies({
       </div>
       <Space className="space-container" direction="vertical">
         {rightMovies.map((movie, index, arr) => (
-          <MovieCard
-            key={movie.id}
-            movie={movie}
-            disableSuffix={index === 0}
-            prefixColor={fakeMoviesRight?.[index]?.color}
-            disablePrefix={index === arr.length - 1}
-            suffixColor={fakeMoviesRight?.[index - 1]?.color}
-          />
+          <div key={movie.id} className="movie-container">
+            <PlayersSelections
+              side="right"
+              index={index}
+              moviePlayerDict={moviePlayerDict}
+              players={players}
+              mistakes={mistakes}
+              showAll={showResults}
+            />
+            <MovieCard
+              movie={movie}
+              disableSuffix={index === 0}
+              prefixColor={fakeMoviesRight?.[index]?.color}
+              disablePrefix={index === arr.length - 1}
+              suffixColor={fakeMoviesRight?.[index - 1]?.color}
+            />
+          </div>
         ))}
       </Space>
     </Space>
@@ -182,4 +213,41 @@ function ButtonLabel({ isEliminated, isLoading, letter, isPlayerMovie, isWrong }
   }
 
   return isLoading ? <Spin /> : <>{letter}</>;
+}
+
+type PlayersSelectionsProps = {
+  side: 'left' | 'right';
+  index: number;
+  moviePlayerDict: Record<CardId, PlayerId[]>;
+  players: GamePlayers;
+  mistakes: CardId[];
+  showAll: boolean;
+};
+
+function PlayersSelections({
+  side,
+  index,
+  moviePlayerDict,
+  players,
+  mistakes,
+  showAll,
+}: PlayersSelectionsProps) {
+  if (index > 4) return <></>;
+
+  const dict = side === 'left' ? ['A', 'B', 'C', 'D', 'E'] : ['F', 'G', 'H', 'I', 'J'];
+  const movieId = dict[index];
+
+  if (!showAll && !mistakes.includes(movieId)) return <></>;
+
+  const moviePlayers = moviePlayerDict[movieId] ?? [];
+
+  return (
+    <span className={clsx('movie-players', side === 'right' && 'movie-players--right')}>
+      <AntAvatar.Group maxCount={5}>
+        {moviePlayers.map((playerId) => (
+          <Avatar id={players[playerId].avatarId} key={playerId} />
+        ))}
+      </AntAvatar.Group>
+    </span>
+  );
 }

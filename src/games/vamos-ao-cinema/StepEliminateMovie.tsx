@@ -109,6 +109,7 @@ export function StepEliminateMovie({
         onSelect={(movieId) => onEliminateMovie({ movieId })}
         eliminatedMovies={eliminatedMovies}
         mistakes={mistakes}
+        players={players}
       />
 
       <TurnOrder players={players} activePlayerId={activePlayer.id} order={turnOrder} />
