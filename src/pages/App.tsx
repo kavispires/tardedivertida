@@ -22,6 +22,7 @@ const Game = lazy(() => import('pages/Game/Game' /* webpackChunkName: "page-game
 const Showcase = lazy(() => import('pages/Showcase/Showcase' /* webpackChunkName: "page-showcase" */));
 const DevIcons = lazy(() => import('pages/Dev/Icons' /* webpackChunkName: "page-dev-icons" */));
 const DevColors = lazy(() => import('pages/Dev/Colors' /* webpackChunkName: "page-dev-colors" */));
+const DevSprites = lazy(() => import('pages/Dev/Sprites' /* webpackChunkName: "page-dev-sprites" */));
 const DevResources = lazy(() => import('pages/Dev/Resources' /* webpackChunkName: "page-dev-resources" */));
 const DevPlayground = lazy(
   () => import('pages/Dev/Playground' /* webpackChunkName: "page-dev-playground" */)
@@ -55,6 +56,11 @@ const LazyDevIcons = () => (
 const LazyDevColors = () => (
   <Suspense fallback={<LoadingPage message={''} />}>
     <DevColors />
+  </Suspense>
+);
+const LazyDevSprites = () => (
+  <Suspense fallback={<LoadingPage message={''} />}>
+    <DevSprites />
   </Suspense>
 );
 const LazyDevResources = () => (
@@ -129,6 +135,10 @@ function App() {
               <Route
                 path="/dev/colors"
                 element={isAuthenticated ? <LazyDevColors /> : <Navigate to="/login" />}
+              />
+              <Route
+                path="/dev/sprites"
+                element={isAuthenticated ? <LazyDevSprites /> : <Navigate to="/login" />}
               />
               <Route
                 path="/dev/resources"
