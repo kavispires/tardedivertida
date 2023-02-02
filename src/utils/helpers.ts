@@ -357,3 +357,12 @@ export const getMeanDuration = (
 
   return Math.min(maxDuration, Math.max(minDuration, duration));
 };
+
+/**
+ * Creates array of given length filled with indexes
+ * @param length the length of the array
+ * @param startAt the starting value
+ * @returns
+ */
+export const makeArray = (length = 1, startAt = 0): number[] =>
+  new Array(length).fill(0).map((e, i) => e + i + startAt);
