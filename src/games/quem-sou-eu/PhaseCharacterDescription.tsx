@@ -31,7 +31,7 @@ export function PhaseCharacterDescription({ players, state, info }: PhaseProps) 
       <Instruction>
         <Translate
           pt={<>Selecione até 6 ícones que ajudem os outros jogadores a adivinhar o seu personagem</>}
-          en={<>Select up to 6 glyphs that would help other players to guess your character</>}
+          en={<>Select up to 6 glyphs that would help other players to guess who your character is</>}
         />
       </Instruction>
     </PhaseAnnouncement>

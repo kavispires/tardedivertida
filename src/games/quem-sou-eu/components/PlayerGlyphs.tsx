@@ -7,13 +7,15 @@ import { GlyphCard } from 'components/cards/GlyphCard';
 import { IconAvatar } from 'components/icons/IconAvatar';
 import { NoIcon } from 'components/icons/NoIcon';
 import { YesIcon } from 'components/icons/YesIcon';
+import { BoxCheckMarkIcon } from 'components/icons/BoxCheckMarkIcon';
 
 type PopoverGlyphProps = {
   player: GamePlayer;
   glyphWidth: number;
+  done?: boolean;
 };
 
-export function PlayerGlyphs({ player, glyphWidth }: PopoverGlyphProps) {
+export function PlayerGlyphs({ player, glyphWidth, done }: PopoverGlyphProps) {
   const [positive, negative] = useMemo(
     () => parseSelectedGlyphs(player.selectedGlyphs ?? {}),
     [player.selectedGlyphs]
@@ -21,7 +23,12 @@ export function PlayerGlyphs({ player, glyphWidth }: PopoverGlyphProps) {
 
   return (
     <div className="q-player-glyphs">
-      <AvatarStrip player={player} withName className="q-player-glyphs__strip" />
+      <AvatarStrip
+        player={player}
+        withName
+        className="q-player-glyphs__strip"
+        icon={done ? <BoxCheckMarkIcon /> : undefined}
+      />
       {positive.map((id, index) => {
         return (
           <div

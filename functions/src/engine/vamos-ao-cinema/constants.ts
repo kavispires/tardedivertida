@@ -11,6 +11,7 @@ export const VAMOS_AO_CINEMA_PHASES = {
 export const VAMOS_AO_CINEMA_ACTIONS = {
   SELECT_MOVIE: 'SELECT_MOVIE',
   ELIMINATE_MOVIE: 'ELIMINATE_MOVIE',
+  VOTE_FOR_POSTER: 'VOTE_FOR_POSTER',
 };
 
 export const PLAYER_COUNTS = {
@@ -18,7 +19,7 @@ export const PLAYER_COUNTS = {
   MAX: 9,
 };
 
-export const TOTAL_ROUNDS = 3;
+export const TOTAL_ROUNDS = 5;
 export const MOVIES_PER_ROUND = 12;
 export const TOTAL_REVIEW_CARDS = 6;
 export const TOTAL_MOVIE_OPTIONS = 10;
@@ -29,3 +30,5 @@ export const OUTCOME = {
   MISTAKE: 'MISTAKE',
   DONE: 'DONE',
 };
+
+export const MOVIE_POSTERS_COUNT = 70;

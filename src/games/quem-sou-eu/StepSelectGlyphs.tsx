@@ -71,9 +71,6 @@ export function StepSelectGlyphs({
               Dos ícones abaixo, você pode selecionar até <PositiveHighlight>3</PositiveHighlight> positivos e
               até <NegativeHighlight>3</NegativeHighlight> negativos.
               <br /> Quando você clica em ícone, você determina se ele é relacionado ao seu personagem ou não.
-              <br />
-              Você também pode ver todos os personagens abaixo caso queira evitar conflito com outros
-              jogadores.
             </>
           }
           en={
@@ -82,12 +79,42 @@ export function StepSelectGlyphs({
               and <NegativeHighlight>3</NegativeHighlight> negative glyphs.
               <br />
               When you click on a glyph, you will determine if it's related or not to your character.
-              <br />
-              You can also take a look at all the characters for this round so you don't give clues that match
-              others.
             </>
           }
         />
+        {roundType === 'SHOW' ? (
+          <Translate
+            pt={
+              <>
+                <br />
+                Você também pode ver todos os personagens abaixo caso queira evitar conflito com outros
+                jogadores.
+              </>
+            }
+            en={
+              <>
+                <br />
+                You can also take a look at all the characters for this round so you don't give clues that
+                match others.
+              </>
+            }
+          />
+        ) : (
+          <Translate
+            pt={
+              <>
+                <br />
+                De agora em diante, você vê apenas o seu personagem.
+              </>
+            }
+            en={
+              <>
+                <br />
+                From now on, you only see your own character
+              </>
+            }
+          />
+        )}
       </Instruction>
 
       <Table

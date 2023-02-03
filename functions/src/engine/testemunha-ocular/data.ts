@@ -1,5 +1,5 @@
 // Types
-import type { ResourceData, TestemunhaOcularEntry } from './types';
+import type { ResourceData, TestemunhaOcularEntry, TestemunhaOcularOptions } from './types';
 // Constants
 import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
 import { QUESTION_COUNT } from './constants';
@@ -7,13 +7,17 @@ import { QUESTION_COUNT } from './constants';
 import utils from '../../utils';
 import * as globalUtils from '../global';
 import * as resourceUtils from '../resource';
+import { modifySuspectIdsByOptions } from './helpers';
 
 /**
  * Get question resource based on the game's language
  * @param language
  * @returns
  */
-export const getQuestionsAndSuspects = async (language: string): Promise<ResourceData> => {
+export const getQuestionsAndSuspects = async (
+  language: string,
+  options: TestemunhaOcularOptions
+): Promise<ResourceData> => {
   const resourceName = `${TDR_RESOURCES.TESTIMONY_QUESTIONS}-${language}`;
   // Get full deck
   const allCards = await resourceUtils.fetchResource(resourceName);
@@ -39,7 +43,7 @@ export const getQuestionsAndSuspects = async (language: string): Promise<Resourc
 
   return {
     allCards: availableCards,
-    allSuspects: Object.values(allSuspects),
+    allSuspects: modifySuspectIdsByOptions(Object.values(allSuspects), options),
   };
 };
 
