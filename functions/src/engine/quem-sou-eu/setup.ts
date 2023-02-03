@@ -14,7 +14,7 @@ import type { Character, FirebaseStateData, FirebaseStoreData, ResourceData } fr
 // Utils
 import utils from '../../utils';
 // Internal
-import { buildGallery, buildRanking } from './helpers';
+import { buildGallery, buildRanking, getAchievements } from './helpers';
 
 /**
  * Setup
@@ -45,6 +45,14 @@ export const prepareSetupPhase = async (
     player.availableCharacters = utils.game.dealItems(additionalData.characters, CHARACTERS_PER_PLAYER);
   });
 
+  const achievements = utils.achievements.setup(players, store, {
+    glyphs: 0,
+    positive: 0,
+    negative: 0,
+    single: 0,
+    tableVotes: 0,
+  });
+
   // Save
   return {
     update: {
@@ -52,6 +60,7 @@ export const prepareSetupPhase = async (
       store: {
         table,
         tableExtraCount: tableCharactersCount,
+        achievements,
       },
       state: {
         phase: QUEM_SOU_EU_PHASES.SETUP,
@@ -156,9 +165,32 @@ export const prepareGuessingPhase = async (
   // Unready players
   utils.players.unReadyPlayers(players);
 
+  // Count achievements: glyphs
+  Object.values(players).forEach((player) => {
+    const glyphsValues = Object.values(player.selectedGlyphs ?? {});
+
+    // Achievement: Total, Positive and Negative glyphs
+    glyphsValues.forEach((value) => {
+      utils.achievements.increase(store, player.id, 'glyphs', 1);
+      if (value) {
+        utils.achievements.increase(store, player.id, 'positive', 1);
+      } else {
+        utils.achievements.increase(store, player.id, 'negative', 1);
+      }
+    });
+
+    // Achievement: Selected single icon
+    if (glyphsValues.length === 1) {
+      utils.achievements.increase(store, player.id, 'single', 1);
+    }
+  });
+
   // Save
   return {
     update: {
+      store: {
+        achievements: store.achievements,
+      },
       players,
       state: {
         phase: QUEM_SOU_EU_PHASES.GUESSING,
@@ -175,9 +207,28 @@ export const prepareResultsPhase = async (
   const gallery = buildGallery(players, state.round.current);
   const ranking = buildRanking(players, state.round.current);
 
+  // TODO: Save to gallery
+
+  // Achievement: Table Votes
+  const characters: Record<CardId, Character> = state.characters;
+  const botCharacterIds = Object.values(characters)
+    .filter((character) => character.playerId === 'bot')
+    .map((character) => character.id);
+  utils.players.getListOfPlayers(players).forEach((player) => {
+    Object.values(player.guesses).forEach((guess) => {
+      if (botCharacterIds.includes(guess as string)) {
+        utils.achievements.increase(store, player.id, 'tableVotes', 1);
+      }
+    });
+  });
+
   // Save
   return {
     update: {
+      store: {
+        achievements: store.achievements,
+      },
+      players,
       state: {
         phase: QUEM_SOU_EU_PHASES.RESULTS,
         gallery,
@@ -195,6 +246,8 @@ export const prepareGameOverPhase = async (
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 
+  const achievements = getAchievements(store);
+
   await utils.firebase.markGameAsComplete(gameId);
 
   return {
@@ -205,6 +258,7 @@ export const prepareGameOverPhase = async (
         round: state.round,
         gameEndedAt: Date.now(),
         winners,
+        achievements,
       },
     },
   };

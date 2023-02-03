@@ -14,14 +14,13 @@ import { LoadingBar, LoadingPage } from 'components/loaders';
 // Pages
 import Home from './Home/Home';
 import Login from './Login/Login';
-import AvatarsPage from './Dev/Avatars';
-
 // Routes Lazy load
 const Hub = lazy(() => import('pages/Hub/Hub' /* webpackChunkName: "page-hub" */));
 const Game = lazy(() => import('pages/Game/Game' /* webpackChunkName: "page-game" */));
 const Showcase = lazy(() => import('pages/Showcase/Showcase' /* webpackChunkName: "page-showcase" */));
 const DevIcons = lazy(() => import('pages/Dev/Icons' /* webpackChunkName: "page-dev-icons" */));
 const DevColors = lazy(() => import('pages/Dev/Colors' /* webpackChunkName: "page-dev-colors" */));
+const DevSprites = lazy(() => import('pages/Dev/Sprites' /* webpackChunkName: "page-dev-sprites" */));
 const DevResources = lazy(() => import('pages/Dev/Resources' /* webpackChunkName: "page-dev-resources" */));
 const DevPlayground = lazy(
   () => import('pages/Dev/Playground' /* webpackChunkName: "page-dev-playground" */)
@@ -42,11 +41,6 @@ const LazyShowcase = () => (
     <Showcase />
   </Suspense>
 );
-const LazyDevAvatars = () => (
-  <Suspense fallback={<LoadingPage message={''} />}>
-    <AvatarsPage />
-  </Suspense>
-);
 const LazyDevIcons = () => (
   <Suspense fallback={<LoadingPage message={''} />}>
     <DevIcons />
@@ -55,6 +49,11 @@ const LazyDevIcons = () => (
 const LazyDevColors = () => (
   <Suspense fallback={<LoadingPage message={''} />}>
     <DevColors />
+  </Suspense>
+);
+const LazyDevSprites = () => (
+  <Suspense fallback={<LoadingPage message={''} />}>
+    <DevSprites />
   </Suspense>
 );
 const LazyDevResources = () => (
@@ -119,16 +118,16 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/hub" element={isAuthenticated ? <LazyHub /> : <Navigate to="/login" />} />
               <Route
-                path="/dev/avatars"
-                element={isAuthenticated ? <LazyDevAvatars /> : <Navigate to="/login" />}
-              />
-              <Route
                 path="/dev/icons"
                 element={isAuthenticated ? <LazyDevIcons /> : <Navigate to="/login" />}
               />
               <Route
                 path="/dev/colors"
                 element={isAuthenticated ? <LazyDevColors /> : <Navigate to="/login" />}
+              />
+              <Route
+                path="/dev/sprites"
+                element={isAuthenticated ? <LazyDevSprites /> : <Navigate to="/login" />}
               />
               <Route
                 path="/dev/resources"

@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { ReactNode } from 'react';
 // Hooks
 import { useGlobalState } from 'hooks/useGlobalState';
 import { useLanguage } from 'hooks/useLanguage';
@@ -7,6 +8,7 @@ import { Avatar } from './Avatar';
 import { getAvatarColorById } from 'utils/helpers';
 // Sass
 import './AvatarStrip.scss';
+import { IconAvatar } from 'components/icons/IconAvatar';
 
 type AvatarStripProps = {
   /**
@@ -33,6 +35,10 @@ type AvatarStripProps = {
    * Displays YOU/VOCÊ if player is the user
    */
   addressUser?: boolean;
+  /**
+   * The icon to replace the player's avatar
+   */
+  icon?: ReactNode;
 };
 
 export const AvatarStrip = ({
@@ -42,6 +48,7 @@ export const AvatarStrip = ({
   withName = false,
   uppercase = false,
   addressUser = false,
+  icon,
 }: AvatarStripProps) => {
   const [userId] = useGlobalState('userId');
   const { translate } = useLanguage();
@@ -58,12 +65,16 @@ export const AvatarStrip = ({
       className={clsx(baseClass, uppercase && `${baseClass}--uppercase`, `${baseClass}--${size}`, className)}
       style={{ backgroundColor: getAvatarColorById(player.avatarId), width: sizes.width }}
     >
-      <Avatar
-        id={player.avatarId}
-        className="avatar-strip__avatar"
-        shape="square"
-        style={{ width: sizes.avatarSize, height: sizes.avatarSize }}
-      />
+      {Boolean(icon) ? (
+        <IconAvatar style={{ width: sizes.avatarSize, height: sizes.avatarSize }} icon={icon} />
+      ) : (
+        <Avatar
+          id={player.avatarId}
+          className="avatar-strip__avatar"
+          shape="square"
+          style={{ width: sizes.avatarSize, height: sizes.avatarSize }}
+        />
+      )}
       {withName && (
         <>
           <div className="avatar-strip__name">{addressUser && isUser ? addressedUser : player.name}</div>

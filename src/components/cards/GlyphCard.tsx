@@ -22,7 +22,7 @@ type GlyphCardProps = {
 export function GlyphCard({ id, width = 75, className = '' }: GlyphCardProps) {
   return (
     <div className={clsx('glyph-card', className)} style={{ width: `${width}px`, height: `${width}px` }}>
-      <svg viewBox="0 0 100 100" style={{ width: `${width - 12}px`, height: `${width - 12}px` }}>
+      <svg viewBox="0 0 512 512" style={{ width: `${width - 12}px`, height: `${width - 12}px` }}>
         <use href={glyphs + `#glyph-${id}`}></use>
       </svg>
     </div>

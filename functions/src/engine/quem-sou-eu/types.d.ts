@@ -1,4 +1,4 @@
-import { QUEM_SOU_EU_ACTIONS } from './constants';
+import { QUEM_SOU_EU_ACHIEVEMENTS, QUEM_SOU_EU_ACTIONS } from './constants';
 
 export type QuemSouEuOptions = {
   /**
@@ -29,6 +29,8 @@ export interface QuemSouEuInitialState extends InitialState {
   store: QuemSouEuStore;
   state: QuemSouEuState;
 }
+
+export type QuemSouEuAchievement = keyof typeof QUEM_SOU_EU_ACHIEVEMENTS;
 
 export interface QuemSouEuSubmitAction extends Payload {
   action: keyof typeof QUEM_SOU_EU_ACTIONS;

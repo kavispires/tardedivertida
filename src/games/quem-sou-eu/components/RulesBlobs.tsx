@@ -7,13 +7,14 @@ export function ScoringRules({ currentRound }: { currentRound: number }) {
       pt={
         <>
           Você ganha <PointsHighlight>{currentRound}</PointsHighlight>ponto para cada par que acertar e também{' '}
-          <PointsHighlight>1</PointsHighlight>ponto para cada jogador que acertar o seu.
+          <PointsHighlight>{currentRound}</PointsHighlight>ponto para cada jogador que acertar o seu.
         </>
       }
       en={
         <>
           You get <PointsHighlight>{currentRound}</PointsHighlight>point for each pair you get correctly and
-          also <PointsHighlight>1</PointsHighlight>point for each player who gets your character correctly
+          also <PointsHighlight>{currentRound}</PointsHighlight>point for each player who gets your character
+          correctly
         </>
       }
     />

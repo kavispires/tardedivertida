@@ -113,3 +113,37 @@ $shade-levels: (
     margin: get-unit(0 2);
   }
 }
+
+.sprites {
+  &__grid-5 {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  &__flex {
+    width: 100;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  &__avatar-grid-item {
+    margin: 0;
+    display: grid;
+    grid-template-rows: auto 72px auto;
+    place-items: center;
+    padding: 0.5rem;
+    color: white;
+  }
+
+  &__flex-item {
+    border: 1px solid black;
+    margin: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem;
+  }
+}

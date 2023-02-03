@@ -23,3 +23,18 @@
   justify-content: space-evenly;
   padding: get-unit(2);
 }
+
+.movie-container {
+  position: relative;
+}
+
+.movie-players {
+  position: absolute;
+  bottom: 0;
+  transform: translateY(60%);
+  z-index: 15;
+
+  &--right {
+    right: 0;
+  }
+}
