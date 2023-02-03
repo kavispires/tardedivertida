@@ -1,1 +1,1 @@
-export const PAGE_DURATION = 2;
+export const PAGE_DURATION = 10;

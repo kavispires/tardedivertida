@@ -158,7 +158,7 @@ export function StepGuessing({
           <Translate pt={<>Enviar pares</>} en={<>Submit guesses</>} />
         </Button>
         <Button size="large" onClick={() => onGuessForMe()} disabled={isLoading || user.ready}>
-          <Translate pt={<>Desistir</>} en={<>Submit glyphs</>} />
+          <Translate pt={<>Desistir</>} en={<>Guess for me</>} />
         </Button>
       </Space>
     </Step>

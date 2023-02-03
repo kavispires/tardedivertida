@@ -34,7 +34,7 @@ export const PLAYER_COUNTS = {
 export const TOTAL_ROUNDS = 5;
 export const CHARACTERS_PER_PLAYER = 8;
 export const GLYPHS_PER_PLAYER = 40;
-export const TOTAL_GLYPHS = 185;
+export const TOTAL_GLYPHS = 365;
 export const MINIMUM_CHARACTERS = 6;
 export const EXTRA_CHARACTERS = 2;
 
