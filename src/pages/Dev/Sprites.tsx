@@ -56,7 +56,7 @@ const options: Record<string, SpriteOption> = {
     key: 'glyphs',
     label: 'Glyphs',
     prefix: 'glyph',
-    quantity: 256,
+    quantity: 365,
     startAt: 1,
   },
 };
@@ -76,9 +76,9 @@ function SpritesPage() {
         title={
           <Select
             onChange={(e) => qp.add('active', e)}
-            defaultValue={qp.queryParams.active}
+            value={qp.queryParams.active}
             size="small"
-            style={{ minWidth: '10ch' }}
+            style={{ minWidth: '15ch' }}
           >
             {Object.values(options).map((option) => (
               <Select.Option value={option.key} key={option.key}>

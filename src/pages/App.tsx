@@ -14,8 +14,6 @@ import { LoadingBar, LoadingPage } from 'components/loaders';
 // Pages
 import Home from './Home/Home';
 import Login from './Login/Login';
-import AvatarsPage from './Dev/Avatars';
-
 // Routes Lazy load
 const Hub = lazy(() => import('pages/Hub/Hub' /* webpackChunkName: "page-hub" */));
 const Game = lazy(() => import('pages/Game/Game' /* webpackChunkName: "page-game" */));
@@ -41,11 +39,6 @@ const LazyGame = () => (
 const LazyShowcase = () => (
   <Suspense fallback={<LoadingPage message={''} />}>
     <Showcase />
-  </Suspense>
-);
-const LazyDevAvatars = () => (
-  <Suspense fallback={<LoadingPage message={''} />}>
-    <AvatarsPage />
   </Suspense>
 );
 const LazyDevIcons = () => (
@@ -124,10 +117,6 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
               <Route path="/hub" element={isAuthenticated ? <LazyHub /> : <Navigate to="/login" />} />
-              <Route
-                path="/dev/avatars"
-                element={isAuthenticated ? <LazyDevAvatars /> : <Navigate to="/login" />}
-              />
               <Route
                 path="/dev/icons"
                 element={isAuthenticated ? <LazyDevIcons /> : <Navigate to="/login" />}

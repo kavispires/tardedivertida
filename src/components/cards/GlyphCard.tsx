@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 // Images
-import glyphs from 'assets/images/glyphs-new.svg';
+import glyphs from 'assets/images/glyphs.svg';
 // Sass
 import './GlyphCard.scss';
 
