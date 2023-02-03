@@ -8,7 +8,6 @@ export function DevMenu() {
   const options = [
     { label: 'Home', value: '/', disabled: pathname === '/' },
     { label: 'Hub', value: '/hub', disabled: pathname === '/hub' },
-    { label: 'Avatars', value: '/dev/avatars', disabled: pathname === '/dev/avatars' },
     { label: 'Icons', value: '/dev/icons', disabled: pathname === '/dev/icons' },
     { label: 'Colors', value: '/dev/colors', disabled: pathname === '/dev/colors' },
     { label: 'Sprites', value: '/dev/sprites', disabled: pathname === '/dev/sprites' },

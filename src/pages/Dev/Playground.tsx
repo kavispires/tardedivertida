@@ -115,15 +115,6 @@ function Playground() {
 
 
       */}
-
-        {Array(185)
-          .fill(1)
-          .map((e, i) => (
-            <div>
-              <GlyphCard key={e + i} id={String(e + i)} />
-              {String(e + i)}
-            </div>
-          ))}
       </Space>
       <ul style={styles}>
         {/* {allNames.map((name: string) => {
@@ -239,25 +230,3 @@ console.log({ result });
 const svg = ``;
 
 const ignoreIds: number[] = [];
-
-function parseSVGIds() {
-  const parts = svg.split(`id="`);
-  const res: string[] = [parts[0]];
-  let elementIndex = 1;
-  parts.forEach((part, index) => {
-    const lastCharIndex = part.indexOf(`"`);
-    if (ignoreIds.includes(index)) {
-      res.push(`${part.substring(lastCharIndex + 1)}`);
-
-      return;
-    }
-    if (index > 0) {
-      res.push(`id="glyph-${elementIndex}${part.substring(lastCharIndex)}`);
-      elementIndex += 1;
-    }
-  });
-  console.log({ elementIndex });
-  return res.join('');
-}
-
-console.log(parseSVGIds());
