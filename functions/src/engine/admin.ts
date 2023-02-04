@@ -1,6 +1,6 @@
 import * as admin from 'firebase-admin';
 // Constants
-import { GAME_CODES, GLOBAL_USED_DOCUMENTS, USED_GAME_IDS } from '../utils/constants';
+import { DATA_DOCUMENTS, GAME_CODES, GLOBAL_USED_DOCUMENTS, USED_GAME_IDS } from '../utils/constants';
 // Utils
 import * as delegatorUtils from '../utils/delegators';
 import utils from '../utils';
@@ -303,6 +303,9 @@ const playAgain = async (gameId: GameId, gameName: GameName) => {
  */
 const _feedEmulatorDB = async () => {
   const sample = { 'a-a-a': true };
+
+  // DATA
+  await utils.firebase.getDataRef().doc(DATA_DOCUMENTS.CONTENDERS_GLYPHS).set(sample);
 
   // GLOBAL
   await utils.firebase.getGlobalRef().doc(USED_GAME_IDS).set(sample);

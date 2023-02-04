@@ -261,3 +261,26 @@ export const filterOutByIds = <T>(dict: Record<string, T>, usedIds: BooleanDicti
  */
 export const makeArray = (length = 1, startAt = 0): number[] =>
   new Array(length).fill(0).map((e, i) => e + i + startAt);
+
+/**
+ * Merges the properties of multiple objects into one object.
+ *
+ * @param {object} target - The target object to merge the source objects into.
+ * @param {...any} sources - The source objects to merge into the target object.
+ * @returns {any} The target object with the properties of the source objects merged in.
+ */
+export function merge(target: any, ...sources: any[]): any {
+  sources.forEach((source) => {
+    for (const key in source) {
+      if (source[key] !== null || source[key] !== undefined) {
+        if (typeof target[key] === 'object' && typeof source[key] === 'object') {
+          merge(target[key], source[key]);
+        } else {
+          target[key] = source[key];
+        }
+      }
+    }
+  });
+
+  return target;
+}

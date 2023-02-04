@@ -15,6 +15,7 @@ import type { Character, FirebaseStateData, FirebaseStoreData, ResourceData } fr
 import utils from '../../utils';
 // Internal
 import { buildGallery, buildRanking, getAchievements } from './helpers';
+import { saveContendersGlyphs } from './data';
 
 /**
  * Setup
@@ -61,6 +62,7 @@ export const prepareSetupPhase = async (
         table,
         tableExtraCount: tableCharactersCount,
         achievements,
+        contendersGlyphs: {},
       },
       state: {
         phase: QUEM_SOU_EU_PHASES.SETUP,
@@ -165,9 +167,14 @@ export const prepareGuessingPhase = async (
   // Unready players
   utils.players.unReadyPlayers(players);
 
+  const listOfPlayers = utils.players.getListOfPlayers(players);
+
   // Count achievements: glyphs
-  Object.values(players).forEach((player) => {
+  listOfPlayers.forEach((player) => {
     const glyphsValues = Object.values(player.selectedGlyphs ?? {});
+
+    // Save glyphs to the store
+    store.contendersGlyphs[player.character.id] = player.selectedGlyphs;
 
     // Achievement: Total, Positive and Negative glyphs
     glyphsValues.forEach((value) => {
@@ -190,6 +197,7 @@ export const prepareGuessingPhase = async (
     update: {
       store: {
         achievements: store.achievements,
+        contendersGlyphs: store.contendersGlyphs,
       },
       players,
       state: {
@@ -247,6 +255,8 @@ export const prepareGameOverPhase = async (
   const winners = utils.players.determineWinners(players);
 
   const achievements = getAchievements(store);
+
+  await saveContendersGlyphs(store.contendersGlyphs ?? {});
 
   await utils.firebase.markGameAsComplete(gameId);
 

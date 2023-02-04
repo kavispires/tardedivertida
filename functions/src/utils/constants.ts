@@ -190,6 +190,10 @@ export const GLOBAL_USED_DOCUMENTS = {
   SUPER_CAMPEONATO_CONTENDERS: 'usedSuperCampeonatoContenders',
 };
 
+export const DATA_DOCUMENTS = {
+  CONTENDERS_GLYPHS: 'contendersGlyphs',
+};
+
 export const TDR_RESOURCES = {
   ADJECTIVES: 'adjectives',
   ARTE_RUIM_CARDS: 'arte-ruim-cards',

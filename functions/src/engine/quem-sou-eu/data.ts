@@ -1,12 +1,13 @@
 // Constants
-import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
+import { GLOBAL_USED_DOCUMENTS, DATA_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
+import { CHARACTERS_PER_PLAYER } from './constants';
 // Type
 import { ResourceData } from './types';
 // Helpers
 import * as resourceUtils from '../resource';
 import * as globalUtils from '../global';
+import * as collectionUtils from '../collections';
 import utils from '../../utils';
-import { CHARACTERS_PER_PLAYER } from './constants';
 
 /**
  * Get characters based on the game's language
@@ -49,4 +50,13 @@ export const getResourceData = async (language: string, playerCount: number): Pr
   return {
     characters: utils.game.shuffle(Object.values(availableCharacters)),
   };
+};
+
+/**
+ * Saved given contender glyphs
+ * @param contendersGlyphs
+ * @returns
+ */
+export const saveContendersGlyphs = async (contendersGlyphs: BooleanDictionary): Promise<boolean> => {
+  return await collectionUtils.updateDataFirebaseDoc(DATA_DOCUMENTS.CONTENDERS_GLYPHS, contendersGlyphs);
 };
