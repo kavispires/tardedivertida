@@ -79,6 +79,14 @@ export function verifyAuth(context: FirebaseContext, action = 'perform function'
 }
 
 /**
+ * Get Firebase session for the data collection (used to save bot/seed data)
+ * @returns firebase data reference
+ */
+export function getDataRef(): FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData> {
+  return admin.firestore().collection('data');
+}
+
+/**
  * Get Firebase session for the global collection
  * @returns firebase global reference
  */

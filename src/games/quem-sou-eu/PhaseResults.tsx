@@ -17,7 +17,7 @@ import { StepRanking } from './StepRanking';
 export function PhaseResults({ players, state, info }: PhaseProps) {
   const user = useUser(players, state);
   const { step, setStep, goToPreviousStep, goToNextStep } = useStep();
-  const { activeIndex, setActiveIndex, isFirstGalleryRunThrough } = useSlideShow(state.gallery.length);
+  const { activeIndex, setActiveIndex, isFirstGalleryRunThrough } = useSlideShow(state.gallery?.length ?? 1);
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.QUEM_SOU_EU.RESULTS}>
