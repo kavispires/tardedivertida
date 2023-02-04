@@ -222,7 +222,7 @@ export function StepReveal({
         eliminatedMovies={eliminatedMovies}
         mistakes={mistakes}
         players={players}
-        showResults
+        showResults={outcome === 'DONE'}
       />
 
       <TurnOrder players={players} activePlayerId={activePlayer.id} order={turnOrder} />
