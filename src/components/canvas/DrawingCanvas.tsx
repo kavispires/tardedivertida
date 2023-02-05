@@ -28,6 +28,14 @@ type DrawingCanvasProps = {
    * Size of the stroke. Default: medium
    */
   strokeWidth?: 'small' | 'medium' | 'large';
+  /**
+   * The width of the canvas (default: 500)
+   */
+  width?: number;
+  /**
+   * The height of the canvas (default: 500)
+   */
+  height?: number;
 };
 
 /**
@@ -40,6 +48,8 @@ export const DrawingCanvas = ({
   className = '',
   showControls = false,
   strokeWidth = 'medium',
+  width = 500,
+  height,
 }: DrawingCanvasProps) => {
   const [drawingHistory, setDrawingHistory] = useState<CanvasLine[]>([]);
   const isDrawing = useRef(false);
@@ -195,8 +205,8 @@ export const DrawingCanvas = ({
   return (
     <Space direction="vertical" align="center">
       <Stage
-        width={500}
-        height={500}
+        width={width}
+        height={height || width}
         onMouseDown={handleMouseDown}
         onMousemove={handleMouseMove}
         onMouseup={handleMouseUp}
@@ -206,6 +216,7 @@ export const DrawingCanvas = ({
         onMouseLeave={handleMouseLeave}
         onMouseEnter={handleMouseEnter}
         className={clsx('drawing-canvas', className)}
+        style={{ width: `${width}px`, height: `${height || width}px` }}
         id="drawing-canvas"
       >
         <Layer>

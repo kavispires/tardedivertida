@@ -64,7 +64,7 @@ export function EvaluatedDrawings({ votes, cards, drawings, players }: Evaluated
               </div>
               <CanvasSVG
                 drawing={drawing.drawing}
-                size={cSize}
+                width={cSize}
                 className="a-evaluation-all-drawings__drawing"
               />
               <div className="a-evaluated-drawings__card" style={{ maxWidth: `${cSize}px` }}>

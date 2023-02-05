@@ -65,7 +65,7 @@ export const TaskArteRuim = ({ task, round, onSubmitTask, user, players }: TaskP
         </Instruction>
 
         <Space className="space-container">
-          <CanvasSVG drawing={task.data.option.drawing} size={cardWidth} className="a-drawing" />
+          <CanvasSVG drawing={task.data.option.drawing} width={cardWidth} className="a-drawing" />
         </Space>
 
         <Space className="space-container">
@@ -124,7 +124,7 @@ export const TaskArteRuim = ({ task, round, onSubmitTask, user, players }: TaskP
       <div className="a-drawings">
         {task.data.options.map((entry: PlainObject) => (
           <div className="a-drawings__entry">
-            <CanvasSVG drawing={entry.drawing} size={cardWidth} className="a-drawing" />
+            <CanvasSVG drawing={entry.drawing} width={cardWidth} className="a-drawing" />
 
             <Space className="space-container">
               <Button

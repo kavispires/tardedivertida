@@ -59,7 +59,7 @@ export function StepNameDrawing({
         />
       </Instruction>
 
-      <CanvasSVG drawing={currentPrompt.content} className="l-drawing" size={300} />
+      <CanvasSVG drawing={currentPrompt.content} className="l-drawing" width={300} />
 
       <Input
         onChange={onTitleChange}

@@ -36,7 +36,7 @@ function PhaseGameOver({ state, info, players }: PhaseProps) {
                 if (slide.type === 'drawing') {
                   return (
                     <li key={key} className="l-album-strip-square-drawing">
-                      <CanvasSVG drawing={slide.content} size={cardWidth} />
+                      <CanvasSVG drawing={slide.content} width={cardWidth} />
                     </li>
                   );
                 }

@@ -100,7 +100,7 @@ export function StepVote({
             <Space direction="vertical" align="center" key={`sketch-for-player-${sketchObj.playerId}`}>
               <CanvasSVG
                 key={`sketch-${sketchObj.playerId}`}
-                size={canvasSize || canvasWidth}
+                width={canvasSize || canvasWidth}
                 drawing={sketchObj.sketch}
                 className="r-sketch"
               />

@@ -16,7 +16,7 @@ export function FinalGallery({ drawings, players }: FinalGalleryProps) {
 
         return (
           <li className="a-game-over__gallery-item" key={entry.drawing} style={{ width: '200px' }}>
-            <CanvasSVG drawing={entry.drawing} size={200} className="a-game-over__gallery-canvas" />
+            <CanvasSVG drawing={entry.drawing} width={200} className="a-game-over__gallery-canvas" />
             <span className="a-game-over__credits">
               "{entry.text}" <Translate pt="por" en="by" /> {players[entry.playerId].name}
             </span>
