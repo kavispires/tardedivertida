@@ -19,7 +19,9 @@ export function VoteArteRuim({ task, players, playersList }: VoteComponentProps)
             <div key={`vote-${player.id}`} className="player-vote">
               <Avatar id={player.avatarId} />
               <div>{player.name}</div>
-              {Boolean(drawing) && <CanvasSVG drawing={drawing.drawing} size={width} className="a-drawing" />}
+              {Boolean(drawing) && (
+                <CanvasSVG drawing={drawing.drawing} width={width} className="a-drawing" />
+              )}
             </div>
           );
         })}

@@ -51,7 +51,7 @@ export function Page({ slide, players, albumColor, currentPage, totalSlides }: P
         <CanvasSVG
           drawing={slide.content}
           className={clsx('l-page__container l-artwork', animationClass)}
-          size={350}
+          width={350}
         />
       )}
 
