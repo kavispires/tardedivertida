@@ -120,6 +120,11 @@
   }
 }
 
+.q-final-character {
+  grid-template-columns: repeat(8, auto);
+  place-items: center;
+}
+
 .q-voting-characters {
   &__button {
     position: relative;

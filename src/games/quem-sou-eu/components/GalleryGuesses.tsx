@@ -115,7 +115,7 @@ export function GalleryGuesses({
             <IconAvatar icon={<GarbageIcon />} size="large" shape="square" />
             <Translate
               pt="Nossa, ninguém acertou. Esses ícones devem ter sido uma bosta heim."
-              en="Wow, nobody got it. It must have been chosen terrible glyphs. Shame..."
+              en="Wow, nobody got it. It must have chosen terrible glyphs. Shame..."
             />
           </Typography.Text>
         )}
