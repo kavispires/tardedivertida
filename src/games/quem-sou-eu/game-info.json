@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Q",
   "gameName": "quem-sou-eu",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "title": {
     "pt": "Quem Sou Eu?",
     "en": "Who Am I?"
@@ -22,8 +22,24 @@
     "en": "Each player is a celebrity or character and must communicate who they are to other players through icons only"
   },
   "rules": {
-    "pt": ["TBD"],
-    "en": ["TBD"]
+    "pt": [
+      "Quem Sou Eu? é um jogo de comunicação e dedução por ícones",
+      "Em cada rodada, você receberá um personagem secreto que você deve descrever usando apenas alguns ícones",
+      "Você pode selecionar até 3 ícones positivos indicando que eles tem a ver com seu personagem",
+      "E também até 3 ícones negativos indicando que não tem a ver com seu personagem",
+      "Após todos jogadores selecionarem os ícones, é hora de parear as seleções de cada jogador com um dos personagens disponíveis",
+      "Você ganha pontos quando você acerta o par e quanto outros jogadores acertam os seus ícones",
+      "O jogo dura 5 rodadas aumentando a dificuldade a cada uma delas e ganha quem tiver mais pontos no final!"
+    ],
+    "en": [
+      "Who Am I? is a game of communication and deduction through pictos",
+      "Each round you will have a secret character and you must describe it using your unique limited selection of glyphs",
+      "You may place up to 3 glyphs on the positive side indicating your character is related to that glyph",
+      "And you may place up to 3 glyphs on the negative side indicating your character is NOT related to the glyph",
+      "After all players have done their selections, everybody must pair selections with characters",
+      "You gain points for guessing correctly and also having yours guessed correctly by others",
+      "The game goes for 5 rounds with increasing difficulty and the player with the most points wins!"
+    ]
   },
   "playerCount": {
     "recommended": [3, 4, 5, 6],

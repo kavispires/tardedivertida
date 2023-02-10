@@ -38,7 +38,9 @@ export function RulesModal({ gameInfo, buttonProps }: RulesModalProps): JSX.Elem
             </Button>,
           ]}
         >
-          <RulesCarousel info={gameInfo} />
+          <div className="rules-modal-content">
+            <RulesCarousel info={gameInfo} />
+          </div>
         </Modal>
       )}
     </>
