@@ -7,33 +7,27 @@ import { GlyphCard } from 'components/cards/GlyphCard';
 import { IconAvatar } from 'components/icons/IconAvatar';
 import { NoIcon } from 'components/icons/NoIcon';
 import { YesIcon } from 'components/icons/YesIcon';
-import { BoxCheckMarkIcon } from 'components/icons/BoxCheckMarkIcon';
+import { CharacterCard } from './CharacterCard';
 
-type PlayerGlyphsProps = {
-  player: GamePlayer;
+type FinalCharacterProps = {
+  players: GamePlayers;
+  character: FinalCharacter;
   glyphWidth: number;
-  done?: boolean;
 };
 
-export function PlayerGlyphs({ player, glyphWidth, done }: PlayerGlyphsProps) {
-  const [positive, negative] = useMemo(
-    () => parseSelectedGlyphs(player.selectedGlyphs ?? {}),
-    [player.selectedGlyphs]
-  );
+export function FinalCharacter({ players, character, glyphWidth }: FinalCharacterProps) {
+  const [positive, negative] = useMemo(() => parseSelectedGlyphs(character.glyphs ?? {}), [character.glyphs]);
 
   return (
-    <div className="q-player-glyphs">
-      <AvatarStrip
-        player={player}
-        withName
-        className="q-player-glyphs__strip"
-        icon={done ? <BoxCheckMarkIcon /> : undefined}
-      />
+    <div className="q-player-glyphs q-final-character">
+      <AvatarStrip player={players[character.playerId]} withName className="q-player-glyphs__strip" />
+      <CharacterCard size={100} character={character} />
+
       {positive.map((id, index) => {
         return (
           <div
             className="q-player-glyphs__entry q-player-glyphs__entry--positive"
-            key={`pos-${player.id}-${id}-${index}`}
+            key={`pos-${character.id}-${id}-${index}`}
           >
             <IconAvatar icon={<YesIcon />} size="small" />
             {Boolean(id) ? (
@@ -51,7 +45,7 @@ export function PlayerGlyphs({ player, glyphWidth, done }: PlayerGlyphsProps) {
         return (
           <div
             className="q-player-glyphs__entry q-player-glyphs__entry--negative"
-            key={`neg-${player.id}-${id}-${index}`}
+            key={`neg-${character.id}-${id}-${index}`}
           >
             <IconAvatar icon={<NoIcon />} size="small" />
             {Boolean(id) ? (
