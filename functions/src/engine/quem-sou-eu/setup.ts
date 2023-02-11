@@ -63,6 +63,7 @@ export const prepareSetupPhase = async (
         tableExtraCount: tableCharactersCount,
         achievements,
         contendersGlyphs: {},
+        gallery: [],
       },
       state: {
         phase: QUEM_SOU_EU_PHASES.SETUP,
@@ -169,6 +170,8 @@ export const prepareGuessingPhase = async (
 
   const listOfPlayers = utils.players.getListOfPlayers(players);
 
+  const gallery = store.gallery ?? [];
+
   // Count achievements: glyphs
   listOfPlayers.forEach((player) => {
     const glyphsValues = Object.values(player.selectedGlyphs ?? {});
@@ -190,6 +193,13 @@ export const prepareGuessingPhase = async (
     if (glyphsValues.length === 1) {
       utils.achievements.increase(store, player.id, 'single', 1);
     }
+
+    // Save gallery
+    gallery.push({
+      playerId: player.id,
+      glyphs: player.selectedGlyphs,
+      ...player.character,
+    });
   });
 
   // Save
@@ -198,6 +208,7 @@ export const prepareGuessingPhase = async (
       store: {
         achievements: store.achievements,
         contendersGlyphs: store.contendersGlyphs,
+        gallery,
       },
       players,
       state: {
@@ -214,8 +225,6 @@ export const prepareResultsPhase = async (
 ): Promise<SaveGamePayload> => {
   const gallery = buildGallery(players, state.round.current);
   const ranking = buildRanking(players, state.round.current);
-
-  // TODO: Save to gallery
 
   // Achievement: Table Votes
   const characters: Record<CardId, Character> = state.characters;
@@ -269,6 +278,7 @@ export const prepareGameOverPhase = async (
         gameEndedAt: Date.now(),
         winners,
         achievements,
+        gallery: store.gallery,
       },
     },
   };

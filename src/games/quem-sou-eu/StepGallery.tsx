@@ -50,7 +50,7 @@ export function StepGallery({
   return (
     <Step className="l-step-album">
       <Title>
-        <Translate pt="Álbum de Fotos" en="Photo Album" />
+        <Translate pt="Galeria" en="Gallery" />
       </Title>
 
       <PopoverRule content={<ScoringRules currentRound={round.current} />} />

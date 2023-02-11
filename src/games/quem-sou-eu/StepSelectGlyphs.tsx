@@ -110,7 +110,7 @@ export function StepSelectGlyphs({
             en={
               <>
                 <br />
-                From now on, you only see your own character
+                From now on, you only see your own character.
               </>
             }
           />
