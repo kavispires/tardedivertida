@@ -26,3 +26,10 @@ type GalleryEntry = {
   playersSay: Record<CardId, PlayerId[]>;
   playersPoints: Record<PlayerId, number>;
 };
+
+type FinalCharacter = {
+  id: CardId;
+  name: DualLanguageValue;
+  glyphs: BooleanDictionary;
+  playerId: PlayerId;
+};
