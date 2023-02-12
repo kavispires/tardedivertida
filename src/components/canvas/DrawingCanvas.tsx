@@ -36,6 +36,10 @@ type DrawingCanvasProps = {
    * The height of the canvas (default: 500)
    */
   height?: number;
+  /**
+   *
+   */
+  willReadFrequently?: boolean;
 };
 
 /**
@@ -50,6 +54,7 @@ export const DrawingCanvas = ({
   strokeWidth = 'medium',
   width = 500,
   height,
+  willReadFrequently = false,
 }: DrawingCanvasProps) => {
   const [drawingHistory, setDrawingHistory] = useState<CanvasLine[]>([]);
   const isDrawing = useRef(false);
@@ -217,6 +222,7 @@ export const DrawingCanvas = ({
         onMouseEnter={handleMouseEnter}
         className={clsx('drawing-canvas', className)}
         style={{ width: `${width}px`, height: `${height || width}px` }}
+        willReadFrequently={willReadFrequently}
         id="drawing-canvas"
       >
         <Layer>

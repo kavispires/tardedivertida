@@ -21,6 +21,12 @@ import { useLanguage } from 'hooks/useLanguage';
 const SessionArteRuim = lazy(
   () => import('games/arte-ruim/SessionArteRuim' /* webpackChunkName: "arte-ruim" */)
 );
+const SessionComunicacaoAlienigena = lazy(
+  () =>
+    import(
+      'games/comunicacao-alienigena/SessionComunicacaoAlienigena' /* webpackChunkName: "comunicacao-alienigena" */
+    )
+);
 const SessionContadoresHistorias = lazy(
   () =>
     import(
@@ -196,6 +202,12 @@ function Game() {
         return (
           <Suspense fallback={<LoadingPage message="" />}>
             <SessionArteRuim gameId={gameId} />
+          </Suspense>
+        );
+      case GAME_COLLECTION.COMUNICACAO_ALIENIGENA:
+        return (
+          <Suspense fallback={<LoadingPage message="" />}>
+            <SessionComunicacaoAlienigena gameId={gameId} />
           </Suspense>
         );
       case GAME_COLLECTION.CONTADORES_HISTORIAS:

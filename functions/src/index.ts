@@ -3,6 +3,7 @@ import * as admin from 'firebase-admin';
 import * as commonEngine from './engine/common';
 import * as adminEngine from './engine/admin';
 import * as arteRuimEngine from './engine/arte-ruim';
+import * as comunicacaoAlienigenaEngine from './engine/comunicacao-alienigena';
 import * as contadoresHistoriasEngine from './engine/contadores-historias';
 import * as detetivesImaginativosEngine from './engine/detetives-imaginativos';
 import * as espiaoEntreNosEngine from './engine/espiao-entre-nos';
@@ -79,17 +80,21 @@ exports.arteRuimSubmitAction = functions.https.onCall(arteRuimEngine.submitActio
 
 exports.contadoresHistoriasSubmitAction = functions.https.onCall(contadoresHistoriasEngine.submitAction);
 
+exports.comunicacaoAlienigenaSubmitAction = functions.https.onCall(comunicacaoAlienigenaEngine.submitAction);
+
+exports.crimesHediondosSubmitAction = functions.https.onCall(crimesHediondosEngine.submitAction);
+
+exports.cruzaPalavrasSubmitAction = functions.https.onCall(cruzaPalavrasEngine.submitAction);
+
 exports.detetivesImaginativosSubmitAction = functions.https.onCall(detetivesImaginativosEngine.submitAction);
 
 exports.espiaoEntreNosSubmitAction = functions.https.onCall(espiaoEntreNosEngine.submitAction);
 
 exports.galeriaDeSonhosSubmitAction = functions.https.onCall(galeriaDeSonhosEngine.submitAction);
 
-exports.crimesHediondosSubmitAction = functions.https.onCall(crimesHediondosEngine.submitAction);
-
-exports.portaDosDesesperadosSubmitAction = functions.https.onCall(portaDosDesesperadosEngine.submitAction);
-
 exports.linhasCruzadasSubmitAction = functions.https.onCall(linhasCruzadasEngine.submitAction);
+
+exports.megamixSubmitAction = functions.https.onCall(megamixEngine.submitAction);
 
 exports.menteColetivaSubmitAction = functions.https.onCall(menteColetivaEngine.submitAction);
 
@@ -99,26 +104,24 @@ exports.ondaTelepaticaSubmitAction = functions.https.onCall(ondaTelepaticaEngine
 
 exports.polemicaDaVezSubmitAction = functions.https.onCall(polemicaDaVezEngine.submitAction);
 
+exports.portaDosDesesperadosSubmitAction = functions.https.onCall(portaDosDesesperadosEngine.submitAction);
+
 exports.quemNaoMataSubmitAction = functions.https.onCall(quemNaoMataEngine.submitAction);
+
+exports.quemSouEuSubmitAction = functions.https.onCall(quemSouEuEngine.submitAction);
 
 exports.retratoFaladoSubmitAction = functions.https.onCall(retratoFaladoEngine.submitAction);
 
 exports.sonhosPesadelosSubmitAction = functions.https.onCall(sonhosPesadelosEngine.submitAction);
 
-exports.testemunhaOcularSubmitAction = functions.https.onCall(testemunhaOcularEngine.submitAction);
-
-exports.ueSoIssoSubmitAction = functions.https.onCall(ueSoIssoEngine.submitAction);
-
-exports.vendavalDePalpiteSubmitAction = functions.https.onCall(vendavalDePalpiteEngine.submitAction);
-
 exports.superCampeonatoSubmitAction = functions.https.onCall(superCampeonatoEngine.submitAction);
 
-exports.cruzaPalavrasSubmitAction = functions.https.onCall(cruzaPalavrasEngine.submitAction);
+exports.testemunhaOcularSubmitAction = functions.https.onCall(testemunhaOcularEngine.submitAction);
 
 exports.trevoDaSorteSubmitAction = functions.https.onCall(trevoDaSorteEngine.submitAction);
 
-exports.megamixSubmitAction = functions.https.onCall(megamixEngine.submitAction);
+exports.ueSoIssoSubmitAction = functions.https.onCall(ueSoIssoEngine.submitAction);
 
 exports.vamosAoCinemaSubmitAction = functions.https.onCall(vamosAoCinemaEngine.submitAction);
 
-exports.quemSouEuSubmitAction = functions.https.onCall(quemSouEuEngine.submitAction);
+exports.vendavalDePalpiteSubmitAction = functions.https.onCall(vendavalDePalpiteEngine.submitAction);

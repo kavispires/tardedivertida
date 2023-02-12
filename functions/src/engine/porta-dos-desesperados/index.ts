@@ -82,7 +82,8 @@ export const getNextPhase = async (
     state?.round,
     state?.outcome,
     state?.winCondition,
-    state?.currentDoor
+    state?.currentDoor,
+    state?.magic
   );
   // Determine next phase
   const nextPhase = determineNextPhase(state?.phase, state?.round, isGameOver);

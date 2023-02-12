@@ -238,6 +238,7 @@ export const GAME_COLLECTION = {
   ARTE_RUIM: 'arte-ruim',
   BOMBA_RELOGIO: 'bomba-relogio',
   CAMINHOS_MAGICOS: 'caminhos-magicos',
+  COMUNICACAO_ALIENIGENA: 'comunicacao-alienigena',
   CONTADORES_HISTORIAS: 'contadores-historias',
   CINEGRAFISTAS_AMADORES: 'cinegrafistas-amadores',
   CRIMES_HEDIONDOS: 'crimes-hediondos',
