@@ -18,8 +18,20 @@ export const ARTE_RUIM_API = {
   submitAction: httpsCallable(functions, 'arteRuimSubmitAction'),
 };
 
+export const COMUNICACAO_ALIENIGENA_API = {
+  submitAction: httpsCallable(functions, 'comunicacaoAlienigenaSubmitAction'),
+};
+
 export const CONTADORES_HISTORIAS_API = {
   submitAction: httpsCallable(functions, 'contadoresHistoriasSubmitAction'),
+};
+
+export const CRIMES_HEDIONDOS_API = {
+  submitAction: httpsCallable(functions, 'crimesHediondosSubmitAction'),
+};
+
+export const CRUZA_PALAVRAS_API = {
+  submitAction: httpsCallable(functions, 'cruzaPalavrasSubmitAction'),
 };
 
 export const DETETIVES_IMAGINATIVOS_API = {
@@ -34,16 +46,12 @@ export const GALERIA_DE_SONHOS_API = {
   submitAction: httpsCallable(functions, 'galeriaDeSonhosSubmitAction'),
 };
 
-export const CRIMES_HEDIONDOS_API = {
-  submitAction: httpsCallable(functions, 'crimesHediondosSubmitAction'),
-};
-
-export const PORTA_DOS_DESESPERADOS = {
-  submitAction: httpsCallable(functions, 'portaDosDesesperadosSubmitAction'),
-};
-
 export const LINHAS_CRUZADAS_API = {
   submitAction: httpsCallable(functions, 'linhasCruzadasSubmitAction'),
+};
+
+export const MEGAMIX_API = {
+  submitAction: httpsCallable(functions, 'megamixSubmitAction'),
 };
 
 export const MENTE_COLETIVA_API = {
@@ -62,8 +70,16 @@ export const POLEMICA_DA_VEZ_API = {
   submitAction: httpsCallable(functions, 'polemicaDaVezSubmitAction'),
 };
 
+export const PORTA_DOS_DESESPERADOS = {
+  submitAction: httpsCallable(functions, 'portaDosDesesperadosSubmitAction'),
+};
+
 export const QUEM_NAO_MATA_API = {
   submitAction: httpsCallable(functions, 'quemNaoMataSubmitAction'),
+};
+
+export const QUEM_SOU_EU_API = {
+  submitAction: httpsCallable(functions, 'quemSouEuSubmitAction'),
 };
 
 export const RETRATO_FALADO_API = {
@@ -74,38 +90,26 @@ export const SONHOS_PESADELOS_API = {
   submitAction: httpsCallable(functions, 'sonhosPesadelosSubmitAction'),
 };
 
-export const TESTEMUNHA_OCULAR_API = {
-  submitAction: httpsCallable(functions, 'testemunhaOcularSubmitAction'),
-};
-
-export const UE_SO_ISSO_API = {
-  submitAction: httpsCallable(functions, 'ueSoIssoSubmitAction'),
-};
-
-export const VENDAVAL_DE_PALPITE_API = {
-  submitAction: httpsCallable(functions, 'vendavalDePalpiteSubmitAction'),
-};
-
 export const SUPER_CAMPEONATO_API = {
   submitAction: httpsCallable(functions, 'superCampeonatoSubmitAction'),
 };
 
-export const CRUZA_PALAVRAS_API = {
-  submitAction: httpsCallable(functions, 'cruzaPalavrasSubmitAction'),
+export const TESTEMUNHA_OCULAR_API = {
+  submitAction: httpsCallable(functions, 'testemunhaOcularSubmitAction'),
 };
 
 export const TREVO_DA_SORTE_API = {
   submitAction: httpsCallable(functions, 'trevoDaSorteSubmitAction'),
 };
 
-export const MEGAMIX_API = {
-  submitAction: httpsCallable(functions, 'megamixSubmitAction'),
+export const UE_SO_ISSO_API = {
+  submitAction: httpsCallable(functions, 'ueSoIssoSubmitAction'),
 };
 
 export const VAMOS_AO_CINEMA_API = {
   submitAction: httpsCallable(functions, 'vamosAoCinemaSubmitAction'),
 };
 
-export const QUEM_SOU_EU_API = {
-  submitAction: httpsCallable(functions, 'quemSouEuSubmitAction'),
+export const VENDAVAL_DE_PALPITE_API = {
+  submitAction: httpsCallable(functions, 'vendavalDePalpiteSubmitAction'),
 };

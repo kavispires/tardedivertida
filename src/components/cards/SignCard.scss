@@ -1,0 +1,7 @@
+@use 'styles/sass' as *;
+
+.sign-card {
+  background: get-color('teal');
+  padding: get-unit(2);
+  border-radius: $border-radius;
+}

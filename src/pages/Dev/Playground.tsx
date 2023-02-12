@@ -16,9 +16,10 @@ import { TimedTimerBar } from 'components/timers';
 import { mockPlayers } from 'mock/players';
 import { TurnOrder } from 'components/players';
 import { TableOrder } from 'components/players/TableOrder';
-import { CSSProperties, useMemo } from 'react';
+import { CSSProperties, useMemo, useState } from 'react';
 import { ImageCard } from 'components/cards';
 import { GlyphCard } from 'components/cards/GlyphCard';
+import { DrawingCanvas } from 'components/canvas';
 
 function Playground() {
   useTitle('Playground | Dev | Tarde Divertida');
@@ -89,9 +90,17 @@ function Playground() {
     // justifyContent: 'space-between',
   };
 
+  const [lines, setLines] = useState<any>([]);
+
   return (
     <div>
       <DevHeader title="Playground" />
+
+      <Space wrap className="gallery">
+        <DrawingCanvas lines={lines} setLines={setLines} showControls strokeWidth="large" width={100} />
+        <Button onClick={() => console.log(JSON.stringify(lines))}>Log</Button>
+      </Space>
+
       {/* <AdminOnlyContainer>Hello</AdminOnlyContainer> */}
       {/* <TimedTimerBar duration={30} onExpire={() => console.log('done')} /> */}
       {/* <TurnOrder players={players} order={Object.keys(players)} activePlayerId={Object.keys(players)[3]} /> */}

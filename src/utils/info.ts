@@ -2,6 +2,7 @@ import ARTE_RUIM from 'games/arte-ruim/game-info.json';
 import BOMBA_RELOGIO from 'games/bomba-relogio/game-info.json';
 import CAMINHOS_MAGICOS from 'games/caminhos-magicos/game-info.json';
 import CINEGRAFISTAS_AMADORES from 'games/cinegrafistas-amadores/game-info.json';
+import COMUNICACAO_ALIENIGENA from 'games/comunicacao-alienigena/game-info.json';
 import CONTADORES_HISTORIAS from 'games/contadores-historias/game-info.json';
 import CRIMES_HEDIONDOS from 'games/crimes-hediondos/game-info.json';
 import CRUZA_PALAVRAS from 'games/cruza-palavras/game-info.json';
@@ -41,6 +42,7 @@ export const GAME_LIST: Record<GameCode, GameInfo> = {
   'bomba-relogio': BOMBA_RELOGIO,
   'caminhos-magicos': CAMINHOS_MAGICOS,
   'cinegrafistas-amadores': CINEGRAFISTAS_AMADORES,
+  'comunicacao-alienigena': COMUNICACAO_ALIENIGENA,
   'contadores-historias': CONTADORES_HISTORIAS,
   'crimes-hediondos': CRIMES_HEDIONDOS,
   'cruza-palavras': CRUZA_PALAVRAS,
