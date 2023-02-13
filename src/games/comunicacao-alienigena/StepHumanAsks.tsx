@@ -108,8 +108,10 @@ export function StepHumanAsks({
         </ViewIf>
 
         <ViewIf isVisible={!isUserTheCurrentHuman}>
-          <ObjectsGrid items={items} showTypes={false} />
-          <HumanSignBoard signs={signs} />
+          <Space className="space-container" wrap>
+            <ObjectsGrid items={items} showTypes={false} />
+            <HumanSignBoard signs={signs} />
+          </Space>
         </ViewIf>
       </HumanContent>
 

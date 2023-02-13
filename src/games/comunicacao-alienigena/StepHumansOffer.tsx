@@ -1,20 +1,18 @@
+// Ant Design Resources
+import { Space } from 'antd';
 // Components
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
-import { Space } from 'antd';
 import { AvatarName } from 'components/avatars';
 import { ObjectsGrid } from './components/ObjectsGrid';
 import { SignsKeyCard } from './components/SignsKeyCard';
-
 import { AlienContent, HumanContent } from './components/Content';
-import { CanvasSVG } from 'components/canvas';
-import { getLastItem } from 'utils/helpers';
-import { ALIEN_CANVAS } from './utils/constants';
 import { HumanOffering } from './components/HumanOffering';
 import { History } from './components/History';
 import { PopoverRule } from 'components/rules';
 import { Status } from './components/Status';
+import { AlienViewBoard } from './components/AlienViewBoard';
 
 type StepHumansOfferProps = {
   players: GamePlayers;
@@ -76,13 +74,7 @@ export function StepHumansOffer({
         </Instruction>
       </AlienContent>
 
-      <CanvasSVG
-        drawing={getLastItem(requestHistory).request}
-        width={ALIEN_CANVAS.WIDTH}
-        height={ALIEN_CANVAS.HEIGHT}
-        strokeWidth="large"
-        className="alien-canvas"
-      />
+      <AlienViewBoard request={requestHistory[0].request} />
 
       <AlienContent user={user}>
         <Space className="space-container" wrap>
