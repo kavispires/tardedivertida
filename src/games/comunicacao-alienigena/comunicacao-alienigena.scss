@@ -52,6 +52,35 @@
       background: get-color('pink');
     }
   }
+
+  &__item-back {
+    border-radius: get-unit(2);
+    border: 3px solid white;
+    width: 75px;
+    height: 75px;
+
+    &--ITEM {
+      border-color: get-color('green', 3);
+      border-style: double;
+      background: get-color('green', 4);
+    }
+
+    &--CURSE {
+      border-color: get-color('purple', 4);
+      border-style: dotted;
+      background: get-color('purple', 6);
+    }
+
+    &--BLANK {
+      border-color: get-color('yellow', 3);
+      background: get-color('yellow', 4);
+    }
+
+    &--ask {
+      transform: scale(0.8);
+      border-color: get-color('pink');
+    }
+  }
 }
 
 .objects-key {
@@ -107,6 +136,12 @@
     background: get-color('teal', 4);
     display: grid;
     place-items: center;
+  }
+
+  &__item--used {
+    font-weight: bold;
+    color: get-color('teal', 7);
+    outline: 2px solid get-color('teal', 7);
   }
 
   &__canvas {

@@ -25,22 +25,28 @@ export function SelectableObjectsGrid({
   return (
     <Space direction="vertical">
       <div className="objects-grid">
-        {items.map((item) => (
-          <TransparentButton
-            className={clsx('objects-grid__button', item.offered && `objects-grid__item--${item.type}`)}
-            disabled={
-              item.offered ||
-              (!selectedObjects[item.id] && Object.keys(selectedObjects).length === maxObjects) ||
-              isLoading ||
-              user.ready
-            }
-            active={selectedObjects[item.id]}
-            activeClass={'objects-grid__button--active'}
-            onClick={() => selectObject(item.id)}
-          >
-            <GlyphCard id={`${item.id}`} className={clsx(item.offered && 'objects-grid__item-offered')} />
-          </TransparentButton>
-        ))}
+        {items.map((item) =>
+          Boolean(item.offered) ? (
+            <div className={clsx('objects-grid__button', item.offered && `objects-grid__item--${item.type}`)}>
+              <div className={`objects-grid__item-back objects-grid__item-back--${item.type}`}></div>
+            </div>
+          ) : (
+            <TransparentButton
+              className={clsx('objects-grid__button', item.offered && `objects-grid__item--${item.type}`)}
+              disabled={
+                item.offered ||
+                (!selectedObjects[item.id] && Object.keys(selectedObjects).length === maxObjects) ||
+                isLoading ||
+                user.ready
+              }
+              active={selectedObjects[item.id]}
+              activeClass={'objects-grid__button--active'}
+              onClick={() => selectObject(item.id)}
+            >
+              <GlyphCard id={`${item.id}`} className={clsx(item.offered && 'objects-grid__item-offered')} />
+            </TransparentButton>
+          )
+        )}
       </div>
 
       <div className="objects-key">

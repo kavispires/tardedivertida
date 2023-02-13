@@ -15,13 +15,19 @@ export function ObjectsGrid({ items, showTypes = false, activeObjects }: Objects
       <div className="objects-grid">
         {items.map((item) => (
           <div
+            key={`objects-grid-${item.id}`}
             className={clsx(
               'objects-grid__item',
               (showTypes || item.offered) && `objects-grid__item--${item.type}`,
+
               activeObjects?.includes(item.id) && `objects-grid__item--ask`
             )}
           >
-            <GlyphCard id={`${item.id}`} className={clsx(item.offered && 'objects-grid__item-offered')} />
+            {Boolean(item.offered) ? (
+              <div className={`objects-grid__item-back objects-grid__item-back--${item.type}`}></div>
+            ) : (
+              <GlyphCard id={`${item.id}`} className={clsx(item.offered && 'objects-grid__item-offered')} />
+            )}
           </div>
         ))}
       </div>
