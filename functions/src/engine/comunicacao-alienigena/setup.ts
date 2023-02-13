@@ -4,7 +4,6 @@ import {
   COMUNICACAO_ALIENIGENA_PHASES,
   ITEMS_COUNT,
   ITEM_TYPES,
-  MAX_ROUNDS,
   TOTAL_GLYPHS,
   UNAVAILABLE_GLYPHS,
 } from './constants';
@@ -69,14 +68,14 @@ export const prepareSetupPhase = async (
         phase: COMUNICACAO_ALIENIGENA_PHASES.SETUP,
         round: {
           current: 1,
-          total: MAX_ROUNDS,
+          total: ITEMS_COUNT[playerCount].rounds,
         },
         items,
         signs,
         inquiryHistory: [],
         requestHistory: [],
         status: {
-          timeLeft: MAX_ROUNDS,
+          timeLeft: ITEMS_COUNT[playerCount].rounds,
           needed: ITEMS_COUNT[playerCount].required,
           total: ITEMS_COUNT[playerCount].answers,
           found: 0,
@@ -144,8 +143,6 @@ export const prepareHumanAskPhase = async (
         alienResponse: utils.firebase.deleteValue(),
         alienRequest: utils.firebase.deleteValue(),
         currentInquiry: utils.firebase.deleteValue(),
-        wasCurseSelected: utils.firebase.deleteValue(),
-        curses: utils.firebase.deleteValue(),
       },
       players,
     },
@@ -250,8 +247,8 @@ export const prepareRevealPhase = async (
   const requestHistory = state.requestHistory as RequestHistoryEntry[];
 
   const items: Item[] = state.items;
-  const offerings: Record<string, PlayerId[]> = {};
   const curses: Record<string, PlayerId[]> = {};
+  const found: Record<string, true> = {};
   utils.players.getListOfPlayers(players).forEach((player) => {
     const offering = items.find((i) => i.id === player.offeringId);
     if (offering) {
@@ -261,12 +258,7 @@ export const prepareRevealPhase = async (
       });
 
       if (offering.type === ITEM_TYPES.ITEM) {
-        if (offerings[offering.id] === undefined) {
-          offerings[offering.id] = [];
-        }
-
-        offerings[offering.id].push(player.id);
-        status.found += 1;
+        found[offering.id] = true;
         player.score += 1;
       }
 
@@ -280,10 +272,12 @@ export const prepareRevealPhase = async (
       }
 
       player.pastOfferings.push(offering.id);
-      offering.offerings.push(player.id);
+
       offering.offered = true;
     }
   });
+
+  status.found += Object.keys(found).length;
 
   // If anybody offered a curse, lose 1 time unit per curse (not offering)
   status.timeLeft -= Object.keys(curses).length;
@@ -300,9 +294,6 @@ export const prepareRevealPhase = async (
         round,
         items,
         status,
-        wasCurseSelected: Object.keys(curses).length > 0,
-        offerings,
-        curses,
         requestHistory,
       },
     },
