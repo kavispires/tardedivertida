@@ -24,7 +24,6 @@ export const PLAYER_COUNTS = {
   MAX: 4,
 };
 
-export const MAX_ROUNDS = 12;
 export const TOTAL_ITEMS = 25;
 
 export const TOTAL_GLYPHS = 365;
@@ -43,16 +42,19 @@ export const ITEMS_COUNT = {
     answers: 8,
     required: 6,
     curses: 4,
+    rounds: 12,
   },
   3: {
     answers: 8,
     required: 8,
     curses: 4,
+    rounds: 10,
   },
   4: {
     answers: 8,
     required: 8,
     curses: 6,
+    rounds: 10,
   },
 };
 
