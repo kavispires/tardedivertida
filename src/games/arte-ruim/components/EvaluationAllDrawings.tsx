@@ -41,7 +41,7 @@ export function EvaluationAllDrawings({
             <CanvasSVG
               drawing={drawingEntry.drawing}
               className="a-evaluation-all-drawings__drawing"
-              size={canvasSize}
+              width={canvasSize}
             />
             <span className="a-evaluation-all-drawings__artist">{players[drawingEntry.playerId].name}</span>
           </li>

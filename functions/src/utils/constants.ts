@@ -21,6 +21,11 @@ const GAMES = [
     key: 'CAMINHOS_MAGICOS',
   },
   {
+    name: 'comunicacao-alienigena',
+    code: 'C',
+    key: 'COMUNICACAO_ALIENIGENA',
+  },
+  {
     name: 'contadores-historias',
     code: 'C',
     key: 'CONTADORES_HISTORIAS',

@@ -64,7 +64,7 @@ export function StepGallery({
         leftClassName="a-gallery__canvas"
         rightClassName="a-gallery__info"
       >
-        <CanvasSVG drawing={drawing} size={canvasWidth} className="a-gallery__drawing" />
+        <CanvasSVG drawing={drawing} width={canvasWidth} className="a-gallery__drawing" />
 
         <>
           <GalleryWindowCredits artist={playerArtist} />

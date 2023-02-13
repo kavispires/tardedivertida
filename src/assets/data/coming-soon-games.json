@@ -72,42 +72,5 @@
       "pt": false,
       "en": false
     }
-  },
-  "comunicacao-alienigena": {
-    "$schema": "../../utils/game-info.schema.json",
-    "gameCode": "C",
-    "gameName": "comunicacao-alienigena",
-    "version": "planned",
-    "title": {
-      "pt": "Comunicação Alienígena",
-      "en": "Alien Language"
-    },
-    "popularName": {
-      "pt": "de falar com ets",
-      "en": ""
-    },
-    "basedOn": "tcatnoC tsriF",
-    "appearance": {
-      "clouds": "cloud",
-      "color": ""
-    },
-    "summary": {
-      "pt": "Será que um alienígena consegue se comunicar com os humanos?",
-      "en": "Would the aliens be able to communicate with the humans?"
-    },
-    "rules": {
-      "pt": ["TBD"],
-      "en": ["TBD"]
-    },
-    "playerCount": {
-      "recommended": [2, 3, 4],
-      "min": 2,
-      "max": 6
-    },
-    "tags": ["cooperative", "turn-based", "drawing", "guessing"],
-    "available": {
-      "pt": false,
-      "en": false
-    }
   }
 }

@@ -23,7 +23,7 @@ export function ResultArteRuim({ task, winningValues, winningTeam }: ResultCompo
         <div className="task-result-values__cards">
           {winningArtworks.map((value) => (
             <div key={value.playerId} className="task-result-values__text-value">
-              <CanvasSVG drawing={value.drawing} size={width} className="a-drawing" />
+              <CanvasSVG drawing={value.drawing} width={width} className="a-drawing" />
             </div>
           ))}
         </div>
