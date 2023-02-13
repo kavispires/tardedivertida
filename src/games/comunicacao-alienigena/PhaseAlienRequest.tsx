@@ -28,6 +28,7 @@ export function PhaseAlienRequest({ players, state, info }: PhaseProps) {
       onClose={NOOP}
       currentRound={state?.round?.current}
       type="overlay"
+      duration={3}
     ></PhaseAnnouncement>
   );
 

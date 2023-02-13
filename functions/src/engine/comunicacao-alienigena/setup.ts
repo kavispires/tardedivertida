@@ -117,7 +117,7 @@ export const prepareHumanAskPhase = async (
   // Save any inquiry to history
   const inquiryHistory = state.inquiryHistory as InquiryHistoryEntry[];
   if (state.currentInquiry && state.humanId) {
-    inquiryHistory.push({
+    inquiryHistory.unshift({
       answer: state.alienResponse,
       objectIds: state.currentInquiry,
       playerId: state.humanId,
@@ -186,7 +186,7 @@ export const prepareAlienRequestPhase = async (
   // Save any inquiry to history
   const inquiryHistory = state.inquiryHistory as InquiryHistoryEntry[];
   if (state.currentInquiry && state.humanId) {
-    inquiryHistory.push({
+    inquiryHistory.unshift({
       answer: state.alienResponse,
       objectIds: state.currentInquiry,
       playerId: state.humanId,
@@ -219,7 +219,7 @@ export const prepareOfferingsPhase = async (
   // Save any inquiry to history
   const requestHistory = state.requestHistory as RequestHistoryEntry[];
 
-  requestHistory.push({
+  requestHistory.unshift({
     request: store.alienRequest,
     offers: [],
   });
@@ -255,7 +255,7 @@ export const prepareRevealPhase = async (
   utils.players.getListOfPlayers(players).forEach((player) => {
     const offering = items.find((i) => i.id === player.offeringId);
     if (offering) {
-      requestHistory[requestHistory.length - 1].offers.push({
+      requestHistory[0].offers.push({
         playerId: player.id,
         objectId: offering.id,
       });
