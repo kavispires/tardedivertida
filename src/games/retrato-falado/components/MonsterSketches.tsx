@@ -25,7 +25,7 @@ export function MonsterSketches({ sketches, players, canvasSize, canvasWidth }: 
           >
             <CanvasSVG
               key={`sketch-${sketchObj.playerId}`}
-              size={canvasSize || canvasWidth}
+              width={canvasSize || canvasWidth}
               drawing={sketchObj.sketch}
               className="r-sketch"
             />

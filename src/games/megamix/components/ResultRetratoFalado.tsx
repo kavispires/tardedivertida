@@ -25,7 +25,7 @@ export function ResultRetratoFalado({ task, winningValues, winningTeam }: Result
         {winningArtworks.map((value) => (
           <Badge key={value.playerId} count={winningTeam.length} color="#faad14">
             <div className="task-result-values__text-value">
-              <CanvasSVG drawing={value.drawing} size={width} className="a-drawing" />
+              <CanvasSVG drawing={value.drawing} width={width} className="a-drawing" />
             </div>
           </Badge>
         ))}

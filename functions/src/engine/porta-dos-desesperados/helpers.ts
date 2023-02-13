@@ -53,17 +53,23 @@ export const determineGameOver = (
   round: Round,
   outcome: string,
   winCondition: string,
-  currentCorridor: number
+  currentCorridor: number,
+  magic: number
 ): boolean => {
+  // Any other phase makes the game continue
   if (currentPhase !== PORTA_DOS_DESESPERADOS_PHASES.RESOLUTION) return false;
 
+  // If the full 15 rounds have been reached
   if (round.total === round.current) return true;
 
-  if (
-    (currentCorridor === DOOR_LEVELS && outcome === OUTCOME.SUCCESS) ||
-    winCondition !== WIN_CONDITION.CONTINUE
-  )
-    return true;
+  // If there are less magic crystals than there are doors to go
+  if (magic < DOOR_LEVELS - (currentCorridor ?? 0)) return true;
+
+  // If it's the last door and players were successful
+  if (currentCorridor === DOOR_LEVELS && outcome === OUTCOME.SUCCESS) return true;
+
+  // IF the in condition is anything other than continue
+  if (winCondition !== WIN_CONDITION.CONTINUE) return true;
 
   return false;
 };

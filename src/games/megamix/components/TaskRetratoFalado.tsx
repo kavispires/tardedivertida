@@ -57,7 +57,7 @@ export const TaskRetratoFalado = ({ task, round, onSubmitTask, user, players }: 
       <div className="a-drawings">
         {task.data.options.map((entry: PlainObject) => (
           <div className="a-drawings__entry" key={entry.playerId}>
-            <CanvasSVG drawing={entry.drawing} size={cardWidth} className="a-drawing" />
+            <CanvasSVG drawing={entry.drawing} width={cardWidth} className="a-drawing" />
 
             <Space className="space-container">
               <Button

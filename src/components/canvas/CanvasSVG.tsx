@@ -28,22 +28,48 @@ type CanvasSVGProps = {
    */
   className?: string;
   /**
-   * Size in px of width and height (square)
+   * The width of the canvas (default: 500)
    */
-  size?: number;
+  width?: number;
+  /**
+   * The height of the canvas (default: 500)
+   */
+  height?: number;
+  /**
+   * Size of the stroke. Default: medium
+   */
+  strokeWidth?: 'small' | 'medium' | 'large';
+  /**
+   * Custom view box size (default: '0 0 500')
+   */
+  viewBox?: string;
 };
 
-export const CanvasSVG = ({ drawing = '', className = '', size = 250 }: CanvasSVGProps) => {
+export const CanvasSVG = ({
+  drawing = '',
+  className = '',
+  width = 250,
+  height,
+  strokeWidth = 'medium',
+  viewBox = '0 0 500 500',
+}: CanvasSVGProps) => {
   const konvaLines = JSON.parse(drawing);
   const paths = getPathFromKonvaLines(konvaLines);
+
+  const strokeWidthBySize =
+    {
+      small: 3,
+      medium: 5,
+      large: 7,
+    }?.[strokeWidth] ?? 5;
 
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 500 500"
+      viewBox={viewBox}
       overflow="hidden"
       className={className}
-      style={{ width: `${size}px`, height: `${size}px` }}
+      style={{ width: `${width}px`, height: `${height || width}px` }}
     >
       <defs />
       {paths.map((path, index) => (
@@ -52,7 +78,7 @@ export const CanvasSVG = ({ drawing = '', className = '', size = 250 }: CanvasSV
           d={path}
           fill="none"
           stroke="#000"
-          strokeWidth="4"
+          strokeWidth={strokeWidthBySize}
           strokeLinecap="round"
           strokeLinejoin="round"
           strokeMiterlimit="10"
