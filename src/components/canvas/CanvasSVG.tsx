@@ -39,6 +39,10 @@ type CanvasSVGProps = {
    * Size of the stroke. Default: medium
    */
   strokeWidth?: 'small' | 'medium' | 'large';
+  /**
+   * Custom view box size (default: '0 0 500')
+   */
+  viewBox?: string;
 };
 
 export const CanvasSVG = ({
@@ -47,6 +51,7 @@ export const CanvasSVG = ({
   width = 250,
   height,
   strokeWidth = 'medium',
+  viewBox = '0 0 500 500',
 }: CanvasSVGProps) => {
   const konvaLines = JSON.parse(drawing);
   const paths = getPathFromKonvaLines(konvaLines);
@@ -61,7 +66,7 @@ export const CanvasSVG = ({
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox={`0 0 ${width} ${height}`}
+      viewBox={viewBox}
       overflow="hidden"
       className={className}
       style={{ width: `${width}px`, height: `${height || width}px` }}

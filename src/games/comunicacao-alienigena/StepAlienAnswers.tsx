@@ -15,11 +15,10 @@ import { pluralize } from 'utils/helpers';
 import { GlyphCard } from 'components/cards/GlyphCard';
 import { AlienWritingBoard } from './components/AlienWritingBoard';
 import { AlienContent, HumanContent } from './components/Content';
-import { CanvasSVG } from 'components/canvas';
-import { ALIEN_CANVAS } from './utils/constants';
 import { History } from './components/History';
 import { PopoverRule } from 'components/rules';
 import { Status } from './components/Status';
+import { AlienViewBoard } from './components/AlienViewBoard';
 
 type StepAlienAnswersProps = {
   players: GamePlayers;
@@ -130,13 +129,9 @@ export function StepAlienAnswers({
         <Instruction contained>
           <Translate pt={<>O Alienígena respondeu:</>} en={<>The Alien answered:</>} />
         </Instruction>
-        <CanvasSVG
-          drawing={alienResponse!}
-          width={ALIEN_CANVAS.WIDTH}
-          height={ALIEN_CANVAS.HEIGHT}
-          strokeWidth="large"
-          className="alien-canvas"
-        />
+
+        <AlienViewBoard request={alienResponse!} />
+
         <HumanContent user={user}>
           <Space className="space-container">
             <Button

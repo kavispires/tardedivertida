@@ -34,10 +34,11 @@ export function InquiryHistory({ inquiryHistory, players }: InquiryHistoryProps)
       render: (answer) => (
         <CanvasSVG
           drawing={answer}
-          width={ALIEN_CANVAS.WIDTH}
-          height={ALIEN_CANVAS.HEIGHT}
+          width={ALIEN_CANVAS.WIDTH / 2}
+          height={ALIEN_CANVAS.HEIGHT / 2}
           strokeWidth="large"
           className="alien-canvas alien-canvas--small"
+          viewBox={`0 0 ${ALIEN_CANVAS.WIDTH} ${ALIEN_CANVAS.HEIGHT}`}
         />
       ),
     },

@@ -11,9 +11,6 @@ import { SignsKeyCard } from './components/SignsKeyCard';
 import { HumanSignBoard } from './components/HumanSignBoard';
 
 import { AlienContent, HumanContent } from './components/Content';
-import { CanvasSVG } from 'components/canvas';
-import { getLastItem } from 'utils/helpers';
-import { ALIEN_CANVAS } from './utils/constants';
 import { GlyphCard } from 'components/cards/GlyphCard';
 import { ItemResolution } from './components/ItemResolution';
 import { AdminNextPhaseButton } from 'components/admin';
@@ -23,6 +20,7 @@ import { Status } from './components/Status';
 import { IconsIcon } from 'components/icons/IconsIcon';
 import { MetricHighlight } from 'components/metrics/MetricHighlight';
 import { ClockIcon } from 'components/icons/ClockIcon';
+import { AlienViewBoard } from './components/AlienViewBoard';
 
 type StepRevealProps = {
   players: GamePlayers;
@@ -43,20 +41,15 @@ export function StepReveal({
   players,
   announcement,
   user,
-
   status,
   items,
   signs,
-  alien,
   isUserAlien,
-  wasCurseSelected,
-  curses,
   round,
-
   requestHistory,
   inquiryHistory,
 }: StepRevealProps) {
-  const latestRequest = getLastItem(requestHistory);
+  const latestRequest = requestHistory[0];
 
   return (
     <Step fullWidth announcement={announcement}>
@@ -88,13 +81,7 @@ export function StepReveal({
         />
       </Instruction>
 
-      <CanvasSVG
-        drawing={latestRequest.request}
-        width={ALIEN_CANVAS.WIDTH}
-        height={ALIEN_CANVAS.HEIGHT}
-        strokeWidth="large"
-        className="alien-canvas alien-canvas--small"
-      />
+      <AlienViewBoard request={latestRequest.request} />
 
       <Instruction contained>
         <Space className="space-container" wrap>
