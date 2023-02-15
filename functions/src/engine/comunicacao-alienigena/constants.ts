@@ -24,6 +24,8 @@ export const PLAYER_COUNTS = {
   MAX: 4,
 };
 
+export const MAX_ROUNDS = 12;
+
 export const TOTAL_ITEMS = 25;
 
 export const TOTAL_GLYPHS = 365;
