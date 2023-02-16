@@ -20,7 +20,7 @@ export function ViewLastSeconds({ isUserTheWitness, remainingTime, lines, setLin
   useTemporarilyHidePlayersBar();
 
   return (
-    <ViewOr orCondition={isUserTheWitness}>
+    <ViewOr condition={isUserTheWitness}>
       <div className="r-view">
         <Title>
           <Translate pt="Pronto!" en="Done! " />

@@ -47,7 +47,7 @@ function PhaseCompare({ state, players, info }: PhaseProps) {
         </PhaseAnnouncement>
 
         {/* Step 1 */}
-        <ViewOr orCondition={isUserTheGuesser}>
+        <ViewOr condition={isUserTheGuesser}>
           <GuesserWaitingRoom
             players={players}
             instructionSuffix={{

@@ -56,7 +56,7 @@ export function StepPlayCard({
       </Title>
 
       <Instruction contained>
-        <ViewOr orCondition={isUserTheStoryTeller}>
+        <ViewOr condition={isUserTheStoryTeller}>
           <Translate
             pt="Agora, cada jogador escolherá uma carta em mão que mais combine com a história que você escreveu."
             en="Now every other player will play a card that best matches the story you wrote."

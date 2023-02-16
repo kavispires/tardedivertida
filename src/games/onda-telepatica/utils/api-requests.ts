@@ -51,7 +51,7 @@ export function useOnSubmitGuessAPIRequest(setStep: GenericFunction) {
   const request = useAPICall({
     apiFunction: ONDA_TELEPATICA_API.submitAction,
     actionName: 'submit-guess',
-    onBeforeCall: () => setStep(2),
+    onSuccess: () => setStep(2),
     onError: () => setStep(1),
     successMessage: translate('Resposta enviado com sucesso!', 'Guess submitted successfully!'),
     errorMessage: translate(

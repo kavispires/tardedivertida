@@ -17,7 +17,7 @@ export const ONDA_TELEPATICA_ACTIONS = {
 
 export const PLAYER_COUNTS = {
   MIN: 3,
-  MAX: 10,
+  MAX: 20,
 };
 
 export const MAX_ROUNDS = 10;

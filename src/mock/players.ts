@@ -5,11 +5,9 @@ import { getRandomItem } from 'utils/helpers';
  * Random names used during Dev
  */
 const DEV_NAMES: string[] =
-  'Abe,Bob,Cam,Dan,Eva,Fin,Gus,Hal,Ian,Jan,Kim,Leo,Max,Nic,Ole,Pat,Quinn,Roy,Tim'.split(',');
-// const DEV_NAMES: string[] =
-//   'Abigail,Bartolomeu,Cameron,Daniella,Evelyn,Frederick,Gordon,Hector,Isaac,Jacklyn,Madonna,Nathaniel'.split(
-//     ','
-//   );
+  'Abe,Bob,Cam,Dan,Eva,Fin,Gus,Hal,Ian,Jan,Kim,Leo,Max,Nic,Ole,Pat,Quinn,Roy,Sam,Tim,Una,Vic,Will,Xavier,Yara,Zoe'.split(
+    ','
+  );
 
 const cacheNames: BooleanDictionary = {};
 const cacheAvatars: BooleanDictionary = {};
@@ -29,8 +27,10 @@ const getRandomUniqueItemFromList = (
   cache: BooleanDictionary = {}
 ) => {
   let randomItem = '';
-  while (!randomItem || cache[randomItem] || used?.includes(randomItem)) {
+  let tries = 0;
+  while (!randomItem || cache[randomItem] || used?.includes(randomItem) || tries < 50) {
     randomItem = getRandomItem(source);
+    tries += 1;
   }
   cache[randomItem] = true;
   return randomItem;
@@ -57,7 +57,7 @@ export function mockPlayers(
   quantity: number = 10,
   properties?: PlainObject
 ): GamePlayers {
-  if (Object.keys(cacheMockedPlayers).length > 1) {
+  if (Object.keys(cacheMockedPlayers).length === quantity) {
     return {
       ...cacheMockedPlayers,
       ...players,
@@ -80,7 +80,7 @@ export function mockPlayers(
 
       return {
         id: `_${name.toLowerCase()}`,
-        name,
+        name: `${name}`,
         avatarId: getRandomUniqueItemFromList(AVAILABLE_AVATAR_IDS, Object.keys(usedAvatars), cacheAvatars),
         updatedAt: Date.now(),
         ready: true,

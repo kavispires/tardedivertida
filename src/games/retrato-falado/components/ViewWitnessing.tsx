@@ -24,7 +24,7 @@ export function ViewWitnessing({
   setLines,
 }: ViewWitnessingProps) {
   return (
-    <ViewOr orCondition={isUserTheWitness}>
+    <ViewOr condition={isUserTheWitness}>
       <div className="r-view">
         <Title>
           <Translate pt="Memorize!" en="Memorize!" />
