@@ -46,7 +46,7 @@ export function StepVote({
         <Translate pt="Vote!" en="Vote!" />
       </Title>
       <Instruction contained>
-        <ViewOr orCondition={isUserTheWitness}>
+        <ViewOr condition={isUserTheWitness}>
           <Translate
             pt={
               <>

@@ -40,7 +40,7 @@ function PhaseGuess({ players, state, info }: PhaseProps) {
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.ONDA_TELEPATICA.GUESS}>
       <StepSwitcher step={step} conditions={[!user.isReady, !user.isReady, !user.isReady]} players={players}>
         {/* Step 0 */}
-        <ViewOr orCondition={isUserThePsychic}>
+        <ViewOr condition={isUserThePsychic}>
           <StepPsychicGuess
             currentCategory={state.currentCategory}
             onSendGuess={onSendGuess}

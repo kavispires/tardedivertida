@@ -53,7 +53,7 @@ function PhaseSecretWordSelection({ state, players, info }: PhaseProps) {
         </PhaseAnnouncement>
 
         {/* Step 1 */}
-        <ViewOr orCondition={isUserTheBoss}>
+        <ViewOr condition={isUserTheBoss}>
           <StepSecretWordSelection
             words={state.words}
             categories={state.categories}

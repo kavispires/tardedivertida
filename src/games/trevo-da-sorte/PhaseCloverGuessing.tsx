@@ -44,7 +44,7 @@ function PhaseCloverGuessing({ players, state, info }: PhaseProps) {
         </PhaseAnnouncement>
 
         {/* Step 1 */}
-        <ViewOr orCondition={isUserTheCloverPlayer}>
+        <ViewOr condition={isUserTheCloverPlayer}>
           <StepWaitClover
             activeCloverPlayer={activeCloverPlayer}
             clover={state.clover}

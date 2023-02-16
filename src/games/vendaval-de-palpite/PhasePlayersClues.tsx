@@ -63,7 +63,7 @@ function PhasePlayersClues({ state, players, info }: PhaseProps) {
         </PhaseAnnouncement>
 
         {/* Step 1 */}
-        <ViewOr orCondition={isUserTheBoss}>
+        <ViewOr condition={isUserTheBoss}>
           <StepBossWaiting
             secretWord={state.secretWord}
             board={state.board}

@@ -41,7 +41,7 @@ function PhaseResolution({ state, players, info }: PhaseProps) {
     >
       <StepSwitcher step={step} conditions={[!user.isReady]} players={players}>
         {/* Step 0 */}
-        <ViewOr orCondition={resolutionStatus.didSpyGuess}>
+        <ViewOr condition={resolutionStatus.didSpyGuess}>
           <PhaseAnnouncement
             icon={<MapLocationIcon />}
             title={
