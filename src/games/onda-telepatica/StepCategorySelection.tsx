@@ -13,9 +13,13 @@ import { IconAvatar } from 'components/icons/IconAvatar';
 type StepCategorySelectionProps = {
   currentCategories: OCategoryCard[];
   onSendChosenSide: GenericFunction;
-};
+} & AnnouncementProps;
 
-export function StepCategorySelection({ currentCategories, onSendChosenSide }: StepCategorySelectionProps) {
+export function StepCategorySelection({
+  currentCategories,
+  onSendChosenSide,
+  announcement,
+}: StepCategorySelectionProps) {
   const { isLoading } = useLoading();
 
   useMock(() => {
@@ -23,7 +27,7 @@ export function StepCategorySelection({ currentCategories, onSendChosenSide }: S
   }, []);
 
   return (
-    <Step className="o-card-selection">
+    <Step className="o-card-selection" announcement={announcement}>
       <Title>
         <Translate
           pt="Medium, selecione uma das duas categorias"

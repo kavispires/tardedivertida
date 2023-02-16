@@ -40,9 +40,15 @@ type StepRevealProps = {
   players: GamePlayers;
   psychic: GamePlayer;
   goToNextStep: GenericFunction;
-};
+} & AnnouncementProps;
 
-export function StepReveal({ goToNextStep, currentCategory, players, psychic }: StepRevealProps) {
+export function StepReveal({
+  goToNextStep,
+  currentCategory,
+  players,
+  psychic,
+  announcement,
+}: StepRevealProps) {
   useTemporarilyHidePlayersBar();
   const regularPlayers = useMemo(
     () => Object.values(players).filter((p) => p.id !== psychic.id),
@@ -54,7 +60,7 @@ export function StepReveal({ goToNextStep, currentCategory, players, psychic }: 
   );
 
   return (
-    <Step fullWidth>
+    <Step fullWidth announcement={announcement}>
       <Title level={2} className="o-step-reveal-title" size="medium">
         <Sentence currentCategory={currentCategory} />
       </Title>

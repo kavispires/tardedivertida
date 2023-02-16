@@ -18,31 +18,33 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
   const { step, goToNextStep, goToPreviousStep } = useStep(0);
   const [psychic] = useWhichPlayerIsThe('psychicId', state, players);
 
+  const announcement = (
+    <PhaseAnnouncement
+      icon={<WavelengthDeviceIcon />}
+      title={<Translate pt="Resultado" en="Results" />}
+      currentRound={state?.round?.current}
+      duration={7}
+      type="overlay"
+    >
+      <Instruction>
+        <Translate pt="Hora de contar os pontos!" en="Time to score!" />
+      </Instruction>
+    </PhaseAnnouncement>
+  );
+
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.ONDA_TELEPATICA.REVEAL}>
       <StepSwitcher step={step} conditions={[!user.isReady, !user.isReady, !user.isReady]} players={players}>
         {/* Step 0 */}
-        <PhaseAnnouncement
-          icon={<WavelengthDeviceIcon />}
-          title={<Translate pt="Resultado" en="Results" />}
-          onClose={goToNextStep}
-          currentRound={state?.round?.current}
-          duration={7}
-        >
-          <Instruction>
-            <Translate pt="Hora de contar os pontos!" en="Time to score!" />
-          </Instruction>
-        </PhaseAnnouncement>
-
-        {/* Step 1 */}
         <StepReveal
           players={players}
           psychic={psychic}
           currentCategory={state.currentCategory}
           goToNextStep={goToNextStep}
+          announcement={announcement}
         />
 
-        {/* Step 2 */}
+        {/* Step 1 */}
         <StepRanking
           players={players}
           round={state.round}
