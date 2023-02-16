@@ -11,9 +11,10 @@ import { mockHint } from './utils/mock';
 // Components
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { Instruction, TextHighlight, Title } from 'components/text';
 import { Dial } from './components/Dial';
 import { ClueWritingRules } from './components/RulesBlobs';
+import { WavelengthHighlight } from './components/Highlights';
 
 type StepClueWritingProps = {
   currentCategories: OCategoryCard[];
@@ -55,16 +56,24 @@ export function StepClueWriting({
       </Title>
       <Instruction contained>
         <Translate
-          pt={`O ponteiro está no ${Math.abs(target)} ${getTargetSide(
-            target,
-            card,
-            language
-          )}. Escreva uma dica que ajude os outros jogadores a escolher exatamente esse número! Revise as regras de quais dicas são válidas clicando no Ícone de Livrinho.`}
-          en={`The needle is point at ${Math.abs(target)} ${getTargetSide(
-            target,
-            card,
-            language
-          )}. Write a clue that will help the other players to choose this exact number! Revise the rules for clue writing by clicking on the Book Icon.`}
+          pt={
+            <>
+              O ponteiro está no <WavelengthHighlight>{Math.abs(target)}</WavelengthHighlight>{' '}
+              <TextHighlight>{getTargetSide(target, card, language)}</TextHighlight>. Escreva uma dica que
+              ajude os outros jogadores a escolher exatamente esse número!
+              <br />
+              Revise as regras de quais dicas são válidas clicando no Ícone de Livrinho.
+            </>
+          }
+          en={
+            <>
+              The needle is pointing at <WavelengthHighlight>{Math.abs(target)}</WavelengthHighlight>{' '}
+              <TextHighlight>{getTargetSide(target, card, language)}</TextHighlight>. Write a clue that will
+              help the other players to choose this exact number!
+              <br />
+              Revise the rules for clue writing by clicking on the top left Book Icon.
+            </>
+          }
         />
         <ClueWritingRules />
       </Instruction>
@@ -75,7 +84,7 @@ export function StepClueWriting({
           onPressEnter={onSubmitClue}
           placeholder={translate('Escreva aqui', 'Write here')}
         />
-        <Button type="primary" onClick={onSubmitClue} disabled={isLoading}>
+        <Button type="primary" onClick={onSubmitClue} disabled={isLoading} loading={isLoading}>
           <Translate pt="Enviar" en="Send" />
         </Button>
       </Space>

@@ -38,10 +38,9 @@ function Prompt({ currentCategory }: PromptProps) {
 type StepGuessProps = {
   currentCategory: OCurrentCategory;
   onSendGuess: GenericFunction;
-  players: GamePlayers;
-};
+} & AnnouncementProps;
 
-export function StepGuess({ currentCategory, onSendGuess, players }: StepGuessProps) {
+export function StepGuess({ currentCategory, onSendGuess, announcement }: StepGuessProps) {
   const { isLoading } = useLoading();
   const [needle, setNeedle] = useState(0);
 
@@ -50,7 +49,7 @@ export function StepGuess({ currentCategory, onSendGuess, players }: StepGuessPr
   }, []);
 
   return (
-    <Step className="o-dial-guess-selection">
+    <Step className="o-dial-guess-selection" announcement={announcement}>
       <Title>
         <Translate pt="Hora de brilhar telepaticamente!" en="Time to shine telepathically!" />
       </Title>
@@ -77,8 +76,9 @@ export function StepGuess({ currentCategory, onSendGuess, players }: StepGuessPr
           onClick={() => onSendGuess({ guess: needle })}
           size="large"
           disabled={isLoading}
+          loading={isLoading}
         >
-          <Translate pt="Enviar" en="Send" />: {needle < 0 ? currentCategory.left : currentCategory.right} »{' '}
+          <Translate pt="Enviar" en="Submit" />: {needle < 0 ? currentCategory.left : currentCategory.right} »{' '}
           {Math.abs(needle)}
         </Button>
       </Space>
