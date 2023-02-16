@@ -1,10 +1,10 @@
 // Constants
 import { GAME_NAMES } from '../../utils/constants';
 import {
-  MAX_ROUNDS,
   PLAYER_COUNTS,
   COMUNICACAO_ALIENIGENA_PHASES,
   COMUNICACAO_ALIENIGENA_ACTIONS,
+  MAX_ROUNDS,
 } from './constants';
 // Types
 import type {

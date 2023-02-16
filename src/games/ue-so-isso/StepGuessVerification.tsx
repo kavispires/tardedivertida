@@ -66,7 +66,7 @@ export function StepGuessVerification({
       <Card word={secretWord.text} />
 
       <Instruction contained>
-        <ViewOr orCondition={isUserTheGuesser}>
+        <ViewOr condition={isUserTheGuesser}>
           <Translate
             pt={
               <>

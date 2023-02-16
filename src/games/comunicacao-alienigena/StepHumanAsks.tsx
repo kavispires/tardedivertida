@@ -103,11 +103,11 @@ export function StepHumanAsks({
       </AlienContent>
 
       <HumanContent user={user}>
-        <ViewIf isVisible={isUserTheCurrentHuman}>
+        <ViewIf condition={isUserTheCurrentHuman}>
           <HumanInquiry items={items} signs={signs} submitInquiry={onSubmitHumanInquiry} user={user} />
         </ViewIf>
 
-        <ViewIf isVisible={!isUserTheCurrentHuman}>
+        <ViewIf condition={!isUserTheCurrentHuman}>
           <Space className="space-container" wrap>
             <ObjectsGrid items={items} showTypes={false} />
             <HumanSignBoard signs={signs} />

@@ -123,7 +123,7 @@ function PhaseWordSelection({ state, players, info }: PhaseProps) {
 
         {/* Step 2 */}
 
-        <ViewOr orCondition={isUserTheGuesser}>
+        <ViewOr condition={isUserTheGuesser}>
           <GuesserWaitingRoom
             players={players}
             instructionSuffix={{

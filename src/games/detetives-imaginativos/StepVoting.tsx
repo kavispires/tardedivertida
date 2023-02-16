@@ -39,13 +39,13 @@ export function StepVoting({
         )}
       </Title>
       <Instruction contained>
-        <ViewIf isVisible={isUserTheLeader}>
+        <ViewIf condition={isUserTheLeader}>
           <Translate
             pt="Aguarde enquanto os outros jogadores votam em quem eles acham ser o impostor. Como Líder, você não vota."
             en="Wait while the other detectives vote. As Lead Detective, you don't vote."
           />
         </ViewIf>
-        <ViewIf isVisible={!isUserTheLeader && !user.vote}>
+        <ViewIf condition={!isUserTheLeader && !user.vote}>
           <Translate
             pt={
               <>
@@ -61,7 +61,7 @@ export function StepVoting({
             }
           />
         </ViewIf>
-        <ViewIf isVisible={!isUserTheLeader && user.vote}>
+        <ViewIf condition={!isUserTheLeader && user.vote}>
           <Translate
             pt="Aguarde enquanto os outros jogadores votam..."
             en="Wait while other detectives finish voting..."

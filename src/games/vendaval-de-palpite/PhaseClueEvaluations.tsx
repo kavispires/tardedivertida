@@ -50,7 +50,7 @@ function PhaseClueEvaluations({ state, players, info }: PhaseProps) {
         </PhaseAnnouncement>
 
         {/* Step 1 */}
-        <ViewOr orCondition={isUserTheBoss}>
+        <ViewOr condition={isUserTheBoss}>
           <StepBossEvaluation
             secretWord={state.secretWord}
             board={state.board}

@@ -5,9 +5,15 @@ type ViewIfProps = {
    * The content of the component
    */
   children: ReactNode;
-  isVisible?: boolean;
+  /**
+   * Displays children only if condition is truthy
+   */
+  condition?: boolean;
 };
 
-export function ViewIf({ isVisible = false, children }: ViewIfProps) {
-  return isVisible ? <>{children}</> : <></>;
+/**
+ * Wrapper component that only renders the children if the condition is truthy
+ */
+export function ViewIf({ condition = false, children }: ViewIfProps) {
+  return condition ? <>{children}</> : <></>;
 }

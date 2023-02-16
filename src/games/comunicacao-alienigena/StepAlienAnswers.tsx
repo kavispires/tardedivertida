@@ -100,7 +100,7 @@ export function StepAlienAnswers({
         ))}
       </Space>
 
-      <ViewIf isVisible={!Boolean(alienResponse)}>
+      <ViewIf condition={!Boolean(alienResponse)}>
         <AlienContent user={user}>
           <Instruction contained>
             <Translate
@@ -125,7 +125,7 @@ export function StepAlienAnswers({
         </AlienContent>
       </ViewIf>
 
-      <ViewIf isVisible={Boolean(alienResponse)}>
+      <ViewIf condition={Boolean(alienResponse)}>
         <Instruction contained>
           <Translate pt={<>O Alienígena respondeu:</>} en={<>The Alien answered:</>} />
         </Instruction>

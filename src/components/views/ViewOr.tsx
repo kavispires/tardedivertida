@@ -1,8 +1,19 @@
+import { ReactNode } from 'react';
+
 type ViewOrProps = {
-  children: [any, any];
-  orCondition?: boolean;
+  /**
+   * The content of the component to be toggled
+   */
+  children: [ReactNode, ReactNode];
+  /**
+   * The condition to be met to render the first children
+   */
+  condition?: boolean;
 };
 
-export function ViewOr({ orCondition = false, children }: ViewOrProps) {
-  return orCondition ? <>{children[0]}</> : <>{children[1]}</>;
+/**
+ * View wrapper that renders one of two children depending on a condition
+ */
+export function ViewOr({ condition = false, children }: ViewOrProps) {
+  return condition ? <>{children[0]}</> : <>{children[1]}</>;
 }

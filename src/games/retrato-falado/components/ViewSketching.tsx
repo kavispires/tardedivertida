@@ -26,7 +26,7 @@ export function ViewSketching({
 }: ViewSketchingProps) {
   useTemporarilyHidePlayersBar();
   return (
-    <ViewOr orCondition={isUserTheWitness}>
+    <ViewOr condition={isUserTheWitness}>
       <div className="r-view">
         <Title>
           <Translate pt="Descreva o monstro!" en="Describe the monstro!" />
