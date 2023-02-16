@@ -61,7 +61,7 @@ function PhaseWordSelection({ players, state, info }: PhaseProps) {
         </PhaseAnnouncement>
 
         {/* Step 2 */}
-        <ViewOr orCondition={isUserTheScout}>
+        <ViewOr condition={isUserTheScout}>
           <StepWordSelection onSubmitWord={onSubmitWord} words={state.words} />
 
           <WaitingRoom

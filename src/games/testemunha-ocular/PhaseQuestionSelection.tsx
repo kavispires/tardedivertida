@@ -65,7 +65,7 @@ function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
         </PhaseAnnouncement>
 
         {/* Step 1 */}
-        <ViewOr orCondition={isUserTheQuestioner}>
+        <ViewOr condition={isUserTheQuestioner}>
           <StepSelectQuestion
             isLoading={isLoading}
             onSelectQuestion={onSelectQuestion}

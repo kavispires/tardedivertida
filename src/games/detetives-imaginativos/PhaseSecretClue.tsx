@@ -69,7 +69,7 @@ function PhaseSecretClue({ state, players, info }: PhaseProps) {
         </PhaseAnnouncement>
 
         {/* Step 2 */}
-        <ViewOr orCondition={isUserTheLeader}>
+        <ViewOr condition={isUserTheLeader}>
           <StepSecretClueWrite user={user} onSubmitClue={onSubmitSecretClue} />
 
           <StepSecretClueWaiting user={user} leader={leader} players={players} turnOrder={state.turnOrder} />

@@ -58,7 +58,7 @@ function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
         </RoundAnnouncement>
 
         {/* Step 1 */}
-        <ViewOr orCondition={isUserTheActivePlayer}>
+        <ViewOr condition={isUserTheActivePlayer}>
           <StepQuestionSelection
             players={players}
             currentQuestions={state.currentQuestions}

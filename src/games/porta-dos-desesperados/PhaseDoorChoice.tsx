@@ -74,7 +74,7 @@ function PhaseDoorChoice({ players, state, info, meta }: PhaseProps) {
         <TrapAnnouncement trap={state.trap} goToNextStep={goToNextStep} />
 
         {/* Step 3 */}
-        <ViewOr orCondition={isPossessed}>
+        <ViewOr condition={isPossessed}>
           <StepWaitDoorSelection
             doors={state.doors}
             pages={state.selectedPagesIds}

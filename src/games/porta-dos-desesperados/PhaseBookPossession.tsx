@@ -101,7 +101,7 @@ function PhaseBookPossession({ players, state, info }: PhaseProps) {
         <TrapAnnouncement trap={state.trap} goToNextStep={goToNextStep} />
 
         {/* Step 4 */}
-        <ViewOr orCondition={isPossessed}>
+        <ViewOr condition={isPossessed}>
           <StepSelectPages
             pages={state.pages}
             currentCorridor={state.currentCorridor}

@@ -67,8 +67,8 @@ function PhaseDialClue({ players, state, info }: PhaseProps) {
         />
 
         {/* Step 1 */}
-        <ViewOr orCondition={isUserThePsychic}>
-          <ViewOr orCondition={!state.currentCategoryId}>
+        <ViewOr condition={isUserThePsychic}>
+          <ViewOr condition={!state.currentCategoryId}>
             <StepCategorySelection
               currentCategories={state.currentCategories}
               onSendChosenSide={onSendChosenSide}

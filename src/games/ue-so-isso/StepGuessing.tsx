@@ -31,7 +31,7 @@ export function StepGuessing({
 }: StepGuessingProps) {
   return (
     <Step fullWidth>
-      <ViewOr orCondition={isUserTheGuesser}>
+      <ViewOr condition={isUserTheGuesser}>
         <Space direction="vertical" align="center">
           <Title>
             <Translate pt="Hora de brilhar" en="Time to shine" />, <AvatarName player={guesser} />!

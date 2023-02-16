@@ -84,7 +84,7 @@ export function StepPlayCard({
       </Title>
 
       <Instruction>
-        <ViewIf isVisible={isUserTheCurrentPlayer && !isUserTheImpostor}>
+        <ViewIf condition={isUserTheCurrentPlayer && !isUserTheImpostor}>
           <>
             <IconAvatar icon={<ImageCardsIcon />} size="large" shape="square" />{' '}
             <Translate
@@ -93,7 +93,7 @@ export function StepPlayCard({
             />
           </>
         </ViewIf>
-        <ViewIf isVisible={isUserTheCurrentPlayer && isUserTheImpostor}>
+        <ViewIf condition={isUserTheCurrentPlayer && isUserTheImpostor}>
           <>
             <IconAvatar icon={<ImageCardsIcon />} size="large" shape="square" />{' '}
             <Translate
@@ -103,7 +103,7 @@ export function StepPlayCard({
             />
           </>
         </ViewIf>
-        <ViewIf isVisible={!isUserTheCurrentPlayer}>
+        <ViewIf condition={!isUserTheCurrentPlayer}>
           <>
             <IconAvatar icon={<AnimatedClockIcon />} size="large" />{' '}
             <Translate

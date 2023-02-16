@@ -115,7 +115,7 @@ function PhaseTopicSelection({ state, players, info, meta }: PhaseProps) {
         </PhaseAnnouncement>
 
         {/* Step 2 */}
-        <ViewOr orCondition={isUserTheActivePlayer}>
+        <ViewOr condition={isUserTheActivePlayer}>
           <StepTopicSelection
             currentTopics={state.currentTopics}
             currentCustomTopic={state.currentCustomTopic}

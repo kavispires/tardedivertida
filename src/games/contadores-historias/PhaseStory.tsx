@@ -68,7 +68,7 @@ function PhaseStory({ state, players, info }: PhaseProps) {
         />
 
         {/* Step 1 */}
-        <ViewOr orCondition={isUserTheStoryTeller}>
+        <ViewOr condition={isUserTheStoryTeller}>
           <StoryWriting user={user} onSubmitStory={onSubmitStory} announcement={announcement} />
           <StoryWaiting
             user={user}
