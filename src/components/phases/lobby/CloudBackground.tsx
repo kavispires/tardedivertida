@@ -2,11 +2,14 @@ import clsx from 'clsx';
 // Utils
 import { PUBLIC_URL } from 'utils/constants';
 
-function SingleCloud({ type, index }: { type: string; index?: number }) {
+function SingleCloud({ type }: { type: string; index?: number }) {
   return (
-    <div className={`"cloud-background__cloud cloud-background__cloud--${index}`}>
-      <img src={`${PUBLIC_URL.CLOUDS}${type}.png`} alt="cloud" />
-    </div>
+    <div
+      className="cloud-background__cloud"
+      style={{
+        backgroundImage: `url('${PUBLIC_URL.CLOUDS}${type}.png')`,
+      }}
+    ></div>
   );
 }
 
