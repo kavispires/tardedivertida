@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "W",
   "gameName": "super-campeonato",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "title": {
     "pt": "Super Campeonato",
     "en": "Ultimate Championship"
@@ -17,8 +17,9 @@
     "en": "In a random showdown, who will you bet all your chips?"
   },
   "appearance": {
-    "clouds": "cloud",
-    "color": ""
+    "clouds": "trophy-clouds",
+    "color": "",
+    "backgroundColor": "rgba(188, 142, 12, 0.75)"
   },
   "rules": {
     "pt": [

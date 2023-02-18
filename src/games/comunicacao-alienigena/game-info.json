@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "C",
   "gameName": "comunicacao-alienigena",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "title": {
     "pt": "Comunicação Alienígena",
     "en": "Alien Language"
@@ -18,9 +18,9 @@
     "en": "Would the aliens be able to communicate with the humans?"
   },
   "appearance": {
-    "clouds": "cloud",
+    "clouds": "ufo-cloud",
     "color": "",
-    "backgroundColor": ""
+    "backgroundColor": "rgba(53, 32, 48, 0.75)"
   },
   "rules": {
     "pt": ["TBD"],
