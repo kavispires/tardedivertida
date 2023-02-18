@@ -8,6 +8,7 @@ function SingleCloud({ type }: { type: string; index?: number }) {
       className="cloud-background__cloud"
       style={{
         backgroundImage: `url('${PUBLIC_URL.CLOUDS}${type}.png')`,
+        backgroundPositionX: '0',
       }}
     ></div>
   );
