@@ -12,6 +12,7 @@ import { SheepAvatar } from 'games/mente-coletiva/components/SheepAvatar';
 import { CostumeAvatar } from 'games/na-rua-do-medo/components/CostumeAvatar';
 import { ClubberAvatar } from 'games/megamix/components/ClubberAvatar';
 import { GlyphCard } from 'components/cards/GlyphCard';
+import { ItemCard } from 'components/cards/ItemCard';
 
 type SpriteOption = {
   key: string;
@@ -59,6 +60,13 @@ const options: Record<string, SpriteOption> = {
     quantity: 365,
     startAt: 1,
   },
+  items: {
+    key: 'items',
+    label: 'Items',
+    prefix: 'item',
+    quantity: 60,
+    startAt: 1,
+  },
 };
 
 function SpritesPage() {
@@ -92,6 +100,7 @@ function SpritesPage() {
       <Layout.Content className="dev-content">
         {active.key === 'avatars' && <AvatarsContent />}
         {active.key === 'glyphs' && <GlyphsContent />}
+        {active.key === 'items' && <ItemsContent />}
         {active.key !== 'avatars' && active.key !== 'glyphs' && <Content type={active.key} />}
       </Layout.Content>
     </Layout>
@@ -164,6 +173,25 @@ function Content({ type }: { type: string }) {
             {type === 'sheep' && <SheepAvatar sheepId={String(id)} id="A" />}
             {type === 'costumes' && <CostumeAvatar costumeId={String(id)} id="A" />}
             {type === 'clubbers' && <ClubberAvatar clubberId={String(id)} id="A" />}
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
+
+function ItemsContent() {
+  const { quantity, startAt } = options.items;
+
+  const ids = makeArray(quantity, startAt);
+
+  return (
+    <ul className="sprites__flex">
+      {ids.map((id) => {
+        return (
+          <li key={`costume-${id}`} className="sprites__flex-item">
+            <ItemCard id={String(id)} />
+            {id}
           </li>
         );
       })}

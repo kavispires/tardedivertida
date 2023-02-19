@@ -12,13 +12,13 @@ import { HumanSignBoard } from './components/HumanSignBoard';
 import { ViewIf } from 'components/views';
 
 import { pluralize } from 'utils/helpers';
-import { GlyphCard } from 'components/cards/GlyphCard';
 import { AlienWritingBoard } from './components/AlienWritingBoard';
 import { AlienContent, HumanContent } from './components/Content';
 import { History } from './components/History';
 import { PopoverRule } from 'components/rules';
 import { Status } from './components/Status';
 import { AlienViewBoard } from './components/AlienViewBoard';
+import { ItemCard } from 'components/cards/ItemCard';
 
 type StepAlienAnswersProps = {
   players: GamePlayers;
@@ -96,7 +96,7 @@ export function StepAlienAnswers({
 
       <Space className="space-container" wrap>
         {currentInquiry.map((itemId) => (
-          <GlyphCard key={`inquiry-${itemId}`} id={itemId} />
+          <ItemCard key={`inquiry-${itemId}`} id={itemId} />
         ))}
       </Space>
 

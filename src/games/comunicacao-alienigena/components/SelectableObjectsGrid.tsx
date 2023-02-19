@@ -1,7 +1,7 @@
 import { Space } from 'antd';
 import clsx from 'clsx';
 import { TransparentButton } from 'components/buttons';
-import { GlyphCard } from 'components/cards/GlyphCard';
+import { ItemCard } from 'components/cards/ItemCard';
 import { Translate } from 'components/language';
 import { useLoading } from 'hooks/useLoading';
 
@@ -43,7 +43,7 @@ export function SelectableObjectsGrid({
               activeClass={'objects-grid__button--active'}
               onClick={() => selectObject(item.id)}
             >
-              <GlyphCard id={`${item.id}`} className={clsx(item.offered && 'objects-grid__item-offered')} />
+              <ItemCard id={`${item.id}`} className={clsx(item.offered && 'objects-grid__item-offered')} />
             </TransparentButton>
           )
         )}

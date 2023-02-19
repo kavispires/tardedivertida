@@ -4,8 +4,7 @@ import {
   COMUNICACAO_ALIENIGENA_PHASES,
   ITEMS_COUNT,
   ITEM_TYPES,
-  TOTAL_GLYPHS,
-  UNAVAILABLE_GLYPHS,
+  AVAILABLE_ITEMS_COUNT,
 } from './constants';
 // Types
 import type {
@@ -37,11 +36,7 @@ export const prepareSetupPhase = async (
   // Determine turn order
   const playerCount = utils.players.getPlayerCount(players);
 
-  const allGlyphs = utils.game.getRandomUniqueItems(
-    utils.game.makeArray(TOTAL_GLYPHS, 1),
-    UNAVAILABLE_GLYPHS,
-    25
-  );
+  const allGlyphs = utils.game.getRandomItems(utils.game.makeArray(AVAILABLE_ITEMS_COUNT, 1), 25);
 
   const items: Item[] = getItems(playerCount).map((itemType, index) => ({
     id: String(allGlyphs[index]),
