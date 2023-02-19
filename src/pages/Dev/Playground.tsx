@@ -239,3 +239,25 @@ console.log({ result });
 const svg = ``;
 
 const ignoreIds: number[] = [];
+
+function generateSvgDefs(n: number, prefix: string): string {
+  let symbols = '';
+  for (let i = 1; i <= n; i++) {
+    let id = `${prefix}-${i}`;
+    symbols += `
+      <symbol id="${id}">
+        <title>aaa</title>
+      </symbol>
+    `;
+  }
+
+  return `
+    <svg xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        ${symbols}
+      </defs>
+    </svg>
+  `;
+}
+
+console.log(generateSvgDefs(226, 'item'));

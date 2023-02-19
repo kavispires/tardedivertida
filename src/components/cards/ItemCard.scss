@@ -1,0 +1,7 @@
+@use 'styles/sass' as *;
+
+.item-card {
+  background: get-color('brown', 1);
+  padding: get-unit(2);
+  border-radius: $border-radius;
+}

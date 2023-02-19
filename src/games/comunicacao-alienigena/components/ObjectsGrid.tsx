@@ -1,6 +1,6 @@
 import { Space } from 'antd';
 import clsx from 'clsx';
-import { GlyphCard } from 'components/cards/GlyphCard';
+import { ItemCard } from 'components/cards/ItemCard';
 import { Translate } from 'components/language';
 
 type ObjectsGridProps = {
@@ -26,7 +26,7 @@ export function ObjectsGrid({ items, showTypes = false, activeObjects }: Objects
             {Boolean(item.offered) ? (
               <div className={`objects-grid__item-back objects-grid__item-back--${item.type}`}></div>
             ) : (
-              <GlyphCard id={`${item.id}`} className={clsx(item.offered && 'objects-grid__item-offered')} />
+              <ItemCard id={`${item.id}`} className={clsx(item.offered && 'objects-grid__item-offered')} />
             )}
           </div>
         ))}

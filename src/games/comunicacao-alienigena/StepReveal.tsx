@@ -11,7 +11,6 @@ import { SignsKeyCard } from './components/SignsKeyCard';
 import { HumanSignBoard } from './components/HumanSignBoard';
 
 import { AlienContent, HumanContent } from './components/Content';
-import { GlyphCard } from 'components/cards/GlyphCard';
 import { ItemResolution } from './components/ItemResolution';
 import { AdminNextPhaseButton } from 'components/admin';
 import { History } from './components/History';
@@ -21,6 +20,7 @@ import { IconsIcon } from 'components/icons/IconsIcon';
 import { MetricHighlight } from 'components/metrics/MetricHighlight';
 import { ClockIcon } from 'components/icons/ClockIcon';
 import { AlienViewBoard } from './components/AlienViewBoard';
+import { ItemCard } from 'components/cards/ItemCard';
 
 type StepRevealProps = {
   players: GamePlayers;
@@ -88,7 +88,7 @@ export function StepReveal({
           {latestRequest.offers.map((entry, index) => {
             return (
               <Space key={`offer-${index}`} direction="vertical" className="space-container">
-                <GlyphCard id={`${entry.objectId}`} className={''} width={50} />
+                <ItemCard id={`${entry.objectId}`} className={''} width={50} />
                 <AvatarName player={players[entry.playerId]} />
                 <ItemResolution itemId={entry.objectId} items={items} />
               </Space>

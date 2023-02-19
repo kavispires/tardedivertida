@@ -1,10 +1,10 @@
 import { Space, Table } from 'antd';
 import { AvatarName } from 'components/avatars';
-import { GlyphCard } from 'components/cards/GlyphCard';
 import { Translate } from 'components/language';
 import type { ColumnsType } from 'antd/es/table';
 import { CanvasSVG } from 'components/canvas';
 import { ALIEN_CANVAS } from '../utils/constants';
+import { ItemCard } from 'components/cards/ItemCard';
 
 type InquiryHistoryProps = {
   inquiryHistory: InquiryHistoryEntry[];
@@ -55,7 +55,7 @@ function Objects({ objectIds }: Pick<InquiryHistoryEntry, 'objectIds'>) {
   return (
     <Space>
       {objectIds.map((objectId) => (
-        <GlyphCard id={`${objectId}`} className={'objects-grid__item-offered'} width={50} />
+        <ItemCard id={`${objectId}`} className={'objects-grid__item-offered'} width={50} />
       ))}
     </Space>
   );

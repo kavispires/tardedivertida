@@ -1,5 +1,7 @@
-import { CanvasSVG } from 'components/canvas';
+// Utils
 import { ALIEN_CANVAS } from '../utils/constants';
+// Components
+import { CanvasSVG } from 'components/canvas';
 
 type AlienViewBoardProps = {
   request: string;

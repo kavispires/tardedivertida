@@ -1,7 +1,7 @@
+import { useState } from 'react';
 import { Button, Space } from 'antd';
 import { DrawingCanvas } from 'components/canvas';
 import { Translate } from 'components/language';
-import { useState } from 'react';
 import { ALIEN_CANVAS } from '../utils/constants';
 
 type HumanSignBoardProps = {

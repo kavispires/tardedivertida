@@ -1,10 +1,10 @@
 import { Space, Table } from 'antd';
 import { AvatarName } from 'components/avatars';
-import { GlyphCard } from 'components/cards/GlyphCard';
 import { Translate } from 'components/language';
 import type { ColumnsType } from 'antd/es/table';
 import { CanvasSVG } from 'components/canvas';
 import { ALIEN_CANVAS } from '../utils/constants';
+import { ItemCard } from 'components/cards/ItemCard';
 
 type RequestHistoryProps = {
   requestHistory: RequestHistoryEntry[];
@@ -54,7 +54,7 @@ function Offerings({ offers, players }: OfferingsProps) {
     <Space>
       {offers.map((offer) => (
         <Space direction="vertical" align="center" key={`offer-${offer.objectId}-${offer.playerId}`}>
-          <GlyphCard id={`${offer.objectId}`} className={'objects-grid__item-offered'} width={50} />
+          <ItemCard id={`${offer.objectId}`} className={'objects-grid__item-offered'} width={50} />
           <AvatarName size="small" player={players[offer.playerId]} />
         </Space>
       ))}
