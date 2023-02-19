@@ -9,6 +9,7 @@ export function ArteRuimTimerSound() {
   const [audio, , controls] = useAudio({
     src: arteRuimTimer,
     autoPlay: true,
+    loop: false,
   });
 
   // Updated volume
