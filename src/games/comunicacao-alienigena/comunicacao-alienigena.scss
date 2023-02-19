@@ -7,7 +7,7 @@
 
   &__item {
     border-radius: get-unit(3);
-    border: 3px solid white;
+    border: get-unit(2) solid white;
 
     &--ITEM {
       border-color: get-color('green', 6);

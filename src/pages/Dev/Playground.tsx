@@ -259,5 +259,3 @@ function generateSvgDefs(n: number, prefix: string): string {
     </svg>
   `;
 }
-
-console.log(generateSvgDefs(226, 'item'));
