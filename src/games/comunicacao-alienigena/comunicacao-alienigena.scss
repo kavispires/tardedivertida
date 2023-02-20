@@ -10,8 +10,8 @@
     border: get-unit(2) solid white;
 
     &--ITEM {
-      border-color: get-color('green', 5);
-      border-style: double;
+      border-color: get-color('green', 4);
+      border-style: dashed;
 
       .glyph-card {
         background: get-color('green', 3);
