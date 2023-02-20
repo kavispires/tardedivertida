@@ -56,7 +56,7 @@ export const determineGameOver = (
   currentCorridor: number,
   magic: number
 ): boolean => {
-  // Any other phase makes the game continue
+  // Any other phase makes the game continues
   if (currentPhase !== PORTA_DOS_DESESPERADOS_PHASES.RESOLUTION) return false;
 
   // If the full 15 rounds have been reached
@@ -68,7 +68,7 @@ export const determineGameOver = (
   // If it's the last door and players were successful
   if (currentCorridor === DOOR_LEVELS && outcome === OUTCOME.SUCCESS) return true;
 
-  // IF the in condition is anything other than continue
+  // If the win condition is anything other than continue
   if (winCondition !== WIN_CONDITION.CONTINUE) return true;
 
   return false;
