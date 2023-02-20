@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "I",
   "gameName": "porta-dos-desesperados",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "title": {
     "pt": "Porta dos Desesperados",
     "en": "Obscure Doors"
@@ -30,8 +30,8 @@
     "max": 10
   },
   "duration": {
-    "base": 0,
-    "perPlayer": 0
+    "base": 15,
+    "perPlayer": 3
   },
   "tags": ["cooperative", "guessing", "images", "turn-based", "discussion", "bots", "audience-mode"],
   "available": {

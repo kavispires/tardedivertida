@@ -82,7 +82,7 @@ export const getNextPhase = async (
     state?.round,
     state?.outcome,
     state?.winCondition,
-    state?.currentDoor,
+    state?.currentCorridor,
     state?.magic
   );
   // Determine next phase
