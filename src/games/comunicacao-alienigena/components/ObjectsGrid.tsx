@@ -1,3 +1,4 @@
+import { CheckCircleFilled, CloseCircleFilled } from '@ant-design/icons';
 import { Space } from 'antd';
 import clsx from 'clsx';
 import { ItemCard } from 'components/cards/ItemCard';
@@ -7,9 +8,10 @@ type ObjectsGridProps = {
   items: Item[];
   showTypes?: boolean;
   activeObjects?: CardId[];
+  showAll?: boolean;
 };
 
-export function ObjectsGrid({ items, showTypes = false, activeObjects }: ObjectsGridProps) {
+export function ObjectsGrid({ items, showTypes = false, activeObjects, showAll }: ObjectsGridProps) {
   return (
     <Space direction="vertical">
       <div className="objects-grid">
@@ -23,10 +25,20 @@ export function ObjectsGrid({ items, showTypes = false, activeObjects }: Objects
               activeObjects?.includes(item.id) && `objects-grid__item--ask`
             )}
           >
-            {Boolean(item.offered) ? (
+            {!showAll && Boolean(item.offered) ? (
               <div className={`objects-grid__item-back objects-grid__item-back--${item.type}`}></div>
             ) : (
               <ItemCard id={`${item.id}`} className={clsx(item.offered && 'objects-grid__item-offered')} />
+            )}
+            {showAll && Boolean(item.offered) && item.type === 'ITEM' && (
+              <span className="objects-grid__offered-icon objects-grid__offered-icon--correct">
+                <CheckCircleFilled />
+              </span>
+            )}
+            {showAll && Boolean(item.offered) && item.type !== 'ITEM' && (
+              <span className="objects-grid__offered-icon objects-grid__offered-icon--incorrect">
+                <CloseCircleFilled />
+              </span>
             )}
           </div>
         ))}
