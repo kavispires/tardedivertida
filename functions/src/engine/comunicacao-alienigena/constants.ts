@@ -28,7 +28,7 @@ export const MAX_ROUNDS = 12;
 
 export const TOTAL_ITEMS = 25;
 
-export const AVAILABLE_ITEMS_COUNT = 60;
+export const AVAILABLE_ITEMS_COUNT = 100;
 // export const UNAVAILABLE_GLYPHS = [
 //   // 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 68, 69, 70, 71, 72, 73, 83, 86, 87, 89, 90, 91, 92, 93, 97, 98, 99,
 //   // 101, 111, 112, 113, 116, 118, 119, 120, 121, 123, 124, 125, 132, 136, 137, 138, 139, 141, 142, 143, 144,
