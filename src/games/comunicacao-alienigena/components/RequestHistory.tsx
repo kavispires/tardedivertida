@@ -5,13 +5,15 @@ import type { ColumnsType } from 'antd/es/table';
 import { CanvasSVG } from 'components/canvas';
 import { ALIEN_CANVAS } from '../utils/constants';
 import { ItemCard } from 'components/cards/ItemCard';
+import { ItemResolution } from './ItemResolution';
 
 type RequestHistoryProps = {
   requestHistory: RequestHistoryEntry[];
   players: GamePlayers;
+  items: Item[];
 };
 
-export function RequestHistory({ requestHistory, players }: RequestHistoryProps) {
+export function RequestHistory({ requestHistory, players, items }: RequestHistoryProps) {
   if (requestHistory.length < 1) return <></>;
 
   const columns: ColumnsType<RequestHistoryEntry> = [
@@ -34,7 +36,7 @@ export function RequestHistory({ requestHistory, players }: RequestHistoryProps)
       key: 'offers',
       title: <Translate pt="Oferendas" en="Offerings" />,
       dataIndex: 'offers',
-      render: (offers) => <Offerings players={players} offers={offers} />,
+      render: (offers) => <Offerings players={players} offers={offers} items={items} />,
     },
   ];
 
@@ -48,14 +50,16 @@ export function RequestHistory({ requestHistory, players }: RequestHistoryProps)
 type OfferingsProps = {
   offers: Offer[];
   players: GamePlayers;
+  items: Item[];
 };
-function Offerings({ offers, players }: OfferingsProps) {
+function Offerings({ offers, players, items }: OfferingsProps) {
   return (
     <Space>
       {offers.map((offer) => (
         <Space direction="vertical" align="center" key={`offer-${offer.objectId}-${offer.playerId}`}>
           <ItemCard id={`${offer.objectId}`} className={'objects-grid__item-offered'} width={50} />
           <AvatarName size="small" player={players[offer.playerId]} />
+          <ItemResolution itemId={offer.objectId} items={items} />
         </Space>
       ))}
     </Space>
