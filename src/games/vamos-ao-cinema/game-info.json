@@ -31,7 +31,11 @@
     "min": 2,
     "max": 9
   },
-  "tags": ["cooperative", "turn-based", "guessing"],
+  "duration": {
+    "base": 30,
+    "perPlayer": 1
+  },
+  "tags": ["cooperative", "turn-based", "guessing", "push-your-luck"],
   "available": {
     "pt": true,
     "en": true

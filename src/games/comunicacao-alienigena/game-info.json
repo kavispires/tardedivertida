@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "C",
   "gameName": "comunicacao-alienigena",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "title": {
     "pt": "Comunicação Alienígena",
     "en": "Alien Language"
@@ -29,9 +29,14 @@
   "playerCount": {
     "recommended": [2, 3, 4],
     "min": 2,
-    "max": 6
+    "max": 6,
+    "best": 3
   },
-  "tags": ["cooperative", "turn-based", "drawing", "guessing"],
+  "duration": {
+    "base": 20,
+    "perPlayer": 3
+  },
+  "tags": ["cooperative", "turn-based", "drawing", "guessing", "brain-burner"],
   "available": {
     "pt": true,
     "en": true
