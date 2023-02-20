@@ -8,6 +8,7 @@
   &__item {
     border-radius: get-unit(3);
     border: get-unit(2) solid white;
+    position: relative;
 
     &--ITEM {
       border-color: get-color('green', 4);
@@ -79,6 +80,20 @@
     &--ask {
       transform: scale(0.8);
       border-color: get-color('pink');
+    }
+  }
+
+  &__offered-icon {
+    position: absolute;
+    bottom: get-unit(1);
+    right: get-unit(1);
+
+    &--correct {
+      color: get-color('green', 5);
+    }
+
+    &--incorrect {
+      color: get-color('red', 7);
     }
   }
 }

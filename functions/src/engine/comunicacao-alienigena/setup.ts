@@ -318,6 +318,7 @@ export const prepareGameOverPhase = async (
         inquiryHistory: state.inquiryHistory,
         requestHistory: state.requestHistory,
         status: state.status,
+        alienId: state.alienId,
       },
     },
   };
