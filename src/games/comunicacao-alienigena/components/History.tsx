@@ -7,9 +7,10 @@ type HistoryProps = {
   inquiryHistory: InquiryHistoryEntry[];
   requestHistory: RequestHistoryEntry[];
   players: GamePlayers;
+  items: Item[];
 };
 
-export function History({ inquiryHistory, requestHistory, players }: HistoryProps) {
+export function History({ inquiryHistory, requestHistory, players, items }: HistoryProps) {
   return (
     <Collapse>
       <Collapse.Panel
@@ -23,7 +24,7 @@ export function History({ inquiryHistory, requestHistory, players }: HistoryProp
         header={<Translate pt="Histórico de Pedidos dos Alienígenas" en="Alien Request History" />}
         key="2"
       >
-        <RequestHistory requestHistory={requestHistory} players={players} />
+        <RequestHistory requestHistory={requestHistory} players={players} items={items} />
       </Collapse.Panel>
     </Collapse>
   );

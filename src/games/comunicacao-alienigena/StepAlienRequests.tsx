@@ -118,7 +118,12 @@ export function StepAlienRequests({
         </Space>
       </HumanContent>
 
-      <History inquiryHistory={inquiryHistory} requestHistory={requestHistory} players={players} />
+      <History
+        inquiryHistory={inquiryHistory}
+        requestHistory={requestHistory}
+        players={players}
+        items={items}
+      />
     </Step>
   );
 }
