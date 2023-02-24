@@ -1,20 +1,23 @@
+// Ant Design Resources
 import { ConfigProvider } from 'antd';
 // Constants
 import { GAME_COLLECTION, THEME_COLORS } from 'utils/constants';
 import { PHASES } from 'utils/phases';
+// Utils
+import localStorage from 'services/localStorage';
 // Components
 import { Session } from 'components/session';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { PageError } from 'components/errors';
-// Sass
-import './comunicacao-alienigena.scss';
 import { PhaseAlienSelection } from './PhaseAlienSelection';
 import { PhaseHumanAsk } from './PhaseHumanAsk';
 import { PhaseAlienAnswer } from './PhaseAlienAnswer';
 import { PhaseAlienRequest } from './PhaseAlienRequest';
 import { PhaseOfferings } from './PhaseOfferings';
 import { PhaseReveal } from './PhaseReveal';
-import PhaseGameOver from './PhaseGameOver';
+import { PhaseGameOver } from './PhaseGameOver';
+// Sass
+import './comunicacao-alienigena.scss';
 
 function getActiveComponent(phase: string) {
   switch (phase) {
@@ -23,6 +26,8 @@ function getActiveComponent(phase: string) {
     case PHASES.DEFAULT.RULES:
       return PhaseRules;
     case PHASES.DEFAULT.SETUP:
+      // Clear cache
+      localStorage.set({ cache: '{}' });
       return PhaseSetup;
     case PHASES.COMUNICACAO_ALIENIGENA.ALIEN_SELECTION:
       return PhaseAlienSelection;

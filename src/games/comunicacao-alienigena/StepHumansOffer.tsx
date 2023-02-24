@@ -13,6 +13,7 @@ import { History } from './components/History';
 import { PopoverRule } from 'components/rules';
 import { Status } from './components/Status';
 import { AlienViewBoard } from './components/AlienViewBoard';
+import { BotPopupRule } from './components/BotPopupRules';
 
 type StepHumansOfferProps = {
   players: GamePlayers;
@@ -25,6 +26,7 @@ type StepHumansOfferProps = {
   status: OfferingsStatus;
   requestHistory: RequestHistoryEntry[];
   inquiryHistory: InquiryHistoryEntry[];
+  isAlienBot: boolean;
 } & AnnouncementProps;
 
 export function StepHumansOffer({
@@ -39,6 +41,7 @@ export function StepHumansOffer({
   isUserAlien,
   requestHistory,
   inquiryHistory,
+  isAlienBot,
 }: StepHumansOfferProps) {
   return (
     <Step fullWidth announcement={announcement}>
@@ -47,6 +50,8 @@ export function StepHumansOffer({
       </Title>
 
       <PopoverRule content={<Status status={status} />} />
+
+      {isAlienBot && <BotPopupRule />}
 
       <Instruction contained>
         <Translate
@@ -74,7 +79,7 @@ export function StepHumansOffer({
         </Instruction>
       </AlienContent>
 
-      <AlienViewBoard request={requestHistory[0].request} />
+      <AlienViewBoard request={requestHistory[0].request} isAlienBot={isAlienBot} />
 
       <AlienContent user={user}>
         <Space className="space-container" wrap>
@@ -100,6 +105,7 @@ export function StepHumansOffer({
         requestHistory={requestHistory}
         players={players}
         items={items}
+        isAlienBot={isAlienBot}
       />
     </Step>
   );

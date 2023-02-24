@@ -1,9 +1,12 @@
-import { Space } from 'antd';
 import clsx from 'clsx';
+// Ant Design Resources
+import { Space } from 'antd';
+// Hook
+import { useLoading } from 'hooks/useLoading';
+// Components
 import { TransparentButton } from 'components/buttons';
 import { ItemCard } from 'components/cards/ItemCard';
 import { Translate } from 'components/language';
-import { useLoading } from 'hooks/useLoading';
 
 type SelectableObjectsGridProps = {
   user: GamePlayer;
@@ -27,11 +30,15 @@ export function SelectableObjectsGrid({
       <div className="objects-grid">
         {items.map((item) =>
           Boolean(item.offered) ? (
-            <div className={clsx('objects-grid__button', item.offered && `objects-grid__item--${item.type}`)}>
+            <div
+              className={clsx('objects-grid__button', item.offered && `objects-grid__item--${item.type}`)}
+              key={`selectable-${item.id}`}
+            >
               <div className={`objects-grid__item-back objects-grid__item-back--${item.type}`}></div>
             </div>
           ) : (
             <TransparentButton
+              key={`selectable-${item.id}`}
               className={clsx('objects-grid__button', item.offered && `objects-grid__item--${item.type}`)}
               disabled={
                 item.offered ||

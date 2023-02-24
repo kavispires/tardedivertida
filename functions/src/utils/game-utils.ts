@@ -284,3 +284,12 @@ export function merge(target: any, ...sources: any[]): any {
 
   return target;
 }
+
+/**
+ * Remove duplicated elements from a list
+ * @param arr
+ * @returns
+ */
+export const removeDuplicates = <T>(arr: T[]): T[] => {
+  return Array.from(new Set(arr));
+};

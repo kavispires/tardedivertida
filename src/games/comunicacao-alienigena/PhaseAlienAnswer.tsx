@@ -10,13 +10,13 @@ import { NOOP } from 'utils/constants';
 import { StepSwitcher } from 'components/steps';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
-import { StepAlienAnswers } from './StepAlienAnswers';
 import { HieroglyphIcon } from 'components/icons/HieroglyphIcon';
+import { StepAlienAnswers } from './StepAlienAnswers';
 
 export function PhaseAlienAnswer({ players, state, info }: PhaseProps) {
   const user = useUser(players, state);
   const [alien, isUserAlien] = useWhichPlayerIsThe('alienId', state, players);
-  const [currentHuman, isUserTheCurrentHuman] = useWhichPlayerIsThe('humanId', state, players);
+  const [currentHuman] = useWhichPlayerIsThe('humanId', state, players);
 
   const { step } = useStep();
 
@@ -50,7 +50,6 @@ export function PhaseAlienAnswer({ players, state, info }: PhaseProps) {
           alien={alien}
           isUserAlien={isUserAlien}
           currentHuman={currentHuman}
-          isUserTheCurrentHuman={isUserTheCurrentHuman}
           items={state.items}
           signs={state.signs}
           announcement={announcement}
@@ -59,6 +58,7 @@ export function PhaseAlienAnswer({ players, state, info }: PhaseProps) {
           alienResponse={state.alienResponse}
           requestHistory={state.requestHistory}
           inquiryHistory={state.inquiryHistory}
+          isAlienBot={Boolean(state.alienBot)}
         />
 
         {/* Step 1 */}

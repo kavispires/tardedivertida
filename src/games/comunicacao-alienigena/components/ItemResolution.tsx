@@ -1,9 +1,11 @@
+// Utils
+import { ITEM_TYPES } from '../utils/constants';
+// Components
 import { BoxCheckMarkIcon } from 'components/icons/BoxCheckMarkIcon';
 import { BoxOneIcon } from 'components/icons/BoxOneIcon';
 import { BoxXIcon } from 'components/icons/BoxXIcon';
 import { IconAvatar } from 'components/icons/IconAvatar';
 import { Translate } from 'components/language';
-import { ITEM_TYPES } from '../utils/constants';
 
 type ItemResolutionProps = {
   itemId: CardId;

@@ -1,6 +1,8 @@
-import { CheckCircleFilled, CloseCircleFilled } from '@ant-design/icons';
-import { Space } from 'antd';
 import clsx from 'clsx';
+// Ant Design Resources
+import { Space } from 'antd';
+import { CheckCircleFilled, CloseCircleFilled } from '@ant-design/icons';
+// Components
 import { ItemCard } from 'components/cards/ItemCard';
 import { Translate } from 'components/language';
 

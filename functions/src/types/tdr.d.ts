@@ -115,3 +115,9 @@ type MovieReviewCard = {
   type: 'good' | 'bad';
   highlights?: string[];
 };
+
+type AlienItem = {
+  id: string;
+  name: string;
+  attributes: Record<string, -5 | -3 | -1 | 0 | 1 | 3 | 5>;
+};

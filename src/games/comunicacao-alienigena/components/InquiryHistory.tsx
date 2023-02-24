@@ -1,17 +1,19 @@
+// Ant Design Resources
 import { Space, Table } from 'antd';
+import type { ColumnsType } from 'antd/es/table';
+// Components
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
-import type { ColumnsType } from 'antd/es/table';
-import { CanvasSVG } from 'components/canvas';
-import { ALIEN_CANVAS } from '../utils/constants';
 import { ItemCard } from 'components/cards/ItemCard';
+import { AlienViewBoard } from './AlienViewBoard';
 
 type InquiryHistoryProps = {
   inquiryHistory: InquiryHistoryEntry[];
   players: GamePlayers;
+  isAlienBot?: boolean;
 };
 
-export function InquiryHistory({ inquiryHistory, players }: InquiryHistoryProps) {
+export function InquiryHistory({ inquiryHistory, players, isAlienBot }: InquiryHistoryProps) {
   if (inquiryHistory.length < 1) return <></>;
 
   const columns: ColumnsType<InquiryHistoryEntry> = [
@@ -31,16 +33,7 @@ export function InquiryHistory({ inquiryHistory, players }: InquiryHistoryProps)
       key: 'answer',
       title: <Translate pt="Resposta" en="Answer" />,
       dataIndex: 'answer',
-      render: (answer) => (
-        <CanvasSVG
-          drawing={answer}
-          width={ALIEN_CANVAS.WIDTH / 2}
-          height={ALIEN_CANVAS.HEIGHT / 2}
-          strokeWidth="large"
-          className="alien-canvas alien-canvas--small"
-          viewBox={`0 0 ${ALIEN_CANVAS.WIDTH} ${ALIEN_CANVAS.HEIGHT}`}
-        />
-      ),
+      render: (answer) => <AlienViewBoard request={answer} isAlienBot={isAlienBot} size="small" />,
     },
   ];
 
@@ -55,7 +48,12 @@ function Objects({ objectIds }: Pick<InquiryHistoryEntry, 'objectIds'>) {
   return (
     <Space>
       {objectIds.map((objectId) => (
-        <ItemCard id={`${objectId}`} className={'objects-grid__item-offered'} width={50} />
+        <ItemCard
+          key={`${objectIds.join('-')}-${objectId}`}
+          id={`${objectId}`}
+          className={'objects-grid__item-offered'}
+          width={50}
+        />
       ))}
     </Space>
   );

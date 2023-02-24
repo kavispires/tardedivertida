@@ -1,10 +1,11 @@
+import { useState } from 'react';
+// Ant Design Resources
 import { Button, Space } from 'antd';
+// Components
 import { Translate } from 'components/language';
 import { TimeHighlight } from 'components/metrics/TimeHighlight';
 import { Instruction } from 'components/text';
-import { useState } from 'react';
 import { CurseItemHighlight, ItemsHighlight } from './Highlights';
-
 import { HumanSignBoard } from './HumanSignBoard';
 import { SelectableObjectsGrid } from './SelectableObjectsGrid';
 
@@ -18,8 +19,6 @@ type HumanOfferingProps = {
 
 export function HumanOffering({ signs, items, submitOffer, user, status }: HumanOfferingProps) {
   const [offeringId, setSelected] = useState('');
-
-  console.log(offeringId);
 
   return (
     <Space className="space-container" direction="vertical">

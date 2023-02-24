@@ -1,11 +1,12 @@
+// Ant Design Resources
+import { Space } from 'antd';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
+import { useGlobalState } from 'hooks/useGlobalState';
 // Components
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
-import { Space } from 'antd';
-import { useGlobalState } from 'hooks/useGlobalState';
 import { TransparentButton } from 'components/buttons';
 import { AvatarCard } from 'components/avatars';
 import { CurseItemHighlight, ItemsHighlight } from './components/Highlights';

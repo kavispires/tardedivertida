@@ -64,7 +64,7 @@ const options: Record<string, SpriteOption> = {
     key: 'items',
     label: 'Items',
     prefix: 'item',
-    quantity: 170,
+    quantity: 230,
     startAt: 1,
   },
 };
@@ -101,7 +101,7 @@ function SpritesPage() {
         {active.key === 'avatars' && <AvatarsContent />}
         {active.key === 'glyphs' && <GlyphsContent />}
         {active.key === 'items' && <ItemsContent />}
-        {active.key !== 'avatars' && active.key !== 'glyphs' && <Content type={active.key} />}
+        {!['avatars', 'glyphs', 'items'].includes(active.key) && <Content type={active.key} />}
       </Layout.Content>
     </Layout>
   );
