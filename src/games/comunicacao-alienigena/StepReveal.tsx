@@ -1,15 +1,13 @@
-// Hooks
-
+// Ant Design Resources
+import { Space } from 'antd';
 // Components
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
-import { Space } from 'antd';
 import { AvatarName } from 'components/avatars';
 import { ObjectsGrid } from './components/ObjectsGrid';
 import { SignsKeyCard } from './components/SignsKeyCard';
 import { HumanSignBoard } from './components/HumanSignBoard';
-
 import { AlienContent, HumanContent } from './components/Content';
 import { ItemResolution } from './components/ItemResolution';
 import { AdminNextPhaseButton } from 'components/admin';
@@ -21,6 +19,7 @@ import { MetricHighlight } from 'components/metrics/MetricHighlight';
 import { ClockIcon } from 'components/icons/ClockIcon';
 import { AlienViewBoard } from './components/AlienViewBoard';
 import { ItemCard } from 'components/cards/ItemCard';
+import { BotPopupRule } from './components/BotPopupRules';
 
 type StepRevealProps = {
   players: GamePlayers;
@@ -35,6 +34,7 @@ type StepRevealProps = {
   wasCurseSelected: boolean;
   curses: Record<CardId, PlayerId[]>;
   round: GameRound;
+  isAlienBot: boolean;
 } & AnnouncementProps;
 
 export function StepReveal({
@@ -48,6 +48,7 @@ export function StepReveal({
   round,
   requestHistory,
   inquiryHistory,
+  isAlienBot,
 }: StepRevealProps) {
   const latestRequest = requestHistory[0];
 
@@ -58,6 +59,8 @@ export function StepReveal({
       </Title>
 
       <PopoverRule content={<Status status={status} />} />
+
+      {isAlienBot && <BotPopupRule />}
 
       <Instruction contained>
         <Translate
@@ -81,7 +84,7 @@ export function StepReveal({
         />
       </Instruction>
 
-      <AlienViewBoard request={latestRequest.request} />
+      <AlienViewBoard request={latestRequest.request} isAlienBot={isAlienBot} />
 
       <Instruction contained>
         <Space className="space-container" wrap>
@@ -116,9 +119,10 @@ export function StepReveal({
         requestHistory={requestHistory}
         players={players}
         items={items}
+        isAlienBot={isAlienBot}
       />
 
-      <AdminNextPhaseButton round={round} />
+      <AdminNextPhaseButton round={round} autoTriggerTime={30} />
     </Step>
   );
 }

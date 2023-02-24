@@ -25,6 +25,9 @@ const DevResources = lazy(() => import('pages/Dev/Resources' /* webpackChunkName
 const DevPlayground = lazy(
   () => import('pages/Dev/Playground' /* webpackChunkName: "page-dev-playground" */)
 );
+const DevClassifier = lazy(
+  () => import('pages/Dev/Classifier/ItemClassifier' /* webpackChunkName: "page-dev-classifier" */)
+);
 
 const LazyHub = () => (
   <Suspense fallback={<LoadingPage message={''} />}>
@@ -64,6 +67,11 @@ const LazyDevResources = () => (
 const LazyDevPlayground = () => (
   <Suspense fallback={<LoadingPage message={''} />}>
     <DevPlayground />
+  </Suspense>
+);
+const LazyDevClassifier = () => (
+  <Suspense fallback={<LoadingPage message={''} />}>
+    <DevClassifier />
   </Suspense>
 );
 
@@ -136,6 +144,11 @@ function App() {
               <Route
                 path="/dev/playground"
                 element={isAuthenticated ? <LazyDevPlayground /> : <Navigate to="/login" />}
+              />
+
+              <Route
+                path="/dev/classifier"
+                element={isAuthenticated ? <LazyDevClassifier /> : <Navigate to="/login" />}
               />
 
               <Route path="/showcase" element={<LazyShowcase />} />

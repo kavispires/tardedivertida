@@ -45,6 +45,7 @@ interface Offer {
 interface RequestHistoryEntry {
   request: string;
   offers: Offer[];
+  intention?: CardId | null;
 }
 
 interface OfferingsStatus {

@@ -4,6 +4,7 @@ import { DATA_DOCUMENTS, GAME_CODES, GLOBAL_USED_DOCUMENTS, USED_GAME_IDS } from
 // Utils
 import * as delegatorUtils from '../utils/delegators';
 import utils from '../utils';
+import aliemItemsMock from '../utils/mocks/alien-items.json';
 
 /**
  * Creates a new game instance
@@ -303,9 +304,12 @@ const playAgain = async (gameId: GameId, gameName: GameName) => {
  */
 const _feedEmulatorDB = async () => {
   const sample = { 'a-a-a': true };
+  console.log('\x1b[33m%s\x1b[0m', 'Populating Emulator DB');
 
   // DATA
   await utils.firebase.getDataRef().doc(DATA_DOCUMENTS.CONTENDERS_GLYPHS).set(sample);
+
+  await utils.firebase.getDataRef().doc(DATA_DOCUMENTS.ALIEN_ITEMS).set(aliemItemsMock);
 
   // GLOBAL
   await utils.firebase.getGlobalRef().doc(USED_GAME_IDS).set(sample);

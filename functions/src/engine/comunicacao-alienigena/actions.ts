@@ -8,13 +8,12 @@ import { getNextPhase } from '.';
  *
  * @function
  * @async
- * @param {GameName} gameName - The name of the game.
- * @param {GameId} gameId - The ID of the game.
- * @param {PlayerId} playerId - The ID of the player who is submitting the alien ID.
- * @param {PlayerId} alienId - The ID of the selected alien player.
- * @returns {Promise} - A promise that resolves after the update is complete.
+ * @param gameName - The name of the game.
+ * @param gameId - The ID of the game.
+ * @param playerId - The ID of the player who is submitting the alien ID.
+ * @param alienId - The ID of the selected alien player.
+ * @returns - A promise that resolves after the update is complete.
  */
-
 export const handleSubmitAlien = async (
   gameName: GameName,
   gameId: GameId,

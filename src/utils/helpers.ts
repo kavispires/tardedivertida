@@ -366,3 +366,12 @@ export const getMeanDuration = (
  */
 export const makeArray = (length = 1, startAt = 0): number[] =>
   new Array(length).fill(0).map((e, i) => e + i + startAt);
+
+/**
+ * Remove duplicated elements from a list
+ * @param arr
+ * @returns
+ */
+export const removeDuplicates = <T>(arr: T[]): T[] => {
+  return Array.from(new Set(arr));
+};

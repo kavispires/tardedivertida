@@ -1,19 +1,43 @@
 import { COMUNICACAO_ALIENIGENA_ACTIONS, ITEM_TYPES } from './constants';
 
+export interface ComunicacaoAlienigenaOptions {
+  botAlien?: boolean;
+}
+
+export type ItemId = string;
+export type SignId = string;
+export type SignKey = string;
+
+export interface ResourceData {
+  signs: Sign[];
+  items: Item[];
+  botAlienItemKnowledge: Record<string, AlienItem>;
+}
+
 export interface Item {
-  id: string;
+  id: ItemId;
   type: keyof typeof ITEM_TYPES;
   offerings: PlayerId[];
   offered?: boolean;
 }
 
 export interface Offer {
-  objectId: CardId;
+  objectId: ItemId;
   playerId: PlayerId;
 }
 
 export interface Sign {
-  signId: number;
+  /**
+   * Image id
+   */
+  signId: SignId;
+  /**
+   * Attribute key
+   */
+  key: SignKey;
+  /**
+   * Attribute name
+   */
   attribute: DualLanguageValue;
 }
 
@@ -25,6 +49,7 @@ export interface InquiryHistoryEntry {
 export interface RequestHistoryEntry {
   request: string;
   offers: Offer[];
+  intention?: ItemId;
 }
 
 export interface OfferingsStatus {
@@ -38,6 +63,8 @@ export interface OfferingsStatus {
 
 export interface ComunicacaoAlienigenaStore extends DefaultStore {
   [key: string]: any;
+  botAlienItemKnowledge: Record<ItemId, AlienItem>;
+  botAlienSignKnowledge: Record<SignKey, ItemId[]>;
 }
 
 export interface ComunicacaoAlienigenaState extends DefaultState {

@@ -9,7 +9,9 @@ import {
 // Types
 import type {
   ComunicacaoAlienigenaInitialState,
+  ComunicacaoAlienigenaOptions,
   ComunicacaoAlienigenaState,
+  ComunicacaoAlienigenaStore,
   ComunicacaoAlienigenaSubmitAction,
 } from './types';
 // Utils
@@ -33,6 +35,7 @@ import {
   prepareOfferingsPhase,
   prepareRevealPhase,
 } from './setup';
+import { getResourceData } from './data';
 
 /**
  * Get Initial Game State
@@ -44,7 +47,8 @@ import {
 export const getInitialState = (
   gameId: GameId,
   uid: string,
-  language: Language
+  language: Language,
+  options: ComunicacaoAlienigenaOptions
 ): ComunicacaoAlienigenaInitialState => {
   return utils.helpers.getDefaultInitialState({
     gameId,
@@ -55,6 +59,7 @@ export const getInitialState = (
     initialPhase: COMUNICACAO_ALIENIGENA_PHASES.LOBBY,
     totalRounds: MAX_ROUNDS,
     store: {},
+    options,
   });
 };
 
@@ -71,7 +76,10 @@ export const getNextPhase = async (gameName: string, gameId: string, players: Pl
   );
 
   // Determine next phase
-  const nextPhase = determineNextPhase(state as ComunicacaoAlienigenaState);
+  const nextPhase = determineNextPhase(
+    state as ComunicacaoAlienigenaState,
+    store as ComunicacaoAlienigenaStore
+  );
 
   // RULES -> SETUP
   if (nextPhase === COMUNICACAO_ALIENIGENA_PHASES.SETUP) {
@@ -79,7 +87,13 @@ export const getNextPhase = async (gameName: string, gameId: string, players: Pl
     await utils.firebase.triggerSetupPhase(sessionRef);
 
     // Request data
-    const newPhase = await prepareSetupPhase(store, state, players);
+    const additionalData = await getResourceData(
+      store.language,
+      Object.keys(players).length,
+      (store.options ?? {}).botAlien
+    );
+
+    const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await utils.firebase.saveGame(sessionRef, newPhase);
     return getNextPhase(gameName, gameId, players);
   }

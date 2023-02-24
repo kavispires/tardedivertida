@@ -197,10 +197,12 @@ export const GLOBAL_USED_DOCUMENTS = {
 
 export const DATA_DOCUMENTS = {
   CONTENDERS_GLYPHS: 'contendersGlyphs',
+  ALIEN_ITEMS: 'alienItems',
 };
 
 export const TDR_RESOURCES = {
   ADJECTIVES: 'adjectives',
+  ALIEN_ITEMS: 'alien-items',
   ARTE_RUIM_CARDS: 'arte-ruim-cards',
   ARTE_RUIM_GROUPS: 'arte-ruim-groups',
   ARTE_RUIM_PAIRS: 'arte-ruim-pairs',

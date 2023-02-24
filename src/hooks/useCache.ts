@@ -26,7 +26,7 @@ export function useCache() {
 
   useEffectOnce(() => {
     if (isEmpty(cache)) {
-      setCache(JSON.parse(getLocalStorage(LS_KEY)) ?? '{}');
+      setCache(JSON.parse(getLocalStorage(LS_KEY) ?? '{}'));
     }
   });
 
