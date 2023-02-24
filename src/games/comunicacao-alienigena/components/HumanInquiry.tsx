@@ -1,7 +1,9 @@
+// Ant Design Resources
 import { Button, Space } from 'antd';
-import { Translate } from 'components/language';
+// Hook
 import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
-
+// Components
+import { Translate } from 'components/language';
 import { HumanSignBoard } from './HumanSignBoard';
 import { SelectableObjectsGrid } from './SelectableObjectsGrid';
 

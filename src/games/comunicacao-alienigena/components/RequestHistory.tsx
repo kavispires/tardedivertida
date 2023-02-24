@@ -1,19 +1,28 @@
+// Ant Design Resources
 import { Space, Table } from 'antd';
+import type { ColumnsType } from 'antd/es/table';
+// Components
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
-import type { ColumnsType } from 'antd/es/table';
-import { CanvasSVG } from 'components/canvas';
-import { ALIEN_CANVAS } from '../utils/constants';
 import { ItemCard } from 'components/cards/ItemCard';
 import { ItemResolution } from './ItemResolution';
+import { AlienViewBoard } from './AlienViewBoard';
 
 type RequestHistoryProps = {
   requestHistory: RequestHistoryEntry[];
   players: GamePlayers;
   items: Item[];
+  isAlienBot: boolean;
+  showIntention?: boolean;
 };
 
-export function RequestHistory({ requestHistory, players, items }: RequestHistoryProps) {
+export function RequestHistory({
+  requestHistory,
+  players,
+  items,
+  isAlienBot,
+  showIntention,
+}: RequestHistoryProps) {
   if (requestHistory.length < 1) return <></>;
 
   const columns: ColumnsType<RequestHistoryEntry> = [
@@ -21,16 +30,7 @@ export function RequestHistory({ requestHistory, players, items }: RequestHistor
       key: 'request',
       title: <Translate pt="Pedido" en="Request" />,
       dataIndex: 'request',
-      render: (answer) => (
-        <CanvasSVG
-          drawing={answer}
-          width={ALIEN_CANVAS.WIDTH / 2}
-          height={ALIEN_CANVAS.HEIGHT / 2}
-          strokeWidth="large"
-          className="alien-canvas alien-canvas--small"
-          viewBox={`0 0 ${ALIEN_CANVAS.WIDTH} ${ALIEN_CANVAS.HEIGHT}`}
-        />
-      ),
+      render: (answer) => <AlienViewBoard request={answer} isAlienBot={isAlienBot} size="small" />,
     },
     {
       key: 'offers',
@@ -39,6 +39,15 @@ export function RequestHistory({ requestHistory, players, items }: RequestHistor
       render: (offers) => <Offerings players={players} offers={offers} items={items} />,
     },
   ];
+
+  if (showIntention) {
+    columns.push({
+      key: 'intention',
+      title: <Translate pt="Intenção" en="Intention" />,
+      dataIndex: 'intention',
+      render: (intention) => (Boolean(intention) ? <ItemCard id={`${intention}`} width={50} /> : <></>),
+    });
+  }
 
   return (
     <Space direction="vertical">

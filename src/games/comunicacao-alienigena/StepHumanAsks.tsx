@@ -1,9 +1,9 @@
-// Hooks
+// Ant Design Resources
+import { Space } from 'antd';
 // Components
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
-import { Space } from 'antd';
 import { AvatarName } from 'components/avatars';
 import { ObjectsGrid } from './components/ObjectsGrid';
 import { SignsKeyCard } from './components/SignsKeyCard';
@@ -14,6 +14,7 @@ import { AlienContent, HumanContent } from './components/Content';
 import { History } from './components/History';
 import { PopoverRule } from 'components/rules';
 import { Status } from './components/Status';
+import { BotPopupRule } from './components/BotPopupRules';
 
 type StepHumanAsksProps = {
   players: GamePlayers;
@@ -28,6 +29,7 @@ type StepHumanAsksProps = {
   status: OfferingsStatus;
   requestHistory: RequestHistoryEntry[];
   inquiryHistory: InquiryHistoryEntry[];
+  isAlienBot: boolean;
 } & AnnouncementProps;
 
 export function StepHumanAsks({
@@ -44,9 +46,10 @@ export function StepHumanAsks({
   requestHistory,
   inquiryHistory,
   status,
+  isAlienBot,
 }: StepHumanAsksProps) {
   return (
-    <Step fullWidth announcement={announcement}>
+    <Step fullWidth announcement={isUserTheCurrentHuman ? announcement : undefined}>
       <Title>
         {isUserTheCurrentHuman ? (
           <Translate pt={<>Pergunte ao Alienígena!</>} en={<>Ask the Alien!</>} />
@@ -54,6 +57,8 @@ export function StepHumanAsks({
           <Translate pt={<>Perguntas ao Alienígena</>} en={<>Asking the Alien</>} />
         )}
       </Title>
+
+      {isAlienBot && <BotPopupRule />}
 
       <PopoverRule content={<Status status={status} />} />
 
@@ -120,6 +125,7 @@ export function StepHumanAsks({
         requestHistory={requestHistory}
         players={players}
         items={items}
+        isAlienBot={isAlienBot}
       />
     </Step>
   );

@@ -1,17 +1,18 @@
+// Ant Design Resources
+import { Button, Space } from 'antd';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
+// Utils
+import { pluralize } from 'utils/helpers';
 // Components
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
-import { Button, Space } from 'antd';
 import { AvatarName } from 'components/avatars';
 import { ObjectsGrid } from './components/ObjectsGrid';
 import { SignsKeyCard } from './components/SignsKeyCard';
 import { HumanSignBoard } from './components/HumanSignBoard';
 import { ViewIf } from 'components/views';
-
-import { pluralize } from 'utils/helpers';
 import { AlienWritingBoard } from './components/AlienWritingBoard';
 import { AlienContent, HumanContent } from './components/Content';
 import { History } from './components/History';
@@ -19,6 +20,7 @@ import { PopoverRule } from 'components/rules';
 import { Status } from './components/Status';
 import { AlienViewBoard } from './components/AlienViewBoard';
 import { ItemCard } from 'components/cards/ItemCard';
+import { BotPopupRule } from './components/BotPopupRules';
 
 type StepAlienAnswersProps = {
   players: GamePlayers;
@@ -28,7 +30,6 @@ type StepAlienAnswersProps = {
   alien: GamePlayer;
   isUserAlien: boolean;
   currentHuman: GamePlayer;
-  isUserTheCurrentHuman: boolean;
   items: Item[];
   signs: Sign[];
   status: OfferingsStatus;
@@ -36,6 +37,7 @@ type StepAlienAnswersProps = {
   alienResponse?: string;
   requestHistory: RequestHistoryEntry[];
   inquiryHistory: InquiryHistoryEntry[];
+  isAlienBot: boolean;
 } & AnnouncementProps;
 
 export function StepAlienAnswers({
@@ -49,12 +51,12 @@ export function StepAlienAnswers({
   alien,
   isUserAlien,
   currentHuman,
-  isUserTheCurrentHuman,
   currentInquiry,
   alienResponse,
   requestHistory,
   inquiryHistory,
   status,
+  isAlienBot,
 }: StepAlienAnswersProps) {
   const { isLoading } = useLoading();
 
@@ -76,6 +78,8 @@ export function StepAlienAnswers({
       </Title>
 
       <PopoverRule content={<Status status={status} />} />
+
+      {isAlienBot && <BotPopupRule />}
 
       <Instruction contained>
         <Translate
@@ -130,7 +134,7 @@ export function StepAlienAnswers({
           <Translate pt={<>O Alienígena respondeu:</>} en={<>The Alien answered:</>} />
         </Instruction>
 
-        <AlienViewBoard request={alienResponse!} />
+        <AlienViewBoard request={alienResponse!} isAlienBot={isAlienBot} />
 
         <HumanContent user={user}>
           <Space className="space-container">
@@ -165,6 +169,7 @@ export function StepAlienAnswers({
         requestHistory={requestHistory}
         players={players}
         items={items}
+        isAlienBot={isAlienBot}
       />
     </Step>
   );
