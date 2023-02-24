@@ -1,5 +1,10 @@
 @use 'styles/sass' as *;
 
+.c-background.c-background {
+  background: linear-gradient(-45deg, #526257, #1c6c44, #d39673, #184728, #b33f62);
+  background-size: 1000% 1000%;
+}
+
 .objects-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -7,7 +12,7 @@
 
   &__item {
     border-radius: get-unit(3);
-    border: get-unit(2) solid white;
+    border: get-unit(2) solid get-color('white');
     position: relative;
 
     &--ITEM {
@@ -56,7 +61,7 @@
 
   &__item-back {
     border-radius: get-unit(2);
-    border: 3px solid white;
+    border: 3px solid get-color('white');
     width: 75px;
     height: 75px;
 
@@ -113,7 +118,7 @@
     display: block;
     width: 1em;
     height: 1em;
-    border: 3px solid white;
+    border: 3px solid get-color('white');
 
     &--ITEM {
       border-color: get-color('green', 6);
@@ -170,5 +175,20 @@
 
   &--small {
     transform: scale(0.75);
+  }
+
+  &--bot {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.bot-sign {
+  margin: get-unit(0 1);
+  border-radius: $border-radius;
+
+  &--negative {
+    border-top: get-unit(2) solid black;
   }
 }

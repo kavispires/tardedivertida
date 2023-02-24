@@ -1,9 +1,13 @@
-import { Popconfirm } from 'antd';
+import { orderBy } from 'lodash';
+// Ant Design Resources
+import { Button, Popconfirm, Space } from 'antd';
+// Hooks
+import { useCache } from 'hooks/useCache';
+import { useLanguage } from 'hooks/useLanguage';
+// Components
 import { TransparentButton } from 'components/buttons';
 import { DrawingCanvas } from 'components/canvas';
-
 import { DualTranslate, Translate } from 'components/language';
-import { useCache } from 'hooks/useCache';
 
 type HumanSignBoardProps = {
   signs: Sign[];
@@ -11,6 +15,7 @@ type HumanSignBoardProps = {
 
 export function HumanSignBoard({ signs }: HumanSignBoardProps) {
   const { cache, setCache } = useCache();
+  const { language } = useLanguage();
 
   const updateCache = (signId: number | string, content: CanvasLine[]) => {
     setCache((prev) => {
@@ -21,10 +26,10 @@ export function HumanSignBoard({ signs }: HumanSignBoardProps) {
   };
 
   return (
-    <div>
+    <Space direction="vertical" className="space-container">
       <div className="signs-grid">
-        {signs.map((sign) => (
-          <div className="signs-grid__item">
+        {orderBy(signs, `attribute.${language}`).map((sign) => (
+          <div className="signs-grid__item" key={sign.signId}>
             <Popconfirm
               title={<Translate pt="Apagar símbolo" en="Erase symbol" />}
               onConfirm={() => updateCache(sign.signId, [])}
@@ -36,13 +41,14 @@ export function HumanSignBoard({ signs }: HumanSignBoardProps) {
               </TransparentButton>
             </Popconfirm>
             <DrawingCanvas
-              lines={cache[sign.signId] ?? []}
+              lines={cache?.[sign.signId] ?? []}
               setLines={(content: any) => updateCache(sign.signId, content)}
               width={60}
               height={60}
               showControls={false}
               strokeWidth="small"
               className="signs-grid__canvas"
+              willReadFrequently
             />
           </div>
         ))}
@@ -59,7 +65,7 @@ export function HumanSignBoard({ signs }: HumanSignBoardProps) {
           </TransparentButton>
         </Popconfirm>
         <DrawingCanvas
-          lines={cache['unknown'] ?? []}
+          lines={cache?.['unknown'] ?? []}
           setLines={(content: any) => updateCache('unknown', content)}
           width={390}
           height={60}
@@ -69,6 +75,17 @@ export function HumanSignBoard({ signs }: HumanSignBoardProps) {
           willReadFrequently
         />
       </div>
-    </div>
+
+      <Popconfirm
+        title={<Translate pt="Apagar todos" en="Erase Clear all" />}
+        onConfirm={() => setCache({})}
+        okText={<Translate pt="Sim" en="Yes" />}
+        cancelText={<Translate pt="Não" en="No" />}
+      >
+        <Button size="small" type="dashed">
+          <Translate pt="Apagar todos" en="Clear all" />
+        </Button>
+      </Popconfirm>
+    </Space>
   );
 }

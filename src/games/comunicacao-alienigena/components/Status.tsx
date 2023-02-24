@@ -1,3 +1,4 @@
+// Components
 import { BoxCheckMarkIcon } from 'components/icons/BoxCheckMarkIcon';
 import { BoxQuestionMarkIcon } from 'components/icons/BoxQuestionMarkIcon';
 import { QuestionIcon } from 'components/icons/QuestionIcon';

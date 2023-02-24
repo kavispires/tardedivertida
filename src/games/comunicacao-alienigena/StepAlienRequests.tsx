@@ -1,15 +1,15 @@
+// Ant Design Resources
+import { Space } from 'antd';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 // Components
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
-import { Space } from 'antd';
 import { AvatarName } from 'components/avatars';
 import { ObjectsGrid } from './components/ObjectsGrid';
 import { SignsKeyCard } from './components/SignsKeyCard';
 import { HumanSignBoard } from './components/HumanSignBoard';
-
 import { AlienWritingBoard } from './components/AlienWritingBoard';
 import { AlienContent, HumanContent } from './components/Content';
 import { History } from './components/History';
@@ -123,6 +123,7 @@ export function StepAlienRequests({
         requestHistory={requestHistory}
         players={players}
         items={items}
+        isAlienBot={false}
       />
     </Step>
   );

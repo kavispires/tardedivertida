@@ -47,6 +47,7 @@ export function PhaseReveal({ players, state, info }: PhaseProps) {
           round={state.round}
           requestHistory={state.requestHistory}
           inquiryHistory={state.inquiryHistory}
+          isAlienBot={Boolean(state.alienBot)}
         />
 
         {/* Step 1 */}

@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "C",
   "gameName": "comunicacao-alienigena",
-  "version": "1.3.0",
+  "version": "2.0.0",
   "title": {
     "pt": "Comunicação Alienígena",
     "en": "Alien Language"
@@ -19,7 +19,7 @@
   },
   "appearance": {
     "clouds": "ufo-cloud",
-    "color": "",
+    "color": "#6CC417",
     "backgroundColor": "rgba(53, 32, 48, 0.75)"
   },
   "rules": {
@@ -28,7 +28,7 @@
   },
   "playerCount": {
     "recommended": [2, 3, 4],
-    "min": 2,
+    "min": 1,
     "max": 6,
     "best": 3
   },
@@ -36,9 +36,10 @@
     "base": 20,
     "perPlayer": 3
   },
-  "tags": ["cooperative", "turn-based", "drawing", "guessing", "brain-burner"],
+  "tags": ["cooperative", "turn-based", "drawing", "guessing", "brain-burner", "bots"],
   "available": {
     "pt": true,
     "en": true
-  }
+  },
+  "options": [{ "key": "botAlien", "label": "Alien Bot", "off": "No", "on": "Yes" }]
 }

@@ -20,7 +20,7 @@ export const COMUNICACAO_ALIENIGENA_ACTIONS = {
 };
 
 export const PLAYER_COUNTS = {
-  MIN: 2,
+  MIN: 1,
   MAX: 4,
 };
 
@@ -28,16 +28,7 @@ export const MAX_ROUNDS = 12;
 
 export const TOTAL_ITEMS = 25;
 
-export const AVAILABLE_ITEMS_COUNT = 100;
-// export const UNAVAILABLE_GLYPHS = [
-//   // 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 68, 69, 70, 71, 72, 73, 83, 86, 87, 89, 90, 91, 92, 93, 97, 98, 99,
-//   // 101, 111, 112, 113, 116, 118, 119, 120, 121, 123, 124, 125, 132, 136, 137, 138, 139, 141, 142, 143, 144,
-//   // 145, 146, 147, 150, 151, 153, 154, 155, 157, 158, 159, 161, 162, 163, 168, 177, 181, 183, 186, 187, 188,
-//   // 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 208, 209, 210,
-//   // 212, 213, 214, 217, 218, 220, 222, 223, 229, 230, 231, 232, 233, 237, 256, 259, 260, 261, 262, 263, 264,
-//   // 265, 268, 269, 270, 272, 306, 339, 340, 341, 342, 343, 347, 349, 354, 355, 356, 357, 358, 360, 361, 362,
-//   // 363, 364, 365,
-// ];
+export const AVAILABLE_ITEMS_COUNT = 230;
 
 export const ITEMS_COUNT = {
   2: {
@@ -61,106 +52,31 @@ export const ITEMS_COUNT = {
 };
 
 export const ATTRIBUTES = [
-  {
-    en: 'Alive',
-    pt: 'Vivo',
-  },
-  {
-    en: 'Big',
-    pt: 'Grande',
-  },
-  {
-    en: 'Food',
-    pt: 'Comida',
-  },
-  {
-    en: 'Danger',
-    pt: 'Perigo',
-  },
-  {
-    en: 'Round',
-    pt: 'Redondo',
-  },
-  {
-    en: 'Solid',
-    pt: 'Sólido',
-  },
-  {
-    en: 'Liquid',
-    pt: 'Líquido',
-  },
-  {
-    en: 'Sharp',
-    pt: 'Afiado',
-  },
-  {
-    en: 'Human',
-    pt: 'Humano',
-  },
-  {
-    en: 'Plant',
-    pt: 'Planta',
-  },
-  {
-    en: 'Tool',
-    pt: 'Ferramenta',
-  },
-  {
-    en: 'Weapon',
-    pt: 'Arma',
-  },
-  {
-    en: 'Metal',
-    pt: 'Metal',
-  },
-  {
-    en: 'Beautiful',
-    pt: 'Bonito',
-  },
-  {
-    en: 'Clothes',
-    pt: 'Vestimenta',
-  },
-  {
-    en: 'Long',
-    pt: 'Longo',
-  },
-  {
-    en: 'Heavy',
-    pt: 'Pesado',
-  },
-  {
-    en: 'Bright',
-    pt: 'Brilho',
-  },
-  {
-    en: 'Flight',
-    pt: 'Vôo',
-  },
-  {
-    en: 'Valuable',
-    pt: 'Valioso',
-  },
-  {
-    en: 'Warm',
-    pt: 'Quente',
-  },
-  {
-    en: 'Defense',
-    pt: 'Defesa',
-  },
-  {
-    en: 'Knowledge',
-    pt: 'Sabedoria',
-  },
-  {
-    en: 'Fast',
-    pt: 'Rápido',
-  },
-  {
-    en: 'Power',
-    pt: 'Força',
-  },
+  { id: 'alive', name: { en: 'Alive', pt: 'Vivo' } },
+  { id: 'beautiful', name: { en: 'Beautiful', pt: 'Bonito' } },
+  { id: 'big', name: { en: 'Big', pt: 'Grande' } },
+  { id: 'bright', name: { en: 'Bright', pt: 'Brilho' } },
+  { id: 'clothes', name: { en: 'Clothes', pt: 'Vestimenta' } },
+  { id: 'danger', name: { en: 'Danger', pt: 'Perigo' } },
+  { id: 'defense', name: { en: 'Defense', pt: 'Defesa' } },
+  { id: 'fast', name: { en: 'Fast', pt: 'Rápido' } },
+  { id: 'flight', name: { en: 'Flight', pt: 'Vôo' } },
+  { id: 'food', name: { en: 'Food', pt: 'Comida' } },
+  { id: 'heavy', name: { en: 'Heavy', pt: 'Pesado' } },
+  { id: 'human', name: { en: 'Human', pt: 'Humano' } },
+  { id: 'knowledge', name: { en: 'Knowledge', pt: 'Conhecimento' } },
+  { id: 'liquid', name: { en: 'Liquid', pt: 'Líquido' } },
+  { id: 'long', name: { en: 'Long', pt: 'Longo' } },
+  { id: 'metal', name: { en: 'Metal', pt: 'Metal' } },
+  { id: 'plant', name: { en: 'Plant', pt: 'Planta' } },
+  { id: 'power', name: { en: 'Power', pt: 'Força' } },
+  { id: 'round', name: { en: 'Round', pt: 'Redondo' } },
+  { id: 'sharp', name: { en: 'Sharp', pt: 'Afiado' } },
+  { id: 'solid', name: { en: 'Solid', pt: 'Sólido' } },
+  { id: 'tool', name: { en: 'Tool', pt: 'Ferramenta' } },
+  { id: 'valuable', name: { en: 'Valuable', pt: 'Valioso' } },
+  { id: 'warm', name: { en: 'Warm', pt: 'Quente' } },
+  { id: 'weapon', name: { en: 'Weapon', pt: 'Arma' } },
 ];
 
 export const ITEM_TYPES = {

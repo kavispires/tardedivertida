@@ -4,14 +4,12 @@ import { useStep } from 'hooks/useStep';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 import { NOOP } from 'utils/constants';
+import { useOnSubmitAlienAPIRequest } from './utils/api-requests';
 // Components
 import { StepSwitcher } from 'components/steps';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
-import { useOnSubmitAlienAPIRequest } from './utils/api-requests';
 import { StepSelectAlien } from './StepSelectAlien';
-import { useCache } from 'hooks/useCache';
-import { useEffectOnce } from 'react-use';
 import { UfoIcon } from 'components/icons/UfoIcon';
 
 export function PhaseAlienSelection({ players, state, info }: PhaseProps) {
@@ -19,11 +17,6 @@ export function PhaseAlienSelection({ players, state, info }: PhaseProps) {
   const { step, setStep } = useStep();
 
   const onSubmitAlien = useOnSubmitAlienAPIRequest(setStep);
-  const { resetCache } = useCache();
-
-  useEffectOnce(() => {
-    resetCache();
-  });
 
   const announcement = (
     <PhaseAnnouncement

@@ -48,6 +48,7 @@ export function PhaseOfferings({ players, state, info }: PhaseProps) {
           onSubmitOffering={onSubmitOffering}
           requestHistory={state.requestHistory}
           inquiryHistory={state.inquiryHistory}
+          isAlienBot={Boolean(state.alienBot)}
         />
 
         {/* Step 1 */}

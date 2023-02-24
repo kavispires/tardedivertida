@@ -1,10 +1,15 @@
-import { CheckCircleFilled } from '@ant-design/icons';
-import { Popconfirm } from 'antd';
 import clsx from 'clsx';
+import { orderBy } from 'lodash';
+// Ant Design Resources
+import { Popconfirm } from 'antd';
+import { CheckCircleFilled } from '@ant-design/icons';
+// Hooks
+import { useCache } from 'hooks/useCache';
+import { useLanguage } from 'hooks/useLanguage';
+// Components
 import { TransparentButton } from 'components/buttons';
 import { SignCard } from 'components/cards/SignCard';
 import { DualTranslate, Translate } from 'components/language';
-import { useCache } from 'hooks/useCache';
 
 type SignsKeyCardProps = {
   signs: Sign[];
@@ -12,6 +17,7 @@ type SignsKeyCardProps = {
 
 export function SignsKeyCard({ signs }: SignsKeyCardProps) {
   const { cache, setCache } = useCache();
+  const { language } = useLanguage();
 
   const updateCache = (signId: number | string, value: boolean) => {
     setCache((prev) => {
@@ -23,7 +29,7 @@ export function SignsKeyCard({ signs }: SignsKeyCardProps) {
 
   return (
     <div className="signs-grid">
-      {signs.map((sign) => (
+      {orderBy(signs, `attribute.${language}`).map((sign) => (
         <div className={clsx('signs-grid__item', Boolean(cache[sign.signId]) && 'signs-grid__item--used')}>
           <Popconfirm
             title={<Translate pt="Usado" en="Used" />}
