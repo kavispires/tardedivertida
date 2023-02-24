@@ -1,12 +1,9 @@
-import { doc, getDocs, setDoc } from 'firebase/firestore';
+import { useState } from 'react';
+import { doc, getDocs, setDoc, collection } from 'firebase/firestore';
 // Ant Design Resources
 import { Button, Input, Layout, notification, Space, Spin } from 'antd';
-// Components
-
-import { collection } from 'firebase/firestore';
 // Services
 import { firestore } from 'services/firebase';
-import { useState } from 'react';
 // import { useDocumentDataOnce } from 'react-firebase-hooks/firestore';
 import { ALL_USED_IDS, GAME_COLLECTION, LETTERS_EN, LETTERS_PT } from './restructure';
 import { LETTERS } from 'utils/constants';
