@@ -1,9 +1,10 @@
 import clsx from 'clsx';
 // Ant Design Resources
 import { Space, Typography } from 'antd';
+// Icons
+import { AnimatedLoaderIcon } from 'icons/AnimatedLoaderIcon';
 // Components
-import { AnimatedLoaderIcon } from 'components/icons/AnimatedLoaderIcon';
-import { IconAvatar } from 'components/icons/IconAvatar';
+import { IconAvatar } from 'components/avatars';
 
 type LoadingProps = {
   message?: string;

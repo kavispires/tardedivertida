@@ -10,12 +10,12 @@ import { mockSelection } from '../utils/mock';
 import { Translate } from 'components/language';
 import { Instruction, TextHighlight } from 'components/text';
 import { MinigameTitle } from './MinigameTitle';
-import { IconAvatar } from 'components/icons/IconAvatar';
+import { IconAvatar } from 'components/avatars/IconAvatar';
 import { TransparentButton } from 'components/buttons';
-import { TreeOneIcon } from 'components/icons/TreeOneIcon';
-import { TreeTwoIcon } from 'components/icons/TreeTwoIcon';
-import { TreeThreeIcon } from 'components/icons/TreeThreeIcon';
-import { MapIcon } from 'components/icons/MapIcon';
+import { TreeOneIcon } from 'icons/TreeOneIcon';
+import { TreeTwoIcon } from 'icons/TreeTwoIcon';
+import { TreeThreeIcon } from 'icons/TreeThreeIcon';
+import { MapIcon } from 'icons/MapIcon';
 import { RightSquareOutlined } from '@ant-design/icons';
 
 export const TaskCaminhosMagicos = ({ task, round, onSubmitTask, user }: TaskProps) => {

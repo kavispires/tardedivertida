@@ -4,15 +4,16 @@ import { useStep } from 'hooks/useStep';
 import { useOnSubmitVotingAPIRequest } from './utils/api-requests';
 // Utils
 import { PHASES } from 'utils/phases';
+import { NOOP } from 'utils/constants';
+// Icons
+import { EvaluateIcon } from 'icons/EvaluateIcon';
 // Components
 import { StepSwitcher } from 'components/steps';
 import { StepEvaluation } from './StepEvaluation';
 import { EvaluationRules } from './components/TextBlobs';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { EvaluatedDrawings } from './components/EvaluatedDrawings';
-import { EvaluateIcon } from 'components/icons/EvaluateIcon';
 import { Translate } from 'components/language';
-import { NOOP } from 'utils/constants';
 
 function EvaluationPhase({ players, state, info }: PhaseProps) {
   const { step, setStep } = useStep(0);

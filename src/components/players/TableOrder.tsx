@@ -1,13 +1,15 @@
 import { Fragment, ReactNode, useMemo } from 'react';
 import clsx from 'clsx';
+// Ant Design Resources
+import { ForwardFilled } from '@ant-design/icons';
 // Helpers
 import { getAvatarColorById } from 'utils/helpers';
 import { reorder } from './reorder';
+// Icons
+import { RotationIcon } from 'icons/RotationIcon';
 // Components
 import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
-import { RotationIcon } from 'components/icons/RotationIcon';
-import { ForwardFilled } from '@ant-design/icons';
 
 type TableOrderProps = {
   /**

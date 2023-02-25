@@ -4,6 +4,8 @@ import { useStep } from 'hooks/useStep';
 import { useOnSubmitDreamAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+// Icons
+import { DreamIcon } from 'icons/DreamIcon';
 // Components
 import { StepSwitcher } from 'components/steps';
 import { RoundAnnouncement } from 'components/round';
@@ -13,7 +15,6 @@ import { Translate } from 'components/language';
 import { StepTellDream } from './StepTellDream';
 import { DreamTellingRules } from './components/RulesBlobs';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { DreamIcon } from 'components/icons/DreamIcon';
 
 function PhaseDreamTelling({ state, players, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);

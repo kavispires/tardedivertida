@@ -11,10 +11,10 @@ import { Card } from 'components/cards';
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
 import { MinigameTitle } from './MinigameTitle';
-import { SkiingIcon } from 'components/icons/SkiingIcon';
-import { IconAvatar } from 'components/icons/IconAvatar';
+import { SkiingIcon } from 'icons/SkiingIcon';
+import { IconAvatar } from 'components/avatars/IconAvatar';
 import { TransparentButton } from 'components/buttons';
-import { SnowHillIcon } from 'components/icons/SnowHillIcon';
+import { SnowHillIcon } from 'icons/SnowHillIcon';
 
 export const TaskDilemaDosEsquiadores = ({ task, round, onSubmitTask, user }: TaskProps) => {
   const { translate } = useLanguage();

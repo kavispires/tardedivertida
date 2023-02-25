@@ -5,12 +5,13 @@ import { useUser } from 'hooks/useUser';
 import { useOnSubmitVotesAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+// Icons
+import { BoxingGlovesIcon } from 'icons/BoxingGlovesIcon';
 // Components
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
-import { BoxingGlovesIcon } from 'components/icons/BoxingGlovesIcon';
 import { StepBattle } from './StepBattle';
 
 function PhaseBattle({ state, players, info }: PhaseProps) {

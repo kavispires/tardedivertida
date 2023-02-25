@@ -1,9 +1,10 @@
 import clsx from 'clsx';
 import { ReactNode } from 'react';
+// Icons
+import { GuessIcon } from 'icons/GuessIcon';
 // Components
 import { Leaf } from './Leaf';
-import { GuessIcon } from 'components/icons/GuessIcon';
-import { IconAvatar } from 'components/icons/IconAvatar';
+import { IconAvatar } from 'components/avatars';
 
 type LeafSlotProps = {
   leaf?: Leaf;

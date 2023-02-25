@@ -1,11 +1,12 @@
 import { ReactNode } from 'react';
 // Hooks
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
+// Icons
+import { WaitingRoomIcon } from 'icons/WaitingRoomIcon';
 // Components
 import { Translate } from 'components/language';
 import { ReadyPlayersBar } from 'components/players';
 import { Instruction, Title } from 'components/text';
-import { WaitingRoomIcon } from 'components/icons/WaitingRoomIcon';
 // Sass
 import './WaitingRoom.scss';
 

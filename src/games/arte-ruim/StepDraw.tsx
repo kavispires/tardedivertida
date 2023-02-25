@@ -1,16 +1,18 @@
 import { useEffect, useState } from 'react';
-// Utils
+// Hooks
 import { useCountdown } from 'hooks/useCountdown';
 import { useDevFeatures } from 'hooks/useDevFeatures';
 import { useLanguage } from 'hooks/useLanguage';
+import { useMock } from 'hooks/useMock';
+// Utils
+import { mockDrawing } from 'mock/drawing';
+// Icons
+import { PanicIcon } from 'icons/PanicIcon';
 // Components
 import { Step } from 'components/steps';
 import { Card } from 'components/cards';
 import { DrawingCanvas } from 'components/canvas';
-import { PanicIcon } from 'components/icons/PanicIcon';
 import { ArteRuimTimerSound } from 'components/audio/ArteRuimTimerSound';
-import { useMock } from 'hooks/useMock';
-import { mockDrawing } from 'mock/drawing';
 import { DevButton } from 'components/debug';
 
 type StepDrawProps = {

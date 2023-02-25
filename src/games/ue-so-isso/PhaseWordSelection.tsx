@@ -4,6 +4,8 @@ import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+// Icons
+import { OpinionsIcon } from 'icons/OpinionsIcon';
 // Components
 import { StepWordSelection } from './StepWordSelection';
 import { GameProgressBar } from './components/GameProgressBar';
@@ -16,7 +18,6 @@ import { AvatarName } from 'components/avatars';
 import { StepSwitcher } from 'components/steps';
 import { RoundAnnouncement } from 'components/round';
 import { ViewOr } from 'components/views';
-import { OpinionsIcon } from 'components/icons/OpinionsIcon';
 
 type RoundAnnouncementTextProps = {
   guesser: GamePlayer;

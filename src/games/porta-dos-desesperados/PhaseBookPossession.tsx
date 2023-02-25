@@ -6,6 +6,8 @@ import { useUser } from 'hooks/useUser';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 import { shouldAnnounceTrap } from './utils/helpers';
+// Icons
+import { MagicBookIcon } from 'icons/MagicBookIcon';
 // Components
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
@@ -16,7 +18,6 @@ import { AvatarName } from 'components/avatars';
 import { ViewOr } from 'components/views';
 import { TrapAnnouncement } from './components/TrapAnnouncement';
 import { RoundOneRule, RoundRule } from './components/RulesBlobs';
-import { MagicBookIcon } from 'components/icons/MagicBookIcon';
 import { StepSelectPages } from './StepSelectPages';
 import { StepWaitPageSelection } from './StepWaitPageSelection';
 import { BookHighlight } from './components/Highlights';

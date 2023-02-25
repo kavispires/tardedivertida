@@ -6,15 +6,16 @@ import { Button } from 'antd';
 import { useLoading } from 'hooks/useLoading';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
+// Icons
+import { SpeechBubbleThumbsUpIcon } from 'icons/SpeechBubbleThumbsUpIcon';
+import { SpeechBubbleThumbsDownIcon } from 'icons/SpeechBubbleThumbsDownIcon';
 // Components
 import { Topic } from './components/Topic';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { TransparentButton } from 'components/buttons';
-import { IconAvatar } from 'components/icons/IconAvatar';
-import { SpeechBubbleThumbsUpIcon } from 'components/icons/SpeechBubbleThumbsUpIcon';
-import { SpeechBubbleThumbsDownIcon } from 'components/icons/SpeechBubbleThumbsDownIcon';
+import { IconAvatar } from 'components/avatars';
 
 type StepLikingProps = {
   currentTopic: Topic;

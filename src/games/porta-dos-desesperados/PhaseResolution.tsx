@@ -3,11 +3,12 @@ import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+// Icons
+import { MagicBookSpellIcon } from 'icons/MagicBookSpellIcon';
 // Components
 import { StepSwitcher } from 'components/steps';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepResults } from './StepResults';
-import { MagicBookSpellIcon } from 'components/icons/MagicBookSpellIcon';
 import { Translate } from 'components/language';
 
 function PhaseResolution({ players, state, info }: PhaseProps) {

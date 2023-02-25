@@ -1,9 +1,10 @@
 // Utils
 import { achievementsReference } from './utils/achievements';
+// Icons
+import { TrophyIcon } from 'icons/TrophyIcon';
 // Components
 import { GameOverWrapper } from 'components/game-over';
 import { Achievements } from 'components/general/Achievements';
-import { TrophyIcon } from 'components/icons/TrophyIcon';
 import { Translate } from 'components/language';
 import { FinalGallery } from './components/FinalGallery';
 

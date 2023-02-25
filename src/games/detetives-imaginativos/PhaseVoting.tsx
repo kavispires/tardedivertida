@@ -6,13 +6,14 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { useOnSubmitVoteAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+// Icons
+import { VoteIcon } from 'icons/VoteIcon';
 // Components
 import { Translate } from 'components/language';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { StepVoting } from './StepVoting';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { VoteIcon } from 'components/icons/VoteIcon';
 import { PlayersHighlight } from 'components/metrics/PlayersHighlight';
 
 function PhaseVoting({ state, players, info }: PhaseProps) {

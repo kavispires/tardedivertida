@@ -3,13 +3,14 @@ import { useSlideShow } from 'hooks/useSlideShow';
 import { useStep } from 'hooks/useStep';
 // Resources and Utils
 import { PHASES } from 'utils/phases';
+// Icons
+import { PictureIcon } from 'icons/PictureIcon';
 // Components
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { GalleryRules } from './components/TextBlobs';
 import { StepGallery } from './StepGallery';
 import { StepRanking } from './StepRanking';
-import { PictureIcon } from 'components/icons/PictureIcon';
 import { Translate } from 'components/language';
 
 function PhaseGallery({ players, state, info, meta }: PhaseProps) {

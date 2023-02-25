@@ -5,13 +5,14 @@ import { useOnSubmitBadWordsAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 import { WORST_TO_REMOVE } from './utils/constants';
+// Icons
+import { VerifyListIcon } from 'icons/VerifyListIcon';
 // Components
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { RoundAnnouncement } from 'components/round';
 import { Translate } from 'components/language';
-import { VerifyListIcon } from 'components/icons/VerifyListIcon';
 import { StepSelectWords } from './StepSelectWords';
 
 function PhaseWordSelection({ players, state, info }: PhaseProps) {

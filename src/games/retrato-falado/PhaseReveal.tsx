@@ -5,6 +5,8 @@ import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+// Icons
+import { QualitySealIcon } from 'icons/QualitySealIcon';
 // Components
 import { Translate } from 'components/language';
 import { StepSwitcher } from 'components/steps';
@@ -12,7 +14,6 @@ import { Instruction } from 'components/text';
 import { StepResults } from './StepResults';
 import { StepRanking } from './StepRanking';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { QualitySealIcon } from 'components/icons/QualitySealIcon';
 
 function PhaseReveal({ players, state, info }: PhaseProps) {
   const { step, goToNextStep, goToPreviousStep } = useStep(0);

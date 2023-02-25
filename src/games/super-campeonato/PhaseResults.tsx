@@ -4,12 +4,13 @@ import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+// Icons
+import { TournamentIcon } from 'icons/TournamentIcon';
 // Components
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
-import { TournamentIcon } from 'components/icons/TournamentIcon';
 import { StepRanking } from './StepRanking';
 import { StepWinner } from './StepWinner';
 

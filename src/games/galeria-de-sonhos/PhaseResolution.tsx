@@ -3,6 +3,8 @@ import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+// Icons
+import { RankIcon } from 'icons/RankIcon';
 // Components
 import { StepSwitcher } from 'components/steps';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
@@ -10,7 +12,6 @@ import { Translate } from 'components/language';
 import { StepRankingWrapper } from 'components/ranking';
 import { Instruction, RoundsLeftInstruction } from 'components/text';
 import { AdminNextPhaseButton } from 'components/admin';
-import { RankIcon } from 'components/icons/RankIcon';
 
 function PhaseResolution({ players, state, info }: PhaseProps) {
   const user = useUser(players, state);

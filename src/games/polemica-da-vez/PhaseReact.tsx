@@ -5,13 +5,14 @@ import { useOnSubmitReactionAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 import { mockGuess } from './utils/mock';
+// Icons
+import { FeedbackIcon } from 'icons/FeedbackIcon';
 // Components
 import { Translate } from 'components/language';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { StepLiking } from './StepLiking';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { FeedbackIcon } from 'components/icons/FeedbackIcon';
 
 function PhaseReact({ state, players, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);

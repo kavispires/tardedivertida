@@ -3,13 +3,14 @@ import { useStep } from 'hooks/useStep';
 import { useOnSelectWitnessAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+// Icons
+import { CrimeSceneIcon } from 'icons/CrimeSceneIcon';
 // Components
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
 import { StepWitnessSelection } from './StepWitnessSelection';
-import { CrimeSceneIcon } from 'components/icons/CrimeSceneIcon';
 
 function PhaseWitnessSelection({ state, players, info }: PhaseProps) {
   const { step, goToNextStep } = useStep(0);

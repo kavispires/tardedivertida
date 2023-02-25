@@ -3,10 +3,11 @@ import { orderBy } from 'lodash';
 import { Space } from 'antd';
 // Utils
 import { achievementsReference } from './utils/helpers';
+// Icons
+import { TrophyIcon } from 'icons/TrophyIcon';
 // Components
 import { GameOverWrapper } from 'components/game-over';
 import { Achievements } from 'components/general/Achievements';
-import { TrophyIcon } from 'components/icons/TrophyIcon';
 import { FinalCharacter } from './components/FinalCharacter';
 
 function PhaseGameOver({ state, players, info, meta }: PhaseProps) {

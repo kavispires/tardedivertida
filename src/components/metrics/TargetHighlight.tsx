@@ -1,4 +1,4 @@
-import { TargetIcon } from 'components/icons/TargetIcon';
+import { TargetIcon } from 'icons/TargetIcon';
 import { HighlightProps, MetricHighlight } from 'components/metrics/MetricHighlight';
 
 export function TargetHighlight({ children, type, iconSize, className }: HighlightProps) {

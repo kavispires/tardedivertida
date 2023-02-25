@@ -2,19 +2,20 @@
 import { useUser } from 'hooks/useUser';
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
+import { useOnSubmitMoviePosterAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 import { NOOP } from 'utils/constants';
-import { useOnSubmitMoviePosterAPIRequest } from './utils/api-requests';
 import { getAnnouncementKey } from './utils/helpers';
+// Icons
+import { TomatoIcon } from 'icons/TomatoIcon';
+import { ScaredIcon } from 'icons/ScaredIcon';
+import { MovieTheaterIcon } from 'icons/MovieTheaterIcon';
 // Components
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
-import { TomatoIcon } from 'components/icons/TomatoIcon';
-import { ScaredIcon } from 'components/icons/ScaredIcon';
-import { MovieTheaterIcon } from 'components/icons/MovieTheaterIcon';
 import { MovieHighlight } from './components/MovieHighlight';
 import { StepReveal } from './StepReveal';
 

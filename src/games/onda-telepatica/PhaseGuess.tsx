@@ -5,6 +5,8 @@ import { useUser } from 'hooks/useUser';
 import { useOnSubmitGuessAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+// Icons
+import { SoundWaveIcon } from 'icons/SoundWaveIcon';
 // Components
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
@@ -13,7 +15,6 @@ import { Translate } from 'components/language';
 import { ViewOr } from 'components/views';
 import { StepGuess } from './StepGuess';
 import { StepPsychicGuess } from './StepPsychicGuess';
-import { SoundWaveIcon } from 'components/icons/SoundWaveIcon';
 
 function PhaseGuess({ players, state, info }: PhaseProps) {
   const user = useUser(players, state);

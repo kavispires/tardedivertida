@@ -3,7 +3,7 @@ import { Avatar } from 'antd';
 import { RiseOutlined, TwitterOutlined } from '@ant-design/icons';
 // Components
 import clsx from 'clsx';
-import { SpeechBubbleThumbsUpIcon } from 'components/icons/SpeechBubbleThumbsUpIcon';
+import { SpeechBubbleThumbsUpIcon } from 'icons/SpeechBubbleThumbsUpIcon';
 
 type TopicProps = {
   topic: string;

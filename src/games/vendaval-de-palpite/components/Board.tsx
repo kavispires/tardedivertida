@@ -1,8 +1,10 @@
-import { Avatar, Tooltip } from 'antd';
 import clsx from 'clsx';
-import { AvatarName } from 'components/avatars';
-import { IconAvatar } from 'components/icons/IconAvatar';
-import { QuestionIcon } from 'components/icons/QuestionIcon';
+// Ant Design Resources
+import { Avatar, Tooltip } from 'antd';
+// Icons
+import { QuestionIcon } from 'icons/QuestionIcon';
+// Components
+import { AvatarName, IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 
 type BoardProps = {

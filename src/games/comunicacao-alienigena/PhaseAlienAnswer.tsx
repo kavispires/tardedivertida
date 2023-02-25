@@ -6,11 +6,12 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 import { NOOP } from 'utils/constants';
+// Icons
+import { HieroglyphIcon } from 'icons/HieroglyphIcon';
 // Components
 import { StepSwitcher } from 'components/steps';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
-import { HieroglyphIcon } from 'components/icons/HieroglyphIcon';
 import { StepAlienAnswers } from './StepAlienAnswers';
 
 export function PhaseAlienAnswer({ players, state, info }: PhaseProps) {

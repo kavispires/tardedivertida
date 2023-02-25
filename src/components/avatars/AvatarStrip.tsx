@@ -3,12 +3,13 @@ import { ReactNode } from 'react';
 // Hooks
 import { useGlobalState } from 'hooks/useGlobalState';
 import { useLanguage } from 'hooks/useLanguage';
+// Utils
+import { getAvatarColorById } from 'utils/helpers';
 // Components
 import { Avatar } from './Avatar';
-import { getAvatarColorById } from 'utils/helpers';
+import { IconAvatar } from './IconAvatar';
 // Sass
 import './AvatarStrip.scss';
-import { IconAvatar } from 'components/icons/IconAvatar';
 
 type AvatarStripProps = {
   /**

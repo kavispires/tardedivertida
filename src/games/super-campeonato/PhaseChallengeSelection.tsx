@@ -4,6 +4,8 @@ import { useUser } from 'hooks/useUser';
 import { useOnSubmitChallengeAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+// Icons
+import { SelectListIcon } from 'icons/SelectListIcon';
 // Components
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
@@ -11,7 +13,6 @@ import { RoundAnnouncement } from 'components/round';
 import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
 import { StepSelectChallenge } from './StepSelectChallenge';
-import { SelectListIcon } from 'components/icons/SelectListIcon';
 
 function PhaseChallengeSelection({ state, players, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);

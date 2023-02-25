@@ -7,6 +7,8 @@ import { useMock } from 'hooks/useMock';
 import { PHASES } from 'utils/phases';
 import { shouldAnnounceTrap } from './utils/helpers';
 import { mockDoorSelection } from './utils/mock';
+// Icons
+import { MagicDoorIcon } from 'icons/MagicDoorIcon';
 // Components
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
@@ -17,7 +19,6 @@ import { TrapAnnouncement } from './components/TrapAnnouncement';
 import { ViewOr } from 'components/views';
 import { StepSelectDoor } from './StepSelectDoor';
 import { StepWaitDoorSelection } from './StepWaitDoorSelection';
-import { MagicDoorIcon } from 'components/icons/MagicDoorIcon';
 import { Translate } from 'components/language';
 
 function PhaseDoorChoice({ players, state, info, meta }: PhaseProps) {

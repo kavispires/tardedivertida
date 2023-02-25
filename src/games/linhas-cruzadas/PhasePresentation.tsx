@@ -3,6 +3,8 @@ import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+// Icons
+import { PhotoAlbumIcon } from 'icons/PhotoAlbumIcon';
 // Components
 import { TurnOrder } from 'components/players';
 import { Translate } from 'components/language';
@@ -10,7 +12,6 @@ import { Instruction } from 'components/text';
 import { StepSwitcher } from 'components/steps';
 import { StepAlbum } from './StepAlbum';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { PhotoAlbumIcon } from 'components/icons/PhotoAlbumIcon';
 
 function PhasePresentation({ players, state, info }: PhaseProps) {
   const user = useUser(players, state);

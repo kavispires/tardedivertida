@@ -4,13 +4,14 @@ import { useStep } from 'hooks/useStep';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 import { NOOP } from 'utils/constants';
+// Icons
+import { SealIcon } from 'icons/SealIcon';
 // Components
 import { StepSwitcher } from 'components/steps';
 import { StepResolution } from './StepResolution';
 import { StepRanking } from './StepRanking';
 import { ScoringRules } from './components/RulesBlobs';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { SealIcon } from 'components/icons/SealIcon';
 import { Translate } from 'components/language';
 
 function PhaseResolution({ state, players, info }: PhaseProps) {

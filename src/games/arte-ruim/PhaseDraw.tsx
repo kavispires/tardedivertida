@@ -5,6 +5,8 @@ import { useStep } from 'hooks/useStep';
 import { useOnSubmitDrawingAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+// Icons
+import { PaintingIcon } from 'icons/PaintingIcon';
 // Components
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
@@ -12,7 +14,6 @@ import { RoundAnnouncement } from 'components/round';
 import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
 import { StepDraw } from './StepDraw';
-import { PaintingIcon } from 'components/icons/PaintingIcon';
 import { DrawInstruction } from './components/TextBlobs';
 
 function PhaseDraw({ players, state, info }: PhaseProps) {

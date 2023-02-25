@@ -2,10 +2,11 @@ import clsx from 'clsx';
 import { ReactNode, useState } from 'react';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
+// Icons
+import { HandOfCardsIcon } from 'icons/HandOfCardsIcon';
 // Components
 import { Translate } from 'components/language';
-import { IconAvatar } from 'components/icons/IconAvatar';
-import { HandOfCardsIcon } from 'components/icons/HandOfCardsIcon';
+import { IconAvatar } from 'components/avatars';
 
 type FloatingHandProps = {
   /**

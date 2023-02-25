@@ -11,7 +11,7 @@ import { NOOP } from 'utils/constants';
 import { Translate } from 'components/language';
 import { Instruction, Title } from 'components/text';
 import { DrawingCanvas } from 'components/canvas';
-import { PanicIcon } from 'components/icons/PanicIcon';
+import { PanicIcon } from 'icons/PanicIcon';
 import { MonsterCard } from 'components/cards/MonsterCard';
 import { ImageCardPreloadHand } from 'components/cards';
 // Sound

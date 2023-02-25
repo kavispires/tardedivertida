@@ -4,6 +4,8 @@ import { useStep } from 'hooks/useStep';
 import { useOnSubmitGuessAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+// Icons
+import { WriteIdeaIcon } from 'icons/WriteIdeaIcon';
 // Components
 import { TurnOrder } from 'components/players';
 import { Translate } from 'components/language';
@@ -11,7 +13,6 @@ import { Instruction } from 'components/text';
 import { StepSwitcher } from 'components/steps';
 import { StepNameDrawing } from './StepNameDrawing';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { WriteIdeaIcon } from 'components/icons/WriteIdeaIcon';
 
 function PhaseNaming({ players, state, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);

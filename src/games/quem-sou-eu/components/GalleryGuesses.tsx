@@ -4,12 +4,12 @@ import { Avatar as AntAvatar, Space, Typography } from 'antd';
 import { CrownFilled, MessageFilled } from '@ant-design/icons';
 // Utils
 import { getPlayersFromIds } from 'utils/helpers';
+// Icons
+import { GarbageIcon } from 'icons/GarbageIcon';
 // Components
-import { Avatar } from 'components/avatars';
+import { Avatar, IconAvatar } from 'components/avatars';
 import { DualTranslate, Translate } from 'components/language';
 import { StarPoints } from 'components/points';
-import { IconAvatar } from 'components/icons/IconAvatar';
-import { GarbageIcon } from 'components/icons/GarbageIcon';
 
 type GalleryGuessesProps = {
   players: GamePlayers;

@@ -1,8 +1,8 @@
-import { MedalBrushIcon } from 'components/icons/MedalBrushIcon';
-import { MedalLightBulbIcon } from 'components/icons/MedalLightBulbIcon';
-import { MedalPersonIcon } from 'components/icons/MedalPersonIcon';
-import { MedalQuestionMarkIcon } from 'components/icons/MedalQuestionMarkIcon';
-import { MedalRobotIcon } from 'components/icons/MedalRobotIcon';
+import { MedalBrushIcon } from 'icons/MedalBrushIcon';
+import { MedalLightBulbIcon } from 'icons/MedalLightBulbIcon';
+import { MedalPersonIcon } from 'icons/MedalPersonIcon';
+import { MedalQuestionMarkIcon } from 'icons/MedalQuestionMarkIcon';
+import { MedalRobotIcon } from 'icons/MedalRobotIcon';
 
 export const achievementsReference: AchievementReference = {
   BEST_ARTIST: {

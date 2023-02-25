@@ -1,11 +1,11 @@
+// Icons
+import { HouseIcon } from 'icons/HouseIcon';
+import { QuestionIcon } from 'icons/QuestionIcon';
+import { TrickOrTreatIcon } from 'icons/TrickOrTreatIcon';
+import { WalkIcon } from 'icons/WalkIcon';
 // Components
-import { AvatarStrip } from 'components/avatars';
+import { AvatarStrip, IconAvatar } from 'components/avatars';
 import { FloatingHand, ImageCard } from 'components/cards';
-import { HouseIcon } from 'components/icons/HouseIcon';
-import { IconAvatar } from 'components/icons/IconAvatar';
-import { QuestionIcon } from 'components/icons/QuestionIcon';
-import { TrickOrTreatIcon } from 'components/icons/TrickOrTreatIcon';
-import { WalkIcon } from 'components/icons/WalkIcon';
 import { Translate } from 'components/language';
 
 type PlayerStatsProps = {

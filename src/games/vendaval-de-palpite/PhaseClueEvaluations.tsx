@@ -8,6 +8,8 @@ import {
 } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+// Icons
+import { LoupeIcon } from 'icons/LoupeIcon';
 // Components
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
@@ -16,7 +18,6 @@ import { Translate } from 'components/language';
 import { ViewOr } from 'components/views';
 import { StepBossEvaluation } from './StepBossEvaluation';
 import { StepPlayersWaitEvaluation } from './StepPlayersWaitEvaluation';
-import { LoupeIcon } from 'components/icons/LoupeIcon';
 
 function PhaseClueEvaluations({ state, players, info }: PhaseProps) {
   const { step, setStep, goToNextStep } = useStep(0);

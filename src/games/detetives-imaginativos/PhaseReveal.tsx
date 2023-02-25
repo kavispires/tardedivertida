@@ -3,13 +3,14 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { useStep } from 'hooks/useStep';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+// Icons
+import { RankIcon } from 'icons/RankIcon';
 // Components
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { StepReveal } from './StepReveal';
-import { RankIcon } from 'components/icons/RankIcon';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 
 function PhaseReveal({ state, players, info }: PhaseProps) {

@@ -2,6 +2,9 @@
 import { Avatar, Button } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
+// Icons
+import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
+import { SpeechBubbleDeclinedIcon } from 'icons/SpeechBubbleDeclinedIcon';
 // Components
 import { Suspects } from './components/Suspects';
 import { QuestionsHistory } from './components/QuestionsHistory';
@@ -10,8 +13,6 @@ import { Title } from 'components/text';
 import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
 import { Card } from 'components/cards';
-import { SpeechBubbleAcceptedIcon } from 'components/icons/SpeechBubbleAcceptedIcon';
-import { SpeechBubbleDeclinedIcon } from 'components/icons/SpeechBubbleDeclinedIcon';
 
 type StepQuestioningProps = {
   suspects: Suspect[];

@@ -6,13 +6,14 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 import { NOOP } from 'utils/constants';
+// Icons
+import { QuestionIcon } from 'icons/QuestionIcon';
 // Components
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
 import { RoundAnnouncement } from 'components/round';
 import { StepHumanAsks } from './StepHumanAsks';
 import { StepSwitcher } from 'components/steps';
-import { QuestionIcon } from 'components/icons/QuestionIcon';
 
 export function PhaseHumanAsk({ players, state, info }: PhaseProps) {
   const user = useUser(players, state);

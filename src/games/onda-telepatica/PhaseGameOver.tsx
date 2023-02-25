@@ -1,12 +1,13 @@
 import { Space } from 'antd';
 // Utils
 import { achievementsReference } from './utils/achievements';
+// Icons
+import { TrophyIcon } from 'icons/TrophyIcon';
+import { WavelengthDeviceIcon } from 'icons/WavelengthDeviceIcon';
 // Components
 import { GameOverWrapper } from 'components/game-over';
 import { Achievements } from 'components/general/Achievements';
-import { IconAvatar } from 'components/icons/IconAvatar';
-import { TrophyIcon } from 'components/icons/TrophyIcon';
-import { WavelengthDeviceIcon } from 'components/icons/WavelengthDeviceIcon';
+import { IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 
 function PhaseGameOver({ state, players, info }: PhaseProps) {

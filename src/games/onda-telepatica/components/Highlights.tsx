@@ -1,4 +1,6 @@
-import { WavelengthDeviceIcon } from 'components/icons/WavelengthDeviceIcon';
+// Icons
+import { WavelengthDeviceIcon } from 'icons/WavelengthDeviceIcon';
+// Components
 import { HighlightProps, MetricHighlight } from 'components/metrics/MetricHighlight';
 
 export function WavelengthHighlight({ children, type, iconSize, className }: HighlightProps) {

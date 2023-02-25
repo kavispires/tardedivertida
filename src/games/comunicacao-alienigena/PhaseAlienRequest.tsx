@@ -6,12 +6,13 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 import { NOOP } from 'utils/constants';
+// Icons
+import { AlienCommunicationIcon } from 'icons/AlienCommunicationIcon';
 // Components
 import { StepSwitcher } from 'components/steps';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
 import { StepAlienRequests } from './StepAlienRequests';
-import { AlienCommunicationIcon } from 'components/icons/AlienCommunicationIcon';
 
 export function PhaseAlienRequest({ players, state, info }: PhaseProps) {
   const user = useUser(players, state);

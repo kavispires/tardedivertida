@@ -2,16 +2,17 @@
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useOnSubmitGuessAPIRequest } from './utils/api-requests';
+import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+// Icons
+import { CloverIcon } from 'icons/CloverIcon';
 // Components
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
-import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { StepGuessClover } from './StepGuessClover';
-import { CloverIcon } from 'components/icons/CloverIcon';
 import { ViewOr } from 'components/views';
 import { TurnOrder } from 'components/players';
 import { StepWaitClover } from './StepWaitClover';

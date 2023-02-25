@@ -4,6 +4,8 @@ import { useStep } from 'hooks/useStep';
 import { useOnSubmitValidationsAPIRequest, useOnValidateSuggestionAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+// Icons
+import { VerifyListIcon } from 'icons/VerifyListIcon';
 // Components
 import { StepCompareSuggestions } from './StepCompareSuggestions';
 import { ComparisonRules } from './components/RulesBlobs';
@@ -14,7 +16,6 @@ import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
 import { ViewOr } from 'components/views';
 import { WaitingRoom } from 'components/players';
-import { VerifyListIcon } from 'components/icons/VerifyListIcon';
 
 function PhaseCompare({ state, players, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);

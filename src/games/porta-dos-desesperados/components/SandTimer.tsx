@@ -1,5 +1,5 @@
-import { IconAvatar } from 'components/icons/IconAvatar';
-import { MagicHourGlassIcon } from 'components/icons/MagicHourGlassIcon';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { MagicHourGlassIcon } from 'icons/MagicHourGlassIcon';
 import { useCountdown } from 'hooks/useCountdown';
 import { getRandomItem } from 'utils/helpers';
 import { ROUND_DURATION, TIMER_LEAD, TRAPS } from '../utils/constants';

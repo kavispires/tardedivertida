@@ -3,13 +3,14 @@ import { useStep } from 'hooks/useStep';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 import { NOOP } from 'utils/constants';
+// Icons
+import { CustomerReviewIcon } from 'icons/CustomerReviewIcon';
 // Components
 import { Translate } from 'components/language';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { StepResolution } from './StepResolution';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { CustomerReviewIcon } from 'components/icons/CustomerReviewIcon';
 
 function PhaseResolution({ state, players, info }: PhaseProps) {
   const { step } = useStep(0);

@@ -6,13 +6,14 @@ import { useOnPlayCardAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 import { NOOP } from 'utils/constants';
+// Icons
+import { ImageCardsIcon } from 'icons/ImageCardsIcon';
 // Components
 import { Translate } from 'components/language';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { StepPlayCard } from './StepPlayCard';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { ImageCardsIcon } from 'components/icons/ImageCardsIcon';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 
 function PhaseCardPlay({ state, players, info }: PhaseProps) {

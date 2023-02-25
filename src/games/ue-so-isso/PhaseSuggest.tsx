@@ -5,6 +5,8 @@ import { useUser } from 'hooks/useUser';
 import { useOnSubmitSuggestionsAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+// Icons
+import { WritingIcon } from 'icons/WritingIcon';
 // Components
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
@@ -14,7 +16,6 @@ import { StepSuggestion } from './StepSuggestion';
 import { WritingRules } from './components/RulesBlobs';
 import { GuesserWaitingRoom } from './components/GuesserWaitingRoom';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { WritingIcon } from 'components/icons/WritingIcon';
 
 function PhaseSuggest({ state, players, info }: PhaseProps) {
   const user = useUser(players, state);

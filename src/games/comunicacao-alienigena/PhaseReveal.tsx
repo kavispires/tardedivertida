@@ -5,12 +5,13 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 import { NOOP } from 'utils/constants';
+// Icons
+import { MultitaskIcon } from 'icons/MultitaskIcon';
 // Components
 import { StepSwitcher } from 'components/steps';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
 import { StepReveal } from './StepReveal';
-import { MultitaskIcon } from 'components/icons/MultitaskIcon';
 
 export function PhaseReveal({ players, state, info }: PhaseProps) {
   const user = useUser(players, state);

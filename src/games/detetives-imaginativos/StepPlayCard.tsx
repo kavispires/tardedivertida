@@ -5,6 +5,9 @@ import { QuestionCircleFilled } from '@ant-design/icons';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
+// Icons
+import { ImageCardsIcon } from 'icons/ImageCardsIcon';
+import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 // Components
 import { Table } from './components/Table';
 import { messageContent } from 'components/pop-up';
@@ -12,12 +15,9 @@ import { Step } from 'components/steps';
 import { Instruction, TextHighlight, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { ViewIf } from 'components/views';
-import { AvatarName } from 'components/avatars';
+import { AvatarName, IconAvatar } from 'components/avatars';
 import { FloatingHand, ImageCardHand } from 'components/cards';
 import { TurnOrder } from 'components/players';
-import { IconAvatar } from 'components/icons/IconAvatar';
-import { ImageCardsIcon } from 'components/icons/ImageCardsIcon';
-import { AnimatedClockIcon } from 'components/icons/AnimatedClockIcon';
 
 type StepPlayCardProps = {
   isUserTheImpostor: boolean;

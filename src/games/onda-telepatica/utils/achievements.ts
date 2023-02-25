@@ -1,8 +1,8 @@
-import { MedalArrowDownIcon } from 'components/icons/MedalArrowDownIcon';
-import { MedalArrowUpIcon } from 'components/icons/MedalArrowUpIcon';
-import { MedalCloseIcon } from 'components/icons/MedalCloseIcon';
-import { MedalLightBulbIcon } from 'components/icons/MedalLightBulbIcon';
-import { MedalNarrowIcon } from 'components/icons/MedalNarrowIcon';
+import { MedalArrowDownIcon } from 'icons/MedalArrowDownIcon';
+import { MedalArrowUpIcon } from 'icons/MedalArrowUpIcon';
+import { MedalCloseIcon } from 'icons/MedalCloseIcon';
+import { MedalLightBulbIcon } from 'icons/MedalLightBulbIcon';
+import { MedalNarrowIcon } from 'icons/MedalNarrowIcon';
 
 export const achievementsReference: AchievementReference = {
   MOST_ACCURATE: {

@@ -13,6 +13,9 @@ import { PHASES } from 'utils/phases';
 import { TRAPS } from './utils/constants';
 import { shouldAnnounceTrap } from './utils/helpers';
 import { mockPageSelection } from './utils/mock';
+import { getAnimationClass } from 'utils/helpers';
+// Icons
+import { MagicDoorIcon } from 'icons/MagicDoorIcon';
 // Components
 import { FloatingHand, ImageBlurButton, ImageCard, ImageCardHand } from 'components/cards';
 import { Translate } from 'components/language';
@@ -20,9 +23,7 @@ import { Step } from 'components/steps';
 import { Instruction, TextHighlight, Title } from 'components/text';
 import { DoorFrame } from './components/DoorFrame';
 import { TrapPopupRule } from './components/RulesBlobs';
-import { getAnimationClass } from 'utils/helpers';
-import { MagicDoorIcon } from 'components/icons/MagicDoorIcon';
-import { IconAvatar } from 'components/icons/IconAvatar';
+import { IconAvatar } from 'components/avatars';
 
 type StepSelectPagesProps = {
   pages: CardId[];

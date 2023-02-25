@@ -5,6 +5,10 @@ import { useMock } from 'hooks/useMock';
 import { useLoading } from 'hooks/useLoading';
 // Utils
 import { mockPlayerDecision } from './utils/mock';
+// Icons
+import { WalkIcon } from 'icons/WalkIcon';
+import { HouseIcon } from 'icons/HouseIcon';
+import { IconAvatar } from 'components/avatars/IconAvatar';
 // Components
 import { CandyCount } from './components/CandyCount';
 import { PlayerStats } from './components/PlayerStats';
@@ -15,9 +19,6 @@ import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
 import { TransparentButton } from 'components/buttons';
-import { WalkIcon } from 'components/icons/WalkIcon';
-import { HouseIcon } from 'components/icons/HouseIcon';
-import { IconAvatar } from 'components/icons/IconAvatar';
 import { CandyHighlight, TitleIPadHighlight } from './components/Highlights';
 import { getAnimationClass } from 'utils/helpers';
 import { PlayersDecisionState } from './components/PlayersDecisionState';

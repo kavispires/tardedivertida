@@ -3,11 +3,11 @@ import clsx from 'clsx';
 import { useCardWidth } from 'hooks/useCardWidth';
 // Utils
 import { AVATARS } from 'utils/avatars';
+// Icons
+import { AnimatedLoaderIcon } from 'icons/AnimatedLoaderIcon';
 // Components
-import { Avatar } from 'components/avatars';
+import { Avatar, IconAvatar } from 'components/avatars';
 import { ImageBlurButtonContainer, ImageCard } from 'components/cards';
-import { AnimatedLoaderIcon } from 'components/icons/AnimatedLoaderIcon';
-import { IconAvatar } from 'components/icons/IconAvatar';
 
 type TableFocusProps = {
   currentPlayer: GamePlayer;

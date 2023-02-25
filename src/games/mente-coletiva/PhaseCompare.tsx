@@ -5,14 +5,15 @@ import { useUser } from 'hooks/useUser';
 import { useOnAddAnswerAPIRequest, useOnNextAnswersAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+import { NOOP } from 'utils/constants';
+// Icons
+import { DiscussionIcon } from 'icons/DiscussionIcon';
 // Components
 import { StepSwitcher } from 'components/steps';
 import { StepCompare } from './StepCompare';
 import { ComparingRules } from './components/RulesBlobs';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { DiscussionIcon } from 'components/icons/DiscussionIcon';
 import { Translate } from 'components/language';
-import { NOOP } from 'utils/constants';
 
 function PhaseCompare({ state, players, info }: PhaseProps) {
   const { step } = useStep(0);

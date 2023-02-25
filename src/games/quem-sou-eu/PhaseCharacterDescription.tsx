@@ -5,13 +5,14 @@ import { useStep } from 'hooks/useStep';
 import { PHASES } from 'utils/phases';
 import { NOOP } from 'utils/constants';
 import { useOnSubmitGlyphsAPIRequest } from './utils/api-requests';
+// Icons
+import { IconsIcon } from 'icons/IconsIcon';
 // Components
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
 import { StepSelectGlyphs } from './StepSelectGlyphs';
-import { IconsIcon } from 'components/icons/IconsIcon';
 import { RoundAnnouncement } from 'components/round';
 
 export function PhaseCharacterDescription({ players, state, info }: PhaseProps) {

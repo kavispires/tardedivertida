@@ -11,7 +11,7 @@ import { Translate } from 'components/language';
 import { Instruction, Title } from 'components/text';
 import { Card } from 'components/cards';
 import { DrawingCanvas } from 'components/canvas';
-import { PanicIcon } from 'components/icons/PanicIcon';
+import { PanicIcon } from 'icons/PanicIcon';
 import { ArteRuimTimerSound } from 'components/audio/ArteRuimTimerSound';
 import { TimeHighlight } from 'components/metrics/TimeHighlight';
 

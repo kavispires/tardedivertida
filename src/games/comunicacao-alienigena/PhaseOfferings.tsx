@@ -6,12 +6,13 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 import { NOOP } from 'utils/constants';
+// Icons
+import { OfferingIcon } from 'icons/OfferingIcon';
 // Components
 import { StepSwitcher } from 'components/steps';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
 import { StepHumansOffer } from './StepHumansOffer';
-import { OfferingIcon } from 'components/icons/OfferingIcon';
 
 export function PhaseOfferings({ players, state, info }: PhaseProps) {
   const user = useUser(players, state);

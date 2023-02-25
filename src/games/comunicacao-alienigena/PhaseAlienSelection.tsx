@@ -5,12 +5,13 @@ import { useStep } from 'hooks/useStep';
 import { PHASES } from 'utils/phases';
 import { NOOP } from 'utils/constants';
 import { useOnSubmitAlienAPIRequest } from './utils/api-requests';
+// Icons
+import { UfoIcon } from 'icons/UfoIcon';
 // Components
 import { StepSwitcher } from 'components/steps';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
 import { StepSelectAlien } from './StepSelectAlien';
-import { UfoIcon } from 'components/icons/UfoIcon';
 
 export function PhaseAlienSelection({ players, state, info }: PhaseProps) {
   const user = useUser(players, state);

@@ -2,9 +2,10 @@
 import { Space } from 'antd';
 // Hooks
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
+// Icons
+import { TrophyIcon } from 'icons/TrophyIcon';
 // Components
 import { GameOverWrapper } from 'components/game-over';
-import { TrophyIcon } from 'components/icons/TrophyIcon';
 import { ViewIf } from 'components/views';
 import { History } from './components/History';
 import { HumanSignBoard } from './components/HumanSignBoard';

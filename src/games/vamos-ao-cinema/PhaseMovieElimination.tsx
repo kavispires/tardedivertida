@@ -8,12 +8,13 @@ import { useOnSubmitMovieEliminationAPIRequest } from './utils/api-requests';
 import { PHASES } from 'utils/phases';
 import { NOOP } from 'utils/constants';
 import { mockMovieElimination } from './utils/mock';
+// Icons
+import { PopcornIcon } from 'icons/PopcornIcon';
 // Components
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
-import { PopcornIcon } from 'components/icons/PopcornIcon';
 import { AvatarName } from 'components/avatars';
 import { StepEliminateMovie } from './StepEliminateMovie';
 import { MistakeCountHighlight } from './components/MistakeCountHighlight';

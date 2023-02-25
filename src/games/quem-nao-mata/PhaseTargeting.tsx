@@ -3,11 +3,12 @@ import { useUser } from 'hooks/useUser';
 import { useStep } from 'hooks/useStep';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+// Icons
+import { TDIcon } from 'icons/TDIcon';
 // Components
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { TDIcon } from 'components/icons/TDIcon';
 import { Translate } from 'components/language';
 import { StepTargeting } from './StepTargeting';
 import { useOnSubmitMessageAPIRequest, useOnSubmitTargetAPIRequest } from './utils/api-requests';

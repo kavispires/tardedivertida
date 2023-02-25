@@ -2,10 +2,10 @@
 import { PHASES } from 'utils/phases';
 import { TRAPS } from './constants';
 // Components
-import { DreamCatcherIcon } from 'components/icons/DreamCatcherIcon';
-import { MagicCandlesIcon } from 'components/icons/MagicCandlesIcon';
-import { MagicTarotCardsIcon } from 'components/icons/MagicTarotCardsIcon';
-import { MagicVoodooDollIcon } from 'components/icons/MagicVoodooDollIcon';
+import { DreamCatcherIcon } from 'icons/DreamCatcherIcon';
+import { MagicCandlesIcon } from 'icons/MagicCandlesIcon';
+import { MagicTarotCardsIcon } from 'icons/MagicTarotCardsIcon';
+import { MagicVoodooDollIcon } from 'icons/MagicVoodooDollIcon';
 
 export function shouldAnnounceTrap(trap: string, phase: string) {
   if (phase === PHASES.PORTA_DOS_DESESPERADOS.BOOK_POSSESSION) {

@@ -5,6 +5,8 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { useOnSubmitTestimonyAPIRequest } from './utils/api-requests';
 // Utils
 import { PHASES } from 'utils/phases';
+// Icons
+import { EyeIcon } from 'icons/EyeIcon';
 // Components
 import { StepSwitcher } from 'components/steps';
 import { Translate } from 'components/language';
@@ -12,7 +14,6 @@ import { AvatarName } from 'components/avatars';
 import { Instruction } from 'components/text';
 import { StepQuestioning } from './StepQuestioning';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { EyeIcon } from 'components/icons/EyeIcon';
 
 function PhaseQuestioning({ state, players, info }: PhaseProps) {
   const { isLoading } = useLoading();

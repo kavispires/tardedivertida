@@ -4,12 +4,12 @@ import { Button, Popover } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
+// Icons
+import { MedalStarIcon } from 'icons/MedalStarIcon';
 // Components
-import { Avatar } from 'components/avatars';
-import { IconAvatar } from 'components/icons/IconAvatar';
+import { Avatar, IconAvatar } from 'components/avatars';
 import { DualTranslate, Translate } from 'components/language';
 import { Title } from 'components/text';
-import { MedalStarIcon } from 'components/icons/MedalStarIcon';
 
 type AchievementsProps = {
   players: GamePlayers;

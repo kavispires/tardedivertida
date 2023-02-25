@@ -1,9 +1,9 @@
-import { MedalCloseIcon } from 'components/icons/MedalCloseIcon';
-import { MedalLightBulbIcon } from 'components/icons/MedalLightBulbIcon';
-import { MedalRobotIcon } from 'components/icons/MedalRobotIcon';
-import { MedalSufferingIcon } from 'components/icons/MedalSufferingIcon';
-import { MedalThumbsDownIcon } from 'components/icons/MedalThumbsDownIcon';
-import { MedalThumbsUpIcon } from 'components/icons/MedalThumbsUpIcon';
+import { MedalCloseIcon } from 'icons/MedalCloseIcon';
+import { MedalLightBulbIcon } from 'icons/MedalLightBulbIcon';
+import { MedalRobotIcon } from 'icons/MedalRobotIcon';
+import { MedalSufferingIcon } from 'icons/MedalSufferingIcon';
+import { MedalThumbsDownIcon } from 'icons/MedalThumbsDownIcon';
+import { MedalThumbsUpIcon } from 'icons/MedalThumbsUpIcon';
 
 export const achievementsReference: AchievementReference = {
   MOST_DECEIVING: {

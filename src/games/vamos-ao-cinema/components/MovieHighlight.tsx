@@ -1,8 +1,9 @@
 // Utils
 import { getMovieTitle } from '../utils/helpers';
+// Icons
+import { FilmReelIcon } from 'icons/FilmReelIcon';
 // Components
-import { FilmReelIcon } from 'components/icons/FilmReelIcon';
-import { IconAvatar } from 'components/icons/IconAvatar';
+import { IconAvatar } from 'components/avatars';
 import { TextHighlight } from 'components/text';
 
 type MovieHighlightProps = {

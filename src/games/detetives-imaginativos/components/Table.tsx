@@ -3,12 +3,12 @@ import clsx from 'clsx';
 import { useCardWidth } from 'hooks/useCardWidth';
 // Utils
 import { AVATARS } from 'utils/avatars';
-// Components
-import { Avatar } from 'components/avatars';
-import { ImageBlurButtonContainer, ImageCard } from 'components/cards';
 import { getAnimationClass } from 'utils/helpers';
-import { AnimatedLoaderIcon } from 'components/icons/AnimatedLoaderIcon';
-import { IconAvatar } from 'components/icons/IconAvatar';
+// Icons
+import { AnimatedLoaderIcon } from 'icons/AnimatedLoaderIcon';
+// Components
+import { Avatar, IconAvatar } from 'components/avatars';
+import { ImageBlurButtonContainer, ImageCard } from 'components/cards';
 
 type TableProps = {
   table: DetetivesImaginativosCardEntry[];

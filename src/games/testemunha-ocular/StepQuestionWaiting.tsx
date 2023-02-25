@@ -1,8 +1,7 @@
+// Icons
+import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 // Components
-
-import { AvatarName } from 'components/avatars';
-import { AnimatedClockIcon } from 'components/icons/AnimatedClockIcon';
-import { IconAvatar } from 'components/icons/IconAvatar';
+import { AvatarName, IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';

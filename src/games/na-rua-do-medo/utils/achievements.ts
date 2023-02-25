@@ -1,10 +1,10 @@
-import { MedalCandyIcon } from 'components/icons/MedalCandyIcon';
-import { MedalCloverIcon } from 'components/icons/MedalCloverIcon';
-import { MedalDollarSignIcon } from 'components/icons/MedalDollarSignIcon';
-import { MedalHouseIcon } from 'components/icons/MedalHouseIcon';
-import { MedalScaredIcon } from 'components/icons/MedalScaredIcon';
-import { MedalSwordIcon } from 'components/icons/MedalSwordIcon';
-import { MedalWideIcon } from 'components/icons/MedalWideIcon';
+import { MedalCandyIcon } from 'icons/MedalCandyIcon';
+import { MedalCloverIcon } from 'icons/MedalCloverIcon';
+import { MedalDollarSignIcon } from 'icons/MedalDollarSignIcon';
+import { MedalHouseIcon } from 'icons/MedalHouseIcon';
+import { MedalScaredIcon } from 'icons/MedalScaredIcon';
+import { MedalSwordIcon } from 'icons/MedalSwordIcon';
+import { MedalWideIcon } from 'icons/MedalWideIcon';
 
 export const achievementsReference: AchievementReference = {
   BRAVEST: {

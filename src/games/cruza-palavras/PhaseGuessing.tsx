@@ -4,13 +4,14 @@ import { useStep } from 'hooks/useStep';
 import { useOnSubmitGuessesAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+// Icons
+import { GuessIcon } from 'icons/GuessIcon';
 // Components
 import { Translate } from 'components/language';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { StepGuessing } from './StepGuessing';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { GuessIcon } from 'components/icons/GuessIcon';
 
 function PhaseGuessing({ players, state, info }: PhaseProps) {
   const { step, setStep } = useStep(0);

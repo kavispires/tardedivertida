@@ -2,13 +2,14 @@
 import { useStep } from 'hooks/useStep';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+// Icons
+import { ReviewIcon } from 'icons/ReviewIcon';
 // Components
 import { StepResolution } from './StepResolution';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
-import { ReviewIcon } from 'components/icons/ReviewIcon';
 import { StepRanking } from './StepRanking';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 

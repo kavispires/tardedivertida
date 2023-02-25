@@ -4,6 +4,8 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { useOnSubmitSecretWordAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+// Icons
+import { KnowledgeIcon } from 'icons/KnowledgeIcon';
 // Components
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
@@ -13,7 +15,6 @@ import { AvatarName } from 'components/avatars';
 import { ViewOr } from 'components/views';
 import { StepSecretWordSelection } from './StepSecretWordSelection';
 import { StepWaiting } from './StepWaiting';
-import { KnowledgeIcon } from 'components/icons/KnowledgeIcon';
 
 function PhaseSecretWordSelection({ state, players, info }: PhaseProps) {
   const { step, setStep, goToNextStep } = useStep(0);

@@ -2,17 +2,17 @@
 import { Button, Space } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
+// Icons
+import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
+import { SpeechBubbleDeclinedIcon } from 'icons/SpeechBubbleDeclinedIcon';
 // Components
 import { Suspects } from './components/Suspects';
 import { QuestionsHistory } from './components/QuestionsHistory';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
-import { AvatarName } from 'components/avatars';
+import { AvatarName, IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 import { Card } from 'components/cards';
-import { SpeechBubbleAcceptedIcon } from 'components/icons/SpeechBubbleAcceptedIcon';
-import { SpeechBubbleDeclinedIcon } from 'components/icons/SpeechBubbleDeclinedIcon';
-import { IconAvatar } from 'components/icons/IconAvatar';
 
 type StepSuspectEliminationProps = {
   suspects: Suspect[];

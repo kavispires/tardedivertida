@@ -1,9 +1,10 @@
 import { ReactNode } from 'react';
 // Ant Design Resources
 import { message } from 'antd';
+// Icons
+import { VideoGameControllerIcon } from 'icons/VideoGameControllerIcon';
 // Components
-import { RulesIcon } from 'components/icons/RulesIcon';
-import { VideoGameControllerIcon } from 'components/icons/VideoGameControllerIcon';
+import { RulesIcon } from 'icons/RulesIcon';
 import { Translate } from 'components/language';
 
 /**

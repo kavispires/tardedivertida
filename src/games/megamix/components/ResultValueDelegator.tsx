@@ -3,7 +3,7 @@ import { useCardWidth } from 'hooks/useCardWidth';
 // Components
 import { AvatarName } from 'components/avatars';
 import { ImageBlurButtonContainer, ImageCard } from 'components/cards';
-import { TDIcon } from 'components/icons/TDIcon';
+import { TDIcon } from 'icons/TDIcon';
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
 import { DoorFrame } from 'games/porta-dos-desesperados/components/DoorFrame';

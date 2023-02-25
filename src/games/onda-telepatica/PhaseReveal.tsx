@@ -4,13 +4,14 @@ import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+// Icons
+import { WavelengthDeviceIcon } from 'icons/WavelengthDeviceIcon';
 // Components
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
 import { StepReveal } from './StepReveal';
-import { WavelengthDeviceIcon } from 'components/icons/WavelengthDeviceIcon';
 import { StepRanking } from './StepRanking';
 
 function PhaseReveal({ players, state, info }: PhaseProps) {

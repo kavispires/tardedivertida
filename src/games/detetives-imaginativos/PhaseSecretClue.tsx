@@ -5,6 +5,8 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { useOnSubmitSecretClueAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+// Icons
+import { SecretIcon } from 'icons/SecretIcon';
 // Components
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
@@ -14,10 +16,8 @@ import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
 import { ImageCardPreloadHand } from 'components/cards';
 import { ViewOr } from 'components/views';
-
 import { StepSecretClueWrite } from './StepSecretClueWrite';
 import { StepSecretClueWaiting } from './StepSecretClueWaiting';
-import { SecretIcon } from 'components/icons/SecretIcon';
 
 function PhaseSecretClue({ state, players, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);

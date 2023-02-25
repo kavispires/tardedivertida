@@ -7,13 +7,14 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { useOnSendGuessAPIRequest, useOnSubmitOutcomeAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+// Icons
+import { GuessIcon } from 'icons/GuessIcon';
 // Components
 import { StepSwitcher } from 'components/steps';
 import { StepGuessing } from './StepGuessing';
 import { StepGuessVerification } from './StepGuessVerification';
 import { GuessingRules } from './components/RulesBlobs';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { GuessIcon } from 'components/icons/GuessIcon';
 import { Translate } from 'components/language';
 
 function PhaseGuess({ state, players, info }: PhaseProps) {

@@ -1,7 +1,8 @@
+// Icons
+import { BoxCheckMarkIcon } from 'icons/BoxCheckMarkIcon';
+import { BoxQuestionMarkIcon } from 'icons/BoxQuestionMarkIcon';
+import { QuestionIcon } from 'icons/QuestionIcon';
 // Components
-import { BoxCheckMarkIcon } from 'components/icons/BoxCheckMarkIcon';
-import { BoxQuestionMarkIcon } from 'components/icons/BoxQuestionMarkIcon';
-import { QuestionIcon } from 'components/icons/QuestionIcon';
 import { Translate } from 'components/language';
 import { MetricHighlight } from 'components/metrics/MetricHighlight';
 import { TimeHighlight } from 'components/metrics/TimeHighlight';

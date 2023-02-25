@@ -8,6 +8,12 @@ import { useOnSubmitCrimeAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 import { mockCrime } from './utils/mock';
+// Icons
+import { EventIcon } from 'icons/EventIcon';
+import { SkullIcon } from 'icons/SkullIcon';
+import { CrimeSceneIcon } from 'icons/CrimeSceneIcon';
+import { LocationIcon } from 'icons/LocationIcon';
+import { CrimeTapeIcon } from 'icons/CrimeTapeIcon';
 // Components
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
@@ -21,11 +27,6 @@ import { StepCauseOfDeathSelection } from './StepCauseOfDeathSelection';
 import { StepLocationSelection } from './StepLocationSelection';
 import { StepReviewCrime } from './StepReviewCrime';
 import { StepReasonForEvidence } from './StepReasonForEvidence';
-import { EventIcon } from 'components/icons/EventIcon';
-import { SkullIcon } from 'components/icons/SkullIcon';
-import { CrimeSceneIcon } from 'components/icons/CrimeSceneIcon';
-import { LocationIcon } from 'components/icons/LocationIcon';
-import { CrimeTapeIcon } from 'components/icons/CrimeTapeIcon';
 import { DebugOnly } from 'components/debug';
 
 function PhaseCrimeSelection({ players, state, info }: PhaseProps) {

@@ -3,7 +3,7 @@ import { capitalize } from 'lodash';
 import { Button, Space } from 'antd';
 import { HeartOutlined, MessageOutlined, SendOutlined } from '@ant-design/icons';
 // Components
-import { BikiniModelIcon } from 'components/icons/BikiniModelIcon';
+import { BikiniModelIcon } from 'icons/BikiniModelIcon';
 import { Translate } from 'components/language';
 import { Instruction, TextHighlight, Title } from 'components/text';
 import { SocialProfile } from './SocialProfile';

@@ -1,5 +1,7 @@
-import { SketchIcon } from 'components/icons/SketchIcon';
-import { TimerIcon } from 'components/icons/TimerIcon';
+// Icons
+import { SketchIcon } from 'icons/SketchIcon';
+import { TimerIcon } from 'icons/TimerIcon';
+// Components
 import { Translate } from 'components/language';
 import { PhaseAnnouncement } from 'components/phases';
 

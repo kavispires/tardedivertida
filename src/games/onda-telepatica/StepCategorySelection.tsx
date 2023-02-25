@@ -1,14 +1,14 @@
 // Hooks
 import { useLoading } from 'hooks/useLoading';
 import { useMock } from 'hooks/useMock';
+// Icons
+import { AnimatedLoaderIcon } from 'icons/AnimatedLoaderIcon';
 // Components
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
-
 import { Card } from './components/Card';
-import { AnimatedLoaderIcon } from 'components/icons/AnimatedLoaderIcon';
-import { IconAvatar } from 'components/icons/IconAvatar';
+import { IconAvatar } from 'components/avatars';
 
 type StepCategorySelectionProps = {
   currentCategories: OCategoryCard[];

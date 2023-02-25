@@ -5,12 +5,13 @@ import { useOnSubmitAnswersAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 import { NOOP } from 'utils/constants';
+// Icons
+import { WritingIcon } from 'icons/WritingIcon';
 // Components
 import { StepSwitcher } from 'components/steps';
 import { StepAnswering } from './StepAnswering';
 import { AnsweringRules } from './components/RulesBlobs';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { WritingIcon } from 'components/icons/WritingIcon';
 import { Translate } from 'components/language';
 
 function PhaseEverybodyWrites({ state, players, info }: PhaseProps) {
