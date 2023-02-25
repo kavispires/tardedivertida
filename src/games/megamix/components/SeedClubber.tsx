@@ -46,8 +46,6 @@ export function SeedClubber({ seed, updateData, user, data, onSubmitData }: Seed
       <Space className="space-container" direction="vertical">
         <Segmented
           options={clubbers}
-          onResize={undefined}
-          onResizeCapture={undefined}
           value={data.clubberId}
           onChange={(clubberId) => updateData({ clubberId })}
         />
