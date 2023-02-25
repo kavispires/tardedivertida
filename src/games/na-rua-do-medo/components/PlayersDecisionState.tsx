@@ -2,15 +2,16 @@ import clsx from 'clsx';
 import { ReactNode } from 'react';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
+// Icons
+import { CandyIcon } from 'icons/CandyIcon';
+import { HouseIcon } from 'icons/HouseIcon';
+import { WalkIcon } from 'icons/WalkIcon';
+import { TrickOrTreatIcon } from 'icons/TrickOrTreatIcon';
+import { ScaredIcon } from 'icons/ScaredIcon';
 // Components
-import { CandyIcon } from 'components/icons/CandyIcon';
-import { HouseIcon } from 'components/icons/HouseIcon';
-import { IconAvatar } from 'components/icons/IconAvatar';
-import { WalkIcon } from 'components/icons/WalkIcon';
+import { IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 import { CostumeAvatar } from './CostumeAvatar';
-import { TrickOrTreatIcon } from 'components/icons/TrickOrTreatIcon';
-import { ScaredIcon } from 'components/icons/ScaredIcon';
 
 type PlayersDecisionStateProps = {
   players: GamePlayers;

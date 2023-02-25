@@ -1,10 +1,11 @@
 import { isEqual } from 'lodash';
 // Utils
 import { AVATARS } from 'utils/avatars';
+// Icons
+import { CrownIcon } from 'icons/CrownIcon';
 // Components
 import { Avatar } from 'components/avatars';
 import { GameOverWrapper } from 'components/game-over';
-import { CrownIcon } from 'components/icons/CrownIcon';
 import { DualTranslate, Translate } from 'components/language';
 import { Instruction, Title } from 'components/text';
 

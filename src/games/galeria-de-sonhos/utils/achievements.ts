@@ -1,14 +1,14 @@
-import { MedalArrowDownIcon } from 'components/icons/MedalArrowDownIcon';
-import { MedalArrowUpIcon } from 'components/icons/MedalArrowUpIcon';
-import { MedalHeartIcon } from 'components/icons/MedalHeartIcon';
-import { MedalLightBulbIcon } from 'components/icons/MedalLightBulbIcon';
-import { MedalNarrowIcon } from 'components/icons/MedalNarrowIcon';
-import { MedalPersonIcon } from 'components/icons/MedalPersonIcon';
-import { MedalSandTimerIcon } from 'components/icons/MedalSandTimerIcon';
-import { MedalScaredIcon } from 'components/icons/MedalScaredIcon';
-import { MedalStarIcon } from 'components/icons/MedalStarIcon';
-import { MedalSufferingIcon } from 'components/icons/MedalSufferingIcon';
-import { MedalThumbsUpIcon } from 'components/icons/MedalThumbsUpIcon';
+import { MedalArrowDownIcon } from 'icons/MedalArrowDownIcon';
+import { MedalArrowUpIcon } from 'icons/MedalArrowUpIcon';
+import { MedalHeartIcon } from 'icons/MedalHeartIcon';
+import { MedalLightBulbIcon } from 'icons/MedalLightBulbIcon';
+import { MedalNarrowIcon } from 'icons/MedalNarrowIcon';
+import { MedalPersonIcon } from 'icons/MedalPersonIcon';
+import { MedalSandTimerIcon } from 'icons/MedalSandTimerIcon';
+import { MedalScaredIcon } from 'icons/MedalScaredIcon';
+import { MedalStarIcon } from 'icons/MedalStarIcon';
+import { MedalSufferingIcon } from 'icons/MedalSufferingIcon';
+import { MedalThumbsUpIcon } from 'icons/MedalThumbsUpIcon';
 
 export const achievementsReference: AchievementReference = {
   MOST_MATCHES: {

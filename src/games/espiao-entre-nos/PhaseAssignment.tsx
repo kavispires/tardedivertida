@@ -4,6 +4,10 @@ import { useUser } from 'hooks/useUser';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+// Icons
+import { SpyNewspaperIcon } from 'icons/SpyNewspaperIcon';
+import { SecretIcon } from 'icons/SecretIcon';
+import { PassportIcon } from 'icons/PassportIcon';
 // Components
 import { Translate } from 'components/language';
 import { RoundAnnouncement } from 'components/round';
@@ -11,9 +15,6 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { StepAssignment } from './StepAssignment';
 import { PhaseAnnouncement, PhaseContainer, PhaseTimerReset } from 'components/phases';
-import { SpyNewspaperIcon } from 'components/icons/SpyNewspaperIcon';
-import { SecretIcon } from 'components/icons/SecretIcon';
-import { PassportIcon } from 'components/icons/PassportIcon';
 
 function PhaseAssignment({ state, players, info }: PhaseProps) {
   const { step, goToNextStep } = useStep(0);

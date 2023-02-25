@@ -1,4 +1,4 @@
-import { StarIcon } from 'components/icons/StarIcon';
+import { StarIcon } from 'icons/StarIcon';
 import { HighlightProps, MetricHighlight } from 'components/metrics/MetricHighlight';
 
 export function PointsHighlight({ children, type, iconSize, className }: HighlightProps) {

@@ -6,6 +6,8 @@ import { useOnSubmitTopicAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 import { mockTopicSelection } from './utils/mock';
+// Icons
+import { TrendingIcon } from 'icons/TrendingIcon';
 // Components
 import { StepTopicSelection } from './StepTopicSelection';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
@@ -16,7 +18,6 @@ import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
 import { ViewOr } from 'components/views';
 import { TurnOrder, WaitingRoom } from 'components/players';
-import { TrendingIcon } from 'components/icons/TrendingIcon';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { TargetHighlight } from 'components/metrics/TargetHighlight';
 

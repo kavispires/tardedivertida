@@ -1,10 +1,11 @@
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
+// Icons
+import { TheEndIcon } from 'icons/TheEndIcon';
 // Components
 import { AvatarName } from 'components/avatars';
 import { CanvasSVG } from 'components/canvas';
 import { GameOverWrapper } from 'components/game-over';
-import { TheEndIcon } from 'components/icons/TheEndIcon';
 
 function PhaseGameOver({ state, info, players }: PhaseProps) {
   const slideCount = Math.min(state.album[0]?.slides.length ?? 5, 8);

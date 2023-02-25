@@ -6,6 +6,8 @@ import { useOnSubmitOrientationAPIRequest, useOnSubmitSketchAPIRequest } from '.
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 import { TIMES } from './utils/constants';
+// Icons
+import { MonsterIcon } from 'icons/MonsterIcon';
 // Components
 import { StepTestimonial } from './StepTestimonial';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
@@ -14,7 +16,6 @@ import { RoundAnnouncement } from 'components/round';
 import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
-import { MonsterIcon } from 'components/icons/MonsterIcon';
 import { TimeHighlight } from 'components/metrics/TimeHighlight';
 
 function PhaseCompositeSketch({ players, state, info }: PhaseProps) {

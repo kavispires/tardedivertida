@@ -5,15 +5,15 @@ import { useOnSubmitDrawingAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 import { DRAWING_TIME_IN_SECONDS } from './utils/constants';
+// Icons
+import { DrawingIcon } from 'icons/DrawingIcon';
 // Components
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { TurnOrder } from 'components/players';
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
 import { StepSwitcher } from 'components/steps';
-
 import { StepTimedDrawing } from './StepTimedDrawing';
-import { DrawingIcon } from 'components/icons/DrawingIcon';
 
 function PhaseDrawing({ players, state, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);

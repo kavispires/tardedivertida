@@ -6,13 +6,14 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { useOnFinishDefenseRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+// Icons
+import { DefenseIcon } from 'icons/DefenseIcon';
 // Components
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction, TextHighlight, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { StepDefending } from './StepDefending';
-import { DefenseIcon } from 'components/icons/DefenseIcon';
 
 function PhaseDefense({ state, players, info }: PhaseProps) {
   const { isLoading } = useLoading();

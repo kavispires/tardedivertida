@@ -1,8 +1,9 @@
 // Ant Design Resources
 import { Avatar } from 'antd';
+// Icons
+import { CandyIcon } from 'icons/CandyIcon';
 // Components
-import { CandyIcon } from 'components/icons/CandyIcon';
-import { IconAvatar } from 'components/icons/IconAvatar';
+import { IconAvatar } from 'components/avatars';
 
 type CandyCountProps = {
   candyCount: number;

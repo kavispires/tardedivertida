@@ -4,12 +4,13 @@ import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+// Icons
+import { WritingIcon } from 'icons/WritingIcon';
 // Components
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
-import { WritingIcon } from 'components/icons/WritingIcon';
 import { StepWriteClues } from './StepWriteClues';
 
 function PhaseCloverWriting({ players, state, info }: PhaseProps) {

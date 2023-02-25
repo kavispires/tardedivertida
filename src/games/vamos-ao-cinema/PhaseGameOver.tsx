@@ -2,10 +2,11 @@
 import { Progress, Space } from 'antd';
 // Hooks
 import { useCardWidth } from 'hooks/useCardWidth';
+// Icons
+import { FlagIcon } from 'icons/FlagIcon';
 // Components
 import { ImageCard } from 'components/cards';
 import { GameOverWrapper } from 'components/game-over';
-import { FlagIcon } from 'components/icons/FlagIcon';
 import { Translate } from 'components/language';
 import { TextHighlight, Title } from 'components/text';
 

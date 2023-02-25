@@ -1,18 +1,18 @@
-// Ant Design Resources
 // Hooks
+import { useMemo } from 'react';
 // Utils
+import { PHASES } from 'utils/phases';
+import { getAnimationClass } from 'utils/helpers';
+import { shouldAnnounceTrap } from './utils/helpers';
+// Icons
+import { PanicIcon } from 'icons/PanicIcon';
 // Components
 import { AvatarName } from 'components/avatars';
-import { PanicIcon } from 'components/icons/PanicIcon';
 import { Translate } from 'components/language';
 import { WaitingRoom } from 'components/players';
 import { Step } from 'components/steps';
-import { useMemo } from 'react';
-import { getAnimationClass } from 'utils/helpers';
-import { PHASES } from 'utils/phases';
 import { BookHighlight } from './components/Highlights';
 import { TrapPopupRule } from './components/RulesBlobs';
-import { shouldAnnounceTrap } from './utils/helpers';
 
 type StepSelectPagesProps = {
   currentCorridor: number;

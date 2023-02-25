@@ -1,9 +1,10 @@
 // Utils
 import { achievementsReference } from './utils/achievements';
+// Icons
+import { TheEndIcon } from 'icons/TheEndIcon';
 // Components
 import { GameOverWrapper } from 'components/game-over';
 import { Achievements } from 'components/general/Achievements';
-import { TheEndIcon } from 'components/icons/TheEndIcon';
 import { Translate } from 'components/language';
 import { Title } from 'components/text';
 import { SheepAvatar } from './components/SheepAvatar';

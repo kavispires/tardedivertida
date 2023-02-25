@@ -1,8 +1,8 @@
 // Components
-import { MagicCrystalIcon } from 'components/icons/MagicCrystalIcon';
-import { MagicDoorIcon } from 'components/icons/MagicDoorIcon';
-import { MagicHourGlassIcon } from 'components/icons/MagicHourGlassIcon';
-import { MagicBookIcon } from 'components/icons/MagicBookIcon';
+import { MagicCrystalIcon } from 'icons/MagicCrystalIcon';
+import { MagicDoorIcon } from 'icons/MagicDoorIcon';
+import { MagicHourGlassIcon } from 'icons/MagicHourGlassIcon';
+import { MagicBookIcon } from 'icons/MagicBookIcon';
 import { HighlightProps, MetricHighlight } from 'components/metrics/MetricHighlight';
 
 export function BookHighlight({ children }: HighlightProps) {

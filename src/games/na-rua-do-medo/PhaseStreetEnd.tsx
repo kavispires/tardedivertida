@@ -3,14 +3,15 @@ import { useUser } from 'hooks/useUser';
 import { useStep } from 'hooks/useStep';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+// Icons
+import { ScaredIcon } from 'icons/ScaredIcon';
+import { HouseIcon } from 'icons/HouseIcon';
 // Components
 import { Translate } from 'components/language';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { StepStreetEnd } from './StepStreetEnd';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { ScaredIcon } from 'components/icons/ScaredIcon';
-import { HouseIcon } from 'components/icons/HouseIcon';
 
 function PhaseStreetEnd({ state, players, info }: PhaseProps) {
   const { step, goToNextStep } = useStep(0);

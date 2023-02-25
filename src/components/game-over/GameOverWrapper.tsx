@@ -2,11 +2,12 @@ import { ReactNode, useState } from 'react';
 // Utils
 import { PHASES } from 'utils/phases';
 import { NOOP } from 'utils/constants';
+// Icons
+import { TheEndIcon } from 'icons/TheEndIcon';
 // Components
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { GameOver } from './GameOver';
-import { TheEndIcon } from 'components/icons/TheEndIcon';
 import { Translate } from 'components/language';
 
 type GameOverWrapperProps = {

@@ -3,13 +3,14 @@ import { useStep } from 'hooks/useStep';
 import { useOnSubmitBetsAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+// Icons
+import { GamblingChipIcon } from 'icons/GamblingChipIcon';
 // Components
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
 import { StepMakeYourBets } from './StepMakeYourBets';
-import { GamblingChipIcon } from 'components/icons/GamblingChipIcon';
 import { useUser } from 'hooks/useUser';
 import { BetsFloatingHand } from './components/BetsFloatingHand';
 

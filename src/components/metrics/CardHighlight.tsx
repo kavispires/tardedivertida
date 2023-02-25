@@ -1,4 +1,4 @@
-import { ImageCardsIcon } from 'components/icons/ImageCardsIcon';
+import { ImageCardsIcon } from 'icons/ImageCardsIcon';
 import { HighlightProps, MetricHighlight } from 'components/metrics/MetricHighlight';
 
 export function CardHighlight({ children, type, iconSize, className }: HighlightProps) {

@@ -4,6 +4,8 @@ import { useStep } from 'hooks/useStep';
 import { useOnSubmitDecisionAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+// Icons
+import { StreetIcon } from 'icons/StreetIcon';
 // Components
 import { StepSwitcher } from 'components/steps';
 import { RoundAnnouncement } from 'components/round';
@@ -13,7 +15,6 @@ import { Translate } from 'components/language';
 import { StepMakeDecision } from './StepMakeDecision';
 import { PlayerStats } from './components/PlayerStats';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { StreetIcon } from 'components/icons/StreetIcon';
 
 function PhaseTrickOrTreat({ state, players, info }: PhaseProps) {
   const user = useUser(players, state);

@@ -1,4 +1,4 @@
-import { ClockIcon } from 'components/icons/ClockIcon';
+import { ClockIcon } from 'icons/ClockIcon';
 import { HighlightProps, MetricHighlight } from 'components/metrics/MetricHighlight';
 
 export function TimeHighlight({ children, type, iconSize, className }: HighlightProps) {

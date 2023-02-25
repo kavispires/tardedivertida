@@ -4,14 +4,14 @@ import { Button, Space } from 'antd';
 // Utils
 import { AVATARS } from 'utils/avatars';
 import { DRAWING_TIME_IN_SECONDS } from './utils/constants';
-
+// Icons
+import { AnimatedLoaderIcon } from 'icons/AnimatedLoaderIcon';
 // Components
 import { Step } from 'components/steps';
 import { Card } from 'components/cards';
 import { TimedTimerBar } from 'components/timers';
 import { DrawingCanvas } from 'components/canvas';
 import { Translate } from 'components/language';
-import { AnimatedLoaderIcon } from 'components/icons/AnimatedLoaderIcon';
 
 type StepTimedDrawingProps = {
   currentPrompt: Prompt;

@@ -7,6 +7,8 @@ import { useMock } from 'hooks/useMock';
 import { getAvatarColorById, getLastItem } from 'utils/helpers';
 import { mockGuesses } from './utils/mock';
 import { autoSelectCorrectGuesses, getHistory } from './utils/helpers';
+// Icons
+import { InvestigationIcon } from 'icons/InvestigationIcon';
 // Components
 import { Crime } from './components/Crime';
 import { PlayersCards } from './components/PlayersCards';
@@ -16,7 +18,6 @@ import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { DebugOnly } from 'components/debug';
 import { FloatingHand } from 'components/cards';
-import { InvestigationIcon } from 'components/icons/InvestigationIcon';
 
 type StepGuessingProps = {
   user: GamePlayer;

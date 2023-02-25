@@ -1,5 +1,8 @@
 // Utils
 import { getAnimationClass } from 'utils/helpers';
+// Icons
+import { StarIcon } from 'icons/StarIcon';
+import { TomatoIcon } from 'icons/TomatoIcon';
 // Components
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
@@ -7,10 +10,7 @@ import { Translate } from 'components/language';
 import { Reviews } from './components/Reviews';
 import { Movies } from './components/Movies';
 import { TurnOrder } from 'components/players';
-import { AvatarName } from 'components/avatars';
-import { IconAvatar } from 'components/icons/IconAvatar';
-import { StarIcon } from 'components/icons/StarIcon';
-import { TomatoIcon } from 'components/icons/TomatoIcon';
+import { AvatarName, IconAvatar } from 'components/avatars';
 import { MistakeCountHighlight } from './components/MistakeCountHighlight';
 
 type StepEliminateMovieProps = {

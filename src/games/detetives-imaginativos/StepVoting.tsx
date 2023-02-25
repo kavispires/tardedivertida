@@ -1,6 +1,6 @@
+// Icons
+import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 // Components
-import { AnimatedClockIcon } from 'components/icons/AnimatedClockIcon';
-import { IconAvatar } from 'components/icons/IconAvatar';
 import { Translate } from 'components/language';
 import { PlayersHighlight } from 'components/metrics/PlayersHighlight';
 import { ReadyPlayersBar } from 'components/players';
@@ -9,6 +9,7 @@ import { Instruction, Title } from 'components/text';
 import { ViewIf } from 'components/views';
 import { Table } from './components/Table';
 import { VotingOptions } from './components/VotingOptions';
+import { IconAvatar } from 'components/avatars';
 
 type StepVotingProps = {
   isLoading: boolean;

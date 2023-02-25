@@ -4,11 +4,12 @@ import { useStep } from 'hooks/useStep';
 import { useOnSubmitSeedAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+// Icons
+import { ExperimentIcon } from 'icons/ExperimentIcon';
 // Components
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { ExperimentIcon } from 'components/icons/ExperimentIcon';
 import { Translate } from 'components/language';
 import { StepSeeding } from './StepSeeding';
 

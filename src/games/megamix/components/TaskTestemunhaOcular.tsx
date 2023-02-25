@@ -12,9 +12,9 @@ import { DualTranslate, Translate } from 'components/language';
 import { Instruction } from 'components/text';
 import { MinigameTitle } from './MinigameTitle';
 import { Card, ImageCard } from 'components/cards';
-import { IconAvatar } from 'components/icons/IconAvatar';
-import { SpeechBubbleAcceptedIcon } from 'components/icons/SpeechBubbleAcceptedIcon';
-import { SpeechBubbleDeclinedIcon } from 'components/icons/SpeechBubbleDeclinedIcon';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { SpeechBubbleAcceptedIcon } from 'icons/SpeechBubbleAcceptedIcon';
+import { SpeechBubbleDeclinedIcon } from 'icons/SpeechBubbleDeclinedIcon';
 
 export const TaskTestemunhaOcular = ({ task, round, onSubmitTask, user }: TaskProps) => {
   const cardWidth = useCardWidth(8, 8, 150, 350, 8);

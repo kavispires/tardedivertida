@@ -1,8 +1,8 @@
+// Icons
+import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 // Components
-import { AvatarName } from 'components/avatars';
+import { AvatarName, IconAvatar } from 'components/avatars';
 import { FloatingHand, ImageCardHand } from 'components/cards';
-import { AnimatedClockIcon } from 'components/icons/AnimatedClockIcon';
-import { IconAvatar } from 'components/icons/IconAvatar';
 import { Translate } from 'components/language';
 import { TableOrder } from 'components/players/TableOrder';
 import { Step } from 'components/steps';

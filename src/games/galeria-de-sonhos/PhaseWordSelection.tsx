@@ -5,6 +5,8 @@ import { useOnSubmitWordAPIRequest } from './utils/api-requests';
 import { useUser } from 'hooks/useUser';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+// Icons
+import { SleepIcon } from 'icons/SleepIcon';
 // Components
 import { GeneralRules, WordSelectionRules } from './components/RulesBlobs';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
@@ -16,7 +18,6 @@ import { ViewOr } from 'components/views';
 import { WaitingRoom } from 'components/players';
 import { AvatarName } from 'components/avatars';
 import { StepWordSelection } from './StepWordSelection';
-import { SleepIcon } from 'components/icons/SleepIcon';
 
 function PhaseWordSelection({ players, state, info }: PhaseProps) {
   const user = useUser(players, state);

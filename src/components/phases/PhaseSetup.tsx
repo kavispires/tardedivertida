@@ -1,7 +1,8 @@
 // Constants
 import { PHASES } from 'utils/phases';
+// Icons
+import { AnimatedGearIcon } from 'icons/AnimatedGearIcon';
 // Components
-import { AnimatedGearIcon } from 'components/icons/AnimatedGearIcon';
 import { Translate } from 'components/language';
 import { Instruction, Title } from 'components/text';
 import { PhaseContainer } from './PhaseContainer';

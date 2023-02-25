@@ -7,8 +7,8 @@ import { getPlayersFromIds } from 'utils/helpers';
 import { Translate } from 'components/language';
 import { Avatar } from 'components/avatars';
 import { StarPoints } from 'components/points';
-import { GarbageIcon } from 'components/icons/GarbageIcon';
-import { IconAvatar } from 'components/icons/IconAvatar';
+import { GarbageIcon } from 'icons/GarbageIcon';
+import { IconAvatar } from 'components/avatars/IconAvatar';
 
 type GalleryWindowResultProps = {
   playerArtist: GamePlayer;

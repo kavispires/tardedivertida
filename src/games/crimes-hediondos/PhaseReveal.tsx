@@ -4,6 +4,8 @@ import { useUser } from 'hooks/useUser';
 import { useStep } from 'hooks/useStep';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+// Icons
+import { RankIcon } from 'icons/RankIcon';
 // Components
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
@@ -11,7 +13,6 @@ import { StepReveal } from './StepReveal';
 import { ScoringMessage } from './components/RulesBlobs';
 import { StepRanking } from './StepRanking';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { RankIcon } from 'components/icons/RankIcon';
 import { Translate } from 'components/language';
 
 function PhaseReveal({ players, state, info }: PhaseProps) {

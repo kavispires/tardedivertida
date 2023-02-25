@@ -1,12 +1,13 @@
 import { orderBy } from 'lodash';
 // Ant Design Resources
 import { FallOutlined, RiseOutlined } from '@ant-design/icons';
+// Icons
+import { SpeechBubbleThumbsUpIcon } from 'icons/SpeechBubbleThumbsUpIcon';
+import { TrophyIcon } from 'icons/TrophyIcon';
 // Components
 import { GameOverWrapper } from 'components/game-over';
 import { Translate } from 'components/language';
-import { IconAvatar } from 'components/icons/IconAvatar';
-import { SpeechBubbleThumbsUpIcon } from 'components/icons/SpeechBubbleThumbsUpIcon';
-import { TrophyIcon } from 'components/icons/TrophyIcon';
+import { IconAvatar } from 'components/avatars';
 
 function PhaseGameOver({ state, players, info }: PhaseProps) {
   const playerCount = Object.keys(players).length;

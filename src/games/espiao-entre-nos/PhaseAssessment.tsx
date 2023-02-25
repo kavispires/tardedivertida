@@ -5,13 +5,14 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { useOnSubmitVoteAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+// Icons
+import { AlertIcon } from 'icons/AlertIcon';
 // Components
 import { Translate } from 'components/language';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { StepVoting } from './StepVoting';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { AlertIcon } from 'components/icons/AlertIcon';
 
 function PhaseAssessment({ state, players, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);

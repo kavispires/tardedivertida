@@ -4,13 +4,14 @@ import { useStep } from 'hooks/useStep';
 import { useOnSubmitClueAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+// Icons
+import { GridIcon } from 'icons/GridIcon';
 // Components
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { RoundAnnouncement } from 'components/round';
 import { StepSwitcher } from 'components/steps';
 import { StepClueWriting } from './StepClueWriting';
 import { WritingCluesRule } from './components/RulesBlobs';
-import { GridIcon } from 'components/icons/GridIcon';
 import { Translate } from 'components/language';
 
 function PhaseClueWriting({ players, state, info }: PhaseProps) {

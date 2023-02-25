@@ -1,9 +1,11 @@
 import clsx from 'clsx';
-import { AvatarCard } from 'components/avatars';
-import { IconAvatar } from 'components/icons/IconAvatar';
-import { RevolverIcon } from 'components/icons/RevolverIcon';
-import { ThinkingIcon } from 'components/icons/ThinkingIcon';
+// Utils
 import { getAnimationClass } from 'utils/helpers';
+// Icons
+import { RevolverIcon } from 'icons/RevolverIcon';
+import { ThinkingIcon } from 'icons/ThinkingIcon';
+// Components
+import { AvatarCard, IconAvatar } from 'components/avatars';
 
 type PlayerStatusProps = {
   player: GamePlayer;

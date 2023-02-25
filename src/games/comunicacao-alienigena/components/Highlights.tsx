@@ -1,6 +1,7 @@
+// Icons
+import { IconsIcon } from 'icons/IconsIcon';
+import { MagicSkullIcon } from 'icons/MagicSkullIcon';
 // Components
-import { IconsIcon } from 'components/icons/IconsIcon';
-import { MagicSkullIcon } from 'components/icons/MagicSkullIcon';
 import { HighlightProps, MetricHighlight } from 'components/metrics/MetricHighlight';
 
 export function ItemsHighlight({ children, type, iconSize, className }: HighlightProps) {

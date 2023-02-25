@@ -4,9 +4,11 @@ import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useOnSubmitMarkAPIRequest } from './utils/api-requests';
+import { mockSceneMark } from './utils/mock';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
-import { mockSceneMark } from './utils/mock';
+// Icons
+import { LoupeIcon } from 'icons/LoupeIcon';
 // Components
 import { Translate } from 'components/language';
 import { RoundAnnouncement } from 'components/round';
@@ -14,7 +16,6 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { StepNewScene } from './StepNewScene';
-import { LoupeIcon } from 'components/icons/LoupeIcon';
 
 function PhaseSceneMarking({ players, state, info }: PhaseProps) {
   const { language } = useLanguage();

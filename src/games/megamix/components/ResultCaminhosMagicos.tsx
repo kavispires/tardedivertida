@@ -4,8 +4,8 @@ import { RightSquareOutlined } from '@ant-design/icons';
 // Utils
 import { LETTERS } from 'utils/constants';
 // Components
-import { IconAvatar } from 'components/icons/IconAvatar';
-import { MapIcon } from 'components/icons/MapIcon';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { MapIcon } from 'icons/MapIcon';
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
 import { WinningCount } from './WinningCount';

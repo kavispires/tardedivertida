@@ -1,7 +1,8 @@
 import clsx from 'clsx';
-import { ArrowIcon } from 'components/icons/ArrowIcon';
-import { Translate } from 'components/language';
+// Icons
+import { ArrowIcon } from 'icons/ArrowIcon';
 // Components
+import { Translate } from 'components/language';
 
 type RoundTypeProps = {
   roundType: Number;

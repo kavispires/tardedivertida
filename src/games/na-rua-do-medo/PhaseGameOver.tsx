@@ -5,13 +5,14 @@ import { useUser } from 'hooks/useUser';
 // Utils
 import { AVATARS } from 'utils/avatars';
 import { achievementsReference } from './utils/achievements';
+// Icons
+import { PoopIcon } from 'icons/PoopIcon';
 // Components
 import { CandyCount } from './components/CandyCount';
 import { PlayerStats } from './components/PlayerStats';
 import { GameOverWrapper } from 'components/game-over';
 import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
-import { PoopIcon } from 'components/icons/PoopIcon';
 import { Achievements } from 'components/general/Achievements';
 import { CostumeAvatar } from './components/CostumeAvatar';
 

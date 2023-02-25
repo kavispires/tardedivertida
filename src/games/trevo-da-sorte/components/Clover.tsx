@@ -8,10 +8,11 @@ import { RotateLeftOutlined, RotateRightOutlined } from '@ant-design/icons';
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { FIRST_ATTEMPT_SCORE, ROTATIONS, SECOND_ATTEMPT_SCORE } from '../utils/constants';
+// Icons
+import { BoxXIcon } from 'icons/BoxXIcon';
+import { BoxOneIcon } from 'icons/BoxOneIcon';
+import { BoxCheckMarkIcon } from 'icons/BoxCheckMarkIcon';
 // Components
-import { BoxXIcon } from 'components/icons/BoxXIcon';
-import { BoxOneIcon } from 'components/icons/BoxOneIcon';
-import { BoxCheckMarkIcon } from 'components/icons/BoxCheckMarkIcon';
 import { Translate } from 'components/language';
 import { LeafSlot } from './LeafSlot';
 

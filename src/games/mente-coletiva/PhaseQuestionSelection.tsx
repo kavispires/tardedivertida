@@ -6,6 +6,8 @@ import { useOnSubmitCustomQuestionAPIRequest, useOnSubmitQuestionAPIRequest } fr
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 import { NOOP } from 'utils/constants';
+// Icons
+import { SheepIcon } from 'icons/SheepIcon';
 // Components
 import { GamePremiseRules } from './components/RulesBlobs';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
@@ -14,7 +16,6 @@ import { RoundAnnouncement } from 'components/round';
 import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
 import { ViewOr } from 'components/views';
-import { SheepIcon } from 'components/icons/SheepIcon';
 import { StepQuestionSelection } from './StepQuestionSelection';
 import { StepQuestionSelectionWaiting } from './StepQuestionSelectionWaiting';
 

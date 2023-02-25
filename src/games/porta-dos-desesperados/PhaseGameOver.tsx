@@ -1,12 +1,13 @@
 // Ant Design Resources
 import { Space } from 'antd';
+// Icons
+import { MagicCultLeaderIcon } from 'icons/MagicCultLeaderIcon';
+import { MagicSkullIcon } from 'icons/MagicSkullIcon';
+import { MagicCandlesIcon } from 'icons/MagicCandlesIcon';
 // Components
 import { Instruction, Title } from 'components/text';
-import { MagicCultLeaderIcon } from 'components/icons/MagicCultLeaderIcon';
-import { MagicSkullIcon } from 'components/icons/MagicSkullIcon';
 import { Translate } from 'components/language';
 import { GameOverWrapper } from 'components/game-over';
-import { MagicCandlesIcon } from 'components/icons/MagicCandlesIcon';
 import { LoseGameText } from './components/RulesBlobs';
 
 function PhaseGameOver({ players, state, info }: PhaseProps) {

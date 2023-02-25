@@ -2,13 +2,13 @@ import { Avatar as AntAvatar, Button, Space, Spin } from 'antd';
 import clsx from 'clsx';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
+// Icons
+import { ScaredIcon } from 'icons/ScaredIcon';
+import { StarIcon } from 'icons/StarIcon';
+import { TomatoIcon } from 'icons/TomatoIcon';
 // Components
 import { MovieCard } from 'components/cards/MovieCard';
-import { IconAvatar } from 'components/icons/IconAvatar';
-import { ScaredIcon } from 'components/icons/ScaredIcon';
-import { StarIcon } from 'components/icons/StarIcon';
-import { TomatoIcon } from 'components/icons/TomatoIcon';
-import { Avatar } from 'components/avatars';
+import { Avatar, IconAvatar } from 'components/avatars';
 
 type MoviesProps = {
   movies: MovieCard[];

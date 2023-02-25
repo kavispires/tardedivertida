@@ -9,6 +9,9 @@ import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { prepareGlyphs } from './utils/helpers';
 import { mockGlyphs } from './utils/mock';
+// Icons
+import { YesIcon } from 'icons/YesIcon';
+import { NoIcon } from 'icons/NoIcon';
 // Components
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
@@ -16,9 +19,7 @@ import { Translate } from 'components/language';
 import { TransparentButton } from 'components/buttons';
 import { Table } from './components/Table';
 import { GlyphCard } from 'components/cards/GlyphCard';
-import { YesIcon } from 'components/icons/YesIcon';
-import { IconAvatar } from 'components/icons/IconAvatar';
-import { NoIcon } from 'components/icons/NoIcon';
+import { IconAvatar } from 'components/avatars';
 import { NegativeHighlight, PositiveHighlight } from './components/Highlights';
 
 type StepSelectGlyphsProps = {

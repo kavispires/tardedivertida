@@ -1,9 +1,10 @@
 // Utils
 import { achievementsReference } from './utils/achievements';
+// Icons
+import { LadderIcon } from 'icons/LadderIcon';
 // Components
 import { GameOverWrapper } from 'components/game-over';
 import { Achievements } from 'components/general/Achievements';
-import { LadderIcon } from 'components/icons/LadderIcon';
 import { BestMatches } from './components/BestMatches';
 import { GameOverTable } from './components/GameOverTable';
 

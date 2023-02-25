@@ -3,13 +3,14 @@ import { useUser } from 'hooks/useUser';
 import { useStep } from 'hooks/useStep';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+// Icons
+import { RankIcon } from 'icons/RankIcon';
 // Components
 import { StepSwitcher } from 'components/steps';
 import { StepReveal } from './StepReveal';
 import { StepRanking } from './StepRanking';
 import { ScoringRule } from './components/RulesBlobs';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { RankIcon } from 'components/icons/RankIcon';
 import { Translate } from 'components/language';
 
 function PhaseReveal({ players, state, info }: PhaseProps) {

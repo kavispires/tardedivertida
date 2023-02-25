@@ -1,9 +1,9 @@
-import { MedalArrowDownIcon } from 'components/icons/MedalArrowDownIcon';
-import { MedalArrowUpIcon } from 'components/icons/MedalArrowUpIcon';
-import { MedalNarrowIcon } from 'components/icons/MedalNarrowIcon';
-import { MedalRobotIcon } from 'components/icons/MedalRobotIcon';
-import { MedalThumbsDownIcon } from 'components/icons/MedalThumbsDownIcon';
-import { MedalThumbsUpIcon } from 'components/icons/MedalThumbsUpIcon';
+import { MedalArrowDownIcon } from 'icons/MedalArrowDownIcon';
+import { MedalArrowUpIcon } from 'icons/MedalArrowUpIcon';
+import { MedalNarrowIcon } from 'icons/MedalNarrowIcon';
+import { MedalRobotIcon } from 'icons/MedalRobotIcon';
+import { MedalThumbsDownIcon } from 'icons/MedalThumbsDownIcon';
+import { MedalThumbsUpIcon } from 'icons/MedalThumbsUpIcon';
 import { SEPARATOR } from 'utils/constants';
 
 /**

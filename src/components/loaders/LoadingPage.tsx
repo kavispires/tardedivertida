@@ -1,8 +1,9 @@
 // Ant Design Resources
 import { Layout, Typography } from 'antd';
-import { AnimatedVideoConferenceIcon } from 'components/icons/AnimatedVideoConferenceIcon';
-import { Translate } from 'components/language';
+// Icons
+import { AnimatedVideoConferenceIcon } from 'icons/AnimatedVideoConferenceIcon';
 // Components
+import { Translate } from 'components/language';
 
 type LoadingPageProps = {
   message?: string;

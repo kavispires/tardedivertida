@@ -4,6 +4,8 @@ import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+// Icons
+import { CountdownIcon } from 'icons/CountdownIcon';
 // Components
 import { Translate } from 'components/language';
 import { StepSwitcher } from 'components/steps';
@@ -11,7 +13,6 @@ import { Instruction } from 'components/text';
 import { StepResults } from './StepResults';
 import { StepRanking } from './StepRanking';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { CountdownIcon } from 'components/icons/CountdownIcon';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 
 function PhaseResolution({ state, players, info }: PhaseProps) {

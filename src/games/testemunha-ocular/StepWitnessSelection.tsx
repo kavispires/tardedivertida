@@ -6,15 +6,15 @@ import { useLoading } from 'hooks/useLoading';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Utils
 import { sortPlayers } from 'utils/helpers';
+// Icons
+import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 // Components
-import { AvatarCard } from 'components/avatars';
+import { AvatarCard, IconAvatar } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { WitnessRules } from './components/TextBlobs';
-import { IconAvatar } from 'components/icons/IconAvatar';
-import { AnimatedClockIcon } from 'components/icons/AnimatedClockIcon';
 
 type StepWitnessSelectionProps = {
   players: GamePlayers;

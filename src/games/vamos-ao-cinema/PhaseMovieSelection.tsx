@@ -7,12 +7,13 @@ import { useOnSubmitMovieSelectionAPIRequest } from './utils/api-requests';
 import { PHASES } from 'utils/phases';
 import { NOOP } from 'utils/constants';
 import { mockMovieSelection } from './utils/mock';
+// Icons
+import { ReviewIcon } from 'icons/ReviewIcon';
 // Components
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
-import { ReviewIcon } from 'components/icons/ReviewIcon';
 import { YourMovie } from './components/YourMovie';
 import { RoundAnnouncement } from 'components/round';
 import { StepSelectMovie } from './StepSelectMovie';

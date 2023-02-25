@@ -6,6 +6,8 @@ import { useOnSubmitTaskAPIRequest } from './utils/api-requests';
 import { PHASES } from 'utils/phases';
 import { showDJPruPruPruStep } from './utils/helpers';
 import { NOOP } from 'utils/constants';
+// Icons
+import { DJIcon } from 'icons/DJIcon';
 // Components
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
@@ -14,7 +16,6 @@ import { TaskIcon } from './components/TaskIcon';
 import { TaskInstructions } from './components/TaskInstructions';
 import { StepTask } from './StepTask';
 import { TaskTitle } from './components/TaskTitle';
-import { DJIcon } from 'components/icons/DJIcon';
 import { DJInstructions } from './components/RulesBlobs';
 import { Translate } from 'components/language';
 import { DJPruPruPruSound } from 'components/audio/DJPruPruPruSound';

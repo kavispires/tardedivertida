@@ -1,5 +1,8 @@
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
+// Icons
+import { CriminalIcon } from 'icons/CriminalIcon';
+import { NewspaperIcon } from 'icons/NewspaperIcon';
 // Components
 import { AnnouncementContent } from './components/TextBlobs';
 import { QuestionsHistory } from './components/QuestionsHistory';
@@ -7,8 +10,6 @@ import { GameOverWrapper } from 'components/game-over';
 import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
 import { ImageCard } from 'components/cards';
-import { CriminalIcon } from 'components/icons/CriminalIcon';
-import { NewspaperIcon } from 'components/icons/NewspaperIcon';
 
 function PhaseGameOver({ state, info }: PhaseProps) {
   const { language } = useLanguage();

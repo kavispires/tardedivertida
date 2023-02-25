@@ -4,7 +4,7 @@ import { useCardWidth } from 'hooks/useCardWidth';
 // Components
 import { Avatar } from 'components/avatars';
 import { ImageBlurButtonContainer, ImageCard } from 'components/cards';
-import { TDIcon } from 'components/icons/TDIcon';
+import { TDIcon } from 'icons/TDIcon';
 import { Translate } from 'components/language';
 import { SpacePlayerCheckWrapper } from './SpacePlayerCheckWrapper';
 import { SplatterSVG } from './TaskPalhetaDeFores';

@@ -1,8 +1,11 @@
-import { FilmReelIcon } from 'components/icons/FilmReelIcon';
-import { IconAvatar } from 'components/icons/IconAvatar';
+// Utils
+import { getMovieTitle } from '../utils/helpers';
+// Icons
+import { FilmReelIcon } from 'icons/FilmReelIcon';
+// Components
+import { IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 import { Instruction, TextHighlight } from 'components/text';
-import { getMovieTitle } from '../utils/helpers';
 
 type YourMovieProps = {
   movies: MovieCard[];

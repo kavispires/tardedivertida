@@ -6,6 +6,8 @@ import { useOnSubmitStoryAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 import { NOOP } from 'utils/constants';
+// Icons
+import { FairyTaleIcon } from 'icons/FairyTaleIcon';
 // Components
 import { StoryWaiting } from './components/StoryWaiting';
 import { StoryWriting } from './components/StoryWriting';
@@ -18,7 +20,6 @@ import { AvatarName } from 'components/avatars';
 import { TurnOrder } from 'components/players';
 import { ImageCardPreloadHand } from 'components/cards';
 import { ViewOr } from 'components/views';
-import { FairyTaleIcon } from 'components/icons/FairyTaleIcon';
 
 function PhaseStory({ state, players, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);

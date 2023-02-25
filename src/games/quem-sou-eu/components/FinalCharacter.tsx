@@ -1,12 +1,12 @@
 import { useMemo } from 'react';
 // Utils
 import { parseSelectedGlyphs } from '../utils/helpers';
+// Icons
+import { NoIcon } from 'icons/NoIcon';
+import { YesIcon } from 'icons/YesIcon';
 // Components
-import { AvatarStrip } from 'components/avatars';
+import { AvatarStrip, IconAvatar } from 'components/avatars';
 import { GlyphCard } from 'components/cards/GlyphCard';
-import { IconAvatar } from 'components/icons/IconAvatar';
-import { NoIcon } from 'components/icons/NoIcon';
-import { YesIcon } from 'components/icons/YesIcon';
 import { CharacterCard } from './CharacterCard';
 
 type FinalCharacterProps = {

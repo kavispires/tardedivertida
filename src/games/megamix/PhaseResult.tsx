@@ -4,6 +4,8 @@ import { useUser } from 'hooks/useUser';
 import { useStep } from 'hooks/useStep';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+// Icons
+import { BouncerIcon } from 'icons/BouncerIcon';
 // Components
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
@@ -11,7 +13,6 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
 import { StepResult } from './StepResult';
 import { StepRanking } from './StepRanking';
-import { BouncerIcon } from 'components/icons/BouncerIcon';
 
 export function PhaseResult({ players, state, info }: PhaseProps) {
   const user = useUser(players, state);

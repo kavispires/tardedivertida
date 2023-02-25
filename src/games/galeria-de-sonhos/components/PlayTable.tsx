@@ -7,10 +7,11 @@ import { useCardWidth } from 'hooks/useCardWidth';
 import { useLoading } from 'hooks/useLoading';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
+// Icons
+import { StarIcon } from 'icons/StarIcon';
 // Components
 import { ImageBlurButton, ImageCard, ImageCardBack } from 'components/cards';
 import { Translate } from 'components/language';
-import { StarIcon } from 'components/icons/StarIcon';
 
 type PlayTableProps = {
   table: GImageCard[];

@@ -1,9 +1,11 @@
-import { AvatarCard } from 'components/avatars';
-import { TransparentButton } from 'components/buttons';
-import { IconAvatar } from 'components/icons/IconAvatar';
-import { KnifeIcon } from 'components/icons/KnifeIcon';
-import { Translate } from 'components/language';
+// Utils
 import { getAvatarColorById } from 'utils/helpers';
+// Icons
+import { KnifeIcon } from 'icons/KnifeIcon';
+// Components
+import { AvatarCard, IconAvatar } from 'components/avatars';
+import { TransparentButton } from 'components/buttons';
+import { Translate } from 'components/language';
 
 type PlayerTargetCardButtonProps = {
   player: GamePlayer;

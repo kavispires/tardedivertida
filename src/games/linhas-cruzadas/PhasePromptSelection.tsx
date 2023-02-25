@@ -4,13 +4,14 @@ import { useStep } from 'hooks/useStep';
 import { useOnSubmitPromptAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+// Icons
+import { ListIcon } from 'icons/ListIcon';
 // Components
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { StepSelectPrompt } from './StepSelectPrompt';
-import { ListIcon } from 'components/icons/ListIcon';
 
 function PhasePromptSelection({ players, state, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);

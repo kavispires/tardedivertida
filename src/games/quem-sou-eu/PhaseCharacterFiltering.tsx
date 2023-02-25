@@ -5,12 +5,13 @@ import { useOnSubmitCharactersAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 import { NOOP } from 'utils/constants';
+// Icons
+import { FilterIcon } from 'icons/FilterIcon';
 // Components
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
-import { FilterIcon } from 'components/icons/FilterIcon';
 import { StepSelectCharacters } from './StepSelectCharacters';
 
 export function PhaseCharacterFiltering({ players, state, info }: PhaseProps) {

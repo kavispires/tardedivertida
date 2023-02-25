@@ -1,24 +1,25 @@
 // Ant Design Resources
 import { Space } from 'antd';
+// Icons
+import { IconsIcon } from 'icons/IconsIcon';
+import { ClockIcon } from 'icons/ClockIcon';
 // Components
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
+import { ItemCard } from 'components/cards/ItemCard';
+import { AdminNextPhaseButton } from 'components/admin';
+import { MetricHighlight } from 'components/metrics/MetricHighlight';
 import { ObjectsGrid } from './components/ObjectsGrid';
 import { SignsKeyCard } from './components/SignsKeyCard';
 import { HumanSignBoard } from './components/HumanSignBoard';
 import { AlienContent, HumanContent } from './components/Content';
 import { ItemResolution } from './components/ItemResolution';
-import { AdminNextPhaseButton } from 'components/admin';
 import { History } from './components/History';
 import { PopoverRule } from 'components/rules';
 import { Status } from './components/Status';
-import { IconsIcon } from 'components/icons/IconsIcon';
-import { MetricHighlight } from 'components/metrics/MetricHighlight';
-import { ClockIcon } from 'components/icons/ClockIcon';
 import { AlienViewBoard } from './components/AlienViewBoard';
-import { ItemCard } from 'components/cards/ItemCard';
 import { BotPopupRule } from './components/BotPopupRules';
 
 type StepRevealProps = {

@@ -5,6 +5,8 @@ import { useUser } from 'hooks/useUser';
 import { useOnSubmitCategoryAPIRequest, useOnSubmitClueAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+// Icons
+import { TurbanIcon } from 'icons/TurbanIcon';
 // Components
 import { StepClueWriting } from './StepClueWriting';
 import { StepClueWaiting } from './StepClueWaiting';
@@ -17,7 +19,6 @@ import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
 import { TurnOrder } from 'components/players';
 import { ViewOr } from 'components/views';
-import { TurbanIcon } from 'components/icons/TurbanIcon';
 
 function PhaseDialClue({ players, state, info }: PhaseProps) {
   const user = useUser(players, state);

@@ -4,13 +4,14 @@ import { useUser } from 'hooks/useUser';
 import { useOnSubmitContenderAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+// Icons
+import { AnonymousIcon } from 'icons/AnonymousIcon';
 // Components
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
 import { StepSelectContenders } from './StepSelectContenders';
-import { AnonymousIcon } from 'components/icons/AnonymousIcon';
 import { ContendersHand } from './components/ContendersHand';
 
 function PhaseContenderSelection({ state, players, info }: PhaseProps) {

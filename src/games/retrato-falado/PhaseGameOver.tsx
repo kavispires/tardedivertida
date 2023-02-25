@@ -1,10 +1,11 @@
 // Hooks
-import { GameOverWrapper } from 'components/game-over';
-import { TrophyIcon } from 'components/icons/TrophyIcon';
-import { Translate } from 'components/language';
-import { Title } from 'components/text';
 import { useCardWidth } from 'hooks/useCardWidth';
+// Icons
+import { TrophyIcon } from 'icons/TrophyIcon';
 // Components
+import { Title } from 'components/text';
+import { GameOverWrapper } from 'components/game-over';
+import { Translate } from 'components/language';
 import { MonsterSketches } from './components/MonsterSketches';
 
 function PhaseGameOver({ state, info, players }: PhaseProps) {

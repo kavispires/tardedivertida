@@ -1,8 +1,9 @@
 // Ant Design resources
 import { Space } from 'antd';
+// Icons
+import { TrophyIcon } from 'icons/TrophyIcon';
 // Components
 import { GameOverWrapper } from 'components/game-over';
-import { TrophyIcon } from 'components/icons/TrophyIcon';
 import { Translate } from 'components/language';
 import { Title } from 'components/text';
 import { ContenderCard } from './components/ContenderCard';

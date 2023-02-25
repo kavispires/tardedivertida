@@ -2,7 +2,7 @@ import { useCopyToClipboard, useTitle } from 'react-use';
 // Ant Design Resources
 import { Layout, message } from 'antd';
 // Components
-import * as icons from 'components/icons/collection';
+import * as icons from 'icons/collection';
 import { DevHeader } from './DevHeader';
 import { TransparentButton } from 'components/buttons';
 import { useEffect } from 'react';

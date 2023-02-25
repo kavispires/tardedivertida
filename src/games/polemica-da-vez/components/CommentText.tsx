@@ -1,7 +1,7 @@
 import clsx from 'clsx';
-import { IconAvatar } from 'components/icons/IconAvatar';
-import { SpeechBubbleThumbsDownIcon } from 'components/icons/SpeechBubbleThumbsDownIcon';
-import { SpeechBubbleThumbsUpIcon } from 'components/icons/SpeechBubbleThumbsUpIcon';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { SpeechBubbleThumbsDownIcon } from 'icons/SpeechBubbleThumbsDownIcon';
+import { SpeechBubbleThumbsUpIcon } from 'icons/SpeechBubbleThumbsUpIcon';
 import { Translate } from 'components/language';
 import { StarPoints } from 'components/points';
 // Components

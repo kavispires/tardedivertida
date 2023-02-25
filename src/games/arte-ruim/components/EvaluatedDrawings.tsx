@@ -3,8 +3,8 @@ import { useMemo } from 'react';
 import { useGlobalState } from 'hooks/useGlobalState';
 // Components
 import { CanvasSVG } from 'components/canvas';
-import { IconAvatar } from 'components/icons/IconAvatar';
-import { AnimatedLoaderIcon } from 'components/icons/AnimatedLoaderIcon';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { AnimatedLoaderIcon } from 'icons/AnimatedLoaderIcon';
 import { AvatarName } from 'components/avatars';
 
 type EvaluatedDrawingsProps = {

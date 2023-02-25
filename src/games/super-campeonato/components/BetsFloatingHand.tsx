@@ -3,11 +3,12 @@ import { useMemo } from 'react';
 import { useCardWidth } from 'hooks/useCardWidth';
 // Utils
 import { findBetContenders } from '../utils/helpers';
+// Icons
+import { GamblingChipIcon } from 'icons/GamblingChipIcon';
 // Components
 import { FloatingHand, ImageBlurButtonContainer } from 'components/cards';
 import { Translate } from 'components/language';
 import { ContenderCard } from './ContenderCard';
-import { GamblingChipIcon } from 'components/icons/GamblingChipIcon';
 
 type BetsFloatingHandProps = {
   bets: WBets;

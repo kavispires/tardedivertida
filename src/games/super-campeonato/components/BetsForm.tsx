@@ -7,15 +7,16 @@ import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { getSmartBetContenderOptions } from '../utils/helpers';
 import { DEFAULT_BETS, TIER_BY_STEP } from '../utils/constants';
+import { getAnimationClass } from 'utils/helpers';
+// Icons
+import { MedalIcon } from 'icons/MedalIcon';
+import { TrophyIcon } from 'icons/TrophyIcon';
+import { ThumbsUpIcon } from 'icons/ThumbsUpIcon';
 // Components
 import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
 import { ContendersSelect } from './ContendersSelect';
-import { MedalIcon } from 'components/icons/MedalIcon';
-import { getAnimationClass } from 'utils/helpers';
-import { IconAvatar } from 'components/icons/IconAvatar';
-import { TrophyIcon } from 'components/icons/TrophyIcon';
-import { ThumbsUpIcon } from 'components/icons/ThumbsUpIcon';
+import { IconAvatar } from 'components/avatars';
 import { ResetBetsButton } from './ResetBetsButton';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 

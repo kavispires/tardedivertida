@@ -11,8 +11,8 @@ import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
 import { MinigameTitle } from './MinigameTitle';
 import { Avatar } from 'components/avatars';
-import { IconAvatar } from 'components/icons/IconAvatar';
-import { ShooterIcon } from 'components/icons/ShooterIcon';
+import { IconAvatar } from 'components/avatars/IconAvatar';
+import { ShooterIcon } from 'icons/ShooterIcon';
 
 export const TaskQuemNaoMata = ({ task, round, onSubmitTask, user, players }: TaskProps) => {
   const { isLoading } = useLoading();

@@ -1,8 +1,8 @@
-import { MedalArrowDownIcon } from 'components/icons/MedalArrowDownIcon';
-import { MedalArrowUpIcon } from 'components/icons/MedalArrowUpIcon';
-import { MedalFootprintsIcon } from 'components/icons/MedalFootprintsIcon';
-import { MedalPersonIcon } from 'components/icons/MedalPersonIcon';
-import { MedalSkullIcon } from 'components/icons/MedalSkullIcon';
+import { MedalArrowDownIcon } from 'icons/MedalArrowDownIcon';
+import { MedalArrowUpIcon } from 'icons/MedalArrowUpIcon';
+import { MedalFootprintsIcon } from 'icons/MedalFootprintsIcon';
+import { MedalPersonIcon } from 'icons/MedalPersonIcon';
+import { MedalSkullIcon } from 'icons/MedalSkullIcon';
 
 export const achievementsReference: AchievementReference = {
   MOST_MATCHES: {

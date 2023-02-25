@@ -4,13 +4,14 @@ import { useStep } from 'hooks/useStep';
 import { useOnSubmitVotesAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+// Icons
+import { EvaluateIcon } from 'icons/EvaluateIcon';
 // Components
 import { Translate } from 'components/language';
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { StepMatchDreams } from './StepMatchDreams';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { EvaluateIcon } from 'components/icons/EvaluateIcon';
 
 function PhaseMatching({ state, players, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);

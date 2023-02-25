@@ -6,13 +6,14 @@ import { useOnSubmitVoteAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 import { NOOP } from 'utils/constants';
+// Icons
+import { VoteIcon } from 'icons/VoteIcon';
 // Components
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { ImageCardPreloadHand } from 'components/cards';
 import { StepVoting } from './StepVoting';
 import { VotingRules } from './components/RulesBlobs';
-import { VoteIcon } from 'components/icons/VoteIcon';
 import { Translate } from 'components/language';
 
 function PhaseVoting({ state, players, info }: PhaseProps) {

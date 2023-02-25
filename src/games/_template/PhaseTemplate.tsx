@@ -4,16 +4,17 @@ import { useStep } from 'hooks/useStep';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 import { NOOP } from 'utils/constants';
+// Icons
+import { TDIcon } from 'icons/TDIcon';
 // Components
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { TDIcon } from 'components/icons/TDIcon';
 import { Translate } from 'components/language';
 
 export function PhaseTemplate({ players, state, info }: PhaseProps) {
   const user = useUser(players, state);
-  const { step, goToNextStep } = useStep();
+  const { step } = useStep();
 
   const announcement = (
     <PhaseAnnouncement

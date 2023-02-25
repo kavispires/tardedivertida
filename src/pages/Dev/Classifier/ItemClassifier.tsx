@@ -209,7 +209,7 @@ function Controls({
   latestId,
 }: ControlsProps) {
   return (
-    <Space className="classifier__navigation">
+    <Space className="classifier__navigation" wrap>
       <Button onClick={() => goTo('first')} disabled={itemId === '1'}>
         First
       </Button>

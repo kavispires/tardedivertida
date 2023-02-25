@@ -12,6 +12,9 @@ import {
   GO_TO_PLAYER_WITH_NIGHTMARE_STEP,
   GO_TO_SEE_CARD_STEP,
 } from './utils/constants';
+// Icons
+import { DoorSignIcon } from 'icons/DoorSignIcon';
+import { NightmareIcon } from 'icons/NightmareIcon';
 // Components
 import { PhaseAnnouncement, PhaseContainer, PhaseTimerReset } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
@@ -21,8 +24,6 @@ import { Instruction } from 'components/text';
 import { CardPlayRules } from './components/RulesBlobs';
 import { StepPlayDream } from './StepPlayDream';
 import { StepAnnounceDream } from './StepAnnounceDream';
-import { DoorSignIcon } from 'components/icons/DoorSignIcon';
-import { NightmareIcon } from 'components/icons/NightmareIcon';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 
 function PhaseCardPlay({ players, state, info, meta }: PhaseProps) {

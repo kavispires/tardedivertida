@@ -1,12 +1,12 @@
 // Helpers
 import { isHistoryLocked } from '../utils/helpers';
 import { sortPlayers } from 'utils/helpers';
+// Icons
+import { LockIcon } from 'icons/LockIcon';
+import { KnifeIcon } from 'icons/KnifeIcon';
 // Components
-import { AvatarCard } from 'components/avatars';
+import { AvatarCard, IconAvatar } from 'components/avatars';
 import { TransparentButton } from 'components/buttons';
-import { IconAvatar } from 'components/icons/IconAvatar';
-import { LockIcon } from 'components/icons/LockIcon';
-import { KnifeIcon } from 'components/icons/KnifeIcon';
 
 type PlayersCardsProps = {
   activePlayerId: PlayerId;

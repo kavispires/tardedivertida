@@ -7,15 +7,16 @@ import { useOnProgressGameAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 import { determineView } from './utils/helpers';
+// Icons
+import { MapLocationIcon } from 'icons/MapLocationIcon';
+import { ThiefIcon } from 'icons/ThiefIcon';
+import { NuclearExplosionIcon } from 'icons/NuclearExplosionIcon';
+import { HandcuffsIcon } from 'icons/HandcuffsIcon';
 // Components
 import { StepResolution } from './StepResolution';
 import { PhaseAnnouncement, PhaseContainer, PhaseTimerReset } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { ViewOr } from 'components/views';
-import { MapLocationIcon } from 'components/icons/MapLocationIcon';
-import { ThiefIcon } from 'components/icons/ThiefIcon';
-import { NuclearExplosionIcon } from 'components/icons/NuclearExplosionIcon';
-import { HandcuffsIcon } from 'components/icons/HandcuffsIcon';
 import { Translate } from 'components/language';
 
 function PhaseResolution({ state, players, info }: PhaseProps) {

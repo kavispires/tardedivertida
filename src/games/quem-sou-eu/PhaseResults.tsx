@@ -4,13 +4,14 @@ import { useStep } from 'hooks/useStep';
 import { useSlideShow } from 'hooks/useSlideShow';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+// Icons
+import { MirrorIcon } from 'icons/MirrorIcon';
 // Components
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
 import { ScoringRules } from './components/RulesBlobs';
-import { MirrorIcon } from 'components/icons/MirrorIcon';
 import { StepGallery } from './StepGallery';
 import { StepRanking } from './StepRanking';
 

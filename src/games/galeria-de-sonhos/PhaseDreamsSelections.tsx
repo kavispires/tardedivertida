@@ -4,13 +4,14 @@ import { useOnSubmitCardsAPIRequest } from './utils/api-requests';
 import { useUser } from 'hooks/useUser';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+// Icons
+import { DreamIcon } from 'icons/DreamIcon';
 // Components
 import { ImageCardPreloadHand } from 'components/cards';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
 import { DreamSelectionRules } from './components/RulesBlobs';
 import { StepDreamsSelection } from './StepDreamsSelection';
-import { DreamIcon } from 'components/icons/DreamIcon';
 import { Translate } from 'components/language';
 
 function PhaseDreamsSelections({ players, state, info, meta }: PhaseProps) {

@@ -1,10 +1,11 @@
 import { orderBy } from 'lodash';
 // Hooks
 import { useUser } from 'hooks/useUser';
+// Icons
+import { TrophyIcon } from 'icons/TrophyIcon';
 // Components
 import { GameOverWrapper } from 'components/game-over';
 import { Crime } from './components/Crime';
-import { TrophyIcon } from 'components/icons/TrophyIcon';
 
 function PhaseGameOver({ state, players, info }: PhaseProps) {
   const crimes: Crime[] = state.crimes;

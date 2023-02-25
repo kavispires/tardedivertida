@@ -1,11 +1,15 @@
-import { DeleteOutlined, RedoOutlined } from '@ant-design/icons';
-import { Button } from 'antd';
-import clsx from 'clsx';
-import { CloverIcon } from 'components/icons/CloverIcon';
-import { IconAvatar } from 'components/icons/IconAvatar';
-import { LockIcon } from 'components/icons/LockIcon';
 import { ReactNode } from 'react';
+import clsx from 'clsx';
+// Ant Design Resources
+import { Button } from 'antd';
+import { DeleteOutlined, RedoOutlined } from '@ant-design/icons';
+// Utils
 import { getAnimationClass } from 'utils/helpers';
+// Icons
+import { CloverIcon } from 'icons/CloverIcon';
+import { LockIcon } from 'icons/LockIcon';
+// Components
+import { IconAvatar } from 'components/avatars';
 
 type LeafProps = {
   leaf: Leaf;

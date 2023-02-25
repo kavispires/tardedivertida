@@ -8,18 +8,19 @@ import { sortPlayers } from 'utils/helpers';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 import { useCountdown } from 'hooks/useCountdown';
 import { useDimensions } from 'hooks/useDimensions';
+// Icons
+import { DJIcon } from 'icons/DJIcon';
+import { GarbageIcon } from 'icons/GarbageIcon';
+import { VIPLineIcon } from 'icons/VIPLineIcon';
 // Components
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { TimedButton } from 'components/buttons';
 import { ClubberAvatar } from './components/ClubberAvatar';
-import { GarbageIcon } from 'components/icons/GarbageIcon';
-import { VIPLineIcon } from 'components/icons/VIPLineIcon';
-import { IconAvatar } from 'components/icons/IconAvatar';
+import { IconAvatar } from 'components/avatars';
 import { ResultValueDelegator } from './components/ResultValueDelegator';
 import { TaskTitle } from './components/TaskTitle';
-import { DJIcon } from 'components/icons/DJIcon';
 import { VotesDelegator } from './components/VotesDelegator';
 
 type StepResultProps = {

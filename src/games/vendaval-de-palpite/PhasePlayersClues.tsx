@@ -4,6 +4,8 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { useOnSubmitPlayerCluesAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+// Icons
+import { DiscussionIcon } from 'icons/DiscussionIcon';
 // Components
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
@@ -14,7 +16,6 @@ import { RoundAnnouncement } from 'components/round';
 import { ViewOr } from 'components/views';
 import { StepBossWaiting } from './StepBossWaiting';
 import { Board } from './components/Board';
-import { DiscussionIcon } from 'components/icons/DiscussionIcon';
 
 function PhasePlayersClues({ state, players, info }: PhaseProps) {
   const { step, setStep, goToNextStep } = useStep(0);

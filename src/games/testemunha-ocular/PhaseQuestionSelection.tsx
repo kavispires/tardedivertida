@@ -5,6 +5,8 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { useOnSelectQuestionAPIRequest } from './utils/api-requests';
 // Utils
 import { PHASES } from 'utils/phases';
+// Icons
+import { InvestigationIcon } from 'icons/InvestigationIcon';
 // Components
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
@@ -14,7 +16,6 @@ import { ViewOr } from 'components/views';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepQuestionWaiting } from './StepQuestionWaiting';
 import { StepSelectQuestion } from './StepSelectQuestion';
-import { InvestigationIcon } from 'components/icons/InvestigationIcon';
 
 function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
   const { isLoading } = useLoading();

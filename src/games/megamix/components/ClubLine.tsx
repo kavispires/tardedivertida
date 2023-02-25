@@ -5,7 +5,7 @@ import { Tooltip } from 'antd';
 // Utils
 import { sortPlayers } from 'utils/helpers';
 // Components
-import { VIPLineIcon } from 'components/icons/VIPLineIcon';
+import { VIPLineIcon } from 'icons/VIPLineIcon';
 import { ClubberAvatar } from './ClubberAvatar';
 
 type MinigameTitleProps = {

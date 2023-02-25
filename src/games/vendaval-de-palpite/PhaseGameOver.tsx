@@ -1,12 +1,13 @@
 import { Space } from 'antd';
+// Icons
+import { GarbageIcon } from 'icons/GarbageIcon';
+import { QualitySealIcon } from 'icons/QualitySealIcon';
+import { TheEndIcon } from 'icons/TheEndIcon';
+import { TrophyIcon } from 'icons/TrophyIcon';
 // Components
 import { GameOverWrapper } from 'components/game-over';
-import { GarbageIcon } from 'components/icons/GarbageIcon';
-import { IconAvatar } from 'components/icons/IconAvatar';
-import { QualitySealIcon } from 'components/icons/QualitySealIcon';
-import { TheEndIcon } from 'components/icons/TheEndIcon';
-import { TrophyIcon } from 'components/icons/TrophyIcon';
 import { Translate } from 'components/language';
+import { IconAvatar } from 'components/avatars';
 import { Board } from './components/Board';
 import { CategoryWordGroup } from './components/CategoryWordGroup';
 
