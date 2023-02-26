@@ -13,6 +13,7 @@ import { CostumeAvatar } from 'games/na-rua-do-medo/components/CostumeAvatar';
 import { ClubberAvatar } from 'games/megamix/components/ClubberAvatar';
 import { GlyphCard } from 'components/cards/GlyphCard';
 import { ItemCard } from 'components/cards/ItemCard';
+import { Link } from 'react-router-dom';
 
 type SpriteOption = {
   key: string;
@@ -95,7 +96,11 @@ function SpritesPage() {
             ))}
           </Select>
         }
-        subTitle={<>({active.quantity})</>}
+        subTitle={
+          <>
+            ({active.quantity}){active.key === 'items' && <Link to="/dev/classifier"> Classifier</Link>}
+          </>
+        }
       />
       <Layout.Content className="dev-content">
         {active.key === 'avatars' && <AvatarsContent />}
