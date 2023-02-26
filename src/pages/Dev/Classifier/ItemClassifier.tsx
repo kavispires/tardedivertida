@@ -1,14 +1,25 @@
-import { AutoComplete, Button, Card, Input, notification, Radio, Space } from 'antd';
+import {
+  AutoComplete,
+  Button,
+  Card,
+  Divider,
+  Input,
+  notification,
+  Radio,
+  Space,
+  Statistic,
+  Switch,
+} from 'antd';
 import { DevHeader } from '../DevHeader';
 import { useTitle } from 'react-use';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { ItemCard } from 'components/cards/ItemCard';
 import { ATTRIBUTES } from './constants';
 import type { Attribute, Weight, AlienItemDict, ItemId } from './types';
 import { useAlienItemsDocument, useItem } from './hooks';
 import { Loading, LoadingPage } from 'components/loaders';
 import { PageError } from 'components/errors';
-import { countNonZeroAttributes, validateItem } from './helpers';
+import { countNonZeroAttributes, getStats, validateItem } from './helpers';
 import { isEmpty } from 'lodash';
 import { CheckCircleFilled, CloseCircleOutlined } from '@ant-design/icons';
 
@@ -22,6 +33,7 @@ function ItemClassifier() {
   useTitle('Classifier | Dev | Tarde Divertida');
   const [api, contextHolder] = notification.useNotification();
   const { isLoading, isError, data, save, setData, latestId, isSaving } = useAlienItemsDocument(api);
+  const [view, setView] = useState('default');
 
   if (isEmpty(data) && isLoading) {
     return <LoadingPage />;
@@ -35,9 +47,22 @@ function ItemClassifier() {
 
   return (
     <div>
-      <DevHeader title="Classifier" />
+      <DevHeader
+        title="Classifier"
+        extra={
+          <Switch
+            checkedChildren="Stats On"
+            unCheckedChildren="Stats Off"
+            defaultChecked={view === 'stats'}
+            onChange={(e) => setView(e ? 'stats' : 'default')}
+          />
+        }
+      />
       {contextHolder}
-      <ClassifyingCard latestId={latestId} data={data} save={save} setData={setData} isSaving={isSaving} />
+      {view === 'default' && (
+        <ClassifyingCard latestId={latestId} data={data} save={save} setData={setData} isSaving={isSaving} />
+      )}
+      {view === 'stats' && <StatsCard data={data} />}
     </div>
   );
 }
@@ -286,6 +311,80 @@ function Search({ data, setItemId }: SearchProps) {
           option!.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
         }
       />
+    </Space>
+  );
+}
+
+type StatsCardProps = {
+  data: AlienItemDict;
+};
+function StatsCard({ data }: StatsCardProps) {
+  // Count 5s and -5s among objects
+  // Counts attribute values for -5 -3 -1 0 1 3 5
+  // Positive vs Negative
+  const stats = getStats(data);
+  console.log(stats.attributeCounts);
+  return (
+    <Space className="container classifier" direction="vertical">
+      <Card title={`Stats`}>
+        <Space wrap size="large">
+          <Statistic title="Positive Fives" value={stats.positiveFives} suffix="%" />
+          <Statistic title="Negative Fives" value={stats.negativeFives} suffix="%" />
+          <Statistic
+            title="Positive Attributes Total Average"
+            value={stats.positiveAttributesMean}
+            precision={1}
+          />
+          <Statistic
+            title="Negative Attributes Total Average"
+            value={stats.negativeAttributesMean}
+            precision={1}
+          />
+        </Space>
+        <Divider />
+
+        <Space wrap size="small">
+          {ATTRIBUTES.map((entry) => {
+            const attribute = stats.attributeCounts[entry.id];
+            return (
+              <Card title={`${entry.name.en} - ${entry.name.pt}`} key={entry.id}>
+                <Statistic
+                  title="Positive"
+                  value={((attribute['5'] + attribute['3']) * 100) / stats.total}
+                  suffix="%"
+                  precision={1}
+                />
+                <Statistic
+                  title="Negative"
+                  value={((attribute['-5'] + attribute['-3']) * 100) / stats.total}
+                  suffix="%"
+                  precision={1}
+                />
+                <Statistic
+                  title="Neutral"
+                  value={((attribute['-1'] + attribute['1']) * 100) / stats.total}
+                  suffix="%"
+                  precision={1}
+                  className="stat"
+                />
+                <Statistic
+                  title={'Five'}
+                  value={(attribute['5'] * 100) / stats.total}
+                  suffix="%"
+                  precision={1}
+                />
+                <Statistic
+                  title={'Negative Five'}
+                  value={(attribute['-5'] * 100) / stats.total}
+                  suffix="%"
+                  precision={1}
+                  className="stat"
+                />
+              </Card>
+            );
+          })}
+        </Space>
+      </Card>
     </Space>
   );
 }
