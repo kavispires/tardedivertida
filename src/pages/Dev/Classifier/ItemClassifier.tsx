@@ -1,10 +1,10 @@
-import { Button, Card, Input, notification, Radio, Space } from 'antd';
+import { AutoComplete, Button, Card, Input, notification, Radio, Space } from 'antd';
 import { DevHeader } from '../DevHeader';
 import { useTitle } from 'react-use';
 import { useEffect } from 'react';
 import { ItemCard } from 'components/cards/ItemCard';
 import { ATTRIBUTES } from './constants';
-import type { Attribute, Weight, AlienItemDict } from './types';
+import type { Attribute, Weight, AlienItemDict, ItemId } from './types';
 import { useAlienItemsDocument, useItem } from './hooks';
 import { Loading, LoadingPage } from 'components/loaders';
 import { PageError } from 'components/errors';
@@ -53,7 +53,7 @@ type ClassifyingCardProps = {
 };
 
 function ClassifyingCard({ latestId, data, save, setData, isSaving }: ClassifyingCardProps) {
-  const { itemId, previousItem, nextItem, itemNumber, goTo } = useItem(latestId);
+  const { itemId, previousItem, nextItem, itemNumber, goTo, setItemId } = useItem(latestId);
 
   const current = data[itemId];
 
@@ -117,7 +117,10 @@ function ClassifyingCard({ latestId, data, save, setData, isSaving }: Classifyin
         data={data}
       />
 
-      <Card title={`Classifying ${itemId} - ${current.name} - (${countNonZeroAttributes(current)}/25)`}>
+      <Card
+        title={`Classifying ${itemId} - ${current.name} - (${countNonZeroAttributes(current)}/25)`}
+        extra={<Search setItemId={setItemId} data={data} />}
+      >
         <Space className="classifier__grid">
           <Space className="classifier__item" direction="vertical">
             <Input placeholder="Type name" onChange={updateName} value={current.name} />
@@ -127,7 +130,7 @@ function ClassifyingCard({ latestId, data, save, setData, isSaving }: Classifyin
           <Space className="classifier__attributes" wrap>
             {ATTRIBUTES.map((entry) => {
               return (
-                <Space className="classifier__entry" direction="vertical">
+                <Space className="classifier__entry" direction="vertical" key={entry.id}>
                   <div className="title">{`${entry.name.en} - ${entry.name.pt}`}</div>
                   <Radio.Group
                     value={current.attributes[entry.id as Attribute]}
@@ -249,5 +252,40 @@ function Verifier({ label, value }: VerifierProps) {
         <CloseCircleOutlined style={{ color: 'red' }} />
       )}
     </div>
+  );
+}
+
+type SearchProps = {
+  data: AlienItemDict;
+  setItemId: React.Dispatch<React.SetStateAction<string>>;
+};
+function Search({ data, setItemId }: SearchProps) {
+  const namesDict = Object.values(data).reduce((acc: Record<string, ItemId>, entry) => {
+    acc[entry.name] = entry.id;
+    return acc;
+  }, {});
+  const names = Object.keys(namesDict).map((name) => ({ value: name }));
+
+  const onSelect = (name: string) => {
+    if (namesDict[name]) {
+      setItemId(namesDict[name]);
+    }
+  };
+
+  const onSearch = (e: any) => console.log({ search: e });
+
+  return (
+    <Space>
+      <AutoComplete
+        options={names}
+        style={{ width: 150 }}
+        onSelect={onSelect}
+        onSearch={onSearch}
+        placeholder="Go to..."
+        filterOption={(inputValue, option) =>
+          option!.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
+        }
+      />
+    </Space>
   );
 }
