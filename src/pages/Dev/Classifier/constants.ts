@@ -11,7 +11,7 @@ export const ATTRIBUTES = [
   { id: 'food', name: { en: 'Food', pt: 'Comida' } },
   { id: 'heavy', name: { en: 'Heavy', pt: 'Pesado' } },
   { id: 'human', name: { en: 'Human', pt: 'Humano' } },
-  { id: 'knowledge', name: { en: 'Knowledge', pt: 'Sabedoria' } },
+  { id: 'knowledge', name: { en: 'Knowledge', pt: 'Conhecimento' } },
   { id: 'liquid', name: { en: 'Liquid', pt: 'Líquido' } },
   { id: 'long', name: { en: 'Long', pt: 'Longo' } },
   { id: 'metal', name: { en: 'Metal', pt: 'Metal' } },

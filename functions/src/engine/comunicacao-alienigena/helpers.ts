@@ -212,39 +212,42 @@ export function determineAlienRequest(store: ComunicacaoAlienigenaStore, signs: 
  * @returns The list of up to 5 attributes sorted by weight and filtered by the known attributes.
  */
 function sortItemAttributesBySpecificWeight(item: AlienItem, knownSigns: SignKey[]) {
-  return Object.entries(item.attributes)
-    .sort(([attrA], [attrB]) => {
-      const weightA = item.attributes[attrA];
-      const weightB = item.attributes[attrB];
+  return (
+    Object.entries(item.attributes)
+      .sort(([attrA], [attrB]) => {
+        const weightA = item.attributes[attrA];
+        const weightB = item.attributes[attrB];
 
-      if (weightA === 5 || weightB === -5) {
-        return -1;
-      }
+        if (weightA === 5 || weightB === -5) {
+          return -1;
+        }
 
-      if (weightA === -5 || weightB === 5) {
-        return 1;
-      }
+        if (weightA === -5 || weightB === 5) {
+          return 1;
+        }
 
-      if (weightA === 3 || weightB === -3) {
-        return -1;
-      }
+        if (weightA === 3 || weightB === -3) {
+          return -1;
+        }
 
-      if (weightA === -3 || weightB === 3) {
-        return 1;
-      }
+        if (weightA === -3 || weightB === 3) {
+          return 1;
+        }
 
-      return weightB - weightA;
-    })
-    .filter(([attr]) => knownSigns.includes(attr))
-    .map(([attr]) => {
-      const weight = item.attributes[attr];
-      if (weight && weight < 0) {
-        return `!${attr}`;
-      } else {
-        return attr;
-      }
-    })
-    .slice(0, 5);
+        return weightB - weightA;
+      })
+      // Only include known signs and ignore -1 values
+      .filter(([attr, weight]) => knownSigns.includes(attr) && weight !== -1)
+      .map(([attr]) => {
+        const weight = item.attributes[attr];
+        if (weight && weight < 0) {
+          return `!${attr}`;
+        } else {
+          return attr;
+        }
+      })
+      .slice(0, 5)
+  );
 }
 
 function getArrayUniqueness(list: string[], used: string[]) {
