@@ -14,6 +14,7 @@ import type {
 // Utils
 import utils from '../../utils';
 import { checkIsBot, determineAlienRequest, determineAlienResponse } from './helpers';
+import { saveUsedItems } from './data';
 
 /**
  * Setup
@@ -336,6 +337,8 @@ export const prepareGameOverPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
+
+  await saveUsedItems(utils.helpers.buildIdDictionary(state.items));
 
   await utils.firebase.markGameAsComplete(gameId);
 
