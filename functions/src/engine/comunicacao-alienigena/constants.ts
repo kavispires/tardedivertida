@@ -66,6 +66,7 @@ export const ATTRIBUTES = {
   knowledge: { id: 'knowledge', name: { en: 'Knowledge', pt: 'Conhecimento' } },
   liquid: { id: 'liquid', name: { en: 'Liquid', pt: 'Líquido' } },
   long: { id: 'long', name: { en: 'Long', pt: 'Longo' } },
+  machine: { id: 'machine', name: { en: 'Machine', pt: 'Máquina' } }, // New
   metal: { id: 'metal', name: { en: 'Metal', pt: 'Metal' } },
   odor: { id: 'odor', name: { en: 'Odor', pt: 'Cheiro' } }, // New
   old: { id: 'old', name: { en: 'Old', pt: 'Velho' } }, // New
@@ -75,7 +76,6 @@ export const ATTRIBUTES = {
   sharp: { id: 'sharp', name: { en: 'Sharp', pt: 'Afiado' } },
   solid: { id: 'solid', name: { en: 'Solid', pt: 'Sólido' } },
   sound: { id: 'sound', name: { en: 'Sound', pt: 'Som' } }, // New
-  technology: { id: 'technology', name: { en: 'Technology', pt: 'Tecnologia' } }, // New
   tool: { id: 'tool', name: { en: 'Tool', pt: 'Ferramenta' } },
   valuable: { id: 'valuable', name: { en: 'Valuable', pt: 'Valioso' } },
   warm: { id: 'warm', name: { en: 'Warm', pt: 'Quente' } },

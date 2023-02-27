@@ -1,6 +1,6 @@
-import { ATTRIBUTES_KEYS } from './constants';
+import { ATTRIBUTES } from './constants';
 
-export type Attribute = typeof ATTRIBUTES_KEYS[number];
+export type Attribute = keyof typeof ATTRIBUTES;
 
 export type Weight = -5 | -3 | -1 | 0 | 1 | 3 | 5;
 
