@@ -7,6 +7,7 @@ import {
   ComunicacaoAlienigenaStore,
   FirebaseStoreData,
   Item,
+  ItemId,
   Sign,
   SignKey,
 } from './types';
@@ -95,17 +96,8 @@ export const determineAlienResponse = (
   store: ComunicacaoAlienigenaStore,
   signs: Sign[]
 ) => {
-  const totalWeights: NumberDictionary = {};
-
-  for (const itemId of currentInquiry) {
-    const item = store.botAlienItemKnowledge[itemId];
-    for (const [attribute, weight] of Object.entries(item.attributes)) {
-      if (totalWeights[attribute] === undefined) {
-        totalWeights[attribute] = 0;
-      }
-      totalWeights[attribute] += weight;
-    }
-  }
+  // Calculate total weight of attributes in current inquiry
+  const totalWeights = calculateTotalWeights(currentInquiry, store.botAlienItemKnowledge);
   //
   const sortedAttributes = Object.entries(totalWeights)
     // Sort counts by total weight
@@ -141,6 +133,57 @@ export const determineAlienResponse = (
   return matchingSign?.signId ?? '';
 };
 
+export const calculateTotalWeights = (
+  itemIds: ItemId[],
+  botAlienItemKnowledge: Record<string, AlienItem>
+) => {
+  const totalWeights: NumberDictionary = {};
+
+  itemIds.forEach((itemId) => {
+    const item = botAlienItemKnowledge[itemId];
+    for (const [attribute, weight] of Object.entries(item.attributes)) {
+      if (totalWeights[attribute] === undefined) {
+        totalWeights[attribute] = 0;
+      }
+      totalWeights[attribute] += weight;
+    }
+  });
+
+  return totalWeights;
+};
+
+export const calculateAttributeUsage = (items: AlienItem[]) => {
+  const totalUsage: NumberDictionary = {};
+
+  items.forEach((item) => {
+    for (const [attribute, weight] of Object.entries(item.attributes)) {
+      if (totalUsage[attribute] === undefined) {
+        totalUsage[attribute] = 0;
+      }
+      if ([-5, 1, 3, 5].includes(weight)) {
+        totalUsage[attribute] += 1;
+      }
+    }
+  });
+
+  return (
+    Object.entries(totalUsage)
+      // Sort counts by total count of useful values
+      .sort(([, countA], [, countB]) => countB - countA)
+      // Get attribute name only
+      .map(([attribute]) => attribute)
+      // Get only the necessary
+      .slice(0, TOTAL_ITEMS)
+  );
+};
+
+/**
+ * Determines the alien's request based on the current state of the game.
+ * @param store - The store containing the bot's knowledge of the game.
+ * @param signs - The list of all available signs.
+ * @param  items - The list of all available items.
+ * @returns {{request: string[], intention: string}} An object containing the alien's request and intention.
+ */
 export function determineAlienRequest(store: ComunicacaoAlienigenaStore, signs: Sign[], items: Item[]) {
   const itemsWithInformationDict = Object.values(store.botAlienSignKnowledge).reduce(
     (acc: NumberDictionary, itemIds) => {

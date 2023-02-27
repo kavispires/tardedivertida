@@ -293,3 +293,28 @@ export function merge(target: any, ...sources: any[]): any {
 export const removeDuplicates = <T>(arr: T[]): T[] => {
   return Array.from(new Set(arr));
 };
+
+/**
+ * Returns an array of unique items that are present in both arrays.
+ * @param array1 - The first array to compare.
+ * @param array2 - The second array to compare.
+ * @returns An array of unique items that are present in both arrays.
+ */
+export function getUniqueItems(array1: any[], array2: any[]): any[] {
+  const map = new Map<any, boolean>();
+  const result: any[] = [];
+
+  // Add the items from the first array to the map
+  array1.forEach((item) => {
+    map.set(item, true);
+  });
+
+  // Add the unique items from the second array to the result
+  array2.forEach((item) => {
+    if (map.has(item) && !result.includes(item)) {
+      result.push(item);
+    }
+  });
+
+  return result;
+}
