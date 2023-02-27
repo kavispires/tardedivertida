@@ -38,10 +38,10 @@ export const determineNextPhase = (
 
   const order = [RULES, SETUP, ALIEN_SELECTION, HUMAN_ASK, ALIEN_ANSWER, ALIEN_REQUEST, OFFERINGS, REVEAL];
 
-  const { phase: currentPhase, round, humanId, turnOrder, status } = state;
+  const { phase: currentPhase, round, humanId, turnOrder, status, items } = state;
 
   if (currentPhase === REVEAL) {
-    if (status.timeLeft < 1) {
+    if (status.timeLeft < 1 || items.every((item: Item) => item.offered)) {
       return GAME_OVER;
     }
 
@@ -110,15 +110,16 @@ export const determineAlienResponse = (
     .map(([attribute]) => attribute);
 
   // Filter only attributes that will be new to players, however, if only one item, return the best one
-  const uniqueMatches =
+  let uniqueMatches =
     currentInquiry.length > 1
       ? getArrayUniqueness(sortedAttributes, Object.keys(store.botAlienSignKnowledge))
       : [];
 
-  const bestMatch = uniqueMatches?.[0] ?? sortedAttributes[0];
+  let bestMatch = uniqueMatches?.[0] ?? sortedAttributes[0];
 
-  const matchingSign = signs.find((sign) => sign.key === bestMatch);
+  let matchingSign = signs.find((sign) => sign.key === bestMatch);
 
+  // Save that the humans know about this sign now
   if (matchingSign?.key) {
     if (store.botAlienSignKnowledge[matchingSign.key] === undefined) {
       store.botAlienSignKnowledge[matchingSign.key] = [];
@@ -130,7 +131,50 @@ export const determineAlienResponse = (
     ];
   }
 
-  return matchingSign?.signId ?? '';
+  let result = matchingSign?.signId ?? '';
+
+  if (result) {
+    return result;
+  }
+
+  // If no positive attribute is found, try the most known negative
+  const sortedAttributesReverse = Object.entries(totalWeights)
+    // Sort counts by total weight
+    .sort(([, weightA], [, weightB]) => weightA - weightB)
+    // Remove any attribute that could be negative for any item
+    .filter(([attribute]) => {
+      return currentInquiry.every((itemId) => store.botAlienItemKnowledge[itemId].attributes[attribute] < 0);
+    })
+    // Get attribute name only
+    .map(([attribute]) => attribute);
+
+  // Filter only attributes that will be new to players, however, if only one item, return the best one
+  uniqueMatches =
+    currentInquiry.length > 1
+      ? getArrayUniqueness(sortedAttributesReverse, Object.keys(store.botAlienSignKnowledge))
+      : [];
+
+  bestMatch = uniqueMatches?.[0] ?? sortedAttributesReverse[0];
+
+  matchingSign = signs.find((sign) => sign.key === bestMatch);
+
+  result = matchingSign?.signId ?? '';
+
+  if (result) {
+    return result;
+  }
+
+  // If still there's no good icon, respond with the best one regardless if every one is positive
+  const sortedAttributesAny = Object.entries(totalWeights)
+    // Sort counts by total weight
+    .sort(([, weightA], [, weightB]) => weightA - weightB)
+    // Get attribute name only
+    .map(([attribute]) => attribute);
+  bestMatch = sortedAttributesAny[0];
+
+  matchingSign = signs.find((sign) => sign.key === bestMatch);
+
+  return matchingSign?.signId ?? '?';
 };
 
 export const calculateTotalWeights = (
@@ -160,9 +204,16 @@ export const calculateAttributeUsage = (items: AlienItem[]) => {
       if (totalUsage[attribute] === undefined) {
         totalUsage[attribute] = 0;
       }
-      if ([-5, 1, 3, 5].includes(weight)) {
-        totalUsage[attribute] += 1;
-      }
+
+      totalUsage[attribute] +=
+        {
+          '-5': 3,
+          '-3': 1,
+          '-1': 0,
+          '1': 1,
+          3: 2,
+          5: 4,
+        }?.[weight] ?? 0;
     }
   });
 
@@ -182,7 +233,7 @@ export const calculateAttributeUsage = (items: AlienItem[]) => {
  * @param store - The store containing the bot's knowledge of the game.
  * @param signs - The list of all available signs.
  * @param  items - The list of all available items.
- * @returns {{request: string[], intention: string}} An object containing the alien's request and intention.
+ * @returns An object containing the alien's request and intention.
  */
 export function determineAlienRequest(store: ComunicacaoAlienigenaStore, signs: Sign[], items: Item[]) {
   const itemsWithInformationDict = Object.values(store.botAlienSignKnowledge).reduce(
@@ -265,43 +316,31 @@ export function determineAlienRequest(store: ComunicacaoAlienigenaStore, signs: 
  * @returns The list of up to 5 attributes sorted by weight and filtered by the known attributes.
  */
 function sortItemAttributesBySpecificWeight(item: AlienItem, knownSigns: SignKey[]) {
-  return (
-    Object.entries(item.attributes)
-      .filter(([, weight]) => weight !== -1)
-      .sort(([attrA], [attrB]) => {
-        const weightA = item.attributes[attrA];
-        const weightB = item.attributes[attrB];
+  const order = [5, 3, -5, 1, -3, -1];
+  const keys = Object.keys(item.attributes);
 
-        if (weightA === 5 || weightB === -5) {
-          return -1;
-        }
+  // Sort the keys by their values according to the order
+  keys.sort((a, b) => {
+    const valueA = item.attributes[a];
+    const valueB = item.attributes[b];
 
-        if (weightA === -5 || weightB === 5) {
-          return 1;
-        }
+    const indexA = order.indexOf(valueA);
+    const indexB = order.indexOf(valueB);
 
-        if (weightA === 3 || weightB === -3) {
-          return -1;
-        }
-
-        if (weightA === -3 || weightB === 3) {
-          return 1;
-        }
-
-        return weightB - weightA;
-      })
-      // Only include known signs and ignore -1 values
-      .filter(([attr, weight]) => knownSigns.includes(attr) && weight !== -1)
-      .map(([attr]) => {
-        const weight = item.attributes[attr];
-        if (weight && weight < 0) {
-          return `!${attr}`;
-        } else {
-          return attr;
-        }
-      })
-      .slice(0, 5)
-  );
+    return indexA - indexB;
+  });
+  // Only include known signs and ignore -1 values
+  return keys
+    .filter((attribute) => knownSigns.includes(attribute) && item.attributes[attribute] !== -1)
+    .map((attr) => {
+      const weight = item.attributes[attr];
+      if (weight && weight < 0) {
+        return `!${attr}`;
+      } else {
+        return attr;
+      }
+    })
+    .slice(0, 5);
 }
 
 function getArrayUniqueness(list: string[], used: string[]) {

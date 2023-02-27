@@ -4,7 +4,6 @@ import { ATTRIBUTES, TOTAL_ITEMS } from './constants';
 // Type
 import { Item, Sign, ResourceData } from './types';
 // Helpers
-import * as collectionUtils from '../collections';
 import * as globalUtils from '../global';
 import * as resourceUtils from '../resource';
 import utils from '../../utils';
@@ -93,5 +92,5 @@ export const getResourceData = async (
  * @returns
  */
 export const saveUsedItems = async (itemsIdsDict: BooleanDictionary): Promise<boolean> => {
-  return await collectionUtils.updateDataFirebaseDoc(GLOBAL_USED_DOCUMENTS.ALIEN_ITEMS, itemsIdsDict);
+  return await globalUtils.updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.ALIEN_ITEMS, itemsIdsDict);
 };

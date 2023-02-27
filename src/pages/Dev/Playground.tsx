@@ -259,3 +259,77 @@ function generateSvgDefs(n: number, prefix: string): string {
     </svg>
   `;
 }
+
+export type SignKey = string;
+type AlienItem = {
+  id: string;
+  name: string;
+  attributes: Record<string, -5 | -3 | -1 | 0 | 1 | 3 | 5>;
+};
+
+const sample: AlienItem = {
+  name: 'ioga mat',
+  id: '1',
+  attributes: {
+    heavy: -3,
+    old: -3,
+    big: -1,
+    weapon: -3,
+    beautiful: -1,
+    plant: -3,
+    sound: -1,
+    liquid: -5,
+    long: 5,
+    human: -1,
+    valuable: -3,
+    power: 1,
+    machine: -3,
+    tool: 1,
+    defense: 1,
+    flight: 1,
+    sharp: -3,
+    bright: -3,
+    knowledge: 3,
+    odor: 1,
+    solid: 1,
+    clothes: -1,
+    alive: -5,
+    warm: -1,
+    fast: -3,
+    metal: -5,
+    danger: -1,
+    round: 1,
+    food: -5,
+    flat: 5,
+  },
+};
+
+function sortItemAttributesBySpecificWeight(item: AlienItem, knownSigns: SignKey[]) {
+  const order = [5, 3, -5, -3, 1, -1];
+  const keys = Object.keys(item.attributes);
+
+  // Sort the keys by their values according to the order
+  keys.sort((a, b) => {
+    const valueA = item.attributes[a];
+    const valueB = item.attributes[b];
+
+    const indexA = order.indexOf(valueA);
+    const indexB = order.indexOf(valueB);
+
+    return indexA - indexB;
+  });
+  // Only include known signs and ignore -1 values
+  return keys
+    .filter((attribute) => knownSigns.includes(attribute) && item.attributes[attribute] !== -1)
+    .map((attr) => {
+      const weight = item.attributes[attr];
+      if (weight && weight < 0) {
+        return `!${attr}`;
+      } else {
+        return attr;
+      }
+    })
+    .slice(0, 5);
+}
+
+console.log(sortItemAttributesBySpecificWeight(sample, Object.keys(sample.attributes)));

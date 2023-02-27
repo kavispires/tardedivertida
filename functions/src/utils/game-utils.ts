@@ -295,26 +295,31 @@ export const removeDuplicates = <T>(arr: T[]): T[] => {
 };
 
 /**
- * Returns an array of unique items that are present in both arrays.
+ * Returns an array of unique items that are present in only one of arrays.
  * @param array1 - The first array to compare.
  * @param array2 - The second array to compare.
- * @returns An array of unique items that are present in both arrays.
+ * @returns An array of unique items that are present in one of the arrays.
  */
 export function getUniqueItems(array1: any[], array2: any[]): any[] {
-  const map = new Map<any, boolean>();
-  const result: any[] = [];
+  const counts: NumberDictionary = {};
 
   // Add the items from the first array to the map
   array1.forEach((item) => {
-    map.set(item, true);
+    if (counts[item] === undefined) {
+      counts[item] = 0;
+    }
+    counts[item] += 1;
   });
 
   // Add the unique items from the second array to the result
   array2.forEach((item) => {
-    if (map.has(item) && !result.includes(item)) {
-      result.push(item);
+    if (counts[item] === undefined) {
+      counts[item] = 0;
     }
+    counts[item] += 1;
   });
 
-  return result;
+  return Object.entries(counts)
+    .filter(([, count]) => count === 1)
+    .map(([key]) => key);
 }
