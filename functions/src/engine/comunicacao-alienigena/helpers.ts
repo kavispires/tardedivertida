@@ -224,6 +224,7 @@ export function determineAlienRequest(store: ComunicacaoAlienigenaStore, signs: 
 function sortItemAttributesBySpecificWeight(item: AlienItem, knownSigns: SignKey[]) {
   return (
     Object.entries(item.attributes)
+      .filter(([, weight]) => weight !== -1)
       .sort(([attrA], [attrB]) => {
         const weightA = item.attributes[attrA];
         const weightB = item.attributes[attrB];
