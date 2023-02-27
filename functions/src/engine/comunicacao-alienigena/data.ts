@@ -8,7 +8,7 @@ import * as collectionUtils from '../collections';
 import * as globalUtils from '../global';
 import * as resourceUtils from '../resource';
 import utils from '../../utils';
-import { getItems } from './helpers';
+import { calculateAttributeUsage, getItems } from './helpers';
 
 /**
  * Get characters based on the game's language
@@ -45,13 +45,9 @@ export const getResourceData = async (
 
   // Get the 25 needed items randomly
   const selectedAlienItems: AlienItem[] = utils.game.getRandomItems(
-    Object.values(allAlienItemsObj),
+    Object.values(availableAlienItems),
     TOTAL_ITEMS
   );
-
-  if (botAlien) {
-    botAlienItemKnowledge = utils.helpers.buildObjectFromList(selectedAlienItems, 'id');
-  }
 
   const items: Item[] = getItems(playerCount + (botAlien ? 1 : 0)).map((itemType, index) => ({
     id: selectedAlienItems[index].id,
@@ -59,13 +55,25 @@ export const getResourceData = async (
     offerings: [],
   }));
 
+  const selectedAttributesKeys = utils.game.shuffle(calculateAttributeUsage(selectedAlienItems));
+
+  if (botAlien) {
+    // Cleanup items from attributes not belonging to the game
+    selectedAlienItems.forEach((item) => {
+      utils.game.getUniqueItems(selectedAttributesKeys, Object.keys(item.attributes)).forEach((attribute) => {
+        delete item.attributes[attribute];
+      });
+    });
+    botAlienItemKnowledge = utils.helpers.buildObjectFromList(selectedAlienItems, 'id');
+  }
+
   const signIds = utils.game.shuffle(utils.game.makeArray(TOTAL_ITEMS));
 
   // Get random list of attributes and signs, then alphabetically order them
   const signs: Sign[] = utils.helpers.orderBy(
-    utils.game.shuffle(utils.game.makeArray(ATTRIBUTES.length)).map((id, index) => ({
-      attribute: ATTRIBUTES[id].name,
-      key: ATTRIBUTES[id].id,
+    selectedAttributesKeys.map((key, index) => ({
+      attribute: ATTRIBUTES[key].name,
+      key: ATTRIBUTES[key].id,
       signId: String(signIds[index]),
     })),
     `attribute.${language}`,
