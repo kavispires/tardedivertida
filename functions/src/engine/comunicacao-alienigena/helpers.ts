@@ -106,12 +106,22 @@ export const determineAlienResponse = (
       totalWeights[attribute] += weight;
     }
   }
-
+  //
   const sortedAttributes = Object.entries(totalWeights)
+    // Sort counts by total weight
     .sort(([, weightA], [, weightB]) => weightB - weightA)
+    // Remove any attribute that could be negative for any item
+    .filter(([attribute]) => {
+      return currentInquiry.every((itemId) => store.botAlienItemKnowledge[itemId].attributes[attribute] > 0);
+    })
+    // Get attribute name only
     .map(([attribute]) => attribute);
 
-  const uniqueMatches = getArrayUniqueness(sortedAttributes, Object.keys(store.botAlienSignKnowledge));
+  // Filter only attributes that will be new to players, however, if only one item, return the best one
+  const uniqueMatches =
+    currentInquiry.length > 1
+      ? getArrayUniqueness(sortedAttributes, Object.keys(store.botAlienSignKnowledge))
+      : [];
 
   const bestMatch = uniqueMatches?.[0] ?? sortedAttributes[0];
 
