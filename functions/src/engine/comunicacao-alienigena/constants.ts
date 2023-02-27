@@ -28,8 +28,6 @@ export const MAX_ROUNDS = 12;
 
 export const TOTAL_ITEMS = 25;
 
-export const AVAILABLE_ITEMS_COUNT = 250;
-
 export const ITEMS_COUNT = {
   2: {
     answers: 8,

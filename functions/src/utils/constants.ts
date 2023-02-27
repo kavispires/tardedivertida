@@ -185,6 +185,7 @@ export const GAME_KEYS = generateGameKeys();
 export const GAME_NAMES = generateGameCollections();
 
 export const GLOBAL_USED_DOCUMENTS = {
+  ALIEN_ITEMS: 'usedAlienItems',
   ARTE_RUIM: 'usedArteRuimCards',
   MENTE_COLETIVA: 'usedMenteColetivaQuestions',
   MOVIES: 'usedMoviesAndReviews',
