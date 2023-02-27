@@ -1,5 +1,6 @@
 import { mean } from 'lodash';
-import type { AlienItem, AlienItemDict } from './types';
+import { FIRST_ID } from './constants';
+import type { AlienItem, AlienItemDict, Attribute, Weight } from './types';
 
 export const findLatestId = (data: AlienItemDict) => {
   const orderedNumberedIds = Object.keys(data)
@@ -7,7 +8,7 @@ export const findLatestId = (data: AlienItemDict) => {
     .sort((a, b) => a - b);
 
   if (orderedNumberedIds.length < 1) {
-    return '1';
+    return FIRST_ID;
   }
 
   for (let i = 1; i < orderedNumberedIds.length; i++) {
@@ -28,8 +29,8 @@ export function countNonZeroAttributes(item: AlienItem): number {
   return count;
 }
 
-export function validateItem(item: AlienItem) {
-  const attributes = Object.values(item.attributes);
+export function validateItem(item: AlienItem, allAttributes: Record<Attribute, Weight>) {
+  const attributes = Object.values({ ...allAttributes, ...item.attributes });
   const hasName = Boolean(item.name);
   const hasFive = attributes.includes(5);
   const hasNoZeroes = !attributes.includes(0);
@@ -88,8 +89,6 @@ export const getStats = (data: AlienItemDict) => {
       }
     });
   });
-
-  console.log({ positiveAttributes });
 
   const totalItems = Object.keys(data).length;
 

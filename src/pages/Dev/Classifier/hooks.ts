@@ -6,8 +6,9 @@ import type { AlienItemDict } from './types';
 import { findLatestId } from './helpers';
 import { isEmpty } from 'lodash';
 import type { NotificationInstance } from 'antd/es/notification/interface';
+import { FIRST_ID } from './constants';
 
-export function useItem(initialItem = '1') {
+export function useItem(initialItem = FIRST_ID) {
   const [itemId, setItemId] = useState(initialItem);
 
   const previousItem = () => {
@@ -25,7 +26,7 @@ export function useItem(initialItem = '1') {
   const goTo = (target: number | 'first' | 'last') => {
     setItemId((cur) => {
       if (target === 'first') {
-        return '1';
+        return FIRST_ID;
       }
 
       if (target === 'last') {
@@ -39,7 +40,7 @@ export function useItem(initialItem = '1') {
       }
 
       if (target < 0) {
-        return '1';
+        return FIRST_ID;
       }
 
       return initialItem;

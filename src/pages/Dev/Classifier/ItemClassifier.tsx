@@ -14,7 +14,7 @@ import { DevHeader } from '../DevHeader';
 import { useTitle } from 'react-use';
 import { useEffect, useState } from 'react';
 import { ItemCard } from 'components/cards/ItemCard';
-import { ATTRIBUTES } from './constants';
+import { ATTRIBUTES, FIRST_ID, LAST_ID } from './constants';
 import type { Attribute, Weight, AlienItemDict, ItemId } from './types';
 import { useAlienItemsDocument, useItem } from './hooks';
 import { Loading, LoadingPage } from 'components/loaders';
@@ -23,8 +23,7 @@ import { countNonZeroAttributes, getStats, validateItem } from './helpers';
 import { isEmpty } from 'lodash';
 import { CheckCircleFilled, CloseCircleOutlined } from '@ant-design/icons';
 
-const initialAttributeState = ATTRIBUTES.reduce((acc: any, entry) => {
-  const key = entry.id as unknown as Attribute;
+const initialAttributeState = Object.keys(ATTRIBUTES).reduce((acc: any, key) => {
   acc[key] = 0;
   return acc;
 }, {}) as Record<Attribute, Weight>;
@@ -126,7 +125,7 @@ function ClassifyingCard({ latestId, data, save, setData, isSaving }: Classifyin
     );
   }
 
-  const validation = validateItem(current);
+  const validation = validateItem(current, initialAttributeState);
 
   return (
     <Space className="container classifier" direction="vertical">
@@ -153,14 +152,13 @@ function ClassifyingCard({ latestId, data, save, setData, isSaving }: Classifyin
           </Space>
 
           <Space className="classifier__attributes" wrap>
-            {ATTRIBUTES.map((entry) => {
+            {Object.values(ATTRIBUTES).map((entry) => {
               return (
                 <Space className="classifier__entry" direction="vertical" key={entry.id}>
                   <div className="title">{`${entry.name.en} - ${entry.name.pt}`}</div>
                   <Radio.Group
                     value={current.attributes[entry.id as Attribute]}
                     onChange={(e) => updateAttributeValue(entry.id, e.target.value)}
-                    // size="small"
                     optionType="button"
                     buttonStyle="solid"
                   >
@@ -238,22 +236,22 @@ function Controls({
 }: ControlsProps) {
   return (
     <Space className="classifier__navigation" wrap>
-      <Button onClick={() => goTo('first')} disabled={itemId === '1'}>
+      <Button onClick={() => goTo('first')} disabled={itemId === FIRST_ID}>
         First
       </Button>
       <Button onClick={() => goTo(-10)} disabled={itemNumber <= 10}>
         Previous 10
       </Button>
-      <Button onClick={previousItem} disabled={itemId === '1'}>
+      <Button onClick={previousItem} disabled={itemId === FIRST_ID}>
         Previous
       </Button>
       <Button type="primary" onClick={() => save(data)} loading={isSaving} disabled={isSaving}>
         Save
       </Button>
-      <Button onClick={nextItem} disabled={itemId === '230'}>
+      <Button onClick={nextItem} disabled={itemId === LAST_ID}>
         Next
       </Button>
-      <Button onClick={() => goTo(10)} disabled={itemNumber >= 220}>
+      <Button onClick={() => goTo(10)} disabled={itemNumber >= Number(LAST_ID) - 10}>
         Next 10
       </Button>
       <Button onClick={() => goTo('last')} disabled={itemNumber >= Number(latestId) - 1}>
@@ -344,7 +342,7 @@ function StatsCard({ data }: StatsCardProps) {
         <Divider />
 
         <Space wrap size="small">
-          {ATTRIBUTES.map((entry) => {
+          {Object.values(ATTRIBUTES).map((entry) => {
             const attribute = stats.attributeCounts[entry.id];
             return (
               <Card title={`${entry.name.en} - ${entry.name.pt}`} key={entry.id}>
