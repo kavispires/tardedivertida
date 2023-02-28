@@ -13,7 +13,7 @@ import {
 } from './types';
 
 /**
- * Determine the next phase based on the current one
+ * Determine the next phase based on the current one and other attributes
  * @param currentPhase
  * @param round
  * @param isGameOver
@@ -75,6 +75,11 @@ export const determineNextPhase = (
   return HUMAN_ASK;
 };
 
+/**
+ * Generates the 25 items getting the appropriate number of wanted items and cursed items
+ * @param playerCount
+ * @returns
+ */
 export const getItems = (playerCount: number) => {
   const counts = ITEMS_COUNT[playerCount];
   const answers = new Array(counts.answers).fill(ITEM_TYPES.ITEM);
@@ -91,6 +96,13 @@ export const getItems = (playerCount: number) => {
  */
 export const checkIsBot = (store: FirebaseStoreData) => Boolean(store?.options?.botAlien);
 
+/**
+ * Generates the Alien response when a player asks about a set of items
+ * @param currentInquiry
+ * @param store
+ * @param signs
+ * @returns the attributes related to the set of items
+ */
 export const determineAlienResponse = (
   currentInquiry: string[],
   store: ComunicacaoAlienigenaStore,
@@ -177,6 +189,12 @@ export const determineAlienResponse = (
   return matchingSign?.signId ?? '?';
 };
 
+/**
+ * Calculate the total eights for a set of items for each attribute
+ * @param itemIds
+ * @param botAlienItemKnowledge
+ * @returns
+ */
 export const calculateTotalWeights = (
   itemIds: ItemId[],
   botAlienItemKnowledge: Record<string, AlienItem>
@@ -185,44 +203,68 @@ export const calculateTotalWeights = (
 
   itemIds.forEach((itemId) => {
     const item = botAlienItemKnowledge[itemId];
-    for (const [attribute, weight] of Object.entries(item.attributes)) {
+    Object.entries(item.attributes).forEach(([attribute, weight]) => {
       if (totalWeights[attribute] === undefined) {
         totalWeights[attribute] = 0;
       }
       totalWeights[attribute] += weight;
-    }
+    });
   });
 
   return totalWeights;
 };
 
+/**
+ * Calculates the usage of attributes for a list of items. It prioritizes 5s and -5s
+ * @param items
+ * @returns
+ */
 export const calculateAttributeUsage = (items: AlienItem[]) => {
+  const fiveUsage: NumberDictionary = {};
   const totalUsage: NumberDictionary = {};
 
   items.forEach((item) => {
-    for (const [attribute, weight] of Object.entries(item.attributes)) {
+    Object.entries(item.attributes).forEach(([attribute, weight]) => {
+      // Count any fives
+      if (weight === 5) {
+        if (fiveUsage[attribute] === undefined) {
+          fiveUsage[attribute] = 5;
+        }
+
+        fiveUsage[attribute] += 1;
+      }
+
+      // Count other weights
       if (totalUsage[attribute] === undefined) {
         totalUsage[attribute] = 0;
       }
 
       totalUsage[attribute] +=
         {
-          '-5': 3,
+          '-5': 2,
           '-3': 1,
           '-1': 0,
           '1': 1,
           3: 2,
-          5: 4,
         }?.[weight] ?? 0;
-    }
+    });
   });
 
+  const fiveAttributes = Object.entries(fiveUsage)
+    // Sort counts by total count of useful values
+    .sort(([, countA], [, countB]) => countB - countA)
+    // Get attribute name only
+    .map(([attribute]) => attribute);
+
+  const otherAttributes = Object.entries(totalUsage)
+    // Sort counts by total count of useful values
+    .sort(([, countA], [, countB]) => countB - countA)
+    // Get attribute name only
+    .map(([attribute]) => attribute);
+
   return (
-    Object.entries(totalUsage)
-      // Sort counts by total count of useful values
-      .sort(([, countA], [, countB]) => countB - countA)
-      // Get attribute name only
-      .map(([attribute]) => attribute)
+    utils.game
+      .removeDuplicates([...fiveAttributes, ...otherAttributes])
       // Get only the necessary
       .slice(0, TOTAL_ITEMS)
   );
