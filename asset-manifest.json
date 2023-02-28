@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/tardedivertida/static/css/main.5c81ab07.css",
-    "main.js": "/tardedivertida/static/js/main.8e3fef0f.js",
+    "main.css": "/tardedivertida/static/css/main.f9cf7cef.css",
+    "main.js": "/tardedivertida/static/js/main.7f8f2824.js",
     "page-hub.css": "/tardedivertida/static/css/page-hub.4a76a375.chunk.css",
     "page-hub.js": "/tardedivertida/static/js/page-hub.0a67facf.chunk.js",
     "page-game.js": "/tardedivertida/static/js/page-game.9d475100.chunk.js",
@@ -17,12 +17,12 @@
     "page-dev-playground.css": "/tardedivertida/static/css/page-dev-playground.7139612f.chunk.css",
     "page-dev-playground.js": "/tardedivertida/static/js/page-dev-playground.6ee50718.chunk.js",
     "page-dev-classifier.css": "/tardedivertida/static/css/page-dev-classifier.e17af314.chunk.css",
-    "page-dev-classifier.js": "/tardedivertida/static/js/page-dev-classifier.d7c6fd42.chunk.js",
+    "page-dev-classifier.js": "/tardedivertida/static/js/page-dev-classifier.7b37767e.chunk.js",
     "static/js/787.77c0f794.chunk.js": "/tardedivertida/static/js/787.77c0f794.chunk.js",
     "arte-ruim.css": "/tardedivertida/static/css/arte-ruim.c29f68dd.chunk.css",
     "arte-ruim.js": "/tardedivertida/static/js/arte-ruim.6527c327.chunk.js",
     "comunicacao-alienigena.css": "/tardedivertida/static/css/comunicacao-alienigena.728dec53.chunk.css",
-    "comunicacao-alienigena.js": "/tardedivertida/static/js/comunicacao-alienigena.486aad08.chunk.js",
+    "comunicacao-alienigena.js": "/tardedivertida/static/js/comunicacao-alienigena.2835f992.chunk.js",
     "contadores-historias.css": "/tardedivertida/static/css/contadores-historias.e25318b1.chunk.css",
     "contadores-historias.js": "/tardedivertida/static/js/contadores-historias.650f2918.chunk.js",
     "crimes-hediondos.css": "/tardedivertida/static/css/crimes-hediondos.b62027a7.chunk.css",
@@ -93,7 +93,7 @@
     "static/js/9036.025469c9.chunk.js": "/tardedivertida/static/js/9036.025469c9.chunk.js",
     "static/js/2607.2b159a97.chunk.js": "/tardedivertida/static/js/2607.2b159a97.chunk.js",
     "static/js/9348.9452ed61.chunk.js": "/tardedivertida/static/js/9348.9452ed61.chunk.js",
-    "static/js/5181.44f9ff56.chunk.js": "/tardedivertida/static/js/5181.44f9ff56.chunk.js",
+    "static/js/5181.07eb259b.chunk.js": "/tardedivertida/static/js/5181.07eb259b.chunk.js",
     "static/js/5263.e64e29be.chunk.js": "/tardedivertida/static/js/5263.e64e29be.chunk.js",
     "static/css/2114.f1464167.chunk.css": "/tardedivertida/static/css/2114.f1464167.chunk.css",
     "static/js/2114.ea2d1b79.chunk.js": "/tardedivertida/static/js/2114.ea2d1b79.chunk.js",
@@ -145,8 +145,8 @@
     "static/media/round-title-en.svg": "/tardedivertida/static/media/round-title-en.2ad07e1f265a85634ad7940a33f96552.svg",
     "static/media/round-title-pt.svg": "/tardedivertida/static/media/round-title-pt.2e3f9c1deb85d58d118aa6e3dfa7af23.svg",
     "index.html": "/tardedivertida/index.html",
-    "main.5c81ab07.css.map": "/tardedivertida/static/css/main.5c81ab07.css.map",
-    "main.8e3fef0f.js.map": "/tardedivertida/static/js/main.8e3fef0f.js.map",
+    "main.f9cf7cef.css.map": "/tardedivertida/static/css/main.f9cf7cef.css.map",
+    "main.7f8f2824.js.map": "/tardedivertida/static/js/main.7f8f2824.js.map",
     "page-hub.4a76a375.chunk.css.map": "/tardedivertida/static/css/page-hub.4a76a375.chunk.css.map",
     "page-hub.0a67facf.chunk.js.map": "/tardedivertida/static/js/page-hub.0a67facf.chunk.js.map",
     "page-game.9d475100.chunk.js.map": "/tardedivertida/static/js/page-game.9d475100.chunk.js.map",
@@ -162,12 +162,12 @@
     "page-dev-playground.7139612f.chunk.css.map": "/tardedivertida/static/css/page-dev-playground.7139612f.chunk.css.map",
     "page-dev-playground.6ee50718.chunk.js.map": "/tardedivertida/static/js/page-dev-playground.6ee50718.chunk.js.map",
     "page-dev-classifier.e17af314.chunk.css.map": "/tardedivertida/static/css/page-dev-classifier.e17af314.chunk.css.map",
-    "page-dev-classifier.d7c6fd42.chunk.js.map": "/tardedivertida/static/js/page-dev-classifier.d7c6fd42.chunk.js.map",
+    "page-dev-classifier.7b37767e.chunk.js.map": "/tardedivertida/static/js/page-dev-classifier.7b37767e.chunk.js.map",
     "787.77c0f794.chunk.js.map": "/tardedivertida/static/js/787.77c0f794.chunk.js.map",
     "arte-ruim.c29f68dd.chunk.css.map": "/tardedivertida/static/css/arte-ruim.c29f68dd.chunk.css.map",
     "arte-ruim.6527c327.chunk.js.map": "/tardedivertida/static/js/arte-ruim.6527c327.chunk.js.map",
     "comunicacao-alienigena.728dec53.chunk.css.map": "/tardedivertida/static/css/comunicacao-alienigena.728dec53.chunk.css.map",
-    "comunicacao-alienigena.486aad08.chunk.js.map": "/tardedivertida/static/js/comunicacao-alienigena.486aad08.chunk.js.map",
+    "comunicacao-alienigena.2835f992.chunk.js.map": "/tardedivertida/static/js/comunicacao-alienigena.2835f992.chunk.js.map",
     "contadores-historias.e25318b1.chunk.css.map": "/tardedivertida/static/css/contadores-historias.e25318b1.chunk.css.map",
     "contadores-historias.650f2918.chunk.js.map": "/tardedivertida/static/js/contadores-historias.650f2918.chunk.js.map",
     "crimes-hediondos.b62027a7.chunk.css.map": "/tardedivertida/static/css/crimes-hediondos.b62027a7.chunk.css.map",
@@ -238,7 +238,7 @@
     "9036.025469c9.chunk.js.map": "/tardedivertida/static/js/9036.025469c9.chunk.js.map",
     "2607.2b159a97.chunk.js.map": "/tardedivertida/static/js/2607.2b159a97.chunk.js.map",
     "9348.9452ed61.chunk.js.map": "/tardedivertida/static/js/9348.9452ed61.chunk.js.map",
-    "5181.44f9ff56.chunk.js.map": "/tardedivertida/static/js/5181.44f9ff56.chunk.js.map",
+    "5181.07eb259b.chunk.js.map": "/tardedivertida/static/js/5181.07eb259b.chunk.js.map",
     "5263.e64e29be.chunk.js.map": "/tardedivertida/static/js/5263.e64e29be.chunk.js.map",
     "2114.f1464167.chunk.css.map": "/tardedivertida/static/css/2114.f1464167.chunk.css.map",
     "2114.ea2d1b79.chunk.js.map": "/tardedivertida/static/js/2114.ea2d1b79.chunk.js.map",
@@ -277,7 +277,7 @@
     "6708.7acbc317.chunk.js.map": "/tardedivertida/static/js/6708.7acbc317.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5c81ab07.css",
-    "static/js/main.8e3fef0f.js"
+    "static/css/main.f9cf7cef.css",
+    "static/js/main.7f8f2824.js"
   ]
 }
