@@ -15,6 +15,7 @@ import { History } from './components/History';
 import { PopoverRule } from 'components/rules';
 import { Status } from './components/Status';
 import { BotPopupRule } from './components/BotPopupRules';
+import { ItemsHighlight } from './components/Highlights';
 
 type StepHumanAsksProps = {
   players: GamePlayers;
@@ -68,14 +69,15 @@ export function StepHumanAsks({
             <Translate
               pt={
                 <>
-                  Escolha um dos atributos que você deseja desvendar, então, selecione 1-5 objetos
+                  Escolha um dos atributos que você deseja desvendar, então, selecione{' '}
+                  <ItemsHighlight>1-5 itens</ItemsHighlight>
                   relacionados a esse atributo para perguntar o alienígena qual é o símbolo dele.
                 </>
               }
               en={
                 <>
-                  Choose one of the atributes you want to unveil, then select 1-5 objects below to ask the
-                  alien what its symbol.
+                  Choose one of the atributes you want to unveil, then select{' '}
+                  <ItemsHighlight>1-5 items</ItemsHighlight> below to ask the alien what its symbol.
                 </>
               }
             />
@@ -85,14 +87,16 @@ export function StepHumanAsks({
             <Translate
               pt={
                 <>
-                  Aguarde enquanto <AvatarName player={currentHuman} /> seleciona 1-5 objetos para perguntar
-                  ao alienígena <AvatarName player={alien} /> qual o símbolo relacionado a eles.
+                  Aguarde enquanto <AvatarName player={currentHuman} /> seleciona{' '}
+                  <ItemsHighlight>1-5 itens</ItemsHighlight> para perguntar ao alienígena{' '}
+                  <AvatarName player={alien} /> qual o símbolo relacionado a eles.
                 </>
               }
               en={
                 <>
-                  Please wait wile <AvatarName player={currentHuman} /> selects 1-5 objects to ask the alien{' '}
-                  <AvatarName player={alien} /> what symbol is related to them.
+                  Please wait wile <AvatarName player={currentHuman} /> selects{' '}
+                  <ItemsHighlight>1-5 items</ItemsHighlight> to ask the alien <AvatarName player={alien} />{' '}
+                  what symbol is related to them.
                 </>
               }
             />
