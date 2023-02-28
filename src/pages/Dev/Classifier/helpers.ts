@@ -101,3 +101,10 @@ export const getStats = (data: AlienItemDict) => {
     total: totalItems,
   };
 };
+
+export function replaceAttributes(newData: Record<string, Record<string, Record<string, number>>>) {
+  Object.values(newData).forEach((item) => {
+    item.attributes.hard = item.attributes.solid;
+    delete item.attributes.solid;
+  });
+}
