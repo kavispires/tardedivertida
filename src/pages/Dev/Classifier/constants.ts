@@ -19,7 +19,6 @@ export const ATTRIBUTES = {
   power: { id: 'power', name: { en: 'Power', pt: 'Força' } },
   round: { id: 'round', name: { en: 'Round', pt: 'Redondo' } },
   sharp: { id: 'sharp', name: { en: 'Sharp', pt: 'Afiado' } },
-  solid: { id: 'solid', name: { en: 'Solid', pt: 'Sólido' } },
   tool: { id: 'tool', name: { en: 'Tool', pt: 'Ferramenta' } },
   valuable: { id: 'valuable', name: { en: 'Valuable', pt: 'Valioso' } },
   warm: { id: 'warm', name: { en: 'Warm', pt: 'Quente' } },
@@ -29,6 +28,7 @@ export const ATTRIBUTES = {
   old: { id: 'old', name: { en: 'Old', pt: 'Velho' } }, // New
   sound: { id: 'sound', name: { en: 'Sound', pt: 'Som' } }, // New
   machine: { id: 'machine', name: { en: 'Machine', pt: 'Máquina' } }, // New
+  hard: { id: 'hard', name: { en: 'Hard', pt: 'Duro' } }, // New
 };
 
 export const FIRST_ID = '1';
