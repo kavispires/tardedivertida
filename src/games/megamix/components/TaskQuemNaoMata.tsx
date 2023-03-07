@@ -13,6 +13,7 @@ import { MinigameTitle } from './MinigameTitle';
 import { Avatar } from 'components/avatars';
 import { IconAvatar } from 'components/avatars/IconAvatar';
 import { ShooterIcon } from 'icons/ShooterIcon';
+import { sortPlayers } from 'utils/helpers';
 
 export const TaskQuemNaoMata = ({ task, round, onSubmitTask, user, players }: TaskProps) => {
   const { isLoading } = useLoading();
@@ -44,7 +45,7 @@ export const TaskQuemNaoMata = ({ task, round, onSubmitTask, user, players }: Ta
       </Instruction>
 
       <Space className="space-container" wrap>
-        {Object.values(players).map((player, index, arr) => {
+        {sortPlayers(players, 'name').map((player, index, arr) => {
           return (
             <div key={player.id} className="qnm-shooter">
               <IconAvatar
