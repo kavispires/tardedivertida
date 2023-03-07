@@ -13,12 +13,31 @@ import { Translate } from 'components/language';
 import { StepMakeYourBets } from './StepMakeYourBets';
 import { useUser } from 'hooks/useUser';
 import { BetsFloatingHand } from './components/BetsFloatingHand';
+import { NOOP } from 'utils/constants';
 
 function PhaseBets({ state, players, info }: PhaseProps) {
-  const { step, goToNextStep, setStep } = useStep(0);
+  const { step, setStep } = useStep(0);
   const user = useUser(players, state);
 
   const onSubmitBets = useOnSubmitBetsAPIRequest(setStep);
+
+  const announcement = (
+    <PhaseAnnouncement
+      icon={<GamblingChipIcon />}
+      title={<Translate pt="Apostas" en="Bets" />}
+      onClose={NOOP}
+      type="overlay"
+      currentRound={state?.round?.current}
+      duration={5}
+    >
+      <Instruction>
+        <Translate
+          pt="Selecione quem você acha que ganha as quartas de final, semi final e final"
+          en="Place bet on who you think will win the quarter-finals, semifinals, and finals"
+        />
+      </Instruction>
+    </PhaseAnnouncement>
+  );
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.SUPER_CAMPEONATO.BETS}>
@@ -36,28 +55,16 @@ function PhaseBets({ state, players, info }: PhaseProps) {
         }
       >
         {/* Step 0 */}
-        <PhaseAnnouncement
-          icon={<GamblingChipIcon />}
-          title={<Translate pt="Apostas" en="Bets" />}
-          onClose={goToNextStep}
-          currentRound={state?.round?.current}
-          duration={5}
-        >
-          <Instruction>
-            <Translate
-              pt="Selecione quem você acha que ganha as quartas de final, semi final e final"
-              en="Place bet on who you think will win the quarter-finals, semifinals, and finals"
-            />
-          </Instruction>
-        </PhaseAnnouncement>
-
-        {/* Step 1 */}
         <StepMakeYourBets
           onSubmitBets={onSubmitBets}
           challenge={state.challenge}
           brackets={state.brackets}
           players={players}
+          announcement={announcement}
         />
+
+        {/* Step 1 */}
+        <></>
       </StepSwitcher>
     </PhaseContainer>
   );

@@ -4,6 +4,7 @@ import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+import { NOOP } from 'utils/constants';
 // Icons
 import { TournamentIcon } from 'icons/TournamentIcon';
 // Components
@@ -26,32 +27,35 @@ function PhaseResults({ state, players, info }: PhaseProps) {
     }
   }, [state.tier, previousTier, setStep]);
 
+  const announcement = (
+    <PhaseAnnouncement
+      icon={<TournamentIcon />}
+      title={<Translate pt="Resultado!" en="Results!" />}
+      onClose={NOOP}
+      type="overlay"
+      currentRound={state?.round?.current}
+      duration={3}
+    >
+      <Instruction>
+        <Translate pt="Só pode haver um..." en="There's only one..." />
+      </Instruction>
+    </PhaseAnnouncement>
+  );
+
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.SUPER_CAMPEONATO.RESULTS}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
-        <PhaseAnnouncement
-          icon={<TournamentIcon />}
-          title={<Translate pt="Resultado!" en="Results!" />}
-          onClose={goToNextStep}
-          currentRound={state?.round?.current}
-          duration={7}
-        >
-          <Instruction>
-            <Translate pt="Só pode haver um..." en="There's only one..." />
-          </Instruction>
-        </PhaseAnnouncement>
-
-        {/* Step 1 */}
         <StepWinner
           brackets={state.brackets}
           challenge={state.challenge}
           bets={user.bets}
           goToNextStep={goToNextStep}
           selectedContenderId={user.selectedContenderId}
+          announcement={announcement}
         />
 
-        {/* Step 2 */}
+        {/* Step 1 */}
         <StepRanking
           players={players}
           ranking={state.ranking}

@@ -15,15 +15,21 @@ type StepMakeYourBetsProps = {
   challenge: TextCard;
   brackets: WBracket[];
   players: GamePlayers;
-};
+} & AnnouncementProps;
 
-export function StepMakeYourBets({ onSubmitBets, challenge, brackets, players }: StepMakeYourBetsProps) {
+export function StepMakeYourBets({
+  onSubmitBets,
+  challenge,
+  brackets,
+  players,
+  announcement,
+}: StepMakeYourBetsProps) {
   useMock(() => {
     onSubmitBets(mockBets(brackets));
   });
 
   return (
-    <Step fullWidth>
+    <Step fullWidth announcement={announcement}>
       <Title size="medium">
         <Translate pt="Faça suas apostas!" en="Make your bets!" />
       </Title>

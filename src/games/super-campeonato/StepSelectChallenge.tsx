@@ -19,20 +19,21 @@ type StepSelectChallengeProps = {
   challenges: TextCard[];
   userContenders: WContender[];
   round: GameRound;
-};
+} & AnnouncementProps;
 
 export function StepSelectChallenge({
   onSubmitChallenge,
   challenges,
   userContenders,
   round,
+  announcement,
 }: StepSelectChallengeProps) {
   useMock(() => {
     onSubmitChallenge({ challengeId: mockSelectChallenge(challenges) });
   });
 
   return (
-    <Step fullWidth>
+    <Step fullWidth announcement={announcement}>
       <Title size="medium">
         <Translate pt="Selecione o desafio da rodada" en="Select the theme for the round" />
       </Title>

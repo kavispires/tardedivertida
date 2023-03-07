@@ -9,9 +9,9 @@ import { orderBy } from 'lodash';
  */
 export const findBetContenders = (brackets: WBracket[], bets: WBets, selectedContenderId: CardId) => {
   return {
-    quarterCard: brackets.find((bracket) => bracket.id === bets.quarter),
-    semiCard: brackets.find((bracket) => bracket.id === bets.semi),
-    finalCard: brackets.find((bracket) => bracket.id === bets.final),
+    quarterCard: brackets.find((bracket) => bracket.id === bets?.quarter),
+    semiCard: brackets.find((bracket) => bracket.id === bets?.semi),
+    finalCard: brackets.find((bracket) => bracket.id === bets?.final),
     selectedCard: brackets.find((bracket) => bracket.id === selectedContenderId),
   };
 };
