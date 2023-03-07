@@ -24,6 +24,10 @@
     font-size: 1.25rem;
   }
 
+  &--round-corners {
+    border-radius: $border-radius;
+  }
+
   &__name {
     display: block;
     white-space: nowrap;

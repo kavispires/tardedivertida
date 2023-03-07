@@ -16,44 +16,49 @@ type AvatarCardProps = {
    */
   player: GamePlayer;
   /**
-   * The card size
+   * Displays YOU/VOCÊ if player is the user
    */
-  size?: 'small' | 'default' | 'large';
+  addressUser?: boolean;
   /**
    * Optional custom class name
    */
   className?: string;
   /**
-   * Indicates if the player name should be displayed
+   * Replaces the regular Avatar
    */
-  withName?: boolean;
+  replacementAvatar?: ReactNode;
   /**
-   * Indicates if the description (animal type) should be displayed
+   * The card size
    */
-  withDescription?: boolean;
+  size?: 'small' | 'default' | 'large';
   /**
    * If text should be displayed in uppercase
    */
   uppercase?: boolean;
   /**
-   * Displays YOU/VOCÊ if player is the user
+   * Indicates if the description (animal type) should be displayed
    */
-  addressUser?: boolean;
+  withDescription?: boolean;
   /**
-   * Replaces the regular Avatar
+   * Indicates if the player name should be displayed
    */
-  replacementAvatar?: ReactNode;
+  withName?: boolean;
+  /**
+   * Rounds the corners of the card
+   */
+  withRoundCorners?: boolean;
 };
 
 export const AvatarCard = ({
   player,
-  size = 'default',
+  addressUser = false,
   className = '',
+  replacementAvatar,
+  size = 'default',
+  uppercase = false,
   withName = false,
   withDescription = false,
-  uppercase = false,
-  addressUser = false,
-  replacementAvatar,
+  withRoundCorners = false,
 }: AvatarCardProps) => {
   const [userId] = useGlobalState('userId');
   const { language, translate } = useLanguage();
@@ -69,7 +74,13 @@ export const AvatarCard = ({
 
   return (
     <div
-      className={clsx(baseClass, uppercase && `${baseClass}--uppercase`, `${baseClass}--${size}`, className)}
+      className={clsx(
+        baseClass,
+        uppercase && `${baseClass}--uppercase`,
+        `${baseClass}--${size}`,
+        withRoundCorners && `${baseClass}--round-corners`,
+        className
+      )}
       style={{ backgroundColor: avatar.color, width: sizes.width }}
     >
       {replacementAvatar ? (
