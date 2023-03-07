@@ -13,10 +13,9 @@ import {
 } from './types';
 
 /**
- * Determine the next phase based on the current one and other attributes
- * @param currentPhase
- * @param round
- * @param isGameOver
+ * Determine the next phase based on the current one
+ * @param state
+ * @param store
  * @returns
  */
 export const determineNextPhase = (

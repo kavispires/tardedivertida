@@ -30,7 +30,7 @@ type ImageCardProps = {
    */
   previewImageId?: string;
   /**
-   * The file extension for the image
+   * The file extension for the image (default: jpg)
    */
   fileExtension?: 'jpg' | 'png' | 'gif';
 };
