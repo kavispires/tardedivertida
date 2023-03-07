@@ -19,19 +19,21 @@ type StepResolutionProps = {
   customTopic: string;
   currentTopic: Topic;
   goToNextStep: GenericFunction;
-};
+} & AnnouncementProps;
+
 export function StepResolution({
   players,
   totalLikes,
   customTopic,
   currentTopic,
   goToNextStep,
+  announcement,
 }: StepResolutionProps) {
   useTemporarilyHidePlayersBar();
 
   return (
-    <Step fullWidth className="p-step">
-      <Title level={1}>
+    <Step fullWidth className="p-step" announcement={announcement}>
+      <Title>
         <Translate pt="Resultado" en="Results" />
       </Title>
 

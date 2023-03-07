@@ -22,9 +22,15 @@ type StepLikingProps = {
   customTopic: string;
   onSubmitReaction: GenericFunction;
   players: GamePlayers;
-};
+} & AnnouncementProps;
 
-export function StepLiking({ currentTopic, customTopic, onSubmitReaction, players }: StepLikingProps) {
+export function StepLiking({
+  currentTopic,
+  customTopic,
+  onSubmitReaction,
+  players,
+  announcement,
+}: StepLikingProps) {
   const { isLoading } = useLoading();
   const [like, setLike] = useState<boolean | null>(null);
 
@@ -41,7 +47,7 @@ export function StepLiking({ currentTopic, customTopic, onSubmitReaction, player
   );
 
   return (
-    <Step fullWidth className="p-step">
+    <Step fullWidth className="p-step" announcement={announcement}>
       <Title>
         <Translate pt="O que você acha da polêmica da vez?" en="What do you think of this trending topic?" />
       </Title>
