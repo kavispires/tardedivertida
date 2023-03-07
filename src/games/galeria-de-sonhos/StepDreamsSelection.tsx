@@ -24,9 +24,15 @@ type StepDreamsSelectionProps = {
   word: GWord;
   onSubmitCards: GenericFunction;
   botEnabled: boolean;
-};
+} & AnnouncementProps;
 
-export function StepDreamsSelection({ table, word, onSubmitCards, botEnabled }: StepDreamsSelectionProps) {
+export function StepDreamsSelection({
+  table,
+  word,
+  onSubmitCards,
+  botEnabled,
+  announcement,
+}: StepDreamsSelectionProps) {
   const [selectedCards, onSelectCard] = useBooleanDictionary({}, validateSelectedCards);
 
   const selectedCount = Object.keys(selectedCards).length;
@@ -36,7 +42,7 @@ export function StepDreamsSelection({ table, word, onSubmitCards, botEnabled }: 
   }, []);
 
   return (
-    <Step fullWidth>
+    <Step fullWidth announcement={announcement}>
       <Title size="medium">
         <Translate pt="Visite sonhos relacionados a " en="Visit dreams related to " />
         <TextHighlight>{word.text}</TextHighlight>
