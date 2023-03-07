@@ -21,7 +21,7 @@ export function BetsFloatingHand({ bets, brackets, selectedContenderId = '' }: B
 
   const { quarterCard, semiCard, finalCard, selectedCard } = useMemo(
     () => findBetContenders(brackets, bets, selectedContenderId),
-    [bets.final, bets.quarter, bets.semi] // eslint-disable-line
+    [bets?.final, bets?.quarter, bets?.semi] // eslint-disable-line
   );
 
   if (!quarterCard || !semiCard || !finalCard) return <></>;

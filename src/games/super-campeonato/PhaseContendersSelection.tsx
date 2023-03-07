@@ -4,6 +4,7 @@ import { useUser } from 'hooks/useUser';
 import { useOnSubmitContenderAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+import { NOOP } from 'utils/constants';
 // Icons
 import { AnonymousIcon } from 'icons/AnonymousIcon';
 // Components
@@ -15,10 +16,25 @@ import { StepSelectContenders } from './StepSelectContenders';
 import { ContendersHand } from './components/ContendersHand';
 
 function PhaseContenderSelection({ state, players, info }: PhaseProps) {
-  const { step, goToNextStep, setStep } = useStep(0);
+  const { step, setStep } = useStep(0);
   const user = useUser(players, state);
 
   const onSubmitContender = useOnSubmitContenderAPIRequest(setStep);
+
+  const announcement = (
+    <PhaseAnnouncement
+      icon={<AnonymousIcon />}
+      title={<Translate pt="Competidores" en="Contenders" />}
+      onClose={NOOP}
+      type="overlay"
+      currentRound={state?.round?.current}
+      duration={5}
+    >
+      <Instruction>
+        <Translate pt="Quem tem chance de ganhar?" en="Who has what it takes?" />
+      </Instruction>
+    </PhaseAnnouncement>
+  );
 
   return (
     <PhaseContainer
@@ -32,25 +48,15 @@ function PhaseContenderSelection({ state, players, info }: PhaseProps) {
         waitingRoomContent={<ContendersHand contenders={user.contenders} />}
       >
         {/* Step 0 */}
-        <PhaseAnnouncement
-          icon={<AnonymousIcon />}
-          title={<Translate pt="Competidores" en="Contenders" />}
-          onClose={goToNextStep}
-          currentRound={state?.round?.current}
-          duration={5}
-        >
-          <Instruction>
-            <Translate pt="Quem tem chance de ganhar?" en="Who has what it takes?" />
-          </Instruction>
-        </PhaseAnnouncement>
-
-        {/* Step 1 */}
         <StepSelectContenders
           onSubmitContender={onSubmitContender}
           challenge={state.challenge}
           userContenders={user.contenders}
-          players={players}
+          announcement={announcement}
         />
+
+        {/* Step 1 */}
+        <></>
       </StepSwitcher>
     </PhaseContainer>
   );

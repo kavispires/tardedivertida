@@ -14,21 +14,20 @@ type StepSelectContendersProps = {
   onSubmitContender: GenericFunction;
   challenge: TextCard;
   userContenders: WContender[];
-  players: GamePlayers;
-};
+} & AnnouncementProps;
 
 export function StepSelectContenders({
   onSubmitContender,
   challenge,
   userContenders,
-  players,
+  announcement,
 }: StepSelectContendersProps) {
   useMock(() => {
     onSubmitContender({ contendersId: mockSelectContender(userContenders) });
   });
 
   return (
-    <Step fullWidth>
+    <Step fullWidth announcement={announcement}>
       <Title size="medium">
         <Translate pt="Quem pode ganhar esse desafio?" en="Who can win this challenge?" />
       </Title>

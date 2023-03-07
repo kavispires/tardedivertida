@@ -18,7 +18,7 @@ type StepWinnerProps = {
   bets: WBets;
   goToNextStep: GenericFunction;
   selectedContenderId: CardId;
-};
+} & AnnouncementProps;
 
 export function StepWinner({
   challenge,
@@ -26,11 +26,12 @@ export function StepWinner({
   bets,
   goToNextStep,
   selectedContenderId,
+  announcement,
 }: StepWinnerProps) {
   useTemporarilyHidePlayersBar();
 
   return (
-    <Step fullWidth>
+    <Step fullWidth announcement={announcement}>
       <Title size="medium">
         <Translate pt="Vencedor" en="Winner" />
       </Title>
@@ -42,7 +43,7 @@ export function StepWinner({
       </Space>
 
       <Space className="space-container " align="center">
-        <TimedButton duration={4} icon={<TrophyOutlined />} onExpire={goToNextStep} onClick={goToNextStep}>
+        <TimedButton duration={7} icon={<TrophyOutlined />} onExpire={goToNextStep} onClick={goToNextStep}>
           <Translate pt="Ver Ranking" en="See Ranking" />
         </TimedButton>
       </Space>

@@ -80,6 +80,7 @@ export function Voting({ brackets, tier, onSubmitVotes, players, bets }: VotingP
         <ul className="w-voting-group">
           {bracketedContenders.map((contenderPair) => (
             <VotingOptions
+              key={`${contenderPair[0].id}-${contenderPair[1].id}`}
               left={contenderPair[0]}
               right={contenderPair[1]}
               onClick={updateVote}

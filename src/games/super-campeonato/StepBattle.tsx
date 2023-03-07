@@ -16,7 +16,7 @@ type StepBattleProps = {
   bets: WBets;
   selectedContenderId: CardId;
   players: GamePlayers;
-};
+} & AnnouncementProps;
 
 export function StepBattle({
   onSubmitVotes,
@@ -26,9 +26,10 @@ export function StepBattle({
   bets,
   selectedContenderId,
   players,
+  announcement,
 }: StepBattleProps) {
   return (
-    <Step fullWidth>
+    <Step fullWidth announcement={announcement}>
       <Title size="medium">
         <TierTitle tier={tier} />
       </Title>

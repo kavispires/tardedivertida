@@ -4,6 +4,7 @@ import { useUser } from 'hooks/useUser';
 import { useOnSubmitChallengeAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
+import { NOOP } from 'utils/constants';
 // Icons
 import { SelectListIcon } from 'icons/SelectListIcon';
 // Components
@@ -19,6 +20,21 @@ function PhaseChallengeSelection({ state, players, info }: PhaseProps) {
   const user = useUser(players, state);
 
   const onSubmitChallenge = useOnSubmitChallengeAPIRequest(setStep);
+
+  const announcement = (
+    <PhaseAnnouncement
+      icon={<SelectListIcon />}
+      title={<Translate pt="Desafio" en="Challenge" />}
+      currentRound={state?.round?.current}
+      duration={5}
+      type="overlay"
+      onClose={NOOP}
+    >
+      <Instruction>
+        <Translate pt="Qual o desafio da rodada?" en="What's the round's challenge?" />
+      </Instruction>
+    </PhaseAnnouncement>
+  );
 
   return (
     <PhaseContainer
@@ -44,24 +60,12 @@ function PhaseChallengeSelection({ state, players, info }: PhaseProps) {
         </RoundAnnouncement>
 
         {/* Step 1 */}
-        <PhaseAnnouncement
-          icon={<SelectListIcon />}
-          title={<Translate pt="Desafio" en="Challenge" />}
-          onClose={goToNextStep}
-          currentRound={state?.round?.current}
-          duration={5}
-        >
-          <Instruction>
-            <Translate pt="Qual o desafio da rodada?" en="What's the round's challenge?" />
-          </Instruction>
-        </PhaseAnnouncement>
-
-        {/* Step 2 */}
         <StepSelectChallenge
           onSubmitChallenge={onSubmitChallenge}
           challenges={state.challenges}
           userContenders={user.contenders}
           round={state.round}
+          announcement={announcement}
         />
       </StepSwitcher>
     </PhaseContainer>
