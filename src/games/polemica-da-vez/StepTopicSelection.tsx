@@ -12,12 +12,13 @@ type StepTopicSelectionProps = {
   currentTopics: Topic[];
   currentCustomTopic: Topic;
   onSubmitTopic: GenericFunction;
-};
+} & AnnouncementProps;
 
 export function StepTopicSelection({
   currentTopics,
   currentCustomTopic,
   onSubmitTopic,
+  announcement,
 }: StepTopicSelectionProps) {
   const { translate } = useLanguage();
 
@@ -30,7 +31,7 @@ export function StepTopicSelection({
   };
 
   return (
-    <Step fullWidth>
+    <Step fullWidth announcement={announcement}>
       <Title>
         <Translate pt="Selecione uma assunto" en="Select one topic" />
       </Title>
