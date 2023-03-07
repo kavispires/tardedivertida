@@ -9,23 +9,42 @@ import placeholder from 'assets/images/placeholder.jpg';
 import { useBlurCards } from 'hooks/useBlurCards';
 
 type ImageCardProps = {
+  /**
+   * The id of the image
+   */
   imageId: string;
-  size?: 'small' | 'medium' | 'large';
+  /**
+   * The width of the card (Default: 200px)
+   */
   cardWidth?: number;
   /**
    * Optional custom class name
    */
   className?: string;
+  /**
+   * Enables or disables the preview (default: true)
+   */
   preview?: Boolean;
+  /**
+   * Replacement image when the preview is open
+   */
   previewImageId?: string;
+  /**
+   * The file extension for the image
+   */
+  fileExtension?: 'jpg' | 'png' | 'gif';
 };
+
+/**
+ * Renders an Image Card on tdi
+ */
 export const ImageCard = ({
   imageId,
-  size = 'medium',
   cardWidth = 200,
   className = '',
   preview = true,
   previewImageId = '',
+  fileExtension = 'jpg',
 }: ImageCardProps) => {
   const { shouldBeBlurred } = useBlurCards();
 
@@ -45,16 +64,19 @@ export const ImageCard = ({
       : false;
 
   return (
-    <div className={clsx(baseClass, `${baseClass}--${size}`, isBlurred && `${baseClass}--blur`, className)}>
+    <div className={clsx(baseClass, isBlurred && `${baseClass}--blur`, className)}>
       <Image
         width={cardWidth}
-        src={`${process.env.REACT_APP_TDI_IMAGES_URL}${imageURL}.jpg`}
+        src={`${process.env.REACT_APP_TDI_IMAGES_URL}${imageURL}.${fileExtension}`}
         placeholder={<Image preview={false} src={placeholder} width={cardWidth} />}
         fallback={`${PUBLIC_URL.CARDS}${fallbackName}.jpg`}
         preview={
           Boolean(previewImageId)
             ? {
-                src: `${process.env.REACT_APP_TDI_IMAGES_URL}${previewImageId.replace(/-/g, '/')}.jpg`,
+                src: `${process.env.REACT_APP_TDI_IMAGES_URL}${previewImageId.replace(
+                  /-/g,
+                  '/'
+                )}.${fileExtension}`,
               }
             : booleanPreviewConfig
         }
