@@ -24,7 +24,9 @@ export function PhaseGuessing({ players, state, info }: PhaseProps) {
   const announcement = (
     <PhaseAnnouncement
       icon={<EvaluateIcon />}
-      title={<Translate pt="Pareie os personagens e dicas" en="Pair characters em glyphs" />}
+      title={
+        <Translate pt="Pareie os personagens e símbolos" en="Pair characters with the players' glyphs" />
+      }
       onClose={NOOP}
       currentRound={state?.round?.current}
       type="overlay"
