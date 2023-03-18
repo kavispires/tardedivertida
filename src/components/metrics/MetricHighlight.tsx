@@ -19,13 +19,17 @@ export type MetricHighlightProps = {
    */
   type?: 'positive' | 'negative' | 'default';
   /**
-   *
+   * The size of the avatar (default: small)
    */
   iconSize?: AvatarSize;
   /**
    * Custom class
    */
   className?: string;
+  /**
+   * Icon placement (default: after)
+   */
+  iconPlacement?: 'before' | 'after';
 };
 
 export function MetricHighlight({
@@ -34,10 +38,22 @@ export function MetricHighlight({
   type,
   className,
   iconSize = 'small',
+  iconPlacement = 'after',
 }: MetricHighlightProps) {
   return (
     <span className={clsx('metric-highlight', type && `metric-highlight--${type}`, className)}>
-      {children} <IconAvatar size={iconSize} icon={icon} />
+      {iconPlacement === 'before' && (
+        <>
+          <IconAvatar size={iconSize} icon={icon} />{' '}
+        </>
+      )}
+      {children}
+      {iconPlacement === 'after' && (
+        <>
+          {' '}
+          <IconAvatar size={iconSize} icon={icon} />
+        </>
+      )}
     </span>
   );
 }
