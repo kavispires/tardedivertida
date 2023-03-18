@@ -3,7 +3,7 @@ import { inNSeconds } from 'utils/helpers';
 
 type SelectedTimeSettings = Omit<TimerSettings, 'expiryTimestamp'>;
 
-interface useCountdownSettings extends SelectedTimeSettings {
+export interface useCountdownSettings extends SelectedTimeSettings {
   /**
    * The duration of the countdown in seconds
    */
