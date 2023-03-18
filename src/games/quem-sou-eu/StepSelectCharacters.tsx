@@ -53,14 +53,14 @@ export function StepSelectCharacters({ user, announcement, onSelectCharacters }:
         <Translate
           pt={
             <>
-              Não queremos que você receba uma carta que não conheça, então das 8 cartas abaixo, selecione 6
+              Não queremos que você receba uma carta que não conheça, então das cartas abaixo, selecione 6
               para entrar no jogo.
             </>
           }
           en={
             <>
-              We don't want a card you don't know to be assigned to you, so from the 8 cards below, select 6
-              to be in the game.
+              We don't want a card you don't know to be assigned to you, so from the cards below, select 6 to
+              be in the game.
             </>
           }
         />
