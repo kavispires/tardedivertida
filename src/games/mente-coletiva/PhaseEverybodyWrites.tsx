@@ -14,7 +14,7 @@ import { AnsweringRules } from './components/RulesBlobs';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
 
-function PhaseEverybodyWrites({ state, players, info }: PhaseProps) {
+function PhaseEverybodyWrites({ state, players, info, meta }: PhaseProps) {
   const { step, setStep } = useStep(0);
   const user = useUser(players, state);
 
@@ -45,6 +45,7 @@ function PhaseEverybodyWrites({ state, players, info }: PhaseProps) {
           onSubmitAnswers={onSubmitAnswers}
           user={user}
           pastureSize={state.pastureSize}
+          timedAnswers={meta?.options?.timed}
         />
 
         {/* Step 1 */}

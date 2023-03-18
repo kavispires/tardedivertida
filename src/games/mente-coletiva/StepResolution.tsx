@@ -43,7 +43,7 @@ export function StepResolution({
 
   const pastureChange = useMemo(() => JSON.parse(pastureChangeStr), [pastureChangeStr]);
   const { timeLeft } = useCountdown({
-    duration: 15,
+    duration: 17,
     autoStart: true,
   });
 
@@ -73,7 +73,7 @@ export function StepResolution({
 
       <StepSwitcher step={step} players={players}>
         <Step key={0}>
-          <RankingBoard ranking={ranking} players={players} hideGainedPoints delay={0} />
+          <RankingBoard ranking={ranking} players={players} hideGainedPoints delay={1} />
         </Step>
 
         <Step key={1}>

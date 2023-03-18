@@ -17,6 +17,7 @@ import { Title } from 'components/text';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
 import { DevButton } from 'components/debug';
+import { TimerClock } from 'components/timers';
 
 type StepAnsweringProps = {
   currentQuestion: MQuestion;
@@ -25,6 +26,7 @@ type StepAnsweringProps = {
   roundType: number;
   user: GamePlayer;
   pastureSize: number;
+  timedAnswers?: boolean;
 } & AnnouncementProps;
 
 export function StepAnswering({
@@ -35,6 +37,7 @@ export function StepAnswering({
   onSubmitAnswers,
   pastureSize,
   announcement,
+  timedAnswers = false,
 }: StepAnsweringProps) {
   const { isLoading } = useLoading();
   const { translate } = useLanguage();
@@ -42,7 +45,7 @@ export function StepAnswering({
 
   // DEV: Mock answers
   useMock(() => {
-    onSubmitAnswers({ answers: mockAnswers(user.id, currentQuestion.number) });
+    // onSubmitAnswers({ answers: mockAnswers(user.id, currentQuestion.number) });
   }, []);
 
   const onWriteAnswer = (e: any) => {
@@ -66,8 +69,21 @@ export function StepAnswering({
     <Step fullWidth announcement={announcement}>
       <div className="m-step__contained-content">
         <Title level={3} size="small">
-          <Translate pt="Responda a pergunta:" en="Answer the question:" />
+          <Translate pt="Responda a pergunta" en="Answer the question" />
+          {Boolean(timedAnswers) && (
+            <TimerClock
+              duration={2 * 60}
+              onExpire={() => {
+                if (!user.ready && !isLoading) {
+                  onSubmitAnswers({ answers });
+                }
+              }}
+              disabled={Boolean(!timedAnswers)}
+            />
+          )}
+          :
         </Title>
+
         <Question question={currentQuestion} />
 
         <PopoverRule content={<AnsweringRules />} />

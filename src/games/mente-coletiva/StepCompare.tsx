@@ -8,6 +8,7 @@ import { AdminAnswerControl } from './components/AdminAnswerControl';
 import { AnswerGroup } from './components/AnswerGroup';
 import { UserAnswers } from './components/UserAnswers';
 import { Translate } from 'components/language';
+import { AdminNextPhaseButton } from 'components/admin';
 
 type StepCompareProps = {
   currentQuestion: MQuestion;
@@ -50,6 +51,8 @@ export function StepCompare({
     return (
       <Step fullWidth>
         <Translate pt="Pronto!" en="All done!" />
+        <Divider />
+        <AdminNextPhaseButton>Next Phase</AdminNextPhaseButton>
       </Step>
     );
   }
