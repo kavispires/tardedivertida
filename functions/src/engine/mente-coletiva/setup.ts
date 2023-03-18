@@ -243,9 +243,16 @@ export const prepareGameOverPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
-  const winners = Object.values(players).filter((player) => player.level < state.pastureSize);
+  const farthestPasturePosition = Object.values(players).reduce((acc, player) => {
+    if (player.level > acc) {
+      return player.level;
+    }
+    return acc;
+  }, 0);
 
-  const losers = Object.values(players).filter((player) => player.level === state.pastureSize);
+  const winners = Object.values(players).filter((player) => player.level < farthestPasturePosition);
+
+  const losers = Object.values(players).filter((player) => player.level === farthestPasturePosition);
 
   // Get achievements
   const achievements = getAchievements(players, store);
