@@ -107,7 +107,7 @@ export const prepareQuestionSelectionPhase = async (
       state: {
         phase: MENTE_COLETIVA_PHASES.QUESTION_SELECTION,
         round: utils.helpers.increaseRound(state.round),
-        roundType: determineRoundType(store.gameOrder.length, state.round.current + 1),
+        roundType: determineRoundType(store.gameOrder.length, state.round.current + 1, players),
         activePlayerId,
         currentQuestions,
       },
