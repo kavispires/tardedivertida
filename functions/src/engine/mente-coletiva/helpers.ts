@@ -56,18 +56,25 @@ export const determineNextPhase = (currentPhase: string, round: Round, isGameOve
  * @param currentRound
  * @returns
  */
-export const determineRoundType = (playerCount: number, currentRound: number): number => {
+export const determineRoundType = (playerCount: number, currentRound: number, players: Players): number => {
+  const isSmallGame = playerCount <= 4;
+
+  // For the first 2 rounds, always 1
   if (currentRound < 3) return 1;
 
-  if (currentRound > 11) {
-    return utils.game.getRandomItem([2, 2, 3]);
+  // When the farthest player is too far from the others
+  if (isLevelDifferenceGreaterThanOne(players)) {
+    return isSmallGame ? 2 : utils.game.getRandomItem([2, 2, 2, 3]);
   }
 
-  if (playerCount < 3) {
-    return utils.game.getRandomItem([1, 1, 1, 1, 1, 2, 0]);
+  // If the game is going for too long
+  if (currentRound > 9) {
+    return isSmallGame ? utils.game.getRandomItem([1, 2, 2]) : utils.game.getRandomItem([2, 2, 3]);
   }
 
-  return utils.game.getRandomItem([1, 1, 1, 1, 2, 2, 3, 0]);
+  return isSmallGame
+    ? utils.game.getRandomItem([1, 1, 1, 1, 1, 2, 0])
+    : utils.game.getRandomItem([1, 1, 1, 1, 2, 2, 3, 0]);
 };
 
 /**
@@ -490,3 +497,16 @@ export const calculateSheepTravelDistance = (
     );
   });
 };
+
+export function isLevelDifferenceGreaterThanOne(players: Players): boolean {
+  // Sort the players by level in descending order
+  const sortedPlayers = Object.values(players).sort((a, b) => b.level - a.level);
+
+  // Calculate the difference between the highest level and the second highest level
+  const highestLevel = sortedPlayers[0].level;
+  const secondHighestLevel = sortedPlayers[1].level;
+  const difference = highestLevel - secondHighestLevel;
+
+  // Return true if the difference is greater than 1, otherwise false
+  return difference > 1;
+}
