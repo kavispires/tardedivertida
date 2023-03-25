@@ -29,13 +29,13 @@ export function RoundsLeftInstruction({ round }: RoundsLeftInstructionProps) {
       <Translate
         pt={
           <>
-            {pluralize(left, 'Falta', 'Faltam')} <strong>{left}</strong>{' '}
-            {pluralize(left, 'rodada', 'rodadas')} para o jogo terminar...
+            {pluralize(left, 'Falta', 'Faltam')} <strong>{left}</strong> {pluralize(left, 'rodada')} para o
+            jogo terminar...
           </>
         }
         en={
           <>
-            <strong>{left}</strong> {pluralize(left, 'round', 'rounds')} left for the game to end...
+            <strong>{left}</strong> {pluralize(left, 'round')} left for the game to end...
           </>
         }
       />

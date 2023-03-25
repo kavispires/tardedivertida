@@ -19,6 +19,7 @@ import * as quemNaoMataEngine from '../engine/quem-nao-mata';
 import * as quemSouEuEngine from '../engine/quem-sou-eu';
 import * as sonhosPesadelosEngine from '../engine/sonhos-pesadelos';
 import * as superCampeonatoEngine from '../engine/super-campeonato';
+import * as taNaCaraEngine from '../engine/ta-na-cara';
 import * as testemunhaOcularEngine from '../engine/testemunha-ocular';
 import * as trevoDaSorteEngine from '../engine/trevo-da-sorte';
 import * as ueSoIssoEngine from '../engine/ue-so-isso';
@@ -72,6 +73,8 @@ export const getEngine = (gameName: string): Engine => {
       return sonhosPesadelosEngine;
     case GAME_NAMES.SUPER_CAMPEONATO:
       return superCampeonatoEngine;
+    case GAME_NAMES.TA_NA_CARA:
+      return taNaCaraEngine;
     case GAME_NAMES.TESTEMUNHA_OCULAR:
       return testemunhaOcularEngine;
     case GAME_NAMES.TREVO_DA_SORTE:

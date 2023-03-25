@@ -136,6 +136,11 @@ const GAMES = [
     key: 'SUPER_CAMPEONATO',
   },
   {
+    name: 'ta-na-cara',
+    code: 'T',
+    key: 'TA_NA_CARA',
+  },
+  {
     name: 'testemunha-ocular',
     code: 'T',
     key: 'TESTEMUNHA_OCULAR',
