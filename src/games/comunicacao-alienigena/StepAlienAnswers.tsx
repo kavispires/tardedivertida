@@ -92,7 +92,7 @@ export function StepAlienAnswers({
           en={
             <>
               <AvatarName player={currentHuman} /> wants to know what symbol best represents the{' '}
-              {pluralize(currentInquiry.length, 'object', 'objects')} below:
+              {pluralize(currentInquiry.length, 'object')} below:
             </>
           }
         />
@@ -117,7 +117,7 @@ export function StepAlienAnswers({
               en={
                 <>
                   Write a single symbol that you think represents the{' '}
-                  {pluralize(currentInquiry.length, 'object', 'objects')} the best
+                  {pluralize(currentInquiry.length, 'object')} the best
                 </>
               }
             />

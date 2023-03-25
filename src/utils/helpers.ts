@@ -176,9 +176,8 @@ export const getPlayersFromIds = (
  * @param plural
  * @returns
  */
-export const pluralize = (quantity: number, singular: string, plural: string): string => {
-  if (!plural) return singular;
-  return quantity === 1 ? singular : plural;
+export const pluralize = (quantity: number, singular: string, plural?: string): string => {
+  return quantity === 1 ? singular : plural ? plural : `${singular}s`;
 };
 
 /**
