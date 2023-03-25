@@ -33,7 +33,7 @@ export function MatchCount({ matchCount, lastActivePlayer, playerInNightmare }: 
               ) : (
                 <PlayerHighlight>{matchCount}</PlayerHighlight>
               )}{' '}
-              {pluralize(matchCount, 'jogador', 'jogadores')} lá!
+              {pluralize(matchCount, 'jogador')} lá!
               <br />
               {isSuperSpark && 'Brilho total!'}
               <StarPoints keyPrefix="dream-result" quantity={isSuperSpark ? 3 : 2} />
@@ -47,7 +47,7 @@ export function MatchCount({ matchCount, lastActivePlayer, playerInNightmare }: 
               ) : (
                 <PlayerHighlight>{matchCount}</PlayerHighlight>
               )}{' '}
-              {pluralize(matchCount, 'player', 'players')} there!
+              {pluralize(matchCount, 'player')} there!
               <br />
               {isSuperSpark && 'Super Spark!'}
               <StarPoints keyPrefix="dream-result" quantity={isSuperSpark ? 3 : 2} />
