@@ -12,7 +12,6 @@ type MonsterCard = {
 
 type SuspectCard = {
   id: CardId;
-  pt: string;
-  en: string;
+  name: DualLanguageValue;
   gender: string;
 };

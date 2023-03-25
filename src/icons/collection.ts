@@ -181,6 +181,7 @@ export * from './SpeechBubbleDeclinedIcon';
 export * from './SpeechBubbleHeartIcon';
 export * from './SpeechBubbleThumbsDownIcon';
 export * from './SpeechBubbleThumbsUpIcon';
+export * from './SpotlightIcon';
 export * from './SpyIcon';
 export * from './SpyNewspaperIcon';
 export * from './StarIcon';

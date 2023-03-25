@@ -1,0 +1,41 @@
+{
+  "$schema": "../../utils/game-info.schema.json",
+  "gameCode": "T",
+  "gameName": "ta-na-cara",
+  "version": "beta",
+  "title": {
+    "pt": "Tá Na Cara",
+    "en": "Guess Who What?"
+  },
+  "popularName": {
+    "pt": "do preconceito competitivo",
+    "en": ""
+  },
+  "basedOn": "ohW sseuG",
+  "appearance": {
+    "clouds": "cloud",
+    "color": ""
+  },
+  "summary": {
+    "pt": "Você consegue descobrir quem é quem só com perguntas subjetivas?",
+    "en": "Can you guess who is who based on subjective questions?"
+  },
+  "rules": {
+    "pt": ["TBD"],
+    "en": ["TBD"]
+  },
+  "playerCount": {
+    "recommended": [4, 5, 6],
+    "min": 4,
+    "max": 10
+  },
+  "tags": ["competitive", "turn-based", "guessing"],
+  "available": {
+    "pt": true,
+    "en": true
+  },
+  "options": [
+    { "label": "Suspects", "key": "aiDeck", "off": "Official", "on": "AI" },
+    { "label": "Alternative Deck", "key": "alternativeVersion", "off": "Regular", "on": "Alternative" }
+  ]
+}
