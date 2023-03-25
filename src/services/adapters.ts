@@ -94,6 +94,10 @@ export const SUPER_CAMPEONATO_API = {
   submitAction: httpsCallable(functions, 'superCampeonatoSubmitAction'),
 };
 
+export const TA_NA_CARA_API = {
+  submitAction: httpsCallable(functions, 'taNaCaraSubmitAction'),
+};
+
 export const TESTEMUNHA_OCULAR_API = {
   submitAction: httpsCallable(functions, 'testemunhaOcularSubmitAction'),
 };

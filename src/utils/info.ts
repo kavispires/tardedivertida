@@ -31,7 +31,7 @@ import TREVO_DA_SORTE from 'games/trevo-da-sorte/game-info.json';
 import UE_SO_ISSO from 'games/ue-so-isso/game-info.json';
 import VAMOS_AO_CINEMA from 'games/vamos-ao-cinema/game-info.json';
 import VENDAVAL_DE_PALPITE from 'games/vendaval-de-palpite/game-info.json';
-
+import TA_NA_CARA from 'games/ta-na-cara/game-info.json';
 import comingSoonGames from 'assets/data/coming-soon-games.json';
 
 const others = comingSoonGames as Record<GameName, GameInfo>;
@@ -66,6 +66,7 @@ export const GAME_LIST: Record<GameCode, GameInfo> = {
   'retrato-falado': RETRATO_FALADO,
   'sonhos-pesadelos': SONHOS_PESADELOS,
   'super-campeonato': SUPER_CAMPEONATO,
+  'ta-na-cara': TA_NA_CARA,
   'testemunha-ocular': TESTEMUNHA_OCULAR,
   'trevo-da-sorte': TREVO_DA_SORTE,
   'ue-so-isso': UE_SO_ISSO,

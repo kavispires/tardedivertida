@@ -1,0 +1,236 @@
+// Constants
+import { MINIMUM_SUSPECTS, QUESTIONS_PER_PLAYER, TA_NA_CARA_PHASES } from './constants';
+// Types
+import type { CharacterFace, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
+// Utils
+import utils from '../../utils';
+import { buildRankingAndOutcome } from './helpers';
+
+/**
+ * Setup
+ * Resets previous changes to the store
+ * @returns
+ */
+export const prepareSetupPhase = async (
+  store: FirebaseStoreData,
+  state: FirebaseStateData,
+  players: Players,
+  additionalData: ResourceData
+): Promise<SaveGamePayload> => {
+  // Determine player order
+  const { gameOrder: turnOrder, playerCount } = utils.players.buildGameOrder(players);
+
+  // Build characters list
+  const charactersCount = Math.max(playerCount * 2, MINIMUM_SUSPECTS);
+
+  const selectedCharacters: CharacterFace[] = utils.game
+    .getRandomItems(additionalData.allSuspects, charactersCount)
+    .map((character) => ({
+      ...character,
+      revealed: false,
+    }));
+
+  const charactersDict = utils.helpers.buildObjectFromList(selectedCharacters, 'id');
+
+  const gameQuestions = utils.game.getRandomItems(
+    additionalData.allCards,
+    playerCount * QUESTIONS_PER_PLAYER
+  );
+
+  const questionsDict = utils.helpers.buildObjectFromList(gameQuestions, 'id');
+
+  // Deal questions to players
+  utils.game.dealList(Object.keys(questionsDict), players, QUESTIONS_PER_PLAYER, 'questions');
+
+  // Assign a random character to each player
+  let charactersIds = utils.game.shuffle(Object.keys(charactersDict));
+
+  utils.players.getListOfPlayers(players).forEach((player, index) => {
+    const cardId = charactersIds[index];
+    charactersDict[cardId].playerId = player.id;
+    player.characterId = cardId;
+  });
+
+  // Order characters by name for easy UI
+  charactersIds = charactersIds.sort((a, b) => {
+    const nameA = charactersDict[a].name[store.language].toLowerCase();
+    const nameB = charactersDict[b].name[store.language].toLowerCase();
+    return nameA.localeCompare(nameB);
+  });
+
+  utils.players.addPropertiesToPlayers(players, { answers: [], history: {} });
+
+  // Save
+  return {
+    update: {
+      store: {
+        usedCharacters: {},
+      },
+      players,
+      state: {
+        phase: TA_NA_CARA_PHASES.SETUP,
+        round: {
+          current: 0,
+          total: playerCount * QUESTIONS_PER_PLAYER + charactersCount - playerCount,
+        },
+        turnOrder,
+        charactersDict,
+        questionsDict,
+        charactersIds,
+      },
+    },
+  };
+};
+
+export const preparePromptPhase = async (
+  store: FirebaseStoreData,
+  state: FirebaseStateData,
+  players: Players
+): Promise<SaveGamePayload> => {
+  const activePlayerId = utils.players.getNextPlayer(state.turnOrder, state.activePlayerId);
+
+  utils.players.readyPlayers(players, activePlayerId);
+
+  // Gather answers if any
+  utils.players.getListOfPlayers(players).forEach((player) => {
+    if (player.currentAnswer !== undefined) {
+      player.answers.unshift({ [store.currentQuestionId]: player.currentAnswer });
+      delete player.currentAnswer;
+    }
+  });
+
+  utils.players.removePropertiesFromPlayers(players, ['guess', 'currentAnswer']);
+
+  // Save
+  return {
+    update: {
+      state: {
+        phase: TA_NA_CARA_PHASES.PROMPT,
+        activePlayerId,
+        targetId: utils.firebase.deleteValue(),
+        correct: utils.firebase.deleteValue(),
+        ranking: utils.firebase.deleteValue(),
+        result: utils.firebase.deleteValue(),
+        round: utils.helpers.increaseRound(state.round),
+      },
+      players,
+    },
+  };
+};
+
+export const prepareAnsweringPhase = async (
+  store: FirebaseStoreData,
+  state: FirebaseStateData,
+  players: Players
+): Promise<SaveGamePayload> => {
+  // Mark question as used for the current player
+  players[state.activePlayerId].questions = players[state.activePlayerId].questions.filter(
+    (cardId: CardId) => cardId !== store.currentQuestionId
+  );
+
+  // Unready players
+  utils.players.unReadyPlayers(players);
+
+  // Save
+  return {
+    update: {
+      state: {
+        phase: TA_NA_CARA_PHASES.ANSWERING,
+        currentQuestionId: store.currentQuestionId,
+      },
+      players,
+    },
+  };
+};
+
+export const prepareGuessingPhase = async (
+  store: FirebaseStoreData,
+  state: FirebaseStateData,
+  players: Players
+): Promise<SaveGamePayload> => {
+  // Unready players
+  utils.players.unReadyPlayers(players, store.currentTargetId);
+
+  // Possible points: 10 - number of questions answered) with the minimum of 1 point
+  const possiblePoints = 10 - (players?.[store.currentTargetId]?.answers.length ?? 0);
+
+  // Save
+  return {
+    update: {
+      store: {
+        currentTargetId: utils.firebase.deleteValue(),
+        currentQuestionId: utils.firebase.deleteValue(),
+      },
+      state: {
+        phase: TA_NA_CARA_PHASES.GUESSING,
+        targetId: store.currentTargetId,
+        points: Math.max(possiblePoints, 1),
+      },
+      players,
+    },
+  };
+};
+
+export const prepareRevealPhase = async (
+  store: FirebaseStoreData,
+  state: FirebaseStateData,
+  players: Players
+): Promise<SaveGamePayload> => {
+  const charactersDict = state.charactersDict;
+  // Calculate scores and correct guesses and assign, build ranking
+  const { correct, ranking, result } = buildRankingAndOutcome(
+    players,
+    state.targetId,
+    state.points,
+    state.charactersDict
+  );
+
+  // If a player can't have a character, trigger game over
+  const forceLastRound =
+    state.forceLastRound ||
+    utils.players.getListOfPlayers(players).some((player) => player.characterId === null);
+
+  if (result) {
+    const res = result as Player;
+    store.usedCharacters[res.characterId] = res.answers;
+  }
+
+  // Save
+  return {
+    update: {
+      store,
+      state: {
+        phase: TA_NA_CARA_PHASES.REVEAL,
+        correct,
+        ranking,
+        charactersDict,
+        result,
+        round: { ...state.round, forceLastRound },
+      },
+      players,
+    },
+  };
+};
+
+export const prepareGameOverPhase = async (
+  gameId: GameId,
+  store: FirebaseStoreData,
+  state: FirebaseStateData,
+  players: Players
+): Promise<SaveGamePayload> => {
+  const winners = utils.players.determineWinners(players);
+
+  await utils.firebase.markGameAsComplete(gameId);
+
+  return {
+    set: {
+      players,
+      state: {
+        phase: TA_NA_CARA_PHASES.GAME_OVER,
+        round: state.round,
+        gameEndedAt: Date.now(),
+        winners,
+      },
+    },
+  };
+};

@@ -104,6 +104,9 @@ const SessionMegamix = lazy(() => import('games/megamix/SessionMegamix' /* webpa
 const SessionQuemSouEu = lazy(
   () => import('games/quem-sou-eu/SessionQuemSouEu' /* webpackChunkName: "quem-sou-eu" */)
 );
+const SessionTaNaCara = lazy(
+  () => import('games/ta-na-cara/SessionTaNaCara' /* webpackChunkName: "ta-na-cara" */)
+);
 
 function Game() {
   const navigate = useNavigate();
@@ -316,6 +319,12 @@ function Game() {
         return (
           <Suspense fallback={<LoadingPage message="" />}>
             <SessionSuperCampeonato gameId={gameId} />
+          </Suspense>
+        );
+      case GAME_COLLECTION.TA_NA_CARA:
+        return (
+          <Suspense fallback={<LoadingPage message="" />}>
+            <SessionTaNaCara gameId={gameId} />
           </Suspense>
         );
       case GAME_COLLECTION.TESTEMUNHA_OCULAR:

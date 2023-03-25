@@ -264,6 +264,7 @@ export const GAME_COLLECTION = {
   RETRATO_FALADO: 'retrato-falado',
   SONHOS_PESADELOS: 'sonhos-pesadelos',
   SUPER_CAMPEONATO: 'super-campeonato',
+  TA_NA_CARA: 'ta-na-cara',
   TESTEMUNHA_OCULAR: 'testemunha-ocular',
   TREVO_DA_SORTE: 'trevo-da-sorte',
   UE_SO_ISSO: 'ue-so-isso',
