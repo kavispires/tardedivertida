@@ -81,7 +81,7 @@ export const AvatarCard = ({
         withRoundCorners && `${baseClass}--round-corners`,
         className
       )}
-      style={{ backgroundColor: avatar.color, width: sizes.width }}
+      style={{ backgroundColor: avatar?.color, width: sizes.width }}
     >
       {replacementAvatar ? (
         replacementAvatar

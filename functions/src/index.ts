@@ -5,28 +5,29 @@ import * as adminEngine from './engine/admin';
 import * as arteRuimEngine from './engine/arte-ruim';
 import * as comunicacaoAlienigenaEngine from './engine/comunicacao-alienigena';
 import * as contadoresHistoriasEngine from './engine/contadores-historias';
+import * as crimesHediondosEngine from './engine/crimes-hediondos';
+import * as cruzaPalavrasEngine from './engine/cruza-palavras';
 import * as detetivesImaginativosEngine from './engine/detetives-imaginativos';
 import * as espiaoEntreNosEngine from './engine/espiao-entre-nos';
 import * as galeriaDeSonhosEngine from './engine/galeria-de-sonhos';
-import * as crimesHediondosEngine from './engine/crimes-hediondos';
-import * as portaDosDesesperadosEngine from './engine/porta-dos-desesperados';
 import * as linhasCruzadasEngine from './engine/linhas-cruzadas';
+import * as megamixEngine from './engine/megamix';
 import * as menteColetivaEngine from './engine/mente-coletiva';
 import * as naRuaDoMedoEngine from './engine/na-rua-do-medo';
 import * as ondaTelepaticaEngine from './engine/onda-telepatica';
 import * as polemicaDaVezEngine from './engine/polemica-da-vez';
 import * as quemNaoMataEngine from './engine/quem-nao-mata';
 import * as quemSouEuEngine from './engine/quem-sou-eu';
+import * as portaDosDesesperadosEngine from './engine/porta-dos-desesperados';
 import * as retratoFaladoEngine from './engine/retrato-falado';
 import * as sonhosPesadelosEngine from './engine/sonhos-pesadelos';
-import * as testemunhaOcularEngine from './engine/testemunha-ocular';
-import * as ueSoIssoEngine from './engine/ue-so-isso';
-import * as vendavalDePalpiteEngine from './engine/vendaval-de-palpite';
 import * as superCampeonatoEngine from './engine/super-campeonato';
-import * as cruzaPalavrasEngine from './engine/cruza-palavras';
+import * as taNaCaraEngine from './engine/ta-na-cara';
+import * as testemunhaOcularEngine from './engine/testemunha-ocular';
 import * as trevoDaSorteEngine from './engine/trevo-da-sorte';
-import * as megamixEngine from './engine/megamix';
+import * as ueSoIssoEngine from './engine/ue-so-isso';
 import * as vamosAoCinemaEngine from './engine/vamos-ao-cinema';
+import * as vendavalDePalpiteEngine from './engine/vendaval-de-palpite';
 
 admin.initializeApp();
 
@@ -115,6 +116,8 @@ exports.retratoFaladoSubmitAction = functions.https.onCall(retratoFaladoEngine.s
 exports.sonhosPesadelosSubmitAction = functions.https.onCall(sonhosPesadelosEngine.submitAction);
 
 exports.superCampeonatoSubmitAction = functions.https.onCall(superCampeonatoEngine.submitAction);
+
+exports.taNaCaraSubmitAction = functions.https.onCall(taNaCaraEngine.submitAction);
 
 exports.testemunhaOcularSubmitAction = functions.https.onCall(testemunhaOcularEngine.submitAction);
 
