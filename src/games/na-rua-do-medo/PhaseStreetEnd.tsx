@@ -27,6 +27,7 @@ function PhaseStreetEnd({ state, players, info }: PhaseProps) {
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           duration={3}
+          type="block"
         >
           <Instruction>
             {state.isDoubleHorror ? (

@@ -48,6 +48,7 @@ function PhasePlayersClues({ state, players, info }: PhaseProps) {
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           duration={5}
+          type="block"
         >
           <Instruction>
             <Translate

@@ -77,6 +77,7 @@ function PhaseWordSelection({ state, players, info }: PhaseProps) {
           title={<Translate pt="Seleção da Palavra Secreta" en="Secret Word Selection" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
+          type="block"
         >
           {isUserTheGuesser ? (
             <Instruction>

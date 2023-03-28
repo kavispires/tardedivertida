@@ -63,6 +63,7 @@ function PhaseCardPlay({ players, state, info, meta }: PhaseProps) {
           }
           duration={state.round.current < 2 ? 20 : 5}
           unskippable
+          type="block"
         >
           <CardPlayRules />
         </PhaseAnnouncement>
@@ -92,6 +93,7 @@ function PhaseCardPlay({ players, state, info, meta }: PhaseProps) {
           currentRound={state?.round?.current}
           duration={state.round.current < 3 ? 10 : 5}
           unskippable
+          type="block"
         >
           <Instruction>
             <Translate

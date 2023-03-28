@@ -5,7 +5,6 @@ import { useOnSubmitHumanInquiryAPIRequest } from './utils/api-requests';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
-import { NOOP } from 'utils/constants';
 // Icons
 import { QuestionIcon } from 'icons/QuestionIcon';
 // Components
@@ -29,7 +28,6 @@ export function PhaseHumanAsk({ players, state, info }: PhaseProps) {
     <PhaseAnnouncement
       icon={<QuestionIcon />}
       title={<Translate pt="Pergunte ao alienígena" en="Ask the Alien" />}
-      onClose={NOOP}
       currentRound={state?.round?.current}
       type="overlay"
       duration={3}

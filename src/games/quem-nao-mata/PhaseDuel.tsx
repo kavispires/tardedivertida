@@ -24,6 +24,7 @@ function PhaseDuel({ players, state, info }: PhaseProps) {
           title={<Translate pt="Duelo de Dois" en="The Duel" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
+          type="block"
         >
           <Instruction>
             <Translate

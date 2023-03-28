@@ -4,7 +4,6 @@ import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
-import { NOOP } from 'utils/constants';
 // Icons
 import { TournamentIcon } from 'icons/TournamentIcon';
 // Components
@@ -31,7 +30,6 @@ function PhaseResults({ state, players, info }: PhaseProps) {
     <PhaseAnnouncement
       icon={<TournamentIcon />}
       title={<Translate pt="Resultado!" en="Results!" />}
-      onClose={NOOP}
       type="overlay"
       currentRound={state?.round?.current}
       duration={3}

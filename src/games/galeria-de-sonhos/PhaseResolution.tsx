@@ -31,6 +31,7 @@ function PhaseResolution({ players, state, info }: PhaseProps) {
           title={<Translate pt="Ranking" en="Ranking" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
+          type="block"
         >
           <Instruction>
             <Translate pt="E quem deu mais matches foi..." en="And who matched the most was..." />

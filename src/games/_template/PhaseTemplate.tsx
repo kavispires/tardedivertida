@@ -3,7 +3,6 @@ import { useUser } from 'hooks/useUser';
 import { useStep } from 'hooks/useStep';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
-import { NOOP } from 'utils/constants';
 // Icons
 import { TDIcon } from 'icons/TDIcon';
 // Components
@@ -20,7 +19,6 @@ export function PhaseTemplate({ players, state, info }: PhaseProps) {
     <PhaseAnnouncement
       icon={<TDIcon />}
       title={<Translate pt="?" en="?" />}
-      onClose={NOOP}
       currentRound={state?.round?.current}
       type="overlay"
     >

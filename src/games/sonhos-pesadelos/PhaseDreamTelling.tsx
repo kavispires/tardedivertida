@@ -47,6 +47,7 @@ function PhaseDreamTelling({ state, players, info }: PhaseProps) {
           title={<Translate pt="Conte-nos sobre seu sonho" en="Tell us about your dream..." />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
+          type="block"
         >
           <Instruction>
             <DreamTellingRules />

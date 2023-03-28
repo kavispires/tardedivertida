@@ -5,7 +5,6 @@ import { useUser } from 'hooks/useUser';
 import { useOnSubmitCustomQuestionAPIRequest, useOnSubmitQuestionAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
-import { NOOP } from 'utils/constants';
 // Icons
 import { SheepIcon } from 'icons/SheepIcon';
 // Components
@@ -31,7 +30,6 @@ function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
     <PhaseAnnouncement
       icon={<SheepIcon />}
       title={<Translate pt="O Pasto Superlotado" en="A Overcrowded Pasture" />}
-      onClose={NOOP}
       currentRound={state?.round?.current}
       duration={state?.round?.current < 3 ? 40 : 10}
       type="overlay"

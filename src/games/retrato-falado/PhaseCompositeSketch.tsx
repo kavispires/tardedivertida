@@ -67,6 +67,7 @@ function PhaseCompositeSketch({ players, state, info }: PhaseProps) {
           currentRound={state?.round?.current}
           duration={state?.round?.current < 2 ? 20 : 5}
           unskippable
+          type="block"
         >
           <Instruction>
             {isUserTheWitness ? (

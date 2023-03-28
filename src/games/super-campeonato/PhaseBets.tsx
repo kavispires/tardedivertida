@@ -13,7 +13,6 @@ import { Translate } from 'components/language';
 import { StepMakeYourBets } from './StepMakeYourBets';
 import { useUser } from 'hooks/useUser';
 import { BetsFloatingHand } from './components/BetsFloatingHand';
-import { NOOP } from 'utils/constants';
 
 function PhaseBets({ state, players, info }: PhaseProps) {
   const { step, setStep } = useStep(0);
@@ -25,7 +24,6 @@ function PhaseBets({ state, players, info }: PhaseProps) {
     <PhaseAnnouncement
       icon={<GamblingChipIcon />}
       title={<Translate pt="Apostas" en="Bets" />}
-      onClose={NOOP}
       type="overlay"
       currentRound={state?.round?.current}
       duration={5}

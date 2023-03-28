@@ -19,6 +19,7 @@ export function TrapAnnouncement({ trap, goToNextStep }: TrapAnnouncementProps) 
       onClose={goToNextStep}
       duration={10}
       unskippable
+      type="block"
     >
       <Instruction className="i-trap-description">
         <Translate pt={description.pt} en={description.en} />

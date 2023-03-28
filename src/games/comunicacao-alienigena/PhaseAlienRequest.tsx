@@ -5,7 +5,6 @@ import { useOnSubmitAlienRequestAPIRequest } from './utils/api-requests';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
-import { NOOP } from 'utils/constants';
 // Icons
 import { AlienCommunicationIcon } from 'icons/AlienCommunicationIcon';
 // Components
@@ -26,7 +25,6 @@ export function PhaseAlienRequest({ players, state, info }: PhaseProps) {
     <PhaseAnnouncement
       icon={<AlienCommunicationIcon />}
       title={<Translate pt="O Alienígena faz um pedido" en="The Alien makes a request" />}
-      onClose={NOOP}
       currentRound={state?.round?.current}
       type="overlay"
       duration={3}

@@ -23,6 +23,7 @@ export function ViewAnnouncement({ isUserTheWitness }: ViewAnnouncementProps) {
       duration={5}
       icon={isUserTheWitness ? <TimerIcon /> : <SketchIcon />}
       onClose={() => {}}
-    ></PhaseAnnouncement>
+      type="block"
+    />
   );
 }

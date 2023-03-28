@@ -40,6 +40,7 @@ function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
           title={<Translate pt="Seleção da Pergunta" en="Question Selection" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
+          type="block"
         >
           <Instruction>
             <Translate

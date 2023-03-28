@@ -5,7 +5,6 @@ import { useDelayedMock } from 'hooks/useMock';
 import { useOnSubmitMovieSelectionAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
-import { NOOP } from 'utils/constants';
 import { mockMovieSelection } from './utils/mock';
 // Icons
 import { ReviewIcon } from 'icons/ReviewIcon';
@@ -32,7 +31,6 @@ export function PhaseMovieSelection({ players, state, info }: PhaseProps) {
     <PhaseAnnouncement
       icon={<ReviewIcon />}
       title={<Translate pt="Qual filme vamos ver?" en="What movie should we watch?" />}
-      onClose={NOOP}
       currentRound={state?.round?.current}
       type="overlay"
       duration={3}

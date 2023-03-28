@@ -52,6 +52,7 @@ function PhaseAssignment({ state, players, info }: PhaseProps) {
           buttonText=""
           className="e-phase-announcement e-phase-announcement--animated"
           duration={15}
+          type="block"
         >
           <Instruction>
             <Translate
@@ -87,6 +88,7 @@ function PhaseAssignment({ state, players, info }: PhaseProps) {
           buttonText=""
           className="e-phase-announcement e-phase-announcement--animated"
           duration={10}
+          type="block"
         >
           <Instruction>
             <Translate
@@ -120,6 +122,7 @@ function PhaseAssignment({ state, players, info }: PhaseProps) {
           buttonText=""
           className="e-phase-announcement e-phase-announcement--animated"
           duration={30}
+          type="block"
         >
           <Instruction>
             <Translate

@@ -50,6 +50,7 @@ function PhaseSecretClue({ state, players, info }: PhaseProps) {
           title={<Translate pt="Pista Secreta" en="Secret Clue" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
+          type="block"
         >
           <Instruction>
             <Translate

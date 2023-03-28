@@ -4,7 +4,6 @@ import { useStep } from 'hooks/useStep';
 import { useOnSubmitGuessAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
-import { NOOP } from 'utils/constants';
 // Icons
 import { AnonymousIcon } from 'icons/AnonymousIcon';
 // Components
@@ -28,7 +27,6 @@ export function PhaseGuessing({ players, state, info }: PhaseProps) {
     <PhaseAnnouncement
       icon={<AnonymousIcon />}
       title={<Translate pt="Quem é essa pessoa?" en="Who's that?" />}
-      onClose={NOOP}
       currentRound={state?.round?.current}
       type="overlay"
       duration={4}

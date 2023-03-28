@@ -4,7 +4,6 @@ import { useStep } from 'hooks/useStep';
 import { useOnSubmitAnswerAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
-import { NOOP } from 'utils/constants';
 // Icons
 import { ChatIcon } from 'icons/ChatIcon';
 // Components
@@ -23,7 +22,6 @@ export function PhaseAnswer({ players, state, info }: PhaseProps) {
     <PhaseAnnouncement
       icon={<ChatIcon />}
       title={<Translate pt="Responda!" en="Answer the question!" />}
-      onClose={NOOP}
       currentRound={state?.round?.current}
       type="overlay"
       duration={4}

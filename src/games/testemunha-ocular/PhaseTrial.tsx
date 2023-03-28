@@ -38,6 +38,7 @@ function PhaseTrial({ state, players, info }: PhaseProps) {
           title={<Translate pt="Julgamento" en="Trial" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
+          type="block"
         >
           <Instruction>
             <Translate

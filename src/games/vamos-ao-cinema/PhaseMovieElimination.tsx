@@ -6,7 +6,6 @@ import { useDelayedMock } from 'hooks/useMock';
 import { useOnSubmitMovieEliminationAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
-import { NOOP } from 'utils/constants';
 import { mockMovieElimination } from './utils/mock';
 // Icons
 import { PopcornIcon } from 'icons/PopcornIcon';
@@ -37,7 +36,6 @@ export function PhaseMovieElimination({ players, state, info }: PhaseProps) {
       <PhaseAnnouncement
         icon={<PopcornIcon />}
         title={<Translate pt="Qual filme NÃO ver?" en="What NOT to watch?" />}
-        onClose={NOOP}
         currentRound={state?.round?.current}
         type="overlay"
         duration={state?.round?.current === 1 ? 12 : 7}
@@ -72,7 +70,6 @@ export function PhaseMovieElimination({ players, state, info }: PhaseProps) {
       <PhaseAnnouncement
         icon={<PopcornIcon />}
         title={<Translate pt="Sua vez!" en="Your turn!" />}
-        onClose={NOOP}
         currentRound={state?.round?.current}
         type="overlay"
         duration={3}

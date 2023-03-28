@@ -39,6 +39,7 @@ function PhaseCardPlay({ state, players, info }: PhaseProps) {
           title={<Translate pt="Apresentação das Evidências" en="Evidence" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
+          type="block"
         >
           <Instruction>
             <Translate

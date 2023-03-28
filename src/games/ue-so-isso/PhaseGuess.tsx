@@ -44,6 +44,7 @@ function PhaseGuess({ state, players, info }: PhaseProps) {
           title={<Translate pt="Adivinhação" en="Guessing" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
+          type="block"
         >
           <GuessingRules guesserName={guesser.name} />
         </PhaseAnnouncement>

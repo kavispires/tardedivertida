@@ -46,6 +46,7 @@ function PhaseSceneMarking({ players, state, info }: PhaseProps) {
           title={<Translate pt="Nova pista" en="New clue" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
+          type="block"
         >
           <Instruction>
             <Translate

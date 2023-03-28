@@ -39,6 +39,7 @@ function PhaseDefense({ state, players, info }: PhaseProps) {
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           duration={5}
+          type="block"
         >
           <Title>
             <Translate pt="Pista Secreta era: " en="The Secret Clue was: " />

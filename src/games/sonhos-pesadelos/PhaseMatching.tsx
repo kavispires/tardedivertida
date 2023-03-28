@@ -28,6 +28,7 @@ function PhaseMatching({ state, players, info }: PhaseProps) {
           title={<Translate pt="Combine os sonhos" en="Match the dreams" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
+          type="block"
         >
           <Instruction>
             <Translate

@@ -4,7 +4,6 @@ import { useUser } from 'hooks/useUser';
 import { useOnSubmitContenderAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
-import { NOOP } from 'utils/constants';
 // Icons
 import { AnonymousIcon } from 'icons/AnonymousIcon';
 // Components
@@ -25,7 +24,6 @@ function PhaseContenderSelection({ state, players, info }: PhaseProps) {
     <PhaseAnnouncement
       icon={<AnonymousIcon />}
       title={<Translate pt="Competidores" en="Contenders" />}
-      onClose={NOOP}
       type="overlay"
       currentRound={state?.round?.current}
       duration={5}

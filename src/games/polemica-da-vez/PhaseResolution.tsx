@@ -12,7 +12,6 @@ import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
 import { StepRanking } from './StepRanking';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
-import { NOOP } from 'utils/constants';
 
 function PhaseReact({ state, players, info }: PhaseProps) {
   const { step, goToNextStep, goToPreviousStep } = useStep(0);
@@ -21,7 +20,6 @@ function PhaseReact({ state, players, info }: PhaseProps) {
     <PhaseAnnouncement
       icon={<ReviewIcon />}
       title={<Translate pt="Resultado" en="Results" />}
-      onClose={NOOP}
       currentRound={state?.round?.current}
       type="overlay"
     >

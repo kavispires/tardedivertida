@@ -36,6 +36,7 @@ function PhaseQuestioning({ state, players, info }: PhaseProps) {
           title={<Translate pt="Questionamento" en="Questioning" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
+          type="block"
         >
           <Instruction>
             <Translate

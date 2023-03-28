@@ -5,7 +5,6 @@ import { useUser } from 'hooks/useUser';
 import { useOnSubmitVotesAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
-import { NOOP } from 'utils/constants';
 // Icons
 import { BoxingGlovesIcon } from 'icons/BoxingGlovesIcon';
 // Components
@@ -33,7 +32,6 @@ function PhaseBattle({ state, players, info }: PhaseProps) {
     <PhaseAnnouncement
       icon={<BoxingGlovesIcon />}
       title={<Translate pt="Batalha!" en="Battle!" />}
-      onClose={NOOP}
       type="overlay"
       currentRound={state?.round?.current}
       duration={3}

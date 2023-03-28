@@ -5,7 +5,6 @@ import { useStep } from 'hooks/useStep';
 import { useOnPlayCardAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
-import { NOOP } from 'utils/constants';
 // Icons
 import { ImageCardsIcon } from 'icons/ImageCardsIcon';
 // Components
@@ -27,7 +26,6 @@ function PhaseCardPlay({ state, players, info }: PhaseProps) {
     <PhaseAnnouncement
       icon={<ImageCardsIcon />}
       title={<Translate pt="Selecione uma carta" en="Play a card..." />}
-      onClose={NOOP}
       currentRound={state?.round?.current}
       type="overlay"
     >

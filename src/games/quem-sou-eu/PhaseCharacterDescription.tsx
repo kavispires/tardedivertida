@@ -3,7 +3,6 @@ import { useUser } from 'hooks/useUser';
 import { useStep } from 'hooks/useStep';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
-import { NOOP } from 'utils/constants';
 import { useOnSubmitGlyphsAPIRequest } from './utils/api-requests';
 // Icons
 import { IconsIcon } from 'icons/IconsIcon';
@@ -25,7 +24,6 @@ export function PhaseCharacterDescription({ players, state, info }: PhaseProps) 
     <PhaseAnnouncement
       icon={<IconsIcon />}
       title={<Translate pt="Descreva seu personagem com ícones" en="Describe your character with glyphs" />}
-      onClose={NOOP}
       currentRound={state?.round?.current}
       type="overlay"
     >

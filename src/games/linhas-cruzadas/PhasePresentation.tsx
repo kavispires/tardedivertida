@@ -28,6 +28,7 @@ function PhasePresentation({ players, state, info }: PhaseProps) {
           currentRound={state?.round?.current}
           unskippable
           duration={7}
+          type="block"
         >
           <Instruction>
             <Translate pt="A ordem dos albums será:" en="The albums' order will be:" />

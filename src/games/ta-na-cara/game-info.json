@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "ta-na-cara",
-  "version": "beta",
+  "version": "1.0.0",
   "title": {
     "pt": "Tá Na Cara",
     "en": "Guess Who What?"
@@ -17,7 +17,7 @@
     "color": ""
   },
   "summary": {
-    "pt": "Você consegue descobrir quem é quem só com perguntas subjetivas?",
+    "pt": "Você consegue descobrir quem é quem somente com perguntas subjetivas?",
     "en": "Can you guess who is who based on subjective questions?"
   },
   "rules": {
@@ -26,6 +26,7 @@
   },
   "playerCount": {
     "recommended": [4, 5, 6],
+    "best": 5,
     "min": 4,
     "max": 10
   },

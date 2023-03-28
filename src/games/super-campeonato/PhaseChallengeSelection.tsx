@@ -4,7 +4,6 @@ import { useUser } from 'hooks/useUser';
 import { useOnSubmitChallengeAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
-import { NOOP } from 'utils/constants';
 // Icons
 import { SelectListIcon } from 'icons/SelectListIcon';
 // Components
@@ -28,7 +27,6 @@ function PhaseChallengeSelection({ state, players, info }: PhaseProps) {
       currentRound={state?.round?.current}
       duration={5}
       type="overlay"
-      onClose={NOOP}
     >
       <Instruction>
         <Translate pt="Qual o desafio da rodada?" en="What's the round's challenge?" />

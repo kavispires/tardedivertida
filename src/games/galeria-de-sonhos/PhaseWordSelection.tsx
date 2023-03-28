@@ -57,6 +57,7 @@ function PhaseWordSelection({ players, state, info }: PhaseProps) {
           title={<Translate pt="Tema dos Sonhos" en="The Dream Theme" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
+          type="block"
         >
           <WordSelectionRules scout={scout} />
         </PhaseAnnouncement>

@@ -28,6 +28,7 @@ function PhaseCloverWriting({ players, state, info }: PhaseProps) {
           title={<Translate pt="Escreva as dicas" en="Write the clues" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
+          type="block"
         >
           <Instruction>
             <Translate pt="Para cada par, escreva uma dica" en="For each pair, write a clue" />

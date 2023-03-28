@@ -5,7 +5,6 @@ import { useOnSubmitPromptAPIRequest, useOnSubmitTargetAPIRequest } from './util
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
-import { NOOP } from 'utils/constants';
 // Icons
 import { ChoiceIcon } from 'icons/ChoiceIcon';
 // Components
@@ -30,7 +29,6 @@ export function PhasePrompt({ players, state, info }: PhaseProps) {
     <PhaseAnnouncement
       icon={<ChoiceIcon />}
       title={<Translate pt="Pergunta" en="Question" />}
-      onClose={NOOP}
       currentRound={state?.round?.current}
       type="overlay"
       duration={4}

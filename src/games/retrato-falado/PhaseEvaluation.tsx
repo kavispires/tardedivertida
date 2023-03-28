@@ -31,6 +31,7 @@ function PhaseEvaluation({ players, state, info }: PhaseProps) {
           title={<Translate pt="Vote!" en="Vote!" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
+          type="block"
         >
           <Instruction>
             <Translate

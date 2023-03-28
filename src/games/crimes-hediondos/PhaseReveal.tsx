@@ -37,6 +37,7 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
           title={<Translate pt="Resultado" en="Results" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
+          type="block"
         >
           <Instruction>
             <ScoringMessage round={state.round} />
