@@ -5,7 +5,6 @@ import { useOnSubmitOfferingAPIRequest } from './utils/api-requests';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
-import { NOOP } from 'utils/constants';
 // Icons
 import { OfferingIcon } from 'icons/OfferingIcon';
 // Components
@@ -26,7 +25,6 @@ export function PhaseOfferings({ players, state, info }: PhaseProps) {
     <PhaseAnnouncement
       icon={<OfferingIcon />}
       title={<Translate pt="Oferendas" en="Offerings" />}
-      onClose={NOOP}
       currentRound={state?.round?.current}
       type="overlay"
       duration={3}

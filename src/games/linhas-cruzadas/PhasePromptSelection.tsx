@@ -29,6 +29,7 @@ function PhasePromptSelection({ players, state, info }: PhaseProps) {
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           duration={20}
+          type="block"
         >
           <Instruction>
             <Translate

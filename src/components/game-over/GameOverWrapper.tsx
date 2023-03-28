@@ -1,7 +1,6 @@
 import { ReactNode, useState } from 'react';
 // Utils
 import { PHASES } from 'utils/phases';
-import { NOOP } from 'utils/constants';
 // Icons
 import { TheEndIcon } from 'icons/TheEndIcon';
 // Components
@@ -63,7 +62,6 @@ export function GameOverWrapper({
       title={
         <Translate pt="E o jogo chegou ao fim..." en="And the game is over..." custom={announcementTitle} />
       }
-      onClose={NOOP}
       currentRound={state?.round?.current}
       duration={announcementDuration}
       type="overlay"

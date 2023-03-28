@@ -4,7 +4,6 @@ import { useStep } from 'hooks/useStep';
 import { useOnSubmitCharactersAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
-import { NOOP } from 'utils/constants';
 // Icons
 import { FilterIcon } from 'icons/FilterIcon';
 // Components
@@ -24,7 +23,6 @@ export function PhaseCharacterFiltering({ players, state, info }: PhaseProps) {
     <PhaseAnnouncement
       icon={<FilterIcon />}
       title={<Translate pt="Quem você conhece?" en="Who do you know?" />}
-      onClose={NOOP}
       currentRound={state?.round?.current}
       type="overlay"
     >

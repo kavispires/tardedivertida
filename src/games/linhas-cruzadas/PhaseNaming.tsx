@@ -29,6 +29,7 @@ function PhaseNaming({ players, state, info }: PhaseProps) {
           title={<Translate pt="O que é isso?" en="What is it?" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
+          type="block"
         >
           <Instruction>
             <Translate pt="Tente adivinhar o que é a obra" en="Try to guess what the artwork is" />

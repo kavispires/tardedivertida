@@ -3,7 +3,6 @@ import { useUser } from 'hooks/useUser';
 import { useStep } from 'hooks/useStep';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
-import { NOOP } from 'utils/constants';
 // Icons
 // Components
 import { StepSwitcher } from 'components/steps';
@@ -24,7 +23,6 @@ export function PhaseReveal({ players, state, info }: PhaseProps) {
     <PhaseAnnouncement
       icon={<SpotlightIcon />}
       title={<Translate pt="E a pessoa foi descoberta?" en="Was the person revealed?" />}
-      onClose={NOOP}
       currentRound={state?.round?.current}
       type="overlay"
       duration={4}

@@ -30,6 +30,7 @@ export function PhaseResults({ players, state, info }: PhaseProps) {
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           unskippable
+          type="block"
         >
           <Instruction>
             <ScoringRules currentRound={state.round.current} />

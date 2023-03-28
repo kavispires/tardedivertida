@@ -5,7 +5,6 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { useOnSubmitStoryAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
-import { NOOP } from 'utils/constants';
 // Icons
 import { FairyTaleIcon } from 'icons/FairyTaleIcon';
 // Components
@@ -33,7 +32,6 @@ function PhaseStory({ state, players, info }: PhaseProps) {
     <PhaseAnnouncement
       icon={<FairyTaleIcon />}
       title={<Translate pt="Conte-nos uma história" en="Tell us a story..." />}
-      onClose={NOOP}
       currentRound={state?.round?.current}
       type="overlay"
     >

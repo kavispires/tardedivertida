@@ -31,6 +31,7 @@ function PhaseWitnessSelection({ state, players, info }: PhaseProps) {
           title={<Translate pt="O Caso" en="The Case" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
+          type="block"
         >
           <Instruction>
             <Translate

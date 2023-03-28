@@ -13,7 +13,6 @@ import { StepSwitcher } from 'components/steps';
 import { DreamSelectionRules } from './components/RulesBlobs';
 import { StepDreamsSelection } from './StepDreamsSelection';
 import { Translate } from 'components/language';
-import { NOOP } from 'utils/constants';
 
 function PhaseDreamsSelections({ players, state, info, meta }: PhaseProps) {
   const user = useUser(players, state);
@@ -25,7 +24,6 @@ function PhaseDreamsSelections({ players, state, info, meta }: PhaseProps) {
     <PhaseAnnouncement
       icon={<DreamIcon />}
       title={<Translate pt="Visite sonhos!" en="Visit dreams!" />}
-      onClose={NOOP}
       currentRound={state?.round?.current}
       type="overlay"
     >

@@ -42,6 +42,7 @@ function PhaseFinalAssessment({ state, players, info }: PhaseProps) {
             buttonText=""
             className="e-phase-announcement"
             duration={2}
+            type="block"
           />
         ) : (
           <PhaseAnnouncement
@@ -52,6 +53,7 @@ function PhaseFinalAssessment({ state, players, info }: PhaseProps) {
             buttonText=""
             className="e-phase-announcement"
             duration={3}
+            type="block"
           >
             <Instruction>
               <Translate pt="A votação não foi unanime" en="The vote wasn't unanimous" />

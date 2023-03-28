@@ -5,7 +5,6 @@ import { useStep } from 'hooks/useStep';
 import { useOnSubmitVoteAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
-import { NOOP } from 'utils/constants';
 // Icons
 import { VoteIcon } from 'icons/VoteIcon';
 // Components
@@ -27,7 +26,6 @@ function PhaseVoting({ state, players, info }: PhaseProps) {
     <PhaseAnnouncement
       icon={<VoteIcon />}
       title={<Translate pt="Votação" en="Voting" />}
-      onClose={NOOP}
       currentRound={state?.round?.current}
       type="overlay"
     >

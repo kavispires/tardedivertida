@@ -36,6 +36,7 @@ function PhaseGallery({ players, state, info, meta }: PhaseProps) {
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           unskippable
+          type="block"
         >
           <GalleryRules />
         </PhaseAnnouncement>

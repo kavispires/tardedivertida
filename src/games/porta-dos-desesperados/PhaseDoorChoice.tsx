@@ -59,6 +59,7 @@ function PhaseDoorChoice({ players, state, info, meta }: PhaseProps) {
           currentRound={state?.round?.current}
           duration={5}
           unskippable
+          type="block"
         >
           <Instruction>
             <Translate

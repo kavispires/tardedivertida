@@ -53,6 +53,7 @@ function PhaseResolution({ state, players, info }: PhaseProps) {
             buttonText=""
             className="e-phase-announcement"
             duration={5}
+            type="block"
           />
 
           <PhaseAnnouncement
@@ -63,6 +64,7 @@ function PhaseResolution({ state, players, info }: PhaseProps) {
             buttonText=""
             className="e-phase-announcement"
             duration={5}
+            type="block"
           />
         </ViewOr>
 
@@ -80,6 +82,7 @@ function PhaseResolution({ state, players, info }: PhaseProps) {
           buttonText=""
           className="e-phase-announcement"
           duration={5}
+          type="block"
         />
 
         {/* Step 3 */}

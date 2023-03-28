@@ -4,7 +4,6 @@ import { useStep } from 'hooks/useStep';
 import { useOnSubmitGuessesAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
-import { NOOP } from 'utils/constants';
 // Icons
 import { EvaluateIcon } from 'icons/EvaluateIcon';
 // Components
@@ -27,7 +26,6 @@ export function PhaseGuessing({ players, state, info }: PhaseProps) {
       title={
         <Translate pt="Pareie os personagens e símbolos" en="Pair characters with the players' glyphs" />
       }
-      onClose={NOOP}
       currentRound={state?.round?.current}
       type="overlay"
     >

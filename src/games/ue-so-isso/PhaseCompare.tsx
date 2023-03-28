@@ -35,6 +35,7 @@ function PhaseCompare({ state, players, info }: PhaseProps) {
           title={<Translate pt="Comparação de dicas!" en="Clue Check!" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
+          type="block"
         >
           <ComparisonRules />
           {isUserTheGuesser && (

@@ -28,6 +28,7 @@ function PhaseGuessing({ players, state, info }: PhaseProps) {
           title={<Translate pt="Tente Adivinhar" en="Try to guess" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
+          type="block"
         >
           <GuessMessage />
         </PhaseAnnouncement>

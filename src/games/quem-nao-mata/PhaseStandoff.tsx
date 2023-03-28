@@ -24,6 +24,7 @@ function PhaseStandoff({ players, state, info }: PhaseProps) {
           title={<Translate pt="O pega pra capar!" en="Standoff Results" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
+          type="block"
         >
           <Instruction>Add text here</Instruction>
         </PhaseAnnouncement>

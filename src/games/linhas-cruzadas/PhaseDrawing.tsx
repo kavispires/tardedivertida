@@ -32,6 +32,7 @@ function PhaseDrawing({ players, state, info }: PhaseProps) {
           currentRound={state?.round?.current}
           buttonText={<Translate pt="Um dó, lá, si... vamos ir... já!" en="Ready! Set! Go!" />}
           withoutTimer
+          type="block"
         >
           <Instruction>
             <Translate

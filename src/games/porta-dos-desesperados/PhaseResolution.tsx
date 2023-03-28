@@ -25,6 +25,7 @@ function PhaseResolution({ players, state, info }: PhaseProps) {
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           duration={4}
+          type="block"
         />
 
         {/* Step 1 */}

@@ -2,7 +2,6 @@
 import { useStep } from 'hooks/useStep';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
-import { NOOP } from 'utils/constants';
 // Icons
 import { CustomerReviewIcon } from 'icons/CustomerReviewIcon';
 // Components
@@ -19,7 +18,6 @@ function PhaseResolution({ state, players, info }: PhaseProps) {
     <PhaseAnnouncement
       icon={<CustomerReviewIcon />}
       title={<Translate pt="Resultado" en="And who moves is..." />}
-      onClose={NOOP}
       currentRound={state?.round?.current}
       duration={3}
       type="overlay"

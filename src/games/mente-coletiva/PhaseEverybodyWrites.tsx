@@ -4,7 +4,6 @@ import { useUser } from 'hooks/useUser';
 import { useOnSubmitAnswersAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
-import { NOOP } from 'utils/constants';
 // Icons
 import { WritingIcon } from 'icons/WritingIcon';
 // Components
@@ -24,7 +23,6 @@ function PhaseEverybodyWrites({ state, players, info, meta }: PhaseProps) {
     <PhaseAnnouncement
       icon={<WritingIcon />}
       title={<Translate pt="Todos Respondem" en="Everybody Writes" />}
-      onClose={NOOP}
       currentRound={state?.round?.current}
       duration={state?.round?.current < 3 ? 20 : undefined}
       type="overlay"

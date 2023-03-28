@@ -5,7 +5,6 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { useOnSubmitMoviePosterAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
-import { NOOP } from 'utils/constants';
 import { getAnnouncementKey } from './utils/helpers';
 // Icons
 import { TomatoIcon } from 'icons/TomatoIcon';
@@ -31,7 +30,6 @@ export function PhaseReveal({ players, state, info }: PhaseProps) {
       <PhaseAnnouncement
         icon={<TomatoIcon />}
         title={<Translate pt="Ah Não!" en="No this one!" />}
-        onClose={NOOP}
         currentRound={state?.round?.current}
         type="overlay"
         duration={3}
@@ -41,7 +39,6 @@ export function PhaseReveal({ players, state, info }: PhaseProps) {
       <PhaseAnnouncement
         icon={<ScaredIcon />}
         title={<Translate pt="Nãaaao!" en="Nooooo!" />}
-        onClose={NOOP}
         currentRound={state?.round?.current}
         type="overlay"
         duration={3}
@@ -53,7 +50,6 @@ export function PhaseReveal({ players, state, info }: PhaseProps) {
         title={
           <Translate pt="Até que enfim podemos assistir ao filme!" en="Finally! We can watch a movie!" />
         }
-        onClose={NOOP}
         currentRound={state?.round?.current}
         type="overlay"
         duration={7}

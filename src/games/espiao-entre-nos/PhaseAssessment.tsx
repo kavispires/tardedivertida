@@ -40,6 +40,7 @@ function PhaseAssessment({ state, players, info }: PhaseProps) {
           buttonText=""
           className="e-phase-announcement e-phase-announcement--alert"
           duration={5}
+          type="block"
         >
           <Instruction>
             <Translate

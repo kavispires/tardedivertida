@@ -5,7 +5,6 @@ import { useOnSubmitTaskAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 import { showDJPruPruPruStep } from './utils/helpers';
-import { NOOP } from 'utils/constants';
 // Icons
 import { DJIcon } from 'icons/DJIcon';
 // Components
@@ -30,7 +29,6 @@ function PhaseTask({ players, state, info }: PhaseProps) {
     <PhaseAnnouncement
       icon={<TaskIcon task={state.task} />}
       title={<TaskTitle task={state.task} />}
-      onClose={NOOP}
       currentRound={state?.round?.current}
       type="overlay"
     >
@@ -51,6 +49,7 @@ function PhaseTask({ players, state, info }: PhaseProps) {
           currentRound={state?.round?.current}
           duration={state?.round?.current < 2 ? 20 : 7}
           unskippable
+          type="block"
         >
           <DJPruPruPruSound />
           <DJInstructions round={state.round} />

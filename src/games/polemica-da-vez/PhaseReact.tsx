@@ -13,7 +13,6 @@ import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
 import { StepLiking } from './StepLiking';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
-import { NOOP } from 'utils/constants';
 
 function PhaseReact({ state, players, info }: PhaseProps) {
   const { step, setStep } = useStep(0);
@@ -28,7 +27,6 @@ function PhaseReact({ state, players, info }: PhaseProps) {
     <PhaseAnnouncement
       icon={<FeedbackIcon />}
       title={<Translate pt="O que você acha?" en="What do you think?" />}
-      onClose={NOOP}
       currentRound={state?.round?.current}
       type="overlay"
     >

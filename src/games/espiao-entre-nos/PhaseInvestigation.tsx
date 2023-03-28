@@ -68,6 +68,7 @@ function PhaseInvestigation({ state, players, info }: PhaseProps) {
             buttonText=""
             className="e-phase-announcement"
             duration={3}
+            type="block"
           />
         ) : (
           <PhaseAnnouncement
@@ -78,6 +79,7 @@ function PhaseInvestigation({ state, players, info }: PhaseProps) {
             buttonText=""
             className="e-phase-announcement"
             duration={3}
+            type="block"
           >
             <Instruction>
               <Translate pt="A votação não foi unanime" en="The vote wasn't unanimous" />
@@ -109,6 +111,7 @@ function PhaseInvestigation({ state, players, info }: PhaseProps) {
           currentRound={state?.round?.current}
           buttonText=""
           className="e-phase-announcement"
+          type="block"
         >
           <Instruction>
             <Translate pt="Preparado para a avaliação final?" en="Are you ready for the final assessment?" />

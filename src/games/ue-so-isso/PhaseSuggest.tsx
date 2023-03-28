@@ -38,6 +38,7 @@ function PhaseSuggest({ state, players, info }: PhaseProps) {
           title={<Translate pt="Escreva uma dica!" en="Write a Clue!" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
+          type="block"
         >
           <WritingRules />
           {isUserTheGuesser && (

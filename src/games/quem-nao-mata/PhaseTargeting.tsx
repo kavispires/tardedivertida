@@ -32,6 +32,7 @@ function PhaseTargeting({ players, state, info }: PhaseProps) {
           title={<Translate pt="Apontem suas armas!" en="Point your guns!" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
+          type="block"
         >
           <Instruction>
             <Translate pt="Tem alguém te olhando torto, heim..." en="Is anyone looking at you funny?" />

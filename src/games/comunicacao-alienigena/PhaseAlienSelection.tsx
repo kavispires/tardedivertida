@@ -3,7 +3,6 @@ import { useUser } from 'hooks/useUser';
 import { useStep } from 'hooks/useStep';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
-import { NOOP } from 'utils/constants';
 import { useOnSubmitAlienAPIRequest } from './utils/api-requests';
 // Icons
 import { UfoIcon } from 'icons/UfoIcon';
@@ -23,7 +22,6 @@ export function PhaseAlienSelection({ players, state, info }: PhaseProps) {
     <PhaseAnnouncement
       icon={<UfoIcon />}
       title={<Translate pt="Quem quer ser o alienígena?" en="Who will be the Alien?" />}
-      onClose={NOOP}
       currentRound={state?.round?.current}
       type="overlay"
     ></PhaseAnnouncement>

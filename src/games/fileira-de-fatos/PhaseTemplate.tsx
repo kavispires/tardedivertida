@@ -24,6 +24,7 @@ function PhaseTemplate({ players, state, info }: PhaseProps) {
           title={<Translate pt="?" en="?" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
+          type="block"
         >
           <Instruction>Add text here</Instruction>
         </PhaseAnnouncement>

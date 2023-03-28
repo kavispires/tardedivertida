@@ -5,7 +5,6 @@ import { useUser } from 'hooks/useUser';
 import { useOnAddAnswerAPIRequest, useOnNextAnswersAPIRequest } from './utils/api-requests';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
-import { NOOP } from 'utils/constants';
 // Icons
 import { DiscussionIcon } from 'icons/DiscussionIcon';
 // Components
@@ -29,7 +28,6 @@ function PhaseCompare({ state, players, info }: PhaseProps) {
     <PhaseAnnouncement
       icon={<DiscussionIcon />}
       title={<Translate pt="Respostas" en="Answers" />}
-      onClose={NOOP}
       currentRound={state?.round?.current}
       duration={state?.round?.current < 3 ? 20 : undefined}
       type="overlay"

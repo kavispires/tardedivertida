@@ -5,7 +5,6 @@ import { useOnMakeReady, useOnSubmitAlienResponseAPIRequest } from './utils/api-
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
-import { NOOP } from 'utils/constants';
 // Icons
 import { HieroglyphIcon } from 'icons/HieroglyphIcon';
 // Components
@@ -28,7 +27,6 @@ export function PhaseAlienAnswer({ players, state, info }: PhaseProps) {
     <PhaseAnnouncement
       icon={<HieroglyphIcon />}
       title={<Translate pt="Resposta do Alienígena" en="Alien Answer" />}
-      onClose={NOOP}
       currentRound={state?.round?.current}
       type="overlay"
       duration={3}

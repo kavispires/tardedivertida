@@ -3,7 +3,6 @@ import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { useStep } from 'hooks/useStep';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
-import { NOOP } from 'utils/constants';
 // Icons
 import { SealIcon } from 'icons/SealIcon';
 // Components
@@ -22,7 +21,6 @@ function PhaseResolution({ state, players, info }: PhaseProps) {
     <PhaseAnnouncement
       icon={<SealIcon />}
       title={<Translate pt="Solução" en="Solution" />}
-      onClose={NOOP}
       currentRound={state?.round?.current}
       type="overlay"
     >

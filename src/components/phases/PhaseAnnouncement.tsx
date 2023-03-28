@@ -15,15 +15,12 @@ import { TimedButton } from 'components/buttons';
 // Sass
 import './PhaseAnnouncement.scss';
 
-type PhaseAnnouncementProps = {
+type PhaseAnnouncementBasicProps = {
   /**
    * The title of the game phase
    */
   title: ReactNode;
-  /**
-   * The function called when the close button is clicked
-   */
-  onClose?: GenericFunction;
+
   /**
    * The icon displayed to illustrate the phase (default: MultitaskIcon)
    */
@@ -67,6 +64,30 @@ type PhaseAnnouncementProps = {
   type?: 'block' | 'overlay';
 };
 
+type PhaseAnnouncementBlock = {
+  /**
+   * The phase announcement will be its own screen without overlaying any content
+   */
+  type: 'block';
+  /**
+   * The function called when the close button is clicked
+   */
+  onClose: GenericFunction;
+} & PhaseAnnouncementBasicProps;
+
+type PhaseAnnouncementOverlay = {
+  /**
+   * The phase announcement will be its own screen without overlaying any content
+   */
+  type: 'overlay';
+  /**
+   * The function called when the close button is clicked
+   */
+  onClose?: GenericFunction;
+} & PhaseAnnouncementBasicProps;
+
+type PhaseAnnouncementProps = PhaseAnnouncementBlock | PhaseAnnouncementOverlay;
+
 /**
  * Screen displayed before (or over) any game phase with title and illustration and some simple instruction
  */
@@ -75,7 +96,7 @@ export function PhaseAnnouncement({
   icon,
   title,
   children,
-  currentRound = 0,
+  currentRound = 3,
   onClose = () => {},
   className,
   duration,

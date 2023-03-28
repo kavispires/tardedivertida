@@ -31,6 +31,7 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           duration={5}
+          type="block"
         >
           <Instruction>
             <Translate pt={<>E o mais votado é...</>} en={<>And the one who got the most votes is...</>} />

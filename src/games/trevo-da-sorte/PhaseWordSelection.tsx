@@ -38,6 +38,7 @@ function PhaseWordSelection({ players, state, info }: PhaseProps) {
           title={<Translate pt="Seleção das Palavras" en="Words Selection" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
+          type="block"
         >
           <Instruction>
             <Translate

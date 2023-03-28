@@ -63,6 +63,7 @@ function PhaseBookPossession({ players, state, info }: PhaseProps) {
               : () => setStep(4)
           }
           currentRound={state?.round?.current}
+          type="block"
         >
           <Instruction>
             <Translate

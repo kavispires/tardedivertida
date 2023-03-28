@@ -4,7 +4,6 @@ import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
-import { NOOP } from 'utils/constants';
 // Icons
 import { MultitaskIcon } from 'icons/MultitaskIcon';
 // Components
@@ -23,7 +22,6 @@ export function PhaseReveal({ players, state, info }: PhaseProps) {
     <PhaseAnnouncement
       icon={<MultitaskIcon />}
       title={<Translate pt="E as oferendas foram..." en="And the offerings were..." />}
-      onClose={NOOP}
       currentRound={state?.round?.current}
       type="overlay"
       duration={3}

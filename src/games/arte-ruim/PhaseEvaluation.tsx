@@ -4,7 +4,6 @@ import { useStep } from 'hooks/useStep';
 import { useOnSubmitVotingAPIRequest } from './utils/api-requests';
 // Utils
 import { PHASES } from 'utils/phases';
-import { NOOP } from 'utils/constants';
 // Icons
 import { EvaluateIcon } from 'icons/EvaluateIcon';
 // Components
@@ -25,7 +24,6 @@ function EvaluationPhase({ players, state, info }: PhaseProps) {
     <PhaseAnnouncement
       icon={<EvaluateIcon />}
       title={<Translate pt="Adivinhação" en="Match the Pairs" />}
-      onClose={NOOP}
       currentRound={state?.round?.current}
       type="overlay"
     >

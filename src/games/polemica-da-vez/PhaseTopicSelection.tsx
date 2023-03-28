@@ -20,7 +20,6 @@ import { ViewOr } from 'components/views';
 import { TurnOrder, WaitingRoom } from 'components/players';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { TargetHighlight } from 'components/metrics/TargetHighlight';
-import { NOOP } from 'utils/constants';
 
 function PhaseTopicSelection({ state, players, info, meta }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
@@ -39,7 +38,6 @@ function PhaseTopicSelection({ state, players, info, meta }: PhaseProps) {
     <PhaseAnnouncement
       icon={<TrendingIcon />}
       title={<Translate pt="Você sabe qual a polêmica da vez?" en="Do you know what's trending now?" />}
-      onClose={NOOP}
       currentRound={state?.round?.current}
       duration={state?.round?.current < 3 ? 30 : undefined}
       type="overlay"

@@ -33,6 +33,7 @@ function PhaseCloverGuessing({ players, state, info }: PhaseProps) {
           title={<Translate pt="Hora de Adivinhar" en="Time to guess" />}
           onClose={goToNextStep}
           currentRound={state?.round?.current}
+          type="block"
         >
           <Instruction>
             <Translate

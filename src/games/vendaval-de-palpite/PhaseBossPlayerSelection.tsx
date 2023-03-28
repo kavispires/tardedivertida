@@ -27,6 +27,7 @@ function PhaseBossPlayerSelection({ state, players, info }: PhaseProps) {
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           duration={10}
+          type="block"
         >
           <Instruction>
             <Translate
