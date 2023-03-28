@@ -2,6 +2,7 @@
 import { Button, Space } from 'antd';
 // Hook
 import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
+import { useLoading } from 'hooks/useLoading';
 // Components
 import { Translate } from 'components/language';
 import { HumanSignBoard } from './HumanSignBoard';
@@ -15,6 +16,7 @@ type HumanInquiryProps = {
 };
 
 export function HumanInquiry({ signs, items, submitInquiry, user }: HumanInquiryProps) {
+  const { isLoading } = useLoading();
   const [selected, updateSelected] = useBooleanDictionary({}, (d) => Object.keys(d).length < 5);
   const objectsIds = Object.keys(selected);
   return (
@@ -22,7 +24,7 @@ export function HumanInquiry({ signs, items, submitInquiry, user }: HumanInquiry
       <Button
         size="large"
         type="primary"
-        disabled={objectsIds.length < 1}
+        disabled={objectsIds.length < 1 || isLoading}
         onClick={() => submitInquiry({ objectsIds })}
       >
         <Translate pt="Enviar Objetos" en="Submit Objects" /> ({objectsIds.length})
