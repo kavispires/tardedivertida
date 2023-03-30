@@ -41,7 +41,7 @@ export function StepGuessPlayer({
   points,
 }: StepGuessPlayerProps) {
   useDelayedMock(() => {
-    onSubmitGuess({ characterId: mockGuess(charactersDict, user) });
+    onSubmitGuess({ characterId: mockGuess(charactersDict, user, targetedPlayer.id) });
   });
 
   return (

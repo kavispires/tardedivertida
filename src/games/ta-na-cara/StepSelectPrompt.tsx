@@ -1,3 +1,7 @@
+// Hooks
+import { useDelayedMock } from 'hooks/useMock';
+// Mocks
+import { mockPromptDecision } from './utils/mock';
 // Components
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
@@ -31,6 +35,11 @@ export function StepSelectPrompt({
   onSubmitTarget,
   activePlayerId,
 }: StepSelectPromptProps) {
+  // DEV: Auto decision
+  useDelayedMock(() => {
+    mockPromptDecision(user, players, onSubmitPrompt, onSubmitTarget);
+  });
+
   return (
     <Step fullWidth announcement={announcement}>
       <Title size="medium">

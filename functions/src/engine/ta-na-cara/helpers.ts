@@ -1,4 +1,4 @@
-import { TA_NA_CARA_PHASES } from './constants';
+import { DUMMY_ID, TA_NA_CARA_PHASES } from './constants';
 import { CharacterFace, TaNaCaraOptions, TaNaCaraState, TaNaCaraStore } from './types';
 // Helpers
 import utils from '../../utils';
@@ -103,7 +103,8 @@ export const buildRankingAndOutcome = (
     charactersDict[target.characterId].revealed = true;
     // Save the result
     result = {
-      id: '__result',
+      id: DUMMY_ID,
+      playerId: target.id,
       avatarId: target.avatarId,
       name: target.name,
       characterId: target.characterId,
