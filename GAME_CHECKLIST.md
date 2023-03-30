@@ -96,6 +96,7 @@ Legend
 - Achievements: ❌
 - Overlaid Phase Announcements: ✅
 - Bots: ⛔️
+- Modes: Single words, Contenders
 
 ## Detetives Imaginativos
 

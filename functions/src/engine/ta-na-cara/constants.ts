@@ -26,3 +26,9 @@ export const MAX_ROUNDS = 15;
 export const MINIMUM_SUSPECTS = 12;
 
 export const QUESTIONS_PER_PLAYER = 6;
+
+export const DUMMY_ID = '__result';
+
+export const BASE_POINTS = 10;
+
+export const MINIMUM_POINTS = 1;

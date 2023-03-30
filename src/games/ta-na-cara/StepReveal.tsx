@@ -130,7 +130,7 @@ export function StepReveal({
       />
 
       <Space className="space-container" align="center">
-        <TimedButton duration={15} onExpire={goToNextStep} onClick={goToNextStep}>
+        <TimedButton duration={isCorrect ? 15 : 7} onExpire={goToNextStep} onClick={goToNextStep}>
           <Translate pt="Ver Ranking" en="See Ranking" />
         </TimedButton>
       </Space>

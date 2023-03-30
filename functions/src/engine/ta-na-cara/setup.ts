@@ -1,5 +1,11 @@
 // Constants
-import { MINIMUM_SUSPECTS, QUESTIONS_PER_PLAYER, TA_NA_CARA_PHASES } from './constants';
+import {
+  BASE_POINTS,
+  MINIMUM_POINTS,
+  MINIMUM_SUSPECTS,
+  QUESTIONS_PER_PLAYER,
+  TA_NA_CARA_PHASES,
+} from './constants';
 // Types
 import type { CharacterFace, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Utils
@@ -64,7 +70,7 @@ export const prepareSetupPhase = async (
   return {
     update: {
       store: {
-        usedCharacters: {},
+        usedCharacters: [],
       },
       players,
       state: {
@@ -111,7 +117,7 @@ export const preparePromptPhase = async (
         correct: utils.firebase.deleteValue(),
         ranking: utils.firebase.deleteValue(),
         result: utils.firebase.deleteValue(),
-        round: utils.helpers.increaseRound(state.round),
+        round: activePlayerId === state.turnOrder[0] ? utils.helpers.increaseRound(state.round) : state.round,
       },
       players,
     },
@@ -151,8 +157,8 @@ export const prepareGuessingPhase = async (
   // Unready players
   utils.players.unReadyPlayers(players, store.currentTargetId);
 
-  // Possible points: 10 - number of questions answered) with the minimum of 1 point
-  const possiblePoints = 10 - (players?.[store.currentTargetId]?.answers.length ?? 0);
+  // Possible points: 15 - number of questions answered) with the minimum of 1 point
+  const possiblePoints = BASE_POINTS - (players?.[store.currentTargetId]?.answers.length ?? 0);
 
   // Save
   return {
@@ -164,7 +170,7 @@ export const prepareGuessingPhase = async (
       state: {
         phase: TA_NA_CARA_PHASES.GUESSING,
         targetId: store.currentTargetId,
-        points: Math.max(possiblePoints, 1),
+        points: Math.max(possiblePoints, MINIMUM_POINTS),
       },
       players,
     },
@@ -191,8 +197,14 @@ export const prepareRevealPhase = async (
     utils.players.getListOfPlayers(players).some((player) => player.characterId === null);
 
   if (result) {
-    const res = result as Player;
-    store.usedCharacters[res.characterId] = res.answers;
+    const res = result as Partial<Player>;
+    store.usedCharacters.push({
+      id: res.playerId,
+      avatarId: res.avatarId,
+      name: res.name,
+      characterId: res.characterId,
+      answers: res.answers,
+    });
   }
 
   // Save
@@ -222,7 +234,38 @@ export const prepareGameOverPhase = async (
 
   await utils.firebase.markGameAsComplete(gameId);
 
+  // Get current characters to the usedCharacters list to make the final gallery
+  utils.players.getListOfPlayers(players).forEach((player) => {
+    if (
+      player.characterId &&
+      store.usedCharacters.some((c: Partial<Player>) => c.characterId !== player.characterId)
+    ) {
+      store.usedCharacters.push({
+        id: player.id,
+        avatarId: player.avatarId,
+        name: player.name,
+        characterId: player.characterId,
+        answers: player.answers,
+      });
+    }
+  });
+
+  utils.players.removePropertiesFromPlayers(players, [
+    'answers',
+    'history',
+    'characterId',
+    'guess',
+    'questions',
+  ]);
+
+  const gallery = store.usedCharacters.reverse();
+
   return {
+    update: {
+      store: {
+        usedCharacters: gallery,
+      },
+    },
     set: {
       players,
       state: {
@@ -230,6 +273,8 @@ export const prepareGameOverPhase = async (
         round: state.round,
         gameEndedAt: Date.now(),
         winners,
+        gallery,
+        questionsDict: state.questionsDict,
       },
     },
   };
