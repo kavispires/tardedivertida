@@ -23,5 +23,5 @@ export const mockPageSelection = (pages: CardId[], trap: string) => {
  * @returns
  */
 export const mockDoorSelection = (doors: CardId[], answerDoor: CardId) => {
-  return getRandomItem([doors[0], doors[1], answerDoor]);
+  return getRandomItem([...doors, answerDoor, answerDoor]);
 };

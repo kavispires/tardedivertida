@@ -374,3 +374,17 @@ export const makeArray = (length = 1, startAt = 0): number[] =>
 export const removeDuplicates = <T>(arr: T[]): T[] => {
   return Array.from(new Set(arr));
 };
+
+/**
+ * Formats a time value in seconds as a string in the format `mm:ss`.
+ * @param {number} seconds - The time value in seconds.
+ * @returns {string} A string representation of the time value in the format `mm:ss`.
+ */
+export const formatTime = (seconds: number): string => {
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = seconds % 60;
+
+  const formattedSeconds = remainingSeconds.toString().padStart(2, '0');
+
+  return `${minutes}:${formattedSeconds}`;
+};

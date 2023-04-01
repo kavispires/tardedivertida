@@ -1,4 +1,4 @@
-import { PORTA_DOS_DESESPERADOS_ACTIONS, TRAPS } from './constants';
+import { PORTA_DOS_DESESPERADOS_ACHIEVEMENTS, PORTA_DOS_DESESPERADOS_ACTIONS, TRAPS } from './constants';
 
 export type PortaDosDesesperadosOptions = {
   /**
@@ -39,6 +39,8 @@ export interface PortaDosDesesperadosSubmitAction extends Payload {
 }
 
 export type Trap = keyof typeof TRAPS;
+
+export type PortaDosDesesperadosAchievement = keyof typeof PORTA_DOS_DESESPERADOS_ACHIEVEMENTS;
 
 export type FirebaseStateData = FirebaseFirestore.DocumentData & PortaDosDesesperadosState;
 export type FirebaseStoreData = FirebaseFirestore.DocumentData & PortaDosDesesperadosStore;
