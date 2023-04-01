@@ -1,0 +1,104 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Function to increment the patch version in the game-info.json file
+# Accepts one argument: the path to the game-info.json file
+function increment_patch_version {
+   # Read the current version from the file
+    current_version=$(awk -F'"' '/version/ {print $4}' "$1")
+
+    if ! [[ $current_version =~ [0-9] ]]; then
+        echo "    🔘 This game is in a pre-release version."
+        return 0
+    fi
+
+    # Split the version string into its components
+    IFS='.' read -ra version_parts <<< "$current_version"
+
+    # Increment the patch position of the version
+    new_patch=$((version_parts[2] + 1))
+    new_version="${version_parts[0]}.${version_parts[1]}.$new_patch"
+
+    # Replace the version property in the file with the new version
+    sed -i.bak "s/\"version\": \"$current_version\"/\"version\": \"$new_version\"/" "$1"
+
+    # Clean up the backup file created by sed
+    rm "$1.bak"
+
+    # Print the new version
+    echo "    ☑️  Auto-incrementing patch version: $current_version to $new_version."
+}
+
+function update_package_version {
+  # Get the current version from package.json
+  current_version=$(awk -F'"' '/version/ {print $4}' package.json)
+
+  # Check if the version property has been modified
+  if ! git diff --unified=0 HEAD~1..HEAD package.json | grep -qE '^\+[[:space:]]*"version":\s*"[^"]+"' ; then
+      # Determine the version increment based on modified_game_count
+      if (($1 > 4)); then
+          # Increment the minor version
+          npm version minor --no-git-tag-version
+      else
+          # Increment the patch version
+          npm version patch --no-git-tag-version
+      fi
+
+      git add package.json
+
+      # Get the new version from package.json
+      new_version=$(awk -F'"' '/version/ {print $4}' package.json)
+
+      echo "☑️  tarde-divertida version updated: from ${current_version} to ${new_version}"
+  else
+      echo "☑️  tarde-divertida version was already updated: ${current_version}"
+  fi
+}
+
+
+check_game_versions() {
+  echo "🔎 Verifying Games versioning"
+  local modified_game_count=0
+  for game_dir in src/games/*; do
+    if [ -d "${game_dir}" ]; then
+      if [ "$(ls -A "${game_dir}")" ]; then
+        local was_modified=false
+        # Check if any files in the game directory have been modified
+        if ! git diff --cached --quiet --exit-code HEAD -- ${game_dir}; then
+          echo "  ⏩ Files in ${game_dir} have been modified since the last commit."
+          was_modified=true
+        fi
+
+        game_name=$(basename "$game_dir")
+        engine_dir="functions/src/engine/$game_name"
+
+        if ! git diff --cached --quiet --exit-code HEAD -- ${engine_dir}; then
+          echo "  ⏩ Files in ${engine_dir} have been modified since the last commit."
+          was_modified=true
+        fi
+
+        if $was_modified; then
+          modified_game_count=$((modified_game_count+1))
+          # Check if the version property in game-info.json has been modified since the last commit
+          if git diff --quiet --exit-code HEAD -- game-info.json && git diff --quiet --exit-code HEAD -- game-info.json -- ':(exclude)*.version'; then
+            increment_patch_version "${game_dir}/game-info.json"
+            git add "${game_dir}/game-info.json"
+          else
+            echo "☑️ The version was updated already."
+          fi
+        fi
+      fi
+    fi
+  done
+
+  echo "${modified_game_count} games modified"
+
+  # Only update package version if it's a new commit
+  if git reflog -1 | grep -q -- --amend; then
+    update_package_version "${modified_game_count}"
+  fi
+
+  echo "✅ Done"
+}
+
+check_game_versions
