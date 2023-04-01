@@ -20,6 +20,7 @@ Legend
 - Overlaid Phase Announcements: ✅
 - Bots: ⛔️ `(only extra cards on the table)`
 - Game Over flavor: ✅
+- Custom Clouds: ✅
 
 ## Bomba-Relogio
 
@@ -32,6 +33,7 @@ Legend
 - Overlaid Phase Announcements: 🔘
 - Bots: 🔘
 - Game Over flavor: 🔘
+- Custom Clouds: 🔘
 
 ## Caminhos Mágicos
 
@@ -44,6 +46,7 @@ Legend
 - Overlaid Phase Announcements: 🔘
 - Bots: 🔘
 - Game Over flavor: 🔘
+- Custom Clouds: 🔘
 
 ## Cinegrafistas Amadores
 
@@ -56,6 +59,7 @@ Legend
 - Overlaid Phase Announcements: 🔘
 - Bots: 🔘
 - Game Over flavor: 🔘
+- Custom Clouds: 🔘
 
 ## Comunicação Alienígena
 
@@ -68,6 +72,7 @@ Legend
 - Overlaid Phase Announcements: ✅
 - Bots: ✅
 - Game Over flavor: ✅
+- Custom Clouds: 🔘
 
 ## Contadores de Histórias
 
@@ -80,6 +85,7 @@ Legend
 - Overlaid Phase Announcements: ✅
 - Bots: ⛔️ `(only extra cards on the table)`
 - Game Over flavor: ❌
+- Custom Clouds: ✅
 
 ## Crimes Hediondos
 
@@ -92,6 +98,7 @@ Legend
 - Overlaid Phase Announcements: 🔸
 - Bots: ✅
 - Game Over flavor: ✅
+- Custom Clouds: ✅
 
 ## Cruza Palavras
 
@@ -105,6 +112,7 @@ Legend
 - Bots: ⛔️
 - Modes: Single words, Contenders
 - Game Over flavor: ❌
+- Custom Clouds: ✅
 
 ## Detetives Imaginativos
 
@@ -117,6 +125,7 @@ Legend
 - Overlaid Phase Announcements: ❌
 - Bots: ⛔️
 - Game Over flavor: ❌
+- Custom Clouds: ✅
 
 ## Dilema dos Esquiadores
 
@@ -129,6 +138,7 @@ Legend
 - Overlaid Phase Announcements: 🔘
 - Bots: 🔘
 - Game Over flavor: 🔘
+- Custom Clouds: 🔘
 
 ## Espião Entre Nós
 
@@ -141,6 +151,7 @@ Legend
 - Overlaid Phase Announcements: ❌
 - Bots: ⛔️
 - Game Over flavor: 🟡
+- Custom Clouds: ✅
 
 ## Fileira de Fatos
 
@@ -153,6 +164,7 @@ Legend
 - Overlaid Phase Announcements: 🔘
 - Bots: 🔘
 - Game Over flavor: 🔘
+- Custom Clouds: 🔘
 
 ## Galeria de Sonhos
 
@@ -165,6 +177,7 @@ Legend
 - Overlaid Phase Announcements: 🔘
 - Bots: ✅
 - Game Over flavor: ✅
+- Custom Clouds: ✅
 
 ## Instrumentos Codificados
 
@@ -177,6 +190,7 @@ Legend
 - Overlaid Phase Announcements: 🔘
 - Bots: 🔘
 - Game Over flavor: 🔘
+- Custom Clouds:
 
 ## Linhas Cruzadas
 
@@ -189,6 +203,7 @@ Legend
 - Overlaid Phase Announcements: 🔘
 - Bots: 🔘
 - Game Over flavor: ✅
+- Custom Clouds: ✅
 
 ## Megamix
 
@@ -201,6 +216,7 @@ Legend
 - Overlaid Phase Announcements: 🔘
 - Bots: 🔘
 - Game Over flavor: 🔘
+- Custom Clouds: ✅
 
 ## Mente Coletiva
 
@@ -213,6 +229,7 @@ Legend
 - Overlaid Phase Announcements: 🔘
 - Bots: 🔘
 - Game Over flavor: ❌
+- Custom Clouds: ✅
 
 ## Na Rua do Medo
 
@@ -225,6 +242,7 @@ Legend
 - Overlaid Phase Announcements: 🔘
 - Bots: 🔘
 - Game Over flavor: ✅
+- Custom Clouds: ✅
 
 ## Náufragos
 
@@ -237,6 +255,7 @@ Legend
 - Overlaid Phase Announcements: 🔘
 - Bots: 🔘
 - Game Over flavor: 🔘
+- Custom Clouds:
 
 ## Onda Telepatica
 
@@ -249,6 +268,7 @@ Legend
 - Overlaid Phase Announcements: ✅
 - Bots: 🔘
 - Game Over flavor: ✅
+- Custom Clouds: ✅
 
 ## Palheta de Cores
 
@@ -261,6 +281,7 @@ Legend
 - Overlaid Phase Announcements: 🔘
 - Bots: 🔘
 - Game Over flavor: 🔘
+- Custom Clouds:
 
 ## Polêmica da Vez
 
@@ -273,6 +294,7 @@ Legend
 - Overlaid Phase Announcements: ✅
 - Bots: 🔘
 - Game Over flavor: ✅
+- Custom Clouds: ✅
 
 ## Porta dos Desesperados
 
@@ -285,6 +307,7 @@ Legend
 - Overlaid Phase Announcements: 🔘
 - Bots: ✅
 - Game Over flavor: ❌ (idea: all doors that lead to the exit or grid of decisions)
+- Custom Clouds: ✅
 
 ## Quem Não Mata, Morre
 
@@ -297,6 +320,7 @@ Legend
 - Overlaid Phase Announcements: 🔘
 - Bots: 🔘
 - Game Over flavor: 🔘
+- Custom Clouds:
 
 ## Quem Sou eu
 
@@ -309,6 +333,7 @@ Legend
 - Overlaid Phase Announcements: ✅
 - Bots: 🔘
 - Game Over flavor: ✅
+- Custom Clouds: ✅
 
 ## Retrato Falado Monstruoso
 
@@ -321,6 +346,7 @@ Legend
 - Overlaid Phase Announcements: 🔘
 - Bots: 🔘
 - Game Over flavor: 🔘
+- Custom Clouds: ✅
 
 ## Sonhos & Pesadelos
 
@@ -333,6 +359,7 @@ Legend
 - Overlaid Phase Announcements: 🔘
 - Bots: 🔘
 - Game Over flavor: ❌
+- Custom Clouds: ✅
 
 ## Super Campeonato
 
@@ -345,6 +372,7 @@ Legend
 - Overlaid Phase Announcements: ✅
 - Bots: 🔘
 - Game Over flavor: 🔘 (idea: add all contenders used)
+- Custom Clouds: ✅
 
 ## Tá Na Cara
 
@@ -357,6 +385,7 @@ Legend
 - Overlaid Phase Announcements: ✅
 - Bots: 🔘
 - Game Over flavor: ✅
+- Custom Clouds: ✅
 
 ## Testemunha Ocular
 
@@ -369,6 +398,7 @@ Legend
 - Overlaid Phase Announcements: ❌
 - Bots: 🔘
 - Game Over flavor: ✅
+- Custom Clouds: ✅
 
 ## Trevo da Sorte
 
@@ -381,6 +411,7 @@ Legend
 - Overlaid Phase Announcements: 🔘
 - Bots: 🔘
 - Game Over flavor: 🔘
+- Custom Clouds: ✅
 
 ## Ué Só Isso
 
@@ -393,6 +424,7 @@ Legend
 - Overlaid Phase Announcements: ❌
 - Bots: 🔘
 - Game Over flavor: ❌
+- Custom Clouds: ✅
 
 ## Vamos Ao Cinema
 
@@ -405,6 +437,7 @@ Legend
 - Overlaid Phase Announcements: ✅
 - Bots: 🔘
 - Game Over flavor: ✅
+- Custom Clouds: ✅
 
 ## Vendaval de Palpites
 
@@ -417,6 +450,7 @@ Legend
 - Overlaid Phase Announcements: 🔘
 - Bots: 🔘
 - Game Over flavor: 🔘
+- Custom Clouds: 🔘
 
 ## TBD
 

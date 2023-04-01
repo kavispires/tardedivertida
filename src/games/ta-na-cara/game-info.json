@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "ta-na-cara",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "title": {
     "pt": "Tá Na Cara",
     "en": "Guess Who What?"
@@ -13,7 +13,7 @@
   },
   "basedOn": "ohW sseuG",
   "appearance": {
-    "clouds": "cloud",
+    "clouds": "face-id-cloud",
     "color": ""
   },
   "summary": {
