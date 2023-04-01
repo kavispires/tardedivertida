@@ -2,9 +2,9 @@
 
 Legend
 
+- 🔘 Unknown/Unavailable information
 - ✅ Yes
 - ❌ No
-- 🔘 Unavailable information
 - 🟡 Some
 - ⛔️ Impossible/Won't happen
 - ✴️ Needs work/fix/refactor
@@ -19,6 +19,7 @@ Legend
 - Achievements: ✅
 - Overlaid Phase Announcements: ✅
 - Bots: ⛔️ `(only extra cards on the table)`
+- Game Over flavor: ✅
 
 ## Bomba-Relogio
 
@@ -30,6 +31,7 @@ Legend
 - Achievements: 🔘
 - Overlaid Phase Announcements: 🔘
 - Bots: 🔘
+- Game Over flavor: 🔘
 
 ## Caminhos Mágicos
 
@@ -41,6 +43,7 @@ Legend
 - Achievements: 🔘
 - Overlaid Phase Announcements: 🔘
 - Bots: 🔘
+- Game Over flavor: 🔘
 
 ## Cinegrafistas Amadores
 
@@ -52,6 +55,7 @@ Legend
 - Achievements: 🔘
 - Overlaid Phase Announcements: 🔘
 - Bots: 🔘
+- Game Over flavor: 🔘
 
 ## Comunicação Alienígena
 
@@ -63,6 +67,7 @@ Legend
 - Achievements: ❌
 - Overlaid Phase Announcements: ✅
 - Bots: ✅
+- Game Over flavor: ✅
 
 ## Contadores de Histórias
 
@@ -74,6 +79,7 @@ Legend
 - Achievements: ✅
 - Overlaid Phase Announcements: ✅
 - Bots: ⛔️ `(only extra cards on the table)`
+- Game Over flavor: ❌
 
 ## Crimes Hediondos
 
@@ -85,6 +91,7 @@ Legend
 - Achievements: ❌
 - Overlaid Phase Announcements: 🔸
 - Bots: ✅
+- Game Over flavor: ✅
 
 ## Cruza Palavras
 
@@ -97,6 +104,7 @@ Legend
 - Overlaid Phase Announcements: ✅
 - Bots: ⛔️
 - Modes: Single words, Contenders
+- Game Over flavor: ❌
 
 ## Detetives Imaginativos
 
@@ -108,6 +116,7 @@ Legend
 - Achievements: ❌
 - Overlaid Phase Announcements: ❌
 - Bots: ⛔️
+- Game Over flavor: ❌
 
 ## Dilema dos Esquiadores
 
@@ -119,6 +128,7 @@ Legend
 - Achievements: 🔘
 - Overlaid Phase Announcements: 🔘
 - Bots: 🔘
+- Game Over flavor: 🔘
 
 ## Espião Entre Nós
 
@@ -130,6 +140,7 @@ Legend
 - Achievements: ❌
 - Overlaid Phase Announcements: ❌
 - Bots: ⛔️
+- Game Over flavor: 🟡
 
 ## Fileira de Fatos
 
@@ -141,6 +152,7 @@ Legend
 - Achievements: 🔘
 - Overlaid Phase Announcements: 🔘
 - Bots: 🔘
+- Game Over flavor: 🔘
 
 ## Galeria de Sonhos
 
@@ -152,6 +164,7 @@ Legend
 - Achievements: ✅
 - Overlaid Phase Announcements: 🔘
 - Bots: ✅
+- Game Over flavor: ✅
 
 ## Instrumentos Codificados
 
@@ -163,6 +176,7 @@ Legend
 - Achievements: 🔘
 - Overlaid Phase Announcements: 🔘
 - Bots: 🔘
+- Game Over flavor: 🔘
 
 ## Linhas Cruzadas
 
@@ -174,6 +188,7 @@ Legend
 - Achievements: 🔘
 - Overlaid Phase Announcements: 🔘
 - Bots: 🔘
+- Game Over flavor: ✅
 
 ## Megamix
 
@@ -185,28 +200,31 @@ Legend
 - Achievements: 🔘
 - Overlaid Phase Announcements: 🔘
 - Bots: 🔘
+- Game Over flavor: 🔘
 
 ## Mente Coletiva
 
 - Collection: `mente-coletiva`
 - Code: `?`
-- Availability: ❌
+- Availability: ✅
 - Rating: ⭐⭐⭐⭐⭐
 - Rules: 🟡 (images are in portuguese)
 - Achievements: ✅
 - Overlaid Phase Announcements: 🔘
 - Bots: 🔘
+- Game Over flavor: ❌
 
 ## Na Rua do Medo
 
 - Collection: `na-rua-do-medo`
 - Code: `N`
-- Availability: ❌
+- Availability: ✅
 - Rating: ⭐
 - Rules: ✅
 - Achievements: 🔘
 - Overlaid Phase Announcements: 🔘
 - Bots: 🔘
+- Game Over flavor: ✅
 
 ## Náufragos
 
@@ -218,6 +236,7 @@ Legend
 - Achievements: 🔘
 - Overlaid Phase Announcements: 🔘
 - Bots: 🔘
+- Game Over flavor: 🔘
 
 ## Onda Telepatica
 
@@ -229,6 +248,7 @@ Legend
 - Achievements: ✅
 - Overlaid Phase Announcements: ✅
 - Bots: 🔘
+- Game Over flavor: ✅
 
 ## Palheta de Cores
 
@@ -240,6 +260,7 @@ Legend
 - Achievements: 🔘
 - Overlaid Phase Announcements: 🔘
 - Bots: 🔘
+- Game Over flavor: 🔘
 
 ## Polêmica da Vez
 
@@ -251,17 +272,19 @@ Legend
 - Achievements: 🔘
 - Overlaid Phase Announcements: ✅
 - Bots: 🔘
+- Game Over flavor: ✅
 
 ## Porta dos Desesperados
 
 - Collection: `porta-dos-desesperados`
-- Code: `?`
+- Code: `I`
 - Availability: ✅
 - Rating: ⭐⭐⭐⭐
 - Rules: 🔘
 - Achievements: 🔘
 - Overlaid Phase Announcements: 🔘
 - Bots: ✅
+- Game Over flavor: ❌ (idea: all doors that lead to the exit or grid of decisions)
 
 ## Quem Não Mata, Morre
 
@@ -273,6 +296,7 @@ Legend
 - Achievements: 🔘
 - Overlaid Phase Announcements: 🔘
 - Bots: 🔘
+- Game Over flavor: 🔘
 
 ## Quem Sou eu
 
@@ -284,6 +308,7 @@ Legend
 - Achievements: ✅
 - Overlaid Phase Announcements: ✅
 - Bots: 🔘
+- Game Over flavor: ✅
 
 ## Retrato Falado Monstruoso
 
@@ -295,6 +320,7 @@ Legend
 - Achievements: 🔘
 - Overlaid Phase Announcements: 🔘
 - Bots: 🔘
+- Game Over flavor: 🔘
 
 ## Sonhos & Pesadelos
 
@@ -306,6 +332,7 @@ Legend
 - Achievements: 🔘
 - Overlaid Phase Announcements: 🔘
 - Bots: 🔘
+- Game Over flavor: ❌
 
 ## Super Campeonato
 
@@ -315,30 +342,33 @@ Legend
 - Rating: ⭐⭐⭐
 - Rules: 🔘
 - Achievements: 🔘
-- Overlaid Phase Announcements: 🔘
+- Overlaid Phase Announcements: ✅
 - Bots: 🔘
+- Game Over flavor: 🔘 (idea: add all contenders used)
 
 ## Tá Na Cara
 
 - Collection: `ta-na-cara`
-- Code: `?`
+- Code: `T`
 - Availability: ✅
 - Rating: ⭐⭐⭐
 - Rules: 🔘
 - Achievements: 🔘
-- Overlaid Phase Announcements: 🔘
+- Overlaid Phase Announcements: ✅
 - Bots: 🔘
+- Game Over flavor: ✅
 
 ## Testemunha Ocular
 
 - Collection: `testemunha-ocular`
-- Code: `?`
+- Code: `T`
 - Availability: ✅
 - Rating: ⭐⭐⭐⭐
 - Rules: 🟡 (text only)
 - Achievements: 🔘
-- Overlaid Phase Announcements: 🔘
+- Overlaid Phase Announcements: ❌
 - Bots: 🔘
+- Game Over flavor: ✅
 
 ## Trevo da Sorte
 
@@ -350,6 +380,7 @@ Legend
 - Achievements: 🔘
 - Overlaid Phase Announcements: 🔘
 - Bots: 🔘
+- Game Over flavor: 🔘
 
 ## Ué Só Isso
 
@@ -358,9 +389,10 @@ Legend
 - Availability: ✅
 - Rating: ⭐⭐⭐
 - Rules: 🟡 (old images)
-- Achievements: 🔘
-- Overlaid Phase Announcements: 🔘
+- Achievements: ❌
+- Overlaid Phase Announcements: ❌
 - Bots: 🔘
+- Game Over flavor: ❌
 
 ## Vamos Ao Cinema
 
@@ -369,9 +401,10 @@ Legend
 - Availability: ✅
 - Rating: ⭐⭐⭐
 - Rules: 🔘
-- Achievements: 🔘
-- Overlaid Phase Announcements: 🔘
+- Achievements: ❌
+- Overlaid Phase Announcements: ✅
 - Bots: 🔘
+- Game Over flavor: ✅
 
 ## Vendaval de Palpites
 
@@ -383,6 +416,7 @@ Legend
 - Achievements: 🔘
 - Overlaid Phase Announcements: 🔘
 - Bots: 🔘
+- Game Over flavor: 🔘
 
 ## TBD
 
@@ -394,3 +428,4 @@ Legend
 - Achievements: 🔘
 - Overlaid Phase Announcements: 🔘
 - Bots: 🔘
+- Game Over flavor: 🔘
