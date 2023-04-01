@@ -1,5 +1,6 @@
 import * as functions from 'firebase-functions';
-import * as admin from 'firebase-admin';
+// eslint-disable-next-line
+import { getFirestore, FieldValue } from 'firebase-admin/firestore';
 // Utils
 import utils from '../utils';
 
@@ -83,7 +84,7 @@ export function verifyAuth(context: FirebaseContext, action = 'perform function'
  * @returns firebase data reference
  */
 export function getDataRef(): FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData> {
-  return admin.firestore().collection('data');
+  return getFirestore().collection('data');
 }
 
 /**
@@ -91,7 +92,7 @@ export function getDataRef(): FirebaseFirestore.CollectionReference<FirebaseFire
  * @returns firebase global reference
  */
 export function getGlobalRef(): FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData> {
-  return admin.firestore().collection('global');
+  return getFirestore().collection('global');
 }
 
 /**
@@ -99,7 +100,7 @@ export function getGlobalRef(): FirebaseFirestore.CollectionReference<FirebaseFi
  * @returns firebase meta reference
  */
 export function getMetaRef(): FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData> {
-  return admin.firestore().collection('meta');
+  return getFirestore().collection('meta');
 }
 
 /**
@@ -107,7 +108,7 @@ export function getMetaRef(): FirebaseFirestore.CollectionReference<FirebaseFire
  * @returns firebase public reference
  */
 export function getPublicRef(): FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData> {
-  return admin.firestore().collection('public');
+  return getFirestore().collection('public');
 }
 
 /**
@@ -120,14 +121,14 @@ export function getSessionRef(
   gameName: string,
   gameId: string
 ): FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData> {
-  return admin.firestore().collection('games').doc(gameName).collection(gameId);
+  return getFirestore().collection('games').doc(gameName).collection(gameId);
 }
 
 /**
  * Aids deleting a value of a document on an update
  */
 export function deleteValue() {
-  return admin.firestore.FieldValue.delete();
+  return FieldValue.delete();
 }
 
 /**
@@ -135,7 +136,7 @@ export function deleteValue() {
  * @param value number
  */
 export function incrementValue(value = 1) {
-  return admin.firestore.FieldValue.increment(value);
+  return FieldValue.increment(value);
 }
 
 /**

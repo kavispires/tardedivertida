@@ -1,5 +1,6 @@
 import * as functions from 'firebase-functions';
-import * as admin from 'firebase-admin';
+// eslint-disable-next-line
+import { initializeApp } from 'firebase-admin/app';
 import * as commonEngine from './engine/common';
 import * as adminEngine from './engine/admin';
 import * as arteRuimEngine from './engine/arte-ruim';
@@ -29,7 +30,7 @@ import * as ueSoIssoEngine from './engine/ue-so-isso';
 import * as vamosAoCinemaEngine from './engine/vamos-ao-cinema';
 import * as vendavalDePalpiteEngine from './engine/vendaval-de-palpite';
 
-admin.initializeApp();
+initializeApp();
 
 // Start writing Firebase Functions
 // https://firebase.google.com/docs/functions/typescript
