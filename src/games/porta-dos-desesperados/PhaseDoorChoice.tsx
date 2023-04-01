@@ -1,12 +1,9 @@
 // State & Hooks
-import { useLoading } from 'hooks/useLoading';
 import { useUser } from 'hooks/useUser';
 import { useStep } from 'hooks/useStep';
-import { useDelayedMock, useMock } from 'hooks/useMock';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 import { shouldAnnounceTrap } from './utils/helpers';
-import { mockDoorSelection } from './utils/mock';
 // Icons
 import { MagicDoorIcon } from 'icons/MagicDoorIcon';
 // Components
@@ -25,24 +22,9 @@ function PhaseDoorChoice({ players, state, info, meta }: PhaseProps) {
   const user = useUser(players, state);
   const { step, goToNextStep, setStep } = useStep();
   const [possessed, isPossessed] = useWhichPlayerIsThe('possessedId', state, players);
-  const { isLoading } = useLoading();
 
   const onSubmitDoor = useOnSubmitDoorAPIRequest(setStep);
   const onConfirmDoor = useOnMakeReady(setStep);
-
-  // DEV Only
-  useMock(() => {
-    // if (!user.ready && possessed.id && !isPossessed && !isLoading) {
-    // Submit door
-    if (!user.doorId) {
-      onSubmitDoor({ doorId: mockDoorSelection(state.doors, state.answerDoorId) });
-    }
-    // }
-  }, [user.ready, possessed.id, isPossessed, isLoading, user.doorId]);
-
-  useDelayedMock(() => {
-    onConfirmDoor();
-  }, [user.doorId]);
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.PORTA_DOS_DESESPERADOS.DOOR_CHOICE}>
@@ -99,6 +81,7 @@ function PhaseDoorChoice({ players, state, info, meta }: PhaseProps) {
             onConfirmDoor={onConfirmDoor}
             possessed={possessed}
             magic={state.magic}
+            answerDoorId={state.answerDoorId}
             botEnabled={Boolean(meta?.options?.withBots)}
           />
         </ViewOr>

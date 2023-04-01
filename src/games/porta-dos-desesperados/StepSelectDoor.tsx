@@ -21,6 +21,8 @@ import { Corridor } from './components/Corridor';
 import { CrystalHighlight, DoorHighlight, TimeHighlight } from './components/Highlights';
 import { BotPopupRule, TrapPopupRule } from './components/RulesBlobs';
 import { SandTimer } from './components/SandTimer';
+import { useDelayedMock, useMock } from 'hooks/useMock';
+import { mockDoorSelection } from './utils/mock';
 
 type StepSelectPagesProps = {
   doors: CardId[];
@@ -34,6 +36,7 @@ type StepSelectPagesProps = {
   possessed: GamePlayer;
   magic: number;
   botEnabled?: boolean;
+  answerDoorId: ImageCardId;
 };
 
 export function StepSelectDoor({
@@ -48,6 +51,7 @@ export function StepSelectDoor({
   possessed,
   magic,
   botEnabled,
+  answerDoorId,
 }: StepSelectPagesProps) {
   const { isLoading } = useLoading();
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
@@ -57,6 +61,18 @@ export function StepSelectDoor({
   useSepiaPreview(trap === TRAPS.SEPIA);
 
   const bookCardClass = trap === TRAPS.SEPIA ? 'i-sepia-card' : '';
+
+  // DEV Only
+  useMock(() => {
+    // Submit door
+    if (!user.doorId) {
+      onSubmitDoor({ doorId: mockDoorSelection(doors, answerDoorId) });
+    }
+  }, [user.ready, possessed.id, isLoading, user.doorId]);
+
+  useDelayedMock(() => {
+    onConfirmDoor();
+  }, [user.doorId]);
 
   return (
     <Step fullWidth>
