@@ -94,7 +94,7 @@ check_game_versions() {
   echo "${modified_game_count} games modified"
 
   # Only update package version if it's a new commit
-  if git reflog -1 | grep -q -- --amend; then
+  if ! git reflog -1 | grep -q -- amend; then
     update_package_version "${modified_game_count}"
   fi
 
