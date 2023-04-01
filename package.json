@@ -1,7 +1,7 @@
 {
   "name": "tardedivertida",
   "homepage": "http://www.kavispires.com/tardedivertida/",
-  "version": "37.1.0",
+  "version": "37.1.1",
   "private": true,
   "dependencies": {
     "@ant-design/compatible": "^5.1.1",
@@ -40,7 +40,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
@@ -89,7 +90,7 @@
     "@testing-library/react": "^12.1.5",
     "@testing-library/user-event": "^13.5.0",
     "gh-pages": "^5.0.0",
-    "husky": "^8.0.3",
+    "husky": "^8.0.0",
     "lint-staged": "^13.2.0",
     "prettier": "^2.8.7"
   }
