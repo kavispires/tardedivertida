@@ -62,14 +62,27 @@ check_game_versions() {
   for game_dir in src/games/*; do
     if [ -d "${game_dir}" ]; then
       if [ "$(ls -A "${game_dir}")" ]; then
+        local was_modified=false
         # Check if any files in the game directory have been modified
         if ! git diff --cached --quiet --exit-code HEAD -- ${game_dir}; then
           echo "  ⏩ Files in ${game_dir} have been modified since the last commit."
-          modified_game_count=$((modified_game_count+1))
+          was_modified=true
+        fi
 
+        game_name=$(basename "$game_dir")
+        engine_dir="functions/src/engine/$game_name"
+
+        if ! git diff --cached --quiet --exit-code HEAD -- ${engine_dir}; then
+          echo "  ⏩ Files in ${engine_dir} have been modified since the last commit."
+          was_modified=true
+        fi
+
+        if $was_modified; then
+          modified_game_count=$((modified_game_count+1))
           # Check if the version property in game-info.json has been modified since the last commit
           if git diff --quiet --exit-code HEAD -- game-info.json && git diff --quiet --exit-code HEAD -- game-info.json -- ':(exclude)*.version'; then
             increment_patch_version "${game_dir}/game-info.json"
+            git add "${game_dir}/game-info.json"
           else
             echo "☑️ The version was updated already."
           fi
