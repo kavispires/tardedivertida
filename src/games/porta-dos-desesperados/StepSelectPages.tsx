@@ -6,7 +6,7 @@ import { CloseCircleFilled } from '@ant-design/icons';
 // Hooks
 import { useBooleanDictionary } from 'hooks/useBooleanDictionary';
 import { useLoading } from 'hooks/useLoading';
-import { useMock } from 'hooks/useMock';
+import { useDelayedMock } from 'hooks/useMock';
 import { useSepiaPreview } from './utils/useSepiaPreview';
 // Utils
 import { PHASES } from 'utils/phases';
@@ -55,7 +55,7 @@ export function StepSelectPages({
   useSepiaPreview(trap === TRAPS.SEPIA);
 
   // DEV Only
-  useMock(() => {
+  useDelayedMock(() => {
     onSubmitPages({ pageIds: mockPageSelection(pages, trap) });
   });
 

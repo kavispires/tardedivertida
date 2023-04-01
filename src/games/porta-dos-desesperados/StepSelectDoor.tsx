@@ -87,8 +87,11 @@ export function StepSelectDoor({
               O livro contém dicas dadas por <AvatarName player={possessed} /> que ainda está possuído pelo
               livro e não pode falar.
               <br />
-              Vocês tem <TimeHighlight>{ROUND_DURATION}</TimeHighlight> minutos para decidir qual(quais)
-              porta(s) entrar.
+              Vocês tem{' '}
+              <TimeHighlight>
+                {trap === TRAPS.HALF_TIME ? ROUND_DURATION / 2 : ROUND_DURATION}
+              </TimeHighlight>{' '}
+              minutos para decidir qual(quais) porta(s) entrar.
               <br />
               Cada porta visitada custará{' '}
               <CrystalHighlight>{trap === TRAPS.DOUBLE_MAGIC ? 2 : 1}</CrystalHighlight> cristal, portanto,
@@ -103,8 +106,11 @@ export function StepSelectDoor({
               The book contains hints given by <AvatarName player={possessed} /> who is still possessed by the
               book and can't speak.
               <br />
-              You have <TimeHighlight>{ROUND_DURATION}</TimeHighlight> minutes to decide what door(s) to
-              visit.
+              You have{' '}
+              <TimeHighlight>
+                {trap === TRAPS.HALF_TIME ? ROUND_DURATION / 2 : ROUND_DURATION}
+              </TimeHighlight>{' '}
+              minutes to decide what door(s) to visit.
               <br />
               Each door a player visits costs{' '}
               <CrystalHighlight>{trap === TRAPS.DOUBLE_MAGIC ? 2 : 1}</CrystalHighlight> crystal, so choose

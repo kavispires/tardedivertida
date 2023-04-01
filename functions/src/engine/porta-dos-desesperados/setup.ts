@@ -14,7 +14,7 @@ import {
 import type { FirebaseStateData, FirebaseStoreData, ResourceData, Trap } from './types';
 // Utils
 import utils from '../../utils';
-import { botDoorSelection, createTrapOrder, getBookPages, getDoorSet } from './helpers';
+import { botDoorSelection, createTrapOrder, getAchievements, getBookPages, getDoorSet } from './helpers';
 
 /**
  * Setup
@@ -36,6 +36,21 @@ export const prepareSetupPhase = async (
   if (store.options?.withBots) {
     utils.players.addBots(players, 2);
   }
+
+  // Setup achievements
+  const achievements = utils.achievements.setup(players, store, {
+    possessions: 0,
+    possessionWins: 0,
+    possessionLosses: 0,
+    possessionDuration: 0,
+    pages: 0,
+    correctDoors: 0,
+    wrongDoors: 0,
+    soloCorrectDoors: 0,
+    soloWrongDoors: 0,
+    doorDuration: 0,
+    magic: 0,
+  });
 
   // Get image cards
   const imageCardsParts = utils.game.sliceInParts(data.cards, 3);
@@ -61,6 +76,7 @@ export const prepareSetupPhase = async (
         pagesDeck,
         pagesDeckIndex: 0,
         traps,
+        achievements,
       },
       state: {
         phase: PORTA_DOS_DESESPERADOS_PHASES.SETUP,
@@ -101,12 +117,16 @@ export const prepareBookPossessionPhase = async (
 
   const pages = getBookPages(store.pagesDeck, store.pagesDeckIndex, trap as Trap);
 
+  // Achievement: POSSESSED
+  utils.achievements.increase(store, possessedId, 'possessions', 1);
+
   // Save
   return {
     update: {
       store: {
         doorsDeckIndex: doors.newDoorIndex,
         pagesDeckIndex: pages.newPageIndex,
+        achievements: store.achievements,
       },
       state: {
         phase: PORTA_DOS_DESESPERADOS_PHASES.BOOK_POSSESSION,
@@ -134,6 +154,17 @@ export const prepareDoorChoicePhase = async (
   utils.players.unReadyPlayers(players, state.possessedId);
 
   const selectedPagesIds = state.selectedPagesIds;
+
+  // Achievement: PAGES
+  utils.achievements.increase(store, state.possessedId, 'pages', state.selectedPagesIds.length);
+  // Achievement: READER
+  utils.achievements.increase(
+    store,
+    state.possessedId,
+    'possessionDuration',
+    (players[state.possessedId].updatedAt ?? 0) - state.updatedAt
+  );
+
   if (state.trap == TRAPS.RANDOM_INTERJECTION) {
     const otherPages = state.pages.filter((pageId: string) => !selectedPagesIds.includes(pageId));
     selectedPagesIds.push(utils.game.getRandomItem(otherPages));
@@ -147,6 +178,9 @@ export const prepareDoorChoicePhase = async (
   // Save
   return {
     update: {
+      store: {
+        achievements: store.achievements,
+      },
       state: {
         phase: PORTA_DOS_DESESPERADOS_PHASES.DOOR_CHOICE,
         selectedPagesIds: utils.game.shuffle(selectedPagesIds),
@@ -161,10 +195,22 @@ export const prepareResolutionPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
+  const doorPlayerDict: Record<CardId, PlayerId[]> = {};
   // Gather all players door choices
   const visitedDoors = utils.players.getListOfPlayers(players, true).reduce((acc: string[], player) => {
-    if (player.doorId && !acc.includes(player.doorId)) {
-      acc.push(player.doorId);
+    if (player.doorId) {
+      if (player.doorId && !acc.includes(player.doorId)) {
+        acc.push(player.doorId);
+      }
+      if (doorPlayerDict[player.doorId] === undefined) {
+        doorPlayerDict[player.doorId] = [];
+      }
+      doorPlayerDict[player.doorId].push(player.id);
+
+      // Achievement: DECISION
+      if (player.updatedAt) {
+        utils.achievements.increase(store, player.id, 'doorDuration', player.updatedAt - state.updatedAt);
+      }
     }
     return acc;
   }, []);
@@ -192,9 +238,46 @@ export const prepareResolutionPhase = async (
     winCondition = WIN_CONDITION.WIN;
   }
 
+  if (outcome === OUTCOME.SUCCESS) {
+    // Achievement: GUIDE
+    utils.achievements.increase(store, state.possessedId, 'possessionWins', 1);
+    // Achievement: DOORS
+    doorPlayerDict[state.answerDoorId].forEach((playerId) => {
+      utils.achievements.increase(store, playerId, 'correctDoors', 1);
+      // Achievement: SOLO_DOORS
+      if (doorPlayerDict[state.answerDoorId].length === 1) {
+        utils.achievements.increase(store, playerId, 'soloCorrectDoors', 1);
+      }
+    });
+  } else {
+    // Achievement: GUIDE
+    utils.achievements.increase(store, state.possessedId, 'possessionLosses', 1);
+  }
+
+  // Achievement: DOORS
+  Object.keys(doorPlayerDict)
+    .filter((doorId) => doorId !== state.answerDoorId)
+    .forEach((doorId) => {
+      const wrongPlayers = doorPlayerDict[doorId];
+      const quantityOfPlayers = wrongPlayers.length;
+      wrongPlayers.forEach((playerId) => {
+        utils.achievements.increase(store, playerId, 'wrongDoors', 1);
+        // Achievement: SOLO_DOORS
+        if (quantityOfPlayers === 1) {
+          utils.achievements.increase(store, playerId, 'soloWrongDoors', 1);
+        }
+        // Achievement: MAGIC
+        const wastedMagicPerDoor = state.trap === TRAPS.DOUBLE_MAGIC ? 2 : 1;
+        utils.achievements.increase(store, playerId, 'magic', wastedMagicPerDoor / quantityOfPlayers);
+      });
+    });
+
   // Save
   return {
     update: {
+      store: {
+        achievements: store.achievements,
+      },
       state: {
         phase: PORTA_DOS_DESESPERADOS_PHASES.RESOLUTION,
         outcome,
@@ -220,6 +303,8 @@ export const prepareGameOverPhase = async (
 
   await utils.firebase.markGameAsComplete(gameId);
 
+  const achievements = getAchievements(store);
+
   return {
     set: {
       players,
@@ -231,6 +316,7 @@ export const prepareGameOverPhase = async (
         winCondition,
         currentCorridor,
         magic: state.magic,
+        achievements,
       },
     },
   };

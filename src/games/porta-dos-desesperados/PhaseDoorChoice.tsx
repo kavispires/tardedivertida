@@ -2,7 +2,7 @@
 import { useLoading } from 'hooks/useLoading';
 import { useUser } from 'hooks/useUser';
 import { useStep } from 'hooks/useStep';
-import { useMock } from 'hooks/useMock';
+import { useDelayedMock, useMock } from 'hooks/useMock';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 import { shouldAnnounceTrap } from './utils/helpers';
@@ -32,17 +32,17 @@ function PhaseDoorChoice({ players, state, info, meta }: PhaseProps) {
 
   // DEV Only
   useMock(() => {
-    if (!user.ready && possessed.id && !isPossessed && !isLoading) {
-      // Submit door
-      if (!user.doorId) {
-        onSubmitDoor({ doorId: mockDoorSelection(state.doors, state.answerDoorId) });
-      }
-      // Then make player ready
-      if (user.doorId) {
-        onConfirmDoor();
-      }
+    // if (!user.ready && possessed.id && !isPossessed && !isLoading) {
+    // Submit door
+    if (!user.doorId) {
+      onSubmitDoor({ doorId: mockDoorSelection(state.doors, state.answerDoorId) });
     }
+    // }
   }, [user.ready, possessed.id, isPossessed, isLoading, user.doorId]);
+
+  useDelayedMock(() => {
+    onConfirmDoor();
+  }, [user.doorId]);
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.PORTA_DOS_DESESPERADOS.DOOR_CHOICE}>
