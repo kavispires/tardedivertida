@@ -80,6 +80,10 @@ $door-base-color: #3d1931;
   transform: translate(100%, -50%);
   @include contained;
   @include flex-center;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  place-items: center;
+  padding-right: get-unit(4);
 
   &--negative {
     border: get-color('red', 7, 0.8) 1px solid;

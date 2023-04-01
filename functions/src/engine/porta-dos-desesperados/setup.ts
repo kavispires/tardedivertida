@@ -112,7 +112,9 @@ export const prepareBookPossessionPhase = async (
     : {
         doors: state.doors,
         newDoorIndex: store.doorsDeckIndex,
-        answerDoorId: utils.game.getRandomItem(state.doors),
+        answerDoorId: utils.game.getRandomItem(
+          state.doors.filter((doorId: ImageCardId) => doorId !== state.answerDoorId)
+        ),
       };
 
   const pages = getBookPages(store.pagesDeck, store.pagesDeckIndex, trap as Trap);
@@ -135,7 +137,7 @@ export const prepareBookPossessionPhase = async (
         currentCorridor,
         trap,
         pages: pages.pages,
-        doors: doors.doors,
+        doors: doors.doors.filter((doorId: ImageCardId) => doorId !== state.answerDoorId),
         answerDoorId: doors.answerDoorId,
         outcome: utils.firebase.deleteValue(),
         currentPageIds: utils.firebase.deleteValue(),
