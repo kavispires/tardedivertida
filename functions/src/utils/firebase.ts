@@ -125,10 +125,17 @@ export function getSessionRef(
 
 /**
  * Aids deleting a value of a document on an update
- * @returns
  */
 export function deleteValue() {
   return admin.firestore.FieldValue.delete();
+}
+
+/**
+ * Aids increasing a numerical value of a document on an update
+ * @param value number
+ */
+export function incrementValue(value = 1) {
+  return admin.firestore.FieldValue.increment(value);
 }
 
 /**

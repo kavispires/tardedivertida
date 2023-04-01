@@ -130,7 +130,7 @@ export function LoseGameText({ players }: { players: GamePlayers }) {
           <>
             A comida acabou após alguns dias e fomos obrigados a dar uma chance ao canibalismo.{' '}
             <AvatarName player={sortedPlayers[1]} /> foi o primeiro a partir e servir de alimento aos outros.
-            Diz a lenda que a batata da perna estava muito saborosa. No final das contas todo mundo morreu...
+            Diz a lenda que a batata da perna estava muito saborosa. No final das contas, todo mundo morreu...
           </>
         }
         en={
