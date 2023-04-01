@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { VIEWER_ID } from 'utils/constants';
-import { isDevEnv } from 'utils/helpers';
+import { getRandomItem, isDevEnv } from 'utils/helpers';
 import { useCountdown } from './useCountdown';
 import { useGlobalState } from './useGlobalState';
 
@@ -27,16 +27,17 @@ export function useMock(whatToDo: GenericFunction, conditions: any[] = [], requi
  * Runs mock function tht performs whatever after 3 seconds
  * @param whatToDo
  * @param requirements
- * @param delay (default 4)
+ * @param delay (default a random value between 3-6 seconds)
  * @returns
  */
-export function useDelayedMock(whatToDo: GenericFunction, requirements: any[] = [], delay = 4) {
+export function useDelayedMock(whatToDo: GenericFunction, requirements: any[] = [], delay?: number) {
   const [isAdmin] = useGlobalState('isAdmin');
   const [userId] = useGlobalState('userId');
   const [runOnce, setRunOnce] = useState(false);
+  const duration = delay ?? getRandomItem([3, 4, 4, 5, 6]);
 
   return useCountdown({
-    duration: delay,
+    duration,
     onExpire: () => {
       if (!runOnce && isDevEnv && !isAdmin && userId !== VIEWER_ID && requirements.every(Boolean)) {
         whatToDo();
