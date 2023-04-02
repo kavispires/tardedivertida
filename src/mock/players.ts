@@ -55,7 +55,7 @@ export function mockPlayerName(used?: string[]): string {
 export function mockPlayers(
   players: GamePlayers,
   quantity: number = 10,
-  properties?: PlainObject
+  properties: PlainObject | GenericFunction = {}
 ): GamePlayers {
   if (Object.keys(cacheMockedPlayers).length === quantity) {
     return {
@@ -84,7 +84,7 @@ export function mockPlayers(
         avatarId: getRandomUniqueItemFromList(AVAILABLE_AVATAR_IDS, Object.keys(usedAvatars), cacheAvatars),
         updatedAt: Date.now(),
         ready: true,
-        ...properties,
+        ...(typeof properties === 'function' ? properties() : properties),
       };
     });
 
