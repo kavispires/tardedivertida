@@ -1,5 +1,5 @@
 import utils from '../../utils';
-import { MEGAMIX_PHASES, WINNING_CONDITION } from './constants';
+import { MEGAMIX_PHASES, TOTAL_CLUBBERS, WINNING_CONDITION } from './constants';
 import { distributeSeeds, getMostMatching, getMostVotes, getRanking, handleSeedingData } from './helpers';
 import { FirebaseStateData, FirebaseStoreData, ResourceData, Task } from './types';
 
@@ -44,7 +44,7 @@ export const prepareSeedingPhase = async (
 
   // Give each player 5 outfits
   const clubbers = utils.game.shuffle(
-    Array(60)
+    Array(TOTAL_CLUBBERS)
       .fill(0)
       .map((e, i) => String(e + i))
   );

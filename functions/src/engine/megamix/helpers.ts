@@ -434,7 +434,10 @@ export const distributeSeeds = (tasks: Task[], players: Players, clubberIds: str
     player.seeds.push(seed);
   });
 
-  const clubbers = utils.game.sliceIntoChunks(clubberIds, 5);
+  const clubbers = utils.game.sliceIntoChunks(
+    clubberIds,
+    Math.min(Math.floor(clubberIds.length / playersList.length), 5)
+  );
 
   playersList.forEach((player, index) => {
     groupSeeds.forEach((seed) => {

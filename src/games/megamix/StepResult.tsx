@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import { memoize } from 'lodash';
 // Ant Design Resources
 import { Button, Space } from 'antd';
 import { TrophyOutlined } from '@ant-design/icons';
@@ -48,7 +49,7 @@ export function StepResult({
   scoringType,
 }: StepResultProps) {
   useTemporarilyHidePlayersBar();
-  const [width, height] = useDimensions('results');
+  const [width] = useDimensions('results');
 
   const time = useCountdown({ duration: 20 });
 
@@ -119,7 +120,7 @@ export function StepResult({
           <div
             className="results__player"
             key={`${player.id}-${player.clubberId}`}
-            style={getPosition(index, player.team[currentIndex] === 'W' ? 0 : 1, width, height)}
+            style={getPosition(index, player.team[currentIndex] === 'W' ? 0 : 1, width)}
           >
             <ClubberAvatar
               id={player.avatarId}
@@ -149,28 +150,26 @@ export function StepResult({
   );
 }
 
-const getPosition = (index: number, side: number, width: number, height: number) => {
-  const area = width / 3;
-  const buffer = side * area * 2;
+const getPosition = memoize(
+  (index: number, side: number, width: number) => {
+    const areaSize = width / 3;
+    const buffer = side * areaSize * 2;
 
-  const top =
-    {
-      0: 0,
-      1: 0,
-      2: 0,
-      3: 50,
-      4: 50,
-      5: 100,
-      6: 100,
-      7: 100,
-      8: 150,
-      9: 150,
-    }[index] || 10;
+    const getTopValue = (index: number, startAt: number, increment: number): number => {
+      const ratio = [0, 0, 0, 1, 1, 1, 1];
+      const multiplier = Math.floor(index / ratio.length);
+      const remainderPosition = index % ratio.length;
 
-  const left = [0.2, 0.5, 0.8, 0.33, 0.66][index % 5];
+      return startAt + multiplier * increment + (ratio[remainderPosition] + multiplier) * increment;
+    };
+    const top = getTopValue(index, 0, 45);
 
-  return {
-    top: `${75 + top}px`,
-    left: `${area * left + buffer}px`,
-  };
-};
+    const left = [0.24, 0.48, 0.72, 0.15, 0.36, 0.6, 0.84][index % 7];
+
+    return {
+      top: `${50 + top}px`,
+      left: `${areaSize * left + buffer}px`,
+    };
+  },
+  (index, side, width) => `${index}-${side}-${width}`
+);

@@ -29,27 +29,34 @@ export function ClubLine({ players, currentRound }: MinigameTitleProps) {
       <div className="club-line__clubbers">
         <div className="club-line__area">
           {winners.map((player) => (
-            <Tooltip title={player.name} key={`${player.id}-${player.clubberId}`}>
-              <ClubberAvatar
-                id={player.avatarId}
-                clubberId={player.clubberId}
-                className="club-line__player"
-                animate
-              />
-            </Tooltip>
+            <div className="club-line__player" key={`${player.id}-${player.clubberId}`}>
+              <Tooltip title={player.name}>
+                <ClubberAvatar
+                  id={player.avatarId}
+                  clubberId={player.clubberId}
+                  className="club-line__clubber"
+                  animate
+                />
+              </Tooltip>
+            </div>
           ))}
         </div>
         <VIPLineIcon className="club-line__vip-icon" />
         <div className="club-line__area">
           {losers.map((player) => (
-            <Tooltip title={player.name} key={`${player.id}-${player.clubberId}`}>
-              <ClubberAvatar
-                key={`${player.id}-${player.clubberId}`}
-                id={player.avatarId}
-                clubberId={player.clubberId}
-                className="club-line__player club-line__player--trash"
-              />
-            </Tooltip>
+            <div
+              className="club-line__player club-line__player--trash"
+              key={`${player.id}-${player.clubberId}`}
+            >
+              <Tooltip title={player.name}>
+                <ClubberAvatar
+                  key={`${player.id}-${player.clubberId}`}
+                  id={player.avatarId}
+                  clubberId={player.clubberId}
+                  className="club-line__clubber"
+                />
+              </Tooltip>
+            </div>
           ))}
         </div>
       </div>

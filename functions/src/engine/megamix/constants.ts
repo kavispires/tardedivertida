@@ -26,10 +26,12 @@ export const MEGAMIX_ACHIEVEMENTS = {
 
 export const PLAYER_COUNTS = {
   MIN: 3,
-  MAX: 10,
+  MAX: 16,
 };
 
 export const TOTAL_ROUNDS = 15;
+
+export const TOTAL_CLUBBERS = 60;
 
 export const WINNING_CONDITION = {
   MOST_VOTED: 'MOST_VOTED',
