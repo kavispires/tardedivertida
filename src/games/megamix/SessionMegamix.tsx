@@ -47,7 +47,7 @@ function SessionMegamix({ gameId }: SessionProps) {
         gameId={gameId}
         gameCollection={GAME_COLLECTION.MEGAMIX}
         getActiveComponent={getActiveComponent}
-        backgroundClassName="z-background"
+        backgroundClassName="background"
       />
     </ConfigProvider>
   );

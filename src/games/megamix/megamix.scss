@@ -1,6 +1,6 @@
 @use 'styles/sass' as *;
 
-.z-background.z-background {
+.background {
   background: linear-gradient(
     -45deg,
     #3e1e68,
@@ -33,6 +33,26 @@
     #f2e863,
     #f45b69,
     #9261d1
+  );
+  background-size: 1000% 1000%;
+}
+
+.background-sad.background-sad {
+  background: linear-gradient(
+    -45deg,
+    #595265,
+    #626d6b,
+    #42515b,
+    #696759,
+    #4a3b3c,
+    #403a4a,
+    #595265,
+    #626d6b,
+    #42515b,
+    #696759,
+    #4a3b3c,
+    #403a4a,
+    #b8a5d3
   );
   background-size: 1000% 1000%;
 }
