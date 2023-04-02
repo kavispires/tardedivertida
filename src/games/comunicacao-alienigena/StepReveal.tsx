@@ -21,6 +21,7 @@ import { PopoverRule } from 'components/rules';
 import { Status } from './components/Status';
 import { AlienViewBoard } from './components/AlienViewBoard';
 import { BotPopupRule } from './components/BotPopupRules';
+import { ViewIf } from 'components/views';
 
 type StepRevealProps = {
   players: GamePlayers;
@@ -51,7 +52,7 @@ export function StepReveal({
   inquiryHistory,
   isAlienBot,
 }: StepRevealProps) {
-  const latestRequest = requestHistory[0];
+  const latestRequest = requestHistory?.[0] ?? {};
 
   return (
     <Step fullWidth announcement={announcement}>
@@ -85,19 +86,22 @@ export function StepReveal({
         />
       </Instruction>
 
-      <AlienViewBoard request={latestRequest.request} isAlienBot={isAlienBot} />
+      <ViewIf condition={Boolean(latestRequest)}>
+        <AlienViewBoard request={latestRequest.request} isAlienBot={isAlienBot} />
+      </ViewIf>
 
       <Instruction contained>
         <Space className="space-container" wrap>
-          {latestRequest.offers.map((entry, index) => {
-            return (
-              <Space key={`offer-${index}`} direction="vertical" className="space-container">
-                <ItemCard id={`${entry.objectId}`} className={''} width={50} />
-                <AvatarName player={players[entry.playerId]} />
-                <ItemResolution itemId={entry.objectId} items={items} />
-              </Space>
-            );
-          })}
+          {Boolean(latestRequest) &&
+            latestRequest.offers.map((entry, index) => {
+              return (
+                <Space key={`offer-${index}`} direction="vertical" className="space-container">
+                  <ItemCard id={`${entry.objectId}`} className={''} width={50} />
+                  <AvatarName player={players[entry.playerId]} />
+                  <ItemResolution itemId={entry.objectId} items={items} />
+                </Space>
+              );
+            })}
         </Space>
       </Instruction>
 
