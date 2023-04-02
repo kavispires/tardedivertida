@@ -2,6 +2,7 @@
 import { useUser } from 'hooks/useUser';
 import { useStep } from 'hooks/useStep';
 import { useOnSubmitTaskAPIRequest } from './utils/api-requests';
+import { useColorizeBackground } from './utils/useColorizeBackground';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 import { showDJPruPruPruStep } from './utils/helpers';
@@ -22,6 +23,9 @@ import { DJPruPruPruSound } from 'components/audio/DJPruPruPruSound';
 function PhaseTask({ players, state, info }: PhaseProps) {
   const user = useUser(players, state);
   const { step, setStep, goToNextStep } = useStep(showDJPruPruPruStep(state.round));
+
+  // Dynamic background
+  useColorizeBackground(user, state?.round?.current);
 
   const onSubmitTask = useOnSubmitTaskAPIRequest(setStep);
 
