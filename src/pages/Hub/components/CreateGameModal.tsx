@@ -211,30 +211,24 @@ export function CreateGameModal({ gameInfo }: CreateGameModalProps): JSX.Element
 }
 
 type OptionsProps = {
-  options?: {
-    label: string;
-    key: string;
-    on?: string;
-    off?: string;
-  }[];
+  options?: GameInfo['options'];
   disabled: boolean;
   onChangeOptions: GenericFunction;
   selectedOptions: PlainObject;
 };
-function Options({ options, disabled, onChangeOptions, selectedOptions }: OptionsProps) {
+function Options({ options = [], disabled, onChangeOptions, selectedOptions }: OptionsProps) {
   return Boolean(options) ? (
     <div className="create-game-modal-options">
       <Typography.Title level={5} className="create-game-modal-options__title">
         <Translate pt="Opções:" en="Options:" />
       </Typography.Title>
-
-      {options!.map((option, index) => (
+      {(options ?? []).map((option) => (
         <Typography.Paragraph key={`option-${option.label}`} className="create-game-modal-options__option">
           <span className="create-game-modal-options__label">{option.label}</span>
           <span
             className={clsx(
               'create-game-modal-options__off',
-              !selectedOptions[option.key] && 'create-game-modal-options__selected'
+              !selectedOptions[option.key] && 'create-game-modal-options--selected'
             )}
           >
             {option?.off ?? ''}
@@ -243,11 +237,14 @@ function Options({ options, disabled, onChangeOptions, selectedOptions }: Option
           <span
             className={clsx(
               'create-game-modal-options__on',
-              selectedOptions[option.key] && 'create-game-modal-options__selected'
+              selectedOptions[option.key] && 'create-game-modal-options--selected'
             )}
           >
             {option?.on ?? ''}
           </span>
+          {Boolean(option.description) && (
+            <span className="create-game-modal-options__option-description">{option.description}</span>
+          )}
         </Typography.Paragraph>
       ))}
     </div>

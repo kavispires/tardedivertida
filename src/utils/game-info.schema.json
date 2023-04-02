@@ -2,7 +2,6 @@
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
   "properties": {
-    "$schema": "../../utils/game-info.schema.json",
     "gameCode": {
       "type": "string"
     },
@@ -172,6 +171,9 @@
             "type": "string"
           },
           "on": {
+            "type": "string"
+          },
+          "description": {
             "type": "string"
           }
         },
