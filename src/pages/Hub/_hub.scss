@@ -27,9 +27,14 @@
     color: get-color('gray', 4);
   }
 
-  &__selected {
+  &--selected {
     font-weight: bolder;
     color: get-color('black');
+  }
+
+  &__option-description {
+    font-size: 0.85em;
+    grid-column: span 4;
   }
 }
 .game-card-collection {

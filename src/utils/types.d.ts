@@ -124,8 +124,9 @@ type GameInfo = {
   options?: {
     label: string;
     key: string;
-    on?: string;
-    off?: string;
+    on: string;
+    off: string;
+    description?: string;
   }[];
   mobileFriendly?: boolean;
 };
