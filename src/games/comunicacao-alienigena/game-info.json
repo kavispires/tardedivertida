@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "C",
   "gameName": "comunicacao-alienigena",
-  "version": "2.1.4",
+  "version": "2.1.6",
   "title": {
     "pt": "Comunicação Alienígena",
     "en": "Alien Language"
@@ -41,5 +41,13 @@
     "pt": true,
     "en": true
   },
-  "options": [{ "key": "botAlien", "label": "Alien Bot", "off": "No", "on": "Yes" }]
+  "options": [
+    {
+      "key": "botAlien",
+      "label": "Alien Bot",
+      "off": "No",
+      "on": "Yes",
+      "description": "The bot will play as the alien and try to convey and guess clues through AI"
+    }
+  ]
 }
