@@ -7,7 +7,7 @@ import { AnimatedLoaderIcon } from 'icons/AnimatedLoaderIcon';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
-import { Card } from './components/Card';
+import { OpposingIdeasCard } from './components/OpposingIdeasCard';
 import { IconAvatar } from 'components/avatars';
 
 type StepCategorySelectionProps = {
@@ -54,7 +54,7 @@ export function StepCategorySelection({
             onClick={() => onSendChosenSide({ categoryId: card.id })}
             disabled={isLoading}
           >
-            <Card left={card.left} right={card.right} />
+            <OpposingIdeasCard left={card.left} right={card.right} />
           </button>
         ))}
       </div>

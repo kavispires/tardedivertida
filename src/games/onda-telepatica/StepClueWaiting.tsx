@@ -6,7 +6,7 @@ import { Translate } from 'components/language';
 import { WaitingRoom } from 'components/players';
 import { Step } from 'components/steps';
 import { Instruction, TextHighlight } from 'components/text';
-import { Card } from './components/Card';
+import { OpposingIdeasCard } from './components/OpposingIdeasCard';
 
 type StepClueWaitingProps = {
   players: GamePlayers;
@@ -58,7 +58,7 @@ export function StepClueWaiting({
                 <Translate pt={'escolheu:'} en={'chose:'} />
               </p>
               <Space className="space-container" align="center">
-                <Card left={card!.left} right={card!.right} />
+                <OpposingIdeasCard left={card!.left} right={card!.right} />
               </Space>
               <p>
                 <Translate

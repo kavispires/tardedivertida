@@ -29,7 +29,7 @@ function Prompt({ currentCategory }: PromptProps) {
       <br />
       <Translate
         pt="Clique no número ou use a barra abaixo para alinhar o ponteiro na sua resposta, então aperte Enviar."
-        en="Click on the number or use the slider below to position the pointer on your guess, then press Send."
+        en="Click on the number or use the slider below to position the pointer on your guess, then press Submit."
       />
     </Instruction>
   );

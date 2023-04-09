@@ -2,7 +2,7 @@ import clsx from 'clsx';
 // Utils
 import { getBracketClass } from '../utils/helpers';
 // Components
-import { Card } from './Card';
+import { OpposingIdeasCard } from './OpposingIdeasCard';
 
 type DialProps = {
   card: OCategoryCard;
@@ -203,7 +203,12 @@ export function Dial({
           />
         )}
       </svg>
-      <Card left={card.left} right={card.right} className="o-dial__card" setNeedle={onSetNeedle} />
+      <OpposingIdeasCard
+        left={card.left}
+        right={card.right}
+        className="o-dial__card"
+        setNeedle={onSetNeedle}
+      />
     </div>
   );
 }

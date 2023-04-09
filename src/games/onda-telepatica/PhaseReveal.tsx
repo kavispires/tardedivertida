@@ -24,7 +24,7 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
       icon={<WavelengthDeviceIcon />}
       title={<Translate pt="Resultado" en="Results" />}
       currentRound={state?.round?.current}
-      duration={7}
+      duration={4}
       type="overlay"
     >
       <Instruction>
