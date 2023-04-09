@@ -4,7 +4,7 @@ import { ArrowLeftOutlined, ArrowRightOutlined, MinusOutlined } from '@ant-desig
 // Helpers
 import { getColorModifier } from '../utils/helpers';
 
-type CardProps = {
+type OpposingIdeasCardProps = {
   left: string;
   right: string;
   /**
@@ -14,7 +14,7 @@ type CardProps = {
   setNeedle?: GenericFunction;
 };
 
-export function Card({ left, right, className = '', setNeedle }: CardProps) {
+export function OpposingIdeasCard({ left, right, className = '', setNeedle }: OpposingIdeasCardProps) {
   const leftColor = getColorModifier(left[0]);
   const rightColor = getColorModifier(right[0]);
   const cardSideClass = 'o-card__side';

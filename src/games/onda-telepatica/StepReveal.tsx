@@ -55,7 +55,7 @@ export function StepReveal({
     [players, psychic.id]
   );
   const duration = useMemo(
-    () => getMeanDuration(countDifferentGuesses(regularPlayers), 5, 25, 12),
+    () => getMeanDuration(countDifferentGuesses(regularPlayers), 7, 25, 12),
     [regularPlayers]
   );
 

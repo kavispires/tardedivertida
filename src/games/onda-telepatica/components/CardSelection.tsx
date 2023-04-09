@@ -1,6 +1,6 @@
 // Components
 import { Instruction, Title } from 'components/text';
-import { Card } from './Card';
+import { OpposingIdeasCard } from './OpposingIdeasCard';
 
 type CardSelectionProps = {
   cards: OCategoryCard[];
@@ -19,7 +19,7 @@ export function CardSelection({ onSendChosenSide, cards }: CardSelectionProps) {
             className="o-card-selection__button"
             onClick={() => onSendChosenSide(card.id)}
           >
-            <Card left={card.left} right={card.right} />
+            <OpposingIdeasCard left={card.left} right={card.right} />
           </button>
         ))}
       </div>
