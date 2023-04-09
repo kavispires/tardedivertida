@@ -9,7 +9,7 @@ const THREE_MINUTES = 3 * 60 * 1000;
  * @param players
  * @returns
  */
-export function useUser(players: Players, state?: GameState): GamePlayer {
+export function useUser(players: GamePlayers, state?: GameState): GamePlayer {
   const [userId] = useGlobalState('userId');
   const [user, setUser] = useGlobalState('user');
   const [isReady, setIsReady] = useState(false);

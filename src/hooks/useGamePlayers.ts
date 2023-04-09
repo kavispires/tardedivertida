@@ -1,16 +1,17 @@
+import { useEffect } from 'react';
+// Ant Design Resources
 import { notification } from 'antd';
-import { useDocument } from 'react-firebase-hooks/firestore';
-import { doc } from 'firebase/firestore';
-// Services
-import { firestore } from 'services/firebase';
+// Hooks
+import { useFirestoreDocument } from './useFirestoreDocument';
+// Utils
+import { isDevEnv } from 'utils/helpers';
 
-export function useGamePlayers(gameId: GameId, gameName: GameName): Players | {} {
+export function useGamePlayers(gameId: GameId, gameName: GameName): GamePlayers {
   const docPath = `games/${gameName}/${gameId}/players`;
-  const [snapshot, loading, error] = useDocument(doc(firestore, docPath), {
-    snapshotListenOptions: { includeMetadataChanges: true },
-  });
 
-  if (error) {
+  const { isLoading, isError, error, data } = useFirestoreDocument(docPath, true);
+
+  if (isError) {
     notification.error({
       message: 'The application found an error while trying to update the players document',
       description: JSON.stringify(error),
@@ -19,9 +20,17 @@ export function useGamePlayers(gameId: GameId, gameName: GameName): Players | {}
     console.error(error);
   }
 
-  if (loading) {
-    console.count('Refreshing players...');
-  }
+  const players = data ?? {};
 
-  return snapshot?.data() ?? {};
+  useEffect(() => {
+    if (isLoading) {
+      console.count('Refreshing players...');
+    } else {
+      if (isDevEnv) {
+        console.table(players);
+      }
+    }
+  }, [isLoading]); // eslint-disable-line
+
+  return players as GamePlayers;
 }

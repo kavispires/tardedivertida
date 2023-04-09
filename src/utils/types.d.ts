@@ -74,10 +74,6 @@ interface Player {
 
 type GamePlayer = Player | PlainObject;
 
-interface Players {
-  [key: string]: Player;
-}
-
 interface GameState {
   phase: string;
   updatedAt?: DateMilliseconds;
