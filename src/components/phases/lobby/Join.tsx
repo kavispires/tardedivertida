@@ -2,7 +2,13 @@ import { useCallback, useEffect, useState } from 'react';
 import { useEffectOnce } from 'react-use';
 // Ant Design Resources
 import { Alert, Button, Divider, Input, notification, Popconfirm, Tooltip } from 'antd';
-import { CaretLeftOutlined, CaretRightOutlined, FireFilled, InfoCircleOutlined } from '@ant-design/icons';
+import {
+  CaretLeftOutlined,
+  CaretRightOutlined,
+  FireFilled,
+  InfoCircleOutlined,
+  SoundFilled,
+} from '@ant-design/icons';
 // API & Hooks
 import { GAME_API } from 'services/adapters';
 import { useLanguage } from 'hooks/useLanguage';
@@ -244,7 +250,7 @@ export function Join({ players, info, meta }: JoinProps) {
           onClick={onEnter}
           loading={isLoading}
         >
-          <Translate pt="Entrar" en="Enter" />
+          <Translate pt="Entrar" en="Enter" /> <SoundFilled />
         </Button>
         <Button
           className="lobby-join__join-button-link"
