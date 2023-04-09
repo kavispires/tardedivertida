@@ -2,7 +2,7 @@ import { useGlobalState } from 'hooks/useGlobalState';
 import { useEffect } from 'react';
 import { useAudio } from 'react-use';
 // Sound
-const arteRuimTimer = require('assets/sounds/arte-ruim-timer.mp3');
+const arteRuimTimer = require('assets/sounds/arte-ruim-timer-remix.mp3');
 
 export function ArteRuimTimerSound() {
   const [volume] = useGlobalState('volume');
