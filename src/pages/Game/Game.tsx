@@ -9,13 +9,13 @@ import { useGlobalState } from 'hooks/useGlobalState';
 import { useIsGameStale } from 'hooks/useIsGameStale';
 import { useLoading } from 'hooks/useLoading';
 import { useLocalStorage } from 'hooks/useLocalStorage';
+import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import { isValidGameId, isDevEnv, getGameIdFromPathname } from 'utils/helpers';
 import { GAME_COLLECTION } from 'utils/constants';
 // Components
 import { PageError } from 'components/errors';
 import { LoadingPage } from 'components/loaders';
-import { useLanguage } from 'hooks/useLanguage';
 
 // Game lazy imports
 const SessionArteRuim = lazy(
