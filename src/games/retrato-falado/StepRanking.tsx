@@ -5,7 +5,7 @@ import { StepRankingWrapper } from 'components/ranking';
 
 type StepRankingProps = {
   ranking: any;
-  players: Players;
+  players: GamePlayers;
   round: GameRound;
   goToPreviousStep: GenericFunction;
 };

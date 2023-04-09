@@ -1,6 +1,7 @@
 import { useState, lazy, Suspense } from 'react';
 import { useEffectOnce } from 'react-use';
 import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from 'react-query';
 // Ant Design Resources
 import { ConfigProvider, Layout, message } from 'antd';
 // Firebase
@@ -75,6 +76,8 @@ const LazyDevClassifier = () => (
   </Suspense>
 );
 
+const queryClient = new QueryClient();
+
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const { translate } = useLanguage();
@@ -108,57 +111,59 @@ function App() {
   });
 
   return (
-    <ConfigProvider
-      theme={{
-        token: {
-          fontFamily: "'Lato', sans-serif",
-        },
-      }}
-    >
-      <Layout className="app" id="app">
-        <LoadingBar />
-        <HashRouter>
-          {isLoading ? (
-            <LoadingPage message="..." />
-          ) : (
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/hub" element={isAuthenticated ? <LazyHub /> : <Navigate to="/login" />} />
-              <Route
-                path="/dev/icons"
-                element={isAuthenticated ? <LazyDevIcons /> : <Navigate to="/login" />}
-              />
-              <Route
-                path="/dev/colors"
-                element={isAuthenticated ? <LazyDevColors /> : <Navigate to="/login" />}
-              />
-              <Route
-                path="/dev/sprites"
-                element={isAuthenticated ? <LazyDevSprites /> : <Navigate to="/login" />}
-              />
-              <Route
-                path="/dev/resources"
-                element={isAuthenticated ? <LazyDevResources /> : <Navigate to="/login" />}
-              />
-              <Route
-                path="/dev/playground"
-                element={isAuthenticated ? <LazyDevPlayground /> : <Navigate to="/login" />}
-              />
+    <QueryClientProvider client={queryClient}>
+      <ConfigProvider
+        theme={{
+          token: {
+            fontFamily: "'Lato', sans-serif",
+          },
+        }}
+      >
+        <Layout className="app" id="app">
+          <LoadingBar />
+          <HashRouter>
+            {isLoading ? (
+              <LoadingPage message="..." />
+            ) : (
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/hub" element={isAuthenticated ? <LazyHub /> : <Navigate to="/login" />} />
+                <Route
+                  path="/dev/icons"
+                  element={isAuthenticated ? <LazyDevIcons /> : <Navigate to="/login" />}
+                />
+                <Route
+                  path="/dev/colors"
+                  element={isAuthenticated ? <LazyDevColors /> : <Navigate to="/login" />}
+                />
+                <Route
+                  path="/dev/sprites"
+                  element={isAuthenticated ? <LazyDevSprites /> : <Navigate to="/login" />}
+                />
+                <Route
+                  path="/dev/resources"
+                  element={isAuthenticated ? <LazyDevResources /> : <Navigate to="/login" />}
+                />
+                <Route
+                  path="/dev/playground"
+                  element={isAuthenticated ? <LazyDevPlayground /> : <Navigate to="/login" />}
+                />
 
-              <Route
-                path="/dev/classifier"
-                element={isAuthenticated ? <LazyDevClassifier /> : <Navigate to="/login" />}
-              />
+                <Route
+                  path="/dev/classifier"
+                  element={isAuthenticated ? <LazyDevClassifier /> : <Navigate to="/login" />}
+                />
 
-              <Route path="/showcase" element={<LazyShowcase />} />
-              <Route path="/vitrine" element={<LazyShowcase />} />
-              <Route path="*" element={<LazyGame />} />
-            </Routes>
-          )}
-        </HashRouter>
-      </Layout>
-    </ConfigProvider>
+                <Route path="/showcase" element={<LazyShowcase />} />
+                <Route path="/vitrine" element={<LazyShowcase />} />
+                <Route path="*" element={<LazyGame />} />
+              </Routes>
+            )}
+          </HashRouter>
+        </Layout>
+      </ConfigProvider>
+    </QueryClientProvider>
   );
 }
 

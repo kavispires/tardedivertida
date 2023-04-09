@@ -7,7 +7,6 @@ import { useGamePlayers } from 'hooks/useGamePlayers';
 import { useLanguage } from 'hooks/useLanguage';
 // Utils
 import GAME_LIST from 'utils/info';
-import { isDevEnv } from 'utils/helpers';
 // Components
 import { PhaseLobby } from 'components/phases';
 import { GameInfoDrawer } from 'components/drawers';
@@ -45,18 +44,6 @@ export function Session({ gameId, gameCollection, getActiveComponent, background
   useIdleRedirect();
 
   useTitle(`${gameName ? `${gameName[language]} | ` : ''}Tarde Divertida`);
-
-  useEffect(() => {
-    if (isDevEnv) {
-      console.table(players);
-    }
-  }, [players, state]);
-
-  useEffect(() => {
-    if (isDevEnv) {
-      console.info({ state });
-    }
-  }, [state]);
 
   // Update game description as the gameId comes in
   useEffect(() => {

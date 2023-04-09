@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
-import { VIEWER_ID } from 'utils/constants';
-import { getRandomItem, isDevEnv } from 'utils/helpers';
+// Hooks
 import { useCountdown } from './useCountdown';
 import { useGlobalState } from './useGlobalState';
+// Utils
+import { VIEWER_ID } from 'utils/constants';
+import { getRandomItem, isDevEnv } from 'utils/helpers';
 
 /**
  * Runs mock function tht performs whatever

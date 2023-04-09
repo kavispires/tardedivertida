@@ -6,7 +6,7 @@ import { CanvasSVG } from 'components/canvas';
 
 type MonsterSketchesProps = {
   sketches: Sketch[];
-  players: Players;
+  players: GamePlayers;
   canvasSize: number;
   canvasWidth: number;
 };

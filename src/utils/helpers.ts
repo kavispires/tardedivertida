@@ -159,7 +159,7 @@ export const getColorFromLetter = (letter: string): string => {
  */
 export const getPlayersFromIds = (
   playerIds: PlayerId[],
-  players: Players,
+  players: GamePlayers,
   justNames = false
 ): (Player | PlayerName)[] => {
   return playerIds.map((playerId) => {
