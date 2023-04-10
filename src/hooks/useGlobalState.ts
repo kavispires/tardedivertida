@@ -8,10 +8,6 @@ type InitialState = {
   showPlayersBar: boolean;
   // Language
   language: 'pt' | 'en';
-  // Meta
-  gameId: string | null;
-  gameName: string | null;
-  gameMeta: GameMeta;
   // User/Player
   userId: string | null;
   username: string;
@@ -43,21 +39,6 @@ const initialState: InitialState = {
   showPlayersBar: true,
   // Language
   language: 'pt',
-  // Meta
-  gameId: null,
-  gameName: null,
-  gameMeta: {
-    gameId: '',
-    gameName: '',
-    createdAt: 0,
-    createdBy: '',
-    isComplete: false,
-    isLocked: false,
-    language: 'en',
-    max: 0,
-    min: 0,
-    replay: 0,
-  },
   // User/Player
   userId: null,
   username: '',
@@ -84,9 +65,6 @@ const initialState: InitialState = {
 const { useGlobalState, setGlobalState, getGlobalState } = createGlobalState(initialState);
 
 function resetGlobalState() {
-  setGlobalState('gameId', initialState.gameId);
-  setGlobalState('gameName', initialState.gameName);
-  setGlobalState('gameMeta', initialState.gameMeta);
   setGlobalState('userId', initialState.userId);
   setGlobalState('username', initialState.username);
   setGlobalState('userAvatarId', initialState.userAvatarId);

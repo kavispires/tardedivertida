@@ -14,6 +14,7 @@ import { GAME_API } from 'services/adapters';
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 import { useGlobalState } from 'hooks/useGlobalState';
+import { useGameMeta } from 'hooks/useGameMeta';
 // Images
 import avatars from 'assets/images/avatars.svg';
 // Services
@@ -37,10 +38,10 @@ type JoinProps = {
 };
 
 export function Join({ players, info, meta }: JoinProps) {
+  const { gameId, gameName } = useGameMeta();
   const { language, translate } = useLanguage();
   const { isLoading, setLoader } = useLoading();
-  const [gameId] = useGlobalState('gameId');
-  const [gameName] = useGlobalState('gameName');
+
   const [, setUserId] = useGlobalState('userId');
   const [, setUsername] = useGlobalState('username');
   const [, setUserAvatarId] = useGlobalState('userAvatarId');

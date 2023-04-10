@@ -12,6 +12,7 @@ import { PhaseLobby } from 'components/phases';
 import { GameInfoDrawer } from 'components/drawers';
 import { AdminMenuDrawer } from 'components/admin';
 import { useIdleRedirect } from 'hooks/useIdleRedirect';
+import { useGameMeta } from 'hooks/useGameMeta';
 
 type SessionProps = {
   /**
@@ -33,11 +34,11 @@ type SessionProps = {
 };
 
 export function Session({ gameId, gameCollection, getActiveComponent, backgroundClassName }: SessionProps) {
+  const gameMeta = useGameMeta();
   const { language } = useLanguage();
   const players = useGamePlayers(gameId, gameCollection);
   const state = useGameState(gameId, gameCollection);
   const [userId] = useGlobalState('userId');
-  const [gameMeta] = useGlobalState('gameMeta');
   const [info, setInfo] = useState<any>({});
   const gameName = info?.title ?? '';
 
