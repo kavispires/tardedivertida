@@ -4,7 +4,7 @@ import { notification } from 'antd';
 // Hooks
 import { useFirestoreDocument } from './useFirestoreDocument';
 // Utils
-import { isDevEnv } from 'utils/helpers';
+import { print } from 'utils/helpers';
 
 export function useGamePlayers(gameId: GameId, gameName: GameName): GamePlayers {
   const docPath = `games/${gameName}/${gameId}/players`;
@@ -26,9 +26,7 @@ export function useGamePlayers(gameId: GameId, gameName: GameName): GamePlayers 
     if (isLoading || isRefetching) {
       console.count('Refreshing players...');
     } else {
-      if (isDevEnv) {
-        console.table(players);
-      }
+      print(players, 'table');
     }
   }, [isLoading, isRefetching]); // eslint-disable-line
 
