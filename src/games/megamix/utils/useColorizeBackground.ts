@@ -6,7 +6,6 @@ export function useColorizeBackground(user: GamePlayer, currentRound: number = 0
   // Colorize background
   useEffect(() => {
     if (team) {
-      console.log({ team });
       const appElement = document.getElementById('app');
       if (appElement) {
         if (team === 'L') {

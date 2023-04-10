@@ -10,8 +10,7 @@ import { useLoading } from './useLoading';
 // API
 import { GAME_API } from 'services/adapters';
 // Utils
-import { getGameIdFromPathname, isDevEnv } from 'utils/helpers';
-import { isValidGameId } from 'utils/helpers';
+import { getGameIdFromPathname, isValidGameId, print } from 'utils/helpers';
 
 /**
  * Get game meta document
@@ -46,7 +45,7 @@ export function useGameMeta(): GameMeta {
   const query = useQuery({
     queryKey: gameId,
     queryFn: async () => {
-      console.count('REFETCHING META');
+      console.log('Fetching game meta...');
       return await GAME_API.loadGame({ gameId });
     },
     enabled: Boolean(gameId),
@@ -54,9 +53,7 @@ export function useGameMeta(): GameMeta {
     refetchOnWindowFocus: false,
     onSuccess: (response) => {
       const data = response.data as GameMeta;
-      if (isDevEnv) {
-        console.log({ meta: data });
-      }
+      print({ meta: data });
       setLocalStorage({ language: data?.language ?? 'pt' });
     },
     onError: (e: any) => {
