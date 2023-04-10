@@ -16,6 +16,7 @@ import { GAME_COLLECTION } from 'utils/constants';
 // Components
 import { PageError } from 'components/errors';
 import { LoadingPage } from 'components/loaders';
+import { useGameMeta } from 'hooks/useGameMeta';
 
 // Game lazy imports
 const SessionArteRuim = lazy(
@@ -112,78 +113,35 @@ function Game() {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const { setLoader } = useLoading();
-  const [gameId, setGameId] = useGlobalState('gameId');
-  const [gameName, setGameName] = useGlobalState('gameName');
-  const [gameMeta, setGameMeta] = useGlobalState('gameMeta');
+
+  // const [gameName, setGameName] = useGlobalState('gameName');
   const [, setUserId] = useGlobalState('userId');
   const [, setUsername] = useGlobalState('username');
   const [, setUserAvatarId] = useGlobalState('userAvatarId');
   const [, setLanguage] = useGlobalState('language');
-  const [, setLocalStorage] = useLocalStorage();
   const { translate } = useLanguage();
 
-  const [isPageLoading, setPageLoading] = useState(true);
-  const isGameStale = useIsGameStale(gameMeta?.createdAt);
+  // // Keep track of url changes
+  // useEffect(() => {
+  //   const urlGameId = getGameIdFromPathname(pathname);
+  //   if (isValidGameId(urlGameId)) {
+  //     setGameId(urlGameId);
+  //     setUserId(null);
+  //     setUsername('');
+  //     setUserAvatarId('')
+  //     message.info('New id provided');
+  //   } else {
+  //     message.error('Oops, the game id in the address bar is incorrect');
+  //     navigate('/');
+  //   }
+  // }, [pathname, navigate, setGameId, setUsername, setUserAvatarId, setUserId]);
 
-  // Verify url game code
-  useEffect(() => {
-    const urlGameId = getGameIdFromPathname(pathname);
-    if (isValidGameId(urlGameId)) {
-      setGameId(urlGameId);
-    } else {
-      message.error('Vixi, a id do jogo na barra de endereços tá errada');
-      navigate('/');
-    }
-  }, [pathname, navigate, setGameId, setUsername, setUserAvatarId]);
+  const { gameId, gameName, createdAt } = useGameMeta();
 
-  // Keep track of url changes
-  useEffect(() => {
-    const urlGameId = getGameIdFromPathname(pathname);
-    if (isValidGameId(urlGameId)) {
-      setGameId(urlGameId);
-      setUserId(null);
-      setUsername('');
-      setUserAvatarId('');
-      message.info('New id provided');
-    } else {
-      message.error('Oops, the game id in the address bar is incorrect');
-      navigate('/');
-    }
-  }, [pathname, navigate, setGameId, setUsername, setUserAvatarId, setUserId]);
-
-  // Load game
-  useEffect(() => {
-    setPageLoading(true);
-    async function loadGameSession() {
-      try {
-        setLoader('load', true);
-        const meta: PlainObject = await GAME_API.loadGame({ gameId });
-        if (isDevEnv) {
-          console.log({ meta: meta.data });
-        }
-        setGameName(meta.data.gameName);
-        setGameMeta(meta.data);
-        setLanguage(meta.data?.language ?? 'pt');
-        setLocalStorage({ language: meta.data?.language ?? 'pt' });
-      } catch (e: any) {
-        console.error(e);
-        notification.error({
-          message: 'Failed to load game',
-          description: JSON.stringify(e.message),
-        });
-      } finally {
-        setPageLoading(false);
-        setLoader('load', false);
-      }
-    }
-
-    if (gameId) {
-      loadGameSession();
-    }
-  }, [gameId]); // eslint-disable-line
+  const isGameStale = useIsGameStale(createdAt);
 
   // Deffer to load screen if any major API call is running
-  if (isPageLoading) {
+  if (!gameId) {
     return <LoadingPage />;
   }
 

@@ -9,7 +9,7 @@ import { isDevEnv } from 'utils/helpers';
 export function useGamePlayers(gameId: GameId, gameName: GameName): GamePlayers {
   const docPath = `games/${gameName}/${gameId}/players`;
 
-  const { isLoading, isError, error, data } = useFirestoreDocument(docPath, true);
+  const { isLoading, isRefetching, isError, error, data } = useFirestoreDocument(docPath, true);
 
   if (isError) {
     notification.error({
@@ -23,14 +23,14 @@ export function useGamePlayers(gameId: GameId, gameName: GameName): GamePlayers 
   const players = data ?? {};
 
   useEffect(() => {
-    if (isLoading) {
+    if (isLoading || isRefetching) {
       console.count('Refreshing players...');
     } else {
       if (isDevEnv) {
         console.table(players);
       }
     }
-  }, [isLoading]); // eslint-disable-line
+  }, [isLoading, isRefetching]); // eslint-disable-line
 
   return players as GamePlayers;
 }

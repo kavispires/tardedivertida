@@ -12,6 +12,7 @@ import avatars from 'assets/images/avatars.svg';
 import { AdminOnlyContainer } from 'components/admin';
 import { Translate } from 'components/language';
 import { GameBanner } from '../../general/GameBanner';
+import { useGameMeta } from 'hooks/useGameMeta';
 
 type WaitingProps = {
   info: GameInfo;
@@ -20,11 +21,11 @@ type WaitingProps = {
 };
 
 export function Waiting({ info, players }: WaitingProps) {
+  const { gameId, gameName } = useGameMeta();
   const { translate } = useLanguage();
   const { isLoading, setLoader } = useLoading();
-  const [gameId] = useGlobalState('gameId');
-  const [gameName] = useGlobalState('gameName');
-  const [gameMeta] = useGlobalState('gameMeta');
+
+  const gameMeta = useGameMeta();
 
   const [username] = useGlobalState('username');
   const [userAvatarId] = useGlobalState('userAvatarId');

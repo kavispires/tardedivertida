@@ -4,16 +4,17 @@ import { useMutation } from 'react-query';
 // Hooks
 import { useLoading } from './useLoading';
 import { useGlobalState } from './useGlobalState';
+import { useGameMeta } from './useGameMeta';
 
-// const debounce = (func: any, timeout = 1000): ((...args: any[]) => any) => {
-//   let timer: NodeJS.Timeout;
-//   return (...args: any[]) => {
-//     clearTimeout(timer);
-//     timer = setTimeout(() => {
-//       func.apply(this, args);
-//     }, timeout);
-//   };
-// };
+const debounce = (func: any, timeout = 1000): ((...args: any[]) => any) => {
+  let timer: NodeJS.Timeout;
+  return (...args: any[]) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      func.apply(this, args);
+    }, timeout);
+  };
+};
 
 type useAPICallArgs = {
   apiFunction: HttpsCallable<unknown, unknown>;
@@ -56,8 +57,7 @@ export function useAPICall({
   errorMessage = 'API call has failed',
 }: useAPICallArgs): (...args: any[]) => any {
   const { setLoader } = useLoading();
-  const [gameId] = useGlobalState('gameId');
-  const [gameName] = useGlobalState('gameName');
+  const { gameId, gameName } = useGameMeta();
   const [userId] = useGlobalState('userId');
 
   const query = useMutation({
@@ -92,5 +92,5 @@ export function useAPICall({
     },
   });
 
-  return query.mutate;
+  return debounce(query.mutate);
 }
