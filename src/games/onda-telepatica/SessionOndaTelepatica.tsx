@@ -34,7 +34,7 @@ function getActiveComponent(phase: string) {
   }
 }
 
-function SessionOndaTelepatica({ gameId }: SessionProps) {
+function SessionOndaTelepatica() {
   return (
     <ConfigProvider
       theme={{
@@ -44,7 +44,6 @@ function SessionOndaTelepatica({ gameId }: SessionProps) {
       }}
     >
       <Session
-        gameId={gameId}
         gameCollection={GAME_COLLECTION.ONDA_TELEPATICA}
         getActiveComponent={getActiveComponent}
         backgroundClassName="o-background"

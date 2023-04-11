@@ -36,7 +36,7 @@ function getActiveComponent(phase: string) {
   }
 }
 
-function SessionQuemNaoMata({ gameId }: SessionProps) {
+function SessionQuemNaoMata() {
   return (
     <ConfigProvider
       theme={{
@@ -45,11 +45,7 @@ function SessionQuemNaoMata({ gameId }: SessionProps) {
         },
       }}
     >
-      <Session
-        gameId={gameId}
-        gameCollection={GAME_COLLECTION.QUEM_NAO_MATA}
-        getActiveComponent={getActiveComponent}
-      />
+      <Session gameCollection={GAME_COLLECTION.QUEM_NAO_MATA} getActiveComponent={getActiveComponent} />
     </ConfigProvider>
   );
 }

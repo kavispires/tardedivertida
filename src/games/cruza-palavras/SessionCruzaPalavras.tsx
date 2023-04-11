@@ -34,7 +34,7 @@ function getActiveComponent(phase: string) {
   }
 }
 
-function SessionCruzaPalavras({ gameId }: SessionProps) {
+function SessionCruzaPalavras() {
   return (
     <ConfigProvider
       theme={{
@@ -43,11 +43,7 @@ function SessionCruzaPalavras({ gameId }: SessionProps) {
         },
       }}
     >
-      <Session
-        gameId={gameId}
-        gameCollection={GAME_COLLECTION.CRUZA_PALAVRAS}
-        getActiveComponent={getActiveComponent}
-      />
+      <Session gameCollection={GAME_COLLECTION.CRUZA_PALAVRAS} getActiveComponent={getActiveComponent} />
     </ConfigProvider>
   );
 }

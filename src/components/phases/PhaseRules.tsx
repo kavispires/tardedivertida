@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { useQueryClient } from 'react-query';
 // Ant Design Resources
 import { Button, Layout, Space } from 'antd';
 import { CheckCircleFilled, MehFilled, RobotFilled, SmileFilled } from '@ant-design/icons';
@@ -16,6 +18,7 @@ import { useLanguage } from 'hooks/useLanguage';
 import { useMock } from 'hooks/useMock';
 import { useUser } from 'hooks/useUser';
 import { useGlobalState } from 'hooks/useGlobalState';
+import { useGameId } from 'hooks/useGameId';
 // Components
 import { LoadingPage } from 'components/loaders';
 import { Translate } from 'components/language';
@@ -32,6 +35,15 @@ export function PhaseRules({ players, info }: PhaseRulesProps) {
   const { language, translate } = useLanguage();
   const user = useUser(players);
   const [volume] = useGlobalState('volume');
+
+  const gameId = useGameId();
+  // TODO: check if this is working
+  const queryClient = useQueryClient();
+
+  useEffect(() => {
+    console.log('INVALIDATING!');
+    queryClient.invalidateQueries({ queryKey: ['meta', gameId] });
+  }, [gameId]); // eslint-disable-line
 
   const errorMessage = translate(
     'Vixi, o aplicativo encontrou um erro ao tentar continuar',

@@ -39,7 +39,7 @@ function getActiveComponent(phase: string) {
   }
 }
 
-function SessionInstrumentosCodificados({ gameId }: SessionProps) {
+function SessionInstrumentosCodificados() {
   return (
     <ConfigProvider
       theme={{
@@ -48,11 +48,7 @@ function SessionInstrumentosCodificados({ gameId }: SessionProps) {
         },
       }}
     >
-      <Session
-        gameId={gameId}
-        gameCollection={GAME_COLLECTION.LINHAS_CRUZADAS}
-        getActiveComponent={getActiveComponent}
-      />
+      <Session gameCollection={GAME_COLLECTION.LINHAS_CRUZADAS} getActiveComponent={getActiveComponent} />
     </ConfigProvider>
   );
 }

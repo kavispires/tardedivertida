@@ -40,7 +40,7 @@ function getActiveComponent(phase: string) {
   }
 }
 
-function SessionEspiaoEntreNos({ gameId }: SessionProps) {
+function SessionEspiaoEntreNos() {
   return (
     <ConfigProvider
       theme={{
@@ -49,11 +49,7 @@ function SessionEspiaoEntreNos({ gameId }: SessionProps) {
         },
       }}
     >
-      <Session
-        gameId={gameId}
-        gameCollection={GAME_COLLECTION.ESPIAO_ENTRE_NOS}
-        getActiveComponent={getActiveComponent}
-      />
+      <Session gameCollection={GAME_COLLECTION.ESPIAO_ENTRE_NOS} getActiveComponent={getActiveComponent} />
     </ConfigProvider>
   );
 }

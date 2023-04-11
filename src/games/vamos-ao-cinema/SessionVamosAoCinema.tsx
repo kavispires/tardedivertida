@@ -34,7 +34,7 @@ function getActiveComponent(phase: string) {
   }
 }
 
-function SessionVamosAoCinema({ gameId }: SessionProps) {
+function SessionVamosAoCinema() {
   return (
     <ConfigProvider
       theme={{
@@ -44,7 +44,6 @@ function SessionVamosAoCinema({ gameId }: SessionProps) {
       }}
     >
       <Session
-        gameId={gameId}
         gameCollection={GAME_COLLECTION.VAMOS_AO_CINEMA}
         getActiveComponent={getActiveComponent}
         backgroundClassName="v-background"

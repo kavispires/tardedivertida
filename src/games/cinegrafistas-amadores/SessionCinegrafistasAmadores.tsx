@@ -13,7 +13,7 @@ ConfigProvider.config({
   },
 });
 
-function SessionCinegrafistasAmadores({ gameId }: SessionProps) {
+function SessionCinegrafistasAmadores() {
   function getActiveComponent(phase: string) {
     switch (phase) {
       case PHASES.DEFAULT.LOBBY:
@@ -33,7 +33,6 @@ function SessionCinegrafistasAmadores({ gameId }: SessionProps) {
 
   return (
     <Session
-      gameId={gameId}
       gameCollection={GAME_COLLECTION.CINEGRAFISTAS_AMADORES}
       getActiveComponent={getActiveComponent}
       backgroundClassName="xx-background"

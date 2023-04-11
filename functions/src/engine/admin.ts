@@ -5,6 +5,7 @@ import { DATA_DOCUMENTS, GAME_CODES, GLOBAL_USED_DOCUMENTS, USED_GAME_IDS } from
 import * as delegatorUtils from '../utils/delegators';
 import utils from '../utils';
 import aliemItemsMock from '../utils/mocks/alien-items.json';
+import { orderBy } from '../utils/helpers';
 
 /**
  * Creates a new game instance
@@ -111,7 +112,7 @@ export const lockGame = async (data: BasicGamePayload, context: FirebaseContext)
   const players: Players = playersDoc.data() ?? {};
 
   // Verify minimum number of players
-  const numPlayers = Object.keys(players).length;
+  const numPlayers = utils.players.getPlayerCount(players);
   const { playerCounts } = delegatorUtils.getEngine(gameName);
 
   if (numPlayers < playerCounts.MIN) {
@@ -128,9 +129,14 @@ export const lockGame = async (data: BasicGamePayload, context: FirebaseContext)
     );
   }
 
+  // Update meta with players Ids
+  const listOfPlayers = orderBy(utils.players.getListOfPlayers(players), ['name'], 'asc').map(
+    (player) => player.id
+  );
+
   try {
     // Set info with players object and isLocked
-    await utils.firebase.getMetaRef().doc(gameId).update({ isLocked: true });
+    await utils.firebase.getMetaRef().doc(gameId).update({ isLocked: true, playersIds: listOfPlayers });
     // Set state with new Phase: Rules
     await sessionRef.doc('state').update({
       phase: 'RULES',

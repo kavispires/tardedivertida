@@ -24,7 +24,7 @@ function getActiveComponent(phase: string) {
   }
 }
 
-function SessionPalhetaDeCores({ gameId }: SessionProps) {
+function SessionPalhetaDeCores() {
   return (
     <ConfigProvider
       theme={{
@@ -33,11 +33,7 @@ function SessionPalhetaDeCores({ gameId }: SessionProps) {
         },
       }}
     >
-      <Session
-        gameId={gameId}
-        gameCollection={GAME_COLLECTION.PALHETA_DE_CORES}
-        getActiveComponent={getActiveComponent}
-      />
+      <Session gameCollection={GAME_COLLECTION.PALHETA_DE_CORES} getActiveComponent={getActiveComponent} />
     </ConfigProvider>
   );
 }

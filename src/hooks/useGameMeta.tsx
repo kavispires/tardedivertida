@@ -1,56 +1,34 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useQuery } from 'react-query';
-import { useLocation, useNavigate } from 'react-router';
 // Ant Design Resources
-import { message, notification } from 'antd';
+import { notification } from 'antd';
 // Hooks
-import { useLanguage } from './useLanguage';
 import { useLocalStorage } from './useLocalStorage';
 import { useLoading } from './useLoading';
+import { useGameId } from './useGameId';
 // API
 import { GAME_API } from 'services/adapters';
 // Utils
-import { getGameIdFromPathname, isValidGameId, print } from 'utils/helpers';
+import { print } from 'utils/helpers';
 
 /**
  * Get game meta document
  * Gets stale after 30 minutes
  */
 export function useGameMeta(): GameMeta {
-  const { pathname } = useLocation();
-  const { translate } = useLanguage();
-  const [gameId, setGameId] = useState(getGameIdFromPathname(pathname));
+  const gameId = useGameId();
   const [, setLocalStorage] = useLocalStorage();
   const { setLoader } = useLoading();
 
-  const navigate = useNavigate();
-
-  // Verify url game code
-  useEffect(() => {
-    const urlGameId = getGameIdFromPathname(pathname);
-    if (isValidGameId(urlGameId)) {
-      setGameId(urlGameId);
-    } else {
-      message.error(
-        translate(
-          'Vixi, a id do jogo na barra de endereços tá errada',
-          'Oops, the game id in the address bar is invalid'
-        )
-      );
-      navigate('/');
-    }
-  }, [pathname, setGameId]); // eslint-disable-line
-
   // Game gameID
   const query = useQuery({
-    queryKey: gameId,
+    queryKey: ['meta', gameId],
     queryFn: async () => {
-      console.log('Fetching game meta...');
+      console.count('Fetching game meta...');
       return await GAME_API.loadGame({ gameId });
     },
     enabled: Boolean(gameId),
     staleTime: 30 * 60 * 1000, // 30 minutes
-    refetchOnWindowFocus: false,
     onSuccess: (response) => {
       const data = response.data as GameMeta;
       print({ meta: data });

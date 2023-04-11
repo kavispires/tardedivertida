@@ -39,7 +39,7 @@ function getActiveComponent(phase: string) {
   }
 }
 
-function SessionTrevoDaSorte({ gameId }: SessionProps) {
+function SessionTrevoDaSorte() {
   return (
     <ConfigProvider
       theme={{
@@ -49,7 +49,6 @@ function SessionTrevoDaSorte({ gameId }: SessionProps) {
       }}
     >
       <Session
-        gameId={gameId}
         gameCollection={GAME_COLLECTION.TREVO_DA_SORTE}
         getActiveComponent={getActiveComponent}
         backgroundClassName="y-background"

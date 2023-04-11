@@ -36,7 +36,7 @@ function getActiveComponent(phase: string) {
   }
 }
 
-function SessionSonhosPesadelos({ gameId }: SessionProps) {
+function SessionSonhosPesadelos() {
   return (
     <ConfigProvider
       theme={{
@@ -45,11 +45,7 @@ function SessionSonhosPesadelos({ gameId }: SessionProps) {
         },
       }}
     >
-      <Session
-        gameId={gameId}
-        gameCollection={GAME_COLLECTION.SONHOS_PESADELOS}
-        getActiveComponent={getActiveComponent}
-      />
+      <Session gameCollection={GAME_COLLECTION.SONHOS_PESADELOS} getActiveComponent={getActiveComponent} />
     </ConfigProvider>
   );
 }
