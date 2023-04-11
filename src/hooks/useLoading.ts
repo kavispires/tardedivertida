@@ -1,5 +1,16 @@
-import { useEffect } from 'react';
-import { useGlobalState } from './useGlobalState';
+import { useEffect, useState } from 'react';
+import { createGlobalState } from 'react-hooks-global-state';
+
+type InitialState = {
+  loaders: PlainObject;
+};
+
+const initialState: InitialState = {
+  loaders: {},
+};
+
+// Keep loading global state consistent even with multiple uses of useLoading
+const { useGlobalState: useLoadersState } = createGlobalState(initialState);
 
 type UseLoading = {
   isLoading: boolean;
@@ -12,8 +23,8 @@ type UseLoading = {
  * @returns
  */
 export function useLoading(): UseLoading {
-  const [isLoading, setLoading] = useGlobalState('isLoading');
-  const [loaders, setLoaders] = useGlobalState('loaders');
+  const [isLoading, setLoading] = useState(false);
+  const [loaders, setLoaders] = useLoadersState('loaders');
 
   useEffect(() => {
     setLoading(Object.values(loaders).some((v) => v));
