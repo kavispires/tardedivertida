@@ -32,7 +32,7 @@ export const loadGame = async (data: LoadGamePayload) => {
  * @param data
  * @returns
  */
-export const addPlayer = async (data: AddPlayerPayload) => {
+export const addPlayer = async (data: AddPlayerPayload, context: FirebaseContext) => {
   const { gameId, gameName, playerName, playerAvatarId } = data;
 
   const actionText = 'add player';
@@ -49,7 +49,7 @@ export const addPlayer = async (data: AddPlayerPayload) => {
   const cleanPlayerName = playerName.replace(/[\][(){},.:;!?<>%]/g, '');
 
   // Generate playerId by removing accents and lower casing the name
-  const playerId = utils.players.generatePlayerId(cleanPlayerName);
+  const playerId = context?.auth?.uid ?? utils.players.generatePlayerId(cleanPlayerName);
 
   if (players?.[playerId]) {
     return players[playerId];
