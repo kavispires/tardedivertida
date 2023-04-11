@@ -5,14 +5,14 @@ import { useGameState } from 'hooks/useGameState';
 import { useGlobalState } from 'hooks/useGlobalState';
 import { useGamePlayers } from 'hooks/useGamePlayers';
 import { useLanguage } from 'hooks/useLanguage';
+import { useIdleRedirect } from 'hooks/useIdleRedirect';
+import { useGameMeta } from 'hooks/useGameMeta';
 // Utils
 import GAME_LIST from 'utils/info';
 // Components
 import { PhaseLobby } from 'components/phases';
 import { GameInfoDrawer } from 'components/drawers';
 import { AdminMenuDrawer } from 'components/admin';
-import { useIdleRedirect } from 'hooks/useIdleRedirect';
-import { useGameMeta } from 'hooks/useGameMeta';
 
 type SessionProps = {
   /**
@@ -23,13 +23,9 @@ type SessionProps = {
    * The active component to be rendered, usually a Phase... component
    */
   getActiveComponent: (args: any) => any;
-  /**
-   * The class to replace the background gradient
-   */
-  backgroundClassName?: string;
 };
 
-export function Session({ gameCollection, getActiveComponent, backgroundClassName }: SessionProps) {
+export function Session({ gameCollection, getActiveComponent }: SessionProps) {
   const gameMeta = useGameMeta();
   const { language } = useLanguage();
   const players = useGamePlayers(gameMeta.gameId, gameCollection);
@@ -46,20 +42,6 @@ export function Session({ gameCollection, getActiveComponent, backgroundClassNam
   useEffect(() => {
     setInfo(gameCollection ? GAME_LIST[gameCollection] : {});
   }, [gameCollection]);
-
-  // Colorize background
-  useEffect(() => {
-    if (backgroundClassName) {
-      const appElement = document.getElementById('app');
-      if (appElement) {
-        appElement.classList.add(backgroundClassName);
-      }
-    }
-    return () => {
-      const appElement = document.getElementById('app');
-      appElement?.classList.remove(backgroundClassName ?? '');
-    };
-  }, [backgroundClassName]);
 
   if (!userId) {
     return <PhaseLobby players={players} info={info} />;

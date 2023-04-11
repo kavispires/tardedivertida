@@ -46,11 +46,7 @@ function SessionGaleriaDeSonhos() {
         },
       }}
     >
-      <Session
-        gameCollection={GAME_COLLECTION.GALERIA_DE_SONHOS}
-        getActiveComponent={getActiveComponent}
-        backgroundClassName="g-background"
-      />
+      <Session gameCollection={GAME_COLLECTION.GALERIA_DE_SONHOS} getActiveComponent={getActiveComponent} />
     </ConfigProvider>
   );
 }

@@ -43,11 +43,7 @@ function SessionOndaTelepatica() {
         },
       }}
     >
-      <Session
-        gameCollection={GAME_COLLECTION.ONDA_TELEPATICA}
-        getActiveComponent={getActiveComponent}
-        backgroundClassName="o-background"
-      />
+      <Session gameCollection={GAME_COLLECTION.ONDA_TELEPATICA} getActiveComponent={getActiveComponent} />
     </ConfigProvider>
   );
 }

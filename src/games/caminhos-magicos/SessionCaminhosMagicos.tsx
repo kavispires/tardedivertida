@@ -7,36 +7,34 @@ import { Session } from 'components/session';
 import { PhaseLobby, PhasePlaceholder, PhaseRules, PhaseSetup } from 'components/phases';
 import { PageError } from 'components/errors';
 
-ConfigProvider.config({
-  theme: {
-    primaryColor: THEME_COLORS.DEFAULT,
-  },
-});
+function getActiveComponent(phase: string) {
+  switch (phase) {
+    case PHASES.DEFAULT.LOBBY:
+      return PhaseLobby;
+    case PHASES.DEFAULT.RULES:
+      return PhaseRules;
+    case PHASES.DEFAULT.SETUP:
+      return PhaseSetup;
+    case PHASES.CAMINHOS_MAGICOS.UNKNOWN:
+      return PhasePlaceholder;
+    case PHASES.DEFAULT.GAME_OVER:
+      return PhasePlaceholder;
+    default:
+      return PageError;
+  }
+}
 
 function SessionCaminhosMagicos() {
-  function getActiveComponent(phase: string) {
-    switch (phase) {
-      case PHASES.DEFAULT.LOBBY:
-        return PhaseLobby;
-      case PHASES.DEFAULT.RULES:
-        return PhaseRules;
-      case PHASES.DEFAULT.SETUP:
-        return PhaseSetup;
-      case PHASES.CAMINHOS_MAGICOS.UNKNOWN:
-        return PhasePlaceholder;
-      case PHASES.DEFAULT.GAME_OVER:
-        return PhasePlaceholder;
-      default:
-        return PageError;
-    }
-  }
-
   return (
-    <Session
-      gameCollection={GAME_COLLECTION.CAMINHOS_MAGICOS}
-      getActiveComponent={getActiveComponent}
-      backgroundClassName="z-background"
-    />
+    <ConfigProvider
+      theme={{
+        token: {
+          colorPrimary: THEME_COLORS.DEFAULT,
+        },
+      }}
+    >
+      <Session gameCollection={GAME_COLLECTION.CAMINHOS_MAGICOS} getActiveComponent={getActiveComponent} />
+    </ConfigProvider>
   );
 }
 

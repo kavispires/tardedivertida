@@ -13,29 +13,28 @@ ConfigProvider.config({
   },
 });
 
-function SessionCinegrafistasAmadores() {
-  function getActiveComponent(phase: string) {
-    switch (phase) {
-      case PHASES.DEFAULT.LOBBY:
-        return PhaseLobby;
-      case PHASES.DEFAULT.RULES:
-        return PhaseRules;
-      case PHASES.DEFAULT.SETUP:
-        return PhaseSetup;
-      case PHASES.CINEGRAFISTAS_AMADORES.UNKNOWN:
-        return PhasePlaceholder;
-      case PHASES.DEFAULT.GAME_OVER:
-        return PhasePlaceholder;
-      default:
-        return PageError;
-    }
+function getActiveComponent(phase: string) {
+  switch (phase) {
+    case PHASES.DEFAULT.LOBBY:
+      return PhaseLobby;
+    case PHASES.DEFAULT.RULES:
+      return PhaseRules;
+    case PHASES.DEFAULT.SETUP:
+      return PhaseSetup;
+    case PHASES.CINEGRAFISTAS_AMADORES.UNKNOWN:
+      return PhasePlaceholder;
+    case PHASES.DEFAULT.GAME_OVER:
+      return PhasePlaceholder;
+    default:
+      return PageError;
   }
+}
 
+function SessionCinegrafistasAmadores() {
   return (
     <Session
       gameCollection={GAME_COLLECTION.CINEGRAFISTAS_AMADORES}
       getActiveComponent={getActiveComponent}
-      backgroundClassName="xx-background"
     />
   );
 }

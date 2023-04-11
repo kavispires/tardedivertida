@@ -33,11 +33,7 @@ function SessionNaufragos() {
         },
       }}
     >
-      <Session
-        gameCollection={GAME_COLLECTION.NAUFRAGOS}
-        getActiveComponent={getActiveComponent}
-        backgroundClassName="xx-background"
-      />
+      <Session gameCollection={GAME_COLLECTION.NAUFRAGOS} getActiveComponent={getActiveComponent} />
     </ConfigProvider>
   );
 }

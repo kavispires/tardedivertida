@@ -48,7 +48,6 @@ function SessionPortaDosDesesperados() {
       <Session
         gameCollection={GAME_COLLECTION.PORTA_DOS_DESESPERADOS}
         getActiveComponent={getActiveComponent}
-        backgroundClassName="i-background"
       />
     </ConfigProvider>
   );

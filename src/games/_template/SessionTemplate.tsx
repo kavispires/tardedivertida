@@ -38,7 +38,6 @@ function SessionTemplate() {
       <Session
         gameCollection={GAME_COLLECTION.INSTRUMENTOS_CODIFICADOS}
         getActiveComponent={getActiveComponent}
-        backgroundClassName="xx-background"
       />
     </ConfigProvider>
   );

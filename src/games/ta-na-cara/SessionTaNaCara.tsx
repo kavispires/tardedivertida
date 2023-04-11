@@ -46,11 +46,7 @@ function SessionTaNaCara() {
         },
       }}
     >
-      <Session
-        gameCollection={GAME_COLLECTION.TA_NA_CARA}
-        getActiveComponent={getActiveComponent}
-        backgroundClassName="t-background"
-      />
+      <Session gameCollection={GAME_COLLECTION.TA_NA_CARA} getActiveComponent={getActiveComponent} />
     </ConfigProvider>
   );
 }

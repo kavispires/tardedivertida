@@ -43,11 +43,7 @@ function SessionNaRuaDoMedo() {
         },
       }}
     >
-      <Session
-        gameCollection={GAME_COLLECTION.NA_RUA_DO_MEDO}
-        getActiveComponent={getActiveComponent}
-        backgroundClassName="n-background"
-      />
+      <Session gameCollection={GAME_COLLECTION.NA_RUA_DO_MEDO} getActiveComponent={getActiveComponent} />
     </ConfigProvider>
   );
 }

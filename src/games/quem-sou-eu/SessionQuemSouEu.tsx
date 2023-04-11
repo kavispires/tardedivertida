@@ -46,11 +46,7 @@ function SessionQuemSouEu() {
         },
       }}
     >
-      <Session
-        gameCollection={GAME_COLLECTION.QUEM_SOU_EU}
-        getActiveComponent={getActiveComponent}
-        backgroundClassName="q-background"
-      />
+      <Session gameCollection={GAME_COLLECTION.QUEM_SOU_EU} getActiveComponent={getActiveComponent} />
     </ConfigProvider>
   );
 }
