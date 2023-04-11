@@ -33,7 +33,6 @@ function App() {
   const [, setIsAdmin] = useGlobalState('isAdmin');
   const [, setIsAdminEnabled] = useGlobalState('isAdminEnabled');
   const [getLocalStorage] = useLocalStorage();
-  // const [theme] = useGlobalState('theme');
 
   useEffectOnce(() => {
     auth.onAuthStateChanged((user) => {

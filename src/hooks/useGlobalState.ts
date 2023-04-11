@@ -1,8 +1,6 @@
 import { createGlobalState } from 'react-hooks-global-state';
 
 type InitialState = {
-  isLoading: boolean;
-  loaders: PlainObject;
   appStartedAt: number;
   screenSize: number[];
   showPlayersBar: boolean;
@@ -32,8 +30,6 @@ type InitialState = {
 };
 
 const initialState: InitialState = {
-  isLoading: false,
-  loaders: {},
   appStartedAt: Date.now(),
   screenSize: [],
   showPlayersBar: true,
