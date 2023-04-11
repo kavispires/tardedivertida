@@ -3,7 +3,7 @@ import { Button, Space } from 'antd';
 // Icons
 import { BouncerIcon } from 'icons/BouncerIcon';
 // Components
-import { AdminNextPhaseButton } from 'components/admin';
+import { VIPNextPhaseButton } from 'components/vip';
 import { Translate } from 'components/language';
 import { StepRankingWrapper } from 'components/ranking';
 import { Step } from 'components/steps';
@@ -30,7 +30,7 @@ export function StepRanking({ ranking, players, goToPreviousStep, round }: StepR
           <Translate pt="Ver resultado novamente" en="See results again" />
         </Button>
       </Space>
-      <AdminNextPhaseButton round={round} />
+      <VIPNextPhaseButton round={round} />
     </>
   );
 

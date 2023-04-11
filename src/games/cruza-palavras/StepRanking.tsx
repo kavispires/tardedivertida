@@ -5,7 +5,7 @@ import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
 import { ScoringRule } from './components/RulesBlobs';
 import { StepRankingWrapper } from 'components/ranking';
-import { AdminNextPhaseButton } from 'components/admin';
+import { VIPNextPhaseButton } from 'components/vip';
 
 type StepRankingProps = {
   players: GamePlayers;
@@ -36,7 +36,7 @@ export function StepRanking({ players, playerCount, ranking, goToPreviousStep, r
           <Translate pt="Ver resultado novamente" en="See results again" />
         </Button>
       </Space>
-      <AdminNextPhaseButton round={round} />
+      <VIPNextPhaseButton round={round} />
     </StepRankingWrapper>
   );
 }
