@@ -34,7 +34,7 @@ function getActiveComponent(phase: string) {
   }
 }
 
-function SessionArteRuim({ gameId }: SessionProps) {
+function SessionArteRuim() {
   return (
     <ConfigProvider
       theme={{
@@ -43,11 +43,7 @@ function SessionArteRuim({ gameId }: SessionProps) {
         },
       }}
     >
-      <Session
-        gameId={gameId}
-        gameCollection={GAME_COLLECTION.ARTE_RUIM}
-        getActiveComponent={getActiveComponent}
-      />
+      <Session gameCollection={GAME_COLLECTION.ARTE_RUIM} getActiveComponent={getActiveComponent} />
     </ConfigProvider>
   );
 }

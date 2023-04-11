@@ -17,7 +17,7 @@ export function PhaseSetup({ info, state }: PhaseSetupProps) {
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.DEFAULT.SETUP} className="setup">
       <div className="phase-announcement">
         <Title>
-          <Translate pt="Preparando o jogo..." en="Setting up...." />
+          <Translate pt="Preparando o jogo..." en="Setting up..." />
         </Title>
 
         <AnimatedGearIcon className="phase-announcement__icon" />

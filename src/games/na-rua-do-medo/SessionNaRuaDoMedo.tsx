@@ -34,7 +34,7 @@ function getActiveComponent(phase: string) {
   }
 }
 
-function SessionNaRuaDoMedo({ gameId }: SessionProps) {
+function SessionNaRuaDoMedo() {
   return (
     <ConfigProvider
       theme={{
@@ -44,7 +44,6 @@ function SessionNaRuaDoMedo({ gameId }: SessionProps) {
       }}
     >
       <Session
-        gameId={gameId}
         gameCollection={GAME_COLLECTION.NA_RUA_DO_MEDO}
         getActiveComponent={getActiveComponent}
         backgroundClassName="n-background"

@@ -24,7 +24,7 @@ function getActiveComponent(phase: string) {
   }
 }
 
-function SessionFileiraDeFatos({ gameId }: SessionProps) {
+function SessionFileiraDeFatos() {
   return (
     <ConfigProvider
       theme={{
@@ -34,7 +34,6 @@ function SessionFileiraDeFatos({ gameId }: SessionProps) {
       }}
     >
       <Session
-        gameId={gameId}
         gameCollection={GAME_COLLECTION.FILEIRA_DE_FATOS}
         getActiveComponent={getActiveComponent}
         backgroundClassName="f-background"

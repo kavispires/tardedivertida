@@ -37,7 +37,7 @@ function getActiveComponent(phase: string) {
   }
 }
 
-function SessionGaleriaDeSonhos({ gameId }: SessionProps) {
+function SessionGaleriaDeSonhos() {
   return (
     <ConfigProvider
       theme={{
@@ -47,7 +47,6 @@ function SessionGaleriaDeSonhos({ gameId }: SessionProps) {
       }}
     >
       <Session
-        gameId={gameId}
         gameCollection={GAME_COLLECTION.GALERIA_DE_SONHOS}
         getActiveComponent={getActiveComponent}
         backgroundClassName="g-background"

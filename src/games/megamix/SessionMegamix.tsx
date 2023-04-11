@@ -34,7 +34,7 @@ function getActiveComponent(phase: string) {
   }
 }
 
-function SessionMegamix({ gameId }: SessionProps) {
+function SessionMegamix() {
   return (
     <ConfigProvider
       theme={{
@@ -44,7 +44,6 @@ function SessionMegamix({ gameId }: SessionProps) {
       }}
     >
       <Session
-        gameId={gameId}
         gameCollection={GAME_COLLECTION.MEGAMIX}
         getActiveComponent={getActiveComponent}
         backgroundClassName="background"

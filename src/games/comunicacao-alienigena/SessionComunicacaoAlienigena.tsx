@@ -48,7 +48,7 @@ function getActiveComponent(phase: string) {
   }
 }
 
-function SessionComunicacaoAlienigena({ gameId }: SessionProps) {
+function SessionComunicacaoAlienigena() {
   return (
     <ConfigProvider
       theme={{
@@ -58,7 +58,6 @@ function SessionComunicacaoAlienigena({ gameId }: SessionProps) {
       }}
     >
       <Session
-        gameId={gameId}
         gameCollection={GAME_COLLECTION.COMUNICACAO_ALIENIGENA}
         getActiveComponent={getActiveComponent}
         backgroundClassName="c-background"

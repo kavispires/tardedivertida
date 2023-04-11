@@ -34,7 +34,7 @@ function getActiveComponent(phase: string) {
   }
 }
 
-function SessionRetratoFalado({ gameId }: SessionProps) {
+function SessionRetratoFalado() {
   return (
     <ConfigProvider
       theme={{
@@ -43,11 +43,7 @@ function SessionRetratoFalado({ gameId }: SessionProps) {
         },
       }}
     >
-      <Session
-        gameId={gameId}
-        gameCollection={GAME_COLLECTION.RETRATO_FALADO}
-        getActiveComponent={getActiveComponent}
-      />
+      <Session gameCollection={GAME_COLLECTION.RETRATO_FALADO} getActiveComponent={getActiveComponent} />
     </ConfigProvider>
   );
 }

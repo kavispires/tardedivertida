@@ -38,7 +38,7 @@ function getActiveComponent(phase: string) {
   }
 }
 
-function SessionMenteColetiva({ gameId }: SessionProps) {
+function SessionMenteColetiva() {
   return (
     <ConfigProvider
       theme={{
@@ -48,7 +48,6 @@ function SessionMenteColetiva({ gameId }: SessionProps) {
       }}
     >
       <Session
-        gameId={gameId}
         gameCollection={GAME_COLLECTION.MENTE_COLETIVA}
         getActiveComponent={getActiveComponent}
         backgroundClassName="m-background"

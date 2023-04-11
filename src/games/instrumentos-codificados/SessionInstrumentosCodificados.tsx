@@ -24,7 +24,7 @@ function getActiveComponent(phase: string) {
   }
 }
 
-function SessionInstrumentosCodificados({ gameId }: SessionProps) {
+function SessionInstrumentosCodificados() {
   return (
     <ConfigProvider
       theme={{
@@ -34,7 +34,6 @@ function SessionInstrumentosCodificados({ gameId }: SessionProps) {
       }}
     >
       <Session
-        gameId={gameId}
         gameCollection={GAME_COLLECTION.INSTRUMENTOS_CODIFICADOS}
         getActiveComponent={getActiveComponent}
       />

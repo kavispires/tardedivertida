@@ -6,18 +6,17 @@ import { ADMIN_API } from 'services/adapters';
 import { useGlobalState } from 'hooks/useGlobalState';
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
+import { useGameMeta } from 'hooks/useGameMeta';
 // Images
 import avatars from 'assets/images/avatars.svg';
 // Components
 import { AdminOnlyContainer } from 'components/admin';
 import { Translate } from 'components/language';
 import { GameBanner } from '../../general/GameBanner';
-import { useGameMeta } from 'hooks/useGameMeta';
 
 type WaitingProps = {
   info: GameInfo;
   players: GamePlayers;
-  meta: GameMeta;
 };
 
 export function Waiting({ info, players }: WaitingProps) {

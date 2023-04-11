@@ -30,7 +30,7 @@ function getActiveComponent(phase: string) {
   }
 }
 
-function SessionBombaRelogio({ gameId }: SessionProps) {
+function SessionBombaRelogio() {
   return (
     <ConfigProvider
       theme={{
@@ -39,11 +39,7 @@ function SessionBombaRelogio({ gameId }: SessionProps) {
         },
       }}
     >
-      <Session
-        gameId={gameId}
-        gameCollection={GAME_COLLECTION.BOMBA_RELOGIO}
-        getActiveComponent={getActiveComponent}
-      />
+      <Session gameCollection={GAME_COLLECTION.BOMBA_RELOGIO} getActiveComponent={getActiveComponent} />
     </ConfigProvider>
   );
 }

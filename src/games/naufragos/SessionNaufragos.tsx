@@ -24,7 +24,7 @@ function getActiveComponent(phase: string) {
   }
 }
 
-function SessionNaufragos({ gameId }: SessionProps) {
+function SessionNaufragos() {
   return (
     <ConfigProvider
       theme={{
@@ -34,7 +34,6 @@ function SessionNaufragos({ gameId }: SessionProps) {
       }}
     >
       <Session
-        gameId={gameId}
         gameCollection={GAME_COLLECTION.NAUFRAGOS}
         getActiveComponent={getActiveComponent}
         backgroundClassName="xx-background"

@@ -42,7 +42,7 @@ function getActiveComponent(phase: string) {
   }
 }
 
-function SessionSuperCampeonato({ gameId }: SessionProps) {
+function SessionSuperCampeonato() {
   return (
     <ConfigProvider
       theme={{
@@ -51,11 +51,7 @@ function SessionSuperCampeonato({ gameId }: SessionProps) {
         },
       }}
     >
-      <Session
-        gameId={gameId}
-        gameCollection={GAME_COLLECTION.SUPER_CAMPEONATO}
-        getActiveComponent={getActiveComponent}
-      />
+      <Session gameCollection={GAME_COLLECTION.SUPER_CAMPEONATO} getActiveComponent={getActiveComponent} />
     </ConfigProvider>
   );
 }

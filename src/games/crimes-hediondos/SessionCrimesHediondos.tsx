@@ -37,7 +37,7 @@ function getActiveComponent(phase: string) {
   }
 }
 
-function SessionCrimesHediondos({ gameId }: SessionProps) {
+function SessionCrimesHediondos() {
   return (
     <ConfigProvider
       theme={{
@@ -47,7 +47,6 @@ function SessionCrimesHediondos({ gameId }: SessionProps) {
       }}
     >
       <Session
-        gameId={gameId}
         gameCollection={GAME_COLLECTION.CRIMES_HEDIONDOS}
         getActiveComponent={getActiveComponent}
         backgroundClassName="h-background"

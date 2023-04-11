@@ -34,11 +34,10 @@ const randomName = isDevEnv ? mockPlayerName() : undefined;
 type JoinProps = {
   info: GameInfo;
   players: GamePlayers;
-  meta: GameMeta;
 };
 
-export function Join({ players, info, meta }: JoinProps) {
-  const { gameId, gameName } = useGameMeta();
+export function Join({ players, info }: JoinProps) {
+  const { gameId, gameName, isComplete } = useGameMeta();
   const { language, translate } = useLanguage();
   const { isLoading, setLoader } = useLoading();
 
@@ -220,7 +219,7 @@ export function Join({ players, info, meta }: JoinProps) {
           />
         )}
 
-        {Boolean(sameGameId) && meta.isComplete && (
+        {Boolean(sameGameId) && isComplete && (
           <Alert
             className="lobby-join__avatar-alert"
             type="error"

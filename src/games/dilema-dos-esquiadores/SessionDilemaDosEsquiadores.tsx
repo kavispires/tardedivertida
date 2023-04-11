@@ -24,7 +24,7 @@ function getActiveComponent(phase: string) {
   }
 }
 
-function SessionDilemaDosEsquiadores({ gameId }: SessionProps) {
+function SessionDilemaDosEsquiadores() {
   return (
     <ConfigProvider
       theme={{
@@ -34,7 +34,6 @@ function SessionDilemaDosEsquiadores({ gameId }: SessionProps) {
       }}
     >
       <Session
-        gameId={gameId}
         gameCollection={GAME_COLLECTION.DILEMAS_DOS_ESQUIADORES}
         getActiveComponent={getActiveComponent}
         backgroundClassName="xx-background"

@@ -14,7 +14,6 @@ import { AdminMenuDrawer } from 'components/admin';
 type PhaseLobbyProps = {
   players: GamePlayers;
   info: GameInfo;
-  meta: GameMeta;
 };
 
 type SplitPlayers = {
@@ -22,7 +21,7 @@ type SplitPlayers = {
   right: GamePlayer[];
 };
 
-export function PhaseLobby({ players, info, meta }: PhaseLobbyProps) {
+export function PhaseLobby({ players, info }: PhaseLobbyProps) {
   const [userId] = useGlobalState('userId');
   const [username] = useGlobalState('username');
   const [userAvatarId] = useGlobalState('userAvatarId');
@@ -79,9 +78,9 @@ export function PhaseLobby({ players, info, meta }: PhaseLobbyProps) {
         </div>
 
         {userId && username && userAvatarId !== undefined ? (
-          <Waiting players={players} info={info} meta={meta} />
+          <Waiting players={players} info={info} />
         ) : (
-          <Join players={players} info={info} meta={meta} />
+          <Join players={players} info={info} />
         )}
       </div>
 

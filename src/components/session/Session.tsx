@@ -16,10 +16,6 @@ import { useGameMeta } from 'hooks/useGameMeta';
 
 type SessionProps = {
   /**
-   * The id of the game
-   */
-  gameId: GameId;
-  /**
    * The game collection name
    */
   gameCollection: GameName;
@@ -33,11 +29,11 @@ type SessionProps = {
   backgroundClassName?: string;
 };
 
-export function Session({ gameId, gameCollection, getActiveComponent, backgroundClassName }: SessionProps) {
+export function Session({ gameCollection, getActiveComponent, backgroundClassName }: SessionProps) {
   const gameMeta = useGameMeta();
   const { language } = useLanguage();
-  const players = useGamePlayers(gameId, gameCollection);
-  const state = useGameState(gameId, gameCollection);
+  const players = useGamePlayers(gameMeta.gameId, gameCollection);
+  const state = useGameState(gameMeta.gameId, gameCollection);
   const [userId] = useGlobalState('userId');
   const [info, setInfo] = useState<any>({});
   const gameName = info?.title ?? '';
@@ -66,7 +62,7 @@ export function Session({ gameId, gameCollection, getActiveComponent, background
   }, [backgroundClassName]);
 
   if (!userId) {
-    return <PhaseLobby players={players} info={info} meta={gameMeta} />;
+    return <PhaseLobby players={players} info={info} />;
   }
 
   const ActiveComponent: any = getActiveComponent(state.phase);

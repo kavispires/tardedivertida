@@ -37,7 +37,7 @@ function getActiveComponent(phase: string) {
   }
 }
 
-function SessionQuemSouEu({ gameId }: SessionProps) {
+function SessionQuemSouEu() {
   return (
     <ConfigProvider
       theme={{
@@ -47,7 +47,6 @@ function SessionQuemSouEu({ gameId }: SessionProps) {
       }}
     >
       <Session
-        gameId={gameId}
         gameCollection={GAME_COLLECTION.QUEM_SOU_EU}
         getActiveComponent={getActiveComponent}
         backgroundClassName="q-background"

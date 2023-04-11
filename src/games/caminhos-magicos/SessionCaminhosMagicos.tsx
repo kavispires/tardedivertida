@@ -13,7 +13,7 @@ ConfigProvider.config({
   },
 });
 
-function SessionCaminhosMagicos({ gameId }: SessionProps) {
+function SessionCaminhosMagicos() {
   function getActiveComponent(phase: string) {
     switch (phase) {
       case PHASES.DEFAULT.LOBBY:
@@ -33,7 +33,6 @@ function SessionCaminhosMagicos({ gameId }: SessionProps) {
 
   return (
     <Session
-      gameId={gameId}
       gameCollection={GAME_COLLECTION.CAMINHOS_MAGICOS}
       getActiveComponent={getActiveComponent}
       backgroundClassName="z-background"
