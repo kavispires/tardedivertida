@@ -13,7 +13,7 @@ import { Reviews } from './components/Reviews';
 import { Movies } from './components/Movies';
 import { TurnOrder } from 'components/players';
 import { AvatarName } from 'components/avatars';
-import { AdminNextPhaseButton } from 'components/admin';
+import { VIPNextPhaseButton } from 'components/vip';
 import { ListOfPlayers } from 'components/players/ListOfPlayers';
 import { MistakeCountHighlight } from './components/MistakeCountHighlight';
 import { MovieHighlight } from './components/MovieHighlight';
@@ -227,7 +227,7 @@ export function StepReveal({
 
       <TurnOrder players={players} activePlayerId={activePlayer.id} order={turnOrder} />
 
-      <AdminNextPhaseButton round={round} autoTriggerTime={outcome !== 'DONE' ? 7 : undefined} />
+      <VIPNextPhaseButton round={round} autoTriggerTime={outcome !== 'DONE' ? 7 : undefined} />
     </Step>
   );
 }

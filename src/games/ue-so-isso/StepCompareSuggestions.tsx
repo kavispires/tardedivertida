@@ -15,7 +15,7 @@ import { Step } from 'components/steps';
 import { Title } from 'components/text';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
-import { AdminButton, AdminOnlyContainer } from 'components/admin';
+import { VIPButton, VIPOnlyContainer } from 'components/vip';
 import { messageContent } from 'components/pop-up';
 import { Cards } from './components/Cards';
 
@@ -115,7 +115,7 @@ export function StepCompareSuggestions({
         </Space>
       )}
 
-      <AdminOnlyContainer direction="vertical" align="center">
+      <VIPOnlyContainer direction="vertical" align="center">
         <Cards
           suggestions={suggestions}
           readOnly={!isAdmin}
@@ -124,7 +124,7 @@ export function StepCompareSuggestions({
           isLoading={isLoading}
           myRecommendation={myRecommendation}
         />
-        <AdminButton
+        <VIPButton
           onClick={() =>
             onValidateSuggestions({
               validSuggestions: suggestionsValues.filter((suggestion) => !suggestion.invalid),
@@ -132,8 +132,8 @@ export function StepCompareSuggestions({
           }
         >
           <Translate pt="Confirmar dicas válidas como Admin" en="Confirm valid clues as Admin" />
-        </AdminButton>
-      </AdminOnlyContainer>
+        </VIPButton>
+      </VIPOnlyContainer>
     </Step>
   );
 }

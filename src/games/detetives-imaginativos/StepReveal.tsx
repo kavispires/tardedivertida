@@ -1,7 +1,7 @@
 // Hooks
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
-import { AdminNextPhaseButton } from 'components/admin';
+import { VIPNextPhaseButton } from 'components/vip';
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { StepRankingWrapper } from 'components/ranking';
@@ -99,7 +99,7 @@ export function StepReveal({
 
       <TableFocus table={table} currentPlayer={impostor} />
 
-      <AdminNextPhaseButton round={round} />
+      <VIPNextPhaseButton round={round} />
     </StepRankingWrapper>
   );
 }

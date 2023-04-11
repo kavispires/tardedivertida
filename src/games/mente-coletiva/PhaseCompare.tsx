@@ -48,9 +48,10 @@ function PhaseCompare({ state, players, info }: PhaseProps) {
           allAnswers={state.allAnswers}
           onAddAnswer={onAddAnswer}
           onNextAnswer={onNextAnswer}
-          remainingGroupsCount={state.answersList.length}
+          remainingGroupsCount={state.answersList?.length ?? 0}
           allowedList={allowedList}
           setAllowedList={setAllowedList}
+          round={state.round}
           announcement={announcement}
         />
 

@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { useLoading } from 'hooks/useLoading';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
 // Components
-import { AdminButton, AdminOnlyContainer } from 'components/admin';
+import { VIPButton, VIPOnlyContainer } from 'components/vip';
 import { Translate } from 'components/language';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
@@ -114,14 +114,14 @@ export function StepResolution({
       </Instruction>
 
       {
-        <AdminOnlyContainer>
-          <AdminButton onClick={() => onProgressGame({ continue: true })} disabled={isLoading}>
+        <VIPOnlyContainer>
+          <VIPButton onClick={() => onProgressGame({ continue: true })} disabled={isLoading}>
             <Translate pt="Jogar mais uma rodada" en="Play another round" />
-          </AdminButton>
-          <AdminButton onClick={() => onProgressGame({ end: true })} disabled={isLoading}>
+          </VIPButton>
+          <VIPButton onClick={() => onProgressGame({ end: true })} disabled={isLoading}>
             <Translate pt="Terminar Jogo" en="End Game" />
-          </AdminButton>
-        </AdminOnlyContainer>
+          </VIPButton>
+        </VIPOnlyContainer>
       }
     </Step>
   );
