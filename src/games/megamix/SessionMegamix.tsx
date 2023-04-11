@@ -43,11 +43,7 @@ function SessionMegamix() {
         },
       }}
     >
-      <Session
-        gameCollection={GAME_COLLECTION.MEGAMIX}
-        getActiveComponent={getActiveComponent}
-        backgroundClassName="background"
-      />
+      <Session gameCollection={GAME_COLLECTION.MEGAMIX} getActiveComponent={getActiveComponent} />
     </ConfigProvider>
   );
 }

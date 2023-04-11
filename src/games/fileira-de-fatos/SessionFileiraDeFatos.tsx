@@ -33,11 +33,7 @@ function SessionFileiraDeFatos() {
         },
       }}
     >
-      <Session
-        gameCollection={GAME_COLLECTION.FILEIRA_DE_FATOS}
-        getActiveComponent={getActiveComponent}
-        backgroundClassName="f-background"
-      />
+      <Session gameCollection={GAME_COLLECTION.FILEIRA_DE_FATOS} getActiveComponent={getActiveComponent} />
     </ConfigProvider>
   );
 }

@@ -60,7 +60,6 @@ function SessionComunicacaoAlienigena() {
       <Session
         gameCollection={GAME_COLLECTION.COMUNICACAO_ALIENIGENA}
         getActiveComponent={getActiveComponent}
-        backgroundClassName="c-background"
       />
     </ConfigProvider>
   );

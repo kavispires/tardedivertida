@@ -43,11 +43,7 @@ function SessionVamosAoCinema() {
         },
       }}
     >
-      <Session
-        gameCollection={GAME_COLLECTION.VAMOS_AO_CINEMA}
-        getActiveComponent={getActiveComponent}
-        backgroundClassName="v-background"
-      />
+      <Session gameCollection={GAME_COLLECTION.VAMOS_AO_CINEMA} getActiveComponent={getActiveComponent} />
     </ConfigProvider>
   );
 }

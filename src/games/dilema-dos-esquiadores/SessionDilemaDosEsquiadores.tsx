@@ -36,7 +36,6 @@ function SessionDilemaDosEsquiadores() {
       <Session
         gameCollection={GAME_COLLECTION.DILEMAS_DOS_ESQUIADORES}
         getActiveComponent={getActiveComponent}
-        backgroundClassName="xx-background"
       />
     </ConfigProvider>
   );

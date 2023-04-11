@@ -48,11 +48,7 @@ function SessionTrevoDaSorte() {
         },
       }}
     >
-      <Session
-        gameCollection={GAME_COLLECTION.TREVO_DA_SORTE}
-        getActiveComponent={getActiveComponent}
-        backgroundClassName="y-background"
-      />
+      <Session gameCollection={GAME_COLLECTION.TREVO_DA_SORTE} getActiveComponent={getActiveComponent} />
     </ConfigProvider>
   );
 }

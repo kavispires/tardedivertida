@@ -46,11 +46,7 @@ function SessionCrimesHediondos() {
         },
       }}
     >
-      <Session
-        gameCollection={GAME_COLLECTION.CRIMES_HEDIONDOS}
-        getActiveComponent={getActiveComponent}
-        backgroundClassName="h-background"
-      />
+      <Session gameCollection={GAME_COLLECTION.CRIMES_HEDIONDOS} getActiveComponent={getActiveComponent} />
     </ConfigProvider>
   );
 }

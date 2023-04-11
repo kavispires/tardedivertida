@@ -65,7 +65,7 @@ function App() {
           },
         }}
       >
-        <Layout className="app" id="app">
+        <Layout className="app background" id="app">
           <LoadingBar />
           <HashRouter>{isLoading ? <LoadingPage message="..." /> : routes}</HashRouter>
         </Layout>

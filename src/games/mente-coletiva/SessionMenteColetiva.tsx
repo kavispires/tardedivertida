@@ -47,11 +47,7 @@ function SessionMenteColetiva() {
         },
       }}
     >
-      <Session
-        gameCollection={GAME_COLLECTION.MENTE_COLETIVA}
-        getActiveComponent={getActiveComponent}
-        backgroundClassName="m-background"
-      />
+      <Session gameCollection={GAME_COLLECTION.MENTE_COLETIVA} getActiveComponent={getActiveComponent} />
     </ConfigProvider>
   );
 }
