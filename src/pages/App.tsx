@@ -76,7 +76,14 @@ const LazyDevClassifier = () => (
   </Suspense>
 );
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: Infinity, // TODO: Verify
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
