@@ -41,7 +41,6 @@ export function PhaseRules({ players, info }: PhaseRulesProps) {
   const queryClient = useQueryClient();
 
   useEffect(() => {
-    console.log('INVALIDATING!');
     queryClient.invalidateQueries({ queryKey: ['meta', gameId] });
   }, [gameId]); // eslint-disable-line
 

@@ -15,6 +15,7 @@ import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 import { useGlobalState } from 'hooks/useGlobalState';
 import { useGameMeta } from 'hooks/useGameMeta';
+import { useCurrentUserContext } from 'services/AuthProvider';
 // Images
 import avatars from 'assets/images/avatars.svg';
 // Services
@@ -45,7 +46,7 @@ export function Join({ players, info }: JoinProps) {
   const [, setUsername] = useGlobalState('username');
   const [, setUserAvatarId] = useGlobalState('userAvatarId');
   const [volume, setVolume] = useGlobalState('volume');
-  const [isAdmin] = useGlobalState('isAdmin');
+  const { isAdmin } = useCurrentUserContext();
   const [, setIsAdminEnabled] = useGlobalState('isAdminEnabled');
 
   const [availableAvatars, setAvailableAvatars] = useState(AVAILABLE_AVATAR_IDS);
@@ -105,7 +106,7 @@ export function Join({ players, info }: JoinProps) {
   }, [availableAvatars, tempAvatar]);
 
   const onAddPlayer = useCallback(
-    async (_?: any, vol?: number) => {
+    async (_?: unknown, vol?: number) => {
       try {
         setLoader('add-player', true);
         const response: PlainObject = await GAME_API.addPlayer({

@@ -29,5 +29,21 @@ export const feedEmulatorDB = async () => {
     utils.firebase.getGlobalRef().doc(usedEntryName).set(sample)
   );
 
+  // USERS
+  const emulateUid = utils.firebase.config().emulator_admin_uid;
+  await utils.firebase
+    .getUserRef()
+    .doc(emulateUid)
+    .set({
+      id: emulateUid,
+      isAdmin: true,
+      names: ['Bob', 'Kavis'],
+      avatars: {
+        '43': 13,
+        '21': 2,
+        '1': 10,
+      },
+    });
+
   await Promise.all(usedEntries);
 };

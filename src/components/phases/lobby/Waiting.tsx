@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 // Ant Design Resources
-import { Button, message, notification, Typography } from 'antd';
+import { message, notification, Typography } from 'antd';
 // API & Hooks
 import { ADMIN_API } from 'services/adapters';
 import { useGlobalState } from 'hooks/useGlobalState';
@@ -10,9 +10,9 @@ import { useGameMeta } from 'hooks/useGameMeta';
 // Images
 import avatars from 'assets/images/avatars.svg';
 // Components
-import { AdminOnlyContainer } from 'components/admin';
 import { Translate } from 'components/language';
 import { GameBanner } from '../../general/GameBanner';
+import { VIPButton, VIPOnlyContainer } from 'components/vip';
 
 type WaitingProps = {
   info: GameInfo;
@@ -74,21 +74,19 @@ export function Waiting({ info, players }: WaitingProps) {
             en="Please, wait while other players join..."
           />
         </h3>
-        <AdminOnlyContainer className="lobby-waiting__lock-button" direction="vertical">
+        <VIPOnlyContainer className="lobby-waiting__lock-button" direction="vertical">
           <Typography.Text className="center padding">
             <Translate pt="Jogadores necessários" en="Players needed" />: {numPlayers}/{gameMeta.min}
           </Typography.Text>
-          <Button
-            type="primary"
-            danger
+          <VIPButton
             onClick={onLockGameAndStart}
             disabled={isLoading || numPlayers < gameMeta.min}
             loading={isLoading}
             block
           >
             <Translate pt="Trancar e Iniciar Jogo" en="Lock and Start Game" />
-          </Button>
-        </AdminOnlyContainer>
+          </VIPButton>
+        </VIPOnlyContainer>
       </div>
     </div>
   );

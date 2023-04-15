@@ -1,12 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 // Ant Design Resources
 import { Layout, Button, Form, Input, Alert, Image } from 'antd';
 // API
 import { signIn } from 'services/firebase';
-// State
-import { useGlobalState } from 'hooks/useGlobalState';
 // Image
 import logo from 'assets/images/tarde-divertida-logo.svg';
 
@@ -20,7 +17,6 @@ const tailLayout = {
 
 function Login() {
   const navigate = useNavigate();
-  const [, setIsAuthenticated] = useGlobalState('isAuthenticated');
 
   const [error, setError] = useState<string | object | null>(null);
   const [email, setEmail] = useState('');
@@ -40,7 +36,6 @@ function Login() {
     try {
       const response = await signIn(email, password);
       if (response?.user?.uid) {
-        setIsAuthenticated(true);
         navigate('/hub');
       }
     } catch (error: any) {

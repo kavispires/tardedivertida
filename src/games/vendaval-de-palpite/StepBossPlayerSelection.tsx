@@ -1,8 +1,8 @@
 // Ant Design Resources
 import { Space } from 'antd';
 // Hooks
-import { useGlobalState } from 'hooks/useGlobalState';
 import { useLoading } from 'hooks/useLoading';
+import { useVIP } from 'hooks/useVIP';
 // Icons
 import { AnimatedClockIcon } from 'icons/AnimatedClockIcon';
 // Components
@@ -19,7 +19,7 @@ type StepBossPlayerSelectionProps = {
 
 export function StepBossPlayerSelection({ players, onBossPlayerClick }: StepBossPlayerSelectionProps) {
   const { isLoading } = useLoading();
-  const [isAdmin] = useGlobalState('isAdmin');
+  const isVIP = useVIP();
 
   return (
     <Step key={1}>
@@ -32,7 +32,7 @@ export function StepBossPlayerSelection({ players, onBossPlayerClick }: StepBoss
       <Instruction contained>
         <Space>
           {Object.values(players).map((player) => {
-            if (isAdmin) {
+            if (isVIP) {
               return (
                 <TransparentButton
                   key={`p-bt-${player.id}`}

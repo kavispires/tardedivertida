@@ -1,11 +1,13 @@
 interface GameUserEntry {
   gameId: GameId;
-  playedAt: number;
+  startedAt: number;
+  endedAt: number;
   playerCount: number;
   placement: number;
   win?: boolean;
   last?: boolean;
   rating: number;
+  achievements: AchievementKey[];
 }
 
 type AvatarId = string;
@@ -16,25 +18,39 @@ interface FirebaseUserDB {
   id: string;
   isAdmin?: boolean;
   names: string[]; // unique list but most recent comes last
+  gender?: string;
   avatars: Record<AvatarId, number>;
-  games: Record<GameName, GameUserEntry>;
-  achievements: Record<GameName, AchievementKey[]>;
+  games: Record<GameName, GameUserEntry[]>;
+  blurredImages: Record<ImageCardId, true>;
 }
 
 interface FirebaseUserUI {
   id: string;
   isAdmin: boolean;
-  avatars: AvatarId[]; // top 3 avatars only
-  gamesPlayed: number;
+  // Top 3 avatars
+  avatars: AvatarId[];
+  gender?: string;
   statistics: {
-    win: number; // absolute number
-    last: number; // absolute number
-    games: number; // total absolute number
-    uniqueGames: number; // Object.keys(games).length
-    achievements: number; // Total unique achievements
+    // Total game plays count
+    gamesPlayed: number;
+    // Total different games
+    uniqueGamesPlayed: number;
+    // Total games with end goal / are winnable
+    winnableGames: number;
+    // Total number of wins
+    win: number;
+    // Total number of times in last place
+    last: number;
+    // Total number of unique achievements
+    achievements: number;
+    // The last time a game was played
+    lastPlay: number;
+    // Total game play duration
+    totalPlayDuration: number;
   };
   games: Record<GameName, GameUserEntry[]>;
-  achievements: Record<GameName, Record<AchievementKey, number>[]>;
+  // achievements: Record<GameName, Record<AchievementKey, number>[]>;
+  blurredImages?: Record<ImageCardId, true>;
 }
 
 const DEFAULT_FIREBASE_USER_DB: FirebaseUserDB = {
@@ -42,7 +58,8 @@ const DEFAULT_FIREBASE_USER_DB: FirebaseUserDB = {
   names: [],
   avatars: {},
   games: {},
-  achievements: {},
+  gender: 'unknown',
+  blurredImages: {},
 };
 
 // const DEFAULT_SERIALIZED_USER: FirebaseUserUI = {
@@ -58,7 +75,6 @@ const DEFAULT_FIREBASE_USER_DB: FirebaseUserDB = {
 //     achievements: 0,
 //   },
 //   games: {},
-//   achievements: {},
 // };
 
 /**
@@ -69,59 +85,77 @@ export const generateNewUser = (uid: string): FirebaseUserDB => {
 };
 
 export const mergeUserData = (uid: string, userData?: FirebaseFirestore.DocumentData): FirebaseUserDB => {
-  return { ...DEFAULT_FIREBASE_USER_DB, ...userData, id: uid };
+  return { ...DEFAULT_FIREBASE_USER_DB, ...(userData ?? {}), id: uid };
+};
+
+const isWinnableGame = (gameName: GameName): boolean => {
+  // Non-winnable games only
+  return !['linhas-cruzadas', 'ue-so-isso'].includes(gameName);
 };
 
 export const serializeUser = (dbUser: FirebaseUserDB): FirebaseUserUI => {
-  const avatars = Object.keys(dbUser.avatars)
+  // Get top avatars
+  const topAvatars = Object.keys(dbUser.avatars)
     .sort((a, b) => dbUser.avatars[b] - dbUser.avatars[a])
     .slice(0, 3);
-  const games: Record<GameName, GameUserEntry[]> = {};
-  const achievements: Record<GameName, Record<AchievementKey, number>[]> = {};
+
+  // Statistics
+  let gamesPlayed = 0;
+  let winnableGames = 0;
   let win = 0;
   let last = 0;
-  let uniqueGames = 0;
+  let lastPlay = 0;
+  let totalPlayDuration = 0;
   let achievementsCount = 0;
 
-  Object.values(dbUser.games).forEach((game) => {
-    if (!games[game.gameId]) {
-      games[game.gameId] = [];
-      uniqueGames++;
-    }
-    games[game.gameId].push(game);
+  Object.entries(dbUser.games).forEach(([gameName, gameEntries]) => {
+    const isWinnable = isWinnableGame(gameName);
+    const gameAchievements: Record<AchievementKey, true> = {};
+    gameEntries.forEach((gameEntry) => {
+      gamesPlayed += 1;
 
-    if (game.win) {
-      win++;
-    }
-    if (game.last) {
-      last++;
-    }
-  });
+      // Win and last counts
+      if (isWinnable) {
+        winnableGames += 1;
 
-  Object.entries(dbUser.achievements).forEach(([gameName, achievementKeys]) => {
-    achievements[gameName] = [];
-    achievementKeys.forEach((achievementKey) => {
-      const count =
-        games[gameName]?.filter((game) => game.win && game.playedAt >= dbUser.avatars[achievementKey])
-          .length || 0;
-      achievements[gameName].push({ [achievementKey]: count });
-      achievementsCount += count;
+        if (gameEntry.win) {
+          win += 1;
+        }
+
+        if (gameEntry.last) {
+          last += 1;
+        }
+      }
+
+      // Duration
+      lastPlay = lastPlay < gameEntry.endedAt ? gameEntry.endedAt : lastPlay;
+      totalPlayDuration += gameEntry.endedAt - gameEntry.startedAt;
+
+      // Achievements
+      gameEntry.achievements.forEach((achievementKey) => {
+        gameAchievements[achievementKey] = true;
+      });
     });
+
+    achievementsCount += Object.keys(gameAchievements).length;
   });
+
+  // TODO: Parse games into statistics
 
   return {
     id: dbUser.id,
     isAdmin: !!dbUser.isAdmin,
-    avatars,
-    gamesPlayed: Object.values(dbUser.games).length,
+    avatars: topAvatars,
     statistics: {
+      gamesPlayed,
+      uniqueGamesPlayed: Object.values(dbUser.games).length,
+      winnableGames,
       win,
       last,
-      games: Object.keys(dbUser.games).length,
-      uniqueGames,
       achievements: achievementsCount,
+      lastPlay,
+      totalPlayDuration,
     },
-    games,
-    achievements,
+    games: dbUser.games,
   };
 };

@@ -2,7 +2,7 @@
 import { Space } from 'antd';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
-import { useGlobalState } from 'hooks/useGlobalState';
+import { useVIP } from 'hooks/useVIP';
 // Components
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
@@ -20,7 +20,7 @@ type StepSelectAlienProps = {
 
 export function StepSelectAlien({ players, announcement, onSubmitAlien, status }: StepSelectAlienProps) {
   const { isLoading } = useLoading();
-  const [isAdmin] = useGlobalState('isAdmin');
+  const isVIP = useVIP();
 
   return (
     <Step fullWidth announcement={announcement}>
@@ -74,7 +74,7 @@ export function StepSelectAlien({ players, announcement, onSubmitAlien, status }
       <Instruction contained>
         <Space className="space-container">
           {Object.values(players).map((player) => {
-            if (isAdmin) {
+            if (isVIP) {
               return (
                 <TransparentButton
                   key={`p-bt-${player.id}`}

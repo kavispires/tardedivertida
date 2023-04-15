@@ -36,7 +36,6 @@ function Hub() {
   const { language } = useLanguage();
   const [getLocalStorage] = useLocalStorage();
   const [, setLanguage] = useGlobalState('language');
-  const [, setIsAuthenticated] = useGlobalState('isAuthenticated');
   const [tagFilters, setTagFilters] = useState<string[]>([]);
   const [numberFilters, setNumberFilters] = useState<NumberDictionary>({});
 
@@ -50,7 +49,6 @@ function Hub() {
   const onSignOut = async () => {
     try {
       await signOut();
-      setIsAuthenticated(false);
 
       navigate('/');
     } catch (error: any) {

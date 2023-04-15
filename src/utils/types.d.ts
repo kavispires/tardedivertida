@@ -63,6 +63,24 @@ type Color =
   | 'white'
   | 'grey';
 
+interface Me {
+  id: string;
+  isAdmin: boolean;
+  avatars: AvatarId[];
+  gender?: string;
+  statistics: {
+    gamesPlayed: number;
+    uniqueGamesPlayed: number;
+    winnableGames: number;
+    win: number;
+    last: number;
+    achievements: number;
+    lastPlay: number;
+    totalPlayDuration: number;
+  };
+  games: Record<GameName, GameUserEntry[]>;
+  blurredImages?: Record<ImageCardId, true>;
+}
 interface Player {
   id: PlayerId;
   name: PlayerName;
