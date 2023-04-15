@@ -12,6 +12,7 @@ import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 import { useGlobalState } from 'hooks/useGlobalState';
 import { useGameMeta } from 'hooks/useGameMeta';
+import { useCurrentUserContext } from 'services/AuthProvider';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
@@ -65,7 +66,7 @@ function RateGameWidgetContent({
   const { isLoading } = useLoading();
   const { translate } = useLanguage();
   const [userId] = useGlobalState('userId');
-  const [isAdmin] = useGlobalState('isAdmin');
+  const { isAdmin } = useCurrentUserContext();
   const [isAdminEnabled] = useGlobalState('isAdminEnabled');
   const [rating, setRating] = useState(0);
   const [comments, setComments] = useState('');

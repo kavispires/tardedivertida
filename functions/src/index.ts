@@ -29,8 +29,13 @@ import * as trevoDaSorteEngine from './engine/trevo-da-sorte';
 import * as ueSoIssoEngine from './engine/ue-so-isso';
 import * as vamosAoCinemaEngine from './engine/vamos-ao-cinema';
 import * as vendavalDePalpiteEngine from './engine/vendaval-de-palpite';
+import { feedEmulatorDB } from './engine/emulator';
 
 initializeApp();
+
+if (process.env.FUNCTIONS_EMULATOR) {
+  feedEmulatorDB();
+}
 
 // Start writing Firebase Functions
 // https://firebase.google.com/docs/functions/typescript

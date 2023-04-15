@@ -1,7 +1,7 @@
 import { lazy, Suspense, ReactNode } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
-// State
-import { useGlobalState } from 'hooks/useGlobalState';
+// Hooks
+import { useCurrentUserContext } from 'services/AuthProvider';
 // Components
 import { LoadingPage } from 'components/loaders';
 // Pages
@@ -72,8 +72,13 @@ const LazyDevClassifier = () => (
  * Wraps admin components that are exclusive to Administrators
  */
 function AdminProtectedRoute({ children }: { children: ReactNode }) {
-  const [isAuthenticated] = useGlobalState('isAuthenticated');
-  return isAuthenticated ? <>{children}</> : <Navigate to="/login" />;
+  const { isAdmin, isLoading } = useCurrentUserContext();
+
+  if (isLoading) {
+    return <LoadingPage message="Loading..." />;
+  }
+
+  return isAdmin ? <>{children}</> : <Navigate to="/login" />;
 }
 
 export const routes = (

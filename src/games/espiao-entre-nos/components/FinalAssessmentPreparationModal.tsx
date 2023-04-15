@@ -2,7 +2,7 @@
 import { Button, Modal, Space } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 // Hooks and API
-import { useGlobalState } from 'hooks/useGlobalState';
+import { useVIP } from 'hooks/useVIP';
 // Components
 import { Translate } from 'components/language';
 
@@ -17,11 +17,11 @@ export function FinalAssessmentPreparationModal({
   onSendLastQuestioner,
   players,
 }: FinalAssessmentModalProps) {
-  const [isAdmin] = useGlobalState('isAdmin');
+  const isVIP = useVIP();
 
   return (
     <Modal
-      open={isAdmin}
+      open={isVIP}
       title={<Translate pt="O Tempo Acabou!" en="Time's up" />}
       footer={null}
       closable={false}

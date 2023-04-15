@@ -1,9 +1,11 @@
 import { useToggle } from 'react-use';
+import { useNavigate } from 'react-router-dom';
 // Ant Design Resources
 import { Button, Divider, Drawer, Space } from 'antd';
 import { FireOutlined, SettingOutlined } from '@ant-design/icons';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
+import { useCurrentUserContext } from 'services/AuthProvider';
 // Components
 import { SectionMeta } from './_internal/SectionMeta';
 import { SectionRankedPlayers } from './_internal/SectionRankedPlayers';
@@ -11,9 +13,7 @@ import { SectionSettings } from './_internal/SectionSettings';
 import { DebugOnly } from 'components/debug';
 import { RulesModal } from 'components/rules';
 import { Translate } from 'components/language';
-import { PlayersStatusBar } from '../players/PlayersStatusBar';
-import { useNavigate } from 'react-router-dom';
-import { useGlobalState } from 'hooks/useGlobalState';
+import { PlayersStatusBar } from 'components/players/PlayersStatusBar';
 import { GameBanner } from 'components/general/GameBanner';
 
 type GameInfoDrawerProps = {
@@ -28,7 +28,7 @@ export function GameInfoDrawer({ players, state, info, userId }: GameInfoDrawerP
   const [isDrawerOpen, toggleDrawer] = useToggle(false);
   const [isSettingsOpen, toggleSettingsDrawer] = useToggle(false);
   const navigate = useNavigate();
-  const [isAdmin] = useGlobalState('isAdmin');
+  const { isAdmin } = useCurrentUserContext();
 
   if (state.phase === 'LOBBY') {
     return <></>;

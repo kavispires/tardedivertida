@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 // Hooks
-import { useGlobalState } from 'hooks/useGlobalState';
 import { useLoading } from 'hooks/useLoading';
 import { useStep } from 'hooks/useStep';
 import { useWhichPlayerIsThe } from 'hooks/useWhichPlayerIsThe';
 import { useOnSendGuessAPIRequest, useOnSubmitOutcomeAPIRequest } from './utils/api-requests';
+import { useVIP } from 'hooks/useVIP';
 // Resources & Utils
 import { PHASES } from 'utils/phases';
 // Icons
@@ -20,7 +20,7 @@ import { Translate } from 'components/language';
 function PhaseGuess({ state, players, info }: PhaseProps) {
   const { isLoading } = useLoading();
   const { step, goToNextStep, setStep } = useStep(0);
-  const [isAdmin] = useGlobalState('isAdmin');
+  const isVIP = useVIP();
   const [guesser, isUserTheGuesser] = useWhichPlayerIsThe('guesserId', state, players);
   const [controller, isUserTheController] = useWhichPlayerIsThe('controllerId', state, players);
 
@@ -69,7 +69,7 @@ function PhaseGuess({ state, players, info }: PhaseProps) {
           secretWord={state.secretWord}
           controller={controller}
           isUserTheController={isUserTheController}
-          isAdmin={isAdmin}
+          isVIP={isVIP}
           isLoading={isLoading}
         />
       </StepSwitcher>

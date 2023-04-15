@@ -4,7 +4,7 @@ import { GAME_CODES, USED_GAME_IDS } from '../utils/constants';
 // Utils
 import * as delegatorUtils from '../utils/delegators';
 import utils from '../utils';
-import { feedEmulatorDB } from './emulator';
+// import { feedEmulatorDB } from './emulator';
 
 /**
  * Creates a new game instance
@@ -30,9 +30,9 @@ export const createGame = async (data: CreateGamePayload, context: FirebaseConte
     return utils.firebase.throwException(`provided gameCode is invalid ${gameName}`, actionText);
   }
 
-  if (process.env.FUNCTIONS_EMULATOR) {
-    await feedEmulatorDB();
-  }
+  // if (process.env.FUNCTIONS_EMULATOR) {
+  //   await feedEmulatorDB();
+  // }
 
   // Get list of used ids
   const globalRef = utils.firebase.getGlobalRef();

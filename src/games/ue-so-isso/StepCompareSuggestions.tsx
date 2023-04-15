@@ -3,9 +3,9 @@ import { useEffect, useState } from 'react';
 import { Button, message, Space } from 'antd';
 import { CloudUploadOutlined } from '@ant-design/icons';
 // Hooks
-import { useGlobalState } from 'hooks/useGlobalState';
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
+import { useVIP } from 'hooks/useVIP';
 // Utils
 import { deepCopy } from 'utils/helpers';
 // Components
@@ -41,7 +41,7 @@ export function StepCompareSuggestions({
   const { translate } = useLanguage();
   const { isLoading } = useLoading();
   const [myRecommendation, setMyRecommendation] = useState<UseSoIssoSuggestion[]>(deepCopy(suggestions));
-  const [isAdmin] = useGlobalState('isAdmin');
+  const isVIP = useVIP();
   const [wasMessageShown, setWasMessageShown] = useState(false);
 
   const onSetValidation = (index: number, suggestionEntry: UseSoIssoSuggestion, notAllowed?: boolean) => {
@@ -118,7 +118,7 @@ export function StepCompareSuggestions({
       <VIPOnlyContainer direction="vertical" align="center">
         <Cards
           suggestions={suggestions}
-          readOnly={!isAdmin}
+          readOnly={!isVIP}
           players={players}
           onSetValidation={onSetValidation}
           isLoading={isLoading}
