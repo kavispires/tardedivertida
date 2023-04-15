@@ -75,6 +75,11 @@ exports.makePlayerReady = functions.https.onCall(commonEngine.makePlayerReady);
 exports.rateGame = functions.https.onCall(commonEngine.rateGame);
 
 /**
+ * Load user
+ */
+exports.getUser = functions.https.onCall(commonEngine.getUser);
+
+/**
  * Submit Actions
  */
 
