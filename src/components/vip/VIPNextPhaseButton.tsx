@@ -83,7 +83,7 @@ export function VIPNextPhaseButton({ round, autoTriggerTime = 45, children }: VI
       resume();
     }
     return () => pause();
-  }, [isLoading, resume, pause]);
+  }, [isLoading]); // eslint-disable-line
 
   return (
     <VIPOnlyContainer

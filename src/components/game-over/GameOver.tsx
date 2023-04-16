@@ -17,6 +17,7 @@ import { useCountdown } from 'hooks/useCountdown';
 import { PUBLIC_URL } from 'utils/constants';
 import { getAnimationClass } from 'utils/helpers';
 import { Step } from 'components/steps';
+import { ConvertGuestToAccountModal } from 'components/auth/ConvertGuestToAccount';
 
 const GameOverText = () => <Translate pt="Jogo concluído" en="The game is over" />;
 
@@ -176,6 +177,8 @@ export function GameOver({
       <RateGameWidget customText={rateWidgetCustomText} />
 
       {children}
+
+      <ConvertGuestToAccountModal />
 
       <Space align="center" direction="vertical" className="full-width padding">
         <Button onClick={() => navigate('/')}>
