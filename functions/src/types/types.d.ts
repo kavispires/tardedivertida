@@ -65,6 +65,7 @@ interface AddPlayerPayload {
   gameName: GameName;
   playerName: PlayerName;
   playerAvatarId: PlayerAvatarId;
+  isGuest?: boolean;
 }
 
 interface BasicGamePayload {

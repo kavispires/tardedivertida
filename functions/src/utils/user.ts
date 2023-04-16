@@ -17,6 +17,7 @@ type GameName = string;
 interface FirebaseUserDB {
   id: string;
   isAdmin?: boolean;
+  isGuest?: boolean;
   names: string[]; // unique list but most recent comes last
   gender?: string;
   avatars: Record<AvatarId, number>;
@@ -81,8 +82,8 @@ const DEFAULT_FIREBASE_USER_DB: FirebaseUserDB = {
 /**
  * Generates a brand new user with given uid
  */
-export const generateNewUser = (uid: string): FirebaseUserDB => {
-  return { ...DEFAULT_FIREBASE_USER_DB, id: uid };
+export const generateNewUser = (uid: string, isGuest?: boolean): FirebaseUserDB => {
+  return { ...DEFAULT_FIREBASE_USER_DB, id: uid, isGuest: Boolean(isGuest) };
 };
 
 export const mergeUserData = (uid: string, userData?: FirebaseFirestore.DocumentData): FirebaseUserDB => {
@@ -161,3 +162,5 @@ export const serializeUser = (dbUser: FirebaseUserDB): FirebaseUserUI => {
     games: dbUser.games,
   };
 };
+
+// export const saveGameToUsers = (players)
