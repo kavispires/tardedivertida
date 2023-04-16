@@ -46,6 +46,7 @@ export function StepWaiting({ players }: StepWaitingProps) {
           translate('Jogo trancado e iniciado com sucesso!', 'Game locked and initialized successfully')
         );
       }
+      setLoader('lock-game', false);
     },
     onError: (e: any) => {
       notification.error({
