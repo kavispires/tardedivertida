@@ -49,7 +49,7 @@ export const GAME_LIST: Record<GameCode, GameInfo> = {
   'detetives-imaginativos': DETETIVES_IMAGINATIVOS,
   'dilema-dos-esquiadores': DILEMA_DOS_ESQUIADORES,
   'espiao-entre-nos': ESPIAO_ENTRE_NOS,
-  '/fileira-de-fatos': FILEIRA_DE_FATOS,
+  'fileira-de-fatos': FILEIRA_DE_FATOS,
   'galeria-de-sonhos': GALERIA_DE_SONHOS,
   'instrumentos-codificados': INSTRUMENTOS_CODIFICADOS,
   'linhas-cruzadas': LINHAS_CRUZADAS,

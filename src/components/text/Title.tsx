@@ -30,13 +30,25 @@ type TitleProps = {
    * The size of the title (default: medium)
    */
   size?: 'xx-small' | 'x-small' | 'small' | 'medium' | 'large';
+  /**
+   * The alignment of the text (default: center)
+   */
+  align?: 'left' | 'right' | 'center';
 };
 
-export const Title = ({ children, white, icon, className, level = 2, size = 'medium' }: TitleProps) => {
+export const Title = ({
+  children,
+  white,
+  icon,
+  className,
+  level = 2,
+  size = 'medium',
+  align = 'center',
+}: TitleProps) => {
   return (
     <Typography.Title
       level={level}
-      className={clsx('title', `title--${size}`, white && 'title--white', className)}
+      className={clsx('title', `title--${size}`, `title--align-${align}`, white && 'title--white', className)}
     >
       {Boolean(icon) && icon}
       {children}

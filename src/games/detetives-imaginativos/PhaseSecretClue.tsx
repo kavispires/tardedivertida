@@ -27,6 +27,31 @@ function PhaseSecretClue({ state, players, info }: PhaseProps) {
 
   const onSubmitSecretClue = useOnSubmitSecretClueAPIRequest(setStep);
 
+  const announcement = (
+    <PhaseAnnouncement
+      icon={<SecretIcon />}
+      title={<Translate pt="Pista Secreta" en="Secret Clue" />}
+      currentRound={state?.round?.current}
+      type="overlay"
+    >
+      <Instruction>
+        <Translate
+          pt={
+            <>
+              Para essa rodada, <AvatarName player={leader} addressUser /> será o(a) Detetive Líder.
+            </>
+          }
+          en={
+            <>
+              For this round, <AvatarName player={leader} addressUser /> will be the Lead Detective.
+            </>
+          }
+        />
+      </Instruction>
+      <ImageCardPreloadHand hand={user?.hand} />
+    </PhaseAnnouncement>
+  );
+
   return (
     <PhaseContainer
       info={info}
@@ -45,36 +70,21 @@ function PhaseSecretClue({ state, players, info }: PhaseProps) {
         />
 
         {/* Step 1 */}
-        <PhaseAnnouncement
-          icon={<SecretIcon />}
-          title={<Translate pt="Pista Secreta" en="Secret Clue" />}
-          onClose={goToNextStep}
-          currentRound={state?.round?.current}
-          type="block"
-        >
-          <Instruction>
-            <Translate
-              pt={
-                <>
-                  Para essa rodada, <AvatarName player={leader} addressUser /> será o(a) Detetive Líder.
-                </>
-              }
-              en={
-                <>
-                  For this round, <AvatarName player={leader} addressUser /> will be the Lead Detective.
-                </>
-              }
-            />
-          </Instruction>
-          <ImageCardPreloadHand hand={user?.hand} />
-        </PhaseAnnouncement>
+
+        <ViewOr condition={isUserTheLeader}>
+          <StepSecretClueWrite user={user} onSubmitClue={onSubmitSecretClue} announcement={announcement} />
+
+          <StepSecretClueWaiting
+            user={user}
+            leader={leader}
+            players={players}
+            turnOrder={state.turnOrder}
+            announcement={announcement}
+          />
+        </ViewOr>
 
         {/* Step 2 */}
-        <ViewOr condition={isUserTheLeader}>
-          <StepSecretClueWrite user={user} onSubmitClue={onSubmitSecretClue} />
-
-          <StepSecretClueWaiting user={user} leader={leader} players={players} turnOrder={state.turnOrder} />
-        </ViewOr>
+        <></>
       </StepSwitcher>
     </PhaseContainer>
   );

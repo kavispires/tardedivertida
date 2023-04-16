@@ -14,8 +14,42 @@ import { StepReveal } from './StepReveal';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 
 function PhaseReveal({ state, players, info }: PhaseProps) {
-  const { step, goToNextStep } = useStep(0);
+  const { step } = useStep(0);
   const [impostor] = useWhichPlayerIsThe('impostorId', state, players);
+
+  const announcement = (
+    <PhaseAnnouncement
+      icon={<RankIcon />}
+      title={<Translate pt="Revelação" en="Reveal" />}
+      currentRound={state?.round?.current}
+      type="overlay"
+    >
+      <Instruction>
+        <Translate
+          pt={
+            <>
+              Se o impostor recebeu 2 ou mais votos ele(a) é desmascarado. Quem votou nele ganha{' '}
+              <PointsHighlight>3</PointsHighlight> pontos.
+              <br />
+              Se o impostor recebeu menos de 2 votos, ele ganha <PointsHighlight>5</PointsHighlight> pontos e
+              o detetive líder ganha <PointsHighlight>4</PointsHighlight>
+              pontos.
+            </>
+          }
+          en={
+            <>
+              If the impostor gets 2 or more votes, they are exposed. Whoever voted for him get{' '}
+              <PointsHighlight>3</PointsHighlight> points.
+              <br />
+              If the impostor gets fewer than 2 votes, he gets <PointsHighlight>5</PointsHighlight> points and
+              the Lead detective gets <PointsHighlight>4</PointsHighlight>
+              points.
+            </>
+          }
+        />
+      </Instruction>
+    </PhaseAnnouncement>
+  );
 
   return (
     <PhaseContainer
@@ -26,40 +60,6 @@ function PhaseReveal({ state, players, info }: PhaseProps) {
     >
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
-        <PhaseAnnouncement
-          icon={<RankIcon />}
-          title={<Translate pt="Revelação" en="Reveal" />}
-          onClose={goToNextStep}
-          currentRound={state?.round?.current}
-          type="block"
-        >
-          <Instruction>
-            <Translate
-              pt={
-                <>
-                  Se o impostor recebeu 2 ou mais votos ele(a) é desmascarado. Quem votou nele ganha{' '}
-                  <PointsHighlight>3</PointsHighlight> pontos.
-                  <br />
-                  Se o impostor recebeu menos de 2 votos, ele ganha <PointsHighlight>5</PointsHighlight>{' '}
-                  pontos e o detetive líder ganha <PointsHighlight>4</PointsHighlight>
-                  pontos.
-                </>
-              }
-              en={
-                <>
-                  If the impostor gets 2 or more votes, they are exposed. Whoever voted for him get{' '}
-                  <PointsHighlight>3</PointsHighlight> points.
-                  <br />
-                  If the impostor gets fewer than 2 votes, he gets <PointsHighlight>5</PointsHighlight> points
-                  and the Lead detective gets <PointsHighlight>4</PointsHighlight>
-                  points.
-                </>
-              }
-            />
-          </Instruction>
-        </PhaseAnnouncement>
-
-        {/* Step 1 */}
         <StepReveal
           impostor={impostor}
           impostorVotes={state.impostorVotes}
@@ -68,7 +68,11 @@ function PhaseReveal({ state, players, info }: PhaseProps) {
           round={state.round}
           ranking={state.ranking}
           table={state.table}
+          announcement={announcement}
         />
+
+        {/* Step 1 */}
+        <></>
       </StepSwitcher>
     </PhaseContainer>
   );
