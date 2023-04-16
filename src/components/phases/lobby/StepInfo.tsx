@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { useEffectOnce } from 'react-use';
+import { useEffect, useState } from 'react';
 // Ant Design Resources
 import { Alert, Button, Input, Tooltip } from 'antd';
 import { InfoCircleOutlined } from '@ant-design/icons';
@@ -7,8 +6,7 @@ import { InfoCircleOutlined } from '@ant-design/icons';
 import { useLanguage } from 'hooks/useLanguage';
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 import { useAddPlayer } from 'hooks/useAddPlayer';
-// Services
-import localStorage from 'services/localStorage';
+import { useLocalStorage } from 'hooks/useLocalStorage';
 // Utils
 import { AVAILABLE_AVATAR_IDS } from 'utils/avatars';
 import { getRandomItem, isDevEnv } from 'utils/helpers';
@@ -27,19 +25,21 @@ type StepInfoProps = {
 };
 
 export function StepInfo({ info, players, setStep }: StepInfoProps) {
-  const { isAuthenticated, currentUser } = useCurrentUserContext();
+  const { currentUser, isAnonymous } = useCurrentUserContext();
   const { translate } = useLanguage();
   const [selectedAvatar, setSelectedAvatar] = useState(
     currentUser.avatars?.[0] ?? getRandomItem(AVAILABLE_AVATAR_IDS)
   );
   const [name, setName] = useState((currentUser?.names ?? []).at(-1) ?? '');
+  const [getLocalStorage] = useLocalStorage();
 
   // Load username and avatar from localStorage if any
-  useEffectOnce(() => {
-    const lsAvatarId = localStorage.get('avatarId');
-    const lsUsername = localStorage.get('username');
+  useEffect(() => {
+    const lsAvatarId = getLocalStorage('avatarId');
+    const lsUsername = getLocalStorage('username');
 
-    if (!isAuthenticated) {
+    if (isAnonymous) {
+      console.log('IT IS!');
       if (lsAvatarId !== undefined) {
         setSelectedAvatar(lsAvatarId);
       }
@@ -48,7 +48,7 @@ export function StepInfo({ info, players, setStep }: StepInfoProps) {
         setName(lsUsername ?? '');
       }
     }
-  });
+  }, [isAnonymous]); // eslint-disable-line
 
   const { isLoading, refetch } = useAddPlayer(name, selectedAvatar, () => setStep(2));
 

@@ -32,11 +32,13 @@ export const AuthContext = createContext<{
   isLoading: boolean;
   isAdmin: boolean;
   isAuthenticated: boolean;
+  isAnonymous: boolean;
 }>({
   currentUser: DEFAULT_ME_DATA,
   isLoading: true,
   isAdmin: false,
   isAuthenticated: false,
+  isAnonymous: false,
 });
 
 type AuthProviderProps = {
@@ -102,6 +104,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         isLoading: isLoading || query.isLoading,
         isAdmin: Boolean(firestoreUser.isAdmin),
         isAuthenticated,
+        isAnonymous: Boolean(authenticatedUser?.isAnonymous),
       }}
     >
       {children}
