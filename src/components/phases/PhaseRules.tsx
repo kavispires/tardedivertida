@@ -1,3 +1,4 @@
+import { useEffectOnce } from 'react-use';
 import { useEffect } from 'react';
 import { useQueryClient } from 'react-query';
 // Ant Design Resources
@@ -24,7 +25,6 @@ import { LoadingPage } from 'components/loaders';
 import { Translate } from 'components/language';
 import { Title } from 'components/text';
 import { RulesCarousel } from '../rules';
-import { useEffectOnce } from 'react-use';
 
 type PhaseRulesProps = {
   players: GamePlayers;

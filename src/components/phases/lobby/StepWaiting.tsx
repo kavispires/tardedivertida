@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useQuery } from 'react-query';
 // Ant Design Resources
 import { Space, Typography, message, notification } from 'antd';
@@ -28,8 +29,8 @@ export function StepWaiting({ players }: StepWaitingProps) {
   const [username] = useGlobalState('username');
   const [userAvatarId] = useGlobalState('userAvatarId');
 
-  const { refetch } = useQuery({
-    queryKey: 'add-player',
+  const { refetch, isLoading: isLocking } = useQuery({
+    queryKey: 'lock-game',
     queryFn: async () => {
       setLoader('lock-game', true);
       return await ADMIN_API.lockGame({
@@ -46,7 +47,6 @@ export function StepWaiting({ players }: StepWaitingProps) {
           translate('Jogo trancado e iniciado com sucesso!', 'Game locked and initialized successfully')
         );
       }
-      setLoader('lock-game', false);
     },
     onError: (e: any) => {
       notification.error({
@@ -63,6 +63,14 @@ export function StepWaiting({ players }: StepWaitingProps) {
       setLoader('lock-game', false);
     },
   });
+
+  useEffect(() => {
+    setLoader('lock-game', isLocking);
+
+    return () => {
+      setLoader('lock-game', false);
+    };
+  }, [isLocking]); // eslint-disable-line
 
   const numPlayers = Object.keys(players).length;
 
