@@ -44,7 +44,7 @@ export function Session({ gameCollection, getActiveComponent }: SessionProps) {
   }, [gameCollection]);
 
   if (!userId) {
-    return <PhaseLobby players={players} info={info} />;
+    return <PhaseLobby players={players} info={info} meta={gameMeta} />;
   }
 
   const ActiveComponent: any = getActiveComponent(state.phase);

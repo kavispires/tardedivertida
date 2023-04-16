@@ -21,6 +21,7 @@ import './PhaseLobby.scss';
 type PhaseLobbyProps = {
   players: GamePlayers;
   info: GameInfo;
+  meta: GameMeta;
 };
 
 type SplitPlayers = {
@@ -28,7 +29,7 @@ type SplitPlayers = {
   right: GamePlayer[];
 };
 
-export function PhaseLobby({ players, info }: PhaseLobbyProps) {
+export function PhaseLobby({ players, info, meta }: PhaseLobbyProps) {
   const { step, setStep } = useStep();
   const { currentUser, isAuthenticated } = useCurrentUserContext();
   const [, setUserId] = useGlobalState('userId');
@@ -103,7 +104,7 @@ export function PhaseLobby({ players, info }: PhaseLobbyProps) {
           ))}
         </div>
 
-        <LobbyStep info={info}>
+        <LobbyStep info={info} isLocked={meta.isLocked}>
           {step === 0 && <StepJoin info={info} setStep={setStep} />}
           {step === 1 && <StepInfo info={info} players={players} setStep={setStep} />}
           {step === 2 && <StepWaiting players={players} />}
