@@ -6,17 +6,17 @@ import { useTitle } from 'react-use';
 import { Button, Image, Input, Layout, Space } from 'antd';
 import { ForwardFilled } from '@ant-design/icons';
 // Hooks
-import { useCurrentUserContext } from 'services/AuthProvider';
+import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 import { resetGlobalState } from 'hooks/useGlobalState';
 // Assets
 import logo from 'assets/images/tarde-divertida-logo.svg';
 
 function Home() {
   useTitle('Tarde Divertida');
+  const { isAdmin, isAuthenticated } = useCurrentUserContext();
 
-  const [showInput, setShowInput] = useState(false);
+  const [showInput, setShowInput] = useState(isAuthenticated);
   const [gameId, setGameId] = useState('');
-  const { isAdmin } = useCurrentUserContext();
   const navigate = useNavigate();
 
   useEffect(() => {
