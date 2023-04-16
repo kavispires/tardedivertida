@@ -29,7 +29,7 @@ export function GameInfoDrawer({ players, state, info, userId }: GameInfoDrawerP
   const [isDrawerOpen, toggleDrawer] = useToggle(false);
   const [isSettingsOpen, toggleSettingsDrawer] = useToggle(false);
   const navigate = useNavigate();
-  const { isAdmin, isAuthenticated, isAnonymous } = useCurrentUserContext();
+  const { isAdmin, isAuthenticated, isGuest } = useCurrentUserContext();
 
   if (state.phase === 'LOBBY') {
     return <></>;
@@ -60,7 +60,7 @@ export function GameInfoDrawer({ players, state, info, userId }: GameInfoDrawerP
 
           <Divider />
 
-          {isAuthenticated && !isAnonymous && (
+          {isAuthenticated && !isGuest && (
             <p>
               <Badge size="default" dot color="green">
                 <Avatar id={players[userId].avatarId} shape="square" size="small" />
