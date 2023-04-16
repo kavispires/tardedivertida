@@ -174,7 +174,7 @@ export const getUser = async (_: unknown, context: FirebaseContext) => {
 
   // If the user object doesn't exist, just create one
   if (!user.exists) {
-    const newUser = utils.user.generateNewUser(uid, context?.auth?.provider_id === 'anonymous');
+    const newUser = utils.user.generateNewUser(uid, context?.auth?.token?.provider_id === 'anonymous');
     userRef.doc(uid).set(newUser);
 
     return utils.user.serializeUser(newUser);
