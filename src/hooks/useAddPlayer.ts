@@ -10,7 +10,7 @@ import { useLanguage } from './useLanguage';
 // Utils
 import { getRandomWelcomeMessage, speak } from 'utils/speech';
 
-export function useAddPlayer(name: string, avatarId: string, onSuccess: GenericFunction) {
+export function useAddPlayer(name: string, avatarId: string, isGuest: boolean, onSuccess: GenericFunction) {
   const { gameId, gameName } = useGameMeta();
   const [, setUserId] = useGlobalState('userId');
   const [, setUsername] = useGlobalState('username');
@@ -26,11 +26,11 @@ export function useAddPlayer(name: string, avatarId: string, onSuccess: GenericF
         gameName,
         playerName: name,
         playerAvatarId: avatarId,
+        isGuest,
       }),
     enabled: false,
     onSuccess: (response) => {
       const data = response.data as PlainObject;
-      console.log(data);
       setUserId(data.id);
       setUsername(data.name);
       setUserAvatarId(data.avatarId);

@@ -66,6 +66,7 @@ type Color =
 interface Me {
   id: string;
   isAdmin: boolean;
+  isGuest?: boolean;
   names: string[];
   avatars: AvatarId[];
   gender?: string;

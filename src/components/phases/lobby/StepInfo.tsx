@@ -25,7 +25,7 @@ type StepInfoProps = {
 };
 
 export function StepInfo({ info, players, setStep }: StepInfoProps) {
-  const { currentUser, isAnonymous } = useCurrentUserContext();
+  const { currentUser, isGuest } = useCurrentUserContext();
   const { translate } = useLanguage();
   const [selectedAvatar, setSelectedAvatar] = useState(
     currentUser.avatars?.[0] ?? getRandomItem(AVAILABLE_AVATAR_IDS)
@@ -38,8 +38,7 @@ export function StepInfo({ info, players, setStep }: StepInfoProps) {
     const lsAvatarId = getLocalStorage('avatarId');
     const lsUsername = getLocalStorage('username');
 
-    if (isAnonymous) {
-      console.log('IT IS!');
+    if (isGuest) {
       if (lsAvatarId !== undefined) {
         setSelectedAvatar(lsAvatarId);
       }
@@ -48,9 +47,9 @@ export function StepInfo({ info, players, setStep }: StepInfoProps) {
         setName(lsUsername ?? '');
       }
     }
-  }, [isAnonymous]); // eslint-disable-line
+  }, [isGuest]); // eslint-disable-line
 
-  const { isLoading, refetch } = useAddPlayer(name, selectedAvatar, () => setStep(2));
+  const { isLoading, refetch } = useAddPlayer(name, selectedAvatar, isGuest, () => setStep(2));
 
   const hasPlayedBefore = Boolean(currentUser.games?.[info.gameName]);
 
