@@ -2,7 +2,7 @@
 import type { FirebaseStateData, FirebaseStoreData, AllWords } from './types';
 // Constants
 import { UE_SO_ISSO_PHASES } from './constants';
-import { DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
+import { DOUBLE_ROUNDS_THRESHOLD, GAME_NAMES } from '../../utils/constants';
 // Helpers
 import utils from '../../utils';
 // Internal
@@ -207,7 +207,18 @@ export const prepareGameOverPhase = async (
 
   const groupScore = determineGroupScore(players, state.round.total);
 
+  const winners = groupScore > 70 ? utils.players.getListOfPlayers(players) : [];
+
   await utils.firebase.markGameAsComplete(gameId);
+
+  await utils.user.saveGameToUsers({
+    gameName: GAME_NAMES.UE_SO_ISSO,
+    gameId,
+    startedAt: store.createdAt,
+    players,
+    winners,
+    achievements: [],
+  });
 
   // Save
   return {

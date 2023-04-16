@@ -9,6 +9,7 @@ import {
   TOTAL_GLYPHS,
   TOTAL_ROUNDS,
 } from './constants';
+import { GAME_NAMES } from '../../utils/constants';
 // Types
 import type { Character, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Utils
@@ -268,6 +269,15 @@ export const prepareGameOverPhase = async (
   await saveContendersGlyphs(store.contendersGlyphs ?? {});
 
   await utils.firebase.markGameAsComplete(gameId);
+
+  await utils.user.saveGameToUsers({
+    gameName: GAME_NAMES.QUEM_SOU_EU,
+    gameId,
+    startedAt: store.createdAt,
+    players,
+    winners,
+    achievements,
+  });
 
   return {
     set: {

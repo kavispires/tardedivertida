@@ -2,6 +2,7 @@
 import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Constants
 import { SONHOS_PESADELOS_PHASES, TOTAL_ROUNDS } from './constants';
+import { GAME_NAMES } from '../../utils/constants';
 // Helpers
 import utils from '../../utils';
 import {
@@ -139,6 +140,15 @@ export const prepareGameOverPhase = async (
   const winners = utils.players.determineWinners(players);
 
   await utils.firebase.markGameAsComplete(gameId);
+
+  await utils.user.saveGameToUsers({
+    gameName: GAME_NAMES.SONHOS_PESADELOS,
+    gameId,
+    startedAt: store.createdAt,
+    players,
+    winners,
+    achievements: [],
+  });
 
   return {
     set: {

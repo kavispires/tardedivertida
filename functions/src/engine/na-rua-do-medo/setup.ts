@@ -1,5 +1,6 @@
 // Constants
 import { NA_RUA_DO_MEDO_PHASES, OUTCOME_STATUS } from './constants';
+import { GAME_NAMES } from '../../utils/constants';
 // Types
 import type { FirebaseStateData, FirebaseStoreData, Outcome } from './types';
 // Utils
@@ -274,6 +275,15 @@ export const prepareGameOverPhase = async (
   const achievements = getAchievements(store);
 
   await utils.firebase.markGameAsComplete(gameId);
+
+  await utils.user.saveGameToUsers({
+    gameName: GAME_NAMES.NA_RUA_DO_MEDO,
+    gameId,
+    startedAt: store.createdAt,
+    players,
+    winners,
+    achievements,
+  });
 
   return {
     set: {

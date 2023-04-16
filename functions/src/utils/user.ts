@@ -96,7 +96,7 @@ export const mergeUserData = (uid: string, userData?: FirebaseFirestore.Document
 
 const isWinnableGame = (gameName: GameName): boolean => {
   // Non-winnable games only
-  return !['linhas-cruzadas', 'ue-so-isso'].includes(gameName);
+  return !['linhas-cruzadas', 'vamos-ao-cinema', 'ue-so-isso'].includes(gameName);
 };
 
 export const serializeUser = (dbUser: FirebaseUserDB): FirebaseUserUI => {

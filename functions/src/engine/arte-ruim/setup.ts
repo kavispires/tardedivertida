@@ -1,6 +1,7 @@
 // Types
 import type { ResourceData, FirebaseStateData, FirebaseStoreData } from './types';
 // Constants
+import { GAME_NAMES } from '../../utils/constants';
 import { ARTE_RUIM_PHASES, REGULAR_GAME_LEVELS, SHORT_GAME_LEVELS } from './constants';
 // Helpers
 import utils from '../../utils';
@@ -171,6 +172,15 @@ export const prepareGameOverPhase = async (
   const achievements = getAchievements(store);
 
   await utils.firebase.markGameAsComplete(gameId);
+
+  await utils.user.saveGameToUsers({
+    gameName: GAME_NAMES.ARTE_RUIM,
+    gameId,
+    startedAt: store.createdAt,
+    players,
+    winners,
+    achievements,
+  });
 
   return {
     set: {

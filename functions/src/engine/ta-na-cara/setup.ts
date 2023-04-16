@@ -6,6 +6,7 @@ import {
   QUESTIONS_PER_PLAYER,
   TA_NA_CARA_PHASES,
 } from './constants';
+import { GAME_NAMES } from '../../utils/constants';
 // Types
 import type { CharacterFace, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Utils
@@ -232,8 +233,6 @@ export const prepareGameOverPhase = async (
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 
-  await utils.firebase.markGameAsComplete(gameId);
-
   // Get current characters to the usedCharacters list to make the final gallery
   utils.players.getListOfPlayers(players).forEach((player) => {
     if (
@@ -259,6 +258,17 @@ export const prepareGameOverPhase = async (
   ]);
 
   const gallery = store.usedCharacters.reverse();
+
+  await utils.firebase.markGameAsComplete(gameId);
+
+  await utils.user.saveGameToUsers({
+    gameName: GAME_NAMES.TA_NA_CARA,
+    gameId,
+    startedAt: store.createdAt,
+    players,
+    winners,
+    achievements: [],
+  });
 
   return {
     update: {

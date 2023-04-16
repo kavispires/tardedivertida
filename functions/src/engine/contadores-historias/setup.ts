@@ -6,7 +6,7 @@ import {
   MAX_ROUNDS,
   TABLE_CARDS_BY_PLAYER_COUNT,
 } from './constants';
-import { DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
+import { DOUBLE_ROUNDS_THRESHOLD, GAME_NAMES } from '../../utils/constants';
 // Type
 import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Utils
@@ -203,6 +203,15 @@ export const prepareGameOverPhase = async (
   const achievements = getAchievements(store);
 
   await utils.firebase.markGameAsComplete(gameId);
+
+  await utils.user.saveGameToUsers({
+    gameName: GAME_NAMES.CONTADORES_HISTORIAS,
+    gameId,
+    startedAt: store.createdAt,
+    players,
+    winners,
+    achievements,
+  });
 
   return {
     set: {
