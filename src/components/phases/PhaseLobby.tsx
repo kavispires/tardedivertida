@@ -5,7 +5,7 @@ import { PHASES } from 'utils/phases';
 import { useStep } from 'hooks/useStep';
 import { useEffect } from 'react';
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
-import { useGlobalState } from 'hooks/useGlobalState';
+import { resetGlobalState, useGlobalState } from 'hooks/useGlobalState';
 // Components
 import { PhaseContainer } from 'components/phases';
 import { AvatarEntry } from 'components/avatars';
@@ -43,6 +43,9 @@ export function PhaseLobby({ players, info }: PhaseLobbyProps) {
       setUserId(player.id);
       setUsername(player.name);
       setUserAvatarId(player.avatarId);
+    } else {
+      setStep(1);
+      resetGlobalState();
     }
   }, [player, currentUser.id, setStep, setUserId, setUsername, setUserAvatarId]);
 
