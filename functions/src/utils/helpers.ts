@@ -70,11 +70,12 @@ export function getDefaultInitialState({
   store,
   options = {},
 }: InitialStateArgs): InitialState {
+  const createdAt = Date.now();
   return {
     meta: {
       gameId,
       gameName,
-      createdAt: Date.now(),
+      createdAt,
       createdBy: uid,
       min: playerCounts.MIN,
       max: playerCounts.MAX,
@@ -88,6 +89,7 @@ export function getDefaultInitialState({
     store: {
       language,
       options,
+      createdAt,
       ...store,
     },
     state: {

@@ -1,3 +1,7 @@
+import { getUserRef } from './firebase';
+import { removeDuplicates } from './game-utils';
+import { getListOfPlayers } from './players-utils';
+
 interface GameUserEntry {
   gameId: GameId;
   startedAt: number;
@@ -163,4 +167,125 @@ export const serializeUser = (dbUser: FirebaseUserDB): FirebaseUserUI => {
   };
 };
 
-// export const saveGameToUsers = (players)
+type SaveGameToUsersProps = {
+  gameName: string;
+  gameId: GameId;
+  startedAt: DateMilliseconds;
+  players: Players;
+  winners: Player[];
+  achievements: Achievement<unknown>[];
+};
+
+export const saveGameToUsers = async ({
+  gameName,
+  gameId,
+  startedAt,
+  players,
+  winners,
+  achievements,
+}: SaveGameToUsersProps) => {
+  const endedAt = Date.now();
+
+  // For each player, fetch data, then save
+
+  const playersList = getListOfPlayers(players);
+  const playerCount = playersList.length;
+  const placements = getPlayersPlacement(playersList);
+  const lastPlace = Math.max(...Object.values(placements));
+
+  for (const player of playersList) {
+    const { name, avatarId } = player;
+    const isWinner = winners.findIndex((p) => p.id === player.id) !== -1;
+
+    const placement = placements[player.id];
+    const gameEntry: GameUserEntry = {
+      gameId,
+      startedAt,
+      endedAt,
+      playerCount,
+      placement,
+      win: isWinner,
+      last: placement === lastPlace,
+      rating: 0,
+      achievements: [],
+    };
+
+    if (achievements.length > 0) {
+      gameEntry.achievements = achievements
+        .filter((entry) => entry.playerId === player.id)
+        .map((entry) => entry.type as string);
+    }
+
+    // Get each user
+    let user: FirebaseUserDB | null = null;
+    try {
+      user = await fetchUser(player.id);
+    } catch (_) {
+      // do nothing
+    }
+
+    if (user) {
+      // Name: keep latest name as the last one in the list
+      user.names = removeDuplicates([...(user?.names ?? []), name].reverse()).reverse();
+      // Avatars: Add one to the user avatar
+      if (user.avatars[avatarId] === undefined) {
+        user.avatars[avatarId] = 0;
+      }
+      user.avatars[avatarId] += 1;
+
+      // Save game entry
+      if (user.games[gameName] === undefined) {
+        user.games[gameName] = [];
+      }
+      user.games[gameName].push(gameEntry);
+
+      // Save each user
+      try {
+        await saveNewUserData(player.id, user);
+      } catch (_) {
+        // do nothing
+      }
+    }
+  }
+};
+
+function getPlayersPlacement(players: Player[]): NumberDictionary {
+  // Sort players by score in descending order
+  const sortedPlayers = players.sort((a, b) => b.score - a.score);
+
+  // Initialize an object to hold the player rankings
+  const rankings: { [key: string]: number } = {};
+
+  // Loop through sorted players and assign rankings
+  let rank = 1;
+  for (let i = 0; i < sortedPlayers.length; i++) {
+    // Check if this player has the same score as the previous player
+    if (i > 0 && sortedPlayers[i].score === sortedPlayers[i - 1].score) {
+      // If so, they share the same rank as the previous player
+      rankings[sortedPlayers[i].id] = rankings[sortedPlayers[i - 1].id];
+    } else {
+      // Otherwise, assign the next rank
+      rankings[sortedPlayers[i].id] = rank;
+    }
+    rank++;
+  }
+
+  return rankings;
+}
+
+async function fetchUser(id: string) {
+  const user = await getUserRef().doc(id).get();
+
+  // If the user object doesn't exist, ignore it
+  if (!user.exists) {
+    return null;
+  }
+
+  const data = user.data() as FirebaseUserDB;
+  return mergeUserData(id, data);
+}
+
+async function saveNewUserData(id: string, data: FirebaseUserDB) {
+  const userRef = getUserRef().doc(id);
+  await userRef.update({ ...data });
+}

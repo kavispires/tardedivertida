@@ -102,6 +102,7 @@ interface DefaultState {
 interface DefaultStore {
   language: Language;
   options?: BooleanDictionary;
+  createdAt: DateMilliseconds;
   [key: string]: any;
 }
 

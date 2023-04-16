@@ -313,7 +313,7 @@ export const addBots = (
 /**
  * Get list of non-bot players
  * @param players
- * @param includeBots
+ * @param includeBots default=false
  * @returns
  */
 export const getListOfPlayers = (players: Players, includeBots = false): Player[] => {
