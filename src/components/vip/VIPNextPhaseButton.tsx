@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { ReactNode } from 'react';
+import { ReactNode, useEffect } from 'react';
 // Ant Design Resources
 import { Tooltip } from 'antd';
 import { PauseOutlined, PlayCircleOutlined } from '@ant-design/icons';
@@ -75,6 +75,15 @@ export function VIPNextPhaseButton({ round, autoTriggerTime = 45, children }: VI
     onExpire: handleClick,
     disabled: !isVIP ?? !hasTimer,
   });
+
+  useEffect(() => {
+    if (isLoading) {
+      pause();
+    } else {
+      resume();
+    }
+    return () => pause();
+  }, [isLoading, resume, pause]);
 
   return (
     <VIPOnlyContainer
