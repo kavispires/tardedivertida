@@ -30,7 +30,7 @@ type SplitPlayers = {
 
 export function PhaseLobby({ players, info }: PhaseLobbyProps) {
   const { step, setStep } = useStep();
-  const { currentUser } = useCurrentUserContext();
+  const { currentUser, isAuthenticated } = useCurrentUserContext();
   const [, setUserId] = useGlobalState('userId');
   const [, setUsername] = useGlobalState('username');
   const [, setUserAvatarId] = useGlobalState('userAvatarId');
@@ -43,11 +43,14 @@ export function PhaseLobby({ players, info }: PhaseLobbyProps) {
       setUserId(player.id);
       setUsername(player.name);
       setUserAvatarId(player.avatarId);
-    } else {
+    } else if (isAuthenticated) {
       setStep(1);
       resetGlobalState();
+    } else {
+      setStep(0);
+      resetGlobalState();
     }
-  }, [player, currentUser.id, setStep, setUserId, setUsername, setUserAvatarId]);
+  }, [player, currentUser.id, setStep, setUserId, setUsername, setUserAvatarId, isAuthenticated]);
 
   const { left, right } = orderBy(Object.values(players), 'updatedAt').reduce(
     (acc: SplitPlayers, player, index) => {
