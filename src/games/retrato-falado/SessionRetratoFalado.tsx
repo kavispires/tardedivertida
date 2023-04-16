@@ -40,6 +40,7 @@ function SessionRetratoFalado() {
       theme={{
         token: {
           colorPrimary: THEME_COLORS.MOSS,
+          colorLink: THEME_COLORS.MOSS,
         },
       }}
     >

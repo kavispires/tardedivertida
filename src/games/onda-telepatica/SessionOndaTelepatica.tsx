@@ -40,6 +40,7 @@ function SessionOndaTelepatica() {
       theme={{
         token: {
           colorPrimary: THEME_COLORS.PLUMP_PURPLE,
+          colorLink: THEME_COLORS.PLUMP_PURPLE,
         },
       }}
     >

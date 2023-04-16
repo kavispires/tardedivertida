@@ -45,6 +45,7 @@ function SessionTestemunhaOcular() {
       theme={{
         token: {
           colorPrimary: THEME_COLORS.SLATE,
+          colorLink: THEME_COLORS.SLATE,
         },
       }}
     >

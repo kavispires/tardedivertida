@@ -43,6 +43,7 @@ function SessionQuemSouEu() {
       theme={{
         token: {
           colorPrimary: THEME_COLORS.DARK_BLUE,
+          colorLink: THEME_COLORS.DARK_BLUE,
         },
       }}
     >

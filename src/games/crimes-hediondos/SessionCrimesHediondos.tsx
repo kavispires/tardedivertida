@@ -43,6 +43,7 @@ function SessionCrimesHediondos() {
       theme={{
         token: {
           colorPrimary: THEME_COLORS.BLOOD,
+          colorLink: THEME_COLORS.BLOOD,
         },
       }}
     >

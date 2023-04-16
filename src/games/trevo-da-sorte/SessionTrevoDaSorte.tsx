@@ -45,6 +45,7 @@ function SessionTrevoDaSorte() {
       theme={{
         token: {
           colorPrimary: THEME_COLORS.GRASS,
+          colorLink: THEME_COLORS.GRASS,
         },
       }}
     >

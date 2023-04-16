@@ -46,6 +46,7 @@ function SessionEspiaoEntreNos() {
       theme={{
         token: {
           colorPrimary: THEME_COLORS.LIME,
+          colorLink: THEME_COLORS.LIME,
         },
       }}
     >
