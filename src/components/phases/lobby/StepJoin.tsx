@@ -1,13 +1,14 @@
 import { useQuery } from 'react-query';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 // Ant Design Resources
-import { Alert, Button, Divider, Space } from 'antd';
+import { Alert, Button, Divider, Modal, Space } from 'antd';
 // API & Hooks
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 // Services
 import { signInAsGuest } from 'services/firebase';
 // Components
 import { DualTranslate, Translate } from 'components/language';
+import { SignIn } from 'components/auth/SignIn';
 
 type StepJoinProps = {
   info: GameInfo;
@@ -18,7 +19,7 @@ export function StepJoin({ info, setStep }: StepJoinProps) {
   const { isAuthenticated } = useCurrentUserContext();
 
   const { isLoading, refetch, isError, error } = useQuery({
-    queryKey: 'sign-in',
+    queryKey: 'sign-in-anon',
     queryFn: async () => signInAsGuest,
     enabled: false,
     onSuccess: () => setStep(1),
@@ -58,14 +59,40 @@ export function StepJoin({ info, setStep }: StepJoinProps) {
         <Translate pt="ou" en="or" />
       </Divider>
       <Space split={<Divider type="vertical" />} className="lobby-step__space-buttons" size="small">
-        <Button type="link" block disabled>
-          <Translate pt="Fazer Login" en="Login" />
-        </Button>
+        <LoginButton disabled={isAuthenticated || isLoading} setStep={setStep} />
 
         <Button type="link" block disabled>
           <Translate pt="Cadastrar" en="Sign up" />
         </Button>
       </Space>
     </>
+  );
+}
+
+type LoginButtonProps = {
+  disabled: boolean;
+  setStep: GenericFunction;
+};
+function LoginButton({ disabled, setStep }: LoginButtonProps) {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div>
+      <Modal
+        open={open}
+        title={<Translate pt="Logar" en="LogIn" />}
+        // okText="Create"
+        cancelText="Cancel"
+        onCancel={() => setOpen(false)}
+        okButtonProps={{
+          disabled: true,
+        }}
+      >
+        <SignIn onSuccess={() => setStep(1)} />
+      </Modal>
+      <Button type="link" block disabled={disabled} onClick={() => setOpen(true)}>
+        <Translate pt="Fazer Login" en="Login" />
+      </Button>
+    </div>
   );
 }
