@@ -28,7 +28,8 @@ export const createPlayer = (
   id: PlayerId,
   name: PlayerName,
   avatarId: PlayerAvatarId,
-  players: Players = {}
+  players: Players = {},
+  isGuest?: boolean
 ): Player => {
   const playerList = Object.values(players);
   const usedAvatars = playerList.map((player) => player.avatarId);
@@ -44,6 +45,7 @@ export const createPlayer = (
     ready: false,
     score: 0,
     updatedAt: Date.now(),
+    isGuest: Boolean(isGuest),
   };
 };
 

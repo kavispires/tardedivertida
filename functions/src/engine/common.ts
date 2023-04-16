@@ -33,7 +33,7 @@ export const loadGame = async (data: LoadGamePayload) => {
  * @returns
  */
 export const addPlayer = async (data: AddPlayerPayload, context: FirebaseContext) => {
-  const { gameId, gameName, playerName, playerAvatarId } = data;
+  const { gameId, gameName, playerName, playerAvatarId, isGuest } = data;
 
   const actionText = 'add player';
   utils.firebase.verifyPayload(gameId, 'gameId', actionText);
@@ -75,7 +75,13 @@ export const addPlayer = async (data: AddPlayerPayload, context: FirebaseContext
   }
 
   try {
-    const newPlayer = utils.players.createPlayer(playerId, cleanPlayerName, `${playerAvatarId}`, players);
+    const newPlayer = utils.players.createPlayer(
+      playerId,
+      cleanPlayerName,
+      `${playerAvatarId}`,
+      players,
+      isGuest
+    );
     await sessionRef.doc('players').update({
       [playerId]: newPlayer,
     });
@@ -159,6 +165,7 @@ export const rateGame = async (data: ExtendedPayload) => {
 export const getUser = async (_: unknown, context: FirebaseContext) => {
   const userRef = utils.firebase.getUserRef();
   const uid = context?.auth?.uid;
+
   if (!uid) {
     return utils.firebase.throwException('User not authenticated', 'get user');
   }
@@ -167,7 +174,7 @@ export const getUser = async (_: unknown, context: FirebaseContext) => {
 
   // If the user object doesn't exist, just create one
   if (!user.exists) {
-    const newUser = utils.user.generateNewUser(uid);
+    const newUser = utils.user.generateNewUser(uid, context?.auth?.provider_id === 'anonymous');
     userRef.doc(uid).set(newUser);
 
     return utils.user.serializeUser(newUser);
