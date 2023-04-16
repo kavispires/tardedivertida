@@ -4,7 +4,9 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 // Ant Design Resources
 import { ConfigProvider, Layout } from 'antd';
 // Services
-import { AuthProvider, useCurrentUserContext } from 'services/AuthProvider';
+import { AuthProvider } from 'services/AuthProvider';
+// Hooks
+import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 // State
 import { useGlobalState } from 'hooks/useGlobalState';
 import { useLocalStorage } from 'hooks/useLocalStorage';

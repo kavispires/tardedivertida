@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useContext, useState } from 'react';
+import { ReactNode, createContext, useState } from 'react';
 import { auth } from './firebase';
 import type { User } from 'firebase/auth';
 import { useQuery } from 'react-query';
@@ -108,5 +108,3 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     </AuthContext.Provider>
   );
 };
-
-export const useCurrentUserContext = () => useContext(AuthContext);

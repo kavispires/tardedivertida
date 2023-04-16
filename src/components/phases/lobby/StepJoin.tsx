@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 // Ant Design Resources
 import { Alert, Button, Divider, Space } from 'antd';
 // API & Hooks
-import { useCurrentUserContext } from 'services/AuthProvider';
+import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 // Services
 import { signInAsGuest } from 'services/firebase';
 // Components

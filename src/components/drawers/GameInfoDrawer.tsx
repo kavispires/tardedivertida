@@ -5,7 +5,7 @@ import { Button, Divider, Drawer, Space } from 'antd';
 import { FireOutlined, SettingOutlined } from '@ant-design/icons';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
-import { useCurrentUserContext } from 'services/AuthProvider';
+import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 // Components
 import { SectionMeta } from './_internal/SectionMeta';
 import { SectionRankedPlayers } from './_internal/SectionRankedPlayers';

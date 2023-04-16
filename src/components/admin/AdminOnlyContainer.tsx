@@ -5,7 +5,7 @@ import { Space, SpaceProps } from 'antd';
 import { FireFilled } from '@ant-design/icons';
 // Hooks
 import { useGlobalState } from 'hooks/useGlobalState';
-import { useCurrentUserContext } from 'services/AuthProvider';
+import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 // Sass
 import './AdminOnlyContainer.scss';
 
