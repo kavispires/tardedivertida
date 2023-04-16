@@ -1,7 +1,7 @@
 import { useToggle } from 'react-use';
 import { useNavigate } from 'react-router-dom';
 // Ant Design Resources
-import { Button, Divider, Drawer, Space } from 'antd';
+import { Badge, Button, Divider, Drawer, Space } from 'antd';
 import { FireOutlined, SettingOutlined } from '@ant-design/icons';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
@@ -15,6 +15,7 @@ import { RulesModal } from 'components/rules';
 import { Translate } from 'components/language';
 import { PlayersStatusBar } from 'components/players/PlayersStatusBar';
 import { GameBanner } from 'components/general/GameBanner';
+import { Avatar } from 'components/avatars';
 
 type GameInfoDrawerProps = {
   players: GamePlayers;
@@ -28,7 +29,7 @@ export function GameInfoDrawer({ players, state, info, userId }: GameInfoDrawerP
   const [isDrawerOpen, toggleDrawer] = useToggle(false);
   const [isSettingsOpen, toggleSettingsDrawer] = useToggle(false);
   const navigate = useNavigate();
-  const { isAdmin } = useCurrentUserContext();
+  const { isAdmin, isAuthenticated, isAnonymous } = useCurrentUserContext();
 
   if (state.phase === 'LOBBY') {
     return <></>;
@@ -40,7 +41,7 @@ export function GameInfoDrawer({ players, state, info, userId }: GameInfoDrawerP
       <div className="game-info-drawer">
         <Button size="small" className="game-info-drawer__button" onClick={toggleDrawer}>
           {info.title?.[language] ?? '?'} <SettingOutlined />
-          <DebugOnly devOnly>{userId}</DebugOnly>
+          <DebugOnly devOnly>{players?.[userId]?.name}</DebugOnly>
         </Button>
 
         <Drawer
@@ -58,6 +59,15 @@ export function GameInfoDrawer({ players, state, info, userId }: GameInfoDrawerP
           />
 
           <Divider />
+
+          {isAuthenticated && !isAnonymous && (
+            <p>
+              <Badge size="default" dot color="green">
+                <Avatar id={players[userId].avatarId} shape="square" size="small" />
+              </Badge>{' '}
+              <Translate pt="Você está logado!" en="You are logged in!" />
+            </p>
+          )}
 
           <Space>
             <Button type="default" onClick={() => toggleSettingsDrawer(true)} icon={<SettingOutlined />}>
