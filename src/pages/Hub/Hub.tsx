@@ -1,38 +1,28 @@
 import { useMemo, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useEffectOnce, useTitle } from 'react-use';
 // Ant Design Resources
-import { Typography, Layout, Space, Divider, Button, message, Popconfirm } from 'antd';
+import { Typography, Layout, Space, Divider } from 'antd';
 import { DatabaseFilled } from '@ant-design/icons';
-// API
-import { signOut } from 'services/firebase';
+
 // Hooks
 import { useGlobalState } from 'hooks/useGlobalState';
 import { useLanguage } from 'hooks/useLanguage';
 import { useLocalStorage } from 'hooks/useLocalStorage';
 // Utils
 import GAME_LIST from 'utils/info';
+import { SEPARATOR, TAG_RULES } from 'utils/constants';
+import { calculateGameAverageDuration, isDevEnv } from 'utils/helpers';
 // Components
 import { GameCard } from './components/GameCard';
 import { LanguageSwitch, Translate } from 'components/language';
 import { DevHeader } from 'pages/Dev/DevHeader';
 import { DevEmulatorAlert } from './components/DevEmulatorAlert';
 import { Filters } from './components/Filters';
-import { SEPARATOR, TAG_RULES } from 'utils/constants';
-import { calculateGameAverageDuration, isDevEnv } from 'utils/helpers';
-
-// const TAGS_BY_TAG_GROUP = Object.keys(TAG_DICT).reduce((acc: Record<string, string[]>, key) => {
-//   if (acc[TAG_DICT[key].group] === undefined) {
-//     acc[TAG_DICT[key].group] = [];
-//   }
-//   acc[TAG_DICT[key].group].push(key);
-//   return acc;
-// }, {});
+import { LogoutButton } from 'components/auth/LogoutButton';
 
 function Hub() {
   useTitle('Hub - Tarde Divertida');
 
-  const navigate = useNavigate();
   const { language } = useLanguage();
   const [getLocalStorage] = useLocalStorage();
   const [, setLanguage] = useGlobalState('language');
@@ -45,16 +35,6 @@ function Hub() {
       setLanguage(prevLanguage);
     }
   });
-
-  const onSignOut = async () => {
-    try {
-      await signOut();
-
-      navigate('/');
-    } catch (error: any) {
-      message.error('Something went wrong', error);
-    }
-  };
 
   const gameList = useMemo(
     () =>
@@ -142,15 +122,7 @@ function Hub() {
         subTitle={<Translate pt="Selecione um jogo para começar" en="Select a game to start" />}
         extra={[
           <LanguageSwitch key="language-switch" />,
-          <Popconfirm
-            title={<Translate pt="Tem certeza?" en="Are you sure?" />}
-            onConfirm={onSignOut}
-            key="logout-button"
-          >
-            <Button danger ghost key="logout-button" size="small">
-              Logout
-            </Button>
-          </Popconfirm>,
+          <LogoutButton key="logout-button" danger ghost size="small" />,
         ]}
       />
 

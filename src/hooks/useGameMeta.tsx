@@ -30,6 +30,7 @@ export function useGameMeta(): GameMeta {
     enabled: Boolean(gameId),
     staleTime: 30 * 60 * 1000, // 30 minutes
     onSuccess: (response) => {
+      setLoader('load', true);
       const data = response.data as GameMeta;
       print({ meta: data });
       setLocalStorage({ language: data?.language ?? 'pt' });
