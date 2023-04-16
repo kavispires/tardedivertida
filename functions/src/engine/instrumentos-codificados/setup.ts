@@ -8,6 +8,7 @@ import {
   TOTAL_IMAGE_CARDS,
   TOTAL_ROUNDS,
 } from './constants';
+import { GAME_NAMES } from '../../utils/constants';
 // Utils
 import utils from '../../utils';
 // Internal
@@ -151,6 +152,15 @@ export const prepareGameOverPhase = async (
   const winners = utils.players.determineWinners(players);
 
   await utils.firebase.markGameAsComplete(gameId);
+
+  await utils.user.saveGameToUsers({
+    gameName: GAME_NAMES.INSTRUMENTOS_CODIFICADOS,
+    gameId,
+    startedAt: store.createdAt,
+    players,
+    winners,
+    achievements: [],
+  });
 
   return {
     set: {

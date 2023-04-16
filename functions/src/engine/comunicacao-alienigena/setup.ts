@@ -1,4 +1,5 @@
 // Constants
+import { GAME_NAMES } from '../../utils/constants';
 import { COMUNICACAO_ALIENIGENA_PHASES, ITEMS_COUNT, ITEM_TYPES } from './constants';
 // Types
 import type {
@@ -341,6 +342,15 @@ export const prepareGameOverPhase = async (
   await saveUsedItems(utils.helpers.buildIdDictionary(state.items));
 
   await utils.firebase.markGameAsComplete(gameId);
+
+  await utils.user.saveGameToUsers({
+    gameName: GAME_NAMES.COMUNICACAO_ALIENIGENA,
+    gameId,
+    startedAt: store.createdAt,
+    players,
+    winners,
+    achievements: [],
+  });
 
   return {
     set: {

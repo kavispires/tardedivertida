@@ -1,5 +1,6 @@
 // Constants
 import { CARDS_PER_GAME, CRIMES_HEDIONDOS_PHASES } from './constants';
+import { GAME_NAMES } from '../../utils/constants';
 // Types
 import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Utils
@@ -247,6 +248,15 @@ export const prepareGameOverPhase = async (
   );
 
   await utils.firebase.markGameAsComplete(gameId);
+
+  await utils.user.saveGameToUsers({
+    gameName: GAME_NAMES.CRIMES_HEDIONDOS,
+    gameId,
+    startedAt: store.createdAt,
+    players,
+    winners,
+    achievements: [],
+  });
 
   return {
     set: {

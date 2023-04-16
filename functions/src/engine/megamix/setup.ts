@@ -1,4 +1,5 @@
 import utils from '../../utils';
+import { GAME_NAMES } from '../../utils/constants';
 import { MEGAMIX_PHASES, TOTAL_CLUBBERS, WINNING_CONDITION } from './constants';
 import { distributeSeeds, getMostMatching, getMostVotes, getRanking, handleSeedingData } from './helpers';
 import { FirebaseStateData, FirebaseStoreData, ResourceData, Task } from './types';
@@ -165,6 +166,15 @@ export const prepareGameOverPhase = async (
   const fairWinners = utils.players.determineWinners(players);
 
   await utils.firebase.markGameAsComplete(gameId);
+
+  await utils.user.saveGameToUsers({
+    gameName: GAME_NAMES.MEGAMIX,
+    gameId,
+    startedAt: store.createdAt,
+    players,
+    winners,
+    achievements: [],
+  });
 
   return {
     set: {

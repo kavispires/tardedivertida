@@ -1,11 +1,11 @@
 // Constants
 import { CUSTOM_TOPICS_PER_ROUND, MAX_ROUNDS, POLEMICA_DA_VEZ_PHASES, TOPICS_PER_ROUND } from './constants';
+import { DOUBLE_ROUNDS_THRESHOLD, GAME_NAMES } from '../../utils/constants';
 // Types
 import type { FirebaseStateData, FirebaseStoreData } from './types';
 // Utils
 import utils from '../../utils';
 import { buildDeck, countLikes, getRanking } from './helpers';
-import { DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
 
 /**
  * Setup
@@ -168,6 +168,15 @@ export const prepareGameOverPhase = async (
   const winners = utils.players.determineWinners(players);
 
   await utils.firebase.markGameAsComplete(gameId);
+
+  await utils.user.saveGameToUsers({
+    gameName: GAME_NAMES.POLEMICA_DA_VEZ,
+    gameId,
+    startedAt: store.createdAt,
+    players,
+    winners,
+    achievements: [],
+  });
 
   return {
     set: {

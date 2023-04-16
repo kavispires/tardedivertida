@@ -1,9 +1,11 @@
 // Constants
 import { MOVIES_PER_ROUND, TOTAL_ROUNDS, VAMOS_AO_CINEMA_PHASES } from './constants';
+import { GAME_NAMES } from '../../utils/constants';
 // Types
 import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Utils
 import utils from '../../utils';
+// Internal
 import {
   getFinalMovieId,
   getFinalMovies,
@@ -11,7 +13,6 @@ import {
   getMovieTitle,
   getPhaseOutcome,
 } from './helpers';
-// Internal
 
 /**
  * Setup
@@ -244,6 +245,15 @@ export const prepareGameOverPhase = async (
   await utils.firebase.markGameAsComplete(gameId);
 
   const finalMovies = getFinalMovies(store.finalMovies, players);
+
+  await utils.user.saveGameToUsers({
+    gameName: GAME_NAMES.VAMOS_AO_CINEMA,
+    gameId,
+    startedAt: store.createdAt,
+    players,
+    winners: [],
+    achievements: [],
+  });
 
   return {
     set: {

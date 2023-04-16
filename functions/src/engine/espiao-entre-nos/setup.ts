@@ -6,6 +6,7 @@ import {
   RESOLUTIONS,
   TIMER_STATUS,
 } from './constants';
+import { GAME_NAMES } from '../../utils/constants';
 // Types
 import type { FirebaseStateData, FirebaseStoreData, Outcome, Resolution, ResourceData } from './types';
 // Utils
@@ -286,6 +287,15 @@ export const prepareGameOverPhase = async (
   const winners = utils.players.determineWinners(players);
 
   await utils.firebase.markGameAsComplete(gameId);
+
+  await utils.user.saveGameToUsers({
+    gameName: GAME_NAMES.ESPIAO_ENTRE_NOS,
+    gameId,
+    startedAt: store.createdAt,
+    players,
+    winners,
+    achievements: [],
+  });
 
   return {
     set: {
