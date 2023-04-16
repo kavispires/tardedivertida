@@ -13,11 +13,17 @@ type StepSecretClueWaitingProps = {
   user: GamePlayer;
   players: GamePlayers;
   turnOrder: PlayerId[];
-};
+} & AnnouncementProps;
 
-export function StepSecretClueWaiting({ leader, user, players, turnOrder }: StepSecretClueWaitingProps) {
+export function StepSecretClueWaiting({
+  leader,
+  user,
+  players,
+  turnOrder,
+  announcement,
+}: StepSecretClueWaitingProps) {
   return (
-    <Step fullWidth>
+    <Step fullWidth announcement={announcement}>
       <Title>
         <IconAvatar icon={<AnimatedClockIcon />} size="large" />{' '}
         <Translate pt="Aguarde..." en="Please wait..." />
@@ -33,7 +39,7 @@ export function StepSecretClueWaiting({ leader, user, players, turnOrder }: Step
         />
       </Instruction>
 
-      <TurnOrder players={players} activePlayerId={leader.id} order={turnOrder} />
+      <TurnOrder players={players} activePlayerId={leader.id} order={turnOrder} reorderByUser={leader.id} />
 
       <FloatingHand>
         <ImageCardHand hand={user.hand} sizeRatio={6} />

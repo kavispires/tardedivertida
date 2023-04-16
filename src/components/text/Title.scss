@@ -42,4 +42,12 @@
   &#{$self}--xx-small {
     font-size: 1.15rem;
   }
+
+  &#{$self}--align-left {
+    text-align: left;
+  }
+
+  &#{$self}--align-right {
+    text-align: right;
+  }
 }

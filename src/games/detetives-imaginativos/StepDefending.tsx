@@ -47,7 +47,7 @@ export function StepDefending({
   const { translate } = useLanguage();
 
   useEffect(() => {
-    if (isUserTheCurrentPlayer && !isLoading) {
+    if (isUserTheCurrentPlayer && !isLoading && Date.now() - user.updatedAt > 3000000) {
       message.info(
         messageContent(
           translate('Sua vez de defender suas escolhas!', "It's your turn to defend your choices"),
@@ -61,7 +61,7 @@ export function StepDefending({
         )
       );
     }
-  }, [isUserTheCurrentPlayer, currentPlayer?.id, translate, isLoading]);
+  }, [isUserTheCurrentPlayer, currentPlayer?.id, translate, isLoading, user.updatedAt]);
 
   return (
     <Step>

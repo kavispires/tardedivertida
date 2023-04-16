@@ -84,7 +84,7 @@ function LoginButton({ disabled, setStep }: LoginButtonProps) {
         cancelText={<Translate pt="Cancelar" en="Cancel" />}
         onCancel={() => setOpen(false)}
         okButtonProps={{
-          disabled: true,
+          style: { display: 'none' },
         }}
       >
         <SignIn onSuccess={() => setStep(1)} />
@@ -112,7 +112,7 @@ function SignUpButton({ disabled, setStep }: SignUpButtonProps) {
         cancelText={<Translate pt="Cancelar" en="Cancel" />}
         onCancel={() => setOpen(false)}
         okButtonProps={{
-          disabled: true,
+          style: { display: 'none' },
         }}
       >
         <SignUp onSuccess={() => setStep(1)} />

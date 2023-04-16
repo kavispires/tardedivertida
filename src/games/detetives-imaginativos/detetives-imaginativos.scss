@@ -6,9 +6,11 @@
   width: 100%;
   max-width: 94vw;
   overflow-x: auto;
+  flex-wrap: wrap;
   padding: get-unit(2);
   background-color: rgba($color: white, $alpha: 0.3);
   border-radius: $border-radius;
+  justify-content: center;
 
   &--center {
     justify-content: center;
@@ -18,7 +20,7 @@
   &__player-entry {
     background-color: rgba($color: white, $alpha: 0.3);
     border-radius: $border-radius;
-    margin-right: get-unit(1);
+    margin: get-unit(0 1 1 0);
     padding: get-unit(1);
     transition: 2s all;
   }

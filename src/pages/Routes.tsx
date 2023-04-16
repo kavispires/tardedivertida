@@ -8,6 +8,7 @@ import { LoadingPage } from 'components/loaders';
 import Home from './Home/Home';
 import Login from './Login/Login';
 // Routes Lazy load
+const Me = lazy(() => import('pages/Me/Me' /* webpackChunkName: "page-me" */));
 const Hub = lazy(() => import('pages/Hub/Hub' /* webpackChunkName: "page-hub" */));
 const Game = lazy(() => import('pages/Game/Game' /* webpackChunkName: "page-game" */));
 const Showcase = lazy(() => import('pages/Showcase/Showcase' /* webpackChunkName: "page-showcase" */));
@@ -22,6 +23,11 @@ const DevClassifier = lazy(
   () => import('pages/Dev/Classifier/ItemClassifier' /* webpackChunkName: "page-dev-classifier" */)
 );
 
+const LazyMe = () => (
+  <Suspense fallback={<LoadingPage message={''} />}>
+    <Me />
+  </Suspense>
+);
 const LazyHub = () => (
   <Suspense fallback={<LoadingPage message={''} />}>
     <Hub />
@@ -85,6 +91,7 @@ export const routes = (
   <Routes>
     <Route path="/" element={<Home />} />
     <Route path="/login" element={<Login />} />
+    <Route path="/me" element={<LazyMe />} />
     <Route
       path="/hub"
       element={
