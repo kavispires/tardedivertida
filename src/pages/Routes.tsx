@@ -1,7 +1,7 @@
 import { lazy, Suspense, ReactNode } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 // Hooks
-import { useCurrentUserContext } from 'services/AuthProvider';
+import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 // Components
 import { LoadingPage } from 'components/loaders';
 // Pages

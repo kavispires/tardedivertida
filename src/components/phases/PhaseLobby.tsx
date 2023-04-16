@@ -4,7 +4,7 @@ import { PHASES } from 'utils/phases';
 // Hooks
 import { useStep } from 'hooks/useStep';
 import { useEffect } from 'react';
-import { useCurrentUserContext } from 'services/AuthProvider';
+import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 import { useGlobalState } from 'hooks/useGlobalState';
 // Components
 import { PhaseContainer } from 'components/phases';

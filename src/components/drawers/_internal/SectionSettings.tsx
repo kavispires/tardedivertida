@@ -5,7 +5,7 @@ import { InfoCircleOutlined } from '@ant-design/icons';
 import { useDevFeatures } from 'hooks/useDevFeatures';
 import { useGlobalState } from 'hooks/useGlobalState';
 import { useLocalStorage } from 'hooks/useLocalStorage';
-import { useCurrentUserContext } from 'services/AuthProvider';
+import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 // Components
 import { LanguageSwitch, Translate } from 'components/language';
 import { BlurOptions } from './BlurOptions';

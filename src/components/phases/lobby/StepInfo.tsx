@@ -5,7 +5,7 @@ import { Alert, Button, Input, Tooltip } from 'antd';
 import { InfoCircleOutlined } from '@ant-design/icons';
 // API & Hooks
 import { useLanguage } from 'hooks/useLanguage';
-import { useCurrentUserContext } from 'services/AuthProvider';
+import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 import { useAddPlayer } from 'hooks/useAddPlayer';
 // Services
 import localStorage from 'services/localStorage';

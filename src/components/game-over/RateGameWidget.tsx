@@ -12,7 +12,7 @@ import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 import { useGlobalState } from 'hooks/useGlobalState';
 import { useGameMeta } from 'hooks/useGameMeta';
-import { useCurrentUserContext } from 'services/AuthProvider';
+import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
