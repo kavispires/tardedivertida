@@ -42,6 +42,7 @@ function SessionPortaDosDesesperados() {
       theme={{
         token: {
           colorPrimary: THEME_COLORS.MIDNIGHT,
+          colorLink: THEME_COLORS.MIDNIGHT,
         },
       }}
     >

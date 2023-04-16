@@ -48,6 +48,7 @@ function SessionSuperCampeonato() {
       theme={{
         token: {
           colorPrimary: THEME_COLORS.RUSSIAN_VIOLET,
+          colorLink: THEME_COLORS.RUSSIAN_VIOLET,
         },
       }}
     >

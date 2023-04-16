@@ -7,12 +7,6 @@ import { Session } from 'components/session';
 import { PhaseLobby, PhasePlaceholder, PhaseRules, PhaseSetup } from 'components/phases';
 import { PageError } from 'components/errors';
 
-ConfigProvider.config({
-  theme: {
-    primaryColor: THEME_COLORS.DEFAULT,
-  },
-});
-
 function getActiveComponent(phase: string) {
   switch (phase) {
     case PHASES.DEFAULT.LOBBY:
@@ -32,10 +26,19 @@ function getActiveComponent(phase: string) {
 
 function SessionCinegrafistasAmadores() {
   return (
-    <Session
-      gameCollection={GAME_COLLECTION.CINEGRAFISTAS_AMADORES}
-      getActiveComponent={getActiveComponent}
-    />
+    <ConfigProvider
+      theme={{
+        token: {
+          colorPrimary: THEME_COLORS.DEFAULT,
+          colorLink: THEME_COLORS.DEFAULT,
+        },
+      }}
+    >
+      <Session
+        gameCollection={GAME_COLLECTION.CINEGRAFISTAS_AMADORES}
+        getActiveComponent={getActiveComponent}
+      />
+    </ConfigProvider>
   );
 }
 

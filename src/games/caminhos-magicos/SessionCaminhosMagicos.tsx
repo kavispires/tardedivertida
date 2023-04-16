@@ -30,6 +30,7 @@ function SessionCaminhosMagicos() {
       theme={{
         token: {
           colorPrimary: THEME_COLORS.DEFAULT,
+          colorLink: THEME_COLORS.DEFAULT,
         },
       }}
     >

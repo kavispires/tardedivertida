@@ -40,6 +40,7 @@ function SessionCruzaPalavras() {
       theme={{
         token: {
           colorPrimary: THEME_COLORS.FOREST,
+          colorLink: THEME_COLORS.FOREST,
         },
       }}
     >

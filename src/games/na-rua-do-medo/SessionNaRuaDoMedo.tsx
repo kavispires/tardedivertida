@@ -40,6 +40,7 @@ function SessionNaRuaDoMedo() {
       theme={{
         token: {
           colorPrimary: THEME_COLORS.ORANGE,
+          colorLink: THEME_COLORS.ORANGE,
         },
       }}
     >

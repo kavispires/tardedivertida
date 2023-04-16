@@ -40,6 +40,7 @@ function SessionArteRuim() {
       theme={{
         token: {
           colorPrimary: THEME_COLORS.WOOD,
+          colorLink: THEME_COLORS.WOOD,
         },
       }}
     >

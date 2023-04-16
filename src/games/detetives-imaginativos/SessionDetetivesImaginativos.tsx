@@ -46,6 +46,7 @@ function SessionDetetivesImaginativos() {
       theme={{
         token: {
           colorPrimary: THEME_COLORS.WINE,
+          colorLink: THEME_COLORS.WINE,
         },
       }}
     >
