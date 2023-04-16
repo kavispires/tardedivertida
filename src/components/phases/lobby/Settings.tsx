@@ -1,3 +1,4 @@
+import { useEffectOnce } from 'react-use';
 // Ant Design Resources
 import { Button, Divider, Space, Switch, Tooltip } from 'antd';
 import { InfoCircleOutlined } from '@ant-design/icons';
@@ -10,7 +11,12 @@ import { Translate } from 'components/language';
 export function Settings() {
   const [blurEnabled, setBlurEnabled] = useGlobalState('blurEnabled');
   const [volume, setVolume] = useGlobalState('volume');
-  const [, setLocalStorage] = useLocalStorage();
+  const [getLocalStorage, setLocalStorage] = useLocalStorage();
+
+  useEffectOnce(() => {
+    setBlurEnabled(getLocalStorage('blurEnabled'));
+    setVolume(getLocalStorage('volume'));
+  });
 
   const onBlurSwitchClick = (value: boolean) => {
     setBlurEnabled(value);
