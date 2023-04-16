@@ -49,9 +49,9 @@ export function ConvertGuestToAccount({ onSuccess }: ConvertGuestToAccountProps)
 
 export function ConvertGuestToAccountModal() {
   const [open, setOpen] = useState(false);
-  const { isGuest, currentUser } = useCurrentUserContext();
+  const { isGuest } = useCurrentUserContext();
   const queryClient = useQueryClient();
-  console.log({ isGuest, currentUser });
+
   if (!isGuest) return <></>;
 
   const invalidateUser = () => queryClient.invalidateQueries({ queryKey: ['user'] });
