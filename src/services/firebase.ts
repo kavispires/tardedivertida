@@ -4,6 +4,7 @@ import {
   Auth,
   createUserWithEmailAndPassword,
   getAuth,
+  signInAnonymously,
   signInWithEmailAndPassword,
   UserCredential,
 } from 'firebase/auth';
@@ -63,6 +64,14 @@ export function signUp(email: string, password: string): Promise<UserCredential>
  */
 export function signIn(email: string, password: string): Promise<UserCredential> {
   return signInWithEmailAndPassword(auth, email, password);
+}
+
+/**
+ * Signs in user anonymously as a guest
+ * @returns
+ */
+export function signInAsGuest(): Promise<UserCredential> {
+  return signInAnonymously(auth);
 }
 
 /**

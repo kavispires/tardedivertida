@@ -27,6 +27,7 @@ interface FirebaseUserDB {
 interface FirebaseUserUI {
   id: string;
   isAdmin: boolean;
+  names: string[];
   // Top 3 avatars
   avatars: AvatarId[];
   gender?: string;
@@ -144,6 +145,7 @@ export const serializeUser = (dbUser: FirebaseUserDB): FirebaseUserUI => {
 
   return {
     id: dbUser.id,
+    names: dbUser?.names ?? [],
     isAdmin: !!dbUser.isAdmin,
     avatars: topAvatars,
     statistics: {

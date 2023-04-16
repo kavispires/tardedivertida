@@ -1,5 +1,8 @@
+// Ant Design Resources
 import { Image } from 'antd';
+// Hooks
 import { useLanguage } from 'hooks/useLanguage';
+// Utils
 import { PUBLIC_URL } from 'utils/constants';
 
 type BannerProps = {
@@ -25,12 +28,14 @@ export function GameBanner({ title, gameName, className, preview }: BannerProps)
   const { language } = useLanguage();
 
   return (
-    <Image
-      alt={title?.[language]}
-      src={`${PUBLIC_URL.BANNERS}${gameName}-${language}.jpg`}
-      fallback={`${PUBLIC_URL.BANNERS}/em-breve.jpg`}
-      className={className}
-      preview={preview}
-    />
+    <figure>
+      <Image
+        alt={title?.[language]}
+        src={`${PUBLIC_URL.BANNERS}${gameName}-${language}.jpg`}
+        fallback={`${PUBLIC_URL.BANNERS}/em-breve.jpg`}
+        className={className}
+        preview={preview}
+      />
+    </figure>
   );
 }

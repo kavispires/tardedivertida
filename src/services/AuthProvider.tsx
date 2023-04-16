@@ -12,6 +12,7 @@ import { useLanguage } from 'hooks/useLanguage';
 const DEFAULT_ME_DATA: Me = {
   id: 'anonymous',
   isAdmin: false,
+  names: [],
   avatars: [],
   statistics: {
     gamesPlayed: 0,
@@ -51,9 +52,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     auth.onAuthStateChanged((user) => {
       if (user) {
         setAuthenticatedUser(user);
-        message.info(
-          translate('Você foi logado de volta automaticamente.', "You've been logged back in automatically")
-        );
+        message.info(translate('Você está logado.', 'You are logged in'));
       } else {
         setAuthenticatedUser(null);
       }
