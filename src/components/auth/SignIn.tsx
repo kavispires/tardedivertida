@@ -3,12 +3,11 @@ import { useQuery } from 'react-query';
 import { Button, Form, Input, Alert, Image } from 'antd';
 // API
 import { signIn } from 'services/firebase';
+// Hooks
+import { useLanguage } from 'hooks/useLanguage';
 // Image
 import logo from 'assets/images/tarde-divertida-logo.svg';
 import { Translate } from 'components/language';
-// Sass
-import './SignIn.scss';
-import { useLanguage } from 'hooks/useLanguage';
 
 type SignInProps = {
   onSuccess: GenericFunction;

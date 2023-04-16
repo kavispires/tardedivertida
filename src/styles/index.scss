@@ -14,6 +14,7 @@
 @import './global';
 
 // Shared Components
+@import '../components/auth/auth.scss';
 @import '../components/loaders/loaders.scss';
 @import '../components/phases/PhaseContainer.scss';
 @import '../components/phases/PhaseRules.scss';

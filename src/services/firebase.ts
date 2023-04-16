@@ -3,7 +3,9 @@ import { getFirestore, connectFirestoreEmulator, Firestore } from 'firebase/fire
 import {
   Auth,
   createUserWithEmailAndPassword,
+  EmailAuthProvider,
   getAuth,
+  linkWithCredential,
   signInAnonymously,
   signInWithEmailAndPassword,
   UserCredential,
@@ -82,6 +84,16 @@ export async function signOut(): Promise<void> {
   return auth.signOut().then(() => {
     message.warning(`You've been signed out`);
   });
+}
+
+/**
+ * Sign in user via email through firebase auth
+ * @param email
+ * @param password
+ * @returns
+ */
+export function convertGuestoToUser(email: string, password: string): Promise<UserCredential> {
+  return linkWithCredential(auth.currentUser!, EmailAuthProvider.credential(email, password));
 }
 
 export const getFirebaseUrl = (usingEmulators: boolean, gameCollection: GameName, gameId: GameId) => {
