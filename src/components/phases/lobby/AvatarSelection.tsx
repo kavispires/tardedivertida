@@ -37,7 +37,6 @@ export function AvatarSelection({
     );
 
     if (!newAvailableAvatars.includes(selectedAvatar)) {
-      console.log('INCLUDES', selectedAvatar);
       setSelectedAvatar(getRandomItem(newAvailableAvatars));
     }
 

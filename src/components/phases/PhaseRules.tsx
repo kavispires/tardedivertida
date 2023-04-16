@@ -24,6 +24,7 @@ import { LoadingPage } from 'components/loaders';
 import { Translate } from 'components/language';
 import { Title } from 'components/text';
 import { RulesCarousel } from '../rules';
+import { useEffectOnce } from 'react-use';
 
 type PhaseRulesProps = {
   players: GamePlayers;
@@ -35,6 +36,11 @@ export function PhaseRules({ players, info }: PhaseRulesProps) {
   const { language, translate } = useLanguage();
   const user = useUser(players);
   const [volume] = useGlobalState('volume');
+  const [, setIsAdminEnabled] = useGlobalState('isAdminEnabled');
+
+  useEffectOnce(() => {
+    setIsAdminEnabled(true);
+  });
 
   const gameId = useGameId();
   // TODO: check if this is working
