@@ -12,7 +12,7 @@ function PhaseGameOver({ state, info, players }: PhaseProps) {
   const cardWidth = useCardWidth(slideCount, 32, 100);
 
   return (
-    <GameOverWrapper info={info} state={state} announcementIcon={<TheEndIcon />}>
+    <GameOverWrapper info={info} state={state} players={players} announcementIcon={<TheEndIcon />}>
       <ul className="l-album-strips">
         {state.album.map((albumEntry: LAlbumEntry) => (
           <li key={`album-strip-${albumEntry.id}`} className="l-album-strip-entry">

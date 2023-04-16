@@ -12,7 +12,7 @@ import { FinalCharacter } from './components/FinalCharacter';
 
 function PhaseGameOver({ state, players, info, meta }: PhaseProps) {
   return (
-    <GameOverWrapper info={info} state={state} announcementIcon={<TrophyIcon />}>
+    <GameOverWrapper info={info} state={state} players={players} announcementIcon={<TrophyIcon />}>
       <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
 
       <Space className="space-container" wrap>

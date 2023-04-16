@@ -13,7 +13,7 @@ function PhaseGameOver({ state, players, info }: PhaseProps) {
   const playerCount = Object.keys(players).length;
 
   return (
-    <GameOverWrapper announcementIcon={<TrophyIcon />} info={info} state={state}>
+    <GameOverWrapper announcementIcon={<TrophyIcon />} info={info} state={state} players={players}>
       <ul
         className="p-all-topics"
         style={{ gridTemplateColumns: `repeat(${playerCount % 3 === 0 ? 3 : 5}, 1fr)` }}

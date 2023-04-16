@@ -19,6 +19,10 @@ type GameOverWrapperProps = {
    */
   state: GameState;
   /**
+   * The game players
+   */
+  players: GamePlayers;
+  /**
    * The additional content of the screen
    */
   children?: ReactNode;
@@ -47,6 +51,7 @@ type GameOverWrapperProps = {
 export function GameOverWrapper({
   info,
   state,
+  players,
   announcementIcon = <TheEndIcon />,
   announcementTitle,
   announcementDuration = 3,
@@ -77,7 +82,7 @@ export function GameOverWrapper({
       allowedPhase={PHASES.DEFAULT.GAME_OVER}
       className="game-over__container"
     >
-      <StepSwitcher step={step}>
+      <StepSwitcher step={step} players={players}>
         {/*Step 0 */}
         <GameOver
           state={state}

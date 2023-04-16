@@ -15,6 +15,7 @@ function PhaseGameOver({ state, players, info }: PhaseProps) {
     <GameOverWrapper
       info={info}
       state={state}
+      players={players}
       announcementIcon={<TrophyIcon />}
       rateWidgetCustomText={
         <Translate
