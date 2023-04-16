@@ -9,6 +9,7 @@ import { signInAsGuest } from 'services/firebase';
 // Components
 import { DualTranslate, Translate } from 'components/language';
 import { SignIn } from 'components/auth/SignIn';
+import { SignUp } from 'components/auth/SignUp';
 
 type StepJoinProps = {
   info: GameInfo;
@@ -61,9 +62,7 @@ export function StepJoin({ info, setStep }: StepJoinProps) {
       <Space split={<Divider type="vertical" />} className="lobby-step__space-buttons" size="small">
         <LoginButton disabled={isAuthenticated || isLoading} setStep={setStep} />
 
-        <Button type="link" block disabled>
-          <Translate pt="Cadastrar" en="Sign up" />
-        </Button>
+        <SignUpButton disabled={isAuthenticated || isLoading} setStep={setStep} />
       </Space>
     </>
   );
@@ -73,6 +72,7 @@ type LoginButtonProps = {
   disabled: boolean;
   setStep: GenericFunction;
 };
+
 function LoginButton({ disabled, setStep }: LoginButtonProps) {
   const [open, setOpen] = useState(false);
 
@@ -81,8 +81,7 @@ function LoginButton({ disabled, setStep }: LoginButtonProps) {
       <Modal
         open={open}
         title={<Translate pt="Logar" en="LogIn" />}
-        // okText="Create"
-        cancelText="Cancel"
+        cancelText={<Translate pt="Cancelar" en="Cancel" />}
         onCancel={() => setOpen(false)}
         okButtonProps={{
           disabled: true,
@@ -92,6 +91,34 @@ function LoginButton({ disabled, setStep }: LoginButtonProps) {
       </Modal>
       <Button type="link" block disabled={disabled} onClick={() => setOpen(true)}>
         <Translate pt="Fazer Login" en="Login" />
+      </Button>
+    </div>
+  );
+}
+
+type SignUpButtonProps = {
+  disabled: boolean;
+  setStep: GenericFunction;
+};
+
+function SignUpButton({ disabled, setStep }: SignUpButtonProps) {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div>
+      <Modal
+        open={open}
+        title={<Translate pt="Cadastro" en="Sign Up Form" />}
+        cancelText={<Translate pt="Cancelar" en="Cancel" />}
+        onCancel={() => setOpen(false)}
+        okButtonProps={{
+          disabled: true,
+        }}
+      >
+        <SignUp onSuccess={() => setStep(1)} />
+      </Modal>
+      <Button type="link" block disabled={disabled} onClick={() => setOpen(true)}>
+        <Translate pt="Cadastrar" en="Sign up" />
       </Button>
     </div>
   );
