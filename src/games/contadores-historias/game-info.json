@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "C",
   "gameName": "contadores-historias",
-  "version": "3.0.4",
+  "version": "3.0.5",
   "title": {
     "pt": "Contadores de Histórias",
     "en": "Storytellers"

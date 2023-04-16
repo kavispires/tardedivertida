@@ -12,7 +12,7 @@ function PhaseGameOver({ state, players, info }: PhaseProps) {
   const user = useUser(players, state);
 
   return (
-    <GameOverWrapper info={info} state={state} announcementIcon={<TrophyIcon />}>
+    <GameOverWrapper info={info} state={state} players={players} announcementIcon={<TrophyIcon />}>
       <ul>
         {orderBy(crimes, ['playerId']).map((crime) => (
           <Crime

@@ -20,6 +20,7 @@ function PhaseGameOver({ players, state, info }: PhaseProps) {
     <GameOverWrapper
       info={info}
       state={state}
+      players={players}
       announcementIcon={isVictory ? <MagicCultLeaderIcon /> : <MagicSkullIcon />}
       announcementTitle={<Translate pt="A jornada chegou ao fim!" en="The journey has come to an end!" />}
       announcementContent={<Instruction>...</Instruction>}

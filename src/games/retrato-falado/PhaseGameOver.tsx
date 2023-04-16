@@ -12,7 +12,7 @@ function PhaseGameOver({ state, info, players }: PhaseProps) {
   const canvasWidth = useCardWidth(6, 16, 150, 500);
 
   return (
-    <GameOverWrapper info={info} state={state} announcementIcon={<TrophyIcon />}>
+    <GameOverWrapper info={info} state={state} players={players} announcementIcon={<TrophyIcon />}>
       <div>
         <Title level={2}>
           <Translate pt="Desenhos" en="Sketches" />

@@ -10,10 +10,10 @@ import { GameOverWrapper } from 'components/game-over';
 import { Translate } from 'components/language';
 import { TextHighlight, Title } from 'components/text';
 
-function PhaseGameOver({ state, info }: PhaseProps) {
+function PhaseGameOver({ state, info, players }: PhaseProps) {
   const posterWidth = useCardWidth(8, 16, 80, 150, 32);
   return (
-    <GameOverWrapper info={info} state={state} announcementIcon={<FlagIcon />}>
+    <GameOverWrapper info={info} state={state} players={players} announcementIcon={<FlagIcon />}>
       <Space className="space-container" direction="vertical">
         <Title size="xx-small">
           <Translate pt="Pontuação" en="Score" />

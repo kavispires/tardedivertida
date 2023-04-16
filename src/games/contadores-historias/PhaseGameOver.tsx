@@ -8,7 +8,7 @@ import { Achievements } from 'components/general/Achievements';
 
 function PhaseGameOver({ state, info, players }: PhaseProps) {
   return (
-    <GameOverWrapper info={info} state={state} announcementIcon={<TrophyIcon />}>
+    <GameOverWrapper info={info} state={state} players={players} announcementIcon={<TrophyIcon />}>
       <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
     </GameOverWrapper>
   );
