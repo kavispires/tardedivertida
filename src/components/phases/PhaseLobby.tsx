@@ -15,6 +15,8 @@ import { StepJoin } from './lobby/StepJoin';
 import { LobbyStep } from './lobby/LobbyStep';
 import { StepInfo } from './lobby/StepInfo';
 import { StepWaiting } from './lobby/StepWaiting';
+// Sass
+import './PhaseLobby.scss';
 
 type PhaseLobbyProps = {
   players: GamePlayers;
