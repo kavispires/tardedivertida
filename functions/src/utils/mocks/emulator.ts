@@ -1,8 +1,8 @@
 // Constants
-import { DATA_DOCUMENTS, GLOBAL_USED_DOCUMENTS, USED_GAME_IDS } from '../utils/constants';
+import { DATA_DOCUMENTS, GLOBAL_USED_DOCUMENTS, USED_GAME_IDS } from '../constants';
 // Utils
-import utils from '../utils';
-import aliemItemsMock from '../utils/mocks/alien-items.json';
+import utils from '..';
+import aliemItemsMock from './alien-items.json';
 
 /**
  * Feeds basic data to the emulator DB
@@ -31,19 +31,8 @@ export const feedEmulatorDB = async () => {
 
   // USERS
   const emulateUid = utils.firebase.config().emulator_admin_uid;
-  await utils.firebase
-    .getUserRef()
-    .doc(emulateUid)
-    .set({
-      id: emulateUid,
-      isAdmin: true,
-      names: ['Bob', 'Kavis'],
-      avatars: {
-        '43': 13,
-        '21': 2,
-        '1': 10,
-      },
-    });
+  const emulateUser = utils.firebase.config().user_sample;
+  await utils.firebase.getUserRef().doc(emulateUid).set(JSON.parse(emulateUser));
 
   await Promise.all(usedEntries);
 };
