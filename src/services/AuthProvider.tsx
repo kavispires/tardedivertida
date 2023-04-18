@@ -8,6 +8,16 @@ import { message, notification } from 'antd';
 import { print } from 'utils/helpers';
 import { useEffectOnce } from 'react-use';
 import { useLanguage } from 'hooks/useLanguage';
+import { useGlobalState } from 'hooks/useGlobalState';
+
+const PLACEHOLDER_GAME_USER_ENTRY = {
+  gameId: '',
+  startedAt: 0,
+  endedAt: 0,
+  playerCount: 0,
+  placement: 0,
+  achievements: [],
+};
 
 const DEFAULT_ME_DATA: Me = {
   id: 'anonymous',
@@ -15,14 +25,23 @@ const DEFAULT_ME_DATA: Me = {
   names: [],
   avatars: [],
   statistics: {
-    gamesPlayed: 0,
+    plays: 0,
     uniqueGamesPlayed: 0,
     winnableGames: 0,
     win: 0,
     last: 0,
     achievements: 0,
-    lastPlay: 0,
     totalPlayDuration: 0,
+    latestPlay: PLACEHOLDER_GAME_USER_ENTRY,
+    shortestPlay: PLACEHOLDER_GAME_USER_ENTRY,
+    longestPlay: PLACEHOLDER_GAME_USER_ENTRY,
+    firstPlay: PLACEHOLDER_GAME_USER_ENTRY,
+    mostPlayedGame: '',
+    leastPlayedGame: '',
+    favoriteGame: '',
+    leastFavoriteGame: '',
+    bestAtGame: '',
+    worstAtGame: '',
   },
   games: {},
 };
@@ -49,11 +68,13 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [authenticatedUser, setAuthenticatedUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const { translate } = useLanguage();
+  const [, setUserId] = useGlobalState('userId');
 
   useEffectOnce(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
         setAuthenticatedUser(user);
+        setUserId(user.uid);
         message.info(translate('Você está logado.', 'You are logged in'));
       } else {
         setAuthenticatedUser(null);

@@ -27,11 +27,15 @@ const queryClient = new QueryClient({
 function App() {
   const [, setBlurEnabled] = useGlobalState('blurEnabled');
   const [, setVolume] = useGlobalState('volume');
+  const [, setUsername] = useGlobalState('username');
+  const [, setUserAvatarId] = useGlobalState('userAvatarId');
   const [getLocalStorage] = useLocalStorage();
 
   useEffectOnce(() => {
     setBlurEnabled(getLocalStorage('blurEnabled') || false);
     setVolume(getLocalStorage('volume') ?? 0.5);
+    setUsername(getLocalStorage('username'));
+    setUserAvatarId(getLocalStorage('avatarId'));
   });
 
   return (
