@@ -1,0 +1,30 @@
+@use 'styles/sass' as *;
+
+.me {
+  &__container {
+    background: none;
+  }
+
+  &__content {
+    padding: 1rem;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__card-info {
+    width: 100%;
+    margin-bottom: get-unit(2);
+  }
+
+  &__card-statistic {
+    width: 100%;
+    margin-bottom: get-unit(2);
+  }
+
+  &__game-banner {
+    border-radius: $border-radius;
+  }
+}

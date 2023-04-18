@@ -3,6 +3,7 @@ import { removeDuplicates } from './game-utils';
 import { getListOfPlayers } from './players-utils';
 
 interface GameUserEntry {
+  gameName?: GameName;
   gameId: GameId;
   startedAt: number;
   endedAt: number;
@@ -10,8 +11,33 @@ interface GameUserEntry {
   placement: number;
   win?: boolean;
   last?: boolean;
-  rating: number;
   achievements: AchievementKey[];
+}
+
+interface GameUserStatistics {
+  gameName: GameName;
+  // Total game plays count
+  plays: number;
+  // Boolean if the game is winnable
+  isWinnable: boolean;
+  // Total number of wins
+  win: number;
+  // Total number of times in last place
+  last: number;
+  // Total number of unique achievements
+  achievements: Record<AchievementKey, number>;
+  // Total game play duration
+  totalPlayDuration: number;
+  // The latest game played
+  latestPlay: GameUserEntry;
+  // The game with the shortest duration
+  shortestPlay: GameUserEntry;
+  // The game with the longest duration
+  longestPlay: GameUserEntry;
+  // The first game played with the earliest startedAt
+  firstPlay: GameUserEntry;
+  // The game rating
+  rating: number;
 }
 
 type AvatarId = string;
@@ -25,6 +51,7 @@ interface FirebaseUserDB {
   names: string[]; // unique list but most recent comes last
   gender?: string;
   avatars: Record<AvatarId, number>;
+  ratings: Record<GameName, number>;
   games: Record<GameName, GameUserEntry[]>;
   blurredImages: Record<ImageCardId, true>;
 }
@@ -38,7 +65,7 @@ interface FirebaseUserUI {
   gender?: string;
   statistics: {
     // Total game plays count
-    gamesPlayed: number;
+    plays: number;
     // Total different games
     uniqueGamesPlayed: number;
     // Total games with end goal / are winnable
@@ -49,13 +76,30 @@ interface FirebaseUserUI {
     last: number;
     // Total number of unique achievements
     achievements: number;
-    // The last time a game was played
-    lastPlay: number;
     // Total game play duration
     totalPlayDuration: number;
+    // The latest game played
+    latestPlay: GameUserEntry;
+    // The game with the shortest duration
+    shortestPlay: GameUserEntry;
+    // The game with the longest duration
+    longestPlay: GameUserEntry;
+    // The first game played with the earliest startedAt
+    firstPlay: GameUserEntry;
+    // game with the most entries
+    mostPlayedGame: GameName;
+    // game with the fewest entries
+    leastPlayedGame: GameName;
+    // Game with the highest rating
+    favoriteGame: GameName;
+    // Game with the lowest rating
+    leastFavoriteGame: GameName;
+    // Game with most wins
+    bestAtGame: GameName;
+    // Game with most last
+    worstAtGame: GameName;
   };
-  games: Record<GameName, GameUserEntry[]>;
-  // achievements: Record<GameName, Record<AchievementKey, number>[]>;
+  games: Record<GameName, GameUserStatistics>;
   blurredImages?: Record<ImageCardId, true>;
 }
 
@@ -65,23 +109,18 @@ const DEFAULT_FIREBASE_USER_DB: FirebaseUserDB = {
   avatars: {},
   games: {},
   gender: 'unknown',
+  ratings: {},
   blurredImages: {},
 };
 
-// const DEFAULT_SERIALIZED_USER: FirebaseUserUI = {
-//   id: '',
-//   isAdmin: false,
-//   avatars: [],
-//   gamesPlayed: 0,
-//   statistics: {
-//     win: 0,
-//     last: 0,
-//     games: 0,
-//     uniqueGames: 0,
-//     achievements: 0,
-//   },
-//   games: {},
-// };
+const PLACEHOLDER_GAME_USER_ENTRY = {
+  gameId: '',
+  startedAt: 0,
+  endedAt: 0,
+  playerCount: 0,
+  placement: 0,
+  achievements: [],
+};
 
 /**
  * Generates a brand new user with given uid
@@ -99,71 +138,199 @@ const isWinnableGame = (gameName: GameName): boolean => {
   return !['linhas-cruzadas', 'vamos-ao-cinema', 'ue-so-isso'].includes(gameName);
 };
 
+/**
+ * Serialize user for the UI
+ * @param dbUser
+ * @returns
+ */
 export const serializeUser = (dbUser: FirebaseUserDB): FirebaseUserUI => {
   // Get top avatars
   const topAvatars = Object.keys(dbUser.avatars)
     .sort((a, b) => dbUser.avatars[b] - dbUser.avatars[a])
     .slice(0, 3);
 
-  // Statistics
-  let gamesPlayed = 0;
-  let winnableGames = 0;
-  let win = 0;
-  let last = 0;
-  let lastPlay = 0;
-  let totalPlayDuration = 0;
-  let achievementsCount = 0;
+  const playsStatistics: Record<GameName, GameUserStatistics> = {};
 
+  // Build each game collection statistics
   Object.entries(dbUser.games).forEach(([gameName, gameEntries]) => {
     const isWinnable = isWinnableGame(gameName);
-    const gameAchievements: Record<AchievementKey, true> = {};
-    gameEntries.forEach((gameEntry) => {
-      gamesPlayed += 1;
+    const gameAchievements: Record<AchievementKey, number> = {};
+    let shortestDuration = 0;
+    let longestDuration = 0;
+    let earliestPlaySession = 0;
+    let latestPlaySession = 0;
 
-      // Win and last counts
-      if (isWinnable) {
-        winnableGames += 1;
+    if (playsStatistics[gameName] === undefined) {
+      playsStatistics[gameName] = {
+        gameName,
+        plays: 0,
+        isWinnable,
+        win: 0,
+        last: 0,
+        achievements: {},
+        totalPlayDuration: 0,
+        latestPlay: PLACEHOLDER_GAME_USER_ENTRY,
+        shortestPlay: PLACEHOLDER_GAME_USER_ENTRY,
+        longestPlay: PLACEHOLDER_GAME_USER_ENTRY,
+        firstPlay: PLACEHOLDER_GAME_USER_ENTRY,
+        rating: 0,
+      };
+    }
 
-        if (gameEntry.win) {
-          win += 1;
-        }
+    const entry = playsStatistics[gameName];
 
-        if (gameEntry.last) {
-          last += 1;
-        }
+    gameEntries.forEach((gEntry) => {
+      const gameEntry = { gameName, ...gEntry };
+      entry.plays += 1;
+
+      // Counts
+      if (gameEntry.win) {
+        entry.win += 1;
       }
 
-      // Duration
-      lastPlay = lastPlay < gameEntry.endedAt ? gameEntry.endedAt : lastPlay;
-      totalPlayDuration += gameEntry.endedAt - gameEntry.startedAt;
+      if (gameEntry.last) {
+        entry.last += 1;
+      }
+
+      const duration = gameEntry.endedAt - gameEntry.startedAt;
+      entry.totalPlayDuration += duration;
+      if (!shortestDuration || shortestDuration > duration) {
+        shortestDuration = duration;
+        entry.shortestPlay = gameEntry;
+      }
+
+      if (longestDuration < duration) {
+        longestDuration = duration;
+        entry.longestPlay = gameEntry;
+      }
+
+      if (!earliestPlaySession || earliestPlaySession > gameEntry.startedAt) {
+        earliestPlaySession = gameEntry.startedAt;
+        entry.firstPlay = gameEntry;
+      }
+
+      if (latestPlaySession < gameEntry.startedAt) {
+        latestPlaySession = gameEntry.startedAt;
+        entry.latestPlay = gameEntry;
+      }
 
       // Achievements
-      gameEntry.achievements.forEach((achievementKey) => {
-        gameAchievements[achievementKey] = true;
-      });
+      if (gameEntry.achievements.length) {
+        gameEntry.achievements.forEach((achievementKey) => {
+          if (gameAchievements[achievementKey] === undefined) {
+            gameAchievements[achievementKey] = 0;
+          }
+          gameAchievements[achievementKey] += 1;
+        });
+      }
+
+      // Rating
+      entry.rating = dbUser?.ratings?.[gameName] ?? 0;
     });
 
-    achievementsCount += Object.keys(gameAchievements).length;
+    entry.achievements = gameAchievements;
   });
 
-  // TODO: Parse games into statistics
+  // Build global play statistics
+  const globalStatistics: FirebaseUserUI['statistics'] = {
+    plays: 0,
+    uniqueGamesPlayed: Object.values(playsStatistics).length,
+    winnableGames: 0,
+    win: 0,
+    last: 0,
+    achievements: 0,
+    totalPlayDuration: 0,
+    latestPlay: PLACEHOLDER_GAME_USER_ENTRY,
+    shortestPlay: PLACEHOLDER_GAME_USER_ENTRY,
+    longestPlay: PLACEHOLDER_GAME_USER_ENTRY,
+    firstPlay: PLACEHOLDER_GAME_USER_ENTRY,
+    mostPlayedGame: '',
+    leastPlayedGame: '',
+    favoriteGame: '',
+    leastFavoriteGame: '',
+    bestAtGame: '',
+    worstAtGame: '',
+  };
+
+  let earliestPlay = 0;
+  let latestPlay = 0;
+  let shortestPlay = 0;
+  let longestPlay = 0;
+  let mostPlaysCount = 0;
+  let fewestPlaysCount = 0;
+  let highestRating = 0;
+  let lowestRating = 0;
+  let mostWins = 0;
+  let mostLasts = 0;
+
+  Object.values(playsStatistics).forEach((play) => {
+    globalStatistics.plays += play.plays;
+    if (play.isWinnable) {
+      globalStatistics.winnableGames += play.plays;
+    }
+    globalStatistics.win += play.win;
+    globalStatistics.last += play.last;
+    globalStatistics.achievements += Object.keys(play.achievements).length;
+    globalStatistics.totalPlayDuration += play.totalPlayDuration;
+
+    if (!earliestPlay || earliestPlay > play.firstPlay.startedAt) {
+      earliestPlay = play.firstPlay.startedAt;
+      globalStatistics.firstPlay = play.firstPlay;
+    }
+
+    if (latestPlay < play.latestPlay.startedAt) {
+      latestPlay = play.latestPlay.startedAt;
+      globalStatistics.latestPlay = play.latestPlay;
+    }
+
+    if (!shortestPlay || shortestPlay > play.shortestPlay.endedAt - play.shortestPlay.startedAt) {
+      shortestPlay = play.shortestPlay.endedAt - play.shortestPlay.startedAt;
+      globalStatistics.shortestPlay = play.shortestPlay;
+    }
+
+    if (longestPlay < play.longestPlay.endedAt - play.longestPlay.startedAt) {
+      longestPlay = play.longestPlay.endedAt - play.longestPlay.startedAt;
+      globalStatistics.longestPlay = play.longestPlay;
+    }
+
+    if (!fewestPlaysCount || fewestPlaysCount > play.plays) {
+      fewestPlaysCount = play.plays;
+      globalStatistics.leastPlayedGame = play.gameName;
+    }
+
+    if (mostPlaysCount < play.plays) {
+      mostPlaysCount = play.plays;
+      globalStatistics.mostPlayedGame = play.gameName;
+    }
+
+    if (!lowestRating || lowestRating > play.rating) {
+      lowestRating = play.rating;
+      globalStatistics.leastFavoriteGame = play.gameName;
+    }
+
+    if (!highestRating || highestRating < play.rating) {
+      highestRating = play.rating;
+      globalStatistics.favoriteGame = play.gameName;
+    }
+
+    if (!mostWins || mostWins > play.win) {
+      mostWins = play.win;
+      globalStatistics.bestAtGame = play.gameName;
+    }
+
+    if (mostLasts < play.last) {
+      mostLasts = play.last;
+      globalStatistics.worstAtGame = play.gameName;
+    }
+  });
 
   return {
     id: dbUser.id,
     names: dbUser?.names ?? [],
     isAdmin: !!dbUser.isAdmin,
     avatars: topAvatars,
-    statistics: {
-      gamesPlayed,
-      uniqueGamesPlayed: Object.values(dbUser.games).length,
-      winnableGames,
-      win,
-      last,
-      achievements: achievementsCount,
-      lastPlay,
-      totalPlayDuration,
-    },
-    games: dbUser.games,
+    statistics: globalStatistics,
+    games: playsStatistics,
   };
 };
 
@@ -206,7 +373,6 @@ export const saveGameToUsers = async ({
       placement,
       win: isWinner,
       last: placement === lastPlace,
-      rating: 0,
       achievements: [],
     };
 
