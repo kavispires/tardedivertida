@@ -1,9 +1,9 @@
 {
   "files": {
-    "main.css": "/tardedivertida/static/css/main.1540dde6.css",
-    "main.js": "/tardedivertida/static/js/main.9e6a0f38.js",
+    "main.css": "/tardedivertida/static/css/main.11a020af.css",
+    "main.js": "/tardedivertida/static/js/main.acf555bf.js",
     "page-me.css": "/tardedivertida/static/css/page-me.ed1d8c6f.chunk.css",
-    "page-me.js": "/tardedivertida/static/js/page-me.3d2d140b.chunk.js",
+    "page-me.js": "/tardedivertida/static/js/page-me.59a6d030.chunk.js",
     "page-hub.css": "/tardedivertida/static/css/page-hub.1cf6a2f7.chunk.css",
     "page-hub.js": "/tardedivertida/static/js/page-hub.2143f85a.chunk.js",
     "page-game.js": "/tardedivertida/static/js/page-game.ad31b23f.chunk.js",
@@ -159,10 +159,10 @@
     "static/media/round-title-en.svg": "/tardedivertida/static/media/round-title-en.2ad07e1f265a85634ad7940a33f96552.svg",
     "static/media/round-title-pt.svg": "/tardedivertida/static/media/round-title-pt.2e3f9c1deb85d58d118aa6e3dfa7af23.svg",
     "index.html": "/tardedivertida/index.html",
-    "main.1540dde6.css.map": "/tardedivertida/static/css/main.1540dde6.css.map",
-    "main.9e6a0f38.js.map": "/tardedivertida/static/js/main.9e6a0f38.js.map",
+    "main.11a020af.css.map": "/tardedivertida/static/css/main.11a020af.css.map",
+    "main.acf555bf.js.map": "/tardedivertida/static/js/main.acf555bf.js.map",
     "page-me.ed1d8c6f.chunk.css.map": "/tardedivertida/static/css/page-me.ed1d8c6f.chunk.css.map",
-    "page-me.3d2d140b.chunk.js.map": "/tardedivertida/static/js/page-me.3d2d140b.chunk.js.map",
+    "page-me.59a6d030.chunk.js.map": "/tardedivertida/static/js/page-me.59a6d030.chunk.js.map",
     "page-hub.1cf6a2f7.chunk.css.map": "/tardedivertida/static/css/page-hub.1cf6a2f7.chunk.css.map",
     "page-hub.2143f85a.chunk.js.map": "/tardedivertida/static/js/page-hub.2143f85a.chunk.js.map",
     "page-game.ad31b23f.chunk.js.map": "/tardedivertida/static/js/page-game.ad31b23f.chunk.js.map",
@@ -304,7 +304,7 @@
     "5015.847573bc.chunk.js.map": "/tardedivertida/static/js/5015.847573bc.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.1540dde6.css",
-    "static/js/main.9e6a0f38.js"
+    "static/css/main.11a020af.css",
+    "static/js/main.acf555bf.js"
   ]
 }
