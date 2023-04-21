@@ -1,19 +1,23 @@
 import { useTitle } from 'react-use';
-// Ant Design Resources
-import { Divider, Layout, Select } from 'antd';
-// Components
-import { DevHeader } from './DevHeader';
+import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+// Ant Design Resources
+import { Col, Divider, Layout, Row, Select } from 'antd';
+// Hooks
 import { useQueryParams } from 'hooks/useQueryParams';
+// Utils
 import { AVAILABLE_AVATAR_IDS, AVATARS } from 'utils/avatars';
-import { Avatar } from 'components/avatars';
 import { makeArray } from 'utils/helpers';
+// Components
+import { Avatar } from 'components/avatars';
 import { SheepAvatar } from 'games/mente-coletiva/components/SheepAvatar';
 import { CostumeAvatar } from 'games/na-rua-do-medo/components/CostumeAvatar';
 import { ClubberAvatar } from 'games/megamix/components/ClubberAvatar';
 import { GlyphCard } from 'components/cards/GlyphCard';
 import { ItemCard } from 'components/cards/ItemCard';
-import { Link } from 'react-router-dom';
+import { DevHeader } from './DevHeader';
+import { MEDALS_IDS } from './utils/constants';
+import { Medal } from 'components/general/Medal';
 
 type SpriteOption = {
   key: string;
@@ -68,6 +72,13 @@ const options: Record<string, SpriteOption> = {
     quantity: 250,
     startAt: 1,
   },
+  medals: {
+    key: 'medals',
+    label: 'Medals',
+    prefix: 'medal',
+    quantity: 100,
+    startAt: 1,
+  },
 };
 
 function SpritesPage() {
@@ -78,6 +89,13 @@ function SpritesPage() {
   useEffect(() => {
     setActive(options[qp.queryParams.active] ?? options.avatars);
   }, [qp.queryParams.active]);
+
+  const activeContent = {
+    avatars: <AvatarsContent />,
+    glyphs: <GlyphsContent />,
+    items: <ItemsContent />,
+    medals: <MedalsContent />,
+  }?.[active.key] ?? <Content type={active.key} />;
 
   return (
     <Layout className="dev-layout">
@@ -102,12 +120,7 @@ function SpritesPage() {
           </>
         }
       />
-      <Layout.Content className="dev-content">
-        {active.key === 'avatars' && <AvatarsContent />}
-        {active.key === 'glyphs' && <GlyphsContent />}
-        {active.key === 'items' && <ItemsContent />}
-        {!['avatars', 'glyphs', 'items'].includes(active.key) && <Content type={active.key} />}
-      </Layout.Content>
+      <Layout.Content className="dev-content">{activeContent}</Layout.Content>
     </Layout>
   );
 }
@@ -220,6 +233,23 @@ function GlyphsContent() {
         );
       })}
     </ul>
+  );
+}
+
+function MedalsContent() {
+  return (
+    <Row gutter={8}>
+      {MEDALS_IDS.map((id) => {
+        return (
+          <Col xs={6} sm={6} md={4} lg={4} xl={2} key={`medal-${id}`} className="sprites__col">
+            {/* <li key={`medal-${id}`} className="sprites__flex-item"> */}
+            <Medal id={String(id)} />
+            {id}
+            {/* </li> */}
+          </Col>
+        );
+      })}
+    </Row>
   );
 }
 
