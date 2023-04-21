@@ -42,6 +42,7 @@ const DEFAULT_ME_DATA: Me = {
     leastFavoriteGame: '',
     bestAtGame: '',
     worstAtGame: '',
+    averagePlayerCount: 0,
   },
   games: {},
 };

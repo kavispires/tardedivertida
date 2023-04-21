@@ -51,9 +51,10 @@ const getVersionColor = (version: string) => {
 
 type GameCardProps = {
   game: GameInfo;
+  isAdmin?: boolean;
 };
 
-export function GameCard({ game }: GameCardProps) {
+export function GameCard({ game, isAdmin = true }: GameCardProps) {
   const { language, translate } = useLanguage();
 
   const duration = calculateGameAverageDuration(game);
@@ -143,9 +144,11 @@ export function GameCard({ game }: GameCardProps) {
           />
         </Space>
 
-        <div style={{ marginTop: '1rem' }}>
-          {Boolean(game.available[language]) && <CreateGameModal gameInfo={game} />}
-        </div>
+        {isAdmin && (
+          <div style={{ marginTop: '1rem' }}>
+            {Boolean(game.available[language]) && <CreateGameModal gameInfo={game} />}
+          </div>
+        )}
       </div>
     </Card>
   );

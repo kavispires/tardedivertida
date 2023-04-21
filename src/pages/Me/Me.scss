@@ -27,4 +27,16 @@
   &__game-banner {
     border-radius: $border-radius;
   }
+
+  &__game-bingo-banner {
+    border-radius: $border-radius;
+    filter: grayscale(100);
+    opacity: 0.5;
+
+    &--played {
+      filter: none;
+      opacity: 1;
+      outline: 3px solid get-color('green', 3);
+    }
+  }
 }
