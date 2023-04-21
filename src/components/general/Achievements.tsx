@@ -4,12 +4,11 @@ import { Button, Popover } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
-// Icons
-import { MedalStarIcon } from 'icons/MedalStarIcon';
 // Components
-import { Avatar, IconAvatar } from 'components/avatars';
+import { Avatar } from 'components/avatars';
 import { DualTranslate, Translate } from 'components/language';
 import { Title } from 'components/text';
+import { Medal } from './Medal';
 
 type AchievementsProps = {
   players: GamePlayers;
@@ -27,7 +26,7 @@ export function Achievements({ players, achievements, reference }: AchievementsP
       </Title>
       <ul className="achievements-list">
         {achievements.map((achievement, index) => {
-          const { Icon = MedalStarIcon, ...achievementObj } = reference[achievement.type] ?? {};
+          const { icon = 'star', ...achievementObj } = reference[achievement.type] ?? {};
           const player = players[achievement.playerId];
           return (
             <li
@@ -41,7 +40,7 @@ export function Achievements({ players, achievements, reference }: AchievementsP
               )}
             >
               <div className="achievement__medal">
-                <IconAvatar icon={<Icon />} size="large" />
+                <Medal id={icon} />
               </div>
               <h4 className="achievement__title">
                 <DualTranslate>{achievementObj.title ?? unknownText}</DualTranslate>

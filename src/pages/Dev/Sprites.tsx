@@ -243,7 +243,7 @@ function MedalsContent() {
         return (
           <Col xs={6} sm={6} md={4} lg={4} xl={2} key={`medal-${id}`} className="sprites__col">
             {/* <li key={`medal-${id}`} className="sprites__flex-item"> */}
-            <Medal id={String(id)} />
+            <Medal id={String(id)} width={100} />
             {id}
             {/* </li> */}
           </Col>

@@ -1,12 +1,6 @@
-import { MedalBrushIcon } from 'icons/MedalBrushIcon';
-import { MedalLightBulbIcon } from 'icons/MedalLightBulbIcon';
-import { MedalPersonIcon } from 'icons/MedalPersonIcon';
-import { MedalQuestionMarkIcon } from 'icons/MedalQuestionMarkIcon';
-import { MedalRobotIcon } from 'icons/MedalRobotIcon';
-
 export const achievementsReference: AchievementReference = {
   BEST_ARTIST: {
-    Icon: MedalBrushIcon,
+    icon: 'paint-brush',
     title: {
       pt: 'Melhor Artista',
       en: 'Best Artist',
@@ -17,7 +11,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   WORST_ARTIST: {
-    Icon: MedalQuestionMarkIcon,
+    icon: 'question-mark',
     title: {
       pt: 'Artista Mais Não Convencional',
       en: 'Most Unconventional Artist',
@@ -28,7 +22,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   SOLITARY_WINNER: {
-    Icon: MedalPersonIcon,
+    icon: 'person',
     title: {
       pt: 'Adivinhador Solitário',
       en: 'Best Solitary Guesser',
@@ -39,7 +33,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   SOLITARY_LOSER: {
-    Icon: MedalLightBulbIcon,
+    icon: 'light-bulb',
     title: {
       pt: 'Mais Diferentão',
       en: 'Most Unique Guesser',
@@ -50,7 +44,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   TABLE_VOTES: {
-    Icon: MedalRobotIcon,
+    icon: 'table',
     title: {
       pt: 'Melhor Votador Pra Mesa',
       en: 'Best Table Voter',

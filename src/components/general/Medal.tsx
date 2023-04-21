@@ -17,7 +17,7 @@ type MedalProps = {
   width?: number;
 };
 
-export const Medal = ({ id = 'star', className = '', width = 60, ...props }: MedalProps) => {
+export const Medal = ({ id = 'star', className = '', width = 64, ...props }: MedalProps) => {
   return (
     <svg
       viewBox="0 0 512 512"

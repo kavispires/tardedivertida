@@ -1,14 +1,6 @@
-import { MedalCandyIcon } from 'icons/MedalCandyIcon';
-import { MedalCloverIcon } from 'icons/MedalCloverIcon';
-import { MedalDollarSignIcon } from 'icons/MedalDollarSignIcon';
-import { MedalHouseIcon } from 'icons/MedalHouseIcon';
-import { MedalScaredIcon } from 'icons/MedalScaredIcon';
-import { MedalSwordIcon } from 'icons/MedalSwordIcon';
-import { MedalWideIcon } from 'icons/MedalWideIcon';
-
 export const achievementsReference: AchievementReference = {
   BRAVEST: {
-    Icon: MedalSwordIcon,
+    icon: 'sword',
     title: {
       pt: 'Mais Corajoso',
       en: 'Bravest',
@@ -19,7 +11,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   LUCKIEST: {
-    Icon: MedalCloverIcon,
+    icon: 'clover',
     title: {
       pt: 'Mais Sortudo',
       en: 'Luckiest',
@@ -30,7 +22,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   CANDY_LOSER: {
-    Icon: MedalCandyIcon,
+    icon: 'candy',
     title: {
       pt: 'Mais Desesperado',
       en: 'Most Desperate',
@@ -41,7 +33,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   MOST_SCARED: {
-    Icon: MedalScaredIcon,
+    icon: 'face-scared',
     title: {
       pt: 'Mais Assustado',
       en: 'Most Scared',
@@ -52,7 +44,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   MOST_HOUSES: {
-    Icon: MedalHouseIcon,
+    icon: 'house',
     title: {
       pt: 'Mais Andador',
       en: 'Most Houses',
@@ -63,7 +55,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   MOST_JACKPOTS: {
-    Icon: MedalDollarSignIcon,
+    icon: 'dollar',
     title: {
       pt: 'Mais Boladas',
       en: 'Most Jackpots',
@@ -74,7 +66,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   MOST_SIDEWALK: {
-    Icon: MedalWideIcon,
+    icon: 'arrow-wide',
     title: {
       pt: 'Mais Mendigo',
       en: 'Most Sidewalk Candy',
