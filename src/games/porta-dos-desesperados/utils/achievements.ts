@@ -19,7 +19,7 @@ const ACHIEVEMENTS = {
 
 export const achievementsReference: AchievementReference = {
   [ACHIEVEMENTS.MOST_POSSESSED]: {
-    icon: 'person-perplexed',
+    icon: 'face-perplexed',
     title: {
       pt: 'Mais possuído',
       en: 'Most Possessed',
@@ -63,7 +63,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   [ACHIEVEMENTS.SLOW_READER]: {
-    icon: 'robot',
+    icon: 'glasses',
     title: {
       pt: 'Mais Analítico',
       en: 'Most Analytical',
@@ -162,7 +162,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   [ACHIEVEMENTS.SLOW_DECISIONS]: {
-    icon: 'turtle',
+    icon: 'snail',
     title: {
       pt: 'Mais Indeciso',
       en: 'Most Undecided',
