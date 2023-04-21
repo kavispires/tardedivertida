@@ -85,3 +85,5 @@ export const achievementsReference: AchievementReference = {
     },
   },
 };
+
+export default achievementsReference;
