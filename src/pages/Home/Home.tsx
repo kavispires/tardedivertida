@@ -10,6 +10,8 @@ import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 import { resetGlobalState } from 'hooks/useGlobalState';
 // Assets
 import logo from 'assets/images/tarde-divertida-logo.svg';
+// Components
+import { Translate } from 'components/language';
 
 function Home() {
   useTitle('Tarde Divertida');
@@ -40,23 +42,33 @@ function Home() {
           onClick={() => setShowInput(!showInput)}
         />
 
-        <Space className={clsx('home__input', showInput && 'home__input--visible')}>
-          <Input
-            size="large"
-            disabled={!showInput}
-            placeholder="GAME ID"
-            maxLength={4}
-            onPressEnter={goToGameId}
-            onChange={(e) => setGameId(e.target.value)}
-          />
-          <Button size="large" type="primary" onClick={goToGameId}>
-            <ForwardFilled />
-          </Button>
-          {isAdmin && (
-            <Button size="large" type="primary" danger onClick={() => navigate('/hub')}>
-              HUB
+        <Space className={clsx('home__input', showInput && 'home__input--visible')} direction="vertical">
+          <Space className="space-container">
+            <Input
+              size="large"
+              disabled={!showInput}
+              placeholder="GAME ID"
+              maxLength={4}
+              onPressEnter={goToGameId}
+              onChange={(e) => setGameId(e.target.value)}
+            />
+            <Button size="large" type="primary" onClick={goToGameId}>
+              <ForwardFilled />
             </Button>
-          )}
+          </Space>
+
+          <Space className="space-container">
+            {isAuthenticated && (
+              <Button ghost onClick={() => navigate('/me')}>
+                <Translate pt="Página de Usuário" en="User page" />
+              </Button>
+            )}
+            {isAdmin && (
+              <Button type="primary" danger onClick={() => navigate('/hub')}>
+                HUB
+              </Button>
+            )}
+          </Space>
         </Space>
       </div>
       <div className="home__background">
