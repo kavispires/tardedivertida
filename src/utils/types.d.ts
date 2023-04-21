@@ -419,7 +419,7 @@ interface Achievement {
 }
 
 interface AchievementInfo {
-  Icon: ReactNode;
+  icon: string;
   title: DualLanguageValue;
   description?: DualLanguageValue;
 }

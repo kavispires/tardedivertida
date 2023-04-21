@@ -1,12 +1,6 @@
-import { MedalArrowDownIcon } from 'icons/MedalArrowDownIcon';
-import { MedalArrowUpIcon } from 'icons/MedalArrowUpIcon';
-import { MedalFootprintsIcon } from 'icons/MedalFootprintsIcon';
-import { MedalPersonIcon } from 'icons/MedalPersonIcon';
-import { MedalSkullIcon } from 'icons/MedalSkullIcon';
-
 export const achievementsReference: AchievementReference = {
   MOST_MATCHES: {
-    Icon: MedalArrowUpIcon,
+    icon: 'double-arrow-up',
     title: {
       pt: 'Mais Matches',
       en: 'Best Matcher',
@@ -17,7 +11,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   LEAST_MATCHES: {
-    Icon: MedalArrowDownIcon,
+    icon: 'double-arrow-down',
     title: {
       pt: 'Mais Diferentão',
       en: 'Most Unique',
@@ -28,7 +22,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   MOST_DEAD: {
-    Icon: MedalSkullIcon,
+    icon: 'skull',
     title: {
       pt: 'Mais Morta',
       en: 'Most Dead',
@@ -39,7 +33,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   MOST_LONELY: {
-    Icon: MedalPersonIcon,
+    icon: 'face-tired',
     title: {
       pt: 'Mais Solitária',
       en: 'Most Lonely',
@@ -50,7 +44,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   BEST_TRAVELER: {
-    Icon: MedalFootprintsIcon,
+    icon: 'distance',
     title: {
       pt: 'Mais Viajada',
       en: 'Best Traveler',

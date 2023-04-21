@@ -1,13 +1,6 @@
-import { MedalArrowDownIcon } from 'icons/MedalArrowDownIcon';
-import { MedalArrowUpIcon } from 'icons/MedalArrowUpIcon';
-import { MedalNarrowIcon } from 'icons/MedalNarrowIcon';
-import { MedalRobotIcon } from 'icons/MedalRobotIcon';
-import { MedalThumbsDownIcon } from 'icons/MedalThumbsDownIcon';
-import { MedalThumbsUpIcon } from 'icons/MedalThumbsUpIcon';
-
 export const achievementsReference: AchievementReference = {
   MOST_GLYPHS: {
-    Icon: MedalArrowUpIcon,
+    icon: 'arrow-up',
     title: {
       pt: 'Melhor Uso dos Ícones',
       en: 'Best Glyph User',
@@ -18,7 +11,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   LEAST_GLYPHS: {
-    Icon: MedalArrowDownIcon,
+    icon: '`arrow-down',
     title: {
       pt: 'Mais Sucinto',
       en: 'Most Succinct',
@@ -29,7 +22,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   MOST_POSITIVE: {
-    Icon: MedalThumbsUpIcon,
+    icon: 'thumbs-up',
     title: {
       pt: 'Mais Positivo',
       en: 'Most Positive',
@@ -40,7 +33,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   LEAST_POSITIVE: {
-    Icon: MedalThumbsUpIcon,
+    icon: 'arrow-left',
     title: {
       pt: 'Menos Positivo',
       en: 'Least Positive',
@@ -51,7 +44,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   MOST_NEGATIVE: {
-    Icon: MedalThumbsDownIcon,
+    icon: 'thumbs-down',
     title: {
       pt: 'Mais Negativo',
       en: 'Most Negative',
@@ -62,7 +55,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   LEAST_NEGATIVE: {
-    Icon: MedalThumbsDownIcon,
+    icon: 'arrow-right',
     title: {
       pt: 'Menos Negativo',
       en: 'Least Negative',
@@ -73,7 +66,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   SINGLE_ICON: {
-    Icon: MedalNarrowIcon,
+    icon: 'one',
     title: {
       pt: 'Mais Único',
       en: 'Most Unique',
@@ -84,7 +77,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   TABLE_VOTES: {
-    Icon: MedalRobotIcon,
+    icon: 'table',
     title: {
       pt: 'Melhor Votador Pra Mesa',
       en: 'Best Table Voter',

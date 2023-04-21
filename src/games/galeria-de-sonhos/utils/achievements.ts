@@ -1,18 +1,6 @@
-import { MedalArrowDownIcon } from 'icons/MedalArrowDownIcon';
-import { MedalArrowUpIcon } from 'icons/MedalArrowUpIcon';
-import { MedalHeartIcon } from 'icons/MedalHeartIcon';
-import { MedalLightBulbIcon } from 'icons/MedalLightBulbIcon';
-import { MedalNarrowIcon } from 'icons/MedalNarrowIcon';
-import { MedalPersonIcon } from 'icons/MedalPersonIcon';
-import { MedalSandTimerIcon } from 'icons/MedalSandTimerIcon';
-import { MedalScaredIcon } from 'icons/MedalScaredIcon';
-import { MedalStarIcon } from 'icons/MedalStarIcon';
-import { MedalSufferingIcon } from 'icons/MedalSufferingIcon';
-import { MedalThumbsUpIcon } from 'icons/MedalThumbsUpIcon';
-
 export const achievementsReference: AchievementReference = {
   MOST_MATCHES: {
-    Icon: MedalArrowUpIcon,
+    icon: 'double-arrow-up',
     title: {
       pt: 'Mais Matches',
       en: 'Most Matches',
@@ -23,7 +11,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   FEWEST_MATCHES: {
-    Icon: MedalArrowDownIcon,
+    icon: 'double-arrow-down',
     title: {
       pt: 'Menos Matches',
       en: 'Fewest Matches',
@@ -34,7 +22,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   MOST_FULL_MATCHES: {
-    Icon: MedalHeartIcon,
+    icon: 'heart',
     title: {
       pt: 'Mais Match Completo',
       en: 'Most Full Matches',
@@ -45,7 +33,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   MOST_VISITS: {
-    Icon: MedalSandTimerIcon,
+    icon: 'sand-timer',
     title: {
       pt: 'Melhor Visitante',
       en: 'Best Visitor',
@@ -56,7 +44,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   LEAST_ADVENTUROUS: {
-    Icon: MedalNarrowIcon,
+    icon: 'arrow-narrow',
     title: {
       pt: 'Mais Comedido',
       en: 'Least Adventurous',
@@ -67,7 +55,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   MOST_ADVENTUROUS: {
-    Icon: MedalScaredIcon,
+    icon: 'face-scared',
     title: {
       pt: 'Mais Aventureiro',
       en: 'Most Adventurous',
@@ -78,7 +66,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   MOST_PAIRS: {
-    Icon: MedalStarIcon,
+    icon: 'puzzle',
     title: {
       pt: 'Mais Brilhante',
       en: 'Brightest',
@@ -89,7 +77,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   MOST_OUT_OF_THE_BOX: {
-    Icon: MedalLightBulbIcon,
+    icon: 'box',
     title: {
       pt: 'Mais Diferentão',
       en: 'Out of the Box Thinker',
@@ -100,7 +88,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   MOST_LONELY: {
-    Icon: MedalPersonIcon,
+    icon: 'face-tired',
     title: {
       pt: 'Mais Solitário',
       en: 'Loneliest',
@@ -111,7 +99,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   POOREST_CHOICES: {
-    Icon: MedalSufferingIcon,
+    icon: 'face-oops',
     title: {
       pt: 'Mais Burro',
       en: 'Poorest Choices',
@@ -122,7 +110,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   SMARTEST_CHOICES: {
-    Icon: MedalThumbsUpIcon,
+    icon: 'brain',
     title: {
       pt: 'Mais Esperto',
       en: 'Smartest Choices',
