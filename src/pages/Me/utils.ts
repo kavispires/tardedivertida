@@ -26,6 +26,9 @@ export function timestampToDate(timestamp: number, includeTime?: false): string 
  */
 export function durationToHours(duration: number): number {
   const minutes = Math.floor(duration / 60000);
-  const hours = Math.floor(minutes / 60);
+  const hours = Math.round(minutes / 60);
+  if (hours < 1) {
+    return minutes / 60;
+  }
   return hours;
 }

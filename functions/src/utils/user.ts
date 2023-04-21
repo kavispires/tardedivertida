@@ -38,6 +38,8 @@ interface GameUserStatistics {
   firstPlay: GameUserEntry;
   // The game rating
   rating: number;
+  // Average player count
+  averagePlayerCount: number;
 }
 
 type AvatarId = string;
@@ -98,6 +100,8 @@ interface FirebaseUserUI {
     bestAtGame: GameName;
     // Game with most last
     worstAtGame: GameName;
+    // Average Player Count
+    averagePlayerCount: number;
   };
   games: Record<GameName, GameUserStatistics>;
   blurredImages?: Record<ImageCardId, true>;
@@ -159,6 +163,7 @@ export const serializeUser = (dbUser: FirebaseUserDB): FirebaseUserUI => {
     let longestDuration = 0;
     let earliestPlaySession = 0;
     let latestPlaySession = 0;
+    let playersCounts = 0;
 
     if (playsStatistics[gameName] === undefined) {
       playsStatistics[gameName] = {
@@ -174,6 +179,7 @@ export const serializeUser = (dbUser: FirebaseUserDB): FirebaseUserUI => {
         longestPlay: PLACEHOLDER_GAME_USER_ENTRY,
         firstPlay: PLACEHOLDER_GAME_USER_ENTRY,
         rating: 0,
+        averagePlayerCount: 0,
       };
     }
 
@@ -226,9 +232,13 @@ export const serializeUser = (dbUser: FirebaseUserDB): FirebaseUserUI => {
 
       // Rating
       entry.rating = dbUser?.ratings?.[gameName] ?? 0;
+
+      // Player count
+      playersCounts += gameEntry.playerCount;
     });
 
     entry.achievements = gameAchievements;
+    entry.averagePlayerCount = playersCounts / entry.plays;
   });
 
   // Build global play statistics
@@ -250,6 +260,7 @@ export const serializeUser = (dbUser: FirebaseUserDB): FirebaseUserUI => {
     leastFavoriteGame: '',
     bestAtGame: '',
     worstAtGame: '',
+    averagePlayerCount: 0,
   };
 
   let earliestPlay = 0;
@@ -262,6 +273,7 @@ export const serializeUser = (dbUser: FirebaseUserDB): FirebaseUserUI => {
   let lowestRating = 0;
   let mostWins = 0;
   let mostLasts = 0;
+  let playerCounts = 0;
 
   Object.values(playsStatistics).forEach((play) => {
     globalStatistics.plays += play.plays;
@@ -272,6 +284,7 @@ export const serializeUser = (dbUser: FirebaseUserDB): FirebaseUserUI => {
     globalStatistics.last += play.last;
     globalStatistics.achievements += Object.keys(play.achievements).length;
     globalStatistics.totalPlayDuration += play.totalPlayDuration;
+    playerCounts += play.averagePlayerCount;
 
     if (!earliestPlay || earliestPlay > play.firstPlay.startedAt) {
       earliestPlay = play.firstPlay.startedAt;
@@ -324,6 +337,9 @@ export const serializeUser = (dbUser: FirebaseUserDB): FirebaseUserUI => {
     }
   });
 
+  // Average player count
+  globalStatistics.averagePlayerCount = playerCounts / Object.values(playsStatistics).length;
+
   return {
     id: dbUser.id,
     names: dbUser?.names ?? [],
@@ -372,7 +388,7 @@ export const saveGameToUsers = async ({
       playerCount,
       placement,
       win: isWinner,
-      last: placement === lastPlace,
+      last: lastPlace !== 1 && placement === lastPlace,
       achievements: [],
     };
 

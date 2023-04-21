@@ -20,3 +20,31 @@
   padding: get-unit(2);
   min-width: 120px;
 }
+
+.achievement {
+  background-color: get-color('gray', 1);
+  border: get-color('gray', 2) 5px solid;
+  color: get-color('gray', 3);
+  display: grid;
+  border-radius: get-unit(2);
+  grid-template-columns: auto;
+  grid-template-rows: auto auto auto;
+  align-items: center;
+  margin-bottom: get-unit(2);
+  padding: get-unit(2);
+  min-width: 80px;
+
+  width: 100%;
+  height: 100%;
+  text-align: center;
+
+  &--achieved {
+    background-color: get-color('yellow', 2);
+    border: get-color('yellow') 5px solid;
+    color: get-color('yellow', 8);
+  }
+
+  &__disabled-icon {
+    filter: grayscale(100);
+  }
+}

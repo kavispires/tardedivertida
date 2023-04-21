@@ -98,6 +98,8 @@ interface GameUserStatistics {
   firstPlay: GameUserEntry;
   // The game rating
   rating: number;
+  // Average Player Count
+  averagePlayerCount: number;
 }
 
 type AvatarId = string;
@@ -145,6 +147,8 @@ interface Me {
     bestAtGame: GameName;
     // Game with most last
     worstAtGame: GameName;
+    // Average Player Count
+    averagePlayerCount: number;
   };
   games: Record<GameName, GameUserStatistics>;
   blurredImages?: Record<ImageCardId, true>;
@@ -414,13 +418,13 @@ interface Achievement {
   value: Primitive;
 }
 
-interface AchievementReference {
-  [key: string]: {
-    Icon: ReactNode;
-    title: DualLanguageValue;
-    description?: DualLanguageValue;
-  };
+interface AchievementInfo {
+  Icon: ReactNode;
+  title: DualLanguageValue;
+  description?: DualLanguageValue;
 }
+
+type AchievementReference = Record<string, AchievementInfo>;
 
 type ArteRuimCard = {
   id: CardId;

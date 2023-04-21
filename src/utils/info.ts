@@ -36,7 +36,7 @@ import comingSoonGames from 'assets/data/coming-soon-games.json';
 
 const others = comingSoonGames as Record<GameName, GameInfo>;
 
-export const GAME_LIST: Record<GameCode, GameInfo> = {
+export const GAME_LIST: Record<GameName, GameInfo> = {
   ...others,
   'arte-ruim': ARTE_RUIM,
   'bomba-relogio': BOMBA_RELOGIO,
