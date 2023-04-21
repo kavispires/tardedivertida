@@ -11,7 +11,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   WORST_CARDS: {
-    icon: 'block',
+    icon: 'x',
     title: {
       pt: 'Piores Cartas',
       en: 'Worst Cards',
