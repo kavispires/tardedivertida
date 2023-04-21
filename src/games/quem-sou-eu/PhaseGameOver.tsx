@@ -2,7 +2,7 @@ import { orderBy } from 'lodash';
 // Ant Design Resources
 import { Space } from 'antd';
 // Utils
-import { achievementsReference } from './utils/helpers';
+import { achievementsReference } from './utils/achievements';
 // Icons
 import { TrophyIcon } from 'icons/TrophyIcon';
 // Components
