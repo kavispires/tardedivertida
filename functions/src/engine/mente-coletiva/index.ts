@@ -37,7 +37,7 @@ export const getInitialState = (
   language: Language,
   options: MenteColetivaOptions
 ): MenteColetivaInitialState => {
-  return utils.helpers.getDefaultInitialState({
+  return utils.helpers.getDefaultInitialState<MenteColetivaInitialState>({
     gameId,
     gameName: GAME_NAMES.MENTE_COLETIVA,
     uid,

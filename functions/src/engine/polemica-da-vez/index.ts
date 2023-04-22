@@ -30,7 +30,7 @@ export const getInitialState = (
   language: Language,
   options: PolemicaDaVezOptions
 ): PolemicaDaVezInitialState => {
-  return utils.helpers.getDefaultInitialState({
+  return utils.helpers.getDefaultInitialState<PolemicaDaVezInitialState>({
     gameId,
     gameName: GAME_NAMES.POLEMICA_DA_VEZ,
     uid,

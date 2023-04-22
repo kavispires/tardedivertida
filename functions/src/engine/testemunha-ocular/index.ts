@@ -35,7 +35,7 @@ export const getInitialState = (
   language: string,
   options: TestemunhaOcularOptions
 ): TestemunhaOcularInitialState => {
-  return utils.helpers.getDefaultInitialState({
+  return utils.helpers.getDefaultInitialState<TestemunhaOcularInitialState>({
     gameId,
     gameName: GAME_NAMES.TESTEMUNHA_OCULAR,
     uid,

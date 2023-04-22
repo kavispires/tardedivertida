@@ -40,7 +40,7 @@ export const getInitialState = (
   language: Language,
   options: GaleriaDeSonhosOptions
 ): GaleriaDeSonhosInitialState => {
-  return utils.helpers.getDefaultInitialState({
+  return utils.helpers.getDefaultInitialState<GaleriaDeSonhosInitialState>({
     gameId,
     gameName: GAME_NAMES.GALERIA_DE_SONHOS,
     uid,

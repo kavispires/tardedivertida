@@ -36,7 +36,7 @@ export const getInitialState = (
   language: Language,
   options: MegamixGameOptions
 ): MegamixInitialState => {
-  return utils.helpers.getDefaultInitialState({
+  return utils.helpers.getDefaultInitialState<MegamixInitialState>({
     gameId,
     gameName: GAME_NAMES.MEGAMIX,
     uid,

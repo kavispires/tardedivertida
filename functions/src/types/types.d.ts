@@ -97,6 +97,8 @@ interface DefaultState {
   round: Round;
   updatedAt: DateMilliseconds;
   gameEndedAt?: DateMilliseconds;
+  players: Players;
+  [key: string]: any;
 }
 
 interface DefaultStore {
@@ -108,15 +110,8 @@ interface DefaultStore {
 
 interface InitialState {
   meta: Meta;
-  players: Players;
   store: any;
-  state: any;
-  //  {
-  //   phase: string;
-  //   round: Round;
-  //   updatedAt: number;
-  //   [key: string]: any;
-  // };
+  state: DefaultState;
 }
 
 interface InitialStateArgs {

@@ -25,7 +25,7 @@ import { handleSubmitDecision, handleSubmitMessage, handleSubmitTarget } from '.
  * @returns
  */
 export const getInitialState = (gameId: GameId, uid: string, language: Language): QuemNaoMataInitialState => {
-  return utils.helpers.getDefaultInitialState({
+  return utils.helpers.getDefaultInitialState<QuemNaoMataInitialState>({
     gameId,
     gameName: GAME_NAMES.QUEM_NAO_MATA,
     uid,

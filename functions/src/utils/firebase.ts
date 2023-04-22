@@ -214,13 +214,41 @@ export function throwException(error: any, action = 'function') {
  * @param actionText
  * @returns
  */
+export const getStateReferences = async <A = FirebaseFirestore.DocumentData>(
+  gameName: GameName,
+  gameId: GameId,
+  actionText: string
+): Promise<{
+  sessionRef: FirebaseFirestore.CollectionReference;
+  stateDoc: FirebaseFirestore.DocumentSnapshot;
+  state: A;
+}> => {
+  const sessionRef = getSessionRef(gameName, gameId);
+  const stateDoc = await getSessionDoc(gameName, gameId, 'state', actionText);
+  const state = (stateDoc.data() ?? {}) as A;
+
+  return {
+    sessionRef,
+    stateDoc,
+    state,
+  };
+};
+
+/**
+ * Gather docs and references needed in every nextPhase function
+ * @param gameName
+ * @param gameId
+ * @param actionText
+ * @returns
+ */
 export const getStateAndStoreReferences = async <
   A = FirebaseFirestore.DocumentData,
   O = FirebaseFirestore.DocumentData
 >(
   gameName: GameName,
   gameId: GameId,
-  actionText: string
+  actionText: string,
+  previousState?: A
 ): Promise<{
   sessionRef: FirebaseFirestore.CollectionReference;
   stateDoc: FirebaseFirestore.DocumentSnapshot;
@@ -229,10 +257,10 @@ export const getStateAndStoreReferences = async <
   store: O;
 }> => {
   const sessionRef = getSessionRef(gameName, gameId);
-  const stateDoc = await getSessionDoc(gameName, gameId, 'state', actionText);
   const storeDoc = await getSessionDoc(gameName, gameId, 'store', actionText);
-  const state = (stateDoc.data() ?? {}) as A;
+  const stateDoc = await getSessionDoc(gameName, gameId, 'state', actionText);
   const store = (storeDoc.data() ?? {}) as O;
+  const state = previousState ?? ((stateDoc.data() ?? {}) as A);
 
   return {
     sessionRef,
@@ -254,20 +282,12 @@ export const saveGame = async (
   saveContent: SaveGamePayload
 ) => {
   try {
-    if (saveContent?.set?.players) {
-      await sessionRef.doc('players').set(saveContent.set.players ?? {});
-    }
-
     if (saveContent?.set?.state) {
       await sessionRef.doc('state').set({ ...saveContent.set.state, updatedAt: Date.now() } ?? {});
     }
 
     if (saveContent?.update?.store) {
       await sessionRef.doc('store').update(saveContent.update.store);
-    }
-
-    if (saveContent?.update?.players) {
-      await sessionRef.doc('players').update(saveContent.update.players);
     }
 
     if (saveContent?.update?.state) {
@@ -328,26 +348,25 @@ export const updatePlayer = async ({
   const playerChange = {};
   for (const key in change) {
     if (change[key] !== undefined) {
-      playerChange[`${playerId}.${key}`] = change[key];
+      playerChange[`players.${playerId}.${key}`] = change[key];
     }
   }
   // Ready player if so
   if (shouldReady) {
-    playerChange[`${playerId}.ready`] = true;
+    playerChange[`players.${playerId}.ready`] = true;
   }
 
   try {
-    await sessionRef.doc('players').update({ ...playerChange });
+    await sessionRef.doc('state').update({ ...playerChange });
   } catch (error) {
     return throwException(error, actionText);
   }
   if (shouldReady && nextPhaseFunction) {
-    const playersDoc = await getSessionDoc(gameName, gameId, 'players', actionText);
-    const players = playersDoc.data() ?? {};
-
+    const { state } = await utils.firebase.getStateReferences<DefaultState>(gameName, gameId, actionText);
+    const players = state?.players ?? {};
     // If all players are ready, trigger next phase
     if (utils.players.isEverybodyReady(players)) {
-      return nextPhaseFunction(gameName, gameId, players);
+      return nextPhaseFunction(gameName, gameId, state);
     }
   }
 
@@ -380,9 +399,7 @@ export const updateStore = async ({
   }
 
   if (nextPhaseFunction) {
-    const playersDoc = await getSessionDoc(gameName, gameId, 'players', actionText);
-    const players = playersDoc.data() ?? {};
-    return nextPhaseFunction(gameName, gameId, players);
+    return nextPhaseFunction(gameName, gameId);
   }
 
   return true;
@@ -414,9 +431,7 @@ export const updateState = async ({
   }
 
   if (nextPhaseFunction) {
-    const playersDoc = await getSessionDoc(gameName, gameId, 'players', actionText);
-    const players = playersDoc.data() ?? {};
-    return nextPhaseFunction(gameName, gameId, players);
+    return nextPhaseFunction(gameName, gameId);
   }
 
   return true;

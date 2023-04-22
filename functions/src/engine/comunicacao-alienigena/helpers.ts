@@ -40,11 +40,11 @@ export const determineNextPhase = (
   const { phase: currentPhase, round, humanId, turnOrder, status, items } = state;
 
   if (currentPhase === REVEAL) {
-    if (status.timeLeft < 1 || items.every((item: Item) => item.offered)) {
+    if (status && (status.timeLeft < 1 || items.every((item: Item) => item.offered))) {
       return GAME_OVER;
     }
 
-    if (status.needed === status.found) {
+    if (status && status.needed === status.found) {
       return GAME_OVER;
     }
 

@@ -29,7 +29,7 @@ export const getInitialState = (
   uid: string,
   language: Language
 ): InstrumentosCodificadosInitialState => {
-  return utils.helpers.getDefaultInitialState({
+  return utils.helpers.getDefaultInitialState<InstrumentosCodificadosInitialState>({
     gameId,
     gameName: GAME_NAMES.INSTRUMENTOS_CODIFICADOS,
     uid,

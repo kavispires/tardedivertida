@@ -69,9 +69,9 @@ export interface ComunicacaoAlienigenaStore extends DefaultStore {
 
 export interface ComunicacaoAlienigenaState extends DefaultState {
   [key: string]: any;
-  status: OfferingsStatus;
-  inquiryHistory: InquiryHistoryEntry[];
-  requestHistory: RequestHistoryEntry[];
+  status?: OfferingsStatus;
+  inquiryHistory?: InquiryHistoryEntry[];
+  requestHistory?: RequestHistoryEntry[];
 }
 
 export interface ComunicacaoAlienigenaInitialState extends InitialState {
