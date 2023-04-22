@@ -6,6 +6,7 @@ import { notification } from 'antd';
 import { useLocalStorage } from './useLocalStorage';
 import { useLoading } from './useLoading';
 import { useGameId } from './useGameId';
+import { useError } from './useError';
 // API
 import { GAME_API } from 'services/adapters';
 // Utils
@@ -19,6 +20,7 @@ export function useGameMeta(): GameMeta {
   const gameId = useGameId();
   const [, setLocalStorage] = useLocalStorage();
   const { setLoader } = useLoading();
+  const { setError } = useError();
 
   // Game gameID
   const query = useQuery({
@@ -37,6 +39,7 @@ export function useGameMeta(): GameMeta {
     },
     onError: (e: any) => {
       console.error(e);
+      setError('meta', JSON.stringify(e.message));
       notification.error({
         message: 'Failed to load game',
         description: JSON.stringify(e.message),
@@ -46,6 +49,12 @@ export function useGameMeta(): GameMeta {
       setLoader('load', false);
     },
   });
+
+  useEffect(() => {
+    if (!query.isError) {
+      setError('meta', '');
+    }
+  }, [query.isError]); // eslint-disable-line
 
   useEffect(() => {
     setLoader('load', query.isLoading);
