@@ -10,7 +10,7 @@ import { GameOverTable } from './components/GameOverTable';
 
 function PhaseGameOver({ state, info, players }: PhaseProps) {
   return (
-    <GameOverWrapper info={info} state={state} announcementIcon={<LadderIcon />}>
+    <GameOverWrapper info={info} state={state} players={players} announcementIcon={<LadderIcon />}>
       <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
       <BestMatches bestMatches={state.bestMatches} />
       <GameOverTable table={state.table} />

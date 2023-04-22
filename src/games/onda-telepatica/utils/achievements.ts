@@ -1,12 +1,6 @@
-import { MedalArrowDownIcon } from 'icons/MedalArrowDownIcon';
-import { MedalArrowUpIcon } from 'icons/MedalArrowUpIcon';
-import { MedalCloseIcon } from 'icons/MedalCloseIcon';
-import { MedalLightBulbIcon } from 'icons/MedalLightBulbIcon';
-import { MedalNarrowIcon } from 'icons/MedalNarrowIcon';
-
 export const achievementsReference: AchievementReference = {
   MOST_ACCURATE: {
-    Icon: MedalArrowUpIcon,
+    icon: 'arrow-up',
     title: {
       pt: 'Mais Preciso',
       en: 'Most Accurate',
@@ -17,7 +11,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   LEAST_ACCURATE: {
-    Icon: MedalArrowDownIcon,
+    icon: 'arrow-down',
     title: {
       pt: 'Menos Preciso',
       en: 'Least Accurate',
@@ -28,7 +22,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   MOST_EXACT: {
-    Icon: MedalNarrowIcon,
+    icon: 'arrow-narrow',
     title: {
       pt: 'Mais Exato',
       en: 'Most Exact',
@@ -39,7 +33,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   BEST_PSYCHIC: {
-    Icon: MedalLightBulbIcon,
+    icon: 'brain',
     title: {
       pt: 'Melhor Medium',
       en: 'Best Medium',
@@ -50,7 +44,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   MOST_ZEROS: {
-    Icon: MedalCloseIcon,
+    icon: 'block',
     title: {
       pt: 'Mais Diferentão',
       en: 'Outside of the Box Thinker',
@@ -61,3 +55,5 @@ export const achievementsReference: AchievementReference = {
     },
   },
 };
+
+export default achievementsReference;

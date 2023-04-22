@@ -1,5 +1,6 @@
 // Constants
 import { CLUES_PER_PLAYER, FINAL_ANSWER_COUNT, MAX_ROUNDS, VENDAVAL_DE_PALPITE_PHASES } from './constants';
+import { GAME_NAMES } from '../../utils/constants';
 // Types
 import type { Board, ClueId, Clues, FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Utils
@@ -173,6 +174,15 @@ export const prepareGameOverPhase = async (
    */
 
   await utils.firebase.markGameAsComplete(gameId);
+
+  await utils.user.saveGameToUsers({
+    gameName: GAME_NAMES.VENDAVAL_DE_PALPITE,
+    gameId,
+    startedAt: store.createdAt,
+    players,
+    winners: [],
+    achievements: [],
+  });
 
   return {
     set: {

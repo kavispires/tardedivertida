@@ -18,7 +18,7 @@ type RoundAnnouncementProps = {
   onPressButton?: GenericFunction;
   buttonText?: string;
   time: number;
-  players?: Players;
+  players?: GamePlayers;
   /**
    * Optional custom class name
    */

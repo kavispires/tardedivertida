@@ -2,7 +2,7 @@ import { orderBy } from 'lodash';
 // Ant Design Resources
 import { Space } from 'antd';
 // Utils
-import { achievementsReference } from './utils/helpers';
+import { achievementsReference } from './utils/achievements';
 // Icons
 import { TrophyIcon } from 'icons/TrophyIcon';
 // Components
@@ -12,7 +12,7 @@ import { FinalCharacter } from './components/FinalCharacter';
 
 function PhaseGameOver({ state, players, info, meta }: PhaseProps) {
   return (
-    <GameOverWrapper info={info} state={state} announcementIcon={<TrophyIcon />}>
+    <GameOverWrapper info={info} state={state} players={players} announcementIcon={<TrophyIcon />}>
       <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
 
       <Space className="space-container" wrap>

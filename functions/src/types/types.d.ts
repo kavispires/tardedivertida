@@ -65,6 +65,7 @@ interface AddPlayerPayload {
   gameName: GameName;
   playerName: PlayerName;
   playerAvatarId: PlayerAvatarId;
+  isGuest?: boolean;
 }
 
 interface BasicGamePayload {
@@ -101,6 +102,7 @@ interface DefaultState {
 interface DefaultStore {
   language: Language;
   options?: BooleanDictionary;
+  createdAt: DateMilliseconds;
   [key: string]: any;
 }
 

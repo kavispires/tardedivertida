@@ -30,7 +30,8 @@ type StepPlayCardProps = {
   onPlayCard: GenericFunction;
   isLoading: boolean;
   turnOrder: TurnOrder;
-};
+  leaderId: PlayerId;
+} & AnnouncementProps;
 
 export function StepPlayCard({
   isUserTheImpostor,
@@ -43,13 +44,15 @@ export function StepPlayCard({
   onPlayCard,
   isLoading,
   turnOrder,
+  leaderId,
+  announcement,
 }: StepPlayCardProps) {
   useTemporarilyHidePlayersBar();
   const { translate } = useLanguage();
   const onSelectCard = (cardId: string) => onPlayCard({ cardId });
 
   useEffect(() => {
-    if (isUserTheCurrentPlayer && !isLoading) {
+    if (isUserTheCurrentPlayer && !isLoading && Date.now() - user.updatedAt > 300000) {
       message.info(
         messageContent(
           translate('Escolha uma carta!', 'Choose a card to play'),
@@ -63,10 +66,10 @@ export function StepPlayCard({
         )
       );
     }
-  }, [isUserTheCurrentPlayer, currentPlayer.id, translate, isLoading]);
+  }, [isUserTheCurrentPlayer, currentPlayer.id, translate, isLoading, user.updatedAt]);
 
   return (
-    <Step key={1}>
+    <Step key={1} announcement={announcement}>
       <Title>
         {isUserTheImpostor ? (
           <>
@@ -124,7 +127,12 @@ export function StepPlayCard({
 
       <Table table={table} players={players} />
 
-      <TurnOrder players={players} activePlayerId={currentPlayer.id} order={turnOrder} />
+      <TurnOrder
+        players={players}
+        activePlayerId={currentPlayer.id}
+        order={turnOrder}
+        reorderByUser={leaderId}
+      />
 
       <FloatingHand>
         <ImageCardHand

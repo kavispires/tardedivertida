@@ -18,12 +18,40 @@ import { CardHighlight } from 'components/metrics/CardHighlight';
 
 function PhaseCardPlay({ state, players, info }: PhaseProps) {
   const { isLoading } = useLoading();
-  const { step, goToNextStep } = useStep(0);
+  const { step } = useStep(0);
   const user = useUser(players, state);
   const [currentPlayer, isUserTheCurrentPlayer] = useWhichPlayerIsThe('currentPlayerId', state, players);
   const [, isUserTheImpostor] = useWhichPlayerIsThe('impostorId', state, players);
 
   const onPlayCard = useOnPlayCardAPIRequest();
+
+  const announcement = (
+    <PhaseAnnouncement
+      icon={<HangingPhotographIcon />}
+      title={<Translate pt="Apresentação das Evidências" en="Evidence" />}
+      currentRound={state?.round?.current}
+      type="overlay"
+    >
+      <Instruction>
+        <Translate
+          pt={
+            <>
+              Agora, jogadores selecionarão <CardHighlight>2</CardHighlight> cartas, uma de cada vez, como
+              evidência que eles não são o impostor. Enquanto isso, o impostor está prestando bastante atenção
+              nas cartas selecionadas e escolhendo algo que o(a) ajude a passar despercebido.
+            </>
+          }
+          en={
+            <>
+              Now players will play <CardHighlight>2</CardHighlight> cards, one at a time, as evidence that
+              they are not the impostor while the impostor is looking closely to what others are playing and
+              trying to go unnoticed.
+            </>
+          }
+        />
+      </Instruction>
+    </PhaseAnnouncement>
+  );
 
   return (
     <PhaseContainer
@@ -34,34 +62,6 @@ function PhaseCardPlay({ state, players, info }: PhaseProps) {
     >
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
-        <PhaseAnnouncement
-          icon={<HangingPhotographIcon />}
-          title={<Translate pt="Apresentação das Evidências" en="Evidence" />}
-          onClose={goToNextStep}
-          currentRound={state?.round?.current}
-          type="block"
-        >
-          <Instruction>
-            <Translate
-              pt={
-                <>
-                  Agora, jogadores selecionarão <CardHighlight>2</CardHighlight> cartas, uma de cada vez, como
-                  evidência que eles não são o impostor. Enquanto isso, o impostor está prestando bastante
-                  atenção nas cartas selecionadas e escolhendo algo que o(a) ajude a passar despercebido.
-                </>
-              }
-              en={
-                <>
-                  Now players will play <CardHighlight>2</CardHighlight> cards, one at a time, as evidence
-                  that they are not the impostor while the impostor is looking closely to what others are
-                  playing and trying to go unnoticed.
-                </>
-              }
-            />
-          </Instruction>
-        </PhaseAnnouncement>
-
-        {/* Step 1 */}
         <StepPlayCard
           clue={state.clue}
           currentPlayer={currentPlayer}
@@ -73,7 +73,12 @@ function PhaseCardPlay({ state, players, info }: PhaseProps) {
           table={state.table}
           user={user}
           turnOrder={state.turnOrder}
+          announcement={announcement}
+          leaderId={state.leaderId}
         />
+
+        {/* Step 1 */}
+        <></>
       </StepSwitcher>
     </PhaseContainer>
   );

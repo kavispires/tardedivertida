@@ -5,9 +5,9 @@ import { GameOverWrapper } from 'components/game-over';
 import { Space } from 'antd';
 import { PlayerBoard } from './components/PlayersBoards';
 
-function PhaseGameOver({ state, info }: PhaseProps) {
+function PhaseGameOver({ state, info, players }: PhaseProps) {
   return (
-    <GameOverWrapper info={info} state={state} announcementIcon={<FlagIcon />}>
+    <GameOverWrapper info={info} state={state} players={players} announcementIcon={<FlagIcon />}>
       <Space className="space-container" wrap>
         {state.gallery.map((entry: GamePlayer) => {
           return (

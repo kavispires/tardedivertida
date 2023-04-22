@@ -11,7 +11,7 @@ import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
 import { ImageCard } from 'components/cards';
 
-function PhaseGameOver({ state, info }: PhaseProps) {
+function PhaseGameOver({ state, info, players }: PhaseProps) {
   const { language } = useLanguage();
 
   const didUserWin = state.outcome === 'WIN';
@@ -20,6 +20,7 @@ function PhaseGameOver({ state, info }: PhaseProps) {
     <GameOverWrapper
       info={info}
       state={state}
+      players={players}
       announcementIcon={didUserWin ? <CriminalIcon /> : <NewspaperIcon />}
       announcementDuration={15}
       announcementTitle={

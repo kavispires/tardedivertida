@@ -1,10 +1,10 @@
 import * as admin from 'firebase-admin';
 // Constants
-import { DATA_DOCUMENTS, GAME_CODES, GLOBAL_USED_DOCUMENTS, USED_GAME_IDS } from '../utils/constants';
+import { GAME_CODES, USED_GAME_IDS } from '../utils/constants';
 // Utils
 import * as delegatorUtils from '../utils/delegators';
 import utils from '../utils';
-import aliemItemsMock from '../utils/mocks/alien-items.json';
+// import { feedEmulatorDB } from './emulator';
 
 /**
  * Creates a new game instance
@@ -17,7 +17,7 @@ export const createGame = async (data: CreateGamePayload, context: FirebaseConte
   utils.firebase.verifyAuth(context, actionText);
 
   // Get collection name by game code on request
-  const { gameName, language } = data;
+  const { gameName, language, options } = data;
 
   if (!gameName) {
     return utils.firebase.throwException('a gameName is required', actionText);
@@ -30,9 +30,9 @@ export const createGame = async (data: CreateGamePayload, context: FirebaseConte
     return utils.firebase.throwException(`provided gameCode is invalid ${gameName}`, actionText);
   }
 
-  if (process.env.FUNCTIONS_EMULATOR) {
-    await _feedEmulatorDB();
-  }
+  // if (process.env.FUNCTIONS_EMULATOR) {
+  //   await feedEmulatorDB();
+  // }
 
   // Get list of used ids
   const globalRef = utils.firebase.getGlobalRef();
@@ -66,7 +66,7 @@ export const createGame = async (data: CreateGamePayload, context: FirebaseConte
     const { getInitialState } = delegatorUtils.getEngine(gameName);
 
     const uid = context?.auth?.uid ?? 'admin?';
-    const { meta, players, state, store } = getInitialState(gameId, uid, data.language ?? 'pt', data.options);
+    const { meta, players, state, store } = getInitialState(gameId, uid, language ?? 'pt', options);
 
     await sessionRef.doc('players').set(players);
     await sessionRef.doc('state').set(state);
@@ -111,7 +111,7 @@ export const lockGame = async (data: BasicGamePayload, context: FirebaseContext)
   const players: Players = playersDoc.data() ?? {};
 
   // Verify minimum number of players
-  const numPlayers = Object.keys(players).length;
+  const numPlayers = utils.players.getPlayerCount(players);
   const { playerCounts } = delegatorUtils.getEngine(gameName);
 
   if (numPlayers < playerCounts.MIN) {
@@ -128,9 +128,14 @@ export const lockGame = async (data: BasicGamePayload, context: FirebaseContext)
     );
   }
 
+  // Update meta with players Ids
+  const listOfPlayers = utils.helpers
+    .orderBy(utils.players.getListOfPlayers(players), ['name'], 'asc')
+    .map((player) => player.id);
+
   try {
     // Set info with players object and isLocked
-    await utils.firebase.getMetaRef().doc(gameId).update({ isLocked: true });
+    await utils.firebase.getMetaRef().doc(gameId).update({ isLocked: true, playersIds: listOfPlayers });
     // Set state with new Phase: Rules
     await sessionRef.doc('state').update({
       phase: 'RULES',
@@ -193,7 +198,7 @@ const ADMIN_ACTIONS = {
  * @returns
  */
 export const performAdminAction = async (data: ExtendedPayload, context: FirebaseContext) => {
-  const { gameId, gameName, action } = data;
+  const { gameId, gameName, action, state } = data;
 
   utils.firebase.verifyAuth(context, action);
   utils.firebase.validateActionPayload(gameId, gameName, action, action);
@@ -202,7 +207,7 @@ export const performAdminAction = async (data: ExtendedPayload, context: Firebas
     case ADMIN_ACTIONS.GO_TO_NEXT_PHASE:
       return await goToNextPhase(gameId, gameName);
     case ADMIN_ACTIONS.FORCE_STATE_PROPERTY:
-      return await forceStateProperty(gameId, gameName, data.state);
+      return await forceStateProperty(gameId, gameName, state);
     case ADMIN_ACTIONS.PLAY_AGAIN:
       return await playAgain(gameId, gameName);
     case ADMIN_ACTIONS.FORCE_END_GAME:
@@ -297,34 +302,4 @@ const playAgain = async (gameId: GameId, gameName: GameName) => {
   }
 
   return false;
-};
-
-/**
- * Feeds basic data to the emulator DB
- */
-const _feedEmulatorDB = async () => {
-  const sample = { 'a-a-a': true };
-  console.log('\x1b[33m%s\x1b[0m', 'Populating Emulator DB');
-
-  // DATA
-  await utils.firebase.getDataRef().doc(DATA_DOCUMENTS.CONTENDERS_GLYPHS).set(sample);
-
-  await utils.firebase.getDataRef().doc(DATA_DOCUMENTS.ALIEN_ITEMS).set(aliemItemsMock);
-
-  // GLOBAL
-  await utils.firebase.getGlobalRef().doc(USED_GAME_IDS).set(sample);
-
-  // ARTE_RUIM
-
-  await utils.firebase.getPublicRef().doc('arteRuimDrawingsPt').set(sample);
-  await utils.firebase.getPublicRef().doc('arteRuimDrawingsPt2').set(sample);
-  await utils.firebase.getPublicRef().doc('arteRuimDrawingsEn').set(sample);
-  await utils.firebase.getPublicRef().doc('arteRuimDrawingsEn2').set(sample);
-  await utils.firebase.getPublicRef().doc('ratings').set(sample);
-
-  const usedEntries = Object.values(GLOBAL_USED_DOCUMENTS).map((usedEntryName) =>
-    utils.firebase.getGlobalRef().doc(usedEntryName).set(sample)
-  );
-
-  await Promise.all(usedEntries);
 };

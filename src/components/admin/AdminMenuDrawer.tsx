@@ -6,6 +6,8 @@ import { FireFilled } from '@ant-design/icons';
 import { useAPICall } from 'hooks/useAPICall';
 import { useGlobalState } from 'hooks/useGlobalState';
 import { useLoading } from 'hooks/useLoading';
+import { useGameMeta } from 'hooks/useGameMeta';
+import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 // Utils
 import { ADMIN_API } from 'services/adapters';
 import { ADMIN_ACTIONS } from 'utils/constants';
@@ -32,11 +34,11 @@ type AdminMenuDrawerProps = {
 
 export const AdminMenuDrawer = ({ state, players }: AdminMenuDrawerProps) => {
   const { isLoading } = useLoading();
-  const [isAdmin] = useGlobalState('isAdmin');
+  const { isAdmin } = useCurrentUserContext();
   const [usingEmulators] = useGlobalState('usingEmulators');
   const [isAdminEnabled] = useGlobalState('isAdminEnabled');
   const [visible, setVisible] = useState(false);
-  const [meta] = useGlobalState('gameMeta');
+  const meta = useGameMeta();
 
   const showDrawer = () => {
     setVisible(true);

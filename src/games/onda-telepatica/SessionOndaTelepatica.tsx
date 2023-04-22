@@ -34,21 +34,17 @@ function getActiveComponent(phase: string) {
   }
 }
 
-function SessionOndaTelepatica({ gameId }: SessionProps) {
+function SessionOndaTelepatica() {
   return (
     <ConfigProvider
       theme={{
         token: {
           colorPrimary: THEME_COLORS.PLUMP_PURPLE,
+          colorLink: THEME_COLORS.PLUMP_PURPLE,
         },
       }}
     >
-      <Session
-        gameId={gameId}
-        gameCollection={GAME_COLLECTION.ONDA_TELEPATICA}
-        getActiveComponent={getActiveComponent}
-        backgroundClassName="o-background"
-      />
+      <Session gameCollection={GAME_COLLECTION.ONDA_TELEPATICA} getActiveComponent={getActiveComponent} />
     </ConfigProvider>
   );
 }

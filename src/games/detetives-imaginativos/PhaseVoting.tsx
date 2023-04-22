@@ -18,11 +18,39 @@ import { PlayersHighlight } from 'components/metrics/PlayersHighlight';
 
 function PhaseVoting({ state, players, info }: PhaseProps) {
   const { isLoading } = useLoading();
-  const { step, goToNextStep } = useStep(0);
+  const { step } = useStep(0);
   const user = useUser(players, state);
   const [, isUserTheLeader] = useWhichPlayerIsThe('leaderId', state, players);
 
   const onSubmitVote = useOnSubmitVoteAPIRequest();
+
+  const announcement = (
+    <PhaseAnnouncement
+      icon={<VoteIcon />}
+      title={<Translate pt="Votação" en="Vote" />}
+      currentRound={state?.round?.current}
+      type="overlay"
+    >
+      <Instruction>
+        <Translate
+          pt={
+            <>
+              Agora você vota! Escolha o jogador que você acredita ser o impostor. Você pode discutir com os
+              outros antes de votar, porque uma vez votado, você não pode mudar. O impostor só pede se
+              <PlayersHighlight>2+</PlayersHighlight> pessoas votarem nele.
+            </>
+          }
+          en={
+            <>
+              Now it's time to vote! Vote for the player you think is the impostor. You can discuss before you
+              vote because you can't change your vote. The impostor only loses if at least{' '}
+              <PlayersHighlight>2+</PlayersHighlight> people voted for them.
+            </>
+          }
+        />
+      </Instruction>
+    </PhaseAnnouncement>
+  );
 
   return (
     <PhaseContainer
@@ -33,34 +61,6 @@ function PhaseVoting({ state, players, info }: PhaseProps) {
     >
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
-        <PhaseAnnouncement
-          icon={<VoteIcon />}
-          title={<Translate pt="Votação" en="Vote" />}
-          onClose={goToNextStep}
-          currentRound={state?.round?.current}
-          type="block"
-        >
-          <Instruction>
-            <Translate
-              pt={
-                <>
-                  Agora você vota! Escolha o jogador que você acredita ser o impostor. Você pode discutir com
-                  os outros antes de votar, porque uma vez votado, você não pode mudar. O impostor só pede se
-                  <PlayersHighlight>2+</PlayersHighlight> pessoas votarem nele.
-                </>
-              }
-              en={
-                <>
-                  Now it's time to vote! Vote for the player you think is the impostor. You can discuss before
-                  you vote because you can't change your vote. The impostor only loses if at least{' '}
-                  <PlayersHighlight>2+</PlayersHighlight> people voted for them.
-                </>
-              }
-            />
-          </Instruction>
-        </PhaseAnnouncement>
-
-        {/* Step 1 */}
         <StepVoting
           players={players}
           leaderId={state.leaderId}
@@ -69,7 +69,11 @@ function PhaseVoting({ state, players, info }: PhaseProps) {
           isLoading={isLoading}
           isUserTheLeader={isUserTheLeader}
           table={state.table}
+          announcement={announcement}
         />
+
+        {/* Step 1 */}
+        <></>
       </StepSwitcher>
     </PhaseContainer>
   );

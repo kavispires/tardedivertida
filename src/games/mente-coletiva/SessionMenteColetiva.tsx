@@ -38,21 +38,17 @@ function getActiveComponent(phase: string) {
   }
 }
 
-function SessionMenteColetiva({ gameId }: SessionProps) {
+function SessionMenteColetiva() {
   return (
     <ConfigProvider
       theme={{
         token: {
           colorPrimary: THEME_COLORS.WOOD,
+          colorLink: THEME_COLORS.WOOD,
         },
       }}
     >
-      <Session
-        gameId={gameId}
-        gameCollection={GAME_COLLECTION.MENTE_COLETIVA}
-        getActiveComponent={getActiveComponent}
-        backgroundClassName="m-background"
-      />
+      <Session gameCollection={GAME_COLLECTION.MENTE_COLETIVA} getActiveComponent={getActiveComponent} />
     </ConfigProvider>
   );
 }

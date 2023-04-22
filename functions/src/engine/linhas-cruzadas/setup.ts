@@ -6,6 +6,7 @@ import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types
 import utils from '../../utils';
 // Internal
 import { addSlideToAlbum, assignSlideToPlayers, buildAlbum, dealPromptOptions } from './helpers';
+import { GAME_NAMES } from '../../utils/constants';
 
 /**
  * Setup
@@ -174,6 +175,16 @@ export const prepareGameOverPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   await utils.firebase.markGameAsComplete(gameId);
+
+  await utils.user.saveGameToUsers({
+    gameName: GAME_NAMES.LINHAS_CRUZADAS,
+    gameId,
+    startedAt: store.createdAt,
+    players,
+    winners: [],
+    achievements: [],
+  });
+
   return {
     set: {
       players,

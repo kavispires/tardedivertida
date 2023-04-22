@@ -5,6 +5,7 @@ import { MAX_ROUNDS, QUESTION_COUNT, SUSPECT_COUNT, TESTEMUNHA_OCULAR_PHASES } f
 // Helpers
 import utils from '../../utils';
 import { calculateScore, determineTurnOrder, getQuestionerId, getQuestions } from './helpers';
+import { GAME_NAMES } from '../../utils/constants';
 
 /**
  * Setup
@@ -191,9 +192,21 @@ export const prepareGameOverPhase = async (
   gameId: GameId,
   store: FirebaseStoreData,
   state: FirebaseStateData,
+  players: Players,
   additionalPayload: PlainObject
 ): Promise<SaveGamePayload> => {
   await utils.firebase.markGameAsComplete(gameId);
+
+  const winners = additionalPayload?.win ? utils.players.getListOfPlayers(players) : [];
+
+  await utils.user.saveGameToUsers({
+    gameName: GAME_NAMES.TESTEMUNHA_OCULAR,
+    gameId,
+    startedAt: store.createdAt,
+    players,
+    winners,
+    achievements: [],
+  });
 
   // Save
   return {

@@ -146,6 +146,17 @@ $shade-levels: (
     justify-content: space-between;
     padding: 0.5rem;
   }
+
+  &__col {
+    text-align: center;
+    border: 1px solid get-color('black');
+    margin: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem;
+  }
 }
 
 .classifier {

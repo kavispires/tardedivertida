@@ -26,20 +26,19 @@ function getActiveComponent(phase: string) {
   }
 }
 
-function SessionTemplate({ gameId }: SessionProps) {
+function SessionTemplate() {
   return (
     <ConfigProvider
       theme={{
         token: {
           colorPrimary: THEME_COLORS.DEFAULT,
+          colorLink: THEME_COLORS.DEFAULT,
         },
       }}
     >
       <Session
-        gameId={gameId}
         gameCollection={GAME_COLLECTION.INSTRUMENTOS_CODIFICADOS}
         getActiveComponent={getActiveComponent}
-        backgroundClassName="xx-background"
       />
     </ConfigProvider>
   );

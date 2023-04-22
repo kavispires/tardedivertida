@@ -11,7 +11,7 @@ import { Instruction, Title } from 'components/text';
 
 export function PhaseGameOver({ state, info, players }: PhaseProps) {
   return (
-    <GameOverWrapper info={info} state={state} announcementIcon={<CrownIcon />}>
+    <GameOverWrapper info={info} state={state} players={players} announcementIcon={<CrownIcon />}>
       {!isEqual(state.winners, state.fairWinners) && (
         <>
           <Title size="xx-small">

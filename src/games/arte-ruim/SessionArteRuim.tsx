@@ -34,20 +34,17 @@ function getActiveComponent(phase: string) {
   }
 }
 
-function SessionArteRuim({ gameId }: SessionProps) {
+function SessionArteRuim() {
   return (
     <ConfigProvider
       theme={{
         token: {
           colorPrimary: THEME_COLORS.WOOD,
+          colorLink: THEME_COLORS.WOOD,
         },
       }}
     >
-      <Session
-        gameId={gameId}
-        gameCollection={GAME_COLLECTION.ARTE_RUIM}
-        getActiveComponent={getActiveComponent}
-      />
+      <Session gameCollection={GAME_COLLECTION.ARTE_RUIM} getActiveComponent={getActiveComponent} />
     </ConfigProvider>
   );
 }

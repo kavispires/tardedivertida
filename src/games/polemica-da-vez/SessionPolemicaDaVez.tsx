@@ -36,20 +36,17 @@ function getActiveComponent(phase: string) {
   }
 }
 
-function SessionPolemicaDaVez({ gameId }: SessionProps) {
+function SessionPolemicaDaVez() {
   return (
     <ConfigProvider
       theme={{
         token: {
           colorPrimary: THEME_COLORS.DEFAULT,
+          colorLink: THEME_COLORS.DEFAULT,
         },
       }}
     >
-      <Session
-        gameId={gameId}
-        gameCollection={GAME_COLLECTION.POLEMICA_DA_VEZ}
-        getActiveComponent={getActiveComponent}
-      />
+      <Session gameCollection={GAME_COLLECTION.POLEMICA_DA_VEZ} getActiveComponent={getActiveComponent} />
     </ConfigProvider>
   );
 }

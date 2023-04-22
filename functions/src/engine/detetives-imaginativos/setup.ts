@@ -1,6 +1,6 @@
 // Constants
 import { DETETIVES_IMAGINATIVOS_PHASES, HAND_LIMIT } from './constants';
-import { DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
+import { DOUBLE_ROUNDS_THRESHOLD, GAME_NAMES } from '../../utils/constants';
 // Types
 import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Utils
@@ -185,6 +185,15 @@ export const prepareGameOverPhase = async (
   const winners = utils.players.determineWinners(players);
 
   await utils.firebase.markGameAsComplete(gameId);
+
+  await utils.user.saveGameToUsers({
+    gameName: GAME_NAMES.DETETIVES_IMAGINATIVOS,
+    gameId,
+    startedAt: store.createdAt,
+    players,
+    winners,
+    achievements: [],
+  });
 
   return {
     set: {

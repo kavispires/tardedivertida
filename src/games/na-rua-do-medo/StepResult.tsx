@@ -11,7 +11,7 @@ import { Step } from 'components/steps';
 import { Title } from 'components/text';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
-import { AdminNextPhaseButton } from 'components/admin';
+import { VIPNextPhaseButton } from 'components/vip';
 import { PlayersDecisionState } from './components/PlayersDecisionState';
 
 type StepResultProps = {
@@ -77,9 +77,9 @@ export function StepResult({
 
       <Street street={street} currentCard={currentCard} candySidewalk={candySidewalk} />
 
-      <AdminNextPhaseButton autoTriggerTime={10}>
+      <VIPNextPhaseButton autoTriggerTime={10}>
         <Translate pt="Próxima Casa" en="Next House" />
-      </AdminNextPhaseButton>
+      </VIPNextPhaseButton>
 
       <PlayerStats user={user} />
     </Step>

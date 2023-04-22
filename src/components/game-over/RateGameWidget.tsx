@@ -11,6 +11,8 @@ import { useCountdown } from 'hooks/useCountdown';
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 import { useGlobalState } from 'hooks/useGlobalState';
+import { useGameMeta } from 'hooks/useGameMeta';
+import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 // Utils
 import { getAnimationClass } from 'utils/helpers';
 // Components
@@ -60,11 +62,11 @@ function RateGameWidgetContent({
   hideWidget,
   setHideWidget,
 }: RateGameWidgetContentProps): JSX.Element {
+  const { gameId } = useGameMeta();
   const { isLoading } = useLoading();
   const { translate } = useLanguage();
   const [userId] = useGlobalState('userId');
-  const [gameId] = useGlobalState('gameId');
-  const [isAdmin] = useGlobalState('isAdmin');
+  const { isAdmin } = useCurrentUserContext();
   const [isAdminEnabled] = useGlobalState('isAdminEnabled');
   const [rating, setRating] = useState(0);
   const [comments, setComments] = useState('');

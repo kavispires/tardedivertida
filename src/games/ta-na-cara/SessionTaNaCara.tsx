@@ -37,21 +37,17 @@ function getActiveComponent(phase: string) {
   }
 }
 
-function SessionTaNaCara({ gameId }: SessionProps) {
+function SessionTaNaCara() {
   return (
     <ConfigProvider
       theme={{
         token: {
           colorPrimary: THEME_COLORS.DEFAULT,
+          colorLink: THEME_COLORS.DEFAULT,
         },
       }}
     >
-      <Session
-        gameId={gameId}
-        gameCollection={GAME_COLLECTION.TA_NA_CARA}
-        getActiveComponent={getActiveComponent}
-        backgroundClassName="t-background"
-      />
+      <Session gameCollection={GAME_COLLECTION.TA_NA_CARA} getActiveComponent={getActiveComponent} />
     </ConfigProvider>
   );
 }

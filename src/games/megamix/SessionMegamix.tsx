@@ -34,21 +34,17 @@ function getActiveComponent(phase: string) {
   }
 }
 
-function SessionMegamix({ gameId }: SessionProps) {
+function SessionMegamix() {
   return (
     <ConfigProvider
       theme={{
         token: {
           colorPrimary: THEME_COLORS.PLUMP_PURPLE,
+          colorLink: THEME_COLORS.PLUMP_PURPLE,
         },
       }}
     >
-      <Session
-        gameId={gameId}
-        gameCollection={GAME_COLLECTION.MEGAMIX}
-        getActiveComponent={getActiveComponent}
-        backgroundClassName="background"
-      />
+      <Session gameCollection={GAME_COLLECTION.MEGAMIX} getActiveComponent={getActiveComponent} />
     </ConfigProvider>
   );
 }

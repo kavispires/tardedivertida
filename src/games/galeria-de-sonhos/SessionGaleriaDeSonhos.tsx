@@ -37,21 +37,17 @@ function getActiveComponent(phase: string) {
   }
 }
 
-function SessionGaleriaDeSonhos({ gameId }: SessionProps) {
+function SessionGaleriaDeSonhos() {
   return (
     <ConfigProvider
       theme={{
         token: {
           colorPrimary: THEME_COLORS.PLUMP_PURPLE,
+          colorLink: THEME_COLORS.PLUMP_PURPLE,
         },
       }}
     >
-      <Session
-        gameId={gameId}
-        gameCollection={GAME_COLLECTION.GALERIA_DE_SONHOS}
-        getActiveComponent={getActiveComponent}
-        backgroundClassName="g-background"
-      />
+      <Session gameCollection={GAME_COLLECTION.GALERIA_DE_SONHOS} getActiveComponent={getActiveComponent} />
     </ConfigProvider>
   );
 }

@@ -1,8 +1,10 @@
-import { useCallback } from 'react';
 import { message, notification } from 'antd';
 import { HttpsCallable } from 'firebase/functions';
+import { useMutation } from 'react-query';
+// Hooks
 import { useLoading } from './useLoading';
 import { useGlobalState } from './useGlobalState';
+import { useGameMeta } from './useGameMeta';
 
 const debounce = (func: any, timeout = 1000): ((...args: any[]) => any) => {
   let timer: NodeJS.Timeout;
@@ -55,56 +57,40 @@ export function useAPICall({
   errorMessage = 'API call has failed',
 }: useAPICallArgs): (...args: any[]) => any {
   const { setLoader } = useLoading();
-  const [gameId] = useGlobalState('gameId');
-  const [gameName] = useGlobalState('gameName');
+  const { gameId, gameName } = useGameMeta();
   const [userId] = useGlobalState('userId');
 
-  const onAPICall = debounce(
-    useCallback(
-      async (payload: {}) => {
-        try {
-          setLoader(actionName, true);
-          await onBeforeCall();
-          const response = await apiFunction({
-            gameId,
-            gameName,
-            playerId: userId,
-            ...payload,
-          });
-
-          if (response.data) {
-            onSuccess();
-            message.success(successMessage);
-          }
-        } catch (e: any) {
-          notification.error({
-            message: errorMessage,
-            description: JSON.stringify(e.message),
-            placement: 'bottomLeft',
-          });
-          console.error(e);
-          onError();
-        } finally {
-          await onAfterCall();
-          setLoader(actionName, false);
-        }
-      },
-      [
-        actionName,
-        apiFunction,
-        errorMessage,
+  const query = useMutation({
+    mutationKey: [actionName],
+    mutationFn: (payload: {}) =>
+      apiFunction({
         gameId,
         gameName,
-        userId,
-        setLoader,
-        successMessage,
-        onBeforeCall,
-        onAfterCall,
-        onError,
-        onSuccess,
-      ]
-    )
-  );
+        playerId: userId,
+        ...payload,
+      }),
+    onMutate: async () => {
+      setLoader(actionName, true);
+      await onBeforeCall();
+    },
+    onSuccess: async () => {
+      await onSuccess();
+      message.success(successMessage);
+    },
+    onError: (e: any) => {
+      notification.error({
+        message: errorMessage,
+        description: JSON.stringify(e?.message),
+        placement: 'bottomLeft',
+      });
+      console.error(e);
+      onError();
+    },
+    onSettled: async () => {
+      await onAfterCall();
+      setLoader(actionName, false);
+    },
+  });
 
-  return onAPICall;
+  return debounce(query.mutate);
 }

@@ -39,20 +39,17 @@ function getActiveComponent(phase: string) {
   }
 }
 
-function SessionTestemunhaOcular({ gameId }: SessionProps) {
+function SessionTestemunhaOcular() {
   return (
     <ConfigProvider
       theme={{
         token: {
           colorPrimary: THEME_COLORS.SLATE,
+          colorLink: THEME_COLORS.SLATE,
         },
       }}
     >
-      <Session
-        gameId={gameId}
-        gameCollection={GAME_COLLECTION.TESTEMUNHA_OCULAR}
-        getActiveComponent={getActiveComponent}
-      />
+      <Session gameCollection={GAME_COLLECTION.TESTEMUNHA_OCULAR} getActiveComponent={getActiveComponent} />
     </ConfigProvider>
   );
 }

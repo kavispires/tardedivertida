@@ -1,13 +1,6 @@
-import { MedalCloseIcon } from 'icons/MedalCloseIcon';
-import { MedalLightBulbIcon } from 'icons/MedalLightBulbIcon';
-import { MedalRobotIcon } from 'icons/MedalRobotIcon';
-import { MedalSufferingIcon } from 'icons/MedalSufferingIcon';
-import { MedalThumbsDownIcon } from 'icons/MedalThumbsDownIcon';
-import { MedalThumbsUpIcon } from 'icons/MedalThumbsUpIcon';
-
 export const achievementsReference: AchievementReference = {
   MOST_DECEIVING: {
-    Icon: MedalLightBulbIcon,
+    icon: 'light-bulb',
     title: {
       pt: 'Mais Convincente',
       en: 'Most Deceiving',
@@ -18,7 +11,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   WORST_CARDS: {
-    Icon: MedalCloseIcon,
+    icon: 'x',
     title: {
       pt: 'Piores Cartas',
       en: 'Worst Cards',
@@ -29,7 +22,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   WORST_CLUES: {
-    Icon: MedalSufferingIcon,
+    icon: 'face-mental-breakdown',
     title: {
       pt: 'Histórias mais Cabulosas',
       en: 'Most Obscure',
@@ -40,7 +33,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   EASIEST_CLUES: {
-    Icon: MedalThumbsUpIcon,
+    icon: 'face-smiley',
     title: {
       pt: 'Histórias Mais Simples',
       en: 'Easiest Stories',
@@ -51,7 +44,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   HARDEST_CLUES: {
-    Icon: MedalThumbsDownIcon,
+    icon: 'thumbs-up',
     title: {
       pt: 'Histórias Mais Difíceis',
       en: 'Hardest Stories',
@@ -62,7 +55,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   TABLE_VOTES: {
-    Icon: MedalRobotIcon,
+    icon: 'table',
     title: {
       pt: 'Melhor Votador Pra Mesa',
       en: 'Best Table Voter',
@@ -73,3 +66,5 @@ export const achievementsReference: AchievementReference = {
     },
   },
 };
+
+export default achievementsReference;

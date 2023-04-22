@@ -1,9 +1,9 @@
 // Ant Design Resources
 import { Space } from 'antd';
 // Hooks
-import { useGlobalState } from 'hooks/useGlobalState';
 import { useLoading } from 'hooks/useLoading';
 import { useTemporarilyHidePlayersBar } from 'hooks/useTemporarilyHidePlayersBar';
+import { useVIP } from 'hooks/useVIP';
 // Utils
 import { sortPlayers } from 'utils/helpers';
 // Icons
@@ -24,7 +24,7 @@ type StepWitnessSelectionProps = {
 export function StepWitnessSelection({ players, onWitnessButtonClick }: StepWitnessSelectionProps) {
   useTemporarilyHidePlayersBar();
   const { isLoading } = useLoading();
-  const [isAdmin] = useGlobalState('isAdmin');
+  const isVIP = useVIP();
 
   return (
     <Step key={1}>
@@ -39,7 +39,7 @@ export function StepWitnessSelection({ players, onWitnessButtonClick }: StepWitn
       <Instruction contained>
         <Space>
           {sortPlayers(players).map((player) => {
-            if (isAdmin) {
+            if (isVIP) {
               return (
                 <TransparentButton
                   key={`p-bt-${player.id}`}

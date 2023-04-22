@@ -5,6 +5,8 @@ import { Button, message, Space } from 'antd';
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
+// Utils
+import { getAnimationClass } from 'utils/helpers';
 // Components
 import { UeSoIssoCard as Card } from './components/UeSoIssoCard';
 import { SuggestionEasel } from './components/SuggestionEasel';
@@ -14,12 +16,11 @@ import { Instruction, TextHighlight, Title } from 'components/text';
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { ViewOr } from 'components/views';
-import { getAnimationClass } from 'utils/helpers';
 
 type StepGuessVerificationProps = {
   guess: string;
   guesser: GamePlayer;
-  isAdmin: boolean;
+  isVIP: boolean;
   isLoading: boolean;
   isUserTheGuesser: boolean;
   isUserTheController: boolean;
@@ -32,7 +33,7 @@ type StepGuessVerificationProps = {
 export function StepGuessVerification({
   guess,
   guesser,
-  isAdmin,
+  isVIP,
   isLoading,
   isUserTheGuesser,
   isUserTheController,
@@ -117,8 +118,8 @@ export function StepGuessVerification({
         })}
       </Space>
 
-      {(isUserTheController || isAdmin) && (
-        <Space className={clsx('u-word-guess-phase__guess-submit', isAdmin && 'admin-container')}>
+      {(isUserTheController || isVIP) && (
+        <Space className={clsx('u-word-guess-phase__guess-submit', isVIP && 'admin-container')}>
           <Button
             icon={<CheckOutlined />}
             type="primary"

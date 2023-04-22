@@ -39,20 +39,17 @@ function getActiveComponent(phase: string) {
   }
 }
 
-function SessionUeSoIsso({ gameId }: SessionProps) {
+function SessionUeSoIsso() {
   return (
     <ConfigProvider
       theme={{
         token: {
           colorPrimary: THEME_COLORS.DEFAULT,
+          colorLink: THEME_COLORS.DEFAULT,
         },
       }}
     >
-      <Session
-        gameId={gameId}
-        gameCollection={GAME_COLLECTION.UE_SO_ISSO}
-        getActiveComponent={getActiveComponent}
-      />
+      <Session gameCollection={GAME_COLLECTION.UE_SO_ISSO} getActiveComponent={getActiveComponent} />
     </ConfigProvider>
   );
 }

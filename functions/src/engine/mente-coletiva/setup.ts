@@ -26,6 +26,7 @@ import {
   getAchievements,
   calculateSheepTravelDistance,
 } from './helpers';
+import { GAME_NAMES } from '../../utils/constants';
 
 /**
  * Setup
@@ -250,14 +251,30 @@ export const prepareGameOverPhase = async (
     return acc;
   }, 0);
 
-  const winners = Object.values(players).filter((player) => player.level < farthestPasturePosition);
+  const listOfPlayers = utils.players.getListOfPlayers(players);
 
-  const losers = Object.values(players).filter((player) => player.level === farthestPasturePosition);
+  // Deal scores:
+  listOfPlayers.forEach((player) => {
+    player.score = farthestPasturePosition - player.level;
+  });
+
+  const winners = listOfPlayers.filter((player) => player.level < farthestPasturePosition);
+
+  const losers = listOfPlayers.filter((player) => player.level === farthestPasturePosition);
 
   // Get achievements
   const achievements = getAchievements(players, store);
 
   await utils.firebase.markGameAsComplete(gameId);
+
+  await utils.user.saveGameToUsers({
+    gameName: GAME_NAMES.MENTE_COLETIVA,
+    gameId,
+    startedAt: store.createdAt,
+    players,
+    winners,
+    achievements,
+  });
 
   // Save
   return {

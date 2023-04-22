@@ -93,7 +93,7 @@ describe('/utils', function () {
   });
 
   describe('getPlayersFromIds', function () {
-    const players: Players = {
+    const players: GamePlayers = {
       _adam: {
         id: '_adam',
         name: 'Adam',

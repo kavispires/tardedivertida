@@ -11,7 +11,7 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
 import { StepRankingWrapper } from 'components/ranking';
 import { Instruction, RoundsLeftInstruction } from 'components/text';
-import { AdminNextPhaseButton } from 'components/admin';
+import { VIPNextPhaseButton } from 'components/vip';
 
 function PhaseResolution({ players, state, info }: PhaseProps) {
   const user = useUser(players, state);
@@ -55,7 +55,7 @@ function PhaseResolution({ players, state, info }: PhaseProps) {
           ]}
         >
           <RoundsLeftInstruction round={state.round} />
-          <AdminNextPhaseButton round={state.round} />
+          <VIPNextPhaseButton round={state.round} />
         </StepRankingWrapper>
       </StepSwitcher>
     </PhaseContainer>

@@ -8,7 +8,7 @@ import { AdminAnswerControl } from './components/AdminAnswerControl';
 import { AnswerGroup } from './components/AnswerGroup';
 import { UserAnswers } from './components/UserAnswers';
 import { Translate } from 'components/language';
-import { AdminNextPhaseButton } from 'components/admin';
+import { VIPNextPhaseButton } from 'components/vip';
 
 type StepCompareProps = {
   currentQuestion: MQuestion;
@@ -21,6 +21,7 @@ type StepCompareProps = {
   remainingGroupsCount: number;
   allowedList: AllowedList;
   setAllowedList: GenericFunction;
+  round: GameRound;
 } & AnnouncementProps;
 
 export function StepCompare({
@@ -35,6 +36,7 @@ export function StepCompare({
   remainingGroupsCount,
   allowedList,
   setAllowedList,
+  round,
 }: StepCompareProps) {
   useTemporarilyHidePlayersBar();
   const allowUserAnswer = (isAllowed: boolean, answerId: string) => {
@@ -52,7 +54,7 @@ export function StepCompare({
       <Step fullWidth>
         <Translate pt="Pronto!" en="All done!" />
         <Divider />
-        <AdminNextPhaseButton>Next Phase</AdminNextPhaseButton>
+        <VIPNextPhaseButton round={round} />
       </Step>
     );
   }

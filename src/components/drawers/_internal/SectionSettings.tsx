@@ -5,13 +5,14 @@ import { InfoCircleOutlined } from '@ant-design/icons';
 import { useDevFeatures } from 'hooks/useDevFeatures';
 import { useGlobalState } from 'hooks/useGlobalState';
 import { useLocalStorage } from 'hooks/useLocalStorage';
+import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 // Components
 import { LanguageSwitch, Translate } from 'components/language';
 import { BlurOptions } from './BlurOptions';
 
 export function SectionSettings() {
   const [blurEnabled, setBlurEnabled] = useGlobalState('blurEnabled');
-  const [isAdmin] = useGlobalState('isAdmin');
+  const { isAdmin } = useCurrentUserContext();
   const [isAdminEnabled, setIsAdminEnabled] = useGlobalState('isAdminEnabled');
   const [volume, setVolume] = useGlobalState('volume');
   const { isDebugEnabled, toggleDevFeatures } = useDevFeatures();

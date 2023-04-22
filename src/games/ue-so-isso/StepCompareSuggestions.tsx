@@ -3,9 +3,9 @@ import { useEffect, useState } from 'react';
 import { Button, message, Space } from 'antd';
 import { CloudUploadOutlined } from '@ant-design/icons';
 // Hooks
-import { useGlobalState } from 'hooks/useGlobalState';
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
+import { useVIP } from 'hooks/useVIP';
 // Utils
 import { deepCopy } from 'utils/helpers';
 // Components
@@ -15,7 +15,7 @@ import { Step } from 'components/steps';
 import { Title } from 'components/text';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
-import { AdminButton, AdminOnlyContainer } from 'components/admin';
+import { VIPButton, VIPOnlyContainer } from 'components/vip';
 import { messageContent } from 'components/pop-up';
 import { Cards } from './components/Cards';
 
@@ -41,7 +41,7 @@ export function StepCompareSuggestions({
   const { translate } = useLanguage();
   const { isLoading } = useLoading();
   const [myRecommendation, setMyRecommendation] = useState<UseSoIssoSuggestion[]>(deepCopy(suggestions));
-  const [isAdmin] = useGlobalState('isAdmin');
+  const isVIP = useVIP();
   const [wasMessageShown, setWasMessageShown] = useState(false);
 
   const onSetValidation = (index: number, suggestionEntry: UseSoIssoSuggestion, notAllowed?: boolean) => {
@@ -115,16 +115,16 @@ export function StepCompareSuggestions({
         </Space>
       )}
 
-      <AdminOnlyContainer direction="vertical" align="center">
+      <VIPOnlyContainer direction="vertical" align="center">
         <Cards
           suggestions={suggestions}
-          readOnly={!isAdmin}
+          readOnly={!isVIP}
           players={players}
           onSetValidation={onSetValidation}
           isLoading={isLoading}
           myRecommendation={myRecommendation}
         />
-        <AdminButton
+        <VIPButton
           onClick={() =>
             onValidateSuggestions({
               validSuggestions: suggestionsValues.filter((suggestion) => !suggestion.invalid),
@@ -132,8 +132,8 @@ export function StepCompareSuggestions({
           }
         >
           <Translate pt="Confirmar dicas válidas como Admin" en="Confirm valid clues as Admin" />
-        </AdminButton>
-      </AdminOnlyContainer>
+        </VIPButton>
+      </VIPOnlyContainer>
     </Step>
   );
 }

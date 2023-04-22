@@ -19,7 +19,7 @@ type StepVotingProps = {
   players: GamePlayers;
   onVote: GenericFunction;
   table: DetetivesImaginativosCardEntry[];
-};
+} & AnnouncementProps;
 
 export function StepVoting({
   isLoading,
@@ -29,9 +29,10 @@ export function StepVoting({
   players,
   onVote,
   table,
+  announcement,
 }: StepVotingProps) {
   return (
-    <Step>
+    <Step announcement={announcement}>
       <Title>
         {isLoading ? (
           <IconAvatar icon={<AnimatedClockIcon />} size="large" />

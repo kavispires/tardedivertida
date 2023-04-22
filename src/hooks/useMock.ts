@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
-import { VIEWER_ID } from 'utils/constants';
-import { getRandomItem, isDevEnv } from 'utils/helpers';
+// Hooks
 import { useCountdown } from './useCountdown';
 import { useGlobalState } from './useGlobalState';
+import { useVIP } from './useVIP';
+// Utils
+import { VIEWER_ID } from 'utils/constants';
+import { getRandomItem, isDevEnv } from 'utils/helpers';
 
 /**
  * Runs mock function tht performs whatever
@@ -11,12 +14,12 @@ import { useGlobalState } from './useGlobalState';
  * @param [conditions]
  */
 export function useMock(whatToDo: GenericFunction, conditions: any[] = [], requirements: any[] = []) {
-  const [isAdmin] = useGlobalState('isAdmin');
+  const isVIP = useVIP();
   const [userId] = useGlobalState('userId');
   const [runOnce, setRunOnce] = useState(false);
 
   useEffect(() => {
-    if (!runOnce && isDevEnv && !isAdmin && userId !== VIEWER_ID && requirements.every(Boolean)) {
+    if (!runOnce && isDevEnv && !isVIP && userId !== VIEWER_ID && requirements.every(Boolean)) {
       setRunOnce(true);
       whatToDo();
     }
@@ -31,7 +34,7 @@ export function useMock(whatToDo: GenericFunction, conditions: any[] = [], requi
  * @returns
  */
 export function useDelayedMock(whatToDo: GenericFunction, requirements: any[] = [], delay?: number) {
-  const [isAdmin] = useGlobalState('isAdmin');
+  const isVIP = useVIP();
   const [userId] = useGlobalState('userId');
   const [runOnce, setRunOnce] = useState(false);
   const duration = delay ?? getRandomItem([3, 4, 4, 5, 6]);
@@ -39,7 +42,7 @@ export function useDelayedMock(whatToDo: GenericFunction, requirements: any[] = 
   return useCountdown({
     duration,
     onExpire: () => {
-      if (!runOnce && isDevEnv && !isAdmin && userId !== VIEWER_ID && requirements.every(Boolean)) {
+      if (!runOnce && isDevEnv && !isVIP && userId !== VIEWER_ID && requirements.every(Boolean)) {
         whatToDo();
         setRunOnce(true);
       }

@@ -10,6 +10,7 @@ import {
   TRAPS,
   WIN_CONDITION,
 } from './constants';
+import { GAME_NAMES } from '../../utils/constants';
 // Types
 import type { FirebaseStateData, FirebaseStoreData, ResourceData, Trap } from './types';
 // Utils
@@ -303,9 +304,18 @@ export const prepareGameOverPhase = async (
     state.outcome === OUTCOME.SUCCESS ? state.currentCorridor + 1 : state.currentCorridor;
   const winCondition = state.winCondition === WIN_CONDITION.WIN ? WIN_CONDITION.WIN : WIN_CONDITION.LOSE;
 
+  const achievements = getAchievements(store);
+
   await utils.firebase.markGameAsComplete(gameId);
 
-  const achievements = getAchievements(store);
+  await utils.user.saveGameToUsers({
+    gameName: GAME_NAMES.PORTA_DOS_DESESPERADOS,
+    gameId,
+    startedAt: store.createdAt,
+    players,
+    winners,
+    achievements,
+  });
 
   return {
     set: {

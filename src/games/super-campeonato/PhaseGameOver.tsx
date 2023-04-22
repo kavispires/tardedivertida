@@ -8,9 +8,9 @@ import { Translate } from 'components/language';
 import { Title } from 'components/text';
 import { ContenderCard } from './components/ContenderCard';
 
-function PhaseGameOver({ state, info }: PhaseProps) {
+function PhaseGameOver({ state, info, players }: PhaseProps) {
   return (
-    <GameOverWrapper info={info} state={state} announcementIcon={<TrophyIcon />}>
+    <GameOverWrapper info={info} state={state} players={players} announcementIcon={<TrophyIcon />}>
       <Title size="xx-small" className="padding">
         <Translate pt="Campeão Ultimate" en="Ultimate Champion" />
       </Title>

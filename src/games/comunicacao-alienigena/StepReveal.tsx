@@ -9,7 +9,7 @@ import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
 import { ItemCard } from 'components/cards/ItemCard';
-import { AdminNextPhaseButton } from 'components/admin';
+import { VIPNextPhaseButton } from 'components/vip';
 import { MetricHighlight } from 'components/metrics/MetricHighlight';
 import { ObjectsGrid } from './components/ObjectsGrid';
 import { SignsKeyCard } from './components/SignsKeyCard';
@@ -127,7 +127,7 @@ export function StepReveal({
         isAlienBot={isAlienBot}
       />
 
-      <AdminNextPhaseButton round={round} autoTriggerTime={30} />
+      <VIPNextPhaseButton round={round} />
     </Step>
   );
 }
