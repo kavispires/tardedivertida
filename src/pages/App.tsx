@@ -7,11 +7,13 @@ import { ConfigProvider, Layout } from 'antd';
 import { AuthProvider } from 'services/AuthProvider';
 // Hooks
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
+import { useError } from 'hooks/useError';
 // State
 import { useGlobalState } from 'hooks/useGlobalState';
 import { useLocalStorage } from 'hooks/useLocalStorage';
 // Components
 import { LoadingBar, LoadingPage } from 'components/loaders';
+import { PageError } from 'components/errors';
 // Pages
 import { routes } from './Routes';
 
@@ -20,6 +22,7 @@ const queryClient = new QueryClient({
     queries: {
       staleTime: Infinity, // TODO: Verify
       refetchOnWindowFocus: false,
+      retry: 1,
     },
   },
 });
@@ -57,10 +60,21 @@ function App() {
 
 function AppLayout() {
   const { isLoading } = useCurrentUserContext();
+  const { isError, errors } = useError();
+
   return (
     <Layout className="app background" id="app">
       <LoadingBar />
-      <HashRouter>{isLoading ? <LoadingPage message="..." /> : routes}</HashRouter>
+      <HashRouter>
+        {isError ? (
+          <PageError description={Object.values(errors).join(', ')} />
+        ) : isLoading ? (
+          <LoadingPage message="..." />
+        ) : (
+          routes
+        )}
+      </HashRouter>
+      )
     </Layout>
   );
 }

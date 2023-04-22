@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { createGlobalState } from 'react-hooks-global-state';
 
 type InitialState = {
-  loaders: PlainObject;
+  loaders: BooleanDictionary;
 };
 
 const initialState: InitialState = {
