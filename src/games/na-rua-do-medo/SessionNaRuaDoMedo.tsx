@@ -34,21 +34,17 @@ function getActiveComponent(phase: string) {
   }
 }
 
-function SessionNaRuaDoMedo({ gameId }: SessionProps) {
+function SessionNaRuaDoMedo() {
   return (
     <ConfigProvider
       theme={{
         token: {
           colorPrimary: THEME_COLORS.ORANGE,
+          colorLink: THEME_COLORS.ORANGE,
         },
       }}
     >
-      <Session
-        gameId={gameId}
-        gameCollection={GAME_COLLECTION.NA_RUA_DO_MEDO}
-        getActiveComponent={getActiveComponent}
-        backgroundClassName="n-background"
-      />
+      <Session gameCollection={GAME_COLLECTION.NA_RUA_DO_MEDO} getActiveComponent={getActiveComponent} />
     </ConfigProvider>
   );
 }

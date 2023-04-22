@@ -2,11 +2,11 @@
 import type { FirebaseStateData, FirebaseStoreData, AllWords } from './types';
 // Constants
 import { CARDS_PER_PLAYER, TREVO_DA_SORTE_PHASES } from './constants';
-
+import { GAME_NAMES } from '../../utils/constants';
 // Helpers
 import utils from '../../utils';
-import { buildClovers, buildGuesses, buildLeaves, buildRanking } from './helpers';
 // Internal
+import { buildClovers, buildGuesses, buildLeaves, buildRanking } from './helpers';
 
 /**
  * Setup
@@ -153,6 +153,15 @@ export const prepareGameOverPhase = async (
   const winners = utils.players.determineWinners(players);
 
   await utils.firebase.markGameAsComplete(gameId);
+
+  await utils.user.saveGameToUsers({
+    gameName: GAME_NAMES.TREVO_DA_SORTE,
+    gameId,
+    startedAt: store.createdAt,
+    players,
+    winners,
+    achievements: [],
+  });
 
   // Save
   return {

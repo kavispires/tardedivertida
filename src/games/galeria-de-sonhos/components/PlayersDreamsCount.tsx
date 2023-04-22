@@ -9,7 +9,7 @@ import { Translate } from 'components/language';
 import { useMemo } from 'react';
 
 type PlayersDreamsCountProps = {
-  players: Players;
+  players: GamePlayers;
   playerInNightmareId?: PlayerId;
 };
 

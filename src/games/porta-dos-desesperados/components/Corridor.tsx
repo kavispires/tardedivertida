@@ -20,7 +20,7 @@ type CorridorProps = {
   trap: string;
   onSubmitDoor?: GenericFunction;
   answerDoorId?: CardId;
-  players: Players;
+  players: GamePlayers;
   user?: GamePlayer;
   hideVotes?: boolean;
   disabled?: boolean;

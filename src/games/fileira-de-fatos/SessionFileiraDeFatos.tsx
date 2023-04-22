@@ -24,21 +24,17 @@ function getActiveComponent(phase: string) {
   }
 }
 
-function SessionFileiraDeFatos({ gameId }: SessionProps) {
+function SessionFileiraDeFatos() {
   return (
     <ConfigProvider
       theme={{
         token: {
           colorPrimary: THEME_COLORS.DEFAULT,
+          colorLink: THEME_COLORS.DEFAULT,
         },
       }}
     >
-      <Session
-        gameId={gameId}
-        gameCollection={GAME_COLLECTION.FILEIRA_DE_FATOS}
-        getActiveComponent={getActiveComponent}
-        backgroundClassName="f-background"
-      />
+      <Session gameCollection={GAME_COLLECTION.FILEIRA_DE_FATOS} getActiveComponent={getActiveComponent} />
     </ConfigProvider>
   );
 }

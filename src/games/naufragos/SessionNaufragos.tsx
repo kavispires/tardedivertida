@@ -24,21 +24,17 @@ function getActiveComponent(phase: string) {
   }
 }
 
-function SessionNaufragos({ gameId }: SessionProps) {
+function SessionNaufragos() {
   return (
     <ConfigProvider
       theme={{
         token: {
           colorPrimary: THEME_COLORS.DEFAULT,
+          colorLink: THEME_COLORS.DEFAULT,
         },
       }}
     >
-      <Session
-        gameId={gameId}
-        gameCollection={GAME_COLLECTION.NAUFRAGOS}
-        getActiveComponent={getActiveComponent}
-        backgroundClassName="xx-background"
-      />
+      <Session gameCollection={GAME_COLLECTION.NAUFRAGOS} getActiveComponent={getActiveComponent} />
     </ConfigProvider>
   );
 }

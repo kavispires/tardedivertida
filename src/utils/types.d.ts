@@ -63,6 +63,117 @@ type Color =
   | 'white'
   | 'grey';
 
+interface GameUserEntry {
+  gameId: GameId;
+  startedAt: number;
+  endedAt: number;
+  playerCount: number;
+  placement: number;
+  win?: boolean;
+  last?: boolean;
+  achievements: AchievementKey[];
+}
+
+interface GameUserStatistics {
+  gameName: GameName;
+  // Total game plays count
+  plays: number;
+  // Boolean if the game is winnable
+  isWinnable: boolean;
+  // Total number of wins
+  win: number;
+  // Total number of times in last place
+  last: number;
+  // Total number of unique achievements
+  achievements: Record<AchievementKey, number>;
+  // Total game play duration
+  totalPlayDuration: number;
+  // The latest game played
+  latestPlay: GameUserEntry;
+  // The game with the shortest duration
+  shortestPlay: GameUserEntry;
+  // The game with the longest duration
+  longestPlay: GameUserEntry;
+  // The first game played with the earliest startedAt
+  firstPlay: GameUserEntry;
+  // The game rating
+  rating: number;
+  // Average Player Count
+  averagePlayerCount: number;
+}
+
+type AvatarId = string;
+type AchievementKey = string;
+
+interface Me {
+  id: string;
+  isAdmin: boolean;
+  names: string[];
+  // Top 3 avatars
+  avatars: AvatarId[];
+  gender?: string;
+  statistics: {
+    // Total game plays count
+    plays: number;
+    // Total different games
+    uniqueGamesPlayed: number;
+    // Total games with end goal / are winnable
+    winnableGames: number;
+    // Total number of wins
+    win: number;
+    // Total number of times in last place
+    last: number;
+    // Total number of unique achievements
+    achievements: number;
+    // Total game play duration
+    totalPlayDuration: number;
+    // The latest game played
+    latestPlay: GameUserEntry;
+    // The game with the shortest duration
+    shortestPlay: GameUserEntry;
+    // The game with the longest duration
+    longestPlay: GameUserEntry;
+    // The first game played with the earliest startedAt
+    firstPlay: GameUserEntry;
+    // game with the most entries
+    mostPlayedGame: GameName;
+    // game with the fewest entries
+    leastPlayedGame: GameName;
+    // Game with the highest rating
+    favoriteGame: GameName;
+    // Game with the lowest rating
+    leastFavoriteGame: GameName;
+    // Game with most wins
+    bestAtGame: GameName;
+    // Game with most last
+    worstAtGame: GameName;
+    // Average Player Count
+    averagePlayerCount: number;
+  };
+  games: Record<GameName, GameUserStatistics>;
+  blurredImages?: Record<ImageCardId, true>;
+}
+
+interface Me {
+  id: string;
+  isAdmin: boolean;
+  isGuest?: boolean;
+  names: string[];
+  avatars: AvatarId[];
+  gender?: string;
+  statistics: {
+    gamesPlayed: number;
+    uniqueGamesPlayed: number;
+    winnableGames: number;
+    win: number;
+    last: number;
+    achievements: number;
+    lastPlay: number;
+    totalPlayDuration: number;
+  };
+  games: Record<GameName, GameUserEntry[]>;
+  blurredImages?: Record<ImageCardId, true>;
+}
 interface Player {
   id: PlayerId;
   name: PlayerName;
@@ -73,10 +184,6 @@ interface Player {
 }
 
 type GamePlayer = Player | PlainObject;
-
-interface Players {
-  [key: string]: Player;
-}
 
 interface GameState {
   phase: string;
@@ -311,13 +418,13 @@ interface Achievement {
   value: Primitive;
 }
 
-interface AchievementReference {
-  [key: string]: {
-    Icon: ReactNode;
-    title: DualLanguageValue;
-    description?: DualLanguageValue;
-  };
+interface AchievementInfo {
+  icon: string;
+  title: DualLanguageValue;
+  description?: DualLanguageValue;
 }
+
+type AchievementReference = Record<string, AchievementInfo>;
 
 type ArteRuimCard = {
   id: CardId;

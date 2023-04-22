@@ -10,13 +10,14 @@ import { AVATARS } from 'utils/avatars';
 // Components
 import { Translate } from 'components/language';
 import { Avatar } from 'components/avatars';
-import { AdminOnlyButton } from 'components/admin';
+import { VIPOnlyButton } from 'components/vip';
 import { Instruction } from 'components/text';
 import { RateGameWidget } from './RateGameWidget';
 import { useCountdown } from 'hooks/useCountdown';
 import { PUBLIC_URL } from 'utils/constants';
 import { getAnimationClass } from 'utils/helpers';
 import { Step } from 'components/steps';
+import { ConvertGuestToAccountModal } from 'components/auth/ConvertGuestToAccount';
 
 const GameOverText = () => <Translate pt="Jogo concluído" en="The game is over" />;
 
@@ -177,12 +178,14 @@ export function GameOver({
 
       {children}
 
+      <ConvertGuestToAccountModal />
+
       <Space align="center" direction="vertical" className="full-width padding">
         <Button onClick={() => navigate('/')}>
           <Translate pt="Página Inicial" en="Home Page" />
         </Button>
 
-        <AdminOnlyButton onClick={() => navigate('/hub')} label="Hub" />
+        <VIPOnlyButton onClick={() => navigate('/hub')}>Hub</VIPOnlyButton>
       </Space>
     </Step>
   );

@@ -8,7 +8,7 @@ import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
-import { AdminNextPhaseButton } from 'components/admin';
+import { VIPNextPhaseButton } from 'components/vip';
 import { PlayersDecisionState } from './components/PlayersDecisionState';
 
 type StepStreetEndProps = {
@@ -99,9 +99,9 @@ export function StepStreetEnd({
 
       <Street street={street} currentCard={currentCard} candySidewalk={candySidewalk} />
 
-      <AdminNextPhaseButton>
+      <VIPNextPhaseButton>
         {round.current < round.total ? <Translate pt="Próxima Casa" en="Next House" /> : 'Game Over'}
-      </AdminNextPhaseButton>
+      </VIPNextPhaseButton>
 
       <PlayerStats user={user} />
     </Step>

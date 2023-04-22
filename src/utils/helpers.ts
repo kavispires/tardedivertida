@@ -73,6 +73,24 @@ export const inNTime = (time: number): Date => {
  */
 export const isDevEnv: boolean = process.env.NODE_ENV === 'development';
 
+const methods = {
+  count: console.count,
+  log: console.log,
+  table: console.table,
+  warn: console.warn,
+};
+
+/**
+ * Prints a message to the console using a specified console method, if in development environment.
+ * @param message - The message to be printed to the console.
+ * @param [method='log'] - The console method to use for printing (one of: 'count', 'log', 'table', 'warn').
+ */
+export const print = (message: any, method: keyof typeof methods = 'log') => {
+  if (isDevEnv) {
+    methods[method](message);
+  }
+};
+
 /**
  * Verify if the game id exists and has the correct length
  * @param gameId
@@ -159,7 +177,7 @@ export const getColorFromLetter = (letter: string): string => {
  */
 export const getPlayersFromIds = (
   playerIds: PlayerId[],
-  players: Players,
+  players: GamePlayers,
   justNames = false
 ): (Player | PlayerName)[] => {
   return playerIds.map((playerId) => {

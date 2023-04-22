@@ -34,20 +34,17 @@ function getActiveComponent(phase: string) {
   }
 }
 
-function SessionRetratoFalado({ gameId }: SessionProps) {
+function SessionRetratoFalado() {
   return (
     <ConfigProvider
       theme={{
         token: {
           colorPrimary: THEME_COLORS.MOSS,
+          colorLink: THEME_COLORS.MOSS,
         },
       }}
     >
-      <Session
-        gameId={gameId}
-        gameCollection={GAME_COLLECTION.RETRATO_FALADO}
-        getActiveComponent={getActiveComponent}
-      />
+      <Session gameCollection={GAME_COLLECTION.RETRATO_FALADO} getActiveComponent={getActiveComponent} />
     </ConfigProvider>
   );
 }

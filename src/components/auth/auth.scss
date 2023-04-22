@@ -1,0 +1,40 @@
+.sign-in {
+  &__logo {
+    background: rgb(8, 12, 42);
+    background: radial-gradient(
+      circle,
+      rgba(62, 30, 104, 0) 0%,
+      rgba(62, 30, 104, 1) 35%,
+      rgba(62, 30, 104, 1) 65%,
+      rgba(62, 30, 104, 0) 100%
+    );
+    display: flex;
+    justify-content: center;
+    padding: get-unit(5);
+    border-radius: $border-radius;
+    margin: get-unit(2);
+  }
+}
+
+.sign-up {
+  &__logo {
+    background: rgb(8, 12, 42);
+    background: radial-gradient(
+      circle,
+      rgba(164, 0, 121, 1) 0%,
+      rgba(164, 0, 121, 1) 65%,
+      rgba(164, 0, 121, 0) 100%
+    );
+    display: flex;
+    justify-content: center;
+    padding: get-unit(5);
+    border-radius: $border-radius;
+    margin: get-unit(2);
+  }
+}
+
+.convert-guest-instruction {
+  width: 50vw;
+  min-width: 400px;
+  max-width: 500px;
+}

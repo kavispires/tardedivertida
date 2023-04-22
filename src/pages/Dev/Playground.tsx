@@ -3,7 +3,6 @@
 // import { Image, Layout } from 'antd';
 import GAME_LIST from 'utils/info';
 import { Avatar, AvatarEntry } from 'components/avatars';
-import { AdminOnlyContainer } from 'components/admin';
 // Resources
 import { CheckCircleFilled, CheckCircleOutlined } from '@ant-design/icons';
 import { Button, Image, Input, Space, Tag } from 'antd';

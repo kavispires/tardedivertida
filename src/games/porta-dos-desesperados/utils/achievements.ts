@@ -1,20 +1,3 @@
-import { MedalArrowLeftIcon } from 'icons/MedalArrowLeftIcon';
-import { MedalArrowRightIcon } from 'icons/MedalArrowRightIcon';
-import { MedalCheckMarkIcon } from 'icons/MedalCheckMarkIcon';
-import { MedalDoorIcon } from 'icons/MedalDoorIcon';
-import { MedalExIcon } from 'icons/MedalExIcon';
-import { MedalHeartIcon } from 'icons/MedalHeartIcon';
-import { MedalLightBulbIcon } from 'icons/MedalLightBulbIcon';
-import { MedalMinusIcon } from 'icons/MedalMinusIcon';
-import { MedalPersonIcon } from 'icons/MedalPersonIcon';
-import { MedalPlusIcon } from 'icons/MedalPlusIcon';
-import { MedalRobotIcon } from 'icons/MedalRobotIcon';
-import { MedalSandTimerIcon } from 'icons/MedalSandTimerIcon';
-import { MedalScaredIcon } from 'icons/MedalScaredIcon';
-import { MedalSufferingIcon } from 'icons/MedalSufferingIcon';
-import { MedalThumbsDownIcon } from 'icons/MedalThumbsDownIcon';
-import { MedalThumbsUpIcon } from 'icons/MedalThumbsUpIcon';
-
 const ACHIEVEMENTS = {
   MOST_POSSESSED: 'MOST_POSSESSED',
   LEAST_POSSESSED: 'LEAST_POSSESSED',
@@ -36,7 +19,7 @@ const ACHIEVEMENTS = {
 
 export const achievementsReference: AchievementReference = {
   [ACHIEVEMENTS.MOST_POSSESSED]: {
-    Icon: MedalScaredIcon,
+    icon: 'face-perplexed',
     title: {
       pt: 'Mais possuído',
       en: 'Most Possessed',
@@ -47,7 +30,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   [ACHIEVEMENTS.LEAST_POSSESSED]: {
-    Icon: MedalHeartIcon,
+    icon: 'heart',
     title: {
       pt: 'Mais puro',
       en: 'Purest',
@@ -58,7 +41,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   [ACHIEVEMENTS.BEST_GUIDE]: {
-    Icon: MedalArrowRightIcon,
+    icon: 'guide',
     title: {
       pt: 'Melhor Guia',
       en: 'Best Guide',
@@ -69,7 +52,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   [ACHIEVEMENTS.BEGINNER_GUIDE]: {
-    Icon: MedalArrowLeftIcon,
+    icon: 'arrows',
     title: {
       pt: 'Guia Aprendiz',
       en: 'Beginner Guide',
@@ -80,7 +63,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   [ACHIEVEMENTS.SLOW_READER]: {
-    Icon: MedalRobotIcon,
+    icon: 'glasses',
     title: {
       pt: 'Mais Analítico',
       en: 'Most Analytical',
@@ -91,7 +74,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   [ACHIEVEMENTS.FAST_LEARNER]: {
-    Icon: MedalLightBulbIcon,
+    icon: 'clock',
     title: {
       pt: 'Melhor Leitor',
       en: 'Fastest Reader',
@@ -102,7 +85,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   [ACHIEVEMENTS.MOST_PAGES]: {
-    Icon: MedalPlusIcon,
+    icon: 'open-book',
     title: {
       pt: 'Melhor Conteúdo',
       en: 'Best Content',
@@ -113,7 +96,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   [ACHIEVEMENTS.FEWEST_PAGES]: {
-    Icon: MedalMinusIcon,
+    icon: 'minus',
     title: {
       pt: 'Mais Sucinto',
       en: 'Most Succinct',
@@ -124,7 +107,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   [ACHIEVEMENTS.MOST_CORRECT_DOORS]: {
-    Icon: MedalDoorIcon,
+    icon: 'door',
     title: {
       pt: 'Mais Correto',
       en: 'Most Correct',
@@ -135,7 +118,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   [ACHIEVEMENTS.MOST_WRONG_DOORS]: {
-    Icon: MedalExIcon,
+    icon: 'x',
     title: {
       pt: 'Mais Equivocado',
       en: 'Most Mistaken',
@@ -146,7 +129,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   [ACHIEVEMENTS.MOST_SOLO_CORRECT_DOORS]: {
-    Icon: MedalCheckMarkIcon,
+    icon: 'check-mark',
     title: {
       pt: 'Mais Solitário',
       en: 'Most Lonely',
@@ -157,7 +140,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   [ACHIEVEMENTS.MOST_SOLO_WRONG_DOORS]: {
-    Icon: MedalPersonIcon,
+    icon: 'person',
     title: {
       pt: 'Mais Do Contra',
       en: 'Most Naysayer',
@@ -168,10 +151,10 @@ export const achievementsReference: AchievementReference = {
     },
   },
   [ACHIEVEMENTS.QUICK_DECISIONS]: {
-    Icon: MedalSandTimerIcon,
+    icon: 'hare',
     title: {
-      pt: 'Mais Indeciso',
-      en: 'Most Undecided',
+      pt: 'Mais Decidido',
+      en: 'Most Decisive',
     },
     description: {
       pt: 'Mais rápido ao escolher portas',
@@ -179,7 +162,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   [ACHIEVEMENTS.SLOW_DECISIONS]: {
-    Icon: MedalSufferingIcon,
+    icon: 'snail',
     title: {
       pt: 'Mais Indeciso',
       en: 'Most Undecided',
@@ -190,7 +173,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   [ACHIEVEMENTS.MAGIC_SAVER]: {
-    Icon: MedalThumbsUpIcon,
+    icon: 'arrow-up',
     title: {
       pt: 'Economizador De Cristal',
       en: 'Crystal Saver',
@@ -201,7 +184,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   [ACHIEVEMENTS.MAGIC_WASTER]: {
-    Icon: MedalThumbsDownIcon,
+    icon: 'arrow-down',
     title: {
       pt: 'Gastador De Cristal',
       en: 'Crystal Spender',
@@ -212,3 +195,5 @@ export const achievementsReference: AchievementReference = {
     },
   },
 };
+
+export default achievementsReference;

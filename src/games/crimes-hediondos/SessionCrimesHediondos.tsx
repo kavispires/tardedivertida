@@ -37,21 +37,17 @@ function getActiveComponent(phase: string) {
   }
 }
 
-function SessionCrimesHediondos({ gameId }: SessionProps) {
+function SessionCrimesHediondos() {
   return (
     <ConfigProvider
       theme={{
         token: {
           colorPrimary: THEME_COLORS.BLOOD,
+          colorLink: THEME_COLORS.BLOOD,
         },
       }}
     >
-      <Session
-        gameId={gameId}
-        gameCollection={GAME_COLLECTION.CRIMES_HEDIONDOS}
-        getActiveComponent={getActiveComponent}
-        backgroundClassName="h-background"
-      />
+      <Session gameCollection={GAME_COLLECTION.CRIMES_HEDIONDOS} getActiveComponent={getActiveComponent} />
     </ConfigProvider>
   );
 }

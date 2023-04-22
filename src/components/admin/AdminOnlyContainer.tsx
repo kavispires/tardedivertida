@@ -5,6 +5,7 @@ import { Space, SpaceProps } from 'antd';
 import { FireFilled } from '@ant-design/icons';
 // Hooks
 import { useGlobalState } from 'hooks/useGlobalState';
+import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 // Sass
 import './AdminOnlyContainer.scss';
 
@@ -20,7 +21,7 @@ interface AdminOnlyContainerProps extends SpaceProps {
 }
 
 export const AdminOnlyContainer = ({ children, className = '', ...props }: AdminOnlyContainerProps) => {
-  const [isAdmin] = useGlobalState('isAdmin');
+  const { isAdmin } = useCurrentUserContext();
   const [isAdminEnabled] = useGlobalState('isAdminEnabled');
 
   if (!isAdmin || !isAdminEnabled) return <span></span>;

@@ -37,21 +37,17 @@ function getActiveComponent(phase: string) {
   }
 }
 
-function SessionQuemSouEu({ gameId }: SessionProps) {
+function SessionQuemSouEu() {
   return (
     <ConfigProvider
       theme={{
         token: {
           colorPrimary: THEME_COLORS.DARK_BLUE,
+          colorLink: THEME_COLORS.DARK_BLUE,
         },
       }}
     >
-      <Session
-        gameId={gameId}
-        gameCollection={GAME_COLLECTION.QUEM_SOU_EU}
-        getActiveComponent={getActiveComponent}
-        backgroundClassName="q-background"
-      />
+      <Session gameCollection={GAME_COLLECTION.QUEM_SOU_EU} getActiveComponent={getActiveComponent} />
     </ConfigProvider>
   );
 }

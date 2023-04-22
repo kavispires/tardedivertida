@@ -14,7 +14,7 @@ import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
 import { ImageCard } from 'components/cards';
 import { TimedButton } from 'components/buttons';
-import { AdminNextPhaseButton } from 'components/admin';
+import { VIPNextPhaseButton } from 'components/vip';
 import { ListPlayers } from './components/ListPlayers';
 import { MatchCount } from './components/MatchCount';
 import { TurnOrder } from 'components/players';
@@ -204,7 +204,7 @@ export function StepAnnounceDream({
       )}
 
       {(latest.isPhaseOver || latest.cardsLeft === 0) && (
-        <AdminNextPhaseButton autoTriggerTime={15}>Ranking</AdminNextPhaseButton>
+        <VIPNextPhaseButton autoTriggerTime={15}>Ranking</VIPNextPhaseButton>
       )}
     </Step>
   );

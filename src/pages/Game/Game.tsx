@@ -1,21 +1,13 @@
-import { lazy, Suspense, useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-// Ant Design Resources
-import { message, notification } from 'antd';
-// Adapters
-import { GAME_API } from 'services/adapters';
+import { lazy, Suspense } from 'react';
 // Hooks
-import { useGlobalState } from 'hooks/useGlobalState';
 import { useIsGameStale } from 'hooks/useIsGameStale';
-import { useLoading } from 'hooks/useLoading';
-import { useLocalStorage } from 'hooks/useLocalStorage';
+import { useLanguage } from 'hooks/useLanguage';
+import { useGameMeta } from 'hooks/useGameMeta';
 // Utils
-import { isValidGameId, isDevEnv, getGameIdFromPathname } from 'utils/helpers';
 import { GAME_COLLECTION } from 'utils/constants';
 // Components
 import { PageError } from 'components/errors';
 import { LoadingPage } from 'components/loaders';
-import { useLanguage } from 'hooks/useLanguage';
 
 // Game lazy imports
 const SessionArteRuim = lazy(
@@ -109,81 +101,14 @@ const SessionTaNaCara = lazy(
 );
 
 function Game() {
-  const navigate = useNavigate();
-  const { pathname } = useLocation();
-  const { setLoader } = useLoading();
-  const [gameId, setGameId] = useGlobalState('gameId');
-  const [gameName, setGameName] = useGlobalState('gameName');
-  const [gameMeta, setGameMeta] = useGlobalState('gameMeta');
-  const [, setUserId] = useGlobalState('userId');
-  const [, setUsername] = useGlobalState('username');
-  const [, setUserAvatarId] = useGlobalState('userAvatarId');
-  const [, setLanguage] = useGlobalState('language');
-  const [, setLocalStorage] = useLocalStorage();
   const { translate } = useLanguage();
 
-  const [isPageLoading, setPageLoading] = useState(true);
-  const isGameStale = useIsGameStale(gameMeta?.createdAt);
+  const { gameId, gameName, createdAt } = useGameMeta();
 
-  // Verify url game code
-  useEffect(() => {
-    const urlGameId = getGameIdFromPathname(pathname);
-    if (isValidGameId(urlGameId)) {
-      setGameId(urlGameId);
-    } else {
-      message.error('Vixi, a id do jogo na barra de endereços tá errada');
-      navigate('/');
-    }
-  }, [pathname, navigate, setGameId, setUsername, setUserAvatarId]);
-
-  // Keep track of url changes
-  useEffect(() => {
-    const urlGameId = getGameIdFromPathname(pathname);
-    if (isValidGameId(urlGameId)) {
-      setGameId(urlGameId);
-      setUserId(null);
-      setUsername('');
-      setUserAvatarId('');
-      message.info('New id provided');
-    } else {
-      message.error('Oops, the game id in the address bar is incorrect');
-      navigate('/');
-    }
-  }, [pathname, navigate, setGameId, setUsername, setUserAvatarId, setUserId]);
-
-  // Load game
-  useEffect(() => {
-    setPageLoading(true);
-    async function loadGameSession() {
-      try {
-        setLoader('load', true);
-        const meta: PlainObject = await GAME_API.loadGame({ gameId });
-        if (isDevEnv) {
-          console.log({ meta: meta.data });
-        }
-        setGameName(meta.data.gameName);
-        setGameMeta(meta.data);
-        setLanguage(meta.data?.language ?? 'pt');
-        setLocalStorage({ language: meta.data?.language ?? 'pt' });
-      } catch (e: any) {
-        console.error(e);
-        notification.error({
-          message: 'Failed to load game',
-          description: JSON.stringify(e.message),
-        });
-      } finally {
-        setPageLoading(false);
-        setLoader('load', false);
-      }
-    }
-
-    if (gameId) {
-      loadGameSession();
-    }
-  }, [gameId]); // eslint-disable-line
+  const isGameStale = useIsGameStale(createdAt);
 
   // Deffer to load screen if any major API call is running
-  if (isPageLoading) {
+  if (!gameId) {
     return <LoadingPage />;
   }
 
@@ -204,157 +129,157 @@ function Game() {
       case GAME_COLLECTION.ARTE_RUIM:
         return (
           <Suspense fallback={<LoadingPage message="" />}>
-            <SessionArteRuim gameId={gameId} />
+            <SessionArteRuim />
           </Suspense>
         );
       case GAME_COLLECTION.COMUNICACAO_ALIENIGENA:
         return (
           <Suspense fallback={<LoadingPage message="" />}>
-            <SessionComunicacaoAlienigena gameId={gameId} />
+            <SessionComunicacaoAlienigena />
           </Suspense>
         );
       case GAME_COLLECTION.CONTADORES_HISTORIAS:
         return (
           <Suspense fallback={<LoadingPage message="" />}>
-            <SessionContadoresHistorias gameId={gameId} />
+            <SessionContadoresHistorias />
           </Suspense>
         );
       case GAME_COLLECTION.CRUZA_PALAVRAS:
         return (
           <Suspense fallback={<LoadingPage message="" />}>
-            <SessionCruzaPalavras gameId={gameId} />
+            <SessionCruzaPalavras />
           </Suspense>
         );
       case GAME_COLLECTION.DETETIVES_IMAGINATIVOS:
         return (
           <Suspense fallback={<LoadingPage message="" />}>
-            <SessionDetetivesImaginativos gameId={gameId} />
+            <SessionDetetivesImaginativos />
           </Suspense>
         );
       case GAME_COLLECTION.ESPIAO_ENTRE_NOS:
         return (
           <Suspense fallback={<LoadingPage message="" />}>
-            <SessionEspiaoEntreNos gameId={gameId} />
+            <SessionEspiaoEntreNos />
           </Suspense>
         );
       case GAME_COLLECTION.GALERIA_DE_SONHOS:
         return (
           <Suspense fallback={<LoadingPage message="" />}>
-            <SessionGaleriaDeSonhos gameId={gameId} />
+            <SessionGaleriaDeSonhos />
           </Suspense>
         );
       case GAME_COLLECTION.CRIMES_HEDIONDOS:
         return (
           <Suspense fallback={<LoadingPage message="" />}>
-            <SessionCrimesHediondos gameId={gameId} />
+            <SessionCrimesHediondos />
           </Suspense>
         );
       case GAME_COLLECTION.PORTA_DOS_DESESPERADOS:
         return (
           <Suspense fallback={<LoadingPage message="" />}>
-            <SessionPortaDosDesesperados gameId={gameId} />
+            <SessionPortaDosDesesperados />
           </Suspense>
         );
       case GAME_COLLECTION.LINHAS_CRUZADAS:
         return (
           <Suspense fallback={<LoadingPage message="" />}>
-            <SessionLinhasCruzadas gameId={gameId} />
+            <SessionLinhasCruzadas />
           </Suspense>
         );
       case GAME_COLLECTION.MEGAMIX:
         return (
           <Suspense fallback={<LoadingPage message="" />}>
-            <SessionMegamix gameId={gameId} />
+            <SessionMegamix />
           </Suspense>
         );
       case GAME_COLLECTION.MENTE_COLETIVA:
         return (
           <Suspense fallback={<LoadingPage message="" />}>
-            <SessionMenteColetiva gameId={gameId} />
+            <SessionMenteColetiva />
           </Suspense>
         );
       case GAME_COLLECTION.NA_RUA_DO_MEDO:
         return (
           <Suspense fallback={<LoadingPage message="" />}>
-            <SessionNaRuaDoMedo gameId={gameId} />
+            <SessionNaRuaDoMedo />
           </Suspense>
         );
       case GAME_COLLECTION.ONDA_TELEPATICA:
         return (
           <Suspense fallback={<LoadingPage message="" />}>
-            <SessionOndaTelepatica gameId={gameId} />
+            <SessionOndaTelepatica />
           </Suspense>
         );
       case GAME_COLLECTION.POLEMICA_DA_VEZ:
         return (
           <Suspense fallback={<LoadingPage message="" />}>
-            <SessionPolemicaDaVez gameId={gameId} />
+            <SessionPolemicaDaVez />
           </Suspense>
         );
       case GAME_COLLECTION.QUEM_NAO_MATA:
         return (
           <Suspense fallback={<LoadingPage message="" />}>
-            <SessionQuemNaoMata gameId={gameId} />
+            <SessionQuemNaoMata />
           </Suspense>
         );
       case GAME_COLLECTION.QUEM_SOU_EU:
         return (
           <Suspense fallback={<LoadingPage message="" />}>
-            <SessionQuemSouEu gameId={gameId} />
+            <SessionQuemSouEu />
           </Suspense>
         );
       case GAME_COLLECTION.RETRATO_FALADO:
         return (
           <Suspense fallback={<LoadingPage message="" />}>
-            <SessionRetratoFalado gameId={gameId} />
+            <SessionRetratoFalado />
           </Suspense>
         );
       case GAME_COLLECTION.SONHOS_PESADELOS:
         return (
           <Suspense fallback={<LoadingPage message="" />}>
-            <SessionSonhosPesadelos gameId={gameId} />
+            <SessionSonhosPesadelos />
           </Suspense>
         );
       case GAME_COLLECTION.SUPER_CAMPEONATO:
         return (
           <Suspense fallback={<LoadingPage message="" />}>
-            <SessionSuperCampeonato gameId={gameId} />
+            <SessionSuperCampeonato />
           </Suspense>
         );
       case GAME_COLLECTION.TA_NA_CARA:
         return (
           <Suspense fallback={<LoadingPage message="" />}>
-            <SessionTaNaCara gameId={gameId} />
+            <SessionTaNaCara />
           </Suspense>
         );
       case GAME_COLLECTION.TESTEMUNHA_OCULAR:
         return (
           <Suspense fallback={<LoadingPage message="" />}>
-            <SessionTestemunhaOcular gameId={gameId} />
+            <SessionTestemunhaOcular />
           </Suspense>
         );
       case GAME_COLLECTION.TREVO_DA_SORTE:
         return (
           <Suspense fallback={<LoadingPage message="" />}>
-            <SessionTrevoDaSorte gameId={gameId} />
+            <SessionTrevoDaSorte />
           </Suspense>
         );
       case GAME_COLLECTION.UE_SO_ISSO:
         return (
           <Suspense fallback={<LoadingPage message="" />}>
-            <SessionUeSoIsso gameId={gameId} />
+            <SessionUeSoIsso />
           </Suspense>
         );
       case GAME_COLLECTION.VAMOS_AO_CINEMA:
         return (
           <Suspense fallback={<LoadingPage message="" />}>
-            <SessionVamosAoCinema gameId={gameId} />
+            <SessionVamosAoCinema />
           </Suspense>
         );
       case GAME_COLLECTION.VENDAVAL_DE_PALPITE:
         return (
           <Suspense fallback={<LoadingPage message="" />}>
-            <SessionVendavalDePalpite gameId={gameId} />
+            <SessionVendavalDePalpite />
           </Suspense>
         );
 

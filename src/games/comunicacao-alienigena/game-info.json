@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "C",
   "gameName": "comunicacao-alienigena",
-  "version": "2.1.7",
+  "version": "2.1.14",
   "title": {
     "pt": "Comunicação Alienígena",
     "en": "Alien Language"

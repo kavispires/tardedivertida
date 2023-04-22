@@ -39,20 +39,17 @@ function getActiveComponent(phase: string) {
   }
 }
 
-function SessionVendavalDePalpite({ gameId }: SessionProps) {
+function SessionVendavalDePalpite() {
   return (
     <ConfigProvider
       theme={{
         token: {
           colorPrimary: THEME_COLORS.DEFAULT,
+          colorLink: THEME_COLORS.DEFAULT,
         },
       }}
     >
-      <Session
-        gameId={gameId}
-        gameCollection={GAME_COLLECTION.VENDAVAL_DE_PALPITE}
-        getActiveComponent={getActiveComponent}
-      />
+      <Session gameCollection={GAME_COLLECTION.VENDAVAL_DE_PALPITE} getActiveComponent={getActiveComponent} />
     </ConfigProvider>
   );
 }

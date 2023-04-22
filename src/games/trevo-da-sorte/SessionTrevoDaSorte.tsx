@@ -39,21 +39,17 @@ function getActiveComponent(phase: string) {
   }
 }
 
-function SessionTrevoDaSorte({ gameId }: SessionProps) {
+function SessionTrevoDaSorte() {
   return (
     <ConfigProvider
       theme={{
         token: {
           colorPrimary: THEME_COLORS.GRASS,
+          colorLink: THEME_COLORS.GRASS,
         },
       }}
     >
-      <Session
-        gameId={gameId}
-        gameCollection={GAME_COLLECTION.TREVO_DA_SORTE}
-        getActiveComponent={getActiveComponent}
-        backgroundClassName="y-background"
-      />
+      <Session gameCollection={GAME_COLLECTION.TREVO_DA_SORTE} getActiveComponent={getActiveComponent} />
     </ConfigProvider>
   );
 }

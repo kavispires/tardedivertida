@@ -1,16 +1,17 @@
+import { useEffect } from 'react';
+// Ant Design Resources
 import { notification } from 'antd';
-import { useDocument } from 'react-firebase-hooks/firestore';
-import { doc } from 'firebase/firestore';
-// Services
-import { firestore } from 'services/firebase';
+// Hooks
+import { useFirestoreDocument } from './useFirestoreDocument';
+// Utils
+import { print } from 'utils/helpers';
 
 export function useGameState(gameId: GameId, gameName: GameName): GameState {
   const docPath = `games/${gameName}/${gameId}/state`;
-  const [snapshot, loading, error] = useDocument(doc(firestore, docPath), {
-    snapshotListenOptions: { includeMetadataChanges: true },
-  });
 
-  if (error) {
+  const { isLoading, isRefetching, isError, error, data } = useFirestoreDocument(docPath, true);
+
+  if (isError) {
     notification.error({
       message: 'The application found an error while trying to update the game state',
       description: JSON.stringify(error),
@@ -19,9 +20,15 @@ export function useGameState(gameId: GameId, gameName: GameName): GameState {
     console.error(error);
   }
 
-  if (loading) {
-    console.count('Refreshing state...');
-  }
+  const state = data ?? {};
 
-  return snapshot?.data() as GameState;
+  useEffect(() => {
+    if (isLoading || isRefetching) {
+      console.count('Refreshing state...');
+    } else {
+      print({ state });
+    }
+  }, [isLoading, isRefetching]); // eslint-disable-line
+
+  return state as GameState;
 }

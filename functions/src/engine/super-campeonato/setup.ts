@@ -6,6 +6,7 @@ import {
   SUPER_CAMPEONATO_PHASES,
   TOTAL_ROUNDS,
 } from './constants';
+import { GAME_NAMES } from '../../utils/constants';
 // Types
 import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Utils
@@ -255,6 +256,15 @@ export const prepareGameOverPhase = async (
   const winners = utils.players.determineWinners(players);
 
   await utils.firebase.markGameAsComplete(gameId);
+
+  await utils.user.saveGameToUsers({
+    gameName: GAME_NAMES.SUPER_CAMPEONATO,
+    gameId,
+    startedAt: store.createdAt,
+    players,
+    winners,
+    achievements: [],
+  });
 
   return {
     set: {

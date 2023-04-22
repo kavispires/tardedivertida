@@ -1,0 +1,11 @@
+.achievement {
+  background-color: get-color('yellow', 2);
+  border: get-color('yellow') 5px solid;
+  display: flex;
+  border-radius: get-unit(2);
+  flex-direction: column;
+  align-items: center;
+  margin: get-unit(2 3);
+  padding: get-unit(2);
+  min-width: 120px;
+}

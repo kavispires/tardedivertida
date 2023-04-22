@@ -19,7 +19,7 @@ type StepVoteProps = {
   onSubmitVote: GenericFunction;
   sketches: Sketch[];
   user: Player | PlainObject;
-  players: Players;
+  players: GamePlayers;
 };
 
 export function StepVote({

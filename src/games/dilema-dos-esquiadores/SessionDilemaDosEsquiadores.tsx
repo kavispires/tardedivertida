@@ -24,20 +24,19 @@ function getActiveComponent(phase: string) {
   }
 }
 
-function SessionDilemaDosEsquiadores({ gameId }: SessionProps) {
+function SessionDilemaDosEsquiadores() {
   return (
     <ConfigProvider
       theme={{
         token: {
           colorPrimary: THEME_COLORS.DEFAULT,
+          colorLink: THEME_COLORS.DEFAULT,
         },
       }}
     >
       <Session
-        gameId={gameId}
         gameCollection={GAME_COLLECTION.DILEMAS_DOS_ESQUIADORES}
         getActiveComponent={getActiveComponent}
-        backgroundClassName="xx-background"
       />
     </ConfigProvider>
   );

@@ -7,16 +7,16 @@ import { Button, Input, Space } from 'antd';
 import { Step } from 'components/steps';
 import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
-import { FloatingHand, ImageCardHand } from 'components/cards';
+import { ImageCardHand } from 'components/cards';
 import { CardHighlight } from 'components/metrics/CardHighlight';
 // Components
 
 type SecretClueWriteProps = {
   onSubmitClue: GenericFunction;
   user: GamePlayer;
-};
+} & AnnouncementProps;
 
-export function StepSecretClueWrite({ user, onSubmitClue }: SecretClueWriteProps) {
+export function StepSecretClueWrite({ user, onSubmitClue, announcement }: SecretClueWriteProps) {
   const { translate } = useLanguage();
   const { isLoading } = useLoading();
   const [clue, setClue] = useState('');
@@ -34,7 +34,7 @@ export function StepSecretClueWrite({ user, onSubmitClue }: SecretClueWriteProps
   };
 
   return (
-    <Step fullWidth>
+    <Step fullWidth announcement={announcement}>
       <Title>
         <Translate pt="Escreva a Pista!" en="Write a Clue!" />
       </Title>
@@ -82,9 +82,7 @@ export function StepSecretClueWrite({ user, onSubmitClue }: SecretClueWriteProps
         </Button>
       </Space>
 
-      <FloatingHand>
-        <ImageCardHand hand={user.hand} sizeRatio={6} />
-      </FloatingHand>
+      <ImageCardHand hand={user.hand} sizeRatio={7} />
     </Step>
   );
 }

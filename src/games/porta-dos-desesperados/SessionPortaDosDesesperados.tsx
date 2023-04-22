@@ -36,20 +36,19 @@ function getActiveComponent(phase: string) {
   }
 }
 
-function SessionPortaDosDesesperados({ gameId }: SessionProps) {
+function SessionPortaDosDesesperados() {
   return (
     <ConfigProvider
       theme={{
         token: {
           colorPrimary: THEME_COLORS.MIDNIGHT,
+          colorLink: THEME_COLORS.MIDNIGHT,
         },
       }}
     >
       <Session
-        gameId={gameId}
         gameCollection={GAME_COLLECTION.PORTA_DOS_DESESPERADOS}
         getActiveComponent={getActiveComponent}
-        backgroundClassName="i-background"
       />
     </ConfigProvider>
   );

@@ -34,21 +34,17 @@ function getActiveComponent(phase: string) {
   }
 }
 
-function SessionVamosAoCinema({ gameId }: SessionProps) {
+function SessionVamosAoCinema() {
   return (
     <ConfigProvider
       theme={{
         token: {
           colorPrimary: THEME_COLORS.DEFAULT,
+          colorLink: THEME_COLORS.DEFAULT,
         },
       }}
     >
-      <Session
-        gameId={gameId}
-        gameCollection={GAME_COLLECTION.VAMOS_AO_CINEMA}
-        getActiveComponent={getActiveComponent}
-        backgroundClassName="v-background"
-      />
+      <Session gameCollection={GAME_COLLECTION.VAMOS_AO_CINEMA} getActiveComponent={getActiveComponent} />
     </ConfigProvider>
   );
 }

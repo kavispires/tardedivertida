@@ -40,17 +40,17 @@ function getActiveComponent(phase: string) {
   }
 }
 
-function SessionDetetivesImaginativos({ gameId }: SessionProps) {
+function SessionDetetivesImaginativos() {
   return (
     <ConfigProvider
       theme={{
         token: {
           colorPrimary: THEME_COLORS.WINE,
+          colorLink: THEME_COLORS.WINE,
         },
       }}
     >
       <Session
-        gameId={gameId}
         gameCollection={GAME_COLLECTION.DETETIVES_IMAGINATIVOS}
         getActiveComponent={getActiveComponent}
       />

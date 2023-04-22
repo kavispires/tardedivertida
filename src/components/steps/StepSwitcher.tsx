@@ -2,6 +2,7 @@
 import { WaitingRoom } from 'components/players';
 import { Loading } from 'components/loaders';
 import { Translate } from 'components/language';
+import { print } from 'utils/helpers';
 
 const getWaitingRoomInstruction = (kind: string) => {
   switch (kind) {
@@ -44,7 +45,7 @@ export function StepSwitcher({
   waitingRoomInstructionType = 'PLAYERS',
   waitingRoomContent = '',
 }: StepSwitcherProps) {
-  if (!players) console.warn('SetSwitcher is being used without `players`, please add it.');
+  if (!players) print('SetSwitcher is being used without `players`, please add it.', 'warn');
 
   if (players && step >= children.length) {
     return (

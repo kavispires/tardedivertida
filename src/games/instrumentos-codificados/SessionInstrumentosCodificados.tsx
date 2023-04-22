@@ -24,17 +24,17 @@ function getActiveComponent(phase: string) {
   }
 }
 
-function SessionInstrumentosCodificados({ gameId }: SessionProps) {
+function SessionInstrumentosCodificados() {
   return (
     <ConfigProvider
       theme={{
         token: {
           colorPrimary: THEME_COLORS.DEFAULT,
+          colorLink: THEME_COLORS.DEFAULT,
         },
       }}
     >
       <Session
-        gameId={gameId}
         gameCollection={GAME_COLLECTION.INSTRUMENTOS_CODIFICADOS}
         getActiveComponent={getActiveComponent}
       />

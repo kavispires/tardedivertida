@@ -1,5 +1,6 @@
 // Constants
 import { GALERIA_DE_SONHOS_PHASES, TABLE_DECK_TOTAL } from './constants';
+import { GAME_NAMES } from '../../utils/constants';
 // Types
 import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
 // Utils
@@ -227,6 +228,15 @@ export const prepareGameOverPhase = async (
   const achievements = getAchievements(store);
 
   await utils.firebase.markGameAsComplete(gameId);
+
+  await utils.user.saveGameToUsers({
+    gameName: GAME_NAMES.GALERIA_DE_SONHOS,
+    gameId,
+    startedAt: store.createdAt,
+    players,
+    winners,
+    achievements,
+  });
 
   return {
     set: {

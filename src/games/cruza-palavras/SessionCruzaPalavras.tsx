@@ -34,20 +34,17 @@ function getActiveComponent(phase: string) {
   }
 }
 
-function SessionCruzaPalavras({ gameId }: SessionProps) {
+function SessionCruzaPalavras() {
   return (
     <ConfigProvider
       theme={{
         token: {
           colorPrimary: THEME_COLORS.FOREST,
+          colorLink: THEME_COLORS.FOREST,
         },
       }}
     >
-      <Session
-        gameId={gameId}
-        gameCollection={GAME_COLLECTION.CRUZA_PALAVRAS}
-        getActiveComponent={getActiveComponent}
-      />
+      <Session gameCollection={GAME_COLLECTION.CRUZA_PALAVRAS} getActiveComponent={getActiveComponent} />
     </ConfigProvider>
   );
 }

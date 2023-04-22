@@ -42,20 +42,17 @@ function getActiveComponent(phase: string) {
   }
 }
 
-function SessionSuperCampeonato({ gameId }: SessionProps) {
+function SessionSuperCampeonato() {
   return (
     <ConfigProvider
       theme={{
         token: {
           colorPrimary: THEME_COLORS.RUSSIAN_VIOLET,
+          colorLink: THEME_COLORS.RUSSIAN_VIOLET,
         },
       }}
     >
-      <Session
-        gameId={gameId}
-        gameCollection={GAME_COLLECTION.SUPER_CAMPEONATO}
-        getActiveComponent={getActiveComponent}
-      />
+      <Session gameCollection={GAME_COLLECTION.SUPER_CAMPEONATO} getActiveComponent={getActiveComponent} />
     </ConfigProvider>
   );
 }

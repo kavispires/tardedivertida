@@ -2,8 +2,9 @@ import { functions } from 'services/firebase';
 import { httpsCallable } from 'firebase/functions';
 
 export const GAME_API = {
-  loadGame: httpsCallable(functions, 'loadGame'),
   addPlayer: httpsCallable(functions, 'addPlayer'),
+  getUser: httpsCallable(functions, 'getUser'),
+  loadGame: httpsCallable(functions, 'loadGame'),
   makePlayerReady: httpsCallable(functions, 'makePlayerReady'),
   rateGame: httpsCallable(functions, 'rateGame'),
 };

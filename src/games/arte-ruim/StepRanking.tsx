@@ -6,7 +6,7 @@ import { RoundsLeftInstruction } from 'components/text';
 import { StepRankingWrapper } from 'components/ranking';
 import { PopoverRule } from 'components/rules';
 import { Translate } from 'components/language';
-import { AdminNextPhaseButton } from 'components/admin';
+import { VIPNextPhaseButton } from 'components/vip';
 import { ScoringRules } from './components/TextBlobs';
 
 type StepRankingProps = {
@@ -53,7 +53,7 @@ export function StepRanking({
         <Translate pt="Ver Galeria Novamente" en="See Gallery Again" />
       </Button>
 
-      <AdminNextPhaseButton round={round} />
+      <VIPNextPhaseButton round={round} />
     </StepRankingWrapper>
   );
 }

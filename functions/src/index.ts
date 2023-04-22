@@ -29,8 +29,14 @@ import * as trevoDaSorteEngine from './engine/trevo-da-sorte';
 import * as ueSoIssoEngine from './engine/ue-so-isso';
 import * as vamosAoCinemaEngine from './engine/vamos-ao-cinema';
 import * as vendavalDePalpiteEngine from './engine/vendaval-de-palpite';
+// Emulator
+import { feedEmulatorDB } from './utils/mocks/emulator';
 
 initializeApp();
+
+if (process.env.FUNCTIONS_EMULATOR) {
+  feedEmulatorDB();
+}
 
 // Start writing Firebase Functions
 // https://firebase.google.com/docs/functions/typescript
@@ -73,6 +79,11 @@ exports.makePlayerReady = functions.https.onCall(commonEngine.makePlayerReady);
  * Rate game
  */
 exports.rateGame = functions.https.onCall(commonEngine.rateGame);
+
+/**
+ * Load user
+ */
+exports.getUser = functions.https.onCall(commonEngine.getUser);
 
 /**
  * Submit Actions

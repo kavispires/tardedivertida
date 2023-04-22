@@ -112,6 +112,14 @@ export function getPublicRef(): FirebaseFirestore.CollectionReference<FirebaseFi
 }
 
 /**
+ * Get Firebase session for the user collection
+ * @returns firebase public reference
+ */
+export function getUserRef(): FirebaseFirestore.CollectionReference<FirebaseFirestore.DocumentData> {
+  return getFirestore().collection('users');
+}
+
+/**
  * Get Firebase session for gameId in collection
  * @param gameName
  * @param gameId

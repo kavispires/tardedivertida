@@ -48,20 +48,19 @@ function getActiveComponent(phase: string) {
   }
 }
 
-function SessionComunicacaoAlienigena({ gameId }: SessionProps) {
+function SessionComunicacaoAlienigena() {
   return (
     <ConfigProvider
       theme={{
         token: {
           colorPrimary: THEME_COLORS.MIDNIGHT,
+          colorLink: THEME_COLORS.MIDNIGHT,
         },
       }}
     >
       <Session
-        gameId={gameId}
         gameCollection={GAME_COLLECTION.COMUNICACAO_ALIENIGENA}
         getActiveComponent={getActiveComponent}
-        backgroundClassName="c-background"
       />
     </ConfigProvider>
   );
