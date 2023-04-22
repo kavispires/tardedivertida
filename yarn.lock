@@ -1981,11 +1981,6 @@
     rc-resize-observer "^1.3.1"
     rc-util "^5.29.2"
 
-"@react-query-firebase/firestore@^1.0.0-dev.7":
-  version "1.0.0-dev.7"
-  resolved "https://registry.yarnpkg.com/@react-query-firebase/firestore/-/firestore-1.0.0-dev.7.tgz#6f5747164e03f66f34c5924e6fc51a7f03031c3d"
-  integrity sha512-DF6t4hPDZlEBKgf0XFurJpS+SmbVoMhgjQrxdPhlr3zhddcUv54hmPuSIN8htzmNCDMXFUdZWNy4fI/tJVRkgg==
-
 "@rollup/plugin-babel@^5.2.0":
   version "5.3.0"
   resolved "https://registry.yarnpkg.com/@rollup/plugin-babel/-/plugin-babel-5.3.0.tgz#9cb1c5146ddd6a4968ad96f209c50c62f92f9879"
@@ -9033,11 +9028,6 @@ react-error-overlay@^6.0.10:
   version "6.0.10"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-6.0.10.tgz#0fe26db4fa85d9dbb8624729580e90e7159a59a6"
   integrity sha512-mKR90fX7Pm5seCOfz8q9F+66VCc1PGsWSBxKbITjfKVQHMNF2zudxHnMdJiB1fRCb+XsbQV9sO9DCkgsMQgBIA==
-
-react-firebase-hooks@^4.0.2:
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/react-firebase-hooks/-/react-firebase-hooks-4.0.2.tgz#60e98f5bacc4550920444c0667a710e4670d39f5"
-  integrity sha512-DwykuPHfnGIHbJYgRxh3sacfdeEyRxlqwBOdwClkA07s9Shi9gqcOWgMzOPbXPbP6o94YDnNW2yP42opgQs7Nw==
 
 react-highlight-words@^0.18.0:
   version "0.18.0"
