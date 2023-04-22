@@ -112,7 +112,7 @@ export function PhaseLobby({ players, info, meta }: PhaseLobbyProps) {
       </div>
 
       <AdminMenuDrawer
-        state={{ phase: 'LOBBY', round: { current: 0, total: 0, forceLastRound: false } }}
+        state={{ phase: 'LOBBY', round: { current: 0, total: 0, forceLastRound: false }, players: {} }}
         players={players}
       />
       <CloudBackground

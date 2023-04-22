@@ -88,7 +88,7 @@ export function StepInfo({ info, players, setStep }: StepInfoProps) {
 
       <Settings />
 
-      <Button block disabled={isLoading} type="primary" onClick={() => refetch()}>
+      <Button block disabled={isLoading || !name || !selectedAvatar} type="primary" onClick={() => refetch()}>
         <Translate pt="Entrar" en="Enter" />
       </Button>
     </>
