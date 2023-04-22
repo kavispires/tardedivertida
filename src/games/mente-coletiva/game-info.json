@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "M",
   "gameName": "mente-coletiva",
-  "version": "5.1.9",
+  "version": "5.1.10",
   "title": {
     "pt": "Mente Coletiva",
     "en": "Herd Mind"

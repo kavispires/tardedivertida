@@ -18,12 +18,12 @@ export interface UsedWords {
 }
 
 export interface UeSoIssoStore extends DefaultStore {
-  deck: TextCard[];
-  turnOrder: PlayerId[];
-  gameOrder: PlayerId[];
-  usedWords: UsedWords;
-  currentWords: TextCard[];
-  currentSuggestions: PlainObject[];
+  deck?: TextCard[];
+  turnOrder?: PlayerId[];
+  gameOrder?: PlayerId[];
+  usedWords?: UsedWords;
+  currentWords?: TextCard[];
+  currentSuggestions?: PlainObject[];
   currentWord?: any;
   guess?: any;
   validSuggestions?: any;
@@ -31,7 +31,7 @@ export interface UeSoIssoStore extends DefaultStore {
 }
 
 export interface UeSoIssoState extends DefaultState {
-  gameOrder: PlayerId[];
+  gameOrder?: PlayerId[];
   guesserId?: PlayerId;
   controllerId?: PlayerId;
   groupScore?: any;

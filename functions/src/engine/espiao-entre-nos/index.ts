@@ -30,7 +30,7 @@ export const getInitialState = (
   uid: string,
   language: Language
 ): EspiaoEntreNosInitialState => {
-  return utils.helpers.getDefaultInitialState({
+  return utils.helpers.getDefaultInitialState<EspiaoEntreNosInitialState>({
     gameId,
     gameName: GAME_NAMES.ESPIAO_ENTRE_NOS,
     uid,

@@ -37,7 +37,7 @@ export const getInitialState = (
   language: Language,
   options: TaNaCaraOptions
 ): TaNaCaraInitialState => {
-  return utils.helpers.getDefaultInitialState({
+  return utils.helpers.getDefaultInitialState<TaNaCaraInitialState>({
     gameId,
     gameName: GAME_NAMES.TA_NA_CARA,
     uid,

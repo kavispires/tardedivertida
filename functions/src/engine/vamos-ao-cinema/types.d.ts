@@ -15,18 +15,21 @@ export type MovieDeck = MovieCard[];
 export type ReviewsDeck = MovieReviewCard[];
 
 export interface VamosAoCinemaStore extends DefaultStore {
-  movieDeck: MovieDeck;
-  movieDeckIndex: number;
-  goodReviewsDeck: MovieDeck;
-  goodReviewsDeckIndex: number;
-  badReviewsDeck: MovieDeck;
-  badReviewsDeckIndex: number;
-  usedCards: UsedCards;
-  selectedMovies: string[];
+  movieDeck?: MovieDeck;
+  movieDeckIndex?: number;
+  goodReviewsDeck?: MovieDeck;
+  goodReviewsDeckIndex?: number;
+  badReviewsDeck?: MovieDeck;
+  badReviewsDeckIndex?: number;
+  usedCards?: UsedCards;
+  selectedMovies?: string[];
+  gameOrder?: unknown[];
+  deck?: unknown[];
+  deckIndex?: number;
 }
 
 export interface VamosAoCinemaState extends DefaultState {
-  gameOrder: PlayerId[];
+  gameOrder?: PlayerId[];
   [key: string]: any;
 }
 

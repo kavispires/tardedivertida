@@ -33,7 +33,7 @@ import {
  * @returns
  */
 export const getInitialState = (gameId: GameId, uid: string, language: string): UeSoIssoInitialState => {
-  return utils.helpers.getDefaultInitialState({
+  return utils.helpers.getDefaultInitialState<UeSoIssoInitialState>({
     gameId,
     gameName: GAME_NAMES.UE_SO_ISSO,
     uid,

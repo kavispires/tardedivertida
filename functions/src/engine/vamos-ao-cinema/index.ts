@@ -30,7 +30,7 @@ export const getInitialState = (
   language: Language,
   options: VamosAoCinemaOptions
 ): VamosAoCinemaInitialState => {
-  return utils.helpers.getDefaultInitialState({
+  return utils.helpers.getDefaultInitialState<VamosAoCinemaInitialState>({
     gameId,
     gameName: GAME_NAMES.VAMOS_AO_CINEMA,
     uid,

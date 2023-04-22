@@ -50,7 +50,7 @@ export const getInitialState = (
   language: Language,
   options: ComunicacaoAlienigenaOptions
 ): ComunicacaoAlienigenaInitialState => {
-  return utils.helpers.getDefaultInitialState({
+  return utils.helpers.getDefaultInitialState<ComunicacaoAlienigenaInitialState>({
     gameId,
     gameName: GAME_NAMES.COMUNICACAO_ALIENIGENA,
     uid,

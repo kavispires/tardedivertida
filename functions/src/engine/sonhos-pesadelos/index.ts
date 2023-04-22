@@ -33,7 +33,7 @@ export const getInitialState = (
   language: Language,
   options: SonhosPesadelosOptions
 ): SonhosPesadelosInitialState => {
-  return utils.helpers.getDefaultInitialState({
+  return utils.helpers.getDefaultInitialState<SonhosPesadelosInitialState>({
     gameId,
     gameName: GAME_NAMES.SONHOS_PESADELOS,
     uid,

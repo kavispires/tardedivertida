@@ -52,7 +52,7 @@ export interface CrimesHediondosStore extends DefaultStore {
 }
 
 export interface CrimesHediondosState extends DefaultState {
-  scenes: {
+  scenes?: {
     [key: string]: CrimeTile;
   };
   [key: string]: any;

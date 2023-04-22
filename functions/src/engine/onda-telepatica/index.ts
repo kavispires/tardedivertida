@@ -30,7 +30,7 @@ export const getInitialState = (
   language: Language,
   options: OndaTelepaticaOptions
 ): OndaTelepaticaInitialState => {
-  return utils.helpers.getDefaultInitialState({
+  return utils.helpers.getDefaultInitialState<OndaTelepaticaInitialState>({
     gameId,
     gameName: GAME_NAMES.ONDA_TELEPATICA,
     uid,

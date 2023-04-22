@@ -35,7 +35,7 @@ export const getInitialState = (
   language: Language,
   options: CrimesHediondosOptions
 ): CrimesHediondosInitialState => {
-  return utils.helpers.getDefaultInitialState({
+  return utils.helpers.getDefaultInitialState<CrimesHediondosInitialState>({
     gameId,
     gameName: GAME_NAMES.CRIMES_HEDIONDOS,
     uid,
@@ -44,7 +44,7 @@ export const getInitialState = (
     initialPhase: CRIMES_HEDIONDOS_PHASES.LOBBY,
     totalRounds: TOTAL_ROUNDS,
     store: {
-      scenes: [],
+      scenes: {},
     },
     options,
   });

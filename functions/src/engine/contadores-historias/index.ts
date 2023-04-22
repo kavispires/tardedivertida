@@ -40,7 +40,7 @@ export const getInitialState = (
   language: Language,
   options: ContadoresHistoriasOptions
 ): ContadoresHistoriasInitialState => {
-  return utils.helpers.getDefaultInitialState({
+  return utils.helpers.getDefaultInitialState<ContadoresHistoriasInitialState>({
     gameId,
     gameName: GAME_NAMES.CONTADORES_HISTORIAS,
     uid,

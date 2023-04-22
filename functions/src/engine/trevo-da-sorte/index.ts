@@ -37,7 +37,7 @@ export const getInitialState = (
   language: string,
   options: TrevoDaSorteOptions
 ): TrevoDaSorteInitialState => {
-  return utils.helpers.getDefaultInitialState({
+  return utils.helpers.getDefaultInitialState<TrevoDaSorteInitialState>({
     gameId,
     gameName: GAME_NAMES.TREVO_DA_SORTE,
     uid,

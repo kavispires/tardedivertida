@@ -46,7 +46,6 @@ export interface SonhosPesadelosState extends DefaultState {
 
 export interface SonhosPesadelosInitialState {
   meta: Meta;
-  players: Players;
   store: SonhosPesadelosStore;
   state: SonhosPesadelosState;
 }
