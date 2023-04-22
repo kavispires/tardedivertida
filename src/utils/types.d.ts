@@ -189,6 +189,7 @@ interface GameState {
   phase: string;
   updatedAt?: DateMilliseconds;
   round: GameRound;
+  players: GamePlayers;
   [key: string]: any;
 }
 
