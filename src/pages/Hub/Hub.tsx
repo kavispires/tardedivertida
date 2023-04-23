@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { useEffectOnce, useTitle } from 'react-use';
 // Ant Design Resources
-import { Typography, Layout, Space, Divider } from 'antd';
+import { Typography, Layout, Divider, Row, Col } from 'antd';
 import { DatabaseFilled } from '@ant-design/icons';
 
 // Hooks
@@ -140,44 +140,53 @@ function Hub() {
             <Typography.Title level={2}>
               <Translate pt="Em Desenvolvimento" en="Under Development" />
             </Typography.Title>
-            <Space size={[8, 16]} wrap align="start" className="game-card-collection">
-              {devGames.map((game: GameInfo, index: number) => (
-                <GameCard key={`${game.gameCode}-${index}`} game={game} />
+            <Row gutter={[8, 16]}>
+              {devGames.map((game: GameInfo) => (
+                <Col key={game.gameName} xs={24} sm={12} md={8} lg={6} xl={4}>
+                  <GameCard game={game} />
+                </Col>
               ))}
-            </Space>
+            </Row>
             <Divider />
           </>
         )}
         <Typography.Title level={2}>
           <Translate pt="Disponíveis" en="Available" />
         </Typography.Title>
-        <Space size={[8, 16]} wrap align="start" className="game-card-collection">
-          {availableGames.map((game: GameInfo, index: number) => (
-            <GameCard key={`${game.gameCode}-${index}`} game={game} />
+        <Row gutter={[8, 16]}>
+          {availableGames.map((game: GameInfo) => (
+            <Col key={game.gameName} xs={24} sm={12} md={8} lg={6} xl={4}>
+              <GameCard game={game} />
+            </Col>
           ))}
-        </Space>
+        </Row>
+        {/* </Space> */}
         <Divider />
         {!isDevEnv && (
           <>
             <Typography.Title level={2}>
               <Translate pt="Em Desenvolvimento" en="Under Development" />
             </Typography.Title>
-            <Space size={[8, 16]} wrap align="start" className="game-card-collection">
-              {devGames.map((game: GameInfo, index: number) => (
-                <GameCard key={`${game.gameCode}-${index}`} game={game} />
+            <Row gutter={[8, 16]}>
+              {devGames.map((game: GameInfo) => (
+                <Col key={game.gameName} xs={24} sm={12} md={8} lg={6} xl={4}>
+                  <GameCard game={game} />
+                </Col>
               ))}
-            </Space>
+            </Row>
             <Divider />
           </>
         )}
         <Typography.Title level={2}>
           <Translate pt="Em Breve" en="Coming Soon" />
         </Typography.Title>
-        <Space size={[8, 16]} wrap align="start" className="game-card-collection">
-          {comingSoonGames.map((game: GameInfo, index: number) => (
-            <GameCard key={`${game.gameCode}-${index}`} game={game} />
+        <Row gutter={[8, 16]}>
+          {comingSoonGames.map((game: GameInfo) => (
+            <Col key={game.gameName} xs={24} sm={12} md={8} lg={6} xl={4}>
+              <GameCard game={game} />
+            </Col>
           ))}
-        </Space>
+        </Row>
       </Layout.Content>
     </Layout>
   );
