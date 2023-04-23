@@ -20,6 +20,23 @@ import { DevEmulatorAlert } from './components/DevEmulatorAlert';
 import { Filters } from './components/Filters';
 import { LogoutButton } from 'components/auth/LogoutButton';
 
+// Players migration
+const migrationBlocked = [
+  'comunicacao-alienigena',
+  'espiao-entre-nos',
+  'linhas-cruzadas',
+  'megamix',
+  'mente-coletiva',
+  'na-rua-do-medo',
+  'onda-telepatica',
+  'polemica-da-vez',
+  'retrato-falado',
+  'sonhos-pesadelos',
+  'super-campeonato',
+  'testemunha-ocular',
+  'ta-na-cara',
+];
+
 function Hub() {
   useTitle('Hub - Tarde Divertida');
 
@@ -110,7 +127,6 @@ function Hub() {
       }
     );
   }, [gameList, language]);
-
   return (
     <Layout className="dev-layout">
       <DevHeader
@@ -156,7 +172,7 @@ function Hub() {
         <Row gutter={[8, 16]}>
           {availableGames.map((game: GameInfo) => (
             <Col key={game.gameName} xs={24} sm={12} md={8} lg={6} xl={4}>
-              <GameCard game={game} />
+              <GameCard game={game} isAdmin={!migrationBlocked.includes(game.gameName)} />
             </Col>
           ))}
         </Row>
