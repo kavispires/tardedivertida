@@ -1,4 +1,3 @@
-import { useEffectOnce } from 'react-use';
 import { useEffect } from 'react';
 import { useQueryClient } from 'react-query';
 // Ant Design Resources
@@ -38,9 +37,9 @@ export function PhaseRules({ players, info }: PhaseRulesProps) {
   const [volume] = useGlobalState('volume');
   const [, setIsAdminEnabled] = useGlobalState('isAdminEnabled');
 
-  useEffectOnce(() => {
+  useEffect(() => {
     setIsAdminEnabled(true);
-  });
+  }, []); // eslint-disable-line
 
   const gameId = useGameId();
   // TODO: check if this is working
