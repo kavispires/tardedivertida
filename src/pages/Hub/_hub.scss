@@ -60,6 +60,7 @@
 
 .game-card {
   height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -89,8 +90,8 @@
     display: inline-block;
     overflow: hidden;
     white-space: nowrap;
-    text-overflow: ellipsis;
-    max-width: 20ch;
+    // text-overflow: ellipsis;
+    // max-width: 20ch;
   }
 
   &__player-count {

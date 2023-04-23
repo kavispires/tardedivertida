@@ -1,5 +1,5 @@
 import { FilterOutlined } from '@ant-design/icons';
-import { Checkbox, InputNumber, TreeSelect } from 'antd';
+import { Checkbox, InputNumber, Space, TreeSelect } from 'antd';
 import { DefaultOptionType } from 'antd/lib/select';
 import { useLanguage } from 'hooks/useLanguage';
 import { capitalize } from 'lodash';
@@ -22,7 +22,7 @@ export function Filters({ availabilityCount, setTagFilters, setNumberFilters }: 
   };
 
   return (
-    <div className="hub-filters">
+    <Space className="hub-filters" wrap>
       <FilterOutlined />({availabilityCount}){' '}
       <div className="hub-filters__entry">
         <label>Players</label>
@@ -56,7 +56,7 @@ export function Filters({ availabilityCount, setTagFilters, setNumberFilters }: 
         <label>Tags</label>
         <TagTreeSelect value={undefined} onTreeSelectChange={setTagFilters} />
       </div>
-    </div>
+    </Space>
   );
 }
 
