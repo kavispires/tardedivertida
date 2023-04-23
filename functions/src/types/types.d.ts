@@ -173,13 +173,11 @@ interface SubmitVotePayload extends Payload {
 }
 
 interface SetPayload {
-  players?: PlainObject | Players;
   state?: PlainObject;
   store?: PlainObject;
 }
 
 interface UpdatePayload {
-  players?: PlainObject | Players;
   state?: PlainObject;
   store?: PlainObject;
 }

@@ -222,6 +222,7 @@ export const getStateReferences = async <A = FirebaseFirestore.DocumentData>(
   sessionRef: FirebaseFirestore.CollectionReference;
   stateDoc: FirebaseFirestore.DocumentSnapshot;
   state: A;
+  players: Players;
 }> => {
   const sessionRef = getSessionRef(gameName, gameId);
   const stateDoc = await getSessionDoc(gameName, gameId, 'state', actionText);
@@ -231,6 +232,7 @@ export const getStateReferences = async <A = FirebaseFirestore.DocumentData>(
     sessionRef,
     stateDoc,
     state,
+    players: ((state as PlainObject)?.players ?? {}) as Players,
   };
 };
 

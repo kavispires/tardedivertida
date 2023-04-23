@@ -94,10 +94,10 @@ export const prepareCrimeSelectionPhase = async (
       state: {
         phase: CRIMES_HEDIONDOS_PHASES.CRIME_SELECTION,
         round: utils.helpers.increaseRound(state.round),
+        players,
         items,
         groupedItems,
       },
-      players,
     },
   };
 };
@@ -133,12 +133,12 @@ export const prepareSceneMarkingPhase = async (
       state: {
         phase: CRIMES_HEDIONDOS_PHASES.SCENE_MARKING,
         round: utils.helpers.increaseRound(state.round),
+        players: players,
         scenes: updatedScenes,
         scenesOrder: updatedScenesOrder,
         currentScene: newScene,
         results: utils.firebase.deleteValue(),
       },
-      players: players,
     },
   };
 };
@@ -175,6 +175,7 @@ export const prepareGuessingPhase = async (
       update: {
         state: {
           phase: CRIMES_HEDIONDOS_PHASES.GUESSING,
+          players,
           crimes,
           scenes,
           scenesOrder: order,
@@ -182,7 +183,6 @@ export const prepareGuessingPhase = async (
           reasonForEvidenceTile: utils.firebase.deleteValue(),
           locationTiles: utils.firebase.deleteValue(),
         },
-        players,
       },
     };
   }
@@ -199,8 +199,8 @@ export const prepareGuessingPhase = async (
         phase: CRIMES_HEDIONDOS_PHASES.GUESSING,
         crimes: updatedCrimes,
         currentScene: utils.firebase.deleteValue(),
+        players: players,
       },
-      players: players,
     },
   };
 };
@@ -227,8 +227,8 @@ export const prepareRevealPhase = async (
           ...state.round,
           forceLastRound: state?.round.forceLastRound || winners.length > 0,
         },
+        players: players,
       },
-      players: players,
     },
   };
 };
@@ -260,11 +260,11 @@ export const prepareGameOverPhase = async (
 
   return {
     set: {
-      players,
       state: {
         phase: CRIMES_HEDIONDOS_PHASES.GAME_OVER,
         round: state.round,
         gameEndedAt: Date.now(),
+        players,
         winners,
         scenes: state.scenes,
         scenesOrder: state.scenesOrder,

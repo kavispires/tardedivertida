@@ -89,7 +89,7 @@ export const getNextPhase = async (
     );
     const newPhase = await prepareSetupPhase(store, state, players, data);
     await utils.firebase.saveGame(sessionRef, newPhase);
-    return getNextPhase(gameName, gameId, players);
+    return getNextPhase(gameName, gameId, newPhase?.update?.state as FirebaseStateData);
   }
 
   // SETUP -> SEEDING

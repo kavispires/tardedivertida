@@ -85,11 +85,11 @@ export const prepareTopicSelectionPhase = async (
       state: {
         phase: POLEMICA_DA_VEZ_PHASES.TOPIC_SELECTION,
         round: utils.helpers.increaseRound(state.round),
+        players,
         activePlayerId,
         currentTopics,
         currentCustomTopic,
       },
-      players,
     },
   };
 };
@@ -115,12 +115,12 @@ export const prepareReactPhase = async (
     update: {
       state: {
         phase: POLEMICA_DA_VEZ_PHASES.REACT,
+        players,
         currentTopic,
         customTopic,
         currentTopics: utils.firebase.deleteValue(),
         currentCustomTopic: utils.firebase.deleteValue(),
       },
-      players,
     },
   };
 };
@@ -151,10 +151,10 @@ export const prepareResolutionPhase = async (
       },
       state: {
         phase: POLEMICA_DA_VEZ_PHASES.RESOLUTION,
+        players,
         totalLikes,
         ranking,
       },
-      players,
     },
   };
 };
@@ -180,11 +180,11 @@ export const prepareGameOverPhase = async (
 
   return {
     set: {
-      players,
       state: {
         phase: POLEMICA_DA_VEZ_PHASES.GAME_OVER,
         round: state.round,
         gameEndedAt: Date.now(),
+        players,
         winners,
         allTopics: store.pastTopics,
       },

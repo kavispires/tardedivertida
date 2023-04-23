@@ -133,7 +133,7 @@ export const makePlayerReady = async (data: Payload) => {
 
   // If all players are ready, trigger next phase
   try {
-    return getNextPhase(gameName, gameId, players);
+    return getNextPhase(gameName, gameId);
   } catch (error) {
     utils.firebase.throwException(error, actionText);
   }

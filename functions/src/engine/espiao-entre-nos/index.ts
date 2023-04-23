@@ -2,7 +2,12 @@
 import { GAME_NAMES } from '../../utils/constants';
 import { ESPIAO_ENTRE_NOS_ACTIONS, ESPIAO_ENTRE_NOS_PHASES, PLAYER_COUNTS } from './constants';
 // Types
-import type { EspiaoEntreNosInitialState, EspiaoEntreNosSubmitAction } from './types';
+import type {
+  EspiaoEntreNosInitialState,
+  EspiaoEntreNosSubmitAction,
+  FirebaseStateData,
+  FirebaseStoreData,
+} from './types';
 // Utils
 import utils from '../../utils';
 import {
@@ -51,15 +56,16 @@ export const getInitialState = (
  */
 export const playerCounts = PLAYER_COUNTS;
 
-export const getNextPhase = async (gameName: string, gameId: string, players: Players): Promise<boolean> => {
-  const actionText = 'prepare next phase';
-
-  // Gather docs and references
-  const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences(
-    gameName,
-    gameId,
-    actionText
-  );
+export const getNextPhase = async (
+  gameName: string,
+  gameId: string,
+  currentState?: FirebaseStateData
+): Promise<boolean> => {
+  const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences<
+    FirebaseStateData,
+    FirebaseStoreData
+  >(gameName, gameId, 'prepare next phase', currentState);
+  const players = state.players;
 
   // Determine next phase
   const outcome = checkOutcome(state, store, players);
@@ -76,7 +82,7 @@ export const getNextPhase = async (gameName: string, gameId: string, players: Pl
     const additionalData = await getLocations(store.language);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await utils.firebase.saveGame(sessionRef, newPhase);
-    return getNextPhase(gameName, gameId, players);
+    return getNextPhase(gameName, gameId, newPhase?.update?.state as FirebaseStateData);
   }
 
   // * -> ASSIGNMENT

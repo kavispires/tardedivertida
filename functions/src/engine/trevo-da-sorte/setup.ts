@@ -55,9 +55,9 @@ export const prepareWordSelectionPhase = async (
   // Save
   return {
     update: {
-      players,
       state: {
         phase: TREVO_DA_SORTE_PHASES.WORD_SELECTION,
+        players,
       },
     },
   };
@@ -81,9 +81,9 @@ export const prepareCloverWritingPhase = async (
   // Save
   return {
     update: {
-      players,
       state: {
         phase: TREVO_DA_SORTE_PHASES.CLOVER_WRITING,
+        players,
       },
     },
   };
@@ -111,9 +111,9 @@ export const prepareCloverGuessingPhase = async (
   // Save
   return {
     update: {
-      players,
       state: {
         phase: TREVO_DA_SORTE_PHASES.CLOVER_GUESSING,
+        players,
         activeCloverId,
         clover: players[activeCloverId].clover,
         leaves: players[activeCloverId].leaves,
@@ -135,9 +135,9 @@ export const prepareResultsPhase = async (
   // Save
   return {
     update: {
-      players,
       state: {
         phase: TREVO_DA_SORTE_PHASES.RESULTS,
+        players,
         ranking,
       },
     },
@@ -165,12 +165,10 @@ export const prepareGameOverPhase = async (
 
   // Save
   return {
-    update: {
-      players,
-    },
     set: {
       state: {
         phase: TREVO_DA_SORTE_PHASES.GAME_OVER,
+        players,
         round: state.round,
         gameEndedAt: Date.now(),
         winners,

@@ -60,7 +60,6 @@ export const prepareSetupPhase = async (
   // Save
   return {
     update: {
-      players,
       store: {
         deck,
         deckIndex: 0,
@@ -70,6 +69,7 @@ export const prepareSetupPhase = async (
       },
       state: {
         phase: SUPER_CAMPEONATO_PHASES.SETUP,
+        players,
         round: {
           current: 0,
           total: TOTAL_ROUNDS,
@@ -107,13 +107,13 @@ export const prepareChallengeSelectionPhase = async (
         deckIndex: store.deckIndex + CHALLENGES_PER_ROUND,
       },
       state: {
+        players,
         phase: SUPER_CAMPEONATO_PHASES.CHALLENGE_SELECTION,
         round,
         challenges,
         brackets,
         challenge: utils.firebase.deleteValue(),
       },
-      players,
     },
   };
 };
@@ -132,10 +132,10 @@ export const prepareContenderSelectionPhase = async (
     update: {
       state: {
         phase: SUPER_CAMPEONATO_PHASES.CONTENDER_SELECTION,
+        players,
         challenges: utils.firebase.deleteValue(),
         challenge,
       },
-      players,
     },
   };
 };
@@ -166,11 +166,11 @@ export const prepareBetsPhase = async (
     update: {
       state: {
         phase: SUPER_CAMPEONATO_PHASES.BETS,
+        players,
         brackets,
         challenge,
         challenges: utils.firebase.deleteValue(),
       },
-      players,
     },
   };
 };
@@ -192,10 +192,10 @@ export const prepareBattlePhase = async (
     update: {
       state: {
         phase: SUPER_CAMPEONATO_PHASES.BATTLE,
+        players,
         tier,
         brackets,
       },
-      players,
     },
   };
 };
@@ -238,11 +238,11 @@ export const prepareResultsPhase = async (
       },
       state: {
         phase: SUPER_CAMPEONATO_PHASES.RESULTS,
+        players,
         tier: utils.firebase.deleteValue(),
         brackets,
         ranking,
       },
-      players,
     },
   };
 };
@@ -268,8 +268,8 @@ export const prepareGameOverPhase = async (
 
   return {
     set: {
-      players,
       state: {
+        players,
         phase: SUPER_CAMPEONATO_PHASES.GAME_OVER,
         round: state.round,
         gameEndedAt: Date.now(),

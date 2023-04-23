@@ -7,7 +7,12 @@ import {
   VENDAVAL_DE_PALPITE_ACTIONS,
 } from './constants';
 // Types
-import type { VendavalDePalpiteInitialState, VendavalDePalpiteSubmitAction } from './types';
+import type {
+  FirebaseStateData,
+  FirebaseStoreData,
+  VendavalDePalpiteInitialState,
+  VendavalDePalpiteSubmitAction,
+} from './types';
 // Utils
 import utils from '../../utils';
 import { determineNextPhase } from './helpers';
@@ -59,15 +64,16 @@ export const getInitialState = (
  */
 export const playerCounts = PLAYER_COUNTS;
 
-export const getNextPhase = async (gameName: string, gameId: string, players: Players): Promise<boolean> => {
-  const actionText = 'prepare next phase';
-
-  // Gather docs and references
-  const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences(
-    gameName,
-    gameId,
-    actionText
-  );
+export const getNextPhase = async (
+  gameName: string,
+  gameId: string,
+  currentState?: FirebaseStateData
+): Promise<boolean> => {
+  const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences<
+    FirebaseStateData,
+    FirebaseStoreData
+  >(gameName, gameId, 'prepare next phase', currentState);
+  const players = state.players;
 
   // Determine next phase
   const nextPhase = determineNextPhase(state?.phase, state?.round, state?.outcome);
@@ -81,7 +87,7 @@ export const getNextPhase = async (gameName: string, gameId: string, players: Pl
     const additionalData = await getData(store.language);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await utils.firebase.saveGame(sessionRef, newPhase);
-    return getNextPhase(gameName, gameId, players);
+    return getNextPhase(gameName, gameId, newPhase?.update?.state as FirebaseStateData);
   }
 
   // SETUP -> BOSS_SELECTION

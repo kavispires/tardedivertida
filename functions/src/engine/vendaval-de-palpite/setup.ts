@@ -33,8 +33,8 @@ export const prepareSetupPhase = async (
           current: 0,
           total: MAX_ROUNDS,
         },
+        players,
       },
-      players,
     },
   };
 };
@@ -42,7 +42,7 @@ export const prepareSetupPhase = async (
 export const prepareBossPlayerSelection = async (): Promise<SaveGamePayload> => {
   // Save
   return {
-    set: {
+    update: {
       state: {
         phase: VENDAVAL_DE_PALPITE_PHASES.BOSS_SELECTION,
         round: {
@@ -68,12 +68,12 @@ export const prepareSecretWordSelection = async (
     update: {
       state: {
         phase: VENDAVAL_DE_PALPITE_PHASES.SECRET_WORD_SELECTION,
+        players,
         words: store.words,
         categories: store.categories,
         finalAnswersLeft: FINAL_ANSWER_COUNT,
         cluesPerPlayer: CLUES_PER_PLAYER[Object.keys(players).length],
       },
-      players,
     },
   };
 };
@@ -101,6 +101,7 @@ export const preparePlayersClues = async (
     update: {
       state: {
         phase: VENDAVAL_DE_PALPITE_PHASES.PLAYERS_CLUES,
+        players,
         round: utils.helpers.increaseRound(state.round),
         words: utils.firebase.deleteValue(),
         outcome: utils.firebase.deleteValue(),
@@ -108,7 +109,6 @@ export const preparePlayersClues = async (
         board,
         clues,
       },
-      players,
     },
   };
 };
@@ -148,12 +148,12 @@ export const prepareClueEvaluations = async (
     update: {
       state: {
         phase: VENDAVAL_DE_PALPITE_PHASES.CLUE_EVALUATIONS,
+        players,
         clues,
         board,
         outcome,
         finalAnswersLeft,
       },
-      players,
     },
   };
 };
@@ -186,9 +186,9 @@ export const prepareGameOverPhase = async (
 
   return {
     set: {
-      players,
       state: {
         phase: VENDAVAL_DE_PALPITE_PHASES.GAME_OVER,
+        players,
         round: state.round,
         gameEndedAt: Date.now(),
         board: state.board,
