@@ -72,6 +72,8 @@ export function StepSelectGlyphs({
               Dos ícones abaixo, você pode selecionar até <PositiveHighlight>3</PositiveHighlight> positivos e
               até <NegativeHighlight>3</NegativeHighlight> negativos.
               <br /> Quando você clica em ícone, você determina se ele é relacionado ao seu personagem ou não.
+              <br />
+              <strong>A sua carta é a que tem a borda de bolinhas amarelas!</strong>
             </>
           }
           en={
@@ -80,6 +82,8 @@ export function StepSelectGlyphs({
               and <NegativeHighlight>3</NegativeHighlight> negative glyphs.
               <br />
               When you click on a glyph, you will determine if it's related or not to your character.
+              <br />
+              <strong>Your card is highlighted with the dotted yellow border!</strong>
             </>
           }
         />
