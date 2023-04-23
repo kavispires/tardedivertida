@@ -65,11 +65,10 @@ export const getNextPhase = async (
   currentState?: FirebaseStateData,
   additionalPayload?: PlainObject
 ): Promise<boolean> => {
-  const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences<
+  const { sessionRef, state, store, players } = await utils.firebase.getStateAndStoreReferences<
     FirebaseStateData,
     FirebaseStoreData
   >(gameName, gameId, 'prepare next phase', currentState);
-  const players = state.players;
 
   // Determine next phase
   const nextPhase = determineNextPhase(
