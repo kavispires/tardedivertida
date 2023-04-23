@@ -56,6 +56,7 @@ export const prepareSetupPhase = async (
       },
       state: {
         phase: CRIMES_HEDIONDOS_PHASES.SETUP,
+        players,
         causeOfDeathTile,
         reasonForEvidenceTile,
         locationTiles,
@@ -88,6 +89,8 @@ export const prepareCrimeSelectionPhase = async (
     state.reasonForEvidenceTile,
     state.locationTiles
   );
+
+  console.log(state);
 
   return {
     update: {

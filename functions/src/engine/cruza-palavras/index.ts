@@ -78,7 +78,7 @@ export const getNextPhase = async (
     const additionalData = await getWords(store.language, store.options?.imageGrid);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await utils.firebase.saveGame(sessionRef, newPhase);
-    return getNextPhase(gameName, gameId, newPhase?.update?.state as FirebaseStateData);
+    return getNextPhase(gameName, gameId);
   }
 
   // * -> CLUE_WRITING

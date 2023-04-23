@@ -74,7 +74,7 @@ export const getNextPhase = async (
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await utils.firebase.saveGame(sessionRef, newPhase);
 
-    return getNextPhase(gameName, gameId, newPhase?.update?.state as FirebaseStateData);
+    return getNextPhase(gameName, gameId);
   }
 
   // * -> HINT_GIVING

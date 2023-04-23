@@ -77,7 +77,7 @@ export const handleSubmitCode = async (
   updatedPlayers[playerId].codeGuess = code;
 
   try {
-    await sessionRef.doc('players').update({ [playerId]: updatedPlayers[playerId] });
+    await sessionRef.doc('state').update({ [`players.${playerId}`]: updatedPlayers[playerId] });
   } catch (error) {
     utils.firebase.throwException(error, actionText);
   }

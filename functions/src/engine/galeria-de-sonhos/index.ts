@@ -64,13 +64,16 @@ export const getInitialState = (
  */
 export const playerCounts = PLAYER_COUNTS;
 
-export const getNextPhase = async (gameName: string, gameId: string, currentState?: FirebaseStateData
-  ): Promise<boolean> => {
-    const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences<
-      FirebaseStateData,
-      FirebaseStoreData
-    >(gameName, gameId, 'prepare next phase', currentState);
-    const players = state.players;
+export const getNextPhase = async (
+  gameName: string,
+  gameId: string,
+  currentState?: FirebaseStateData
+): Promise<boolean> => {
+  const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences<
+    FirebaseStateData,
+    FirebaseStoreData
+  >(gameName, gameId, 'prepare next phase', currentState);
+  const players = state.players;
 
   // Determine next phase
   const nextPhase = determineNextPhase(state?.phase, state?.round);
@@ -84,7 +87,7 @@ export const getNextPhase = async (gameName: string, gameId: string, currentStat
     const additionalData = await getWords(store.language, store.options.originalDecks);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await utils.firebase.saveGame(sessionRef, newPhase);
-    return getNextPhase(gameName, gameId, newPhase?.update?.state as FirebaseStateData);
+    return getNextPhase(gameName, gameId);
   }
 
   // * -> WORD_SELECTION

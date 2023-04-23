@@ -87,7 +87,7 @@ export const getNextPhase = async (
     const additionalData = await getQuestionsAndSuspects(store.language, store.options);
     const newPhase = await prepareSetupPhase(additionalData);
     await utils.firebase.saveGame(sessionRef, newPhase);
-    return getNextPhase(gameName, gameId, newPhase?.update?.state as FirebaseStateData);
+    return getNextPhase(gameName, gameId);
   }
 
   // SETUP -> WITNESS_SELECTION
