@@ -145,10 +145,8 @@ export const prepareVotingPhase = async (
       state: {
         phase: DETETIVES_IMAGINATIVOS_PHASES.VOTING,
         players: newPlayers,
-        phaseOrder: utils.firebase.deleteValue(),
-        phaseIndex: utils.firebase.deleteValue(),
-        currentPlayerId: utils.firebase.deleteValue(),
       },
+      stateCleanup: ['phaseOrder', 'phaseIndex', 'currentPlayerId'],
     },
   };
 };

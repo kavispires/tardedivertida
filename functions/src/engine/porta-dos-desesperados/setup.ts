@@ -141,9 +141,8 @@ export const prepareBookPossessionPhase = async (
         pages: pages.pages,
         doors: doors.doors.filter((doorId: ImageCardId) => doorId !== state.answerDoorId),
         answerDoorId: doors.answerDoorId,
-        outcome: utils.firebase.deleteValue(),
-        currentPageIds: utils.firebase.deleteValue(),
       },
+      stateCleanup: ['outcome', 'currentPageIds'],
     },
   };
 };

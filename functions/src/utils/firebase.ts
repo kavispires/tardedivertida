@@ -288,12 +288,27 @@ export const saveGame = async (
       await sessionRef.doc('state').set({ ...saveContent.set.state, updatedAt: Date.now() } ?? {});
     }
 
-    if (saveContent?.update?.store) {
-      await sessionRef.doc('store').update(saveContent.update.store);
+    if (saveContent?.update?.store || saveContent?.update?.storeCleanup) {
+      const cleanup = (saveContent?.update?.storeCleanup ?? []).reduce((acc, key) => {
+        if (key) {
+          acc[key] = deleteValue();
+        }
+        return acc;
+      }, {});
+      await sessionRef.doc('store').update({ ...(saveContent.update.store ?? {}), ...cleanup });
     }
 
-    if (saveContent?.update?.state) {
-      await sessionRef.doc('state').update({ ...saveContent.update.state, updatedAt: Date.now() });
+    if (saveContent?.update?.state || saveContent?.update?.stateCleanup) {
+      const cleanup = (saveContent?.update?.stateCleanup ?? []).reduce((acc, key) => {
+        if (key) {
+          acc[key] = deleteValue();
+        }
+        return acc;
+      }, {});
+
+      await sessionRef
+        .doc('state')
+        .update({ ...(saveContent.update.state ?? {}), ...cleanup, updatedAt: Date.now() });
     }
   } catch (error) {
     throwException(error, 'update game');

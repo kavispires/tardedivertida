@@ -126,10 +126,8 @@ export const prepareGuessPhase = async (
         phase: ONDA_TELEPATICA_PHASES.GUESS,
         players,
         currentCategory,
-        currentCategories: utils.firebase.deleteValue(),
-        currentCategoryId: utils.firebase.deleteValue(),
-        target: utils.firebase.deleteValue(),
       },
+      stateCleanup: ['currentCategories', 'currentCategoryId', 'target'],
     },
   };
 };

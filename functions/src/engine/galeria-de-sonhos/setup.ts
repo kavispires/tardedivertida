@@ -144,8 +144,8 @@ export const prepareDreamsSelectionPhase = async (
         phase: GALERIA_DE_SONHOS_PHASES.DREAMS_SELECTION,
         players,
         word,
-        words: utils.firebase.deleteValue(),
       },
+      stateCleanup: ['words'],
     },
   };
 };
@@ -206,13 +206,9 @@ export const prepareResolutionPhase = async (
       state: {
         phase: GALERIA_DE_SONHOS_PHASES.RESOLUTION,
         players,
-        activePlayerId: utils.firebase.deleteValue(),
-        gameOrder: utils.firebase.deleteValue(),
-        lastActivePlayerId: utils.firebase.deleteValue(),
-        turnCount: utils.firebase.deleteValue(),
-        latest: utils.firebase.deleteValue(),
         ranking,
       },
+      stateCleanup: ['activePlayerId', 'gameOrder', 'lastActivePlayerId', 'turnCount', 'latest'],
     },
   };
 };

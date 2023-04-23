@@ -93,22 +93,15 @@ export const prepareStoryPhase = async (
   // Save
   return {
     update: {
-      store: {
-        currentTableDictionary: utils.firebase.deleteValue(),
-        story: utils.firebase.deleteValue(),
-        solutionCardId: utils.firebase.deleteValue(),
-      },
       state: {
         phase: CONTADORES_HISTORIAS_PHASES.STORY,
-        round: utils.helpers.increaseRound(state.round),
         players,
+        round: utils.helpers.increaseRound(state.round),
         storytellerId,
         nextStorytellerId,
-        outcome: utils.firebase.deleteValue(),
-        ranking: utils.firebase.deleteValue(),
-        table: utils.firebase.deleteValue(),
-        story: utils.firebase.deleteValue(),
       },
+      stateCleanup: ['outcome', 'ranking', 'table', 'story'],
+      storeCleanup: ['currentTableDictionary', 'story', 'solutionCardId'],
     },
   };
 };
@@ -130,8 +123,8 @@ export const prepareCardPlayPhase = async (
     update: {
       state: {
         phase: CONTADORES_HISTORIAS_PHASES.CARD_PLAY,
-        story: store.story,
         players,
+        story: store.story,
       },
     },
   };
@@ -160,8 +153,8 @@ export const prepareVotingPhase = async (
       },
       state: {
         phase: CONTADORES_HISTORIAS_PHASES.VOTING,
-        table,
         players,
+        table,
       },
     },
   };

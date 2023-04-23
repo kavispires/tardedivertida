@@ -94,8 +94,6 @@ export const prepareAssignmentPhase = async (
           id: currentLocation.id,
           name: currentLocation.name,
         },
-        guess: utils.firebase.deleteValue(),
-        lastPlayerId: utils.firebase.deleteValue(),
       },
       state: {
         phase: ESPIAO_ENTRE_NOS_PHASES.ASSIGNMENT,
@@ -104,14 +102,9 @@ export const prepareAssignmentPhase = async (
         locations,
         currentSpyId,
         startingPlayerId: store.gameOrder[0],
-        // Cleanup
-        resolution: utils.firebase.deleteValue(),
-        timer: utils.firebase.deleteValue(),
-        outcome: utils.firebase.deleteValue(),
-        targetId: utils.firebase.deleteValue(),
-        accuserId: utils.firebase.deleteValue(),
-        finalAssessment: utils.firebase.deleteValue(),
       },
+      storeCleanup: ['guess', 'lastPlayerId'],
+      stateCleanup: ['resolution', 'timer', 'outcome', 'targetId', 'accuserId', 'finalAssessment'],
     },
   };
 };
@@ -142,10 +135,9 @@ export const prepareInvestigationPhase = async (
           status: TIMER_STATUS.RUNNING,
           ...timerUpdate,
         },
-        targetId: utils.firebase.deleteValue(),
-        accuserId: utils.firebase.deleteValue(),
         outcome,
       },
+      stateCleanup: ['targetId', 'accuserId'],
     },
   };
 };
@@ -172,11 +164,6 @@ export const prepareAssessmentPhase = async (
   // Save
   return {
     update: {
-      store: {
-        targetId: utils.firebase.deleteValue(),
-        accuserId: utils.firebase.deleteValue(),
-        pausedAt: utils.firebase.deleteValue(),
-      },
       state: {
         phase: ESPIAO_ENTRE_NOS_PHASES.ASSESSMENT,
         players,
@@ -187,8 +174,9 @@ export const prepareAssessmentPhase = async (
           status: TIMER_STATUS.PAUSED,
           timeRemaining,
         },
-        outcome: utils.firebase.deleteValue(),
       },
+      storeCleanup: ['targetId', 'accuserId', 'pausedAt'],
+      stateCleanup: ['outcome'],
     },
   };
 };
@@ -206,14 +194,9 @@ export const prepareFinalAssessmentPhase = async (
   // Save
   return {
     update: {
-      store: {
-        lastPlayerId: utils.firebase.deleteValue(),
-      },
       state: {
         phase: ESPIAO_ENTRE_NOS_PHASES.FINAL_ASSESSMENT,
         players,
-        targetId: utils.firebase.deleteValue(),
-        accuserId: utils.firebase.deleteValue(),
         timer: {
           status: TIMER_STATUS.STOPPED,
         },
@@ -226,6 +209,8 @@ export const prepareFinalAssessmentPhase = async (
         },
         outcome,
       },
+      storeCleanup: ['lastPlayerId'],
+      stateCleanup: ['targetId', 'accuserId'],
     },
   };
 };
@@ -270,10 +255,9 @@ export const prepareResolutionPhase = async (
         timer: {
           status: TIMER_STATUS.STOPPED,
         },
-        outcome: utils.firebase.deleteValue(),
-        finalAssessment: utils.firebase.deleteValue(),
         resolution,
       },
+      stateCleanup: ['outcome', 'finalAssessment'],
     },
   };
 };
@@ -306,7 +290,6 @@ export const prepareGameOverPhase = async (
         gameEndedAt: Date.now(),
         winners,
       },
-      store: {},
     },
   };
 };

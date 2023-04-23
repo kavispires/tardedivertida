@@ -174,12 +174,13 @@ interface SubmitVotePayload extends Payload {
 
 interface SetPayload {
   state?: PlainObject;
-  store?: PlainObject;
 }
 
 interface UpdatePayload {
   state?: PlainObject;
   store?: PlainObject;
+  stateCleanup?: string[];
+  storeCleanup?: string[];
 }
 
 interface SaveGamePayload {

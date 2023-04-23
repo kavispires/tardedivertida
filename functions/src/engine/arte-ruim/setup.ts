@@ -107,10 +107,10 @@ export const prepareEvaluationPhase = async (
     update: {
       state: {
         phase: ARTE_RUIM_PHASES.EVALUATION,
+        players,
         cards: shuffledCards,
         drawings: shuffledDrawings,
         level,
-        players,
       },
     },
   };
@@ -144,13 +144,13 @@ export const prepareGalleryPhase = async (
       },
       state: {
         phase: ARTE_RUIM_PHASES.GALLERY,
-        round: state.round,
         players,
+        round: state.round,
         gallery,
         cards: store.currentCards,
         ranking,
-        drawings: utils.firebase.deleteValue(),
       },
+      stateCleanup: ['drawings'],
     },
   };
 };
