@@ -38,7 +38,7 @@ const initialState: InitialState = {
   username: '',
   userAvatarId: '',
   user: {},
-  isAdminEnabled: false,
+  isAdminEnabled: true,
   isDebugEnabled: false,
   blurredCards: {},
   blurEnabled: false,
