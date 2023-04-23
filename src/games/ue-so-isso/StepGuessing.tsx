@@ -19,7 +19,7 @@ type StepGuessingProps = {
   onSendGuess: GenericFunction;
   onSubmitOutcome: GenericFunction;
   validSuggestions: UseSoIssoSuggestion[];
-};
+} & AnnouncementProps;
 
 export function StepGuessing({
   guesser,
@@ -28,9 +28,10 @@ export function StepGuessing({
   onSendGuess,
   onSubmitOutcome,
   validSuggestions,
+  announcement,
 }: StepGuessingProps) {
   return (
-    <Step fullWidth>
+    <Step fullWidth announcement={announcement}>
       <ViewOr condition={isUserTheGuesser}>
         <Space direction="vertical" align="center">
           <Title>

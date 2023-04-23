@@ -19,22 +19,21 @@ type StepSuggestionProps = {
   onSendSuggestions: GenericFunction;
   secretWord: UeSoIssoCard;
   suggestionsNumber?: number;
-  players: GamePlayers;
-};
+} & AnnouncementProps;
 
 export function StepSuggestion({
   guesser,
   onSendSuggestions,
   secretWord,
-  players,
   suggestionsNumber = 1,
+  announcement,
 }: StepSuggestionProps) {
   useMock(() => {
     onSendSuggestions(mockSuggestions(suggestionsNumber));
   }, []);
 
   return (
-    <Step fullWidth>
+    <Step fullWidth announcement={announcement}>
       <Title>
         <Translate
           pt={

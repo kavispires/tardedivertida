@@ -15,7 +15,9 @@ import { Step } from 'components/steps';
 import { Instruction, TextHighlight, Title } from 'components/text';
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
-import { ViewOr } from 'components/views';
+import { ViewIf, ViewOr } from 'components/views';
+import { VIPOnlyContainer } from 'components/vip';
+import { PointsHighlight } from 'components/metrics/PointsHighlight';
 
 type StepGuessVerificationProps = {
   guess: string;
@@ -28,7 +30,7 @@ type StepGuessVerificationProps = {
   secretWord: UeSoIssoCard;
   onSubmitOutcome: GenericFunction;
   validSuggestions: UseSoIssoSuggestion[];
-};
+} & AnnouncementProps;
 
 export function StepGuessVerification({
   guess,
@@ -41,6 +43,7 @@ export function StepGuessVerification({
   secretWord,
   onSubmitOutcome,
   validSuggestions,
+  announcement,
 }: StepGuessVerificationProps) {
   const { translate } = useLanguage();
 
@@ -58,7 +61,7 @@ export function StepGuessVerification({
   }, [isUserTheController, controller.id, translate, isLoading]);
 
   return (
-    <Step fullWidth>
+    <Step fullWidth announcement={announcement}>
       <Title className={getAnimationClass('heartBeat')}>
         <AvatarName player={guesser} addressUser /> <Translate pt="disse" en="said" />{' '}
         <TextHighlight>{guess}</TextHighlight>
@@ -73,8 +76,9 @@ export function StepGuessVerification({
               <>
                 <AvatarName player={controller} /> está encarregado(a) de apertar os botões se você acertou ou
                 não. <br />
-                São 3 pontos se você acertar, -1 se errar, mas você pode passar e não tentar, covarde!..{' '}
-                <br />
+                São <PointsHighlight type="positive">3 pontos</PointsHighlight> se você acertar,{' '}
+                <PointsHighlight type="negative">-1 ponto</PointsHighlight> se errar, mas você pode passar e
+                não tentar, covarde!.. <br />
                 As dicas foram:
               </>
             }
@@ -82,7 +86,8 @@ export function StepGuessVerification({
               <>
                 <AvatarName player={controller} /> is in charge of confirming if you got it right or not.
                 <br />
-                It's 3 points if you get it right but -1 if you get it wrong. <br />
+                It's <PointsHighlight type="positive">3 points</PointsHighlight> if you get it right but{' '}
+                <PointsHighlight type="negative">-1 point</PointsHighlight> if you get it wrong. <br />
                 The clues were:
               </>
             }
@@ -94,8 +99,9 @@ export function StepGuessVerification({
                 <AvatarName player={controller} addressUser /> está encarregado(a) de apertar os botões se{' '}
                 <AvatarName player={guesser} />
                 acertou ou não. <br />
-                São 3 pontos se você acertar, -1 se errar, mas você pode passar e não tentar, covarde!..{' '}
-                <br />
+                São <PointsHighlight type="positive">3 pontos</PointsHighlight> se você acertar,{' '}
+                <PointsHighlight type="negative">-1 ponto</PointsHighlight> se errar, mas você pode passar e
+                não tentar, covarde!.. <br />
                 As dicas são:
               </>
             }
@@ -103,7 +109,8 @@ export function StepGuessVerification({
               <>
                 <AvatarName player={controller} addressUser /> is in charge to confirm if{' '}
                 <AvatarName player={guesser} /> got it correct or not. <br />
-                It's 3 points if they got it right but -1 if they got it wrong. <br />
+                It's <PointsHighlight type="positive">3 points</PointsHighlight> if they got it right but{' '}
+                <PointsHighlight type="negative">-1 point</PointsHighlight> if they got it wrong. <br />
                 The clues were:
               </>
             }
@@ -111,35 +118,57 @@ export function StepGuessVerification({
         </ViewOr>
       </Instruction>
 
-      <Space className="u-word-guess-phase__suggestions">
+      <Space className="u-word-guess-phase__suggestions space-container">
         {validSuggestions.map((suggestionEntry, index) => {
           const id = `${suggestionEntry.suggestion}-${index}`;
           return <SuggestionEasel key={id} id={id} value={suggestionEntry.suggestion} />;
         })}
       </Space>
 
-      {(isUserTheController || isVIP) && (
-        <Space className={clsx('u-word-guess-phase__guess-submit', isVIP && 'admin-container')}>
-          <Button
-            icon={<CheckOutlined />}
-            type="primary"
-            style={{ backgroundColor: 'green' }}
-            onClick={() => onSubmitOutcome({ outcome: 'CORRECT' })}
-            disabled={isLoading}
-          >
-            <Translate pt="Acertou" en="Correct" />
-          </Button>
-          <Button
-            icon={<CloseOutlined />}
-            type="primary"
-            danger
-            onClick={() => onSubmitOutcome({ outcome: 'WRONG' })}
-            disabled={isLoading}
-          >
-            <Translate pt="Errou" en="Wrong" />
-          </Button>
-        </Space>
-      )}
+      <ViewIf condition={isUserTheController}>
+        <ConfirmationButton onSubmitOutcome={onSubmitOutcome} isLoading={isLoading} />
+      </ViewIf>
+
+      <VIPOnlyContainer
+        label={
+          <Translate
+            pt="VIP Controls (use somente se o jogador controlador não controlar)"
+            en="VIP Controls (only use if the assign player doesn't)"
+          />
+        }
+      >
+        <ConfirmationButton onSubmitOutcome={onSubmitOutcome} isLoading={isLoading} />
+      </VIPOnlyContainer>
     </Step>
+  );
+}
+
+type ConfirmationButtonProps = {
+  onSubmitOutcome: GenericFunction;
+  isLoading: boolean;
+};
+
+function ConfirmationButton({ onSubmitOutcome, isLoading }: ConfirmationButtonProps) {
+  return (
+    <Space className={clsx('u-word-guess-phase__guess-submit')}>
+      <Button
+        icon={<CheckOutlined />}
+        type="primary"
+        style={{ backgroundColor: 'green' }}
+        onClick={() => onSubmitOutcome({ outcome: 'CORRECT' })}
+        disabled={isLoading}
+      >
+        <Translate pt="Acertou" en="Correct" />
+      </Button>
+      <Button
+        icon={<CloseOutlined />}
+        type="primary"
+        danger
+        onClick={() => onSubmitOutcome({ outcome: 'WRONG' })}
+        disabled={isLoading}
+      >
+        <Translate pt="Errou" en="Wrong" />
+      </Button>
+    </Space>
   );
 }

@@ -12,9 +12,14 @@ type StepWordSelectionProps = {
   guesser: GamePlayer;
   onSendSelectedWords: GenericFunction;
   words: UeSoIssoCard[];
-};
+} & AnnouncementProps;
 
-export function StepWordSelection({ guesser, onSendSelectedWords, words = [] }: StepWordSelectionProps) {
+export function StepWordSelection({
+  guesser,
+  onSendSelectedWords,
+  announcement,
+  words = [],
+}: StepWordSelectionProps) {
   const [selectedWords, setSelectedWords] = useState<PlainObject>({});
 
   const selectedWordsArray = Object.keys(selectedWords);
@@ -38,7 +43,7 @@ export function StepWordSelection({ guesser, onSendSelectedWords, words = [] }: 
   };
 
   return (
-    <Step fullWidth>
+    <Step fullWidth announcement={announcement}>
       <Title white>
         <Translate
           pt={
