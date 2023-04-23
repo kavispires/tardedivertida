@@ -5,7 +5,7 @@ import { useLoading } from 'hooks/useLoading';
 // Ant Design Resources
 import { Button, Input, Space } from 'antd';
 import { Step } from 'components/steps';
-import { Instruction, Title } from 'components/text';
+import { Instruction, TextHighlight, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { ImageCardHand } from 'components/cards';
 import { CardHighlight } from 'components/metrics/CardHighlight';
@@ -62,8 +62,18 @@ export function StepSecretClueWrite({ user, onSubmitClue, announcement }: Secret
           </li>
           <li>
             <Translate
-              pt="Você ganha pontos somente se o Impostor não for encontrado, então escolha algo fácil e generalizado."
-              en="You only get points if the Impostor is not found by the others, so choose something easy and general."
+              pt={
+                <>
+                  Você ganha pontos somente se o <TextHighlight>Impostor NÃO for encontrado</TextHighlight>,
+                  então escolha algo fácil e generalizado.
+                </>
+              }
+              en={
+                <>
+                  You only get points if <TextHighlight>the Impostor is NOT found</TextHighlight> by the
+                  others, so choose something easy and general.
+                </>
+              }
             />
           </li>
         </ul>
@@ -82,7 +92,7 @@ export function StepSecretClueWrite({ user, onSubmitClue, announcement }: Secret
         </Button>
       </Space>
 
-      <ImageCardHand hand={user.hand} sizeRatio={7} />
+      <ImageCardHand hand={user.hand} sizeRatio={user.hand.length + 1} />
     </Step>
   );
 }
