@@ -8,6 +8,7 @@ import { useCardWidth } from 'hooks/useCardWidth';
 // Components
 import { ImageBlurButton, ImageCard } from '.';
 import { Translate } from 'components/language';
+import { getAnimationClass } from 'utils/helpers';
 
 type ImageCardHandProps = {
   /**
@@ -87,7 +88,10 @@ export function ImageCardHand({
       <div className={clsx('image-card-hand', className)}>
         {hand.map((cardId) => {
           return (
-            <div key={`hand-${cardId}`} className="image-card-hand__card-container">
+            <div
+              key={`hand-${cardId}`}
+              className={clsx('image-card-hand__card-container', getAnimationClass('slideInRight'))}
+            >
               {Boolean(onSelectCard) && (
                 <Button
                   icon={selectButtonIcon ?? <DownSquareOutlined />}
