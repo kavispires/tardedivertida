@@ -227,12 +227,13 @@ export const getStateReferences = async <A = FirebaseFirestore.DocumentData>(
   const sessionRef = getSessionRef(gameName, gameId);
   const stateDoc = await getSessionDoc(gameName, gameId, 'state', actionText);
   const state = (stateDoc.data() ?? {}) as A;
+  const players = ((state as PlainObject)?.players ?? {}) as Players;
 
   return {
     sessionRef,
     stateDoc,
     state,
-    players: ((state as PlainObject)?.players ?? {}) as Players,
+    players,
   };
 };
 
@@ -257,19 +258,21 @@ export const getStateAndStoreReferences = async <
   storeDoc: FirebaseFirestore.DocumentSnapshot;
   state: A;
   store: O;
+  players: Players;
 }> => {
   const sessionRef = getSessionRef(gameName, gameId);
   const storeDoc = await getSessionDoc(gameName, gameId, 'store', actionText);
   const stateDoc = await getSessionDoc(gameName, gameId, 'state', actionText);
   const store = (storeDoc.data() ?? {}) as O;
   const state = previousState ?? ((stateDoc.data() ?? {}) as A);
-
+  const players = ((state as PlainObject)?.players ?? {}) as Players;
   return {
     sessionRef,
     stateDoc,
     storeDoc,
     state,
     store,
+    players,
   };
 };
 

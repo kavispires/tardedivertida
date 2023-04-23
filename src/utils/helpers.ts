@@ -72,6 +72,7 @@ export const inNTime = (time: number): Date => {
  * Flag indicating if the environment is for development
  */
 export const isDevEnv: boolean = process.env.NODE_ENV === 'development';
+// export const isDevEnv = false;
 
 const methods = {
   count: console.count,

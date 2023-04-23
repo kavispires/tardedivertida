@@ -67,11 +67,10 @@ export const getNextPhase = async (
   gameId: string,
   currentState?: FirebaseStateData
 ): Promise<boolean> => {
-  const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences<
+  const { sessionRef, state, store, players } = await utils.firebase.getStateAndStoreReferences<
     FirebaseStateData,
     FirebaseStoreData
   >(gameName, gameId, 'prepare next phase', currentState);
-  const players = state.players;
 
   // Calculate remaining rounds to end game
   const roundsToEndGame = utils.helpers.getRoundsToEndGame(state.round.current, state.round.total);
