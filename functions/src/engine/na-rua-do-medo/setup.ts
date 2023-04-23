@@ -67,15 +67,16 @@ export const prepareSetupPhase = async (
         phase: NA_RUA_DO_MEDO_PHASES.SETUP,
         round: { current: 0, total: store.options?.shortGame ? 3 : 5 },
         players,
-        // RESET
-        street: utils.firebase.deleteValue(),
-        currentCard: utils.firebase.deleteValue(),
-        candySidewalk: utils.firebase.deleteValue(),
-        totalCandyInSidewalk: utils.firebase.deleteValue(),
-        isEverybodyHome: utils.firebase.deleteValue(),
-        isDoubleHorror: utils.firebase.deleteValue(),
-        cashedInCandy: utils.firebase.deleteValue(),
       },
+      stateCleanup: [
+        'street',
+        'currentCard',
+        'candySidewalk',
+        'totalCandyInSidewalk',
+        'isEverybodyHome',
+        'isDoubleHorror',
+        'cashedInCandy',
+      ],
     },
   };
 };
@@ -125,10 +126,8 @@ export const prepareTrickOrTreatPhase = async (
           candyInHand: candyStatus.perPlayer,
           continuingPlayerIds: Object.keys(players).sort(),
           alreadyAtHomePlayerIds: [],
-          isEverybodyHome: utils.firebase.deleteValue(),
-          isDoubleHorror: utils.firebase.deleteValue(),
-          cashedInCandy: utils.firebase.deleteValue(),
         },
+        stateCleanup: ['isEverybodyHome', 'isDoubleHorror', 'cashedInCandy'],
       },
     };
   }
@@ -158,8 +157,8 @@ export const prepareTrickOrTreatPhase = async (
         candyPerPlayer: candyStatus.perPlayer,
         candyInHand: (state.candyInHand ?? 0) + candyStatus.perPlayer,
         alreadyAtHomePlayerIds: atHomePlayerIds.sort(),
-        cashedInCandy: utils.firebase.deleteValue(),
       },
+      stateCleanup: ['cashedInCandy'],
     },
   };
 };
@@ -195,12 +194,12 @@ export const prepareResultPhase = async (
         street,
         candySidewalk,
         totalCandyInSidewalk,
-        currentCard: utils.firebase.deleteValue(),
         goingHomePlayerIds: goingHomePlayerIds.sort(),
         continuingPlayerIds: continuingPlayerIds.sort(),
         alreadyAtHomePlayerIds: alreadyAtHomePlayerIds.sort(),
         cashedInCandy,
       },
+      stateCleanup: ['currentCard'],
     },
   };
 };

@@ -131,11 +131,9 @@ export const prepareHumanAskPhase = async (
         turnOrder,
         humanId,
         inquiryHistory,
-        alienResponse: utils.firebase.deleteValue(),
-        alienRequest: utils.firebase.deleteValue(),
-        currentInquiry: utils.firebase.deleteValue(),
         players,
       },
+      stateCleanup: ['alienResponse', 'alienRequest', 'currentInquiry'],
     },
   };
 };
@@ -204,11 +202,9 @@ export const prepareAlienRequestPhase = async (
       state: {
         phase: COMUNICACAO_ALIENIGENA_PHASES.ALIEN_REQUEST,
         inquiryHistory,
-        alienResponse: utils.firebase.deleteValue(),
-        currentInquiry: utils.firebase.deleteValue(),
-        humanId: utils.firebase.deleteValue(),
         players,
       },
+      stateCleanup: ['alienResponse', 'currentInquiry', 'humanId'],
     },
   };
 };

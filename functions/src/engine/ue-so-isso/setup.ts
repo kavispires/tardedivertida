@@ -49,8 +49,6 @@ export const prepareSetupPhase = async (
         gameOrder,
         currentWords: [],
         currentSuggestions: [],
-        currentWord: utils.firebase.deleteValue(),
-        guess: utils.firebase.deleteValue(),
         validSuggestions: {},
       },
       state: {
@@ -61,6 +59,7 @@ export const prepareSetupPhase = async (
         },
         gameOrder: store.gameOrder,
       },
+      storeCleanup: ['currentWord', 'guess'],
     },
   };
 };
@@ -107,8 +106,8 @@ export const prepareWordSelectionPhase = async (
         guesserId,
         controllerId,
         words: Object.values(currentWords),
-        guess: utils.firebase.deleteValue(),
       },
+      stateCleanup: ['guess'],
     },
   };
 };
@@ -141,8 +140,8 @@ export const prepareSuggestPhase = async (
         players,
         secretWord,
         suggestionsNumber,
-        words: utils.firebase.deleteValue(),
       },
+      stateCleanup: ['words'],
     },
   };
 };
@@ -168,8 +167,8 @@ export const prepareComparePhase = async (
         phase: UE_SO_ISSO_PHASES.COMPARE,
         players,
         suggestions: shuffledSuggestions,
-        suggestionsNumber: utils.firebase.deleteValue(),
       },
+      stateCleanup: ['suggestionsNumber'],
     },
   };
 };
@@ -188,8 +187,8 @@ export const prepareGuessPhase = async (
         phase: UE_SO_ISSO_PHASES.GUESS,
         players,
         validSuggestions: store.validSuggestions,
-        suggestions: utils.firebase.deleteValue(),
       },
+      stateCleanup: ['suggestions'],
     },
   };
 };

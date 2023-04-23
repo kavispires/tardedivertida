@@ -103,12 +103,10 @@ export const preparePlayersClues = async (
         phase: VENDAVAL_DE_PALPITE_PHASES.PLAYERS_CLUES,
         players,
         round: utils.helpers.increaseRound(state.round),
-        words: utils.firebase.deleteValue(),
-        outcome: utils.firebase.deleteValue(),
-        currentClues: utils.firebase.deleteValue(),
         board,
         clues,
       },
+      stateCleanup: ['words', 'outcome', 'currentClues'],
     },
   };
 };

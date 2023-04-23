@@ -119,11 +119,11 @@ export const prepareMovieSelectionPhase = async (
         goodReview,
         badReview,
         mistakes: [],
-        turnOrder: utils.firebase.deleteValue(),
         eliminatedMovies: [],
         votedForSelectedMovie: [],
         score: 0,
       },
+      stateCleanup: ['turnOrder'],
     },
   };
 };

@@ -61,7 +61,6 @@ export const prepareCompositeSketchPhase = async (
     update: {
       store: {
         deck,
-        currentOrientation: utils.firebase.deleteValue(),
       },
       state: {
         phase: RETRATO_FALADO_PHASES.COMPOSITE_SKETCH,
@@ -70,6 +69,7 @@ export const prepareCompositeSketchPhase = async (
         witnessId,
         round: utils.helpers.increaseRound(state.round),
       },
+      storeCleanup: ['currentOrientation'],
     },
   };
 };

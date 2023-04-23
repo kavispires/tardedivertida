@@ -112,8 +112,8 @@ export const prepareChallengeSelectionPhase = async (
         round,
         challenges,
         brackets,
-        challenge: utils.firebase.deleteValue(),
       },
+      stateCleanup: ['challenge'],
     },
   };
 };
@@ -133,9 +133,9 @@ export const prepareContenderSelectionPhase = async (
       state: {
         phase: SUPER_CAMPEONATO_PHASES.CONTENDER_SELECTION,
         players,
-        challenges: utils.firebase.deleteValue(),
         challenge,
       },
+      stateCleanup: ['challenges'],
     },
   };
 };
@@ -169,8 +169,8 @@ export const prepareBetsPhase = async (
         players,
         brackets,
         challenge,
-        challenges: utils.firebase.deleteValue(),
       },
+      stateCleanup: ['challenges'],
     },
   };
 };
@@ -239,10 +239,10 @@ export const prepareResultsPhase = async (
       state: {
         phase: SUPER_CAMPEONATO_PHASES.RESULTS,
         players,
-        tier: utils.firebase.deleteValue(),
         brackets,
         ranking,
       },
+      stateCleanup: ['tier'],
     },
   };
 };

@@ -64,14 +64,11 @@ export const preparePromptSelectionPhase = async (
   // Save
   return {
     update: {
-      store: {
-        expressionsDeck: utils.firebase.deleteValue(),
-        wordsDeck: utils.firebase.deleteValue(),
-      },
       state: {
         phase: LINHAS_CRUZADAS_PHASES.PROMPT_SELECTION,
         players,
       },
+      storeCleanup: ['expressionsDeck', 'wordsDeck'],
     },
   };
 };

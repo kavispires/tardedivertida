@@ -139,14 +139,13 @@ export const prepareEverybodyWritesPhase = async (
       state: {
         phase: MENTE_COLETIVA_PHASES.EVERYBODY_WRITES,
         currentQuestion,
-        currentQuestions: utils.firebase.deleteValue(),
         players,
       },
       store: {
         pastQuestions,
-        customQuestion: utils.firebase.deleteValue(),
-        questionId: utils.firebase.deleteValue(),
       },
+      stateCleanup: ['currentQuestions'],
+      storeCleanup: ['customQuestion', 'questionId'],
     },
   };
 };

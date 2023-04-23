@@ -118,9 +118,8 @@ export const prepareReactPhase = async (
         players,
         currentTopic,
         customTopic,
-        currentTopics: utils.firebase.deleteValue(),
-        currentCustomTopic: utils.firebase.deleteValue(),
       },
+      stateCleanup: ['currentTopics', 'currentCustomTopic'],
     },
   };
 };

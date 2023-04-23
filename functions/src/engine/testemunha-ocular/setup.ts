@@ -128,10 +128,8 @@ export const prepareQuestionSelectionPhase = async (
         witnessId: additionalPayload?.witnessId ?? state.witnessId,
         previouslyEliminatedSuspects: previouslyEliminatedSuspects,
         groupScore,
-        question: utils.firebase.deleteValue(),
-        testimony: utils.firebase.deleteValue(),
-        eliminatedSuspects: utils.firebase.deleteValue(),
       },
+      stateCleanup: ['question', 'testimony', 'eliminatedSuspects'],
     },
   };
 };
@@ -153,8 +151,8 @@ export const prepareQuestioningPhase = async (
         phase: TESTEMUNHA_OCULAR_PHASES.QUESTIONING,
         players,
         question,
-        questions: utils.firebase.deleteValue(),
       },
+      stateCleanup: ['questions'],
     },
   };
 };

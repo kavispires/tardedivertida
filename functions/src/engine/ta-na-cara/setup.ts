@@ -115,12 +115,9 @@ export const preparePromptPhase = async (
         phase: TA_NA_CARA_PHASES.PROMPT,
         players,
         activePlayerId,
-        targetId: utils.firebase.deleteValue(),
-        correct: utils.firebase.deleteValue(),
-        ranking: utils.firebase.deleteValue(),
-        result: utils.firebase.deleteValue(),
         round: activePlayerId === state.turnOrder[0] ? utils.helpers.increaseRound(state.round) : state.round,
       },
+      stateCleanup: ['targetId', 'correct', 'ranking', 'result'],
     },
   };
 };
@@ -164,16 +161,13 @@ export const prepareGuessingPhase = async (
   // Save
   return {
     update: {
-      store: {
-        currentTargetId: utils.firebase.deleteValue(),
-        currentQuestionId: utils.firebase.deleteValue(),
-      },
       state: {
         phase: TA_NA_CARA_PHASES.GUESSING,
         players,
         targetId: store.currentTargetId,
         points: Math.max(possiblePoints, MINIMUM_POINTS),
       },
+      storeCleanup: ['currentTargetId', 'currentQuestionId'],
     },
   };
 };

@@ -88,11 +88,9 @@ export const prepareClueWritingPhase = async (
         phase: CRUZA_PALAVRAS_PHASES.CLUE_WRITING,
         round,
         grid: updatedGrid,
-        clues: utils.firebase.deleteValue(),
-        ranking: utils.firebase.deleteValue(),
-        whoGotNoPoints: utils.firebase.deleteValue(),
         players,
       },
+      stateCleanup: ['clues', 'ranking', 'whoGotNoPoints'],
     },
   };
 };
