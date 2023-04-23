@@ -20,6 +20,7 @@ import { MovieHighlight } from './components/MovieHighlight';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { TransparentButton } from 'components/buttons';
 import { ImageCard } from 'components/cards';
+import { ViewIf } from 'components/views';
 
 type StepRevealProps = {
   players: GamePlayers;
@@ -66,7 +67,7 @@ export function StepReveal({
   const posterWidth = useCardWidth(8, 16, 80, 150, 32);
   const { isLoading } = useLoading();
 
-  const isFinalMovie = outcome === 'DONE' && mistakes.length < 2 && finalMovieId;
+  const isFinalMovie = Boolean(outcome === 'DONE' && mistakes.length < 2 && finalMovieId);
 
   return (
     <Step fullWidth announcement={announcement}>
@@ -90,14 +91,14 @@ export function StepReveal({
       <Reviews goodReview={goodReview} badReview={badReview} />
 
       <Instruction contained>
-        {outcome === 'CONTINUE' && (
+        <ViewIf condition={outcome === 'CONTINUE'}>
           <Translate
             pt={<>Que bom, ninguém queria esse mesmo! </>}
             en={<>Good, nobody wanted this one! </>}
           />
-        )}
+        </ViewIf>
 
-        {(outcome === 'MISTAKE' || (outcome === 'DONE' && mistakes.length > 1)) && (
+        <ViewIf condition={outcome === 'MISTAKE' || (outcome === 'DONE' && mistakes.length > 1)}>
           <Translate
             pt={
               <>
@@ -112,9 +113,9 @@ export function StepReveal({
               </>
             }
           />
-        )}
+        </ViewIf>
 
-        {isFinalMovie && (
+        <ViewIf condition={isFinalMovie}>
           <Translate
             pt={
               <strong>
@@ -127,9 +128,9 @@ export function StepReveal({
               </strong>
             }
           />
-        )}
+        </ViewIf>
 
-        {outcome !== 'DONE' && mistakes.length === 0 && (
+        <ViewIf condition={outcome !== 'DONE' && mistakes.length === 0}>
           <Translate
             pt={
               <>
@@ -146,9 +147,9 @@ export function StepReveal({
               </>
             }
           />
-        )}
+        </ViewIf>
 
-        {outcome !== 'DONE' && mistakes.length === 1 && (
+        <ViewIf condition={outcome !== 'DONE' && mistakes.length === 1}>
           <Translate
             pt={
               <>
@@ -165,9 +166,9 @@ export function StepReveal({
               </>
             }
           />
-        )}
+        </ViewIf>
 
-        {mistakes.length === 2 && (
+        <ViewIf condition={mistakes.length === 2}>
           <Translate
             pt={
               <strong>
@@ -184,13 +185,13 @@ export function StepReveal({
               </strong>
             }
           />
-        )}
+        </ViewIf>
       </Instruction>
 
-      {isFinalMovie && (
+      <ViewIf condition={isFinalMovie}>
         <div>
           <Title level={4} size="medium">
-            <MovieHighlight movies={movies} movieId={finalMovieId} />
+            <MovieHighlight movies={movies} movieId={finalMovieId!} />
           </Title>
           <Instruction contained>
             <Translate pt="Vote no poster do filme" en="Vote for the movie poster" />:
@@ -213,7 +214,7 @@ export function StepReveal({
             </Space>
           </Instruction>
         </div>
-      )}
+      </ViewIf>
 
       <Movies
         movies={movies}
