@@ -18,7 +18,7 @@ import { ViewOr } from 'components/views';
 import { WaitingRoom } from 'components/players';
 
 function PhaseCompare({ state, players, info }: PhaseProps) {
-  const { step, goToNextStep, setStep } = useStep(0);
+  const { step, setStep } = useStep(0);
   const [, isUserTheGuesser] = useWhichPlayerIsThe('guesserId', state, players);
   const [controller, isUserTheController] = useWhichPlayerIsThe('controllerId', state, players);
 
@@ -26,29 +26,29 @@ function PhaseCompare({ state, players, info }: PhaseProps) {
 
   const onUpdateSuggestions = useOnValidateSuggestionAPIRequest();
 
+  const announcement = (
+    <PhaseAnnouncement
+      icon={<VerifyListIcon />}
+      title={<Translate pt="Comparação de dicas!" en="Clue Check!" />}
+      currentRound={state?.round?.current}
+      type="overlay"
+    >
+      <ComparisonRules />
+      {isUserTheGuesser && (
+        <Instruction contained>
+          <Translate
+            pt="Já que você é o adivinhador, relaxe e aguarde... novamente"
+            en="Since you're the guesser, just relax and wait... again"
+          />
+        </Instruction>
+      )}
+    </PhaseAnnouncement>
+  );
+
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.UE_SO_ISSO.COMPARE}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
-        <PhaseAnnouncement
-          icon={<VerifyListIcon />}
-          title={<Translate pt="Comparação de dicas!" en="Clue Check!" />}
-          onClose={goToNextStep}
-          currentRound={state?.round?.current}
-          type="block"
-        >
-          <ComparisonRules />
-          {isUserTheGuesser && (
-            <Instruction contained>
-              <Translate
-                pt="Já que você é o adivinhador, relaxe e aguarde... novamente"
-                en="Since you're the guesser, just relax and wait... again"
-              />
-            </Instruction>
-          )}
-        </PhaseAnnouncement>
-
-        {/* Step 1 */}
         <ViewOr condition={isUserTheGuesser}>
           <GuesserWaitingRoom
             players={players}
@@ -56,6 +56,7 @@ function PhaseCompare({ state, players, info }: PhaseProps) {
               pt: 'validam dicas',
               en: 'validate the clues',
             }}
+            announcement={announcement}
           />
 
           <StepCompareSuggestions
@@ -66,10 +67,11 @@ function PhaseCompare({ state, players, info }: PhaseProps) {
             players={players}
             onValidateSuggestions={onValidateSuggestions}
             onUpdateSuggestions={onUpdateSuggestions}
+            announcement={announcement}
           />
         </ViewOr>
 
-        {/* Step 2 */}
+        {/* Step 1 */}
         <WaitingRoom
           players={players}
           title={<Translate pt="Enviando a confirmação de dicas" en="Sending confirmation" />}

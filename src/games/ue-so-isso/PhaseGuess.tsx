@@ -19,7 +19,7 @@ import { Translate } from 'components/language';
 
 function PhaseGuess({ state, players, info }: PhaseProps) {
   const { isLoading } = useLoading();
-  const { step, goToNextStep, setStep } = useStep(0);
+  const { step, setStep } = useStep(0);
   const isVIP = useVIP();
   const [guesser, isUserTheGuesser] = useWhichPlayerIsThe('guesserId', state, players);
   const [controller, isUserTheController] = useWhichPlayerIsThe('controllerId', state, players);
@@ -31,23 +31,25 @@ function PhaseGuess({ state, players, info }: PhaseProps) {
   // If guess is present in the state, move to the next step
   useEffect(() => {
     if (state?.guess) {
-      setStep(2);
+      setStep(1);
     }
   }, [state, setStep]);
+
+  const announcement = (
+    <PhaseAnnouncement
+      icon={<GuessIcon />}
+      title={<Translate pt="Adivinhação" en="Guessing" />}
+      currentRound={state?.round?.current}
+      type="overlay"
+    >
+      <GuessingRules guesserName={guesser.name} />
+    </PhaseAnnouncement>
+  );
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.UE_SO_ISSO.GUESS}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
-        <PhaseAnnouncement
-          icon={<GuessIcon />}
-          title={<Translate pt="Adivinhação" en="Guessing" />}
-          onClose={goToNextStep}
-          currentRound={state?.round?.current}
-          type="block"
-        >
-          <GuessingRules guesserName={guesser.name} />
-        </PhaseAnnouncement>
 
         {/* Step 1 */}
         <StepGuessing
@@ -57,6 +59,7 @@ function PhaseGuess({ state, players, info }: PhaseProps) {
           onSendGuess={onSendGuess}
           validSuggestions={state.validSuggestions}
           secretWord={state.secretWord}
+          announcement={announcement}
         />
 
         {/* Step 2 */}
@@ -71,6 +74,7 @@ function PhaseGuess({ state, players, info }: PhaseProps) {
           isUserTheController={isUserTheController}
           isVIP={isVIP}
           isLoading={isLoading}
+          announcement={announcement}
         />
       </StepSwitcher>
     </PhaseContainer>
