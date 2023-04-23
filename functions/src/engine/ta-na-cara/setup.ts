@@ -73,9 +73,9 @@ export const prepareSetupPhase = async (
       store: {
         usedCharacters: [],
       },
-      players,
       state: {
         phase: TA_NA_CARA_PHASES.SETUP,
+        players,
         round: {
           current: 0,
           total: playerCount * QUESTIONS_PER_PLAYER + charactersCount - playerCount,
@@ -113,6 +113,7 @@ export const preparePromptPhase = async (
     update: {
       state: {
         phase: TA_NA_CARA_PHASES.PROMPT,
+        players,
         activePlayerId,
         targetId: utils.firebase.deleteValue(),
         correct: utils.firebase.deleteValue(),
@@ -120,7 +121,6 @@ export const preparePromptPhase = async (
         result: utils.firebase.deleteValue(),
         round: activePlayerId === state.turnOrder[0] ? utils.helpers.increaseRound(state.round) : state.round,
       },
-      players,
     },
   };
 };
@@ -143,9 +143,9 @@ export const prepareAnsweringPhase = async (
     update: {
       state: {
         phase: TA_NA_CARA_PHASES.ANSWERING,
+        players,
         currentQuestionId: store.currentQuestionId,
       },
-      players,
     },
   };
 };
@@ -170,10 +170,10 @@ export const prepareGuessingPhase = async (
       },
       state: {
         phase: TA_NA_CARA_PHASES.GUESSING,
+        players,
         targetId: store.currentTargetId,
         points: Math.max(possiblePoints, MINIMUM_POINTS),
       },
-      players,
     },
   };
 };
@@ -214,13 +214,13 @@ export const prepareRevealPhase = async (
       store,
       state: {
         phase: TA_NA_CARA_PHASES.REVEAL,
+        players,
         correct,
         ranking,
         charactersDict,
         result,
         round: { ...state.round, forceLastRound },
       },
-      players,
     },
   };
 };
@@ -277,9 +277,9 @@ export const prepareGameOverPhase = async (
       },
     },
     set: {
-      players,
       state: {
         phase: TA_NA_CARA_PHASES.GAME_OVER,
+        players,
         round: state.round,
         gameEndedAt: Date.now(),
         winners,

@@ -3,6 +3,8 @@ import { GAME_NAMES } from '../../utils/constants';
 import { MAX_ROUNDS, PLAYER_COUNTS, TA_NA_CARA_PHASES, TA_NA_CARA_ACTIONS } from './constants';
 // Types
 import type {
+  FirebaseStateData,
+  FirebaseStoreData,
   TaNaCaraInitialState,
   TaNaCaraOptions,
   TaNaCaraState,
@@ -55,12 +57,16 @@ export const getInitialState = (
  */
 export const playerCounts = PLAYER_COUNTS;
 
-export const getNextPhase = async (gameName: string, gameId: string, players: Players): Promise<boolean> => {
-  const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences(
-    gameName,
-    gameId,
-    'prepare next phase'
-  );
+export const getNextPhase = async (
+  gameName: string,
+  gameId: string,
+  currentState?: FirebaseStateData
+): Promise<boolean> => {
+  const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences<
+    FirebaseStateData,
+    FirebaseStoreData
+  >(gameName, gameId, 'prepare next phase', currentState);
+  const players = state.players;
 
   // Determine next phase
   const nextPhase = determineNextPhase(state as TaNaCaraState, store as TaNaCaraStore);
@@ -74,7 +80,7 @@ export const getNextPhase = async (gameName: string, gameId: string, players: Pl
     const additionalData = await getResourceData(store.language, store.options);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await utils.firebase.saveGame(sessionRef, newPhase);
-    return getNextPhase(gameName, gameId, players);
+    return getNextPhase(gameName, gameId, newPhase?.update?.state as FirebaseStateData);
   }
 
   // * -> PROMPT

@@ -54,11 +54,11 @@ export const prepareSetupPhase = async (
       },
       state: {
         phase: INSTRUMENTOS_CODIFICADOS_PHASES.SETUP,
+        players,
         code,
         codeLength: code.length,
         table,
       },
-      players,
     },
   };
 };
@@ -79,9 +79,9 @@ export const prepareHintGivingPhase = async (
       state: {
         phase: INSTRUMENTOS_CODIFICADOS_PHASES.HINT_GIVING,
         round: utils.helpers.increaseRound(state?.round, TOTAL_ROUNDS),
+        players,
         theme,
       },
-      players,
     },
   };
 };
@@ -99,8 +99,8 @@ export const prepareHintReceivingPhase = async (
     update: {
       state: {
         phase: INSTRUMENTOS_CODIFICADOS_PHASES.HINT_RECEIVING,
+        players,
       },
-      players,
     },
   };
 };
@@ -118,8 +118,8 @@ export const prepareGuessTheCodePhase = async (
     update: {
       state: {
         phase: INSTRUMENTOS_CODIFICADOS_PHASES.GUESS_THE_CODE,
+        players,
       },
-      players,
     },
   };
 };
@@ -137,8 +137,8 @@ export const prepareSolutionPhase = async (
     update: {
       state: {
         phase: INSTRUMENTOS_CODIFICADOS_PHASES.GUESS_THE_CODE,
+        players,
       },
-      players,
     },
   };
 };
@@ -164,12 +164,12 @@ export const prepareGameOverPhase = async (
 
   return {
     set: {
-      players,
       state: {
         phase: INSTRUMENTOS_CODIFICADOS_PHASES.GAME_OVER,
         round: state.round,
         gameEndedAt: Date.now(),
         winners,
+        players,
       },
     },
   };

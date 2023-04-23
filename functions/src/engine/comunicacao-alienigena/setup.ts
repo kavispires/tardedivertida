@@ -44,7 +44,6 @@ export const prepareSetupPhase = async (
   // Save
   return {
     update: {
-      players,
       store: {
         botAlienItemKnowledge: additionalData.botAlienItemKnowledge,
         botAlienSignKnowledge: {},
@@ -55,6 +54,7 @@ export const prepareSetupPhase = async (
           current: 1,
           total: itemsInfo.rounds,
         },
+        players,
         alienId: hasBot ? '_a-bot' : utils.firebase.deleteValue(),
         items: additionalData.items,
         signs: additionalData.signs,
@@ -84,8 +84,8 @@ export const prepareAlienSelectionPhase = async (
     update: {
       state: {
         phase: COMUNICACAO_ALIENIGENA_PHASES.ALIEN_SELECTION,
+        players,
       },
-      players,
     },
   };
 };
@@ -134,8 +134,8 @@ export const prepareHumanAskPhase = async (
         alienResponse: utils.firebase.deleteValue(),
         alienRequest: utils.firebase.deleteValue(),
         currentInquiry: utils.firebase.deleteValue(),
+        players,
       },
-      players,
     },
   };
 };
@@ -174,8 +174,8 @@ export const prepareAlienAnswerPhase = async (
         phase: COMUNICACAO_ALIENIGENA_PHASES.ALIEN_ANSWER,
         currentInquiry,
         alienResponse,
+        players,
       },
-      players,
     },
   };
 };
@@ -207,8 +207,8 @@ export const prepareAlienRequestPhase = async (
         alienResponse: utils.firebase.deleteValue(),
         currentInquiry: utils.firebase.deleteValue(),
         humanId: utils.firebase.deleteValue(),
+        players,
       },
-      players,
     },
   };
 };
@@ -257,8 +257,8 @@ export const prepareOfferingsPhase = async (
         phase: COMUNICACAO_ALIENIGENA_PHASES.OFFERINGS,
         requestHistory,
         inquiryHistory,
+        players,
       },
-      players,
     },
   };
 };
@@ -319,10 +319,10 @@ export const prepareRevealPhase = async (
   // Save
   return {
     update: {
-      players,
       state: {
         phase: COMUNICACAO_ALIENIGENA_PHASES.REVEAL,
         round,
+        players,
         items,
         status,
         requestHistory,
@@ -354,10 +354,10 @@ export const prepareGameOverPhase = async (
 
   return {
     set: {
-      players,
       state: {
         phase: COMUNICACAO_ALIENIGENA_PHASES.GAME_OVER,
         round: state.round,
+        players,
         gameEndedAt: Date.now(),
         winners,
         items: state.items,

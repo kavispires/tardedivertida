@@ -1,5 +1,5 @@
 // Types
-import type { ImageCard, PlayerCard } from './types';
+import type { FirebaseStateData, ImageCard, PlayerCard } from './types';
 // Helpers
 import utils from '../../utils';
 // Internal functions
@@ -57,11 +57,11 @@ export const handlePlayCard = async (
   const actionText = 'play a card';
 
   // Get 'players' from given game session
-  const sessionRef = utils.firebase.getSessionRef(gameName, gameId);
-  const playersDoc = await utils.firebase.getSessionDoc(gameName, gameId, 'players', actionText);
-  const stateDoc = await utils.firebase.getSessionDoc(gameName, gameId, 'state', actionText);
-  const players = playersDoc.data() ?? {};
-  const state = stateDoc.data() ?? {};
+  const { sessionRef, state, players } = await utils.firebase.getStateReferences<FirebaseStateData>(
+    gameName,
+    gameId,
+    actionText
+  );
 
   const playersList = Object.values(players);
 
@@ -174,6 +174,7 @@ export const handlePlayCard = async (
         const cards: PlayerCard[] = Object.values(player.cards);
         acc += cards.filter((card) => !card.used).length;
       }
+      return acc;
     }, 0);
 
     if (cardsLeftToMatch === 0) {

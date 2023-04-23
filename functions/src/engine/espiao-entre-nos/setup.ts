@@ -99,6 +99,7 @@ export const prepareAssignmentPhase = async (
       },
       state: {
         phase: ESPIAO_ENTRE_NOS_PHASES.ASSIGNMENT,
+        players,
         round: utils.helpers.increaseRound(state.round),
         locations,
         currentSpyId,
@@ -111,7 +112,6 @@ export const prepareAssignmentPhase = async (
         accuserId: utils.firebase.deleteValue(),
         finalAssessment: utils.firebase.deleteValue(),
       },
-      players,
     },
   };
 };
@@ -136,6 +136,7 @@ export const prepareInvestigationPhase = async (
     update: {
       state: {
         phase: ESPIAO_ENTRE_NOS_PHASES.INVESTIGATION,
+        players,
         timer: {
           updatedAt: Date.now(),
           status: TIMER_STATUS.RUNNING,
@@ -145,7 +146,6 @@ export const prepareInvestigationPhase = async (
         accuserId: utils.firebase.deleteValue(),
         outcome,
       },
-      players,
     },
   };
 };
@@ -179,6 +179,7 @@ export const prepareAssessmentPhase = async (
       },
       state: {
         phase: ESPIAO_ENTRE_NOS_PHASES.ASSESSMENT,
+        players,
         targetId: targetId,
         accuserId: accuserId,
         timer: {
@@ -188,7 +189,6 @@ export const prepareAssessmentPhase = async (
         },
         outcome: utils.firebase.deleteValue(),
       },
-      players,
     },
   };
 };
@@ -211,6 +211,7 @@ export const prepareFinalAssessmentPhase = async (
       },
       state: {
         phase: ESPIAO_ENTRE_NOS_PHASES.FINAL_ASSESSMENT,
+        players,
         targetId: utils.firebase.deleteValue(),
         accuserId: utils.firebase.deleteValue(),
         timer: {
@@ -225,7 +226,6 @@ export const prepareFinalAssessmentPhase = async (
         },
         outcome,
       },
-      players,
     },
   };
 };
@@ -266,6 +266,7 @@ export const prepareResolutionPhase = async (
     update: {
       state: {
         phase: ESPIAO_ENTRE_NOS_PHASES.RESOLUTION,
+        players,
         timer: {
           status: TIMER_STATUS.STOPPED,
         },
@@ -273,7 +274,6 @@ export const prepareResolutionPhase = async (
         finalAssessment: utils.firebase.deleteValue(),
         resolution,
       },
-      players,
     },
   };
 };
@@ -299,9 +299,9 @@ export const prepareGameOverPhase = async (
 
   return {
     set: {
-      players,
       state: {
         phase: ESPIAO_ENTRE_NOS_PHASES.GAME_OVER,
+        players,
         round: state.round,
         gameEndedAt: Date.now(),
         winners,

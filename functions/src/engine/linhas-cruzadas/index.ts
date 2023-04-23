@@ -2,7 +2,13 @@
 import { GAME_NAMES } from '../../utils/constants';
 import { LINHAS_CRUZADAS_ACTIONS, LINHAS_CRUZADAS_PHASES, PLAYER_COUNTS, TOTAL_ROUNDS } from './constants';
 // Types
-import type { LinhasCruzadasInitialState, LinhasCruzadasOptions, LinhasCruzadasSubmitAction } from './types';
+import type {
+  FirebaseStateData,
+  FirebaseStoreData,
+  LinhasCruzadasInitialState,
+  LinhasCruzadasOptions,
+  LinhasCruzadasSubmitAction,
+} from './types';
 // Utils
 import utils from '../../utils';
 // Internal Functions
@@ -49,13 +55,16 @@ export const getInitialState = (
  */
 export const playerCounts = PLAYER_COUNTS;
 
-export const getNextPhase = async (gameName: string, gameId: string, players: Players): Promise<boolean> => {
-  // Gather docs and references
-  const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences(
-    gameName,
-    gameId,
-    'prepare next phase'
-  );
+export const getNextPhase = async (
+  gameName: string,
+  gameId: string,
+  currentState?: FirebaseStateData
+): Promise<boolean> => {
+  const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences<
+    FirebaseStateData,
+    FirebaseStoreData
+  >(gameName, gameId, 'prepare next phase', currentState);
+  const players = state.players;
 
   // Determine next phase
   const nextPhase = determineNextPhase(state.phase, state.round);
@@ -69,7 +78,7 @@ export const getNextPhase = async (gameName: string, gameId: string, players: Pl
     const additionalData = await getData(store.language);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await utils.firebase.saveGame(sessionRef, newPhase);
-    return getNextPhase(gameName, gameId, players);
+    return getNextPhase(gameName, gameId, newPhase?.update?.state as FirebaseStateData);
   }
 
   // * -> CLUE_WRITING

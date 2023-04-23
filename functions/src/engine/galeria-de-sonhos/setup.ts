@@ -68,9 +68,9 @@ export const prepareSetupPhase = async (
       },
       state: {
         phase: GALERIA_DE_SONHOS_PHASES.SETUP,
+        players,
         gameOrder,
       },
-      players,
     },
   };
 };
@@ -111,12 +111,12 @@ export const prepareWordSelectionPhase = async (
       },
       state: {
         phase: GALERIA_DE_SONHOS_PHASES.WORD_SELECTION,
+        players,
         round,
         table,
         scoutId,
         words,
       },
-      players,
     },
   };
 };
@@ -142,10 +142,10 @@ export const prepareDreamsSelectionPhase = async (
       },
       state: {
         phase: GALERIA_DE_SONHOS_PHASES.DREAMS_SELECTION,
+        players,
         word,
         words: utils.firebase.deleteValue(),
       },
-      players,
     },
   };
 };
@@ -174,12 +174,12 @@ export const prepareCardPlayPhase = async (
     update: {
       state: {
         phase: GALERIA_DE_SONHOS_PHASES.CARD_PLAY,
+        players,
         activePlayerId: state.scoutId,
         playerInNightmareId,
         turnCount: 0,
         gameOrder: store.gameOrder,
       },
-      players,
     },
   };
 };
@@ -205,6 +205,7 @@ export const prepareResolutionPhase = async (
       },
       state: {
         phase: GALERIA_DE_SONHOS_PHASES.RESOLUTION,
+        players,
         activePlayerId: utils.firebase.deleteValue(),
         gameOrder: utils.firebase.deleteValue(),
         lastActivePlayerId: utils.firebase.deleteValue(),
@@ -212,7 +213,6 @@ export const prepareResolutionPhase = async (
         latest: utils.firebase.deleteValue(),
         ranking,
       },
-      players,
     },
   };
 };
@@ -240,9 +240,9 @@ export const prepareGameOverPhase = async (
 
   return {
     set: {
-      players,
       state: {
         phase: GALERIA_DE_SONHOS_PHASES.GAME_OVER,
+        players,
         round: state.round,
         gameEndedAt: Date.now(),
         winners,

@@ -91,8 +91,8 @@ export const prepareClueWritingPhase = async (
         clues: utils.firebase.deleteValue(),
         ranking: utils.firebase.deleteValue(),
         whoGotNoPoints: utils.firebase.deleteValue(),
+        players,
       },
-      players,
     },
   };
 };
@@ -116,9 +116,9 @@ export const prepareGuessingPhase = async (
       },
       state: {
         phase: CRUZA_PALAVRAS_PHASES.GUESSING,
+        players,
         clues,
       },
-      players,
     },
   };
 };
@@ -139,8 +139,8 @@ export const prepareRevealPhase = async (
         grid: updateGridWithPlayersClues(players, state.grid),
         ranking,
         whoGotNoPoints,
+        players,
       },
-      players,
     },
   };
 };
@@ -166,12 +166,12 @@ export const prepareGameOverPhase = async (
 
   return {
     set: {
-      players,
       state: {
         phase: CRUZA_PALAVRAS_PHASES.GAME_OVER,
         round: state.round,
         gameEndedAt: Date.now(),
         winners,
+        players,
       },
     },
   };

@@ -17,9 +17,9 @@ export const prepareSetupPhase = async (
   // Save
   return {
     update: {
-      players,
       state: {
         phase: QUEM_NAO_MATA_PHASES.SETUP,
+        players,
         round: {
           current: 0,
           total: MAX_ROUNDS,
@@ -46,9 +46,9 @@ export const prepareTargetingPhase = async (
   // Save
   return {
     update: {
-      players,
       state: {
         phase: QUEM_NAO_MATA_PHASES.TARGETING,
+        players,
         round: state.turn ? state.round : utils.helpers.increaseRound(state.round),
         turn: state.turn ? state.turn + 1 : 1,
       },
@@ -65,9 +65,9 @@ export const prepareStandoffPhase = async (
   // Save
   return {
     update: {
-      players,
       state: {
         phase: QUEM_NAO_MATA_PHASES.STANDOFF,
+        players,
       },
     },
   };
@@ -80,9 +80,9 @@ export const prepareDuelPhase = async (
   // Save
   return {
     update: {
-      players,
       state: {
         phase: QUEM_NAO_MATA_PHASES.DUEL,
+        players,
       },
     },
   };
@@ -95,9 +95,9 @@ export const prepareResolutionPhase = async (
   // Save
   return {
     update: {
-      players,
       state: {
         phase: QUEM_NAO_MATA_PHASES.RESOLUTION,
+        players,
       },
     },
   };
@@ -125,9 +125,9 @@ export const prepareGameOverPhase = async (
 
   return {
     set: {
-      players,
       state: {
         phase: QUEM_NAO_MATA_PHASES.GAME_OVER,
+        players,
         round: state.round,
         gameEndedAt: Date.now(),
         winners,

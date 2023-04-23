@@ -39,12 +39,12 @@ export const prepareSetupPhase = async (
       },
       state: {
         phase: SONHOS_PESADELOS_PHASES.SETUP,
+        players,
         round: {
           current: 0,
           total: TOTAL_ROUNDS,
         },
       },
-      players,
     },
   };
 };
@@ -75,10 +75,10 @@ export const prepareDreamTellingPhase = async (
       },
       state: {
         phase: SONHOS_PESADELOS_PHASES.DREAM_TELLING,
+        players,
         round,
         table,
       },
-      players,
     },
   };
 };
@@ -101,9 +101,9 @@ export const prepareMatchingPhase = async (
     update: {
       state: {
         phase: SONHOS_PESADELOS_PHASES.MATCHING,
+        players,
         dreams,
       },
-      players,
     },
   };
 };
@@ -122,11 +122,11 @@ export const prepareResolutionPhase = async (
     update: {
       state: {
         phase: SONHOS_PESADELOS_PHASES.RESOLUTION,
+        players,
         gallery,
         ranking,
         correctGuessPoints,
       },
-      players,
     },
   };
 };
@@ -152,9 +152,9 @@ export const prepareGameOverPhase = async (
 
   return {
     set: {
-      players,
       state: {
         phase: SONHOS_PESADELOS_PHASES.GAME_OVER,
+        players,
         round: state.round,
         gameEndedAt: Date.now(),
         winners,

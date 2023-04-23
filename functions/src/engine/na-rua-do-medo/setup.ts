@@ -66,6 +66,7 @@ export const prepareSetupPhase = async (
       state: {
         phase: NA_RUA_DO_MEDO_PHASES.SETUP,
         round: { current: 0, total: store.options?.shortGame ? 3 : 5 },
+        players,
         // RESET
         street: utils.firebase.deleteValue(),
         currentCard: utils.firebase.deleteValue(),
@@ -75,7 +76,6 @@ export const prepareSetupPhase = async (
         isDoubleHorror: utils.firebase.deleteValue(),
         cashedInCandy: utils.firebase.deleteValue(),
       },
-      players,
     },
   };
 };
@@ -116,6 +116,7 @@ export const prepareTrickOrTreatPhase = async (
         state: {
           phase: NA_RUA_DO_MEDO_PHASES.TRICK_OR_TREAT,
           round,
+          players,
           street: [],
           currentCard,
           candySidewalk: [candyStatus],
@@ -128,7 +129,6 @@ export const prepareTrickOrTreatPhase = async (
           isDoubleHorror: utils.firebase.deleteValue(),
           cashedInCandy: utils.firebase.deleteValue(),
         },
-        players,
       },
     };
   }
@@ -151,6 +151,7 @@ export const prepareTrickOrTreatPhase = async (
       },
       state: {
         phase: NA_RUA_DO_MEDO_PHASES.TRICK_OR_TREAT,
+        players,
         currentCard,
         candySidewalk: newCandySidewalk,
         totalCandyInSidewalk,
@@ -159,7 +160,6 @@ export const prepareTrickOrTreatPhase = async (
         alreadyAtHomePlayerIds: atHomePlayerIds.sort(),
         cashedInCandy: utils.firebase.deleteValue(),
       },
-      players,
     },
   };
 };
@@ -191,6 +191,7 @@ export const prepareResultPhase = async (
       },
       state: {
         phase: NA_RUA_DO_MEDO_PHASES.RESULT,
+        players,
         street,
         candySidewalk,
         totalCandyInSidewalk,
@@ -200,7 +201,6 @@ export const prepareResultPhase = async (
         alreadyAtHomePlayerIds: alreadyAtHomePlayerIds.sort(),
         cashedInCandy,
       },
-      players,
     },
   };
 };
@@ -253,12 +253,12 @@ export const prepareStreetEndPhase = async (
       },
       state: {
         phase: NA_RUA_DO_MEDO_PHASES.STREET_END,
+        players,
         isEverybodyHome: false,
         isDoubleHorror: true,
         currentCard,
         totalCandyInSidewalk,
       },
-      players,
     },
   };
 };
@@ -287,11 +287,11 @@ export const prepareGameOverPhase = async (
 
   return {
     set: {
-      players,
       state: {
         phase: NA_RUA_DO_MEDO_PHASES.GAME_OVER,
         round: state.round,
         gameEndedAt: Date.now(),
+        players,
         winners,
         achievements,
       },

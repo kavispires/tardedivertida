@@ -80,10 +80,8 @@ export const prepareDrawPhase = async (
         phase: ARTE_RUIM_PHASES.DRAW,
         round: utils.helpers.increaseRound(state?.round, maxRounds),
         level: Object.values(players)?.[0]?.currentCard?.level ?? 0,
+        players,
       },
-    },
-    set: {
-      players,
     },
   };
 };
@@ -112,10 +110,8 @@ export const prepareEvaluationPhase = async (
         cards: shuffledCards,
         drawings: shuffledDrawings,
         level,
+        players,
       },
-    },
-    set: {
-      players,
     },
   };
 };
@@ -146,10 +142,10 @@ export const prepareGalleryPhase = async (
         ...store,
         pastDrawings: [...store.pastDrawings, ...pastDrawings],
       },
-      players,
       state: {
         phase: ARTE_RUIM_PHASES.GALLERY,
         round: state.round,
+        players,
         gallery,
         cards: store.currentCards,
         ranking,
@@ -184,11 +180,11 @@ export const prepareGameOverPhase = async (
 
   return {
     set: {
-      players,
       state: {
         phase: ARTE_RUIM_PHASES.GAME_OVER,
         round: state.round,
         gameEndedAt: Date.now(),
+        players,
         winners,
         drawings: finalGallery,
         achievements,

@@ -65,11 +65,11 @@ export const prepareCompositeSketchPhase = async (
       },
       state: {
         phase: RETRATO_FALADO_PHASES.COMPOSITE_SKETCH,
+        players,
         currentMonster,
         witnessId,
         round: utils.helpers.increaseRound(state.round),
       },
-      players,
     },
   };
 };
@@ -94,10 +94,10 @@ export const prepareEvaluationPhase = async (
     update: {
       state: {
         phase: RETRATO_FALADO_PHASES.EVALUATION,
+        players,
         sketches,
         currentMonster,
       },
-      players,
     },
   };
 };
@@ -126,11 +126,11 @@ export const prepareRevealPhase = async (
       },
       state: {
         phase: RETRATO_FALADO_PHASES.REVEAL,
+        players,
         witnessVote,
         mostVotes,
         ranking,
       },
-      players,
     },
   };
 };
@@ -156,9 +156,9 @@ export const prepareGameOverPhase = async (
 
   return {
     set: {
-      players,
       state: {
         phase: RETRATO_FALADO_PHASES.GAME_OVER,
+        players,
         round: state.round,
         gameEndedAt: Date.now(),
         gallery: store.pastSketches,

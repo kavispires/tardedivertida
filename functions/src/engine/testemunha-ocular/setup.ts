@@ -57,9 +57,9 @@ export const prepareWitnessSelectionPhase = async (players: Players): Promise<Sa
   // Save
   return {
     update: {
-      players,
       state: {
         phase: TESTEMUNHA_OCULAR_PHASES.WITNESS_SELECTION,
+        players,
       },
     },
   };
@@ -112,7 +112,6 @@ export const prepareQuestionSelectionPhase = async (
   // Save
   return {
     update: {
-      players,
       store: {
         turnOrder,
         gameOrder: turnOrder,
@@ -122,6 +121,7 @@ export const prepareQuestionSelectionPhase = async (
       },
       state: {
         phase: TESTEMUNHA_OCULAR_PHASES.QUESTION_SELECTION,
+        players,
         round: utils.helpers.increaseRound(state.round),
         questionerId,
         questions,
@@ -149,9 +149,9 @@ export const prepareQuestioningPhase = async (
   // Save
   return {
     update: {
-      players,
       state: {
         phase: TESTEMUNHA_OCULAR_PHASES.QUESTIONING,
+        players,
         question,
         questions: utils.firebase.deleteValue(),
       },
@@ -178,9 +178,9 @@ export const prepareTrialPhase = async (
   // Save
   return {
     update: {
-      players,
       state: {
         phase: TESTEMUNHA_OCULAR_PHASES.TRIAL,
+        players,
         testimony: additionalPayload?.testimony ?? state.testimony,
         history,
       },
@@ -214,6 +214,7 @@ export const prepareGameOverPhase = async (
       state: {
         phase: TESTEMUNHA_OCULAR_PHASES.GAME_OVER,
         round: state.round,
+        players,
         gameEndedAt: Date.now(),
         perpetrator: state.perpetrator,
         groupScore: state.groupScore,

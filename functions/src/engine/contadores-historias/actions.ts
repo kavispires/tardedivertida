@@ -4,6 +4,7 @@ import { HAND_LIMIT } from './constants';
 import utils from '../../utils';
 // Internal
 import { getNextPhase } from './index';
+import { FirebaseStateData } from './types';
 
 /**
  *
@@ -21,10 +22,11 @@ export const handleSubmitStory = async (
   cardId: string
 ) => {
   // Get 'players' from given game session
-  const sessionRef = utils.firebase.getSessionRef(gameName, gameId);
-  const playersDoc = await utils.firebase.getSessionDoc(gameName, gameId, 'players', 'submit story');
-
-  const players = playersDoc.data() ?? {};
+  const { sessionRef, state, players } = await utils.firebase.getStateReferences<FirebaseStateData>(
+    gameName,
+    gameId,
+    'submit story'
+  );
 
   const { hand, deckIndex } = utils.playerHand.discardPlayerCard(players, cardId, playerId, HAND_LIMIT);
 
@@ -49,7 +51,7 @@ export const handleSubmitStory = async (
   }
 
   // If all players are ready, trigger next phase
-  return getNextPhase(gameName, gameId, players);
+  return getNextPhase(gameName, gameId, state);
 };
 
 /**
@@ -67,11 +69,11 @@ export const handlePlayCard = async (
   cardId: string
 ) => {
   const actionText = 'play a card';
-
-  const playersDoc = await utils.firebase.getSessionDoc(gameName, gameId, 'players', actionText);
-  const stateDoc = await utils.firebase.getSessionDoc(gameName, gameId, 'state', actionText);
-  const players = playersDoc.data() ?? {};
-  const state = stateDoc.data() ?? {};
+  const { state, players } = await utils.firebase.getStateReferences<FirebaseStateData>(
+    gameName,
+    gameId,
+    actionText
+  );
 
   if (state.storytellerId === playerId) {
     utils.firebase.throwException('You are the storyteller!', 'Failed to play card.');
