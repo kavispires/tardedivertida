@@ -126,6 +126,10 @@
 }
 
 .q-voting-characters {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
   &__button {
     position: relative;
   }
