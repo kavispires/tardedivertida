@@ -14,6 +14,7 @@ import { Translate } from 'components/language';
 import { Instruction } from 'components/text';
 import { StepSwitcher } from 'components/steps';
 import { StepTimedDrawing } from './StepTimedDrawing';
+import { TimeHighlight } from 'components/metrics/TimeHighlight';
 
 function PhaseDrawing({ players, state, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
@@ -40,14 +41,16 @@ function PhaseDrawing({ players, state, info }: PhaseProps) {
                 <>
                   Você receberá uma carta.
                   <br />
-                  Desenhe-a da melhor maneira possível, você tem {DRAWING_TIME_IN_SECONDS} segundos.
+                  Desenhe-a da melhor maneira possível, você tem{' '}
+                  <TimeHighlight>{DRAWING_TIME_IN_SECONDS}</TimeHighlight> segundos.
                 </>
               }
               en={
                 <>
                   You will receive a card.
                   <br />
-                  Draw it the best way possible, you have {DRAWING_TIME_IN_SECONDS} seconds.
+                  Draw it the best way possible, you have{' '}
+                  <TimeHighlight>{DRAWING_TIME_IN_SECONDS}</TimeHighlight> seconds.
                 </>
               }
             />

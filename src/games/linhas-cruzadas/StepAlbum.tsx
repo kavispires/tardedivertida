@@ -111,7 +111,7 @@ export function StepAlbum({ players, album }: StepAlbumProps) {
           Next Album
         </Button>
       </Space>
-      <VIPNextPhaseButton />
+      <VIPNextPhaseButton autoTriggerTime={0} />
     </Step>
   );
 }

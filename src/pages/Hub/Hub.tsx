@@ -24,7 +24,6 @@ import { LogoutButton } from 'components/auth/LogoutButton';
 const migrationBlocked = [
   'comunicacao-alienigena',
   'espiao-entre-nos',
-  'linhas-cruzadas',
   'megamix',
   'na-rua-do-medo',
   'polemica-da-vez',
@@ -153,55 +152,48 @@ function Hub() {
             <Typography.Title level={2}>
               <Translate pt="Em Desenvolvimento" en="Under Development" />
             </Typography.Title>
-            <Row gutter={[8, 16]}>
-              {devGames.map((game: GameInfo) => (
-                <Col key={game.gameName} xs={24} sm={12} md={8} lg={6} xl={4}>
-                  <GameCard game={game} />
-                </Col>
-              ))}
-            </Row>
+            <RowOfGames games={devGames} />
             <Divider />
           </>
         )}
         <Typography.Title level={2}>
           <Translate pt="Disponíveis" en="Available" />
         </Typography.Title>
-        <Row gutter={[8, 16]}>
-          {availableGames.map((game: GameInfo) => (
-            <Col key={game.gameName} xs={24} sm={12} md={8} lg={6} xl={4}>
-              <GameCard game={game} isAdmin={!migrationBlocked.includes(game.gameName)} />
-            </Col>
-          ))}
-        </Row>
-        {/* </Space> */}
+        <RowOfGames games={availableGames} />
+
         <Divider />
         {!isDevEnv && (
           <>
             <Typography.Title level={2}>
               <Translate pt="Em Desenvolvimento" en="Under Development" />
             </Typography.Title>
-            <Row gutter={[8, 16]}>
-              {devGames.map((game: GameInfo) => (
-                <Col key={game.gameName} xs={24} sm={12} md={8} lg={6} xl={4}>
-                  <GameCard game={game} />
-                </Col>
-              ))}
-            </Row>
+            <RowOfGames games={comingSoonGames} />
+
             <Divider />
           </>
         )}
         <Typography.Title level={2}>
           <Translate pt="Em Breve" en="Coming Soon" />
         </Typography.Title>
-        <Row gutter={[8, 16]}>
-          {comingSoonGames.map((game: GameInfo) => (
-            <Col key={game.gameName} xs={24} sm={12} md={8} lg={6} xl={4}>
-              <GameCard game={game} />
-            </Col>
-          ))}
-        </Row>
+        <RowOfGames games={comingSoonGames} />
       </Layout.Content>
     </Layout>
+  );
+}
+
+type RowOfGamesProps = {
+  games: GameInfo[];
+};
+
+function RowOfGames({ games }: RowOfGamesProps) {
+  return (
+    <Row gutter={[8, 16]}>
+      {games.map((game: GameInfo) => (
+        <Col key={game.gameName} xs={24} sm={12} md={8} lg={8} xl={6} xxl={4}>
+          <GameCard game={game} isAdmin={!migrationBlocked.includes(game.gameName)} />
+        </Col>
+      ))}
+    </Row>
   );
 }
 
