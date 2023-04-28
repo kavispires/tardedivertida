@@ -74,14 +74,14 @@ export function ConvertGuestToAccountModal() {
         <Title size="xx-small" level={3}>
           <IconAvatar size="large" icon={<UserStatsIcon />} />
           <Translate
-            pt="Você jogou como convidado. Converta para um Perfil de Usuário!"
+            pt="Você jogou como visitante. Converta para um Perfil de Usuário!"
             en="You played as a guest, do you want to convert to an User Account?"
           />
         </Title>
         <p>
           <Translate
             pt="Com uma conta você poderá ver estatísticas de jogos anteriores, avatars favorites, e muito mais (em breve). Não coletamos nenhum dado não relacionado com os jogos"
-            en="With an account, you can see stats of previous games, favorite avatars, and more (coming soon). We don't collect any data not directly created in the games."
+            en="With a user account, you can see stats of previous games, favorite avatars, and more (coming soon). We don't collect any data not directly created in the games."
           />
         </p>
 
