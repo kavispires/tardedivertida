@@ -26,7 +26,6 @@ const migrationBlocked = [
   'espiao-entre-nos',
   'linhas-cruzadas',
   'megamix',
-  'mente-coletiva',
   'na-rua-do-medo',
   'onda-telepatica',
   'polemica-da-vez',
