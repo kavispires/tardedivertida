@@ -139,10 +139,28 @@ export const makePlayerReady = async (data: Payload) => {
   }
 };
 
-// TODO: Refactor to be used saved in the user object
-export const rateGame = async (data: ExtendedPayload) => {
+export const rateGame = async (data: ExtendedPayload, context: FirebaseContext) => {
   const { gameId, gameName, playerId } = data;
   const actionText = 'submit ratings';
+
+  const uid = context?.auth?.uid;
+
+  // If user has an ui, save it to the user profile
+  if (uid) {
+    try {
+      const path = `games.${gameName}.[0]`;
+      await utils.firebase
+        .getUserRef()
+        .doc(uid)
+        .update({
+          [`${path}.rating`]: data.ratings.rating,
+          [`${path}.comments`]: data.ratings.comments,
+        });
+      return true;
+    } catch (e) {
+      // do nothing, let it try save it to the ratings public doc
+    }
+  }
 
   try {
     await utils.firebase
@@ -167,7 +185,7 @@ export const rateGame = async (data: ExtendedPayload) => {
       utils.firebase.throwException(error, actionText);
     }
   }
-  return false;
+  return true;
 };
 
 export const getUser = async (_: unknown, context: FirebaseContext) => {
