@@ -51,7 +51,7 @@ export function StepJoin({ info, setStep }: StepJoinProps) {
         onClick={() => refetch()}
         loading={isLoading}
       >
-        <Translate pt="Entrar como convidado" en="Join as a Guest" />
+        <Translate pt="Entrar como visitante" en="Join as a Guest" />
       </Button>
 
       {isError && <Alert message="Error" description={JSON.stringify(error)} type="error" showIcon />}
