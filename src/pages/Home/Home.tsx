@@ -12,6 +12,7 @@ import { resetGlobalState } from 'hooks/useGlobalState';
 import logo from 'assets/images/tarde-divertida-logo.svg';
 // Components
 import { Translate } from 'components/language';
+import { LogoutButton } from 'components/auth/LogoutButton';
 
 function Home() {
   useTitle('Tarde Divertida');
@@ -59,9 +60,12 @@ function Home() {
 
           <Space className="space-container">
             {isAuthenticated && (
-              <Button ghost onClick={() => navigate('/me')}>
-                <Translate pt="Página de Usuário" en="User page" />
-              </Button>
+              <>
+                <Button ghost onClick={() => navigate('/me')}>
+                  <Translate pt="Página de Usuário" en="User page" />
+                </Button>
+                <LogoutButton />
+              </>
             )}
             {isAdmin && (
               <Button type="primary" danger onClick={() => navigate('/hub')}>

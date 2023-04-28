@@ -18,7 +18,7 @@ const tailLayout = {
 
 function Login() {
   const navigate = useNavigate();
-  const { isAuthenticated } = useCurrentUserContext();
+  const { isAuthenticated, isAdmin } = useCurrentUserContext();
 
   const [error, setError] = useState<string | object | null>(null);
   const [email, setEmail] = useState('');
@@ -38,7 +38,7 @@ function Login() {
     try {
       const response = await signIn(email, password);
       if (response?.user?.uid) {
-        navigate('/hub');
+        navigate(isAdmin ? '/hub' : '/');
       }
     } catch (error: any) {
       setError(error.message);
