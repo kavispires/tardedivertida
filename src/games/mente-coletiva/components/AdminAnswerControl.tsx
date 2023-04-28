@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 // Ant Design Resources
-import { Button } from 'antd';
+import { Button, Space } from 'antd';
 import { PlusCircleFilled, RocketFilled } from '@ant-design/icons';
 // Hooks
 import { useLoading } from 'hooks/useLoading';
@@ -69,7 +69,6 @@ export function AdminAnswerControl({
         onClick={() => onNextAnswer({ allowedList: Object.keys(allowedList) })}
         disabled={disableButton || isLoading}
         type="primary"
-        danger
         duration={waitDuration}
         icon={<RocketFilled />}
         onExpire={() => setDisableButton(false)}
@@ -77,7 +76,15 @@ export function AdminAnswerControl({
         <Translate pt="Confirmar e ir para próxima resposta" en="Confirm and go to next answer" />
       </TimedButton>
 
-      <ul className="m-admin__players-answers">
+      {filteredAnswers.length > 0 && (
+        <p>
+          <Translate
+            pt="Essas são as respostas dos jogadores que não deram match com a atual resposta. Somente adicione elas se os jogadores estiverem comendo mosca"
+            en="These are the players who haven't matched the current answer. Only add them if a player failed to do so for themselves."
+          />
+        </p>
+      )}
+      <Space className="space-container" wrap align="center">
         {filteredAnswers.map((answer) => {
           return (
             <Button
@@ -85,6 +92,7 @@ export function AdminAnswerControl({
               disabled={isLoading}
               className="m-admin__answer"
               icon={<PlusCircleFilled />}
+              loading={isLoading}
               key={`admin-${answer.id}`}
               onClick={() => onAddAnswer({ answer: { ...answer } })}
             >
@@ -92,7 +100,7 @@ export function AdminAnswerControl({
             </Button>
           );
         })}
-      </ul>
+      </Space>
     </VIPOnlyContainer>
   );
 }
