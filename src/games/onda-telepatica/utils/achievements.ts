@@ -44,7 +44,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   MOST_ZEROS: {
-    icon: 'block',
+    icon: 'box',
     title: {
       pt: 'Mais Diferentão',
       en: 'Outside of the Box Thinker',

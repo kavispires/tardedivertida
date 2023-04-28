@@ -33,7 +33,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   SOLITARY_LOSER: {
-    icon: 'light-bulb',
+    icon: 'difference',
     title: {
       pt: 'Mais Diferentão',
       en: 'Most Unique Guesser',
