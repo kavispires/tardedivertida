@@ -32,7 +32,6 @@ const migrationBlocked = [
   'sonhos-pesadelos',
   'super-campeonato',
   'testemunha-ocular',
-  'ta-na-cara',
 ];
 
 function Hub() {
