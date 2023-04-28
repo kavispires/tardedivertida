@@ -32,7 +32,7 @@ const initialState: InitialState = {
   screenSize: [],
   showPlayersBar: true,
   // Language
-  language: 'pt',
+  language: 'en',
   // User/Player
   userId: null,
   username: '',
