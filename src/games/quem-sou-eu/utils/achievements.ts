@@ -11,7 +11,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   LEAST_GLYPHS: {
-    icon: '`arrow-down',
+    icon: 'arrow-down',
     title: {
       pt: 'Mais Sucinto',
       en: 'Most Succinct',

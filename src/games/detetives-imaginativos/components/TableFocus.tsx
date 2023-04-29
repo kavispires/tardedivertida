@@ -8,6 +8,7 @@ import { AnimatedLoaderIcon } from 'icons/AnimatedLoaderIcon';
 // Components
 import { Avatar, IconAvatar } from 'components/avatars';
 import { ImageBlurButtonContainer, ImageCard } from 'components/cards';
+import { getAnimationClass } from 'utils/helpers';
 
 type TableFocusProps = {
   currentPlayer: GamePlayer;
@@ -29,7 +30,7 @@ export function TableFocus({ table, currentPlayer }: TableFocusProps) {
   }
 
   return (
-    <div className={clsx(baseClass, `${baseClass}--center`)}>
+    <div className={clsx(baseClass, `${baseClass}--center`, getAnimationClass('slideInRight'))}>
       <div className="d-table__player-entry">
         <div className="d-table__cards">
           {tableEntry?.cards.map((cardId) => {

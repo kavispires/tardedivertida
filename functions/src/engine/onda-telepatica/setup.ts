@@ -83,11 +83,11 @@ export const prepareDialCluePhase = async (
       state: {
         phase: ONDA_TELEPATICA_PHASES.DIAL_CLUE,
         round: utils.helpers.increaseRound(state.round),
+        players,
         psychicId,
         currentCategories,
         target: utils.game.getRandomNumber(-10, 10),
       },
-      players,
     },
   };
 };
@@ -124,12 +124,10 @@ export const prepareGuessPhase = async (
       },
       state: {
         phase: ONDA_TELEPATICA_PHASES.GUESS,
+        players,
         currentCategory,
-        currentCategories: utils.firebase.deleteValue(),
-        currentCategoryId: utils.firebase.deleteValue(),
-        target: utils.firebase.deleteValue(),
       },
-      players,
+      stateCleanup: ['currentCategories', 'currentCategoryId', 'target'],
     },
   };
 };
@@ -150,9 +148,9 @@ export const prepareRevealPhase = async (
       },
       state: {
         phase: ONDA_TELEPATICA_PHASES.REVEAL,
+        players,
         ranking,
       },
-      players,
     },
   };
 };
@@ -181,11 +179,11 @@ export const prepareGameOverPhase = async (
 
   return {
     set: {
-      players,
       state: {
         phase: ONDA_TELEPATICA_PHASES.GAME_OVER,
         round: state.round,
         gameEndedAt: Date.now(),
+        players,
         winners,
         pastCategories: store.pastCategories,
         achievements,

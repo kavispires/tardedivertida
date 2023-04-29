@@ -32,13 +32,13 @@ const initialState: InitialState = {
   screenSize: [],
   showPlayersBar: true,
   // Language
-  language: 'pt',
+  language: 'en',
   // User/Player
   userId: null,
   username: '',
   userAvatarId: '',
   user: {},
-  isAdminEnabled: false,
+  isAdminEnabled: true,
   isDebugEnabled: false,
   blurredCards: {},
   blurEnabled: false,

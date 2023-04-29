@@ -21,6 +21,6 @@ export const getData = async (playerCount: number, originalDecksOnly: boolean): 
   const cards = await utils.imageCards.getImageCards(minimumNumberOfCards, originalDecksOnly);
 
   return {
-    cards,
+    cards: utils.game.shuffle(cards),
   };
 };

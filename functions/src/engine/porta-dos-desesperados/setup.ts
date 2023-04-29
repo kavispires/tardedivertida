@@ -81,11 +81,11 @@ export const prepareSetupPhase = async (
       },
       state: {
         phase: PORTA_DOS_DESESPERADOS_PHASES.SETUP,
+        players,
         gameOrder,
         magic,
         currentCorridor: 0,
       },
-      players,
     },
   };
 };
@@ -133,6 +133,7 @@ export const prepareBookPossessionPhase = async (
       },
       state: {
         phase: PORTA_DOS_DESESPERADOS_PHASES.BOOK_POSSESSION,
+        players,
         round,
         possessedId,
         currentCorridor,
@@ -140,10 +141,8 @@ export const prepareBookPossessionPhase = async (
         pages: pages.pages,
         doors: doors.doors.filter((doorId: ImageCardId) => doorId !== state.answerDoorId),
         answerDoorId: doors.answerDoorId,
-        outcome: utils.firebase.deleteValue(),
-        currentPageIds: utils.firebase.deleteValue(),
       },
-      players,
+      stateCleanup: ['outcome', 'currentPageIds'],
     },
   };
 };
@@ -186,9 +185,9 @@ export const prepareDoorChoicePhase = async (
       },
       state: {
         phase: PORTA_DOS_DESESPERADOS_PHASES.DOOR_CHOICE,
+        players,
         selectedPagesIds: utils.game.shuffle(selectedPagesIds),
       },
-      players,
     },
   };
 };
@@ -287,8 +286,8 @@ export const prepareResolutionPhase = async (
         winCondition,
         magic,
         usedMagic,
+        players,
       },
-      players,
     },
   };
 };
@@ -319,11 +318,11 @@ export const prepareGameOverPhase = async (
 
   return {
     set: {
-      players,
       state: {
         phase: PORTA_DOS_DESESPERADOS_PHASES.GAME_OVER,
         round: state.round,
         gameEndedAt: Date.now(),
+        players,
         winners,
         winCondition,
         currentCorridor,

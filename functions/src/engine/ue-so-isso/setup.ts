@@ -49,8 +49,6 @@ export const prepareSetupPhase = async (
         gameOrder,
         currentWords: [],
         currentSuggestions: [],
-        currentWord: utils.firebase.deleteValue(),
-        guess: utils.firebase.deleteValue(),
         validSuggestions: {},
       },
       state: {
@@ -61,6 +59,7 @@ export const prepareSetupPhase = async (
         },
         gameOrder: store.gameOrder,
       },
+      storeCleanup: ['currentWord', 'guess'],
     },
   };
 };
@@ -98,17 +97,17 @@ export const prepareWordSelectionPhase = async (
         validSuggestions: [],
         outcome: null,
       },
-      players,
       state: {
         phase: UE_SO_ISSO_PHASES.WORD_SELECTION,
+        players,
         round: utils.helpers.increaseRound(state.round),
         gameOrder: store.gameOrder,
         groupScore,
         guesserId,
         controllerId,
         words: Object.values(currentWords),
-        guess: utils.firebase.deleteValue(),
       },
+      stateCleanup: ['guess'],
     },
   };
 };
@@ -136,13 +135,13 @@ export const prepareSuggestPhase = async (
         },
         currentWord: secretWord,
       },
-      players,
       state: {
         phase: UE_SO_ISSO_PHASES.SUGGEST,
+        players,
         secretWord,
         suggestionsNumber,
-        words: utils.firebase.deleteValue(),
       },
+      stateCleanup: ['words'],
     },
   };
 };
@@ -164,12 +163,12 @@ export const prepareComparePhase = async (
     update: {
       // TODO: save suggestions to store then to global
       // store: {},
-      players,
       state: {
         phase: UE_SO_ISSO_PHASES.COMPARE,
+        players,
         suggestions: shuffledSuggestions,
-        suggestionsNumber: utils.firebase.deleteValue(),
       },
+      stateCleanup: ['suggestionsNumber'],
     },
   };
 };
@@ -184,12 +183,12 @@ export const prepareGuessPhase = async (
   // Save
   return {
     update: {
-      players,
       state: {
         phase: UE_SO_ISSO_PHASES.GUESS,
+        players,
         validSuggestions: store.validSuggestions,
-        suggestions: utils.firebase.deleteValue(),
       },
+      stateCleanup: ['suggestions'],
     },
   };
 };
@@ -227,6 +226,7 @@ export const prepareGameOverPhase = async (
         phase: UE_SO_ISSO_PHASES.GAME_OVER,
         round: state.round,
         gameEndedAt: Date.now(),
+        players,
         group: {
           score: groupScore,
           victory: groupScore > 70,

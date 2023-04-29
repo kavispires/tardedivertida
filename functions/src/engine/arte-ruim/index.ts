@@ -36,7 +36,7 @@ export const getInitialState = (
   language: Language,
   options: ArteRuimGameOptions
 ): ArteRuimInitialState => {
-  return utils.helpers.getDefaultInitialState({
+  return utils.helpers.getDefaultInitialState<ArteRuimInitialState>({
     gameId,
     gameName: GAME_NAMES.ARTE_RUIM,
     uid,
@@ -69,12 +69,12 @@ export const playerCounts = PLAYER_COUNTS;
 export const getNextPhase = async (
   gameName: GameName,
   gameId: GameId,
-  players: Players
+  currentState?: FirebaseStateData
 ): Promise<boolean> => {
-  const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences<
+  const { sessionRef, state, store, players } = await utils.firebase.getStateAndStoreReferences<
     FirebaseStateData,
     FirebaseStoreData
-  >(gameName, gameId, 'prepare next phase');
+  >(gameName, gameId, 'prepare next phase', currentState);
 
   // Determine if it's game over
   const isGameOver = determineGameOver(players, state?.round);
@@ -95,7 +95,7 @@ export const getNextPhase = async (
     );
     const newPhase = await prepareSetupPhase(store, state, players, data);
     await utils.firebase.saveGame(sessionRef, newPhase);
-    return getNextPhase(gameName, gameId, players);
+    return getNextPhase(gameName, gameId);
   }
 
   // SETUP -> DRAW

@@ -55,7 +55,7 @@ export const AdminMenuDrawer = ({ state, players }: AdminMenuDrawerProps) => {
     onAfterCall: onClose,
   });
 
-  if (!isAdmin || !isAdminEnabled) return <span></span>;
+  if (!isAdmin || !isAdminEnabled || !state.phase) return <span></span>;
 
   return (
     <>
@@ -111,7 +111,7 @@ export const AdminMenuDrawer = ({ state, players }: AdminMenuDrawerProps) => {
               >
                 <AdminPerformActionButton
                   disabled={
-                    state?.round.forceLastRound ||
+                    state?.round?.forceLastRound ||
                     isLoading ||
                     ['LOBBY', 'RULES', 'GAME_OVER'].includes(state.phase)
                   }

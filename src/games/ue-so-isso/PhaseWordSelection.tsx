@@ -49,17 +49,64 @@ function RoundAnnouncementText({ guesser, groupScore, round }: RoundAnnouncement
 function PhaseWordSelection({ state, players, info }: PhaseProps) {
   const user = useUser(players, state);
   const [guesser, isUserTheGuesser] = useWhichPlayerIsThe('guesserId', state, players);
-  const { step, goToNextStep, setStep } = useStep(0);
+  const { step, setStep } = useStep(0);
 
   const onSendSelectedWords = useOnSubmitVotesAPIRequest(setStep);
 
-  return (
-    <PhaseContainer
-      info={info}
-      phase={state?.phase}
-      allowedPhase={PHASES.UE_SO_ISSO.WORD_SELECTION}
-      className="u-word-selection-phase"
+  const announcement = (
+    <PhaseAnnouncement
+      icon={<OpinionsIcon />}
+      title={<Translate pt="Seleção da Palavra Secreta" en="Secret Word Selection" />}
+      currentRound={state?.round?.current}
+      type="overlay"
     >
+      {isUserTheGuesser ? (
+        <Instruction>
+          <Translate
+            pt={
+              <>
+                Os outros jogadores escolherão a palavra secreta.
+                <br />
+                Aguarde...
+              </>
+            }
+            en={
+              <>
+                The other players will now choose the secret word.
+                <br />
+                Just wait...
+              </>
+            }
+          />
+        </Instruction>
+      ) : (
+        <Instruction>
+          <Translate
+            pt={
+              <>
+                Selecione a palavra secreta para essa rodada.
+                <br />
+                Você pode selecionar quantas quiser.
+                <br />A palavra mais votada será usada nessa rodada!
+              </>
+            }
+            en={
+              <>
+                Choose the secret word for this round.
+                <br />
+                You may select as many as you wish.
+                <br />
+                The most voted word would be used this round!
+              </>
+            }
+          />
+        </Instruction>
+      )}
+    </PhaseAnnouncement>
+  );
+
+  return (
+    <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.UE_SO_ISSO.WORD_SELECTION}>
       <StepSwitcher step={step} conditions={[!user.isReady]} players={players}>
         {/* Step 0 */}
         <RoundAnnouncement
@@ -72,59 +119,6 @@ function PhaseWordSelection({ state, players, info }: PhaseProps) {
         </RoundAnnouncement>
 
         {/* Step 1 */}
-        <PhaseAnnouncement
-          icon={<OpinionsIcon />}
-          title={<Translate pt="Seleção da Palavra Secreta" en="Secret Word Selection" />}
-          onClose={goToNextStep}
-          currentRound={state?.round?.current}
-          type="block"
-        >
-          {isUserTheGuesser ? (
-            <Instruction>
-              <Translate
-                pt={
-                  <>
-                    Os outros jogadores escolherão a palavra secreta.
-                    <br />
-                    Aguarde...
-                  </>
-                }
-                en={
-                  <>
-                    The other players will now choose the secret word.
-                    <br />
-                    Just wait...
-                  </>
-                }
-              />
-            </Instruction>
-          ) : (
-            <Instruction>
-              <Translate
-                pt={
-                  <>
-                    Selecione a palavra secreta para essa rodada.
-                    <br />
-                    Você pode selecionar quantas quiser.
-                    <br />A palavra mais votada será usada nessa rodada!
-                  </>
-                }
-                en={
-                  <>
-                    Choose the secret word for this round.
-                    <br />
-                    You may select as many as you wish.
-                    <br />
-                    The most voted word would be used this round!
-                  </>
-                }
-              />
-            </Instruction>
-          )}
-        </PhaseAnnouncement>
-
-        {/* Step 2 */}
-
         <ViewOr condition={isUserTheGuesser}>
           <GuesserWaitingRoom
             players={players}
@@ -132,12 +126,14 @@ function PhaseWordSelection({ state, players, info }: PhaseProps) {
               pt: 'decidirem a palavra secreta',
               en: 'choose a secret word',
             }}
+            announcement={announcement}
           />
 
           <StepWordSelection
             words={state?.words}
             onSendSelectedWords={onSendSelectedWords}
             guesser={guesser}
+            announcement={announcement}
           />
         </ViewOr>
       </StepSwitcher>

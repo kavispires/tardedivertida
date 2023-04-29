@@ -17,12 +17,33 @@ import { StepDefending } from './StepDefending';
 
 function PhaseDefense({ state, players, info }: PhaseProps) {
   const { isLoading } = useLoading();
-  const { step, goToNextStep } = useStep(0);
+  const { step } = useStep(0);
   const [currentPlayer, isUserTheCurrentPlayer] = useWhichPlayerIsThe('currentPlayerId', state, players);
   const [, isUserTheImpostor] = useWhichPlayerIsThe('impostorId', state, players);
   const user = useUser(players, state);
 
   const onFinishDefense = useOnFinishDefenseRequest();
+
+  const announcement = (
+    <PhaseAnnouncement
+      icon={<DefenseIcon />}
+      title={<Translate pt="Defensa" en="Defense" />}
+      currentRound={state?.round?.current}
+      duration={5}
+      type="overlay"
+    >
+      <Title>
+        <Translate pt="Pista Secreta era: " en="The Secret Clue was: " />
+        <TextHighlight>{state.clue}</TextHighlight>
+      </Title>
+      <Instruction>
+        <Translate
+          pt="Agora, cada jogador em ordem deve defender porque escolheu as castas que escolheu."
+          en="Now, in turn-order, each player must present the reason they chose their cards."
+        />
+      </Instruction>
+    </PhaseAnnouncement>
+  );
 
   return (
     <PhaseContainer
@@ -33,27 +54,6 @@ function PhaseDefense({ state, players, info }: PhaseProps) {
     >
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
-        <PhaseAnnouncement
-          icon={<DefenseIcon />}
-          title={<Translate pt="Defensa" en="Defense" />}
-          onClose={goToNextStep}
-          currentRound={state?.round?.current}
-          duration={5}
-          type="block"
-        >
-          <Title>
-            <Translate pt="Pista Secreta era: " en="The Secret Clue was: " />
-            <TextHighlight>{state.clue}</TextHighlight>
-          </Title>
-          <Instruction>
-            <Translate
-              pt="Agora, cada jogador em ordem deve defender porque escolheu as castas que escolheu."
-              en="Now, in turn-order, each player must present the reason they chose their cards."
-            />
-          </Instruction>
-        </PhaseAnnouncement>
-
-        {/* Step 1 */}
         <StepDefending
           clue={state.clue}
           currentPlayer={currentPlayer}
@@ -65,7 +65,11 @@ function PhaseDefense({ state, players, info }: PhaseProps) {
           user={user}
           players={players}
           turnOrder={state.turnOrder}
+          announcement={announcement}
         />
+
+        {/* Step 1 */}
+        <></>
       </StepSwitcher>
     </PhaseContainer>
   );

@@ -40,10 +40,14 @@ export const addPlayer = async (data: AddPlayerPayload, context: FirebaseContext
   utils.firebase.verifyPayload(gameName, 'gameName', actionText);
   utils.firebase.verifyPayload(playerName, 'playerName', actionText);
 
-  // Get 'players' from given game session
-  const sessionRef = utils.firebase.getSessionRef(gameName, gameId);
-  const playersDoc = await utils.firebase.getSessionDoc(gameName, gameId, 'players', actionText);
-  const players: Players = playersDoc.data() ?? {};
+  // Get 'state.players' from given game session
+  const { sessionRef, state } = await utils.firebase.getStateReferences<DefaultState>(
+    gameName,
+    gameId,
+    actionText
+  );
+
+  const players = state?.players ?? {};
 
   // Remove symbols from the player name
   const cleanPlayerName = playerName.replace(/[\][(){},.:;!?<>%]/g, '');
@@ -57,7 +61,7 @@ export const addPlayer = async (data: AddPlayerPayload, context: FirebaseContext
 
   // Verify maximum number of players
   const { playerCounts } = delegatorUtils.getEngine(gameName);
-  const numPlayers = Object.keys(players).length;
+  const numPlayers = utils.players.getPlayerCount(players);
 
   if (numPlayers === playerCounts.MAX) {
     utils.firebase.throwException(
@@ -82,8 +86,9 @@ export const addPlayer = async (data: AddPlayerPayload, context: FirebaseContext
       players,
       isGuest
     );
-    await sessionRef.doc('players').update({
-      [playerId]: newPlayer,
+    const path = `players.${playerId}`;
+    await sessionRef.doc('state').update({
+      [path]: newPlayer,
     });
     return newPlayer;
   } catch (error) {
@@ -104,18 +109,20 @@ export const makePlayerReady = async (data: Payload) => {
   utils.firebase.verifyPayload(gameName, 'gameName', actionText);
   utils.firebase.verifyPayload(playerId, 'playerId', actionText);
 
-  // Get 'players' from given game session
-  const sessionRef = utils.firebase.getSessionRef(gameName, gameId);
-  const playersDoc = await utils.firebase.getSessionDoc(gameName, gameId, 'players', actionText);
+  // Get 'state.players' from given game session
+  const { sessionRef, state } = await utils.firebase.getStateReferences<DefaultState>(
+    gameName,
+    gameId,
+    actionText
+  );
 
-  // Make player ready
-  const players = playersDoc.data() ?? {};
+  const players = state?.players ?? {};
   const updatedPlayers = utils.players.readyPlayer(players, playerId);
 
   if (!utils.players.isEverybodyReady(updatedPlayers)) {
     try {
-      const key = `${playerId}.ready`;
-      await sessionRef.doc('players').update({ [key]: true });
+      const path = `players.${playerId}.ready`;
+      await sessionRef.doc('state').update({ [path]: true });
       return true;
     } catch (error) {
       utils.firebase.throwException(error, actionText);
@@ -126,15 +133,34 @@ export const makePlayerReady = async (data: Payload) => {
 
   // If all players are ready, trigger next phase
   try {
-    return getNextPhase(gameName, gameId, players);
+    return getNextPhase(gameName, gameId);
   } catch (error) {
     utils.firebase.throwException(error, actionText);
   }
 };
 
-export const rateGame = async (data: ExtendedPayload) => {
+export const rateGame = async (data: ExtendedPayload, context: FirebaseContext) => {
   const { gameId, gameName, playerId } = data;
   const actionText = 'submit ratings';
+
+  const uid = context?.auth?.uid;
+
+  // If user has an ui, save it to the user profile
+  if (uid) {
+    try {
+      const path = `games.${gameName}.[0]`;
+      await utils.firebase
+        .getUserRef()
+        .doc(uid)
+        .update({
+          [`${path}.rating`]: data.ratings.rating,
+          [`${path}.comments`]: data.ratings.comments,
+        });
+      return true;
+    } catch (e) {
+      // do nothing, let it try save it to the ratings public doc
+    }
+  }
 
   try {
     await utils.firebase
@@ -159,7 +185,7 @@ export const rateGame = async (data: ExtendedPayload) => {
       utils.firebase.throwException(error, actionText);
     }
   }
-  return false;
+  return true;
 };
 
 export const getUser = async (_: unknown, context: FirebaseContext) => {

@@ -2,7 +2,12 @@
 import { GAME_NAMES } from '../../utils/constants';
 import { QUEM_NAO_MATA_PHASES, PLAYER_COUNTS, MAX_ROUNDS, QUEM_NAO_MATA_ACTIONS } from './constants';
 // Types
-import type { QuemNaoMataInitialState, NaRuaDoMedoSubmitAction } from './types';
+import type {
+  QuemNaoMataInitialState,
+  NaRuaDoMedoSubmitAction,
+  FirebaseStateData,
+  FirebaseStoreData,
+} from './types';
 // Utilities
 import utils from '../../utils';
 // Internal Functions
@@ -25,7 +30,7 @@ import { handleSubmitDecision, handleSubmitMessage, handleSubmitTarget } from '.
  * @returns
  */
 export const getInitialState = (gameId: GameId, uid: string, language: Language): QuemNaoMataInitialState => {
-  return utils.helpers.getDefaultInitialState({
+  return utils.helpers.getDefaultInitialState<QuemNaoMataInitialState>({
     gameId,
     gameName: GAME_NAMES.QUEM_NAO_MATA,
     uid,
@@ -52,13 +57,12 @@ export const playerCounts = PLAYER_COUNTS;
 export const getNextPhase = async (
   gameName: GameName,
   gameId: GameId,
-  players: Players
+  currentState?: FirebaseStateData
 ): Promise<boolean> => {
-  const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences(
-    gameName,
-    gameId,
-    'prepare next phase'
-  );
+  const { sessionRef, state, store, players } = await utils.firebase.getStateAndStoreReferences<
+    FirebaseStateData,
+    FirebaseStoreData
+  >(gameName, gameId, 'prepare next phase', currentState);
 
   // Determine next phase
   const nextPhase = determineNextPhase(state?.phase, state?.round);
@@ -71,7 +75,7 @@ export const getNextPhase = async (
     const newPhase = await prepareSetupPhase(store, state, players);
     await utils.firebase.saveGame(sessionRef, newPhase);
 
-    return getNextPhase(gameName, gameId, newPhase.update?.players ?? {});
+    return getNextPhase(gameName, gameId);
   }
 
   // SETUP/STANDOFF/RESOLUTION -> TARGETING

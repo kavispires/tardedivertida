@@ -8,6 +8,8 @@ import {
 } from './constants';
 // Types
 import type {
+  FirebaseStateData,
+  FirebaseStoreData,
   GaleriaDeSonhosInitialState,
   GaleriaDeSonhosOptions,
   GaleriaDeSonhosSubmitAction,
@@ -40,7 +42,7 @@ export const getInitialState = (
   language: Language,
   options: GaleriaDeSonhosOptions
 ): GaleriaDeSonhosInitialState => {
-  return utils.helpers.getDefaultInitialState({
+  return utils.helpers.getDefaultInitialState<GaleriaDeSonhosInitialState>({
     gameId,
     gameName: GAME_NAMES.GALERIA_DE_SONHOS,
     uid,
@@ -62,15 +64,16 @@ export const getInitialState = (
  */
 export const playerCounts = PLAYER_COUNTS;
 
-export const getNextPhase = async (gameName: string, gameId: string, players: Players): Promise<boolean> => {
-  const actionText = 'prepare next phase';
-
-  // Gather docs and references
-  const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences(
-    gameName,
-    gameId,
-    actionText
-  );
+export const getNextPhase = async (
+  gameName: string,
+  gameId: string,
+  currentState?: FirebaseStateData
+): Promise<boolean> => {
+  const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences<
+    FirebaseStateData,
+    FirebaseStoreData
+  >(gameName, gameId, 'prepare next phase', currentState);
+  const players = state.players;
 
   // Determine next phase
   const nextPhase = determineNextPhase(state?.phase, state?.round);
@@ -84,7 +87,7 @@ export const getNextPhase = async (gameName: string, gameId: string, players: Pl
     const additionalData = await getWords(store.language, store.options.originalDecks);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await utils.firebase.saveGame(sessionRef, newPhase);
-    return getNextPhase(gameName, gameId, players);
+    return getNextPhase(gameName, gameId);
   }
 
   // * -> WORD_SELECTION

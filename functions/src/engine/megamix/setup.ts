@@ -30,8 +30,8 @@ export const prepareSetupPhase = async (
           current: 0,
           total: resourceData.tasks.length,
         },
+        players,
       },
-      players,
     },
   };
 };
@@ -59,9 +59,9 @@ export const prepareSeedingPhase = async (
       store: {
         tasks: utils.game.shuffle(store.tasks),
       },
-      players,
       state: {
         phase: MEGAMIX_PHASES.SEEDING,
+        players,
       },
     },
   };
@@ -100,11 +100,11 @@ export const prepareTaskPhase = async (
           tasks,
           playerData,
         },
-        players,
         state: {
           phase: MEGAMIX_PHASES.TASK,
           task: tasks[state.round.current],
           round: utils.helpers.increaseRound(state.round),
+          players,
         },
       },
     };
@@ -115,11 +115,11 @@ export const prepareTaskPhase = async (
   // Save
   return {
     update: {
-      players,
       state: {
         phase: MEGAMIX_PHASES.TASK,
         task: store.tasks[state.round.current],
         round: utils.helpers.increaseRound(state.round),
+        players,
       },
     },
   };
@@ -142,11 +142,11 @@ export const prepareResultPhase = async (
   // Save
   return {
     update: {
-      players,
       state: {
         phase: MEGAMIX_PHASES.RESULT,
         ...scoring,
         ranking: ranking.filter((rankEntry) => players[rankEntry.playerId].team[state.round.current] === 'W'),
+        players,
       },
     },
   };
@@ -178,11 +178,11 @@ export const prepareGameOverPhase = async (
 
   return {
     set: {
-      players,
       state: {
         phase: MEGAMIX_PHASES.GAME_OVER,
         round: state.round,
         gameEndedAt: Date.now(),
+        players,
         winners,
         fairWinners,
       },

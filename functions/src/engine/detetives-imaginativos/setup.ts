@@ -39,13 +39,13 @@ export const prepareSetupPhase = async (
       },
       state: {
         phase: DETETIVES_IMAGINATIVOS_PHASES.SETUP,
+        players,
         round: {
           current: 0,
           total: gameOrder.length,
         },
         turnOrder: playerIds,
       },
-      players,
     },
   };
 };
@@ -78,11 +78,11 @@ export const prepareSecretCluePhase = async (
     update: {
       state: {
         phase: DETETIVES_IMAGINATIVOS_PHASES.SECRET_CLUE,
+        players,
         round: utils.helpers.increaseRound(state.round),
         leaderId,
         impostorId,
       },
-      players,
     },
   };
 };
@@ -142,13 +142,11 @@ export const prepareVotingPhase = async (
   // Save
   return {
     update: {
-      players: newPlayers,
       state: {
         phase: DETETIVES_IMAGINATIVOS_PHASES.VOTING,
-        phaseOrder: utils.firebase.deleteValue(),
-        phaseIndex: utils.firebase.deleteValue(),
-        currentPlayerId: utils.firebase.deleteValue(),
+        players: newPlayers,
       },
+      stateCleanup: ['phaseOrder', 'phaseIndex', 'currentPlayerId'],
     },
   };
 };
@@ -166,9 +164,9 @@ export const prepareRevealPhase = async (
   // Save
   return {
     update: {
-      players,
       state: {
         phase: DETETIVES_IMAGINATIVOS_PHASES.REVEAL,
+        players,
         ranking,
         impostorVotes,
       },
@@ -197,9 +195,9 @@ export const prepareGameOverPhase = async (
 
   return {
     set: {
-      players,
       state: {
         phase: DETETIVES_IMAGINATIVOS_PHASES.GAME_OVER,
+        players,
         round: state.round,
         gameEndedAt: Date.now(),
         winners,

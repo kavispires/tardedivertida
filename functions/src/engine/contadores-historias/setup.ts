@@ -62,8 +62,8 @@ export const prepareSetupPhase = async (
           current: 0,
           total: totalRounds,
         },
+        players,
       },
-      players,
     },
   };
 };
@@ -93,22 +93,15 @@ export const prepareStoryPhase = async (
   // Save
   return {
     update: {
-      store: {
-        currentTableDictionary: utils.firebase.deleteValue(),
-        story: utils.firebase.deleteValue(),
-        solutionCardId: utils.firebase.deleteValue(),
-      },
       state: {
         phase: CONTADORES_HISTORIAS_PHASES.STORY,
+        players,
         round: utils.helpers.increaseRound(state.round),
         storytellerId,
         nextStorytellerId,
-        outcome: utils.firebase.deleteValue(),
-        ranking: utils.firebase.deleteValue(),
-        table: utils.firebase.deleteValue(),
-        story: utils.firebase.deleteValue(),
       },
-      players,
+      stateCleanup: ['outcome', 'ranking', 'table', 'story'],
+      storeCleanup: ['currentTableDictionary', 'story', 'solutionCardId'],
     },
   };
 };
@@ -130,9 +123,9 @@ export const prepareCardPlayPhase = async (
     update: {
       state: {
         phase: CONTADORES_HISTORIAS_PHASES.CARD_PLAY,
+        players,
         story: store.story,
       },
-      players,
     },
   };
 };
@@ -160,9 +153,9 @@ export const prepareVotingPhase = async (
       },
       state: {
         phase: CONTADORES_HISTORIAS_PHASES.VOTING,
+        players,
         table,
       },
-      players,
     },
   };
 };
@@ -186,8 +179,8 @@ export const prepareResolutionPhase = async (
         outcome,
         ranking,
         table,
+        players,
       },
-      players,
     },
   };
 };
@@ -215,11 +208,11 @@ export const prepareGameOverPhase = async (
 
   return {
     set: {
-      players,
       state: {
         phase: CONTADORES_HISTORIAS_PHASES.GAME_OVER,
         round: state.round,
         gameEndedAt: Date.now(),
+        players,
         winners,
         achievements,
       },

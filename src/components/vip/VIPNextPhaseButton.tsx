@@ -70,8 +70,8 @@ export function VIPNextPhaseButton({ round, autoTriggerTime = 45, children }: VI
   const hasTimer = Boolean(autoTriggerTime);
 
   const { timeLeft, isRunning, pause, resume } = useCountdown({
+    autoStart: autoTriggerTime > 0,
     duration: autoTriggerTime,
-    autoStart: true,
     onExpire: handleClick,
     disabled: !isVIP ?? !hasTimer,
   });
@@ -79,8 +79,6 @@ export function VIPNextPhaseButton({ round, autoTriggerTime = 45, children }: VI
   useEffect(() => {
     if (isLoading) {
       pause();
-    } else {
-      resume();
     }
     return () => pause();
   }, [isLoading]); // eslint-disable-line

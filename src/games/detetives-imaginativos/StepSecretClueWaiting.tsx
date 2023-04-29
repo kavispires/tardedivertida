@@ -42,7 +42,7 @@ export function StepSecretClueWaiting({
       <TurnOrder players={players} activePlayerId={leader.id} order={turnOrder} reorderByUser={leader.id} />
 
       <FloatingHand>
-        <ImageCardHand hand={user.hand} sizeRatio={6} />
+        <ImageCardHand hand={user.hand} sizeRatio={user.hand.length + 1} />
       </FloatingHand>
     </Step>
   );

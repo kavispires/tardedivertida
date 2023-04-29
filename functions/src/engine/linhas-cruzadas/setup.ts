@@ -64,14 +64,11 @@ export const preparePromptSelectionPhase = async (
   // Save
   return {
     update: {
-      store: {
-        expressionsDeck: utils.firebase.deleteValue(),
-        wordsDeck: utils.firebase.deleteValue(),
-      },
       state: {
         phase: LINHAS_CRUZADAS_PHASES.PROMPT_SELECTION,
+        players,
       },
-      players,
+      storeCleanup: ['expressionsDeck', 'wordsDeck'],
     },
   };
 };
@@ -108,8 +105,8 @@ export const prepareDrawingPhase = async (
       state: {
         phase: LINHAS_CRUZADAS_PHASES.DRAWING,
         round: utils.helpers.increaseRound(state.round),
+        players,
       },
-      players,
     },
   };
 };
@@ -136,8 +133,8 @@ export const prepareNamingPhase = async (
       },
       state: {
         phase: LINHAS_CRUZADAS_PHASES.NAMING,
+        players,
       },
-      players,
     },
   };
 };
@@ -162,8 +159,8 @@ export const preparePresentationPhase = async (
       state: {
         phase: LINHAS_CRUZADAS_PHASES.PRESENTATION,
         album: orderedAlbum,
+        players,
       },
-      players,
     },
   };
 };
@@ -187,11 +184,11 @@ export const prepareGameOverPhase = async (
 
   return {
     set: {
-      players,
       state: {
         phase: LINHAS_CRUZADAS_PHASES.GAME_OVER,
         round: state.round,
         gameEndedAt: Date.now(),
+        players,
         album: state.album,
         group: {
           score: 100,

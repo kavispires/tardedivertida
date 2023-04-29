@@ -18,6 +18,7 @@ import { PopoverRule } from 'components/rules';
 import { VIPButton, VIPOnlyContainer } from 'components/vip';
 import { messageContent } from 'components/pop-up';
 import { Cards } from './components/Cards';
+import { ViewIf } from 'components/views';
 
 type StepCompareSuggestionsProps = {
   isUserTheController: boolean;
@@ -27,7 +28,7 @@ type StepCompareSuggestionsProps = {
   players: GamePlayers;
   secretWord: UeSoIssoCard;
   suggestions: UseSoIssoSuggestion[];
-};
+} & AnnouncementProps;
 
 export function StepCompareSuggestions({
   isUserTheController,
@@ -37,6 +38,7 @@ export function StepCompareSuggestions({
   players,
   secretWord,
   suggestions,
+  announcement,
 }: StepCompareSuggestionsProps) {
   const { translate } = useLanguage();
   const { isLoading } = useLoading();
@@ -78,7 +80,7 @@ export function StepCompareSuggestions({
   const suggestionsValues = Object.values(myRecommendation);
 
   return (
-    <Step fullWidth>
+    <Step fullWidth announcement={announcement}>
       <Title white>
         <Translate pt="Comparem as Dicas" en="Compare Clues" />
       </Title>
@@ -98,7 +100,7 @@ export function StepCompareSuggestions({
         myRecommendation={myRecommendation}
       />
 
-      {isUserTheController && (
+      <ViewIf condition={isUserTheController}>
         <Space className="u-word-compare-suggestions-step__submit">
           <Button
             icon={<CloudUploadOutlined />}
@@ -113,9 +115,18 @@ export function StepCompareSuggestions({
             <Translate pt="Confirmar dicas válidas" en="Confirm valid clues" />
           </Button>
         </Space>
-      )}
+      </ViewIf>
 
-      <VIPOnlyContainer direction="vertical" align="center">
+      <VIPOnlyContainer
+        label={
+          <Translate
+            pt="VIP Controls (use somente se o jogador controlador não controlar)"
+            en="VIP Controls (only use if the assign player doesn't)"
+          />
+        }
+        direction="vertical"
+        align="center"
+      >
         <Cards
           suggestions={suggestions}
           readOnly={!isVIP}

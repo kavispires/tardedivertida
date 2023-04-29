@@ -2,6 +2,7 @@
 import utils from '../../utils';
 import { getNextPhase } from './index';
 import { SUSPECT_COUNT } from './constants';
+import { FirebaseStateData } from './types';
 
 /**
  *
@@ -20,9 +21,13 @@ export const handleExtraAction = async (
 ) => {
   // Save card to store
   try {
-    const playersDoc = await utils.firebase.getSessionDoc(gameName, gameId, 'players', actionText);
-    const players = playersDoc.data() ?? {};
-    return getNextPhase(gameName, gameId, players, additionalPayload);
+    const { state } = await utils.firebase.getStateReferences<FirebaseStateData>(
+      gameName,
+      gameId,
+      actionText
+    );
+
+    return getNextPhase(gameName, gameId, state, additionalPayload);
   } catch (error) {
     utils.firebase.throwException(error, `Failed to ${actionText}`);
   }
@@ -45,9 +50,11 @@ export const handleElimination = async (
   actionText: string,
   additionalPayload: any
 ) => {
-  // Get state
-  const stateDoc = await utils.firebase.getSessionDoc(gameName, gameId, 'state', actionText);
-  const state = stateDoc.data() ?? {};
+  const { sessionRef, state } = await utils.firebase.getStateReferences<FirebaseStateData>(
+    gameName,
+    gameId,
+    actionText
+  );
 
   let shouldGoToNextPhase = false;
   let lose = false;
@@ -65,7 +72,6 @@ export const handleElimination = async (
       shouldGoToNextPhase = true;
       lose = true;
     } else {
-      const sessionRef = utils.firebase.getSessionRef(gameName, gameId);
       const eliminatedSuspects = state?.eliminatedSuspects || [];
       eliminatedSuspects.push(suspectId);
       await utils.firebase.saveGame(sessionRef, {
@@ -87,9 +93,7 @@ export const handleElimination = async (
   // In case of a pass or win (found all) or a lose (clicked on perpetrator)
   if (shouldGoToNextPhase) {
     try {
-      const playersDoc = await utils.firebase.getSessionDoc(gameName, gameId, 'players', actionText);
-      const players = playersDoc.data() ?? {};
-      return getNextPhase(gameName, gameId, players, { lose, win });
+      return getNextPhase(gameName, gameId, state, { lose, win });
     } catch (error) {
       utils.firebase.throwException(error, `Failed to ${actionText}`);
     }

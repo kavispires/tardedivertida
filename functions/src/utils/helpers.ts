@@ -59,7 +59,7 @@ export function stringRemoveAccents(str: string): string {
  * @param dataObject
  * @returns
  */
-export function getDefaultInitialState({
+export function getDefaultInitialState<T = InitialState>({
   gameId,
   gameName,
   uid,
@@ -69,7 +69,7 @@ export function getDefaultInitialState({
   totalRounds,
   store,
   options = {},
-}: InitialStateArgs): InitialState {
+}: InitialStateArgs): InitialState | T {
   const createdAt = Date.now();
   return {
     meta: {
@@ -85,7 +85,6 @@ export function getDefaultInitialState({
       replay: 0,
       options,
     },
-    players: {},
     store: {
       language,
       options,
@@ -100,6 +99,7 @@ export function getDefaultInitialState({
         forceLastRound: false,
       },
       updatedAt: Date.now(),
+      players: {},
     },
   };
 }

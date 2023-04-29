@@ -19,10 +19,29 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 function PhaseSuggest({ state, players, info }: PhaseProps) {
   const user = useUser(players, state);
-  const { step, goToNextStep, setStep } = useStep(0);
+  const { step, setStep } = useStep(0);
   const [guesser, isUserTheGuesser] = useWhichPlayerIsThe('guesserId', state, players);
 
   const onSendSuggestions = useOnSubmitSuggestionsAPIRequest(setStep);
+
+  const announcement = (
+    <PhaseAnnouncement
+      icon={<WritingIcon />}
+      title={<Translate pt="Escreva uma dica!" en="Write a Clue!" />}
+      currentRound={state?.round?.current}
+      type="overlay"
+    >
+      <WritingRules />
+      {isUserTheGuesser && (
+        <Instruction contained>
+          <Translate
+            pt="Já que você é o adivinhador, relaxe e aguarde..."
+            en="Since you're the guesser, just relax and wait..."
+          />
+        </Instruction>
+      )}
+    </PhaseAnnouncement>
+  );
 
   return (
     <PhaseContainer
@@ -33,25 +52,6 @@ function PhaseSuggest({ state, players, info }: PhaseProps) {
     >
       <StepSwitcher step={step} conditions={[!user.isReady]} players={players}>
         {/* Step 0 */}
-        <PhaseAnnouncement
-          icon={<WritingIcon />}
-          title={<Translate pt="Escreva uma dica!" en="Write a Clue!" />}
-          onClose={goToNextStep}
-          currentRound={state?.round?.current}
-          type="block"
-        >
-          <WritingRules />
-          {isUserTheGuesser && (
-            <Instruction contained>
-              <Translate
-                pt="Já que você é o adivinhador, relaxe e aguarde..."
-                en="Since you're the guesser, just relax and wait..."
-              />
-            </Instruction>
-          )}
-        </PhaseAnnouncement>
-
-        {/* Step 1 */}
         <ViewOr condition={isUserTheGuesser}>
           <GuesserWaitingRoom
             players={players}
@@ -59,6 +59,7 @@ function PhaseSuggest({ state, players, info }: PhaseProps) {
               pt: 'escrevem dicas',
               en: 'write clues',
             }}
+            announcement={announcement}
           />
 
           <StepSuggestion
@@ -66,9 +67,12 @@ function PhaseSuggest({ state, players, info }: PhaseProps) {
             onSendSuggestions={onSendSuggestions}
             secretWord={state.secretWord}
             suggestionsNumber={state.suggestionsNumber}
-            players={players}
+            announcement={announcement}
           />
         </ViewOr>
+
+        {/* Step 1 */}
+        <></>
       </StepSwitcher>
     </PhaseContainer>
   );

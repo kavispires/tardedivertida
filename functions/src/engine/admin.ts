@@ -4,7 +4,6 @@ import { GAME_CODES, USED_GAME_IDS } from '../utils/constants';
 // Utils
 import * as delegatorUtils from '../utils/delegators';
 import utils from '../utils';
-// import { feedEmulatorDB } from './emulator';
 
 /**
  * Creates a new game instance
@@ -29,10 +28,6 @@ export const createGame = async (data: CreateGamePayload, context: FirebaseConte
   if (!gameCode) {
     return utils.firebase.throwException(`provided gameCode is invalid ${gameName}`, actionText);
   }
-
-  // if (process.env.FUNCTIONS_EMULATOR) {
-  //   await feedEmulatorDB();
-  // }
 
   // Get list of used ids
   const globalRef = utils.firebase.getGlobalRef();
@@ -66,9 +61,8 @@ export const createGame = async (data: CreateGamePayload, context: FirebaseConte
     const { getInitialState } = delegatorUtils.getEngine(gameName);
 
     const uid = context?.auth?.uid ?? 'admin?';
-    const { meta, players, state, store } = getInitialState(gameId, uid, language ?? 'pt', options);
+    const { meta, state, store } = getInitialState(gameId, uid, language ?? 'pt', options);
 
-    await sessionRef.doc('players').set(players);
     await sessionRef.doc('state').set(state);
     await sessionRef.doc('store').set(store);
 
@@ -106,9 +100,13 @@ export const lockGame = async (data: BasicGamePayload, context: FirebaseContext)
   utils.firebase.verifyPayload(gameName, 'gameName', actionText);
   utils.firebase.verifyAuth(context, actionText);
 
-  const sessionRef = utils.firebase.getSessionRef(gameName, gameId);
-  const playersDoc = await utils.firebase.getSessionDoc(gameName, gameId, 'players', actionText);
-  const players: Players = playersDoc.data() ?? {};
+  const { sessionRef, state } = await utils.firebase.getStateReferences<DefaultState>(
+    gameName,
+    gameId,
+    actionText
+  );
+
+  const players = state?.players ?? {};
 
   // Verify minimum number of players
   const numPlayers = utils.players.getPlayerCount(players);
@@ -229,14 +227,9 @@ export const performAdminAction = async (data: ExtendedPayload, context: Firebas
  * @returns
  */
 const goToNextPhase = async (gameId: GameId, gameName: GameName) => {
-  const actionText = 'go to next phase';
-  const playersDoc = await utils.firebase.getSessionDoc(gameName, gameId, 'players', actionText);
-
-  const players = playersDoc.data() ?? {};
-
   const { getNextPhase } = delegatorUtils.getEngine(gameName);
 
-  return getNextPhase(gameName, gameId, players);
+  return getNextPhase(gameName, gameId);
 };
 
 /**
@@ -269,10 +262,14 @@ const forceStateProperty = async (gameId: GameId, gameName: GameName, stateUpdat
 const playAgain = async (gameId: GameId, gameName: GameName) => {
   const actionText = 'play game again';
 
-  const sessionRef = utils.firebase.getSessionRef(gameName, gameId);
+  const { sessionRef, state } = await utils.firebase.getStateReferences<DefaultState>(
+    gameName,
+    gameId,
+    actionText
+  );
+
+  const players = state?.players ?? {};
   // Reset players
-  const playersDoc = await utils.firebase.getSessionDoc(gameName, gameId, 'players', actionText);
-  const players: Players = playersDoc.data() ?? {};
   const newPlayers = utils.players.resetPlayers(players);
 
   // Update meta
@@ -286,7 +283,7 @@ const playAgain = async (gameId: GameId, gameName: GameName) => {
       replay: meta.replay + 1,
     });
     // Update players
-    await sessionRef.doc('players').set(newPlayers);
+
     // Force rules phase which will trigger new setup
     await sessionRef.doc('state').set({
       phase: 'RULES',
@@ -294,6 +291,7 @@ const playAgain = async (gameId: GameId, gameName: GameName) => {
         current: 0,
         total: 0,
       },
+      players: newPlayers,
     });
 
     return true;

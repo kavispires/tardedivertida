@@ -13,6 +13,8 @@ import type {
   ComunicacaoAlienigenaState,
   ComunicacaoAlienigenaStore,
   ComunicacaoAlienigenaSubmitAction,
+  FirebaseStateData,
+  FirebaseStoreData,
 } from './types';
 // Utils
 import utils from '../../utils';
@@ -50,7 +52,7 @@ export const getInitialState = (
   language: Language,
   options: ComunicacaoAlienigenaOptions
 ): ComunicacaoAlienigenaInitialState => {
-  return utils.helpers.getDefaultInitialState({
+  return utils.helpers.getDefaultInitialState<ComunicacaoAlienigenaInitialState>({
     gameId,
     gameName: GAME_NAMES.COMUNICACAO_ALIENIGENA,
     uid,
@@ -68,12 +70,15 @@ export const getInitialState = (
  */
 export const playerCounts = PLAYER_COUNTS;
 
-export const getNextPhase = async (gameName: string, gameId: string, players: Players): Promise<boolean> => {
-  const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences(
-    gameName,
-    gameId,
-    'prepare next phase'
-  );
+export const getNextPhase = async (
+  gameName: string,
+  gameId: string,
+  currentState?: FirebaseStateData
+): Promise<boolean> => {
+  const { sessionRef, state, store, players } = await utils.firebase.getStateAndStoreReferences<
+    FirebaseStateData,
+    FirebaseStoreData
+  >(gameName, gameId, 'prepare next phase', currentState);
 
   // Determine next phase
   const nextPhase = determineNextPhase(
@@ -95,7 +100,7 @@ export const getNextPhase = async (gameName: string, gameId: string, players: Pl
 
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await utils.firebase.saveGame(sessionRef, newPhase);
-    return getNextPhase(gameName, gameId, players);
+    return getNextPhase(gameName, gameId);
   }
 
   // SETUP -> ALIEN_SELECTION

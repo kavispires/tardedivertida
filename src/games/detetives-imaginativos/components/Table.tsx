@@ -48,10 +48,11 @@ export function Table({ table, players }: TableProps) {
 
                 return (
                   <ImageBlurButtonContainer
+                    key={`${playerEntryKey}${cardId}`}
                     cardId={cardId}
                     className={clsx('d-table__card', getAnimationClass('flipInY'))}
                   >
-                    <ImageCard key={`${playerEntryKey}${cardId}`} imageId={cardId} cardWidth={cardWidth} />
+                    <ImageCard imageId={cardId} cardWidth={cardWidth} />
                   </ImageBlurButtonContainer>
                 );
               })}

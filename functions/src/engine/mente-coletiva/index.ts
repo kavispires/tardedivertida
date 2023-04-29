@@ -2,7 +2,13 @@
 import { GAME_NAMES } from '../../utils/constants';
 import { MENTE_COLETIVA_PHASES, MAX_ROUNDS, PLAYER_COUNTS, MENTE_COLETIVA_ACTIONS } from './constants';
 // Types
-import type { MenteColetivaInitialState, MenteColetivaOptions, MenteColetivaSubmitAction } from './types';
+import type {
+  FirebaseStateData,
+  FirebaseStoreData,
+  MenteColetivaInitialState,
+  MenteColetivaOptions,
+  MenteColetivaSubmitAction,
+} from './types';
 // Utilities
 import utils from '../../utils';
 // Internal Functions
@@ -37,7 +43,7 @@ export const getInitialState = (
   language: Language,
   options: MenteColetivaOptions
 ): MenteColetivaInitialState => {
-  return utils.helpers.getDefaultInitialState({
+  return utils.helpers.getDefaultInitialState<MenteColetivaInitialState>({
     gameId,
     gameName: GAME_NAMES.MENTE_COLETIVA,
     uid,
@@ -59,16 +65,15 @@ export const getInitialState = (
  */
 export const playerCounts = PLAYER_COUNTS;
 
-export const getNextPhase = async (gameName: string, gameId: string, players: Players): Promise<boolean> => {
-  const actionText = 'prepare next phase';
-
-  // Gather docs and references
-  const sessionRef = utils.firebase.getSessionRef(gameName, gameId);
-  const stateDoc = await utils.firebase.getSessionDoc(gameName, gameId, 'state', actionText);
-  const storeDoc = await utils.firebase.getSessionDoc(gameName, gameId, 'store', actionText);
-
-  const state = stateDoc.data() ?? {};
-  const store = { ...(storeDoc.data() ?? {}) };
+export const getNextPhase = async (
+  gameName: string,
+  gameId: string,
+  currentState?: FirebaseStateData
+): Promise<boolean> => {
+  const { sessionRef, state, store, players } = await utils.firebase.getStateAndStoreReferences<
+    FirebaseStateData,
+    FirebaseStoreData
+  >(gameName, gameId, 'prepare next phase', currentState);
 
   // Determine if it's game over
   const isGameOver = determineGameOver(players, store.options?.shortPasture);
@@ -84,8 +89,7 @@ export const getNextPhase = async (gameName: string, gameId: string, players: Pl
     const additionalData = await getQuestions(store.language);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await utils.firebase.saveGame(sessionRef, newPhase);
-
-    return getNextPhase(gameName, gameId, players);
+    return getNextPhase(gameName, gameId);
   }
 
   // SETUP/* -> QUESTION_SELECTION

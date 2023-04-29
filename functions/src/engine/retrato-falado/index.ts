@@ -2,7 +2,12 @@
 import { GAME_NAMES } from '../../utils/constants';
 import { MAX_ROUNDS, PLAYER_COUNTS, RETRATO_FALADO_ACTIONS, RETRATO_FALADO_PHASES } from './constants';
 // Types
-import type { RetratoFaladoInitialState, RetratoFaladoSubmitAction } from './types';
+import type {
+  FirebaseStateData,
+  FirebaseStoreData,
+  RetratoFaladoInitialState,
+  RetratoFaladoSubmitAction,
+} from './types';
 // Utilities
 import utils from '../../utils';
 // Internal Functions
@@ -29,7 +34,7 @@ export const getInitialState = (
   uid: string,
   language: Language
 ): RetratoFaladoInitialState => {
-  return utils.helpers.getDefaultInitialState({
+  return utils.helpers.getDefaultInitialState<RetratoFaladoInitialState>({
     gameId,
     gameName: GAME_NAMES.RETRATO_FALADO,
     uid,
@@ -59,13 +64,12 @@ export const playerCounts = PLAYER_COUNTS;
 export const getNextPhase = async (
   gameName: GameName,
   gameId: GameId,
-  players: Players
+  currentState?: FirebaseStateData
 ): Promise<boolean> => {
-  const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences(
-    gameName,
-    gameId,
-    'prepare next phase'
-  );
+  const { sessionRef, state, store, players } = await utils.firebase.getStateAndStoreReferences<
+    FirebaseStateData,
+    FirebaseStoreData
+  >(gameName, gameId, 'prepare next phase', currentState);
 
   // Determine next phase
   const nextPhase = determineNextPhase(state?.phase, state?.round ?? {});
@@ -79,7 +83,7 @@ export const getNextPhase = async (
     const additionalData = await getMonsterCards();
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await utils.firebase.saveGame(sessionRef, newPhase);
-    return getNextPhase(gameName, gameId, players);
+    return getNextPhase(gameName, gameId);
   }
 
   // SETUP -> COMPOSITE_SKETCH
