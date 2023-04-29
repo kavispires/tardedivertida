@@ -34,7 +34,7 @@ import { feedEmulatorDB } from './utils/mocks/emulator';
 
 initializeApp();
 
-if (process.env.FUNCTIONS_EMULATOR) {
+if (process.env.FUNCTIONS_EMULATOR && process.env.FIRESTORE_EMULATOR_HOST) {
   feedEmulatorDB();
 }
 

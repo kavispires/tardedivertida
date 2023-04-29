@@ -4,7 +4,6 @@ import { GAME_CODES, USED_GAME_IDS } from '../utils/constants';
 // Utils
 import * as delegatorUtils from '../utils/delegators';
 import utils from '../utils';
-// import { feedEmulatorDB } from './emulator';
 
 /**
  * Creates a new game instance
