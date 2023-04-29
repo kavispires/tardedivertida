@@ -38,6 +38,8 @@ interface GameUserStatistics {
   firstPlay: GameUserEntry;
   // The game rating
   rating: number;
+  // Comments
+  comments?: string;
   // Average player count
   averagePlayerCount: number;
 }
@@ -419,7 +421,7 @@ export const saveGameToUsers = async ({
       if (user.games[gameName] === undefined) {
         user.games[gameName] = [];
       }
-      user.games[gameName].push(gameEntry);
+      user.games[gameName].unshift(gameEntry);
 
       // Save each user
       try {

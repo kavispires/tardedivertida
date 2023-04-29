@@ -2,7 +2,13 @@
 import { GAME_NAMES } from '../../utils/constants';
 import { VAMOS_AO_CINEMA_ACTIONS, VAMOS_AO_CINEMA_PHASES, PLAYER_COUNTS, TOTAL_ROUNDS } from './constants';
 // Types
-import type { VamosAoCinemaInitialState, VamosAoCinemaOptions, VamosAoCinemaSubmitAction } from './types';
+import type {
+  FirebaseStateData,
+  FirebaseStoreData,
+  VamosAoCinemaInitialState,
+  VamosAoCinemaOptions,
+  VamosAoCinemaSubmitAction,
+} from './types';
 // Utils
 import utils from '../../utils';
 // Internal Functions
@@ -30,7 +36,7 @@ export const getInitialState = (
   language: Language,
   options: VamosAoCinemaOptions
 ): VamosAoCinemaInitialState => {
-  return utils.helpers.getDefaultInitialState({
+  return utils.helpers.getDefaultInitialState<VamosAoCinemaInitialState>({
     gameId,
     gameName: GAME_NAMES.VAMOS_AO_CINEMA,
     uid,
@@ -52,13 +58,15 @@ export const getInitialState = (
  */
 export const playerCounts = PLAYER_COUNTS;
 
-export const getNextPhase = async (gameName: string, gameId: string, players: Players): Promise<boolean> => {
-  // Gather docs and references
-  const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences(
-    gameName,
-    gameId,
-    'prepare next phase'
-  );
+export const getNextPhase = async (
+  gameName: string,
+  gameId: string,
+  currentState?: FirebaseStateData
+): Promise<boolean> => {
+  const { sessionRef, state, store, players } = await utils.firebase.getStateAndStoreReferences<
+    FirebaseStateData,
+    FirebaseStoreData
+  >(gameName, gameId, 'prepare next phase', currentState);
 
   // Determine if it's game over
   const isGameOver = determineOutcome(state);
@@ -74,7 +82,7 @@ export const getNextPhase = async (gameName: string, gameId: string, players: Pl
     const additionalData = await getCards(store.language);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await utils.firebase.saveGame(sessionRef, newPhase);
-    return getNextPhase(gameName, gameId, players);
+    return getNextPhase(gameName, gameId);
   }
 
   // SETUP -> MOVIE_SELECTION

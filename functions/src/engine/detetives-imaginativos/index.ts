@@ -6,6 +6,8 @@ import type {
   DetetivesImaginativosInitialState,
   DetetivesImaginativosOptions,
   DetetivesImaginativosSubmitAction,
+  FirebaseStateData,
+  FirebaseStoreData,
 } from './types';
 // Utils
 import utils from '../../utils';
@@ -35,7 +37,7 @@ export const getInitialState = (
   language: Language,
   options: DetetivesImaginativosOptions
 ): DetetivesImaginativosInitialState => {
-  return utils.helpers.getDefaultInitialState({
+  return utils.helpers.getDefaultInitialState<DetetivesImaginativosInitialState>({
     gameId,
     gameName: GAME_NAMES.DETETIVES_IMAGINATIVOS,
     uid,
@@ -57,15 +59,15 @@ export const getInitialState = (
  */
 export const playerCounts = PLAYER_COUNTS;
 
-export const getNextPhase = async (gameName: string, gameId: string, players: Players): Promise<boolean> => {
-  const actionText = 'prepare next phase';
-
-  // Gather docs and references
-  const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences(
-    gameName,
-    gameId,
-    actionText
-  );
+export const getNextPhase = async (
+  gameName: string,
+  gameId: string,
+  currentState?: FirebaseStateData
+): Promise<boolean> => {
+  const { sessionRef, state, store, players } = await utils.firebase.getStateAndStoreReferences<
+    FirebaseStateData,
+    FirebaseStoreData
+  >(gameName, gameId, 'prepare next phase', currentState);
 
   // Determine next phase
   const nextPhase = determineNextPhase(state?.phase, state?.round);
@@ -81,7 +83,7 @@ export const getNextPhase = async (gameName: string, gameId: string, players: Pl
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await utils.firebase.saveGame(sessionRef, newPhase);
 
-    return getNextPhase(gameName, gameId, newPhase.update?.players ?? {});
+    return getNextPhase(gameName, gameId);
   }
 
   // * -> SECRET_CLUE

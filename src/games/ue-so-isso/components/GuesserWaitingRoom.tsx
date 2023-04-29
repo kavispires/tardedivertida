@@ -11,15 +11,15 @@ type GuesserWaitingRoomProps = {
     pt: string;
     en: string;
   };
-};
+} & AnnouncementProps;
 
-export function GuesserWaitingRoom({ players, instructionSuffix }: GuesserWaitingRoomProps) {
+export function GuesserWaitingRoom({ players, instructionSuffix, announcement }: GuesserWaitingRoomProps) {
   const { language, translate } = useLanguage();
 
   const instructionPrefix = translate('Aguarde os outros jogadores', 'Please wait while the other players');
 
   return (
-    <Step fullWidth>
+    <Step fullWidth announcement={announcement}>
       <WaitingRoom
         players={players}
         title={<Translate pt="Você é o(a) adivinhador(a)" en="You're the guesser" />}

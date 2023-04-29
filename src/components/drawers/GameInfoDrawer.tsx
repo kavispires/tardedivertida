@@ -63,7 +63,7 @@ export function GameInfoDrawer({ players, state, info, userId }: GameInfoDrawerP
           {isAuthenticated && !isGuest && (
             <p>
               <Badge size="default" dot color="green">
-                <Avatar id={players[userId].avatarId} shape="square" size="small" />
+                <Avatar id={players?.[userId]?.avatarId} shape="square" size="small" />
               </Badge>{' '}
               <Translate pt="Você está logado!" en="You are logged in!" />
             </p>

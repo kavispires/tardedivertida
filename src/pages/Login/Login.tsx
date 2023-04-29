@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // Ant Design Resources
 import { Layout, Button, Form, Input, Alert, Image } from 'antd';
@@ -6,6 +6,7 @@ import { Layout, Button, Form, Input, Alert, Image } from 'antd';
 import { signIn } from 'services/firebase';
 // Image
 import logo from 'assets/images/tarde-divertida-logo.svg';
+import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 
 const layout = {
   labelCol: { span: 8 },
@@ -17,6 +18,7 @@ const tailLayout = {
 
 function Login() {
   const navigate = useNavigate();
+  const { isAuthenticated, isAdmin } = useCurrentUserContext();
 
   const [error, setError] = useState<string | object | null>(null);
   const [email, setEmail] = useState('');
@@ -36,12 +38,19 @@ function Login() {
     try {
       const response = await signIn(email, password);
       if (response?.user?.uid) {
-        navigate('/hub');
+        navigate(isAdmin ? '/hub' : '/');
       }
     } catch (error: any) {
       setError(error.message);
     }
   };
+
+  // Send user back when they are authenticated
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate(-1);
+    }
+  }, [isAuthenticated]); // eslint-disable-line
 
   return (
     <Layout.Content className="login">

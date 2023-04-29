@@ -28,8 +28,9 @@ export function StepInfo({ info, players, setStep }: StepInfoProps) {
   const { currentUser, isGuest } = useCurrentUserContext();
   const { translate } = useLanguage();
   const [selectedAvatar, setSelectedAvatar] = useState(
-    currentUser.avatars?.[0] ?? getRandomItem(AVAILABLE_AVATAR_IDS)
+    currentUser?.avatars?.[0] ?? getRandomItem(AVAILABLE_AVATAR_IDS)
   );
+
   const [name, setName] = useState((currentUser?.names ?? []).at(-1) ?? '');
   const [getLocalStorage] = useLocalStorage();
 
@@ -39,7 +40,7 @@ export function StepInfo({ info, players, setStep }: StepInfoProps) {
     const lsUsername = getLocalStorage('username');
 
     if (isGuest) {
-      if (lsAvatarId !== undefined) {
+      if (lsAvatarId) {
         setSelectedAvatar(lsAvatarId);
       }
 
@@ -88,7 +89,7 @@ export function StepInfo({ info, players, setStep }: StepInfoProps) {
 
       <Settings />
 
-      <Button block disabled={isLoading} type="primary" onClick={() => refetch()}>
+      <Button block disabled={isLoading || !name || !selectedAvatar} type="primary" onClick={() => refetch()}>
         <Translate pt="Entrar" en="Enter" />
       </Button>
     </>

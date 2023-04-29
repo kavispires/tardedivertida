@@ -69,12 +69,12 @@ export const prepareSetupPhase = async (
       },
       state: {
         phase: MENTE_COLETIVA_PHASES.SETUP,
+        players,
         gameOrder,
         pastureSize: store.options?.shortPasture
           ? SHORT_PASTURE_GAME_OVER_THRESHOLD
           : PASTURE_GAME_OVER_THRESHOLD,
       },
-      players,
     },
   };
 };
@@ -108,11 +108,11 @@ export const prepareQuestionSelectionPhase = async (
       state: {
         phase: MENTE_COLETIVA_PHASES.QUESTION_SELECTION,
         round: utils.helpers.increaseRound(state.round),
+        players,
         roundType: determineRoundType(store.gameOrder.length, state.round.current + 1, players),
         activePlayerId,
         currentQuestions,
       },
-      players,
     },
   };
 };
@@ -139,14 +139,13 @@ export const prepareEverybodyWritesPhase = async (
       state: {
         phase: MENTE_COLETIVA_PHASES.EVERYBODY_WRITES,
         currentQuestion,
-        currentQuestions: utils.firebase.deleteValue(),
+        players,
       },
       store: {
         pastQuestions,
-        customQuestion: utils.firebase.deleteValue(),
-        questionId: utils.firebase.deleteValue(),
       },
-      players,
+      stateCleanup: ['currentQuestions'],
+      storeCleanup: ['customQuestion', 'questionId'],
     },
   };
 };
@@ -167,10 +166,10 @@ export const prepareComparePhase = async (
     update: {
       state: {
         phase: MENTE_COLETIVA_PHASES.COMPARE,
+        players,
         answersList,
         allAnswers,
       },
-      players,
     },
   };
 };
@@ -228,12 +227,12 @@ export const prepareResolutionPhase = async (
       },
       state: {
         phase: MENTE_COLETIVA_PHASES.RESOLUTION,
+        players,
         ranking,
         pastureChangeStr: JSON.stringify(pastureChange),
         usedSave: Boolean(state?.usedSave) || shouldSave,
         announceSave: shouldSave,
       },
-      players,
     },
   };
 };
@@ -282,6 +281,7 @@ export const prepareGameOverPhase = async (
       state: {
         phase: MENTE_COLETIVA_PHASES.GAME_OVER,
         round: state.round,
+        players,
         gameEndedAt: Date.now(),
         winners,
         losers,

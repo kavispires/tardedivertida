@@ -56,6 +56,7 @@ export const prepareSetupPhase = async (
       },
       state: {
         phase: CRIMES_HEDIONDOS_PHASES.SETUP,
+        players,
         causeOfDeathTile,
         reasonForEvidenceTile,
         locationTiles,
@@ -89,15 +90,17 @@ export const prepareCrimeSelectionPhase = async (
     state.locationTiles
   );
 
+  console.log(state);
+
   return {
     update: {
       state: {
         phase: CRIMES_HEDIONDOS_PHASES.CRIME_SELECTION,
         round: utils.helpers.increaseRound(state.round),
+        players,
         items,
         groupedItems,
       },
-      players,
     },
   };
 };
@@ -133,12 +136,12 @@ export const prepareSceneMarkingPhase = async (
       state: {
         phase: CRIMES_HEDIONDOS_PHASES.SCENE_MARKING,
         round: utils.helpers.increaseRound(state.round),
+        players: players,
         scenes: updatedScenes,
         scenesOrder: updatedScenesOrder,
         currentScene: newScene,
-        results: utils.firebase.deleteValue(),
       },
-      players: players,
+      stateCleanup: ['results'],
     },
   };
 };
@@ -175,14 +178,12 @@ export const prepareGuessingPhase = async (
       update: {
         state: {
           phase: CRIMES_HEDIONDOS_PHASES.GUESSING,
+          players,
           crimes,
           scenes,
           scenesOrder: order,
-          causeOfDeathTile: utils.firebase.deleteValue(),
-          reasonForEvidenceTile: utils.firebase.deleteValue(),
-          locationTiles: utils.firebase.deleteValue(),
         },
-        players,
+        stateCleanup: ['causeOfDeathTile', 'reasonForEvidenceTile', 'locationTiles'],
       },
     };
   }
@@ -197,10 +198,10 @@ export const prepareGuessingPhase = async (
     update: {
       state: {
         phase: CRIMES_HEDIONDOS_PHASES.GUESSING,
+        players,
         crimes: updatedCrimes,
-        currentScene: utils.firebase.deleteValue(),
       },
-      players: players,
+      stateCleanup: ['currentScene'],
     },
   };
 };
@@ -220,6 +221,7 @@ export const prepareRevealPhase = async (
     update: {
       state: {
         phase: CRIMES_HEDIONDOS_PHASES.REVEAL,
+        players,
         ranking,
         winners,
         results,
@@ -228,7 +230,6 @@ export const prepareRevealPhase = async (
           forceLastRound: state?.round.forceLastRound || winners.length > 0,
         },
       },
-      players: players,
     },
   };
 };
@@ -260,9 +261,9 @@ export const prepareGameOverPhase = async (
 
   return {
     set: {
-      players,
       state: {
         phase: CRIMES_HEDIONDOS_PHASES.GAME_OVER,
+        players,
         round: state.round,
         gameEndedAt: Date.now(),
         winners,

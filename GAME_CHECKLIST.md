@@ -421,7 +421,7 @@ Legend
 - Rating: ⭐⭐⭐
 - Rules: 🟡 (old images)
 - Achievements: ❌
-- Overlaid Phase Announcements: ❌
+- Overlaid Phase Announcements: ✅
 - Bots: 🔘
 - Game Over flavor: ❌
 - Custom Clouds: ✅

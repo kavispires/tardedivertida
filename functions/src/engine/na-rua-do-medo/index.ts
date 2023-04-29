@@ -2,7 +2,13 @@
 import { GAME_NAMES } from '../../utils/constants';
 import { NA_RUA_DO_MEDO_PHASES, PLAYER_COUNTS, MAX_ROUNDS, NA_RUA_DO_MEDO_ACTIONS } from './constants';
 // Types
-import type { NoRuaDoMedoInitialState, NoRuaDoMedoOptions, NaRuaDoMedoSubmitAction } from './types';
+import type {
+  NoRuaDoMedoInitialState,
+  NoRuaDoMedoOptions,
+  NaRuaDoMedoSubmitAction,
+  FirebaseStateData,
+  FirebaseStoreData,
+} from './types';
 // Utilities
 import utils from '../../utils';
 // Internal Functions
@@ -29,7 +35,7 @@ export const getInitialState = (
   language: Language,
   options: NoRuaDoMedoOptions
 ): NoRuaDoMedoInitialState => {
-  return utils.helpers.getDefaultInitialState({
+  return utils.helpers.getDefaultInitialState<NoRuaDoMedoInitialState>({
     gameId,
     gameName: GAME_NAMES.NA_RUA_DO_MEDO,
     uid,
@@ -61,13 +67,12 @@ export const playerCounts = PLAYER_COUNTS;
 export const getNextPhase = async (
   gameName: GameName,
   gameId: GameId,
-  players: Players
+  currentState?: FirebaseStateData
 ): Promise<boolean> => {
-  const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences(
-    gameName,
-    gameId,
-    'prepare next phase'
-  );
+  const { sessionRef, state, store, players } = await utils.firebase.getStateAndStoreReferences<
+    FirebaseStateData,
+    FirebaseStoreData
+  >(gameName, gameId, 'prepare next phase', currentState);
 
   // Determine if it's game over
   const outcome = determineOutcome(store, state, players);
@@ -80,8 +85,7 @@ export const getNextPhase = async (
 
     const newPhase = await prepareSetupPhase(store, state, players);
     await utils.firebase.saveGame(sessionRef, newPhase);
-
-    return getNextPhase(gameName, gameId, newPhase.update?.players ?? {});
+    return getNextPhase(gameName, gameId);
   }
 
   // * -> TRICK_OR_TREAT

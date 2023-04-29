@@ -11,7 +11,7 @@ export const achievementsReference: AchievementReference = {
     },
   },
   LEAST_MATCHES: {
-    icon: 'double-arrow-down',
+    icon: 'difference',
     title: {
       pt: 'Mais Diferentão',
       en: 'Most Unique',

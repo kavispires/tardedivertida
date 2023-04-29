@@ -18,6 +18,7 @@ import { ViewIf } from 'components/views';
 import { AvatarName, IconAvatar } from 'components/avatars';
 import { FloatingHand, ImageCardHand } from 'components/cards';
 import { TurnOrder } from 'components/players';
+import { isEarliestPlayerWithFewestCards } from './utils/helpers';
 
 type StepPlayCardProps = {
   isUserTheImpostor: boolean;
@@ -52,7 +53,7 @@ export function StepPlayCard({
   const onSelectCard = (cardId: string) => onPlayCard({ cardId });
 
   useEffect(() => {
-    if (isUserTheCurrentPlayer && !isLoading && Date.now() - user.updatedAt > 300000) {
+    if (isUserTheCurrentPlayer && !isLoading && isEarliestPlayerWithFewestCards(table, user.id)) {
       message.info(
         messageContent(
           translate('Escolha uma carta!', 'Choose a card to play'),
@@ -66,7 +67,7 @@ export function StepPlayCard({
         )
       );
     }
-  }, [isUserTheCurrentPlayer, currentPlayer.id, translate, isLoading, user.updatedAt]);
+  }, [isUserTheCurrentPlayer, currentPlayer.id, translate, isLoading, user.updatedAt, table, user.id]);
 
   return (
     <Step key={1} announcement={announcement}>

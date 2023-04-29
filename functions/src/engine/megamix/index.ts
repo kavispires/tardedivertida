@@ -36,7 +36,7 @@ export const getInitialState = (
   language: Language,
   options: MegamixGameOptions
 ): MegamixInitialState => {
-  return utils.helpers.getDefaultInitialState({
+  return utils.helpers.getDefaultInitialState<MegamixInitialState>({
     gameId,
     gameName: GAME_NAMES.MEGAMIX,
     uid,
@@ -66,12 +66,12 @@ export const playerCounts = PLAYER_COUNTS;
 export const getNextPhase = async (
   gameName: GameName,
   gameId: GameId,
-  players: Players
+  currentState?: FirebaseStateData
 ): Promise<boolean> => {
-  const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences<
+  const { sessionRef, state, store, players } = await utils.firebase.getStateAndStoreReferences<
     FirebaseStateData,
     FirebaseStoreData
-  >(gameName, gameId, 'prepare next phase');
+  >(gameName, gameId, 'prepare next phase', currentState);
 
   // Determine next phase
   const nextPhase = determineNextPhase(state?.phase, state?.round);
@@ -89,7 +89,7 @@ export const getNextPhase = async (
     );
     const newPhase = await prepareSetupPhase(store, state, players, data);
     await utils.firebase.saveGame(sessionRef, newPhase);
-    return getNextPhase(gameName, gameId, players);
+    return getNextPhase(gameName, gameId);
   }
 
   // SETUP -> SEEDING

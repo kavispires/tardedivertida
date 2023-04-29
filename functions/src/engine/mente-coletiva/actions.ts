@@ -3,7 +3,7 @@ import utils from '../../utils';
 // Internal
 import { getNextPhase } from '.';
 import { buildListOfAnswers } from './helpers';
-import { AnswerEntry, AnswerGroupEntry } from './types';
+import { AnswerEntry, AnswerGroupEntry, FirebaseStateData } from './types';
 
 /**
  * When active player chooses the round's question
@@ -98,11 +98,11 @@ export const handleNextAnswers = async (
 ) => {
   const actionText = 'advance answers';
 
-  const sessionRef = utils.firebase.getSessionRef(gameName, gameId);
-  const stateDoc = await utils.firebase.getSessionDoc(gameName, gameId, 'state', actionText);
-  const playersDoc = await utils.firebase.getSessionDoc(gameName, gameId, 'players', actionText);
-  const state = stateDoc.data() ?? {};
-  const players = playersDoc.data() ?? {};
+  const { sessionRef, state, players } = await utils.firebase.getStateReferences<FirebaseStateData>(
+    gameName,
+    gameId,
+    actionText
+  );
 
   const answerGroup = state.answersList[0];
   // Get identical matches first
@@ -135,19 +135,17 @@ export const handleNextAnswers = async (
   const answersList = buildListOfAnswers(allAnswers);
 
   if (answersList.length === 0) {
-    return getNextPhase(gameName, gameId, players);
+    return getNextPhase(gameName, gameId, state);
   }
 
   try {
     await utils.firebase.saveGame(sessionRef, {
       update: {
         state: {
+          players,
           allAnswers,
           answersList,
         },
-      },
-      set: {
-        players,
       },
     });
   } catch (error) {
@@ -173,10 +171,11 @@ export const handleAddAnswer = async (
 ) => {
   const actionText = 'add answer';
 
-  const sessionRef = utils.firebase.getSessionRef(gameName, gameId);
-
-  const stateDoc = await utils.firebase.getSessionDoc(gameName, gameId, 'state', actionText);
-  const state = stateDoc.data() ?? {};
+  const { sessionRef, state } = await utils.firebase.getStateReferences<FirebaseStateData>(
+    gameName,
+    gameId,
+    actionText
+  );
 
   const answersList = [...(state.answersList as AnswerGroupEntry[])];
 

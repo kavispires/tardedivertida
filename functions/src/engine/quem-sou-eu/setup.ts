@@ -58,7 +58,6 @@ export const prepareSetupPhase = async (
   // Save
   return {
     update: {
-      players,
       store: {
         table,
         tableExtraCount: tableCharactersCount,
@@ -68,6 +67,7 @@ export const prepareSetupPhase = async (
       },
       state: {
         phase: QUEM_SOU_EU_PHASES.SETUP,
+        players,
         round: {
           current: 0,
           total: TOTAL_ROUNDS,
@@ -90,8 +90,8 @@ export const prepareCharacterFilteringPhase = async (
     update: {
       state: {
         phase: QUEM_SOU_EU_PHASES.CHARACTER_FILTERING,
+        players,
       },
-      players,
     },
   };
 };
@@ -151,12 +151,12 @@ export const prepareCharacterDescriptionPhase = async (
     update: {
       state: {
         phase: QUEM_SOU_EU_PHASES.CHARACTER_DESCRIPTION,
+        players,
         round,
         characters,
         tableOrder: utils.game.shuffle(Object.keys(characters)),
         roundType: CHARACTERS_VISIBILITY_PER_ROUND[round.current - 1] ? 'SHOW' : 'HIDE',
       },
-      players,
     },
   };
 };
@@ -211,9 +211,9 @@ export const prepareGuessingPhase = async (
         contendersGlyphs: store.contendersGlyphs,
         gallery,
       },
-      players,
       state: {
         phase: QUEM_SOU_EU_PHASES.GUESSING,
+        players,
       },
     },
   };
@@ -246,9 +246,9 @@ export const prepareResultsPhase = async (
       store: {
         achievements: store.achievements,
       },
-      players,
       state: {
         phase: QUEM_SOU_EU_PHASES.RESULTS,
+        players,
         gallery,
         ranking,
       },
@@ -281,9 +281,9 @@ export const prepareGameOverPhase = async (
 
   return {
     set: {
-      players,
       state: {
         phase: QUEM_SOU_EU_PHASES.GAME_OVER,
+        players,
         round: state.round,
         gameEndedAt: Date.now(),
         winners,

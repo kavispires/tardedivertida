@@ -2,7 +2,13 @@
 import { GAME_NAMES } from '../../utils/constants';
 import { MAX_ROUNDS, ONDA_TELEPATICA_ACTIONS, ONDA_TELEPATICA_PHASES, PLAYER_COUNTS } from './constants';
 // Types
-import type { OndaTelepaticaInitialState, OndaTelepaticaOptions, OndaTelepaticaSubmitAction } from './types';
+import type {
+  FirebaseStateData,
+  FirebaseStoreData,
+  OndaTelepaticaInitialState,
+  OndaTelepaticaOptions,
+  OndaTelepaticaSubmitAction,
+} from './types';
 // Utils
 import utils from '../../utils';
 // Internal Functions
@@ -30,7 +36,7 @@ export const getInitialState = (
   language: Language,
   options: OndaTelepaticaOptions
 ): OndaTelepaticaInitialState => {
-  return utils.helpers.getDefaultInitialState({
+  return utils.helpers.getDefaultInitialState<OndaTelepaticaInitialState>({
     gameId,
     gameName: GAME_NAMES.ONDA_TELEPATICA,
     uid,
@@ -52,13 +58,15 @@ export const getInitialState = (
  */
 export const playerCounts = PLAYER_COUNTS;
 
-export const getNextPhase = async (gameName: string, gameId: string, players: Players): Promise<boolean> => {
-  // Gather docs and references
-  const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences(
-    gameName,
-    gameId,
-    'prepare next phase'
-  );
+export const getNextPhase = async (
+  gameName: string,
+  gameId: string,
+  currentState?: FirebaseStateData
+): Promise<boolean> => {
+  const { sessionRef, state, store, players } = await utils.firebase.getStateAndStoreReferences<
+    FirebaseStateData,
+    FirebaseStoreData
+  >(gameName, gameId, 'prepare next phase', currentState);
 
   // Determine if it's game over
   const isGameOver = determineGameOver(players, store.options, state.round);
@@ -74,7 +82,7 @@ export const getNextPhase = async (gameName: string, gameId: string, players: Pl
     const additionalData = await getCategories(store.language);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await utils.firebase.saveGame(sessionRef, newPhase);
-    return getNextPhase(gameName, gameId, players);
+    return getNextPhase(gameName, gameId);
   }
 
   // DIAL_SIDES -> DIAL_CLUE

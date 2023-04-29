@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { useEffectOnce, useTitle } from 'react-use';
 // Ant Design Resources
-import { Typography, Layout, Space, Divider } from 'antd';
+import { Typography, Layout, Divider, Row, Col } from 'antd';
 import { DatabaseFilled } from '@ant-design/icons';
 
 // Hooks
@@ -19,6 +19,19 @@ import { DevHeader } from 'pages/Dev/DevHeader';
 import { DevEmulatorAlert } from './components/DevEmulatorAlert';
 import { Filters } from './components/Filters';
 import { LogoutButton } from 'components/auth/LogoutButton';
+
+// Players migration
+const migrationBlocked = [
+  'comunicacao-alienigena',
+  'espiao-entre-nos',
+  'megamix',
+  'na-rua-do-medo',
+  'polemica-da-vez',
+  'retrato-falado',
+  'sonhos-pesadelos',
+  'super-campeonato',
+  'testemunha-ocular',
+];
 
 function Hub() {
   useTitle('Hub - Tarde Divertida');
@@ -110,7 +123,6 @@ function Hub() {
       }
     );
   }, [gameList, language]);
-
   return (
     <Layout className="dev-layout">
       <DevHeader
@@ -140,46 +152,48 @@ function Hub() {
             <Typography.Title level={2}>
               <Translate pt="Em Desenvolvimento" en="Under Development" />
             </Typography.Title>
-            <Space size={[8, 16]} wrap align="start" className="game-card-collection">
-              {devGames.map((game: GameInfo, index: number) => (
-                <GameCard key={`${game.gameCode}-${index}`} game={game} />
-              ))}
-            </Space>
+            <RowOfGames games={devGames} />
             <Divider />
           </>
         )}
         <Typography.Title level={2}>
           <Translate pt="Disponíveis" en="Available" />
         </Typography.Title>
-        <Space size={[8, 16]} wrap align="start" className="game-card-collection">
-          {availableGames.map((game: GameInfo, index: number) => (
-            <GameCard key={`${game.gameCode}-${index}`} game={game} />
-          ))}
-        </Space>
+        <RowOfGames games={availableGames} />
+
         <Divider />
         {!isDevEnv && (
           <>
             <Typography.Title level={2}>
               <Translate pt="Em Desenvolvimento" en="Under Development" />
             </Typography.Title>
-            <Space size={[8, 16]} wrap align="start" className="game-card-collection">
-              {devGames.map((game: GameInfo, index: number) => (
-                <GameCard key={`${game.gameCode}-${index}`} game={game} />
-              ))}
-            </Space>
+            <RowOfGames games={comingSoonGames} />
+
             <Divider />
           </>
         )}
         <Typography.Title level={2}>
           <Translate pt="Em Breve" en="Coming Soon" />
         </Typography.Title>
-        <Space size={[8, 16]} wrap align="start" className="game-card-collection">
-          {comingSoonGames.map((game: GameInfo, index: number) => (
-            <GameCard key={`${game.gameCode}-${index}`} game={game} />
-          ))}
-        </Space>
+        <RowOfGames games={comingSoonGames} />
       </Layout.Content>
     </Layout>
+  );
+}
+
+type RowOfGamesProps = {
+  games: GameInfo[];
+};
+
+function RowOfGames({ games }: RowOfGamesProps) {
+  return (
+    <Row gutter={[8, 16]}>
+      {games.map((game: GameInfo) => (
+        <Col key={game.gameName} xs={24} sm={12} md={8} lg={8} xl={6} xxl={4}>
+          <GameCard game={game} isAdmin={!migrationBlocked.includes(game.gameName)} />
+        </Col>
+      ))}
+    </Row>
   );
 }
 

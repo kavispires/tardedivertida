@@ -3,6 +3,8 @@ import { GAME_NAMES } from '../../utils/constants';
 import { MAX_ROUNDS, PLAYER_COUNTS, TESTEMUNHA_OCULAR_ACTIONS, TESTEMUNHA_OCULAR_PHASES } from './constants';
 // Types
 import type {
+  FirebaseStateData,
+  FirebaseStoreData,
   TestemunhaOcularInitialState,
   TestemunhaOcularOptions,
   TestemunhaOcularSubmitAction,
@@ -35,7 +37,7 @@ export const getInitialState = (
   language: string,
   options: TestemunhaOcularOptions
 ): TestemunhaOcularInitialState => {
-  return utils.helpers.getDefaultInitialState({
+  return utils.helpers.getDefaultInitialState<TestemunhaOcularInitialState>({
     gameId,
     gameName: GAME_NAMES.TESTEMUNHA_OCULAR,
     uid,
@@ -60,14 +62,13 @@ export const playerCounts = PLAYER_COUNTS;
 export const getNextPhase = async (
   gameName: string,
   gameId: string,
-  players: Players,
+  currentState?: FirebaseStateData,
   additionalPayload?: PlainObject
 ): Promise<boolean> => {
-  const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences(
-    gameName,
-    gameId,
-    'prepare next phase'
-  );
+  const { sessionRef, state, store, players } = await utils.firebase.getStateAndStoreReferences<
+    FirebaseStateData,
+    FirebaseStoreData
+  >(gameName, gameId, 'prepare next phase', currentState);
 
   // Determine next phase
   const nextPhase = determineNextPhase(
@@ -86,7 +87,7 @@ export const getNextPhase = async (
     const additionalData = await getQuestionsAndSuspects(store.language, store.options);
     const newPhase = await prepareSetupPhase(additionalData);
     await utils.firebase.saveGame(sessionRef, newPhase);
-    return getNextPhase(gameName, gameId, players);
+    return getNextPhase(gameName, gameId);
   }
 
   // SETUP -> WITNESS_SELECTION

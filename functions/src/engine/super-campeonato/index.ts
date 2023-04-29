@@ -3,6 +3,8 @@ import { GAME_NAMES } from '../../utils/constants';
 import { TOTAL_ROUNDS, PLAYER_COUNTS, SUPER_CAMPEONATO_PHASES, SUPER_CAMPEONATO_ACTIONS } from './constants';
 // Types
 import type {
+  FirebaseStateData,
+  FirebaseStoreData,
   SuperCampeonatoInitialState,
   SuperCampeonatoOptions,
   SuperCampeonatoSubmitAction,
@@ -41,7 +43,7 @@ export const getInitialState = (
   language: Language,
   options: SuperCampeonatoOptions
 ): SuperCampeonatoInitialState => {
-  return utils.helpers.getDefaultInitialState({
+  return utils.helpers.getDefaultInitialState<SuperCampeonatoInitialState>({
     gameId,
     gameName: GAME_NAMES.SUPER_CAMPEONATO,
     uid,
@@ -61,12 +63,15 @@ export const getInitialState = (
  */
 export const playerCounts = PLAYER_COUNTS;
 
-export const getNextPhase = async (gameName: string, gameId: string, players: Players): Promise<boolean> => {
-  const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences(
-    gameName,
-    gameId,
-    'prepare next phase'
-  );
+export const getNextPhase = async (
+  gameName: string,
+  gameId: string,
+  currentState?: FirebaseStateData
+): Promise<boolean> => {
+  const { sessionRef, state, store, players } = await utils.firebase.getStateAndStoreReferences<
+    FirebaseStateData,
+    FirebaseStoreData
+  >(gameName, gameId, 'prepare next phase', currentState);
 
   // Determine next phase
   const nextPhase = determineNextPhase(
@@ -86,7 +91,7 @@ export const getNextPhase = async (gameName: string, gameId: string, players: Pl
     const additionalData = await getResourceData(store.language, isAlternativeGame);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await utils.firebase.saveGame(sessionRef, newPhase);
-    return getNextPhase(gameName, gameId, players);
+    return getNextPhase(gameName, gameId);
   }
 
   // * -> CHALLENGE_SELECTION

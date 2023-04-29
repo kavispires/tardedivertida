@@ -58,7 +58,6 @@ export const prepareSetupPhase = async (
   // Save
   return {
     update: {
-      players,
       store: {
         movieDeck,
         movieDeckIndex: 0,
@@ -75,6 +74,7 @@ export const prepareSetupPhase = async (
       },
       state: {
         phase: VAMOS_AO_CINEMA_PHASES.SETUP,
+        players,
         round: {
           current: 0,
           total: TOTAL_ROUNDS,
@@ -113,17 +113,17 @@ export const prepareMovieSelectionPhase = async (
       },
       state: {
         phase: VAMOS_AO_CINEMA_PHASES.MOVIE_SELECTION,
+        players,
         round: utils.helpers.increaseRound(state.round),
         movies,
         goodReview,
         badReview,
         mistakes: [],
-        turnOrder: utils.firebase.deleteValue(),
         eliminatedMovies: [],
         votedForSelectedMovie: [],
         score: 0,
       },
-      players,
+      stateCleanup: ['turnOrder'],
     },
   };
 };
@@ -150,10 +150,10 @@ export const prepareMovieEliminationPhase = async (
     update: {
       state: {
         phase: VAMOS_AO_CINEMA_PHASES.MOVIE_ELIMINATION,
+        players,
         turnOrder,
         activePlayerId,
       },
-      players,
     },
   };
 };
@@ -216,12 +216,12 @@ export const prepareRevealPhase = async (
   // Save
   return {
     update: {
-      players,
       store: {
         ...storeUpdate,
       },
       state: {
         phase: VAMOS_AO_CINEMA_PHASES.REVEAL,
+        players,
         currentMovieId,
         mistakes,
         outcome,
@@ -257,9 +257,9 @@ export const prepareGameOverPhase = async (
 
   return {
     set: {
-      players,
       state: {
         phase: VAMOS_AO_CINEMA_PHASES.GAME_OVER,
+        players,
         round: state.round,
         gameEndedAt: Date.now(),
         groupScore: store.score + state.score,

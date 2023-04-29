@@ -2,7 +2,13 @@
 import { GAME_NAMES } from '../../utils/constants';
 import { MAX_ROUNDS, PLAYER_COUNTS, POLEMICA_DA_VEZ_ACTIONS, POLEMICA_DA_VEZ_PHASES } from './constants';
 // Types
-import type { PolemicaDaVezInitialState, PolemicaDaVezOptions, PolemicaDaVezSubmitAction } from './types';
+import type {
+  FirebaseStateData,
+  FirebaseStoreData,
+  PolemicaDaVezInitialState,
+  PolemicaDaVezOptions,
+  PolemicaDaVezSubmitAction,
+} from './types';
 // Utils
 import utils from '../../utils';
 // Internal Functions
@@ -30,7 +36,7 @@ export const getInitialState = (
   language: Language,
   options: PolemicaDaVezOptions
 ): PolemicaDaVezInitialState => {
-  return utils.helpers.getDefaultInitialState({
+  return utils.helpers.getDefaultInitialState<PolemicaDaVezInitialState>({
     gameId,
     gameName: GAME_NAMES.POLEMICA_DA_VEZ,
     uid,
@@ -51,12 +57,15 @@ export const getInitialState = (
  */
 export const playerCounts = PLAYER_COUNTS;
 
-export const getNextPhase = async (gameName: string, gameId: string, players: Players): Promise<boolean> => {
-  const { sessionRef, state, store } = await utils.firebase.getStateAndStoreReferences(
-    gameName,
-    gameId,
-    'prepare next phase'
-  );
+export const getNextPhase = async (
+  gameName: string,
+  gameId: string,
+  currentState?: FirebaseStateData
+): Promise<boolean> => {
+  const { sessionRef, state, store, players } = await utils.firebase.getStateAndStoreReferences<
+    FirebaseStateData,
+    FirebaseStoreData
+  >(gameName, gameId, 'prepare next phase', currentState);
 
   // Determine if it's game over
   const isGameOver = determineGameOver(players, store.options, state.round);
@@ -72,7 +81,7 @@ export const getNextPhase = async (gameName: string, gameId: string, players: Pl
     const additionalData = await getTopics(store.language);
     const newPhase = await prepareSetupPhase(store, state, players, additionalData);
     await utils.firebase.saveGame(sessionRef, newPhase);
-    return getNextPhase(gameName, gameId, players);
+    return getNextPhase(gameName, gameId);
   }
 
   // * -> TOPIC_SELECTION

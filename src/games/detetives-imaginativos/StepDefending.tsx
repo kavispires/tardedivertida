@@ -29,7 +29,7 @@ type StepDefendingProps = {
   user: GamePlayer;
   players: GamePlayers;
   turnOrder: TurnOrder;
-};
+} & AnnouncementProps;
 
 export function StepDefending({
   clue,
@@ -42,6 +42,7 @@ export function StepDefending({
   user,
   players,
   turnOrder,
+  announcement,
 }: StepDefendingProps) {
   useTemporarilyHidePlayersBar();
   const { translate } = useLanguage();
@@ -64,7 +65,7 @@ export function StepDefending({
   }, [isUserTheCurrentPlayer, currentPlayer?.id, translate, isLoading, user.updatedAt]);
 
   return (
-    <Step>
+    <Step announcement={announcement}>
       <Title>
         <Translate pt="Pista Secreta era: " en="The Secret Clue was: " />
         <TextHighlight>{clue}</TextHighlight>

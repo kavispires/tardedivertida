@@ -3,7 +3,6 @@ import { useTitle } from 'react-use';
 // Hooks
 import { useGameState } from 'hooks/useGameState';
 import { useGlobalState } from 'hooks/useGlobalState';
-import { useGamePlayers } from 'hooks/useGamePlayers';
 import { useLanguage } from 'hooks/useLanguage';
 import { useIdleRedirect } from 'hooks/useIdleRedirect';
 import { useGameMeta } from 'hooks/useGameMeta';
@@ -28,11 +27,11 @@ type SessionProps = {
 export function Session({ gameCollection, getActiveComponent }: SessionProps) {
   const gameMeta = useGameMeta();
   const { language } = useLanguage();
-  const players = useGamePlayers(gameMeta.gameId, gameCollection);
   const state = useGameState(gameMeta.gameId, gameCollection);
   const [userId] = useGlobalState('userId');
   const [info, setInfo] = useState<any>({});
   const gameName = info?.title ?? '';
+  const players = state.players ?? {};
 
   useIdleRedirect();
 

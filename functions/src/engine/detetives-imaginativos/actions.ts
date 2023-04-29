@@ -3,6 +3,7 @@ import { HAND_LIMIT } from './constants';
 // Utils
 import utils from '../../utils';
 import { getNextPhase } from './index';
+import { FirebaseStateData } from './types';
 
 /**
  *
@@ -20,11 +21,11 @@ export const handlePlayCard = async (
 ) => {
   const actionText = 'play a card';
 
-  const sessionRef = utils.firebase.getSessionRef(gameName, gameId);
-  const playersDoc = await utils.firebase.getSessionDoc(gameName, gameId, 'players', actionText);
-  const stateDoc = await utils.firebase.getSessionDoc(gameName, gameId, 'state', actionText);
-  const players = playersDoc.data() ?? {};
-  const state = stateDoc.data() ?? {};
+  const { sessionRef, state, players } = await utils.firebase.getStateReferences<FirebaseStateData>(
+    gameName,
+    gameId,
+    actionText
+  );
 
   if (state.currentPlayerId !== playerId) {
     utils.firebase.throwException('You are not the current player!', 'Failed to play card.');
@@ -63,7 +64,7 @@ export const handlePlayCard = async (
     // If it is the last player to play, go to the next phase
     if (newPhaseIndex === state.phaseOrder.length) {
       await sessionRef.doc('state').update({ table });
-      getNextPhase(gameName, gameId, players);
+      getNextPhase(gameName, gameId, state);
     } else {
       await sessionRef.doc('state').update({
         table,
@@ -88,10 +89,11 @@ export const handlePlayCard = async (
 export const handleDefend = async (gameName: GameName, gameId: GameId, playerId: PlayerId) => {
   const actionText = 'defend';
 
-  const sessionRef = utils.firebase.getSessionRef(gameName, gameId);
-  const stateDoc = await utils.firebase.getSessionDoc(gameName, gameId, 'state', actionText);
-
-  const state = stateDoc.data() ?? {};
+  const { sessionRef, state } = await utils.firebase.getStateReferences<FirebaseStateData>(
+    gameName,
+    gameId,
+    actionText
+  );
 
   if (state.currentPlayerId !== playerId) {
     utils.firebase.throwException('You are not the current player!', 'Failed to play card.');
@@ -100,12 +102,9 @@ export const handleDefend = async (gameName: GameName, gameId: GameId, playerId:
   // Add card to table
   try {
     const newPhaseIndex = state.phaseIndex + 1;
-
     // If it is the last player to play, go to the next phase
     if (newPhaseIndex === state.phaseOrder.length) {
-      const playersDoc = await utils.firebase.getSessionDoc(gameName, gameId, 'players', actionText);
-      const players = playersDoc.data() ?? {};
-      getNextPhase(gameName, gameId, players);
+      getNextPhase(gameName, gameId, state);
     } else {
       await sessionRef.doc('state').update({
         phaseIndex: newPhaseIndex,

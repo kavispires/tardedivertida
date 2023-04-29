@@ -1,6 +1,7 @@
 // Helpers
 import utils from '../../utils';
 import { getNextPhase } from './index';
+import { FirebaseStateData } from './types';
 
 export const handleSubmitHint = async (
   gameName: GameName,
@@ -35,8 +36,11 @@ export const handleSubmitConclusions = async (
 ) => {
   const actionText = 'submit conclusions';
 
-  const playersDoc = await utils.firebase.getSessionDoc(gameName, gameId, 'players', actionText);
-  const players = playersDoc.data() ?? {};
+  const { players } = await utils.firebase.getStateReferences<FirebaseStateData>(
+    gameName,
+    gameId,
+    actionText
+  );
 
   const updatedConclusions = {
     ...players[playerId].conclusions,
@@ -62,23 +66,25 @@ export const handleSubmitCode = async (
 ) => {
   const actionText = 'submit conclusions';
 
-  const sessionRef = utils.firebase.getSessionRef(gameName, gameId);
-  const playersDoc = await utils.firebase.getSessionDoc(gameName, gameId, 'players', actionText);
+  const { sessionRef, state, players } = await utils.firebase.getStateReferences<FirebaseStateData>(
+    gameName,
+    gameId,
+    actionText
+  );
 
-  const players = playersDoc.data() ?? {};
   const updatedPlayers = utils.players.readyPlayer(players, playerId);
 
   updatedPlayers[playerId].codeGuess = code;
 
   try {
-    await sessionRef.doc('players').update({ [playerId]: updatedPlayers[playerId] });
+    await sessionRef.doc('state').update({ [`players.${playerId}`]: updatedPlayers[playerId] });
   } catch (error) {
     utils.firebase.throwException(error, actionText);
   }
 
   // If all players are ready, trigger next phase
   if (utils.players.isEverybodyReady(updatedPlayers)) {
-    return getNextPhase(gameName, gameId, players);
+    return getNextPhase(gameName, gameId, state);
   }
 
   return true;
