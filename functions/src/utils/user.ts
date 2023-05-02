@@ -56,7 +56,7 @@ interface FirebaseUserDB {
   gender?: string;
   avatars: Record<AvatarId, number>;
   ratings: Record<GameName, number>;
-  games: Record<GameName, GameUserEntry[]>;
+  games: Record<GameName, Record<GameId, GameUserEntry>>;
   blurredImages: Record<ImageCardId, true>;
 }
 
@@ -119,7 +119,7 @@ const DEFAULT_FIREBASE_USER_DB: FirebaseUserDB = {
   blurredImages: {},
 };
 
-const PLACEHOLDER_GAME_USER_ENTRY = {
+const PLACEHOLDER_GAME_USER_ENTRY: GameUserEntry = {
   gameId: '',
   startedAt: 0,
   endedAt: 0,
@@ -187,7 +187,7 @@ export const serializeUser = (dbUser: FirebaseUserDB): FirebaseUserUI => {
 
     const entry = playsStatistics[gameName];
 
-    gameEntries.forEach((gEntry) => {
+    Object.values(gameEntries).forEach((gEntry) => {
       const gameEntry = { gameName, ...gEntry };
       entry.plays += 1;
 
@@ -419,9 +419,9 @@ export const saveGameToUsers = async ({
 
       // Save game entry
       if (user.games[gameName] === undefined) {
-        user.games[gameName] = [];
+        user.games[gameName] = {};
       }
-      user.games[gameName].unshift(gameEntry);
+      user.games[gameName][gameEntry.gameId] = gameEntry;
 
       // Save each user
       try {
