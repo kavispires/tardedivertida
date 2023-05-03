@@ -94,3 +94,30 @@ export const updateDataCollectionRecursively = async (
 
   return true;
 };
+
+export const updateCardDataCollection = async (
+  type: 'cards' | 'imageCards',
+  language: Language,
+  data: Record<CardId | ImageCardId, string[]>
+): Promise<boolean> => {
+  const documentName = `${type}Clues${language.toUpperCase()}`;
+
+  // Get currentDoc
+  const docRef = utils.firebase.getDataRef().doc(documentName);
+  const doc = await docRef.get();
+  if (doc.exists) {
+    const currentData = doc.data() ?? {};
+    // Merge data
+    Object.entries(data).forEach(([cardId, clues]) => {
+      if (currentData[cardId]) {
+        currentData[cardId] = [...currentData[cardId], ...clues];
+      } else {
+        currentData[cardId] = clues;
+      }
+    });
+
+    await docRef.update(currentData);
+  }
+
+  return true;
+};
