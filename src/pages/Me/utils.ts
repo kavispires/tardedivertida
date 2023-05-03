@@ -1,3 +1,5 @@
+import GAME_LIST from 'utils/info';
+
 /**
  * Converts a timestamp (number of milliseconds since January 1, 1970, 00:00:00 UTC) to a string
  * representation of the date in the format "YYYY/MM/DD HH:MM".
@@ -32,3 +34,15 @@ export function durationToHours(duration: number): number {
   }
   return hours;
 }
+
+export const playableGames = Object.entries(GAME_LIST).reduce(
+  (acc: Record<GameName, GameInfo>, [gameName, info]) => {
+    if (info.version.includes('.')) {
+      acc[gameName] = info;
+    }
+    return acc;
+  },
+  {}
+);
+
+export const availableGamesCount = Object.keys(playableGames).length;
