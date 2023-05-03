@@ -22,7 +22,7 @@ export const getQuestionsAndSuspects = async (
   // Get full deck
   const allCards = await resourceUtils.fetchResource(resourceName);
   // Get used deck
-  const usedCards = await globalUtils.getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.TESTEMUNHA_OCULAR, {});
+  const usedCards = await globalUtils.getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.TESTIMONY_QUESTIONS, {});
   // Get images info
   const allSuspects = await resourceUtils.fetchTDIData('us/info');
 
@@ -34,7 +34,7 @@ export const getQuestionsAndSuspects = async (
 
   // If not the minimum cards needed, reset and use all
   if (Object.keys(availableCards).length < QUESTION_COUNT) {
-    await utils.firebase.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.TESTEMUNHA_OCULAR);
+    await utils.firebase.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.TESTIMONY_QUESTIONS);
     return {
       allCards,
       allSuspects: Object.values(allSuspects),
@@ -55,7 +55,7 @@ export const saveUsedQUestions = async (pastQuestions: TestemunhaOcularEntry[]) 
   // Save usedTestemunhaOcularCards to global
   const usedTestemunhaOcularCards = utils.helpers.buildIdDictionary(pastQuestions);
   await globalUtils.updateGlobalFirebaseDoc(
-    GLOBAL_USED_DOCUMENTS.TESTEMUNHA_OCULAR,
+    GLOBAL_USED_DOCUMENTS.TESTIMONY_QUESTIONS,
     usedTestemunhaOcularCards
   );
 };
