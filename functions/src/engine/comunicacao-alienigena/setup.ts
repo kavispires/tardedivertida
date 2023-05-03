@@ -335,8 +335,6 @@ export const prepareGameOverPhase = async (
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 
-  await saveUsedItems(utils.helpers.buildIdDictionary(state.items));
-
   await utils.firebase.markGameAsComplete(gameId);
 
   await utils.user.saveGameToUsers({
@@ -348,6 +346,12 @@ export const prepareGameOverPhase = async (
     achievements: [],
     language: store.language,
   });
+
+  // Save data (alien items)
+  await saveUsedItems(utils.helpers.buildIdDictionary(state.items));
+
+  utils.players.cleanup(players, ['role']);
+  utils.firebase.cleanupStore(store, []);
 
   return {
     set: {
