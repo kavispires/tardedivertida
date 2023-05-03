@@ -20,7 +20,7 @@ import {
   prepareGalleryPhase,
   prepareGameOverPhase,
 } from './setup';
-import { getCards, saveUsedCards } from './data';
+import { getCards } from './data';
 import { handleSubmitDrawing, handleSubmitVoting } from './actions';
 
 /**
@@ -119,7 +119,6 @@ export const getNextPhase = async (
   // GALLERY -> GAME_OVER
   if (nextPhase === ARTE_RUIM_PHASES.GAME_OVER) {
     const newPhase = await prepareGameOverPhase(gameId, store, state, players);
-    await saveUsedCards(store.pastDrawings, store.language);
     return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
