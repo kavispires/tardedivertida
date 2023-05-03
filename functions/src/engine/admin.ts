@@ -50,7 +50,7 @@ export const createGame = async (data: CreateGamePayload, context: FirebaseConte
     );
   }
 
-  if (process.env.FUNCTIONS_EMULATOR) {
+  if (process.env.FUNCTIONS_EMULATOR && process.env.FIRESTORE_EMULATOR_HOST) {
     gameId = Array(4).fill(gameCode).join('');
   }
 
@@ -76,7 +76,7 @@ export const createGame = async (data: CreateGamePayload, context: FirebaseConte
 
   try {
     // Update global ids. This is in a different block just for dev purposes
-    await globalRef.doc(USED_GAME_IDS).update({ [gameId]: true });
+    await globalRef.doc(USED_GAME_IDS).update({ [gameId]: Date.now() });
   } catch (e) {
     // Do nothing
   }
