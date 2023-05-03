@@ -191,7 +191,7 @@ export const flattenArray = <T>(twoDimensionalArray: T[][]): T[] =>
  * @param duration
  */
 export const wait = async (duration = 3000) => {
-  if (process.env.FUNCTIONS_EMULATOR) {
+  if (process.env.FUNCTIONS_EMULATOR && process.env.FIRESTORE_EMULATOR_HOST) {
     await new Promise((resolve) => setTimeout(resolve, duration));
   }
 };
