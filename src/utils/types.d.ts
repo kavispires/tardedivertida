@@ -109,6 +109,7 @@ interface Me {
   id: string;
   isAdmin: boolean;
   names: string[];
+  language?: Language;
   // Top 3 avatars
   avatars: AvatarId[];
   gender?: string;

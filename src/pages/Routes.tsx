@@ -9,6 +9,7 @@ import Home from './Home/Home';
 import Login from './Login/Login';
 // Routes Lazy load
 const Me = lazy(() => import('pages/Me/Me' /* webpackChunkName: "page-me" */));
+const Users = lazy(() => import('pages/Me/Users' /* webpackChunkName: "page-users" */));
 const Hub = lazy(() => import('pages/Hub/Hub' /* webpackChunkName: "page-hub" */));
 const Game = lazy(() => import('pages/Game/Game' /* webpackChunkName: "page-game" */));
 const Showcase = lazy(() => import('pages/Showcase/Showcase' /* webpackChunkName: "page-showcase" */));
@@ -31,6 +32,11 @@ const LazyMe = () => (
 const LazyHub = () => (
   <Suspense fallback={<LoadingPage message={''} />}>
     <Hub />
+  </Suspense>
+);
+const LazyUsers = () => (
+  <Suspense fallback={<LoadingPage message={''} />}>
+    <Users />
   </Suspense>
 );
 const LazyGame = () => (
@@ -92,6 +98,16 @@ export const routes = (
     <Route path="/" element={<Home />} />
     <Route path="/login" element={<Login />} />
     <Route path="/me" element={<LazyMe />} />
+
+    <Route
+      path="/users"
+      element={
+        <AdminProtectedRoute>
+          <LazyUsers />
+        </AdminProtectedRoute>
+      }
+    />
+
     <Route
       path="/hub"
       element={
