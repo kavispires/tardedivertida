@@ -169,6 +169,9 @@ export const prepareGameOverPhase = async (
 
   await utils.firebase.markGameAsComplete(gameId);
 
+  // Cleanup players
+  utils.players.removePropertiesFromPlayers(players, ['currentCard', 'votes']);
+
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.ARTE_RUIM,
     gameId,
@@ -176,6 +179,7 @@ export const prepareGameOverPhase = async (
     players,
     winners,
     achievements,
+    language: store.language,
   });
 
   return {

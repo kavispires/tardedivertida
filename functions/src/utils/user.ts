@@ -52,6 +52,7 @@ interface FirebaseUserDB {
   id: string;
   isAdmin?: boolean;
   isGuest?: boolean;
+  preferredLanguage: Language;
   names: string[]; // unique list but most recent comes last
   gender?: string;
   avatars: Record<AvatarId, number>;
@@ -64,7 +65,8 @@ interface FirebaseUserUI {
   id: string;
   isAdmin: boolean;
   names: string[];
-  // Top 3 avatars
+  language: Language;
+  // Top 5 avatars
   avatars: AvatarId[];
   gender?: string;
   statistics: {
@@ -113,6 +115,7 @@ const DEFAULT_FIREBASE_USER_DB: FirebaseUserDB = {
   id: '',
   names: [],
   avatars: {},
+  preferredLanguage: 'en',
   games: {},
   gender: 'unknown',
   ratings: {},
@@ -153,7 +156,7 @@ export const serializeUser = (dbUser: FirebaseUserDB): FirebaseUserUI => {
   // Get top avatars
   const topAvatars = Object.keys(dbUser.avatars)
     .sort((a, b) => dbUser.avatars[b] - dbUser.avatars[a])
-    .slice(0, 3);
+    .slice(0, 5);
 
   const playsStatistics: Record<GameName, GameUserStatistics> = {};
 
@@ -346,6 +349,7 @@ export const serializeUser = (dbUser: FirebaseUserDB): FirebaseUserUI => {
     id: dbUser.id,
     names: dbUser?.names ?? [],
     isAdmin: !!dbUser.isAdmin,
+    language: dbUser.preferredLanguage ?? 'en',
     avatars: topAvatars,
     statistics: globalStatistics,
     games: playsStatistics,
@@ -355,6 +359,7 @@ export const serializeUser = (dbUser: FirebaseUserDB): FirebaseUserUI => {
 type SaveGameToUsersProps = {
   gameName: string;
   gameId: GameId;
+  language: Language;
   startedAt: DateMilliseconds;
   players: Players;
   winners: Player[];
@@ -366,6 +371,7 @@ export const saveGameToUsers = async ({
   gameId,
   startedAt,
   players,
+  language,
   winners,
   achievements,
 }: SaveGameToUsersProps) => {
@@ -416,6 +422,8 @@ export const saveGameToUsers = async ({
         user.avatars[avatarId] = 0;
       }
       user.avatars[avatarId] += 1;
+
+      user.preferredLanguage = language ?? 'en';
 
       // Save game entry
       if (user.games[gameName] === undefined) {

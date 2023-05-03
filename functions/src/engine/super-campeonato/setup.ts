@@ -257,6 +257,10 @@ export const prepareGameOverPhase = async (
 
   await utils.firebase.markGameAsComplete(gameId);
 
+  // TODO: Save contenders
+  // TODO: Save challenges
+  // TODO: Improve game over screen with challenges won by winners and all defeated contenders
+
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.SUPER_CAMPEONATO,
     gameId,
@@ -264,6 +268,7 @@ export const prepareGameOverPhase = async (
     players,
     winners,
     achievements: [],
+    language: store.language,
   });
 
   return {

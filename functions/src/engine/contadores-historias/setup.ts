@@ -168,10 +168,18 @@ export const prepareResolutionPhase = async (
   // Gather votes
   const { ranking, outcome, table } = scoreRound(players, state.table, state.storytellerId, store);
 
+  const { usedCards = [] } = store;
+  usedCards.push({
+    story: store.story,
+    cardId: store.solutionCardId,
+    language: store.language,
+  });
+
   // Save
   return {
     update: {
       store: {
+        usedCards: store.usedCards,
         achievements: store.achievements,
       },
       state: {
@@ -204,6 +212,7 @@ export const prepareGameOverPhase = async (
     players,
     winners,
     achievements,
+    language: store.language,
   });
 
   return {
