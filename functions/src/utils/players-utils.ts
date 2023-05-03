@@ -439,3 +439,22 @@ export class Scores {
     });
   }
 }
+
+/**
+ * Cleans up the properties of a collection of players objects by deleting all properties
+ * except for a predefined set of keys, plus any additional keys specified in the `keepKeys` parameter.
+ * @param players - A collection of players objects to clean up.
+ * @param [keepKeys=[]] - An optional array of additional keys to keep in the objects.
+ * @returns The cleaned up collection of players objects.
+ */
+export const cleanup = (players: Players, keepKeys: string[]) => {
+  const keys = ['avatarId', 'id', 'name', 'ready', 'score', 'updatedAt', 'type', ...keepKeys];
+  Object.values(players).forEach((player) => {
+    Object.keys(player).forEach((key) => {
+      if (!keys.includes(key)) {
+        delete player[key];
+      }
+    });
+  });
+  return players;
+};
