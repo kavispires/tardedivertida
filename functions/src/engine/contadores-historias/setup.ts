@@ -13,6 +13,7 @@ import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types
 import utils from '../../utils';
 // Internal
 import { buildTable, buildTableDeck, getAchievements, getTableCards, scoreRound } from './helpers';
+import { saveData } from './data';
 
 /**
  * Setup
@@ -214,6 +215,12 @@ export const prepareGameOverPhase = async (
     achievements,
     language: store.language,
   });
+
+  // Save data: imageCards and clues
+  await saveData(store.usedCards, store.language);
+
+  utils.players.cleanup(players, []);
+  utils.firebase.cleanupStore(store, []);
 
   return {
     set: {
