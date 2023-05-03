@@ -2,14 +2,14 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "G",
   "gameName": "galeria-de-sonhos",
-  "version": "4.0.15",
+  "version": "4.0.16",
   "title": {
     "pt": "Galeria de sonhos",
     "en": "Dream Gallery"
   },
   "popularName": {
     "pt": "Bingo de cartas bonitas",
-    "en": "Image bingo"
+    "en": "The one with the image bingo"
   },
   "basedOn": "alletS",
   "summary": {

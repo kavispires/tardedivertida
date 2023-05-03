@@ -2,14 +2,14 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "P",
   "gameName": "polemica-da-vez",
-  "version": "2.7.11",
+  "version": "2.7.12",
   "title": {
     "pt": "Polêmica da Vez",
     "en": "That's Polemic"
   },
   "popularName": {
     "pt": "Do quem ganha mais likes",
-    "en": ""
+    "en": "The one with the likes"
   },
   "basedOn": "cimeloP",
   "summary": {

@@ -2,14 +2,14 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "H",
   "gameName": "crimes-hediondos",
-  "version": "1.3.12",
+  "version": "1.3.13",
   "title": {
     "pt": "Crimes Hediondos",
     "en": "Horrific Crimes"
   },
   "popularName": {
     "pt": "Da Convenção de Serial Killers",
-    "en": ""
+    "en": "The one about crimes"
   },
   "basedOn": "gnoK gnoH ni redruM :noitpeceD",
   "summary": {
