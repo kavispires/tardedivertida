@@ -282,6 +282,7 @@ export const prepareGameOverPhase = async (
     players,
     winners,
     achievements,
+    language: store.language,
   });
 
   return {

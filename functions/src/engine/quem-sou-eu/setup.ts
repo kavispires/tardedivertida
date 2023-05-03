@@ -268,6 +268,8 @@ export const prepareGameOverPhase = async (
 
   await saveContendersGlyphs(store.contendersGlyphs ?? {});
 
+  // TODO: Save used contenders
+
   await utils.firebase.markGameAsComplete(gameId);
 
   await utils.user.saveGameToUsers({
@@ -277,6 +279,7 @@ export const prepareGameOverPhase = async (
     players,
     winners,
     achievements,
+    language: store.language,
   });
 
   return {
