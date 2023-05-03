@@ -9,7 +9,7 @@ import utils from '../utils';
 export const getDataFirebaseDocData = async (documentName: string, fallback: any = {}): Promise<any> => {
   let response: any;
 
-  if (process.env.FUNCTIONS_EMULATOR) {
+  if (process.env.FUNCTIONS_EMULATOR && process.env.FIRESTORE_EMULATOR_HOST) {
     return fallback;
   }
 
