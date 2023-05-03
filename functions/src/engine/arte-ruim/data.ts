@@ -4,10 +4,10 @@ import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
 import type { ResourceData, ArteRuimDrawing } from './types';
 // Helpers
 import * as globalUtils from '../global';
-import * as publicUtils from '../public';
+import * as dataUtils from '../collections';
 import * as resourceUtils from '../resource';
 import utils from '../../utils';
-import { buildPastDrawingsDict, distributeCardsByLevel, getAvailableCards, getGameSettings } from './helpers';
+import { distributeCardsByLevel, getAvailableCards, getGameSettings } from './helpers';
 
 /**
  * Get expression cards resource based on the game's language
@@ -86,9 +86,13 @@ export const saveUsedCards = async (pastDrawings: ArteRuimDrawing[], language: L
   // Save usedArteRuimCards to global
   const usedArteRuimCards = utils.helpers.buildIdDictionary(pastDrawings);
   await globalUtils.updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.ARTE_RUIM, usedArteRuimCards);
+
   // Save drawings to public gallery
-  const drawingDocumentName = language === 'pt' ? 'arteRuimDrawingsPt2' : 'arteRuimDrawingsEn2';
-  const publicDrawings = await publicUtils.getPublicFirebaseDocData(drawingDocumentName, {});
-  const newArteRuimDrawings = buildPastDrawingsDict(pastDrawings, publicDrawings);
-  await publicUtils.updatePublicFirebaseDoc(drawingDocumentName, newArteRuimDrawings);
+  const endedAt = Date.now();
+  const newArteRuimDrawings = pastDrawings.reduce((acc, entry) => {
+    acc[`${entry.id}::${endedAt}`] = entry;
+    return acc;
+  }, {});
+
+  await dataUtils.updateDataCollectionRecursively('drawing', language, newArteRuimDrawings);
 };

@@ -14,6 +14,7 @@ import {
   getNewPastDrawings,
   getTheTwoLevel5Cards,
 } from './helpers';
+import { saveUsedCards } from './data';
 
 /**
  * Setup
@@ -169,9 +170,6 @@ export const prepareGameOverPhase = async (
 
   await utils.firebase.markGameAsComplete(gameId);
 
-  // Cleanup players
-  utils.players.removePropertiesFromPlayers(players, ['currentCard', 'votes']);
-
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.ARTE_RUIM,
     gameId,
@@ -182,7 +180,16 @@ export const prepareGameOverPhase = async (
     language: store.language,
   });
 
+  // Save data (drawings, usedArteRuimCards)
+  await saveUsedCards(store.pastDrawings, store.language);
+
+  utils.players.cleanup(players, []);
+  utils.firebase.cleanupStore(store, []);
+
   return {
+    update: {
+      store,
+    },
     set: {
       state: {
         phase: ARTE_RUIM_PHASES.GAME_OVER,
