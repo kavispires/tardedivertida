@@ -464,3 +464,20 @@ export const updateState = async ({
 export const resetGlobalUsedDocument = async (documentName: string) => {
   await utils.firebase.getGlobalRef().doc(documentName).set({ 'a-a-a': true });
 };
+
+/**
+ * Remove all properties from store except for default props and any specified on keepKeys
+ * @param o
+ * @param keepKeys
+ * @returns
+ */
+export const cleanupStore = (store: PlainObject, keepKeys: string[]) => {
+  const keys = ['language', 'options', 'turnOrder', 'gameOrder', ...keepKeys];
+  Object.keys(store).forEach((key) => {
+    if (!keys.includes(key)) {
+      store[key] = deleteValue();
+    }
+  });
+
+  return store;
+};
