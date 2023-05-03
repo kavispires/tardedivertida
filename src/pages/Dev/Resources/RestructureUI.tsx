@@ -283,7 +283,5 @@ const generateGameId = (gameCode: GameCode, language: Language, length = 4): str
  * @param duration
  */
 export const wait = async (duration = 1000) => {
-  if (process.env.FUNCTIONS_EMULATOR) {
-    await new Promise((resolve) => setTimeout(resolve, duration));
-  }
+  return await new Promise((resolve) => setTimeout(resolve, duration));
 };
