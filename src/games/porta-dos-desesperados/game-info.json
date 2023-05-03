@@ -2,14 +2,14 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "I",
   "gameName": "porta-dos-desesperados",
-  "version": "3.1.18",
+  "version": "3.1.19",
   "title": {
     "pt": "Porta dos Desesperados",
     "en": "Obscure Doors"
   },
   "popularName": {
     "pt": "Das portas",
-    "en": ""
+    "en": "The one with the doors"
   },
   "basedOn": "oirucsbO",
   "summary": {

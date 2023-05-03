@@ -2,14 +2,14 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "S",
   "gameName": "sonhos-pesadelos",
-  "version": "0.11.10",
+  "version": "0.11.11",
   "title": {
     "pt": "Sonhos e Pesadelos",
     "en": "Dreams and Nightmares"
   },
   "popularName": {
     "pt": "Das cartas bonitas e sonhos",
-    "en": ""
+    "en": "The one with images"
   },
   "basedOn": "esuM",
   "summary": {

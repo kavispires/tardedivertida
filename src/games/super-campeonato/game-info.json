@@ -2,14 +2,14 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "W",
   "gameName": "super-campeonato",
-  "version": "2.2.12",
+  "version": "2.2.13",
   "title": {
     "pt": "Super Campeonato",
     "en": "Ultimate Championship"
   },
   "popularName": {
     "pt": "O do campeonato",
-    "en": "The brackets one"
+    "en": "The one with the tournament"
   },
   "basedOn": "nwodwohS etamitlU",
   "summary": {

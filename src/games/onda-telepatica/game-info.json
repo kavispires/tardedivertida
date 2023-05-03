@@ -2,14 +2,14 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "O",
   "gameName": "onda-telepatica",
-  "version": "4.0.17",
+  "version": "4.0.18",
   "title": {
     "pt": "Onda Telepática",
     "en": "Telepathic Waves"
   },
   "popularName": {
     "pt": "Do treco com ponteiro marcando de 1 a 10",
-    "en": ""
+    "en": "The one with the pointer and the two ideas"
   },
   "basedOn": "htgnelevaW",
   "summary": {
