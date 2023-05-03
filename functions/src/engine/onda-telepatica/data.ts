@@ -18,10 +18,7 @@ export const getCategories = async (language: string): Promise<ResourceData> => 
   // Get full deck
   const allCategories = await resourceUtils.fetchResource(resourceName);
   // Get used deck
-  const usedCategories = await globalUtils.getGlobalFirebaseDocData(
-    GLOBAL_USED_DOCUMENTS.ONDA_TELEPATICA,
-    {}
-  );
+  const usedCategories = await globalUtils.getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.OPPOSING_IDEAS, {});
 
   // Filter out used cards
   const availableCategories: Record<string, OpposingIdeaCard> = utils.game.filterOutByIds(
@@ -31,7 +28,7 @@ export const getCategories = async (language: string): Promise<ResourceData> => 
 
   // If not the minimum cards needed, reset and use all
   if (Object.keys(availableCategories).length < PLAYER_COUNTS.MAX * 2) {
-    await utils.firebase.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.ONDA_TELEPATICA);
+    await utils.firebase.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.OPPOSING_IDEAS);
     return { allCategories };
   }
 
@@ -48,7 +45,7 @@ export const saveUsedCategories = async (pastCategories: PastCategories): Promis
   // Save usedTestemunhaOcularCards to global
   const usedOndaTelepaticaCategories = utils.helpers.buildIdDictionary(pastCategories);
   await globalUtils.updateGlobalFirebaseDoc(
-    GLOBAL_USED_DOCUMENTS.ONDA_TELEPATICA,
+    GLOBAL_USED_DOCUMENTS.OPPOSING_IDEAS,
     usedOndaTelepaticaCategories
   );
 };

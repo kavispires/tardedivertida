@@ -192,13 +192,17 @@ export const GAME_NAMES = generateGameCollections();
 export const GLOBAL_USED_DOCUMENTS = {
   ALIEN_ITEMS: 'usedAlienItems',
   ARTE_RUIM: 'usedArteRuimCards',
-  MENTE_COLETIVA: 'usedMenteColetivaQuestions',
+  CHALLENGES: 'usedChallenges',
+  CONTENDERS: 'usedContenders',
+  GROUP_QUESTIONS: 'usedGroupQuestions',
+  IMAGE_CARDS: 'useImageCards',
+  MONSTERS: 'usedMonsters',
   MOVIES: 'usedMoviesAndReviews',
-  ONDA_TELEPATICA: 'usedOndaTelepaticaCategories',
-  RETRATO_FALADO: 'usedRetratoFaladoCards',
-  TESTEMUNHA_OCULAR: 'usedTestemunhaOcularCards',
-  SUPER_CAMPEONATO_CHALLENGES: 'usedSuperCampeonatoChallenges',
-  SUPER_CAMPEONATO_CONTENDERS: 'usedSuperCampeonatoContenders',
+  MURDER_OBJECTS: 'usedMurderObjects',
+  OPPOSING_IDEAS: 'useOpposingIdeas',
+  SINGLE_WORDS: 'usedSingleWords',
+  SUSPECTS: 'usedSuspects',
+  TESTIMONY_QUESTIONS: 'usedTestimonyQuestions',
 };
 
 export const DATA_DOCUMENTS = {
