@@ -164,7 +164,11 @@ export const prepareGameOverPhase = async (
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 
-  const finalGallery = utils.helpers.orderBy(store.pastDrawings, 'successRate', 'desc');
+  const finalGallery = utils.helpers.orderBy(
+    utils.helpers.deepCopy(store.pastDrawings),
+    'successRate',
+    'desc'
+  );
 
   const achievements = getAchievements(store);
 

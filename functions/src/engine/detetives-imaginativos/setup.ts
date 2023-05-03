@@ -7,6 +7,7 @@ import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types
 import utils from '../../utils';
 // Internal
 import { calculateRanking, countImpostorVotes, determinePhaseOrder } from './helpers';
+import { saveData } from './data';
 
 /**
  * Setup
@@ -118,6 +119,13 @@ export const prepareDefensePhase = async (
   // Build phase order (from leader forward once)
   const phaseOrder = determinePhaseOrder(state.leaderId, store.gameOrder, players);
 
+  // Save leaders cards and clue
+  store.usedCards.push({
+    cards: state.table.cards,
+    clue: state.clue,
+    leaderId: state.leaderId,
+  });
+
   // Save
   return {
     update: {
@@ -181,6 +189,7 @@ export const prepareGameOverPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
+  const gallery = utils.helpers.deepCopy(store.usedCards);
 
   await utils.firebase.markGameAsComplete(gameId);
 
@@ -194,6 +203,12 @@ export const prepareGameOverPhase = async (
     language: store.language,
   });
 
+  // Save data: imageCards and clues
+  await saveData(store.usedCards, store.language);
+
+  utils.players.cleanup(players, []);
+  utils.firebase.cleanupStore(store, []);
+
   return {
     set: {
       state: {
@@ -202,6 +217,7 @@ export const prepareGameOverPhase = async (
         round: state.round,
         gameEndedAt: Date.now(),
         winners,
+        gallery,
       },
     },
   };
