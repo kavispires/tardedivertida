@@ -24,6 +24,7 @@ const DEFAULT_ME_DATA: Me = {
   isAdmin: false,
   names: [],
   avatars: [],
+  language: 'en',
   statistics: {
     plays: 0,
     uniqueGamesPlayed: 0,
