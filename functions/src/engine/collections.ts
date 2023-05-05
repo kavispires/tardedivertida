@@ -1,4 +1,6 @@
 import utils from '../utils';
+import { DATA_DOCUMENTS } from '../utils/constants';
+import { PastCategories } from './onda-telepatica/types';
 
 /**
  * Gets document from data in firestore
@@ -121,4 +123,37 @@ export const updateCardDataCollection = async (
   }
 
   return true;
+};
+
+type OpposingIdeaClue = Record<CardId, Record<string | number, any>>;
+
+// TODO: Delete after its run once
+export const updateOpposingIdeasClues = async (pastCategories: PastCategories) => {
+  const previouslySavedCategories: OpposingIdeaClue = await getDataFirebaseDocData(
+    DATA_DOCUMENTS.OPPOSING_IDEAS_CLUES
+  );
+
+  Object.keys(previouslySavedCategories).forEach((cardId) => {
+    Object.keys(previouslySavedCategories[cardId]).forEach((target) => {
+      if (!Array.isArray(previouslySavedCategories[cardId][target]))
+        previouslySavedCategories[cardId][target] = [previouslySavedCategories[cardId][target]];
+    });
+  });
+
+  pastCategories.forEach((entry) => {
+    const target = String(entry.target ?? 11);
+
+    if (previouslySavedCategories[entry.id] === undefined) {
+      previouslySavedCategories[entry.id] = {};
+    }
+
+    if (previouslySavedCategories[entry.id][target] === undefined) {
+      previouslySavedCategories[entry.id][target] = [];
+    }
+    if (entry.clue && Array.isArray(previouslySavedCategories[entry.id][target])) {
+      previouslySavedCategories[entry.id][target].push(entry.clue);
+    }
+  });
+
+  await utils.firebase.getDataRef().doc(DATA_DOCUMENTS.OPPOSING_IDEAS_CLUES).set(previouslySavedCategories);
 };
