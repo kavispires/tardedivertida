@@ -188,11 +188,10 @@ export const prepareGameOverPhase = async (
   await saveUsedCards(store.pastDrawings, store.language);
 
   utils.players.cleanup(players, []);
-  utils.firebase.cleanupStore(store, []);
 
   return {
     update: {
-      store,
+      storeCleanup: utils.firebase.cleanupStore(store, []),
     },
     set: {
       state: {

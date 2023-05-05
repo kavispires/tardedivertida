@@ -1,7 +1,7 @@
 import { GLOBAL_USED_DOCUMENTS, DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
 import { HAND_LIMIT } from './constants';
 // Types
-import type { ResourceData } from './types';
+import type { ResourceData, UsedCards } from './types';
 // Helpers
 import utils from '../../utils';
 import * as dataUtils from '../collections';
@@ -28,13 +28,16 @@ export const getData = async (players: Players, originalDecksOnly: boolean): Pro
   };
 };
 
-export const saveData = async (usedCards: PlainObject[], language: Language) => {
+export const saveData = async (usedCards: UsedCards[], language: Language) => {
   const usedCardsIds: BooleanDictionary = {};
   const clues = usedCards.reduce((acc, entry) => {
-    usedCardsIds[entry.cards[0]] = true;
-    acc[entry.cards[0]] = [entry.clue];
-    usedCardsIds[entry.cards[1]] = true;
-    acc[entry.cards[1]] = [entry.clue];
+    (entry.cards ?? []).forEach((cardId) => {
+      usedCardsIds[cardId] = true;
+      if (entry.isLeader) {
+        acc[cardId] = [entry.clue];
+      }
+    });
+
     return acc;
   }, {});
 

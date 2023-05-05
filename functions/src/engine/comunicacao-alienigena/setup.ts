@@ -351,9 +351,11 @@ export const prepareGameOverPhase = async (
   await saveUsedItems(utils.helpers.buildIdDictionary(state.items));
 
   utils.players.cleanup(players, ['role']);
-  utils.firebase.cleanupStore(store, []);
 
   return {
+    update: {
+      storeCleanup: utils.firebase.cleanupStore(store, []),
+    },
     set: {
       state: {
         phase: COMUNICACAO_ALIENIGENA_PHASES.GAME_OVER,

@@ -41,7 +41,7 @@ export const getQuestions = async (language: string): Promise<ResourceData> => {
  * Save past past questions to global document
  * @param pastQuestions
  */
-export const saveUsedQuestions = async (pastQuestions: string[]) => {
+export const saveData = async (pastQuestions: string[]) => {
   const pastQuestionsObj = pastQuestions.reduce((acc: StringDictionary[], id: string) => {
     acc.push({ id });
     return acc;

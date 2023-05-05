@@ -60,12 +60,12 @@ export const updateDataFirebaseDoc = async (documentName: string, data: any): Pr
 };
 
 export const updateDataCollectionRecursively = async (
-  prefix: 'drawing' | 'monsterDrawing',
+  prefix: 'drawings' | 'monsterDrawings',
   language: Language,
   data: any
 ): Promise<boolean> => {
   // Get suffix counts
-  const suffixCounts = await getDataFirebaseDocData('suffixCounts', { drawing: 0, monsterDrawing: 0 });
+  const suffixCounts = await getDataFirebaseDocData('suffixCounts', { drawings: 0, monsterDrawings: 0 });
   const documentPrefix = `${prefix}${language.toUpperCase()}`;
 
   let tries = 0;
@@ -73,6 +73,7 @@ export const updateDataCollectionRecursively = async (
   while (tries < 5) {
     const suffix = suffixCounts[prefix] + tries;
     const documentFullName = `${documentPrefix}${suffix}`;
+
     try {
       const docRef = utils.firebase.getDataRef().doc(documentFullName);
       const doc = await docRef.get();

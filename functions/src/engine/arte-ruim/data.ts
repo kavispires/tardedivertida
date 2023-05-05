@@ -94,5 +94,5 @@ export const saveUsedCards = async (pastDrawings: ArteRuimDrawing[], language: L
     return acc;
   }, {});
 
-  await dataUtils.updateDataCollectionRecursively('drawing', language, newArteRuimDrawings);
+  await dataUtils.updateDataCollectionRecursively('drawings', language, newArteRuimDrawings);
 };
