@@ -20,17 +20,42 @@ import { DevEmulatorAlert } from './components/DevEmulatorAlert';
 import { Filters } from './components/Filters';
 import { LogoutButton } from 'components/auth/LogoutButton';
 
+console.log(Object.keys(GAME_LIST));
+
 // Players migration
 const migrationBlocked = [
+  'desenho-rapidao',
+  'ta-na-cara',
+  'arte-ruim',
+  'bomba-relogio',
+  'caminhos-magicos',
+  'cinegrafistas-amadores',
   'comunicacao-alienigena',
+  'contadores-historias',
+  'crimes-hediondos',
+  'cruza-palavras',
+  'dilema-dos-esquiadores',
   'espiao-entre-nos',
+  'fileira-de-fatos',
+  'galeria-de-sonhos',
+  'instrumentos-codificados',
+  'linhas-cruzadas',
   'megamix',
   'na-rua-do-medo',
+  'naufragos',
+  'onda-telepatica',
+  'palheta-de-cores',
   'polemica-da-vez',
+  'porta-dos-desesperados',
+  'quem-nao-mata',
   'retrato-falado',
   'sonhos-pesadelos',
   'super-campeonato',
   'testemunha-ocular',
+  'trevo-da-sorte',
+  'ue-so-isso',
+  'vamos-ao-cinema',
+  'vendaval-de-palpite',
 ];
 
 function Hub() {
