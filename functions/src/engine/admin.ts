@@ -4,6 +4,7 @@ import { GAME_CODES, USED_GAME_IDS } from '../utils/constants';
 // Utils
 import * as delegatorUtils from '../utils/delegators';
 import utils from '../utils';
+import { feedEmulatorDB } from '../utils/mocks/emulator';
 
 /**
  * Creates a new game instance
@@ -12,6 +13,10 @@ import utils from '../utils';
  * @returns
  */
 export const createGame = async (data: CreateGamePayload, context: FirebaseContext) => {
+  if (process.env.FUNCTIONS_EMULATOR && process.env.FIRESTORE_EMULATOR_HOST) {
+    feedEmulatorDB();
+  }
+
   const actionText = 'create new game';
   utils.firebase.verifyAuth(context, actionText);
 

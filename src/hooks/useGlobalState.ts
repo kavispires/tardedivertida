@@ -24,7 +24,8 @@ type InitialState = {
   // Retrato-Falado
   monsterOrientation: 'vertical' | 'horizontal';
   // Dev
-  usingEmulators: boolean;
+  usingFirestoreEmulator: false | string;
+  usingFunctionsEmulator: false | string;
 };
 
 const initialState: InitialState = {
@@ -51,7 +52,8 @@ const initialState: InitialState = {
   // Retrato-Falado
   monsterOrientation: 'vertical',
   // Dev
-  usingEmulators: false,
+  usingFirestoreEmulator: false,
+  usingFunctionsEmulator: false,
 };
 
 const { useGlobalState, setGlobalState, getGlobalState } = createGlobalState(initialState);
