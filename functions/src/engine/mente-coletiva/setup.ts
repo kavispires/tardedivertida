@@ -25,8 +25,10 @@ import {
   shouldSaveSheep,
   getAchievements,
   calculateSheepTravelDistance,
+  getMostFrequentAnswers,
 } from './helpers';
 import { GAME_NAMES } from '../../utils/constants';
+import { saveData } from './data';
 
 /**
  * Setup
@@ -66,6 +68,7 @@ export const prepareSetupPhase = async (
         pastQuestions: [],
         deckIndex: 0,
         achievements,
+        gallery: [],
       },
       state: {
         phase: MENTE_COLETIVA_PHASES.SETUP,
@@ -161,9 +164,15 @@ export const prepareComparePhase = async (
   // Transform player answers into objects
   extendPlayerAnswers(players);
 
+  // Save gallery, the answer(s) with most matches for the question
+  store.gallery.push(getMostFrequentAnswers(answersList, state.currentQuestion));
+
   // Save
   return {
     update: {
+      store: {
+        gallery: store.gallery,
+      },
       state: {
         phase: MENTE_COLETIVA_PHASES.COMPARE,
         players,
@@ -276,8 +285,18 @@ export const prepareGameOverPhase = async (
     language: store.language,
   });
 
+  // Save usedMenteColetivaQuestions to global
+  await saveData(store.pastQuestions);
+
+  const gallery = store.gallery ?? [];
+
+  utils.players.cleanup(players, ['sheepId', 'level']);
+
   // Save
   return {
+    update: {
+      storeCleanup: utils.firebase.cleanupStore(store, []),
+    },
     set: {
       state: {
         phase: MENTE_COLETIVA_PHASES.GAME_OVER,
@@ -287,6 +306,7 @@ export const prepareGameOverPhase = async (
         winners,
         losers,
         achievements,
+        gallery,
       },
     },
   };

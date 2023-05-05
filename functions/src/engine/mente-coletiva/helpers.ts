@@ -14,6 +14,7 @@ import type {
   AnswerGroupEntry,
   Deck,
   FirebaseStoreData,
+  GalleryEntry,
   MenteColetivaAchievement,
   PastureChangeEntry,
   SheepAnimation,
@@ -509,4 +510,25 @@ export function isLevelDifferenceGreaterThanOne(players: Players): boolean {
 
   // Return true if the difference is greater than 1, otherwise false
   return difference > 1;
+}
+
+export function getMostFrequentAnswers(
+  answersList: AnswerGroupEntry[],
+  question: GroupQuestionCard
+): GalleryEntry {
+  const result: GalleryEntry = {
+    question,
+    answers: [],
+  };
+
+  for (let i = 0; i < answersList.length; i++) {
+    if (i === 0 || answersList[0].entries.length === answersList[i].entries.length) {
+      result.answers.push({
+        answer: answersList[i].answer,
+        playerIds: answersList[i].entries.map((e) => e.playerId),
+      });
+    }
+  }
+
+  return result;
 }

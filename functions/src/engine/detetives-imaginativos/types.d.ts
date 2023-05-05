@@ -11,8 +11,20 @@ export interface ResourceData {
   cards: ImageCardId[];
 }
 
+export interface UsedCards {
+  cards: ImageCardId[];
+  clue: string;
+  playerId: PlayerId;
+  isLeader: boolean;
+}
+
+export interface TableEntry {
+  playerId: PlayerId;
+  cards: ImageCardId[];
+}
+
 export interface DetetivesImaginativosStore extends DefaultStore {
-  usedCards: ImageCardId[];
+  usedCards: UsedCards[];
   gameOrder: PlayerId[];
   turnOrder: PlayerId[];
   [key: string]: any;
@@ -24,7 +36,7 @@ export interface DetetivesImaginativosState extends DefaultState {
   phaseOrder?: PlayerId[];
   phaseIndex?: number;
   currentPlayerId?: PlayerId;
-  table?: any;
+  table?: TableEntry;
   ranking?: any;
   impostorVotes?: any;
   winners?: any;

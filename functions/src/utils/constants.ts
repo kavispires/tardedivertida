@@ -208,6 +208,15 @@ export const GLOBAL_USED_DOCUMENTS = {
 export const DATA_DOCUMENTS = {
   CONTENDERS_GLYPHS: 'contendersGlyphs',
   ALIEN_ITEMS: 'alienItems',
+  CARDS_CLUES_EN: 'cardsCluesEN',
+  CARDS_CLUES_PT: 'cardsCluesPT',
+  IMAGE_CARDS_CLUES_EN: 'imageCardsCluesEN',
+  IMAGE_CARDS_CLUES_PT: 'imageCardsCluesPT',
+  OPPOSING_IDEAS_CLUES: 'opposingIdeasClues',
+  SUFFIX_COUNTS: 'suffixCounts',
+  SUSPECT_ANSWERS: 'suspectAnswers',
+  DRAWINGS: 'drawings',
+  MONSTER_DRAWINGS: 'monsterDrawings',
 };
 
 export const TDR_RESOURCES = {

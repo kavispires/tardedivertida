@@ -2,7 +2,7 @@
 import { DETETIVES_IMAGINATIVOS_PHASES, HAND_LIMIT } from './constants';
 import { DOUBLE_ROUNDS_THRESHOLD, GAME_NAMES } from '../../utils/constants';
 // Types
-import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
+import type { FirebaseStateData, FirebaseStoreData, ResourceData, TableEntry } from './types';
 // Utils
 import utils from '../../utils';
 // Internal
@@ -120,15 +120,33 @@ export const prepareDefensePhase = async (
   const phaseOrder = determinePhaseOrder(state.leaderId, store.gameOrder, players);
 
   // Save leaders cards and clue
-  store.usedCards.push({
-    cards: state.table.cards,
-    clue: state.clue,
-    leaderId: state.leaderId,
-  });
+  const leaderCards = state.table.find((e: TableEntry) => state.leaderId === e.playerId);
+  console.log({ TABLE: JSON.stringify(state.table, null, 2) });
+  if (leaderCards) {
+    store.usedCards.push({
+      cards: leaderCards.cards,
+      clue: state.clue,
+      playerId: leaderCards.playerId,
+      isLeader: true,
+    });
+  }
+
+  const impostorCards = state.table.find((e: TableEntry) => state.impostorId === e.playerId);
+  if (impostorCards) {
+    store.usedCards.push({
+      cards: impostorCards.cards,
+      clue: state.clue,
+      playerId: impostorCards.playerId,
+      isLeader: false,
+    });
+  }
 
   // Save
   return {
     update: {
+      store: {
+        usedCards: store.usedCards,
+      },
       state: {
         phase: DETETIVES_IMAGINATIVOS_PHASES.DEFENSE,
         phaseOrder,
@@ -207,9 +225,11 @@ export const prepareGameOverPhase = async (
   await saveData(store.usedCards, store.language);
 
   utils.players.cleanup(players, []);
-  utils.firebase.cleanupStore(store, []);
 
   return {
+    update: {
+      storeCleanup: utils.firebase.cleanupStore(store, []),
+    },
     set: {
       state: {
         phase: DETETIVES_IMAGINATIVOS_PHASES.GAME_OVER,
