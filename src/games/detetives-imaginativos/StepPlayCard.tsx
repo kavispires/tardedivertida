@@ -53,7 +53,7 @@ export function StepPlayCard({
   const onSelectCard = (cardId: string) => onPlayCard({ cardId });
 
   useEffect(() => {
-    if (isUserTheCurrentPlayer && !isLoading && isEarliestPlayerWithFewestCards(table, user.id)) {
+    if (isUserTheCurrentPlayer && !isLoading && isEarliestPlayerWithFewestCards(table, user.id, turnOrder)) {
       message.info(
         messageContent(
           translate('Escolha uma carta!', 'Choose a card to play'),
@@ -67,7 +67,16 @@ export function StepPlayCard({
         )
       );
     }
-  }, [isUserTheCurrentPlayer, currentPlayer.id, translate, isLoading, user.updatedAt, table, user.id]);
+  }, [
+    isUserTheCurrentPlayer,
+    currentPlayer.id,
+    translate,
+    isLoading,
+    user.updatedAt,
+    table,
+    user.id,
+    turnOrder,
+  ]);
 
   return (
     <Step key={1} announcement={announcement}>

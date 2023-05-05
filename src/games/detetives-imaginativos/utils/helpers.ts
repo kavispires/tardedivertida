@@ -1,11 +1,14 @@
 export function isEarliestPlayerWithFewestCards(
   table: DetetivesImaginativosCardEntry[],
-  userId: PlayerId
+  userId: PlayerId,
+  turnOrder: PlayerId[]
 ): boolean {
-  for (let i = 0; i < table.length; i++) {
-    console.log(table[i].cards[0]);
-    if (table[i].cards[0] === '') {
-      console.log('first card', table[i]);
+  for (let i = 0; i < Math.max(table.length, turnOrder.length); i++) {
+    if (!table[i]) {
+      return true;
+    }
+
+    if (!table[i] || table[i].cards[0] === '') {
       return table[i].playerId === userId;
     }
   }
