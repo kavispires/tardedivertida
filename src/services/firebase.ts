@@ -35,15 +35,17 @@ export const firestore: Firestore = getFirestore(firebaseApp);
 export const functions: Functions = getFunctions(firebaseApp);
 
 const localHost = process.env.REACT_APP_LOCAL_IP || 'localhost';
+// const localHost = 'localhost';
 
 if (window.location.hostname.includes(localHost)) {
   console.log(`%cEmulating to ${localHost}`, 'color:dodgerblue');
   notification.warning({ message: `Emulating to ${localHost}`, placement: 'bottomLeft' });
   connectFirestoreEmulator(firestore, localHost, 8091);
-  connectFunctionsEmulator(functions, localHost, 5003);
   connectFirestoreEmulator(firestore, 'localhost', 8091);
+  setGlobalState('usingFirestoreEmulator', localHost);
+  connectFunctionsEmulator(functions, localHost, 5003);
   connectFunctionsEmulator(functions, 'localhost', 5003);
-  setGlobalState('usingEmulators', true);
+  setGlobalState('usingFunctionsEmulator', localHost);
 }
 
 export default firebaseApp;
