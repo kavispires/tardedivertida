@@ -18,7 +18,7 @@ const tailLayout = {
 
 function Login() {
   const navigate = useNavigate();
-  const { isAuthenticated, isAdmin } = useCurrentUserContext();
+  const { isAuthenticated, isAdmin, currentUser } = useCurrentUserContext();
 
   const [error, setError] = useState<string | object | null>(null);
   const [email, setEmail] = useState('');
@@ -47,10 +47,14 @@ function Login() {
 
   // Send user back when they are authenticated
   useEffect(() => {
-    if (isAuthenticated) {
-      navigate(-1);
+    if (isAuthenticated && currentUser.id !== 'anonymous') {
+      if (isAdmin) {
+        navigate(-1);
+      } else {
+        navigate('/');
+      }
     }
-  }, [isAuthenticated]); // eslint-disable-line
+  }, [isAuthenticated, navigate, currentUser.id, isAdmin]);
 
   return (
     <Layout.Content className="login">
