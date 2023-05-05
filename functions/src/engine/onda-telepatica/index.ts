@@ -20,7 +20,7 @@ import {
   prepareRevealPhase,
   prepareSetupPhase,
 } from './setup';
-import { getCategories, saveUsedCategories } from './data';
+import { getCategories } from './data';
 import { handleSubmitCategory, handleSubmitClue, handleSubmitGuess } from './actions';
 
 /**
@@ -106,7 +106,7 @@ export const getNextPhase = async (
   // REVEAL -> GAME_OVER
   if (nextPhase === ONDA_TELEPATICA_PHASES.GAME_OVER) {
     const newPhase = await prepareGameOverPhase(gameId, store, state, players);
-    await saveUsedCategories(store.pastCategories);
+
     return utils.firebase.saveGame(sessionRef, newPhase);
   }
 

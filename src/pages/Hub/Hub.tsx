@@ -20,8 +20,6 @@ import { DevEmulatorAlert } from './components/DevEmulatorAlert';
 import { Filters } from './components/Filters';
 import { LogoutButton } from 'components/auth/LogoutButton';
 
-console.log(Object.keys(GAME_LIST));
-
 // Players migration
 const migrationBlocked = [
   'desenho-rapidao',
@@ -43,7 +41,6 @@ const migrationBlocked = [
   'megamix',
   'na-rua-do-medo',
   'naufragos',
-  'onda-telepatica',
   'palheta-de-cores',
   'polemica-da-vez',
   'porta-dos-desesperados',
