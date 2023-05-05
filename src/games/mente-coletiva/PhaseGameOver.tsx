@@ -8,6 +8,7 @@ import { Achievements } from 'components/general/Achievements';
 import { Translate } from 'components/language';
 import { Title } from 'components/text';
 import { SheepAvatar } from './components/SheepAvatar';
+import { Space } from 'antd';
 
 function PhaseGameOver({ state, info, players }: PhaseProps) {
   return (
@@ -33,6 +34,35 @@ function PhaseGameOver({ state, info, players }: PhaseProps) {
       </div>
 
       <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
+
+      {Boolean(state.gallery) && (
+        <>
+          <Title size="x-small" level={3}>
+            <Translate pt="Melhores Respostas" en="Best Answers" />
+          </Title>
+          <Space className="space-container gallery" wrap>
+            {state.gallery.map(({ question, answers }: MGalleryEntry) => {
+              return (
+                <div className="gallery-entry" key={question.id}>
+                  <h4 className="gallery-entry__question">
+                    {question.prefix} {question.number} {question.suffix}
+                  </h4>
+                  {answers.map(({ answer, playerIds }) => {
+                    return (
+                      <div className="gallery-entry__answer" key={`${question.id}-${answer}`}>
+                        <span>{answer}</span>
+                        <span>
+                          {playerIds.length} <Translate pt="jogadores" en="jogadores" />
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+              );
+            })}
+          </Space>
+        </>
+      )}
     </GameOverWrapper>
   );
 }

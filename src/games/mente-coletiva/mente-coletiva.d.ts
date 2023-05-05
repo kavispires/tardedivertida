@@ -41,3 +41,11 @@ type AddAnswerPayload = {
 type NextAnswersPayload = {
   allowedList: string[];
 };
+
+type MGalleryEntry = {
+  question: GroupQuestionCard;
+  answers: {
+    playerIds: PlayerId[];
+    answer: string;
+  }[];
+};
