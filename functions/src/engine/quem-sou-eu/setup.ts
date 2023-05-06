@@ -281,7 +281,7 @@ export const prepareGameOverPhase = async (
   const gallery = store.gallery;
 
   // Save data (contenderIds, contendersGlyphs)
-  await saveData(utils.helpers.deepCopy(store.contendersGlyphs) ?? {});
+  await saveData(store.contendersGlyphs ?? {});
 
   utils.players.cleanup(players, []);
 

@@ -34,6 +34,13 @@ export type PlayerCard = {
   score: number;
 };
 
+type ImageCardMatch = {
+  id: CardId;
+  used: boolean;
+  text: string;
+  matchedPlayers: PlayerId[];
+};
+
 export interface GaleriaDeSonhosStore extends DefaultStore {
   tableDeck: ImageCard[];
   deck: TextCard[];
