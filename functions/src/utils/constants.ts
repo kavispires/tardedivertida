@@ -195,7 +195,7 @@ export const GLOBAL_USED_DOCUMENTS = {
   CHALLENGES: 'usedChallenges',
   CONTENDERS: 'usedContenders',
   GROUP_QUESTIONS: 'usedGroupQuestions',
-  IMAGE_CARDS: 'useImageCards',
+  IMAGE_CARDS: 'usedImageCards',
   MONSTERS: 'usedMonsters',
   MOVIES: 'usedMoviesAndReviews',
   MURDER_OBJECTS: 'usedMurderObjects',

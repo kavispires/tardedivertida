@@ -35,7 +35,6 @@ const migrationBlocked = [
   'dilema-dos-esquiadores',
   'espiao-entre-nos',
   'fileira-de-fatos',
-  'galeria-de-sonhos',
   'instrumentos-codificados',
   'linhas-cruzadas',
   'megamix',
