@@ -5,7 +5,7 @@ type InitialState = {
   screenSize: number[];
   showPlayersBar: boolean;
   // Language
-  language: 'pt' | 'en';
+  language: Language;
   // User/Player
   userId: string | null;
   username: string;

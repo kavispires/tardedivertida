@@ -29,6 +29,7 @@ export function Session({ gameCollection, getActiveComponent }: SessionProps) {
   const { language } = useLanguage();
   const state = useGameState(gameMeta.gameId, gameCollection);
   const [userId] = useGlobalState('userId');
+  const [, setLanguage] = useGlobalState('language');
   const [info, setInfo] = useState<any>({});
   const gameName = info?.title ?? '';
   const players = state.players ?? {};
@@ -41,6 +42,13 @@ export function Session({ gameCollection, getActiveComponent }: SessionProps) {
   useEffect(() => {
     setInfo(gameCollection ? GAME_LIST[gameCollection] : {});
   }, [gameCollection]);
+
+  // Update session language to match the game
+  useEffect(() => {
+    if (language !== gameMeta.language) {
+      setLanguage(gameMeta.language);
+    }
+  }, [gameMeta.language]); // eslint-disable-line
 
   if (!userId) {
     return <PhaseLobby players={players} info={info} meta={gameMeta} />;

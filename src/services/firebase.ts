@@ -34,8 +34,8 @@ export const auth: Auth = getAuth(firebaseApp);
 export const firestore: Firestore = getFirestore(firebaseApp);
 export const functions: Functions = getFunctions(firebaseApp);
 
-const localHost = process.env.REACT_APP_LOCAL_IP || 'localhost';
-// const localHost = 'localhost';
+// const localHost = process.env.REACT_APP_LOCAL_IP || 'localhost';
+const localHost = 'localhost';
 
 if (window.location.hostname.includes(localHost)) {
   console.log(`%cEmulating to ${localHost}`, 'color:dodgerblue');
