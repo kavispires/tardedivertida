@@ -41,6 +41,7 @@ function PhaseDreamsSelections({ players, state, info, meta }: PhaseProps) {
           word={state.word}
           onSubmitCards={onSubmitCards}
           botEnabled={Boolean(meta.options?.withBots)}
+          hardModeEnabled={Boolean(meta.options?.hardMode)}
           announcement={announcement}
         />
 

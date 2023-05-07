@@ -9,6 +9,10 @@ export type GaleriaDeSonhosOptions = {
    * Use original image decks only
    */
   originalDecks: boolean;
+  /**
+   * UI will required minimum of 4 cards selected
+   */
+  hardMode: boolean;
 };
 
 export type AllWords = {
