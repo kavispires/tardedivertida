@@ -73,7 +73,7 @@ export const updateDataCollectionRecursively = async (
   let tries = 0;
 
   while (tries < 5) {
-    const suffix = suffixCounts[prefix] + tries;
+    const suffix = suffixCounts[documentPrefix] + tries;
     const documentFullName = `${documentPrefix}${suffix}`;
 
     try {
