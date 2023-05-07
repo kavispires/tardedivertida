@@ -67,8 +67,8 @@ export const updateDataCollectionRecursively = async (
   data: any
 ): Promise<boolean> => {
   // Get suffix counts
-  const suffixCounts = await getDataFirebaseDocData('suffixCounts', { drawings: 0, monsterDrawings: 0 });
-  const documentPrefix = `${prefix}${language.toUpperCase()}`;
+  const documentPrefix = prefix === 'drawings' ? `${prefix}${language.toUpperCase()}` : `${prefix}`;
+  const suffixCounts = await getDataFirebaseDocData('suffixCounts', { [documentPrefix]: 1 });
 
   let tries = 0;
 
@@ -87,7 +87,7 @@ export const updateDataCollectionRecursively = async (
       await utils.firebase
         .getDataRef()
         .doc('suffixCounts')
-        .update({ [prefix]: suffix });
+        .update({ [documentPrefix]: suffix });
       return true;
     } catch (error) {
       tries++;
@@ -155,5 +155,8 @@ export const updateOpposingIdeasClues = async (pastCategories: PastCategories) =
     }
   });
 
-  await utils.firebase.getDataRef().doc(DATA_DOCUMENTS.OPPOSING_IDEAS_CLUES).set(previouslySavedCategories);
+  await utils.firebase
+    .getDataRef()
+    .doc(DATA_DOCUMENTS.OPPOSING_IDEAS_CLUES)
+    .update(previouslySavedCategories);
 };
