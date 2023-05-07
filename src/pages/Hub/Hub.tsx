@@ -24,7 +24,6 @@ import { LogoutButton } from 'components/auth/LogoutButton';
 const migrationBlocked = [
   'desenho-rapidao',
   'ta-na-cara',
-  'arte-ruim',
   'bomba-relogio',
   'caminhos-magicos',
   'cinegrafistas-amadores',
