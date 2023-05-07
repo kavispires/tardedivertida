@@ -12,6 +12,7 @@ import { ViewOr } from 'components/views';
 import { CanvasResizer, CanvasSVG } from 'components/canvas';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { CheckSquareOutlined } from '@ant-design/icons';
+import { Step } from 'components/steps';
 
 type StepVoteProps = {
   isUserTheWitness: boolean;
@@ -20,7 +21,7 @@ type StepVoteProps = {
   sketches: Sketch[];
   user: Player | PlainObject;
   players: GamePlayers;
-};
+} & AnnouncementProps;
 
 export function StepVote({
   isUserTheWitness,
@@ -29,6 +30,7 @@ export function StepVote({
   onSubmitVote,
   user,
   players,
+  announcement,
 }: StepVoteProps) {
   const canvasWidth = useCardWidth(Math.min(Object.keys(players).length, 6), 16, 150, 500);
   const [canvasSize, setCanvasSize] = useGlobalState('canvasSize');
@@ -41,7 +43,7 @@ export function StepVote({
   }, [canvasSize, canvasWidth]); // eslint-disable-line
 
   return (
-    <div>
+    <Step announcement={announcement}>
       <Title>
         <Translate pt="Vote!" en="Vote!" />
       </Title>
@@ -74,7 +76,8 @@ export function StepVote({
                 Vote no desenho que mais se aproxima do monstro.
                 <br />
                 Você não pode votar em si mesmo.
-                <br />O desenho (ou desenhos) mais votado receberá <PointsHighlight>2</PointsHighlight> ponto!
+                <br />O desenho (ou desenhos) mais votado receberá <PointsHighlight>2</PointsHighlight>{' '}
+                pontos!
               </>
             }
             en={
@@ -83,7 +86,7 @@ export function StepVote({
                 <br />
                 You cannot vote for yourself.
                 <br />
-                The sketch (or sketches) with the most votes gets <PointsHighlight>2</PointsHighlight> point.
+                The sketch (or sketches) with the most votes gets <PointsHighlight>2</PointsHighlight> points.
               </>
             }
           />
@@ -126,6 +129,6 @@ export function StepVote({
       <Space className="space-container" align="center">
         <MonsterCard currentMonster={currentMonster} />
       </Space>
-    </div>
+    </Step>
   );
 }
