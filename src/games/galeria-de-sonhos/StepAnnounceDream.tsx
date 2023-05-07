@@ -105,7 +105,7 @@ export function StepAnnounceDream({
               <p className="g-dream-result__label">
                 <Translate
                   pt="Ganhariam pontos, mas já estão eliminados:"
-                  en="Matched by are out of the round:"
+                  en="Matched but are out of the round:"
                 />
               </p>
 
