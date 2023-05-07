@@ -8,7 +8,7 @@ import placeholder from 'assets/images/placeholder.jpg';
 // Hooks
 import { useBlurCards } from 'hooks/useBlurCards';
 
-type ImageCardProps = {
+export type ImageCardProps = {
   /**
    * The id of the image
    */

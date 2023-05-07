@@ -70,7 +70,7 @@ export function Corridor({
             >
               <DoorFrame width={doorWidth} index={index}>
                 {isConcealed ? (
-                  <ImageCardBack cardWidth={150} />
+                  <ImageCardBack cardWidth={150} imageId="back-lockedDoor" />
                 ) : (
                   <ImageCard imageId={doorId} cardWidth={150} preview={trap !== TRAPS.NO_PREVIEW} />
                 )}

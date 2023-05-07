@@ -247,3 +247,5 @@ interface Achievement<T> {
   playerId: PlayerId;
   value: Primitive;
 }
+
+type ImageCardRelationship = Record<ImageCardId, ImageCardId[]>;
