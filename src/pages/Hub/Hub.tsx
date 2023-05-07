@@ -44,7 +44,6 @@ const migrationBlocked = [
   'polemica-da-vez',
   'porta-dos-desesperados',
   'quem-nao-mata',
-  'retrato-falado',
   'sonhos-pesadelos',
   'super-campeonato',
   'testemunha-ocular',
