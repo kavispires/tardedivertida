@@ -8,6 +8,7 @@ import { TransferGlobal } from './Resources/TransferGlobal';
 import { useQuery } from 'react-query';
 import { RestructureJson } from './Resources/RestructureJson';
 import { SaveGames } from './Resources/SaveGames';
+import { SaveResources } from './Resources/SaveResources';
 
 function ResourcesPage() {
   useTitle('Resources | Dev | Tarde Divertida');
@@ -17,7 +18,8 @@ function ResourcesPage() {
       <DevHeader title="Resources" />
       <Layout.Content className="dev-content">
         {/* <RestructureJson /> */}
-        <SaveGames />
+        {/* <SaveGames /> */}
+        {/* <SaveResources /> */}
       </Layout.Content>
     </Layout>
   );

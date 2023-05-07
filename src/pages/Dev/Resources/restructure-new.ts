@@ -458,8 +458,13 @@ export function parseGaleriaDeSonhos(key: string, metas: Metas, games: PlainObje
     keepStateKeys: ['bestMatches', 'table'],
     onRunAfterAll: (data) => {
       if (data.state.bestMatches || data.state.table) {
-        (data.state.table ?? data.state.bestMatches).forEach((entry: PlainObject) => {
+        (data.state.bestMatches || data.state.table).forEach((entry: PlainObject) => {
           set(GLOBAL_USED_IMAGE_CARDS, entry.id, true);
+          if (entry.text) {
+            updateDataImageCardStories(entry.id, entry.text, data.store.language);
+          } else {
+            console.log({ entry });
+          }
         });
       }
     },
@@ -575,7 +580,7 @@ export function parseOndaTelepatica(key: string, metas: Metas, games: PlainObjec
       if (data.state.pastCategories || data.store.pastCategories) {
         (data.state.pastCategories ?? data.store.pastCategories).forEach((entry: PlainObject) => {
           set(GLOBAL_USED_OPPOSING_IDEAS, entry.id, true);
-          set(DATA_OPPOSING_IDEAS_CLUES, entry.id, { [entry.target]: entry.clue });
+          set(DATA_OPPOSING_IDEAS_CLUES, entry.id, { [entry.target]: [entry.clue] });
         });
 
         if (data.store.pastCategories && !data.state.pastCategories) {
