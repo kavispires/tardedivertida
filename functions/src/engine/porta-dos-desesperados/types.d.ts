@@ -16,6 +16,8 @@ export interface ResourceData {
 }
 
 export interface PortaDosDesesperadosStore extends DefaultStore {
+  relationships?: ImageCardRelationship;
+  finalDoors?: ImageCardId[];
   [key: string]: any;
 }
 

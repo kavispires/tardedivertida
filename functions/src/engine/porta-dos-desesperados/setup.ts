@@ -15,7 +15,15 @@ import { GAME_NAMES } from '../../utils/constants';
 import type { FirebaseStateData, FirebaseStoreData, ResourceData, Trap } from './types';
 // Utils
 import utils from '../../utils';
-import { botDoorSelection, createTrapOrder, getAchievements, getBookPages, getDoorSet } from './helpers';
+import {
+  botDoorSelection,
+  createTrapOrder,
+  getAchievements,
+  getBookPages,
+  getDoorSet,
+  mergeVisitedDoorsRelationships,
+} from './helpers';
+import { saveData } from './data';
 
 /**
  * Setup
@@ -167,7 +175,7 @@ export const prepareDoorChoicePhase = async (
     (players[state.possessedId].updatedAt ?? 0) - state.updatedAt
   );
 
-  if (state.trap == TRAPS.RANDOM_INTERJECTION) {
+  if (state.trap === TRAPS.RANDOM_INTERJECTION) {
     const otherPages = state.pages.filter((pageId: string) => !selectedPagesIds.includes(pageId));
     selectedPagesIds.push(utils.game.getRandomItem(otherPages));
   }
@@ -217,6 +225,15 @@ export const prepareResolutionPhase = async (
     return acc;
   }, []);
 
+  // Save Image Cards Relationships
+  if (state.trap !== TRAPS.RANDOM_INTERJECTION) {
+    store.relationships = mergeVisitedDoorsRelationships(
+      store.relationships ?? {},
+      visitedDoors,
+      state.selectedPagesIds
+    );
+  }
+
   // Decrease magic
   const usedMagic = state.trap === TRAPS.DOUBLE_MAGIC ? visitedDoors.length * 2 : visitedDoors.length;
   const magic = state.magic - usedMagic;
@@ -241,6 +258,9 @@ export const prepareResolutionPhase = async (
   }
 
   if (outcome === OUTCOME.SUCCESS) {
+    if (store.finalDoors) {
+      store.finalDoors.push(state.answerDoorId);
+    }
     // Achievement: GUIDE
     utils.achievements.increase(store, state.possessedId, 'possessionWins', 1);
     // Achievement: DOORS
@@ -279,6 +299,8 @@ export const prepareResolutionPhase = async (
     update: {
       store: {
         achievements: store.achievements,
+        relationships: store.relationships,
+        finalDoors: store.finalDoors,
       },
       state: {
         phase: PORTA_DOS_DESESPERADOS_PHASES.RESOLUTION,
@@ -317,7 +339,16 @@ export const prepareGameOverPhase = async (
     language: store.language,
   });
 
+  await saveData(store.relationships ?? {});
+
+  const doors = store.finalDoors;
+
+  utils.players.cleanup(players, []);
+
   return {
+    update: {
+      storeCleanup: utils.firebase.cleanupStore(store, ['traps']),
+    },
     set: {
       state: {
         phase: PORTA_DOS_DESESPERADOS_PHASES.GAME_OVER,
@@ -329,6 +360,7 @@ export const prepareGameOverPhase = async (
         currentCorridor,
         magic: state.magic,
         achievements,
+        doors,
       },
     },
   };

@@ -160,3 +160,40 @@ export const updateOpposingIdeasClues = async (pastCategories: PastCategories) =
     .doc(DATA_DOCUMENTS.OPPOSING_IDEAS_CLUES)
     .update(previouslySavedCategories);
 };
+
+export const updateImageCardsRelationships = async (relationships: ImageCardRelationship) => {
+  const previouslySavedRelationships: ImageCardRelationship = await getDataFirebaseDocData(
+    DATA_DOCUMENTS.IMAGE_CARDS_RELATIONSHIPS
+  );
+
+  const parsedRelationships: ImageCardRelationship = {};
+
+  // Add each card id as a key to the parsed object with an empty array value
+  transpileRelationships(previouslySavedRelationships, parsedRelationships);
+  transpileRelationships(relationships, parsedRelationships);
+
+  // Remove duplicates
+  Object.entries(parsedRelationships).forEach(([key, relatedIds]) => {
+    parsedRelationships[key] = utils.game.removeDuplicates(relatedIds);
+  });
+
+  // Save
+  await utils.firebase.getDataRef().doc(DATA_DOCUMENTS.IMAGE_CARDS_RELATIONSHIPS).update(parsedRelationships);
+};
+
+function transpileRelationships(source: ImageCardRelationship, result: ImageCardRelationship) {
+  Object.entries(source).forEach(([cardId, relatedIds]) => {
+    if (result[cardId] === undefined) {
+      result[cardId] = [];
+    }
+
+    result[cardId] = [...result[cardId], ...relatedIds];
+    relatedIds.forEach((relatedId) => {
+      if (result[relatedId] === undefined) {
+        result[relatedId] = [];
+      }
+
+      result[relatedId].push(cardId);
+    });
+  });
+}

@@ -212,6 +212,7 @@ export const DATA_DOCUMENTS = {
   CARDS_CLUES_PT: 'cardsCluesPT',
   IMAGE_CARDS_CLUES_EN: 'imageCardsCluesEN',
   IMAGE_CARDS_CLUES_PT: 'imageCardsCluesPT',
+  IMAGE_CARDS_RELATIONSHIPS: 'imageCardsRelationships',
   OPPOSING_IDEAS_CLUES: 'opposingIdeasClues',
   SUFFIX_COUNTS: 'suffixCounts',
   SUSPECT_ANSWERS: 'suspectAnswers',

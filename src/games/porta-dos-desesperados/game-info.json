@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "I",
   "gameName": "porta-dos-desesperados",
-  "version": "3.1.20",
+  "version": "3.2.0",
   "title": {
     "pt": "Porta dos Desesperados",
     "en": "Obscure Doors"
@@ -49,7 +49,13 @@
     "en": true
   },
   "options": [
-    { "label": "Additional players", "key": "withBots", "off": "Only Humans", "on": "Add 2 Bots" },
+    {
+      "label": "Additional players",
+      "key": "withBots",
+      "off": "Only Humans",
+      "on": "Add 2 Bots",
+      "description": "Only use for 2-3 players"
+    },
     {
       "label": "Images",
       "key": "originalDecks",

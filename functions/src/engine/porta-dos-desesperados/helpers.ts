@@ -281,3 +281,19 @@ export const getAchievements = (store: FirebaseStoreData) => {
 
   return achievements;
 };
+
+export function mergeVisitedDoorsRelationships(
+  relationships: ImageCardRelationship,
+  visitedDoors: ImageCardId[],
+  bookPages: ImageCardId[]
+) {
+  bookPages.forEach((pageId) => {
+    if (relationships[pageId] === undefined) {
+      relationships[pageId] = [];
+    }
+    visitedDoors.forEach((doorId) => {
+      relationships[pageId].push(doorId);
+    });
+  });
+  return relationships;
+}

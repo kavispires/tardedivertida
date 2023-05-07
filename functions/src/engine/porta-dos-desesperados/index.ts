@@ -49,7 +49,10 @@ export const getInitialState = (
     playerCounts: PLAYER_COUNTS,
     initialPhase: PORTA_DOS_DESESPERADOS_PHASES.LOBBY,
     totalRounds: MAX_ROUNDS,
-    store: {},
+    store: {
+      relationships: {},
+      finalDoors: [],
+    },
     options,
   });
 };

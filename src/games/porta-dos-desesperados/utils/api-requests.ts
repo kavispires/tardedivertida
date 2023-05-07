@@ -40,7 +40,6 @@ export function useOnSubmitDoorAPIRequest(setStep: GenericFunction) {
   });
 
   return (payload: SubmitDoorPayload) => {
-    console.count('SUBMIT_DOOR');
     request({
       action: 'SUBMIT_DOOR',
       ...payload,

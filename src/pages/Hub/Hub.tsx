@@ -31,7 +31,6 @@ const migrationBlocked = [
   'megamix',
   'na-rua-do-medo',
   'polemica-da-vez',
-  'porta-dos-desesperados',
   'sonhos-pesadelos',
   'super-campeonato',
   'testemunha-ocular',

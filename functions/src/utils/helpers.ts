@@ -209,6 +209,18 @@ export const buildIdDictionary = (dataList: PlainObject[]): BooleanDictionary =>
 };
 
 /**
+ * Builds BooleanDictionary from list of strings
+ * @param list
+ * @returns
+ */
+export const buildBooleanDictionary = (list: string[]): BooleanDictionary => {
+  return list.reduce((acc, entry) => {
+    acc[entry] = true;
+    return acc;
+  }, {});
+};
+
+/**
  * Creates a copy of given object
  * @param obj
  * @returns
