@@ -25,6 +25,7 @@ import { CardPlayRules } from './components/RulesBlobs';
 import { StepPlayDream } from './StepPlayDream';
 import { StepAnnounceDream } from './StepAnnounceDream';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
+import { CardHighlight } from 'components/metrics/CardHighlight';
 
 function PhaseCardPlay({ players, state, info, meta }: PhaseProps) {
   const { isLoading } = useLoading();
@@ -79,12 +80,12 @@ function PhaseCardPlay({ players, state, info, meta }: PhaseProps) {
             <Translate
               pt={
                 <>
-                  <AvatarName player={playerInNightmare} size="large" addressUser /> está em apuros!
+                  <AvatarName player={playerInNightmare} size="large" addressUser /> entrou em um pesadelo!
                 </>
               }
               en={
                 <>
-                  <AvatarName player={playerInNightmare} size="large" addressUser /> is in danger!
+                  <AvatarName player={playerInNightmare} size="large" addressUser /> is in nightmare!
                 </>
               }
             />
@@ -99,20 +100,25 @@ function PhaseCardPlay({ players, state, info, meta }: PhaseProps) {
             <Translate
               pt={
                 <>
-                  Quando um jogador sozinho selecionou o maior número de sonhos, ele é considerado estar em um
-                  pesadelo!
+                  <AvatarName player={playerInNightmare} addressUser /> selecionou{' '}
+                  <CardHighlight>{Object.keys(playerInNightmare?.cards ?? {}).length} cartas</CardHighlight>,
+                  o maior número de cartas da rodada!
                   <br />
                   Se ele não conseguir achar outro jogador que marcou o mesmo sonho para cada uma das cartas
                   selecionadas, ele perde <PointsHighlight type="negative">1</PointsHighlight> ponto por carta
                   que você ganhou ponto.
+                  <br />
                 </>
               }
               en={
                 <>
-                  When a player alone selected the most dream cards they are considered to be in a nightmare!
+                  <AvatarName player={playerInNightmare} addressUser /> selected{' '}
+                  <CardHighlight>{Object.keys(playerInNightmare?.cards ?? {}).length} cards</CardHighlight>,
+                  the largest number of cards for this round!
                   <br />
                   If they are not able to match every single dream, they will lose{' '}
                   <PointsHighlight type="negative">1</PointsHighlight> point per card you previously scored.
+                  <br />
                 </>
               }
             />
