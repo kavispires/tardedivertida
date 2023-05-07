@@ -33,8 +33,8 @@ export function SaveGames() {
 
   return (
     <div>
-      <Button onClick={() => q.refetch()} loading={q.isLoading}>
-        RUN
+      <Button onClick={() => q.refetch()} loading={q.isLoading} disabled>
+        Override all games
       </Button>
     </div>
   );
