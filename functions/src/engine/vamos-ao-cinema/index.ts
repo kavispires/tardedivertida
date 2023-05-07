@@ -20,7 +20,7 @@ import {
   prepareRevealPhase,
   prepareGameOverPhase,
 } from './setup';
-import { getCards, saveUsedCards } from './data';
+import { getCards } from './data';
 import { handleSelectMovie, handleEliminateMovie, handleVoteForPoster } from './actions';
 
 /**
@@ -106,7 +106,6 @@ export const getNextPhase = async (
   // REVEAL -> GAME_OVER
   if (nextPhase === VAMOS_AO_CINEMA_PHASES.GAME_OVER) {
     const newPhase = await prepareGameOverPhase(gameId, store, state, players);
-    await saveUsedCards(store.movieDeck, store.goodReviewsDeck, store.badReviewsDeck);
     return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
