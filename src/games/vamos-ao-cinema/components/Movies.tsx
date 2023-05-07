@@ -9,6 +9,7 @@ import { TomatoIcon } from 'icons/TomatoIcon';
 // Components
 import { MovieCard } from 'components/cards/MovieCard';
 import { Avatar, IconAvatar } from 'components/avatars';
+import { getAnimationClass } from 'utils/helpers';
 
 type MoviesProps = {
   movies: MovieCard[];
@@ -19,9 +20,15 @@ type MoviesProps = {
   mistakes?: CardId[];
   players?: GamePlayers;
   showResults?: boolean;
+  disableButtons?: boolean;
 };
 
-const fakeMoviesLeft = [
+type FakeMovie = {
+  color: string;
+  letter: string;
+};
+
+const fakeMoviesLeft: FakeMovie[] = [
   {
     color: 'hsl(15deg 77% 85%)',
     letter: 'A',
@@ -44,7 +51,7 @@ const fakeMoviesLeft = [
   },
 ];
 
-const fakeMoviesRight = [
+const fakeMoviesRight: FakeMovie[] = [
   {
     color: 'hsl(303deg 77% 85%)',
     letter: 'F',
@@ -75,6 +82,7 @@ export function Movies({
   mistakes = [],
   players = {},
   showResults = false,
+  disableButtons = false,
 }: MoviesProps) {
   const { isLoading } = useLoading();
 
@@ -113,58 +121,32 @@ export function Movies({
         ))}
       </Space>
       <div className="movie-buttons">
-        {fakeMoviesLeft.map((entry) => {
-          const isEliminated = eliminatedMovies.includes(entry.letter);
-          const isPlayerMovie = user?.movieId === entry.letter;
-          const isWrong = mistakes.includes(entry.letter);
-          return (
-            <Button
-              key={entry.letter}
-              shape="circle"
-              size="large"
-              type="primary"
-              style={{ background: entry.color, color: 'black' }}
-              onClick={() => onSelect(entry.letter)}
-              disabled={isLoading || user.ready || isEliminated}
-              className={clsx(entry.letter === user.movieId && 'movie-button--selected')}
-            >
-              <ButtonLabel
-                isEliminated={isEliminated}
-                isLoading={isLoading}
-                isPlayerMovie={isPlayerMovie}
-                isWrong={isWrong}
-                letter={entry.letter}
-              />
-            </Button>
-          );
-        })}
+        {fakeMoviesLeft.map((entry) => (
+          <MovieButton
+            key={entry.letter}
+            entry={entry}
+            disabled={disableButtons}
+            eliminatedMovies={eliminatedMovies}
+            mistakes={mistakes}
+            isLoading={isLoading}
+            user={user}
+            onSelect={onSelect}
+          />
+        ))}
       </div>
       <div className="movie-buttons">
-        {fakeMoviesRight.map((entry) => {
-          const isEliminated = eliminatedMovies.includes(entry.letter);
-          const isPlayerMovie = user?.movieId === entry.letter;
-          const isWrong = mistakes.includes(entry.letter);
-          return (
-            <Button
-              key={entry.letter}
-              shape="circle"
-              size="large"
-              type="primary"
-              style={{ background: entry.color, color: 'black' }}
-              onClick={() => onSelect(entry.letter)}
-              disabled={isLoading || user.ready || isEliminated}
-              className={clsx(entry.letter === user.movieId && 'movie-button--selected')}
-            >
-              <ButtonLabel
-                isEliminated={isEliminated}
-                isLoading={isLoading}
-                isPlayerMovie={isPlayerMovie}
-                isWrong={isWrong}
-                letter={entry.letter}
-              />
-            </Button>
-          );
-        })}
+        {fakeMoviesRight.map((entry) => (
+          <MovieButton
+            key={entry.letter}
+            entry={entry}
+            disabled={disableButtons}
+            eliminatedMovies={eliminatedMovies}
+            mistakes={mistakes}
+            isLoading={isLoading}
+            user={user}
+            onSelect={onSelect}
+          />
+        ))}
       </div>
       <Space className="space-container" direction="vertical">
         {rightMovies.map((movie, index, arr) => (
@@ -188,6 +170,68 @@ export function Movies({
         ))}
       </Space>
     </Space>
+  );
+}
+
+type MovieButtonProps = {
+  entry: FakeMovie;
+  disabled: boolean;
+  eliminatedMovies: CardId[];
+  mistakes: CardId[];
+  isLoading: boolean;
+  user: GamePlayer;
+  onSelect: GenericFunction;
+};
+
+function MovieButton({
+  entry,
+  disabled,
+  isLoading,
+  user,
+  onSelect,
+  eliminatedMovies,
+  mistakes,
+}: MovieButtonProps) {
+  const isEliminated = eliminatedMovies.includes(entry.letter);
+  const isPlayerMovie = user?.movieId === entry.letter;
+  const isWrong = mistakes.includes(entry.letter);
+  const isDisabled = disabled && !isEliminated && !isPlayerMovie && !isWrong;
+
+  if (isDisabled) {
+    return (
+      <Button shape="circle" size="large" ghost disabled>
+        <ButtonLabel
+          isEliminated={isEliminated}
+          isLoading={isLoading}
+          isPlayerMovie={isPlayerMovie}
+          isWrong={isWrong}
+          letter={entry.letter}
+        />
+      </Button>
+    );
+  }
+
+  return (
+    <Button
+      shape="circle"
+      size="large"
+      type="primary"
+      style={{ background: entry.color, color: 'black' }}
+      onClick={() => onSelect(entry.letter)}
+      disabled={isLoading || user.ready || isEliminated}
+      className={clsx(
+        entry.letter === user.movieId && 'movie-button--selected',
+        getAnimationClass('bounceIn')
+      )}
+    >
+      <ButtonLabel
+        isEliminated={isEliminated}
+        isLoading={isLoading}
+        isPlayerMovie={isPlayerMovie}
+        isWrong={isWrong}
+        letter={entry.letter}
+      />
+    </Button>
   );
 }
 

@@ -13,6 +13,7 @@ import {
   getMovieTitle,
   getPhaseOutcome,
 } from './helpers';
+import { saveData } from './data';
 
 /**
  * Setup
@@ -256,7 +257,14 @@ export const prepareGameOverPhase = async (
     language: store.language,
   });
 
+  await saveData(store.movieDeck, store.goodReviewsDeck, store.badReviewsDeck);
+
+  utils.players.cleanup(players, []);
+
   return {
+    update: {
+      storeCleanup: utils.firebase.cleanupStore(store, []),
+    },
     set: {
       state: {
         phase: VAMOS_AO_CINEMA_PHASES.GAME_OVER,

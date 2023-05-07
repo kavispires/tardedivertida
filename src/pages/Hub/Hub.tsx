@@ -22,33 +22,20 @@ import { LogoutButton } from 'components/auth/LogoutButton';
 
 // Players migration
 const migrationBlocked = [
-  'desenho-rapidao',
-  'ta-na-cara',
-  'bomba-relogio',
-  'caminhos-magicos',
-  'cinegrafistas-amadores',
   'comunicacao-alienigena',
   'contadores-historias',
   'crimes-hediondos',
   'cruza-palavras',
-  'dilema-dos-esquiadores',
   'espiao-entre-nos',
-  'fileira-de-fatos',
-  'instrumentos-codificados',
   'linhas-cruzadas',
   'megamix',
   'na-rua-do-medo',
-  'naufragos',
-  'palheta-de-cores',
   'polemica-da-vez',
   'porta-dos-desesperados',
-  'quem-nao-mata',
   'sonhos-pesadelos',
   'super-campeonato',
   'testemunha-ocular',
-  'trevo-da-sorte',
   'ue-so-isso',
-  'vamos-ao-cinema',
   'vendaval-de-palpite',
 ];
 
