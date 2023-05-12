@@ -54,6 +54,17 @@ export const achievementsReference: AchievementReference = {
       en: "Voted for extra cards that didn't belong to any player the most",
     },
   },
+  CHOOSE_FOR_ME: {
+    icon: 'dice',
+    title: {
+      pt: 'Mais Desistível',
+      en: 'Best Shirker',
+    },
+    description: {
+      pt: 'Apertou o botão Chutar Restantes mais vezes',
+      en: "Pressed 'Guess for me' the most",
+    },
+  },
 };
 
 export default achievementsReference;

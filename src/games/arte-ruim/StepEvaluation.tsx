@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useEffectOnce } from 'react-use';
 // Ant Design Resources
 import { Button, Space } from 'antd';
@@ -47,8 +47,10 @@ export function StepEvaluation({
     true,
     drawings.length || 2
   );
+  const [choseRandomly, setChoseRandomly] = useState(false);
 
   const onGuessForMe = useCallback(() => {
+    setChoseRandomly(true);
     const usedDrawings = Object.keys(votes);
     const usedCards = Object.values(votes);
     const drawingsKeys = drawings
@@ -134,7 +136,7 @@ export function StepEvaluation({
         </Button>
         <Button
           type="primary"
-          onClick={() => onSubmitVoting({ votes: prepareVotes(votes) })}
+          onClick={() => onSubmitVoting({ votes: prepareVotes(votes), choseRandomly })}
           disabled={isLoading || !isVotingComplete}
           icon={<CloudUploadOutlined />}
           loading={isLoading}
