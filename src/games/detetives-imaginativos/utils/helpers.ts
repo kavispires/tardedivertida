@@ -15,10 +15,8 @@ export function isEarliestPlayerWithFewestCards(
 
   for (let i = 0; i < table.length; i++) {
     if (table[i].cards[1] === '') {
-      console.log('second card', table[i]);
       return table[i].playerId === userId;
     }
   }
-  console.log('nah');
   return false;
 }

@@ -121,7 +121,7 @@ export const prepareDefensePhase = async (
 
   // Save leaders cards and clue
   const leaderCards = state.table.find((e: TableEntry) => state.leaderId === e.playerId);
-  console.log({ TABLE: JSON.stringify(state.table, null, 2) });
+
   if (leaderCards) {
     store.usedCards.push({
       cards: leaderCards.cards,
