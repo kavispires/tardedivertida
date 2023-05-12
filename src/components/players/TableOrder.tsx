@@ -1,7 +1,7 @@
 import { Fragment, ReactNode, useMemo } from 'react';
 import clsx from 'clsx';
 // Ant Design Resources
-import { ForwardFilled } from '@ant-design/icons';
+import { BackwardFilled } from '@ant-design/icons';
 // Helpers
 import { getAvatarColorById } from 'utils/helpers';
 import { reorder } from './reorder';
@@ -86,7 +86,7 @@ export function TableOrder({
                 className="table-order__chevron"
               >
                 <span className="table-order__icon">
-                  <ForwardFilled />
+                  <BackwardFilled />
                 </span>
               </li>
             </Fragment>
@@ -94,7 +94,7 @@ export function TableOrder({
         })}
         <li className="table-order__center">
           <div className="table-order__center-container">
-            <RotationIcon style={{ width: '3rem' }} />
+            <RotationIcon style={{ width: '3rem', transform: 'scaleX(-1)' }} />
             <header className="table-order__title">
               <Translate en="Player Order" pt="Ordem dos Jogadores" custom={title} />
             </header>
