@@ -22,6 +22,11 @@ type SubmitContendersPayload = {
   contendersId: CardId;
 };
 
+type PastBattles = {
+  challenge: TextCard;
+  contenders: WContender[];
+}[];
+
 type WBets = {
   final: CardId;
   semi: CardId;

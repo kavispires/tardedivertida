@@ -1,7 +1,7 @@
 // Constants
 import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
 // Type
-import { ResourceData } from './types';
+import { PastBattles, ResourceData } from './types';
 // Helpers
 import * as resourceUtils from '../resource';
 import * as globalUtils from '../global';
@@ -67,4 +67,19 @@ export const getResourceData = async (
     challenges: Object.values(availableChallenges),
     contenders: Object.values(availableContenders),
   };
+};
+
+export const saveData = async (pastBattles: PastBattles) => {
+  const challengeIds: BooleanDictionary = {};
+  const contenderIds: BooleanDictionary = {};
+
+  pastBattles.forEach((entry) => {
+    challengeIds[entry.challenge.id] = true;
+    entry.contenders.forEach((contender) => {
+      contenderIds[contender.id] = true;
+    });
+  });
+
+  await globalUtils.updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.CONTENDERS, contenderIds);
+  await globalUtils.updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.CHALLENGES, challengeIds);
 };

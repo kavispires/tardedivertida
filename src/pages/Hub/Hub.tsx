@@ -32,7 +32,7 @@ const migrationBlocked = [
   'na-rua-do-medo',
   'polemica-da-vez',
   'sonhos-pesadelos',
-  'super-campeonato',
+  'ta-na-cara',
   'testemunha-ocular',
   'ue-so-isso',
   'vendaval-de-palpite',

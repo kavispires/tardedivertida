@@ -291,3 +291,37 @@ export const makeFinalBrackets = (brackets: Bracket[]) => {
 
   return emptyBracketArray;
 };
+
+/**
+ * Retrieves the past battles with the given brackets and challenge.
+ * @param brackets - An array of brackets containing information about past battles.
+ * @param challenge - The challenge card for the past battles.
+ * @return An object containing the challenge card and an array of contenders sorted by number of wins.
+ */
+export const getPastBattle = (brackets: Bracket[], challenge: TextCard) => {
+  const winsByContender: NumberDictionary = {};
+
+  brackets.forEach((bracket) => {
+    const currentWins = winsByContender[bracket.id] || 0;
+    winsByContender[bracket.id] = currentWins + 1;
+  });
+
+  const sortedWins: [CardId, number][] = Object.entries(winsByContender).sort(
+    ([, winsA], [, winsB]) => winsB - winsA
+  );
+
+  const reversedBrackets = [...brackets].reverse();
+
+  const contenders = sortedWins.reduce((acc: Bracket[], [cardId]) => {
+    const entry = reversedBrackets.find((c) => c.id === cardId);
+    if (entry) {
+      acc.push(entry);
+    }
+    return acc;
+  }, []);
+
+  return {
+    challenge,
+    contenders,
+  };
+};
