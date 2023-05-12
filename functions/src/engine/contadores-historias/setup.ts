@@ -218,6 +218,7 @@ export const prepareGameOverPhase = async (
 
   // Save data: imageCards and clues
   await saveData(store.usedCards, store.language);
+  const gallery = store.usedCards;
 
   utils.players.cleanup(players, []);
 
@@ -233,6 +234,7 @@ export const prepareGameOverPhase = async (
         players,
         winners,
         achievements,
+        gallery,
       },
     },
   };
