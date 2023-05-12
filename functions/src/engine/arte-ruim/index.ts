@@ -141,7 +141,7 @@ export const submitAction = async (data: ArteRuimSubmitAction) => {
       return handleSubmitDrawing(gameName, gameId, playerId, data.drawing);
     case ARTE_RUIM_ACTIONS.SUBMIT_VOTING:
       utils.firebase.validateSubmitActionProperties(data, ['votes'], 'submit votes');
-      return handleSubmitVoting(gameName, gameId, playerId, data.votes);
+      return handleSubmitVoting(gameName, gameId, playerId, data.votes, data.choseRandomly);
     default:
       utils.firebase.throwException(`Given action ${action} is not allowed`);
   }

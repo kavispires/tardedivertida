@@ -381,7 +381,13 @@ export const buildGallery = (
     const gotWrong: PlayerId[] = [];
 
     Object.entries(<PlainObject>players).forEach(([playerId, pObject]) => {
-      if (artistId === playerId) return;
+      if (artistId === playerId) {
+        // Achievement: choseRandomly
+        if (pObject.choseRandomly) {
+          utils.achievements.increase(store, playerId, 'chooseForMe', 1);
+        }
+        return;
+      }
 
       if (artistId) {
         // Calculate what players say
@@ -575,6 +581,16 @@ export const getAchievements = (store: FirebaseStoreData) => {
       type: ARTE_RUIM_ACHIEVEMENTS.TABLE_VOTES,
       playerId: tableVotes.playerId,
       value: tableVotes.tableVotes,
+    });
+  }
+
+  // Table votes: votes for cards that are not from players the most
+  const { most: chooseForMe } = utils.achievements.getMostAndLeastOf(store, 'chooseForMe');
+  if (chooseForMe) {
+    achievements.push({
+      type: ARTE_RUIM_ACHIEVEMENTS.CHOOSE_FOR_ME,
+      playerId: chooseForMe.playerId,
+      value: chooseForMe.chooseForMe,
     });
   }
 

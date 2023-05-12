@@ -40,6 +40,7 @@ export const prepareSetupPhase = async (
     solitaryWin: 0,
     worstArtist: 0,
     tableVotes: 0,
+    chooseForMe: 0,
   });
 
   // Save
@@ -94,6 +95,7 @@ export const prepareEvaluationPhase = async (
 ): Promise<SaveGamePayload> => {
   // Unready players
   utils.players.unReadyPlayers(players);
+  utils.players.removePropertiesFromPlayers(players, ['choseRandomly']);
 
   const level = store.currentCards?.[0]?.level ?? 1;
 
