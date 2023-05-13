@@ -52,7 +52,7 @@ function PhaseGameOver({ state, info, players }: PhaseProps) {
                       <div className="gallery-entry__answer" key={`${question.id}-${answer}`}>
                         <span>{answer}</span>
                         <span>
-                          {playerIds.length} <Translate pt="jogadores" en="jogadores" />
+                          {playerIds.length} <Translate pt="jogadores" en="players" />
                         </span>
                       </div>
                     );
