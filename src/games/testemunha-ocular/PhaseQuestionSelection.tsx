@@ -16,6 +16,7 @@ import { ViewOr } from 'components/views';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepQuestionWaiting } from './StepQuestionWaiting';
 import { StepSelectQuestion } from './StepSelectQuestion';
+import { TimeHighlight } from 'components/metrics/TimeHighlight';
 
 function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
   const { isLoading } = useLoading();
@@ -39,8 +40,8 @@ function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
             <>
               Agora que encontramos nossa testemunha (<AvatarName player={witness} />) é hora de questioná-la.
               <br />
-              Só temos tempo para {roundsLeft} perguntas. Portanto, <AvatarName player={questioner} />,
-              escolha a pergunta certa.
+              Só temos tempo para <TimeHighlight>{roundsLeft}</TimeHighlight> perguntas. Portanto,{' '}
+              <AvatarName player={questioner} />, escolha a pergunta certa.
             </>
           }
           en={
@@ -48,8 +49,8 @@ function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
               Now that we have a Witness (<AvatarName player={witness} />
               ), it's time to choose the question to ask them.
               <br />
-              We can only have time for {roundsLeft} questions. So <AvatarName player={questioner} />, choose
-              a question
+              We can only have time for <TimeHighlight>{roundsLeft}</TimeHighlight> questions. So{' '}
+              <AvatarName player={questioner} />, choose a question
             </>
           }
         />

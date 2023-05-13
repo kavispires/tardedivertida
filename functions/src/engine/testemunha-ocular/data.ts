@@ -1,12 +1,13 @@
 // Types
 import type { ResourceData, TestemunhaOcularEntry, TestemunhaOcularOptions } from './types';
 // Constants
-import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
+import { DATA_DOCUMENTS, GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
 import { QUESTION_COUNT } from './constants';
 // Helpers
 import utils from '../../utils';
 import * as globalUtils from '../global';
 import * as resourceUtils from '../resource';
+import * as dataUtils from '../collections';
 import { modifySuspectIdsByOptions } from './helpers';
 
 /**
@@ -51,11 +52,27 @@ export const getQuestionsAndSuspects = async (
  * Save used questions to the global document
  * @param pastQuestions
  */
-export const saveUsedQUestions = async (pastQuestions: TestemunhaOcularEntry[]) => {
-  // Save usedTestemunhaOcularCards to global
-  const usedTestemunhaOcularCards = utils.helpers.buildIdDictionary(pastQuestions);
-  await globalUtils.updateGlobalFirebaseDoc(
-    GLOBAL_USED_DOCUMENTS.TESTIMONY_QUESTIONS,
-    usedTestemunhaOcularCards
-  );
+export const saveData = async (pastQuestions: TestemunhaOcularEntry[]) => {
+  const usedQuestionsIds: BooleanDictionary = {};
+  const usedSuspectsIds: BooleanDictionary = {};
+  const suspectAnswers: Record<CardId, Record<CardId, boolean>> = {};
+
+  pastQuestions.forEach((entry: PlainObject) => {
+    usedQuestionsIds[entry.id] = true;
+    if (entry.unfit) {
+      entry.unfit.forEach((suspectId: CardId) => {
+        usedSuspectsIds[suspectId] = true;
+
+        const previouslySavedCharacter = suspectAnswers?.[suspectId] ?? {};
+        suspectAnswers[suspectId] = { ...previouslySavedCharacter, [entry.id]: false };
+      });
+    }
+  });
+
+  // Save used questions
+  await globalUtils.updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.TESTIMONY_QUESTIONS, usedQuestionsIds);
+  // Save used suspects
+  await globalUtils.updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.SUSPECTS, usedSuspectsIds);
+  // Save Suspect Answers
+  await dataUtils.updateDataFirebaseDoc(DATA_DOCUMENTS.SUSPECT_ANSWERS, suspectAnswers);
 };

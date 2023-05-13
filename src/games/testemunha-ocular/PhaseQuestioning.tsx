@@ -25,7 +25,7 @@ function PhaseQuestioning({ state, players, info }: PhaseProps) {
   const announcement = (
     <PhaseAnnouncement
       icon={<EyeIcon />}
-      title={<Translate pt="Questionamento" en="Questioning" />}
+      title={state.question.question}
       currentRound={state?.round?.current}
       type="overlay"
     >

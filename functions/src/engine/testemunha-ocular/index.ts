@@ -22,7 +22,7 @@ import {
   prepareWitnessSelectionPhase,
 } from './setup';
 import { handleElimination, handleExtraAction } from './actions';
-import { getQuestionsAndSuspects, saveUsedQUestions } from './data';
+import { getQuestionsAndSuspects } from './data';
 
 /**
  * Get Initial Game State
@@ -117,11 +117,6 @@ export const getNextPhase = async (
   // TRIAL -> GAME_OVER
   if (nextPhase === TESTEMUNHA_OCULAR_PHASES.GAME_OVER) {
     const newPhase = await prepareGameOverPhase(gameId, store, state, players, additionalPayload ?? {});
-
-    // Save usedTestemunhaOcularCards to global
-    await saveUsedQUestions(store.pastQuestions);
-
-    // TODO: Save testimonies to public gallery
 
     return utils.firebase.saveGame(sessionRef, newPhase);
   }
