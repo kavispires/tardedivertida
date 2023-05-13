@@ -1,5 +1,5 @@
 // Types
-import type { AllWords, ClueEntry, Deck, GridCell } from './types';
+import type { AllWords, ClueEntry, Deck, GridCell, PastClues } from './types';
 // Constants
 import { SEPARATOR } from '../../utils/constants';
 import { WORDS_PER_PLAYER_COUNT, CRUZA_PALAVRAS_PHASES } from './constants';
@@ -134,6 +134,7 @@ export const buildGrid = (
           kind: 'cell',
           text: '',
           available: true,
+          id: `${xObj.id}${SEPARATOR}${yObj.id}`,
           x: xIndex,
           y: yIndex,
           xText: xObj.text ?? xObj,
@@ -274,4 +275,29 @@ export const buildRanking = (players: Players, clues: ClueEntry[]) => {
     ranking: scores.rank(players),
     whoGotNoPoints,
   };
+};
+
+export const updatePastClues = (grid: GridCell[], pastClues: PastClues, clues: ClueEntry[]) => {
+  clues.forEach(({ coordinate, clue }) => {
+    const cell = grid[coordinate];
+    if (cell && cell.kind === 'cell' && cell.id) {
+      const [id1, id2] = cell.id.split(SEPARATOR);
+
+      if (id1 && id1 !== 'undefined') {
+        if (pastClues[id1] === undefined) {
+          pastClues[id1] = [];
+        }
+        pastClues[id1].push(clue);
+      }
+
+      if (id2 && id2 !== 'undefined') {
+        if (pastClues[id2] === undefined) {
+          pastClues[id2] = [];
+        }
+        pastClues[id2].push(clue);
+      }
+    }
+  });
+
+  return pastClues;
 };
