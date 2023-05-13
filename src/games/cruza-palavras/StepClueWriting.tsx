@@ -35,8 +35,24 @@ export function StepClueWriting({ grid, user, onSubmitClue, players, announcemen
 
       <Instruction contained>
         <Translate
-          pt="Clique no ícone na tabela e escreva sua dica. Sua dica deve conter apenas uma palavra."
-          en="Click on the icon on the table cell and write your clue. Your clue must be a single word clue."
+          pt={
+            <>
+              Clique no ícone na grade e escreva sua dica.
+              <br />
+              Sua dica deve conter apenas <strong>uma palavra única</strong>.
+              <br />
+              Você <strong>NÃO</strong> pode usar nenhuma palavra que esteja na grade.
+            </>
+          }
+          en={
+            <>
+              Click on the icon on the table cell and write your clue.\
+              <br />
+              Your clue must be a <strong>single-word</strong> clue.
+              <br />
+              You can <strong>NOT</strong> use any words already in the table.
+            </>
+          }
         />
       </Instruction>
 

@@ -1,9 +1,12 @@
 // Constants
-import { TDR_RESOURCES } from '../../utils/constants';
+import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
 // Types
-import type { ResourceData } from './types';
+import type { PastClues, ResourceData } from './types';
 // Utils
 import * as resourceUtils from '../resource';
+import * as globalUtils from '../global';
+import * as dataUtils from '../collections';
+import utils from '../../utils';
 
 /**
  * Get words resource based on the game's language
@@ -38,4 +41,15 @@ export const getWords = async (language: string, isImageGrid: boolean): Promise<
   const allWords = await resourceUtils.fetchResource(resourceName);
 
   return { allWords };
+};
+
+export const saveData = async (language: Language, pastClues: PastClues, isImageGrid: boolean) => {
+  // Save used cards
+  if (!isImageGrid) {
+    const usedIds = utils.helpers.buildBooleanDictionary(Object.keys(pastClues));
+    await globalUtils.updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.SINGLE_WORDS, usedIds);
+  }
+
+  // Save card clues data
+  await dataUtils.updateCardDataCollection('cards', language, pastClues);
 };

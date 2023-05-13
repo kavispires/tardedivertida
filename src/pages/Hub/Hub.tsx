@@ -24,7 +24,6 @@ import { LogoutButton } from 'components/auth/LogoutButton';
 const migrationBlocked = [
   'comunicacao-alienigena',
   'crimes-hediondos',
-  'cruza-palavras',
   'espiao-entre-nos',
   'linhas-cruzadas',
   'megamix',
@@ -48,6 +47,7 @@ function Hub() {
 
   useEffectOnce(() => {
     const prevLanguage = getLocalStorage('language');
+
     if (prevLanguage) {
       setLanguage(prevLanguage);
     }

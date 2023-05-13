@@ -14,7 +14,9 @@ import {
   distributeCoordinates,
   getPlayerClues,
   updateGridWithPlayersClues,
+  updatePastClues,
 } from './helpers';
+import { saveData } from './data';
 
 /**
  * Setup
@@ -40,6 +42,7 @@ export const prepareSetupPhase = async (
         playersClues: [],
         availableCoordinates: {},
         gridRebuilds: 0,
+        pastClues: {},
       },
       state: {
         phase: CRUZA_PALAVRAS_PHASES.SETUP,
@@ -64,6 +67,11 @@ export const prepareClueWritingPhase = async (
   // Build grid if rounds 1 or if there is not enough available cells for all players
   const largerGridAvailability = store.options.largerGrid ? 2 : 0;
   const shouldBuildGrid = !checkForAvailableCells(state.grid, playerCount, largerGridAvailability);
+
+  // if (shouldBuildGrid && round.current > 1) {
+
+  // }
+
   const grid = shouldBuildGrid
     ? buildGrid(store.deck, store.playersClues, coordinateLength, shouldBuildGrid)
     : state.grid;
@@ -105,12 +113,14 @@ export const prepareGuessingPhase = async (
 
   const clues = getPlayerClues(players);
   const playersClues = clues.map((entry) => entry.clue);
+  const pastClues = updatePastClues(state.grid, store.pastClues, clues);
 
   // Save
   return {
     update: {
       store: {
         playersClues: [...(store.playersClues ?? []), ...playersClues],
+        pastClues,
       },
       state: {
         phase: CRUZA_PALAVRAS_PHASES.GUESSING,
@@ -163,7 +173,15 @@ export const prepareGameOverPhase = async (
     language: store.language,
   });
 
+  // Save data
+  await saveData(store.pastClues, store.language, store.options.imageGrid);
+
+  utils.players.cleanup(players, []);
+
   return {
+    update: {
+      storeCleanup: utils.firebase.cleanupStore(store, []),
+    },
     set: {
       state: {
         phase: CRUZA_PALAVRAS_PHASES.GAME_OVER,
