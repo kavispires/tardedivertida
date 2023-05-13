@@ -236,6 +236,7 @@ type GameInfo = {
     on: string;
     off: string;
     description?: string;
+    disabled?: boolean;
   }[];
   mobileFriendly?: boolean;
 };
