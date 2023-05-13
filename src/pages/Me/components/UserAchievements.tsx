@@ -10,7 +10,7 @@ type UserAchievementsProps = {
 
 export function UserAchievements({ reference, achievements }: UserAchievementsProps) {
   return (
-    <Row gutter={8} align="stretch">
+    <Row gutter={[8, 8]} align="stretch">
       {Object.entries(reference).map(([achievementKey, info]) => {
         return (
           <Col xs={12} sm={8} md={8} lg={4} key={achievementKey}>
