@@ -223,7 +223,13 @@ function Options({ options = [], disabled, onChangeOptions, selectedOptions }: O
         <Translate pt="Opções:" en="Options:" />
       </Typography.Title>
       {(options ?? []).map((option) => (
-        <Typography.Paragraph key={`option-${option.label}`} className="create-game-modal-options__option">
+        <Typography.Paragraph
+          key={`option-${option.label}`}
+          className={clsx(
+            'create-game-modal-options__option',
+            option.disabled && 'create-game-modal-options__option--disabled'
+          )}
+        >
           <span className="create-game-modal-options__label">{option.label}</span>
           <span
             className={clsx(
@@ -233,7 +239,7 @@ function Options({ options = [], disabled, onChangeOptions, selectedOptions }: O
           >
             {option?.off ?? ''}
           </span>
-          <Switch disabled={disabled} onChange={(e) => onChangeOptions(option.key, e)} />
+          <Switch disabled={disabled || option.disabled} onChange={(e) => onChangeOptions(option.key, e)} />
           <span
             className={clsx(
               'create-game-modal-options__on',
