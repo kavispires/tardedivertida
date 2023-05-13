@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "A",
   "gameName": "arte-ruim",
-  "version": "4.5.0",
+  "version": "5.0.0",
   "title": {
     "pt": "Arte Ruim Pra Dedéu",
     "en": "Questionable Art"
@@ -64,7 +64,33 @@
     "en": true
   },
   "options": [
-    { "label": "Cards", "key": "useAllCards", "off": "Never seen before cards only", "on": "All cards" },
-    { "label": "Duration", "key": "shortGame", "off": "50 points/8 rounds", "on": "5 rounds" }
+    {
+      "label": "Cards",
+      "key": "useAllCards",
+      "off": "New cards",
+      "on": "All cards",
+      "description": "Use only cards that haven't been used before in any game"
+    },
+    {
+      "label": "Duration",
+      "key": "forPoints",
+      "off": "5 Rounds",
+      "on": "For Points",
+      "description": "Point threshold is determined by the number of players (30-100)"
+    },
+    {
+      "label": "Difficulty",
+      "key": "randomize",
+      "off": "Incremental",
+      "on": "Randomized",
+      "description": "Rounds will have random difficulty"
+    },
+    {
+      "label": "Levels",
+      "key": "specialLevels",
+      "off": "Normal",
+      "on": "Add Specials",
+      "description": "One or more special levels will be added"
+    }
   ]
 }

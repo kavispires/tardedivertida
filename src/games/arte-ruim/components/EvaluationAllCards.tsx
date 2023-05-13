@@ -11,9 +11,16 @@ type EvaluationAllCardsProps = {
   activeItem: string;
   onActivateItem: GenericFunction;
   votes: PlainObject;
+  levelType: string;
 };
 
-export function EvaluationAllCards({ cards, activeItem, onActivateItem, votes }: EvaluationAllCardsProps) {
+export function EvaluationAllCards({
+  cards,
+  activeItem,
+  onActivateItem,
+  votes,
+  levelType,
+}: EvaluationAllCardsProps) {
   const { isDebugEnabled } = useDevFeatures();
   const liButtonBaseClass = 'a-evaluation-all-cards__li-card-button';
 
@@ -32,7 +39,7 @@ export function EvaluationAllCards({ cards, activeItem, onActivateItem, votes }:
             className={clsx(
               liButtonBaseClass,
               isActive && `${liButtonBaseClass}--active`,
-              isUsed && `${liButtonBaseClass}--used`
+              isUsed && levelType !== 'pairs' && `${liButtonBaseClass}--used`
             )}
             onClick={() => onActivateItem(cardEntryId)}
           >

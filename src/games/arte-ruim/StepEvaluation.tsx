@@ -29,6 +29,7 @@ type StepEvaluationProps = {
   cards: ArteRuimCard[];
   players: GamePlayers;
   onSubmitVoting: GenericFunction;
+  levelType: string;
 } & AnnouncementProps;
 
 export function StepEvaluation({
@@ -36,6 +37,7 @@ export function StepEvaluation({
   cards,
   players,
   onSubmitVoting,
+  levelType,
   announcement,
 }: StepEvaluationProps) {
   const { isLoading } = useLoading();
@@ -159,6 +161,7 @@ export function StepEvaluation({
         activeItem={activeItem}
         onActivateItem={activateItem}
         votes={votes}
+        levelType={levelType}
       />
     </Step>
   );

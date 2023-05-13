@@ -1,8 +1,8 @@
 // Types
-import type { ResourceData, FirebaseStateData, FirebaseStoreData } from './types';
+import type { ResourceData, FirebaseStateData, FirebaseStoreData, ArteRuimGameOptions } from './types';
 // Constants
 import { GAME_NAMES } from '../../utils/constants';
-import { ARTE_RUIM_PHASES, REGULAR_GAME_LEVELS, SHORT_GAME_LEVELS } from './constants';
+import { ARTE_RUIM_PHASES, GAME_OVER_SCORE_THRESHOLD } from './constants';
 // Helpers
 import utils from '../../utils';
 import {
@@ -10,7 +10,9 @@ import {
   buildGallery,
   buildRanking,
   dealCards,
+  determineLevelType,
   getAchievements,
+  getGameSettings,
   getNewPastDrawings,
   getTheTwoLevel5Cards,
 } from './helpers';
@@ -29,10 +31,14 @@ export const prepareSetupPhase = async (
   resourceData: ResourceData
 ): Promise<SaveGamePayload> => {
   // Get number of cards per level
-  const playerCount = Object.keys(players).length;
+  const playerCount = utils.players.getPlayerCount(players);
+
+  // Update rounds
+  const options = store.options as ArteRuimGameOptions;
+  const { MAX_ROUNDS, LEVELS } = getGameSettings(options);
 
   // Build deck
-  const deck = buildDeck(resourceData, playerCount, store.options?.shortGame ?? false);
+  const deck = buildDeck(resourceData, playerCount, store.options as ArteRuimGameOptions, LEVELS);
 
   const achievements = utils.achievements.setup(players, store, {
     solitaryFail: 0,
@@ -43,14 +49,25 @@ export const prepareSetupPhase = async (
     chooseForMe: 0,
   });
 
+  const threshold = options.forPoints ? GAME_OVER_SCORE_THRESHOLD?.[playerCount] ?? 100 : 0;
+
   // Save
   return {
     update: {
+      state: {
+        round: {
+          ...state.round,
+          total: MAX_ROUNDS,
+        },
+        threshold,
+      },
       store: {
         deck,
         pastDrawings: [],
         currentCards: [],
         achievements,
+        levels: LEVELS,
+        specialLevels: resourceData.specialLevels.types,
       },
     },
   };
@@ -70,8 +87,8 @@ export const prepareDrawPhase = async (
   // Deal cards
   dealCards(players, store);
 
-  // Update rounds
-  const maxRounds = store.options?.shortGame ? SHORT_GAME_LEVELS.length : REGULAR_GAME_LEVELS.length;
+  const level = store.levels[state.round.current];
+  const levelType = determineLevelType(level, store.specialLevels, store.levels, state.round.current);
 
   return {
     update: {
@@ -80,9 +97,10 @@ export const prepareDrawPhase = async (
       },
       state: {
         phase: ARTE_RUIM_PHASES.DRAW,
-        round: utils.helpers.increaseRound(state?.round, maxRounds),
-        level: Object.values(players)?.[0]?.currentCard?.level ?? 0,
+        round: utils.helpers.increaseRound(state?.round),
         players,
+        level,
+        levelType,
       },
     },
   };

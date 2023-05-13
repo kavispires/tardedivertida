@@ -90,8 +90,6 @@ export const prepareCrimeSelectionPhase = async (
     state.locationTiles
   );
 
-  console.log(state);
-
   return {
     update: {
       state: {
