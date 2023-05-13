@@ -53,7 +53,8 @@ type VIPNextPhaseButtonProps = {
 export function VIPNextPhaseButton({ round, autoTriggerTime = 45, children }: VIPNextPhaseButtonProps) {
   const isVIP = useVIP();
   const { translate } = useLanguage();
-  const { isLoading } = useLoading();
+  const { loaders } = useLoading();
+  const isLoading = loaders['go-to-next-phase'];
 
   const onGoToNextPhase = useAPICall({
     apiFunction: ADMIN_API.performAdminAction,
