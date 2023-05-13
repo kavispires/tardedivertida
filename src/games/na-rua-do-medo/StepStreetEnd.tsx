@@ -23,7 +23,7 @@ type StepStreetEndProps = {
   goingHomePlayerIds: PlayerId[];
   continuingPlayerIds: PlayerId[];
   candyInHand: number;
-};
+} & AnnouncementProps;
 
 export function StepStreetEnd({
   street,
@@ -37,13 +37,14 @@ export function StepStreetEnd({
   goingHomePlayerIds,
   continuingPlayerIds,
   candyInHand,
+  announcement,
 }: StepStreetEndProps) {
   const { language } = useLanguage();
 
   const monsterName = currentCard?.name?.[language] ?? '';
 
   return (
-    <Step fullWidth>
+    <Step fullWidth announcement={announcement}>
       <Title size="medium" white>
         {isDoubleHorror ? (
           <Translate

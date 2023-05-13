@@ -285,7 +285,12 @@ export const prepareGameOverPhase = async (
     language: store.language,
   });
 
+  utils.players.cleanup(players, ['costumeId', 'hand', 'jackpots', 'totalCandy']);
+
   return {
+    update: {
+      storeCleanup: utils.firebase.cleanupStore(store, []),
+    },
     set: {
       state: {
         phase: NA_RUA_DO_MEDO_PHASES.GAME_OVER,
