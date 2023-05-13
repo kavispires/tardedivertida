@@ -78,6 +78,11 @@ export const buildGallery = (players: Players, currentRound: number): GalleryEnt
   const listOfPlayers = utils.players.getListOfPlayers(players);
 
   const gallery = listOfPlayers.map((player) => {
+    // Achievement: choseRandomly
+    if (player.choseRandomly) {
+      utils.achievements.increase(player, player.id, 'chooseForMe', 1);
+    }
+
     // Make PlayersSay and PlayerPoints
     const playersSay = {};
     const playersPoints = {
@@ -212,6 +217,16 @@ export const getAchievements = (store: FirebaseStoreData) => {
       type: QUEM_SOU_EU_ACHIEVEMENTS.TABLE_VOTES,
       playerId: tableVotes.playerId,
       value: tableVotes.tableVotes,
+    });
+  }
+
+  // Choose for me: gave up on trying to match the clues the most
+  const { most: chooseForMe } = utils.achievements.getMostAndLeastOf(store, 'chooseForMe');
+  if (chooseForMe) {
+    achievements.push({
+      type: QUEM_SOU_EU_ACHIEVEMENTS.CHOOSE_FOR_ME,
+      playerId: chooseForMe.playerId,
+      value: chooseForMe.chooseForMe,
     });
   }
 

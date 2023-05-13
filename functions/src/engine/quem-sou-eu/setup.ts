@@ -53,6 +53,7 @@ export const prepareSetupPhase = async (
     negative: 0,
     single: 0,
     tableVotes: 0,
+    chooseForMe: 0,
   });
 
   // Save
@@ -104,7 +105,12 @@ export const prepareCharacterDescriptionPhase = async (
   const round = utils.helpers.increaseRound(state.round);
   // Unready players
   utils.players.unReadyPlayers(players);
-  utils.players.removePropertiesFromPlayers(players, ['guesses', 'glyphs', 'selectedGlyphs']);
+  utils.players.removePropertiesFromPlayers(players, [
+    'guesses',
+    'glyphs',
+    'selectedGlyphs',
+    'choseRandomly',
+  ]);
 
   const glyphs = utils.game.shuffle(utils.game.makeArray(TOTAL_GLYPHS, 1));
 
