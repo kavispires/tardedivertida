@@ -10,6 +10,7 @@ import { GameOverWrapper } from 'components/game-over';
 import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
 import { ImageCard } from 'components/cards';
+import { TimeHighlight } from 'components/metrics/TimeHighlight';
 
 function PhaseGameOver({ state, info, players }: PhaseProps) {
   const { language } = useLanguage();
@@ -34,8 +35,16 @@ function PhaseGameOver({ state, info, players }: PhaseProps) {
     >
       <Instruction contained>
         <Translate
-          pt={<>O interrogatório durou {state.groupScore ?? '?'} horas.</>}
-          en={<>The interrogation lasted for {state.groupScore ?? '?'} hours.</>}
+          pt={
+            <>
+              O interrogatório durou <TimeHighlight>{state.groupScore ?? '?'}</TimeHighlight> horas.
+            </>
+          }
+          en={
+            <>
+              The interrogation lasted for <TimeHighlight>{state.groupScore ?? '?'}</TimeHighlight> hours.
+            </>
+          }
         />
         <br />
         <Translate pt="O criminoso era:" en="The perpetrator was:" />

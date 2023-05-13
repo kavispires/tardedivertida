@@ -30,7 +30,6 @@ const migrationBlocked = [
   'polemica-da-vez',
   'sonhos-pesadelos',
   'ta-na-cara',
-  'testemunha-ocular',
   'ue-so-isso',
   'vendaval-de-palpite',
 ];

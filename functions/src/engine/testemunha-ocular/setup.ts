@@ -6,6 +6,7 @@ import { MAX_ROUNDS, QUESTION_COUNT, SUSPECT_COUNT, TESTEMUNHA_OCULAR_PHASES } f
 import utils from '../../utils';
 import { calculateScore, determineTurnOrder, getQuestionerId, getQuestions } from './helpers';
 import { GAME_NAMES } from '../../utils/constants';
+import { saveData } from './data';
 
 /**
  * Setup
@@ -34,8 +35,6 @@ export const prepareSetupPhase = async (additionalData: ResourceData): Promise<S
         turnOrder: [],
         gameOrder: [],
       },
-    },
-    set: {
       state: {
         phase: TESTEMUNHA_OCULAR_PHASES.SETUP,
         round: {
@@ -101,7 +100,6 @@ export const prepareQuestionSelectionPhase = async (
       id: state.question.id,
       question: state.question.question,
       unfit: eliminatedSuspects,
-      fit: state.suspects.filter((sId: string) => !eliminatedSuspects.includes(sId)),
     };
   }
 
@@ -207,8 +205,15 @@ export const prepareGameOverPhase = async (
     language: store.language,
   });
 
-  // Save
+  // Save Data (usedSuspects, usedQuestions, relationships)
+  await saveData(store.pastQuestions);
+
+  utils.players.cleanup(players, []);
+
   return {
+    update: {
+      storeCleanup: utils.firebase.cleanupStore(store, []),
+    },
     set: {
       state: {
         phase: TESTEMUNHA_OCULAR_PHASES.GAME_OVER,
