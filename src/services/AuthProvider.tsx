@@ -107,11 +107,13 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       print({ me: data }, 'table');
     },
     onError: (e: any) => {
-      console.error(e);
-      notification.error({
-        message: 'Failed to load user',
-        description: JSON.stringify(e.message),
-      });
+      if (!authenticatedUser?.isAnonymous) {
+        console.error(e);
+        notification.error({
+          message: 'Failed to load user',
+          description: JSON.stringify(e.message),
+        });
+      }
     },
     onSettled: () => {
       setLoader('user', false);
