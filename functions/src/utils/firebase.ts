@@ -472,6 +472,6 @@ export const resetGlobalUsedDocument = async (documentName: string) => {
  * @returns
  */
 export const cleanupStore = (store: PlainObject, keepKeys: string[]): string[] => {
-  const keys = ['language', 'options', 'turnOrder', 'gameOrder', 'createdAt', ...keepKeys];
+  const keys = ['language', 'options', 'turnOrder', 'gameOrder', 'createdAt', 'achievements', ...keepKeys];
   return Object.keys(store).filter((key) => !keys.includes(key));
 };

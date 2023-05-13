@@ -12,6 +12,7 @@ import {
   buildRanking,
   checkForAvailableCells,
   distributeCoordinates,
+  getAchievements,
   getPlayerClues,
   updateGridWithPlayersClues,
   updatePastClues,
@@ -34,6 +35,15 @@ export const prepareSetupPhase = async (
   // Build deck
   const deck = buildDeck(resourceData.allWords, Object.keys(players).length, largerGridCount);
 
+  const achievements = utils.achievements.setup(players, store, {
+    clues: 0,
+    badClues: 0,
+    guesses: 0,
+    chooseForMe: 0,
+    wordLength: 0,
+    savior: 0,
+  });
+
   // Save
   return {
     update: {
@@ -43,6 +53,7 @@ export const prepareSetupPhase = async (
         availableCoordinates: {},
         gridRebuilds: 0,
         pastClues: {},
+        achievements,
       },
       state: {
         phase: CRUZA_PALAVRAS_PHASES.SETUP,
@@ -58,6 +69,7 @@ export const prepareClueWritingPhase = async (
 ): Promise<SaveGamePayload> => {
   // Unready players
   utils.players.unReadyPlayers(players);
+  utils.players.removePropertiesFromPlayers(players, ['choseRandomly']);
 
   const round = utils.helpers.increaseRound(state.round);
   const playerCount = Object.keys(players).length;
@@ -67,10 +79,6 @@ export const prepareClueWritingPhase = async (
   // Build grid if rounds 1 or if there is not enough available cells for all players
   const largerGridAvailability = store.options.largerGrid ? 2 : 0;
   const shouldBuildGrid = !checkForAvailableCells(state.grid, playerCount, largerGridAvailability);
-
-  // if (shouldBuildGrid && round.current > 1) {
-
-  // }
 
   const grid = shouldBuildGrid
     ? buildGrid(store.deck, store.playersClues, coordinateLength, shouldBuildGrid)
@@ -112,6 +120,11 @@ export const prepareGuessingPhase = async (
   utils.players.unReadyPlayers(players);
 
   const clues = getPlayerClues(players);
+  // Achievement: wordLength
+  clues.forEach((clue) => {
+    utils.achievements.increase(store, clue.playerId, 'wordLength', clue.clue.length);
+  });
+
   const playersClues = clues.map((entry) => entry.clue);
   const pastClues = updatePastClues(state.grid, store.pastClues, clues);
 
@@ -121,6 +134,7 @@ export const prepareGuessingPhase = async (
       store: {
         playersClues: [...(store.playersClues ?? []), ...playersClues],
         pastClues,
+        achievements: store.achievements,
       },
       state: {
         phase: CRUZA_PALAVRAS_PHASES.GUESSING,
@@ -137,11 +151,14 @@ export const prepareRevealPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Gather votes
-  const { ranking, whoGotNoPoints } = buildRanking(players, state.clues);
+  const { ranking, whoGotNoPoints } = buildRanking(players, state.clues, store);
 
   // Save
   return {
     update: {
+      store: {
+        achievements: store.achievements,
+      },
       state: {
         phase: CRUZA_PALAVRAS_PHASES.REVEAL,
         grid: updateGridWithPlayersClues(players, state.grid),
@@ -161,6 +178,8 @@ export const prepareGameOverPhase = async (
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 
+  const achievements = getAchievements(store);
+
   await utils.firebase.markGameAsComplete(gameId);
 
   await utils.user.saveGameToUsers({
@@ -174,7 +193,7 @@ export const prepareGameOverPhase = async (
   });
 
   // Save data
-  await saveData(store.pastClues, store.language, store.options.imageGrid);
+  await saveData(store.language, store.pastClues, store.options.imageGrid);
 
   utils.players.cleanup(players, []);
 
@@ -189,6 +208,7 @@ export const prepareGameOverPhase = async (
         gameEndedAt: Date.now(),
         winners,
         players,
+        achievements,
       },
     },
   };
