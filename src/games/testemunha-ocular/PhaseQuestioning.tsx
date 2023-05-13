@@ -17,11 +17,38 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
 function PhaseQuestioning({ state, players, info }: PhaseProps) {
   const { isLoading } = useLoading();
-  const { step, goToNextStep } = useStep(0);
+  const { step } = useStep(0);
   const [witness, isUserTheWitness] = useWhichPlayerIsThe('witnessId', state, players);
 
   const onAnswer = useOnSubmitTestimonyAPIRequest();
 
+  const announcement = (
+    <PhaseAnnouncement
+      icon={<EyeIcon />}
+      title={<Translate pt="Questionamento" en="Questioning" />}
+      currentRound={state?.round?.current}
+      type="overlay"
+    >
+      <Instruction>
+        <Translate
+          pt={
+            <>
+              Nossa testemunha só sabe julgar por aparência.
+              <br />
+              <AvatarName player={witness} />, é hora de nos ajudar a pegar esse criminoso hediondo.
+            </>
+          }
+          en={
+            <>
+              Our witness loves to judge the book by its cover.
+              <br />
+              <AvatarName player={witness} />, it's time to help us find this heinous perpetrator!
+            </>
+          }
+        />
+      </Instruction>
+    </PhaseAnnouncement>
+  );
   return (
     <PhaseContainer
       info={info}
@@ -31,34 +58,6 @@ function PhaseQuestioning({ state, players, info }: PhaseProps) {
     >
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
-        <PhaseAnnouncement
-          icon={<EyeIcon />}
-          title={<Translate pt="Questionamento" en="Questioning" />}
-          onClose={goToNextStep}
-          currentRound={state?.round?.current}
-          type="block"
-        >
-          <Instruction>
-            <Translate
-              pt={
-                <>
-                  Nossa testemunha só sabe julgar por aparência.
-                  <br />
-                  <AvatarName player={witness} />, é hora de nos ajudar a pegar esse criminoso hediondo.
-                </>
-              }
-              en={
-                <>
-                  Our witness loves to judge the book by its cover.
-                  <br />
-                  <AvatarName player={witness} />, it's time to help us find this heinous perpetrator!
-                </>
-              }
-            />
-          </Instruction>
-        </PhaseAnnouncement>
-
-        {/* Step 1 */}
         <StepQuestioning
           suspects={state.suspects}
           previouslyEliminatedSuspects={state.previouslyEliminatedSuspects}
@@ -69,7 +68,11 @@ function PhaseQuestioning({ state, players, info }: PhaseProps) {
           onAnswer={onAnswer}
           question={state.question}
           history={state.history}
+          announcement={announcement}
         />
+
+        {/* Step 1 */}
+        <></>
       </StepSwitcher>
     </PhaseContainer>
   );

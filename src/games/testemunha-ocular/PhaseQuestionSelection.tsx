@@ -19,12 +19,43 @@ import { StepSelectQuestion } from './StepSelectQuestion';
 
 function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
   const { isLoading } = useLoading();
-  const { step, goToNextStep } = useStep(0);
+  const { step } = useStep(0);
   const [witness, isUserTheWitness] = useWhichPlayerIsThe('witnessId', state, players);
   const [questioner, isUserTheQuestioner] = useWhichPlayerIsThe('questionerId', state, players);
   const onSelectQuestion = useOnSelectQuestionAPIRequest();
 
   const roundsLeft = (state?.round?.total ?? 0) - (state?.round?.current ?? 0) + 1 || 11;
+
+  const announcement = (
+    <PhaseAnnouncement
+      icon={<InvestigationIcon />}
+      title={<Translate pt="Seleção da Pergunta" en="Question Selection" />}
+      currentRound={state?.round?.current}
+      type="overlay"
+    >
+      <Instruction>
+        <Translate
+          pt={
+            <>
+              Agora que encontramos nossa testemunha (<AvatarName player={witness} />) é hora de questioná-la.
+              <br />
+              Só temos tempo para {roundsLeft} perguntas. Portanto, <AvatarName player={questioner} />,
+              escolha a pergunta certa.
+            </>
+          }
+          en={
+            <>
+              Now that we have a Witness (<AvatarName player={witness} />
+              ), it's time to choose the question to ask them.
+              <br />
+              We can only have time for {roundsLeft} questions. So <AvatarName player={questioner} />, choose
+              a question
+            </>
+          }
+        />
+      </Instruction>
+    </PhaseAnnouncement>
+  );
 
   return (
     <PhaseContainer
@@ -35,38 +66,6 @@ function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
     >
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
-        <PhaseAnnouncement
-          icon={<InvestigationIcon />}
-          title={<Translate pt="Seleção da Pergunta" en="Question Selection" />}
-          onClose={goToNextStep}
-          currentRound={state?.round?.current}
-          type="block"
-        >
-          <Instruction>
-            <Translate
-              pt={
-                <>
-                  Agora que encontramos nossa testemunha (<AvatarName player={witness} />) é hora de
-                  questioná-la.
-                  <br />
-                  Só temos tempo para {roundsLeft} perguntas. Portanto, <AvatarName player={questioner} />,
-                  escolha a pergunta certa.
-                </>
-              }
-              en={
-                <>
-                  Now that we have a Witness (<AvatarName player={witness} />
-                  ), it's time to choose the question to ask them.
-                  <br />
-                  We can only have time for {roundsLeft} questions. So <AvatarName player={questioner} />,
-                  choose a question
-                </>
-              }
-            />
-          </Instruction>
-        </PhaseAnnouncement>
-
-        {/* Step 1 */}
         <ViewOr condition={isUserTheQuestioner}>
           <StepSelectQuestion
             isLoading={isLoading}
@@ -75,6 +74,7 @@ function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
             questions={state.questions}
             suspects={state.suspects}
             history={state.history}
+            announcement={announcement}
           />
 
           <StepQuestionWaiting
@@ -84,8 +84,12 @@ function PhaseQuestionSelection({ state, players, info }: PhaseProps) {
             questioner={questioner}
             suspects={state.suspects}
             history={state.history}
+            announcement={announcement}
           />
         </ViewOr>
+
+        {/* Step 1 */}
+        <></>
       </StepSwitcher>
     </PhaseContainer>
   );

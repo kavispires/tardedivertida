@@ -19,15 +19,19 @@ import { WitnessRules } from './components/TextBlobs';
 type StepWitnessSelectionProps = {
   players: GamePlayers;
   onWitnessButtonClick: GenericFunction;
-};
+} & AnnouncementProps;
 
-export function StepWitnessSelection({ players, onWitnessButtonClick }: StepWitnessSelectionProps) {
+export function StepWitnessSelection({
+  players,
+  onWitnessButtonClick,
+  announcement,
+}: StepWitnessSelectionProps) {
   useTemporarilyHidePlayersBar();
   const { isLoading } = useLoading();
   const isVIP = useVIP();
 
   return (
-    <Step key={1}>
+    <Step announcement={announcement}>
       <Title>
         <IconAvatar icon={<AnimatedClockIcon />} size="large" />
         <br />
