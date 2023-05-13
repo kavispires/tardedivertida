@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
-import { useMock } from 'hooks/useMock';
+import { useDelayedMock } from 'hooks/useMock';
 import { useLoading } from 'hooks/useLoading';
 // Utils
 import { mockPlayerDecision } from './utils/mock';
@@ -56,7 +56,7 @@ export function StepMakeDecision({
   const { isLoading } = useLoading();
 
   // DEV: make decision
-  useMock(() => {
+  useDelayedMock(() => {
     if (user.isTrickOrTreating && !user.ready) {
       onSubmitDecision({
         decision: mockPlayerDecision(street.filter((card) => card.type === 'horror').length, user.hand),
