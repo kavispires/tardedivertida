@@ -1,5 +1,17 @@
+const ACHIEVEMENTS = {
+  MOST_GLYPHS: 'MOST_GLYPHS',
+  LEAST_GLYPHS: 'LEAST_GLYPHS',
+  MOST_POSITIVE: 'MOST_POSITIVE',
+  LEAST_POSITIVE: 'LEAST_POSITIVE',
+  MOST_NEGATIVE: 'MOST_NEGATIVE',
+  LEAST_NEGATIVE: 'LEAST_NEGATIVE',
+  SINGLE_ICON: 'SINGLE_ICON',
+  TABLE_VOTES: 'TABLE_VOTES',
+  CHOOSE_FOR_ME: 'CHOOSE_FOR_ME',
+};
+
 export const achievementsReference: AchievementReference = {
-  MOST_GLYPHS: {
+  [ACHIEVEMENTS.MOST_GLYPHS]: {
     icon: 'arrow-up',
     title: {
       pt: 'Melhor Uso dos Ícones',
@@ -10,7 +22,7 @@ export const achievementsReference: AchievementReference = {
       en: 'Used the most glyphs during the game',
     },
   },
-  LEAST_GLYPHS: {
+  [ACHIEVEMENTS.LEAST_GLYPHS]: {
     icon: 'arrow-down',
     title: {
       pt: 'Mais Sucinto',
@@ -21,7 +33,7 @@ export const achievementsReference: AchievementReference = {
       en: 'Used the fewest glyphs during the game',
     },
   },
-  MOST_POSITIVE: {
+  [ACHIEVEMENTS.MOST_POSITIVE]: {
     icon: 'thumbs-up',
     title: {
       pt: 'Mais Positivo',
@@ -32,7 +44,7 @@ export const achievementsReference: AchievementReference = {
       en: 'Used the most glyphs on the positive side',
     },
   },
-  LEAST_POSITIVE: {
+  [ACHIEVEMENTS.LEAST_POSITIVE]: {
     icon: 'arrow-left',
     title: {
       pt: 'Menos Positivo',
@@ -43,7 +55,7 @@ export const achievementsReference: AchievementReference = {
       en: 'Used the least glyphs on the positive side',
     },
   },
-  MOST_NEGATIVE: {
+  [ACHIEVEMENTS.MOST_NEGATIVE]: {
     icon: 'thumbs-down',
     title: {
       pt: 'Mais Negativo',
@@ -54,7 +66,7 @@ export const achievementsReference: AchievementReference = {
       en: 'Used the most glyphs on the negative side',
     },
   },
-  LEAST_NEGATIVE: {
+  [ACHIEVEMENTS.LEAST_NEGATIVE]: {
     icon: 'arrow-right',
     title: {
       pt: 'Menos Negativo',
@@ -65,7 +77,7 @@ export const achievementsReference: AchievementReference = {
       en: 'Used the least glyphs on the negative side',
     },
   },
-  SINGLE_ICON: {
+  [ACHIEVEMENTS.SINGLE_ICON]: {
     icon: 'one',
     title: {
       pt: 'Mais Único',
@@ -76,7 +88,7 @@ export const achievementsReference: AchievementReference = {
       en: 'Used a single icon most times',
     },
   },
-  TABLE_VOTES: {
+  [ACHIEVEMENTS.TABLE_VOTES]: {
     icon: 'table',
     title: {
       pt: 'Melhor Votador Pra Mesa',
@@ -85,6 +97,17 @@ export const achievementsReference: AchievementReference = {
     description: {
       pt: 'Votou nas cartas extras que não eram de nenhum jogador mais vezes',
       en: "Voted for extra cards that didn't belong to any player the most",
+    },
+  },
+  [ACHIEVEMENTS.CHOOSE_FOR_ME]: {
+    icon: 'dice',
+    title: {
+      pt: 'Mais Desistível',
+      en: 'Best Shirker',
+    },
+    description: {
+      pt: 'Apertou o botão Chutar Restantes mais vezes',
+      en: "Pressed 'Guess for me' the most",
     },
   },
 };
