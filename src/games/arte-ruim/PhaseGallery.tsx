@@ -60,6 +60,7 @@ function PhaseGallery({ players, state, info, meta }: PhaseProps) {
           round={state.round}
           goToPreviousStep={goToPreviousStep}
           setActiveIndex={setActiveIndex}
+          threshold={state.threshold}
         />
       </StepSwitcher>
     </PhaseContainer>

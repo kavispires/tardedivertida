@@ -90,8 +90,7 @@ export const getNextPhase = async (
     const data = await getCards(
       store.language,
       utils.players.getPlayerCount(players),
-      store.options?.shortGame ?? false,
-      store.options?.useAllCards ?? false
+      store.options as ArteRuimGameOptions
     );
     const newPhase = await prepareSetupPhase(store, state, players, data);
     await utils.firebase.saveGame(sessionRef, newPhase);
