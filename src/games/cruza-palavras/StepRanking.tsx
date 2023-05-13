@@ -21,8 +21,12 @@ export function StepRanking({ players, playerCount, ranking, goToPreviousStep, r
       players={players}
       ranking={ranking}
       gainedPointsDescriptions={[
-        <Translate pt="Votos corretos" en="Correct guesses" />,
-        <Translate pt="Votos recebidos" en="Received votes" />,
+        <Translate pt="Palpites corretos" en="Correct guesses" />,
+        <Translate
+          pt="Palpites que acertaram a célula de outra dica"
+          en="Guesses that were placed in a cell for a different clue"
+        />,
+        <Translate pt="Palpites recebidos corretamente" en="Received correct guesses" />,
         <Translate
           pt="Penalidade se ninguém acertou a sua dica"
           en="Penalty for nobody getting your clue correctly"

@@ -23,6 +23,7 @@ type StepGuessingProps = {
 export function StepGuessing({ grid, user, clues, onSubmitGuesses, announcement }: StepGuessingProps) {
   const [active, setActive] = useState(null);
   const [guesses, setGuesses] = useState<any>({});
+  const [choseRandomly, setChoseRandomly] = useState(false);
 
   const onSelectClue = useCallback(
     (clueIndex: any) => {
@@ -77,8 +78,8 @@ export function StepGuessing({ grid, user, clues, onSubmitGuesses, announcement 
       return acc;
     }, {});
 
-    onSubmitGuesses({ guesses: result });
-  }, [guesses, onSubmitGuesses]);
+    onSubmitGuesses({ guesses: result, choseRandomly });
+  }, [guesses, onSubmitGuesses, choseRandomly]);
 
   // Select player's own clue
   useEffectOnce(() => {
@@ -92,6 +93,7 @@ export function StepGuessing({ grid, user, clues, onSubmitGuesses, announcement 
   const randomGuessThem = () => {
     const usedCells = Object.values(guesses);
     const usedClues = Object.keys(guesses);
+    setChoseRandomly(true);
 
     const availableCells = shuffle(
       grid.filter((cell) => cell.available && cell.playerId !== user.id && !usedCells.includes(cell.index))

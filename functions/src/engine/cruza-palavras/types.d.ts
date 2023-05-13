@@ -1,4 +1,4 @@
-import { CRUZA_PALAVRAS_ACTIONS } from './constants';
+import { CRUZA_PALAVRAS_ACHIEVEMENTS, CRUZA_PALAVRAS_ACTIONS } from './constants';
 
 export type CruzaPalavrasOptions = {
   /**
@@ -42,6 +42,8 @@ export type GridCell = {
   writable?: boolean;
   playerId?: string | null;
 };
+
+export type CruzaPalavrasAchievement = keyof typeof CRUZA_PALAVRAS_ACHIEVEMENTS;
 
 export interface CruzaPalavrasStore extends DefaultStore {
   deck?: Deck;

@@ -5,7 +5,7 @@ import ARTE_RUIM from 'games/arte-ruim/utils/achievements';
 // import COMUNICACAO_ALIENIGENA from 'games/comunicacao-alienigena/utils/achievements';
 import CONTADORES_HISTORIAS from 'games/contadores-historias/utils/achievements';
 // import CRIMES_HEDIONDOS from 'games/crimes-hediondos/utils/achievements';
-// import CRUZA_PALAVRAS from 'games/cruza-palavras/utils/achievements';
+import CRUZA_PALAVRAS from 'games/cruza-palavras/utils/achievements';
 // import DETETIVES_IMAGINATIVOS from 'games/detetives-imaginativos/utils/achievements';
 // import DILEMA_DOS_ESQUIADORES from 'games/dilema-dos-esquiadores/utils/achievements';
 // import ESPIAO_ENTRE_NOS from 'games/espiao-entre-nos/utils/achievements';
@@ -26,12 +26,12 @@ import QUEM_SOU_EU from 'games/quem-sou-eu/utils/achievements';
 // import RETRATO_FALADO from 'games/retrato-falado/utils/achievements';
 // import SONHOS_PESADELOS from 'games/sonhos-pesadelos/utils/achievements';
 // import SUPER_CAMPEONATO from 'games/super-campeonato/utils/achievements';
+// import TA_NA_CARA from 'games/ta-na-cara/utils/achievements';
 // import TESTEMUNHA_OCULAR from 'games/testemunha-ocular/utils/achievements';
 // import TREVO_DA_SORTE from 'games/trevo-da-sorte/utils/achievements';
 // import UE_SO_ISSO from 'games/ue-so-isso/utils/achievements';
 // import VAMOS_AO_CINEMA from 'games/vamos-ao-cinema/utils/achievements';
 // import VENDAVAL_DE_PALPITE from 'games/vendaval-de-palpite/utils/achievements';
-// import TA_NA_CARA from 'games/ta-na-cara/utils/achievements';
 
 export const ACHIEVEMENTS_DICT: Record<GameName, AchievementReference | null> = {
   'arte-ruim': ARTE_RUIM,
@@ -41,7 +41,7 @@ export const ACHIEVEMENTS_DICT: Record<GameName, AchievementReference | null> = 
   'comunicacao-alienigena': null,
   'contadores-historias': CONTADORES_HISTORIAS,
   'crimes-hediondos': null,
-  'cruza-palavras': null,
+  'cruza-palavras': CRUZA_PALAVRAS,
   'detetives-imaginativos': null,
   'dilema-dos-esquiadores': null,
   'espiao-entre-nos': null,

@@ -24,7 +24,7 @@
     "pt": [
       "Cada rodada você receberá uma coordenada em uma grade de palavras em suas colunas e linhas. Você deve escrever uma dica que conecte ambos os cabeçalhos das coordenadas",
       "Depois que todos terminarem, todos devem parear todas as dicas com as coordenadas",
-      "Você ganha 2 points por acertar uma coordenada e 1 ponto para cada jogador que acertou a sua dica",
+      "Você ganha 2 points por acertar uma coordenada e 1 ponto colocou na coordenada de outra pessoa e 1 ponto para cada jogador que acertou a sua dica",
       "Cuidado, se ninguém pegar sua pista, você perde pontos iguais ao número de jogadores, vixi",
       "Uma nova grade maior aparece quando não houver pistas suficientes para cada jogador e... usará as pistas escritas pelos jogadores como coordenadas",
       "O jogo termina após 5 rodadas"
@@ -48,7 +48,7 @@
     "base": 0,
     "perPlayer": 0
   },
-  "tags": ["competitive", "same-time", "writing", "pairing", "brain-burner", "audience-mode"],
+  "tags": ["competitive", "same-time", "writing", "pairing", "brain-burner", "audience-mode", "achievements"],
   "available": {
     "pt": true,
     "en": true

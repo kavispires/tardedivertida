@@ -586,7 +586,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
     });
   }
 
-  // Table votes: votes for cards that are not from players the most
+  // Choose for me: gave up on trying to match the clues the most
   const { most: chooseForMe } = utils.achievements.getMostAndLeastOf(store, 'chooseForMe');
   if (chooseForMe) {
     achievements.push({

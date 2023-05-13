@@ -1,8 +1,16 @@
 // Types
-import type { AllWords, ClueEntry, Deck, GridCell, PastClues } from './types';
+import type {
+  AllWords,
+  ClueEntry,
+  CruzaPalavrasAchievement,
+  Deck,
+  FirebaseStoreData,
+  GridCell,
+  PastClues,
+} from './types';
 // Constants
 import { SEPARATOR } from '../../utils/constants';
-import { WORDS_PER_PLAYER_COUNT, CRUZA_PALAVRAS_PHASES } from './constants';
+import { WORDS_PER_PLAYER_COUNT, CRUZA_PALAVRAS_PHASES, CRUZA_PALAVRAS_ACHIEVEMENTS } from './constants';
 // Utils
 import utils from '../../utils';
 
@@ -231,9 +239,9 @@ export const getPlayerClues = (players: Players): ClueEntry[] => {
  * @param gallery
  * @returns
  */
-export const buildRanking = (players: Players, clues: ClueEntry[]) => {
-  // Gained Points: [from guesses, from others, lost points]
-  const scores = new utils.players.Scores(players, [0, 0, 0]);
+export const buildRanking = (players: Players, clues: ClueEntry[], store: FirebaseStoreData) => {
+  // Gained Points: [from guesses, one coordinate right, from others, lost points]
+  const scores = new utils.players.Scores(players, [0, 0, 0, 0]);
 
   const answers = clues.reduce((acc, entry) => {
     acc[entry.playerId] = entry.coordinate;
@@ -242,10 +250,15 @@ export const buildRanking = (players: Players, clues: ClueEntry[]) => {
 
   const playerCount = utils.players.getPlayerCount(players);
 
-  const gotPassivePoints = {};
+  const gotPassivePoints: Record<PlayerId, PlayerId[]> = {};
 
   // Collect points
   Object.values(players).forEach((player) => {
+    // Achievement: Chose randomly
+    if (player.choseRandomly) {
+      utils.achievements.increase(store, player.id, 'chooseForMe', 1);
+    }
+
     Object.entries(player.guesses).forEach(([guessPlayerId, coordinate]) => {
       if (guessPlayerId === player.id) {
         return;
@@ -254,10 +267,18 @@ export const buildRanking = (players: Players, clues: ClueEntry[]) => {
       // Every correct guess gets 2 points
       if (answers[guessPlayerId] === coordinate) {
         scores.add(player.id, 2, 0);
+        // Achievement: guesses
+        utils.achievements.increase(store, player.id, 'guesses', 1);
 
         // Every player guessing yours correctly gets 1 point
-        scores.add(guessPlayerId, 1, 1);
-        gotPassivePoints[guessPlayerId] = true;
+        scores.add(guessPlayerId, 1, 2);
+        // Achievement: clues
+        utils.achievements.increase(store, guessPlayerId, 'clues', 1);
+
+        if (gotPassivePoints[guessPlayerId] === undefined) {
+          gotPassivePoints[guessPlayerId] = [];
+        }
+        gotPassivePoints[guessPlayerId].push(player.id);
       } else if (Object.values(answers).includes(coordinate)) {
         // You still get 1 point if you voted the wrong match, but a correct coordinate
         scores.add(guessPlayerId, 1, 0);
@@ -266,9 +287,21 @@ export const buildRanking = (players: Players, clues: ClueEntry[]) => {
   });
 
   // 0 correct guesses on your clue gets minus player count in points
-  const whoGotNoPoints: PlayerId[] = Object.keys(players).filter((playerId) => !gotPassivePoints[playerId]);
+  const whoGotNoPoints: PlayerId[] = Object.keys(players).filter((playerId) => {
+    if (gotPassivePoints[playerId] === undefined || gotPassivePoints[playerId].length === 0) {
+      return true;
+    }
+
+    // Achievement: Savior
+    if (gotPassivePoints[playerId].length === 1) {
+      utils.achievements.increase(store, gotPassivePoints[playerId][0], 'savior', 1);
+    }
+  });
+
   whoGotNoPoints.forEach((playerId) => {
-    scores.subtract(playerId, playerCount, 2);
+    // Achievement: Bad clues
+    utils.achievements.increase(store, playerId, 'badClues', 1);
+    scores.subtract(playerId, playerCount, 3);
   });
 
   return {
@@ -300,4 +333,92 @@ export const updatePastClues = (grid: GridCell[], pastClues: PastClues, clues: C
   });
 
   return pastClues;
+};
+
+/**
+ * Get achievements
+ * @param store
+ */
+export const getAchievements = (store: FirebaseStoreData) => {
+  const achievements: Achievement<CruzaPalavrasAchievement>[] = [];
+
+  // Best Clue Giver: more players got their clues right
+  const { most: bestClueGiver } = utils.achievements.getMostAndLeastOf(store, 'clues');
+  if (bestClueGiver) {
+    achievements.push({
+      type: CRUZA_PALAVRAS_ACHIEVEMENTS.BEST_CLUES,
+      playerId: bestClueGiver.playerId,
+      value: bestClueGiver.clues,
+    });
+  }
+
+  // Worst clue giver: got negative points more times
+  const { most: worstClueGiver } = utils.achievements.getMostAndLeastOf(store, 'badClues');
+  if (worstClueGiver) {
+    achievements.push({
+      type: CRUZA_PALAVRAS_ACHIEVEMENTS.WORST_CLUES,
+      playerId: worstClueGiver.playerId,
+      value: worstClueGiver.badClues,
+    });
+  }
+
+  // Best guesser: guessed the most clues correctly
+  const { most: bestGuesses, least: worstGuesser } = utils.achievements.getMostAndLeastOf(store, 'guesses');
+  if (bestGuesses) {
+    achievements.push({
+      type: CRUZA_PALAVRAS_ACHIEVEMENTS.BEST_GUESSER,
+      playerId: bestGuesses.playerId,
+      value: bestGuesses.guesses,
+    });
+  }
+
+  // Worst guesser: guesses the most clues incorrectly
+  if (worstGuesser) {
+    achievements.push({
+      type: CRUZA_PALAVRAS_ACHIEVEMENTS.WORST_GUESSER,
+      playerId: worstGuesser.playerId,
+      value: worstGuesser.guesses,
+    });
+  }
+
+  // Longest words
+  const { most: longest, least: shortest } = utils.achievements.getMostAndLeastOf(store, 'wordLength');
+  if (longest) {
+    achievements.push({
+      type: CRUZA_PALAVRAS_ACHIEVEMENTS.LONGEST_WORDS,
+      playerId: longest.playerId,
+      value: longest.wordLength,
+    });
+  }
+
+  // Shortest words
+  if (shortest) {
+    achievements.push({
+      type: CRUZA_PALAVRAS_ACHIEVEMENTS.SHORTEST_WORDS,
+      playerId: shortest.playerId,
+      value: shortest.wordLength,
+    });
+  }
+
+  // Savior
+  const { most: savior } = utils.achievements.getMostAndLeastOf(store, 'savior');
+  if (savior) {
+    achievements.push({
+      type: CRUZA_PALAVRAS_ACHIEVEMENTS.SAVIOR,
+      playerId: savior.playerId,
+      value: savior.savior,
+    });
+  }
+
+  // Choose for me: gave up on trying to match the clues the most
+  const { most: chooseForMe } = utils.achievements.getMostAndLeastOf(store, 'chooseForMe');
+  if (chooseForMe) {
+    achievements.push({
+      type: CRUZA_PALAVRAS_ACHIEVEMENTS.CHOOSE_FOR_ME,
+      playerId: chooseForMe.playerId,
+      value: chooseForMe.chooseForMe,
+    });
+  }
+
+  return achievements;
 };
