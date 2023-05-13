@@ -17,7 +17,7 @@ type StepSelectQuestionProps = {
   suspects: Suspect[];
   previouslyEliminatedSuspects: string[];
   history: THistoryEntry[];
-};
+} & AnnouncementProps;
 
 export function StepSelectQuestion({
   questions,
@@ -26,9 +26,10 @@ export function StepSelectQuestion({
   suspects,
   previouslyEliminatedSuspects,
   history,
+  announcement,
 }: StepSelectQuestionProps) {
   return (
-    <Step>
+    <Step announcement={announcement}>
       <Title>
         <Translate pt="Selecione uma pergunta" en="Select a question" />
       </Title>

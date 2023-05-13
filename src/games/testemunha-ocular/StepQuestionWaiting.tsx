@@ -15,7 +15,7 @@ type StepQuestionWaitingProps = {
   questioner: GamePlayer;
   isUserTheWitness: boolean;
   history: THistoryEntry[];
-};
+} & AnnouncementProps;
 
 export function StepQuestionWaiting({
   suspects,
@@ -24,9 +24,10 @@ export function StepQuestionWaiting({
   questioner,
   isUserTheWitness,
   history,
+  announcement,
 }: StepQuestionWaitingProps) {
   return (
-    <Step>
+    <Step announcement={announcement}>
       <Title>
         <IconAvatar icon={<AnimatedClockIcon />} size="large" />
         <br />

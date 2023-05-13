@@ -1,12 +1,27 @@
 import { Translate } from 'components/language';
+import { PlayersHighlight } from 'components/metrics/PlayersHighlight';
 import { Instruction } from 'components/text';
 
 export function WitnessRules() {
   return (
     <Instruction contained>
       <Translate
-        pt="Em Testemunha Ocular, um jogador será a testemunha que presenciou um crime desconhecido. Essa testemunha responderá perguntas de sim-ou-não para ajudar os outros jogadores, detetives, a liberarem pelo menos um dos 12 suspeitos em cada rodada. Você quer ser a testemunha?"
-        en="In Eye Witness, a player will be the witness who witnessed an unknown crime. This witness will answer yes-or-no questions to help the other players, detective, to release at least one of the 12 suspects each round. Do you want to be the witness?"
+        pt={
+          <>
+            Em Testemunha Ocular, um jogador será a testemunha que presenciou um crime desconhecido. Essa
+            testemunha responderá perguntas de sim-ou-não para ajudar os outros jogadores, detetives, a
+            liberarem pelo menos um dos <PlayersHighlight>12 suspeitos</PlayersHighlight> em cada rodada. Você
+            quer ser a testemunha?
+          </>
+        }
+        en={
+          <>
+            In Eye Witness, a player will be the witness who witnessed an unknown crime. This witness will
+            answer yes-or-no questions to help the other players, detective, to release at least one of the{' '}
+            <PlayersHighlight>12 suspects</PlayersHighlight>
+            each round. Do you want to be the witness?
+          </>
+        }
       />
     </Instruction>
   );

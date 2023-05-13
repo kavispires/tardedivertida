@@ -13,9 +13,37 @@ import { Translate } from 'components/language';
 import { StepWitnessSelection } from './StepWitnessSelection';
 
 function PhaseWitnessSelection({ state, players, info }: PhaseProps) {
-  const { step, goToNextStep } = useStep(0);
+  const { step } = useStep(0);
 
   const onWitnessButtonClick = useOnSelectWitnessAPIRequest();
+
+  const announcement = (
+    <PhaseAnnouncement
+      icon={<CrimeSceneIcon />}
+      title={<Translate pt="O Caso" en="The Case" />}
+      currentRound={state?.round?.current}
+      type="overlay"
+    >
+      <Instruction>
+        <Translate
+          pt={
+            <>
+              Um crime horrível aconteceu. Tão horrível quem não consigo nem explicar e nem podemos contar com
+              a ciência forense para resolvê-lo. Portanto, só há uma pessoa que pode nos ajudar agora: uma
+              testemunha ocular...
+            </>
+          }
+          en={
+            <>
+              A horrible crime has happened. So horrible that I can't even explain, neither can't rely on
+              forensics and science to solve it. So there's only one person that could help us now: An eye
+              witness...
+            </>
+          }
+        />
+      </Instruction>
+    </PhaseAnnouncement>
+  );
 
   return (
     <PhaseContainer
@@ -26,35 +54,14 @@ function PhaseWitnessSelection({ state, players, info }: PhaseProps) {
     >
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
-        <PhaseAnnouncement
-          icon={<CrimeSceneIcon />}
-          title={<Translate pt="O Caso" en="The Case" />}
-          onClose={goToNextStep}
-          currentRound={state?.round?.current}
-          type="block"
-        >
-          <Instruction>
-            <Translate
-              pt={
-                <>
-                  Um crime horrível aconteceu. Tão horrível quem não consigo nem explicar e nem podemos contar
-                  com a ciência forense para resolvê-lo. Portanto, só há uma pessoa que pode nos ajudar agora:
-                  uma testemunha ocular...
-                </>
-              }
-              en={
-                <>
-                  A horrible crime has happened. So horrible that I can't even explain, neither can't rely on
-                  forensics and science to solve it. So there's only one person that could help us now: An eye
-                  witness...
-                </>
-              }
-            />
-          </Instruction>
-        </PhaseAnnouncement>
+        <StepWitnessSelection
+          players={players}
+          onWitnessButtonClick={onWitnessButtonClick}
+          announcement={announcement}
+        />
 
         {/* Step 1 */}
-        <StepWitnessSelection players={players} onWitnessButtonClick={onWitnessButtonClick} />
+        <></>
       </StepSwitcher>
     </PhaseContainer>
   );

@@ -24,7 +24,7 @@ type StepQuestioningProps = {
   onAnswer: GenericFunction;
   question: GamePlayer;
   history: THistoryEntry[];
-};
+} & AnnouncementProps;
 
 export function StepQuestioning({
   suspects,
@@ -36,11 +36,12 @@ export function StepQuestioning({
   onAnswer,
   question,
   history,
+  announcement,
 }: StepQuestioningProps) {
   const { translate } = useLanguage();
 
   return (
-    <Step>
+    <Step announcement={announcement}>
       <Title level={3} size="medium">
         <Translate
           pt={
