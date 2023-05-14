@@ -17,6 +17,7 @@ import {
   tallyVotes,
   validateSuggestions,
 } from './helpers';
+import { saveData } from './data';
 
 /**
  * Setup
@@ -50,6 +51,7 @@ export const prepareSetupPhase = async (
         currentWords: [],
         currentSuggestions: [],
         validSuggestions: {},
+        pastSuggestions: [],
       },
       state: {
         phase: UE_SO_ISSO_PHASES.SETUP,
@@ -158,11 +160,19 @@ export const prepareComparePhase = async (
   const shuffledSuggestions = utils.game.shuffle(suggestionsArray);
 
   utils.players.readyPlayers(players, state.controllerId);
+
   // Save
   return {
     update: {
-      // TODO: save suggestions to store then to global
-      // store: {},
+      store: {
+        pastSuggestions: [
+          ...store.pastSuggestions,
+          {
+            ...state.secretWord,
+            suggestions: suggestionsArray,
+          },
+        ],
+      },
       state: {
         phase: UE_SO_ISSO_PHASES.COMPARE,
         players,
@@ -220,8 +230,19 @@ export const prepareGameOverPhase = async (
     language: store.language,
   });
 
+  // Save data
+  await saveData(store.pastSuggestions, store.language);
+
+  // Create gallery
+  const gallery = store.pastSuggestions;
+
+  utils.players.cleanup(players, []);
+
   // Save
   return {
+    update: {
+      storeCleanup: utils.firebase.cleanupStore(store, []),
+    },
     set: {
       state: {
         phase: UE_SO_ISSO_PHASES.GAME_OVER,
@@ -232,6 +253,7 @@ export const prepareGameOverPhase = async (
           score: groupScore,
           victory: groupScore > 70,
         },
+        gallery,
       },
     },
   };
