@@ -1,5 +1,12 @@
 // Types
-import type { AllWords, CurrentSuggestions, UsedWord, UsedWords } from './types';
+import type {
+  AllWords,
+  CurrentSuggestions,
+  PastSuggestion,
+  PlayerSuggestion,
+  UsedWord,
+  UsedWords,
+} from './types';
 // Constants
 import { UE_SO_ISSO_PHASES, WORDS_PER_CARD } from './constants';
 // Utilities
@@ -69,7 +76,7 @@ export const buildCurrentWords = (currentCard: TextCard[]) => {
  * @returns
  */
 export const determineSuggestionsNumber = (players: Players) => {
-  const numberOfPlayers = Object.keys(players).length;
+  const numberOfPlayers = utils.players.getPlayerCount(players);
 
   if (numberOfPlayers <= 3) return 3;
   if (numberOfPlayers <= 4) return 2;
@@ -176,7 +183,7 @@ export const groupSuggestions = (players: Players): CurrentSuggestions => {
  * @param currentSuggestions
  * @returns
  */
-export const validateSuggestions = (currentSuggestions: CurrentSuggestions): PlainObject[] => {
+export const validateSuggestions = (currentSuggestions: CurrentSuggestions): PlayerSuggestion[] => {
   return Object.entries(currentSuggestions).reduce((acc: any, suggestionEntry) => {
     const [suggestion, playersSug] = suggestionEntry;
 
@@ -201,3 +208,21 @@ export const validateSuggestions = (currentSuggestions: CurrentSuggestions): Pla
     return acc;
   }, []);
 };
+
+export function findDuplicateSuggestions(pastSuggestion: PastSuggestion): string[] {
+  const seenSuggestions = new Set<string>();
+  const duplicateSuggestions: string[] = [];
+
+  pastSuggestion.suggestions.forEach((playerSuggestion) => {
+    if (playerSuggestion.invalid) {
+      if (seenSuggestions.has(playerSuggestion.suggestion)) {
+        // suggestion has already been seen, so it's a duplicate
+        duplicateSuggestions.push(playerSuggestion.suggestion);
+      } else {
+        seenSuggestions.add(playerSuggestion.suggestion);
+      }
+    }
+  });
+
+  return duplicateSuggestions;
+}

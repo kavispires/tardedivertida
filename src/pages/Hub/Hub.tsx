@@ -29,7 +29,6 @@ const migrationBlocked = [
   'polemica-da-vez',
   'sonhos-pesadelos',
   'ta-na-cara',
-  'ue-so-isso',
   'vendaval-de-palpite',
 ];
 

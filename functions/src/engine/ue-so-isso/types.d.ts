@@ -17,6 +17,16 @@ export interface UsedWords {
   [key: string]: UsedWord;
 }
 
+export interface PlayerSuggestion {
+  suggestion: string;
+  playerId: PlayerId;
+  invalid: boolean;
+}
+
+export interface PastSuggestion extends TextCard {
+  suggestions: PlayerSuggestion[];
+}
+
 export interface UeSoIssoStore extends DefaultStore {
   deck?: TextCard[];
   turnOrder?: PlayerId[];
@@ -54,12 +64,10 @@ export interface SubmitSuggestionsPayload extends Payload {
   suggestions: string[];
 }
 
-export interface CurrentSuggestions {
-  [key: string]: string[];
-}
+export type CurrentSuggestions = Record<string, string[]>;
 
 export interface SubmitSuggestionsValidationPayload extends Payload {
-  validSuggestions: PlainObject[];
+  validSuggestions: PlayerSuggestion[];
 }
 
 export interface ConfirmGuessPayload extends Payload {
