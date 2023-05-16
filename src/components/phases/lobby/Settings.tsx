@@ -8,7 +8,10 @@ import { useLocalStorage } from 'hooks/useLocalStorage';
 // Components
 import { Translate } from 'components/language';
 
-export function Settings() {
+type SettingsProps = {
+  hasImages: boolean;
+};
+export function Settings({ hasImages }: SettingsProps) {
   const [blurEnabled, setBlurEnabled] = useGlobalState('blurEnabled');
   const [volume, setVolume] = useGlobalState('volume');
   const [getLocalStorage, setLocalStorage] = useLocalStorage();
@@ -73,6 +76,7 @@ export function Settings() {
           unCheckedChildren="off"
           checked={blurEnabled}
           onClick={onBlurSwitchClick}
+          disabled={!hasImages}
         />
       </div>
     </Space>
