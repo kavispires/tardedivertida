@@ -15,6 +15,7 @@ import { getFunctions, connectFunctionsEmulator, Functions } from 'firebase/func
 import { message, notification } from 'antd';
 // Hooks
 import { setGlobalState } from 'hooks/useGlobalState';
+import { USE_FIRESTORE_EMULATOR, USE_FUNCTIONS_EMULATOR } from 'dev-configs';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -38,14 +39,19 @@ export const functions: Functions = getFunctions(firebaseApp);
 const localHost = 'localhost';
 
 if (window.location.hostname.includes(localHost)) {
-  console.log(`%cEmulating to ${localHost}`, 'color:dodgerblue');
-  notification.warning({ message: `Emulating to ${localHost}`, placement: 'bottomLeft' });
-  connectFirestoreEmulator(firestore, localHost, 8091);
-  connectFirestoreEmulator(firestore, 'localhost', 8091);
-  setGlobalState('usingFirestoreEmulator', localHost);
-  connectFunctionsEmulator(functions, localHost, 5003);
-  connectFunctionsEmulator(functions, 'localhost', 5003);
-  setGlobalState('usingFunctionsEmulator', localHost);
+  if (USE_FIRESTORE_EMULATOR) {
+    console.log(`%cEmulating firestore to ${localHost}`, 'color:dodgerblue');
+    notification.warning({ message: `Emulating firestore to ${localHost}`, placement: 'bottomLeft' });
+    connectFirestoreEmulator(firestore, localHost, 8091);
+    setGlobalState('usingFirestoreEmulator', localHost);
+  }
+  if (USE_FUNCTIONS_EMULATOR) {
+    console.log(`%cEmulating functions to ${localHost}`, 'color:cyan');
+    notification.warning({ message: `Emulating functions to ${localHost}`, placement: 'bottomLeft' });
+    connectFunctionsEmulator(functions, localHost, 5003);
+    connectFunctionsEmulator(functions, 'localhost', 5003);
+    setGlobalState('usingFunctionsEmulator', localHost);
+  }
 }
 
 export default firebaseApp;
