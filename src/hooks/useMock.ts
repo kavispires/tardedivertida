@@ -6,6 +6,7 @@ import { useVIP } from './useVIP';
 // Utils
 import { VIEWER_ID } from 'utils/constants';
 import { getRandomItem, isDevEnv } from 'utils/helpers';
+import { USE_MOCKS } from 'dev-configs';
 
 /**
  * Runs mock function tht performs whatever
@@ -19,7 +20,7 @@ export function useMock(whatToDo: GenericFunction, conditions: any[] = [], requi
   const [runOnce, setRunOnce] = useState(false);
 
   useEffect(() => {
-    if (!runOnce && isDevEnv && !isVIP && userId !== VIEWER_ID && requirements.every(Boolean)) {
+    if (!runOnce && isDevEnv && USE_MOCKS && !isVIP && userId !== VIEWER_ID && requirements.every(Boolean)) {
       setRunOnce(true);
       whatToDo();
     }
@@ -42,7 +43,14 @@ export function useDelayedMock(whatToDo: GenericFunction, requirements: any[] = 
   return useCountdown({
     duration,
     onExpire: () => {
-      if (!runOnce && isDevEnv && !isVIP && userId !== VIEWER_ID && requirements.every(Boolean)) {
+      if (
+        !runOnce &&
+        isDevEnv &&
+        USE_MOCKS &&
+        !isVIP &&
+        userId !== VIEWER_ID &&
+        requirements.every(Boolean)
+      ) {
         whatToDo();
         setRunOnce(true);
       }
