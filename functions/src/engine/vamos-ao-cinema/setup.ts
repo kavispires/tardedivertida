@@ -51,6 +51,7 @@ export const prepareSetupPhase = async (
   const badReviewsDeck = utils.game.getRandomItems(bad, TOTAL_ROUNDS);
   const moviePosters = utils.game
     .sliceIntoChunks(utils.game.shuffle(getMoviePosterIds()), 5)
+    .splice(0, 5)
     .reduce((acc, posterList, index) => {
       acc[index] = posterList;
       return acc;
@@ -202,6 +203,7 @@ export const prepareRevealPhase = async (
         id,
         title: getMovieTitle(state.movies, finalMovieId),
         posterId: '',
+        session: state.round.current,
       },
     };
   }
@@ -245,7 +247,7 @@ export const prepareGameOverPhase = async (
 ): Promise<SaveGamePayload> => {
   await utils.firebase.markGameAsComplete(gameId);
 
-  const finalMovies = getFinalMovies(store.finalMovies, players);
+  const finalMovies = getFinalMovies(store.finalMovies, players, store.moviePosters);
 
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.VAMOS_AO_CINEMA,
