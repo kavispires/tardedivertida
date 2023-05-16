@@ -217,7 +217,7 @@ type OptionsProps = {
   selectedOptions: PlainObject;
 };
 function Options({ options = [], disabled, onChangeOptions, selectedOptions }: OptionsProps) {
-  return Boolean(options) ? (
+  return Boolean(options.length) ? (
     <div className="create-game-modal-options">
       <Typography.Title level={5} className="create-game-modal-options__title">
         <Translate pt="Opções:" en="Options:" />
