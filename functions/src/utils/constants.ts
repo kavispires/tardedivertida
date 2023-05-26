@@ -199,7 +199,7 @@ export const GLOBAL_USED_DOCUMENTS = {
   MONSTERS: 'usedMonsters',
   MOVIES: 'usedMoviesAndReviews',
   MURDER_OBJECTS: 'usedMurderObjects',
-  OPPOSING_IDEAS: 'useOpposingIdeas',
+  OPPOSING_IDEAS: 'usedOpposingIdeas',
   SINGLE_WORDS: 'usedSingleWords',
   SUSPECTS: 'usedSuspects',
   TESTIMONY_QUESTIONS: 'usedTestimonyQuestions',
