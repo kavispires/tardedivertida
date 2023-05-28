@@ -4,7 +4,7 @@ import utils from '../../utils';
 import { getNextPhase } from '.';
 
 /**
- *
+ * Submit the chosen words for the round
  * @param gameName
  * @param gameId
  * @param playerId
@@ -29,7 +29,7 @@ export const handleSubmitWordSelectionVotes = async (
 };
 
 /**
- *
+ * Submit a player's suggestions (1 or 2 depending on player count)
  * @param gameName
  * @param gameId
  * @param playerId
@@ -54,7 +54,32 @@ export const handleSubmitSuggestions = async (
 };
 
 /**
- *
+ * Live updates the valid clues
+ * @param gameName
+ * @param gameId
+ * @param playerId
+ * @param suggestions
+ * @returns
+ */
+export const handleUpdateValidSuggestions = async (
+  gameName: GameName,
+  gameId: GameId,
+  playerId: PlayerId,
+  suggestions: PlainObject
+) => {
+  return await utils.firebase.updateState({
+    gameName,
+    gameId,
+    playerId,
+    actionText: 'update valid suggestions',
+    change: {
+      suggestions,
+    },
+  });
+};
+
+/**
+ * Confirms the valid clues
  * @param gameName
  * @param gameId
  * @param playerId
@@ -80,7 +105,33 @@ export const handleSubmitValidation = async (
 };
 
 /**
- *
+ * Submits the active player's guess
+ * @param gameName
+ * @param gameId
+ * @param playerId
+ * @param guess
+ * @returns
+ */
+export const handleSendGuess = async (
+  gameName: GameName,
+  gameId: GameId,
+  playerId: PlayerId,
+  guess: string
+) => {
+  return await utils.firebase.updateState({
+    gameName,
+    gameId,
+    playerId,
+    actionText: 'send guess',
+    change: {
+      guess,
+    },
+    nextPhaseFunction: getNextPhase,
+  });
+};
+
+/**
+ * Confirms if the active player's guess is correct or not
  * @param gameName
  * @param gameId
  * @param playerId
@@ -102,55 +153,5 @@ export const handleConfirmGuess = async (
       outcome,
     },
     nextPhaseFunction: getNextPhase,
-  });
-};
-
-/**
- *
- * @param gameName
- * @param gameId
- * @param playerId
- * @param suggestions
- * @returns
- */
-export const handleUpdateValidSuggestions = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
-  suggestions: PlainObject
-) => {
-  return await utils.firebase.updateState({
-    gameName,
-    gameId,
-    playerId,
-    actionText: 'update valid suggestions',
-    change: {
-      suggestions,
-    },
-  });
-};
-
-/**
- *
- * @param gameName
- * @param gameId
- * @param playerId
- * @param guess
- * @returns
- */
-export const handleSendGuess = async (
-  gameName: GameName,
-  gameId: GameId,
-  playerId: PlayerId,
-  guess: string
-) => {
-  return await utils.firebase.updateState({
-    gameName,
-    gameId,
-    playerId,
-    actionText: 'send guess',
-    change: {
-      guess,
-    },
   });
 };

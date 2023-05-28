@@ -15,16 +15,13 @@ import { Step } from 'components/steps';
 import { Instruction, TextHighlight, Title } from 'components/text';
 import { AvatarName } from 'components/avatars';
 import { Translate } from 'components/language';
-import { ViewIf, ViewOr } from 'components/views';
+import { ViewIf } from 'components/views';
 import { VIPOnlyContainer } from 'components/vip';
-import { PointsHighlight } from 'components/metrics/PointsHighlight';
 
 type StepGuessVerificationProps = {
   guess: string;
   guesser: GamePlayer;
-  isVIP: boolean;
   isLoading: boolean;
-  isUserTheGuesser: boolean;
   isUserTheController: boolean;
   controller: GamePlayer;
   secretWord: UeSoIssoCard;
@@ -35,9 +32,7 @@ type StepGuessVerificationProps = {
 export function StepGuessVerification({
   guess,
   guesser,
-  isVIP,
   isLoading,
-  isUserTheGuesser,
   isUserTheController,
   controller,
   secretWord,
@@ -70,52 +65,22 @@ export function StepGuessVerification({
       <Card word={secretWord.text} />
 
       <Instruction contained>
-        <ViewOr condition={isUserTheGuesser}>
-          <Translate
-            pt={
-              <>
-                <AvatarName player={controller} /> está encarregado(a) de apertar os botões se você acertou ou
-                não. <br />
-                São <PointsHighlight type="positive">3 pontos</PointsHighlight> se você acertar,{' '}
-                <PointsHighlight type="negative">-1 ponto</PointsHighlight> se errar, mas você pode passar e
-                não tentar, covarde!.. <br />
-                As dicas foram:
-              </>
-            }
-            en={
-              <>
-                <AvatarName player={controller} /> is in charge of confirming if you got it right or not.
-                <br />
-                It's <PointsHighlight type="positive">3 points</PointsHighlight> if you get it right but{' '}
-                <PointsHighlight type="negative">-1 point</PointsHighlight> if you get it wrong. <br />
-                The clues were:
-              </>
-            }
-          />
-
-          <Translate
-            pt={
-              <>
-                <AvatarName player={controller} addressUser /> está encarregado(a) de apertar os botões se{' '}
-                <AvatarName player={guesser} />
-                acertou ou não. <br />
-                São <PointsHighlight type="positive">3 pontos</PointsHighlight> se você acertar,{' '}
-                <PointsHighlight type="negative">-1 ponto</PointsHighlight> se errar, mas você pode passar e
-                não tentar, covarde!.. <br />
-                As dicas são:
-              </>
-            }
-            en={
-              <>
-                <AvatarName player={controller} addressUser /> is in charge to confirm if{' '}
-                <AvatarName player={guesser} /> got it correct or not. <br />
-                It's <PointsHighlight type="positive">3 points</PointsHighlight> if they got it right but{' '}
-                <PointsHighlight type="negative">-1 point</PointsHighlight> if they got it wrong. <br />
-                The clues were:
-              </>
-            }
-          />
-        </ViewOr>
+        <Translate
+          pt={
+            <>
+              O sistema não pode verificar se a resposta está correta.
+              <br />
+              Por favor, confirme se <AvatarName player={guesser} /> acertou ou não.
+            </>
+          }
+          en={
+            <>
+              The system wasn't able to verify the guess.
+              <br />
+              Please confirm if <AvatarName player={guesser} /> got it right or not.
+            </>
+          }
+        />
       </Instruction>
 
       <Space className="u-word-guess-phase__suggestions space-container">
@@ -129,16 +94,18 @@ export function StepGuessVerification({
         <ConfirmationButton onSubmitOutcome={onSubmitOutcome} isLoading={isLoading} />
       </ViewIf>
 
-      <VIPOnlyContainer
-        label={
-          <Translate
-            pt="VIP Controls (use somente se o jogador controlador não controlar)"
-            en="VIP Controls (only use if the assign player doesn't)"
-          />
-        }
-      >
-        <ConfirmationButton onSubmitOutcome={onSubmitOutcome} isLoading={isLoading} />
-      </VIPOnlyContainer>
+      {!isUserTheController && (
+        <VIPOnlyContainer
+          label={
+            <Translate
+              pt="VIP Controls (use somente se o jogador controlador não controlar)"
+              en="VIP Controls (only use if the assign player doesn't)"
+            />
+          }
+        >
+          <ConfirmationButton onSubmitOutcome={onSubmitOutcome} isLoading={isLoading} />
+        </VIPOnlyContainer>
+      )}
     </Step>
   );
 }

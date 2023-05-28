@@ -13,12 +13,15 @@ import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
 import { ControlledInputWriting } from 'components/input';
+import { DevButton } from 'components/debug';
+import { WritingHighlight } from './components/Highlights';
 
 type StepSuggestionProps = {
   guesser: GamePlayer;
   onSendSuggestions: GenericFunction;
   secretWord: UeSoIssoCard;
   suggestionsNumber?: number;
+  user: GamePlayer;
 } & AnnouncementProps;
 
 export function StepSuggestion({
@@ -27,9 +30,10 @@ export function StepSuggestion({
   secretWord,
   suggestionsNumber = 1,
   announcement,
+  user,
 }: StepSuggestionProps) {
   useMock(() => {
-    onSendSuggestions(mockSuggestions(suggestionsNumber));
+    if (user.id !== guesser.id) onSendSuggestions(mockSuggestions(suggestionsNumber));
   }, []);
 
   return (
@@ -57,9 +61,17 @@ export function StepSuggestion({
         <Instruction contained>
           <Translate
             pt={
-              <>Já que esse jogo tem menos jogadores, você tem que escrever {suggestionsNumber} sugestões</>
+              <>
+                Já que esse jogo tem menos jogadores, você tem que escrever{' '}
+                <WritingHighlight>{suggestionsNumber} sugestões</WritingHighlight>
+              </>
             }
-            en={<>Since we have fewer players you must write {suggestionsNumber} clues</>}
+            en={
+              <>
+                Since we have fewer players you must write{' '}
+                <WritingHighlight>{suggestionsNumber} clues</WritingHighlight>
+              </>
+            }
           />
         </Instruction>
       )}
@@ -80,6 +92,10 @@ export function StepSuggestion({
           size: 'large',
         }}
       />
+
+      <DevButton ghost onClick={() => onSendSuggestions(mockSuggestions(suggestionsNumber))}>
+        Mock Suggestions
+      </DevButton>
     </Step>
   );
 }

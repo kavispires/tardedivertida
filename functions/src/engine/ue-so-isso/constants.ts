@@ -6,6 +6,8 @@ export const UE_SO_ISSO_PHASES = {
   SUGGEST: 'SUGGEST',
   COMPARE: 'COMPARE',
   GUESS: 'GUESS',
+  VERIFY_GUESS: 'VERIFY_GUESS',
+  RESULT: 'RESULT',
   GAME_OVER: 'GAME_OVER',
 };
 
@@ -24,3 +26,20 @@ export const PLAYER_COUNTS = {
 };
 
 export const WORDS_PER_CARD = 5;
+
+export const MAX_ROUNDS = 10;
+
+export const OUTCOME = {
+  CONTINUE: 'CONTINUE',
+  WIN: 'WIN',
+  LOSE: 'LOSE',
+  WRONG: 'WRONG',
+  CORRECT: 'CORRECT',
+  INCONCLUSIVE: 'INCONCLUSIVE',
+  PASS: 'PASS',
+};
+
+export const ALLOWED_MISTAKES = 3;
+export const GOAL = 7;
+export const CORRECT_GUESS_SCORE = 2;
+export const INCORRECT_GUESS_SCORE = -1;

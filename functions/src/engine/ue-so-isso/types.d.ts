@@ -1,4 +1,23 @@
-import { UE_SO_ISSO_ACTIONS } from './constants';
+import { OUTCOME, UE_SO_ISSO_ACTIONS } from './constants';
+
+export type UeSoIssoGameOptions = {
+  /**
+   * Use only 3 cards instead of 5 for the word selection
+   */
+  fewerCards: boolean;
+  /**
+   * Add bot that write suggestions to eliminate common clues
+   */
+  withBot: boolean;
+  /**
+   * UI option to time clue writing
+   */
+  withTimer: boolean;
+  /**
+   * UI option to display hints (timing answering)
+   */
+  withHints: boolean;
+};
 
 export interface AllWords {
   [key: string]: TextCard;
@@ -17,6 +36,8 @@ export interface UsedWords {
   [key: string]: UsedWord;
 }
 
+type Outcome = keyof typeof OUTCOME;
+
 export interface PlayerSuggestion {
   suggestion: string;
   playerId: PlayerId;
@@ -25,6 +46,8 @@ export interface PlayerSuggestion {
 
 export interface PastSuggestion extends TextCard {
   suggestions: PlayerSuggestion[];
+  guesserId: PlayerId;
+  outcome: Outcome;
 }
 
 export interface UeSoIssoStore extends DefaultStore {

@@ -9,6 +9,13 @@ type UseSoIssoSuggestion = {
   playerId: PlayerId;
 };
 
+type UseSoIssoGalleryEntry = {
+  suggestions: UseSoIssoSuggestion[];
+  votes: number;
+  guesserId: PlayerId;
+  outcome: string;
+} & UeSoIssoCard;
+
 type SubmitVotesPayload = {
   votes: string[];
 };

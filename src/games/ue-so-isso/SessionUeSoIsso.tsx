@@ -6,15 +6,17 @@ import { PHASES } from 'utils/phases';
 import { Session } from 'components/session';
 import { PhaseLobby, PhaseRules, PhaseSetup } from 'components/phases';
 import { PageError } from 'components/errors';
-import PhaseWordSelection from './PhaseWordSelection';
-import PhaseSuggest from './PhaseSuggest';
-import PhaseCompare from './PhaseCompare';
-import PhaseGuess from './PhaseGuess';
-import PhaseGameOver from './PhaseGameOver';
+import { PhaseWordSelection } from './PhaseWordSelection';
+import { PhaseSuggest } from './PhaseSuggest';
+import { PhaseCompare } from './PhaseCompare';
+import { PhaseGuess } from './PhaseGuess';
+import { PhaseResult } from './PhaseResult';
+import { PhaseGameOver } from './PhaseGameOver';
 // Fonts
 import 'assets/fonts/architects-daughter.scss';
 // Session
 import './ue-so-isso.scss';
+import { PhaseVerifyGuess } from './PhaseVerifyGuess';
 
 function getActiveComponent(phase: string) {
   switch (phase) {
@@ -32,6 +34,10 @@ function getActiveComponent(phase: string) {
       return PhaseCompare;
     case PHASES.UE_SO_ISSO.GUESS:
       return PhaseGuess;
+    case PHASES.UE_SO_ISSO.VERIFY_GUESS:
+      return PhaseVerifyGuess;
+    case PHASES.UE_SO_ISSO.RESULT:
+      return PhaseResult;
     case PHASES.DEFAULT.GAME_OVER:
       return PhaseGameOver;
     default:
