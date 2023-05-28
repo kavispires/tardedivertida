@@ -542,3 +542,12 @@ type MovieReview = {
   text: string;
   type: 'good' | 'bad';
 };
+
+interface GroupProgress {
+  correct: number;
+  mistakes: number;
+  outcome: Outcome;
+  attempts: Outcome[];
+  score: number;
+  goal: number;
+}

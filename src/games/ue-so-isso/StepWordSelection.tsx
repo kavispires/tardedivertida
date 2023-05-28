@@ -7,11 +7,14 @@ import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { AvatarName } from 'components/avatars';
 import { TimedButton } from 'components/buttons';
+import { TurnOrder } from 'components/players';
 
 type StepWordSelectionProps = {
   guesser: GamePlayer;
   onSendSelectedWords: GenericFunction;
   words: UeSoIssoCard[];
+  players: GamePlayers;
+  turnOrder: TurnOrder;
 } & AnnouncementProps;
 
 export function StepWordSelection({
@@ -19,6 +22,8 @@ export function StepWordSelection({
   onSendSelectedWords,
   announcement,
   words = [],
+  players,
+  turnOrder,
 }: StepWordSelectionProps) {
   const [selectedWords, setSelectedWords] = useState<PlainObject>({});
 
@@ -95,11 +100,13 @@ export function StepWordSelection({
         onClick={() => onSendSelectedWords({ votes: selectedWordsArray })}
         disabled={noSelection}
         onExpire={autoSelectRandomWord}
-        duration={15}
+        duration={20}
         hideTimer={!noSelection}
       >
         <Translate pt="Enviar votos" en="Send votes" />
       </TimedButton>
+
+      <TurnOrder players={players} order={turnOrder} activePlayerId={guesser.id} className="u-margin" />
     </Step>
   );
 }

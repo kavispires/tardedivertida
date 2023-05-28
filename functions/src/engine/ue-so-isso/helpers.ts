@@ -2,13 +2,14 @@
 import type {
   AllWords,
   CurrentSuggestions,
+  Outcome,
   PastSuggestion,
   PlayerSuggestion,
   UsedWord,
   UsedWords,
 } from './types';
 // Constants
-import { UE_SO_ISSO_PHASES, WORDS_PER_CARD } from './constants';
+import { CORRECT_GUESS_SCORE, OUTCOME, UE_SO_ISSO_PHASES } from './constants';
 // Utilities
 import utils from '../../utils';
 
@@ -19,12 +20,35 @@ import utils from '../../utils';
  * @param roundsToEndGame
  * @returns
  */
-export const determineNextPhase = (currentPhase: string, round: Round, roundsToEndGame: number): string => {
-  const { RULES, SETUP, WORD_SELECTION, SUGGEST, COMPARE, GUESS, GAME_OVER } = UE_SO_ISSO_PHASES;
-  const order = [RULES, SETUP, WORD_SELECTION, SUGGEST, COMPARE, GUESS, GAME_OVER];
+export const determineNextPhase = (
+  currentPhase: string,
+  round: Round,
+  group: GroupProgress,
+  currentOutcome?: Outcome
+): string => {
+  const { RULES, SETUP, WORD_SELECTION, SUGGEST, COMPARE, GUESS, VERIFY_GUESS, RESULT, GAME_OVER } =
+    UE_SO_ISSO_PHASES;
+  const order = [RULES, SETUP, WORD_SELECTION, SUGGEST, COMPARE, GUESS, VERIFY_GUESS, RESULT, GAME_OVER];
 
-  if (currentPhase === GUESS) {
-    return round.forceLastRound || roundsToEndGame <= 0 ? GAME_OVER : WORD_SELECTION;
+  if (currentPhase === GUESS && currentOutcome === OUTCOME.PASS) {
+    return RESULT;
+  }
+
+  if (currentPhase === RESULT) {
+    // If there's no way to win
+    const roundsLeft = round.total - round.current;
+    const possiblePoints = roundsLeft * CORRECT_GUESS_SCORE;
+    const pointsToWin = group.goal - group.score;
+    if (possiblePoints < pointsToWin) {
+      return GAME_OVER;
+    }
+
+    return round.forceLastRound ||
+      round.current === round.total ||
+      group.outcome === OUTCOME.WIN ||
+      group.outcome === OUTCOME.LOSE
+      ? GAME_OVER
+      : WORD_SELECTION;
   }
 
   const currentPhaseIndex = order.indexOf(currentPhase);
@@ -41,12 +65,13 @@ export const determineNextPhase = (currentPhase: string, round: Round, roundsToE
  * @param allWords
  * @param numberOfRounds
  */
-export const buildDeck = (allWords: AllWords, numberOfRounds: number) => {
+export const buildDeck = (allWords: AllWords, numberOfRounds: number, wordsPerCard) => {
   const shuffledWords = utils.game.shuffle(Object.values(allWords));
+
   const deck: string[] = [];
-  for (let i = 0; i < numberOfRounds * WORDS_PER_CARD; i += WORDS_PER_CARD) {
+  for (let i = 0; i < numberOfRounds * wordsPerCard; i += wordsPerCard) {
     const card: TextCard[] = [];
-    for (let j = i; j < i + WORDS_PER_CARD; j++) {
+    for (let j = i; j < i + wordsPerCard; j++) {
       card.push(shuffledWords[j]);
     }
 
@@ -78,36 +103,8 @@ export const buildCurrentWords = (currentCard: TextCard[]) => {
 export const determineSuggestionsNumber = (players: Players) => {
   const numberOfPlayers = utils.players.getPlayerCount(players);
 
-  if (numberOfPlayers <= 3) return 3;
   if (numberOfPlayers <= 4) return 2;
   return 1;
-};
-
-/**
- * Determine score based on the guess value
- * @param guess
- * @returns
- */
-export const determineScore = (guess: string): number => {
-  if (guess === 'CORRECT') return 3;
-  if (guess === 'WRONG') return -1;
-  return 0;
-};
-
-/**
- * Determine the group current score
- * @param players
- * @param totalRounds
- * @returns
- */
-export const determineGroupScore = (players: Players, totalRounds: number): number => {
-  const expectedPoints = totalRounds * 3;
-  const totalPoints = Object.values(players).reduce((acc: number, player: Player) => {
-    acc += player.score;
-    return acc;
-  }, 0);
-
-  return Math.round((100 * totalPoints) / expectedPoints);
 };
 
 /**
@@ -167,11 +164,16 @@ export const determineSecretWord = (currentWords: UsedWords): UsedWord => {
 export const groupSuggestions = (players: Players): CurrentSuggestions => {
   return Object.values(players).reduce((acc: CurrentSuggestions, player: Player) => {
     if (player.suggestions) {
-      player.suggestions.forEach((suggestion: string) => {
-        if (acc[suggestion] === undefined) {
-          acc[suggestion] = [];
+      player.suggestions.forEach((sug: string) => {
+        const suggestion = sug.toLowerCase();
+        const similarKey =
+          Object.keys(acc).find(
+            (key) => utils.helpers.stringRemoveAccents(key) === utils.helpers.stringRemoveAccents(suggestion)
+          ) ?? suggestion;
+        if (acc[similarKey] === undefined) {
+          acc[similarKey] = [];
         }
-        acc[suggestion].push(player.id);
+        acc[similarKey].push(player.id);
       });
     }
     return acc;
