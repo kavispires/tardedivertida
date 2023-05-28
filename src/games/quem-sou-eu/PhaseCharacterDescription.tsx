@@ -5,7 +5,7 @@ import { useStep } from 'hooks/useStep';
 import { PHASES } from 'utils/phases';
 import { useOnSubmitGlyphsAPIRequest } from './utils/api-requests';
 // Icons
-import { IconsIcon } from 'icons/IconsIcon';
+import { PlayerIconsIcon } from 'icons/PlayerIconsIcon';
 // Components
 import { StepSwitcher } from 'components/steps';
 import { Instruction } from 'components/text';
@@ -22,7 +22,7 @@ export function PhaseCharacterDescription({ players, state, info }: PhaseProps) 
 
   const announcement = (
     <PhaseAnnouncement
-      icon={<IconsIcon />}
+      icon={<PlayerIconsIcon />}
       title={<Translate pt="Descreva seu personagem com ícones" en="Describe your character with glyphs" />}
       currentRound={state?.round?.current}
       type="overlay"
