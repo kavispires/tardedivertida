@@ -2,7 +2,7 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "U",
   "gameName": "ue-so-isso",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "title": {
     "pt": "Ué, Só Isso?",
     "en": "That's It?"
@@ -58,19 +58,18 @@
   },
   "options": [
     {
+      "label": "Word Pool",
+      "key": "fewerCards",
+      "off": "5 options",
+      "on": "3 options",
+      "description": "When selecting the possible secret word for the round"
+    },
+    {
       "label": "Timed",
       "key": "withTimer",
       "off": "No time limit",
       "on": "2 minutes",
       "description": "When coming up with clues",
-      "disabled": true
-    },
-    {
-      "label": "Word Pool",
-      "key": "fewerCards",
-      "off": "5 options",
-      "on": "3 options",
-      "description": "When selecting the possible secret word for the round",
       "disabled": true
     },
     {
