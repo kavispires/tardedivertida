@@ -69,7 +69,8 @@ export function GeneralRules() {
   );
 }
 
-export function DreamSelectionRules({ contained = false }) {
+export function DreamSelectionRules({ contained = false, hardModeEnabled = false }) {
+  const minimumDreams = hardModeEnabled ? 4 : 1;
   return (
     <Instruction contained={contained}>
       <Translate
@@ -77,7 +78,7 @@ export function DreamSelectionRules({ contained = false }) {
           <>
             Selecione sonhos (cartas) que você acha que se relacionam com a palavra-tema da rodada.
             <br />
-            Você deve selecionar pelo menos <CardHighlight>1</CardHighlight> e no máximo{' '}
+            Você deve selecionar pelo menos <CardHighlight>{minimumDreams}</CardHighlight> e no máximo{' '}
             <CardHighlight>10</CardHighlight>.
           </>
         }
@@ -85,7 +86,7 @@ export function DreamSelectionRules({ contained = false }) {
           <>
             Now select cards that you think match the round's card.
             <br />
-            You must select at least <CardHighlight>1</CardHighlight> card and a maximum of{' '}
+            You must select at least <CardHighlight>{minimumDreams}</CardHighlight> card and a maximum of{' '}
             <CardHighlight>10</CardHighlight>.
           </>
         }

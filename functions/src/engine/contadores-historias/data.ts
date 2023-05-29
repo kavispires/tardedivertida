@@ -1,9 +1,12 @@
 // Constants
+import { GLOBAL_USED_DOCUMENTS } from '../../utils/constants';
 import { CARDS_PER_PLAYER } from './constants';
 // Types
 import type { ResourceData } from './types';
 // Helpers
 import utils from '../../utils';
+import * as dataUtils from '../collections';
+import * as globalUtils from '../global';
 
 /**
  * Get image decks card
@@ -23,4 +26,17 @@ export const getData = async (playerCount: number, originalDecksOnly: boolean): 
   return {
     cards: utils.game.shuffle(cards),
   };
+};
+
+export const saveData = async (usedCards: PlainObject[], language: Language) => {
+  const usedCardsIds: BooleanDictionary = {};
+  const clues = usedCards.reduce((acc, entry) => {
+    usedCardsIds[entry.cardId] = true;
+    acc[entry.cardId] = [entry.story];
+    return acc;
+  }, {});
+
+  await globalUtils.updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.IMAGE_CARDS, usedCardsIds);
+
+  await dataUtils.updateCardDataCollection('imageCards', language, clues);
 };

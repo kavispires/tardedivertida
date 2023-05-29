@@ -335,8 +335,6 @@ export const prepareGameOverPhase = async (
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
 
-  await saveUsedItems(utils.helpers.buildIdDictionary(state.items));
-
   await utils.firebase.markGameAsComplete(gameId);
 
   await utils.user.saveGameToUsers({
@@ -346,9 +344,18 @@ export const prepareGameOverPhase = async (
     players,
     winners,
     achievements: [],
+    language: store.language,
   });
 
+  // Save data (alien items)
+  await saveUsedItems(utils.helpers.buildIdDictionary(state.items));
+
+  utils.players.cleanup(players, ['role']);
+
   return {
+    update: {
+      storeCleanup: utils.firebase.cleanupStore(store, []),
+    },
     set: {
       state: {
         phase: COMUNICACAO_ALIENIGENA_PHASES.GAME_OVER,

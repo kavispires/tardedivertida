@@ -21,11 +21,20 @@ export interface PastQuestions {
 
 export type Deck = GroupQuestionCard[];
 
+export type GalleryEntry = {
+  question: GroupQuestionCard;
+  answers: {
+    playerIds: PlayerId[];
+    answer: string;
+  }[];
+};
+
 export interface MenteColetivaStore extends DefaultStore {
   deck: Deck;
   gameOrder: PlayerId[];
   pastQuestions: PastQuestions[];
   currentQuestion?: GroupQuestionCard;
+  gallery?: GalleryEntry[];
   [key: string]: any;
 }
 

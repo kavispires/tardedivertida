@@ -1,10 +1,11 @@
 // Constants
 import { GAME_NAMES } from '../../utils/constants';
-import { PLAYER_COUNTS, UE_SO_ISSO_ACTIONS, UE_SO_ISSO_PHASES } from './constants';
+import { MAX_ROUNDS, PLAYER_COUNTS, UE_SO_ISSO_ACTIONS, UE_SO_ISSO_PHASES } from './constants';
 // Types
 import type {
   FirebaseStateData,
   FirebaseStoreData,
+  UeSoIssoGameOptions,
   UeSoIssoInitialState,
   UeSoIssoSubmitAction,
 } from './types';
@@ -20,6 +21,8 @@ import {
   prepareSuggestPhase,
   prepareWordSelectionPhase,
   prepareGameOverPhase,
+  prepareResultPhase,
+  prepareVerifyGuessPhase,
 } from './setup';
 import {
   handleConfirmGuess,
@@ -37,7 +40,12 @@ import {
  * @param language
  * @returns
  */
-export const getInitialState = (gameId: GameId, uid: string, language: string): UeSoIssoInitialState => {
+export const getInitialState = (
+  gameId: GameId,
+  uid: string,
+  language: string,
+  options: UeSoIssoGameOptions
+): UeSoIssoInitialState => {
   return utils.helpers.getDefaultInitialState<UeSoIssoInitialState>({
     gameId,
     gameName: GAME_NAMES.UE_SO_ISSO,
@@ -45,7 +53,7 @@ export const getInitialState = (gameId: GameId, uid: string, language: string): 
     language,
     playerCounts: PLAYER_COUNTS,
     initialPhase: UE_SO_ISSO_PHASES.LOBBY,
-    totalRounds: 0,
+    totalRounds: MAX_ROUNDS,
     store: {
       deck: [],
       turnOrder: [],
@@ -54,6 +62,7 @@ export const getInitialState = (gameId: GameId, uid: string, language: string): 
       currentWords: [],
       currentSuggestions: [],
     },
+    options,
   });
 };
 
@@ -62,6 +71,13 @@ export const getInitialState = (gameId: GameId, uid: string, language: string): 
  */
 export const playerCounts = PLAYER_COUNTS;
 
+/**
+ * Manage phases of the game
+ * @param gameName
+ * @param gameId
+ * @param currentState
+ * @returns
+ */
 export const getNextPhase = async (
   gameName: string,
   gameId: string,
@@ -72,11 +88,8 @@ export const getNextPhase = async (
     FirebaseStoreData
   >(gameName, gameId, 'prepare next phase', currentState);
 
-  // Calculate remaining rounds to end game
-  const roundsToEndGame = utils.helpers.getRoundsToEndGame(state.round.current, state.round.total);
-
   // Determine next phase
-  const nextPhase = determineNextPhase(state?.phase, state?.round, roundsToEndGame);
+  const nextPhase = determineNextPhase(state?.phase, state?.round, state?.group, store?.outcome);
 
   // RULES -> SETUP
   if (nextPhase === UE_SO_ISSO_PHASES.SETUP) {
@@ -111,6 +124,18 @@ export const getNextPhase = async (
   // COMPARE -> GUESS
   if (nextPhase === UE_SO_ISSO_PHASES.GUESS) {
     const newPhase = await prepareGuessPhase(store, state, players);
+    return utils.firebase.saveGame(sessionRef, newPhase);
+  }
+
+  // GUESS -> VERIFY_GUESS
+  if (nextPhase === UE_SO_ISSO_PHASES.VERIFY_GUESS) {
+    const newPhase = await prepareVerifyGuessPhase(store, state, players);
+    return utils.firebase.saveGame(sessionRef, newPhase);
+  }
+
+  // GUESS/VERIFY_GUESS -> GUESS
+  if (nextPhase === UE_SO_ISSO_PHASES.RESULT) {
+    const newPhase = await prepareResultPhase(store, state, players);
     return utils.firebase.saveGame(sessionRef, newPhase);
   }
 

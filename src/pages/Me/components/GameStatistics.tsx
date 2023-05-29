@@ -49,7 +49,7 @@ export function GameStatistics({ game, info, achievements }: GameUserStatisticsP
             </InfoCard>
 
             <StatisticCard
-              title={<Translate pt="Total de Partidas" en="Total PLays" />}
+              title={<Translate pt="Total de Partidas" en="Total Plays" />}
               icon={<DiceIcon />}
               value={game.plays}
             />

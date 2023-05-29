@@ -5,14 +5,14 @@ import type {
   CardsByLevel,
   ResourceData,
   ArteRuimAchievement,
+  ArteRuimGameOptions,
 } from './types';
 // Constants
 import {
   ARTE_RUIM_ACHIEVEMENTS,
   ARTE_RUIM_PHASES,
   GAME_OVER_SCORE_THRESHOLD,
-  REGULAR_GAME_LEVELS,
-  SHORT_GAME_LEVELS,
+  DEFAULT_LEVELS,
 } from './constants';
 // Helpers
 import utils from '../../utils';
@@ -54,7 +54,9 @@ export const determineGameOver = (players: Players, round: Round): boolean => {
   // In a short game, the points threshold doesn't count
   if (round.total === 5) return false;
 
-  return Object.values(players).some((player) => player.score >= GAME_OVER_SCORE_THRESHOLD);
+  const playerCount = utils.players.getPlayerCount(players);
+  const threshold = GAME_OVER_SCORE_THRESHOLD?.[playerCount] ?? 100;
+  return Object.values(players).some((player) => player.score >= threshold);
 };
 
 /**
@@ -62,10 +64,12 @@ export const determineGameOver = (players: Players, round: Round): boolean => {
  * @param isShortGame
  * @returns
  */
-export const getGameSettings = (isShortGame: boolean) => {
+export const getGameSettings = (options: ArteRuimGameOptions) => {
+  const levels = options.forPoints ? [...DEFAULT_LEVELS, ...DEFAULT_LEVELS] : DEFAULT_LEVELS;
+
   return {
-    MAX_ROUNDS: isShortGame ? SHORT_GAME_LEVELS.length : REGULAR_GAME_LEVELS.length,
-    LEVELS: isShortGame ? SHORT_GAME_LEVELS : REGULAR_GAME_LEVELS,
+    MAX_ROUNDS: levels.length,
+    LEVELS: options.randomize ? utils.game.shuffle(levels) : levels,
   };
 };
 
@@ -153,7 +157,7 @@ export const getAvailableCards = (
  * @param cardsNeeded
  * @returns
  */
-const getEnoughUnusedLevel4Cards = (
+export const getEnoughUnusedLevel4Cards = (
   deck: ArteRuimGroup[],
   usedCards: PlainObject,
   cardsNeeded: number
@@ -193,13 +197,13 @@ const getEnoughUnusedLevel4Cards = (
 export const buildDeck = (
   resourceData: ResourceData,
   playerCount: number,
-  isShortGame: boolean
+  options: ArteRuimGameOptions,
+  levels: number[]
 ): ArteRuimCard[] => {
-  const levels = isShortGame ? SHORT_GAME_LEVELS : REGULAR_GAME_LEVELS;
   const cardsPerRound = determineNumberOfCards(playerCount);
   const cardsNeeded = levels.length * cardsPerRound;
 
-  const { allCards, availableCards, cardsGroups, cardsPairs } = resourceData;
+  const { allCards, availableCards, cardsGroups, specialLevels } = resourceData;
 
   // Shuffle available decls
   availableCards[1] = utils.game.shuffle(availableCards[1]);
@@ -209,8 +213,6 @@ export const buildDeck = (
   const usedCardIdDict = {};
   const shuffledLevel4Deck = utils.game.shuffle(cardsGroups);
   let level4Hand: CardId[] = [];
-  const shuffledLevel5Deck = utils.game.shuffle(cardsPairs);
-  const availableLevel5Cards = getEnoughLevel5Cards(shuffledLevel5Deck, cardsPerRound);
 
   return Array(cardsNeeded)
     .fill(0)
@@ -233,7 +235,7 @@ export const buildDeck = (
       }
       // Only two similar cards
       else if (level === 5) {
-        const card = availableLevel5Cards.pop();
+        const card = specialLevels.cards.pop();
         if (card) {
           return card;
         }
@@ -254,7 +256,7 @@ export const buildDeck = (
     .reverse();
 };
 
-const getEnoughLevel5Cards = (cards: ArteRuimPair[], playerCount: number) => {
+export const getEnoughLevel5Cards = (cards: ArteRuimPair[], playerCount: number) => {
   let result: ArteRuimCard[] = [];
 
   function buildNecessaryArray(card: ArteRuimPair, count: number): ArteRuimCard[] {
@@ -381,7 +383,13 @@ export const buildGallery = (
     const gotWrong: PlayerId[] = [];
 
     Object.entries(<PlainObject>players).forEach(([playerId, pObject]) => {
-      if (artistId === playerId) return;
+      if (artistId === playerId) {
+        // Achievement: choseRandomly
+        if (pObject.choseRandomly) {
+          utils.achievements.increase(store, playerId, 'chooseForMe', 1);
+        }
+        return;
+      }
 
       if (artistId) {
         // Calculate what players say
@@ -578,5 +586,43 @@ export const getAchievements = (store: FirebaseStoreData) => {
     });
   }
 
+  // Choose for me: gave up on trying to match the clues the most
+  const { most: chooseForMe } = utils.achievements.getMostAndLeastOf(store, 'chooseForMe');
+  if (chooseForMe) {
+    achievements.push({
+      type: ARTE_RUIM_ACHIEVEMENTS.CHOOSE_FOR_ME,
+      playerId: chooseForMe.playerId,
+      value: chooseForMe.chooseForMe,
+    });
+  }
+
   return achievements;
 };
+
+function countValueOccurrencesBeforeIndex(arr: number[], index: number, value: number): number {
+  let count = 0;
+  for (let i = 0; i < index; i++) {
+    if (arr[i] === value) {
+      count++;
+    }
+  }
+  return count;
+}
+
+export function determineLevelType(
+  level: number,
+  specialLevels: string[],
+  levels: number[],
+  currentRound: number
+) {
+  const levelTypes = {
+    1: 'easy',
+    2: 'medium',
+    3: 'hard',
+    4: 'themed',
+  };
+
+  if (level < 5) return levelTypes[level];
+
+  return specialLevels[countValueOccurrencesBeforeIndex(levels, currentRound, 5)];
+}

@@ -16,6 +16,7 @@ import {
   getRoundWords,
   simulateBotCards,
 } from './helpers';
+import { saveData } from './data';
 
 /**
  * Setup
@@ -232,9 +233,20 @@ export const prepareGameOverPhase = async (
     players,
     winners,
     achievements,
+    language: store.language,
   });
 
+  const bestMatches = store.bestMatches;
+  const table = store.tableDeckBackup;
+
+  await saveData(store.language, bestMatches);
+
+  utils.players.cleanup(players, []);
+
   return {
+    update: {
+      storeCleanup: utils.firebase.cleanupStore(store, []),
+    },
     set: {
       state: {
         phase: GALERIA_DE_SONHOS_PHASES.GAME_OVER,
@@ -242,8 +254,8 @@ export const prepareGameOverPhase = async (
         round: state.round,
         gameEndedAt: Date.now(),
         winners,
-        bestMatches: store.bestMatches,
-        table: store.tableDeckBackup,
+        bestMatches,
+        table,
         achievements,
       },
     },

@@ -1,7 +1,17 @@
 // Types
-import type { AllWords, CurrentSuggestions, UsedWord, UsedWords } from './types';
+import type {
+  AllWords,
+  CurrentSuggestions,
+  FirebaseStoreData,
+  Outcome,
+  PastSuggestion,
+  PlayerSuggestion,
+  UeSoIssoAchievement,
+  UsedWord,
+  UsedWords,
+} from './types';
 // Constants
-import { UE_SO_ISSO_PHASES, WORDS_PER_CARD } from './constants';
+import { CORRECT_GUESS_SCORE, OUTCOME, UE_SO_ISSO_ACHIEVEMENTS, UE_SO_ISSO_PHASES } from './constants';
 // Utilities
 import utils from '../../utils';
 
@@ -12,12 +22,35 @@ import utils from '../../utils';
  * @param roundsToEndGame
  * @returns
  */
-export const determineNextPhase = (currentPhase: string, round: Round, roundsToEndGame: number): string => {
-  const { RULES, SETUP, WORD_SELECTION, SUGGEST, COMPARE, GUESS, GAME_OVER } = UE_SO_ISSO_PHASES;
-  const order = [RULES, SETUP, WORD_SELECTION, SUGGEST, COMPARE, GUESS, GAME_OVER];
+export const determineNextPhase = (
+  currentPhase: string,
+  round: Round,
+  group: GroupProgress,
+  currentOutcome?: Outcome
+): string => {
+  const { RULES, SETUP, WORD_SELECTION, SUGGEST, COMPARE, GUESS, VERIFY_GUESS, RESULT, GAME_OVER } =
+    UE_SO_ISSO_PHASES;
+  const order = [RULES, SETUP, WORD_SELECTION, SUGGEST, COMPARE, GUESS, VERIFY_GUESS, RESULT, GAME_OVER];
 
-  if (currentPhase === GUESS) {
-    return round.forceLastRound || roundsToEndGame <= 0 ? GAME_OVER : WORD_SELECTION;
+  if (currentPhase === GUESS && currentOutcome === OUTCOME.PASS) {
+    return RESULT;
+  }
+
+  if (currentPhase === RESULT) {
+    // If there's no way to win
+    const roundsLeft = round.total - round.current;
+    const possiblePoints = roundsLeft * CORRECT_GUESS_SCORE;
+    const pointsToWin = group.goal - group.score;
+    if (possiblePoints < pointsToWin) {
+      return GAME_OVER;
+    }
+
+    return round.forceLastRound ||
+      round.current === round.total ||
+      group.outcome === OUTCOME.WIN ||
+      group.outcome === OUTCOME.LOSE
+      ? GAME_OVER
+      : WORD_SELECTION;
   }
 
   const currentPhaseIndex = order.indexOf(currentPhase);
@@ -34,12 +67,13 @@ export const determineNextPhase = (currentPhase: string, round: Round, roundsToE
  * @param allWords
  * @param numberOfRounds
  */
-export const buildDeck = (allWords: AllWords, numberOfRounds: number) => {
+export const buildDeck = (allWords: AllWords, numberOfRounds: number, wordsPerCard) => {
   const shuffledWords = utils.game.shuffle(Object.values(allWords));
+
   const deck: string[] = [];
-  for (let i = 0; i < numberOfRounds * WORDS_PER_CARD; i += WORDS_PER_CARD) {
+  for (let i = 0; i < numberOfRounds * wordsPerCard; i += wordsPerCard) {
     const card: TextCard[] = [];
-    for (let j = i; j < i + WORDS_PER_CARD; j++) {
+    for (let j = i; j < i + wordsPerCard; j++) {
       card.push(shuffledWords[j]);
     }
 
@@ -69,38 +103,10 @@ export const buildCurrentWords = (currentCard: TextCard[]) => {
  * @returns
  */
 export const determineSuggestionsNumber = (players: Players) => {
-  const numberOfPlayers = Object.keys(players).length;
+  const numberOfPlayers = utils.players.getPlayerCount(players);
 
-  if (numberOfPlayers <= 3) return 3;
   if (numberOfPlayers <= 4) return 2;
   return 1;
-};
-
-/**
- * Determine score based on the guess value
- * @param guess
- * @returns
- */
-export const determineScore = (guess: string): number => {
-  if (guess === 'CORRECT') return 3;
-  if (guess === 'WRONG') return -1;
-  return 0;
-};
-
-/**
- * Determine the group current score
- * @param players
- * @param totalRounds
- * @returns
- */
-export const determineGroupScore = (players: Players, totalRounds: number): number => {
-  const expectedPoints = totalRounds * 3;
-  const totalPoints = Object.values(players).reduce((acc: number, player: Player) => {
-    acc += player.score;
-    return acc;
-  }, 0);
-
-  return Math.round((100 * totalPoints) / expectedPoints);
 };
 
 /**
@@ -160,11 +166,16 @@ export const determineSecretWord = (currentWords: UsedWords): UsedWord => {
 export const groupSuggestions = (players: Players): CurrentSuggestions => {
   return Object.values(players).reduce((acc: CurrentSuggestions, player: Player) => {
     if (player.suggestions) {
-      player.suggestions.forEach((suggestion: string) => {
-        if (acc[suggestion] === undefined) {
-          acc[suggestion] = [];
+      player.suggestions.forEach((sug: string) => {
+        const suggestion = sug.toLowerCase();
+        const similarKey =
+          Object.keys(acc).find(
+            (key) => utils.helpers.stringRemoveAccents(key) === utils.helpers.stringRemoveAccents(suggestion)
+          ) ?? suggestion;
+        if (acc[similarKey] === undefined) {
+          acc[similarKey] = [];
         }
-        acc[suggestion].push(player.id);
+        acc[similarKey].push(player.id);
       });
     }
     return acc;
@@ -176,7 +187,7 @@ export const groupSuggestions = (players: Players): CurrentSuggestions => {
  * @param currentSuggestions
  * @returns
  */
-export const validateSuggestions = (currentSuggestions: CurrentSuggestions): PlainObject[] => {
+export const validateSuggestions = (currentSuggestions: CurrentSuggestions): PlayerSuggestion[] => {
   return Object.entries(currentSuggestions).reduce((acc: any, suggestionEntry) => {
     const [suggestion, playersSug] = suggestionEntry;
 
@@ -200,4 +211,143 @@ export const validateSuggestions = (currentSuggestions: CurrentSuggestions): Pla
 
     return acc;
   }, []);
+};
+
+export function findDuplicateSuggestions(pastSuggestion: PastSuggestion): string[] {
+  const seenSuggestions = new Set<string>();
+  const duplicateSuggestions: string[] = [];
+
+  pastSuggestion.suggestions.forEach((playerSuggestion) => {
+    if (playerSuggestion.invalid) {
+      if (seenSuggestions.has(playerSuggestion.suggestion)) {
+        // suggestion has already been seen, so it's a duplicate
+        duplicateSuggestions.push(playerSuggestion.suggestion);
+      } else {
+        seenSuggestions.add(playerSuggestion.suggestion);
+      }
+    }
+  });
+
+  return duplicateSuggestions;
+}
+
+export function countAchievements(store: FirebaseStoreData) {
+  const pastSuggestions: PastSuggestion[] = store.pastSuggestions;
+
+  pastSuggestions.forEach((entry) => {
+    const validClues = entry.suggestions.filter((s) => !s.invalid);
+    const invalidClues = entry.suggestions.filter((s) => s.invalid);
+
+    if (entry.outcome === OUTCOME.CORRECT) {
+      utils.achievements.push(store, entry.guesserId, 'correctGuesses', validClues.length);
+    }
+
+    if (entry.outcome === OUTCOME.WRONG) {
+      utils.achievements.push(store, entry.guesserId, 'wrongGuesses', validClues.length);
+    }
+
+    if (entry.outcome === OUTCOME.PASS) {
+      utils.achievements.increase(store, entry.guesserId, 'passes', 1);
+    }
+
+    invalidClues.forEach((clue) => {
+      utils.achievements.increase(store, clue.playerId, 'eliminatedClues', 1);
+      utils.achievements.increase(store, clue.playerId, 'clueLength', clue.suggestion.length);
+    });
+
+    validClues.forEach((clue) => {
+      utils.achievements.increase(store, clue.playerId, 'clueLength', clue.suggestion.length);
+    });
+  });
+
+  // Get mean values
+  Object.keys(store.achievements).forEach((playerId) => {
+    store.achievements[playerId].correctGuesses = utils.game.calculateAverage(
+      store.achievements[playerId].correctGuesses
+    );
+    store.achievements[playerId].wrongGuesses = utils.game.calculateAverage(
+      store.achievements[playerId].correctGuesses
+    );
+  });
+}
+
+/**
+ * Get achievements
+ * @param store
+ */
+export const getAchievements = (store: FirebaseStoreData) => {
+  const achievements: Achievement<UeSoIssoAchievement>[] = [];
+
+  // Worst Clue Giver: most eliminated clues
+  const { most: mostEliminatedClues, least: fewestEliminatedClues } = utils.achievements.getMostAndLeastOf(
+    store,
+    'eliminatedClues'
+  );
+  if (mostEliminatedClues) {
+    achievements.push({
+      type: UE_SO_ISSO_ACHIEVEMENTS.MOST_ELIMINATED_CLUES,
+      playerId: mostEliminatedClues.playerId,
+      value: mostEliminatedClues.eliminatedClues,
+    });
+  }
+
+  // Best Clue Giver: fewest eliminated clues
+  if (fewestEliminatedClues) {
+    achievements.push({
+      type: UE_SO_ISSO_ACHIEVEMENTS.FEWEST_ELIMINATED_CLUES,
+      playerId: fewestEliminatedClues.playerId,
+      value: fewestEliminatedClues.eliminatedClues,
+    });
+  }
+
+  // Longest clues:
+  const { most: longest, least: shortest } = utils.achievements.getMostAndLeastOf(store, 'clueLength');
+  if (longest) {
+    achievements.push({
+      type: UE_SO_ISSO_ACHIEVEMENTS.LONGEST_CLUES,
+      playerId: longest.playerId,
+      value: longest.clueLength,
+    });
+  }
+
+  // Shortest clues
+  if (shortest) {
+    achievements.push({
+      type: UE_SO_ISSO_ACHIEVEMENTS.SHORTEST_CLUES,
+      playerId: shortest.playerId,
+      value: shortest.eliminatedClues,
+    });
+  }
+
+  // Most passes
+  const { most: passes } = utils.achievements.getMostAndLeastOf(store, 'passes');
+  if (passes) {
+    achievements.push({
+      type: UE_SO_ISSO_ACHIEVEMENTS.MOST_PASSES,
+      playerId: passes.playerId,
+      value: passes.passes,
+    });
+  }
+
+  // Correct guesses with fewest clues
+  const { least: correctGuesses } = utils.achievements.getMostAndLeastOf(store, 'correctGuesses');
+  if (correctGuesses) {
+    achievements.push({
+      type: UE_SO_ISSO_ACHIEVEMENTS.BEST_GUESSER,
+      playerId: correctGuesses.playerId,
+      value: correctGuesses.correctGuesses,
+    });
+  }
+
+  // Most passes
+  const { most: wrongGuesses } = utils.achievements.getMostAndLeastOf(store, 'wrongGuesses');
+  if (wrongGuesses) {
+    achievements.push({
+      type: UE_SO_ISSO_ACHIEVEMENTS.WORST_GUESSER,
+      playerId: wrongGuesses.playerId,
+      value: wrongGuesses.passes,
+    });
+  }
+
+  return achievements;
 };

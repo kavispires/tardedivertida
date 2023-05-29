@@ -99,7 +99,7 @@ export function ComparisonPhaseRules({ controller }: { controller: GamePlayer })
             <AvatarName player={controller} addressUser />
             pode clicar nas palavras para eliminá-las ou ativá-las, mas todos podem discutir.
             <br />
-            Uma dica ser muito ruim não significa que ela seja inválida.
+            <strong>Uma dica ser muito ruim não significa que ela seja inválida.</strong>
             <br />
             Refiram às palavras por letra, o Adivinhador pode estar ouvindo!
           </>
@@ -110,7 +110,7 @@ export function ComparisonPhaseRules({ controller }: { controller: GamePlayer })
             is in charge of clicking on the clues to disable or enable them as valid but everybody (but the
             guesser) should discuss.
             <br />
-            A terrible clue is still valid if it follow the rules.
+            <strong>A terrible clue is still valid if it follow the rules.</strong>
             <br />
             Refer to the clues by letter, the Guesser is listening!
           </>
@@ -120,13 +120,13 @@ export function ComparisonPhaseRules({ controller }: { controller: GamePlayer })
   );
 }
 
-export function GuessingRules({ guesserName }: { guesserName: string }): JSX.Element {
+export function GuessingRules({ guesser }: { guesser: GamePlayer }): JSX.Element {
   return (
     <Instruction>
       <Translate
         pt={
           <>
-            Hora de {guesserName} brilhar!
+            Hora de <AvatarName player={guesser} /> brilhar!
             <br />
             Você tem uma única change de adivinhar a palavra secreta!
             <br />
@@ -135,7 +135,7 @@ export function GuessingRules({ guesserName }: { guesserName: string }): JSX.Ele
         }
         en={
           <>
-            It's time to shine, {guesserName}!
+            It's time to shine, <AvatarName player={guesser} />!
             <br />
             You have a single chance to guess the secret word!
             <br />

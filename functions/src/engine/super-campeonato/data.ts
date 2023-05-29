@@ -1,7 +1,7 @@
 // Constants
 import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
 // Type
-import { ResourceData } from './types';
+import { PastBattles, ResourceData } from './types';
 // Helpers
 import * as resourceUtils from '../resource';
 import * as globalUtils from '../global';
@@ -22,10 +22,7 @@ export const getResourceData = async (
   // Get full challenges deck
   const challengesResponse = await resourceUtils.fetchResource(challengesResourceName);
   // Get used challenges deck
-  const usedChallenges = await globalUtils.getGlobalFirebaseDocData(
-    GLOBAL_USED_DOCUMENTS.SUPER_CAMPEONATO_CHALLENGES,
-    {}
-  );
+  const usedChallenges = await globalUtils.getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.CHALLENGES, {});
 
   // Filter out used cards
   let availableChallenges: Record<string, TextCard> = utils.game.filterOutByIds(
@@ -35,7 +32,7 @@ export const getResourceData = async (
 
   // If not the minimum cards needed, reset and use all
   if (Object.keys(availableChallenges).length < CHALLENGES_PER_GAME) {
-    await utils.firebase.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.SUPER_CAMPEONATO_CHALLENGES);
+    await utils.firebase.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.CHALLENGES);
     availableChallenges = challengesResponse;
   }
 
@@ -44,10 +41,7 @@ export const getResourceData = async (
     isAlternativeDecks ? `${TDR_RESOURCES.CONTENDERS}-2` : TDR_RESOURCES.CONTENDERS
   );
   // Get used challenges deck
-  const usedContenders = await globalUtils.getGlobalFirebaseDocData(
-    GLOBAL_USED_DOCUMENTS.SUPER_CAMPEONATO_CONTENDERS,
-    {}
-  );
+  const usedContenders = await globalUtils.getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.CONTENDERS, {});
 
   // Get only contenders that match the language selected
   const languageContenders = Object.values(contendersResponse)
@@ -65,7 +59,7 @@ export const getResourceData = async (
 
   // If not the minimum cards needed, reset and use all
   if (Object.keys(availableContenders).length < CHALLENGES_PER_GAME) {
-    await utils.firebase.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.SUPER_CAMPEONATO_CONTENDERS);
+    await utils.firebase.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.CONTENDERS);
     availableContenders = languageContenders;
   }
 
@@ -73,4 +67,19 @@ export const getResourceData = async (
     challenges: Object.values(availableChallenges),
     contenders: Object.values(availableContenders),
   };
+};
+
+export const saveData = async (pastBattles: PastBattles) => {
+  const challengeIds: BooleanDictionary = {};
+  const contenderIds: BooleanDictionary = {};
+
+  pastBattles.forEach((entry) => {
+    challengeIds[entry.challenge.id] = true;
+    entry.contenders.forEach((contender) => {
+      contenderIds[contender.id] = true;
+    });
+  });
+
+  await globalUtils.updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.CONTENDERS, contenderIds);
+  await globalUtils.updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.CHALLENGES, challengeIds);
 };

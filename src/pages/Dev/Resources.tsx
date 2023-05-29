@@ -3,8 +3,12 @@ import { useTitle } from 'react-use';
 import { Divider, Layout } from 'antd';
 // Components
 import { DevHeader } from './DevHeader';
-import { RestructureUI } from './RestructureUI';
-import { TransferGlobal } from './TransferGlobal';
+import { RestructureUI } from './Resources/RestructureUI';
+import { TransferGlobal } from './Resources/TransferGlobal';
+import { useQuery } from 'react-query';
+import { RestructureJson } from './Resources/RestructureJson';
+import { SaveGames } from './Resources/SaveGames';
+import { SaveResources } from './Resources/SaveResources';
 
 function ResourcesPage() {
   useTitle('Resources | Dev | Tarde Divertida');
@@ -13,13 +17,9 @@ function ResourcesPage() {
     <Layout className="dev-layout">
       <DevHeader title="Resources" />
       <Layout.Content className="dev-content">
-        <h2>TBD</h2>
-
-        <RestructureUI />
-
-        <Divider />
-
-        <TransferGlobal />
+        {/* <RestructureJson /> */}
+        {/* <SaveGames /> */}
+        {/* <SaveResources /> */}
       </Layout.Content>
     </Layout>
   );

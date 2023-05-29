@@ -2,11 +2,12 @@
 import { DETETIVES_IMAGINATIVOS_PHASES, HAND_LIMIT } from './constants';
 import { DOUBLE_ROUNDS_THRESHOLD, GAME_NAMES } from '../../utils/constants';
 // Types
-import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types';
+import type { FirebaseStateData, FirebaseStoreData, ResourceData, TableEntry } from './types';
 // Utils
 import utils from '../../utils';
 // Internal
 import { calculateRanking, countImpostorVotes, determinePhaseOrder } from './helpers';
+import { saveData } from './data';
 
 /**
  * Setup
@@ -118,9 +119,34 @@ export const prepareDefensePhase = async (
   // Build phase order (from leader forward once)
   const phaseOrder = determinePhaseOrder(state.leaderId, store.gameOrder, players);
 
+  // Save leaders cards and clue
+  const leaderCards = state.table.find((e: TableEntry) => state.leaderId === e.playerId);
+
+  if (leaderCards) {
+    store.usedCards.push({
+      cards: leaderCards.cards,
+      clue: state.clue,
+      playerId: leaderCards.playerId,
+      isLeader: true,
+    });
+  }
+
+  const impostorCards = state.table.find((e: TableEntry) => state.impostorId === e.playerId);
+  if (impostorCards) {
+    store.usedCards.push({
+      cards: impostorCards.cards,
+      clue: state.clue,
+      playerId: impostorCards.playerId,
+      isLeader: false,
+    });
+  }
+
   // Save
   return {
     update: {
+      store: {
+        usedCards: store.usedCards,
+      },
       state: {
         phase: DETETIVES_IMAGINATIVOS_PHASES.DEFENSE,
         phaseOrder,
@@ -181,6 +207,7 @@ export const prepareGameOverPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
+  const gallery = utils.helpers.deepCopy(store.usedCards);
 
   await utils.firebase.markGameAsComplete(gameId);
 
@@ -191,9 +218,18 @@ export const prepareGameOverPhase = async (
     players,
     winners,
     achievements: [],
+    language: store.language,
   });
 
+  // Save data: imageCards and clues
+  await saveData(store.usedCards, store.language);
+
+  utils.players.cleanup(players, []);
+
   return {
+    update: {
+      storeCleanup: utils.firebase.cleanupStore(store, []),
+    },
     set: {
       state: {
         phase: DETETIVES_IMAGINATIVOS_PHASES.GAME_OVER,
@@ -201,6 +237,7 @@ export const prepareGameOverPhase = async (
         round: state.round,
         gameEndedAt: Date.now(),
         winners,
+        gallery,
       },
     },
   };

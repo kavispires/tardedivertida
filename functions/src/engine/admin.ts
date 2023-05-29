@@ -4,6 +4,7 @@ import { GAME_CODES, USED_GAME_IDS } from '../utils/constants';
 // Utils
 import * as delegatorUtils from '../utils/delegators';
 import utils from '../utils';
+import { feedEmulatorDB } from '../utils/mocks/emulator';
 
 /**
  * Creates a new game instance
@@ -12,6 +13,10 @@ import utils from '../utils';
  * @returns
  */
 export const createGame = async (data: CreateGamePayload, context: FirebaseContext) => {
+  if (process.env.FUNCTIONS_EMULATOR && process.env.FIRESTORE_EMULATOR_HOST) {
+    feedEmulatorDB();
+  }
+
   const actionText = 'create new game';
   utils.firebase.verifyAuth(context, actionText);
 
@@ -50,7 +55,7 @@ export const createGame = async (data: CreateGamePayload, context: FirebaseConte
     );
   }
 
-  if (process.env.FUNCTIONS_EMULATOR) {
+  if (process.env.FUNCTIONS_EMULATOR && process.env.FIRESTORE_EMULATOR_HOST) {
     gameId = Array(4).fill(gameCode).join('');
   }
 
@@ -76,7 +81,7 @@ export const createGame = async (data: CreateGamePayload, context: FirebaseConte
 
   try {
     // Update global ids. This is in a different block just for dev purposes
-    await globalRef.doc(USED_GAME_IDS).update({ [gameId]: true });
+    await globalRef.doc(USED_GAME_IDS).update({ [gameId]: Date.now() });
   } catch (e) {
     // Do nothing
   }

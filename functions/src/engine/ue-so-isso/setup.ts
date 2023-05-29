@@ -1,22 +1,32 @@
 // Types
 import type { FirebaseStateData, FirebaseStoreData, AllWords } from './types';
 // Constants
-import { UE_SO_ISSO_PHASES } from './constants';
-import { DOUBLE_ROUNDS_THRESHOLD, GAME_NAMES } from '../../utils/constants';
+import {
+  ALLOWED_MISTAKES,
+  CORRECT_GUESS_SCORE,
+  GOAL,
+  INCORRECT_GUESS_SCORE,
+  MAX_ROUNDS,
+  OUTCOME,
+  UE_SO_ISSO_PHASES,
+  WORDS_PER_CARD,
+} from './constants';
+import { GAME_NAMES } from '../../utils/constants';
 // Helpers
 import utils from '../../utils';
 // Internal
 import {
   buildCurrentWords,
   buildDeck,
-  determineGroupScore,
-  determineScore,
+  countAchievements,
   determineSecretWord,
   determineSuggestionsNumber,
+  getAchievements,
   groupSuggestions,
   tallyVotes,
   validateSuggestions,
 } from './helpers';
+import { saveData } from './data';
 
 /**
  * Setup
@@ -31,33 +41,50 @@ export const prepareSetupPhase = async (
   allWords: AllWords
 ): Promise<SaveGamePayload> => {
   // Determine turn order
-  const { gameOrder: turnOrder, playerIds: gameOrder } = utils.players.buildGameOrder(
-    players,
-    DOUBLE_ROUNDS_THRESHOLD
-  );
+  const { gameOrder } = utils.players.buildGameOrder(players);
 
   // Build deck
-  const numberOfRounds = turnOrder.length;
-  const deck = buildDeck(allWords, numberOfRounds);
+  const deck = buildDeck(
+    allWords,
+    MAX_ROUNDS,
+    store.options.fewerCards ? WORDS_PER_CARD - 2 : WORDS_PER_CARD
+  );
+
+  const achievements = utils.achievements.setup(players, store, {
+    eliminatedClues: 0,
+    clueLength: 0,
+    passes: 0,
+    correctGuesses: [],
+    wrongGuesses: [],
+  });
 
   // Save
   return {
     update: {
       store: {
         deck,
-        turnOrder,
         gameOrder,
+        achievements,
         currentWords: [],
         currentSuggestions: [],
         validSuggestions: {},
+        pastSuggestions: [],
       },
       state: {
         phase: UE_SO_ISSO_PHASES.SETUP,
         round: {
           current: 0,
-          total: turnOrder.length,
+          total: MAX_ROUNDS,
         },
-        gameOrder: store.gameOrder,
+        group: {
+          correct: 0,
+          mistakes: 0,
+          outcome: OUTCOME.CONTINUE,
+          attempts: [],
+          score: 0,
+          goal: GOAL,
+        },
+        gameOrder,
       },
       storeCleanup: ['currentWord', 'guess'],
     },
@@ -69,24 +96,18 @@ export const prepareWordSelectionPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
-  // Count points if an outcome was given:
-  if (state.guesserId && store.outcome) {
-    players[state.guesserId].score += determineScore(store.outcome);
-  }
+  const round = utils.helpers.increaseRound(state.round);
 
-  const roundIndex = state.round.current;
-  // Determine guesser based on round and turnOrder
-  const guesserId = store.turnOrder[roundIndex];
-  const controllerId = store.turnOrder?.[roundIndex + 1] ?? store.turnOrder?.[0];
+  // Determine guesser based on round and gameOrder
+  const guesserId = utils.players.getActivePlayer(state.gameOrder, round.current);
+  const controllerId = utils.players.getActivePlayer(state.gameOrder, round.current + 1);
 
   // Get current words
-  const currentWords = buildCurrentWords(JSON.parse(store.deck[roundIndex]));
+  const currentWords = buildCurrentWords(JSON.parse(store.deck[round.current - 1]));
 
   // Unready players and remove any previously used game keys
   utils.players.unReadyPlayers(players, guesserId);
   utils.players.removePropertiesFromPlayers(players, ['suggestions', 'votes']);
-
-  const groupScore = determineGroupScore(players, state.round.total);
 
   // Save
   return {
@@ -100,14 +121,13 @@ export const prepareWordSelectionPhase = async (
       state: {
         phase: UE_SO_ISSO_PHASES.WORD_SELECTION,
         players,
-        round: utils.helpers.increaseRound(state.round),
-        gameOrder: store.gameOrder,
-        groupScore,
+        round,
         guesserId,
         controllerId,
         words: Object.values(currentWords),
       },
       stateCleanup: ['guess'],
+      storeCleanup: ['outcome'],
     },
   };
 };
@@ -141,7 +161,7 @@ export const prepareSuggestPhase = async (
         secretWord,
         suggestionsNumber,
       },
-      stateCleanup: ['words'],
+      stateCleanup: ['words', 'suggestions'],
     },
   };
 };
@@ -158,11 +178,10 @@ export const prepareComparePhase = async (
   const shuffledSuggestions = utils.game.shuffle(suggestionsArray);
 
   utils.players.readyPlayers(players, state.controllerId);
+
   // Save
   return {
     update: {
-      // TODO: save suggestions to store then to global
-      // store: {},
       state: {
         phase: UE_SO_ISSO_PHASES.COMPARE,
         players,
@@ -188,7 +207,112 @@ export const prepareGuessPhase = async (
         players,
         validSuggestions: store.validSuggestions,
       },
-      stateCleanup: ['suggestions'],
+    },
+  };
+};
+
+export const prepareVerifyGuessPhase = async (
+  store: FirebaseStoreData,
+  state: FirebaseStateData,
+  players: Players
+): Promise<SaveGamePayload> => {
+  utils.players.readyPlayers(players, state.controllerId);
+
+  // Check guess, if correct, build result, if incorrect, idk
+  const { group, guess, secretWord } = state;
+  const index = state.round.current - 1;
+  const cleanGuess = utils.helpers.stringRemoveAccents(guess).toLowerCase().trim();
+  const cleanWord = utils.helpers.stringRemoveAccents(secretWord.text).toLowerCase().trim();
+  if (cleanGuess === cleanWord) {
+    group.attempts[index] = OUTCOME.CORRECT;
+    group.score += CORRECT_GUESS_SCORE;
+    group.outcome = OUTCOME.CONTINUE;
+
+    if (group.score >= GOAL) {
+      group.outcome = OUTCOME.WIN;
+    }
+  } else {
+    group.attempts[index] = OUTCOME.INCONCLUSIVE;
+    group.outcome = OUTCOME.INCONCLUSIVE;
+  }
+
+  // Save
+  return {
+    update: {
+      state: {
+        phase: UE_SO_ISSO_PHASES.VERIFY_GUESS,
+        players,
+        group,
+      },
+    },
+  };
+};
+
+export const prepareResultPhase = async (
+  store: FirebaseStoreData,
+  state: FirebaseStateData,
+  players: Players
+): Promise<SaveGamePayload> => {
+  const pastSuggestions = [
+    ...store.pastSuggestions,
+    {
+      ...state.secretWord,
+      suggestions: utils.helpers.orderBy(state.suggestions, ['invalid'], ['asc']),
+      guesserId: state.guesserId,
+    },
+  ];
+
+  // Check guess, if correct, build result, if incorrect, idk
+  const { group } = state;
+  const index = state.round.current - 1;
+
+  group.outcome = OUTCOME.CONTINUE;
+
+  if (group.attempts[index] === OUTCOME.CORRECT) {
+    pastSuggestions[index].outcome = OUTCOME.CORRECT;
+
+    if (group.score >= GOAL) {
+      group.outcome = OUTCOME.WIN;
+    }
+  }
+
+  if (store.outcome === OUTCOME.PASS) {
+    group.attempts[index] = OUTCOME.PASS;
+    pastSuggestions[index].outcome = OUTCOME.PASS;
+  }
+
+  if (store.outcome === OUTCOME.CORRECT) {
+    group.attempts[index] = OUTCOME.CORRECT;
+    group.score += CORRECT_GUESS_SCORE;
+    pastSuggestions[index].outcome = OUTCOME.CORRECT;
+
+    if (group.score >= GOAL) {
+      group.outcome = OUTCOME.WIN;
+    }
+  }
+
+  if (store.outcome === OUTCOME.WRONG) {
+    group.attempts[index] = OUTCOME.WRONG;
+    group.mistakes += 1;
+    group.score += INCORRECT_GUESS_SCORE;
+    pastSuggestions[index].outcome = OUTCOME.WRONG;
+
+    if (group.mistakes >= ALLOWED_MISTAKES) {
+      group.outcome = OUTCOME.LOSE;
+    }
+  }
+
+  // Save
+  return {
+    update: {
+      store: {
+        pastSuggestions,
+      },
+      state: {
+        phase: UE_SO_ISSO_PHASES.RESULT,
+        players,
+        group,
+      },
     },
   };
 };
@@ -200,13 +324,18 @@ export const prepareGameOverPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Count points if any:
-  if (state.guesserId && store.outcome) {
-    players[state.guesserId].score += determineScore(store.outcome);
+  players[state.guesserId].score += state.group.score;
+
+  if (state.group.outcome === OUTCOME.CONTINUE) {
+    state.group.outcome = OUTCOME.LOSE;
   }
 
-  const groupScore = determineGroupScore(players, state.round.total);
+  const winners = state.win ? utils.players.getListOfPlayers(players) : [];
 
-  const winners = groupScore > 70 ? utils.players.getListOfPlayers(players) : [];
+  // Handle achievements
+  countAchievements(store);
+
+  const achievements = getAchievements(store);
 
   await utils.firebase.markGameAsComplete(gameId);
 
@@ -216,21 +345,32 @@ export const prepareGameOverPhase = async (
     startedAt: store.createdAt,
     players,
     winners,
-    achievements: [],
+    achievements,
+    language: store.language,
   });
+
+  // Save data
+  await saveData(store.pastSuggestions, store.language);
+
+  // Create gallery
+  const gallery = store.pastSuggestions;
+
+  utils.players.cleanup(players, []);
 
   // Save
   return {
+    update: {
+      storeCleanup: utils.firebase.cleanupStore(store, []),
+    },
     set: {
       state: {
         phase: UE_SO_ISSO_PHASES.GAME_OVER,
         round: state.round,
         gameEndedAt: Date.now(),
         players,
-        group: {
-          score: groupScore,
-          victory: groupScore > 70,
-        },
+        group: state.group,
+        gallery,
+        achievements,
       },
     },
   };

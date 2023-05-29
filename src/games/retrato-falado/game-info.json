@@ -2,14 +2,14 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "R",
   "gameName": "retrato-falado",
-  "version": "1.8.11",
+  "version": "1.8.17",
   "title": {
     "pt": "Retrato Falado Monstruoso",
     "en": "Monster Sketch"
   },
   "popularName": {
-    "pt": "Do monstro",
-    "en": ""
+    "pt": "O do monstro",
+    "en": "The one with the monster sketch"
   },
   "basedOn": "ytiswardsnoM",
   "summary": {

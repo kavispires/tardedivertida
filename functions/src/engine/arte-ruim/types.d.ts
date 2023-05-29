@@ -1,17 +1,36 @@
 import { ARTE_RUIM_ACHIEVEMENTS, ARTE_RUIM_ACTIONS } from './constants';
 
 export type ArteRuimGameOptions = {
+  /**
+   * Use all cards, not just unused ones
+   */
   useAllCards: boolean;
-  shortGame: boolean;
+  /**
+   * Make game with variant number of levels by having a score goal (max 10 rounds)
+   */
+  forPoints: boolean;
+  /**
+   * Randomize levels
+   */
+  randomize: boolean;
+  /**
+   * Use special surprise twist for level 5
+   */
+  specialLevels: boolean;
 };
 
 export type CardsByLevel = Record<string, ArteRuimCard[]>;
+
+export type Level5Type = 'pairs' | 'contenders' | 'movies' | 'adjectives';
 
 export type ResourceData = {
   allCards: Record<CardId, ArteRuimCard>;
   availableCards: CardsByLevel;
   cardsGroups: ArteRuimGroup[];
-  cardsPairs: ArteRuimPair[];
+  specialLevels: {
+    cards: ArteRuimCard[];
+    types: Level5Type[];
+  };
 };
 
 export interface ArteRuimDrawing extends ArteRuimCard {

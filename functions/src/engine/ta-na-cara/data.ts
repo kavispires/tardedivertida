@@ -19,7 +19,7 @@ export const getResourceData = async (language: string, options: TaNaCaraOptions
   // Get full deck
   const allCards = await resourceUtils.fetchResource(resourceName);
   // Get used deck
-  const usedCards = await globalUtils.getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.TESTEMUNHA_OCULAR, {});
+  const usedCards = await globalUtils.getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.TESTIMONY_QUESTIONS, {});
   // Get images info
   const allSuspects = await resourceUtils.fetchTDIData('us/info');
 
@@ -31,7 +31,7 @@ export const getResourceData = async (language: string, options: TaNaCaraOptions
 
   // If not the minimum cards needed, reset and use all
   if (Object.keys(availableCards).length < QUESTIONS_PER_PLAYER * PLAYER_COUNTS.MAX) {
-    await utils.firebase.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.TESTEMUNHA_OCULAR);
+    await utils.firebase.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.TESTIMONY_QUESTIONS);
     return {
       allCards,
       allSuspects: Object.values(allSuspects),

@@ -2,14 +2,14 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "V",
   "gameName": "vamos-ao-cinema",
-  "version": "1.3.13",
+  "version": "1.3.17",
   "title": {
     "pt": "Vamos Ao Cinema",
     "en": "Movie Night"
   },
   "popularName": {
     "pt": "O dos filmes",
-    "en": "The movies ones"
+    "en": "The one with movies"
   },
   "basedOn": "eivom taht toN",
   "summary": {

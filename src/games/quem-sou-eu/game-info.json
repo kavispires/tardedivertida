@@ -2,14 +2,14 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "Q",
   "gameName": "quem-sou-eu",
-  "version": "1.4.16",
+  "version": "1.4.24",
   "title": {
     "pt": "Quem Sou Eu?",
     "en": "Who Am I?"
   },
   "popularName": {
-    "pt": "o dos ícones",
-    "en": "the one with glyphs"
+    "pt": "O dos ícones",
+    "en": "The one with glyphs"
   },
   "basedOn": "ytitnedI terceS",
   "appearance": {

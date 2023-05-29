@@ -21,7 +21,7 @@ import {
   prepareComparePhase,
   prepareResolutionPhase,
 } from './setup';
-import { getQuestions, saveUsedQuestions } from './data';
+import { getQuestions } from './data';
 import {
   handleAddAnswer,
   handleNextAnswers,
@@ -119,9 +119,6 @@ export const getNextPhase = async (
   // GUESS -> GAME_OVER
   if (nextPhase === MENTE_COLETIVA_PHASES.GAME_OVER) {
     const newPhase = await prepareGameOverPhase(gameId, store, state, players);
-
-    // Save usedMenteColetivaQuestions to global
-    await saveUsedQuestions(store.pastQuestions);
 
     return utils.firebase.saveGame(sessionRef, newPhase);
   }

@@ -224,6 +224,7 @@ export function StepReveal({
         mistakes={mistakes}
         players={players}
         showResults={outcome === 'DONE'}
+        disableButtons
       />
 
       <TurnOrder players={players} activePlayerId={activePlayer.id} order={turnOrder} />

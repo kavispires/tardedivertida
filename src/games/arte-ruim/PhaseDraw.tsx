@@ -15,6 +15,7 @@ import { Instruction } from 'components/text';
 import { Translate } from 'components/language';
 import { StepDraw } from './StepDraw';
 import { DrawInstruction } from './components/TextBlobs';
+import { LevelInstruction } from './components/LevelInstruction';
 
 function PhaseDraw({ players, state, info }: PhaseProps) {
   const { step, goToNextStep, setStep } = useStep(0);
@@ -57,28 +58,14 @@ function PhaseDraw({ players, state, info }: PhaseProps) {
           buttonText=" "
           time={5}
           circleColor={info?.appearance?.color}
+          unskippable
         >
           <Instruction contained>
             <Translate
               pt={`Essa rodada usará cartas de nível ${state?.level || '?'}`}
               en={`This round uses cards of level ${state?.level || '?'}`}
             />
-            {state.level === 4 && (
-              <Instruction contained>
-                <Translate
-                  pt="No nível 4, as cartas tem um ou dois temas comuns, então preste atenção nos detalhes"
-                  en="On level 4, the cards have one or two common themes, so pay attention to details"
-                />
-              </Instruction>
-            )}
-            {state.level === 5 && (
-              <Instruction contained>
-                <Translate
-                  pt="No nível 5, só existem duas cartas para todos"
-                  en="On level 5, players draw one of two things only"
-                />
-              </Instruction>
-            )}
+            <LevelInstruction level={state.level} levelType={state.levelType} />
           </Instruction>
         </RoundAnnouncement>
 

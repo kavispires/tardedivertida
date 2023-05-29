@@ -17,7 +17,6 @@ export interface TestemunhaOcularEntry {
   id: string;
   question: string;
   unfit?: SuspectId[];
-  fit?: SuspectId[];
 }
 
 export interface ResourceData {

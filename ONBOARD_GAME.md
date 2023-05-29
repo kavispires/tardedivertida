@@ -73,3 +73,4 @@ All file paths here are relative to `/src`.
 - Add adders everywhere is necessary with the use of ''
 - Create a function getAchievements to read the store and generate the achievements properly with the help of the `utils.achievements` functions
 - Use the component `<Achievements />` in the GameOverPhase padding a reference for all the icons in the game. See type `AchievementReference`
+- Update `ACHIEVEMENTS_DICT` in `src/utils/achievements.ts` so it is available in the User page

@@ -3,6 +3,7 @@ import { lazy, Suspense } from 'react';
 import { useIsGameStale } from 'hooks/useIsGameStale';
 import { useLanguage } from 'hooks/useLanguage';
 import { useGameMeta } from 'hooks/useGameMeta';
+import { useLoading } from 'hooks/useLoading';
 // Utils
 import { GAME_COLLECTION } from 'utils/constants';
 // Components
@@ -102,13 +103,14 @@ const SessionTaNaCara = lazy(
 
 function Game() {
   const { translate } = useLanguage();
+  const { loaders } = useLoading();
 
   const { gameId, gameName, createdAt } = useGameMeta();
 
   const isGameStale = useIsGameStale(createdAt);
 
   // Deffer to load screen if any major API call is running
-  if (!gameId) {
+  if (!gameId || loaders['meta']) {
     return <LoadingPage />;
   }
 

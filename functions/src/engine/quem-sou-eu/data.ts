@@ -22,10 +22,7 @@ export const getResourceData = async (language: string, playerCount: number): Pr
   );
 
   // Get used challenges deck
-  const usedCharacters = await globalUtils.getGlobalFirebaseDocData(
-    GLOBAL_USED_DOCUMENTS.SUPER_CAMPEONATO_CONTENDERS,
-    {}
-  );
+  const usedCharacters = await globalUtils.getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.CONTENDERS, {});
 
   // Get only characters that match the language selected
   const languageCharacters = Object.values(charactersResponse)
@@ -43,7 +40,7 @@ export const getResourceData = async (language: string, playerCount: number): Pr
 
   // If not the minimum cards needed, reset and use all
   if (Object.keys(availableCharacters).length < playerCount * CHARACTERS_PER_PLAYER) {
-    await utils.firebase.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.SUPER_CAMPEONATO_CONTENDERS);
+    await utils.firebase.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.CONTENDERS);
     availableCharacters = languageCharacters;
   }
 
@@ -57,6 +54,13 @@ export const getResourceData = async (language: string, playerCount: number): Pr
  * @param contendersGlyphs
  * @returns
  */
-export const saveContendersGlyphs = async (contendersGlyphs: BooleanDictionary): Promise<boolean> => {
+export const saveData = async (contendersGlyphs: Record<CardId, BooleanDictionary>): Promise<boolean> => {
+  const contenderIds = Object.keys(contendersGlyphs).reduce((acc, id) => {
+    acc[id] = true;
+    return acc;
+  }, {});
+
+  await globalUtils.updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.CONTENDERS, contenderIds);
+
   return await collectionUtils.updateDataFirebaseDoc(DATA_DOCUMENTS.CONTENDERS_GLYPHS, contendersGlyphs);
 };

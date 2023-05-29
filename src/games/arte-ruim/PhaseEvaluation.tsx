@@ -58,6 +58,7 @@ function EvaluationPhase({ players, state, info }: PhaseProps) {
           cards={state.cards}
           players={players}
           onSubmitVoting={onSubmitVoting}
+          levelType={state.levelType}
           announcement={announcement}
         />
 

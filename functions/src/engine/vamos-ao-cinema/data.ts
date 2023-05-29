@@ -51,7 +51,7 @@ export const getCards = async (language: string): Promise<ResourceData> => {
  * Save used movies and reviews to the global document
  * @param pastMoviesAndReviews
  */
-export const saveUsedCards = async (
+export const saveData = async (
   movies: MovieCard[],
   goodReviews: MovieReviewCard[],
   badReviews: MovieReviewCard[]

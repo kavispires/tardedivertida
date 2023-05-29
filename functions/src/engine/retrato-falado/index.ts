@@ -19,7 +19,7 @@ import {
   prepareRevealPhase,
   prepareGameOverPhase,
 } from './setup';
-import { getMonsterCards, saveUsedCards } from './data';
+import { getMonsterCards } from './data';
 import { handleSubmitOrientation, handleSubmitSketch, handleSubmitVote } from './actions';
 
 /**
@@ -107,7 +107,6 @@ export const getNextPhase = async (
   // REVEAL -> GAME_OVER
   if (nextPhase === RETRATO_FALADO_PHASES.GAME_OVER) {
     const newPhase = await prepareGameOverPhase(gameId, store, state, players);
-    await saveUsedCards(store.pastSketches);
     return utils.firebase.saveGame(sessionRef, newPhase);
   }
 

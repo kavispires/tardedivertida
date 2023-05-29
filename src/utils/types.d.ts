@@ -24,11 +24,11 @@ type ObjectDictionary = {
 type DateMilliseconds = number;
 type GameCode = string;
 type GameId = string;
-type GameLanguage = string;
 type GameName = string;
 type GameOrder = PlayerId[];
 type ImageCard = string;
 type Language = 'en' | 'pt';
+type GameLanguage = Language;
 type PlayerAvatarId = string;
 type PlayerId = string;
 type PlayerName = string;
@@ -109,6 +109,7 @@ interface Me {
   id: string;
   isAdmin: boolean;
   names: string[];
+  language?: Language;
   // Top 3 avatars
   avatars: AvatarId[];
   gender?: string;
@@ -235,6 +236,7 @@ type GameInfo = {
     on: string;
     off: string;
     description?: string;
+    disabled?: boolean;
   }[];
   mobileFriendly?: boolean;
 };
@@ -540,3 +542,12 @@ type MovieReview = {
   text: string;
   type: 'good' | 'bad';
 };
+
+interface GroupProgress {
+  correct: number;
+  mistakes: number;
+  outcome: Outcome;
+  attempts: Outcome[];
+  score: number;
+  goal: number;
+}

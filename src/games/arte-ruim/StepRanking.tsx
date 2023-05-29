@@ -2,12 +2,13 @@
 import { Button } from 'antd';
 import { PictureOutlined } from '@ant-design/icons';
 // Components
-import { RoundsLeftInstruction } from 'components/text';
+import { Instruction, RoundsLeftInstruction } from 'components/text';
 import { StepRankingWrapper } from 'components/ranking';
 import { PopoverRule } from 'components/rules';
 import { Translate } from 'components/language';
 import { VIPNextPhaseButton } from 'components/vip';
 import { ScoringRules } from './components/TextBlobs';
+import { PointsHighlight } from 'components/metrics/PointsHighlight';
 
 type StepRankingProps = {
   players: GamePlayers;
@@ -16,6 +17,7 @@ type StepRankingProps = {
   round: GameRound;
   goToPreviousStep: GenericFunction;
   setActiveIndex: GenericFunction;
+  threshold: number;
 };
 
 export function StepRanking({
@@ -25,6 +27,7 @@ export function StepRanking({
   round,
   goToPreviousStep,
   setActiveIndex,
+  threshold,
 }: StepRankingProps) {
   return (
     <StepRankingWrapper
@@ -39,6 +42,25 @@ export function StepRanking({
       ]}
     >
       <PopoverRule content={<ScoringRules />} />
+
+      {threshold > 0 && (
+        <Instruction contained>
+          <Translate
+            pt={
+              <>
+                O jogo termina quando alguém passa os <PointsHighlight>{threshold} pontos</PointsHighlight> ou{' '}
+                {round.total} rodadas.
+              </>
+            }
+            en={
+              <>
+                The game ends when someones passes <PointsHighlight>{threshold} points</PointsHighlight> or{' '}
+                {round.total} rounds.
+              </>
+            }
+          />
+        </Instruction>
+      )}
 
       {!isGameOver && <RoundsLeftInstruction round={round} />}
 

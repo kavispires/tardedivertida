@@ -29,7 +29,7 @@ export function ViewSketching({
     <ViewOr condition={isUserTheWitness}>
       <div className="r-view">
         <Title>
-          <Translate pt="Descreva o monstro!" en="Describe the monstro!" />
+          <Translate pt="Descreva o monstro!" en="Describe the monster!" />
         </Title>
         <TimerBar steps={TIMES.SKETCH} value={remainingSketchingTime} total={TIMES.SKETCH} />
         <MonsterCard currentMonster={{ id: 'md-bs-000', orientation: 'vertical' }} showControls={false} />

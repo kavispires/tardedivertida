@@ -1,7 +1,13 @@
-import { CRUZA_PALAVRAS_ACTIONS } from './constants';
+import { CRUZA_PALAVRAS_ACHIEVEMENTS, CRUZA_PALAVRAS_ACTIONS } from './constants';
 
 export type CruzaPalavrasOptions = {
+  /**
+   * Adds a row and column to the grid
+   */
   largerGrid: boolean;
+  /**
+   * Uses images instead of words
+   */
   imageGrid: boolean;
 };
 
@@ -14,6 +20,8 @@ export type ResourceData = {
 };
 
 export type Deck = TextCard[];
+
+export type PastClues = Record<CardId, string[]>;
 
 export type ClueEntry = {
   playerId: PlayerId;
@@ -35,8 +43,11 @@ export type GridCell = {
   playerId?: string | null;
 };
 
+export type CruzaPalavrasAchievement = keyof typeof CRUZA_PALAVRAS_ACHIEVEMENTS;
+
 export interface CruzaPalavrasStore extends DefaultStore {
   deck?: Deck;
+  pastClues?: PastClues;
   [key: string]: any;
 }
 

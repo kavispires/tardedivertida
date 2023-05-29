@@ -1,6 +1,7 @@
 import 'jest';
 import * as helpers from '../../../src/engine/arte-ruim/helpers';
 import { mockArteRuimCardDatabase } from '../../mocks';
+import { ResourceData } from '../../../src/engine/arte-ruim/types';
 
 describe('arte-ruim/helpers', () => {
   let result: any = null;
@@ -14,13 +15,26 @@ describe('arte-ruim/helpers', () => {
         3: [],
         4: [],
       };
-      const cards = {
+      const cards: ResourceData = {
         allCards: mockArteRuimCardDatabase,
         availableCards: mockCardsByLevel,
         cardsGroups: [],
-        cardsPairs: [],
+        specialLevels: {
+          cards: [],
+          types: [],
+        },
       };
-      result = helpers.buildDeck(cards, 7, false);
+      result = helpers.buildDeck(
+        cards,
+        7,
+        {
+          useAllCards: false,
+          forPoints: false,
+          randomize: false,
+          specialLevels: false,
+        },
+        [0, 1, 1]
+      );
 
       expect(result).toHaveLength(42);
       expect(result[0].level).toBe(3);

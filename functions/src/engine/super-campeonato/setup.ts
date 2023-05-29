@@ -15,12 +15,14 @@ import {
   buildRanking,
   getChampionshipTier,
   getMostVotedChallenge,
+  getPastBattle,
   getTableContenders,
   isFinalRound,
   makeBrackets,
   makeFinalBrackets,
   updateBracketsWithVotes,
 } from './helpers';
+import { saveData } from './data';
 
 /**
  * Setup
@@ -65,6 +67,7 @@ export const prepareSetupPhase = async (
         deckIndex: 0,
         tableContenders,
         finalBrackets: [],
+        pastBattles: [],
         options,
       },
       state: {
@@ -211,30 +214,38 @@ export const prepareResultsPhase = async (
   // Score
   const ranking = buildRanking(players, state.brackets);
 
+  // Final indexes should be the second and third to last (the last one is the final winner)
+  const [finalistIndex1, finalistIndex2] = [brackets.length - 2, brackets.length - 3];
+
   // Add the final 2 to the store final brackets
   const finalBrackets = [
     ...store.finalBrackets,
     {
-      id: brackets[12].id,
-      name: brackets[12].name,
-      playerId: brackets[12].playerId,
+      id: brackets[finalistIndex1].id,
+      name: brackets[finalistIndex1].name,
+      playerId: brackets[finalistIndex1].playerId,
       position: store.finalBrackets.length,
       tier: 'quarter',
     },
     {
-      id: brackets[13].id,
-      name: brackets[13].name,
-      playerId: brackets[13].playerId,
+      id: brackets[finalistIndex2].id,
+      name: brackets[finalistIndex2].name,
+      playerId: brackets[finalistIndex2].playerId,
       position: store.finalBrackets.length + 1,
       tier: 'quarter',
     },
   ];
+
+  // Parse brackets
+  const pastBattle = getPastBattle(brackets, state.challenge);
+  const pastBattles = [...store.pastBattles, pastBattle];
 
   // Save
   return {
     update: {
       store: {
         finalBrackets,
+        pastBattles,
       },
       state: {
         phase: SUPER_CAMPEONATO_PHASES.RESULTS,
@@ -257,6 +268,11 @@ export const prepareGameOverPhase = async (
 
   await utils.firebase.markGameAsComplete(gameId);
 
+  const pastBattles = store.pastBattles;
+
+  // Save used challenges and contenders
+  await saveData(pastBattles);
+
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.SUPER_CAMPEONATO,
     gameId,
@@ -264,9 +280,15 @@ export const prepareGameOverPhase = async (
     players,
     winners,
     achievements: [],
+    language: store.language,
   });
 
+  utils.players.cleanup(players, []);
+
   return {
+    update: {
+      storeCleanup: utils.firebase.cleanupStore(store, []),
+    },
     set: {
       state: {
         players,
@@ -275,6 +297,7 @@ export const prepareGameOverPhase = async (
         gameEndedAt: Date.now(),
         winners,
         finalWinner: state.brackets[14],
+        pastBattles,
       },
     },
   };

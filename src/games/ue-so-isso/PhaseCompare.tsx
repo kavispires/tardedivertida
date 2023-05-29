@@ -17,9 +17,9 @@ import { Translate } from 'components/language';
 import { ViewOr } from 'components/views';
 import { WaitingRoom } from 'components/players';
 
-function PhaseCompare({ state, players, info }: PhaseProps) {
+export function PhaseCompare({ state, players, info }: PhaseProps) {
   const { step, setStep } = useStep(0);
-  const [, isUserTheGuesser] = useWhichPlayerIsThe('guesserId', state, players);
+  const [guesser, isUserTheGuesser] = useWhichPlayerIsThe('guesserId', state, players);
   const [controller, isUserTheController] = useWhichPlayerIsThe('controllerId', state, players);
 
   const onValidateSuggestions = useOnSubmitValidationsAPIRequest(setStep);
@@ -56,7 +56,9 @@ function PhaseCompare({ state, players, info }: PhaseProps) {
               pt: 'validam dicas',
               en: 'validate the clues',
             }}
-            announcement={announcement}
+            phase={state.phase}
+            guesser={guesser}
+            turnOrder={state.gameOrder}
           />
 
           <StepCompareSuggestions
@@ -81,5 +83,3 @@ function PhaseCompare({ state, players, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseCompare;

@@ -2,14 +2,14 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "E",
   "gameName": "espiao-entre-nos",
-  "version": "0.10.10",
+  "version": "0.10.12",
   "title": {
     "pt": "Espião Entre Nós",
     "en": "Spy the Spies"
   },
   "popularName": {
     "pt": "Do espião",
-    "en": ""
+    "en": "The one with the spy in the location"
   },
   "basedOn": "llafypS",
   "summary": {

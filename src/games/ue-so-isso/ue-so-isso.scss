@@ -7,14 +7,6 @@
     text-transform: uppercase;
     font-size: 1.5em;
   }
-
-  &__game-progress-bar {
-    width: 100%;
-    text-align: center;
-    text-transform: uppercase;
-
-    margin: get-unit(2 0);
-  }
 }
 
 .u-word-card {
@@ -152,5 +144,81 @@
     color: get-color('red', 6);
     text-decoration: line-through;
     background-color: get-color('red', 4);
+  }
+}
+
+.u-guess {
+  font-size: 2em;
+}
+
+.u-group-progress {
+  $self: &;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+  text-transform: uppercase;
+  margin: get-unit(2 auto);
+
+  & #{$self}__title {
+    margin: 0;
+  }
+
+  & #{$self}__bar {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(10, auto);
+    gap: get-unit(1);
+    margin: get-unit(1 0 4);
+  }
+
+  & #{$self}__item {
+    border: 1px solid get-color('white');
+    border-radius: $border-radius;
+    padding: get-unit(1);
+    background: get-color('white', 5, 0.5);
+    margin: 0;
+  }
+
+  &__unknown {
+    opacity: 0.25;
+  }
+}
+
+.u-all-suggestions {
+  transform: scale(0.85);
+}
+
+.u-margin {
+  margin: get-unit(15 0);
+}
+
+.u-gallery {
+  width: 100%;
+}
+
+.u-gallery-entry {
+  background: get-color('white', 5, 0.95);
+  border-radius: $border-radius;
+  text-align: center;
+  padding: get-unit(2);
+
+  &__word {
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: get-unit(1);
+  }
+
+  &__suggestion {
+    padding: get-unit(1);
+
+    &--invalid {
+      text-decoration: line-through;
+      opacity: 0.75;
+    }
   }
 }

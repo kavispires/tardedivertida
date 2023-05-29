@@ -8,7 +8,7 @@ import { PHASES } from 'utils/phases';
 import { OpinionsIcon } from 'icons/OpinionsIcon';
 // Components
 import { StepWordSelection } from './StepWordSelection';
-import { GameProgressBar } from './components/GameProgressBar';
+import { GroupProgress } from './components/GroupProgress';
 import { GuesserWaitingRoom } from './components/GuesserWaitingRoom';
 import { useOnSubmitVotesAPIRequest } from './utils/api-requests';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
@@ -21,11 +21,10 @@ import { ViewOr } from 'components/views';
 
 type RoundAnnouncementTextProps = {
   guesser: GamePlayer;
-  groupScore: number;
-  round: GameRound;
+  group: GroupProgress;
 };
 
-function RoundAnnouncementText({ guesser, groupScore, round }: RoundAnnouncementTextProps) {
+function RoundAnnouncementText({ guesser, group }: RoundAnnouncementTextProps) {
   return (
     <Instruction contained>
       <Translate
@@ -41,15 +40,15 @@ function RoundAnnouncementText({ guesser, groupScore, round }: RoundAnnouncement
         }
       />
       <br />
-      <GameProgressBar groupScore={groupScore} round={round} />
+      <GroupProgress group={group} />
     </Instruction>
   );
 }
 
-function PhaseWordSelection({ state, players, info }: PhaseProps) {
+export function PhaseWordSelection({ state, players, info }: PhaseProps) {
   const user = useUser(players, state);
   const [guesser, isUserTheGuesser] = useWhichPlayerIsThe('guesserId', state, players);
-  const { step, setStep } = useStep(0);
+  const { step, setStep, goToNextStep } = useStep(0);
 
   const onSendSelectedWords = useOnSubmitVotesAPIRequest(setStep);
 
@@ -111,11 +110,11 @@ function PhaseWordSelection({ state, players, info }: PhaseProps) {
         {/* Step 0 */}
         <RoundAnnouncement
           round={state.round}
-          onPressButton={() => setStep(1)}
+          onPressButton={goToNextStep}
           time={7}
           circleColor={info?.appearance?.color}
         >
-          <RoundAnnouncementText guesser={guesser} groupScore={state.groupScore} round={state.round} />
+          <RoundAnnouncementText guesser={guesser} group={state.group} />
         </RoundAnnouncement>
 
         {/* Step 1 */}
@@ -123,10 +122,13 @@ function PhaseWordSelection({ state, players, info }: PhaseProps) {
           <GuesserWaitingRoom
             players={players}
             instructionSuffix={{
-              pt: 'decidirem a palavra secreta',
+              pt: 'decidem a palavra secreta',
               en: 'choose a secret word',
             }}
             announcement={announcement}
+            phase={state.phase}
+            guesser={guesser}
+            turnOrder={state.gameOrder}
           />
 
           <StepWordSelection
@@ -134,11 +136,11 @@ function PhaseWordSelection({ state, players, info }: PhaseProps) {
             onSendSelectedWords={onSendSelectedWords}
             guesser={guesser}
             announcement={announcement}
+            turnOrder={state.gameOrder}
+            players={players}
           />
         </ViewOr>
       </StepSwitcher>
     </PhaseContainer>
   );
 }
-
-export default PhaseWordSelection;

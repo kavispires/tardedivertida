@@ -23,7 +23,7 @@ type StepResultsProps = {
   mostVotes: PlayerId[];
   witnessVote: any;
   witness: Player | PlainObject;
-};
+} & AnnouncementProps;
 
 type Sketches = {
   mostVotedSketches: Sketch[];
@@ -38,6 +38,7 @@ export function StepResults({
   mostVotes,
   witnessVote,
   witness,
+  announcement,
 }: StepResultsProps) {
   useTemporarilyHidePlayersBar();
 
@@ -60,7 +61,7 @@ export function StepResults({
   );
 
   return (
-    <Step fullWidth>
+    <Step fullWidth announcement={announcement}>
       <Title>
         {mostVotes.length > 1 ? (
           <Translate

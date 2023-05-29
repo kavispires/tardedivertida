@@ -1,13 +1,74 @@
 // Constants
 import { GLOBAL_USED_DOCUMENTS, TDR_RESOURCES } from '../../utils/constants';
 // Types
-import type { ResourceData, ArteRuimDrawing } from './types';
+import type { ResourceData, ArteRuimDrawing, ArteRuimGameOptions, Level5Type } from './types';
 // Helpers
 import * as globalUtils from '../global';
-import * as publicUtils from '../public';
+import * as dataUtils from '../collections';
 import * as resourceUtils from '../resource';
 import utils from '../../utils';
-import { buildPastDrawingsDict, distributeCardsByLevel, getAvailableCards, getGameSettings } from './helpers';
+import {
+  determineNumberOfCards,
+  distributeCardsByLevel,
+  getAvailableCards,
+  getEnoughLevel5Cards,
+  getGameSettings,
+} from './helpers';
+import { SPECIAL_LEVELS_LIBRARIES } from './constants';
+
+const getFinalLevel = async (language: string, playerCount: number, options: ArteRuimGameOptions) => {
+  const cardsPerRound = determineNumberOfCards(playerCount);
+  const levelQuantity = options.forPoints ? 2 : 1;
+
+  // Regular level 5 uses pairs
+  if (!options.specialLevels) {
+    const allCardPairsResponse: Record<CardId, ArteRuimPair> = await resourceUtils.fetchResource(
+      `${TDR_RESOURCES.ARTE_RUIM_PAIRS}-${language}`
+    );
+    const shuffledLevel5Deck = utils.game.shuffle(Object.values(allCardPairsResponse));
+    return {
+      cards: getEnoughLevel5Cards(shuffledLevel5Deck, cardsPerRound),
+      types: Array(levelQuantity).fill('pairs' as Level5Type),
+    };
+  }
+
+  const types = utils.game.getRandomItems(SPECIAL_LEVELS_LIBRARIES, levelQuantity);
+
+  const result: ArteRuimCard[] = [];
+
+  for (const library of types) {
+    const document = library === 'contenders' ? library : `${library}-${language}`;
+    const response: Record<CardId, TextCard & PlainObject> = await resourceUtils.fetchResource(document);
+
+    const cards = utils.game.shuffle(Object.values(response)).filter((card) => {
+      if (library === 'contenders' && card.exclusivity && card.exclusivity !== language) {
+        return false;
+      }
+      return true;
+    });
+    utils.game.getRandomItems(cards, cardsPerRound).forEach((card) => {
+      const newCard = {
+        text: card.text,
+        id: card.id,
+        level: 5,
+      };
+
+      if (library === 'contenders') {
+        newCard.text = card.name[language];
+      }
+      if (library === 'movies') {
+        newCard.text = `${card.prefix} ${card.suffix}`;
+      }
+
+      result.push(newCard);
+    });
+  }
+
+  return {
+    cards: result,
+    types,
+  };
+};
 
 /**
  * Get expression cards resource based on the game's language
@@ -20,8 +81,7 @@ import { buildPastDrawingsDict, distributeCardsByLevel, getAvailableCards, getGa
 export const getCards = async (
   language: string,
   playerCount: number,
-  isShortGame: boolean,
-  useAllCards: boolean
+  options: ArteRuimGameOptions
 ): Promise<ResourceData> => {
   // Get regular cards
   const allCardsResponse = await resourceUtils.fetchResource(`${TDR_RESOURCES.ARTE_RUIM_CARDS}-${language}`);
@@ -29,24 +89,21 @@ export const getCards = async (
   const cardsByLevel = distributeCardsByLevel(allCards);
 
   // Get level 4 cards
-  const allCardsGroupResponse = await resourceUtils.fetchResource(
+  const allCardsGroupResponse = await resourceUtils.fetchResource<Record<CardId, ArteRuimGroup>>(
     `${TDR_RESOURCES.ARTE_RUIM_GROUPS}-${language}`
   );
   const cardsGroups: ArteRuimGroup[] = Object.values(allCardsGroupResponse);
 
-  // Get level 5 cards
-  const allCardPairsResponse = await resourceUtils.fetchResource(
-    `${TDR_RESOURCES.ARTE_RUIM_PAIRS}-${language}`
-  );
-  const cardsPairs: ArteRuimPair[] = Object.values(allCardPairsResponse);
+  // Determine level 5 options.specialLevels (adjectives, contenders, movies)
+  const specialLevels = await getFinalLevel(language, playerCount, options);
 
   // If no need for used cards check
-  if (useAllCards) {
+  if (options.useAllCards) {
     return {
       allCards: allCardsResponse,
       availableCards: cardsByLevel,
       cardsGroups,
-      cardsPairs,
+      specialLevels,
     };
   }
 
@@ -56,7 +113,7 @@ export const getCards = async (
     {}
   );
 
-  const settings = getGameSettings(isShortGame);
+  const settings = getGameSettings(options);
 
   const { cards, resetUsedCards } = getAvailableCards(
     cardsByLevel,
@@ -73,7 +130,7 @@ export const getCards = async (
     allCards: allCardsResponse,
     availableCards: cards,
     cardsGroups,
-    cardsPairs,
+    specialLevels,
   };
 };
 
@@ -83,12 +140,17 @@ export const getCards = async (
  * @param language
  */
 export const saveUsedCards = async (pastDrawings: ArteRuimDrawing[], language: Language) => {
+  const onlyARPDEntries = pastDrawings.filter((entry) => entry.id.includes('a-'));
   // Save usedArteRuimCards to global
-  const usedArteRuimCards = utils.helpers.buildIdDictionary(pastDrawings);
+  const usedArteRuimCards = utils.helpers.buildIdDictionary(onlyARPDEntries);
   await globalUtils.updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.ARTE_RUIM, usedArteRuimCards);
+
   // Save drawings to public gallery
-  const drawingDocumentName = language === 'pt' ? 'arteRuimDrawingsPt2' : 'arteRuimDrawingsEn2';
-  const publicDrawings = await publicUtils.getPublicFirebaseDocData(drawingDocumentName, {});
-  const newArteRuimDrawings = buildPastDrawingsDict(pastDrawings, publicDrawings);
-  await publicUtils.updatePublicFirebaseDoc(drawingDocumentName, newArteRuimDrawings);
+  const endedAt = Date.now();
+  const newArteRuimDrawings = onlyARPDEntries.reduce((acc, entry) => {
+    acc[`${entry.id}::${endedAt}`] = entry;
+    return acc;
+  }, {});
+
+  await dataUtils.updateDataCollectionRecursively('drawings', language, newArteRuimDrawings);
 };

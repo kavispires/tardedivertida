@@ -26,4 +26,5 @@ type SubmitCluePayload = {
 
 type SubmitGuessesPayload = {
   guesses: PlainObject;
+  choseRandomly: boolean;
 };

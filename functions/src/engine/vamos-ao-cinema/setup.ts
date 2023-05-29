@@ -13,6 +13,7 @@ import {
   getMovieTitle,
   getPhaseOutcome,
 } from './helpers';
+import { saveData } from './data';
 
 /**
  * Setup
@@ -50,6 +51,7 @@ export const prepareSetupPhase = async (
   const badReviewsDeck = utils.game.getRandomItems(bad, TOTAL_ROUNDS);
   const moviePosters = utils.game
     .sliceIntoChunks(utils.game.shuffle(getMoviePosterIds()), 5)
+    .splice(0, 5)
     .reduce((acc, posterList, index) => {
       acc[index] = posterList;
       return acc;
@@ -201,6 +203,7 @@ export const prepareRevealPhase = async (
         id,
         title: getMovieTitle(state.movies, finalMovieId),
         posterId: '',
+        session: state.round.current,
       },
     };
   }
@@ -244,7 +247,7 @@ export const prepareGameOverPhase = async (
 ): Promise<SaveGamePayload> => {
   await utils.firebase.markGameAsComplete(gameId);
 
-  const finalMovies = getFinalMovies(store.finalMovies, players);
+  const finalMovies = getFinalMovies(store.finalMovies, players, store.moviePosters);
 
   await utils.user.saveGameToUsers({
     gameName: GAME_NAMES.VAMOS_AO_CINEMA,
@@ -253,9 +256,17 @@ export const prepareGameOverPhase = async (
     players,
     winners: [],
     achievements: [],
+    language: store.language,
   });
 
+  await saveData(store.movieDeck, store.goodReviewsDeck, store.badReviewsDeck);
+
+  utils.players.cleanup(players, []);
+
   return {
+    update: {
+      storeCleanup: utils.firebase.cleanupStore(store, []),
+    },
     set: {
       state: {
         phase: VAMOS_AO_CINEMA_PHASES.GAME_OVER,

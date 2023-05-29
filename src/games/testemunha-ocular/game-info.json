@@ -2,14 +2,14 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "T",
   "gameName": "testemunha-ocular",
-  "version": "3.0.10",
+  "version": "3.0.15",
   "title": {
     "pt": "Testemunha Ocular",
     "en": "Eye Witness"
   },
   "popularName": {
     "pt": "Do preconceito",
-    "en": ""
+    "en": "The cooperative NSFW"
   },
   "basedOn": "stcepsuS lausunU",
   "summary": {

@@ -38,3 +38,11 @@
     right: 0;
   }
 }
+
+.movie-button {
+  $self: &;
+
+  &--selected {
+    outline: get-color('yellow') solid 5px;
+  }
+}

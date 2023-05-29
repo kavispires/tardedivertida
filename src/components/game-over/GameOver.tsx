@@ -66,14 +66,13 @@ export function GameOver({
     (Boolean(state.winners) && state.winners.length > 0) || Boolean(state.group) || Boolean(state.team);
 
   return (
-    <Step className={className} announcement={announcement}>
+    <Step className={className} announcement={announcement} fullWidth>
       <div className="game-over__title">
         {showGameBanner ? (
           <Image
             src={`${PUBLIC_URL.BANNERS}${info.gameName}-${language}.jpg`}
             fallback={`${PUBLIC_URL.RULES}game-rule-not-found.jpg`}
             alt={dualTranslate(info.title)}
-            // width={350}
             preview={false}
             className={getAnimationClass('bounceInDown')}
           />
@@ -119,7 +118,7 @@ export function GameOver({
               <Progress
                 type="circle"
                 strokeColor={
-                  state.group.victory
+                  state.group.outcome === 'WIN'
                     ? {
                         '0%': '#4ba226',
                         '100%': '#87d068',
@@ -130,10 +129,10 @@ export function GameOver({
                         '100%': '#87d068',
                       }
                 }
-                percent={state.group.score ?? 0}
+                percent={Math.round(((state.group.score ?? 0) * 100) / (state.group.goal ?? 1))}
               />
               <div className="game-over__text">
-                {state.group.victory ? (
+                {state.group.outcome === 'WIN' ? (
                   <Translate pt="Parabéns, vocês ganharam!" en="Congratulations, you won!" />
                 ) : (
                   <Translate pt="Não foi dessa vez, que vergonha heim!" en="You lost! What a shame!" />

@@ -102,9 +102,10 @@ export const getMovieTitle = (movies: MovieCard[], letter: string) => {
 };
 
 type FinalMovie = {
-  id: string;
+  id: CardId;
   title: string;
-  posterId: string;
+  posterId: ImageCardId;
+  session: number;
 };
 
 const getMostFrequentElementFromList = (list: string[]) => {
@@ -124,7 +125,11 @@ const getMostFrequentElementFromList = (list: string[]) => {
   return item;
 };
 
-export const getFinalMovies = (movies: Record<string, FinalMovie>, players: Players): FinalMovie[] => {
+export const getFinalMovies = (
+  movies: Record<string, FinalMovie>,
+  players: Players,
+  posters: Record<number, ImageCardId[]>
+): FinalMovie[] => {
   const finalMovies: FinalMovie[] = [];
 
   Object.values(movies).forEach((movie) => {
@@ -135,12 +140,16 @@ export const getFinalMovies = (movies: Record<string, FinalMovie>, players: Play
       }
     });
 
-    const posterId = getMostFrequentElementFromList(votes) || utils.game.getRandomItem(votes);
+    const posterId =
+      votes.length > 0
+        ? getMostFrequentElementFromList(votes) || utils.game.getRandomItem(votes)
+        : utils.game.getRandomItem(posters[movie.session - 1]);
 
     finalMovies.push({
       id: movie.id,
       title: movie.title,
       posterId,
+      session: movie.session,
     });
   });
 

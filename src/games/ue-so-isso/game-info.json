@@ -2,14 +2,14 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "U",
   "gameName": "ue-so-isso",
-  "version": "2.4.12",
+  "version": "3.1.2",
   "title": {
     "pt": "Ué, Só Isso?",
     "en": "That's It?"
   },
   "popularName": {
-    "pt": "Do colocolo",
-    "en": ""
+    "pt": "Jogo do colocolo",
+    "en": "The one with single unique words"
   },
   "basedOn": "enO tsuJ",
   "summary": {
@@ -47,13 +47,46 @@
     "max": 10
   },
   "duration": {
-    "base": 0,
-    "perPlayer": 0
+    "base": 15,
+    "perPlayer": 3
   },
-  "tags": ["cooperative", "guessing", "writing", "mobile-friendly"],
+  "tags": ["cooperative", "guessing", "writing", "mobile-friendly", "achievements"],
   "cooperative": true,
   "available": {
     "pt": true,
     "en": true
-  }
+  },
+  "options": [
+    {
+      "label": "Word Pool",
+      "key": "fewerCards",
+      "off": "5 options",
+      "on": "3 options",
+      "description": "When selecting the possible secret word for the round"
+    },
+    {
+      "label": "Timed",
+      "key": "withTimer",
+      "off": "No time limit",
+      "on": "2 minutes",
+      "description": "When coming up with clues",
+      "disabled": true
+    },
+    {
+      "label": "Hints",
+      "key": "withHints",
+      "off": "No",
+      "on": "Yes",
+      "description": "Answering will be timed and hints will be timely given",
+      "disabled": true
+    },
+    {
+      "label": "Bot",
+      "key": "withBot",
+      "off": "No",
+      "on": "Yes",
+      "description": "A bot will also write suggestions with the only purpose of eliminating clues",
+      "disabled": true
+    }
+  ]
 }

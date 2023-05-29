@@ -20,6 +20,11 @@ export interface Contender {
   playerId: PlayerId | 'CPU';
 }
 
+export type PastBattles = {
+  challenge: TextCard;
+  contenders: Contender[];
+}[];
+
 type BracketTier = 'quarter' | 'semi' | 'final' | 'winner';
 
 interface Bracket extends Contender {

@@ -21,24 +21,24 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
 
   const [witness] = useWhichPlayerIsThe('witnessId', state, players);
 
+  const announcement = (
+    <PhaseAnnouncement
+      icon={<QualitySealIcon />}
+      title={<Translate pt="Resultado" en="Results" />}
+      currentRound={state?.round?.current}
+      duration={5}
+      type="overlay"
+    >
+      <Instruction>
+        <Translate pt={<>E o mais votado é...</>} en={<>And the one who got the most votes is...</>} />
+      </Instruction>
+    </PhaseAnnouncement>
+  );
+
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.RETRATO_FALADO.REVEAL}>
       <StepSwitcher step={step} conditions={[!user.isReady, !user.isReady, !user.isReady]} players={players}>
         {/* Step 0 */}
-        <PhaseAnnouncement
-          icon={<QualitySealIcon />}
-          title={<Translate pt="Resultado" en="Results" />}
-          onClose={goToNextStep}
-          currentRound={state?.round?.current}
-          duration={5}
-          type="block"
-        >
-          <Instruction>
-            <Translate pt={<>E o mais votado é...</>} en={<>And the one who got the most votes is...</>} />
-          </Instruction>
-        </PhaseAnnouncement>
-
-        {/* Step 1 */}
         <StepResults
           witness={witness}
           currentMonster={state.currentMonster}
@@ -48,9 +48,11 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
           user={user}
           players={players}
           goToNextStep={goToNextStep}
+          announcement={announcement}
         />
 
-        {/* Step 2 */}
+        {/* Step 1 */}
+
         <StepRanking
           ranking={state.ranking}
           players={players}

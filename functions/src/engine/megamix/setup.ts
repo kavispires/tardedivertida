@@ -174,9 +174,15 @@ export const prepareGameOverPhase = async (
     players,
     winners,
     achievements: [],
+    language: store.language,
   });
 
+  utils.players.cleanup(players, ['clubberId']);
+
   return {
+    update: {
+      storeCleanup: utils.firebase.cleanupStore(store, ['tasks']),
+    },
     set: {
       state: {
         phase: MEGAMIX_PHASES.GAME_OVER,

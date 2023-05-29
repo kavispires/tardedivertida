@@ -9,6 +9,10 @@ export type GaleriaDeSonhosOptions = {
    * Use original image decks only
    */
   originalDecks: boolean;
+  /**
+   * UI will required minimum of 4 cards selected
+   */
+  hardMode: boolean;
 };
 
 export type AllWords = {
@@ -32,6 +36,13 @@ export type PlayerCard = {
   used: boolean;
   matchedPlayers: PlayerId[];
   score: number;
+};
+
+type ImageCardMatch = {
+  id: CardId;
+  used: boolean;
+  text: string;
+  matchedPlayers: PlayerId[];
 };
 
 export interface GaleriaDeSonhosStore extends DefaultStore {
