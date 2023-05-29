@@ -18,8 +18,10 @@ import utils from '../../utils';
 import {
   buildCurrentWords,
   buildDeck,
+  countAchievements,
   determineSecretWord,
   determineSuggestionsNumber,
+  getAchievements,
   groupSuggestions,
   tallyVotes,
   validateSuggestions,
@@ -48,12 +50,21 @@ export const prepareSetupPhase = async (
     store.options.fewerCards ? WORDS_PER_CARD - 2 : WORDS_PER_CARD
   );
 
+  const achievements = utils.achievements.setup(players, store, {
+    eliminatedClues: 0,
+    clueLength: 0,
+    passes: 0,
+    correctGuesses: [],
+    wrongGuesses: [],
+  });
+
   // Save
   return {
     update: {
       store: {
         deck,
         gameOrder,
+        achievements,
         currentWords: [],
         currentSuggestions: [],
         validSuggestions: {},
@@ -255,11 +266,15 @@ export const prepareResultPhase = async (
   const { group } = state;
   const index = state.round.current - 1;
 
+  group.outcome = OUTCOME.CONTINUE;
+
   if (group.attempts[index] === OUTCOME.CORRECT) {
     pastSuggestions[index].outcome = OUTCOME.CORRECT;
-  }
 
-  group.outcome = OUTCOME.CONTINUE;
+    if (group.score >= GOAL) {
+      group.outcome = OUTCOME.WIN;
+    }
+  }
 
   if (store.outcome === OUTCOME.PASS) {
     group.attempts[index] = OUTCOME.PASS;
@@ -317,6 +332,11 @@ export const prepareGameOverPhase = async (
 
   const winners = state.win ? utils.players.getListOfPlayers(players) : [];
 
+  // Handle achievements
+  countAchievements(store);
+
+  const achievements = getAchievements(store);
+
   await utils.firebase.markGameAsComplete(gameId);
 
   await utils.user.saveGameToUsers({
@@ -325,7 +345,7 @@ export const prepareGameOverPhase = async (
     startedAt: store.createdAt,
     players,
     winners,
-    achievements: [],
+    achievements,
     language: store.language,
   });
 
@@ -350,6 +370,7 @@ export const prepareGameOverPhase = async (
         players,
         group: state.group,
         gallery,
+        achievements,
       },
     },
   };

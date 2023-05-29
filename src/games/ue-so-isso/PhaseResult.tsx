@@ -55,9 +55,11 @@ export function PhaseResult({ state, players, info }: PhaseProps) {
       type="overlay"
       duration={3}
     >
-      <Instruction className="u-guess" contained>
-        {!isPass && <TextHighlight>"{state.guess}"</TextHighlight>}
-      </Instruction>
+      {!isPass && (
+        <Instruction className="u-guess" contained>
+          <TextHighlight>"{state.guess}"</TextHighlight>
+        </Instruction>
+      )}
     </PhaseAnnouncement>
   );
 

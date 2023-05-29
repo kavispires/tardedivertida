@@ -1,4 +1,4 @@
-import { OUTCOME, UE_SO_ISSO_ACTIONS } from './constants';
+import { OUTCOME, UE_SO_ISSO_ACHIEVEMENTS, UE_SO_ISSO_ACTIONS } from './constants';
 
 export type UeSoIssoGameOptions = {
   /**
@@ -77,6 +77,8 @@ export interface UeSoIssoState extends DefaultState {
 
   [key: string]: any;
 }
+
+export type UeSoIssoAchievement = keyof typeof UE_SO_ISSO_ACHIEVEMENTS;
 
 export interface UeSoIssoInitialState extends InitialState {
   store: UeSoIssoStore;

@@ -18,10 +18,10 @@ import { WritingHighlight } from './components/Highlights';
 
 type StepSuggestionProps = {
   guesser: GamePlayer;
+  isUserTheGuesser: boolean;
   onSendSuggestions: GenericFunction;
   secretWord: UeSoIssoCard;
   suggestionsNumber?: number;
-  user: GamePlayer;
 } & AnnouncementProps;
 
 export function StepSuggestion({
@@ -30,10 +30,12 @@ export function StepSuggestion({
   secretWord,
   suggestionsNumber = 1,
   announcement,
-  user,
+  isUserTheGuesser,
 }: StepSuggestionProps) {
   useMock(() => {
-    if (user.id !== guesser.id) onSendSuggestions(mockSuggestions(suggestionsNumber));
+    if (!isUserTheGuesser) {
+      onSendSuggestions(mockSuggestions(suggestionsNumber));
+    }
   }, []);
 
   return (

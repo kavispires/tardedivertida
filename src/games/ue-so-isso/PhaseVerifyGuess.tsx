@@ -13,7 +13,6 @@ import { Step, StepSwitcher } from 'components/steps';
 import { StepGuessVerification } from './StepGuessVerification';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { Translate } from 'components/language';
-import { Instruction } from 'components/text';
 import { VIPNextPhaseButton } from 'components/vip';
 import { ViewOr } from 'components/views';
 
@@ -26,7 +25,7 @@ export function PhaseVerifyGuess({ state, players, info }: PhaseProps) {
 
   const onSubmitOutcome = useOnSubmitOutcomeAPIRequest(setStep);
 
-  const isActionable = state.group.outcome !== 'CONTINUE' && (isUserTheController || isVIP);
+  const isActionable = !['CONTINUE', 'WIN'].includes(state.group.outcome) && (isUserTheController || isVIP);
 
   const announcement = (
     <PhaseAnnouncement
@@ -36,18 +35,14 @@ export function PhaseVerifyGuess({ state, players, info }: PhaseProps) {
       type="overlay"
       unskippable={!isActionable}
       duration={isActionable ? 3 : 300}
-    >
-      <Instruction className="u-guess" contained>
-        Beep boop beep boop
-      </Instruction>
-    </PhaseAnnouncement>
+    ></PhaseAnnouncement>
   );
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.UE_SO_ISSO.VERIFY_GUESS}>
       <StepSwitcher step={step} players={players}>
         {/* Step 0 */}
-        <ViewOr condition={state.group.outcome === 'CONTINUE'}>
+        <ViewOr condition={['CONTINUE', 'WIN'].includes(state.group.outcome)}>
           <Step announcement={announcement}>
             <VIPNextPhaseButton autoTriggerTime={2} />
           </Step>

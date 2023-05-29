@@ -66,11 +66,11 @@ export function PhaseSuggest({ state, players, info }: PhaseProps) {
 
           <StepSuggestion
             guesser={guesser}
+            isUserTheGuesser={isUserTheGuesser}
             onSendSuggestions={onSendSuggestions}
             secretWord={state.secretWord}
             suggestionsNumber={state.suggestionsNumber}
             announcement={announcement}
-            user={user}
           />
         </ViewOr>
 
