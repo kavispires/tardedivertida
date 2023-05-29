@@ -102,8 +102,8 @@ export const achievementsReference: AchievementReference = {
   [ACHIEVEMENTS.CHOOSE_FOR_ME]: {
     icon: 'dice',
     title: {
-      pt: 'Mais Desistível',
-      en: 'Best Shirker',
+      pt: 'Menos Brasileiro',
+      en: 'The Shirker',
     },
     description: {
       pt: 'Apertou o botão Chutar Restantes mais vezes',
