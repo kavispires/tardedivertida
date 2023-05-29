@@ -1,12 +1,14 @@
+import { useMemo } from 'react';
+// Ant Design Resources
+import { Progress } from 'antd';
 // Hooks
 import { useLanguage } from 'hooks/useLanguage';
+// Utils
+import { PHASES } from 'utils/phases';
 // Components
 import { Translate } from 'components/language';
 import { TurnOrder, WaitingRoom } from 'components/players';
 import { Step } from 'components/steps';
-import { Progress } from 'antd';
-import { useMemo } from 'react';
-import { PHASES } from 'utils/phases';
 
 type GuesserWaitingRoomProps = {
   players: GamePlayers;

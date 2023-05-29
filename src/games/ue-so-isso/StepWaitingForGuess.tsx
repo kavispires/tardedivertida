@@ -1,7 +1,6 @@
 // Ant Design Resources
 import { Space } from 'antd';
 // Components
-
 import { UeSoIssoCard as Card } from './components/UeSoIssoCard';
 import { SuggestionEasel } from './components/SuggestionEasel';
 import { Step } from 'components/steps';

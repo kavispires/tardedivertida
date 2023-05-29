@@ -1,12 +1,13 @@
+// Icons
+import { BoxBlankIcon } from 'icons/BoxBlankIcon';
+import { BoxCheckMarkIcon } from 'icons/BoxCheckMarkIcon';
+import { BoxQuestionMarkIcon } from 'icons/BoxQuestionMarkIcon';
+import { BoxXIcon } from 'icons/BoxXIcon';
 // Components
 import { IconAvatar } from 'components/avatars';
 import { Translate } from 'components/language';
 import { PointsHighlight } from 'components/metrics/PointsHighlight';
 import { Title } from 'components/text';
-import { BoxBlankIcon } from 'icons/BoxBlankIcon';
-import { BoxCheckMarkIcon } from 'icons/BoxCheckMarkIcon';
-import { BoxQuestionMarkIcon } from 'icons/BoxQuestionMarkIcon';
-import { BoxXIcon } from 'icons/BoxXIcon';
 
 type GroupProgressProps = {
   group: GroupProgress;
