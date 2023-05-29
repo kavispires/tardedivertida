@@ -323,3 +323,18 @@ export function getUniqueItems(array1: any[], array2: any[]): any[] {
     .filter(([, count]) => count === 1)
     .map(([key]) => key);
 }
+
+export function calculateAverage(values: number[], round = false): number {
+  if (values.length === 0) {
+    return 0;
+  }
+
+  const sum = values.reduce((acc, num) => acc + num, 0);
+  const average = sum / values.length;
+
+  if (round) {
+    return Math.round(average);
+  }
+
+  return average;
+}

@@ -1,20 +1,26 @@
+import clsx from 'clsx';
+import { orderBy } from 'lodash';
+// Ant Design Resources
+import { Col, Row } from 'antd';
+// Utils
+import achievementsReference from './utils/achievements';
 // Icons
 import { FlagIcon } from 'icons/FlagIcon';
-// Components
-import { GameOverWrapper } from 'components/game-over';
-import { Col, Row } from 'antd';
-import { Translate } from 'components/language';
-import { Title } from 'components/text';
-import clsx from 'clsx';
-import { Avatar, IconAvatar } from 'components/avatars';
-import { orderBy } from 'lodash';
 import { BoxCheckMarkIcon } from 'icons/BoxCheckMarkIcon';
 import { BoxXIcon } from 'icons/BoxXIcon';
 import { BoxBlankIcon } from 'icons/BoxBlankIcon';
+// Components
+import { GameOverWrapper } from 'components/game-over';
+import { Translate } from 'components/language';
+import { Title } from 'components/text';
+import { Avatar, IconAvatar } from 'components/avatars';
+import { Achievements } from 'components/general/Achievements';
 
 export function PhaseGameOver({ state, info, players }: PhaseProps) {
   return (
     <GameOverWrapper info={info} state={state} players={players} announcementIcon={<FlagIcon />}>
+      <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
+
       <Title size="small" className="margin">
         <Translate pt="Dicas do jogo" en="Game's clues" />
       </Title>
