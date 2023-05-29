@@ -12,11 +12,11 @@ import { PhaseCompare } from './PhaseCompare';
 import { PhaseGuess } from './PhaseGuess';
 import { PhaseResult } from './PhaseResult';
 import { PhaseGameOver } from './PhaseGameOver';
+import { PhaseVerifyGuess } from './PhaseVerifyGuess';
 // Fonts
 import 'assets/fonts/architects-daughter.scss';
 // Session
 import './ue-so-isso.scss';
-import { PhaseVerifyGuess } from './PhaseVerifyGuess';
 
 function getActiveComponent(phase: string) {
   switch (phase) {
