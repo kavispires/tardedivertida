@@ -58,8 +58,6 @@ export function GuesserWaitingRoom({
     'Aguarde enquanto os outros jogadores',
     'Please wait while the other players'
   );
-  console.log({ additionalPercentage });
-  console.log('percentage', initialProgress + additionalPercentage, '%');
 
   return (
     <Step fullWidth announcement={announcement}>
