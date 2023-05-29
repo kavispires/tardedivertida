@@ -1,10 +1,11 @@
-// Constants
+import { GLOBAL_USED_DOCUMENTS, DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
 import { HAND_LIMIT } from './constants';
 // Types
-import type { ResourceData } from './types';
+import type { ResourceData, UsedCards } from './types';
 // Helpers
 import utils from '../../utils';
-import { DOUBLE_ROUNDS_THRESHOLD } from '../../utils/constants';
+import * as dataUtils from '../collections';
+import * as globalUtils from '../global';
 
 /**
  * Get image decks card
@@ -25,4 +26,22 @@ export const getData = async (players: Players, originalDecksOnly: boolean): Pro
   return {
     cards,
   };
+};
+
+export const saveData = async (usedCards: UsedCards[], language: Language) => {
+  const usedCardsIds: BooleanDictionary = {};
+  const clues = usedCards.reduce((acc, entry) => {
+    (entry.cards ?? []).forEach((cardId) => {
+      usedCardsIds[cardId] = true;
+      if (entry.isLeader) {
+        acc[cardId] = [entry.clue];
+      }
+    });
+
+    return acc;
+  }, {});
+
+  await globalUtils.updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.IMAGE_CARDS, usedCardsIds);
+
+  await dataUtils.updateCardDataCollection('imageCards', language, clues);
 };

@@ -1,4 +1,23 @@
-import { UE_SO_ISSO_ACTIONS } from './constants';
+import { OUTCOME, UE_SO_ISSO_ACHIEVEMENTS, UE_SO_ISSO_ACTIONS } from './constants';
+
+export type UeSoIssoGameOptions = {
+  /**
+   * Use only 3 cards instead of 5 for the word selection
+   */
+  fewerCards: boolean;
+  /**
+   * Add bot that write suggestions to eliminate common clues
+   */
+  withBot: boolean;
+  /**
+   * UI option to time clue writing
+   */
+  withTimer: boolean;
+  /**
+   * UI option to display hints (timing answering)
+   */
+  withHints: boolean;
+};
 
 export interface AllWords {
   [key: string]: TextCard;
@@ -15,6 +34,20 @@ export interface UsedWord {
 
 export interface UsedWords {
   [key: string]: UsedWord;
+}
+
+type Outcome = keyof typeof OUTCOME;
+
+export interface PlayerSuggestion {
+  suggestion: string;
+  playerId: PlayerId;
+  invalid: boolean;
+}
+
+export interface PastSuggestion extends TextCard {
+  suggestions: PlayerSuggestion[];
+  guesserId: PlayerId;
+  outcome: Outcome;
 }
 
 export interface UeSoIssoStore extends DefaultStore {
@@ -45,6 +78,8 @@ export interface UeSoIssoState extends DefaultState {
   [key: string]: any;
 }
 
+export type UeSoIssoAchievement = keyof typeof UE_SO_ISSO_ACHIEVEMENTS;
+
 export interface UeSoIssoInitialState extends InitialState {
   store: UeSoIssoStore;
   state: UeSoIssoState;
@@ -54,12 +89,10 @@ export interface SubmitSuggestionsPayload extends Payload {
   suggestions: string[];
 }
 
-export interface CurrentSuggestions {
-  [key: string]: string[];
-}
+export type CurrentSuggestions = Record<string, string[]>;
 
 export interface SubmitSuggestionsValidationPayload extends Payload {
-  validSuggestions: PlainObject[];
+  validSuggestions: PlayerSuggestion[];
 }
 
 export interface ConfirmGuessPayload extends Payload {

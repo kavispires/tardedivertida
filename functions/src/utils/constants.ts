@@ -192,18 +192,32 @@ export const GAME_NAMES = generateGameCollections();
 export const GLOBAL_USED_DOCUMENTS = {
   ALIEN_ITEMS: 'usedAlienItems',
   ARTE_RUIM: 'usedArteRuimCards',
-  MENTE_COLETIVA: 'usedMenteColetivaQuestions',
+  CHALLENGES: 'usedChallenges',
+  CONTENDERS: 'usedContenders',
+  GROUP_QUESTIONS: 'usedGroupQuestions',
+  IMAGE_CARDS: 'usedImageCards',
+  MONSTERS: 'usedMonsters',
   MOVIES: 'usedMoviesAndReviews',
-  ONDA_TELEPATICA: 'usedOndaTelepaticaCategories',
-  RETRATO_FALADO: 'usedRetratoFaladoCards',
-  TESTEMUNHA_OCULAR: 'usedTestemunhaOcularCards',
-  SUPER_CAMPEONATO_CHALLENGES: 'usedSuperCampeonatoChallenges',
-  SUPER_CAMPEONATO_CONTENDERS: 'usedSuperCampeonatoContenders',
+  MURDER_OBJECTS: 'usedMurderObjects',
+  OPPOSING_IDEAS: 'usedOpposingIdeas',
+  SINGLE_WORDS: 'usedSingleWords',
+  SUSPECTS: 'usedSuspects',
+  TESTIMONY_QUESTIONS: 'usedTestimonyQuestions',
 };
 
 export const DATA_DOCUMENTS = {
   CONTENDERS_GLYPHS: 'contendersGlyphs',
   ALIEN_ITEMS: 'alienItems',
+  CARDS_CLUES_EN: 'cardsCluesEN',
+  CARDS_CLUES_PT: 'cardsCluesPT',
+  IMAGE_CARDS_CLUES_EN: 'imageCardsCluesEN',
+  IMAGE_CARDS_CLUES_PT: 'imageCardsCluesPT',
+  IMAGE_CARDS_RELATIONSHIPS: 'imageCardsRelationships',
+  OPPOSING_IDEAS_CLUES: 'opposingIdeasClues',
+  SUFFIX_COUNTS: 'suffixCounts',
+  SUSPECT_ANSWERS: 'suspectAnswers',
+  DRAWINGS: 'drawings',
+  MONSTER_DRAWINGS: 'monsterDrawings',
 };
 
 export const TDR_RESOURCES = {

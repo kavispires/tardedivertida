@@ -7,6 +7,7 @@ import type { CategoryCard, FirebaseStateData, FirebaseStoreData, ResourceData }
 import utils from '../../utils';
 // Internal
 import { buildDeck, buildRanking, getAchievements } from './helpers';
+import { saveData } from './data';
 
 /**
  * Setup
@@ -175,9 +176,19 @@ export const prepareGameOverPhase = async (
     players,
     winners,
     achievements,
+    language: store.language,
   });
 
+  const pastCategories = store.pastCategories;
+
+  await saveData(pastCategories);
+
+  utils.players.cleanup(players, []);
+
   return {
+    update: {
+      storeCleanup: utils.firebase.cleanupStore(store, []),
+    },
     set: {
       state: {
         phase: ONDA_TELEPATICA_PHASES.GAME_OVER,
@@ -185,7 +196,7 @@ export const prepareGameOverPhase = async (
         gameEndedAt: Date.now(),
         players,
         winners,
-        pastCategories: store.pastCategories,
+        pastCategories,
         achievements,
       },
     },

@@ -110,6 +110,7 @@ export function StepEliminateMovie({
         eliminatedMovies={eliminatedMovies}
         mistakes={mistakes}
         players={players}
+        disableButtons={!isActivePlayer}
       />
 
       <TurnOrder players={players} activePlayerId={activePlayer.id} order={turnOrder} />

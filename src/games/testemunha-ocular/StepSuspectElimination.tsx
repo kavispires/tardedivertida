@@ -28,7 +28,7 @@ type StepSuspectEliminationProps = {
   question: GamePlayer;
   testimony: boolean;
   history: THistoryEntry[];
-};
+} & AnnouncementProps;
 
 export function StepSuspectElimination({
   suspects,
@@ -44,6 +44,7 @@ export function StepSuspectElimination({
   testimony,
   history,
   questioner,
+  announcement,
 }: StepSuspectEliminationProps) {
   const { translate } = useLanguage();
 
@@ -51,7 +52,7 @@ export function StepSuspectElimination({
   const onPass = () => onEliminate({ suspectId: '', pass: true });
 
   return (
-    <Step>
+    <Step announcement={announcement}>
       <Title level={3} size="medium">
         <AvatarName player={witness} />
         <Translate en="answered" pt="respondeu" />{' '}

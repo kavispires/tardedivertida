@@ -13,6 +13,7 @@ import type { FirebaseStateData, FirebaseStoreData, ResourceData } from './types
 import utils from '../../utils';
 // Internal
 import { buildTable, buildTableDeck, getAchievements, getTableCards, scoreRound } from './helpers';
+import { saveData } from './data';
 
 /**
  * Setup
@@ -168,10 +169,18 @@ export const prepareResolutionPhase = async (
   // Gather votes
   const { ranking, outcome, table } = scoreRound(players, state.table, state.storytellerId, store);
 
+  const { usedCards = [] } = store;
+  usedCards.push({
+    story: store.story,
+    cardId: store.solutionCardId,
+    language: store.language,
+  });
+
   // Save
   return {
     update: {
       store: {
+        usedCards: store.usedCards,
         achievements: store.achievements,
       },
       state: {
@@ -204,9 +213,19 @@ export const prepareGameOverPhase = async (
     players,
     winners,
     achievements,
+    language: store.language,
   });
 
+  // Save data: imageCards and clues
+  await saveData(store.usedCards, store.language);
+  const gallery = store.usedCards;
+
+  utils.players.cleanup(players, []);
+
   return {
+    update: {
+      storeCleanup: utils.firebase.cleanupStore(store, []),
+    },
     set: {
       state: {
         phase: CONTADORES_HISTORIAS_PHASES.GAME_OVER,
@@ -215,6 +234,7 @@ export const prepareGameOverPhase = async (
         players,
         winners,
         achievements,
+        gallery,
       },
     },
   };

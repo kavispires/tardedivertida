@@ -12,7 +12,7 @@ import { BookPages } from './BookPages';
 import { Step } from 'components/steps';
 import { Title } from 'components/text';
 import { Translate } from 'components/language';
-import { FloatingHand, ImageCard, ImageCardHand } from 'components/cards';
+import { ImageCard, ImageCardHand } from 'components/cards';
 
 type StoryWritingProps = {
   user: GamePlayer;
@@ -91,14 +91,12 @@ export function StoryWriting({ user, onSubmitStory, announcement }: StoryWriting
         </Button>
       </Space>
 
-      <FloatingHand>
-        <ImageCardHand
-          hand={user.hand}
-          onSelectCard={setCardId}
-          disabledSelectButton={isLoading}
-          sizeRatio={user.hand.length}
-        />
-      </FloatingHand>
+      <ImageCardHand
+        hand={user.hand}
+        onSelectCard={setCardId}
+        disabledSelectButton={isLoading}
+        sizeRatio={user.hand.length}
+      />
     </Step>
   );
 }

@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useEffectOnce } from 'react-use';
 // Ant Design Resources
 import { Button, Space } from 'antd';
@@ -29,6 +29,7 @@ type StepEvaluationProps = {
   cards: ArteRuimCard[];
   players: GamePlayers;
   onSubmitVoting: GenericFunction;
+  levelType: string;
 } & AnnouncementProps;
 
 export function StepEvaluation({
@@ -36,6 +37,7 @@ export function StepEvaluation({
   cards,
   players,
   onSubmitVoting,
+  levelType,
   announcement,
 }: StepEvaluationProps) {
   const { isLoading } = useLoading();
@@ -47,8 +49,10 @@ export function StepEvaluation({
     true,
     drawings.length || 2
   );
+  const [choseRandomly, setChoseRandomly] = useState(false);
 
   const onGuessForMe = useCallback(() => {
+    setChoseRandomly(true);
     const usedDrawings = Object.keys(votes);
     const usedCards = Object.values(votes);
     const drawingsKeys = drawings
@@ -134,7 +138,7 @@ export function StepEvaluation({
         </Button>
         <Button
           type="primary"
-          onClick={() => onSubmitVoting({ votes: prepareVotes(votes) })}
+          onClick={() => onSubmitVoting({ votes: prepareVotes(votes), choseRandomly })}
           disabled={isLoading || !isVotingComplete}
           icon={<CloudUploadOutlined />}
           loading={isLoading}
@@ -157,6 +161,7 @@ export function StepEvaluation({
         activeItem={activeItem}
         onActivateItem={activateItem}
         votes={votes}
+        levelType={levelType}
       />
     </Step>
   );

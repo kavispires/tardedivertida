@@ -6,6 +6,7 @@ import { GAME_NAMES } from '../../utils/constants';
 // Helpers1
 import utils from '../../utils';
 import { buildDeck, buildRanking, gatherSketches, getMostVotes } from './helpers';
+import { saveData } from './data';
 
 /**
  * Setup
@@ -118,6 +119,8 @@ export const prepareRevealPhase = async (
     (sketch: MonsterSketch) => sketch.playerId && mostVotes.includes(sketch.playerId)
   );
 
+  await saveData(state.sketches, store.language);
+
   // Save
   return {
     update: {
@@ -152,16 +155,24 @@ export const prepareGameOverPhase = async (
     players,
     winners,
     achievements: [],
+    language: store.language,
   });
 
+  const gallery = store.pastSketches;
+
+  utils.players.cleanup(players, []);
+
   return {
+    update: {
+      storeCleanup: utils.firebase.cleanupStore(store, []),
+    },
     set: {
       state: {
         phase: RETRATO_FALADO_PHASES.GAME_OVER,
         players,
         round: state.round,
         gameEndedAt: Date.now(),
-        gallery: store.pastSketches,
+        gallery,
         winners,
       },
     },

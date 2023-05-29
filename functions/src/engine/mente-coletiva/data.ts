@@ -18,7 +18,7 @@ export const getQuestions = async (language: string): Promise<ResourceData> => {
   // Get full deck
   const allQuestions = await resourceUtils.fetchResource(resourceName);
   // Get used deck
-  const usedQuestions = await globalUtils.getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.MENTE_COLETIVA, {});
+  const usedQuestions = await globalUtils.getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.GROUP_QUESTIONS, {});
 
   // Filter out used cards
   const availableQuestions: Record<string, GroupQuestionCard> = utils.game.filterOutByIds(
@@ -28,7 +28,7 @@ export const getQuestions = async (language: string): Promise<ResourceData> => {
 
   // If not the minimum cards needed, reset and use all
   if (Object.keys(availableQuestions).length < QUESTIONS_PER_ROUND * MAX_ROUNDS) {
-    await utils.firebase.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.ONDA_TELEPATICA);
+    await utils.firebase.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.GROUP_QUESTIONS);
     return { allQuestions };
   }
 
@@ -41,7 +41,7 @@ export const getQuestions = async (language: string): Promise<ResourceData> => {
  * Save past past questions to global document
  * @param pastQuestions
  */
-export const saveUsedQuestions = async (pastQuestions: string[]) => {
+export const saveData = async (pastQuestions: string[]) => {
   const pastQuestionsObj = pastQuestions.reduce((acc: StringDictionary[], id: string) => {
     acc.push({ id });
     return acc;
@@ -49,5 +49,8 @@ export const saveUsedQuestions = async (pastQuestions: string[]) => {
 
   // Save usedMenteColetivaQuestions to global
   const usedMenteColetivaQuestions = utils.helpers.buildIdDictionary(pastQuestionsObj);
-  await globalUtils.updateGlobalFirebaseDoc(GLOBAL_USED_DOCUMENTS.MENTE_COLETIVA, usedMenteColetivaQuestions);
+  await globalUtils.updateGlobalFirebaseDoc(
+    GLOBAL_USED_DOCUMENTS.GROUP_QUESTIONS,
+    usedMenteColetivaQuestions
+  );
 };

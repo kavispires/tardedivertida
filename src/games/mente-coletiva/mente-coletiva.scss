@@ -460,3 +460,29 @@
   color: get-color('gray');
   font-style: italic;
 }
+
+.gallery {
+  display: flex;
+  max-width: 1200px;
+}
+
+.gallery-entry {
+  background: get-color('white', 4, 0.25);
+  width: 200px;
+  border-radius: $border-radius;
+  padding: get-unit(2);
+
+  &__question {
+    text-align: center;
+  }
+
+  &__answer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: get-color('white', 5, 0.25);
+    border-radius: $border-radius;
+    padding: get-unit(2);
+    margin: get-unit(1);
+  }
+}

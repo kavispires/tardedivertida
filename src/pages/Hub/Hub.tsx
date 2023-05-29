@@ -23,14 +23,13 @@ import { LogoutButton } from 'components/auth/LogoutButton';
 // Players migration
 const migrationBlocked = [
   'comunicacao-alienigena',
+  'crimes-hediondos',
   'espiao-entre-nos',
-  'megamix',
-  'na-rua-do-medo',
+  'linhas-cruzadas',
   'polemica-da-vez',
-  'retrato-falado',
   'sonhos-pesadelos',
-  'super-campeonato',
-  'testemunha-ocular',
+  'ta-na-cara',
+  'vendaval-de-palpite',
 ];
 
 function Hub() {
@@ -44,6 +43,7 @@ function Hub() {
 
   useEffectOnce(() => {
     const prevLanguage = getLocalStorage('language');
+
     if (prevLanguage) {
       setLanguage(prevLanguage);
     }

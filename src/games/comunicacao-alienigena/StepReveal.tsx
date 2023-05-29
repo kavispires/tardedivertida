@@ -1,7 +1,7 @@
 // Ant Design Resources
 import { Space } from 'antd';
 // Icons
-import { IconsIcon } from 'icons/IconsIcon';
+import { PlayerIconsIcon } from 'icons/PlayerIconsIcon';
 import { ClockIcon } from 'icons/ClockIcon';
 // Components
 import { Step } from 'components/steps';
@@ -68,7 +68,8 @@ export function StepReveal({
         <Translate
           pt={
             <>
-              Faltam <MetricHighlight icon={<IconsIcon />}>{status.needed - status.found}</MetricHighlight>{' '}
+              Faltam{' '}
+              <MetricHighlight icon={<PlayerIconsIcon />}>{status.needed - status.found}</MetricHighlight>{' '}
               objetos a serem oferecidos.
               <br />
               Temos <MetricHighlight icon={<ClockIcon />}>{status.timeLeft} </MetricHighlight> chances.
@@ -76,8 +77,8 @@ export function StepReveal({
           }
           en={
             <>
-              <MetricHighlight icon={<IconsIcon />}>{status.needed - status.found}</MetricHighlight> objects
-              left to be offered.
+              <MetricHighlight icon={<PlayerIconsIcon />}>{status.needed - status.found}</MetricHighlight>{' '}
+              objects left to be offered.
               <br />
               We have <MetricHighlight icon={<ClockIcon />}>{status.timeLeft} </MetricHighlight> attempts
               left.

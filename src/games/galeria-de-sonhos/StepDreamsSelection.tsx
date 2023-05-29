@@ -24,6 +24,7 @@ type StepDreamsSelectionProps = {
   word: GWord;
   onSubmitCards: GenericFunction;
   botEnabled: boolean;
+  hardModeEnabled: boolean;
 } & AnnouncementProps;
 
 export function StepDreamsSelection({
@@ -32,22 +33,23 @@ export function StepDreamsSelection({
   onSubmitCards,
   botEnabled,
   announcement,
+  hardModeEnabled,
 }: StepDreamsSelectionProps) {
   const [selectedCards, onSelectCard] = useBooleanDictionary({}, validateSelectedCards);
 
   const selectedCount = Object.keys(selectedCards).length;
 
   useMock(() => {
-    onSubmitCards({ cardsIds: mockDreamSelection(table) });
+    onSubmitCards({ cardsIds: mockDreamSelection(table, hardModeEnabled) });
   }, []);
 
   return (
     <Step fullWidth announcement={announcement}>
       <Title size="medium">
-        <Translate pt="Visite sonhos relacionados a " en="Visit dreams related to " />
+        <Translate pt="Visite sonhos relacionados à " en="Visit dreams related to " />
         <TextHighlight>{word.text}</TextHighlight>
       </Title>
-      <DreamSelectionRules contained />
+      <DreamSelectionRules contained hardModeEnabled={hardModeEnabled} />
 
       <PopoverRule content={<DreamSelectionExtendedRules />} />
 
@@ -68,7 +70,7 @@ export function StepDreamsSelection({
         <Button
           type="primary"
           size="large"
-          disabled={selectedCount < 1 || selectedCount > 10}
+          disabled={selectedCount < (hardModeEnabled ? 4 : 1) || selectedCount > 10}
           onClick={() => onSubmitCards({ cardsIds: Object.keys(selectedCards) })}
         >
           <Translate pt={`Visitar ${selectedCount} sonhos`} en={`Visit ${selectedCount} dreams`} />

@@ -17,7 +17,7 @@ import { WritingRules } from './components/RulesBlobs';
 import { GuesserWaitingRoom } from './components/GuesserWaitingRoom';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 
-function PhaseSuggest({ state, players, info }: PhaseProps) {
+export function PhaseSuggest({ state, players, info }: PhaseProps) {
   const user = useUser(players, state);
   const { step, setStep } = useStep(0);
   const [guesser, isUserTheGuesser] = useWhichPlayerIsThe('guesserId', state, players);
@@ -59,11 +59,14 @@ function PhaseSuggest({ state, players, info }: PhaseProps) {
               pt: 'escrevem dicas',
               en: 'write clues',
             }}
-            announcement={announcement}
+            phase={state.phase}
+            guesser={guesser}
+            turnOrder={state.gameOrder}
           />
 
           <StepSuggestion
             guesser={guesser}
+            isUserTheGuesser={isUserTheGuesser}
             onSendSuggestions={onSendSuggestions}
             secretWord={state.secretWord}
             suggestionsNumber={state.suggestionsNumber}
@@ -77,5 +80,3 @@ function PhaseSuggest({ state, players, info }: PhaseProps) {
     </PhaseContainer>
   );
 }
-
-export default PhaseSuggest;

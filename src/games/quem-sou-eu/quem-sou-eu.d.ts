@@ -8,6 +8,7 @@ type SubmitGlyphsPayload = {
 
 type SubmitGuessesPayload = {
   guesses: StringDictionary;
+  choseRandomly: boolean;
 };
 
 interface Character {

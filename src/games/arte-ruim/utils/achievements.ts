@@ -1,5 +1,14 @@
+const ACHIEVEMENTS = {
+  SOLITARY_LOSER: 'SOLITARY_LOSER',
+  SOLITARY_WINNER: 'SOLITARY_WINNER',
+  BEST_ARTIST: 'BEST_ARTIST',
+  WORST_ARTIST: 'WORST_ARTIST',
+  TABLE_VOTES: 'TABLE_VOTES',
+  CHOOSE_FOR_ME: 'CHOOSE_FOR_ME',
+};
+
 export const achievementsReference: AchievementReference = {
-  BEST_ARTIST: {
+  [ACHIEVEMENTS.BEST_ARTIST]: {
     icon: 'paint-brush',
     title: {
       pt: 'Melhor Artista',
@@ -10,7 +19,7 @@ export const achievementsReference: AchievementReference = {
       en: 'Got players to guess your drawing unanimously the most',
     },
   },
-  WORST_ARTIST: {
+  [ACHIEVEMENTS.WORST_ARTIST]: {
     icon: 'question-mark',
     title: {
       pt: 'Artista Mais Não Convencional',
@@ -21,7 +30,7 @@ export const achievementsReference: AchievementReference = {
       en: 'Got players to miss your drawing unanimously the most',
     },
   },
-  SOLITARY_WINNER: {
+  [ACHIEVEMENTS.SOLITARY_WINNER]: {
     icon: 'person',
     title: {
       pt: 'Adivinhador Solitário',
@@ -32,7 +41,7 @@ export const achievementsReference: AchievementReference = {
       en: 'Was the only one to get the drawing the most',
     },
   },
-  SOLITARY_LOSER: {
+  [ACHIEVEMENTS.SOLITARY_LOSER]: {
     icon: 'difference',
     title: {
       pt: 'Mais Diferentão',
@@ -43,7 +52,7 @@ export const achievementsReference: AchievementReference = {
       en: 'Was the only one to get the drawing the most',
     },
   },
-  TABLE_VOTES: {
+  [ACHIEVEMENTS.TABLE_VOTES]: {
     icon: 'table',
     title: {
       pt: 'Melhor Votador Pra Mesa',
@@ -52,6 +61,17 @@ export const achievementsReference: AchievementReference = {
     description: {
       pt: 'Votou nas cartas extras que não eram de nenhum jogador mais vezes',
       en: "Voted for extra cards that didn't belong to any player the most",
+    },
+  },
+  [ACHIEVEMENTS.CHOOSE_FOR_ME]: {
+    icon: 'dice',
+    title: {
+      pt: 'Menos Brasileiro',
+      en: 'The Shirker',
+    },
+    description: {
+      pt: 'Apertou o botão Chutar Restantes mais vezes',
+      en: "Pressed 'Guess for me' the most",
     },
   },
 };

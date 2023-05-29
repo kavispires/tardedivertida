@@ -1,9 +1,12 @@
-import { FilterOutlined } from '@ant-design/icons';
-import { Checkbox, InputNumber, Space, TreeSelect } from 'antd';
-import { DefaultOptionType } from 'antd/lib/select';
-import { useLanguage } from 'hooks/useLanguage';
 import { capitalize } from 'lodash';
 import { useMemo } from 'react';
+// Ant Design Resources
+import { FilterOutlined } from '@ant-design/icons';
+import { InputNumber, Select, Space, TreeSelect } from 'antd';
+import { DefaultOptionType } from 'antd/lib/select';
+// Hooks
+import { useLanguage } from 'hooks/useLanguage';
+// Utils
 import { SEPARATOR, TAG_DICT } from 'utils/constants';
 
 const { SHOW_PARENT } = TreeSelect;
@@ -21,9 +24,21 @@ export function Filters({ availabilityCount, setTagFilters, setNumberFilters }: 
     }));
   };
 
+  const onPlayingSelectChange = (value: string) => {
+    onNumberFiltersUpdate('recommendedWith', Number(value === 'recommended'));
+    onNumberFiltersUpdate('bestWith', Number(value === 'best'));
+  };
+
   return (
-    <Space className="hub-filters" wrap>
-      <FilterOutlined />({availabilityCount}){' '}
+    <Space className="hub-filters" wrap size="middle">
+      <span>
+        <FilterOutlined /> ({availabilityCount})
+      </span>
+      <Select defaultValue="" style={{ minWidth: '20ch' }} size="small" onChange={onPlayingSelectChange}>
+        <Select.Option value="">Playing with</Select.Option>
+        <Select.Option value="recommended">Recommended with</Select.Option>
+        <Select.Option value="best">Best with</Select.Option>
+      </Select>
       <div className="hub-filters__entry">
         <label>Players</label>
         <InputNumber
@@ -33,14 +48,6 @@ export function Filters({ availabilityCount, setTagFilters, setNumberFilters }: 
           className="hub-filters__input-number"
           onChange={(value) => onNumberFiltersUpdate('players', value ?? 0)}
         />
-      </div>
-      <div className="hub-filters__entry">
-        <label>Recommended with</label>
-        <Checkbox onChange={(e) => onNumberFiltersUpdate('recommendedWith', Number(e.target?.checked))} />
-      </div>
-      <div className="hub-filters__entry">
-        <label>Best with</label>
-        <Checkbox onChange={(e) => onNumberFiltersUpdate('bestWith', Number(e.target?.checked))} />
       </div>
       <div className="hub-filters__entry">
         <label>Duration</label>

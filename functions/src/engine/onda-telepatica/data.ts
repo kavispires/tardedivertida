@@ -6,6 +6,7 @@ import type { PastCategories, ResourceData } from './types';
 // Utils
 import * as globalUtils from '../global';
 import * as resourceUtils from '../resource';
+import * as dataUtils from '../collections';
 import utils from '../../utils';
 
 /**
@@ -18,10 +19,7 @@ export const getCategories = async (language: string): Promise<ResourceData> => 
   // Get full deck
   const allCategories = await resourceUtils.fetchResource(resourceName);
   // Get used deck
-  const usedCategories = await globalUtils.getGlobalFirebaseDocData(
-    GLOBAL_USED_DOCUMENTS.ONDA_TELEPATICA,
-    {}
-  );
+  const usedCategories = await globalUtils.getGlobalFirebaseDocData(GLOBAL_USED_DOCUMENTS.OPPOSING_IDEAS, {});
 
   // Filter out used cards
   const availableCategories: Record<string, OpposingIdeaCard> = utils.game.filterOutByIds(
@@ -31,7 +29,7 @@ export const getCategories = async (language: string): Promise<ResourceData> => 
 
   // If not the minimum cards needed, reset and use all
   if (Object.keys(availableCategories).length < PLAYER_COUNTS.MAX * 2) {
-    await utils.firebase.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.ONDA_TELEPATICA);
+    await utils.firebase.resetGlobalUsedDocument(GLOBAL_USED_DOCUMENTS.OPPOSING_IDEAS);
     return { allCategories };
   }
 
@@ -44,11 +42,13 @@ export const getCategories = async (language: string): Promise<ResourceData> => 
  * Save used categories to the global document
  * @param pastCategories
  */
-export const saveUsedCategories = async (pastCategories: PastCategories): Promise<void> => {
+export const saveData = async (pastCategories: PastCategories): Promise<void> => {
+  await dataUtils.updateOpposingIdeasClues(pastCategories);
+
   // Save usedTestemunhaOcularCards to global
   const usedOndaTelepaticaCategories = utils.helpers.buildIdDictionary(pastCategories);
   await globalUtils.updateGlobalFirebaseDoc(
-    GLOBAL_USED_DOCUMENTS.ONDA_TELEPATICA,
+    GLOBAL_USED_DOCUMENTS.OPPOSING_IDEAS,
     usedOndaTelepaticaCategories
   );
 };

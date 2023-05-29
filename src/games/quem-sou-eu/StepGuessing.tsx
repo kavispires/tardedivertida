@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { shuffle } from 'lodash';
 import { useEffectOnce } from 'react-use';
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 // Ant Design Resources
 import { Button, Space } from 'antd';
 // Hooks
@@ -49,8 +49,10 @@ export function StepGuessing({
     Object.keys(players).length,
     {}
   );
+  const [choseRandomly, setChoseRandomly] = useState(false);
 
   const onGuessForMe = () => {
+    setChoseRandomly(true);
     const usedPlayers = Object.keys(votes);
     const usedCharacters = Object.values(votes);
     const playerKeys = Object.keys(players)
@@ -79,7 +81,7 @@ export function StepGuessing({
 
   // Dev Mocks
   useDelayedMock(() => {
-    onSubmitGuesses({ guesses: prepareGuesses(onGuessForMe()) });
+    onSubmitGuesses({ guesses: prepareGuesses(onGuessForMe()), choseRandomly });
   });
 
   // Auto-select the players own drawing and word
@@ -152,7 +154,7 @@ export function StepGuessing({
         <Button
           size="large"
           type="primary"
-          onClick={() => onSubmitGuesses({ guesses: prepareGuesses(votes) })}
+          onClick={() => onSubmitGuesses({ guesses: prepareGuesses(votes), choseRandomly })}
           disabled={isLoading || user.ready || !isVotingComplete}
         >
           <Translate pt={<>Enviar pares</>} en={<>Submit guesses</>} />

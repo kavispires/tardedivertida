@@ -2,14 +2,14 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "G",
   "gameName": "galeria-de-sonhos",
-  "version": "4.0.14",
+  "version": "4.1.0",
   "title": {
     "pt": "Galeria de sonhos",
     "en": "Dream Gallery"
   },
   "popularName": {
     "pt": "Bingo de cartas bonitas",
-    "en": "Image bingo"
+    "en": "The one with the image bingo"
   },
   "basedOn": "alletS",
   "summary": {
@@ -56,12 +56,26 @@
     "perPlayer": 0
   },
   "options": [
-    { "label": "Additional players", "key": "withBots", "off": "Only Humans", "on": "Add 3 Bots" },
     {
       "label": "Images",
       "key": "originalDecks",
       "off": "Any",
       "on": "Original"
+    },
+    {
+      "label": "Hard Mode",
+      "key": "hardMode",
+      "off": "1-10 cards",
+      "on": "4-10 cards",
+      "description": "Number of cards to be selected during Dream Selection phase"
+    },
+
+    {
+      "label": "Additional players",
+      "key": "withBots",
+      "off": "Only Humans",
+      "on": "Add 3 Bots",
+      "description": "Only use it for 2 players"
     }
   ]
 }

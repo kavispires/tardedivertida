@@ -62,23 +62,23 @@ export const MINI_GAMES_LIST: PossibleTask[] = [
     condition: WINNING_CONDITION.MOST_VOTED,
     variants: ['impostor', 'detective'],
   },
-  {
-    game: GAME_NAMES.ESPIAO_ENTRE_NOS,
-    condition: WINNING_CONDITION.STRING_MATCH,
-  },
+  // {
+  //   game: GAME_NAMES.ESPIAO_ENTRE_NOS,
+  //   condition: WINNING_CONDITION.STRING_MATCH,
+  // },
   {
     game: GAME_NAMES.GALERIA_DE_SONHOS,
     condition: WINNING_CONDITION.MOST_VOTED,
   },
-  {
-    game: GAME_NAMES.MENTE_COLETIVA,
-    condition: WINNING_CONDITION.STRING_MATCH,
-  },
-  {
-    game: GAME_NAMES.NA_RUA_DO_MEDO,
-    condition: WINNING_CONDITION.MOST_VOTED,
-    variants: ['kids', 'house'],
-  },
+  // {
+  //   game: GAME_NAMES.MENTE_COLETIVA,
+  //   condition: WINNING_CONDITION.STRING_MATCH,
+  // },
+  // {
+  //   game: GAME_NAMES.NA_RUA_DO_MEDO,
+  //   condition: WINNING_CONDITION.MOST_VOTED,
+  //   variants: ['kids', 'house'],
+  // },
   {
     game: GAME_NAMES.ONDA_TELEPATICA,
     condition: WINNING_CONDITION.MOST_VOTED,
@@ -102,10 +102,10 @@ export const MINI_GAMES_LIST: PossibleTask[] = [
     variants: ['suspects', 'answer'],
     nsfw: true,
   },
-  {
-    game: GAME_NAMES.UE_SO_ISSO,
-    condition: WINNING_CONDITION.STRING_MATCH,
-  },
+  // {
+  //   game: GAME_NAMES.UE_SO_ISSO,
+  //   condition: WINNING_CONDITION.STRING_MATCH,
+  // },
   {
     game: GAME_NAMES.DILEMA_DOS_ESQUIADORES,
     condition: WINNING_CONDITION.MOST_VOTED,

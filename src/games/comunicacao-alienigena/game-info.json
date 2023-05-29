@@ -2,14 +2,14 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "C",
   "gameName": "comunicacao-alienigena",
-  "version": "2.1.19",
+  "version": "2.1.24",
   "title": {
     "pt": "Comunicação Alienígena",
     "en": "Alien Language"
   },
   "popularName": {
     "pt": "de falar com ets",
-    "en": ""
+    "en": "The one with the alien"
   },
   "basedOn": "tcatnoC tsriF",
 

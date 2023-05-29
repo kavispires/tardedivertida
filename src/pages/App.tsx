@@ -74,7 +74,6 @@ function AppLayout() {
           routes
         )}
       </HashRouter>
-      )
     </Layout>
   );
 }

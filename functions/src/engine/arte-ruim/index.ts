@@ -20,7 +20,7 @@ import {
   prepareGalleryPhase,
   prepareGameOverPhase,
 } from './setup';
-import { getCards, saveUsedCards } from './data';
+import { getCards } from './data';
 import { handleSubmitDrawing, handleSubmitVoting } from './actions';
 
 /**
@@ -90,8 +90,7 @@ export const getNextPhase = async (
     const data = await getCards(
       store.language,
       utils.players.getPlayerCount(players),
-      store.options?.shortGame ?? false,
-      store.options?.useAllCards ?? false
+      store.options as ArteRuimGameOptions
     );
     const newPhase = await prepareSetupPhase(store, state, players, data);
     await utils.firebase.saveGame(sessionRef, newPhase);
@@ -119,7 +118,6 @@ export const getNextPhase = async (
   // GALLERY -> GAME_OVER
   if (nextPhase === ARTE_RUIM_PHASES.GAME_OVER) {
     const newPhase = await prepareGameOverPhase(gameId, store, state, players);
-    await saveUsedCards(store.pastDrawings, store.language);
     return utils.firebase.saveGame(sessionRef, newPhase);
   }
 
@@ -142,7 +140,7 @@ export const submitAction = async (data: ArteRuimSubmitAction) => {
       return handleSubmitDrawing(gameName, gameId, playerId, data.drawing);
     case ARTE_RUIM_ACTIONS.SUBMIT_VOTING:
       utils.firebase.validateSubmitActionProperties(data, ['votes'], 'submit votes');
-      return handleSubmitVoting(gameName, gameId, playerId, data.votes);
+      return handleSubmitVoting(gameName, gameId, playerId, data.votes, data.choseRandomly);
     default:
       utils.firebase.throwException(`Given action ${action} is not allowed`);
   }

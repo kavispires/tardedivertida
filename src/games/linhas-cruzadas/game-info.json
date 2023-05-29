@@ -2,14 +2,14 @@
   "$schema": "../../utils/game-info.schema.json",
   "gameCode": "L",
   "gameName": "linhas-cruzadas",
-  "version": "1.2.11",
+  "version": "1.2.13",
   "title": {
     "pt": "Linhas Cruzadas",
     "en": "Mis...communication"
   },
   "popularName": {
     "pt": "Telefone sem fio de desenhar",
-    "en": ""
+    "en": "Telephone with drawings"
   },
   "basedOn": "snoitartseleT",
   "summary": {

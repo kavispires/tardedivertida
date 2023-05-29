@@ -36,4 +36,5 @@ type SubmitDrawingPayload = {
 
 type SubmitVotingPayload = {
   votes: PlainObject;
+  choseRandomly: boolean;
 };

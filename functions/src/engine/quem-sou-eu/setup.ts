@@ -16,7 +16,7 @@ import type { Character, FirebaseStateData, FirebaseStoreData, ResourceData } fr
 import utils from '../../utils';
 // Internal
 import { buildGallery, buildRanking, getAchievements } from './helpers';
-import { saveContendersGlyphs } from './data';
+import { saveData } from './data';
 
 /**
  * Setup
@@ -53,6 +53,7 @@ export const prepareSetupPhase = async (
     negative: 0,
     single: 0,
     tableVotes: 0,
+    chooseForMe: 0,
   });
 
   // Save
@@ -104,7 +105,12 @@ export const prepareCharacterDescriptionPhase = async (
   const round = utils.helpers.increaseRound(state.round);
   // Unready players
   utils.players.unReadyPlayers(players);
-  utils.players.removePropertiesFromPlayers(players, ['guesses', 'glyphs', 'selectedGlyphs']);
+  utils.players.removePropertiesFromPlayers(players, [
+    'guesses',
+    'glyphs',
+    'selectedGlyphs',
+    'choseRandomly',
+  ]);
 
   const glyphs = utils.game.shuffle(utils.game.makeArray(TOTAL_GLYPHS, 1));
 
@@ -266,8 +272,6 @@ export const prepareGameOverPhase = async (
 
   const achievements = getAchievements(store);
 
-  await saveContendersGlyphs(store.contendersGlyphs ?? {});
-
   await utils.firebase.markGameAsComplete(gameId);
 
   await utils.user.saveGameToUsers({
@@ -277,9 +281,20 @@ export const prepareGameOverPhase = async (
     players,
     winners,
     achievements,
+    language: store.language,
   });
 
+  const gallery = store.gallery;
+
+  // Save data (contenderIds, contendersGlyphs)
+  await saveData(store.contendersGlyphs ?? {});
+
+  utils.players.cleanup(players, []);
+
   return {
+    update: {
+      storeCleanup: utils.firebase.cleanupStore(store, []),
+    },
     set: {
       state: {
         phase: QUEM_SOU_EU_PHASES.GAME_OVER,
@@ -288,7 +303,7 @@ export const prepareGameOverPhase = async (
         gameEndedAt: Date.now(),
         winners,
         achievements,
-        gallery: store.gallery,
+        gallery,
       },
     },
   };

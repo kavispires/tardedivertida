@@ -87,7 +87,7 @@ export function StepCompareSuggestions({
 
       <Card word={secretWord.text} />
 
-      <PopoverRule content={<ComparisonDetailedRules />} showLabel />
+      <PopoverRule content={<ComparisonDetailedRules />} />
 
       <ComparisonPhaseRules controller={controller} />
 
@@ -117,34 +117,36 @@ export function StepCompareSuggestions({
         </Space>
       </ViewIf>
 
-      <VIPOnlyContainer
-        label={
-          <Translate
-            pt="VIP Controls (use somente se o jogador controlador não controlar)"
-            en="VIP Controls (only use if the assign player doesn't)"
-          />
-        }
-        direction="vertical"
-        align="center"
-      >
-        <Cards
-          suggestions={suggestions}
-          readOnly={!isVIP}
-          players={players}
-          onSetValidation={onSetValidation}
-          isLoading={isLoading}
-          myRecommendation={myRecommendation}
-        />
-        <VIPButton
-          onClick={() =>
-            onValidateSuggestions({
-              validSuggestions: suggestionsValues.filter((suggestion) => !suggestion.invalid),
-            })
+      <ViewIf condition={!isUserTheController}>
+        <VIPOnlyContainer
+          label={
+            <Translate
+              pt="VIP Controls (use somente se o jogador controlador não controlar)"
+              en="VIP Controls (only use if the assign player doesn't)"
+            />
           }
+          direction="vertical"
+          align="center"
         >
-          <Translate pt="Confirmar dicas válidas como Admin" en="Confirm valid clues as Admin" />
-        </VIPButton>
-      </VIPOnlyContainer>
+          <Cards
+            suggestions={suggestions}
+            readOnly={!isVIP}
+            players={players}
+            onSetValidation={onSetValidation}
+            isLoading={isLoading}
+            myRecommendation={myRecommendation}
+          />
+          <VIPButton
+            onClick={() =>
+              onValidateSuggestions({
+                validSuggestions: suggestionsValues.filter((suggestion) => !suggestion.invalid),
+              })
+            }
+          >
+            <Translate pt="Confirmar dicas válidas como Admin" en="Confirm valid clues as Admin" />
+          </VIPButton>
+        </VIPOnlyContainer>
+      </ViewIf>
     </Step>
   );
 }

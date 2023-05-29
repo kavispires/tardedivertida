@@ -247,3 +247,16 @@ interface Achievement<T> {
   playerId: PlayerId;
   value: Primitive;
 }
+
+type ImageCardRelationship = Record<ImageCardId, ImageCardId[]>;
+
+type Outcome = string;
+
+interface GroupProgress {
+  correct: number;
+  mistakes: number;
+  outcome: Outcome;
+  attempts: Outcome[];
+  score: number;
+  goal: number;
+}

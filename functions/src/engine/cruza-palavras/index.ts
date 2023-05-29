@@ -123,7 +123,7 @@ export const submitAction = async (data: CruzaPalavrasSubmitAction) => {
       return handleSubmitClue(gameName, gameId, playerId, data.clue);
     case CRUZA_PALAVRAS_ACTIONS.SUBMIT_GUESSES:
       utils.firebase.validateSubmitActionProperties(data, ['guesses'], 'submit guess');
-      return handleSubmitGuesses(gameName, gameId, playerId, data.guesses);
+      return handleSubmitGuesses(gameName, gameId, playerId, data.guesses, data.choseRandomly);
     default:
       utils.firebase.throwException(`Given action ${action} is not allowed`);
   }

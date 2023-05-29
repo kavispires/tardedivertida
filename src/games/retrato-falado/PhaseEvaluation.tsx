@@ -17,31 +17,31 @@ import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 function PhaseEvaluation({ players, state, info }: PhaseProps) {
   const user = useUser(players, state);
 
-  const { step, goToNextStep, setStep } = useStep(0);
+  const { step, setStep } = useStep(0);
   const [, isUserTheWitness] = useWhichPlayerIsThe('witnessId', state, players);
 
   const onSubmitVote = useOnSubmitVoteAPIRequest(setStep);
+
+  const announcement = (
+    <PhaseAnnouncement
+      icon={<ChoiceIcon />}
+      title={<Translate pt="Vote!" en="Vote!" />}
+      currentRound={state?.round?.current}
+      type="overlay"
+    >
+      <Instruction>
+        <Translate
+          pt={<>Vote no desenho que você acha que mais parece com o monstro meliante.</>}
+          en={<>Vote for the sketch that best represents the monster.</>}
+        />
+      </Instruction>
+    </PhaseAnnouncement>
+  );
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.RETRATO_FALADO.EVALUATION}>
       <StepSwitcher step={step} conditions={[!user.isReady, !user.isReady, !user.isReady]} players={players}>
         {/* Step 0 */}
-        <PhaseAnnouncement
-          icon={<ChoiceIcon />}
-          title={<Translate pt="Vote!" en="Vote!" />}
-          onClose={goToNextStep}
-          currentRound={state?.round?.current}
-          type="block"
-        >
-          <Instruction>
-            <Translate
-              pt={<>Vote no desenho que você acha que mais parece com o monstro meliante.</>}
-              en={<>Vote for the sketch that best represents the monster.</>}
-            />
-          </Instruction>
-        </PhaseAnnouncement>
-
-        {/* Step 1 */}
         <StepVote
           isUserTheWitness={isUserTheWitness}
           currentMonster={state.currentMonster}
@@ -49,7 +49,11 @@ function PhaseEvaluation({ players, state, info }: PhaseProps) {
           onSubmitVote={onSubmitVote}
           user={user}
           players={players}
+          announcement={announcement}
         />
+
+        {/* Step 1 */}
+        <></>
       </StepSwitcher>
     </PhaseContainer>
   );

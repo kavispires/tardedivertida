@@ -35,7 +35,7 @@ type AdminMenuDrawerProps = {
 export const AdminMenuDrawer = ({ state, players }: AdminMenuDrawerProps) => {
   const { isLoading } = useLoading();
   const { isAdmin } = useCurrentUserContext();
-  const [usingEmulators] = useGlobalState('usingEmulators');
+  const [usingFirestoreEmulator] = useGlobalState('usingFirestoreEmulator');
   const [isAdminEnabled] = useGlobalState('isAdminEnabled');
   const [visible, setVisible] = useState(false);
   const meta = useGameMeta();
@@ -150,7 +150,10 @@ export const AdminMenuDrawer = ({ state, players }: AdminMenuDrawerProps) => {
             </li>
             <li>
               <h3>Firebase</h3>
-              <Button target="_blank" href={getFirebaseUrl(usingEmulators, meta.gameName, meta.gameId)}>
+              <Button
+                target="_blank"
+                href={getFirebaseUrl(Boolean(usingFirestoreEmulator), meta.gameName, meta.gameId)}
+              >
                 Visit Firebase Collection
               </Button>
             </li>
