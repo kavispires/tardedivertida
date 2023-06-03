@@ -92,12 +92,19 @@ interface PlayerCounts {
   MAX: number;
 }
 
+interface Redirect {
+  redirectAt: DateMilliseconds;
+  gameId: GameId;
+  gameName: GameName;
+}
+
 interface DefaultState {
   phase: string;
   round: Round;
   updatedAt: DateMilliseconds;
   gameEndedAt?: DateMilliseconds;
   players: Players;
+  redirect?: Redirect;
   [key: string]: any;
 }
 

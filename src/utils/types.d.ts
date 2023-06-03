@@ -186,11 +186,18 @@ interface Player {
 
 type GamePlayer = Player | PlainObject;
 
+interface Redirect {
+  redirectAt: DateMilliseconds;
+  gameId: GameId;
+  gameName: GameName;
+}
+
 interface GameState {
   phase: string;
   updatedAt?: DateMilliseconds;
   round: GameRound;
   players: GamePlayers;
+  redirect?: Redirect;
   [key: string]: any;
 }
 

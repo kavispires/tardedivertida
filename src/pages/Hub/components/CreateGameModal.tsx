@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import { useCallback, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useCopyToClipboard } from 'react-use';
+import { orderBy } from 'lodash';
 // Ant Design Resources
 import { Image, Modal, message, Button, notification, Divider, Typography, Switch, Space, Alert } from 'antd';
 // Adapters
@@ -11,6 +12,7 @@ import { useGlobalState } from 'hooks/useGlobalState';
 import { useLanguage } from 'hooks/useLanguage';
 import { useLoading } from 'hooks/useLoading';
 import { useLocalStorage } from 'hooks/useLocalStorage';
+import { useRedirectToNewGame } from 'hooks/useRedirectToNewGame';
 // Constants
 import { LATEST_GAME_IDS, PUBLIC_URL } from 'utils/constants';
 // Components
@@ -18,7 +20,7 @@ import { Translate } from 'components/language';
 import { Instruction, Title } from 'components/text';
 import { Loading } from 'components/loaders';
 
-const updateLocal24hGameIds = (latestGameIds: PlainObject, newId: GameId) => {
+const updateLocal24hGameIds = (latestGameIds: NumberDictionary, newId: GameId) => {
   const now = Date.now();
   const past24Hours = now - 1000 * 60 * 60 * 24;
   const cleanedUpIds = Object.entries(latestGameIds ?? {}).reduce((acc: PlainObject, [key, timestamp]) => {
@@ -33,6 +35,24 @@ const updateLocal24hGameIds = (latestGameIds: PlainObject, newId: GameId) => {
       [newId]: now,
     },
   };
+};
+
+const latestGameBeforeNewOne = (latestGameIds: NumberDictionary) => {
+  const idsObjectList = Object.entries(latestGameIds).map(([gameId, createdAt]) => ({ gameId, createdAt }));
+  if (idsObjectList.length < 2) {
+    return null;
+  }
+
+  const orderedList = orderBy(idsObjectList, 'createdAt', 'desc');
+  const twoHoursInMilliseconds = 2 * 60 * 60 * 1000; // 2 hours
+  const currentMilliseconds = Date.now();
+
+  // Check if game is too old
+  if (orderedList[1].createdAt - currentMilliseconds > twoHoursInMilliseconds) {
+    return null;
+  }
+
+  return orderedList[1].gameId;
 };
 
 type CreateGameModalProps = {
@@ -54,6 +74,9 @@ export function CreateGameModal({ gameInfo }: CreateGameModalProps): JSX.Element
   const [, setUserName] = useGlobalState('username');
   const [, setUserAvatarId] = useGlobalState('userAvatarId');
   const [options, setOptions] = useState({});
+  const previousGameId = latestGameBeforeNewOne(getLocalStorage(LATEST_GAME_IDS));
+
+  const { startRedirect, isSettingRedirect, wasRedirectSuccessful } = useRedirectToNewGame();
 
   useEffect(() => {
     if (state.value && gameId) {
@@ -108,7 +131,7 @@ export function CreateGameModal({ gameInfo }: CreateGameModalProps): JSX.Element
     }
   };
 
-  const onConfirmGame = () => {
+  const onConfirmGame = async () => {
     if (gameId) {
       navigate(`/${gameId}`);
     } else {
@@ -129,7 +152,7 @@ export function CreateGameModal({ gameInfo }: CreateGameModalProps): JSX.Element
           open={isVisible}
           onCancel={onCloseModal}
           onOk={onConfirmGame}
-          okButtonProps={{ disabled: Boolean(!gameId) }}
+          okButtonProps={{ disabled: Boolean(!gameId) || isSettingRedirect }}
           maskClosable={false}
         >
           <>
@@ -190,10 +213,54 @@ export function CreateGameModal({ gameInfo }: CreateGameModalProps): JSX.Element
                   <Translate pt="Jogo inicializado" en="Game Initialized" />: {gameId}
                 </Title>
                 <Instruction>
-                  <Translate
-                    pt="Pressione OK para ser redirecionadx à página do jogo."
-                    en="Press OK to be redirected to the game page"
-                  />
+                  {previousGameId && !wasRedirectSuccessful && (
+                    <Alert
+                      type="info"
+                      showIcon
+                      message={
+                        <>
+                          <Translate
+                            pt={
+                              <>
+                                Você quer redirecionar jogadores em {previousGameId} para essa nova partida?
+                              </>
+                            }
+                            en={<>Redirect players in {previousGameId} to this new play?</>}
+                          />
+                          <Button
+                            size="large"
+                            onClick={() =>
+                              startRedirect(previousGameId ?? '', gameId ?? '', gameInfo.gameName)
+                            }
+                            disabled={!gameId || !previousGameId}
+                            loading={isSettingRedirect}
+                          >
+                            <Translate pt="Redirecione-os" en="Redirect them" />
+                          </Button>
+                        </>
+                      }
+                    />
+                  )}
+                  {wasRedirectSuccessful && (
+                    <Alert
+                      type="info"
+                      showIcon
+                      message={
+                        <Translate
+                          pt={
+                            <>
+                              Jogadores em {previousGameId} foram convidados para o jogo {gameId}
+                            </>
+                          }
+                          en={
+                            <>
+                              Players in {previousGameId} have been invited to {gameId}
+                            </>
+                          }
+                        />
+                      }
+                    />
+                  )}
                 </Instruction>
               </div>
             ) : (
