@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react';
 // Ant Design Resources
-import { Alert, Button, Input, Tooltip } from 'antd';
-import { InfoCircleOutlined } from '@ant-design/icons';
+import { Alert, AutoComplete, Button } from 'antd';
 // API & Hooks
-import { useLanguage } from 'hooks/useLanguage';
 import { useCurrentUserContext } from 'hooks/useCurrentUserContext';
 import { useAddPlayer } from 'hooks/useAddPlayer';
 import { useLocalStorage } from 'hooks/useLocalStorage';
@@ -27,7 +25,6 @@ type StepInfoProps = {
 
 export function StepInfo({ info, players, setStep }: StepInfoProps) {
   const { currentUser, isGuest } = useCurrentUserContext();
-  const { translate } = useLanguage();
   const [selectedAvatar, setSelectedAvatar] = useState(
     currentUser?.avatars?.[0] ?? getRandomItem(AVAILABLE_AVATAR_IDS)
   );
@@ -55,6 +52,8 @@ export function StepInfo({ info, players, setStep }: StepInfoProps) {
 
   const hasPlayedBefore = Boolean(currentUser.games?.[info.gameName]);
 
+  const nameOptions = (currentUser?.names ?? []).map((name) => ({ value: name }));
+
   return (
     <>
       <h1 className="lobby-step__title">
@@ -80,17 +79,14 @@ export function StepInfo({ info, players, setStep }: StepInfoProps) {
         <UsualAvatarsSelection avatarsIds={currentUser.avatars} setSelectedAvatar={setSelectedAvatar} />
       )}
 
-      <Input
+      <AutoComplete
         className="lobby-step__name-input"
-        onChange={(e) => setName(e.target.value.trim())}
-        placeholder={translate('Digite seu nome', 'Insert your name')}
-        value={name || randomName}
+        options={nameOptions}
+        onChange={(value) => setName(value.trim())}
+        onSelect={(value) => setName(value.trim())}
+        placeholder="input here"
         maxLength={10}
-        suffix={
-          <Tooltip title={translate('Máximo de 10 caracteres', '10 characters max')}>
-            <InfoCircleOutlined />
-          </Tooltip>
-        }
+        value={name || randomName}
       />
 
       <Settings hasImages={info.tags.includes('images')} />
