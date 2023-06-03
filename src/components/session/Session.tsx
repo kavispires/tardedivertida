@@ -12,6 +12,7 @@ import GAME_LIST from 'utils/info';
 import { PhaseLobby } from 'components/phases';
 import { GameInfoDrawer } from 'components/drawers';
 import { AdminMenuDrawer } from 'components/admin';
+import { RedirectSession } from './RedirectSession';
 
 type SessionProps = {
   /**
@@ -51,7 +52,12 @@ export function Session({ gameCollection, getActiveComponent }: SessionProps) {
   }, [gameMeta.language]); // eslint-disable-line
 
   if (!userId) {
-    return <PhaseLobby players={players} info={info} meta={gameMeta} />;
+    return (
+      <>
+        <RedirectSession state={state} />
+        <PhaseLobby players={players} info={info} meta={gameMeta} />;
+      </>
+    );
   }
 
   const ActiveComponent: any = getActiveComponent(state.phase);
@@ -59,6 +65,7 @@ export function Session({ gameCollection, getActiveComponent }: SessionProps) {
   return (
     <>
       <GameInfoDrawer players={players} state={state} info={info} userId={userId} />
+      <RedirectSession state={state} />
       <ActiveComponent players={players} state={state} info={info} meta={gameMeta} />
       <AdminMenuDrawer state={state} players={players} />
     </>
