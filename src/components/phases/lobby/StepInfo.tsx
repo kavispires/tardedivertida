@@ -15,6 +15,7 @@ import { mockPlayerName } from 'mock/players';
 import { Translate } from 'components/language';
 import { AvatarSelection } from './AvatarSelection';
 import { Settings } from './Settings';
+import { UsualAvatarsSelection } from './UsualAvatarsSelection';
 
 const randomName = isDevEnv ? mockPlayerName() : undefined;
 
@@ -64,6 +65,7 @@ export function StepInfo({ info, players, setStep }: StepInfoProps) {
         <Alert
           type="info"
           message={<Translate pt="Você jogou esse jogo anteriormente" en="You played this game before" />}
+          className="margin"
         />
       )}
 
@@ -73,6 +75,10 @@ export function StepInfo({ info, players, setStep }: StepInfoProps) {
         selectedAvatar={selectedAvatar}
         userId={currentUser.id}
       />
+
+      {currentUser && currentUser.avatars.length > 0 && (
+        <UsualAvatarsSelection avatarsIds={currentUser.avatars} setSelectedAvatar={setSelectedAvatar} />
+      )}
 
       <Input
         className="lobby-step__name-input"

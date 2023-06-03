@@ -182,3 +182,26 @@
     margin-left: 100%;
   }
 }
+
+.lobby-usual-avatar-selection {
+  border: 2px solid get-color('gray', 3, 0.5);
+  border-radius: $border-radius;
+  display: flex;
+  flex-direction: column;
+  padding: get-unit(1 1 2);
+
+  &__title {
+    text-align: center;
+  }
+
+  &__list {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__avatar {
+    width: 40px;
+    border-radius: $border-radius;
+    margin: get-unit(0 1);
+  }
+}
