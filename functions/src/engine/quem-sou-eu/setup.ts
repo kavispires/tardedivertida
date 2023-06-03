@@ -230,7 +230,7 @@ export const prepareResultsPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
-  const gallery = buildGallery(players, state.round.current);
+  const gallery = buildGallery(store, players, state.round.current);
   const ranking = buildRanking(players, state.round.current);
 
   // Achievement: Table Votes

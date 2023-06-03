@@ -74,13 +74,13 @@ type GalleryEntry = {
   playersPoints: Record<PlayerId, number>;
 };
 
-export const buildGallery = (players: Players, currentRound: number): GalleryEntry[] => {
+export const buildGallery = (store: PlainObject, players: Players, currentRound: number): GalleryEntry[] => {
   const listOfPlayers = utils.players.getListOfPlayers(players);
 
   const gallery = listOfPlayers.map((player) => {
     // Achievement: choseRandomly
     if (player.choseRandomly) {
-      utils.achievements.increase(player, player.id, 'chooseForMe', 1);
+      utils.achievements.increase(store, player.id, 'chooseForMe', 1);
     }
 
     // Make PlayersSay and PlayerPoints
