@@ -54,7 +54,7 @@ export function AlienViewBoard({ request, isAlienBot, size }: AlienViewBoardProp
       drawing={request as string}
       width={width}
       height={height}
-      viewBox={`0 0 ${width} ${height}`}
+      viewBox={`0 0 ${ALIEN_CANVAS.WIDTH} ${ALIEN_CANVAS.HEIGHT}`}
       strokeWidth="large"
       className="alien-canvas alien-canvas--small"
     />

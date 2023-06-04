@@ -95,11 +95,6 @@ export const prepareHumanAskPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
-  // Update alien
-  if (!state.alienBot && state.round.current === 1) {
-    players[state.alienId].role = 'alien';
-  }
-
   // Save any inquiry to history
   const inquiryHistory = state.inquiryHistory as InquiryHistoryEntry[];
   if (
@@ -121,7 +116,8 @@ export const prepareHumanAskPhase = async (
 
   // Unready current human player
   const humanId = utils.players.getNextPlayer(turnOrder, state.humanId ?? utils.game.getLastItem(turnOrder));
-  utils.players.unReadyPlayer(players, humanId);
+
+  utils.players.readyPlayers(players, humanId);
 
   // Save
   return {
