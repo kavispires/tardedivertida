@@ -22,7 +22,6 @@ import { LogoutButton } from 'components/auth/LogoutButton';
 
 // Players migration
 const migrationBlocked = [
-  'comunicacao-alienigena',
   'crimes-hediondos',
   'espiao-entre-nos',
   'linhas-cruzadas',

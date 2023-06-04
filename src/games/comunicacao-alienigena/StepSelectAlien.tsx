@@ -9,7 +9,7 @@ import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { TransparentButton } from 'components/buttons';
 import { AvatarCard } from 'components/avatars';
-import { CurseItemHighlight, ItemsHighlight } from './components/Highlights';
+import { CurseItemHighlight, HieroglyphHighlight, ItemsHighlight } from './components/Highlights';
 import { TimeHighlight } from 'components/metrics/TimeHighlight';
 
 type StepSelectAlienProps = {
@@ -33,20 +33,22 @@ export function StepSelectAlien({ players, announcement, onSubmitAlien, status }
           pt={
             <>
               Um alienígena chegou à Terra e não fala nossa língua. Porém, descobrimos que ele quer abduzir{' '}
-              <ItemsHighlight>{status.needed}</ItemsHighlight> objetos, mas não sabemos quais.
-              <br />
-              A cada rodada, devemos mostrar alguns objetos ao alienígena com o objetivo de desvendar um dos
-              25 caracteres alienígenas relacionados àqueles objetos. Por exemplo, mostrar uma "bola" e um
-              "pneu" talvez descobriremos o símbolo para "redondo".
+              <ItemsHighlight type="positive">{status.needed} objetos</ItemsHighlight>, mas não sabemos quais.
+              <br />A cada rodada, devemos mostrar alguns objetos ao alienígena com o objetivo de desvendar um
+              dos
+              <HieroglyphHighlight>25 caracteres alienígenas</HieroglyphHighlight> relacionados àqueles
+              objetos. Por exemplo, mostrar uma "bola" e um "pneu" talvez descobriremos o símbolo para
+              "redondo".
               <br />
               Então o alienígena vai pedir um objeto específico usando símbolos de sua língua alienígena.
               <br />
               Teremos <TimeHighlight>{status.timeLeft}</TimeHighlight> chances de entregar todos os objetos ao
               alienígena, mas dentre os 25 objetos, há{' '}
-              <CurseItemHighlight>{status.totalCurses}</CurseItemHighlight> que o alienígena considera
-              amaldiçoado e não quer. Se você oferece um deles, uma chance adicional é usada naquela rodada.
+              <CurseItemHighlight type="negative">{status.totalCurses}</CurseItemHighlight> que o alienígena
+              considera amaldiçoado e não quer. Se você oferece um deles, uma chance adicional é usada naquela
+              rodada.
               <br />
-              <strong>Um jogador deve ser o alienígena. O administrator selecionará o alienígena.</strong>
+              <strong>Um jogador deve ser o alienígena. O VIP selecionará o alienígena.</strong>
             </>
           }
           en={
@@ -62,10 +64,11 @@ export function StepSelectAlien({ players, announcement, onSubmitAlien, status }
               Then, the alien will request an specific object using their language.
               <br />
               We have <TimeHighlight>{status.timeLeft}</TimeHighlight> chances to offer all request objects,
-              but among the 25 objects there are <CurseItemHighlight>{status.totalCurses}</CurseItemHighlight>{' '}
-              ones that the alien considered cursed. If we offer one of them, we waste one additional chance.
+              but among the 25 objects there are{' '}
+              <CurseItemHighlight type="negative">{status.totalCurses}</CurseItemHighlight> ones that the
+              alien considered cursed. If we offer one of them, we waste one additional chance.
               <br />
-              <strong>One player must be the alien, the administrator will select it.</strong>
+              <strong>One player must be the alien, the game master will select it.</strong>
             </>
           }
         />

@@ -27,6 +27,7 @@ export const handleSubmitAlien = async (
     actionText: 'submit alien player id',
     change: {
       alienId,
+      [`players.${alienId}.role`]: 'alien',
     },
     nextPhaseFunction: getNextPhase,
   });
