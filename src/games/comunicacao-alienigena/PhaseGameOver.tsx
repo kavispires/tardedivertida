@@ -11,11 +11,15 @@ import { History } from './components/History';
 import { HumanSignBoard } from './components/HumanSignBoard';
 import { ObjectsGrid } from './components/ObjectsGrid';
 import { SignsKeyCard } from './components/SignsKeyCard';
+import { Achievements } from 'components/general/Achievements';
+import achievementsReference from './utils/achievements';
 
 export function PhaseGameOver({ state, info, players }: PhaseProps) {
   const [, isUserAlien] = useWhichPlayerIsThe('alienId', state, players);
   return (
     <GameOverWrapper info={info} state={state} players={players} announcementIcon={<TrophyIcon />}>
+      <Achievements players={players} achievements={state.achievements} reference={achievementsReference} />
+
       <Space className="space-container" wrap>
         <ObjectsGrid items={state.items} showTypes showAll />
         <Space className="space-container" wrap direction="vertical">
