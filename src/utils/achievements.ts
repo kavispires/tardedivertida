@@ -2,7 +2,7 @@ import ARTE_RUIM from 'games/arte-ruim/utils/achievements';
 // import BOMBA_RELOGIO from 'games/bomba-relogio/utils/achievements';
 // import CAMINHOS_MAGICOS from 'games/caminhos-magicos/utils/achievements';
 // import CINEGRAFISTAS_AMADORES from 'games/cinegrafistas-amadores/utils/achievements';
-// import COMUNICACAO_ALIENIGENA from 'games/comunicacao-alienigena/utils/achievements';
+import COMUNICACAO_ALIENIGENA from 'games/comunicacao-alienigena/utils/achievements';
 import CONTADORES_HISTORIAS from 'games/contadores-historias/utils/achievements';
 // import CRIMES_HEDIONDOS from 'games/crimes-hediondos/utils/achievements';
 import CRUZA_PALAVRAS from 'games/cruza-palavras/utils/achievements';
@@ -29,7 +29,7 @@ import QUEM_SOU_EU from 'games/quem-sou-eu/utils/achievements';
 // import TA_NA_CARA from 'games/ta-na-cara/utils/achievements';
 // import TESTEMUNHA_OCULAR from 'games/testemunha-ocular/utils/achievements';
 // import TREVO_DA_SORTE from 'games/trevo-da-sorte/utils/achievements';
-// import UE_SO_ISSO from 'games/ue-so-isso/utils/achievements';
+import UE_SO_ISSO from 'games/ue-so-isso/utils/achievements';
 // import VAMOS_AO_CINEMA from 'games/vamos-ao-cinema/utils/achievements';
 // import VENDAVAL_DE_PALPITE from 'games/vendaval-de-palpite/utils/achievements';
 
@@ -38,7 +38,7 @@ export const ACHIEVEMENTS_DICT: Record<GameName, AchievementReference | null> = 
   'bomba-relogio': null,
   'caminhos-magicos': null,
   'cinegrafistas-amadores': null,
-  'comunicacao-alienigena': null,
+  'comunicacao-alienigena': COMUNICACAO_ALIENIGENA,
   'contadores-historias': CONTADORES_HISTORIAS,
   'crimes-hediondos': null,
   'cruza-palavras': CRUZA_PALAVRAS,
@@ -65,7 +65,7 @@ export const ACHIEVEMENTS_DICT: Record<GameName, AchievementReference | null> = 
   'ta-na-cara': null,
   'testemunha-ocular': null,
   'trevo-da-sorte': null,
-  'ue-so-isso': null,
+  'ue-so-isso': UE_SO_ISSO,
   'vamos-ao-cinema': null,
   'vendaval-de-palpite': null,
 };

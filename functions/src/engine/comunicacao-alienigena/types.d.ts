@@ -1,4 +1,4 @@
-import { COMUNICACAO_ALIENIGENA_ACTIONS, ITEM_TYPES } from './constants';
+import { COMUNICACAO_ALIENIGENA_ACHIEVEMENTS, COMUNICACAO_ALIENIGENA_ACTIONS, ITEM_TYPES } from './constants';
 
 export interface ComunicacaoAlienigenaOptions {
   botAlien?: boolean;
@@ -60,6 +60,8 @@ export interface OfferingsStatus {
   totalCurses: number;
   curses: Record<string, PlayerId[]>;
 }
+
+export type ComunicacaoAlienigenaAchievement = keyof typeof COMUNICACAO_ALIENIGENA_ACHIEVEMENTS;
 
 export interface ComunicacaoAlienigenaStore extends DefaultStore {
   [key: string]: any;

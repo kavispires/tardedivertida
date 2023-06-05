@@ -1,3 +1,4 @@
+import { calculateAverage } from './game-utils';
 import { deepCopy } from './helpers';
 import { getListOfPlayers } from './players-utils';
 
@@ -47,13 +48,71 @@ export const push = (store: PlainObject, playerId: PlayerId, property: string, v
  * Get most and least of certain value else return null
  * @param store
  * @param property
+ * @param ineligiblePlayers player Ids that should not count for the achievement
  * @returns the most and least values
  */
-export const getMostAndLeastOf = (store: PlainObject, property: string) => {
+export const getMostAndLeastOf = (
+  store: PlainObject,
+  property: string,
+  ineligiblePlayers: PlayerId[] = []
+) => {
   let most: PlainObject[] = [];
   let least: PlainObject[] = [];
 
-  Object.values(store.achievements).forEach((pa) => {
+  const achievements = Object.values(store.achievements).filter(
+    (a: any) => !ineligiblePlayers.includes(a.playerId)
+  );
+
+  achievements.forEach((pa) => {
+    const achievement = pa as PlainObject;
+    if (!most[0] || most[0][property] === achievement[property]) {
+      most.push(achievement);
+    } else if (most[0][property] < achievement[property]) {
+      most = [achievement];
+    }
+
+    if (!least[0] || least[0][property] === achievement[property]) {
+      least.push(achievement);
+    } else if (least[0][property] > achievement[property]) {
+      least = [achievement];
+    }
+  });
+
+  return {
+    most: most.length === 1 ? most[0] : null,
+    least: least.length === 1 ? least[0] : null,
+  };
+};
+
+/**
+ * Get most and least of certain value else return null
+ * @param store
+ * @param property
+ * @param ineligiblePlayers player Ids that should not count for the achievement
+ * @returns the most and least values
+ */
+export const getMostAndLeastOfAverage = (
+  store: PlainObject,
+  property: string,
+  ineligiblePlayers: PlayerId[] = []
+) => {
+  let most: PlainObject[] = [];
+  let least: PlainObject[] = [];
+
+  const eligibleAchievements = Object.values(store.achievements).filter((pa) => {
+    const achievement = pa as PlainObject;
+    return !ineligiblePlayers.includes(achievement.playerId);
+  });
+
+  const achievementsAverages = eligibleAchievements.map((pa) => {
+    const achievement = pa as PlainObject;
+    if (Array.isArray(achievement[property]) && achievement[property].every(Number)) {
+      achievement[property] = calculateAverage(achievement[property], true);
+    }
+    return achievement;
+  });
+
+  achievementsAverages.forEach((pa) => {
     const achievement = pa as PlainObject;
     if (!most[0] || most[0][property] === achievement[property]) {
       most.push(achievement);

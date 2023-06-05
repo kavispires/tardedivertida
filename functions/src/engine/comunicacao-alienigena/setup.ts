@@ -14,7 +14,7 @@ import type {
 } from './types';
 // Utils
 import utils from '../../utils';
-import { checkIsBot, determineAlienRequest, determineAlienResponse } from './helpers';
+import { checkIsBot, determineAlienRequest, determineAlienResponse, getAchievements } from './helpers';
 import { saveUsedItems } from './data';
 
 /**
@@ -79,9 +79,21 @@ export const prepareAlienSelectionPhase = async (
   state: FirebaseStateData,
   players: Players
 ): Promise<SaveGamePayload> => {
+  const achievements = utils.achievements.setup(players, store, {
+    objectInquiries: 0,
+    singleInquiry: 0,
+    correct: 0,
+    cursed: 0,
+    blank: 0,
+    alien: 0,
+  });
+
   // Save
   return {
     update: {
+      store: {
+        achievements,
+      },
       state: {
         phase: COMUNICACAO_ALIENIGENA_PHASES.ALIEN_SELECTION,
         players,
@@ -147,6 +159,13 @@ export const prepareAlienAnswerPhase = async (
   // Add player question to the state
   const currentInquiry = players[state.humanId].objectsIds ?? [];
 
+  // Achievement: Single Inquiry
+  if (currentInquiry.length === 1) {
+    utils.achievements.increase(store, state.humanId, 'singleInquiry', 1);
+  }
+  // Achievement: Total objects
+  utils.achievements.increase(store, state.humanId, 'objectInquiries', currentInquiry.length);
+
   const alienResponse = hasBot
     ? determineAlienResponse(currentInquiry, store as ComunicacaoAlienigenaStore, state.signs)
     : utils.firebase.deleteValue();
@@ -154,16 +173,17 @@ export const prepareAlienAnswerPhase = async (
   let storeUpdate = {};
   if (hasBot) {
     storeUpdate = {
-      store: {
-        botAlienSignKnowledge: store.botAlienSignKnowledge,
-      },
+      botAlienSignKnowledge: store.botAlienSignKnowledge,
     };
   }
 
   // Save
   return {
     update: {
-      ...storeUpdate,
+      store: {
+        ...storeUpdate,
+        achievements: store.achievements,
+      },
       state: {
         phase: COMUNICACAO_ALIENIGENA_PHASES.ALIEN_ANSWER,
         currentInquiry,
@@ -282,6 +302,8 @@ export const prepareRevealPhase = async (
       if (offering.type === ITEM_TYPES.ITEM) {
         found[offering.id] = true;
         player.score += 3;
+        // Achievement: correct
+        utils.achievements.increase(store, player.id, 'correct', 1);
       }
 
       if (offering.type === ITEM_TYPES.CURSE) {
@@ -291,6 +313,13 @@ export const prepareRevealPhase = async (
 
         curses[offering.id].push(player.id);
         player.score -= 1;
+        // Achievement: curse
+        utils.achievements.increase(store, player.id, 'cursed', 1);
+      }
+
+      if (offering.type === ITEM_TYPES.BLANK) {
+        // Achievement: blank
+        utils.achievements.increase(store, player.id, 'blank', 1);
       }
 
       player.pastOfferings.push(offering.id);
@@ -311,6 +340,9 @@ export const prepareRevealPhase = async (
   // Save
   return {
     update: {
+      store: {
+        achievements: store.achievements,
+      },
       state: {
         phase: COMUNICACAO_ALIENIGENA_PHASES.REVEAL,
         round,
@@ -330,6 +362,17 @@ export const prepareGameOverPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   const winners = utils.players.determineWinners(players);
+  const hasBot = checkIsBot(store);
+  if (!hasBot) {
+    utils.achievements.increase(store, state.alienId, 'alien', 1);
+  }
+
+  const achievements = getAchievements(
+    store,
+    hasBot,
+    utils.players.getListOfPlayers(players).length,
+    state.alienId
+  );
 
   await utils.firebase.markGameAsComplete(gameId);
 
@@ -339,7 +382,7 @@ export const prepareGameOverPhase = async (
     startedAt: store.createdAt,
     players,
     winners,
-    achievements: [],
+    achievements,
     language: store.language,
   });
 
@@ -366,6 +409,7 @@ export const prepareGameOverPhase = async (
         status: state.status,
         alienId: state.alienId,
         isAlienBot: state.alienBot,
+        achievements,
       },
     },
   };
