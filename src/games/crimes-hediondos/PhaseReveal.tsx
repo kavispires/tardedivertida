@@ -28,23 +28,23 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
     }
   }, [step, isFirstRunThrough]);
 
+  const announcement = (
+    <PhaseAnnouncement
+      icon={<RankIcon />}
+      title={<Translate pt="Resultado" en="Results" />}
+      currentRound={state?.round?.current}
+      type="overlay"
+    >
+      <Instruction>
+        <ScoringMessage round={state.round} />
+      </Instruction>
+    </PhaseAnnouncement>
+  );
+
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.CRIMES_HEDIONDOS.REVEAL}>
       <StepSwitcher step={step} conditions={[!user.isReady, !user.isReady, !user.isReady]} players={players}>
         {/* Step 0 */}
-        <PhaseAnnouncement
-          icon={<RankIcon />}
-          title={<Translate pt="Resultado" en="Results" />}
-          onClose={goToNextStep}
-          currentRound={state?.round?.current}
-          type="block"
-        >
-          <Instruction>
-            <ScoringMessage round={state.round} />
-          </Instruction>
-        </PhaseAnnouncement>
-
-        {/* Step 1 */}
         <StepReveal
           user={user}
           groupedItems={state.groupedItems}
@@ -57,9 +57,10 @@ function PhaseReveal({ players, state, info }: PhaseProps) {
           round={state.round}
           results={state.results}
           isFirstRunThrough={isFirstRunThrough}
+          announcement={announcement}
         />
 
-        {/* Step 2 */}
+        {/* Step 1 */}
         <StepRanking
           ranking={state.ranking}
           players={players}

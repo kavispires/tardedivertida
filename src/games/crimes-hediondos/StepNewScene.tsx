@@ -19,8 +19,7 @@ type StepNewSceneProps = {
   crimes: Crime[];
   scenes: ScenesDict;
   scenesOrder: string[];
-  players: GamePlayers;
-};
+} & AnnouncementProps;
 
 export function StepNewScene({
   user,
@@ -29,9 +28,9 @@ export function StepNewScene({
   onSubmitMark,
   sceneTile,
   crimes,
-  players,
   scenes,
   scenesOrder,
+  announcement,
 }: StepNewSceneProps) {
   const { language } = useLanguage();
   const [sceneMarkIndex, setSceneMarkIndex] = useState<number>();
@@ -43,11 +42,8 @@ export function StepNewScene({
   const crime = crimes.find((crime) => crime.playerId === user.id);
 
   return (
-    <Step>
-      <Title size="medium">
-        {/* <Translate pt="Dê mais detalhes do crime" en="Give us more details" /> */}
-        {sceneTile.description[language]}
-      </Title>
+    <Step announcement={announcement}>
+      <Title size="medium">{sceneTile.description[language]}</Title>
       <Instruction contained>
         <Translate
           pt={
