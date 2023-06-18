@@ -132,20 +132,19 @@ export const buildRanking = (
       // Determine psychic points
       psychicPoints += points > 0 ? 1 : 0;
 
-      // Achievements
+      // Achievements: Accuracy
       const difference = Math.abs(currentCategory?.target ?? 0 - player.guess);
-      // Accuracy
-      store.achievements[player.id].accuracy += difference;
+      utils.achievements.increase(store, player.id, 'accuracy', difference);
       if (points === 0) {
-        store.achievements[player.id].zero += 1;
+        utils.achievements.increase(store, player.id, 'zero', 1);
       }
       if (points === 4) {
-        store.achievements[player.id].exact += 1;
+        utils.achievements.increase(store, player.id, 'exact', 1);
       }
     }
   });
   // Psychic achievement
-  store.achievements[psychicId].psychicPoints += psychicPoints;
+  utils.achievements.increase(store, psychicId, 'psychicPoints', psychicPoints);
 
   // If psychic predicted the win
   const isMoreThanHalf = psychicPoints >= (Object.keys(players).length - 1) / 2;
@@ -172,7 +171,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
   // Most accurate: got results closest to the needle
   if (most) {
     achievements.push({
-      type: ONDA_TELEPATICA_ACHIEVEMENTS.MOST_ACCURATE,
+      type: ONDA_TELEPATICA_ACHIEVEMENTS.LEAST_ACCURATE,
       playerId: most.playerId,
       value: most.accuracy,
     });
@@ -181,7 +180,7 @@ export const getAchievements = (store: FirebaseStoreData) => {
   // Least accurate: got results farthest from the needle
   if (least) {
     achievements.push({
-      type: ONDA_TELEPATICA_ACHIEVEMENTS.LEAST_ACCURATE,
+      type: ONDA_TELEPATICA_ACHIEVEMENTS.MOST_ACCURATE,
       playerId: least.playerId,
       value: least.accuracy,
     });

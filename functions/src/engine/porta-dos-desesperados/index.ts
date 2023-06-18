@@ -124,7 +124,6 @@ export const getNextPhase = async (
 
   // RESOLUTION -> GAME_OVER
   if (nextPhase === PORTA_DOS_DESESPERADOS_PHASES.GAME_OVER) {
-    // TODO: Save image card references and used ImageCards
     const newPhase = await prepareGameOverPhase(gameId, store, state, players);
     return utils.firebase.saveGame(sessionRef, newPhase);
   }
