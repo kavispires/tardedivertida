@@ -326,6 +326,11 @@ export const BOTS = {
     name: 'E-max',
     avatarId: 'E',
   },
+  T: {
+    id: 'T',
+    name: 'ET',
+    avatarId: 'T',
+  },
 };
 
 export const BOTS_LIST = Object.values(BOTS);
