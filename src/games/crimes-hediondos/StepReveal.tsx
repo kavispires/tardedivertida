@@ -19,6 +19,7 @@ import { Instruction, Title } from 'components/text';
 import { Translate } from 'components/language';
 import { PopoverRule } from 'components/rules';
 import { TimedButton } from 'components/buttons';
+import { PointsHighlight } from 'components/metrics/PointsHighlight';
 
 type StepRevealProps = {
   user: GamePlayer;
@@ -32,7 +33,7 @@ type StepRevealProps = {
   round: GameRound;
   results: HResults;
   isFirstRunThrough: boolean;
-};
+} & AnnouncementProps;
 
 export function StepReveal({
   user,
@@ -46,6 +47,7 @@ export function StepReveal({
   round,
   results,
   isFirstRunThrough,
+  announcement,
 }: StepRevealProps) {
   useTemporarilyHidePlayersBar();
 
@@ -60,7 +62,7 @@ export function StepReveal({
   const isLocked = isEntryLocked(latestHistoryEntry);
 
   return (
-    <Step>
+    <Step announcement={announcement}>
       <Title>
         <Translate pt="Resultado" en="Results" />
       </Title>
@@ -83,20 +85,20 @@ export function StepReveal({
             </>
           }
         />
-        
+
         <ResultsTable players={players} results={results} />
-        
+
         <Translate
           pt={
             <>
               Você acertou {user.correctCrimes} pares e está com um total (secreto) de{' '}
-              {user.score + user.secretScore} pontos.
+              <PointsHighlight>{user.score + user.secretScore} pontos</PointsHighlight>.
             </>
           }
           en={
             <>
               You guesses {user.correctCrimes} crimes and have a (secret) total of{' '}
-              {user.score + user.secretScore} points.
+              <PointsHighlight>{user.score + user.secretScore} points</PointsHighlight>.
             </>
           }
         />

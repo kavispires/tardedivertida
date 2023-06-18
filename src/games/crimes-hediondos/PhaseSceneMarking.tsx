@@ -1,6 +1,5 @@
 // State & Hooks
 import { useMock } from 'hooks/useMock';
-import { useLanguage } from 'hooks/useLanguage';
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
 import { useOnSubmitMarkAPIRequest } from './utils/api-requests';
@@ -10,15 +9,14 @@ import { PHASES } from 'utils/phases';
 // Icons
 import { LoupeIcon } from 'icons/LoupeIcon';
 // Components
-import { Translate } from 'components/language';
+import { DualTranslate, Translate } from 'components/language';
 import { RoundAnnouncement } from 'components/round';
 import { PhaseAnnouncement, PhaseContainer } from 'components/phases';
 import { StepSwitcher } from 'components/steps';
-import { Instruction } from 'components/text';
+import { Instruction, TextHighlight } from 'components/text';
 import { StepNewScene } from './StepNewScene';
 
 function PhaseSceneMarking({ players, state, info }: PhaseProps) {
-  const { language } = useLanguage();
   const user = useUser(players, state);
   const { step, setStep, goToNextStep } = useStep(0);
 
@@ -27,6 +25,26 @@ function PhaseSceneMarking({ players, state, info }: PhaseProps) {
   useMock(() => {
     onSubmitMark({ sceneIndex: mockSceneMark() });
   }, []);
+
+  const announcement = (
+    <PhaseAnnouncement
+      icon={<LoupeIcon />}
+      title={<Translate pt="Nova pista" en="New clue" />}
+      currentRound={state?.round?.current}
+      type="overlay"
+    >
+      <Instruction>
+        <Translate
+          pt="Compartilhe mais uma pista sobre seu crime:"
+          en="Share one more piece of information about your crime:"
+        />
+        <br />
+        <TextHighlight>
+          <DualTranslate>{state.currentScene.description}</DualTranslate>
+        </TextHighlight>
+      </Instruction>
+    </PhaseAnnouncement>
+  );
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.CRIMES_HEDIONDOS.SCENE_MARKING}>
@@ -41,24 +59,6 @@ function PhaseSceneMarking({ players, state, info }: PhaseProps) {
         />
 
         {/* Step 1 */}
-        <PhaseAnnouncement
-          icon={<LoupeIcon />}
-          title={<Translate pt="Nova pista" en="New clue" />}
-          onClose={goToNextStep}
-          currentRound={state?.round?.current}
-          type="block"
-        >
-          <Instruction>
-            <Translate
-              pt="Compartilhe mais uma pista sobre seu crime:"
-              en="Share one more piece of information about your crime:"
-            />
-            <br />
-            {state.currentScene.description[language]}
-          </Instruction>
-        </PhaseAnnouncement>
-
-        {/* Step 2 */}
         <StepNewScene
           user={user}
           groupedItems={state.groupedItems}
@@ -68,7 +68,7 @@ function PhaseSceneMarking({ players, state, info }: PhaseProps) {
           scenes={state.scenes}
           scenesOrder={state.scenesOrder}
           crimes={state.crimes}
-          players={players}
+          announcement={announcement}
         />
       </StepSwitcher>
     </PhaseContainer>

@@ -28,7 +28,7 @@ type StepGuessingProps = {
   scenesOrder: string[];
   crimes: Crime[];
   onSubmitGuesses: GenericFunction;
-};
+} & AnnouncementProps;
 
 export function StepGuessing({
   user,
@@ -39,6 +39,7 @@ export function StepGuessing({
   scenesOrder,
   crimes,
   onSubmitGuesses,
+  announcement,
 }: StepGuessingProps) {
   const [guesses, setGuesses] = useState<PlainObject>({});
   const [activePlayerId, setActivePlayerId] = useState<PlayerId>('');
@@ -102,7 +103,7 @@ export function StepGuessing({
   );
 
   return (
-    <Step>
+    <Step announcement={announcement}>
       <Title>
         <Translate pt="Quais foram os crimes?" en="What were the crimes?" />
       </Title>

@@ -1,6 +1,5 @@
 import { useState } from 'react';
 // Ant Design Resources
-import { Button } from 'antd';
 // State & Hooks
 import { useStep } from 'hooks/useStep';
 import { useUser } from 'hooks/useUser';
@@ -27,7 +26,7 @@ import { StepCauseOfDeathSelection } from './StepCauseOfDeathSelection';
 import { StepLocationSelection } from './StepLocationSelection';
 import { StepReviewCrime } from './StepReviewCrime';
 import { StepReasonForEvidence } from './StepReasonForEvidence';
-import { DebugOnly } from 'components/debug';
+import { DevButton } from 'components/debug';
 
 function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
   const { step, setStep, goToNextStep } = useStep(0);
@@ -140,11 +139,9 @@ function PhaseCrimeSelection({ players, state, info }: PhaseProps) {
             updateSelections={updateSelections}
             announcement={announcementItems}
           />
-          <DebugOnly dev>
-            <Button onClick={onMockCrime} size="large">
-              Random Crime
-            </Button>
-          </DebugOnly>
+          <DevButton onClick={onMockCrime} size="large">
+            Random Crime
+          </DevButton>
         </>
 
         {/* Step 2 */}

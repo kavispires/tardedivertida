@@ -14,26 +14,26 @@ import { StepGuessing } from './StepGuessing';
 import { Translate } from 'components/language';
 
 function PhaseGuessing({ players, state, info }: PhaseProps) {
-  const { step, setStep, goToNextStep } = useStep(0);
+  const { step, setStep } = useStep(0);
   const user = useUser(players, state);
 
   const onSubmitGuesses = useOnSubmitGuessesAPIRequest(setStep);
+
+  const announcement = (
+    <PhaseAnnouncement
+      icon={<GuessIcon />}
+      title={<Translate pt="Tente Adivinhar" en="Try to guess" />}
+      currentRound={state?.round?.current}
+      type="overlay"
+    >
+      <GuessMessage />
+    </PhaseAnnouncement>
+  );
 
   return (
     <PhaseContainer info={info} phase={state?.phase} allowedPhase={PHASES.CRIMES_HEDIONDOS.GUESSING}>
       <StepSwitcher step={step} conditions={[!user.isReady, !user.isReady]} players={players}>
         {/* Step 0 */}
-        <PhaseAnnouncement
-          icon={<GuessIcon />}
-          title={<Translate pt="Tente Adivinhar" en="Try to guess" />}
-          onClose={goToNextStep}
-          currentRound={state?.round?.current}
-          type="block"
-        >
-          <GuessMessage />
-        </PhaseAnnouncement>
-
-        {/* Step 1 */}
         <StepGuessing
           user={user}
           groupedItems={state.groupedItems}
@@ -43,7 +43,11 @@ function PhaseGuessing({ players, state, info }: PhaseProps) {
           scenesOrder={state.scenesOrder}
           crimes={state.crimes}
           onSubmitGuesses={onSubmitGuesses}
+          announcement={announcement}
         />
+
+        {/* Step 1 */}
+        <></>
       </StepSwitcher>
     </PhaseContainer>
   );
