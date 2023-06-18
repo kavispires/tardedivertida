@@ -56,6 +56,15 @@ export const getInitialState = (
       wordsDeck: [],
     },
     options,
+    onCreate: () => {
+      const players: Players = {};
+      if (options.withBots) {
+        utils.players.addBots(players, 3);
+      }
+      return {
+        players,
+      };
+    },
   });
 };
 

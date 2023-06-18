@@ -32,10 +32,6 @@ export const prepareSetupPhase = async (
 
   utils.players.addPropertiesToPlayers(players, { pastOfferings: [], role: 'human' });
 
-  if (hasBot) {
-    utils.players.addBots(players, 1, { role: 'alien' });
-  }
-
   // Determine turn order
   const playerCount = utils.players.getPlayerCount(players);
 

@@ -41,11 +41,6 @@ export const prepareSetupPhase = async (
   const { gameOrder, playerCount: pC } = utils.players.buildGameOrder(players);
   const playerCount = store.options?.withBots ? pC + 2 : pC;
 
-  // Helper Bots
-  if (store.options?.withBots) {
-    utils.players.addBots(players, 2);
-  }
-
   // Setup achievements
   const achievements = utils.achievements.setup(players, store, {
     possessions: 0,

@@ -41,11 +41,6 @@ export const prepareSetupPhase = async (
     resourceData.allScenes
   );
 
-  // Helper Bots
-  if (store.options.withBots) {
-    utils.players.addBots(players, 2);
-  }
-
   // Save
   return {
     update: {

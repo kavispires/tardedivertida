@@ -62,6 +62,15 @@ export const getInitialState = (
     totalRounds: MAX_ROUNDS,
     store: {},
     options,
+    onCreate: () => {
+      const players: Players = {};
+      if (options.botAlien) {
+        utils.players.addBots(players, 1, { role: 'alien', avatarId: 'T', name: 'Alien-Bot' });
+      }
+      return {
+        players,
+      };
+    },
   });
 };
 
