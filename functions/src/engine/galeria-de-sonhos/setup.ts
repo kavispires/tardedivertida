@@ -40,11 +40,6 @@ export const prepareSetupPhase = async (
   // Get word deck
   const wordsDeck = buildDeck(resourceData.allWords);
 
-  // Helper Bots
-  if (store.options.withBots) {
-    utils.players.addBots(players, 3);
-  }
-
   const achievements = utils.achievements.setup(players, store, {
     matches: 0,
     fullMatches: 0,

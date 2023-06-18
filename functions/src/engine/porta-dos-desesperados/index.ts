@@ -54,6 +54,15 @@ export const getInitialState = (
       finalDoors: [],
     },
     options,
+    onCreate: () => {
+      const players: Players = {};
+      if (options.withBots) {
+        utils.players.addBots(players, 2);
+      }
+      return {
+        players,
+      };
+    },
   });
 };
 
