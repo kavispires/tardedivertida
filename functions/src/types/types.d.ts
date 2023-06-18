@@ -122,15 +122,47 @@ interface InitialState {
 }
 
 interface InitialStateArgs {
+  /**
+   * The game Id
+   */
   gameId: GameId;
+  /**
+   * The game name
+   */
   gameName: GameName;
+  /**
+   * The creator uid
+   */
   uid: string;
+  /**
+   * The game language
+   */
   language: string;
+  /**
+   * The default player counts
+   */
   playerCounts: PlayerCounts;
+  /**
+   * The initial phase (usually LOPPY)
+   */
   initialPhase: string;
+  /**
+   * The total pre-defined number of rounds
+   */
   totalRounds: number;
+  /**
+   * The default store value
+   */
   store: PlainObject;
+  /**
+   * Game options
+   */
   options?: PlainObject;
+  /**
+   * Function to generate stuff during game creating, for example adding bots
+   * @returns an object with optional meta, store, state, or players values
+   */
+  onCreate?: () => PlainObject;
 }
 
 interface Round {

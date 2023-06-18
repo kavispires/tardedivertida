@@ -69,8 +69,10 @@ export function getDefaultInitialState<T = InitialState>({
   totalRounds,
   store,
   options = {},
+  onCreate = () => ({}),
 }: InitialStateArgs): InitialState | T {
   const createdAt = Date.now();
+  const preSetupResult = onCreate();
   return {
     meta: {
       gameId,
@@ -84,12 +86,14 @@ export function getDefaultInitialState<T = InitialState>({
       language,
       replay: 0,
       options,
+      ...(preSetupResult?.meta ?? {}),
     },
     store: {
       language,
       options,
       createdAt,
       ...store,
+      ...(preSetupResult?.store ?? {}),
     },
     state: {
       phase: initialPhase,
@@ -99,7 +103,10 @@ export function getDefaultInitialState<T = InitialState>({
         forceLastRound: false,
       },
       updatedAt: Date.now(),
-      players: {},
+      ...(preSetupResult?.state ?? {}),
+      players: {
+        ...(preSetupResult?.players ?? {}),
+      },
     },
   };
 }
