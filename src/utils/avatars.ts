@@ -291,7 +291,7 @@ export const AVATARS: AvatarDict = {
   T: {
     id: 'T',
     description: { pt: 'o alienígena robô', en: 'the alien bot' },
-    color: '#826773',
+    color: '#797e5c',
   },
   N: {
     id: 'N',
