@@ -11,6 +11,7 @@ import {
   buildRanking,
   buildScenes,
   dealItemGroups,
+  getAchievements,
   groupItems,
   mockCrimeForBots,
   mockGuessingForBots,
@@ -41,6 +42,15 @@ export const prepareSetupPhase = async (
     resourceData.allScenes
   );
 
+  const achievements = utils.achievements.setup(players, store, {
+    wrongGroups: 0,
+    wrong: 0,
+    half: 0,
+    correct: [],
+    weapons: [],
+    evidence: [],
+  });
+
   // Save
   return {
     update: {
@@ -48,6 +58,7 @@ export const prepareSetupPhase = async (
         scenes: sceneTiles,
         weapons,
         evidence,
+        achievements,
       },
       state: {
         phase: CRIMES_HEDIONDOS_PHASES.SETUP,
@@ -205,7 +216,13 @@ export const prepareRevealPhase = async (
   players: Players
 ): Promise<SaveGamePayload> => {
   // Update or create guess history
-  const results = updateOrCreateGuessHistory(state.crimes, players, state.groupedItems);
+  const results = updateOrCreateGuessHistory(
+    state.crimes,
+    players,
+    state.groupedItems,
+    store,
+    state.round.current
+  );
 
   // Reveal stuff
   const { ranking, winners } = buildRanking(players, state.round.current);
@@ -241,6 +258,8 @@ export const prepareGameOverPhase = async (
     Object.keys(winningPlayers).length > 0 ? winningPlayers : players
   );
 
+  const achievements = getAchievements(store);
+
   await utils.firebase.markGameAsComplete(gameId);
 
   await utils.user.saveGameToUsers({
@@ -249,9 +268,11 @@ export const prepareGameOverPhase = async (
     startedAt: store.createdAt,
     players,
     winners,
-    achievements: [],
+    achievements,
     language: store.language,
   });
+
+  // TODO: Save data
 
   return {
     set: {

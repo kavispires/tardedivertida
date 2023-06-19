@@ -1,8 +1,10 @@
-import { CRIMES_HEDIONDOS_ACTIONS } from './constants';
+import { CRIMES_HEDIONDOS_ACHIEVEMENTS, CRIMES_HEDIONDOS_ACTIONS } from './constants';
 
 export type CrimesHediondosOptions = {
   withBots?: boolean;
 };
+
+export type CrimesHediondosAchievement = keyof typeof CRIMES_HEDIONDOS_ACHIEVEMENTS;
 
 export interface Crime {
   playerId: PlayerId;

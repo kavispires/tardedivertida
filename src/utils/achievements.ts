@@ -4,7 +4,7 @@ import ARTE_RUIM from 'games/arte-ruim/utils/achievements';
 // import CINEGRAFISTAS_AMADORES from 'games/cinegrafistas-amadores/utils/achievements';
 import COMUNICACAO_ALIENIGENA from 'games/comunicacao-alienigena/utils/achievements';
 import CONTADORES_HISTORIAS from 'games/contadores-historias/utils/achievements';
-// import CRIMES_HEDIONDOS from 'games/crimes-hediondos/utils/achievements';
+import CRIMES_HEDIONDOS from 'games/crimes-hediondos/utils/achievements';
 import CRUZA_PALAVRAS from 'games/cruza-palavras/utils/achievements';
 // import DETETIVES_IMAGINATIVOS from 'games/detetives-imaginativos/utils/achievements';
 // import DILEMA_DOS_ESQUIADORES from 'games/dilema-dos-esquiadores/utils/achievements';
@@ -40,7 +40,7 @@ export const ACHIEVEMENTS_DICT: Record<GameName, AchievementReference | null> = 
   'cinegrafistas-amadores': null,
   'comunicacao-alienigena': COMUNICACAO_ALIENIGENA,
   'contadores-historias': CONTADORES_HISTORIAS,
-  'crimes-hediondos': null,
+  'crimes-hediondos': CRIMES_HEDIONDOS,
   'cruza-palavras': CRUZA_PALAVRAS,
   'detetives-imaginativos': null,
   'dilema-dos-esquiadores': null,

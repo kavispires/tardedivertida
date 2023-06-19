@@ -1,5 +1,6 @@
 // Constants
 import {
+  CRIMES_HEDIONDOS_ACHIEVEMENTS,
   CRIMES_HEDIONDOS_PHASES,
   GUESS_STATUS,
   ITEMS_GROUP_COUNT,
@@ -7,7 +8,17 @@ import {
   SCENE_TILES_COUNT,
   TOTAL_ROUNDS,
 } from './constants';
-import { Crime, GroupedItems, Guess, Guesses, GuessHistory, GuessHistoryEntry, WrongGroups } from './types';
+import {
+  Crime,
+  CrimesHediondosAchievement,
+  FirebaseStoreData,
+  GroupedItems,
+  Guess,
+  Guesses,
+  GuessHistory,
+  GuessHistoryEntry,
+  WrongGroups,
+} from './types';
 // Utils
 import utils from '../../utils';
 
@@ -168,7 +179,9 @@ export const updateCrime = (crimes: Crime[], players: Players, currentScene: Cri
 export const updateOrCreateGuessHistory = (
   crimes: Crime[],
   players: Players,
-  groupedItems: GroupedItems
+  groupedItems: GroupedItems,
+  store: FirebaseStoreData,
+  currentRound: number
 ): PlainObject => {
   const results: PlainObject = {};
   // Each history entry shows the
@@ -216,6 +229,8 @@ export const updateOrCreateGuessHistory = (
 
         if (status === GUESS_STATUS.CORRECT) {
           player.correctCrimes += 1;
+          // Achievements: Correct
+          utils.achievements.insert(store, player.id, 'correct', true, currentRound);
         }
 
         if (wrongGroups[crime.playerId] === undefined) {
@@ -224,11 +239,31 @@ export const updateOrCreateGuessHistory = (
 
         if (status === GUESS_STATUS.WRONG_GROUP) {
           wrongGroups[crime.playerId].push(groupIndex);
+          // Achievements: WrongGroup
+          utils.achievements.increase(store, player.id, 'wrongGroup', 1);
         }
 
         // If player knows the group, eliminate all other groups
         if ([GUESS_STATUS.HALF, GUESS_STATUS.WRONG].includes(status)) {
           wrongGroups[crime.playerId] = [0, 1, 2, 3].filter((i) => i !== groupIndex);
+
+          if (status === GUESS_STATUS.HALF) {
+            // Achievements: Half/One of the two
+            utils.achievements.increase(store, player.id, 'half', 1);
+            // Achievements: Wrong
+            utils.achievements.increase(store, player.id, 'wrong', 1);
+          }
+
+          if (status === GUESS_STATUS.WRONG) {
+            // Achievements: Wrong
+            utils.achievements.increase(store, player.id, 'wrong', 2);
+          }
+        }
+
+        if (status !== GUESS_STATUS.LOCKED) {
+          // Achievements: Wrong
+          utils.achievements.push(store, player.id, 'weapon', guess.weaponId);
+          utils.achievements.push(store, player.id, 'evidence', guess.evidenceId);
         }
 
         result[crime.playerId] = status;
@@ -471,4 +506,108 @@ const botSmartSceneMarking = (
   }
 
   return utils.game.getRandomItem(selectedEntries);
+};
+
+/**
+ * Get achievements
+ * @param store
+ */
+export const getAchievements = (store: FirebaseStoreData) => {
+  const achievements: Achievement<CrimesHediondosAchievement>[] = [];
+
+  // Most Wrong groups
+  const { most: wrongGroups } = utils.achievements.getMostAndLeastOf(store, 'wrongGroups');
+  if (wrongGroups) {
+    achievements.push({
+      type: CRIMES_HEDIONDOS_ACHIEVEMENTS.MOST_WRONG_GROUPS,
+      playerId: wrongGroups.playerId,
+      value: wrongGroups.wrongGroups,
+    });
+  }
+
+  // Most Wrong Guesses
+  const { most: wrong } = utils.achievements.getMostAndLeastOf(store, 'wrong');
+  if (wrong) {
+    achievements.push({
+      type: CRIMES_HEDIONDOS_ACHIEVEMENTS.MOST_WRONG_GUESSES,
+      playerId: wrong.playerId,
+      value: wrong.wrong,
+    });
+  }
+
+  // Most Half Guesses
+  const { most: half } = utils.achievements.getMostAndLeastOf(store, 'half');
+  if (half) {
+    achievements.push({
+      type: CRIMES_HEDIONDOS_ACHIEVEMENTS.MOST_HALF_GUESSES,
+      playerId: half.playerId,
+      value: half.half,
+    });
+  }
+
+  // Earliest Correct Guess
+  const { most: latestOccurrence, least: earliestOccurrence } =
+    utils.achievements.getEarliestAndLatestOccurrence(store, 'correct');
+  if (earliestOccurrence) {
+    achievements.push({
+      type: CRIMES_HEDIONDOS_ACHIEVEMENTS.EARLIEST_CORRECT_GUESS,
+      playerId: earliestOccurrence.playerId,
+      value: earliestOccurrence.correct,
+    });
+  }
+
+  // Latest Correct Guess
+  if (latestOccurrence) {
+    achievements.push({
+      type: CRIMES_HEDIONDOS_ACHIEVEMENTS.LATEST_CORRECT_GUESS,
+      playerId: latestOccurrence.playerId,
+      value: latestOccurrence.correct,
+    });
+  }
+
+  // Most Selected Weapons
+  const { most: mostWeapons, least: leastWeapons } = utils.achievements.getMostAndLeastUniqueItemsOf(
+    store,
+    'weapons'
+  );
+  if (mostWeapons) {
+    achievements.push({
+      type: CRIMES_HEDIONDOS_ACHIEVEMENTS.MOST_SELECTED_WEAPONS,
+      playerId: mostWeapons.playerId,
+      value: mostWeapons.weapons,
+    });
+  }
+
+  // Fewest Selected Weapons
+  if (leastWeapons) {
+    achievements.push({
+      type: CRIMES_HEDIONDOS_ACHIEVEMENTS.FEWEST_SELECTED_WEAPONS,
+      playerId: leastWeapons.playerId,
+      value: leastWeapons.weapons,
+    });
+  }
+
+  // Most Selected Evidence
+  const { most: mostEvidence, least: leastEvidence } = utils.achievements.getMostAndLeastUniqueItemsOf(
+    store,
+    'evidence'
+  );
+  if (mostEvidence) {
+    achievements.push({
+      type: CRIMES_HEDIONDOS_ACHIEVEMENTS.MOST_SELECTED_EVIDENCE,
+      playerId: mostEvidence.playerId,
+      value: mostEvidence.evidence,
+    });
+  }
+
+  // Fewest Selected Evidence
+  if (leastEvidence) {
+    achievements.push({
+      type: CRIMES_HEDIONDOS_ACHIEVEMENTS.FEWEST_SELECTED_EVIDENCE,
+      playerId: leastEvidence.playerId,
+      value: leastEvidence.evidence,
+    });
+  }
+
+  return achievements;
 };
