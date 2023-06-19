@@ -28,7 +28,7 @@ function getActiveComponent(phase: string) {
   }
 }
 
-function SessionLabirinhoSecreto() {
+function SessionLabirintoSecreto() {
   return (
     <ConfigProvider
       theme={{
@@ -43,4 +43,4 @@ function SessionLabirinhoSecreto() {
   );
 }
 
-export default SessionLabirinhoSecreto;
+export default SessionLabirintoSecreto;
