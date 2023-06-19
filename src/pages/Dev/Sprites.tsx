@@ -18,6 +18,7 @@ import { ItemCard } from 'components/cards/ItemCard';
 import { DevHeader } from './DevHeader';
 import { MEDALS_IDS } from './utils/constants';
 import { Medal } from 'components/general/Medal';
+import { TreeCard } from 'components/cards/TreeCard';
 
 type SpriteOption = {
   key: string;
@@ -72,6 +73,13 @@ const options: Record<string, SpriteOption> = {
     quantity: 250,
     startAt: 1,
   },
+  trees: {
+    key: 'trees',
+    label: 'Trees',
+    prefix: 'tree',
+    quantity: 15,
+    startAt: 1,
+  },
   medals: {
     key: 'medals',
     label: 'Medals',
@@ -95,6 +103,7 @@ function SpritesPage() {
     glyphs: <GlyphsContent />,
     items: <ItemsContent />,
     medals: <MedalsContent />,
+    trees: <TreeContent />,
   }?.[active.key] ?? <Content type={active.key} />;
 
   return (
@@ -209,6 +218,25 @@ function ItemsContent() {
         return (
           <li key={`costume-${id}`} className="sprites__flex-item">
             <ItemCard id={String(id)} />
+            {id}
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
+
+function TreeContent() {
+  const { quantity, startAt } = options.trees;
+
+  const ids = makeArray(quantity, startAt);
+
+  return (
+    <ul className="sprites__flex">
+      {ids.map((id) => {
+        return (
+          <li key={`tree-${id}`} className="sprites__flex-item">
+            <TreeCard id={String(id)} />
             {id}
           </li>
         );
