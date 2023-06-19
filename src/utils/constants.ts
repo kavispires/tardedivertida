@@ -237,7 +237,6 @@ export const ADMIN_ACTIONS = {
 export const GAME_COLLECTION = {
   ARTE_RUIM: 'arte-ruim',
   BOMBA_RELOGIO: 'bomba-relogio',
-  CAMINHOS_MAGICOS: 'caminhos-magicos',
   COMUNICACAO_ALIENIGENA: 'comunicacao-alienigena',
   CONTADORES_HISTORIAS: 'contadores-historias',
   CINEGRAFISTAS_AMADORES: 'cinegrafistas-amadores',
@@ -250,6 +249,7 @@ export const GAME_COLLECTION = {
   FILEIRA_DE_FATOS: 'fileira-de-fatos',
   GALERIA_DE_SONHOS: 'galeria-de-sonhos',
   INSTRUMENTOS_CODIFICADOS: 'instrumentos-codificados',
+  LABIRINTO_SECRETO: 'labirinto-secreto',
   LINHAS_CRUZADAS: 'linhas-cruzadas',
   MEGAMIX: 'megamix',
   MENTE_COLETIVA: 'mente-coletiva',

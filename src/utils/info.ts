@@ -1,6 +1,5 @@
 import ARTE_RUIM from 'games/arte-ruim/game-info.json';
 import BOMBA_RELOGIO from 'games/bomba-relogio/game-info.json';
-import CAMINHOS_MAGICOS from 'games/caminhos-magicos/game-info.json';
 import CINEGRAFISTAS_AMADORES from 'games/cinegrafistas-amadores/game-info.json';
 import COMUNICACAO_ALIENIGENA from 'games/comunicacao-alienigena/game-info.json';
 import CONTADORES_HISTORIAS from 'games/contadores-historias/game-info.json';
@@ -12,6 +11,7 @@ import ESPIAO_ENTRE_NOS from 'games/espiao-entre-nos/game-info.json';
 import FILEIRA_DE_FATOS from 'games/fileira-de-fatos/game-info.json';
 import GALERIA_DE_SONHOS from 'games/galeria-de-sonhos/game-info.json';
 import INSTRUMENTOS_CODIFICADOS from 'games/instrumentos-codificados/game-info.json';
+import LABIRINTO_SECRETO from 'games/labirinto-secreto/game-info.json';
 import LINHAS_CRUZADAS from 'games/linhas-cruzadas/game-info.json';
 import MEGAMIX from 'games/megamix/game-info.json';
 import MENTE_COLETIVA from 'games/mente-coletiva/game-info.json';
@@ -40,7 +40,6 @@ export const GAME_LIST: Record<GameName, GameInfo> = {
   ...others,
   'arte-ruim': ARTE_RUIM,
   'bomba-relogio': BOMBA_RELOGIO,
-  'caminhos-magicos': CAMINHOS_MAGICOS,
   'cinegrafistas-amadores': CINEGRAFISTAS_AMADORES,
   'comunicacao-alienigena': COMUNICACAO_ALIENIGENA,
   'contadores-historias': CONTADORES_HISTORIAS,
@@ -52,6 +51,7 @@ export const GAME_LIST: Record<GameName, GameInfo> = {
   'fileira-de-fatos': FILEIRA_DE_FATOS,
   'galeria-de-sonhos': GALERIA_DE_SONHOS,
   'instrumentos-codificados': INSTRUMENTOS_CODIFICADOS,
+  'labirinto-secreto': LABIRINTO_SECRETO,
   'linhas-cruzadas': LINHAS_CRUZADAS,
   megamix: MEGAMIX,
   'mente-coletiva': MENTE_COLETIVA,

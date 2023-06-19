@@ -1,6 +1,5 @@
 import ARTE_RUIM from 'games/arte-ruim/utils/achievements';
 // import BOMBA_RELOGIO from 'games/bomba-relogio/utils/achievements';
-// import CAMINHOS_MAGICOS from 'games/caminhos-magicos/utils/achievements';
 // import CINEGRAFISTAS_AMADORES from 'games/cinegrafistas-amadores/utils/achievements';
 import COMUNICACAO_ALIENIGENA from 'games/comunicacao-alienigena/utils/achievements';
 import CONTADORES_HISTORIAS from 'games/contadores-historias/utils/achievements';
@@ -12,6 +11,7 @@ import CRUZA_PALAVRAS from 'games/cruza-palavras/utils/achievements';
 // import FILEIRA_DE_FATOS from 'games/fileira-de-fatos/utils/achievements';
 import GALERIA_DE_SONHOS from 'games/galeria-de-sonhos/utils/achievements';
 // import INSTRUMENTOS_CODIFICADOS from 'games/instrumentos-codificados/utils/achievements';
+// import LABIRINTO_SECRETO from 'games/labirinto-secreto/utils/achievements';
 // import LINHAS_CRUZADAS from 'games/linhas-cruzadas/utils/achievements';
 // import MEGAMIX from 'games/megamix/utils/achievements';
 import MENTE_COLETIVA from 'games/mente-coletiva/utils/achievements';
@@ -36,7 +36,6 @@ import UE_SO_ISSO from 'games/ue-so-isso/utils/achievements';
 export const ACHIEVEMENTS_DICT: Record<GameName, AchievementReference | null> = {
   'arte-ruim': ARTE_RUIM,
   'bomba-relogio': null,
-  'caminhos-magicos': null,
   'cinegrafistas-amadores': null,
   'comunicacao-alienigena': COMUNICACAO_ALIENIGENA,
   'contadores-historias': CONTADORES_HISTORIAS,
@@ -48,6 +47,7 @@ export const ACHIEVEMENTS_DICT: Record<GameName, AchievementReference | null> = 
   'fileira-de-fatos': null,
   'galeria-de-sonhos': GALERIA_DE_SONHOS,
   'instrumentos-codificados': null,
+  'labirinto-secreto': null,
   'linhas-cruzadas': null,
   megamix: null,
   'mente-coletiva': MENTE_COLETIVA,
