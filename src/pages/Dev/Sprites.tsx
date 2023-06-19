@@ -19,6 +19,7 @@ import { DevHeader } from './DevHeader';
 import { MEDALS_IDS } from './utils/constants';
 import { Medal } from 'components/general/Medal';
 import { TreeCard } from 'components/cards/TreeCard';
+import { SuperHeroAvatar } from 'components/avatars/SuperHeroAvatar';
 
 type SpriteOption = {
   key: string;
@@ -58,6 +59,13 @@ const options: Record<string, SpriteOption> = {
     prefix: 'clubber',
     quantity: 60,
     startAt: 0,
+  },
+  'super-heroes': {
+    key: 'super-heroes',
+    label: 'Super Heroes',
+    prefix: 'super-hero',
+    quantity: 50,
+    startAt: 1,
   },
   glyphs: {
     key: 'glyphs',
@@ -105,6 +113,7 @@ function SpritesPage() {
     medals: <MedalsContent />,
     trees: <TreeContent />,
   }?.[active.key] ?? <Content type={active.key} />;
+  console.log(active.key);
 
   return (
     <Layout className="dev-layout">
@@ -200,6 +209,7 @@ function Content({ type }: { type: string }) {
             {type === 'sheep' && <SheepAvatar sheepId={String(id)} id="A" />}
             {type === 'costumes' && <CostumeAvatar costumeId={String(id)} id="A" />}
             {type === 'clubbers' && <ClubberAvatar clubberId={String(id)} id="A" />}
+            {type === 'super-heroes' && <SuperHeroAvatar superHeroId={String(id)} id="A" />}
           </li>
         );
       })}
@@ -218,25 +228,6 @@ function ItemsContent() {
         return (
           <li key={`costume-${id}`} className="sprites__flex-item">
             <ItemCard id={String(id)} />
-            {id}
-          </li>
-        );
-      })}
-    </ul>
-  );
-}
-
-function TreeContent() {
-  const { quantity, startAt } = options.trees;
-
-  const ids = makeArray(quantity, startAt);
-
-  return (
-    <ul className="sprites__flex">
-      {ids.map((id) => {
-        return (
-          <li key={`tree-${id}`} className="sprites__flex-item">
-            <TreeCard id={String(id)} />
             {id}
           </li>
         );
@@ -278,6 +269,25 @@ function MedalsContent() {
         );
       })}
     </Row>
+  );
+}
+
+function TreeContent() {
+  const { quantity, startAt } = options.trees;
+
+  const ids = makeArray(quantity, startAt);
+
+  return (
+    <ul className="sprites__flex">
+      {ids.map((id) => {
+        return (
+          <li key={`tree-${id}`} className="sprites__flex-item">
+            <TreeCard id={String(id)} />
+            {id}
+          </li>
+        );
+      })}
+    </ul>
   );
 }
 

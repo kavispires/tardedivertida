@@ -1,0 +1,9 @@
+.super-hero-avatar {
+  width: 100px;
+  border-radius: $border-radius;
+  margin: get-unit(0 2);
+
+  &--bounce {
+    animation: bounce-kid 2000ms ease-in-out infinite;
+  }
+}
