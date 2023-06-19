@@ -15,7 +15,11 @@ function getActiveComponent(phase: string) {
       return PhaseRules;
     case PHASES.DEFAULT.SETUP:
       return PhaseSetup;
-    case PHASES.CAMINHOS_MAGICOS.UNKNOWN:
+    case PHASES.LABIRINTO_SECRETO.MAP_BUILDING:
+      return PhasePlaceholder;
+    case PHASES.LABIRINTO_SECRETO.PATH_FOLLOWING:
+      return PhasePlaceholder;
+    case PHASES.LABIRINTO_SECRETO.RESULTS:
       return PhasePlaceholder;
     case PHASES.DEFAULT.GAME_OVER:
       return PhasePlaceholder;
@@ -24,19 +28,19 @@ function getActiveComponent(phase: string) {
   }
 }
 
-function SessionCaminhosMagicos() {
+function SessionLabirinhoSecreto() {
   return (
     <ConfigProvider
       theme={{
         token: {
-          colorPrimary: THEME_COLORS.DEFAULT,
-          colorLink: THEME_COLORS.DEFAULT,
+          colorPrimary: THEME_COLORS.FOREST,
+          colorLink: THEME_COLORS.FOREST,
         },
       }}
     >
-      <Session gameCollection={GAME_COLLECTION.CAMINHOS_MAGICOS} getActiveComponent={getActiveComponent} />
+      <Session gameCollection={GAME_COLLECTION.LABIRINTO_SECRETO} getActiveComponent={getActiveComponent} />
     </ConfigProvider>
   );
 }
 
-export default SessionCaminhosMagicos;
+export default SessionLabirinhoSecreto;
