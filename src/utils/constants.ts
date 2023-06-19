@@ -270,6 +270,7 @@ export const GAME_COLLECTION = {
   UE_SO_ISSO: 'ue-so-isso',
   VAMOS_AO_CINEMA: 'vamos-ao-cinema',
   VENDAVAL_DE_PALPITE: 'vendaval-de-palpite',
+  VINGATIVOS: 'vingativos',
 };
 
 export const THEME_COLORS = {
