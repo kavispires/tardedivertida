@@ -27,7 +27,7 @@ function PhaseDreamsSelections({ players, state, info, meta }: PhaseProps) {
       currentRound={state?.round?.current}
       type="overlay"
     >
-      <DreamSelectionRules />
+      <DreamSelectionRules hardModeEnabled={Boolean(meta.options?.hardMode)} />
       <ImageCardPreloadHand hand={state.table.map((entry: GImageCard) => entry.id)} />
     </PhaseAnnouncement>
   );
