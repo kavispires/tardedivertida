@@ -32,6 +32,7 @@ function PhaseResolution({ players, state, info }: PhaseProps) {
           onClose={goToNextStep}
           currentRound={state?.round?.current}
           type="block"
+          duration={3}
         >
           <Instruction>
             <Translate pt="E quem deu mais matches foi..." en="And who matched the most was..." />
